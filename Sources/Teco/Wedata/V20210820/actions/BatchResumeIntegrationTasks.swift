@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 批量继续执行集成任务
-    ///
-    /// 批量继续执行集成实时任务
-    @inlinable
-    public func batchResumeIntegrationTasks(_ input: BatchResumeIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchResumeIntegrationTasksResponse > {
-        self.client.execute(action: "BatchResumeIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量继续执行集成任务
-    ///
-    /// 批量继续执行集成实时任务
-    @inlinable
-    public func batchResumeIntegrationTasks(_ input: BatchResumeIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchResumeIntegrationTasksResponse {
-        try await self.client.execute(action: "BatchResumeIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchResumeIntegrationTasks请求参数结构体
     public struct BatchResumeIntegrationTasksRequest: TCRequestModel {
         /// 任务id
@@ -75,5 +59,21 @@ extension Wedata {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量继续执行集成任务
+    ///
+    /// 批量继续执行集成实时任务
+    @inlinable
+    public func batchResumeIntegrationTasks(_ input: BatchResumeIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchResumeIntegrationTasksResponse > {
+        self.client.execute(action: "BatchResumeIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量继续执行集成任务
+    ///
+    /// 批量继续执行集成实时任务
+    @inlinable
+    public func batchResumeIntegrationTasks(_ input: BatchResumeIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchResumeIntegrationTasksResponse {
+        try await self.client.execute(action: "BatchResumeIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

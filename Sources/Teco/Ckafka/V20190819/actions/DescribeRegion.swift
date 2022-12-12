@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 枚举地域
-    ///
-    /// 枚举地域,只支持广州地域
-    @inlinable
-    public func describeRegion(_ input: DescribeRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionResponse > {
-        self.client.execute(action: "DescribeRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 枚举地域
-    ///
-    /// 枚举地域,只支持广州地域
-    @inlinable
-    public func describeRegion(_ input: DescribeRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionResponse {
-        try await self.client.execute(action: "DescribeRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRegion请求参数结构体
     public struct DescribeRegionRequest: TCRequestModel {
         /// 偏移量
@@ -45,7 +29,7 @@ extension Ckafka {
         /// cdc专有集群业务字段，可忽略
         public let cdcId: String?
         
-        public init (offset: Int64?, limit: Int64?, business: String?, cdcId: String?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, business: String? = nil, cdcId: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.business = business
@@ -73,5 +57,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 枚举地域
+    ///
+    /// 枚举地域,只支持广州地域
+    @inlinable
+    public func describeRegion(_ input: DescribeRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionResponse > {
+        self.client.execute(action: "DescribeRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 枚举地域
+    ///
+    /// 枚举地域,只支持广州地域
+    @inlinable
+    public func describeRegion(_ input: DescribeRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionResponse {
+        try await self.client.execute(action: "DescribeRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

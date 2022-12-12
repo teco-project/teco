@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 更新拉流配置(该接口已下线,请使用新接口 ModifyLivePullStreamTask)
-    ///
-    /// 更新拉流配置。该接口为已下线接口，请使用新接口 ModifyLivePullStreamTask。 
-    @inlinable
-    public func modifyPullStreamConfig(_ input: ModifyPullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPullStreamConfigResponse > {
-        self.client.execute(action: "ModifyPullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新拉流配置(该接口已下线,请使用新接口 ModifyLivePullStreamTask)
-    ///
-    /// 更新拉流配置。该接口为已下线接口，请使用新接口 ModifyLivePullStreamTask。 
-    @inlinable
-    public func modifyPullStreamConfig(_ input: ModifyPullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPullStreamConfigResponse {
-        try await self.client.execute(action: "ModifyPullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPullStreamConfig请求参数结构体
     public struct ModifyPullStreamConfigRequest: TCRequestModel {
         /// 配置 ID。
@@ -83,7 +67,7 @@ extension Live {
         /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let endTime: String?
         
-        public init (configId: String, fromUrl: String?, toUrl: String?, areaId: Int64?, ispId: Int64?, startTime: String?, endTime: String?) {
+        public init (configId: String, fromUrl: String? = nil, toUrl: String? = nil, areaId: Int64? = nil, ispId: Int64? = nil, startTime: String? = nil, endTime: String? = nil) {
             self.configId = configId
             self.fromUrl = fromUrl
             self.toUrl = toUrl
@@ -112,5 +96,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新拉流配置(该接口已下线,请使用新接口 ModifyLivePullStreamTask)
+    ///
+    /// 更新拉流配置。该接口为已下线接口，请使用新接口 ModifyLivePullStreamTask。 
+    @inlinable
+    public func modifyPullStreamConfig(_ input: ModifyPullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPullStreamConfigResponse > {
+        self.client.execute(action: "ModifyPullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新拉流配置(该接口已下线,请使用新接口 ModifyLivePullStreamTask)
+    ///
+    /// 更新拉流配置。该接口为已下线接口，请使用新接口 ModifyLivePullStreamTask。 
+    @inlinable
+    public func modifyPullStreamConfig(_ input: ModifyPullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPullStreamConfigResponse {
+        try await self.client.execute(action: "ModifyPullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

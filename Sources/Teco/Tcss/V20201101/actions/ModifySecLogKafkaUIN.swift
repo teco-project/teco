@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 修改安全日志kafkaUIN
-    @inlinable
-    public func modifySecLogKafkaUIN(_ input: ModifySecLogKafkaUINRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogKafkaUINResponse > {
-        self.client.execute(action: "ModifySecLogKafkaUIN", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改安全日志kafkaUIN
-    @inlinable
-    public func modifySecLogKafkaUIN(_ input: ModifySecLogKafkaUINRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogKafkaUINResponse {
-        try await self.client.execute(action: "ModifySecLogKafkaUIN", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySecLogKafkaUIN请求参数结构体
     public struct ModifySecLogKafkaUINRequest: TCRequestModel {
         /// 目标UIN
         public let dstUIN: String?
         
-        public init (dstUIN: String?) {
+        public init (dstUIN: String? = nil) {
             self.dstUIN = dstUIN
         }
         
@@ -49,5 +37,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改安全日志kafkaUIN
+    @inlinable
+    public func modifySecLogKafkaUIN(_ input: ModifySecLogKafkaUINRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogKafkaUINResponse > {
+        self.client.execute(action: "ModifySecLogKafkaUIN", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改安全日志kafkaUIN
+    @inlinable
+    public func modifySecLogKafkaUIN(_ input: ModifySecLogKafkaUINRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogKafkaUINResponse {
+        try await self.client.execute(action: "ModifySecLogKafkaUIN", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

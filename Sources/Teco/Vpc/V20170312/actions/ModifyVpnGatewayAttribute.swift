@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改VPN网关属性
-    ///
-    /// 本接口（ModifyVpnGatewayAttribute）用于修改VPN网关属性。
-    @inlinable
-    public func modifyVpnGatewayAttribute(_ input: ModifyVpnGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpnGatewayAttributeResponse > {
-        self.client.execute(action: "ModifyVpnGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改VPN网关属性
-    ///
-    /// 本接口（ModifyVpnGatewayAttribute）用于修改VPN网关属性。
-    @inlinable
-    public func modifyVpnGatewayAttribute(_ input: ModifyVpnGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayAttributeResponse {
-        try await self.client.execute(action: "ModifyVpnGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVpnGatewayAttribute请求参数结构体
     public struct ModifyVpnGatewayAttributeRequest: TCRequestModel {
         /// VPN网关实例ID。
@@ -42,7 +26,7 @@ extension Vpc {
         /// VPN网关计费模式，目前只支持预付费（即包年包月）到后付费（即按量计费）的转换。即参数只支持：POSTPAID_BY_HOUR。
         public let instanceChargeType: String?
         
-        public init (vpnGatewayId: String, vpnGatewayName: String?, instanceChargeType: String?) {
+        public init (vpnGatewayId: String, vpnGatewayName: String? = nil, instanceChargeType: String? = nil) {
             self.vpnGatewayId = vpnGatewayId
             self.vpnGatewayName = vpnGatewayName
             self.instanceChargeType = instanceChargeType
@@ -63,5 +47,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改VPN网关属性
+    ///
+    /// 本接口（ModifyVpnGatewayAttribute）用于修改VPN网关属性。
+    @inlinable
+    public func modifyVpnGatewayAttribute(_ input: ModifyVpnGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpnGatewayAttributeResponse > {
+        self.client.execute(action: "ModifyVpnGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改VPN网关属性
+    ///
+    /// 本接口（ModifyVpnGatewayAttribute）用于修改VPN网关属性。
+    @inlinable
+    public func modifyVpnGatewayAttribute(_ input: ModifyVpnGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayAttributeResponse {
+        try await self.client.execute(action: "ModifyVpnGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

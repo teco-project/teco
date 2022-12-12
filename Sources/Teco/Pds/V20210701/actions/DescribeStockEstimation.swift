@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Pds {
-    /// 存量判断服务
-    ///
-    /// 查询存量判断服务
-    @inlinable
-    public func describeStockEstimation(_ input: DescribeStockEstimationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStockEstimationResponse > {
-        self.client.execute(action: "DescribeStockEstimation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 存量判断服务
-    ///
-    /// 查询存量判断服务
-    @inlinable
-    public func describeStockEstimation(_ input: DescribeStockEstimationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStockEstimationResponse {
-        try await self.client.execute(action: "DescribeStockEstimation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStockEstimation请求参数结构体
     public struct DescribeStockEstimationRequest: TCRequestModel {
         /// 用户信息
@@ -57,5 +41,21 @@ extension Pds {
             case serviceRsp = "ServiceRsp"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 存量判断服务
+    ///
+    /// 查询存量判断服务
+    @inlinable
+    public func describeStockEstimation(_ input: DescribeStockEstimationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStockEstimationResponse > {
+        self.client.execute(action: "DescribeStockEstimation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 存量判断服务
+    ///
+    /// 查询存量判断服务
+    @inlinable
+    public func describeStockEstimation(_ input: DescribeStockEstimationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStockEstimationResponse {
+        try await self.client.execute(action: "DescribeStockEstimation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

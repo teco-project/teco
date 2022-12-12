@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 创建ES集群实例
-    ///
-    /// 创建指定规格的ES集群实例
-    @inlinable
-    public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceResponse > {
-        self.client.execute(action: "CreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建ES集群实例
-    ///
-    /// 创建指定规格的ES集群实例
-    @inlinable
-    public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceResponse {
-        try await self.client.execute(action: "CreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateInstance请求参数结构体
     public struct CreateInstanceRequest: TCRequestModel {
         /// 可用区
@@ -126,13 +110,13 @@ extension Es {
         public let sceneType: Int64?
         
         /// 可视化节点配置
-        public let webNodeTypeInfo: WebNodeTypeInfo
+        public let webNodeTypeInfo: WebNodeTypeInfo?
         
         /// 创建https集群，默认是http
         public let `protocol`: String?
         
         /// 可维护时间段
-        public let operationDuration: OperationDuration
+        public let operationDuration: OperationDuration?
         
         /// 是否开启存算分离
         public let enableHybridStorage: Bool?
@@ -140,7 +124,7 @@ extension Es {
         /// 是否开启essd 增强型云盘
         public let diskEnhance: UInt64?
         
-        public init (zone: String, esVersion: String, vpcId: String, subnetId: String, password: String, instanceName: String?, nodeNum: UInt64?, chargeType: String?, chargePeriod: UInt64?, renewFlag: String?, nodeType: String?, diskType: String?, diskSize: UInt64?, timeUnit: String?, autoVoucher: Int64?, voucherIds: [String]?, enableDedicatedMaster: Bool?, masterNodeNum: UInt64?, masterNodeType: String?, masterNodeDiskSize: UInt64?, clusterNameInConf: String?, deployMode: UInt64?, multiZoneInfo: [ZoneDetail]?, licenseType: String?, nodeInfoList: [NodeInfo]?, tagList: [TagInfo]?, basicSecurityType: UInt64?, sceneType: Int64?, webNodeTypeInfo: WebNodeTypeInfo, `protocol`: String?, operationDuration: OperationDuration, enableHybridStorage: Bool?, diskEnhance: UInt64?) {
+        public init (zone: String, esVersion: String, vpcId: String, subnetId: String, password: String, instanceName: String? = nil, nodeNum: UInt64? = nil, chargeType: String? = nil, chargePeriod: UInt64? = nil, renewFlag: String? = nil, nodeType: String? = nil, diskType: String? = nil, diskSize: UInt64? = nil, timeUnit: String? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, enableDedicatedMaster: Bool? = nil, masterNodeNum: UInt64? = nil, masterNodeType: String? = nil, masterNodeDiskSize: UInt64? = nil, clusterNameInConf: String? = nil, deployMode: UInt64? = nil, multiZoneInfo: [ZoneDetail]? = nil, licenseType: String? = nil, nodeInfoList: [NodeInfo]? = nil, tagList: [TagInfo]? = nil, basicSecurityType: UInt64? = nil, sceneType: Int64? = nil, webNodeTypeInfo: WebNodeTypeInfo? = nil, `protocol`: String? = nil, operationDuration: OperationDuration? = nil, enableHybridStorage: Bool? = nil, diskEnhance: UInt64? = nil) {
             self.zone = zone
             self.esVersion = esVersion
             self.vpcId = vpcId
@@ -230,5 +214,21 @@ extension Es {
             case dealName = "DealName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建ES集群实例
+    ///
+    /// 创建指定规格的ES集群实例
+    @inlinable
+    public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceResponse > {
+        self.client.execute(action: "CreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建ES集群实例
+    ///
+    /// 创建指定规格的ES集群实例
+    @inlinable
+    public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceResponse {
+        try await self.client.execute(action: "CreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

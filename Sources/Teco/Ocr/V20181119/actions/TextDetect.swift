@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 快速文本检测
-    ///
-    /// 本接口通过检测图片中的文字信息特征，快速判断图片中有无文字并返回判断结果，帮助用户过滤无文字的图片。
-    @inlinable
-    public func textDetect(_ input: TextDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextDetectResponse > {
-        self.client.execute(action: "TextDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 快速文本检测
-    ///
-    /// 本接口通过检测图片中的文字信息特征，快速判断图片中有无文字并返回判断结果，帮助用户过滤无文字的图片。
-    @inlinable
-    public func textDetect(_ input: TextDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextDetectResponse {
-        try await self.client.execute(action: "TextDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TextDetect请求参数结构体
     public struct TextDetectRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -46,7 +30,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -69,5 +53,21 @@ extension Ocr {
             case hasText = "HasText"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 快速文本检测
+    ///
+    /// 本接口通过检测图片中的文字信息特征，快速判断图片中有无文字并返回判断结果，帮助用户过滤无文字的图片。
+    @inlinable
+    public func textDetect(_ input: TextDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextDetectResponse > {
+        self.client.execute(action: "TextDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 快速文本检测
+    ///
+    /// 本接口通过检测图片中的文字信息特征，快速判断图片中有无文字并返回判断结果，帮助用户过滤无文字的图片。
+    @inlinable
+    public func textDetect(_ input: TextDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextDetectResponse {
+        try await self.client.execute(action: "TextDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询网关所有分组下Api列表
-    @inlinable
-    public func describeGatewayAllGroupApis(_ input: DescribeGatewayAllGroupApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewayAllGroupApisResponse > {
-        self.client.execute(action: "DescribeGatewayAllGroupApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询网关所有分组下Api列表
-    @inlinable
-    public func describeGatewayAllGroupApis(_ input: DescribeGatewayAllGroupApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayAllGroupApisResponse {
-        try await self.client.execute(action: "DescribeGatewayAllGroupApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGatewayAllGroupApis请求参数结构体
     public struct DescribeGatewayAllGroupApisRequest: TCRequestModel {
         /// 网关部署组ID
@@ -35,7 +23,7 @@ extension Tsf {
         /// 搜索关键字，支持分组名称或API Path
         public let searchWord: String?
         
-        public init (gatewayDeployGroupId: String, searchWord: String?) {
+        public init (gatewayDeployGroupId: String, searchWord: String? = nil) {
             self.gatewayDeployGroupId = gatewayDeployGroupId
             self.searchWord = searchWord
         }
@@ -58,5 +46,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询网关所有分组下Api列表
+    @inlinable
+    public func describeGatewayAllGroupApis(_ input: DescribeGatewayAllGroupApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewayAllGroupApisResponse > {
+        self.client.execute(action: "DescribeGatewayAllGroupApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网关所有分组下Api列表
+    @inlinable
+    public func describeGatewayAllGroupApis(_ input: DescribeGatewayAllGroupApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayAllGroupApisResponse {
+        try await self.client.execute(action: "DescribeGatewayAllGroupApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

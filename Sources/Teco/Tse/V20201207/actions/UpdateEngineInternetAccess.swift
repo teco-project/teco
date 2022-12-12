@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tse {
-    /// 修改引擎公网访问配置
-    @inlinable
-    public func updateEngineInternetAccess(_ input: UpdateEngineInternetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEngineInternetAccessResponse > {
-        self.client.execute(action: "UpdateEngineInternetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改引擎公网访问配置
-    @inlinable
-    public func updateEngineInternetAccess(_ input: UpdateEngineInternetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEngineInternetAccessResponse {
-        try await self.client.execute(action: "UpdateEngineInternetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateEngineInternetAccess请求参数结构体
     public struct UpdateEngineInternetAccessRequest: TCRequestModel {
         /// 引擎ID
@@ -38,7 +26,7 @@ extension Tse {
         /// 是否开启客户端公网访问，true开 false关
         public let enableClientInternetAccess: Bool?
         
-        public init (instanceId: String, engineType: String, enableClientInternetAccess: Bool?) {
+        public init (instanceId: String, engineType: String, enableClientInternetAccess: Bool? = nil) {
             self.instanceId = instanceId
             self.engineType = engineType
             self.enableClientInternetAccess = enableClientInternetAccess
@@ -59,5 +47,17 @@ extension Tse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改引擎公网访问配置
+    @inlinable
+    public func updateEngineInternetAccess(_ input: UpdateEngineInternetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEngineInternetAccessResponse > {
+        self.client.execute(action: "UpdateEngineInternetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改引擎公网访问配置
+    @inlinable
+    public func updateEngineInternetAccess(_ input: UpdateEngineInternetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEngineInternetAccessResponse {
+        try await self.client.execute(action: "UpdateEngineInternetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

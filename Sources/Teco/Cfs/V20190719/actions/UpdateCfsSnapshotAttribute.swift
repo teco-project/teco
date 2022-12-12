@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 更新文件系统快照信息
-    ///
-    /// 更新文件系统快照名称及保留时长
-    @inlinable
-    public func updateCfsSnapshotAttribute(_ input: UpdateCfsSnapshotAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCfsSnapshotAttributeResponse > {
-        self.client.execute(action: "UpdateCfsSnapshotAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新文件系统快照信息
-    ///
-    /// 更新文件系统快照名称及保留时长
-    @inlinable
-    public func updateCfsSnapshotAttribute(_ input: UpdateCfsSnapshotAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsSnapshotAttributeResponse {
-        try await self.client.execute(action: "UpdateCfsSnapshotAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateCfsSnapshotAttribute请求参数结构体
     public struct UpdateCfsSnapshotAttributeRequest: TCRequestModel {
         /// 文件系统快照ID
@@ -42,7 +26,7 @@ extension Cfs {
         /// 文件系统快照保留天数
         public let aliveDays: UInt64?
         
-        public init (snapshotId: String, snapshotName: String?, aliveDays: UInt64?) {
+        public init (snapshotId: String, snapshotName: String? = nil, aliveDays: UInt64? = nil) {
             self.snapshotId = snapshotId
             self.snapshotName = snapshotName
             self.aliveDays = aliveDays
@@ -67,5 +51,21 @@ extension Cfs {
             case snapshotId = "SnapshotId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新文件系统快照信息
+    ///
+    /// 更新文件系统快照名称及保留时长
+    @inlinable
+    public func updateCfsSnapshotAttribute(_ input: UpdateCfsSnapshotAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCfsSnapshotAttributeResponse > {
+        self.client.execute(action: "UpdateCfsSnapshotAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新文件系统快照信息
+    ///
+    /// 更新文件系统快照名称及保留时长
+    @inlinable
+    public func updateCfsSnapshotAttribute(_ input: UpdateCfsSnapshotAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsSnapshotAttributeResponse {
+        try await self.client.execute(action: "UpdateCfsSnapshotAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

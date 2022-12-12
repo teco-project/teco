@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 集群安装应用
-    ///
-    /// 在应用市场中给集群创建应用
-    @inlinable
-    public func createClusterRelease(_ input: CreateClusterReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterReleaseResponse > {
-        self.client.execute(action: "CreateClusterRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 集群安装应用
-    ///
-    /// 在应用市场中给集群创建应用
-    @inlinable
-    public func createClusterRelease(_ input: CreateClusterReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterReleaseResponse {
-        try await self.client.execute(action: "CreateClusterRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateClusterRelease请求参数结构体
     public struct CreateClusterReleaseRequest: TCRequestModel {
         /// 集群ID
@@ -46,7 +30,7 @@ extension Tke {
         public let chart: String
         
         /// 自定义参数
-        public let values: ReleaseValues
+        public let values: ReleaseValues?
         
         /// 制品来源，范围：tke 应用市场/第三方chart
         public let chartFrom: String?
@@ -69,7 +53,7 @@ extension Tke {
         /// 集群类型，支持传 tke, eks, tkeedge, exernal(注册集群）
         public let clusterType: String?
         
-        public init (clusterId: String, name: String, namespace: String, chart: String, values: ReleaseValues, chartFrom: String?, chartVersion: String?, chartRepoURL: String?, username: String?, password: String?, chartNamespace: String?, clusterType: String?) {
+        public init (clusterId: String, name: String, namespace: String, chart: String, values: ReleaseValues? = nil, chartFrom: String? = nil, chartVersion: String? = nil, chartRepoURL: String? = nil, username: String? = nil, password: String? = nil, chartNamespace: String? = nil, clusterType: String? = nil) {
             self.clusterId = clusterId
             self.name = name
             self.namespace = namespace
@@ -104,7 +88,7 @@ extension Tke {
     public struct CreateClusterReleaseResponse: TCResponseModel {
         /// 应用详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let release: PendingRelease
+        public let release: PendingRelease?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -113,5 +97,21 @@ extension Tke {
             case release = "Release"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 集群安装应用
+    ///
+    /// 在应用市场中给集群创建应用
+    @inlinable
+    public func createClusterRelease(_ input: CreateClusterReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterReleaseResponse > {
+        self.client.execute(action: "CreateClusterRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 集群安装应用
+    ///
+    /// 在应用市场中给集群创建应用
+    @inlinable
+    public func createClusterRelease(_ input: CreateClusterReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterReleaseResponse {
+        try await self.client.execute(action: "CreateClusterRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

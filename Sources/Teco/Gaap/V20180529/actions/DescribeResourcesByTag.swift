@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 根据标签拉取资源列表
-    ///
-    /// 本接口（DescribeResourcesByTag）用于根据标签来查询对应的资源信息，包括通道，通道组和源站。
-    @inlinable
-    public func describeResourcesByTag(_ input: DescribeResourcesByTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesByTagResponse > {
-        self.client.execute(action: "DescribeResourcesByTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据标签拉取资源列表
-    ///
-    /// 本接口（DescribeResourcesByTag）用于根据标签来查询对应的资源信息，包括通道，通道组和源站。
-    @inlinable
-    public func describeResourcesByTag(_ input: DescribeResourcesByTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByTagResponse {
-        try await self.client.execute(action: "DescribeResourcesByTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourcesByTag请求参数结构体
     public struct DescribeResourcesByTagRequest: TCRequestModel {
         /// 标签键。
@@ -46,7 +30,7 @@ extension Gaap {
         /// 不指定该字段则查询该标签下所有资源。
         public let resourceType: String?
         
-        public init (tagKey: String, tagValue: String, resourceType: String?) {
+        public init (tagKey: String, tagValue: String, resourceType: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
             self.resourceType = resourceType
@@ -75,5 +59,21 @@ extension Gaap {
             case resourceSet = "ResourceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据标签拉取资源列表
+    ///
+    /// 本接口（DescribeResourcesByTag）用于根据标签来查询对应的资源信息，包括通道，通道组和源站。
+    @inlinable
+    public func describeResourcesByTag(_ input: DescribeResourcesByTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesByTagResponse > {
+        self.client.execute(action: "DescribeResourcesByTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据标签拉取资源列表
+    ///
+    /// 本接口（DescribeResourcesByTag）用于根据标签来查询对应的资源信息，包括通道，通道组和源站。
+    @inlinable
+    public func describeResourcesByTag(_ input: DescribeResourcesByTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByTagResponse {
+        try await self.client.execute(action: "DescribeResourcesByTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

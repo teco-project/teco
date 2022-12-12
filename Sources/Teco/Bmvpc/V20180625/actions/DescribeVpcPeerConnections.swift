@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 获取对等连接列表
-    @inlinable
-    public func describeVpcPeerConnections(_ input: DescribeVpcPeerConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcPeerConnectionsResponse > {
-        self.client.execute(action: "DescribeVpcPeerConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取对等连接列表
-    @inlinable
-    public func describeVpcPeerConnections(_ input: DescribeVpcPeerConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPeerConnectionsResponse {
-        try await self.client.execute(action: "DescribeVpcPeerConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpcPeerConnections请求参数结构体
     public struct DescribeVpcPeerConnectionsRequest: TCRequestModel {
         /// 对等连接实例ID
@@ -46,7 +34,7 @@ extension Bmvpc {
         /// 私有网络ID
         public let vpcId: String?
         
-        public init (vpcPeerConnectionIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?, vpcId: String?) {
+        public init (vpcPeerConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, vpcId: String? = nil) {
             self.vpcPeerConnectionIds = vpcPeerConnectionIds
             self.filters = filters
             self.offset = offset
@@ -79,5 +67,17 @@ extension Bmvpc {
             case vpcPeerConnectionSet = "VpcPeerConnectionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取对等连接列表
+    @inlinable
+    public func describeVpcPeerConnections(_ input: DescribeVpcPeerConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcPeerConnectionsResponse > {
+        self.client.execute(action: "DescribeVpcPeerConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取对等连接列表
+    @inlinable
+    public func describeVpcPeerConnections(_ input: DescribeVpcPeerConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPeerConnectionsResponse {
+        try await self.client.execute(action: "DescribeVpcPeerConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 克隆安全组
-    ///
-    /// 本接口（CloneSecurityGroup）用于根据存量的安全组，克隆创建出同样规则配置的安全组。仅克隆安全组及其规则信息，不会克隆安全组标签信息。
-    @inlinable
-    public func cloneSecurityGroup(_ input: CloneSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloneSecurityGroupResponse > {
-        self.client.execute(action: "CloneSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 克隆安全组
-    ///
-    /// 本接口（CloneSecurityGroup）用于根据存量的安全组，克隆创建出同样规则配置的安全组。仅克隆安全组及其规则信息，不会克隆安全组标签信息。
-    @inlinable
-    public func cloneSecurityGroup(_ input: CloneSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneSecurityGroupResponse {
-        try await self.client.execute(action: "CloneSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CloneSecurityGroup请求参数结构体
     public struct CloneSecurityGroupRequest: TCRequestModel {
         /// 安全组实例ID，例如sg-33ocnj9n，可通过DescribeSecurityGroups获取。
@@ -48,7 +32,7 @@ extension Vpc {
         /// 源Region,跨地域克隆安全组时，需要传入源安全组所属地域信息，例如：克隆广州的安全组到上海，则这里需要传入广州安全的地域信息：ap-guangzhou。
         public let remoteRegion: String?
         
-        public init (securityGroupId: String, groupName: String?, groupDescription: String?, projectId: String?, remoteRegion: String?) {
+        public init (securityGroupId: String, groupName: String? = nil, groupDescription: String? = nil, projectId: String? = nil, remoteRegion: String? = nil) {
             self.securityGroupId = securityGroupId
             self.groupName = groupName
             self.groupDescription = groupDescription
@@ -69,7 +53,7 @@ extension Vpc {
     public struct CloneSecurityGroupResponse: TCResponseModel {
         /// 安全组对象。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let securityGroup: SecurityGroup
+        public let securityGroup: SecurityGroup?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -78,5 +62,21 @@ extension Vpc {
             case securityGroup = "SecurityGroup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 克隆安全组
+    ///
+    /// 本接口（CloneSecurityGroup）用于根据存量的安全组，克隆创建出同样规则配置的安全组。仅克隆安全组及其规则信息，不会克隆安全组标签信息。
+    @inlinable
+    public func cloneSecurityGroup(_ input: CloneSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloneSecurityGroupResponse > {
+        self.client.execute(action: "CloneSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 克隆安全组
+    ///
+    /// 本接口（CloneSecurityGroup）用于根据存量的安全组，克隆创建出同样规则配置的安全组。仅克隆安全组及其规则信息，不会克隆安全组标签信息。
+    @inlinable
+    public func cloneSecurityGroup(_ input: CloneSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneSecurityGroupResponse {
+        try await self.client.execute(action: "CloneSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

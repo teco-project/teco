@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 二维码和条形码识别
-    ///
-    /// 本接口支持条形码和二维码的识别（包括 DataMatrix 和 PDF417）。
-    @inlinable
-    public func qrcodeOCR(_ input: QrcodeOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QrcodeOCRResponse > {
-        self.client.execute(action: "QrcodeOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 二维码和条形码识别
-    ///
-    /// 本接口支持条形码和二维码的识别（包括 DataMatrix 和 PDF417）。
-    @inlinable
-    public func qrcodeOCR(_ input: QrcodeOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QrcodeOCRResponse {
-        try await self.client.execute(action: "QrcodeOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QrcodeOCR请求参数结构体
     public struct QrcodeOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，支持PNG、JPG、JPEG格式。
@@ -41,7 +25,7 @@ extension Ocr {
         /// 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -68,5 +52,21 @@ extension Ocr {
             case imgSize = "ImgSize"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 二维码和条形码识别
+    ///
+    /// 本接口支持条形码和二维码的识别（包括 DataMatrix 和 PDF417）。
+    @inlinable
+    public func qrcodeOCR(_ input: QrcodeOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QrcodeOCRResponse > {
+        self.client.execute(action: "QrcodeOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 二维码和条形码识别
+    ///
+    /// 本接口支持条形码和二维码的识别（包括 DataMatrix 和 PDF417）。
+    @inlinable
+    public func qrcodeOCR(_ input: QrcodeOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QrcodeOCRResponse {
+        try await self.client.execute(action: "QrcodeOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

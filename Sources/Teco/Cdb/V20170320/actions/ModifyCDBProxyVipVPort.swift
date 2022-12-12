@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 修改数据库代理VIP或端口
-    @inlinable
-    public func modifyCDBProxyVipVPort(_ input: ModifyCDBProxyVipVPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCDBProxyVipVPortResponse > {
-        self.client.execute(action: "ModifyCDBProxyVipVPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改数据库代理VIP或端口
-    @inlinable
-    public func modifyCDBProxyVipVPort(_ input: ModifyCDBProxyVipVPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCDBProxyVipVPortResponse {
-        try await self.client.execute(action: "ModifyCDBProxyVipVPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCDBProxyVipVPort请求参数结构体
     public struct ModifyCDBProxyVipVPortRequest: TCRequestModel {
         /// 代理组ID
@@ -47,7 +35,7 @@ extension Cdb {
         /// 旧IP回收时间 单位小时
         public let releaseDuration: UInt64?
         
-        public init (proxyGroupId: String, uniqVpcId: String, uniqSubnetId: String, dstIp: String?, dstPort: UInt64?, releaseDuration: UInt64?) {
+        public init (proxyGroupId: String, uniqVpcId: String, uniqSubnetId: String, dstIp: String? = nil, dstPort: UInt64? = nil, releaseDuration: UInt64? = nil) {
             self.proxyGroupId = proxyGroupId
             self.uniqVpcId = uniqVpcId
             self.uniqSubnetId = uniqSubnetId
@@ -74,5 +62,17 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改数据库代理VIP或端口
+    @inlinable
+    public func modifyCDBProxyVipVPort(_ input: ModifyCDBProxyVipVPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCDBProxyVipVPortResponse > {
+        self.client.execute(action: "ModifyCDBProxyVipVPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改数据库代理VIP或端口
+    @inlinable
+    public func modifyCDBProxyVipVPort(_ input: ModifyCDBProxyVipVPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCDBProxyVipVPortResponse {
+        try await self.client.execute(action: "ModifyCDBProxyVipVPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

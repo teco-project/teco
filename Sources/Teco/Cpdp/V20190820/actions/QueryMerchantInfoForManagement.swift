@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 智慧零售-查询管理端商户
-    @inlinable
-    public func queryMerchantInfoForManagement(_ input: QueryMerchantInfoForManagementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMerchantInfoForManagementResponse > {
-        self.client.execute(action: "QueryMerchantInfoForManagement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 智慧零售-查询管理端商户
-    @inlinable
-    public func queryMerchantInfoForManagement(_ input: QueryMerchantInfoForManagementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantInfoForManagementResponse {
-        try await self.client.execute(action: "QueryMerchantInfoForManagement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryMerchantInfoForManagement请求参数结构体
     public struct QueryMerchantInfoForManagementRequest: TCRequestModel {
         /// 开票平台ID
@@ -41,7 +29,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填sandbox。
         public let profile: String?
         
-        public init (invoicePlatformId: Int64, offset: Int64, limit: Int64, profile: String?) {
+        public init (invoicePlatformId: Int64, offset: Int64, limit: Int64, profile: String? = nil) {
             self.invoicePlatformId = invoicePlatformId
             self.offset = offset
             self.limit = limit
@@ -60,7 +48,7 @@ extension Cpdp {
     public struct QueryMerchantInfoForManagementResponse: TCResponseModel {
         /// 商户结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: MerchantManagementResult
+        public let result: MerchantManagementResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -69,5 +57,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 智慧零售-查询管理端商户
+    @inlinable
+    public func queryMerchantInfoForManagement(_ input: QueryMerchantInfoForManagementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMerchantInfoForManagementResponse > {
+        self.client.execute(action: "QueryMerchantInfoForManagement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 智慧零售-查询管理端商户
+    @inlinable
+    public func queryMerchantInfoForManagement(_ input: QueryMerchantInfoForManagementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantInfoForManagementResponse {
+        try await self.client.execute(action: "QueryMerchantInfoForManagement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

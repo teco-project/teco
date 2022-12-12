@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询预热任务状态
-    @inlinable
-    public func describePrefetchTasks(_ input: DescribePrefetchTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrefetchTasksResponse > {
-        self.client.execute(action: "DescribePrefetchTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询预热任务状态
-    @inlinable
-    public func describePrefetchTasks(_ input: DescribePrefetchTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrefetchTasksResponse {
-        try await self.client.execute(action: "DescribePrefetchTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrefetchTasks请求参数结构体
     public struct DescribePrefetchTasksRequest: TCRequestModel {
         /// 任务ID
@@ -59,7 +47,7 @@ extension Teo {
         /// 查询的资源
         public let target: String?
         
-        public init (jobId: String?, startTime: Date?, endTime: Date?, offset: Int64?, limit: Int64?, statuses: [String]?, zoneId: String?, domains: [String]?, target: String?) {
+        public init (jobId: String? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: Int64? = nil, limit: Int64? = nil, statuses: [String]? = nil, zoneId: String? = nil, domains: [String]? = nil, target: String? = nil) {
             self.jobId = jobId
             self.startTime = startTime
             self.endTime = endTime
@@ -100,5 +88,17 @@ extension Teo {
             case tasks = "Tasks"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询预热任务状态
+    @inlinable
+    public func describePrefetchTasks(_ input: DescribePrefetchTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrefetchTasksResponse > {
+        self.client.execute(action: "DescribePrefetchTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询预热任务状态
+    @inlinable
+    public func describePrefetchTasks(_ input: DescribePrefetchTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrefetchTasksResponse {
+        try await self.client.execute(action: "DescribePrefetchTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

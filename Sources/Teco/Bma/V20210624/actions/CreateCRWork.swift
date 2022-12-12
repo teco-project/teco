@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 新建作品
-    @inlinable
-    public func createCRWork(_ input: CreateCRWorkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRWorkResponse > {
-        self.client.execute(action: "CreateCRWork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建作品
-    @inlinable
-    public func createCRWork(_ input: CreateCRWorkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRWorkResponse {
-        try await self.client.execute(action: "CreateCRWork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCRWork请求参数结构体
     public struct CreateCRWorkRequest: TCRequestModel {
         /// 作品名称
@@ -122,7 +110,7 @@ extension Bma {
         /// 申请人姓名，用于存证和取证
         public let applierName: String?
         
-        public init (workName: String, workCategory: String, workType: String, workSign: String?, workPic: String?, workDesc: String?, isOriginal: String?, isRelease: String?, producerID: Int64?, produceTime: String?, sampleContentURL: String?, sampleDownloadURL: String?, samplePublicURL: String?, grantType: String?, isMonitor: String?, isCert: String?, certUrl: String?, monitorUrl: String?, produceType: String?, whiteLists: [String]?, workId: Int64?, producerName: String?, nickname: String?, authorization: String?, authorizationStartTime: String?, authorizationEndTime: String?, contentType: String?, content: String?, monitorEndTime: String?, applierId: String?, applierName: String?) {
+        public init (workName: String, workCategory: String, workType: String, workSign: String? = nil, workPic: String? = nil, workDesc: String? = nil, isOriginal: String? = nil, isRelease: String? = nil, producerID: Int64? = nil, produceTime: String? = nil, sampleContentURL: String? = nil, sampleDownloadURL: String? = nil, samplePublicURL: String? = nil, grantType: String? = nil, isMonitor: String? = nil, isCert: String? = nil, certUrl: String? = nil, monitorUrl: String? = nil, produceType: String? = nil, whiteLists: [String]? = nil, workId: Int64? = nil, producerName: String? = nil, nickname: String? = nil, authorization: String? = nil, authorizationStartTime: String? = nil, authorizationEndTime: String? = nil, contentType: String? = nil, content: String? = nil, monitorEndTime: String? = nil, applierId: String? = nil, applierName: String? = nil) {
             self.workName = workName
             self.workCategory = workCategory
             self.workType = workType
@@ -207,5 +195,17 @@ extension Bma {
             case evidenceId = "EvidenceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建作品
+    @inlinable
+    public func createCRWork(_ input: CreateCRWorkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRWorkResponse > {
+        self.client.execute(action: "CreateCRWork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建作品
+    @inlinable
+    public func createCRWork(_ input: CreateCRWorkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRWorkResponse {
+        try await self.client.execute(action: "CreateCRWork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

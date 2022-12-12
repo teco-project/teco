@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取本地提权规则列表
-    @inlinable
-    public func describePrivilegeRules(_ input: DescribePrivilegeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivilegeRulesResponse > {
-        self.client.execute(action: "DescribePrivilegeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取本地提权规则列表
-    @inlinable
-    public func describePrivilegeRules(_ input: DescribePrivilegeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivilegeRulesResponse {
-        try await self.client.execute(action: "DescribePrivilegeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrivilegeRules请求参数结构体
     public struct DescribePrivilegeRulesRequest: TCRequestModel {
         /// 返回数量，最大值为100。
@@ -39,7 +27,7 @@ extension Cwp {
         /// <li>Keywords - String - 是否必填：否 - 关键字(进程名称)</li>
         public let filters: [Filter]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -68,5 +56,17 @@ extension Cwp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取本地提权规则列表
+    @inlinable
+    public func describePrivilegeRules(_ input: DescribePrivilegeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivilegeRulesResponse > {
+        self.client.execute(action: "DescribePrivilegeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取本地提权规则列表
+    @inlinable
+    public func describePrivilegeRules(_ input: DescribePrivilegeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivilegeRulesResponse {
+        try await self.client.execute(action: "DescribePrivilegeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 更新活动详情
-    @inlinable
-    public func replaceActivityRecord(_ input: ReplaceActivityRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceActivityRecordResponse > {
-        self.client.execute(action: "ReplaceActivityRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新活动详情
-    @inlinable
-    public func replaceActivityRecord(_ input: ReplaceActivityRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceActivityRecordResponse {
-        try await self.client.execute(action: "ReplaceActivityRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReplaceActivityRecord请求参数结构体
     public struct ReplaceActivityRecordRequest: TCRequestModel {
         /// 活动id
@@ -44,7 +32,7 @@ extension Tcb {
         /// 渠道名，不同渠道对应不同secretKey
         public let channel: String?
         
-        public init (activityId: Int64, status: Int64, subStatus: String?, channelToken: String?, channel: String?) {
+        public init (activityId: Int64, status: Int64, subStatus: String? = nil, channelToken: String? = nil, channel: String? = nil) {
             self.activityId = activityId
             self.status = status
             self.subStatus = subStatus
@@ -69,5 +57,17 @@ extension Tcb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新活动详情
+    @inlinable
+    public func replaceActivityRecord(_ input: ReplaceActivityRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceActivityRecordResponse > {
+        self.client.execute(action: "ReplaceActivityRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新活动详情
+    @inlinable
+    public func replaceActivityRecord(_ input: ReplaceActivityRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceActivityRecordResponse {
+        try await self.client.execute(action: "ReplaceActivityRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

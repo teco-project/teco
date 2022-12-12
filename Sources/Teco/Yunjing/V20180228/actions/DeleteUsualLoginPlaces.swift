@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 删除常用登录地
-    ///
-    /// 本接口（DeleteUsualLoginPlaces）用于删除常用登录地。
-    @inlinable
-    public func deleteUsualLoginPlaces(_ input: DeleteUsualLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUsualLoginPlacesResponse > {
-        self.client.execute(action: "DeleteUsualLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除常用登录地
-    ///
-    /// 本接口（DeleteUsualLoginPlaces）用于删除常用登录地。
-    @inlinable
-    public func deleteUsualLoginPlaces(_ input: DeleteUsualLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsualLoginPlacesResponse {
-        try await self.client.execute(action: "DeleteUsualLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteUsualLoginPlaces请求参数结构体
     public struct DeleteUsualLoginPlacesRequest: TCRequestModel {
         /// 云镜客户端Uuid
@@ -58,5 +42,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除常用登录地
+    ///
+    /// 本接口（DeleteUsualLoginPlaces）用于删除常用登录地。
+    @inlinable
+    public func deleteUsualLoginPlaces(_ input: DeleteUsualLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUsualLoginPlacesResponse > {
+        self.client.execute(action: "DeleteUsualLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除常用登录地
+    ///
+    /// 本接口（DeleteUsualLoginPlaces）用于删除常用登录地。
+    @inlinable
+    public func deleteUsualLoginPlaces(_ input: DeleteUsualLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsualLoginPlacesResponse {
+        try await self.client.execute(action: "DeleteUsualLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

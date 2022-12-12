@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 创建转动图模板
-    ///
-    /// 创建用户自定义转动图模板，数量上限：16。
-    @inlinable
-    public func createAnimatedGraphicsTemplate(_ input: CreateAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAnimatedGraphicsTemplateResponse > {
-        self.client.execute(action: "CreateAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建转动图模板
-    ///
-    /// 创建用户自定义转动图模板，数量上限：16。
-    @inlinable
-    public func createAnimatedGraphicsTemplate(_ input: CreateAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnimatedGraphicsTemplateResponse {
-        try await self.client.execute(action: "CreateAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAnimatedGraphicsTemplate请求参数结构体
     public struct CreateAnimatedGraphicsTemplateRequest: TCRequestModel {
         /// 帧率，取值范围：[1, 30]，单位：Hz。
@@ -73,7 +57,7 @@ extension Vod {
         /// 模板描述信息，长度限制：256 个字符。
         public let comment: String?
         
-        public init (fps: UInt64, subAppId: UInt64?, width: UInt64?, height: UInt64?, resolutionAdaptive: String?, format: String?, quality: Float?, name: String?, comment: String?) {
+        public init (fps: UInt64, subAppId: UInt64? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, quality: Float? = nil, name: String? = nil, comment: String? = nil) {
             self.fps = fps
             self.subAppId = subAppId
             self.width = width
@@ -110,5 +94,21 @@ extension Vod {
             case definition = "Definition"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建转动图模板
+    ///
+    /// 创建用户自定义转动图模板，数量上限：16。
+    @inlinable
+    public func createAnimatedGraphicsTemplate(_ input: CreateAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAnimatedGraphicsTemplateResponse > {
+        self.client.execute(action: "CreateAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建转动图模板
+    ///
+    /// 创建用户自定义转动图模板，数量上限：16。
+    @inlinable
+    public func createAnimatedGraphicsTemplate(_ input: CreateAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnimatedGraphicsTemplateResponse {
+        try await self.client.execute(action: "CreateAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

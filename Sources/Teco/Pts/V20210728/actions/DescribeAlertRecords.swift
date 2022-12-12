@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 查询告警历史
-    ///
-    /// 返回告警历史项的列表
-    @inlinable
-    public func describeAlertRecords(_ input: DescribeAlertRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlertRecordsResponse > {
-        self.client.execute(action: "DescribeAlertRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询告警历史
-    ///
-    /// 返回告警历史项的列表
-    @inlinable
-    public func describeAlertRecords(_ input: DescribeAlertRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRecordsResponse {
-        try await self.client.execute(action: "DescribeAlertRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAlertRecords请求参数结构体
     public struct DescribeAlertRecordsRequest: TCRequestModel {
         /// 项目 ID 列表
@@ -57,7 +41,7 @@ extension Pts {
         /// 按场景名筛选
         public let scenarioNames: [String]?
         
-        public init (projectIds: [String], scenarioIds: [String]?, jobIds: [String]?, ascend: Bool?, orderBy: String?, offset: UInt64?, limit: UInt64?, scenarioNames: [String]?) {
+        public init (projectIds: [String], scenarioIds: [String]? = nil, jobIds: [String]? = nil, ascend: Bool? = nil, orderBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, scenarioNames: [String]? = nil) {
             self.projectIds = projectIds
             self.scenarioIds = scenarioIds
             self.jobIds = jobIds
@@ -98,5 +82,21 @@ extension Pts {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询告警历史
+    ///
+    /// 返回告警历史项的列表
+    @inlinable
+    public func describeAlertRecords(_ input: DescribeAlertRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlertRecordsResponse > {
+        self.client.execute(action: "DescribeAlertRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询告警历史
+    ///
+    /// 返回告警历史项的列表
+    @inlinable
+    public func describeAlertRecords(_ input: DescribeAlertRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRecordsResponse {
+        try await self.client.execute(action: "DescribeAlertRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

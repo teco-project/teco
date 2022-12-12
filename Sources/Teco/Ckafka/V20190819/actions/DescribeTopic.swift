@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 获取主题列表
-    ///
-    /// 接口请求域名：https://ckafka.tencentcloudapi.com
-    /// 本接口（DescribeTopic）用于在用户获取消息队列 CKafka 实例的主题列表
-    @inlinable
-    public func describeTopic(_ input: DescribeTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicResponse > {
-        self.client.execute(action: "DescribeTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取主题列表
-    ///
-    /// 接口请求域名：https://ckafka.tencentcloudapi.com
-    /// 本接口（DescribeTopic）用于在用户获取消息队列 CKafka 实例的主题列表
-    @inlinable
-    public func describeTopic(_ input: DescribeTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicResponse {
-        try await self.client.execute(action: "DescribeTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTopic请求参数结构体
     public struct DescribeTopicRequest: TCRequestModel {
         /// 实例 ID
@@ -50,7 +32,7 @@ extension Ckafka {
         /// Acl预设策略名称
         public let aclRuleName: String?
         
-        public init (instanceId: String, searchWord: String?, offset: Int64?, limit: Int64?, aclRuleName: String?) {
+        public init (instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, aclRuleName: String? = nil) {
             self.instanceId = instanceId
             self.searchWord = searchWord
             self.offset = offset
@@ -71,7 +53,7 @@ extension Ckafka {
     public struct DescribeTopicResponse: TCResponseModel {
         /// 返回的结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TopicResult
+        public let result: TopicResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -80,5 +62,23 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取主题列表
+    ///
+    /// 接口请求域名：https://ckafka.tencentcloudapi.com
+    /// 本接口（DescribeTopic）用于在用户获取消息队列 CKafka 实例的主题列表
+    @inlinable
+    public func describeTopic(_ input: DescribeTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicResponse > {
+        self.client.execute(action: "DescribeTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取主题列表
+    ///
+    /// 接口请求域名：https://ckafka.tencentcloudapi.com
+    /// 本接口（DescribeTopic）用于在用户获取消息队列 CKafka 实例的主题列表
+    @inlinable
+    public func describeTopic(_ input: DescribeTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicResponse {
+        try await self.client.execute(action: "DescribeTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

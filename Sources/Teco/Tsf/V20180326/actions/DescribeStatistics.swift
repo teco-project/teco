@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tsf {
-    /// 服务统计
-    ///
-    /// 服务统计页面：接口和服务维度
-    @inlinable
-    public func describeStatistics(_ input: DescribeStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatisticsResponse > {
-        self.client.execute(action: "DescribeStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 服务统计
-    ///
-    /// 服务统计页面：接口和服务维度
-    @inlinable
-    public func describeStatistics(_ input: DescribeStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticsResponse {
-        try await self.client.execute(action: "DescribeStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStatistics请求参数结构体
     public struct DescribeStatisticsRequest: TCRequestModel {
         /// 类型：Interface、Service、Group、Instance、SQL、NoSQL
@@ -80,7 +64,7 @@ extension Tsf {
         /// 命名空间id数组
         public let namespaceIdList: [String]?
         
-        public init (type: String, timeStep: UInt64, offset: UInt64, limit: UInt64, namespaceId: String?, orderBy: String?, orderType: UInt64?, endTime: Date?, startTime: Date?, serviceName: String?, searchWord: String?, metricDimensionValues: [MetricDimensionValue]?, bucketKey: String?, dbName: String?, namespaceIdList: [String]?) {
+        public init (type: String, timeStep: UInt64, offset: UInt64, limit: UInt64, namespaceId: String? = nil, orderBy: String? = nil, orderType: UInt64? = nil, endTime: Date? = nil, startTime: Date? = nil, serviceName: String? = nil, searchWord: String? = nil, metricDimensionValues: [MetricDimensionValue]? = nil, bucketKey: String? = nil, dbName: String? = nil, namespaceIdList: [String]? = nil) {
             self.type = type
             self.timeStep = timeStep
             self.offset = offset
@@ -121,7 +105,7 @@ extension Tsf {
     public struct DescribeStatisticsResponse: TCResponseModel {
         /// 查询服务统计结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: ServiceStatisticsResults
+        public let result: ServiceStatisticsResults?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -130,5 +114,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 服务统计
+    ///
+    /// 服务统计页面：接口和服务维度
+    @inlinable
+    public func describeStatistics(_ input: DescribeStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatisticsResponse > {
+        self.client.execute(action: "DescribeStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 服务统计
+    ///
+    /// 服务统计页面：接口和服务维度
+    @inlinable
+    public func describeStatistics(_ input: DescribeStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticsResponse {
+        try await self.client.execute(action: "DescribeStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

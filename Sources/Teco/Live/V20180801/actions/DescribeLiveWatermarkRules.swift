@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 获取水印规则列表
-    ///
-    /// 获取水印规则列表。
-    @inlinable
-    public func describeLiveWatermarkRules(_ input: DescribeLiveWatermarkRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveWatermarkRulesResponse > {
-        self.client.execute(action: "DescribeLiveWatermarkRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取水印规则列表
-    ///
-    /// 获取水印规则列表。
-    @inlinable
-    public func describeLiveWatermarkRules(_ input: DescribeLiveWatermarkRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarkRulesResponse {
-        try await self.client.execute(action: "DescribeLiveWatermarkRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveWatermarkRules请求参数结构体
     public struct DescribeLiveWatermarkRulesRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Live {
             case rules = "Rules"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取水印规则列表
+    ///
+    /// 获取水印规则列表。
+    @inlinable
+    public func describeLiveWatermarkRules(_ input: DescribeLiveWatermarkRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveWatermarkRulesResponse > {
+        self.client.execute(action: "DescribeLiveWatermarkRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取水印规则列表
+    ///
+    /// 获取水印规则列表。
+    @inlinable
+    public func describeLiveWatermarkRules(_ input: DescribeLiveWatermarkRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarkRulesResponse {
+        try await self.client.execute(action: "DescribeLiveWatermarkRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

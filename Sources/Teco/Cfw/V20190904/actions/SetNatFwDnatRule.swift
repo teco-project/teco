@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 配置防火墙Dnat规则
-    @inlinable
-    public func setNatFwDnatRule(_ input: SetNatFwDnatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetNatFwDnatRuleResponse > {
-        self.client.execute(action: "SetNatFwDnatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 配置防火墙Dnat规则
-    @inlinable
-    public func setNatFwDnatRule(_ input: SetNatFwDnatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNatFwDnatRuleResponse {
-        try await self.client.execute(action: "SetNatFwDnatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetNatFwDnatRule请求参数结构体
     public struct SetNatFwDnatRuleRequest: TCRequestModel {
         /// 0：cfw新增模式，1：cfw接入模式。
@@ -42,12 +30,12 @@ extension Cfw {
         public let addOrDelDnatRules: [CfwNatDnatRule]?
         
         /// 修改操作的原始Dnat规则
-        public let originDnat: CfwNatDnatRule
+        public let originDnat: CfwNatDnatRule?
         
         /// 修改操作的新的Dnat规则
-        public let newDnat: CfwNatDnatRule
+        public let newDnat: CfwNatDnatRule?
         
-        public init (mode: UInt64, operationType: String, cfwInstance: String?, addOrDelDnatRules: [CfwNatDnatRule]?, originDnat: CfwNatDnatRule, newDnat: CfwNatDnatRule) {
+        public init (mode: UInt64, operationType: String, cfwInstance: String? = nil, addOrDelDnatRules: [CfwNatDnatRule]? = nil, originDnat: CfwNatDnatRule? = nil, newDnat: CfwNatDnatRule? = nil) {
             self.mode = mode
             self.operationType = operationType
             self.cfwInstance = cfwInstance
@@ -74,5 +62,17 @@ extension Cfw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 配置防火墙Dnat规则
+    @inlinable
+    public func setNatFwDnatRule(_ input: SetNatFwDnatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetNatFwDnatRuleResponse > {
+        self.client.execute(action: "SetNatFwDnatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 配置防火墙Dnat规则
+    @inlinable
+    public func setNatFwDnatRule(_ input: SetNatFwDnatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNatFwDnatRuleResponse {
+        try await self.client.execute(action: "SetNatFwDnatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

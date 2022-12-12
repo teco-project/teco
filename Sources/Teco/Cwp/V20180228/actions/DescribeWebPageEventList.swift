@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询篡改事件列表
-    @inlinable
-    public func describeWebPageEventList(_ input: DescribeWebPageEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebPageEventListResponse > {
-        self.client.execute(action: "DescribeWebPageEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询篡改事件列表
-    @inlinable
-    public func describeWebPageEventList(_ input: DescribeWebPageEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageEventListResponse {
-        try await self.client.execute(action: "DescribeWebPageEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWebPageEventList请求参数结构体
     public struct DescribeWebPageEventListRequest: TCRequestModel {
         /// 过滤条件
@@ -47,7 +35,7 @@ extension Cwp {
         /// 排序方式，0降序，1升序，默认为0
         public let order: UInt64?
         
-        public init (filters: [AssetFilters]?, offset: UInt64?, limit: UInt64?, by: String?, order: UInt64?) {
+        public init (filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: UInt64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -80,5 +68,17 @@ extension Cwp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询篡改事件列表
+    @inlinable
+    public func describeWebPageEventList(_ input: DescribeWebPageEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebPageEventListResponse > {
+        self.client.execute(action: "DescribeWebPageEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询篡改事件列表
+    @inlinable
+    public func describeWebPageEventList(_ input: DescribeWebPageEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageEventListResponse {
+        try await self.client.execute(action: "DescribeWebPageEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

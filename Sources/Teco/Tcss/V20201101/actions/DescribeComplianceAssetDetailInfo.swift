@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 安全合规查询某个资产的详情
-    ///
-    /// 查询某个资产的详情
-    @inlinable
-    public func describeComplianceAssetDetailInfo(_ input: DescribeComplianceAssetDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceAssetDetailInfoResponse > {
-        self.client.execute(action: "DescribeComplianceAssetDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全合规查询某个资产的详情
-    ///
-    /// 查询某个资产的详情
-    @inlinable
-    public func describeComplianceAssetDetailInfo(_ input: DescribeComplianceAssetDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetDetailInfoResponse {
-        try await self.client.execute(action: "DescribeComplianceAssetDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeComplianceAssetDetailInfo请求参数结构体
     public struct DescribeComplianceAssetDetailInfoRequest: TCRequestModel {
         /// 客户资产ID。
@@ -52,19 +36,19 @@ extension Tcss {
         
         /// 当资产为容器时，返回此字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let containerDetailInfo: ComplianceContainerDetailInfo
+        public let containerDetailInfo: ComplianceContainerDetailInfo?
         
         /// 当资产为镜像时，返回此字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imageDetailInfo: ComplianceImageDetailInfo
+        public let imageDetailInfo: ComplianceImageDetailInfo?
         
         /// 当资产为主机时，返回此字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let hostDetailInfo: ComplianceHostDetailInfo
+        public let hostDetailInfo: ComplianceHostDetailInfo?
         
         /// 当资产为K8S时，返回此字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let k8sDetailInfo: ComplianceK8SDetailInfo
+        public let k8sDetailInfo: ComplianceK8SDetailInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -77,5 +61,21 @@ extension Tcss {
             case k8sDetailInfo = "K8SDetailInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全合规查询某个资产的详情
+    ///
+    /// 查询某个资产的详情
+    @inlinable
+    public func describeComplianceAssetDetailInfo(_ input: DescribeComplianceAssetDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceAssetDetailInfoResponse > {
+        self.client.execute(action: "DescribeComplianceAssetDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规查询某个资产的详情
+    ///
+    /// 查询某个资产的详情
+    @inlinable
+    public func describeComplianceAssetDetailInfo(_ input: DescribeComplianceAssetDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetDetailInfoResponse {
+        try await self.client.execute(action: "DescribeComplianceAssetDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

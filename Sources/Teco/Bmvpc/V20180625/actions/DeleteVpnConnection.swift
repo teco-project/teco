@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 删除VPN通道
-    ///
-    /// 本接口(DeleteVpnConnection)用于删除VPN通道。
-    @inlinable
-    public func deleteVpnConnection(_ input: DeleteVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnConnectionResponse > {
-        self.client.execute(action: "DeleteVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除VPN通道
-    ///
-    /// 本接口(DeleteVpnConnection)用于删除VPN通道。
-    @inlinable
-    public func deleteVpnConnection(_ input: DeleteVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnConnectionResponse {
-        try await self.client.execute(action: "DeleteVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteVpnConnection请求参数结构体
     public struct DeleteVpnConnectionRequest: TCRequestModel {
         /// VPN通道实例ID。形如：bmvpnx-f49l6u0z。
@@ -57,5 +41,21 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除VPN通道
+    ///
+    /// 本接口(DeleteVpnConnection)用于删除VPN通道。
+    @inlinable
+    public func deleteVpnConnection(_ input: DeleteVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnConnectionResponse > {
+        self.client.execute(action: "DeleteVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除VPN通道
+    ///
+    /// 本接口(DeleteVpnConnection)用于删除VPN通道。
+    @inlinable
+    public func deleteVpnConnection(_ input: DeleteVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnConnectionResponse {
+        try await self.client.execute(action: "DeleteVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

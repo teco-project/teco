@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取固件上传路径
-    ///
-    /// 本接口（CreateUploadPath）用于获取固件上传路径。
-    @inlinable
-    public func createUploadPath(_ input: CreateUploadPathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUploadPathResponse > {
-        self.client.execute(action: "CreateUploadPath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取固件上传路径
-    ///
-    /// 本接口（CreateUploadPath）用于获取固件上传路径。
-    @inlinable
-    public func createUploadPath(_ input: CreateUploadPathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUploadPathResponse {
-        try await self.client.execute(action: "CreateUploadPath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUploadPath请求参数结构体
     public struct CreateUploadPathRequest: TCRequestModel {
         /// 产品ID
@@ -63,5 +47,21 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取固件上传路径
+    ///
+    /// 本接口（CreateUploadPath）用于获取固件上传路径。
+    @inlinable
+    public func createUploadPath(_ input: CreateUploadPathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUploadPathResponse > {
+        self.client.execute(action: "CreateUploadPath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取固件上传路径
+    ///
+    /// 本接口（CreateUploadPath）用于获取固件上传路径。
+    @inlinable
+    public func createUploadPath(_ input: CreateUploadPathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUploadPathResponse {
+        try await self.client.execute(action: "CreateUploadPath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

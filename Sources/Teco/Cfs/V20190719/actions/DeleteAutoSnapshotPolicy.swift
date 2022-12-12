@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 删除快照策略
-    ///
-    /// 删除快照定期策略
-    @inlinable
-    public func deleteAutoSnapshotPolicy(_ input: DeleteAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAutoSnapshotPolicyResponse > {
-        self.client.execute(action: "DeleteAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除快照策略
-    ///
-    /// 删除快照定期策略
-    @inlinable
-    public func deleteAutoSnapshotPolicy(_ input: DeleteAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoSnapshotPolicyResponse {
-        try await self.client.execute(action: "DeleteAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAutoSnapshotPolicy请求参数结构体
     public struct DeleteAutoSnapshotPolicyRequest: TCRequestModel {
         /// 快照策略ID
@@ -57,5 +41,21 @@ extension Cfs {
             case autoSnapshotPolicyId = "AutoSnapshotPolicyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除快照策略
+    ///
+    /// 删除快照定期策略
+    @inlinable
+    public func deleteAutoSnapshotPolicy(_ input: DeleteAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAutoSnapshotPolicyResponse > {
+        self.client.execute(action: "DeleteAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除快照策略
+    ///
+    /// 删除快照定期策略
+    @inlinable
+    public func deleteAutoSnapshotPolicy(_ input: DeleteAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoSnapshotPolicyResponse {
+        try await self.client.execute(action: "DeleteAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

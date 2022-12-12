@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 查询外部导入镜像支持的OS列表
-    @inlinable
-    public func describeImportImageOs(_ input: DescribeImportImageOsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImportImageOsResponse > {
-        self.client.execute(action: "DescribeImportImageOs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询外部导入镜像支持的OS列表
-    @inlinable
-    public func describeImportImageOs(_ input: DescribeImportImageOsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportImageOsResponse {
-        try await self.client.execute(action: "DescribeImportImageOs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImportImageOs请求参数结构体
     public struct DescribeImportImageOsRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Ecm {
             case importImageOsVersionSet = "ImportImageOsVersionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询外部导入镜像支持的OS列表
+    @inlinable
+    public func describeImportImageOs(_ input: DescribeImportImageOsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImportImageOsResponse > {
+        self.client.execute(action: "DescribeImportImageOs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询外部导入镜像支持的OS列表
+    @inlinable
+    public func describeImportImageOs(_ input: DescribeImportImageOsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportImageOsResponse {
+        try await self.client.execute(action: "DescribeImportImageOs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

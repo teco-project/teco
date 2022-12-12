@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 检索帐户下的所有别名
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（ListAliases）用于检索帐户下的所有别名。
-    @inlinable
-    public func listAliases(_ input: ListAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAliasesResponse > {
-        self.client.execute(action: "ListAliases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检索帐户下的所有别名
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（ListAliases）用于检索帐户下的所有别名。
-    @inlinable
-    public func listAliases(_ input: ListAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAliasesResponse {
-        try await self.client.execute(action: "ListAliases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListAliases请求参数结构体
     public struct ListAliasesRequest: TCRequestModel {
         /// 名字，长度不小于1字符不超过1024字符
@@ -56,7 +38,7 @@ extension Gse {
         /// 资源过滤字段，可以按照资源名称和标签进行过滤- 资源名称过滤    - Key: 固定字符串 "resource:name"    - Values: 资源名称数组（舰队当前仅支持单个名称的过滤）- 标签过滤    - 通过标签键过滤        - Key: 固定字符串 "tag:key"        - Values 不传    - 通过标签键值过滤        - Key: 固定字符串 "tag:key-value"        - Values: 标签键值对数组，例如 ["key1:value1", "key1:value2", "key2:value2"]
         public let filters: [Filter]?
         
-        public init (name: String?, routingStrategyType: String?, limit: UInt64?, offset: UInt64?, orderBy: String?, orderWay: String?, filters: [Filter]?) {
+        public init (name: String? = nil, routingStrategyType: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderWay: String? = nil, filters: [Filter]? = nil) {
             self.name = name
             self.routingStrategyType = routingStrategyType
             self.limit = limit
@@ -94,5 +76,23 @@ extension Gse {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检索帐户下的所有别名
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（ListAliases）用于检索帐户下的所有别名。
+    @inlinable
+    public func listAliases(_ input: ListAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAliasesResponse > {
+        self.client.execute(action: "ListAliases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检索帐户下的所有别名
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（ListAliases）用于检索帐户下的所有别名。
+    @inlinable
+    public func listAliases(_ input: ListAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAliasesResponse {
+        try await self.client.execute(action: "ListAliases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

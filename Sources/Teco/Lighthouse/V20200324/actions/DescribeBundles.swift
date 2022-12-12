@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询套餐
-    ///
-    /// 本接口（DescribeBundles）用于查询套餐信息。
-    @inlinable
-    public func describeBundles(_ input: DescribeBundlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBundlesResponse > {
-        self.client.execute(action: "DescribeBundles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询套餐
-    ///
-    /// 本接口（DescribeBundles）用于查询套餐信息。
-    @inlinable
-    public func describeBundles(_ input: DescribeBundlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundlesResponse {
-        try await self.client.execute(action: "DescribeBundles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBundles请求参数结构体
     public struct DescribeBundlesRequest: TCRequestModel {
         /// 套餐 ID 列表。
@@ -64,7 +48,7 @@ extension Lighthouse {
         /// 可用区列表。默认为全部可用区。
         public let zones: [String]?
         
-        public init (bundleIds: [String]?, offset: Int64?, limit: Int64?, filters: [Filter]?, zones: [String]?) {
+        public init (bundleIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, zones: [String]? = nil) {
             self.bundleIds = bundleIds
             self.offset = offset
             self.limit = limit
@@ -97,5 +81,21 @@ extension Lighthouse {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询套餐
+    ///
+    /// 本接口（DescribeBundles）用于查询套餐信息。
+    @inlinable
+    public func describeBundles(_ input: DescribeBundlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBundlesResponse > {
+        self.client.execute(action: "DescribeBundles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询套餐
+    ///
+    /// 本接口（DescribeBundles）用于查询套餐信息。
+    @inlinable
+    public func describeBundles(_ input: DescribeBundlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundlesResponse {
+        try await self.client.execute(action: "DescribeBundles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

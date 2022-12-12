@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Npp {
-    /// 直拨话单获取接口
-    @inlinable
-    public func get400Cdr(_ input: Get400CdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < Get400CdrResponse > {
-        self.client.execute(action: "Get400Cdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直拨话单获取接口
-    @inlinable
-    public func get400Cdr(_ input: Get400CdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> Get400CdrResponse {
-        try await self.client.execute(action: "Get400Cdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// Get400Cdr请求参数结构体
     public struct Get400CdrRequest: TCRequestModel {
         /// 业务appid
@@ -44,7 +32,7 @@ extension Npp {
         /// 话单结束时间戳
         public let endTimeStamp: String?
         
-        public init (bizAppId: String, callId: String?, src: String?, startTimeStamp: String?, endTimeStamp: String?) {
+        public init (bizAppId: String, callId: String? = nil, src: String? = nil, startTimeStamp: String? = nil, endTimeStamp: String? = nil) {
             self.bizAppId = bizAppId
             self.callId = callId
             self.src = src
@@ -88,5 +76,17 @@ extension Npp {
             case cdr = "Cdr"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直拨话单获取接口
+    @inlinable
+    public func get400Cdr(_ input: Get400CdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < Get400CdrResponse > {
+        self.client.execute(action: "Get400Cdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直拨话单获取接口
+    @inlinable
+    public func get400Cdr(_ input: Get400CdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> Get400CdrResponse {
+        try await self.client.execute(action: "Get400Cdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

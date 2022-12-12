@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 修改实例信息
-    @inlinable
-    public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceResponse > {
-        self.client.execute(action: "ModifyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例信息
-    @inlinable
-    public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
-        try await self.client.execute(action: "ModifyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstance请求参数结构体
     public struct ModifyInstanceRequest: TCRequestModel {
         /// 要修改的实例id
@@ -38,7 +26,7 @@ extension Rum {
         /// 新的实例描述(长度最大不超过1024)
         public let instanceDesc: String?
         
-        public init (instanceId: String, instanceName: String?, instanceDesc: String?) {
+        public init (instanceId: String, instanceName: String? = nil, instanceDesc: String? = nil) {
             self.instanceId = instanceId
             self.instanceName = instanceName
             self.instanceDesc = instanceDesc
@@ -59,5 +47,17 @@ extension Rum {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例信息
+    @inlinable
+    public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceResponse > {
+        self.client.execute(action: "ModifyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例信息
+    @inlinable
+    public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
+        try await self.client.execute(action: "ModifyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

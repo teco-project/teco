@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 下载VPN通道配置
-    ///
-    /// 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
-    @inlinable
-    public func downloadCustomerGatewayConfiguration(_ input: DownloadCustomerGatewayConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadCustomerGatewayConfigurationResponse > {
-        self.client.execute(action: "DownloadCustomerGatewayConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下载VPN通道配置
-    ///
-    /// 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
-    @inlinable
-    public func downloadCustomerGatewayConfiguration(_ input: DownloadCustomerGatewayConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCustomerGatewayConfigurationResponse {
-        try await self.client.execute(action: "DownloadCustomerGatewayConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DownloadCustomerGatewayConfiguration请求参数结构体
     public struct DownloadCustomerGatewayConfigurationRequest: TCRequestModel {
         /// VPN通道实例ID。形如：bmvpnx-f49l6u0z。
@@ -62,5 +46,21 @@ extension Bmvpc {
             case customerGatewayConfiguration = "CustomerGatewayConfiguration"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下载VPN通道配置
+    ///
+    /// 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
+    @inlinable
+    public func downloadCustomerGatewayConfiguration(_ input: DownloadCustomerGatewayConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadCustomerGatewayConfigurationResponse > {
+        self.client.execute(action: "DownloadCustomerGatewayConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下载VPN通道配置
+    ///
+    /// 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
+    @inlinable
+    public func downloadCustomerGatewayConfiguration(_ input: DownloadCustomerGatewayConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCustomerGatewayConfigurationResponse {
+        try await self.client.execute(action: "DownloadCustomerGatewayConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

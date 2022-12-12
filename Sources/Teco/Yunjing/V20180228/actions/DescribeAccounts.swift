@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取帐号列表
-    ///
-    /// 本接口 (DescribeAccounts) 用于获取帐号列表数据。
-    @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
-        self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取帐号列表
-    ///
-    /// 本接口 (DescribeAccounts) 用于获取帐号列表数据。
-    @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
-        try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccounts请求参数结构体
     public struct DescribeAccountsRequest: TCRequestModel {
         /// 云镜客户端唯一Uuid。Username和Uuid必填其一，使用Uuid表示，查询该主机下列表信息。
@@ -51,7 +35,7 @@ extension Yunjing {
         /// <li>MachineIp - String - 是否必填：否 - 主机内网IP</li>
         public let filters: [Filter]?
         
-        public init (uuid: String?, username: String?, limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (uuid: String? = nil, username: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.uuid = uuid
             self.username = username
             self.limit = limit
@@ -84,5 +68,21 @@ extension Yunjing {
             case accounts = "Accounts"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取帐号列表
+    ///
+    /// 本接口 (DescribeAccounts) 用于获取帐号列表数据。
+    @inlinable
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+        self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取帐号列表
+    ///
+    /// 本接口 (DescribeAccounts) 用于获取帐号列表数据。
+    @inlinable
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
+        try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

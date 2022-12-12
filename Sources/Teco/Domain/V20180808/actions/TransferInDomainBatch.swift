@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 批量域名转入
-    ///
-    /// 本接口 ( TransferInDomainBatch ) 用于批量转入域名 。
-    @inlinable
-    public func transferInDomainBatch(_ input: TransferInDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransferInDomainBatchResponse > {
-        self.client.execute(action: "TransferInDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量域名转入
-    ///
-    /// 本接口 ( TransferInDomainBatch ) 用于批量转入域名 。
-    @inlinable
-    public func transferInDomainBatch(_ input: TransferInDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferInDomainBatchResponse {
-        try await self.client.execute(action: "TransferInDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TransferInDomainBatch请求参数结构体
     public struct TransferInDomainBatchRequest: TCRequestModel {
         /// 转入的域名名称数组。
@@ -61,7 +45,7 @@ extension Domain {
         /// 是否开启转移锁：0=默认不开启，1=开启
         public let transferProhibition: Int64?
         
-        public init (domains: [String], passWords: [String], templateId: String, payMode: Int64, autoRenewFlag: Int64?, lockTransfer: Bool?, updateProhibition: Int64?, transferProhibition: Int64?) {
+        public init (domains: [String], passWords: [String], templateId: String, payMode: Int64, autoRenewFlag: Int64? = nil, lockTransfer: Bool? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil) {
             self.domains = domains
             self.passWords = passWords
             self.templateId = templateId
@@ -96,5 +80,21 @@ extension Domain {
             case logId = "LogId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量域名转入
+    ///
+    /// 本接口 ( TransferInDomainBatch ) 用于批量转入域名 。
+    @inlinable
+    public func transferInDomainBatch(_ input: TransferInDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransferInDomainBatchResponse > {
+        self.client.execute(action: "TransferInDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量域名转入
+    ///
+    /// 本接口 ( TransferInDomainBatch ) 用于批量转入域名 。
+    @inlinable
+    public func transferInDomainBatch(_ input: TransferInDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferInDomainBatchResponse {
+        try await self.client.execute(action: "TransferInDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

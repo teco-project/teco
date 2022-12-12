@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vms {
-    /// 指定模板发送语音通知
-    ///
-    /// 给用户发送指定模板的语音通知。
-    @inlinable
-    public func sendTtsVoice(_ input: SendTtsVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendTtsVoiceResponse > {
-        self.client.execute(action: "SendTtsVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 指定模板发送语音通知
-    ///
-    /// 给用户发送指定模板的语音通知。
-    @inlinable
-    public func sendTtsVoice(_ input: SendTtsVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendTtsVoiceResponse {
-        try await self.client.execute(action: "SendTtsVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendTtsVoice请求参数结构体
     public struct SendTtsVoiceRequest: TCRequestModel {
         /// 模板 ID，在控制台审核通过的模板 ID。
@@ -53,7 +37,7 @@ extension Vms {
         /// 用户的 session 内容，腾讯 server 回包中会原样返回。
         public let sessionContext: String?
         
-        public init (templateId: String, calledNumber: String, voiceSdkAppid: String, templateParamSet: [String]?, playTimes: UInt64?, sessionContext: String?) {
+        public init (templateId: String, calledNumber: String, voiceSdkAppid: String, templateParamSet: [String]? = nil, playTimes: UInt64? = nil, sessionContext: String? = nil) {
             self.templateId = templateId
             self.calledNumber = calledNumber
             self.voiceSdkAppid = voiceSdkAppid
@@ -84,5 +68,21 @@ extension Vms {
             case sendStatus = "SendStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 指定模板发送语音通知
+    ///
+    /// 给用户发送指定模板的语音通知。
+    @inlinable
+    public func sendTtsVoice(_ input: SendTtsVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendTtsVoiceResponse > {
+        self.client.execute(action: "SendTtsVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 指定模板发送语音通知
+    ///
+    /// 给用户发送指定模板的语音通知。
+    @inlinable
+    public func sendTtsVoice(_ input: SendTtsVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendTtsVoiceResponse {
+        try await self.client.execute(action: "SendTtsVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

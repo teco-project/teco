@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取CC清洗阈值列表
-    @inlinable
-    public func describeCCThresholdList(_ input: DescribeCCThresholdListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCThresholdListResponse > {
-        self.client.execute(action: "DescribeCCThresholdList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取CC清洗阈值列表
-    @inlinable
-    public func describeCCThresholdList(_ input: DescribeCCThresholdListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCThresholdListResponse {
-        try await self.client.execute(action: "DescribeCCThresholdList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCCThresholdList请求参数结构体
     public struct DescribeCCThresholdListRequest: TCRequestModel {
         /// 大禹子产品代号（bgp-multip表示高防包）
@@ -41,7 +29,7 @@ extension Antiddos {
         /// 指定实例Id
         public let instanceId: String?
         
-        public init (business: String, offset: UInt64, limit: UInt64, instanceId: String?) {
+        public init (business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil) {
             self.business = business
             self.offset = offset
             self.limit = limit
@@ -72,5 +60,17 @@ extension Antiddos {
             case thresholdList = "ThresholdList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取CC清洗阈值列表
+    @inlinable
+    public func describeCCThresholdList(_ input: DescribeCCThresholdListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCThresholdListResponse > {
+        self.client.execute(action: "DescribeCCThresholdList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC清洗阈值列表
+    @inlinable
+    public func describeCCThresholdList(_ input: DescribeCCThresholdListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCThresholdListResponse {
+        try await self.client.execute(action: "DescribeCCThresholdList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

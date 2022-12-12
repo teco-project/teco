@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Thpc {
-    /// 查询集群列表
-    ///
-    /// 本接口（DescribeClusters）用于查询集群列表。
-    @inlinable
-    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
-        self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群列表
-    ///
-    /// 本接口（DescribeClusters）用于查询集群列表。
-    @inlinable
-    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
-        try await self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusters请求参数结构体
     public struct DescribeClustersRequest: TCRequestModel {
         /// 集群ID列表。通过该参数可以指定需要查询信息的集群列表。<br>如果您不指定该参数，则返回Limit数量以内的集群信息。
@@ -42,7 +26,7 @@ extension Thpc {
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: Int64?
         
-        public init (clusterIds: [String]?, offset: Int64?, limit: Int64?) {
+        public init (clusterIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.clusterIds = clusterIds
             self.offset = offset
             self.limit = limit
@@ -71,5 +55,21 @@ extension Thpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群列表
+    ///
+    /// 本接口（DescribeClusters）用于查询集群列表。
+    @inlinable
+    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
+        self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群列表
+    ///
+    /// 本接口（DescribeClusters）用于查询集群列表。
+    @inlinable
+    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
+        try await self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

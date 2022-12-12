@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tan {
-    /// 推送节点数据
-    @inlinable
-    public func createBlockNodeRecords(_ input: CreateBlockNodeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBlockNodeRecordsResponse > {
-        self.client.execute(action: "CreateBlockNodeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 推送节点数据
-    @inlinable
-    public func createBlockNodeRecords(_ input: CreateBlockNodeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlockNodeRecordsResponse {
-        try await self.client.execute(action: "CreateBlockNodeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBlockNodeRecords请求参数结构体
     public struct CreateBlockNodeRecordsRequest: TCRequestModel {
         /// 盘查组id，可在“盘查组概览”功能中获取。
@@ -59,5 +47,17 @@ extension Tan {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 推送节点数据
+    @inlinable
+    public func createBlockNodeRecords(_ input: CreateBlockNodeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBlockNodeRecordsResponse > {
+        self.client.execute(action: "CreateBlockNodeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 推送节点数据
+    @inlinable
+    public func createBlockNodeRecords(_ input: CreateBlockNodeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlockNodeRecordsResponse {
+        try await self.client.execute(action: "CreateBlockNodeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

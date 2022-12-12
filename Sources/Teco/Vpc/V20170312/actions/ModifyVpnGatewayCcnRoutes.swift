@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改VPN网关云联网路由
-    ///
-    /// 本接口（ModifyVpnGatewayCcnRoutes）用于修改VPN网关云联网路由
-    @inlinable
-    public func modifyVpnGatewayCcnRoutes(_ input: ModifyVpnGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpnGatewayCcnRoutesResponse > {
-        self.client.execute(action: "ModifyVpnGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改VPN网关云联网路由
-    ///
-    /// 本接口（ModifyVpnGatewayCcnRoutes）用于修改VPN网关云联网路由
-    @inlinable
-    public func modifyVpnGatewayCcnRoutes(_ input: ModifyVpnGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayCcnRoutesResponse {
-        try await self.client.execute(action: "ModifyVpnGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVpnGatewayCcnRoutes请求参数结构体
     public struct ModifyVpnGatewayCcnRoutesRequest: TCRequestModel {
         /// VPN网关实例ID
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改VPN网关云联网路由
+    ///
+    /// 本接口（ModifyVpnGatewayCcnRoutes）用于修改VPN网关云联网路由
+    @inlinable
+    public func modifyVpnGatewayCcnRoutes(_ input: ModifyVpnGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpnGatewayCcnRoutesResponse > {
+        self.client.execute(action: "ModifyVpnGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改VPN网关云联网路由
+    ///
+    /// 本接口（ModifyVpnGatewayCcnRoutes）用于修改VPN网关云联网路由
+    @inlinable
+    public func modifyVpnGatewayCcnRoutes(_ input: ModifyVpnGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayCcnRoutesResponse {
+        try await self.client.execute(action: "ModifyVpnGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

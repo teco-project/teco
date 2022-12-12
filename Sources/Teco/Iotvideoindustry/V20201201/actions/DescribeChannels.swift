@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取设备下属通道列表
-    ///
-    /// 本接口（DescribeChannels）用于获取设备下属通道列表
-    @inlinable
-    public func describeChannels(_ input: DescribeChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChannelsResponse > {
-        self.client.execute(action: "DescribeChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备下属通道列表
-    ///
-    /// 本接口（DescribeChannels）用于获取设备下属通道列表
-    @inlinable
-    public func describeChannels(_ input: DescribeChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelsResponse {
-        try await self.client.execute(action: "DescribeChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeChannels请求参数结构体
     public struct DescribeChannelsRequest: TCRequestModel {
         /// 设备Id
@@ -51,7 +35,7 @@ extension Iotvideoindustry {
         /// 告警联动场景ID， 当为 -1 值时未绑定场景
         public let sceneId: Int64?
         
-        public init (deviceId: String, limit: UInt64?, offset: UInt64?, channelTypes: [UInt64]?, planId: String?, sceneId: Int64?) {
+        public init (deviceId: String, limit: UInt64? = nil, offset: UInt64? = nil, channelTypes: [UInt64]? = nil, planId: String? = nil, sceneId: Int64? = nil) {
             self.deviceId = deviceId
             self.limit = limit
             self.offset = offset
@@ -88,5 +72,21 @@ extension Iotvideoindustry {
             case channels = "Channels"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备下属通道列表
+    ///
+    /// 本接口（DescribeChannels）用于获取设备下属通道列表
+    @inlinable
+    public func describeChannels(_ input: DescribeChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChannelsResponse > {
+        self.client.execute(action: "DescribeChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备下属通道列表
+    ///
+    /// 本接口（DescribeChannels）用于获取设备下属通道列表
+    @inlinable
+    public func describeChannels(_ input: DescribeChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelsResponse {
+        try await self.client.execute(action: "DescribeChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

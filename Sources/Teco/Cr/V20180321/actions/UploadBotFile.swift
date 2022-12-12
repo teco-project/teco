@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cr {
-    /// 上传机器人文件
-    @inlinable
-    public func uploadBotFile(_ input: UploadBotFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadBotFileResponse > {
-        self.client.execute(action: "UploadBotFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上传机器人文件
-    @inlinable
-    public func uploadBotFile(_ input: UploadBotFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotFileResponse {
-        try await self.client.execute(action: "UploadBotFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadBotFile请求参数结构体
     public struct UploadBotFileRequest: TCRequestModel {
         /// 模块名。默认值（固定）：AiApi
@@ -50,7 +38,7 @@ extension Cr {
         /// 任务名称，二者必填一个
         public let botName: String?
         
-        public init (module: String, operation: String, fileType: String, fileUrl: String, fileName: String, botId: String?, botName: String?) {
+        public init (module: String, operation: String, fileType: String, fileUrl: String, fileName: String, botId: String? = nil, botName: String? = nil) {
             self.module = module
             self.operation = operation
             self.fileType = fileType
@@ -79,5 +67,17 @@ extension Cr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上传机器人文件
+    @inlinable
+    public func uploadBotFile(_ input: UploadBotFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadBotFileResponse > {
+        self.client.execute(action: "UploadBotFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上传机器人文件
+    @inlinable
+    public func uploadBotFile(_ input: UploadBotFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotFileResponse {
+        try await self.client.execute(action: "UploadBotFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

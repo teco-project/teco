@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 修改全局告警通知渠道
-    @inlinable
-    public func modifyPrometheusGlobalNotification(_ input: ModifyPrometheusGlobalNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusGlobalNotificationResponse > {
-        self.client.execute(action: "ModifyPrometheusGlobalNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改全局告警通知渠道
-    @inlinable
-    public func modifyPrometheusGlobalNotification(_ input: ModifyPrometheusGlobalNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusGlobalNotificationResponse {
-        try await self.client.execute(action: "ModifyPrometheusGlobalNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPrometheusGlobalNotification请求参数结构体
     public struct ModifyPrometheusGlobalNotificationRequest: TCRequestModel {
         /// 实例ID
@@ -54,5 +42,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改全局告警通知渠道
+    @inlinable
+    public func modifyPrometheusGlobalNotification(_ input: ModifyPrometheusGlobalNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusGlobalNotificationResponse > {
+        self.client.execute(action: "ModifyPrometheusGlobalNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改全局告警通知渠道
+    @inlinable
+    public func modifyPrometheusGlobalNotification(_ input: ModifyPrometheusGlobalNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusGlobalNotificationResponse {
+        try await self.client.execute(action: "ModifyPrometheusGlobalNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

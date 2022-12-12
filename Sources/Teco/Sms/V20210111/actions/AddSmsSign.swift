@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Sms {
-    /// 添加短信签名
-    ///
-    /// 1. 添加短信签名，申请之前请先认真参阅 [腾讯云短信签名审核标准](https://cloud.tencent.com/document/product/382/39022)。
-    /// 2. ⚠️注意：个人认证用户不支持使用 API 申请短信签名，请参阅了解 [实名认证基本介绍](https://cloud.tencent.com/document/product/378/3629)，如果为个人认证请登录控制台申请短信签名。
-    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
-    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
-    @inlinable
-    public func addSmsSign(_ input: AddSmsSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddSmsSignResponse > {
-        self.client.execute(action: "AddSmsSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加短信签名
-    ///
-    /// 1. 添加短信签名，申请之前请先认真参阅 [腾讯云短信签名审核标准](https://cloud.tencent.com/document/product/382/39022)。
-    /// 2. ⚠️注意：个人认证用户不支持使用 API 申请短信签名，请参阅了解 [实名认证基本介绍](https://cloud.tencent.com/document/product/378/3629)，如果为个人认证请登录控制台申请短信签名。
-    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
-    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
-    @inlinable
-    public func addSmsSign(_ input: AddSmsSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSmsSignResponse {
-        try await self.client.execute(action: "AddSmsSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddSmsSign请求参数结构体
     public struct AddSmsSignRequest: TCRequestModel {
         /// 签名名称。
@@ -87,7 +65,7 @@ extension Sms {
         /// 签名的申请备注。
         public let remark: String?
         
-        public init (signName: String, signType: UInt64, documentType: UInt64, international: UInt64, signPurpose: UInt64, proofImage: String, commissionImage: String?, remark: String?) {
+        public init (signName: String, signType: UInt64, documentType: UInt64, international: UInt64, signPurpose: UInt64, proofImage: String, commissionImage: String? = nil, remark: String? = nil) {
             self.signName = signName
             self.signType = signType
             self.documentType = documentType
@@ -122,5 +100,27 @@ extension Sms {
             case addSignStatus = "AddSignStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加短信签名
+    ///
+    /// 1. 添加短信签名，申请之前请先认真参阅 [腾讯云短信签名审核标准](https://cloud.tencent.com/document/product/382/39022)。
+    /// 2. ⚠️注意：个人认证用户不支持使用 API 申请短信签名，请参阅了解 [实名认证基本介绍](https://cloud.tencent.com/document/product/378/3629)，如果为个人认证请登录控制台申请短信签名。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
+    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    @inlinable
+    public func addSmsSign(_ input: AddSmsSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddSmsSignResponse > {
+        self.client.execute(action: "AddSmsSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加短信签名
+    ///
+    /// 1. 添加短信签名，申请之前请先认真参阅 [腾讯云短信签名审核标准](https://cloud.tencent.com/document/product/382/39022)。
+    /// 2. ⚠️注意：个人认证用户不支持使用 API 申请短信签名，请参阅了解 [实名认证基本介绍](https://cloud.tencent.com/document/product/378/3629)，如果为个人认证请登录控制台申请短信签名。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
+    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    @inlinable
+    public func addSmsSign(_ input: AddSmsSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSmsSignResponse {
+        try await self.client.execute(action: "AddSmsSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

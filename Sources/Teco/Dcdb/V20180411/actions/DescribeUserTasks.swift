@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 拉取用户任务列表
-    ///
-    /// 本接口（DescribeUserTasks）用于拉取用户任务列表
-    @inlinable
-    public func describeUserTasks(_ input: DescribeUserTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserTasksResponse > {
-        self.client.execute(action: "DescribeUserTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取用户任务列表
-    ///
-    /// 本接口（DescribeUserTasks）用于拉取用户任务列表
-    @inlinable
-    public func describeUserTasks(_ input: DescribeUserTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserTasksResponse {
-        try await self.client.execute(action: "DescribeUserTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserTasks请求参数结构体
     public struct DescribeUserTasksRequest: TCRequestModel {
         /// 任务的状态列表。0-任务启动中；1-任务运行中；2-任务成功；3-任务失败
@@ -57,7 +41,7 @@ extension Dcdb {
         /// 返回任务默认是按照创建时间降序排列，从偏移值Offset处开始返回
         public let offset: Int64?
         
-        public init (statuses: [Int64]?, instanceIds: [String]?, flowTypes: [Int64]?, startTime: String?, endTime: String?, uTaskIds: [Int64]?, limit: Int64?, offset: Int64?) {
+        public init (statuses: [Int64]? = nil, instanceIds: [String]? = nil, flowTypes: [Int64]? = nil, startTime: String? = nil, endTime: String? = nil, uTaskIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.statuses = statuses
             self.instanceIds = instanceIds
             self.flowTypes = flowTypes
@@ -96,5 +80,21 @@ extension Dcdb {
             case flowSet = "FlowSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取用户任务列表
+    ///
+    /// 本接口（DescribeUserTasks）用于拉取用户任务列表
+    @inlinable
+    public func describeUserTasks(_ input: DescribeUserTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserTasksResponse > {
+        self.client.execute(action: "DescribeUserTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取用户任务列表
+    ///
+    /// 本接口（DescribeUserTasks）用于拉取用户任务列表
+    @inlinable
+    public func describeUserTasks(_ input: DescribeUserTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserTasksResponse {
+        try await self.client.execute(action: "DescribeUserTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

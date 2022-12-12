@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 卸载边缘日志采集组件
-    ///
-    /// 从tke@edge集群边缘节点上卸载日志采集组件
-    @inlinable
-    public func uninstallEdgeLogAgent(_ input: UninstallEdgeLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UninstallEdgeLogAgentResponse > {
-        self.client.execute(action: "UninstallEdgeLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 卸载边缘日志采集组件
-    ///
-    /// 从tke@edge集群边缘节点上卸载日志采集组件
-    @inlinable
-    public func uninstallEdgeLogAgent(_ input: UninstallEdgeLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallEdgeLogAgentResponse {
-        try await self.client.execute(action: "UninstallEdgeLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UninstallEdgeLogAgent请求参数结构体
     public struct UninstallEdgeLogAgentRequest: TCRequestModel {
         /// 集群ID
@@ -53,5 +37,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 卸载边缘日志采集组件
+    ///
+    /// 从tke@edge集群边缘节点上卸载日志采集组件
+    @inlinable
+    public func uninstallEdgeLogAgent(_ input: UninstallEdgeLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UninstallEdgeLogAgentResponse > {
+        self.client.execute(action: "UninstallEdgeLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 卸载边缘日志采集组件
+    ///
+    /// 从tke@edge集群边缘节点上卸载日志采集组件
+    @inlinable
+    public func uninstallEdgeLogAgent(_ input: UninstallEdgeLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallEdgeLogAgentResponse {
+        try await self.client.execute(action: "UninstallEdgeLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

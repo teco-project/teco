@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取主机账号详情
-    @inlinable
-    public func describeAssetUserInfo(_ input: DescribeAssetUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetUserInfoResponse > {
-        self.client.execute(action: "DescribeAssetUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取主机账号详情
-    @inlinable
-    public func describeAssetUserInfo(_ input: DescribeAssetUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetUserInfoResponse {
-        try await self.client.execute(action: "DescribeAssetUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetUserInfo请求参数结构体
     public struct DescribeAssetUserInfoRequest: TCRequestModel {
         /// 云服务器UUID
@@ -63,5 +51,17 @@ extension Cwp {
             case user = "User"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取主机账号详情
+    @inlinable
+    public func describeAssetUserInfo(_ input: DescribeAssetUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetUserInfoResponse > {
+        self.client.execute(action: "DescribeAssetUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取主机账号详情
+    @inlinable
+    public func describeAssetUserInfo(_ input: DescribeAssetUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetUserInfoResponse {
+        try await self.client.execute(action: "DescribeAssetUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

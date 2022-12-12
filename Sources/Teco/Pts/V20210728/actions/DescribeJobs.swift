@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Pts {
-    /// 查询任务列表
-    @inlinable
-    public func describeJobs(_ input: DescribeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobsResponse > {
-        self.client.execute(action: "DescribeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询任务列表
-    @inlinable
-    public func describeJobs(_ input: DescribeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobsResponse {
-        try await self.client.execute(action: "DescribeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeJobs请求参数结构体
     public struct DescribeJobsRequest: TCRequestModel {
         /// 场景ID数组
@@ -64,7 +52,7 @@ extension Pts {
         /// 任务的状态
         public let status: [Int64]?
         
-        public init (scenarioIds: [String], projectIds: [String], offset: Int64?, limit: Int64?, jobIds: [String]?, orderBy: String?, ascend: Bool?, startTime: Date?, endTime: Date?, debug: Bool?, status: [Int64]?) {
+        public init (scenarioIds: [String], projectIds: [String], offset: Int64? = nil, limit: Int64? = nil, jobIds: [String]? = nil, orderBy: String? = nil, ascend: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, debug: Bool? = nil, status: [Int64]? = nil) {
             self.scenarioIds = scenarioIds
             self.projectIds = projectIds
             self.offset = offset
@@ -111,5 +99,17 @@ extension Pts {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询任务列表
+    @inlinable
+    public func describeJobs(_ input: DescribeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobsResponse > {
+        self.client.execute(action: "DescribeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务列表
+    @inlinable
+    public func describeJobs(_ input: DescribeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobsResponse {
+        try await self.client.execute(action: "DescribeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

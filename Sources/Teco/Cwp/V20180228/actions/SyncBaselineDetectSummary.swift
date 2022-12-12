@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 同步基线检测进度概要
-    @inlinable
-    public func syncBaselineDetectSummary(_ input: SyncBaselineDetectSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncBaselineDetectSummaryResponse > {
-        self.client.execute(action: "SyncBaselineDetectSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 同步基线检测进度概要
-    @inlinable
-    public func syncBaselineDetectSummary(_ input: SyncBaselineDetectSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncBaselineDetectSummaryResponse {
-        try await self.client.execute(action: "SyncBaselineDetectSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SyncBaselineDetectSummary请求参数结构体
     public struct SyncBaselineDetectSummaryRequest: TCRequestModel {
         public init () {
@@ -73,5 +61,17 @@ extension Cwp {
             case leftMins = "LeftMins"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 同步基线检测进度概要
+    @inlinable
+    public func syncBaselineDetectSummary(_ input: SyncBaselineDetectSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncBaselineDetectSummaryResponse > {
+        self.client.execute(action: "SyncBaselineDetectSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 同步基线检测进度概要
+    @inlinable
+    public func syncBaselineDetectSummary(_ input: SyncBaselineDetectSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncBaselineDetectSummaryResponse {
+        try await self.client.execute(action: "SyncBaselineDetectSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

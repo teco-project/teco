@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询专业版需购买信息
-    ///
-    /// DescribeProVersionInfo  查询专业版需购买信息
-    @inlinable
-    public func describeProVersionInfo(_ input: DescribeProVersionInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProVersionInfoResponse > {
-        self.client.execute(action: "DescribeProVersionInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询专业版需购买信息
-    ///
-    /// DescribeProVersionInfo  查询专业版需购买信息
-    @inlinable
-    public func describeProVersionInfo(_ input: DescribeProVersionInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionInfoResponse {
-        try await self.client.execute(action: "DescribeProVersionInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProVersionInfo请求参数结构体
     public struct DescribeProVersionInfoRequest: TCRequestModel {
         public init () {
@@ -79,5 +63,21 @@ extension Tcss {
             case isPurchased = "IsPurchased"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询专业版需购买信息
+    ///
+    /// DescribeProVersionInfo  查询专业版需购买信息
+    @inlinable
+    public func describeProVersionInfo(_ input: DescribeProVersionInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProVersionInfoResponse > {
+        self.client.execute(action: "DescribeProVersionInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专业版需购买信息
+    ///
+    /// DescribeProVersionInfo  查询专业版需购买信息
+    @inlinable
+    public func describeProVersionInfo(_ input: DescribeProVersionInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionInfoResponse {
+        try await self.client.execute(action: "DescribeProVersionInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

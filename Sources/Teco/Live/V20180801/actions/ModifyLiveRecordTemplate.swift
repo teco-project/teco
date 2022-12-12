@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 直播修改录制模板配置
-    ///
-    /// 修改录制模板配置。
-    @inlinable
-    public func modifyLiveRecordTemplate(_ input: ModifyLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveRecordTemplateResponse > {
-        self.client.execute(action: "ModifyLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播修改录制模板配置
-    ///
-    /// 修改录制模板配置。
-    @inlinable
-    public func modifyLiveRecordTemplate(_ input: ModifyLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveRecordTemplateResponse {
-        try await self.client.execute(action: "ModifyLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLiveRecordTemplate请求参数结构体
     public struct ModifyLiveRecordTemplateRequest: TCRequestModel {
         /// DescribeRecordTemplates接口获取到的模板 ID。
@@ -43,30 +27,30 @@ extension Live {
         public let description: String?
         
         /// FLV 录制参数，开启 FLV 录制时设置。
-        public let flvParam: RecordParam
+        public let flvParam: RecordParam?
         
         /// HLS 录制参数，开启 HLS 录制时设置。
-        public let hlsParam: RecordParam
+        public let hlsParam: RecordParam?
         
         /// MP4 录制参数，开启 MP4 录制时设置。
-        public let mp4Param: RecordParam
+        public let mp4Param: RecordParam?
         
         /// AAC 录制参数，开启 AAC 录制时设置。
-        public let aacParam: RecordParam
+        public let aacParam: RecordParam?
         
         /// HLS 录制定制参数。
-        public let hlsSpecialParam: HlsSpecialParam
+        public let hlsSpecialParam: HlsSpecialParam?
         
         /// MP3 录制参数，开启 MP3 录制时设置。
-        public let mp3Param: RecordParam
+        public let mp3Param: RecordParam?
         
         /// 是否去除水印，类型为慢直播时此参数无效。
         public let removeWatermark: Bool?
         
         /// FLV 录制定制参数。
-        public let flvSpecialParam: FlvSpecialParam
+        public let flvSpecialParam: FlvSpecialParam?
         
-        public init (templateId: Int64, templateName: String?, description: String?, flvParam: RecordParam, hlsParam: RecordParam, mp4Param: RecordParam, aacParam: RecordParam, hlsSpecialParam: HlsSpecialParam, mp3Param: RecordParam, removeWatermark: Bool?, flvSpecialParam: FlvSpecialParam) {
+        public init (templateId: Int64, templateName: String? = nil, description: String? = nil, flvParam: RecordParam? = nil, hlsParam: RecordParam? = nil, mp4Param: RecordParam? = nil, aacParam: RecordParam? = nil, hlsSpecialParam: HlsSpecialParam? = nil, mp3Param: RecordParam? = nil, removeWatermark: Bool? = nil, flvSpecialParam: FlvSpecialParam? = nil) {
             self.templateId = templateId
             self.templateName = templateName
             self.description = description
@@ -103,5 +87,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播修改录制模板配置
+    ///
+    /// 修改录制模板配置。
+    @inlinable
+    public func modifyLiveRecordTemplate(_ input: ModifyLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveRecordTemplateResponse > {
+        self.client.execute(action: "ModifyLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播修改录制模板配置
+    ///
+    /// 修改录制模板配置。
+    @inlinable
+    public func modifyLiveRecordTemplate(_ input: ModifyLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveRecordTemplateResponse {
+        try await self.client.execute(action: "ModifyLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

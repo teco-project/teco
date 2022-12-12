@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 检查待创建的实例名称是否符合规范
-    @inlinable
-    public func checkInstanceName(_ input: CheckInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckInstanceNameResponse > {
-        self.client.execute(action: "CheckInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检查待创建的实例名称是否符合规范
-    @inlinable
-    public func checkInstanceName(_ input: CheckInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceNameResponse {
-        try await self.client.execute(action: "CheckInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckInstanceName请求参数结构体
     public struct CheckInstanceNameRequest: TCRequestModel {
         /// 待创建的实例名称
@@ -53,5 +41,17 @@ extension Tcr {
             case isValidated = "IsValidated"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检查待创建的实例名称是否符合规范
+    @inlinable
+    public func checkInstanceName(_ input: CheckInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckInstanceNameResponse > {
+        self.client.execute(action: "CheckInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检查待创建的实例名称是否符合规范
+    @inlinable
+    public func checkInstanceName(_ input: CheckInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceNameResponse {
+        try await self.client.execute(action: "CheckInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

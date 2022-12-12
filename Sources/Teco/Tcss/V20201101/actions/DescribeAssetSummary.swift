@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询账户容器、镜像等统计信息
-    @inlinable
-    public func describeAssetSummary(_ input: DescribeAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetSummaryResponse > {
-        self.client.execute(action: "DescribeAssetSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询账户容器、镜像等统计信息
-    @inlinable
-    public func describeAssetSummary(_ input: DescribeAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSummaryResponse {
-        try await self.client.execute(action: "DescribeAssetSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetSummary请求参数结构体
     public struct DescribeAssetSummaryRequest: TCRequestModel {
         public init () {
@@ -121,5 +109,17 @@ extension Tcss {
             case hostUnInstallCnt = "HostUnInstallCnt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询账户容器、镜像等统计信息
+    @inlinable
+    public func describeAssetSummary(_ input: DescribeAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetSummaryResponse > {
+        self.client.execute(action: "DescribeAssetSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账户容器、镜像等统计信息
+    @inlinable
+    public func describeAssetSummary(_ input: DescribeAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSummaryResponse {
+        try await self.client.execute(action: "DescribeAssetSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

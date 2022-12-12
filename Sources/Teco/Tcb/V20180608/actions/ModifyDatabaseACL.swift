@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 修改数据库权限
-    @inlinable
-    public func modifyDatabaseACL(_ input: ModifyDatabaseACLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDatabaseACLResponse > {
-        self.client.execute(action: "ModifyDatabaseACL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改数据库权限
-    @inlinable
-    public func modifyDatabaseACL(_ input: ModifyDatabaseACLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseACLResponse {
-        try await self.client.execute(action: "ModifyDatabaseACL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDatabaseACL请求参数结构体
     public struct ModifyDatabaseACLRequest: TCRequestModel {
         /// 环境ID
@@ -63,5 +51,17 @@ extension Tcb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改数据库权限
+    @inlinable
+    public func modifyDatabaseACL(_ input: ModifyDatabaseACLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDatabaseACLResponse > {
+        self.client.execute(action: "ModifyDatabaseACL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改数据库权限
+    @inlinable
+    public func modifyDatabaseACL(_ input: ModifyDatabaseACLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseACLResponse {
+        try await self.client.execute(action: "ModifyDatabaseACL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,24 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Gse {
-    /// 查询服务器舰队的事件列表
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeFleetEvents）用于查询服务器舰队相关的事件列表。
-    @inlinable
-    public func describeFleetEvents(_ input: DescribeFleetEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFleetEventsResponse > {
-        self.client.execute(action: "DescribeFleetEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询服务器舰队的事件列表
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeFleetEvents）用于查询服务器舰队相关的事件列表。
-    @inlinable
-    public func describeFleetEvents(_ input: DescribeFleetEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetEventsResponse {
-        try await self.client.execute(action: "DescribeFleetEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFleetEvents请求参数结构体
     public struct DescribeFleetEventsRequest: TCRequestModel {
         /// 服务器舰队 Id
@@ -55,7 +37,7 @@ extension Gse {
         /// 发生事件的结束时间
         public let endTime: Date?
         
-        public init (fleetId: String, limit: UInt64?, offset: UInt64?, eventCode: String?, startTime: Date?, endTime: Date?) {
+        public init (fleetId: String, limit: UInt64? = nil, offset: UInt64? = nil, eventCode: String? = nil, startTime: Date? = nil, endTime: Date? = nil) {
             self.fleetId = fleetId
             self.limit = limit
             self.offset = offset
@@ -90,5 +72,23 @@ extension Gse {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询服务器舰队的事件列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeFleetEvents）用于查询服务器舰队相关的事件列表。
+    @inlinable
+    public func describeFleetEvents(_ input: DescribeFleetEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFleetEventsResponse > {
+        self.client.execute(action: "DescribeFleetEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务器舰队的事件列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeFleetEvents）用于查询服务器舰队相关的事件列表。
+    @inlinable
+    public func describeFleetEvents(_ input: DescribeFleetEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetEventsResponse {
+        try await self.client.execute(action: "DescribeFleetEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

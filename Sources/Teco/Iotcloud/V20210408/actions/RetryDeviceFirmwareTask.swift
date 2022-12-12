@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 重试设备升级任务
-    @inlinable
-    public func retryDeviceFirmwareTask(_ input: RetryDeviceFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RetryDeviceFirmwareTaskResponse > {
-        self.client.execute(action: "RetryDeviceFirmwareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重试设备升级任务
-    @inlinable
-    public func retryDeviceFirmwareTask(_ input: RetryDeviceFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryDeviceFirmwareTaskResponse {
-        try await self.client.execute(action: "RetryDeviceFirmwareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RetryDeviceFirmwareTask请求参数结构体
     public struct RetryDeviceFirmwareTaskRequest: TCRequestModel {
         /// 产品ID
@@ -64,5 +52,17 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重试设备升级任务
+    @inlinable
+    public func retryDeviceFirmwareTask(_ input: RetryDeviceFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RetryDeviceFirmwareTaskResponse > {
+        self.client.execute(action: "RetryDeviceFirmwareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重试设备升级任务
+    @inlinable
+    public func retryDeviceFirmwareTask(_ input: RetryDeviceFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryDeviceFirmwareTaskResponse {
+        try await self.client.execute(action: "RetryDeviceFirmwareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

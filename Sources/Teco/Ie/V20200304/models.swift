@@ -27,7 +27,7 @@ extension Ie {
         /// 注意：此参数已经弃用
         public let algorithm: String?
         
-        public init (type: String?, algorithm: String?) {
+        public init (type: String? = nil, algorithm: String? = nil) {
             self.type = type
             self.algorithm = algorithm
         }
@@ -43,7 +43,7 @@ extension Ie {
         /// 音效增强种类，可选项：normal
         public let type: String?
         
-        public init (type: String?) {
+        public init (type: String? = nil) {
             self.type = type
         }
         
@@ -71,7 +71,7 @@ extension Ie {
         public let sampleRate: Int64
         
         /// 音频降噪信息
-        public let denoise: Denoise
+        public let denoise: Denoise?
         
         /// 开启添加静音，可选项：
         /// 0：不开启，
@@ -80,15 +80,15 @@ extension Ie {
         public let enableMuteAudio: Int64?
         
         /// 音频响度信息
-        public let loudnessInfo: LoudnessInfo
+        public let loudnessInfo: LoudnessInfo?
         
         /// 音频音效增强
-        public let audioEnhance: AudioEnhance
+        public let audioEnhance: AudioEnhance?
         
         /// 去除混音
-        public let removeReverb: RemoveReverb
+        public let removeReverb: RemoveReverb?
         
-        public init (bitrate: Int64, codec: String, channel: Int64, sampleRate: Int64, denoise: Denoise, enableMuteAudio: Int64?, loudnessInfo: LoudnessInfo, audioEnhance: AudioEnhance, removeReverb: RemoveReverb) {
+        public init (bitrate: Int64, codec: String, channel: Int64, sampleRate: Int64, denoise: Denoise? = nil, enableMuteAudio: Int64? = nil, loudnessInfo: LoudnessInfo? = nil, audioEnhance: AudioEnhance? = nil, removeReverb: RemoveReverb? = nil) {
             self.bitrate = bitrate
             self.codec = codec
             self.channel = channel
@@ -170,7 +170,7 @@ extension Ie {
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
         
-        public init (`switch`: Int64, customInfo: String?) {
+        public init (`switch`: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
@@ -260,7 +260,7 @@ extension Ie {
         /// 临时授权 token，Type等于3时必选。
         public let token: String?
         
-        public init (type: Int64, hostedId: String?, secretId: String?, secretKey: String?, token: String?) {
+        public init (type: Int64, hostedId: String? = nil, secretId: String? = nil, secretKey: String? = nil, token: String? = nil) {
             self.type = type
             self.hostedId = hostedId
             self.secretId = secretId
@@ -291,9 +291,9 @@ extension Ie {
         public let path: String
         
         /// cos 授权信息，不填默认为公有权限。
-        public let cosAuthMode: CosAuthMode
+        public let cosAuthMode: CosAuthMode?
         
-        public init (region: String, bucket: String, path: String, cosAuthMode: CosAuthMode) {
+        public init (region: String, bucket: String, path: String, cosAuthMode: CosAuthMode? = nil) {
             self.region = region
             self.bucket = bucket
             self.path = path
@@ -316,7 +316,7 @@ extension Ie {
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
         
-        public init (`switch`: Int64, customInfo: String?) {
+        public init (`switch`: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
@@ -374,7 +374,7 @@ extension Ie {
         /// 默认为2。
         public let fillMode: UInt64?
         
-        public init (fillMode: UInt64?) {
+        public init (fillMode: UInt64? = nil) {
             self.fillMode = fillMode
         }
         
@@ -392,7 +392,7 @@ extension Ie {
         /// 默认为weak
         public let type: String?
         
-        public init (type: String?) {
+        public init (type: String? = nil) {
             self.type = type
         }
         
@@ -418,7 +418,7 @@ extension Ie {
         /// 空域去噪强度，可选值：0.0-1.0 。小于0.0的默认为0.0，大于1.0的默认为1.0。
         public let spatialStrength: Float?
         
-        public init (type: String, templStrength: Float?, spatialStrength: Float?) {
+        public init (type: String, templStrength: Float? = nil, spatialStrength: Float? = nil) {
             self.type = type
             self.templStrength = templStrength
             self.spatialStrength = spatialStrength
@@ -439,12 +439,12 @@ extension Ie {
         public let type: Int64
         
         /// Url形式下载信息，当Type等于0时必选。
-        public let urlInfo: UrlInfo
+        public let urlInfo: UrlInfo?
         
         /// Cos形式下载信息，当Type等于1时必选。
-        public let cosInfo: CosInfo
+        public let cosInfo: CosInfo?
         
-        public init (type: Int64, urlInfo: UrlInfo, cosInfo: CosInfo) {
+        public init (type: Int64, urlInfo: UrlInfo? = nil, cosInfo: CosInfo? = nil) {
             self.type = type
             self.urlInfo = urlInfo
             self.cosInfo = cosInfo
@@ -464,7 +464,7 @@ extension Ie {
         /// <li>对于gif格式，小于10为低质量，大于50为高质量，其它为普通。默认：低质量。</li>
         public let quality: UInt64?
         
-        public init (quality: UInt64?) {
+        public init (quality: UInt64? = nil) {
             self.quality = quality
         }
         
@@ -495,24 +495,24 @@ extension Ie {
     /// 智能编辑任务参数信息
     public struct EditingInfo: TCInputModel {
         /// 视频标签识别任务参数，不填则不开启。
-        public let tagEditingInfo: TagEditingInfo
+        public let tagEditingInfo: TagEditingInfo?
         
         /// 视频分类识别任务参数，不填则不开启。
-        public let classificationEditingInfo: ClassificationEditingInfo
+        public let classificationEditingInfo: ClassificationEditingInfo?
         
         /// 智能拆条任务参数，不填则不开启。
-        public let stripEditingInfo: StripEditingInfo
+        public let stripEditingInfo: StripEditingInfo?
         
         /// 智能集锦任务参数，不填则不开启。
-        public let highlightsEditingInfo: HighlightsEditingInfo
+        public let highlightsEditingInfo: HighlightsEditingInfo?
         
         /// 智能封面任务参数，不填则不开启。
-        public let coverEditingInfo: CoverEditingInfo
+        public let coverEditingInfo: CoverEditingInfo?
         
         /// 片头片尾识别任务参数，不填则不开启。
-        public let openingEndingEditingInfo: OpeningEndingEditingInfo
+        public let openingEndingEditingInfo: OpeningEndingEditingInfo?
         
-        public init (tagEditingInfo: TagEditingInfo, classificationEditingInfo: ClassificationEditingInfo, stripEditingInfo: StripEditingInfo, highlightsEditingInfo: HighlightsEditingInfo, coverEditingInfo: CoverEditingInfo, openingEndingEditingInfo: OpeningEndingEditingInfo) {
+        public init (tagEditingInfo: TagEditingInfo? = nil, classificationEditingInfo: ClassificationEditingInfo? = nil, stripEditingInfo: StripEditingInfo? = nil, highlightsEditingInfo: HighlightsEditingInfo? = nil, coverEditingInfo: CoverEditingInfo? = nil, openingEndingEditingInfo: OpeningEndingEditingInfo? = nil) {
             self.tagEditingInfo = tagEditingInfo
             self.classificationEditingInfo = classificationEditingInfo
             self.stripEditingInfo = stripEditingInfo
@@ -542,27 +542,27 @@ extension Ie {
         
         /// 视频标签识别结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tagTaskResult: TagTaskResult
+        public let tagTaskResult: TagTaskResult?
         
         /// 视频分类识别结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let classificationTaskResult: ClassificationTaskResult
+        public let classificationTaskResult: ClassificationTaskResult?
         
         /// 智能拆条结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let stripTaskResult: StripTaskResult
+        public let stripTaskResult: StripTaskResult?
         
         /// 智能集锦结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let highlightsTaskResult: HighlightsTaskResult
+        public let highlightsTaskResult: HighlightsTaskResult?
         
         /// 智能封面结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let coverTaskResult: CoverTaskResult
+        public let coverTaskResult: CoverTaskResult?
         
         /// 片头片尾识别结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let openingEndingTaskResult: OpeningEndingTaskResult
+        public let openingEndingTaskResult: OpeningEndingTaskResult?
         
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
@@ -581,7 +581,7 @@ extension Ie {
         /// 人脸区域增强强度，可选项：0.0-1.0。小于0.0的默认为0.0，大于1.0的默认为1.0。
         public let faceUsmRatio: Float?
         
-        public init (faceUsmRatio: Float?) {
+        public init (faceUsmRatio: Float? = nil) {
             self.faceUsmRatio = faceUsmRatio
         }
         
@@ -664,7 +664,7 @@ extension Ie {
         /// "PUBG_GameViews":和平精英比赛视角
         public let gameExtendType: String?
         
-        public init (tagType: String, gameExtendType: String?) {
+        public init (tagType: String, gameExtendType: String? = nil) {
             self.tagType = tagType
             self.gameExtendType = gameExtendType
         }
@@ -697,9 +697,9 @@ extension Ie {
         public let strength: Int64?
         
         /// 数字水印的Cos 信息，从Cos上拉取图片水印时必填。
-        public let cosInfo: CosInfo
+        public let cosInfo: CosInfo?
         
-        public init (path: String, frequency: Int64?, strength: Int64?, cosInfo: CosInfo) {
+        public init (path: String, frequency: Int64? = nil, strength: Int64? = nil, cosInfo: CosInfo? = nil) {
             self.path = path
             self.frequency = frequency
             self.strength = strength
@@ -722,7 +722,7 @@ extension Ie {
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
         
-        public init (`switch`: Int64, customInfo: String?) {
+        public init (`switch`: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
@@ -810,7 +810,7 @@ extension Ie {
         /// 开始时间点，单位ms
         public let startTime: Int64?
         
-        public init (interval: Int64, startTime: Int64?) {
+        public init (interval: Int64, startTime: Int64? = nil) {
             self.interval = interval
             self.startTime = startTime
         }
@@ -829,7 +829,7 @@ extension Ie {
         /// 音频响度范围
         public let loudnessRange: Float?
         
-        public init (loudness: Float?, loudnessRange: Float?) {
+        public init (loudness: Float? = nil, loudnessRange: Float? = nil) {
             self.loudness = loudness
             self.loudnessRange = loudnessRange
         }
@@ -878,7 +878,7 @@ extension Ie {
         /// 是否去除纯色截图，如果值为 True ，对应时间点的截图如果是纯色，将略过。
         public let dropPureColor: String?
         
-        public init (timeInfo: MediaCuttingTimeInfo, targetInfo: MediaTargetInfo, outForm: MediaCuttingOutForm, resultListSaveType: String?, watermarkInfoSet: [MediaCuttingWatermark]?, dropPureColor: String?) {
+        public init (timeInfo: MediaCuttingTimeInfo, targetInfo: MediaTargetInfo, outForm: MediaCuttingOutForm, resultListSaveType: String? = nil, watermarkInfoSet: [MediaCuttingWatermark]? = nil, dropPureColor: String? = nil) {
             self.timeInfo = timeInfo
             self.targetInfo = targetInfo
             self.outForm = outForm
@@ -927,12 +927,12 @@ extension Ie {
         public let spriteColumnCount: Int64?
         
         /// Type=Sprite时有效，表示雪碧图参数信息。
-        public let spriteInfo: SpriteImageInfo
+        public let spriteInfo: SpriteImageInfo?
         
         /// Type=Dynamic时有效，表示动图参数信息。
-        public let dynamicInfo: DynamicImageInfo
+        public let dynamicInfo: DynamicImageInfo?
         
-        public init (type: String, fillType: String?, spriteRowCount: Int64?, spriteColumnCount: Int64?, spriteInfo: SpriteImageInfo, dynamicInfo: DynamicImageInfo) {
+        public init (type: String, fillType: String? = nil, spriteRowCount: Int64? = nil, spriteColumnCount: Int64? = nil, spriteInfo: SpriteImageInfo? = nil, dynamicInfo: DynamicImageInfo? = nil) {
             self.type = type
             self.fillType = fillType
             self.spriteRowCount = spriteRowCount
@@ -955,7 +955,7 @@ extension Ie {
     public struct MediaCuttingTaskResult: TCOutputModel {
         /// 如果ResultListType不为NoListFile时，结果（TaskResultFile）列表文件的存储位置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let listFile: TaskResultFile
+        public let listFile: TaskResultFile?
         
         /// 结果个数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -963,11 +963,11 @@ extension Ie {
         
         /// 第一个结果文件。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let firstFile: TaskResultFile
+        public let firstFile: TaskResultFile?
         
         /// 最后一个结果文件。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let lastFile: TaskResultFile
+        public let lastFile: TaskResultFile?
         
         /// 任务结果包含的图片总数。
         /// 静态图：总数即为文件数；
@@ -997,12 +997,12 @@ extension Ie {
         public let pointSet: [Int64]?
         
         /// 周期采样点信息，Type=IntervalPoint时必选。
-        public let intervalPoint: IntervalTime
+        public let intervalPoint: IntervalTime?
         
         /// 时间区间集合信息，Type=SectionSet时必选。
         public let sectionSet: [SectionTime]?
         
-        public init (type: String, pointSet: [Int64]?, intervalPoint: IntervalTime, sectionSet: [SectionTime]?) {
+        public init (type: String, pointSet: [Int64]? = nil, intervalPoint: IntervalTime? = nil, sectionSet: [SectionTime]? = nil) {
             self.type = type
             self.pointSet = pointSet
             self.intervalPoint = intervalPoint
@@ -1025,12 +1025,12 @@ extension Ie {
         public let type: String
         
         /// 图像水印信息，当 Type=Image 时必选。
-        public let image: MediaCuttingWatermarkImage
+        public let image: MediaCuttingWatermarkImage?
         
         /// 文字水印信息，当 Type=Text 时必选。
-        public let text: MediaCuttingWatermarkText
+        public let text: MediaCuttingWatermarkText?
         
-        public init (type: String, image: MediaCuttingWatermarkImage, text: MediaCuttingWatermarkText) {
+        public init (type: String, image: MediaCuttingWatermarkImage? = nil, text: MediaCuttingWatermarkText? = nil) {
             self.type = type
             self.image = image
             self.text = text
@@ -1076,7 +1076,7 @@ extension Ie {
         /// 默认：LeftTop。
         public let posOriginType: String?
         
-        public init (sourceId: String, posX: UInt64?, posY: UInt64?, width: UInt64?, height: UInt64?, posOriginType: String?) {
+        public init (sourceId: String, posX: UInt64? = nil, posY: UInt64? = nil, width: UInt64? = nil, height: UInt64? = nil, posOriginType: String? = nil) {
             self.sourceId = sourceId
             self.posX = posX
             self.posY = posY
@@ -1131,7 +1131,7 @@ extension Ie {
         /// 默认 SimHei。
         public let font: String?
         
-        public init (text: String, fontSize: UInt64, posX: UInt64?, posY: UInt64?, fontColor: String?, fontAlpha: UInt64?, posOriginType: String?, font: String?) {
+        public init (text: String, fontSize: UInt64, posX: UInt64? = nil, posY: UInt64? = nil, fontColor: String? = nil, fontAlpha: UInt64? = nil, posOriginType: String? = nil, font: String? = nil) {
             self.text = text
             self.fontSize = fontSize
             self.posX = posX
@@ -1165,7 +1165,7 @@ extension Ie {
         /// Normal：正常；
         public let mode: String?
         
-        public init (targetInfo: MediaTargetInfo, mode: String?) {
+        public init (targetInfo: MediaTargetInfo, mode: String? = nil) {
             self.targetInfo = targetInfo
             self.mode = mode
         }
@@ -1180,7 +1180,7 @@ extension Ie {
     public struct MediaJoiningTaskResult: TCOutputModel {
         /// 拼接结果文件。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let file: TaskResultFile
+        public let file: TaskResultFile?
         
         enum CodingKeys: String, CodingKey {
             case file = "File"
@@ -1197,15 +1197,15 @@ extension Ie {
         public let type: String
         
         /// 视频剪切任务参数，Type=MediaCutting时必选。
-        public let mediaCuttingInfo: MediaCuttingInfo
+        public let mediaCuttingInfo: MediaCuttingInfo?
         
         /// 视频拼接任务参数，Type=MediaJoining时必选。
-        public let mediaJoiningInfo: MediaJoiningInfo
+        public let mediaJoiningInfo: MediaJoiningInfo?
         
         /// 媒体识别任务参数，Type=MediaRecognition时必选
-        public let mediaRecognitionInfo: MediaRecognitionInfo
+        public let mediaRecognitionInfo: MediaRecognitionInfo?
         
-        public init (type: String, mediaCuttingInfo: MediaCuttingInfo, mediaJoiningInfo: MediaJoiningInfo, mediaRecognitionInfo: MediaRecognitionInfo) {
+        public init (type: String, mediaCuttingInfo: MediaCuttingInfo? = nil, mediaJoiningInfo: MediaJoiningInfo? = nil, mediaRecognitionInfo: MediaRecognitionInfo? = nil) {
             self.type = type
             self.mediaCuttingInfo = mediaCuttingInfo
             self.mediaJoiningInfo = mediaJoiningInfo
@@ -1256,15 +1256,15 @@ extension Ie {
         
         /// 剪切任务处理结果，当Type=MediaCutting时才有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mediaCuttingTaskResult: MediaCuttingTaskResult
+        public let mediaCuttingTaskResult: MediaCuttingTaskResult?
         
         /// 拼接任务处理结果，当Type=MediaJoining时才有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mediaJoiningTaskResult: MediaJoiningTaskResult
+        public let mediaJoiningTaskResult: MediaJoiningTaskResult?
         
         /// 媒体识别任务处理结果，当Type=MediaRecognition时才有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mediaRecognitionTaskResult: MediaRecognitionTaskResult
+        public let mediaRecognitionTaskResult: MediaRecognitionTaskResult?
         
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
@@ -1296,12 +1296,12 @@ extension Ie {
     /// 媒体识别任务参数
     public struct MediaRecognitionInfo: TCInputModel {
         /// 帧标签识别
-        public let frameTagRec: FrameTagRec
+        public let frameTagRec: FrameTagRec?
         
         /// 语音字幕识别
-        public let subtitleRec: SubtitleRec
+        public let subtitleRec: SubtitleRec?
         
-        public init (frameTagRec: FrameTagRec, subtitleRec: SubtitleRec) {
+        public init (frameTagRec: FrameTagRec? = nil, subtitleRec: SubtitleRec? = nil) {
             self.frameTagRec = frameTagRec
             self.subtitleRec = subtitleRec
         }
@@ -1316,11 +1316,11 @@ extension Ie {
     public struct MediaRecognitionTaskResult: TCOutputModel {
         /// 帧标签识别结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let frameTagResults: FrameTagResult
+        public let frameTagResults: FrameTagResult?
         
         /// 语音字幕识别结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let subtitleResults: SubtitleResult
+        public let subtitleResults: SubtitleResult?
         
         enum CodingKeys: String, CodingKey {
             case frameTagResults = "FrameTagResults"
@@ -1364,7 +1364,7 @@ extension Ie {
         /// Audio：音频
         public let type: String?
         
-        public init (downInfo: DownInfo, id: String?, type: String?) {
+        public init (downInfo: DownInfo, id: String? = nil, type: String? = nil) {
             self.downInfo = downInfo
             self.id = id
             self.type = type
@@ -1389,12 +1389,12 @@ extension Ie {
         public let format: String
         
         /// 视频流信息。
-        public let targetVideoInfo: TargetVideoInfo
+        public let targetVideoInfo: TargetVideoInfo?
         
         /// 【不再使用】
         public let resultListSaveType: String?
         
-        public init (fileName: String, format: String, targetVideoInfo: TargetVideoInfo, resultListSaveType: String?) {
+        public init (fileName: String, format: String, targetVideoInfo: TargetVideoInfo? = nil, resultListSaveType: String? = nil) {
             self.fileName = fileName
             self.format = format
             self.targetVideoInfo = targetVideoInfo
@@ -1417,7 +1417,7 @@ extension Ie {
         /// Flv 参数，目前支持add_keyframe_index
         public let flvFlags: String?
         
-        public init (deleteStream: String?, flvFlags: String?) {
+        public init (deleteStream: String? = nil, flvFlags: String? = nil) {
             self.deleteStream = deleteStream
             self.flvFlags = flvFlags
         }
@@ -1436,7 +1436,7 @@ extension Ie {
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
         
-        public init (`switch`: Int64, customInfo: String?) {
+        public init (`switch`: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
@@ -1462,7 +1462,7 @@ extension Ie {
         
         /// 片头片尾识别结果项。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let item: OpeningEndingTaskResultItem
+        public let item: OpeningEndingTaskResultItem?
         
         enum CodingKeys: String, CodingKey {
             case status = "Status"
@@ -1506,7 +1506,7 @@ extension Ie {
         public let path: String?
         
         /// 图片水印的Cos 信息，从Cos上拉取图片水印时必填。
-        public let cosInfo: CosInfo
+        public let cosInfo: CosInfo?
         
         /// 图片水印宽度，不填为图片原始宽度。
         public let width: Int64?
@@ -1520,7 +1520,7 @@ extension Ie {
         /// 添加图片水印的结束时间,单位：ms。
         public let endTime: Int64?
         
-        public init (posX: Int64, posY: Int64, path: String?, cosInfo: CosInfo, width: Int64?, height: Int64?, startTime: Int64?, endTime: Int64?) {
+        public init (posX: Int64, posY: Int64, path: String? = nil, cosInfo: CosInfo? = nil, width: Int64? = nil, height: Int64? = nil, startTime: Int64? = nil, endTime: Int64? = nil) {
             self.posX = posX
             self.posY = posY
             self.path = path
@@ -1584,7 +1584,7 @@ extension Ie {
         /// 是否检测视频音频，包含静音、低音、爆音
         public let voice: Bool?
         
-        public init (interval: UInt64?, videoShot: Bool?, jitter: Bool?, blur: Bool?, abnormalLighting: Bool?, crashScreen: Bool?, blackWhiteEdge: Bool?, noise: Bool?, mosaic: Bool?, qrCode: Bool?, qualityEvaluation: Bool?, qualityEvalScore: UInt64?, voice: Bool?) {
+        public init (interval: UInt64? = nil, videoShot: Bool? = nil, jitter: Bool? = nil, blur: Bool? = nil, abnormalLighting: Bool? = nil, crashScreen: Bool? = nil, blackWhiteEdge: Bool? = nil, noise: Bool? = nil, mosaic: Bool? = nil, qrCode: Bool? = nil, qualityEvaluation: Bool? = nil, qualityEvalScore: UInt64? = nil, voice: Bool? = nil) {
             self.interval = interval
             self.videoShot = videoShot
             self.jitter = jitter
@@ -1763,7 +1763,7 @@ extension Ie {
         /// 去混响类型，可选项：normal
         public let type: String?
         
-        public init (type: String?) {
+        public init (type: String? = nil) {
             self.type = type
         }
         
@@ -1826,13 +1826,13 @@ extension Ie {
         public let type: Int64
         
         /// Cos形式存储信息，当Type等于1时必选。
-        public let cosInfo: CosInfo
+        public let cosInfo: CosInfo?
         
         /// 存储信息ID标记，用于多个输出场景。部分任务支持多输出时，一般要求必选。
         /// ID只能包含字母、数字、下划线、中划线，长读不能超过128。
         public let id: String?
         
-        public init (type: Int64, cosInfo: CosInfo, id: String?) {
+        public init (type: Int64, cosInfo: CosInfo? = nil, id: String? = nil) {
             self.type = type
             self.cosInfo = cosInfo
             self.id = id
@@ -1853,7 +1853,7 @@ extension Ie {
         /// 去划痕强度， 可选项：0.0-1.0。小于0.0的默认为0.0，大于1.0的默认为1.0。
         public let ratio: Float?
         
-        public init (type: String?, ratio: Float?) {
+        public init (type: String? = nil, ratio: Float? = nil) {
             self.type = type
             self.ratio = ratio
         }
@@ -1896,7 +1896,7 @@ extension Ie {
         /// 2.若填了切片文件名字，则会按照如下格式命名：用户指定文件名{order}。
         public let fragmentName: String?
         
-        public init (fragmentTime: Int64?, segmentType: String?, fragmentName: String?) {
+        public init (fragmentTime: Int64? = nil, segmentType: String? = nil, fragmentName: String? = nil) {
             self.fragmentTime = fragmentTime
             self.segmentType = segmentType
             self.fragmentName = fragmentName
@@ -1917,7 +1917,7 @@ extension Ie {
         /// 细节增强强度，可选项：0.0-1.0。小于0.0的默认为0.0，大于1.0的默认为1.0。
         public let ratio: Float?
         
-        public init (type: String?, ratio: Float?) {
+        public init (type: String? = nil, ratio: Float? = nil) {
             self.type = type
             self.ratio = ratio
         }
@@ -1964,7 +1964,7 @@ extension Ie {
         /// 背景颜色，格式：#RRGGBB，默认：#FFFFFF。
         public let backgroundColor: String?
         
-        public init (rowCount: UInt64?, columnCount: UInt64?, marginTop: Int64?, marginBottom: Int64?, marginLeft: Int64?, marginRight: Int64?, paddingTop: Int64?, paddingBottom: Int64?, paddingLeft: Int64?, paddingRight: Int64?, backgroundColor: String?) {
+        public init (rowCount: UInt64? = nil, columnCount: UInt64? = nil, marginTop: Int64? = nil, marginBottom: Int64? = nil, marginLeft: Int64? = nil, marginRight: Int64? = nil, paddingTop: Int64? = nil, paddingBottom: Int64? = nil, paddingLeft: Int64? = nil, paddingRight: Int64? = nil, backgroundColor: String? = nil) {
             self.rowCount = rowCount
             self.columnCount = columnCount
             self.marginTop = marginTop
@@ -2001,7 +2001,7 @@ extension Ie {
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
         
-        public init (`switch`: Int64, customInfo: String?) {
+        public init (`switch`: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
@@ -2092,7 +2092,7 @@ extension Ie {
         
         /// 画质重生处理后文件的详细信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let fileInfo: FileInfo
+        public let fileInfo: FileInfo?
         
         enum CodingKeys: String, CodingKey {
             case taskName = "TaskName"
@@ -2114,18 +2114,18 @@ extension Ie {
         public let targetInfo: TargetInfo
         
         /// 视频剪辑信息。注意：如果填写了EditInfo，则VideoInfo和AudioInfo必填
-        public let editInfo: EditInfo
+        public let editInfo: EditInfo?
         
         /// 视频转码信息，不填保持和源文件一致。
-        public let videoInfo: VideoInfo
+        public let videoInfo: VideoInfo?
         
         /// 音频转码信息，不填保持和源文件一致。
-        public let audioInfo: AudioInfo
+        public let audioInfo: AudioInfo?
         
         /// 指定封装信息。
-        public let muxInfo: MuxInfo
+        public let muxInfo: MuxInfo?
         
-        public init (taskName: String, targetInfo: TargetInfo, editInfo: EditInfo, videoInfo: VideoInfo, audioInfo: AudioInfo, muxInfo: MuxInfo) {
+        public init (taskName: String, targetInfo: TargetInfo, editInfo: EditInfo? = nil, videoInfo: VideoInfo? = nil, audioInfo: AudioInfo? = nil, muxInfo: MuxInfo? = nil) {
             self.taskName = taskName
             self.targetInfo = targetInfo
             self.editInfo = editInfo
@@ -2201,7 +2201,7 @@ extension Ie {
         /// en：英文
         public let transDst: String?
         
-        public init (asrDst: String?, transDst: String?) {
+        public init (asrDst: String? = nil, transDst: String? = nil) {
             self.asrDst = asrDst
             self.transDst = transDst
         }
@@ -2230,7 +2230,7 @@ extension Ie {
         /// 额外定制化服务参数。参数为序列化的Json字符串，例如：{"k1":"v1"}。
         public let customInfo: String?
         
-        public init (`switch`: Int64, customInfo: String?) {
+        public init (`switch`: Int64, customInfo: String? = nil) {
             self.`switch` = `switch`
             self.customInfo = customInfo
         }
@@ -2310,9 +2310,9 @@ extension Ie {
         public let fileName: String
         
         /// 目标文件切片信息
-        public let segmentInfo: SegmentInfo
+        public let segmentInfo: SegmentInfo?
         
-        public init (fileName: String, segmentInfo: SegmentInfo) {
+        public init (fileName: String, segmentInfo: SegmentInfo? = nil) {
             self.fileName = fileName
             self.segmentInfo = segmentInfo
         }
@@ -2334,7 +2334,7 @@ extension Ie {
         /// 视频帧率，范围在1到120之间
         public let frameRate: Int64?
         
-        public init (width: Int64?, height: Int64?, frameRate: Int64?) {
+        public init (width: Int64? = nil, height: Int64? = nil, frameRate: Int64? = nil) {
             self.width = width
             self.height = height
             self.frameRate = frameRate
@@ -2359,7 +2359,7 @@ extension Ie {
         
         /// 媒体信息，对于媒体文件，部分任务支持返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mediaInfo: MediaResultInfo
+        public let mediaInfo: MediaResultInfo?
         
         /// 文件对应的md5。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2396,7 +2396,7 @@ extension Ie {
         /// 文字透明度，可选值0-1。0：不透明，1：全透明。默认为0
         public let fontAlpha: Float?
         
-        public init (text: String, posX: Int64, posY: Int64, fontSize: Int64, fontFile: String?, fontColor: String?, fontAlpha: Float?) {
+        public init (text: String, posX: Int64, posY: Int64, fontSize: Int64, fontFile: String? = nil, fontColor: String? = nil, fontAlpha: Float? = nil) {
             self.text = text
             self.posX = posX
             self.posY = posY
@@ -2432,7 +2432,7 @@ extension Ie {
         /// 【不再支持】指定请求资源时，HTTP头部host的值。
         public let host: String?
         
-        public init (url: String, format: Int64?, host: String?) {
+        public init (url: String, format: Int64? = nil, host: String? = nil) {
             self.url = url
             self.format = format
             self.host = host
@@ -2448,41 +2448,41 @@ extension Ie {
     /// 画质增强参数信息
     public struct VideoEnhance: TCInputModel {
         /// 去编码毛刺、伪影参数。
-        public let artifactReduction: ArtifactReduction
+        public let artifactReduction: ArtifactReduction?
         
         /// 去噪声参数。
-        public let denoising: Denoising
+        public let denoising: Denoising?
         
         /// 颜色增强参数。
-        public let colorEnhance: ColorEnhance
+        public let colorEnhance: ColorEnhance?
         
         /// 细节增强参数。
-        public let sharp: Sharp
+        public let sharp: Sharp?
         
         /// 超分参数，可选项：2，目前仅支持2倍超分。
         /// 注意：此参数已经弃用，超分可以使用VideoSuperResolution参数
         public let wdSuperResolution: Int64?
         
         /// 人脸保护信息。
-        public let faceProtect: FaceProtect
+        public let faceProtect: FaceProtect?
         
         /// 插帧，取值范围：[0, 60]，单位：Hz。
         /// 注意：当取值为 0，表示帧率和原始视频保持一致。
         public let wdFps: Int64?
         
         /// 去划痕参数
-        public let scratchRepair: ScratchRepair
+        public let scratchRepair: ScratchRepair?
         
         /// 低光照增强参数
-        public let lowLightEnhance: LowLightEnhance
+        public let lowLightEnhance: LowLightEnhance?
         
         /// 视频超分参数
-        public let videoSuperResolution: VideoSuperResolution
+        public let videoSuperResolution: VideoSuperResolution?
         
         /// 视频画质修复参数
-        public let videoRepair: VideoRepair
+        public let videoRepair: VideoRepair?
         
-        public init (artifactReduction: ArtifactReduction, denoising: Denoising, colorEnhance: ColorEnhance, sharp: Sharp, wdSuperResolution: Int64?, faceProtect: FaceProtect, wdFps: Int64?, scratchRepair: ScratchRepair, lowLightEnhance: LowLightEnhance, videoSuperResolution: VideoSuperResolution, videoRepair: VideoRepair) {
+        public init (artifactReduction: ArtifactReduction? = nil, denoising: Denoising? = nil, colorEnhance: ColorEnhance? = nil, sharp: Sharp? = nil, wdSuperResolution: Int64? = nil, faceProtect: FaceProtect? = nil, wdFps: Int64? = nil, scratchRepair: ScratchRepair? = nil, lowLightEnhance: LowLightEnhance? = nil, videoSuperResolution: VideoSuperResolution? = nil, videoRepair: VideoRepair? = nil) {
             self.artifactReduction = artifactReduction
             self.denoising = denoising
             self.colorEnhance = colorEnhance
@@ -2568,7 +2568,7 @@ extension Ie {
         public let picMarkInfo: [PicMarkInfoItem]?
         
         /// 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。
-        public let darInfo: DarInfo
+        public let darInfo: DarInfo?
         
         /// 支持hdr,可选项：
         /// hdr10,
@@ -2577,15 +2577,15 @@ extension Ie {
         public let hdr: String?
         
         /// 画质增强参数信息。
-        public let videoEnhance: VideoEnhance
+        public let videoEnhance: VideoEnhance?
         
         /// 数字水印参数信息。
-        public let hiddenMarkInfo: HiddenMarkInfo
+        public let hiddenMarkInfo: HiddenMarkInfo?
         
         /// 文本水印参数信息。
         public let textMarkInfo: [TextMarkInfoItem]?
         
-        public init (fps: Int64?, width: Int64?, height: Int64?, longSide: Int64?, shortSide: Int64?, bitrate: Int64?, gop: Int64?, videoCodec: String?, picMarkInfo: [PicMarkInfoItem]?, darInfo: DarInfo, hdr: String?, videoEnhance: VideoEnhance, hiddenMarkInfo: HiddenMarkInfo, textMarkInfo: [TextMarkInfoItem]?) {
+        public init (fps: Int64? = nil, width: Int64? = nil, height: Int64? = nil, longSide: Int64? = nil, shortSide: Int64? = nil, bitrate: Int64? = nil, gop: Int64? = nil, videoCodec: String? = nil, picMarkInfo: [PicMarkInfoItem]? = nil, darInfo: DarInfo? = nil, hdr: String? = nil, videoEnhance: VideoEnhance? = nil, hiddenMarkInfo: HiddenMarkInfo? = nil, textMarkInfo: [TextMarkInfoItem]? = nil) {
             self.fps = fps
             self.width = width
             self.height = height
@@ -2676,7 +2676,7 @@ extension Ie {
         /// 默认值: weak
         public let type: String?
         
-        public init (type: String?) {
+        public init (type: String? = nil) {
             self.type = type
         }
         
@@ -2697,7 +2697,7 @@ extension Ie {
         /// 注意：当前只支持两倍超分。
         public let size: Int64?
         
-        public init (type: String?, size: Int64?) {
+        public init (type: String? = nil, size: Int64? = nil) {
             self.type = type
             self.size = size
         }

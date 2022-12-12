@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Smh {
-    /// 修改媒体库配置项
-    ///
-    /// 修改 PaaS 服务媒体库配置项
-    @inlinable
-    public func modifyLibrary(_ input: ModifyLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLibraryResponse > {
-        self.client.execute(action: "ModifyLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改媒体库配置项
-    ///
-    /// 修改 PaaS 服务媒体库配置项
-    @inlinable
-    public func modifyLibrary(_ input: ModifyLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLibraryResponse {
-        try await self.client.execute(action: "ModifyLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLibrary请求参数结构体
     public struct ModifyLibraryRequest: TCRequestModel {
         /// 媒体库 ID
@@ -43,9 +27,9 @@ extension Smh {
         public let remark: String?
         
         /// 媒体库配置项，部分参数在新建后不可更改，且仅修改传入的参数。如不传该参数则不修改任何配置项。
-        public let libraryExtension: LibraryExtension
+        public let libraryExtension: LibraryExtension?
         
-        public init (libraryId: String, name: String?, remark: String?, libraryExtension: LibraryExtension) {
+        public init (libraryId: String, name: String? = nil, remark: String? = nil, libraryExtension: LibraryExtension? = nil) {
             self.libraryId = libraryId
             self.name = name
             self.remark = remark
@@ -68,5 +52,21 @@ extension Smh {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改媒体库配置项
+    ///
+    /// 修改 PaaS 服务媒体库配置项
+    @inlinable
+    public func modifyLibrary(_ input: ModifyLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLibraryResponse > {
+        self.client.execute(action: "ModifyLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改媒体库配置项
+    ///
+    /// 修改 PaaS 服务媒体库配置项
+    @inlinable
+    public func modifyLibrary(_ input: ModifyLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLibraryResponse {
+        try await self.client.execute(action: "ModifyLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

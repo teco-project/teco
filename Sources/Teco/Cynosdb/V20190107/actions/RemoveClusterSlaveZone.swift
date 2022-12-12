@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 删除从可用区
-    @inlinable
-    public func removeClusterSlaveZone(_ input: RemoveClusterSlaveZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveClusterSlaveZoneResponse > {
-        self.client.execute(action: "RemoveClusterSlaveZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除从可用区
-    @inlinable
-    public func removeClusterSlaveZone(_ input: RemoveClusterSlaveZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveClusterSlaveZoneResponse {
-        try await self.client.execute(action: "RemoveClusterSlaveZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemoveClusterSlaveZone请求参数结构体
     public struct RemoveClusterSlaveZoneRequest: TCRequestModel {
         /// 集群ID
@@ -58,5 +46,17 @@ extension Cynosdb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除从可用区
+    @inlinable
+    public func removeClusterSlaveZone(_ input: RemoveClusterSlaveZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveClusterSlaveZoneResponse > {
+        self.client.execute(action: "RemoveClusterSlaveZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除从可用区
+    @inlinable
+    public func removeClusterSlaveZone(_ input: RemoveClusterSlaveZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveClusterSlaveZoneResponse {
+        try await self.client.execute(action: "RemoveClusterSlaveZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

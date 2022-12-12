@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiia {
-    /// 查询图片信息
-    ///
-    /// 获取指定图片库中的图片列表。
-    @inlinable
-    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
-        self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询图片信息
-    ///
-    /// 获取指定图片库中的图片列表。
-    @inlinable
-    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
-        try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImages请求参数结构体
     public struct DescribeImagesRequest: TCRequestModel {
         /// 图库名称。
@@ -42,7 +26,7 @@ extension Tiia {
         /// 图片名称。
         public let picName: String?
         
-        public init (groupId: String, entityId: String, picName: String?) {
+        public init (groupId: String, entityId: String, picName: String? = nil) {
             self.groupId = groupId
             self.entityId = entityId
             self.picName = picName
@@ -75,5 +59,21 @@ extension Tiia {
             case imageInfos = "ImageInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询图片信息
+    ///
+    /// 获取指定图片库中的图片列表。
+    @inlinable
+    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
+        self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询图片信息
+    ///
+    /// 获取指定图片库中的图片列表。
+    @inlinable
+    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
+        try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

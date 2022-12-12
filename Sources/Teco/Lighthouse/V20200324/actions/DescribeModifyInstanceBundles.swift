@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询实例可变更套餐列表
-    ///
-    /// 本接口（DescribeModifyInstanceBundles）用于查询实例可变更套餐列表。
-    @inlinable
-    public func describeModifyInstanceBundles(_ input: DescribeModifyInstanceBundlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModifyInstanceBundlesResponse > {
-        self.client.execute(action: "DescribeModifyInstanceBundles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例可变更套餐列表
-    ///
-    /// 本接口（DescribeModifyInstanceBundles）用于查询实例可变更套餐列表。
-    @inlinable
-    public func describeModifyInstanceBundles(_ input: DescribeModifyInstanceBundlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModifyInstanceBundlesResponse {
-        try await self.client.execute(action: "DescribeModifyInstanceBundles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeModifyInstanceBundles请求参数结构体
     public struct DescribeModifyInstanceBundlesRequest: TCRequestModel {
         /// 实例 ID。
@@ -61,7 +45,7 @@ extension Lighthouse {
         /// 返回数量，默认为 20，最大值为 100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
         public let limit: Int64?
         
-        public init (instanceId: String, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (instanceId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.filters = filters
             self.offset = offset
@@ -92,5 +76,21 @@ extension Lighthouse {
             case modifyBundleSet = "ModifyBundleSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例可变更套餐列表
+    ///
+    /// 本接口（DescribeModifyInstanceBundles）用于查询实例可变更套餐列表。
+    @inlinable
+    public func describeModifyInstanceBundles(_ input: DescribeModifyInstanceBundlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModifyInstanceBundlesResponse > {
+        self.client.execute(action: "DescribeModifyInstanceBundles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例可变更套餐列表
+    ///
+    /// 本接口（DescribeModifyInstanceBundles）用于查询实例可变更套餐列表。
+    @inlinable
+    public func describeModifyInstanceBundles(_ input: DescribeModifyInstanceBundlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModifyInstanceBundlesResponse {
+        try await self.client.execute(action: "DescribeModifyInstanceBundles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

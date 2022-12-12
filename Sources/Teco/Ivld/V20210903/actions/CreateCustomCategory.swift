@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Ivld {
-    /// 创建自定义人物分类
-    ///
-    /// 创建自定义人物分类信息
-    /// 当L2Category为空时，将创建一级自定义分类。
-    /// 当L1Category与L2Category均不为空时，将创建二级自定义分类。请注意，**只有当一级自定义分类存在时，才可创建二级自定义分类**。
-    @inlinable
-    public func createCustomCategory(_ input: CreateCustomCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomCategoryResponse > {
-        self.client.execute(action: "CreateCustomCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建自定义人物分类
-    ///
-    /// 创建自定义人物分类信息
-    /// 当L2Category为空时，将创建一级自定义分类。
-    /// 当L1Category与L2Category均不为空时，将创建二级自定义分类。请注意，**只有当一级自定义分类存在时，才可创建二级自定义分类**。
-    @inlinable
-    public func createCustomCategory(_ input: CreateCustomCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomCategoryResponse {
-        try await self.client.execute(action: "CreateCustomCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCustomCategory请求参数结构体
     public struct CreateCustomCategoryRequest: TCRequestModel {
         /// 自定义一级类型
@@ -66,5 +46,25 @@ extension Ivld {
             case categoryId = "CategoryId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建自定义人物分类
+    ///
+    /// 创建自定义人物分类信息
+    /// 当L2Category为空时，将创建一级自定义分类。
+    /// 当L1Category与L2Category均不为空时，将创建二级自定义分类。请注意，**只有当一级自定义分类存在时，才可创建二级自定义分类**。
+    @inlinable
+    public func createCustomCategory(_ input: CreateCustomCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomCategoryResponse > {
+        self.client.execute(action: "CreateCustomCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建自定义人物分类
+    ///
+    /// 创建自定义人物分类信息
+    /// 当L2Category为空时，将创建一级自定义分类。
+    /// 当L1Category与L2Category均不为空时，将创建二级自定义分类。请注意，**只有当一级自定义分类存在时，才可创建二级自定义分类**。
+    @inlinable
+    public func createCustomCategory(_ input: CreateCustomCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomCategoryResponse {
+        try await self.client.execute(action: "CreateCustomCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

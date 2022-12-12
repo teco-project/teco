@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 更新策略组
-    @inlinable
-    public func modifyPolicyGroup(_ input: ModifyPolicyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPolicyGroupResponse > {
-        self.client.execute(action: "ModifyPolicyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新策略组
-    @inlinable
-    public func modifyPolicyGroup(_ input: ModifyPolicyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPolicyGroupResponse {
-        try await self.client.execute(action: "ModifyPolicyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPolicyGroup请求参数结构体
     public struct ModifyPolicyGroupRequest: TCRequestModel {
         /// 固定值，为"monitor"
@@ -53,7 +41,7 @@ extension Monitor {
         /// 模板策略组id
         public let conditionTempGroupId: Int64?
         
-        public init (module: String, groupId: Int64, viewName: String, groupName: String, isUnionRule: Int64, conditions: [ModifyPolicyGroupCondition]?, eventConditions: [ModifyPolicyGroupEventCondition]?, conditionTempGroupId: Int64?) {
+        public init (module: String, groupId: Int64, viewName: String, groupName: String, isUnionRule: Int64, conditions: [ModifyPolicyGroupCondition]? = nil, eventConditions: [ModifyPolicyGroupEventCondition]? = nil, conditionTempGroupId: Int64? = nil) {
             self.module = module
             self.groupId = groupId
             self.viewName = viewName
@@ -88,5 +76,17 @@ extension Monitor {
             case groupId = "GroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新策略组
+    @inlinable
+    public func modifyPolicyGroup(_ input: ModifyPolicyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPolicyGroupResponse > {
+        self.client.execute(action: "ModifyPolicyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新策略组
+    @inlinable
+    public func modifyPolicyGroup(_ input: ModifyPolicyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPolicyGroupResponse {
+        try await self.client.execute(action: "ModifyPolicyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

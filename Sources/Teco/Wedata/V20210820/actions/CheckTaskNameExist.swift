@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 离线任务重名校验
-    @inlinable
-    public func checkTaskNameExist(_ input: CheckTaskNameExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckTaskNameExistResponse > {
-        self.client.execute(action: "CheckTaskNameExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 离线任务重名校验
-    @inlinable
-    public func checkTaskNameExist(_ input: CheckTaskNameExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTaskNameExistResponse {
-        try await self.client.execute(action: "CheckTaskNameExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckTaskNameExist请求参数结构体
     public struct CheckTaskNameExistRequest: TCRequestModel {
         /// 项目id/工作空间id
@@ -63,5 +51,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 离线任务重名校验
+    @inlinable
+    public func checkTaskNameExist(_ input: CheckTaskNameExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckTaskNameExistResponse > {
+        self.client.execute(action: "CheckTaskNameExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 离线任务重名校验
+    @inlinable
+    public func checkTaskNameExist(_ input: CheckTaskNameExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTaskNameExistResponse {
+        try await self.client.execute(action: "CheckTaskNameExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

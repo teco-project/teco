@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 删除防火墙实例
-    @inlinable
-    public func deleteVpcInstance(_ input: DeleteVpcInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcInstanceResponse > {
-        self.client.execute(action: "DeleteVpcInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除防火墙实例
-    @inlinable
-    public func deleteVpcInstance(_ input: DeleteVpcInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcInstanceResponse {
-        try await self.client.execute(action: "DeleteVpcInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteVpcInstance请求参数结构体
     public struct DeleteVpcInstanceRequest: TCRequestModel {
         public init () {
@@ -41,5 +29,17 @@ extension Cfw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除防火墙实例
+    @inlinable
+    public func deleteVpcInstance(_ input: DeleteVpcInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcInstanceResponse > {
+        self.client.execute(action: "DeleteVpcInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除防火墙实例
+    @inlinable
+    public func deleteVpcInstance(_ input: DeleteVpcInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcInstanceResponse {
+        try await self.client.execute(action: "DeleteVpcInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

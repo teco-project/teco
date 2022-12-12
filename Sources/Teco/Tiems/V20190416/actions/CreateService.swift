@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiems {
-    /// 创建服务
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 创建服务
-    @inlinable
-    public func createService(_ input: CreateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceResponse > {
-        self.client.execute(action: "CreateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建服务
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 创建服务
-    @inlinable
-    public func createService(_ input: CreateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceResponse {
-        try await self.client.execute(action: "CreateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateService请求参数结构体
     public struct CreateServiceRequest: TCRequestModel {
         /// 扩缩容配置
@@ -77,7 +59,7 @@ extension Tiems {
         /// Cls日志主题ID
         public let logTopicId: String?
         
-        public init (scaler: Scaler, serviceConfigId: String, name: String, scaleMode: String, resourceGroupId: String, cpu: UInt64, memory: UInt64, cluster: String?, authentication: String?, gpu: UInt64?, gpuMemory: UInt64?, description: String?, gpuType: String?, logTopicId: String?) {
+        public init (scaler: Scaler, serviceConfigId: String, name: String, scaleMode: String, resourceGroupId: String, cpu: UInt64, memory: UInt64, cluster: String? = nil, authentication: String? = nil, gpu: UInt64? = nil, gpuMemory: UInt64? = nil, description: String? = nil, gpuType: String? = nil, logTopicId: String? = nil) {
             self.scaler = scaler
             self.serviceConfigId = serviceConfigId
             self.name = name
@@ -124,5 +106,23 @@ extension Tiems {
             case service = "Service"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建服务
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 创建服务
+    @inlinable
+    public func createService(_ input: CreateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceResponse > {
+        self.client.execute(action: "CreateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建服务
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 创建服务
+    @inlinable
+    public func createService(_ input: CreateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceResponse {
+        try await self.client.execute(action: "CreateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

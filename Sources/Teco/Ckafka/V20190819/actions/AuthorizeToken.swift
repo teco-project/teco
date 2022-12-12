@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 实例授权token
-    ///
-    /// 给实例授权token
-    @inlinable
-    public func authorizeToken(_ input: AuthorizeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AuthorizeTokenResponse > {
-        self.client.execute(action: "AuthorizeToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实例授权token
-    ///
-    /// 给实例授权token
-    @inlinable
-    public func authorizeToken(_ input: AuthorizeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthorizeTokenResponse {
-        try await self.client.execute(action: "AuthorizeToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AuthorizeToken请求参数结构体
     public struct AuthorizeTokenRequest: TCRequestModel {
         /// 实例ID
@@ -68,5 +52,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实例授权token
+    ///
+    /// 给实例授权token
+    @inlinable
+    public func authorizeToken(_ input: AuthorizeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AuthorizeTokenResponse > {
+        self.client.execute(action: "AuthorizeToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实例授权token
+    ///
+    /// 给实例授权token
+    @inlinable
+    public func authorizeToken(_ input: AuthorizeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthorizeTokenResponse {
+        try await self.client.execute(action: "AuthorizeToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

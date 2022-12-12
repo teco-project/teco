@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Api {
-    /// 查询支持地域列表查询的产品
-    ///
-    /// 本接口(DescribeProducts)用于查询各个支持地域列表查询的产品信息。
-    @inlinable
-    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductsResponse > {
-        self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询支持地域列表查询的产品
-    ///
-    /// 本接口(DescribeProducts)用于查询各个支持地域列表查询的产品信息。
-    @inlinable
-    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
-        try await self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProducts请求参数结构体
     public struct DescribeProductsRequest: TCRequestModel {
         /// 返回数量，默认为 20，最大值为 100。
@@ -39,7 +23,7 @@ extension Api {
         /// 偏移量，默认为 0。
         public let offset: Int64?
         
-        public init (limit: Int64?, offset: Int64?) {
+        public init (limit: Int64? = nil, offset: Int64? = nil) {
             self.limit = limit
             self.offset = offset
         }
@@ -66,5 +50,21 @@ extension Api {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询支持地域列表查询的产品
+    ///
+    /// 本接口(DescribeProducts)用于查询各个支持地域列表查询的产品信息。
+    @inlinable
+    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductsResponse > {
+        self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询支持地域列表查询的产品
+    ///
+    /// 本接口(DescribeProducts)用于查询各个支持地域列表查询的产品信息。
+    @inlinable
+    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
+        try await self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

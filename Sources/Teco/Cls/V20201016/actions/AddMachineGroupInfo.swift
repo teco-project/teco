@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 添加机器组信息
-    ///
-    /// 用于添加机器组信息
-    @inlinable
-    public func addMachineGroupInfo(_ input: AddMachineGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddMachineGroupInfoResponse > {
-        self.client.execute(action: "AddMachineGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加机器组信息
-    ///
-    /// 用于添加机器组信息
-    @inlinable
-    public func addMachineGroupInfo(_ input: AddMachineGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddMachineGroupInfoResponse {
-        try await self.client.execute(action: "AddMachineGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddMachineGroupInfo请求参数结构体
     public struct AddMachineGroupInfoRequest: TCRequestModel {
         /// 机器组ID
@@ -59,5 +43,21 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加机器组信息
+    ///
+    /// 用于添加机器组信息
+    @inlinable
+    public func addMachineGroupInfo(_ input: AddMachineGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddMachineGroupInfoResponse > {
+        self.client.execute(action: "AddMachineGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加机器组信息
+    ///
+    /// 用于添加机器组信息
+    @inlinable
+    public func addMachineGroupInfo(_ input: AddMachineGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddMachineGroupInfoResponse {
+        try await self.client.execute(action: "AddMachineGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

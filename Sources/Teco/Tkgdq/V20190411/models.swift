@@ -26,7 +26,7 @@ extension Tkgdq {
         /// 实体关系查询返回的关系名称
         public let relation: String?
         
-        public init (object: [EntityRelationObject]?, subject: [EntityRelationSubject]?, relation: String?) {
+        public init (object: [EntityRelationObject]? = nil, subject: [EntityRelationSubject]? = nil, relation: String? = nil) {
             self.object = object
             self.subject = subject
             self.relation = relation
@@ -50,7 +50,7 @@ extension Tkgdq {
         /// object对应popular值
         public let popular: [Int64]?
         
-        public init (id: [String]?, name: [String]?, popular: [Int64]?) {
+        public init (id: [String]? = nil, name: [String]? = nil, popular: [Int64]? = nil) {
             self.id = id
             self.name = name
             self.popular = popular
@@ -74,7 +74,7 @@ extension Tkgdq {
         /// Subject对应popular
         public let popular: [Int64]?
         
-        public init (id: [String]?, name: [String]?, popular: [Int64]?) {
+        public init (id: [String]? = nil, name: [String]? = nil, popular: [Int64]? = nil) {
             self.id = id
             self.name = name
             self.popular = popular
@@ -101,7 +101,7 @@ extension Tkgdq {
         /// 实体流行度
         public let popular: Int64?
         
-        public init (id: String?, name: String?, order: Int64?, popular: Int64?) {
+        public init (id: String? = nil, name: String? = nil, order: Int64? = nil, popular: Int64? = nil) {
             self.id = id
             self.name = name
             self.order = order

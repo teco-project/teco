@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询云数据库账户的权限信息
-    ///
-    /// 本接口(DescribeAccountPrivileges)用于查询云数据库账户支持的权限信息。
-    @inlinable
-    public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountPrivilegesResponse > {
-        self.client.execute(action: "DescribeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云数据库账户的权限信息
-    ///
-    /// 本接口(DescribeAccountPrivileges)用于查询云数据库账户支持的权限信息。
-    @inlinable
-    public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountPrivilegesResponse {
-        try await self.client.execute(action: "DescribeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccountPrivileges请求参数结构体
     public struct DescribeAccountPrivilegesRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -79,5 +63,21 @@ extension Cdb {
             case columnPrivileges = "ColumnPrivileges"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云数据库账户的权限信息
+    ///
+    /// 本接口(DescribeAccountPrivileges)用于查询云数据库账户支持的权限信息。
+    @inlinable
+    public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountPrivilegesResponse > {
+        self.client.execute(action: "DescribeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云数据库账户的权限信息
+    ///
+    /// 本接口(DescribeAccountPrivileges)用于查询云数据库账户支持的权限信息。
+    @inlinable
+    public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountPrivilegesResponse {
+        try await self.client.execute(action: "DescribeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

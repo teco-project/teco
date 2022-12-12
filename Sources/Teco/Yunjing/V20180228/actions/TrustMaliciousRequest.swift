@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 恶意请求添加信任
-    ///
-    /// 本接口 (TrustMaliciousRequest) 用于恶意请求添加信任。
-    @inlinable
-    public func trustMaliciousRequest(_ input: TrustMaliciousRequestRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TrustMaliciousRequestResponse > {
-        self.client.execute(action: "TrustMaliciousRequest", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 恶意请求添加信任
-    ///
-    /// 本接口 (TrustMaliciousRequest) 用于恶意请求添加信任。
-    @inlinable
-    public func trustMaliciousRequest(_ input: TrustMaliciousRequestRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TrustMaliciousRequestResponse {
-        try await self.client.execute(action: "TrustMaliciousRequest", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TrustMaliciousRequest请求参数结构体
     public struct TrustMaliciousRequestRequest: TCRequestModel {
         /// 恶意请求记录ID。
@@ -53,5 +37,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 恶意请求添加信任
+    ///
+    /// 本接口 (TrustMaliciousRequest) 用于恶意请求添加信任。
+    @inlinable
+    public func trustMaliciousRequest(_ input: TrustMaliciousRequestRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TrustMaliciousRequestResponse > {
+        self.client.execute(action: "TrustMaliciousRequest", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 恶意请求添加信任
+    ///
+    /// 本接口 (TrustMaliciousRequest) 用于恶意请求添加信任。
+    @inlinable
+    public func trustMaliciousRequest(_ input: TrustMaliciousRequestRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TrustMaliciousRequestResponse {
+        try await self.client.execute(action: "TrustMaliciousRequest", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

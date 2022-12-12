@@ -15,6 +15,22 @@
 // DO NOT EDIT.
 
 extension Vpc {
+    /// LockCcnBandwidths请求参数结构体
+    public struct LockCcnBandwidthsRequest: TCRequestModel {
+        public init () {
+        }
+    }
+    
+    /// LockCcnBandwidths返回参数结构体
+    public struct LockCcnBandwidthsResponse: TCResponseModel {
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 安全锁定云联网带宽
     ///
     /// 本接口（LockCcnBandwidths）用户锁定云联网限速实例。
@@ -33,21 +49,5 @@ extension Vpc {
     @inlinable
     public func lockCcnBandwidths(_ input: LockCcnBandwidthsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LockCcnBandwidthsResponse {
         try await self.client.execute(action: "LockCcnBandwidths", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// LockCcnBandwidths请求参数结构体
-    public struct LockCcnBandwidthsRequest: TCRequestModel {
-        public init () {
-        }
-    }
-    
-    /// LockCcnBandwidths返回参数结构体
-    public struct LockCcnBandwidthsResponse: TCResponseModel {
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case requestId = "RequestId"
-        }
     }
 }

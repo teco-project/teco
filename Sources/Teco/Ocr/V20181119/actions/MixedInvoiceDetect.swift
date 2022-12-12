@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 混贴票据分类
-    ///
-    /// 本接口支持多张、多类型票据的混合检测和自动分类，返回对应票据类型。目前已支持增值税发票、增值税发票（卷票）、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票、酒店账单、客运限额发票、购物小票、完税证明共15种票据。
-    @inlinable
-    public func mixedInvoiceDetect(_ input: MixedInvoiceDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MixedInvoiceDetectResponse > {
-        self.client.execute(action: "MixedInvoiceDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 混贴票据分类
-    ///
-    /// 本接口支持多张、多类型票据的混合检测和自动分类，返回对应票据类型。目前已支持增值税发票、增值税发票（卷票）、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票、酒店账单、客运限额发票、购物小票、完税证明共15种票据。
-    @inlinable
-    public func mixedInvoiceDetect(_ input: MixedInvoiceDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MixedInvoiceDetectResponse {
-        try await self.client.execute(action: "MixedInvoiceDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// MixedInvoiceDetect请求参数结构体
     public struct MixedInvoiceDetectRequest: TCRequestModel {
         /// 是否需要返回裁剪后的图片。
@@ -55,7 +39,7 @@ extension Ocr {
         /// 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         public let pdfPageNumber: Int64?
         
-        public init (returnImage: Bool, imageBase64: String?, imageUrl: String?, isPdf: Bool?, pdfPageNumber: Int64?) {
+        public init (returnImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil) {
             self.returnImage = returnImage
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
@@ -84,5 +68,21 @@ extension Ocr {
             case invoiceDetectInfos = "InvoiceDetectInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 混贴票据分类
+    ///
+    /// 本接口支持多张、多类型票据的混合检测和自动分类，返回对应票据类型。目前已支持增值税发票、增值税发票（卷票）、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票、酒店账单、客运限额发票、购物小票、完税证明共15种票据。
+    @inlinable
+    public func mixedInvoiceDetect(_ input: MixedInvoiceDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MixedInvoiceDetectResponse > {
+        self.client.execute(action: "MixedInvoiceDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 混贴票据分类
+    ///
+    /// 本接口支持多张、多类型票据的混合检测和自动分类，返回对应票据类型。目前已支持增值税发票、增值税发票（卷票）、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票、酒店账单、客运限额发票、购物小票、完税证明共15种票据。
+    @inlinable
+    public func mixedInvoiceDetect(_ input: MixedInvoiceDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MixedInvoiceDetectResponse {
+        try await self.client.execute(action: "MixedInvoiceDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

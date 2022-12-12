@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 查询消息
-    ///
-    /// 根据指定offset位置的消息
-    @inlinable
-    public func fetchMessageByOffset(_ input: FetchMessageByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FetchMessageByOffsetResponse > {
-        self.client.execute(action: "FetchMessageByOffset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询消息
-    ///
-    /// 根据指定offset位置的消息
-    @inlinable
-    public func fetchMessageByOffset(_ input: FetchMessageByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchMessageByOffsetResponse {
-        try await self.client.execute(action: "FetchMessageByOffset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// FetchMessageByOffset请求参数结构体
     public struct FetchMessageByOffsetRequest: TCRequestModel {
         /// 实例Id
@@ -45,7 +29,7 @@ extension Ckafka {
         /// 位点信息，必填
         public let offset: Int64?
         
-        public init (instanceId: String, topic: String, partition: Int64, offset: Int64?) {
+        public init (instanceId: String, topic: String, partition: Int64, offset: Int64? = nil) {
             self.instanceId = instanceId
             self.topic = topic
             self.partition = partition
@@ -72,5 +56,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询消息
+    ///
+    /// 根据指定offset位置的消息
+    @inlinable
+    public func fetchMessageByOffset(_ input: FetchMessageByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FetchMessageByOffsetResponse > {
+        self.client.execute(action: "FetchMessageByOffset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询消息
+    ///
+    /// 根据指定offset位置的消息
+    @inlinable
+    public func fetchMessageByOffset(_ input: FetchMessageByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchMessageByOffsetResponse {
+        try await self.client.execute(action: "FetchMessageByOffset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

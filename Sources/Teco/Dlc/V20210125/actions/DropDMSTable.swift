@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// DMS元数据删除表
-    @inlinable
-    public func dropDMSTable(_ input: DropDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DropDMSTableResponse > {
-        self.client.execute(action: "DropDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DMS元数据删除表
-    @inlinable
-    public func dropDMSTable(_ input: DropDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSTableResponse {
-        try await self.client.execute(action: "DropDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DropDMSTable请求参数结构体
     public struct DropDMSTableRequest: TCRequestModel {
         /// 数据库名称
@@ -39,9 +27,9 @@ extension Dlc {
         public let deleteData: Bool?
         
         /// 环境属性
-        public let envProps: KVPair
+        public let envProps: KVPair?
         
-        public init (dbName: String?, name: String?, deleteData: Bool?, envProps: KVPair) {
+        public init (dbName: String? = nil, name: String? = nil, deleteData: Bool? = nil, envProps: KVPair? = nil) {
             self.dbName = dbName
             self.name = name
             self.deleteData = deleteData
@@ -64,5 +52,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// DMS元数据删除表
+    @inlinable
+    public func dropDMSTable(_ input: DropDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DropDMSTableResponse > {
+        self.client.execute(action: "DropDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据删除表
+    @inlinable
+    public func dropDMSTable(_ input: DropDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSTableResponse {
+        try await self.client.execute(action: "DropDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

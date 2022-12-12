@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Nlp {
-    /// 词相似度
-    ///
-    /// 词相似度接口能够基于词向量技术来计算两个输入词语的余弦相似度，相似度数值越大的两个词语在语义上越相似。
-    @inlinable
-    public func wordSimilarity(_ input: WordSimilarityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < WordSimilarityResponse > {
-        self.client.execute(action: "WordSimilarity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 词相似度
-    ///
-    /// 词相似度接口能够基于词向量技术来计算两个输入词语的余弦相似度，相似度数值越大的两个词语在语义上越相似。
-    @inlinable
-    public func wordSimilarity(_ input: WordSimilarityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WordSimilarityResponse {
-        try await self.client.execute(action: "WordSimilarity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// WordSimilarity请求参数结构体
     public struct WordSimilarityRequest: TCRequestModel {
         /// 计算相似度的源词（仅支持UTF-8格式，不超过20字）
@@ -62,5 +46,21 @@ extension Nlp {
             case similarity = "Similarity"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 词相似度
+    ///
+    /// 词相似度接口能够基于词向量技术来计算两个输入词语的余弦相似度，相似度数值越大的两个词语在语义上越相似。
+    @inlinable
+    public func wordSimilarity(_ input: WordSimilarityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < WordSimilarityResponse > {
+        self.client.execute(action: "WordSimilarity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 词相似度
+    ///
+    /// 词相似度接口能够基于词向量技术来计算两个输入词语的余弦相似度，相似度数值越大的两个词语在语义上越相似。
+    @inlinable
+    public func wordSimilarity(_ input: WordSimilarityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WordSimilarityResponse {
+        try await self.client.execute(action: "WordSimilarity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 删除黑石负载均衡七层转发域名
-    ///
-    /// 删除黑石负载均衡七层转发域名。
-    @inlinable
-    public func deleteL7Domains(_ input: DeleteL7DomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteL7DomainsResponse > {
-        self.client.execute(action: "DeleteL7Domains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除黑石负载均衡七层转发域名
-    ///
-    /// 删除黑石负载均衡七层转发域名。
-    @inlinable
-    public func deleteL7Domains(_ input: DeleteL7DomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteL7DomainsResponse {
-        try await self.client.execute(action: "DeleteL7Domains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteL7Domains请求参数结构体
     public struct DeleteL7DomainsRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -67,5 +51,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除黑石负载均衡七层转发域名
+    ///
+    /// 删除黑石负载均衡七层转发域名。
+    @inlinable
+    public func deleteL7Domains(_ input: DeleteL7DomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteL7DomainsResponse > {
+        self.client.execute(action: "DeleteL7Domains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除黑石负载均衡七层转发域名
+    ///
+    /// 删除黑石负载均衡七层转发域名。
+    @inlinable
+    public func deleteL7Domains(_ input: DeleteL7DomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteL7DomainsResponse {
+        try await self.client.execute(action: "DeleteL7Domains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

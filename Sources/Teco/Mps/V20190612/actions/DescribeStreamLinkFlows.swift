@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 批量查询媒体输入流
-    ///
-    /// 批量查询媒体输入流的配置信息。
-    @inlinable
-    public func describeStreamLinkFlows(_ input: DescribeStreamLinkFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkFlowsResponse > {
-        self.client.execute(action: "DescribeStreamLinkFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量查询媒体输入流
-    ///
-    /// 批量查询媒体输入流的配置信息。
-    @inlinable
-    public func describeStreamLinkFlows(_ input: DescribeStreamLinkFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowsResponse {
-        try await self.client.execute(action: "DescribeStreamLinkFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStreamLinkFlows请求参数结构体
     public struct DescribeStreamLinkFlowsRequest: TCRequestModel {
         /// 当前页数，默认1。
@@ -39,7 +23,7 @@ extension Mps {
         /// 每页大小，默认10。
         public let pageSize: Int64?
         
-        public init (pageNum: Int64?, pageSize: Int64?) {
+        public init (pageNum: Int64? = nil, pageSize: Int64? = nil) {
             self.pageNum = pageNum
             self.pageSize = pageSize
         }
@@ -78,5 +62,21 @@ extension Mps {
             case totalPage = "TotalPage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量查询媒体输入流
+    ///
+    /// 批量查询媒体输入流的配置信息。
+    @inlinable
+    public func describeStreamLinkFlows(_ input: DescribeStreamLinkFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkFlowsResponse > {
+        self.client.execute(action: "DescribeStreamLinkFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量查询媒体输入流
+    ///
+    /// 批量查询媒体输入流的配置信息。
+    @inlinable
+    public func describeStreamLinkFlows(_ input: DescribeStreamLinkFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowsResponse {
+        try await self.client.execute(action: "DescribeStreamLinkFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

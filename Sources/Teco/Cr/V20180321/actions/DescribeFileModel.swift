@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cr {
-    /// 查询机器人文件模板
-    @inlinable
-    public func describeFileModel(_ input: DescribeFileModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileModelResponse > {
-        self.client.execute(action: "DescribeFileModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询机器人文件模板
-    @inlinable
-    public func describeFileModel(_ input: DescribeFileModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileModelResponse {
-        try await self.client.execute(action: "DescribeFileModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFileModel请求参数结构体
     public struct DescribeFileModelRequest: TCRequestModel {
         /// 模块名。默认值（固定）：AiApi
@@ -44,7 +32,7 @@ extension Cr {
         /// 任务名称，二者必填一个
         public let botName: String?
         
-        public init (module: String, operation: String, fileType: String, botId: String?, botName: String?) {
+        public init (module: String, operation: String, fileType: String, botId: String? = nil, botName: String? = nil) {
             self.module = module
             self.operation = operation
             self.fileType = fileType
@@ -73,5 +61,17 @@ extension Cr {
             case cosUrl = "CosUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询机器人文件模板
+    @inlinable
+    public func describeFileModel(_ input: DescribeFileModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileModelResponse > {
+        self.client.execute(action: "DescribeFileModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询机器人文件模板
+    @inlinable
+    public func describeFileModel(_ input: DescribeFileModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileModelResponse {
+        try await self.client.execute(action: "DescribeFileModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

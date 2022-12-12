@@ -612,11 +612,11 @@ extension Tdmq {
         
         /// 死信队列策略。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let deadLetterPolicy: CmqDeadLetterPolicy
+        public let deadLetterPolicy: CmqDeadLetterPolicy?
         
         /// 事务消息策略。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let transactionPolicy: CmqTransactionPolicy
+        public let transactionPolicy: CmqTransactionPolicy?
         
         /// 创建者Uin。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -959,7 +959,7 @@ extension Tdmq {
         
         /// 消息保留策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let retentionPolicy: RetentionPolicy
+        public let retentionPolicy: RetentionPolicy?
         
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
@@ -1014,7 +1014,7 @@ extension Tdmq {
         /// 数值
         public let values: [String]?
         
-        public init (name: String?, values: [String]?) {
+        public init (name: String? = nil, values: [String]? = nil) {
             self.name = name
             self.values = values
         }
@@ -1039,7 +1039,7 @@ extension Tdmq {
         /// 按照订阅名过滤，精确查询。
         public let subscriptionNames: [String]?
         
-        public init (consumerHasCount: Bool?, consumerHasBacklog: Bool?, consumerHasExpired: Bool?, subscriptionNames: [String]?) {
+        public init (consumerHasCount: Bool? = nil, consumerHasBacklog: Bool? = nil, consumerHasExpired: Bool? = nil, subscriptionNames: [String]? = nil) {
             self.consumerHasCount = consumerHasCount
             self.consumerHasBacklog = consumerHasBacklog
             self.consumerHasExpired = consumerHasExpired

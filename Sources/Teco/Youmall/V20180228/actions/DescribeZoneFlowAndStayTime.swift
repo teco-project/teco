@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 获取区域人流和停留时间
-    @inlinable
-    public func describeZoneFlowAndStayTime(_ input: DescribeZoneFlowAndStayTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowAndStayTimeResponse > {
-        self.client.execute(action: "DescribeZoneFlowAndStayTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取区域人流和停留时间
-    @inlinable
-    public func describeZoneFlowAndStayTime(_ input: DescribeZoneFlowAndStayTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowAndStayTimeResponse {
-        try await self.client.execute(action: "DescribeZoneFlowAndStayTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeZoneFlowAndStayTime请求参数结构体
     public struct DescribeZoneFlowAndStayTimeRequest: TCRequestModel {
         /// 集团ID
@@ -76,5 +64,17 @@ extension Youmall {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取区域人流和停留时间
+    @inlinable
+    public func describeZoneFlowAndStayTime(_ input: DescribeZoneFlowAndStayTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowAndStayTimeResponse > {
+        self.client.execute(action: "DescribeZoneFlowAndStayTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取区域人流和停留时间
+    @inlinable
+    public func describeZoneFlowAndStayTime(_ input: DescribeZoneFlowAndStayTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowAndStayTimeResponse {
+        try await self.client.execute(action: "DescribeZoneFlowAndStayTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

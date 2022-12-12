@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 生成Cos临时秘钥
-    @inlinable
-    public func createCosToken(_ input: CreateCosTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCosTokenResponse > {
-        self.client.execute(action: "CreateCosToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 生成Cos临时秘钥
-    @inlinable
-    public func createCosToken(_ input: CreateCosTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosTokenResponse {
-        try await self.client.execute(action: "CreateCosToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCosToken请求参数结构体
     public struct CreateCosTokenRequest: TCRequestModel {
         /// 服务ID
@@ -44,7 +32,7 @@ extension Tem {
         /// 来源 channel
         public let sourceChannel: Int64?
         
-        public init (serviceId: String, versionId: String, pkgName: String, optType: Int64, sourceChannel: Int64?) {
+        public init (serviceId: String, versionId: String, pkgName: String, optType: Int64, sourceChannel: Int64? = nil) {
             self.serviceId = serviceId
             self.versionId = versionId
             self.pkgName = pkgName
@@ -65,7 +53,7 @@ extension Tem {
     public struct CreateCosTokenResponse: TCResponseModel {
         /// 成功时为CosToken对象，失败为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: CosToken
+        public let result: CosToken?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -74,5 +62,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 生成Cos临时秘钥
+    @inlinable
+    public func createCosToken(_ input: CreateCosTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCosTokenResponse > {
+        self.client.execute(action: "CreateCosToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 生成Cos临时秘钥
+    @inlinable
+    public func createCosToken(_ input: CreateCosTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosTokenResponse {
+        try await self.client.execute(action: "CreateCosToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

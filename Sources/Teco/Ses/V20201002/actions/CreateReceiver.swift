@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ses {
-    /// 创建收件人列表
-    ///
-    /// 创建收件人列表，收件人列表是发送批量邮件的目标邮件地址列表。创建列表后，需要上传收件人邮箱地址。之后创建发送任务，关联列表，便可以实现批量发送邮件的功能
-    @inlinable
-    public func createReceiver(_ input: CreateReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReceiverResponse > {
-        self.client.execute(action: "CreateReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建收件人列表
-    ///
-    /// 创建收件人列表，收件人列表是发送批量邮件的目标邮件地址列表。创建列表后，需要上传收件人邮箱地址。之后创建发送任务，关联列表，便可以实现批量发送邮件的功能
-    @inlinable
-    public func createReceiver(_ input: CreateReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReceiverResponse {
-        try await self.client.execute(action: "CreateReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateReceiver请求参数结构体
     public struct CreateReceiverRequest: TCRequestModel {
         /// 收件人列表名称
@@ -39,7 +23,7 @@ extension Ses {
         /// 收件人列表描述
         public let desc: String?
         
-        public init (receiversName: String, desc: String?) {
+        public init (receiversName: String, desc: String? = nil) {
             self.receiversName = receiversName
             self.desc = desc
         }
@@ -62,5 +46,21 @@ extension Ses {
             case receiverId = "ReceiverId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建收件人列表
+    ///
+    /// 创建收件人列表，收件人列表是发送批量邮件的目标邮件地址列表。创建列表后，需要上传收件人邮箱地址。之后创建发送任务，关联列表，便可以实现批量发送邮件的功能
+    @inlinable
+    public func createReceiver(_ input: CreateReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReceiverResponse > {
+        self.client.execute(action: "CreateReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建收件人列表
+    ///
+    /// 创建收件人列表，收件人列表是发送批量邮件的目标邮件地址列表。创建列表后，需要上传收件人邮箱地址。之后创建发送任务，关联列表，便可以实现批量发送邮件的功能
+    @inlinable
+    public func createReceiver(_ input: CreateReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReceiverResponse {
+        try await self.client.execute(action: "CreateReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

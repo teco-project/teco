@@ -17,24 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cbs {
-    /// 查询快照操作日志列表
-    ///
-    /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
-    /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
-    @inlinable
-    public func describeSnapshotOperationLogs(_ input: DescribeSnapshotOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotOperationLogsResponse > {
-        self.client.execute(action: "DescribeSnapshotOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询快照操作日志列表
-    ///
-    /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
-    /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
-    @inlinable
-    public func describeSnapshotOperationLogs(_ input: DescribeSnapshotOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotOperationLogsResponse {
-        try await self.client.execute(action: "DescribeSnapshotOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSnapshotOperationLogs请求参数结构体
     public struct DescribeSnapshotOperationLogsRequest: TCRequestModel {
         /// 过滤条件。支持以下条件：
@@ -47,7 +29,7 @@ extension Cbs {
         /// 要查询的操作日志的截止时间，例如：“2019-11-22 23:59:59"
         public let endTime: Date?
         
-        public init (filters: [Filter], beginTime: Date?, endTime: Date?) {
+        public init (filters: [Filter], beginTime: Date? = nil, endTime: Date? = nil) {
             self.filters = filters
             self.beginTime = beginTime
             self.endTime = endTime
@@ -72,5 +54,23 @@ extension Cbs {
             case snapshotOperationLogSet = "SnapshotOperationLogSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询快照操作日志列表
+    ///
+    /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
+    /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
+    @inlinable
+    public func describeSnapshotOperationLogs(_ input: DescribeSnapshotOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotOperationLogsResponse > {
+        self.client.execute(action: "DescribeSnapshotOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询快照操作日志列表
+    ///
+    /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
+    /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
+    @inlinable
+    public func describeSnapshotOperationLogs(_ input: DescribeSnapshotOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotOperationLogsResponse {
+        try await self.client.execute(action: "DescribeSnapshotOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

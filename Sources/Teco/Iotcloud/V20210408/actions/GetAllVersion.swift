@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取所有版本列表
-    ///
-    /// 本接口（GetAllVersion）用于获取所有的版本列表 
-    @inlinable
-    public func getAllVersion(_ input: GetAllVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAllVersionResponse > {
-        self.client.execute(action: "GetAllVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取所有版本列表
-    ///
-    /// 本接口（GetAllVersion）用于获取所有的版本列表 
-    @inlinable
-    public func getAllVersion(_ input: GetAllVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAllVersionResponse {
-        try await self.client.execute(action: "GetAllVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetAllVersion请求参数结构体
     public struct GetAllVersionRequest: TCRequestModel {
         /// 产品ID
@@ -57,5 +41,21 @@ extension Iotcloud {
             case version = "Version"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取所有版本列表
+    ///
+    /// 本接口（GetAllVersion）用于获取所有的版本列表 
+    @inlinable
+    public func getAllVersion(_ input: GetAllVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAllVersionResponse > {
+        self.client.execute(action: "GetAllVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取所有版本列表
+    ///
+    /// 本接口（GetAllVersion）用于获取所有的版本列表 
+    @inlinable
+    public func getAllVersion(_ input: GetAllVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAllVersionResponse {
+        try await self.client.execute(action: "GetAllVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

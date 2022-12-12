@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 修改DDoS清洗阈值
-    @inlinable
-    public func modifyDDoSThreshold(_ input: ModifyDDoSThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSThresholdResponse > {
-        self.client.execute(action: "ModifyDDoSThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改DDoS清洗阈值
-    @inlinable
-    public func modifyDDoSThreshold(_ input: ModifyDDoSThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSThresholdResponse {
-        try await self.client.execute(action: "ModifyDDoSThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDDoSThreshold请求参数结构体
     public struct ModifyDDoSThresholdRequest: TCRequestModel {
         /// DDoS清洗阈值，取值[0, 60, 80, 100, 150, 200, 250, 300, 400, 500, 700, 1000];
@@ -72,7 +60,7 @@ extension Antiddos {
         /// RST FLOOD包量阈值
         public let rstFloodPktThreshold: UInt64?
         
-        public init (threshold: UInt64, id: String, business: String, otherThresholdFlag: Int64?, synFloodThreshold: UInt64?, synFloodPktThreshold: UInt64?, udpFloodThreshold: UInt64?, udpFloodPktThreshold: UInt64?, ackFloodThreshold: UInt64?, ackFloodPktThreshold: UInt64?, synAckFloodThreshold: UInt64?, synAckFloodPktThreshold: UInt64?, rstFloodThreshold: UInt64?, rstFloodPktThreshold: UInt64?) {
+        public init (threshold: UInt64, id: String, business: String, otherThresholdFlag: Int64? = nil, synFloodThreshold: UInt64? = nil, synFloodPktThreshold: UInt64? = nil, udpFloodThreshold: UInt64? = nil, udpFloodPktThreshold: UInt64? = nil, ackFloodThreshold: UInt64? = nil, ackFloodPktThreshold: UInt64? = nil, synAckFloodThreshold: UInt64? = nil, synAckFloodPktThreshold: UInt64? = nil, rstFloodThreshold: UInt64? = nil, rstFloodPktThreshold: UInt64? = nil) {
             self.threshold = threshold
             self.id = id
             self.business = business
@@ -119,5 +107,17 @@ extension Antiddos {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改DDoS清洗阈值
+    @inlinable
+    public func modifyDDoSThreshold(_ input: ModifyDDoSThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSThresholdResponse > {
+        self.client.execute(action: "ModifyDDoSThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改DDoS清洗阈值
+    @inlinable
+    public func modifyDDoSThreshold(_ input: ModifyDDoSThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSThresholdResponse {
+        try await self.client.execute(action: "ModifyDDoSThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

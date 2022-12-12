@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tmt {
-    /// 批量文本翻译
-    ///
-    /// 文本翻译的批量接口
-    @inlinable
-    public func textTranslateBatch(_ input: TextTranslateBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextTranslateBatchResponse > {
-        self.client.execute(action: "TextTranslateBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量文本翻译
-    ///
-    /// 文本翻译的批量接口
-    @inlinable
-    public func textTranslateBatch(_ input: TextTranslateBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextTranslateBatchResponse {
-        try await self.client.execute(action: "TextTranslateBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TextTranslateBatch请求参数结构体
     public struct TextTranslateBatchRequest: TCRequestModel {
         /// 源语言，支持： 
@@ -117,5 +101,21 @@ extension Tmt {
             case targetTextList = "TargetTextList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量文本翻译
+    ///
+    /// 文本翻译的批量接口
+    @inlinable
+    public func textTranslateBatch(_ input: TextTranslateBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextTranslateBatchResponse > {
+        self.client.execute(action: "TextTranslateBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量文本翻译
+    ///
+    /// 文本翻译的批量接口
+    @inlinable
+    public func textTranslateBatch(_ input: TextTranslateBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextTranslateBatchResponse {
+        try await self.client.execute(action: "TextTranslateBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

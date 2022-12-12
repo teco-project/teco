@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 创建高性能计算集群
-    @inlinable
-    public func createHpcCluster(_ input: CreateHpcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHpcClusterResponse > {
-        self.client.execute(action: "CreateHpcCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建高性能计算集群
-    @inlinable
-    public func createHpcCluster(_ input: CreateHpcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHpcClusterResponse {
-        try await self.client.execute(action: "CreateHpcCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateHpcCluster请求参数结构体
     public struct CreateHpcClusterRequest: TCRequestModel {
         /// 可用区。
@@ -38,7 +26,7 @@ extension Cvm {
         /// 高性能计算集群备注。
         public let remark: String?
         
-        public init (zone: String, name: String, remark: String?) {
+        public init (zone: String, name: String, remark: String? = nil) {
             self.zone = zone
             self.name = name
             self.remark = remark
@@ -64,5 +52,17 @@ extension Cvm {
             case hpcClusterSet = "HpcClusterSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建高性能计算集群
+    @inlinable
+    public func createHpcCluster(_ input: CreateHpcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHpcClusterResponse > {
+        self.client.execute(action: "CreateHpcCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建高性能计算集群
+    @inlinable
+    public func createHpcCluster(_ input: CreateHpcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHpcClusterResponse {
+        try await self.client.execute(action: "CreateHpcCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

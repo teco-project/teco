@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询迁移数据库列表
-    ///
-    /// 本接口（DescribeMigrationDatabases）的作用是查询待迁移数据库列表
-    @inlinable
-    public func describeMigrationDatabases(_ input: DescribeMigrationDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationDatabasesResponse > {
-        self.client.execute(action: "DescribeMigrationDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询迁移数据库列表
-    ///
-    /// 本接口（DescribeMigrationDatabases）的作用是查询待迁移数据库列表
-    @inlinable
-    public func describeMigrationDatabases(_ input: DescribeMigrationDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationDatabasesResponse {
-        try await self.client.execute(action: "DescribeMigrationDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMigrationDatabases请求参数结构体
     public struct DescribeMigrationDatabasesRequest: TCRequestModel {
         /// 迁移源实例的ID，格式如：mssql-si2823jyl
@@ -72,5 +56,21 @@ extension Sqlserver {
             case migrateDBSet = "MigrateDBSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询迁移数据库列表
+    ///
+    /// 本接口（DescribeMigrationDatabases）的作用是查询待迁移数据库列表
+    @inlinable
+    public func describeMigrationDatabases(_ input: DescribeMigrationDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationDatabasesResponse > {
+        self.client.execute(action: "DescribeMigrationDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询迁移数据库列表
+    ///
+    /// 本接口（DescribeMigrationDatabases）的作用是查询待迁移数据库列表
+    @inlinable
+    public func describeMigrationDatabases(_ input: DescribeMigrationDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationDatabasesResponse {
+        try await self.client.execute(action: "DescribeMigrationDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

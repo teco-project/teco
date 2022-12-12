@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 修改模板实例
-    ///
-    /// 修改模板内容
-    @inlinable
-    public func modifyPrometheusTemp(_ input: ModifyPrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusTempResponse > {
-        self.client.execute(action: "ModifyPrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改模板实例
-    ///
-    /// 修改模板内容
-    @inlinable
-    public func modifyPrometheusTemp(_ input: ModifyPrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusTempResponse {
-        try await self.client.execute(action: "ModifyPrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPrometheusTemp请求参数结构体
     public struct ModifyPrometheusTempRequest: TCRequestModel {
         /// 模板ID
@@ -58,5 +42,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改模板实例
+    ///
+    /// 修改模板内容
+    @inlinable
+    public func modifyPrometheusTemp(_ input: ModifyPrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusTempResponse > {
+        self.client.execute(action: "ModifyPrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改模板实例
+    ///
+    /// 修改模板内容
+    @inlinable
+    public func modifyPrometheusTemp(_ input: ModifyPrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusTempResponse {
+        try await self.client.execute(action: "ModifyPrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

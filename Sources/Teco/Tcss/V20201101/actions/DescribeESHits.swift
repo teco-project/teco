@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 获取ES查询文档列表
-    @inlinable
-    public func describeESHits(_ input: DescribeESHitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeESHitsResponse > {
-        self.client.execute(action: "DescribeESHits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取ES查询文档列表
-    @inlinable
-    public func describeESHits(_ input: DescribeESHitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeESHitsResponse {
-        try await self.client.execute(action: "DescribeESHits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeESHits请求参数结构体
     public struct DescribeESHitsRequest: TCRequestModel {
         /// ES查询条件JSON
@@ -38,7 +26,7 @@ extension Tcss {
         /// 返回数量，最大值为100。
         public let limit: UInt64?
         
-        public init (query: String, offset: UInt64?, limit: UInt64?) {
+        public init (query: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.query = query
             self.offset = offset
             self.limit = limit
@@ -63,5 +51,17 @@ extension Tcss {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取ES查询文档列表
+    @inlinable
+    public func describeESHits(_ input: DescribeESHitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeESHitsResponse > {
+        self.client.execute(action: "DescribeESHits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取ES查询文档列表
+    @inlinable
+    public func describeESHits(_ input: DescribeESHitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeESHitsResponse {
+        try await self.client.execute(action: "DescribeESHits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

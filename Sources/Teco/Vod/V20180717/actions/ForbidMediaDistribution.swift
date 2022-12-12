@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 禁播媒体
-    ///
-    /// * 对媒体禁播后，除了点播控制台预览，其他场景访问视频各种资源的 URL（原始文件、转码输出文件、截图等）均会返回 403。
-    ///   禁播/解禁操作全网生效时间约 5~10 分钟。
-    @inlinable
-    public func forbidMediaDistribution(_ input: ForbidMediaDistributionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ForbidMediaDistributionResponse > {
-        self.client.execute(action: "ForbidMediaDistribution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 禁播媒体
-    ///
-    /// * 对媒体禁播后，除了点播控制台预览，其他场景访问视频各种资源的 URL（原始文件、转码输出文件、截图等）均会返回 403。
-    ///   禁播/解禁操作全网生效时间约 5~10 分钟。
-    @inlinable
-    public func forbidMediaDistribution(_ input: ForbidMediaDistributionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidMediaDistributionResponse {
-        try await self.client.execute(action: "ForbidMediaDistribution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ForbidMediaDistribution请求参数结构体
     public struct ForbidMediaDistributionRequest: TCRequestModel {
         /// 媒体文件列表，每次最多可提交 20 条。
@@ -44,7 +26,7 @@ extension Vod {
         /// <b>点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
         
-        public init (fileIds: [String], operation: String, subAppId: UInt64?) {
+        public init (fileIds: [String], operation: String, subAppId: UInt64? = nil) {
             self.fileIds = fileIds
             self.operation = operation
             self.subAppId = subAppId
@@ -69,5 +51,23 @@ extension Vod {
             case notExistFileIdSet = "NotExistFileIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 禁播媒体
+    ///
+    /// * 对媒体禁播后，除了点播控制台预览，其他场景访问视频各种资源的 URL（原始文件、转码输出文件、截图等）均会返回 403。
+    ///   禁播/解禁操作全网生效时间约 5~10 分钟。
+    @inlinable
+    public func forbidMediaDistribution(_ input: ForbidMediaDistributionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ForbidMediaDistributionResponse > {
+        self.client.execute(action: "ForbidMediaDistribution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 禁播媒体
+    ///
+    /// * 对媒体禁播后，除了点播控制台预览，其他场景访问视频各种资源的 URL（原始文件、转码输出文件、截图等）均会返回 403。
+    ///   禁播/解禁操作全网生效时间约 5~10 分钟。
+    @inlinable
+    public func forbidMediaDistribution(_ input: ForbidMediaDistributionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidMediaDistributionResponse {
+        try await self.client.execute(action: "ForbidMediaDistribution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

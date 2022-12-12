@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询站点的验证信息
-    ///
-    /// 查询站点的验证信息。
-    @inlinable
-    public func describeIdentifications(_ input: DescribeIdentificationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIdentificationsResponse > {
-        self.client.execute(action: "DescribeIdentifications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询站点的验证信息
-    ///
-    /// 查询站点的验证信息。
-    @inlinable
-    public func describeIdentifications(_ input: DescribeIdentificationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdentificationsResponse {
-        try await self.client.execute(action: "DescribeIdentifications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIdentifications请求参数结构体
     public struct DescribeIdentificationsRequest: TCRequestModel {
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：
@@ -43,7 +27,7 @@ extension Teo {
         /// 分页查询限制数目。默认值：20，最大值：1000。
         public let limit: Int64?
         
-        public init (filters: [Filter], offset: Int64?, limit: Int64?) {
+        public init (filters: [Filter], offset: Int64? = nil, limit: Int64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -72,5 +56,21 @@ extension Teo {
             case identifications = "Identifications"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询站点的验证信息
+    ///
+    /// 查询站点的验证信息。
+    @inlinable
+    public func describeIdentifications(_ input: DescribeIdentificationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIdentificationsResponse > {
+        self.client.execute(action: "DescribeIdentifications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询站点的验证信息
+    ///
+    /// 查询站点的验证信息。
+    @inlinable
+    public func describeIdentifications(_ input: DescribeIdentificationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdentificationsResponse {
+        try await self.client.execute(action: "DescribeIdentifications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

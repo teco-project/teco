@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询终端节点服务列表
-    ///
-    /// 查询终端节点服务列表。
-    @inlinable
-    public func describeVpcEndPointService(_ input: DescribeVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcEndPointServiceResponse > {
-        self.client.execute(action: "DescribeVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询终端节点服务列表
-    ///
-    /// 查询终端节点服务列表。
-    @inlinable
-    public func describeVpcEndPointService(_ input: DescribeVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointServiceResponse {
-        try await self.client.execute(action: "DescribeVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpcEndPointService请求参数结构体
     public struct DescribeVpcEndPointServiceRequest: TCRequestModel {
         /// 过滤条件。
@@ -48,7 +32,7 @@ extension Vpc {
         /// 终端节点服务ID。
         public let endPointServiceIds: [String]?
         
-        public init (filters: [Filter]?, offset: UInt64?, limit: UInt64?, endPointServiceIds: [String]?) {
+        public init (filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointServiceIds: [String]? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -79,5 +63,21 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询终端节点服务列表
+    ///
+    /// 查询终端节点服务列表。
+    @inlinable
+    public func describeVpcEndPointService(_ input: DescribeVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcEndPointServiceResponse > {
+        self.client.execute(action: "DescribeVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询终端节点服务列表
+    ///
+    /// 查询终端节点服务列表。
+    @inlinable
+    public func describeVpcEndPointService(_ input: DescribeVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointServiceResponse {
+        try await self.client.execute(action: "DescribeVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 更新用户告警设置
-    ///
-    /// 更新或者插入用户告警设置(该接口废弃,请调用 ModifyWarningSetting )
-    @inlinable
-    public func describeSaveOrUpdateWarnings(_ input: DescribeSaveOrUpdateWarningsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSaveOrUpdateWarningsResponse > {
-        self.client.execute(action: "DescribeSaveOrUpdateWarnings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新用户告警设置
-    ///
-    /// 更新或者插入用户告警设置(该接口废弃,请调用 ModifyWarningSetting )
-    @inlinable
-    public func describeSaveOrUpdateWarnings(_ input: DescribeSaveOrUpdateWarningsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSaveOrUpdateWarningsResponse {
-        try await self.client.execute(action: "DescribeSaveOrUpdateWarnings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSaveOrUpdateWarnings请求参数结构体
     public struct DescribeSaveOrUpdateWarningsRequest: TCRequestModel {
         /// 告警设置的修改内容
         public let warningObjects: [WarningObject]?
         
-        public init (warningObjects: [WarningObject]?) {
+        public init (warningObjects: [WarningObject]? = nil) {
             self.warningObjects = warningObjects
         }
         
@@ -53,5 +37,21 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新用户告警设置
+    ///
+    /// 更新或者插入用户告警设置(该接口废弃,请调用 ModifyWarningSetting )
+    @inlinable
+    public func describeSaveOrUpdateWarnings(_ input: DescribeSaveOrUpdateWarningsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSaveOrUpdateWarningsResponse > {
+        self.client.execute(action: "DescribeSaveOrUpdateWarnings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新用户告警设置
+    ///
+    /// 更新或者插入用户告警设置(该接口废弃,请调用 ModifyWarningSetting )
+    @inlinable
+    public func describeSaveOrUpdateWarnings(_ input: DescribeSaveOrUpdateWarningsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSaveOrUpdateWarningsResponse {
+        try await self.client.execute(action: "DescribeSaveOrUpdateWarnings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

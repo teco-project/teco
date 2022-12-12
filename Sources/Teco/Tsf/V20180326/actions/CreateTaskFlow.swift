@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 创建工作流
-    @inlinable
-    public func createTaskFlow(_ input: CreateTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskFlowResponse > {
-        self.client.execute(action: "CreateTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建工作流
-    @inlinable
-    public func createTaskFlow(_ input: CreateTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFlowResponse {
-        try await self.client.execute(action: "CreateTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTaskFlow请求参数结构体
     public struct CreateTaskFlowRequest: TCRequestModel {
         /// 工作流名称
@@ -44,7 +32,7 @@ extension Tsf {
         /// 无
         public let programIdList: [String]?
         
-        public init (flowName: String, triggerRule: TaskRule, flowEdges: [TaskFlowEdge], timeOut: UInt64, programIdList: [String]?) {
+        public init (flowName: String, triggerRule: TaskRule, flowEdges: [TaskFlowEdge], timeOut: UInt64, programIdList: [String]? = nil) {
             self.flowName = flowName
             self.triggerRule = triggerRule
             self.flowEdges = flowEdges
@@ -74,5 +62,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建工作流
+    @inlinable
+    public func createTaskFlow(_ input: CreateTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskFlowResponse > {
+        self.client.execute(action: "CreateTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建工作流
+    @inlinable
+    public func createTaskFlow(_ input: CreateTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFlowResponse {
+        try await self.client.execute(action: "CreateTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

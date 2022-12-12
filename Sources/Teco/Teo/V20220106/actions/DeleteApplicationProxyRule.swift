@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 删除应用代理规则
-    @inlinable
-    public func deleteApplicationProxyRule(_ input: DeleteApplicationProxyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationProxyRuleResponse > {
-        self.client.execute(action: "DeleteApplicationProxyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除应用代理规则
-    @inlinable
-    public func deleteApplicationProxyRule(_ input: DeleteApplicationProxyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationProxyRuleResponse {
-        try await self.client.execute(action: "DeleteApplicationProxyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteApplicationProxyRule请求参数结构体
     public struct DeleteApplicationProxyRuleRequest: TCRequestModel {
         /// 站点ID
@@ -63,5 +51,17 @@ extension Teo {
             case ruleId = "RuleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除应用代理规则
+    @inlinable
+    public func deleteApplicationProxyRule(_ input: DeleteApplicationProxyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationProxyRuleResponse > {
+        self.client.execute(action: "DeleteApplicationProxyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除应用代理规则
+    @inlinable
+    public func deleteApplicationProxyRule(_ input: DeleteApplicationProxyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationProxyRuleResponse {
+        try await self.client.execute(action: "DeleteApplicationProxyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

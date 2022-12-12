@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Postgres {
-    /// 查询实例备份列表
-    ///
-    /// 本接口（DescribeDBBackups）用于查询实例备份列表。
-    @inlinable
-    public func describeDBBackups(_ input: DescribeDBBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBBackupsResponse > {
-        self.client.execute(action: "DescribeDBBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例备份列表
-    ///
-    /// 本接口（DescribeDBBackups）用于查询实例备份列表。
-    @inlinable
-    public func describeDBBackups(_ input: DescribeDBBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBBackupsResponse {
-        try await self.client.execute(action: "DescribeDBBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBBackups请求参数结构体
     public struct DescribeDBBackupsRequest: TCRequestModel {
         /// 实例ID，形如postgres-4wdeb0zv。
@@ -55,7 +39,7 @@ extension Postgres {
         /// 返回结果中的第几页，从第0页开始。默认为0。
         public let offset: Int64?
         
-        public init (dbInstanceId: String, type: Int64, startTime: Date, endTime: Date, limit: Int64?, offset: Int64?) {
+        public init (dbInstanceId: String, type: Int64, startTime: Date, endTime: Date, limit: Int64? = nil, offset: Int64? = nil) {
             self.dbInstanceId = dbInstanceId
             self.type = type
             self.startTime = startTime
@@ -90,5 +74,21 @@ extension Postgres {
             case backupList = "BackupList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例备份列表
+    ///
+    /// 本接口（DescribeDBBackups）用于查询实例备份列表。
+    @inlinable
+    public func describeDBBackups(_ input: DescribeDBBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBBackupsResponse > {
+        self.client.execute(action: "DescribeDBBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例备份列表
+    ///
+    /// 本接口（DescribeDBBackups）用于查询实例备份列表。
+    @inlinable
+    public func describeDBBackups(_ input: DescribeDBBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBBackupsResponse {
+        try await self.client.execute(action: "DescribeDBBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

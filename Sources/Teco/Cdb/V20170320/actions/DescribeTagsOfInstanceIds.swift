@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 获取实例绑定的标签
-    ///
-    /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
-    @inlinable
-    public func describeTagsOfInstanceIds(_ input: DescribeTagsOfInstanceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagsOfInstanceIdsResponse > {
-        self.client.execute(action: "DescribeTagsOfInstanceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实例绑定的标签
-    ///
-    /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
-    @inlinable
-    public func describeTagsOfInstanceIds(_ input: DescribeTagsOfInstanceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsOfInstanceIdsResponse {
-        try await self.client.execute(action: "DescribeTagsOfInstanceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTagsOfInstanceIds请求参数结构体
     public struct DescribeTagsOfInstanceIdsRequest: TCRequestModel {
         /// 实例列表。
@@ -42,7 +26,7 @@ extension Cdb {
         /// 分页大小。
         public let limit: Int64?
         
-        public init (instanceIds: [String], offset: Int64?, limit: Int64?) {
+        public init (instanceIds: [String], offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceIds = instanceIds
             self.offset = offset
             self.limit = limit
@@ -75,5 +59,21 @@ extension Cdb {
             case rows = "Rows"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实例绑定的标签
+    ///
+    /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
+    @inlinable
+    public func describeTagsOfInstanceIds(_ input: DescribeTagsOfInstanceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagsOfInstanceIdsResponse > {
+        self.client.execute(action: "DescribeTagsOfInstanceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例绑定的标签
+    ///
+    /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
+    @inlinable
+    public func describeTagsOfInstanceIds(_ input: DescribeTagsOfInstanceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsOfInstanceIdsResponse {
+        try await self.client.execute(action: "DescribeTagsOfInstanceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

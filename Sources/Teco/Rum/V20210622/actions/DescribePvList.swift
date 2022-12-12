@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取PV列表
-    ///
-    /// 获取项目下的PV列表
-    @inlinable
-    public func describePvList(_ input: DescribePvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePvListResponse > {
-        self.client.execute(action: "DescribePvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取PV列表
-    ///
-    /// 获取项目下的PV列表
-    @inlinable
-    public func describePvList(_ input: DescribePvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePvListResponse {
-        try await self.client.execute(action: "DescribePvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePvList请求参数结构体
     public struct DescribePvListRequest: TCRequestModel {
         /// ID
@@ -45,7 +29,7 @@ extension Rum {
         /// 获取day：d，   获取min则不填
         public let dimension: String?
         
-        public init (projectId: Int64, endTime: String, startTime: String, dimension: String?) {
+        public init (projectId: Int64, endTime: String, startTime: String, dimension: String? = nil) {
             self.projectId = projectId
             self.endTime = endTime
             self.startTime = startTime
@@ -73,5 +57,21 @@ extension Rum {
             case projectPvSet = "ProjectPvSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取PV列表
+    ///
+    /// 获取项目下的PV列表
+    @inlinable
+    public func describePvList(_ input: DescribePvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePvListResponse > {
+        self.client.execute(action: "DescribePvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取PV列表
+    ///
+    /// 获取项目下的PV列表
+    @inlinable
+    public func describePvList(_ input: DescribePvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePvListResponse {
+        try await self.client.execute(action: "DescribePvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

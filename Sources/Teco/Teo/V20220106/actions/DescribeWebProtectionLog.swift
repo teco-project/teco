@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询CC防护日志
-    @inlinable
-    public func describeWebProtectionLog(_ input: DescribeWebProtectionLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebProtectionLogResponse > {
-        self.client.execute(action: "DescribeWebProtectionLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询CC防护日志
-    @inlinable
-    public func describeWebProtectionLog(_ input: DescribeWebProtectionLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionLogResponse {
-        try await self.client.execute(action: "DescribeWebProtectionLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWebProtectionLog请求参数结构体
     public struct DescribeWebProtectionLogRequest: TCRequestModel {
         /// 起始时间。
@@ -78,7 +66,7 @@ extension Teo {
         /// <li>mainland ：中国大陆地区数据 。</li>不填默认查询overseas。
         public let area: String?
         
-        public init (startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zoneIds: [String]?, domains: [String]?, queryCondition: [QueryCondition]?, entityType: String?, area: String?) {
+        public init (startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, entityType: String? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.pageSize = pageSize
@@ -125,5 +113,17 @@ extension Teo {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询CC防护日志
+    @inlinable
+    public func describeWebProtectionLog(_ input: DescribeWebProtectionLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebProtectionLogResponse > {
+        self.client.execute(action: "DescribeWebProtectionLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询CC防护日志
+    @inlinable
+    public func describeWebProtectionLog(_ input: DescribeWebProtectionLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionLogResponse {
+        try await self.client.execute(action: "DescribeWebProtectionLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

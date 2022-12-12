@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 会员间交易退款
-    @inlinable
-    public func refundMemberTransaction(_ input: RefundMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefundMemberTransactionResponse > {
-        self.client.execute(action: "RefundMemberTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 会员间交易退款
-    @inlinable
-    public func refundMemberTransaction(_ input: RefundMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundMemberTransactionResponse {
-        try await self.client.execute(action: "RefundMemberTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RefundMemberTransaction请求参数结构体
     public struct RefundMemberTransactionRequest: TCRequestModel {
         /// 转出见证子账户的户名
@@ -102,7 +90,7 @@ extension Cpdp {
         /// 交易手续费
         public let transFee: String?
         
-        public init (outSubAccountName: String, inSubAccountName: String, payChannelSubId: Int64, outSubAccountNumber: String, midasSignature: String, inSubAccountNumber: String, midasSecretId: String, bankAccountNumber: String, oldTransSequenceNumber: String, merchantCode: String, requestType: String, currencyAmount: String, transSequenceNumber: String, payChannel: String, oldOrderId: String, midasAppId: String, orderId: String, midasEnvironment: String, outTransNetMemberCode: String?, inTransNetMemberCode: String?, reservedMessage: String?, platformShortNumber: String?, transType: String?, transFee: String?) {
+        public init (outSubAccountName: String, inSubAccountName: String, payChannelSubId: Int64, outSubAccountNumber: String, midasSignature: String, inSubAccountNumber: String, midasSecretId: String, bankAccountNumber: String, oldTransSequenceNumber: String, merchantCode: String, requestType: String, currencyAmount: String, transSequenceNumber: String, payChannel: String, oldOrderId: String, midasAppId: String, orderId: String, midasEnvironment: String, outTransNetMemberCode: String? = nil, inTransNetMemberCode: String? = nil, reservedMessage: String? = nil, platformShortNumber: String? = nil, transType: String? = nil, transFee: String? = nil) {
             self.outSubAccountName = outSubAccountName
             self.inSubAccountName = inSubAccountName
             self.payChannelSubId = payChannelSubId
@@ -177,5 +165,17 @@ extension Cpdp {
             case reservedMessage = "ReservedMessage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 会员间交易退款
+    @inlinable
+    public func refundMemberTransaction(_ input: RefundMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefundMemberTransactionResponse > {
+        self.client.execute(action: "RefundMemberTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 会员间交易退款
+    @inlinable
+    public func refundMemberTransaction(_ input: RefundMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundMemberTransactionResponse {
+        try await self.client.execute(action: "RefundMemberTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

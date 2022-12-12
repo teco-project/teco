@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 获取SQL日志
-    ///
-    /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
-    @inlinable
-    public func describeSqlLogs(_ input: DescribeSqlLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSqlLogsResponse > {
-        self.client.execute(action: "DescribeSqlLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取SQL日志
-    ///
-    /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
-    @inlinable
-    public func describeSqlLogs(_ input: DescribeSqlLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlLogsResponse {
-        try await self.client.execute(action: "DescribeSqlLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSqlLogs请求参数结构体
     public struct DescribeSqlLogsRequest: TCRequestModel {
         /// 实例 ID，形如：dcdbt-ow728lmc，可以通过 DescribeDCDBInstances 查询实例详情获得。
@@ -42,7 +26,7 @@ extension Dcdb {
         /// 拉取数量（0-10000，为0时拉取总数信息）。
         public let limit: UInt64?
         
-        public init (instanceId: String, offset: UInt64?, limit: UInt64?) {
+        public init (instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
@@ -87,5 +71,21 @@ extension Dcdb {
             case sqlItems = "SqlItems"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取SQL日志
+    ///
+    /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
+    @inlinable
+    public func describeSqlLogs(_ input: DescribeSqlLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSqlLogsResponse > {
+        self.client.execute(action: "DescribeSqlLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取SQL日志
+    ///
+    /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
+    @inlinable
+    public func describeSqlLogs(_ input: DescribeSqlLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlLogsResponse {
+        try await self.client.execute(action: "DescribeSqlLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

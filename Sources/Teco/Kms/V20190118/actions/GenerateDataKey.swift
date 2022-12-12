@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 生成数据密钥
-    ///
-    /// 本接口生成一个数据密钥，您可以用这个密钥进行本地数据的加密。
-    @inlinable
-    public func generateDataKey(_ input: GenerateDataKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateDataKeyResponse > {
-        self.client.execute(action: "GenerateDataKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 生成数据密钥
-    ///
-    /// 本接口生成一个数据密钥，您可以用这个密钥进行本地数据的加密。
-    @inlinable
-    public func generateDataKey(_ input: GenerateDataKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateDataKeyResponse {
-        try await self.client.execute(action: "GenerateDataKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GenerateDataKey请求参数结构体
     public struct GenerateDataKeyRequest: TCRequestModel {
         /// CMK全局唯一标识符
@@ -51,7 +35,7 @@ extension Kms {
         /// 非对称加密算法，配合 EncryptionPublicKey 对返回数据进行加密。目前支持：SM2（以 C1C3C2 格式返回密文），SM2_C1C3C2_ASN1 （以 C1C3C2 ASN1 格式返回密文），RSAES_PKCS1_V1_5，RSAES_OAEP_SHA_1，RSAES_OAEP_SHA_256。若为空，则默认为 SM2。
         public let encryptionAlgorithm: String?
         
-        public init (keyId: String, keySpec: String?, numberOfBytes: UInt64?, encryptionContext: String?, encryptionPublicKey: String?, encryptionAlgorithm: String?) {
+        public init (keyId: String, keySpec: String? = nil, numberOfBytes: UInt64? = nil, encryptionContext: String? = nil, encryptionPublicKey: String? = nil, encryptionAlgorithm: String? = nil) {
             self.keyId = keyId
             self.keySpec = keySpec
             self.numberOfBytes = numberOfBytes
@@ -91,5 +75,21 @@ extension Kms {
             case ciphertextBlob = "CiphertextBlob"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 生成数据密钥
+    ///
+    /// 本接口生成一个数据密钥，您可以用这个密钥进行本地数据的加密。
+    @inlinable
+    public func generateDataKey(_ input: GenerateDataKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateDataKeyResponse > {
+        self.client.execute(action: "GenerateDataKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 生成数据密钥
+    ///
+    /// 本接口生成一个数据密钥，您可以用这个密钥进行本地数据的加密。
+    @inlinable
+    public func generateDataKey(_ input: GenerateDataKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateDataKeyResponse {
+        try await self.client.execute(action: "GenerateDataKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 查询分组下的设备
-    ///
-    /// 本接口(DescribeGroupDevices)用于查询分组下的设备列表。
-    @inlinable
-    public func describeGroupDevices(_ input: DescribeGroupDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupDevicesResponse > {
-        self.client.execute(action: "DescribeGroupDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询分组下的设备
-    ///
-    /// 本接口(DescribeGroupDevices)用于查询分组下的设备列表。
-    @inlinable
-    public func describeGroupDevices(_ input: DescribeGroupDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupDevicesResponse {
-        try await self.client.execute(action: "DescribeGroupDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGroupDevices请求参数结构体
     public struct DescribeGroupDevicesRequest: TCRequestModel {
         /// 分组ID
@@ -52,7 +36,7 @@ extension Iotvideoindustry {
         ///  设备类型，1：国标VMS设备(公有云不支持此类型)，2：国标IPC设备，3：国标NVR设备，9：智能告警设备(公有云不支持此类型)
         public let deviceTypes: [Int64]?
         
-        public init (groupId: String, offset: Int64?, limit: Int64?, nickName: String?, recordable: Int64?, deviceTypes: [Int64]?) {
+        public init (groupId: String, offset: Int64? = nil, limit: Int64? = nil, nickName: String? = nil, recordable: Int64? = nil, deviceTypes: [Int64]? = nil) {
             self.groupId = groupId
             self.offset = offset
             self.limit = limit
@@ -89,5 +73,21 @@ extension Iotvideoindustry {
             case deviceList = "DeviceList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询分组下的设备
+    ///
+    /// 本接口(DescribeGroupDevices)用于查询分组下的设备列表。
+    @inlinable
+    public func describeGroupDevices(_ input: DescribeGroupDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupDevicesResponse > {
+        self.client.execute(action: "DescribeGroupDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询分组下的设备
+    ///
+    /// 本接口(DescribeGroupDevices)用于查询分组下的设备列表。
+    @inlinable
+    public func describeGroupDevices(_ input: DescribeGroupDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupDevicesResponse {
+        try await self.client.execute(action: "DescribeGroupDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

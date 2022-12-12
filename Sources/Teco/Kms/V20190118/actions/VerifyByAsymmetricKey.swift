@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 验证签名
-    ///
-    /// 使用非对称密钥验签
-    @inlinable
-    public func verifyByAsymmetricKey(_ input: VerifyByAsymmetricKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyByAsymmetricKeyResponse > {
-        self.client.execute(action: "VerifyByAsymmetricKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 验证签名
-    ///
-    /// 使用非对称密钥验签
-    @inlinable
-    public func verifyByAsymmetricKey(_ input: VerifyByAsymmetricKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyByAsymmetricKeyResponse {
-        try await self.client.execute(action: "VerifyByAsymmetricKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifyByAsymmetricKey请求参数结构体
     public struct VerifyByAsymmetricKeyRequest: TCRequestModel {
         /// 密钥的唯一标识
@@ -48,7 +32,7 @@ extension Kms {
         /// 消息类型：RAW，DIGEST，如果不传，默认为RAW，表示消息原文。
         public let messageType: String?
         
-        public init (keyId: String, signatureValue: String, message: String, algorithm: String, messageType: String?) {
+        public init (keyId: String, signatureValue: String, message: String, algorithm: String, messageType: String? = nil) {
             self.keyId = keyId
             self.signatureValue = signatureValue
             self.message = message
@@ -77,5 +61,21 @@ extension Kms {
             case signatureValid = "SignatureValid"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 验证签名
+    ///
+    /// 使用非对称密钥验签
+    @inlinable
+    public func verifyByAsymmetricKey(_ input: VerifyByAsymmetricKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyByAsymmetricKeyResponse > {
+        self.client.execute(action: "VerifyByAsymmetricKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 验证签名
+    ///
+    /// 使用非对称密钥验签
+    @inlinable
+    public func verifyByAsymmetricKey(_ input: VerifyByAsymmetricKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyByAsymmetricKeyResponse {
+        try await self.client.execute(action: "VerifyByAsymmetricKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

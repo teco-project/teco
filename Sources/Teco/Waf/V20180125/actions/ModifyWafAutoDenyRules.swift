@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 修改ip惩罚规则
-    @inlinable
-    public func modifyWafAutoDenyRules(_ input: ModifyWafAutoDenyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWafAutoDenyRulesResponse > {
-        self.client.execute(action: "ModifyWafAutoDenyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改ip惩罚规则
-    @inlinable
-    public func modifyWafAutoDenyRules(_ input: ModifyWafAutoDenyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafAutoDenyRulesResponse {
-        try await self.client.execute(action: "ModifyWafAutoDenyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyWafAutoDenyRules请求参数结构体
     public struct ModifyWafAutoDenyRulesRequest: TCRequestModel {
         /// 域名
@@ -73,5 +61,17 @@ extension Waf {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改ip惩罚规则
+    @inlinable
+    public func modifyWafAutoDenyRules(_ input: ModifyWafAutoDenyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWafAutoDenyRulesResponse > {
+        self.client.execute(action: "ModifyWafAutoDenyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改ip惩罚规则
+    @inlinable
+    public func modifyWafAutoDenyRules(_ input: ModifyWafAutoDenyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafAutoDenyRulesResponse {
+        try await self.client.execute(action: "ModifyWafAutoDenyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

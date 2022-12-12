@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询实例DTS信息
-    @inlinable
-    public func describeInstanceDTSInfo(_ input: DescribeInstanceDTSInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceDTSInfoResponse > {
-        self.client.execute(action: "DescribeInstanceDTSInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例DTS信息
-    @inlinable
-    public func describeInstanceDTSInfo(_ input: DescribeInstanceDTSInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDTSInfoResponse {
-        try await self.client.execute(action: "DescribeInstanceDTSInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceDTSInfo请求参数结构体
     public struct DescribeInstanceDTSInfoRequest: TCRequestModel {
         /// 实例ID
@@ -69,11 +57,11 @@ extension Redis {
         
         /// 源实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let srcInfo: DescribeInstanceDTSInstanceInfo
+        public let srcInfo: DescribeInstanceDTSInstanceInfo?
         
         /// 目标实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dstInfo: DescribeInstanceDTSInstanceInfo
+        public let dstInfo: DescribeInstanceDTSInstanceInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -89,5 +77,17 @@ extension Redis {
             case dstInfo = "DstInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例DTS信息
+    @inlinable
+    public func describeInstanceDTSInfo(_ input: DescribeInstanceDTSInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceDTSInfoResponse > {
+        self.client.execute(action: "DescribeInstanceDTSInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例DTS信息
+    @inlinable
+    public func describeInstanceDTSInfo(_ input: DescribeInstanceDTSInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDTSInfoResponse {
+        try await self.client.execute(action: "DescribeInstanceDTSInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

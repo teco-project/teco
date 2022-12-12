@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tkgdq {
-    /// 实体信息查询
-    ///
-    /// 输入实体名称，返回实体相关的信息如实体别名、实体英文名、实体详细信息、相关实体等
-    @inlinable
-    public func describeEntity(_ input: DescribeEntityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEntityResponse > {
-        self.client.execute(action: "DescribeEntity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实体信息查询
-    ///
-    /// 输入实体名称，返回实体相关的信息如实体别名、实体英文名、实体详细信息、相关实体等
-    @inlinable
-    public func describeEntity(_ input: DescribeEntityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEntityResponse {
-        try await self.client.execute(action: "DescribeEntity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEntity请求参数结构体
     public struct DescribeEntityRequest: TCRequestModel {
         /// 实体名称
@@ -57,5 +41,21 @@ extension Tkgdq {
             case content = "Content"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实体信息查询
+    ///
+    /// 输入实体名称，返回实体相关的信息如实体别名、实体英文名、实体详细信息、相关实体等
+    @inlinable
+    public func describeEntity(_ input: DescribeEntityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEntityResponse > {
+        self.client.execute(action: "DescribeEntity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实体信息查询
+    ///
+    /// 输入实体名称，返回实体相关的信息如实体别名、实体英文名、实体详细信息、相关实体等
+    @inlinable
+    public func describeEntity(_ input: DescribeEntityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEntityResponse {
+        try await self.client.execute(action: "DescribeEntity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

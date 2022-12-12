@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 获取通道组域名解析配置详情（废弃）
-    ///
-    /// 本接口（DescribeGroupDomainConfig）用于获取通道组域名解析配置详情。
-    @inlinable
-    public func describeGroupDomainConfig(_ input: DescribeGroupDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupDomainConfigResponse > {
-        self.client.execute(action: "DescribeGroupDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取通道组域名解析配置详情（废弃）
-    ///
-    /// 本接口（DescribeGroupDomainConfig）用于获取通道组域名解析配置详情。
-    @inlinable
-    public func describeGroupDomainConfig(_ input: DescribeGroupDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupDomainConfigResponse {
-        try await self.client.execute(action: "DescribeGroupDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGroupDomainConfig请求参数结构体
     public struct DescribeGroupDomainConfigRequest: TCRequestModel {
         /// 通道组ID。
@@ -69,5 +53,21 @@ extension Gaap {
             case accessRegionCount = "AccessRegionCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取通道组域名解析配置详情（废弃）
+    ///
+    /// 本接口（DescribeGroupDomainConfig）用于获取通道组域名解析配置详情。
+    @inlinable
+    public func describeGroupDomainConfig(_ input: DescribeGroupDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupDomainConfigResponse > {
+        self.client.execute(action: "DescribeGroupDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取通道组域名解析配置详情（废弃）
+    ///
+    /// 本接口（DescribeGroupDomainConfig）用于获取通道组域名解析配置详情。
+    @inlinable
+    public func describeGroupDomainConfig(_ input: DescribeGroupDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupDomainConfigResponse {
+        try await self.client.execute(action: "DescribeGroupDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

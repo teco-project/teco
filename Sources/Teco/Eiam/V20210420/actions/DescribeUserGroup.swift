@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 获取用户组信息
-    @inlinable
-    public func describeUserGroup(_ input: DescribeUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserGroupResponse > {
-        self.client.execute(action: "DescribeUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户组信息
-    @inlinable
-    public func describeUserGroup(_ input: DescribeUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserGroupResponse {
-        try await self.client.execute(action: "DescribeUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserGroup请求参数结构体
     public struct DescribeUserGroupRequest: TCRequestModel {
         /// 用户组ID，是用户组的全局唯一标识。
@@ -64,5 +52,17 @@ extension Eiam {
             case userGroupId = "UserGroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户组信息
+    @inlinable
+    public func describeUserGroup(_ input: DescribeUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserGroupResponse > {
+        self.client.execute(action: "DescribeUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户组信息
+    @inlinable
+    public func describeUserGroup(_ input: DescribeUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserGroupResponse {
+        try await self.client.execute(action: "DescribeUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询某个插件下绑定或未绑定的API分组
-    @inlinable
-    public func describeGroupsWithPlugin(_ input: DescribeGroupsWithPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupsWithPluginResponse > {
-        self.client.execute(action: "DescribeGroupsWithPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询某个插件下绑定或未绑定的API分组
-    @inlinable
-    public func describeGroupsWithPlugin(_ input: DescribeGroupsWithPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsWithPluginResponse {
-        try await self.client.execute(action: "DescribeGroupsWithPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGroupsWithPlugin请求参数结构体
     public struct DescribeGroupsWithPluginRequest: TCRequestModel {
         /// 插件ID
@@ -47,7 +35,7 @@ extension Tsf {
         /// 网关实体ID
         public let gatewayInstanceId: String?
         
-        public init (pluginId: String, bound: Bool, offset: Int64, limit: Int64, searchWord: String?, gatewayInstanceId: String?) {
+        public init (pluginId: String, bound: Bool, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayInstanceId: String? = nil) {
             self.pluginId = pluginId
             self.bound = bound
             self.offset = offset
@@ -78,5 +66,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询某个插件下绑定或未绑定的API分组
+    @inlinable
+    public func describeGroupsWithPlugin(_ input: DescribeGroupsWithPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupsWithPluginResponse > {
+        self.client.execute(action: "DescribeGroupsWithPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询某个插件下绑定或未绑定的API分组
+    @inlinable
+    public func describeGroupsWithPlugin(_ input: DescribeGroupsWithPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsWithPluginResponse {
+        try await self.client.execute(action: "DescribeGroupsWithPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 更新关联文件场景
-    @inlinable
-    public func updateFileScenarioRelation(_ input: UpdateFileScenarioRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFileScenarioRelationResponse > {
-        self.client.execute(action: "UpdateFileScenarioRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新关联文件场景
-    @inlinable
-    public func updateFileScenarioRelation(_ input: UpdateFileScenarioRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFileScenarioRelationResponse {
-        try await self.client.execute(action: "UpdateFileScenarioRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateFileScenarioRelation请求参数结构体
     public struct UpdateFileScenarioRelationRequest: TCRequestModel {
         /// 文件 ID
@@ -38,7 +26,7 @@ extension Pts {
         /// 场景 ID 数组
         public let scenarioIds: [String]?
         
-        public init (fileId: String, projectId: String, scenarioIds: [String]?) {
+        public init (fileId: String, projectId: String, scenarioIds: [String]? = nil) {
             self.fileId = fileId
             self.projectId = projectId
             self.scenarioIds = scenarioIds
@@ -59,5 +47,17 @@ extension Pts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新关联文件场景
+    @inlinable
+    public func updateFileScenarioRelation(_ input: UpdateFileScenarioRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFileScenarioRelationResponse > {
+        self.client.execute(action: "UpdateFileScenarioRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新关联文件场景
+    @inlinable
+    public func updateFileScenarioRelation(_ input: UpdateFileScenarioRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFileScenarioRelationResponse {
+        try await self.client.execute(action: "UpdateFileScenarioRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 删除服务IP策略
-    ///
-    /// 本接口（DeleteIPStrategy）用于删除服务IP策略。
-    @inlinable
-    public func deleteIPStrategy(_ input: DeleteIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIPStrategyResponse > {
-        self.client.execute(action: "DeleteIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除服务IP策略
-    ///
-    /// 本接口（DeleteIPStrategy）用于删除服务IP策略。
-    @inlinable
-    public func deleteIPStrategy(_ input: DeleteIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIPStrategyResponse {
-        try await self.client.execute(action: "DeleteIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteIPStrategy请求参数结构体
     public struct DeleteIPStrategyRequest: TCRequestModel {
         /// 待删除的IP策略所属的服务唯一ID。
@@ -63,5 +47,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除服务IP策略
+    ///
+    /// 本接口（DeleteIPStrategy）用于删除服务IP策略。
+    @inlinable
+    public func deleteIPStrategy(_ input: DeleteIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIPStrategyResponse > {
+        self.client.execute(action: "DeleteIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除服务IP策略
+    ///
+    /// 本接口（DeleteIPStrategy）用于删除服务IP策略。
+    @inlinable
+    public func deleteIPStrategy(_ input: DeleteIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIPStrategyResponse {
+        try await self.client.execute(action: "DeleteIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

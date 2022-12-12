@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 构建 API 文档
-    @inlinable
-    public func buildAPIDoc(_ input: BuildAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BuildAPIDocResponse > {
-        self.client.execute(action: "BuildAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 构建 API 文档
-    @inlinable
-    public func buildAPIDoc(_ input: BuildAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuildAPIDocResponse {
-        try await self.client.execute(action: "BuildAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BuildAPIDoc请求参数结构体
     public struct BuildAPIDocRequest: TCRequestModel {
         /// API文档ID
@@ -53,5 +41,17 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 构建 API 文档
+    @inlinable
+    public func buildAPIDoc(_ input: BuildAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BuildAPIDocResponse > {
+        self.client.execute(action: "BuildAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 构建 API 文档
+    @inlinable
+    public func buildAPIDoc(_ input: BuildAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuildAPIDocResponse {
+        try await self.client.execute(action: "BuildAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

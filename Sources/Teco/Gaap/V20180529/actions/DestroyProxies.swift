@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 销毁通道
-    ///
-    /// 本接口（DestroyProxies）用于销毁。通道销毁后，不再产生任何费用。
-    @inlinable
-    public func destroyProxies(_ input: DestroyProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyProxiesResponse > {
-        self.client.execute(action: "DestroyProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 销毁通道
-    ///
-    /// 本接口（DestroyProxies）用于销毁。通道销毁后，不再产生任何费用。
-    @inlinable
-    public func destroyProxies(_ input: DestroyProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyProxiesResponse {
-        try await self.client.execute(action: "DestroyProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DestroyProxies请求参数结构体
     public struct DestroyProxiesRequest: TCRequestModel {
         /// 强制删除标识。
@@ -49,7 +33,7 @@ extension Gaap {
         /// （新参数）通道实例ID列表。
         public let proxyIds: [String]?
         
-        public init (force: Int64, instanceIds: [String]?, clientToken: String?, proxyIds: [String]?) {
+        public init (force: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil) {
             self.force = force
             self.instanceIds = instanceIds
             self.clientToken = clientToken
@@ -80,5 +64,21 @@ extension Gaap {
             case operationFailedInstanceSet = "OperationFailedInstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 销毁通道
+    ///
+    /// 本接口（DestroyProxies）用于销毁。通道销毁后，不再产生任何费用。
+    @inlinable
+    public func destroyProxies(_ input: DestroyProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyProxiesResponse > {
+        self.client.execute(action: "DestroyProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁通道
+    ///
+    /// 本接口（DestroyProxies）用于销毁。通道销毁后，不再产生任何费用。
+    @inlinable
+    public func destroyProxies(_ input: DestroyProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyProxiesResponse {
+        try await self.client.execute(action: "DestroyProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

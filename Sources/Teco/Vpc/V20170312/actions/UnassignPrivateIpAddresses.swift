@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 弹性网卡退还内网 IP
-    ///
-    /// 本接口（UnassignPrivateIpAddresses）用于弹性网卡退还内网 IP。
-    /// * 退还弹性网卡上的辅助内网IP，接口自动解关联弹性公网 IP。不能退还弹性网卡的主内网IP。
-    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
-    @inlinable
-    public func unassignPrivateIpAddresses(_ input: UnassignPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnassignPrivateIpAddressesResponse > {
-        self.client.execute(action: "UnassignPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 弹性网卡退还内网 IP
-    ///
-    /// 本接口（UnassignPrivateIpAddresses）用于弹性网卡退还内网 IP。
-    /// * 退还弹性网卡上的辅助内网IP，接口自动解关联弹性公网 IP。不能退还弹性网卡的主内网IP。
-    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
-    @inlinable
-    public func unassignPrivateIpAddresses(_ input: UnassignPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignPrivateIpAddressesResponse {
-        try await self.client.execute(action: "UnassignPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnassignPrivateIpAddresses请求参数结构体
     public struct UnassignPrivateIpAddressesRequest: TCRequestModel {
         /// 弹性网卡实例ID，例如：eni-m6dyj72l。
@@ -46,7 +26,7 @@ extension Vpc {
         /// 网卡绑定的子机实例ID，该参数仅用于指定网卡退还IP并解绑子机的场景，如果不涉及解绑子机，请勿填写。
         public let instanceId: String?
         
-        public init (networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], instanceId: String?) {
+        public init (networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], instanceId: String? = nil) {
             self.networkInterfaceId = networkInterfaceId
             self.privateIpAddresses = privateIpAddresses
             self.instanceId = instanceId
@@ -67,5 +47,25 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 弹性网卡退还内网 IP
+    ///
+    /// 本接口（UnassignPrivateIpAddresses）用于弹性网卡退还内网 IP。
+    /// * 退还弹性网卡上的辅助内网IP，接口自动解关联弹性公网 IP。不能退还弹性网卡的主内网IP。
+    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
+    @inlinable
+    public func unassignPrivateIpAddresses(_ input: UnassignPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnassignPrivateIpAddressesResponse > {
+        self.client.execute(action: "UnassignPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 弹性网卡退还内网 IP
+    ///
+    /// 本接口（UnassignPrivateIpAddresses）用于弹性网卡退还内网 IP。
+    /// * 退还弹性网卡上的辅助内网IP，接口自动解关联弹性公网 IP。不能退还弹性网卡的主内网IP。
+    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
+    @inlinable
+    public func unassignPrivateIpAddresses(_ input: UnassignPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignPrivateIpAddressesResponse {
+        try await self.client.execute(action: "UnassignPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 渠道创建文件转换任务
-    @inlinable
-    public func channelCreateConvertTaskApi(_ input: ChannelCreateConvertTaskApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateConvertTaskApiResponse > {
-        self.client.execute(action: "ChannelCreateConvertTaskApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 渠道创建文件转换任务
-    @inlinable
-    public func channelCreateConvertTaskApi(_ input: ChannelCreateConvertTaskApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateConvertTaskApiResponse {
-        try await self.client.execute(action: "ChannelCreateConvertTaskApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ChannelCreateConvertTaskApi请求参数结构体
     public struct ChannelCreateConvertTaskApiRequest: TCRequestModel {
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -42,12 +30,12 @@ extension Essbasic {
         public let resourceId: String
         
         /// 操作者信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
         /// 暂未开放
-        public let organization: OrganizationInfo
+        public let organization: OrganizationInfo?
         
-        public init (agent: Agent, resourceType: String, resourceName: String, resourceId: String, `operator`: UserInfo, organization: OrganizationInfo) {
+        public init (agent: Agent, resourceType: String, resourceName: String, resourceId: String, `operator`: UserInfo? = nil, organization: OrganizationInfo? = nil) {
             self.agent = agent
             self.resourceType = resourceType
             self.resourceName = resourceName
@@ -78,5 +66,17 @@ extension Essbasic {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 渠道创建文件转换任务
+    @inlinable
+    public func channelCreateConvertTaskApi(_ input: ChannelCreateConvertTaskApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateConvertTaskApiResponse > {
+        self.client.execute(action: "ChannelCreateConvertTaskApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 渠道创建文件转换任务
+    @inlinable
+    public func channelCreateConvertTaskApi(_ input: ChannelCreateConvertTaskApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateConvertTaskApiResponse {
+        try await self.client.execute(action: "ChannelCreateConvertTaskApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

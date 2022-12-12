@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 收缩数据库mdf
-    ///
-    /// 本接口(ModifyDatabaseMdf)用于收缩数据库mdf(Shrink mdf)
-    @inlinable
-    public func modifyDatabaseMdf(_ input: ModifyDatabaseMdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDatabaseMdfResponse > {
-        self.client.execute(action: "ModifyDatabaseMdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 收缩数据库mdf
-    ///
-    /// 本接口(ModifyDatabaseMdf)用于收缩数据库mdf(Shrink mdf)
-    @inlinable
-    public func modifyDatabaseMdf(_ input: ModifyDatabaseMdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseMdfResponse {
-        try await self.client.execute(action: "ModifyDatabaseMdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDatabaseMdf请求参数结构体
     public struct ModifyDatabaseMdfRequest: TCRequestModel {
         /// 数据库名数组
@@ -62,5 +46,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 收缩数据库mdf
+    ///
+    /// 本接口(ModifyDatabaseMdf)用于收缩数据库mdf(Shrink mdf)
+    @inlinable
+    public func modifyDatabaseMdf(_ input: ModifyDatabaseMdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDatabaseMdfResponse > {
+        self.client.execute(action: "ModifyDatabaseMdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 收缩数据库mdf
+    ///
+    /// 本接口(ModifyDatabaseMdf)用于收缩数据库mdf(Shrink mdf)
+    @inlinable
+    public func modifyDatabaseMdf(_ input: ModifyDatabaseMdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseMdfResponse {
+        try await self.client.execute(action: "ModifyDatabaseMdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

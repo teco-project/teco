@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ic {
-    /// 查询卡片列表
-    ///
-    /// 查询卡片列表信息
-    @inlinable
-    public func describeCards(_ input: DescribeCardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCardsResponse > {
-        self.client.execute(action: "DescribeCards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询卡片列表
-    ///
-    /// 查询卡片列表信息
-    @inlinable
-    public func describeCards(_ input: DescribeCardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCardsResponse {
-        try await self.client.execute(action: "DescribeCards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCards请求参数结构体
     public struct DescribeCardsRequest: TCRequestModel {
         /// 应用ID
@@ -67,5 +51,21 @@ extension Ic {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询卡片列表
+    ///
+    /// 查询卡片列表信息
+    @inlinable
+    public func describeCards(_ input: DescribeCardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCardsResponse > {
+        self.client.execute(action: "DescribeCards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询卡片列表
+    ///
+    /// 查询卡片列表信息
+    @inlinable
+    public func describeCards(_ input: DescribeCardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCardsResponse {
+        try await self.client.execute(action: "DescribeCards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询新购实例价格
-    @inlinable
-    public func inquiryPriceCreateInstance(_ input: InquiryPriceCreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateInstanceResponse > {
-        self.client.execute(action: "InquiryPriceCreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询新购实例价格
-    @inlinable
-    public func inquiryPriceCreateInstance(_ input: InquiryPriceCreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateInstanceResponse {
-        try await self.client.execute(action: "InquiryPriceCreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceCreateInstance请求参数结构体
     public struct InquiryPriceCreateInstanceRequest: TCRequestModel {
         /// 实例类型：2 – Redis2.8内存版(标准架构)，3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，6 – Redis4.0内存版(标准架构)，7 – Redis4.0内存版(集群架构)，8 – Redis5.0内存版(标准架构)，9 – Redis5.0内存版(集群架构)。
@@ -63,7 +51,7 @@ extension Redis {
         /// "local"本地盘版，"cloud"云盘版，"cdc"独享集群版，如果不传默认询价为本地盘版本
         public let productVersion: String?
         
-        public init (typeId: UInt64, memSize: UInt64, goodsNum: UInt64, period: UInt64, billingMode: Int64, zoneId: UInt64?, redisShardNum: Int64?, redisReplicasNum: Int64?, replicasReadonly: Bool?, zoneName: String?, productVersion: String?) {
+        public init (typeId: UInt64, memSize: UInt64, goodsNum: UInt64, period: UInt64, billingMode: Int64, zoneId: UInt64? = nil, redisShardNum: Int64? = nil, redisReplicasNum: Int64? = nil, replicasReadonly: Bool? = nil, zoneName: String? = nil, productVersion: String? = nil) {
             self.typeId = typeId
             self.memSize = memSize
             self.goodsNum = goodsNum
@@ -105,5 +93,17 @@ extension Redis {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询新购实例价格
+    @inlinable
+    public func inquiryPriceCreateInstance(_ input: InquiryPriceCreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateInstanceResponse > {
+        self.client.execute(action: "InquiryPriceCreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询新购实例价格
+    @inlinable
+    public func inquiryPriceCreateInstance(_ input: InquiryPriceCreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateInstanceResponse {
+        try await self.client.execute(action: "InquiryPriceCreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 批量发送消息
-    ///
-    /// 批量发送消息
-    /// 注意：TDMQ 批量发送消息的接口是在 TDMQ-HTTP 的服务侧将消息打包为一个 Batch，然后将该 Batch 在服务内部当作一次 TCP 请求发送出去。所以在使用过程中，用户还是按照单条消息发送的逻辑，每一条消息是一个独立的 HTTP 的请求，在 TDMQ-HTTP 的服务内部，会将多个 HTTP 的请求聚合为一个 Batch 发送到服务端。即，批量发送消息在使用上与发送单条消息是一致的，batch 的聚合是在 TDMQ-HTTP 的服务内部完成的。
-    @inlinable
-    public func sendBatchMessages(_ input: SendBatchMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendBatchMessagesResponse > {
-        self.client.execute(action: "SendBatchMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量发送消息
-    ///
-    /// 批量发送消息
-    /// 注意：TDMQ 批量发送消息的接口是在 TDMQ-HTTP 的服务侧将消息打包为一个 Batch，然后将该 Batch 在服务内部当作一次 TCP 请求发送出去。所以在使用过程中，用户还是按照单条消息发送的逻辑，每一条消息是一个独立的 HTTP 的请求，在 TDMQ-HTTP 的服务内部，会将多个 HTTP 的请求聚合为一个 Batch 发送到服务端。即，批量发送消息在使用上与发送单条消息是一致的，batch 的聚合是在 TDMQ-HTTP 的服务内部完成的。
-    @inlinable
-    public func sendBatchMessages(_ input: SendBatchMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendBatchMessagesResponse {
-        try await self.client.execute(action: "SendBatchMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendBatchMessages请求参数结构体
     public struct SendBatchMessagesRequest: TCRequestModel {
         /// 消息要发送的topic的名字, 这里尽量需要使用topic的全路径，即：tenant/namespace/topic。如果不指定，默认使用的是：public/default
@@ -62,7 +44,7 @@ extension Tdmq {
         /// 每一个batch中最大允许的消息的大小，默认：128KB
         public let batchingMaxBytes: Int64?
         
-        public init (topic: String, payload: String, stringToken: String?, producerName: String?, sendTimeout: Int64?, maxPendingMessages: Int64?, batchingMaxMessages: Int64?, batchingMaxPublishDelay: Int64?, batchingMaxBytes: Int64?) {
+        public init (topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil, batchingMaxMessages: Int64? = nil, batchingMaxPublishDelay: Int64? = nil, batchingMaxBytes: Int64? = nil) {
             self.topic = topic
             self.payload = payload
             self.stringToken = stringToken
@@ -105,5 +87,23 @@ extension Tdmq {
             case errorMsg = "ErrorMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量发送消息
+    ///
+    /// 批量发送消息
+    /// 注意：TDMQ 批量发送消息的接口是在 TDMQ-HTTP 的服务侧将消息打包为一个 Batch，然后将该 Batch 在服务内部当作一次 TCP 请求发送出去。所以在使用过程中，用户还是按照单条消息发送的逻辑，每一条消息是一个独立的 HTTP 的请求，在 TDMQ-HTTP 的服务内部，会将多个 HTTP 的请求聚合为一个 Batch 发送到服务端。即，批量发送消息在使用上与发送单条消息是一致的，batch 的聚合是在 TDMQ-HTTP 的服务内部完成的。
+    @inlinable
+    public func sendBatchMessages(_ input: SendBatchMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendBatchMessagesResponse > {
+        self.client.execute(action: "SendBatchMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量发送消息
+    ///
+    /// 批量发送消息
+    /// 注意：TDMQ 批量发送消息的接口是在 TDMQ-HTTP 的服务侧将消息打包为一个 Batch，然后将该 Batch 在服务内部当作一次 TCP 请求发送出去。所以在使用过程中，用户还是按照单条消息发送的逻辑，每一条消息是一个独立的 HTTP 的请求，在 TDMQ-HTTP 的服务内部，会将多个 HTTP 的请求聚合为一个 Batch 发送到服务端。即，批量发送消息在使用上与发送单条消息是一致的，batch 的聚合是在 TDMQ-HTTP 的服务内部完成的。
+    @inlinable
+    public func sendBatchMessages(_ input: SendBatchMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendBatchMessagesResponse {
+        try await self.client.execute(action: "SendBatchMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

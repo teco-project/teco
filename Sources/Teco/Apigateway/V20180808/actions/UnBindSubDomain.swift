@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 服务解绑自定义域名
-    ///
-    /// 本接口（UnBindSubDomain）用于解绑自定义域名。
-    /// 用户使用 API 网关绑定了自定义域名到服务中后，若想要解绑此自定义域名，可使用此接口。
-    @inlinable
-    public func unBindSubDomain(_ input: UnBindSubDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindSubDomainResponse > {
-        self.client.execute(action: "UnBindSubDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 服务解绑自定义域名
-    ///
-    /// 本接口（UnBindSubDomain）用于解绑自定义域名。
-    /// 用户使用 API 网关绑定了自定义域名到服务中后，若想要解绑此自定义域名，可使用此接口。
-    @inlinable
-    public func unBindSubDomain(_ input: UnBindSubDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindSubDomainResponse {
-        try await self.client.execute(action: "UnBindSubDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnBindSubDomain请求参数结构体
     public struct UnBindSubDomainRequest: TCRequestModel {
         /// 服务唯一 ID。
@@ -64,5 +46,23 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 服务解绑自定义域名
+    ///
+    /// 本接口（UnBindSubDomain）用于解绑自定义域名。
+    /// 用户使用 API 网关绑定了自定义域名到服务中后，若想要解绑此自定义域名，可使用此接口。
+    @inlinable
+    public func unBindSubDomain(_ input: UnBindSubDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindSubDomainResponse > {
+        self.client.execute(action: "UnBindSubDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 服务解绑自定义域名
+    ///
+    /// 本接口（UnBindSubDomain）用于解绑自定义域名。
+    /// 用户使用 API 网关绑定了自定义域名到服务中后，若想要解绑此自定义域名，可使用此接口。
+    @inlinable
+    public func unBindSubDomain(_ input: UnBindSubDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindSubDomainResponse {
+        try await self.client.execute(action: "UnBindSubDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

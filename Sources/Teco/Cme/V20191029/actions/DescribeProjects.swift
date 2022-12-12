@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 获取项目列表
-    ///
-    /// 支持根据多种条件过滤出项目列表。
-    @inlinable
-    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
-        self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取项目列表
-    ///
-    /// 支持根据多种条件过滤出项目列表。
-    @inlinable
-    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
-        try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProjects请求参数结构体
     public struct DescribeProjectsRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -62,10 +46,10 @@ extension Cme {
         /// <li>CreateTime：创建时间；</li>
         /// <li>UpdateTime：更新时间。</li>
         /// 注：如不填，则使用项目创建时间倒序排列。
-        public let sort: SortBy
+        public let sort: SortBy?
         
         /// 项目所有者，目前仅支持个人项目过滤。
-        public let owner: Entity
+        public let owner: Entity?
         
         /// 分页返回的起始偏移量，默认值：0。
         public let offset: UInt64?
@@ -76,7 +60,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以查询一切用户项目信息。如果指定操作者，则操作者必须为项目所有者。
         public let `operator`: String?
         
-        public init (platform: String, projectIds: [String]?, aspectRatioSet: [String]?, categorySet: [String]?, modes: [String]?, sort: SortBy, owner: Entity, offset: UInt64?, limit: UInt64?, `operator`: String?) {
+        public init (platform: String, projectIds: [String]? = nil, aspectRatioSet: [String]? = nil, categorySet: [String]? = nil, modes: [String]? = nil, sort: SortBy? = nil, owner: Entity? = nil, offset: UInt64? = nil, limit: UInt64? = nil, `operator`: String? = nil) {
             self.platform = platform
             self.projectIds = projectIds
             self.aspectRatioSet = aspectRatioSet
@@ -119,5 +103,21 @@ extension Cme {
             case projectInfoSet = "ProjectInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取项目列表
+    ///
+    /// 支持根据多种条件过滤出项目列表。
+    @inlinable
+    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
+        self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取项目列表
+    ///
+    /// 支持根据多种条件过滤出项目列表。
+    @inlinable
+    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
+        try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

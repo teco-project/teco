@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ds {
-    /// 通过上传创建合同
-    ///
-    /// 此接口适用于：客户平台通过上传PDF文件作为合同，以备未来进行签署。接口返回任务号，可调用DescribeTaskStatus接口查看任务执行结果。
-    @inlinable
-    public func createContractByUpload(_ input: CreateContractByUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateContractByUploadResponse > {
-        self.client.execute(action: "CreateContractByUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通过上传创建合同
-    ///
-    /// 此接口适用于：客户平台通过上传PDF文件作为合同，以备未来进行签署。接口返回任务号，可调用DescribeTaskStatus接口查看任务执行结果。
-    @inlinable
-    public func createContractByUpload(_ input: CreateContractByUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContractByUploadResponse {
-        try await self.client.execute(action: "CreateContractByUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateContractByUpload请求参数结构体
     public struct CreateContractByUploadRequest: TCRequestModel {
         /// 模块名ContractMng
@@ -57,7 +41,7 @@ extension Ds {
         /// 合同长时间未签署的过期时间
         public let expireTime: String?
         
-        public init (module: String, operation: String, signInfos: [SignInfo], contractFile: String, contractName: String, remarks: String?, initiator: String?, expireTime: String?) {
+        public init (module: String, operation: String, signInfos: [SignInfo], contractFile: String, contractName: String, remarks: String? = nil, initiator: String? = nil, expireTime: String? = nil) {
             self.module = module
             self.operation = operation
             self.signInfos = signInfos
@@ -92,5 +76,21 @@ extension Ds {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通过上传创建合同
+    ///
+    /// 此接口适用于：客户平台通过上传PDF文件作为合同，以备未来进行签署。接口返回任务号，可调用DescribeTaskStatus接口查看任务执行结果。
+    @inlinable
+    public func createContractByUpload(_ input: CreateContractByUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateContractByUploadResponse > {
+        self.client.execute(action: "CreateContractByUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通过上传创建合同
+    ///
+    /// 此接口适用于：客户平台通过上传PDF文件作为合同，以备未来进行签署。接口返回任务号，可调用DescribeTaskStatus接口查看任务执行结果。
+    @inlinable
+    public func createContractByUpload(_ input: CreateContractByUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContractByUploadResponse {
+        try await self.client.execute(action: "CreateContractByUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取导入第三方集群YAML定义
-    @inlinable
-    public func describeExternalClusterSpec(_ input: DescribeExternalClusterSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExternalClusterSpecResponse > {
-        self.client.execute(action: "DescribeExternalClusterSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取导入第三方集群YAML定义
-    @inlinable
-    public func describeExternalClusterSpec(_ input: DescribeExternalClusterSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExternalClusterSpecResponse {
-        try await self.client.execute(action: "DescribeExternalClusterSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExternalClusterSpec请求参数结构体
     public struct DescribeExternalClusterSpecRequest: TCRequestModel {
         /// 注册集群ID
@@ -38,7 +26,7 @@ extension Tke {
         /// 默认false 不刷新有效时间 ，true刷新有效时间
         public let isRefreshExpirationTime: Bool?
         
-        public init (clusterId: String, isExtranet: Bool?, isRefreshExpirationTime: Bool?) {
+        public init (clusterId: String, isExtranet: Bool? = nil, isRefreshExpirationTime: Bool? = nil) {
             self.clusterId = clusterId
             self.isExtranet = isExtranet
             self.isRefreshExpirationTime = isRefreshExpirationTime
@@ -67,5 +55,17 @@ extension Tke {
             case expiration = "Expiration"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取导入第三方集群YAML定义
+    @inlinable
+    public func describeExternalClusterSpec(_ input: DescribeExternalClusterSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExternalClusterSpecResponse > {
+        self.client.execute(action: "DescribeExternalClusterSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取导入第三方集群YAML定义
+    @inlinable
+    public func describeExternalClusterSpec(_ input: DescribeExternalClusterSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExternalClusterSpecResponse {
+        try await self.client.execute(action: "DescribeExternalClusterSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

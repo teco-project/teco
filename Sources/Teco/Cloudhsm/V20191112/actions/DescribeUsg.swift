@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudhsm {
-    /// 获取用户安全组列表
-    ///
-    /// 根据用户的AppId获取用户安全组列表
-    @inlinable
-    public func describeUsg(_ input: DescribeUsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsgResponse > {
-        self.client.execute(action: "DescribeUsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户安全组列表
-    ///
-    /// 根据用户的AppId获取用户安全组列表
-    @inlinable
-    public func describeUsg(_ input: DescribeUsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgResponse {
-        try await self.client.execute(action: "DescribeUsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUsg请求参数结构体
     public struct DescribeUsgRequest: TCRequestModel {
         /// 偏移量，当Offset和Limit均为0时将一次性返回用户所有的安全组列表。
@@ -42,7 +26,7 @@ extension Cloudhsm {
         /// 搜索关键字
         public let searchWord: String?
         
-        public init (offset: Int64, limit: Int64, searchWord: String?) {
+        public init (offset: Int64, limit: Int64, searchWord: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.searchWord = searchWord
@@ -72,5 +56,21 @@ extension Cloudhsm {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户安全组列表
+    ///
+    /// 根据用户的AppId获取用户安全组列表
+    @inlinable
+    public func describeUsg(_ input: DescribeUsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsgResponse > {
+        self.client.execute(action: "DescribeUsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户安全组列表
+    ///
+    /// 根据用户的AppId获取用户安全组列表
+    @inlinable
+    public func describeUsg(_ input: DescribeUsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgResponse {
+        try await self.client.execute(action: "DescribeUsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

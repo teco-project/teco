@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 修改白名单列表
-    @inlinable
-    public func modifyCRWhiteList(_ input: ModifyCRWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRWhiteListResponse > {
-        self.client.execute(action: "ModifyCRWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改白名单列表
-    @inlinable
-    public func modifyCRWhiteList(_ input: ModifyCRWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRWhiteListResponse {
-        try await self.client.execute(action: "ModifyCRWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCRWhiteList请求参数结构体
     public struct ModifyCRWhiteListRequest: TCRequestModel {
         /// 该字段已废弃，白名单ID
@@ -50,7 +38,7 @@ extension Bma {
         /// 白名单列表，以\n分割
         public let whiteSites: String?
         
-        public init (whiteListId: Int64?, platForm: String?, platUrl: String?, authorId: String?, worksId: Int64?, workId: Int64?, whiteSites: String?) {
+        public init (whiteListId: Int64? = nil, platForm: String? = nil, platUrl: String? = nil, authorId: String? = nil, worksId: Int64? = nil, workId: Int64? = nil, whiteSites: String? = nil) {
             self.whiteListId = whiteListId
             self.platForm = platForm
             self.platUrl = platUrl
@@ -79,5 +67,17 @@ extension Bma {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改白名单列表
+    @inlinable
+    public func modifyCRWhiteList(_ input: ModifyCRWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRWhiteListResponse > {
+        self.client.execute(action: "ModifyCRWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改白名单列表
+    @inlinable
+    public func modifyCRWhiteList(_ input: ModifyCRWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRWhiteListResponse {
+        try await self.client.execute(action: "ModifyCRWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

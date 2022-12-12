@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 修改产品信息
-    @inlinable
-    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductResponse > {
-        self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改产品信息
-    @inlinable
-    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
-        try await self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyProduct请求参数结构体
     public struct ModifyProductRequest: TCRequestModel {
         /// 产品id
@@ -38,7 +26,7 @@ extension Iotvideo {
         /// 修改的产品描述 （最多不超过128个字符）
         public let productDescription: String?
         
-        public init (productId: String, productName: String?, productDescription: String?) {
+        public init (productId: String, productName: String? = nil, productDescription: String? = nil) {
             self.productId = productId
             self.productName = productName
             self.productDescription = productDescription
@@ -59,5 +47,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改产品信息
+    @inlinable
+    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductResponse > {
+        self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改产品信息
+    @inlinable
+    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
+        try await self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

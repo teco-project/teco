@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-查询普通转账充值明细
-    ///
-    /// 查询普通转账充值明细。接口用于查询会员主动转账进资金汇总账户的明细情况。若会员使用绑定账号转入，则直接入账到会员子账户。若未使用绑定账号转入，则系统无法自动清分到对应子账户，则转入挂账子账户由平台自行清分。若是 “见证+收单充值”T0充值记录时备注Note为“见证+收单充值,订单号” 此接口可以查到T0到账的“见证+收单充值”充值记录。
-    @inlinable
-    public func queryCommonTransferRecharge(_ input: QueryCommonTransferRechargeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCommonTransferRechargeResponse > {
-        self.client.execute(action: "QueryCommonTransferRecharge", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-查询普通转账充值明细
-    ///
-    /// 查询普通转账充值明细。接口用于查询会员主动转账进资金汇总账户的明细情况。若会员使用绑定账号转入，则直接入账到会员子账户。若未使用绑定账号转入，则系统无法自动清分到对应子账户，则转入挂账子账户由平台自行清分。若是 “见证+收单充值”T0充值记录时备注Note为“见证+收单充值,订单号” 此接口可以查到T0到账的“见证+收单充值”充值记录。
-    @inlinable
-    public func queryCommonTransferRecharge(_ input: QueryCommonTransferRechargeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCommonTransferRechargeResponse {
-        try await self.client.execute(action: "QueryCommonTransferRecharge", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryCommonTransferRecharge请求参数结构体
     public struct QueryCommonTransferRechargeRequest: TCRequestModel {
         /// String(22)，商户号（签约客户号）
@@ -54,7 +38,7 @@ extension Cpdp {
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
         
-        public init (mrchCode: String, functionFlag: String, startDate: String, endDate: String, pageNum: String, reservedMsg: String?, profile: String?) {
+        public init (mrchCode: String, functionFlag: String, startDate: String, endDate: String, pageNum: String, reservedMsg: String? = nil, profile: String? = nil) {
             self.mrchCode = mrchCode
             self.functionFlag = functionFlag
             self.startDate = startDate
@@ -125,5 +109,21 @@ extension Cpdp {
             case reservedMsg = "ReservedMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-查询普通转账充值明细
+    ///
+    /// 查询普通转账充值明细。接口用于查询会员主动转账进资金汇总账户的明细情况。若会员使用绑定账号转入，则直接入账到会员子账户。若未使用绑定账号转入，则系统无法自动清分到对应子账户，则转入挂账子账户由平台自行清分。若是 “见证+收单充值”T0充值记录时备注Note为“见证+收单充值,订单号” 此接口可以查到T0到账的“见证+收单充值”充值记录。
+    @inlinable
+    public func queryCommonTransferRecharge(_ input: QueryCommonTransferRechargeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCommonTransferRechargeResponse > {
+        self.client.execute(action: "QueryCommonTransferRecharge", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-查询普通转账充值明细
+    ///
+    /// 查询普通转账充值明细。接口用于查询会员主动转账进资金汇总账户的明细情况。若会员使用绑定账号转入，则直接入账到会员子账户。若未使用绑定账号转入，则系统无法自动清分到对应子账户，则转入挂账子账户由平台自行清分。若是 “见证+收单充值”T0充值记录时备注Note为“见证+收单充值,订单号” 此接口可以查到T0到账的“见证+收单充值”充值记录。
+    @inlinable
+    public func queryCommonTransferRecharge(_ input: QueryCommonTransferRechargeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCommonTransferRechargeResponse {
+        try await self.client.execute(action: "QueryCommonTransferRecharge", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 创建自定义物模型数据类型
-    ///
-    /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
-    @inlinable
-    public func createIotDataType(_ input: CreateIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIotDataTypeResponse > {
-        self.client.execute(action: "CreateIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建自定义物模型数据类型
-    ///
-    /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
-    @inlinable
-    public func createIotDataType(_ input: CreateIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDataTypeResponse {
-        try await self.client.execute(action: "CreateIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateIotDataType请求参数结构体
     public struct CreateIotDataTypeRequest: TCRequestModel {
         /// 用户自定义数据类型，json格式的字符串
@@ -53,5 +37,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建自定义物模型数据类型
+    ///
+    /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
+    @inlinable
+    public func createIotDataType(_ input: CreateIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIotDataTypeResponse > {
+        self.client.execute(action: "CreateIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建自定义物模型数据类型
+    ///
+    /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
+    @inlinable
+    public func createIotDataType(_ input: CreateIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDataTypeResponse {
+        try await self.client.execute(action: "CreateIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

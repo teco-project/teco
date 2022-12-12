@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 设置白板推流回调地址
-    ///
-    /// 设置白板推流回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40257
-    @inlinable
-    public func setWhiteboardPushCallback(_ input: SetWhiteboardPushCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetWhiteboardPushCallbackResponse > {
-        self.client.execute(action: "SetWhiteboardPushCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置白板推流回调地址
-    ///
-    /// 设置白板推流回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40257
-    @inlinable
-    public func setWhiteboardPushCallback(_ input: SetWhiteboardPushCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetWhiteboardPushCallbackResponse {
-        try await self.client.execute(action: "SetWhiteboardPushCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetWhiteboardPushCallback请求参数结构体
     public struct SetWhiteboardPushCallbackRequest: TCRequestModel {
         /// 客户的SdkAppId
@@ -58,5 +42,21 @@ extension Tiw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置白板推流回调地址
+    ///
+    /// 设置白板推流回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40257
+    @inlinable
+    public func setWhiteboardPushCallback(_ input: SetWhiteboardPushCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetWhiteboardPushCallbackResponse > {
+        self.client.execute(action: "SetWhiteboardPushCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置白板推流回调地址
+    ///
+    /// 设置白板推流回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40257
+    @inlinable
+    public func setWhiteboardPushCallback(_ input: SetWhiteboardPushCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetWhiteboardPushCallbackResponse {
+        try await self.client.execute(action: "SetWhiteboardPushCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

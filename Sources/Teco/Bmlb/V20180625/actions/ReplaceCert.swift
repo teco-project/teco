@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 更新黑石负载均衡证书
-    ///
-    /// 更新黑石负载均衡证书。
-    @inlinable
-    public func replaceCert(_ input: ReplaceCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceCertResponse > {
-        self.client.execute(action: "ReplaceCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新黑石负载均衡证书
-    ///
-    /// 更新黑石负载均衡证书。
-    @inlinable
-    public func replaceCert(_ input: ReplaceCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertResponse {
-        try await self.client.execute(action: "ReplaceCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReplaceCert请求参数结构体
     public struct ReplaceCertRequest: TCRequestModel {
         /// 要被替换的证书ID
@@ -48,7 +32,7 @@ extension Bmlb {
         /// 是否删除旧证书，0 表示不删除，1 表示删除
         public let deleteOld: UInt64?
         
-        public init (oldCertId: String, newCert: String, newAlias: String?, newKey: String?, deleteOld: UInt64?) {
+        public init (oldCertId: String, newCert: String, newAlias: String? = nil, newKey: String? = nil, deleteOld: UInt64? = nil) {
             self.oldCertId = oldCertId
             self.newCert = newCert
             self.newAlias = newAlias
@@ -81,5 +65,21 @@ extension Bmlb {
             case oldCertId = "OldCertId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新黑石负载均衡证书
+    ///
+    /// 更新黑石负载均衡证书。
+    @inlinable
+    public func replaceCert(_ input: ReplaceCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceCertResponse > {
+        self.client.execute(action: "ReplaceCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新黑石负载均衡证书
+    ///
+    /// 更新黑石负载均衡证书。
+    @inlinable
+    public func replaceCert(_ input: ReplaceCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertResponse {
+        try await self.client.execute(action: "ReplaceCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

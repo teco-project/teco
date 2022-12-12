@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 获取产品事件列表
-    ///
-    /// 分页获取产品事件的列表
-    @inlinable
-    public func describeProductEventList(_ input: DescribeProductEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductEventListResponse > {
-        self.client.execute(action: "DescribeProductEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取产品事件列表
-    ///
-    /// 分页获取产品事件的列表
-    @inlinable
-    public func describeProductEventList(_ input: DescribeProductEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductEventListResponse {
-        try await self.client.execute(action: "DescribeProductEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProductEventList请求参数结构体
     public struct DescribeProductEventListRequest: TCRequestModel {
         /// 接口模块名，固定值"monitor"
@@ -78,7 +62,7 @@ extension Monitor {
         /// 每页返回的数量，默认20
         public let limit: Int64?
         
-        public init (module: String, productName: [String]?, eventName: [String]?, instanceId: [String]?, dimensions: [DescribeProductEventListDimensions]?, regionList: [String]?, type: [String]?, status: [String]?, project: [String]?, isAlarmConfig: Int64?, timeOrder: String?, startTime: Int64?, endTime: Int64?, offset: Int64?, limit: Int64?) {
+        public init (module: String, productName: [String]? = nil, eventName: [String]? = nil, instanceId: [String]? = nil, dimensions: [DescribeProductEventListDimensions]? = nil, regionList: [String]? = nil, type: [String]? = nil, status: [String]? = nil, project: [String]? = nil, isAlarmConfig: Int64? = nil, timeOrder: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.module = module
             self.productName = productName
             self.eventName = eventName
@@ -137,5 +121,21 @@ extension Monitor {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取产品事件列表
+    ///
+    /// 分页获取产品事件的列表
+    @inlinable
+    public func describeProductEventList(_ input: DescribeProductEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductEventListResponse > {
+        self.client.execute(action: "DescribeProductEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品事件列表
+    ///
+    /// 分页获取产品事件的列表
+    @inlinable
+    public func describeProductEventList(_ input: DescribeProductEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductEventListResponse {
+        try await self.client.execute(action: "DescribeProductEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

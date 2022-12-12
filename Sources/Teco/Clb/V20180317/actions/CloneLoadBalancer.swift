@@ -15,42 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 克隆负载均衡实例
-    ///
-    /// 克隆负载均衡实例，根据指定的负载均衡实例，复制出相同规则和绑定关系的负载均衡实例。克隆接口为异步操作，克隆的数据以调用CloneLoadBalancer时为准，如果调用CloneLoadBalancer后克隆CLB发生变化，变化规则不会克隆。
-    /// 限制说明：
-    /// 不支持基础网络和传统型负载均衡、IPv6和NAT64
-    /// 不支持包年包月CLB
-    /// 不支持监听器为 QUIC、端口段
-    /// 不支持后端类型为 目标组、SCF云函数
-    /// 个性化配置、重定向配置、安全组默认放通开关 将不会被克隆，须手工配置
-    /// 通过接口调用：
-    /// BGP带宽包必须传带宽包id
-    /// 独占集群克隆必须传对应的参数，否则按共享型创建
-    /// 功能内测中，[申请开通](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=163&source=0&data_title=%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%20CLB&step=1)。
-    @inlinable
-    public func cloneLoadBalancer(_ input: CloneLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloneLoadBalancerResponse > {
-        self.client.execute(action: "CloneLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 克隆负载均衡实例
-    ///
-    /// 克隆负载均衡实例，根据指定的负载均衡实例，复制出相同规则和绑定关系的负载均衡实例。克隆接口为异步操作，克隆的数据以调用CloneLoadBalancer时为准，如果调用CloneLoadBalancer后克隆CLB发生变化，变化规则不会克隆。
-    /// 限制说明：
-    /// 不支持基础网络和传统型负载均衡、IPv6和NAT64
-    /// 不支持包年包月CLB
-    /// 不支持监听器为 QUIC、端口段
-    /// 不支持后端类型为 目标组、SCF云函数
-    /// 个性化配置、重定向配置、安全组默认放通开关 将不会被克隆，须手工配置
-    /// 通过接口调用：
-    /// BGP带宽包必须传带宽包id
-    /// 独占集群克隆必须传对应的参数，否则按共享型创建
-    /// 功能内测中，[申请开通](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=163&source=0&data_title=%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%20CLB&step=1)。
-    @inlinable
-    public func cloneLoadBalancer(_ input: CloneLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneLoadBalancerResponse {
-        try await self.client.execute(action: "CloneLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CloneLoadBalancer请求参数结构体
     public struct CloneLoadBalancerRequest: TCRequestModel {
         /// 负载均衡ID。
@@ -75,7 +39,7 @@ extension Clb {
         public let zoneId: String?
         
         /// 仅适用于公网负载均衡。负载均衡的网络计费模式。
-        public let internetAccessible: InternetAccessible
+        public let internetAccessible: InternetAccessible?
         
         /// 仅适用于公网负载均衡。CMCC | CTCC | CUCC，分别对应 移动 | 电信 | 联通，如果不指定本参数，则默认使用BGP。可通过 DescribeSingleIsp 接口查询一个地域所支持的Isp。如果指定运营商，则网络计费式只能使用按带宽包计费(BANDWIDTH_PACKAGE)。
         public let vipIsp: String?
@@ -87,7 +51,7 @@ extension Clb {
         public let tags: [TagInfo]?
         
         /// 独占集群信息。
-        public let exclusiveCluster: ExclusiveCluster
+        public let exclusiveCluster: ExclusiveCluster?
         
         /// 带宽包ID，指定此参数时，网络计费方式（InternetAccessible.InternetChargeType）只支持按带宽包计费（BANDWIDTH_PACKAGE）。
         public let bandwidthPackageId: String?
@@ -113,7 +77,7 @@ extension Clb {
         /// EIP 的唯一 ID，形如：eip-11112222，仅适用于内网负载均衡绑定EIP。
         public let eipAddressId: String?
         
-        public init (loadBalancerId: String, loadBalancerName: String?, projectId: Int64?, masterZoneId: String?, slaveZoneId: String?, zoneId: String?, internetAccessible: InternetAccessible, vipIsp: String?, vip: String?, tags: [TagInfo]?, exclusiveCluster: ExclusiveCluster, bandwidthPackageId: String?, snatPro: Bool?, snatIps: [SnatIp]?, clusterIds: [String]?, slaType: String?, clusterTag: String?, zones: [String]?, eipAddressId: String?) {
+        public init (loadBalancerId: String, loadBalancerName: String? = nil, projectId: Int64? = nil, masterZoneId: String? = nil, slaveZoneId: String? = nil, zoneId: String? = nil, internetAccessible: InternetAccessible? = nil, vipIsp: String? = nil, vip: String? = nil, tags: [TagInfo]? = nil, exclusiveCluster: ExclusiveCluster? = nil, bandwidthPackageId: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, clusterIds: [String]? = nil, slaType: String? = nil, clusterTag: String? = nil, zones: [String]? = nil, eipAddressId: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.loadBalancerName = loadBalancerName
             self.projectId = projectId
@@ -166,5 +130,41 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 克隆负载均衡实例
+    ///
+    /// 克隆负载均衡实例，根据指定的负载均衡实例，复制出相同规则和绑定关系的负载均衡实例。克隆接口为异步操作，克隆的数据以调用CloneLoadBalancer时为准，如果调用CloneLoadBalancer后克隆CLB发生变化，变化规则不会克隆。
+    /// 限制说明：
+    /// 不支持基础网络和传统型负载均衡、IPv6和NAT64
+    /// 不支持包年包月CLB
+    /// 不支持监听器为 QUIC、端口段
+    /// 不支持后端类型为 目标组、SCF云函数
+    /// 个性化配置、重定向配置、安全组默认放通开关 将不会被克隆，须手工配置
+    /// 通过接口调用：
+    /// BGP带宽包必须传带宽包id
+    /// 独占集群克隆必须传对应的参数，否则按共享型创建
+    /// 功能内测中，[申请开通](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=163&source=0&data_title=%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%20CLB&step=1)。
+    @inlinable
+    public func cloneLoadBalancer(_ input: CloneLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloneLoadBalancerResponse > {
+        self.client.execute(action: "CloneLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 克隆负载均衡实例
+    ///
+    /// 克隆负载均衡实例，根据指定的负载均衡实例，复制出相同规则和绑定关系的负载均衡实例。克隆接口为异步操作，克隆的数据以调用CloneLoadBalancer时为准，如果调用CloneLoadBalancer后克隆CLB发生变化，变化规则不会克隆。
+    /// 限制说明：
+    /// 不支持基础网络和传统型负载均衡、IPv6和NAT64
+    /// 不支持包年包月CLB
+    /// 不支持监听器为 QUIC、端口段
+    /// 不支持后端类型为 目标组、SCF云函数
+    /// 个性化配置、重定向配置、安全组默认放通开关 将不会被克隆，须手工配置
+    /// 通过接口调用：
+    /// BGP带宽包必须传带宽包id
+    /// 独占集群克隆必须传对应的参数，否则按共享型创建
+    /// 功能内测中，[申请开通](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=163&source=0&data_title=%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%20CLB&step=1)。
+    @inlinable
+    public func cloneLoadBalancer(_ input: CloneLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneLoadBalancerResponse {
+        try await self.client.execute(action: "CloneLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

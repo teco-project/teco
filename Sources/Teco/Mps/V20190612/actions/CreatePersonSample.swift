@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 创建素材样本
-    ///
-    /// 该接口用于创建素材样本，用于通过五官定位等技术，进行内容识别、内容不适宜等视频处理。
-    @inlinable
-    public func createPersonSample(_ input: CreatePersonSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePersonSampleResponse > {
-        self.client.execute(action: "CreatePersonSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建素材样本
-    ///
-    /// 该接口用于创建素材样本，用于通过五官定位等技术，进行内容识别、内容不适宜等视频处理。
-    @inlinable
-    public func createPersonSample(_ input: CreatePersonSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonSampleResponse {
-        try await self.client.execute(action: "CreatePersonSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePersonSample请求参数结构体
     public struct CreatePersonSampleRequest: TCRequestModel {
         /// 素材名称，长度限制：20 个字符。
@@ -54,7 +38,7 @@ extension Mps {
         /// <li>单个标签长度限制：128 个字符。</li>
         public let tags: [String]?
         
-        public init (name: String, usages: [String], description: String?, faceContents: [String]?, tags: [String]?) {
+        public init (name: String, usages: [String], description: String? = nil, faceContents: [String]? = nil, tags: [String]? = nil) {
             self.name = name
             self.usages = usages
             self.description = description
@@ -87,5 +71,21 @@ extension Mps {
             case failFaceInfoSet = "FailFaceInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建素材样本
+    ///
+    /// 该接口用于创建素材样本，用于通过五官定位等技术，进行内容识别、内容不适宜等视频处理。
+    @inlinable
+    public func createPersonSample(_ input: CreatePersonSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePersonSampleResponse > {
+        self.client.execute(action: "CreatePersonSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建素材样本
+    ///
+    /// 该接口用于创建素材样本，用于通过五官定位等技术，进行内容识别、内容不适宜等视频处理。
+    @inlinable
+    public func createPersonSample(_ input: CreatePersonSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonSampleResponse {
+        try await self.client.execute(action: "CreatePersonSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

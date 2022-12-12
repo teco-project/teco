@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询静态托管域名任务状态
-    @inlinable
-    public func describeHostingDomainTask(_ input: DescribeHostingDomainTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostingDomainTaskResponse > {
-        self.client.execute(action: "DescribeHostingDomainTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询静态托管域名任务状态
-    @inlinable
-    public func describeHostingDomainTask(_ input: DescribeHostingDomainTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostingDomainTaskResponse {
-        try await self.client.execute(action: "DescribeHostingDomainTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHostingDomainTask请求参数结构体
     public struct DescribeHostingDomainTaskRequest: TCRequestModel {
         /// 环境ID
@@ -53,5 +41,17 @@ extension Tcb {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询静态托管域名任务状态
+    @inlinable
+    public func describeHostingDomainTask(_ input: DescribeHostingDomainTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostingDomainTaskResponse > {
+        self.client.execute(action: "DescribeHostingDomainTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询静态托管域名任务状态
+    @inlinable
+    public func describeHostingDomainTask(_ input: DescribeHostingDomainTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostingDomainTaskResponse {
+        try await self.client.execute(action: "DescribeHostingDomainTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

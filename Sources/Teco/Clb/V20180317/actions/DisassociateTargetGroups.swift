@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 解除规则的目标组关联关系
-    ///
-    /// 解除规则的目标组关联关系。
-    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
-    public func disassociateTargetGroups(_ input: DisassociateTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateTargetGroupsResponse > {
-        self.client.execute(action: "DisassociateTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解除规则的目标组关联关系
-    ///
-    /// 解除规则的目标组关联关系。
-    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
-    public func disassociateTargetGroups(_ input: DisassociateTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateTargetGroupsResponse {
-        try await self.client.execute(action: "DisassociateTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisassociateTargetGroups请求参数结构体
     public struct DisassociateTargetGroupsRequest: TCRequestModel {
         /// 待解绑的规则关系数组。
@@ -55,5 +37,23 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解除规则的目标组关联关系
+    ///
+    /// 解除规则的目标组关联关系。
+    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func disassociateTargetGroups(_ input: DisassociateTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateTargetGroupsResponse > {
+        self.client.execute(action: "DisassociateTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解除规则的目标组关联关系
+    ///
+    /// 解除规则的目标组关联关系。
+    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func disassociateTargetGroups(_ input: DisassociateTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateTargetGroupsResponse {
+        try await self.client.execute(action: "DisassociateTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

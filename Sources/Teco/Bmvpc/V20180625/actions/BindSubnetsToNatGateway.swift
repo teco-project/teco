@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// NAT网关绑定子网
-    ///
-    /// NAT网关绑定子网后，该子网内全部IP可出公网
-    @inlinable
-    public func bindSubnetsToNatGateway(_ input: BindSubnetsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindSubnetsToNatGatewayResponse > {
-        self.client.execute(action: "BindSubnetsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// NAT网关绑定子网
-    ///
-    /// NAT网关绑定子网后，该子网内全部IP可出公网
-    @inlinable
-    public func bindSubnetsToNatGateway(_ input: BindSubnetsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSubnetsToNatGatewayResponse {
-        try await self.client.execute(action: "BindSubnetsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindSubnetsToNatGateway请求参数结构体
     public struct BindSubnetsToNatGatewayRequest: TCRequestModel {
         /// NAT网关ID，例如：nat-kdm476mp
@@ -67,5 +51,21 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// NAT网关绑定子网
+    ///
+    /// NAT网关绑定子网后，该子网内全部IP可出公网
+    @inlinable
+    public func bindSubnetsToNatGateway(_ input: BindSubnetsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindSubnetsToNatGatewayResponse > {
+        self.client.execute(action: "BindSubnetsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// NAT网关绑定子网
+    ///
+    /// NAT网关绑定子网后，该子网内全部IP可出公网
+    @inlinable
+    public func bindSubnetsToNatGateway(_ input: BindSubnetsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSubnetsToNatGatewayResponse {
+        try await self.client.execute(action: "BindSubnetsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询某个网关绑定的API 分组信息列表
-    @inlinable
-    public func describeGroupGateways(_ input: DescribeGroupGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupGatewaysResponse > {
-        self.client.execute(action: "DescribeGroupGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询某个网关绑定的API 分组信息列表
-    @inlinable
-    public func describeGroupGateways(_ input: DescribeGroupGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupGatewaysResponse {
-        try await self.client.execute(action: "DescribeGroupGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGroupGateways请求参数结构体
     public struct DescribeGroupGatewaysRequest: TCRequestModel {
         /// 网关部署组ID
@@ -41,7 +29,7 @@ extension Tsf {
         /// 搜索关键字
         public let searchWord: String?
         
-        public init (gatewayDeployGroupId: String, offset: Int64, limit: Int64, searchWord: String?) {
+        public init (gatewayDeployGroupId: String, offset: Int64, limit: Int64, searchWord: String? = nil) {
             self.gatewayDeployGroupId = gatewayDeployGroupId
             self.offset = offset
             self.limit = limit
@@ -68,5 +56,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询某个网关绑定的API 分组信息列表
+    @inlinable
+    public func describeGroupGateways(_ input: DescribeGroupGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupGatewaysResponse > {
+        self.client.execute(action: "DescribeGroupGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询某个网关绑定的API 分组信息列表
+    @inlinable
+    public func describeGroupGateways(_ input: DescribeGroupGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupGatewaysResponse {
+        try await self.client.execute(action: "DescribeGroupGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

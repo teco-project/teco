@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 删除场景
-    @inlinable
-    public func deleteScenarios(_ input: DeleteScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScenariosResponse > {
-        self.client.execute(action: "DeleteScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除场景
-    @inlinable
-    public func deleteScenarios(_ input: DeleteScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScenariosResponse {
-        try await self.client.execute(action: "DeleteScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteScenarios请求参数结构体
     public struct DeleteScenariosRequest: TCRequestModel {
         /// 场景ID数组
@@ -38,7 +26,7 @@ extension Pts {
         /// 是否删除场景相关的任务。默认为否。
         public let deleteJobs: Bool?
         
-        public init (scenarioIds: [String], projectId: String, deleteJobs: Bool?) {
+        public init (scenarioIds: [String], projectId: String, deleteJobs: Bool? = nil) {
             self.scenarioIds = scenarioIds
             self.projectId = projectId
             self.deleteJobs = deleteJobs
@@ -59,5 +47,17 @@ extension Pts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除场景
+    @inlinable
+    public func deleteScenarios(_ input: DeleteScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScenariosResponse > {
+        self.client.execute(action: "DeleteScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除场景
+    @inlinable
+    public func deleteScenarios(_ input: DeleteScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScenariosResponse {
+        try await self.client.execute(action: "DeleteScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

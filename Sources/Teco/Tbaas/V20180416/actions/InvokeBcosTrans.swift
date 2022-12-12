@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 执行Bcos交易
-    ///
-    /// 执行Bcos交易，支持动态部署的合约
-    @inlinable
-    public func invokeBcosTrans(_ input: InvokeBcosTransRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeBcosTransResponse > {
-        self.client.execute(action: "InvokeBcosTrans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 执行Bcos交易
-    ///
-    /// 执行Bcos交易，支持动态部署的合约
-    @inlinable
-    public func invokeBcosTrans(_ input: InvokeBcosTransRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeBcosTransResponse {
-        try await self.client.execute(action: "InvokeBcosTrans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InvokeBcosTrans请求参数结构体
     public struct InvokeBcosTransRequest: TCRequestModel {
         /// 网络ID，可在区块链网络详情或列表中获取
@@ -54,7 +38,7 @@ extension Tbaas {
         /// 合约方法入参，json格式字符串
         public let funcParam: String?
         
-        public init (clusterId: String, groupId: Int64, contractAddress: String, abiInfo: String, funcName: String, signUserId: String, funcParam: String?) {
+        public init (clusterId: String, groupId: Int64, contractAddress: String, abiInfo: String, funcName: String, signUserId: String, funcParam: String? = nil) {
             self.clusterId = clusterId
             self.groupId = groupId
             self.contractAddress = contractAddress
@@ -87,5 +71,21 @@ extension Tbaas {
             case transactionRsp = "TransactionRsp"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 执行Bcos交易
+    ///
+    /// 执行Bcos交易，支持动态部署的合约
+    @inlinable
+    public func invokeBcosTrans(_ input: InvokeBcosTransRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeBcosTransResponse > {
+        self.client.execute(action: "InvokeBcosTrans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 执行Bcos交易
+    ///
+    /// 执行Bcos交易，支持动态部署的合约
+    @inlinable
+    public func invokeBcosTrans(_ input: InvokeBcosTransRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeBcosTransResponse {
+        try await self.client.execute(action: "InvokeBcosTrans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

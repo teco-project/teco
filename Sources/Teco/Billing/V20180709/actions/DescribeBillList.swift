@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Billing {
-    /// 获取收支明细列表
-    ///
-    /// 获取收支明细列表，支持翻页和参数过滤
-    @inlinable
-    public func describeBillList(_ input: DescribeBillListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillListResponse > {
-        self.client.execute(action: "DescribeBillList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取收支明细列表
-    ///
-    /// 获取收支明细列表，支持翻页和参数过滤
-    @inlinable
-    public func describeBillList(_ input: DescribeBillListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillListResponse {
-        try await self.client.execute(action: "DescribeBillList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBillList请求参数结构体
     public struct DescribeBillListRequest: TCRequestModel {
         /// 查询范围的起始时间（包含）
@@ -70,7 +54,7 @@ extension Billing {
         /// 是否返回0元交易金额的交易项，取值：0-不返回，1-返回。不传该参数则不返回
         public let withZeroAmount: UInt64?
         
-        public init (startTime: String, endTime: String, offset: UInt64, limit: UInt64, payType: [String]?, subPayType: [String]?, withZeroAmount: UInt64?) {
+        public init (startTime: String, endTime: String, offset: UInt64, limit: UInt64, payType: [String]? = nil, subPayType: [String]? = nil, withZeroAmount: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.offset = offset
@@ -147,5 +131,21 @@ extension Billing {
             case advancePayAmount = "AdvancePayAmount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取收支明细列表
+    ///
+    /// 获取收支明细列表，支持翻页和参数过滤
+    @inlinable
+    public func describeBillList(_ input: DescribeBillListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillListResponse > {
+        self.client.execute(action: "DescribeBillList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取收支明细列表
+    ///
+    /// 获取收支明细列表，支持翻页和参数过滤
+    @inlinable
+    public func describeBillList(_ input: DescribeBillListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillListResponse {
+        try await self.client.execute(action: "DescribeBillList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

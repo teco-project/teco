@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 告警事件列表
-    @inlinable
-    public func describeAlarmEvents(_ input: DescribeAlarmEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmEventsResponse > {
-        self.client.execute(action: "DescribeAlarmEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 告警事件列表
-    @inlinable
-    public func describeAlarmEvents(_ input: DescribeAlarmEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmEventsResponse {
-        try await self.client.execute(action: "DescribeAlarmEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAlarmEvents请求参数结构体
     public struct DescribeAlarmEventsRequest: TCRequestModel {
         /// 过滤条件(key可以是：AlarmLevel,AlarmIndicator,KeyWord)
@@ -93,5 +81,17 @@ extension Wedata {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 告警事件列表
+    @inlinable
+    public func describeAlarmEvents(_ input: DescribeAlarmEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmEventsResponse > {
+        self.client.execute(action: "DescribeAlarmEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 告警事件列表
+    @inlinable
+    public func describeAlarmEvents(_ input: DescribeAlarmEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmEventsResponse {
+        try await self.client.execute(action: "DescribeAlarmEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

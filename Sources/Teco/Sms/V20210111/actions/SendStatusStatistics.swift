@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Sms {
-    /// 发送短信数据统计
-    ///
-    /// 统计用户发送短信的数据。
-    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
-    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
-    @inlinable
-    public func sendStatusStatistics(_ input: SendStatusStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendStatusStatisticsResponse > {
-        self.client.execute(action: "SendStatusStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送短信数据统计
-    ///
-    /// 统计用户发送短信的数据。
-    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
-    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
-    @inlinable
-    public func sendStatusStatistics(_ input: SendStatusStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendStatusStatisticsResponse {
-        try await self.client.execute(action: "SendStatusStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendStatusStatistics请求参数结构体
     public struct SendStatusStatisticsRequest: TCRequestModel {
         /// 起始时间，格式为yyyymmddhh，精确到小时，例如2021050113，表示2021年5月1号13时。
@@ -84,5 +64,25 @@ extension Sms {
             case sendStatusStatistics = "SendStatusStatistics"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送短信数据统计
+    ///
+    /// 统计用户发送短信的数据。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
+    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    @inlinable
+    public func sendStatusStatistics(_ input: SendStatusStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendStatusStatisticsResponse > {
+        self.client.execute(action: "SendStatusStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送短信数据统计
+    ///
+    /// 统计用户发送短信的数据。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
+    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    @inlinable
+    public func sendStatusStatistics(_ input: SendStatusStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendStatusStatisticsResponse {
+        try await self.client.execute(action: "SendStatusStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

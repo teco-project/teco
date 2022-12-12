@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 查询Datahub Topic最新消息列表
-    ///
-    /// 查询最新消息列表
-    @inlinable
-    public func fetchLatestDatahubMessageList(_ input: FetchLatestDatahubMessageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FetchLatestDatahubMessageListResponse > {
-        self.client.execute(action: "FetchLatestDatahubMessageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Datahub Topic最新消息列表
-    ///
-    /// 查询最新消息列表
-    @inlinable
-    public func fetchLatestDatahubMessageList(_ input: FetchLatestDatahubMessageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchLatestDatahubMessageListResponse {
-        try await self.client.execute(action: "FetchLatestDatahubMessageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// FetchLatestDatahubMessageList请求参数结构体
     public struct FetchLatestDatahubMessageListRequest: TCRequestModel {
         /// 主题名
@@ -45,7 +29,7 @@ extension Ckafka {
         /// 最大查询条数，最小1，最大100
         public let messageCount: Int64?
         
-        public init (name: String, partition: Int64, offset: Int64?, messageCount: Int64?) {
+        public init (name: String, partition: Int64, offset: Int64? = nil, messageCount: Int64? = nil) {
             self.name = name
             self.partition = partition
             self.offset = offset
@@ -72,5 +56,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Datahub Topic最新消息列表
+    ///
+    /// 查询最新消息列表
+    @inlinable
+    public func fetchLatestDatahubMessageList(_ input: FetchLatestDatahubMessageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FetchLatestDatahubMessageListResponse > {
+        self.client.execute(action: "FetchLatestDatahubMessageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Datahub Topic最新消息列表
+    ///
+    /// 查询最新消息列表
+    @inlinable
+    public func fetchLatestDatahubMessageList(_ input: FetchLatestDatahubMessageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchLatestDatahubMessageListResponse {
+        try await self.client.execute(action: "FetchLatestDatahubMessageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

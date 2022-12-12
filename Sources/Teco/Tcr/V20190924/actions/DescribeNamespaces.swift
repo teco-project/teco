@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询命名空间信息
-    ///
-    /// 查询命名空间列表或指定命名空间信息
-    @inlinable
-    public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespacesResponse > {
-        self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询命名空间信息
-    ///
-    /// 查询命名空间列表或指定命名空间信息
-    @inlinable
-    public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacesResponse {
-        try await self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNamespaces请求参数结构体
     public struct DescribeNamespacesRequest: TCRequestModel {
         /// 实例Id
@@ -54,7 +38,7 @@ extension Tcr {
         /// 仅查询启用了 KMS 镜像签名的空间
         public let kmsSignPolicy: Bool?
         
-        public init (registryId: String, namespaceName: String?, limit: Int64?, offset: Int64?, all: Bool?, filters: [Filter]?, kmsSignPolicy: Bool?) {
+        public init (registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, all: Bool? = nil, filters: [Filter]? = nil, kmsSignPolicy: Bool? = nil) {
             self.registryId = registryId
             self.namespaceName = namespaceName
             self.limit = limit
@@ -91,5 +75,21 @@ extension Tcr {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询命名空间信息
+    ///
+    /// 查询命名空间列表或指定命名空间信息
+    @inlinable
+    public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespacesResponse > {
+        self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询命名空间信息
+    ///
+    /// 查询命名空间列表或指定命名空间信息
+    @inlinable
+    public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacesResponse {
+        try await self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

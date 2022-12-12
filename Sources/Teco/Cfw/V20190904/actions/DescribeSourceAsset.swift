@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 查询资产组全部资产信息
-    ///
-    /// DescribeSourceAsset-查询资产组全部资产信息
-    @inlinable
-    public func describeSourceAsset(_ input: DescribeSourceAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSourceAssetResponse > {
-        self.client.execute(action: "DescribeSourceAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询资产组全部资产信息
-    ///
-    /// DescribeSourceAsset-查询资产组全部资产信息
-    @inlinable
-    public func describeSourceAsset(_ input: DescribeSourceAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceAssetResponse {
-        try await self.client.execute(action: "DescribeSourceAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSourceAsset请求参数结构体
     public struct DescribeSourceAssetRequest: TCRequestModel {
         /// 模糊查询
@@ -51,7 +35,7 @@ extension Cfw {
         /// 查询结果的偏移量
         public let offset: Int64?
         
-        public init (fuzzySearch: String?, insType: String?, chooseType: String?, zone: String?, limit: Int64?, offset: Int64?) {
+        public init (fuzzySearch: String? = nil, insType: String? = nil, chooseType: String? = nil, zone: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.fuzzySearch = fuzzySearch
             self.insType = insType
             self.chooseType = chooseType
@@ -90,5 +74,21 @@ extension Cfw {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询资产组全部资产信息
+    ///
+    /// DescribeSourceAsset-查询资产组全部资产信息
+    @inlinable
+    public func describeSourceAsset(_ input: DescribeSourceAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSourceAssetResponse > {
+        self.client.execute(action: "DescribeSourceAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资产组全部资产信息
+    ///
+    /// DescribeSourceAsset-查询资产组全部资产信息
+    @inlinable
+    public func describeSourceAsset(_ input: DescribeSourceAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceAssetResponse {
+        try await self.client.execute(action: "DescribeSourceAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

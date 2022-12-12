@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 上报歌曲播放数据
-    ///
-    /// 客户上报用户数据功能，为了更好地为用户提供优质服务
-    @inlinable
-    public func reportData(_ input: ReportDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportDataResponse > {
-        self.client.execute(action: "ReportData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上报歌曲播放数据
-    ///
-    /// 客户上报用户数据功能，为了更好地为用户提供优质服务
-    @inlinable
-    public func reportData(_ input: ReportDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportDataResponse {
-        try await self.client.execute(action: "ReportData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReportData请求参数结构体
     public struct ReportDataRequest: TCRequestModel {
         /// 上报数据
@@ -63,5 +47,21 @@ extension Ame {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上报歌曲播放数据
+    ///
+    /// 客户上报用户数据功能，为了更好地为用户提供优质服务
+    @inlinable
+    public func reportData(_ input: ReportDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportDataResponse > {
+        self.client.execute(action: "ReportData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上报歌曲播放数据
+    ///
+    /// 客户上报用户数据功能，为了更好地为用户提供优质服务
+    @inlinable
+    public func reportData(_ input: ReportDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportDataResponse {
+        try await self.client.execute(action: "ReportData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

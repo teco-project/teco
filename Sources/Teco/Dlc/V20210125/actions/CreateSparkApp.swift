@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 创建spark应用
-    @inlinable
-    public func createSparkApp(_ input: CreateSparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSparkAppResponse > {
-        self.client.execute(action: "CreateSparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建spark应用
-    @inlinable
-    public func createSparkApp(_ input: CreateSparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkAppResponse {
-        try await self.client.execute(action: "CreateSparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSparkApp请求参数结构体
     public struct CreateSparkAppRequest: TCRequestModel {
         /// spark应用名
@@ -98,7 +86,7 @@ extension Dlc {
         /// archives：依赖资源
         public let appArchives: String?
         
-        public init (appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, eni: String?, isLocal: String?, mainClass: String?, appConf: String?, isLocalJars: String?, appJars: String?, isLocalFiles: String?, appFiles: String?, cmdArgs: String?, maxRetries: Int64?, dataSource: String?, isLocalPythonFiles: String?, appPythonFiles: String?, isLocalArchives: String?, appArchives: String?) {
+        public init (appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil) {
             self.appName = appName
             self.appType = appType
             self.dataEngine = dataEngine
@@ -159,5 +147,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建spark应用
+    @inlinable
+    public func createSparkApp(_ input: CreateSparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSparkAppResponse > {
+        self.client.execute(action: "CreateSparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建spark应用
+    @inlinable
+    public func createSparkApp(_ input: CreateSparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkAppResponse {
+        try await self.client.execute(action: "CreateSparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

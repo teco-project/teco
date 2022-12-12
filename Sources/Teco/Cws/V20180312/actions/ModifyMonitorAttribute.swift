@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cws {
-    /// 修改监测任务的属性
-    ///
-    /// 本接口 (ModifyMonitorAttribute) 用于修改监测任务的属性。
-    @inlinable
-    public func modifyMonitorAttribute(_ input: ModifyMonitorAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMonitorAttributeResponse > {
-        self.client.execute(action: "ModifyMonitorAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改监测任务的属性
-    ///
-    /// 本接口 (ModifyMonitorAttribute) 用于修改监测任务的属性。
-    @inlinable
-    public func modifyMonitorAttribute(_ input: ModifyMonitorAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMonitorAttributeResponse {
-        try await self.client.execute(action: "ModifyMonitorAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMonitorAttribute请求参数结构体
     public struct ModifyMonitorAttributeRequest: TCRequestModel {
         /// 监测任务ID
@@ -91,5 +75,21 @@ extension Cws {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改监测任务的属性
+    ///
+    /// 本接口 (ModifyMonitorAttribute) 用于修改监测任务的属性。
+    @inlinable
+    public func modifyMonitorAttribute(_ input: ModifyMonitorAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMonitorAttributeResponse > {
+        self.client.execute(action: "ModifyMonitorAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改监测任务的属性
+    ///
+    /// 本接口 (ModifyMonitorAttribute) 用于修改监测任务的属性。
+    @inlinable
+    public func modifyMonitorAttribute(_ input: ModifyMonitorAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMonitorAttributeResponse {
+        try await self.client.execute(action: "ModifyMonitorAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

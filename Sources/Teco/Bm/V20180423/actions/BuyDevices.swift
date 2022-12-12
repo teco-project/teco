@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 购买物理机
-    ///
-    /// 购买黑石物理机
-    @inlinable
-    public func buyDevices(_ input: BuyDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BuyDevicesResponse > {
-        self.client.execute(action: "BuyDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 购买物理机
-    ///
-    /// 购买黑石物理机
-    @inlinable
-    public func buyDevices(_ input: BuyDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuyDevicesResponse {
-        try await self.client.execute(action: "BuyDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BuyDevices请求参数结构体
     public struct BuyDevicesRequest: TCRequestModel {
         /// 可用区ID。通过接口[查询地域以及可用区(DescribeRegions)](https://cloud.tencent.com/document/api/386/33564)获取可用区信息
@@ -154,7 +138,7 @@ extension Bm {
         /// 安全组模板ID，由模板创建新安全组并绑定。TemplateId和SgId不能同时传入
         public let templateId: String?
         
-        public init (zone: String, osTypeId: UInt64, raidId: UInt64, goodsCount: UInt64, vpcId: String, subnetId: String, deviceClassCode: String, timeUnit: String, timeSpan: UInt64, needSecurityAgent: UInt64?, needMonitorAgent: UInt64?, needEMRAgent: UInt64?, needEMRSoftware: UInt64?, applyEip: UInt64?, eipPayMode: String?, eipBandwidth: UInt64?, isZoning: UInt64?, cpmPayMode: UInt64?, imageId: String?, password: String?, autoRenewFlag: UInt64?, sysRootSpace: UInt64?, sysSwaporuefiSpace: UInt64?, sysUsrlocalSpace: UInt64?, sysDataSpace: UInt64?, hyperThreading: UInt64?, lanIps: [String]?, aliases: [String]?, cpuId: UInt64?, containRaidCard: UInt64?, memSize: UInt64?, systemDiskTypeId: UInt64?, systemDiskCount: UInt64?, dataDiskTypeId: UInt64?, dataDiskCount: UInt64?, tags: [Tag]?, fileSystem: String?, buySession: String?, sgId: String?, templateId: String?) {
+        public init (zone: String, osTypeId: UInt64, raidId: UInt64, goodsCount: UInt64, vpcId: String, subnetId: String, deviceClassCode: String, timeUnit: String, timeSpan: UInt64, needSecurityAgent: UInt64? = nil, needMonitorAgent: UInt64? = nil, needEMRAgent: UInt64? = nil, needEMRSoftware: UInt64? = nil, applyEip: UInt64? = nil, eipPayMode: String? = nil, eipBandwidth: UInt64? = nil, isZoning: UInt64? = nil, cpmPayMode: UInt64? = nil, imageId: String? = nil, password: String? = nil, autoRenewFlag: UInt64? = nil, sysRootSpace: UInt64? = nil, sysSwaporuefiSpace: UInt64? = nil, sysUsrlocalSpace: UInt64? = nil, sysDataSpace: UInt64? = nil, hyperThreading: UInt64? = nil, lanIps: [String]? = nil, aliases: [String]? = nil, cpuId: UInt64? = nil, containRaidCard: UInt64? = nil, memSize: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil, tags: [Tag]? = nil, fileSystem: String? = nil, buySession: String? = nil, sgId: String? = nil, templateId: String? = nil) {
             self.zone = zone
             self.osTypeId = osTypeId
             self.raidId = raidId
@@ -253,5 +237,21 @@ extension Bm {
             case instanceIds = "InstanceIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 购买物理机
+    ///
+    /// 购买黑石物理机
+    @inlinable
+    public func buyDevices(_ input: BuyDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BuyDevicesResponse > {
+        self.client.execute(action: "BuyDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 购买物理机
+    ///
+    /// 购买黑石物理机
+    @inlinable
+    public func buyDevices(_ input: BuyDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuyDevicesResponse {
+        try await self.client.execute(action: "BuyDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

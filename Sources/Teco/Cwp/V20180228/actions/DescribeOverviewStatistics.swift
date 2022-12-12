@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取概览统计数据
-    ///
-    /// 获取概览统计数据。
-    @inlinable
-    public func describeOverviewStatistics(_ input: DescribeOverviewStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewStatisticsResponse > {
-        self.client.execute(action: "DescribeOverviewStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取概览统计数据
-    ///
-    /// 获取概览统计数据。
-    @inlinable
-    public func describeOverviewStatistics(_ input: DescribeOverviewStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewStatisticsResponse {
-        try await self.client.execute(action: "DescribeOverviewStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOverviewStatistics请求参数结构体
     public struct DescribeOverviewStatisticsRequest: TCRequestModel {
         public init () {
@@ -73,5 +57,21 @@ extension Cwp {
             case baseLineNum = "BaseLineNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取概览统计数据
+    ///
+    /// 获取概览统计数据。
+    @inlinable
+    public func describeOverviewStatistics(_ input: DescribeOverviewStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewStatisticsResponse > {
+        self.client.execute(action: "DescribeOverviewStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取概览统计数据
+    ///
+    /// 获取概览统计数据。
+    @inlinable
+    public func describeOverviewStatistics(_ input: DescribeOverviewStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewStatisticsResponse {
+        try await self.client.execute(action: "DescribeOverviewStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

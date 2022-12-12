@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询跑批任务
-    @inlinable
-    public func describeBatchTask(_ input: DescribeBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchTaskResponse > {
-        self.client.execute(action: "DescribeBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询跑批任务
-    @inlinable
-    public func describeBatchTask(_ input: DescribeBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTaskResponse {
-        try await self.client.execute(action: "DescribeBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBatchTask请求参数结构体
     public struct DescribeBatchTaskRequest: TCRequestModel {
         /// 跑批任务ID
@@ -45,7 +33,7 @@ extension Tione {
     public struct DescribeBatchTaskResponse: TCResponseModel {
         /// 跑批任务详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let batchTaskDetail: BatchTaskDetail
+        public let batchTaskDetail: BatchTaskDetail?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -54,5 +42,17 @@ extension Tione {
             case batchTaskDetail = "BatchTaskDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询跑批任务
+    @inlinable
+    public func describeBatchTask(_ input: DescribeBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchTaskResponse > {
+        self.client.execute(action: "DescribeBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询跑批任务
+    @inlinable
+    public func describeBatchTask(_ input: DescribeBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTaskResponse {
+        try await self.client.execute(action: "DescribeBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

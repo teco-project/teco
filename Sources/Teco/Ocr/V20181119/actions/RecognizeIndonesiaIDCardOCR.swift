@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 印尼身份证识别
-    @inlinable
-    public func recognizeIndonesiaIDCardOCR(_ input: RecognizeIndonesiaIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeIndonesiaIDCardOCRResponse > {
-        self.client.execute(action: "RecognizeIndonesiaIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 印尼身份证识别
-    @inlinable
-    public func recognizeIndonesiaIDCardOCR(_ input: RecognizeIndonesiaIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeIndonesiaIDCardOCRResponse {
-        try await self.client.execute(action: "RecognizeIndonesiaIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecognizeIndonesiaIDCardOCR请求参数结构体
     public struct RecognizeIndonesiaIDCardOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -51,7 +39,7 @@ extension Ocr {
         /// V2
         public let scene: String?
         
-        public init (imageBase64: String?, imageUrl: String?, returnHeadImage: Bool?, scene: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, scene: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.returnHeadImage = returnHeadImage
@@ -138,5 +126,17 @@ extension Ocr {
             case photo = "Photo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 印尼身份证识别
+    @inlinable
+    public func recognizeIndonesiaIDCardOCR(_ input: RecognizeIndonesiaIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeIndonesiaIDCardOCRResponse > {
+        self.client.execute(action: "RecognizeIndonesiaIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 印尼身份证识别
+    @inlinable
+    public func recognizeIndonesiaIDCardOCR(_ input: RecognizeIndonesiaIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeIndonesiaIDCardOCRResponse {
+        try await self.client.execute(action: "RecognizeIndonesiaIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

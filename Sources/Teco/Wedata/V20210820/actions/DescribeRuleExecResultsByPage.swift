@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 分页查询规则执行结果列表
-    @inlinable
-    public func describeRuleExecResultsByPage(_ input: DescribeRuleExecResultsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleExecResultsByPageResponse > {
-        self.client.execute(action: "DescribeRuleExecResultsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分页查询规则执行结果列表
-    @inlinable
-    public func describeRuleExecResultsByPage(_ input: DescribeRuleExecResultsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecResultsByPageResponse {
-        try await self.client.execute(action: "DescribeRuleExecResultsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRuleExecResultsByPage请求参数结构体
     public struct DescribeRuleExecResultsByPageRequest: TCRequestModel {
         /// 执行规则组ID
@@ -38,7 +26,7 @@ extension Wedata {
         /// page size
         public let pageSize: Int64?
         
-        public init (ruleGroupExecId: Int64?, pageNumber: Int64?, pageSize: Int64?) {
+        public init (ruleGroupExecId: Int64? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil) {
             self.ruleGroupExecId = ruleGroupExecId
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -55,7 +43,7 @@ extension Wedata {
     public struct DescribeRuleExecResultsByPageResponse: TCResponseModel {
         /// results
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: RuleExecResultPage
+        public let data: RuleExecResultPage?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -64,5 +52,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分页查询规则执行结果列表
+    @inlinable
+    public func describeRuleExecResultsByPage(_ input: DescribeRuleExecResultsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleExecResultsByPageResponse > {
+        self.client.execute(action: "DescribeRuleExecResultsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分页查询规则执行结果列表
+    @inlinable
+    public func describeRuleExecResultsByPage(_ input: DescribeRuleExecResultsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecResultsByPageResponse {
+        try await self.client.execute(action: "DescribeRuleExecResultsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

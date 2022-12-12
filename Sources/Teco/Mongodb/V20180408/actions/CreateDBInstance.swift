@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 创建云数据库实例（包年包月）
-    ///
-    /// 本接口(CreateDBInstance)用于创建包年包月的MongoDB云数据库实例。
-    @inlinable
-    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceResponse > {
-        self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建云数据库实例（包年包月）
-    ///
-    /// 本接口(CreateDBInstance)用于创建包年包月的MongoDB云数据库实例。
-    @inlinable
-    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
-        try await self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDBInstance请求参数结构体
     public struct CreateDBInstanceRequest: TCRequestModel {
         /// 每个副本集内从节点个数
@@ -72,7 +56,7 @@ extension Mongodb {
         /// 私有网络下的子网ID，如果设置了 VpcId，则 SubnetId必填
         public let uniqSubnetId: String?
         
-        public init (secondaryNum: UInt64, memory: UInt64, volume: UInt64, mongoVersion: String, machineCode: String, goodsNum: UInt64, zone: String, timeSpan: UInt64, password: String, projectId: UInt64?, securityGroup: [String]?, uniqVpcId: String?, uniqSubnetId: String?) {
+        public init (secondaryNum: UInt64, memory: UInt64, volume: UInt64, mongoVersion: String, machineCode: String, goodsNum: UInt64, zone: String, timeSpan: UInt64, password: String, projectId: UInt64? = nil, securityGroup: [String]? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil) {
             self.secondaryNum = secondaryNum
             self.memory = memory
             self.volume = volume
@@ -121,5 +105,21 @@ extension Mongodb {
             case instanceIds = "InstanceIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建云数据库实例（包年包月）
+    ///
+    /// 本接口(CreateDBInstance)用于创建包年包月的MongoDB云数据库实例。
+    @inlinable
+    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceResponse > {
+        self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云数据库实例（包年包月）
+    ///
+    /// 本接口(CreateDBInstance)用于创建包年包月的MongoDB云数据库实例。
+    @inlinable
+    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
+        try await self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

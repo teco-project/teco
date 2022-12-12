@@ -187,7 +187,7 @@ extension Smh {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recognizeSensitiveContent: Bool?
         
-        public init (isFileLibrary: Bool?, isMultiSpace: Bool?, cosStorageClass: String?, useRecycleBin: Bool?, autoRemoveRecycledDays: UInt64?, enableSearch: Bool?, denyOnQuotaLessThanUsage: Bool?, enableFileHistory: Bool?, fileHistoryCount: UInt64?, fileHistoryExpireDay: UInt64?, maxDirFileNameLength: UInt64?, isPublicRead: Bool?, isMultiAlbum: Bool?, allowPhoto: Bool?, allowPhotoExtName: [String]?, allowVideo: Bool?, allowVideoExtName: [String]?, allowFileExtName: [String]?, recognizeSensitiveContent: Bool?) {
+        public init (isFileLibrary: Bool? = nil, isMultiSpace: Bool? = nil, cosStorageClass: String? = nil, useRecycleBin: Bool? = nil, autoRemoveRecycledDays: UInt64? = nil, enableSearch: Bool? = nil, denyOnQuotaLessThanUsage: Bool? = nil, enableFileHistory: Bool? = nil, fileHistoryCount: UInt64? = nil, fileHistoryExpireDay: UInt64? = nil, maxDirFileNameLength: UInt64? = nil, isPublicRead: Bool? = nil, isMultiAlbum: Bool? = nil, allowPhoto: Bool? = nil, allowPhotoExtName: [String]? = nil, allowVideo: Bool? = nil, allowVideoExtName: [String]? = nil, allowFileExtName: [String]? = nil, recognizeSensitiveContent: Bool? = nil) {
             self.isFileLibrary = isFileLibrary
             self.isMultiSpace = isMultiSpace
             self.cosStorageClass = cosStorageClass

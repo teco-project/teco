@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 服务器风险top接口
-    ///
-    /// 接口返回TopN的风险服务器
-    @inlinable
-    public func describeBaselineHostTop(_ input: DescribeBaselineHostTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineHostTopResponse > {
-        self.client.execute(action: "DescribeBaselineHostTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 服务器风险top接口
-    ///
-    /// 接口返回TopN的风险服务器
-    @inlinable
-    public func describeBaselineHostTop(_ input: DescribeBaselineHostTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineHostTopResponse {
-        try await self.client.execute(action: "DescribeBaselineHostTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBaselineHostTop请求参数结构体
     public struct DescribeBaselineHostTopRequest: TCRequestModel {
         /// 动态top值
@@ -63,5 +47,21 @@ extension Cwp {
             case baselineHostTopList = "BaselineHostTopList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 服务器风险top接口
+    ///
+    /// 接口返回TopN的风险服务器
+    @inlinable
+    public func describeBaselineHostTop(_ input: DescribeBaselineHostTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineHostTopResponse > {
+        self.client.execute(action: "DescribeBaselineHostTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 服务器风险top接口
+    ///
+    /// 接口返回TopN的风险服务器
+    @inlinable
+    public func describeBaselineHostTop(_ input: DescribeBaselineHostTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineHostTopResponse {
+        try await self.client.execute(action: "DescribeBaselineHostTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

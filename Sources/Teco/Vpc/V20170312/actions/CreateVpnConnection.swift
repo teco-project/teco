@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建VPN通道
-    ///
-    /// 本接口（CreateVpnConnection）用于创建VPN通道。
-    /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
-    /// >
-    @inlinable
-    public func createVpnConnection(_ input: CreateVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpnConnectionResponse > {
-        self.client.execute(action: "CreateVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建VPN通道
-    ///
-    /// 本接口（CreateVpnConnection）用于创建VPN通道。
-    /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
-    /// >
-    @inlinable
-    public func createVpnConnection(_ input: CreateVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnConnectionResponse {
-        try await self.client.execute(action: "CreateVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVpnConnection请求参数结构体
     public struct CreateVpnConnectionRequest: TCRequestModel {
         /// VPN网关实例ID。
@@ -57,10 +37,10 @@ extension Vpc {
         public let securityPolicyDatabases: [SecurityPolicyDatabase]?
         
         /// IKE配置（Internet Key Exchange，因特网密钥交换），IKE具有一套自我保护机制，用户配置网络安全协议
-        public let ikeOptionsSpecification: IKEOptionsSpecification
+        public let ikeOptionsSpecification: IKEOptionsSpecification?
         
         /// IPSec配置，腾讯云提供IPSec安全会话设置
-        public let ipsecOptionsSpecification: IPSECOptionsSpecification
+        public let ipsecOptionsSpecification: IPSECOptionsSpecification?
         
         /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         public let tags: [Tag]?
@@ -89,7 +69,7 @@ extension Vpc {
         /// DPD超时后的动作。默认为clear。dpdEnable为1（开启）时有效。可取值为clear（断开）和restart（重试）
         public let dpdAction: String?
         
-        public init (vpnGatewayId: String, customerGatewayId: String, vpnConnectionName: String, preShareKey: String, vpcId: String?, securityPolicyDatabases: [SecurityPolicyDatabase]?, ikeOptionsSpecification: IKEOptionsSpecification, ipsecOptionsSpecification: IPSECOptionsSpecification, tags: [Tag]?, enableHealthCheck: Bool?, healthCheckLocalIp: String?, healthCheckRemoteIp: String?, routeType: String?, negotiationType: String?, dpdEnable: Int64?, dpdTimeout: String?, dpdAction: String?) {
+        public init (vpnGatewayId: String, customerGatewayId: String, vpnConnectionName: String, preShareKey: String, vpcId: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, tags: [Tag]? = nil, enableHealthCheck: Bool? = nil, healthCheckLocalIp: String? = nil, healthCheckRemoteIp: String? = nil, routeType: String? = nil, negotiationType: String? = nil, dpdEnable: Int64? = nil, dpdTimeout: String? = nil, dpdAction: String? = nil) {
             self.vpnGatewayId = vpnGatewayId
             self.customerGatewayId = customerGatewayId
             self.vpnConnectionName = vpnConnectionName
@@ -142,5 +122,25 @@ extension Vpc {
             case vpnConnection = "VpnConnection"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建VPN通道
+    ///
+    /// 本接口（CreateVpnConnection）用于创建VPN通道。
+    /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
+    /// >
+    @inlinable
+    public func createVpnConnection(_ input: CreateVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpnConnectionResponse > {
+        self.client.execute(action: "CreateVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建VPN通道
+    ///
+    /// 本接口（CreateVpnConnection）用于创建VPN通道。
+    /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
+    /// >
+    @inlinable
+    public func createVpnConnection(_ input: CreateVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnConnectionResponse {
+        try await self.client.execute(action: "CreateVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

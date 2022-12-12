@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 角色绑定标签
-    @inlinable
-    public func tagRole(_ input: TagRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TagRoleResponse > {
-        self.client.execute(action: "TagRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 角色绑定标签
-    @inlinable
-    public func tagRole(_ input: TagRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TagRoleResponse {
-        try await self.client.execute(action: "TagRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TagRole请求参数结构体
     public struct TagRoleRequest: TCRequestModel {
         /// 标签
@@ -38,7 +26,7 @@ extension Cam {
         /// 角色ID，与角色名至少输入一个
         public let roleId: String?
         
-        public init (tags: [RoleTags], roleName: String?, roleId: String?) {
+        public init (tags: [RoleTags], roleName: String? = nil, roleId: String? = nil) {
             self.tags = tags
             self.roleName = roleName
             self.roleId = roleId
@@ -59,5 +47,17 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 角色绑定标签
+    @inlinable
+    public func tagRole(_ input: TagRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TagRoleResponse > {
+        self.client.execute(action: "TagRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 角色绑定标签
+    @inlinable
+    public func tagRole(_ input: TagRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TagRoleResponse {
+        try await self.client.execute(action: "TagRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

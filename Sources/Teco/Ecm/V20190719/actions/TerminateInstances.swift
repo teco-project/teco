@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 销毁实例
-    @inlinable
-    public func terminateInstances(_ input: TerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateInstancesResponse > {
-        self.client.execute(action: "TerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 销毁实例
-    @inlinable
-    public func terminateInstances(_ input: TerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
-        try await self.client.execute(action: "TerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TerminateInstances请求参数结构体
     public struct TerminateInstancesRequest: TCRequestModel {
         /// 待销毁的实例ID列表。
@@ -43,7 +31,7 @@ extension Ecm {
         /// 当为false时，只销毁主机，保留弹性网卡和弹性IP。
         public let associatedResourceDestroy: Bool?
         
-        public init (instanceIdSet: [String], terminateDelay: Bool?, terminateTime: String?, associatedResourceDestroy: Bool?) {
+        public init (instanceIdSet: [String], terminateDelay: Bool? = nil, terminateTime: String? = nil, associatedResourceDestroy: Bool? = nil) {
             self.instanceIdSet = instanceIdSet
             self.terminateDelay = terminateDelay
             self.terminateTime = terminateTime
@@ -66,5 +54,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 销毁实例
+    @inlinable
+    public func terminateInstances(_ input: TerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateInstancesResponse > {
+        self.client.execute(action: "TerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁实例
+    @inlinable
+    public func terminateInstances(_ input: TerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
+        try await self.client.execute(action: "TerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

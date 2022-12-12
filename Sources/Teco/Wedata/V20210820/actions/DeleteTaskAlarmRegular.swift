@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 删除任务告警规则
-    @inlinable
-    public func deleteTaskAlarmRegular(_ input: DeleteTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTaskAlarmRegularResponse > {
-        self.client.execute(action: "DeleteTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除任务告警规则
-    @inlinable
-    public func deleteTaskAlarmRegular(_ input: DeleteTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskAlarmRegularResponse {
-        try await self.client.execute(action: "DeleteTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTaskAlarmRegular请求参数结构体
     public struct DeleteTaskAlarmRegularRequest: TCRequestModel {
         /// 主键ID
@@ -69,5 +57,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除任务告警规则
+    @inlinable
+    public func deleteTaskAlarmRegular(_ input: DeleteTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTaskAlarmRegularResponse > {
+        self.client.execute(action: "DeleteTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除任务告警规则
+    @inlinable
+    public func deleteTaskAlarmRegular(_ input: DeleteTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskAlarmRegularResponse {
+        try await self.client.execute(action: "DeleteTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

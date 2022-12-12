@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 获取区块内的交易列表
-    @inlinable
-    public func getBlockTransactionListForUser(_ input: GetBlockTransactionListForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBlockTransactionListForUserResponse > {
-        self.client.execute(action: "GetBlockTransactionListForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取区块内的交易列表
-    @inlinable
-    public func getBlockTransactionListForUser(_ input: GetBlockTransactionListForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBlockTransactionListForUserResponse {
-        try await self.client.execute(action: "GetBlockTransactionListForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetBlockTransactionListForUser请求参数结构体
     public struct GetBlockTransactionListForUserRequest: TCRequestModel {
         /// 模块名，固定字段：transaction
@@ -53,7 +41,7 @@ extension Tbaas {
         /// 查询的交易列表数量
         public let limit: UInt64?
         
-        public init (module: String, operation: String, clusterId: String, groupName: String, channelName: String, blockId: UInt64, offset: UInt64?, limit: UInt64?) {
+        public init (module: String, operation: String, clusterId: String, groupName: String, channelName: String, blockId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.module = module
             self.operation = operation
             self.clusterId = clusterId
@@ -92,5 +80,17 @@ extension Tbaas {
             case transactionList = "TransactionList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取区块内的交易列表
+    @inlinable
+    public func getBlockTransactionListForUser(_ input: GetBlockTransactionListForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBlockTransactionListForUserResponse > {
+        self.client.execute(action: "GetBlockTransactionListForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取区块内的交易列表
+    @inlinable
+    public func getBlockTransactionListForUser(_ input: GetBlockTransactionListForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBlockTransactionListForUserResponse {
+        try await self.client.execute(action: "GetBlockTransactionListForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

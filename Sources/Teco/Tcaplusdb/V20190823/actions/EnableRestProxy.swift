@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 开启restful api
-    ///
-    /// 当restful api为关闭状态时，可以通过此接口开启restful apu
-    @inlinable
-    public func enableRestProxy(_ input: EnableRestProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableRestProxyResponse > {
-        self.client.execute(action: "EnableRestProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启restful api
-    ///
-    /// 当restful api为关闭状态时，可以通过此接口开启restful apu
-    @inlinable
-    public func enableRestProxy(_ input: EnableRestProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableRestProxyResponse {
-        try await self.client.execute(action: "EnableRestProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableRestProxy请求参数结构体
     public struct EnableRestProxyRequest: TCRequestModel {
         /// 对应于appid
@@ -61,5 +45,21 @@ extension Tcaplusdb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启restful api
+    ///
+    /// 当restful api为关闭状态时，可以通过此接口开启restful apu
+    @inlinable
+    public func enableRestProxy(_ input: EnableRestProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableRestProxyResponse > {
+        self.client.execute(action: "EnableRestProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启restful api
+    ///
+    /// 当restful api为关闭状态时，可以通过此接口开启restful apu
+    @inlinable
+    public func enableRestProxy(_ input: EnableRestProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableRestProxyResponse {
+        try await self.client.execute(action: "EnableRestProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

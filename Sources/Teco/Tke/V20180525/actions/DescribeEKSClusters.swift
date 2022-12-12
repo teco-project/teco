@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询弹性集群列表
-    @inlinable
-    public func describeEKSClusters(_ input: DescribeEKSClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSClustersResponse > {
-        self.client.execute(action: "DescribeEKSClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询弹性集群列表
-    @inlinable
-    public func describeEKSClusters(_ input: DescribeEKSClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSClustersResponse {
-        try await self.client.execute(action: "DescribeEKSClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEKSClusters请求参数结构体
     public struct DescribeEKSClustersRequest: TCRequestModel {
         /// 集群ID列表(为空时，
@@ -42,7 +30,7 @@ extension Tke {
         /// 过滤条件,当前只支持按照单个条件ClusterName进行过滤
         public let filters: [Filter]?
         
-        public init (clusterIds: [String]?, offset: UInt64?, limit: UInt64?, filters: [Filter]?) {
+        public init (clusterIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
             self.clusterIds = clusterIds
             self.offset = offset
             self.limit = limit
@@ -73,5 +61,17 @@ extension Tke {
             case clusters = "Clusters"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询弹性集群列表
+    @inlinable
+    public func describeEKSClusters(_ input: DescribeEKSClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSClustersResponse > {
+        self.client.execute(action: "DescribeEKSClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询弹性集群列表
+    @inlinable
+    public func describeEKSClusters(_ input: DescribeEKSClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSClustersResponse {
+        try await self.client.execute(action: "DescribeEKSClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

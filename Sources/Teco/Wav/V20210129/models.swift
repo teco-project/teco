@@ -258,7 +258,7 @@ extension Wav {
         
         /// MsgType=video时的消息体，忽略此字段，见BodyJson字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let video: ChatArchivingMsgTypeVideo
+        public let video: ChatArchivingMsgTypeVideo?
         
         /// 根据MsgType的不同取值，解析内容不同，参考：https://open.work.weixin.qq.com/api/doc/90000/90135/91774
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -904,7 +904,7 @@ extension Wav {
         /// 标签组排序,值越大,排序越靠前
         public let sort: UInt64?
         
-        public init (tagName: String, sort: UInt64?) {
+        public init (tagName: String, sort: UInt64? = nil) {
             self.tagName = tagName
             self.sort = sort
         }
@@ -975,7 +975,7 @@ extension Wav {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bizTagIdStr: String?
         
-        public init (groupName: String?, bizGroupId: String?, tagName: String?, tagId: String?, bizTagId: String?, type: Int64?, bizTagIdStr: String?) {
+        public init (groupName: String? = nil, bizGroupId: String? = nil, tagName: String? = nil, tagId: String? = nil, bizTagId: String? = nil, type: Int64? = nil, bizTagIdStr: String? = nil) {
             self.groupName = groupName
             self.bizGroupId = bizGroupId
             self.tagName = tagName

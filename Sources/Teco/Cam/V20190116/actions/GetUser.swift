@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 查询子用户
-    @inlinable
-    public func getUser(_ input: GetUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUserResponse > {
-        self.client.execute(action: "GetUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询子用户
-    @inlinable
-    public func getUser(_ input: GetUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserResponse {
-        try await self.client.execute(action: "GetUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetUser请求参数结构体
     public struct GetUserRequest: TCRequestModel {
         /// 子用户用户名
@@ -82,5 +70,17 @@ extension Cam {
             case email = "Email"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询子用户
+    @inlinable
+    public func getUser(_ input: GetUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUserResponse > {
+        self.client.execute(action: "GetUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询子用户
+    @inlinable
+    public func getUser(_ input: GetUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserResponse {
+        try await self.client.execute(action: "GetUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

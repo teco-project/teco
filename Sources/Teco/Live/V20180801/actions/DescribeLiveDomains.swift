@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询域名列表
-    ///
-    /// 根据域名状态、类型等信息查询用户的域名信息。
-    @inlinable
-    public func describeLiveDomains(_ input: DescribeLiveDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveDomainsResponse > {
-        self.client.execute(action: "DescribeLiveDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询域名列表
-    ///
-    /// 根据域名状态、类型等信息查询用户的域名信息。
-    @inlinable
-    public func describeLiveDomains(_ input: DescribeLiveDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainsResponse {
-        try await self.client.execute(action: "DescribeLiveDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveDomains请求参数结构体
     public struct DescribeLiveDomainsRequest: TCRequestModel {
         /// 域名状态过滤。0-停用，1-启用。
@@ -57,7 +41,7 @@ extension Live {
         /// 3: 海外。
         public let playType: UInt64?
         
-        public init (domainStatus: UInt64?, domainType: UInt64?, pageSize: UInt64?, pageNum: UInt64?, isDelayLive: UInt64?, domainPrefix: String?, playType: UInt64?) {
+        public init (domainStatus: UInt64? = nil, domainType: UInt64? = nil, pageSize: UInt64? = nil, pageNum: UInt64? = nil, isDelayLive: UInt64? = nil, domainPrefix: String? = nil, playType: UInt64? = nil) {
             self.domainStatus = domainStatus
             self.domainType = domainType
             self.pageSize = pageSize
@@ -104,5 +88,21 @@ extension Live {
             case playTypeCount = "PlayTypeCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询域名列表
+    ///
+    /// 根据域名状态、类型等信息查询用户的域名信息。
+    @inlinable
+    public func describeLiveDomains(_ input: DescribeLiveDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveDomainsResponse > {
+        self.client.execute(action: "DescribeLiveDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询域名列表
+    ///
+    /// 根据域名状态、类型等信息查询用户的域名信息。
+    @inlinable
+    public func describeLiveDomains(_ input: DescribeLiveDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainsResponse {
+        try await self.client.execute(action: "DescribeLiveDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 替换规则
-    ///
-    /// 本接口（ReplaceTopicRule）用于修改替换规则 
-    @inlinable
-    public func replaceTopicRule(_ input: ReplaceTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceTopicRuleResponse > {
-        self.client.execute(action: "ReplaceTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 替换规则
-    ///
-    /// 本接口（ReplaceTopicRule）用于修改替换规则 
-    @inlinable
-    public func replaceTopicRule(_ input: ReplaceTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceTopicRuleResponse {
-        try await self.client.execute(action: "ReplaceTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReplaceTopicRule请求参数结构体
     public struct ReplaceTopicRuleRequest: TCRequestModel {
         /// 规则名称
@@ -58,5 +42,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 替换规则
+    ///
+    /// 本接口（ReplaceTopicRule）用于修改替换规则 
+    @inlinable
+    public func replaceTopicRule(_ input: ReplaceTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceTopicRuleResponse > {
+        self.client.execute(action: "ReplaceTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 替换规则
+    ///
+    /// 本接口（ReplaceTopicRule）用于修改替换规则 
+    @inlinable
+    public func replaceTopicRule(_ input: ReplaceTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceTopicRuleResponse {
+        try await self.client.execute(action: "ReplaceTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 镜像仓库查看定时任务
-    @inlinable
-    public func describeImageRegistryTimingScanTask(_ input: DescribeImageRegistryTimingScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRegistryTimingScanTaskResponse > {
-        self.client.execute(action: "DescribeImageRegistryTimingScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 镜像仓库查看定时任务
-    @inlinable
-    public func describeImageRegistryTimingScanTask(_ input: DescribeImageRegistryTimingScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRegistryTimingScanTaskResponse {
-        try await self.client.execute(action: "DescribeImageRegistryTimingScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageRegistryTimingScanTask请求参数结构体
     public struct DescribeImageRegistryTimingScanTaskRequest: TCRequestModel {
         public init () {
@@ -73,5 +61,17 @@ extension Tcss {
             case id = "Id"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 镜像仓库查看定时任务
+    @inlinable
+    public func describeImageRegistryTimingScanTask(_ input: DescribeImageRegistryTimingScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRegistryTimingScanTaskResponse > {
+        self.client.execute(action: "DescribeImageRegistryTimingScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库查看定时任务
+    @inlinable
+    public func describeImageRegistryTimingScanTask(_ input: DescribeImageRegistryTimingScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRegistryTimingScanTaskResponse {
+        try await self.client.execute(action: "DescribeImageRegistryTimingScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取网关产品已经绑定的子产品
-    @inlinable
-    public func describeBindedProducts(_ input: DescribeBindedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindedProductsResponse > {
-        self.client.execute(action: "DescribeBindedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取网关产品已经绑定的子产品
-    @inlinable
-    public func describeBindedProducts(_ input: DescribeBindedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindedProductsResponse {
-        try await self.client.execute(action: "DescribeBindedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBindedProducts请求参数结构体
     public struct DescribeBindedProductsRequest: TCRequestModel {
         /// 网关产品ID
@@ -41,7 +29,7 @@ extension Iotexplorer {
         /// 是否跨账号绑定产品
         public let productSource: Int64?
         
-        public init (gatewayProductId: String, offset: Int64, limit: Int64, productSource: Int64?) {
+        public init (gatewayProductId: String, offset: Int64, limit: Int64, productSource: Int64? = nil) {
             self.gatewayProductId = gatewayProductId
             self.offset = offset
             self.limit = limit
@@ -72,5 +60,17 @@ extension Iotexplorer {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取网关产品已经绑定的子产品
+    @inlinable
+    public func describeBindedProducts(_ input: DescribeBindedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindedProductsResponse > {
+        self.client.execute(action: "DescribeBindedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取网关产品已经绑定的子产品
+    @inlinable
+    public func describeBindedProducts(_ input: DescribeBindedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindedProductsResponse {
+        try await self.client.execute(action: "DescribeBindedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

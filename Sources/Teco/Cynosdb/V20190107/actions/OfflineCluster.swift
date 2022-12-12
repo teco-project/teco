@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 下线集群
-    @inlinable
-    public func offlineCluster(_ input: OfflineClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OfflineClusterResponse > {
-        self.client.execute(action: "OfflineCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下线集群
-    @inlinable
-    public func offlineCluster(_ input: OfflineClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineClusterResponse {
-        try await self.client.execute(action: "OfflineCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OfflineCluster请求参数结构体
     public struct OfflineClusterRequest: TCRequestModel {
         /// 集群ID
@@ -53,5 +41,17 @@ extension Cynosdb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下线集群
+    @inlinable
+    public func offlineCluster(_ input: OfflineClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OfflineClusterResponse > {
+        self.client.execute(action: "OfflineCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下线集群
+    @inlinable
+    public func offlineCluster(_ input: OfflineClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineClusterResponse {
+        try await self.client.execute(action: "OfflineCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

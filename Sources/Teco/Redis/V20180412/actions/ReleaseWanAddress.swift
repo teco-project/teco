@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 关闭外网接口
-    ///
-    /// 关闭外网
-    @inlinable
-    public func releaseWanAddress(_ input: ReleaseWanAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseWanAddressResponse > {
-        self.client.execute(action: "ReleaseWanAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关闭外网接口
-    ///
-    /// 关闭外网
-    @inlinable
-    public func releaseWanAddress(_ input: ReleaseWanAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseWanAddressResponse {
-        try await self.client.execute(action: "ReleaseWanAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReleaseWanAddress请求参数结构体
     public struct ReleaseWanAddressRequest: TCRequestModel {
         /// 实例ID
@@ -61,5 +45,21 @@ extension Redis {
             case wanStatus = "WanStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关闭外网接口
+    ///
+    /// 关闭外网
+    @inlinable
+    public func releaseWanAddress(_ input: ReleaseWanAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseWanAddressResponse > {
+        self.client.execute(action: "ReleaseWanAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭外网接口
+    ///
+    /// 关闭外网
+    @inlinable
+    public func releaseWanAddress(_ input: ReleaseWanAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseWanAddressResponse {
+        try await self.client.execute(action: "ReleaseWanAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

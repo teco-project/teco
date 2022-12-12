@@ -15,32 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 复制函数
-    ///
-    /// 复制一个函数，您可以选择将复制出的新函数放置在特定的Region和Namespace。
-    /// 注：本接口**不会**复制函数的以下对象或属性：
-    /// 1. 函数的触发器
-    /// 2. 除了$LATEST以外的其它版本
-    /// 3. 函数配置的日志投递到的CLS目标。
-    /// 如有需要，您可以在复制后手动配置新函数。
-    @inlinable
-    public func copyFunction(_ input: CopyFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyFunctionResponse > {
-        self.client.execute(action: "CopyFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 复制函数
-    ///
-    /// 复制一个函数，您可以选择将复制出的新函数放置在特定的Region和Namespace。
-    /// 注：本接口**不会**复制函数的以下对象或属性：
-    /// 1. 函数的触发器
-    /// 2. 除了$LATEST以外的其它版本
-    /// 3. 函数配置的日志投递到的CLS目标。
-    /// 如有需要，您可以在复制后手动配置新函数。
-    @inlinable
-    public func copyFunction(_ input: CopyFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyFunctionResponse {
-        try await self.client.execute(action: "CopyFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CopyFunction请求参数结构体
     public struct CopyFunctionRequest: TCRequestModel {
         /// 要复制的函数的名称
@@ -72,7 +46,7 @@ extension Scf {
         /// FALSE：不复制函数配置
         public let copyConfiguration: Bool?
         
-        public init (functionName: String, newFunctionName: String, namespace: String?, targetNamespace: String?, description: String?, targetRegion: String?, override: Bool?, copyConfiguration: Bool?) {
+        public init (functionName: String, newFunctionName: String, namespace: String? = nil, targetNamespace: String? = nil, description: String? = nil, targetRegion: String? = nil, override: Bool? = nil, copyConfiguration: Bool? = nil) {
             self.functionName = functionName
             self.newFunctionName = newFunctionName
             self.namespace = namespace
@@ -103,5 +77,31 @@ extension Scf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 复制函数
+    ///
+    /// 复制一个函数，您可以选择将复制出的新函数放置在特定的Region和Namespace。
+    /// 注：本接口**不会**复制函数的以下对象或属性：
+    /// 1. 函数的触发器
+    /// 2. 除了$LATEST以外的其它版本
+    /// 3. 函数配置的日志投递到的CLS目标。
+    /// 如有需要，您可以在复制后手动配置新函数。
+    @inlinable
+    public func copyFunction(_ input: CopyFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyFunctionResponse > {
+        self.client.execute(action: "CopyFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 复制函数
+    ///
+    /// 复制一个函数，您可以选择将复制出的新函数放置在特定的Region和Namespace。
+    /// 注：本接口**不会**复制函数的以下对象或属性：
+    /// 1. 函数的触发器
+    /// 2. 除了$LATEST以外的其它版本
+    /// 3. 函数配置的日志投递到的CLS目标。
+    /// 如有需要，您可以在复制后手动配置新函数。
+    @inlinable
+    public func copyFunction(_ input: CopyFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyFunctionResponse {
+        try await self.client.execute(action: "CopyFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

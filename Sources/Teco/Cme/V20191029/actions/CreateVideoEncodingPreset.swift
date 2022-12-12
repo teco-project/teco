@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 创建视频编码配置
-    ///
-    /// 指定导出的参数，创建一个视频编码配置
-    @inlinable
-    public func createVideoEncodingPreset(_ input: CreateVideoEncodingPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVideoEncodingPresetResponse > {
-        self.client.execute(action: "CreateVideoEncodingPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建视频编码配置
-    ///
-    /// 指定导出的参数，创建一个视频编码配置
-    @inlinable
-    public func createVideoEncodingPreset(_ input: CreateVideoEncodingPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoEncodingPresetResponse {
-        try await self.client.execute(action: "CreateVideoEncodingPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVideoEncodingPreset请求参数结构体
     public struct CreateVideoEncodingPresetRequest: TCRequestModel {
         /// 平台名称，指定访问的平台。
@@ -58,12 +42,12 @@ extension Cme {
         public let removeAudio: Int64?
         
         /// 编码配置的视频设置。默认值参考VideoEncodingPresetVideoSetting 定义。
-        public let videoSetting: VideoEncodingPresetVideoSetting
+        public let videoSetting: VideoEncodingPresetVideoSetting?
         
         /// 编码配置的音频设置。默认值参考VideoEncodingPresetAudioSetting 定义。
-        public let audioSetting: VideoEncodingPresetAudioSetting
+        public let audioSetting: VideoEncodingPresetAudioSetting?
         
-        public init (platform: String, name: String, container: String?, removeVideo: Int64?, removeAudio: Int64?, videoSetting: VideoEncodingPresetVideoSetting, audioSetting: VideoEncodingPresetAudioSetting) {
+        public init (platform: String, name: String, container: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoSetting: VideoEncodingPresetVideoSetting? = nil, audioSetting: VideoEncodingPresetAudioSetting? = nil) {
             self.platform = platform
             self.name = name
             self.container = container
@@ -96,5 +80,21 @@ extension Cme {
             case id = "Id"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建视频编码配置
+    ///
+    /// 指定导出的参数，创建一个视频编码配置
+    @inlinable
+    public func createVideoEncodingPreset(_ input: CreateVideoEncodingPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVideoEncodingPresetResponse > {
+        self.client.execute(action: "CreateVideoEncodingPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建视频编码配置
+    ///
+    /// 指定导出的参数，创建一个视频编码配置
+    @inlinable
+    public func createVideoEncodingPreset(_ input: CreateVideoEncodingPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoEncodingPresetResponse {
+        try await self.client.execute(action: "CreateVideoEncodingPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

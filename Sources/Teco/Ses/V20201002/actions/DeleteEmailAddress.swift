@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ses {
-    /// 删除发信地址
-    ///
-    /// 删除发信人地址
-    @inlinable
-    public func deleteEmailAddress(_ input: DeleteEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEmailAddressResponse > {
-        self.client.execute(action: "DeleteEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除发信地址
-    ///
-    /// 删除发信人地址
-    @inlinable
-    public func deleteEmailAddress(_ input: DeleteEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailAddressResponse {
-        try await self.client.execute(action: "DeleteEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteEmailAddress请求参数结构体
     public struct DeleteEmailAddressRequest: TCRequestModel {
         /// 发信地址
@@ -53,5 +37,21 @@ extension Ses {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除发信地址
+    ///
+    /// 删除发信人地址
+    @inlinable
+    public func deleteEmailAddress(_ input: DeleteEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEmailAddressResponse > {
+        self.client.execute(action: "DeleteEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除发信地址
+    ///
+    /// 删除发信人地址
+    @inlinable
+    public func deleteEmailAddress(_ input: DeleteEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailAddressResponse {
+        try await self.client.execute(action: "DeleteEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

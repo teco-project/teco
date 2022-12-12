@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Asw {
-    /// 创建状态机
-    ///
-    /// 该接口用于生成状态机服务
-    @inlinable
-    public func createFlowService(_ input: CreateFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowServiceResponse > {
-        self.client.execute(action: "CreateFlowService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建状态机
-    ///
-    /// 该接口用于生成状态机服务
-    @inlinable
-    public func createFlowService(_ input: CreateFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowServiceResponse {
-        try await self.client.execute(action: "CreateFlowService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFlowService请求参数结构体
     public struct CreateFlowServiceRequest: TCRequestModel {
         /// 定义文本（JSON格式）
@@ -60,7 +44,7 @@ extension Asw {
         /// 该状态机的默认输入
         public let input: String?
         
-        public init (definition: String, flowServiceName: String, isNewRole: Bool, type: String, flowServiceChineseName: String?, roleResource: String?, description: String?, enableCLS: Bool?, input: String?) {
+        public init (definition: String, flowServiceName: String, isNewRole: Bool, type: String, flowServiceChineseName: String? = nil, roleResource: String? = nil, description: String? = nil, enableCLS: Bool? = nil, input: String? = nil) {
             self.definition = definition
             self.flowServiceName = flowServiceName
             self.isNewRole = isNewRole
@@ -101,5 +85,21 @@ extension Asw {
             case createDate = "CreateDate"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建状态机
+    ///
+    /// 该接口用于生成状态机服务
+    @inlinable
+    public func createFlowService(_ input: CreateFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowServiceResponse > {
+        self.client.execute(action: "CreateFlowService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建状态机
+    ///
+    /// 该接口用于生成状态机服务
+    @inlinable
+    public func createFlowService(_ input: CreateFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowServiceResponse {
+        try await self.client.execute(action: "CreateFlowService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

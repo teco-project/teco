@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// Waf统计数据查询
-    @inlinable
-    public func describeWafData(_ input: DescribeWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWafDataResponse > {
-        self.client.execute(action: "DescribeWafData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// Waf统计数据查询
-    @inlinable
-    public func describeWafData(_ input: DescribeWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafDataResponse {
-        try await self.client.execute(action: "DescribeWafData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWafData请求参数结构体
     public struct DescribeWafDataRequest: TCRequestModel {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
@@ -80,7 +68,7 @@ extension Cdn {
         /// 指定域名列表查询
         public let domains: [String]?
         
-        public init (startTime: String, endTime: String, interval: String, domain: String?, attackType: String?, defenceMode: String?, area: String?, attackTypes: [String]?, domains: [String]?) {
+        public init (startTime: String, endTime: String, interval: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, area: String? = nil, attackTypes: [String]? = nil, domains: [String]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.interval = interval
@@ -121,5 +109,17 @@ extension Cdn {
             case interval = "Interval"
             case requestId = "RequestId"
         }
+    }
+    
+    /// Waf统计数据查询
+    @inlinable
+    public func describeWafData(_ input: DescribeWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWafDataResponse > {
+        self.client.execute(action: "DescribeWafData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// Waf统计数据查询
+    @inlinable
+    public func describeWafData(_ input: DescribeWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafDataResponse {
+        try await self.client.execute(action: "DescribeWafData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

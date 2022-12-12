@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 修改备份日志保存天数
-    ///
-    /// 本接口(ModifyLogFileRetentionPeriod)用于修改数据库备份日志保存天数。
-    @inlinable
-    public func modifyLogFileRetentionPeriod(_ input: ModifyLogFileRetentionPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLogFileRetentionPeriodResponse > {
-        self.client.execute(action: "ModifyLogFileRetentionPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改备份日志保存天数
-    ///
-    /// 本接口(ModifyLogFileRetentionPeriod)用于修改数据库备份日志保存天数。
-    @inlinable
-    public func modifyLogFileRetentionPeriod(_ input: ModifyLogFileRetentionPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogFileRetentionPeriodResponse {
-        try await self.client.execute(action: "ModifyLogFileRetentionPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLogFileRetentionPeriod请求参数结构体
     public struct ModifyLogFileRetentionPeriodRequest: TCRequestModel {
         /// 实例 ID，形如：tdsql-ow728lmc。
@@ -62,5 +46,21 @@ extension Mariadb {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改备份日志保存天数
+    ///
+    /// 本接口(ModifyLogFileRetentionPeriod)用于修改数据库备份日志保存天数。
+    @inlinable
+    public func modifyLogFileRetentionPeriod(_ input: ModifyLogFileRetentionPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLogFileRetentionPeriodResponse > {
+        self.client.execute(action: "ModifyLogFileRetentionPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改备份日志保存天数
+    ///
+    /// 本接口(ModifyLogFileRetentionPeriod)用于修改数据库备份日志保存天数。
+    @inlinable
+    public func modifyLogFileRetentionPeriod(_ input: ModifyLogFileRetentionPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogFileRetentionPeriodResponse {
+        try await self.client.execute(action: "ModifyLogFileRetentionPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

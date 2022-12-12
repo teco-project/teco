@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时更新文件查杀设置
-    @inlinable
-    public func modifyVirusScanSetting(_ input: ModifyVirusScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVirusScanSettingResponse > {
-        self.client.execute(action: "ModifyVirusScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时更新文件查杀设置
-    @inlinable
-    public func modifyVirusScanSetting(_ input: ModifyVirusScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusScanSettingResponse {
-        try await self.client.execute(action: "ModifyVirusScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVirusScanSetting请求参数结构体
     public struct ModifyVirusScanSettingRequest: TCRequestModel {
         /// 是否开启定期扫描
@@ -59,7 +47,7 @@ extension Tcss {
         /// 扫描路径
         public let scanPath: [String]?
         
-        public init (enableScan: Bool, cycle: UInt64, beginScanAt: String, scanPathAll: Bool, scanPathType: UInt64, timeout: UInt64, scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]?, scanPath: [String]?) {
+        public init (enableScan: Bool, cycle: UInt64, beginScanAt: String, scanPathAll: Bool, scanPathType: UInt64, timeout: UInt64, scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]? = nil, scanPath: [String]? = nil) {
             self.enableScan = enableScan
             self.cycle = cycle
             self.beginScanAt = beginScanAt
@@ -94,5 +82,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时更新文件查杀设置
+    @inlinable
+    public func modifyVirusScanSetting(_ input: ModifyVirusScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVirusScanSettingResponse > {
+        self.client.execute(action: "ModifyVirusScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时更新文件查杀设置
+    @inlinable
+    public func modifyVirusScanSetting(_ input: ModifyVirusScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusScanSettingResponse {
+        try await self.client.execute(action: "ModifyVirusScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Mps {
-    /// 修改内容识别模板
-    ///
-    /// 修改用户自定义内容识别模板。
-    @inlinable
-    public func modifyAIRecognitionTemplate(_ input: ModifyAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAIRecognitionTemplateResponse > {
-        self.client.execute(action: "ModifyAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改内容识别模板
-    ///
-    /// 修改用户自定义内容识别模板。
-    @inlinable
-    public func modifyAIRecognitionTemplate(_ input: ModifyAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIRecognitionTemplateResponse {
-        try await self.client.execute(action: "ModifyAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAIRecognitionTemplate请求参数结构体
     public struct ModifyAIRecognitionTemplateRequest: TCRequestModel {
         /// 视频内容识别模板唯一标识。
@@ -45,21 +29,21 @@ extension Mps {
         public let comment: String?
         
         /// 人脸识别控制参数。
-        public let faceConfigure: FaceConfigureInfoForUpdate
+        public let faceConfigure: FaceConfigureInfoForUpdate?
         
         /// 文本全文识别控制参数。
-        public let ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate
+        public let ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate?
         
         /// 文本关键词识别控制参数。
-        public let ocrWordsConfigure: OcrWordsConfigureInfoForUpdate
+        public let ocrWordsConfigure: OcrWordsConfigureInfoForUpdate?
         
         /// 语音全文识别控制参数。
-        public let asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate
+        public let asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate?
         
         /// 语音关键词识别控制参数。
-        public let asrWordsConfigure: AsrWordsConfigureInfoForUpdate
+        public let asrWordsConfigure: AsrWordsConfigureInfoForUpdate?
         
-        public init (definition: Int64, name: String?, comment: String?, faceConfigure: FaceConfigureInfoForUpdate, ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate, ocrWordsConfigure: OcrWordsConfigureInfoForUpdate, asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate, asrWordsConfigure: AsrWordsConfigureInfoForUpdate) {
+        public init (definition: Int64, name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfoForUpdate? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate? = nil, ocrWordsConfigure: OcrWordsConfigureInfoForUpdate? = nil, asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate? = nil, asrWordsConfigure: AsrWordsConfigureInfoForUpdate? = nil) {
             self.definition = definition
             self.name = name
             self.comment = comment
@@ -90,5 +74,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改内容识别模板
+    ///
+    /// 修改用户自定义内容识别模板。
+    @inlinable
+    public func modifyAIRecognitionTemplate(_ input: ModifyAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAIRecognitionTemplateResponse > {
+        self.client.execute(action: "ModifyAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改内容识别模板
+    ///
+    /// 修改用户自定义内容识别模板。
+    @inlinable
+    public func modifyAIRecognitionTemplate(_ input: ModifyAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIRecognitionTemplateResponse {
+        try await self.client.execute(action: "ModifyAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

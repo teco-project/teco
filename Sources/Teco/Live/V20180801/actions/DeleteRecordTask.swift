@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 删除录制任务（新）
-    ///
-    /// 删除录制任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
-    @inlinable
-    public func deleteRecordTask(_ input: DeleteRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordTaskResponse > {
-        self.client.execute(action: "DeleteRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除录制任务（新）
-    ///
-    /// 删除录制任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
-    @inlinable
-    public func deleteRecordTask(_ input: DeleteRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordTaskResponse {
-        try await self.client.execute(action: "DeleteRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRecordTask请求参数结构体
     public struct DeleteRecordTaskRequest: TCRequestModel {
         /// 任务ID，CreateRecordTask返回。删除TaskId指定的录制任务。
@@ -53,5 +37,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除录制任务（新）
+    ///
+    /// 删除录制任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
+    @inlinable
+    public func deleteRecordTask(_ input: DeleteRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordTaskResponse > {
+        self.client.execute(action: "DeleteRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除录制任务（新）
+    ///
+    /// 删除录制任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
+    @inlinable
+    public func deleteRecordTask(_ input: DeleteRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordTaskResponse {
+        try await self.client.execute(action: "DeleteRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

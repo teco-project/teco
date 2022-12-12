@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 修改投递任务
-    ///
-    /// 本接口用于修改投递任务
-    @inlinable
-    public func modifyConsumer(_ input: ModifyConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConsumerResponse > {
-        self.client.execute(action: "ModifyConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改投递任务
-    ///
-    /// 本接口用于修改投递任务
-    @inlinable
-    public func modifyConsumer(_ input: ModifyConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConsumerResponse {
-        try await self.client.execute(action: "ModifyConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyConsumer请求参数结构体
     public struct ModifyConsumerRequest: TCRequestModel {
         /// 投递任务绑定的日志主题 ID
@@ -43,15 +27,15 @@ extension Cls {
         public let needContent: Bool?
         
         /// 如果需要投递元数据信息，元数据信息的描述
-        public let content: ConsumerContent
+        public let content: ConsumerContent?
         
         /// CKafka的描述
-        public let ckafka: Ckafka
+        public let ckafka: Ckafka?
         
         /// 投递时压缩方式，取值0，2，3。[0:NONE；2:SNAPPY；3:LZ4]
         public let compression: Int64?
         
-        public init (topicId: String, effective: Bool?, needContent: Bool?, content: ConsumerContent, ckafka: Ckafka, compression: Int64?) {
+        public init (topicId: String, effective: Bool? = nil, needContent: Bool? = nil, content: ConsumerContent? = nil, ckafka: Ckafka? = nil, compression: Int64? = nil) {
             self.topicId = topicId
             self.effective = effective
             self.needContent = needContent
@@ -78,5 +62,21 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改投递任务
+    ///
+    /// 本接口用于修改投递任务
+    @inlinable
+    public func modifyConsumer(_ input: ModifyConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConsumerResponse > {
+        self.client.execute(action: "ModifyConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改投递任务
+    ///
+    /// 本接口用于修改投递任务
+    @inlinable
+    public func modifyConsumer(_ input: ModifyConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConsumerResponse {
+        try await self.client.execute(action: "ModifyConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

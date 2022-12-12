@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 批量绑定插件
-    ///
-    /// 插件与网关分组/API批量绑定
-    @inlinable
-    public func bindPlugin(_ input: BindPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindPluginResponse > {
-        self.client.execute(action: "BindPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量绑定插件
-    ///
-    /// 插件与网关分组/API批量绑定
-    @inlinable
-    public func bindPlugin(_ input: BindPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPluginResponse {
-        try await self.client.execute(action: "BindPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindPlugin请求参数结构体
     public struct BindPluginRequest: TCRequestModel {
         /// 分组/API绑定插件列表
@@ -57,5 +41,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量绑定插件
+    ///
+    /// 插件与网关分组/API批量绑定
+    @inlinable
+    public func bindPlugin(_ input: BindPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindPluginResponse > {
+        self.client.execute(action: "BindPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量绑定插件
+    ///
+    /// 插件与网关分组/API批量绑定
+    @inlinable
+    public func bindPlugin(_ input: BindPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPluginResponse {
+        try await self.client.execute(action: "BindPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

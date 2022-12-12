@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 查询弹性公网IP列表
-    @inlinable
-    public func describeAddresses(_ input: DescribeAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAddressesResponse > {
-        self.client.execute(action: "DescribeAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询弹性公网IP列表
-    @inlinable
-    public func describeAddresses(_ input: DescribeAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressesResponse {
-        try await self.client.execute(action: "DescribeAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAddresses请求参数结构体
     public struct DescribeAddressesRequest: TCRequestModel {
         /// ECM 地域
@@ -52,7 +40,7 @@ extension Ecm {
         /// 返回数量，默认为20，最大值为100。
         public let limit: UInt64?
         
-        public init (ecmRegion: String, addressIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (ecmRegion: String, addressIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.ecmRegion = ecmRegion
             self.addressIds = addressIds
             self.filters = filters
@@ -85,5 +73,17 @@ extension Ecm {
             case addressSet = "AddressSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询弹性公网IP列表
+    @inlinable
+    public func describeAddresses(_ input: DescribeAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAddressesResponse > {
+        self.client.execute(action: "DescribeAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询弹性公网IP列表
+    @inlinable
+    public func describeAddresses(_ input: DescribeAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressesResponse {
+        try await self.client.execute(action: "DescribeAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 删除设备影子
-    ///
-    /// 本接口（DeleteDeviceShadow）用于删除设备影子 
-    @inlinable
-    public func deleteDeviceShadow(_ input: DeleteDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceShadowResponse > {
-        self.client.execute(action: "DeleteDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除设备影子
-    ///
-    /// 本接口（DeleteDeviceShadow）用于删除设备影子 
-    @inlinable
-    public func deleteDeviceShadow(_ input: DeleteDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceShadowResponse {
-        try await self.client.execute(action: "DeleteDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDeviceShadow请求参数结构体
     public struct DeleteDeviceShadowRequest: TCRequestModel {
         /// 产品ID
@@ -58,5 +42,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除设备影子
+    ///
+    /// 本接口（DeleteDeviceShadow）用于删除设备影子 
+    @inlinable
+    public func deleteDeviceShadow(_ input: DeleteDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceShadowResponse > {
+        self.client.execute(action: "DeleteDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除设备影子
+    ///
+    /// 本接口（DeleteDeviceShadow）用于删除设备影子 
+    @inlinable
+    public func deleteDeviceShadow(_ input: DeleteDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceShadowResponse {
+        try await self.client.execute(action: "DeleteDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 解除绑定到用户组的策略
-    ///
-    /// 本接口（DetachGroupPolicy）可用于解除绑定到用户组的策略。
-    @inlinable
-    public func detachGroupPolicy(_ input: DetachGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachGroupPolicyResponse > {
-        self.client.execute(action: "DetachGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解除绑定到用户组的策略
-    ///
-    /// 本接口（DetachGroupPolicy）可用于解除绑定到用户组的策略。
-    @inlinable
-    public func detachGroupPolicy(_ input: DetachGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachGroupPolicyResponse {
-        try await self.client.execute(action: "DetachGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetachGroupPolicy请求参数结构体
     public struct DetachGroupPolicyRequest: TCRequestModel {
         /// 策略 id
@@ -58,5 +42,21 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解除绑定到用户组的策略
+    ///
+    /// 本接口（DetachGroupPolicy）可用于解除绑定到用户组的策略。
+    @inlinable
+    public func detachGroupPolicy(_ input: DetachGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachGroupPolicyResponse > {
+        self.client.execute(action: "DetachGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解除绑定到用户组的策略
+    ///
+    /// 本接口（DetachGroupPolicy）可用于解除绑定到用户组的策略。
+    @inlinable
+    public func detachGroupPolicy(_ input: DetachGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachGroupPolicyResponse {
+        try await self.client.execute(action: "DetachGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

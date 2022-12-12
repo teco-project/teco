@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改Web&Bot安全配置
-    @inlinable
-    public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityPolicyResponse > {
-        self.client.execute(action: "ModifySecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改Web&Bot安全配置
-    @inlinable
-    public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityPolicyResponse {
-        try await self.client.execute(action: "ModifySecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySecurityPolicy请求参数结构体
     public struct ModifySecurityPolicyRequest: TCRequestModel {
         /// 一级域名
@@ -59,5 +47,17 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改Web&Bot安全配置
+    @inlinable
+    public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityPolicyResponse > {
+        self.client.execute(action: "ModifySecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改Web&Bot安全配置
+    @inlinable
+    public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityPolicyResponse {
+        try await self.client.execute(action: "ModifySecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

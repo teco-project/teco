@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 用户解绑设备
-    ///
-    /// 用户解除与设备的关联关系，解除后APP用户无法控制设备，获取设备数据
-    @inlinable
-    public func appDeleteDevice(_ input: AppDeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppDeleteDeviceResponse > {
-        self.client.execute(action: "AppDeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 用户解绑设备
-    ///
-    /// 用户解除与设备的关联关系，解除后APP用户无法控制设备，获取设备数据
-    @inlinable
-    public func appDeleteDevice(_ input: AppDeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppDeleteDeviceResponse {
-        try await self.client.execute(action: "AppDeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AppDeleteDevice请求参数结构体
     public struct AppDeleteDeviceRequest: TCRequestModel {
         /// 访问Token
@@ -63,5 +47,21 @@ extension Iot {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 用户解绑设备
+    ///
+    /// 用户解除与设备的关联关系，解除后APP用户无法控制设备，获取设备数据
+    @inlinable
+    public func appDeleteDevice(_ input: AppDeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppDeleteDeviceResponse > {
+        self.client.execute(action: "AppDeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 用户解绑设备
+    ///
+    /// 用户解除与设备的关联关系，解除后APP用户无法控制设备，获取设备数据
+    @inlinable
+    public func appDeleteDevice(_ input: AppDeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppDeleteDeviceResponse {
+        try await self.client.execute(action: "AppDeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

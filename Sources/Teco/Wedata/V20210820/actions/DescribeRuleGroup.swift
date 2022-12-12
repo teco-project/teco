@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询规则组详情接口
-    @inlinable
-    public func describeRuleGroup(_ input: DescribeRuleGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleGroupResponse > {
-        self.client.execute(action: "DescribeRuleGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询规则组详情接口
-    @inlinable
-    public func describeRuleGroup(_ input: DescribeRuleGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupResponse {
-        try await self.client.execute(action: "DescribeRuleGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRuleGroup请求参数结构体
     public struct DescribeRuleGroupRequest: TCRequestModel {
         /// 规则组ID
@@ -44,7 +32,7 @@ extension Wedata {
         /// 数据库ID
         public let databaseId: String?
         
-        public init (ruleGroupId: UInt64?, datasourceId: String?, tableId: String?, projectId: String?, databaseId: String?) {
+        public init (ruleGroupId: UInt64? = nil, datasourceId: String? = nil, tableId: String? = nil, projectId: String? = nil, databaseId: String? = nil) {
             self.ruleGroupId = ruleGroupId
             self.datasourceId = datasourceId
             self.tableId = tableId
@@ -65,7 +53,7 @@ extension Wedata {
     public struct DescribeRuleGroupResponse: TCResponseModel {
         /// 数据质量规则组详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: RuleGroup
+        public let data: RuleGroup?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -74,5 +62,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询规则组详情接口
+    @inlinable
+    public func describeRuleGroup(_ input: DescribeRuleGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleGroupResponse > {
+        self.client.execute(action: "DescribeRuleGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询规则组详情接口
+    @inlinable
+    public func describeRuleGroup(_ input: DescribeRuleGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupResponse {
+        try await self.client.execute(action: "DescribeRuleGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询实例安全组信息
-    @inlinable
-    public func describeInstanceSecurityGroup(_ input: DescribeInstanceSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceSecurityGroupResponse > {
-        self.client.execute(action: "DescribeInstanceSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例安全组信息
-    @inlinable
-    public func describeInstanceSecurityGroup(_ input: DescribeInstanceSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSecurityGroupResponse {
-        try await self.client.execute(action: "DescribeInstanceSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceSecurityGroup请求参数结构体
     public struct DescribeInstanceSecurityGroupRequest: TCRequestModel {
         /// 实例列表
@@ -53,5 +41,17 @@ extension Redis {
             case instanceSecurityGroupsDetail = "InstanceSecurityGroupsDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例安全组信息
+    @inlinable
+    public func describeInstanceSecurityGroup(_ input: DescribeInstanceSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceSecurityGroupResponse > {
+        self.client.execute(action: "DescribeInstanceSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例安全组信息
+    @inlinable
+    public func describeInstanceSecurityGroup(_ input: DescribeInstanceSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSecurityGroupResponse {
+        try await self.client.execute(action: "DescribeInstanceSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sts {
-    /// 根据 SAML 断言申请角色临时凭证
-    ///
-    /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
-    @inlinable
-    public func assumeRoleWithSAML(_ input: AssumeRoleWithSAMLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssumeRoleWithSAMLResponse > {
-        self.client.execute(action: "AssumeRoleWithSAML", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据 SAML 断言申请角色临时凭证
-    ///
-    /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
-    @inlinable
-    public func assumeRoleWithSAML(_ input: AssumeRoleWithSAMLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithSAMLResponse {
-        try await self.client.execute(action: "AssumeRoleWithSAML", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssumeRoleWithSAML请求参数结构体
     public struct AssumeRoleWithSAMLRequest: TCRequestModel {
         /// base64 编码的 SAML 断言信息
@@ -48,7 +32,7 @@ extension Sts {
         /// 指定临时证书的有效期，单位：秒，默认 7200 秒，最长可设定有效期为 43200 秒
         public let durationSeconds: UInt64?
         
-        public init (samlAssertion: String, principalArn: String, roleArn: String, roleSessionName: String, durationSeconds: UInt64?) {
+        public init (samlAssertion: String, principalArn: String, roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil) {
             self.samlAssertion = samlAssertion
             self.principalArn = principalArn
             self.roleArn = roleArn
@@ -85,5 +69,21 @@ extension Sts {
             case expiration = "Expiration"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据 SAML 断言申请角色临时凭证
+    ///
+    /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
+    @inlinable
+    public func assumeRoleWithSAML(_ input: AssumeRoleWithSAMLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssumeRoleWithSAMLResponse > {
+        self.client.execute(action: "AssumeRoleWithSAML", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据 SAML 断言申请角色临时凭证
+    ///
+    /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
+    @inlinable
+    public func assumeRoleWithSAML(_ input: AssumeRoleWithSAMLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithSAMLResponse {
+        try await self.client.execute(action: "AssumeRoleWithSAML", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

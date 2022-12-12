@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// 获取转发报表数据
-    ///
-    /// 为大禹子产品提供业务转发指标数据的接口
-    @inlinable
-    public func describeBaradData(_ input: DescribeBaradDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaradDataResponse > {
-        self.client.execute(action: "DescribeBaradData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取转发报表数据
-    ///
-    /// 为大禹子产品提供业务转发指标数据的接口
-    @inlinable
-    public func describeBaradData(_ input: DescribeBaradDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaradDataResponse {
-        try await self.client.execute(action: "DescribeBaradData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBaradData请求参数结构体
     public struct DescribeBaradDataRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -75,7 +59,7 @@ extension Dayu {
         /// 资源实例下的IP，只有当Business=net(高防IP专业版)时才必须填写资源的一个IP（因为高防IP专业版资源实例有多个IP，才需要指定）；
         public let ip: String?
         
-        public init (business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, protocolPort: [ProtocolPort]?, ip: String?) {
+        public init (business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, protocolPort: [ProtocolPort]? = nil, ip: String? = nil) {
             self.business = business
             self.id = id
             self.metricName = metricName
@@ -112,5 +96,21 @@ extension Dayu {
             case dataList = "DataList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取转发报表数据
+    ///
+    /// 为大禹子产品提供业务转发指标数据的接口
+    @inlinable
+    public func describeBaradData(_ input: DescribeBaradDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaradDataResponse > {
+        self.client.execute(action: "DescribeBaradData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取转发报表数据
+    ///
+    /// 为大禹子产品提供业务转发指标数据的接口
+    @inlinable
+    public func describeBaradData(_ input: DescribeBaradDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaradDataResponse {
+        try await self.client.execute(action: "DescribeBaradData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 镜像漏洞列表导出
-    ///
-    /// 容器安全搜索查询镜像漏洞列表导出
-    @inlinable
-    public func describeAssetImageVulListExport(_ input: DescribeAssetImageVulListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageVulListExportResponse > {
-        self.client.execute(action: "DescribeAssetImageVulListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 镜像漏洞列表导出
-    ///
-    /// 容器安全搜索查询镜像漏洞列表导出
-    @inlinable
-    public func describeAssetImageVulListExport(_ input: DescribeAssetImageVulListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVulListExportResponse {
-        try await self.client.execute(action: "DescribeAssetImageVulListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageVulListExport请求参数结构体
     public struct DescribeAssetImageVulListExportRequest: TCRequestModel {
         /// 导出字段
@@ -50,7 +34,7 @@ extension Tcss {
         /// <li>Level - String - 是否必填：否 - 风险等级  1,2,3,4</li>
         public let filters: [AssetFilters]?
         
-        public init (exportField: [String], imageID: String, limit: UInt64?, offset: UInt64?, filters: [AssetFilters]?) {
+        public init (exportField: [String], imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil) {
             self.exportField = exportField
             self.imageID = imageID
             self.limit = limit
@@ -79,5 +63,21 @@ extension Tcss {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 镜像漏洞列表导出
+    ///
+    /// 容器安全搜索查询镜像漏洞列表导出
+    @inlinable
+    public func describeAssetImageVulListExport(_ input: DescribeAssetImageVulListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageVulListExportResponse > {
+        self.client.execute(action: "DescribeAssetImageVulListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像漏洞列表导出
+    ///
+    /// 容器安全搜索查询镜像漏洞列表导出
+    @inlinable
+    public func describeAssetImageVulListExport(_ input: DescribeAssetImageVulListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVulListExportResponse {
+        try await self.client.execute(action: "DescribeAssetImageVulListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

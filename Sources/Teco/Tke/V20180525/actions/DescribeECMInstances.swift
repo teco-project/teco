@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取ECM实例相关信息
-    @inlinable
-    public func describeECMInstances(_ input: DescribeECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeECMInstancesResponse > {
-        self.client.execute(action: "DescribeECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取ECM实例相关信息
-    @inlinable
-    public func describeECMInstances(_ input: DescribeECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeECMInstancesResponse {
-        try await self.client.execute(action: "DescribeECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeECMInstances请求参数结构体
     public struct DescribeECMInstancesRequest: TCRequestModel {
         /// 集群id
@@ -36,7 +24,7 @@ extension Tke {
         /// 仅支持ecm-id过滤
         public let filters: [Filter]?
         
-        public init (clusterID: String, filters: [Filter]?) {
+        public init (clusterID: String, filters: [Filter]? = nil) {
             self.clusterID = clusterID
             self.filters = filters
         }
@@ -63,5 +51,17 @@ extension Tke {
             case instanceInfoSet = "InstanceInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取ECM实例相关信息
+    @inlinable
+    public func describeECMInstances(_ input: DescribeECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeECMInstancesResponse > {
+        self.client.execute(action: "DescribeECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取ECM实例相关信息
+    @inlinable
+    public func describeECMInstances(_ input: DescribeECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeECMInstancesResponse {
+        try await self.client.execute(action: "DescribeECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

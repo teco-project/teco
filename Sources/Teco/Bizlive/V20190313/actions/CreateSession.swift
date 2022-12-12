@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bizlive {
-    /// 创建会话
-    @inlinable
-    public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSessionResponse > {
-        self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建会话
-    @inlinable
-    public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
-        try await self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSession请求参数结构体
     public struct CreateSessionRequest: TCRequestModel {
         /// 客户端session信息，从JSSDK请求中获得
@@ -50,7 +38,7 @@ extension Bizlive {
         /// 分辨率
         public let resolution: String?
         
-        public init (clientSession: String, gameId: String, userId: String, gameParas: String?, gameRegion: String?, imageUrl: String?, resolution: String?) {
+        public init (clientSession: String, gameId: String, userId: String, gameParas: String? = nil, gameRegion: String? = nil, imageUrl: String? = nil, resolution: String? = nil) {
             self.clientSession = clientSession
             self.gameId = gameId
             self.userId = userId
@@ -83,5 +71,17 @@ extension Bizlive {
             case serverSession = "ServerSession"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建会话
+    @inlinable
+    public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSessionResponse > {
+        self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建会话
+    @inlinable
+    public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
+        try await self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

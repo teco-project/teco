@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 续费CDH实例
-    ///
-    /// 本接口 (RenewHosts) 用于续费包年包月CDH实例。
-    /// * 只支持操作包年包月实例，否则操作会以特定[错误码](#6.-.E9.94.99.E8.AF.AF.E7.A0.81)返回。
-    /// * 续费时请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/555/20253)接口查询账户余额。
-    @inlinable
-    public func renewHosts(_ input: RenewHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewHostsResponse > {
-        self.client.execute(action: "RenewHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费CDH实例
-    ///
-    /// 本接口 (RenewHosts) 用于续费包年包月CDH实例。
-    /// * 只支持操作包年包月实例，否则操作会以特定[错误码](#6.-.E9.94.99.E8.AF.AF.E7.A0.81)返回。
-    /// * 续费时请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/555/20253)接口查询账户余额。
-    @inlinable
-    public func renewHosts(_ input: RenewHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewHostsResponse {
-        try await self.client.execute(action: "RenewHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RenewHosts请求参数结构体
     public struct RenewHostsRequest: TCRequestModel {
         /// 一个或多个待操作的CDH实例ID。每次请求的CDH实例的上限为100。
@@ -62,5 +42,25 @@ extension Cvm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费CDH实例
+    ///
+    /// 本接口 (RenewHosts) 用于续费包年包月CDH实例。
+    /// * 只支持操作包年包月实例，否则操作会以特定[错误码](#6.-.E9.94.99.E8.AF.AF.E7.A0.81)返回。
+    /// * 续费时请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/555/20253)接口查询账户余额。
+    @inlinable
+    public func renewHosts(_ input: RenewHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewHostsResponse > {
+        self.client.execute(action: "RenewHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费CDH实例
+    ///
+    /// 本接口 (RenewHosts) 用于续费包年包月CDH实例。
+    /// * 只支持操作包年包月实例，否则操作会以特定[错误码](#6.-.E9.94.99.E8.AF.AF.E7.A0.81)返回。
+    /// * 续费时请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/555/20253)接口查询账户余额。
+    @inlinable
+    public func renewHosts(_ input: RenewHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewHostsResponse {
+        try await self.client.execute(action: "RenewHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

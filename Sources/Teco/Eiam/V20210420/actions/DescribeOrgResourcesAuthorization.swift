@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 查询指定机构下的资源授权列表
-    @inlinable
-    public func describeOrgResourcesAuthorization(_ input: DescribeOrgResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrgResourcesAuthorizationResponse > {
-        self.client.execute(action: "DescribeOrgResourcesAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询指定机构下的资源授权列表
-    @inlinable
-    public func describeOrgResourcesAuthorization(_ input: DescribeOrgResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrgResourcesAuthorizationResponse {
-        try await self.client.execute(action: "DescribeOrgResourcesAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOrgResourcesAuthorization请求参数结构体
     public struct DescribeOrgResourcesAuthorizationRequest: TCRequestModel {
         /// 应用ID
@@ -83,5 +71,17 @@ extension Eiam {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询指定机构下的资源授权列表
+    @inlinable
+    public func describeOrgResourcesAuthorization(_ input: DescribeOrgResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrgResourcesAuthorizationResponse > {
+        self.client.execute(action: "DescribeOrgResourcesAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指定机构下的资源授权列表
+    @inlinable
+    public func describeOrgResourcesAuthorization(_ input: DescribeOrgResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrgResourcesAuthorizationResponse {
+        try await self.client.execute(action: "DescribeOrgResourcesAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

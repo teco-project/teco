@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 查询设备位置信息
-    ///
-    /// 查询服务器所在的位置，如机架，上联交换机等信息
-    @inlinable
-    public func describeDevicePosition(_ input: DescribeDevicePositionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePositionResponse > {
-        self.client.execute(action: "DescribeDevicePosition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备位置信息
-    ///
-    /// 查询服务器所在的位置，如机架，上联交换机等信息
-    @inlinable
-    public func describeDevicePosition(_ input: DescribeDevicePositionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePositionResponse {
-        try await self.client.execute(action: "DescribeDevicePosition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDevicePosition请求参数结构体
     public struct DescribeDevicePositionRequest: TCRequestModel {
         /// 偏移量
@@ -51,7 +35,7 @@ extension Bm {
         /// 实例别名
         public let alias: String?
         
-        public init (offset: UInt64?, limit: UInt64?, vpcId: String?, subnetId: String?, instanceIds: [String]?, alias: String?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, instanceIds: [String]? = nil, alias: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.vpcId = vpcId
@@ -86,5 +70,21 @@ extension Bm {
             case devicePositionInfoSet = "DevicePositionInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备位置信息
+    ///
+    /// 查询服务器所在的位置，如机架，上联交换机等信息
+    @inlinable
+    public func describeDevicePosition(_ input: DescribeDevicePositionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePositionResponse > {
+        self.client.execute(action: "DescribeDevicePosition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备位置信息
+    ///
+    /// 查询服务器所在的位置，如机架，上联交换机等信息
+    @inlinable
+    public func describeDevicePosition(_ input: DescribeDevicePositionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePositionResponse {
+        try await self.client.execute(action: "DescribeDevicePosition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

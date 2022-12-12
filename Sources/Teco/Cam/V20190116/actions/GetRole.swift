@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 获取角色详情
-    ///
-    /// 本接口（GetRole）用于获取指定角色的详细信息。
-    @inlinable
-    public func getRole(_ input: GetRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRoleResponse > {
-        self.client.execute(action: "GetRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取角色详情
-    ///
-    /// 本接口（GetRole）用于获取指定角色的详细信息。
-    @inlinable
-    public func getRole(_ input: GetRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRoleResponse {
-        try await self.client.execute(action: "GetRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetRole请求参数结构体
     public struct GetRoleRequest: TCRequestModel {
         /// 角色 ID，用于指定角色，入参 RoleId 与 RoleName 二选一
@@ -39,7 +23,7 @@ extension Cam {
         /// 角色名，用于指定角色，入参 RoleId 与 RoleName 二选一
         public let roleName: String?
         
-        public init (roleId: String?, roleName: String?) {
+        public init (roleId: String? = nil, roleName: String? = nil) {
             self.roleId = roleId
             self.roleName = roleName
         }
@@ -62,5 +46,21 @@ extension Cam {
             case roleInfo = "RoleInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取角色详情
+    ///
+    /// 本接口（GetRole）用于获取指定角色的详细信息。
+    @inlinable
+    public func getRole(_ input: GetRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRoleResponse > {
+        self.client.execute(action: "GetRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取角色详情
+    ///
+    /// 本接口（GetRole）用于获取指定角色的详细信息。
+    @inlinable
+    public func getRole(_ input: GetRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRoleResponse {
+        try await self.client.execute(action: "GetRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

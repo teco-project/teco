@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云支付-查询订单付款状态
-    @inlinable
-    public func queryOrderStatus(_ input: QueryOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOrderStatusResponse > {
-        self.client.execute(action: "QueryOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云支付-查询订单付款状态
-    @inlinable
-    public func queryOrderStatus(_ input: QueryOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOrderStatusResponse {
-        try await self.client.execute(action: "QueryOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryOrderStatus请求参数结构体
     public struct QueryOrderStatusRequest: TCRequestModel {
         /// 使用门店OpenId
@@ -44,7 +32,7 @@ extension Cpdp {
         /// 沙箱环境填sandbox，正式环境不填
         public let profile: String?
         
-        public init (openId: String, openKey: String, developerNo: String, orderNo: String?, profile: String?) {
+        public init (openId: String, openKey: String, developerNo: String, orderNo: String? = nil, profile: String? = nil) {
             self.openId = openId
             self.openKey = openKey
             self.developerNo = developerNo
@@ -72,7 +60,7 @@ extension Cpdp {
         
         /// 查询订单付款状态结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: QueryOrderStatusResult
+        public let result: QueryOrderStatusResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -83,5 +71,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云支付-查询订单付款状态
+    @inlinable
+    public func queryOrderStatus(_ input: QueryOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOrderStatusResponse > {
+        self.client.execute(action: "QueryOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-查询订单付款状态
+    @inlinable
+    public func queryOrderStatus(_ input: QueryOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOrderStatusResponse {
+        try await self.client.execute(action: "QueryOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 获取终端用户新增与登录信息
-    ///
-    /// 获取环境终端用户新增与登录信息
-    @inlinable
-    public func describeEndUserLoginStatistic(_ input: DescribeEndUserLoginStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEndUserLoginStatisticResponse > {
-        self.client.execute(action: "DescribeEndUserLoginStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取终端用户新增与登录信息
-    ///
-    /// 获取环境终端用户新增与登录信息
-    @inlinable
-    public func describeEndUserLoginStatistic(_ input: DescribeEndUserLoginStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEndUserLoginStatisticResponse {
-        try await self.client.execute(action: "DescribeEndUserLoginStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEndUserLoginStatistic请求参数结构体
     public struct DescribeEndUserLoginStatisticRequest: TCRequestModel {
         /// 环境id
@@ -41,7 +25,7 @@ extension Tcb {
         /// <li>miniapp</li>
         public let source: String?
         
-        public init (envId: String, source: String?) {
+        public init (envId: String, source: String? = nil) {
             self.envId = envId
             self.source = source
         }
@@ -65,5 +49,21 @@ extension Tcb {
             case loginStatistics = "LoginStatistics"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取终端用户新增与登录信息
+    ///
+    /// 获取环境终端用户新增与登录信息
+    @inlinable
+    public func describeEndUserLoginStatistic(_ input: DescribeEndUserLoginStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEndUserLoginStatisticResponse > {
+        self.client.execute(action: "DescribeEndUserLoginStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取终端用户新增与登录信息
+    ///
+    /// 获取环境终端用户新增与登录信息
+    @inlinable
+    public func describeEndUserLoginStatistic(_ input: DescribeEndUserLoginStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEndUserLoginStatisticResponse {
+        try await self.client.execute(action: "DescribeEndUserLoginStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

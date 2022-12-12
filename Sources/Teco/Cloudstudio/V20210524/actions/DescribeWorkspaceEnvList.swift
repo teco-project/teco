@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudstudio {
-    /// 环境列表接口
-    ///
-    /// 环境列表接口返回信息
-    @inlinable
-    public func describeWorkspaceEnvList(_ input: DescribeWorkspaceEnvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkspaceEnvListResponse > {
-        self.client.execute(action: "DescribeWorkspaceEnvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 环境列表接口
-    ///
-    /// 环境列表接口返回信息
-    @inlinable
-    public func describeWorkspaceEnvList(_ input: DescribeWorkspaceEnvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceEnvListResponse {
-        try await self.client.execute(action: "DescribeWorkspaceEnvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWorkspaceEnvList请求参数结构体
     public struct DescribeWorkspaceEnvListRequest: TCRequestModel {
         /// 用户所属组
@@ -58,5 +42,21 @@ extension Cloudstudio {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 环境列表接口
+    ///
+    /// 环境列表接口返回信息
+    @inlinable
+    public func describeWorkspaceEnvList(_ input: DescribeWorkspaceEnvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkspaceEnvListResponse > {
+        self.client.execute(action: "DescribeWorkspaceEnvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 环境列表接口
+    ///
+    /// 环境列表接口返回信息
+    @inlinable
+    public func describeWorkspaceEnvList(_ input: DescribeWorkspaceEnvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceEnvListResponse {
+        try await self.client.execute(action: "DescribeWorkspaceEnvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

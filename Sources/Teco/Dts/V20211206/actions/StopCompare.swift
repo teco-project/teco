@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 终止一致性校验任务
-    @inlinable
-    public func stopCompare(_ input: StopCompareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopCompareResponse > {
-        self.client.execute(action: "StopCompare", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 终止一致性校验任务
-    @inlinable
-    public func stopCompare(_ input: StopCompareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopCompareResponse {
-        try await self.client.execute(action: "StopCompare", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopCompare请求参数结构体
     public struct StopCompareRequest: TCRequestModel {
         /// 迁移任务 Id
@@ -54,5 +42,17 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 终止一致性校验任务
+    @inlinable
+    public func stopCompare(_ input: StopCompareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopCompareResponse > {
+        self.client.execute(action: "StopCompare", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 终止一致性校验任务
+    @inlinable
+    public func stopCompare(_ input: StopCompareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopCompareResponse {
+        try await self.client.execute(action: "StopCompare", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

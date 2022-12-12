@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ess {
-    /// 创建员工
-    @inlinable
-    public func createIntegrationEmployees(_ input: CreateIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIntegrationEmployeesResponse > {
-        self.client.execute(action: "CreateIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建员工
-    @inlinable
-    public func createIntegrationEmployees(_ input: CreateIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationEmployeesResponse {
-        try await self.client.execute(action: "CreateIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateIntegrationEmployees请求参数结构体
     public struct CreateIntegrationEmployeesRequest: TCRequestModel {
         /// 操作人信息，userId必填
@@ -58,5 +46,17 @@ extension Ess {
             case createEmployeeResult = "CreateEmployeeResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建员工
+    @inlinable
+    public func createIntegrationEmployees(_ input: CreateIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIntegrationEmployeesResponse > {
+        self.client.execute(action: "CreateIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建员工
+    @inlinable
+    public func createIntegrationEmployees(_ input: CreateIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationEmployeesResponse {
+        try await self.client.execute(action: "CreateIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

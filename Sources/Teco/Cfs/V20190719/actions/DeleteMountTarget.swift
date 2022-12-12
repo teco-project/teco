@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 删除挂载点
-    ///
-    /// 本接口（DeleteMountTarget）用于删除挂载点
-    @inlinable
-    public func deleteMountTarget(_ input: DeleteMountTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMountTargetResponse > {
-        self.client.execute(action: "DeleteMountTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除挂载点
-    ///
-    /// 本接口（DeleteMountTarget）用于删除挂载点
-    @inlinable
-    public func deleteMountTarget(_ input: DeleteMountTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMountTargetResponse {
-        try await self.client.execute(action: "DeleteMountTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMountTarget请求参数结构体
     public struct DeleteMountTargetRequest: TCRequestModel {
         /// 文件系统 ID
@@ -58,5 +42,21 @@ extension Cfs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除挂载点
+    ///
+    /// 本接口（DeleteMountTarget）用于删除挂载点
+    @inlinable
+    public func deleteMountTarget(_ input: DeleteMountTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMountTargetResponse > {
+        self.client.execute(action: "DeleteMountTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除挂载点
+    ///
+    /// 本接口（DeleteMountTarget）用于删除挂载点
+    @inlinable
+    public func deleteMountTarget(_ input: DeleteMountTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMountTargetResponse {
+        try await self.client.execute(action: "DeleteMountTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

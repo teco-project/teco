@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gpm {
-    /// 创建匹配
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 创建匹配
-    @inlinable
-    public func createMatch(_ input: CreateMatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMatchResponse > {
-        self.client.execute(action: "CreateMatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建匹配
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 创建匹配
-    @inlinable
-    public func createMatch(_ input: CreateMatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMatchResponse {
-        try await self.client.execute(action: "CreateMatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMatch请求参数结构体
     public struct CreateMatchRequest: TCRequestModel {
         /// 匹配名称，[a-zA-Z0-9-\.]* 长度128
@@ -74,7 +56,7 @@ extension Gpm {
         /// 标签，key-value结构的数组
         public let tags: [StringKV]?
         
-        public init (matchName: String, ruleCode: String, timeout: Int64, serverType: Int64, matchDesc: String?, notifyUrl: String?, serverRegion: String?, serverQueue: String?, customPushData: String?, serverSessionData: String?, gameProperties: [StringKV]?, logSwitch: Int64?, tags: [StringKV]?) {
+        public init (matchName: String, ruleCode: String, timeout: Int64, serverType: Int64, matchDesc: String? = nil, notifyUrl: String? = nil, serverRegion: String? = nil, serverQueue: String? = nil, customPushData: String? = nil, serverSessionData: String? = nil, gameProperties: [StringKV]? = nil, logSwitch: Int64? = nil, tags: [StringKV]? = nil) {
             self.matchName = matchName
             self.ruleCode = ruleCode
             self.timeout = timeout
@@ -119,5 +101,23 @@ extension Gpm {
             case matchInfo = "MatchInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建匹配
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 创建匹配
+    @inlinable
+    public func createMatch(_ input: CreateMatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMatchResponse > {
+        self.client.execute(action: "CreateMatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建匹配
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 创建匹配
+    @inlinable
+    public func createMatch(_ input: CreateMatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMatchResponse {
+        try await self.client.execute(action: "CreateMatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ie {
-    /// 获取媒体质检任务结果
-    @inlinable
-    public func describeQualityControlTaskResult(_ input: DescribeQualityControlTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQualityControlTaskResultResponse > {
-        self.client.execute(action: "DescribeQualityControlTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取媒体质检任务结果
-    @inlinable
-    public func describeQualityControlTaskResult(_ input: DescribeQualityControlTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityControlTaskResultResponse {
-        try await self.client.execute(action: "DescribeQualityControlTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeQualityControlTaskResult请求参数结构体
     public struct DescribeQualityControlTaskResultRequest: TCRequestModel {
         /// 质检任务 ID
@@ -53,5 +41,17 @@ extension Ie {
             case taskResult = "TaskResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取媒体质检任务结果
+    @inlinable
+    public func describeQualityControlTaskResult(_ input: DescribeQualityControlTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQualityControlTaskResultResponse > {
+        self.client.execute(action: "DescribeQualityControlTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取媒体质检任务结果
+    @inlinable
+    public func describeQualityControlTaskResult(_ input: DescribeQualityControlTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityControlTaskResultResponse {
+        try await self.client.execute(action: "DescribeQualityControlTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

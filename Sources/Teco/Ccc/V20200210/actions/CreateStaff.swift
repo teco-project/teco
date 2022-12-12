@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 创建客服账号
-    ///
-    /// 创建客服账号。
-    @inlinable
-    public func createStaff(_ input: CreateStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStaffResponse > {
-        self.client.execute(action: "CreateStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建客服账号
-    ///
-    /// 创建客服账号。
-    @inlinable
-    public func createStaff(_ input: CreateStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStaffResponse {
-        try await self.client.execute(action: "CreateStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateStaff请求参数结构体
     public struct CreateStaffRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -42,7 +26,7 @@ extension Ccc {
         /// 是否发送密码邮件，默认true
         public let sendPassword: Bool?
         
-        public init (sdkAppId: Int64, staffs: [SeatUserInfo], sendPassword: Bool?) {
+        public init (sdkAppId: Int64, staffs: [SeatUserInfo], sendPassword: Bool? = nil) {
             self.sdkAppId = sdkAppId
             self.staffs = staffs
             self.sendPassword = sendPassword
@@ -68,5 +52,21 @@ extension Ccc {
             case errorStaffList = "ErrorStaffList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建客服账号
+    ///
+    /// 创建客服账号。
+    @inlinable
+    public func createStaff(_ input: CreateStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStaffResponse > {
+        self.client.execute(action: "CreateStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建客服账号
+    ///
+    /// 创建客服账号。
+    @inlinable
+    public func createStaff(_ input: CreateStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStaffResponse {
+        try await self.client.execute(action: "CreateStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 添加实例路由
-    @inlinable
-    public func createRoute(_ input: CreateRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRouteResponse > {
-        self.client.execute(action: "CreateRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加实例路由
-    @inlinable
-    public func createRoute(_ input: CreateRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRouteResponse {
-        try await self.client.execute(action: "CreateRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRoute请求参数结构体
     public struct CreateRouteRequest: TCRequestModel {
         /// 实例唯一id
@@ -56,7 +44,7 @@ extension Ckafka {
         /// vip地址
         public let ip: String?
         
-        public init (instanceId: String, vipType: Int64, vpcId: String?, subnetId: String?, accessType: Int64?, authFlag: Int64?, callerAppid: Int64?, publicNetwork: Int64?, ip: String?) {
+        public init (instanceId: String, vipType: Int64, vpcId: String? = nil, subnetId: String? = nil, accessType: Int64? = nil, authFlag: Int64? = nil, callerAppid: Int64? = nil, publicNetwork: Int64? = nil, ip: String? = nil) {
             self.instanceId = instanceId
             self.vipType = vipType
             self.vpcId = vpcId
@@ -93,5 +81,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加实例路由
+    @inlinable
+    public func createRoute(_ input: CreateRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRouteResponse > {
+        self.client.execute(action: "CreateRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加实例路由
+    @inlinable
+    public func createRoute(_ input: CreateRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRouteResponse {
+        try await self.client.execute(action: "CreateRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

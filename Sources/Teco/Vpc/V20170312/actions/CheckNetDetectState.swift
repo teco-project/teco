@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 验证网络探测
-    ///
-    /// 本接口(CheckNetDetectState)用于验证网络探测。
-    @inlinable
-    public func checkNetDetectState(_ input: CheckNetDetectStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckNetDetectStateResponse > {
-        self.client.execute(action: "CheckNetDetectState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 验证网络探测
-    ///
-    /// 本接口(CheckNetDetectState)用于验证网络探测。
-    @inlinable
-    public func checkNetDetectState(_ input: CheckNetDetectStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckNetDetectStateResponse {
-        try await self.client.execute(action: "CheckNetDetectState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckNetDetectState请求参数结构体
     public struct CheckNetDetectStateRequest: TCRequestModel {
         /// 探测目的IPv4地址数组，最多两个。
@@ -64,7 +48,7 @@ extension Vpc {
         /// 网络探测名称，最大长度不能超过60个字节。该参数与（VpcId，SubnetId）配合使用，与NetDetectId至少要有一个。当NetDetectId存在时，使用NetDetectId。
         public let netDetectName: String?
         
-        public init (detectDestinationIp: [String], nextHopType: String, nextHopDestination: String, netDetectId: String?, vpcId: String?, subnetId: String?, netDetectName: String?) {
+        public init (detectDestinationIp: [String], nextHopType: String, nextHopDestination: String, netDetectId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, netDetectName: String? = nil) {
             self.detectDestinationIp = detectDestinationIp
             self.nextHopType = nextHopType
             self.nextHopDestination = nextHopDestination
@@ -97,5 +81,21 @@ extension Vpc {
             case netDetectIpStateSet = "NetDetectIpStateSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 验证网络探测
+    ///
+    /// 本接口(CheckNetDetectState)用于验证网络探测。
+    @inlinable
+    public func checkNetDetectState(_ input: CheckNetDetectStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckNetDetectStateResponse > {
+        self.client.execute(action: "CheckNetDetectState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 验证网络探测
+    ///
+    /// 本接口(CheckNetDetectState)用于验证网络探测。
+    @inlinable
+    public func checkNetDetectState(_ input: CheckNetDetectStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckNetDetectStateResponse {
+        try await self.client.execute(action: "CheckNetDetectState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

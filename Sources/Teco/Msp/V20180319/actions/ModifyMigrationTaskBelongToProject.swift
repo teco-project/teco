@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Msp {
-    /// 更改迁移任务所属项目
-    @inlinable
-    public func modifyMigrationTaskBelongToProject(_ input: ModifyMigrationTaskBelongToProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrationTaskBelongToProjectResponse > {
-        self.client.execute(action: "ModifyMigrationTaskBelongToProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更改迁移任务所属项目
-    @inlinable
-    public func modifyMigrationTaskBelongToProject(_ input: ModifyMigrationTaskBelongToProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationTaskBelongToProjectResponse {
-        try await self.client.execute(action: "ModifyMigrationTaskBelongToProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMigrationTaskBelongToProject请求参数结构体
     public struct ModifyMigrationTaskBelongToProjectRequest: TCRequestModel {
         /// 任务ID，例如msp-jitoh33n
@@ -54,5 +42,17 @@ extension Msp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更改迁移任务所属项目
+    @inlinable
+    public func modifyMigrationTaskBelongToProject(_ input: ModifyMigrationTaskBelongToProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrationTaskBelongToProjectResponse > {
+        self.client.execute(action: "ModifyMigrationTaskBelongToProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更改迁移任务所属项目
+    @inlinable
+    public func modifyMigrationTaskBelongToProject(_ input: ModifyMigrationTaskBelongToProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationTaskBelongToProjectResponse {
+        try await self.client.execute(action: "ModifyMigrationTaskBelongToProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

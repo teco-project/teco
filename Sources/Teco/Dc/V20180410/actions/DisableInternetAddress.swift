@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 停用公网互联网地址
-    ///
-    /// 停用用户申请的公网互联网地址
-    @inlinable
-    public func disableInternetAddress(_ input: DisableInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableInternetAddressResponse > {
-        self.client.execute(action: "DisableInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停用公网互联网地址
-    ///
-    /// 停用用户申请的公网互联网地址
-    @inlinable
-    public func disableInternetAddress(_ input: DisableInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInternetAddressResponse {
-        try await self.client.execute(action: "DisableInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableInternetAddress请求参数结构体
     public struct DisableInternetAddressRequest: TCRequestModel {
         /// 公网互联网地址ID
@@ -53,5 +37,21 @@ extension Dc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停用公网互联网地址
+    ///
+    /// 停用用户申请的公网互联网地址
+    @inlinable
+    public func disableInternetAddress(_ input: DisableInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableInternetAddressResponse > {
+        self.client.execute(action: "DisableInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停用公网互联网地址
+    ///
+    /// 停用用户申请的公网互联网地址
+    @inlinable
+    public func disableInternetAddress(_ input: DisableInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInternetAddressResponse {
+        try await self.client.execute(action: "DisableInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

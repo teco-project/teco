@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iottid {
-    /// 下载芯片订单的TID
-    ///
-    /// 下载芯片订单的TID 
-    @inlinable
-    public func downloadTids(_ input: DownloadTidsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadTidsResponse > {
-        self.client.execute(action: "DownloadTids", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下载芯片订单的TID
-    ///
-    /// 下载芯片订单的TID 
-    @inlinable
-    public func downloadTids(_ input: DownloadTidsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadTidsResponse {
-        try await self.client.execute(action: "DownloadTids", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DownloadTids请求参数结构体
     public struct DownloadTidsRequest: TCRequestModel {
         /// 订单编号
@@ -63,5 +47,21 @@ extension Iottid {
             case tidSet = "TidSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下载芯片订单的TID
+    ///
+    /// 下载芯片订单的TID 
+    @inlinable
+    public func downloadTids(_ input: DownloadTidsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadTidsResponse > {
+        self.client.execute(action: "DownloadTids", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下载芯片订单的TID
+    ///
+    /// 下载芯片订单的TID 
+    @inlinable
+    public func downloadTids(_ input: DownloadTidsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadTidsResponse {
+        try await self.client.execute(action: "DownloadTids", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

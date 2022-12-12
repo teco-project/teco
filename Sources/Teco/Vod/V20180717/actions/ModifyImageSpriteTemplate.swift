@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 修改雪碧图模板
-    ///
-    /// 修改用户自定义雪碧图模板。
-    @inlinable
-    public func modifyImageSpriteTemplate(_ input: ModifyImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyImageSpriteTemplateResponse > {
-        self.client.execute(action: "ModifyImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改雪碧图模板
-    ///
-    /// 修改用户自定义雪碧图模板。
-    @inlinable
-    public func modifyImageSpriteTemplate(_ input: ModifyImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageSpriteTemplateResponse {
-        try await self.client.execute(action: "ModifyImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyImageSpriteTemplate请求参数结构体
     public struct ModifyImageSpriteTemplateRequest: TCRequestModel {
         /// 雪碧图模板唯一标识。
@@ -85,7 +69,7 @@ extension Vod {
         /// <li> webp：webp 格式。</li>
         public let format: String?
         
-        public init (definition: UInt64, subAppId: UInt64?, name: String?, width: UInt64?, height: UInt64?, resolutionAdaptive: String?, sampleType: String?, sampleInterval: UInt64?, rowCount: UInt64?, columnCount: UInt64?, fillType: String?, comment: String?, format: String?) {
+        public init (definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, sampleType: String? = nil, sampleInterval: UInt64? = nil, rowCount: UInt64? = nil, columnCount: UInt64? = nil, fillType: String? = nil, comment: String? = nil, format: String? = nil) {
             self.definition = definition
             self.subAppId = subAppId
             self.name = name
@@ -126,5 +110,21 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改雪碧图模板
+    ///
+    /// 修改用户自定义雪碧图模板。
+    @inlinable
+    public func modifyImageSpriteTemplate(_ input: ModifyImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyImageSpriteTemplateResponse > {
+        self.client.execute(action: "ModifyImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改雪碧图模板
+    ///
+    /// 修改用户自定义雪碧图模板。
+    @inlinable
+    public func modifyImageSpriteTemplate(_ input: ModifyImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageSpriteTemplateResponse {
+        try await self.client.execute(action: "ModifyImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

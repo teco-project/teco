@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gpm {
-    /// 取消匹配
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 取消匹配。
-    @inlinable
-    public func cancelMatching(_ input: CancelMatchingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelMatchingResponse > {
-        self.client.execute(action: "CancelMatching", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消匹配
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 取消匹配。
-    @inlinable
-    public func cancelMatching(_ input: CancelMatchingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelMatchingResponse {
-        try await self.client.execute(action: "CancelMatching", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelMatching请求参数结构体
     public struct CancelMatchingRequest: TCRequestModel {
         /// 匹配 Code
@@ -64,5 +46,23 @@ extension Gpm {
             case errCode = "ErrCode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消匹配
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 取消匹配。
+    @inlinable
+    public func cancelMatching(_ input: CancelMatchingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelMatchingResponse > {
+        self.client.execute(action: "CancelMatching", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消匹配
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 取消匹配。
+    @inlinable
+    public func cancelMatching(_ input: CancelMatchingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelMatchingResponse {
+        try await self.client.execute(action: "CancelMatching", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

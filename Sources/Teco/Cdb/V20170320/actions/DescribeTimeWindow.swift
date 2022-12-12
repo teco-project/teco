@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询维护时间窗口
-    ///
-    /// 本接口(DescribeTimeWindow)用于查询云数据库实例的维护时间窗口。
-    @inlinable
-    public func describeTimeWindow(_ input: DescribeTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTimeWindowResponse > {
-        self.client.execute(action: "DescribeTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询维护时间窗口
-    ///
-    /// 本接口(DescribeTimeWindow)用于查询云数据库实例的维护时间窗口。
-    @inlinable
-    public func describeTimeWindow(_ input: DescribeTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimeWindowResponse {
-        try await self.client.execute(action: "DescribeTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTimeWindow请求参数结构体
     public struct DescribeTimeWindowRequest: TCRequestModel {
         /// 实例ID，格式如：cdb-c1nl9rpv或者cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同。
@@ -85,5 +69,21 @@ extension Cdb {
             case maxDelayTime = "MaxDelayTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询维护时间窗口
+    ///
+    /// 本接口(DescribeTimeWindow)用于查询云数据库实例的维护时间窗口。
+    @inlinable
+    public func describeTimeWindow(_ input: DescribeTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTimeWindowResponse > {
+        self.client.execute(action: "DescribeTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询维护时间窗口
+    ///
+    /// 本接口(DescribeTimeWindow)用于查询云数据库实例的维护时间窗口。
+    @inlinable
+    public func describeTimeWindow(_ input: DescribeTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimeWindowResponse {
+        try await self.client.execute(action: "DescribeTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

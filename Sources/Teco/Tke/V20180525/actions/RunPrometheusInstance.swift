@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 初始化TMP实例
-    ///
-    /// 初始化TMP实例，开启集成中心时调用
-    @inlinable
-    public func runPrometheusInstance(_ input: RunPrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunPrometheusInstanceResponse > {
-        self.client.execute(action: "RunPrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 初始化TMP实例
-    ///
-    /// 初始化TMP实例，开启集成中心时调用
-    @inlinable
-    public func runPrometheusInstance(_ input: RunPrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunPrometheusInstanceResponse {
-        try await self.client.execute(action: "RunPrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RunPrometheusInstance请求参数结构体
     public struct RunPrometheusInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -39,7 +23,7 @@ extension Tke {
         /// 子网ID，默认使用实例所用子网初始化，也可通过该参数传递新的子网ID初始化
         public let subnetId: String?
         
-        public init (instanceId: String, subnetId: String?) {
+        public init (instanceId: String, subnetId: String? = nil) {
             self.instanceId = instanceId
             self.subnetId = subnetId
         }
@@ -58,5 +42,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 初始化TMP实例
+    ///
+    /// 初始化TMP实例，开启集成中心时调用
+    @inlinable
+    public func runPrometheusInstance(_ input: RunPrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunPrometheusInstanceResponse > {
+        self.client.execute(action: "RunPrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 初始化TMP实例
+    ///
+    /// 初始化TMP实例，开启集成中心时调用
+    @inlinable
+    public func runPrometheusInstance(_ input: RunPrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunPrometheusInstanceResponse {
+        try await self.client.execute(action: "RunPrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

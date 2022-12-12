@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wss {
-    /// 删除证书
-    ///
-    /// 本接口（DeleteCert）用于删除证书。
-    @inlinable
-    public func deleteCert(_ input: DeleteCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCertResponse > {
-        self.client.execute(action: "DeleteCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除证书
-    ///
-    /// 本接口（DeleteCert）用于删除证书。
-    @inlinable
-    public func deleteCert(_ input: DeleteCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCertResponse {
-        try await self.client.execute(action: "DeleteCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCert请求参数结构体
     public struct DeleteCertRequest: TCRequestModel {
         /// 证书 ID，即通过 GetList 拿到的证书列表的 ID 字段。
@@ -58,5 +42,21 @@ extension Wss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除证书
+    ///
+    /// 本接口（DeleteCert）用于删除证书。
+    @inlinable
+    public func deleteCert(_ input: DeleteCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCertResponse > {
+        self.client.execute(action: "DeleteCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除证书
+    ///
+    /// 本接口（DeleteCert）用于删除证书。
+    @inlinable
+    public func deleteCert(_ input: DeleteCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCertResponse {
+        try await self.client.execute(action: "DeleteCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

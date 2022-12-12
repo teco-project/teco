@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lcic {
-    /// 创建文档
-    ///
-    /// 创建房间内可以使用的文档。
-    @inlinable
-    public func createDocument(_ input: CreateDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDocumentResponse > {
-        self.client.execute(action: "CreateDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建文档
-    ///
-    /// 创建房间内可以使用的文档。
-    @inlinable
-    public func createDocument(_ input: CreateDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDocumentResponse {
-        try await self.client.execute(action: "CreateDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDocument请求参数结构体
     public struct CreateDocumentRequest: TCRequestModel {
         /// 低代码互动课堂的SdkAppId。
@@ -63,7 +47,7 @@ extension Lcic {
         /// 文档大小，单位 字节
         public let documentSize: UInt64?
         
-        public init (sdkAppId: UInt64, documentUrl: String, documentName: String, owner: String, transcodeType: UInt64?, permission: UInt64?, documentType: String?, documentSize: UInt64?) {
+        public init (sdkAppId: UInt64, documentUrl: String, documentName: String, owner: String, transcodeType: UInt64? = nil, permission: UInt64? = nil, documentType: String? = nil, documentSize: UInt64? = nil) {
             self.sdkAppId = sdkAppId
             self.documentUrl = documentUrl
             self.documentName = documentName
@@ -98,5 +82,21 @@ extension Lcic {
             case documentId = "DocumentId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建文档
+    ///
+    /// 创建房间内可以使用的文档。
+    @inlinable
+    public func createDocument(_ input: CreateDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDocumentResponse > {
+        self.client.execute(action: "CreateDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文档
+    ///
+    /// 创建房间内可以使用的文档。
+    @inlinable
+    public func createDocument(_ input: CreateDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDocumentResponse {
+        try await self.client.execute(action: "CreateDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

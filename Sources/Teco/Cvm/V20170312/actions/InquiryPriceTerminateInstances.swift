@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 退还实例询价
-    ///
-    /// 本接口 (InquiryPriceTerminateInstances) 用于退还实例询价。
-    /// * 查询退还实例可以返还的费用。
-    /// * 支持批量操作，每次请求批量实例的上限为100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
-    @inlinable
-    public func inquiryPriceTerminateInstances(_ input: InquiryPriceTerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceTerminateInstancesResponse > {
-        self.client.execute(action: "InquiryPriceTerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 退还实例询价
-    ///
-    /// 本接口 (InquiryPriceTerminateInstances) 用于退还实例询价。
-    /// * 查询退还实例可以返还的费用。
-    /// * 支持批量操作，每次请求批量实例的上限为100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
-    @inlinable
-    public func inquiryPriceTerminateInstances(_ input: InquiryPriceTerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceTerminateInstancesResponse {
-        try await self.client.execute(action: "InquiryPriceTerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceTerminateInstances请求参数结构体
     public struct InquiryPriceTerminateInstancesRequest: TCRequestModel {
         /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
@@ -61,5 +41,25 @@ extension Cvm {
             case instanceRefundsSet = "InstanceRefundsSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 退还实例询价
+    ///
+    /// 本接口 (InquiryPriceTerminateInstances) 用于退还实例询价。
+    /// * 查询退还实例可以返还的费用。
+    /// * 支持批量操作，每次请求批量实例的上限为100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
+    @inlinable
+    public func inquiryPriceTerminateInstances(_ input: InquiryPriceTerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceTerminateInstancesResponse > {
+        self.client.execute(action: "InquiryPriceTerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 退还实例询价
+    ///
+    /// 本接口 (InquiryPriceTerminateInstances) 用于退还实例询价。
+    /// * 查询退还实例可以返还的费用。
+    /// * 支持批量操作，每次请求批量实例的上限为100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
+    @inlinable
+    public func inquiryPriceTerminateInstances(_ input: InquiryPriceTerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceTerminateInstancesResponse {
+        try await self.client.execute(action: "InquiryPriceTerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

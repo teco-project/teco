@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 获取人群包列表
-    ///
-    /// 获取人群包列表接口
-    @inlinable
-    public func getCrowdPackList(_ input: GetCrowdPackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCrowdPackListResponse > {
-        self.client.execute(action: "GetCrowdPackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取人群包列表
-    ///
-    /// 获取人群包列表接口
-    @inlinable
-    public func getCrowdPackList(_ input: GetCrowdPackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdPackListResponse {
-        try await self.client.execute(action: "GetCrowdPackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetCrowdPackList请求参数结构体
     public struct GetCrowdPackListRequest: TCRequestModel {
         /// 商户证书
@@ -48,7 +32,7 @@ extension Zj {
         /// 人群包状态，默认-1，用于过滤人群包
         public let status: Int64?
         
-        public init (license: String, offset: Int64, limit: Int64, name: String?, status: Int64?) {
+        public init (license: String, offset: Int64, limit: Int64, name: String? = nil, status: Int64? = nil) {
             self.license = license
             self.offset = offset
             self.limit = limit
@@ -77,5 +61,21 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取人群包列表
+    ///
+    /// 获取人群包列表接口
+    @inlinable
+    public func getCrowdPackList(_ input: GetCrowdPackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCrowdPackListResponse > {
+        self.client.execute(action: "GetCrowdPackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人群包列表
+    ///
+    /// 获取人群包列表接口
+    @inlinable
+    public func getCrowdPackList(_ input: GetCrowdPackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdPackListResponse {
+        try await self.client.execute(action: "GetCrowdPackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

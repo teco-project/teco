@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 删除白名单规则
-    @inlinable
-    public func deleteLoginWhiteList(_ input: DeleteLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoginWhiteListResponse > {
-        self.client.execute(action: "DeleteLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除白名单规则
-    @inlinable
-    public func deleteLoginWhiteList(_ input: DeleteLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoginWhiteListResponse {
-        try await self.client.execute(action: "DeleteLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLoginWhiteList请求参数结构体
     public struct DeleteLoginWhiteListRequest: TCRequestModel {
         /// 白名单ID
@@ -49,5 +37,17 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除白名单规则
+    @inlinable
+    public func deleteLoginWhiteList(_ input: DeleteLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoginWhiteListResponse > {
+        self.client.execute(action: "DeleteLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除白名单规则
+    @inlinable
+    public func deleteLoginWhiteList(_ input: DeleteLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoginWhiteListResponse {
+        try await self.client.execute(action: "DeleteLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

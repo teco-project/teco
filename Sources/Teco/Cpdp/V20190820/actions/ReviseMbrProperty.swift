@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-修改会员属性-普通商户子账户
-    ///
-    /// 修改会员属性-普通商户子账户。修改会员的会员属性。
-    @inlinable
-    public func reviseMbrProperty(_ input: ReviseMbrPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReviseMbrPropertyResponse > {
-        self.client.execute(action: "ReviseMbrProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-修改会员属性-普通商户子账户
-    ///
-    /// 修改会员属性-普通商户子账户。修改会员的会员属性。
-    @inlinable
-    public func reviseMbrProperty(_ input: ReviseMbrPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviseMbrPropertyResponse {
-        try await self.client.execute(action: "ReviseMbrProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReviseMbrProperty请求参数结构体
     public struct ReviseMbrPropertyRequest: TCRequestModel {
         /// String(22)，商户号（签约客户号）
@@ -48,7 +32,7 @@ extension Cpdp {
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
         
-        public init (mrchCode: String, subAcctNo: String, memberProperty: String, reservedMsg: String?, profile: String?) {
+        public init (mrchCode: String, subAcctNo: String, memberProperty: String, reservedMsg: String? = nil, profile: String? = nil) {
             self.mrchCode = mrchCode
             self.subAcctNo = subAcctNo
             self.memberProperty = memberProperty
@@ -90,5 +74,21 @@ extension Cpdp {
             case reservedMsg = "ReservedMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-修改会员属性-普通商户子账户
+    ///
+    /// 修改会员属性-普通商户子账户。修改会员的会员属性。
+    @inlinable
+    public func reviseMbrProperty(_ input: ReviseMbrPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReviseMbrPropertyResponse > {
+        self.client.execute(action: "ReviseMbrProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-修改会员属性-普通商户子账户
+    ///
+    /// 修改会员属性-普通商户子账户。修改会员的会员属性。
+    @inlinable
+    public func reviseMbrProperty(_ input: ReviseMbrPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviseMbrPropertyResponse {
+        try await self.client.execute(action: "ReviseMbrProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

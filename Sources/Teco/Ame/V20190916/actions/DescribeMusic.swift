@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取曲库包歌曲播放信息
-    ///
-    /// 获取曲库包歌曲播放信息接口
-    @inlinable
-    public func describeMusic(_ input: DescribeMusicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMusicResponse > {
-        self.client.execute(action: "DescribeMusic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取曲库包歌曲播放信息
-    ///
-    /// 获取曲库包歌曲播放信息接口
-    @inlinable
-    public func describeMusic(_ input: DescribeMusicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMusicResponse {
-        try await self.client.execute(action: "DescribeMusic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMusic请求参数结构体
     public struct DescribeMusicRequest: TCRequestModel {
         /// 歌曲ID
@@ -47,7 +31,7 @@ extension Ame {
         /// Values:Y , N(default)
         public let ssl: String?
         
-        public init (itemId: String, identityId: String, subItemType: String?, ssl: String?) {
+        public init (itemId: String, identityId: String, subItemType: String? = nil, ssl: String? = nil) {
             self.itemId = itemId
             self.identityId = identityId
             self.subItemType = subItemType
@@ -66,7 +50,7 @@ extension Ame {
     public struct DescribeMusicResponse: TCResponseModel {
         /// 音乐相关信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let music: Music
+        public let music: Music?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -75,5 +59,21 @@ extension Ame {
             case music = "Music"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取曲库包歌曲播放信息
+    ///
+    /// 获取曲库包歌曲播放信息接口
+    @inlinable
+    public func describeMusic(_ input: DescribeMusicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMusicResponse > {
+        self.client.execute(action: "DescribeMusic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取曲库包歌曲播放信息
+    ///
+    /// 获取曲库包歌曲播放信息接口
+    @inlinable
+    public func describeMusic(_ input: DescribeMusicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMusicResponse {
+        try await self.client.execute(action: "DescribeMusic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

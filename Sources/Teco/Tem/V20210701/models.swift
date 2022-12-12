@@ -61,7 +61,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enabled: Bool?
         
-        public init (minReplicas: Int64, maxReplicas: Int64, horizontalAutoscaler: [HorizontalAutoscaler]?, cronHorizontalAutoscaler: [CronHorizontalAutoscaler]?, autoscalerId: String?, autoscalerName: String?, description: String?, createDate: String?, modifyDate: String?, enableDate: String?, enabled: Bool?) {
+        public init (minReplicas: Int64, maxReplicas: Int64, horizontalAutoscaler: [HorizontalAutoscaler]? = nil, cronHorizontalAutoscaler: [CronHorizontalAutoscaler]? = nil, autoscalerId: String? = nil, autoscalerName: String? = nil, description: String? = nil, createDate: String? = nil, modifyDate: String? = nil, enableDate: String? = nil, enabled: Bool? = nil) {
             self.minReplicas = minReplicas
             self.maxReplicas = maxReplicas
             self.horizontalAutoscaler = horizontalAutoscaler
@@ -176,7 +176,7 @@ extension Tem {
         /// 策略优先级，值越大优先级越高，0为最小值
         public let priority: Int64?
         
-        public init (name: String?, period: String?, schedules: [CronHorizontalAutoscalerSchedule]?, enabled: Bool?, priority: Int64?) {
+        public init (name: String? = nil, period: String? = nil, schedules: [CronHorizontalAutoscalerSchedule]? = nil, enabled: Bool? = nil, priority: Int64? = nil) {
             self.name = name
             self.period = period
             self.schedules = schedules
@@ -204,7 +204,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetReplicas: Int64?
         
-        public init (startAt: String, targetReplicas: Int64?) {
+        public init (startAt: String, targetReplicas: Int64? = nil) {
             self.startAt = startAt
             self.targetReplicas = targetReplicas
         }
@@ -219,11 +219,11 @@ extension Tem {
     public struct DeployServiceBatchDetail: TCInputModel, TCOutputModel {
         /// 旧实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let oldPodList: DeployServicePodDetail
+        public let oldPodList: DeployServicePodDetail?
         
         /// 新实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let newPodList: DeployServicePodDetail
+        public let newPodList: DeployServicePodDetail?
         
         /// 当前批次状态："WaitForTimeExceed", "WaitForResume", "Deploying", "Finish", "NotStart"
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -249,7 +249,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nextBatchStartTime: Int64?
         
-        public init (oldPodList: DeployServicePodDetail, newPodList: DeployServicePodDetail, batchStatus: String?, podNum: Int64?, batchIndex: Int64?, oldPods: [DeployServicePodDetail]?, newPods: [DeployServicePodDetail]?, nextBatchStartTime: Int64?) {
+        public init (oldPodList: DeployServicePodDetail? = nil, newPodList: DeployServicePodDetail? = nil, batchStatus: String? = nil, podNum: Int64? = nil, batchIndex: Int64? = nil, oldPods: [DeployServicePodDetail]? = nil, newPods: [DeployServicePodDetail]? = nil, nextBatchStartTime: Int64? = nil) {
             self.oldPodList = oldPodList
             self.newPodList = newPodList
             self.batchStatus = batchStatus
@@ -302,7 +302,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
         
-        public init (podId: String?, podStatus: [String]?, podVersion: String?, createTime: String?, zone: String?, webshell: String?, status: String?) {
+        public init (podId: String? = nil, podStatus: [String]? = nil, podVersion: String? = nil, createTime: String? = nil, zone: String? = nil, webshell: String? = nil, status: String? = nil) {
             self.podId = podId
             self.podStatus = podStatus
             self.podVersion = podVersion
@@ -343,7 +343,7 @@ extension Tem {
         /// 是否强制发布
         public let force: Bool?
         
-        public init (totalBatchCount: Int64?, betaBatchNum: Int64?, deployStrategyType: Int64?, batchInterval: Int64?, minAvailable: Int64?, force: Bool?) {
+        public init (totalBatchCount: Int64? = nil, betaBatchNum: Int64? = nil, deployStrategyType: Int64? = nil, batchInterval: Int64? = nil, minAvailable: Int64? = nil, force: Bool? = nil) {
             self.totalBatchCount = totalBatchCount
             self.betaBatchNum = betaBatchNum
             self.deployStrategyType = deployStrategyType
@@ -474,7 +474,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allIpDone: Bool?
         
-        public init (name: String?, ports: [Int64]?, yaml: String?, applicationName: String?, versionName: String?, clusterIp: [String]?, externalIp: String?, type: String?, subnetId: String?, loadBalanceId: String?, portMappings: [PortMapping]?, servicePortMappingList: [ServicePortMapping]?, flushAll: Bool?, enableRegistryNextDeploy: Int64?, applicationId: String?, allIpDone: Bool?) {
+        public init (name: String? = nil, ports: [Int64]? = nil, yaml: String? = nil, applicationName: String? = nil, versionName: String? = nil, clusterIp: [String]? = nil, externalIp: String? = nil, type: String? = nil, subnetId: String? = nil, loadBalanceId: String? = nil, portMappings: [PortMapping]? = nil, servicePortMappingList: [ServicePortMapping]? = nil, flushAll: Bool? = nil, enableRegistryNextDeploy: Int64? = nil, applicationId: String? = nil, allIpDone: Bool? = nil) {
             self.name = name
             self.ports = ports
             self.yaml = yaml
@@ -521,7 +521,7 @@ extension Tem {
         /// 业务指标暴露的url path
         public let path: String?
         
-        public init (port: Int64?, path: String?) {
+        public init (port: Int64? = nil, path: String? = nil) {
             self.port = port
             self.path = path
         }
@@ -549,7 +549,7 @@ extension Tem {
         /// 版本Id
         public let versionId: String?
         
-        public init (minAliveInstances: Int64, maxAliveInstances: Int64, esStrategy: Int64, threshold: UInt64, versionId: String?) {
+        public init (minAliveInstances: Int64, maxAliveInstances: Int64, esStrategy: Int64, threshold: UInt64, versionId: String? = nil) {
             self.minAliveInstances = minAliveInstances
             self.maxAliveInstances = maxAliveInstances
             self.esStrategy = esStrategy
@@ -592,7 +592,7 @@ extension Tem {
         /// 间隔时间，单位为秒，默认为 10
         public let periodSeconds: Int64?
         
-        public init (type: String, `protocol`: String?, path: String?, exec: String?, port: Int64?, initialDelaySeconds: Int64?, timeoutSeconds: Int64?, periodSeconds: Int64?) {
+        public init (type: String, `protocol`: String? = nil, path: String? = nil, exec: String? = nil, port: Int64? = nil, initialDelaySeconds: Int64? = nil, timeoutSeconds: Int64? = nil, periodSeconds: Int64? = nil) {
             self.type = type
             self.`protocol` = `protocol`
             self.path = path
@@ -650,7 +650,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let doubleThreshold: Float?
         
-        public init (minReplicas: Int64?, maxReplicas: Int64?, metrics: String?, threshold: Int64?, enabled: Bool?, doubleThreshold: Float?) {
+        public init (minReplicas: Int64? = nil, maxReplicas: Int64? = nil, metrics: String? = nil, threshold: Int64? = nil, enabled: Bool? = nil, doubleThreshold: Float? = nil) {
             self.minReplicas = minReplicas
             self.maxReplicas = maxReplicas
             self.metrics = metrics
@@ -673,7 +673,7 @@ extension Tem {
     public struct IngressInfo: TCInputModel, TCOutputModel {
         /// 环境ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let environmentId: String
+        public let environmentId: String?
         
         /// 环境namespace
         public let clusterNamespace: String
@@ -716,7 +716,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rewriteType: String?
         
-        public init (environmentId: String, clusterNamespace: String, addressIPVersion: String, ingressName: String, rules: [IngressRule], clbId: String?, tls: [IngressTls]?, clusterId: String?, vip: String?, createTime: String?, mixed: Bool?, rewriteType: String?) {
+        public init (environmentId: String, clusterNamespace: String, addressIPVersion: String, ingressName: String, rules: [IngressRule], clbId: String? = nil, tls: [IngressTls]? = nil, clusterId: String? = nil, vip: String? = nil, createTime: String? = nil, mixed: Bool? = nil, rewriteType: String? = nil) {
             self.environmentId = environmentId
             self.clusterNamespace = clusterNamespace
             self.addressIPVersion = addressIPVersion
@@ -759,7 +759,7 @@ extension Tem {
         /// 协议，选项为 http， https，默认为 http
         public let `protocol`: String?
         
-        public init (http: IngressRuleValue, host: String?, `protocol`: String?) {
+        public init (http: IngressRuleValue, host: String? = nil, `protocol`: String? = nil) {
             self.http = http
             self.host = host
             self.`protocol` = `protocol`
@@ -835,7 +835,7 @@ extension Tem {
         /// SSL Certificate Id
         public let certificateId: String?
         
-        public init (hosts: [String], secretName: String, certificateId: String?) {
+        public init (hosts: [String], secretName: String, certificateId: String? = nil) {
             self.hosts = hosts
             self.secretName = secretName
             self.certificateId = certificateId
@@ -897,7 +897,7 @@ extension Tem {
         
         /// 导出规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let extractRule: LogConfigExtractRule
+        public let extractRule: LogConfigExtractRule?
         
         enum CodingKeys: String, CodingKey {
             case name = "Name"
@@ -954,7 +954,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unMatchedKey: String?
         
-        public init (beginningRegex: String?, keys: [String]?, filterKeys: [String]?, filterRegex: [String]?, logRegex: String?, timeKey: String?, timeFormat: String?, unMatchUpload: String?, unMatchedKey: String?) {
+        public init (beginningRegex: String? = nil, keys: [String]? = nil, filterKeys: [String]? = nil, filterRegex: [String]? = nil, logRegex: String? = nil, timeKey: String? = nil, timeFormat: String? = nil, unMatchUpload: String? = nil, unMatchedKey: String? = nil) {
             self.beginningRegex = beginningRegex
             self.keys = keys
             self.filterKeys = filterKeys
@@ -1012,7 +1012,7 @@ extension Tem {
         /// cls日志名称
         public let clsLogTopicName: String?
         
-        public init (outputType: String, clsLogsetName: String?, clsLogTopicId: String?, clsLogsetId: String?, clsLogTopicName: String?) {
+        public init (outputType: String, clsLogsetName: String? = nil, clsLogTopicId: String? = nil, clsLogsetId: String? = nil, clsLogTopicName: String? = nil) {
             self.outputType = outputType
             self.clsLogsetName = clsLogsetName
             self.clsLogTopicId = clsLogTopicId
@@ -1043,7 +1043,7 @@ extension Tem {
         /// 加密配置名称
         public let secretDataName: String?
         
-        public init (configDataName: String, mountedPath: String, data: [Pair]?, secretDataName: String?) {
+        public init (configDataName: String, mountedPath: String, data: [Pair]? = nil, secretDataName: String? = nil) {
             self.configDataName = configDataName
             self.mountedPath = mountedPath
             self.data = data
@@ -1160,13 +1160,13 @@ extension Tem {
         
         /// 环境启动状态（不在启动中为null）
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let environmentStartingStatus: TemEnvironmentStartingStatus
+        public let environmentStartingStatus: TemEnvironmentStartingStatus?
         
         /// 环境停止状态（不在停止中为null）
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let environmentStoppingStatus: TemEnvironmentStoppingStatus
+        public let environmentStoppingStatus: TemEnvironmentStoppingStatus?
         
-        public init (environmentId: String, environmentName: String, clusterId: String?, clusterStatus: String?, environmentStartingStatus: TemEnvironmentStartingStatus, environmentStoppingStatus: TemEnvironmentStoppingStatus) {
+        public init (environmentId: String, environmentName: String, clusterId: String? = nil, clusterStatus: String? = nil, environmentStartingStatus: TemEnvironmentStartingStatus? = nil, environmentStoppingStatus: TemEnvironmentStoppingStatus? = nil) {
             self.environmentId = environmentId
             self.environmentName = environmentName
             self.clusterId = clusterId
@@ -1235,7 +1235,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secret: String?
         
-        public init (key: String, value: String, type: String?, config: String?, secret: String?) {
+        public init (key: String, value: String, type: String? = nil, config: String? = nil, secret: String? = nil) {
             self.key = key
             self.value = value
             self.type = type
@@ -1266,7 +1266,7 @@ extension Tem {
         /// k8s service名称
         public let serviceName: String?
         
-        public init (port: Int64, targetPort: Int64, `protocol`: String, serviceName: String?) {
+        public init (port: Int64, targetPort: Int64, `protocol`: String, serviceName: String? = nil) {
             self.port = port
             self.targetPort = targetPort
             self.`protocol` = `protocol`
@@ -1289,7 +1289,7 @@ extension Tem {
         /// 查询字段值
         public let value: [String]?
         
-        public init (name: String?, value: [String]?) {
+        public init (name: String? = nil, value: [String]? = nil) {
             self.name = name
             self.value = value
         }
@@ -1339,7 +1339,7 @@ extension Tem {
         
         /// 实例所在节点信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let nodeInfo: NodeInfo
+        public let nodeInfo: NodeInfo?
         
         /// 启动时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1399,7 +1399,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let current: Int64?
         
-        public init (records: [TemService], total: Int64, size: Int64, pages: Int64, current: Int64?) {
+        public init (records: [TemService], total: Int64, size: Int64, pages: Int64, current: Int64? = nil) {
             self.records = records
             self.total = total
             self.size = size
@@ -1458,7 +1458,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let portMappingItemList: [ServicePortMappingItem]?
         
-        public init (type: String?, serviceName: String?, clusterIp: String?, externalIp: String?, subnetId: String?, vpcId: String?, loadBalanceId: String?, yaml: String?, ports: [Int64]?, portMappingItemList: [ServicePortMappingItem]?) {
+        public init (type: String? = nil, serviceName: String? = nil, clusterIp: String? = nil, externalIp: String? = nil, subnetId: String? = nil, vpcId: String? = nil, loadBalanceId: String? = nil, yaml: String? = nil, ports: [Int64]? = nil, portMappingItemList: [ServicePortMappingItem]? = nil) {
             self.type = type
             self.serviceName = serviceName
             self.clusterIp = clusterIp
@@ -1499,7 +1499,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `protocol`: String?
         
-        public init (port: Int64?, targetPort: Int64?, `protocol`: String?) {
+        public init (port: Int64? = nil, targetPort: Int64? = nil, `protocol`: String? = nil) {
             self.port = port
             self.targetPort = targetPort
             self.`protocol` = `protocol`
@@ -1531,7 +1531,7 @@ extension Tem {
         
         /// 日志输出配置 -- 已废弃
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let logOutputConf: LogOutputConf
+        public let logOutputConf: LogOutputConf?
         
         /// 期望实例
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1579,11 +1579,11 @@ extension Tem {
         
         /// 实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let podList: DescribeRunPodPage
+        public let podList: DescribeRunPodPage?
         
         /// 工作负载信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let workloadInfo: WorkloadInfo
+        public let workloadInfo: WorkloadInfo?
         
         /// 创建日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1621,7 +1621,7 @@ extension Tem {
         /// 0：升序，1：倒序
         public let type: Int64?
         
-        public init (key: String?, type: Int64?) {
+        public init (key: String? = nil, type: Int64? = nil) {
             self.key = key
             self.type = type
         }
@@ -1644,7 +1644,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageVolIp: String?
         
-        public init (storageVolName: String, storageVolPath: String, storageVolIp: String?) {
+        public init (storageVolName: String, storageVolPath: String, storageVolIp: String? = nil) {
             self.storageVolName = storageVolName
             self.storageVolPath = storageVolPath
             self.storageVolIp = storageVolIp
@@ -1686,7 +1686,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagValue: String?
         
-        public init (tagKey: String?, tagValue: String?) {
+        public init (tagKey: String? = nil, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
@@ -1701,7 +1701,7 @@ extension Tem {
     public struct TemDeployApplicationDetailInfo: TCOutputModel {
         /// 分批发布策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let deployStrategyConf: DeployStrategyConf
+        public let deployStrategyConf: DeployStrategyConf?
         
         /// 开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1717,7 +1717,7 @@ extension Tem {
         
         /// beta分批详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let betaBatchDetail: DeployServiceBatchDetail
+        public let betaBatchDetail: DeployServiceBatchDetail?
         
         /// 其他分批详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1725,7 +1725,7 @@ extension Tem {
         
         /// 老版本pod列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let oldVersionPodList: DescribeRunPodPage
+        public let oldVersionPodList: DescribeRunPodPage?
         
         /// 当前批次id
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1783,7 +1783,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startedApplicationNum: Int64?
         
-        public init (applicationNumNeedToStart: Int64?, startedApplicationNum: Int64?) {
+        public init (applicationNumNeedToStart: Int64? = nil, startedApplicationNum: Int64? = nil) {
             self.applicationNumNeedToStart = applicationNumNeedToStart
             self.startedApplicationNum = startedApplicationNum
         }
@@ -1804,7 +1804,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stoppedApplicationNum: Int64?
         
-        public init (applicationNumNeedToStop: Int64?, stoppedApplicationNum: Int64?) {
+        public init (applicationNumNeedToStop: Int64? = nil, stoppedApplicationNum: Int64? = nil) {
             self.applicationNumNeedToStop = applicationNumNeedToStop
             self.stoppedApplicationNum = stoppedApplicationNum
         }
@@ -2072,7 +2072,7 @@ extension Tem {
         
         /// 弹性配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let esInfo: EsInfo
+        public let esInfo: EsInfo?
         
         /// 环境配置
         public let envConf: [Pair]
@@ -2097,15 +2097,15 @@ extension Tem {
         
         /// 挂载配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let storageMountConfs: [StorageMountConf]
+        public let storageMountConfs: [StorageMountConf]?
         
         /// 版本名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let versionName: String
+        public let versionName: String?
         
         /// 日志输出配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let logOutputConf: LogOutputConf
+        public let logOutputConf: LogOutputConf?
         
         /// 服务名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2185,7 +2185,7 @@ extension Tem {
         
         /// eks 访问设置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let service: EksService
+        public let service: EksService?
         
         /// 挂载配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2205,11 +2205,11 @@ extension Tem {
         
         /// 存活探针配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let liveness: HealthCheckConfig
+        public let liveness: HealthCheckConfig?
         
         /// 就绪探针配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let readiness: HealthCheckConfig
+        public let readiness: HealthCheckConfig?
         
         /// 弹性策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2261,7 +2261,7 @@ extension Tem {
         
         /// 工作负载信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let workloadInfo: WorkloadInfo
+        public let workloadInfo: WorkloadInfo?
         
         /// 是否启用应用加速
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2269,7 +2269,7 @@ extension Tem {
         
         /// 启动检测探针配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let startupProbe: HealthCheckConfig
+        public let startupProbe: HealthCheckConfig?
         
         /// 操作系统版本，可选参数：
         /// - ALPINE
@@ -2287,7 +2287,7 @@ extension Tem {
         
         /// 监控业务指标监控
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let enablePrometheusConf: EnablePrometheusConf
+        public let enablePrometheusConf: EnablePrometheusConf?
         
         /// 是否为手动停止
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2340,11 +2340,11 @@ extension Tem {
         
         /// 部署策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let deployStrategyConf: DeployStrategyConf
+        public let deployStrategyConf: DeployStrategyConf?
         
         /// 实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let podList: DescribeRunPodPage
+        public let podList: DescribeRunPodPage?
         
         /// 发布时配置是否有修改
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2354,7 +2354,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
         
-        public init (versionId: String, applicationId: String, deployMode: String, jdkVersion: String, description: String, deployVersion: String, publishMode: String, jvmOpts: String, initPodNum: Int64, cpuSpec: Float, memorySpec: Float, imgRepo: String, imgName: String, imgVersion: String, esInfo: EsInfo, envConf: [Pair], storageConfs: [StorageConf], status: String, vpc: String, subnetId: String, createDate: String, modifyDate: String, storageMountConfs: [StorageMountConf], versionName: String, logOutputConf: LogOutputConf, applicationName: String?, applicationDescription: String?, environmentName: String?, environmentId: String?, publicDomain: String?, enablePublicAccess: Bool?, currentInstances: Int64?, expectedInstances: Int64?, codingLanguage: String?, pkgName: String?, esEnable: Int64?, esStrategy: Int64?, imageTag: String?, logEnable: Int64?, minAliveInstances: String?, securityGroupIds: [String]?, imageCommand: String?, imageArgs: [String]?, useRegistryDefaultConfig: Bool?, service: EksService, settingConfs: [MountedSettingConf]?, logConfs: [String]?, postStart: String?, preStop: String?, liveness: HealthCheckConfig, readiness: HealthCheckConfig, horizontalAutoscaler: [HorizontalAutoscaler]?, cronHorizontalAutoscaler: [CronHorizontalAutoscaler]?, zones: [String]?, lastDeployDate: String?, lastDeploySuccessDate: String?, nodeInfos: [NodeInfo]?, imageType: Int64?, enableTracing: UInt64?, enableTracingReport: UInt64?, repoType: UInt64?, batchDeployStatus: String?, apmInstanceId: String?, workloadInfo: WorkloadInfo, speedUp: Bool?, startupProbe: HealthCheckConfig, osFlavour: String?, repoServer: String?, underDeploying: Bool?, enablePrometheusConf: EnablePrometheusConf, stoppedManually: Bool?, tcrInstanceId: String?, enableMetrics: Int64?, appId: String?, subAccountUin: String?, uin: String?, region: String?, groupId: String?, enableRegistry: Int64?, autoscalerList: [Autoscaler]?, modifier: String?, creator: String?, deployStrategyConf: DeployStrategyConf, podList: DescribeRunPodPage, confEdited: Bool?, tags: [Tag]?) {
+        public init (versionId: String, applicationId: String, deployMode: String, jdkVersion: String, description: String, deployVersion: String, publishMode: String, jvmOpts: String, initPodNum: Int64, cpuSpec: Float, memorySpec: Float, imgRepo: String, imgName: String, imgVersion: String, esInfo: EsInfo, envConf: [Pair], storageConfs: [StorageConf], status: String, vpc: String, subnetId: String, createDate: String, modifyDate: String, storageMountConfs: [StorageMountConf], versionName: String, logOutputConf: LogOutputConf? = nil, applicationName: String? = nil, applicationDescription: String? = nil, environmentName: String? = nil, environmentId: String? = nil, publicDomain: String? = nil, enablePublicAccess: Bool? = nil, currentInstances: Int64? = nil, expectedInstances: Int64? = nil, codingLanguage: String? = nil, pkgName: String? = nil, esEnable: Int64? = nil, esStrategy: Int64? = nil, imageTag: String? = nil, logEnable: Int64? = nil, minAliveInstances: String? = nil, securityGroupIds: [String]? = nil, imageCommand: String? = nil, imageArgs: [String]? = nil, useRegistryDefaultConfig: Bool? = nil, service: EksService? = nil, settingConfs: [MountedSettingConf]? = nil, logConfs: [String]? = nil, postStart: String? = nil, preStop: String? = nil, liveness: HealthCheckConfig? = nil, readiness: HealthCheckConfig? = nil, horizontalAutoscaler: [HorizontalAutoscaler]? = nil, cronHorizontalAutoscaler: [CronHorizontalAutoscaler]? = nil, zones: [String]? = nil, lastDeployDate: String? = nil, lastDeploySuccessDate: String? = nil, nodeInfos: [NodeInfo]? = nil, imageType: Int64? = nil, enableTracing: UInt64? = nil, enableTracingReport: UInt64? = nil, repoType: UInt64? = nil, batchDeployStatus: String? = nil, apmInstanceId: String? = nil, workloadInfo: WorkloadInfo? = nil, speedUp: Bool? = nil, startupProbe: HealthCheckConfig? = nil, osFlavour: String? = nil, repoServer: String? = nil, underDeploying: Bool? = nil, enablePrometheusConf: EnablePrometheusConf? = nil, stoppedManually: Bool? = nil, tcrInstanceId: String? = nil, enableMetrics: Int64? = nil, appId: String? = nil, subAccountUin: String? = nil, uin: String? = nil, region: String? = nil, groupId: String? = nil, enableRegistry: Int64? = nil, autoscalerList: [Autoscaler]? = nil, modifier: String? = nil, creator: String? = nil, deployStrategyConf: DeployStrategyConf? = nil, podList: DescribeRunPodPage? = nil, confEdited: Bool? = nil, tags: [Tag]? = nil) {
             self.versionId = versionId
             self.applicationId = applicationId
             self.deployMode = deployMode

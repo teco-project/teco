@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询仓库列表
-    @inlinable
-    public func describeRepositories(_ input: DescribeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoriesResponse > {
-        self.client.execute(action: "DescribeRepositories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询仓库列表
-    @inlinable
-    public func describeRepositories(_ input: DescribeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoriesResponse {
-        try await self.client.execute(action: "DescribeRepositories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRepositories请求参数结构体
     public struct DescribeRepositoriesRequest: TCRequestModel {
         /// 查询关键字（按照仓库名称搜索）
@@ -41,7 +29,7 @@ extension Tsf {
         /// 仓库类型（默认仓库：default，私有仓库：private）
         public let repositoryType: String?
         
-        public init (searchWord: String?, offset: UInt64?, limit: UInt64?, repositoryType: String?) {
+        public init (searchWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, repositoryType: String? = nil) {
             self.searchWord = searchWord
             self.offset = offset
             self.limit = limit
@@ -68,5 +56,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询仓库列表
+    @inlinable
+    public func describeRepositories(_ input: DescribeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoriesResponse > {
+        self.client.execute(action: "DescribeRepositories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询仓库列表
+    @inlinable
+    public func describeRepositories(_ input: DescribeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoriesResponse {
+        try await self.client.execute(action: "DescribeRepositories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

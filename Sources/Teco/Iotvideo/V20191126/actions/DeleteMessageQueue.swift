@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 删除产品转发消息配置
-    ///
-    /// 本接口（DeleteMessageQueue）用于删除物联网智能视频产品的转发消息配置信息。
-    @inlinable
-    public func deleteMessageQueue(_ input: DeleteMessageQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMessageQueueResponse > {
-        self.client.execute(action: "DeleteMessageQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除产品转发消息配置
-    ///
-    /// 本接口（DeleteMessageQueue）用于删除物联网智能视频产品的转发消息配置信息。
-    @inlinable
-    public func deleteMessageQueue(_ input: DeleteMessageQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageQueueResponse {
-        try await self.client.execute(action: "DeleteMessageQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMessageQueue请求参数结构体
     public struct DeleteMessageQueueRequest: TCRequestModel {
         /// 产品ID
@@ -53,5 +37,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除产品转发消息配置
+    ///
+    /// 本接口（DeleteMessageQueue）用于删除物联网智能视频产品的转发消息配置信息。
+    @inlinable
+    public func deleteMessageQueue(_ input: DeleteMessageQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMessageQueueResponse > {
+        self.client.execute(action: "DeleteMessageQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除产品转发消息配置
+    ///
+    /// 本接口（DeleteMessageQueue）用于删除物联网智能视频产品的转发消息配置信息。
+    @inlinable
+    public func deleteMessageQueue(_ input: DeleteMessageQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageQueueResponse {
+        try await self.client.execute(action: "DeleteMessageQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

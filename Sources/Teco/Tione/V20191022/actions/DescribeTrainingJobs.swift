@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tione {
-    /// 查询训练任务列表
-    @inlinable
-    public func describeTrainingJobs(_ input: DescribeTrainingJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingJobsResponse > {
-        self.client.execute(action: "DescribeTrainingJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询训练任务列表
-    @inlinable
-    public func describeTrainingJobs(_ input: DescribeTrainingJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingJobsResponse {
-        try await self.client.execute(action: "DescribeTrainingJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrainingJobs请求参数结构体
     public struct DescribeTrainingJobsRequest: TCRequestModel {
         /// 偏移量
@@ -54,7 +42,7 @@ extension Tione {
         /// search-by-name - String - 是否必填：否 -（过滤条件）按照名称检索，模糊匹配。
         public let filters: [Filter]?
         
-        public init (offset: UInt64?, limit: UInt64?, creationTimeAfter: Date?, creationTimeBefore: Date?, nameContains: String?, statusEquals: String?, filters: [Filter]?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, creationTimeAfter: Date? = nil, creationTimeBefore: Date? = nil, nameContains: String? = nil, statusEquals: String? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.creationTimeAfter = creationTimeAfter
@@ -91,5 +79,17 @@ extension Tione {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询训练任务列表
+    @inlinable
+    public func describeTrainingJobs(_ input: DescribeTrainingJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingJobsResponse > {
+        self.client.execute(action: "DescribeTrainingJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询训练任务列表
+    @inlinable
+    public func describeTrainingJobs(_ input: DescribeTrainingJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingJobsResponse {
+        try await self.client.execute(action: "DescribeTrainingJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取实例列表
-    @inlinable
-    public func describePrometheusOverviews(_ input: DescribePrometheusOverviewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusOverviewsResponse > {
-        self.client.execute(action: "DescribePrometheusOverviews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实例列表
-    @inlinable
-    public func describePrometheusOverviews(_ input: DescribePrometheusOverviewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusOverviewsResponse {
-        try await self.client.execute(action: "DescribePrometheusOverviews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrometheusOverviews请求参数结构体
     public struct DescribePrometheusOverviewsRequest: TCRequestModel {
         /// 用于分页
@@ -40,7 +28,7 @@ extension Tke {
         /// Name: 通过实例名称来过滤
         public let filters: [Filter]?
         
-        public init (offset: UInt64?, limit: UInt64?, filters: [Filter]?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -70,5 +58,17 @@ extension Tke {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实例列表
+    @inlinable
+    public func describePrometheusOverviews(_ input: DescribePrometheusOverviewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusOverviewsResponse > {
+        self.client.execute(action: "DescribePrometheusOverviews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例列表
+    @inlinable
+    public func describePrometheusOverviews(_ input: DescribePrometheusOverviewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusOverviewsResponse {
+        try await self.client.execute(action: "DescribePrometheusOverviews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

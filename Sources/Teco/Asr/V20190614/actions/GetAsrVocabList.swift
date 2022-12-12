@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Asr {
-    /// 列举热词表
-    ///
-    /// 用户通过该接口，可获得所有的热词表及其信息。
-    @inlinable
-    public func getAsrVocabList(_ input: GetAsrVocabListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAsrVocabListResponse > {
-        self.client.execute(action: "GetAsrVocabList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列举热词表
-    ///
-    /// 用户通过该接口，可获得所有的热词表及其信息。
-    @inlinable
-    public func getAsrVocabList(_ input: GetAsrVocabListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabListResponse {
-        try await self.client.execute(action: "GetAsrVocabList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetAsrVocabList请求参数结构体
     public struct GetAsrVocabListRequest: TCRequestModel {
         /// 标签信息，格式为“$TagKey : $TagValue ”，中间分隔符为“空格”+“:”+“空格”
@@ -42,7 +26,7 @@ extension Asr {
         /// 分页Limit
         public let limit: UInt64?
         
-        public init (tagInfos: [String]?, offset: UInt64?, limit: UInt64?) {
+        public init (tagInfos: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.tagInfos = tagInfos
             self.offset = offset
             self.limit = limit
@@ -71,5 +55,21 @@ extension Asr {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列举热词表
+    ///
+    /// 用户通过该接口，可获得所有的热词表及其信息。
+    @inlinable
+    public func getAsrVocabList(_ input: GetAsrVocabListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAsrVocabListResponse > {
+        self.client.execute(action: "GetAsrVocabList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列举热词表
+    ///
+    /// 用户通过该接口，可获得所有的热词表及其信息。
+    @inlinable
+    public func getAsrVocabList(_ input: GetAsrVocabListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabListResponse {
+        try await self.client.execute(action: "GetAsrVocabList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

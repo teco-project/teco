@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 更新实例Jdk配置
-    @inlinable
-    public func updateJdk(_ input: UpdateJdkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateJdkResponse > {
-        self.client.execute(action: "UpdateJdk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新实例Jdk配置
-    @inlinable
-    public func updateJdk(_ input: UpdateJdkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJdkResponse {
-        try await self.client.execute(action: "UpdateJdk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateJdk请求参数结构体
     public struct UpdateJdkRequest: TCRequestModel {
         /// ES实例ID
@@ -41,7 +29,7 @@ extension Es {
         /// 是否强制重启
         public let forceRestart: Bool?
         
-        public init (instanceId: String, jdk: String?, gc: String?, forceRestart: Bool?) {
+        public init (instanceId: String, jdk: String? = nil, gc: String? = nil, forceRestart: Bool? = nil) {
             self.instanceId = instanceId
             self.jdk = jdk
             self.gc = gc
@@ -64,5 +52,17 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新实例Jdk配置
+    @inlinable
+    public func updateJdk(_ input: UpdateJdkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateJdkResponse > {
+        self.client.execute(action: "UpdateJdk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新实例Jdk配置
+    @inlinable
+    public func updateJdk(_ input: UpdateJdkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJdkResponse {
+        try await self.client.execute(action: "UpdateJdk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

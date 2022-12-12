@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询参数模板列表
-    ///
-    /// 该接口（DescribeParamTemplates）查询参数模板列表，全地域公共参数Region均为ap-guangzhou。
-    @inlinable
-    public func describeParamTemplates(_ input: DescribeParamTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeParamTemplatesResponse > {
-        self.client.execute(action: "DescribeParamTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询参数模板列表
-    ///
-    /// 该接口（DescribeParamTemplates）查询参数模板列表，全地域公共参数Region均为ap-guangzhou。
-    @inlinable
-    public func describeParamTemplates(_ input: DescribeParamTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplatesResponse {
-        try await self.client.execute(action: "DescribeParamTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeParamTemplates请求参数结构体
     public struct DescribeParamTemplatesRequest: TCRequestModel {
         /// 引擎版本，缺省则查询所有
@@ -45,7 +29,7 @@ extension Cdb {
         /// 模板id，缺省则查询所有
         public let templateIds: [Int64]?
         
-        public init (engineVersions: [String]?, engineTypes: [String]?, templateNames: [String]?, templateIds: [Int64]?) {
+        public init (engineVersions: [String]? = nil, engineTypes: [String]? = nil, templateNames: [String]? = nil, templateIds: [Int64]? = nil) {
             self.engineVersions = engineVersions
             self.engineTypes = engineTypes
             self.templateNames = templateNames
@@ -76,5 +60,21 @@ extension Cdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询参数模板列表
+    ///
+    /// 该接口（DescribeParamTemplates）查询参数模板列表，全地域公共参数Region均为ap-guangzhou。
+    @inlinable
+    public func describeParamTemplates(_ input: DescribeParamTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeParamTemplatesResponse > {
+        self.client.execute(action: "DescribeParamTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询参数模板列表
+    ///
+    /// 该接口（DescribeParamTemplates）查询参数模板列表，全地域公共参数Region均为ap-guangzhou。
+    @inlinable
+    public func describeParamTemplates(_ input: DescribeParamTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplatesResponse {
+        try await self.client.execute(action: "DescribeParamTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

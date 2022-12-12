@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 修改告警触发策略
-    ///
-    /// 本接口（ModifyScalingPolicy）用于修改告警触发策略。
-    @inlinable
-    public func modifyScalingPolicy(_ input: ModifyScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyScalingPolicyResponse > {
-        self.client.execute(action: "ModifyScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改告警触发策略
-    ///
-    /// 本接口（ModifyScalingPolicy）用于修改告警触发策略。
-    @inlinable
-    public func modifyScalingPolicy(_ input: ModifyScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyScalingPolicyResponse {
-        try await self.client.execute(action: "ModifyScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyScalingPolicy请求参数结构体
     public struct ModifyScalingPolicyRequest: TCRequestModel {
         /// 告警策略ID。
@@ -49,13 +33,13 @@ extension As {
         public let cooldown: UInt64?
         
         /// 告警监控指标。
-        public let metricAlarm: MetricAlarm
+        public let metricAlarm: MetricAlarm?
         
         /// 通知组ID，即为用户组ID集合，用户组ID可以通过[ListGroups](https://cloud.tencent.com/document/product/598/34589)查询。
         /// 如果需要清空通知用户组，需要在列表中传入特定字符串 "NULL"。
         public let notificationUserGroupIds: [String]?
         
-        public init (autoScalingPolicyId: String, scalingPolicyName: String?, adjustmentType: String?, adjustmentValue: Int64?, cooldown: UInt64?, metricAlarm: MetricAlarm, notificationUserGroupIds: [String]?) {
+        public init (autoScalingPolicyId: String, scalingPolicyName: String? = nil, adjustmentType: String? = nil, adjustmentValue: Int64? = nil, cooldown: UInt64? = nil, metricAlarm: MetricAlarm? = nil, notificationUserGroupIds: [String]? = nil) {
             self.autoScalingPolicyId = autoScalingPolicyId
             self.scalingPolicyName = scalingPolicyName
             self.adjustmentType = adjustmentType
@@ -84,5 +68,21 @@ extension As {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改告警触发策略
+    ///
+    /// 本接口（ModifyScalingPolicy）用于修改告警触发策略。
+    @inlinable
+    public func modifyScalingPolicy(_ input: ModifyScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyScalingPolicyResponse > {
+        self.client.execute(action: "ModifyScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改告警触发策略
+    ///
+    /// 本接口（ModifyScalingPolicy）用于修改告警触发策略。
+    @inlinable
+    public func modifyScalingPolicy(_ input: ModifyScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyScalingPolicyResponse {
+        try await self.client.execute(action: "ModifyScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Asw {
-    /// 启动执行
-    ///
-    /// 为指定的状态机启动一次执行
-    @inlinable
-    public func startExecution(_ input: StartExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartExecutionResponse > {
-        self.client.execute(action: "StartExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启动执行
-    ///
-    /// 为指定的状态机启动一次执行
-    @inlinable
-    public func startExecution(_ input: StartExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartExecutionResponse {
-        try await self.client.execute(action: "StartExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartExecution请求参数结构体
     public struct StartExecutionRequest: TCRequestModel {
         /// 状态机资源名
@@ -42,7 +26,7 @@ extension Asw {
         /// 本次执行名。如果不填，系统会自动生成。如果填，应保证状态机下唯一
         public let name: String?
         
-        public init (stateMachineResourceName: String, input: String?, name: String?) {
+        public init (stateMachineResourceName: String, input: String? = nil, name: String? = nil) {
             self.stateMachineResourceName = stateMachineResourceName
             self.input = input
             self.name = name
@@ -71,5 +55,21 @@ extension Asw {
             case startDate = "StartDate"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启动执行
+    ///
+    /// 为指定的状态机启动一次执行
+    @inlinable
+    public func startExecution(_ input: StartExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartExecutionResponse > {
+        self.client.execute(action: "StartExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启动执行
+    ///
+    /// 为指定的状态机启动一次执行
+    @inlinable
+    public func startExecution(_ input: StartExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartExecutionResponse {
+        try await self.client.execute(action: "StartExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

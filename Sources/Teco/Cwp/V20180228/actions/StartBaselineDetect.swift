@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 检测基线
-    @inlinable
-    public func startBaselineDetect(_ input: StartBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartBaselineDetectResponse > {
-        self.client.execute(action: "StartBaselineDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检测基线
-    @inlinable
-    public func startBaselineDetect(_ input: StartBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBaselineDetectResponse {
-        try await self.client.execute(action: "StartBaselineDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartBaselineDetect请求参数结构体
     public struct StartBaselineDetectRequest: TCRequestModel {
         /// 基线检测参数
@@ -53,5 +41,17 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检测基线
+    @inlinable
+    public func startBaselineDetect(_ input: StartBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartBaselineDetectResponse > {
+        self.client.execute(action: "StartBaselineDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检测基线
+    @inlinable
+    public func startBaselineDetect(_ input: StartBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBaselineDetectResponse {
+        try await self.client.execute(action: "StartBaselineDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

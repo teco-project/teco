@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 通过Name部署TDID合约
-    @inlinable
-    public func deployByName(_ input: DeployByNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeployByNameResponse > {
-        self.client.execute(action: "DeployByName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通过Name部署TDID合约
-    @inlinable
-    public func deployByName(_ input: DeployByNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployByNameResponse {
-        try await self.client.execute(action: "DeployByName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeployByName请求参数结构体
     public struct DeployByNameRequest: TCRequestModel {
         /// 应用名称
@@ -63,5 +51,17 @@ extension Tdid {
             case hash = "Hash"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通过Name部署TDID合约
+    @inlinable
+    public func deployByName(_ input: DeployByNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeployByNameResponse > {
+        self.client.execute(action: "DeployByName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通过Name部署TDID合约
+    @inlinable
+    public func deployByName(_ input: DeployByNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployByNameResponse {
+        try await self.client.execute(action: "DeployByName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

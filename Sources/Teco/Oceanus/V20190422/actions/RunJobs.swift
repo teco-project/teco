@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 运行作业
-    ///
-    /// 批量启动或者恢复作业，批量操作数量上限20
-    @inlinable
-    public func runJobs(_ input: RunJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunJobsResponse > {
-        self.client.execute(action: "RunJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行作业
-    ///
-    /// 批量启动或者恢复作业，批量操作数量上限20
-    @inlinable
-    public func runJobs(_ input: RunJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunJobsResponse {
-        try await self.client.execute(action: "RunJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RunJobs请求参数结构体
     public struct RunJobsRequest: TCRequestModel {
         /// 批量启动作业的描述信息
@@ -39,7 +23,7 @@ extension Oceanus {
         /// 工作空间 SerialId
         public let workSpaceId: String?
         
-        public init (runJobDescriptions: [RunJobDescription], workSpaceId: String?) {
+        public init (runJobDescriptions: [RunJobDescription], workSpaceId: String? = nil) {
             self.runJobDescriptions = runJobDescriptions
             self.workSpaceId = workSpaceId
         }
@@ -58,5 +42,21 @@ extension Oceanus {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行作业
+    ///
+    /// 批量启动或者恢复作业，批量操作数量上限20
+    @inlinable
+    public func runJobs(_ input: RunJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunJobsResponse > {
+        self.client.execute(action: "RunJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行作业
+    ///
+    /// 批量启动或者恢复作业，批量操作数量上限20
+    @inlinable
+    public func runJobs(_ input: RunJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunJobsResponse {
+        try await self.client.execute(action: "RunJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

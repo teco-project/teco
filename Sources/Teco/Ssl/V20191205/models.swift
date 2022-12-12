@@ -113,7 +113,7 @@ extension Ssl {
         
         /// 证书扩展信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let certificateExtra: CertificateExtra
+        public let certificateExtra: CertificateExtra?
         
         /// 漏洞扫描状态：INACTIVE = 未开启，ACTIVE = 已开启
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -181,7 +181,7 @@ extension Ssl {
         
         /// 项目信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let projectInfo: ProjectInfo
+        public let projectInfo: ProjectInfo?
         
         /// 关联的云资源，暂不可用
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -754,7 +754,7 @@ extension Ssl {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let verifyType: String?
         
-        public init (csrType: String?, csrContent: String?, certificateDomain: String?, domainList: [String]?, keyPassword: String?, organizationName: String?, organizationDivision: String?, organizationAddress: String?, organizationCountry: String?, organizationCity: String?, organizationRegion: String?, postalCode: String?, phoneAreaCode: String?, phoneNumber: String?, adminFirstName: String?, adminLastName: String?, adminPhoneNum: String?, adminEmail: String?, adminPosition: String?, contactFirstName: String?, contactLastName: String?, contactNumber: String?, contactEmail: String?, contactPosition: String?, verifyType: String?) {
+        public init (csrType: String? = nil, csrContent: String? = nil, certificateDomain: String? = nil, domainList: [String]? = nil, keyPassword: String? = nil, organizationName: String? = nil, organizationDivision: String? = nil, organizationAddress: String? = nil, organizationCountry: String? = nil, organizationCity: String? = nil, organizationRegion: String? = nil, postalCode: String? = nil, phoneAreaCode: String? = nil, phoneNumber: String? = nil, adminFirstName: String? = nil, adminLastName: String? = nil, adminPhoneNum: String? = nil, adminEmail: String? = nil, adminPosition: String? = nil, contactFirstName: String? = nil, contactLastName: String? = nil, contactNumber: String? = nil, contactEmail: String? = nil, contactPosition: String? = nil, verifyType: String? = nil) {
             self.csrType = csrType
             self.csrContent = csrContent
             self.certificateDomain = certificateDomain

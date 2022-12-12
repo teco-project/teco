@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 展示API绑定的限流策略
-    ///
-    /// 本接口（DescribeApiEnvironmentStrategy）用于展示API绑定的限流策略。
-    @inlinable
-    public func describeApiEnvironmentStrategy(_ input: DescribeApiEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiEnvironmentStrategyResponse > {
-        self.client.execute(action: "DescribeApiEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 展示API绑定的限流策略
-    ///
-    /// 本接口（DescribeApiEnvironmentStrategy）用于展示API绑定的限流策略。
-    @inlinable
-    public func describeApiEnvironmentStrategy(_ input: DescribeApiEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiEnvironmentStrategyResponse {
-        try await self.client.execute(action: "DescribeApiEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApiEnvironmentStrategy请求参数结构体
     public struct DescribeApiEnvironmentStrategyRequest: TCRequestModel {
         /// API所属服务唯一ID。
@@ -48,7 +32,7 @@ extension Apigateway {
         /// 偏移量，默认为 0。
         public let offset: Int64?
         
-        public init (serviceId: String, environmentNames: [String]?, apiId: String?, limit: Int64?, offset: Int64?) {
+        public init (serviceId: String, environmentNames: [String]? = nil, apiId: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.serviceId = serviceId
             self.environmentNames = environmentNames
             self.apiId = apiId
@@ -69,7 +53,7 @@ extension Apigateway {
     public struct DescribeApiEnvironmentStrategyResponse: TCResponseModel {
         /// api绑定策略详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: ApiEnvironmentStrategyStataus
+        public let result: ApiEnvironmentStrategyStataus?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -78,5 +62,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 展示API绑定的限流策略
+    ///
+    /// 本接口（DescribeApiEnvironmentStrategy）用于展示API绑定的限流策略。
+    @inlinable
+    public func describeApiEnvironmentStrategy(_ input: DescribeApiEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiEnvironmentStrategyResponse > {
+        self.client.execute(action: "DescribeApiEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 展示API绑定的限流策略
+    ///
+    /// 本接口（DescribeApiEnvironmentStrategy）用于展示API绑定的限流策略。
+    @inlinable
+    public func describeApiEnvironmentStrategy(_ input: DescribeApiEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiEnvironmentStrategyResponse {
+        try await self.client.execute(action: "DescribeApiEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

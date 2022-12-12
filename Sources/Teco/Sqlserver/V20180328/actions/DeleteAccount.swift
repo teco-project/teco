@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 删除实例账号
-    ///
-    /// 本接口（DeleteAccount）用于删除实例账号。
-    @inlinable
-    public func deleteAccount(_ input: DeleteAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccountResponse > {
-        self.client.execute(action: "DeleteAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除实例账号
-    ///
-    /// 本接口（DeleteAccount）用于删除实例账号。
-    @inlinable
-    public func deleteAccount(_ input: DeleteAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountResponse {
-        try await self.client.execute(action: "DeleteAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAccount请求参数结构体
     public struct DeleteAccountRequest: TCRequestModel {
         /// 数据库实例ID，形如mssql-njj2mtpl
@@ -62,5 +46,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除实例账号
+    ///
+    /// 本接口（DeleteAccount）用于删除实例账号。
+    @inlinable
+    public func deleteAccount(_ input: DeleteAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccountResponse > {
+        self.client.execute(action: "DeleteAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例账号
+    ///
+    /// 本接口（DeleteAccount）用于删除实例账号。
+    @inlinable
+    public func deleteAccount(_ input: DeleteAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountResponse {
+        try await self.client.execute(action: "DeleteAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

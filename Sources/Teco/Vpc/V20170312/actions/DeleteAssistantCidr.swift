@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除辅助CIDR
-    ///
-    /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
-    @inlinable
-    public func deleteAssistantCidr(_ input: DeleteAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAssistantCidrResponse > {
-        self.client.execute(action: "DeleteAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除辅助CIDR
-    ///
-    /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
-    @inlinable
-    public func deleteAssistantCidr(_ input: DeleteAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssistantCidrResponse {
-        try await self.client.execute(action: "DeleteAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAssistantCidr请求参数结构体
     public struct DeleteAssistantCidrRequest: TCRequestModel {
         /// `VPC`实例`ID`。形如：`vpc-6v2ht8q5`
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除辅助CIDR
+    ///
+    /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
+    @inlinable
+    public func deleteAssistantCidr(_ input: DeleteAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAssistantCidrResponse > {
+        self.client.execute(action: "DeleteAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除辅助CIDR
+    ///
+    /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
+    @inlinable
+    public func deleteAssistantCidr(_ input: DeleteAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssistantCidrResponse {
+        try await self.client.execute(action: "DeleteAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

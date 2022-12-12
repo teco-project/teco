@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Bmlb {
-    /// 获取黑石负载均衡证书详情
-    ///
-    /// 获取黑石负载均衡证书详情。
-    @inlinable
-    public func describeCertDetail(_ input: DescribeCertDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertDetailResponse > {
-        self.client.execute(action: "DescribeCertDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取黑石负载均衡证书详情
-    ///
-    /// 获取黑石负载均衡证书详情。
-    @inlinable
-    public func describeCertDetail(_ input: DescribeCertDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDetailResponse {
-        try await self.client.execute(action: "DescribeCertDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCertDetail请求参数结构体
     public struct DescribeCertDetailRequest: TCRequestModel {
         /// 证书ID。
@@ -98,5 +82,21 @@ extension Bmlb {
             case certLoadBalancerSet = "CertLoadBalancerSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取黑石负载均衡证书详情
+    ///
+    /// 获取黑石负载均衡证书详情。
+    @inlinable
+    public func describeCertDetail(_ input: DescribeCertDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertDetailResponse > {
+        self.client.execute(action: "DescribeCertDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取黑石负载均衡证书详情
+    ///
+    /// 获取黑石负载均衡证书详情。
+    @inlinable
+    public func describeCertDetail(_ input: DescribeCertDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDetailResponse {
+        try await self.client.execute(action: "DescribeCertDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

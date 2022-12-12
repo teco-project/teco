@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 下载SSL-VPN-CLIENT 客户端证书
-    @inlinable
-    public func downloadVpnGatewaySslClientCert(_ input: DownloadVpnGatewaySslClientCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadVpnGatewaySslClientCertResponse > {
-        self.client.execute(action: "DownloadVpnGatewaySslClientCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下载SSL-VPN-CLIENT 客户端证书
-    @inlinable
-    public func downloadVpnGatewaySslClientCert(_ input: DownloadVpnGatewaySslClientCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadVpnGatewaySslClientCertResponse {
-        try await self.client.execute(action: "DownloadVpnGatewaySslClientCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DownloadVpnGatewaySslClientCert请求参数结构体
     public struct DownloadVpnGatewaySslClientCertRequest: TCRequestModel {
         /// SSL-VPN-CLIENT 实例ID。
@@ -38,7 +26,7 @@ extension Vpc {
         /// VPN门户网站使用。默认Flase
         public let isVpnPortal: Bool?
         
-        public init (sslVpnClientId: String, samlToken: String?, isVpnPortal: Bool?) {
+        public init (sslVpnClientId: String, samlToken: String? = nil, isVpnPortal: Bool? = nil) {
             self.sslVpnClientId = sslVpnClientId
             self.samlToken = samlToken
             self.isVpnPortal = isVpnPortal
@@ -71,5 +59,17 @@ extension Vpc {
             case authenticated = "Authenticated"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下载SSL-VPN-CLIENT 客户端证书
+    @inlinable
+    public func downloadVpnGatewaySslClientCert(_ input: DownloadVpnGatewaySslClientCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadVpnGatewaySslClientCertResponse > {
+        self.client.execute(action: "DownloadVpnGatewaySslClientCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下载SSL-VPN-CLIENT 客户端证书
+    @inlinable
+    public func downloadVpnGatewaySslClientCert(_ input: DownloadVpnGatewaySslClientCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadVpnGatewaySslClientCertResponse {
+        try await self.client.execute(action: "DownloadVpnGatewaySslClientCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

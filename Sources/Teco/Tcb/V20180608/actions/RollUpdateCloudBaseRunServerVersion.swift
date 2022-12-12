@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 滚动更新服务版本
-    ///
-    /// 针对特定的版本，进行滚动更新
-    @inlinable
-    public func rollUpdateCloudBaseRunServerVersion(_ input: RollUpdateCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollUpdateCloudBaseRunServerVersionResponse > {
-        self.client.execute(action: "RollUpdateCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 滚动更新服务版本
-    ///
-    /// 针对特定的版本，进行滚动更新
-    @inlinable
-    public func rollUpdateCloudBaseRunServerVersion(_ input: RollUpdateCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollUpdateCloudBaseRunServerVersionResponse {
-        try await self.client.execute(action: "RollUpdateCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RollUpdateCloudBaseRunServerVersion请求参数结构体
     public struct RollUpdateCloudBaseRunServerVersionRequest: TCRequestModel {
         /// 环境ID
@@ -97,10 +81,10 @@ extension Tcb {
         public let packageVersion: String?
         
         /// Image的详情
-        public let imageInfo: CloudBaseRunImageInfo
+        public let imageInfo: CloudBaseRunImageInfo?
         
         /// Github等拉取代码的详情
-        public let codeDetail: CloudBaseCodeRepoDetail
+        public let codeDetail: CloudBaseCodeRepoDetail?
         
         /// 是否回放流量
         public let isRebuild: Bool?
@@ -135,7 +119,7 @@ extension Tcb {
         /// 自动扩缩容策略组
         public let policyDetail: [HpaPolicy]?
         
-        public init (envId: String, versionName: String, uploadType: String?, repositoryType: String?, flowRatio: Int64?, dockerfilePath: String?, buildDir: String?, cpu: String?, mem: String?, minNum: String?, maxNum: String?, policyType: String?, policyThreshold: String?, envParams: String?, containerPort: Int64?, serverName: String?, repository: String?, branch: String?, versionRemark: String?, packageName: String?, packageVersion: String?, imageInfo: CloudBaseRunImageInfo, codeDetail: CloudBaseCodeRepoDetail, isRebuild: Bool?, initialDelaySeconds: Int64?, mountVolumeInfo: [CloudBaseRunVolumeMount]?, rollback: Bool?, snapshotName: String?, customLogs: String?, enableUnion: Bool?, operatorRemark: String?, serverPath: String?, isUpdateCls: Bool?, policyDetail: [HpaPolicy]?) {
+        public init (envId: String, versionName: String, uploadType: String? = nil, repositoryType: String? = nil, flowRatio: Int64? = nil, dockerfilePath: String? = nil, buildDir: String? = nil, cpu: String? = nil, mem: String? = nil, minNum: String? = nil, maxNum: String? = nil, policyType: String? = nil, policyThreshold: String? = nil, envParams: String? = nil, containerPort: Int64? = nil, serverName: String? = nil, repository: String? = nil, branch: String? = nil, versionRemark: String? = nil, packageName: String? = nil, packageVersion: String? = nil, imageInfo: CloudBaseRunImageInfo? = nil, codeDetail: CloudBaseCodeRepoDetail? = nil, isRebuild: Bool? = nil, initialDelaySeconds: Int64? = nil, mountVolumeInfo: [CloudBaseRunVolumeMount]? = nil, rollback: Bool? = nil, snapshotName: String? = nil, customLogs: String? = nil, enableUnion: Bool? = nil, operatorRemark: String? = nil, serverPath: String? = nil, isUpdateCls: Bool? = nil, policyDetail: [HpaPolicy]? = nil) {
             self.envId = envId
             self.versionName = versionName
             self.uploadType = uploadType
@@ -232,5 +216,21 @@ extension Tcb {
             case runId = "RunId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 滚动更新服务版本
+    ///
+    /// 针对特定的版本，进行滚动更新
+    @inlinable
+    public func rollUpdateCloudBaseRunServerVersion(_ input: RollUpdateCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollUpdateCloudBaseRunServerVersionResponse > {
+        self.client.execute(action: "RollUpdateCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 滚动更新服务版本
+    ///
+    /// 针对特定的版本，进行滚动更新
+    @inlinable
+    public func rollUpdateCloudBaseRunServerVersion(_ input: RollUpdateCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollUpdateCloudBaseRunServerVersionResponse {
+        try await self.client.execute(action: "RollUpdateCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

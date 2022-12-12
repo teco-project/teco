@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 查询SCDN日志下载任务列表
-    ///
-    /// ListScdnLogTasks 用于查询SCDN日志下载任务列表,以及展示下载任务基本信息
-    @inlinable
-    public func listScdnLogTasks(_ input: ListScdnLogTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListScdnLogTasksResponse > {
-        self.client.execute(action: "ListScdnLogTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询SCDN日志下载任务列表
-    ///
-    /// ListScdnLogTasks 用于查询SCDN日志下载任务列表,以及展示下载任务基本信息
-    @inlinable
-    public func listScdnLogTasks(_ input: ListScdnLogTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnLogTasksResponse {
-        try await self.client.execute(action: "ListScdnLogTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListScdnLogTasks请求参数结构体
     public struct ListScdnLogTasksRequest: TCRequestModel {
         /// 产品来源 cdn/ecdn
@@ -39,7 +23,7 @@ extension Cdn {
         /// 地域：mainland 或 overseas 为空表示查询所有地域
         public let area: String?
         
-        public init (source: String?, area: String?) {
+        public init (source: String? = nil, area: String? = nil) {
             self.source = source
             self.area = area
         }
@@ -66,5 +50,21 @@ extension Cdn {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询SCDN日志下载任务列表
+    ///
+    /// ListScdnLogTasks 用于查询SCDN日志下载任务列表,以及展示下载任务基本信息
+    @inlinable
+    public func listScdnLogTasks(_ input: ListScdnLogTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListScdnLogTasksResponse > {
+        self.client.execute(action: "ListScdnLogTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询SCDN日志下载任务列表
+    ///
+    /// ListScdnLogTasks 用于查询SCDN日志下载任务列表,以及展示下载任务基本信息
+    @inlinable
+    public func listScdnLogTasks(_ input: ListScdnLogTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnLogTasksResponse {
+        try await self.client.execute(action: "ListScdnLogTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

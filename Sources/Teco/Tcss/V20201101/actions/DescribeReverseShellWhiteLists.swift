@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时反弹shell白名单列表
-    ///
-    /// 查询运行时运行时反弹shell白名单列表信息
-    @inlinable
-    public func describeReverseShellWhiteLists(_ input: DescribeReverseShellWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReverseShellWhiteListsResponse > {
-        self.client.execute(action: "DescribeReverseShellWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时反弹shell白名单列表
-    ///
-    /// 查询运行时运行时反弹shell白名单列表信息
-    @inlinable
-    public func describeReverseShellWhiteLists(_ input: DescribeReverseShellWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellWhiteListsResponse {
-        try await self.client.execute(action: "DescribeReverseShellWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReverseShellWhiteLists请求参数结构体
     public struct DescribeReverseShellWhiteListsRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -48,7 +32,7 @@ extension Tcss {
         /// 排序字段
         public let by: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, order: String?, by: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -81,5 +65,21 @@ extension Tcss {
             case whiteListSet = "WhiteListSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时反弹shell白名单列表
+    ///
+    /// 查询运行时运行时反弹shell白名单列表信息
+    @inlinable
+    public func describeReverseShellWhiteLists(_ input: DescribeReverseShellWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReverseShellWhiteListsResponse > {
+        self.client.execute(action: "DescribeReverseShellWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时反弹shell白名单列表
+    ///
+    /// 查询运行时运行时反弹shell白名单列表信息
+    @inlinable
+    public func describeReverseShellWhiteLists(_ input: DescribeReverseShellWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellWhiteListsResponse {
+        try await self.client.execute(action: "DescribeReverseShellWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

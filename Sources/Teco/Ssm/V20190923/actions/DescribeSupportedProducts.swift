@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssm {
-    /// 查询支持的云产品列表
-    @inlinable
-    public func describeSupportedProducts(_ input: DescribeSupportedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSupportedProductsResponse > {
-        self.client.execute(action: "DescribeSupportedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询支持的云产品列表
-    @inlinable
-    public func describeSupportedProducts(_ input: DescribeSupportedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedProductsResponse {
-        try await self.client.execute(action: "DescribeSupportedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSupportedProducts请求参数结构体
     public struct DescribeSupportedProductsRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Ssm {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询支持的云产品列表
+    @inlinable
+    public func describeSupportedProducts(_ input: DescribeSupportedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSupportedProductsResponse > {
+        self.client.execute(action: "DescribeSupportedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询支持的云产品列表
+    @inlinable
+    public func describeSupportedProducts(_ input: DescribeSupportedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedProductsResponse {
+        try await self.client.execute(action: "DescribeSupportedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

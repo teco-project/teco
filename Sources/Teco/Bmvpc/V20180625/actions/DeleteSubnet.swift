@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 删除子网
-    ///
-    /// 本接口（DeleteSubnet）用于删除黑石私有网络子网。
-    /// 删除子网前，请清理该子网下所有资源，包括物理机、负载均衡、黑石数据库、弹性IP、NAT网关等资源
-    @inlinable
-    public func deleteSubnet(_ input: DeleteSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSubnetResponse > {
-        self.client.execute(action: "DeleteSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除子网
-    ///
-    /// 本接口（DeleteSubnet）用于删除黑石私有网络子网。
-    /// 删除子网前，请清理该子网下所有资源，包括物理机、负载均衡、黑石数据库、弹性IP、NAT网关等资源
-    @inlinable
-    public func deleteSubnet(_ input: DeleteSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {
-        try await self.client.execute(action: "DeleteSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSubnet请求参数结构体
     public struct DeleteSubnetRequest: TCRequestModel {
         /// 私有网络ID。可通过DescribeVpcs接口返回值中的VpcId获取。
@@ -64,5 +46,23 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除子网
+    ///
+    /// 本接口（DeleteSubnet）用于删除黑石私有网络子网。
+    /// 删除子网前，请清理该子网下所有资源，包括物理机、负载均衡、黑石数据库、弹性IP、NAT网关等资源
+    @inlinable
+    public func deleteSubnet(_ input: DeleteSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSubnetResponse > {
+        self.client.execute(action: "DeleteSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除子网
+    ///
+    /// 本接口（DeleteSubnet）用于删除黑石私有网络子网。
+    /// 删除子网前，请清理该子网下所有资源，包括物理机、负载均衡、黑石数据库、弹性IP、NAT网关等资源
+    @inlinable
+    public func deleteSubnet(_ input: DeleteSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {
+        try await self.client.execute(action: "DeleteSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

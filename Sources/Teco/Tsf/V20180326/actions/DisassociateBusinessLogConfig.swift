@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 取消关联业务日志配置项和应用
-    @inlinable
-    public func disassociateBusinessLogConfig(_ input: DisassociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateBusinessLogConfigResponse > {
-        self.client.execute(action: "DisassociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消关联业务日志配置项和应用
-    @inlinable
-    public func disassociateBusinessLogConfig(_ input: DisassociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateBusinessLogConfigResponse {
-        try await self.client.execute(action: "DisassociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisassociateBusinessLogConfig请求参数结构体
     public struct DisassociateBusinessLogConfigRequest: TCRequestModel {
         /// 业务日志配置项ID列表
@@ -59,5 +47,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消关联业务日志配置项和应用
+    @inlinable
+    public func disassociateBusinessLogConfig(_ input: DisassociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateBusinessLogConfigResponse > {
+        self.client.execute(action: "DisassociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消关联业务日志配置项和应用
+    @inlinable
+    public func disassociateBusinessLogConfig(_ input: DisassociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateBusinessLogConfigResponse {
+        try await self.client.execute(action: "DisassociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

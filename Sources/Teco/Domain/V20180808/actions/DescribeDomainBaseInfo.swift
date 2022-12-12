@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 域名基本信息
-    ///
-    /// 本接口 (  DescribeDomainBaseInfo) 获取域名基本信息。
-    @inlinable
-    public func describeDomainBaseInfo(_ input: DescribeDomainBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainBaseInfoResponse > {
-        self.client.execute(action: "DescribeDomainBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 域名基本信息
-    ///
-    /// 本接口 (  DescribeDomainBaseInfo) 获取域名基本信息。
-    @inlinable
-    public func describeDomainBaseInfo(_ input: DescribeDomainBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainBaseInfoResponse {
-        try await self.client.execute(action: "DescribeDomainBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomainBaseInfo请求参数结构体
     public struct DescribeDomainBaseInfoRequest: TCRequestModel {
         /// 域名
@@ -62,5 +46,21 @@ extension Domain {
             case uin = "Uin"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 域名基本信息
+    ///
+    /// 本接口 (  DescribeDomainBaseInfo) 获取域名基本信息。
+    @inlinable
+    public func describeDomainBaseInfo(_ input: DescribeDomainBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainBaseInfoResponse > {
+        self.client.execute(action: "DescribeDomainBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 域名基本信息
+    ///
+    /// 本接口 (  DescribeDomainBaseInfo) 获取域名基本信息。
+    @inlinable
+    public func describeDomainBaseInfo(_ input: DescribeDomainBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainBaseInfoResponse {
+        try await self.client.execute(action: "DescribeDomainBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询应用列表
-    @inlinable
-    public func describeAssetAppList(_ input: DescribeAssetAppListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetAppListResponse > {
-        self.client.execute(action: "DescribeAssetAppList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询应用列表
-    @inlinable
-    public func describeAssetAppList(_ input: DescribeAssetAppListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetAppListResponse {
-        try await self.client.execute(action: "DescribeAssetAppList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetAppList请求参数结构体
     public struct DescribeAssetAppListRequest: TCRequestModel {
         /// 查询指定Quuid主机的信息
@@ -61,7 +49,7 @@ extension Cwp {
         /// 排序方式：[FirstTime|ProcessCount]
         public let by: String?
         
-        public init (quuid: String?, filters: [AssetFilters]?, limit: UInt64?, offset: UInt64?, order: String?, by: String?) {
+        public init (quuid: String? = nil, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.quuid = quuid
             self.filters = filters
             self.limit = limit
@@ -97,5 +85,17 @@ extension Cwp {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询应用列表
+    @inlinable
+    public func describeAssetAppList(_ input: DescribeAssetAppListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetAppListResponse > {
+        self.client.execute(action: "DescribeAssetAppList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询应用列表
+    @inlinable
+    public func describeAssetAppList(_ input: DescribeAssetAppListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetAppListResponse {
+        try await self.client.execute(action: "DescribeAssetAppList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

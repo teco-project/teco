@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询结构化数据集详情
-    @inlinable
-    public func describeDatasetDetailStructured(_ input: DescribeDatasetDetailStructuredRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatasetDetailStructuredResponse > {
-        self.client.execute(action: "DescribeDatasetDetailStructured", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询结构化数据集详情
-    @inlinable
-    public func describeDatasetDetailStructured(_ input: DescribeDatasetDetailStructuredRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasetDetailStructuredResponse {
-        try await self.client.execute(action: "DescribeDatasetDetailStructured", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDatasetDetailStructured请求参数结构体
     public struct DescribeDatasetDetailStructuredRequest: TCRequestModel {
         /// 数据集ID
@@ -38,7 +26,7 @@ extension Tione {
         /// 返回数据条数，默认20，目前最大支持2000条数据
         public let limit: UInt64?
         
-        public init (datasetId: String, offset: UInt64?, limit: UInt64?) {
+        public init (datasetId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.datasetId = datasetId
             self.offset = offset
             self.limit = limit
@@ -79,5 +67,17 @@ extension Tione {
             case rowTexts = "RowTexts"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询结构化数据集详情
+    @inlinable
+    public func describeDatasetDetailStructured(_ input: DescribeDatasetDetailStructuredRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatasetDetailStructuredResponse > {
+        self.client.execute(action: "DescribeDatasetDetailStructured", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询结构化数据集详情
+    @inlinable
+    public func describeDatasetDetailStructured(_ input: DescribeDatasetDetailStructuredRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasetDetailStructuredResponse {
+        try await self.client.execute(action: "DescribeDatasetDetailStructured", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

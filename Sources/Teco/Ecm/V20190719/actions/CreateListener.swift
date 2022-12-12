@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 创建负载均衡监听器
-    ///
-    /// 创建负载均衡监听器。
-    @inlinable
-    public func createListener(_ input: CreateListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateListenerResponse > {
-        self.client.execute(action: "CreateListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建负载均衡监听器
-    ///
-    /// 创建负载均衡监听器。
-    @inlinable
-    public func createListener(_ input: CreateListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateListenerResponse {
-        try await self.client.execute(action: "CreateListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateListener请求参数结构体
     public struct CreateListenerRequest: TCRequestModel {
         /// 负载均衡实例 ID
@@ -46,7 +30,7 @@ extension Ecm {
         public let listenerNames: [String]?
         
         /// 健康检查相关参数
-        public let healthCheck: HealthCheck
+        public let healthCheck: HealthCheck?
         
         /// 会话保持时间，单位：秒。可选值：30~3600，默认 0，表示不开启。此参数仅适用于TCP/UDP监听器。
         public let sessionExpireTime: Int64?
@@ -61,7 +45,7 @@ extension Ecm {
         /// 批量端口段的结束端口，必须和Ports长度一样。
         public let endPorts: [Int64]?
         
-        public init (loadBalancerId: String, ports: [Int64], `protocol`: String, listenerNames: [String]?, healthCheck: HealthCheck, sessionExpireTime: Int64?, scheduler: String?, sessionType: String?, endPorts: [Int64]?) {
+        public init (loadBalancerId: String, ports: [Int64], `protocol`: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sessionType: String? = nil, endPorts: [Int64]? = nil) {
             self.loadBalancerId = loadBalancerId
             self.ports = ports
             self.`protocol` = `protocol`
@@ -99,5 +83,21 @@ extension Ecm {
             case listenerIds = "ListenerIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建负载均衡监听器
+    ///
+    /// 创建负载均衡监听器。
+    @inlinable
+    public func createListener(_ input: CreateListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateListenerResponse > {
+        self.client.execute(action: "CreateListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建负载均衡监听器
+    ///
+    /// 创建负载均衡监听器。
+    @inlinable
+    public func createListener(_ input: CreateListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateListenerResponse {
+        try await self.client.execute(action: "CreateListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

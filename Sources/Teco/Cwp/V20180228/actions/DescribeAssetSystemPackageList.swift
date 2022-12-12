@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取资产管理系统安装包列表
-    @inlinable
-    public func describeAssetSystemPackageList(_ input: DescribeAssetSystemPackageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetSystemPackageListResponse > {
-        self.client.execute(action: "DescribeAssetSystemPackageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取资产管理系统安装包列表
-    @inlinable
-    public func describeAssetSystemPackageList(_ input: DescribeAssetSystemPackageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSystemPackageListResponse {
-        try await self.client.execute(action: "DescribeAssetSystemPackageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetSystemPackageList请求参数结构体
     public struct DescribeAssetSystemPackageListRequest: TCRequestModel {
         /// 主机Uuid
@@ -58,7 +46,7 @@ extension Cwp {
         /// 排序方式可选：[FistTime|InstallTime:安装时间]
         public let by: String?
         
-        public init (uuid: String, quuid: String, filters: [Filter]?, offset: UInt64?, limit: UInt64?, order: String?, by: String?) {
+        public init (uuid: String, quuid: String, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.uuid = uuid
             self.quuid = quuid
             self.filters = filters
@@ -96,5 +84,17 @@ extension Cwp {
             case packages = "Packages"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取资产管理系统安装包列表
+    @inlinable
+    public func describeAssetSystemPackageList(_ input: DescribeAssetSystemPackageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetSystemPackageListResponse > {
+        self.client.execute(action: "DescribeAssetSystemPackageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资产管理系统安装包列表
+    @inlinable
+    public func describeAssetSystemPackageList(_ input: DescribeAssetSystemPackageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSystemPackageListResponse {
+        try await self.client.execute(action: "DescribeAssetSystemPackageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

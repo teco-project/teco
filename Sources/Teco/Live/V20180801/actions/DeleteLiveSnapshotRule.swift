@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 删除截图规则
-    ///
-    /// 删除截图规则。
-    @inlinable
-    public func deleteLiveSnapshotRule(_ input: DeleteLiveSnapshotRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveSnapshotRuleResponse > {
-        self.client.execute(action: "DeleteLiveSnapshotRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除截图规则
-    ///
-    /// 删除截图规则。
-    @inlinable
-    public func deleteLiveSnapshotRule(_ input: DeleteLiveSnapshotRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveSnapshotRuleResponse {
-        try await self.client.execute(action: "DeleteLiveSnapshotRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLiveSnapshotRule请求参数结构体
     public struct DeleteLiveSnapshotRuleRequest: TCRequestModel {
         /// 推流域名。
@@ -42,7 +26,7 @@ extension Live {
         /// 流名称。
         public let streamName: String?
         
-        public init (domainName: String, appName: String?, streamName: String?) {
+        public init (domainName: String, appName: String? = nil, streamName: String? = nil) {
             self.domainName = domainName
             self.appName = appName
             self.streamName = streamName
@@ -63,5 +47,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除截图规则
+    ///
+    /// 删除截图规则。
+    @inlinable
+    public func deleteLiveSnapshotRule(_ input: DeleteLiveSnapshotRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveSnapshotRuleResponse > {
+        self.client.execute(action: "DeleteLiveSnapshotRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除截图规则
+    ///
+    /// 删除截图规则。
+    @inlinable
+    public func deleteLiveSnapshotRule(_ input: DeleteLiveSnapshotRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveSnapshotRuleResponse {
+        try await self.client.execute(action: "DeleteLiveSnapshotRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

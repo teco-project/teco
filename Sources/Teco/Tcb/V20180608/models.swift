@@ -197,7 +197,7 @@ extension Tcb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let drop: [String]?
         
-        public init (add: [String]?, drop: [String]?) {
+        public init (add: [String]? = nil, drop: [String]? = nil) {
             self.add = add
             self.drop = drop
         }
@@ -211,12 +211,12 @@ extension Tcb {
     /// 代码仓库里 Repo的信息描述
     public struct CloudBaseCodeRepoDetail: TCInputModel, TCOutputModel {
         /// repo的名字
-        public let name: CloudBaseCodeRepoName
+        public let name: CloudBaseCodeRepoName?
         
         /// repo的url
         public let url: String?
         
-        public init (name: CloudBaseCodeRepoName, url: String?) {
+        public init (name: CloudBaseCodeRepoName? = nil, url: String? = nil) {
             self.name = name
             self.url = url
         }
@@ -237,7 +237,7 @@ extension Tcb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fullName: String?
         
-        public init (name: String?, fullName: String?) {
+        public init (name: String? = nil, fullName: String? = nil) {
             self.name = name
             self.fullName = fullName
         }
@@ -278,7 +278,7 @@ extension Tcb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let password: String?
         
-        public init (id: Int64?, secretName: String?, ip: String?, port: Int64?, index: String?, account: String?, password: String?) {
+        public init (id: Int64? = nil, secretName: String? = nil, ip: String? = nil, port: Int64? = nil, index: String? = nil, account: String? = nil, password: String? = nil) {
             self.id = id
             self.secretName = secretName
             self.ip = ip
@@ -310,7 +310,7 @@ extension Tcb {
         
         /// 来源类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let source: CodeSource
+        public let source: CodeSource?
         
         /// 创建时间, unix时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -435,7 +435,7 @@ extension Tcb {
         /// emptydir数据卷大小
         public let sizeLimit: String?
         
-        public init (enableEmptyDirVolume: Bool?, medium: String?, sizeLimit: String?) {
+        public init (enableEmptyDirVolume: Bool? = nil, medium: String? = nil, sizeLimit: String? = nil) {
             self.enableEmptyDirVolume = enableEmptyDirVolume
             self.medium = medium
             self.sizeLimit = sizeLimit
@@ -489,7 +489,7 @@ extension Tcb {
         /// 0:http访问服务配置信息, 1: 服务域名
         public let configType: Int64?
         
-        public init (isZero: Bool, weight: Int64, grayKey: String, grayValue: String, isDefault: Bool, accessType: Int64, urLs: [String], envId: String?, serverName: String?, versionName: String?, grayType: String?, lbAddr: String?, configType: Int64?) {
+        public init (isZero: Bool, weight: Int64, grayKey: String, grayValue: String, isDefault: Bool, accessType: Int64, urLs: [String], envId: String? = nil, serverName: String? = nil, versionName: String? = nil, grayType: String? = nil, lbAddr: String? = nil, configType: Int64? = nil) {
             self.isZero = isZero
             self.weight = weight
             self.grayKey = grayKey
@@ -570,7 +570,7 @@ extension Tcb {
         /// 邮箱
         public let email: String?
         
-        public init (registryServer: String?, userName: String?, password: String?, email: String?) {
+        public init (registryServer: String? = nil, userName: String? = nil, password: String? = nil, email: String? = nil) {
             self.registryServer = registryServer
             self.userName = userName
             self.password = password
@@ -623,7 +623,7 @@ extension Tcb {
         /// 临时目录
         public let enableEmptyDirVolume: Bool?
         
-        public init (server: String?, path: String?, readOnly: Bool?, secretName: String?, enableEmptyDirVolume: Bool?) {
+        public init (server: String? = nil, path: String? = nil, readOnly: Bool? = nil, secretName: String? = nil, enableEmptyDirVolume: Bool? = nil) {
             self.server = server
             self.path = path
             self.readOnly = readOnly
@@ -674,7 +674,7 @@ extension Tcb {
         
         /// url中的参数路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let urlParam: ObjectKV
+        public let urlParam: ObjectKV?
         
         /// 优先级（数值越小，优先级越高）
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -751,7 +751,7 @@ extension Tcb {
         /// 传播挂载方式
         public let mountPropagation: String?
         
-        public init (name: String?, mountPath: String?, readOnly: Bool?, subPath: String?, mountPropagation: String?) {
+        public init (name: String? = nil, mountPath: String? = nil, readOnly: Bool? = nil, subPath: String? = nil, mountPropagation: String? = nil) {
             self.name = name
             self.mountPath = mountPath
             self.readOnly = readOnly
@@ -800,13 +800,13 @@ extension Tcb {
         
         /// 安全特性
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let security: CloudBaseSecurityContext
+        public let security: CloudBaseSecurityContext?
         
         /// 挂载信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let volumeMountInfos: [CloudBaseRunVolumeMount]?
         
-        public init (containerImage: String?, containerPort: Int64?, containerName: String?, envVar: String?, initialDelaySeconds: Int64?, cpu: Int64?, mem: Int64?, security: CloudBaseSecurityContext, volumeMountInfos: [CloudBaseRunVolumeMount]?) {
+        public init (containerImage: String? = nil, containerPort: Int64? = nil, containerName: String? = nil, envVar: String? = nil, initialDelaySeconds: Int64? = nil, cpu: Int64? = nil, mem: Int64? = nil, security: CloudBaseSecurityContext? = nil, volumeMountInfos: [CloudBaseRunVolumeMount]? = nil) {
             self.containerImage = containerImage
             self.containerPort = containerPort
             self.containerName = containerName
@@ -835,7 +835,7 @@ extension Tcb {
     public struct CloudBaseRunVersionFlowItem: TCInputModel, TCOutputModel {
         /// 版本名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let versionName: String
+        public let versionName: String?
         
         /// 流量占比
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -843,7 +843,7 @@ extension Tcb {
         
         /// 流量参数键值对（URL参数/HEADERS参数）
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let urlParam: ObjectKV
+        public let urlParam: ObjectKV?
         
         /// 优先级
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -853,7 +853,7 @@ extension Tcb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isDefaultPriority: Bool?
         
-        public init (versionName: String, flowRatio: Int64?, urlParam: ObjectKV, priority: Int64?, isDefaultPriority: Bool?) {
+        public init (versionName: String, flowRatio: Int64? = nil, urlParam: ObjectKV? = nil, priority: Int64? = nil, isDefaultPriority: Bool? = nil) {
             self.versionName = versionName
             self.flowRatio = flowRatio
             self.urlParam = urlParam
@@ -884,7 +884,7 @@ extension Tcb {
         /// Nfs挂载信息
         public let nfsVolumes: [CloudBaseRunNfsVolumeSource]?
         
-        public init (name: String?, mountPath: String?, readOnly: Bool?, nfsVolumes: [CloudBaseRunNfsVolumeSource]?) {
+        public init (name: String? = nil, mountPath: String? = nil, readOnly: Bool? = nil, nfsVolumes: [CloudBaseRunNfsVolumeSource]? = nil) {
             self.name = name
             self.mountPath = mountPath
             self.readOnly = readOnly
@@ -913,7 +913,7 @@ extension Tcb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createType: Int64?
         
-        public init (vpcId: String?, subnetIds: [String]?, createType: Int64?) {
+        public init (vpcId: String? = nil, subnetIds: [String]? = nil, createType: Int64? = nil) {
             self.vpcId = vpcId
             self.subnetIds = subnetIds
             self.createType = createType
@@ -971,9 +971,9 @@ extension Tcb {
     public struct CloudBaseSecurityContext: TCInputModel, TCOutputModel {
         /// 安全特性
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let capabilities: CloudBaseCapabilities
+        public let capabilities: CloudBaseCapabilities?
         
-        public init (capabilities: CloudBaseCapabilities) {
+        public init (capabilities: CloudBaseCapabilities? = nil) {
             self.capabilities = capabilities
         }
         
@@ -1090,17 +1090,17 @@ extension Tcb {
         
         /// 镜像信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imageInfo: CloudBaseRunImageInfo
+        public let imageInfo: CloudBaseRunImageInfo?
         
         /// 代码仓库信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let codeDetail: CloudBaseCodeRepoDetail
+        public let codeDetail: CloudBaseCodeRepoDetail?
         
         /// 状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
         
-        public init (versionName: String?, remark: String?, cpu: Float?, mem: Float?, minNum: Int64?, maxNum: Int64?, imageUrl: String?, policyType: String?, policyThreshold: Int64?, envParams: String?, containerPort: Int64?, createTime: String?, updateTime: String?, uploadType: String?, dockerfilePath: String?, buildDir: String?, repoType: String?, repo: String?, branch: String?, envId: String?, serverName: String?, packageName: String?, packageVersion: String?, customLogs: String?, initialDelaySeconds: Int64?, snapshotName: String?, imageInfo: CloudBaseRunImageInfo, codeDetail: CloudBaseCodeRepoDetail, status: String?) {
+        public init (versionName: String? = nil, remark: String? = nil, cpu: Float? = nil, mem: Float? = nil, minNum: Int64? = nil, maxNum: Int64? = nil, imageUrl: String? = nil, policyType: String? = nil, policyThreshold: Int64? = nil, envParams: String? = nil, containerPort: Int64? = nil, createTime: String? = nil, updateTime: String? = nil, uploadType: String? = nil, dockerfilePath: String? = nil, buildDir: String? = nil, repoType: String? = nil, repo: String? = nil, branch: String? = nil, envId: String? = nil, serverName: String? = nil, packageName: String? = nil, packageVersion: String? = nil, customLogs: String? = nil, initialDelaySeconds: Int64? = nil, snapshotName: String? = nil, imageInfo: CloudBaseRunImageInfo? = nil, codeDetail: CloudBaseCodeRepoDetail? = nil, status: String? = nil) {
             self.versionName = versionName
             self.remark = remark
             self.cpu = cpu
@@ -1173,7 +1173,7 @@ extension Tcb {
         
         /// NFS的挂载方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let nfs: CloudBaseRunNfsVolumeSource
+        public let nfs: CloudBaseRunNfsVolumeSource?
         
         /// secret名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1185,9 +1185,9 @@ extension Tcb {
         
         /// emptydir数据卷详细信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let emptyDir: CloudBaseRunEmptyDirVolumeSource
+        public let emptyDir: CloudBaseRunEmptyDirVolumeSource?
         
-        public init (name: String?, nfs: CloudBaseRunNfsVolumeSource, secretName: String?, enableEmptyDirVolume: Bool?, emptyDir: CloudBaseRunEmptyDirVolumeSource) {
+        public init (name: String? = nil, nfs: CloudBaseRunNfsVolumeSource? = nil, secretName: String? = nil, enableEmptyDirVolume: Bool? = nil, emptyDir: CloudBaseRunEmptyDirVolumeSource? = nil) {
             self.name = name
             self.nfs = nfs
             self.secretName = secretName
@@ -1269,7 +1269,7 @@ extension Tcb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectName: String?
         
-        public init (type: String?, url: String?, name: String?, workDir: String?, codingPackageName: String?, codingPackageVersion: String?, rawCode: String?, branch: String?, projectId: Int64?, projectName: String?) {
+        public init (type: String? = nil, url: String? = nil, name: String? = nil, workDir: String? = nil, codingPackageName: String? = nil, codingPackageVersion: String? = nil, rawCode: String? = nil, branch: String? = nil, projectId: Int64? = nil, projectName: String? = nil) {
             self.type = type
             self.url = url
             self.name = name
@@ -1431,7 +1431,7 @@ extension Tcb {
         
         /// 最新的订单信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let orderInfo: OrderInfo
+        public let orderInfo: OrderInfo?
         
         /// 免费配额信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1693,7 +1693,7 @@ extension Tcb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyThreshold: Int64?
         
-        public init (policyType: String?, policyThreshold: Int64?) {
+        public init (policyType: String? = nil, policyThreshold: Int64? = nil) {
             self.policyType = policyType
             self.policyThreshold = policyThreshold
         }
@@ -1820,7 +1820,7 @@ extension Tcb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
         
-        public init (statisticalType: String?, statisticalCycle: String?, count: UInt64?, updateTime: String?) {
+        public init (statisticalType: String? = nil, statisticalCycle: String? = nil, count: UInt64? = nil, updateTime: String? = nil) {
             self.statisticalType = statisticalType
             self.statisticalCycle = statisticalCycle
             self.count = count
@@ -2008,7 +2008,7 @@ extension Tcb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
         
-        public init (platform: String?, count: UInt64?, updateTime: String?) {
+        public init (platform: String? = nil, count: UInt64? = nil, updateTime: String? = nil) {
             self.platform = platform
             self.count = count
             self.updateTime = updateTime

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-查询银行在途清算结果
-    ///
-    /// 查询银行在途清算结果。查询时间段内交易网的在途清算结果。
-    @inlinable
-    public func queryBankClear(_ input: QueryBankClearRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBankClearResponse > {
-        self.client.execute(action: "QueryBankClear", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-查询银行在途清算结果
-    ///
-    /// 查询银行在途清算结果。查询时间段内交易网的在途清算结果。
-    @inlinable
-    public func queryBankClear(_ input: QueryBankClearRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBankClearResponse {
-        try await self.client.execute(action: "QueryBankClear", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryBankClear请求参数结构体
     public struct QueryBankClearRequest: TCRequestModel {
         /// String(22)，商户号（签约客户号）
@@ -54,7 +38,7 @@ extension Cpdp {
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
         
-        public init (mrchCode: String, functionFlag: String, pageNum: String, startDate: String?, endDate: String?, reservedMsg: String?, profile: String?) {
+        public init (mrchCode: String, functionFlag: String, pageNum: String, startDate: String? = nil, endDate: String? = nil, reservedMsg: String? = nil, profile: String? = nil) {
             self.mrchCode = mrchCode
             self.functionFlag = functionFlag
             self.pageNum = pageNum
@@ -125,5 +109,21 @@ extension Cpdp {
             case reservedMsg = "ReservedMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-查询银行在途清算结果
+    ///
+    /// 查询银行在途清算结果。查询时间段内交易网的在途清算结果。
+    @inlinable
+    public func queryBankClear(_ input: QueryBankClearRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBankClearResponse > {
+        self.client.execute(action: "QueryBankClear", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-查询银行在途清算结果
+    ///
+    /// 查询银行在途清算结果。查询时间段内交易网的在途清算结果。
+    @inlinable
+    public func queryBankClear(_ input: QueryBankClearRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBankClearResponse {
+        try await self.client.execute(action: "QueryBankClear", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

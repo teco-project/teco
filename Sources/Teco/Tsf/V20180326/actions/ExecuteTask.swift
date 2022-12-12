@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 手动执行一次任务。
-    @inlinable
-    public func executeTask(_ input: ExecuteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteTaskResponse > {
-        self.client.execute(action: "ExecuteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 手动执行一次任务。
-    @inlinable
-    public func executeTask(_ input: ExecuteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskResponse {
-        try await self.client.execute(action: "ExecuteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExecuteTask请求参数结构体
     public struct ExecuteTaskRequest: TCRequestModel {
         /// 任务 ID。
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 手动执行一次任务。
+    @inlinable
+    public func executeTask(_ input: ExecuteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteTaskResponse > {
+        self.client.execute(action: "ExecuteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 手动执行一次任务。
+    @inlinable
+    public func executeTask(_ input: ExecuteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskResponse {
+        try await self.client.execute(action: "ExecuteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

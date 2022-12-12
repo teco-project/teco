@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 获取DID网络列表
-    ///
-    /// 获取用户的DID网络列表
-    @inlinable
-    public func getDidClusterList(_ input: GetDidClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidClusterListResponse > {
-        self.client.execute(action: "GetDidClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DID网络列表
-    ///
-    /// 获取用户的DID网络列表
-    @inlinable
-    public func getDidClusterList(_ input: GetDidClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterListResponse {
-        try await self.client.execute(action: "GetDidClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDidClusterList请求参数结构体
     public struct GetDidClusterListRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Tdid {
             case didClusterList = "DidClusterList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DID网络列表
+    ///
+    /// 获取用户的DID网络列表
+    @inlinable
+    public func getDidClusterList(_ input: GetDidClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidClusterListResponse > {
+        self.client.execute(action: "GetDidClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DID网络列表
+    ///
+    /// 获取用户的DID网络列表
+    @inlinable
+    public func getDidClusterList(_ input: GetDidClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterListResponse {
+        try await self.client.execute(action: "GetDidClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

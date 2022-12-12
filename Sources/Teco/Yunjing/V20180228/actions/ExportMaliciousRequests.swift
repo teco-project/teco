@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 导出下载恶意请求文件
-    ///
-    /// 本接口 (ExportMaliciousRequests) 用于导出下载恶意请求文件。
-    @inlinable
-    public func exportMaliciousRequests(_ input: ExportMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportMaliciousRequestsResponse > {
-        self.client.execute(action: "ExportMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出下载恶意请求文件
-    ///
-    /// 本接口 (ExportMaliciousRequests) 用于导出下载恶意请求文件。
-    @inlinable
-    public func exportMaliciousRequests(_ input: ExportMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportMaliciousRequestsResponse {
-        try await self.client.execute(action: "ExportMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportMaliciousRequests请求参数结构体
     public struct ExportMaliciousRequestsRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Yunjing {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出下载恶意请求文件
+    ///
+    /// 本接口 (ExportMaliciousRequests) 用于导出下载恶意请求文件。
+    @inlinable
+    public func exportMaliciousRequests(_ input: ExportMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportMaliciousRequestsResponse > {
+        self.client.execute(action: "ExportMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出下载恶意请求文件
+    ///
+    /// 本接口 (ExportMaliciousRequests) 用于导出下载恶意请求文件。
+    @inlinable
+    public func exportMaliciousRequests(_ input: ExportMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportMaliciousRequestsResponse {
+        try await self.client.execute(action: "ExportMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

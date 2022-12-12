@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cr {
-    /// 下载任务录音与文本
-    ///
-    /// 下载任务录音与文本，第二天12点后可使用此接口获取对应的录音与文本
-    @inlinable
-    public func downloadBotRecord(_ input: DownloadBotRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadBotRecordResponse > {
-        self.client.execute(action: "DownloadBotRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下载任务录音与文本
-    ///
-    /// 下载任务录音与文本，第二天12点后可使用此接口获取对应的录音与文本
-    @inlinable
-    public func downloadBotRecord(_ input: DownloadBotRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadBotRecordResponse {
-        try await self.client.execute(action: "DownloadBotRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DownloadBotRecord请求参数结构体
     public struct DownloadBotRecordRequest: TCRequestModel {
         /// 模块：AiApi
@@ -74,5 +58,21 @@ extension Cr {
             case textCosUrl = "TextCosUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下载任务录音与文本
+    ///
+    /// 下载任务录音与文本，第二天12点后可使用此接口获取对应的录音与文本
+    @inlinable
+    public func downloadBotRecord(_ input: DownloadBotRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadBotRecordResponse > {
+        self.client.execute(action: "DownloadBotRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下载任务录音与文本
+    ///
+    /// 下载任务录音与文本，第二天12点后可使用此接口获取对应的录音与文本
+    @inlinable
+    public func downloadBotRecord(_ input: DownloadBotRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadBotRecordResponse {
+        try await self.client.execute(action: "DownloadBotRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

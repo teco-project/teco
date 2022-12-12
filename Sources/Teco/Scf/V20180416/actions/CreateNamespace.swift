@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 创建命名空间
-    ///
-    /// 该接口根据传入的参数创建命名空间。
-    @inlinable
-    public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNamespaceResponse > {
-        self.client.execute(action: "CreateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建命名空间
-    ///
-    /// 该接口根据传入的参数创建命名空间。
-    @inlinable
-    public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
-        try await self.client.execute(action: "CreateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNamespace请求参数结构体
     public struct CreateNamespaceRequest: TCRequestModel {
         /// 命名空间名称
@@ -39,7 +23,7 @@ extension Scf {
         /// 命名空间描述
         public let description: String?
         
-        public init (namespace: String, description: String?) {
+        public init (namespace: String, description: String? = nil) {
             self.namespace = namespace
             self.description = description
         }
@@ -58,5 +42,21 @@ extension Scf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建命名空间
+    ///
+    /// 该接口根据传入的参数创建命名空间。
+    @inlinable
+    public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNamespaceResponse > {
+        self.client.execute(action: "CreateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建命名空间
+    ///
+    /// 该接口根据传入的参数创建命名空间。
+    @inlinable
+    public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
+        try await self.client.execute(action: "CreateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

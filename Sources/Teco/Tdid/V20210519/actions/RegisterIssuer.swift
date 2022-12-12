@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 注册为权威机构
-    @inlinable
-    public func registerIssuer(_ input: RegisterIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterIssuerResponse > {
-        self.client.execute(action: "RegisterIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 注册为权威机构
-    @inlinable
-    public func registerIssuer(_ input: RegisterIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIssuerResponse {
-        try await self.client.execute(action: "RegisterIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RegisterIssuer请求参数结构体
     public struct RegisterIssuerRequest: TCRequestModel {
         /// tdid
@@ -59,5 +47,17 @@ extension Tdid {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 注册为权威机构
+    @inlinable
+    public func registerIssuer(_ input: RegisterIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterIssuerResponse > {
+        self.client.execute(action: "RegisterIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 注册为权威机构
+    @inlinable
+    public func registerIssuer(_ input: RegisterIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIssuerResponse {
+        try await self.client.execute(action: "RegisterIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 启动SCDN域名安全防护
-    ///
-    /// StartScdnDomain 用于开启域名的安全防护配置
-    @inlinable
-    public func startScdnDomain(_ input: StartScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartScdnDomainResponse > {
-        self.client.execute(action: "StartScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启动SCDN域名安全防护
-    ///
-    /// StartScdnDomain 用于开启域名的安全防护配置
-    @inlinable
-    public func startScdnDomain(_ input: StartScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartScdnDomainResponse {
-        try await self.client.execute(action: "StartScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartScdnDomain请求参数结构体
     public struct StartScdnDomainRequest: TCRequestModel {
         /// 域名
@@ -57,5 +41,21 @@ extension Cdn {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启动SCDN域名安全防护
+    ///
+    /// StartScdnDomain 用于开启域名的安全防护配置
+    @inlinable
+    public func startScdnDomain(_ input: StartScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartScdnDomainResponse > {
+        self.client.execute(action: "StartScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启动SCDN域名安全防护
+    ///
+    /// StartScdnDomain 用于开启域名的安全防护配置
+    @inlinable
+    public func startScdnDomain(_ input: StartScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartScdnDomainResponse {
+        try await self.client.execute(action: "StartScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

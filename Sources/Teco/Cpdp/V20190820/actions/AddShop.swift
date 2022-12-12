@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云支付-添加门店接口
-    @inlinable
-    public func addShop(_ input: AddShopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddShopResponse > {
-        self.client.execute(action: "AddShop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云支付-添加门店接口
-    @inlinable
-    public func addShop(_ input: AddShopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddShopResponse {
-        try await self.client.execute(action: "AddShop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddShop请求参数结构体
     public struct AddShopRequest: TCRequestModel {
         /// 收单系统分配的开放ID
@@ -92,7 +80,7 @@ extension Cpdp {
         /// 沙箱环境填sandbox，正式环境不填
         public let profile: String?
         
-        public init (openId: String, openKey: String, outShopId: String, shopName: String, shopFullName: String, merchantNo: String, telephone: String, openHours: String, cityId: String, address: String, pictureOne: String, pictureTwo: String, pictureThree: String, financialTelephone: String?, contact: String?, latitude: String?, latitudeTwo: String?, longitude: String?, longitudeTwo: String?, otherPicture: String?, profile: String?) {
+        public init (openId: String, openKey: String, outShopId: String, shopName: String, shopFullName: String, merchantNo: String, telephone: String, openHours: String, cityId: String, address: String, pictureOne: String, pictureTwo: String, pictureThree: String, financialTelephone: String? = nil, contact: String? = nil, latitude: String? = nil, latitudeTwo: String? = nil, longitude: String? = nil, longitudeTwo: String? = nil, otherPicture: String? = nil, profile: String? = nil) {
             self.openId = openId
             self.openKey = openKey
             self.outShopId = outShopId
@@ -152,7 +140,7 @@ extension Cpdp {
         
         /// 添加申请响应对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: AddShopResult
+        public let result: AddShopResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -163,5 +151,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云支付-添加门店接口
+    @inlinable
+    public func addShop(_ input: AddShopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddShopResponse > {
+        self.client.execute(action: "AddShop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-添加门店接口
+    @inlinable
+    public func addShop(_ input: AddShopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddShopResponse {
+        try await self.client.execute(action: "AddShop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

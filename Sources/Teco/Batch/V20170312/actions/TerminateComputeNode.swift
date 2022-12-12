@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 销毁计算节点
-    ///
-    /// 用于销毁计算节点。
-    /// 对于状态为CREATED、CREATION_FAILED、RUNNING和ABNORMAL的节点，允许销毁处理。
-    @inlinable
-    public func terminateComputeNode(_ input: TerminateComputeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateComputeNodeResponse > {
-        self.client.execute(action: "TerminateComputeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 销毁计算节点
-    ///
-    /// 用于销毁计算节点。
-    /// 对于状态为CREATED、CREATION_FAILED、RUNNING和ABNORMAL的节点，允许销毁处理。
-    @inlinable
-    public func terminateComputeNode(_ input: TerminateComputeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateComputeNodeResponse {
-        try await self.client.execute(action: "TerminateComputeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TerminateComputeNode请求参数结构体
     public struct TerminateComputeNodeRequest: TCRequestModel {
         /// 计算环境ID
@@ -60,5 +42,23 @@ extension Batch {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 销毁计算节点
+    ///
+    /// 用于销毁计算节点。
+    /// 对于状态为CREATED、CREATION_FAILED、RUNNING和ABNORMAL的节点，允许销毁处理。
+    @inlinable
+    public func terminateComputeNode(_ input: TerminateComputeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateComputeNodeResponse > {
+        self.client.execute(action: "TerminateComputeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁计算节点
+    ///
+    /// 用于销毁计算节点。
+    /// 对于状态为CREATED、CREATION_FAILED、RUNNING和ABNORMAL的节点，允许销毁处理。
+    @inlinable
+    public func terminateComputeNode(_ input: TerminateComputeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateComputeNodeResponse {
+        try await self.client.execute(action: "TerminateComputeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 删除镜像缓存
-    ///
-    /// 批量删除镜像缓存
-    @inlinable
-    public func deleteImageCaches(_ input: DeleteImageCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageCachesResponse > {
-        self.client.execute(action: "DeleteImageCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除镜像缓存
-    ///
-    /// 批量删除镜像缓存
-    @inlinable
-    public func deleteImageCaches(_ input: DeleteImageCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageCachesResponse {
-        try await self.client.execute(action: "DeleteImageCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteImageCaches请求参数结构体
     public struct DeleteImageCachesRequest: TCRequestModel {
         /// 镜像缓存Id数组
@@ -53,5 +37,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除镜像缓存
+    ///
+    /// 批量删除镜像缓存
+    @inlinable
+    public func deleteImageCaches(_ input: DeleteImageCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageCachesResponse > {
+        self.client.execute(action: "DeleteImageCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除镜像缓存
+    ///
+    /// 批量删除镜像缓存
+    @inlinable
+    public func deleteImageCaches(_ input: DeleteImageCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageCachesResponse {
+        try await self.client.execute(action: "DeleteImageCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 升级生命周期挂钩
-    ///
-    /// 本接口（UpgradeLifecycleHook）用于升级生命周期挂钩。
-    /// * 本接口用于升级生命周期挂钩，采用“完全覆盖”风格，无论之前参数如何，统一按照接口参数设置为新的配置。对于非必填字段，不填写则按照默认值赋值。
-    @inlinable
-    public func upgradeLifecycleHook(_ input: UpgradeLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeLifecycleHookResponse > {
-        self.client.execute(action: "UpgradeLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 升级生命周期挂钩
-    ///
-    /// 本接口（UpgradeLifecycleHook）用于升级生命周期挂钩。
-    /// * 本接口用于升级生命周期挂钩，采用“完全覆盖”风格，无论之前参数如何，统一按照接口参数设置为新的配置。对于非必填字段，不填写则按照默认值赋值。
-    @inlinable
-    public func upgradeLifecycleHook(_ input: UpgradeLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLifecycleHookResponse {
-        try await self.client.execute(action: "UpgradeLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeLifecycleHook请求参数结构体
     public struct UpgradeLifecycleHookRequest: TCRequestModel {
         /// 生命周期挂钩ID
@@ -54,15 +36,15 @@ extension As {
         public let notificationMetadata: String?
         
         /// 通知目标。NotificationTarget和LifecycleCommand参数互斥，二者不可同时指定。
-        public let notificationTarget: NotificationTarget
+        public let notificationTarget: NotificationTarget?
         
         /// 进行生命周期挂钩的场景类型，取值范围包括NORMAL 和 EXTENSION。说明：设置为EXTENSION值，在AttachInstances、DetachInstances、RemoveInstaces接口时会触发生命周期挂钩操作，值为NORMAL则不会在这些接口中触发生命周期挂钩。
         public let lifecycleTransitionType: String?
         
         /// 远程命令执行对象。NotificationTarget和LifecycleCommand参数互斥，二者不可同时指定。
-        public let lifecycleCommand: LifecycleCommand
+        public let lifecycleCommand: LifecycleCommand?
         
-        public init (lifecycleHookId: String, lifecycleHookName: String, lifecycleTransition: String, defaultResult: String?, heartbeatTimeout: Int64?, notificationMetadata: String?, notificationTarget: NotificationTarget, lifecycleTransitionType: String?, lifecycleCommand: LifecycleCommand) {
+        public init (lifecycleHookId: String, lifecycleHookName: String, lifecycleTransition: String, defaultResult: String? = nil, heartbeatTimeout: Int64? = nil, notificationMetadata: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleTransitionType: String? = nil, lifecycleCommand: LifecycleCommand? = nil) {
             self.lifecycleHookId = lifecycleHookId
             self.lifecycleHookName = lifecycleHookName
             self.lifecycleTransition = lifecycleTransition
@@ -95,5 +77,23 @@ extension As {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 升级生命周期挂钩
+    ///
+    /// 本接口（UpgradeLifecycleHook）用于升级生命周期挂钩。
+    /// * 本接口用于升级生命周期挂钩，采用“完全覆盖”风格，无论之前参数如何，统一按照接口参数设置为新的配置。对于非必填字段，不填写则按照默认值赋值。
+    @inlinable
+    public func upgradeLifecycleHook(_ input: UpgradeLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeLifecycleHookResponse > {
+        self.client.execute(action: "UpgradeLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 升级生命周期挂钩
+    ///
+    /// 本接口（UpgradeLifecycleHook）用于升级生命周期挂钩。
+    /// * 本接口用于升级生命周期挂钩，采用“完全覆盖”风格，无论之前参数如何，统一按照接口参数设置为新的配置。对于非必填字段，不填写则按照默认值赋值。
+    @inlinable
+    public func upgradeLifecycleHook(_ input: UpgradeLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLifecycleHookResponse {
+        try await self.client.execute(action: "UpgradeLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

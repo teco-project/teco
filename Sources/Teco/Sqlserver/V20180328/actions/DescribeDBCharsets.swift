@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询数据库字符集
-    ///
-    /// 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。
-    @inlinable
-    public func describeDBCharsets(_ input: DescribeDBCharsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBCharsetsResponse > {
-        self.client.execute(action: "DescribeDBCharsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据库字符集
-    ///
-    /// 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。
-    @inlinable
-    public func describeDBCharsets(_ input: DescribeDBCharsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBCharsetsResponse {
-        try await self.client.execute(action: "DescribeDBCharsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBCharsets请求参数结构体
     public struct DescribeDBCharsetsRequest: TCRequestModel {
         /// 实例ID，形如mssql-j8kv137v
@@ -57,5 +41,21 @@ extension Sqlserver {
             case databaseCharsets = "DatabaseCharsets"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据库字符集
+    ///
+    /// 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。
+    @inlinable
+    public func describeDBCharsets(_ input: DescribeDBCharsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBCharsetsResponse > {
+        self.client.execute(action: "DescribeDBCharsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库字符集
+    ///
+    /// 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。
+    @inlinable
+    public func describeDBCharsets(_ input: DescribeDBCharsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBCharsetsResponse {
+        try await self.client.execute(action: "DescribeDBCharsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

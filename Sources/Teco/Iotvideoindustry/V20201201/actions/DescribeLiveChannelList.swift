@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 直播列表接口
-    @inlinable
-    public func describeLiveChannelList(_ input: DescribeLiveChannelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveChannelListResponse > {
-        self.client.execute(action: "DescribeLiveChannelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播列表接口
-    @inlinable
-    public func describeLiveChannelList(_ input: DescribeLiveChannelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelListResponse {
-        try await self.client.execute(action: "DescribeLiveChannelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveChannelList请求参数结构体
     public struct DescribeLiveChannelListRequest: TCRequestModel {
         /// 偏移量
@@ -44,7 +32,7 @@ extension Iotvideoindustry {
         /// 频道名称 (支持模糊搜索)
         public let liveChannelName: String?
         
-        public init (offset: Int64, limit: Int64, liveChannelType: Int64?, recordPlanId: String?, liveChannelName: String?) {
+        public init (offset: Int64, limit: Int64, liveChannelType: Int64? = nil, recordPlanId: String? = nil, liveChannelName: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.liveChannelType = liveChannelType
@@ -79,5 +67,17 @@ extension Iotvideoindustry {
             case liveChannels = "LiveChannels"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播列表接口
+    @inlinable
+    public func describeLiveChannelList(_ input: DescribeLiveChannelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveChannelListResponse > {
+        self.client.execute(action: "DescribeLiveChannelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播列表接口
+    @inlinable
+    public func describeLiveChannelList(_ input: DescribeLiveChannelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelListResponse {
+        try await self.client.execute(action: "DescribeLiveChannelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

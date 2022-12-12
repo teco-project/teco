@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 创建EMR实例
-    ///
-    /// 创建EMR集群实例
-    @inlinable
-    public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceResponse > {
-        self.client.execute(action: "CreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建EMR实例
-    ///
-    /// 创建EMR集群实例
-    @inlinable
-    public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceResponse {
-        try await self.client.execute(action: "CreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateInstance请求参数结构体
     public struct CreateInstanceRequest: TCRequestModel {
         /// 产品ID，不同产品ID表示不同的EMR产品版本。取值范围：
@@ -83,16 +67,16 @@ extension Emr {
         public let loginSettings: LoginSettings
         
         /// 私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。
-        public let vpcSettings: VPCSettings
+        public let vpcSettings: VPCSettings?
         
         /// 节点资源的规格。
-        public let resourceSpec: NewResourceSpec
+        public let resourceSpec: NewResourceSpec?
         
         /// 开启COS访问需要设置的参数。
-        public let cosSettings: COSSettings
+        public let cosSettings: COSSettings?
         
         /// 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
-        public let placement: Placement
+        public let placement: Placement?
         
         /// 实例所属安全组的ID，形如sg-xxxxxxxx。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的SecurityGroupId字段来获取。
         public let sgId: String?
@@ -142,7 +126,7 @@ extension Emr {
         public let unifyMetaInstanceId: String?
         
         /// 自定义MetaDB信息
-        public let metaDBInfo: CustomMetaInfo
+        public let metaDBInfo: CustomMetaInfo?
         
         /// 自定义应用角色。
         public let applicationRole: String?
@@ -166,7 +150,7 @@ extension Emr {
         /// 节点资源的规格，有几个可用区，就填几个，按顺序第一个为主可用区，第二个为备可用区，第三个为仲裁可用区。如果没有开启跨AZ，则长度为1即可。
         public let multiZoneSettings: [MultiZoneSetting]?
         
-        public init (productId: UInt64, software: [String], supportHA: UInt64, instanceName: String, payMode: UInt64, timeSpan: UInt64, timeUnit: String, loginSettings: LoginSettings, vpcSettings: VPCSettings, resourceSpec: NewResourceSpec, cosSettings: COSSettings, placement: Placement, sgId: String?, preExecutedFileSettings: [PreExecuteFileSettings]?, autoRenew: UInt64?, clientToken: String?, needMasterWan: String?, remoteLoginAtCreate: Int64?, checkSecurity: Int64?, extendFsField: String?, tags: [Tag]?, disasterRecoverGroupIds: [String]?, cbsEncrypt: UInt64?, metaType: String?, unifyMetaInstanceId: String?, metaDBInfo: CustomMetaInfo, applicationRole: String?, sceneName: String?, externalService: [ExternalService]?, versionID: Int64?, multiZone: Bool?, multiZoneSettings: [MultiZoneSetting]?) {
+        public init (productId: UInt64, software: [String], supportHA: UInt64, instanceName: String, payMode: UInt64, timeSpan: UInt64, timeUnit: String, loginSettings: LoginSettings, vpcSettings: VPCSettings? = nil, resourceSpec: NewResourceSpec? = nil, cosSettings: COSSettings? = nil, placement: Placement? = nil, sgId: String? = nil, preExecutedFileSettings: [PreExecuteFileSettings]? = nil, autoRenew: UInt64? = nil, clientToken: String? = nil, needMasterWan: String? = nil, remoteLoginAtCreate: Int64? = nil, checkSecurity: Int64? = nil, extendFsField: String? = nil, tags: [Tag]? = nil, disasterRecoverGroupIds: [String]? = nil, cbsEncrypt: UInt64? = nil, metaType: String? = nil, unifyMetaInstanceId: String? = nil, metaDBInfo: CustomMetaInfo? = nil, applicationRole: String? = nil, sceneName: String? = nil, externalService: [ExternalService]? = nil, versionID: Int64? = nil, multiZone: Bool? = nil, multiZoneSettings: [MultiZoneSetting]? = nil) {
             self.productId = productId
             self.software = software
             self.supportHA = supportHA
@@ -250,5 +234,21 @@ extension Emr {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建EMR实例
+    ///
+    /// 创建EMR集群实例
+    @inlinable
+    public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceResponse > {
+        self.client.execute(action: "CreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建EMR实例
+    ///
+    /// 创建EMR集群实例
+    @inlinable
+    public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceResponse {
+        try await self.client.execute(action: "CreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,34 +15,12 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 查询存储地域列表
-    ///
-    /// 该接口用于：
-    ///   1. 查询点播可开通的所有存储园区列表。
-    ///   2. 查询已经开通的园区列表。
-    ///   3. 查询默认使用的存储园区。
-    @inlinable
-    public func describeStorageRegions(_ input: DescribeStorageRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStorageRegionsResponse > {
-        self.client.execute(action: "DescribeStorageRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询存储地域列表
-    ///
-    /// 该接口用于：
-    ///   1. 查询点播可开通的所有存储园区列表。
-    ///   2. 查询已经开通的园区列表。
-    ///   3. 查询默认使用的存储园区。
-    @inlinable
-    public func describeStorageRegions(_ input: DescribeStorageRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageRegionsResponse {
-        try await self.client.execute(action: "DescribeStorageRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStorageRegions请求参数结构体
     public struct DescribeStorageRegionsRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
         
-        public init (subAppId: UInt64?) {
+        public init (subAppId: UInt64? = nil) {
             self.subAppId = subAppId
         }
         
@@ -63,5 +41,27 @@ extension Vod {
             case storageRegionInfos = "StorageRegionInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询存储地域列表
+    ///
+    /// 该接口用于：
+    ///   1. 查询点播可开通的所有存储园区列表。
+    ///   2. 查询已经开通的园区列表。
+    ///   3. 查询默认使用的存储园区。
+    @inlinable
+    public func describeStorageRegions(_ input: DescribeStorageRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStorageRegionsResponse > {
+        self.client.execute(action: "DescribeStorageRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询存储地域列表
+    ///
+    /// 该接口用于：
+    ///   1. 查询点播可开通的所有存储园区列表。
+    ///   2. 查询已经开通的园区列表。
+    ///   3. 查询默认使用的存储园区。
+    @inlinable
+    public func describeStorageRegions(_ input: DescribeStorageRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageRegionsResponse {
+        try await self.client.execute(action: "DescribeStorageRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

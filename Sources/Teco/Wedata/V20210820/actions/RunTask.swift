@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 运行任务【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 运行任务
-    @inlinable
-    public func runTask(_ input: RunTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunTaskResponse > {
-        self.client.execute(action: "RunTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行任务【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 运行任务
-    @inlinable
-    public func runTask(_ input: RunTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTaskResponse {
-        try await self.client.execute(action: "RunTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RunTask请求参数结构体
     public struct RunTaskRequest: TCRequestModel {
         /// 项目Id
@@ -64,5 +46,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 运行任务
+    @inlinable
+    public func runTask(_ input: RunTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunTaskResponse > {
+        self.client.execute(action: "RunTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 运行任务
+    @inlinable
+    public func runTask(_ input: RunTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTaskResponse {
+        try await self.client.execute(action: "RunTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

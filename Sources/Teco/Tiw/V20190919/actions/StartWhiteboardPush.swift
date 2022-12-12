@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 开始白板推流
-    ///
-    /// 发起一个白板推流任务
-    @inlinable
-    public func startWhiteboardPush(_ input: StartWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartWhiteboardPushResponse > {
-        self.client.execute(action: "StartWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开始白板推流
-    ///
-    /// 发起一个白板推流任务
-    @inlinable
-    public func startWhiteboardPush(_ input: StartWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartWhiteboardPushResponse {
-        try await self.client.execute(action: "StartWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartWhiteboardPush请求参数结构体
     public struct StartWhiteboardPushRequest: TCRequestModel {
         /// 客户的SdkAppId
@@ -48,7 +32,7 @@ extension Tiw {
         public let pushUserSig: String
         
         /// 白板参数，例如白板宽高、背景颜色等
-        public let whiteboard: Whiteboard
+        public let whiteboard: Whiteboard?
         
         /// 自动停止推流超时时间，单位秒，取值范围[300, 259200], 默认值为1800秒。
         /// 当白板超过设定时间没有操作的时候，白板推流服务会自动停止白板推流。
@@ -59,7 +43,7 @@ extension Tiw {
         
         /// 备份白板推流相关参数。
         /// 指定了备份参数的情况下，白板推流服务会在房间内新增一路白板画面视频流，即同一个房间内会有两路白板画面推流。
-        public let backup: WhiteboardPushBackupParam
+        public let backup: WhiteboardPushBackupParam?
         
         /// TRTC高级权限控制参数，如果在实时音视频开启了高级权限控制功能，必须提供PrivateMapKey才能保证正常推流。
         public let privateMapKey: String?
@@ -117,15 +101,15 @@ extension Tiw {
         /// IM鉴权信息参数，用于IM鉴权。
         /// 当白板信令所使用的IM应用与白板应用的SdkAppId不一致时，可以通过此参数提供对应IM应用鉴权信息。
         /// 如果提供了此参数，白板推流服务会优先使用此参数指定的SdkAppId作为白板信令的传输通道，否则使用公共参数中的SdkAppId作为白板信令的传输通道。
-        public let imAuthParam: AuthParam
+        public let imAuthParam: AuthParam?
         
         /// 内测参数，需开通白名单进行体验。
         /// TRTC鉴权信息参数，用于TRTC进房推流鉴权。
         /// 当需要推流到的TRTC房间所对应的TRTC应用与白板应用的SdkAppId不一致时，可以通过此参数提供对应的TRTC应用鉴权信息。
         /// 如果提供了此参数，白板推流服务会优先使用此参数指定的SdkAppId作为白板推流的目标TRTC应用，否则使用公共参数中的SdkAppId作为白板推流的目标TRTC应用。
-        public let trtcAuthParam: AuthParam
+        public let trtcAuthParam: AuthParam?
         
-        public init (sdkAppId: Int64, roomId: Int64, pushUserId: String, pushUserSig: String, whiteboard: Whiteboard, autoStopTimeout: Int64?, autoManageBackup: Bool?, backup: WhiteboardPushBackupParam, privateMapKey: String?, videoFPS: Int64?, videoBitrate: Int64?, autoRecord: Bool?, userDefinedRecordId: String?, autoPublish: Bool?, userDefinedStreamId: String?, extraData: String?, trtcRoomId: Int64?, trtcRoomIdStr: String?, imAuthParam: AuthParam, trtcAuthParam: AuthParam) {
+        public init (sdkAppId: Int64, roomId: Int64, pushUserId: String, pushUserSig: String, whiteboard: Whiteboard? = nil, autoStopTimeout: Int64? = nil, autoManageBackup: Bool? = nil, backup: WhiteboardPushBackupParam? = nil, privateMapKey: String? = nil, videoFPS: Int64? = nil, videoBitrate: Int64? = nil, autoRecord: Bool? = nil, userDefinedRecordId: String? = nil, autoPublish: Bool? = nil, userDefinedStreamId: String? = nil, extraData: String? = nil, trtcRoomId: Int64? = nil, trtcRoomIdStr: String? = nil, imAuthParam: AuthParam? = nil, trtcAuthParam: AuthParam? = nil) {
             self.sdkAppId = sdkAppId
             self.roomId = roomId
             self.pushUserId = pushUserId
@@ -189,5 +173,21 @@ extension Tiw {
             case backup = "Backup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开始白板推流
+    ///
+    /// 发起一个白板推流任务
+    @inlinable
+    public func startWhiteboardPush(_ input: StartWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartWhiteboardPushResponse > {
+        self.client.execute(action: "StartWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开始白板推流
+    ///
+    /// 发起一个白板推流任务
+    @inlinable
+    public func startWhiteboardPush(_ input: StartWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartWhiteboardPushResponse {
+        try await self.client.execute(action: "StartWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

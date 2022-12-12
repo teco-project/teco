@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 查询企业信息
-    @inlinable
-    public func describeBPCompanyInfo(_ input: DescribeBPCompanyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBPCompanyInfoResponse > {
-        self.client.execute(action: "DescribeBPCompanyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询企业信息
-    @inlinable
-    public func describeBPCompanyInfo(_ input: DescribeBPCompanyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPCompanyInfoResponse {
-        try await self.client.execute(action: "DescribeBPCompanyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBPCompanyInfo请求参数结构体
     public struct DescribeBPCompanyInfoRequest: TCRequestModel {
         public init () {
@@ -81,5 +69,17 @@ extension Bma {
             case companyId = "CompanyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询企业信息
+    @inlinable
+    public func describeBPCompanyInfo(_ input: DescribeBPCompanyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBPCompanyInfoResponse > {
+        self.client.execute(action: "DescribeBPCompanyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询企业信息
+    @inlinable
+    public func describeBPCompanyInfo(_ input: DescribeBPCompanyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPCompanyInfoResponse {
+        try await self.client.execute(action: "DescribeBPCompanyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

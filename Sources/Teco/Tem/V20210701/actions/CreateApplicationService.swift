@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 新增访问方式
-    @inlinable
-    public func createApplicationService(_ input: CreateApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationServiceResponse > {
-        self.client.execute(action: "CreateApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增访问方式
-    @inlinable
-    public func createApplicationService(_ input: CreateApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationServiceResponse {
-        try await self.client.execute(action: "CreateApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateApplicationService请求参数结构体
     public struct CreateApplicationServiceRequest: TCRequestModel {
         /// 服务id
@@ -39,9 +27,9 @@ extension Tem {
         public let sourceChannel: Int64?
         
         /// 访问方式详情
-        public let service: ServicePortMapping
+        public let service: ServicePortMapping?
         
-        public init (applicationId: String, environmentId: String, sourceChannel: Int64?, service: ServicePortMapping) {
+        public init (applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: ServicePortMapping? = nil) {
             self.applicationId = applicationId
             self.environmentId = environmentId
             self.sourceChannel = sourceChannel
@@ -69,5 +57,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增访问方式
+    @inlinable
+    public func createApplicationService(_ input: CreateApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationServiceResponse > {
+        self.client.execute(action: "CreateApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增访问方式
+    @inlinable
+    public func createApplicationService(_ input: CreateApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationServiceResponse {
+        try await self.client.execute(action: "CreateApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

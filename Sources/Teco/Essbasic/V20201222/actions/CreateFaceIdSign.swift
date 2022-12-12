@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 生成慧眼API签名
-    ///
-    /// 该接口为第三方平台向电子签平台获取慧眼慧眼API签名
-    @inlinable
-    public func createFaceIdSign(_ input: CreateFaceIdSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFaceIdSignResponse > {
-        self.client.execute(action: "CreateFaceIdSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 生成慧眼API签名
-    ///
-    /// 该接口为第三方平台向电子签平台获取慧眼慧眼API签名
-    @inlinable
-    public func createFaceIdSign(_ input: CreateFaceIdSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceIdSignResponse {
-        try await self.client.execute(action: "CreateFaceIdSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFaceIdSign请求参数结构体
     public struct CreateFaceIdSignRequest: TCRequestModel {
         /// 调用方信息; 必选
@@ -62,5 +46,21 @@ extension Essbasic {
             case sign = "Sign"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 生成慧眼API签名
+    ///
+    /// 该接口为第三方平台向电子签平台获取慧眼慧眼API签名
+    @inlinable
+    public func createFaceIdSign(_ input: CreateFaceIdSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFaceIdSignResponse > {
+        self.client.execute(action: "CreateFaceIdSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 生成慧眼API签名
+    ///
+    /// 该接口为第三方平台向电子签平台获取慧眼慧眼API签名
+    @inlinable
+    public func createFaceIdSign(_ input: CreateFaceIdSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceIdSignResponse {
+        try await self.client.execute(action: "CreateFaceIdSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

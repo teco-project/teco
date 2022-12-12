@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 更新产品动态注册
-    ///
-    /// 更新产品动态注册的配置 
-    @inlinable
-    public func updateProductDynamicRegister(_ input: UpdateProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProductDynamicRegisterResponse > {
-        self.client.execute(action: "UpdateProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新产品动态注册
-    ///
-    /// 更新产品动态注册的配置 
-    @inlinable
-    public func updateProductDynamicRegister(_ input: UpdateProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductDynamicRegisterResponse {
-        try await self.client.execute(action: "UpdateProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateProductDynamicRegister请求参数结构体
     public struct UpdateProductDynamicRegisterRequest: TCRequestModel {
         /// 产品Id
@@ -75,5 +59,21 @@ extension Iotcloud {
             case registerLimit = "RegisterLimit"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新产品动态注册
+    ///
+    /// 更新产品动态注册的配置 
+    @inlinable
+    public func updateProductDynamicRegister(_ input: UpdateProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProductDynamicRegisterResponse > {
+        self.client.execute(action: "UpdateProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新产品动态注册
+    ///
+    /// 更新产品动态注册的配置 
+    @inlinable
+    public func updateProductDynamicRegister(_ input: UpdateProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductDynamicRegisterResponse {
+        try await self.client.execute(action: "UpdateProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

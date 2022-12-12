@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 设置生效的策略版本
-    ///
-    /// 本接口（SetDefaultPolicyVersion）可用于设置生效的策略版本。
-    @inlinable
-    public func setDefaultPolicyVersion(_ input: SetDefaultPolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetDefaultPolicyVersionResponse > {
-        self.client.execute(action: "SetDefaultPolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置生效的策略版本
-    ///
-    /// 本接口（SetDefaultPolicyVersion）可用于设置生效的策略版本。
-    @inlinable
-    public func setDefaultPolicyVersion(_ input: SetDefaultPolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDefaultPolicyVersionResponse {
-        try await self.client.execute(action: "SetDefaultPolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetDefaultPolicyVersion请求参数结构体
     public struct SetDefaultPolicyVersionRequest: TCRequestModel {
         /// 策略ID
@@ -58,5 +42,21 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置生效的策略版本
+    ///
+    /// 本接口（SetDefaultPolicyVersion）可用于设置生效的策略版本。
+    @inlinable
+    public func setDefaultPolicyVersion(_ input: SetDefaultPolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetDefaultPolicyVersionResponse > {
+        self.client.execute(action: "SetDefaultPolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置生效的策略版本
+    ///
+    /// 本接口（SetDefaultPolicyVersion）可用于设置生效的策略版本。
+    @inlinable
+    public func setDefaultPolicyVersion(_ input: SetDefaultPolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDefaultPolicyVersionResponse {
+        try await self.client.execute(action: "SetDefaultPolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

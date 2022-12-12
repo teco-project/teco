@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 批量创建模型加速任务
-    @inlinable
-    public func createBatchModelAccTasks(_ input: CreateBatchModelAccTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBatchModelAccTasksResponse > {
-        self.client.execute(action: "CreateBatchModelAccTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量创建模型加速任务
-    @inlinable
-    public func createBatchModelAccTasks(_ input: CreateBatchModelAccTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchModelAccTasksResponse {
-        try await self.client.execute(action: "CreateBatchModelAccTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBatchModelAccTasks请求参数结构体
     public struct CreateBatchModelAccTasksRequest: TCRequestModel {
         /// 模型加速任务名称
@@ -48,9 +36,9 @@ extension Tione {
         public let gpuType: String?
         
         /// 专业参数设置
-        public let hyperParameter: HyperParameter
+        public let hyperParameter: HyperParameter?
         
-        public init (modelAccTaskName: String, batchModelAccTasks: [BatchModelAccTask], modelOutputPath: CosPathInfo, tags: [Tag]?, optimizationLevel: String?, gpuType: String?, hyperParameter: HyperParameter) {
+        public init (modelAccTaskName: String, batchModelAccTasks: [BatchModelAccTask], modelOutputPath: CosPathInfo, tags: [Tag]? = nil, optimizationLevel: String? = nil, gpuType: String? = nil, hyperParameter: HyperParameter? = nil) {
             self.modelAccTaskName = modelAccTaskName
             self.batchModelAccTasks = batchModelAccTasks
             self.modelOutputPath = modelOutputPath
@@ -84,5 +72,17 @@ extension Tione {
             case modelAccTaskIds = "ModelAccTaskIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量创建模型加速任务
+    @inlinable
+    public func createBatchModelAccTasks(_ input: CreateBatchModelAccTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBatchModelAccTasksResponse > {
+        self.client.execute(action: "CreateBatchModelAccTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量创建模型加速任务
+    @inlinable
+    public func createBatchModelAccTasks(_ input: CreateBatchModelAccTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchModelAccTasksResponse {
+        try await self.client.execute(action: "CreateBatchModelAccTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 终止作业
-    ///
-    /// 用于终止作业。
-    /// 当作业处于“SUBMITTED”状态时，禁止终止操作；当作业处于“SUCCEED”状态时，终止操作不会生效。
-    /// 终止作业是一个异步过程。整个终止过程的耗时和任务总数成正比。终止的效果相当于所含的所有任务实例进行TerminateTaskInstance操作。具体效果和用法可参考TerminateTaskInstance。
-    @inlinable
-    public func terminateJob(_ input: TerminateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateJobResponse > {
-        self.client.execute(action: "TerminateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 终止作业
-    ///
-    /// 用于终止作业。
-    /// 当作业处于“SUBMITTED”状态时，禁止终止操作；当作业处于“SUCCEED”状态时，终止操作不会生效。
-    /// 终止作业是一个异步过程。整个终止过程的耗时和任务总数成正比。终止的效果相当于所含的所有任务实例进行TerminateTaskInstance操作。具体效果和用法可参考TerminateTaskInstance。
-    @inlinable
-    public func terminateJob(_ input: TerminateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateJobResponse {
-        try await self.client.execute(action: "TerminateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TerminateJob请求参数结构体
     public struct TerminateJobRequest: TCRequestModel {
         /// 作业ID
@@ -57,5 +37,25 @@ extension Batch {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 终止作业
+    ///
+    /// 用于终止作业。
+    /// 当作业处于“SUBMITTED”状态时，禁止终止操作；当作业处于“SUCCEED”状态时，终止操作不会生效。
+    /// 终止作业是一个异步过程。整个终止过程的耗时和任务总数成正比。终止的效果相当于所含的所有任务实例进行TerminateTaskInstance操作。具体效果和用法可参考TerminateTaskInstance。
+    @inlinable
+    public func terminateJob(_ input: TerminateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateJobResponse > {
+        self.client.execute(action: "TerminateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 终止作业
+    ///
+    /// 用于终止作业。
+    /// 当作业处于“SUBMITTED”状态时，禁止终止操作；当作业处于“SUCCEED”状态时，终止操作不会生效。
+    /// 终止作业是一个异步过程。整个终止过程的耗时和任务总数成正比。终止的效果相当于所含的所有任务实例进行TerminateTaskInstance操作。具体效果和用法可参考TerminateTaskInstance。
+    @inlinable
+    public func terminateJob(_ input: TerminateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateJobResponse {
+        try await self.client.execute(action: "TerminateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

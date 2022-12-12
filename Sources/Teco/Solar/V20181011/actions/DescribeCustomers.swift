@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Solar {
-    /// 查询客户档案列表
-    @inlinable
-    public func describeCustomers(_ input: DescribeCustomersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomersResponse > {
-        self.client.execute(action: "DescribeCustomers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询客户档案列表
-    @inlinable
-    public func describeCustomers(_ input: DescribeCustomersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomersResponse {
-        try await self.client.execute(action: "DescribeCustomers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomers请求参数结构体
     public struct DescribeCustomersRequest: TCRequestModel {
         /// 查询类型，0.个人，1负责部门，2.指定部门
@@ -68,7 +56,7 @@ extension Solar {
         /// 子项目ID
         public let subProjectId: String?
         
-        public init (queryType: String, groupId: String?, markFlag: Int64?, tagIds: String?, relChannelFlag: String?, needPhoneFlag: Int64?, province: String?, city: String?, sex: String?, keyWord: String?, offset: UInt64?, limit: UInt64?, subProjectId: String?) {
+        public init (queryType: String, groupId: String? = nil, markFlag: Int64? = nil, tagIds: String? = nil, relChannelFlag: String? = nil, needPhoneFlag: Int64? = nil, province: String? = nil, city: String? = nil, sex: String? = nil, keyWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subProjectId: String? = nil) {
             self.queryType = queryType
             self.groupId = groupId
             self.markFlag = markFlag
@@ -118,5 +106,17 @@ extension Solar {
             case userList = "UserList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询客户档案列表
+    @inlinable
+    public func describeCustomers(_ input: DescribeCustomersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomersResponse > {
+        self.client.execute(action: "DescribeCustomers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询客户档案列表
+    @inlinable
+    public func describeCustomers(_ input: DescribeCustomersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomersResponse {
+        try await self.client.execute(action: "DescribeCustomers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

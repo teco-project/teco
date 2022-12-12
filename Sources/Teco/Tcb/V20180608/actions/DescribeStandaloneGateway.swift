@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询小租户网关信息
-    ///
-    /// 本接口（DescribeStandaloneGateway）查询小租户网关套餐信息。
-    @inlinable
-    public func describeStandaloneGateway(_ input: DescribeStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStandaloneGatewayResponse > {
-        self.client.execute(action: "DescribeStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询小租户网关信息
-    ///
-    /// 本接口（DescribeStandaloneGateway）查询小租户网关套餐信息。
-    @inlinable
-    public func describeStandaloneGateway(_ input: DescribeStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStandaloneGatewayResponse {
-        try await self.client.execute(action: "DescribeStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStandaloneGateway请求参数结构体
     public struct DescribeStandaloneGatewayRequest: TCRequestModel {
         /// 环境ID
@@ -42,7 +26,7 @@ extension Tcb {
         /// 网关别名
         public let gatewayAlias: String?
         
-        public init (envId: String, gatewayName: String?, gatewayAlias: String?) {
+        public init (envId: String, gatewayName: String? = nil, gatewayAlias: String? = nil) {
             self.envId = envId
             self.gatewayName = gatewayName
             self.gatewayAlias = gatewayAlias
@@ -71,5 +55,21 @@ extension Tcb {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询小租户网关信息
+    ///
+    /// 本接口（DescribeStandaloneGateway）查询小租户网关套餐信息。
+    @inlinable
+    public func describeStandaloneGateway(_ input: DescribeStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStandaloneGatewayResponse > {
+        self.client.execute(action: "DescribeStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询小租户网关信息
+    ///
+    /// 本接口（DescribeStandaloneGateway）查询小租户网关套餐信息。
+    @inlinable
+    public func describeStandaloneGateway(_ input: DescribeStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStandaloneGatewayResponse {
+        try await self.client.execute(action: "DescribeStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

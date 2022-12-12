@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ivld {
-    /// 描述自定义人物详细信息
-    ///
-    /// 描述自定义人物详细信息，包括人物信息与人物信息
-    @inlinable
-    public func describeCustomPersonDetail(_ input: DescribeCustomPersonDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomPersonDetailResponse > {
-        self.client.execute(action: "DescribeCustomPersonDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 描述自定义人物详细信息
-    ///
-    /// 描述自定义人物详细信息，包括人物信息与人物信息
-    @inlinable
-    public func describeCustomPersonDetail(_ input: DescribeCustomPersonDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomPersonDetailResponse {
-        try await self.client.execute(action: "DescribeCustomPersonDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomPersonDetail请求参数结构体
     public struct DescribeCustomPersonDetailRequest: TCRequestModel {
         /// 自定义人物Id
@@ -62,5 +46,21 @@ extension Ivld {
             case taskIdSet = "TaskIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 描述自定义人物详细信息
+    ///
+    /// 描述自定义人物详细信息，包括人物信息与人物信息
+    @inlinable
+    public func describeCustomPersonDetail(_ input: DescribeCustomPersonDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomPersonDetailResponse > {
+        self.client.execute(action: "DescribeCustomPersonDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 描述自定义人物详细信息
+    ///
+    /// 描述自定义人物详细信息，包括人物信息与人物信息
+    @inlinable
+    public func describeCustomPersonDetail(_ input: DescribeCustomPersonDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomPersonDetailResponse {
+        try await self.client.execute(action: "DescribeCustomPersonDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

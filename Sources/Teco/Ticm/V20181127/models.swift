@@ -87,7 +87,7 @@ extension Ticm {
         public let faceRect: FaceRect
         
         /// 候选人列表。当前返回相似度最高的候选人。
-        public let candidates: [Date]
+        public let candidates: [Candidate]
         
         enum CodingKeys: String, CodingKey {
             case faceRect = "FaceRect"

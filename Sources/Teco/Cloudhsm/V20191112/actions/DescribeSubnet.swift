@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudhsm {
-    /// 查询子网列表
-    @inlinable
-    public func describeSubnet(_ input: DescribeSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubnetResponse > {
-        self.client.execute(action: "DescribeSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询子网列表
-    @inlinable
-    public func describeSubnet(_ input: DescribeSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetResponse {
-        try await self.client.execute(action: "DescribeSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSubnet请求参数结构体
     public struct DescribeSubnetRequest: TCRequestModel {
         /// 返回数量。Limit需要在[1, 100]之间。
@@ -41,7 +29,7 @@ extension Cloudhsm {
         /// 查找关键字
         public let searchWord: String?
         
-        public init (limit: Int64, offset: Int64, vpcId: String, searchWord: String?) {
+        public init (limit: Int64, offset: Int64, vpcId: String, searchWord: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.vpcId = vpcId
@@ -73,5 +61,17 @@ extension Cloudhsm {
             case subnetList = "SubnetList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询子网列表
+    @inlinable
+    public func describeSubnet(_ input: DescribeSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubnetResponse > {
+        self.client.execute(action: "DescribeSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询子网列表
+    @inlinable
+    public func describeSubnet(_ input: DescribeSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetResponse {
+        try await self.client.execute(action: "DescribeSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

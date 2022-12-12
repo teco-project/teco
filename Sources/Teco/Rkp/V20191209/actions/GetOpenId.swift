@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rkp {
-    /// RPopenID查询
-    ///
-    /// 根据DevicceToken查询OpenID。
-    @inlinable
-    public func getOpenId(_ input: GetOpenIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetOpenIdResponse > {
-        self.client.execute(action: "GetOpenId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// RPopenID查询
-    ///
-    /// 根据DevicceToken查询OpenID。
-    @inlinable
-    public func getOpenId(_ input: GetOpenIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOpenIdResponse {
-        try await self.client.execute(action: "GetOpenId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetOpenId请求参数结构体
     public struct GetOpenIdRequest: TCRequestModel {
         /// dev临时token，通过sdk接口获取
@@ -48,7 +32,7 @@ extension Rkp {
         /// 选项
         public let option: String?
         
-        public init (deviceToken: String, businessId: Int64, businessUserId: String?, platform: Int64?, option: String?) {
+        public init (deviceToken: String, businessId: Int64, businessUserId: String? = nil, platform: Int64? = nil, option: String? = nil) {
             self.deviceToken = deviceToken
             self.businessId = businessId
             self.businessUserId = businessUserId
@@ -83,5 +67,21 @@ extension Rkp {
             case riskInfo = "RiskInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// RPopenID查询
+    ///
+    /// 根据DevicceToken查询OpenID。
+    @inlinable
+    public func getOpenId(_ input: GetOpenIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetOpenIdResponse > {
+        self.client.execute(action: "GetOpenId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// RPopenID查询
+    ///
+    /// 根据DevicceToken查询OpenID。
+    @inlinable
+    public func getOpenId(_ input: GetOpenIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOpenIdResponse {
+        try await self.client.execute(action: "GetOpenId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

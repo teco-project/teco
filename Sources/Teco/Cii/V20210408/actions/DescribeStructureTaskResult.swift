@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cii {
-    /// 获取结构化结果接口
-    ///
-    /// 依据任务ID获取结构化结果接口。
-    @inlinable
-    public func describeStructureTaskResult(_ input: DescribeStructureTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStructureTaskResultResponse > {
-        self.client.execute(action: "DescribeStructureTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取结构化结果接口
-    ///
-    /// 依据任务ID获取结构化结果接口。
-    @inlinable
-    public func describeStructureTaskResult(_ input: DescribeStructureTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureTaskResultResponse {
-        try await self.client.execute(action: "DescribeStructureTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStructureTaskResult请求参数结构体
     public struct DescribeStructureTaskResultRequest: TCRequestModel {
         /// 结构化任务ID
@@ -65,5 +49,21 @@ extension Cii {
             case results = "Results"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取结构化结果接口
+    ///
+    /// 依据任务ID获取结构化结果接口。
+    @inlinable
+    public func describeStructureTaskResult(_ input: DescribeStructureTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStructureTaskResultResponse > {
+        self.client.execute(action: "DescribeStructureTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取结构化结果接口
+    ///
+    /// 依据任务ID获取结构化结果接口。
+    @inlinable
+    public func describeStructureTaskResult(_ input: DescribeStructureTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureTaskResultResponse {
+        try await self.client.execute(action: "DescribeStructureTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 删除专用集群
-    @inlinable
-    public func deleteDedicatedClusters(_ input: DeleteDedicatedClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDedicatedClustersResponse > {
-        self.client.execute(action: "DeleteDedicatedClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除专用集群
-    @inlinable
-    public func deleteDedicatedClusters(_ input: DeleteDedicatedClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDedicatedClustersResponse {
-        try await self.client.execute(action: "DeleteDedicatedClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDedicatedClusters请求参数结构体
     public struct DeleteDedicatedClustersRequest: TCRequestModel {
         /// 要删除的专用集群id
@@ -49,5 +37,17 @@ extension Cdc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除专用集群
+    @inlinable
+    public func deleteDedicatedClusters(_ input: DeleteDedicatedClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDedicatedClustersResponse > {
+        self.client.execute(action: "DeleteDedicatedClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除专用集群
+    @inlinable
+    public func deleteDedicatedClusters(_ input: DeleteDedicatedClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDedicatedClustersResponse {
+        try await self.client.execute(action: "DeleteDedicatedClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

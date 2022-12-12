@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 禁用域名
-    ///
-    /// 停止使用某个直播域名。
-    @inlinable
-    public func forbidLiveDomain(_ input: ForbidLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ForbidLiveDomainResponse > {
-        self.client.execute(action: "ForbidLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 禁用域名
-    ///
-    /// 停止使用某个直播域名。
-    @inlinable
-    public func forbidLiveDomain(_ input: ForbidLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveDomainResponse {
-        try await self.client.execute(action: "ForbidLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ForbidLiveDomain请求参数结构体
     public struct ForbidLiveDomainRequest: TCRequestModel {
         /// 待停用的直播域名。
@@ -53,5 +37,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 禁用域名
+    ///
+    /// 停止使用某个直播域名。
+    @inlinable
+    public func forbidLiveDomain(_ input: ForbidLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ForbidLiveDomainResponse > {
+        self.client.execute(action: "ForbidLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用域名
+    ///
+    /// 停止使用某个直播域名。
+    @inlinable
+    public func forbidLiveDomain(_ input: ForbidLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveDomainResponse {
+        try await self.client.execute(action: "ForbidLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

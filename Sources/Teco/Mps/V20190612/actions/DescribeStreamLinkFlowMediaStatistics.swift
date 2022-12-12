@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 查询媒体质量数据
-    ///
-    /// 查询媒体传输流的媒体质量数据。
-    @inlinable
-    public func describeStreamLinkFlowMediaStatistics(_ input: DescribeStreamLinkFlowMediaStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkFlowMediaStatisticsResponse > {
-        self.client.execute(action: "DescribeStreamLinkFlowMediaStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询媒体质量数据
-    ///
-    /// 查询媒体传输流的媒体质量数据。
-    @inlinable
-    public func describeStreamLinkFlowMediaStatistics(_ input: DescribeStreamLinkFlowMediaStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowMediaStatisticsResponse {
-        try await self.client.execute(action: "DescribeStreamLinkFlowMediaStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStreamLinkFlowMediaStatistics请求参数结构体
     public struct DescribeStreamLinkFlowMediaStatisticsRequest: TCRequestModel {
         /// 传输流ID。
@@ -89,5 +73,21 @@ extension Mps {
             case infos = "Infos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询媒体质量数据
+    ///
+    /// 查询媒体传输流的媒体质量数据。
+    @inlinable
+    public func describeStreamLinkFlowMediaStatistics(_ input: DescribeStreamLinkFlowMediaStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkFlowMediaStatisticsResponse > {
+        self.client.execute(action: "DescribeStreamLinkFlowMediaStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询媒体质量数据
+    ///
+    /// 查询媒体传输流的媒体质量数据。
+    @inlinable
+    public func describeStreamLinkFlowMediaStatistics(_ input: DescribeStreamLinkFlowMediaStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowMediaStatisticsResponse {
+        try await self.client.execute(action: "DescribeStreamLinkFlowMediaStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

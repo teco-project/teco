@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建本地网关
-    ///
-    /// 该接口用于创建用于CDC的本地网关。
-    @inlinable
-    public func createLocalGateway(_ input: CreateLocalGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLocalGatewayResponse > {
-        self.client.execute(action: "CreateLocalGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建本地网关
-    ///
-    /// 该接口用于创建用于CDC的本地网关。
-    @inlinable
-    public func createLocalGateway(_ input: CreateLocalGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLocalGatewayResponse {
-        try await self.client.execute(action: "CreateLocalGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLocalGateway请求参数结构体
     public struct CreateLocalGatewayRequest: TCRequestModel {
         /// 本地网关名称
@@ -67,5 +51,21 @@ extension Vpc {
             case localGateway = "LocalGateway"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建本地网关
+    ///
+    /// 该接口用于创建用于CDC的本地网关。
+    @inlinable
+    public func createLocalGateway(_ input: CreateLocalGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLocalGatewayResponse > {
+        self.client.execute(action: "CreateLocalGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建本地网关
+    ///
+    /// 该接口用于创建用于CDC的本地网关。
+    @inlinable
+    public func createLocalGateway(_ input: CreateLocalGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLocalGatewayResponse {
+        try await self.client.execute(action: "CreateLocalGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

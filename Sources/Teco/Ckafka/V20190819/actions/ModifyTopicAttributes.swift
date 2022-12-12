@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 设置主题属性
-    ///
-    /// 本接口用于修改主题属性。
-    @inlinable
-    public func modifyTopicAttributes(_ input: ModifyTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTopicAttributesResponse > {
-        self.client.execute(action: "ModifyTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置主题属性
-    ///
-    /// 本接口用于修改主题属性。
-    @inlinable
-    public func modifyTopicAttributes(_ input: ModifyTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicAttributesResponse {
-        try await self.client.execute(action: "ModifyTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTopicAttributes请求参数结构体
     public struct ModifyTopicAttributesRequest: TCRequestModel {
         /// 实例 ID。
@@ -87,7 +71,7 @@ extension Ckafka {
         /// 调整topic副本数
         public let replicaNum: Int64?
         
-        public init (instanceId: String, topicName: String, note: String?, enableWhiteList: Int64?, minInsyncReplicas: Int64?, uncleanLeaderElectionEnable: Int64?, retentionMs: Int64?, segmentMs: Int64?, maxMessageBytes: Int64?, cleanUpPolicy: String?, ipWhiteList: [String]?, enableAclRule: Int64?, aclRuleName: String?, retentionBytes: Int64?, tags: [Tag]?, quotaProducerByteRate: Int64?, quotaConsumerByteRate: Int64?, replicaNum: Int64?) {
+        public init (instanceId: String, topicName: String, note: String? = nil, enableWhiteList: Int64? = nil, minInsyncReplicas: Int64? = nil, uncleanLeaderElectionEnable: Int64? = nil, retentionMs: Int64? = nil, segmentMs: Int64? = nil, maxMessageBytes: Int64? = nil, cleanUpPolicy: String? = nil, ipWhiteList: [String]? = nil, enableAclRule: Int64? = nil, aclRuleName: String? = nil, retentionBytes: Int64? = nil, tags: [Tag]? = nil, quotaProducerByteRate: Int64? = nil, quotaConsumerByteRate: Int64? = nil, replicaNum: Int64? = nil) {
             self.instanceId = instanceId
             self.topicName = topicName
             self.note = note
@@ -142,5 +126,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置主题属性
+    ///
+    /// 本接口用于修改主题属性。
+    @inlinable
+    public func modifyTopicAttributes(_ input: ModifyTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTopicAttributesResponse > {
+        self.client.execute(action: "ModifyTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置主题属性
+    ///
+    /// 本接口用于修改主题属性。
+    @inlinable
+    public func modifyTopicAttributes(_ input: ModifyTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicAttributesResponse {
+        try await self.client.execute(action: "ModifyTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

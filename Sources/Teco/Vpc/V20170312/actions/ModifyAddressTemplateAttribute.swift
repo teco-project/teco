@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改IP地址模板
-    ///
-    /// 本接口（ModifyAddressTemplateAttribute）用于修改IP地址模板
-    @inlinable
-    public func modifyAddressTemplateAttribute(_ input: ModifyAddressTemplateAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressTemplateAttributeResponse > {
-        self.client.execute(action: "ModifyAddressTemplateAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改IP地址模板
-    ///
-    /// 本接口（ModifyAddressTemplateAttribute）用于修改IP地址模板
-    @inlinable
-    public func modifyAddressTemplateAttribute(_ input: ModifyAddressTemplateAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressTemplateAttributeResponse {
-        try await self.client.execute(action: "ModifyAddressTemplateAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAddressTemplateAttribute请求参数结构体
     public struct ModifyAddressTemplateAttributeRequest: TCRequestModel {
         /// IP地址模板实例ID，例如：ipm-mdunqeb6。
@@ -45,7 +29,7 @@ extension Vpc {
         /// 支持添加备注的地址信息，支持 IP、CIDR、IP 范围。
         public let addressesExtra: [AddressInfo]?
         
-        public init (addressTemplateId: String, addressTemplateName: String?, addresses: [String]?, addressesExtra: [AddressInfo]?) {
+        public init (addressTemplateId: String, addressTemplateName: String? = nil, addresses: [String]? = nil, addressesExtra: [AddressInfo]? = nil) {
             self.addressTemplateId = addressTemplateId
             self.addressTemplateName = addressTemplateName
             self.addresses = addresses
@@ -68,5 +52,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改IP地址模板
+    ///
+    /// 本接口（ModifyAddressTemplateAttribute）用于修改IP地址模板
+    @inlinable
+    public func modifyAddressTemplateAttribute(_ input: ModifyAddressTemplateAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressTemplateAttributeResponse > {
+        self.client.execute(action: "ModifyAddressTemplateAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改IP地址模板
+    ///
+    /// 本接口（ModifyAddressTemplateAttribute）用于修改IP地址模板
+    @inlinable
+    public func modifyAddressTemplateAttribute(_ input: ModifyAddressTemplateAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressTemplateAttributeResponse {
+        try await self.client.execute(action: "ModifyAddressTemplateAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

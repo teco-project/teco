@@ -206,7 +206,7 @@ extension Cdb {
         /// SQL 语句。支持传递多个sql语句。
         public let sqls: [String]?
         
-        public init (host: [String]?, user: [String]?, dbName: [String]?, tableName: [String]?, policyName: [String]?, sql: String?, sqlType: String?, execTime: Int64?, affectRows: Int64?, sqlTypes: [String]?, sqls: [String]?) {
+        public init (host: [String]? = nil, user: [String]? = nil, dbName: [String]? = nil, tableName: [String]? = nil, policyName: [String]? = nil, sql: String? = nil, sqlType: String? = nil, execTime: Int64? = nil, affectRows: Int64? = nil, sqlTypes: [String]? = nil, sqls: [String]? = nil) {
             self.host = host
             self.user = user
             self.dbName = dbName
@@ -437,7 +437,7 @@ extension Cdb {
         /// 需要备份的表名。 如果传该参数，表示备份该库中的指定表。如果不传该参数则备份该db库
         public let table: String?
         
-        public init (db: String, table: String?) {
+        public init (db: String, table: String? = nil) {
             self.db = db
             self.table = table
         }
@@ -911,7 +911,7 @@ extension Cdb {
         /// 周日的时间窗，格式如： 02:00-06:00
         public let sunday: String?
         
-        public init (monday: String?, tuesday: String?, wednesday: String?, thursday: String?, friday: String?, saturday: String?, sunday: String?) {
+        public init (monday: String? = nil, tuesday: String? = nil, wednesday: String? = nil, thursday: String? = nil, friday: String? = nil, saturday: String? = nil, sunday: String? = nil) {
             self.monday = monday
             self.tuesday = tuesday
             self.wednesday = wednesday
@@ -1334,7 +1334,7 @@ extension Cdb {
         
         /// 只读vip信息。单独开通只读实例访问的只读实例才有该字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let roVipInfo: RoVipInfo
+        public let roVipInfo: RoVipInfo?
         
         /// 内存容量，单位为 MB
         public let memory: Int64
@@ -1347,7 +1347,7 @@ extension Cdb {
         
         /// 备机信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let slaveInfo: SlaveInfo
+        public let slaveInfo: SlaveInfo?
         
         /// 实例 ID
         public let instanceId: String
@@ -1389,7 +1389,7 @@ extension Cdb {
         
         /// 主实例详细信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let masterInfo: MasterInfo
+        public let masterInfo: MasterInfo?
         
         /// 实例类型
         public let deviceType: String
@@ -1774,7 +1774,7 @@ extension Cdb {
         /// 参数值
         public let currentValue: String?
         
-        public init (name: String?, currentValue: String?) {
+        public init (name: String? = nil, currentValue: String? = nil) {
             self.name = name
             self.currentValue = currentValue
         }
@@ -1860,7 +1860,7 @@ extension Cdb {
     public struct ProxyGroup: TCOutputModel {
         /// 代理基本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let baseGroup: BaseGroupInfo
+        public let baseGroup: BaseGroupInfo?
         
         /// 代理地址信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1868,7 +1868,7 @@ extension Cdb {
         
         /// 代理连接池信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let connectionPoolInfo: ConnectionPoolInfo
+        public let connectionPoolInfo: ConnectionPoolInfo?
         
         /// 代理节点信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1876,7 +1876,7 @@ extension Cdb {
         
         /// 代理路由信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rwInstInfo: RWInfo
+        public let rwInstInfo: RWInfo?
         
         enum CodingKeys: String, CodingKey {
             case baseGroup = "BaseGroup"
@@ -1891,7 +1891,7 @@ extension Cdb {
     public struct ProxyGroups: TCOutputModel {
         /// 代理基本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let baseGroup: BaseGroupInfo
+        public let baseGroup: BaseGroupInfo?
         
         /// 代理地址信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1899,7 +1899,7 @@ extension Cdb {
         
         /// 代理连接池信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let connectionPoolInfo: ConnectionPoolInfo
+        public let connectionPoolInfo: ConnectionPoolInfo?
         
         /// 代理节点信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1907,7 +1907,7 @@ extension Cdb {
         
         /// 代理路由信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rwInstInfo: RWInfos
+        public let rwInstInfo: RWInfos?
         
         enum CodingKeys: String, CodingKey {
             case baseGroup = "BaseGroup"
@@ -1988,7 +1988,7 @@ extension Cdb {
         
         /// 代理实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rwInstInfo: RWInstanceInfo
+        public let rwInstInfo: RWInstanceInfo?
         
         enum CodingKeys: String, CodingKey {
             case instCount = "InstCount"
@@ -2156,7 +2156,7 @@ extension Cdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let delayReplicationTime: Int64?
         
-        public init (roGroupMode: String, roGroupId: String?, roGroupName: String?, roOfflineDelay: Int64?, roMaxDelayTime: Int64?, minRoInGroup: Int64?, weightMode: String?, weight: Int64?, roInstances: [RoInstanceInfo]?, vip: String?, vport: Int64?, uniqVpcId: String?, uniqSubnetId: String?, roGroupRegion: String?, roGroupZone: String?, delayReplicationTime: Int64?) {
+        public init (roGroupMode: String, roGroupId: String? = nil, roGroupName: String? = nil, roOfflineDelay: Int64? = nil, roMaxDelayTime: Int64? = nil, minRoInGroup: Int64? = nil, weightMode: String? = nil, weight: Int64? = nil, roInstances: [RoInstanceInfo]? = nil, vip: String? = nil, vport: Int64? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, roGroupRegion: String? = nil, roGroupZone: String? = nil, delayReplicationTime: Int64? = nil) {
             self.roGroupMode = roGroupMode
             self.roGroupId = roGroupId
             self.roGroupName = roGroupName
@@ -2215,7 +2215,7 @@ extension Cdb {
         /// 延迟复制时间。
         public let replicationDelayTime: Int64?
         
-        public init (roGroupName: String?, roMaxDelayTime: Int64?, roOfflineDelay: Int64?, minRoInGroup: Int64?, weightMode: String?, replicationDelayTime: Int64?) {
+        public init (roGroupName: String? = nil, roMaxDelayTime: Int64? = nil, roOfflineDelay: Int64? = nil, minRoInGroup: Int64? = nil, weightMode: String? = nil, replicationDelayTime: Int64? = nil) {
             self.roGroupName = roGroupName
             self.roMaxDelayTime = roMaxDelayTime
             self.roOfflineDelay = roOfflineDelay
@@ -2381,11 +2381,11 @@ extension Cdb {
     public struct RollbackDBName: TCInputModel, TCOutputModel {
         /// 回档前的原数据库名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let databaseName: String
+        public let databaseName: String?
         
         /// 回档后的新数据库名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let newDatabaseName: String
+        public let newDatabaseName: String?
         
         public init (databaseName: String, newDatabaseName: String) {
             self.databaseName = databaseName
@@ -2402,7 +2402,7 @@ extension Cdb {
     public struct RollbackInstancesInfo: TCInputModel, TCOutputModel {
         /// 云数据库实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instanceId: String
+        public let instanceId: String?
         
         /// 回档策略。可选值为：table、db、full；默认值为full。table - 极速回档模式，仅导入所选中表级别的备份和binlog，如有跨表操作，且关联表未被同时选中，将会导致回档失败，该模式下参数Databases必须为空；db - 快速模式，仅导入所选中库级别的备份和binlog，如有跨库操作，且关联库未被同时选中，将会导致回档失败；full - 普通回档模式，将导入整个实例的备份和binlog，速度较慢。
         public let strategy: String
@@ -2418,7 +2418,7 @@ extension Cdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tables: [RollbackTables]?
         
-        public init (instanceId: String, strategy: String, rollbackTime: String, databases: [RollbackDBName]?, tables: [RollbackTables]?) {
+        public init (instanceId: String, strategy: String, rollbackTime: String, databases: [RollbackDBName]? = nil, tables: [RollbackTables]? = nil) {
             self.instanceId = instanceId
             self.strategy = strategy
             self.rollbackTime = rollbackTime
@@ -2439,11 +2439,11 @@ extension Cdb {
     public struct RollbackTableName: TCInputModel, TCOutputModel {
         /// 回档前的原数据库表名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tableName: String
+        public let tableName: String?
         
         /// 回档后的新数据库表名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let newTableName: String
+        public let newTableName: String?
         
         public init (tableName: String, newTableName: String) {
             self.tableName = tableName
@@ -2460,11 +2460,11 @@ extension Cdb {
     public struct RollbackTables: TCInputModel, TCOutputModel {
         /// 数据库名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let database: String
+        public let database: String?
         
         /// 数据库表详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let table: [RollbackTableName]
+        public let table: [RollbackTableName]?
         
         public init (database: String, table: [RollbackTableName]) {
             self.database = database
@@ -2593,7 +2593,7 @@ extension Cdb {
         
         /// 第二备机信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let second: SlaveInstanceInfo
+        public let second: SlaveInstanceInfo?
         
         enum CodingKeys: String, CodingKey {
             case first = "First"

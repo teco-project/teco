@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 编辑反弹Shell规则
-    @inlinable
-    public func editReverseShellRule(_ input: EditReverseShellRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditReverseShellRuleResponse > {
-        self.client.execute(action: "EditReverseShellRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑反弹Shell规则
-    @inlinable
-    public func editReverseShellRule(_ input: EditReverseShellRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditReverseShellRuleResponse {
-        try await self.client.execute(action: "EditReverseShellRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EditReverseShellRule请求参数结构体
     public struct EditReverseShellRuleRequest: TCRequestModel {
         /// 规则ID(新增时请留空)
@@ -50,7 +38,7 @@ extension Yunjing {
         /// 是否全局规则(默认否)
         public let isGlobal: UInt64?
         
-        public init (id: UInt64?, uuid: String?, hostip: String?, destIp: String?, destPort: String?, processName: String?, isGlobal: UInt64?) {
+        public init (id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, destIp: String? = nil, destPort: String? = nil, processName: String? = nil, isGlobal: UInt64? = nil) {
             self.id = id
             self.uuid = uuid
             self.hostip = hostip
@@ -79,5 +67,17 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑反弹Shell规则
+    @inlinable
+    public func editReverseShellRule(_ input: EditReverseShellRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditReverseShellRuleResponse > {
+        self.client.execute(action: "EditReverseShellRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑反弹Shell规则
+    @inlinable
+    public func editReverseShellRule(_ input: EditReverseShellRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditReverseShellRuleResponse {
+        try await self.client.execute(action: "EditReverseShellRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

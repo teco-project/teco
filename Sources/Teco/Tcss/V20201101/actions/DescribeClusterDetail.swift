@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询单个集群的详细信息
-    @inlinable
-    public func describeClusterDetail(_ input: DescribeClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterDetailResponse > {
-        self.client.execute(action: "DescribeClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询单个集群的详细信息
-    @inlinable
-    public func describeClusterDetail(_ input: DescribeClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterDetailResponse {
-        try await self.client.execute(action: "DescribeClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterDetail请求参数结构体
     public struct DescribeClusterDetailRequest: TCRequestModel {
         /// 集群id
@@ -145,5 +133,17 @@ extension Tcss {
             case ingressCount = "IngressCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询单个集群的详细信息
+    @inlinable
+    public func describeClusterDetail(_ input: DescribeClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterDetailResponse > {
+        self.client.execute(action: "DescribeClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询单个集群的详细信息
+    @inlinable
+    public func describeClusterDetail(_ input: DescribeClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterDetailResponse {
+        try await self.client.execute(action: "DescribeClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

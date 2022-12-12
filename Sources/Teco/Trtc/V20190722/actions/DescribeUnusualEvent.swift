@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Trtc {
-    /// 查询异常体验事件
-    ///
-    /// 查询SdkAppId下任意20条异常体验事件，返回异常体验ID与可能产生异常体验的原因。可查询14天内数据，查询起止时间不超过1个小时。支持跨天查询。（同老接口DescribeAbnormalEvent）
-    /// 异常体验ID映射见：https://cloud.tencent.com/document/product/647/44916
-    @inlinable
-    public func describeUnusualEvent(_ input: DescribeUnusualEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnusualEventResponse > {
-        self.client.execute(action: "DescribeUnusualEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询异常体验事件
-    ///
-    /// 查询SdkAppId下任意20条异常体验事件，返回异常体验ID与可能产生异常体验的原因。可查询14天内数据，查询起止时间不超过1个小时。支持跨天查询。（同老接口DescribeAbnormalEvent）
-    /// 异常体验ID映射见：https://cloud.tencent.com/document/product/647/44916
-    @inlinable
-    public func describeUnusualEvent(_ input: DescribeUnusualEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnusualEventResponse {
-        try await self.client.execute(action: "DescribeUnusualEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUnusualEvent请求参数结构体
     public struct DescribeUnusualEventRequest: TCRequestModel {
         /// 用户SdkAppId（如：1400xxxxxx）
@@ -48,7 +30,7 @@ extension Trtc {
         /// 房间号，查询房间内任意20条以内异常体验事件
         public let roomId: String?
         
-        public init (sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, roomId: String?) {
+        public init (sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, roomId: String? = nil) {
             self.sdkAppId = sdkAppId
             self.startTime = startTime
             self.endTime = endTime
@@ -80,5 +62,23 @@ extension Trtc {
             case abnormalExperienceList = "AbnormalExperienceList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询异常体验事件
+    ///
+    /// 查询SdkAppId下任意20条异常体验事件，返回异常体验ID与可能产生异常体验的原因。可查询14天内数据，查询起止时间不超过1个小时。支持跨天查询。（同老接口DescribeAbnormalEvent）
+    /// 异常体验ID映射见：https://cloud.tencent.com/document/product/647/44916
+    @inlinable
+    public func describeUnusualEvent(_ input: DescribeUnusualEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnusualEventResponse > {
+        self.client.execute(action: "DescribeUnusualEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询异常体验事件
+    ///
+    /// 查询SdkAppId下任意20条异常体验事件，返回异常体验ID与可能产生异常体验的原因。可查询14天内数据，查询起止时间不超过1个小时。支持跨天查询。（同老接口DescribeAbnormalEvent）
+    /// 异常体验ID映射见：https://cloud.tencent.com/document/product/647/44916
+    @inlinable
+    public func describeUnusualEvent(_ input: DescribeUnusualEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnusualEventResponse {
+        try await self.client.execute(action: "DescribeUnusualEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

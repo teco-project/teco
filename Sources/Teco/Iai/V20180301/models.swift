@@ -233,7 +233,7 @@ extension Iai {
         
         /// 头发信息，包含头发长度（length）、有无刘海（bang）、头发颜色（color）。NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let hair: FaceHairAttributesInfo
+        public let hair: FaceHairAttributesInfo?
         
         /// 双眼是否睁开 [true,false]。只要有超过一只眼睛闭眼，就返回false。 NeedFaceAttributes 不为1 或检测超过 5 张人脸时，此参数仍返回，但不具备参考意义。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -415,7 +415,7 @@ extension Iai {
         
         /// 人脸质量信息，包含质量分（score）、模糊分（sharpness）、光照分（brightness）、遮挡分（completeness）。只有当NeedFaceDetection设为1时才返回有效信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let faceQualityInfo: FaceQualityInfo
+        public let faceQualityInfo: FaceQualityInfo?
         
         enum CodingKeys: String, CodingKey {
             case x = "X"
@@ -492,7 +492,7 @@ extension Iai {
         
         /// 五官遮挡分，评价眉毛（Eyebrow）、眼睛（Eye）、鼻子（Nose）、脸颊（Cheek）、嘴巴（Mouth）、下巴（Chin）的被遮挡程度。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let completeness: FaceQualityCompleteness
+        public let completeness: FaceQualityCompleteness?
         
         enum CodingKeys: String, CodingKey {
             case score = "Score"
@@ -576,7 +576,7 @@ extension Iai {
         public let groupId: String
         
         /// 识别出的最相似候选人。
-        public let candidates: [Date]
+        public let candidates: [Candidate]
         
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
@@ -588,7 +588,7 @@ extension Iai {
     public struct GroupExDescriptionInfo: TCInputModel {
         /// 人员库自定义描述字段Index，从0开始
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let groupExDescriptionIndex: UInt64
+        public let groupExDescriptionIndex: UInt64?
         
         /// 需要更新的人员库自定义描述字段内容
         public let groupExDescription: String
@@ -709,7 +709,7 @@ extension Iai {
     public struct PersonExDescriptionInfo: TCInputModel {
         /// 人员描述字段Index，从0开始
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let personExDescriptionIndex: UInt64
+        public let personExDescriptionIndex: UInt64?
         
         /// 需要更新的人员描述字段内容
         public let personExDescription: String
@@ -787,7 +787,7 @@ extension Iai {
     /// 人脸的识别结果
     public struct Result: TCOutputModel {
         /// 识别出的最相似候选人
-        public let candidates: [Date]
+        public let candidates: [Candidate]
         
         /// 检测出的人脸框位置
         public let faceRect: FaceRect
@@ -809,7 +809,7 @@ extension Iai {
         public let faceRect: FaceRect
         
         /// 识别结果。
-        public let groupCandidates: [Date]
+        public let groupCandidates: [GroupCandidate]
         
         /// 检测出的人脸图片状态返回码。0 表示正常。 
         /// -1601代表不符合图片质量控制要求，此时Candidate内容为空。

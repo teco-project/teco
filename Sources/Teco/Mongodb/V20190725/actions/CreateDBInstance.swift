@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 创建云数据库实例（包年包月）
-    ///
-    /// 本接口(CreateDBInstance)用于创建包年包月的MongoDB云数据库实例。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
-    @inlinable
-    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceResponse > {
-        self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建云数据库实例（包年包月）
-    ///
-    /// 本接口(CreateDBInstance)用于创建包年包月的MongoDB云数据库实例。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
-    @inlinable
-    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
-        try await self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDBInstance请求参数结构体
     public struct CreateDBInstanceRequest: TCRequestModel {
         /// 每个副本集内节点个数，具体参照查询云数据库的售卖规格返回参数
@@ -120,7 +104,7 @@ extension Mongodb {
         /// Hidden节点所在的可用区，跨可用区实例必传
         public let hiddenZone: String?
         
-        public init (nodeNum: UInt64, memory: UInt64, volume: UInt64, mongoVersion: String, goodsNum: UInt64, zone: String, period: UInt64, machineCode: String, clusterType: String, replicateSetNum: UInt64, projectId: Int64?, vpcId: String?, subnetId: String?, password: String?, tags: [TagInfo]?, autoRenewFlag: UInt64?, autoVoucher: UInt64?, clone: Int64?, father: String?, securityGroup: [String]?, restoreTime: String?, instanceName: String?, availabilityZoneList: [String]?, mongosCpu: UInt64?, mongosMemory: UInt64?, mongosNodeNum: UInt64?, readonlyNodeNum: UInt64?, readonlyNodeAvailabilityZoneList: [String]?, hiddenZone: String?) {
+        public init (nodeNum: UInt64, memory: UInt64, volume: UInt64, mongoVersion: String, goodsNum: UInt64, zone: String, period: UInt64, machineCode: String, clusterType: String, replicateSetNum: UInt64, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, password: String? = nil, tags: [TagInfo]? = nil, autoRenewFlag: UInt64? = nil, autoVoucher: UInt64? = nil, clone: Int64? = nil, father: String? = nil, securityGroup: [String]? = nil, restoreTime: String? = nil, instanceName: String? = nil, availabilityZoneList: [String]? = nil, mongosCpu: UInt64? = nil, mongosMemory: UInt64? = nil, mongosNodeNum: UInt64? = nil, readonlyNodeNum: UInt64? = nil, readonlyNodeAvailabilityZoneList: [String]? = nil, hiddenZone: String? = nil) {
             self.nodeNum = nodeNum
             self.memory = memory
             self.volume = volume
@@ -201,5 +185,21 @@ extension Mongodb {
             case instanceIds = "InstanceIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建云数据库实例（包年包月）
+    ///
+    /// 本接口(CreateDBInstance)用于创建包年包月的MongoDB云数据库实例。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
+    @inlinable
+    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceResponse > {
+        self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云数据库实例（包年包月）
+    ///
+    /// 本接口(CreateDBInstance)用于创建包年包月的MongoDB云数据库实例。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
+    @inlinable
+    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
+        try await self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

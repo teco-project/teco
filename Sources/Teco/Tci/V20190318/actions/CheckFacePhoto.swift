@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 检查人脸图片
-    ///
-    /// 检查人脸图片是否合法
-    @inlinable
-    public func checkFacePhoto(_ input: CheckFacePhotoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckFacePhotoResponse > {
-        self.client.execute(action: "CheckFacePhoto", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检查人脸图片
-    ///
-    /// 检查人脸图片是否合法
-    @inlinable
-    public func checkFacePhoto(_ input: CheckFacePhotoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckFacePhotoResponse {
-        try await self.client.execute(action: "CheckFacePhoto", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckFacePhoto请求参数结构体
     public struct CheckFacePhotoRequest: TCRequestModel {
         /// 输入分析对象内容
@@ -62,5 +46,21 @@ extension Tci {
             case checkResult = "CheckResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检查人脸图片
+    ///
+    /// 检查人脸图片是否合法
+    @inlinable
+    public func checkFacePhoto(_ input: CheckFacePhotoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckFacePhotoResponse > {
+        self.client.execute(action: "CheckFacePhoto", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检查人脸图片
+    ///
+    /// 检查人脸图片是否合法
+    @inlinable
+    public func checkFacePhoto(_ input: CheckFacePhotoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckFacePhotoResponse {
+        try await self.client.execute(action: "CheckFacePhoto", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

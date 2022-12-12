@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 回滚快照
-    @inlinable
-    public func rollbackSnapshot(_ input: RollbackSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollbackSnapshotResponse > {
-        self.client.execute(action: "RollbackSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 回滚快照
-    @inlinable
-    public func rollbackSnapshot(_ input: RollbackSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackSnapshotResponse {
-        try await self.client.execute(action: "RollbackSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RollbackSnapshot请求参数结构体
     public struct RollbackSnapshotRequest: TCRequestModel {
         /// 域名
@@ -38,7 +26,7 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
         public let domainId: UInt64?
         
-        public init (domain: String, snapshotId: String, domainId: UInt64?) {
+        public init (domain: String, snapshotId: String, domainId: UInt64? = nil) {
             self.domain = domain
             self.snapshotId = snapshotId
             self.domainId = domainId
@@ -63,5 +51,17 @@ extension Dnspod {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 回滚快照
+    @inlinable
+    public func rollbackSnapshot(_ input: RollbackSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollbackSnapshotResponse > {
+        self.client.execute(action: "RollbackSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 回滚快照
+    @inlinable
+    public func rollbackSnapshot(_ input: RollbackSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackSnapshotResponse {
+        try await self.client.execute(action: "RollbackSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

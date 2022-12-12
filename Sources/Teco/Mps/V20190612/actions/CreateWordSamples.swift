@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 创建关键词样本
-    ///
-    /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
-    @inlinable
-    public func createWordSamples(_ input: CreateWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWordSamplesResponse > {
-        self.client.execute(action: "CreateWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建关键词样本
-    ///
-    /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
-    @inlinable
-    public func createWordSamples(_ input: CreateWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordSamplesResponse {
-        try await self.client.execute(action: "CreateWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateWordSamples请求参数结构体
     public struct CreateWordSamplesRequest: TCRequestModel {
         /// <b>关键词应用场景，可选值：</b>
@@ -66,5 +50,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建关键词样本
+    ///
+    /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
+    @inlinable
+    public func createWordSamples(_ input: CreateWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWordSamplesResponse > {
+        self.client.execute(action: "CreateWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建关键词样本
+    ///
+    /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
+    @inlinable
+    public func createWordSamples(_ input: CreateWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordSamplesResponse {
+        try await self.client.execute(action: "CreateWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

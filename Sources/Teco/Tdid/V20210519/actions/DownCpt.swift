@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 凭证模版下载
-    @inlinable
-    public func downCpt(_ input: DownCptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownCptResponse > {
-        self.client.execute(action: "DownCpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 凭证模版下载
-    @inlinable
-    public func downCpt(_ input: DownCptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownCptResponse {
-        try await self.client.execute(action: "DownCpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DownCpt请求参数结构体
     public struct DownCptRequest: TCRequestModel {
         /// Cpt索引
@@ -49,5 +37,17 @@ extension Tdid {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 凭证模版下载
+    @inlinable
+    public func downCpt(_ input: DownCptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownCptResponse > {
+        self.client.execute(action: "DownCpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 凭证模版下载
+    @inlinable
+    public func downCpt(_ input: DownCptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownCptResponse {
+        try await self.client.execute(action: "DownCpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

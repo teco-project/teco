@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 安全合规查询白名单列表
-    ///
-    /// 查询白名单列表
-    @inlinable
-    public func describeComplianceWhitelistItemList(_ input: DescribeComplianceWhitelistItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceWhitelistItemListResponse > {
-        self.client.execute(action: "DescribeComplianceWhitelistItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全合规查询白名单列表
-    ///
-    /// 查询白名单列表
-    @inlinable
-    public func describeComplianceWhitelistItemList(_ input: DescribeComplianceWhitelistItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceWhitelistItemListResponse {
-        try await self.client.execute(action: "DescribeComplianceWhitelistItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeComplianceWhitelistItemList请求参数结构体
     public struct DescribeComplianceWhitelistItemListRequest: TCRequestModel {
         /// 起始偏移量，默认为0。
@@ -51,7 +35,7 @@ extension Tcss {
         /// 排序方式 desc asc
         public let order: String?
         
-        public init (offset: UInt64?, limit: UInt64?, assetTypeSet: [String]?, filters: [ComplianceFilters]?, by: String?, order: String?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, assetTypeSet: [String]? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.assetTypeSet = assetTypeSet
@@ -86,5 +70,21 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全合规查询白名单列表
+    ///
+    /// 查询白名单列表
+    @inlinable
+    public func describeComplianceWhitelistItemList(_ input: DescribeComplianceWhitelistItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceWhitelistItemListResponse > {
+        self.client.execute(action: "DescribeComplianceWhitelistItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规查询白名单列表
+    ///
+    /// 查询白名单列表
+    @inlinable
+    public func describeComplianceWhitelistItemList(_ input: DescribeComplianceWhitelistItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceWhitelistItemListResponse {
+        try await self.client.execute(action: "DescribeComplianceWhitelistItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// DDoS统计数据查询
-    @inlinable
-    public func describeDDoSData(_ input: DescribeDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSDataResponse > {
-        self.client.execute(action: "DescribeDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DDoS统计数据查询
-    @inlinable
-    public func describeDDoSData(_ input: DescribeDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDataResponse {
-        try await self.client.execute(action: "DescribeDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSData请求参数结构体
     public struct DescribeDDoSDataRequest: TCRequestModel {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
@@ -79,5 +67,17 @@ extension Cdn {
             case attackBandwidthData = "AttackBandwidthData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// DDoS统计数据查询
+    @inlinable
+    public func describeDDoSData(_ input: DescribeDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSDataResponse > {
+        self.client.execute(action: "DescribeDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DDoS统计数据查询
+    @inlinable
+    public func describeDDoSData(_ input: DescribeDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDataResponse {
+        try await self.client.execute(action: "DescribeDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

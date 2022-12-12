@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 查询预聚合规则
-    ///
-    /// 根据条件查询 Prometheus 预聚合规则
-    @inlinable
-    public func describeRecordingRules(_ input: DescribeRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordingRulesResponse > {
-        self.client.execute(action: "DescribeRecordingRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询预聚合规则
-    ///
-    /// 根据条件查询 Prometheus 预聚合规则
-    @inlinable
-    public func describeRecordingRules(_ input: DescribeRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingRulesResponse {
-        try await self.client.execute(action: "DescribeRecordingRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRecordingRules请求参数结构体
     public struct DescribeRecordingRulesRequest: TCRequestModel {
         /// Prometheus 实例 ID
@@ -54,7 +38,7 @@ extension Monitor {
         /// 规则名称
         public let name: String?
         
-        public init (instanceId: String, limit: Int64?, offset: Int64?, ruleId: String?, ruleState: Int64?, name: String?) {
+        public init (instanceId: String, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, ruleState: Int64? = nil, name: String? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset
@@ -90,5 +74,21 @@ extension Monitor {
             case recordingRuleSet = "RecordingRuleSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询预聚合规则
+    ///
+    /// 根据条件查询 Prometheus 预聚合规则
+    @inlinable
+    public func describeRecordingRules(_ input: DescribeRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordingRulesResponse > {
+        self.client.execute(action: "DescribeRecordingRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询预聚合规则
+    ///
+    /// 根据条件查询 Prometheus 预聚合规则
+    @inlinable
+    public func describeRecordingRules(_ input: DescribeRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingRulesResponse {
+        try await self.client.execute(action: "DescribeRecordingRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

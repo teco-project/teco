@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询实例大Key
-    @inlinable
-    public func describeInstanceMonitorBigKey(_ input: DescribeInstanceMonitorBigKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorBigKeyResponse > {
-        self.client.execute(action: "DescribeInstanceMonitorBigKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例大Key
-    @inlinable
-    public func describeInstanceMonitorBigKey(_ input: DescribeInstanceMonitorBigKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeyResponse {
-        try await self.client.execute(action: "DescribeInstanceMonitorBigKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceMonitorBigKey请求参数结构体
     public struct DescribeInstanceMonitorBigKeyRequest: TCRequestModel {
         /// 实例Id
@@ -63,5 +51,17 @@ extension Redis {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例大Key
+    @inlinable
+    public func describeInstanceMonitorBigKey(_ input: DescribeInstanceMonitorBigKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorBigKeyResponse > {
+        self.client.execute(action: "DescribeInstanceMonitorBigKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例大Key
+    @inlinable
+    public func describeInstanceMonitorBigKey(_ input: DescribeInstanceMonitorBigKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeyResponse {
+        try await self.client.execute(action: "DescribeInstanceMonitorBigKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 绑定策略对象
-    ///
-    /// 将告警策略绑定到特定对象
-    @inlinable
-    public func bindingPolicyObject(_ input: BindingPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindingPolicyObjectResponse > {
-        self.client.execute(action: "BindingPolicyObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定策略对象
-    ///
-    /// 将告警策略绑定到特定对象
-    @inlinable
-    public func bindingPolicyObject(_ input: BindingPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindingPolicyObjectResponse {
-        try await self.client.execute(action: "BindingPolicyObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindingPolicyObject请求参数结构体
     public struct BindingPolicyObjectRequest: TCRequestModel {
         /// 必填。固定值"monitor"
@@ -48,7 +32,7 @@ extension Monitor {
         /// 需要绑定的对象维度信息
         public let dimensions: [BindingPolicyObjectDimension]?
         
-        public init (module: String, groupId: Int64?, policyId: String?, instanceGroupId: Int64?, dimensions: [BindingPolicyObjectDimension]?) {
+        public init (module: String, groupId: Int64? = nil, policyId: String? = nil, instanceGroupId: Int64? = nil, dimensions: [BindingPolicyObjectDimension]? = nil) {
             self.module = module
             self.groupId = groupId
             self.policyId = policyId
@@ -73,5 +57,21 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定策略对象
+    ///
+    /// 将告警策略绑定到特定对象
+    @inlinable
+    public func bindingPolicyObject(_ input: BindingPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindingPolicyObjectResponse > {
+        self.client.execute(action: "BindingPolicyObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定策略对象
+    ///
+    /// 将告警策略绑定到特定对象
+    @inlinable
+    public func bindingPolicyObject(_ input: BindingPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindingPolicyObjectResponse {
+        try await self.client.execute(action: "BindingPolicyObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

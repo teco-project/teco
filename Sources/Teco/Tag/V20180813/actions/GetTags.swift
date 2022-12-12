@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 获取标签列表
-    ///
-    /// 用于获取已建立的标签列表。
-    @inlinable
-    public func getTags(_ input: GetTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTagsResponse > {
-        self.client.execute(action: "GetTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取标签列表
-    ///
-    /// 用于获取已建立的标签列表。
-    @inlinable
-    public func getTags(_ input: GetTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagsResponse {
-        try await self.client.execute(action: "GetTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetTags请求参数结构体
     public struct GetTagsRequest: TCRequestModel {
         /// 从上一页的响应中获取的下一页的Token值。
@@ -46,7 +30,7 @@ extension Tag {
         /// 最大长度：20
         public let tagKeys: [String]?
         
-        public init (paginationToken: String?, maxResults: UInt64?, tagKeys: [String]?) {
+        public init (paginationToken: String? = nil, maxResults: UInt64? = nil, tagKeys: [String]? = nil) {
             self.paginationToken = paginationToken
             self.maxResults = maxResults
             self.tagKeys = tagKeys
@@ -75,5 +59,21 @@ extension Tag {
             case tags = "Tags"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取标签列表
+    ///
+    /// 用于获取已建立的标签列表。
+    @inlinable
+    public func getTags(_ input: GetTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTagsResponse > {
+        self.client.execute(action: "GetTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取标签列表
+    ///
+    /// 用于获取已建立的标签列表。
+    @inlinable
+    public func getTags(_ input: GetTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagsResponse {
+        try await self.client.execute(action: "GetTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

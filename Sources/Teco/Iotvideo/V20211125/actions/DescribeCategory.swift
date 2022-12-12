@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取Category详情
-    @inlinable
-    public func describeCategory(_ input: DescribeCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCategoryResponse > {
-        self.client.execute(action: "DescribeCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Category详情
-    @inlinable
-    public func describeCategory(_ input: DescribeCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCategoryResponse {
-        try await self.client.execute(action: "DescribeCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCategory请求参数结构体
     public struct DescribeCategoryRequest: TCRequestModel {
         /// Category ID。
@@ -53,5 +41,17 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Category详情
+    @inlinable
+    public func describeCategory(_ input: DescribeCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCategoryResponse > {
+        self.client.execute(action: "DescribeCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Category详情
+    @inlinable
+    public func describeCategory(_ input: DescribeCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCategoryResponse {
+        try await self.client.execute(action: "DescribeCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

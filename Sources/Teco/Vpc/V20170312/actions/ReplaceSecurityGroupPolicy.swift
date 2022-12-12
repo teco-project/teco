@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 替换单条安全组规则
-    ///
-    /// 本接口（ReplaceSecurityGroupPolicy）用于替换单条安全组规则（SecurityGroupPolicy）。
-    /// 单个请求中只能替换单个方向的一条规则, 必须要指定索引（PolicyIndex）。
-    @inlinable
-    public func replaceSecurityGroupPolicy(_ input: ReplaceSecurityGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceSecurityGroupPolicyResponse > {
-        self.client.execute(action: "ReplaceSecurityGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 替换单条安全组规则
-    ///
-    /// 本接口（ReplaceSecurityGroupPolicy）用于替换单条安全组规则（SecurityGroupPolicy）。
-    /// 单个请求中只能替换单个方向的一条规则, 必须要指定索引（PolicyIndex）。
-    @inlinable
-    public func replaceSecurityGroupPolicy(_ input: ReplaceSecurityGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceSecurityGroupPolicyResponse {
-        try await self.client.execute(action: "ReplaceSecurityGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReplaceSecurityGroupPolicy请求参数结构体
     public struct ReplaceSecurityGroupPolicyRequest: TCRequestModel {
         /// 安全组实例ID，例如sg-33ocnj9n，可通过DescribeSecurityGroups获取。
@@ -42,9 +24,9 @@ extension Vpc {
         public let securityGroupPolicySet: SecurityGroupPolicySet
         
         /// 旧的安全组规则集合对象，可选，日志记录用。
-        public let originalSecurityGroupPolicySet: SecurityGroupPolicySet
+        public let originalSecurityGroupPolicySet: SecurityGroupPolicySet?
         
-        public init (securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, originalSecurityGroupPolicySet: SecurityGroupPolicySet) {
+        public init (securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, originalSecurityGroupPolicySet: SecurityGroupPolicySet? = nil) {
             self.securityGroupId = securityGroupId
             self.securityGroupPolicySet = securityGroupPolicySet
             self.originalSecurityGroupPolicySet = originalSecurityGroupPolicySet
@@ -65,5 +47,23 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 替换单条安全组规则
+    ///
+    /// 本接口（ReplaceSecurityGroupPolicy）用于替换单条安全组规则（SecurityGroupPolicy）。
+    /// 单个请求中只能替换单个方向的一条规则, 必须要指定索引（PolicyIndex）。
+    @inlinable
+    public func replaceSecurityGroupPolicy(_ input: ReplaceSecurityGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceSecurityGroupPolicyResponse > {
+        self.client.execute(action: "ReplaceSecurityGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 替换单条安全组规则
+    ///
+    /// 本接口（ReplaceSecurityGroupPolicy）用于替换单条安全组规则（SecurityGroupPolicy）。
+    /// 单个请求中只能替换单个方向的一条规则, 必须要指定索引（PolicyIndex）。
+    @inlinable
+    public func replaceSecurityGroupPolicy(_ input: ReplaceSecurityGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceSecurityGroupPolicyResponse {
+        try await self.client.execute(action: "ReplaceSecurityGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

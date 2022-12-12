@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 购买云存服务
-    @inlinable
-    public func createStorageService(_ input: CreateStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStorageServiceResponse > {
-        self.client.execute(action: "CreateStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 购买云存服务
-    @inlinable
-    public func createStorageService(_ input: CreateStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStorageServiceResponse {
-        try await self.client.execute(action: "CreateStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateStorageService请求参数结构体
     public struct CreateStorageServiceRequest: TCRequestModel {
         /// 云存套餐ID：
@@ -64,7 +52,7 @@ extension Iotvideo {
         /// 服务生效时间,若不指定此参数，服务立即生效
         public let enableTime: Int64?
         
-        public init (pkgId: String, tid: String, orderCount: Int64, storageRegion: String, chnNum: Int64?, accessId: String?, enableTime: Int64?) {
+        public init (pkgId: String, tid: String, orderCount: Int64, storageRegion: String, chnNum: Int64? = nil, accessId: String? = nil, enableTime: Int64? = nil) {
             self.pkgId = pkgId
             self.tid = tid
             self.orderCount = orderCount
@@ -137,5 +125,17 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 购买云存服务
+    @inlinable
+    public func createStorageService(_ input: CreateStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStorageServiceResponse > {
+        self.client.execute(action: "CreateStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 购买云存服务
+    @inlinable
+    public func createStorageService(_ input: CreateStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStorageServiceResponse {
+        try await self.client.execute(action: "CreateStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

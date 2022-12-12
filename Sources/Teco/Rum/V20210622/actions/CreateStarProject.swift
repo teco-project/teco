@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 添加星标项目
-    ///
-    /// 个人用户添加星标项目
-    @inlinable
-    public func createStarProject(_ input: CreateStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStarProjectResponse > {
-        self.client.execute(action: "CreateStarProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加星标项目
-    ///
-    /// 个人用户添加星标项目
-    @inlinable
-    public func createStarProject(_ input: CreateStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStarProjectResponse {
-        try await self.client.execute(action: "CreateStarProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateStarProject请求参数结构体
     public struct CreateStarProjectRequest: TCRequestModel {
         /// 实例ID：taw-123
@@ -62,5 +46,21 @@ extension Rum {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加星标项目
+    ///
+    /// 个人用户添加星标项目
+    @inlinable
+    public func createStarProject(_ input: CreateStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStarProjectResponse > {
+        self.client.execute(action: "CreateStarProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加星标项目
+    ///
+    /// 个人用户添加星标项目
+    @inlinable
+    public func createStarProject(_ input: CreateStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStarProjectResponse {
+        try await self.client.execute(action: "CreateStarProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

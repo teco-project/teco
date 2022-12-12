@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dbbrain {
-    /// 获取Top库在指定时间段内的每日空间统计信息
-    ///
-    /// 获取实例占用空间最大的前几个库在指定时间段内的每日由DBbrain定时采集的空间数据，默认返回按大小排序。
-    @inlinable
-    public func describeTopSpaceSchemaTimeSeries(_ input: DescribeTopSpaceSchemaTimeSeriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopSpaceSchemaTimeSeriesResponse > {
-        self.client.execute(action: "DescribeTopSpaceSchemaTimeSeries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Top库在指定时间段内的每日空间统计信息
-    ///
-    /// 获取实例占用空间最大的前几个库在指定时间段内的每日由DBbrain定时采集的空间数据，默认返回按大小排序。
-    @inlinable
-    public func describeTopSpaceSchemaTimeSeries(_ input: DescribeTopSpaceSchemaTimeSeriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceSchemaTimeSeriesResponse {
-        try await self.client.execute(action: "DescribeTopSpaceSchemaTimeSeries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTopSpaceSchemaTimeSeries请求参数结构体
     public struct DescribeTopSpaceSchemaTimeSeriesRequest: TCRequestModel {
         /// 实例ID。
@@ -53,7 +37,7 @@ extension Dbbrain {
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
         public let product: String?
         
-        public init (instanceId: String, limit: Int64?, sortBy: String?, startDate: Date?, endDate: Date?, product: String?) {
+        public init (instanceId: String, limit: Int64? = nil, sortBy: String? = nil, startDate: Date? = nil, endDate: Date? = nil, product: String? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.sortBy = sortBy
@@ -84,5 +68,21 @@ extension Dbbrain {
             case topSpaceSchemaTimeSeries = "TopSpaceSchemaTimeSeries"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Top库在指定时间段内的每日空间统计信息
+    ///
+    /// 获取实例占用空间最大的前几个库在指定时间段内的每日由DBbrain定时采集的空间数据，默认返回按大小排序。
+    @inlinable
+    public func describeTopSpaceSchemaTimeSeries(_ input: DescribeTopSpaceSchemaTimeSeriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopSpaceSchemaTimeSeriesResponse > {
+        self.client.execute(action: "DescribeTopSpaceSchemaTimeSeries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Top库在指定时间段内的每日空间统计信息
+    ///
+    /// 获取实例占用空间最大的前几个库在指定时间段内的每日由DBbrain定时采集的空间数据，默认返回按大小排序。
+    @inlinable
+    public func describeTopSpaceSchemaTimeSeries(_ input: DescribeTopSpaceSchemaTimeSeriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceSchemaTimeSeriesResponse {
+        try await self.client.execute(action: "DescribeTopSpaceSchemaTimeSeries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

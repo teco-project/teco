@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 搜索访问日志
-    ///
-    /// 本接口用于搜索WAF访问日志
-    @inlinable
-    public func searchAccessLog(_ input: SearchAccessLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchAccessLogResponse > {
-        self.client.execute(action: "SearchAccessLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 搜索访问日志
-    ///
-    /// 本接口用于搜索WAF访问日志
-    @inlinable
-    public func searchAccessLog(_ input: SearchAccessLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchAccessLogResponse {
-        try await self.client.execute(action: "SearchAccessLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SearchAccessLog请求参数结构体
     public struct SearchAccessLogRequest: TCRequestModel {
         /// 客户要查询的日志主题ID，每个客户都有对应的一个主题
@@ -54,7 +38,7 @@ extension Waf {
         /// 日志接口是否按时间排序返回；可选值：asc(升序)、desc(降序)，默认为 desc
         public let sort: String?
         
-        public init (topicId: String, from: Int64, to: Int64, query: String, limit: Int64?, context: String?, sort: String?) {
+        public init (topicId: String, from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil) {
             self.topicId = topicId
             self.from = from
             self.to = to
@@ -113,5 +97,21 @@ extension Waf {
             case analysisResults = "AnalysisResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 搜索访问日志
+    ///
+    /// 本接口用于搜索WAF访问日志
+    @inlinable
+    public func searchAccessLog(_ input: SearchAccessLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchAccessLogResponse > {
+        self.client.execute(action: "SearchAccessLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 搜索访问日志
+    ///
+    /// 本接口用于搜索WAF访问日志
+    @inlinable
+    public func searchAccessLog(_ input: SearchAccessLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchAccessLogResponse {
+        try await self.client.execute(action: "SearchAccessLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

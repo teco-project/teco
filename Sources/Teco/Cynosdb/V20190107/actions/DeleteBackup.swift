@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 删除手动备份
-    ///
-    /// 为集群删除手动备份，无法删除自动备份
-    @inlinable
-    public func deleteBackup(_ input: DeleteBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBackupResponse > {
-        self.client.execute(action: "DeleteBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除手动备份
-    ///
-    /// 为集群删除手动备份，无法删除自动备份
-    @inlinable
-    public func deleteBackup(_ input: DeleteBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupResponse {
-        try await self.client.execute(action: "DeleteBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteBackup请求参数结构体
     public struct DeleteBackupRequest: TCRequestModel {
         /// 集群ID
@@ -58,5 +42,21 @@ extension Cynosdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除手动备份
+    ///
+    /// 为集群删除手动备份，无法删除自动备份
+    @inlinable
+    public func deleteBackup(_ input: DeleteBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBackupResponse > {
+        self.client.execute(action: "DeleteBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除手动备份
+    ///
+    /// 为集群删除手动备份，无法删除自动备份
+    @inlinable
+    public func deleteBackup(_ input: DeleteBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupResponse {
+        try await self.client.execute(action: "DeleteBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

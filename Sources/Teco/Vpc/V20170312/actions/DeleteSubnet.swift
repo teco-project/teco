@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除子网
-    ///
-    /// 本接口（DeleteSubnet）用于用于删除子网(Subnet)。
-    /// * 删除子网前，请清理该子网下所有资源，包括云服务器、负载均衡、云数据、noSql、弹性网卡等资源。
-    @inlinable
-    public func deleteSubnet(_ input: DeleteSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSubnetResponse > {
-        self.client.execute(action: "DeleteSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除子网
-    ///
-    /// 本接口（DeleteSubnet）用于用于删除子网(Subnet)。
-    /// * 删除子网前，请清理该子网下所有资源，包括云服务器、负载均衡、云数据、noSql、弹性网卡等资源。
-    @inlinable
-    public func deleteSubnet(_ input: DeleteSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {
-        try await self.client.execute(action: "DeleteSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSubnet请求参数结构体
     public struct DeleteSubnetRequest: TCRequestModel {
         /// 子网实例ID。可通过DescribeSubnets接口返回值中的SubnetId获取。
@@ -55,5 +37,23 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除子网
+    ///
+    /// 本接口（DeleteSubnet）用于用于删除子网(Subnet)。
+    /// * 删除子网前，请清理该子网下所有资源，包括云服务器、负载均衡、云数据、noSql、弹性网卡等资源。
+    @inlinable
+    public func deleteSubnet(_ input: DeleteSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSubnetResponse > {
+        self.client.execute(action: "DeleteSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除子网
+    ///
+    /// 本接口（DeleteSubnet）用于用于删除子网(Subnet)。
+    /// * 删除子网前，请清理该子网下所有资源，包括云服务器、负载均衡、云数据、noSql、弹性网卡等资源。
+    @inlinable
+    public func deleteSubnet(_ input: DeleteSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {
+        try await self.client.execute(action: "DeleteSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

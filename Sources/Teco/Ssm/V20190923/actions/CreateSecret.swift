@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssm {
-    /// 创建凭据
-    ///
-    /// 创建新的凭据信息，通过KMS进行加密保护。每个Region最多可创建存储1000个凭据信息。
-    @inlinable
-    public func createSecret(_ input: CreateSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecretResponse > {
-        self.client.execute(action: "CreateSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建凭据
-    ///
-    /// 创建新的凭据信息，通过KMS进行加密保护。每个Region最多可创建存储1000个凭据信息。
-    @inlinable
-    public func createSecret(_ input: CreateSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {
-        try await self.client.execute(action: "CreateSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSecret请求参数结构体
     public struct CreateSecretRequest: TCRequestModel {
         /// 凭据名称，同一region内不可重复，最长128字节，使用字母、数字或者 - _ 的组合，第一个字符必须为字母或者数字。一旦创建不可修改。
@@ -54,7 +38,7 @@ extension Ssm {
         /// 标签列表
         public let tags: [Tag]?
         
-        public init (secretName: String, versionId: String, description: String?, kmsKeyId: String?, secretBinary: String?, secretString: String?, tags: [Tag]?) {
+        public init (secretName: String, versionId: String, description: String? = nil, kmsKeyId: String? = nil, secretBinary: String? = nil, secretString: String? = nil, tags: [Tag]? = nil) {
             self.secretName = secretName
             self.versionId = versionId
             self.description = description
@@ -101,5 +85,21 @@ extension Ssm {
             case tagMsg = "TagMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建凭据
+    ///
+    /// 创建新的凭据信息，通过KMS进行加密保护。每个Region最多可创建存储1000个凭据信息。
+    @inlinable
+    public func createSecret(_ input: CreateSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecretResponse > {
+        self.client.execute(action: "CreateSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建凭据
+    ///
+    /// 创建新的凭据信息，通过KMS进行加密保护。每个Region最多可创建存储1000个凭据信息。
+    @inlinable
+    public func createSecret(_ input: CreateSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {
+        try await self.client.execute(action: "CreateSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

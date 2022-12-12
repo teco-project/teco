@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 创建规则模版
-    @inlinable
-    public func createRuleTemplate(_ input: CreateRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRuleTemplateResponse > {
-        self.client.execute(action: "CreateRuleTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建规则模版
-    @inlinable
-    public func createRuleTemplate(_ input: CreateRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleTemplateResponse {
-        try await self.client.execute(action: "CreateRuleTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRuleTemplate请求参数结构体
     public struct CreateRuleTemplateRequest: TCRequestModel {
         /// 模版类型  1.系统模版   2.自定义模版
@@ -59,7 +47,7 @@ extension Wedata {
         /// 是否添加where参数
         public let whereFlag: Bool?
         
-        public init (type: UInt64?, name: String?, qualityDim: UInt64?, sourceObjectType: UInt64?, description: String?, sourceEngineTypes: [UInt64]?, multiSourceFlag: Bool?, sqlExpression: String?, projectId: String?, whereFlag: Bool?) {
+        public init (type: UInt64? = nil, name: String? = nil, qualityDim: UInt64? = nil, sourceObjectType: UInt64? = nil, description: String? = nil, sourceEngineTypes: [UInt64]? = nil, multiSourceFlag: Bool? = nil, sqlExpression: String? = nil, projectId: String? = nil, whereFlag: Bool? = nil) {
             self.type = type
             self.name = name
             self.qualityDim = qualityDim
@@ -99,5 +87,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建规则模版
+    @inlinable
+    public func createRuleTemplate(_ input: CreateRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRuleTemplateResponse > {
+        self.client.execute(action: "CreateRuleTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建规则模版
+    @inlinable
+    public func createRuleTemplate(_ input: CreateRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleTemplateResponse {
+        try await self.client.execute(action: "CreateRuleTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 创建路径重写
-    @inlinable
-    public func createPathRewrites(_ input: CreatePathRewritesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePathRewritesResponse > {
-        self.client.execute(action: "CreatePathRewrites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建路径重写
-    @inlinable
-    public func createPathRewrites(_ input: CreatePathRewritesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePathRewritesResponse {
-        try await self.client.execute(action: "CreatePathRewrites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePathRewrites请求参数结构体
     public struct CreatePathRewritesRequest: TCRequestModel {
         /// 路径重写列表
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建路径重写
+    @inlinable
+    public func createPathRewrites(_ input: CreatePathRewritesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePathRewritesResponse > {
+        self.client.execute(action: "CreatePathRewrites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建路径重写
+    @inlinable
+    public func createPathRewrites(_ input: CreatePathRewritesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePathRewritesResponse {
+        try await self.client.execute(action: "CreatePathRewrites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

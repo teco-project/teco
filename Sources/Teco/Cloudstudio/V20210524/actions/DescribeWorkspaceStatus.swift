@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudstudio {
-    /// 获取工作空间元信息
-    @inlinable
-    public func describeWorkspaceStatus(_ input: DescribeWorkspaceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkspaceStatusResponse > {
-        self.client.execute(action: "DescribeWorkspaceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取工作空间元信息
-    @inlinable
-    public func describeWorkspaceStatus(_ input: DescribeWorkspaceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceStatusResponse {
-        try await self.client.execute(action: "DescribeWorkspaceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWorkspaceStatus请求参数结构体
     public struct DescribeWorkspaceStatusRequest: TCRequestModel {
         /// 用户所属组
@@ -50,7 +38,7 @@ extension Cloudstudio {
     public struct DescribeWorkspaceStatusResponse: TCResponseModel {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: WorkspaceStatusInfo
+        public let data: WorkspaceStatusInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -59,5 +47,17 @@ extension Cloudstudio {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取工作空间元信息
+    @inlinable
+    public func describeWorkspaceStatus(_ input: DescribeWorkspaceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkspaceStatusResponse > {
+        self.client.execute(action: "DescribeWorkspaceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取工作空间元信息
+    @inlinable
+    public func describeWorkspaceStatus(_ input: DescribeWorkspaceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceStatusResponse {
+        try await self.client.execute(action: "DescribeWorkspaceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 发起解除协议
-    ///
-    /// 渠道版发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
-    /// 合同发起人必须在电子签已经进行实名。
-    @inlinable
-    public func channelCreateReleaseFlow(_ input: ChannelCreateReleaseFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateReleaseFlowResponse > {
-        self.client.execute(action: "ChannelCreateReleaseFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发起解除协议
-    ///
-    /// 渠道版发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
-    /// 合同发起人必须在电子签已经进行实名。
-    @inlinable
-    public func channelCreateReleaseFlow(_ input: ChannelCreateReleaseFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateReleaseFlowResponse {
-        try await self.client.execute(action: "ChannelCreateReleaseFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ChannelCreateReleaseFlow请求参数结构体
     public struct ChannelCreateReleaseFlowRequest: TCRequestModel {
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -51,12 +33,12 @@ extension Essbasic {
         public let callbackUrl: String?
         
         /// 机构信息
-        public let organization: OrganizationInfo
+        public let organization: OrganizationInfo?
         
         /// 用户信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
-        public init (agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]?, callbackUrl: String?, organization: OrganizationInfo, `operator`: UserInfo) {
+        public init (agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, `operator`: UserInfo? = nil) {
             self.agent = agent
             self.needRelievedFlowId = needRelievedFlowId
             self.reliveInfo = reliveInfo
@@ -89,5 +71,23 @@ extension Essbasic {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发起解除协议
+    ///
+    /// 渠道版发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
+    /// 合同发起人必须在电子签已经进行实名。
+    @inlinable
+    public func channelCreateReleaseFlow(_ input: ChannelCreateReleaseFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateReleaseFlowResponse > {
+        self.client.execute(action: "ChannelCreateReleaseFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发起解除协议
+    ///
+    /// 渠道版发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
+    /// 合同发起人必须在电子签已经进行实名。
+    @inlinable
+    public func channelCreateReleaseFlow(_ input: ChannelCreateReleaseFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateReleaseFlowResponse {
+        try await self.client.execute(action: "ChannelCreateReleaseFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

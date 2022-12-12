@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 解绑黑石负载均衡四层监听器物理服务器
-    ///
-    /// 解绑黑石负载均衡四层监听器物理服务器。
-    @inlinable
-    public func unbindL4Backends(_ input: UnbindL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindL4BackendsResponse > {
-        self.client.execute(action: "UnbindL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑黑石负载均衡四层监听器物理服务器
-    ///
-    /// 解绑黑石负载均衡四层监听器物理服务器。
-    @inlinable
-    public func unbindL4Backends(_ input: UnbindL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindL4BackendsResponse {
-        try await self.client.execute(action: "UnbindL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindL4Backends请求参数结构体
     public struct UnbindL4BackendsRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -72,5 +56,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑黑石负载均衡四层监听器物理服务器
+    ///
+    /// 解绑黑石负载均衡四层监听器物理服务器。
+    @inlinable
+    public func unbindL4Backends(_ input: UnbindL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindL4BackendsResponse > {
+        self.client.execute(action: "UnbindL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑黑石负载均衡四层监听器物理服务器
+    ///
+    /// 解绑黑石负载均衡四层监听器物理服务器。
+    @inlinable
+    public func unbindL4Backends(_ input: UnbindL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindL4BackendsResponse {
+        try await self.client.execute(action: "UnbindL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取产品列表
-    ///
-    /// 本接口（DescribeProducts）用于列出用户账号下的物联网智能视频产品列表。
-    @inlinable
-    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductsResponse > {
-        self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取产品列表
-    ///
-    /// 本接口（DescribeProducts）用于列出用户账号下的物联网智能视频产品列表。
-    @inlinable
-    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
-        try await self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProducts请求参数结构体
     public struct DescribeProductsRequest: TCRequestModel {
         /// 分页大小，当前页面中显示的最大数量，值范围 1-100
@@ -48,7 +32,7 @@ extension Iotvideo {
         /// 结束时间 ，UNIX 时间戳，单位秒
         public let endTime: Int64?
         
-        public init (limit: UInt64, offset: UInt64, productModel: String?, startTime: Int64?, endTime: Int64?) {
+        public init (limit: UInt64, offset: UInt64, productModel: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil) {
             self.limit = limit
             self.offset = offset
             self.productModel = productModel
@@ -82,5 +66,21 @@ extension Iotvideo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取产品列表
+    ///
+    /// 本接口（DescribeProducts）用于列出用户账号下的物联网智能视频产品列表。
+    @inlinable
+    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductsResponse > {
+        self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品列表
+    ///
+    /// 本接口（DescribeProducts）用于列出用户账号下的物联网智能视频产品列表。
+    @inlinable
+    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
+        try await self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

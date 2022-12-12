@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 查询负载均衡实例列表
-    ///
-    /// 查询负载均衡实例列表。
-    @inlinable
-    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancersResponse > {
-        self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询负载均衡实例列表
-    ///
-    /// 查询负载均衡实例列表。
-    @inlinable
-    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {
-        try await self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLoadBalancers请求参数结构体
     public struct DescribeLoadBalancersRequest: TCRequestModel {
         /// 区域。如果不传则默认查询所有区域。
@@ -68,7 +52,7 @@ extension Ecm {
         /// 安全组。
         public let securityGroup: String?
         
-        public init (ecmRegion: String?, loadBalancerIds: [String]?, loadBalancerName: String?, loadBalancerVips: [String]?, backendPrivateIps: [String]?, offset: Int64?, limit: Int64?, withBackend: Int64?, vpcId: String?, filters: [Filter]?, securityGroup: String?) {
+        public init (ecmRegion: String? = nil, loadBalancerIds: [String]? = nil, loadBalancerName: String? = nil, loadBalancerVips: [String]? = nil, backendPrivateIps: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, withBackend: Int64? = nil, vpcId: String? = nil, filters: [Filter]? = nil, securityGroup: String? = nil) {
             self.ecmRegion = ecmRegion
             self.loadBalancerIds = loadBalancerIds
             self.loadBalancerName = loadBalancerName
@@ -115,5 +99,21 @@ extension Ecm {
             case loadBalancerSet = "LoadBalancerSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询负载均衡实例列表
+    ///
+    /// 查询负载均衡实例列表。
+    @inlinable
+    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancersResponse > {
+        self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询负载均衡实例列表
+    ///
+    /// 查询负载均衡实例列表。
+    @inlinable
+    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {
+        try await self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

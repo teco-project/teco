@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 修改节点池的机型配置
-    @inlinable
-    public func modifyNodePoolInstanceTypes(_ input: ModifyNodePoolInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNodePoolInstanceTypesResponse > {
-        self.client.execute(action: "ModifyNodePoolInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改节点池的机型配置
-    @inlinable
-    public func modifyNodePoolInstanceTypes(_ input: ModifyNodePoolInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodePoolInstanceTypesResponse {
-        try await self.client.execute(action: "ModifyNodePoolInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNodePoolInstanceTypes请求参数结构体
     public struct ModifyNodePoolInstanceTypesRequest: TCRequestModel {
         /// 集群id
@@ -59,5 +47,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改节点池的机型配置
+    @inlinable
+    public func modifyNodePoolInstanceTypes(_ input: ModifyNodePoolInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNodePoolInstanceTypesResponse > {
+        self.client.execute(action: "ModifyNodePoolInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改节点池的机型配置
+    @inlinable
+    public func modifyNodePoolInstanceTypes(_ input: ModifyNodePoolInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodePoolInstanceTypesResponse {
+        try await self.client.execute(action: "ModifyNodePoolInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

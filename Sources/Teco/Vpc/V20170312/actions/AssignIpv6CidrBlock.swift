@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 分配IPv6网段
-    ///
-    /// 本接口（AssignIpv6CidrBlock）用于分配IPv6网段。
-    /// * 使用本接口前，您需要已有VPC实例，如果没有可通过接口<a href="https://cloud.tencent.com/document/api/215/15774" title="CreateVpc" target="_blank">CreateVpc</a>创建。
-    /// * 每个VPC只能申请一个IPv6网段
-    @inlinable
-    public func assignIpv6CidrBlock(_ input: AssignIpv6CidrBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssignIpv6CidrBlockResponse > {
-        self.client.execute(action: "AssignIpv6CidrBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分配IPv6网段
-    ///
-    /// 本接口（AssignIpv6CidrBlock）用于分配IPv6网段。
-    /// * 使用本接口前，您需要已有VPC实例，如果没有可通过接口<a href="https://cloud.tencent.com/document/api/215/15774" title="CreateVpc" target="_blank">CreateVpc</a>创建。
-    /// * 每个VPC只能申请一个IPv6网段
-    @inlinable
-    public func assignIpv6CidrBlock(_ input: AssignIpv6CidrBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6CidrBlockResponse {
-        try await self.client.execute(action: "AssignIpv6CidrBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssignIpv6CidrBlock请求参数结构体
     public struct AssignIpv6CidrBlockRequest: TCRequestModel {
         /// `VPC`实例`ID`，形如：`vpc-f49l6u0z`。
@@ -61,5 +41,25 @@ extension Vpc {
             case ipv6CidrBlock = "Ipv6CidrBlock"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分配IPv6网段
+    ///
+    /// 本接口（AssignIpv6CidrBlock）用于分配IPv6网段。
+    /// * 使用本接口前，您需要已有VPC实例，如果没有可通过接口<a href="https://cloud.tencent.com/document/api/215/15774" title="CreateVpc" target="_blank">CreateVpc</a>创建。
+    /// * 每个VPC只能申请一个IPv6网段
+    @inlinable
+    public func assignIpv6CidrBlock(_ input: AssignIpv6CidrBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssignIpv6CidrBlockResponse > {
+        self.client.execute(action: "AssignIpv6CidrBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分配IPv6网段
+    ///
+    /// 本接口（AssignIpv6CidrBlock）用于分配IPv6网段。
+    /// * 使用本接口前，您需要已有VPC实例，如果没有可通过接口<a href="https://cloud.tencent.com/document/api/215/15774" title="CreateVpc" target="_blank">CreateVpc</a>创建。
+    /// * 每个VPC只能申请一个IPv6网段
+    @inlinable
+    public func assignIpv6CidrBlock(_ input: AssignIpv6CidrBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6CidrBlockResponse {
+        try await self.client.execute(action: "AssignIpv6CidrBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

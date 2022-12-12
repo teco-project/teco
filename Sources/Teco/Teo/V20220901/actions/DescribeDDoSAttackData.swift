@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询DDoS攻击时序数据
-    ///
-    /// 本接口（DescribeDDoSAttackData）用于查询DDoS攻击时序数据。
-    @inlinable
-    public func describeDDoSAttackData(_ input: DescribeDDoSAttackDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAttackDataResponse > {
-        self.client.execute(action: "DescribeDDoSAttackData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询DDoS攻击时序数据
-    ///
-    /// 本接口（DescribeDDoSAttackData）用于查询DDoS攻击时序数据。
-    @inlinable
-    public func describeDDoSAttackData(_ input: DescribeDDoSAttackDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackDataResponse {
-        try await self.client.execute(action: "DescribeDDoSAttackData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSAttackData请求参数结构体
     public struct DescribeDDoSAttackDataRequest: TCRequestModel {
         /// 开始时间。
@@ -83,7 +67,7 @@ extension Teo {
         /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
         public let area: String?
         
-        public init (startTime: Date, endTime: Date, metricNames: [String], port: Int64?, attackType: String?, zoneIds: [String]?, policyIds: [Int64]?, protocolType: String?, interval: String?, area: String?) {
+        public init (startTime: Date, endTime: Date, metricNames: [String], port: Int64? = nil, attackType: String? = nil, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, protocolType: String? = nil, interval: String? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metricNames = metricNames
@@ -127,5 +111,21 @@ extension Teo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询DDoS攻击时序数据
+    ///
+    /// 本接口（DescribeDDoSAttackData）用于查询DDoS攻击时序数据。
+    @inlinable
+    public func describeDDoSAttackData(_ input: DescribeDDoSAttackDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAttackDataResponse > {
+        self.client.execute(action: "DescribeDDoSAttackData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询DDoS攻击时序数据
+    ///
+    /// 本接口（DescribeDDoSAttackData）用于查询DDoS攻击时序数据。
+    @inlinable
+    public func describeDDoSAttackData(_ input: DescribeDDoSAttackDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackDataResponse {
+        try await self.client.execute(action: "DescribeDDoSAttackData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

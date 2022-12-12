@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 更新管道描述
-    ///
-    /// 用于更新管道描述信息
-    @inlinable
-    public func updateLogstashPipelineDesc(_ input: UpdateLogstashPipelineDescRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateLogstashPipelineDescResponse > {
-        self.client.execute(action: "UpdateLogstashPipelineDesc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新管道描述
-    ///
-    /// 用于更新管道描述信息
-    @inlinable
-    public func updateLogstashPipelineDesc(_ input: UpdateLogstashPipelineDescRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLogstashPipelineDescResponse {
-        try await self.client.execute(action: "UpdateLogstashPipelineDesc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateLogstashPipelineDesc请求参数结构体
     public struct UpdateLogstashPipelineDescRequest: TCRequestModel {
         /// 实例ID
@@ -63,5 +47,21 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新管道描述
+    ///
+    /// 用于更新管道描述信息
+    @inlinable
+    public func updateLogstashPipelineDesc(_ input: UpdateLogstashPipelineDescRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateLogstashPipelineDescResponse > {
+        self.client.execute(action: "UpdateLogstashPipelineDesc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新管道描述
+    ///
+    /// 用于更新管道描述信息
+    @inlinable
+    public func updateLogstashPipelineDesc(_ input: UpdateLogstashPipelineDescRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLogstashPipelineDescResponse {
+        try await self.client.execute(action: "UpdateLogstashPipelineDesc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

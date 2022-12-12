@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 获取域名证书信息
-    ///
-    /// 获取域名证书信息。
-    @inlinable
-    public func describeLiveDomainCert(_ input: DescribeLiveDomainCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveDomainCertResponse > {
-        self.client.execute(action: "DescribeLiveDomainCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取域名证书信息
-    ///
-    /// 获取域名证书信息。
-    @inlinable
-    public func describeLiveDomainCert(_ input: DescribeLiveDomainCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainCertResponse {
-        try await self.client.execute(action: "DescribeLiveDomainCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveDomainCert请求参数结构体
     public struct DescribeLiveDomainCertRequest: TCRequestModel {
         /// 播放域名。
@@ -57,5 +41,21 @@ extension Live {
             case domainCertInfo = "DomainCertInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取域名证书信息
+    ///
+    /// 获取域名证书信息。
+    @inlinable
+    public func describeLiveDomainCert(_ input: DescribeLiveDomainCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveDomainCertResponse > {
+        self.client.execute(action: "DescribeLiveDomainCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取域名证书信息
+    ///
+    /// 获取域名证书信息。
+    @inlinable
+    public func describeLiveDomainCert(_ input: DescribeLiveDomainCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainCertResponse {
+        try await self.client.execute(action: "DescribeLiveDomainCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

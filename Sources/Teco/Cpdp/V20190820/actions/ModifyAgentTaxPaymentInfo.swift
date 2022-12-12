@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 直播平台-修改代理商完税信息
-    @inlinable
-    public func modifyAgentTaxPaymentInfo(_ input: ModifyAgentTaxPaymentInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAgentTaxPaymentInfoResponse > {
-        self.client.execute(action: "ModifyAgentTaxPaymentInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播平台-修改代理商完税信息
-    @inlinable
-    public func modifyAgentTaxPaymentInfo(_ input: ModifyAgentTaxPaymentInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAgentTaxPaymentInfoResponse {
-        try await self.client.execute(action: "ModifyAgentTaxPaymentInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAgentTaxPaymentInfo请求参数结构体
     public struct ModifyAgentTaxPaymentInfoRequest: TCRequestModel {
         /// 批次号
@@ -41,7 +29,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
         
-        public init (batchNum: Int64, rawElectronicCertUrl: String, fileName: String?, profile: String?) {
+        public init (batchNum: Int64, rawElectronicCertUrl: String, fileName: String? = nil, profile: String? = nil) {
             self.batchNum = batchNum
             self.rawElectronicCertUrl = rawElectronicCertUrl
             self.fileName = fileName
@@ -68,5 +56,17 @@ extension Cpdp {
             case agentTaxPaymentBatch = "AgentTaxPaymentBatch"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播平台-修改代理商完税信息
+    @inlinable
+    public func modifyAgentTaxPaymentInfo(_ input: ModifyAgentTaxPaymentInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAgentTaxPaymentInfoResponse > {
+        self.client.execute(action: "ModifyAgentTaxPaymentInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-修改代理商完税信息
+    @inlinable
+    public func modifyAgentTaxPaymentInfo(_ input: ModifyAgentTaxPaymentInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAgentTaxPaymentInfoResponse {
+        try await self.client.execute(action: "ModifyAgentTaxPaymentInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 创建黑石虚拟子网
-    ///
-    /// 创建黑石虚拟子网， 虚拟子网用于在黑石上创建虚拟网络，与黑石子网要做好规划。虚拟子网会分配2000-2999的VlanId。
-    @inlinable
-    public func createVirtualSubnetWithVlan(_ input: CreateVirtualSubnetWithVlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVirtualSubnetWithVlanResponse > {
-        self.client.execute(action: "CreateVirtualSubnetWithVlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建黑石虚拟子网
-    ///
-    /// 创建黑石虚拟子网， 虚拟子网用于在黑石上创建虚拟网络，与黑石子网要做好规划。虚拟子网会分配2000-2999的VlanId。
-    @inlinable
-    public func createVirtualSubnetWithVlan(_ input: CreateVirtualSubnetWithVlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirtualSubnetWithVlanResponse {
-        try await self.client.execute(action: "CreateVirtualSubnetWithVlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVirtualSubnetWithVlan请求参数结构体
     public struct CreateVirtualSubnetWithVlanRequest: TCRequestModel {
         /// 系统分配的私有网络ID，例如：vpc-kd7d06of
@@ -62,5 +46,21 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建黑石虚拟子网
+    ///
+    /// 创建黑石虚拟子网， 虚拟子网用于在黑石上创建虚拟网络，与黑石子网要做好规划。虚拟子网会分配2000-2999的VlanId。
+    @inlinable
+    public func createVirtualSubnetWithVlan(_ input: CreateVirtualSubnetWithVlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVirtualSubnetWithVlanResponse > {
+        self.client.execute(action: "CreateVirtualSubnetWithVlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建黑石虚拟子网
+    ///
+    /// 创建黑石虚拟子网， 虚拟子网用于在黑石上创建虚拟网络，与黑石子网要做好规划。虚拟子网会分配2000-2999的VlanId。
+    @inlinable
+    public func createVirtualSubnetWithVlan(_ input: CreateVirtualSubnetWithVlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirtualSubnetWithVlanResponse {
+        try await self.client.execute(action: "CreateVirtualSubnetWithVlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

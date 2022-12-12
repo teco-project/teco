@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 开启SSL
-    @inlinable
-    public func openSSL(_ input: OpenSSLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenSSLResponse > {
-        self.client.execute(action: "OpenSSL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启SSL
-    @inlinable
-    public func openSSL(_ input: OpenSSLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenSSLResponse {
-        try await self.client.execute(action: "OpenSSL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OpenSSL请求参数结构体
     public struct OpenSSLRequest: TCRequestModel {
         /// 实例ID。
@@ -53,5 +41,17 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启SSL
+    @inlinable
+    public func openSSL(_ input: OpenSSLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenSSLResponse > {
+        self.client.execute(action: "OpenSSL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启SSL
+    @inlinable
+    public func openSSL(_ input: OpenSSLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenSSLResponse {
+        try await self.client.execute(action: "OpenSSL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

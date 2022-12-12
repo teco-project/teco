@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 设备固件升级
-    ///
-    /// 本接口（UpgradeDevice）用于对设备进行固件升级。
-    /// 该接口向指定的设备下发固件更新指令,可将固件升级到任意版本(可实现固件降级)。
-    /// 警告:使能UpgradeNow参数存在一定的风险性！建议仅在debug场景下使用!
-    @inlinable
-    public func upgradeDevice(_ input: UpgradeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDeviceResponse > {
-        self.client.execute(action: "UpgradeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设备固件升级
-    ///
-    /// 本接口（UpgradeDevice）用于对设备进行固件升级。
-    /// 该接口向指定的设备下发固件更新指令,可将固件升级到任意版本(可实现固件降级)。
-    /// 警告:使能UpgradeNow参数存在一定的风险性！建议仅在debug场景下使用!
-    @inlinable
-    public func upgradeDevice(_ input: UpgradeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDeviceResponse {
-        try await self.client.execute(action: "UpgradeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeDevice请求参数结构体
     public struct UpgradeDeviceRequest: TCRequestModel {
         /// 设备TID
@@ -72,5 +52,25 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设备固件升级
+    ///
+    /// 本接口（UpgradeDevice）用于对设备进行固件升级。
+    /// 该接口向指定的设备下发固件更新指令,可将固件升级到任意版本(可实现固件降级)。
+    /// 警告:使能UpgradeNow参数存在一定的风险性！建议仅在debug场景下使用!
+    @inlinable
+    public func upgradeDevice(_ input: UpgradeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDeviceResponse > {
+        self.client.execute(action: "UpgradeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设备固件升级
+    ///
+    /// 本接口（UpgradeDevice）用于对设备进行固件升级。
+    /// 该接口向指定的设备下发固件更新指令,可将固件升级到任意版本(可实现固件降级)。
+    /// 警告:使能UpgradeNow参数存在一定的风险性！建议仅在debug场景下使用!
+    @inlinable
+    public func upgradeDevice(_ input: UpgradeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDeviceResponse {
+        try await self.client.execute(action: "UpgradeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

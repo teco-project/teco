@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 马来西亚身份证识别
-    ///
-    /// 本接口支持马来西亚身份证识别，识别字段包括身份证号、姓名、性别、地址；具备身份证人像照片的裁剪功能和翻拍、复印件告警功能。
-    /// 本接口暂未完全对外开放，如需咨询，请[联系商务](https://cloud.tencent.com/about/connect)
-    @inlinable
-    public func mlidCardOCR(_ input: MLIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MLIDCardOCRResponse > {
-        self.client.execute(action: "MLIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 马来西亚身份证识别
-    ///
-    /// 本接口支持马来西亚身份证识别，识别字段包括身份证号、姓名、性别、地址；具备身份证人像照片的裁剪功能和翻拍、复印件告警功能。
-    /// 本接口暂未完全对外开放，如需咨询，请[联系商务](https://cloud.tencent.com/about/connect)
-    @inlinable
-    public func mlidCardOCR(_ input: MLIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MLIDCardOCRResponse {
-        try await self.client.execute(action: "MLIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// MLIDCardOCR请求参数结构体
     public struct MLIDCardOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -50,7 +32,7 @@ extension Ocr {
         /// 是否返回图片，默认false
         public let retImage: Bool?
         
-        public init (imageBase64: String?, imageUrl: String?, retImage: Bool?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, retImage: Bool? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.retImage = retImage
@@ -124,5 +106,23 @@ extension Ocr {
             case birthday = "Birthday"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 马来西亚身份证识别
+    ///
+    /// 本接口支持马来西亚身份证识别，识别字段包括身份证号、姓名、性别、地址；具备身份证人像照片的裁剪功能和翻拍、复印件告警功能。
+    /// 本接口暂未完全对外开放，如需咨询，请[联系商务](https://cloud.tencent.com/about/connect)
+    @inlinable
+    public func mlidCardOCR(_ input: MLIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MLIDCardOCRResponse > {
+        self.client.execute(action: "MLIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 马来西亚身份证识别
+    ///
+    /// 本接口支持马来西亚身份证识别，识别字段包括身份证号、姓名、性别、地址；具备身份证人像照片的裁剪功能和翻拍、复印件告警功能。
+    /// 本接口暂未完全对外开放，如需咨询，请[联系商务](https://cloud.tencent.com/about/connect)
+    @inlinable
+    public func mlidCardOCR(_ input: MLIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MLIDCardOCRResponse {
+        try await self.client.execute(action: "MLIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

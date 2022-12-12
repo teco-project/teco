@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 创建回调规则
-    ///
-    /// 创建回调规则，需要先调用[CreateLiveCallbackTemplate](/document/product/267/32637)接口创建回调模板，将返回的模板id绑定到域名/路径进行使用。
-    /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
-    @inlinable
-    public func createLiveCallbackRule(_ input: CreateLiveCallbackRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveCallbackRuleResponse > {
-        self.client.execute(action: "CreateLiveCallbackRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建回调规则
-    ///
-    /// 创建回调规则，需要先调用[CreateLiveCallbackTemplate](/document/product/267/32637)接口创建回调模板，将返回的模板id绑定到域名/路径进行使用。
-    /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
-    @inlinable
-    public func createLiveCallbackRule(_ input: CreateLiveCallbackRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveCallbackRuleResponse {
-        try await self.client.execute(action: "CreateLiveCallbackRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLiveCallbackRule请求参数结构体
     public struct CreateLiveCallbackRuleRequest: TCRequestModel {
         /// 推流域名。
@@ -65,5 +47,23 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建回调规则
+    ///
+    /// 创建回调规则，需要先调用[CreateLiveCallbackTemplate](/document/product/267/32637)接口创建回调模板，将返回的模板id绑定到域名/路径进行使用。
+    /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
+    @inlinable
+    public func createLiveCallbackRule(_ input: CreateLiveCallbackRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveCallbackRuleResponse > {
+        self.client.execute(action: "CreateLiveCallbackRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建回调规则
+    ///
+    /// 创建回调规则，需要先调用[CreateLiveCallbackTemplate](/document/product/267/32637)接口创建回调模板，将返回的模板id绑定到域名/路径进行使用。
+    /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
+    @inlinable
+    public func createLiveCallbackRule(_ input: CreateLiveCallbackRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveCallbackRuleResponse {
+        try await self.client.execute(action: "CreateLiveCallbackRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

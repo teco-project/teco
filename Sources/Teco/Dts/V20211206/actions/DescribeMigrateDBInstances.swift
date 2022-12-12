@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 查询可迁移的实例列表
-    ///
-    /// 本接口用于查询支持迁移的云数据库实例
-    @inlinable
-    public func describeMigrateDBInstances(_ input: DescribeMigrateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrateDBInstancesResponse > {
-        self.client.execute(action: "DescribeMigrateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询可迁移的实例列表
-    ///
-    /// 本接口用于查询支持迁移的云数据库实例
-    @inlinable
-    public func describeMigrateDBInstances(_ input: DescribeMigrateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrateDBInstancesResponse {
-        try await self.client.execute(action: "DescribeMigrateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMigrateDBInstances请求参数结构体
     public struct DescribeMigrateDBInstancesRequest: TCRequestModel {
         /// 数据库类型，如mysql
@@ -63,7 +47,7 @@ extension Dts {
         /// 临时密钥Token，若为跨账号资源此项必填
         public let tmpToken: String?
         
-        public init (databaseType: String, migrateRole: String?, instanceId: String?, instanceName: String?, limit: Int64?, offset: Int64?, accountMode: String?, tmpSecretId: String?, tmpSecretKey: String?, tmpToken: String?) {
+        public init (databaseType: String, migrateRole: String? = nil, instanceId: String? = nil, instanceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, accountMode: String? = nil, tmpSecretId: String? = nil, tmpSecretKey: String? = nil, tmpToken: String? = nil) {
             self.databaseType = databaseType
             self.migrateRole = migrateRole
             self.instanceId = instanceId
@@ -108,5 +92,21 @@ extension Dts {
             case instances = "Instances"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询可迁移的实例列表
+    ///
+    /// 本接口用于查询支持迁移的云数据库实例
+    @inlinable
+    public func describeMigrateDBInstances(_ input: DescribeMigrateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrateDBInstancesResponse > {
+        self.client.execute(action: "DescribeMigrateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询可迁移的实例列表
+    ///
+    /// 本接口用于查询支持迁移的云数据库实例
+    @inlinable
+    public func describeMigrateDBInstances(_ input: DescribeMigrateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrateDBInstancesResponse {
+        try await self.client.execute(action: "DescribeMigrateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

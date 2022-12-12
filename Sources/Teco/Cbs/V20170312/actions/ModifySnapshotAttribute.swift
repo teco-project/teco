@@ -17,26 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cbs {
-    /// 修改快照信息
-    ///
-    /// 本接口（ModifySnapshotAttribute）用于修改指定快照的属性。
-    /// * 当前仅支持修改快照名称及将非永久快照修改为永久快照。
-    /// * “快照名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行快照管理操作的依据。
-    @inlinable
-    public func modifySnapshotAttribute(_ input: ModifySnapshotAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySnapshotAttributeResponse > {
-        self.client.execute(action: "ModifySnapshotAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改快照信息
-    ///
-    /// 本接口（ModifySnapshotAttribute）用于修改指定快照的属性。
-    /// * 当前仅支持修改快照名称及将非永久快照修改为永久快照。
-    /// * “快照名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行快照管理操作的依据。
-    @inlinable
-    public func modifySnapshotAttribute(_ input: ModifySnapshotAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotAttributeResponse {
-        try await self.client.execute(action: "ModifySnapshotAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySnapshotAttribute请求参数结构体
     public struct ModifySnapshotAttributeRequest: TCRequestModel {
         /// 快照ID, 可通过[DescribeSnapshots](/document/product/362/15647)查询。
@@ -51,7 +31,7 @@ extension Cbs {
         /// 快照的到期时间；设置好快照将会被同时设置为非永久保留方式；超过到期时间后快照将会被自动删除。
         public let deadline: Date?
         
-        public init (snapshotId: String, snapshotName: String?, isPermanent: Bool?, deadline: Date?) {
+        public init (snapshotId: String, snapshotName: String? = nil, isPermanent: Bool? = nil, deadline: Date? = nil) {
             self.snapshotId = snapshotId
             self.snapshotName = snapshotName
             self.isPermanent = isPermanent
@@ -74,5 +54,25 @@ extension Cbs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改快照信息
+    ///
+    /// 本接口（ModifySnapshotAttribute）用于修改指定快照的属性。
+    /// * 当前仅支持修改快照名称及将非永久快照修改为永久快照。
+    /// * “快照名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行快照管理操作的依据。
+    @inlinable
+    public func modifySnapshotAttribute(_ input: ModifySnapshotAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySnapshotAttributeResponse > {
+        self.client.execute(action: "ModifySnapshotAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改快照信息
+    ///
+    /// 本接口（ModifySnapshotAttribute）用于修改指定快照的属性。
+    /// * 当前仅支持修改快照名称及将非永久快照修改为永久快照。
+    /// * “快照名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行快照管理操作的依据。
+    @inlinable
+    public func modifySnapshotAttribute(_ input: ModifySnapshotAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotAttributeResponse {
+        try await self.client.execute(action: "ModifySnapshotAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

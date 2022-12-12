@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 获取实例灾备详情
-    @inlinable
-    public func describeDcnDetail(_ input: DescribeDcnDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDcnDetailResponse > {
-        self.client.execute(action: "DescribeDcnDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实例灾备详情
-    @inlinable
-    public func describeDcnDetail(_ input: DescribeDcnDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDcnDetailResponse {
-        try await self.client.execute(action: "DescribeDcnDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDcnDetail请求参数结构体
     public struct DescribeDcnDetailRequest: TCRequestModel {
         /// 实例ID
@@ -53,5 +41,17 @@ extension Dcdb {
             case dcnDetails = "DcnDetails"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实例灾备详情
+    @inlinable
+    public func describeDcnDetail(_ input: DescribeDcnDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDcnDetailResponse > {
+        self.client.execute(action: "DescribeDcnDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例灾备详情
+    @inlinable
+    public func describeDcnDetail(_ input: DescribeDcnDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDcnDetailResponse {
+        try await self.client.execute(action: "DescribeDcnDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

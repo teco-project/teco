@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 生成普通码包
-    @inlinable
-    public func createCodePack(_ input: CreateCodePackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCodePackResponse > {
-        self.client.execute(action: "CreateCodePack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 生成普通码包
-    @inlinable
-    public func createCodePack(_ input: CreateCodePackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodePackResponse {
-        try await self.client.execute(action: "CreateCodePack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCodePack请求参数结构体
     public struct CreateCodePackRequest: TCRequestModel {
         /// 商户ID
@@ -56,7 +44,7 @@ extension Trp {
         /// 批次ID，如果传了生码后会同时绑定批次，并激活码
         public let batchId: String?
         
-        public init (merchantId: String, codeLength: UInt64, codeType: String, amount: Int64?, corpId: UInt64?, packType: UInt64?, packLevel: UInt64?, packSpec: [PackSpec]?, batchId: String?) {
+        public init (merchantId: String, codeLength: UInt64, codeType: String, amount: Int64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, batchId: String? = nil) {
             self.merchantId = merchantId
             self.codeLength = codeLength
             self.codeType = codeType
@@ -93,5 +81,17 @@ extension Trp {
             case packId = "PackId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 生成普通码包
+    @inlinable
+    public func createCodePack(_ input: CreateCodePackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCodePackResponse > {
+        self.client.execute(action: "CreateCodePack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 生成普通码包
+    @inlinable
+    public func createCodePack(_ input: CreateCodePackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodePackResponse {
+        try await self.client.execute(action: "CreateCodePack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 照片人脸核身
-    ///
-    /// 传入照片和身份信息，判断该照片与权威库的证件照是否属于同一个人。
-    @inlinable
-    public func imageRecognition(_ input: ImageRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImageRecognitionResponse > {
-        self.client.execute(action: "ImageRecognition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 照片人脸核身
-    ///
-    /// 传入照片和身份信息，判断该照片与权威库的证件照是否属于同一个人。
-    @inlinable
-    public func imageRecognition(_ input: ImageRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageRecognitionResponse {
-        try await self.client.execute(action: "ImageRecognition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ImageRecognition请求参数结构体
     public struct ImageRecognitionRequest: TCRequestModel {
         /// 身份证号
@@ -48,9 +32,9 @@ extension Faceid {
         public let optional: String?
         
         /// 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
-        public let encryption: Encryption
+        public let encryption: Encryption?
         
-        public init (idCard: String, name: String, imageBase64: String, optional: String?, encryption: Encryption) {
+        public init (idCard: String, name: String, imageBase64: String, optional: String? = nil, encryption: Encryption? = nil) {
             self.idCard = idCard
             self.name = name
             self.imageBase64 = imageBase64
@@ -87,5 +71,21 @@ extension Faceid {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 照片人脸核身
+    ///
+    /// 传入照片和身份信息，判断该照片与权威库的证件照是否属于同一个人。
+    @inlinable
+    public func imageRecognition(_ input: ImageRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImageRecognitionResponse > {
+        self.client.execute(action: "ImageRecognition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 照片人脸核身
+    ///
+    /// 传入照片和身份信息，判断该照片与权威库的证件照是否属于同一个人。
+    @inlinable
+    public func imageRecognition(_ input: ImageRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageRecognitionResponse {
+        try await self.client.execute(action: "ImageRecognition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

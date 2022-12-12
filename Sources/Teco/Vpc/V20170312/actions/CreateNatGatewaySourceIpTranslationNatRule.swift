@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建NAT网关SNAT规则
-    ///
-    /// 本接口(CreateNatGatewaySourceIpTranslationNatRule)用于创建NAT网关SNAT规则
-    @inlinable
-    public func createNatGatewaySourceIpTranslationNatRule(_ input: CreateNatGatewaySourceIpTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatGatewaySourceIpTranslationNatRuleResponse > {
-        self.client.execute(action: "CreateNatGatewaySourceIpTranslationNatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建NAT网关SNAT规则
-    ///
-    /// 本接口(CreateNatGatewaySourceIpTranslationNatRule)用于创建NAT网关SNAT规则
-    @inlinable
-    public func createNatGatewaySourceIpTranslationNatRule(_ input: CreateNatGatewaySourceIpTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewaySourceIpTranslationNatRuleResponse {
-        try await self.client.execute(action: "CreateNatGatewaySourceIpTranslationNatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNatGatewaySourceIpTranslationNatRule请求参数结构体
     public struct CreateNatGatewaySourceIpTranslationNatRuleRequest: TCRequestModel {
         /// NAT网关的ID，形如："nat-df45454"
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建NAT网关SNAT规则
+    ///
+    /// 本接口(CreateNatGatewaySourceIpTranslationNatRule)用于创建NAT网关SNAT规则
+    @inlinable
+    public func createNatGatewaySourceIpTranslationNatRule(_ input: CreateNatGatewaySourceIpTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatGatewaySourceIpTranslationNatRuleResponse > {
+        self.client.execute(action: "CreateNatGatewaySourceIpTranslationNatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建NAT网关SNAT规则
+    ///
+    /// 本接口(CreateNatGatewaySourceIpTranslationNatRule)用于创建NAT网关SNAT规则
+    @inlinable
+    public func createNatGatewaySourceIpTranslationNatRule(_ input: CreateNatGatewaySourceIpTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewaySourceIpTranslationNatRuleResponse {
+        try await self.client.execute(action: "CreateNatGatewaySourceIpTranslationNatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

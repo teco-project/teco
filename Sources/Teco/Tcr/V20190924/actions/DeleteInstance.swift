@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 删除实例
-    ///
-    /// 删除镜像仓库企业版实例
-    @inlinable
-    public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstanceResponse > {
-        self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除实例
-    ///
-    /// 删除镜像仓库企业版实例
-    @inlinable
-    public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
-        try await self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteInstance请求参数结构体
     public struct DeleteInstanceRequest: TCRequestModel {
         /// 实例id
@@ -42,7 +26,7 @@ extension Tcr {
         /// 是否dryRun模式，缺省值：false
         public let dryRun: Bool?
         
-        public init (registryId: String, deleteBucket: Bool?, dryRun: Bool?) {
+        public init (registryId: String, deleteBucket: Bool? = nil, dryRun: Bool? = nil) {
             self.registryId = registryId
             self.deleteBucket = deleteBucket
             self.dryRun = dryRun
@@ -63,5 +47,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除实例
+    ///
+    /// 删除镜像仓库企业版实例
+    @inlinable
+    public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstanceResponse > {
+        self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例
+    ///
+    /// 删除镜像仓库企业版实例
+    @inlinable
+    public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
+        try await self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

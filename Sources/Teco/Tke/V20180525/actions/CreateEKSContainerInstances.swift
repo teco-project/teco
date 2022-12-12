@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 创建容器实例
-    @inlinable
-    public func createEKSContainerInstances(_ input: CreateEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEKSContainerInstancesResponse > {
-        self.client.execute(action: "CreateEKSContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建容器实例
-    @inlinable
-    public func createEKSContainerInstances(_ input: CreateEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEKSContainerInstancesResponse {
-        try await self.client.execute(action: "CreateEKSContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEKSContainerInstances请求参数结构体
     public struct CreateEKSContainerInstancesRequest: TCRequestModel {
         /// 容器组
@@ -57,7 +45,7 @@ extension Tke {
         public let imageRegistryCredentials: [ImageRegistryCredential]?
         
         /// 数据卷，包含NfsVolume数组和CbsVolume数组
-        public let eksCiVolume: EksCiVolume
+        public let eksCiVolume: EksCiVolume?
         
         /// 实例副本数，默认为1
         public let replicas: Int64?
@@ -66,7 +54,7 @@ extension Tke {
         public let initContainers: [Container]?
         
         /// 自定义DNS配置
-        public let dnsConfig: DNSConfig
+        public let dnsConfig: DNSConfig?
         
         /// 用来绑定容器实例的已有EIP的列表。如传值，需要保证数值和Replicas相等。
         /// 另外此参数和AutoCreateEipAttribute互斥。
@@ -74,7 +62,7 @@ extension Tke {
         
         /// 自动创建EIP的可选参数。若传此参数，则会自动创建EIP。
         /// 另外此参数和ExistedEipIds互斥
-        public let autoCreateEipAttribute: EipAttribute
+        public let autoCreateEipAttribute: EipAttribute?
         
         /// 是否为容器实例自动创建EIP，默认为false。若传true，则此参数和ExistedEipIds互斥
         public let autoCreateEip: Bool?
@@ -100,7 +88,7 @@ extension Tke {
         /// 为容器实例关联 CAM 角色，value 填写 CAM 角色名称，容器实例可获取该 CAM 角色包含的权限策略，方便 容器实例 内的程序进行如购买资源、读写存储等云资源操作。
         public let camRoleName: String?
         
-        public init (containers: [Container], eksCiName: String, securityGroupIds: [String], subnetId: String, vpcId: String, memory: Float, cpu: Float, restartPolicy: String?, imageRegistryCredentials: [ImageRegistryCredential]?, eksCiVolume: EksCiVolume, replicas: Int64?, initContainers: [Container]?, dnsConfig: DNSConfig, existedEipIds: [String]?, autoCreateEipAttribute: EipAttribute, autoCreateEip: Bool?, cpuType: String?, gpuType: String?, gpuCount: UInt64?, camRoleName: String?) {
+        public init (containers: [Container], eksCiName: String, securityGroupIds: [String], subnetId: String, vpcId: String, memory: Float, cpu: Float, restartPolicy: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, eksCiVolume: EksCiVolume? = nil, replicas: Int64? = nil, initContainers: [Container]? = nil, dnsConfig: DNSConfig? = nil, existedEipIds: [String]? = nil, autoCreateEipAttribute: EipAttribute? = nil, autoCreateEip: Bool? = nil, cpuType: String? = nil, gpuType: String? = nil, gpuCount: UInt64? = nil, camRoleName: String? = nil) {
             self.containers = containers
             self.eksCiName = eksCiName
             self.securityGroupIds = securityGroupIds
@@ -159,5 +147,17 @@ extension Tke {
             case eksCiIds = "EksCiIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建容器实例
+    @inlinable
+    public func createEKSContainerInstances(_ input: CreateEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEKSContainerInstancesResponse > {
+        self.client.execute(action: "CreateEKSContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建容器实例
+    @inlinable
+    public func createEKSContainerInstances(_ input: CreateEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEKSContainerInstancesResponse {
+        try await self.client.execute(action: "CreateEKSContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 修改告警规则
-    ///
-    /// 修改告警规则 
-    @inlinable
-    public func modifyPrometheusAlertRule(_ input: ModifyPrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusAlertRuleResponse > {
-        self.client.execute(action: "ModifyPrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改告警规则
-    ///
-    /// 修改告警规则 
-    @inlinable
-    public func modifyPrometheusAlertRule(_ input: ModifyPrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAlertRuleResponse {
-        try await self.client.execute(action: "ModifyPrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPrometheusAlertRule请求参数结构体
     public struct ModifyPrometheusAlertRuleRequest: TCRequestModel {
         /// 实例id
@@ -58,5 +42,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改告警规则
+    ///
+    /// 修改告警规则 
+    @inlinable
+    public func modifyPrometheusAlertRule(_ input: ModifyPrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusAlertRuleResponse > {
+        self.client.execute(action: "ModifyPrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改告警规则
+    ///
+    /// 修改告警规则 
+    @inlinable
+    public func modifyPrometheusAlertRule(_ input: ModifyPrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAlertRuleResponse {
+        try await self.client.execute(action: "ModifyPrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

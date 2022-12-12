@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 修改VPN网关属性
-    ///
-    /// 本接口（ModifyVpnGatewayAttribute）用于修改VPN网关属性。
-    @inlinable
-    public func modifyVpnGatewayAttribute(_ input: ModifyVpnGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpnGatewayAttributeResponse > {
-        self.client.execute(action: "ModifyVpnGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改VPN网关属性
-    ///
-    /// 本接口（ModifyVpnGatewayAttribute）用于修改VPN网关属性。
-    @inlinable
-    public func modifyVpnGatewayAttribute(_ input: ModifyVpnGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayAttributeResponse {
-        try await self.client.execute(action: "ModifyVpnGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVpnGatewayAttribute请求参数结构体
     public struct ModifyVpnGatewayAttributeRequest: TCRequestModel {
         /// VPN网关实例ID。
@@ -58,5 +42,21 @@ extension Bmvpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改VPN网关属性
+    ///
+    /// 本接口（ModifyVpnGatewayAttribute）用于修改VPN网关属性。
+    @inlinable
+    public func modifyVpnGatewayAttribute(_ input: ModifyVpnGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpnGatewayAttributeResponse > {
+        self.client.execute(action: "ModifyVpnGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改VPN网关属性
+    ///
+    /// 本接口（ModifyVpnGatewayAttribute）用于修改VPN网关属性。
+    @inlinable
+    public func modifyVpnGatewayAttribute(_ input: ModifyVpnGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayAttributeResponse {
+        try await self.client.execute(action: "ModifyVpnGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

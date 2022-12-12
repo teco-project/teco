@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 获取托管规则组
-    @inlinable
-    public func describeSecurityGroupManagedRules(_ input: DescribeSecurityGroupManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupManagedRulesResponse > {
-        self.client.execute(action: "DescribeSecurityGroupManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取托管规则组
-    @inlinable
-    public func describeSecurityGroupManagedRules(_ input: DescribeSecurityGroupManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupManagedRulesResponse {
-        try await self.client.execute(action: "DescribeSecurityGroupManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityGroupManagedRules请求参数结构体
     public struct DescribeSecurityGroupManagedRulesRequest: TCRequestModel {
         /// 站点Id。当使用ZoneId和Entity时可不填写TemplateId，否则必须填写TemplateId。
@@ -44,7 +32,7 @@ extension Teo {
         /// 模板Id。当使用模板Id时可不填ZoneId和Entity，否则必须填写ZoneId和Entity。
         public let templateId: String?
         
-        public init (zoneId: String?, entity: String?, offset: Int64?, limit: Int64?, templateId: String?) {
+        public init (zoneId: String? = nil, entity: String? = nil, offset: Int64? = nil, limit: Int64? = nil, templateId: String? = nil) {
             self.zoneId = zoneId
             self.entity = entity
             self.offset = offset
@@ -81,5 +69,17 @@ extension Teo {
             case wafGroupInfo = "WafGroupInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取托管规则组
+    @inlinable
+    public func describeSecurityGroupManagedRules(_ input: DescribeSecurityGroupManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupManagedRulesResponse > {
+        self.client.execute(action: "DescribeSecurityGroupManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取托管规则组
+    @inlinable
+    public func describeSecurityGroupManagedRules(_ input: DescribeSecurityGroupManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupManagedRulesResponse {
+        try await self.client.execute(action: "DescribeSecurityGroupManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

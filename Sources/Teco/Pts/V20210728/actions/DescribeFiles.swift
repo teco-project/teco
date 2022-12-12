@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 查询文件列表
-    @inlinable
-    public func describeFiles(_ input: DescribeFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFilesResponse > {
-        self.client.execute(action: "DescribeFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询文件列表
-    @inlinable
-    public func describeFiles(_ input: DescribeFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFilesResponse {
-        try await self.client.execute(action: "DescribeFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFiles请求参数结构体
     public struct DescribeFilesRequest: TCRequestModel {
         /// 项目 ID 数组
@@ -47,7 +35,7 @@ extension Pts {
         /// 文件种类，参数文件-1，协议文件-2，请求文件-3
         public let kind: Int64?
         
-        public init (projectIds: [String], fileIds: [String]?, fileName: String?, offset: Int64?, limit: Int64?, kind: Int64?) {
+        public init (projectIds: [String], fileIds: [String]? = nil, fileName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, kind: Int64? = nil) {
             self.projectIds = projectIds
             self.fileIds = fileIds
             self.fileName = fileName
@@ -84,5 +72,17 @@ extension Pts {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询文件列表
+    @inlinable
+    public func describeFiles(_ input: DescribeFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFilesResponse > {
+        self.client.execute(action: "DescribeFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文件列表
+    @inlinable
+    public func describeFiles(_ input: DescribeFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFilesResponse {
+        try await self.client.execute(action: "DescribeFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改弹性公网IP属性
-    ///
-    /// 本接口 (ModifyAddressAttribute) 用于修改[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的名称。
-    @inlinable
-    public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressAttributeResponse > {
-        self.client.execute(action: "ModifyAddressAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改弹性公网IP属性
-    ///
-    /// 本接口 (ModifyAddressAttribute) 用于修改[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的名称。
-    @inlinable
-    public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {
-        try await self.client.execute(action: "ModifyAddressAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAddressAttribute请求参数结构体
     public struct ModifyAddressAttributeRequest: TCRequestModel {
         /// 标识 EIP 的唯一 ID。EIP 唯一 ID 形如：`eip-11112222`。
@@ -42,7 +26,7 @@ extension Vpc {
         /// 设定EIP是否直通，"TRUE"表示直通，"FALSE"表示非直通。注意该参数仅对EIP直通功能可见的用户可以设定。
         public let eipDirectConnection: String?
         
-        public init (addressId: String, addressName: String?, eipDirectConnection: String?) {
+        public init (addressId: String, addressName: String? = nil, eipDirectConnection: String? = nil) {
             self.addressId = addressId
             self.addressName = addressName
             self.eipDirectConnection = eipDirectConnection
@@ -63,5 +47,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改弹性公网IP属性
+    ///
+    /// 本接口 (ModifyAddressAttribute) 用于修改[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的名称。
+    @inlinable
+    public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressAttributeResponse > {
+        self.client.execute(action: "ModifyAddressAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改弹性公网IP属性
+    ///
+    /// 本接口 (ModifyAddressAttribute) 用于修改[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的名称。
+    @inlinable
+    public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {
+        try await self.client.execute(action: "ModifyAddressAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

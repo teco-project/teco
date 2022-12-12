@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 创建 Prometheus CVM Agent
-    @inlinable
-    public func createPrometheusAgent(_ input: CreatePrometheusAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusAgentResponse > {
-        self.client.execute(action: "CreatePrometheusAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建 Prometheus CVM Agent
-    @inlinable
-    public func createPrometheusAgent(_ input: CreatePrometheusAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusAgentResponse {
-        try await self.client.execute(action: "CreatePrometheusAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePrometheusAgent请求参数结构体
     public struct CreatePrometheusAgentRequest: TCRequestModel {
         /// 实例 ID
@@ -58,5 +46,17 @@ extension Monitor {
             case agentId = "AgentId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建 Prometheus CVM Agent
+    @inlinable
+    public func createPrometheusAgent(_ input: CreatePrometheusAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusAgentResponse > {
+        self.client.execute(action: "CreatePrometheusAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建 Prometheus CVM Agent
+    @inlinable
+    public func createPrometheusAgent(_ input: CreatePrometheusAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusAgentResponse {
+        try await self.client.execute(action: "CreatePrometheusAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

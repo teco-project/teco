@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 创建媒体传输流
-    ///
-    /// 创建媒体传输的传输流配置。
-    @inlinable
-    public func createStreamLinkFlow(_ input: CreateStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStreamLinkFlowResponse > {
-        self.client.execute(action: "CreateStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建媒体传输流
-    ///
-    /// 创建媒体传输的传输流配置。
-    @inlinable
-    public func createStreamLinkFlow(_ input: CreateStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkFlowResponse {
-        try await self.client.execute(action: "CreateStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateStreamLinkFlow请求参数结构体
     public struct CreateStreamLinkFlowRequest: TCRequestModel {
         /// 流名称。
@@ -67,5 +51,21 @@ extension Mps {
             case info = "Info"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建媒体传输流
+    ///
+    /// 创建媒体传输的传输流配置。
+    @inlinable
+    public func createStreamLinkFlow(_ input: CreateStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStreamLinkFlowResponse > {
+        self.client.execute(action: "CreateStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建媒体传输流
+    ///
+    /// 创建媒体传输的传输流配置。
+    @inlinable
+    public func createStreamLinkFlow(_ input: CreateStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkFlowResponse {
+        try await self.client.execute(action: "CreateStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcm {
-    /// 查询网格列表
-    @inlinable
-    public func describeMeshList(_ input: DescribeMeshListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMeshListResponse > {
-        self.client.execute(action: "DescribeMeshList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询网格列表
-    @inlinable
-    public func describeMeshList(_ input: DescribeMeshListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMeshListResponse {
-        try await self.client.execute(action: "DescribeMeshList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMeshList请求参数结构体
     public struct DescribeMeshListRequest: TCRequestModel {
         /// 过滤条件
@@ -38,7 +26,7 @@ extension Tcm {
         /// 分页偏移
         public let offset: Int64?
         
-        public init (filters: [Filter]?, limit: Int64?, offset: Int64?) {
+        public init (filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -68,5 +56,17 @@ extension Tcm {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询网格列表
+    @inlinable
+    public func describeMeshList(_ input: DescribeMeshListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMeshListResponse > {
+        self.client.execute(action: "DescribeMeshList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网格列表
+    @inlinable
+    public func describeMeshList(_ input: DescribeMeshListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMeshListResponse {
+        try await self.client.execute(action: "DescribeMeshList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

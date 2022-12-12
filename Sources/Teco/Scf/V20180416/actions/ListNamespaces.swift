@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 列出命名空间列表
-    @inlinable
-    public func listNamespaces(_ input: ListNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListNamespacesResponse > {
-        self.client.execute(action: "ListNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出命名空间列表
-    @inlinable
-    public func listNamespaces(_ input: ListNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListNamespacesResponse {
-        try await self.client.execute(action: "ListNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListNamespaces请求参数结构体
     public struct ListNamespacesRequest: TCRequestModel {
         /// 返回数据长度，默认值为 20
@@ -44,7 +32,7 @@ extension Scf {
         /// 关键字匹配搜索，Key 可选值为 Namespace 和 Description，多个搜索条件之间是与的关系
         public let searchKey: [SearchKey]?
         
-        public init (limit: Int64?, offset: Int64?, orderby: String?, order: String?, searchKey: [SearchKey]?) {
+        public init (limit: Int64? = nil, offset: Int64? = nil, orderby: String? = nil, order: String? = nil, searchKey: [SearchKey]? = nil) {
             self.limit = limit
             self.offset = offset
             self.orderby = orderby
@@ -77,5 +65,17 @@ extension Scf {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出命名空间列表
+    @inlinable
+    public func listNamespaces(_ input: ListNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListNamespacesResponse > {
+        self.client.execute(action: "ListNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出命名空间列表
+    @inlinable
+    public func listNamespaces(_ input: ListNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListNamespacesResponse {
+        try await self.client.execute(action: "ListNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

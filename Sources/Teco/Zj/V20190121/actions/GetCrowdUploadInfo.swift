@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 获取短信人群包cos上传信息
-    ///
-    /// 获取短信人群包cos上传需要的信息
-    @inlinable
-    public func getCrowdUploadInfo(_ input: GetCrowdUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCrowdUploadInfoResponse > {
-        self.client.execute(action: "GetCrowdUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取短信人群包cos上传信息
-    ///
-    /// 获取短信人群包cos上传需要的信息
-    @inlinable
-    public func getCrowdUploadInfo(_ input: GetCrowdUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdUploadInfoResponse {
-        try await self.client.execute(action: "GetCrowdUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetCrowdUploadInfo请求参数结构体
     public struct GetCrowdUploadInfoRequest: TCRequestModel {
         /// 商户证书
@@ -62,5 +46,21 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取短信人群包cos上传信息
+    ///
+    /// 获取短信人群包cos上传需要的信息
+    @inlinable
+    public func getCrowdUploadInfo(_ input: GetCrowdUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCrowdUploadInfoResponse > {
+        self.client.execute(action: "GetCrowdUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取短信人群包cos上传信息
+    ///
+    /// 获取短信人群包cos上传需要的信息
+    @inlinable
+    public func getCrowdUploadInfo(_ input: GetCrowdUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdUploadInfoResponse {
+        try await self.client.execute(action: "GetCrowdUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

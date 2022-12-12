@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 创建负载均衡监听器
-    ///
-    /// 在一个负载均衡实例下创建监听器。
-    /// 本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
-    public func createListener(_ input: CreateListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateListenerResponse > {
-        self.client.execute(action: "CreateListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建负载均衡监听器
-    ///
-    /// 在一个负载均衡实例下创建监听器。
-    /// 本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
-    public func createListener(_ input: CreateListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateListenerResponse {
-        try await self.client.execute(action: "CreateListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateListener请求参数结构体
     public struct CreateListenerRequest: TCRequestModel {
         /// 负载均衡实例 ID。
@@ -48,10 +30,10 @@ extension Clb {
         public let listenerNames: [String]?
         
         /// 健康检查相关参数，此参数仅适用于TCP/UDP/TCP_SSL监听器。
-        public let healthCheck: HealthCheck
+        public let healthCheck: HealthCheck?
         
         /// 证书相关信息，此参数仅适用于TCP_SSL监听器和未开启SNI特性的HTTPS监听器。此参数和MultiCertInfo不能同时传入。
-        public let certificate: CertificateInput
+        public let certificate: CertificateInput?
         
         /// 会话保持时间，单位：秒。可选值：30~3600，默认 0，表示不开启。此参数仅适用于TCP/UDP监听器。
         public let sessionExpireTime: Int64?
@@ -79,9 +61,9 @@ extension Clb {
         public let deregisterTargetRst: Bool?
         
         /// 证书信息，支持同时传入不同算法类型的多本服务端证书；此参数仅适用于未开启SNI特性的HTTPS监听器。此参数和Certificate不能同时传入。
-        public let multiCertInfo: MultiCertInfo
+        public let multiCertInfo: MultiCertInfo?
         
-        public init (loadBalancerId: String, ports: [Int64], `protocol`: String, listenerNames: [String]?, healthCheck: HealthCheck, certificate: CertificateInput, sessionExpireTime: Int64?, scheduler: String?, sniSwitch: Int64?, targetType: String?, sessionType: String?, keepaliveEnable: Int64?, endPort: UInt64?, deregisterTargetRst: Bool?, multiCertInfo: MultiCertInfo) {
+        public init (loadBalancerId: String, ports: [Int64], `protocol`: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, sessionType: String? = nil, keepaliveEnable: Int64? = nil, endPort: UInt64? = nil, deregisterTargetRst: Bool? = nil, multiCertInfo: MultiCertInfo? = nil) {
             self.loadBalancerId = loadBalancerId
             self.ports = ports
             self.`protocol` = `protocol`
@@ -130,5 +112,23 @@ extension Clb {
             case listenerIds = "ListenerIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建负载均衡监听器
+    ///
+    /// 在一个负载均衡实例下创建监听器。
+    /// 本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func createListener(_ input: CreateListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateListenerResponse > {
+        self.client.execute(action: "CreateListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建负载均衡监听器
+    ///
+    /// 在一个负载均衡实例下创建监听器。
+    /// 本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func createListener(_ input: CreateListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateListenerResponse {
+        try await self.client.execute(action: "CreateListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

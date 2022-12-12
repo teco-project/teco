@@ -15,31 +15,15 @@
 // DO NOT EDIT.
 
 extension Ess {
-    /// 合同文件验签
-    ///
-    /// 验证合同文件
-    @inlinable
-    public func verifyPdf(_ input: VerifyPdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyPdfResponse > {
-        self.client.execute(action: "VerifyPdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 合同文件验签
-    ///
-    /// 验证合同文件
-    @inlinable
-    public func verifyPdf(_ input: VerifyPdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPdfResponse {
-        try await self.client.execute(action: "VerifyPdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifyPdf请求参数结构体
     public struct VerifyPdfRequest: TCRequestModel {
         /// 合同Id，流程Id
         public let flowId: String
         
         /// 调用方用户信息，userId 必填
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
-        public init (flowId: String, `operator`: UserInfo) {
+        public init (flowId: String, `operator`: UserInfo? = nil) {
             self.flowId = flowId
             self.`operator` = `operator`
         }
@@ -67,5 +51,21 @@ extension Ess {
             case pdfVerifyResults = "PdfVerifyResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 合同文件验签
+    ///
+    /// 验证合同文件
+    @inlinable
+    public func verifyPdf(_ input: VerifyPdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyPdfResponse > {
+        self.client.execute(action: "VerifyPdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 合同文件验签
+    ///
+    /// 验证合同文件
+    @inlinable
+    public func verifyPdf(_ input: VerifyPdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPdfResponse {
+        try await self.client.execute(action: "VerifyPdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 覆盖指定密钥的设备指纹信息
-    @inlinable
-    public func overwriteWhiteBoxDeviceFingerprints(_ input: OverwriteWhiteBoxDeviceFingerprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OverwriteWhiteBoxDeviceFingerprintsResponse > {
-        self.client.execute(action: "OverwriteWhiteBoxDeviceFingerprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 覆盖指定密钥的设备指纹信息
-    @inlinable
-    public func overwriteWhiteBoxDeviceFingerprints(_ input: OverwriteWhiteBoxDeviceFingerprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OverwriteWhiteBoxDeviceFingerprintsResponse {
-        try await self.client.execute(action: "OverwriteWhiteBoxDeviceFingerprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OverwriteWhiteBoxDeviceFingerprints请求参数结构体
     public struct OverwriteWhiteBoxDeviceFingerprintsRequest: TCRequestModel {
         /// 白盒密钥ID
@@ -35,7 +23,7 @@ extension Kms {
         /// 设备指纹列表，如果列表为空，则表示删除该密钥对应的所有指纹信息。列表最大长度不超过200。
         public let deviceFingerprints: [DeviceFingerprint]?
         
-        public init (keyId: String, deviceFingerprints: [DeviceFingerprint]?) {
+        public init (keyId: String, deviceFingerprints: [DeviceFingerprint]? = nil) {
             self.keyId = keyId
             self.deviceFingerprints = deviceFingerprints
         }
@@ -54,5 +42,17 @@ extension Kms {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 覆盖指定密钥的设备指纹信息
+    @inlinable
+    public func overwriteWhiteBoxDeviceFingerprints(_ input: OverwriteWhiteBoxDeviceFingerprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OverwriteWhiteBoxDeviceFingerprintsResponse > {
+        self.client.execute(action: "OverwriteWhiteBoxDeviceFingerprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 覆盖指定密钥的设备指纹信息
+    @inlinable
+    public func overwriteWhiteBoxDeviceFingerprints(_ input: OverwriteWhiteBoxDeviceFingerprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OverwriteWhiteBoxDeviceFingerprintsResponse {
+        try await self.client.execute(action: "OverwriteWhiteBoxDeviceFingerprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

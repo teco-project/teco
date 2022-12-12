@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 安全合规重新检测选定的资产
-    ///
-    /// 重新检测选定的资产
-    @inlinable
-    public func scanComplianceAssets(_ input: ScanComplianceAssetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanComplianceAssetsResponse > {
-        self.client.execute(action: "ScanComplianceAssets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全合规重新检测选定的资产
-    ///
-    /// 重新检测选定的资产
-    @inlinable
-    public func scanComplianceAssets(_ input: ScanComplianceAssetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanComplianceAssetsResponse {
-        try await self.client.execute(action: "ScanComplianceAssets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ScanComplianceAssets请求参数结构体
     public struct ScanComplianceAssetsRequest: TCRequestModel {
         /// 要重新扫描的客户资产项ID的列表。
@@ -57,5 +41,21 @@ extension Tcss {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全合规重新检测选定的资产
+    ///
+    /// 重新检测选定的资产
+    @inlinable
+    public func scanComplianceAssets(_ input: ScanComplianceAssetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanComplianceAssetsResponse > {
+        self.client.execute(action: "ScanComplianceAssets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规重新检测选定的资产
+    ///
+    /// 重新检测选定的资产
+    @inlinable
+    public func scanComplianceAssets(_ input: ScanComplianceAssetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanComplianceAssetsResponse {
+        try await self.client.execute(action: "ScanComplianceAssets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

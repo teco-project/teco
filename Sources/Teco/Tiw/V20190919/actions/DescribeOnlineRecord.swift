@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 查询实时录制任务
-    ///
-    /// 查询录制任务状态与结果
-    @inlinable
-    public func describeOnlineRecord(_ input: DescribeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOnlineRecordResponse > {
-        self.client.execute(action: "DescribeOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实时录制任务
-    ///
-    /// 查询录制任务状态与结果
-    @inlinable
-    public func describeOnlineRecord(_ input: DescribeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOnlineRecordResponse {
-        try await self.client.execute(action: "DescribeOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOnlineRecord请求参数结构体
     public struct DescribeOnlineRecordRequest: TCRequestModel {
         /// 客户的SdkAppId
@@ -125,5 +109,21 @@ extension Tiw {
             case interrupts = "Interrupts"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实时录制任务
+    ///
+    /// 查询录制任务状态与结果
+    @inlinable
+    public func describeOnlineRecord(_ input: DescribeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOnlineRecordResponse > {
+        self.client.execute(action: "DescribeOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实时录制任务
+    ///
+    /// 查询录制任务状态与结果
+    @inlinable
+    public func describeOnlineRecord(_ input: DescribeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOnlineRecordResponse {
+        try await self.client.execute(action: "DescribeOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

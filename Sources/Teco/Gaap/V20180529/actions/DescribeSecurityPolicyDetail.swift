@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 获取安全策略详情
-    @inlinable
-    public func describeSecurityPolicyDetail(_ input: DescribeSecurityPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyDetailResponse > {
-        self.client.execute(action: "DescribeSecurityPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取安全策略详情
-    @inlinable
-    public func describeSecurityPolicyDetail(_ input: DescribeSecurityPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyDetailResponse {
-        try await self.client.execute(action: "DescribeSecurityPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityPolicyDetail请求参数结构体
     public struct DescribeSecurityPolicyDetailRequest: TCRequestModel {
         /// 安全策略ID
@@ -74,5 +62,17 @@ extension Gaap {
             case ruleList = "RuleList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取安全策略详情
+    @inlinable
+    public func describeSecurityPolicyDetail(_ input: DescribeSecurityPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyDetailResponse > {
+        self.client.execute(action: "DescribeSecurityPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全策略详情
+    @inlinable
+    public func describeSecurityPolicyDetail(_ input: DescribeSecurityPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyDetailResponse {
+        try await self.client.execute(action: "DescribeSecurityPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

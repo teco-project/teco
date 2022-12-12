@@ -30,19 +30,19 @@ extension Vod {
         
         /// 智能分类任务控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let classificationConfigure: ClassificationConfigureInfo
+        public let classificationConfigure: ClassificationConfigureInfo?
         
         /// 智能标签任务控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tagConfigure: TagConfigureInfo
+        public let tagConfigure: TagConfigureInfo?
         
         /// 智能封面任务控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let coverConfigure: CoverConfigureInfo
+        public let coverConfigure: CoverConfigureInfo?
         
         /// 智能按帧标签任务控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let frameTagConfigure: FrameTagConfigureInfo
+        public let frameTagConfigure: FrameTagConfigureInfo?
         
         /// 智能精彩集锦任务控制参数。
         public let highlightConfigure: HighlightsConfigureInfo
@@ -80,35 +80,35 @@ extension Vod {
         
         /// 头尾识别控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let headTailConfigure: HeadTailConfigureInfo
+        public let headTailConfigure: HeadTailConfigureInfo?
         
         /// 拆条识别控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let segmentConfigure: SegmentConfigureInfo
+        public let segmentConfigure: SegmentConfigureInfo?
         
         /// 人脸识别控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let faceConfigure: FaceConfigureInfo
+        public let faceConfigure: FaceConfigureInfo?
         
         /// 文本全文识别控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ocrFullTextConfigure: OcrFullTextConfigureInfo
+        public let ocrFullTextConfigure: OcrFullTextConfigureInfo?
         
         /// 文本关键词识别控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ocrWordsConfigure: OcrWordsConfigureInfo
+        public let ocrWordsConfigure: OcrWordsConfigureInfo?
         
         /// 语音全文识别控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let asrFullTextConfigure: AsrFullTextConfigureInfo
+        public let asrFullTextConfigure: AsrFullTextConfigureInfo?
         
         /// 语音关键词识别控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let asrWordsConfigure: AsrWordsConfigureInfo
+        public let asrWordsConfigure: AsrWordsConfigureInfo?
         
         /// 物体识别控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let objectConfigure: ObjectConfigureInfo
+        public let objectConfigure: ObjectConfigureInfo?
         
         /// 截图时间间隔，单位：秒。
         public let screenshotInterval: Float
@@ -184,7 +184,7 @@ extension Vod {
         /// <li>None 表示没有经过数字水印处理。</li>
         public let digitalWatermarkType: String?
         
-        public init (definition: Int64, package: String, drmType: String, url: String, size: Int64?, digitalWatermarkType: String?) {
+        public init (definition: Int64, package: String, drmType: String, url: String, size: Int64? = nil, digitalWatermarkType: String? = nil) {
             self.definition = definition
             self.package = package
             self.drmType = drmType
@@ -212,12 +212,12 @@ extension Vod {
         public let watermarkSet: [WatermarkInput]?
         
         /// 溯源水印。
-        public let traceWatermark: TraceWatermarkInput
+        public let traceWatermark: TraceWatermarkInput?
         
         /// 字幕列表，元素为字幕 ID，支持多个字幕，最大可支持16个。
         public let subtitleSet: [String]?
         
-        public init (definition: UInt64, watermarkSet: [WatermarkInput]?, traceWatermark: TraceWatermarkInput, subtitleSet: [String]?) {
+        public init (definition: UInt64, watermarkSet: [WatermarkInput]? = nil, traceWatermark: TraceWatermarkInput? = nil, subtitleSet: [String]? = nil) {
             self.definition = definition
             self.watermarkSet = watermarkSet
             self.traceWatermark = traceWatermark
@@ -324,9 +324,9 @@ extension Vod {
         
         /// 极速高清转码参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tehdConfig: TEHDConfig
+        public let tehdConfig: TEHDConfig?
         
-        public init (video: VideoTemplateInfo, audio: AudioTemplateInfo, removeAudio: UInt64?, removeVideo: UInt64?, tehdConfig: TEHDConfig) {
+        public init (video: VideoTemplateInfo, audio: AudioTemplateInfo, removeAudio: UInt64? = nil, removeVideo: UInt64? = nil, tehdConfig: TEHDConfig? = nil) {
             self.video = video
             self.audio = audio
             self.removeAudio = removeAudio
@@ -355,23 +355,23 @@ extension Vod {
         
         /// 视频内容分析智能分类任务的查询结果，当任务类型为 Classification 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let classificationTask: AiAnalysisTaskClassificationResult
+        public let classificationTask: AiAnalysisTaskClassificationResult?
         
         /// 视频内容分析智能封面任务的查询结果，当任务类型为 Cover 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let coverTask: AiAnalysisTaskCoverResult
+        public let coverTask: AiAnalysisTaskCoverResult?
         
         /// 视频内容分析智能标签任务的查询结果，当任务类型为 Tag 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tagTask: AiAnalysisTaskTagResult
+        public let tagTask: AiAnalysisTaskTagResult?
         
         /// 视频内容分析智能按帧标签任务的查询结果，当任务类型为 FrameTag 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let frameTagTask: AiAnalysisTaskFrameTagResult
+        public let frameTagTask: AiAnalysisTaskFrameTagResult?
         
         /// 视频内容分析智能精彩集锦任务的查询结果，当任务类型为 Highlight 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let highlightTask: AiAnalysisTaskHighlightResult
+        public let highlightTask: AiAnalysisTaskHighlightResult?
         
         enum CodingKeys: String, CodingKey {
             case type = "Type"
@@ -431,7 +431,7 @@ extension Vod {
         
         /// 智能分类任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiAnalysisTaskClassificationOutput
+        public let output: AiAnalysisTaskClassificationOutput?
         
         /// 智能分类任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -495,7 +495,7 @@ extension Vod {
         
         /// 智能封面任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiAnalysisTaskCoverOutput
+        public let output: AiAnalysisTaskCoverOutput?
         
         /// 智能封面任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -559,7 +559,7 @@ extension Vod {
         
         /// 智能按帧标签任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiAnalysisTaskFrameTagOutput
+        public let output: AiAnalysisTaskFrameTagOutput?
         
         /// 智能按帧标签任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -623,7 +623,7 @@ extension Vod {
         
         /// 智能精彩片段任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiAnalysisTaskHighlightOutput
+        public let output: AiAnalysisTaskHighlightOutput?
         
         /// 智能精彩片段任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -701,7 +701,7 @@ extension Vod {
         
         /// 智能标签任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiAnalysisTaskTagOutput
+        public let output: AiAnalysisTaskTagOutput?
         
         /// 智能标签任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -734,43 +734,43 @@ extension Vod {
         
         /// 视频音视频审核任务（画面涉及令人反感的信息）的查询结果，当任务类型为 Porn 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pornTask: AiReviewTaskPornResult
+        public let pornTask: AiReviewTaskPornResult?
         
         /// 视频音视频审核任务（画面涉及令人不安全的信息）的查询结果，当任务类型为 Terrorism 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let terrorismTask: AiReviewTaskTerrorismResult
+        public let terrorismTask: AiReviewTaskTerrorismResult?
         
         /// 视频音视频审核任务（画面涉及令人不适宜的信息）的查询结果，当任务类型为 Political 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let politicalTask: AiReviewTaskPoliticalResult
+        public let politicalTask: AiReviewTaskPoliticalResult?
         
         /// 视频音视频审核任务（Asr 文字涉及令人反感的信息）的查询结果，当任务类型为 Porn.Asr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pornAsrTask: AiReviewTaskPornAsrResult
+        public let pornAsrTask: AiReviewTaskPornAsrResult?
         
         /// 视频音视频审核任务（Ocr 文字涉及令人反感的信息）的查询结果，当任务类型为 Porn.Ocr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pornOcrTask: AiReviewTaskPornOcrResult
+        public let pornOcrTask: AiReviewTaskPornOcrResult?
         
         /// 视频音视频审核任务（Asr 文字涉及令人不适宜的信息）的查询结果，当任务类型为 Political.Asr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let politicalAsrTask: AiReviewTaskPoliticalAsrResult
+        public let politicalAsrTask: AiReviewTaskPoliticalAsrResult?
         
         /// 视频音视频审核任务（Ocr 文字涉及令人不适宜的信息）的查询结果，当任务类型为 Political.Ocr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let politicalOcrTask: AiReviewTaskPoliticalOcrResult
+        public let politicalOcrTask: AiReviewTaskPoliticalOcrResult?
         
         /// 视频音视频审核任务（ Ocr 文字涉及令人不安全的信息）的查询结果，当任务类型为 Terrorism.Ocr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let terrorismOcrTask: AiReviewTaskTerrorismOcrResult
+        public let terrorismOcrTask: AiReviewTaskTerrorismOcrResult?
         
         /// 视频音视频审核 Ocr 文字鉴违禁任务的查询结果，当任务类型为 Prohibited.Ocr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let prohibitedOcrTask: AiReviewTaskProhibitedOcrResult
+        public let prohibitedOcrTask: AiReviewTaskProhibitedOcrResult?
         
         /// 视频音视频审核 Asr 文字鉴违禁任务的查询结果，当任务类型为 Prohibited.Asr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let prohibitedAsrTask: AiReviewTaskProhibitedAsrResult
+        public let prohibitedAsrTask: AiReviewTaskProhibitedAsrResult?
         
         enum CodingKeys: String, CodingKey {
             case type = "Type"
@@ -816,42 +816,42 @@ extension Vod {
         /// 视频片头片尾识别结果，当 Type 为
         ///  HeadTailRecognition 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let headTailTask: AiRecognitionTaskHeadTailResult
+        public let headTailTask: AiRecognitionTaskHeadTailResult?
         
         /// 视频拆条识别结果，当 Type 为
         ///  SegmentRecognition 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let segmentTask: AiRecognitionTaskSegmentResult
+        public let segmentTask: AiRecognitionTaskSegmentResult?
         
         /// 人脸识别结果，当 Type 为 
         ///  FaceRecognition 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let faceTask: AiRecognitionTaskFaceResult
+        public let faceTask: AiRecognitionTaskFaceResult?
         
         /// 语音关键词识别结果，当 Type 为
         ///  AsrWordsRecognition 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let asrWordsTask: AiRecognitionTaskAsrWordsResult
+        public let asrWordsTask: AiRecognitionTaskAsrWordsResult?
         
         /// 语音全文识别结果，当 Type 为
         ///  AsrFullTextRecognition 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let asrFullTextTask: AiRecognitionTaskAsrFullTextResult
+        public let asrFullTextTask: AiRecognitionTaskAsrFullTextResult?
         
         /// 文本关键词识别结果，当 Type 为
         ///  OcrWordsRecognition 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ocrWordsTask: AiRecognitionTaskOcrWordsResult
+        public let ocrWordsTask: AiRecognitionTaskOcrWordsResult?
         
         /// 文本全文识别结果，当 Type 为
         ///  OcrFullTextRecognition 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ocrFullTextTask: AiRecognitionTaskOcrFullTextResult
+        public let ocrFullTextTask: AiRecognitionTaskOcrFullTextResult?
         
         /// 物体识别结果，当 Type 为
         ///  ObjectRecognition 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let objectTask: AiRecognitionTaskObjectResult
+        public let objectTask: AiRecognitionTaskObjectResult?
         
         enum CodingKeys: String, CodingKey {
             case type = "Type"
@@ -885,7 +885,7 @@ extension Vod {
         
         /// 语音全文识别任务输出信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiRecognitionTaskAsrFullTextResultOutput
+        public let output: AiRecognitionTaskAsrFullTextResultOutput?
         
         /// 任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -995,7 +995,7 @@ extension Vod {
         
         /// 语音关键词识别任务输出信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiRecognitionTaskAsrWordsResultOutput
+        public let output: AiRecognitionTaskAsrWordsResultOutput?
         
         /// 语音关键词识别任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -1091,7 +1091,7 @@ extension Vod {
         
         /// 人脸识别任务输出信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiRecognitionTaskFaceResultOutput
+        public let output: AiRecognitionTaskFaceResultOutput?
         
         /// 人脸识别任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -1201,7 +1201,7 @@ extension Vod {
         
         /// 视频片头片尾识别任务输出信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiRecognitionTaskHeadTailResultOutput
+        public let output: AiRecognitionTaskHeadTailResultOutput?
         
         /// 视频片头片尾识别任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -1282,7 +1282,7 @@ extension Vod {
         
         /// 物体识别任务输出信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiRecognitionTaskObjectResultOutput
+        public let output: AiRecognitionTaskObjectResultOutput?
         
         /// 物体识别任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -1382,7 +1382,7 @@ extension Vod {
         
         /// 文本全文识别任务输出信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiRecognitionTaskOcrFullTextResultOutput
+        public let output: AiRecognitionTaskOcrFullTextResultOutput?
         
         /// 文本全文识别任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -1482,7 +1482,7 @@ extension Vod {
         
         /// 文本关键词识别任务输出信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiRecognitionTaskOcrWordsResultOutput
+        public let output: AiRecognitionTaskOcrWordsResultOutput?
         
         /// 文本关键词识别任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -1579,11 +1579,11 @@ extension Vod {
         
         /// 视频拆条任务输入信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let input: AiRecognitionTaskSegmentResultInput
+        public let input: AiRecognitionTaskSegmentResultInput?
         
         /// 视频拆条任务输出信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiRecognitionTaskSegmentResultOutput
+        public let output: AiRecognitionTaskSegmentResultOutput?
         
         /// 视频拆条任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -2055,7 +2055,7 @@ extension Vod {
         
         /// 音视频审核 Ocr 文字涉及令人不适宜信息的任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiReviewPoliticalOcrTaskOutput
+        public let output: AiReviewPoliticalOcrTaskOutput?
         
         enum CodingKeys: String, CodingKey {
             case status = "Status"
@@ -2086,7 +2086,7 @@ extension Vod {
         
         /// 音视频审核涉及令人不适宜信息的任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiReviewPoliticalTaskOutput
+        public let output: AiReviewPoliticalTaskOutput?
         
         /// 音视频审核涉及令人不适宜信息的任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -2121,7 +2121,7 @@ extension Vod {
         
         /// 音视频审核 Asr 文字涉及令人反感的信息的任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiReviewPornAsrTaskOutput
+        public let output: AiReviewPornAsrTaskOutput?
         
         /// 音视频审核 Asr 文字涉及令人反感的信息的任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -2156,7 +2156,7 @@ extension Vod {
         
         /// Ocr 文字音视频审核涉及令人反感的信息的任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiReviewPornOcrTaskOutput
+        public let output: AiReviewPornOcrTaskOutput?
         
         /// Ocr 文字音视频审核涉及令人反感的信息的任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -2191,7 +2191,7 @@ extension Vod {
         
         /// 音视频审核涉及令人反感的信息的任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiReviewPornTaskOutput
+        public let output: AiReviewPornTaskOutput?
         
         /// 音视频审核涉及令人反感的信息的任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -2226,7 +2226,7 @@ extension Vod {
         
         /// 音视频审核 Asr 文字鉴违禁任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiReviewProhibitedAsrTaskOutput
+        public let output: AiReviewProhibitedAsrTaskOutput?
         
         /// 音视频审核 Asr 文字鉴违禁任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -2261,7 +2261,7 @@ extension Vod {
         
         /// 音视频审核 Ocr 文字鉴违禁任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiReviewProhibitedOcrTaskOutput
+        public let output: AiReviewProhibitedOcrTaskOutput?
         
         /// 音视频审核 Ocr 文字鉴违禁任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -2296,7 +2296,7 @@ extension Vod {
         
         /// 音视频审核 Ocr 文字涉及令人不安全的信息的任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiReviewTerrorismOcrTaskOutput
+        public let output: AiReviewTerrorismOcrTaskOutput?
         
         /// 音视频审核 Ocr 文字涉及令人不安全的信息的任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -2331,7 +2331,7 @@ extension Vod {
         
         /// 音视频审核涉及令人不安全的信息的任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: AiReviewTerrorismTaskOutput
+        public let output: AiReviewTerrorismTaskOutput?
         
         /// 音视频审核涉及令人不安全的信息的任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -2468,7 +2468,7 @@ extension Vod {
         /// 注意：图片必须是单人像正面人脸较清晰的照片，像素不低于 200*200。
         public let faceContents: [String]?
         
-        public init (type: String, faceIds: [String]?, faceContents: [String]?) {
+        public init (type: String, faceIds: [String]? = nil, faceContents: [String]? = nil) {
             self.type = type
             self.faceIds = faceIds
             self.faceContents = faceContents
@@ -2594,7 +2594,7 @@ extension Vod {
         /// <li>单个标签长度限制：128 个字符。</li>
         public let tags: [String]?
         
-        public init (keyword: String, tags: [String]?) {
+        public init (keyword: String, tags: [String]? = nil) {
             self.keyword = keyword
             self.tags = tags
         }
@@ -2722,7 +2722,7 @@ extension Vod {
         /// <font color='red'>注意：此字段已废弃，建议使用 SubtitleFormats。</font>
         public let subtitleFormat: String?
         
-        public init (`switch`: String, subtitleFormats: [String]?, subtitleFormat: String?) {
+        public init (`switch`: String, subtitleFormats: [String]? = nil, subtitleFormat: String? = nil) {
             self.`switch` = `switch`
             self.subtitleFormats = subtitleFormats
             self.subtitleFormat = subtitleFormat
@@ -2743,7 +2743,7 @@ extension Vod {
         public let `switch`: String?
         
         /// 字幕格式列表操作信息。
-        public let subtitleFormatsOperation: SubtitleFormatsOperation
+        public let subtitleFormatsOperation: SubtitleFormatsOperation?
         
         /// 生成的字幕文件格式，<font color='red'>填空字符串</font>表示不生成字幕文件，可选值：
         /// <li>vtt：生成 WebVTT 字幕文件；</li>
@@ -2751,7 +2751,7 @@ extension Vod {
         /// <font color='red'>注意：此字段已废弃，建议使用 SubtitleFormatsOperation。</font>
         public let subtitleFormat: String?
         
-        public init (`switch`: String?, subtitleFormatsOperation: SubtitleFormatsOperation, subtitleFormat: String?) {
+        public init (`switch`: String? = nil, subtitleFormatsOperation: SubtitleFormatsOperation? = nil, subtitleFormat: String? = nil) {
             self.`switch` = `switch`
             self.subtitleFormatsOperation = subtitleFormatsOperation
             self.subtitleFormat = subtitleFormat
@@ -2775,7 +2775,7 @@ extension Vod {
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
         
-        public init (`switch`: String, labelSet: [String]?) {
+        public init (`switch`: String, labelSet: [String]? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
         }
@@ -2797,7 +2797,7 @@ extension Vod {
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
         
-        public init (`switch`: String?, labelSet: [String]?) {
+        public init (`switch`: String? = nil, labelSet: [String]? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
         }
@@ -2848,7 +2848,7 @@ extension Vod {
         /// 默认值：2。
         public let audioChannel: Int64?
         
-        public init (codec: String, bitrate: UInt64, sampleRate: UInt64, audioChannel: Int64?) {
+        public init (codec: String, bitrate: UInt64, sampleRate: UInt64, audioChannel: Int64? = nil) {
             self.codec = codec
             self.bitrate = bitrate
             self.sampleRate = sampleRate
@@ -2901,7 +2901,7 @@ extension Vod {
         /// 当媒体的封装格式是音频格式时（flac，ogg，mp3，m4a）时，声道数不允许设为立体声。
         public let audioChannel: Int64?
         
-        public init (codec: String?, bitrate: UInt64?, sampleRate: UInt64?, audioChannel: Int64?) {
+        public init (codec: String? = nil, bitrate: UInt64? = nil, sampleRate: UInt64? = nil, audioChannel: Int64? = nil) {
             self.codec = codec
             self.bitrate = bitrate
             self.sampleRate = sampleRate
@@ -2938,7 +2938,7 @@ extension Vod {
         /// 对音频片段进行的操作，如音量调节等。
         public let audioOperations: [AudioTransform]?
         
-        public init (sourceMedia: String, sourceMediaStartTime: Float?, duration: Float?, targetDuration: Float?, audioOperations: [AudioTransform]?) {
+        public init (sourceMedia: String, sourceMediaStartTime: Float? = nil, duration: Float? = nil, targetDuration: Float? = nil, audioOperations: [AudioTransform]? = nil) {
             self.sourceMedia = sourceMedia
             self.sourceMediaStartTime = sourceMediaStartTime
             self.duration = duration
@@ -2963,9 +2963,9 @@ extension Vod {
         
         /// 音量调节参数， 当 Type = Volume 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let volumeParam: AudioVolumeParam
+        public let volumeParam: AudioVolumeParam?
         
-        public init (type: String, volumeParam: AudioVolumeParam) {
+        public init (type: String, volumeParam: AudioVolumeParam? = nil) {
             self.type = type
             self.volumeParam = volumeParam
         }
@@ -2991,7 +2991,7 @@ extension Vod {
         /// 默认是0。
         public let gain: Float?
         
-        public init (mute: Int64?, gain: Float?) {
+        public init (mute: Int64? = nil, gain: Float? = nil) {
             self.mute = mute
             self.gain = gain
         }
@@ -3018,7 +3018,7 @@ extension Vod {
         /// 默认值：0，表示和第一个视频轨的第一个视频片段的视频高度一致。
         public let height: Int64?
         
-        public init (color: String?, width: Int64?, height: Int64?) {
+        public init (color: String? = nil, width: Int64? = nil, height: Int64? = nil) {
             self.color = color
             self.width = width
             self.height = height
@@ -3081,7 +3081,7 @@ extension Vod {
         /// <li>OFF：关闭智能分类任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String?) {
+        public init (`switch`: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -3156,11 +3156,11 @@ extension Vod {
         
         /// 输出的视频信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let videoStream: OutputVideoStream
+        public let videoStream: OutputVideoStream?
         
         /// 输出的音频信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let audioStream: OutputAudioStream
+        public let audioStream: OutputAudioStream?
         
         /// 是否去除视频数据，可选值：
         /// <li>0：保留</li>
@@ -3174,7 +3174,7 @@ extension Vod {
         /// 默认值：0。
         public let removeAudio: Int64?
         
-        public init (fileName: String, description: String?, classId: Int64?, expireTime: String?, container: String?, videoStream: OutputVideoStream, audioStream: OutputAudioStream, removeVideo: Int64?, removeAudio: Int64?) {
+        public init (fileName: String, description: String? = nil, classId: Int64? = nil, expireTime: String? = nil, container: String? = nil, videoStream: OutputVideoStream? = nil, audioStream: OutputAudioStream? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil) {
             self.fileName = fileName
             self.description = description
             self.classId = classId
@@ -3222,15 +3222,15 @@ extension Vod {
         
         /// 制作媒体文件任务的输入。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let input: ComposeMediaTaskInput
+        public let input: ComposeMediaTaskInput?
         
         /// 制作媒体文件任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: ComposeMediaTaskOutput
+        public let output: ComposeMediaTaskOutput?
         
         /// 输出视频的元信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let metaData: MediaMetaData
+        public let metaData: MediaMetaData?
         
         /// 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         public let sessionId: String
@@ -3259,7 +3259,7 @@ extension Vod {
         
         /// 制作视频文件时使用的画布。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let canvas: Canvas
+        public let canvas: Canvas?
         
         /// 输出的媒体文件信息。
         public let output: ComposeMediaOutput
@@ -3382,27 +3382,27 @@ extension Vod {
         
         /// 图片画面中的鉴别令人反感的信息结果，当 Type 为 Porn.Image 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pornImageResult: PornImageResult
+        public let pornImageResult: PornImageResult?
         
         /// 图片画面中的鉴别令人不安全的信息结果，当 Type 为 Terrorism.Image 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let terrorismImageResult: TerrorismImageResult
+        public let terrorismImageResult: TerrorismImageResult?
         
         /// 图片画面中的鉴别令人不适宜信息结果，当 Type 为 Political.Image 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let politicalImageResult: PoliticalImageResult
+        public let politicalImageResult: PoliticalImageResult?
         
         /// 图片 OCR 文字中的鉴别令人反感的信息结果，当 Type 为 Porn.Ocr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pornOcrResult: ContentReviewOcrResult
+        public let pornOcrResult: ContentReviewOcrResult?
         
         /// 图片 OCR 中的鉴别令人不安全的信息结果，当 Type 为 Terrorism.Ocr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let terrorismOcrResult: ContentReviewOcrResult
+        public let terrorismOcrResult: ContentReviewOcrResult?
         
         /// 图片 OCR 文字中的鉴别令人不适宜信息结果，当 Type 为 Political.Ocr 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let politicalOcrResult: ContentReviewOcrResult
+        public let politicalOcrResult: ContentReviewOcrResult?
         
         enum CodingKeys: String, CodingKey {
             case type = "Type"
@@ -3428,25 +3428,25 @@ extension Vod {
         
         /// 鉴别涉及令人反感的信息的控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pornConfigure: PornConfigureInfo
+        public let pornConfigure: PornConfigureInfo?
         
         /// 鉴别涉及令人不安全的信息的控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let terrorismConfigure: TerrorismConfigureInfo
+        public let terrorismConfigure: TerrorismConfigureInfo?
         
         /// 鉴别涉及令人不适宜的信息的控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let politicalConfigure: PoliticalConfigureInfo
+        public let politicalConfigure: PoliticalConfigureInfo?
         
         /// 违禁控制参数。违禁内容包括：
         /// <li>谩骂；</li>
         /// <li>涉毒违法。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let prohibitedConfigure: ProhibitedConfigureInfo
+        public let prohibitedConfigure: ProhibitedConfigureInfo?
         
         /// 用户自定义音视频审核控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let userDefineConfigure: UserDefineConfigureInfo
+        public let userDefineConfigure: UserDefineConfigureInfo?
         
         /// 音视频审核结果是否进入音视频审核墙（对音视频审核结果进行人工复核）的开关。
         /// <li>ON：是；</li>
@@ -3496,7 +3496,7 @@ extension Vod {
         /// 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         public let watermarkSet: [WatermarkInput]?
         
-        public init (definition: UInt64, positionType: String, positionValue: Float, watermarkSet: [WatermarkInput]?) {
+        public init (definition: UInt64, positionType: String, positionValue: Float, watermarkSet: [WatermarkInput]? = nil) {
             self.definition = definition
             self.positionType = positionType
             self.positionValue = positionValue
@@ -3544,7 +3544,7 @@ extension Vod {
         /// <li>OFF：关闭智能封面任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String?) {
+        public init (`switch`: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -3643,7 +3643,7 @@ extension Vod {
         
         /// 获取媒体文件属性任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: DescribeFileAttributesTaskOutput
+        public let output: DescribeFileAttributesTaskOutput?
         
         /// 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         public let sessionId: String
@@ -3692,15 +3692,15 @@ extension Vod {
         
         /// HTTPS 配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let httpsConfig: DomainHTTPSConfig
+        public let httpsConfig: DomainHTTPSConfig?
         
         /// [Key 防盗链](https://cloud.tencent.com/document/product/266/14047)配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let urlSignatureAuthPolicy: UrlSignatureAuthPolicy
+        public let urlSignatureAuthPolicy: UrlSignatureAuthPolicy?
         
         /// [Referer 防盗链](https://cloud.tencent.com/document/product/266/14046)配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let refererAuthPolicy: RefererAuthPolicy
+        public let refererAuthPolicy: RefererAuthPolicy?
         
         /// 域名添加到腾讯云点播系统中的时间。
         /// <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。</li>
@@ -3743,7 +3743,7 @@ extension Vod {
         /// 保护类型为 FairPlay 的转自适应码流模板 ID。
         public let fairPlayDefinition: UInt64?
         
-        public init (simpleAesDefinition: UInt64?, widevineDefinition: UInt64?, fairPlayDefinition: UInt64?) {
+        public init (simpleAesDefinition: UInt64? = nil, widevineDefinition: UInt64? = nil, fairPlayDefinition: UInt64? = nil) {
             self.simpleAesDefinition = simpleAesDefinition
             self.widevineDefinition = widevineDefinition
             self.fairPlayDefinition = fairPlayDefinition
@@ -3767,7 +3767,7 @@ extension Vod {
         /// 保护类型为 FairPlay 的转自适应码流模板 ID。
         public let fairPlayDefinition: UInt64?
         
-        public init (simpleAesDefinition: UInt64?, widevineDefinition: UInt64?, fairPlayDefinition: UInt64?) {
+        public init (simpleAesDefinition: UInt64? = nil, widevineDefinition: UInt64? = nil, fairPlayDefinition: UInt64? = nil) {
             self.simpleAesDefinition = simpleAesDefinition
             self.widevineDefinition = widevineDefinition
             self.fairPlayDefinition = fairPlayDefinition
@@ -3791,7 +3791,7 @@ extension Vod {
         /// 视频剪辑的起始结束时间偏移，单位：秒。
         public let endTimeOffset: Float?
         
-        public init (fileId: String, startTimeOffset: Float?, endTimeOffset: Float?) {
+        public init (fileId: String, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
             self.fileId = fileId
             self.startTimeOffset = startTimeOffset
             self.endTimeOffset = endTimeOffset
@@ -3820,12 +3820,12 @@ extension Vod {
         public let expireTime: String?
         
         /// 输出的视频信息。
-        public let videoStream: EditMediaVideoStream
+        public let videoStream: EditMediaVideoStream?
         
         /// 极速高清转码参数。
-        public let tehdConfig: EditMediaTEHDConfig
+        public let tehdConfig: EditMediaTEHDConfig?
         
-        public init (mediaName: String?, type: String?, classId: Int64?, expireTime: String?, videoStream: EditMediaVideoStream, tehdConfig: EditMediaTEHDConfig) {
+        public init (mediaName: String? = nil, type: String? = nil, classId: Int64? = nil, expireTime: String? = nil, videoStream: EditMediaVideoStream? = nil, tehdConfig: EditMediaTEHDConfig? = nil) {
             self.mediaName = mediaName
             self.type = type
             self.classId = classId
@@ -3855,7 +3855,7 @@ extension Vod {
         /// 流剪辑的结束时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let endTime: String?
         
-        public init (streamId: String, startTime: String?, endTime: String?) {
+        public init (streamId: String, startTime: String? = nil, endTime: String? = nil) {
             self.streamId = streamId
             self.startTime = startTime
             self.endTime = endTime
@@ -3909,11 +3909,11 @@ extension Vod {
         
         /// 视频编辑任务的输入。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let input: EditMediaTaskInput
+        public let input: EditMediaTaskInput?
         
         /// 视频编辑任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: EditMediaTaskOutput
+        public let output: EditMediaTaskOutput?
         
         /// 输出视频的元信息。
         public let metaData: MediaMetaData
@@ -4016,7 +4016,7 @@ extension Vod {
         /// 默认值：0。
         public let height: UInt64?
         
-        public init (resolutionAdaptive: String?, width: UInt64?, height: UInt64?) {
+        public init (resolutionAdaptive: String? = nil, width: UInt64? = nil, height: UInt64? = nil) {
             self.resolutionAdaptive = resolutionAdaptive
             self.width = width
             self.height = height
@@ -4072,83 +4072,83 @@ extension Vod {
         
         /// 视频上传完成事件，当事件类型为 NewFileUpload 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let fileUploadEvent: FileUploadTask
+        public let fileUploadEvent: FileUploadTask?
         
         /// 任务流状态变更事件，当事件类型为 ProcedureStateChanged 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let procedureStateChangeEvent: ProcedureTask
+        public let procedureStateChangeEvent: ProcedureTask?
         
         /// 文件删除事件，当事件类型为 FileDeleted 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let fileDeleteEvent: FileDeleteTask
+        public let fileDeleteEvent: FileDeleteTask?
         
         /// 视频转拉完成事件，当事件类型为 PullComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pullCompleteEvent: PullUploadTask
+        public let pullCompleteEvent: PullUploadTask?
         
         /// 视频编辑完成事件，当事件类型为 EditMediaComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let editMediaCompleteEvent: EditMediaTask
+        public let editMediaCompleteEvent: EditMediaTask?
         
         /// 视频拆条完成事件，当事件类型为 SplitMediaComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let splitMediaCompleteEvent: SplitMediaTask
+        public let splitMediaCompleteEvent: SplitMediaTask?
         
         /// 制作媒体文件任务完成事件，当事件类型为 ComposeMediaComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let composeMediaCompleteEvent: ComposeMediaTask
+        public let composeMediaCompleteEvent: ComposeMediaTask?
         
         /// 视频剪辑完成事件，当事件类型为 ClipComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let clipCompleteEvent: ClipTask2017
+        public let clipCompleteEvent: ClipTask2017?
         
         /// 视频转码完成事件，当事件类型为 TranscodeComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let transcodeCompleteEvent: TranscodeTask2017
+        public let transcodeCompleteEvent: TranscodeTask2017?
         
         /// 视频截取雪碧图完成事件，当事件类型为 CreateImageSpriteComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let createImageSpriteCompleteEvent: CreateImageSpriteTask2017
+        public let createImageSpriteCompleteEvent: CreateImageSpriteTask2017?
         
         /// 视频拼接完成事件，当事件类型为 ConcatComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let concatCompleteEvent: ConcatTask2017
+        public let concatCompleteEvent: ConcatTask2017?
         
         /// 视频按时间点截图完成事件，当事件类型为 CreateSnapshotByTimeOffsetComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let snapshotByTimeOffsetCompleteEvent: SnapshotByTimeOffsetTask2017
+        public let snapshotByTimeOffsetCompleteEvent: SnapshotByTimeOffsetTask2017?
         
         /// 微信发布完成事件，当事件类型为 WechatPublishComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let wechatPublishCompleteEvent: WechatPublishTask
+        public let wechatPublishCompleteEvent: WechatPublishTask?
         
         /// 微信小程序发布任务完成事件，当事件类型为 WechatMiniProgramPublishComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let wechatMiniProgramPublishCompleteEvent: WechatMiniProgramPublishTask
+        public let wechatMiniProgramPublishCompleteEvent: WechatMiniProgramPublishTask?
         
         /// 智能去除水印任务完成事件，当事件类型为 RemoveWatermark 有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let removeWatermarkCompleteEvent: RemoveWatermarkTask
+        public let removeWatermarkCompleteEvent: RemoveWatermarkTask?
         
         /// 视频取回完成事件，当事件类型为RestoreMediaComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let restoreMediaCompleteEvent: RestoreMediaTask
+        public let restoreMediaCompleteEvent: RestoreMediaTask?
         
         /// 溯源水印提取完成事件，当事件类型为ExtractTraceWatermarkComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let extractTraceWatermarkCompleteEvent: ExtractTraceWatermarkTask
+        public let extractTraceWatermarkCompleteEvent: ExtractTraceWatermarkTask?
         
         /// 音视频审核完成事件，当事件类型为 ReviewAudioVideoComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let reviewAudioVideoCompleteEvent: ReviewAudioVideoTask
+        public let reviewAudioVideoCompleteEvent: ReviewAudioVideoTask?
         
         /// 该字段已无效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let reduceMediaBitrateCompleteEvent: ReduceMediaBitrateTask
+        public let reduceMediaBitrateCompleteEvent: ReduceMediaBitrateTask?
         
         /// 获取文件属性完成事件，当事件类型为 DescribeFileAttributesComplete 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let describeFileAttributesCompleteEvent: DescribeFileAttributesTask
+        public let describeFileAttributesCompleteEvent: DescribeFileAttributesTask?
         
         enum CodingKeys: String, CodingKey {
             case eventHandle = "EventHandle"
@@ -4274,7 +4274,7 @@ extension Vod {
         /// 默认值：All，使用系统默认人物库及用户自定义人物库。
         public let faceLibrary: String?
         
-        public init (`switch`: String, score: Float?, defaultLibraryLabelSet: [String]?, userDefineLibraryLabelSet: [String]?, faceLibrary: String?) {
+        public init (`switch`: String, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
             self.`switch` = `switch`
             self.score = score
             self.defaultLibraryLabelSet = defaultLibraryLabelSet
@@ -4317,7 +4317,7 @@ extension Vod {
         /// <li>All：同时使用默认人物库和用户自定义人物库。</li>
         public let faceLibrary: String?
         
-        public init (`switch`: String?, score: Float?, defaultLibraryLabelSet: [String]?, userDefineLibraryLabelSet: [String]?, faceLibrary: String?) {
+        public init (`switch`: String? = nil, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
             self.`switch` = `switch`
             self.score = score
             self.defaultLibraryLabelSet = defaultLibraryLabelSet
@@ -4376,7 +4376,7 @@ extension Vod {
         
         /// 元信息。包括大小、时长、视频流信息、音频流信息等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let metaData: MediaMetaData
+        public let metaData: MediaMetaData?
         
         enum CodingKeys: String, CodingKey {
             case fileId = "FileId"
@@ -4396,7 +4396,7 @@ extension Vod {
         /// 截帧间隔，单位为秒，当不填时，默认截帧间隔为 1 秒，最小值为 0.5 秒。
         public let screenshotInterval: Float?
         
-        public init (`switch`: String, screenshotInterval: Float?) {
+        public init (`switch`: String = "OFF", screenshotInterval: Float? = nil) {
             self.`switch` = `switch`
             self.screenshotInterval = screenshotInterval
         }
@@ -4417,7 +4417,7 @@ extension Vod {
         /// 截帧间隔，单位为秒，最小值为 0.5 秒。
         public let screenshotInterval: Float?
         
-        public init (`switch`: String?, screenshotInterval: Float?) {
+        public init (`switch`: String? = nil, screenshotInterval: Float? = nil) {
             self.`switch` = `switch`
             self.screenshotInterval = screenshotInterval
         }
@@ -4451,7 +4451,7 @@ extension Vod {
         /// <li>OFF：关闭智能视频片头片尾识别任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String?) {
+        public init (`switch`: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -4550,7 +4550,7 @@ extension Vod {
         /// <li>OFF：关闭智能精彩片段任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String?) {
+        public init (`switch`: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -4575,7 +4575,7 @@ extension Vod {
         /// 输出图片的半径，单位为像素，当 Type 取值为 Circle 时有效。
         public let radius: Int64?
         
-        public init (type: String, width: Int64?, height: Int64?, radius: Int64?) {
+        public init (type: String, width: Int64? = nil, height: Int64? = nil, radius: Int64? = nil) {
             self.type = type
             self.width = width
             self.height = height
@@ -4613,12 +4613,12 @@ extension Vod {
         public let type: String
         
         /// 图片缩略处理，仅当 Type 为 Scale 时有效。
-        public let scale: ImageScale
+        public let scale: ImageScale?
         
         /// 图片裁剪处理，仅当 Type 为 CenterCut 时有效。
-        public let centerCut: ImageCenterCut
+        public let centerCut: ImageCenterCut?
         
-        public init (type: String, scale: ImageScale, centerCut: ImageCenterCut) {
+        public init (type: String, scale: ImageScale? = nil, centerCut: ImageCenterCut? = nil) {
             self.type = type
             self.scale = scale
             self.centerCut = centerCut
@@ -4700,7 +4700,7 @@ extension Vod {
         /// 输出图片的短边长度，单位为像素。当 Type 取值为 ShortEdgeFirst 时此字段有效。
         public let shortEdge: UInt64?
         
-        public init (type: String, height: UInt64?, width: UInt64?, longEdge: UInt64?, shortEdge: UInt64?) {
+        public init (type: String, height: UInt64? = nil, width: UInt64? = nil, longEdge: UInt64? = nil, shortEdge: UInt64? = nil) {
             self.type = type
             self.height = height
             self.width = width
@@ -4831,7 +4831,7 @@ extension Vod {
         /// 当 Type = Flip 时有效。
         public let flip: String?
         
-        public init (type: String, rotateAngle: Float?, flip: String?) {
+        public init (type: String, rotateAngle: Float? = nil, flip: String? = nil) {
             self.type = type
             self.rotateAngle = rotateAngle
             self.flip = flip
@@ -4873,7 +4873,7 @@ extension Vod {
         /// 默认值：0。
         public let transparency: Int64?
         
-        public init (imageContent: String, width: String?, height: String?, repeatType: String?, transparency: Int64?) {
+        public init (imageContent: String, width: String? = nil, height: String? = nil, repeatType: String? = nil, transparency: Int64? = nil) {
             self.imageContent = imageContent
             self.width = width
             self.height = height
@@ -4916,7 +4916,7 @@ extension Vod {
         /// <li>100：完全透明。</li>
         public let transparency: Int64?
         
-        public init (imageContent: String?, width: String?, height: String?, repeatType: String?, transparency: Int64?) {
+        public init (imageContent: String? = nil, width: String? = nil, height: String? = nil, repeatType: String? = nil, transparency: Int64? = nil) {
             self.imageContent = imageContent
             self.width = width
             self.height = height
@@ -5008,7 +5008,7 @@ extension Vod {
         /// <b>当Type值为"Transcoding"时，必须填写。</b>
         public let templateId: UInt64?
         
-        public init (type: String?, templateId: UInt64?) {
+        public init (type: String? = nil, templateId: UInt64? = nil) {
             self.type = type
             self.templateId = templateId
         }
@@ -5245,7 +5245,7 @@ extension Vod {
         
         /// 该媒体文件的来源信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sourceInfo: MediaSourceData
+        public let sourceInfo: MediaSourceData?
         
         /// 媒体文件存储地区，如 ap-chongqing，参见[地域列表](https://cloud.tencent.com/document/product/266/9760#.E5.B7.B2.E6.94.AF.E6.8C.81.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)。
         public let storageRegion: String
@@ -5524,7 +5524,7 @@ extension Vod {
         /// 默认值为0，表示删除参数Type指定种类下所有的视频。
         public let definition: Int64?
         
-        public init (type: String, definition: Int64?) {
+        public init (type: String, definition: Int64? = nil) {
             self.type = type
             self.definition = definition
         }
@@ -5579,47 +5579,47 @@ extension Vod {
     public struct MediaInfo: TCOutputModel {
         /// 基础信息。包括视频名称、分类、播放地址、封面图片等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let basicInfo: MediaBasicInfo
+        public let basicInfo: MediaBasicInfo?
         
         /// 元信息。包括大小、时长、视频流信息、音频流信息等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let metaData: MediaMetaData
+        public let metaData: MediaMetaData?
         
         /// 转码结果信息。包括该视频转码生成的各种码率的视频的地址、规格、码率、分辨率等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let transcodeInfo: MediaTranscodeInfo
+        public let transcodeInfo: MediaTranscodeInfo?
         
         /// 转动图结果信息。对视频转动图（如 gif）后，动图相关信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let animatedGraphicsInfo: MediaAnimatedGraphicsInfo
+        public let animatedGraphicsInfo: MediaAnimatedGraphicsInfo?
         
         /// 采样截图信息。对视频采样截图后，相关截图信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sampleSnapshotInfo: MediaSampleSnapshotInfo
+        public let sampleSnapshotInfo: MediaSampleSnapshotInfo?
         
         /// 雪碧图信息。对视频截取雪碧图之后，雪碧的相关信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imageSpriteInfo: MediaImageSpriteInfo
+        public let imageSpriteInfo: MediaImageSpriteInfo?
         
         /// 指定时间点截图信息。对视频依照指定时间点截图后，各个截图的信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let snapshotByTimeOffsetInfo: MediaSnapshotByTimeOffsetInfo
+        public let snapshotByTimeOffsetInfo: MediaSnapshotByTimeOffsetInfo?
         
         /// 视频打点信息。对视频设置的各个打点信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let keyFrameDescInfo: MediaKeyFrameDescInfo
+        public let keyFrameDescInfo: MediaKeyFrameDescInfo?
         
         /// 转自适应码流信息。包括规格、加密类型、打包格式等相关信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let adaptiveDynamicStreamingInfo: MediaAdaptiveDynamicStreamingInfo
+        public let adaptiveDynamicStreamingInfo: MediaAdaptiveDynamicStreamingInfo?
         
         /// 小程序审核信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let miniProgramReviewInfo: MediaMiniProgramReviewInfo
+        public let miniProgramReviewInfo: MediaMiniProgramReviewInfo?
         
         /// 字幕信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let subtitleInfo: MediaSubtitleInfo
+        public let subtitleInfo: MediaSubtitleInfo?
         
         /// 媒体文件唯一标识 ID。
         public let fileId: String
@@ -5651,7 +5651,7 @@ extension Vod {
         /// 视频自定义 ID。
         public let id: String?
         
-        public init (url: String, name: String?, id: String?) {
+        public init (url: String, name: String? = nil, id: String? = nil) {
             self.url = url
             self.name = name
             self.id = id
@@ -5792,7 +5792,7 @@ extension Vod {
         public let definition: Int64
         
         /// 视频元信息。
-        public let metaData: MediaMetaData
+        public let metaData: MediaMetaData?
         
         /// 小程序音视频审核视频播放地址。
         public let url: String
@@ -5825,7 +5825,7 @@ extension Vod {
         /// 输出文件目录，目录名必须以 "/" 结尾。
         public let dir: String?
         
-        public init (region: String?, bucket: String?, dir: String?) {
+        public init (region: String? = nil, bucket: String? = nil, dir: String? = nil) {
             self.region = region
             self.bucket = bucket
             self.dir = dir
@@ -5891,7 +5891,7 @@ extension Vod {
         
         /// 转动图任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: MediaAnimatedGraphicsItem
+        public let output: MediaAnimatedGraphicsItem?
         
         /// 转动图任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -5960,7 +5960,7 @@ extension Vod {
         
         /// 对视频截雪碧图任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: MediaImageSpriteItem
+        public let output: MediaImageSpriteItem?
         
         /// 对视频截雪碧图任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -5999,7 +5999,7 @@ extension Vod {
         /// 对视频转自适应码流任务列表。
         public let adaptiveDynamicStreamingTaskSet: [AdaptiveDynamicStreamingTaskInput]?
         
-        public init (transcodeTaskSet: [TranscodeTaskInput]?, animatedGraphicTaskSet: [AnimatedGraphicTaskInput]?, snapshotByTimeOffsetTaskSet: [SnapshotByTimeOffsetTaskInput]?, sampleSnapshotTaskSet: [SampleSnapshotTaskInput]?, imageSpriteTaskSet: [ImageSpriteTaskInput]?, coverBySnapshotTaskSet: [CoverBySnapshotTaskInput]?, adaptiveDynamicStreamingTaskSet: [AdaptiveDynamicStreamingTaskInput]?) {
+        public init (transcodeTaskSet: [TranscodeTaskInput]? = nil, animatedGraphicTaskSet: [AnimatedGraphicTaskInput]? = nil, snapshotByTimeOffsetTaskSet: [SnapshotByTimeOffsetTaskInput]? = nil, sampleSnapshotTaskSet: [SampleSnapshotTaskInput]? = nil, imageSpriteTaskSet: [ImageSpriteTaskInput]? = nil, coverBySnapshotTaskSet: [CoverBySnapshotTaskInput]? = nil, adaptiveDynamicStreamingTaskSet: [AdaptiveDynamicStreamingTaskInput]? = nil) {
             self.transcodeTaskSet = transcodeTaskSet
             self.animatedGraphicTaskSet = animatedGraphicTaskSet
             self.snapshotByTimeOffsetTaskSet = snapshotByTimeOffsetTaskSet
@@ -6034,31 +6034,31 @@ extension Vod {
         
         /// 视频转码任务的查询结果，当任务类型为 Transcode 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let transcodeTask: MediaProcessTaskTranscodeResult
+        public let transcodeTask: MediaProcessTaskTranscodeResult?
         
         /// 视频转动图任务的查询结果，当任务类型为 AnimatedGraphics 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let animatedGraphicTask: MediaProcessTaskAnimatedGraphicResult
+        public let animatedGraphicTask: MediaProcessTaskAnimatedGraphicResult?
         
         /// 对视频按时间点截图任务的查询结果，当任务类型为 SnapshotByTimeOffset 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let snapshotByTimeOffsetTask: MediaProcessTaskSnapshotByTimeOffsetResult
+        public let snapshotByTimeOffsetTask: MediaProcessTaskSnapshotByTimeOffsetResult?
         
         /// 对视频采样截图任务的查询结果，当任务类型为 SampleSnapshot 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sampleSnapshotTask: MediaProcessTaskSampleSnapshotResult
+        public let sampleSnapshotTask: MediaProcessTaskSampleSnapshotResult?
         
         /// 对视频截雪碧图任务的查询结果，当任务类型为 ImageSprite 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imageSpriteTask: MediaProcessTaskImageSpriteResult
+        public let imageSpriteTask: MediaProcessTaskImageSpriteResult?
         
         /// 对视频截图做封面任务的查询结果，当任务类型为 CoverBySnapshot 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let coverBySnapshotTask: MediaProcessTaskCoverBySnapshotResult
+        public let coverBySnapshotTask: MediaProcessTaskCoverBySnapshotResult?
         
         /// 对视频转自适应码流任务的查询结果，当任务类型为 AdaptiveDynamicStreaming 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let adaptiveDynamicStreamingTask: MediaProcessTaskAdaptiveDynamicStreamingResult
+        public let adaptiveDynamicStreamingTask: MediaProcessTaskAdaptiveDynamicStreamingResult?
         
         enum CodingKeys: String, CodingKey {
             case type = "Type"
@@ -6091,7 +6091,7 @@ extension Vod {
         
         /// 对视频做采样截图任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: MediaSampleSnapshotItem
+        public let output: MediaSampleSnapshotItem?
         
         /// 对视频做采样截图任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -6126,7 +6126,7 @@ extension Vod {
         
         /// 对视频按指定时间点截图任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: MediaSnapshotByTimeOffsetItem
+        public let output: MediaSnapshotByTimeOffsetItem?
         
         /// 对视频按指定时间点截图任务进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -6161,7 +6161,7 @@ extension Vod {
         
         /// 转码任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: MediaTranscodeItem
+        public let output: MediaTranscodeItem?
         
         /// 转码进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -6282,7 +6282,7 @@ extension Vod {
         
         /// TRTC 伴生录制信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let trtcRecordInfo: TrtcRecordInfo
+        public let trtcRecordInfo: TrtcRecordInfo?
         
         enum CodingKeys: String, CodingKey {
             case sourceType = "SourceType"
@@ -6323,7 +6323,7 @@ extension Vod {
         /// 字幕的唯一标识。长度不能超过16个字符，可以使用大小写字母、数字、下划线（_）或横杠（-）。不能与媒体文件中现有字幕的唯一标识重复。
         public let id: String?
         
-        public init (name: String, language: String, format: String, content: String, id: String?) {
+        public init (name: String, language: String, format: String, content: String, id: String? = nil) {
             self.name = name
             self.language = language
             self.format = format
@@ -6407,26 +6407,26 @@ extension Vod {
         
         /// 视频片段，当 Type = Video 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let videoItem: VideoTrackItem
+        public let videoItem: VideoTrackItem?
         
         /// 音频片段，当 Type = Audio 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let audioItem: AudioTrackItem
+        public let audioItem: AudioTrackItem?
         
         /// 贴图片段，当 Type = Sticker 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let stickerItem: StickerTrackItem
+        public let stickerItem: StickerTrackItem?
         
         /// 转场，当 Type = Transition 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let transitionItem: MediaTransitionItem
+        public let transitionItem: MediaTransitionItem?
         
         /// 空白片段，当 Type = Empty 时有效。空片段用于时间轴的占位。<li>如需要两个音频片段之间有一段时间的静音，可以用 EmptyTrackItem 来进行占位。</li>
         /// <li>使用 EmptyTrackItem 进行占位，来定位某个Item。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let emptyItem: EmptyTrackItem
+        public let emptyItem: EmptyTrackItem?
         
-        public init (type: String, videoItem: VideoTrackItem, audioItem: AudioTrackItem, stickerItem: StickerTrackItem, transitionItem: MediaTransitionItem, emptyItem: EmptyTrackItem) {
+        public init (type: String, videoItem: VideoTrackItem? = nil, audioItem: AudioTrackItem? = nil, stickerItem: StickerTrackItem? = nil, transitionItem: MediaTransitionItem? = nil, emptyItem: EmptyTrackItem? = nil) {
             self.type = type
             self.videoItem = videoItem
             self.audioItem = audioItem
@@ -6520,7 +6520,7 @@ extension Vod {
         /// 转场操作列表。图像转场操作和音频转场操作各自最多支持一个。
         public let transitions: [TransitionOpertion]?
         
-        public init (duration: Float, transitions: [TransitionOpertion]?) {
+        public init (duration: Float, transitions: [TransitionOpertion]? = nil) {
             self.duration = duration
             self.transitions = transitions
         }
@@ -6604,7 +6604,7 @@ extension Vod {
         /// <li>当数值小于0时（假设为 -n），表示马赛克持续到离画面结束 n 秒前消失。</li>
         public let endTimeOffset: Float?
         
-        public init (coordinateOrigin: String?, xPos: String?, yPos: String?, width: String?, height: String?, startTimeOffset: Float?, endTimeOffset: Float?) {
+        public init (coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, width: String? = nil, height: String? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
             self.coordinateOrigin = coordinateOrigin
             self.xPos = xPos
             self.yPos = yPos
@@ -6639,7 +6639,7 @@ extension Vod {
         /// 默认值： All，同时使用默认物体库和用户自定义物体库。
         public let objectLibrary: String?
         
-        public init (`switch`: String, objectLibrary: String?) {
+        public init (`switch`: String = "OFF", objectLibrary: String? = nil) {
             self.`switch` = `switch`
             self.objectLibrary = objectLibrary
         }
@@ -6663,7 +6663,7 @@ extension Vod {
         /// <li>All：同时使用默认物体库和用户自定义物体库。</li>
         public let objectLibrary: String?
         
-        public init (`switch`: String?, objectLibrary: String?) {
+        public init (`switch`: String? = nil, objectLibrary: String? = nil) {
             self.`switch` = `switch`
             self.objectLibrary = objectLibrary
         }
@@ -6681,7 +6681,7 @@ extension Vod {
         /// <li>OFF：关闭智能文本全文识别任务。</li>
         public let `switch`: String
         
-        public init (`switch`: String) {
+        public init (`switch`: String = "OFF") {
             self.`switch` = `switch`
         }
         
@@ -6697,7 +6697,7 @@ extension Vod {
         /// <li>OFF：关闭智能文本全文识别任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String?) {
+        public init (`switch`: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -6717,7 +6717,7 @@ extension Vod {
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
         
-        public init (`switch`: String, labelSet: [String]?) {
+        public init (`switch`: String, labelSet: [String]? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
         }
@@ -6739,7 +6739,7 @@ extension Vod {
         /// 标签个数最多 10 个，每个标签长度最多 16 个字符。
         public let labelSet: [String]?
         
-        public init (`switch`: String?, labelSet: [String]?) {
+        public init (`switch`: String? = nil, labelSet: [String]? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
         }
@@ -6772,7 +6772,7 @@ extension Vod {
         /// 默认值：2。
         public let audioChannel: Int64?
         
-        public init (codec: String?, sampleRate: Int64?, audioChannel: Int64?) {
+        public init (codec: String? = nil, sampleRate: Int64? = nil, audioChannel: Int64? = nil) {
             self.codec = codec
             self.sampleRate = sampleRate
             self.audioChannel = audioChannel
@@ -6796,7 +6796,7 @@ extension Vod {
         /// 默认值：0，表示和第一个视频轨的第一个视频片段的视频帧率一致。
         public let fps: Int64?
         
-        public init (codec: String?, fps: Int64?) {
+        public init (codec: String? = nil, fps: Int64? = nil) {
             self.codec = codec
             self.fps = fps
         }
@@ -6881,7 +6881,7 @@ extension Vod {
         
         /// 允许输出的 DRM 自适应码流模板内容。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let drmStreamingsInfo: DrmStreamingsInfo
+        public let drmStreamingsInfo: DrmStreamingsInfo?
         
         /// 允许输出的转码模板 ID。
         public let transcodeDefinition: UInt64
@@ -6941,7 +6941,7 @@ extension Vod {
         /// 判定涉嫌违规的分数阈值，当音视频审核达到该分数以上，认为涉嫌违规，不填默认为 100 分。取值范围：0~100。
         public let blockConfidence: Int64?
         
-        public init (`switch`: String, reviewConfidence: Int64?, blockConfidence: Int64?) {
+        public init (`switch`: String, reviewConfidence: Int64? = nil, blockConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.reviewConfidence = reviewConfidence
             self.blockConfidence = blockConfidence
@@ -6967,7 +6967,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当音视频审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -6984,17 +6984,17 @@ extension Vod {
     public struct PoliticalConfigureInfo: TCInputModel, TCOutputModel {
         /// 画面鉴别涉及令人不适宜的信息的控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imgReviewInfo: PoliticalImgReviewTemplateInfo
+        public let imgReviewInfo: PoliticalImgReviewTemplateInfo?
         
         /// 语音鉴别涉及令人不适宜的信息的控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let asrReviewInfo: PoliticalAsrReviewTemplateInfo
+        public let asrReviewInfo: PoliticalAsrReviewTemplateInfo?
         
         /// 文本鉴别涉及令人不适宜的信息的控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ocrReviewInfo: PoliticalOcrReviewTemplateInfo
+        public let ocrReviewInfo: PoliticalOcrReviewTemplateInfo?
         
-        public init (imgReviewInfo: PoliticalImgReviewTemplateInfo, asrReviewInfo: PoliticalAsrReviewTemplateInfo, ocrReviewInfo: PoliticalOcrReviewTemplateInfo) {
+        public init (imgReviewInfo: PoliticalImgReviewTemplateInfo? = nil, asrReviewInfo: PoliticalAsrReviewTemplateInfo? = nil, ocrReviewInfo: PoliticalOcrReviewTemplateInfo? = nil) {
             self.imgReviewInfo = imgReviewInfo
             self.asrReviewInfo = asrReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
@@ -7010,15 +7010,15 @@ extension Vod {
     /// 鉴别涉及令人不适宜的信息的控制参数。
     public struct PoliticalConfigureInfoForUpdate: TCInputModel {
         /// 画面鉴别涉及令人不适宜的信息的控制参数。
-        public let imgReviewInfo: PoliticalImgReviewTemplateInfoForUpdate
+        public let imgReviewInfo: PoliticalImgReviewTemplateInfoForUpdate?
         
         /// 语音鉴别涉及令人不适宜的信息的控制参数。
-        public let asrReviewInfo: PoliticalAsrReviewTemplateInfoForUpdate
+        public let asrReviewInfo: PoliticalAsrReviewTemplateInfoForUpdate?
         
         /// 文本鉴别涉及令人不适宜的信息的控制参数。
-        public let ocrReviewInfo: PoliticalOcrReviewTemplateInfoForUpdate
+        public let ocrReviewInfo: PoliticalOcrReviewTemplateInfoForUpdate?
         
-        public init (imgReviewInfo: PoliticalImgReviewTemplateInfoForUpdate, asrReviewInfo: PoliticalAsrReviewTemplateInfoForUpdate, ocrReviewInfo: PoliticalOcrReviewTemplateInfoForUpdate) {
+        public init (imgReviewInfo: PoliticalImgReviewTemplateInfoForUpdate? = nil, asrReviewInfo: PoliticalAsrReviewTemplateInfoForUpdate? = nil, ocrReviewInfo: PoliticalOcrReviewTemplateInfoForUpdate? = nil) {
             self.imgReviewInfo = imgReviewInfo
             self.asrReviewInfo = asrReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
@@ -7080,7 +7080,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 95 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -7119,7 +7119,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String?, labelSet: [String]?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -7147,7 +7147,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7173,7 +7173,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7199,7 +7199,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7225,7 +7225,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7242,17 +7242,17 @@ extension Vod {
     public struct PornConfigureInfo: TCInputModel, TCOutputModel {
         /// 画面鉴别涉及令人反感的信息的控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imgReviewInfo: PornImgReviewTemplateInfo
+        public let imgReviewInfo: PornImgReviewTemplateInfo?
         
         /// 语音鉴别涉及令人反感的信息的控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let asrReviewInfo: PornAsrReviewTemplateInfo
+        public let asrReviewInfo: PornAsrReviewTemplateInfo?
         
         /// 文本鉴别涉及令人反感的信息的控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ocrReviewInfo: PornOcrReviewTemplateInfo
+        public let ocrReviewInfo: PornOcrReviewTemplateInfo?
         
-        public init (imgReviewInfo: PornImgReviewTemplateInfo, asrReviewInfo: PornAsrReviewTemplateInfo, ocrReviewInfo: PornOcrReviewTemplateInfo) {
+        public init (imgReviewInfo: PornImgReviewTemplateInfo? = nil, asrReviewInfo: PornAsrReviewTemplateInfo? = nil, ocrReviewInfo: PornOcrReviewTemplateInfo? = nil) {
             self.imgReviewInfo = imgReviewInfo
             self.asrReviewInfo = asrReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
@@ -7268,15 +7268,15 @@ extension Vod {
     /// 鉴别涉及令人反感的信息的任务控制参数。
     public struct PornConfigureInfoForUpdate: TCInputModel {
         /// 画面鉴别涉及令人反感的信息的控制参数。
-        public let imgReviewInfo: PornImgReviewTemplateInfoForUpdate
+        public let imgReviewInfo: PornImgReviewTemplateInfoForUpdate?
         
         /// 语音鉴别涉及令人反感的信息的控制参数。
-        public let asrReviewInfo: PornAsrReviewTemplateInfoForUpdate
+        public let asrReviewInfo: PornAsrReviewTemplateInfoForUpdate?
         
         /// 文本鉴别涉及令人反感的信息的控制参数。
-        public let ocrReviewInfo: PornOcrReviewTemplateInfoForUpdate
+        public let ocrReviewInfo: PornOcrReviewTemplateInfoForUpdate?
         
-        public init (imgReviewInfo: PornImgReviewTemplateInfoForUpdate, asrReviewInfo: PornAsrReviewTemplateInfoForUpdate, ocrReviewInfo: PornOcrReviewTemplateInfoForUpdate) {
+        public init (imgReviewInfo: PornImgReviewTemplateInfoForUpdate? = nil, asrReviewInfo: PornAsrReviewTemplateInfoForUpdate? = nil, ocrReviewInfo: PornOcrReviewTemplateInfoForUpdate? = nil) {
             self.imgReviewInfo = imgReviewInfo
             self.asrReviewInfo = asrReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
@@ -7334,7 +7334,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 0 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -7369,7 +7369,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String?, labelSet: [String]?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -7397,7 +7397,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7423,7 +7423,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当智能审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7469,7 +7469,7 @@ extension Vod {
         
         /// 原始音视频的元信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let metaData: MediaMetaData
+        public let metaData: MediaMetaData?
         
         /// 音视频处理任务的执行状态与结果。
         public let mediaProcessResultSet: [MediaProcessTaskResult]
@@ -7543,23 +7543,23 @@ extension Vod {
         
         /// 视频处理类型任务参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mediaProcessTask: MediaProcessTaskInput
+        public let mediaProcessTask: MediaProcessTaskInput?
         
         /// AI 智能审核类型任务参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let aiContentReviewTask: AiContentReviewTaskInput
+        public let aiContentReviewTask: AiContentReviewTaskInput?
         
         /// AI 智能内容分析类型任务参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let aiAnalysisTask: AiAnalysisTaskInput
+        public let aiAnalysisTask: AiAnalysisTaskInput?
         
         /// AI 内容识别类型任务参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let aiRecognitionTask: AiRecognitionTaskInput
+        public let aiRecognitionTask: AiRecognitionTaskInput?
         
         /// 微信小程序发布任务参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let miniProgramPublishTask: WechatMiniProgramPublishTaskInput
+        public let miniProgramPublishTask: WechatMiniProgramPublishTaskInput?
         
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let createTime: String
@@ -7686,7 +7686,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7712,7 +7712,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7729,13 +7729,13 @@ extension Vod {
     public struct ProhibitedConfigureInfo: TCInputModel, TCOutputModel {
         /// 语音违禁控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let asrReviewInfo: ProhibitedAsrReviewTemplateInfo
+        public let asrReviewInfo: ProhibitedAsrReviewTemplateInfo?
         
         /// 文本违禁控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ocrReviewInfo: ProhibitedOcrReviewTemplateInfo
+        public let ocrReviewInfo: ProhibitedOcrReviewTemplateInfo?
         
-        public init (asrReviewInfo: ProhibitedAsrReviewTemplateInfo, ocrReviewInfo: ProhibitedOcrReviewTemplateInfo) {
+        public init (asrReviewInfo: ProhibitedAsrReviewTemplateInfo? = nil, ocrReviewInfo: ProhibitedOcrReviewTemplateInfo? = nil) {
             self.asrReviewInfo = asrReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
         }
@@ -7749,12 +7749,12 @@ extension Vod {
     /// 违禁任务控制参数
     public struct ProhibitedConfigureInfoForUpdate: TCInputModel {
         /// 语音违禁控制参数。
-        public let asrReviewInfo: ProhibitedAsrReviewTemplateInfoForUpdate
+        public let asrReviewInfo: ProhibitedAsrReviewTemplateInfoForUpdate?
         
         /// 文本违禁控制参数。
-        public let ocrReviewInfo: ProhibitedOcrReviewTemplateInfoForUpdate
+        public let ocrReviewInfo: ProhibitedOcrReviewTemplateInfoForUpdate?
         
-        public init (asrReviewInfo: ProhibitedAsrReviewTemplateInfoForUpdate, ocrReviewInfo: ProhibitedOcrReviewTemplateInfoForUpdate) {
+        public init (asrReviewInfo: ProhibitedAsrReviewTemplateInfoForUpdate? = nil, ocrReviewInfo: ProhibitedOcrReviewTemplateInfoForUpdate? = nil) {
             self.asrReviewInfo = asrReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
         }
@@ -7778,7 +7778,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7804,7 +7804,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7841,7 +7841,7 @@ extension Vod {
         
         /// 转拉完成后生成的媒体文件基础信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mediaBasicInfo: MediaBasicInfo
+        public let mediaBasicInfo: MediaBasicInfo?
         
         /// 输出视频的元信息。
         public let metaData: MediaMetaData
@@ -7912,11 +7912,11 @@ extension Vod {
         
         /// 降码率任务中视频转码任务的查询结果，当任务类型为 Transcode 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let transcodeTask: ReduceMediaBitrateTranscodeResult
+        public let transcodeTask: ReduceMediaBitrateTranscodeResult?
         
         /// 降码率任务中对视频转自适应码流任务的查询结果，当任务类型为 AdaptiveDynamicStreaming 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let adaptiveDynamicStreamingTask: ReduceMediaBitrateAdaptiveDynamicStreamingResult
+        public let adaptiveDynamicStreamingTask: ReduceMediaBitrateAdaptiveDynamicStreamingResult?
         
         enum CodingKeys: String, CodingKey {
             case type = "Type"
@@ -7946,7 +7946,7 @@ extension Vod {
         
         /// 原始视频的元信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let metaData: MediaMetaData
+        public let metaData: MediaMetaData?
         
         /// 降码率任务执行状态与结果。
         public let mediaProcessResultSet: [ReduceMediaBitrateMediaProcessTaskResult]
@@ -7996,7 +7996,7 @@ extension Vod {
         
         /// 转码任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: MediaTranscodeItem
+        public let output: MediaTranscodeItem?
         
         /// 转码进度，取值范围 [0-100] 。
         public let progress: Int64
@@ -8041,7 +8041,7 @@ extension Vod {
         /// 当 Status 取值为 Enabled 时，BlankRefererAllowed 必须赋值。
         public let blankRefererAllowed: String?
         
-        public init (status: String, authType: String?, referers: [String]?, blankRefererAllowed: String?) {
+        public init (status: String, authType: String? = nil, referers: [String]? = nil, blankRefererAllowed: String? = nil) {
             self.status = status
             self.authType = authType
             self.referers = referers
@@ -8104,11 +8104,11 @@ extension Vod {
         
         /// 智能去除水印任务的输入。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let input: RemoveWaterMarkTaskInput
+        public let input: RemoveWaterMarkTaskInput?
         
         /// 智能去除水印任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: RemoveWaterMarkTaskOutput
+        public let output: RemoveWaterMarkTaskOutput?
         
         /// 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         public let sessionId: String
@@ -8291,11 +8291,11 @@ extension Vod {
         
         /// 音视频审核任务的输入。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let input: ReviewAudioVideoTaskInput
+        public let input: ReviewAudioVideoTaskInput?
         
         /// 音视频审核任务的输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: ReviewAudioVideoTaskOutput
+        public let output: ReviewAudioVideoTaskOutput?
         
         /// 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         public let sessionId: String
@@ -8412,7 +8412,7 @@ extension Vod {
         /// 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         public let watermarkSet: [WatermarkInput]?
         
-        public init (definition: UInt64, watermarkSet: [WatermarkInput]?) {
+        public init (definition: UInt64, watermarkSet: [WatermarkInput]? = nil) {
             self.definition = definition
             self.watermarkSet = watermarkSet
         }
@@ -8524,7 +8524,7 @@ extension Vod {
         /// <li>OFF：关闭智能视频拆条识别任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String?) {
+        public init (`switch`: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -8605,7 +8605,7 @@ extension Vod {
         /// 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         public let watermarkSet: [WatermarkInput]?
         
-        public init (definition: UInt64, extTimeOffsetSet: [String]?, timeOffsetSet: [Float]?, watermarkSet: [WatermarkInput]?) {
+        public init (definition: UInt64, extTimeOffsetSet: [String]? = nil, timeOffsetSet: [Float]? = nil, watermarkSet: [WatermarkInput]? = nil) {
             self.definition = definition
             self.extTimeOffsetSet = extTimeOffsetSet
             self.timeOffsetSet = timeOffsetSet
@@ -8733,7 +8733,7 @@ extension Vod {
         /// 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let expireTime: String?
         
-        public init (mediaName: String?, type: String?, classId: Int64?, expireTime: String?) {
+        public init (mediaName: String? = nil, type: String? = nil, classId: Int64? = nil, expireTime: String? = nil) {
             self.mediaName = mediaName
             self.type = type
             self.classId = classId
@@ -8810,9 +8810,9 @@ extension Vod {
         public let procedureName: String?
         
         /// 视频拆条输出信息。
-        public let outputConfig: SplitMediaOutputConfig
+        public let outputConfig: SplitMediaOutputConfig?
         
-        public init (startTimeOffset: Float?, endTimeOffset: Float?, procedureName: String?, outputConfig: SplitMediaOutputConfig) {
+        public init (startTimeOffset: Float? = nil, endTimeOffset: Float? = nil, procedureName: String? = nil, outputConfig: SplitMediaOutputConfig? = nil) {
             self.startTimeOffset = startTimeOffset
             self.endTimeOffset = endTimeOffset
             self.procedureName = procedureName
@@ -8866,7 +8866,7 @@ extension Vod {
         
         /// 视频拆条任务输出信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: TaskOutputMediaInfo
+        public let output: TaskOutputMediaInfo?
         
         /// 若发起视频拆条任务时指定了视频处理流程，则该字段为流程任务 ID。
         public let procedureTaskId: String
@@ -8948,7 +8948,7 @@ extension Vod {
         /// 对贴图进行的操作，如图像旋转等。
         public let imageOperations: [ImageTransform]?
         
-        public init (sourceMedia: String, duration: Float, startTime: Float?, coordinateOrigin: String?, xPos: String?, yPos: String?, width: String?, height: String?, imageOperations: [ImageTransform]?) {
+        public init (sourceMedia: String, duration: Float, startTime: Float? = nil, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, width: String? = nil, height: String? = nil, imageOperations: [ImageTransform]? = nil) {
             self.sourceMedia = sourceMedia
             self.duration = duration
             self.startTime = startTime
@@ -9117,7 +9117,7 @@ extension Vod {
         /// 默认值为 0px。
         public let height: String?
         
-        public init (width: String?, height: String?) {
+        public init (width: String? = nil, height: String? = nil) {
             self.width = width
             self.height = height
         }
@@ -9158,9 +9158,9 @@ extension Vod {
         /// 花括号 {} 表示由 A、B、C、D 4 个水印组成的大周期，可以看出每个大周期持续 20 秒。
         /// 可以看出，A、B、C、D 都是周期性地显示 5 秒、隐藏 15 秒，且四者有固定的显示顺序。
         /// 此配置项即用来描述单个水印的周期配置。
-        public let cycleConfig: WatermarkCycleConfigForUpdate
+        public let cycleConfig: WatermarkCycleConfigForUpdate?
         
-        public init (width: String?, height: String?, cycleConfig: WatermarkCycleConfigForUpdate) {
+        public init (width: String? = nil, height: String? = nil, cycleConfig: WatermarkCycleConfigForUpdate? = nil) {
             self.width = width
             self.height = height
             self.cycleConfig = cycleConfig
@@ -9182,7 +9182,7 @@ extension Vod {
         /// 不填或填0表示不设视频码率上限。
         public let maxVideoBitrate: UInt64?
         
-        public init (type: String, maxVideoBitrate: UInt64?) {
+        public init (type: String, maxVideoBitrate: UInt64? = nil) {
             self.type = type
             self.maxVideoBitrate = maxVideoBitrate
         }
@@ -9201,7 +9201,7 @@ extension Vod {
         /// 视频码率上限，不填代表不修改。
         public let maxVideoBitrate: UInt64?
         
-        public init (type: String?, maxVideoBitrate: UInt64?) {
+        public init (type: String? = nil, maxVideoBitrate: UInt64? = nil) {
             self.type = type
             self.maxVideoBitrate = maxVideoBitrate
         }
@@ -9235,7 +9235,7 @@ extension Vod {
         /// <li>OFF：关闭智能标签任务。</li>
         public let `switch`: String?
         
-        public init (`switch`: String?) {
+        public init (`switch`: String? = nil) {
             self.`switch` = `switch`
         }
         
@@ -9434,11 +9434,11 @@ extension Vod {
     public struct TerrorismConfigureInfo: TCOutputModel {
         /// 画面鉴别涉及令人不安全的信息的任务控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imgReviewInfo: TerrorismImgReviewTemplateInfo
+        public let imgReviewInfo: TerrorismImgReviewTemplateInfo?
         
         /// 文字鉴别涉及令人不安全的信息的任务控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ocrReviewInfo: TerrorismOcrReviewTemplateInfo
+        public let ocrReviewInfo: TerrorismOcrReviewTemplateInfo?
         
         enum CodingKeys: String, CodingKey {
             case imgReviewInfo = "ImgReviewInfo"
@@ -9449,12 +9449,12 @@ extension Vod {
     /// 鉴别涉及令人不安全的信息的任务控制参数。
     public struct TerrorismConfigureInfoForUpdate: TCInputModel {
         /// 画面鉴别涉及令人不安全的信息的任务控制参数。
-        public let imgReviewInfo: TerrorismImgReviewTemplateInfoForUpdate
+        public let imgReviewInfo: TerrorismImgReviewTemplateInfoForUpdate?
         
         /// 文本鉴别涉及令人不安全的信息的任务控制参数。
-        public let ocrReviewInfo: TerrorismOcrReviewTemplateInfoForUpdate
+        public let ocrReviewInfo: TerrorismOcrReviewTemplateInfoForUpdate?
         
-        public init (imgReviewInfo: TerrorismImgReviewTemplateInfoForUpdate, ocrReviewInfo: TerrorismOcrReviewTemplateInfoForUpdate) {
+        public init (imgReviewInfo: TerrorismImgReviewTemplateInfoForUpdate? = nil, ocrReviewInfo: TerrorismOcrReviewTemplateInfoForUpdate? = nil) {
             self.imgReviewInfo = imgReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
         }
@@ -9518,7 +9518,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 80 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -9558,7 +9558,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String?, labelSet: [String]?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -9586,7 +9586,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -9612,7 +9612,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -9677,7 +9677,7 @@ extension Vod {
         /// <li>1：完全不透明</li>
         public let fontAlpha: Float?
         
-        public init (fontType: String?, fontSize: String?, fontColor: String?, fontAlpha: Float?) {
+        public init (fontType: String? = nil, fontSize: String? = nil, fontColor: String? = nil, fontAlpha: Float? = nil) {
             self.fontType = fontType
             self.fontSize = fontSize
             self.fontColor = fontColor
@@ -9702,7 +9702,7 @@ extension Vod {
         /// <li>格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。</li>
         public let before: String?
         
-        public init (after: String?, before: String?) {
+        public init (after: String? = nil, before: String? = nil) {
             self.after = after
             self.before = before
         }
@@ -9723,7 +9723,7 @@ extension Vod {
         /// 该字段已废弃，请勿使用。
         public let definition: UInt64?
         
-        public init (`switch`: String?, definition: UInt64?) {
+        public init (`switch`: String? = nil, definition: UInt64? = nil) {
             self.`switch` = `switch`
             self.definition = definition
         }
@@ -9809,7 +9809,7 @@ extension Vod {
         public let watermarkSet: [WatermarkInput]?
         
         /// 溯源水印。
-        public let traceWatermark: TraceWatermarkInput
+        public let traceWatermark: TraceWatermarkInput?
         
         /// 马赛克列表，最大可支持 10 张。
         public let mosaicSet: [MosaicInput]?
@@ -9829,7 +9829,7 @@ extension Vod {
         /// <li>当数值小于0时（假设为 -n），表示转码后的视频持续到原始视频结束 n 秒前终止。</li>
         public let endTimeOffset: Float?
         
-        public init (definition: UInt64, watermarkSet: [WatermarkInput]?, traceWatermark: TraceWatermarkInput, mosaicSet: [MosaicInput]?, headTailSet: [HeadTailTaskInput]?, startTimeOffset: Float?, endTimeOffset: Float?) {
+        public init (definition: UInt64, watermarkSet: [WatermarkInput]? = nil, traceWatermark: TraceWatermarkInput? = nil, mosaicSet: [MosaicInput]? = nil, headTailSet: [HeadTailTaskInput]? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
             self.definition = definition
             self.watermarkSet = watermarkSet
             self.traceWatermark = traceWatermark
@@ -9881,15 +9881,15 @@ extension Vod {
         
         /// 视频流配置参数，仅当 RemoveVideo 为 0，该字段有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let videoTemplate: VideoTemplateInfo
+        public let videoTemplate: VideoTemplateInfo?
         
         /// 音频流配置参数，仅当 RemoveAudio 为 0，该字段有效 。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let audioTemplate: AudioTemplateInfo
+        public let audioTemplate: AudioTemplateInfo?
         
         /// 极速高清转码参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tehdConfig: TEHDConfig
+        public let tehdConfig: TEHDConfig?
         
         /// 封装格式过滤条件，可选值：
         /// <li>Video：视频格式，可以同时包含视频流和音频流的封装格式；</li>
@@ -10016,7 +10016,7 @@ extension Vod {
         /// EncryptedKey 字符串的长度为8~40个字节，不能包含不可见字符。
         public let encryptedKey: String?
         
-        public init (status: String, encryptedKey: String?) {
+        public init (status: String, encryptedKey: String? = nil) {
             self.status = status
             self.encryptedKey = encryptedKey
         }
@@ -10044,7 +10044,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -10076,7 +10076,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String?, labelSet: [String]?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -10095,17 +10095,17 @@ extension Vod {
     public struct UserDefineConfigureInfo: TCInputModel, TCOutputModel {
         /// 用户自定义人物音视频审核控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let faceReviewInfo: UserDefineFaceReviewTemplateInfo
+        public let faceReviewInfo: UserDefineFaceReviewTemplateInfo?
         
         /// 用户自定义语音音视频审核控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let asrReviewInfo: UserDefineAsrTextReviewTemplateInfo
+        public let asrReviewInfo: UserDefineAsrTextReviewTemplateInfo?
         
         /// 用户自定义文本音视频审核控制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ocrReviewInfo: UserDefineOcrTextReviewTemplateInfo
+        public let ocrReviewInfo: UserDefineOcrTextReviewTemplateInfo?
         
-        public init (faceReviewInfo: UserDefineFaceReviewTemplateInfo, asrReviewInfo: UserDefineAsrTextReviewTemplateInfo, ocrReviewInfo: UserDefineOcrTextReviewTemplateInfo) {
+        public init (faceReviewInfo: UserDefineFaceReviewTemplateInfo? = nil, asrReviewInfo: UserDefineAsrTextReviewTemplateInfo? = nil, ocrReviewInfo: UserDefineOcrTextReviewTemplateInfo? = nil) {
             self.faceReviewInfo = faceReviewInfo
             self.asrReviewInfo = asrReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
@@ -10121,15 +10121,15 @@ extension Vod {
     /// 用户自定义音视频审核任务控制参数。
     public struct UserDefineConfigureInfoForUpdate: TCInputModel {
         /// 用户自定义人物音视频审核控制参数。
-        public let faceReviewInfo: UserDefineFaceReviewTemplateInfoForUpdate
+        public let faceReviewInfo: UserDefineFaceReviewTemplateInfoForUpdate?
         
         /// 用户自定义语音音视频审核控制参数。
-        public let asrReviewInfo: UserDefineAsrTextReviewTemplateInfoForUpdate
+        public let asrReviewInfo: UserDefineAsrTextReviewTemplateInfoForUpdate?
         
         /// 用户自定义文本音视频审核控制参数。
-        public let ocrReviewInfo: UserDefineOcrTextReviewTemplateInfoForUpdate
+        public let ocrReviewInfo: UserDefineOcrTextReviewTemplateInfoForUpdate?
         
-        public init (faceReviewInfo: UserDefineFaceReviewTemplateInfoForUpdate, asrReviewInfo: UserDefineAsrTextReviewTemplateInfoForUpdate, ocrReviewInfo: UserDefineOcrTextReviewTemplateInfoForUpdate) {
+        public init (faceReviewInfo: UserDefineFaceReviewTemplateInfoForUpdate? = nil, asrReviewInfo: UserDefineAsrTextReviewTemplateInfoForUpdate? = nil, ocrReviewInfo: UserDefineOcrTextReviewTemplateInfoForUpdate? = nil) {
             self.faceReviewInfo = faceReviewInfo
             self.asrReviewInfo = asrReviewInfo
             self.ocrReviewInfo = ocrReviewInfo
@@ -10159,7 +10159,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 95 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -10191,7 +10191,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当音视频审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String?, labelSet: [String]?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -10223,7 +10223,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核，不填默认为 75 分。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String, labelSet: [String]?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -10255,7 +10255,7 @@ extension Vod {
         /// 判定需人工复核是否违规的分数阈值，当审核达到该分数以上，认为需人工复核。取值范围：0~100。
         public let reviewConfidence: Int64?
         
-        public init (`switch`: String?, labelSet: [String]?, blockConfidence: Int64?, reviewConfidence: Int64?) {
+        public init (`switch`: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
             self.`switch` = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
@@ -10343,7 +10343,7 @@ extension Vod {
         /// 默认值：hvc1。
         public let codecTag: String?
         
-        public init (codec: String, fps: UInt64, bitrate: UInt64, resolutionAdaptive: String?, width: UInt64?, height: UInt64?, fillType: String?, vcrf: UInt64?, gop: UInt64?, preserveHDRSwitch: String?, codecTag: String?) {
+        public init (codec: String, fps: UInt64, bitrate: UInt64, resolutionAdaptive: String? = nil, width: UInt64? = nil, height: UInt64? = nil, fillType: String? = nil, vcrf: UInt64? = nil, gop: UInt64? = nil, preserveHDRSwitch: String? = nil, codecTag: String? = nil) {
             self.codec = codec
             self.fps = fps
             self.bitrate = bitrate
@@ -10436,7 +10436,7 @@ extension Vod {
         /// 默认值：hvc1。
         public let codecTag: String?
         
-        public init (codec: String?, fps: UInt64?, bitrate: UInt64?, resolutionAdaptive: String?, width: UInt64?, height: UInt64?, fillType: String?, vcrf: UInt64?, gop: UInt64?, preserveHDRSwitch: String?, codecTag: String?) {
+        public init (codec: String? = nil, fps: UInt64? = nil, bitrate: UInt64? = nil, resolutionAdaptive: String? = nil, width: UInt64? = nil, height: UInt64? = nil, fillType: String? = nil, vcrf: UInt64? = nil, gop: UInt64? = nil, preserveHDRSwitch: String? = nil, codecTag: String? = nil) {
             self.codec = codec
             self.fps = fps
             self.bitrate = bitrate
@@ -10523,7 +10523,7 @@ extension Vod {
         /// 对图像进行的操作，如图像旋转等。
         public let imageOperations: [ImageTransform]?
         
-        public init (sourceMedia: String, sourceMediaStartTime: Float?, duration: Float?, targetDuration: Float?, coordinateOrigin: String?, xPos: String?, yPos: String?, width: String?, height: String?, audioOperations: [AudioTransform]?, imageOperations: [ImageTransform]?) {
+        public init (sourceMedia: String, sourceMediaStartTime: Float? = nil, duration: Float? = nil, targetDuration: Float? = nil, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, width: String? = nil, height: String? = nil, audioOperations: [AudioTransform]? = nil, imageOperations: [ImageTransform]? = nil) {
             self.sourceMedia = sourceMedia
             self.sourceMediaStartTime = sourceMediaStartTime
             self.duration = duration
@@ -10564,7 +10564,7 @@ extension Vod {
         /// 填 0 表示水印只持续一个水印周期（即在整个视频里只显示 DisplayDuration 秒）。
         public let cycleDuration: Float?
         
-        public init (startTime: Float?, displayDuration: Float?, cycleDuration: Float?) {
+        public init (startTime: Float? = nil, displayDuration: Float? = nil, cycleDuration: Float? = nil) {
             self.startTime = startTime
             self.displayDuration = displayDuration
             self.cycleDuration = cycleDuration
@@ -10602,7 +10602,7 @@ extension Vod {
         /// <li>当数值小于0时（假设为 -n），表示水印持续到离画面结束 n 秒前消失。</li>
         public let endTimeOffset: Float?
         
-        public init (definition: UInt64, textContent: String?, svgContent: String?, startTimeOffset: Float?, endTimeOffset: Float?) {
+        public init (definition: UInt64, textContent: String? = nil, svgContent: String? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil) {
             self.definition = definition
             self.textContent = textContent
             self.svgContent = svgContent
@@ -10647,15 +10647,15 @@ extension Vod {
         
         /// 图片水印模板，仅当 Type 为 image，该字段有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imageTemplate: ImageWatermarkTemplate
+        public let imageTemplate: ImageWatermarkTemplate?
         
         /// 文字水印模板，仅当 Type 为 text，该字段有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let textTemplate: TextWatermarkTemplateInput
+        public let textTemplate: TextWatermarkTemplateInput?
         
         /// SVG 水印模板，当 Type 为 svg，该字段有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let svgTemplate: SvgWatermarkInput
+        public let svgTemplate: SvgWatermarkInput?
         
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let createTime: String

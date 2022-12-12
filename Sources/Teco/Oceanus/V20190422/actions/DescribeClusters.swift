@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 查询集群
-    @inlinable
-    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
-        self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群
-    @inlinable
-    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
-        try await self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusters请求参数结构体
     public struct DescribeClustersRequest: TCRequestModel {
         /// 按照一个或者多个集群 ID 查询，每次请求的集群上限为 100
@@ -47,7 +35,7 @@ extension Oceanus {
         /// 工作空间 SerialId
         public let workSpaceId: String?
         
-        public init (clusterIds: [String]?, offset: Int64?, limit: Int64?, orderType: Int64?, filters: [Filter]?, workSpaceId: String?) {
+        public init (clusterIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderType: Int64? = nil, filters: [Filter]? = nil, workSpaceId: String? = nil) {
             self.clusterIds = clusterIds
             self.offset = offset
             self.limit = limit
@@ -82,5 +70,17 @@ extension Oceanus {
             case clusterSet = "ClusterSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群
+    @inlinable
+    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
+        self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群
+    @inlinable
+    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
+        try await self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

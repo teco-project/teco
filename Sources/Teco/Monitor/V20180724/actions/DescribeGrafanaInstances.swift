@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 列出用户所有的 Grafana 服务
-    @inlinable
-    public func describeGrafanaInstances(_ input: DescribeGrafanaInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaInstancesResponse > {
-        self.client.execute(action: "DescribeGrafanaInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出用户所有的 Grafana 服务
-    @inlinable
-    public func describeGrafanaInstances(_ input: DescribeGrafanaInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaInstancesResponse {
-        try await self.client.execute(action: "DescribeGrafanaInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGrafanaInstances请求参数结构体
     public struct DescribeGrafanaInstancesRequest: TCRequestModel {
         /// 查询偏移量
@@ -47,7 +35,7 @@ extension Monitor {
         /// 标签过滤数组
         public let tagFilters: [PrometheusTag]?
         
-        public init (offset: Int64, limit: Int64, instanceIds: [String]?, instanceName: String?, instanceStatus: [Int64]?, tagFilters: [PrometheusTag]?) {
+        public init (offset: Int64, limit: Int64, instanceIds: [String]? = nil, instanceName: String? = nil, instanceStatus: [Int64]? = nil, tagFilters: [PrometheusTag]? = nil) {
             self.offset = offset
             self.limit = limit
             self.instanceIds = instanceIds
@@ -86,5 +74,17 @@ extension Monitor {
             case instances = "Instances"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出用户所有的 Grafana 服务
+    @inlinable
+    public func describeGrafanaInstances(_ input: DescribeGrafanaInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaInstancesResponse > {
+        self.client.execute(action: "DescribeGrafanaInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出用户所有的 Grafana 服务
+    @inlinable
+    public func describeGrafanaInstances(_ input: DescribeGrafanaInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaInstancesResponse {
+        try await self.client.execute(action: "DescribeGrafanaInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 修改只读组详情
-    ///
-    /// 本接口（ModifyReadOnlyGroupDetails）用于修改只读组详情。
-    @inlinable
-    public func modifyReadOnlyGroupDetails(_ input: ModifyReadOnlyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyReadOnlyGroupDetailsResponse > {
-        self.client.execute(action: "ModifyReadOnlyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改只读组详情
-    ///
-    /// 本接口（ModifyReadOnlyGroupDetails）用于修改只读组详情。
-    @inlinable
-    public func modifyReadOnlyGroupDetails(_ input: ModifyReadOnlyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReadOnlyGroupDetailsResponse {
-        try await self.client.execute(action: "ModifyReadOnlyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyReadOnlyGroupDetails请求参数结构体
     public struct ModifyReadOnlyGroupDetailsRequest: TCRequestModel {
         /// 主实例ID，格式如：mssql-3l3fgqn7
@@ -60,7 +44,7 @@ extension Sqlserver {
         /// 0-不重新均衡负载，1-重新均衡负载，默认为0
         public let balanceWeight: Int64?
         
-        public init (instanceId: String, readOnlyGroupId: String, readOnlyGroupName: String?, isOfflineDelay: Int64?, readOnlyMaxDelayTime: Int64?, minReadOnlyInGroup: Int64?, weightPairs: [ReadOnlyInstanceWeightPair]?, autoWeight: Int64?, balanceWeight: Int64?) {
+        public init (instanceId: String, readOnlyGroupId: String, readOnlyGroupName: String? = nil, isOfflineDelay: Int64? = nil, readOnlyMaxDelayTime: Int64? = nil, minReadOnlyInGroup: Int64? = nil, weightPairs: [ReadOnlyInstanceWeightPair]? = nil, autoWeight: Int64? = nil, balanceWeight: Int64? = nil) {
             self.instanceId = instanceId
             self.readOnlyGroupId = readOnlyGroupId
             self.readOnlyGroupName = readOnlyGroupName
@@ -93,5 +77,21 @@ extension Sqlserver {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改只读组详情
+    ///
+    /// 本接口（ModifyReadOnlyGroupDetails）用于修改只读组详情。
+    @inlinable
+    public func modifyReadOnlyGroupDetails(_ input: ModifyReadOnlyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyReadOnlyGroupDetailsResponse > {
+        self.client.execute(action: "ModifyReadOnlyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改只读组详情
+    ///
+    /// 本接口（ModifyReadOnlyGroupDetails）用于修改只读组详情。
+    @inlinable
+    public func modifyReadOnlyGroupDetails(_ input: ModifyReadOnlyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReadOnlyGroupDetailsResponse {
+        try await self.client.execute(action: "ModifyReadOnlyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

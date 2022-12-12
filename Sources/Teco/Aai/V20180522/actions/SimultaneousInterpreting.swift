@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Aai {
-    /// 同传
-    ///
-    /// 该接口是实时流式识别，可同时返回语音识别文本及翻译文本，当前仅支持中文和英文。该接口可配合同传windows客户端，提供会议现场同传服务。
-    @inlinable
-    public func simultaneousInterpreting(_ input: SimultaneousInterpretingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SimultaneousInterpretingResponse > {
-        self.client.execute(action: "SimultaneousInterpreting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 同传
-    ///
-    /// 该接口是实时流式识别，可同时返回语音识别文本及翻译文本，当前仅支持中文和英文。该接口可配合同传windows客户端，提供会议现场同传服务。
-    @inlinable
-    public func simultaneousInterpreting(_ input: SimultaneousInterpretingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SimultaneousInterpretingResponse {
-        try await self.client.execute(action: "SimultaneousInterpreting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SimultaneousInterpreting请求参数结构体
     public struct SimultaneousInterpretingRequest: TCRequestModel {
         /// 腾讯云项目 ID，可填 0，总长度不超过 1024 字节。
@@ -69,7 +53,7 @@ extension Aai {
         /// 表明当前语音分片的索引，从0开始
         public let seq: UInt64
         
-        public init (projectId: UInt64, subServiceType: UInt64, recEngineModelType: String, data: String, dataLen: UInt64, voiceId: String, isEnd: UInt64, voiceFormat: UInt64, openTranslate: UInt64, sourceLanguage: String, targetLanguage: String, seq: UInt64) {
+        public init (projectId: UInt64 = 0, subServiceType: UInt64 = 3, recEngineModelType: String = "16k_zh", data: String, dataLen: UInt64, voiceId: String, isEnd: UInt64, voiceFormat: UInt64, openTranslate: UInt64, sourceLanguage: String = "zh", targetLanguage: String = "en", seq: UInt64) {
             self.projectId = projectId
             self.subServiceType = subServiceType
             self.recEngineModelType = recEngineModelType
@@ -116,5 +100,21 @@ extension Aai {
             case nmtText = "NmtText"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 同传
+    ///
+    /// 该接口是实时流式识别，可同时返回语音识别文本及翻译文本，当前仅支持中文和英文。该接口可配合同传windows客户端，提供会议现场同传服务。
+    @inlinable
+    public func simultaneousInterpreting(_ input: SimultaneousInterpretingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SimultaneousInterpretingResponse > {
+        self.client.execute(action: "SimultaneousInterpreting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 同传
+    ///
+    /// 该接口是实时流式识别，可同时返回语音识别文本及翻译文本，当前仅支持中文和英文。该接口可配合同传windows客户端，提供会议现场同传服务。
+    @inlinable
+    public func simultaneousInterpreting(_ input: SimultaneousInterpretingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SimultaneousInterpretingResponse {
+        try await self.client.execute(action: "SimultaneousInterpreting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

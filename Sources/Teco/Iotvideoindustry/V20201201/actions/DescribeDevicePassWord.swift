@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 查询设备密码
-    ///
-    /// 本接口(DescribeDevicePassWord)用于查询设备密码。
-    @inlinable
-    public func describeDevicePassWord(_ input: DescribeDevicePassWordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePassWordResponse > {
-        self.client.execute(action: "DescribeDevicePassWord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备密码
-    ///
-    /// 本接口(DescribeDevicePassWord)用于查询设备密码。
-    @inlinable
-    public func describeDevicePassWord(_ input: DescribeDevicePassWordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePassWordResponse {
-        try await self.client.execute(action: "DescribeDevicePassWord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDevicePassWord请求参数结构体
     public struct DescribeDevicePassWordRequest: TCRequestModel {
         /// 设备唯一标识
@@ -57,5 +41,21 @@ extension Iotvideoindustry {
             case passWord = "PassWord"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备密码
+    ///
+    /// 本接口(DescribeDevicePassWord)用于查询设备密码。
+    @inlinable
+    public func describeDevicePassWord(_ input: DescribeDevicePassWordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePassWordResponse > {
+        self.client.execute(action: "DescribeDevicePassWord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备密码
+    ///
+    /// 本接口(DescribeDevicePassWord)用于查询设备密码。
+    @inlinable
+    public func describeDevicePassWord(_ input: DescribeDevicePassWordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePassWordResponse {
+        try await self.client.execute(action: "DescribeDevicePassWord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

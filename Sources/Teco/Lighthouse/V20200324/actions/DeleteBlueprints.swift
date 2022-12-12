@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 删除镜像
-    ///
-    /// 本接口 (DeleteBlueprints) 用于删除镜像。
-    @inlinable
-    public func deleteBlueprints(_ input: DeleteBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBlueprintsResponse > {
-        self.client.execute(action: "DeleteBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除镜像
-    ///
-    /// 本接口 (DeleteBlueprints) 用于删除镜像。
-    @inlinable
-    public func deleteBlueprints(_ input: DeleteBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBlueprintsResponse {
-        try await self.client.execute(action: "DeleteBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteBlueprints请求参数结构体
     public struct DeleteBlueprintsRequest: TCRequestModel {
         /// 镜像ID列表。镜像ID，可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值中的BlueprintId获取。
@@ -53,5 +37,21 @@ extension Lighthouse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除镜像
+    ///
+    /// 本接口 (DeleteBlueprints) 用于删除镜像。
+    @inlinable
+    public func deleteBlueprints(_ input: DeleteBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBlueprintsResponse > {
+        self.client.execute(action: "DeleteBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除镜像
+    ///
+    /// 本接口 (DeleteBlueprints) 用于删除镜像。
+    @inlinable
+    public func deleteBlueprints(_ input: DeleteBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBlueprintsResponse {
+        try await self.client.execute(action: "DeleteBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 获取回调模板列表
-    @inlinable
-    public func describeLiveCallbackTemplates(_ input: DescribeLiveCallbackTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveCallbackTemplatesResponse > {
-        self.client.execute(action: "DescribeLiveCallbackTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取回调模板列表
-    @inlinable
-    public func describeLiveCallbackTemplates(_ input: DescribeLiveCallbackTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackTemplatesResponse {
-        try await self.client.execute(action: "DescribeLiveCallbackTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveCallbackTemplates请求参数结构体
     public struct DescribeLiveCallbackTemplatesRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Live {
             case templates = "Templates"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取回调模板列表
+    @inlinable
+    public func describeLiveCallbackTemplates(_ input: DescribeLiveCallbackTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveCallbackTemplatesResponse > {
+        self.client.execute(action: "DescribeLiveCallbackTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取回调模板列表
+    @inlinable
+    public func describeLiveCallbackTemplates(_ input: DescribeLiveCallbackTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackTemplatesResponse {
+        try await self.client.execute(action: "DescribeLiveCallbackTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

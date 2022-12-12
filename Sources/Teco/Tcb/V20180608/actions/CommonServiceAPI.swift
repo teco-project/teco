@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// TCB云API统一入口
-    @inlinable
-    public func commonServiceAPI(_ input: CommonServiceAPIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommonServiceAPIResponse > {
-        self.client.execute(action: "CommonServiceAPI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// TCB云API统一入口
-    @inlinable
-    public func commonServiceAPI(_ input: CommonServiceAPIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommonServiceAPIResponse {
-        try await self.client.execute(action: "CommonServiceAPI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CommonServiceAPI请求参数结构体
     public struct CommonServiceAPIRequest: TCRequestModel {
         /// Service名，需要转发访问的接口名
@@ -38,7 +26,7 @@ extension Tcb {
         /// 指定角色
         public let apiRole: String?
         
-        public init (service: String, jsonData: String?, apiRole: String?) {
+        public init (service: String, jsonData: String? = nil, apiRole: String? = nil) {
             self.service = service
             self.jsonData = jsonData
             self.apiRole = apiRole
@@ -63,5 +51,17 @@ extension Tcb {
             case jsonResp = "JSONResp"
             case requestId = "RequestId"
         }
+    }
+    
+    /// TCB云API统一入口
+    @inlinable
+    public func commonServiceAPI(_ input: CommonServiceAPIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommonServiceAPIResponse > {
+        self.client.execute(action: "CommonServiceAPI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// TCB云API统一入口
+    @inlinable
+    public func commonServiceAPI(_ input: CommonServiceAPIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommonServiceAPIResponse {
+        try await self.client.execute(action: "CommonServiceAPI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

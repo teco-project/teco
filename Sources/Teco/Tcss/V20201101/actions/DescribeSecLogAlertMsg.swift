@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询安全日志告警信息
-    @inlinable
-    public func describeSecLogAlertMsg(_ input: DescribeSecLogAlertMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogAlertMsgResponse > {
-        self.client.execute(action: "DescribeSecLogAlertMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全日志告警信息
-    @inlinable
-    public func describeSecLogAlertMsg(_ input: DescribeSecLogAlertMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogAlertMsgResponse {
-        try await self.client.execute(action: "DescribeSecLogAlertMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecLogAlertMsg请求参数结构体
     public struct DescribeSecLogAlertMsgRequest: TCRequestModel {
         /// 告警类型
@@ -37,7 +25,7 @@ extension Tcss {
         /// kafka后台报错字段: kafka_field_wrong
         public let type: [String]?
         
-        public init (type: [String]?) {
+        public init (type: [String]? = nil) {
             self.type = type
         }
         
@@ -58,5 +46,17 @@ extension Tcss {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全日志告警信息
+    @inlinable
+    public func describeSecLogAlertMsg(_ input: DescribeSecLogAlertMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogAlertMsgResponse > {
+        self.client.execute(action: "DescribeSecLogAlertMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全日志告警信息
+    @inlinable
+    public func describeSecLogAlertMsg(_ input: DescribeSecLogAlertMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogAlertMsgResponse {
+        try await self.client.execute(action: "DescribeSecLogAlertMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

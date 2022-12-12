@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 续费实例询价
-    ///
-    /// 本接口（DescribeDCDBRenewalPrice）用于在续费分布式数据库实例时，查询续费的价格。
-    @inlinable
-    public func describeDCDBRenewalPrice(_ input: DescribeDCDBRenewalPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDCDBRenewalPriceResponse > {
-        self.client.execute(action: "DescribeDCDBRenewalPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费实例询价
-    ///
-    /// 本接口（DescribeDCDBRenewalPrice）用于在续费分布式数据库实例时，查询续费的价格。
-    @inlinable
-    public func describeDCDBRenewalPrice(_ input: DescribeDCDBRenewalPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBRenewalPriceResponse {
-        try await self.client.execute(action: "DescribeDCDBRenewalPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDCDBRenewalPrice请求参数结构体
     public struct DescribeDCDBRenewalPriceRequest: TCRequestModel {
         /// 待续费的实例ID。形如：dcdbt-ow728lmc，可以通过 DescribeDCDBInstances 查询实例详情获得。
@@ -44,7 +28,7 @@ extension Dcdb {
         /// * microPent：微分
         public let amountUnit: String?
         
-        public init (instanceId: String, period: Int64?, amountUnit: String?) {
+        public init (instanceId: String, period: Int64? = nil, amountUnit: String? = nil) {
             self.instanceId = instanceId
             self.period = period
             self.amountUnit = amountUnit
@@ -77,5 +61,21 @@ extension Dcdb {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费实例询价
+    ///
+    /// 本接口（DescribeDCDBRenewalPrice）用于在续费分布式数据库实例时，查询续费的价格。
+    @inlinable
+    public func describeDCDBRenewalPrice(_ input: DescribeDCDBRenewalPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDCDBRenewalPriceResponse > {
+        self.client.execute(action: "DescribeDCDBRenewalPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费实例询价
+    ///
+    /// 本接口（DescribeDCDBRenewalPrice）用于在续费分布式数据库实例时，查询续费的价格。
+    @inlinable
+    public func describeDCDBRenewalPrice(_ input: DescribeDCDBRenewalPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBRenewalPriceResponse {
+        try await self.client.execute(action: "DescribeDCDBRenewalPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

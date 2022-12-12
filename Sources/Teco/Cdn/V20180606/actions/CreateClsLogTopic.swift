@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 创建日志主题
-    ///
-    /// CreateClsLogTopic 用于创建日志主题。注意：一个日志集下至多可创建10个日志主题。
-    @inlinable
-    public func createClsLogTopic(_ input: CreateClsLogTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClsLogTopicResponse > {
-        self.client.execute(action: "CreateClsLogTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建日志主题
-    ///
-    /// CreateClsLogTopic 用于创建日志主题。注意：一个日志集下至多可创建10个日志主题。
-    @inlinable
-    public func createClsLogTopic(_ input: CreateClsLogTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClsLogTopicResponse {
-        try await self.client.execute(action: "CreateClsLogTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateClsLogTopic请求参数结构体
     public struct CreateClsLogTopicRequest: TCRequestModel {
         /// 日志主题名称
@@ -45,7 +29,7 @@ extension Cdn {
         /// 域名区域信息
         public let domainAreaConfigs: [DomainAreaConfig]?
         
-        public init (topicName: String, logsetId: String, channel: String?, domainAreaConfigs: [DomainAreaConfig]?) {
+        public init (topicName: String, logsetId: String, channel: String? = nil, domainAreaConfigs: [DomainAreaConfig]? = nil) {
             self.topicName = topicName
             self.logsetId = logsetId
             self.channel = channel
@@ -73,5 +57,21 @@ extension Cdn {
             case topicId = "TopicId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建日志主题
+    ///
+    /// CreateClsLogTopic 用于创建日志主题。注意：一个日志集下至多可创建10个日志主题。
+    @inlinable
+    public func createClsLogTopic(_ input: CreateClsLogTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClsLogTopicResponse > {
+        self.client.execute(action: "CreateClsLogTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建日志主题
+    ///
+    /// CreateClsLogTopic 用于创建日志主题。注意：一个日志集下至多可创建10个日志主题。
+    @inlinable
+    public func createClsLogTopic(_ input: CreateClsLogTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClsLogTopicResponse {
+        try await self.client.execute(action: "CreateClsLogTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

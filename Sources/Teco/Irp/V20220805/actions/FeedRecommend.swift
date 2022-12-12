@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Irp {
-    /// 获取信息流推荐结果
-    @inlinable
-    public func feedRecommend(_ input: FeedRecommendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FeedRecommendResponse > {
-        self.client.execute(action: "FeedRecommend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取信息流推荐结果
-    @inlinable
-    public func feedRecommend(_ input: FeedRecommendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FeedRecommendResponse {
-        try await self.client.execute(action: "FeedRecommend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// FeedRecommend请求参数结构体
     public struct FeedRecommendRequest: TCRequestModel {
         /// 实例ID，在控制台获取
@@ -47,7 +35,7 @@ extension Irp {
         /// 当场景是相关推荐时该值必填，场景是非相关推荐时该值无效
         public let currentItemId: String?
         
-        public init (instanceId: String, sceneId: String, userId: String, userIdList: [UserIdInfo]?, itemCnt: Int64?, currentItemId: String?) {
+        public init (instanceId: String, sceneId: String, userId: String, userIdList: [UserIdInfo]? = nil, itemCnt: Int64? = nil, currentItemId: String? = nil) {
             self.instanceId = instanceId
             self.sceneId = sceneId
             self.userId = userId
@@ -78,5 +66,17 @@ extension Irp {
             case dataList = "DataList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取信息流推荐结果
+    @inlinable
+    public func feedRecommend(_ input: FeedRecommendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FeedRecommendResponse > {
+        self.client.execute(action: "FeedRecommend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取信息流推荐结果
+    @inlinable
+    public func feedRecommend(_ input: FeedRecommendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FeedRecommendResponse {
+        try await self.client.execute(action: "FeedRecommend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

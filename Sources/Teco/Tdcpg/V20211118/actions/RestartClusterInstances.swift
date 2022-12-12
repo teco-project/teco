@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdcpg {
-    /// 重启实例
-    ///
-    /// 重启实例，此接口只针对状态为running(运行中)的实例生效。
-    @inlinable
-    public func restartClusterInstances(_ input: RestartClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartClusterInstancesResponse > {
-        self.client.execute(action: "RestartClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重启实例
-    ///
-    /// 重启实例，此接口只针对状态为running(运行中)的实例生效。
-    @inlinable
-    public func restartClusterInstances(_ input: RestartClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartClusterInstancesResponse {
-        try await self.client.execute(action: "RestartClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestartClusterInstances请求参数结构体
     public struct RestartClusterInstancesRequest: TCRequestModel {
         /// 集群ID
@@ -58,5 +42,21 @@ extension Tdcpg {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重启实例
+    ///
+    /// 重启实例，此接口只针对状态为running(运行中)的实例生效。
+    @inlinable
+    public func restartClusterInstances(_ input: RestartClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartClusterInstancesResponse > {
+        self.client.execute(action: "RestartClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重启实例
+    ///
+    /// 重启实例，此接口只针对状态为running(运行中)的实例生效。
+    @inlinable
+    public func restartClusterInstances(_ input: RestartClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartClusterInstancesResponse {
+        try await self.client.execute(action: "RestartClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

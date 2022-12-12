@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 资产中心资产组删除
-    ///
-    /// DeleteResourceGroup-资产中心资产组删除
-    @inlinable
-    public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourceGroupResponse > {
-        self.client.execute(action: "DeleteResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 资产中心资产组删除
-    ///
-    /// DeleteResourceGroup-资产中心资产组删除
-    @inlinable
-    public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceGroupResponse {
-        try await self.client.execute(action: "DeleteResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteResourceGroup请求参数结构体
     public struct DeleteResourceGroupRequest: TCRequestModel {
         /// 组id
@@ -53,5 +37,21 @@ extension Cfw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 资产中心资产组删除
+    ///
+    /// DeleteResourceGroup-资产中心资产组删除
+    @inlinable
+    public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourceGroupResponse > {
+        self.client.execute(action: "DeleteResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 资产中心资产组删除
+    ///
+    /// DeleteResourceGroup-资产中心资产组删除
+    @inlinable
+    public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceGroupResponse {
+        try await self.client.execute(action: "DeleteResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

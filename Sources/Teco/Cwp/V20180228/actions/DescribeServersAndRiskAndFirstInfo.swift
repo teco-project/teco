@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获文件查杀概览信息
-    ///
-    /// 获取待处理风险文件数+影响服务器数+是否试用检测+最近检测时间
-    @inlinable
-    public func describeServersAndRiskAndFirstInfo(_ input: DescribeServersAndRiskAndFirstInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServersAndRiskAndFirstInfoResponse > {
-        self.client.execute(action: "DescribeServersAndRiskAndFirstInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获文件查杀概览信息
-    ///
-    /// 获取待处理风险文件数+影响服务器数+是否试用检测+最近检测时间
-    @inlinable
-    public func describeServersAndRiskAndFirstInfo(_ input: DescribeServersAndRiskAndFirstInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServersAndRiskAndFirstInfoResponse {
-        try await self.client.execute(action: "DescribeServersAndRiskAndFirstInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeServersAndRiskAndFirstInfo请求参数结构体
     public struct DescribeServersAndRiskAndFirstInfoRequest: TCRequestModel {
         public init () {
@@ -65,5 +49,21 @@ extension Cwp {
             case scanTime = "ScanTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获文件查杀概览信息
+    ///
+    /// 获取待处理风险文件数+影响服务器数+是否试用检测+最近检测时间
+    @inlinable
+    public func describeServersAndRiskAndFirstInfo(_ input: DescribeServersAndRiskAndFirstInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServersAndRiskAndFirstInfoResponse > {
+        self.client.execute(action: "DescribeServersAndRiskAndFirstInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获文件查杀概览信息
+    ///
+    /// 获取待处理风险文件数+影响服务器数+是否试用检测+最近检测时间
+    @inlinable
+    public func describeServersAndRiskAndFirstInfo(_ input: DescribeServersAndRiskAndFirstInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServersAndRiskAndFirstInfoResponse {
+        try await self.client.execute(action: "DescribeServersAndRiskAndFirstInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

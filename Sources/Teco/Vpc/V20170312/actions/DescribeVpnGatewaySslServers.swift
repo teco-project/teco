@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询SSL-VPN SERVER 列表
-    ///
-    /// 查询SSL-VPN SERVER 列表信息
-    @inlinable
-    public func describeVpnGatewaySslServers(_ input: DescribeVpnGatewaySslServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpnGatewaySslServersResponse > {
-        self.client.execute(action: "DescribeVpnGatewaySslServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询SSL-VPN SERVER 列表
-    ///
-    /// 查询SSL-VPN SERVER 列表信息
-    @inlinable
-    public func describeVpnGatewaySslServers(_ input: DescribeVpnGatewaySslServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslServersResponse {
-        try await self.client.execute(action: "DescribeVpnGatewaySslServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpnGatewaySslServers请求参数结构体
     public struct DescribeVpnGatewaySslServersRequest: TCRequestModel {
         /// 偏移量
@@ -53,7 +37,7 @@ extension Vpc {
         /// vpn门户使用。 默认Flase
         public let isVpnPortal: Bool?
         
-        public init (offset: UInt64?, limit: UInt64?, sslVpnServerIds: [String]?, filters: [FilterObject]?, isVpnPortal: Bool?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, sslVpnServerIds: [String]? = nil, filters: [FilterObject]? = nil, isVpnPortal: Bool? = nil) {
             self.offset = offset
             self.limit = limit
             self.sslVpnServerIds = sslVpnServerIds
@@ -86,5 +70,21 @@ extension Vpc {
             case sslVpnSeverSet = "SslVpnSeverSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询SSL-VPN SERVER 列表
+    ///
+    /// 查询SSL-VPN SERVER 列表信息
+    @inlinable
+    public func describeVpnGatewaySslServers(_ input: DescribeVpnGatewaySslServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpnGatewaySslServersResponse > {
+        self.client.execute(action: "DescribeVpnGatewaySslServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询SSL-VPN SERVER 列表
+    ///
+    /// 查询SSL-VPN SERVER 列表信息
+    @inlinable
+    public func describeVpnGatewaySslServers(_ input: DescribeVpnGatewaySslServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslServersResponse {
+        try await self.client.execute(action: "DescribeVpnGatewaySslServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

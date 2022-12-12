@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yinsuda {
-    /// 获取联想词
-    ///
-    /// 根据关键词获取联想词列表。
-    @inlinable
-    public func describeKTVSuggestions(_ input: DescribeKTVSuggestionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVSuggestionsResponse > {
-        self.client.execute(action: "DescribeKTVSuggestions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取联想词
-    ///
-    /// 根据关键词获取联想词列表。
-    @inlinable
-    public func describeKTVSuggestions(_ input: DescribeKTVSuggestionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSuggestionsResponse {
-        try await self.client.execute(action: "DescribeKTVSuggestions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKTVSuggestions请求参数结构体
     public struct DescribeKTVSuggestionsRequest: TCRequestModel {
         /// 应用名称。
@@ -67,5 +51,21 @@ extension Yinsuda {
             case ktvSuggestionInfoSet = "KTVSuggestionInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取联想词
+    ///
+    /// 根据关键词获取联想词列表。
+    @inlinable
+    public func describeKTVSuggestions(_ input: DescribeKTVSuggestionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVSuggestionsResponse > {
+        self.client.execute(action: "DescribeKTVSuggestions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取联想词
+    ///
+    /// 根据关键词获取联想词列表。
+    @inlinable
+    public func describeKTVSuggestions(_ input: DescribeKTVSuggestionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSuggestionsResponse {
+        try await self.client.execute(action: "DescribeKTVSuggestions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

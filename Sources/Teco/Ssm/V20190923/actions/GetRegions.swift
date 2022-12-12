@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssm {
-    /// 获取控制台展示region列表
-    @inlinable
-    public func getRegions(_ input: GetRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRegionsResponse > {
-        self.client.execute(action: "GetRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取控制台展示region列表
-    @inlinable
-    public func getRegions(_ input: GetRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRegionsResponse {
-        try await self.client.execute(action: "GetRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetRegions请求参数结构体
     public struct GetRegionsRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Ssm {
             case regions = "Regions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取控制台展示region列表
+    @inlinable
+    public func getRegions(_ input: GetRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRegionsResponse > {
+        self.client.execute(action: "GetRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取控制台展示region列表
+    @inlinable
+    public func getRegions(_ input: GetRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRegionsResponse {
+        try await self.client.execute(action: "GetRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

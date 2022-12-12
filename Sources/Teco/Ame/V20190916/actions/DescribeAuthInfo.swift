@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取授权项目列表
-    ///
-    /// 获取授权项目信息列表
-    @inlinable
-    public func describeAuthInfo(_ input: DescribeAuthInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuthInfoResponse > {
-        self.client.execute(action: "DescribeAuthInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取授权项目列表
-    ///
-    /// 获取授权项目信息列表
-    @inlinable
-    public func describeAuthInfo(_ input: DescribeAuthInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthInfoResponse {
-        try await self.client.execute(action: "DescribeAuthInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAuthInfo请求参数结构体
     public struct DescribeAuthInfoRequest: TCRequestModel {
         /// 偏移量：Offset=Offset+Limit
@@ -42,7 +26,7 @@ extension Ame {
         /// 搜索关键字
         public let key: String?
         
-        public init (offset: Int64?, limit: Int64?, key: String?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, key: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.key = key
@@ -71,5 +55,21 @@ extension Ame {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取授权项目列表
+    ///
+    /// 获取授权项目信息列表
+    @inlinable
+    public func describeAuthInfo(_ input: DescribeAuthInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuthInfoResponse > {
+        self.client.execute(action: "DescribeAuthInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取授权项目列表
+    ///
+    /// 获取授权项目信息列表
+    @inlinable
+    public func describeAuthInfo(_ input: DescribeAuthInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthInfoResponse {
+        try await self.client.execute(action: "DescribeAuthInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

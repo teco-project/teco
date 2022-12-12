@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 删除自定义脚本
-    @inlinable
-    public func deleteUserCmds(_ input: DeleteUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserCmdsResponse > {
-        self.client.execute(action: "DeleteUserCmds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除自定义脚本
-    @inlinable
-    public func deleteUserCmds(_ input: DeleteUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserCmdsResponse {
-        try await self.client.execute(action: "DeleteUserCmds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteUserCmds请求参数结构体
     public struct DeleteUserCmdsRequest: TCRequestModel {
         /// 需要删除的脚本ID
@@ -49,5 +37,17 @@ extension Bm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除自定义脚本
+    @inlinable
+    public func deleteUserCmds(_ input: DeleteUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserCmdsResponse > {
+        self.client.execute(action: "DeleteUserCmds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除自定义脚本
+    @inlinable
+    public func deleteUserCmds(_ input: DeleteUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserCmdsResponse {
+        try await self.client.execute(action: "DeleteUserCmds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

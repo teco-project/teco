@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 重启实例
-    ///
-    /// 本接口（RestartDBInstance）用于重启数据库实例。
-    @inlinable
-    public func restartDBInstance(_ input: RestartDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartDBInstanceResponse > {
-        self.client.execute(action: "RestartDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重启实例
-    ///
-    /// 本接口（RestartDBInstance）用于重启数据库实例。
-    @inlinable
-    public func restartDBInstance(_ input: RestartDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstanceResponse {
-        try await self.client.execute(action: "RestartDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestartDBInstance请求参数结构体
     public struct RestartDBInstanceRequest: TCRequestModel {
         /// 数据库实例ID，形如mssql-njj2mtpl
@@ -57,5 +41,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重启实例
+    ///
+    /// 本接口（RestartDBInstance）用于重启数据库实例。
+    @inlinable
+    public func restartDBInstance(_ input: RestartDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartDBInstanceResponse > {
+        self.client.execute(action: "RestartDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重启实例
+    ///
+    /// 本接口（RestartDBInstance）用于重启数据库实例。
+    @inlinable
+    public func restartDBInstance(_ input: RestartDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstanceResponse {
+        try await self.client.execute(action: "RestartDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

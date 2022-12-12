@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 修改 API 文档
-    @inlinable
-    public func modifyAPIDoc(_ input: ModifyAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAPIDocResponse > {
-        self.client.execute(action: "ModifyAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改 API 文档
-    @inlinable
-    public func modifyAPIDoc(_ input: ModifyAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAPIDocResponse {
-        try await self.client.execute(action: "ModifyAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAPIDoc请求参数结构体
     public struct ModifyAPIDocRequest: TCRequestModel {
         /// API文档ID
@@ -44,7 +32,7 @@ extension Apigateway {
         /// 生成文档的API列表
         public let apiIds: [String]?
         
-        public init (apiDocId: String, apiDocName: String?, serviceId: String?, environment: String?, apiIds: [String]?) {
+        public init (apiDocId: String, apiDocName: String? = nil, serviceId: String? = nil, environment: String? = nil, apiIds: [String]? = nil) {
             self.apiDocId = apiDocId
             self.apiDocName = apiDocName
             self.serviceId = serviceId
@@ -73,5 +61,17 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改 API 文档
+    @inlinable
+    public func modifyAPIDoc(_ input: ModifyAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAPIDocResponse > {
+        self.client.execute(action: "ModifyAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改 API 文档
+    @inlinable
+    public func modifyAPIDoc(_ input: ModifyAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAPIDocResponse {
+        try await self.client.execute(action: "ModifyAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

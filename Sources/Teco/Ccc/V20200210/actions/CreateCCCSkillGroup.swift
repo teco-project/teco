@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 创建技能组
-    @inlinable
-    public func createCCCSkillGroup(_ input: CreateCCCSkillGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCCCSkillGroupResponse > {
-        self.client.execute(action: "CreateCCCSkillGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建技能组
-    @inlinable
-    public func createCCCSkillGroup(_ input: CreateCCCSkillGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCCSkillGroupResponse {
-        try await self.client.execute(action: "CreateCCCSkillGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCCCSkillGroup请求参数结构体
     public struct CreateCCCSkillGroupRequest: TCRequestModel {
         /// 应用 ID（必填）
@@ -42,7 +30,7 @@ extension Ccc {
         /// 2、若技能组类型为电话、音频、视频，则接待上线必须只能为1
         public let maxConcurrency: UInt64?
         
-        public init (sdkAppId: Int64, skillGroupName: String, skillGroupType: Int64, maxConcurrency: UInt64?) {
+        public init (sdkAppId: Int64, skillGroupName: String, skillGroupType: Int64, maxConcurrency: UInt64? = nil) {
             self.sdkAppId = sdkAppId
             self.skillGroupName = skillGroupName
             self.skillGroupType = skillGroupType
@@ -69,5 +57,17 @@ extension Ccc {
             case skillGroupId = "SkillGroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建技能组
+    @inlinable
+    public func createCCCSkillGroup(_ input: CreateCCCSkillGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCCCSkillGroupResponse > {
+        self.client.execute(action: "CreateCCCSkillGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建技能组
+    @inlinable
+    public func createCCCSkillGroup(_ input: CreateCCCSkillGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCCSkillGroupResponse {
+        try await self.client.execute(action: "CreateCCCSkillGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询微信云托管子网
-    @inlinable
-    public func describeWxCloudBaseRunSubNets(_ input: DescribeWxCloudBaseRunSubNetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWxCloudBaseRunSubNetsResponse > {
-        self.client.execute(action: "DescribeWxCloudBaseRunSubNets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询微信云托管子网
-    @inlinable
-    public func describeWxCloudBaseRunSubNets(_ input: DescribeWxCloudBaseRunSubNetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWxCloudBaseRunSubNetsResponse {
-        try await self.client.execute(action: "DescribeWxCloudBaseRunSubNets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWxCloudBaseRunSubNets请求参数结构体
     public struct DescribeWxCloudBaseRunSubNetsRequest: TCRequestModel {
         /// VPC id
@@ -35,7 +23,7 @@ extension Tcb {
         /// 查询个数限制，不填或小于等于0，等于不限制
         public let limit: Int64?
         
-        public init (vpcId: String, limit: Int64?) {
+        public init (vpcId: String, limit: Int64? = nil) {
             self.vpcId = vpcId
             self.limit = limit
         }
@@ -58,5 +46,17 @@ extension Tcb {
             case subNetIds = "SubNetIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询微信云托管子网
+    @inlinable
+    public func describeWxCloudBaseRunSubNets(_ input: DescribeWxCloudBaseRunSubNetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWxCloudBaseRunSubNetsResponse > {
+        self.client.execute(action: "DescribeWxCloudBaseRunSubNets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询微信云托管子网
+    @inlinable
+    public func describeWxCloudBaseRunSubNets(_ input: DescribeWxCloudBaseRunSubNetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWxCloudBaseRunSubNetsResponse {
+        try await self.client.execute(action: "DescribeWxCloudBaseRunSubNets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

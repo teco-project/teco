@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cds {
-    /// 获取数据安全审计实例列表
-    ///
-    /// 本接口 (DescribeDbauditInstances) 用于查询数据安全审计实例列表
-    @inlinable
-    public func describeDbauditInstances(_ input: DescribeDbauditInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDbauditInstancesResponse > {
-        self.client.execute(action: "DescribeDbauditInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取数据安全审计实例列表
-    ///
-    /// 本接口 (DescribeDbauditInstances) 用于查询数据安全审计实例列表
-    @inlinable
-    public func describeDbauditInstances(_ input: DescribeDbauditInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditInstancesResponse {
-        try await self.client.execute(action: "DescribeDbauditInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDbauditInstances请求参数结构体
     public struct DescribeDbauditInstancesRequest: TCRequestModel {
         /// 查询条件地域
@@ -42,7 +26,7 @@ extension Cds {
         /// 偏移量，默认1
         public let offset: UInt64?
         
-        public init (searchRegion: String?, limit: UInt64?, offset: UInt64?) {
+        public init (searchRegion: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.searchRegion = searchRegion
             self.limit = limit
             self.offset = offset
@@ -71,5 +55,21 @@ extension Cds {
             case cdsAuditInstanceSet = "CdsAuditInstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取数据安全审计实例列表
+    ///
+    /// 本接口 (DescribeDbauditInstances) 用于查询数据安全审计实例列表
+    @inlinable
+    public func describeDbauditInstances(_ input: DescribeDbauditInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDbauditInstancesResponse > {
+        self.client.execute(action: "DescribeDbauditInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取数据安全审计实例列表
+    ///
+    /// 本接口 (DescribeDbauditInstances) 用于查询数据安全审计实例列表
+    @inlinable
+    public func describeDbauditInstances(_ input: DescribeDbauditInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditInstancesResponse {
+        try await self.client.execute(action: "DescribeDbauditInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

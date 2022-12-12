@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询漏洞影响的镜像列表
-    @inlinable
-    public func describeVulImageList(_ input: DescribeVulImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulImageListResponse > {
-        self.client.execute(action: "DescribeVulImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询漏洞影响的镜像列表
-    @inlinable
-    public func describeVulImageList(_ input: DescribeVulImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulImageListResponse {
-        try await self.client.execute(action: "DescribeVulImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulImageList请求参数结构体
     public struct DescribeVulImageListRequest: TCRequestModel {
         /// 漏洞PocID
@@ -55,7 +43,7 @@ extension Tcss {
         /// 排序字段
         public let by: String?
         
-        public init (pocID: String, limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, order: String?, by: String?) {
+        public init (pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.pocID = pocID
             self.limit = limit
             self.offset = offset
@@ -90,5 +78,17 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询漏洞影响的镜像列表
+    @inlinable
+    public func describeVulImageList(_ input: DescribeVulImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulImageListResponse > {
+        self.client.execute(action: "DescribeVulImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞影响的镜像列表
+    @inlinable
+    public func describeVulImageList(_ input: DescribeVulImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulImageListResponse {
+        try await self.client.execute(action: "DescribeVulImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

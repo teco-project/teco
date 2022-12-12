@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 获取智能审核模板列表
-    ///
-    /// 根据智能审核模板唯一标识，获取智能审核模板详情列表。返回结果包含符合条件的所有用户自定义模板及系统预置智能审核模板。
-    @inlinable
-    public func describeContentReviewTemplates(_ input: DescribeContentReviewTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContentReviewTemplatesResponse > {
-        self.client.execute(action: "DescribeContentReviewTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取智能审核模板列表
-    ///
-    /// 根据智能审核模板唯一标识，获取智能审核模板详情列表。返回结果包含符合条件的所有用户自定义模板及系统预置智能审核模板。
-    @inlinable
-    public func describeContentReviewTemplates(_ input: DescribeContentReviewTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContentReviewTemplatesResponse {
-        try await self.client.execute(action: "DescribeContentReviewTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeContentReviewTemplates请求参数结构体
     public struct DescribeContentReviewTemplatesRequest: TCRequestModel {
         /// 智能审核模板唯一标识过滤条件，数组长度限制：50。
@@ -47,7 +31,7 @@ extension Mps {
         /// * Custom：用户自定义模板。
         public let type: String?
         
-        public init (definitions: [Int64]?, offset: UInt64?, limit: UInt64?, type: String?) {
+        public init (definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil) {
             self.definitions = definitions
             self.offset = offset
             self.limit = limit
@@ -78,5 +62,21 @@ extension Mps {
             case contentReviewTemplateSet = "ContentReviewTemplateSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取智能审核模板列表
+    ///
+    /// 根据智能审核模板唯一标识，获取智能审核模板详情列表。返回结果包含符合条件的所有用户自定义模板及系统预置智能审核模板。
+    @inlinable
+    public func describeContentReviewTemplates(_ input: DescribeContentReviewTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContentReviewTemplatesResponse > {
+        self.client.execute(action: "DescribeContentReviewTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取智能审核模板列表
+    ///
+    /// 根据智能审核模板唯一标识，获取智能审核模板详情列表。返回结果包含符合条件的所有用户自定义模板及系统预置智能审核模板。
+    @inlinable
+    public func describeContentReviewTemplates(_ input: DescribeContentReviewTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContentReviewTemplatesResponse {
+        try await self.client.execute(action: "DescribeContentReviewTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

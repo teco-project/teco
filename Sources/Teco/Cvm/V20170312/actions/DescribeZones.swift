@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查询可用区列表
-    ///
-    /// 本接口(DescribeZones)用于查询可用区信息。
-    @inlinable
-    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
-        self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询可用区列表
-    ///
-    /// 本接口(DescribeZones)用于查询可用区信息。
-    @inlinable
-    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
-        try await self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeZones请求参数结构体
     public struct DescribeZonesRequest: TCRequestModel {
         public init () {
@@ -53,5 +37,21 @@ extension Cvm {
             case zoneSet = "ZoneSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询可用区列表
+    ///
+    /// 本接口(DescribeZones)用于查询可用区信息。
+    @inlinable
+    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
+        self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询可用区列表
+    ///
+    /// 本接口(DescribeZones)用于查询可用区信息。
+    @inlinable
+    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
+        try await self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

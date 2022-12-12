@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 获取Waf攻击Top数据
-    @inlinable
-    public func listTopWafData(_ input: ListTopWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopWafDataResponse > {
-        self.client.execute(action: "ListTopWafData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Waf攻击Top数据
-    @inlinable
-    public func listTopWafData(_ input: ListTopWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopWafDataResponse {
-        try await self.client.execute(action: "ListTopWafData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListTopWafData请求参数结构体
     public struct ListTopWafDataRequest: TCRequestModel {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
@@ -79,7 +67,7 @@ extension Cdn {
         /// 指定域名列表查询，不填写查询整个AppID下数据
         public let domains: [String]?
         
-        public init (startTime: String, endTime: String, domain: String?, attackType: String?, defenceMode: String?, metric: String?, area: String?, attackTypes: [String]?, domains: [String]?) {
+        public init (startTime: String, endTime: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, metric: String? = nil, area: String? = nil, attackTypes: [String]? = nil, domains: [String]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.domain = domain
@@ -128,5 +116,17 @@ extension Cdn {
             case topDomainData = "TopDomainData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Waf攻击Top数据
+    @inlinable
+    public func listTopWafData(_ input: ListTopWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopWafDataResponse > {
+        self.client.execute(action: "ListTopWafData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Waf攻击Top数据
+    @inlinable
+    public func listTopWafData(_ input: ListTopWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopWafDataResponse {
+        try await self.client.execute(action: "ListTopWafData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

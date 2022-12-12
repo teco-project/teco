@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 基线检测进度查询
-    ///
-    /// 根据任务id查询基线检测进度
-    @inlinable
-    public func describeBaselineScanSchedule(_ input: DescribeBaselineScanScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineScanScheduleResponse > {
-        self.client.execute(action: "DescribeBaselineScanSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 基线检测进度查询
-    ///
-    /// 根据任务id查询基线检测进度
-    @inlinable
-    public func describeBaselineScanSchedule(_ input: DescribeBaselineScanScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineScanScheduleResponse {
-        try await self.client.execute(action: "DescribeBaselineScanSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBaselineScanSchedule请求参数结构体
     public struct DescribeBaselineScanScheduleRequest: TCRequestModel {
         /// 任务id
@@ -58,5 +42,21 @@ extension Cwp {
             case schedule = "Schedule"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 基线检测进度查询
+    ///
+    /// 根据任务id查询基线检测进度
+    @inlinable
+    public func describeBaselineScanSchedule(_ input: DescribeBaselineScanScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineScanScheduleResponse > {
+        self.client.execute(action: "DescribeBaselineScanSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 基线检测进度查询
+    ///
+    /// 根据任务id查询基线检测进度
+    @inlinable
+    public func describeBaselineScanSchedule(_ input: DescribeBaselineScanScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineScanScheduleResponse {
+        try await self.client.execute(action: "DescribeBaselineScanSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

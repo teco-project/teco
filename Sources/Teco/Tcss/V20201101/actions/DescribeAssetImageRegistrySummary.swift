@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 镜像仓库查询镜像统计信息
-    @inlinable
-    public func describeAssetImageRegistrySummary(_ input: DescribeAssetImageRegistrySummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistrySummaryResponse > {
-        self.client.execute(action: "DescribeAssetImageRegistrySummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 镜像仓库查询镜像统计信息
-    @inlinable
-    public func describeAssetImageRegistrySummary(_ input: DescribeAssetImageRegistrySummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistrySummaryResponse {
-        try await self.client.execute(action: "DescribeAssetImageRegistrySummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageRegistrySummary请求参数结构体
     public struct DescribeAssetImageRegistrySummaryRequest: TCRequestModel {
         public init () {
@@ -41,5 +29,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 镜像仓库查询镜像统计信息
+    @inlinable
+    public func describeAssetImageRegistrySummary(_ input: DescribeAssetImageRegistrySummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistrySummaryResponse > {
+        self.client.execute(action: "DescribeAssetImageRegistrySummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库查询镜像统计信息
+    @inlinable
+    public func describeAssetImageRegistrySummary(_ input: DescribeAssetImageRegistrySummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistrySummaryResponse {
+        try await self.client.execute(action: "DescribeAssetImageRegistrySummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

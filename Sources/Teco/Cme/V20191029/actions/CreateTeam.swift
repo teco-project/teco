@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 创建团队
-    ///
-    /// 创建一个团队。
-    @inlinable
-    public func createTeam(_ input: CreateTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTeamResponse > {
-        self.client.execute(action: "CreateTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建团队
-    ///
-    /// 创建一个团队。
-    @inlinable
-    public func createTeam(_ input: CreateTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTeamResponse {
-        try await self.client.execute(action: "CreateTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTeam请求参数结构体
     public struct CreateTeamRequest: TCRequestModel {
         /// 平台名称，指定访问的平台。
@@ -48,7 +32,7 @@ extension Cme {
         /// 自定义团队 ID。创建后不可修改，限20个英文字符及"-"。同时不能以 cmetid_开头。不填会生成默认团队 ID。
         public let teamId: String?
         
-        public init (platform: String, name: String, ownerId: String, ownerRemark: String?, teamId: String?) {
+        public init (platform: String, name: String, ownerId: String, ownerRemark: String? = nil, teamId: String? = nil) {
             self.platform = platform
             self.name = name
             self.ownerId = ownerId
@@ -77,5 +61,21 @@ extension Cme {
             case teamId = "TeamId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建团队
+    ///
+    /// 创建一个团队。
+    @inlinable
+    public func createTeam(_ input: CreateTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTeamResponse > {
+        self.client.execute(action: "CreateTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建团队
+    ///
+    /// 创建一个团队。
+    @inlinable
+    public func createTeam(_ input: CreateTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTeamResponse {
+        try await self.client.execute(action: "CreateTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

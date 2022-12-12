@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询云硬盘操作限制列表信息
-    ///
-    /// 本接口（DescribeDisksDeniedActions）用于查询一个或多个云硬盘的操作限制列表信息。
-    @inlinable
-    public func describeDisksDeniedActions(_ input: DescribeDisksDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDisksDeniedActionsResponse > {
-        self.client.execute(action: "DescribeDisksDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云硬盘操作限制列表信息
-    ///
-    /// 本接口（DescribeDisksDeniedActions）用于查询一个或多个云硬盘的操作限制列表信息。
-    @inlinable
-    public func describeDisksDeniedActions(_ input: DescribeDisksDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksDeniedActionsResponse {
-        try await self.client.execute(action: "DescribeDisksDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDisksDeniedActions请求参数结构体
     public struct DescribeDisksDeniedActionsRequest: TCRequestModel {
         /// 云硬盘ID列表。
@@ -57,5 +41,21 @@ extension Lighthouse {
             case diskDeniedActionSet = "DiskDeniedActionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云硬盘操作限制列表信息
+    ///
+    /// 本接口（DescribeDisksDeniedActions）用于查询一个或多个云硬盘的操作限制列表信息。
+    @inlinable
+    public func describeDisksDeniedActions(_ input: DescribeDisksDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDisksDeniedActionsResponse > {
+        self.client.execute(action: "DescribeDisksDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云硬盘操作限制列表信息
+    ///
+    /// 本接口（DescribeDisksDeniedActions）用于查询一个或多个云硬盘的操作限制列表信息。
+    @inlinable
+    public func describeDisksDeniedActions(_ input: DescribeDisksDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksDeniedActionsResponse {
+        try await self.client.execute(action: "DescribeDisksDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

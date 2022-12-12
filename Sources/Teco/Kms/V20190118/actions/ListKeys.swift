@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 获取主密钥列表
-    ///
-    /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
-    @inlinable
-    public func listKeys(_ input: ListKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListKeysResponse > {
-        self.client.execute(action: "ListKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取主密钥列表
-    ///
-    /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
-    @inlinable
-    public func listKeys(_ input: ListKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeysResponse {
-        try await self.client.execute(action: "ListKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListKeys请求参数结构体
     public struct ListKeysRequest: TCRequestModel {
         /// 含义跟 SQL 查询的 Offset 一致，表示本次获取从按一定顺序排列数组的第 Offset 个元素开始，缺省为0
@@ -45,7 +29,7 @@ extension Kms {
         /// KMS 高级版对应的 HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）。
         public let hsmClusterId: String?
         
-        public init (offset: UInt64?, limit: UInt64?, role: UInt64?, hsmClusterId: String?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, role: UInt64? = nil, hsmClusterId: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.role = role
@@ -77,5 +61,21 @@ extension Kms {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取主密钥列表
+    ///
+    /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
+    @inlinable
+    public func listKeys(_ input: ListKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListKeysResponse > {
+        self.client.execute(action: "ListKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取主密钥列表
+    ///
+    /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
+    @inlinable
+    public func listKeys(_ input: ListKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeysResponse {
+        try await self.client.execute(action: "ListKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 获取 Prometheus Agent 管理相关的命令行
-    @inlinable
-    public func getPrometheusAgentManagementCommand(_ input: GetPrometheusAgentManagementCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPrometheusAgentManagementCommandResponse > {
-        self.client.execute(action: "GetPrometheusAgentManagementCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取 Prometheus Agent 管理相关的命令行
-    @inlinable
-    public func getPrometheusAgentManagementCommand(_ input: GetPrometheusAgentManagementCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPrometheusAgentManagementCommandResponse {
-        try await self.client.execute(action: "GetPrometheusAgentManagementCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetPrometheusAgentManagementCommand请求参数结构体
     public struct GetPrometheusAgentManagementCommandRequest: TCRequestModel {
         /// Prometheus 实例 ID
@@ -58,5 +46,17 @@ extension Monitor {
             case command = "Command"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取 Prometheus Agent 管理相关的命令行
+    @inlinable
+    public func getPrometheusAgentManagementCommand(_ input: GetPrometheusAgentManagementCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPrometheusAgentManagementCommandResponse > {
+        self.client.execute(action: "GetPrometheusAgentManagementCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取 Prometheus Agent 管理相关的命令行
+    @inlinable
+    public func getPrometheusAgentManagementCommand(_ input: GetPrometheusAgentManagementCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPrometheusAgentManagementCommandResponse {
+        try await self.client.execute(action: "GetPrometheusAgentManagementCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 创建任务告警规则
-    @inlinable
-    public func createTaskAlarmRegular(_ input: CreateTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskAlarmRegularResponse > {
-        self.client.execute(action: "CreateTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建任务告警规则
-    @inlinable
-    public func createTaskAlarmRegular(_ input: CreateTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskAlarmRegularResponse {
-        try await self.client.execute(action: "CreateTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTaskAlarmRegular请求参数结构体
     public struct CreateTaskAlarmRegularRequest: TCRequestModel {
         /// 告警配置信息
@@ -58,5 +46,17 @@ extension Wedata {
             case alarmId = "AlarmId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建任务告警规则
+    @inlinable
+    public func createTaskAlarmRegular(_ input: CreateTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskAlarmRegularResponse > {
+        self.client.execute(action: "CreateTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建任务告警规则
+    @inlinable
+    public func createTaskAlarmRegular(_ input: CreateTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskAlarmRegularResponse {
+        try await self.client.execute(action: "CreateTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

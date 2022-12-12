@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 取消短信活动
-    ///
-    /// 取消短信推送活动
-    @inlinable
-    public func cancelCampaign(_ input: CancelCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelCampaignResponse > {
-        self.client.execute(action: "CancelCampaign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消短信活动
-    ///
-    /// 取消短信推送活动
-    @inlinable
-    public func cancelCampaign(_ input: CancelCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCampaignResponse {
-        try await self.client.execute(action: "CancelCampaign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelCampaign请求参数结构体
     public struct CancelCampaignRequest: TCRequestModel {
         /// 商户证书
@@ -62,5 +46,21 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消短信活动
+    ///
+    /// 取消短信推送活动
+    @inlinable
+    public func cancelCampaign(_ input: CancelCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelCampaignResponse > {
+        self.client.execute(action: "CancelCampaign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消短信活动
+    ///
+    /// 取消短信推送活动
+    @inlinable
+    public func cancelCampaign(_ input: CancelCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCampaignResponse {
+        try await self.client.execute(action: "CancelCampaign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

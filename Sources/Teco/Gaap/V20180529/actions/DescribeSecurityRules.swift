@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 根据安全规则ID查询安全规则详情列表
-    ///
-    /// 本接口（DescribeSecurityRules）用于根据安全规则ID查询安全规则详情列表。支持一个或多个安全规则的查询。一次最多支持20个安全规则的查询。
-    @inlinable
-    public func describeSecurityRules(_ input: DescribeSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityRulesResponse > {
-        self.client.execute(action: "DescribeSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据安全规则ID查询安全规则详情列表
-    ///
-    /// 本接口（DescribeSecurityRules）用于根据安全规则ID查询安全规则详情列表。支持一个或多个安全规则的查询。一次最多支持20个安全规则的查询。
-    @inlinable
-    public func describeSecurityRules(_ input: DescribeSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityRulesResponse {
-        try await self.client.execute(action: "DescribeSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityRules请求参数结构体
     public struct DescribeSecurityRulesRequest: TCRequestModel {
         /// 安全规则ID列表。总数不能超过20个。
@@ -61,5 +45,21 @@ extension Gaap {
             case securityRuleSet = "SecurityRuleSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据安全规则ID查询安全规则详情列表
+    ///
+    /// 本接口（DescribeSecurityRules）用于根据安全规则ID查询安全规则详情列表。支持一个或多个安全规则的查询。一次最多支持20个安全规则的查询。
+    @inlinable
+    public func describeSecurityRules(_ input: DescribeSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityRulesResponse > {
+        self.client.execute(action: "DescribeSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据安全规则ID查询安全规则详情列表
+    ///
+    /// 本接口（DescribeSecurityRules）用于根据安全规则ID查询安全规则详情列表。支持一个或多个安全规则的查询。一次最多支持20个安全规则的查询。
+    @inlinable
+    public func describeSecurityRules(_ input: DescribeSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityRulesResponse {
+        try await self.client.execute(action: "DescribeSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

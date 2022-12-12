@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 查看文件系统详细信息
-    ///
-    /// 查看文件系统详细信息。
-    @inlinable
-    public func describeFileSystem(_ input: DescribeFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileSystemResponse > {
-        self.client.execute(action: "DescribeFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看文件系统详细信息
-    ///
-    /// 查看文件系统详细信息。
-    @inlinable
-    public func describeFileSystem(_ input: DescribeFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileSystemResponse {
-        try await self.client.execute(action: "DescribeFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFileSystem请求参数结构体
     public struct DescribeFileSystemRequest: TCRequestModel {
         /// 文件系统ID
@@ -77,5 +61,21 @@ extension Chdfs {
             case degradeCapacityUsed = "DegradeCapacityUsed"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看文件系统详细信息
+    ///
+    /// 查看文件系统详细信息。
+    @inlinable
+    public func describeFileSystem(_ input: DescribeFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileSystemResponse > {
+        self.client.execute(action: "DescribeFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看文件系统详细信息
+    ///
+    /// 查看文件系统详细信息。
+    @inlinable
+    public func describeFileSystem(_ input: DescribeFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileSystemResponse {
+        try await self.client.execute(action: "DescribeFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

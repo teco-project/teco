@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 查询标签值
-    ///
-    /// 查询标签内容
-    @inlinable
-    public func describeLabelValues(_ input: DescribeLabelValuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLabelValuesResponse > {
-        self.client.execute(action: "DescribeLabelValues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询标签值
-    ///
-    /// 查询标签内容
-    @inlinable
-    public func describeLabelValues(_ input: DescribeLabelValuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLabelValuesResponse {
-        try await self.client.execute(action: "DescribeLabelValues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLabelValues请求参数结构体
     public struct DescribeLabelValuesRequest: TCRequestModel {
         /// 任务ID
@@ -78,5 +62,21 @@ extension Pts {
             case labelValueSet = "LabelValueSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询标签值
+    ///
+    /// 查询标签内容
+    @inlinable
+    public func describeLabelValues(_ input: DescribeLabelValuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLabelValuesResponse > {
+        self.client.execute(action: "DescribeLabelValues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询标签值
+    ///
+    /// 查询标签内容
+    @inlinable
+    public func describeLabelValues(_ input: DescribeLabelValuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLabelValuesResponse {
+        try await self.client.execute(action: "DescribeLabelValues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

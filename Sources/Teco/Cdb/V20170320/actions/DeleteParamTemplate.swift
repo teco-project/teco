@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 删除参数模板
-    ///
-    /// 该接口（DeleteParamTemplate）用于删除参数模板，全地域公共参数Region均为ap-guangzhou。
-    @inlinable
-    public func deleteParamTemplate(_ input: DeleteParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteParamTemplateResponse > {
-        self.client.execute(action: "DeleteParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除参数模板
-    ///
-    /// 该接口（DeleteParamTemplate）用于删除参数模板，全地域公共参数Region均为ap-guangzhou。
-    @inlinable
-    public func deleteParamTemplate(_ input: DeleteParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteParamTemplateResponse {
-        try await self.client.execute(action: "DeleteParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteParamTemplate请求参数结构体
     public struct DeleteParamTemplateRequest: TCRequestModel {
         /// 参数模板ID。
@@ -53,5 +37,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除参数模板
+    ///
+    /// 该接口（DeleteParamTemplate）用于删除参数模板，全地域公共参数Region均为ap-guangzhou。
+    @inlinable
+    public func deleteParamTemplate(_ input: DeleteParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteParamTemplateResponse > {
+        self.client.execute(action: "DeleteParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除参数模板
+    ///
+    /// 该接口（DeleteParamTemplate）用于删除参数模板，全地域公共参数Region均为ap-guangzhou。
+    @inlinable
+    public func deleteParamTemplate(_ input: DeleteParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteParamTemplateResponse {
+        try await self.client.execute(action: "DeleteParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

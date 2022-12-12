@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 编辑订单属性
-    ///
-    /// 对订单属性编辑
-    @inlinable
-    public func modifyOrderAttribute(_ input: ModifyOrderAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyOrderAttributeResponse > {
-        self.client.execute(action: "ModifyOrderAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑订单属性
-    ///
-    /// 对订单属性编辑
-    @inlinable
-    public func modifyOrderAttribute(_ input: ModifyOrderAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrderAttributeResponse {
-        try await self.client.execute(action: "ModifyOrderAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyOrderAttribute请求参数结构体
     public struct ModifyOrderAttributeRequest: TCRequestModel {
         /// 授权类型 0 专业版-按量计费, 1专业版-包年包月 , 2 旗舰版-包年包月
@@ -68,5 +52,21 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑订单属性
+    ///
+    /// 对订单属性编辑
+    @inlinable
+    public func modifyOrderAttribute(_ input: ModifyOrderAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyOrderAttributeResponse > {
+        self.client.execute(action: "ModifyOrderAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑订单属性
+    ///
+    /// 对订单属性编辑
+    @inlinable
+    public func modifyOrderAttribute(_ input: ModifyOrderAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrderAttributeResponse {
+        try await self.client.execute(action: "ModifyOrderAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

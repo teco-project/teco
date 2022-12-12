@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 隔离DCDB后付费实例
-    @inlinable
-    public func isolateHourDCDBInstance(_ input: IsolateHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateHourDCDBInstanceResponse > {
-        self.client.execute(action: "IsolateHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 隔离DCDB后付费实例
-    @inlinable
-    public func isolateHourDCDBInstance(_ input: IsolateHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateHourDCDBInstanceResponse {
-        try await self.client.execute(action: "IsolateHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// IsolateHourDCDBInstance请求参数结构体
     public struct IsolateHourDCDBInstanceRequest: TCRequestModel {
         /// 实例uuid列表
@@ -57,5 +45,17 @@ extension Dcdb {
             case failedInstanceIds = "FailedInstanceIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 隔离DCDB后付费实例
+    @inlinable
+    public func isolateHourDCDBInstance(_ input: IsolateHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateHourDCDBInstanceResponse > {
+        self.client.execute(action: "IsolateHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 隔离DCDB后付费实例
+    @inlinable
+    public func isolateHourDCDBInstance(_ input: IsolateHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateHourDCDBInstanceResponse {
+        try await self.client.execute(action: "IsolateHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

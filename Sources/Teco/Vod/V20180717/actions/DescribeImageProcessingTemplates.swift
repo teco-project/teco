@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 获取图片即时处理模板列表
-    ///
-    /// 获取图片处理模板列表，支持根据条件，分页查询。
-    @inlinable
-    public func describeImageProcessingTemplates(_ input: DescribeImageProcessingTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageProcessingTemplatesResponse > {
-        self.client.execute(action: "DescribeImageProcessingTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取图片即时处理模板列表
-    ///
-    /// 获取图片处理模板列表，支持根据条件，分页查询。
-    @inlinable
-    public func describeImageProcessingTemplates(_ input: DescribeImageProcessingTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageProcessingTemplatesResponse {
-        try await self.client.execute(action: "DescribeImageProcessingTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageProcessingTemplates请求参数结构体
     public struct DescribeImageProcessingTemplatesRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -50,7 +34,7 @@ extension Vod {
         /// 返回记录条数，默认值：10，最大值：100。
         public let limit: UInt64?
         
-        public init (subAppId: UInt64?, definitions: [UInt64]?, type: String?, offset: UInt64?, limit: UInt64?) {
+        public init (subAppId: UInt64? = nil, definitions: [UInt64]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.subAppId = subAppId
             self.definitions = definitions
             self.type = type
@@ -83,5 +67,21 @@ extension Vod {
             case imageProcessingTemplateSet = "ImageProcessingTemplateSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取图片即时处理模板列表
+    ///
+    /// 获取图片处理模板列表，支持根据条件，分页查询。
+    @inlinable
+    public func describeImageProcessingTemplates(_ input: DescribeImageProcessingTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageProcessingTemplatesResponse > {
+        self.client.execute(action: "DescribeImageProcessingTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取图片即时处理模板列表
+    ///
+    /// 获取图片处理模板列表，支持根据条件，分页查询。
+    @inlinable
+    public func describeImageProcessingTemplates(_ input: DescribeImageProcessingTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageProcessingTemplatesResponse {
+        try await self.client.execute(action: "DescribeImageProcessingTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

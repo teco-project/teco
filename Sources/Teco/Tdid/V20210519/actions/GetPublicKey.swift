@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 查看公钥
-    @inlinable
-    public func getPublicKey(_ input: GetPublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPublicKeyResponse > {
-        self.client.execute(action: "GetPublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看公钥
-    @inlinable
-    public func getPublicKey(_ input: GetPublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPublicKeyResponse {
-        try await self.client.execute(action: "GetPublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetPublicKey请求参数结构体
     public struct GetPublicKeyRequest: TCRequestModel {
         /// did的具体号码
@@ -57,5 +45,17 @@ extension Tdid {
             case publicKey = "PublicKey"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看公钥
+    @inlinable
+    public func getPublicKey(_ input: GetPublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPublicKeyResponse > {
+        self.client.execute(action: "GetPublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看公钥
+    @inlinable
+    public func getPublicKey(_ input: GetPublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPublicKeyResponse {
+        try await self.client.execute(action: "GetPublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

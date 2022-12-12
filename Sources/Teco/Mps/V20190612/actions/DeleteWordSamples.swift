@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 删除关键词样本
-    ///
-    /// 该接口用于批量删除关键词样本。
-    @inlinable
-    public func deleteWordSamples(_ input: DeleteWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWordSamplesResponse > {
-        self.client.execute(action: "DeleteWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除关键词样本
-    ///
-    /// 该接口用于批量删除关键词样本。
-    @inlinable
-    public func deleteWordSamples(_ input: DeleteWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordSamplesResponse {
-        try await self.client.execute(action: "DeleteWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteWordSamples请求参数结构体
     public struct DeleteWordSamplesRequest: TCRequestModel {
         /// 关键词，数组长度限制：100 个词。
@@ -53,5 +37,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除关键词样本
+    ///
+    /// 该接口用于批量删除关键词样本。
+    @inlinable
+    public func deleteWordSamples(_ input: DeleteWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWordSamplesResponse > {
+        self.client.execute(action: "DeleteWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除关键词样本
+    ///
+    /// 该接口用于批量删除关键词样本。
+    @inlinable
+    public func deleteWordSamples(_ input: DeleteWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordSamplesResponse {
+        try await self.client.execute(action: "DeleteWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

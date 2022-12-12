@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudstudio {
-    /// 添加自定义模板
-    @inlinable
-    public func createCustomizeTemplates(_ input: CreateCustomizeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomizeTemplatesResponse > {
-        self.client.execute(action: "CreateCustomizeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加自定义模板
-    @inlinable
-    public func createCustomizeTemplates(_ input: CreateCustomizeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizeTemplatesResponse {
-        try await self.client.execute(action: "CreateCustomizeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCustomizeTemplates请求参数结构体
     public struct CreateCustomizeTemplatesRequest: TCRequestModel {
         /// 用户所属组
@@ -50,7 +38,7 @@ extension Cloudstudio {
     public struct CreateCustomizeTemplatesResponse: TCResponseModel {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: WorkspaceTemplateInfo
+        public let data: WorkspaceTemplateInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -59,5 +47,17 @@ extension Cloudstudio {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加自定义模板
+    @inlinable
+    public func createCustomizeTemplates(_ input: CreateCustomizeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomizeTemplatesResponse > {
+        self.client.execute(action: "CreateCustomizeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加自定义模板
+    @inlinable
+    public func createCustomizeTemplates(_ input: CreateCustomizeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizeTemplatesResponse {
+        try await self.client.execute(action: "CreateCustomizeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

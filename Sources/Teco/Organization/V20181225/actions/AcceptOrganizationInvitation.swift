@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 接受加入企业组织邀请
-    @inlinable
-    public func acceptOrganizationInvitation(_ input: AcceptOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcceptOrganizationInvitationResponse > {
-        self.client.execute(action: "AcceptOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 接受加入企业组织邀请
-    @inlinable
-    public func acceptOrganizationInvitation(_ input: AcceptOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptOrganizationInvitationResponse {
-        try await self.client.execute(action: "AcceptOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AcceptOrganizationInvitation请求参数结构体
     public struct AcceptOrganizationInvitationRequest: TCRequestModel {
         /// 邀请ID
@@ -49,5 +37,17 @@ extension Organization {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 接受加入企业组织邀请
+    @inlinable
+    public func acceptOrganizationInvitation(_ input: AcceptOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcceptOrganizationInvitationResponse > {
+        self.client.execute(action: "AcceptOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 接受加入企业组织邀请
+    @inlinable
+    public func acceptOrganizationInvitation(_ input: AcceptOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptOrganizationInvitationResponse {
+        try await self.client.execute(action: "AcceptOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

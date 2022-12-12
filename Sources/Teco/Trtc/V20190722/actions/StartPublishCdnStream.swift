@@ -15,6 +15,84 @@
 // DO NOT EDIT.
 
 extension Trtc {
+    /// StartPublishCdnStream请求参数结构体
+    public struct StartPublishCdnStreamRequest: TCRequestModel {
+        /// TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和转推的房间所对应的SdkAppId相同。
+        public let sdkAppId: UInt64
+        
+        /// 主房间信息RoomId，转推的TRTC房间所对应的RoomId。
+        public let roomId: String
+        
+        /// 主房间信息RoomType，必须和转推的房间所对应的RoomId类型相同，0为整形房间号，1为字符串房间号。
+        public let roomIdType: UInt64
+        
+        /// 转推服务加入TRTC房间的机器人参数。
+        public let agentParams: AgentParams
+        
+        /// 是否转码，0表示无需转码，1表示需要转码。
+        public let withTranscoding: UInt64
+        
+        /// 转推流的音频编码参数。
+        public let audioParams: McuAudioParams?
+        
+        /// 转推流的视频编码参数，不填表示纯音频转推。
+        public let videoParams: McuVideoParams?
+        
+        /// 需要单流旁路转推的用户上行参数，单流旁路转推时，WithTranscoding需要设置为0。
+        public let singleSubscribeParams: SingleSubscribeParams?
+        
+        /// 转推的CDN参数。
+        public let publishCdnParams: [McuPublishCdnParam]?
+        
+        /// 混流SEI参数
+        public let seiParams: McuSeiParams?
+        
+        /// 回推房间信息
+        public let feedBackRoomParams: [McuFeedBackRoomParams]?
+        
+        public init (sdkAppId: UInt64, roomId: String, roomIdType: UInt64, agentParams: AgentParams, withTranscoding: UInt64, audioParams: McuAudioParams? = nil, videoParams: McuVideoParams? = nil, singleSubscribeParams: SingleSubscribeParams? = nil, publishCdnParams: [McuPublishCdnParam]? = nil, seiParams: McuSeiParams? = nil, feedBackRoomParams: [McuFeedBackRoomParams]? = nil) {
+            self.sdkAppId = sdkAppId
+            self.roomId = roomId
+            self.roomIdType = roomIdType
+            self.agentParams = agentParams
+            self.withTranscoding = withTranscoding
+            self.audioParams = audioParams
+            self.videoParams = videoParams
+            self.singleSubscribeParams = singleSubscribeParams
+            self.publishCdnParams = publishCdnParams
+            self.seiParams = seiParams
+            self.feedBackRoomParams = feedBackRoomParams
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case sdkAppId = "SdkAppId"
+            case roomId = "RoomId"
+            case roomIdType = "RoomIdType"
+            case agentParams = "AgentParams"
+            case withTranscoding = "WithTranscoding"
+            case audioParams = "AudioParams"
+            case videoParams = "VideoParams"
+            case singleSubscribeParams = "SingleSubscribeParams"
+            case publishCdnParams = "PublishCdnParams"
+            case seiParams = "SeiParams"
+            case feedBackRoomParams = "FeedBackRoomParams"
+        }
+    }
+    
+    /// StartPublishCdnStream返回参数结构体
+    public struct StartPublishCdnStreamResponse: TCResponseModel {
+        /// 用于唯一标识转推任务，由腾讯云服务端生成，后续更新和停止请求都需要携带TaskiD参数。
+        public let taskId: String
+        
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 启动转推任务
     ///
     /// 接口说明：启动旁路以及混流转推任务。TRTC 的房间中可能会同时存在多路音视频流，您可以通过此API接口，实现以下几种效果：
@@ -69,83 +147,5 @@ extension Trtc {
     @inlinable
     public func startPublishCdnStream(_ input: StartPublishCdnStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartPublishCdnStreamResponse {
         try await self.client.execute(action: "StartPublishCdnStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// StartPublishCdnStream请求参数结构体
-    public struct StartPublishCdnStreamRequest: TCRequestModel {
-        /// TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和转推的房间所对应的SdkAppId相同。
-        public let sdkAppId: UInt64
-        
-        /// 主房间信息RoomId，转推的TRTC房间所对应的RoomId。
-        public let roomId: String
-        
-        /// 主房间信息RoomType，必须和转推的房间所对应的RoomId类型相同，0为整形房间号，1为字符串房间号。
-        public let roomIdType: UInt64
-        
-        /// 转推服务加入TRTC房间的机器人参数。
-        public let agentParams: AgentParams
-        
-        /// 是否转码，0表示无需转码，1表示需要转码。
-        public let withTranscoding: UInt64
-        
-        /// 转推流的音频编码参数。
-        public let audioParams: McuAudioParams
-        
-        /// 转推流的视频编码参数，不填表示纯音频转推。
-        public let videoParams: McuVideoParams
-        
-        /// 需要单流旁路转推的用户上行参数，单流旁路转推时，WithTranscoding需要设置为0。
-        public let singleSubscribeParams: SingleSubscribeParams
-        
-        /// 转推的CDN参数。
-        public let publishCdnParams: [McuPublishCdnParam]?
-        
-        /// 混流SEI参数
-        public let seiParams: McuSeiParams
-        
-        /// 回推房间信息
-        public let feedBackRoomParams: [McuFeedBackRoomParams]?
-        
-        public init (sdkAppId: UInt64, roomId: String, roomIdType: UInt64, agentParams: AgentParams, withTranscoding: UInt64, audioParams: McuAudioParams, videoParams: McuVideoParams, singleSubscribeParams: SingleSubscribeParams, publishCdnParams: [McuPublishCdnParam]?, seiParams: McuSeiParams, feedBackRoomParams: [McuFeedBackRoomParams]?) {
-            self.sdkAppId = sdkAppId
-            self.roomId = roomId
-            self.roomIdType = roomIdType
-            self.agentParams = agentParams
-            self.withTranscoding = withTranscoding
-            self.audioParams = audioParams
-            self.videoParams = videoParams
-            self.singleSubscribeParams = singleSubscribeParams
-            self.publishCdnParams = publishCdnParams
-            self.seiParams = seiParams
-            self.feedBackRoomParams = feedBackRoomParams
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case sdkAppId = "SdkAppId"
-            case roomId = "RoomId"
-            case roomIdType = "RoomIdType"
-            case agentParams = "AgentParams"
-            case withTranscoding = "WithTranscoding"
-            case audioParams = "AudioParams"
-            case videoParams = "VideoParams"
-            case singleSubscribeParams = "SingleSubscribeParams"
-            case publishCdnParams = "PublishCdnParams"
-            case seiParams = "SeiParams"
-            case feedBackRoomParams = "FeedBackRoomParams"
-        }
-    }
-    
-    /// StartPublishCdnStream返回参数结构体
-    public struct StartPublishCdnStreamResponse: TCResponseModel {
-        /// 用于唯一标识转推任务，由腾讯云服务端生成，后续更新和停止请求都需要携带TaskiD参数。
-        public let taskId: String
-        
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case taskId = "TaskId"
-            case requestId = "RequestId"
-        }
     }
 }

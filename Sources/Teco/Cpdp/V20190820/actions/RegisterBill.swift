@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 登记挂账(支持撤销)
-    @inlinable
-    public func registerBill(_ input: RegisterBillRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterBillResponse > {
-        self.client.execute(action: "RegisterBill", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 登记挂账(支持撤销)
-    @inlinable
-    public func registerBill(_ input: RegisterBillRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterBillResponse {
-        try await self.client.execute(action: "RegisterBill", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RegisterBill请求参数结构体
     public struct RegisterBillRequest: TCRequestModel {
         /// 请求类型此接口固定填：RegBillSupportWithdrawReq
@@ -86,7 +74,7 @@ extension Cpdp {
         /// Midas环境参数
         public let midasEnvironment: String?
         
-        public init (requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNo: String, platformShortNo: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSeqNo: String, tranFee: String, orderAmt: String, bankSubAccountNo: String, tranNetMemberCode: String, tranType: String, reservedMessage: String?, remark: String?, midasEnvironment: String?) {
+        public init (requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNo: String, platformShortNo: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSeqNo: String, tranFee: String, orderAmt: String, bankSubAccountNo: String, tranNetMemberCode: String, tranType: String, reservedMessage: String? = nil, remark: String? = nil, midasEnvironment: String? = nil) {
             self.requestType = requestType
             self.merchantCode = merchantCode
             self.payChannel = payChannel
@@ -151,5 +139,17 @@ extension Cpdp {
             case requestType = "RequestType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 登记挂账(支持撤销)
+    @inlinable
+    public func registerBill(_ input: RegisterBillRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterBillResponse > {
+        self.client.execute(action: "RegisterBill", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 登记挂账(支持撤销)
+    @inlinable
+    public func registerBill(_ input: RegisterBillRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterBillResponse {
+        try await self.client.execute(action: "RegisterBill", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

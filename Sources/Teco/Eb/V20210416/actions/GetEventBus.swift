@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Eb {
-    /// 获取事件集详情
-    @inlinable
-    public func getEventBus(_ input: GetEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetEventBusResponse > {
-        self.client.execute(action: "GetEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取事件集详情
-    @inlinable
-    public func getEventBus(_ input: GetEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEventBusResponse {
-        try await self.client.execute(action: "GetEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetEventBus请求参数结构体
     public struct GetEventBusRequest: TCRequestModel {
         /// 事件集ID
@@ -85,5 +73,17 @@ extension Eb {
             case type = "Type"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取事件集详情
+    @inlinable
+    public func getEventBus(_ input: GetEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetEventBusResponse > {
+        self.client.execute(action: "GetEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取事件集详情
+    @inlinable
+    public func getEventBus(_ input: GetEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEventBusResponse {
+        try await self.client.execute(action: "GetEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

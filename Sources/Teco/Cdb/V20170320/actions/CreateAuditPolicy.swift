@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 创建审计策略
-    ///
-    /// 本接口(CreateAuditPolicy)用于创建云数据库实例的审计策略，即将审计规则绑定到具体的云数据库实例上。
-    @inlinable
-    public func createAuditPolicy(_ input: CreateAuditPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAuditPolicyResponse > {
-        self.client.execute(action: "CreateAuditPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建审计策略
-    ///
-    /// 本接口(CreateAuditPolicy)用于创建云数据库实例的审计策略，即将审计规则绑定到具体的云数据库实例上。
-    @inlinable
-    public func createAuditPolicy(_ input: CreateAuditPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditPolicyResponse {
-        try await self.client.execute(action: "CreateAuditPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAuditPolicy请求参数结构体
     public struct CreateAuditPolicyRequest: TCRequestModel {
         /// 审计策略名称。
@@ -52,7 +36,7 @@ extension Cdb {
         /// 实例首次开通审计策略时，可传该值，用于设置存储日志保存天数，默认为 30 天。若实例已存在审计策略，则此参数无效，可使用 更改审计服务配置 接口修改日志存储时长。
         public let logExpireDay: Int64?
         
-        public init (name: String, ruleId: String, instanceId: String, logExpireDay: Int64?) {
+        public init (name: String, ruleId: String, instanceId: String, logExpireDay: Int64? = nil) {
             self.name = name
             self.ruleId = ruleId
             self.instanceId = instanceId
@@ -79,5 +63,21 @@ extension Cdb {
             case policyId = "PolicyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建审计策略
+    ///
+    /// 本接口(CreateAuditPolicy)用于创建云数据库实例的审计策略，即将审计规则绑定到具体的云数据库实例上。
+    @inlinable
+    public func createAuditPolicy(_ input: CreateAuditPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAuditPolicyResponse > {
+        self.client.execute(action: "CreateAuditPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建审计策略
+    ///
+    /// 本接口(CreateAuditPolicy)用于创建云数据库实例的审计策略，即将审计规则绑定到具体的云数据库实例上。
+    @inlinable
+    public func createAuditPolicy(_ input: CreateAuditPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditPolicyResponse {
+        try await self.client.execute(action: "CreateAuditPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

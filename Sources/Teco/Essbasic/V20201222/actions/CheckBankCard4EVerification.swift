@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 银行卡四要素检测
-    ///
-    /// 该接口为第三方平台向电子签平台验证银行卡四要素
-    @inlinable
-    public func checkBankCard4EVerification(_ input: CheckBankCard4EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBankCard4EVerificationResponse > {
-        self.client.execute(action: "CheckBankCard4EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 银行卡四要素检测
-    ///
-    /// 该接口为第三方平台向电子签平台验证银行卡四要素
-    @inlinable
-    public func checkBankCard4EVerification(_ input: CheckBankCard4EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCard4EVerificationResponse {
-        try await self.client.execute(action: "CheckBankCard4EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckBankCard4EVerification请求参数结构体
     public struct CheckBankCard4EVerificationRequest: TCRequestModel {
         /// 调用方信息; 必选
@@ -51,7 +35,7 @@ extension Essbasic {
         /// 身份证件类型; ID_CARD
         public let idCardType: String?
         
-        public init (caller: Caller, bankCard: String, name: String, idCardNumber: String?, mobile: String?, idCardType: String?) {
+        public init (caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil) {
             self.caller = caller
             self.bankCard = bankCard
             self.name = name
@@ -107,5 +91,21 @@ extension Essbasic {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 银行卡四要素检测
+    ///
+    /// 该接口为第三方平台向电子签平台验证银行卡四要素
+    @inlinable
+    public func checkBankCard4EVerification(_ input: CheckBankCard4EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBankCard4EVerificationResponse > {
+        self.client.execute(action: "CheckBankCard4EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 银行卡四要素检测
+    ///
+    /// 该接口为第三方平台向电子签平台验证银行卡四要素
+    @inlinable
+    public func checkBankCard4EVerification(_ input: CheckBankCard4EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCard4EVerificationResponse {
+        try await self.client.execute(action: "CheckBankCard4EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

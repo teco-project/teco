@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 获取交易详情
-    @inlinable
-    public func getTransactionDetailForUser(_ input: GetTransactionDetailForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTransactionDetailForUserResponse > {
-        self.client.execute(action: "GetTransactionDetailForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取交易详情
-    @inlinable
-    public func getTransactionDetailForUser(_ input: GetTransactionDetailForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTransactionDetailForUserResponse {
-        try await self.client.execute(action: "GetTransactionDetailForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetTransactionDetailForUser请求参数结构体
     public struct GetTransactionDetailForUserRequest: TCRequestModel {
         /// 模块名，固定字段：transaction
@@ -131,5 +119,17 @@ extension Tbaas {
             case endorserOrgList = "EndorserOrgList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取交易详情
+    @inlinable
+    public func getTransactionDetailForUser(_ input: GetTransactionDetailForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTransactionDetailForUserResponse > {
+        self.client.execute(action: "GetTransactionDetailForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取交易详情
+    @inlinable
+    public func getTransactionDetailForUser(_ input: GetTransactionDetailForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTransactionDetailForUserResponse {
+        try await self.client.execute(action: "GetTransactionDetailForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

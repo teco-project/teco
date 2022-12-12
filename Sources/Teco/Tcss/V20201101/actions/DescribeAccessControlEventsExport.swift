@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时访问控制事件列表导出
-    ///
-    /// 查询运行时访问控制事件列表导出
-    @inlinable
-    public func describeAccessControlEventsExport(_ input: DescribeAccessControlEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessControlEventsExportResponse > {
-        self.client.execute(action: "DescribeAccessControlEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时访问控制事件列表导出
-    ///
-    /// 查询运行时访问控制事件列表导出
-    @inlinable
-    public func describeAccessControlEventsExport(_ input: DescribeAccessControlEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlEventsExportResponse {
-        try await self.client.execute(action: "DescribeAccessControlEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccessControlEventsExport请求参数结构体
     public struct DescribeAccessControlEventsExportRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -51,7 +35,7 @@ extension Tcss {
         /// 导出字段
         public let exportField: [String]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, order: String?, by: String?, exportField: [String]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -88,5 +72,21 @@ extension Tcss {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时访问控制事件列表导出
+    ///
+    /// 查询运行时访问控制事件列表导出
+    @inlinable
+    public func describeAccessControlEventsExport(_ input: DescribeAccessControlEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessControlEventsExportResponse > {
+        self.client.execute(action: "DescribeAccessControlEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时访问控制事件列表导出
+    ///
+    /// 查询运行时访问控制事件列表导出
+    @inlinable
+    public func describeAccessControlEventsExport(_ input: DescribeAccessControlEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlEventsExportResponse {
+        try await self.client.execute(action: "DescribeAccessControlEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Drm {
-    /// 查询所有加密密钥列表
-    ///
-    /// 本接口用来查询指定DRM类型、ContentType的所有加密密钥
-    @inlinable
-    public func describeAllKeys(_ input: DescribeAllKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllKeysResponse > {
-        self.client.execute(action: "DescribeAllKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询所有加密密钥列表
-    ///
-    /// 本接口用来查询指定DRM类型、ContentType的所有加密密钥
-    @inlinable
-    public func describeAllKeys(_ input: DescribeAllKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllKeysResponse {
-        try await self.client.execute(action: "DescribeAllKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAllKeys请求参数结构体
     public struct DescribeAllKeysRequest: TCRequestModel {
         /// 使用的DRM方案类型，接口取值WIDEVINE、FAIRPLAY、NORMALAES。
@@ -46,7 +30,7 @@ extension Drm {
         /// 内容类型。接口取值VodVideo,LiveVideo。
         public let contentType: String?
         
-        public init (drmType: String, rsaPublicKey: String?, contentId: String?, contentType: String?) {
+        public init (drmType: String, rsaPublicKey: String? = nil, contentId: String? = nil, contentType: String? = nil) {
             self.drmType = drmType
             self.rsaPublicKey = rsaPublicKey
             self.contentId = contentId
@@ -86,5 +70,21 @@ extension Drm {
             case contentId = "ContentId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询所有加密密钥列表
+    ///
+    /// 本接口用来查询指定DRM类型、ContentType的所有加密密钥
+    @inlinable
+    public func describeAllKeys(_ input: DescribeAllKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllKeysResponse > {
+        self.client.execute(action: "DescribeAllKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询所有加密密钥列表
+    ///
+    /// 本接口用来查询指定DRM类型、ContentType的所有加密密钥
+    @inlinable
+    public func describeAllKeys(_ input: DescribeAllKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllKeysResponse {
+        try await self.client.execute(action: "DescribeAllKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 创建托管域名
-    @inlinable
-    public func createHostingDomain(_ input: CreateHostingDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHostingDomainResponse > {
-        self.client.execute(action: "CreateHostingDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建托管域名
-    @inlinable
-    public func createHostingDomain(_ input: CreateHostingDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostingDomainResponse {
-        try await self.client.execute(action: "CreateHostingDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateHostingDomain请求参数结构体
     public struct CreateHostingDomainRequest: TCRequestModel {
         /// 环境ID
@@ -59,5 +47,17 @@ extension Tcb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建托管域名
+    @inlinable
+    public func createHostingDomain(_ input: CreateHostingDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHostingDomainResponse > {
+        self.client.execute(action: "CreateHostingDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建托管域名
+    @inlinable
+    public func createHostingDomain(_ input: CreateHostingDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostingDomainResponse {
+        try await self.client.execute(action: "CreateHostingDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 枚举ACL
-    @inlinable
-    public func describeACL(_ input: DescribeACLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeACLResponse > {
-        self.client.execute(action: "DescribeACL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 枚举ACL
-    @inlinable
-    public func describeACL(_ input: DescribeACLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeACLResponse {
-        try await self.client.execute(action: "DescribeACL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeACL请求参数结构体
     public struct DescribeACLRequest: TCRequestModel {
         /// 实例Id
@@ -47,7 +35,7 @@ extension Ckafka {
         /// 关键字匹配
         public let searchWord: String?
         
-        public init (instanceId: String, resourceType: Int64, resourceName: String, offset: Int64?, limit: Int64?, searchWord: String?) {
+        public init (instanceId: String, resourceType: Int64, resourceName: String, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil) {
             self.instanceId = instanceId
             self.resourceType = resourceType
             self.resourceName = resourceName
@@ -78,5 +66,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 枚举ACL
+    @inlinable
+    public func describeACL(_ input: DescribeACLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeACLResponse > {
+        self.client.execute(action: "DescribeACL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 枚举ACL
+    @inlinable
+    public func describeACL(_ input: DescribeACLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeACLResponse {
+        try await self.client.execute(action: "DescribeACL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

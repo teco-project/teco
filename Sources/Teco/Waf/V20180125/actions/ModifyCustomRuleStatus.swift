@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 开启或禁用自定义策略
-    @inlinable
-    public func modifyCustomRuleStatus(_ input: ModifyCustomRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomRuleStatusResponse > {
-        self.client.execute(action: "ModifyCustomRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启或禁用自定义策略
-    @inlinable
-    public func modifyCustomRuleStatus(_ input: ModifyCustomRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomRuleStatusResponse {
-        try await self.client.execute(action: "ModifyCustomRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCustomRuleStatus请求参数结构体
     public struct ModifyCustomRuleStatusRequest: TCRequestModel {
         /// 域名
@@ -41,7 +29,7 @@ extension Waf {
         /// WAF的版本，clb-waf代表负载均衡WAF、sparta-waf代表SaaS WAF，默认是sparta-waf。
         public let edition: String?
         
-        public init (domain: String, ruleId: UInt64, status: UInt64, edition: String?) {
+        public init (domain: String, ruleId: UInt64, status: UInt64, edition: String? = nil) {
             self.domain = domain
             self.ruleId = ruleId
             self.status = status
@@ -68,5 +56,17 @@ extension Waf {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启或禁用自定义策略
+    @inlinable
+    public func modifyCustomRuleStatus(_ input: ModifyCustomRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomRuleStatusResponse > {
+        self.client.execute(action: "ModifyCustomRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启或禁用自定义策略
+    @inlinable
+    public func modifyCustomRuleStatus(_ input: ModifyCustomRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomRuleStatusResponse {
+        try await self.client.execute(action: "ModifyCustomRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

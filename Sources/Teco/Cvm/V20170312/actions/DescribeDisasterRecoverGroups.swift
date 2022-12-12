@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查询分散置放群组信息
-    ///
-    /// 本接口 (DescribeDisasterRecoverGroups)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)信息。
-    @inlinable
-    public func describeDisasterRecoverGroups(_ input: DescribeDisasterRecoverGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDisasterRecoverGroupsResponse > {
-        self.client.execute(action: "DescribeDisasterRecoverGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询分散置放群组信息
-    ///
-    /// 本接口 (DescribeDisasterRecoverGroups)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)信息。
-    @inlinable
-    public func describeDisasterRecoverGroups(_ input: DescribeDisasterRecoverGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisasterRecoverGroupsResponse {
-        try await self.client.execute(action: "DescribeDisasterRecoverGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDisasterRecoverGroups请求参数结构体
     public struct DescribeDisasterRecoverGroupsRequest: TCRequestModel {
         /// 分散置放群组ID列表。每次请求允许操作的分散置放群组数量上限是100。
@@ -45,7 +29,7 @@ extension Cvm {
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: Int64?
         
-        public init (disasterRecoverGroupIds: [String]?, name: String?, offset: Int64?, limit: Int64?) {
+        public init (disasterRecoverGroupIds: [String]? = nil, name: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.disasterRecoverGroupIds = disasterRecoverGroupIds
             self.name = name
             self.offset = offset
@@ -76,5 +60,21 @@ extension Cvm {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询分散置放群组信息
+    ///
+    /// 本接口 (DescribeDisasterRecoverGroups)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)信息。
+    @inlinable
+    public func describeDisasterRecoverGroups(_ input: DescribeDisasterRecoverGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDisasterRecoverGroupsResponse > {
+        self.client.execute(action: "DescribeDisasterRecoverGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询分散置放群组信息
+    ///
+    /// 本接口 (DescribeDisasterRecoverGroups)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)信息。
+    @inlinable
+    public func describeDisasterRecoverGroups(_ input: DescribeDisasterRecoverGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisasterRecoverGroupsResponse {
+        try await self.client.execute(action: "DescribeDisasterRecoverGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

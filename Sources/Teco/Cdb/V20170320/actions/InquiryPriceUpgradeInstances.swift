@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询数据库升级价格
-    ///
-    /// 本接口(InquiryPriceUpgradeInstances)用于查询云数据库实例升级的价格，支持查询按量计费或者包年包月实例的升级价格，实例类型支持主实例、灾备实例和只读实例。
-    @inlinable
-    public func inquiryPriceUpgradeInstances(_ input: InquiryPriceUpgradeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceUpgradeInstancesResponse > {
-        self.client.execute(action: "InquiryPriceUpgradeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据库升级价格
-    ///
-    /// 本接口(InquiryPriceUpgradeInstances)用于查询云数据库实例升级的价格，支持查询按量计费或者包年包月实例的升级价格，实例类型支持主实例、灾备实例和只读实例。
-    @inlinable
-    public func inquiryPriceUpgradeInstances(_ input: InquiryPriceUpgradeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeInstancesResponse {
-        try await self.client.execute(action: "InquiryPriceUpgradeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceUpgradeInstances请求参数结构体
     public struct InquiryPriceUpgradeInstancesRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
@@ -54,7 +38,7 @@ extension Cdb {
         /// 实例节点数。对于 RO 和 基础版实例， 该值默认为1。 如果需要询价三节点实例， 请将该值设置为3。其余主实例该值默认为2。
         public let instanceNodes: Int64?
         
-        public init (instanceId: String, memory: UInt64, volume: UInt64, cpu: UInt64?, protectMode: UInt64?, deviceType: String?, instanceNodes: Int64?) {
+        public init (instanceId: String, memory: UInt64, volume: UInt64, cpu: UInt64? = nil, protectMode: UInt64? = nil, deviceType: String? = nil, instanceNodes: Int64? = nil) {
             self.instanceId = instanceId
             self.memory = memory
             self.volume = volume
@@ -91,5 +75,21 @@ extension Cdb {
             case originalPrice = "OriginalPrice"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据库升级价格
+    ///
+    /// 本接口(InquiryPriceUpgradeInstances)用于查询云数据库实例升级的价格，支持查询按量计费或者包年包月实例的升级价格，实例类型支持主实例、灾备实例和只读实例。
+    @inlinable
+    public func inquiryPriceUpgradeInstances(_ input: InquiryPriceUpgradeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceUpgradeInstancesResponse > {
+        self.client.execute(action: "InquiryPriceUpgradeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库升级价格
+    ///
+    /// 本接口(InquiryPriceUpgradeInstances)用于查询云数据库实例升级的价格，支持查询按量计费或者包年包月实例的升级价格，实例类型支持主实例、灾备实例和只读实例。
+    @inlinable
+    public func inquiryPriceUpgradeInstances(_ input: InquiryPriceUpgradeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeInstancesResponse {
+        try await self.client.execute(action: "InquiryPriceUpgradeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

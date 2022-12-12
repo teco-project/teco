@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询备份文件列表
-    ///
-    /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
-    @inlinable
-    public func describeBackupFiles(_ input: DescribeBackupFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupFilesResponse > {
-        self.client.execute(action: "DescribeBackupFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询备份文件列表
-    ///
-    /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
-    @inlinable
-    public func describeBackupFiles(_ input: DescribeBackupFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupFilesResponse {
-        try await self.client.execute(action: "DescribeBackupFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBackupFiles请求参数结构体
     public struct DescribeBackupFilesRequest: TCRequestModel {
         /// 实例ID，形如mssql-njj2mtpl
@@ -51,7 +35,7 @@ extension Sqlserver {
         /// 列表项排序，目前只按照备份大小排序（desc-降序，asc-升序），默认desc
         public let orderBy: String?
         
-        public init (instanceId: String, groupId: String, limit: Int64?, offset: Int64?, databaseName: String?, orderBy: String?) {
+        public init (instanceId: String, groupId: String, limit: Int64? = nil, offset: Int64? = nil, databaseName: String? = nil, orderBy: String? = nil) {
             self.instanceId = instanceId
             self.groupId = groupId
             self.limit = limit
@@ -86,5 +70,21 @@ extension Sqlserver {
             case backupFiles = "BackupFiles"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询备份文件列表
+    ///
+    /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
+    @inlinable
+    public func describeBackupFiles(_ input: DescribeBackupFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupFilesResponse > {
+        self.client.execute(action: "DescribeBackupFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份文件列表
+    ///
+    /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
+    @inlinable
+    public func describeBackupFiles(_ input: DescribeBackupFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupFilesResponse {
+        try await self.client.execute(action: "DescribeBackupFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

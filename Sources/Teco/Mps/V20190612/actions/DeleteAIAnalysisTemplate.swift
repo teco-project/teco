@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 删除内容分析模板
-    ///
-    /// 删除用户自定义内容分析模板。
-    /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
-    @inlinable
-    public func deleteAIAnalysisTemplate(_ input: DeleteAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAIAnalysisTemplateResponse > {
-        self.client.execute(action: "DeleteAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除内容分析模板
-    ///
-    /// 删除用户自定义内容分析模板。
-    /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
-    @inlinable
-    public func deleteAIAnalysisTemplate(_ input: DeleteAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIAnalysisTemplateResponse {
-        try await self.client.execute(action: "DeleteAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAIAnalysisTemplate请求参数结构体
     public struct DeleteAIAnalysisTemplateRequest: TCRequestModel {
         /// 视频内容分析模板唯一标识。
@@ -55,5 +37,23 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除内容分析模板
+    ///
+    /// 删除用户自定义内容分析模板。
+    /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
+    @inlinable
+    public func deleteAIAnalysisTemplate(_ input: DeleteAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAIAnalysisTemplateResponse > {
+        self.client.execute(action: "DeleteAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除内容分析模板
+    ///
+    /// 删除用户自定义内容分析模板。
+    /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
+    @inlinable
+    public func deleteAIAnalysisTemplate(_ input: DeleteAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIAnalysisTemplateResponse {
+        try await self.client.execute(action: "DeleteAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 更新SAML身份提供商信息
-    @inlinable
-    public func updateSAMLProvider(_ input: UpdateSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateSAMLProviderResponse > {
-        self.client.execute(action: "UpdateSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新SAML身份提供商信息
-    @inlinable
-    public func updateSAMLProvider(_ input: UpdateSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateSAMLProviderResponse {
-        try await self.client.execute(action: "UpdateSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateSAMLProvider请求参数结构体
     public struct UpdateSAMLProviderRequest: TCRequestModel {
         /// SAML身份提供商名称
@@ -38,7 +26,7 @@ extension Cam {
         /// SAML身份提供商Base64编码的元数据文档
         public let samlMetadataDocument: String?
         
-        public init (name: String, description: String?, samlMetadataDocument: String?) {
+        public init (name: String, description: String? = nil, samlMetadataDocument: String? = nil) {
             self.name = name
             self.description = description
             self.samlMetadataDocument = samlMetadataDocument
@@ -59,5 +47,17 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新SAML身份提供商信息
+    @inlinable
+    public func updateSAMLProvider(_ input: UpdateSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateSAMLProviderResponse > {
+        self.client.execute(action: "UpdateSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新SAML身份提供商信息
+    @inlinable
+    public func updateSAMLProvider(_ input: UpdateSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateSAMLProviderResponse {
+        try await self.client.execute(action: "UpdateSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

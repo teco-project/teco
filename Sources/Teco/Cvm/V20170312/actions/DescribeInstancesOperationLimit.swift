@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查询实例操作限制
-    ///
-    /// 本接口（DescribeInstancesOperationLimit）用于查询实例操作限制。
-    /// * 目前支持调整配置操作限制次数查询。
-    @inlinable
-    public func describeInstancesOperationLimit(_ input: DescribeInstancesOperationLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesOperationLimitResponse > {
-        self.client.execute(action: "DescribeInstancesOperationLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例操作限制
-    ///
-    /// 本接口（DescribeInstancesOperationLimit）用于查询实例操作限制。
-    /// * 目前支持调整配置操作限制次数查询。
-    @inlinable
-    public func describeInstancesOperationLimit(_ input: DescribeInstancesOperationLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesOperationLimitResponse {
-        try await self.client.execute(action: "DescribeInstancesOperationLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstancesOperationLimit请求参数结构体
     public struct DescribeInstancesOperationLimitRequest: TCRequestModel {
         /// 按照一个或者多个实例ID查询，可通过[DescribeInstances](https://cloud.tencent.com/document/api/213/15728)API返回值中的InstanceId获取。实例ID形如：ins-xxxxxxxx。（此参数的具体格式可参考API[简介](https://cloud.tencent.com/document/api/213/15688)的ids.N一节）。每次请求的实例的上限为100。
@@ -65,5 +47,23 @@ extension Cvm {
             case instanceOperationLimitSet = "InstanceOperationLimitSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例操作限制
+    ///
+    /// 本接口（DescribeInstancesOperationLimit）用于查询实例操作限制。
+    /// * 目前支持调整配置操作限制次数查询。
+    @inlinable
+    public func describeInstancesOperationLimit(_ input: DescribeInstancesOperationLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesOperationLimitResponse > {
+        self.client.execute(action: "DescribeInstancesOperationLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例操作限制
+    ///
+    /// 本接口（DescribeInstancesOperationLimit）用于查询实例操作限制。
+    /// * 目前支持调整配置操作限制次数查询。
+    @inlinable
+    public func describeInstancesOperationLimit(_ input: DescribeInstancesOperationLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesOperationLimitResponse {
+        try await self.client.execute(action: "DescribeInstancesOperationLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

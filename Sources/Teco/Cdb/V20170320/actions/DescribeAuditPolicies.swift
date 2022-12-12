@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询审计策略
-    ///
-    /// 本接口(DescribeAuditPolicies)用于查询云数据库实例的审计策略。
-    @inlinable
-    public func describeAuditPolicies(_ input: DescribeAuditPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditPoliciesResponse > {
-        self.client.execute(action: "DescribeAuditPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询审计策略
-    ///
-    /// 本接口(DescribeAuditPolicies)用于查询云数据库实例的审计策略。
-    @inlinable
-    public func describeAuditPolicies(_ input: DescribeAuditPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditPoliciesResponse {
-        try await self.client.execute(action: "DescribeAuditPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAuditPolicies请求参数结构体
     public struct DescribeAuditPoliciesRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -55,7 +39,7 @@ extension Cdb {
         /// 实例名称
         public let instanceName: String?
         
-        public init (instanceId: String?, policyId: String?, policyName: String?, limit: Int64?, offset: Int64?, ruleId: String?, instanceName: String?) {
+        public init (instanceId: String? = nil, policyId: String? = nil, policyName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, instanceName: String? = nil) {
             self.instanceId = instanceId
             self.policyId = policyId
             self.policyName = policyName
@@ -93,5 +77,21 @@ extension Cdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询审计策略
+    ///
+    /// 本接口(DescribeAuditPolicies)用于查询云数据库实例的审计策略。
+    @inlinable
+    public func describeAuditPolicies(_ input: DescribeAuditPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditPoliciesResponse > {
+        self.client.execute(action: "DescribeAuditPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询审计策略
+    ///
+    /// 本接口(DescribeAuditPolicies)用于查询云数据库实例的审计策略。
+    @inlinable
+    public func describeAuditPolicies(_ input: DescribeAuditPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditPoliciesResponse {
+        try await self.client.execute(action: "DescribeAuditPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

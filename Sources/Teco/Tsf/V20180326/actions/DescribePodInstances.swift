@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 获取部署组实例列表
-    @inlinable
-    public func describePodInstances(_ input: DescribePodInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePodInstancesResponse > {
-        self.client.execute(action: "DescribePodInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取部署组实例列表
-    @inlinable
-    public func describePodInstances(_ input: DescribePodInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePodInstancesResponse {
-        try await self.client.execute(action: "DescribePodInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePodInstances请求参数结构体
     public struct DescribePodInstancesRequest: TCRequestModel {
         /// 实例所属groupId
@@ -41,7 +29,7 @@ extension Tsf {
         /// 过滤字段
         public let podNameList: [String]?
         
-        public init (groupId: String, offset: Int64?, limit: Int64?, podNameList: [String]?) {
+        public init (groupId: String, offset: Int64? = nil, limit: Int64? = nil, podNameList: [String]? = nil) {
             self.groupId = groupId
             self.offset = offset
             self.limit = limit
@@ -68,5 +56,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取部署组实例列表
+    @inlinable
+    public func describePodInstances(_ input: DescribePodInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePodInstancesResponse > {
+        self.client.execute(action: "DescribePodInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取部署组实例列表
+    @inlinable
+    public func describePodInstances(_ input: DescribePodInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePodInstancesResponse {
+        try await self.client.execute(action: "DescribePodInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

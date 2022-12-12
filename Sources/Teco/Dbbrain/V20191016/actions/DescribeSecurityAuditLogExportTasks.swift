@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 查询安全审计日志导出任务列表
-    ///
-    /// 查询安全审计日志导出任务列表。
-    @inlinable
-    public func describeSecurityAuditLogExportTasks(_ input: DescribeSecurityAuditLogExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityAuditLogExportTasksResponse > {
-        self.client.execute(action: "DescribeSecurityAuditLogExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全审计日志导出任务列表
-    ///
-    /// 查询安全审计日志导出任务列表。
-    @inlinable
-    public func describeSecurityAuditLogExportTasks(_ input: DescribeSecurityAuditLogExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityAuditLogExportTasksResponse {
-        try await self.client.execute(action: "DescribeSecurityAuditLogExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityAuditLogExportTasks请求参数结构体
     public struct DescribeSecurityAuditLogExportTasksRequest: TCRequestModel {
         /// 安全审计组Id。
@@ -48,7 +32,7 @@ extension Dbbrain {
         /// 返回数量，默认20。
         public let limit: UInt64?
         
-        public init (secAuditGroupId: String, product: String, asyncRequestIds: [UInt64]?, offset: UInt64?, limit: UInt64?) {
+        public init (secAuditGroupId: String, product: String, asyncRequestIds: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.secAuditGroupId = secAuditGroupId
             self.product = product
             self.asyncRequestIds = asyncRequestIds
@@ -81,5 +65,21 @@ extension Dbbrain {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全审计日志导出任务列表
+    ///
+    /// 查询安全审计日志导出任务列表。
+    @inlinable
+    public func describeSecurityAuditLogExportTasks(_ input: DescribeSecurityAuditLogExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityAuditLogExportTasksResponse > {
+        self.client.execute(action: "DescribeSecurityAuditLogExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全审计日志导出任务列表
+    ///
+    /// 查询安全审计日志导出任务列表。
+    @inlinable
+    public func describeSecurityAuditLogExportTasks(_ input: DescribeSecurityAuditLogExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityAuditLogExportTasksResponse {
+        try await self.client.execute(action: "DescribeSecurityAuditLogExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

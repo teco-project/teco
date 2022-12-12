@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 更新黑石EIP名称
-    @inlinable
-    public func modifyEipName(_ input: ModifyEipNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEipNameResponse > {
-        self.client.execute(action: "ModifyEipName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新黑石EIP名称
-    @inlinable
-    public func modifyEipName(_ input: ModifyEipNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipNameResponse {
-        try await self.client.execute(action: "ModifyEipName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyEipName请求参数结构体
     public struct ModifyEipNameRequest: TCRequestModel {
         /// Eip实例ID，可通过/v2/DescribeEip 接口返回字段中的 eipId获取
@@ -54,5 +42,17 @@ extension Bmeip {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新黑石EIP名称
+    @inlinable
+    public func modifyEipName(_ input: ModifyEipNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEipNameResponse > {
+        self.client.execute(action: "ModifyEipName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新黑石EIP名称
+    @inlinable
+    public func modifyEipName(_ input: ModifyEipNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipNameResponse {
+        try await self.client.execute(action: "ModifyEipName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

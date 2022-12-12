@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 设置Groups 消费分组offset
-    @inlinable
-    public func modifyGroupOffsets(_ input: ModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGroupOffsetsResponse > {
-        self.client.execute(action: "ModifyGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置Groups 消费分组offset
-    @inlinable
-    public func modifyGroupOffsets(_ input: ModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupOffsetsResponse {
-        try await self.client.execute(action: "ModifyGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyGroupOffsets请求参数结构体
     public struct ModifyGroupOffsetsRequest: TCRequestModel {
         /// kafka实例id
@@ -53,7 +41,7 @@ extension Ckafka {
         /// 需要重新设置的partition的列表，如果没有指定Topics参数。则重置全部topics的对应的Partition列表里的partition。指定Topics时则重置指定的topic列表的对应的Partitions列表的partition。
         public let partitions: [Int64]?
         
-        public init (instanceId: String, group: String, strategy: Int64, topics: [String]?, shift: Int64?, shiftTimestamp: Int64?, offset: Int64?, partitions: [Int64]?) {
+        public init (instanceId: String, group: String, strategy: Int64, topics: [String]? = nil, shift: Int64? = nil, shiftTimestamp: Int64? = nil, offset: Int64? = nil, partitions: [Int64]? = nil) {
             self.instanceId = instanceId
             self.group = group
             self.strategy = strategy
@@ -88,5 +76,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置Groups 消费分组offset
+    @inlinable
+    public func modifyGroupOffsets(_ input: ModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGroupOffsetsResponse > {
+        self.client.execute(action: "ModifyGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置Groups 消费分组offset
+    @inlinable
+    public func modifyGroupOffsets(_ input: ModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupOffsetsResponse {
+        try await self.client.execute(action: "ModifyGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

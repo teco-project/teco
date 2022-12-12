@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 终止数据库实例特定操作
-    ///
-    /// 本接口(KillOps)用于终止MongoDB云数据库实例上执行的特定操作。
-    @inlinable
-    public func killOps(_ input: KillOpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < KillOpsResponse > {
-        self.client.execute(action: "KillOps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 终止数据库实例特定操作
-    ///
-    /// 本接口(KillOps)用于终止MongoDB云数据库实例上执行的特定操作。
-    @inlinable
-    public func killOps(_ input: KillOpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillOpsResponse {
-        try await self.client.execute(action: "KillOps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// KillOps请求参数结构体
     public struct KillOpsRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -58,5 +42,21 @@ extension Mongodb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 终止数据库实例特定操作
+    ///
+    /// 本接口(KillOps)用于终止MongoDB云数据库实例上执行的特定操作。
+    @inlinable
+    public func killOps(_ input: KillOpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < KillOpsResponse > {
+        self.client.execute(action: "KillOps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 终止数据库实例特定操作
+    ///
+    /// 本接口(KillOps)用于终止MongoDB云数据库实例上执行的特定操作。
+    @inlinable
+    public func killOps(_ input: KillOpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillOpsResponse {
+        try await self.client.execute(action: "KillOps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

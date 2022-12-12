@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 修改实例安全组
-    ///
-    /// 修改实例绑定的安全组
-    @inlinable
-    public func modifyDBInstanceSecurityGroup(_ input: ModifyDBInstanceSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceSecurityGroupResponse > {
-        self.client.execute(action: "ModifyDBInstanceSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例安全组
-    ///
-    /// 修改实例绑定的安全组
-    @inlinable
-    public func modifyDBInstanceSecurityGroup(_ input: ModifyDBInstanceSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupResponse {
-        try await self.client.execute(action: "ModifyDBInstanceSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBInstanceSecurityGroup请求参数结构体
     public struct ModifyDBInstanceSecurityGroupRequest: TCRequestModel {
         /// 实例ID
@@ -58,5 +42,21 @@ extension Mongodb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例安全组
+    ///
+    /// 修改实例绑定的安全组
+    @inlinable
+    public func modifyDBInstanceSecurityGroup(_ input: ModifyDBInstanceSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceSecurityGroupResponse > {
+        self.client.execute(action: "ModifyDBInstanceSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例安全组
+    ///
+    /// 修改实例绑定的安全组
+    @inlinable
+    public func modifyDBInstanceSecurityGroup(_ input: ModifyDBInstanceSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupResponse {
+        try await self.client.execute(action: "ModifyDBInstanceSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

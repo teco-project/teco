@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 修改运行时访问控制策略状态
-    ///
-    /// 修改运行时访问控制策略的状态，启用或者禁用
-    @inlinable
-    public func modifyAccessControlRuleStatus(_ input: ModifyAccessControlRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccessControlRuleStatusResponse > {
-        self.client.execute(action: "ModifyAccessControlRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改运行时访问控制策略状态
-    ///
-    /// 修改运行时访问控制策略的状态，启用或者禁用
-    @inlinable
-    public func modifyAccessControlRuleStatus(_ input: ModifyAccessControlRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessControlRuleStatusResponse {
-        try await self.client.execute(action: "ModifyAccessControlRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAccessControlRuleStatus请求参数结构体
     public struct ModifyAccessControlRuleStatusRequest: TCRequestModel {
         /// 策略的ids
@@ -58,5 +42,21 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改运行时访问控制策略状态
+    ///
+    /// 修改运行时访问控制策略的状态，启用或者禁用
+    @inlinable
+    public func modifyAccessControlRuleStatus(_ input: ModifyAccessControlRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccessControlRuleStatusResponse > {
+        self.client.execute(action: "ModifyAccessControlRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改运行时访问控制策略状态
+    ///
+    /// 修改运行时访问控制策略的状态，启用或者禁用
+    @inlinable
+    public func modifyAccessControlRuleStatus(_ input: ModifyAccessControlRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessControlRuleStatusResponse {
+        try await self.client.execute(action: "ModifyAccessControlRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

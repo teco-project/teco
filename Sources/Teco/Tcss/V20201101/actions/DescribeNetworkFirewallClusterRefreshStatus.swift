@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 容器网络查询资产任务进度
-    @inlinable
-    public func describeNetworkFirewallClusterRefreshStatus(_ input: DescribeNetworkFirewallClusterRefreshStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallClusterRefreshStatusResponse > {
-        self.client.execute(action: "DescribeNetworkFirewallClusterRefreshStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 容器网络查询资产任务进度
-    @inlinable
-    public func describeNetworkFirewallClusterRefreshStatus(_ input: DescribeNetworkFirewallClusterRefreshStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallClusterRefreshStatusResponse {
-        try await self.client.execute(action: "DescribeNetworkFirewallClusterRefreshStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNetworkFirewallClusterRefreshStatus请求参数结构体
     public struct DescribeNetworkFirewallClusterRefreshStatusRequest: TCRequestModel {
         /// 任务ID
@@ -53,5 +41,17 @@ extension Tcss {
             case taskStatus = "TaskStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 容器网络查询资产任务进度
+    @inlinable
+    public func describeNetworkFirewallClusterRefreshStatus(_ input: DescribeNetworkFirewallClusterRefreshStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallClusterRefreshStatusResponse > {
+        self.client.execute(action: "DescribeNetworkFirewallClusterRefreshStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络查询资产任务进度
+    @inlinable
+    public func describeNetworkFirewallClusterRefreshStatus(_ input: DescribeNetworkFirewallClusterRefreshStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallClusterRefreshStatusResponse {
+        try await self.client.execute(action: "DescribeNetworkFirewallClusterRefreshStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

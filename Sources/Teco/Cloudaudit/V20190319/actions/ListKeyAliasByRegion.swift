@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudaudit {
-    /// 根据地域获取KMS密钥别名
-    @inlinable
-    public func listKeyAliasByRegion(_ input: ListKeyAliasByRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListKeyAliasByRegionResponse > {
-        self.client.execute(action: "ListKeyAliasByRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据地域获取KMS密钥别名
-    @inlinable
-    public func listKeyAliasByRegion(_ input: ListKeyAliasByRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeyAliasByRegionResponse {
-        try await self.client.execute(action: "ListKeyAliasByRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListKeyAliasByRegion请求参数结构体
     public struct ListKeyAliasByRegionRequest: TCRequestModel {
         /// Kms地域
@@ -38,7 +26,7 @@ extension Cloudaudit {
         /// 含义跟 SQL 查询的 Offset 一致，表示本次获取从按一定顺序排列数组的第 Offset 个元素开始，缺省为0
         public let offset: Int64?
         
-        public init (kmsRegion: String, limit: Int64?, offset: Int64?) {
+        public init (kmsRegion: String, limit: Int64? = nil, offset: Int64? = nil) {
             self.kmsRegion = kmsRegion
             self.limit = limit
             self.offset = offset
@@ -67,5 +55,17 @@ extension Cloudaudit {
             case keyMetadatas = "KeyMetadatas"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据地域获取KMS密钥别名
+    @inlinable
+    public func listKeyAliasByRegion(_ input: ListKeyAliasByRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListKeyAliasByRegionResponse > {
+        self.client.execute(action: "ListKeyAliasByRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据地域获取KMS密钥别名
+    @inlinable
+    public func listKeyAliasByRegion(_ input: ListKeyAliasByRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeyAliasByRegionResponse {
+        try await self.client.execute(action: "ListKeyAliasByRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

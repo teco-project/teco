@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 获取源站组列表
-    @inlinable
-    public func describeOriginGroup(_ input: DescribeOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOriginGroupResponse > {
-        self.client.execute(action: "DescribeOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取源站组列表
-    @inlinable
-    public func describeOriginGroup(_ input: DescribeOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupResponse {
-        try await self.client.execute(action: "DescribeOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOriginGroup请求参数结构体
     public struct DescribeOriginGroupRequest: TCRequestModel {
         /// 分页查询偏移量，默认为0。
@@ -39,7 +27,7 @@ extension Teo {
         /// <li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-20hzkd4rdmy0<br>   类型：String<br>   必选：否<br>   模糊查询：不支持<li>origin-group-id<br>   按照【<strong>源站组ID</strong>】进行过滤。源站组ID形如：origin-2ccgtb24-7dc5-46s2-9r3e-95825d53dwe3a<br>   类型：String<br>   必选：否<br>   模糊查询：不支持<li>origin-group-name<br>   按照【<strong>源站组名称</strong>】进行过滤<br>   类型：String<br>   必选：否<br>   模糊查询：支持。使用模糊查询时，仅支持填写一个源站组名称
         public let filters: [AdvancedFilter]?
         
-        public init (offset: UInt64, limit: UInt64, filters: [AdvancedFilter]?) {
+        public init (offset: UInt64, limit: UInt64, filters: [AdvancedFilter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -68,5 +56,17 @@ extension Teo {
             case originGroups = "OriginGroups"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取源站组列表
+    @inlinable
+    public func describeOriginGroup(_ input: DescribeOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOriginGroupResponse > {
+        self.client.execute(action: "DescribeOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取源站组列表
+    @inlinable
+    public func describeOriginGroup(_ input: DescribeOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupResponse {
+        try await self.client.execute(action: "DescribeOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

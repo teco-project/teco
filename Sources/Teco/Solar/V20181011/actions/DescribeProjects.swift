@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Solar {
-    /// 项目列表展示
-    @inlinable
-    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
-        self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 项目列表展示
-    @inlinable
-    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
-        try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProjects请求参数结构体
     public struct DescribeProjectsRequest: TCRequestModel {
         /// 页码
@@ -39,12 +27,12 @@ extension Solar {
         public let searchWord: String?
         
         /// 部门范围过滤
-        public let filters: Filters
+        public let filters: Filters?
         
         /// 项目状态, 0:编辑中 1:运营中 2:已下线 3:已删除 4:审批中
         public let projectStatus: Int64?
         
-        public init (pageNo: UInt64, pageSize: UInt64, searchWord: String?, filters: Filters, projectStatus: Int64?) {
+        public init (pageNo: UInt64, pageSize: UInt64, searchWord: String? = nil, filters: Filters? = nil, projectStatus: Int64? = nil) {
             self.pageNo = pageNo
             self.pageSize = pageSize
             self.searchWord = searchWord
@@ -77,5 +65,17 @@ extension Solar {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 项目列表展示
+    @inlinable
+    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
+        self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 项目列表展示
+    @inlinable
+    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
+        try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

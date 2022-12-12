@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 克隆数据库
-    ///
-    /// 本接口（CloneDB）用于克隆数据库，只支持克隆到本实例，克隆时必须指定新库名称。
-    @inlinable
-    public func cloneDB(_ input: CloneDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloneDBResponse > {
-        self.client.execute(action: "CloneDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 克隆数据库
-    ///
-    /// 本接口（CloneDB）用于克隆数据库，只支持克隆到本实例，克隆时必须指定新库名称。
-    @inlinable
-    public func cloneDB(_ input: CloneDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneDBResponse {
-        try await self.client.execute(action: "CloneDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CloneDB请求参数结构体
     public struct CloneDBRequest: TCRequestModel {
         /// 实例ID，形如mssql-j8kv137v
@@ -62,5 +46,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 克隆数据库
+    ///
+    /// 本接口（CloneDB）用于克隆数据库，只支持克隆到本实例，克隆时必须指定新库名称。
+    @inlinable
+    public func cloneDB(_ input: CloneDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloneDBResponse > {
+        self.client.execute(action: "CloneDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 克隆数据库
+    ///
+    /// 本接口（CloneDB）用于克隆数据库，只支持克隆到本实例，克隆时必须指定新库名称。
+    @inlinable
+    public func cloneDB(_ input: CloneDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneDBResponse {
+        try await self.client.execute(action: "CloneDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

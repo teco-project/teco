@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取某一天云存时间轴
-    @inlinable
-    public func describeCloudStorageTime(_ input: DescribeCloudStorageTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStorageTimeResponse > {
-        self.client.execute(action: "DescribeCloudStorageTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取某一天云存时间轴
-    @inlinable
-    public func describeCloudStorageTime(_ input: DescribeCloudStorageTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageTimeResponse {
-        try await self.client.execute(action: "DescribeCloudStorageTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudStorageTime请求参数结构体
     public struct DescribeCloudStorageTimeRequest: TCRequestModel {
         /// 产品ID
@@ -47,7 +35,7 @@ extension Iotvideo {
         /// 用户ID
         public let userId: String?
         
-        public init (productId: String, deviceName: String, date: String, startTime: UInt64?, endTime: UInt64?, userId: String?) {
+        public init (productId: String, deviceName: String, date: String, startTime: UInt64? = nil, endTime: UInt64? = nil, userId: String? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.date = date
@@ -78,5 +66,17 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取某一天云存时间轴
+    @inlinable
+    public func describeCloudStorageTime(_ input: DescribeCloudStorageTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStorageTimeResponse > {
+        self.client.execute(action: "DescribeCloudStorageTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取某一天云存时间轴
+    @inlinable
+    public func describeCloudStorageTime(_ input: DescribeCloudStorageTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageTimeResponse {
+        try await self.client.execute(action: "DescribeCloudStorageTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

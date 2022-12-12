@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 设置DDoS防护的AI防护开关
-    @inlinable
-    public func createDDoSAI(_ input: CreateDDoSAIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSAIResponse > {
-        self.client.execute(action: "CreateDDoSAI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置DDoS防护的AI防护开关
-    @inlinable
-    public func createDDoSAI(_ input: CreateDDoSAIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSAIResponse {
-        try await self.client.execute(action: "CreateDDoSAI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDDoSAI请求参数结构体
     public struct CreateDDoSAIRequest: TCRequestModel {
         /// 资源实例ID列表
@@ -57,5 +45,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置DDoS防护的AI防护开关
+    @inlinable
+    public func createDDoSAI(_ input: CreateDDoSAIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSAIResponse > {
+        self.client.execute(action: "CreateDDoSAI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置DDoS防护的AI防护开关
+    @inlinable
+    public func createDDoSAI(_ input: CreateDDoSAIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSAIResponse {
+        try await self.client.execute(action: "CreateDDoSAI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

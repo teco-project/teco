@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取实时拉取进程任务状态
-    ///
-    /// 本接口 (DescribeProcessTaskStatus) 用于获取实时拉取进程任务状态。
-    @inlinable
-    public func describeProcessTaskStatus(_ input: DescribeProcessTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProcessTaskStatusResponse > {
-        self.client.execute(action: "DescribeProcessTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实时拉取进程任务状态
-    ///
-    /// 本接口 (DescribeProcessTaskStatus) 用于获取实时拉取进程任务状态。
-    @inlinable
-    public func describeProcessTaskStatus(_ input: DescribeProcessTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProcessTaskStatusResponse {
-        try await self.client.execute(action: "DescribeProcessTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProcessTaskStatus请求参数结构体
     public struct DescribeProcessTaskStatusRequest: TCRequestModel {
         /// 云镜客户端唯一Uuid。
@@ -61,5 +45,21 @@ extension Yunjing {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实时拉取进程任务状态
+    ///
+    /// 本接口 (DescribeProcessTaskStatus) 用于获取实时拉取进程任务状态。
+    @inlinable
+    public func describeProcessTaskStatus(_ input: DescribeProcessTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProcessTaskStatusResponse > {
+        self.client.execute(action: "DescribeProcessTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实时拉取进程任务状态
+    ///
+    /// 本接口 (DescribeProcessTaskStatus) 用于获取实时拉取进程任务状态。
+    @inlinable
+    public func describeProcessTaskStatus(_ input: DescribeProcessTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProcessTaskStatusResponse {
+        try await self.client.execute(action: "DescribeProcessTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

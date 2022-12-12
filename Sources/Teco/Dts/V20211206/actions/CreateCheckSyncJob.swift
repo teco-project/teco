@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 校验同步任务
-    ///
-    /// 校验同步任务，检查必要参数和周边配置。
-    @inlinable
-    public func createCheckSyncJob(_ input: CreateCheckSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCheckSyncJobResponse > {
-        self.client.execute(action: "CreateCheckSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 校验同步任务
-    ///
-    /// 校验同步任务，检查必要参数和周边配置。
-    @inlinable
-    public func createCheckSyncJob(_ input: CreateCheckSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckSyncJobResponse {
-        try await self.client.execute(action: "CreateCheckSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCheckSyncJob请求参数结构体
     public struct CreateCheckSyncJobRequest: TCRequestModel {
         /// 同步任务id
@@ -53,5 +37,21 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 校验同步任务
+    ///
+    /// 校验同步任务，检查必要参数和周边配置。
+    @inlinable
+    public func createCheckSyncJob(_ input: CreateCheckSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCheckSyncJobResponse > {
+        self.client.execute(action: "CreateCheckSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 校验同步任务
+    ///
+    /// 校验同步任务，检查必要参数和周边配置。
+    @inlinable
+    public func createCheckSyncJob(_ input: CreateCheckSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckSyncJobResponse {
+        try await self.client.execute(action: "CreateCheckSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

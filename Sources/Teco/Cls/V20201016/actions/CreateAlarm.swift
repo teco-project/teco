@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 创建告警策略
-    ///
-    /// 本接口用于创建告警策略。
-    @inlinable
-    public func createAlarm(_ input: CreateAlarmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAlarmResponse > {
-        self.client.execute(action: "CreateAlarm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建告警策略
-    ///
-    /// 本接口用于创建告警策略。
-    @inlinable
-    public func createAlarm(_ input: CreateAlarmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmResponse {
-        try await self.client.execute(action: "CreateAlarm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAlarm请求参数结构体
     public struct CreateAlarmRequest: TCRequestModel {
         /// 告警策略名称
@@ -61,12 +45,12 @@ extension Cls {
         public let messageTemplate: String?
         
         /// 用户自定义回调
-        public let callBack: CallBackInfo
+        public let callBack: CallBackInfo?
         
         /// 多维分析
         public let analysis: [AnalysisDimensional]?
         
-        public init (name: String, alarmTargets: [AlarmTarget], monitorTime: MonitorTime, condition: String, triggerCount: Int64, alarmPeriod: Int64, alarmNoticeIds: [String], status: Bool?, messageTemplate: String?, callBack: CallBackInfo, analysis: [AnalysisDimensional]?) {
+        public init (name: String, alarmTargets: [AlarmTarget], monitorTime: MonitorTime, condition: String, triggerCount: Int64, alarmPeriod: Int64, alarmNoticeIds: [String], status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil) {
             self.name = name
             self.alarmTargets = alarmTargets
             self.monitorTime = monitorTime
@@ -107,5 +91,21 @@ extension Cls {
             case alarmId = "AlarmId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建告警策略
+    ///
+    /// 本接口用于创建告警策略。
+    @inlinable
+    public func createAlarm(_ input: CreateAlarmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAlarmResponse > {
+        self.client.execute(action: "CreateAlarm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建告警策略
+    ///
+    /// 本接口用于创建告警策略。
+    @inlinable
+    public func createAlarm(_ input: CreateAlarmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmResponse {
+        try await self.client.execute(action: "CreateAlarm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

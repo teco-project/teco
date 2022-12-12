@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 导出高危命令事件
-    @inlinable
-    public func exportBashEvents(_ input: ExportBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBashEventsResponse > {
-        self.client.execute(action: "ExportBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出高危命令事件
-    @inlinable
-    public func exportBashEvents(_ input: ExportBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBashEventsResponse {
-        try await self.client.execute(action: "ExportBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportBashEvents请求参数结构体
     public struct ExportBashEventsRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Yunjing {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出高危命令事件
+    @inlinable
+    public func exportBashEvents(_ input: ExportBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBashEventsResponse > {
+        self.client.execute(action: "ExportBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出高危命令事件
+    @inlinable
+    public func exportBashEvents(_ input: ExportBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBashEventsResponse {
+        try await self.client.execute(action: "ExportBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

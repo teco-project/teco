@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取专享集群列表
-    ///
-    /// 获取用户绑定的专享集群列表
-    @inlinable
-    public func describeBindClusters(_ input: DescribeBindClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindClustersResponse > {
-        self.client.execute(action: "DescribeBindClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取专享集群列表
-    ///
-    /// 获取用户绑定的专享集群列表
-    @inlinable
-    public func describeBindClusters(_ input: DescribeBindClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindClustersResponse {
-        try await self.client.execute(action: "DescribeBindClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBindClusters请求参数结构体
     public struct DescribeBindClustersRequest: TCRequestModel {
         public init () {
@@ -53,5 +37,21 @@ extension Tdmq {
             case clusterSet = "ClusterSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取专享集群列表
+    ///
+    /// 获取用户绑定的专享集群列表
+    @inlinable
+    public func describeBindClusters(_ input: DescribeBindClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindClustersResponse > {
+        self.client.execute(action: "DescribeBindClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取专享集群列表
+    ///
+    /// 获取用户绑定的专享集群列表
+    @inlinable
+    public func describeBindClusters(_ input: DescribeBindClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindClustersResponse {
+        try await self.client.execute(action: "DescribeBindClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

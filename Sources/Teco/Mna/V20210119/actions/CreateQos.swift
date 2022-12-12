@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mna {
-    /// 发起Qos加速过程
-    ///
-    /// 移动网络发起Qos加速过程
-    @inlinable
-    public func createQos(_ input: CreateQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateQosResponse > {
-        self.client.execute(action: "CreateQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发起Qos加速过程
-    ///
-    /// 移动网络发起Qos加速过程
-    @inlinable
-    public func createQos(_ input: CreateQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateQosResponse {
-        try await self.client.execute(action: "CreateQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateQos请求参数结构体
     public struct CreateQosRequest: TCRequestModel {
         /// 加速业务源地址信息，SrcIpv6和（SrcIpv4+SrcPublicIpv4）二选一，目前Ipv6不可用，全部填写以Ipv4参数为准。
@@ -52,13 +36,13 @@ extension Mna {
         public let qosMenu: String
         
         /// 申请加速的设备信息，包括运营商，操作系统，设备唯一标识等。
-        public let deviceInfo: DeviceInfo
+        public let deviceInfo: DeviceInfo?
         
         /// 期望加速时长（单位分钟），默认值30分钟
         public let duration: UInt64?
         
         /// 接口能力扩展，如果是电信用户，必须填充CTCC Token字段
-        public let capacity: Capacity
+        public let capacity: Capacity?
         
         /// 应用模板ID
         public let templateId: String?
@@ -70,12 +54,12 @@ extension Mna {
         public let `protocol`: UInt64?
         
         /// 加速策略关键数据
-        public let context: Context
+        public let context: Context?
         
         /// 签名
         public let extern: String?
         
-        public init (srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, qosMenu: String, deviceInfo: DeviceInfo, duration: UInt64?, capacity: Capacity, templateId: String?, `protocol`: UInt64?, context: Context, extern: String?) {
+        public init (srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, qosMenu: String, deviceInfo: DeviceInfo? = nil, duration: UInt64? = nil, capacity: Capacity? = nil, templateId: String? = nil, `protocol`: UInt64? = nil, context: Context? = nil, extern: String? = nil) {
             self.srcAddressInfo = srcAddressInfo
             self.destAddressInfo = destAddressInfo
             self.qosMenu = qosMenu
@@ -118,5 +102,21 @@ extension Mna {
             case duration = "Duration"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发起Qos加速过程
+    ///
+    /// 移动网络发起Qos加速过程
+    @inlinable
+    public func createQos(_ input: CreateQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateQosResponse > {
+        self.client.execute(action: "CreateQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发起Qos加速过程
+    ///
+    /// 移动网络发起Qos加速过程
+    @inlinable
+    public func createQos(_ input: CreateQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateQosResponse {
+        try await self.client.execute(action: "CreateQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

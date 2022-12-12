@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 创建机构DID
-    @inlinable
-    public func createTDid(_ input: CreateTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTDidResponse > {
-        self.client.execute(action: "CreateTDid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建机构DID
-    @inlinable
-    public func createTDid(_ input: CreateTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidResponse {
-        try await self.client.execute(action: "CreateTDid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTDid请求参数结构体
     public struct CreateTDidRequest: TCRequestModel {
         /// 群组ID
@@ -63,5 +51,17 @@ extension Tdid {
             case did = "Did"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建机构DID
+    @inlinable
+    public func createTDid(_ input: CreateTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTDidResponse > {
+        self.client.execute(action: "CreateTDid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建机构DID
+    @inlinable
+    public func createTDid(_ input: CreateTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidResponse {
+        try await self.client.execute(action: "CreateTDid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

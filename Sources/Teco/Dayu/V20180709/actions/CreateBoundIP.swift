@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 绑定IP到高防包实例
-    ///
-    /// 绑定IP到高防包实例，支持独享包、共享包；需要注意的是此接口绑定或解绑IP是异步接口，当处于绑定或解绑中时，则不允许再进行绑定或解绑，需要等待当前绑定或解绑完成。
-    @inlinable
-    public func createBoundIP(_ input: CreateBoundIPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBoundIPResponse > {
-        self.client.execute(action: "CreateBoundIP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定IP到高防包实例
-    ///
-    /// 绑定IP到高防包实例，支持独享包、共享包；需要注意的是此接口绑定或解绑IP是异步接口，当处于绑定或解绑中时，则不允许再进行绑定或解绑，需要等待当前绑定或解绑完成。
-    @inlinable
-    public func createBoundIP(_ input: CreateBoundIPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBoundIPResponse {
-        try await self.client.execute(action: "CreateBoundIP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBoundIP请求参数结构体
     public struct CreateBoundIPRequest: TCRequestModel {
         /// 大禹子产品代号（bgp表示独享包；bgp-multip表示共享包）
@@ -48,7 +32,7 @@ extension Dayu {
         /// 已弃用，不填
         public let copyPolicy: String?
         
-        public init (business: String, id: String, boundDevList: [BoundIpInfo]?, unBoundDevList: [BoundIpInfo]?, copyPolicy: String?) {
+        public init (business: String, id: String, boundDevList: [BoundIpInfo]? = nil, unBoundDevList: [BoundIpInfo]? = nil, copyPolicy: String? = nil) {
             self.business = business
             self.id = id
             self.boundDevList = boundDevList
@@ -77,5 +61,21 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定IP到高防包实例
+    ///
+    /// 绑定IP到高防包实例，支持独享包、共享包；需要注意的是此接口绑定或解绑IP是异步接口，当处于绑定或解绑中时，则不允许再进行绑定或解绑，需要等待当前绑定或解绑完成。
+    @inlinable
+    public func createBoundIP(_ input: CreateBoundIPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBoundIPResponse > {
+        self.client.execute(action: "CreateBoundIP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定IP到高防包实例
+    ///
+    /// 绑定IP到高防包实例，支持独享包、共享包；需要注意的是此接口绑定或解绑IP是异步接口，当处于绑定或解绑中时，则不允许再进行绑定或解绑，需要等待当前绑定或解绑完成。
+    @inlinable
+    public func createBoundIP(_ input: CreateBoundIPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBoundIPResponse {
+        try await self.client.execute(action: "CreateBoundIP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

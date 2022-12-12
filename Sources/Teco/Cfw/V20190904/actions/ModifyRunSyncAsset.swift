@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 同步资产-互联网&VPC（新）
-    @inlinable
-    public func modifyRunSyncAsset(_ input: ModifyRunSyncAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRunSyncAssetResponse > {
-        self.client.execute(action: "ModifyRunSyncAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 同步资产-互联网&VPC（新）
-    @inlinable
-    public func modifyRunSyncAsset(_ input: ModifyRunSyncAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRunSyncAssetResponse {
-        try await self.client.execute(action: "ModifyRunSyncAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRunSyncAsset请求参数结构体
     public struct ModifyRunSyncAssetRequest: TCRequestModel {
         /// 0: 互联网防火墙开关，1：vpc 防火墙开关
         public let type: UInt64?
         
-        public init (type: UInt64?) {
+        public init (type: UInt64? = nil) {
             self.type = type
         }
         
@@ -53,5 +41,17 @@ extension Cfw {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 同步资产-互联网&VPC（新）
+    @inlinable
+    public func modifyRunSyncAsset(_ input: ModifyRunSyncAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRunSyncAssetResponse > {
+        self.client.execute(action: "ModifyRunSyncAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 同步资产-互联网&VPC（新）
+    @inlinable
+    public func modifyRunSyncAsset(_ input: ModifyRunSyncAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRunSyncAssetResponse {
+        try await self.client.execute(action: "ModifyRunSyncAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

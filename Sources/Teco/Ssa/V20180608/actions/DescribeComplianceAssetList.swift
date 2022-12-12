@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssa {
-    /// 合规管理-资产列表
-    @inlinable
-    public func describeComplianceAssetList(_ input: DescribeComplianceAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceAssetListResponse > {
-        self.client.execute(action: "DescribeComplianceAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 合规管理-资产列表
-    @inlinable
-    public func describeComplianceAssetList(_ input: DescribeComplianceAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetListResponse {
-        try await self.client.execute(action: "DescribeComplianceAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeComplianceAssetList请求参数结构体
     public struct DescribeComplianceAssetListRequest: TCRequestModel {
         /// 页码
@@ -44,7 +32,7 @@ extension Ssa {
         /// 查询条件
         public let search: [Filter]?
         
-        public init (offset: Int64, limit: Int64, id: String, filter: [Filter]?, search: [Filter]?) {
+        public init (offset: Int64, limit: Int64, id: String, filter: [Filter]? = nil, search: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.id = id
@@ -77,5 +65,17 @@ extension Ssa {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 合规管理-资产列表
+    @inlinable
+    public func describeComplianceAssetList(_ input: DescribeComplianceAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceAssetListResponse > {
+        self.client.execute(action: "DescribeComplianceAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 合规管理-资产列表
+    @inlinable
+    public func describeComplianceAssetList(_ input: DescribeComplianceAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetListResponse {
+        try await self.client.execute(action: "DescribeComplianceAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 使用白盒密钥进行加密
-    @inlinable
-    public func encryptByWhiteBox(_ input: EncryptByWhiteBoxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EncryptByWhiteBoxResponse > {
-        self.client.execute(action: "EncryptByWhiteBox", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 使用白盒密钥进行加密
-    @inlinable
-    public func encryptByWhiteBox(_ input: EncryptByWhiteBoxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EncryptByWhiteBoxResponse {
-        try await self.client.execute(action: "EncryptByWhiteBox", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EncryptByWhiteBox请求参数结构体
     public struct EncryptByWhiteBoxRequest: TCRequestModel {
         /// 白盒密钥的全局唯一标识符
@@ -38,7 +26,7 @@ extension Kms {
         /// 初始化向量，大小为 16 Bytes，加密算法会使用到, base64编码；如果不传，则由后端服务随机生成。用户需要自行保存该值，作为解密的参数。
         public let initializationVector: String?
         
-        public init (keyId: String, plainText: String, initializationVector: String?) {
+        public init (keyId: String, plainText: String, initializationVector: String? = nil) {
             self.keyId = keyId
             self.plainText = plainText
             self.initializationVector = initializationVector
@@ -67,5 +55,17 @@ extension Kms {
             case cipherText = "CipherText"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 使用白盒密钥进行加密
+    @inlinable
+    public func encryptByWhiteBox(_ input: EncryptByWhiteBoxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EncryptByWhiteBoxResponse > {
+        self.client.execute(action: "EncryptByWhiteBox", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 使用白盒密钥进行加密
+    @inlinable
+    public func encryptByWhiteBox(_ input: EncryptByWhiteBoxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EncryptByWhiteBoxResponse {
+        try await self.client.execute(action: "EncryptByWhiteBox", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

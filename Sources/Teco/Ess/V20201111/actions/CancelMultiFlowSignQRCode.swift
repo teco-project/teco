@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ess {
-    /// 取消一码多扫二维码
-    ///
-    /// 此接口（CancelMultiFlowSignQRCode）用于取消一码多扫二维码。该接口对传入的二维码ID，若还在有效期内，可以提前失效。
-    @inlinable
-    public func cancelMultiFlowSignQRCode(_ input: CancelMultiFlowSignQRCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelMultiFlowSignQRCodeResponse > {
-        self.client.execute(action: "CancelMultiFlowSignQRCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消一码多扫二维码
-    ///
-    /// 此接口（CancelMultiFlowSignQRCode）用于取消一码多扫二维码。该接口对传入的二维码ID，若还在有效期内，可以提前失效。
-    @inlinable
-    public func cancelMultiFlowSignQRCode(_ input: CancelMultiFlowSignQRCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelMultiFlowSignQRCodeResponse {
-        try await self.client.execute(action: "CancelMultiFlowSignQRCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelMultiFlowSignQRCode请求参数结构体
     public struct CancelMultiFlowSignQRCodeRequest: TCRequestModel {
         /// 用户信息
@@ -40,9 +24,9 @@ extension Ess {
         public let qrCodeId: String
         
         /// 应用信息
-        public let agent: Agent
+        public let agent: Agent?
         
-        public init (`operator`: UserInfo, qrCodeId: String, agent: Agent) {
+        public init (`operator`: UserInfo, qrCodeId: String, agent: Agent? = nil) {
             self.`operator` = `operator`
             self.qrCodeId = qrCodeId
             self.agent = agent
@@ -63,5 +47,21 @@ extension Ess {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消一码多扫二维码
+    ///
+    /// 此接口（CancelMultiFlowSignQRCode）用于取消一码多扫二维码。该接口对传入的二维码ID，若还在有效期内，可以提前失效。
+    @inlinable
+    public func cancelMultiFlowSignQRCode(_ input: CancelMultiFlowSignQRCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelMultiFlowSignQRCodeResponse > {
+        self.client.execute(action: "CancelMultiFlowSignQRCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消一码多扫二维码
+    ///
+    /// 此接口（CancelMultiFlowSignQRCode）用于取消一码多扫二维码。该接口对传入的二维码ID，若还在有效期内，可以提前失效。
+    @inlinable
+    public func cancelMultiFlowSignQRCode(_ input: CancelMultiFlowSignQRCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelMultiFlowSignQRCodeResponse {
+        try await self.client.execute(action: "CancelMultiFlowSignQRCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

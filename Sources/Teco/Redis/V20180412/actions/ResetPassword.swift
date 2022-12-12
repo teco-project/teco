@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 重置密码
-    @inlinable
-    public func resetPassword(_ input: ResetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetPasswordResponse > {
-        self.client.execute(action: "ResetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置密码
-    @inlinable
-    public func resetPassword(_ input: ResetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetPasswordResponse {
-        try await self.client.execute(action: "ResetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetPassword请求参数结构体
     public struct ResetPasswordRequest: TCRequestModel {
         /// Redis实例ID
@@ -38,7 +26,7 @@ extension Redis {
         /// 是否切换免密实例，false-切换为非免密码实例，true-切换为免密码实例；默认false
         public let noAuth: Bool?
         
-        public init (instanceId: String, password: String?, noAuth: Bool?) {
+        public init (instanceId: String, password: String? = nil, noAuth: Bool? = nil) {
             self.instanceId = instanceId
             self.password = password
             self.noAuth = noAuth
@@ -63,5 +51,17 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置密码
+    @inlinable
+    public func resetPassword(_ input: ResetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetPasswordResponse > {
+        self.client.execute(action: "ResetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置密码
+    @inlinable
+    public func resetPassword(_ input: ResetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetPasswordResponse {
+        try await self.client.execute(action: "ResetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

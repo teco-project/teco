@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取消费订阅列表
-    ///
-    /// 查询指定环境和主题下的订阅者列表
-    @inlinable
-    public func describeSubscriptions(_ input: DescribeSubscriptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubscriptionsResponse > {
-        self.client.execute(action: "DescribeSubscriptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取消费订阅列表
-    ///
-    /// 查询指定环境和主题下的订阅者列表
-    @inlinable
-    public func describeSubscriptions(_ input: DescribeSubscriptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscriptionsResponse {
-        try await self.client.execute(action: "DescribeSubscriptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSubscriptions请求参数结构体
     public struct DescribeSubscriptionsRequest: TCRequestModel {
         /// 环境（命名空间）名称。
@@ -54,7 +38,7 @@ extension Tdmq {
         /// Pulsar 集群的ID
         public let clusterId: String?
         
-        public init (environmentId: String, topicName: String, offset: UInt64?, limit: UInt64?, subscriptionName: String?, filters: [FilterSubscription]?, clusterId: String?) {
+        public init (environmentId: String, topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, subscriptionName: String? = nil, filters: [FilterSubscription]? = nil, clusterId: String? = nil) {
             self.environmentId = environmentId
             self.topicName = topicName
             self.offset = offset
@@ -91,5 +75,21 @@ extension Tdmq {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取消费订阅列表
+    ///
+    /// 查询指定环境和主题下的订阅者列表
+    @inlinable
+    public func describeSubscriptions(_ input: DescribeSubscriptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubscriptionsResponse > {
+        self.client.execute(action: "DescribeSubscriptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取消费订阅列表
+    ///
+    /// 查询指定环境和主题下的订阅者列表
+    @inlinable
+    public func describeSubscriptions(_ input: DescribeSubscriptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscriptionsResponse {
+        try await self.client.execute(action: "DescribeSubscriptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

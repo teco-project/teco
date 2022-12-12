@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时查询文件查杀任务列表
-    @inlinable
-    public func describeVirusTaskList(_ input: DescribeVirusTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusTaskListResponse > {
-        self.client.execute(action: "DescribeVirusTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时查询文件查杀任务列表
-    @inlinable
-    public func describeVirusTaskList(_ input: DescribeVirusTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusTaskListResponse {
-        try await self.client.execute(action: "DescribeVirusTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVirusTaskList请求参数结构体
     public struct DescribeVirusTaskListRequest: TCRequestModel {
         /// 任务id
@@ -54,7 +42,7 @@ extension Tcss {
         /// 排序方式
         public let order: String?
         
-        public init (taskId: String, limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, by: String?, order: String?) {
+        public init (taskId: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.taskId = taskId
             self.limit = limit
             self.offset = offset
@@ -89,5 +77,17 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时查询文件查杀任务列表
+    @inlinable
+    public func describeVirusTaskList(_ input: DescribeVirusTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusTaskListResponse > {
+        self.client.execute(action: "DescribeVirusTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时查询文件查杀任务列表
+    @inlinable
+    public func describeVirusTaskList(_ input: DescribeVirusTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusTaskListResponse {
+        try await self.client.execute(action: "DescribeVirusTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

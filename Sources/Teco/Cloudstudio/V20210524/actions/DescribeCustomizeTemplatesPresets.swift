@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudstudio {
-    /// 获取创建模板的预置参数
-    @inlinable
-    public func describeCustomizeTemplatesPresets(_ input: DescribeCustomizeTemplatesPresetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomizeTemplatesPresetsResponse > {
-        self.client.execute(action: "DescribeCustomizeTemplatesPresets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取创建模板的预置参数
-    @inlinable
-    public func describeCustomizeTemplatesPresets(_ input: DescribeCustomizeTemplatesPresetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizeTemplatesPresetsResponse {
-        try await self.client.execute(action: "DescribeCustomizeTemplatesPresets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomizeTemplatesPresets请求参数结构体
     public struct DescribeCustomizeTemplatesPresetsRequest: TCRequestModel {
         /// 用户所属组
@@ -35,7 +23,7 @@ extension Cloudstudio {
         /// 空间标识
         public let spaceKey: String?
         
-        public init (cloudStudioSessionTeam: String, spaceKey: String?) {
+        public init (cloudStudioSessionTeam: String, spaceKey: String? = nil) {
             self.cloudStudioSessionTeam = cloudStudioSessionTeam
             self.spaceKey = spaceKey
         }
@@ -50,7 +38,7 @@ extension Cloudstudio {
     public struct DescribeCustomizeTemplatesPresetsResponse: TCResponseModel {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: CustomizeTemplatesPresetsInfo
+        public let data: CustomizeTemplatesPresetsInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -59,5 +47,17 @@ extension Cloudstudio {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取创建模板的预置参数
+    @inlinable
+    public func describeCustomizeTemplatesPresets(_ input: DescribeCustomizeTemplatesPresetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomizeTemplatesPresetsResponse > {
+        self.client.execute(action: "DescribeCustomizeTemplatesPresets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取创建模板的预置参数
+    @inlinable
+    public func describeCustomizeTemplatesPresets(_ input: DescribeCustomizeTemplatesPresetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizeTemplatesPresetsResponse {
+        try await self.client.execute(action: "DescribeCustomizeTemplatesPresets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

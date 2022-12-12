@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Asw {
-    /// 查询状态机列表
-    ///
-    /// 查询指定用户下所有状态机，以列表形式返回
-    @inlinable
-    public func describeFlowServices(_ input: DescribeFlowServicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowServicesResponse > {
-        self.client.execute(action: "DescribeFlowServices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询状态机列表
-    ///
-    /// 查询指定用户下所有状态机，以列表形式返回
-    @inlinable
-    public func describeFlowServices(_ input: DescribeFlowServicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowServicesResponse {
-        try await self.client.execute(action: "DescribeFlowServices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlowServices请求参数结构体
     public struct DescribeFlowServicesRequest: TCRequestModel {
         /// 偏移量，默认为0。
@@ -42,7 +26,7 @@ extension Asw {
         /// 过滤条件，详见下表：实例过滤条件表。每次请求的Filter.Values的上限为5。参数名字仅支持FlowServiceName， Status, Type三种情况
         public let filters: [Filter]?
         
-        public init (offset: UInt64?, limit: UInt64?, filters: [Filter]?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -71,5 +55,21 @@ extension Asw {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询状态机列表
+    ///
+    /// 查询指定用户下所有状态机，以列表形式返回
+    @inlinable
+    public func describeFlowServices(_ input: DescribeFlowServicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowServicesResponse > {
+        self.client.execute(action: "DescribeFlowServices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询状态机列表
+    ///
+    /// 查询指定用户下所有状态机，以列表形式返回
+    @inlinable
+    public func describeFlowServices(_ input: DescribeFlowServicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowServicesResponse {
+        try await self.client.execute(action: "DescribeFlowServices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 查询告警通知接收组
-    @inlinable
-    public func describeAlertChannels(_ input: DescribeAlertChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlertChannelsResponse > {
-        self.client.execute(action: "DescribeAlertChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询告警通知接收组
-    @inlinable
-    public func describeAlertChannels(_ input: DescribeAlertChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertChannelsResponse {
-        try await self.client.execute(action: "DescribeAlertChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAlertChannels请求参数结构体
     public struct DescribeAlertChannelsRequest: TCRequestModel {
         /// 项目 ID 列表
@@ -47,7 +35,7 @@ extension Pts {
         /// 是否正序
         public let ascend: Bool?
         
-        public init (projectIds: [String], offset: UInt64?, limit: UInt64?, noticeIds: [String]?, orderBy: String?, ascend: Bool?) {
+        public init (projectIds: [String], offset: UInt64? = nil, limit: UInt64? = nil, noticeIds: [String]? = nil, orderBy: String? = nil, ascend: Bool? = nil) {
             self.projectIds = projectIds
             self.offset = offset
             self.limit = limit
@@ -84,5 +72,17 @@ extension Pts {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询告警通知接收组
+    @inlinable
+    public func describeAlertChannels(_ input: DescribeAlertChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlertChannelsResponse > {
+        self.client.execute(action: "DescribeAlertChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询告警通知接收组
+    @inlinable
+    public func describeAlertChannels(_ input: DescribeAlertChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertChannelsResponse {
+        try await self.client.execute(action: "DescribeAlertChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

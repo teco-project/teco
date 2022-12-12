@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 修改实例子账号
-    @inlinable
-    public func modifyInstanceAccount(_ input: ModifyInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceAccountResponse > {
-        self.client.execute(action: "ModifyInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例子账号
-    @inlinable
-    public func modifyInstanceAccount(_ input: ModifyInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAccountResponse {
-        try await self.client.execute(action: "ModifyInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstanceAccount请求参数结构体
     public struct ModifyInstanceAccountRequest: TCRequestModel {
         /// 实例ID
@@ -50,7 +38,7 @@ extension Redis {
         /// true表示将主账号切换为免密账号，这里只适用于主账号，子账号不可免密
         public let noAuth: Bool?
         
-        public init (instanceId: String, accountName: String, accountPassword: String?, remark: String?, readonlyPolicy: [String]?, privilege: String?, noAuth: Bool?) {
+        public init (instanceId: String, accountName: String, accountPassword: String? = nil, remark: String? = nil, readonlyPolicy: [String]? = nil, privilege: String? = nil, noAuth: Bool? = nil) {
             self.instanceId = instanceId
             self.accountName = accountName
             self.accountPassword = accountPassword
@@ -83,5 +71,17 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例子账号
+    @inlinable
+    public func modifyInstanceAccount(_ input: ModifyInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceAccountResponse > {
+        self.client.execute(action: "ModifyInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例子账号
+    @inlinable
+    public func modifyInstanceAccount(_ input: ModifyInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAccountResponse {
+        try await self.client.execute(action: "ModifyInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

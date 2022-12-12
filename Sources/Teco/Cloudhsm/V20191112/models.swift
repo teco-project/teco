@@ -263,7 +263,7 @@ extension Cloudhsm {
         /// 标签值
         public let tagValue: [String]?
         
-        public init (tagKey: String, tagValue: [String]?) {
+        public init (tagKey: String, tagValue: [String]? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }

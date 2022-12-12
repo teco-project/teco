@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 设置延时直播
-    ///
-    /// 针对大型活动直播，通过对直播流设置延时来控制现场与观众播放画面的时间间隔，避免突发状况造成影响。
-    /// 注意：如果在推流前设置延播，需要提前5分钟设置，目前该接口只支持流粒度。
-    @inlinable
-    public func addDelayLiveStream(_ input: AddDelayLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDelayLiveStreamResponse > {
-        self.client.execute(action: "AddDelayLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置延时直播
-    ///
-    /// 针对大型活动直播，通过对直播流设置延时来控制现场与观众播放画面的时间间隔，避免突发状况造成影响。
-    /// 注意：如果在推流前设置延播，需要提前5分钟设置，目前该接口只支持流粒度。
-    @inlinable
-    public func addDelayLiveStream(_ input: AddDelayLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDelayLiveStreamResponse {
-        try await self.client.execute(action: "AddDelayLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddDelayLiveStream请求参数结构体
     public struct AddDelayLiveStreamRequest: TCRequestModel {
         /// 推流路径，与推流和播放地址中的 AppName 保持一致，默认为 live。
@@ -53,7 +35,7 @@ extension Live {
         /// 2. 北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let expireTime: String?
         
-        public init (appName: String, domainName: String, streamName: String, delayTime: UInt64, expireTime: String?) {
+        public init (appName: String, domainName: String, streamName: String, delayTime: UInt64, expireTime: String? = nil) {
             self.appName = appName
             self.domainName = domainName
             self.streamName = streamName
@@ -78,5 +60,23 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置延时直播
+    ///
+    /// 针对大型活动直播，通过对直播流设置延时来控制现场与观众播放画面的时间间隔，避免突发状况造成影响。
+    /// 注意：如果在推流前设置延播，需要提前5分钟设置，目前该接口只支持流粒度。
+    @inlinable
+    public func addDelayLiveStream(_ input: AddDelayLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDelayLiveStreamResponse > {
+        self.client.execute(action: "AddDelayLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置延时直播
+    ///
+    /// 针对大型活动直播，通过对直播流设置延时来控制现场与观众播放画面的时间间隔，避免突发状况造成影响。
+    /// 注意：如果在推流前设置延播，需要提前5分钟设置，目前该接口只支持流粒度。
+    @inlinable
+    public func addDelayLiveStream(_ input: AddDelayLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDelayLiveStreamResponse {
+        try await self.client.execute(action: "AddDelayLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

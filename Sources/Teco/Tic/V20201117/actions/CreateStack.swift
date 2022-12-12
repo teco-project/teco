@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tic {
-    /// 创建资源栈
-    ///
-    /// 本接口（CreateStack）用于通过传递一个COS的terraform zip模版URL来创建一个资源栈。创建资源栈后仍需要用户调用对应的plan, apply, destory执行对应的事件。
-    @inlinable
-    public func createStack(_ input: CreateStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStackResponse > {
-        self.client.execute(action: "CreateStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建资源栈
-    ///
-    /// 本接口（CreateStack）用于通过传递一个COS的terraform zip模版URL来创建一个资源栈。创建资源栈后仍需要用户调用对应的plan, apply, destory执行对应的事件。
-    @inlinable
-    public func createStack(_ input: CreateStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStackResponse {
-        try await self.client.execute(action: "CreateStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateStack请求参数结构体
     public struct CreateStackRequest: TCRequestModel {
         /// 资源栈名称，不得超过60个字符
@@ -45,7 +29,7 @@ extension Tic {
         /// 资源栈描述，不得超过200个字符
         public let description: String?
         
-        public init (stackName: String, stackRegion: String, templateUrl: String, description: String?) {
+        public init (stackName: String, stackRegion: String, templateUrl: String, description: String? = nil) {
             self.stackName = stackName
             self.stackRegion = stackRegion
             self.templateUrl = templateUrl
@@ -76,5 +60,21 @@ extension Tic {
             case versionId = "VersionId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建资源栈
+    ///
+    /// 本接口（CreateStack）用于通过传递一个COS的terraform zip模版URL来创建一个资源栈。创建资源栈后仍需要用户调用对应的plan, apply, destory执行对应的事件。
+    @inlinable
+    public func createStack(_ input: CreateStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStackResponse > {
+        self.client.execute(action: "CreateStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建资源栈
+    ///
+    /// 本接口（CreateStack）用于通过传递一个COS的terraform zip模版URL来创建一个资源栈。创建资源栈后仍需要用户调用对应的plan, apply, destory执行对应的事件。
+    @inlinable
+    public func createStack(_ input: CreateStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStackResponse {
+        try await self.client.execute(action: "CreateStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

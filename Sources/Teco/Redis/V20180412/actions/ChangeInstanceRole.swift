@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 复制组实例更换角色
-    @inlinable
-    public func changeInstanceRole(_ input: ChangeInstanceRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeInstanceRoleResponse > {
-        self.client.execute(action: "ChangeInstanceRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 复制组实例更换角色
-    @inlinable
-    public func changeInstanceRole(_ input: ChangeInstanceRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeInstanceRoleResponse {
-        try await self.client.execute(action: "ChangeInstanceRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ChangeInstanceRole请求参数结构体
     public struct ChangeInstanceRoleRequest: TCRequestModel {
         /// 复制组ID
@@ -63,5 +51,17 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 复制组实例更换角色
+    @inlinable
+    public func changeInstanceRole(_ input: ChangeInstanceRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeInstanceRoleResponse > {
+        self.client.execute(action: "ChangeInstanceRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 复制组实例更换角色
+    @inlinable
+    public func changeInstanceRole(_ input: ChangeInstanceRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeInstanceRoleResponse {
+        try await self.client.execute(action: "ChangeInstanceRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

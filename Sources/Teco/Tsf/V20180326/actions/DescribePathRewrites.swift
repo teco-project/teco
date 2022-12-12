@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询路径重写列表
-    @inlinable
-    public func describePathRewrites(_ input: DescribePathRewritesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePathRewritesResponse > {
-        self.client.execute(action: "DescribePathRewrites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询路径重写列表
-    @inlinable
-    public func describePathRewrites(_ input: DescribePathRewritesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePathRewritesResponse {
-        try await self.client.execute(action: "DescribePathRewrites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePathRewrites请求参数结构体
     public struct DescribePathRewritesRequest: TCRequestModel {
         /// 网关部署组ID
@@ -41,7 +29,7 @@ extension Tsf {
         /// 起始偏移量
         public let offset: UInt64?
         
-        public init (gatewayGroupId: String, searchWord: String?, limit: UInt64?, offset: UInt64?) {
+        public init (gatewayGroupId: String, searchWord: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.gatewayGroupId = gatewayGroupId
             self.searchWord = searchWord
             self.limit = limit
@@ -68,5 +56,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询路径重写列表
+    @inlinable
+    public func describePathRewrites(_ input: DescribePathRewritesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePathRewritesResponse > {
+        self.client.execute(action: "DescribePathRewrites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询路径重写列表
+    @inlinable
+    public func describePathRewrites(_ input: DescribePathRewritesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePathRewritesResponse {
+        try await self.client.execute(action: "DescribePathRewrites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

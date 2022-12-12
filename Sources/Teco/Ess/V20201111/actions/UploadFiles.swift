@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Ess {
-    /// 多文件上传
-    ///
-    /// 此接口（UploadFiles）用于文件上传。
-    /// 适用场景：用于生成pdf资源编号（FileIds）来配合“用PDF创建流程”接口使用，使用场景可详见“用PDF创建流程”接口说明。
-    /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn，并设置参数Version/版本号为2020-12-22
-    @inlinable
-    public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFilesResponse > {
-        self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 多文件上传
-    ///
-    /// 此接口（UploadFiles）用于文件上传。
-    /// 适用场景：用于生成pdf资源编号（FileIds）来配合“用PDF创建流程”接口使用，使用场景可详见“用PDF创建流程”接口说明。
-    /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn，并设置参数Version/版本号为2020-12-22
-    @inlinable
-    public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
-        try await self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadFiles请求参数结构体
     public struct UploadFilesRequest: TCRequestModel {
         /// 文件对应业务类型
@@ -44,7 +24,7 @@ extension Ess {
         public let businessType: String
         
         /// 调用方信息，其中OperatorId为必填字段，即用户的UserId
-        public let caller: Caller
+        public let caller: Caller?
         
         /// 上传文件内容数组，最多支持20个文件
         public let fileInfos: [UploadFile]?
@@ -64,7 +44,7 @@ extension Ess {
         /// 不再使用，上传文件链接数组，最多支持20个URL
         public let fileUrls: String?
         
-        public init (businessType: String, caller: Caller, fileInfos: [UploadFile]?, fileType: String?, coverRect: Bool?, customIds: [String]?, fileUrls: String?) {
+        public init (businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil) {
             self.businessType = businessType
             self.caller = caller
             self.fileInfos = fileInfos
@@ -101,5 +81,25 @@ extension Ess {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 多文件上传
+    ///
+    /// 此接口（UploadFiles）用于文件上传。
+    /// 适用场景：用于生成pdf资源编号（FileIds）来配合“用PDF创建流程”接口使用，使用场景可详见“用PDF创建流程”接口说明。
+    /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn，并设置参数Version/版本号为2020-12-22
+    @inlinable
+    public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFilesResponse > {
+        self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 多文件上传
+    ///
+    /// 此接口（UploadFiles）用于文件上传。
+    /// 适用场景：用于生成pdf资源编号（FileIds）来配合“用PDF创建流程”接口使用，使用场景可详见“用PDF创建流程”接口说明。
+    /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn，并设置参数Version/版本号为2020-12-22
+    @inlinable
+    public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
+        try await self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

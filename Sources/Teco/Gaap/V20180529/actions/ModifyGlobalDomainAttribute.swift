@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 修改域名属性
-    @inlinable
-    public func modifyGlobalDomainAttribute(_ input: ModifyGlobalDomainAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGlobalDomainAttributeResponse > {
-        self.client.execute(action: "ModifyGlobalDomainAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改域名属性
-    @inlinable
-    public func modifyGlobalDomainAttribute(_ input: ModifyGlobalDomainAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGlobalDomainAttributeResponse {
-        try await self.client.execute(action: "ModifyGlobalDomainAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyGlobalDomainAttribute请求参数结构体
     public struct ModifyGlobalDomainAttributeRequest: TCRequestModel {
         /// 域名ID
@@ -41,7 +29,7 @@ extension Gaap {
         /// 默认入口
         public let defaultValue: String?
         
-        public init (domainId: String, projectId: UInt64, alias: String?, defaultValue: String?) {
+        public init (domainId: String, projectId: UInt64, alias: String? = nil, defaultValue: String? = nil) {
             self.domainId = domainId
             self.projectId = projectId
             self.alias = alias
@@ -64,5 +52,17 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改域名属性
+    @inlinable
+    public func modifyGlobalDomainAttribute(_ input: ModifyGlobalDomainAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGlobalDomainAttributeResponse > {
+        self.client.execute(action: "ModifyGlobalDomainAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改域名属性
+    @inlinable
+    public func modifyGlobalDomainAttribute(_ input: ModifyGlobalDomainAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGlobalDomainAttributeResponse {
+        try await self.client.execute(action: "ModifyGlobalDomainAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 解隔离后付费实例
-    @inlinable
-    public func activateHourDBInstance(_ input: ActivateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActivateHourDBInstanceResponse > {
-        self.client.execute(action: "ActivateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解隔离后付费实例
-    @inlinable
-    public func activateHourDBInstance(_ input: ActivateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateHourDBInstanceResponse {
-        try await self.client.execute(action: "ActivateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ActivateHourDBInstance请求参数结构体
     public struct ActivateHourDBInstanceRequest: TCRequestModel {
         /// 实例ID列表
@@ -57,5 +45,17 @@ extension Mariadb {
             case failedInstanceIds = "FailedInstanceIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解隔离后付费实例
+    @inlinable
+    public func activateHourDBInstance(_ input: ActivateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActivateHourDBInstanceResponse > {
+        self.client.execute(action: "ActivateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解隔离后付费实例
+    @inlinable
+    public func activateHourDBInstance(_ input: ActivateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateHourDBInstanceResponse {
+        try await self.client.execute(action: "ActivateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

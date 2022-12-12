@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ms {
-    /// 移动安全-查询网址检测结果服务
-    ///
-    /// 移动安全-网址检测服务
-    @inlinable
-    public func describeUrlDetectionResult(_ input: DescribeUrlDetectionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUrlDetectionResultResponse > {
-        self.client.execute(action: "DescribeUrlDetectionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 移动安全-查询网址检测结果服务
-    ///
-    /// 移动安全-网址检测服务
-    @inlinable
-    public func describeUrlDetectionResult(_ input: DescribeUrlDetectionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUrlDetectionResultResponse {
-        try await self.client.execute(action: "DescribeUrlDetectionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUrlDetectionResult请求参数结构体
     public struct DescribeUrlDetectionResultRequest: TCRequestModel {
         /// 查询的网址
@@ -117,5 +101,21 @@ extension Ms {
             case levelDesc = "LevelDesc"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 移动安全-查询网址检测结果服务
+    ///
+    /// 移动安全-网址检测服务
+    @inlinable
+    public func describeUrlDetectionResult(_ input: DescribeUrlDetectionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUrlDetectionResultResponse > {
+        self.client.execute(action: "DescribeUrlDetectionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 移动安全-查询网址检测结果服务
+    ///
+    /// 移动安全-网址检测服务
+    @inlinable
+    public func describeUrlDetectionResult(_ input: DescribeUrlDetectionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUrlDetectionResultResponse {
+        try await self.client.execute(action: "DescribeUrlDetectionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

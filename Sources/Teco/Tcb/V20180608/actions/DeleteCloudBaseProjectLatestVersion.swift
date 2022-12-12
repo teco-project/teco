@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 删除云项目
-    @inlinable
-    public func deleteCloudBaseProjectLatestVersion(_ input: DeleteCloudBaseProjectLatestVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCloudBaseProjectLatestVersionResponse > {
-        self.client.execute(action: "DeleteCloudBaseProjectLatestVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除云项目
-    @inlinable
-    public func deleteCloudBaseProjectLatestVersion(_ input: DeleteCloudBaseProjectLatestVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCloudBaseProjectLatestVersionResponse {
-        try await self.client.execute(action: "DeleteCloudBaseProjectLatestVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCloudBaseProjectLatestVersion请求参数结构体
     public struct DeleteCloudBaseProjectLatestVersionRequest: TCRequestModel {
         /// 环境id
@@ -38,7 +26,7 @@ extension Tcb {
         /// 是否保留资源
         public let keepResource: Bool?
         
-        public init (envId: String, projectName: String, keepResource: Bool?) {
+        public init (envId: String, projectName: String, keepResource: Bool? = nil) {
             self.envId = envId
             self.projectName = projectName
             self.keepResource = keepResource
@@ -59,5 +47,17 @@ extension Tcb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除云项目
+    @inlinable
+    public func deleteCloudBaseProjectLatestVersion(_ input: DeleteCloudBaseProjectLatestVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCloudBaseProjectLatestVersionResponse > {
+        self.client.execute(action: "DeleteCloudBaseProjectLatestVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除云项目
+    @inlinable
+    public func deleteCloudBaseProjectLatestVersion(_ input: DeleteCloudBaseProjectLatestVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCloudBaseProjectLatestVersionResponse {
+        try await self.client.execute(action: "DeleteCloudBaseProjectLatestVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

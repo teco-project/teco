@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 刷新路由配置
-    ///
-    /// 在所有mongos上执行FlushRouterConfig命令
-    @inlinable
-    public func flushInstanceRouterConfig(_ input: FlushInstanceRouterConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FlushInstanceRouterConfigResponse > {
-        self.client.execute(action: "FlushInstanceRouterConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 刷新路由配置
-    ///
-    /// 在所有mongos上执行FlushRouterConfig命令
-    @inlinable
-    public func flushInstanceRouterConfig(_ input: FlushInstanceRouterConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushInstanceRouterConfigResponse {
-        try await self.client.execute(action: "FlushInstanceRouterConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// FlushInstanceRouterConfig请求参数结构体
     public struct FlushInstanceRouterConfigRequest: TCRequestModel {
         /// 实例ID
@@ -53,5 +37,21 @@ extension Mongodb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 刷新路由配置
+    ///
+    /// 在所有mongos上执行FlushRouterConfig命令
+    @inlinable
+    public func flushInstanceRouterConfig(_ input: FlushInstanceRouterConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FlushInstanceRouterConfigResponse > {
+        self.client.execute(action: "FlushInstanceRouterConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 刷新路由配置
+    ///
+    /// 在所有mongos上执行FlushRouterConfig命令
+    @inlinable
+    public func flushInstanceRouterConfig(_ input: FlushInstanceRouterConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushInstanceRouterConfigResponse {
+        try await self.client.execute(action: "FlushInstanceRouterConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

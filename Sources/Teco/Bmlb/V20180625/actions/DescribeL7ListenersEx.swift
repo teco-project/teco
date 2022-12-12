@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 获取指定VPC下的7层监听器
-    ///
-    /// 获取指定VPC下的7层监听器(支持模糊匹配)。
-    @inlinable
-    public func describeL7ListenersEx(_ input: DescribeL7ListenersExRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7ListenersExResponse > {
-        self.client.execute(action: "DescribeL7ListenersEx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取指定VPC下的7层监听器
-    ///
-    /// 获取指定VPC下的7层监听器(支持模糊匹配)。
-    @inlinable
-    public func describeL7ListenersEx(_ input: DescribeL7ListenersExRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersExResponse {
-        try await self.client.execute(action: "DescribeL7ListenersEx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeL7ListenersEx请求参数结构体
     public struct DescribeL7ListenersExRequest: TCRequestModel {
         /// 返回的监听器中标识是否绑定在此流量镜像中。
@@ -55,7 +39,7 @@ extension Bmlb {
         /// LoadBalancerPort -  String - （过滤条件）监听器端口。
         public let filters: [Filter]?
         
-        public init (trafficMirrorId: String, vpcId: String, offset: UInt64?, limit: UInt64?, filters: [Filter]?) {
+        public init (trafficMirrorId: String, vpcId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
             self.trafficMirrorId = trafficMirrorId
             self.vpcId = vpcId
             self.offset = offset
@@ -88,5 +72,21 @@ extension Bmlb {
             case listenerSet = "ListenerSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取指定VPC下的7层监听器
+    ///
+    /// 获取指定VPC下的7层监听器(支持模糊匹配)。
+    @inlinable
+    public func describeL7ListenersEx(_ input: DescribeL7ListenersExRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7ListenersExResponse > {
+        self.client.execute(action: "DescribeL7ListenersEx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定VPC下的7层监听器
+    ///
+    /// 获取指定VPC下的7层监听器(支持模糊匹配)。
+    @inlinable
+    public func describeL7ListenersEx(_ input: DescribeL7ListenersExRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersExResponse {
+        try await self.client.execute(action: "DescribeL7ListenersEx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 解除隔离数据迁移任务
-    ///
-    /// 解除隔离数据迁移任务，用户手动发起隔离后的手动解隔离，只有任务状态为已隔离(手动操作)状态下才能触发此操作。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
-    @inlinable
-    public func recoverMigrateJob(_ input: RecoverMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverMigrateJobResponse > {
-        self.client.execute(action: "RecoverMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解除隔离数据迁移任务
-    ///
-    /// 解除隔离数据迁移任务，用户手动发起隔离后的手动解隔离，只有任务状态为已隔离(手动操作)状态下才能触发此操作。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
-    @inlinable
-    public func recoverMigrateJob(_ input: RecoverMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverMigrateJobResponse {
-        try await self.client.execute(action: "RecoverMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecoverMigrateJob请求参数结构体
     public struct RecoverMigrateJobRequest: TCRequestModel {
         /// 任务id
@@ -53,5 +37,21 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解除隔离数据迁移任务
+    ///
+    /// 解除隔离数据迁移任务，用户手动发起隔离后的手动解隔离，只有任务状态为已隔离(手动操作)状态下才能触发此操作。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
+    @inlinable
+    public func recoverMigrateJob(_ input: RecoverMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverMigrateJobResponse > {
+        self.client.execute(action: "RecoverMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解除隔离数据迁移任务
+    ///
+    /// 解除隔离数据迁移任务，用户手动发起隔离后的手动解隔离，只有任务状态为已隔离(手动操作)状态下才能触发此操作。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
+    @inlinable
+    public func recoverMigrateJob(_ input: RecoverMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverMigrateJobResponse {
+        try await self.client.execute(action: "RecoverMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

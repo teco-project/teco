@@ -299,7 +299,7 @@ extension Tcr {
         /// 命名空间
         public let nsName: String?
         
-        public init (repositoryPattern: String, tagPattern: String, repositoryDecoration: String, tagDecoration: String, disabled: Bool?, ruleId: Int64?, nsName: String?) {
+        public init (repositoryPattern: String, tagPattern: String, repositoryDecoration: String, tagDecoration: String, disabled: Bool? = nil, ruleId: Int64? = nil, nsName: String? = nil) {
             self.repositoryPattern = repositoryPattern
             self.tagPattern = tagPattern
             self.repositoryDecoration = repositoryDecoration
@@ -505,7 +505,7 @@ extension Tcr {
         
         /// 实例云标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tagSpecification: TagSpecification
+        public let tagSpecification: TagSpecification?
         
         /// 实例过期时间（预付费）
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -603,7 +603,7 @@ extension Tcr {
         /// 默认为空
         public let value: String?
         
-        public init (type: String, value: String?) {
+        public init (type: String, value: String? = nil) {
             self.type = type
             self.value = value
         }
@@ -1014,7 +1014,7 @@ extension Tcr {
         /// 安全策略的版本
         public let policyVersion: String?
         
-        public init (policyIndex: Int64?, description: String?, cidrBlock: String?, policyVersion: String?) {
+        public init (policyIndex: Int64? = nil, description: String? = nil, cidrBlock: String? = nil, policyVersion: String? = nil) {
             self.policyIndex = policyIndex
             self.description = description
             self.cidrBlock = cidrBlock
@@ -1141,11 +1141,11 @@ extension Tcr {
     public struct TagSpecification: TCInputModel, TCOutputModel {
         /// 默认值为instance
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let resourceType: String
+        public let resourceType: String?
         
         /// 云标签数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tags: [Tag]
+        public let tags: [Tag]?
         
         public init (resourceType: String, tags: [Tag]) {
             self.resourceType = resourceType
@@ -1270,7 +1270,7 @@ extension Tcr {
         
         /// 实例云标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tagSpecification: TagSpecification
+        public let tagSpecification: TagSpecification?
         
         /// 命名空间元数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1417,15 +1417,15 @@ extension Tcr {
         
         /// 触发条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let invokeCondition: TriggerInvokeCondition
+        public let invokeCondition: TriggerInvokeCondition?
         
         /// 触发参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let invokePara: TriggerInvokePara
+        public let invokePara: TriggerInvokePara?
         
         /// 触发结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let invokeResult: TriggerInvokeResult
+        public let invokeResult: TriggerInvokeResult?
         
         enum CodingKeys: String, CodingKey {
             case repoName = "RepoName"
@@ -1464,11 +1464,11 @@ extension Tcr {
         
         /// 触发条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let invokeCondition: TriggerInvokeCondition
+        public let invokeCondition: TriggerInvokeCondition?
         
         /// 触发器参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let invokePara: TriggerInvokePara
+        public let invokePara: TriggerInvokePara?
         
         enum CodingKeys: String, CodingKey {
             case triggerName = "TriggerName"
@@ -1499,7 +1499,7 @@ extension Tcr {
         /// 解析地域，需要保证和vpc处于同一地域，如果不填则默认为主实例地域
         public let regionName: String?
         
-        public init (instanceId: String, vpcId: String, eniLBIp: String, usePublicDomain: Bool?, regionName: String?) {
+        public init (instanceId: String, vpcId: String, eniLBIp: String, usePublicDomain: Bool? = nil, regionName: String? = nil) {
             self.instanceId = instanceId
             self.vpcId = vpcId
             self.eniLBIp = eniLBIp
@@ -1545,7 +1545,7 @@ extension Tcr {
         /// 自定义 Headers
         public let headers: [Header]?
         
-        public init (address: String, headers: [Header]?) {
+        public init (address: String, headers: [Header]? = nil) {
             self.address = address
             self.headers = headers
         }
@@ -1582,7 +1582,7 @@ extension Tcr {
         /// 触发器所属命名空间 Id
         public let namespaceId: Int64?
         
-        public init (name: String, targets: [WebhookTarget], eventTypes: [String], condition: String, enabled: Bool, id: Int64?, description: String?, namespaceId: Int64?) {
+        public init (name: String, targets: [WebhookTarget], eventTypes: [String], condition: String, enabled: Bool, id: Int64? = nil, description: String? = nil, namespaceId: Int64? = nil) {
             self.name = name
             self.targets = targets
             self.eventTypes = eventTypes

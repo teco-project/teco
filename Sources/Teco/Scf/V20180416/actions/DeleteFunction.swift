@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 删除函数
-    ///
-    /// 该接口根据传入参数删除函数。
-    @inlinable
-    public func deleteFunction(_ input: DeleteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFunctionResponse > {
-        self.client.execute(action: "DeleteFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除函数
-    ///
-    /// 该接口根据传入参数删除函数。
-    @inlinable
-    public func deleteFunction(_ input: DeleteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFunctionResponse {
-        try await self.client.execute(action: "DeleteFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteFunction请求参数结构体
     public struct DeleteFunctionRequest: TCRequestModel {
         /// 要删除的函数名称
@@ -42,7 +26,7 @@ extension Scf {
         /// 填写需要删除的版本号，不填默认删除函数下全部版本。
         public let qualifier: String?
         
-        public init (functionName: String, namespace: String?, qualifier: String?) {
+        public init (functionName: String, namespace: String? = nil, qualifier: String? = nil) {
             self.functionName = functionName
             self.namespace = namespace
             self.qualifier = qualifier
@@ -63,5 +47,21 @@ extension Scf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除函数
+    ///
+    /// 该接口根据传入参数删除函数。
+    @inlinable
+    public func deleteFunction(_ input: DeleteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFunctionResponse > {
+        self.client.execute(action: "DeleteFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除函数
+    ///
+    /// 该接口根据传入参数删除函数。
+    @inlinable
+    public func deleteFunction(_ input: DeleteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFunctionResponse {
+        try await self.client.execute(action: "DeleteFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

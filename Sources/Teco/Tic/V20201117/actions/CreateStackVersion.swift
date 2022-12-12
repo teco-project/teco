@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tic {
-    /// 给资源栈新增一个版本
-    ///
-    /// 本接口（CreateStackVersion）用于给资源栈新增一个HCL模版版本，仅限COS链接，且为zip格式。
-    @inlinable
-    public func createStackVersion(_ input: CreateStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStackVersionResponse > {
-        self.client.execute(action: "CreateStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 给资源栈新增一个版本
-    ///
-    /// 本接口（CreateStackVersion）用于给资源栈新增一个HCL模版版本，仅限COS链接，且为zip格式。
-    @inlinable
-    public func createStackVersion(_ input: CreateStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStackVersionResponse {
-        try await self.client.execute(action: "CreateStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateStackVersion请求参数结构体
     public struct CreateStackVersionRequest: TCRequestModel {
         /// 待增加版本的资源栈ID
@@ -45,7 +29,7 @@ extension Tic {
         /// 版本描述，不得超过200个字符
         public let description: String?
         
-        public init (stackId: String, templateUrl: String, versionName: String?, description: String?) {
+        public init (stackId: String, templateUrl: String, versionName: String? = nil, description: String? = nil) {
             self.stackId = stackId
             self.templateUrl = templateUrl
             self.versionName = versionName
@@ -72,5 +56,21 @@ extension Tic {
             case versionId = "VersionId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 给资源栈新增一个版本
+    ///
+    /// 本接口（CreateStackVersion）用于给资源栈新增一个HCL模版版本，仅限COS链接，且为zip格式。
+    @inlinable
+    public func createStackVersion(_ input: CreateStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStackVersionResponse > {
+        self.client.execute(action: "CreateStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 给资源栈新增一个版本
+    ///
+    /// 本接口（CreateStackVersion）用于给资源栈新增一个HCL模版版本，仅限COS链接，且为zip格式。
+    @inlinable
+    public func createStackVersion(_ input: CreateStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStackVersionResponse {
+        try await self.client.execute(action: "CreateStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

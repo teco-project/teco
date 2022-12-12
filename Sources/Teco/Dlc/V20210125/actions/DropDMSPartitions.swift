@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// DMS元数据删除分区
-    @inlinable
-    public func dropDMSPartitions(_ input: DropDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DropDMSPartitionsResponse > {
-        self.client.execute(action: "DropDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DMS元数据删除分区
-    @inlinable
-    public func dropDMSPartitions(_ input: DropDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSPartitionsResponse {
-        try await self.client.execute(action: "DropDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DropDMSPartitions请求参数结构体
     public struct DropDMSPartitionsRequest: TCRequestModel {
         /// 数据库名称
@@ -47,7 +35,7 @@ extension Dlc {
         /// 是否删除分区数据
         public let deleteData: Bool?
         
-        public init (databaseName: String?, schemaName: String?, tableName: String?, name: String?, values: [String]?, deleteData: Bool?) {
+        public init (databaseName: String? = nil, schemaName: String? = nil, tableName: String? = nil, name: String? = nil, values: [String]? = nil, deleteData: Bool? = nil) {
             self.databaseName = databaseName
             self.schemaName = schemaName
             self.tableName = tableName
@@ -78,5 +66,17 @@ extension Dlc {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// DMS元数据删除分区
+    @inlinable
+    public func dropDMSPartitions(_ input: DropDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DropDMSPartitionsResponse > {
+        self.client.execute(action: "DropDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据删除分区
+    @inlinable
+    public func dropDMSPartitions(_ input: DropDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSPartitionsResponse {
+        try await self.client.execute(action: "DropDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

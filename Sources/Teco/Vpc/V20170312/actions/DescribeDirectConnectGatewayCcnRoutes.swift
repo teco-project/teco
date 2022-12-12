@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询专线网关云联网路由
-    ///
-    /// 本接口（DescribeDirectConnectGatewayCcnRoutes）用于查询专线网关的云联网路由（IDC网段）
-    @inlinable
-    public func describeDirectConnectGatewayCcnRoutes(_ input: DescribeDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDirectConnectGatewayCcnRoutesResponse > {
-        self.client.execute(action: "DescribeDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询专线网关云联网路由
-    ///
-    /// 本接口（DescribeDirectConnectGatewayCcnRoutes）用于查询专线网关的云联网路由（IDC网段）
-    @inlinable
-    public func describeDirectConnectGatewayCcnRoutes(_ input: DescribeDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectGatewayCcnRoutesResponse {
-        try await self.client.execute(action: "DescribeDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDirectConnectGatewayCcnRoutes请求参数结构体
     public struct DescribeDirectConnectGatewayCcnRoutesRequest: TCRequestModel {
         /// 专线网关ID，形如：`dcg-prpqlmg1`。
@@ -47,7 +31,7 @@ extension Vpc {
         /// 返回数量。
         public let limit: UInt64?
         
-        public init (directConnectGatewayId: String, ccnRouteType: String?, offset: UInt64?, limit: UInt64?) {
+        public init (directConnectGatewayId: String, ccnRouteType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.directConnectGatewayId = directConnectGatewayId
             self.ccnRouteType = ccnRouteType
             self.offset = offset
@@ -78,5 +62,21 @@ extension Vpc {
             case routeSet = "RouteSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询专线网关云联网路由
+    ///
+    /// 本接口（DescribeDirectConnectGatewayCcnRoutes）用于查询专线网关的云联网路由（IDC网段）
+    @inlinable
+    public func describeDirectConnectGatewayCcnRoutes(_ input: DescribeDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDirectConnectGatewayCcnRoutesResponse > {
+        self.client.execute(action: "DescribeDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专线网关云联网路由
+    ///
+    /// 本接口（DescribeDirectConnectGatewayCcnRoutes）用于查询专线网关的云联网路由（IDC网段）
+    @inlinable
+    public func describeDirectConnectGatewayCcnRoutes(_ input: DescribeDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectGatewayCcnRoutesResponse {
+        try await self.client.execute(action: "DescribeDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

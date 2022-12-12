@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iottid {
-    /// 验证芯片烧录TID信息
-    ///
-    /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致 
-    @inlinable
-    public func verifyChipBurnInfo(_ input: VerifyChipBurnInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyChipBurnInfoResponse > {
-        self.client.execute(action: "VerifyChipBurnInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 验证芯片烧录TID信息
-    ///
-    /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致 
-    @inlinable
-    public func verifyChipBurnInfo(_ input: VerifyChipBurnInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyChipBurnInfoResponse {
-        try await self.client.execute(action: "VerifyChipBurnInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifyChipBurnInfo请求参数结构体
     public struct VerifyChipBurnInfoRequest: TCRequestModel {
         /// 验证数据
@@ -65,5 +49,21 @@ extension Iottid {
             case leftTimes = "LeftTimes"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 验证芯片烧录TID信息
+    ///
+    /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致 
+    @inlinable
+    public func verifyChipBurnInfo(_ input: VerifyChipBurnInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyChipBurnInfoResponse > {
+        self.client.execute(action: "VerifyChipBurnInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 验证芯片烧录TID信息
+    ///
+    /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致 
+    @inlinable
+    public func verifyChipBurnInfo(_ input: VerifyChipBurnInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyChipBurnInfoResponse {
+        try await self.client.execute(action: "VerifyChipBurnInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

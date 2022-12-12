@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 更新规则组订阅信息
-    @inlinable
-    public func modifyRuleGroupSubscription(_ input: ModifyRuleGroupSubscriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRuleGroupSubscriptionResponse > {
-        self.client.execute(action: "ModifyRuleGroupSubscription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新规则组订阅信息
-    @inlinable
-    public func modifyRuleGroupSubscription(_ input: ModifyRuleGroupSubscriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleGroupSubscriptionResponse {
-        try await self.client.execute(action: "ModifyRuleGroupSubscription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRuleGroupSubscription请求参数结构体
     public struct ModifyRuleGroupSubscriptionRequest: TCRequestModel {
         /// 规则组ID
@@ -53,7 +41,7 @@ extension Wedata {
         /// 群机器人webhook信息
         public let webHooks: [SubscribeWebHook]?
         
-        public init (ruleGroupId: UInt64?, receivers: [SubscribeReceiver]?, subscribeType: [UInt64]?, projectId: String?, databaseId: String?, datasourceId: String?, tableId: String?, webHooks: [SubscribeWebHook]?) {
+        public init (ruleGroupId: UInt64? = nil, receivers: [SubscribeReceiver]? = nil, subscribeType: [UInt64]? = nil, projectId: String? = nil, databaseId: String? = nil, datasourceId: String? = nil, tableId: String? = nil, webHooks: [SubscribeWebHook]? = nil) {
             self.ruleGroupId = ruleGroupId
             self.receivers = receivers
             self.subscribeType = subscribeType
@@ -89,5 +77,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新规则组订阅信息
+    @inlinable
+    public func modifyRuleGroupSubscription(_ input: ModifyRuleGroupSubscriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRuleGroupSubscriptionResponse > {
+        self.client.execute(action: "ModifyRuleGroupSubscription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新规则组订阅信息
+    @inlinable
+    public func modifyRuleGroupSubscription(_ input: ModifyRuleGroupSubscriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleGroupSubscriptionResponse {
+        try await self.client.execute(action: "ModifyRuleGroupSubscription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

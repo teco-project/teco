@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 创建黑石路由表的路由规则
-    @inlinable
-    public func createRoutePolicies(_ input: CreateRoutePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoutePoliciesResponse > {
-        self.client.execute(action: "CreateRoutePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建黑石路由表的路由规则
-    @inlinable
-    public func createRoutePolicies(_ input: CreateRoutePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutePoliciesResponse {
-        try await self.client.execute(action: "CreateRoutePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRoutePolicies请求参数结构体
     public struct CreateRoutePoliciesRequest: TCRequestModel {
         /// 路由表ID
@@ -58,5 +46,17 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建黑石路由表的路由规则
+    @inlinable
+    public func createRoutePolicies(_ input: CreateRoutePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoutePoliciesResponse > {
+        self.client.execute(action: "CreateRoutePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建黑石路由表的路由规则
+    @inlinable
+    public func createRoutePolicies(_ input: CreateRoutePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutePoliciesResponse {
+        try await self.client.execute(action: "CreateRoutePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

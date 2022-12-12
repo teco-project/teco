@@ -76,7 +76,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `operator`: Int64?
         
-        public init (alarmId: String, alarmTime: String, taskId: String, regularName: String, alarmLevel: UInt64, alarmIndicator: UInt64, alarmWay: UInt64, alarmRecipientId: String, projectId: String, alarmIndicatorDesc: String?, triggerType: UInt64?, estimatedTime: UInt64?, instanceId: String?, taskName: String?, isSendSuccess: UInt64?, messageId: String?, `operator`: Int64?) {
+        public init (alarmId: String, alarmTime: String, taskId: String, regularName: String, alarmLevel: UInt64, alarmIndicator: UInt64, alarmWay: UInt64, alarmRecipientId: String, projectId: String, alarmIndicatorDesc: String? = nil, triggerType: UInt64? = nil, estimatedTime: UInt64? = nil, instanceId: String? = nil, taskName: String? = nil, isSendSuccess: UInt64? = nil, messageId: String? = nil, `operator`: Int64? = nil) {
             self.alarmId = alarmId
             self.alarmTime = alarmTime
             self.taskId = taskId
@@ -149,7 +149,7 @@ extension Wedata {
         /// 告警状态设置；1表示可用；0表示不可用，默认可用
         public let status: UInt64?
         
-        public init (taskIds: String, alarmType: String, alarmWay: String, alarmRecipient: String, alarmRecipientId: String, hours: UInt64, minutes: UInt64, triggerType: UInt64, alarmId: String?, status: UInt64?) {
+        public init (taskIds: String, alarmType: String, alarmWay: String, alarmRecipient: String, alarmRecipientId: String, hours: UInt64, minutes: UInt64, triggerType: UInt64, alarmId: String? = nil, status: UInt64? = nil) {
             self.taskIds = taskIds
             self.alarmType = alarmType
             self.alarmWay = alarmWay
@@ -335,7 +335,7 @@ extension Wedata {
     public struct CommonId: TCInputModel, TCOutputModel {
         /// Id值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let id: String
+        public let id: String?
         
         public init (id: String) {
             self.id = id
@@ -414,7 +414,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [CompareRuleItem]?
         
-        public init (items: [CompareRuleItem]?) {
+        public init (items: [CompareRuleItem]? = nil) {
             self.items = items
         }
         
@@ -441,7 +441,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let valueList: [ThresholdValue]?
         
-        public init (compareType: UInt64?, `operator`: String?, valueComputeType: UInt64?, valueList: [ThresholdValue]?) {
+        public init (compareType: UInt64? = nil, `operator`: String? = nil, valueComputeType: UInt64? = nil, valueList: [ThresholdValue]? = nil) {
             self.compareType = compareType
             self.`operator` = `operator`
             self.valueComputeType = valueComputeType
@@ -718,7 +718,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originSchemaName: String?
         
-        public init (datasourceName: String?, datasourceId: String?, databaseName: String?, databaseId: String?, instanceId: String?, datasourceType: UInt64?, originDatabaseName: String?, originSchemaName: String?) {
+        public init (datasourceName: String? = nil, datasourceId: String? = nil, databaseName: String? = nil, databaseId: String? = nil, instanceId: String? = nil, datasourceType: UInt64? = nil, originDatabaseName: String? = nil, originSchemaName: String? = nil) {
             self.datasourceName = datasourceName
             self.datasourceId = datasourceId
             self.databaseName = databaseName
@@ -799,13 +799,13 @@ extension Wedata {
         
         /// 父任务信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let parentTask: TaskInnerInfo
+        public let parentTask: TaskInnerInfo?
         
         /// 子任务信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sonTask: TaskInnerInfo
+        public let sonTask: TaskInnerInfo?
         
-        public init (dependConfType: String, subordinateCyclicType: String, dependencyStrategy: String, parentTask: TaskInnerInfo, sonTask: TaskInnerInfo) {
+        public init (dependConfType: String, subordinateCyclicType: String, dependencyStrategy: String, parentTask: TaskInnerInfo? = nil, sonTask: TaskInnerInfo? = nil) {
             self.dependConfType = dependConfType
             self.subordinateCyclicType = subordinateCyclicType
             self.dependencyStrategy = dependencyStrategy
@@ -898,7 +898,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let count: UInt64?
         
-        public init (dimType: UInt64?, count: UInt64?) {
+        public init (dimType: UInt64? = nil, count: UInt64? = nil) {
             self.dimType = dimType
             self.count = count
         }
@@ -997,7 +997,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filePath: String?
         
-        public init (exportTaskId: UInt64?, taskType: UInt64?, operatorId: UInt64?, operatorName: String?, createTime: String?, status: UInt64?, schedulerTaskId: String?, schedulerCurRunDate: String?, filePath: String?) {
+        public init (exportTaskId: UInt64? = nil, taskType: UInt64? = nil, operatorId: UInt64? = nil, operatorName: String? = nil, createTime: String? = nil, status: UInt64? = nil, schedulerTaskId: String? = nil, schedulerCurRunDate: String? = nil, filePath: String? = nil) {
             self.exportTaskId = exportTaskId
             self.taskType = taskType
             self.operatorId = operatorId
@@ -1036,7 +1036,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fieldDataType: String?
         
-        public init (fieldKey: String?, fieldValue: String?, fieldDataType: String?) {
+        public init (fieldKey: String? = nil, fieldValue: String? = nil, fieldDataType: String? = nil) {
             self.fieldKey = fieldKey
             self.fieldValue = fieldValue
             self.fieldDataType = fieldDataType
@@ -1057,7 +1057,7 @@ extension Wedata {
         /// 过滤值列表
         public let values: [String]?
         
-        public init (name: String?, values: [String]?) {
+        public init (name: String? = nil, values: [String]? = nil) {
             self.name = name
             self.values = values
         }
@@ -1098,11 +1098,11 @@ extension Wedata {
     public struct FunctionResource: TCInputModel, TCOutputModel {
         /// 资源路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let path: String
+        public let path: String?
         
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let name: String
+        public let name: String?
         
         /// 资源唯一标识
         public let id: String?
@@ -1115,7 +1115,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
         
-        public init (path: String, name: String, id: String?, md5: String?, type: String?) {
+        public init (path: String, name: String, id: String? = nil, md5: String? = nil, type: String? = nil) {
             self.path = path
             self.name = name
             self.id = id
@@ -1545,12 +1545,12 @@ extension Wedata {
         
         /// 节点映射
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let nodeMapping: IntegrationNodeMapping
+        public let nodeMapping: IntegrationNodeMapping?
         
         /// owner uin
         public let ownerUin: String?
         
-        public init (name: String?, nodeType: String?, dataSourceType: String?, description: String?, datasourceId: String?, config: [RecordField]?, extConfig: [RecordField]?, schema: [IntegrationNodeSchema]?, nodeMapping: IntegrationNodeMapping, ownerUin: String?) {
+        public init (name: String? = nil, nodeType: String? = nil, dataSourceType: String? = nil, description: String? = nil, datasourceId: String? = nil, config: [RecordField]? = nil, extConfig: [RecordField]? = nil, schema: [IntegrationNodeSchema]? = nil, nodeMapping: IntegrationNodeMapping? = nil, ownerUin: String? = nil) {
             self.name = name
             self.nodeType = nodeType
             self.dataSourceType = dataSourceType
@@ -1617,7 +1617,7 @@ extension Wedata {
         
         /// 节点映射
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let nodeMapping: IntegrationNodeMapping
+        public let nodeMapping: IntegrationNodeMapping?
         
         /// 应用id
         public let appId: String?
@@ -1644,7 +1644,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
         
-        public init (id: String?, taskId: String?, name: String?, nodeType: String?, dataSourceType: String?, description: String?, datasourceId: String?, config: [RecordField]?, extConfig: [RecordField]?, schema: [IntegrationNodeSchema]?, nodeMapping: IntegrationNodeMapping, appId: String?, projectId: String?, creatorUin: String?, operatorUin: String?, ownerUin: String?, createTime: String?, updateTime: String?) {
+        public init (id: String? = nil, taskId: String? = nil, name: String? = nil, nodeType: String? = nil, dataSourceType: String? = nil, description: String? = nil, datasourceId: String? = nil, config: [RecordField]? = nil, extConfig: [RecordField]? = nil, schema: [IntegrationNodeSchema]? = nil, nodeMapping: IntegrationNodeMapping? = nil, appId: String? = nil, projectId: String? = nil, creatorUin: String? = nil, operatorUin: String? = nil, ownerUin: String? = nil, createTime: String? = nil, updateTime: String? = nil) {
             self.id = id
             self.taskId = taskId
             self.name = name
@@ -1707,7 +1707,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extConfig: [RecordField]?
         
-        public init (sourceId: String?, sinkId: String?, sourceSchema: [IntegrationNodeSchema]?, schemaMappings: [IntegrationNodeSchemaMapping]?, extConfig: [RecordField]?) {
+        public init (sourceId: String? = nil, sinkId: String? = nil, sourceSchema: [IntegrationNodeSchema]? = nil, schemaMappings: [IntegrationNodeSchemaMapping]? = nil, extConfig: [RecordField]? = nil) {
             self.sourceId = sourceId
             self.sinkId = sinkId
             self.sourceSchema = sourceSchema
@@ -1747,7 +1747,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alias: String?
         
-        public init (id: String, name: String, type: String, value: String?, properties: [RecordField]?, alias: String?) {
+        public init (id: String, name: String, type: String, value: String? = nil, properties: [RecordField]? = nil, alias: String? = nil) {
             self.id = id
             self.name = name
             self.type = type
@@ -1895,7 +1895,7 @@ extension Wedata {
         
         /// 离线新增参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let offlineTaskAddEntity: OfflineTaskAddParam
+        public let offlineTaskAddEntity: OfflineTaskAddParam?
         
         /// group name
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1913,7 +1913,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inLongManagerVersion: String?
         
-        public init (taskName: String?, description: String?, syncType: Int64?, taskType: Int64?, workflowId: String?, taskId: String?, scheduleTaskId: String?, taskGroupId: String?, projectId: String?, creatorUin: String?, operatorUin: String?, ownerUin: String?, appId: String?, status: Int64?, nodes: [IntegrationNodeInfo]?, executorId: String?, config: [RecordField]?, extConfig: [RecordField]?, executeContext: [RecordField]?, mappings: [IntegrationNodeMapping]?, taskMode: String?, incharge: String?, offlineTaskAddEntity: OfflineTaskAddParam, executorGroupName: String?, inLongManagerUrl: String?, inLongStreamId: String?, inLongManagerVersion: String?) {
+        public init (taskName: String? = nil, description: String? = nil, syncType: Int64? = nil, taskType: Int64? = nil, workflowId: String? = nil, taskId: String? = nil, scheduleTaskId: String? = nil, taskGroupId: String? = nil, projectId: String? = nil, creatorUin: String? = nil, operatorUin: String? = nil, ownerUin: String? = nil, appId: String? = nil, status: Int64? = nil, nodes: [IntegrationNodeInfo]? = nil, executorId: String? = nil, config: [RecordField]? = nil, extConfig: [RecordField]? = nil, executeContext: [RecordField]? = nil, mappings: [IntegrationNodeMapping]? = nil, taskMode: String? = nil, incharge: String? = nil, offlineTaskAddEntity: OfflineTaskAddParam? = nil, executorGroupName: String? = nil, inLongManagerUrl: String? = nil, inLongStreamId: String? = nil, inLongManagerVersion: String? = nil) {
             self.taskName = taskName
             self.description = description
             self.syncType = syncType
@@ -2167,7 +2167,7 @@ extension Wedata {
         
         /// crontab
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let crontabExpression: String
+        public let crontabExpression: String?
         
         /// 重试等待
         public let retryWait: UInt64
@@ -2202,7 +2202,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let executionStartTime: String?
         
-        public init (workflowName: String, dependencyWorkflow: String, startTime: String, endTime: String, cycleType: UInt64, cycleStep: UInt64, delayTime: UInt64, crontabExpression: String, retryWait: UInt64, retriable: UInt64, tryLimit: UInt64, runPriority: UInt64, productName: String, selfDepend: UInt64, taskAction: String?, executionEndTime: String?, executionStartTime: String?) {
+        public init (workflowName: String, dependencyWorkflow: String, startTime: String, endTime: String, cycleType: UInt64, cycleStep: UInt64, delayTime: UInt64, crontabExpression: String, retryWait: UInt64, retriable: UInt64, tryLimit: UInt64, runPriority: UInt64, productName: String, selfDepend: UInt64, taskAction: String? = nil, executionEndTime: String? = nil, executionStartTime: String? = nil) {
             self.workflowName = workflowName
             self.dependencyWorkflow = dependencyWorkflow
             self.startTime = startTime
@@ -2412,7 +2412,7 @@ extension Wedata {
     public struct ProdSchedulerTask: TCInputModel, TCOutputModel {
         /// 生产调度任务工作流ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let workflowId: String
+        public let workflowId: String?
         
         /// 生产调度任务Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2422,7 +2422,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskName: String?
         
-        public init (workflowId: String, taskId: String?, taskName: String?) {
+        public init (workflowId: String, taskId: String? = nil, taskName: String? = nil) {
             self.workflowId = workflowId
             self.taskId = taskId
             self.taskName = taskName
@@ -2692,7 +2692,7 @@ extension Wedata {
         
         /// 报警触发条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let compareRule: CompareRule
+        public let compareRule: CompareRule?
         
         /// 报警触发级别 1.低, 2.中, 3.高
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2732,7 +2732,7 @@ extension Wedata {
         
         /// 自定义模版sql表达式参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let fieldConfig: RuleFieldConfig
+        public let fieldConfig: RuleFieldConfig?
         
         /// 是否关联多表
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2742,7 +2742,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let whereFlag: Bool?
         
-        public init (ruleId: UInt64?, ruleGroupId: UInt64?, tableId: String?, name: String?, type: UInt64?, ruleTemplateId: UInt64?, ruleTemplateContent: String?, qualityDim: UInt64?, sourceObjectType: UInt64?, sourceObjectDataType: UInt64?, sourceObjectDataTypeName: String?, sourceObjectValue: String?, conditionType: UInt64?, conditionExpression: String?, customSql: String?, compareRule: CompareRule, alarmLevel: UInt64?, description: String?, `operator`: String?, targetDatabaseId: String?, targetDatabaseName: String?, targetTableId: String?, targetTableName: String?, targetConditionExpr: String?, relConditionExpr: String?, fieldConfig: RuleFieldConfig, multiSourceFlag: Bool?, whereFlag: Bool?) {
+        public init (ruleId: UInt64? = nil, ruleGroupId: UInt64? = nil, tableId: String? = nil, name: String? = nil, type: UInt64? = nil, ruleTemplateId: UInt64? = nil, ruleTemplateContent: String? = nil, qualityDim: UInt64? = nil, sourceObjectType: UInt64? = nil, sourceObjectDataType: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, `operator`: String? = nil, targetDatabaseId: String? = nil, targetDatabaseName: String? = nil, targetTableId: String? = nil, targetTableName: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, multiSourceFlag: Bool? = nil, whereFlag: Bool? = nil) {
             self.ruleId = ruleId
             self.ruleGroupId = ruleGroupId
             self.tableId = tableId
@@ -2823,7 +2823,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetCondition: String?
         
-        public init (ruleId: UInt64?, conditionType: UInt64?, condition: String?, targetCondition: String?) {
+        public init (ruleId: UInt64? = nil, conditionType: UInt64? = nil, condition: String? = nil, targetCondition: String? = nil) {
             self.ruleId = ruleId
             self.conditionType = conditionType
             self.condition = condition
@@ -2876,7 +2876,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let executorGroupId: String?
         
-        public init (queueName: String?, executorGroupId: String?) {
+        public init (queueName: String? = nil, executorGroupId: String? = nil) {
             self.queueName = queueName
             self.executorGroupId = executorGroupId
         }
@@ -2915,7 +2915,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let exportTasks: [ExportTaskInfo]?
         
-        public init (ruleExecId: UInt64?, exportTasks: [ExportTaskInfo]?) {
+        public init (ruleExecId: UInt64? = nil, exportTasks: [ExportTaskInfo]? = nil) {
             self.ruleExecId = ruleExecId
             self.exportTasks = exportTasks
         }
@@ -2990,7 +2990,7 @@ extension Wedata {
         
         /// 对比结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let compareResult: CompareResult
+        public let compareResult: CompareResult?
         
         /// 模版名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3014,7 +3014,7 @@ extension Wedata {
         
         /// 自定义模版sql表达式参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let fieldConfig: RuleFieldConfig
+        public let fieldConfig: RuleFieldConfig?
         
         /// 源字段与目标字段关联条件on表达式
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3075,13 +3075,13 @@ extension Wedata {
         
         /// 规则执行记录
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ruleExecResult: RuleExecResult
+        public let ruleExecResult: RuleExecResult?
         
         /// 表负责人userId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableOwnerUserId: UInt64?
         
-        public init (datasourceId: UInt64?, datasourceName: String?, databaseId: String?, databaseName: String?, instanceId: String?, tableId: String?, tableName: String?, ruleExecResult: RuleExecResult, tableOwnerUserId: UInt64?) {
+        public init (datasourceId: UInt64? = nil, datasourceName: String? = nil, databaseId: String? = nil, databaseName: String? = nil, instanceId: String? = nil, tableId: String? = nil, tableName: String? = nil, ruleExecResult: RuleExecResult? = nil, tableOwnerUserId: UInt64? = nil) {
             self.datasourceId = datasourceId
             self.datasourceName = datasourceName
             self.databaseId = databaseId
@@ -3209,7 +3209,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableConfig: [TableConfig]?
         
-        public init (whereConfig: [FieldConfig]?, tableConfig: [TableConfig]?) {
+        public init (whereConfig: [FieldConfig]? = nil, tableConfig: [TableConfig]? = nil) {
             self.whereConfig = whereConfig
             self.tableConfig = tableConfig
         }
@@ -3260,11 +3260,11 @@ extension Wedata {
         
         /// 执行策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let execStrategy: RuleGroupExecStrategy
+        public let execStrategy: RuleGroupExecStrategy?
         
         /// 执行策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let subscription: RuleGroupSubscribe
+        public let subscription: RuleGroupSubscribe?
         
         /// 数据库id
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3290,7 +3290,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableOwnerUserId: UInt64?
         
-        public init (ruleGroupId: UInt64?, datasourceId: String?, datasourceName: String?, datasourceType: UInt64?, monitorType: UInt64?, updateTime: String?, tableName: String?, tableId: String?, tableOwnerName: String?, execStrategy: RuleGroupExecStrategy, subscription: RuleGroupSubscribe, databaseId: String?, databaseName: String?, permission: Bool?, ruleCount: UInt64?, monitorStatus: Bool?, tableOwnerUserId: UInt64?) {
+        public init (ruleGroupId: UInt64? = nil, datasourceId: String? = nil, datasourceName: String? = nil, datasourceType: UInt64? = nil, monitorType: UInt64? = nil, updateTime: String? = nil, tableName: String? = nil, tableId: String? = nil, tableOwnerName: String? = nil, execStrategy: RuleGroupExecStrategy? = nil, subscription: RuleGroupSubscribe? = nil, databaseId: String? = nil, databaseName: String? = nil, permission: Bool? = nil, ruleCount: UInt64? = nil, monitorStatus: Bool? = nil, tableOwnerUserId: UInt64? = nil) {
             self.ruleGroupId = ruleGroupId
             self.datasourceId = datasourceId
             self.datasourceName = datasourceName
@@ -3389,7 +3389,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let execDetail: String?
         
-        public init (ruleGroupExecId: UInt64?, ruleGroupId: UInt64?, triggerType: UInt64?, execTime: String?, status: UInt64?, alarmRuleCount: UInt64?, totalRuleCount: UInt64?, tableOwnerName: String?, tableName: String?, tableId: String?, databaseId: String?, datasourceId: String?, permission: Bool?, execDetail: String?) {
+        public init (ruleGroupExecId: UInt64? = nil, ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execTime: String? = nil, status: UInt64? = nil, alarmRuleCount: UInt64? = nil, totalRuleCount: UInt64? = nil, tableOwnerName: String? = nil, tableName: String? = nil, tableId: String? = nil, databaseId: String? = nil, datasourceId: String? = nil, permission: Bool? = nil, execDetail: String? = nil) {
             self.ruleGroupExecId = ruleGroupExecId
             self.ruleGroupId = ruleGroupId
             self.triggerType = triggerType
@@ -3434,7 +3434,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [RuleGroupExecResult]?
         
-        public init (totalCount: UInt64?, items: [RuleGroupExecResult]?) {
+        public init (totalCount: UInt64? = nil, items: [RuleGroupExecResult]? = nil) {
             self.totalCount = totalCount
             self.items = items
         }
@@ -3549,7 +3549,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
         
-        public init (ruleGroupId: UInt64?, tableId: String?, datasourceId: UInt64?, databaseId: String?, monitorType: UInt64?, monitorStatus: UInt64?, createUserId: UInt64?, createUserName: String?, createTime: String?) {
+        public init (ruleGroupId: UInt64? = nil, tableId: String? = nil, datasourceId: UInt64? = nil, databaseId: String? = nil, monitorType: UInt64? = nil, monitorStatus: UInt64? = nil, createUserId: UInt64? = nil, createUserName: String? = nil, createTime: String? = nil) {
             self.ruleGroupId = ruleGroupId
             self.tableId = tableId
             self.datasourceId = datasourceId
@@ -3584,7 +3584,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [RuleGroupMonitor]?
         
-        public init (totalCount: UInt64?, items: [RuleGroupMonitor]?) {
+        public init (totalCount: UInt64? = nil, items: [RuleGroupMonitor]? = nil) {
             self.totalCount = totalCount
             self.items = items
         }
@@ -3690,7 +3690,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let webHooks: [SubscribeWebHook]?
         
-        public init (ruleGroupId: UInt64?, receivers: [SubscribeReceiver]?, subscribeType: [UInt64]?, webHooks: [SubscribeWebHook]?) {
+        public init (ruleGroupId: UInt64? = nil, receivers: [SubscribeReceiver]? = nil, subscribeType: [UInt64]? = nil, webHooks: [SubscribeWebHook]? = nil) {
             self.ruleGroupId = ruleGroupId
             self.receivers = receivers
             self.subscribeType = subscribeType
@@ -3709,7 +3709,7 @@ extension Wedata {
     public struct RuleGroupTable: TCOutputModel {
         /// 表信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tableInfo: RuleGroupTableInnerInfo
+        public let tableInfo: RuleGroupTableInnerInfo?
         
         /// 规则组调度信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3804,7 +3804,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operatorName: String?
         
-        public init (ruleId: UInt64?, alterTime: String?, alterContent: String?, operatorUserId: UInt64?, operatorName: String?) {
+        public init (ruleId: UInt64? = nil, alterTime: String? = nil, alterContent: String? = nil, operatorUserId: UInt64? = nil, operatorName: String? = nil) {
             self.ruleId = ruleId
             self.alterTime = alterTime
             self.alterContent = alterContent
@@ -3831,7 +3831,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [RuleHistory]?
         
-        public init (totalCount: UInt64?, items: [RuleHistory]?) {
+        public init (totalCount: UInt64? = nil, items: [RuleHistory]? = nil) {
             self.totalCount = totalCount
             self.items = items
         }
@@ -3852,7 +3852,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [Rule]?
         
-        public init (totalCount: UInt64?, items: [Rule]?) {
+        public init (totalCount: UInt64? = nil, items: [Rule]? = nil) {
             self.totalCount = totalCount
             self.items = items
         }
@@ -3973,7 +3973,7 @@ extension Wedata {
         /// 变更内容
         public let alterContent: String?
         
-        public init (templateId: UInt64?, version: UInt64?, userId: UInt64?, userName: String?, alterType: UInt64?, alterContent: String?) {
+        public init (templateId: UInt64? = nil, version: UInt64? = nil, userId: UInt64? = nil, userName: String? = nil, alterType: UInt64? = nil, alterContent: String? = nil) {
             self.templateId = templateId
             self.version = version
             self.userId = userId
@@ -4002,7 +4002,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [RuleTemplateHistory]?
         
-        public init (totalCount: UInt64?, items: [RuleTemplateHistory]?) {
+        public init (totalCount: UInt64? = nil, items: [RuleTemplateHistory]? = nil) {
             self.totalCount = totalCount
             self.items = items
         }
@@ -4115,7 +4115,7 @@ extension Wedata {
         /// 排序列（costTime 运行耗时，startTime 开始时间，state 实例状态，curRunDate 数据时间）
         public let sortCol: String?
         
-        public init (instance: SearchConditionInstance, keyword: String?, sort: String?, sortCol: String?) {
+        public init (instance: SearchConditionInstance, keyword: String? = nil, sort: String? = nil, sortCol: String? = nil) {
             self.instance = instance
             self.keyword = keyword
             self.sort = sort
@@ -4143,7 +4143,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceGroup: UInt64?
         
-        public init (executionSpace: UInt64, productName: UInt64?, resourceGroup: UInt64?) {
+        public init (executionSpace: UInt64, productName: UInt64? = nil, resourceGroup: UInt64? = nil) {
             self.executionSpace = executionSpace
             self.productName = productName
             self.resourceGroup = resourceGroup
@@ -4167,7 +4167,7 @@ extension Wedata {
         /// 资源组
         public let resourceGroup: String?
         
-        public init (executionSpace: String, productName: String?, resourceGroup: String?) {
+        public init (executionSpace: String, productName: String? = nil, resourceGroup: String? = nil) {
             self.executionSpace = executionSpace
             self.productName = productName
             self.resourceGroup = resourceGroup
@@ -4194,7 +4194,7 @@ extension Wedata {
         /// 排序列（costTime 运行耗时，startTime 开始时间，state 实例状态，curRunDate 数据时间）
         public let sortCol: String?
         
-        public init (instance: SearchConditionInstanceNew, keyword: String?, sort: String?, sortCol: String?) {
+        public init (instance: SearchConditionInstanceNew, keyword: String? = nil, sort: String? = nil, sortCol: String? = nil) {
             self.instance = instance
             self.keyword = keyword
             self.sort = sort
@@ -4239,7 +4239,7 @@ extension Wedata {
         /// 字段别名
         public let alias: String?
         
-        public init (fieldName: String?, fieldType: String?, alias: String?) {
+        public init (fieldName: String? = nil, fieldType: String? = nil, alias: String? = nil) {
             self.fieldName = fieldName
             self.fieldType = fieldType
             self.alias = alias
@@ -4262,7 +4262,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceObjectValue: String?
         
-        public init (sourceObjectDataTypeName: String?, sourceObjectValue: String?) {
+        public init (sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil) {
             self.sourceObjectDataTypeName = sourceObjectDataTypeName
             self.sourceObjectValue = sourceObjectValue
         }
@@ -4324,7 +4324,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let receiverName: String?
         
-        public init (receiverUserId: UInt64?, receiverName: String?) {
+        public init (receiverUserId: UInt64? = nil, receiverName: String? = nil) {
             self.receiverUserId = receiverUserId
             self.receiverName = receiverName
         }
@@ -4345,7 +4345,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hookAddress: String?
         
-        public init (hookType: String?, hookAddress: String?) {
+        public init (hookType: String? = nil, hookAddress: String? = nil) {
             self.hookType = hookType
             self.hookAddress = hookAddress
         }
@@ -4382,7 +4382,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fieldConfig: [FieldConfig]?
         
-        public init (databaseId: String?, databaseName: String?, tableId: String?, tableName: String?, tableKey: String?, fieldConfig: [FieldConfig]?) {
+        public init (databaseId: String? = nil, databaseName: String? = nil, tableId: String? = nil, tableName: String? = nil, tableKey: String? = nil, fieldConfig: [FieldConfig]? = nil) {
             self.databaseId = databaseId
             self.databaseName = databaseName
             self.tableId = tableId
@@ -4534,7 +4534,7 @@ extension Wedata {
         
         /// 告警接收人昵称，多个用逗号隔开
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let alarmRecipientName: String
+        public let alarmRecipientName: String?
         
         /// 主键ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4575,7 +4575,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeName: String?
         
-        public init (taskId: String, regularName: String, regularStatus: UInt64, alarmLevel: UInt64, alarmIndicator: UInt64, alarmWay: String, alarmRecipientId: String, taskType: UInt64, alarmRecipientName: String, id: String?, regularId: String?, triggerType: UInt64?, estimatedTime: UInt64?, projectId: String?, creater: String?, alarmIndicatorDesc: String?, `operator`: UInt64?, nodeId: String?, nodeName: String?) {
+        public init (taskId: String, regularName: String, regularStatus: UInt64, alarmLevel: UInt64, alarmIndicator: UInt64, alarmWay: String, alarmRecipientId: String, taskType: UInt64, alarmRecipientName: String, id: String? = nil, regularId: String? = nil, triggerType: UInt64? = nil, estimatedTime: UInt64? = nil, projectId: String? = nil, creater: String? = nil, alarmIndicatorDesc: String? = nil, `operator`: UInt64? = nil, nodeId: String? = nil, nodeName: String? = nil) {
             self.taskId = taskId
             self.regularName = regularName
             self.regularStatus = regularStatus
@@ -4794,7 +4794,7 @@ extension Wedata {
         /// 值
         public let value: String?
         
-        public init (key: String?, value: String?) {
+        public init (key: String? = nil, value: String? = nil) {
             self.key = key
             self.value = value
         }
@@ -5139,7 +5139,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let realWorkflowId: String?
         
-        public init (taskId: String, taskName: String, workflowId: String, cycleType: Int64, virtualTaskId: String?, virtualFlag: Bool?, realWorkflowId: String?) {
+        public init (taskId: String, taskName: String, workflowId: String, cycleType: Int64, virtualTaskId: String? = nil, virtualFlag: Bool? = nil, realWorkflowId: String? = nil) {
             self.taskId = taskId
             self.taskName = taskName
             self.workflowId = workflowId
@@ -5485,7 +5485,7 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
         
-        public init (valueType: UInt64?, value: String?) {
+        public init (valueType: UInt64? = nil, value: String? = nil) {
             self.valueType = valueType
             self.value = value
         }

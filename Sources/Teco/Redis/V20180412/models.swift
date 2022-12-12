@@ -1368,7 +1368,7 @@ extension Redis {
         /// 主节点或者副本节点的可用区名称
         public let zoneName: String?
         
-        public init (nodeType: Int64, nodeId: Int64?, zoneId: UInt64?, zoneName: String?) {
+        public init (nodeType: Int64, nodeId: Int64? = nil, zoneId: UInt64? = nil, zoneName: String? = nil) {
             self.nodeType = nodeType
             self.nodeId = nodeId
             self.zoneId = zoneId

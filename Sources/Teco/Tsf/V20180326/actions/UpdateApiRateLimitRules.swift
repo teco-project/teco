@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 批量更新API限流规则
-    @inlinable
-    public func updateApiRateLimitRules(_ input: UpdateApiRateLimitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApiRateLimitRulesResponse > {
-        self.client.execute(action: "UpdateApiRateLimitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量更新API限流规则
-    @inlinable
-    public func updateApiRateLimitRules(_ input: UpdateApiRateLimitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiRateLimitRulesResponse {
-        try await self.client.execute(action: "UpdateApiRateLimitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateApiRateLimitRules请求参数结构体
     public struct UpdateApiRateLimitRulesRequest: TCRequestModel {
         /// API ID 列表
@@ -38,7 +26,7 @@ extension Tsf {
         /// QPS值。开启限流规则时，必填
         public let maxQps: Int64?
         
-        public init (apiIds: [String], usableStatus: String, maxQps: Int64?) {
+        public init (apiIds: [String], usableStatus: String, maxQps: Int64? = nil) {
             self.apiIds = apiIds
             self.usableStatus = usableStatus
             self.maxQps = maxQps
@@ -63,5 +51,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量更新API限流规则
+    @inlinable
+    public func updateApiRateLimitRules(_ input: UpdateApiRateLimitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApiRateLimitRulesResponse > {
+        self.client.execute(action: "UpdateApiRateLimitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量更新API限流规则
+    @inlinable
+    public func updateApiRateLimitRules(_ input: UpdateApiRateLimitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiRateLimitRulesResponse {
+        try await self.client.execute(action: "UpdateApiRateLimitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

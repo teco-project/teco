@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取本地提权事件列表
-    @inlinable
-    public func describePrivilegeEvents(_ input: DescribePrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivilegeEventsResponse > {
-        self.client.execute(action: "DescribePrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取本地提权事件列表
-    @inlinable
-    public func describePrivilegeEvents(_ input: DescribePrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivilegeEventsResponse {
-        try await self.client.execute(action: "DescribePrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrivilegeEvents请求参数结构体
     public struct DescribePrivilegeEventsRequest: TCRequestModel {
         /// 返回数量，最大值为100。
@@ -45,7 +33,7 @@ extension Cwp {
         /// 排序字段：CreateTime-发现时间
         public let by: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?, order: String?, by: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -78,5 +66,17 @@ extension Cwp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取本地提权事件列表
+    @inlinable
+    public func describePrivilegeEvents(_ input: DescribePrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivilegeEventsResponse > {
+        self.client.execute(action: "DescribePrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取本地提权事件列表
+    @inlinable
+    public func describePrivilegeEvents(_ input: DescribePrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivilegeEventsResponse {
+        try await self.client.execute(action: "DescribePrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

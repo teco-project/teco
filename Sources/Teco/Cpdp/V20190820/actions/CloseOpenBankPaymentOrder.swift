@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-关闭订单
-    @inlinable
-    public func closeOpenBankPaymentOrder(_ input: CloseOpenBankPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseOpenBankPaymentOrderResponse > {
-        self.client.execute(action: "CloseOpenBankPaymentOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-关闭订单
-    @inlinable
-    public func closeOpenBankPaymentOrder(_ input: CloseOpenBankPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseOpenBankPaymentOrderResponse {
-        try await self.client.execute(action: "CloseOpenBankPaymentOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CloseOpenBankPaymentOrder请求参数结构体
     public struct CloseOpenBankPaymentOrderRequest: TCRequestModel {
         /// 渠道商户ID，云企付平台下发给外部接入平台。
@@ -41,7 +29,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填 sandbox。缺省默认调用生产环境
         public let environment: String?
         
-        public init (channelMerchantId: String, outOrderId: String?, channelOrderId: String?, environment: String?) {
+        public init (channelMerchantId: String, outOrderId: String? = nil, channelOrderId: String? = nil, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.outOrderId = outOrderId
             self.channelOrderId = channelOrderId
@@ -66,7 +54,7 @@ extension Cpdp {
         
         /// 关单响应对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: CloseOpenBankPaymentOrderResult
+        public let result: CloseOpenBankPaymentOrderResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -77,5 +65,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-关闭订单
+    @inlinable
+    public func closeOpenBankPaymentOrder(_ input: CloseOpenBankPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseOpenBankPaymentOrderResponse > {
+        self.client.execute(action: "CloseOpenBankPaymentOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-关闭订单
+    @inlinable
+    public func closeOpenBankPaymentOrder(_ input: CloseOpenBankPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseOpenBankPaymentOrderResponse {
+        try await self.client.execute(action: "CloseOpenBankPaymentOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

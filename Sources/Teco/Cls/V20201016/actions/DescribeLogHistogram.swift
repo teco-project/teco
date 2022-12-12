@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 获取日志数量直方图
-    ///
-    /// 本接口用于构建日志数量直方图
-    @inlinable
-    public func describeLogHistogram(_ input: DescribeLogHistogramRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogHistogramResponse > {
-        self.client.execute(action: "DescribeLogHistogram", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取日志数量直方图
-    ///
-    /// 本接口用于构建日志数量直方图
-    @inlinable
-    public func describeLogHistogram(_ input: DescribeLogHistogramRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogHistogramResponse {
-        try await self.client.execute(action: "DescribeLogHistogram", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLogHistogram请求参数结构体
     public struct DescribeLogHistogramRequest: TCRequestModel {
         /// 要查询的日志主题ID
@@ -48,7 +32,7 @@ extension Cls {
         /// 时间间隔: 单位ms  限制性条件：(To-From) / interval <= 200
         public let interval: Int64?
         
-        public init (topicId: String, from: Int64, to: Int64, query: String, interval: Int64?) {
+        public init (topicId: String, from: Int64, to: Int64, query: String, interval: Int64? = nil) {
             self.topicId = topicId
             self.from = from
             self.to = to
@@ -85,5 +69,21 @@ extension Cls {
             case histogramInfos = "HistogramInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取日志数量直方图
+    ///
+    /// 本接口用于构建日志数量直方图
+    @inlinable
+    public func describeLogHistogram(_ input: DescribeLogHistogramRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogHistogramResponse > {
+        self.client.execute(action: "DescribeLogHistogram", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志数量直方图
+    ///
+    /// 本接口用于构建日志数量直方图
+    @inlinable
+    public func describeLogHistogram(_ input: DescribeLogHistogramRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogHistogramResponse {
+        try await self.client.execute(action: "DescribeLogHistogram", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

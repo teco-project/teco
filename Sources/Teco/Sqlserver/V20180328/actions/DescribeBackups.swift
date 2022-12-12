@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Sqlserver {
-    /// 查询备份列表
-    ///
-    /// 本接口(DescribeBackups)用于查询备份列表。
-    @inlinable
-    public func describeBackups(_ input: DescribeBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupsResponse > {
-        self.client.execute(action: "DescribeBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询备份列表
-    ///
-    /// 本接口(DescribeBackups)用于查询备份列表。
-    @inlinable
-    public func describeBackups(_ input: DescribeBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupsResponse {
-        try await self.client.execute(action: "DescribeBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBackups请求参数结构体
     public struct DescribeBackupsRequest: TCRequestModel {
         /// 开始时间(yyyy-MM-dd HH:mm:ss)
@@ -76,7 +60,7 @@ extension Sqlserver {
         /// 按照备份文件形式筛选，pkg-打包备份文件，single-单库备份文件
         public let backupFormat: String?
         
-        public init (startTime: Date, endTime: Date, instanceId: String, limit: Int64?, offset: Int64?, backupName: String?, strategy: Int64?, backupWay: Int64?, backupId: UInt64?, databaseName: String?, group: Int64?, type: Int64?, backupFormat: String?) {
+        public init (startTime: Date, endTime: Date, instanceId: String, limit: Int64? = nil, offset: Int64? = nil, backupName: String? = nil, strategy: Int64? = nil, backupWay: Int64? = nil, backupId: UInt64? = nil, databaseName: String? = nil, group: Int64? = nil, type: Int64? = nil, backupFormat: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.instanceId = instanceId
@@ -125,5 +109,21 @@ extension Sqlserver {
             case backups = "Backups"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询备份列表
+    ///
+    /// 本接口(DescribeBackups)用于查询备份列表。
+    @inlinable
+    public func describeBackups(_ input: DescribeBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupsResponse > {
+        self.client.execute(action: "DescribeBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份列表
+    ///
+    /// 本接口(DescribeBackups)用于查询备份列表。
+    @inlinable
+    public func describeBackups(_ input: DescribeBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupsResponse {
+        try await self.client.execute(action: "DescribeBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

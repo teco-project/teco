@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 批量停止任务【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 仅对任务状态为”调度中“和”已暂停“有效，对所选任务的任务实例进行终止，并停止调度
-    @inlinable
-    public func batchStopTasksNew(_ input: BatchStopTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchStopTasksNewResponse > {
-        self.client.execute(action: "BatchStopTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量停止任务【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 仅对任务状态为”调度中“和”已暂停“有效，对所选任务的任务实例进行终止，并停止调度
-    @inlinable
-    public func batchStopTasksNew(_ input: BatchStopTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStopTasksNewResponse {
-        try await self.client.execute(action: "BatchStopTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchStopTasksNew请求参数结构体
     public struct BatchStopTasksNewRequest: TCRequestModel {
         /// 批量停止任务的TaskId
@@ -64,5 +46,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量停止任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 仅对任务状态为”调度中“和”已暂停“有效，对所选任务的任务实例进行终止，并停止调度
+    @inlinable
+    public func batchStopTasksNew(_ input: BatchStopTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchStopTasksNewResponse > {
+        self.client.execute(action: "BatchStopTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量停止任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 仅对任务状态为”调度中“和”已暂停“有效，对所选任务的任务实例进行终止，并停止调度
+    @inlinable
+    public func batchStopTasksNew(_ input: BatchStopTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStopTasksNewResponse {
+        try await self.client.execute(action: "BatchStopTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

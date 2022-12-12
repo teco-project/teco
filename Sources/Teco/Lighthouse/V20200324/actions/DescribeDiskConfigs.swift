@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查看云硬盘配置
-    ///
-    /// 本接口（DescribeDiskConfigs）用于查询云硬盘配置。
-    @inlinable
-    public func describeDiskConfigs(_ input: DescribeDiskConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskConfigsResponse > {
-        self.client.execute(action: "DescribeDiskConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看云硬盘配置
-    ///
-    /// 本接口（DescribeDiskConfigs）用于查询云硬盘配置。
-    @inlinable
-    public func describeDiskConfigs(_ input: DescribeDiskConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigsResponse {
-        try await self.client.execute(action: "DescribeDiskConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDiskConfigs请求参数结构体
     public struct DescribeDiskConfigsRequest: TCRequestModel {
         /// 过滤器列表。
@@ -39,7 +23,7 @@ extension Lighthouse {
         /// 必选：否
         public let filters: [Filter]?
         
-        public init (filters: [Filter]?) {
+        public init (filters: [Filter]? = nil) {
             self.filters = filters
         }
         
@@ -60,5 +44,21 @@ extension Lighthouse {
             case diskConfigSet = "DiskConfigSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看云硬盘配置
+    ///
+    /// 本接口（DescribeDiskConfigs）用于查询云硬盘配置。
+    @inlinable
+    public func describeDiskConfigs(_ input: DescribeDiskConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskConfigsResponse > {
+        self.client.execute(action: "DescribeDiskConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看云硬盘配置
+    ///
+    /// 本接口（DescribeDiskConfigs）用于查询云硬盘配置。
+    @inlinable
+    public func describeDiskConfigs(_ input: DescribeDiskConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigsResponse {
+        try await self.client.execute(action: "DescribeDiskConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

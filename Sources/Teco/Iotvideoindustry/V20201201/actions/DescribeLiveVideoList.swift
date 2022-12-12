@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 直播录像回放列表
-    @inlinable
-    public func describeLiveVideoList(_ input: DescribeLiveVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveVideoListResponse > {
-        self.client.execute(action: "DescribeLiveVideoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播录像回放列表
-    @inlinable
-    public func describeLiveVideoList(_ input: DescribeLiveVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveVideoListResponse {
-        try await self.client.execute(action: "DescribeLiveVideoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveVideoList请求参数结构体
     public struct DescribeLiveVideoListRequest: TCRequestModel {
         /// 偏移量
@@ -59,7 +47,7 @@ extension Iotvideoindustry {
         /// 录制状态，5: 录制回写完
         public let isRecording: Int64?
         
-        public init (offset: Int64, limit: Int64, liveChannelId: String, startRecordTime: Int64?, endRecordTime: Int64?, startExpireTime: Int64?, endExpireTime: Int64?, startFileSize: Int64?, endFileSize: Int64?, isRecording: Int64?) {
+        public init (offset: Int64, limit: Int64, liveChannelId: String, startRecordTime: Int64? = nil, endRecordTime: Int64? = nil, startExpireTime: Int64? = nil, endExpireTime: Int64? = nil, startFileSize: Int64? = nil, endFileSize: Int64? = nil, isRecording: Int64? = nil) {
             self.offset = offset
             self.limit = limit
             self.liveChannelId = liveChannelId
@@ -104,5 +92,17 @@ extension Iotvideoindustry {
             case recordList = "RecordList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播录像回放列表
+    @inlinable
+    public func describeLiveVideoList(_ input: DescribeLiveVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveVideoListResponse > {
+        self.client.execute(action: "DescribeLiveVideoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播录像回放列表
+    @inlinable
+    public func describeLiveVideoList(_ input: DescribeLiveVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveVideoListResponse {
+        try await self.client.execute(action: "DescribeLiveVideoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

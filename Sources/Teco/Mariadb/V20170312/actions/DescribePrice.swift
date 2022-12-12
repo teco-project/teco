@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 新购实例询价
-    ///
-    /// 本接口（DescribePrice）用于在购买实例前，查询实例的价格。
-    @inlinable
-    public func describePrice(_ input: DescribePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePriceResponse > {
-        self.client.execute(action: "DescribePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新购实例询价
-    ///
-    /// 本接口（DescribePrice）用于在购买实例前，查询实例的价格。
-    @inlinable
-    public func describePrice(_ input: DescribePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePriceResponse {
-        try await self.client.execute(action: "DescribePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrice请求参数结构体
     public struct DescribePriceRequest: TCRequestModel {
         /// 欲新购实例的可用区ID。
@@ -62,7 +46,7 @@ extension Mariadb {
         /// * microPent：微分
         public let amountUnit: String?
         
-        public init (zone: String, nodeCount: Int64, memory: Int64, storage: Int64, period: Int64?, count: Int64?, paymode: String?, amountUnit: String?) {
+        public init (zone: String, nodeCount: Int64, memory: Int64, storage: Int64, period: Int64? = nil, count: Int64? = nil, paymode: String? = nil, amountUnit: String? = nil) {
             self.zone = zone
             self.nodeCount = nodeCount
             self.memory = memory
@@ -105,5 +89,21 @@ extension Mariadb {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新购实例询价
+    ///
+    /// 本接口（DescribePrice）用于在购买实例前，查询实例的价格。
+    @inlinable
+    public func describePrice(_ input: DescribePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePriceResponse > {
+        self.client.execute(action: "DescribePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新购实例询价
+    ///
+    /// 本接口（DescribePrice）用于在购买实例前，查询实例的价格。
+    @inlinable
+    public func describePrice(_ input: DescribePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePriceResponse {
+        try await self.client.execute(action: "DescribePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

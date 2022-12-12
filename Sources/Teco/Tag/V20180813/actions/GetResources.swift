@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 查询资源标签列表
-    ///
-    /// 查询绑定了标签的资源列表。
-    @inlinable
-    public func getResources(_ input: GetResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetResourcesResponse > {
-        self.client.execute(action: "GetResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询资源标签列表
-    ///
-    /// 查询绑定了标签的资源列表。
-    @inlinable
-    public func getResources(_ input: GetResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetResourcesResponse {
-        try await self.client.execute(action: "GetResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetResources请求参数结构体
     public struct GetResourcesRequest: TCRequestModel {
         /// 资源六段式列表。腾讯云使用资源六段式描述一个资源。
@@ -53,7 +37,7 @@ extension Tag {
         /// 缺省值：50。
         public let maxResults: UInt64?
         
-        public init (resourceList: [String]?, tagFilters: [TagFilter]?, paginationToken: String?, maxResults: UInt64?) {
+        public init (resourceList: [String]? = nil, tagFilters: [TagFilter]? = nil, paginationToken: String? = nil, maxResults: UInt64? = nil) {
             self.resourceList = resourceList
             self.tagFilters = tagFilters
             self.paginationToken = paginationToken
@@ -84,5 +68,21 @@ extension Tag {
             case resourceTagMappingList = "ResourceTagMappingList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询资源标签列表
+    ///
+    /// 查询绑定了标签的资源列表。
+    @inlinable
+    public func getResources(_ input: GetResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetResourcesResponse > {
+        self.client.execute(action: "GetResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资源标签列表
+    ///
+    /// 查询绑定了标签的资源列表。
+    @inlinable
+    public func getResources(_ input: GetResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetResourcesResponse {
+        try await self.client.execute(action: "GetResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

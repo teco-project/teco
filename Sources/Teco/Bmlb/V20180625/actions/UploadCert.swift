@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 创建黑石负载均衡证书
-    ///
-    /// 创建黑石负载均衡证书。
-    @inlinable
-    public func uploadCert(_ input: UploadCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadCertResponse > {
-        self.client.execute(action: "UploadCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建黑石负载均衡证书
-    ///
-    /// 创建黑石负载均衡证书。
-    @inlinable
-    public func uploadCert(_ input: UploadCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
-        try await self.client.execute(action: "UploadCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadCert请求参数结构体
     public struct UploadCertRequest: TCRequestModel {
         /// 证书类型，可选值：CA，SVR。
@@ -45,7 +29,7 @@ extension Bmlb {
         /// 私钥内容，证书类型为SVR时不需要传递。
         public let key: String?
         
-        public init (certType: String, cert: String, alias: String?, key: String?) {
+        public init (certType: String, cert: String, alias: String? = nil, key: String? = nil) {
             self.certType = certType
             self.cert = cert
             self.alias = alias
@@ -72,5 +56,21 @@ extension Bmlb {
             case certId = "CertId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建黑石负载均衡证书
+    ///
+    /// 创建黑石负载均衡证书。
+    @inlinable
+    public func uploadCert(_ input: UploadCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadCertResponse > {
+        self.client.execute(action: "UploadCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建黑石负载均衡证书
+    ///
+    /// 创建黑石负载均衡证书。
+    @inlinable
+    public func uploadCert(_ input: UploadCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
+        try await self.client.execute(action: "UploadCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

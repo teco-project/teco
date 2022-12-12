@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 查看可用区列表
-    ///
-    /// 用于查看ckafka的可用区列表
-    @inlinable
-    public func describeCkafkaZone(_ input: DescribeCkafkaZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCkafkaZoneResponse > {
-        self.client.execute(action: "DescribeCkafkaZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看可用区列表
-    ///
-    /// 用于查看ckafka的可用区列表
-    @inlinable
-    public func describeCkafkaZone(_ input: DescribeCkafkaZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCkafkaZoneResponse {
-        try await self.client.execute(action: "DescribeCkafkaZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCkafkaZone请求参数结构体
     public struct DescribeCkafkaZoneRequest: TCRequestModel {
         /// cdc专业集群业务参数
         public let cdcId: String?
         
-        public init (cdcId: String?) {
+        public init (cdcId: String? = nil) {
             self.cdcId = cdcId
         }
         
@@ -57,5 +41,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看可用区列表
+    ///
+    /// 用于查看ckafka的可用区列表
+    @inlinable
+    public func describeCkafkaZone(_ input: DescribeCkafkaZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCkafkaZoneResponse > {
+        self.client.execute(action: "DescribeCkafkaZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看可用区列表
+    ///
+    /// 用于查看ckafka的可用区列表
+    @inlinable
+    public func describeCkafkaZone(_ input: DescribeCkafkaZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCkafkaZoneResponse {
+        try await self.client.execute(action: "DescribeCkafkaZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

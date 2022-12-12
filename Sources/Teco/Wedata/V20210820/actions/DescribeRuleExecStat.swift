@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 数据质量规则运行情况接口
-    ///
-    /// 数据质量概览页面规则运行情况接口
-    @inlinable
-    public func describeRuleExecStat(_ input: DescribeRuleExecStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleExecStatResponse > {
-        self.client.execute(action: "DescribeRuleExecStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 数据质量规则运行情况接口
-    ///
-    /// 数据质量概览页面规则运行情况接口
-    @inlinable
-    public func describeRuleExecStat(_ input: DescribeRuleExecStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecStatResponse {
-        try await self.client.execute(action: "DescribeRuleExecStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRuleExecStat请求参数结构体
     public struct DescribeRuleExecStatRequest: TCRequestModel {
         /// ProjectId 值
@@ -67,5 +51,21 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 数据质量规则运行情况接口
+    ///
+    /// 数据质量概览页面规则运行情况接口
+    @inlinable
+    public func describeRuleExecStat(_ input: DescribeRuleExecStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleExecStatResponse > {
+        self.client.execute(action: "DescribeRuleExecStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 数据质量规则运行情况接口
+    ///
+    /// 数据质量概览页面规则运行情况接口
+    @inlinable
+    public func describeRuleExecStat(_ input: DescribeRuleExecStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecStatResponse {
+        try await self.client.execute(action: "DescribeRuleExecStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

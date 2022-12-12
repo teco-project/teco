@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ses {
-    /// 查询收件人列表
-    ///
-    /// 根据条件查询收件人列表，支持分页，模糊查询，状态查询
-    @inlinable
-    public func listReceivers(_ input: ListReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListReceiversResponse > {
-        self.client.execute(action: "ListReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询收件人列表
-    ///
-    /// 根据条件查询收件人列表，支持分页，模糊查询，状态查询
-    @inlinable
-    public func listReceivers(_ input: ListReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListReceiversResponse {
-        try await self.client.execute(action: "ListReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListReceivers请求参数结构体
     public struct ListReceiversRequest: TCRequestModel {
         /// 偏移量，整型，从0开始
@@ -45,7 +29,7 @@ extension Ses {
         /// 列表名称的关键字，模糊查询
         public let keyWord: String?
         
-        public init (offset: UInt64, limit: UInt64, status: UInt64?, keyWord: String?) {
+        public init (offset: UInt64, limit: UInt64, status: UInt64? = nil, keyWord: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.status = status
@@ -76,5 +60,21 @@ extension Ses {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询收件人列表
+    ///
+    /// 根据条件查询收件人列表，支持分页，模糊查询，状态查询
+    @inlinable
+    public func listReceivers(_ input: ListReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListReceiversResponse > {
+        self.client.execute(action: "ListReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询收件人列表
+    ///
+    /// 根据条件查询收件人列表，支持分页，模糊查询，状态查询
+    @inlinable
+    public func listReceivers(_ input: ListReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListReceiversResponse {
+        try await self.client.execute(action: "ListReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

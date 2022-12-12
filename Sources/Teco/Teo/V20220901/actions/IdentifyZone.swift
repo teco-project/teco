@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 认证站点
-    ///
-    /// 用于验证站点所有权。
-    @inlinable
-    public func identifyZone(_ input: IdentifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IdentifyZoneResponse > {
-        self.client.execute(action: "IdentifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 认证站点
-    ///
-    /// 用于验证站点所有权。
-    @inlinable
-    public func identifyZone(_ input: IdentifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdentifyZoneResponse {
-        try await self.client.execute(action: "IdentifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// IdentifyZone请求参数结构体
     public struct IdentifyZoneRequest: TCRequestModel {
         /// 站点名称。
@@ -61,5 +45,21 @@ extension Teo {
             case fileAscription = "FileAscription"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 认证站点
+    ///
+    /// 用于验证站点所有权。
+    @inlinable
+    public func identifyZone(_ input: IdentifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IdentifyZoneResponse > {
+        self.client.execute(action: "IdentifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 认证站点
+    ///
+    /// 用于验证站点所有权。
+    @inlinable
+    public func identifyZone(_ input: IdentifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdentifyZoneResponse {
+        try await self.client.execute(action: "IdentifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 发布产品
-    ///
-    /// 产品开发完成并测试通过后，通过发布产品将产品设置为发布状态
-    @inlinable
-    public func releaseStudioProduct(_ input: ReleaseStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseStudioProductResponse > {
-        self.client.execute(action: "ReleaseStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发布产品
-    ///
-    /// 产品开发完成并测试通过后，通过发布产品将产品设置为发布状态
-    @inlinable
-    public func releaseStudioProduct(_ input: ReleaseStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseStudioProductResponse {
-        try await self.client.execute(action: "ReleaseStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReleaseStudioProduct请求参数结构体
     public struct ReleaseStudioProductRequest: TCRequestModel {
         /// 产品ID
@@ -58,5 +42,21 @@ extension Iotexplorer {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发布产品
+    ///
+    /// 产品开发完成并测试通过后，通过发布产品将产品设置为发布状态
+    @inlinable
+    public func releaseStudioProduct(_ input: ReleaseStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseStudioProductResponse > {
+        self.client.execute(action: "ReleaseStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发布产品
+    ///
+    /// 产品开发完成并测试通过后，通过发布产品将产品设置为发布状态
+    @inlinable
+    public func releaseStudioProduct(_ input: ReleaseStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseStudioProductResponse {
+        try await self.client.execute(action: "ReleaseStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

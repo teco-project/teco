@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 获取用户互联网公网地址信息
-    @inlinable
-    public func describeInternetAddress(_ input: DescribeInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternetAddressResponse > {
-        self.client.execute(action: "DescribeInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户互联网公网地址信息
-    @inlinable
-    public func describeInternetAddress(_ input: DescribeInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressResponse {
-        try await self.client.execute(action: "DescribeInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInternetAddress请求参数结构体
     public struct DescribeInternetAddressRequest: TCRequestModel {
         /// 偏移量，默认为0
@@ -43,7 +31,7 @@ extension Dc {
         /// <InstanceIds>互联网公网地址ID，数组</li>
         public let filters: [Filter]?
         
-        public init (offset: Int64?, limit: Int64?, filters: [Filter]?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -73,5 +61,17 @@ extension Dc {
             case subnets = "Subnets"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户互联网公网地址信息
+    @inlinable
+    public func describeInternetAddress(_ input: DescribeInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternetAddressResponse > {
+        self.client.execute(action: "DescribeInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户互联网公网地址信息
+    @inlinable
+    public func describeInternetAddress(_ input: DescribeInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressResponse {
+        try await self.client.execute(action: "DescribeInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

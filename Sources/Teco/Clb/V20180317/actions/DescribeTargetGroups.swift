@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 查询目标组信息
-    @inlinable
-    public func describeTargetGroups(_ input: DescribeTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTargetGroupsResponse > {
-        self.client.execute(action: "DescribeTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询目标组信息
-    @inlinable
-    public func describeTargetGroups(_ input: DescribeTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetGroupsResponse {
-        try await self.client.execute(action: "DescribeTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTargetGroups请求参数结构体
     public struct DescribeTargetGroupsRequest: TCRequestModel {
         /// 目标组ID，与Filters互斥。
@@ -41,7 +29,7 @@ extension Clb {
         /// 过滤条件数组，与TargetGroupIds互斥，支持TargetGroupVpcId和TargetGroupName。
         public let filters: [Filter]?
         
-        public init (targetGroupIds: [String]?, limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (targetGroupIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.targetGroupIds = targetGroupIds
             self.limit = limit
             self.offset = offset
@@ -72,5 +60,17 @@ extension Clb {
             case targetGroupSet = "TargetGroupSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询目标组信息
+    @inlinable
+    public func describeTargetGroups(_ input: DescribeTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTargetGroupsResponse > {
+        self.client.execute(action: "DescribeTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询目标组信息
+    @inlinable
+    public func describeTargetGroups(_ input: DescribeTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetGroupsResponse {
+        try await self.client.execute(action: "DescribeTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

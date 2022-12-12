@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 修改插件
-    ///
-    /// 修改API网关插件。
-    @inlinable
-    public func modifyPlugin(_ input: ModifyPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPluginResponse > {
-        self.client.execute(action: "ModifyPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改插件
-    ///
-    /// 修改API网关插件。
-    @inlinable
-    public func modifyPlugin(_ input: ModifyPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPluginResponse {
-        try await self.client.execute(action: "ModifyPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPlugin请求参数结构体
     public struct ModifyPluginRequest: TCRequestModel {
         /// 要修改的插件ID。
@@ -45,7 +29,7 @@ extension Apigateway {
         /// 要修改的插件定义语句，支持json。
         public let pluginData: String?
         
-        public init (pluginId: String, pluginName: String?, description: String?, pluginData: String?) {
+        public init (pluginId: String, pluginName: String? = nil, description: String? = nil, pluginData: String? = nil) {
             self.pluginId = pluginId
             self.pluginName = pluginName
             self.description = description
@@ -72,5 +56,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改插件
+    ///
+    /// 修改API网关插件。
+    @inlinable
+    public func modifyPlugin(_ input: ModifyPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPluginResponse > {
+        self.client.execute(action: "ModifyPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改插件
+    ///
+    /// 修改API网关插件。
+    @inlinable
+    public func modifyPlugin(_ input: ModifyPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPluginResponse {
+        try await self.client.execute(action: "ModifyPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

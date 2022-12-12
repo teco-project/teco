@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改弹性网卡内网IP信息
-    ///
-    /// 用于修改弹性网卡内网IP属性。
-    @inlinable
-    public func modifyPrivateIpAddressesAttribute(_ input: ModifyPrivateIpAddressesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrivateIpAddressesAttributeResponse > {
-        self.client.execute(action: "ModifyPrivateIpAddressesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改弹性网卡内网IP信息
-    ///
-    /// 用于修改弹性网卡内网IP属性。
-    @inlinable
-    public func modifyPrivateIpAddressesAttribute(_ input: ModifyPrivateIpAddressesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateIpAddressesAttributeResponse {
-        try await self.client.execute(action: "ModifyPrivateIpAddressesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPrivateIpAddressesAttribute请求参数结构体
     public struct ModifyPrivateIpAddressesAttributeRequest: TCRequestModel {
         /// 弹性网卡实例ID，例如：eni-m6dyj72l。
@@ -63,5 +47,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改弹性网卡内网IP信息
+    ///
+    /// 用于修改弹性网卡内网IP属性。
+    @inlinable
+    public func modifyPrivateIpAddressesAttribute(_ input: ModifyPrivateIpAddressesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrivateIpAddressesAttributeResponse > {
+        self.client.execute(action: "ModifyPrivateIpAddressesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改弹性网卡内网IP信息
+    ///
+    /// 用于修改弹性网卡内网IP属性。
+    @inlinable
+    public func modifyPrivateIpAddressesAttribute(_ input: ModifyPrivateIpAddressesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateIpAddressesAttributeResponse {
+        try await self.client.execute(action: "ModifyPrivateIpAddressesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 源站组修改
-    @inlinable
-    public func modifyOriginGroup(_ input: ModifyOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyOriginGroupResponse > {
-        self.client.execute(action: "ModifyOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 源站组修改
-    @inlinable
-    public func modifyOriginGroup(_ input: ModifyOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOriginGroupResponse {
-        try await self.client.execute(action: "ModifyOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyOriginGroup请求参数结构体
     public struct ModifyOriginGroupRequest: TCRequestModel {
         /// 源站组ID
@@ -53,7 +41,7 @@ extension Teo {
         /// cos：腾讯云COS源站
         public let originType: String?
         
-        public init (originId: String, originName: String, type: String, record: [OriginRecord], zoneId: String, originType: String?) {
+        public init (originId: String, originName: String, type: String, record: [OriginRecord], zoneId: String, originType: String? = nil) {
             self.originId = originId
             self.originName = originName
             self.type = type
@@ -84,5 +72,17 @@ extension Teo {
             case originId = "OriginId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 源站组修改
+    @inlinable
+    public func modifyOriginGroup(_ input: ModifyOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyOriginGroupResponse > {
+        self.client.execute(action: "ModifyOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 源站组修改
+    @inlinable
+    public func modifyOriginGroup(_ input: ModifyOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOriginGroupResponse {
+        try await self.client.execute(action: "ModifyOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

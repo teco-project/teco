@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 创建专用通道
-    ///
-    /// 用于创建专用通道的接口
-    @inlinable
-    public func createDirectConnectTunnel(_ input: CreateDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDirectConnectTunnelResponse > {
-        self.client.execute(action: "CreateDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建专用通道
-    ///
-    /// 用于创建专用通道的接口
-    @inlinable
-    public func createDirectConnectTunnel(_ input: CreateDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectTunnelResponse {
-        try await self.client.execute(action: "CreateDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDirectConnectTunnel请求参数结构体
     public struct CreateDirectConnectTunnelRequest: TCRequestModel {
         /// 专线 ID，例如：dc-kd7d06of
@@ -68,7 +52,7 @@ extension Dc {
         public let routeType: String?
         
         /// BgpPeer，用户侧bgp信息，包括Asn和AuthKey
-        public let bgpPeer: BgpPeer
+        public let bgpPeer: BgpPeer?
         
         /// 静态路由，用户IDC的网段地址
         public let routeFilterPrefixes: [RouteFilterPrefix]?
@@ -97,12 +81,12 @@ extension Dc {
         public let nqaEnable: Int64?
         
         /// BFD配置信息
-        public let bfdInfo: BFDInfo
+        public let bfdInfo: BFDInfo?
         
         /// NQA配置信息
-        public let nqaInfo: NQAInfo
+        public let nqaInfo: NQAInfo?
         
-        public init (directConnectId: String, directConnectTunnelName: String, directConnectOwnerAccount: String?, networkType: String?, networkRegion: String?, vpcId: String?, directConnectGatewayId: String?, bandwidth: Int64?, routeType: String?, bgpPeer: BgpPeer, routeFilterPrefixes: [RouteFilterPrefix]?, vlan: Int64?, tencentAddress: String?, customerAddress: String?, tencentBackupAddress: String?, cloudAttachId: String?, bfdEnable: Int64?, nqaEnable: Int64?, bfdInfo: BFDInfo, nqaInfo: NQAInfo) {
+        public init (directConnectId: String, directConnectTunnelName: String, directConnectOwnerAccount: String? = nil, networkType: String? = nil, networkRegion: String? = nil, vpcId: String? = nil, directConnectGatewayId: String? = nil, bandwidth: Int64? = nil, routeType: String? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: [RouteFilterPrefix]? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, tencentBackupAddress: String? = nil, cloudAttachId: String? = nil, bfdEnable: Int64? = nil, nqaEnable: Int64? = nil, bfdInfo: BFDInfo? = nil, nqaInfo: NQAInfo? = nil) {
             self.directConnectId = directConnectId
             self.directConnectTunnelName = directConnectTunnelName
             self.directConnectOwnerAccount = directConnectOwnerAccount
@@ -161,5 +145,21 @@ extension Dc {
             case directConnectTunnelIdSet = "DirectConnectTunnelIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建专用通道
+    ///
+    /// 用于创建专用通道的接口
+    @inlinable
+    public func createDirectConnectTunnel(_ input: CreateDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDirectConnectTunnelResponse > {
+        self.client.execute(action: "CreateDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建专用通道
+    ///
+    /// 用于创建专用通道的接口
+    @inlinable
+    public func createDirectConnectTunnel(_ input: CreateDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectTunnelResponse {
+        try await self.client.execute(action: "CreateDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

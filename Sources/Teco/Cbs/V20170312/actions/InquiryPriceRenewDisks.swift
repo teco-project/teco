@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 续费云硬盘询价
-    ///
-    /// 本接口（InquiryPriceRenewDisks）用于续费云硬盘询价。
-    /// * 只支持查询预付费模式的弹性云盘续费价格。
-    /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到实例续费后的到期时间来续费询价。
-    /// * 支持为多块云盘指定不同的续费时长，此时返回的价格为多块云盘续费的总价格。
-    @inlinable
-    public func inquiryPriceRenewDisks(_ input: InquiryPriceRenewDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRenewDisksResponse > {
-        self.client.execute(action: "InquiryPriceRenewDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费云硬盘询价
-    ///
-    /// 本接口（InquiryPriceRenewDisks）用于续费云硬盘询价。
-    /// * 只支持查询预付费模式的弹性云盘续费价格。
-    /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到实例续费后的到期时间来续费询价。
-    /// * 支持为多块云盘指定不同的续费时长，此时返回的价格为多块云盘续费的总价格。
-    @inlinable
-    public func inquiryPriceRenewDisks(_ input: InquiryPriceRenewDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewDisksResponse {
-        try await self.client.execute(action: "InquiryPriceRenewDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceRenewDisks请求参数结构体
     public struct InquiryPriceRenewDisksRequest: TCRequestModel {
         /// 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。
@@ -51,7 +29,7 @@ extension Cbs {
         /// 云盘所属项目ID。 如传入则仅用于鉴权。
         public let projectId: UInt64?
         
-        public init (diskIds: [String], diskChargePrepaids: [DiskChargePrepaid]?, newDeadline: String?, projectId: UInt64?) {
+        public init (diskIds: [String], diskChargePrepaids: [DiskChargePrepaid]? = nil, newDeadline: String? = nil, projectId: UInt64? = nil) {
             self.diskIds = diskIds
             self.diskChargePrepaids = diskChargePrepaids
             self.newDeadline = newDeadline
@@ -78,5 +56,27 @@ extension Cbs {
             case diskPrice = "DiskPrice"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费云硬盘询价
+    ///
+    /// 本接口（InquiryPriceRenewDisks）用于续费云硬盘询价。
+    /// * 只支持查询预付费模式的弹性云盘续费价格。
+    /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到实例续费后的到期时间来续费询价。
+    /// * 支持为多块云盘指定不同的续费时长，此时返回的价格为多块云盘续费的总价格。
+    @inlinable
+    public func inquiryPriceRenewDisks(_ input: InquiryPriceRenewDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRenewDisksResponse > {
+        self.client.execute(action: "InquiryPriceRenewDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费云硬盘询价
+    ///
+    /// 本接口（InquiryPriceRenewDisks）用于续费云硬盘询价。
+    /// * 只支持查询预付费模式的弹性云盘续费价格。
+    /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到实例续费后的到期时间来续费询价。
+    /// * 支持为多块云盘指定不同的续费时长，此时返回的价格为多块云盘续费的总价格。
+    @inlinable
+    public func inquiryPriceRenewDisks(_ input: InquiryPriceRenewDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewDisksResponse {
+        try await self.client.execute(action: "InquiryPriceRenewDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

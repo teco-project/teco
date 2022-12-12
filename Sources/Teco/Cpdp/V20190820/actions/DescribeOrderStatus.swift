@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 查询单笔订单交易状态
-    @inlinable
-    public func describeOrderStatus(_ input: DescribeOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrderStatusResponse > {
-        self.client.execute(action: "DescribeOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询单笔订单交易状态
-    @inlinable
-    public func describeOrderStatus(_ input: DescribeOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrderStatusResponse {
-        try await self.client.execute(action: "DescribeOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOrderStatus请求参数结构体
     public struct DescribeOrderStatusRequest: TCRequestModel {
         /// 请求类型，此接口固定填：QueryOrderStatusReq
@@ -77,7 +65,7 @@ extension Cpdp {
         /// 交易日期 暂未使用
         public let transDate: String?
         
-        public init (requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, queryType: String, transSequenceNumber: String, midasSignature: String, midasAppId: String, midasSecretId: String, midasEnvironment: String, reservedMessage: String?, bankSubAccountNumber: String?, transDate: String?) {
+        public init (requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, queryType: String, transSequenceNumber: String, midasSignature: String, midasAppId: String, midasSecretId: String, midasEnvironment: String, reservedMessage: String? = nil, bankSubAccountNumber: String? = nil, transDate: String? = nil) {
             self.requestType = requestType
             self.merchantCode = merchantCode
             self.payChannel = payChannel
@@ -160,5 +148,17 @@ extension Cpdp {
             case requestType = "RequestType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询单笔订单交易状态
+    @inlinable
+    public func describeOrderStatus(_ input: DescribeOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrderStatusResponse > {
+        self.client.execute(action: "DescribeOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询单笔订单交易状态
+    @inlinable
+    public func describeOrderStatus(_ input: DescribeOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrderStatusResponse {
+        try await self.client.execute(action: "DescribeOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

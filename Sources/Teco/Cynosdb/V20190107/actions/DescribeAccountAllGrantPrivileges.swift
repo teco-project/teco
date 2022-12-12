@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 账号所有权限
-    @inlinable
-    public func describeAccountAllGrantPrivileges(_ input: DescribeAccountAllGrantPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountAllGrantPrivilegesResponse > {
-        self.client.execute(action: "DescribeAccountAllGrantPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 账号所有权限
-    @inlinable
-    public func describeAccountAllGrantPrivileges(_ input: DescribeAccountAllGrantPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountAllGrantPrivilegesResponse {
-        try await self.client.execute(action: "DescribeAccountAllGrantPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccountAllGrantPrivileges请求参数结构体
     public struct DescribeAccountAllGrantPrivilegesRequest: TCRequestModel {
         /// 集群id
@@ -74,5 +62,17 @@ extension Cynosdb {
             case tablePrivileges = "TablePrivileges"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 账号所有权限
+    @inlinable
+    public func describeAccountAllGrantPrivileges(_ input: DescribeAccountAllGrantPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountAllGrantPrivilegesResponse > {
+        self.client.execute(action: "DescribeAccountAllGrantPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 账号所有权限
+    @inlinable
+    public func describeAccountAllGrantPrivileges(_ input: DescribeAccountAllGrantPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountAllGrantPrivilegesResponse {
+        try await self.client.execute(action: "DescribeAccountAllGrantPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

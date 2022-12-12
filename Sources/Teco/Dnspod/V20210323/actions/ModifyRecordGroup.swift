@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 修改记录分组
-    @inlinable
-    public func modifyRecordGroup(_ input: ModifyRecordGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordGroupResponse > {
-        self.client.execute(action: "ModifyRecordGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改记录分组
-    @inlinable
-    public func modifyRecordGroup(_ input: ModifyRecordGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordGroupResponse {
-        try await self.client.execute(action: "ModifyRecordGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRecordGroup请求参数结构体
     public struct ModifyRecordGroupRequest: TCRequestModel {
         /// 域名
@@ -41,7 +29,7 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
         public let domainId: UInt64?
         
-        public init (domain: String, groupName: String, groupId: UInt64, domainId: UInt64?) {
+        public init (domain: String, groupName: String, groupId: UInt64, domainId: UInt64? = nil) {
             self.domain = domain
             self.groupName = groupName
             self.groupId = groupId
@@ -68,5 +56,17 @@ extension Dnspod {
             case groupId = "GroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改记录分组
+    @inlinable
+    public func modifyRecordGroup(_ input: ModifyRecordGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordGroupResponse > {
+        self.client.execute(action: "ModifyRecordGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改记录分组
+    @inlinable
+    public func modifyRecordGroup(_ input: ModifyRecordGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordGroupResponse {
+        try await self.client.execute(action: "ModifyRecordGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

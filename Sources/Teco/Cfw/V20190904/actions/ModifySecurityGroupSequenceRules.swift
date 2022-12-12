@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 企业安全组规则快速排序
-    @inlinable
-    public func modifySecurityGroupSequenceRules(_ input: ModifySecurityGroupSequenceRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupSequenceRulesResponse > {
-        self.client.execute(action: "ModifySecurityGroupSequenceRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 企业安全组规则快速排序
-    @inlinable
-    public func modifySecurityGroupSequenceRules(_ input: ModifySecurityGroupSequenceRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupSequenceRulesResponse {
-        try await self.client.execute(action: "ModifySecurityGroupSequenceRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySecurityGroupSequenceRules请求参数结构体
     public struct ModifySecurityGroupSequenceRulesRequest: TCRequestModel {
         /// 方向，0：出站，1：入站，默认1
@@ -58,5 +46,17 @@ extension Cfw {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 企业安全组规则快速排序
+    @inlinable
+    public func modifySecurityGroupSequenceRules(_ input: ModifySecurityGroupSequenceRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupSequenceRulesResponse > {
+        self.client.execute(action: "ModifySecurityGroupSequenceRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 企业安全组规则快速排序
+    @inlinable
+    public func modifySecurityGroupSequenceRules(_ input: ModifySecurityGroupSequenceRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupSequenceRulesResponse {
+        try await self.client.execute(action: "ModifySecurityGroupSequenceRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

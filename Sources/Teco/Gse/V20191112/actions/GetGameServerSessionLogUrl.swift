@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 获取游戏服务器会话的日志URL
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（GetGameServerSessionLogUrl）用于获取游戏服务器会话的日志URL。
-    @inlinable
-    public func getGameServerSessionLogUrl(_ input: GetGameServerSessionLogUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGameServerSessionLogUrlResponse > {
-        self.client.execute(action: "GetGameServerSessionLogUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取游戏服务器会话的日志URL
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（GetGameServerSessionLogUrl）用于获取游戏服务器会话的日志URL。
-    @inlinable
-    public func getGameServerSessionLogUrl(_ input: GetGameServerSessionLogUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGameServerSessionLogUrlResponse {
-        try await self.client.execute(action: "GetGameServerSessionLogUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetGameServerSessionLogUrl请求参数结构体
     public struct GetGameServerSessionLogUrlRequest: TCRequestModel {
         /// 游戏服务器会话ID，最小长度不小于1个ASCII字符，最大长度不超过48个ASCII字符
@@ -60,5 +42,23 @@ extension Gse {
             case preSignedUrl = "PreSignedUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取游戏服务器会话的日志URL
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（GetGameServerSessionLogUrl）用于获取游戏服务器会话的日志URL。
+    @inlinable
+    public func getGameServerSessionLogUrl(_ input: GetGameServerSessionLogUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGameServerSessionLogUrlResponse > {
+        self.client.execute(action: "GetGameServerSessionLogUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取游戏服务器会话的日志URL
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（GetGameServerSessionLogUrl）用于获取游戏服务器会话的日志URL。
+    @inlinable
+    public func getGameServerSessionLogUrl(_ input: GetGameServerSessionLogUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGameServerSessionLogUrlResponse {
+        try await self.client.execute(action: "GetGameServerSessionLogUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

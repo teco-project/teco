@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 取消模板同步
-    ///
-    /// 取消模板同步，这将会删除目标中该模板所生产的配置
-    @inlinable
-    public func deletePrometheusTemplateSync(_ input: DeletePrometheusTemplateSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusTemplateSyncResponse > {
-        self.client.execute(action: "DeletePrometheusTemplateSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消模板同步
-    ///
-    /// 取消模板同步，这将会删除目标中该模板所生产的配置
-    @inlinable
-    public func deletePrometheusTemplateSync(_ input: DeletePrometheusTemplateSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTemplateSyncResponse {
-        try await self.client.execute(action: "DeletePrometheusTemplateSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePrometheusTemplateSync请求参数结构体
     public struct DeletePrometheusTemplateSyncRequest: TCRequestModel {
         /// 模板id
@@ -58,5 +42,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消模板同步
+    ///
+    /// 取消模板同步，这将会删除目标中该模板所生产的配置
+    @inlinable
+    public func deletePrometheusTemplateSync(_ input: DeletePrometheusTemplateSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusTemplateSyncResponse > {
+        self.client.execute(action: "DeletePrometheusTemplateSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消模板同步
+    ///
+    /// 取消模板同步，这将会删除目标中该模板所生产的配置
+    @inlinable
+    public func deletePrometheusTemplateSync(_ input: DeletePrometheusTemplateSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTemplateSyncResponse {
+        try await self.client.execute(action: "DeletePrometheusTemplateSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

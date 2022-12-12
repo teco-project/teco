@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取某个租户的虚拟集群列表
-    @inlinable
-    public func describeAllTenants(_ input: DescribeAllTenantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllTenantsResponse > {
-        self.client.execute(action: "DescribeAllTenants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取某个租户的虚拟集群列表
-    @inlinable
-    public func describeAllTenants(_ input: DescribeAllTenantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllTenantsResponse {
-        try await self.client.execute(action: "DescribeAllTenants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAllTenants请求参数结构体
     public struct DescribeAllTenantsRequest: TCRequestModel {
         /// 查询偏移量
@@ -53,7 +41,7 @@ extension Tdmq {
         /// 升序排列ASC，降序排列DESC
         public let sortOrder: String?
         
-        public init (offset: Int64, limit: Int64, clusterName: String?, tenantId: String?, tenantName: String?, types: [String]?, sortBy: String?, sortOrder: String?) {
+        public init (offset: Int64, limit: Int64, clusterName: String? = nil, tenantId: String? = nil, tenantName: String? = nil, types: [String]? = nil, sortBy: String? = nil, sortOrder: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.clusterName = clusterName
@@ -92,5 +80,17 @@ extension Tdmq {
             case tenants = "Tenants"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取某个租户的虚拟集群列表
+    @inlinable
+    public func describeAllTenants(_ input: DescribeAllTenantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllTenantsResponse > {
+        self.client.execute(action: "DescribeAllTenants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取某个租户的虚拟集群列表
+    @inlinable
+    public func describeAllTenants(_ input: DescribeAllTenantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllTenantsResponse {
+        try await self.client.execute(action: "DescribeAllTenants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

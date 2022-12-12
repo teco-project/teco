@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 修改黑石负载均衡七层转发路径后端实例端口
-    ///
-    /// 修改黑石负载均衡七层转发路径后端实例端口。
-    @inlinable
-    public func modifyL7BackendPort(_ input: ModifyL7BackendPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL7BackendPortResponse > {
-        self.client.execute(action: "ModifyL7BackendPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改黑石负载均衡七层转发路径后端实例端口
-    ///
-    /// 修改黑石负载均衡七层转发路径后端实例端口。
-    @inlinable
-    public func modifyL7BackendPort(_ input: ModifyL7BackendPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7BackendPortResponse {
-        try await self.client.execute(action: "ModifyL7BackendPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyL7BackendPort请求参数结构体
     public struct ModifyL7BackendPortRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -92,5 +76,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改黑石负载均衡七层转发路径后端实例端口
+    ///
+    /// 修改黑石负载均衡七层转发路径后端实例端口。
+    @inlinable
+    public func modifyL7BackendPort(_ input: ModifyL7BackendPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL7BackendPortResponse > {
+        self.client.execute(action: "ModifyL7BackendPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改黑石负载均衡七层转发路径后端实例端口
+    ///
+    /// 修改黑石负载均衡七层转发路径后端实例端口。
+    @inlinable
+    public func modifyL7BackendPort(_ input: ModifyL7BackendPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7BackendPortResponse {
+        try await self.client.execute(action: "ModifyL7BackendPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

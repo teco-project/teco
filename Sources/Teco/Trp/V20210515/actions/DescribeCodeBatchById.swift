@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 查询批次信息
-    @inlinable
-    public func describeCodeBatchById(_ input: DescribeCodeBatchByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodeBatchByIdResponse > {
-        self.client.execute(action: "DescribeCodeBatchById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询批次信息
-    @inlinable
-    public func describeCodeBatchById(_ input: DescribeCodeBatchByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodeBatchByIdResponse {
-        try await self.client.execute(action: "DescribeCodeBatchById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCodeBatchById请求参数结构体
     public struct DescribeCodeBatchByIdRequest: TCRequestModel {
         /// 企业ID
@@ -35,7 +23,7 @@ extension Trp {
         /// 批次ID
         public let batchId: String?
         
-        public init (corpId: UInt64?, batchId: String?) {
+        public init (corpId: UInt64? = nil, batchId: String? = nil) {
             self.corpId = corpId
             self.batchId = batchId
         }
@@ -58,5 +46,17 @@ extension Trp {
             case codeBatch = "CodeBatch"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询批次信息
+    @inlinable
+    public func describeCodeBatchById(_ input: DescribeCodeBatchByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodeBatchByIdResponse > {
+        self.client.execute(action: "DescribeCodeBatchById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询批次信息
+    @inlinable
+    public func describeCodeBatchById(_ input: DescribeCodeBatchByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodeBatchByIdResponse {
+        try await self.client.execute(action: "DescribeCodeBatchById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

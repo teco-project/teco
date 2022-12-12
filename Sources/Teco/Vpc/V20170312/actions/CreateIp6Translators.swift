@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建IPV6转换IPV4实例
-    ///
-    /// 1. 该接口用于创建IPV6转换IPV4实例，支持批量
-    /// 2. 同一个账户在一个地域最多允许创建10个转换实例
-    @inlinable
-    public func createIp6Translators(_ input: CreateIp6TranslatorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIp6TranslatorsResponse > {
-        self.client.execute(action: "CreateIp6Translators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建IPV6转换IPV4实例
-    ///
-    /// 1. 该接口用于创建IPV6转换IPV4实例，支持批量
-    /// 2. 同一个账户在一个地域最多允许创建10个转换实例
-    @inlinable
-    public func createIp6Translators(_ input: CreateIp6TranslatorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIp6TranslatorsResponse {
-        try await self.client.execute(action: "CreateIp6Translators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateIp6Translators请求参数结构体
     public struct CreateIp6TranslatorsRequest: TCRequestModel {
         /// 转换实例名称
@@ -44,7 +26,7 @@ extension Vpc {
         /// 转换实例运营商属性，可取"CMCC","CTCC","CUCC","BGP"
         public let ip6InternetServiceProvider: String?
         
-        public init (ip6TranslatorName: String?, ip6TranslatorCount: Int64?, ip6InternetServiceProvider: String?) {
+        public init (ip6TranslatorName: String? = nil, ip6TranslatorCount: Int64? = nil, ip6InternetServiceProvider: String? = nil) {
             self.ip6TranslatorName = ip6TranslatorName
             self.ip6TranslatorCount = ip6TranslatorCount
             self.ip6InternetServiceProvider = ip6InternetServiceProvider
@@ -69,5 +51,23 @@ extension Vpc {
             case ip6TranslatorSet = "Ip6TranslatorSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建IPV6转换IPV4实例
+    ///
+    /// 1. 该接口用于创建IPV6转换IPV4实例，支持批量
+    /// 2. 同一个账户在一个地域最多允许创建10个转换实例
+    @inlinable
+    public func createIp6Translators(_ input: CreateIp6TranslatorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIp6TranslatorsResponse > {
+        self.client.execute(action: "CreateIp6Translators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建IPV6转换IPV4实例
+    ///
+    /// 1. 该接口用于创建IPV6转换IPV4实例，支持批量
+    /// 2. 同一个账户在一个地域最多允许创建10个转换实例
+    @inlinable
+    public func createIp6Translators(_ input: CreateIp6TranslatorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIp6TranslatorsResponse {
+        try await self.client.execute(action: "CreateIp6Translators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

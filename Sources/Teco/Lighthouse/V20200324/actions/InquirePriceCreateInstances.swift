@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 创建实例询价
-    ///
-    /// 本接口（InquiryPriceCreateInstances）用于创建实例询价。
-    @inlinable
-    public func inquirePriceCreateInstances(_ input: InquirePriceCreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceCreateInstancesResponse > {
-        self.client.execute(action: "InquirePriceCreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例询价
-    ///
-    /// 本接口（InquiryPriceCreateInstances）用于创建实例询价。
-    @inlinable
-    public func inquirePriceCreateInstances(_ input: InquirePriceCreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateInstancesResponse {
-        try await self.client.execute(action: "InquirePriceCreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquirePriceCreateInstances请求参数结构体
     public struct InquirePriceCreateInstancesRequest: TCRequestModel {
         /// 实例的套餐 ID。
@@ -40,12 +24,12 @@ extension Lighthouse {
         public let instanceCount: Int64?
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 应用镜像 ID，使用收费应用镜像时必填。可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值中的BlueprintId获取。
         public let blueprintId: String?
         
-        public init (bundleId: String, instanceCount: Int64?, instanceChargePrepaid: InstanceChargePrepaid, blueprintId: String?) {
+        public init (bundleId: String, instanceCount: Int64? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, blueprintId: String? = nil) {
             self.bundleId = bundleId
             self.instanceCount = instanceCount
             self.instanceChargePrepaid = instanceChargePrepaid
@@ -72,5 +56,21 @@ extension Lighthouse {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例询价
+    ///
+    /// 本接口（InquiryPriceCreateInstances）用于创建实例询价。
+    @inlinable
+    public func inquirePriceCreateInstances(_ input: InquirePriceCreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceCreateInstancesResponse > {
+        self.client.execute(action: "InquirePriceCreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例询价
+    ///
+    /// 本接口（InquiryPriceCreateInstances）用于创建实例询价。
+    @inlinable
+    public func inquirePriceCreateInstances(_ input: InquirePriceCreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateInstancesResponse {
+        try await self.client.execute(action: "InquirePriceCreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

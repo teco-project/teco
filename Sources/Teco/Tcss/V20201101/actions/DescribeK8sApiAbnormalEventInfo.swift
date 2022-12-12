@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询k8s api 异常事件详情
-    @inlinable
-    public func describeK8sApiAbnormalEventInfo(_ input: DescribeK8sApiAbnormalEventInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeK8sApiAbnormalEventInfoResponse > {
-        self.client.execute(action: "DescribeK8sApiAbnormalEventInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询k8s api 异常事件详情
-    @inlinable
-    public func describeK8sApiAbnormalEventInfo(_ input: DescribeK8sApiAbnormalEventInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalEventInfoResponse {
-        try await self.client.execute(action: "DescribeK8sApiAbnormalEventInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeK8sApiAbnormalEventInfo请求参数结构体
     public struct DescribeK8sApiAbnormalEventInfoRequest: TCRequestModel {
         /// 事件ID
@@ -53,5 +41,17 @@ extension Tcss {
             case info = "Info"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询k8s api 异常事件详情
+    @inlinable
+    public func describeK8sApiAbnormalEventInfo(_ input: DescribeK8sApiAbnormalEventInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeK8sApiAbnormalEventInfoResponse > {
+        self.client.execute(action: "DescribeK8sApiAbnormalEventInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询k8s api 异常事件详情
+    @inlinable
+    public func describeK8sApiAbnormalEventInfo(_ input: DescribeK8sApiAbnormalEventInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalEventInfoResponse {
+        try await self.client.execute(action: "DescribeK8sApiAbnormalEventInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

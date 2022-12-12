@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 批量上传7层转发规则
-    @inlinable
-    public func createNewL7RulesUpload(_ input: CreateNewL7RulesUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNewL7RulesUploadResponse > {
-        self.client.execute(action: "CreateNewL7RulesUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量上传7层转发规则
-    @inlinable
-    public func createNewL7RulesUpload(_ input: CreateNewL7RulesUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNewL7RulesUploadResponse {
-        try await self.client.execute(action: "CreateNewL7RulesUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNewL7RulesUpload请求参数结构体
     public struct CreateNewL7RulesUploadRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP）
@@ -68,5 +56,17 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量上传7层转发规则
+    @inlinable
+    public func createNewL7RulesUpload(_ input: CreateNewL7RulesUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNewL7RulesUploadResponse > {
+        self.client.execute(action: "CreateNewL7RulesUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量上传7层转发规则
+    @inlinable
+    public func createNewL7RulesUpload(_ input: CreateNewL7RulesUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNewL7RulesUploadResponse {
+        try await self.client.execute(action: "CreateNewL7RulesUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

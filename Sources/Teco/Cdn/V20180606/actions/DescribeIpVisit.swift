@@ -17,26 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 活跃用户查询
-    ///
-    /// DescribeIpVisit 用于查询 5 分钟活跃用户数，及日活跃用户数明细
-    /// + 5 分钟活跃用户数：根据日志中客户端 IP，5 分钟粒度去重统计
-    /// + 日活跃用户数：根据日志中客户端 IP，按天粒度去重统计
-    @inlinable
-    public func describeIpVisit(_ input: DescribeIpVisitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpVisitResponse > {
-        self.client.execute(action: "DescribeIpVisit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 活跃用户查询
-    ///
-    /// DescribeIpVisit 用于查询 5 分钟活跃用户数，及日活跃用户数明细
-    /// + 5 分钟活跃用户数：根据日志中客户端 IP，5 分钟粒度去重统计
-    /// + 日活跃用户数：根据日志中客户端 IP，按天粒度去重统计
-    @inlinable
-    public func describeIpVisit(_ input: DescribeIpVisitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpVisitResponse {
-        try await self.client.execute(action: "DescribeIpVisit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIpVisit请求参数结构体
     public struct DescribeIpVisitRequest: TCRequestModel {
         /// 查询起始时间，如：2018-09-04 10:40:10，返回结果大于等于指定时间
@@ -61,7 +41,7 @@ extension Cdn {
         /// day：天粒度，查询时间区间大于 1 天时，默认返回天粒度活跃用户数
         public let interval: String?
         
-        public init (startTime: Date, endTime: Date, domains: [String]?, project: Int64?, interval: String?) {
+        public init (startTime: Date, endTime: Date, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.domains = domains
@@ -94,5 +74,25 @@ extension Cdn {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 活跃用户查询
+    ///
+    /// DescribeIpVisit 用于查询 5 分钟活跃用户数，及日活跃用户数明细
+    /// + 5 分钟活跃用户数：根据日志中客户端 IP，5 分钟粒度去重统计
+    /// + 日活跃用户数：根据日志中客户端 IP，按天粒度去重统计
+    @inlinable
+    public func describeIpVisit(_ input: DescribeIpVisitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpVisitResponse > {
+        self.client.execute(action: "DescribeIpVisit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 活跃用户查询
+    ///
+    /// DescribeIpVisit 用于查询 5 分钟活跃用户数，及日活跃用户数明细
+    /// + 5 分钟活跃用户数：根据日志中客户端 IP，5 分钟粒度去重统计
+    /// + 日活跃用户数：根据日志中客户端 IP，按天粒度去重统计
+    @inlinable
+    public func describeIpVisit(_ input: DescribeIpVisitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpVisitResponse {
+        try await self.client.execute(action: "DescribeIpVisit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

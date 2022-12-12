@@ -15,6 +15,40 @@
 // DO NOT EDIT.
 
 extension Cvm {
+    /// ModifyInstanceDiskType请求参数结构体
+    public struct ModifyInstanceDiskTypeRequest: TCRequestModel {
+        /// 待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/9388)接口返回值中的`InstanceId`获取。
+        public let instanceId: String
+        
+        /// 实例数据盘配置信息，只需要指定要转换的目标云硬盘的介质类型，指定DiskType的值，当前只支持一个数据盘转化。只支持CDHPAID类型实例指定CdcId参数。
+        public let dataDisks: [DataDisk]?
+        
+        /// 实例系统盘配置信息，只需要指定要转换的目标云硬盘的介质类型，指定DiskType的值。只支持CDHPAID类型实例指定CdcId参数。
+        public let systemDisk: SystemDisk?
+        
+        public init (instanceId: String, dataDisks: [DataDisk]? = nil, systemDisk: SystemDisk? = nil) {
+            self.instanceId = instanceId
+            self.dataDisks = dataDisks
+            self.systemDisk = systemDisk
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case dataDisks = "DataDisks"
+            case systemDisk = "SystemDisk"
+        }
+    }
+    
+    /// ModifyInstanceDiskType返回参数结构体
+    public struct ModifyInstanceDiskTypeResponse: TCResponseModel {
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 修改实例的硬盘介质
     ///
     /// 本接口 (ModifyInstanceDiskType) 用于修改实例硬盘介质类型。
@@ -39,39 +73,5 @@ extension Cvm {
     @inlinable
     public func modifyInstanceDiskType(_ input: ModifyInstanceDiskTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceDiskTypeResponse {
         try await self.client.execute(action: "ModifyInstanceDiskType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// ModifyInstanceDiskType请求参数结构体
-    public struct ModifyInstanceDiskTypeRequest: TCRequestModel {
-        /// 待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/9388)接口返回值中的`InstanceId`获取。
-        public let instanceId: String
-        
-        /// 实例数据盘配置信息，只需要指定要转换的目标云硬盘的介质类型，指定DiskType的值，当前只支持一个数据盘转化。只支持CDHPAID类型实例指定CdcId参数。
-        public let dataDisks: [DataDisk]?
-        
-        /// 实例系统盘配置信息，只需要指定要转换的目标云硬盘的介质类型，指定DiskType的值。只支持CDHPAID类型实例指定CdcId参数。
-        public let systemDisk: SystemDisk
-        
-        public init (instanceId: String, dataDisks: [DataDisk]?, systemDisk: SystemDisk) {
-            self.instanceId = instanceId
-            self.dataDisks = dataDisks
-            self.systemDisk = systemDisk
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case instanceId = "InstanceId"
-            case dataDisks = "DataDisks"
-            case systemDisk = "SystemDisk"
-        }
-    }
-    
-    /// ModifyInstanceDiskType返回参数结构体
-    public struct ModifyInstanceDiskTypeResponse: TCResponseModel {
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case requestId = "RequestId"
-        }
     }
 }

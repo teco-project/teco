@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 查询歌曲在售状态
-    ///
-    /// 根据音乐信息查询音乐是否在售
-    @inlinable
-    public func describeMusicSaleStatus(_ input: DescribeMusicSaleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMusicSaleStatusResponse > {
-        self.client.execute(action: "DescribeMusicSaleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询歌曲在售状态
-    ///
-    /// 根据音乐信息查询音乐是否在售
-    @inlinable
-    public func describeMusicSaleStatus(_ input: DescribeMusicSaleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMusicSaleStatusResponse {
-        try await self.client.execute(action: "DescribeMusicSaleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMusicSaleStatus请求参数结构体
     public struct DescribeMusicSaleStatusRequest: TCRequestModel {
         /// 歌曲Id集合，可传单个，也可传多个，上线查询单次50个
@@ -62,5 +46,21 @@ extension Ame {
             case musicStatusSet = "MusicStatusSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询歌曲在售状态
+    ///
+    /// 根据音乐信息查询音乐是否在售
+    @inlinable
+    public func describeMusicSaleStatus(_ input: DescribeMusicSaleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMusicSaleStatusResponse > {
+        self.client.execute(action: "DescribeMusicSaleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询歌曲在售状态
+    ///
+    /// 根据音乐信息查询音乐是否在售
+    @inlinable
+    public func describeMusicSaleStatus(_ input: DescribeMusicSaleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMusicSaleStatusResponse {
+        try await self.client.execute(action: "DescribeMusicSaleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

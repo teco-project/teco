@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 生成自定义码包
-    @inlinable
-    public func createCustomPack(_ input: CreateCustomPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomPackResponse > {
-        self.client.execute(action: "CreateCustomPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 生成自定义码包
-    @inlinable
-    public func createCustomPack(_ input: CreateCustomPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPackResponse {
-        try await self.client.execute(action: "CreateCustomPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCustomPack请求参数结构体
     public struct CreateCustomPackRequest: TCRequestModel {
         /// 商户ID
@@ -56,7 +44,7 @@ extension Trp {
         /// 批次ID，如果传了生码后会同时绑定批次，并激活码
         public let batchId: String?
         
-        public init (merchantId: String, amount: UInt64?, corpId: UInt64?, packType: UInt64?, packLevel: UInt64?, packSpec: [PackSpec]?, customId: String?, codeParts: [CodePart]?, batchId: String?) {
+        public init (merchantId: String, amount: UInt64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, customId: String? = nil, codeParts: [CodePart]? = nil, batchId: String? = nil) {
             self.merchantId = merchantId
             self.amount = amount
             self.corpId = corpId
@@ -93,5 +81,17 @@ extension Trp {
             case packId = "PackId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 生成自定义码包
+    @inlinable
+    public func createCustomPack(_ input: CreateCustomPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomPackResponse > {
+        self.client.execute(action: "CreateCustomPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 生成自定义码包
+    @inlinable
+    public func createCustomPack(_ input: CreateCustomPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPackResponse {
+        try await self.client.execute(action: "CreateCustomPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

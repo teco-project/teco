@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 查询设备历史网络状态
-    ///
-    /// 返回当前门店历史网络状态数据
-    @inlinable
-    public func describeHistoryNetworkInfo(_ input: DescribeHistoryNetworkInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHistoryNetworkInfoResponse > {
-        self.client.execute(action: "DescribeHistoryNetworkInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备历史网络状态
-    ///
-    /// 返回当前门店历史网络状态数据
-    @inlinable
-    public func describeHistoryNetworkInfo(_ input: DescribeHistoryNetworkInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHistoryNetworkInfoResponse {
-        try await self.client.execute(action: "DescribeHistoryNetworkInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHistoryNetworkInfo请求参数结构体
     public struct DescribeHistoryNetworkInfoRequest: TCRequestModel {
         /// 请求时间戳
@@ -54,7 +38,7 @@ extension Youmall {
         /// 拉取偏移，返回offset之后的数据
         public let offset: Int64?
         
-        public init (time: Int64, companyId: String, shopId: Int64, startDay: String, endDay: String, limit: Int64?, offset: Int64?) {
+        public init (time: Int64, companyId: String, shopId: Int64, startDay: String, endDay: String, limit: Int64? = nil, offset: Int64? = nil) {
             self.time = time
             self.companyId = companyId
             self.shopId = shopId
@@ -87,5 +71,21 @@ extension Youmall {
             case instanceSet = "InstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备历史网络状态
+    ///
+    /// 返回当前门店历史网络状态数据
+    @inlinable
+    public func describeHistoryNetworkInfo(_ input: DescribeHistoryNetworkInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHistoryNetworkInfoResponse > {
+        self.client.execute(action: "DescribeHistoryNetworkInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备历史网络状态
+    ///
+    /// 返回当前门店历史网络状态数据
+    @inlinable
+    public func describeHistoryNetworkInfo(_ input: DescribeHistoryNetworkInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHistoryNetworkInfoResponse {
+        try await self.client.execute(action: "DescribeHistoryNetworkInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

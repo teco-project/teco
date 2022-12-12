@@ -67,7 +67,7 @@ extension Trtc {
         /// 所有参与混流转推的主播持续离开TRTC房间超过MaxIdleTime的时长，自动停止转推，单位：秒。默认值为 30 秒，该值需大于等于 5秒，且小于等于 86400秒(24小时)。
         public let maxIdleTime: UInt64?
         
-        public init (userId: String, userSig: String?, maxIdleTime: UInt64?) {
+        public init (userId: String, userSig: String? = nil, maxIdleTime: UInt64? = nil) {
             self.userId = userId
             self.userSig = userSig
             self.maxIdleTime = maxIdleTime
@@ -94,7 +94,7 @@ extension Trtc {
         /// 输出流音频编码类型，取值范围[0, 1, 2]，0为LC-AAC，1为HE-AAC，2为HE-AACv2。默认值为0。当音频编码设置为HE-AACv2时，只支持输出流音频声道数为双声道。HE-AAC和HE-AACv2支持的输出流音频采样率范围为[48000, 44100, 32000, 24000, 16000]。
         public let codec: UInt64?
         
-        public init (sampleRate: UInt64, channel: UInt64, bitRate: UInt64, codec: UInt64?) {
+        public init (sampleRate: UInt64, channel: UInt64, bitRate: UInt64, codec: UInt64? = nil) {
             self.sampleRate = sampleRate
             self.channel = channel
             self.bitRate = bitRate
@@ -159,7 +159,7 @@ extension Trtc {
         /// 第三方云存储bucket 的指定位置，由字符串数组组成。合法的字符串范围a~z,A~Z,0~9,'_'和'-'，举个例子，录制文件xxx.m3u8在 ["prefix1", "prefix2"]作用下，会变成prefix1/prefix2/TaskId/xxx.m3u8。
         public let fileNamePrefix: [String]?
         
-        public init (vendor: UInt64, region: String, bucket: String, accessKey: String, secretKey: String, fileNamePrefix: [String]?) {
+        public init (vendor: UInt64, region: String, bucket: String, accessKey: String, secretKey: String, fileNamePrefix: [String]? = nil) {
             self.vendor = vendor
             self.region = region
             self.bucket = bucket
@@ -181,9 +181,9 @@ extension Trtc {
     /// 点播相关参数。
     public struct CloudVod: TCInputModel {
         /// 腾讯云点播相关参数。
-        public let tencentVod: TencentVod
+        public let tencentVod: TencentVod?
         
-        public init (tencentVod: TencentVod) {
+        public init (tencentVod: TencentVod? = nil) {
             self.tencentVod = tencentVod
         }
         
@@ -237,7 +237,7 @@ extension Trtc {
         /// 混流-输出流背景图片URL地址，支持png、jpg、jpeg、bmp格式，暂不支持透明通道。URL链接长度限制为512字节。BackgroundImageUrl和BackgroundImageId参数都填时，以BackgroundImageUrl为准。图片大小限制不超过2MB。
         public let backgroundImageUrl: String?
         
-        public init (audioSampleRate: UInt64, audioBitrate: UInt64, audioChannels: UInt64, videoWidth: UInt64?, videoHeight: UInt64?, videoBitrate: UInt64?, videoFramerate: UInt64?, videoGop: UInt64?, backgroundColor: UInt64?, backgroundImageId: UInt64?, audioCodec: UInt64?, backgroundImageUrl: String?) {
+        public init (audioSampleRate: UInt64, audioBitrate: UInt64, audioChannels: UInt64, videoWidth: UInt64? = nil, videoHeight: UInt64? = nil, videoBitrate: UInt64? = nil, videoFramerate: UInt64? = nil, videoGop: UInt64? = nil, backgroundColor: UInt64? = nil, backgroundImageId: UInt64? = nil, audioCodec: UInt64? = nil, backgroundImageUrl: String? = nil) {
             self.audioSampleRate = audioSampleRate
             self.audioBitrate = audioBitrate
             self.audioChannels = audioChannels
@@ -324,7 +324,7 @@ extension Trtc {
         public let mainVideoStreamType: UInt64?
         
         /// 画中画模板中有效，代表小画面的布局参数。
-        public let smallVideoLayoutParams: SmallVideoLayoutParams
+        public let smallVideoLayoutParams: SmallVideoLayoutParams?
         
         /// 屏幕分享模板有效。设置为1时代表大画面居右，小画面居左布局。默认为0。
         public let mainVideoRightAlign: UInt64?
@@ -342,9 +342,9 @@ extension Trtc {
         public let pureAudioHoldPlaceMode: UInt64?
         
         /// 水印参数。
-        public let waterMarkParams: WaterMarkParams
+        public let waterMarkParams: WaterMarkParams?
         
-        public init (template: UInt64?, mainVideoUserId: String?, mainVideoStreamType: UInt64?, smallVideoLayoutParams: SmallVideoLayoutParams, mainVideoRightAlign: UInt64?, mixVideoUids: [String]?, presetLayoutConfig: [PresetLayoutConfig]?, placeHolderMode: UInt64?, pureAudioHoldPlaceMode: UInt64?, waterMarkParams: WaterMarkParams) {
+        public init (template: UInt64? = nil, mainVideoUserId: String? = nil, mainVideoStreamType: UInt64? = nil, smallVideoLayoutParams: SmallVideoLayoutParams? = nil, mainVideoRightAlign: UInt64? = nil, mixVideoUids: [String]? = nil, presetLayoutConfig: [PresetLayoutConfig]? = nil, placeHolderMode: UInt64? = nil, pureAudioHoldPlaceMode: UInt64? = nil, waterMarkParams: WaterMarkParams? = nil) {
             self.template = template
             self.mainVideoUserId = mainVideoUserId
             self.mainVideoStreamType = mainVideoStreamType
@@ -388,7 +388,7 @@ extension Trtc {
     /// 混流转推的音频相关参数。
     public struct McuAudioParams: TCInputModel {
         /// 音频编码参数。
-        public let audioEncode: AudioEncode
+        public let audioEncode: AudioEncode?
         
         /// 音频用户白名单，start时，为空或不填表示混所有主播音频，填具体值表示混指定主播音频；update时，不填表示不更新，为空表示更新为混所有主播音频，填具体值表示更新为混指定主播音频。
         /// 使用黑白名单时，黑白名单必须同时填写。都不填写时表示不更新。同一个用户同时在黑白名单时，以黑名单为主。
@@ -398,7 +398,7 @@ extension Trtc {
         /// 使用黑白名单时，黑白名单必须同时填写。都不填写时表示不更新。同一个用户同时在黑白名单时，以黑名单为主。
         public let unSubscribeAudioList: [McuUserInfoParams]?
         
-        public init (audioEncode: AudioEncode, subscribeAudioList: [McuUserInfoParams]?, unSubscribeAudioList: [McuUserInfoParams]?) {
+        public init (audioEncode: AudioEncode? = nil, subscribeAudioList: [McuUserInfoParams]? = nil, unSubscribeAudioList: [McuUserInfoParams]? = nil) {
             self.audioEncode = audioEncode
             self.subscribeAudioList = subscribeAudioList
             self.unSubscribeAudioList = unSubscribeAudioList
@@ -472,7 +472,7 @@ extension Trtc {
     /// 混流布局参数。
     public struct McuLayout: TCInputModel {
         /// 用户媒体流参数。不填时腾讯云后台按照上行主播的进房顺序自动填充。
-        public let userMediaStream: UserMediaStream
+        public let userMediaStream: UserMediaStream?
         
         /// 子画面在输出时的宽度，单位为像素值，不填默认为0。
         public let imageWidth: UInt64?
@@ -506,9 +506,9 @@ extension Trtc {
         public let backgroundImageUrl: String?
         
         /// 客户自定义裁剪，针对原始输入流裁剪
-        public let customCrop: McuCustomCrop
+        public let customCrop: McuCustomCrop?
         
-        public init (userMediaStream: UserMediaStream, imageWidth: UInt64?, imageHeight: UInt64?, locationX: UInt64?, locationY: UInt64?, zOrder: UInt64?, renderMode: UInt64?, backGroundColor: String?, backgroundImageUrl: String?, customCrop: McuCustomCrop) {
+        public init (userMediaStream: UserMediaStream? = nil, imageWidth: UInt64? = nil, imageHeight: UInt64? = nil, locationX: UInt64? = nil, locationY: UInt64? = nil, zOrder: UInt64? = nil, renderMode: UInt64? = nil, backGroundColor: String? = nil, backgroundImageUrl: String? = nil, customCrop: McuCustomCrop? = nil) {
             self.userMediaStream = userMediaStream
             self.imageWidth = imageWidth
             self.imageHeight = imageHeight
@@ -547,9 +547,9 @@ extension Trtc {
         public let mixLayoutList: [McuLayout]?
         
         /// 指定动态布局中悬浮布局和屏幕分享布局的大画面信息，只在悬浮布局和屏幕分享布局有效。
-        public let maxVideoUser: MaxVideoUser
+        public let maxVideoUser: MaxVideoUser?
         
-        public init (mixLayoutMode: UInt64?, pureAudioHoldPlaceMode: UInt64?, mixLayoutList: [McuLayout]?, maxVideoUser: MaxVideoUser) {
+        public init (mixLayoutMode: UInt64? = nil, pureAudioHoldPlaceMode: UInt64? = nil, mixLayoutList: [McuLayout]? = nil, maxVideoUser: MaxVideoUser? = nil) {
             self.mixLayoutMode = mixLayoutMode
             self.pureAudioHoldPlaceMode = pureAudioHoldPlaceMode
             self.mixLayoutList = mixLayoutList
@@ -573,7 +573,7 @@ extension Trtc {
         /// SEI消息的payload_type，默认值100，取值范围100-254（244除外，244为我们内部自定义的时间戳SEI）
         public let payloadType: UInt64?
         
-        public init (appData: String?, payloadType: UInt64?) {
+        public init (appData: String? = nil, payloadType: UInt64? = nil) {
             self.appData = appData
             self.payloadType = payloadType
         }
@@ -595,7 +595,7 @@ extension Trtc {
         /// PayloadType为5，PayloadUuid必须填写。PayloadType不是5时，不需要填写，填写会被后台忽略。该值必须是32长度的十六进制。
         public let payloadUuid: String?
         
-        public init (payloadContent: String, payloadType: UInt64, payloadUuid: String?) {
+        public init (payloadContent: String, payloadType: UInt64, payloadUuid: String? = nil) {
             self.payloadContent = payloadContent
             self.payloadType = payloadType
             self.payloadUuid = payloadUuid
@@ -616,7 +616,7 @@ extension Trtc {
         /// 是否是腾讯云CDN，0为转推非腾讯云CDN，1为转推腾讯CDN，不携带该参数默认为1。注意：为避免误产生转推费用，该参数建议明确填写。转推非腾讯云CDN时会产生转推费用，详情参见接口文档说明。
         public let isTencentCdn: UInt64?
         
-        public init (publishCdnUrl: String, isTencentCdn: UInt64?) {
+        public init (publishCdnUrl: String, isTencentCdn: UInt64? = nil) {
             self.publishCdnUrl = publishCdnUrl
             self.isTencentCdn = isTencentCdn
         }
@@ -630,12 +630,12 @@ extension Trtc {
     /// 混流SEI参数
     public struct McuSeiParams: TCInputModel {
         /// 音量布局SEI
-        public let layoutVolume: McuLayoutVolume
+        public let layoutVolume: McuLayoutVolume?
         
         /// 透传SEI
-        public let passThrough: McuPassThrough
+        public let passThrough: McuPassThrough?
         
-        public init (layoutVolume: McuLayoutVolume, passThrough: McuPassThrough) {
+        public init (layoutVolume: McuLayoutVolume? = nil, passThrough: McuPassThrough? = nil) {
             self.layoutVolume = layoutVolume
             self.passThrough = passThrough
         }
@@ -663,10 +663,10 @@ extension Trtc {
     /// 混流转推的视频相关参数。
     public struct McuVideoParams: TCInputModel {
         /// 输出流视频编码参数。
-        public let videoEncode: VideoEncode
+        public let videoEncode: VideoEncode?
         
         /// 混流布局参数。
-        public let layoutParams: McuLayoutParams
+        public let layoutParams: McuLayoutParams?
         
         /// 整个画布背景颜色，常用的颜色有：
         /// 红色：0xcc0033。
@@ -684,7 +684,7 @@ extension Trtc {
         /// 混流布局的水印参数。
         public let waterMarkList: [McuWaterMarkParams]?
         
-        public init (videoEncode: VideoEncode, layoutParams: McuLayoutParams, backGroundColor: String?, backgroundImageUrl: String?, waterMarkList: [McuWaterMarkParams]?) {
+        public init (videoEncode: VideoEncode? = nil, layoutParams: McuLayoutParams? = nil, backGroundColor: String? = nil, backgroundImageUrl: String? = nil, waterMarkList: [McuWaterMarkParams]? = nil) {
             self.videoEncode = videoEncode
             self.layoutParams = layoutParams
             self.backGroundColor = backGroundColor
@@ -721,7 +721,7 @@ extension Trtc {
         /// 水印在输出时的层级，不填默认为0。
         public let zOrder: UInt64?
         
-        public init (waterMarkUrl: String, waterMarkWidth: UInt64, waterMarkHeight: UInt64, locationX: UInt64, locationY: UInt64, zOrder: UInt64?) {
+        public init (waterMarkUrl: String, waterMarkWidth: UInt64, waterMarkHeight: UInt64, locationX: UInt64, locationY: UInt64, zOrder: UInt64? = nil) {
             self.waterMarkUrl = waterMarkUrl
             self.waterMarkWidth = waterMarkWidth
             self.waterMarkHeight = waterMarkHeight
@@ -746,9 +746,9 @@ extension Trtc {
         public let waterMarkType: UInt64?
         
         /// 图片水印参数。WaterMarkType为0指定。
-        public let waterMarkImage: McuWaterMarkImage
+        public let waterMarkImage: McuWaterMarkImage?
         
-        public init (waterMarkType: UInt64?, waterMarkImage: McuWaterMarkImage) {
+        public init (waterMarkType: UInt64? = nil, waterMarkImage: McuWaterMarkImage? = nil) {
             self.waterMarkType = waterMarkType
             self.waterMarkImage = waterMarkImage
         }
@@ -796,7 +796,7 @@ extension Trtc {
         /// 下载的url地址， 只支持jpg， png，大小限制不超过5M，宽高比不一致的处理方案同 RenderMode。
         public let subBackgroundImage: String?
         
-        public init (top: UInt64, left: UInt64, width: UInt64, height: UInt64, userId: String?, alpha: UInt64?, renderMode: UInt64?, mediaId: UInt64?, imageLayer: UInt64?, subBackgroundImage: String?) {
+        public init (top: UInt64, left: UInt64, width: UInt64, height: UInt64, userId: String? = nil, alpha: UInt64? = nil, renderMode: UInt64? = nil, mediaId: UInt64? = nil, imageLayer: UInt64? = nil, subBackgroundImage: String? = nil) {
             self.top = top
             self.left = left
             self.width = width
@@ -872,7 +872,7 @@ extension Trtc {
         /// 屏幕分享模板有效。设置为1时代表大画面居右，小画面居左布局。默认为0。
         public let maxResolutionUserAlign: UInt64?
         
-        public init (mixLayoutMode: UInt64, mixLayoutList: [MixLayout]?, backGroundColor: String?, maxResolutionUserId: String?, mediaId: UInt64?, backgroundImageUrl: String?, placeHolderMode: UInt64?, backgroundImageRenderMode: UInt64?, defaultSubBackgroundImage: String?, waterMarkList: [WaterMark]?, renderMode: UInt64?, maxResolutionUserAlign: UInt64?) {
+        public init (mixLayoutMode: UInt64, mixLayoutList: [MixLayout]? = nil, backGroundColor: String? = nil, maxResolutionUserId: String? = nil, mediaId: UInt64? = nil, backgroundImageUrl: String? = nil, placeHolderMode: UInt64? = nil, backgroundImageRenderMode: UInt64? = nil, defaultSubBackgroundImage: String? = nil, waterMarkList: [WaterMark]? = nil, renderMode: UInt64? = nil, maxResolutionUserAlign: UInt64? = nil) {
             self.mixLayoutMode = mixLayoutMode
             self.mixLayoutList = mixLayoutList
             self.backGroundColor = backGroundColor
@@ -906,12 +906,12 @@ extension Trtc {
     /// 录制的音视频转码参数。
     public struct MixTranscodeParams: TCInputModel {
         /// 录制视频转码参数，注意如果设置了这个参数，那么里面的字段都是必填的，没有默认值，如果不填这个参数，那么取值为默认值。
-        public let videoParams: VideoParams
+        public let videoParams: VideoParams?
         
         /// 录制音频转码参数，注意如果设置了这个参数，那么里面的字段都是必填的，没有默认值，如果不填这个参数，那么取值为默认值。
-        public let audioParams: AudioParams
+        public let audioParams: AudioParams?
         
-        public init (videoParams: VideoParams, audioParams: AudioParams) {
+        public init (videoParams: VideoParams? = nil, audioParams: AudioParams? = nil) {
             self.videoParams = videoParams
             self.audioParams = audioParams
         }
@@ -933,7 +933,7 @@ extension Trtc {
         /// 房间号类型，0为整形房间号，1为字符串房间号。
         public let roomIdType: UInt64?
         
-        public init (userId: String, roomId: String?, roomIdType: UInt64?) {
+        public init (userId: String, roomId: String? = nil, roomIdType: UInt64? = nil) {
             self.userId = userId
             self.roomId = roomId
             self.roomIdType = roomIdType
@@ -979,7 +979,7 @@ extension Trtc {
         /// 取值范围[0,1]，填0无实际含义; 填1：指定录制文件格式为mp3。此参数不建议使用，建议在实时音视频控制台配置纯音频录制模板。
         public let recordAudioOnly: UInt64?
         
-        public init (streamId: String, pureAudioStream: UInt64?, recordId: String?, recordAudioOnly: UInt64?) {
+        public init (streamId: String, pureAudioStream: UInt64? = nil, recordId: String? = nil, recordAudioOnly: UInt64? = nil) {
             self.streamId = streamId
             self.pureAudioStream = pureAudioStream
             self.recordId = recordId
@@ -1056,7 +1056,7 @@ extension Trtc {
         /// 占位图ID。启用占位图功能时，在当前位置的用户没有上行视频时显示占位图。占位图大小不能超过2M，在实时音视频控制台上传并生成，https://cloud.tencent.com/document/product/647/50769
         public let placeImageId: UInt64?
         
-        public init (userId: String?, streamType: UInt64?, imageWidth: UInt64?, imageHeight: UInt64?, locationX: UInt64?, locationY: UInt64?, zOrder: UInt64?, renderMode: UInt64?, mixInputType: UInt64?, placeImageId: UInt64?) {
+        public init (userId: String? = nil, streamType: UInt64? = nil, imageWidth: UInt64? = nil, imageHeight: UInt64? = nil, locationX: UInt64? = nil, locationY: UInt64? = nil, zOrder: UInt64? = nil, renderMode: UInt64? = nil, mixInputType: UInt64? = nil, placeImageId: UInt64? = nil) {
             self.userId = userId
             self.streamType = streamType
             self.imageWidth = imageWidth
@@ -1142,7 +1142,7 @@ extension Trtc {
         public let streamType: UInt64?
         
         /// 指定订阅流白名单或者黑名单。
-        public let subscribeStreamUserIds: SubscribeStreamUserIds
+        public let subscribeStreamUserIds: SubscribeStreamUserIds?
         
         /// 输出文件的格式，上传到云点播时此参数无效，存储到云点播时请关注TencentVod内的MediaType参数。0：(默认)输出文件为hls格式。1：输出文件格式为hls+mp4。2：输出文件格式为hls+aac 。
         public let outputFormat: UInt64?
@@ -1154,7 +1154,7 @@ extension Trtc {
         /// Hls 格式录制此参数不生效。
         public let maxMediaFileDuration: UInt64?
         
-        public init (recordMode: UInt64, maxIdleTime: UInt64?, streamType: UInt64?, subscribeStreamUserIds: SubscribeStreamUserIds, outputFormat: UInt64?, avMerge: UInt64?, maxMediaFileDuration: UInt64?) {
+        public init (recordMode: UInt64, maxIdleTime: UInt64? = nil, streamType: UInt64? = nil, subscribeStreamUserIds: SubscribeStreamUserIds? = nil, outputFormat: UInt64? = nil, avMerge: UInt64? = nil, maxMediaFileDuration: UInt64? = nil) {
             self.recordMode = recordMode
             self.maxIdleTime = maxIdleTime
             self.streamType = streamType
@@ -1369,7 +1369,7 @@ extension Trtc {
         /// 小画面在输出时的Y偏移，单位为像素值，LocationY与ImageHeight之和不能超过混流输出的总高度，不填默认为0。
         public let locationY: UInt64?
         
-        public init (userId: String, streamType: UInt64, imageWidth: UInt64?, imageHeight: UInt64?, locationX: UInt64?, locationY: UInt64?) {
+        public init (userId: String, streamType: UInt64, imageWidth: UInt64? = nil, imageHeight: UInt64? = nil, locationX: UInt64? = nil, locationY: UInt64? = nil) {
             self.userId = userId
             self.streamType = streamType
             self.imageWidth = imageWidth
@@ -1418,12 +1418,12 @@ extension Trtc {
     /// 第三方存储参数。
     public struct StorageParams: TCInputModel {
         /// 第三方云存储的账号信息（CloudStorage参数暂不可用，请使用CloudVod参数存储至云点播）。
-        public let cloudStorage: CloudStorage
+        public let cloudStorage: CloudStorage?
         
         /// 【必填】腾讯云云点播的账号信息，目前仅支持存储至腾讯云点播VOD。
-        public let cloudVod: CloudVod
+        public let cloudVod: CloudVod?
         
-        public init (cloudStorage: CloudStorage, cloudVod: CloudVod) {
+        public init (cloudStorage: CloudStorage? = nil, cloudVod: CloudVod? = nil) {
             self.cloudStorage = cloudStorage
             self.cloudVod = cloudVod
         }
@@ -1448,7 +1448,7 @@ extension Trtc {
         /// 订阅视频流黑名单，指定不订阅哪几个UserId的视频流，例如["1", "2", "3"], 代表不订阅UserId  1，2，3的视频流；["1.*$"], 代表不订阅UserId前缀为1的视频流。默认不填订阅房间内所有视频流，订阅列表用户数不超过32。
         public let unSubscribeVideoUserIds: [String]?
         
-        public init (subscribeAudioUserIds: [String]?, unSubscribeAudioUserIds: [String]?, subscribeVideoUserIds: [String]?, unSubscribeVideoUserIds: [String]?) {
+        public init (subscribeAudioUserIds: [String]? = nil, unSubscribeAudioUserIds: [String]? = nil, subscribeVideoUserIds: [String]? = nil, unSubscribeVideoUserIds: [String]? = nil) {
             self.subscribeAudioUserIds = subscribeAudioUserIds
             self.unSubscribeAudioUserIds = unSubscribeAudioUserIds
             self.subscribeVideoUserIds = subscribeVideoUserIds
@@ -1514,7 +1514,7 @@ extension Trtc {
         /// 仅支持API录制上传vod，该参数表示用户可以自定义录制文件名前缀，【限制长度为64字节，只允许包含大小写英文字母（a-zA-Z）、数字（0-9）及下划线和连词符】。前缀与自动生成的录制文件名之间用__UserId_u_分开。
         public let userDefineRecordId: String?
         
-        public init (procedure: String?, expireTime: UInt64?, storageRegion: String?, classId: UInt64?, subAppId: UInt64?, sessionContext: String?, sourceContext: String?, mediaType: UInt64?, userDefineRecordId: String?) {
+        public init (procedure: String? = nil, expireTime: UInt64? = nil, storageRegion: String? = nil, classId: UInt64? = nil, subAppId: UInt64? = nil, sessionContext: String? = nil, sourceContext: String? = nil, mediaType: UInt64? = nil, userDefineRecordId: String? = nil) {
             self.procedure = procedure
             self.expireTime = expireTime
             self.storageRegion = storageRegion
@@ -1654,12 +1654,12 @@ extension Trtc {
     /// 用户媒体流参数。
     public struct UserMediaStream: TCInputModel {
         /// TRTC用户参数。
-        public let userInfo: MixUserInfo
+        public let userInfo: MixUserInfo?
         
         /// 主辅路流类型，0为摄像头，1为屏幕分享，不填默认为0。
         public let streamType: UInt64?
         
-        public init (userInfo: MixUserInfo, streamType: UInt64?) {
+        public init (userInfo: MixUserInfo? = nil, streamType: UInt64? = nil) {
             self.userInfo = userInfo
             self.streamType = streamType
         }
@@ -1744,9 +1744,9 @@ extension Trtc {
         public let waterMarkType: UInt64?
         
         /// 水印为图片时的参数列表，水印为图片时校验必填。
-        public let waterMarkImage: WaterMarkImage
+        public let waterMarkImage: WaterMarkImage?
         
-        public init (waterMarkType: UInt64?, waterMarkImage: WaterMarkImage) {
+        public init (waterMarkType: UInt64? = nil, waterMarkImage: WaterMarkImage? = nil) {
             self.waterMarkType = waterMarkType
             self.waterMarkImage = waterMarkImage
         }
@@ -1811,7 +1811,7 @@ extension Trtc {
         /// 混流-水印图片URL地址，支持png、jpg、jpeg、bmp格式，暂不支持透明通道。URL链接长度限制为512字节。WaterMarkUrl和WaterMarkId参数都填时，以WaterMarkUrl为准。图片大小限制不超过2MB。
         public let waterMarkUrl: String?
         
-        public init (waterMarkId: UInt64, waterMarkWidth: UInt64, waterMarkHeight: UInt64, locationX: UInt64, locationY: UInt64, waterMarkUrl: String?) {
+        public init (waterMarkId: UInt64, waterMarkWidth: UInt64, waterMarkHeight: UInt64, locationX: UInt64, locationY: UInt64, waterMarkUrl: String? = nil) {
             self.waterMarkId = waterMarkId
             self.waterMarkWidth = waterMarkWidth
             self.waterMarkHeight = waterMarkHeight

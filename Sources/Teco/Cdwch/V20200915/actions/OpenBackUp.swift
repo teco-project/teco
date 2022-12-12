@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdwch {
-    /// 开启或者关闭策略
-    @inlinable
-    public func openBackUp(_ input: OpenBackUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenBackUpResponse > {
-        self.client.execute(action: "OpenBackUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启或者关闭策略
-    @inlinable
-    public func openBackUp(_ input: OpenBackUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenBackUpResponse {
-        try await self.client.execute(action: "OpenBackUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OpenBackUp请求参数结构体
     public struct OpenBackUpRequest: TCRequestModel {
         /// 集群id
@@ -59,5 +47,17 @@ extension Cdwch {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启或者关闭策略
+    @inlinable
+    public func openBackUp(_ input: OpenBackUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenBackUpResponse > {
+        self.client.execute(action: "OpenBackUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启或者关闭策略
+    @inlinable
+    public func openBackUp(_ input: OpenBackUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenBackUpResponse {
+        try await self.client.execute(action: "OpenBackUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

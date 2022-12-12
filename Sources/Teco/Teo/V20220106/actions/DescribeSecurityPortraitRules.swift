@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询Bot用户画像规则
-    @inlinable
-    public func describeSecurityPortraitRules(_ input: DescribeSecurityPortraitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPortraitRulesResponse > {
-        self.client.execute(action: "DescribeSecurityPortraitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Bot用户画像规则
-    @inlinable
-    public func describeSecurityPortraitRules(_ input: DescribeSecurityPortraitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPortraitRulesResponse {
-        try await self.client.execute(action: "DescribeSecurityPortraitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityPortraitRules请求参数结构体
     public struct DescribeSecurityPortraitRulesRequest: TCRequestModel {
         /// 一级域名
@@ -66,5 +54,17 @@ extension Teo {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Bot用户画像规则
+    @inlinable
+    public func describeSecurityPortraitRules(_ input: DescribeSecurityPortraitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPortraitRulesResponse > {
+        self.client.execute(action: "DescribeSecurityPortraitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Bot用户画像规则
+    @inlinable
+    public func describeSecurityPortraitRules(_ input: DescribeSecurityPortraitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPortraitRulesResponse {
+        try await self.client.execute(action: "DescribeSecurityPortraitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

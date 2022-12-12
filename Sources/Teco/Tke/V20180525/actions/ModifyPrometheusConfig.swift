@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 修改prometheus配置
-    ///
-    /// 修改prometheus配置，如果配置项不存在，则会新增
-    @inlinable
-    public func modifyPrometheusConfig(_ input: ModifyPrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusConfigResponse > {
-        self.client.execute(action: "ModifyPrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改prometheus配置
-    ///
-    /// 修改prometheus配置，如果配置项不存在，则会新增
-    @inlinable
-    public func modifyPrometheusConfig(_ input: ModifyPrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusConfigResponse {
-        try await self.client.execute(action: "ModifyPrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPrometheusConfig请求参数结构体
     public struct ModifyPrometheusConfigRequest: TCRequestModel {
         /// 实例id
@@ -51,7 +35,7 @@ extension Tke {
         /// prometheus原生Job配置
         public let rawJobs: [PrometheusConfigItem]?
         
-        public init (instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]?, podMonitors: [PrometheusConfigItem]?, rawJobs: [PrometheusConfigItem]?) {
+        public init (instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil) {
             self.instanceId = instanceId
             self.clusterType = clusterType
             self.clusterId = clusterId
@@ -78,5 +62,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改prometheus配置
+    ///
+    /// 修改prometheus配置，如果配置项不存在，则会新增
+    @inlinable
+    public func modifyPrometheusConfig(_ input: ModifyPrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusConfigResponse > {
+        self.client.execute(action: "ModifyPrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改prometheus配置
+    ///
+    /// 修改prometheus配置，如果配置项不存在，则会新增
+    @inlinable
+    public func modifyPrometheusConfig(_ input: ModifyPrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusConfigResponse {
+        try await self.client.execute(action: "ModifyPrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

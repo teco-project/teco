@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 修改产品数据模板
-    ///
-    /// 提供修改产品的数据模板的能力
-    @inlinable
-    public func modifyModelDefinition(_ input: ModifyModelDefinitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModelDefinitionResponse > {
-        self.client.execute(action: "ModifyModelDefinition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改产品数据模板
-    ///
-    /// 提供修改产品的数据模板的能力
-    @inlinable
-    public func modifyModelDefinition(_ input: ModifyModelDefinitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelDefinitionResponse {
-        try await self.client.execute(action: "ModifyModelDefinition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyModelDefinition请求参数结构体
     public struct ModifyModelDefinitionRequest: TCRequestModel {
         /// 产品ID
@@ -58,5 +42,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改产品数据模板
+    ///
+    /// 提供修改产品的数据模板的能力
+    @inlinable
+    public func modifyModelDefinition(_ input: ModifyModelDefinitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModelDefinitionResponse > {
+        self.client.execute(action: "ModifyModelDefinition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改产品数据模板
+    ///
+    /// 提供修改产品的数据模板的能力
+    @inlinable
+    public func modifyModelDefinition(_ input: ModifyModelDefinitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelDefinitionResponse {
+        try await self.client.execute(action: "ModifyModelDefinition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 分页查询质量监控组
-    @inlinable
-    public func describeMonitorsByPage(_ input: DescribeMonitorsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorsByPageResponse > {
-        self.client.execute(action: "DescribeMonitorsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分页查询质量监控组
-    @inlinable
-    public func describeMonitorsByPage(_ input: DescribeMonitorsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorsByPageResponse {
-        try await self.client.execute(action: "DescribeMonitorsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMonitorsByPage请求参数结构体
     public struct DescribeMonitorsByPageRequest: TCRequestModel {
         /// 项目Id
@@ -44,7 +32,7 @@ extension Wedata {
         /// 分页序号
         public let pageNumber: UInt64?
         
-        public init (projectId: String?, pageSize: UInt64?, filters: [Filter]?, orderFields: [OrderField]?, pageNumber: UInt64?) {
+        public init (projectId: String? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, pageNumber: UInt64? = nil) {
             self.projectId = projectId
             self.pageSize = pageSize
             self.filters = filters
@@ -65,7 +53,7 @@ extension Wedata {
     public struct DescribeMonitorsByPageResponse: TCResponseModel {
         /// 分页查询结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: RuleGroupMonitorPage
+        public let data: RuleGroupMonitorPage?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -74,5 +62,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分页查询质量监控组
+    @inlinable
+    public func describeMonitorsByPage(_ input: DescribeMonitorsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorsByPageResponse > {
+        self.client.execute(action: "DescribeMonitorsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分页查询质量监控组
+    @inlinable
+    public func describeMonitorsByPage(_ input: DescribeMonitorsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorsByPageResponse {
+        try await self.client.execute(action: "DescribeMonitorsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

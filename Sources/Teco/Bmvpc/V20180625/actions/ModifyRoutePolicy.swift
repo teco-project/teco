@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 修改自定义路由
-    @inlinable
-    public func modifyRoutePolicy(_ input: ModifyRoutePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRoutePolicyResponse > {
-        self.client.execute(action: "ModifyRoutePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改自定义路由
-    @inlinable
-    public func modifyRoutePolicy(_ input: ModifyRoutePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoutePolicyResponse {
-        try await self.client.execute(action: "ModifyRoutePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRoutePolicy请求参数结构体
     public struct ModifyRoutePolicyRequest: TCRequestModel {
         /// 路由表ID
@@ -58,5 +46,17 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改自定义路由
+    @inlinable
+    public func modifyRoutePolicy(_ input: ModifyRoutePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRoutePolicyResponse > {
+        self.client.execute(action: "ModifyRoutePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改自定义路由
+    @inlinable
+    public func modifyRoutePolicy(_ input: ModifyRoutePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoutePolicyResponse {
+        try await self.client.execute(action: "ModifyRoutePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

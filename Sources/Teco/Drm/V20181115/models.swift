@@ -24,9 +24,9 @@ extension Drm {
         public let objectName: String?
         
         /// 输出对象参数。
-        public let para: DrmOutputPara
+        public let para: DrmOutputPara?
         
-        public init (bucketName: String?, objectName: String?, para: DrmOutputPara) {
+        public init (bucketName: String? = nil, objectName: String? = nil, para: DrmOutputPara? = nil) {
             self.bucketName = bucketName
             self.objectName = objectName
             self.para = para
@@ -47,7 +47,7 @@ extension Drm {
         /// 语言,例: en, zh-cn
         public let language: String?
         
-        public init (type: String?, language: String?) {
+        public init (type: String? = nil, language: String? = nil) {
             self.type = type
             self.language = language
         }
@@ -66,7 +66,7 @@ extension Drm {
         /// 输入对象名称。
         public let objectName: String?
         
-        public init (bucketName: String?, objectName: String?) {
+        public init (bucketName: String? = nil, objectName: String? = nil) {
             self.bucketName = bucketName
             self.objectName = objectName
         }
@@ -150,7 +150,7 @@ extension Drm {
         /// 请使用腾讯云DRM 提供的公钥，使用rsa加密算法，PKCS1填充方式对解密密钥进行加密，并对加密结果进行base64编码。
         public let iv: String?
         
-        public init (track: String, key: String, keyId: String?, iv: String?) {
+        public init (track: String, key: String, keyId: String? = nil, iv: String? = nil) {
             self.track = track
             self.key = key
             self.keyId = keyId
@@ -173,7 +173,7 @@ extension Drm {
         /// 开始播放后，允许最长播放时间
         public let playbackDurationSeconds: UInt64?
         
-        public init (licenseDurationSeconds: UInt64?, playbackDurationSeconds: UInt64?) {
+        public init (licenseDurationSeconds: UInt64? = nil, playbackDurationSeconds: UInt64? = nil) {
             self.licenseDurationSeconds = licenseDurationSeconds
             self.playbackDurationSeconds = playbackDurationSeconds
         }

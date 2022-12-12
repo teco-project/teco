@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 销毁环境
-    @inlinable
-    public func destroyEnv(_ input: DestroyEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyEnvResponse > {
-        self.client.execute(action: "DestroyEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 销毁环境
-    @inlinable
-    public func destroyEnv(_ input: DestroyEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyEnvResponse {
-        try await self.client.execute(action: "DestroyEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DestroyEnv请求参数结构体
     public struct DestroyEnvRequest: TCRequestModel {
         /// 环境Id
@@ -38,7 +26,7 @@ extension Tcb {
         /// 是否绕过资源检查，资源包等额外资源，默认为false，如果为true，则不检查资源是否有数据，直接删除。
         public let bypassCheck: Bool?
         
-        public init (envId: String, isForce: Bool?, bypassCheck: Bool?) {
+        public init (envId: String, isForce: Bool? = nil, bypassCheck: Bool? = nil) {
             self.envId = envId
             self.isForce = isForce
             self.bypassCheck = bypassCheck
@@ -59,5 +47,17 @@ extension Tcb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 销毁环境
+    @inlinable
+    public func destroyEnv(_ input: DestroyEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyEnvResponse > {
+        self.client.execute(action: "DestroyEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁环境
+    @inlinable
+    public func destroyEnv(_ input: DestroyEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyEnvResponse {
+        try await self.client.execute(action: "DestroyEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

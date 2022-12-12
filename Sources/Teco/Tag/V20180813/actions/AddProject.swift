@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 创建项目
-    @inlinable
-    public func addProject(_ input: AddProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddProjectResponse > {
-        self.client.execute(action: "AddProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建项目
-    @inlinable
-    public func addProject(_ input: AddProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddProjectResponse {
-        try await self.client.execute(action: "AddProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddProject请求参数结构体
     public struct AddProjectRequest: TCRequestModel {
         /// 项目名称
@@ -35,7 +23,7 @@ extension Tag {
         /// 项目描述
         public let info: String?
         
-        public init (projectName: String, info: String?) {
+        public init (projectName: String, info: String? = nil) {
             self.projectName = projectName
             self.info = info
         }
@@ -62,5 +50,17 @@ extension Tag {
             case isNew = "IsNew"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建项目
+    @inlinable
+    public func addProject(_ input: AddProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddProjectResponse > {
+        self.client.execute(action: "AddProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建项目
+    @inlinable
+    public func addProject(_ input: AddProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddProjectResponse {
+        try await self.client.execute(action: "AddProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

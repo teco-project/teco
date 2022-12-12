@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 设置个人版全局镜像版本自动清理策略
-    ///
-    /// 用于设置个人版全局镜像版本自动清理策略
-    @inlinable
-    public func manageImageLifecycleGlobalPersonal(_ input: ManageImageLifecycleGlobalPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageImageLifecycleGlobalPersonalResponse > {
-        self.client.execute(action: "ManageImageLifecycleGlobalPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置个人版全局镜像版本自动清理策略
-    ///
-    /// 用于设置个人版全局镜像版本自动清理策略
-    @inlinable
-    public func manageImageLifecycleGlobalPersonal(_ input: ManageImageLifecycleGlobalPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageImageLifecycleGlobalPersonalResponse {
-        try await self.client.execute(action: "ManageImageLifecycleGlobalPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ManageImageLifecycleGlobalPersonal请求参数结构体
     public struct ManageImageLifecycleGlobalPersonalRequest: TCRequestModel {
         /// global_keep_last_days:全局保留最近几天的数据;global_keep_last_nums:全局保留最近多少个
@@ -58,5 +42,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置个人版全局镜像版本自动清理策略
+    ///
+    /// 用于设置个人版全局镜像版本自动清理策略
+    @inlinable
+    public func manageImageLifecycleGlobalPersonal(_ input: ManageImageLifecycleGlobalPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageImageLifecycleGlobalPersonalResponse > {
+        self.client.execute(action: "ManageImageLifecycleGlobalPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置个人版全局镜像版本自动清理策略
+    ///
+    /// 用于设置个人版全局镜像版本自动清理策略
+    @inlinable
+    public func manageImageLifecycleGlobalPersonal(_ input: ManageImageLifecycleGlobalPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageImageLifecycleGlobalPersonalResponse {
+        try await self.client.execute(action: "ManageImageLifecycleGlobalPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

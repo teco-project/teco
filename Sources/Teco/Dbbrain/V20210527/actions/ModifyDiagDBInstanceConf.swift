@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 修改实例巡检开关状态
-    ///
-    /// 修改实例巡检开关。
-    @inlinable
-    public func modifyDiagDBInstanceConf(_ input: ModifyDiagDBInstanceConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDiagDBInstanceConfResponse > {
-        self.client.execute(action: "ModifyDiagDBInstanceConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例巡检开关状态
-    ///
-    /// 修改实例巡检开关。
-    @inlinable
-    public func modifyDiagDBInstanceConf(_ input: ModifyDiagDBInstanceConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiagDBInstanceConfResponse {
-        try await self.client.execute(action: "ModifyDiagDBInstanceConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDiagDBInstanceConf请求参数结构体
     public struct ModifyDiagDBInstanceConfRequest: TCRequestModel {
         /// 实例配置，包括巡检、概览开关等。
@@ -45,7 +29,7 @@ extension Dbbrain {
         /// 指定更改巡检状态的实例ID。
         public let instanceIds: [String]?
         
-        public init (instanceConfs: InstanceConfs, regions: String, product: String, instanceIds: [String]?) {
+        public init (instanceConfs: InstanceConfs, regions: String, product: String, instanceIds: [String]? = nil) {
             self.instanceConfs = instanceConfs
             self.regions = regions
             self.product = product
@@ -68,5 +52,21 @@ extension Dbbrain {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例巡检开关状态
+    ///
+    /// 修改实例巡检开关。
+    @inlinable
+    public func modifyDiagDBInstanceConf(_ input: ModifyDiagDBInstanceConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDiagDBInstanceConfResponse > {
+        self.client.execute(action: "ModifyDiagDBInstanceConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例巡检开关状态
+    ///
+    /// 修改实例巡检开关。
+    @inlinable
+    public func modifyDiagDBInstanceConf(_ input: ModifyDiagDBInstanceConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiagDBInstanceConfResponse {
+        try await self.client.execute(action: "ModifyDiagDBInstanceConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

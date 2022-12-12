@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 禁用 URL
-    ///
-    /// DisableCaches 用于禁用 CDN 上指定 URL 的访问，禁用完成后，中国境内访问会直接返回 403。（注：接口尚在内测中，暂未全量开放；封禁URL并非无限期永久封禁）
-    @inlinable
-    public func disableCaches(_ input: DisableCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableCachesResponse > {
-        self.client.execute(action: "DisableCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 禁用 URL
-    ///
-    /// DisableCaches 用于禁用 CDN 上指定 URL 的访问，禁用完成后，中国境内访问会直接返回 403。（注：接口尚在内测中，暂未全量开放；封禁URL并非无限期永久封禁）
-    @inlinable
-    public func disableCaches(_ input: DisableCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCachesResponse {
-        try await self.client.execute(action: "DisableCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableCaches请求参数结构体
     public struct DisableCachesRequest: TCRequestModel {
         /// 禁用的 URL 列表（分协议生效，必须包含http://或https://）
@@ -50,7 +34,7 @@ extension Cdn {
     public struct DisableCachesResponse: TCResponseModel {
         /// 提交结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cacheOptResult: CacheOptResult
+        public let cacheOptResult: CacheOptResult?
         
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -64,5 +48,21 @@ extension Cdn {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 禁用 URL
+    ///
+    /// DisableCaches 用于禁用 CDN 上指定 URL 的访问，禁用完成后，中国境内访问会直接返回 403。（注：接口尚在内测中，暂未全量开放；封禁URL并非无限期永久封禁）
+    @inlinable
+    public func disableCaches(_ input: DisableCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableCachesResponse > {
+        self.client.execute(action: "DisableCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用 URL
+    ///
+    /// DisableCaches 用于禁用 CDN 上指定 URL 的访问，禁用完成后，中国境内访问会直接返回 403。（注：接口尚在内测中，暂未全量开放；封禁URL并非无限期永久封禁）
+    @inlinable
+    public func disableCaches(_ input: DisableCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCachesResponse {
+        try await self.client.execute(action: "DisableCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

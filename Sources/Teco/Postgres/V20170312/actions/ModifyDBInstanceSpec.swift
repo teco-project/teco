@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 调整实例规格（新）
-    ///
-    /// 本接口（ModifyDBInstanceSpec）用于调整实例规格，包括内存、磁盘。
-    @inlinable
-    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceSpecResponse > {
-        self.client.execute(action: "ModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调整实例规格（新）
-    ///
-    /// 本接口（ModifyDBInstanceSpec）用于调整实例规格，包括内存、磁盘。
-    @inlinable
-    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSpecResponse {
-        try await self.client.execute(action: "ModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBInstanceSpec请求参数结构体
     public struct ModifyDBInstanceSpecRequest: TCRequestModel {
         /// 实例ID，形如：postgres-6bwgamo3。
@@ -60,7 +44,7 @@ extension Postgres {
         /// 切换截止时间，时间格式：HH:MM:SS，例如：01:30:00。当SwitchTag为0或2时，该参数失效。
         public let switchEndTime: String?
         
-        public init (dbInstanceId: String, memory: UInt64, storage: UInt64, autoVoucher: UInt64?, voucherIds: [String]?, activityId: UInt64?, switchTag: UInt64?, switchStartTime: String?, switchEndTime: String?) {
+        public init (dbInstanceId: String, memory: UInt64, storage: UInt64, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, activityId: UInt64? = nil, switchTag: UInt64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil) {
             self.dbInstanceId = dbInstanceId
             self.memory = memory
             self.storage = storage
@@ -101,5 +85,21 @@ extension Postgres {
             case billId = "BillId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调整实例规格（新）
+    ///
+    /// 本接口（ModifyDBInstanceSpec）用于调整实例规格，包括内存、磁盘。
+    @inlinable
+    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceSpecResponse > {
+        self.client.execute(action: "ModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调整实例规格（新）
+    ///
+    /// 本接口（ModifyDBInstanceSpec）用于调整实例规格，包括内存、磁盘。
+    @inlinable
+    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSpecResponse {
+        try await self.client.execute(action: "ModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

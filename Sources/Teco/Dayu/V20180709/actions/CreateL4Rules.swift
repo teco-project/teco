@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 添加L4转发规则
-    @inlinable
-    public func createL4Rules(_ input: CreateL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL4RulesResponse > {
-        self.client.execute(action: "CreateL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加L4转发规则
-    @inlinable
-    public func createL4Rules(_ input: CreateL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL4RulesResponse {
-        try await self.client.execute(action: "CreateL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateL4Rules请求参数结构体
     public struct CreateL4RulesRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -63,5 +51,17 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加L4转发规则
+    @inlinable
+    public func createL4Rules(_ input: CreateL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL4RulesResponse > {
+        self.client.execute(action: "CreateL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加L4转发规则
+    @inlinable
+    public func createL4Rules(_ input: CreateL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL4RulesResponse {
+        try await self.client.execute(action: "CreateL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

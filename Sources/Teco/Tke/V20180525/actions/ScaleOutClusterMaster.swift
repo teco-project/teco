@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 扩容独立集群master节点
-    @inlinable
-    public func scaleOutClusterMaster(_ input: ScaleOutClusterMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleOutClusterMasterResponse > {
-        self.client.execute(action: "ScaleOutClusterMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 扩容独立集群master节点
-    @inlinable
-    public func scaleOutClusterMaster(_ input: ScaleOutClusterMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutClusterMasterResponse {
-        try await self.client.execute(action: "ScaleOutClusterMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ScaleOutClusterMaster请求参数结构体
     public struct ScaleOutClusterMasterRequest: TCRequestModel {
         /// 集群实例ID
@@ -39,12 +27,12 @@ extension Tke {
         public let existedInstancesForNode: [ExistedInstancesForNode]?
         
         /// 实例高级设置
-        public let instanceAdvancedSettings: InstanceAdvancedSettings
+        public let instanceAdvancedSettings: InstanceAdvancedSettings?
         
         /// 集群master组件自定义参数
-        public let extraArgs: ClusterExtraArgs
+        public let extraArgs: ClusterExtraArgs?
         
-        public init (clusterId: String, runInstancesForNode: [RunInstancesForNode]?, existedInstancesForNode: [ExistedInstancesForNode]?, instanceAdvancedSettings: InstanceAdvancedSettings, extraArgs: ClusterExtraArgs) {
+        public init (clusterId: String, runInstancesForNode: [RunInstancesForNode]? = nil, existedInstancesForNode: [ExistedInstancesForNode]? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, extraArgs: ClusterExtraArgs? = nil) {
             self.clusterId = clusterId
             self.runInstancesForNode = runInstancesForNode
             self.existedInstancesForNode = existedInstancesForNode
@@ -69,5 +57,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 扩容独立集群master节点
+    @inlinable
+    public func scaleOutClusterMaster(_ input: ScaleOutClusterMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleOutClusterMasterResponse > {
+        self.client.execute(action: "ScaleOutClusterMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 扩容独立集群master节点
+    @inlinable
+    public func scaleOutClusterMaster(_ input: ScaleOutClusterMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutClusterMasterResponse {
+        try await self.client.execute(action: "ScaleOutClusterMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

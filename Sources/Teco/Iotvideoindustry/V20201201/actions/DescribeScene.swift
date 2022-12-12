@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 场景详情
-    @inlinable
-    public func describeScene(_ input: DescribeSceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSceneResponse > {
-        self.client.execute(action: "DescribeScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 场景详情
-    @inlinable
-    public func describeScene(_ input: DescribeSceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSceneResponse {
-        try await self.client.execute(action: "DescribeScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScene请求参数结构体
     public struct DescribeSceneRequest: TCRequestModel {
         /// 场景ID
@@ -88,5 +76,17 @@ extension Iotvideoindustry {
             case uin = "Uin"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 场景详情
+    @inlinable
+    public func describeScene(_ input: DescribeSceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSceneResponse > {
+        self.client.execute(action: "DescribeScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 场景详情
+    @inlinable
+    public func describeScene(_ input: DescribeSceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSceneResponse {
+        try await self.client.execute(action: "DescribeScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

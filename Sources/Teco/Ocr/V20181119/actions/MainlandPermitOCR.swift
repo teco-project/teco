@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 港澳台来往内地通行证识别
-    ///
-    /// 智能识别并结构化港澳台居民来往内地通行证正面全部字段，包含中文姓名、英文姓名、性别、出生日期、签发机关、有效期限、证件号、签发地点、签发次数、证件类别。
-    @inlinable
-    public func mainlandPermitOCR(_ input: MainlandPermitOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MainlandPermitOCRResponse > {
-        self.client.execute(action: "MainlandPermitOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 港澳台来往内地通行证识别
-    ///
-    /// 智能识别并结构化港澳台居民来往内地通行证正面全部字段，包含中文姓名、英文姓名、性别、出生日期、签发机关、有效期限、证件号、签发地点、签发次数、证件类别。
-    @inlinable
-    public func mainlandPermitOCR(_ input: MainlandPermitOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MainlandPermitOCRResponse {
-        try await self.client.execute(action: "MainlandPermitOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// MainlandPermitOCR请求参数结构体
     public struct MainlandPermitOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -49,7 +33,7 @@ extension Ocr {
         /// 是否返回头像。默认不返回。
         public let retProfile: Bool?
         
-        public init (imageBase64: String?, imageUrl: String?, retProfile: Bool?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, retProfile: Bool? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.retProfile = retProfile
@@ -114,5 +98,21 @@ extension Ocr {
             case profile = "Profile"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 港澳台来往内地通行证识别
+    ///
+    /// 智能识别并结构化港澳台居民来往内地通行证正面全部字段，包含中文姓名、英文姓名、性别、出生日期、签发机关、有效期限、证件号、签发地点、签发次数、证件类别。
+    @inlinable
+    public func mainlandPermitOCR(_ input: MainlandPermitOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MainlandPermitOCRResponse > {
+        self.client.execute(action: "MainlandPermitOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 港澳台来往内地通行证识别
+    ///
+    /// 智能识别并结构化港澳台居民来往内地通行证正面全部字段，包含中文姓名、英文姓名、性别、出生日期、签发机关、有效期限、证件号、签发地点、签发次数、证件类别。
+    @inlinable
+    public func mainlandPermitOCR(_ input: MainlandPermitOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MainlandPermitOCRResponse {
+        try await self.client.execute(action: "MainlandPermitOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

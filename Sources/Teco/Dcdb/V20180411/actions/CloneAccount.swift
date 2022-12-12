@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 克隆实例账户
-    ///
-    /// 本接口（CloneAccount）用于克隆实例账户。
-    @inlinable
-    public func cloneAccount(_ input: CloneAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloneAccountResponse > {
-        self.client.execute(action: "CloneAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 克隆实例账户
-    ///
-    /// 本接口（CloneAccount）用于克隆实例账户。
-    @inlinable
-    public func cloneAccount(_ input: CloneAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneAccountResponse {
-        try await self.client.execute(action: "CloneAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CloneAccount请求参数结构体
     public struct CloneAccountRequest: TCRequestModel {
         /// 实例ID
@@ -51,7 +35,7 @@ extension Dcdb {
         /// 目的用户账户描述
         public let dstDesc: String?
         
-        public init (instanceId: String, srcUser: String, srcHost: String, dstUser: String, dstHost: String, dstDesc: String?) {
+        public init (instanceId: String, srcUser: String, srcHost: String, dstUser: String, dstHost: String, dstDesc: String? = nil) {
             self.instanceId = instanceId
             self.srcUser = srcUser
             self.srcHost = srcHost
@@ -82,5 +66,21 @@ extension Dcdb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 克隆实例账户
+    ///
+    /// 本接口（CloneAccount）用于克隆实例账户。
+    @inlinable
+    public func cloneAccount(_ input: CloneAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloneAccountResponse > {
+        self.client.execute(action: "CloneAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 克隆实例账户
+    ///
+    /// 本接口（CloneAccount）用于克隆实例账户。
+    @inlinable
+    public func cloneAccount(_ input: CloneAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneAccountResponse {
+        try await self.client.execute(action: "CloneAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

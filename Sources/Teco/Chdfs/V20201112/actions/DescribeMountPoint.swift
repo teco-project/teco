@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 查看挂载点详细信息
-    ///
-    /// 查看挂载点详细信息。
-    @inlinable
-    public func describeMountPoint(_ input: DescribeMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMountPointResponse > {
-        self.client.execute(action: "DescribeMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看挂载点详细信息
-    ///
-    /// 查看挂载点详细信息。
-    @inlinable
-    public func describeMountPoint(_ input: DescribeMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountPointResponse {
-        try await self.client.execute(action: "DescribeMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMountPoint请求参数结构体
     public struct DescribeMountPointRequest: TCRequestModel {
         /// 挂载点ID
@@ -57,5 +41,21 @@ extension Chdfs {
             case mountPoint = "MountPoint"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看挂载点详细信息
+    ///
+    /// 查看挂载点详细信息。
+    @inlinable
+    public func describeMountPoint(_ input: DescribeMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMountPointResponse > {
+        self.client.execute(action: "DescribeMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看挂载点详细信息
+    ///
+    /// 查看挂载点详细信息。
+    @inlinable
+    public func describeMountPoint(_ input: DescribeMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountPointResponse {
+        try await self.client.execute(action: "DescribeMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

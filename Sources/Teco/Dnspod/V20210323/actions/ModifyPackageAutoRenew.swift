@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// DNS 解析套餐自动续费设置
-    ///
-    ///  DNS 解析套餐自动续费设置
-    @inlinable
-    public func modifyPackageAutoRenew(_ input: ModifyPackageAutoRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPackageAutoRenewResponse > {
-        self.client.execute(action: "ModifyPackageAutoRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DNS 解析套餐自动续费设置
-    ///
-    ///  DNS 解析套餐自动续费设置
-    @inlinable
-    public func modifyPackageAutoRenew(_ input: ModifyPackageAutoRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPackageAutoRenewResponse {
-        try await self.client.execute(action: "ModifyPackageAutoRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPackageAutoRenew请求参数结构体
     public struct ModifyPackageAutoRenewRequest: TCRequestModel {
         /// 资源ID。可以在控制台查看所有的资源
@@ -58,5 +42,21 @@ extension Dnspod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// DNS 解析套餐自动续费设置
+    ///
+    ///  DNS 解析套餐自动续费设置
+    @inlinable
+    public func modifyPackageAutoRenew(_ input: ModifyPackageAutoRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPackageAutoRenewResponse > {
+        self.client.execute(action: "ModifyPackageAutoRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DNS 解析套餐自动续费设置
+    ///
+    ///  DNS 解析套餐自动续费设置
+    @inlinable
+    public func modifyPackageAutoRenew(_ input: ModifyPackageAutoRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPackageAutoRenewResponse {
+        try await self.client.execute(action: "ModifyPackageAutoRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

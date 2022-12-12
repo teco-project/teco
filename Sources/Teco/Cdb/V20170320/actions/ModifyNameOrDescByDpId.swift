@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 修改置放群组的名称或者描述
-    @inlinable
-    public func modifyNameOrDescByDpId(_ input: ModifyNameOrDescByDpIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNameOrDescByDpIdResponse > {
-        self.client.execute(action: "ModifyNameOrDescByDpId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改置放群组的名称或者描述
-    @inlinable
-    public func modifyNameOrDescByDpId(_ input: ModifyNameOrDescByDpIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNameOrDescByDpIdResponse {
-        try await self.client.execute(action: "ModifyNameOrDescByDpId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNameOrDescByDpId请求参数结构体
     public struct ModifyNameOrDescByDpIdRequest: TCRequestModel {
         /// 置放群组 ID。
@@ -38,7 +26,7 @@ extension Cdb {
         /// 置放群组描述，最长不能超过200个字符。置放群组名和置放群组描述不能都为空。
         public let description: String?
         
-        public init (deployGroupId: String, deployGroupName: String?, description: String?) {
+        public init (deployGroupId: String, deployGroupName: String? = nil, description: String? = nil) {
             self.deployGroupId = deployGroupId
             self.deployGroupName = deployGroupName
             self.description = description
@@ -59,5 +47,17 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改置放群组的名称或者描述
+    @inlinable
+    public func modifyNameOrDescByDpId(_ input: ModifyNameOrDescByDpIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNameOrDescByDpIdResponse > {
+        self.client.execute(action: "ModifyNameOrDescByDpId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改置放群组的名称或者描述
+    @inlinable
+    public func modifyNameOrDescByDpId(_ input: ModifyNameOrDescByDpIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNameOrDescByDpIdResponse {
+        try await self.client.execute(action: "ModifyNameOrDescByDpId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

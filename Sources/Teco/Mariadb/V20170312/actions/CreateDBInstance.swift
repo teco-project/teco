@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 创建实例（包年包月）
-    ///
-    /// 本接口（CreateDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
-    @inlinable
-    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceResponse > {
-        self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例（包年包月）
-    ///
-    /// 本接口（CreateDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
-    @inlinable
-    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
-        try await self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDBInstance请求参数结构体
     public struct CreateDBInstanceRequest: TCRequestModel {
         /// 实例节点可用区分布，最多可填两个可用区。当分片规格为一主两从时，其中两个节点在第一个可用区。
@@ -96,7 +80,7 @@ extension Mariadb {
         /// DCN源实例ID
         public let dcnInstanceId: String?
         
-        public init (zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, period: Int64?, count: Int64?, autoVoucher: Bool?, voucherIds: [String]?, vpcId: String?, subnetId: String?, projectId: Int64?, dbVersionId: String?, instanceName: String?, securityGroupIds: [String]?, autoRenewFlag: Int64?, ipv6Flag: Int64?, resourceTags: [ResourceTag]?, initParams: [DBParamValue]?, dcnRegion: String?, dcnInstanceId: String?) {
+        public init (zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, period: Int64? = nil, count: Int64? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, autoRenewFlag: Int64? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, initParams: [DBParamValue]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil) {
             self.zones = zones
             self.nodeCount = nodeCount
             self.memory = memory
@@ -161,5 +145,21 @@ extension Mariadb {
             case instanceIds = "InstanceIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例（包年包月）
+    ///
+    /// 本接口（CreateDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
+    @inlinable
+    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceResponse > {
+        self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例（包年包月）
+    ///
+    /// 本接口（CreateDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
+    @inlinable
+    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
+        try await self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

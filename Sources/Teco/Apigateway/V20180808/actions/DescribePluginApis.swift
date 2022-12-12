@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询插件绑定的API列表
-    ///
-    /// 查询指定插件下绑定的API信息
-    @inlinable
-    public func describePluginApis(_ input: DescribePluginApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePluginApisResponse > {
-        self.client.execute(action: "DescribePluginApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询插件绑定的API列表
-    ///
-    /// 查询指定插件下绑定的API信息
-    @inlinable
-    public func describePluginApis(_ input: DescribePluginApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginApisResponse {
-        try await self.client.execute(action: "DescribePluginApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePluginApis请求参数结构体
     public struct DescribePluginApisRequest: TCRequestModel {
         /// 查询的插件ID。
@@ -42,7 +26,7 @@ extension Apigateway {
         /// 偏移量，默认为 0。
         public let offset: Int64?
         
-        public init (pluginId: String, limit: Int64?, offset: Int64?) {
+        public init (pluginId: String, limit: Int64? = nil, offset: Int64? = nil) {
             self.pluginId = pluginId
             self.limit = limit
             self.offset = offset
@@ -67,5 +51,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询插件绑定的API列表
+    ///
+    /// 查询指定插件下绑定的API信息
+    @inlinable
+    public func describePluginApis(_ input: DescribePluginApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePluginApisResponse > {
+        self.client.execute(action: "DescribePluginApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询插件绑定的API列表
+    ///
+    /// 查询指定插件下绑定的API信息
+    @inlinable
+    public func describePluginApis(_ input: DescribePluginApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginApisResponse {
+        try await self.client.execute(action: "DescribePluginApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

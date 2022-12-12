@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除对端网关
-    ///
-    /// 本接口（DeleteCustomerGateway）用于删除对端网关。
-    @inlinable
-    public func deleteCustomerGateway(_ input: DeleteCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomerGatewayResponse > {
-        self.client.execute(action: "DeleteCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除对端网关
-    ///
-    /// 本接口（DeleteCustomerGateway）用于删除对端网关。
-    @inlinable
-    public func deleteCustomerGateway(_ input: DeleteCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomerGatewayResponse {
-        try await self.client.execute(action: "DeleteCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCustomerGateway请求参数结构体
     public struct DeleteCustomerGatewayRequest: TCRequestModel {
         /// 对端网关ID，例如：cgw-2wqq41m9，可通过DescribeCustomerGateways接口查询对端网关。
@@ -53,5 +37,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除对端网关
+    ///
+    /// 本接口（DeleteCustomerGateway）用于删除对端网关。
+    @inlinable
+    public func deleteCustomerGateway(_ input: DeleteCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomerGatewayResponse > {
+        self.client.execute(action: "DeleteCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除对端网关
+    ///
+    /// 本接口（DeleteCustomerGateway）用于删除对端网关。
+    @inlinable
+    public func deleteCustomerGateway(_ input: DeleteCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomerGatewayResponse {
+        try await self.client.execute(action: "DeleteCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

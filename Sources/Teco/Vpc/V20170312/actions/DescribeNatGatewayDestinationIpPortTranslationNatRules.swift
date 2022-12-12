@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询NAT网关端口转发规则
-    ///
-    /// 本接口（DescribeNatGatewayDestinationIpPortTranslationNatRules）用于查询NAT网关端口转发规则对象数组。
-    @inlinable
-    public func describeNatGatewayDestinationIpPortTranslationNatRules(_ input: DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse > {
-        self.client.execute(action: "DescribeNatGatewayDestinationIpPortTranslationNatRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询NAT网关端口转发规则
-    ///
-    /// 本接口（DescribeNatGatewayDestinationIpPortTranslationNatRules）用于查询NAT网关端口转发规则对象数组。
-    @inlinable
-    public func describeNatGatewayDestinationIpPortTranslationNatRules(_ input: DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse {
-        try await self.client.execute(action: "DescribeNatGatewayDestinationIpPortTranslationNatRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNatGatewayDestinationIpPortTranslationNatRules请求参数结构体
     public struct DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest: TCRequestModel {
         /// NAT网关ID。
@@ -53,7 +37,7 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。
         public let limit: UInt64?
         
-        public init (natGatewayIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (natGatewayIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.natGatewayIds = natGatewayIds
             self.filters = filters
             self.offset = offset
@@ -84,5 +68,21 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询NAT网关端口转发规则
+    ///
+    /// 本接口（DescribeNatGatewayDestinationIpPortTranslationNatRules）用于查询NAT网关端口转发规则对象数组。
+    @inlinable
+    public func describeNatGatewayDestinationIpPortTranslationNatRules(_ input: DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse > {
+        self.client.execute(action: "DescribeNatGatewayDestinationIpPortTranslationNatRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询NAT网关端口转发规则
+    ///
+    /// 本接口（DescribeNatGatewayDestinationIpPortTranslationNatRules）用于查询NAT网关端口转发规则对象数组。
+    @inlinable
+    public func describeNatGatewayDestinationIpPortTranslationNatRules(_ input: DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse {
+        try await self.client.execute(action: "DescribeNatGatewayDestinationIpPortTranslationNatRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

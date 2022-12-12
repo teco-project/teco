@@ -32,7 +32,7 @@ extension Lcic {
         /// 自定义的css。
         public let cssUrl: String?
         
-        public init (scene: String, logoUrl: String?, homeUrl: String?, jsUrl: String?, cssUrl: String?) {
+        public init (scene: String, logoUrl: String? = nil, homeUrl: String? = nil, jsUrl: String? = nil, cssUrl: String? = nil) {
             self.scene = scene
             self.logoUrl = logoUrl
             self.homeUrl = homeUrl

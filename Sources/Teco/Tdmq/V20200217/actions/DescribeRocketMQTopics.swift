@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取RocketMQ主题列表
-    @inlinable
-    public func describeRocketMQTopics(_ input: DescribeRocketMQTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRocketMQTopicsResponse > {
-        self.client.execute(action: "DescribeRocketMQTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取RocketMQ主题列表
-    @inlinable
-    public func describeRocketMQTopics(_ input: DescribeRocketMQTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQTopicsResponse {
-        try await self.client.execute(action: "DescribeRocketMQTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRocketMQTopics请求参数结构体
     public struct DescribeRocketMQTopicsRequest: TCRequestModel {
         /// 查询偏移量
@@ -47,7 +35,7 @@ extension Tdmq {
         /// 按主题名称搜索，支持模糊查询
         public let filterName: String?
         
-        public init (offset: UInt64, limit: UInt64, clusterId: String, namespaceId: String, filterType: [String]?, filterName: String?) {
+        public init (offset: UInt64, limit: UInt64, clusterId: String, namespaceId: String, filterType: [String]? = nil, filterName: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.clusterId = clusterId
@@ -82,5 +70,17 @@ extension Tdmq {
             case topics = "Topics"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取RocketMQ主题列表
+    @inlinable
+    public func describeRocketMQTopics(_ input: DescribeRocketMQTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRocketMQTopicsResponse > {
+        self.client.execute(action: "DescribeRocketMQTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取RocketMQ主题列表
+    @inlinable
+    public func describeRocketMQTopics(_ input: DescribeRocketMQTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQTopicsResponse {
+        try await self.client.execute(action: "DescribeRocketMQTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

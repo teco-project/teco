@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取资产管理进程列表
-    @inlinable
-    public func describeAssetProcessInfoList(_ input: DescribeAssetProcessInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetProcessInfoListResponse > {
-        self.client.execute(action: "DescribeAssetProcessInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取资产管理进程列表
-    @inlinable
-    public func describeAssetProcessInfoList(_ input: DescribeAssetProcessInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetProcessInfoListResponse {
-        try await self.client.execute(action: "DescribeAssetProcessInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetProcessInfoList请求参数结构体
     public struct DescribeAssetProcessInfoListRequest: TCRequestModel {
         /// 查询指定Quuid主机的信息
@@ -65,7 +53,7 @@ extension Cwp {
         /// 排序方式：[FirstTime|StartTime]
         public let by: String?
         
-        public init (quuid: String?, filters: [Filter]?, limit: UInt64?, offset: UInt64?, order: String?, by: String?) {
+        public init (quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.quuid = quuid
             self.filters = filters
             self.limit = limit
@@ -101,5 +89,17 @@ extension Cwp {
             case process = "Process"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取资产管理进程列表
+    @inlinable
+    public func describeAssetProcessInfoList(_ input: DescribeAssetProcessInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetProcessInfoListResponse > {
+        self.client.execute(action: "DescribeAssetProcessInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资产管理进程列表
+    @inlinable
+    public func describeAssetProcessInfoList(_ input: DescribeAssetProcessInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetProcessInfoListResponse {
+        try await self.client.execute(action: "DescribeAssetProcessInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

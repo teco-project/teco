@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 事业单位法人证书识别
-    ///
-    /// 本接口支持事业单位法人证书关键字段识别，包括注册号、有效期、住所、名称、法定代表人等。
-    @inlinable
-    public func institutionOCR(_ input: InstitutionOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstitutionOCRResponse > {
-        self.client.execute(action: "InstitutionOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 事业单位法人证书识别
-    ///
-    /// 本接口支持事业单位法人证书关键字段识别，包括注册号、有效期、住所、名称、法定代表人等。
-    @inlinable
-    public func institutionOCR(_ input: InstitutionOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstitutionOCRResponse {
-        try await self.client.execute(action: "InstitutionOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InstitutionOCR请求参数结构体
     public struct InstitutionOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -46,7 +30,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -85,5 +69,21 @@ extension Ocr {
             case legalPerson = "LegalPerson"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 事业单位法人证书识别
+    ///
+    /// 本接口支持事业单位法人证书关键字段识别，包括注册号、有效期、住所、名称、法定代表人等。
+    @inlinable
+    public func institutionOCR(_ input: InstitutionOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstitutionOCRResponse > {
+        self.client.execute(action: "InstitutionOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 事业单位法人证书识别
+    ///
+    /// 本接口支持事业单位法人证书关键字段识别，包括注册号、有效期、住所、名称、法定代表人等。
+    @inlinable
+    public func institutionOCR(_ input: InstitutionOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstitutionOCRResponse {
+        try await self.client.execute(action: "InstitutionOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

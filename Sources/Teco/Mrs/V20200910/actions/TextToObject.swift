@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mrs {
-    /// 文本结构化接口
-    ///
-    /// 文本转结构化对象
-    @inlinable
-    public func textToObject(_ input: TextToObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextToObjectResponse > {
-        self.client.execute(action: "TextToObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 文本结构化接口
-    ///
-    /// 文本转结构化对象
-    @inlinable
-    public func textToObject(_ input: TextToObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToObjectResponse {
-        try await self.client.execute(action: "TextToObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TextToObject请求参数结构体
     public struct TextToObjectRequest: TCRequestModel {
         /// 报告文本
@@ -46,7 +30,7 @@ extension Mrs {
         /// 用户类型，新客户传1，老客户可不传
         public let userType: UInt64?
         
-        public init (text: String, type: UInt64, isUsedClassify: Bool, userType: UInt64?) {
+        public init (text: String, type: UInt64, isUsedClassify: Bool, userType: UInt64? = nil) {
             self.text = text
             self.type = type
             self.isUsedClassify = isUsedClassify
@@ -73,5 +57,21 @@ extension Mrs {
             case template = "Template"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 文本结构化接口
+    ///
+    /// 文本转结构化对象
+    @inlinable
+    public func textToObject(_ input: TextToObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextToObjectResponse > {
+        self.client.execute(action: "TextToObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 文本结构化接口
+    ///
+    /// 文本转结构化对象
+    @inlinable
+    public func textToObject(_ input: TextToObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToObjectResponse {
+        try await self.client.execute(action: "TextToObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

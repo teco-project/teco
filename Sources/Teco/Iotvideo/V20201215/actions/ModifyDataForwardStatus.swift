@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 设置数据转发状态
-    @inlinable
-    public func modifyDataForwardStatus(_ input: ModifyDataForwardStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDataForwardStatusResponse > {
-        self.client.execute(action: "ModifyDataForwardStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置数据转发状态
-    @inlinable
-    public func modifyDataForwardStatus(_ input: ModifyDataForwardStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDataForwardStatusResponse {
-        try await self.client.execute(action: "ModifyDataForwardStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDataForwardStatus请求参数结构体
     public struct ModifyDataForwardStatusRequest: TCRequestModel {
         /// 产品ID。
@@ -54,5 +42,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置数据转发状态
+    @inlinable
+    public func modifyDataForwardStatus(_ input: ModifyDataForwardStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDataForwardStatusResponse > {
+        self.client.execute(action: "ModifyDataForwardStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置数据转发状态
+    @inlinable
+    public func modifyDataForwardStatus(_ input: ModifyDataForwardStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDataForwardStatusResponse {
+        try await self.client.execute(action: "ModifyDataForwardStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

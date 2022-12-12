@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 批量修改资源关联的标签
-    ///
-    /// 本接口用于修改资源关联的所有标签
-    @inlinable
-    public func modifyResourceTags(_ input: ModifyResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourceTagsResponse > {
-        self.client.execute(action: "ModifyResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量修改资源关联的标签
-    ///
-    /// 本接口用于修改资源关联的所有标签
-    @inlinable
-    public func modifyResourceTags(_ input: ModifyResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceTagsResponse {
-        try await self.client.execute(action: "ModifyResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyResourceTags请求参数结构体
     public struct ModifyResourceTagsRequest: TCRequestModel {
         /// [ 资源六段式描述 ](https://cloud.tencent.com/document/product/598/10606)
@@ -42,7 +26,7 @@ extension Tag {
         /// 需要解关联的标签集合。本接口中ReplaceTags和DeleteTags二者必须存在其一，且二者不能包含相同的标签键。可以不传该参数，但不能是空数组。
         public let deleteTags: [TagKeyObject]?
         
-        public init (resource: String, replaceTags: [Tag]?, deleteTags: [TagKeyObject]?) {
+        public init (resource: String, replaceTags: [Tag]? = nil, deleteTags: [TagKeyObject]? = nil) {
             self.resource = resource
             self.replaceTags = replaceTags
             self.deleteTags = deleteTags
@@ -63,5 +47,21 @@ extension Tag {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量修改资源关联的标签
+    ///
+    /// 本接口用于修改资源关联的所有标签
+    @inlinable
+    public func modifyResourceTags(_ input: ModifyResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourceTagsResponse > {
+        self.client.execute(action: "ModifyResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量修改资源关联的标签
+    ///
+    /// 本接口用于修改资源关联的所有标签
+    @inlinable
+    public func modifyResourceTags(_ input: ModifyResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceTagsResponse {
+        try await self.client.execute(action: "ModifyResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 查询Datahub任务信息
-    @inlinable
-    public func describeDatahubTask(_ input: DescribeDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatahubTaskResponse > {
-        self.client.execute(action: "DescribeDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Datahub任务信息
-    @inlinable
-    public func describeDatahubTask(_ input: DescribeDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatahubTaskResponse {
-        try await self.client.execute(action: "DescribeDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDatahubTask请求参数结构体
     public struct DescribeDatahubTaskRequest: TCRequestModel {
         /// 任务id
@@ -53,5 +41,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Datahub任务信息
+    @inlinable
+    public func describeDatahubTask(_ input: DescribeDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatahubTaskResponse > {
+        self.client.execute(action: "DescribeDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Datahub任务信息
+    @inlinable
+    public func describeDatahubTask(_ input: DescribeDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatahubTaskResponse {
+        try await self.client.execute(action: "DescribeDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

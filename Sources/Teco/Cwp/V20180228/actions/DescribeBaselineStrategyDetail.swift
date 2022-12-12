@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询基线策略详情
-    ///
-    /// 根据基线策略id查询策略详情
-    @inlinable
-    public func describeBaselineStrategyDetail(_ input: DescribeBaselineStrategyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineStrategyDetailResponse > {
-        self.client.execute(action: "DescribeBaselineStrategyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询基线策略详情
-    ///
-    /// 根据基线策略id查询策略详情
-    @inlinable
-    public func describeBaselineStrategyDetail(_ input: DescribeBaselineStrategyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineStrategyDetailResponse {
-        try await self.client.execute(action: "DescribeBaselineStrategyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBaselineStrategyDetail请求参数结构体
     public struct DescribeBaselineStrategyDetailRequest: TCRequestModel {
         /// 用户基线策略id
@@ -108,5 +92,21 @@ extension Cwp {
             case ifScanned = "IfScanned"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询基线策略详情
+    ///
+    /// 根据基线策略id查询策略详情
+    @inlinable
+    public func describeBaselineStrategyDetail(_ input: DescribeBaselineStrategyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineStrategyDetailResponse > {
+        self.client.execute(action: "DescribeBaselineStrategyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询基线策略详情
+    ///
+    /// 根据基线策略id查询策略详情
+    @inlinable
+    public func describeBaselineStrategyDetail(_ input: DescribeBaselineStrategyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineStrategyDetailResponse {
+        try await self.client.execute(action: "DescribeBaselineStrategyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

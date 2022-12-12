@@ -594,7 +594,7 @@ extension Postgres {
         /// 一个或者多个过滤值。
         public let values: [String]?
         
-        public init (name: String?, values: [String]?) {
+        public init (name: String? = nil, values: [String]? = nil) {
             self.name = name
             self.values = values
         }
@@ -1190,7 +1190,7 @@ extension Postgres {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dbMajorVersion: String?
         
-        public init (dbInstanceId: String?, dbInstanceName: String?, dbInstanceStatus: String?, region: String?, zone: String?, projectId: Int64?, vpcId: String?, subnetId: String?, dbCharset: String?, dbVersion: String?, createTime: String?, dbInstanceNetInfo: [ServerlessDBInstanceNetInfo]?, dbAccountSet: [ServerlessDBAccount]?, dbDatabaseList: [String]?, tagList: [Tag]?, dbKernelVersion: String?, dbMajorVersion: String?) {
+        public init (dbInstanceId: String? = nil, dbInstanceName: String? = nil, dbInstanceStatus: String? = nil, region: String? = nil, zone: String? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbCharset: String? = nil, dbVersion: String? = nil, createTime: String? = nil, dbInstanceNetInfo: [ServerlessDBInstanceNetInfo]? = nil, dbAccountSet: [ServerlessDBAccount]? = nil, dbDatabaseList: [String]? = nil, tagList: [Tag]? = nil, dbKernelVersion: String? = nil, dbMajorVersion: String? = nil) {
             self.dbInstanceId = dbInstanceId
             self.dbInstanceName = dbInstanceName
             self.dbInstanceStatus = dbInstanceStatus

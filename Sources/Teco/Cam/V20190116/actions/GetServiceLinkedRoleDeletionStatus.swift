@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 获取服务相关角色删除状态
-    ///
-    /// 根据删除TaskId获取服务相关角色删除状态
-    @inlinable
-    public func getServiceLinkedRoleDeletionStatus(_ input: GetServiceLinkedRoleDeletionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetServiceLinkedRoleDeletionStatusResponse > {
-        self.client.execute(action: "GetServiceLinkedRoleDeletionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取服务相关角色删除状态
-    ///
-    /// 根据删除TaskId获取服务相关角色删除状态
-    @inlinable
-    public func getServiceLinkedRoleDeletionStatus(_ input: GetServiceLinkedRoleDeletionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceLinkedRoleDeletionStatusResponse {
-        try await self.client.execute(action: "GetServiceLinkedRoleDeletionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetServiceLinkedRoleDeletionStatus请求参数结构体
     public struct GetServiceLinkedRoleDeletionStatusRequest: TCRequestModel {
         /// 删除任务ID
@@ -71,5 +55,21 @@ extension Cam {
             case serviceName = "ServiceName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取服务相关角色删除状态
+    ///
+    /// 根据删除TaskId获取服务相关角色删除状态
+    @inlinable
+    public func getServiceLinkedRoleDeletionStatus(_ input: GetServiceLinkedRoleDeletionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetServiceLinkedRoleDeletionStatusResponse > {
+        self.client.execute(action: "GetServiceLinkedRoleDeletionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取服务相关角色删除状态
+    ///
+    /// 根据删除TaskId获取服务相关角色删除状态
+    @inlinable
+    public func getServiceLinkedRoleDeletionStatus(_ input: GetServiceLinkedRoleDeletionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceLinkedRoleDeletionStatusResponse {
+        try await self.client.execute(action: "GetServiceLinkedRoleDeletionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

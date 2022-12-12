@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 立即下线实例
-    ///
-    /// 本接口（DeleteDBInstance）用于释放回收站中的SQL server实例(立即下线)。释放后的实例将保存一段时间后物理销毁。其发布订阅将自动解除，其ro副本将自动释放。
-    @inlinable
-    public func deleteDBInstance(_ input: DeleteDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDBInstanceResponse > {
-        self.client.execute(action: "DeleteDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 立即下线实例
-    ///
-    /// 本接口（DeleteDBInstance）用于释放回收站中的SQL server实例(立即下线)。释放后的实例将保存一段时间后物理销毁。其发布订阅将自动解除，其ro副本将自动释放。
-    @inlinable
-    public func deleteDBInstance(_ input: DeleteDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBInstanceResponse {
-        try await self.client.execute(action: "DeleteDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDBInstance请求参数结构体
     public struct DeleteDBInstanceRequest: TCRequestModel {
         /// 实例ID，格式如：mssql-3l3fgqn7 或 mssqlro-3l3fgqn7
@@ -53,5 +37,21 @@ extension Sqlserver {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 立即下线实例
+    ///
+    /// 本接口（DeleteDBInstance）用于释放回收站中的SQL server实例(立即下线)。释放后的实例将保存一段时间后物理销毁。其发布订阅将自动解除，其ro副本将自动释放。
+    @inlinable
+    public func deleteDBInstance(_ input: DeleteDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDBInstanceResponse > {
+        self.client.execute(action: "DeleteDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 立即下线实例
+    ///
+    /// 本接口（DeleteDBInstance）用于释放回收站中的SQL server实例(立即下线)。释放后的实例将保存一段时间后物理销毁。其发布订阅将自动解除，其ro副本将自动释放。
+    @inlinable
+    public func deleteDBInstance(_ input: DeleteDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBInstanceResponse {
+        try await self.client.execute(action: "DeleteDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

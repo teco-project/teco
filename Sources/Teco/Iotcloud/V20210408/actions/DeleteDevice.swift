@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 删除设备
-    ///
-    /// 本接口（DeleteDevice）用于删除物联网通信设备。 
-    @inlinable
-    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceResponse > {
-        self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除设备
-    ///
-    /// 本接口（DeleteDevice）用于删除物联网通信设备。 
-    @inlinable
-    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
-        try await self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDevice请求参数结构体
     public struct DeleteDeviceRequest: TCRequestModel {
         /// 设备所属的产品 ID
@@ -42,7 +26,7 @@ extension Iotcloud {
         /// 删除LoRa设备以及LoRa网关设备需要skey
         public let skey: String?
         
-        public init (productId: String, deviceName: String, skey: String?) {
+        public init (productId: String, deviceName: String, skey: String? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.skey = skey
@@ -63,5 +47,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除设备
+    ///
+    /// 本接口（DeleteDevice）用于删除物联网通信设备。 
+    @inlinable
+    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceResponse > {
+        self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除设备
+    ///
+    /// 本接口（DeleteDevice）用于删除物联网通信设备。 
+    @inlinable
+    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
+        try await self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

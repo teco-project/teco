@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 升级数据库代理版本
-    @inlinable
-    public func upgradeCDBProxyVersion(_ input: UpgradeCDBProxyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeCDBProxyVersionResponse > {
-        self.client.execute(action: "UpgradeCDBProxyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 升级数据库代理版本
-    @inlinable
-    public func upgradeCDBProxyVersion(_ input: UpgradeCDBProxyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyVersionResponse {
-        try await self.client.execute(action: "UpgradeCDBProxyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeCDBProxyVersion请求参数结构体
     public struct UpgradeCDBProxyVersionRequest: TCRequestModel {
         /// 实例ID
@@ -74,5 +62,17 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 升级数据库代理版本
+    @inlinable
+    public func upgradeCDBProxyVersion(_ input: UpgradeCDBProxyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeCDBProxyVersionResponse > {
+        self.client.execute(action: "UpgradeCDBProxyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 升级数据库代理版本
+    @inlinable
+    public func upgradeCDBProxyVersion(_ input: UpgradeCDBProxyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyVersionResponse {
+        try await self.client.execute(action: "UpgradeCDBProxyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

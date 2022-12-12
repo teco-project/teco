@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudaudit {
-    /// 查询跟踪集概要
-    @inlinable
-    public func listAudits(_ input: ListAuditsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAuditsResponse > {
-        self.client.execute(action: "ListAudits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询跟踪集概要
-    @inlinable
-    public func listAudits(_ input: ListAuditsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuditsResponse {
-        try await self.client.execute(action: "ListAudits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListAudits请求参数结构体
     public struct ListAuditsRequest: TCRequestModel {
         public init () {
@@ -46,5 +34,17 @@ extension Cloudaudit {
             case auditSummarys = "AuditSummarys"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询跟踪集概要
+    @inlinable
+    public func listAudits(_ input: ListAuditsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAuditsResponse > {
+        self.client.execute(action: "ListAudits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询跟踪集概要
+    @inlinable
+    public func listAudits(_ input: ListAuditsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuditsResponse {
+        try await self.client.execute(action: "ListAudits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

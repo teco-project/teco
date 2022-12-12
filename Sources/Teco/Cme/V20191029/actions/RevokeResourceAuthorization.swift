@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 撤销资源授权
-    ///
-    ///  资源所属实体对目标实体撤销目标资源的相应权限，若原本没有相应权限则不产生变更。
-    @inlinable
-    public func revokeResourceAuthorization(_ input: RevokeResourceAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevokeResourceAuthorizationResponse > {
-        self.client.execute(action: "RevokeResourceAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 撤销资源授权
-    ///
-    ///  资源所属实体对目标实体撤销目标资源的相应权限，若原本没有相应权限则不产生变更。
-    @inlinable
-    public func revokeResourceAuthorization(_ input: RevokeResourceAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeResourceAuthorizationResponse {
-        try await self.client.execute(action: "RevokeResourceAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RevokeResourceAuthorization请求参数结构体
     public struct RevokeResourceAuthorizationRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -55,7 +39,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，撤销任意资源的授权权限。如果指定操作者，则操作者必须对被授权资源有写权限。
         public let `operator`: String?
         
-        public init (platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], `operator`: String?) {
+        public init (platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], `operator`: String? = nil) {
             self.platform = platform
             self.owner = owner
             self.resources = resources
@@ -82,5 +66,21 @@ extension Cme {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 撤销资源授权
+    ///
+    ///  资源所属实体对目标实体撤销目标资源的相应权限，若原本没有相应权限则不产生变更。
+    @inlinable
+    public func revokeResourceAuthorization(_ input: RevokeResourceAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevokeResourceAuthorizationResponse > {
+        self.client.execute(action: "RevokeResourceAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 撤销资源授权
+    ///
+    ///  资源所属实体对目标实体撤销目标资源的相应权限，若原本没有相应权限则不产生变更。
+    @inlinable
+    public func revokeResourceAuthorization(_ input: RevokeResourceAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeResourceAuthorizationResponse {
+        try await self.client.execute(action: "RevokeResourceAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

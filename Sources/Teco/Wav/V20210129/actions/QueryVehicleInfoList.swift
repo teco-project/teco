@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wav {
-    /// 查询车系车型信息列表接口
-    ///
-    /// 企业可通过此接口获取企微SaaS平台上的车系车型信息。
-    @inlinable
-    public func queryVehicleInfoList(_ input: QueryVehicleInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryVehicleInfoListResponse > {
-        self.client.execute(action: "QueryVehicleInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询车系车型信息列表接口
-    ///
-    /// 企业可通过此接口获取企微SaaS平台上的车系车型信息。
-    @inlinable
-    public func queryVehicleInfoList(_ input: QueryVehicleInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryVehicleInfoListResponse {
-        try await self.client.execute(action: "QueryVehicleInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryVehicleInfoList请求参数结构体
     public struct QueryVehicleInfoListRequest: TCRequestModel {
         /// 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
@@ -39,7 +23,7 @@ extension Wav {
         /// 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
         public let limit: Int64?
         
-        public init (cursor: String?, limit: Int64?) {
+        public init (cursor: String? = nil, limit: Int64? = nil) {
             self.cursor = cursor
             self.limit = limit
         }
@@ -73,5 +57,21 @@ extension Wav {
             case hasMore = "HasMore"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询车系车型信息列表接口
+    ///
+    /// 企业可通过此接口获取企微SaaS平台上的车系车型信息。
+    @inlinable
+    public func queryVehicleInfoList(_ input: QueryVehicleInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryVehicleInfoListResponse > {
+        self.client.execute(action: "QueryVehicleInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询车系车型信息列表接口
+    ///
+    /// 企业可通过此接口获取企微SaaS平台上的车系车型信息。
+    @inlinable
+    public func queryVehicleInfoList(_ input: QueryVehicleInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryVehicleInfoListResponse {
+        try await self.client.execute(action: "QueryVehicleInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

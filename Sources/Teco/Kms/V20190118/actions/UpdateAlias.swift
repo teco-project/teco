@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 修改别名
-    ///
-    /// 用于修改CMK的别名。对于处于PendingDelete状态的CMK禁止修改。
-    @inlinable
-    public func updateAlias(_ input: UpdateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAliasResponse > {
-        self.client.execute(action: "UpdateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改别名
-    ///
-    /// 用于修改CMK的别名。对于处于PendingDelete状态的CMK禁止修改。
-    @inlinable
-    public func updateAlias(_ input: UpdateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
-        try await self.client.execute(action: "UpdateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateAlias请求参数结构体
     public struct UpdateAliasRequest: TCRequestModel {
         /// 新的别名，1-60个字符或数字的组合
@@ -58,5 +42,21 @@ extension Kms {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改别名
+    ///
+    /// 用于修改CMK的别名。对于处于PendingDelete状态的CMK禁止修改。
+    @inlinable
+    public func updateAlias(_ input: UpdateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAliasResponse > {
+        self.client.execute(action: "UpdateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改别名
+    ///
+    /// 用于修改CMK的别名。对于处于PendingDelete状态的CMK禁止修改。
+    @inlinable
+    public func updateAlias(_ input: UpdateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
+        try await self.client.execute(action: "UpdateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -587,7 +587,7 @@ extension Cwp {
         /// 是否模糊查询
         public let exactMatch: Bool?
         
-        public init (name: String, values: [String], exactMatch: Bool?) {
+        public init (name: String, values: [String], exactMatch: Bool? = nil) {
             self.name = name
             self.values = values
             self.exactMatch = exactMatch
@@ -2213,7 +2213,7 @@ extension Cwp {
         /// 检测的主机ID集合
         public let hostIds: [String]?
         
-        public init (policyIds: [Int64]?, ruleIds: [Int64]?, itemIds: [Int64]?, hostIds: [String]?) {
+        public init (policyIds: [Int64]? = nil, ruleIds: [Int64]? = nil, itemIds: [Int64]? = nil, hostIds: [String]? = nil) {
             self.policyIds = policyIds
             self.ruleIds = ruleIds
             self.itemIds = itemIds
@@ -2630,7 +2630,7 @@ extension Cwp {
         /// 是否是系统默认
         public let isDefault: Int64?
         
-        public init (policyName: String, detectInterval: Int64, detectTime: String, isEnabled: Int64, assetType: Int64, policyId: Int64?, ruleCount: Int64?, itemCount: Int64?, hostCount: Int64?, ruleIds: [Int64]?, hostIds: [String]?, hostIps: [String]?, isDefault: Int64?) {
+        public init (policyName: String, detectInterval: Int64, detectTime: String, isEnabled: Int64, assetType: Int64, policyId: Int64? = nil, ruleCount: Int64? = nil, itemCount: Int64? = nil, hostCount: Int64? = nil, ruleIds: [Int64]? = nil, hostIds: [String]? = nil, hostIps: [String]? = nil, isDefault: Int64? = nil) {
             self.policyName = policyName
             self.detectInterval = detectInterval
             self.detectTime = detectTime
@@ -3173,7 +3173,7 @@ extension Cwp {
         
         /// 授权订单对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let licenseOrder: LicenseOrder
+        public let licenseOrder: LicenseOrder?
         
         /// 漏洞数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3354,7 +3354,7 @@ extension Cwp {
         /// 模糊搜索
         public let exactMatch: Bool?
         
-        public init (name: String, values: [String], exactMatch: Bool?) {
+        public init (name: String, values: [String], exactMatch: Bool? = nil) {
             self.name = name
             self.values = values
             self.exactMatch = exactMatch
@@ -3380,7 +3380,7 @@ extension Cwp {
         /// 是否模糊匹配，前端框架会带上，可以不管
         public let exactMatch: Bool?
         
-        public init (name: String, values: [String], exactMatch: Bool?) {
+        public init (name: String, values: [String], exactMatch: Bool? = nil) {
             self.name = name
             self.values = values
             self.exactMatch = exactMatch
@@ -4411,7 +4411,7 @@ extension Cwp {
         /// 位置名称
         public let location: String?
         
-        public init (cityId: UInt64, provinceId: UInt64, countryId: UInt64, location: String?) {
+        public init (cityId: UInt64, provinceId: UInt64, countryId: UInt64, location: String? = nil) {
             self.cityId = cityId
             self.provinceId = provinceId
             self.countryId = countryId
@@ -5200,7 +5200,7 @@ extension Cwp {
         /// 规则ID
         public let id: UInt64?
         
-        public init (name: String, logType: String, condition: String, timeRange: String, query: String, flag: String, displayData: String, id: UInt64?) {
+        public init (name: String, logType: String, condition: String, timeRange: String, query: String, flag: String, displayData: String, id: UInt64? = nil) {
             self.name = name
             self.logType = logType
             self.condition = condition
@@ -5900,7 +5900,7 @@ extension Cwp {
         /// 漏洞等级控制位二进制，每一位对应页面漏洞等级的开启关闭：低中高（0:关闭；1：开启），例如：101 → 同时勾选低+高；01→(登录审计)疑似不告警，高危告警
         public let controlBits: String?
         
-        public init (type: UInt64?, disablePhoneWarning: UInt64?, beginTime: String?, endTime: String?, controlBits: String?) {
+        public init (type: UInt64? = nil, disablePhoneWarning: UInt64? = nil, beginTime: String? = nil, endTime: String? = nil, controlBits: String? = nil) {
             self.type = type
             self.disablePhoneWarning = disablePhoneWarning
             self.beginTime = beginTime

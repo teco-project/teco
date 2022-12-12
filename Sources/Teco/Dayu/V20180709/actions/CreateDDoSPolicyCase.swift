@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 添加策略场景
-    @inlinable
-    public func createDDoSPolicyCase(_ input: CreateDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSPolicyCaseResponse > {
-        self.client.execute(action: "CreateDDoSPolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加策略场景
-    @inlinable
-    public func createDDoSPolicyCase(_ input: CreateDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSPolicyCaseResponse {
-        try await self.client.execute(action: "CreateDDoSPolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDDoSPolicyCase请求参数结构体
     public struct CreateDDoSPolicyCaseRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -101,7 +89,7 @@ extension Dayu {
         /// UDP业务端口列表，同时支持单个端口和端口段，字符串格式，例如：80,443,700-800,53,1000-3000
         public let udpPortList: String?
         
-        public init (business: String, caseName: String, platformTypes: [String]?, appType: String?, appProtocols: [String]?, tcpSportStart: String?, tcpSportEnd: String?, udpSportStart: String?, udpSportEnd: String?, hasAbroad: String?, hasInitiateTcp: String?, hasInitiateUdp: String?, peerTcpPort: String?, peerUdpPort: String?, tcpFootprint: String?, udpFootprint: String?, webApiUrl: [String]?, minTcpPackageLen: String?, maxTcpPackageLen: String?, minUdpPackageLen: String?, maxUdpPackageLen: String?, hasVPN: String?, tcpPortList: String?, udpPortList: String?) {
+        public init (business: String, caseName: String, platformTypes: [String]? = nil, appType: String? = nil, appProtocols: [String]? = nil, tcpSportStart: String? = nil, tcpSportEnd: String? = nil, udpSportStart: String? = nil, udpSportEnd: String? = nil, hasAbroad: String? = nil, hasInitiateTcp: String? = nil, hasInitiateUdp: String? = nil, peerTcpPort: String? = nil, peerUdpPort: String? = nil, tcpFootprint: String? = nil, udpFootprint: String? = nil, webApiUrl: [String]? = nil, minTcpPackageLen: String? = nil, maxTcpPackageLen: String? = nil, minUdpPackageLen: String? = nil, maxUdpPackageLen: String? = nil, hasVPN: String? = nil, tcpPortList: String? = nil, udpPortList: String? = nil) {
             self.business = business
             self.caseName = caseName
             self.platformTypes = platformTypes
@@ -168,5 +156,17 @@ extension Dayu {
             case sceneId = "SceneId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加策略场景
+    @inlinable
+    public func createDDoSPolicyCase(_ input: CreateDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSPolicyCaseResponse > {
+        self.client.execute(action: "CreateDDoSPolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加策略场景
+    @inlinable
+    public func createDDoSPolicyCase(_ input: CreateDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSPolicyCaseResponse {
+        try await self.client.execute(action: "CreateDDoSPolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

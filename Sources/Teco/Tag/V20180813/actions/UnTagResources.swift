@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 为资源解绑标签
-    ///
-    /// 指定的多个云产品的多个云资源统一解绑标签。
-    @inlinable
-    public func unTagResources(_ input: UnTagResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnTagResourcesResponse > {
-        self.client.execute(action: "UnTagResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 为资源解绑标签
-    ///
-    /// 指定的多个云产品的多个云资源统一解绑标签。
-    @inlinable
-    public func unTagResources(_ input: UnTagResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnTagResourcesResponse {
-        try await self.client.execute(action: "UnTagResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnTagResources请求参数结构体
     public struct UnTagResourcesRequest: TCRequestModel {
         /// 资源六段式列表。腾讯云使用资源六段式描述一个资源。可参考[访问管理](https://cloud.tencent.com/document/product/598/67350)-概览-接口列表-资源六段式信息
@@ -67,5 +51,21 @@ extension Tag {
             case failedResources = "FailedResources"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 为资源解绑标签
+    ///
+    /// 指定的多个云产品的多个云资源统一解绑标签。
+    @inlinable
+    public func unTagResources(_ input: UnTagResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnTagResourcesResponse > {
+        self.client.execute(action: "UnTagResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 为资源解绑标签
+    ///
+    /// 指定的多个云产品的多个云资源统一解绑标签。
+    @inlinable
+    public func unTagResources(_ input: UnTagResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnTagResourcesResponse {
+        try await self.client.execute(action: "UnTagResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

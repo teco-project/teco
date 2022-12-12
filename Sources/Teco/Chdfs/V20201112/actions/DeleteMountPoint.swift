@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 删除挂载点
-    ///
-    /// 删除挂载点。
-    @inlinable
-    public func deleteMountPoint(_ input: DeleteMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMountPointResponse > {
-        self.client.execute(action: "DeleteMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除挂载点
-    ///
-    /// 删除挂载点。
-    @inlinable
-    public func deleteMountPoint(_ input: DeleteMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMountPointResponse {
-        try await self.client.execute(action: "DeleteMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMountPoint请求参数结构体
     public struct DeleteMountPointRequest: TCRequestModel {
         /// 挂载点ID
@@ -53,5 +37,21 @@ extension Chdfs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除挂载点
+    ///
+    /// 删除挂载点。
+    @inlinable
+    public func deleteMountPoint(_ input: DeleteMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMountPointResponse > {
+        self.client.execute(action: "DeleteMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除挂载点
+    ///
+    /// 删除挂载点。
+    @inlinable
+    public func deleteMountPoint(_ input: DeleteMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMountPointResponse {
+        try await self.client.execute(action: "DeleteMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

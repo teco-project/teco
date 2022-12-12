@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 查询码包地址
-    @inlinable
-    public func describeCodePackUrl(_ input: DescribeCodePackUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodePackUrlResponse > {
-        self.client.execute(action: "DescribeCodePackUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询码包地址
-    @inlinable
-    public func describeCodePackUrl(_ input: DescribeCodePackUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodePackUrlResponse {
-        try await self.client.execute(action: "DescribeCodePackUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCodePackUrl请求参数结构体
     public struct DescribeCodePackUrlRequest: TCRequestModel {
         /// 码包ID
@@ -35,7 +23,7 @@ extension Trp {
         /// 企业ID
         public let corpId: UInt64?
         
-        public init (packId: String, corpId: UInt64?) {
+        public init (packId: String, corpId: UInt64? = nil) {
             self.packId = packId
             self.corpId = corpId
         }
@@ -69,5 +57,17 @@ extension Trp {
             case fileKey = "FileKey"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询码包地址
+    @inlinable
+    public func describeCodePackUrl(_ input: DescribeCodePackUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodePackUrlResponse > {
+        self.client.execute(action: "DescribeCodePackUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询码包地址
+    @inlinable
+    public func describeCodePackUrl(_ input: DescribeCodePackUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodePackUrlResponse {
+        try await self.client.execute(action: "DescribeCodePackUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

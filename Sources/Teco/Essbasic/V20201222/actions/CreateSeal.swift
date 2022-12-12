@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 创建印章
-    ///
-    /// 此接口（CreateSeal）用于创建个人/企业印章。
-    /// 注意：使用FileId参数指定印章，需先调用多文件上传 (UploadFiles) 上传印章图片。
-    @inlinable
-    public func createSeal(_ input: CreateSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSealResponse > {
-        self.client.execute(action: "CreateSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建印章
-    ///
-    /// 此接口（CreateSeal）用于创建个人/企业印章。
-    /// 注意：使用FileId参数指定印章，需先调用多文件上传 (UploadFiles) 上传印章图片。
-    @inlinable
-    public func createSeal(_ input: CreateSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealResponse {
-        try await self.client.execute(action: "CreateSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSeal请求参数结构体
     public struct CreateSealRequest: TCRequestModel {
         /// 调用方信息
@@ -66,7 +48,7 @@ extension Essbasic {
         /// 是否是默认印章 true：是，false：否
         public let isDefault: Bool?
         
-        public init (caller: Caller, sealType: String, sealName: String, sourceIp: String, image: String?, fileId: String?, userId: String?, isDefault: Bool?) {
+        public init (caller: Caller, sealType: String, sealName: String, sourceIp: String, image: String? = nil, fileId: String? = nil, userId: String? = nil, isDefault: Bool? = nil) {
             self.caller = caller
             self.sealType = sealType
             self.sealName = sealName
@@ -101,5 +83,23 @@ extension Essbasic {
             case sealId = "SealId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建印章
+    ///
+    /// 此接口（CreateSeal）用于创建个人/企业印章。
+    /// 注意：使用FileId参数指定印章，需先调用多文件上传 (UploadFiles) 上传印章图片。
+    @inlinable
+    public func createSeal(_ input: CreateSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSealResponse > {
+        self.client.execute(action: "CreateSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建印章
+    ///
+    /// 此接口（CreateSeal）用于创建个人/企业印章。
+    /// 注意：使用FileId参数指定印章，需先调用多文件上传 (UploadFiles) 上传印章图片。
+    @inlinable
+    public func createSeal(_ input: CreateSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealResponse {
+        try await self.client.execute(action: "CreateSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

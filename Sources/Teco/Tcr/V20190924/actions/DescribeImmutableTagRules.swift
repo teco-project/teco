@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 列出镜像不可变规则
-    @inlinable
-    public func describeImmutableTagRules(_ input: DescribeImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImmutableTagRulesResponse > {
-        self.client.execute(action: "DescribeImmutableTagRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出镜像不可变规则
-    @inlinable
-    public func describeImmutableTagRules(_ input: DescribeImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImmutableTagRulesResponse {
-        try await self.client.execute(action: "DescribeImmutableTagRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImmutableTagRules请求参数结构体
     public struct DescribeImmutableTagRulesRequest: TCRequestModel {
         /// 实例 Id
@@ -63,5 +51,17 @@ extension Tcr {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出镜像不可变规则
+    @inlinable
+    public func describeImmutableTagRules(_ input: DescribeImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImmutableTagRulesResponse > {
+        self.client.execute(action: "DescribeImmutableTagRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出镜像不可变规则
+    @inlinable
+    public func describeImmutableTagRules(_ input: DescribeImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImmutableTagRulesResponse {
+        try await self.client.execute(action: "DescribeImmutableTagRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

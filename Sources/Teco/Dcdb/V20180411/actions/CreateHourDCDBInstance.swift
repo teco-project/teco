@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 创建DCDB后付费实例
-    @inlinable
-    public func createHourDCDBInstance(_ input: CreateHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHourDCDBInstanceResponse > {
-        self.client.execute(action: "CreateHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建DCDB后付费实例
-    @inlinable
-    public func createHourDCDBInstance(_ input: CreateHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHourDCDBInstanceResponse {
-        try await self.client.execute(action: "CreateHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateHourDCDBInstance请求参数结构体
     public struct CreateHourDCDBInstanceRequest: TCRequestModel {
         /// 分片内存大小，单位：GB，可以通过 DescribeShardSpec
@@ -100,7 +88,7 @@ extension Dcdb {
         /// 安全组ids，安全组可以传数组形式，兼容之前SecurityGroupId参数
         public let securityGroupIds: [String]?
         
-        public init (shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64?, projectId: Int64?, vpcId: String?, subnetId: String?, shardCpu: Int64?, dbVersionId: String?, zones: [String]?, securityGroupId: String?, instanceName: String?, ipv6Flag: Int64?, resourceTags: [ResourceTag]?, dcnRegion: String?, dcnInstanceId: String?, initParams: [DBParamValue]?, rollbackInstanceId: String?, rollbackTime: String?, securityGroupIds: [String]?) {
+        public init (shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, shardCpu: Int64? = nil, dbVersionId: String? = nil, zones: [String]? = nil, securityGroupId: String? = nil, instanceName: String? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, securityGroupIds: [String]? = nil) {
             self.shardMemory = shardMemory
             self.shardStorage = shardStorage
             self.shardNodeCount = shardNodeCount
@@ -170,5 +158,17 @@ extension Dcdb {
             case dealName = "DealName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建DCDB后付费实例
+    @inlinable
+    public func createHourDCDBInstance(_ input: CreateHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHourDCDBInstanceResponse > {
+        self.client.execute(action: "CreateHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建DCDB后付费实例
+    @inlinable
+    public func createHourDCDBInstance(_ input: CreateHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHourDCDBInstanceResponse {
+        try await self.client.execute(action: "CreateHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 实名核身鉴权
-    ///
-    /// 每次调用人脸核身SaaS化服务前，需先调用本接口获取BizToken，用来串联核身流程，在验证完成后，用于获取验证结果信息。
-    @inlinable
-    public func detectAuth(_ input: DetectAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectAuthResponse > {
-        self.client.execute(action: "DetectAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实名核身鉴权
-    ///
-    /// 每次调用人脸核身SaaS化服务前，需先调用本接口获取BizToken，用来串联核身流程，在验证完成后，用于获取验证结果信息。
-    @inlinable
-    public func detectAuth(_ input: DetectAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectAuthResponse {
-        try await self.client.execute(action: "DetectAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetectAuth请求参数结构体
     public struct DetectAuthRequest: TCRequestModel {
         /// 用于细分客户使用场景，申请开通服务后，可以在腾讯云慧眼人脸核身控制台（https://console.cloud.tencent.com/faceid） 自助接入里面创建，审核通过后即可调用。如有疑问，请添加[腾讯云人脸核身小助手](https://cloud.tencent.com/document/product/1007/56130)进行咨询。
@@ -57,7 +41,7 @@ extension Faceid {
         public let imageBase64: String?
         
         /// 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
-        public let encryption: Encryption
+        public let encryption: Encryption?
         
         /// 意愿核身（朗读模式）使用的文案，若未使用意愿核身（朗读模式），则该字段无需传入。默认为空，最长可接受120的字符串长度。
         public let intentionVerifyText: String?
@@ -66,9 +50,9 @@ extension Faceid {
         public let intentionQuestions: [IntentionQuestion]?
         
         /// RuleId相关配置
-        public let config: RuleIdConfig
+        public let config: RuleIdConfig?
         
-        public init (ruleId: String, terminalType: String?, idCard: String?, name: String?, redirectUrl: String?, extra: String?, imageBase64: String?, encryption: Encryption, intentionVerifyText: String?, intentionQuestions: [IntentionQuestion]?, config: RuleIdConfig) {
+        public init (ruleId: String, terminalType: String? = nil, idCard: String? = nil, name: String? = nil, redirectUrl: String? = nil, extra: String? = nil, imageBase64: String? = nil, encryption: Encryption? = nil, intentionVerifyText: String? = nil, intentionQuestions: [IntentionQuestion]? = nil, config: RuleIdConfig? = nil) {
             self.ruleId = ruleId
             self.terminalType = terminalType
             self.idCard = idCard
@@ -114,5 +98,21 @@ extension Faceid {
             case bizToken = "BizToken"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实名核身鉴权
+    ///
+    /// 每次调用人脸核身SaaS化服务前，需先调用本接口获取BizToken，用来串联核身流程，在验证完成后，用于获取验证结果信息。
+    @inlinable
+    public func detectAuth(_ input: DetectAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectAuthResponse > {
+        self.client.execute(action: "DetectAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实名核身鉴权
+    ///
+    /// 每次调用人脸核身SaaS化服务前，需先调用本接口获取BizToken，用来串联核身流程，在验证完成后，用于获取验证结果信息。
+    @inlinable
+    public func detectAuth(_ input: DetectAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectAuthResponse {
+        try await self.client.execute(action: "DetectAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,24 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Vod {
-    /// 修改音视频内容分析模板
-    ///
-    /// 修改用户自定义音视频内容分析模板。
-    /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
-    @inlinable
-    public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAIAnalysisTemplateResponse > {
-        self.client.execute(action: "ModifyAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改音视频内容分析模板
-    ///
-    /// 修改用户自定义音视频内容分析模板。
-    /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
-    @inlinable
-    public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIAnalysisTemplateResponse {
-        try await self.client.execute(action: "ModifyAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAIAnalysisTemplate请求参数结构体
     public struct ModifyAIAnalysisTemplateRequest: TCRequestModel {
         /// 音视频内容分析模板唯一标识。
@@ -50,21 +32,21 @@ extension Vod {
         public let comment: String?
         
         /// 智能分类任务控制参数。
-        public let classificationConfigure: ClassificationConfigureInfoForUpdate
+        public let classificationConfigure: ClassificationConfigureInfoForUpdate?
         
         /// 智能标签任务控制参数。
-        public let tagConfigure: TagConfigureInfoForUpdate
+        public let tagConfigure: TagConfigureInfoForUpdate?
         
         /// 智能封面任务控制参数。
-        public let coverConfigure: CoverConfigureInfoForUpdate
+        public let coverConfigure: CoverConfigureInfoForUpdate?
         
         /// 智能按帧标签任务控制参数。
-        public let frameTagConfigure: FrameTagConfigureInfoForUpdate
+        public let frameTagConfigure: FrameTagConfigureInfoForUpdate?
         
         /// 智能精彩集锦任务控制参数。
-        public let highlightConfigure: HighlightsConfigureInfoForUpdate
+        public let highlightConfigure: HighlightsConfigureInfoForUpdate?
         
-        public init (definition: Int64, subAppId: UInt64?, name: String?, comment: String?, classificationConfigure: ClassificationConfigureInfoForUpdate, tagConfigure: TagConfigureInfoForUpdate, coverConfigure: CoverConfigureInfoForUpdate, frameTagConfigure: FrameTagConfigureInfoForUpdate, highlightConfigure: HighlightsConfigureInfoForUpdate) {
+        public init (definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfoForUpdate? = nil, tagConfigure: TagConfigureInfoForUpdate? = nil, coverConfigure: CoverConfigureInfoForUpdate? = nil, frameTagConfigure: FrameTagConfigureInfoForUpdate? = nil, highlightConfigure: HighlightsConfigureInfoForUpdate? = nil) {
             self.definition = definition
             self.subAppId = subAppId
             self.name = name
@@ -97,5 +79,23 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改音视频内容分析模板
+    ///
+    /// 修改用户自定义音视频内容分析模板。
+    /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
+    @inlinable
+    public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAIAnalysisTemplateResponse > {
+        self.client.execute(action: "ModifyAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改音视频内容分析模板
+    ///
+    /// 修改用户自定义音视频内容分析模板。
+    /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
+    @inlinable
+    public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIAnalysisTemplateResponse {
+        try await self.client.execute(action: "ModifyAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

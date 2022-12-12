@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudhsm {
-    /// 获取用户VSM列表
-    @inlinable
-    public func describeVsms(_ input: DescribeVsmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVsmsResponse > {
-        self.client.execute(action: "DescribeVsms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户VSM列表
-    @inlinable
-    public func describeVsms(_ input: DescribeVsmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVsmsResponse {
-        try await self.client.execute(action: "DescribeVsms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVsms请求参数结构体
     public struct DescribeVsmsRequest: TCRequestModel {
         /// 偏移
@@ -47,7 +35,7 @@ extension Cloudhsm {
         /// Hsm服务类型，可选virtualization、physical、GHSM、EHSM、SHSM、all
         public let hsmType: String?
         
-        public init (offset: Int64, limit: Int64, searchWord: String?, tagFilters: [TagFilter]?, manufacturer: String?, hsmType: String?) {
+        public init (offset: Int64, limit: Int64, searchWord: String? = nil, tagFilters: [TagFilter]? = nil, manufacturer: String? = nil, hsmType: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.searchWord = searchWord
@@ -83,5 +71,17 @@ extension Cloudhsm {
             case vsmList = "VsmList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户VSM列表
+    @inlinable
+    public func describeVsms(_ input: DescribeVsmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVsmsResponse > {
+        self.client.execute(action: "DescribeVsms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户VSM列表
+    @inlinable
+    public func describeVsms(_ input: DescribeVsmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVsmsResponse {
+        try await self.client.execute(action: "DescribeVsms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

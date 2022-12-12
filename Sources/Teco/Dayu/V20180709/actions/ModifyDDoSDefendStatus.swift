@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 修改DDoS防护状态
-    ///
-    /// 开启或关闭DDoS防护状态，调用此接口允许临时关闭DDoS防护一段时间，等时间到了会自动开启DDoS防护；
-    @inlinable
-    public func modifyDDoSDefendStatus(_ input: ModifyDDoSDefendStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSDefendStatusResponse > {
-        self.client.execute(action: "ModifyDDoSDefendStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改DDoS防护状态
-    ///
-    /// 开启或关闭DDoS防护状态，调用此接口允许临时关闭DDoS防护一段时间，等时间到了会自动开启DDoS防护；
-    @inlinable
-    public func modifyDDoSDefendStatus(_ input: ModifyDDoSDefendStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSDefendStatusResponse {
-        try await self.client.execute(action: "ModifyDDoSDefendStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDDoSDefendStatus请求参数结构体
     public struct ModifyDDoSDefendStatusRequest: TCRequestModel {
         /// 大禹子产品代号（bgp表示独享包；bgp-multip表示共享包；bgpip表示高防IP；net表示高防IP专业版；basic表示基础防护）
@@ -82,7 +66,7 @@ extension Dayu {
         /// "nj":     南京
         public let ipRegion: String?
         
-        public init (business: String, status: UInt64, hour: Int64, id: String?, ip: String?, bizType: String?, deviceType: String?, instanceId: String?, ipRegion: String?) {
+        public init (business: String, status: UInt64, hour: Int64, id: String? = nil, ip: String? = nil, bizType: String? = nil, deviceType: String? = nil, instanceId: String? = nil, ipRegion: String? = nil) {
             self.business = business
             self.status = status
             self.hour = hour
@@ -119,5 +103,21 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改DDoS防护状态
+    ///
+    /// 开启或关闭DDoS防护状态，调用此接口允许临时关闭DDoS防护一段时间，等时间到了会自动开启DDoS防护；
+    @inlinable
+    public func modifyDDoSDefendStatus(_ input: ModifyDDoSDefendStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSDefendStatusResponse > {
+        self.client.execute(action: "ModifyDDoSDefendStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改DDoS防护状态
+    ///
+    /// 开启或关闭DDoS防护状态，调用此接口允许临时关闭DDoS防护一段时间，等时间到了会自动开启DDoS防护；
+    @inlinable
+    public func modifyDDoSDefendStatus(_ input: ModifyDDoSDefendStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSDefendStatusResponse {
+        try await self.client.execute(action: "ModifyDDoSDefendStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

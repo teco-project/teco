@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 修改转动图模板
-    ///
-    /// 修改用户自定义转动图模板。
-    @inlinable
-    public func modifyAnimatedGraphicsTemplate(_ input: ModifyAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAnimatedGraphicsTemplateResponse > {
-        self.client.execute(action: "ModifyAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改转动图模板
-    ///
-    /// 修改用户自定义转动图模板。
-    @inlinable
-    public func modifyAnimatedGraphicsTemplate(_ input: ModifyAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAnimatedGraphicsTemplateResponse {
-        try await self.client.execute(action: "ModifyAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAnimatedGraphicsTemplate请求参数结构体
     public struct ModifyAnimatedGraphicsTemplateRequest: TCRequestModel {
         /// 转动图模板唯一标识。
@@ -73,7 +57,7 @@ extension Mps {
         /// 模板描述信息，长度限制：256 个字符。
         public let comment: String?
         
-        public init (definition: UInt64, name: String?, width: UInt64?, height: UInt64?, resolutionAdaptive: String?, format: String?, fps: UInt64?, quality: Float?, comment: String?) {
+        public init (definition: UInt64, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, fps: UInt64? = nil, quality: Float? = nil, comment: String? = nil) {
             self.definition = definition
             self.name = name
             self.width = width
@@ -106,5 +90,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改转动图模板
+    ///
+    /// 修改用户自定义转动图模板。
+    @inlinable
+    public func modifyAnimatedGraphicsTemplate(_ input: ModifyAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAnimatedGraphicsTemplateResponse > {
+        self.client.execute(action: "ModifyAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改转动图模板
+    ///
+    /// 修改用户自定义转动图模板。
+    @inlinable
+    public func modifyAnimatedGraphicsTemplate(_ input: ModifyAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAnimatedGraphicsTemplateResponse {
+        try await self.client.execute(action: "ModifyAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

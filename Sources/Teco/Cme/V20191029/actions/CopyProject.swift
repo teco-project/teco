@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 复制项目
-    ///
-    /// 复制一个项目，包括项目素材及轨道数据。目前仅普通剪辑及模板制作项目可复制，其它类型的项目不支持复制。
-    @inlinable
-    public func copyProject(_ input: CopyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyProjectResponse > {
-        self.client.execute(action: "CopyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 复制项目
-    ///
-    /// 复制一个项目，包括项目素材及轨道数据。目前仅普通剪辑及模板制作项目可复制，其它类型的项目不支持复制。
-    @inlinable
-    public func copyProject(_ input: CopyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyProjectResponse {
-        try await self.client.execute(action: "CopyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CopyProject请求参数结构体
     public struct CopyProjectRequest: TCRequestModel {
         /// 平台名称，指定访问的平台。
@@ -43,12 +27,12 @@ extension Cme {
         public let name: String?
         
         /// 复制后的项目归属者，不填为原项目归属者。
-        public let owner: Entity
+        public let owner: Entity?
         
         /// 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
         public let `operator`: String?
         
-        public init (platform: String, projectId: String, name: String?, owner: Entity, `operator`: String?) {
+        public init (platform: String, projectId: String, name: String? = nil, owner: Entity? = nil, `operator`: String? = nil) {
             self.platform = platform
             self.projectId = projectId
             self.name = name
@@ -77,5 +61,21 @@ extension Cme {
             case projectId = "ProjectId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 复制项目
+    ///
+    /// 复制一个项目，包括项目素材及轨道数据。目前仅普通剪辑及模板制作项目可复制，其它类型的项目不支持复制。
+    @inlinable
+    public func copyProject(_ input: CopyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyProjectResponse > {
+        self.client.execute(action: "CopyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 复制项目
+    ///
+    /// 复制一个项目，包括项目素材及轨道数据。目前仅普通剪辑及模板制作项目可复制，其它类型的项目不支持复制。
+    @inlinable
+    public func copyProject(_ input: CopyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyProjectResponse {
+        try await self.client.execute(action: "CopyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

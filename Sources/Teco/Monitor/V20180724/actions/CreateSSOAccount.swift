@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 授权腾讯云用户
-    ///
-    /// Grafana实例授权其他腾讯云用户
-    @inlinable
-    public func createSSOAccount(_ input: CreateSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSSOAccountResponse > {
-        self.client.execute(action: "CreateSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 授权腾讯云用户
-    ///
-    /// Grafana实例授权其他腾讯云用户
-    @inlinable
-    public func createSSOAccount(_ input: CreateSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSSOAccountResponse {
-        try await self.client.execute(action: "CreateSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSSOAccount请求参数结构体
     public struct CreateSSOAccountRequest: TCRequestModel {
         /// 实例ID
@@ -45,7 +29,7 @@ extension Monitor {
         /// 备注
         public let notes: String?
         
-        public init (instanceId: String, userId: String, role: [GrafanaAccountRole], notes: String?) {
+        public init (instanceId: String, userId: String, role: [GrafanaAccountRole], notes: String? = nil) {
             self.instanceId = instanceId
             self.userId = userId
             self.role = role
@@ -72,5 +56,21 @@ extension Monitor {
             case userId = "UserId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 授权腾讯云用户
+    ///
+    /// Grafana实例授权其他腾讯云用户
+    @inlinable
+    public func createSSOAccount(_ input: CreateSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSSOAccountResponse > {
+        self.client.execute(action: "CreateSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 授权腾讯云用户
+    ///
+    /// Grafana实例授权其他腾讯云用户
+    @inlinable
+    public func createSSOAccount(_ input: CreateSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSSOAccountResponse {
+        try await self.client.execute(action: "CreateSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 创建Logstash实例
-    ///
-    /// 用于创建Logstash实例
-    @inlinable
-    public func createLogstashInstance(_ input: CreateLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLogstashInstanceResponse > {
-        self.client.execute(action: "CreateLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建Logstash实例
-    ///
-    /// 用于创建Logstash实例
-    @inlinable
-    public func createLogstashInstance(_ input: CreateLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogstashInstanceResponse {
-        try await self.client.execute(action: "CreateLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLogstashInstance请求参数结构体
     public struct CreateLogstashInstanceRequest: TCRequestModel {
         /// 实例名称（1-50 个英文、汉字、数字、连接线-或下划线_）
@@ -85,9 +69,9 @@ extension Es {
         public let tagList: [TagInfo]?
         
         /// 可维护时间段
-        public let operationDuration: OperationDuration
+        public let operationDuration: OperationDuration?
         
-        public init (instanceName: String, zone: String, logstashVersion: String, vpcId: String, subnetId: String, nodeNum: UInt64?, chargeType: String?, chargePeriod: UInt64?, timeUnit: String?, autoVoucher: Int64?, voucherIds: [String]?, renewFlag: String?, nodeType: String?, diskType: String?, diskSize: UInt64?, licenseType: String?, tagList: [TagInfo]?, operationDuration: OperationDuration) {
+        public init (instanceName: String, zone: String, logstashVersion: String, vpcId: String, subnetId: String, nodeNum: UInt64? = nil, chargeType: String? = nil, chargePeriod: UInt64? = nil, timeUnit: String? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, renewFlag: String? = nil, nodeType: String? = nil, diskType: String? = nil, diskSize: UInt64? = nil, licenseType: String? = nil, tagList: [TagInfo]? = nil, operationDuration: OperationDuration? = nil) {
             self.instanceName = instanceName
             self.zone = zone
             self.logstashVersion = logstashVersion
@@ -142,5 +126,21 @@ extension Es {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建Logstash实例
+    ///
+    /// 用于创建Logstash实例
+    @inlinable
+    public func createLogstashInstance(_ input: CreateLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLogstashInstanceResponse > {
+        self.client.execute(action: "CreateLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建Logstash实例
+    ///
+    /// 用于创建Logstash实例
+    @inlinable
+    public func createLogstashInstance(_ input: CreateLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogstashInstanceResponse {
+        try await self.client.execute(action: "CreateLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

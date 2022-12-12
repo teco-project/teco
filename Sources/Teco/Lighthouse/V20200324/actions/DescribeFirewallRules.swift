@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询防火墙规则
-    ///
-    /// 本接口（DescribeFirewallRules）用于查询实例的防火墙规则。
-    @inlinable
-    public func describeFirewallRules(_ input: DescribeFirewallRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirewallRulesResponse > {
-        self.client.execute(action: "DescribeFirewallRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询防火墙规则
-    ///
-    /// 本接口（DescribeFirewallRules）用于查询实例的防火墙规则。
-    @inlinable
-    public func describeFirewallRules(_ input: DescribeFirewallRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirewallRulesResponse {
-        try await self.client.execute(action: "DescribeFirewallRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFirewallRules请求参数结构体
     public struct DescribeFirewallRulesRequest: TCRequestModel {
         /// 实例 ID。
@@ -42,7 +26,7 @@ extension Lighthouse {
         /// 返回数量，默认为 20，最大值为 100。
         public let limit: Int64?
         
-        public init (instanceId: String, offset: Int64?, limit: Int64?) {
+        public init (instanceId: String, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
@@ -75,5 +59,21 @@ extension Lighthouse {
             case firewallVersion = "FirewallVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询防火墙规则
+    ///
+    /// 本接口（DescribeFirewallRules）用于查询实例的防火墙规则。
+    @inlinable
+    public func describeFirewallRules(_ input: DescribeFirewallRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirewallRulesResponse > {
+        self.client.execute(action: "DescribeFirewallRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询防火墙规则
+    ///
+    /// 本接口（DescribeFirewallRules）用于查询实例的防火墙规则。
+    @inlinable
+    public func describeFirewallRules(_ input: DescribeFirewallRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirewallRulesResponse {
+        try await self.client.execute(action: "DescribeFirewallRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

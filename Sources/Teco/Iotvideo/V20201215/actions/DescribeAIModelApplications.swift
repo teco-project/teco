@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 用户AI模型申请记录
-    @inlinable
-    public func describeAIModelApplications(_ input: DescribeAIModelApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAIModelApplicationsResponse > {
-        self.client.execute(action: "DescribeAIModelApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 用户AI模型申请记录
-    @inlinable
-    public func describeAIModelApplications(_ input: DescribeAIModelApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelApplicationsResponse {
-        try await self.client.execute(action: "DescribeAIModelApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAIModelApplications请求参数结构体
     public struct DescribeAIModelApplicationsRequest: TCRequestModel {
         /// 模型ID
@@ -41,7 +29,7 @@ extension Iotvideo {
         /// 产品ID
         public let productId: String?
         
-        public init (modelId: String, limit: UInt64, offset: UInt64, productId: String?) {
+        public init (modelId: String, limit: UInt64, offset: UInt64, productId: String? = nil) {
             self.modelId = modelId
             self.limit = limit
             self.offset = offset
@@ -72,5 +60,17 @@ extension Iotvideo {
             case applications = "Applications"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 用户AI模型申请记录
+    @inlinable
+    public func describeAIModelApplications(_ input: DescribeAIModelApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAIModelApplicationsResponse > {
+        self.client.execute(action: "DescribeAIModelApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 用户AI模型申请记录
+    @inlinable
+    public func describeAIModelApplications(_ input: DescribeAIModelApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelApplicationsResponse {
+        try await self.client.execute(action: "DescribeAIModelApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 获取组织成员的授权策略列表
-    @inlinable
-    public func describeOrganizationMemberPolicies(_ input: DescribeOrganizationMemberPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationMemberPoliciesResponse > {
-        self.client.execute(action: "DescribeOrganizationMemberPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取组织成员的授权策略列表
-    @inlinable
-    public func describeOrganizationMemberPolicies(_ input: DescribeOrganizationMemberPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberPoliciesResponse {
-        try await self.client.execute(action: "DescribeOrganizationMemberPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOrganizationMemberPolicies请求参数结构体
     public struct DescribeOrganizationMemberPoliciesRequest: TCRequestModel {
         /// 偏移量。
@@ -41,7 +29,7 @@ extension Organization {
         /// 搜索关键字。可用于策略名或描述搜索
         public let searchKey: String?
         
-        public init (offset: Int64, limit: Int64, memberUin: Int64, searchKey: String?) {
+        public init (offset: Int64, limit: Int64, memberUin: Int64, searchKey: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.memberUin = memberUin
@@ -74,5 +62,17 @@ extension Organization {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取组织成员的授权策略列表
+    @inlinable
+    public func describeOrganizationMemberPolicies(_ input: DescribeOrganizationMemberPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationMemberPoliciesResponse > {
+        self.client.execute(action: "DescribeOrganizationMemberPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取组织成员的授权策略列表
+    @inlinable
+    public func describeOrganizationMemberPolicies(_ input: DescribeOrganizationMemberPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberPoliciesResponse {
+        try await self.client.execute(action: "DescribeOrganizationMemberPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

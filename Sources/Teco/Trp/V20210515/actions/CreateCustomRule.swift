@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 新建自定义码规则
-    @inlinable
-    public func createCustomRule(_ input: CreateCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomRuleResponse > {
-        self.client.execute(action: "CreateCustomRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建自定义码规则
-    @inlinable
-    public func createCustomRule(_ input: CreateCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomRuleResponse {
-        try await self.client.execute(action: "CreateCustomRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCustomRule请求参数结构体
     public struct CreateCustomRuleRequest: TCRequestModel {
         /// 规则名称
@@ -44,7 +32,7 @@ extension Trp {
         /// 企业ID
         public let corpId: UInt64?
         
-        public init (name: String, merchantId: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64?) {
+        public init (name: String, merchantId: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64? = nil) {
             self.name = name
             self.merchantId = merchantId
             self.codeLength = codeLength
@@ -74,5 +62,17 @@ extension Trp {
             case customId = "CustomId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建自定义码规则
+    @inlinable
+    public func createCustomRule(_ input: CreateCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomRuleResponse > {
+        self.client.execute(action: "CreateCustomRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建自定义码规则
+    @inlinable
+    public func createCustomRule(_ input: CreateCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomRuleResponse {
+        try await self.client.execute(action: "CreateCustomRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

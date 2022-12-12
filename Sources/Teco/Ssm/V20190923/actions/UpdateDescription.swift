@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssm {
-    /// 更新凭据描述信息
-    ///
-    /// 该接口用于修改指定凭据的描述信息，仅能修改Enabled 和 Disabled 状态的凭据。
-    @inlinable
-    public func updateDescription(_ input: UpdateDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDescriptionResponse > {
-        self.client.execute(action: "UpdateDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新凭据描述信息
-    ///
-    /// 该接口用于修改指定凭据的描述信息，仅能修改Enabled 和 Disabled 状态的凭据。
-    @inlinable
-    public func updateDescription(_ input: UpdateDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDescriptionResponse {
-        try await self.client.execute(action: "UpdateDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateDescription请求参数结构体
     public struct UpdateDescriptionRequest: TCRequestModel {
         /// 指定需要更新描述信息的凭据名。
@@ -62,5 +46,21 @@ extension Ssm {
             case secretName = "SecretName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新凭据描述信息
+    ///
+    /// 该接口用于修改指定凭据的描述信息，仅能修改Enabled 和 Disabled 状态的凭据。
+    @inlinable
+    public func updateDescription(_ input: UpdateDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDescriptionResponse > {
+        self.client.execute(action: "UpdateDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新凭据描述信息
+    ///
+    /// 该接口用于修改指定凭据的描述信息，仅能修改Enabled 和 Disabled 状态的凭据。
+    @inlinable
+    public func updateDescription(_ input: UpdateDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDescriptionResponse {
+        try await self.client.execute(action: "UpdateDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

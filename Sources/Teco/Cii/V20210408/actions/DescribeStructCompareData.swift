@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cii {
-    /// 结构化对比查询
-    ///
-    /// 结构化对比查询接口，对比结构化复核前后数据差异，查询识别正确率，召回率。
-    @inlinable
-    public func describeStructCompareData(_ input: DescribeStructCompareDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStructCompareDataResponse > {
-        self.client.execute(action: "DescribeStructCompareData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 结构化对比查询
-    ///
-    /// 结构化对比查询接口，对比结构化复核前后数据差异，查询识别正确率，召回率。
-    @inlinable
-    public func describeStructCompareData(_ input: DescribeStructCompareDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructCompareDataResponse {
-        try await self.client.execute(action: "DescribeStructCompareData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStructCompareData请求参数结构体
     public struct DescribeStructCompareDataRequest: TCRequestModel {
         /// 主任务号
@@ -39,7 +23,7 @@ extension Cii {
         /// 子任务号
         public let subTaskId: String?
         
-        public init (mainTaskId: String?, subTaskId: String?) {
+        public init (mainTaskId: String? = nil, subTaskId: String? = nil) {
             self.mainTaskId = mainTaskId
             self.subTaskId = subTaskId
         }
@@ -112,5 +96,21 @@ extension Cii {
             case taskType = "TaskType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 结构化对比查询
+    ///
+    /// 结构化对比查询接口，对比结构化复核前后数据差异，查询识别正确率，召回率。
+    @inlinable
+    public func describeStructCompareData(_ input: DescribeStructCompareDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStructCompareDataResponse > {
+        self.client.execute(action: "DescribeStructCompareData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 结构化对比查询
+    ///
+    /// 结构化对比查询接口，对比结构化复核前后数据差异，查询识别正确率，召回率。
+    @inlinable
+    public func describeStructCompareData(_ input: DescribeStructCompareDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructCompareDataResponse {
+        try await self.client.execute(action: "DescribeStructCompareData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询服务列表状态
-    ///
-    /// 本接口（DescribeServicesStatus）用于搜索查询某一个服务或多个服务的列表，并返回服务相关的域名、时间等信息。
-    @inlinable
-    public func describeServicesStatus(_ input: DescribeServicesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServicesStatusResponse > {
-        self.client.execute(action: "DescribeServicesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询服务列表状态
-    ///
-    /// 本接口（DescribeServicesStatus）用于搜索查询某一个服务或多个服务的列表，并返回服务相关的域名、时间等信息。
-    @inlinable
-    public func describeServicesStatus(_ input: DescribeServicesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServicesStatusResponse {
-        try await self.client.execute(action: "DescribeServicesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeServicesStatus请求参数结构体
     public struct DescribeServicesStatusRequest: TCRequestModel {
         /// 返回数量，默认为 20，最大值为 100。
@@ -42,7 +26,7 @@ extension Apigateway {
         /// 过滤条件。支持ServiceId、ServiceName、NotUsagePlanId、Environment、IpVersion、InstanceId、NetType、EIAMAppId。
         public let filters: [Filter]?
         
-        public init (limit: Int64?, offset: Int64?, filters: [Filter]?) {
+        public init (limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -59,7 +43,7 @@ extension Apigateway {
     public struct DescribeServicesStatusResponse: TCResponseModel {
         /// 服务列表查询结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: ServicesStatus
+        public let result: ServicesStatus?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -68,5 +52,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询服务列表状态
+    ///
+    /// 本接口（DescribeServicesStatus）用于搜索查询某一个服务或多个服务的列表，并返回服务相关的域名、时间等信息。
+    @inlinable
+    public func describeServicesStatus(_ input: DescribeServicesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServicesStatusResponse > {
+        self.client.execute(action: "DescribeServicesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务列表状态
+    ///
+    /// 本接口（DescribeServicesStatus）用于搜索查询某一个服务或多个服务的列表，并返回服务相关的域名、时间等信息。
+    @inlinable
+    public func describeServicesStatus(_ input: DescribeServicesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServicesStatusResponse {
+        try await self.client.execute(action: "DescribeServicesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

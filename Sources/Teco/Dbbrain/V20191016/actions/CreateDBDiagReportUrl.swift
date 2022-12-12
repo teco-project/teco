@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 创建健康报告浏览地址
-    ///
-    /// 创建健康报告的浏览地址。
-    @inlinable
-    public func createDBDiagReportUrl(_ input: CreateDBDiagReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBDiagReportUrlResponse > {
-        self.client.execute(action: "CreateDBDiagReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建健康报告浏览地址
-    ///
-    /// 创建健康报告的浏览地址。
-    @inlinable
-    public func createDBDiagReportUrl(_ input: CreateDBDiagReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBDiagReportUrlResponse {
-        try await self.client.execute(action: "CreateDBDiagReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDBDiagReportUrl请求参数结构体
     public struct CreateDBDiagReportUrlRequest: TCRequestModel {
         /// 实例ID。
@@ -42,7 +26,7 @@ extension Dbbrain {
         /// 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         public let product: String?
         
-        public init (instanceId: String, asyncRequestId: Int64, product: String?) {
+        public init (instanceId: String, asyncRequestId: Int64, product: String? = nil) {
             self.instanceId = instanceId
             self.asyncRequestId = asyncRequestId
             self.product = product
@@ -71,5 +55,21 @@ extension Dbbrain {
             case expireTime = "ExpireTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建健康报告浏览地址
+    ///
+    /// 创建健康报告的浏览地址。
+    @inlinable
+    public func createDBDiagReportUrl(_ input: CreateDBDiagReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBDiagReportUrlResponse > {
+        self.client.execute(action: "CreateDBDiagReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建健康报告浏览地址
+    ///
+    /// 创建健康报告的浏览地址。
+    @inlinable
+    public func createDBDiagReportUrl(_ input: CreateDBDiagReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBDiagReportUrlResponse {
+        try await self.client.execute(action: "CreateDBDiagReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

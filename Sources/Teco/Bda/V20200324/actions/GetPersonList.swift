@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bda {
-    /// 获取人员列表
-    ///
-    /// 获取指定人体库中的人员列表。
-    @inlinable
-    public func getPersonList(_ input: GetPersonListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPersonListResponse > {
-        self.client.execute(action: "GetPersonList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取人员列表
-    ///
-    /// 获取指定人体库中的人员列表。
-    @inlinable
-    public func getPersonList(_ input: GetPersonListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonListResponse {
-        try await self.client.execute(action: "GetPersonList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetPersonList请求参数结构体
     public struct GetPersonListRequest: TCRequestModel {
         /// 人体库ID。
@@ -42,7 +26,7 @@ extension Bda {
         /// 返回数量，默认值为10，最大值为1000。
         public let limit: UInt64?
         
-        public init (groupId: String, offset: UInt64?, limit: UInt64?) {
+        public init (groupId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.groupId = groupId
             self.offset = offset
             self.limit = limit
@@ -75,5 +59,21 @@ extension Bda {
             case bodyModelVersion = "BodyModelVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取人员列表
+    ///
+    /// 获取指定人体库中的人员列表。
+    @inlinable
+    public func getPersonList(_ input: GetPersonListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPersonListResponse > {
+        self.client.execute(action: "GetPersonList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人员列表
+    ///
+    /// 获取指定人体库中的人员列表。
+    @inlinable
+    public func getPersonList(_ input: GetPersonListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonListResponse {
+        try await self.client.execute(action: "GetPersonList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

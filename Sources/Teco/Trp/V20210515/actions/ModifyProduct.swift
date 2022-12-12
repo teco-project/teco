@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 编辑商品
-    @inlinable
-    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductResponse > {
-        self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑商品
-    @inlinable
-    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
-        try await self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyProduct请求参数结构体
     public struct ModifyProductRequest: TCRequestModel {
         /// 商品名称
@@ -48,9 +36,9 @@ extension Trp {
         public let corpId: UInt64?
         
         /// 预留字段
-        public let ext: Ext
+        public let ext: Ext?
         
-        public init (name: String, productId: String, remark: String?, specification: String?, logo: [String]?, corpId: UInt64?, ext: Ext) {
+        public init (name: String, productId: String, remark: String? = nil, specification: String? = nil, logo: [String]? = nil, corpId: UInt64? = nil, ext: Ext? = nil) {
             self.name = name
             self.productId = productId
             self.remark = remark
@@ -84,5 +72,17 @@ extension Trp {
             case productId = "ProductId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑商品
+    @inlinable
+    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductResponse > {
+        self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑商品
+    @inlinable
+    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
+        try await self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

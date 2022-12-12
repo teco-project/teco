@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 修改k8sapi异常事件状态
-    @inlinable
-    public func modifyK8sApiAbnormalEventStatus(_ input: ModifyK8sApiAbnormalEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyK8sApiAbnormalEventStatusResponse > {
-        self.client.execute(action: "ModifyK8sApiAbnormalEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改k8sapi异常事件状态
-    @inlinable
-    public func modifyK8sApiAbnormalEventStatus(_ input: ModifyK8sApiAbnormalEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalEventStatusResponse {
-        try await self.client.execute(action: "ModifyK8sApiAbnormalEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyK8sApiAbnormalEventStatus请求参数结构体
     public struct ModifyK8sApiAbnormalEventStatusRequest: TCRequestModel {
         /// 事件ID集合
@@ -38,7 +26,7 @@ extension Tcss {
         /// 备注
         public let remark: String?
         
-        public init (eventIDSet: [UInt64], status: String, remark: String?) {
+        public init (eventIDSet: [UInt64], status: String, remark: String? = nil) {
             self.eventIDSet = eventIDSet
             self.status = status
             self.remark = remark
@@ -59,5 +47,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改k8sapi异常事件状态
+    @inlinable
+    public func modifyK8sApiAbnormalEventStatus(_ input: ModifyK8sApiAbnormalEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyK8sApiAbnormalEventStatusResponse > {
+        self.client.execute(action: "ModifyK8sApiAbnormalEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改k8sapi异常事件状态
+    @inlinable
+    public func modifyK8sApiAbnormalEventStatus(_ input: ModifyK8sApiAbnormalEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalEventStatusResponse {
+        try await self.client.execute(action: "ModifyK8sApiAbnormalEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Iotvideo {
-    /// 获取云存套餐包消耗统计
-    @inlinable
-    public func describeCloudStoragePackageConsumeStats(_ input: DescribeCloudStoragePackageConsumeStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStoragePackageConsumeStatsResponse > {
-        self.client.execute(action: "DescribeCloudStoragePackageConsumeStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取云存套餐包消耗统计
-    @inlinable
-    public func describeCloudStoragePackageConsumeStats(_ input: DescribeCloudStoragePackageConsumeStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStoragePackageConsumeStatsResponse {
-        try await self.client.execute(action: "DescribeCloudStoragePackageConsumeStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudStoragePackageConsumeStats请求参数结构体
     public struct DescribeCloudStoragePackageConsumeStatsRequest: TCRequestModel {
         /// 开始日期
@@ -62,5 +50,17 @@ extension Iotvideo {
             case stats = "Stats"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取云存套餐包消耗统计
+    @inlinable
+    public func describeCloudStoragePackageConsumeStats(_ input: DescribeCloudStoragePackageConsumeStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStoragePackageConsumeStatsResponse > {
+        self.client.execute(action: "DescribeCloudStoragePackageConsumeStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云存套餐包消耗统计
+    @inlinable
+    public func describeCloudStoragePackageConsumeStats(_ input: DescribeCloudStoragePackageConsumeStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStoragePackageConsumeStatsResponse {
+        try await self.client.execute(action: "DescribeCloudStoragePackageConsumeStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

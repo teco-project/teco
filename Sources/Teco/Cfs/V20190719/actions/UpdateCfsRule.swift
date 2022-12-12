@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 更新权限组规则
-    ///
-    /// 本接口（UpdateCfsRule）用于更新权限规则。
-    @inlinable
-    public func updateCfsRule(_ input: UpdateCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCfsRuleResponse > {
-        self.client.execute(action: "UpdateCfsRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新权限组规则
-    ///
-    /// 本接口（UpdateCfsRule）用于更新权限规则。
-    @inlinable
-    public func updateCfsRule(_ input: UpdateCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsRuleResponse {
-        try await self.client.execute(action: "UpdateCfsRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateCfsRule请求参数结构体
     public struct UpdateCfsRuleRequest: TCRequestModel {
         /// 权限组 ID
@@ -51,7 +35,7 @@ extension Cfs {
         /// 规则优先级，参数范围1-100。 其中 1 为最高，100为最低
         public let priority: Int64?
         
-        public init (pGroupId: String, ruleId: String, authClientIp: String?, rwPermission: String?, userPermission: String?, priority: Int64?) {
+        public init (pGroupId: String, ruleId: String, authClientIp: String? = nil, rwPermission: String? = nil, userPermission: String? = nil, priority: Int64? = nil) {
             self.pGroupId = pGroupId
             self.ruleId = ruleId
             self.authClientIp = authClientIp
@@ -102,5 +86,21 @@ extension Cfs {
             case priority = "Priority"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新权限组规则
+    ///
+    /// 本接口（UpdateCfsRule）用于更新权限规则。
+    @inlinable
+    public func updateCfsRule(_ input: UpdateCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCfsRuleResponse > {
+        self.client.execute(action: "UpdateCfsRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新权限组规则
+    ///
+    /// 本接口（UpdateCfsRule）用于更新权限规则。
+    @inlinable
+    public func updateCfsRule(_ input: UpdateCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsRuleResponse {
+        try await self.client.execute(action: "UpdateCfsRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

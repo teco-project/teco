@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 开启设备推流
-    ///
-    /// 本接口（RunDeviceStream）用于开启设备推流，可进行批量操作，每次操作最多100台设备。
-    @inlinable
-    public func runDeviceStream(_ input: RunDeviceStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunDeviceStreamResponse > {
-        self.client.execute(action: "RunDeviceStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启设备推流
-    ///
-    /// 本接口（RunDeviceStream）用于开启设备推流，可进行批量操作，每次操作最多100台设备。
-    @inlinable
-    public func runDeviceStream(_ input: RunDeviceStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunDeviceStreamResponse {
-        try await self.client.execute(action: "RunDeviceStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RunDeviceStream请求参数结构体
     public struct RunDeviceStreamRequest: TCRequestModel {
         /// 设备TID 列表
@@ -53,5 +37,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启设备推流
+    ///
+    /// 本接口（RunDeviceStream）用于开启设备推流，可进行批量操作，每次操作最多100台设备。
+    @inlinable
+    public func runDeviceStream(_ input: RunDeviceStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunDeviceStreamResponse > {
+        self.client.execute(action: "RunDeviceStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启设备推流
+    ///
+    /// 本接口（RunDeviceStream）用于开启设备推流，可进行批量操作，每次操作最多100台设备。
+    @inlinable
+    public func runDeviceStream(_ input: RunDeviceStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunDeviceStreamResponse {
+        try await self.client.execute(action: "RunDeviceStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

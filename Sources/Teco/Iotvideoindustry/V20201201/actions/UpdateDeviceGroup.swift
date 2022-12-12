@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 修改分组信息
-    ///
-    /// 本接口(UpdateDeviceGroup)用于修改分组信息。
-    @inlinable
-    public func updateDeviceGroup(_ input: UpdateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDeviceGroupResponse > {
-        self.client.execute(action: "UpdateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改分组信息
-    ///
-    /// 本接口(UpdateDeviceGroup)用于修改分组信息。
-    @inlinable
-    public func updateDeviceGroup(_ input: UpdateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceGroupResponse {
-        try await self.client.execute(action: "UpdateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateDeviceGroup请求参数结构体
     public struct UpdateDeviceGroupRequest: TCRequestModel {
         /// 分组名称
@@ -45,7 +29,7 @@ extension Iotvideoindustry {
         /// 新父分组ID，用于修改分组路径
         public let newParentId: String?
         
-        public init (groupName: String, groupId: String, groupDescribe: String?, newParentId: String?) {
+        public init (groupName: String, groupId: String, groupDescribe: String? = nil, newParentId: String? = nil) {
             self.groupName = groupName
             self.groupId = groupId
             self.groupDescribe = groupDescribe
@@ -68,5 +52,21 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改分组信息
+    ///
+    /// 本接口(UpdateDeviceGroup)用于修改分组信息。
+    @inlinable
+    public func updateDeviceGroup(_ input: UpdateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDeviceGroupResponse > {
+        self.client.execute(action: "UpdateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改分组信息
+    ///
+    /// 本接口(UpdateDeviceGroup)用于修改分组信息。
+    @inlinable
+    public func updateDeviceGroup(_ input: UpdateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceGroupResponse {
+        try await self.client.execute(action: "UpdateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

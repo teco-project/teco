@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 修改订阅实例自动续费标识
-    @inlinable
-    public func modifySubscribeAutoRenewFlag(_ input: ModifySubscribeAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscribeAutoRenewFlagResponse > {
-        self.client.execute(action: "ModifySubscribeAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改订阅实例自动续费标识
-    @inlinable
-    public func modifySubscribeAutoRenewFlag(_ input: ModifySubscribeAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeAutoRenewFlagResponse {
-        try await self.client.execute(action: "ModifySubscribeAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySubscribeAutoRenewFlag请求参数结构体
     public struct ModifySubscribeAutoRenewFlagRequest: TCRequestModel {
         /// 订阅实例ID，例如：subs-8uey736k
@@ -54,5 +42,17 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改订阅实例自动续费标识
+    @inlinable
+    public func modifySubscribeAutoRenewFlag(_ input: ModifySubscribeAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscribeAutoRenewFlagResponse > {
+        self.client.execute(action: "ModifySubscribeAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改订阅实例自动续费标识
+    @inlinable
+    public func modifySubscribeAutoRenewFlag(_ input: ModifySubscribeAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeAutoRenewFlagResponse {
+        try await self.client.execute(action: "ModifySubscribeAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

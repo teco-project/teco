@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询镜像缓存信息
-    ///
-    /// 查询镜像缓存信息接口
-    @inlinable
-    public func describeImageCaches(_ input: DescribeImageCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageCachesResponse > {
-        self.client.execute(action: "DescribeImageCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询镜像缓存信息
-    ///
-    /// 查询镜像缓存信息接口
-    @inlinable
-    public func describeImageCaches(_ input: DescribeImageCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageCachesResponse {
-        try await self.client.execute(action: "DescribeImageCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageCaches请求参数结构体
     public struct DescribeImageCachesRequest: TCRequestModel {
         /// 镜像缓存Id数组
@@ -51,7 +35,7 @@ extension Tke {
         /// 类型：String
         public let filters: [Filter]?
         
-        public init (imageCacheIds: [String]?, imageCacheNames: [String]?, limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (imageCacheIds: [String]? = nil, imageCacheNames: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.imageCacheIds = imageCacheIds
             self.imageCacheNames = imageCacheNames
             self.limit = limit
@@ -84,5 +68,21 @@ extension Tke {
             case imageCaches = "ImageCaches"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询镜像缓存信息
+    ///
+    /// 查询镜像缓存信息接口
+    @inlinable
+    public func describeImageCaches(_ input: DescribeImageCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageCachesResponse > {
+        self.client.execute(action: "DescribeImageCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像缓存信息
+    ///
+    /// 查询镜像缓存信息接口
+    @inlinable
+    public func describeImageCaches(_ input: DescribeImageCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageCachesResponse {
+        try await self.client.execute(action: "DescribeImageCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

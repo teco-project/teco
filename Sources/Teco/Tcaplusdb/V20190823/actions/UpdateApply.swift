@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 更新申请单状态
-    @inlinable
-    public func updateApply(_ input: UpdateApplyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApplyResponse > {
-        self.client.execute(action: "UpdateApply", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新申请单状态
-    @inlinable
-    public func updateApply(_ input: UpdateApplyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApplyResponse {
-        try await self.client.execute(action: "UpdateApply", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateApply请求参数结构体
     public struct UpdateApplyRequest: TCRequestModel {
         /// 申请单状态
@@ -58,5 +46,17 @@ extension Tcaplusdb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新申请单状态
+    @inlinable
+    public func updateApply(_ input: UpdateApplyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApplyResponse > {
+        self.client.execute(action: "UpdateApply", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新申请单状态
+    @inlinable
+    public func updateApply(_ input: UpdateApplyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApplyResponse {
+        try await self.client.execute(action: "UpdateApply", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

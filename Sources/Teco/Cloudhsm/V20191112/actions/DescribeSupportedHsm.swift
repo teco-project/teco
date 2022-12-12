@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Cloudhsm {
-    /// 获取当前地域所支持的设备列表
-    @inlinable
-    public func describeSupportedHsm(_ input: DescribeSupportedHsmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSupportedHsmResponse > {
-        self.client.execute(action: "DescribeSupportedHsm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取当前地域所支持的设备列表
-    @inlinable
-    public func describeSupportedHsm(_ input: DescribeSupportedHsmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedHsmResponse {
-        try await self.client.execute(action: "DescribeSupportedHsm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSupportedHsm请求参数结构体
     public struct DescribeSupportedHsmRequest: TCRequestModel {
         /// Hsm类型，可选值all、virtulization、GHSM、EHSM、SHSM
         public let hsmType: String?
         
-        public init (hsmType: String?) {
+        public init (hsmType: String? = nil) {
             self.hsmType = hsmType
         }
         
@@ -54,5 +42,17 @@ extension Cloudhsm {
             case deviceTypes = "DeviceTypes"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取当前地域所支持的设备列表
+    @inlinable
+    public func describeSupportedHsm(_ input: DescribeSupportedHsmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSupportedHsmResponse > {
+        self.client.execute(action: "DescribeSupportedHsm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取当前地域所支持的设备列表
+    @inlinable
+    public func describeSupportedHsm(_ input: DescribeSupportedHsmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedHsmResponse {
+        try await self.client.execute(action: "DescribeSupportedHsm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

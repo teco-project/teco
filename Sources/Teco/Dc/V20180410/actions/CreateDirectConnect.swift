@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 申请物理专线
-    ///
-    /// 申请物理专线接入。
-    /// 调用该接口时，请注意：
-    /// 账号要进行实名认证，否则不允许申请物理专线；
-    /// 若账户下存在欠费状态的物理专线，则不能申请更多的物理专线。
-    @inlinable
-    public func createDirectConnect(_ input: CreateDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDirectConnectResponse > {
-        self.client.execute(action: "CreateDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 申请物理专线
-    ///
-    /// 申请物理专线接入。
-    /// 调用该接口时，请注意：
-    /// 账号要进行实名认证，否则不允许申请物理专线；
-    /// 若账户下存在欠费状态的物理专线，则不能申请更多的物理专线。
-    @inlinable
-    public func createDirectConnect(_ input: CreateDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectResponse {
-        try await self.client.execute(action: "CreateDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDirectConnect请求参数结构体
     public struct CreateDirectConnectRequest: TCRequestModel {
         /// 物理专线的名称。
@@ -91,7 +69,7 @@ extension Dc {
         /// 物理专线申请者是否签署了用户使用协议。默认已签署
         public let signLaw: Bool?
         
-        public init (directConnectName: String, accessPointId: String, lineOperator: String, portType: String, circuitCode: String?, location: String?, bandwidth: Int64?, redundantDirectConnectId: String?, vlan: Int64?, tencentAddress: String?, customerAddress: String?, customerName: String?, customerContactMail: String?, customerContactNumber: String?, faultReportContactPerson: String?, faultReportContactNumber: String?, signLaw: Bool?) {
+        public init (directConnectName: String, accessPointId: String, lineOperator: String, portType: String, circuitCode: String? = nil, location: String? = nil, bandwidth: Int64? = nil, redundantDirectConnectId: String? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, customerName: String? = nil, customerContactMail: String? = nil, customerContactNumber: String? = nil, faultReportContactPerson: String? = nil, faultReportContactNumber: String? = nil, signLaw: Bool? = nil) {
             self.directConnectName = directConnectName
             self.accessPointId = accessPointId
             self.lineOperator = lineOperator
@@ -144,5 +122,27 @@ extension Dc {
             case directConnectIdSet = "DirectConnectIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 申请物理专线
+    ///
+    /// 申请物理专线接入。
+    /// 调用该接口时，请注意：
+    /// 账号要进行实名认证，否则不允许申请物理专线；
+    /// 若账户下存在欠费状态的物理专线，则不能申请更多的物理专线。
+    @inlinable
+    public func createDirectConnect(_ input: CreateDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDirectConnectResponse > {
+        self.client.execute(action: "CreateDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 申请物理专线
+    ///
+    /// 申请物理专线接入。
+    /// 调用该接口时，请注意：
+    /// 账号要进行实名认证，否则不允许申请物理专线；
+    /// 若账户下存在欠费状态的物理专线，则不能申请更多的物理专线。
+    @inlinable
+    public func createDirectConnect(_ input: CreateDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectResponse {
+        try await self.client.execute(action: "CreateDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

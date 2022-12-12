@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 获取诊断任务列表
-    ///
-    /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
-    @inlinable
-    public func listDiagnoseReport(_ input: ListDiagnoseReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListDiagnoseReportResponse > {
-        self.client.execute(action: "ListDiagnoseReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取诊断任务列表
-    ///
-    /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
-    @inlinable
-    public func listDiagnoseReport(_ input: ListDiagnoseReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDiagnoseReportResponse {
-        try await self.client.execute(action: "ListDiagnoseReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListDiagnoseReport请求参数结构体
     public struct ListDiagnoseReportRequest: TCRequestModel {
         /// 用于搜索诊断URL的关键字，不填时返回用户所有的诊断任务。
@@ -42,7 +26,7 @@ extension Cdn {
         /// 请求源带协议头，形如：https://console.cloud.tencent.com
         public let origin: String?
         
-        public init (keyWords: String?, diagnoseLink: String?, origin: String?) {
+        public init (keyWords: String? = nil, diagnoseLink: String? = nil, origin: String? = nil) {
             self.keyWords = keyWords
             self.diagnoseLink = diagnoseLink
             self.origin = origin
@@ -67,5 +51,21 @@ extension Cdn {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取诊断任务列表
+    ///
+    /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
+    @inlinable
+    public func listDiagnoseReport(_ input: ListDiagnoseReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListDiagnoseReportResponse > {
+        self.client.execute(action: "ListDiagnoseReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取诊断任务列表
+    ///
+    /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
+    @inlinable
+    public func listDiagnoseReport(_ input: ListDiagnoseReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDiagnoseReportResponse {
+        try await self.client.execute(action: "ListDiagnoseReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

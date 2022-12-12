@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 批量修改参数
-    @inlinable
-    public func modifyDBInstanceParameters(_ input: ModifyDBInstanceParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceParametersResponse > {
-        self.client.execute(action: "ModifyDBInstanceParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量修改参数
-    @inlinable
-    public func modifyDBInstanceParameters(_ input: ModifyDBInstanceParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceParametersResponse {
-        try await self.client.execute(action: "ModifyDBInstanceParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBInstanceParameters请求参数结构体
     public struct ModifyDBInstanceParametersRequest: TCRequestModel {
         /// 实例ID
@@ -54,5 +42,17 @@ extension Postgres {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量修改参数
+    @inlinable
+    public func modifyDBInstanceParameters(_ input: ModifyDBInstanceParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceParametersResponse > {
+        self.client.execute(action: "ModifyDBInstanceParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量修改参数
+    @inlinable
+    public func modifyDBInstanceParameters(_ input: ModifyDBInstanceParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceParametersResponse {
+        try await self.client.execute(action: "ModifyDBInstanceParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

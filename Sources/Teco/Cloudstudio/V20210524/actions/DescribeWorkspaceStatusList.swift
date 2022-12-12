@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudstudio {
-    /// 获取用户工作空间列表
-    @inlinable
-    public func describeWorkspaceStatusList(_ input: DescribeWorkspaceStatusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkspaceStatusListResponse > {
-        self.client.execute(action: "DescribeWorkspaceStatusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户工作空间列表
-    @inlinable
-    public func describeWorkspaceStatusList(_ input: DescribeWorkspaceStatusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceStatusListResponse {
-        try await self.client.execute(action: "DescribeWorkspaceStatusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWorkspaceStatusList请求参数结构体
     public struct DescribeWorkspaceStatusListRequest: TCRequestModel {
         /// xxx
@@ -54,5 +42,17 @@ extension Cloudstudio {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户工作空间列表
+    @inlinable
+    public func describeWorkspaceStatusList(_ input: DescribeWorkspaceStatusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkspaceStatusListResponse > {
+        self.client.execute(action: "DescribeWorkspaceStatusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户工作空间列表
+    @inlinable
+    public func describeWorkspaceStatusList(_ input: DescribeWorkspaceStatusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceStatusListResponse {
+        try await self.client.execute(action: "DescribeWorkspaceStatusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 添加RO组网络
-    ///
-    /// 可对RO组进行网络的添加操作。
-    @inlinable
-    public func createReadOnlyGroupNetworkAccess(_ input: CreateReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReadOnlyGroupNetworkAccessResponse > {
-        self.client.execute(action: "CreateReadOnlyGroupNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加RO组网络
-    ///
-    /// 可对RO组进行网络的添加操作。
-    @inlinable
-    public func createReadOnlyGroupNetworkAccess(_ input: CreateReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyGroupNetworkAccessResponse {
-        try await self.client.execute(action: "CreateReadOnlyGroupNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateReadOnlyGroupNetworkAccess请求参数结构体
     public struct CreateReadOnlyGroupNetworkAccessRequest: TCRequestModel {
         /// RO组ID，形如：pgro-4t9c6g7k。
@@ -48,7 +32,7 @@ extension Postgres {
         /// 目标VIP地址。
         public let vip: String?
         
-        public init (readOnlyGroupId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String?) {
+        public init (readOnlyGroupId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil) {
             self.readOnlyGroupId = readOnlyGroupId
             self.vpcId = vpcId
             self.subnetId = subnetId
@@ -78,5 +62,21 @@ extension Postgres {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加RO组网络
+    ///
+    /// 可对RO组进行网络的添加操作。
+    @inlinable
+    public func createReadOnlyGroupNetworkAccess(_ input: CreateReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReadOnlyGroupNetworkAccessResponse > {
+        self.client.execute(action: "CreateReadOnlyGroupNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加RO组网络
+    ///
+    /// 可对RO组进行网络的添加操作。
+    @inlinable
+    public func createReadOnlyGroupNetworkAccess(_ input: CreateReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyGroupNetworkAccessResponse {
+        try await self.client.execute(action: "CreateReadOnlyGroupNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

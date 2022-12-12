@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 查询树状结构资源列表
-    @inlinable
-    public func describeTreeResources(_ input: DescribeTreeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTreeResourcesResponse > {
-        self.client.execute(action: "DescribeTreeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询树状结构资源列表
-    @inlinable
-    public func describeTreeResources(_ input: DescribeTreeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeResourcesResponse {
-        try await self.client.execute(action: "DescribeTreeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTreeResources请求参数结构体
     public struct DescribeTreeResourcesRequest: TCRequestModel {
         /// 工作空间 SerialId
         public let workSpaceId: String?
         
-        public init (workSpaceId: String?) {
+        public init (workSpaceId: String? = nil) {
             self.workSpaceId = workSpaceId
         }
         
@@ -49,5 +37,17 @@ extension Oceanus {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询树状结构资源列表
+    @inlinable
+    public func describeTreeResources(_ input: DescribeTreeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTreeResourcesResponse > {
+        self.client.execute(action: "DescribeTreeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询树状结构资源列表
+    @inlinable
+    public func describeTreeResources(_ input: DescribeTreeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeResourcesResponse {
+        try await self.client.execute(action: "DescribeTreeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

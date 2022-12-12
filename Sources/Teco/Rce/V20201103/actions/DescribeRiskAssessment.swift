@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rce {
-    /// 查询风险评估结果
-    ///
-    /// 此接口用于查询风险评估结果
-    @inlinable
-    public func describeRiskAssessment(_ input: DescribeRiskAssessmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskAssessmentResponse > {
-        self.client.execute(action: "DescribeRiskAssessment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询风险评估结果
-    ///
-    /// 此接口用于查询风险评估结果
-    @inlinable
-    public func describeRiskAssessment(_ input: DescribeRiskAssessmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskAssessmentResponse {
-        try await self.client.execute(action: "DescribeRiskAssessment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRiskAssessment请求参数结构体
     public struct DescribeRiskAssessmentRequest: TCRequestModel {
         public init () {
@@ -45,5 +29,21 @@ extension Rce {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询风险评估结果
+    ///
+    /// 此接口用于查询风险评估结果
+    @inlinable
+    public func describeRiskAssessment(_ input: DescribeRiskAssessmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskAssessmentResponse > {
+        self.client.execute(action: "DescribeRiskAssessment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询风险评估结果
+    ///
+    /// 此接口用于查询风险评估结果
+    @inlinable
+    public func describeRiskAssessment(_ input: DescribeRiskAssessmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskAssessmentResponse {
+        try await self.client.execute(action: "DescribeRiskAssessment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

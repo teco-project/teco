@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudaudit {
-    /// 创建云审计跟踪集
-    ///
-    /// 创建跟踪集
-    @inlinable
-    public func createAuditTrack(_ input: CreateAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAuditTrackResponse > {
-        self.client.execute(action: "CreateAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建云审计跟踪集
-    ///
-    /// 创建跟踪集
-    @inlinable
-    public func createAuditTrack(_ input: CreateAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditTrackResponse {
-        try await self.client.execute(action: "CreateAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAuditTrack请求参数结构体
     public struct CreateAuditTrackRequest: TCRequestModel {
         /// 跟踪集名称，仅支持大小写字母、数字、-以及_的组合，3-48个字符
@@ -54,7 +38,7 @@ extension Cloudaudit {
         /// 是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号(0：未开启，1：开启，只能集团管理账号或者可信服务管理账号开启此项功能)
         public let trackForAllMembers: UInt64?
         
-        public init (name: String, actionType: String, resourceType: String, status: UInt64, eventNames: [String], storage: Storage, trackForAllMembers: UInt64?) {
+        public init (name: String, actionType: String, resourceType: String, status: UInt64, eventNames: [String], storage: Storage, trackForAllMembers: UInt64? = nil) {
             self.name = name
             self.actionType = actionType
             self.resourceType = resourceType
@@ -87,5 +71,21 @@ extension Cloudaudit {
             case trackId = "TrackId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建云审计跟踪集
+    ///
+    /// 创建跟踪集
+    @inlinable
+    public func createAuditTrack(_ input: CreateAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAuditTrackResponse > {
+        self.client.execute(action: "CreateAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云审计跟踪集
+    ///
+    /// 创建跟踪集
+    @inlinable
+    public func createAuditTrack(_ input: CreateAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditTrackResponse {
+        try await self.client.execute(action: "CreateAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-退款申请
-    @inlinable
-    public func refundOpenBankOrder(_ input: RefundOpenBankOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefundOpenBankOrderResponse > {
-        self.client.execute(action: "RefundOpenBankOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-退款申请
-    @inlinable
-    public func refundOpenBankOrder(_ input: RefundOpenBankOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundOpenBankOrderResponse {
-        try await self.client.execute(action: "RefundOpenBankOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RefundOpenBankOrder请求参数结构体
     public struct RefundOpenBankOrderRequest: TCRequestModel {
         /// 外部商户退款单号。
@@ -67,7 +55,7 @@ extension Cpdp {
         /// 分账信息列表。
         public let profitShareInfoList: [OpenBankProfitShareInfo]?
         
-        public init (outRefundId: String, refundAmount: Int64, channelMerchantId: String?, outOrderId: String?, channelOrderId: String?, notifyUrl: String?, refundReason: String?, externalRefundData: String?, remark: String?, environment: String?, profitShareInfoList: [OpenBankProfitShareInfo]?) {
+        public init (outRefundId: String, refundAmount: Int64, channelMerchantId: String? = nil, outOrderId: String? = nil, channelOrderId: String? = nil, notifyUrl: String? = nil, refundReason: String? = nil, externalRefundData: String? = nil, remark: String? = nil, environment: String? = nil, profitShareInfoList: [OpenBankProfitShareInfo]? = nil) {
             self.outRefundId = outRefundId
             self.refundAmount = refundAmount
             self.channelMerchantId = channelMerchantId
@@ -107,7 +95,7 @@ extension Cpdp {
         
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: OpenBankRefundOrderApplyResult
+        public let result: OpenBankRefundOrderApplyResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -118,5 +106,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-退款申请
+    @inlinable
+    public func refundOpenBankOrder(_ input: RefundOpenBankOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefundOpenBankOrderResponse > {
+        self.client.execute(action: "RefundOpenBankOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-退款申请
+    @inlinable
+    public func refundOpenBankOrder(_ input: RefundOpenBankOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundOpenBankOrderResponse {
+        try await self.client.execute(action: "RefundOpenBankOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

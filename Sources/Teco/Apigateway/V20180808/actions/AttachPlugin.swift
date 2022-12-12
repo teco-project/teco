@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 插件绑定API
-    ///
-    /// 绑定插件到API上。
-    @inlinable
-    public func attachPlugin(_ input: AttachPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachPluginResponse > {
-        self.client.execute(action: "AttachPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 插件绑定API
-    ///
-    /// 绑定插件到API上。
-    @inlinable
-    public func attachPlugin(_ input: AttachPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachPluginResponse {
-        try await self.client.execute(action: "AttachPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AttachPlugin请求参数结构体
     public struct AttachPluginRequest: TCRequestModel {
         /// 绑定的API网关插件ID。
@@ -72,5 +56,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 插件绑定API
+    ///
+    /// 绑定插件到API上。
+    @inlinable
+    public func attachPlugin(_ input: AttachPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachPluginResponse > {
+        self.client.execute(action: "AttachPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 插件绑定API
+    ///
+    /// 绑定插件到API上。
+    @inlinable
+    public func attachPlugin(_ input: AttachPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachPluginResponse {
+        try await self.client.execute(action: "AttachPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

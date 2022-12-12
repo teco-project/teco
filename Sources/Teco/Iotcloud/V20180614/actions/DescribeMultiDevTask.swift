@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取创建多设备任务状态
-    ///
-    /// 本接口（DescribeMultiDevTask）用于查询批量创建设备任务的执行状态。
-    @inlinable
-    public func describeMultiDevTask(_ input: DescribeMultiDevTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMultiDevTaskResponse > {
-        self.client.execute(action: "DescribeMultiDevTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取创建多设备任务状态
-    ///
-    /// 本接口（DescribeMultiDevTask）用于查询批量创建设备任务的执行状态。
-    @inlinable
-    public func describeMultiDevTask(_ input: DescribeMultiDevTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiDevTaskResponse {
-        try await self.client.execute(action: "DescribeMultiDevTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMultiDevTask请求参数结构体
     public struct DescribeMultiDevTaskRequest: TCRequestModel {
         /// 任务 ID，由批量创建设备接口返回
@@ -66,5 +50,21 @@ extension Iotcloud {
             case taskStatus = "TaskStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取创建多设备任务状态
+    ///
+    /// 本接口（DescribeMultiDevTask）用于查询批量创建设备任务的执行状态。
+    @inlinable
+    public func describeMultiDevTask(_ input: DescribeMultiDevTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMultiDevTaskResponse > {
+        self.client.execute(action: "DescribeMultiDevTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取创建多设备任务状态
+    ///
+    /// 本接口（DescribeMultiDevTask）用于查询批量创建设备任务的执行状态。
+    @inlinable
+    public func describeMultiDevTask(_ input: DescribeMultiDevTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiDevTaskResponse {
+        try await self.client.execute(action: "DescribeMultiDevTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

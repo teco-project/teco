@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 删除高危命令事件
-    ///
-    /// 根据Ids删除高危命令事件
-    @inlinable
-    public func deleteBashEvents(_ input: DeleteBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBashEventsResponse > {
-        self.client.execute(action: "DeleteBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除高危命令事件
-    ///
-    /// 根据Ids删除高危命令事件
-    @inlinable
-    public func deleteBashEvents(_ input: DeleteBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBashEventsResponse {
-        try await self.client.execute(action: "DeleteBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteBashEvents请求参数结构体
     public struct DeleteBashEventsRequest: TCRequestModel {
         /// ID数组，最大100条。
@@ -53,5 +37,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除高危命令事件
+    ///
+    /// 根据Ids删除高危命令事件
+    @inlinable
+    public func deleteBashEvents(_ input: DeleteBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBashEventsResponse > {
+        self.client.execute(action: "DeleteBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除高危命令事件
+    ///
+    /// 根据Ids删除高危命令事件
+    @inlinable
+    public func deleteBashEvents(_ input: DeleteBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBashEventsResponse {
+        try await self.client.execute(action: "DeleteBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

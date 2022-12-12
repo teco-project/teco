@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ciam {
-    /// 重置用户密码
-    @inlinable
-    public func resetPassword(_ input: ResetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetPasswordResponse > {
-        self.client.execute(action: "ResetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置用户密码
-    @inlinable
-    public func resetPassword(_ input: ResetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetPasswordResponse {
-        try await self.client.execute(action: "ResetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetPassword请求参数结构体
     public struct ResetPasswordRequest: TCRequestModel {
         /// 用户ID
@@ -58,5 +46,17 @@ extension Ciam {
             case password = "Password"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置用户密码
+    @inlinable
+    public func resetPassword(_ input: ResetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetPasswordResponse > {
+        self.client.execute(action: "ResetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置用户密码
+    @inlinable
+    public func resetPassword(_ input: ResetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetPasswordResponse {
+        try await self.client.execute(action: "ResetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

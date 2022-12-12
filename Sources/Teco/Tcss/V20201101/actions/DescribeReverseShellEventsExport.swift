@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时反弹shell列表导出
-    ///
-    /// 查询运行时反弹shell事件列表信息导出
-    @inlinable
-    public func describeReverseShellEventsExport(_ input: DescribeReverseShellEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReverseShellEventsExportResponse > {
-        self.client.execute(action: "DescribeReverseShellEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时反弹shell列表导出
-    ///
-    /// 查询运行时反弹shell事件列表信息导出
-    @inlinable
-    public func describeReverseShellEventsExport(_ input: DescribeReverseShellEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellEventsExportResponse {
-        try await self.client.execute(action: "DescribeReverseShellEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReverseShellEventsExport请求参数结构体
     public struct DescribeReverseShellEventsExportRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -51,7 +35,7 @@ extension Tcss {
         /// 导出字段
         public let exportField: [String]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, order: String?, by: String?, exportField: [String]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -88,5 +72,21 @@ extension Tcss {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时反弹shell列表导出
+    ///
+    /// 查询运行时反弹shell事件列表信息导出
+    @inlinable
+    public func describeReverseShellEventsExport(_ input: DescribeReverseShellEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReverseShellEventsExportResponse > {
+        self.client.execute(action: "DescribeReverseShellEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时反弹shell列表导出
+    ///
+    /// 查询运行时反弹shell事件列表信息导出
+    @inlinable
+    public func describeReverseShellEventsExport(_ input: DescribeReverseShellEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellEventsExportResponse {
+        try await self.client.execute(action: "DescribeReverseShellEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

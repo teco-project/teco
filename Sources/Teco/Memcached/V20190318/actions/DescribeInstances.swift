@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Memcached {
-    /// 获取Cmem实例列表
-    @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
-        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Cmem实例列表
-    @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstances请求参数结构体
     public struct DescribeInstancesRequest: TCRequestModel {
         /// 枚举范围： AddTimeStamp, InstanceName, ProjectId
@@ -62,7 +50,7 @@ extension Memcached {
         /// 实例ID列表
         public let instanceIds: [String]?
         
-        public init (orderBy: String?, searchKeys: [String]?, uniqSubnetIds: [String]?, vips: [String]?, orderType: Int64?, instanceNames: [String]?, uniqVpcIds: [String]?, projectIds: [Int64]?, offset: UInt64?, limit: UInt64?, instanceIds: [String]?) {
+        public init (orderBy: String? = nil, searchKeys: [String]? = nil, uniqSubnetIds: [String]? = nil, vips: [String]? = nil, orderType: Int64? = nil, instanceNames: [String]? = nil, uniqVpcIds: [String]? = nil, projectIds: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, instanceIds: [String]? = nil) {
             self.orderBy = orderBy
             self.searchKeys = searchKeys
             self.uniqSubnetIds = uniqSubnetIds
@@ -107,5 +95,17 @@ extension Memcached {
             case totalNum = "TotalNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Cmem实例列表
+    @inlinable
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Cmem实例列表
+    @inlinable
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 查询批次列表
-    @inlinable
-    public func describeCodeBatchs(_ input: DescribeCodeBatchsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodeBatchsResponse > {
-        self.client.execute(action: "DescribeCodeBatchs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询批次列表
-    @inlinable
-    public func describeCodeBatchs(_ input: DescribeCodeBatchsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodeBatchsResponse {
-        try await self.client.execute(action: "DescribeCodeBatchs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCodeBatchs请求参数结构体
     public struct DescribeCodeBatchsRequest: TCRequestModel {
         /// 查询商户ID
@@ -50,7 +38,7 @@ extension Trp {
         /// 企业ID
         public let corpId: UInt64?
         
-        public init (merchantId: String?, productId: String?, keyword: String?, pageSize: Int64?, pageNumber: Int64?, batchType: String?, corpId: UInt64?) {
+        public init (merchantId: String? = nil, productId: String? = nil, keyword: String? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, batchType: String? = nil, corpId: UInt64? = nil) {
             self.merchantId = merchantId
             self.productId = productId
             self.keyword = keyword
@@ -89,5 +77,17 @@ extension Trp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询批次列表
+    @inlinable
+    public func describeCodeBatchs(_ input: DescribeCodeBatchsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodeBatchsResponse > {
+        self.client.execute(action: "DescribeCodeBatchs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询批次列表
+    @inlinable
+    public func describeCodeBatchs(_ input: DescribeCodeBatchsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodeBatchsResponse {
+        try await self.client.execute(action: "DescribeCodeBatchs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

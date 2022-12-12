@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecdn {
-    /// 删除加速域名
-    ///
-    /// 本接口（DeleteEcdnDomain）用于删除指定加速域名。待删除域名必须处于已停用状态。
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41122"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
-    public func deleteEcdnDomain(_ input: DeleteEcdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEcdnDomainResponse > {
-        self.client.execute(action: "DeleteEcdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除加速域名
-    ///
-    /// 本接口（DeleteEcdnDomain）用于删除指定加速域名。待删除域名必须处于已停用状态。
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41122"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
-    public func deleteEcdnDomain(_ input: DeleteEcdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEcdnDomainResponse {
-        try await self.client.execute(action: "DeleteEcdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteEcdnDomain请求参数结构体
     public struct DeleteEcdnDomainRequest: TCRequestModel {
         /// 待删除域名。
@@ -55,5 +37,23 @@ extension Ecdn {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除加速域名
+    ///
+    /// 本接口（DeleteEcdnDomain）用于删除指定加速域名。待删除域名必须处于已停用状态。
+    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41122"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @inlinable
+    public func deleteEcdnDomain(_ input: DeleteEcdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEcdnDomainResponse > {
+        self.client.execute(action: "DeleteEcdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除加速域名
+    ///
+    /// 本接口（DeleteEcdnDomain）用于删除指定加速域名。待删除域名必须处于已停用状态。
+    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41122"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @inlinable
+    public func deleteEcdnDomain(_ input: DeleteEcdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEcdnDomainResponse {
+        try await self.client.execute(action: "DeleteEcdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

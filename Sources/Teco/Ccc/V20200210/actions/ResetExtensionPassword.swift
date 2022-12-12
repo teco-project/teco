@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 重置话机注册密码
-    @inlinable
-    public func resetExtensionPassword(_ input: ResetExtensionPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetExtensionPasswordResponse > {
-        self.client.execute(action: "ResetExtensionPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置话机注册密码
-    @inlinable
-    public func resetExtensionPassword(_ input: ResetExtensionPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetExtensionPasswordResponse {
-        try await self.client.execute(action: "ResetExtensionPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetExtensionPassword请求参数结构体
     public struct ResetExtensionPasswordRequest: TCRequestModel {
         /// TCCC 实例应用 ID
@@ -58,5 +46,17 @@ extension Ccc {
             case password = "Password"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置话机注册密码
+    @inlinable
+    public func resetExtensionPassword(_ input: ResetExtensionPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetExtensionPasswordResponse > {
+        self.client.execute(action: "ResetExtensionPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置话机注册密码
+    @inlinable
+    public func resetExtensionPassword(_ input: ResetExtensionPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetExtensionPasswordResponse {
+        try await self.client.execute(action: "ResetExtensionPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

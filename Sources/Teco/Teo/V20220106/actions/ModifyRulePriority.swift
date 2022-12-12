@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改规则引擎规则优先级
-    @inlinable
-    public func modifyRulePriority(_ input: ModifyRulePriorityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRulePriorityResponse > {
-        self.client.execute(action: "ModifyRulePriority", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改规则引擎规则优先级
-    @inlinable
-    public func modifyRulePriority(_ input: ModifyRulePriorityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRulePriorityResponse {
-        try await self.client.execute(action: "ModifyRulePriority", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRulePriority请求参数结构体
     public struct ModifyRulePriorityRequest: TCRequestModel {
         /// 站点 ID。
@@ -54,5 +42,17 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改规则引擎规则优先级
+    @inlinable
+    public func modifyRulePriority(_ input: ModifyRulePriorityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRulePriorityResponse > {
+        self.client.execute(action: "ModifyRulePriority", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改规则引擎规则优先级
+    @inlinable
+    public func modifyRulePriority(_ input: ModifyRulePriorityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRulePriorityResponse {
+        try await self.client.execute(action: "ModifyRulePriority", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

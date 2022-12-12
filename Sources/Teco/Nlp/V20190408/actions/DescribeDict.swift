@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Nlp {
-    /// 查询词库信息
-    ///
-    /// 根据id或名称查询自定义词库信息。
-    @inlinable
-    public func describeDict(_ input: DescribeDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDictResponse > {
-        self.client.execute(action: "DescribeDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询词库信息
-    ///
-    /// 根据id或名称查询自定义词库信息。
-    @inlinable
-    public func describeDict(_ input: DescribeDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDictResponse {
-        try await self.client.execute(action: "DescribeDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDict请求参数结构体
     public struct DescribeDictRequest: TCRequestModel {
         /// 自定义词库ID。
@@ -39,7 +23,7 @@ extension Nlp {
         /// 自定义词库名称，模糊搜索。
         public let name: String?
         
-        public init (dictId: String?, name: String?) {
+        public init (dictId: String? = nil, name: String? = nil) {
             self.dictId = dictId
             self.name = name
         }
@@ -63,5 +47,21 @@ extension Nlp {
             case dicts = "Dicts"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询词库信息
+    ///
+    /// 根据id或名称查询自定义词库信息。
+    @inlinable
+    public func describeDict(_ input: DescribeDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDictResponse > {
+        self.client.execute(action: "DescribeDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询词库信息
+    ///
+    /// 根据id或名称查询自定义词库信息。
+    @inlinable
+    public func describeDict(_ input: DescribeDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDictResponse {
+        try await self.client.execute(action: "DescribeDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

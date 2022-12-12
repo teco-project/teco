@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 配置数据订阅通道
-    ///
-    /// 本接口用于配置数据订阅，只有在未配置状态的订阅实例才能调用此接口。
-    @inlinable
-    public func activateSubscribe(_ input: ActivateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActivateSubscribeResponse > {
-        self.client.execute(action: "ActivateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 配置数据订阅通道
-    ///
-    /// 本接口用于配置数据订阅，只有在未配置状态的订阅实例才能调用此接口。
-    @inlinable
-    public func activateSubscribe(_ input: ActivateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateSubscribeResponse {
-        try await self.client.execute(action: "ActivateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ActivateSubscribe请求参数结构体
     public struct ActivateSubscribeRequest: TCRequestModel {
         /// 订阅实例ID。
@@ -43,7 +27,7 @@ extension Dts {
         public let subscribeObjectType: Int64
         
         /// 订阅对象
-        public let objects: SubscribeObject
+        public let objects: SubscribeObject?
         
         /// 数据订阅服务所在子网。默认为数据库实例所在的子网内。
         public let uniqSubnetId: String?
@@ -51,7 +35,7 @@ extension Dts {
         /// 订阅服务端口；默认为7507
         public let vport: Int64?
         
-        public init (subscribeId: String, instanceId: String, subscribeObjectType: Int64, objects: SubscribeObject, uniqSubnetId: String?, vport: Int64?) {
+        public init (subscribeId: String, instanceId: String, subscribeObjectType: Int64, objects: SubscribeObject? = nil, uniqSubnetId: String? = nil, vport: Int64? = nil) {
             self.subscribeId = subscribeId
             self.instanceId = instanceId
             self.subscribeObjectType = subscribeObjectType
@@ -82,5 +66,21 @@ extension Dts {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 配置数据订阅通道
+    ///
+    /// 本接口用于配置数据订阅，只有在未配置状态的订阅实例才能调用此接口。
+    @inlinable
+    public func activateSubscribe(_ input: ActivateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActivateSubscribeResponse > {
+        self.client.execute(action: "ActivateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 配置数据订阅通道
+    ///
+    /// 本接口用于配置数据订阅，只有在未配置状态的订阅实例才能调用此接口。
+    @inlinable
+    public func activateSubscribe(_ input: ActivateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateSubscribeResponse {
+        try await self.client.execute(action: "ActivateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

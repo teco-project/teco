@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 更新权限组信息
-    ///
-    /// 本接口（UpdateCfsPGroup）更新权限组信息。
-    @inlinable
-    public func updateCfsPGroup(_ input: UpdateCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCfsPGroupResponse > {
-        self.client.execute(action: "UpdateCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新权限组信息
-    ///
-    /// 本接口（UpdateCfsPGroup）更新权限组信息。
-    @inlinable
-    public func updateCfsPGroup(_ input: UpdateCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsPGroupResponse {
-        try await self.client.execute(action: "UpdateCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateCfsPGroup请求参数结构体
     public struct UpdateCfsPGroupRequest: TCRequestModel {
         /// 权限组 ID
@@ -42,7 +26,7 @@ extension Cfs {
         /// 权限组描述信息，1-255个字符
         public let descInfo: String?
         
-        public init (pGroupId: String, name: String?, descInfo: String?) {
+        public init (pGroupId: String, name: String? = nil, descInfo: String? = nil) {
             self.pGroupId = pGroupId
             self.name = name
             self.descInfo = descInfo
@@ -75,5 +59,21 @@ extension Cfs {
             case descInfo = "DescInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新权限组信息
+    ///
+    /// 本接口（UpdateCfsPGroup）更新权限组信息。
+    @inlinable
+    public func updateCfsPGroup(_ input: UpdateCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCfsPGroupResponse > {
+        self.client.execute(action: "UpdateCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新权限组信息
+    ///
+    /// 本接口（UpdateCfsPGroup）更新权限组信息。
+    @inlinable
+    public func updateCfsPGroup(_ input: UpdateCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsPGroupResponse {
+        try await self.client.execute(action: "UpdateCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

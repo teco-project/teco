@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 查询托管设备带外信息
-    @inlinable
-    public func describeHostedDeviceOutBandInfo(_ input: DescribeHostedDeviceOutBandInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostedDeviceOutBandInfoResponse > {
-        self.client.execute(action: "DescribeHostedDeviceOutBandInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询托管设备带外信息
-    @inlinable
-    public func describeHostedDeviceOutBandInfo(_ input: DescribeHostedDeviceOutBandInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostedDeviceOutBandInfoResponse {
-        try await self.client.execute(action: "DescribeHostedDeviceOutBandInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHostedDeviceOutBandInfo请求参数结构体
     public struct DescribeHostedDeviceOutBandInfoRequest: TCRequestModel {
         /// 托管设备的唯一ID数组,数组个数不超过20
@@ -58,5 +46,17 @@ extension Bm {
             case hostedDeviceOutBandInfoSet = "HostedDeviceOutBandInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询托管设备带外信息
+    @inlinable
+    public func describeHostedDeviceOutBandInfo(_ input: DescribeHostedDeviceOutBandInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostedDeviceOutBandInfoResponse > {
+        self.client.execute(action: "DescribeHostedDeviceOutBandInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询托管设备带外信息
+    @inlinable
+    public func describeHostedDeviceOutBandInfo(_ input: DescribeHostedDeviceOutBandInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostedDeviceOutBandInfoResponse {
+        try await self.client.execute(action: "DescribeHostedDeviceOutBandInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

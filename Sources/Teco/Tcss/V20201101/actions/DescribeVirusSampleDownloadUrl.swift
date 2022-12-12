@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询木马样本下载url
-    @inlinable
-    public func describeVirusSampleDownloadUrl(_ input: DescribeVirusSampleDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusSampleDownloadUrlResponse > {
-        self.client.execute(action: "DescribeVirusSampleDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询木马样本下载url
-    @inlinable
-    public func describeVirusSampleDownloadUrl(_ input: DescribeVirusSampleDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusSampleDownloadUrlResponse {
-        try await self.client.execute(action: "DescribeVirusSampleDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVirusSampleDownloadUrl请求参数结构体
     public struct DescribeVirusSampleDownloadUrlRequest: TCRequestModel {
         /// 木马id
@@ -53,5 +41,17 @@ extension Tcss {
             case fileUrl = "FileUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询木马样本下载url
+    @inlinable
+    public func describeVirusSampleDownloadUrl(_ input: DescribeVirusSampleDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusSampleDownloadUrlResponse > {
+        self.client.execute(action: "DescribeVirusSampleDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询木马样本下载url
+    @inlinable
+    public func describeVirusSampleDownloadUrl(_ input: DescribeVirusSampleDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusSampleDownloadUrlResponse {
+        try await self.client.execute(action: "DescribeVirusSampleDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

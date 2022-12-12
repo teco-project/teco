@@ -260,12 +260,12 @@ extension Ump {
         public let image: String?
         
         /// 移动告警
-        public let moveAlert: CreateCameraAlertsMoveAlert
+        public let moveAlert: CreateCameraAlertsMoveAlert?
         
         /// 遮挡告警
-        public let coverAlert: CreateCameraAlertsCoverAlert
+        public let coverAlert: CreateCameraAlertsCoverAlert?
         
-        public init (groupCode: String, mallId: UInt64, cameraId: UInt64, captureTime: Int64, image: String?, moveAlert: CreateCameraAlertsMoveAlert, coverAlert: CreateCameraAlertsCoverAlert) {
+        public init (groupCode: String, mallId: UInt64, cameraId: UInt64, captureTime: Int64, image: String? = nil, moveAlert: CreateCameraAlertsMoveAlert? = nil, coverAlert: CreateCameraAlertsCoverAlert? = nil) {
             self.groupCode = groupCode
             self.mallId = mallId
             self.cameraId = cameraId
@@ -294,7 +294,7 @@ extension Ump {
         /// 是否移动置信度
         public let coverConfidence: Float?
         
-        public init (cover: Bool?, coverConfidence: Float?) {
+        public init (cover: Bool? = nil, coverConfidence: Float? = nil) {
             self.cover = cover
             self.coverConfidence = coverConfidence
         }
@@ -313,7 +313,7 @@ extension Ump {
         /// 是否移动置信度
         public let moveConfidence: Float?
         
-        public init (move: Bool?, moveConfidence: Float?) {
+        public init (move: Bool? = nil, moveConfidence: Float? = nil) {
             self.move = move
             self.moveConfidence = moveConfidence
         }

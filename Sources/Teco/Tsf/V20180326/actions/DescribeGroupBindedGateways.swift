@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询某个API分组已绑定的网关部署组信息列表
-    @inlinable
-    public func describeGroupBindedGateways(_ input: DescribeGroupBindedGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupBindedGatewaysResponse > {
-        self.client.execute(action: "DescribeGroupBindedGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询某个API分组已绑定的网关部署组信息列表
-    @inlinable
-    public func describeGroupBindedGateways(_ input: DescribeGroupBindedGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupBindedGatewaysResponse {
-        try await self.client.execute(action: "DescribeGroupBindedGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGroupBindedGateways请求参数结构体
     public struct DescribeGroupBindedGatewaysRequest: TCRequestModel {
         /// API 分组ID
@@ -41,7 +29,7 @@ extension Tsf {
         /// 搜索关键字
         public let searchWord: String?
         
-        public init (groupId: String, offset: Int64, limit: Int64, searchWord: String?) {
+        public init (groupId: String, offset: Int64, limit: Int64, searchWord: String? = nil) {
             self.groupId = groupId
             self.offset = offset
             self.limit = limit
@@ -68,5 +56,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询某个API分组已绑定的网关部署组信息列表
+    @inlinable
+    public func describeGroupBindedGateways(_ input: DescribeGroupBindedGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupBindedGatewaysResponse > {
+        self.client.execute(action: "DescribeGroupBindedGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询某个API分组已绑定的网关部署组信息列表
+    @inlinable
+    public func describeGroupBindedGateways(_ input: DescribeGroupBindedGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupBindedGatewaysResponse {
+        try await self.client.execute(action: "DescribeGroupBindedGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

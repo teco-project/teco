@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 添加维护时间窗口
-    ///
-    /// 本接口(AddTimeWindow)用于添加云数据库实例的维护时间窗口，以指定实例在哪些时间段可以自动执行切换访问操作。
-    @inlinable
-    public func addTimeWindow(_ input: AddTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddTimeWindowResponse > {
-        self.client.execute(action: "AddTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加维护时间窗口
-    ///
-    /// 本接口(AddTimeWindow)用于添加云数据库实例的维护时间窗口，以指定实例在哪些时间段可以自动执行切换访问操作。
-    @inlinable
-    public func addTimeWindow(_ input: AddTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTimeWindowResponse {
-        try await self.client.execute(action: "AddTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddTimeWindow请求参数结构体
     public struct AddTimeWindowRequest: TCRequestModel {
         /// 实例ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -60,7 +44,7 @@ extension Cdb {
         /// 最大延迟阈值，仅对主实例和灾备实例有效
         public let maxDelayTime: UInt64?
         
-        public init (instanceId: String, monday: [String]?, tuesday: [String]?, wednesday: [String]?, thursday: [String]?, friday: [String]?, saturday: [String]?, sunday: [String]?, maxDelayTime: UInt64?) {
+        public init (instanceId: String, monday: [String]? = nil, tuesday: [String]? = nil, wednesday: [String]? = nil, thursday: [String]? = nil, friday: [String]? = nil, saturday: [String]? = nil, sunday: [String]? = nil, maxDelayTime: UInt64? = nil) {
             self.instanceId = instanceId
             self.monday = monday
             self.tuesday = tuesday
@@ -93,5 +77,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加维护时间窗口
+    ///
+    /// 本接口(AddTimeWindow)用于添加云数据库实例的维护时间窗口，以指定实例在哪些时间段可以自动执行切换访问操作。
+    @inlinable
+    public func addTimeWindow(_ input: AddTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddTimeWindowResponse > {
+        self.client.execute(action: "AddTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加维护时间窗口
+    ///
+    /// 本接口(AddTimeWindow)用于添加云数据库实例的维护时间窗口，以指定实例在哪些时间段可以自动执行切换访问操作。
+    @inlinable
+    public func addTimeWindow(_ input: AddTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTimeWindowResponse {
+        try await self.client.execute(action: "AddTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

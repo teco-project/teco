@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Sts {
-    /// 申请扮演角色
-    @inlinable
-    public func assumeRole(_ input: AssumeRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssumeRoleResponse > {
-        self.client.execute(action: "AssumeRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 申请扮演角色
-    @inlinable
-    public func assumeRole(_ input: AssumeRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleResponse {
-        try await self.client.execute(action: "AssumeRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssumeRole请求参数结构体
     public struct AssumeRoleRequest: TCRequestModel {
         /// 角色的资源描述，可在[访问管理](https://console.cloud.tencent.com/cam/role)，点击角色名获取。
@@ -60,7 +48,7 @@ extension Sts {
         /// 调用者身份uin
         public let sourceIdentity: String?
         
-        public init (roleArn: String, roleSessionName: String, durationSeconds: UInt64?, policy: String?, externalId: String?, tags: [Tag]?, sourceIdentity: String?) {
+        public init (roleArn: String, roleSessionName: String, durationSeconds: UInt64? = nil, policy: String? = nil, externalId: String? = nil, tags: [Tag]? = nil, sourceIdentity: String? = nil) {
             self.roleArn = roleArn
             self.roleSessionName = roleSessionName
             self.durationSeconds = durationSeconds
@@ -101,5 +89,17 @@ extension Sts {
             case expiration = "Expiration"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 申请扮演角色
+    @inlinable
+    public func assumeRole(_ input: AssumeRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssumeRoleResponse > {
+        self.client.execute(action: "AssumeRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 申请扮演角色
+    @inlinable
+    public func assumeRole(_ input: AssumeRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleResponse {
+        try await self.client.execute(action: "AssumeRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssm {
-    /// 删除凭据信息
-    ///
-    /// 删除指定的凭据信息，可以通过RecoveryWindowInDays参数设置立即删除或者计划删除。对于计划删除的凭据，在删除日期到达之前状态为 PendingDelete，并可以通过RestoreSecret 进行恢复，超出指定删除日期之后会被彻底删除。您必须先通过 DisableSecret 停用凭据后才可以进行（计划）删除操作。
-    @inlinable
-    public func deleteSecret(_ input: DeleteSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecretResponse > {
-        self.client.execute(action: "DeleteSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除凭据信息
-    ///
-    /// 删除指定的凭据信息，可以通过RecoveryWindowInDays参数设置立即删除或者计划删除。对于计划删除的凭据，在删除日期到达之前状态为 PendingDelete，并可以通过RestoreSecret 进行恢复，超出指定删除日期之后会被彻底删除。您必须先通过 DisableSecret 停用凭据后才可以进行（计划）删除操作。
-    @inlinable
-    public func deleteSecret(_ input: DeleteSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecretResponse {
-        try await self.client.execute(action: "DeleteSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSecret请求参数结构体
     public struct DeleteSecretRequest: TCRequestModel {
         /// 指定需要删除的凭据名称。
@@ -45,7 +29,7 @@ extension Ssm {
         /// False --  表示仅仅清理此凭据中存储的SSH密钥信息，不在CVM进侧进行清理。
         public let cleanSSHKey: Bool?
         
-        public init (secretName: String, recoveryWindowInDays: UInt64?, cleanSSHKey: Bool?) {
+        public init (secretName: String, recoveryWindowInDays: UInt64? = nil, cleanSSHKey: Bool? = nil) {
             self.secretName = secretName
             self.recoveryWindowInDays = recoveryWindowInDays
             self.cleanSSHKey = cleanSSHKey
@@ -74,5 +58,21 @@ extension Ssm {
             case deleteTime = "DeleteTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除凭据信息
+    ///
+    /// 删除指定的凭据信息，可以通过RecoveryWindowInDays参数设置立即删除或者计划删除。对于计划删除的凭据，在删除日期到达之前状态为 PendingDelete，并可以通过RestoreSecret 进行恢复，超出指定删除日期之后会被彻底删除。您必须先通过 DisableSecret 停用凭据后才可以进行（计划）删除操作。
+    @inlinable
+    public func deleteSecret(_ input: DeleteSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecretResponse > {
+        self.client.execute(action: "DeleteSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除凭据信息
+    ///
+    /// 删除指定的凭据信息，可以通过RecoveryWindowInDays参数设置立即删除或者计划删除。对于计划删除的凭据，在删除日期到达之前状态为 PendingDelete，并可以通过RestoreSecret 进行恢复，超出指定删除日期之后会被彻底删除。您必须先通过 DisableSecret 停用凭据后才可以进行（计划）删除操作。
+    @inlinable
+    public func deleteSecret(_ input: DeleteSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecretResponse {
+        try await self.client.execute(action: "DeleteSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

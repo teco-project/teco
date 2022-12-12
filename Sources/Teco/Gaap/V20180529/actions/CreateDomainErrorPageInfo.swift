@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 定制域名指定错误码的错误响应
-    @inlinable
-    public func createDomainErrorPageInfo(_ input: CreateDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainErrorPageInfoResponse > {
-        self.client.execute(action: "CreateDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 定制域名指定错误码的错误响应
-    @inlinable
-    public func createDomainErrorPageInfo(_ input: CreateDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainErrorPageInfoResponse {
-        try await self.client.execute(action: "CreateDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDomainErrorPageInfo请求参数结构体
     public struct CreateDomainErrorPageInfoRequest: TCRequestModel {
         /// 监听器ID
@@ -50,7 +38,7 @@ extension Gaap {
         /// 需要设置的响应头
         public let setHeaders: [HttpHeaderParam]?
         
-        public init (listenerId: String, domain: String, errorNos: [Int64], body: String, newErrorNo: Int64?, clearHeaders: [String]?, setHeaders: [HttpHeaderParam]?) {
+        public init (listenerId: String, domain: String, errorNos: [Int64], body: String, newErrorNo: Int64? = nil, clearHeaders: [String]? = nil, setHeaders: [HttpHeaderParam]? = nil) {
             self.listenerId = listenerId
             self.domain = domain
             self.errorNos = errorNos
@@ -83,5 +71,17 @@ extension Gaap {
             case errorPageId = "ErrorPageId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 定制域名指定错误码的错误响应
+    @inlinable
+    public func createDomainErrorPageInfo(_ input: CreateDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainErrorPageInfoResponse > {
+        self.client.execute(action: "CreateDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 定制域名指定错误码的错误响应
+    @inlinable
+    public func createDomainErrorPageInfo(_ input: CreateDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainErrorPageInfoResponse {
+        try await self.client.execute(action: "CreateDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

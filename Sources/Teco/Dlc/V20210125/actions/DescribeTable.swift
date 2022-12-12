@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 查询表详情
-    ///
-    /// 本接口（DescribeTable），用于查询单个表的详细信息。
-    @inlinable
-    public func describeTable(_ input: DescribeTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableResponse > {
-        self.client.execute(action: "DescribeTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询表详情
-    ///
-    /// 本接口（DescribeTable），用于查询单个表的详细信息。
-    @inlinable
-    public func describeTable(_ input: DescribeTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableResponse {
-        try await self.client.execute(action: "DescribeTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTable请求参数结构体
     public struct DescribeTableRequest: TCRequestModel {
         /// 查询对象表名称
@@ -42,7 +26,7 @@ extension Dlc {
         /// 查询表所在的数据源名称
         public let datasourceConnectionName: String?
         
-        public init (tableName: String, databaseName: String, datasourceConnectionName: String?) {
+        public init (tableName: String, databaseName: String, datasourceConnectionName: String? = nil) {
             self.tableName = tableName
             self.databaseName = databaseName
             self.datasourceConnectionName = datasourceConnectionName
@@ -67,5 +51,21 @@ extension Dlc {
             case table = "Table"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询表详情
+    ///
+    /// 本接口（DescribeTable），用于查询单个表的详细信息。
+    @inlinable
+    public func describeTable(_ input: DescribeTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableResponse > {
+        self.client.execute(action: "DescribeTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询表详情
+    ///
+    /// 本接口（DescribeTable），用于查询单个表的详细信息。
+    @inlinable
+    public func describeTable(_ input: DescribeTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableResponse {
+        try await self.client.execute(action: "DescribeTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 开启&关闭数据库CDC
-    ///
-    /// 本接口(ModifyDatabaseCDC)用于开启、关闭数据库数据变更捕获(CDC)
-    @inlinable
-    public func modifyDatabaseCDC(_ input: ModifyDatabaseCDCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDatabaseCDCResponse > {
-        self.client.execute(action: "ModifyDatabaseCDC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启&关闭数据库CDC
-    ///
-    /// 本接口(ModifyDatabaseCDC)用于开启、关闭数据库数据变更捕获(CDC)
-    @inlinable
-    public func modifyDatabaseCDC(_ input: ModifyDatabaseCDCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseCDCResponse {
-        try await self.client.execute(action: "ModifyDatabaseCDC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDatabaseCDC请求参数结构体
     public struct ModifyDatabaseCDCRequest: TCRequestModel {
         /// 数据库名数组
@@ -67,5 +51,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启&关闭数据库CDC
+    ///
+    /// 本接口(ModifyDatabaseCDC)用于开启、关闭数据库数据变更捕获(CDC)
+    @inlinable
+    public func modifyDatabaseCDC(_ input: ModifyDatabaseCDCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDatabaseCDCResponse > {
+        self.client.execute(action: "ModifyDatabaseCDC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启&关闭数据库CDC
+    ///
+    /// 本接口(ModifyDatabaseCDC)用于开启、关闭数据库数据变更捕获(CDC)
+    @inlinable
+    public func modifyDatabaseCDC(_ input: ModifyDatabaseCDCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseCDCResponse {
+        try await self.client.execute(action: "ModifyDatabaseCDC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

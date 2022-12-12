@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 终止数据导入任务
-    ///
-    /// 本接口(StopDBImportJob)用于终止数据导入任务。
-    @inlinable
-    public func stopDBImportJob(_ input: StopDBImportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopDBImportJobResponse > {
-        self.client.execute(action: "StopDBImportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 终止数据导入任务
-    ///
-    /// 本接口(StopDBImportJob)用于终止数据导入任务。
-    @inlinable
-    public func stopDBImportJob(_ input: StopDBImportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopDBImportJobResponse {
-        try await self.client.execute(action: "StopDBImportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopDBImportJob请求参数结构体
     public struct StopDBImportJobRequest: TCRequestModel {
         /// 异步任务的请求 ID。
@@ -53,5 +37,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 终止数据导入任务
+    ///
+    /// 本接口(StopDBImportJob)用于终止数据导入任务。
+    @inlinable
+    public func stopDBImportJob(_ input: StopDBImportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopDBImportJobResponse > {
+        self.client.execute(action: "StopDBImportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 终止数据导入任务
+    ///
+    /// 本接口(StopDBImportJob)用于终止数据导入任务。
+    @inlinable
+    public func stopDBImportJob(_ input: StopDBImportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopDBImportJobResponse {
+        try await self.client.execute(action: "StopDBImportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

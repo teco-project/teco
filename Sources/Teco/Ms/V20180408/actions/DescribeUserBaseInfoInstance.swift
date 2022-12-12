@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ms {
-    /// 获取用户基础信息
-    @inlinable
-    public func describeUserBaseInfoInstance(_ input: DescribeUserBaseInfoInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserBaseInfoInstanceResponse > {
-        self.client.execute(action: "DescribeUserBaseInfoInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户基础信息
-    @inlinable
-    public func describeUserBaseInfoInstance(_ input: DescribeUserBaseInfoInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserBaseInfoInstanceResponse {
-        try await self.client.execute(action: "DescribeUserBaseInfoInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserBaseInfoInstance请求参数结构体
     public struct DescribeUserBaseInfoInstanceRequest: TCRequestModel {
         public init () {
@@ -53,5 +41,17 @@ extension Ms {
             case timeStamp = "TimeStamp"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户基础信息
+    @inlinable
+    public func describeUserBaseInfoInstance(_ input: DescribeUserBaseInfoInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserBaseInfoInstanceResponse > {
+        self.client.execute(action: "DescribeUserBaseInfoInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户基础信息
+    @inlinable
+    public func describeUserBaseInfoInstance(_ input: DescribeUserBaseInfoInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserBaseInfoInstanceResponse {
+        try await self.client.execute(action: "DescribeUserBaseInfoInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

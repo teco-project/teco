@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 接受黑石对等连接
-    @inlinable
-    public func acceptVpcPeerConnection(_ input: AcceptVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcceptVpcPeerConnectionResponse > {
-        self.client.execute(action: "AcceptVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 接受黑石对等连接
-    @inlinable
-    public func acceptVpcPeerConnection(_ input: AcceptVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptVpcPeerConnectionResponse {
-        try await self.client.execute(action: "AcceptVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AcceptVpcPeerConnection请求参数结构体
     public struct AcceptVpcPeerConnectionRequest: TCRequestModel {
         /// 黑石对等连接实例ID
@@ -53,5 +41,17 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 接受黑石对等连接
+    @inlinable
+    public func acceptVpcPeerConnection(_ input: AcceptVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcceptVpcPeerConnectionResponse > {
+        self.client.execute(action: "AcceptVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 接受黑石对等连接
+    @inlinable
+    public func acceptVpcPeerConnection(_ input: AcceptVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptVpcPeerConnectionResponse {
+        try await self.client.execute(action: "AcceptVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

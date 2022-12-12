@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 查询Datahub任务列表
-    ///
-    /// 查询Datahub任务列表 
-    @inlinable
-    public func describeDatahubTasks(_ input: DescribeDatahubTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatahubTasksResponse > {
-        self.client.execute(action: "DescribeDatahubTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Datahub任务列表
-    ///
-    /// 查询Datahub任务列表 
-    @inlinable
-    public func describeDatahubTasks(_ input: DescribeDatahubTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatahubTasksResponse {
-        try await self.client.execute(action: "DescribeDatahubTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDatahubTasks请求参数结构体
     public struct DescribeDatahubTasksRequest: TCRequestModel {
         /// 返回数量，默认为20，最大值为100
@@ -54,7 +38,7 @@ extension Ckafka {
         /// 转储的资源
         public let resource: String?
         
-        public init (limit: Int64?, offset: Int64?, searchWord: String?, targetType: String?, taskType: String?, sourceType: String?, resource: String?) {
+        public init (limit: Int64? = nil, offset: Int64? = nil, searchWord: String? = nil, targetType: String? = nil, taskType: String? = nil, sourceType: String? = nil, resource: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.searchWord = searchWord
@@ -87,5 +71,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Datahub任务列表
+    ///
+    /// 查询Datahub任务列表 
+    @inlinable
+    public func describeDatahubTasks(_ input: DescribeDatahubTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatahubTasksResponse > {
+        self.client.execute(action: "DescribeDatahubTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Datahub任务列表
+    ///
+    /// 查询Datahub任务列表 
+    @inlinable
+    public func describeDatahubTasks(_ input: DescribeDatahubTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatahubTasksResponse {
+        try await self.client.execute(action: "DescribeDatahubTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

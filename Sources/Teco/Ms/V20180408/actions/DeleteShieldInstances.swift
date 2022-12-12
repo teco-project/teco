@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ms {
-    /// 批量删除提交过的app信息
-    ///
-    /// 删除一个或者多个app加固信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
-    @inlinable
-    public func deleteShieldInstances(_ input: DeleteShieldInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteShieldInstancesResponse > {
-        self.client.execute(action: "DeleteShieldInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量删除提交过的app信息
-    ///
-    /// 删除一个或者多个app加固信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
-    @inlinable
-    public func deleteShieldInstances(_ input: DeleteShieldInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShieldInstancesResponse {
-        try await self.client.execute(action: "DeleteShieldInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteShieldInstances请求参数结构体
     public struct DeleteShieldInstancesRequest: TCRequestModel {
         /// 任务唯一标识ItemId的列表
@@ -57,5 +41,21 @@ extension Ms {
             case progress = "Progress"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量删除提交过的app信息
+    ///
+    /// 删除一个或者多个app加固信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    @inlinable
+    public func deleteShieldInstances(_ input: DeleteShieldInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteShieldInstancesResponse > {
+        self.client.execute(action: "DeleteShieldInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除提交过的app信息
+    ///
+    /// 删除一个或者多个app加固信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    @inlinable
+    public func deleteShieldInstances(_ input: DeleteShieldInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShieldInstancesResponse {
+        try await self.client.execute(action: "DeleteShieldInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

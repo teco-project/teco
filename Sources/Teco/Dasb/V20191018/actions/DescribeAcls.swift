@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dasb {
-    /// 查询访问权限列表
-    @inlinable
-    public func describeAcls(_ input: DescribeAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAclsResponse > {
-        self.client.execute(action: "DescribeAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询访问权限列表
-    @inlinable
-    public func describeAcls(_ input: DescribeAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAclsResponse {
-        try await self.client.execute(action: "DescribeAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAcls请求参数结构体
     public struct DescribeAclsRequest: TCRequestModel {
         /// 访问权限ID集合
@@ -56,7 +44,7 @@ extension Dasb {
         /// 部门ID，用于过滤属于某个部门的访问权限
         public let departmentId: String?
         
-        public init (idSet: [UInt64]?, name: String?, offset: UInt64?, limit: UInt64?, exact: Bool?, authorizedUserIdSet: [UInt64]?, authorizedDeviceIdSet: [UInt64]?, status: UInt64?, departmentId: String?) {
+        public init (idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, exact: Bool? = nil, authorizedUserIdSet: [UInt64]? = nil, authorizedDeviceIdSet: [UInt64]? = nil, status: UInt64? = nil, departmentId: String? = nil) {
             self.idSet = idSet
             self.name = name
             self.offset = offset
@@ -97,5 +85,17 @@ extension Dasb {
             case aclSet = "AclSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询访问权限列表
+    @inlinable
+    public func describeAcls(_ input: DescribeAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAclsResponse > {
+        self.client.execute(action: "DescribeAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询访问权限列表
+    @inlinable
+    public func describeAcls(_ input: DescribeAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAclsResponse {
+        try await self.client.execute(action: "DescribeAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

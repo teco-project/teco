@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取集群列表
-    @inlinable
-    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
-        self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取集群列表
-    @inlinable
-    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
-        try await self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusters请求参数结构体
     public struct DescribeClustersRequest: TCRequestModel {
         /// 起始下标，不填默认为0。
@@ -44,7 +32,7 @@ extension Tdmq {
         /// 过滤器。目前支持按标签过滤。
         public let filters: [Filter]?
         
-        public init (offset: UInt64?, limit: UInt64?, clusterIdList: [String]?, isTagFilter: Bool?, filters: [Filter]?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, clusterIdList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.clusterIdList = clusterIdList
@@ -77,5 +65,17 @@ extension Tdmq {
             case clusterSet = "ClusterSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取集群列表
+    @inlinable
+    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
+        self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群列表
+    @inlinable
+    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
+        try await self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

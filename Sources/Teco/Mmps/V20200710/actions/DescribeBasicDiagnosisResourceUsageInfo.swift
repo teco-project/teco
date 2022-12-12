@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mmps {
-    /// 查询基础诊断资源使用情况
-    ///
-    /// 查询翼扬安全基础诊断资源使用情况
-    @inlinable
-    public func describeBasicDiagnosisResourceUsageInfo(_ input: DescribeBasicDiagnosisResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicDiagnosisResourceUsageInfoResponse > {
-        self.client.execute(action: "DescribeBasicDiagnosisResourceUsageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询基础诊断资源使用情况
-    ///
-    /// 查询翼扬安全基础诊断资源使用情况
-    @inlinable
-    public func describeBasicDiagnosisResourceUsageInfo(_ input: DescribeBasicDiagnosisResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDiagnosisResourceUsageInfoResponse {
-        try await self.client.execute(action: "DescribeBasicDiagnosisResourceUsageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBasicDiagnosisResourceUsageInfo请求参数结构体
     public struct DescribeBasicDiagnosisResourceUsageInfoRequest: TCRequestModel {
         /// 诊断模式 1:基础诊断，2:深度诊断
@@ -69,5 +53,21 @@ extension Mmps {
             case unusedCount = "UnusedCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询基础诊断资源使用情况
+    ///
+    /// 查询翼扬安全基础诊断资源使用情况
+    @inlinable
+    public func describeBasicDiagnosisResourceUsageInfo(_ input: DescribeBasicDiagnosisResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicDiagnosisResourceUsageInfoResponse > {
+        self.client.execute(action: "DescribeBasicDiagnosisResourceUsageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询基础诊断资源使用情况
+    ///
+    /// 查询翼扬安全基础诊断资源使用情况
+    @inlinable
+    public func describeBasicDiagnosisResourceUsageInfo(_ input: DescribeBasicDiagnosisResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDiagnosisResourceUsageInfoResponse {
+        try await self.client.execute(action: "DescribeBasicDiagnosisResourceUsageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 资产指纹启动扫描
-    @inlinable
-    public func scanAsset(_ input: ScanAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanAssetResponse > {
-        self.client.execute(action: "ScanAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 资产指纹启动扫描
-    @inlinable
-    public func scanAsset(_ input: ScanAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanAssetResponse {
-        try await self.client.execute(action: "ScanAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ScanAsset请求参数结构体
     public struct ScanAssetRequest: TCRequestModel {
         /// 资产指纹类型id列表
@@ -35,7 +23,7 @@ extension Cwp {
         /// Quuid列表
         public let quuids: [String]?
         
-        public init (assetTypeIds: [UInt64]?, quuids: [String]?) {
+        public init (assetTypeIds: [UInt64]? = nil, quuids: [String]? = nil) {
             self.assetTypeIds = assetTypeIds
             self.quuids = quuids
         }
@@ -59,5 +47,17 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 资产指纹启动扫描
+    @inlinable
+    public func scanAsset(_ input: ScanAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanAssetResponse > {
+        self.client.execute(action: "ScanAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 资产指纹启动扫描
+    @inlinable
+    public func scanAsset(_ input: ScanAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanAssetResponse {
+        try await self.client.execute(action: "ScanAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 添加DDoS防护的区域封禁配置
-    @inlinable
-    public func createDDoSGeoIPBlockConfig(_ input: CreateDDoSGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSGeoIPBlockConfigResponse > {
-        self.client.execute(action: "CreateDDoSGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加DDoS防护的区域封禁配置
-    @inlinable
-    public func createDDoSGeoIPBlockConfig(_ input: CreateDDoSGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSGeoIPBlockConfigResponse {
-        try await self.client.execute(action: "CreateDDoSGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDDoSGeoIPBlockConfig请求参数结构体
     public struct CreateDDoSGeoIPBlockConfigRequest: TCRequestModel {
         /// 资源实例ID
@@ -54,5 +42,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加DDoS防护的区域封禁配置
+    @inlinable
+    public func createDDoSGeoIPBlockConfig(_ input: CreateDDoSGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSGeoIPBlockConfigResponse > {
+        self.client.execute(action: "CreateDDoSGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加DDoS防护的区域封禁配置
+    @inlinable
+    public func createDDoSGeoIPBlockConfig(_ input: CreateDDoSGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSGeoIPBlockConfigResponse {
+        try await self.client.execute(action: "CreateDDoSGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -150,7 +150,7 @@ extension Es {
         /// 自动备份执行时间（精确到小时）, e.g. "22:00"
         public let backupTime: String
         
-        public init (isAutoBackup: Bool, backupTime: String) {
+        public init (isAutoBackup: Bool = false, backupTime: String) {
             self.isAutoBackup = isAutoBackup
             self.backupTime = backupTime
         }
@@ -187,7 +187,7 @@ extension Es {
         /// kibana访问白名单
         public let whiteIpList: [String]?
         
-        public init (blackIpList: [String]?, whiteIpList: [String]?) {
+        public init (blackIpList: [String]? = nil, whiteIpList: [String]? = nil) {
             self.blackIpList = blackIpList
             self.whiteIpList = whiteIpList
         }
@@ -251,7 +251,7 @@ extension Es {
         /// 访问白名单
         public let whiteIpList: [String]?
         
-        public init (blackIpList: [String]?, whiteIpList: [String]?) {
+        public init (blackIpList: [String]? = nil, whiteIpList: [String]? = nil) {
             self.blackIpList = blackIpList
             self.whiteIpList = whiteIpList
         }
@@ -302,15 +302,15 @@ extension Es {
         
         /// 索引生命周期字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let indexPolicyField: IndexPolicyField
+        public let indexPolicyField: IndexPolicyField?
         
         /// 索引自治字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let indexOptionsField: IndexOptionsField
+        public let indexOptionsField: IndexOptionsField?
         
         /// 索引配置字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let indexSettingsField: IndexSettingsField
+        public let indexSettingsField: IndexSettingsField?
         
         /// 索引所属集群APP ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -363,7 +363,7 @@ extension Es {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let writeMode: String?
         
-        public init (expireMaxAge: String?, expireMaxSize: String?, rolloverMaxAge: String?, rolloverDynamic: String?, shardNumDynamic: String?, timestampField: String?, writeMode: String?) {
+        public init (expireMaxAge: String? = nil, expireMaxSize: String? = nil, rolloverMaxAge: String? = nil, rolloverDynamic: String? = nil, shardNumDynamic: String? = nil, timestampField: String? = nil, writeMode: String? = nil) {
             self.expireMaxAge = expireMaxAge
             self.expireMaxSize = expireMaxSize
             self.rolloverMaxAge = rolloverMaxAge
@@ -414,7 +414,7 @@ extension Es {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let coldAction: String?
         
-        public init (warmEnable: String?, warmMinAge: String?, coldEnable: String?, coldMinAge: String?, frozenEnable: String?, frozenMinAge: String?, coldAction: String?) {
+        public init (warmEnable: String? = nil, warmMinAge: String? = nil, coldEnable: String? = nil, coldMinAge: String? = nil, frozenEnable: String? = nil, frozenMinAge: String? = nil, coldAction: String? = nil) {
             self.warmEnable = warmEnable
             self.warmMinAge = warmMinAge
             self.coldEnable = coldEnable
@@ -449,7 +449,7 @@ extension Es {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refreshInterval: String?
         
-        public init (numberOfShards: String?, numberOfReplicas: String?, refreshInterval: String?) {
+        public init (numberOfShards: String? = nil, numberOfReplicas: String? = nil, refreshInterval: String? = nil) {
             self.numberOfShards = numberOfShards
             self.numberOfReplicas = numberOfReplicas
             self.refreshInterval = refreshInterval
@@ -651,11 +651,11 @@ extension Es {
         
         /// Kibana节点信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let kibanaNodeInfo: KibanaNodeInfo
+        public let kibanaNodeInfo: KibanaNodeInfo?
         
         /// 可视化节点配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let webNodeTypeInfo: WebNodeTypeInfo
+        public let webNodeTypeInfo: WebNodeTypeInfo?
         
         /// JDK类型，oracle或kona
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -735,7 +735,7 @@ extension Es {
         
         /// 集群可维护时间段
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let operationDuration: OperationDuration
+        public let operationDuration: OperationDuration?
         
         /// web节点列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1088,7 +1088,7 @@ extension Es {
         
         /// 可维护时间段
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let operationDuration: OperationDuration
+        public let operationDuration: OperationDuration?
         
         /// CPU数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1312,7 +1312,7 @@ extension Es {
         
         /// 节点本地盘信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let localDiskInfo: LocalDiskInfo
+        public let localDiskInfo: LocalDiskInfo?
         
         /// 节点磁盘块数
         public let diskCount: UInt64?
@@ -1332,7 +1332,7 @@ extension Es {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskEnhance: Int64?
         
-        public init (nodeNum: UInt64, nodeType: String, type: String?, diskType: String?, diskSize: UInt64?, localDiskInfo: LocalDiskInfo, diskCount: UInt64?, diskEncrypt: UInt64?, cpuNum: UInt64?, memSize: Int64?, diskEnhance: Int64?) {
+        public init (nodeNum: UInt64, nodeType: String, type: String? = nil, diskType: String? = nil, diskSize: UInt64? = nil, localDiskInfo: LocalDiskInfo? = nil, diskCount: UInt64? = nil, diskEncrypt: UInt64? = nil, cpuNum: UInt64? = nil, memSize: Int64? = nil, diskEnhance: Int64? = nil) {
             self.nodeNum = nodeNum
             self.nodeType = nodeType
             self.type = type
@@ -1487,7 +1487,7 @@ extension Es {
     public struct OperationDuration: TCInputModel, TCOutputModel {
         /// 维护周期，表示周一到周日，可取值[0, 6]
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let periods: [UInt64]
+        public let periods: [UInt64]?
         
         /// 维护开始时间
         public let timeStart: String
@@ -1530,7 +1530,7 @@ extension Es {
         /// ES集群ID数组
         public let moreInstances: [String]?
         
-        public init (periods: [UInt64], timeStart: String, timeEnd: String, timeZone: String, moreInstances: [String]?) {
+        public init (periods: [UInt64], timeStart: String, timeEnd: String, timeZone: String, moreInstances: [String]? = nil) {
             self.periods = periods
             self.timeStart = timeStart
             self.timeEnd = timeEnd

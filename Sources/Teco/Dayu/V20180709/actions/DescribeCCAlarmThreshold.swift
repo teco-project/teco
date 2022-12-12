@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取CC告警通知阈值
-    ///
-    /// 获取高防包、高防IP、高防IP专业版、棋牌盾产品设置CC攻击的告警通知阈值
-    @inlinable
-    public func describeCCAlarmThreshold(_ input: DescribeCCAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCAlarmThresholdResponse > {
-        self.client.execute(action: "DescribeCCAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取CC告警通知阈值
-    ///
-    /// 获取高防包、高防IP、高防IP专业版、棋牌盾产品设置CC攻击的告警通知阈值
-    @inlinable
-    public func describeCCAlarmThreshold(_ input: DescribeCCAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCAlarmThresholdResponse {
-        try await self.client.execute(action: "DescribeCCAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCCAlarmThreshold请求参数结构体
     public struct DescribeCCAlarmThresholdRequest: TCRequestModel {
         /// 大禹子产品代号（shield表示棋牌；bgpip表示高防IP；bgp表示高防包；bgp-multip表示多ip高防包；net表示高防IP专业版）
@@ -62,5 +46,21 @@ extension Dayu {
             case ccAlarmThreshold = "CCAlarmThreshold"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取CC告警通知阈值
+    ///
+    /// 获取高防包、高防IP、高防IP专业版、棋牌盾产品设置CC攻击的告警通知阈值
+    @inlinable
+    public func describeCCAlarmThreshold(_ input: DescribeCCAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCAlarmThresholdResponse > {
+        self.client.execute(action: "DescribeCCAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC告警通知阈值
+    ///
+    /// 获取高防包、高防IP、高防IP专业版、棋牌盾产品设置CC攻击的告警通知阈值
+    @inlinable
+    public func describeCCAlarmThreshold(_ input: DescribeCCAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCAlarmThresholdResponse {
+        try await self.client.execute(action: "DescribeCCAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

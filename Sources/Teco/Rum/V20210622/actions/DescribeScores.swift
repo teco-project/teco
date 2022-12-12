@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取首页分数列表
-    @inlinable
-    public func describeScores(_ input: DescribeScoresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScoresResponse > {
-        self.client.execute(action: "DescribeScores", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取首页分数列表
-    @inlinable
-    public func describeScores(_ input: DescribeScoresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScoresResponse {
-        try await self.client.execute(action: "DescribeScores", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScores请求参数结构体
     public struct DescribeScoresRequest: TCRequestModel {
         /// 结束时间
@@ -41,7 +29,7 @@ extension Rum {
         /// 该参数已废弃
         public let isDemo: Int64?
         
-        public init (endTime: String, startTime: String, id: Int64?, isDemo: Int64?) {
+        public init (endTime: String, startTime: String, id: Int64? = nil, isDemo: Int64? = nil) {
             self.endTime = endTime
             self.startTime = startTime
             self.id = id
@@ -68,5 +56,17 @@ extension Rum {
             case scoreSet = "ScoreSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取首页分数列表
+    @inlinable
+    public func describeScores(_ input: DescribeScoresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScoresResponse > {
+        self.client.execute(action: "DescribeScores", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取首页分数列表
+    @inlinable
+    public func describeScores(_ input: DescribeScoresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScoresResponse {
+        try await self.client.execute(action: "DescribeScores", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

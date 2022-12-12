@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 修改表格组名称
-    ///
-    /// 修改TcaplusDB表格组名称
-    @inlinable
-    public func modifyTableGroupName(_ input: ModifyTableGroupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableGroupNameResponse > {
-        self.client.execute(action: "ModifyTableGroupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改表格组名称
-    ///
-    /// 修改TcaplusDB表格组名称
-    @inlinable
-    public func modifyTableGroupName(_ input: ModifyTableGroupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableGroupNameResponse {
-        try await self.client.execute(action: "ModifyTableGroupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTableGroupName请求参数结构体
     public struct ModifyTableGroupNameRequest: TCRequestModel {
         /// 表格组所属的集群ID
@@ -63,5 +47,21 @@ extension Tcaplusdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改表格组名称
+    ///
+    /// 修改TcaplusDB表格组名称
+    @inlinable
+    public func modifyTableGroupName(_ input: ModifyTableGroupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableGroupNameResponse > {
+        self.client.execute(action: "ModifyTableGroupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改表格组名称
+    ///
+    /// 修改TcaplusDB表格组名称
+    @inlinable
+    public func modifyTableGroupName(_ input: ModifyTableGroupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableGroupNameResponse {
+        try await self.client.execute(action: "ModifyTableGroupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 包年包月实例退还
-    @inlinable
-    public func destroyPrepaidInstance(_ input: DestroyPrepaidInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyPrepaidInstanceResponse > {
-        self.client.execute(action: "DestroyPrepaidInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 包年包月实例退还
-    @inlinable
-    public func destroyPrepaidInstance(_ input: DestroyPrepaidInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPrepaidInstanceResponse {
-        try await self.client.execute(action: "DestroyPrepaidInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DestroyPrepaidInstance请求参数结构体
     public struct DestroyPrepaidInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -53,5 +41,17 @@ extension Redis {
             case dealId = "DealId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 包年包月实例退还
+    @inlinable
+    public func destroyPrepaidInstance(_ input: DestroyPrepaidInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyPrepaidInstanceResponse > {
+        self.client.execute(action: "DestroyPrepaidInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 包年包月实例退还
+    @inlinable
+    public func destroyPrepaidInstance(_ input: DestroyPrepaidInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPrepaidInstanceResponse {
+        try await self.client.execute(action: "DestroyPrepaidInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

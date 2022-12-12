@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 创建实例启动模板
-    ///
-    /// 本接口（CreateLaunchTemplate）用于创建实例启动模板。
-    /// 实例启动模板是一种配置数据并可用于创建实例，其内容包含创建实例所需的配置，比如实例类型，数据盘和系统盘的类型和大小，以及安全组等信息。
-    /// 初次创建实例模板后，其模板版本为默认版本1，新版本的创建可使用CreateLaunchTemplateVersion创建，版本号递增。默认情况下，在RunInstances中指定实例启动模板，若不指定模板版本号，则使用默认版本。
-    @inlinable
-    public func createLaunchTemplate(_ input: CreateLaunchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLaunchTemplateResponse > {
-        self.client.execute(action: "CreateLaunchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例启动模板
-    ///
-    /// 本接口（CreateLaunchTemplate）用于创建实例启动模板。
-    /// 实例启动模板是一种配置数据并可用于创建实例，其内容包含创建实例所需的配置，比如实例类型，数据盘和系统盘的类型和大小，以及安全组等信息。
-    /// 初次创建实例模板后，其模板版本为默认版本1，新版本的创建可使用CreateLaunchTemplateVersion创建，版本号递增。默认情况下，在RunInstances中指定实例启动模板，若不指定模板版本号，则使用默认版本。
-    @inlinable
-    public func createLaunchTemplate(_ input: CreateLaunchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaunchTemplateResponse {
-        try await self.client.execute(action: "CreateLaunchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLaunchTemplate请求参数结构体
     public struct CreateLaunchTemplateRequest: TCRequestModel {
         /// 实例启动模板名称。长度为2~128个英文或中文字符。
@@ -54,16 +34,16 @@ extension Cvm {
         public let instanceType: String?
         
         /// 实例系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
-        public let systemDisk: SystemDisk
+        public let systemDisk: SystemDisk?
         
         /// 实例数据盘配置信息。若不指定该参数，则默认不购买数据盘。支持购买的时候指定21块数据盘，其中最多包含1块LOCAL_BASIC数据盘或者LOCAL_SSD数据盘，最多包含20块CLOUD_BASIC数据盘、CLOUD_PREMIUM数据盘或者CLOUD_SSD数据盘。
         public let dataDisks: [DataDisk]?
         
         /// 私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。若不指定该参数，则默认使用基础网络。若在此参数中指定了私有网络IP，即表示每个实例的主网卡IP；同时，InstanceCount参数必须与私有网络IP的个数一致且不能大于20。
-        public let virtualPrivateCloud: VirtualPrivateCloud
+        public let virtualPrivateCloud: VirtualPrivateCloud?
         
         /// 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
-        public let internetAccessible: InternetAccessible
+        public let internetAccessible: InternetAccessible?
         
         /// 购买实例数量。包年包月实例取值范围：[1，300]，按量计费实例取值范围：[1，100]。默认取值：1。指定购买实例的数量不能超过用户所能购买的剩余配额数量，具体配额相关限制详见[CVM实例购买限制](https://cloud.tencent.com/document/product/213/2664)。
         public let instanceCount: Int64?
@@ -72,13 +52,13 @@ extension Cvm {
         public let instanceName: String?
         
         /// 实例登录设置。通过该参数可以设置实例的登录方式密码、密钥或保持镜像的原始登录设置。默认情况下会随机生成密码，并以站内信方式知会到用户。
-        public let loginSettings: LoginSettings
+        public let loginSettings: LoginSettings?
         
         /// 实例所属安全组。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来获取。若不指定该参数，则绑定默认安全组。
         public let securityGroupIds: [String]?
         
         /// 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认公共镜像开启云监控、云安全服务；自定义镜像与镜像市场镜像默认不开启云监控，云安全服务，而使用镜像里保留的服务。
-        public let enhancedService: EnhancedService
+        public let enhancedService: EnhancedService?
         
         /// 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         public let clientToken: String?
@@ -87,7 +67,7 @@ extension Cvm {
         public let hostName: String?
         
         /// 定时任务。通过该参数可以为实例指定定时任务，目前仅支持定时销毁。
-        public let actionTimer: ActionTimer
+        public let actionTimer: ActionTimer?
         
         /// 置放群组id，仅支持指定一个。
         public let disasterRecoverGroupIds: [String]?
@@ -96,7 +76,7 @@ extension Cvm {
         public let tagSpecification: [TagSpecification]?
         
         /// 实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。
-        public let instanceMarketOptions: InstanceMarketOptionsRequest
+        public let instanceMarketOptions: InstanceMarketOptionsRequest?
         
         /// 提供给实例使用的用户数据，需要以 base64 方式编码，支持的最大数据大小为 16KB。关于获取此参数的详细介绍，请参阅[Windows](https://cloud.tencent.com/document/product/213/17526)和[Linux](https://cloud.tencent.com/document/product/213/17525)启动时运行命令。
         public let userData: String?
@@ -118,12 +98,12 @@ extension Cvm {
         public let instanceChargeType: String?
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：<br><li>TRUE：表示开启实例保护，不允许通过api接口删除实例<br><li>FALSE：表示关闭实例保护，允许通过api接口删除实例<br><br>默认取值：FALSE。
         public let disableApiTermination: Bool?
         
-        public init (launchTemplateName: String, placement: Placement, imageId: String, launchTemplateVersionDescription: String?, instanceType: String?, systemDisk: SystemDisk, dataDisks: [DataDisk]?, virtualPrivateCloud: VirtualPrivateCloud, internetAccessible: InternetAccessible, instanceCount: Int64?, instanceName: String?, loginSettings: LoginSettings, securityGroupIds: [String]?, enhancedService: EnhancedService, clientToken: String?, hostName: String?, actionTimer: ActionTimer, disasterRecoverGroupIds: [String]?, tagSpecification: [TagSpecification]?, instanceMarketOptions: InstanceMarketOptionsRequest, userData: String?, dryRun: Bool?, camRoleName: String?, hpcClusterId: String?, instanceChargeType: String?, instanceChargePrepaid: InstanceChargePrepaid, disableApiTermination: Bool?) {
+        public init (launchTemplateName: String, placement: Placement, imageId: String, launchTemplateVersionDescription: String? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, internetAccessible: InternetAccessible? = nil, instanceCount: Int64? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, enhancedService: EnhancedService? = nil, clientToken: String? = nil, hostName: String? = nil, actionTimer: ActionTimer? = nil, disasterRecoverGroupIds: [String]? = nil, tagSpecification: [TagSpecification]? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, userData: String? = nil, dryRun: Bool? = nil, camRoleName: String? = nil, hpcClusterId: String? = nil, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, disableApiTermination: Bool? = nil) {
             self.launchTemplateName = launchTemplateName
             self.placement = placement
             self.imageId = imageId
@@ -196,5 +176,25 @@ extension Cvm {
             case launchTemplateId = "LaunchTemplateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例启动模板
+    ///
+    /// 本接口（CreateLaunchTemplate）用于创建实例启动模板。
+    /// 实例启动模板是一种配置数据并可用于创建实例，其内容包含创建实例所需的配置，比如实例类型，数据盘和系统盘的类型和大小，以及安全组等信息。
+    /// 初次创建实例模板后，其模板版本为默认版本1，新版本的创建可使用CreateLaunchTemplateVersion创建，版本号递增。默认情况下，在RunInstances中指定实例启动模板，若不指定模板版本号，则使用默认版本。
+    @inlinable
+    public func createLaunchTemplate(_ input: CreateLaunchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLaunchTemplateResponse > {
+        self.client.execute(action: "CreateLaunchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例启动模板
+    ///
+    /// 本接口（CreateLaunchTemplate）用于创建实例启动模板。
+    /// 实例启动模板是一种配置数据并可用于创建实例，其内容包含创建实例所需的配置，比如实例类型，数据盘和系统盘的类型和大小，以及安全组等信息。
+    /// 初次创建实例模板后，其模板版本为默认版本1，新版本的创建可使用CreateLaunchTemplateVersion创建，版本号递增。默认情况下，在RunInstances中指定实例启动模板，若不指定模板版本号，则使用默认版本。
+    @inlinable
+    public func createLaunchTemplate(_ input: CreateLaunchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaunchTemplateResponse {
+        try await self.client.execute(action: "CreateLaunchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

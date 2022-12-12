@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 新建DID根据私钥生成Tdid
-    @inlinable
-    public func createTDidByPrivateKey(_ input: CreateTDidByPrivateKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTDidByPrivateKeyResponse > {
-        self.client.execute(action: "CreateTDidByPrivateKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建DID根据私钥生成Tdid
-    @inlinable
-    public func createTDidByPrivateKey(_ input: CreateTDidByPrivateKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPrivateKeyResponse {
-        try await self.client.execute(action: "CreateTDidByPrivateKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTDidByPrivateKey请求参数结构体
     public struct CreateTDidByPrivateKeyRequest: TCRequestModel {
         /// 网络ID
@@ -63,5 +51,17 @@ extension Tdid {
             case did = "Did"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建DID根据私钥生成Tdid
+    @inlinable
+    public func createTDidByPrivateKey(_ input: CreateTDidByPrivateKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTDidByPrivateKeyResponse > {
+        self.client.execute(action: "CreateTDidByPrivateKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建DID根据私钥生成Tdid
+    @inlinable
+    public func createTDidByPrivateKey(_ input: CreateTDidByPrivateKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPrivateKeyResponse {
+        try await self.client.execute(action: "CreateTDidByPrivateKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

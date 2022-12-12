@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 查询数据库审计日志
-    ///
-    /// 本接口(DescribeAuditLogs)用于查询数据库审计日志。
-    @inlinable
-    public func describeAuditLogs(_ input: DescribeAuditLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditLogsResponse > {
-        self.client.execute(action: "DescribeAuditLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据库审计日志
-    ///
-    /// 本接口(DescribeAuditLogs)用于查询数据库审计日志。
-    @inlinable
-    public func describeAuditLogs(_ input: DescribeAuditLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogsResponse {
-        try await self.client.execute(action: "DescribeAuditLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAuditLogs请求参数结构体
     public struct DescribeAuditLogsRequest: TCRequestModel {
         /// 实例ID
@@ -52,7 +36,7 @@ extension Cynosdb {
         public let orderBy: String?
         
         /// 过滤条件。可按设置的过滤条件过滤日志。
-        public let filter: AuditLogFilter
+        public let filter: AuditLogFilter?
         
         /// 分页参数，单次返回的数据条数。默认值为100，最大值为100。
         public let limit: Int64?
@@ -60,7 +44,7 @@ extension Cynosdb {
         /// 分页偏移量。
         public let offset: Int64?
         
-        public init (instanceId: String, startTime: String, endTime: String, order: String?, orderBy: String?, filter: AuditLogFilter, limit: Int64?, offset: Int64?) {
+        public init (instanceId: String, startTime: String, endTime: String, order: String? = nil, orderBy: String? = nil, filter: AuditLogFilter? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -100,5 +84,21 @@ extension Cynosdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据库审计日志
+    ///
+    /// 本接口(DescribeAuditLogs)用于查询数据库审计日志。
+    @inlinable
+    public func describeAuditLogs(_ input: DescribeAuditLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditLogsResponse > {
+        self.client.execute(action: "DescribeAuditLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库审计日志
+    ///
+    /// 本接口(DescribeAuditLogs)用于查询数据库审计日志。
+    @inlinable
+    public func describeAuditLogs(_ input: DescribeAuditLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogsResponse {
+        try await self.client.execute(action: "DescribeAuditLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

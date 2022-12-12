@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 新手引导扫描接口信息
-    ///
-    /// DescribeGuideScanInfo新手引导扫描接口信息
-    @inlinable
-    public func describeGuideScanInfo(_ input: DescribeGuideScanInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGuideScanInfoResponse > {
-        self.client.execute(action: "DescribeGuideScanInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新手引导扫描接口信息
-    ///
-    /// DescribeGuideScanInfo新手引导扫描接口信息
-    @inlinable
-    public func describeGuideScanInfo(_ input: DescribeGuideScanInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGuideScanInfoResponse {
-        try await self.client.execute(action: "DescribeGuideScanInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGuideScanInfo请求参数结构体
     public struct DescribeGuideScanInfoRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Cfw {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新手引导扫描接口信息
+    ///
+    /// DescribeGuideScanInfo新手引导扫描接口信息
+    @inlinable
+    public func describeGuideScanInfo(_ input: DescribeGuideScanInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGuideScanInfoResponse > {
+        self.client.execute(action: "DescribeGuideScanInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新手引导扫描接口信息
+    ///
+    /// DescribeGuideScanInfo新手引导扫描接口信息
+    @inlinable
+    public func describeGuideScanInfo(_ input: DescribeGuideScanInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGuideScanInfoResponse {
+        try await self.client.execute(action: "DescribeGuideScanInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

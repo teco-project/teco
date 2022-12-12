@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 创建外呼会话（当前仅支持双呼）
-    ///
-    /// 创建外呼会话，当前仅支持双呼，即先使用平台号码呼出到坐席手机上，坐席接听后，然后再外呼用户，而且由于运营商频率限制，坐席手机号必须先加白名单，避免频控导致外呼失败。
-    @inlinable
-    public func createCallOutSession(_ input: CreateCallOutSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCallOutSessionResponse > {
-        self.client.execute(action: "CreateCallOutSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建外呼会话（当前仅支持双呼）
-    ///
-    /// 创建外呼会话，当前仅支持双呼，即先使用平台号码呼出到坐席手机上，坐席接听后，然后再外呼用户，而且由于运营商频率限制，坐席手机号必须先加白名单，避免频控导致外呼失败。
-    @inlinable
-    public func createCallOutSession(_ input: CreateCallOutSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCallOutSessionResponse {
-        try await self.client.execute(action: "CreateCallOutSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCallOutSession请求参数结构体
     public struct CreateCallOutSessionRequest: TCRequestModel {
         /// 应用 ID
@@ -51,7 +35,7 @@ extension Ccc {
         /// 自定义数据，长度限制 1024 字节
         public let uui: String?
         
-        public init (sdkAppId: UInt64, userId: String, callee: String, caller: String?, isForceUseMobile: Bool?, uui: String?) {
+        public init (sdkAppId: UInt64, userId: String, callee: String, caller: String? = nil, isForceUseMobile: Bool? = nil, uui: String? = nil) {
             self.sdkAppId = sdkAppId
             self.userId = userId
             self.callee = callee
@@ -82,5 +66,21 @@ extension Ccc {
             case sessionId = "SessionId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建外呼会话（当前仅支持双呼）
+    ///
+    /// 创建外呼会话，当前仅支持双呼，即先使用平台号码呼出到坐席手机上，坐席接听后，然后再外呼用户，而且由于运营商频率限制，坐席手机号必须先加白名单，避免频控导致外呼失败。
+    @inlinable
+    public func createCallOutSession(_ input: CreateCallOutSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCallOutSessionResponse > {
+        self.client.execute(action: "CreateCallOutSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建外呼会话（当前仅支持双呼）
+    ///
+    /// 创建外呼会话，当前仅支持双呼，即先使用平台号码呼出到坐席手机上，坐席接听后，然后再外呼用户，而且由于运营商频率限制，坐席手机号必须先加白名单，避免频控导致外呼失败。
+    @inlinable
+    public func createCallOutSession(_ input: CreateCallOutSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCallOutSessionResponse {
+        try await self.client.execute(action: "CreateCallOutSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

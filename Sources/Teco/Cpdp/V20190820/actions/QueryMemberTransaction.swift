@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-会员间交易-不验证
-    ///
-    /// 会员间交易-不验证。此接口可以实现会员间的余额的交易，实现资金在会员之间流动。
-    @inlinable
-    public func queryMemberTransaction(_ input: QueryMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMemberTransactionResponse > {
-        self.client.execute(action: "QueryMemberTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-会员间交易-不验证
-    ///
-    /// 会员间交易-不验证。此接口可以实现会员间的余额的交易，实现资金在会员之间流动。
-    @inlinable
-    public func queryMemberTransaction(_ input: QueryMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberTransactionResponse {
-        try await self.client.execute(action: "QueryMemberTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryMemberTransaction请求参数结构体
     public struct QueryMemberTransactionRequest: TCRequestModel {
         /// String(22)，商户号（签约客户号）
@@ -87,7 +71,7 @@ extension Cpdp {
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
         
-        public init (mrchCode: String, functionFlag: String, outSubAcctNo: String, outMemberCode: String, outSubAcctName: String, inSubAcctNo: String, inMemberCode: String, inSubAcctName: String, tranAmt: String, tranFee: String, tranType: String, ccy: String, orderNo: String?, orderContent: String?, remark: String?, reservedMsg: String?, webSign: String?, profile: String?) {
+        public init (mrchCode: String, functionFlag: String, outSubAcctNo: String, outMemberCode: String, outSubAcctName: String, inSubAcctNo: String, inMemberCode: String, inSubAcctName: String, tranAmt: String, tranFee: String, tranType: String, ccy: String, orderNo: String? = nil, orderContent: String? = nil, remark: String? = nil, reservedMsg: String? = nil, webSign: String? = nil, profile: String? = nil) {
             self.mrchCode = mrchCode
             self.functionFlag = functionFlag
             self.outSubAcctNo = outSubAcctNo
@@ -160,5 +144,21 @@ extension Cpdp {
             case reservedMsg = "ReservedMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-会员间交易-不验证
+    ///
+    /// 会员间交易-不验证。此接口可以实现会员间的余额的交易，实现资金在会员之间流动。
+    @inlinable
+    public func queryMemberTransaction(_ input: QueryMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMemberTransactionResponse > {
+        self.client.execute(action: "QueryMemberTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-会员间交易-不验证
+    ///
+    /// 会员间交易-不验证。此接口可以实现会员间的余额的交易，实现资金在会员之间流动。
+    @inlinable
+    public func queryMemberTransaction(_ input: QueryMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberTransactionResponse {
+        try await self.client.execute(action: "QueryMemberTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

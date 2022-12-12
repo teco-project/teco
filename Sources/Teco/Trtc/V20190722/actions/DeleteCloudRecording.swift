@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Trtc {
-    /// 停止云端录制任务
-    ///
-    /// 成功开启录制后，可以使用此接口来停止录制任务。停止录制成功后不代表文件全部传输完成，如果未完成后台将会继续上传文件，成功后通过事件回调通知客户文件全部传输完成状态。
-    @inlinable
-    public func deleteCloudRecording(_ input: DeleteCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCloudRecordingResponse > {
-        self.client.execute(action: "DeleteCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止云端录制任务
-    ///
-    /// 成功开启录制后，可以使用此接口来停止录制任务。停止录制成功后不代表文件全部传输完成，如果未完成后台将会继续上传文件，成功后通过事件回调通知客户文件全部传输完成状态。
-    @inlinable
-    public func deleteCloudRecording(_ input: DeleteCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCloudRecordingResponse {
-        try await self.client.execute(action: "DeleteCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCloudRecording请求参数结构体
     public struct DeleteCloudRecordingRequest: TCRequestModel {
         /// TRTC的SDKAppId，和录制的房间所对应的SDKAppId相同。
@@ -62,5 +46,21 @@ extension Trtc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止云端录制任务
+    ///
+    /// 成功开启录制后，可以使用此接口来停止录制任务。停止录制成功后不代表文件全部传输完成，如果未完成后台将会继续上传文件，成功后通过事件回调通知客户文件全部传输完成状态。
+    @inlinable
+    public func deleteCloudRecording(_ input: DeleteCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCloudRecordingResponse > {
+        self.client.execute(action: "DeleteCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止云端录制任务
+    ///
+    /// 成功开启录制后，可以使用此接口来停止录制任务。停止录制成功后不代表文件全部传输完成，如果未完成后台将会继续上传文件，成功后通过事件回调通知客户文件全部传输完成状态。
+    @inlinable
+    public func deleteCloudRecording(_ input: DeleteCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCloudRecordingResponse {
+        try await self.client.execute(action: "DeleteCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

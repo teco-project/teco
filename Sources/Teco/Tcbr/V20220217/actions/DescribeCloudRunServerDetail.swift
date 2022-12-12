@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcbr {
-    /// 查询云托管服务详情
-    @inlinable
-    public func describeCloudRunServerDetail(_ input: DescribeCloudRunServerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudRunServerDetailResponse > {
-        self.client.execute(action: "DescribeCloudRunServerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云托管服务详情
-    @inlinable
-    public func describeCloudRunServerDetail(_ input: DescribeCloudRunServerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRunServerDetailResponse {
-        try await self.client.execute(action: "DescribeCloudRunServerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudRunServerDetail请求参数结构体
     public struct DescribeCloudRunServerDetailRequest: TCRequestModel {
         /// 环境Id
@@ -50,11 +38,11 @@ extension Tcbr {
     public struct DescribeCloudRunServerDetailResponse: TCResponseModel {
         /// 服务基本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let baseInfo: ServerBaseInfo
+        public let baseInfo: ServerBaseInfo?
         
         /// 服务配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let serverConfig: ServerBaseConfig
+        public let serverConfig: ServerBaseConfig?
         
         /// 在线版本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -69,5 +57,17 @@ extension Tcbr {
             case onlineVersionInfos = "OnlineVersionInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云托管服务详情
+    @inlinable
+    public func describeCloudRunServerDetail(_ input: DescribeCloudRunServerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudRunServerDetailResponse > {
+        self.client.execute(action: "DescribeCloudRunServerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云托管服务详情
+    @inlinable
+    public func describeCloudRunServerDetail(_ input: DescribeCloudRunServerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRunServerDetailResponse {
+        try await self.client.execute(action: "DescribeCloudRunServerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

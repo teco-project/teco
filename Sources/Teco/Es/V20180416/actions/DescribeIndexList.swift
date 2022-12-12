@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 获取索引列表
-    @inlinable
-    public func describeIndexList(_ input: DescribeIndexListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIndexListResponse > {
-        self.client.execute(action: "DescribeIndexList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取索引列表
-    @inlinable
-    public func describeIndexList(_ input: DescribeIndexListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexListResponse {
-        try await self.client.execute(action: "DescribeIndexList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIndexList请求参数结构体
     public struct DescribeIndexListRequest: TCRequestModel {
         /// 索引类型。auto：自治索引；normal：普通索引
@@ -59,7 +47,7 @@ extension Es {
         /// 排序顺序，支持asc、desc
         public let order: String?
         
-        public init (indexType: String, instanceId: String?, indexName: String?, username: String?, password: String?, offset: Int64?, limit: Int64?, orderBy: String?, indexStatusList: [String]?, order: String?) {
+        public init (indexType: String, instanceId: String? = nil, indexName: String? = nil, username: String? = nil, password: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, indexStatusList: [String]? = nil, order: String? = nil) {
             self.indexType = indexType
             self.instanceId = instanceId
             self.indexName = indexName
@@ -104,5 +92,17 @@ extension Es {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取索引列表
+    @inlinable
+    public func describeIndexList(_ input: DescribeIndexListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIndexListResponse > {
+        self.client.execute(action: "DescribeIndexList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取索引列表
+    @inlinable
+    public func describeIndexList(_ input: DescribeIndexListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexListResponse {
+        try await self.client.execute(action: "DescribeIndexList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

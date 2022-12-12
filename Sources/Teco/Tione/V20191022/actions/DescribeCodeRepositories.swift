@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询存储库列表
-    @inlinable
-    public func describeCodeRepositories(_ input: DescribeCodeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodeRepositoriesResponse > {
-        self.client.execute(action: "DescribeCodeRepositories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询存储库列表
-    @inlinable
-    public func describeCodeRepositories(_ input: DescribeCodeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodeRepositoriesResponse {
-        try await self.client.execute(action: "DescribeCodeRepositories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCodeRepositories请求参数结构体
     public struct DescribeCodeRepositoriesRequest: TCRequestModel {
         /// 偏移量，默认为0
@@ -45,7 +33,7 @@ extension Tione {
         /// Ascending 按更新时间升序
         public let sortOrder: String?
         
-        public init (offset: Int64?, limit: Int64?, filters: [Filter]?, sortOrder: String?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -77,5 +65,17 @@ extension Tione {
             case codeRepoSet = "CodeRepoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询存储库列表
+    @inlinable
+    public func describeCodeRepositories(_ input: DescribeCodeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodeRepositoriesResponse > {
+        self.client.execute(action: "DescribeCodeRepositories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询存储库列表
+    @inlinable
+    public func describeCodeRepositories(_ input: DescribeCodeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodeRepositoriesResponse {
+        try await self.client.execute(action: "DescribeCodeRepositories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

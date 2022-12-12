@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Cloudaudit {
-    /// 查询AttributeKey的有效取值范围
-    @inlinable
-    public func getAttributeKey(_ input: GetAttributeKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAttributeKeyResponse > {
-        self.client.execute(action: "GetAttributeKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询AttributeKey的有效取值范围
-    @inlinable
-    public func getAttributeKey(_ input: GetAttributeKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAttributeKeyResponse {
-        try await self.client.execute(action: "GetAttributeKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetAttributeKey请求参数结构体
     public struct GetAttributeKeyRequest: TCRequestModel {
         /// 网站类型，取值范围是zh和en。如果不传值默认zh
         public let websiteType: String?
         
-        public init (websiteType: String?) {
+        public init (websiteType: String? = nil) {
             self.websiteType = websiteType
         }
         
@@ -53,5 +41,17 @@ extension Cloudaudit {
             case attributeKeyDetails = "AttributeKeyDetails"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询AttributeKey的有效取值范围
+    @inlinable
+    public func getAttributeKey(_ input: GetAttributeKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAttributeKeyResponse > {
+        self.client.execute(action: "GetAttributeKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询AttributeKey的有效取值范围
+    @inlinable
+    public func getAttributeKey(_ input: GetAttributeKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAttributeKeyResponse {
+        try await self.client.execute(action: "GetAttributeKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

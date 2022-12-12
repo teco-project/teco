@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 查询异步任务状态
-    ///
-    /// 本接口用于查询异步任务的执行状态，对于非查询类的接口（创建/删除负载均衡实例、监听器、规则以及绑定或解绑后端服务等），在接口调用成功后，都需要使用本接口查询任务最终是否执行成功。
-    @inlinable
-    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskStatusResponse > {
-        self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询异步任务状态
-    ///
-    /// 本接口用于查询异步任务的执行状态，对于非查询类的接口（创建/删除负载均衡实例、监听器、规则以及绑定或解绑后端服务等），在接口调用成功后，都需要使用本接口查询任务最终是否执行成功。
-    @inlinable
-    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
-        try await self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskStatus请求参数结构体
     public struct DescribeTaskStatusRequest: TCRequestModel {
         /// 请求ID，即接口返回的 RequestId 参数。
@@ -40,7 +24,7 @@ extension Clb {
         /// 注意：参数TaskId和DealName必须传一个。
         public let dealName: String?
         
-        public init (taskId: String?, dealName: String?) {
+        public init (taskId: String? = nil, dealName: String? = nil) {
             self.taskId = taskId
             self.dealName = dealName
         }
@@ -68,5 +52,21 @@ extension Clb {
             case loadBalancerIds = "LoadBalancerIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询异步任务状态
+    ///
+    /// 本接口用于查询异步任务的执行状态，对于非查询类的接口（创建/删除负载均衡实例、监听器、规则以及绑定或解绑后端服务等），在接口调用成功后，都需要使用本接口查询任务最终是否执行成功。
+    @inlinable
+    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskStatusResponse > {
+        self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询异步任务状态
+    ///
+    /// 本接口用于查询异步任务的执行状态，对于非查询类的接口（创建/删除负载均衡实例、监听器、规则以及绑定或解绑后端服务等），在接口调用成功后，都需要使用本接口查询任务最终是否执行成功。
+    @inlinable
+    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
+        try await self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

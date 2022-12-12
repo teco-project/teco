@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudstudio {
-    /// 根据模板创建工作空间
-    @inlinable
-    public func createWorkspaceByVersionControl(_ input: CreateWorkspaceByVersionControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkspaceByVersionControlResponse > {
-        self.client.execute(action: "CreateWorkspaceByVersionControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据模板创建工作空间
-    @inlinable
-    public func createWorkspaceByVersionControl(_ input: CreateWorkspaceByVersionControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByVersionControlResponse {
-        try await self.client.execute(action: "CreateWorkspaceByVersionControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateWorkspaceByVersionControl请求参数结构体
     public struct CreateWorkspaceByVersionControlRequest: TCRequestModel {
         /// 工作空间结构
@@ -50,7 +38,7 @@ extension Cloudstudio {
     public struct CreateWorkspaceByVersionControlResponse: TCResponseModel {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: WorkspaceInfoDTO
+        public let data: WorkspaceInfoDTO?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -59,5 +47,17 @@ extension Cloudstudio {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据模板创建工作空间
+    @inlinable
+    public func createWorkspaceByVersionControl(_ input: CreateWorkspaceByVersionControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkspaceByVersionControlResponse > {
+        self.client.execute(action: "CreateWorkspaceByVersionControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据模板创建工作空间
+    @inlinable
+    public func createWorkspaceByVersionControl(_ input: CreateWorkspaceByVersionControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByVersionControlResponse {
+        try await self.client.execute(action: "CreateWorkspaceByVersionControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

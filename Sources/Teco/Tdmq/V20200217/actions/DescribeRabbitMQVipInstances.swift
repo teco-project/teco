@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 查询RabbitMQ专享实例列表
-    ///
-    /// 查询用户已购的RabbitMQ专享实例列表
-    @inlinable
-    public func describeRabbitMQVipInstances(_ input: DescribeRabbitMQVipInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRabbitMQVipInstancesResponse > {
-        self.client.execute(action: "DescribeRabbitMQVipInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询RabbitMQ专享实例列表
-    ///
-    /// 查询用户已购的RabbitMQ专享实例列表
-    @inlinable
-    public func describeRabbitMQVipInstances(_ input: DescribeRabbitMQVipInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQVipInstancesResponse {
-        try await self.client.execute(action: "DescribeRabbitMQVipInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRabbitMQVipInstances请求参数结构体
     public struct DescribeRabbitMQVipInstancesRequest: TCRequestModel {
         /// 查询条件过滤器
@@ -42,7 +26,7 @@ extension Tdmq {
         /// 查询起始位置
         public let offset: UInt64?
         
-        public init (filters: [Filter]?, limit: UInt64?, offset: UInt64?) {
+        public init (filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -71,5 +55,21 @@ extension Tdmq {
             case instances = "Instances"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询RabbitMQ专享实例列表
+    ///
+    /// 查询用户已购的RabbitMQ专享实例列表
+    @inlinable
+    public func describeRabbitMQVipInstances(_ input: DescribeRabbitMQVipInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRabbitMQVipInstancesResponse > {
+        self.client.execute(action: "DescribeRabbitMQVipInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询RabbitMQ专享实例列表
+    ///
+    /// 查询用户已购的RabbitMQ专享实例列表
+    @inlinable
+    public func describeRabbitMQVipInstances(_ input: DescribeRabbitMQVipInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQVipInstancesResponse {
+        try await self.client.execute(action: "DescribeRabbitMQVipInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

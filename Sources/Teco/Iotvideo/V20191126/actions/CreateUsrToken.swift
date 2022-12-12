@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 终端用户接入授权
-    ///
-    /// 本接口（CreateUsrToken）用于终端用户获取IoT Video平台的accessToken，初始化SDK,连接到IoT Video接入服务器。
-    @inlinable
-    public func createUsrToken(_ input: CreateUsrTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUsrTokenResponse > {
-        self.client.execute(action: "CreateUsrToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 终端用户接入授权
-    ///
-    /// 本接口（CreateUsrToken）用于终端用户获取IoT Video平台的accessToken，初始化SDK,连接到IoT Video接入服务器。
-    @inlinable
-    public func createUsrToken(_ input: CreateUsrTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUsrTokenResponse {
-        try await self.client.execute(action: "CreateUsrToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUsrToken请求参数结构体
     public struct CreateUsrTokenRequest: TCRequestModel {
         /// 终端用户在IoT Video上的唯一标识ID
@@ -45,7 +29,7 @@ extension Iotvideo {
         /// 旧的AccessToken。续期Token时，此参数为必须。
         public let oldAccessToken: String?
         
-        public init (accessId: String, uniqueId: String, ttlMinutes: UInt64, oldAccessToken: String?) {
+        public init (accessId: String, uniqueId: String, ttlMinutes: UInt64, oldAccessToken: String? = nil) {
             self.accessId = accessId
             self.uniqueId = uniqueId
             self.ttlMinutes = ttlMinutes
@@ -84,5 +68,21 @@ extension Iotvideo {
             case terminalId = "TerminalId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 终端用户接入授权
+    ///
+    /// 本接口（CreateUsrToken）用于终端用户获取IoT Video平台的accessToken，初始化SDK,连接到IoT Video接入服务器。
+    @inlinable
+    public func createUsrToken(_ input: CreateUsrTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUsrTokenResponse > {
+        self.client.execute(action: "CreateUsrToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 终端用户接入授权
+    ///
+    /// 本接口（CreateUsrToken）用于终端用户获取IoT Video平台的accessToken，初始化SDK,连接到IoT Video接入服务器。
+    @inlinable
+    public func createUsrToken(_ input: CreateUsrTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUsrTokenResponse {
+        try await self.client.execute(action: "CreateUsrToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

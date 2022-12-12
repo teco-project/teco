@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 终端用户绑定设备
-    ///
-    /// 本接口（CreateBinding）用于终端用户和设备进行绑定，具体的应用场景如下：
-    ///     终端用户与设备具有“强关联”关系。用户与设备绑定之后，用户终端即具备了该设备的访问权限,访问或操作设备时，无需获取设备访问Token。
-    @inlinable
-    public func createBinding(_ input: CreateBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBindingResponse > {
-        self.client.execute(action: "CreateBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 终端用户绑定设备
-    ///
-    /// 本接口（CreateBinding）用于终端用户和设备进行绑定，具体的应用场景如下：
-    ///     终端用户与设备具有“强关联”关系。用户与设备绑定之后，用户终端即具备了该设备的访问权限,访问或操作设备时，无需获取设备访问Token。
-    @inlinable
-    public func createBinding(_ input: CreateBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBindingResponse {
-        try await self.client.execute(action: "CreateBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBinding请求参数结构体
     public struct CreateBindingRequest: TCRequestModel {
         /// 终端用户在IoT Video上的唯一标识ID
@@ -53,7 +35,7 @@ extension Iotvideo {
         /// 绑定过程中的会话token，由设备通过SDK接口确认是否允许绑定的token，用于增加设备被绑定的安全性
         public let bindToken: String?
         
-        public init (accessId: String, tid: String, role: String, forceBind: Bool?, nick: String?, bindToken: String?) {
+        public init (accessId: String, tid: String, role: String, forceBind: Bool? = nil, nick: String? = nil, bindToken: String? = nil) {
             self.accessId = accessId
             self.tid = tid
             self.role = role
@@ -84,5 +66,23 @@ extension Iotvideo {
             case accessToken = "AccessToken"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 终端用户绑定设备
+    ///
+    /// 本接口（CreateBinding）用于终端用户和设备进行绑定，具体的应用场景如下：
+    ///     终端用户与设备具有“强关联”关系。用户与设备绑定之后，用户终端即具备了该设备的访问权限,访问或操作设备时，无需获取设备访问Token。
+    @inlinable
+    public func createBinding(_ input: CreateBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBindingResponse > {
+        self.client.execute(action: "CreateBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 终端用户绑定设备
+    ///
+    /// 本接口（CreateBinding）用于终端用户和设备进行绑定，具体的应用场景如下：
+    ///     终端用户与设备具有“强关联”关系。用户与设备绑定之后，用户终端即具备了该设备的访问权限,访问或操作设备时，无需获取设备访问Token。
+    @inlinable
+    public func createBinding(_ input: CreateBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBindingResponse {
+        try await self.client.execute(action: "CreateBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

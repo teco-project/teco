@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取边缘计算集群的认证信息
-    @inlinable
-    public func describeTKEEdgeClusterCredential(_ input: DescribeTKEEdgeClusterCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTKEEdgeClusterCredentialResponse > {
-        self.client.execute(action: "DescribeTKEEdgeClusterCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取边缘计算集群的认证信息
-    @inlinable
-    public func describeTKEEdgeClusterCredential(_ input: DescribeTKEEdgeClusterCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeClusterCredentialResponse {
-        try await self.client.execute(action: "DescribeTKEEdgeClusterCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTKEEdgeClusterCredential请求参数结构体
     public struct DescribeTKEEdgeClusterCredentialRequest: TCRequestModel {
         /// 集群Id
@@ -82,5 +70,17 @@ extension Tke {
             case gridDaemon = "GridDaemon"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取边缘计算集群的认证信息
+    @inlinable
+    public func describeTKEEdgeClusterCredential(_ input: DescribeTKEEdgeClusterCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTKEEdgeClusterCredentialResponse > {
+        self.client.execute(action: "DescribeTKEEdgeClusterCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取边缘计算集群的认证信息
+    @inlinable
+    public func describeTKEEdgeClusterCredential(_ input: DescribeTKEEdgeClusterCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeClusterCredentialResponse {
+        try await self.client.execute(action: "DescribeTKEEdgeClusterCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

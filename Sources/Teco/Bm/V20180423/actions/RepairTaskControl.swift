@@ -15,6 +15,45 @@
 // DO NOT EDIT.
 
 extension Bm {
+    /// RepairTaskControl请求参数结构体
+    public struct RepairTaskControlRequest: TCRequestModel {
+        /// 维修任务ID
+        public let taskId: String
+        
+        /// 操作
+        public let operate: String
+        
+        /// 需要重新维修操作的备注信息，可提供返场维修原因，以便驻场快速针对问题定位解决。
+        public let operateRemark: String?
+        
+        public init (taskId: String, operate: String, operateRemark: String? = nil) {
+            self.taskId = taskId
+            self.operate = operate
+            self.operateRemark = operateRemark
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case operate = "Operate"
+            case operateRemark = "OperateRemark"
+        }
+    }
+    
+    /// RepairTaskControl返回参数结构体
+    public struct RepairTaskControlResponse: TCResponseModel {
+        /// 出参TaskId是黑石异步任务ID，不同于入参TaskId字段。
+        /// 此字段可作为DescriptionOperationResult查询异步任务状态接口的入参，查询异步任务执行结果。
+        public let taskId: UInt64
+        
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 维修任务管理
     ///
     /// 此接口用于操作维修任务<br>
@@ -73,44 +112,5 @@ extension Bm {
     @inlinable
     public func repairTaskControl(_ input: RepairTaskControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RepairTaskControlResponse {
         try await self.client.execute(action: "RepairTaskControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// RepairTaskControl请求参数结构体
-    public struct RepairTaskControlRequest: TCRequestModel {
-        /// 维修任务ID
-        public let taskId: String
-        
-        /// 操作
-        public let operate: String
-        
-        /// 需要重新维修操作的备注信息，可提供返场维修原因，以便驻场快速针对问题定位解决。
-        public let operateRemark: String?
-        
-        public init (taskId: String, operate: String, operateRemark: String?) {
-            self.taskId = taskId
-            self.operate = operate
-            self.operateRemark = operateRemark
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case taskId = "TaskId"
-            case operate = "Operate"
-            case operateRemark = "OperateRemark"
-        }
-    }
-    
-    /// RepairTaskControl返回参数结构体
-    public struct RepairTaskControlResponse: TCResponseModel {
-        /// 出参TaskId是黑石异步任务ID，不同于入参TaskId字段。
-        /// 此字段可作为DescriptionOperationResult查询异步任务状态接口的入参，查询异步任务执行结果。
-        public let taskId: UInt64
-        
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case taskId = "TaskId"
-            case requestId = "RequestId"
-        }
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云V2-收款用户账户余额查询
-    @inlinable
-    public func queryFlexPayeeAccountBalance(_ input: QueryFlexPayeeAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFlexPayeeAccountBalanceResponse > {
-        self.client.execute(action: "QueryFlexPayeeAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云V2-收款用户账户余额查询
-    @inlinable
-    public func queryFlexPayeeAccountBalance(_ input: QueryFlexPayeeAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountBalanceResponse {
-        try await self.client.execute(action: "QueryFlexPayeeAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryFlexPayeeAccountBalance请求参数结构体
     public struct QueryFlexPayeeAccountBalanceRequest: TCRequestModel {
         /// 收款用户ID
@@ -47,7 +35,7 @@ extension Cpdp {
         /// 快照日期。格式yyyy-MM-dd
         public let snapshotDate: String?
         
-        public init (payeeId: String, incomeType: String, environment: String?, snapshotDate: String?) {
+        public init (payeeId: String, incomeType: String, environment: String? = nil, snapshotDate: String? = nil) {
             self.payeeId = payeeId
             self.incomeType = incomeType
             self.environment = environment
@@ -72,7 +60,7 @@ extension Cpdp {
         
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: PayeeAccountBalanceResult
+        public let result: PayeeAccountBalanceResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -83,5 +71,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云V2-收款用户账户余额查询
+    @inlinable
+    public func queryFlexPayeeAccountBalance(_ input: QueryFlexPayeeAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFlexPayeeAccountBalanceResponse > {
+        self.client.execute(action: "QueryFlexPayeeAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云V2-收款用户账户余额查询
+    @inlinable
+    public func queryFlexPayeeAccountBalance(_ input: QueryFlexPayeeAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountBalanceResponse {
+        try await self.client.execute(action: "QueryFlexPayeeAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

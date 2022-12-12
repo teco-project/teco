@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wav {
-    /// 查询CRM统计数据接口
-    ///
-    /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
-    @inlinable
-    public func queryCrmStatistics(_ input: QueryCrmStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCrmStatisticsResponse > {
-        self.client.execute(action: "QueryCrmStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询CRM统计数据接口
-    ///
-    /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
-    @inlinable
-    public func queryCrmStatistics(_ input: QueryCrmStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCrmStatisticsResponse {
-        try await self.client.execute(action: "QueryCrmStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryCrmStatistics请求参数结构体
     public struct QueryCrmStatisticsRequest: TCRequestModel {
         /// 查询开始时间， 单位秒
@@ -51,7 +35,7 @@ extension Wav {
         /// 请求的部门id，为空时默认全租户
         public let orgId: UInt64?
         
-        public init (beginTime: UInt64, endTime: UInt64, cursor: String?, limit: Int64?, salesId: String?, orgId: UInt64?) {
+        public init (beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, salesId: String? = nil, orgId: UInt64? = nil) {
             self.beginTime = beginTime
             self.endTime = endTime
             self.cursor = cursor
@@ -88,5 +72,21 @@ extension Wav {
             case pageData = "PageData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询CRM统计数据接口
+    ///
+    /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
+    @inlinable
+    public func queryCrmStatistics(_ input: QueryCrmStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCrmStatisticsResponse > {
+        self.client.execute(action: "QueryCrmStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询CRM统计数据接口
+    ///
+    /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
+    @inlinable
+    public func queryCrmStatistics(_ input: QueryCrmStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCrmStatisticsResponse {
+        try await self.client.execute(action: "QueryCrmStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

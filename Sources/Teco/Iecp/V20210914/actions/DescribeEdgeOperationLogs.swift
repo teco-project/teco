@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 查询边缘操作日志
-    @inlinable
-    public func describeEdgeOperationLogs(_ input: DescribeEdgeOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeOperationLogsResponse > {
-        self.client.execute(action: "DescribeEdgeOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询边缘操作日志
-    @inlinable
-    public func describeEdgeOperationLogs(_ input: DescribeEdgeOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeOperationLogsResponse {
-        try await self.client.execute(action: "DescribeEdgeOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeOperationLogs请求参数结构体
     public struct DescribeEdgeOperationLogsRequest: TCRequestModel {
         /// 开始时间
@@ -48,9 +36,9 @@ extension Iecp {
         public let module: String?
         
         /// 过滤条件
-        public let condition: OperationLogsCondition
+        public let condition: OperationLogsCondition?
         
-        public init (beginTime: String, endTime: String, offset: UInt64, limit: UInt64, sort: [FieldSort]?, module: String?, condition: OperationLogsCondition) {
+        public init (beginTime: String, endTime: String, offset: UInt64, limit: UInt64, sort: [FieldSort]? = nil, module: String? = nil, condition: OperationLogsCondition? = nil) {
             self.beginTime = beginTime
             self.endTime = endTime
             self.offset = offset
@@ -89,5 +77,17 @@ extension Iecp {
             case operationLogSet = "OperationLogSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询边缘操作日志
+    @inlinable
+    public func describeEdgeOperationLogs(_ input: DescribeEdgeOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeOperationLogsResponse > {
+        self.client.execute(action: "DescribeEdgeOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘操作日志
+    @inlinable
+    public func describeEdgeOperationLogs(_ input: DescribeEdgeOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeOperationLogsResponse {
+        try await self.client.execute(action: "DescribeEdgeOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

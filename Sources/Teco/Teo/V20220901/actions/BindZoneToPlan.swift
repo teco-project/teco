@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 为站点绑定套餐
-    ///
-    /// 将未绑定套餐的站点绑定到已有套餐
-    @inlinable
-    public func bindZoneToPlan(_ input: BindZoneToPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindZoneToPlanResponse > {
-        self.client.execute(action: "BindZoneToPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 为站点绑定套餐
-    ///
-    /// 将未绑定套餐的站点绑定到已有套餐
-    @inlinable
-    public func bindZoneToPlan(_ input: BindZoneToPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindZoneToPlanResponse {
-        try await self.client.execute(action: "BindZoneToPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindZoneToPlan请求参数结构体
     public struct BindZoneToPlanRequest: TCRequestModel {
         /// 未绑定套餐的站点ID。
@@ -58,5 +42,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 为站点绑定套餐
+    ///
+    /// 将未绑定套餐的站点绑定到已有套餐
+    @inlinable
+    public func bindZoneToPlan(_ input: BindZoneToPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindZoneToPlanResponse > {
+        self.client.execute(action: "BindZoneToPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 为站点绑定套餐
+    ///
+    /// 将未绑定套餐的站点绑定到已有套餐
+    @inlinable
+    public func bindZoneToPlan(_ input: BindZoneToPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindZoneToPlanResponse {
+        try await self.client.execute(action: "BindZoneToPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

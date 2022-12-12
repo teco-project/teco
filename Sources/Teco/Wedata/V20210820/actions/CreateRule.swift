@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 创建质量规则接口
-    @inlinable
-    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRuleResponse > {
-        self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建质量规则接口
-    @inlinable
-    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
-        try await self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRule请求参数结构体
     public struct CreateRuleRequest: TCRequestModel {
         /// 项目id
@@ -66,7 +54,7 @@ extension Wedata {
         public let customSql: String?
         
         /// 报警触发条件
-        public let compareRule: CompareRule
+        public let compareRule: CompareRule?
         
         /// 报警触发级别 1.低, 2.中, 3.高
         public let alarmLevel: UInt64?
@@ -93,12 +81,12 @@ extension Wedata {
         public let relConditionExpr: String?
         
         /// 自定义模版sql表达式字段替换参数
-        public let fieldConfig: RuleFieldConfig
+        public let fieldConfig: RuleFieldConfig?
         
         /// 目标字段名称  CITY
         public let targetObjectValue: String?
         
-        public init (projectId: String?, ruleGroupId: UInt64?, name: String?, tableId: String?, ruleTemplateId: UInt64?, type: UInt64?, qualityDim: UInt64?, sourceObjectDataTypeName: String?, sourceObjectValue: String?, conditionType: UInt64?, conditionExpression: String?, customSql: String?, compareRule: CompareRule, alarmLevel: UInt64?, description: String?, datasourceId: String?, databaseId: String?, targetDatabaseId: String?, targetTableId: String?, targetConditionExpr: String?, relConditionExpr: String?, fieldConfig: RuleFieldConfig, targetObjectValue: String?) {
+        public init (projectId: String? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, tableId: String? = nil, ruleTemplateId: UInt64? = nil, type: UInt64? = nil, qualityDim: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, datasourceId: String? = nil, databaseId: String? = nil, targetDatabaseId: String? = nil, targetTableId: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, targetObjectValue: String? = nil) {
             self.projectId = projectId
             self.ruleGroupId = ruleGroupId
             self.name = name
@@ -155,7 +143,7 @@ extension Wedata {
     public struct CreateRuleResponse: TCResponseModel {
         /// 规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: Rule
+        public let data: Rule?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -164,5 +152,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建质量规则接口
+    @inlinable
+    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRuleResponse > {
+        self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建质量规则接口
+    @inlinable
+    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
+        try await self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

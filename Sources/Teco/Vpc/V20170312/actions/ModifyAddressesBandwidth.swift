@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Vpc {
-    /// 调整弹性公网IP带宽
-    ///
-    /// 本接口（ModifyAddressesBandwidth）用于调整[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)(简称EIP)带宽，支持后付费EIP, 预付费EIP和带宽包EIP
-    @inlinable
-    public func modifyAddressesBandwidth(_ input: ModifyAddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressesBandwidthResponse > {
-        self.client.execute(action: "ModifyAddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调整弹性公网IP带宽
-    ///
-    /// 本接口（ModifyAddressesBandwidth）用于调整[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)(简称EIP)带宽，支持后付费EIP, 预付费EIP和带宽包EIP
-    @inlinable
-    public func modifyAddressesBandwidth(_ input: ModifyAddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressesBandwidthResponse {
-        try await self.client.execute(action: "ModifyAddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAddressesBandwidth请求参数结构体
     public struct ModifyAddressesBandwidthRequest: TCRequestModel {
         /// EIP唯一标识ID列表，形如'eip-xxxx'
@@ -47,7 +31,7 @@ extension Vpc {
         /// 包月带宽结束时间(已废弃，输入无效)
         public let endTime: Date?
         
-        public init (addressIds: [String], internetMaxBandwidthOut: Int64, startTime: Date?, endTime: Date?) {
+        public init (addressIds: [String], internetMaxBandwidthOut: Int64, startTime: Date? = nil, endTime: Date? = nil) {
             self.addressIds = addressIds
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
             self.startTime = startTime
@@ -74,5 +58,21 @@ extension Vpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调整弹性公网IP带宽
+    ///
+    /// 本接口（ModifyAddressesBandwidth）用于调整[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)(简称EIP)带宽，支持后付费EIP, 预付费EIP和带宽包EIP
+    @inlinable
+    public func modifyAddressesBandwidth(_ input: ModifyAddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressesBandwidthResponse > {
+        self.client.execute(action: "ModifyAddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调整弹性公网IP带宽
+    ///
+    /// 本接口（ModifyAddressesBandwidth）用于调整[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)(简称EIP)带宽，支持后付费EIP, 预付费EIP和带宽包EIP
+    @inlinable
+    public func modifyAddressesBandwidth(_ input: ModifyAddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressesBandwidthResponse {
+        try await self.client.execute(action: "ModifyAddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

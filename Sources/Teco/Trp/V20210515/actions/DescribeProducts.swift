@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 查询商品列表
-    @inlinable
-    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductsResponse > {
-        self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询商品列表
-    @inlinable
-    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
-        try await self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProducts请求参数结构体
     public struct DescribeProductsRequest: TCRequestModel {
         /// 商品名称
@@ -44,7 +32,7 @@ extension Trp {
         /// 企业ID
         public let corpId: UInt64?
         
-        public init (name: String?, pageSize: UInt64?, pageNumber: UInt64?, merchantId: String?, corpId: UInt64?) {
+        public init (name: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, merchantId: String? = nil, corpId: UInt64? = nil) {
             self.name = name
             self.pageSize = pageSize
             self.pageNumber = pageNumber
@@ -79,5 +67,17 @@ extension Trp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询商品列表
+    @inlinable
+    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductsResponse > {
+        self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询商品列表
+    @inlinable
+    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
+        try await self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

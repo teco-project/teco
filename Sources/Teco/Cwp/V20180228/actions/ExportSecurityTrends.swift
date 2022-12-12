@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cwp {
-    /// 导出风险趋势
-    @inlinable
-    public func exportSecurityTrends(_ input: ExportSecurityTrendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportSecurityTrendsResponse > {
-        self.client.execute(action: "ExportSecurityTrends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出风险趋势
-    @inlinable
-    public func exportSecurityTrends(_ input: ExportSecurityTrendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportSecurityTrendsResponse {
-        try await self.client.execute(action: "ExportSecurityTrends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportSecurityTrends请求参数结构体
     public struct ExportSecurityTrendsRequest: TCRequestModel {
         /// 开始时间。
@@ -62,5 +50,17 @@ extension Cwp {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出风险趋势
+    @inlinable
+    public func exportSecurityTrends(_ input: ExportSecurityTrendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportSecurityTrendsResponse > {
+        self.client.execute(action: "ExportSecurityTrends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出风险趋势
+    @inlinable
+    public func exportSecurityTrends(_ input: ExportSecurityTrendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportSecurityTrendsResponse {
+        try await self.client.execute(action: "ExportSecurityTrends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 凭证模版详情
-    @inlinable
-    public func getCptInfo(_ input: GetCptInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCptInfoResponse > {
-        self.client.execute(action: "GetCptInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 凭证模版详情
-    @inlinable
-    public func getCptInfo(_ input: GetCptInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptInfoResponse {
-        try await self.client.execute(action: "GetCptInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetCptInfo请求参数结构体
     public struct GetCptInfoRequest: TCRequestModel {
         /// Cpt索引
@@ -53,5 +41,17 @@ extension Tdid {
             case cptJsonData = "CptJsonData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 凭证模版详情
+    @inlinable
+    public func getCptInfo(_ input: GetCptInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCptInfoResponse > {
+        self.client.execute(action: "GetCptInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 凭证模版详情
+    @inlinable
+    public func getCptInfo(_ input: GetCptInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptInfoResponse {
+        try await self.client.execute(action: "GetCptInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

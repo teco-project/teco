@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询全地域使用场景列表
-    ///
-    /// 本接口(DescribeAllScenes)用于查询全地域使用场景列表。
-    @inlinable
-    public func describeAllScenes(_ input: DescribeAllScenesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllScenesResponse > {
-        self.client.execute(action: "DescribeAllScenes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询全地域使用场景列表
-    ///
-    /// 本接口(DescribeAllScenes)用于查询全地域使用场景列表。
-    @inlinable
-    public func describeAllScenes(_ input: DescribeAllScenesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllScenesResponse {
-        try await self.client.execute(action: "DescribeAllScenes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAllScenes请求参数结构体
     public struct DescribeAllScenesRequest: TCRequestModel {
         /// 使用场景ID列表。
@@ -42,7 +26,7 @@ extension Lighthouse {
         /// 返回数量，默认为 20，最大值为 100。
         public let limit: Int64?
         
-        public init (sceneIds: [String]?, offset: Int64?, limit: Int64?) {
+        public init (sceneIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.sceneIds = sceneIds
             self.offset = offset
             self.limit = limit
@@ -71,5 +55,21 @@ extension Lighthouse {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询全地域使用场景列表
+    ///
+    /// 本接口(DescribeAllScenes)用于查询全地域使用场景列表。
+    @inlinable
+    public func describeAllScenes(_ input: DescribeAllScenesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllScenesResponse > {
+        self.client.execute(action: "DescribeAllScenes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询全地域使用场景列表
+    ///
+    /// 本接口(DescribeAllScenes)用于查询全地域使用场景列表。
+    @inlinable
+    public func describeAllScenes(_ input: DescribeAllScenesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllScenesResponse {
+        try await self.client.execute(action: "DescribeAllScenes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

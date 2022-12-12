@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tsf {
-    /// 标准输出日志搜索
-    @inlinable
-    public func searchStdoutLog(_ input: SearchStdoutLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchStdoutLogResponse > {
-        self.client.execute(action: "SearchStdoutLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 标准输出日志搜索
-    @inlinable
-    public func searchStdoutLog(_ input: SearchStdoutLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchStdoutLogResponse {
-        try await self.client.execute(action: "SearchStdoutLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SearchStdoutLog请求参数结构体
     public struct SearchStdoutLogRequest: TCRequestModel {
         /// 机器实例ID
@@ -71,7 +59,7 @@ extension Tsf {
         /// 游标ID
         public let scrollId: String?
         
-        public init (instanceId: String?, limit: Int64?, searchWords: [String]?, startTime: Date?, groupId: String?, endTime: Date?, offset: Int64?, orderBy: String?, orderType: String?, searchWordType: String?, batchType: String?, scrollId: String?) {
+        public init (instanceId: String? = nil, limit: Int64? = nil, searchWords: [String]? = nil, startTime: Date? = nil, groupId: String? = nil, endTime: Date? = nil, offset: Int64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.searchWords = searchWords
@@ -106,7 +94,7 @@ extension Tsf {
     public struct SearchStdoutLogResponse: TCResponseModel {
         /// 标准输出日志列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TsfPageStdoutLogV2
+        public let result: TsfPageStdoutLogV2?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -115,5 +103,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 标准输出日志搜索
+    @inlinable
+    public func searchStdoutLog(_ input: SearchStdoutLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchStdoutLogResponse > {
+        self.client.execute(action: "SearchStdoutLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 标准输出日志搜索
+    @inlinable
+    public func searchStdoutLog(_ input: SearchStdoutLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchStdoutLogResponse {
+        try await self.client.execute(action: "SearchStdoutLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

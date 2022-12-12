@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 修改负载均衡七层监听器转发规则的域名级别属性
-    ///
-    /// ModifyDomainAttributes接口用于修改负载均衡7层监听器转发规则的域名级别属性，如修改域名、修改DefaultServer、开启/关闭Http2、修改证书。
-    /// 本接口为异步接口，本接口返回成功后，需以返回的RequestId为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
-    public func modifyDomainAttributes(_ input: ModifyDomainAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainAttributesResponse > {
-        self.client.execute(action: "ModifyDomainAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改负载均衡七层监听器转发规则的域名级别属性
-    ///
-    /// ModifyDomainAttributes接口用于修改负载均衡7层监听器转发规则的域名级别属性，如修改域名、修改DefaultServer、开启/关闭Http2、修改证书。
-    /// 本接口为异步接口，本接口返回成功后，需以返回的RequestId为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
-    public func modifyDomainAttributes(_ input: ModifyDomainAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainAttributesResponse {
-        try await self.client.execute(action: "ModifyDomainAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDomainAttributes请求参数结构体
     public struct ModifyDomainAttributesRequest: TCRequestModel {
         /// 负载均衡实例ID。
@@ -48,7 +30,7 @@ extension Clb {
         public let newDomain: String?
         
         /// 域名相关的证书信息，注意，仅对启用SNI的监听器适用，不可和MultiCertInfo 同时传入。
-        public let certificate: CertificateInput
+        public let certificate: CertificateInput?
         
         /// 是否开启Http2，注意，只有HTTPS域名才能开启Http2。
         public let http2: Bool?
@@ -63,9 +45,9 @@ extension Clb {
         public let newDomains: [String]?
         
         /// 域名相关的证书信息，注意，仅对启用SNI的监听器适用；支持同时传入多本算法类型不同的服务器证书，不可和MultiCertInfo 同时传入。
-        public let multiCertInfo: MultiCertInfo
+        public let multiCertInfo: MultiCertInfo?
         
-        public init (loadBalancerId: String, listenerId: String, domain: String, newDomain: String?, certificate: CertificateInput, http2: Bool?, defaultServer: Bool?, newDefaultServerDomain: String?, newDomains: [String]?, multiCertInfo: MultiCertInfo) {
+        public init (loadBalancerId: String, listenerId: String, domain: String, newDomain: String? = nil, certificate: CertificateInput? = nil, http2: Bool? = nil, defaultServer: Bool? = nil, newDefaultServerDomain: String? = nil, newDomains: [String]? = nil, multiCertInfo: MultiCertInfo? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.domain = domain
@@ -100,5 +82,23 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改负载均衡七层监听器转发规则的域名级别属性
+    ///
+    /// ModifyDomainAttributes接口用于修改负载均衡7层监听器转发规则的域名级别属性，如修改域名、修改DefaultServer、开启/关闭Http2、修改证书。
+    /// 本接口为异步接口，本接口返回成功后，需以返回的RequestId为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func modifyDomainAttributes(_ input: ModifyDomainAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainAttributesResponse > {
+        self.client.execute(action: "ModifyDomainAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改负载均衡七层监听器转发规则的域名级别属性
+    ///
+    /// ModifyDomainAttributes接口用于修改负载均衡7层监听器转发规则的域名级别属性，如修改域名、修改DefaultServer、开启/关闭Http2、修改证书。
+    /// 本接口为异步接口，本接口返回成功后，需以返回的RequestId为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func modifyDomainAttributes(_ input: ModifyDomainAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainAttributesResponse {
+        try await self.client.execute(action: "ModifyDomainAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

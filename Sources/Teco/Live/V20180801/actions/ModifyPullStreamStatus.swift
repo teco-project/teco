@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 修改拉流配置状态(该接口已下线,请使用新接口 ModifyLivePullStreamTask)
-    ///
-    /// 修改直播拉流配置的状态。该接口已下线,请使用新接口 ModifyLivePullStreamTask。
-    @inlinable
-    public func modifyPullStreamStatus(_ input: ModifyPullStreamStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPullStreamStatusResponse > {
-        self.client.execute(action: "ModifyPullStreamStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改拉流配置状态(该接口已下线,请使用新接口 ModifyLivePullStreamTask)
-    ///
-    /// 修改直播拉流配置的状态。该接口已下线,请使用新接口 ModifyLivePullStreamTask。
-    @inlinable
-    public func modifyPullStreamStatus(_ input: ModifyPullStreamStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPullStreamStatusResponse {
-        try await self.client.execute(action: "ModifyPullStreamStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPullStreamStatus请求参数结构体
     public struct ModifyPullStreamStatusRequest: TCRequestModel {
         /// 配置 ID 列表。
@@ -58,5 +42,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改拉流配置状态(该接口已下线,请使用新接口 ModifyLivePullStreamTask)
+    ///
+    /// 修改直播拉流配置的状态。该接口已下线,请使用新接口 ModifyLivePullStreamTask。
+    @inlinable
+    public func modifyPullStreamStatus(_ input: ModifyPullStreamStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPullStreamStatusResponse > {
+        self.client.execute(action: "ModifyPullStreamStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改拉流配置状态(该接口已下线,请使用新接口 ModifyLivePullStreamTask)
+    ///
+    /// 修改直播拉流配置的状态。该接口已下线,请使用新接口 ModifyLivePullStreamTask。
+    @inlinable
+    public func modifyPullStreamStatus(_ input: ModifyPullStreamStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPullStreamStatusResponse {
+        try await self.client.execute(action: "ModifyPullStreamStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

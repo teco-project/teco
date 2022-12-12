@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 跨境-提交申报材料
-    ///
-    /// 跨境-提交申报材料。申报材料的主体是付款人，需要提前调用【跨境-付款人申请】接口提交付款人信息且审核通过后调用。
-    @inlinable
-    public func applyApplicationMaterial(_ input: ApplyApplicationMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyApplicationMaterialResponse > {
-        self.client.execute(action: "ApplyApplicationMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 跨境-提交申报材料
-    ///
-    /// 跨境-提交申报材料。申报材料的主体是付款人，需要提前调用【跨境-付款人申请】接口提交付款人信息且审核通过后调用。
-    @inlinable
-    public func applyApplicationMaterial(_ input: ApplyApplicationMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyApplicationMaterialResponse {
-        try await self.client.execute(action: "ApplyApplicationMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyApplicationMaterial请求参数结构体
     public struct ApplyApplicationMaterialRequest: TCRequestModel {
         /// 对接方汇出指令编号
@@ -63,7 +47,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
         
-        public init (transactionId: String, declareId: String, payerId: String, sourceCurrency: String, targetCurrency: String, tradeCode: String, originalDeclareId: String?, sourceAmount: Int64?, targetAmount: Int64?, profile: String?) {
+        public init (transactionId: String, declareId: String, payerId: String, sourceCurrency: String, targetCurrency: String, tradeCode: String, originalDeclareId: String? = nil, sourceAmount: Int64? = nil, targetAmount: Int64? = nil, profile: String? = nil) {
             self.transactionId = transactionId
             self.declareId = declareId
             self.payerId = payerId
@@ -102,5 +86,21 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 跨境-提交申报材料
+    ///
+    /// 跨境-提交申报材料。申报材料的主体是付款人，需要提前调用【跨境-付款人申请】接口提交付款人信息且审核通过后调用。
+    @inlinable
+    public func applyApplicationMaterial(_ input: ApplyApplicationMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyApplicationMaterialResponse > {
+        self.client.execute(action: "ApplyApplicationMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 跨境-提交申报材料
+    ///
+    /// 跨境-提交申报材料。申报材料的主体是付款人，需要提前调用【跨境-付款人申请】接口提交付款人信息且审核通过后调用。
+    @inlinable
+    public func applyApplicationMaterial(_ input: ApplyApplicationMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyApplicationMaterialResponse {
+        try await self.client.execute(action: "ApplyApplicationMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

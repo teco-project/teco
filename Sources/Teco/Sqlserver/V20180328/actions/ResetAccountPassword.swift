@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 重置账户密码
-    ///
-    /// 本接口（ResetAccountPassword）用于重置实例的账户密码。
-    @inlinable
-    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAccountPasswordResponse > {
-        self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置账户密码
-    ///
-    /// 本接口（ResetAccountPassword）用于重置实例的账户密码。
-    @inlinable
-    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
-        try await self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetAccountPassword请求参数结构体
     public struct ResetAccountPasswordRequest: TCRequestModel {
         /// 数据库实例ID，形如mssql-njj2mtpl
@@ -62,5 +46,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置账户密码
+    ///
+    /// 本接口（ResetAccountPassword）用于重置实例的账户密码。
+    @inlinable
+    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAccountPasswordResponse > {
+        self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置账户密码
+    ///
+    /// 本接口（ResetAccountPassword）用于重置实例的账户密码。
+    @inlinable
+    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
+        try await self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

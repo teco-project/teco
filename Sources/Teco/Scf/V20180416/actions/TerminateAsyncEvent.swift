@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 终止函数异步事件
-    ///
-    /// 终止正在运行中的函数异步事件
-    @inlinable
-    public func terminateAsyncEvent(_ input: TerminateAsyncEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateAsyncEventResponse > {
-        self.client.execute(action: "TerminateAsyncEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 终止函数异步事件
-    ///
-    /// 终止正在运行中的函数异步事件
-    @inlinable
-    public func terminateAsyncEvent(_ input: TerminateAsyncEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateAsyncEventResponse {
-        try await self.client.execute(action: "TerminateAsyncEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TerminateAsyncEvent请求参数结构体
     public struct TerminateAsyncEventRequest: TCRequestModel {
         /// 函数名称
@@ -45,7 +29,7 @@ extension Scf {
         /// true，向指定请求[发送 SIGTERM 终止信号](https://cloud.tencent.com/document/product/583/63969#.E5.8F.91.E9.80.81.E7.BB.88.E6.AD.A2.E4.BF.A1.E5.8F.B7]， ，默认值为 false。
         public let graceShutdown: Bool?
         
-        public init (functionName: String, invokeRequestId: String, namespace: String?, graceShutdown: Bool?) {
+        public init (functionName: String, invokeRequestId: String, namespace: String? = nil, graceShutdown: Bool? = nil) {
             self.functionName = functionName
             self.invokeRequestId = invokeRequestId
             self.namespace = namespace
@@ -68,5 +52,21 @@ extension Scf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 终止函数异步事件
+    ///
+    /// 终止正在运行中的函数异步事件
+    @inlinable
+    public func terminateAsyncEvent(_ input: TerminateAsyncEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateAsyncEventResponse > {
+        self.client.execute(action: "TerminateAsyncEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 终止函数异步事件
+    ///
+    /// 终止正在运行中的函数异步事件
+    @inlinable
+    public func terminateAsyncEvent(_ input: TerminateAsyncEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateAsyncEventResponse {
+        try await self.client.execute(action: "TerminateAsyncEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

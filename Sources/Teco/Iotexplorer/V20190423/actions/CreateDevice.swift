@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 创建设备
-    @inlinable
-    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeviceResponse > {
-        self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建设备
-    @inlinable
-    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
-        try await self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDevice请求参数结构体
     public struct CreateDeviceRequest: TCRequestModel {
         /// 产品ID。
@@ -53,7 +41,7 @@ extension Iotexplorer {
         /// 手动指定设备的PSK密钥
         public let definedPsk: String?
         
-        public init (productId: String, deviceName: String, devAddr: String?, appKey: String?, devEUI: String?, appSKey: String?, nwkSKey: String?, definedPsk: String?) {
+        public init (productId: String, deviceName: String, devAddr: String? = nil, appKey: String? = nil, devEUI: String? = nil, appSKey: String? = nil, nwkSKey: String? = nil, definedPsk: String? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.devAddr = devAddr
@@ -88,5 +76,17 @@ extension Iotexplorer {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建设备
+    @inlinable
+    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeviceResponse > {
+        self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建设备
+    @inlinable
+    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
+        try await self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

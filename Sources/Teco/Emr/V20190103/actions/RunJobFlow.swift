@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 创建流程作业
-    @inlinable
-    public func runJobFlow(_ input: RunJobFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunJobFlowResponse > {
-        self.client.execute(action: "RunJobFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建流程作业
-    @inlinable
-    public func runJobFlow(_ input: RunJobFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunJobFlowResponse {
-        try await self.client.execute(action: "RunJobFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RunJobFlow请求参数结构体
     public struct RunJobFlowRequest: TCRequestModel {
         /// 作业名称。
@@ -75,9 +63,9 @@ extension Emr {
         public let clientToken: String?
         
         /// 只在CreateCluster为true时生效，使用该配置创建集群。
-        public let instance: ClusterSetting
+        public let instance: ClusterSetting?
         
-        public init (name: String, createCluster: Bool, steps: [Step], instancePolicy: String, productVersion: String?, securityClusterFlag: Bool?, software: [String]?, bootstrapActions: [BootstrapAction]?, configurations: [Configuration]?, logUri: String?, instanceId: String?, applicationRole: String?, clientToken: String?, instance: ClusterSetting) {
+        public init (name: String, createCluster: Bool, steps: [Step], instancePolicy: String, productVersion: String? = nil, securityClusterFlag: Bool? = nil, software: [String]? = nil, bootstrapActions: [BootstrapAction]? = nil, configurations: [Configuration]? = nil, logUri: String? = nil, instanceId: String? = nil, applicationRole: String? = nil, clientToken: String? = nil, instance: ClusterSetting? = nil) {
             self.name = name
             self.createCluster = createCluster
             self.steps = steps
@@ -124,5 +112,17 @@ extension Emr {
             case jobFlowId = "JobFlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建流程作业
+    @inlinable
+    public func runJobFlow(_ input: RunJobFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunJobFlowResponse > {
+        self.client.execute(action: "RunJobFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建流程作业
+    @inlinable
+    public func runJobFlow(_ input: RunJobFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunJobFlowResponse {
+        try await self.client.execute(action: "RunJobFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

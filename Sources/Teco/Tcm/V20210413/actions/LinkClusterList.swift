@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcm {
-    /// 关联集群
-    @inlinable
-    public func linkClusterList(_ input: LinkClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LinkClusterListResponse > {
-        self.client.execute(action: "LinkClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关联集群
-    @inlinable
-    public func linkClusterList(_ input: LinkClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkClusterListResponse {
-        try await self.client.execute(action: "LinkClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// LinkClusterList请求参数结构体
     public struct LinkClusterListRequest: TCRequestModel {
         /// 网格Id
@@ -54,5 +42,17 @@ extension Tcm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关联集群
+    @inlinable
+    public func linkClusterList(_ input: LinkClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LinkClusterListResponse > {
+        self.client.execute(action: "LinkClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关联集群
+    @inlinable
+    public func linkClusterList(_ input: LinkClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkClusterListResponse {
+        try await self.client.execute(action: "LinkClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 获取自动备份配置
-    ///
-    /// 获取备份配置
-    @inlinable
-    public func describeAutoBackupConfig(_ input: DescribeAutoBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoBackupConfigResponse > {
-        self.client.execute(action: "DescribeAutoBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取自动备份配置
-    ///
-    /// 获取备份配置
-    @inlinable
-    public func describeAutoBackupConfig(_ input: DescribeAutoBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoBackupConfigResponse {
-        try await self.client.execute(action: "DescribeAutoBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAutoBackupConfig请求参数结构体
     public struct DescribeAutoBackupConfigRequest: TCRequestModel {
         /// 实例ID
@@ -73,5 +57,21 @@ extension Redis {
             case binlogStorageDays = "BinlogStorageDays"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取自动备份配置
+    ///
+    /// 获取备份配置
+    @inlinable
+    public func describeAutoBackupConfig(_ input: DescribeAutoBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoBackupConfigResponse > {
+        self.client.execute(action: "DescribeAutoBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取自动备份配置
+    ///
+    /// 获取备份配置
+    @inlinable
+    public func describeAutoBackupConfig(_ input: DescribeAutoBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoBackupConfigResponse {
+        try await self.client.execute(action: "DescribeAutoBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

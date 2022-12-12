@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询DDos攻击事件详情
-    @inlinable
-    public func describeDDosAttackEventDetail(_ input: DescribeDDosAttackEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDosAttackEventDetailResponse > {
-        self.client.execute(action: "DescribeDDosAttackEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询DDos攻击事件详情
-    @inlinable
-    public func describeDDosAttackEventDetail(_ input: DescribeDDosAttackEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosAttackEventDetailResponse {
-        try await self.client.execute(action: "DescribeDDosAttackEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDosAttackEventDetail请求参数结构体
     public struct DescribeDDosAttackEventDetailRequest: TCRequestModel {
         /// 事件id。
@@ -37,7 +25,7 @@ extension Teo {
         /// <li>mainland ：中国大陆地区数据 。</li>不填默认查询overseas。
         public let area: String?
         
-        public init (eventId: String, area: String?) {
+        public init (eventId: String, area: String? = nil) {
             self.eventId = eventId
             self.area = area
         }
@@ -70,5 +58,17 @@ extension Teo {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询DDos攻击事件详情
+    @inlinable
+    public func describeDDosAttackEventDetail(_ input: DescribeDDosAttackEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDosAttackEventDetailResponse > {
+        self.client.execute(action: "DescribeDDosAttackEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询DDos攻击事件详情
+    @inlinable
+    public func describeDDosAttackEventDetail(_ input: DescribeDDosAttackEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosAttackEventDetailResponse {
+        try await self.client.execute(action: "DescribeDDosAttackEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

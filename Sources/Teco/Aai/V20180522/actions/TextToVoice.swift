@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Aai {
-    /// 语音合成
-    ///
-    /// 腾讯云语音合成技术（TTS）可以将任意文本转化为语音，实现让机器和应用张口说话。
-    /// 腾讯TTS技术可以应用到很多场景，比如，移动APP语音播报新闻；智能设备语音提醒；依靠网上现有节目或少量录音，快速合成明星语音，降低邀约成本；支持车载导航语音合成的个性化语音播报。
-    /// 内测期间免费使用。
-    @inlinable
-    public func textToVoice(_ input: TextToVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextToVoiceResponse > {
-        self.client.execute(action: "TextToVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 语音合成
-    ///
-    /// 腾讯云语音合成技术（TTS）可以将任意文本转化为语音，实现让机器和应用张口说话。
-    /// 腾讯TTS技术可以应用到很多场景，比如，移动APP语音播报新闻；智能设备语音提醒；依靠网上现有节目或少量录音，快速合成明星语音，降低邀约成本；支持车载导航语音合成的个性化语音播报。
-    /// 内测期间免费使用。
-    @inlinable
-    public func textToVoice(_ input: TextToVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToVoiceResponse {
-        try await self.client.execute(action: "TextToVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TextToVoice请求参数结构体
     public struct TextToVoiceRequest: TCRequestModel {
         /// 合成语音的源文本，按UTF-8编码统一计算。
@@ -69,7 +49,7 @@ extension Aai {
         /// 返回音频格式，可取值：wav（默认），mp3
         public let codec: String?
         
-        public init (text: String, sessionId: String, modelType: Int64, volume: Float?, speed: Float?, projectId: Int64?, voiceType: Int64?, primaryLanguage: UInt64?, sampleRate: UInt64?, codec: String?) {
+        public init (text: String, sessionId: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: UInt64? = nil, sampleRate: UInt64? = nil, codec: String? = nil) {
             self.text = text
             self.sessionId = sessionId
             self.modelType = modelType
@@ -112,5 +92,25 @@ extension Aai {
             case sessionId = "SessionId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 语音合成
+    ///
+    /// 腾讯云语音合成技术（TTS）可以将任意文本转化为语音，实现让机器和应用张口说话。
+    /// 腾讯TTS技术可以应用到很多场景，比如，移动APP语音播报新闻；智能设备语音提醒；依靠网上现有节目或少量录音，快速合成明星语音，降低邀约成本；支持车载导航语音合成的个性化语音播报。
+    /// 内测期间免费使用。
+    @inlinable
+    public func textToVoice(_ input: TextToVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextToVoiceResponse > {
+        self.client.execute(action: "TextToVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 语音合成
+    ///
+    /// 腾讯云语音合成技术（TTS）可以将任意文本转化为语音，实现让机器和应用张口说话。
+    /// 腾讯TTS技术可以应用到很多场景，比如，移动APP语音播报新闻；智能设备语音提醒；依靠网上现有节目或少量录音，快速合成明星语音，降低邀约成本；支持车载导航语音合成的个性化语音播报。
+    /// 内测期间免费使用。
+    @inlinable
+    public func textToVoice(_ input: TextToVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToVoiceResponse {
+        try await self.client.execute(action: "TextToVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

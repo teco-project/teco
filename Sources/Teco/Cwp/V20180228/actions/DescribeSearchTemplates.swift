@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取快速检索列表
-    @inlinable
-    public func describeSearchTemplates(_ input: DescribeSearchTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSearchTemplatesResponse > {
-        self.client.execute(action: "DescribeSearchTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取快速检索列表
-    @inlinable
-    public func describeSearchTemplates(_ input: DescribeSearchTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchTemplatesResponse {
-        try await self.client.execute(action: "DescribeSearchTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSearchTemplates请求参数结构体
     public struct DescribeSearchTemplatesRequest: TCRequestModel {
         /// 偏移量，默认为0。
@@ -35,7 +23,7 @@ extension Cwp {
         /// 返回数量，默认为10，最大值为100。
         public let limit: UInt64?
         
-        public init (offset: UInt64?, limit: UInt64?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
         }
@@ -62,5 +50,17 @@ extension Cwp {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取快速检索列表
+    @inlinable
+    public func describeSearchTemplates(_ input: DescribeSearchTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSearchTemplatesResponse > {
+        self.client.execute(action: "DescribeSearchTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取快速检索列表
+    @inlinable
+    public func describeSearchTemplates(_ input: DescribeSearchTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchTemplatesResponse {
+        try await self.client.execute(action: "DescribeSearchTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

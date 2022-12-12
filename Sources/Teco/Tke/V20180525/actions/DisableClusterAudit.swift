@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 关闭集群审计
-    @inlinable
-    public func disableClusterAudit(_ input: DisableClusterAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableClusterAuditResponse > {
-        self.client.execute(action: "DisableClusterAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关闭集群审计
-    @inlinable
-    public func disableClusterAudit(_ input: DisableClusterAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableClusterAuditResponse {
-        try await self.client.execute(action: "DisableClusterAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableClusterAudit请求参数结构体
     public struct DisableClusterAuditRequest: TCRequestModel {
         /// 集群ID
@@ -35,7 +23,7 @@ extension Tke {
         /// 取值为true代表关闭集群审计时删除默认创建的日志集和主题，false代表不删除
         public let deleteLogSetAndTopic: Bool?
         
-        public init (clusterId: String, deleteLogSetAndTopic: Bool?) {
+        public init (clusterId: String, deleteLogSetAndTopic: Bool? = nil) {
             self.clusterId = clusterId
             self.deleteLogSetAndTopic = deleteLogSetAndTopic
         }
@@ -54,5 +42,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关闭集群审计
+    @inlinable
+    public func disableClusterAudit(_ input: DisableClusterAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableClusterAuditResponse > {
+        self.client.execute(action: "DisableClusterAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭集群审计
+    @inlinable
+    public func disableClusterAudit(_ input: DisableClusterAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableClusterAuditResponse {
+        try await self.client.execute(action: "DisableClusterAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

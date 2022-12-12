@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 更新服务版本
-    ///
-    /// 本接口（UpdateService）用于从服务发布的环境中运行版本切换到特定版本。用户在使用 API 网关创建服务并发布服务到某个环境后，多因为开发过程会产生多个版本，此时可调用本接口。
-    @inlinable
-    public func updateService(_ input: UpdateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateServiceResponse > {
-        self.client.execute(action: "UpdateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新服务版本
-    ///
-    /// 本接口（UpdateService）用于从服务发布的环境中运行版本切换到特定版本。用户在使用 API 网关创建服务并发布服务到某个环境后，多因为开发过程会产生多个版本，此时可调用本接口。
-    @inlinable
-    public func updateService(_ input: UpdateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateServiceResponse {
-        try await self.client.execute(action: "UpdateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateService请求参数结构体
     public struct UpdateServiceRequest: TCRequestModel {
         /// 待切换服务的唯一 Id。
@@ -45,7 +29,7 @@ extension Apigateway {
         /// 本次的切换描述。
         public let updateDesc: String?
         
-        public init (serviceId: String, environmentName: String, versionName: String, updateDesc: String?) {
+        public init (serviceId: String, environmentName: String, versionName: String, updateDesc: String? = nil) {
             self.serviceId = serviceId
             self.environmentName = environmentName
             self.versionName = versionName
@@ -73,5 +57,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新服务版本
+    ///
+    /// 本接口（UpdateService）用于从服务发布的环境中运行版本切换到特定版本。用户在使用 API 网关创建服务并发布服务到某个环境后，多因为开发过程会产生多个版本，此时可调用本接口。
+    @inlinable
+    public func updateService(_ input: UpdateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateServiceResponse > {
+        self.client.execute(action: "UpdateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新服务版本
+    ///
+    /// 本接口（UpdateService）用于从服务发布的环境中运行版本切换到特定版本。用户在使用 API 网关创建服务并发布服务到某个环境后，多因为开发过程会产生多个版本，此时可调用本接口。
+    @inlinable
+    public func updateService(_ input: UpdateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateServiceResponse {
+        try await self.client.execute(action: "UpdateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

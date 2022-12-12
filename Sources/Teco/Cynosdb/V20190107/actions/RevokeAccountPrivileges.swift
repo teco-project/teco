@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 批量回收账号权限
-    @inlinable
-    public func revokeAccountPrivileges(_ input: RevokeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevokeAccountPrivilegesResponse > {
-        self.client.execute(action: "RevokeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量回收账号权限
-    @inlinable
-    public func revokeAccountPrivileges(_ input: RevokeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeAccountPrivilegesResponse {
-        try await self.client.execute(action: "RevokeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RevokeAccountPrivileges请求参数结构体
     public struct RevokeAccountPrivilegesRequest: TCRequestModel {
         /// 集群id
@@ -64,5 +52,17 @@ extension Cynosdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量回收账号权限
+    @inlinable
+    public func revokeAccountPrivileges(_ input: RevokeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevokeAccountPrivilegesResponse > {
+        self.client.execute(action: "RevokeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量回收账号权限
+    @inlinable
+    public func revokeAccountPrivileges(_ input: RevokeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeAccountPrivilegesResponse {
+        try await self.client.execute(action: "RevokeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

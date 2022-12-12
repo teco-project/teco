@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 创建黑石负载均衡实例
-    ///
-    /// 用来创建黑石负载均衡。为了使用黑石负载均衡服务，您必须要创建一个或者多个负载均衡实例。通过成功调用该接口，会返回负载均衡实例的唯一ID。用户可以购买的黑石负载均衡实例类型分为：公网类型、内网类型。公网类型负载均衡对应一个BGP VIP，可用于快速访问公网负载均衡绑定的物理服务器；内网类型负载均衡对应一个腾讯云内部的VIP，不能通过Internet访问，可快速访问内网负载均衡绑定的物理服务器。
-    @inlinable
-    public func createLoadBalancers(_ input: CreateLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLoadBalancersResponse > {
-        self.client.execute(action: "CreateLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建黑石负载均衡实例
-    ///
-    /// 用来创建黑石负载均衡。为了使用黑石负载均衡服务，您必须要创建一个或者多个负载均衡实例。通过成功调用该接口，会返回负载均衡实例的唯一ID。用户可以购买的黑石负载均衡实例类型分为：公网类型、内网类型。公网类型负载均衡对应一个BGP VIP，可用于快速访问公网负载均衡绑定的物理服务器；内网类型负载均衡对应一个腾讯云内部的VIP，不能通过Internet访问，可快速访问内网负载均衡绑定的物理服务器。
-    @inlinable
-    public func createLoadBalancers(_ input: CreateLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancersResponse {
-        try await self.client.execute(action: "CreateLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLoadBalancers请求参数结构体
     public struct CreateLoadBalancersRequest: TCRequestModel {
         /// 黑石负载均衡实例所属的私有网络ID。
@@ -61,12 +45,12 @@ extension Bmlb {
         public let specifiedVips: [String]?
         
         /// （未全地域开放）保障型负载均衡设定参数，如果类别选择保障型则需传入此参数。
-        public let bzConf: CreateLoadBalancerBzConf
+        public let bzConf: CreateLoadBalancerBzConf?
         
         /// IP协议类型。可取的值为“ipv4”或“ipv6”。
         public let ipProtocolType: String?
         
-        public init (vpcId: String, loadBalancerType: String, subnetId: String?, projectId: Int64?, goodsNum: Int64?, payMode: String?, tgwSetType: String?, exclusive: Int64?, specifiedVips: [String]?, bzConf: CreateLoadBalancerBzConf, ipProtocolType: String?) {
+        public init (vpcId: String, loadBalancerType: String, subnetId: String? = nil, projectId: Int64? = nil, goodsNum: Int64? = nil, payMode: String? = nil, tgwSetType: String? = nil, exclusive: Int64? = nil, specifiedVips: [String]? = nil, bzConf: CreateLoadBalancerBzConf? = nil, ipProtocolType: String? = nil) {
             self.vpcId = vpcId
             self.loadBalancerType = loadBalancerType
             self.subnetId = subnetId
@@ -111,5 +95,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建黑石负载均衡实例
+    ///
+    /// 用来创建黑石负载均衡。为了使用黑石负载均衡服务，您必须要创建一个或者多个负载均衡实例。通过成功调用该接口，会返回负载均衡实例的唯一ID。用户可以购买的黑石负载均衡实例类型分为：公网类型、内网类型。公网类型负载均衡对应一个BGP VIP，可用于快速访问公网负载均衡绑定的物理服务器；内网类型负载均衡对应一个腾讯云内部的VIP，不能通过Internet访问，可快速访问内网负载均衡绑定的物理服务器。
+    @inlinable
+    public func createLoadBalancers(_ input: CreateLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLoadBalancersResponse > {
+        self.client.execute(action: "CreateLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建黑石负载均衡实例
+    ///
+    /// 用来创建黑石负载均衡。为了使用黑石负载均衡服务，您必须要创建一个或者多个负载均衡实例。通过成功调用该接口，会返回负载均衡实例的唯一ID。用户可以购买的黑石负载均衡实例类型分为：公网类型、内网类型。公网类型负载均衡对应一个BGP VIP，可用于快速访问公网负载均衡绑定的物理服务器；内网类型负载均衡对应一个腾讯云内部的VIP，不能通过Internet访问，可快速访问内网负载均衡绑定的物理服务器。
+    @inlinable
+    public func createLoadBalancers(_ input: CreateLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancersResponse {
+        try await self.client.execute(action: "CreateLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

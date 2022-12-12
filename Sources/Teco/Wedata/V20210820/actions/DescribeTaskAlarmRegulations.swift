@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询任务告警规则列表
-    @inlinable
-    public func describeTaskAlarmRegulations(_ input: DescribeTaskAlarmRegulationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskAlarmRegulationsResponse > {
-        self.client.execute(action: "DescribeTaskAlarmRegulations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询任务告警规则列表
-    @inlinable
-    public func describeTaskAlarmRegulations(_ input: DescribeTaskAlarmRegulationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskAlarmRegulationsResponse {
-        try await self.client.execute(action: "DescribeTaskAlarmRegulations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskAlarmRegulations请求参数结构体
     public struct DescribeTaskAlarmRegulationsRequest: TCRequestModel {
         /// 任务ID
@@ -50,7 +38,7 @@ extension Wedata {
         /// 排序条件(RegularId)
         public let orderFields: [OrderField]?
         
-        public init (taskId: String, projectId: String, taskType: Int64, pageNumber: Int64, pageSize: Int64, filters: [Filter]?, orderFields: [OrderField]?) {
+        public init (taskId: String, projectId: String, taskType: Int64, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil) {
             self.taskId = taskId
             self.projectId = projectId
             self.taskType = taskType
@@ -89,5 +77,17 @@ extension Wedata {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询任务告警规则列表
+    @inlinable
+    public func describeTaskAlarmRegulations(_ input: DescribeTaskAlarmRegulationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskAlarmRegulationsResponse > {
+        self.client.execute(action: "DescribeTaskAlarmRegulations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务告警规则列表
+    @inlinable
+    public func describeTaskAlarmRegulations(_ input: DescribeTaskAlarmRegulationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskAlarmRegulationsResponse {
+        try await self.client.execute(action: "DescribeTaskAlarmRegulations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

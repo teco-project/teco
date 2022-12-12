@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 更新实例信息
-    @inlinable
-    public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceResponse > {
-        self.client.execute(action: "ModifyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新实例信息
-    @inlinable
-    public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
-        try await self.client.execute(action: "ModifyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstance请求参数结构体
     public struct ModifyInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -54,5 +42,17 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新实例信息
+    @inlinable
+    public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceResponse > {
+        self.client.execute(action: "ModifyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新实例信息
+    @inlinable
+    public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
+        try await self.client.execute(action: "ModifyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

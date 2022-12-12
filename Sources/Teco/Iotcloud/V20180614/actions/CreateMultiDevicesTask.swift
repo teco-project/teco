@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 创建批量创建设备任务
-    ///
-    /// 本接口（CreateMultiDevicesTask）用于创建产品级别的批量创建设备任务
-    @inlinable
-    public func createMultiDevicesTask(_ input: CreateMultiDevicesTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMultiDevicesTaskResponse > {
-        self.client.execute(action: "CreateMultiDevicesTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建批量创建设备任务
-    ///
-    /// 本接口（CreateMultiDevicesTask）用于创建产品级别的批量创建设备任务
-    @inlinable
-    public func createMultiDevicesTask(_ input: CreateMultiDevicesTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiDevicesTaskResponse {
-        try await self.client.execute(action: "CreateMultiDevicesTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMultiDevicesTask请求参数结构体
     public struct CreateMultiDevicesTaskRequest: TCRequestModel {
         /// 产品ID
@@ -51,7 +35,7 @@ extension Iotcloud {
         /// 文件上传类型时文件md5值
         public let hash: String?
         
-        public init (productId: String, parametersType: String, fileName: String?, fileSize: UInt64?, batchCount: UInt64?, hash: String?) {
+        public init (productId: String, parametersType: String, fileName: String? = nil, fileSize: UInt64? = nil, batchCount: UInt64? = nil, hash: String? = nil) {
             self.productId = productId
             self.parametersType = parametersType
             self.fileName = fileName
@@ -82,5 +66,21 @@ extension Iotcloud {
             case id = "Id"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建批量创建设备任务
+    ///
+    /// 本接口（CreateMultiDevicesTask）用于创建产品级别的批量创建设备任务
+    @inlinable
+    public func createMultiDevicesTask(_ input: CreateMultiDevicesTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMultiDevicesTaskResponse > {
+        self.client.execute(action: "CreateMultiDevicesTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建批量创建设备任务
+    ///
+    /// 本接口（CreateMultiDevicesTask）用于创建产品级别的批量创建设备任务
+    @inlinable
+    public func createMultiDevicesTask(_ input: CreateMultiDevicesTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiDevicesTaskResponse {
+        try await self.client.execute(action: "CreateMultiDevicesTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

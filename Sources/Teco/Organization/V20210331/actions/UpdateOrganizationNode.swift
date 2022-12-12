@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 更新企业组织节点
-    @inlinable
-    public func updateOrganizationNode(_ input: UpdateOrganizationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateOrganizationNodeResponse > {
-        self.client.execute(action: "UpdateOrganizationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新企业组织节点
-    @inlinable
-    public func updateOrganizationNode(_ input: UpdateOrganizationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrganizationNodeResponse {
-        try await self.client.execute(action: "UpdateOrganizationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateOrganizationNode请求参数结构体
     public struct UpdateOrganizationNodeRequest: TCRequestModel {
         /// 节点ID。
@@ -38,7 +26,7 @@ extension Organization {
         /// 备注。
         public let remark: String?
         
-        public init (nodeId: UInt64, name: String?, remark: String?) {
+        public init (nodeId: UInt64, name: String? = nil, remark: String? = nil) {
             self.nodeId = nodeId
             self.name = name
             self.remark = remark
@@ -59,5 +47,17 @@ extension Organization {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新企业组织节点
+    @inlinable
+    public func updateOrganizationNode(_ input: UpdateOrganizationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateOrganizationNodeResponse > {
+        self.client.execute(action: "UpdateOrganizationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新企业组织节点
+    @inlinable
+    public func updateOrganizationNode(_ input: UpdateOrganizationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrganizationNodeResponse {
+        try await self.client.execute(action: "UpdateOrganizationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

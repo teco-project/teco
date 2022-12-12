@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 修改任务脚本【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 修改任务脚本
-    @inlinable
-    public func modifyTaskScript(_ input: ModifyTaskScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskScriptResponse > {
-        self.client.execute(action: "ModifyTaskScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改任务脚本【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 修改任务脚本
-    @inlinable
-    public func modifyTaskScript(_ input: ModifyTaskScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskScriptResponse {
-        try await self.client.execute(action: "ModifyTaskScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTaskScript请求参数结构体
     public struct ModifyTaskScriptRequest: TCRequestModel {
         /// 项目Id
@@ -47,7 +29,7 @@ extension Wedata {
         /// 集成任务脚本配置
         public let integrationNodeDetails: [IntegrationNodeDetail]?
         
-        public init (projectId: String, taskId: String, scriptContent: String?, integrationNodeDetails: [IntegrationNodeDetail]?) {
+        public init (projectId: String, taskId: String, scriptContent: String? = nil, integrationNodeDetails: [IntegrationNodeDetail]? = nil) {
             self.projectId = projectId
             self.taskId = taskId
             self.scriptContent = scriptContent
@@ -66,7 +48,7 @@ extension Wedata {
     public struct ModifyTaskScriptResponse: TCResponseModel {
         /// 详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: CommonContent
+        public let data: CommonContent?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -75,5 +57,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改任务脚本【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 修改任务脚本
+    @inlinable
+    public func modifyTaskScript(_ input: ModifyTaskScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskScriptResponse > {
+        self.client.execute(action: "ModifyTaskScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改任务脚本【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 修改任务脚本
+    @inlinable
+    public func modifyTaskScript(_ input: ModifyTaskScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskScriptResponse {
+        try await self.client.execute(action: "ModifyTaskScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取回源IP段
-    ///
-    /// 获取回源IP段，支持的产品：高防IP，高防IP专业版；
-    @inlinable
-    public func describeSourceIpSegment(_ input: DescribeSourceIpSegmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSourceIpSegmentResponse > {
-        self.client.execute(action: "DescribeSourceIpSegment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取回源IP段
-    ///
-    /// 获取回源IP段，支持的产品：高防IP，高防IP专业版；
-    @inlinable
-    public func describeSourceIpSegment(_ input: DescribeSourceIpSegmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceIpSegmentResponse {
-        try await self.client.execute(action: "DescribeSourceIpSegment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSourceIpSegment请求参数结构体
     public struct DescribeSourceIpSegmentRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -62,5 +46,21 @@ extension Dayu {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取回源IP段
+    ///
+    /// 获取回源IP段，支持的产品：高防IP，高防IP专业版；
+    @inlinable
+    public func describeSourceIpSegment(_ input: DescribeSourceIpSegmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSourceIpSegmentResponse > {
+        self.client.execute(action: "DescribeSourceIpSegment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取回源IP段
+    ///
+    /// 获取回源IP段，支持的产品：高防IP，高防IP专业版；
+    @inlinable
+    public func describeSourceIpSegment(_ input: DescribeSourceIpSegmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceIpSegmentResponse {
+        try await self.client.execute(action: "DescribeSourceIpSegment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

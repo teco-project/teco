@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 集群续费询价
-    ///
-    /// 集群续费询价。
-    @inlinable
-    public func inquirePriceRenewEmr(_ input: InquirePriceRenewEmrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceRenewEmrResponse > {
-        self.client.execute(action: "InquirePriceRenewEmr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 集群续费询价
-    ///
-    /// 集群续费询价。
-    @inlinable
-    public func inquirePriceRenewEmr(_ input: InquirePriceRenewEmrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewEmrResponse {
-        try await self.client.execute(action: "InquirePriceRenewEmr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquirePriceRenewEmr请求参数结构体
     public struct InquirePriceRenewEmrRequest: TCRequestModel {
         /// 实例续费的时长。需要结合TimeUnit一起使用。1表示续费1一个月
@@ -53,7 +37,7 @@ extension Emr {
         /// <li>CNY：表示人民币。</li>
         public let currency: String?
         
-        public init (timeSpan: UInt64, instanceId: String, placement: Placement, payMode: Int64, timeUnit: String?, currency: String?) {
+        public init (timeSpan: UInt64, instanceId: String, placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil) {
             self.timeSpan = timeSpan
             self.instanceId = instanceId
             self.placement = placement
@@ -101,5 +85,21 @@ extension Emr {
             case timeSpan = "TimeSpan"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 集群续费询价
+    ///
+    /// 集群续费询价。
+    @inlinable
+    public func inquirePriceRenewEmr(_ input: InquirePriceRenewEmrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceRenewEmrResponse > {
+        self.client.execute(action: "InquirePriceRenewEmr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 集群续费询价
+    ///
+    /// 集群续费询价。
+    @inlinable
+    public func inquirePriceRenewEmr(_ input: InquirePriceRenewEmrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewEmrResponse {
+        try await self.client.execute(action: "InquirePriceRenewEmr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

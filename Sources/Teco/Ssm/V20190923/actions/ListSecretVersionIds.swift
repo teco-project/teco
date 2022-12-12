@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssm {
-    /// 获取指定凭据下的版本列表信息。
-    ///
-    /// 该接口用于获取指定凭据下的版本列表信息
-    @inlinable
-    public func listSecretVersionIds(_ input: ListSecretVersionIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListSecretVersionIdsResponse > {
-        self.client.execute(action: "ListSecretVersionIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取指定凭据下的版本列表信息。
-    ///
-    /// 该接口用于获取指定凭据下的版本列表信息
-    @inlinable
-    public func listSecretVersionIds(_ input: ListSecretVersionIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSecretVersionIdsResponse {
-        try await self.client.execute(action: "ListSecretVersionIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListSecretVersionIds请求参数结构体
     public struct ListSecretVersionIdsRequest: TCRequestModel {
         /// 凭据名称。
@@ -62,5 +46,21 @@ extension Ssm {
             case versions = "Versions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取指定凭据下的版本列表信息。
+    ///
+    /// 该接口用于获取指定凭据下的版本列表信息
+    @inlinable
+    public func listSecretVersionIds(_ input: ListSecretVersionIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListSecretVersionIdsResponse > {
+        self.client.execute(action: "ListSecretVersionIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定凭据下的版本列表信息。
+    ///
+    /// 该接口用于获取指定凭据下的版本列表信息
+    @inlinable
+    public func listSecretVersionIds(_ input: ListSecretVersionIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSecretVersionIdsResponse {
+        try await self.client.execute(action: "ListSecretVersionIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

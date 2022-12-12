@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 绑定黑石物理服务器或半托管服务器到七层转发路径
-    ///
-    /// 绑定黑石物理服务器或半托管服务器到七层转发路径。
-    @inlinable
-    public func bindL7Backends(_ input: BindL7BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindL7BackendsResponse > {
-        self.client.execute(action: "BindL7Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定黑石物理服务器或半托管服务器到七层转发路径
-    ///
-    /// 绑定黑石物理服务器或半托管服务器到七层转发路径。
-    @inlinable
-    public func bindL7Backends(_ input: BindL7BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindL7BackendsResponse {
-        try await self.client.execute(action: "BindL7Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindL7Backends请求参数结构体
     public struct BindL7BackendsRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -82,5 +66,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定黑石物理服务器或半托管服务器到七层转发路径
+    ///
+    /// 绑定黑石物理服务器或半托管服务器到七层转发路径。
+    @inlinable
+    public func bindL7Backends(_ input: BindL7BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindL7BackendsResponse > {
+        self.client.execute(action: "BindL7Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定黑石物理服务器或半托管服务器到七层转发路径
+    ///
+    /// 绑定黑石物理服务器或半托管服务器到七层转发路径。
+    @inlinable
+    public func bindL7Backends(_ input: BindL7BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindL7BackendsResponse {
+        try await self.client.execute(action: "BindL7Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

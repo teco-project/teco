@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Lcic {
-    /// 删除房间
-    @inlinable
-    public func deleteRoom(_ input: DeleteRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRoomResponse > {
-        self.client.execute(action: "DeleteRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除房间
-    @inlinable
-    public func deleteRoom(_ input: DeleteRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomResponse {
-        try await self.client.execute(action: "DeleteRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRoom请求参数结构体
     public struct DeleteRoomRequest: TCRequestModel {
         /// 房间ID。
@@ -49,5 +37,17 @@ extension Lcic {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除房间
+    @inlinable
+    public func deleteRoom(_ input: DeleteRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRoomResponse > {
+        self.client.execute(action: "DeleteRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除房间
+    @inlinable
+    public func deleteRoom(_ input: DeleteRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomResponse {
+        try await self.client.execute(action: "DeleteRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

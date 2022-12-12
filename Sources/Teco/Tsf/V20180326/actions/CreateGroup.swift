@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 创建部署组
-    ///
-    /// 创建虚拟机部署组
-    @inlinable
-    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGroupResponse > {
-        self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建部署组
-    ///
-    /// 创建虚拟机部署组
-    @inlinable
-    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
-        try await self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateGroup请求参数结构体
     public struct CreateGroupRequest: TCRequestModel {
         /// 部署组所属的应用ID
@@ -54,7 +38,7 @@ extension Tsf {
         /// 部署组备注
         public let alias: String?
         
-        public init (applicationId: String, namespaceId: String, groupName: String, clusterId: String, groupDesc: String?, groupResourceType: String?, alias: String?) {
+        public init (applicationId: String, namespaceId: String, groupName: String, clusterId: String, groupDesc: String? = nil, groupResourceType: String? = nil, alias: String? = nil) {
             self.applicationId = applicationId
             self.namespaceId = namespaceId
             self.groupName = groupName
@@ -88,5 +72,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建部署组
+    ///
+    /// 创建虚拟机部署组
+    @inlinable
+    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGroupResponse > {
+        self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建部署组
+    ///
+    /// 创建虚拟机部署组
+    @inlinable
+    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
+        try await self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

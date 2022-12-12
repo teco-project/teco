@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 创建镜像加速服务
-    @inlinable
-    public func createImageAccelerationService(_ input: CreateImageAccelerationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageAccelerationServiceResponse > {
-        self.client.execute(action: "CreateImageAccelerationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建镜像加速服务
-    @inlinable
-    public func createImageAccelerationService(_ input: CreateImageAccelerationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageAccelerationServiceResponse {
-        try await self.client.execute(action: "CreateImageAccelerationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateImageAccelerationService请求参数结构体
     public struct CreateImageAccelerationServiceRequest: TCRequestModel {
         /// 实例Id
@@ -48,9 +36,9 @@ extension Tcr {
         public let zone: String
         
         /// 云标签描述
-        public let tagSpecification: TagSpecification
+        public let tagSpecification: TagSpecification?
         
-        public init (registryId: String, vpcId: String, subnetId: String, storageType: String, pGroupId: String, zone: String, tagSpecification: TagSpecification) {
+        public init (registryId: String, vpcId: String, subnetId: String, storageType: String, pGroupId: String, zone: String, tagSpecification: TagSpecification? = nil) {
             self.registryId = registryId
             self.vpcId = vpcId
             self.subnetId = subnetId
@@ -83,5 +71,17 @@ extension Tcr {
             case registryId = "RegistryId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建镜像加速服务
+    @inlinable
+    public func createImageAccelerationService(_ input: CreateImageAccelerationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageAccelerationServiceResponse > {
+        self.client.execute(action: "CreateImageAccelerationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建镜像加速服务
+    @inlinable
+    public func createImageAccelerationService(_ input: CreateImageAccelerationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageAccelerationServiceResponse {
+        try await self.client.execute(action: "CreateImageAccelerationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

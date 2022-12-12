@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除本地网关
-    ///
-    /// 该接口用于删除CDC的本地网关。
-    @inlinable
-    public func deleteLocalGateway(_ input: DeleteLocalGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLocalGatewayResponse > {
-        self.client.execute(action: "DeleteLocalGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除本地网关
-    ///
-    /// 该接口用于删除CDC的本地网关。
-    @inlinable
-    public func deleteLocalGateway(_ input: DeleteLocalGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLocalGatewayResponse {
-        try await self.client.execute(action: "DeleteLocalGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLocalGateway请求参数结构体
     public struct DeleteLocalGatewayRequest: TCRequestModel {
         /// 本地网关实例ID
@@ -42,7 +26,7 @@ extension Vpc {
         /// VPC实例ID
         public let vpcId: String?
         
-        public init (localGatewayId: String, cdcId: String, vpcId: String?) {
+        public init (localGatewayId: String, cdcId: String, vpcId: String? = nil) {
             self.localGatewayId = localGatewayId
             self.cdcId = cdcId
             self.vpcId = vpcId
@@ -63,5 +47,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除本地网关
+    ///
+    /// 该接口用于删除CDC的本地网关。
+    @inlinable
+    public func deleteLocalGateway(_ input: DeleteLocalGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLocalGatewayResponse > {
+        self.client.execute(action: "DeleteLocalGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除本地网关
+    ///
+    /// 该接口用于删除CDC的本地网关。
+    @inlinable
+    public func deleteLocalGateway(_ input: DeleteLocalGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLocalGatewayResponse {
+        try await self.client.execute(action: "DeleteLocalGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

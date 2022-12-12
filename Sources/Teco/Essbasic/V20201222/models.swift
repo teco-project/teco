@@ -32,7 +32,7 @@ extension Essbasic {
         /// 国家，默认中国
         public let country: String?
         
-        public init (province: String, city: String, county: String, details: String, country: String?) {
+        public init (province: String, city: String, county: String, details: String, country: String? = nil) {
             self.province = province
             self.city = city
             self.county = county
@@ -60,7 +60,7 @@ extension Essbasic {
         /// 经办人的用户ID
         public let operatorId: String?
         
-        public init (applicationId: String, subOrganizationId: String?, operatorId: String?) {
+        public init (applicationId: String, subOrganizationId: String? = nil, operatorId: String? = nil) {
             self.applicationId = applicationId
             self.subOrganizationId = subOrganizationId
             self.operatorId = operatorId
@@ -171,7 +171,7 @@ extension Essbasic {
         /// 不同GenerateMode对应的额外信息
         public let generateExtra: String?
         
-        public init (componentId: String?, componentType: String?, componentName: String?, componentRequired: Bool?, fileIndex: Int64?, generateMode: Int64?, componentWidth: Float?, componentHeight: Float?, componentPage: Int64?, componentPosX: Float?, componentPosY: Float?, componentExtra: String?, componentValue: String?, sealOperate: Int64?, generateExtra: String?) {
+        public init (componentId: String? = nil, componentType: String? = nil, componentName: String? = nil, componentRequired: Bool? = nil, fileIndex: Int64? = nil, generateMode: Int64? = nil, componentWidth: Float? = nil, componentHeight: Float? = nil, componentPage: Int64? = nil, componentPosX: Float? = nil, componentPosY: Float? = nil, componentExtra: String? = nil, componentValue: String? = nil, sealOperate: Int64? = nil, generateExtra: String? = nil) {
             self.componentId = componentId
             self.componentType = componentType
             self.componentName = componentName
@@ -422,7 +422,7 @@ extension Essbasic {
         
         /// 短信模板
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let smsTemplate: SmsTemplate
+        public let smsTemplate: SmsTemplate?
         
         /// 身份证号，脱敏显示
         public let idCardNumber: String
@@ -527,7 +527,7 @@ extension Essbasic {
         /// 用户自定义数据
         public let userData: String?
         
-        public init (flowName: String, deadline: Int64, flowDescription: String?, flowType: String?, callbackUrl: String?, userData: String?) {
+        public init (flowName: String, deadline: Int64, flowDescription: String? = nil, flowType: String? = nil, callbackUrl: String? = nil, userData: String? = nil) {
             self.flowName = flowName
             self.deadline = deadline
             self.flowDescription = flowDescription
@@ -611,7 +611,7 @@ extension Essbasic {
         /// 签名内容，仅当 SignType 为SIGN_SIGNATURE或SIGN_IMAGE 时必填，base64编码
         public let sealContent: String?
         
-        public init (componentId: String, signType: String, fileIndex: Int64, sealId: String?, sealContent: String?) {
+        public init (componentId: String, signType: String, fileIndex: Int64, sealId: String? = nil, sealContent: String? = nil) {
             self.componentId = componentId
             self.signType = signType
             self.fileIndex = fileIndex
@@ -718,7 +718,7 @@ extension Essbasic {
         
         /// 企业联系地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let contactAddress: Address
+        public let contactAddress: Address?
         
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -753,7 +753,7 @@ extension Essbasic {
         /// 文件名
         public let fileName: String?
         
-        public init (fileBody: String, fileName: String?) {
+        public init (fileBody: String, fileName: String? = nil) {
             self.fileBody = fileBody
             self.fileName = fileName
         }

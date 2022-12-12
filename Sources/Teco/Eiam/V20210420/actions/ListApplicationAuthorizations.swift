@@ -15,32 +15,16 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 应用授权关系列表信息
-    ///
-    /// 应用授权关系列表（含搜索条件匹配）。
-    @inlinable
-    public func listApplicationAuthorizations(_ input: ListApplicationAuthorizationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListApplicationAuthorizationsResponse > {
-        self.client.execute(action: "ListApplicationAuthorizations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 应用授权关系列表信息
-    ///
-    /// 应用授权关系列表（含搜索条件匹配）。
-    @inlinable
-    public func listApplicationAuthorizations(_ input: ListApplicationAuthorizationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListApplicationAuthorizationsResponse {
-        try await self.client.execute(action: "ListApplicationAuthorizations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListApplicationAuthorizations请求参数结构体
     public struct ListApplicationAuthorizationsRequest: TCRequestModel {
         /// 查询类型，包含用户（User）、用户组（UserGroup）、组织机构（OrgNode）。
         public let entityType: String
         
         /// 查询条件，支持多搜索条件组合、多数据范围匹配的搜索。同时支持查询信息内容全匹配、部分匹配、范围匹配等多种查询方式，具体查询方式为：双引号（""）表示全匹配、以星号（* ) 结尾表示字段部分匹配。如果该字段为空，则默认查全量表。
-        public let searchCondition: AuthorizationInfoSearchCriteria
+        public let searchCondition: AuthorizationInfoSearchCriteria?
         
         /// 排序条件集合。可排序的属性支持：上次修改时间（lastModifiedDate）。如果该字段为空，则默认按照应用名称正向排序。
-        public let sort: SortCondition
+        public let sort: SortCondition?
         
         /// 分页偏移量。Offset 和 Limit 两个字段需配合使用，即其中一个指定了，另一个必须指定。 如果不指定以上参数，则表示不进行分页查询。
         public let offset: UInt64?
@@ -48,7 +32,7 @@ extension Eiam {
         /// 分页读取数量。Offset 和 Limit 两个字段需配合使用，即其中一个指定了，另一个必须指定。 如果不指定以上参数，则表示不进行分页查询。
         public let limit: UInt64?
         
-        public init (entityType: String, searchCondition: AuthorizationInfoSearchCriteria, sort: SortCondition, offset: UInt64?, limit: UInt64?) {
+        public init (entityType: String, searchCondition: AuthorizationInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.entityType = entityType
             self.searchCondition = searchCondition
             self.sort = sort
@@ -83,5 +67,21 @@ extension Eiam {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 应用授权关系列表信息
+    ///
+    /// 应用授权关系列表（含搜索条件匹配）。
+    @inlinable
+    public func listApplicationAuthorizations(_ input: ListApplicationAuthorizationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListApplicationAuthorizationsResponse > {
+        self.client.execute(action: "ListApplicationAuthorizations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 应用授权关系列表信息
+    ///
+    /// 应用授权关系列表（含搜索条件匹配）。
+    @inlinable
+    public func listApplicationAuthorizations(_ input: ListApplicationAuthorizationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListApplicationAuthorizationsResponse {
+        try await self.client.execute(action: "ListApplicationAuthorizations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

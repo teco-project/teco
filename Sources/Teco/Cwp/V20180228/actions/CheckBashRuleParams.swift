@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 校验高危命新增用户规则参数
-    ///
-    /// 校验高危命令用户规则新增和编辑时的参数。
-    @inlinable
-    public func checkBashRuleParams(_ input: CheckBashRuleParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBashRuleParamsResponse > {
-        self.client.execute(action: "CheckBashRuleParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 校验高危命新增用户规则参数
-    ///
-    /// 校验高危命令用户规则新增和编辑时的参数。
-    @inlinable
-    public func checkBashRuleParams(_ input: CheckBashRuleParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBashRuleParamsResponse {
-        try await self.client.execute(action: "CheckBashRuleParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckBashRuleParams请求参数结构体
     public struct CheckBashRuleParamsRequest: TCRequestModel {
         /// 校验内容 Name或Rule ，两个都要校验时逗号分割
@@ -48,7 +32,7 @@ extension Cwp {
         /// 编辑时传的规则id
         public let id: UInt64?
         
-        public init (checkField: String, eventId: UInt64?, name: String?, rule: String?, id: UInt64?) {
+        public init (checkField: String, eventId: UInt64? = nil, name: String? = nil, rule: String? = nil, id: UInt64? = nil) {
             self.checkField = checkField
             self.eventId = eventId
             self.name = name
@@ -81,5 +65,21 @@ extension Cwp {
             case errMsg = "ErrMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 校验高危命新增用户规则参数
+    ///
+    /// 校验高危命令用户规则新增和编辑时的参数。
+    @inlinable
+    public func checkBashRuleParams(_ input: CheckBashRuleParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBashRuleParamsResponse > {
+        self.client.execute(action: "CheckBashRuleParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 校验高危命新增用户规则参数
+    ///
+    /// 校验高危命令用户规则新增和编辑时的参数。
+    @inlinable
+    public func checkBashRuleParams(_ input: CheckBashRuleParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBashRuleParamsResponse {
+        try await self.client.execute(action: "CheckBashRuleParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

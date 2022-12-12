@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tkgdq {
-    /// 实体关系查询
-    ///
-    /// 输入两个实体，返回两个实体间的关系，例如马化腾与腾讯公司不仅是相关实体，二者还存在隶属关系（马化腾属于腾讯公司）。
-    @inlinable
-    public func describeRelation(_ input: DescribeRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRelationResponse > {
-        self.client.execute(action: "DescribeRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实体关系查询
-    ///
-    /// 输入两个实体，返回两个实体间的关系，例如马化腾与腾讯公司不仅是相关实体，二者还存在隶属关系（马化腾属于腾讯公司）。
-    @inlinable
-    public func describeRelation(_ input: DescribeRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRelationResponse {
-        try await self.client.execute(action: "DescribeRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRelation请求参数结构体
     public struct DescribeRelationRequest: TCRequestModel {
         /// 输入第一个实体
@@ -62,5 +46,21 @@ extension Tkgdq {
             case content = "Content"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实体关系查询
+    ///
+    /// 输入两个实体，返回两个实体间的关系，例如马化腾与腾讯公司不仅是相关实体，二者还存在隶属关系（马化腾属于腾讯公司）。
+    @inlinable
+    public func describeRelation(_ input: DescribeRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRelationResponse > {
+        self.client.execute(action: "DescribeRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实体关系查询
+    ///
+    /// 输入两个实体，返回两个实体间的关系，例如马化腾与腾讯公司不仅是相关实体，二者还存在隶属关系（马化腾属于腾讯公司）。
+    @inlinable
+    public func describeRelation(_ input: DescribeRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRelationResponse {
+        try await self.client.execute(action: "DescribeRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

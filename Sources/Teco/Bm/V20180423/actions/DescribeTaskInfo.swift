@@ -17,38 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Bm {
-    /// 维修任务信息获取
-    ///
-    /// 获取用户维修任务列表及详细信息<br>
-    /// <br>
-    /// TaskStatus（任务状态ID）与状态中文名的对应关系如下：<br>
-    /// 1：未授权<br>
-    /// 2：处理中<br>
-    /// 3：待确认<br>
-    /// 4：未授权-暂不处理<br>
-    /// 5：已恢复<br>
-    /// 6：待确认-未恢复<br>
-    @inlinable
-    public func describeTaskInfo(_ input: DescribeTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInfoResponse > {
-        self.client.execute(action: "DescribeTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 维修任务信息获取
-    ///
-    /// 获取用户维修任务列表及详细信息<br>
-    /// <br>
-    /// TaskStatus（任务状态ID）与状态中文名的对应关系如下：<br>
-    /// 1：未授权<br>
-    /// 2：处理中<br>
-    /// 3：待确认<br>
-    /// 4：未授权-暂不处理<br>
-    /// 5：已恢复<br>
-    /// 6：待确认-未恢复<br>
-    @inlinable
-    public func describeTaskInfo(_ input: DescribeTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInfoResponse {
-        try await self.client.execute(action: "DescribeTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskInfo请求参数结构体
     public struct DescribeTaskInfoRequest: TCRequestModel {
         /// 开始位置
@@ -84,7 +52,7 @@ extension Bm {
         /// 故障类型ID过滤
         public let taskTypeIds: [UInt64]?
         
-        public init (offset: UInt64, limit: UInt64, startDate: Date?, endDate: Date?, taskStatus: [UInt64]?, orderField: String?, order: UInt64?, taskIds: [String]?, instanceIds: [String]?, aliases: [String]?, taskTypeIds: [UInt64]?) {
+        public init (offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, taskStatus: [UInt64]? = nil, orderField: String? = nil, order: UInt64? = nil, taskIds: [String]? = nil, instanceIds: [String]? = nil, aliases: [String]? = nil, taskTypeIds: [UInt64]? = nil) {
             self.offset = offset
             self.limit = limit
             self.startDate = startDate
@@ -129,5 +97,37 @@ extension Bm {
             case taskInfoSet = "TaskInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 维修任务信息获取
+    ///
+    /// 获取用户维修任务列表及详细信息<br>
+    /// <br>
+    /// TaskStatus（任务状态ID）与状态中文名的对应关系如下：<br>
+    /// 1：未授权<br>
+    /// 2：处理中<br>
+    /// 3：待确认<br>
+    /// 4：未授权-暂不处理<br>
+    /// 5：已恢复<br>
+    /// 6：待确认-未恢复<br>
+    @inlinable
+    public func describeTaskInfo(_ input: DescribeTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInfoResponse > {
+        self.client.execute(action: "DescribeTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 维修任务信息获取
+    ///
+    /// 获取用户维修任务列表及详细信息<br>
+    /// <br>
+    /// TaskStatus（任务状态ID）与状态中文名的对应关系如下：<br>
+    /// 1：未授权<br>
+    /// 2：处理中<br>
+    /// 3：待确认<br>
+    /// 4：未授权-暂不处理<br>
+    /// 5：已恢复<br>
+    /// 6：待确认-未恢复<br>
+    @inlinable
+    public func describeTaskInfo(_ input: DescribeTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInfoResponse {
+        try await self.client.execute(action: "DescribeTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

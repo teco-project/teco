@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 查询边缘单元EdgeUnit模板列表
-    @inlinable
-    public func describeEdgeUnitNodeUnitTemplates(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitNodeUnitTemplatesResponse > {
-        self.client.execute(action: "DescribeEdgeUnitNodeUnitTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询边缘单元EdgeUnit模板列表
-    @inlinable
-    public func describeEdgeUnitNodeUnitTemplates(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitNodeUnitTemplatesResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitNodeUnitTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeUnitNodeUnitTemplates请求参数结构体
     public struct DescribeEdgeUnitNodeUnitTemplatesRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -50,7 +38,7 @@ extension Iecp {
         /// 按时间排序顺序，默认为DESC
         public let order: String?
         
-        public init (edgeUnitId: UInt64, namespace: String?, offset: UInt64?, limit: UInt64?, nameFilter: String?, nameMatched: String?, order: String?) {
+        public init (edgeUnitId: UInt64, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.namespace = namespace
             self.offset = offset
@@ -88,5 +76,17 @@ extension Iecp {
             case nodeUnitTemplates = "NodeUnitTemplates"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询边缘单元EdgeUnit模板列表
+    @inlinable
+    public func describeEdgeUnitNodeUnitTemplates(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitNodeUnitTemplatesResponse > {
+        self.client.execute(action: "DescribeEdgeUnitNodeUnitTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘单元EdgeUnit模板列表
+    @inlinable
+    public func describeEdgeUnitNodeUnitTemplates(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitNodeUnitTemplatesResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitNodeUnitTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

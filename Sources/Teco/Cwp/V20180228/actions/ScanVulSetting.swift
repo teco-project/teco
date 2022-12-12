@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 定期扫描漏洞设置
-    @inlinable
-    public func scanVulSetting(_ input: ScanVulSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanVulSettingResponse > {
-        self.client.execute(action: "ScanVulSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 定期扫描漏洞设置
-    @inlinable
-    public func scanVulSetting(_ input: ScanVulSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulSettingResponse {
-        try await self.client.execute(action: "ScanVulSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ScanVulSetting请求参数结构体
     public struct ScanVulSettingRequest: TCRequestModel {
         /// 定期检测间隔时间（天）
@@ -53,7 +41,7 @@ extension Cwp {
         /// 是否开启扫描 1开启 0不开启
         public let enableScan: UInt64?
         
-        public init (timerInterval: UInt64, vulCategories: [UInt64]?, vulLevels: [UInt64]?, timerTime: String?, vulEmergency: UInt64?, startTime: String?, endTime: String?, enableScan: UInt64?) {
+        public init (timerInterval: UInt64, vulCategories: [UInt64]? = nil, vulLevels: [UInt64]? = nil, timerTime: String? = nil, vulEmergency: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, enableScan: UInt64? = nil) {
             self.timerInterval = timerInterval
             self.vulCategories = vulCategories
             self.vulLevels = vulLevels
@@ -84,5 +72,17 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 定期扫描漏洞设置
+    @inlinable
+    public func scanVulSetting(_ input: ScanVulSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanVulSettingResponse > {
+        self.client.execute(action: "ScanVulSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 定期扫描漏洞设置
+    @inlinable
+    public func scanVulSetting(_ input: ScanVulSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulSettingResponse {
+        try await self.client.execute(action: "ScanVulSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

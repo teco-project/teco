@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询Bot托管规则
-    @inlinable
-    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotManagedRulesResponse > {
-        self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Bot托管规则
-    @inlinable
-    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
-        try await self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBotManagedRules请求参数结构体
     public struct DescribeBotManagedRulesRequest: TCRequestModel {
         /// 分页查询偏移量。默认值：0。
@@ -50,7 +38,7 @@ extension Teo {
         /// 模板Id。当使用模板Id时可不填ZoneId和Entity，否则必须填写ZoneId和Entity。
         public let templateId: String?
         
-        public init (offset: Int64, limit: Int64, zoneId: String?, entity: String?, ruleType: String?, templateId: String?) {
+        public init (offset: Int64, limit: Int64, zoneId: String? = nil, entity: String? = nil, ruleType: String? = nil, templateId: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.zoneId = zoneId
@@ -89,5 +77,17 @@ extension Teo {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Bot托管规则
+    @inlinable
+    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotManagedRulesResponse > {
+        self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Bot托管规则
+    @inlinable
+    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
+        try await self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

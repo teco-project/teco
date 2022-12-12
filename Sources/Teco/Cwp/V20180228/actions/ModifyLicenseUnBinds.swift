@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 授权批量解绑
-    ///
-    /// 设置中心-授权管理 对某个授权批量解绑机器
-    @inlinable
-    public func modifyLicenseUnBinds(_ input: ModifyLicenseUnBindsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLicenseUnBindsResponse > {
-        self.client.execute(action: "ModifyLicenseUnBinds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 授权批量解绑
-    ///
-    /// 设置中心-授权管理 对某个授权批量解绑机器
-    @inlinable
-    public func modifyLicenseUnBinds(_ input: ModifyLicenseUnBindsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLicenseUnBindsResponse {
-        try await self.client.execute(action: "ModifyLicenseUnBinds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLicenseUnBinds请求参数结构体
     public struct ModifyLicenseUnBindsRequest: TCRequestModel {
         /// 资源ID
@@ -46,7 +30,7 @@ extension Cwp {
         /// 最大长度=100
         public let quuidList: [String]?
         
-        public init (resourceId: String, licenseType: UInt64, isAll: Bool?, quuidList: [String]?) {
+        public init (resourceId: String, licenseType: UInt64, isAll: Bool? = nil, quuidList: [String]? = nil) {
             self.resourceId = resourceId
             self.licenseType = licenseType
             self.isAll = isAll
@@ -74,5 +58,21 @@ extension Cwp {
             case errMsg = "ErrMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 授权批量解绑
+    ///
+    /// 设置中心-授权管理 对某个授权批量解绑机器
+    @inlinable
+    public func modifyLicenseUnBinds(_ input: ModifyLicenseUnBindsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLicenseUnBindsResponse > {
+        self.client.execute(action: "ModifyLicenseUnBinds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 授权批量解绑
+    ///
+    /// 设置中心-授权管理 对某个授权批量解绑机器
+    @inlinable
+    public func modifyLicenseUnBinds(_ input: ModifyLicenseUnBindsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLicenseUnBindsResponse {
+        try await self.client.execute(action: "ModifyLicenseUnBinds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

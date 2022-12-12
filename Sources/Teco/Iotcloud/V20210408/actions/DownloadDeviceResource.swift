@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 下载设备资源
-    ///
-    /// 本接口（DownloadDeviceResource）用于下载设备资源
-    @inlinable
-    public func downloadDeviceResource(_ input: DownloadDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadDeviceResourceResponse > {
-        self.client.execute(action: "DownloadDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下载设备资源
-    ///
-    /// 本接口（DownloadDeviceResource）用于下载设备资源
-    @inlinable
-    public func downloadDeviceResource(_ input: DownloadDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadDeviceResourceResponse {
-        try await self.client.execute(action: "DownloadDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DownloadDeviceResource请求参数结构体
     public struct DownloadDeviceResourceRequest: TCRequestModel {
         /// 产品ID
@@ -67,5 +51,21 @@ extension Iotcloud {
             case url = "Url"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下载设备资源
+    ///
+    /// 本接口（DownloadDeviceResource）用于下载设备资源
+    @inlinable
+    public func downloadDeviceResource(_ input: DownloadDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadDeviceResourceResponse > {
+        self.client.execute(action: "DownloadDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下载设备资源
+    ///
+    /// 本接口（DownloadDeviceResource）用于下载设备资源
+    @inlinable
+    public func downloadDeviceResource(_ input: DownloadDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadDeviceResourceResponse {
+        try await self.client.execute(action: "DownloadDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

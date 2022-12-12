@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 获取慧眼人脸核身结果
-    ///
-    /// 该接口为第三方平台向电子签平台获取慧眼人脸核身结果
-    @inlinable
-    public func describeFaceIdResults(_ input: DescribeFaceIdResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFaceIdResultsResponse > {
-        self.client.execute(action: "DescribeFaceIdResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取慧眼人脸核身结果
-    ///
-    /// 该接口为第三方平台向电子签平台获取慧眼人脸核身结果
-    @inlinable
-    public func describeFaceIdResults(_ input: DescribeFaceIdResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdResultsResponse {
-        try await self.client.execute(action: "DescribeFaceIdResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFaceIdResults请求参数结构体
     public struct DescribeFaceIdResultsRequest: TCRequestModel {
         /// 调用方信息
@@ -45,7 +29,7 @@ extension Essbasic {
         /// 1:视频+照片,2:照片,3:视频,0（或其他数字）:无; 可选
         public let fileType: Int64?
         
-        public init (caller: Caller, wbAppId: String, orderNumbers: [String], fileType: Int64?) {
+        public init (caller: Caller, wbAppId: String, orderNumbers: [String], fileType: Int64? = nil) {
             self.caller = caller
             self.wbAppId = wbAppId
             self.orderNumbers = orderNumbers
@@ -72,5 +56,21 @@ extension Essbasic {
             case results = "Results"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取慧眼人脸核身结果
+    ///
+    /// 该接口为第三方平台向电子签平台获取慧眼人脸核身结果
+    @inlinable
+    public func describeFaceIdResults(_ input: DescribeFaceIdResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFaceIdResultsResponse > {
+        self.client.execute(action: "DescribeFaceIdResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取慧眼人脸核身结果
+    ///
+    /// 该接口为第三方平台向电子签平台获取慧眼人脸核身结果
+    @inlinable
+    public func describeFaceIdResults(_ input: DescribeFaceIdResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdResultsResponse {
+        try await self.client.execute(action: "DescribeFaceIdResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

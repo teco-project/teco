@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取产品列表
-    ///
-    /// 提供查询某个项目下所有产品信息的能力。
-    @inlinable
-    public func getStudioProductList(_ input: GetStudioProductListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetStudioProductListResponse > {
-        self.client.execute(action: "GetStudioProductList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取产品列表
-    ///
-    /// 提供查询某个项目下所有产品信息的能力。
-    @inlinable
-    public func getStudioProductList(_ input: GetStudioProductListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetStudioProductListResponse {
-        try await self.client.execute(action: "GetStudioProductList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetStudioProductList请求参数结构体
     public struct GetStudioProductListRequest: TCRequestModel {
         /// 项目ID
@@ -45,7 +29,7 @@ extension Iotexplorer {
         /// 数量限制
         public let limit: UInt64?
         
-        public init (projectId: String?, devStatus: String?, offset: UInt64?, limit: UInt64?) {
+        public init (projectId: String? = nil, devStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.projectId = projectId
             self.devStatus = devStatus
             self.offset = offset
@@ -76,5 +60,21 @@ extension Iotexplorer {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取产品列表
+    ///
+    /// 提供查询某个项目下所有产品信息的能力。
+    @inlinable
+    public func getStudioProductList(_ input: GetStudioProductListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetStudioProductListResponse > {
+        self.client.execute(action: "GetStudioProductList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品列表
+    ///
+    /// 提供查询某个项目下所有产品信息的能力。
+    @inlinable
+    public func getStudioProductList(_ input: GetStudioProductListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetStudioProductListResponse {
+        try await self.client.execute(action: "GetStudioProductList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

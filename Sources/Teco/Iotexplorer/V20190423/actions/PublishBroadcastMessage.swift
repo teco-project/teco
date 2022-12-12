@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 发布广播消息
-    @inlinable
-    public func publishBroadcastMessage(_ input: PublishBroadcastMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishBroadcastMessageResponse > {
-        self.client.execute(action: "PublishBroadcastMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发布广播消息
-    @inlinable
-    public func publishBroadcastMessage(_ input: PublishBroadcastMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishBroadcastMessageResponse {
-        try await self.client.execute(action: "PublishBroadcastMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PublishBroadcastMessage请求参数结构体
     public struct PublishBroadcastMessageRequest: TCRequestModel {
         /// 产品ID
@@ -41,7 +29,7 @@ extension Iotexplorer {
         /// ayload内容的编码格式，取值为base64或空。base64表示云端将收到的请求数据进行base64解码后下发到设备，空则直接将原始内容下发到设备
         public let payloadEncoding: String?
         
-        public init (productId: String, payload: String, qos: Int64, payloadEncoding: String?) {
+        public init (productId: String, payload: String, qos: Int64, payloadEncoding: String? = nil) {
             self.productId = productId
             self.payload = payload
             self.qos = qos
@@ -68,5 +56,17 @@ extension Iotexplorer {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发布广播消息
+    @inlinable
+    public func publishBroadcastMessage(_ input: PublishBroadcastMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishBroadcastMessageResponse > {
+        self.client.execute(action: "PublishBroadcastMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发布广播消息
+    @inlinable
+    public func publishBroadcastMessage(_ input: PublishBroadcastMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishBroadcastMessageResponse {
+        try await self.client.execute(action: "PublishBroadcastMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

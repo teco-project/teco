@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Mmps {
-    /// 创建小程序隐私合规诊断任务
-    @inlinable
-    public func createAppScanTask(_ input: CreateAppScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppScanTaskResponse > {
-        self.client.execute(action: "CreateAppScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建小程序隐私合规诊断任务
-    @inlinable
-    public func createAppScanTask(_ input: CreateAppScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskResponse {
-        try await self.client.execute(action: "CreateAppScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAppScanTask请求参数结构体
     public struct CreateAppScanTaskRequest: TCRequestModel {
         /// 任务类型, 0:基础版, 1:专家版, 2:本地化
@@ -62,7 +50,7 @@ extension Mmps {
         /// 公司邮箱
         public let email: String?
         
-        public init (taskType: Int64, source: Int64, appPackage: String, platform: Int64, appName: String?, appVersion: String?, contactName: String?, telNumber: String?, corpName: String?, salesPerson: String?, email: String?) {
+        public init (taskType: Int64, source: Int64, appPackage: String, platform: Int64, appName: String? = nil, appVersion: String? = nil, contactName: String? = nil, telNumber: String? = nil, corpName: String? = nil, salesPerson: String? = nil, email: String? = nil) {
             self.taskType = taskType
             self.source = source
             self.appPackage = appPackage
@@ -107,5 +95,17 @@ extension Mmps {
             case taskID = "TaskID"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建小程序隐私合规诊断任务
+    @inlinable
+    public func createAppScanTask(_ input: CreateAppScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppScanTaskResponse > {
+        self.client.execute(action: "CreateAppScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建小程序隐私合规诊断任务
+    @inlinable
+    public func createAppScanTask(_ input: CreateAppScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskResponse {
+        try await self.client.execute(action: "CreateAppScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

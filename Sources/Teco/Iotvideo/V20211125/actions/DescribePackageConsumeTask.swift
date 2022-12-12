@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 查询套餐消耗记录详情
-    @inlinable
-    public func describePackageConsumeTask(_ input: DescribePackageConsumeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePackageConsumeTaskResponse > {
-        self.client.execute(action: "DescribePackageConsumeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询套餐消耗记录详情
-    @inlinable
-    public func describePackageConsumeTask(_ input: DescribePackageConsumeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackageConsumeTaskResponse {
-        try await self.client.execute(action: "DescribePackageConsumeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePackageConsumeTask请求参数结构体
     public struct DescribePackageConsumeTaskRequest: TCRequestModel {
         /// 任务id
@@ -53,5 +41,17 @@ extension Iotvideo {
             case url = "URL"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询套餐消耗记录详情
+    @inlinable
+    public func describePackageConsumeTask(_ input: DescribePackageConsumeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePackageConsumeTaskResponse > {
+        self.client.execute(action: "DescribePackageConsumeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询套餐消耗记录详情
+    @inlinable
+    public func describePackageConsumeTask(_ input: DescribePackageConsumeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackageConsumeTaskResponse {
+        try await self.client.execute(action: "DescribePackageConsumeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gs {
-    /// 尝试锁定机器
-    @inlinable
-    public func trylockWorker(_ input: TrylockWorkerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TrylockWorkerResponse > {
-        self.client.execute(action: "TrylockWorker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 尝试锁定机器
-    @inlinable
-    public func trylockWorker(_ input: TrylockWorkerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TrylockWorkerResponse {
-        try await self.client.execute(action: "TrylockWorker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TrylockWorker请求参数结构体
     public struct TrylockWorkerRequest: TCRequestModel {
         /// 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
@@ -47,7 +35,7 @@ extension Gs {
         /// 分组ID
         public let groupId: String?
         
-        public init (userId: String, gameId: String, gameRegion: String?, setNo: UInt64?, userIp: String?, groupId: String?) {
+        public init (userId: String, gameId: String, gameRegion: String? = nil, setNo: UInt64? = nil, userIp: String? = nil, groupId: String? = nil) {
             self.userId = userId
             self.gameId = gameId
             self.gameRegion = gameRegion
@@ -74,5 +62,17 @@ extension Gs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 尝试锁定机器
+    @inlinable
+    public func trylockWorker(_ input: TrylockWorkerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TrylockWorkerResponse > {
+        self.client.execute(action: "TrylockWorker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 尝试锁定机器
+    @inlinable
+    public func trylockWorker(_ input: TrylockWorkerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TrylockWorkerResponse {
+        try await self.client.execute(action: "TrylockWorker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

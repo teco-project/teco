@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 标签关联批量资源
-    ///
-    /// 给多个资源关联某个标签
-    @inlinable
-    public func attachResourcesTag(_ input: AttachResourcesTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachResourcesTagResponse > {
-        self.client.execute(action: "AttachResourcesTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 标签关联批量资源
-    ///
-    /// 给多个资源关联某个标签
-    @inlinable
-    public func attachResourcesTag(_ input: AttachResourcesTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachResourcesTagResponse {
-        try await self.client.execute(action: "AttachResourcesTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AttachResourcesTag请求参数结构体
     public struct AttachResourcesTagRequest: TCRequestModel {
         /// 资源所属业务名称（资源六段式中的第三段）
@@ -51,7 +35,7 @@ extension Tag {
         /// 资源前缀（资源六段式中最后一段"/"前面的部分），cos存储桶不需要传入该字段，其他云资源必填
         public let resourcePrefix: String?
         
-        public init (serviceType: String, resourceIds: [String], tagKey: String, tagValue: String, resourceRegion: String?, resourcePrefix: String?) {
+        public init (serviceType: String, resourceIds: [String], tagKey: String, tagValue: String, resourceRegion: String? = nil, resourcePrefix: String? = nil) {
             self.serviceType = serviceType
             self.resourceIds = resourceIds
             self.tagKey = tagKey
@@ -78,5 +62,21 @@ extension Tag {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 标签关联批量资源
+    ///
+    /// 给多个资源关联某个标签
+    @inlinable
+    public func attachResourcesTag(_ input: AttachResourcesTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachResourcesTagResponse > {
+        self.client.execute(action: "AttachResourcesTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 标签关联批量资源
+    ///
+    /// 给多个资源关联某个标签
+    @inlinable
+    public func attachResourcesTag(_ input: AttachResourcesTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachResourcesTagResponse {
+        try await self.client.execute(action: "AttachResourcesTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

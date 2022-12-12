@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 修改子应用状态
-    ///
-    /// 该接口用于启用、停用子应用。被停用的子应用将封停对应域名，并限制控制台访问。
-    @inlinable
-    public func modifySubAppIdStatus(_ input: ModifySubAppIdStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubAppIdStatusResponse > {
-        self.client.execute(action: "ModifySubAppIdStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改子应用状态
-    ///
-    /// 该接口用于启用、停用子应用。被停用的子应用将封停对应域名，并限制控制台访问。
-    @inlinable
-    public func modifySubAppIdStatus(_ input: ModifySubAppIdStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubAppIdStatusResponse {
-        try await self.client.execute(action: "ModifySubAppIdStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySubAppIdStatus请求参数结构体
     public struct ModifySubAppIdStatusRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -62,5 +46,21 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改子应用状态
+    ///
+    /// 该接口用于启用、停用子应用。被停用的子应用将封停对应域名，并限制控制台访问。
+    @inlinable
+    public func modifySubAppIdStatus(_ input: ModifySubAppIdStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubAppIdStatusResponse > {
+        self.client.execute(action: "ModifySubAppIdStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改子应用状态
+    ///
+    /// 该接口用于启用、停用子应用。被停用的子应用将封停对应域名，并限制控制台访问。
+    @inlinable
+    public func modifySubAppIdStatus(_ input: ModifySubAppIdStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubAppIdStatusResponse {
+        try await self.client.execute(action: "ModifySubAppIdStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

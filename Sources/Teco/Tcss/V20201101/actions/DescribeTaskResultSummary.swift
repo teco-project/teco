@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询检查结果总览
-    ///
-    /// 查询检查结果总览，返回受影响的节点数量，返回7天的数据，总共7个
-    @inlinable
-    public func describeTaskResultSummary(_ input: DescribeTaskResultSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResultSummaryResponse > {
-        self.client.execute(action: "DescribeTaskResultSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询检查结果总览
-    ///
-    /// 查询检查结果总览，返回受影响的节点数量，返回7天的数据，总共7个
-    @inlinable
-    public func describeTaskResultSummary(_ input: DescribeTaskResultSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultSummaryResponse {
-        try await self.client.execute(action: "DescribeTaskResultSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskResultSummary请求参数结构体
     public struct DescribeTaskResultSummaryRequest: TCRequestModel {
         public init () {
@@ -61,5 +45,21 @@ extension Tcss {
             case hintRiskNodeCount = "HintRiskNodeCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询检查结果总览
+    ///
+    /// 查询检查结果总览，返回受影响的节点数量，返回7天的数据，总共7个
+    @inlinable
+    public func describeTaskResultSummary(_ input: DescribeTaskResultSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResultSummaryResponse > {
+        self.client.execute(action: "DescribeTaskResultSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询检查结果总览
+    ///
+    /// 查询检查结果总览，返回受影响的节点数量，返回7天的数据，总共7个
+    @inlinable
+    public func describeTaskResultSummary(_ input: DescribeTaskResultSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultSummaryResponse {
+        try await self.client.execute(action: "DescribeTaskResultSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

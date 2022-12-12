@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取数据库信息
-    @inlinable
-    public func describeDatabaseInfoList(_ input: DescribeDatabaseInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabaseInfoListResponse > {
-        self.client.execute(action: "DescribeDatabaseInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取数据库信息
-    @inlinable
-    public func describeDatabaseInfoList(_ input: DescribeDatabaseInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseInfoListResponse {
-        try await self.client.execute(action: "DescribeDatabaseInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDatabaseInfoList请求参数结构体
     public struct DescribeDatabaseInfoListRequest: TCRequestModel {
         /// 如果是hive这里写rpc，如果是其他类型不传
@@ -49,5 +37,17 @@ extension Wedata {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取数据库信息
+    @inlinable
+    public func describeDatabaseInfoList(_ input: DescribeDatabaseInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabaseInfoListResponse > {
+        self.client.execute(action: "DescribeDatabaseInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取数据库信息
+    @inlinable
+    public func describeDatabaseInfoList(_ input: DescribeDatabaseInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseInfoListResponse {
+        try await self.client.execute(action: "DescribeDatabaseInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ciam {
-    /// 查询用户列表
-    @inlinable
-    public func listUser(_ input: ListUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUserResponse > {
-        self.client.execute(action: "ListUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户列表
-    @inlinable
-    public func listUser(_ input: ListUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserResponse {
-        try await self.client.execute(action: "ListUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListUser请求参数结构体
     public struct ListUserRequest: TCRequestModel {
         /// 用户目录ID
@@ -43,7 +31,7 @@ extension Ciam {
         /// 返回信息是否为原文
         public let original: Bool?
         
-        public init (userStoreId: String, pageable: Pageable, filters: [Filter]?, original: Bool?) {
+        public init (userStoreId: String, pageable: Pageable, filters: [Filter]? = nil, original: Bool? = nil) {
             self.userStoreId = userStoreId
             self.pageable = pageable
             self.filters = filters
@@ -66,7 +54,7 @@ extension Ciam {
         
         /// 分页对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pageable: Pageable
+        public let pageable: Pageable?
         
         /// 用户列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -81,5 +69,17 @@ extension Ciam {
             case content = "Content"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户列表
+    @inlinable
+    public func listUser(_ input: ListUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUserResponse > {
+        self.client.execute(action: "ListUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户列表
+    @inlinable
+    public func listUser(_ input: ListUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserResponse {
+        try await self.client.execute(action: "ListUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

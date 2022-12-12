@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取告警列表
-    @inlinable
-    public func describeWarnings(_ input: DescribeWarningsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWarningsResponse > {
-        self.client.execute(action: "DescribeWarnings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取告警列表
-    @inlinable
-    public func describeWarnings(_ input: DescribeWarningsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningsResponse {
-        try await self.client.execute(action: "DescribeWarnings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWarnings请求参数结构体
     public struct DescribeWarningsRequest: TCRequestModel {
         /// 1:创建时间倒序 2：创建时间升序 3：level倒序 4：leve升序
@@ -53,7 +41,7 @@ extension Iotvideoindustry {
         /// 形似：2021-05-21 23:59:59 .取值在当前日前30天内，不传默认是当前日前30天日期
         public let dateEnd: String?
         
-        public init (orderType: Int64, deviceId: String?, warnLevelArray: [Int64]?, warnModeArray: [Int64]?, offset: Int64?, limit: Int64?, dateBegin: String?, dateEnd: String?) {
+        public init (orderType: Int64, deviceId: String? = nil, warnLevelArray: [Int64]? = nil, warnModeArray: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, dateBegin: String? = nil, dateEnd: String? = nil) {
             self.orderType = orderType
             self.deviceId = deviceId
             self.warnLevelArray = warnLevelArray
@@ -94,5 +82,17 @@ extension Iotvideoindustry {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取告警列表
+    @inlinable
+    public func describeWarnings(_ input: DescribeWarningsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWarningsResponse > {
+        self.client.execute(action: "DescribeWarnings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取告警列表
+    @inlinable
+    public func describeWarnings(_ input: DescribeWarningsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningsResponse {
+        try await self.client.execute(action: "DescribeWarnings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 创建VPC
-    ///
-    /// 创建私有网络
-    @inlinable
-    public func createVpc(_ input: CreateVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpcResponse > {
-        self.client.execute(action: "CreateVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建VPC
-    ///
-    /// 创建私有网络
-    @inlinable
-    public func createVpc(_ input: CreateVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {
-        try await self.client.execute(action: "CreateVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVpc请求参数结构体
     public struct CreateVpcRequest: TCRequestModel {
         /// vpc名称，最大长度不能超过60个字节。
@@ -57,7 +41,7 @@ extension Ecm {
         /// 描述信息
         public let description: String?
         
-        public init (vpcName: String, cidrBlock: String, ecmRegion: String, enableMulticast: String?, dnsServers: [String]?, domainName: String?, tags: [Tag]?, description: String?) {
+        public init (vpcName: String, cidrBlock: String, ecmRegion: String, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil, tags: [Tag]? = nil, description: String? = nil) {
             self.vpcName = vpcName
             self.cidrBlock = cidrBlock
             self.ecmRegion = ecmRegion
@@ -92,5 +76,21 @@ extension Ecm {
             case vpc = "Vpc"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建VPC
+    ///
+    /// 创建私有网络
+    @inlinable
+    public func createVpc(_ input: CreateVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpcResponse > {
+        self.client.execute(action: "CreateVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建VPC
+    ///
+    /// 创建私有网络
+    @inlinable
+    public func createVpc(_ input: CreateVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {
+        try await self.client.execute(action: "CreateVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

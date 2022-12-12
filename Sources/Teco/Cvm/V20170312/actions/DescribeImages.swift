@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查看镜像列表
-    ///
-    /// 本接口(DescribeImages) 用于查看镜像列表。
-    /// * 可以通过指定镜像ID来查询指定镜像的详细信息，或通过设定过滤器来查询满足过滤条件的镜像的详细信息。
-    /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
-    @inlinable
-    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
-        self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看镜像列表
-    ///
-    /// 本接口(DescribeImages) 用于查看镜像列表。
-    /// * 可以通过指定镜像ID来查询指定镜像的详细信息，或通过设定过滤器来查询满足过滤条件的镜像的详细信息。
-    /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
-    @inlinable
-    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
-        try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImages请求参数结构体
     public struct DescribeImagesRequest: TCRequestModel {
         /// 镜像ID列表 。镜像ID如：`img-gvbnzy6f`。array型参数的格式可以参考[API简介](https://cloud.tencent.com/document/api/213/15688)。镜像ID可以通过如下方式获取：<br><li>通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回的`ImageId`获取。<br><li>通过[镜像控制台](https://console.cloud.tencent.com/cvm/image)获取。
@@ -66,7 +46,7 @@ extension Cvm {
         /// 实例类型，如 `S1.SMALL1`
         public let instanceType: String?
         
-        public init (imageIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?, instanceType: String?) {
+        public init (imageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, instanceType: String? = nil) {
             self.imageIds = imageIds
             self.filters = filters
             self.offset = offset
@@ -99,5 +79,25 @@ extension Cvm {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看镜像列表
+    ///
+    /// 本接口(DescribeImages) 用于查看镜像列表。
+    /// * 可以通过指定镜像ID来查询指定镜像的详细信息，或通过设定过滤器来查询满足过滤条件的镜像的详细信息。
+    /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
+    @inlinable
+    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
+        self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看镜像列表
+    ///
+    /// 本接口(DescribeImages) 用于查看镜像列表。
+    /// * 可以通过指定镜像ID来查询指定镜像的详细信息，或通过设定过滤器来查询满足过滤条件的镜像的详细信息。
+    /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
+    @inlinable
+    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
+        try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

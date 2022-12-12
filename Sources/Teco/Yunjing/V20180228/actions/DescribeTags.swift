@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取所有主机标签
-    @inlinable
-    public func describeTags(_ input: DescribeTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagsResponse > {
-        self.client.execute(action: "DescribeTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取所有主机标签
-    @inlinable
-    public func describeTags(_ input: DescribeTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsResponse {
-        try await self.client.execute(action: "DescribeTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTags请求参数结构体
     public struct DescribeTagsRequest: TCRequestModel {
         /// 云主机类型。
@@ -37,7 +25,7 @@ extension Yunjing {
         /// 机器所属地域。如：ap-guangzhou，ap-shanghai
         public let machineRegion: String?
         
-        public init (machineType: String?, machineRegion: String?) {
+        public init (machineType: String? = nil, machineRegion: String? = nil) {
             self.machineType = machineType
             self.machineRegion = machineRegion
         }
@@ -60,5 +48,17 @@ extension Yunjing {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取所有主机标签
+    @inlinable
+    public func describeTags(_ input: DescribeTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagsResponse > {
+        self.client.execute(action: "DescribeTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取所有主机标签
+    @inlinable
+    public func describeTags(_ input: DescribeTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsResponse {
+        try await self.client.execute(action: "DescribeTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 新建表格组
-    ///
-    /// 在TcaplusDB集群下创建表格组
-    @inlinable
-    public func createTableGroup(_ input: CreateTableGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTableGroupResponse > {
-        self.client.execute(action: "CreateTableGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建表格组
-    ///
-    /// 在TcaplusDB集群下创建表格组
-    @inlinable
-    public func createTableGroup(_ input: CreateTableGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableGroupResponse {
-        try await self.client.execute(action: "CreateTableGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTableGroup请求参数结构体
     public struct CreateTableGroupRequest: TCRequestModel {
         /// 表格组所属集群ID
@@ -45,7 +29,7 @@ extension Tcaplusdb {
         /// 表格组标签列表
         public let resourceTags: [TagInfoUnit]?
         
-        public init (clusterId: String, tableGroupName: String, tableGroupId: String?, resourceTags: [TagInfoUnit]?) {
+        public init (clusterId: String, tableGroupName: String, tableGroupId: String? = nil, resourceTags: [TagInfoUnit]? = nil) {
             self.clusterId = clusterId
             self.tableGroupName = tableGroupName
             self.tableGroupId = tableGroupId
@@ -72,5 +56,21 @@ extension Tcaplusdb {
             case tableGroupId = "TableGroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建表格组
+    ///
+    /// 在TcaplusDB集群下创建表格组
+    @inlinable
+    public func createTableGroup(_ input: CreateTableGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTableGroupResponse > {
+        self.client.execute(action: "CreateTableGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建表格组
+    ///
+    /// 在TcaplusDB集群下创建表格组
+    @inlinable
+    public func createTableGroup(_ input: CreateTableGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableGroupResponse {
+        try await self.client.execute(action: "CreateTableGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

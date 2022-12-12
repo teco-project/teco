@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Acp {
-    /// 应用合规隐私诊断重试任务
-    ///
-    /// App应用合规隐私诊断重试任务
-    @inlinable
-    public func createAppScanTaskRepeat(_ input: CreateAppScanTaskRepeatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppScanTaskRepeatResponse > {
-        self.client.execute(action: "CreateAppScanTaskRepeat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 应用合规隐私诊断重试任务
-    ///
-    /// App应用合规隐私诊断重试任务
-    @inlinable
-    public func createAppScanTaskRepeat(_ input: CreateAppScanTaskRepeatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskRepeatResponse {
-        try await self.client.execute(action: "CreateAppScanTaskRepeat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAppScanTaskRepeat请求参数结构体
     public struct CreateAppScanTaskRepeatRequest: TCRequestModel {
         /// 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android), 3:app漏洞扫描;
@@ -69,7 +53,7 @@ extension Acp {
         /// 隐私申明文本md5(AppSha1不为空时必填)
         public let privacyTextMD5: String?
         
-        public init (source: Int64, platform: Int64, taskType: Int64, orgTaskID: String, appPackage: String?, fileID: String?, appDownloadUrl: String?, privacyTextUrl: String?, appName: String?, privacyTextName: String?, appSha1: String?, privacyTextMD5: String?) {
+        public init (source: Int64, platform: Int64, taskType: Int64, orgTaskID: String, appPackage: String? = nil, fileID: String? = nil, appDownloadUrl: String? = nil, privacyTextUrl: String? = nil, appName: String? = nil, privacyTextName: String? = nil, appSha1: String? = nil, privacyTextMD5: String? = nil) {
             self.source = source
             self.platform = platform
             self.taskType = taskType
@@ -116,5 +100,21 @@ extension Acp {
             case taskID = "TaskID"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 应用合规隐私诊断重试任务
+    ///
+    /// App应用合规隐私诊断重试任务
+    @inlinable
+    public func createAppScanTaskRepeat(_ input: CreateAppScanTaskRepeatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppScanTaskRepeatResponse > {
+        self.client.execute(action: "CreateAppScanTaskRepeat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 应用合规隐私诊断重试任务
+    ///
+    /// App应用合规隐私诊断重试任务
+    @inlinable
+    public func createAppScanTaskRepeat(_ input: CreateAppScanTaskRepeatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskRepeatResponse {
+        try await self.client.execute(action: "CreateAppScanTaskRepeat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Lowcode {
-    /// 获取数据源详情列表
-    @inlinable
-    public func describeDataSourceList(_ input: DescribeDataSourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataSourceListResponse > {
-        self.client.execute(action: "DescribeDataSourceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取数据源详情列表
-    @inlinable
-    public func describeDataSourceList(_ input: DescribeDataSourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceListResponse {
-        try await self.client.execute(action: "DescribeDataSourceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDataSourceList请求参数结构体
     public struct DescribeDataSourceListRequest: TCRequestModel {
         /// 每页条数
@@ -51,7 +39,7 @@ extension Lowcode {
         public let dataSourceType: String?
         
         /// 数据源模糊查询参数
-        public let queryOption: DataSourceQueryOption
+        public let queryOption: DataSourceQueryOption?
         
         /// 数据源视图Id数组
         public let viewIds: [String]?
@@ -68,7 +56,7 @@ extension Lowcode {
         /// 查询数据源黑名单机制，比如不想要系统数据源["system"]
         public let notQuerySubTypeList: [String]?
         
-        public init (pageSize: Int64, pageIndex: Int64, envId: String, appids: [String]?, dataSourceIds: [String]?, dataSourceNames: [String]?, dataSourceType: String?, queryOption: DataSourceQueryOption, viewIds: [String]?, appLinkStatus: Int64?, queryBindToApp: Int64?, queryConnector: Int64?, notQuerySubTypeList: [String]?) {
+        public init (pageSize: Int64, pageIndex: Int64, envId: String, appids: [String]? = nil, dataSourceIds: [String]? = nil, dataSourceNames: [String]? = nil, dataSourceType: String? = nil, queryOption: DataSourceQueryOption? = nil, viewIds: [String]? = nil, appLinkStatus: Int64? = nil, queryBindToApp: Int64? = nil, queryConnector: Int64? = nil, notQuerySubTypeList: [String]? = nil) {
             self.pageSize = pageSize
             self.pageIndex = pageIndex
             self.envId = envId
@@ -113,5 +101,17 @@ extension Lowcode {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取数据源详情列表
+    @inlinable
+    public func describeDataSourceList(_ input: DescribeDataSourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataSourceListResponse > {
+        self.client.execute(action: "DescribeDataSourceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取数据源详情列表
+    @inlinable
+    public func describeDataSourceList(_ input: DescribeDataSourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceListResponse {
+        try await self.client.execute(action: "DescribeDataSourceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

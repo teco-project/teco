@@ -15,34 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 绑定弹性公网IP
-    ///
-    /// 本接口 (AssociateAddress) 用于将[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）绑定到实例或弹性网卡的指定内网 IP 上。
-    /// * 将 EIP 绑定到实例（CVM）上，其本质是将 EIP 绑定到实例上主网卡的主内网 IP 上。
-    /// * 将 EIP 绑定到主网卡的主内网IP上，绑定过程会把其上绑定的普通公网 IP 自动解绑并释放。
-    /// * 将 EIP 绑定到指定网卡的内网 IP上（非主网卡的主内网IP），则必须先解绑该 EIP，才能再绑定新的。
-    /// * 将 EIP 绑定到NAT网关，请使用接口[AssociateNatGatewayAddress](https://cloud.tencent.com/document/product/215/36722)
-    /// * EIP 如果欠费或被封堵，则不能被绑定。
-    /// * 只有状态为 UNBIND 的 EIP 才能够被绑定。
-    @inlinable
-    public func associateAddress(_ input: AssociateAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateAddressResponse > {
-        self.client.execute(action: "AssociateAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定弹性公网IP
-    ///
-    /// 本接口 (AssociateAddress) 用于将[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）绑定到实例或弹性网卡的指定内网 IP 上。
-    /// * 将 EIP 绑定到实例（CVM）上，其本质是将 EIP 绑定到实例上主网卡的主内网 IP 上。
-    /// * 将 EIP 绑定到主网卡的主内网IP上，绑定过程会把其上绑定的普通公网 IP 自动解绑并释放。
-    /// * 将 EIP 绑定到指定网卡的内网 IP上（非主网卡的主内网IP），则必须先解绑该 EIP，才能再绑定新的。
-    /// * 将 EIP 绑定到NAT网关，请使用接口[AssociateNatGatewayAddress](https://cloud.tencent.com/document/product/215/36722)
-    /// * EIP 如果欠费或被封堵，则不能被绑定。
-    /// * 只有状态为 UNBIND 的 EIP 才能够被绑定。
-    @inlinable
-    public func associateAddress(_ input: AssociateAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAddressResponse {
-        try await self.client.execute(action: "AssociateAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssociateAddress请求参数结构体
     public struct AssociateAddressRequest: TCRequestModel {
         /// 标识 EIP 的唯一 ID。EIP 唯一 ID 形如：`eip-11112222`。
@@ -60,7 +32,7 @@ extension Vpc {
         /// 指定绑定时是否设置直通。弹性公网 IP 直通请参见 [EIP 直通](https://cloud.tencent.com/document/product/1199/41709)。取值：True、False，默认值为 False。当绑定 CVM 实例、EKS 弹性集群时，可设定此参数为 True。此参数目前处于内测中，如需使用，请提交 [工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=163&source=0&data_title=%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%20CLB&level3_id=1071&queue=96&scene_code=34639&step=2)。
         public let eipDirectConnection: Bool?
         
-        public init (addressId: String, instanceId: String?, networkInterfaceId: String?, privateIpAddress: String?, eipDirectConnection: Bool?) {
+        public init (addressId: String, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, eipDirectConnection: Bool? = nil) {
             self.addressId = addressId
             self.instanceId = instanceId
             self.networkInterfaceId = networkInterfaceId
@@ -89,5 +61,33 @@ extension Vpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定弹性公网IP
+    ///
+    /// 本接口 (AssociateAddress) 用于将[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）绑定到实例或弹性网卡的指定内网 IP 上。
+    /// * 将 EIP 绑定到实例（CVM）上，其本质是将 EIP 绑定到实例上主网卡的主内网 IP 上。
+    /// * 将 EIP 绑定到主网卡的主内网IP上，绑定过程会把其上绑定的普通公网 IP 自动解绑并释放。
+    /// * 将 EIP 绑定到指定网卡的内网 IP上（非主网卡的主内网IP），则必须先解绑该 EIP，才能再绑定新的。
+    /// * 将 EIP 绑定到NAT网关，请使用接口[AssociateNatGatewayAddress](https://cloud.tencent.com/document/product/215/36722)
+    /// * EIP 如果欠费或被封堵，则不能被绑定。
+    /// * 只有状态为 UNBIND 的 EIP 才能够被绑定。
+    @inlinable
+    public func associateAddress(_ input: AssociateAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateAddressResponse > {
+        self.client.execute(action: "AssociateAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定弹性公网IP
+    ///
+    /// 本接口 (AssociateAddress) 用于将[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）绑定到实例或弹性网卡的指定内网 IP 上。
+    /// * 将 EIP 绑定到实例（CVM）上，其本质是将 EIP 绑定到实例上主网卡的主内网 IP 上。
+    /// * 将 EIP 绑定到主网卡的主内网IP上，绑定过程会把其上绑定的普通公网 IP 自动解绑并释放。
+    /// * 将 EIP 绑定到指定网卡的内网 IP上（非主网卡的主内网IP），则必须先解绑该 EIP，才能再绑定新的。
+    /// * 将 EIP 绑定到NAT网关，请使用接口[AssociateNatGatewayAddress](https://cloud.tencent.com/document/product/215/36722)
+    /// * EIP 如果欠费或被封堵，则不能被绑定。
+    /// * 只有状态为 UNBIND 的 EIP 才能够被绑定。
+    @inlinable
+    public func associateAddress(_ input: AssociateAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAddressResponse {
+        try await self.client.execute(action: "AssociateAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

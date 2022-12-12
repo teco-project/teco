@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 从服务环境解绑使用计划
-    ///
-    /// 本接口（UnBindEnvironment）用于将使用计划从特定环境解绑。
-    @inlinable
-    public func unBindEnvironment(_ input: UnBindEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindEnvironmentResponse > {
-        self.client.execute(action: "UnBindEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 从服务环境解绑使用计划
-    ///
-    /// 本接口（UnBindEnvironment）用于将使用计划从特定环境解绑。
-    @inlinable
-    public func unBindEnvironment(_ input: UnBindEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindEnvironmentResponse {
-        try await self.client.execute(action: "UnBindEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnBindEnvironment请求参数结构体
     public struct UnBindEnvironmentRequest: TCRequestModel {
         /// 绑定类型，取值为 API、SERVICE，默认值为 SERVICE。
@@ -48,7 +32,7 @@ extension Apigateway {
         /// API 唯一 ID 数组，当 BindType=API 时，需要传入此参数。
         public let apiIds: [String]?
         
-        public init (bindType: String, usagePlanIds: [String], environment: String, serviceId: String, apiIds: [String]?) {
+        public init (bindType: String, usagePlanIds: [String], environment: String, serviceId: String, apiIds: [String]? = nil) {
             self.bindType = bindType
             self.usagePlanIds = usagePlanIds
             self.environment = environment
@@ -78,5 +62,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 从服务环境解绑使用计划
+    ///
+    /// 本接口（UnBindEnvironment）用于将使用计划从特定环境解绑。
+    @inlinable
+    public func unBindEnvironment(_ input: UnBindEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindEnvironmentResponse > {
+        self.client.execute(action: "UnBindEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 从服务环境解绑使用计划
+    ///
+    /// 本接口（UnBindEnvironment）用于将使用计划从特定环境解绑。
+    @inlinable
+    public func unBindEnvironment(_ input: UnBindEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindEnvironmentResponse {
+        try await self.client.execute(action: "UnBindEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

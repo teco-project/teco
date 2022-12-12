@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 查询Binlog下载地址
-    ///
-    /// 此接口（DescribeBinlogDownloadUrl）用于查询Binlog的下载地址。
-    @inlinable
-    public func describeBinlogDownloadUrl(_ input: DescribeBinlogDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBinlogDownloadUrlResponse > {
-        self.client.execute(action: "DescribeBinlogDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Binlog下载地址
-    ///
-    /// 此接口（DescribeBinlogDownloadUrl）用于查询Binlog的下载地址。
-    @inlinable
-    public func describeBinlogDownloadUrl(_ input: DescribeBinlogDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogDownloadUrlResponse {
-        try await self.client.execute(action: "DescribeBinlogDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBinlogDownloadUrl请求参数结构体
     public struct DescribeBinlogDownloadUrlRequest: TCRequestModel {
         /// 集群ID
@@ -62,5 +46,21 @@ extension Cynosdb {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Binlog下载地址
+    ///
+    /// 此接口（DescribeBinlogDownloadUrl）用于查询Binlog的下载地址。
+    @inlinable
+    public func describeBinlogDownloadUrl(_ input: DescribeBinlogDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBinlogDownloadUrlResponse > {
+        self.client.execute(action: "DescribeBinlogDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Binlog下载地址
+    ///
+    /// 此接口（DescribeBinlogDownloadUrl）用于查询Binlog的下载地址。
+    @inlinable
+    public func describeBinlogDownloadUrl(_ input: DescribeBinlogDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogDownloadUrlResponse {
+        try await self.client.execute(action: "DescribeBinlogDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

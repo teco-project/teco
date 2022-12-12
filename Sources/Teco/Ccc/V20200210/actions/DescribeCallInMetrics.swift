@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 获取呼入实时数据统计指标
-    @inlinable
-    public func describeCallInMetrics(_ input: DescribeCallInMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallInMetricsResponse > {
-        self.client.execute(action: "DescribeCallInMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取呼入实时数据统计指标
-    @inlinable
-    public func describeCallInMetrics(_ input: DescribeCallInMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallInMetricsResponse {
-        try await self.client.execute(action: "DescribeCallInMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCallInMetrics请求参数结构体
     public struct DescribeCallInMetricsRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -38,7 +26,7 @@ extension Ccc {
         /// 是否返回线路维度信息，默认“否”
         public let enabledNumber: Bool?
         
-        public init (sdkAppId: Int64, enabledSkillGroup: Bool?, enabledNumber: Bool?) {
+        public init (sdkAppId: Int64, enabledSkillGroup: Bool? = nil, enabledNumber: Bool? = nil) {
             self.sdkAppId = sdkAppId
             self.enabledSkillGroup = enabledSkillGroup
             self.enabledNumber = enabledNumber
@@ -77,5 +65,17 @@ extension Ccc {
             case skillGroupMetrics = "SkillGroupMetrics"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取呼入实时数据统计指标
+    @inlinable
+    public func describeCallInMetrics(_ input: DescribeCallInMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallInMetricsResponse > {
+        self.client.execute(action: "DescribeCallInMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取呼入实时数据统计指标
+    @inlinable
+    public func describeCallInMetrics(_ input: DescribeCallInMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallInMetricsResponse {
+        try await self.client.execute(action: "DescribeCallInMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

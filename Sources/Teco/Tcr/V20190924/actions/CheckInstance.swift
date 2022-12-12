@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 校验实例信息
-    ///
-    /// 用于校验企业版实例信息
-    @inlinable
-    public func checkInstance(_ input: CheckInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckInstanceResponse > {
-        self.client.execute(action: "CheckInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 校验实例信息
-    ///
-    /// 用于校验企业版实例信息
-    @inlinable
-    public func checkInstance(_ input: CheckInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceResponse {
-        try await self.client.execute(action: "CheckInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckInstance请求参数结构体
     public struct CheckInstanceRequest: TCRequestModel {
         /// 待检测的实例Id
@@ -61,5 +45,21 @@ extension Tcr {
             case regionId = "RegionId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 校验实例信息
+    ///
+    /// 用于校验企业版实例信息
+    @inlinable
+    public func checkInstance(_ input: CheckInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckInstanceResponse > {
+        self.client.execute(action: "CheckInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 校验实例信息
+    ///
+    /// 用于校验企业版实例信息
+    @inlinable
+    public func checkInstance(_ input: CheckInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceResponse {
+        try await self.client.execute(action: "CheckInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

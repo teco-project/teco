@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 获取用户token
-    @inlinable
-    public func appGetToken(_ input: AppGetTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppGetTokenResponse > {
-        self.client.execute(action: "AppGetToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户token
-    @inlinable
-    public func appGetToken(_ input: AppGetTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetTokenResponse {
-        try await self.client.execute(action: "AppGetToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AppGetToken请求参数结构体
     public struct AppGetTokenRequest: TCRequestModel {
         /// 用户名
@@ -38,7 +26,7 @@ extension Iot {
         /// TTL
         public let expire: UInt64?
         
-        public init (userName: String, password: String, expire: UInt64?) {
+        public init (userName: String, password: String, expire: UInt64? = nil) {
             self.userName = userName
             self.password = password
             self.expire = expire
@@ -63,5 +51,17 @@ extension Iot {
             case accessToken = "AccessToken"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户token
+    @inlinable
+    public func appGetToken(_ input: AppGetTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppGetTokenResponse > {
+        self.client.execute(action: "AppGetToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户token
+    @inlinable
+    public func appGetToken(_ input: AppGetTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetTokenResponse {
+        try await self.client.execute(action: "AppGetToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

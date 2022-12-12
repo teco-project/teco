@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 查看权限规则列表
-    ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    /// 通过权限组ID查看权限规则列表。
-    @inlinable
-    public func describeAccessRules(_ input: DescribeAccessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessRulesResponse > {
-        self.client.execute(action: "DescribeAccessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看权限规则列表
-    ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    /// 通过权限组ID查看权限规则列表。
-    @inlinable
-    public func describeAccessRules(_ input: DescribeAccessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessRulesResponse {
-        try await self.client.execute(action: "DescribeAccessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccessRules请求参数结构体
     public struct DescribeAccessRulesRequest: TCRequestModel {
         /// 权限组ID
@@ -44,7 +26,7 @@ extension Chdfs {
         /// 返回数量，默认为所有
         public let limit: UInt64?
         
-        public init (accessGroupId: String, offset: UInt64?, limit: UInt64?) {
+        public init (accessGroupId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.accessGroupId = accessGroupId
             self.offset = offset
             self.limit = limit
@@ -69,5 +51,23 @@ extension Chdfs {
             case accessRules = "AccessRules"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看权限规则列表
+    ///
+    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    /// 通过权限组ID查看权限规则列表。
+    @inlinable
+    public func describeAccessRules(_ input: DescribeAccessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessRulesResponse > {
+        self.client.execute(action: "DescribeAccessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看权限规则列表
+    ///
+    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    /// 通过权限组ID查看权限规则列表。
+    @inlinable
+    public func describeAccessRules(_ input: DescribeAccessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessRulesResponse {
+        try await self.client.execute(action: "DescribeAccessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

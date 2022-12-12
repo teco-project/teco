@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查询所支持的实例机型族信息
-    ///
-    /// 本接口（DescribeInstanceFamilyConfigs）查询当前用户和地域所支持的机型族列表信息。
-    @inlinable
-    public func describeInstanceFamilyConfigs(_ input: DescribeInstanceFamilyConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceFamilyConfigsResponse > {
-        self.client.execute(action: "DescribeInstanceFamilyConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询所支持的实例机型族信息
-    ///
-    /// 本接口（DescribeInstanceFamilyConfigs）查询当前用户和地域所支持的机型族列表信息。
-    @inlinable
-    public func describeInstanceFamilyConfigs(_ input: DescribeInstanceFamilyConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceFamilyConfigsResponse {
-        try await self.client.execute(action: "DescribeInstanceFamilyConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceFamilyConfigs请求参数结构体
     public struct DescribeInstanceFamilyConfigsRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Cvm {
             case instanceFamilyConfigSet = "InstanceFamilyConfigSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询所支持的实例机型族信息
+    ///
+    /// 本接口（DescribeInstanceFamilyConfigs）查询当前用户和地域所支持的机型族列表信息。
+    @inlinable
+    public func describeInstanceFamilyConfigs(_ input: DescribeInstanceFamilyConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceFamilyConfigsResponse > {
+        self.client.execute(action: "DescribeInstanceFamilyConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询所支持的实例机型族信息
+    ///
+    /// 本接口（DescribeInstanceFamilyConfigs）查询当前用户和地域所支持的机型族列表信息。
+    @inlinable
+    public func describeInstanceFamilyConfigs(_ input: DescribeInstanceFamilyConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceFamilyConfigsResponse {
+        try await self.client.execute(action: "DescribeInstanceFamilyConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

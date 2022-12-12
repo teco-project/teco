@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询个人版仓库信息
-    @inlinable
-    public func describeRepositoryPersonal(_ input: DescribeRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoryPersonalResponse > {
-        self.client.execute(action: "DescribeRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询个人版仓库信息
-    @inlinable
-    public func describeRepositoryPersonal(_ input: DescribeRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryPersonalResponse {
-        try await self.client.execute(action: "DescribeRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRepositoryPersonal请求参数结构体
     public struct DescribeRepositoryPersonalRequest: TCRequestModel {
         /// 仓库名字
@@ -53,5 +41,17 @@ extension Tcr {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询个人版仓库信息
+    @inlinable
+    public func describeRepositoryPersonal(_ input: DescribeRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoryPersonalResponse > {
+        self.client.execute(action: "DescribeRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询个人版仓库信息
+    @inlinable
+    public func describeRepositoryPersonal(_ input: DescribeRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryPersonalResponse {
+        try await self.client.execute(action: "DescribeRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

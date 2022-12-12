@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 修改CHC物理服务器的属性
-    @inlinable
-    public func modifyChcAttribute(_ input: ModifyChcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyChcAttributeResponse > {
-        self.client.execute(action: "ModifyChcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改CHC物理服务器的属性
-    @inlinable
-    public func modifyChcAttribute(_ input: ModifyChcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyChcAttributeResponse {
-        try await self.client.execute(action: "ModifyChcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyChcAttribute请求参数结构体
     public struct ModifyChcAttributeRequest: TCRequestModel {
         /// CHC物理服务器ID。
@@ -47,7 +35,7 @@ extension Cvm {
         /// bmc网络的安全组列表
         public let bmcSecurityGroupIds: [String]?
         
-        public init (chcIds: [String], instanceName: String?, deviceType: String?, bmcUser: String?, password: String?, bmcSecurityGroupIds: [String]?) {
+        public init (chcIds: [String], instanceName: String? = nil, deviceType: String? = nil, bmcUser: String? = nil, password: String? = nil, bmcSecurityGroupIds: [String]? = nil) {
             self.chcIds = chcIds
             self.instanceName = instanceName
             self.deviceType = deviceType
@@ -74,5 +62,17 @@ extension Cvm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改CHC物理服务器的属性
+    @inlinable
+    public func modifyChcAttribute(_ input: ModifyChcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyChcAttributeResponse > {
+        self.client.execute(action: "ModifyChcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CHC物理服务器的属性
+    @inlinable
+    public func modifyChcAttribute(_ input: ModifyChcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyChcAttributeResponse {
+        try await self.client.execute(action: "ModifyChcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 创建UDP监听器
-    ///
-    /// 该接口（CreateUDPListeners）用于批量创建单通道或者通道组的UDP协议类型的监听器。
-    @inlinable
-    public func createUDPListeners(_ input: CreateUDPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUDPListenersResponse > {
-        self.client.execute(action: "CreateUDPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建UDP监听器
-    ///
-    /// 该接口（CreateUDPListeners）用于批量创建单通道或者通道组的UDP协议类型的监听器。
-    @inlinable
-    public func createUDPListeners(_ input: CreateUDPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUDPListenersResponse {
-        try await self.client.execute(action: "CreateUDPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUDPListeners请求参数结构体
     public struct CreateUDPListenersRequest: TCRequestModel {
         /// 监听器名称
@@ -87,7 +71,7 @@ extension Gaap {
         /// UDP源站健康检查端口探测接收报文。仅在健康检查类型为PORT时使用。
         public let recvContext: String?
         
-        public init (listenerName: String, ports: [UInt64], scheduler: String, realServerType: String, proxyId: String?, groupId: String?, realServerPorts: [UInt64]?, delayLoop: UInt64?, connectTimeout: UInt64?, healthyThreshold: UInt64?, unhealthyThreshold: UInt64?, failoverSwitch: Int64?, healthCheck: UInt64?, checkType: String?, checkPort: Int64?, contextType: String?, sendContext: String?, recvContext: String?) {
+        public init (listenerName: String, ports: [UInt64], scheduler: String, realServerType: String, proxyId: String? = nil, groupId: String? = nil, realServerPorts: [UInt64]? = nil, delayLoop: UInt64? = nil, connectTimeout: UInt64? = nil, healthyThreshold: UInt64? = nil, unhealthyThreshold: UInt64? = nil, failoverSwitch: Int64? = nil, healthCheck: UInt64? = nil, checkType: String? = nil, checkPort: Int64? = nil, contextType: String? = nil, sendContext: String? = nil, recvContext: String? = nil) {
             self.listenerName = listenerName
             self.ports = ports
             self.scheduler = scheduler
@@ -142,5 +126,21 @@ extension Gaap {
             case listenerIds = "ListenerIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建UDP监听器
+    ///
+    /// 该接口（CreateUDPListeners）用于批量创建单通道或者通道组的UDP协议类型的监听器。
+    @inlinable
+    public func createUDPListeners(_ input: CreateUDPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUDPListenersResponse > {
+        self.client.execute(action: "CreateUDPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建UDP监听器
+    ///
+    /// 该接口（CreateUDPListeners）用于批量创建单通道或者通道组的UDP协议类型的监听器。
+    @inlinable
+    public func createUDPListeners(_ input: CreateUDPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUDPListenersResponse {
+        try await self.client.execute(action: "CreateUDPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

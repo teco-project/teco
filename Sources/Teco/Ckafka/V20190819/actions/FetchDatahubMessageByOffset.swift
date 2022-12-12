@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 查询Datahub Topic消息
-    ///
-    /// 根据指定offset位置的消息
-    @inlinable
-    public func fetchDatahubMessageByOffset(_ input: FetchDatahubMessageByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FetchDatahubMessageByOffsetResponse > {
-        self.client.execute(action: "FetchDatahubMessageByOffset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Datahub Topic消息
-    ///
-    /// 根据指定offset位置的消息
-    @inlinable
-    public func fetchDatahubMessageByOffset(_ input: FetchDatahubMessageByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchDatahubMessageByOffsetResponse {
-        try await self.client.execute(action: "FetchDatahubMessageByOffset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// FetchDatahubMessageByOffset请求参数结构体
     public struct FetchDatahubMessageByOffsetRequest: TCRequestModel {
         /// 主题名
@@ -42,7 +26,7 @@ extension Ckafka {
         /// 位点信息，必填
         public let offset: Int64?
         
-        public init (name: String, partition: Int64, offset: Int64?) {
+        public init (name: String, partition: Int64, offset: Int64? = nil) {
             self.name = name
             self.partition = partition
             self.offset = offset
@@ -67,5 +51,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Datahub Topic消息
+    ///
+    /// 根据指定offset位置的消息
+    @inlinable
+    public func fetchDatahubMessageByOffset(_ input: FetchDatahubMessageByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FetchDatahubMessageByOffsetResponse > {
+        self.client.execute(action: "FetchDatahubMessageByOffset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Datahub Topic消息
+    ///
+    /// 根据指定offset位置的消息
+    @inlinable
+    public func fetchDatahubMessageByOffset(_ input: FetchDatahubMessageByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchDatahubMessageByOffsetResponse {
+        try await self.client.execute(action: "FetchDatahubMessageByOffset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

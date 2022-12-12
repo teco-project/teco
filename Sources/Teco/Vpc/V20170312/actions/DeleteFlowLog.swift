@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除流日志
-    ///
-    /// 本接口（DeleteFlowLog）用于删除流日志
-    @inlinable
-    public func deleteFlowLog(_ input: DeleteFlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFlowLogResponse > {
-        self.client.execute(action: "DeleteFlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除流日志
-    ///
-    /// 本接口（DeleteFlowLog）用于删除流日志
-    @inlinable
-    public func deleteFlowLog(_ input: DeleteFlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFlowLogResponse {
-        try await self.client.execute(action: "DeleteFlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteFlowLog请求参数结构体
     public struct DeleteFlowLogRequest: TCRequestModel {
         /// 流日志唯一ID
@@ -39,7 +23,7 @@ extension Vpc {
         /// 私用网络ID或者统一ID，建议使用统一ID，删除云联网流日志时，可不填，其他流日志类型必填。
         public let vpcId: String?
         
-        public init (flowLogId: String, vpcId: String?) {
+        public init (flowLogId: String, vpcId: String? = nil) {
             self.flowLogId = flowLogId
             self.vpcId = vpcId
         }
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除流日志
+    ///
+    /// 本接口（DeleteFlowLog）用于删除流日志
+    @inlinable
+    public func deleteFlowLog(_ input: DeleteFlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFlowLogResponse > {
+        self.client.execute(action: "DeleteFlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除流日志
+    ///
+    /// 本接口（DeleteFlowLog）用于删除流日志
+    @inlinable
+    public func deleteFlowLog(_ input: DeleteFlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFlowLogResponse {
+        try await self.client.execute(action: "DeleteFlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

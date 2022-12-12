@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 查询通知
-    ///
-    /// 本接口 (DescribeNotificationConfigurations) 用于查询一个或多个通知的详细信息。
-    /// 可以根据通知ID、伸缩组ID等信息来查询通知的详细信息。过滤信息详细请见过滤器`Filter`。
-    /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
-    @inlinable
-    public func describeNotificationConfigurations(_ input: DescribeNotificationConfigurationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNotificationConfigurationsResponse > {
-        self.client.execute(action: "DescribeNotificationConfigurations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询通知
-    ///
-    /// 本接口 (DescribeNotificationConfigurations) 用于查询一个或多个通知的详细信息。
-    /// 可以根据通知ID、伸缩组ID等信息来查询通知的详细信息。过滤信息详细请见过滤器`Filter`。
-    /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
-    @inlinable
-    public func describeNotificationConfigurations(_ input: DescribeNotificationConfigurationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotificationConfigurationsResponse {
-        try await self.client.execute(action: "DescribeNotificationConfigurations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNotificationConfigurations请求参数结构体
     public struct DescribeNotificationConfigurationsRequest: TCRequestModel {
         /// 按照一个或者多个通知ID查询。实例ID形如：asn-2sestqbr。每次请求的实例的上限为100。参数不支持同时指定`AutoScalingNotificationIds`和`Filters`。
@@ -52,7 +32,7 @@ extension As {
         /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let offset: UInt64?
         
-        public init (autoScalingNotificationIds: [String]?, filters: [Filter]?, limit: UInt64?, offset: UInt64?) {
+        public init (autoScalingNotificationIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.autoScalingNotificationIds = autoScalingNotificationIds
             self.filters = filters
             self.limit = limit
@@ -83,5 +63,25 @@ extension As {
             case autoScalingNotificationSet = "AutoScalingNotificationSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询通知
+    ///
+    /// 本接口 (DescribeNotificationConfigurations) 用于查询一个或多个通知的详细信息。
+    /// 可以根据通知ID、伸缩组ID等信息来查询通知的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
+    @inlinable
+    public func describeNotificationConfigurations(_ input: DescribeNotificationConfigurationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNotificationConfigurationsResponse > {
+        self.client.execute(action: "DescribeNotificationConfigurations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询通知
+    ///
+    /// 本接口 (DescribeNotificationConfigurations) 用于查询一个或多个通知的详细信息。
+    /// 可以根据通知ID、伸缩组ID等信息来查询通知的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
+    @inlinable
+    public func describeNotificationConfigurations(_ input: DescribeNotificationConfigurationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotificationConfigurationsResponse {
+        try await self.client.execute(action: "DescribeNotificationConfigurations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

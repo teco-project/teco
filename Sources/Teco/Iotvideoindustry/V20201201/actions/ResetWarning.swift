@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 重置设备告警
-    @inlinable
-    public func resetWarning(_ input: ResetWarningRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetWarningResponse > {
-        self.client.execute(action: "ResetWarning", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置设备告警
-    @inlinable
-    public func resetWarning(_ input: ResetWarningRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetWarningResponse {
-        try await self.client.execute(action: "ResetWarning", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetWarning请求参数结构体
     public struct ResetWarningRequest: TCRequestModel {
         /// 告警ID
@@ -35,7 +23,7 @@ extension Iotvideoindustry {
         /// Es中告警ID
         public let index: String?
         
-        public init (id: Int64?, index: String?) {
+        public init (id: Int64? = nil, index: String? = nil) {
             self.id = id
             self.index = index
         }
@@ -54,5 +42,17 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置设备告警
+    @inlinable
+    public func resetWarning(_ input: ResetWarningRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetWarningResponse > {
+        self.client.execute(action: "ResetWarning", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置设备告警
+    @inlinable
+    public func resetWarning(_ input: ResetWarningRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetWarningResponse {
+        try await self.client.execute(action: "ResetWarning", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

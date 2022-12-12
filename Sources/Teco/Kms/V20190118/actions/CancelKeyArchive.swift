@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 取消密钥归档
-    ///
-    /// 取消密钥归档，取消后密钥的状态变为Enabled。
-    @inlinable
-    public func cancelKeyArchive(_ input: CancelKeyArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelKeyArchiveResponse > {
-        self.client.execute(action: "CancelKeyArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消密钥归档
-    ///
-    /// 取消密钥归档，取消后密钥的状态变为Enabled。
-    @inlinable
-    public func cancelKeyArchive(_ input: CancelKeyArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyArchiveResponse {
-        try await self.client.execute(action: "CancelKeyArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelKeyArchive请求参数结构体
     public struct CancelKeyArchiveRequest: TCRequestModel {
         /// CMK唯一标识符
@@ -53,5 +37,21 @@ extension Kms {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消密钥归档
+    ///
+    /// 取消密钥归档，取消后密钥的状态变为Enabled。
+    @inlinable
+    public func cancelKeyArchive(_ input: CancelKeyArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelKeyArchiveResponse > {
+        self.client.execute(action: "CancelKeyArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消密钥归档
+    ///
+    /// 取消密钥归档，取消后密钥的状态变为Enabled。
+    @inlinable
+    public func cancelKeyArchive(_ input: CancelKeyArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyArchiveResponse {
+        try await self.client.execute(action: "CancelKeyArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -42,7 +42,7 @@ extension Ims {
         /// 该字段表示记录的IP地址的类型，取值：**0**（代表IPv4地址）、**1**（代表IPv6地址）；需要与IpType参数配合使用。
         public let ipType: UInt64?
         
-        public init (ip: String?, mac: String?, tokenId: String?, deviceId: String?, imei: String?, idfa: String?, idfv: String?, ipType: UInt64?) {
+        public init (ip: String? = nil, mac: String? = nil, tokenId: String? = nil, deviceId: String? = nil, imei: String? = nil, idfa: String? = nil, idfv: String? = nil, ipType: UInt64? = nil) {
             self.ip = ip
             self.mac = mac
             self.tokenId = tokenId
@@ -390,7 +390,7 @@ extension Ims {
         /// 该字段表示业务用户头像图片的访问链接(URL)，支持PNG、JPG、JPEG、BMP、GIF、WEBP格式。<br>备注：头像图片**大小不超过5MB**，建议**分辨率不低于256x256**；图片下载时间限制为3秒，超过则会返回下载超时。
         public let headUrl: String?
         
-        public init (userId: String?, nickname: String?, accountType: String?, gender: UInt64?, age: UInt64?, level: UInt64?, phone: String?, desc: String?, headUrl: String?) {
+        public init (userId: String? = nil, nickname: String? = nil, accountType: String? = nil, gender: UInt64? = nil, age: UInt64? = nil, level: UInt64? = nil, phone: String? = nil, desc: String? = nil, headUrl: String? = nil) {
             self.userId = userId
             self.nickname = nickname
             self.accountType = accountType

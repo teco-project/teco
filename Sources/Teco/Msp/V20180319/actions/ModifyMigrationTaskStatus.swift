@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Msp {
-    /// 更新迁移任务状态
-    @inlinable
-    public func modifyMigrationTaskStatus(_ input: ModifyMigrationTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrationTaskStatusResponse > {
-        self.client.execute(action: "ModifyMigrationTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新迁移任务状态
-    @inlinable
-    public func modifyMigrationTaskStatus(_ input: ModifyMigrationTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationTaskStatusResponse {
-        try await self.client.execute(action: "ModifyMigrationTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMigrationTaskStatus请求参数结构体
     public struct ModifyMigrationTaskStatusRequest: TCRequestModel {
         /// 任务状态，取值为unstart，migrating，finish，fail之一，分别代表该迁移任务状态为迁移未开始，迁移中，迁移完成，迁移失败
@@ -54,5 +42,17 @@ extension Msp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新迁移任务状态
+    @inlinable
+    public func modifyMigrationTaskStatus(_ input: ModifyMigrationTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrationTaskStatusResponse > {
+        self.client.execute(action: "ModifyMigrationTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新迁移任务状态
+    @inlinable
+    public func modifyMigrationTaskStatus(_ input: ModifyMigrationTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationTaskStatusResponse {
+        try await self.client.execute(action: "ModifyMigrationTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

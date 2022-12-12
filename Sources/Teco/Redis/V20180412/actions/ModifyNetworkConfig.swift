@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 修改实例网络配置
-    @inlinable
-    public func modifyNetworkConfig(_ input: ModifyNetworkConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkConfigResponse > {
-        self.client.execute(action: "ModifyNetworkConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例网络配置
-    @inlinable
-    public func modifyNetworkConfig(_ input: ModifyNetworkConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkConfigResponse {
-        try await self.client.execute(action: "ModifyNetworkConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNetworkConfig请求参数结构体
     public struct ModifyNetworkConfigRequest: TCRequestModel {
         /// 实例ID
@@ -47,7 +35,7 @@ extension Redis {
         /// 原VIP保留时间，单位：天，注：需要最新版SDK，否则原VIP立即释放，查看SDK版本，详见 [SDK中心](https://cloud.tencent.com/document/sdk)
         public let recycle: Int64?
         
-        public init (instanceId: String, operation: String, vip: String?, vpcId: String?, subnetId: String?, recycle: Int64?) {
+        public init (instanceId: String, operation: String, vip: String? = nil, vpcId: String? = nil, subnetId: String? = nil, recycle: Int64? = nil) {
             self.instanceId = instanceId
             self.operation = operation
             self.vip = vip
@@ -90,5 +78,17 @@ extension Redis {
             case vip = "Vip"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例网络配置
+    @inlinable
+    public func modifyNetworkConfig(_ input: ModifyNetworkConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkConfigResponse > {
+        self.client.execute(action: "ModifyNetworkConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例网络配置
+    @inlinable
+    public func modifyNetworkConfig(_ input: ModifyNetworkConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkConfigResponse {
+        try await self.client.execute(action: "ModifyNetworkConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

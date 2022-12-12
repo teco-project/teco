@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 获取机器组绑定的采集规则配置
-    @inlinable
-    public func describeMachineGroupConfigs(_ input: DescribeMachineGroupConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineGroupConfigsResponse > {
-        self.client.execute(action: "DescribeMachineGroupConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取机器组绑定的采集规则配置
-    @inlinable
-    public func describeMachineGroupConfigs(_ input: DescribeMachineGroupConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineGroupConfigsResponse {
-        try await self.client.execute(action: "DescribeMachineGroupConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMachineGroupConfigs请求参数结构体
     public struct DescribeMachineGroupConfigsRequest: TCRequestModel {
         /// 机器组ID
@@ -54,5 +42,17 @@ extension Cls {
             case configs = "Configs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取机器组绑定的采集规则配置
+    @inlinable
+    public func describeMachineGroupConfigs(_ input: DescribeMachineGroupConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineGroupConfigsResponse > {
+        self.client.execute(action: "DescribeMachineGroupConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取机器组绑定的采集规则配置
+    @inlinable
+    public func describeMachineGroupConfigs(_ input: DescribeMachineGroupConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineGroupConfigsResponse {
+        try await self.client.execute(action: "DescribeMachineGroupConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

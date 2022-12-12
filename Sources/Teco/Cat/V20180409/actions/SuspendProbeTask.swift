@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cat {
-    /// 暂停拨测任务
-    @inlinable
-    public func suspendProbeTask(_ input: SuspendProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SuspendProbeTaskResponse > {
-        self.client.execute(action: "SuspendProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 暂停拨测任务
-    @inlinable
-    public func suspendProbeTask(_ input: SuspendProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SuspendProbeTaskResponse {
-        try await self.client.execute(action: "SuspendProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SuspendProbeTask请求参数结构体
     public struct SuspendProbeTaskRequest: TCRequestModel {
         /// 任务 ID
@@ -63,5 +51,17 @@ extension Cat {
             case results = "Results"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 暂停拨测任务
+    @inlinable
+    public func suspendProbeTask(_ input: SuspendProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SuspendProbeTaskResponse > {
+        self.client.execute(action: "SuspendProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 暂停拨测任务
+    @inlinable
+    public func suspendProbeTask(_ input: SuspendProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SuspendProbeTaskResponse {
+        try await self.client.execute(action: "SuspendProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

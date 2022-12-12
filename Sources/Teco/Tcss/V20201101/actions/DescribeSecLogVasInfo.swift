@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询安全日志商品信息
-    @inlinable
-    public func describeSecLogVasInfo(_ input: DescribeSecLogVasInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogVasInfoResponse > {
-        self.client.execute(action: "DescribeSecLogVasInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全日志商品信息
-    @inlinable
-    public func describeSecLogVasInfo(_ input: DescribeSecLogVasInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogVasInfoResponse {
-        try await self.client.execute(action: "DescribeSecLogVasInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecLogVasInfo请求参数结构体
     public struct DescribeSecLogVasInfoRequest: TCRequestModel {
         public init () {
@@ -76,5 +64,17 @@ extension Tcss {
             case trialCapacity = "TrialCapacity"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全日志商品信息
+    @inlinable
+    public func describeSecLogVasInfo(_ input: DescribeSecLogVasInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogVasInfoResponse > {
+        self.client.execute(action: "DescribeSecLogVasInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全日志商品信息
+    @inlinable
+    public func describeSecLogVasInfo(_ input: DescribeSecLogVasInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogVasInfoResponse {
+        try await self.client.execute(action: "DescribeSecLogVasInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

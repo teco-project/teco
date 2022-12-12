@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 创建防火墙实例和接入域名（Region参数必填）
-    @inlinable
-    public func createNatFwInstanceWithDomain(_ input: CreateNatFwInstanceWithDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatFwInstanceWithDomainResponse > {
-        self.client.execute(action: "CreateNatFwInstanceWithDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建防火墙实例和接入域名（Region参数必填）
-    @inlinable
-    public func createNatFwInstanceWithDomain(_ input: CreateNatFwInstanceWithDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceWithDomainResponse {
-        try await self.client.execute(action: "CreateNatFwInstanceWithDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNatFwInstanceWithDomain请求参数结构体
     public struct CreateNatFwInstanceWithDomainRequest: TCRequestModel {
         /// 防火墙实例名称
@@ -39,7 +27,7 @@ extension Cfw {
         public let mode: Int64
         
         /// 新增模式传递参数，其中NewModeItems和NatgwList至少传递一种。
-        public let newModeItems: NewModeItems
+        public let newModeItems: NewModeItems?
         
         /// 接入模式接入的nat网关列表，其中NewModeItems和NatgwList至少传递一种。
         public let natGwList: [String]?
@@ -59,7 +47,7 @@ extension Cfw {
         /// 如果要创建域名则必填
         public let domain: String?
         
-        public init (name: String, width: Int64, mode: Int64, newModeItems: NewModeItems, natGwList: [String]?, zone: String?, zoneBak: String?, crossAZone: Int64?, isCreateDomain: Int64?, domain: String?) {
+        public init (name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, isCreateDomain: Int64? = nil, domain: String? = nil) {
             self.name = name
             self.width = width
             self.mode = mode
@@ -99,5 +87,17 @@ extension Cfw {
             case cfwInsId = "CfwInsId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建防火墙实例和接入域名（Region参数必填）
+    @inlinable
+    public func createNatFwInstanceWithDomain(_ input: CreateNatFwInstanceWithDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatFwInstanceWithDomainResponse > {
+        self.client.execute(action: "CreateNatFwInstanceWithDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建防火墙实例和接入域名（Region参数必填）
+    @inlinable
+    public func createNatFwInstanceWithDomain(_ input: CreateNatFwInstanceWithDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceWithDomainResponse {
+        try await self.client.execute(action: "CreateNatFwInstanceWithDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

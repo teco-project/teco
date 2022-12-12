@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取命名空间列表
-    ///
-    /// 获取租户下命名空间列表
-    @inlinable
-    public func describeEnvironments(_ input: DescribeEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentsResponse > {
-        self.client.execute(action: "DescribeEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取命名空间列表
-    ///
-    /// 获取租户下命名空间列表
-    @inlinable
-    public func describeEnvironments(_ input: DescribeEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentsResponse {
-        try await self.client.execute(action: "DescribeEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEnvironments请求参数结构体
     public struct DescribeEnvironmentsRequest: TCRequestModel {
         /// 命名空间名称，模糊搜索。
@@ -51,7 +35,7 @@ extension Tdmq {
         /// 必选：否
         public let filters: [Filter]?
         
-        public init (environmentId: String?, offset: UInt64?, limit: UInt64?, clusterId: String?, filters: [Filter]?) {
+        public init (environmentId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, filters: [Filter]? = nil) {
             self.environmentId = environmentId
             self.offset = offset
             self.limit = limit
@@ -84,5 +68,21 @@ extension Tdmq {
             case environmentSet = "EnvironmentSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取命名空间列表
+    ///
+    /// 获取租户下命名空间列表
+    @inlinable
+    public func describeEnvironments(_ input: DescribeEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentsResponse > {
+        self.client.execute(action: "DescribeEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取命名空间列表
+    ///
+    /// 获取租户下命名空间列表
+    @inlinable
+    public func describeEnvironments(_ input: DescribeEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentsResponse {
+        try await self.client.execute(action: "DescribeEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

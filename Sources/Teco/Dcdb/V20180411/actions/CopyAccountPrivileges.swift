@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 复制账号权限
-    ///
-    /// 本接口（CopyAccountPrivileges）用于复制云数据库账号的权限。
-    /// 注意：相同用户名，不同Host是不同的账号，Readonly属性相同的账号之间才能复制权限。
-    @inlinable
-    public func copyAccountPrivileges(_ input: CopyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyAccountPrivilegesResponse > {
-        self.client.execute(action: "CopyAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 复制账号权限
-    ///
-    /// 本接口（CopyAccountPrivileges）用于复制云数据库账号的权限。
-    /// 注意：相同用户名，不同Host是不同的账号，Readonly属性相同的账号之间才能复制权限。
-    @inlinable
-    public func copyAccountPrivileges(_ input: CopyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyAccountPrivilegesResponse {
-        try await self.client.execute(action: "CopyAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CopyAccountPrivileges请求参数结构体
     public struct CopyAccountPrivilegesRequest: TCRequestModel {
         /// 实例 ID，形如：dcdbt-ow728lmc。
@@ -56,7 +38,7 @@ extension Dcdb {
         /// 目的账号的 ReadOnly 属性
         public let dstReadOnly: String?
         
-        public init (instanceId: String, srcUserName: String, srcHost: String, dstUserName: String, dstHost: String, srcReadOnly: String?, dstReadOnly: String?) {
+        public init (instanceId: String, srcUserName: String, srcHost: String, dstUserName: String, dstHost: String, srcReadOnly: String? = nil, dstReadOnly: String? = nil) {
             self.instanceId = instanceId
             self.srcUserName = srcUserName
             self.srcHost = srcHost
@@ -85,5 +67,23 @@ extension Dcdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 复制账号权限
+    ///
+    /// 本接口（CopyAccountPrivileges）用于复制云数据库账号的权限。
+    /// 注意：相同用户名，不同Host是不同的账号，Readonly属性相同的账号之间才能复制权限。
+    @inlinable
+    public func copyAccountPrivileges(_ input: CopyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyAccountPrivilegesResponse > {
+        self.client.execute(action: "CopyAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 复制账号权限
+    ///
+    /// 本接口（CopyAccountPrivileges）用于复制云数据库账号的权限。
+    /// 注意：相同用户名，不同Host是不同的账号，Readonly属性相同的账号之间才能复制权限。
+    @inlinable
+    public func copyAccountPrivileges(_ input: CopyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyAccountPrivilegesResponse {
+        try await self.client.execute(action: "CopyAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

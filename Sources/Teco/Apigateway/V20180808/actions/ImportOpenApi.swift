@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 导入OpenAPI
-    ///
-    /// 本接口（ImportOpenApi）用于将OpenAPI规范定义的API导入到API网关。 
-    @inlinable
-    public func importOpenApi(_ input: ImportOpenApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportOpenApiResponse > {
-        self.client.execute(action: "ImportOpenApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导入OpenAPI
-    ///
-    /// 本接口（ImportOpenApi）用于将OpenAPI规范定义的API导入到API网关。 
-    @inlinable
-    public func importOpenApi(_ input: ImportOpenApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportOpenApiResponse {
-        try await self.client.execute(action: "ImportOpenApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ImportOpenApi请求参数结构体
     public struct ImportOpenApiRequest: TCRequestModel {
         /// API所在的服务唯一ID。
@@ -45,7 +29,7 @@ extension Apigateway {
         /// Content版本，默认是openAPI，目前只支持openAPI。
         public let contentVersion: String?
         
-        public init (serviceId: String, content: String, encodeType: String?, contentVersion: String?) {
+        public init (serviceId: String, content: String, encodeType: String? = nil, contentVersion: String? = nil) {
             self.serviceId = serviceId
             self.content = content
             self.encodeType = encodeType
@@ -72,5 +56,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导入OpenAPI
+    ///
+    /// 本接口（ImportOpenApi）用于将OpenAPI规范定义的API导入到API网关。 
+    @inlinable
+    public func importOpenApi(_ input: ImportOpenApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportOpenApiResponse > {
+        self.client.execute(action: "ImportOpenApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导入OpenAPI
+    ///
+    /// 本接口（ImportOpenApi）用于将OpenAPI规范定义的API导入到API网关。 
+    @inlinable
+    public func importOpenApi(_ input: ImportOpenApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportOpenApiResponse {
+        try await self.client.execute(action: "ImportOpenApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

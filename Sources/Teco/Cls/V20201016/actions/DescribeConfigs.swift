@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 获取采集规则配置
-    @inlinable
-    public func describeConfigs(_ input: DescribeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigsResponse > {
-        self.client.execute(action: "DescribeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取采集规则配置
-    @inlinable
-    public func describeConfigs(_ input: DescribeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigsResponse {
-        try await self.client.execute(action: "DescribeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeConfigs请求参数结构体
     public struct DescribeConfigsRequest: TCRequestModel {
         /// <br><li> configName
@@ -50,7 +38,7 @@ extension Cls {
         /// 分页单页的限制数目，默认值为20，最大值100
         public let limit: Int64?
         
-        public init (filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -80,5 +68,17 @@ extension Cls {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取采集规则配置
+    @inlinable
+    public func describeConfigs(_ input: DescribeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigsResponse > {
+        self.client.execute(action: "DescribeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取采集规则配置
+    @inlinable
+    public func describeConfigs(_ input: DescribeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigsResponse {
+        try await self.client.execute(action: "DescribeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

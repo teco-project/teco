@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 开启或关闭监测
-    ///
-    /// 开启/关闭监测
-    @inlinable
-    public func modifyCRMonitor(_ input: ModifyCRMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRMonitorResponse > {
-        self.client.execute(action: "ModifyCRMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启或关闭监测
-    ///
-    /// 开启/关闭监测
-    @inlinable
-    public func modifyCRMonitor(_ input: ModifyCRMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRMonitorResponse {
-        try await self.client.execute(action: "ModifyCRMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCRMonitor请求参数结构体
     public struct ModifyCRMonitorRequest: TCRequestModel {
         /// 作品ID
@@ -42,7 +26,7 @@ extension Bma {
         /// 监测截止时间
         public let monitorEnd: String?
         
-        public init (workId: Int64, monitorStatus: String, monitorEnd: String?) {
+        public init (workId: Int64, monitorStatus: String, monitorEnd: String? = nil) {
             self.workId = workId
             self.monitorStatus = monitorStatus
             self.monitorEnd = monitorEnd
@@ -63,5 +47,21 @@ extension Bma {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启或关闭监测
+    ///
+    /// 开启/关闭监测
+    @inlinable
+    public func modifyCRMonitor(_ input: ModifyCRMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRMonitorResponse > {
+        self.client.execute(action: "ModifyCRMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启或关闭监测
+    ///
+    /// 开启/关闭监测
+    @inlinable
+    public func modifyCRMonitor(_ input: ModifyCRMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRMonitorResponse {
+        try await self.client.execute(action: "ModifyCRMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

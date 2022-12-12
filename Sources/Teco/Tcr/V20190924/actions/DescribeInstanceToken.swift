@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询长期访问凭证信息
-    @inlinable
-    public func describeInstanceToken(_ input: DescribeInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceTokenResponse > {
-        self.client.execute(action: "DescribeInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询长期访问凭证信息
-    @inlinable
-    public func describeInstanceToken(_ input: DescribeInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTokenResponse {
-        try await self.client.execute(action: "DescribeInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceToken请求参数结构体
     public struct DescribeInstanceTokenRequest: TCRequestModel {
         /// 实例 ID
@@ -38,7 +26,7 @@ extension Tcr {
         /// 分页偏移量
         public let offset: Int64?
         
-        public init (registryId: String, limit: Int64?, offset: Int64?) {
+        public init (registryId: String, limit: Int64? = nil, offset: Int64? = nil) {
             self.registryId = registryId
             self.limit = limit
             self.offset = offset
@@ -67,5 +55,17 @@ extension Tcr {
             case tokens = "Tokens"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询长期访问凭证信息
+    @inlinable
+    public func describeInstanceToken(_ input: DescribeInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceTokenResponse > {
+        self.client.execute(action: "DescribeInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询长期访问凭证信息
+    @inlinable
+    public func describeInstanceToken(_ input: DescribeInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTokenResponse {
+        try await self.client.execute(action: "DescribeInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

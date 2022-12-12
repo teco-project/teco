@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 更新维护时间窗口
-    ///
-    /// 本接口(ModifyTimeWindow)用于更新云数据库实例的维护时间窗口。
-    @inlinable
-    public func modifyTimeWindow(_ input: ModifyTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTimeWindowResponse > {
-        self.client.execute(action: "ModifyTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新维护时间窗口
-    ///
-    /// 本接口(ModifyTimeWindow)用于更新云数据库实例的维护时间窗口。
-    @inlinable
-    public func modifyTimeWindow(_ input: ModifyTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTimeWindowResponse {
-        try await self.client.execute(action: "ModifyTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTimeWindow请求参数结构体
     public struct ModifyTimeWindowRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -45,7 +29,7 @@ extension Cdb {
         /// 数据延迟阈值，仅对主实例和灾备实例有效，不传默认修改为10
         public let maxDelayTime: UInt64?
         
-        public init (instanceId: String, timeRanges: [String], weekdays: [String]?, maxDelayTime: UInt64?) {
+        public init (instanceId: String, timeRanges: [String], weekdays: [String]? = nil, maxDelayTime: UInt64? = nil) {
             self.instanceId = instanceId
             self.timeRanges = timeRanges
             self.weekdays = weekdays
@@ -68,5 +52,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新维护时间窗口
+    ///
+    /// 本接口(ModifyTimeWindow)用于更新云数据库实例的维护时间窗口。
+    @inlinable
+    public func modifyTimeWindow(_ input: ModifyTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTimeWindowResponse > {
+        self.client.execute(action: "ModifyTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新维护时间窗口
+    ///
+    /// 本接口(ModifyTimeWindow)用于更新云数据库实例的维护时间窗口。
+    @inlinable
+    public func modifyTimeWindow(_ input: ModifyTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTimeWindowResponse {
+        try await self.client.execute(action: "ModifyTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 根据备份文件恢复实例
-    ///
-    /// 本接口（RestoreInstance）用于根据备份文件恢复实例。
-    @inlinable
-    public func restoreInstance(_ input: RestoreInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestoreInstanceResponse > {
-        self.client.execute(action: "RestoreInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据备份文件恢复实例
-    ///
-    /// 本接口（RestoreInstance）用于根据备份文件恢复实例。
-    @inlinable
-    public func restoreInstance(_ input: RestoreInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
-        try await self.client.execute(action: "RestoreInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestoreInstance请求参数结构体
     public struct RestoreInstanceRequest: TCRequestModel {
         /// 实例ID，形如mssql-j8kv137v
@@ -48,7 +32,7 @@ extension Sqlserver {
         /// 备份任务组ID，在单库备份文件模式下，可通过[DescribeBackups](https://cloud.tencent.com/document/product/238/19943) 接口获得。
         public let groupId: String?
         
-        public init (instanceId: String, backupId: Int64, targetInstanceId: String?, renameRestore: [RenameRestoreDatabase]?, groupId: String?) {
+        public init (instanceId: String, backupId: Int64, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, groupId: String? = nil) {
             self.instanceId = instanceId
             self.backupId = backupId
             self.targetInstanceId = targetInstanceId
@@ -77,5 +61,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据备份文件恢复实例
+    ///
+    /// 本接口（RestoreInstance）用于根据备份文件恢复实例。
+    @inlinable
+    public func restoreInstance(_ input: RestoreInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestoreInstanceResponse > {
+        self.client.execute(action: "RestoreInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据备份文件恢复实例
+    ///
+    /// 本接口（RestoreInstance）用于根据备份文件恢复实例。
+    @inlinable
+    public func restoreInstance(_ input: RestoreInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
+        try await self.client.execute(action: "RestoreInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

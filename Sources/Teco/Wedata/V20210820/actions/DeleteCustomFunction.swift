@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 删除用户自定义函数
-    @inlinable
-    public func deleteCustomFunction(_ input: DeleteCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomFunctionResponse > {
-        self.client.execute(action: "DeleteCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除用户自定义函数
-    @inlinable
-    public func deleteCustomFunction(_ input: DeleteCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomFunctionResponse {
-        try await self.client.execute(action: "DeleteCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCustomFunction请求参数结构体
     public struct DeleteCustomFunctionRequest: TCRequestModel {
         /// 集群实例 ID
@@ -38,7 +26,7 @@ extension Wedata {
         /// 项目ID，必须填
         public let projectId: String?
         
-        public init (clusterIdentifier: String, functionId: String, projectId: String?) {
+        public init (clusterIdentifier: String, functionId: String, projectId: String? = nil) {
             self.clusterIdentifier = clusterIdentifier
             self.functionId = functionId
             self.projectId = projectId
@@ -69,5 +57,17 @@ extension Wedata {
             case errorMessage = "ErrorMessage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除用户自定义函数
+    @inlinable
+    public func deleteCustomFunction(_ input: DeleteCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomFunctionResponse > {
+        self.client.execute(action: "DeleteCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除用户自定义函数
+    @inlinable
+    public func deleteCustomFunction(_ input: DeleteCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomFunctionResponse {
+        try await self.client.execute(action: "DeleteCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

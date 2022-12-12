@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 告警接收人详情
-    @inlinable
-    public func describeAlarmReceiver(_ input: DescribeAlarmReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmReceiverResponse > {
-        self.client.execute(action: "DescribeAlarmReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 告警接收人详情
-    @inlinable
-    public func describeAlarmReceiver(_ input: DescribeAlarmReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmReceiverResponse {
-        try await self.client.execute(action: "DescribeAlarmReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAlarmReceiver请求参数结构体
     public struct DescribeAlarmReceiverRequest: TCRequestModel {
         /// 告警ID
@@ -56,7 +44,7 @@ extension Wedata {
         /// 告警时间
         public let alarmTime: String?
         
-        public init (alarmId: String, pageNumber: UInt64, pageSize: UInt64, projectId: String, messageId: String, taskType: UInt64?, alarmRecipient: String?, alarmRecipientName: String?, alarmTime: String?) {
+        public init (alarmId: String, pageNumber: UInt64, pageSize: UInt64, projectId: String, messageId: String, taskType: UInt64? = nil, alarmRecipient: String? = nil, alarmRecipientName: String? = nil, alarmTime: String? = nil) {
             self.alarmId = alarmId
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -98,5 +86,17 @@ extension Wedata {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 告警接收人详情
+    @inlinable
+    public func describeAlarmReceiver(_ input: DescribeAlarmReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmReceiverResponse > {
+        self.client.execute(action: "DescribeAlarmReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 告警接收人详情
+    @inlinable
+    public func describeAlarmReceiver(_ input: DescribeAlarmReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmReceiverResponse {
+        try await self.client.execute(action: "DescribeAlarmReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

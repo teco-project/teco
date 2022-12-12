@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 续费实例
-    ///
-    /// 预付费实例续费，同时支持按量计费转包年包月
-    @inlinable
-    public func renewInstance(_ input: RenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewInstanceResponse > {
-        self.client.execute(action: "RenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费实例
-    ///
-    /// 预付费实例续费，同时支持按量计费转包年包月
-    @inlinable
-    public func renewInstance(_ input: RenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewInstanceResponse {
-        try await self.client.execute(action: "RenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RenewInstance请求参数结构体
     public struct RenewInstanceRequest: TCRequestModel {
         /// 实例Id
@@ -67,5 +51,21 @@ extension Tcr {
             case registryId = "RegistryId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费实例
+    ///
+    /// 预付费实例续费，同时支持按量计费转包年包月
+    @inlinable
+    public func renewInstance(_ input: RenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewInstanceResponse > {
+        self.client.execute(action: "RenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费实例
+    ///
+    /// 预付费实例续费，同时支持按量计费转包年包月
+    @inlinable
+    public func renewInstance(_ input: RenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewInstanceResponse {
+        try await self.client.execute(action: "RenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,30 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 查询点播 CDN 用量数据
-    ///
-    /// 该接口用于查询点播 CDN 的流量、带宽等统计数据。
-    ///    1. 可以查询最近365天内的 CDN 用量数据。
-    ///    2.  查询时间跨度不超过90天。
-    ///    3. 可以指定用量数据的时间粒度，支持5分钟、1小时、1天的时间粒度。
-    ///    4.  流量为查询时间粒度内的总流量，带宽为查询时间粒度内的峰值带宽。
-    @inlinable
-    public func describeCDNUsageData(_ input: DescribeCDNUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCDNUsageDataResponse > {
-        self.client.execute(action: "DescribeCDNUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询点播 CDN 用量数据
-    ///
-    /// 该接口用于查询点播 CDN 的流量、带宽等统计数据。
-    ///    1. 可以查询最近365天内的 CDN 用量数据。
-    ///    2.  查询时间跨度不超过90天。
-    ///    3. 可以指定用量数据的时间粒度，支持5分钟、1小时、1天的时间粒度。
-    ///    4.  流量为查询时间粒度内的总流量，带宽为查询时间粒度内的峰值带宽。
-    @inlinable
-    public func describeCDNUsageData(_ input: DescribeCDNUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDNUsageDataResponse {
-        try await self.client.execute(action: "DescribeCDNUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCDNUsageData请求参数结构体
     public struct DescribeCDNUsageDataRequest: TCRequestModel {
         /// 起始日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -66,7 +42,7 @@ extension Vod {
         /// 域名列表。一次最多查询20个域名的用量数据。可以指定多个域名，查询这些域名叠加的用量数据。默认返回所有域名叠加的用量数据。
         public let domainNames: [String]?
         
-        public init (startTime: String, endTime: String, dataType: String, subAppId: UInt64?, dataInterval: UInt64?, domainNames: [String]?) {
+        public init (startTime: String, endTime: String, dataType: String, subAppId: UInt64? = nil, dataInterval: UInt64? = nil, domainNames: [String]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.dataType = dataType
@@ -101,5 +77,29 @@ extension Vod {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询点播 CDN 用量数据
+    ///
+    /// 该接口用于查询点播 CDN 的流量、带宽等统计数据。
+    ///    1. 可以查询最近365天内的 CDN 用量数据。
+    ///    2.  查询时间跨度不超过90天。
+    ///    3. 可以指定用量数据的时间粒度，支持5分钟、1小时、1天的时间粒度。
+    ///    4.  流量为查询时间粒度内的总流量，带宽为查询时间粒度内的峰值带宽。
+    @inlinable
+    public func describeCDNUsageData(_ input: DescribeCDNUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCDNUsageDataResponse > {
+        self.client.execute(action: "DescribeCDNUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询点播 CDN 用量数据
+    ///
+    /// 该接口用于查询点播 CDN 的流量、带宽等统计数据。
+    ///    1. 可以查询最近365天内的 CDN 用量数据。
+    ///    2.  查询时间跨度不超过90天。
+    ///    3. 可以指定用量数据的时间粒度，支持5分钟、1小时、1天的时间粒度。
+    ///    4.  流量为查询时间粒度内的总流量，带宽为查询时间粒度内的峰值带宽。
+    @inlinable
+    public func describeCDNUsageData(_ input: DescribeCDNUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDNUsageDataResponse {
+        try await self.client.execute(action: "DescribeCDNUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

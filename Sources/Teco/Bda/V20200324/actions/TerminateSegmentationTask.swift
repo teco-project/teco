@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bda {
-    /// 终止视频人像分割处理任务
-    ///
-    /// 终止指定视频人像分割处理任务
-    @inlinable
-    public func terminateSegmentationTask(_ input: TerminateSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateSegmentationTaskResponse > {
-        self.client.execute(action: "TerminateSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 终止视频人像分割处理任务
-    ///
-    /// 终止指定视频人像分割处理任务
-    @inlinable
-    public func terminateSegmentationTask(_ input: TerminateSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateSegmentationTaskResponse {
-        try await self.client.execute(action: "TerminateSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TerminateSegmentationTask请求参数结构体
     public struct TerminateSegmentationTaskRequest: TCRequestModel {
         /// 在提交分割任务成功时返回的任务标识ID。
@@ -53,5 +37,21 @@ extension Bda {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 终止视频人像分割处理任务
+    ///
+    /// 终止指定视频人像分割处理任务
+    @inlinable
+    public func terminateSegmentationTask(_ input: TerminateSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateSegmentationTaskResponse > {
+        self.client.execute(action: "TerminateSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 终止视频人像分割处理任务
+    ///
+    /// 终止指定视频人像分割处理任务
+    @inlinable
+    public func terminateSegmentationTask(_ input: TerminateSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateSegmentationTaskResponse {
+        try await self.client.execute(action: "TerminateSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

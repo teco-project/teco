@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ie {
-    /// 创建画质重生任务
-    ///
-    /// 创建画质重生任务，对视频进行转码、去噪、去划痕、去毛刺、超分、细节增强和色彩增强。
-    @inlinable
-    public func createMediaQualityRestorationTask(_ input: CreateMediaQualityRestorationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMediaQualityRestorationTaskResponse > {
-        self.client.execute(action: "CreateMediaQualityRestorationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建画质重生任务
-    ///
-    /// 创建画质重生任务，对视频进行转码、去噪、去划痕、去毛刺、超分、细节增强和色彩增强。
-    @inlinable
-    public func createMediaQualityRestorationTask(_ input: CreateMediaQualityRestorationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMediaQualityRestorationTaskResponse {
-        try await self.client.execute(action: "CreateMediaQualityRestorationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMediaQualityRestorationTask请求参数结构体
     public struct CreateMediaQualityRestorationTaskRequest: TCRequestModel {
         /// 源文件地址。
@@ -43,12 +27,12 @@ extension Ie {
         public let saveInfo: SaveInfo
         
         /// 任务结果回调地址信息。
-        public let callbackInfo: CallbackInfo
+        public let callbackInfo: CallbackInfo?
         
         /// 极速高清体验馆渠道标志。
         public let topSpeedCodecChannel: UInt64?
         
-        public init (downInfo: DownInfo, transInfo: [SubTaskTranscodeInfo], saveInfo: SaveInfo, callbackInfo: CallbackInfo, topSpeedCodecChannel: UInt64?) {
+        public init (downInfo: DownInfo, transInfo: [SubTaskTranscodeInfo], saveInfo: SaveInfo, callbackInfo: CallbackInfo? = nil, topSpeedCodecChannel: UInt64? = nil) {
             self.downInfo = downInfo
             self.transInfo = transInfo
             self.saveInfo = saveInfo
@@ -77,5 +61,21 @@ extension Ie {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建画质重生任务
+    ///
+    /// 创建画质重生任务，对视频进行转码、去噪、去划痕、去毛刺、超分、细节增强和色彩增强。
+    @inlinable
+    public func createMediaQualityRestorationTask(_ input: CreateMediaQualityRestorationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMediaQualityRestorationTaskResponse > {
+        self.client.execute(action: "CreateMediaQualityRestorationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建画质重生任务
+    ///
+    /// 创建画质重生任务，对视频进行转码、去噪、去划痕、去毛刺、超分、细节增强和色彩增强。
+    @inlinable
+    public func createMediaQualityRestorationTask(_ input: CreateMediaQualityRestorationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMediaQualityRestorationTaskResponse {
+        try await self.client.execute(action: "CreateMediaQualityRestorationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

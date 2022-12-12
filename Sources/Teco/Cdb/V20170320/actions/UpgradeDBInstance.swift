@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 调整云数据库实例的配置
-    ///
-    /// 本接口(UpgradeDBInstance)用于升级或降级云数据库实例的配置，实例类型支持主实例、灾备实例和只读实例。
-    @inlinable
-    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDBInstanceResponse > {
-        self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调整云数据库实例的配置
-    ///
-    /// 本接口(UpgradeDBInstance)用于升级或降级云数据库实例的配置，实例类型支持主实例、灾备实例和只读实例。
-    @inlinable
-    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
-        try await self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeDBInstance请求参数结构体
     public struct UpgradeDBInstanceRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
@@ -81,7 +65,7 @@ extension Cdb {
         /// 主节点可用区，该值仅在跨区迁移时生效。仅支持同地域下的可用区进行迁移。
         public let zoneId: String?
         
-        public init (instanceId: String, memory: Int64, volume: Int64, protectMode: Int64?, deployMode: Int64?, slaveZone: String?, engineVersion: String?, waitSwitch: Int64?, backupZone: String?, instanceRole: String?, deviceType: String?, cpu: Int64?, fastUpgrade: Int64?, maxDelayTime: Int64?, crossCluster: Int64?, zoneId: String?) {
+        public init (instanceId: String, memory: Int64, volume: Int64, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, engineVersion: String? = nil, waitSwitch: Int64? = nil, backupZone: String? = nil, instanceRole: String? = nil, deviceType: String? = nil, cpu: Int64? = nil, fastUpgrade: Int64? = nil, maxDelayTime: Int64? = nil, crossCluster: Int64? = nil, zoneId: String? = nil) {
             self.instanceId = instanceId
             self.memory = memory
             self.volume = volume
@@ -136,5 +120,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调整云数据库实例的配置
+    ///
+    /// 本接口(UpgradeDBInstance)用于升级或降级云数据库实例的配置，实例类型支持主实例、灾备实例和只读实例。
+    @inlinable
+    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDBInstanceResponse > {
+        self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调整云数据库实例的配置
+    ///
+    /// 本接口(UpgradeDBInstance)用于升级或降级云数据库实例的配置，实例类型支持主实例、灾备实例和只读实例。
+    @inlinable
+    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
+        try await self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

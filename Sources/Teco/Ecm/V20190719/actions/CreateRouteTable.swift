@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 创建路由表
-    ///
-    /// 创建了VPC后，系统会创建一个默认路由表，所有新建的子网都会关联到默认路由表。默认情况下您可以直接使用默认路由表来管理您的路由策略。当您的路由策略较多时，您可以调用创建路由表接口创建更多路由表管理您的路由策略。
-    @inlinable
-    public func createRouteTable(_ input: CreateRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRouteTableResponse > {
-        self.client.execute(action: "CreateRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建路由表
-    ///
-    /// 创建了VPC后，系统会创建一个默认路由表，所有新建的子网都会关联到默认路由表。默认情况下您可以直接使用默认路由表来管理您的路由策略。当您的路由策略较多时，您可以调用创建路由表接口创建更多路由表管理您的路由策略。
-    @inlinable
-    public func createRouteTable(_ input: CreateRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRouteTableResponse {
-        try await self.client.execute(action: "CreateRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRouteTable请求参数结构体
     public struct CreateRouteTableRequest: TCRequestModel {
         /// 待操作的VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
@@ -67,5 +51,21 @@ extension Ecm {
             case routeTable = "RouteTable"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建路由表
+    ///
+    /// 创建了VPC后，系统会创建一个默认路由表，所有新建的子网都会关联到默认路由表。默认情况下您可以直接使用默认路由表来管理您的路由策略。当您的路由策略较多时，您可以调用创建路由表接口创建更多路由表管理您的路由策略。
+    @inlinable
+    public func createRouteTable(_ input: CreateRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRouteTableResponse > {
+        self.client.execute(action: "CreateRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建路由表
+    ///
+    /// 创建了VPC后，系统会创建一个默认路由表，所有新建的子网都会关联到默认路由表。默认情况下您可以直接使用默认路由表来管理您的路由策略。当您的路由策略较多时，您可以调用创建路由表接口创建更多路由表管理您的路由策略。
+    @inlinable
+    public func createRouteTable(_ input: CreateRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRouteTableResponse {
+        try await self.client.execute(action: "CreateRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

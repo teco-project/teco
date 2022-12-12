@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 导出资产管理内核模块列表
-    @inlinable
-    public func exportAssetCoreModuleList(_ input: ExportAssetCoreModuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportAssetCoreModuleListResponse > {
-        self.client.execute(action: "ExportAssetCoreModuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出资产管理内核模块列表
-    @inlinable
-    public func exportAssetCoreModuleList(_ input: ExportAssetCoreModuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAssetCoreModuleListResponse {
-        try await self.client.execute(action: "ExportAssetCoreModuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportAssetCoreModuleList请求参数结构体
     public struct ExportAssetCoreModuleListRequest: TCRequestModel {
         /// 服务器Uuid
@@ -46,7 +34,7 @@ extension Cwp {
         /// 排序依据[FirstTime|Size|ProcessCount|ModuleCount]
         public let by: String?
         
-        public init (uuid: String?, quuid: String?, filters: [AssetFilters]?, order: String?, by: String?) {
+        public init (uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.uuid = uuid
             self.quuid = quuid
             self.filters = filters
@@ -75,5 +63,17 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出资产管理内核模块列表
+    @inlinable
+    public func exportAssetCoreModuleList(_ input: ExportAssetCoreModuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportAssetCoreModuleListResponse > {
+        self.client.execute(action: "ExportAssetCoreModuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出资产管理内核模块列表
+    @inlinable
+    public func exportAssetCoreModuleList(_ input: ExportAssetCoreModuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAssetCoreModuleListResponse {
+        try await self.client.execute(action: "ExportAssetCoreModuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

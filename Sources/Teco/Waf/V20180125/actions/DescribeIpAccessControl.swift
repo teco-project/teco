@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// Waf ip黑白名单查询
-    @inlinable
-    public func describeIpAccessControl(_ input: DescribeIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpAccessControlResponse > {
-        self.client.execute(action: "DescribeIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// Waf ip黑白名单查询
-    @inlinable
-    public func describeIpAccessControl(_ input: DescribeIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpAccessControlResponse {
-        try await self.client.execute(action: "DescribeIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIpAccessControl请求参数结构体
     public struct DescribeIpAccessControlRequest: TCRequestModel {
         /// 域名
@@ -65,7 +53,7 @@ extension Waf {
         /// ip
         public let ip: String?
         
-        public init (domain: String, count: UInt64, actionType: UInt64?, vtsMin: UInt64?, vtsMax: UInt64?, ctsMin: UInt64?, ctsMax: UInt64?, offSet: UInt64?, limit: UInt64?, source: String?, sort: String?, ip: String?) {
+        public init (domain: String, count: UInt64, actionType: UInt64? = nil, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, offSet: UInt64? = nil, limit: UInt64? = nil, source: String? = nil, sort: String? = nil, ip: String? = nil) {
             self.domain = domain
             self.count = count
             self.actionType = actionType
@@ -100,7 +88,7 @@ extension Waf {
     public struct DescribeIpAccessControlResponse: TCResponseModel {
         /// 输出
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: IpAccessControlData
+        public let data: IpAccessControlData?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -109,5 +97,17 @@ extension Waf {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// Waf ip黑白名单查询
+    @inlinable
+    public func describeIpAccessControl(_ input: DescribeIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpAccessControlResponse > {
+        self.client.execute(action: "DescribeIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// Waf ip黑白名单查询
+    @inlinable
+    public func describeIpAccessControl(_ input: DescribeIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpAccessControlResponse {
+        try await self.client.execute(action: "DescribeIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

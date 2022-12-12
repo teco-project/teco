@@ -144,7 +144,7 @@ extension Mongodb {
         
         /// 关联实例信息，对于正式实例，该字段表示它的临时实例信息；对于临时实例，则表示它的正式实例信息;如果为只读/灾备实例,则表示他的主实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let relatedInstance: MongoDBInstance
+        public let relatedInstance: MongoDBInstance?
         
         /// 实例标签信息集合
         /// 注意：此字段可能返回 null，表示取不到有效值。

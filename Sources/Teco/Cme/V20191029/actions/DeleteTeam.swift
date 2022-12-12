@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 删除团队
-    ///
-    /// 删除一个团队。要删除团队，必须满足以下条件：
-    /// <li>要删除的团队必须没有归属的素材；</li>
-    /// <li>要删除的团队必须没有归属的分类。</li>
-    @inlinable
-    public func deleteTeam(_ input: DeleteTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTeamResponse > {
-        self.client.execute(action: "DeleteTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除团队
-    ///
-    /// 删除一个团队。要删除团队，必须满足以下条件：
-    /// <li>要删除的团队必须没有归属的素材；</li>
-    /// <li>要删除的团队必须没有归属的分类。</li>
-    @inlinable
-    public func deleteTeam(_ input: DeleteTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTeamResponse {
-        try await self.client.execute(action: "DeleteTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTeam请求参数结构体
     public struct DeleteTeamRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -46,7 +26,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以删除所有团队。如果指定操作者，则操作者必须为团队所有者。
         public let `operator`: String?
         
-        public init (platform: String, teamId: String, `operator`: String?) {
+        public init (platform: String, teamId: String, `operator`: String? = nil) {
             self.platform = platform
             self.teamId = teamId
             self.`operator` = `operator`
@@ -67,5 +47,25 @@ extension Cme {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除团队
+    ///
+    /// 删除一个团队。要删除团队，必须满足以下条件：
+    /// <li>要删除的团队必须没有归属的素材；</li>
+    /// <li>要删除的团队必须没有归属的分类。</li>
+    @inlinable
+    public func deleteTeam(_ input: DeleteTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTeamResponse > {
+        self.client.execute(action: "DeleteTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除团队
+    ///
+    /// 删除一个团队。要删除团队，必须满足以下条件：
+    /// <li>要删除的团队必须没有归属的素材；</li>
+    /// <li>要删除的团队必须没有归属的分类。</li>
+    @inlinable
+    public func deleteTeam(_ input: DeleteTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTeamResponse {
+        try await self.client.execute(action: "DeleteTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

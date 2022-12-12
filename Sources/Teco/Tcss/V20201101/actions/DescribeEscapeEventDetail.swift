@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询容器逃逸事件详情
-    ///
-    /// DescribeEscapeEventDetail  查询容器逃逸事件详情
-    @inlinable
-    public func describeEscapeEventDetail(_ input: DescribeEscapeEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeEventDetailResponse > {
-        self.client.execute(action: "DescribeEscapeEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器逃逸事件详情
-    ///
-    /// DescribeEscapeEventDetail  查询容器逃逸事件详情
-    @inlinable
-    public func describeEscapeEventDetail(_ input: DescribeEscapeEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventDetailResponse {
-        try await self.client.execute(action: "DescribeEscapeEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEscapeEventDetail请求参数结构体
     public struct DescribeEscapeEventDetailRequest: TCRequestModel {
         /// 事件唯一id
@@ -61,7 +45,7 @@ extension Tcss {
         
         /// 祖先进程信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ancestorProcessInfo: ProcessBaseInfo
+        public let ancestorProcessInfo: ProcessBaseInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -74,5 +58,21 @@ extension Tcss {
             case ancestorProcessInfo = "AncestorProcessInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器逃逸事件详情
+    ///
+    /// DescribeEscapeEventDetail  查询容器逃逸事件详情
+    @inlinable
+    public func describeEscapeEventDetail(_ input: DescribeEscapeEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeEventDetailResponse > {
+        self.client.execute(action: "DescribeEscapeEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器逃逸事件详情
+    ///
+    /// DescribeEscapeEventDetail  查询容器逃逸事件详情
+    @inlinable
+    public func describeEscapeEventDetail(_ input: DescribeEscapeEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventDetailResponse {
+        try await self.client.execute(action: "DescribeEscapeEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

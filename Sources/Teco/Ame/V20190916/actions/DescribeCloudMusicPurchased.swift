@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取授权项目已购云音乐列表
-    ///
-    /// 获取授权项目下已购云音乐列表
-    @inlinable
-    public func describeCloudMusicPurchased(_ input: DescribeCloudMusicPurchasedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudMusicPurchasedResponse > {
-        self.client.execute(action: "DescribeCloudMusicPurchased", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取授权项目已购云音乐列表
-    ///
-    /// 获取授权项目下已购云音乐列表
-    @inlinable
-    public func describeCloudMusicPurchased(_ input: DescribeCloudMusicPurchasedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudMusicPurchasedResponse {
-        try await self.client.execute(action: "DescribeCloudMusicPurchased", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudMusicPurchased请求参数结构体
     public struct DescribeCloudMusicPurchasedRequest: TCRequestModel {
         /// 授权项目Id
@@ -58,5 +42,21 @@ extension Ame {
             case musicOpenDetail = "MusicOpenDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取授权项目已购云音乐列表
+    ///
+    /// 获取授权项目下已购云音乐列表
+    @inlinable
+    public func describeCloudMusicPurchased(_ input: DescribeCloudMusicPurchasedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudMusicPurchasedResponse > {
+        self.client.execute(action: "DescribeCloudMusicPurchased", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取授权项目已购云音乐列表
+    ///
+    /// 获取授权项目下已购云音乐列表
+    @inlinable
+    public func describeCloudMusicPurchased(_ input: DescribeCloudMusicPurchasedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudMusicPurchasedResponse {
+        try await self.client.execute(action: "DescribeCloudMusicPurchased", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

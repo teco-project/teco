@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询项目安全组详情
-    ///
-    /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
-    @inlinable
-    public func describeProjectSecurityGroups(_ input: DescribeProjectSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectSecurityGroupsResponse > {
-        self.client.execute(action: "DescribeProjectSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询项目安全组详情
-    ///
-    /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
-    @inlinable
-    public func describeProjectSecurityGroups(_ input: DescribeProjectSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupsResponse {
-        try await self.client.execute(action: "DescribeProjectSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProjectSecurityGroups请求参数结构体
     public struct DescribeProjectSecurityGroupsRequest: TCRequestModel {
         /// 数据库引擎名称，本接口取值：redis。
@@ -48,7 +32,7 @@ extension Redis {
         /// 搜索条件，支持安全组 ID 或者安全组名称。
         public let searchKey: String?
         
-        public init (product: String, projectId: UInt64, offset: UInt64?, limit: UInt64?, searchKey: String?) {
+        public init (product: String, projectId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil) {
             self.product = product
             self.projectId = projectId
             self.offset = offset
@@ -81,5 +65,21 @@ extension Redis {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询项目安全组详情
+    ///
+    /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
+    @inlinable
+    public func describeProjectSecurityGroups(_ input: DescribeProjectSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectSecurityGroupsResponse > {
+        self.client.execute(action: "DescribeProjectSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询项目安全组详情
+    ///
+    /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
+    @inlinable
+    public func describeProjectSecurityGroups(_ input: DescribeProjectSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupsResponse {
+        try await self.client.execute(action: "DescribeProjectSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

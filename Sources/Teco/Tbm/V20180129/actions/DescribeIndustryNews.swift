@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tbm {
-    /// 获取定制任务媒体报道列表
-    ///
-    /// 根据客户定制的行业关键词，监测关键词出现在媒体网站（新闻媒体、网络门户、政府网站、微信公众号、天天快报等）发布资讯标题和正文中的报道数，以及文章列表、来源渠道、作者、发布时间等。
-    @inlinable
-    public func describeIndustryNews(_ input: DescribeIndustryNewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIndustryNewsResponse > {
-        self.client.execute(action: "DescribeIndustryNews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取定制任务媒体报道列表
-    ///
-    /// 根据客户定制的行业关键词，监测关键词出现在媒体网站（新闻媒体、网络门户、政府网站、微信公众号、天天快报等）发布资讯标题和正文中的报道数，以及文章列表、来源渠道、作者、发布时间等。
-    @inlinable
-    public func describeIndustryNews(_ input: DescribeIndustryNewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndustryNewsResponse {
-        try await self.client.execute(action: "DescribeIndustryNews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIndustryNews请求参数结构体
     public struct DescribeIndustryNewsRequest: TCRequestModel {
         /// 行业ID
@@ -55,7 +39,7 @@ extension Tbm {
         /// 查询条数上限，默认20
         public let limit: Int64?
         
-        public init (industryId: String, startDate: Date, endDate: Date, showList: Bool?, offset: Int64?, limit: Int64?) {
+        public init (industryId: String, startDate: Date, endDate: Date, showList: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.industryId = industryId
             self.startDate = startDate
             self.endDate = endDate
@@ -102,5 +86,21 @@ extension Tbm {
             case dateCountSet = "DateCountSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取定制任务媒体报道列表
+    ///
+    /// 根据客户定制的行业关键词，监测关键词出现在媒体网站（新闻媒体、网络门户、政府网站、微信公众号、天天快报等）发布资讯标题和正文中的报道数，以及文章列表、来源渠道、作者、发布时间等。
+    @inlinable
+    public func describeIndustryNews(_ input: DescribeIndustryNewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIndustryNewsResponse > {
+        self.client.execute(action: "DescribeIndustryNews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取定制任务媒体报道列表
+    ///
+    /// 根据客户定制的行业关键词，监测关键词出现在媒体网站（新闻媒体、网络门户、政府网站、微信公众号、天天快报等）发布资讯标题和正文中的报道数，以及文章列表、来源渠道、作者、发布时间等。
+    @inlinable
+    public func describeIndustryNews(_ input: DescribeIndustryNewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndustryNewsResponse {
+        try await self.client.execute(action: "DescribeIndustryNews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

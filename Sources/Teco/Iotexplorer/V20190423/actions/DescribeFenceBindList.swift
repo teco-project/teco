@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取围栏绑定信息列表
-    @inlinable
-    public func describeFenceBindList(_ input: DescribeFenceBindListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFenceBindListResponse > {
-        self.client.execute(action: "DescribeFenceBindList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取围栏绑定信息列表
-    @inlinable
-    public func describeFenceBindList(_ input: DescribeFenceBindListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFenceBindListResponse {
-        try await self.client.execute(action: "DescribeFenceBindList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFenceBindList请求参数结构体
     public struct DescribeFenceBindListRequest: TCRequestModel {
         /// 围栏Id
@@ -38,7 +26,7 @@ extension Iotexplorer {
         /// 最大返回结果数
         public let limit: Int64?
         
-        public init (fenceId: Int64, offset: Int64?, limit: Int64?) {
+        public init (fenceId: Int64, offset: Int64? = nil, limit: Int64? = nil) {
             self.fenceId = fenceId
             self.offset = offset
             self.limit = limit
@@ -67,5 +55,17 @@ extension Iotexplorer {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取围栏绑定信息列表
+    @inlinable
+    public func describeFenceBindList(_ input: DescribeFenceBindListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFenceBindListResponse > {
+        self.client.execute(action: "DescribeFenceBindList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取围栏绑定信息列表
+    @inlinable
+    public func describeFenceBindList(_ input: DescribeFenceBindListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFenceBindListResponse {
+        try await self.client.execute(action: "DescribeFenceBindList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

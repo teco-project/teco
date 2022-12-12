@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 新增或修改高危命令规则（支持多服务器选择）
-    ///
-    /// 新增或修改高危命令规则
-    @inlinable
-    public func editBashRules(_ input: EditBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditBashRulesResponse > {
-        self.client.execute(action: "EditBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增或修改高危命令规则（支持多服务器选择）
-    ///
-    /// 新增或修改高危命令规则
-    @inlinable
-    public func editBashRules(_ input: EditBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRulesResponse {
-        try await self.client.execute(action: "EditBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EditBashRules请求参数结构体
     public struct EditBashRulesRequest: TCRequestModel {
         /// 规则ID（新增时不填）
@@ -63,7 +47,7 @@ extension Cwp {
         /// 是否处理旧事件为白名单 0=不处理 1=处理
         public let dealOldEvents: UInt64?
         
-        public init (id: UInt64?, uuids: [String]?, hostIp: String?, name: String?, level: UInt64?, rule: String?, isGlobal: UInt64?, white: UInt64?, eventId: UInt64?, dealOldEvents: UInt64?) {
+        public init (id: UInt64? = nil, uuids: [String]? = nil, hostIp: String? = nil, name: String? = nil, level: UInt64? = nil, rule: String? = nil, isGlobal: UInt64? = nil, white: UInt64? = nil, eventId: UInt64? = nil, dealOldEvents: UInt64? = nil) {
             self.id = id
             self.uuids = uuids
             self.hostIp = hostIp
@@ -98,5 +82,21 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增或修改高危命令规则（支持多服务器选择）
+    ///
+    /// 新增或修改高危命令规则
+    @inlinable
+    public func editBashRules(_ input: EditBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditBashRulesResponse > {
+        self.client.execute(action: "EditBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增或修改高危命令规则（支持多服务器选择）
+    ///
+    /// 新增或修改高危命令规则
+    @inlinable
+    public func editBashRules(_ input: EditBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRulesResponse {
+        try await self.client.execute(action: "EditBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

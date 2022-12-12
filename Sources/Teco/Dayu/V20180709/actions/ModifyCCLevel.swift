@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 修改CC防护等级
-    @inlinable
-    public func modifyCCLevel(_ input: ModifyCCLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCLevelResponse > {
-        self.client.execute(action: "ModifyCCLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改CC防护等级
-    @inlinable
-    public func modifyCCLevel(_ input: ModifyCCLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCLevelResponse {
-        try await self.client.execute(action: "ModifyCCLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCCLevel请求参数结构体
     public struct ModifyCCLevelRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -73,5 +61,17 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改CC防护等级
+    @inlinable
+    public func modifyCCLevel(_ input: ModifyCCLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCLevelResponse > {
+        self.client.execute(action: "ModifyCCLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CC防护等级
+    @inlinable
+    public func modifyCCLevel(_ input: ModifyCCLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCLevelResponse {
+        try await self.client.execute(action: "ModifyCCLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

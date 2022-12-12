@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// DMS元数据删除库
-    @inlinable
-    public func dropDMSDatabase(_ input: DropDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DropDMSDatabaseResponse > {
-        self.client.execute(action: "DropDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DMS元数据删除库
-    @inlinable
-    public func dropDMSDatabase(_ input: DropDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSDatabaseResponse {
-        try await self.client.execute(action: "DropDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DropDMSDatabase请求参数结构体
     public struct DropDMSDatabaseRequest: TCRequestModel {
         /// 数据库名称
@@ -38,7 +26,7 @@ extension Dlc {
         /// 是否级联删除
         public let cascade: Bool?
         
-        public init (name: String, deleteData: Bool?, cascade: Bool?) {
+        public init (name: String, deleteData: Bool? = nil, cascade: Bool? = nil) {
             self.name = name
             self.deleteData = deleteData
             self.cascade = cascade
@@ -59,5 +47,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// DMS元数据删除库
+    @inlinable
+    public func dropDMSDatabase(_ input: DropDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DropDMSDatabaseResponse > {
+        self.client.execute(action: "DropDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据删除库
+    @inlinable
+    public func dropDMSDatabase(_ input: DropDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSDatabaseResponse {
+        try await self.client.execute(action: "DropDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

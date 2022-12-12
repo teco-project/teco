@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 获取角色绑定的策略列表
-    ///
-    /// 本接口（ListAttachedRolePolicies）用于获取角色绑定的策略列表。
-    @inlinable
-    public func listAttachedRolePolicies(_ input: ListAttachedRolePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAttachedRolePoliciesResponse > {
-        self.client.execute(action: "ListAttachedRolePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取角色绑定的策略列表
-    ///
-    /// 本接口（ListAttachedRolePolicies）用于获取角色绑定的策略列表。
-    @inlinable
-    public func listAttachedRolePolicies(_ input: ListAttachedRolePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedRolePoliciesResponse {
-        try await self.client.execute(action: "ListAttachedRolePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListAttachedRolePolicies请求参数结构体
     public struct ListAttachedRolePoliciesRequest: TCRequestModel {
         /// 页码，从 1 开始
@@ -51,7 +35,7 @@ extension Cam {
         /// 搜索关键字
         public let keyword: String?
         
-        public init (page: UInt64, rp: UInt64, roleId: String?, roleName: String?, policyType: String?, keyword: String?) {
+        public init (page: UInt64, rp: UInt64, roleId: String? = nil, roleName: String? = nil, policyType: String? = nil, keyword: String? = nil) {
             self.page = page
             self.rp = rp
             self.roleId = roleId
@@ -86,5 +70,21 @@ extension Cam {
             case totalNum = "TotalNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取角色绑定的策略列表
+    ///
+    /// 本接口（ListAttachedRolePolicies）用于获取角色绑定的策略列表。
+    @inlinable
+    public func listAttachedRolePolicies(_ input: ListAttachedRolePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAttachedRolePoliciesResponse > {
+        self.client.execute(action: "ListAttachedRolePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取角色绑定的策略列表
+    ///
+    /// 本接口（ListAttachedRolePolicies）用于获取角色绑定的策略列表。
+    @inlinable
+    public func listAttachedRolePolicies(_ input: ListAttachedRolePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedRolePoliciesResponse {
+        try await self.client.execute(action: "ListAttachedRolePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

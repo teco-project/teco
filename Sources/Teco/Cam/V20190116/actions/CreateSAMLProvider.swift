@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 创建SAML身份提供商
-    @inlinable
-    public func createSAMLProvider(_ input: CreateSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSAMLProviderResponse > {
-        self.client.execute(action: "CreateSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建SAML身份提供商
-    @inlinable
-    public func createSAMLProvider(_ input: CreateSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSAMLProviderResponse {
-        try await self.client.execute(action: "CreateSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSAMLProvider请求参数结构体
     public struct CreateSAMLProviderRequest: TCRequestModel {
         /// SAML身份提供商名称
@@ -63,5 +51,17 @@ extension Cam {
             case providerArn = "ProviderArn"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建SAML身份提供商
+    @inlinable
+    public func createSAMLProvider(_ input: CreateSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSAMLProviderResponse > {
+        self.client.execute(action: "CreateSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建SAML身份提供商
+    @inlinable
+    public func createSAMLProvider(_ input: CreateSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSAMLProviderResponse {
+        try await self.client.execute(action: "CreateSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

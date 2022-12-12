@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 删除Amqp路由关系
-    @inlinable
-    public func deleteAMQPRouteRelation(_ input: DeleteAMQPRouteRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAMQPRouteRelationResponse > {
-        self.client.execute(action: "DeleteAMQPRouteRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除Amqp路由关系
-    @inlinable
-    public func deleteAMQPRouteRelation(_ input: DeleteAMQPRouteRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPRouteRelationResponse {
-        try await self.client.execute(action: "DeleteAMQPRouteRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAMQPRouteRelation请求参数结构体
     public struct DeleteAMQPRouteRelationRequest: TCRequestModel {
         /// 集群ID
@@ -59,5 +47,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除Amqp路由关系
+    @inlinable
+    public func deleteAMQPRouteRelation(_ input: DeleteAMQPRouteRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAMQPRouteRelationResponse > {
+        self.client.execute(action: "DeleteAMQPRouteRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Amqp路由关系
+    @inlinable
+    public func deleteAMQPRouteRelation(_ input: DeleteAMQPRouteRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPRouteRelationResponse {
+        try await self.client.execute(action: "DeleteAMQPRouteRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

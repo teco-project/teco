@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改告警默认阈值
-    ///
-    /// 此接口（ModifyAlarmDefaultThreshold）用于修改告警默认阈值。
-    @inlinable
-    public func modifyAlarmDefaultThreshold(_ input: ModifyAlarmDefaultThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmDefaultThresholdResponse > {
-        self.client.execute(action: "ModifyAlarmDefaultThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改告警默认阈值
-    ///
-    /// 此接口（ModifyAlarmDefaultThreshold）用于修改告警默认阈值。
-    @inlinable
-    public func modifyAlarmDefaultThreshold(_ input: ModifyAlarmDefaultThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmDefaultThresholdResponse {
-        try await self.client.execute(action: "ModifyAlarmDefaultThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAlarmDefaultThreshold请求参数结构体
     public struct ModifyAlarmDefaultThresholdRequest: TCRequestModel {
         /// 告警服务类型，取值有：
@@ -46,7 +30,7 @@ extension Teo {
         /// 防护实体，如果是四层防护，防护实体为通道ID。如果是七层防护，防护实体为站点名称。
         public let entity: String?
         
-        public init (serviceType: String, zoneId: String, threshold: Int64, entity: String?) {
+        public init (serviceType: String, zoneId: String, threshold: Int64, entity: String? = nil) {
             self.serviceType = serviceType
             self.zoneId = zoneId
             self.threshold = threshold
@@ -69,5 +53,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改告警默认阈值
+    ///
+    /// 此接口（ModifyAlarmDefaultThreshold）用于修改告警默认阈值。
+    @inlinable
+    public func modifyAlarmDefaultThreshold(_ input: ModifyAlarmDefaultThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmDefaultThresholdResponse > {
+        self.client.execute(action: "ModifyAlarmDefaultThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改告警默认阈值
+    ///
+    /// 此接口（ModifyAlarmDefaultThreshold）用于修改告警默认阈值。
+    @inlinable
+    public func modifyAlarmDefaultThreshold(_ input: ModifyAlarmDefaultThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmDefaultThresholdResponse {
+        try await self.client.execute(action: "ModifyAlarmDefaultThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

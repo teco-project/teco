@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 获取回调规则列表
-    @inlinable
-    public func describeLiveCallbackRules(_ input: DescribeLiveCallbackRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveCallbackRulesResponse > {
-        self.client.execute(action: "DescribeLiveCallbackRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取回调规则列表
-    @inlinable
-    public func describeLiveCallbackRules(_ input: DescribeLiveCallbackRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackRulesResponse {
-        try await self.client.execute(action: "DescribeLiveCallbackRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveCallbackRules请求参数结构体
     public struct DescribeLiveCallbackRulesRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Live {
             case rules = "Rules"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取回调规则列表
+    @inlinable
+    public func describeLiveCallbackRules(_ input: DescribeLiveCallbackRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveCallbackRulesResponse > {
+        self.client.execute(action: "DescribeLiveCallbackRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取回调规则列表
+    @inlinable
+    public func describeLiveCallbackRules(_ input: DescribeLiveCallbackRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackRulesResponse {
+        try await self.client.execute(action: "DescribeLiveCallbackRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

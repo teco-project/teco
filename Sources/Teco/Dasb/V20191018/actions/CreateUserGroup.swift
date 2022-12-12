@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dasb {
-    /// 新建用户组
-    @inlinable
-    public func createUserGroup(_ input: CreateUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserGroupResponse > {
-        self.client.execute(action: "CreateUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建用户组
-    @inlinable
-    public func createUserGroup(_ input: CreateUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserGroupResponse {
-        try await self.client.execute(action: "CreateUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUserGroup请求参数结构体
     public struct CreateUserGroupRequest: TCRequestModel {
         /// 用户组名，最大长度32字符
@@ -35,7 +23,7 @@ extension Dasb {
         /// 用户组所属部门的ID，如：1.2.3
         public let departmentId: String?
         
-        public init (name: String, departmentId: String?) {
+        public init (name: String, departmentId: String? = nil) {
             self.name = name
             self.departmentId = departmentId
         }
@@ -58,5 +46,17 @@ extension Dasb {
             case id = "Id"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建用户组
+    @inlinable
+    public func createUserGroup(_ input: CreateUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserGroupResponse > {
+        self.client.execute(action: "CreateUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建用户组
+    @inlinable
+    public func createUserGroup(_ input: CreateUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserGroupResponse {
+        try await self.client.execute(action: "CreateUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

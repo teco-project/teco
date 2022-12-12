@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 删除从实例
-    @inlinable
-    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReplicationInstanceResponse > {
-        self.client.execute(action: "DeleteReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除从实例
-    @inlinable
-    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReplicationInstanceResponse {
-        try await self.client.execute(action: "DeleteReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteReplicationInstance请求参数结构体
     public struct DeleteReplicationInstanceRequest: TCRequestModel {
         /// 实例id
@@ -59,5 +47,17 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除从实例
+    @inlinable
+    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReplicationInstanceResponse > {
+        self.client.execute(action: "DeleteReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除从实例
+    @inlinable
+    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReplicationInstanceResponse {
+        try await self.client.execute(action: "DeleteReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

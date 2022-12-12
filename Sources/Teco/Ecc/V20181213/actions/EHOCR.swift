@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecc {
-    /// 图像识别批改
-    ///
-    /// https://ecc.tencentcloudapi.com/?Action=EHOCR
-    /// 图像识别批改接口
-    @inlinable
-    public func ehocr(_ input: EHOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EHOCRResponse > {
-        self.client.execute(action: "EHOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 图像识别批改
-    ///
-    /// https://ecc.tencentcloudapi.com/?Action=EHOCR
-    /// 图像识别批改接口
-    @inlinable
-    public func ehocr(_ input: EHOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EHOCRResponse {
-        try await self.client.execute(action: "EHOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EHOCR请求参数结构体
     public struct EHOCRRequest: TCRequestModel {
         /// 图片所在的url或base64编码后的图像数据，依据InputType而定
@@ -68,7 +50,7 @@ extension Ecc {
         /// 异步模式标识，0：同步模式，1：异步模式。默认为同步模式
         public let isAsync: Int64?
         
-        public init (image: String, inputType: Int64, eccAppid: String?, sessionId: String?, serverType: Int64?, title: String?, grade: String?, requirement: String?, modelTitle: String?, modelContent: String?, isAsync: Int64?) {
+        public init (image: String, inputType: Int64, eccAppid: String? = nil, sessionId: String? = nil, serverType: Int64? = nil, title: String? = nil, grade: String? = nil, requirement: String? = nil, modelTitle: String? = nil, modelContent: String? = nil, isAsync: Int64? = nil) {
             self.image = image
             self.inputType = inputType
             self.eccAppid = eccAppid
@@ -109,5 +91,23 @@ extension Ecc {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 图像识别批改
+    ///
+    /// https://ecc.tencentcloudapi.com/?Action=EHOCR
+    /// 图像识别批改接口
+    @inlinable
+    public func ehocr(_ input: EHOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EHOCRResponse > {
+        self.client.execute(action: "EHOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 图像识别批改
+    ///
+    /// https://ecc.tencentcloudapi.com/?Action=EHOCR
+    /// 图像识别批改接口
+    @inlinable
+    public func ehocr(_ input: EHOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EHOCRResponse {
+        try await self.client.execute(action: "EHOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

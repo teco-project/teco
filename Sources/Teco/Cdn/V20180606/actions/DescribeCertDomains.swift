@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 获取SSL证书中的可用域名
-    ///
-    /// DescribeCertDomains 用于校验SSL证书并提取证书中包含的域名。
-    @inlinable
-    public func describeCertDomains(_ input: DescribeCertDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertDomainsResponse > {
-        self.client.execute(action: "DescribeCertDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取SSL证书中的可用域名
-    ///
-    /// DescribeCertDomains 用于校验SSL证书并提取证书中包含的域名。
-    @inlinable
-    public func describeCertDomains(_ input: DescribeCertDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDomainsResponse {
-        try await self.client.execute(action: "DescribeCertDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCertDomains请求参数结构体
     public struct DescribeCertDomainsRequest: TCRequestModel {
         /// PEM格式证书Base64编码后的字符串
@@ -42,7 +26,7 @@ extension Cdn {
         /// 域名所属产品，cdn或ecdn，默认cdn。
         public let product: String?
         
-        public init (cert: String?, certId: String?, product: String?) {
+        public init (cert: String? = nil, certId: String? = nil, product: String? = nil) {
             self.cert = cert
             self.certId = certId
             self.product = product
@@ -73,5 +57,21 @@ extension Cdn {
             case certifiedDomains = "CertifiedDomains"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取SSL证书中的可用域名
+    ///
+    /// DescribeCertDomains 用于校验SSL证书并提取证书中包含的域名。
+    @inlinable
+    public func describeCertDomains(_ input: DescribeCertDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertDomainsResponse > {
+        self.client.execute(action: "DescribeCertDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取SSL证书中的可用域名
+    ///
+    /// DescribeCertDomains 用于校验SSL证书并提取证书中包含的域名。
+    @inlinable
+    public func describeCertDomains(_ input: DescribeCertDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDomainsResponse {
+        try await self.client.execute(action: "DescribeCertDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

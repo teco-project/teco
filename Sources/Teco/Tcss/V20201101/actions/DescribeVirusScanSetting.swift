@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时查询文件查杀设置
-    @inlinable
-    public func describeVirusScanSetting(_ input: DescribeVirusScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusScanSettingResponse > {
-        self.client.execute(action: "DescribeVirusScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时查询文件查杀设置
-    @inlinable
-    public func describeVirusScanSetting(_ input: DescribeVirusScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusScanSettingResponse {
-        try await self.client.execute(action: "DescribeVirusScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVirusScanSetting请求参数结构体
     public struct DescribeVirusScanSettingRequest: TCRequestModel {
         public init () {
@@ -86,5 +74,17 @@ extension Tcss {
             case clickTimeout = "ClickTimeout"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时查询文件查杀设置
+    @inlinable
+    public func describeVirusScanSetting(_ input: DescribeVirusScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusScanSettingResponse > {
+        self.client.execute(action: "DescribeVirusScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时查询文件查杀设置
+    @inlinable
+    public func describeVirusScanSetting(_ input: DescribeVirusScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusScanSettingResponse {
+        try await self.client.execute(action: "DescribeVirusScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

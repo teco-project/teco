@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 导出视频编辑项目
-    ///
-    /// 导出视频编辑项目，支持指定输出的模板。
-    @inlinable
-    public func exportVideoEditProject(_ input: ExportVideoEditProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVideoEditProjectResponse > {
-        self.client.execute(action: "ExportVideoEditProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出视频编辑项目
-    ///
-    /// 导出视频编辑项目，支持指定输出的模板。
-    @inlinable
-    public func exportVideoEditProject(_ input: ExportVideoEditProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoEditProjectResponse {
-        try await self.client.execute(action: "ExportVideoEditProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportVideoEditProject请求参数结构体
     public struct ExportVideoEditProjectRequest: TCRequestModel {
         /// 平台名称，指定访问的平台。
@@ -54,18 +38,18 @@ extension Cme {
         public let coverData: String?
         
         /// 导出的多媒体创作引擎媒体信息。当导出目标为 CME 时必填。
-        public let cmeExportInfo: CMEExportInfo
+        public let cmeExportInfo: CMEExportInfo?
         
         /// 导出的云点播媒资信息。当导出目标为 VOD 时必填。
-        public let vodExportInfo: VODExportInfo
+        public let vodExportInfo: VODExportInfo?
         
         /// 视频导出扩展参数。可以覆盖导出模板中的参数，灵活的指定导出规格及参数。
-        public let exportExtensionArgs: VideoExportExtensionArgs
+        public let exportExtensionArgs: VideoExportExtensionArgs?
         
         /// 操作者。填写用户的 Id，用于标识调用者及校验项目导出权限。
         public let `operator`: String?
         
-        public init (platform: String, projectId: String, definition: UInt64, exportDestination: String, coverData: String?, cmeExportInfo: CMEExportInfo, vodExportInfo: VODExportInfo, exportExtensionArgs: VideoExportExtensionArgs, `operator`: String?) {
+        public init (platform: String, projectId: String, definition: UInt64, exportDestination: String, coverData: String? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, exportExtensionArgs: VideoExportExtensionArgs? = nil, `operator`: String? = nil) {
             self.platform = platform
             self.projectId = projectId
             self.definition = definition
@@ -102,5 +86,21 @@ extension Cme {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出视频编辑项目
+    ///
+    /// 导出视频编辑项目，支持指定输出的模板。
+    @inlinable
+    public func exportVideoEditProject(_ input: ExportVideoEditProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVideoEditProjectResponse > {
+        self.client.execute(action: "ExportVideoEditProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出视频编辑项目
+    ///
+    /// 导出视频编辑项目，支持指定输出的模板。
+    @inlinable
+    public func exportVideoEditProject(_ input: ExportVideoEditProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoEditProjectResponse {
+        try await self.client.execute(action: "ExportVideoEditProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

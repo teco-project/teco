@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 恢复环境，解除隔离状态
-    ///
-    /// 针对已隔离的免费环境，可以通过本接口将其恢复访问。
-    @inlinable
-    public func reinstateEnv(_ input: ReinstateEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReinstateEnvResponse > {
-        self.client.execute(action: "ReinstateEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 恢复环境，解除隔离状态
-    ///
-    /// 针对已隔离的免费环境，可以通过本接口将其恢复访问。
-    @inlinable
-    public func reinstateEnv(_ input: ReinstateEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReinstateEnvResponse {
-        try await self.client.execute(action: "ReinstateEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReinstateEnv请求参数结构体
     public struct ReinstateEnvRequest: TCRequestModel {
         /// 环境ID
@@ -53,5 +37,21 @@ extension Tcb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 恢复环境，解除隔离状态
+    ///
+    /// 针对已隔离的免费环境，可以通过本接口将其恢复访问。
+    @inlinable
+    public func reinstateEnv(_ input: ReinstateEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReinstateEnvResponse > {
+        self.client.execute(action: "ReinstateEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复环境，解除隔离状态
+    ///
+    /// 针对已隔离的免费环境，可以通过本接口将其恢复访问。
+    @inlinable
+    public func reinstateEnv(_ input: ReinstateEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReinstateEnvResponse {
+        try await self.client.execute(action: "ReinstateEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

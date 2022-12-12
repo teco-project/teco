@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取离线任务长连接Token
-    @inlinable
-    public func describeOfflineTaskToken(_ input: DescribeOfflineTaskTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfflineTaskTokenResponse > {
-        self.client.execute(action: "DescribeOfflineTaskToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取离线任务长连接Token
-    @inlinable
-    public func describeOfflineTaskToken(_ input: DescribeOfflineTaskTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineTaskTokenResponse {
-        try await self.client.execute(action: "DescribeOfflineTaskToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOfflineTaskToken请求参数结构体
     public struct DescribeOfflineTaskTokenRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Wedata {
             case token = "Token"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取离线任务长连接Token
+    @inlinable
+    public func describeOfflineTaskToken(_ input: DescribeOfflineTaskTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfflineTaskTokenResponse > {
+        self.client.execute(action: "DescribeOfflineTaskToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取离线任务长连接Token
+    @inlinable
+    public func describeOfflineTaskToken(_ input: DescribeOfflineTaskTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineTaskTokenResponse {
+        try await self.client.execute(action: "DescribeOfflineTaskToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

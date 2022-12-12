@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Youmall {
-    /// 获取顾客到访信息列表
-    ///
-    /// 获取门店指定时间范围内的所有用户到访信息记录，支持的时间范围：过去365天，含当天。
-    @inlinable
-    public func describePersonVisitInfo(_ input: DescribePersonVisitInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonVisitInfoResponse > {
-        self.client.execute(action: "DescribePersonVisitInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取顾客到访信息列表
-    ///
-    /// 获取门店指定时间范围内的所有用户到访信息记录，支持的时间范围：过去365天，含当天。
-    @inlinable
-    public func describePersonVisitInfo(_ input: DescribePersonVisitInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonVisitInfoResponse {
-        try await self.client.execute(action: "DescribePersonVisitInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePersonVisitInfo请求参数结构体
     public struct DescribePersonVisitInfoRequest: TCRequestModel {
         /// 公司ID
@@ -62,7 +46,7 @@ extension Youmall {
         /// 结束时间，格式yyyy-MM-dd HH:mm:ss
         public let endDateTime: Date?
         
-        public init (companyId: String, shopId: UInt64, offset: UInt64, limit: UInt64, startDate: Date?, endDate: Date?, pictureExpires: UInt64?, startDateTime: Date?, endDateTime: Date?) {
+        public init (companyId: String, shopId: UInt64, offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, pictureExpires: UInt64? = nil, startDateTime: Date? = nil, endDateTime: Date? = nil) {
             self.companyId = companyId
             self.shopId = shopId
             self.offset = offset
@@ -111,5 +95,21 @@ extension Youmall {
             case personVisitInfoSet = "PersonVisitInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取顾客到访信息列表
+    ///
+    /// 获取门店指定时间范围内的所有用户到访信息记录，支持的时间范围：过去365天，含当天。
+    @inlinable
+    public func describePersonVisitInfo(_ input: DescribePersonVisitInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonVisitInfoResponse > {
+        self.client.execute(action: "DescribePersonVisitInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取顾客到访信息列表
+    ///
+    /// 获取门店指定时间范围内的所有用户到访信息记录，支持的时间范围：过去365天，含当天。
+    @inlinable
+    public func describePersonVisitInfo(_ input: DescribePersonVisitInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonVisitInfoResponse {
+        try await self.client.execute(action: "DescribePersonVisitInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

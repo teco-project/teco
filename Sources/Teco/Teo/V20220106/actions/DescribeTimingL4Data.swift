@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 四层时序流量数据查询接口
-    ///
-    /// 四层时序流量数据查询
-    @inlinable
-    public func describeTimingL4Data(_ input: DescribeTimingL4DataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTimingL4DataResponse > {
-        self.client.execute(action: "DescribeTimingL4Data", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 四层时序流量数据查询接口
-    ///
-    /// 四层时序流量数据查询
-    @inlinable
-    public func describeTimingL4Data(_ input: DescribeTimingL4DataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL4DataResponse {
-        try await self.client.execute(action: "DescribeTimingL4Data", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTimingL4Data请求参数结构体
     public struct DescribeTimingL4DataRequest: TCRequestModel {
         /// RFC3339格式，客户端时间
@@ -76,7 +60,7 @@ extension Teo {
         /// <li>overseas：全球（不含中国大陆）。</li>
         public let area: String?
         
-        public init (startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]?, instanceIds: [String]?, `protocol`: String?, interval: String?, ruleId: String?, filters: [Filter]?, proxyIds: [String]?, area: String?) {
+        public init (startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, instanceIds: [String]? = nil, `protocol`: String? = nil, interval: String? = nil, ruleId: String? = nil, filters: [Filter]? = nil, proxyIds: [String]? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metricNames = metricNames
@@ -126,5 +110,21 @@ extension Teo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 四层时序流量数据查询接口
+    ///
+    /// 四层时序流量数据查询
+    @inlinable
+    public func describeTimingL4Data(_ input: DescribeTimingL4DataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTimingL4DataResponse > {
+        self.client.execute(action: "DescribeTimingL4Data", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 四层时序流量数据查询接口
+    ///
+    /// 四层时序流量数据查询
+    @inlinable
+    public func describeTimingL4Data(_ input: DescribeTimingL4DataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL4DataResponse {
+        try await self.client.execute(action: "DescribeTimingL4Data", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询容器信息
-    ///
-    /// 查询容器详细信息
-    @inlinable
-    public func describeAssetContainerDetail(_ input: DescribeAssetContainerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetContainerDetailResponse > {
-        self.client.execute(action: "DescribeAssetContainerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器信息
-    ///
-    /// 查询容器详细信息
-    @inlinable
-    public func describeAssetContainerDetail(_ input: DescribeAssetContainerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetContainerDetailResponse {
-        try await self.client.execute(action: "DescribeAssetContainerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetContainerDetail请求参数结构体
     public struct DescribeAssetContainerDetailRequest: TCRequestModel {
         /// 容器id
@@ -169,5 +153,21 @@ extension Tcss {
             case isolateTime = "IsolateTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器信息
+    ///
+    /// 查询容器详细信息
+    @inlinable
+    public func describeAssetContainerDetail(_ input: DescribeAssetContainerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetContainerDetailResponse > {
+        self.client.execute(action: "DescribeAssetContainerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器信息
+    ///
+    /// 查询容器详细信息
+    @inlinable
+    public func describeAssetContainerDetail(_ input: DescribeAssetContainerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetContainerDetailResponse {
+        try await self.client.execute(action: "DescribeAssetContainerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

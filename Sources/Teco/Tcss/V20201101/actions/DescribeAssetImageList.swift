@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询镜像列表
-    ///
-    /// 容器安全搜索查询镜像列表
-    @inlinable
-    public func describeAssetImageList(_ input: DescribeAssetImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageListResponse > {
-        self.client.execute(action: "DescribeAssetImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询镜像列表
-    ///
-    /// 容器安全搜索查询镜像列表
-    @inlinable
-    public func describeAssetImageList(_ input: DescribeAssetImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageListResponse {
-        try await self.client.execute(action: "DescribeAssetImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageList请求参数结构体
     public struct DescribeAssetImageListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -52,7 +36,7 @@ extension Tcss {
         /// 排序方式 asc,desc
         public let order: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [AssetFilters]?, by: String?, order: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -85,5 +69,21 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询镜像列表
+    ///
+    /// 容器安全搜索查询镜像列表
+    @inlinable
+    public func describeAssetImageList(_ input: DescribeAssetImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageListResponse > {
+        self.client.execute(action: "DescribeAssetImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像列表
+    ///
+    /// 容器安全搜索查询镜像列表
+    @inlinable
+    public func describeAssetImageList(_ input: DescribeAssetImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageListResponse {
+        try await self.client.execute(action: "DescribeAssetImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

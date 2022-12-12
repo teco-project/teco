@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 拉取模板列表
-    ///
-    /// 拉取模板列表，默认模板将总是在最前面
-    @inlinable
-    public func describePrometheusTemp(_ input: DescribePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusTempResponse > {
-        self.client.execute(action: "DescribePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取模板列表
-    ///
-    /// 拉取模板列表，默认模板将总是在最前面
-    @inlinable
-    public func describePrometheusTemp(_ input: DescribePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTempResponse {
-        try await self.client.execute(action: "DescribePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrometheusTemp请求参数结构体
     public struct DescribePrometheusTempRequest: TCRequestModel {
         /// 模糊过滤条件，支持
@@ -46,7 +30,7 @@ extension Tke {
         /// 总数限制
         public let limit: UInt64?
         
-        public init (filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -75,5 +59,21 @@ extension Tke {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取模板列表
+    ///
+    /// 拉取模板列表，默认模板将总是在最前面
+    @inlinable
+    public func describePrometheusTemp(_ input: DescribePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusTempResponse > {
+        self.client.execute(action: "DescribePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取模板列表
+    ///
+    /// 拉取模板列表，默认模板将总是在最前面
+    @inlinable
+    public func describePrometheusTemp(_ input: DescribePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTempResponse {
+        try await self.client.execute(action: "DescribePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

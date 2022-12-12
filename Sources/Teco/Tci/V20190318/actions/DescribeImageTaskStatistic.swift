@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 获取图像任务统计信息
-    @inlinable
-    public func describeImageTaskStatistic(_ input: DescribeImageTaskStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageTaskStatisticResponse > {
-        self.client.execute(action: "DescribeImageTaskStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取图像任务统计信息
-    @inlinable
-    public func describeImageTaskStatistic(_ input: DescribeImageTaskStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTaskStatisticResponse {
-        try await self.client.execute(action: "DescribeImageTaskStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageTaskStatistic请求参数结构体
     public struct DescribeImageTaskStatisticRequest: TCRequestModel {
         /// 图像任务标识符
@@ -57,5 +45,17 @@ extension Tci {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取图像任务统计信息
+    @inlinable
+    public func describeImageTaskStatistic(_ input: DescribeImageTaskStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageTaskStatisticResponse > {
+        self.client.execute(action: "DescribeImageTaskStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取图像任务统计信息
+    @inlinable
+    public func describeImageTaskStatistic(_ input: DescribeImageTaskStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTaskStatisticResponse {
+        try await self.client.execute(action: "DescribeImageTaskStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

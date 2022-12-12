@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 更新Amqp交换机
-    @inlinable
-    public func modifyAMQPExchange(_ input: ModifyAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAMQPExchangeResponse > {
-        self.client.execute(action: "ModifyAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新Amqp交换机
-    @inlinable
-    public func modifyAMQPExchange(_ input: ModifyAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPExchangeResponse {
-        try await self.client.execute(action: "ModifyAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAMQPExchange请求参数结构体
     public struct ModifyAMQPExchangeRequest: TCRequestModel {
         /// 集群ID
@@ -41,7 +29,7 @@ extension Tdmq {
         /// 说明信息，最大128个字符
         public let remark: String?
         
-        public init (clusterId: String, vHostId: String, exchange: String, remark: String?) {
+        public init (clusterId: String, vHostId: String, exchange: String, remark: String? = nil) {
             self.clusterId = clusterId
             self.vHostId = vHostId
             self.exchange = exchange
@@ -64,5 +52,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新Amqp交换机
+    @inlinable
+    public func modifyAMQPExchange(_ input: ModifyAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAMQPExchangeResponse > {
+        self.client.execute(action: "ModifyAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新Amqp交换机
+    @inlinable
+    public func modifyAMQPExchange(_ input: ModifyAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPExchangeResponse {
+        try await self.client.execute(action: "ModifyAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

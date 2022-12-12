@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 转发规则绑定源站
-    ///
-    /// 该接口用于7层监听器的转发规则绑定源站。注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。
-    @inlinable
-    public func bindRuleRealServers(_ input: BindRuleRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindRuleRealServersResponse > {
-        self.client.execute(action: "BindRuleRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 转发规则绑定源站
-    ///
-    /// 该接口用于7层监听器的转发规则绑定源站。注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。
-    @inlinable
-    public func bindRuleRealServers(_ input: BindRuleRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRuleRealServersResponse {
-        try await self.client.execute(action: "BindRuleRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindRuleRealServers请求参数结构体
     public struct BindRuleRealServersRequest: TCRequestModel {
         /// 转发规则ID
@@ -42,7 +26,7 @@ extension Gaap {
         /// 如果该规则的源站调度策略是加权轮询，需要填写源站权重 RealServerWeight, 不填或者其他调度类型默认源站权重为1。
         public let realServerBindSet: [RealServerBindSetReq]?
         
-        public init (ruleId: String, realServerBindSet: [RealServerBindSetReq]?) {
+        public init (ruleId: String, realServerBindSet: [RealServerBindSetReq]? = nil) {
             self.ruleId = ruleId
             self.realServerBindSet = realServerBindSet
         }
@@ -61,5 +45,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 转发规则绑定源站
+    ///
+    /// 该接口用于7层监听器的转发规则绑定源站。注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。
+    @inlinable
+    public func bindRuleRealServers(_ input: BindRuleRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindRuleRealServersResponse > {
+        self.client.execute(action: "BindRuleRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 转发规则绑定源站
+    ///
+    /// 该接口用于7层监听器的转发规则绑定源站。注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。
+    @inlinable
+    public func bindRuleRealServers(_ input: BindRuleRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRuleRealServersResponse {
+        try await self.client.execute(action: "BindRuleRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询网关监控概览
-    @inlinable
-    public func describeGatewayMonitorOverview(_ input: DescribeGatewayMonitorOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewayMonitorOverviewResponse > {
-        self.client.execute(action: "DescribeGatewayMonitorOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询网关监控概览
-    @inlinable
-    public func describeGatewayMonitorOverview(_ input: DescribeGatewayMonitorOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayMonitorOverviewResponse {
-        try await self.client.execute(action: "DescribeGatewayMonitorOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGatewayMonitorOverview请求参数结构体
     public struct DescribeGatewayMonitorOverviewRequest: TCRequestModel {
         /// 网关部署组ID
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询网关监控概览
+    @inlinable
+    public func describeGatewayMonitorOverview(_ input: DescribeGatewayMonitorOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewayMonitorOverviewResponse > {
+        self.client.execute(action: "DescribeGatewayMonitorOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网关监控概览
+    @inlinable
+    public func describeGatewayMonitorOverview(_ input: DescribeGatewayMonitorOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayMonitorOverviewResponse {
+        try await self.client.execute(action: "DescribeGatewayMonitorOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

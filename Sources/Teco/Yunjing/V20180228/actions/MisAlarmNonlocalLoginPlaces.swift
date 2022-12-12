@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 误报异地登录
-    ///
-    /// 本接口{MisAlarmNonlocalLoginPlaces}将设置当前地点为常用登录地。
-    @inlinable
-    public func misAlarmNonlocalLoginPlaces(_ input: MisAlarmNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MisAlarmNonlocalLoginPlacesResponse > {
-        self.client.execute(action: "MisAlarmNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 误报异地登录
-    ///
-    /// 本接口{MisAlarmNonlocalLoginPlaces}将设置当前地点为常用登录地。
-    @inlinable
-    public func misAlarmNonlocalLoginPlaces(_ input: MisAlarmNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MisAlarmNonlocalLoginPlacesResponse {
-        try await self.client.execute(action: "MisAlarmNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// MisAlarmNonlocalLoginPlaces请求参数结构体
     public struct MisAlarmNonlocalLoginPlacesRequest: TCRequestModel {
         /// 异地登录事件Id数组。
@@ -53,5 +37,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 误报异地登录
+    ///
+    /// 本接口{MisAlarmNonlocalLoginPlaces}将设置当前地点为常用登录地。
+    @inlinable
+    public func misAlarmNonlocalLoginPlaces(_ input: MisAlarmNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MisAlarmNonlocalLoginPlacesResponse > {
+        self.client.execute(action: "MisAlarmNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 误报异地登录
+    ///
+    /// 本接口{MisAlarmNonlocalLoginPlaces}将设置当前地点为常用登录地。
+    @inlinable
+    public func misAlarmNonlocalLoginPlaces(_ input: MisAlarmNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MisAlarmNonlocalLoginPlacesResponse {
+        try await self.client.execute(action: "MisAlarmNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

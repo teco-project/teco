@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取镜像信息
-    @inlinable
-    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
-        self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取镜像信息
-    @inlinable
-    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
-        try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImages请求参数结构体
     public struct DescribeImagesRequest: TCRequestModel {
         public init () {
@@ -51,5 +39,17 @@ extension Tke {
             case imageInstanceSet = "ImageInstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取镜像信息
+    @inlinable
+    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
+        self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取镜像信息
+    @inlinable
+    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
+        try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

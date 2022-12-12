@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbdc {
-    /// 查询独享集群详情
-    ///
-    /// 本接口用于查询独享集群详情
-    @inlinable
-    public func describeInstanceDetail(_ input: DescribeInstanceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceDetailResponse > {
-        self.client.execute(action: "DescribeInstanceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询独享集群详情
-    ///
-    /// 本接口用于查询独享集群详情
-    @inlinable
-    public func describeInstanceDetail(_ input: DescribeInstanceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDetailResponse {
-        try await self.client.execute(action: "DescribeInstanceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceDetail请求参数结构体
     public struct DescribeInstanceDetailRequest: TCRequestModel {
         /// 独享集群实例Id
@@ -159,5 +143,21 @@ extension Dbdc {
             case clusterId = "ClusterId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询独享集群详情
+    ///
+    /// 本接口用于查询独享集群详情
+    @inlinable
+    public func describeInstanceDetail(_ input: DescribeInstanceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceDetailResponse > {
+        self.client.execute(action: "DescribeInstanceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询独享集群详情
+    ///
+    /// 本接口用于查询独享集群详情
+    @inlinable
+    public func describeInstanceDetail(_ input: DescribeInstanceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDetailResponse {
+        try await self.client.execute(action: "DescribeInstanceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

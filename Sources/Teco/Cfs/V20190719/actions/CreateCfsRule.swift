@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 创建权限组规则
-    ///
-    /// 本接口（CreateCfsRule）用于创建权限组规则。
-    @inlinable
-    public func createCfsRule(_ input: CreateCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCfsRuleResponse > {
-        self.client.execute(action: "CreateCfsRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建权限组规则
-    ///
-    /// 本接口（CreateCfsRule）用于创建权限组规则。
-    @inlinable
-    public func createCfsRule(_ input: CreateCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsRuleResponse {
-        try await self.client.execute(action: "CreateCfsRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCfsRule请求参数结构体
     public struct CreateCfsRuleRequest: TCRequestModel {
         /// 权限组 ID
@@ -48,7 +32,7 @@ extension Cfs {
         /// 用户权限，值为 all_squash、no_all_squash、root_squash、no_root_squash。其中all_squash为所有访问用户都会被映射为匿名用户或用户组；no_all_squash为访问用户会先与本机用户匹配，匹配失败后再映射为匿名用户或用户组；root_squash为将来访的root用户映射为匿名用户或用户组；no_root_squash为来访的root用户保持root帐号权限。不填默认为root_squash。
         public let userPermission: String?
         
-        public init (pGroupId: String, authClientIp: String, priority: Int64, rwPermission: String?, userPermission: String?) {
+        public init (pGroupId: String, authClientIp: String, priority: Int64, rwPermission: String? = nil, userPermission: String? = nil) {
             self.pGroupId = pGroupId
             self.authClientIp = authClientIp
             self.priority = priority
@@ -97,5 +81,21 @@ extension Cfs {
             case priority = "Priority"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建权限组规则
+    ///
+    /// 本接口（CreateCfsRule）用于创建权限组规则。
+    @inlinable
+    public func createCfsRule(_ input: CreateCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCfsRuleResponse > {
+        self.client.execute(action: "CreateCfsRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建权限组规则
+    ///
+    /// 本接口（CreateCfsRule）用于创建权限组规则。
+    @inlinable
+    public func createCfsRule(_ input: CreateCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsRuleResponse {
+        try await self.client.execute(action: "CreateCfsRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

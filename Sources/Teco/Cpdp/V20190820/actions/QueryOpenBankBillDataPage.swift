@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-分页查询对账单数据
-    @inlinable
-    public func queryOpenBankBillDataPage(_ input: QueryOpenBankBillDataPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankBillDataPageResponse > {
-        self.client.execute(action: "QueryOpenBankBillDataPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-分页查询对账单数据
-    @inlinable
-    public func queryOpenBankBillDataPage(_ input: QueryOpenBankBillDataPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBillDataPageResponse {
-        try await self.client.execute(action: "QueryOpenBankBillDataPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryOpenBankBillDataPage请求参数结构体
     public struct QueryOpenBankBillDataPageRequest: TCRequestModel {
         /// 渠道商户号，外部接入平台方入驻云企付平台后下发。
@@ -63,7 +51,7 @@ extension Cpdp {
         /// _不填默认为生产环境_
         public let environment: String?
         
-        public init (channelMerchantId: String, billDate: String, channelName: String, pageNo: UInt64, pageSize: UInt64, billType: String?, paymentMethod: String?, environment: String?) {
+        public init (channelMerchantId: String, billDate: String, channelName: String, pageNo: UInt64, pageSize: UInt64, billType: String? = nil, paymentMethod: String? = nil, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.billDate = billDate
             self.channelName = channelName
@@ -98,7 +86,7 @@ extension Cpdp {
         
         /// 结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: QueryOpenBankBillDataPageResult
+        public let result: QueryOpenBankBillDataPageResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -109,5 +97,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-分页查询对账单数据
+    @inlinable
+    public func queryOpenBankBillDataPage(_ input: QueryOpenBankBillDataPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankBillDataPageResponse > {
+        self.client.execute(action: "QueryOpenBankBillDataPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-分页查询对账单数据
+    @inlinable
+    public func queryOpenBankBillDataPage(_ input: QueryOpenBankBillDataPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBillDataPageResponse {
+        try await self.client.execute(action: "QueryOpenBankBillDataPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

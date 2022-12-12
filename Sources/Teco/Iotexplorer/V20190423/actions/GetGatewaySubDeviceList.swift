@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取指定网关设备的子设备列表
-    @inlinable
-    public func getGatewaySubDeviceList(_ input: GetGatewaySubDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGatewaySubDeviceListResponse > {
-        self.client.execute(action: "GetGatewaySubDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取指定网关设备的子设备列表
-    @inlinable
-    public func getGatewaySubDeviceList(_ input: GetGatewaySubDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGatewaySubDeviceListResponse {
-        try await self.client.execute(action: "GetGatewaySubDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetGatewaySubDeviceList请求参数结构体
     public struct GetGatewaySubDeviceListRequest: TCRequestModel {
         /// 网关产品ID
@@ -64,7 +52,7 @@ extension Iotexplorer {
         
         /// 设备列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let deviceList: FamilySubDevice
+        public let deviceList: FamilySubDevice?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -74,5 +62,17 @@ extension Iotexplorer {
             case deviceList = "DeviceList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取指定网关设备的子设备列表
+    @inlinable
+    public func getGatewaySubDeviceList(_ input: GetGatewaySubDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGatewaySubDeviceListResponse > {
+        self.client.execute(action: "GetGatewaySubDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定网关设备的子设备列表
+    @inlinable
+    public func getGatewaySubDeviceList(_ input: GetGatewaySubDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGatewaySubDeviceListResponse {
+        try await self.client.execute(action: "GetGatewaySubDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 修改云数据库实例的自动续费标记
-    ///
-    /// 本接口(ModifyAutoRenewFlag)用于修改云数据库实例的自动续费标记。仅支持包年包月的实例设置自动续费标记。
-    @inlinable
-    public func modifyAutoRenewFlag(_ input: ModifyAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAutoRenewFlagResponse > {
-        self.client.execute(action: "ModifyAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改云数据库实例的自动续费标记
-    ///
-    /// 本接口(ModifyAutoRenewFlag)用于修改云数据库实例的自动续费标记。仅支持包年包月的实例设置自动续费标记。
-    @inlinable
-    public func modifyAutoRenewFlag(_ input: ModifyAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoRenewFlagResponse {
-        try await self.client.execute(action: "ModifyAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAutoRenewFlag请求参数结构体
     public struct ModifyAutoRenewFlagRequest: TCRequestModel {
         /// 实例的 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -58,5 +42,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改云数据库实例的自动续费标记
+    ///
+    /// 本接口(ModifyAutoRenewFlag)用于修改云数据库实例的自动续费标记。仅支持包年包月的实例设置自动续费标记。
+    @inlinable
+    public func modifyAutoRenewFlag(_ input: ModifyAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAutoRenewFlagResponse > {
+        self.client.execute(action: "ModifyAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库实例的自动续费标记
+    ///
+    /// 本接口(ModifyAutoRenewFlag)用于修改云数据库实例的自动续费标记。仅支持包年包月的实例设置自动续费标记。
+    @inlinable
+    public func modifyAutoRenewFlag(_ input: ModifyAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoRenewFlagResponse {
+        try await self.client.execute(action: "ModifyAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询扫描任务详情
-    ///
-    /// DescribeScanTaskDetails 查询扫描任务详情 , 可以查询扫描进度信息/异常;
-    @inlinable
-    public func describeScanTaskDetails(_ input: DescribeScanTaskDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskDetailsResponse > {
-        self.client.execute(action: "DescribeScanTaskDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询扫描任务详情
-    ///
-    /// DescribeScanTaskDetails 查询扫描任务详情 , 可以查询扫描进度信息/异常;
-    @inlinable
-    public func describeScanTaskDetails(_ input: DescribeScanTaskDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskDetailsResponse {
-        try await self.client.execute(action: "DescribeScanTaskDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScanTaskDetails请求参数结构体
     public struct DescribeScanTaskDetailsRequest: TCRequestModel {
         /// 模块类型 当前提供 Malware 木马 , Vul 漏洞 , Baseline 基线
@@ -48,7 +32,7 @@ extension Cwp {
         /// 偏移量，默认为0。
         public let offset: UInt64?
         
-        public init (moduleType: String, taskId: UInt64, filters: [Filters]?, limit: UInt64?, offset: UInt64?) {
+        public init (moduleType: String, taskId: UInt64, filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.moduleType = moduleType
             self.taskId = taskId
             self.filters = filters
@@ -138,5 +122,21 @@ extension Cwp {
             case vulCount = "VulCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询扫描任务详情
+    ///
+    /// DescribeScanTaskDetails 查询扫描任务详情 , 可以查询扫描进度信息/异常;
+    @inlinable
+    public func describeScanTaskDetails(_ input: DescribeScanTaskDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskDetailsResponse > {
+        self.client.execute(action: "DescribeScanTaskDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询扫描任务详情
+    ///
+    /// DescribeScanTaskDetails 查询扫描任务详情 , 可以查询扫描进度信息/异常;
+    @inlinable
+    public func describeScanTaskDetails(_ input: DescribeScanTaskDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskDetailsResponse {
+        try await self.client.execute(action: "DescribeScanTaskDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

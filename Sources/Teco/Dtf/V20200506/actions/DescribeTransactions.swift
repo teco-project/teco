@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dtf {
-    /// 查询主事务列表
-    @inlinable
-    public func describeTransactions(_ input: DescribeTransactionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTransactionsResponse > {
-        self.client.execute(action: "DescribeTransactions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询主事务列表
-    @inlinable
-    public func describeTransactions(_ input: DescribeTransactionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTransactionsResponse {
-        try await self.client.execute(action: "DescribeTransactions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTransactions请求参数结构体
     public struct DescribeTransactionsRequest: TCRequestModel {
         /// 事务分组ID
@@ -53,7 +41,7 @@ extension Dtf {
         /// 起始偏移量
         public let offset: Int64?
         
-        public init (groupId: String, transactionBeginFrom: Int64?, transactionBeginTo: Int64?, searchError: Bool?, transactionId: Int64?, transactionIdList: [Int64]?, limit: Int64?, offset: Int64?) {
+        public init (groupId: String, transactionBeginFrom: Int64? = nil, transactionBeginTo: Int64? = nil, searchError: Bool? = nil, transactionId: Int64? = nil, transactionIdList: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.groupId = groupId
             self.transactionBeginFrom = transactionBeginFrom
             self.transactionBeginTo = transactionBeginTo
@@ -88,5 +76,17 @@ extension Dtf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询主事务列表
+    @inlinable
+    public func describeTransactions(_ input: DescribeTransactionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTransactionsResponse > {
+        self.client.execute(action: "DescribeTransactions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询主事务列表
+    @inlinable
+    public func describeTransactions(_ input: DescribeTransactionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTransactionsResponse {
+        try await self.client.execute(action: "DescribeTransactions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

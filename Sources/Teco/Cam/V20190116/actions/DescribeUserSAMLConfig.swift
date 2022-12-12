@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 查询用户SAML配置
-    @inlinable
-    public func describeUserSAMLConfig(_ input: DescribeUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserSAMLConfigResponse > {
-        self.client.execute(action: "DescribeUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户SAML配置
-    @inlinable
-    public func describeUserSAMLConfig(_ input: DescribeUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSAMLConfigResponse {
-        try await self.client.execute(action: "DescribeUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserSAMLConfig请求参数结构体
     public struct DescribeUserSAMLConfigRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Cam {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户SAML配置
+    @inlinable
+    public func describeUserSAMLConfig(_ input: DescribeUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserSAMLConfigResponse > {
+        self.client.execute(action: "DescribeUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户SAML配置
+    @inlinable
+    public func describeUserSAMLConfig(_ input: DescribeUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSAMLConfigResponse {
+        try await self.client.execute(action: "DescribeUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

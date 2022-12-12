@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cws {
-    /// 查看漏洞列表
-    ///
-    /// 本接口 (DescribeVuls) 用于查询一个或多个漏洞的详细信息。
-    @inlinable
-    public func describeVuls(_ input: DescribeVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulsResponse > {
-        self.client.execute(action: "DescribeVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看漏洞列表
-    ///
-    /// 本接口 (DescribeVuls) 用于查询一个或多个漏洞的详细信息。
-    @inlinable
-    public func describeVuls(_ input: DescribeVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsResponse {
-        try await self.client.execute(action: "DescribeVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVuls请求参数结构体
     public struct DescribeVulsRequest: TCRequestModel {
         /// 站点ID
@@ -48,7 +32,7 @@ extension Cws {
         /// 返回数量，默认为10，最大值为100
         public let limit: UInt64?
         
-        public init (siteId: UInt64?, monitorId: UInt64?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (siteId: UInt64? = nil, monitorId: UInt64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.siteId = siteId
             self.monitorId = monitorId
             self.filters = filters
@@ -81,5 +65,21 @@ extension Cws {
             case vuls = "Vuls"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看漏洞列表
+    ///
+    /// 本接口 (DescribeVuls) 用于查询一个或多个漏洞的详细信息。
+    @inlinable
+    public func describeVuls(_ input: DescribeVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulsResponse > {
+        self.client.execute(action: "DescribeVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看漏洞列表
+    ///
+    /// 本接口 (DescribeVuls) 用于查询一个或多个漏洞的详细信息。
+    @inlinable
+    public func describeVuls(_ input: DescribeVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsResponse {
+        try await self.client.execute(action: "DescribeVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

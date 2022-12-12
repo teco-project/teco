@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rkp {
-    /// Devid及风险查询
-    ///
-    /// 腾讯天御设备风险查询接口，输入由客户应用自主采集的设备信息， 通过腾讯大数据风控能力，可以准确根据输入设备信息，还原设备库中的设备ID，并且识别设备的风险，解决客户业务过程中的设备风险，降低企业损失。
-    @inlinable
-    public func queryDevAndRisk(_ input: QueryDevAndRiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryDevAndRiskResponse > {
-        self.client.execute(action: "QueryDevAndRisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// Devid及风险查询
-    ///
-    /// 腾讯天御设备风险查询接口，输入由客户应用自主采集的设备信息， 通过腾讯大数据风控能力，可以准确根据输入设备信息，还原设备库中的设备ID，并且识别设备的风险，解决客户业务过程中的设备风险，降低企业损失。
-    @inlinable
-    public func queryDevAndRisk(_ input: QueryDevAndRiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryDevAndRiskResponse {
-        try await self.client.execute(action: "QueryDevAndRisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryDevAndRisk请求参数结构体
     public struct QueryDevAndRiskRequest: TCRequestModel {
         /// 设备类型 0表示Android， 1表示IOS
@@ -105,7 +89,7 @@ extension Rkp {
         /// Android序列号
         public let serialId: String?
         
-        public init (devType: Int64, imei: String?, mac: String?, aid: String?, cid: String?, imsi: String?, df: String?, kernelVer: String?, storage: String?, dfp: String?, bootTime: String?, resolution: String?, ringList: String?, fontList: String?, sensorList: String?, cpuType: String?, battery: String?, oaid: String?, idfa: String?, idfv: String?, deviceName: String?, iphoneModel: String?, fingerprint: String?, serialId: String?) {
+        public init (devType: Int64, imei: String? = nil, mac: String? = nil, aid: String? = nil, cid: String? = nil, imsi: String? = nil, df: String? = nil, kernelVer: String? = nil, storage: String? = nil, dfp: String? = nil, bootTime: String? = nil, resolution: String? = nil, ringList: String? = nil, fontList: String? = nil, sensorList: String? = nil, cpuType: String? = nil, battery: String? = nil, oaid: String? = nil, idfa: String? = nil, idfv: String? = nil, deviceName: String? = nil, iphoneModel: String? = nil, fingerprint: String? = nil, serialId: String? = nil) {
             self.devType = devType
             self.imei = imei
             self.mac = mac
@@ -182,5 +166,21 @@ extension Rkp {
             case matches = "Matches"
             case requestId = "RequestId"
         }
+    }
+    
+    /// Devid及风险查询
+    ///
+    /// 腾讯天御设备风险查询接口，输入由客户应用自主采集的设备信息， 通过腾讯大数据风控能力，可以准确根据输入设备信息，还原设备库中的设备ID，并且识别设备的风险，解决客户业务过程中的设备风险，降低企业损失。
+    @inlinable
+    public func queryDevAndRisk(_ input: QueryDevAndRiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryDevAndRiskResponse > {
+        self.client.execute(action: "QueryDevAndRisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// Devid及风险查询
+    ///
+    /// 腾讯天御设备风险查询接口，输入由客户应用自主采集的设备信息， 通过腾讯大数据风控能力，可以准确根据输入设备信息，还原设备库中的设备ID，并且识别设备的风险，解决客户业务过程中的设备风险，降低企业损失。
+    @inlinable
+    public func queryDevAndRisk(_ input: QueryDevAndRiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryDevAndRiskResponse {
+        try await self.client.execute(action: "QueryDevAndRisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

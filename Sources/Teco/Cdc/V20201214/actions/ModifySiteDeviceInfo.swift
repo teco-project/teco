@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 修改机房设备信息
-    @inlinable
-    public func modifySiteDeviceInfo(_ input: ModifySiteDeviceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySiteDeviceInfoResponse > {
-        self.client.execute(action: "ModifySiteDeviceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改机房设备信息
-    @inlinable
-    public func modifySiteDeviceInfo(_ input: ModifySiteDeviceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteDeviceInfoResponse {
-        try await self.client.execute(action: "ModifySiteDeviceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySiteDeviceInfo请求参数结构体
     public struct ModifySiteDeviceInfoRequest: TCRequestModel {
         /// 机房ID
@@ -82,7 +70,7 @@ extension Cdc {
         /// 上游断路器是否具备
         public let breakerRequirement: Bool?
         
-        public init (siteId: String, fiberType: String?, opticalStandard: String?, powerConnectors: String?, powerFeedDrop: String?, maxWeight: Int64?, powerDrawKva: Int64?, uplinkSpeedGbps: Int64?, uplinkCount: Int64?, conditionRequirement: Bool?, dimensionRequirement: Bool?, redundantNetworking: Bool?, needHelp: Bool?, redundantPower: Bool?, breakerRequirement: Bool?) {
+        public init (siteId: String, fiberType: String? = nil, opticalStandard: String? = nil, powerConnectors: String? = nil, powerFeedDrop: String? = nil, maxWeight: Int64? = nil, powerDrawKva: Int64? = nil, uplinkSpeedGbps: Int64? = nil, uplinkCount: Int64? = nil, conditionRequirement: Bool? = nil, dimensionRequirement: Bool? = nil, redundantNetworking: Bool? = nil, needHelp: Bool? = nil, redundantPower: Bool? = nil, breakerRequirement: Bool? = nil) {
             self.siteId = siteId
             self.fiberType = fiberType
             self.opticalStandard = opticalStandard
@@ -127,5 +115,17 @@ extension Cdc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改机房设备信息
+    @inlinable
+    public func modifySiteDeviceInfo(_ input: ModifySiteDeviceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySiteDeviceInfoResponse > {
+        self.client.execute(action: "ModifySiteDeviceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改机房设备信息
+    @inlinable
+    public func modifySiteDeviceInfo(_ input: ModifySiteDeviceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteDeviceInfoResponse {
+        try await self.client.execute(action: "ModifySiteDeviceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

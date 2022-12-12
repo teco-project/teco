@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询内容管理接口配额
-    @inlinable
-    public func describeContentQuota(_ input: DescribeContentQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContentQuotaResponse > {
-        self.client.execute(action: "DescribeContentQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询内容管理接口配额
-    @inlinable
-    public func describeContentQuota(_ input: DescribeContentQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContentQuotaResponse {
-        try await self.client.execute(action: "DescribeContentQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeContentQuota请求参数结构体
     public struct DescribeContentQuotaRequest: TCRequestModel {
         /// 站点 ID。
@@ -59,5 +47,17 @@ extension Teo {
             case prefetchQuota = "PrefetchQuota"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询内容管理接口配额
+    @inlinable
+    public func describeContentQuota(_ input: DescribeContentQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContentQuotaResponse > {
+        self.client.execute(action: "DescribeContentQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询内容管理接口配额
+    @inlinable
+    public func describeContentQuota(_ input: DescribeContentQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContentQuotaResponse {
+        try await self.client.execute(action: "DescribeContentQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

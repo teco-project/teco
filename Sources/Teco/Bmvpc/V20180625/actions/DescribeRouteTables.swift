@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 查询路由表
-    ///
-    /// 本接口（DescribeRouteTables）用于查询路由表。
-    @inlinable
-    public func describeRouteTables(_ input: DescribeRouteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteTablesResponse > {
-        self.client.execute(action: "DescribeRouteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询路由表
-    ///
-    /// 本接口（DescribeRouteTables）用于查询路由表。
-    @inlinable
-    public func describeRouteTables(_ input: DescribeRouteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteTablesResponse {
-        try await self.client.execute(action: "DescribeRouteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRouteTables请求参数结构体
     public struct DescribeRouteTablesRequest: TCRequestModel {
         /// 路由表实例ID，例如：rtb-azd4dt1c。
@@ -57,7 +41,7 @@ extension Bmvpc {
         /// 排序方向, “asc”、“desc”
         public let orderDirection: String?
         
-        public init (routeTableIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?, orderField: String?, orderDirection: String?) {
+        public init (routeTableIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil) {
             self.routeTableIds = routeTableIds
             self.filters = filters
             self.offset = offset
@@ -92,5 +76,21 @@ extension Bmvpc {
             case routeTableSet = "RouteTableSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询路由表
+    ///
+    /// 本接口（DescribeRouteTables）用于查询路由表。
+    @inlinable
+    public func describeRouteTables(_ input: DescribeRouteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteTablesResponse > {
+        self.client.execute(action: "DescribeRouteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询路由表
+    ///
+    /// 本接口（DescribeRouteTables）用于查询路由表。
+    @inlinable
+    public func describeRouteTables(_ input: DescribeRouteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteTablesResponse {
+        try await self.client.execute(action: "DescribeRouteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

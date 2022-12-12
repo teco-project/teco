@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Asw {
-    /// 查询状态机执行列表
-    ///
-    /// 对状态机的执行历史进行描述.
-    @inlinable
-    public func describeExecutions(_ input: DescribeExecutionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExecutionsResponse > {
-        self.client.execute(action: "DescribeExecutions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询状态机执行列表
-    ///
-    /// 对状态机的执行历史进行描述.
-    @inlinable
-    public func describeExecutions(_ input: DescribeExecutionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionsResponse {
-        try await self.client.execute(action: "DescribeExecutions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExecutions请求参数结构体
     public struct DescribeExecutionsRequest: TCRequestModel {
         /// 状态机资源名
@@ -48,7 +32,7 @@ extension Asw {
         /// 按执行名过滤条件
         public let filterExecutionResourceName: String?
         
-        public init (stateMachineResourceName: String, pageSize: Int64, pageIndex: Int64, filterExecutionStatus: String?, filterExecutionResourceName: String?) {
+        public init (stateMachineResourceName: String, pageSize: Int64, pageIndex: Int64, filterExecutionStatus: String? = nil, filterExecutionResourceName: String? = nil) {
             self.stateMachineResourceName = stateMachineResourceName
             self.pageSize = pageSize
             self.pageIndex = pageIndex
@@ -73,5 +57,21 @@ extension Asw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询状态机执行列表
+    ///
+    /// 对状态机的执行历史进行描述.
+    @inlinable
+    public func describeExecutions(_ input: DescribeExecutionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExecutionsResponse > {
+        self.client.execute(action: "DescribeExecutions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询状态机执行列表
+    ///
+    /// 对状态机的执行历史进行描述.
+    @inlinable
+    public func describeExecutions(_ input: DescribeExecutionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionsResponse {
+        try await self.client.execute(action: "DescribeExecutions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

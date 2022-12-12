@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取Web站点详情
-    @inlinable
-    public func describeAssetWebLocationInfo(_ input: DescribeAssetWebLocationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetWebLocationInfoResponse > {
-        self.client.execute(action: "DescribeAssetWebLocationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Web站点详情
-    @inlinable
-    public func describeAssetWebLocationInfo(_ input: DescribeAssetWebLocationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebLocationInfoResponse {
-        try await self.client.execute(action: "DescribeAssetWebLocationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetWebLocationInfo请求参数结构体
     public struct DescribeAssetWebLocationInfoRequest: TCRequestModel {
         /// 服务器Quuid
@@ -55,7 +43,7 @@ extension Cwp {
     public struct DescribeAssetWebLocationInfoResponse: TCResponseModel {
         /// 站点信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let webLocation: AssetWebLocationInfo
+        public let webLocation: AssetWebLocationInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -64,5 +52,17 @@ extension Cwp {
             case webLocation = "WebLocation"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Web站点详情
+    @inlinable
+    public func describeAssetWebLocationInfo(_ input: DescribeAssetWebLocationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetWebLocationInfoResponse > {
+        self.client.execute(action: "DescribeAssetWebLocationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Web站点详情
+    @inlinable
+    public func describeAssetWebLocationInfo(_ input: DescribeAssetWebLocationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebLocationInfoResponse {
+        try await self.client.execute(action: "DescribeAssetWebLocationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

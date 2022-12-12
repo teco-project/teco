@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ump {
-    /// 删除任务
-    ///
-    /// 删除集团广场对应的任务
-    @inlinable
-    public func deleteTask(_ input: DeleteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTaskResponse > {
-        self.client.execute(action: "DeleteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除任务
-    ///
-    /// 删除集团广场对应的任务
-    @inlinable
-    public func deleteTask(_ input: DeleteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskResponse {
-        try await self.client.execute(action: "DeleteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTask请求参数结构体
     public struct DeleteTaskRequest: TCRequestModel {
         /// 集团编码
@@ -63,5 +47,21 @@ extension Ump {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除任务
+    ///
+    /// 删除集团广场对应的任务
+    @inlinable
+    public func deleteTask(_ input: DeleteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTaskResponse > {
+        self.client.execute(action: "DeleteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除任务
+    ///
+    /// 删除集团广场对应的任务
+    @inlinable
+    public func deleteTask(_ input: DeleteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskResponse {
+        try await self.client.execute(action: "DeleteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

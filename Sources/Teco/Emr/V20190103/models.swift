@@ -67,7 +67,7 @@ extension Emr {
         /// 脚本参数
         public let args: [String]?
         
-        public init (path: String, whenRun: String, args: [String]?) {
+        public init (path: String, whenRun: String, args: [String]? = nil) {
             self.path = path
             self.whenRun = whenRun
             self.args = args
@@ -91,7 +91,7 @@ extension Emr {
         /// 日志存储在COS上的路径
         public let logOnCosPath: String?
         
-        public init (cosSecretId: String, cosSecretKey: String, logOnCosPath: String?) {
+        public init (cosSecretId: String, cosSecretKey: String, logOnCosPath: String? = nil) {
             self.cosSecretId = cosSecretId
             self.cosSecretKey = cosSecretKey
             self.logOnCosPath = logOnCosPath
@@ -298,7 +298,7 @@ extension Emr {
         
         /// 集群产品配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let config: EmrProductConfigOutter
+        public let config: EmrProductConfigOutter?
         
         /// 主节点外网IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -484,7 +484,7 @@ extension Emr {
         public let publicIpAssigned: Bool?
         
         /// 包年包月配置，只对包年包月集群生效。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 集群置放群组。
         public let disasterRecoverGroupIds: String?
@@ -495,7 +495,7 @@ extension Emr {
         /// 是否使用远程登录，默认为false。
         public let remoteTcpDefaultPort: Bool?
         
-        public init (instanceChargeType: String, supportHA: Bool, securityGroupIds: [String], placement: Placement, vpcSettings: VPCSettings, loginSettings: LoginSettings, tagSpecification: [String], metaDB: MetaDbInfo, resourceSpec: JobFlowResourceSpec, publicIpAssigned: Bool?, instanceChargePrepaid: InstanceChargePrepaid, disasterRecoverGroupIds: String?, cbsEncryptFlag: Bool?, remoteTcpDefaultPort: Bool?) {
+        public init (instanceChargeType: String, supportHA: Bool, securityGroupIds: [String], placement: Placement, vpcSettings: VPCSettings, loginSettings: LoginSettings, tagSpecification: [String], metaDB: MetaDbInfo, resourceSpec: JobFlowResourceSpec, publicIpAssigned: Bool? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, disasterRecoverGroupIds: String? = nil, cbsEncryptFlag: Bool? = nil, remoteTcpDefaultPort: Bool? = nil) {
             self.instanceChargeType = instanceChargeType
             self.supportHA = supportHA
             self.securityGroupIds = securityGroupIds
@@ -560,7 +560,7 @@ extension Emr {
         /// 自定义MetaDB密码
         public let metaDataPass: String?
         
-        public init (metaDataJdbcUrl: String?, metaDataUser: String?, metaDataPass: String?) {
+        public init (metaDataJdbcUrl: String? = nil, metaDataUser: String? = nil, metaDataPass: String? = nil) {
             self.metaDataJdbcUrl = metaDataJdbcUrl
             self.metaDataUser = metaDataUser
             self.metaDataPass = metaDataPass
@@ -581,7 +581,7 @@ extension Emr {
         /// 自定义参数value
         public let value: String?
         
-        public init (name: String?, value: String?) {
+        public init (name: String? = nil, value: String? = nil) {
             self.name = name
             self.value = value
         }
@@ -650,7 +650,7 @@ extension Emr {
         /// 需求最大memory，单位MB
         public let limitMemory: Float?
         
-        public init (requestCpu: Float?, limitCpu: Float?, requestMemory: Float?, limitMemory: Float?) {
+        public init (requestCpu: Float? = nil, limitCpu: Float? = nil, requestMemory: Float? = nil, limitMemory: Float? = nil) {
             self.requestCpu = requestCpu
             self.limitCpu = limitCpu
             self.requestMemory = requestMemory
@@ -825,19 +825,19 @@ extension Emr {
         
         /// Master节点资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let masterResource: OutterResource
+        public let masterResource: OutterResource?
         
         /// Core节点资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let coreResource: OutterResource
+        public let coreResource: OutterResource?
         
         /// Task节点资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskResource: OutterResource
+        public let taskResource: OutterResource?
         
         /// Common节点资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let comResource: OutterResource
+        public let comResource: OutterResource?
         
         /// 是否使用COS
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -976,7 +976,7 @@ extension Emr {
     public struct HostVolumeContext: TCInputModel, TCOutputModel {
         /// Pod挂载宿主机的目录。资源对宿主机的挂载点，指定的挂载点对应了宿主机的路径，该挂载点在Pod中作为数据存储目录使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let volumePath: String
+        public let volumePath: String?
         
         public init (volumePath: String) {
             self.volumePath = volumePath
@@ -1059,12 +1059,12 @@ extension Emr {
         public let commonCount: Int64?
         
         /// Task节点配置。
-        public let taskResourceSpec: JobFlowResource
+        public let taskResourceSpec: JobFlowResource?
         
         /// Common节点配置。
-        public let commonResourceSpec: JobFlowResource
+        public let commonResourceSpec: JobFlowResource?
         
-        public init (masterCount: Int64, masterResourceSpec: JobFlowResource, coreCount: Int64, coreResourceSpec: JobFlowResource, taskCount: Int64?, commonCount: Int64?, taskResourceSpec: JobFlowResource, commonResourceSpec: JobFlowResource) {
+        public init (masterCount: Int64, masterResourceSpec: JobFlowResource, coreCount: Int64, coreResourceSpec: JobFlowResource, taskCount: Int64? = nil, commonCount: Int64? = nil, taskResourceSpec: JobFlowResource? = nil, commonResourceSpec: JobFlowResource? = nil) {
             self.masterCount = masterCount
             self.masterResourceSpec = masterResourceSpec
             self.coreCount = coreCount
@@ -1091,14 +1091,14 @@ extension Emr {
     public struct JobResult: TCInputModel, TCOutputModel {
         /// 任务步骤名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let name: String
+        public let name: String?
         
         /// 任务步骤失败时的处理策略，可以为以下值：
         /// "CONTINUE"，跳过当前失败步骤，继续后续步骤。
         /// “TERMINATE_CLUSTER”，终止当前及后续步骤，并销毁集群。
         /// “CANCEL_AND_WAIT”，取消当前步骤并阻塞等待处理。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let actionOnFailure: String
+        public let actionOnFailure: String?
         
         /// 当前步骤的状态，可以为以下值：
         /// “JobFlowStepStatusInit”，初始化状态，等待执行。
@@ -1106,13 +1106,13 @@ extension Emr {
         /// “JobFlowStepStatusFailed”，任务步骤执行失败。
         /// “JobFlowStepStatusSucceed”，任务步骤执行成功。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let jobState: String
+        public let jobState: String?
         
         /// YARN任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
         
-        public init (name: String, actionOnFailure: String, jobState: String, applicationId: String?) {
+        public init (name: String, actionOnFailure: String, jobState: String, applicationId: String? = nil) {
             self.name = name
             self.actionOnFailure = actionOnFailure
             self.jobState = jobState
@@ -1135,7 +1135,7 @@ extension Emr {
         /// 密钥ID。关联密钥后，就可以通过对应的私钥来访问实例；PublicKeyId可通过接口[DescribeKeyPairs](https://cloud.tencent.com/document/api/213/15699)获取
         public let publicKeyId: String?
         
-        public init (password: String?, publicKeyId: String?) {
+        public init (password: String? = nil, publicKeyId: String? = nil) {
             self.password = password
             self.publicKeyId = publicKeyId
         }
@@ -1184,7 +1184,7 @@ extension Emr {
         /// 该类型云盘个数
         public let count: Int64?
         
-        public init (diskType: String?, volume: Int64?, count: Int64?) {
+        public init (diskType: String? = nil, volume: Int64? = nil, count: Int64? = nil) {
             self.diskType = diskType
             self.volume = volume
             self.count = count
@@ -1201,7 +1201,7 @@ extension Emr {
     public struct MultiDiskMC: TCInputModel, TCOutputModel {
         /// 该类型云盘个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let count: Int64
+        public let count: Int64?
         
         /// 磁盘类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1211,7 +1211,7 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let volume: Int64?
         
-        public init (count: Int64, type: Int64?, volume: Int64?) {
+        public init (count: Int64, type: Int64? = nil, volume: Int64? = nil) {
             self.count = count
             self.type = type
             self.volume = volume
@@ -1231,15 +1231,15 @@ extension Emr {
         public let zoneTag: String?
         
         /// 无
-        public let vpcSettings: VPCSettings
+        public let vpcSettings: VPCSettings?
         
         /// 无
-        public let placement: Placement
+        public let placement: Placement?
         
         /// 无
-        public let resourceSpec: NewResourceSpec
+        public let resourceSpec: NewResourceSpec?
         
-        public init (zoneTag: String?, vpcSettings: VPCSettings, placement: Placement, resourceSpec: NewResourceSpec) {
+        public init (zoneTag: String? = nil, vpcSettings: VPCSettings? = nil, placement: Placement? = nil, resourceSpec: NewResourceSpec? = nil) {
             self.zoneTag = zoneTag
             self.vpcSettings = vpcSettings
             self.placement = placement
@@ -1257,13 +1257,13 @@ extension Emr {
     /// 资源描述
     public struct NewResourceSpec: TCInputModel, TCOutputModel {
         /// 描述Master节点资源
-        public let masterResourceSpec: Resource
+        public let masterResourceSpec: Resource?
         
         /// 描述Core节点资源
-        public let coreResourceSpec: Resource
+        public let coreResourceSpec: Resource?
         
         /// 描述Task节点资源
-        public let taskResourceSpec: Resource
+        public let taskResourceSpec: Resource?
         
         /// Master节点数量
         public let masterCount: Int64?
@@ -1275,12 +1275,12 @@ extension Emr {
         public let taskCount: Int64?
         
         /// 描述Common节点资源
-        public let commonResourceSpec: Resource
+        public let commonResourceSpec: Resource?
         
         /// Common节点数量
         public let commonCount: Int64?
         
-        public init (masterResourceSpec: Resource, coreResourceSpec: Resource, taskResourceSpec: Resource, masterCount: Int64?, coreCount: Int64?, taskCount: Int64?, commonResourceSpec: Resource, commonCount: Int64?) {
+        public init (masterResourceSpec: Resource? = nil, coreResourceSpec: Resource? = nil, taskResourceSpec: Resource? = nil, masterCount: Int64? = nil, coreCount: Int64? = nil, taskCount: Int64? = nil, commonResourceSpec: Resource? = nil, commonCount: Int64? = nil) {
             self.masterResourceSpec = masterResourceSpec
             self.coreResourceSpec = coreResourceSpec
             self.taskResourceSpec = taskResourceSpec
@@ -1432,7 +1432,7 @@ extension Emr {
         
         /// 数据库信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cdbNodeInfo: CdbInfo
+        public let cdbNodeInfo: CdbInfo?
         
         /// 内网IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1476,7 +1476,7 @@ extension Emr {
         
         /// 子网
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let subnetInfo: SubnetInfo
+        public let subnetInfo: SubnetInfo?
         
         /// 客户端
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1625,7 +1625,7 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskNum: Int64?
         
-        public init (diskSize: UInt64?, diskType: String?, diskNum: Int64?) {
+        public init (diskSize: UInt64? = nil, diskType: String? = nil, diskNum: Int64? = nil) {
             self.diskSize = diskSize
             self.diskType = diskType
             self.diskNum = diskNum
@@ -1646,7 +1646,7 @@ extension Emr {
         /// 实例所属项目ID。该参数可以通过调用[DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。不填为默认项目。
         public let projectId: Int64?
         
-        public init (zone: String, projectId: Int64?) {
+        public init (zone: String, projectId: Int64? = nil) {
             self.zone = zone
             self.projectId = projectId
         }
@@ -1849,7 +1849,7 @@ extension Emr {
         
         /// 浮动规格
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dynamicPodSpec: DynamicPodSpec
+        public let dynamicPodSpec: DynamicPodSpec?
         
         /// 代表vpc网络唯一id
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1863,7 +1863,7 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podName: String?
         
-        public init (resourceProviderIdentifier: String, resourceProviderType: String, nodeType: String, cpu: UInt64, memory: UInt64, dataVolumes: [String]?, cpuType: String?, podVolumes: [PodVolume]?, isDynamicSpec: UInt64?, dynamicPodSpec: DynamicPodSpec, vpcId: String?, subnetId: String?, podName: String?) {
+        public init (resourceProviderIdentifier: String, resourceProviderType: String, nodeType: String, cpu: UInt64, memory: UInt64, dataVolumes: [String]? = nil, cpuType: String? = nil, podVolumes: [PodVolume]? = nil, isDynamicSpec: UInt64? = nil, dynamicPodSpec: DynamicPodSpec? = nil, vpcId: String? = nil, subnetId: String? = nil, podName: String? = nil) {
             self.resourceProviderIdentifier = resourceProviderIdentifier
             self.resourceProviderType = resourceProviderType
             self.nodeType = nodeType
@@ -1939,17 +1939,17 @@ extension Emr {
     public struct PodVolume: TCInputModel, TCOutputModel {
         /// 存储类型，可为"pvc"，"hostpath"。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let volumeType: String
+        public let volumeType: String?
         
         /// 当VolumeType为"pvc"时，该字段生效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pvcVolume: PersistentVolumeContext
+        public let pvcVolume: PersistentVolumeContext?
         
         /// 当VolumeType为"hostpath"时，该字段生效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let hostVolume: HostVolumeContext
+        public let hostVolume: HostVolumeContext?
         
-        public init (volumeType: String, pvcVolume: PersistentVolumeContext, hostVolume: HostVolumeContext) {
+        public init (volumeType: String, pvcVolume: PersistentVolumeContext? = nil, hostVolume: HostVolumeContext? = nil) {
             self.volumeType = volumeType
             self.pvcVolume = pvcVolume
             self.hostVolume = hostVolume
@@ -2000,7 +2000,7 @@ extension Emr {
         /// cos的appid，已废弃
         public let appId: String?
         
-        public init (path: String?, args: [String]?, bucket: String?, region: String?, domain: String?, runOrder: Int64?, whenRun: String?, cosFileName: String?, cosFileURI: String?, cosSecretId: String?, cosSecretKey: String?, appId: String?) {
+        public init (path: String? = nil, args: [String]? = nil, bucket: String? = nil, region: String? = nil, domain: String? = nil, runOrder: Int64? = nil, whenRun: String? = nil, cosFileName: String? = nil, cosFileURI: String? = nil, cosSecretId: String? = nil, cosSecretKey: String? = nil, appId: String? = nil) {
             self.path = path
             self.args = args
             self.bucket = bucket
@@ -2197,7 +2197,7 @@ extension Emr {
     public struct Resource: TCInputModel, TCOutputModel {
         /// 节点规格描述，如CVM.SA2。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let spec: String
+        public let spec: String?
         
         /// 存储类型
         /// 取值范围：
@@ -2207,7 +2207,7 @@ extension Emr {
         /// <li>11：表示吞吐型云硬盘。</li>
         /// <li>12：表示极速型SSD云硬盘。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let storageType: Int64
+        public let storageType: Int64?
         
         /// 磁盘类型
         /// 取值范围：
@@ -2215,19 +2215,19 @@ extension Emr {
         /// <li>CLOUD_PREMIUM：表示高效云盘。</li>
         /// <li>CLOUD_BASIC：表示云硬盘。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let diskType: String
+        public let diskType: String?
         
         /// 内存容量,单位为M
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let memSize: Int64
+        public let memSize: Int64?
         
         /// CPU核数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cpu: Int64
+        public let cpu: Int64?
         
         /// 数据盘容量
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let diskSize: Int64
+        public let diskSize: Int64?
         
         /// 系统盘容量
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2253,7 +2253,7 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskNum: UInt64?
         
-        public init (spec: String, storageType: Int64, diskType: String, memSize: Int64, cpu: Int64, diskSize: Int64, rootSize: Int64?, multiDisks: [MultiDisk]?, tags: [Tag]?, instanceType: String?, localDiskNum: UInt64?, diskNum: UInt64?) {
+        public init (spec: String, storageType: Int64, diskType: String, memSize: Int64, cpu: Int64, diskSize: Int64, rootSize: Int64? = nil, multiDisks: [MultiDisk]? = nil, tags: [Tag]? = nil, instanceType: String? = nil, localDiskNum: UInt64? = nil, diskNum: UInt64? = nil) {
             self.spec = spec
             self.storageType = storageType
             self.diskType = diskType
@@ -2313,7 +2313,7 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeSize: UInt64?
         
-        public init (nodeType: String?, nodeSize: UInt64?) {
+        public init (nodeType: String? = nil, nodeSize: UInt64? = nil) {
             self.nodeType = nodeType
             self.nodeSize = nodeSize
         }
@@ -2340,7 +2340,7 @@ extension Emr {
         /// 指定执行Step时的用户名，非必须，默认为hadoop。
         public let user: String?
         
-        public init (name: String, executionStep: Execution, actionOnFailure: String, user: String?) {
+        public init (name: String, executionStep: Execution, actionOnFailure: String, user: String? = nil) {
             self.name = name
             self.executionStep = executionStep
             self.actionOnFailure = actionOnFailure
@@ -2365,7 +2365,7 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: String?
         
-        public init (subnetName: String?, subnetId: String?) {
+        public init (subnetName: String? = nil, subnetId: String? = nil) {
             self.subnetName = subnetName
             self.subnetId = subnetId
         }
@@ -2384,7 +2384,7 @@ extension Emr {
         /// 标签值
         public let tagValue: String?
         
-        public init (tagKey: String?, tagValue: String?) {
+        public init (tagKey: String? = nil, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
@@ -2413,7 +2413,7 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeInfoList: [ShortNodeInfo]?
         
-        public init (zoneId: Int64?, zone: String?, subnetInfoList: [SubnetInfo]?, nodeInfoList: [ShortNodeInfo]?) {
+        public init (zoneId: Int64? = nil, zone: String? = nil, subnetInfoList: [SubnetInfo]? = nil, nodeInfoList: [ShortNodeInfo]? = nil) {
             self.zoneId = zoneId
             self.zone = zone
             self.subnetInfoList = subnetInfoList
@@ -2442,7 +2442,7 @@ extension Emr {
         /// 变配机器规格
         public let instanceType: String?
         
-        public init (memory: UInt64, cpuCores: UInt64, resourceId: String, instanceType: String?) {
+        public init (memory: UInt64, cpuCores: UInt64, resourceId: String, instanceType: String? = nil) {
             self.memory = memory
             self.cpuCores = cpuCores
             self.resourceId = resourceId
@@ -2471,7 +2471,7 @@ extension Emr {
         /// 备注
         public let reMark: String?
         
-        public init (userName: String, userGroup: String, passWord: String, reMark: String?) {
+        public init (userName: String, userGroup: String, passWord: String, reMark: String? = nil) {
             self.userName = userName
             self.userGroup = userGroup
             self.passWord = passWord
@@ -2492,7 +2492,7 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userName: String?
         
-        public init (userName: String?) {
+        public init (userName: String? = nil) {
             self.userName = userName
         }
         

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Asw {
-    /// 修改状态机
-    ///
-    /// 该接口用于修改状态机
-    @inlinable
-    public func modifyFlowService(_ input: ModifyFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFlowServiceResponse > {
-        self.client.execute(action: "ModifyFlowService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改状态机
-    ///
-    /// 该接口用于修改状态机
-    @inlinable
-    public func modifyFlowService(_ input: ModifyFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowServiceResponse {
-        try await self.client.execute(action: "ModifyFlowService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyFlowService请求参数结构体
     public struct ModifyFlowServiceRequest: TCRequestModel {
         /// 状态机资源名
@@ -60,7 +44,7 @@ extension Asw {
         /// 是否允许日志投递
         public let enableCLS: Bool?
         
-        public init (flowServiceResource: String, definition: String, flowServiceName: String, flowServiceChineseName: String, isNewRole: Bool, type: String, roleResource: String, description: String?, enableCLS: Bool?) {
+        public init (flowServiceResource: String, definition: String, flowServiceName: String, flowServiceChineseName: String, isNewRole: Bool, type: String, roleResource: String, description: String? = nil, enableCLS: Bool? = nil) {
             self.flowServiceResource = flowServiceResource
             self.definition = definition
             self.flowServiceName = flowServiceName
@@ -101,5 +85,21 @@ extension Asw {
             case updateDate = "UpdateDate"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改状态机
+    ///
+    /// 该接口用于修改状态机
+    @inlinable
+    public func modifyFlowService(_ input: ModifyFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFlowServiceResponse > {
+        self.client.execute(action: "ModifyFlowService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改状态机
+    ///
+    /// 该接口用于修改状态机
+    @inlinable
+    public func modifyFlowService(_ input: ModifyFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowServiceResponse {
+        try await self.client.execute(action: "ModifyFlowService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

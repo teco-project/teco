@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取targets信息
-    @inlinable
-    public func describePrometheusTargets(_ input: DescribePrometheusTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusTargetsResponse > {
-        self.client.execute(action: "DescribePrometheusTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取targets信息
-    @inlinable
-    public func describePrometheusTargets(_ input: DescribePrometheusTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTargetsResponse {
-        try await self.client.execute(action: "DescribePrometheusTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrometheusTargets请求参数结构体
     public struct DescribePrometheusTargetsRequest: TCRequestModel {
         /// 实例id
@@ -43,7 +31,7 @@ extension Tke {
         /// Value=up, down, unknown
         public let filters: [Filter]?
         
-        public init (instanceId: String, clusterType: String, clusterId: String, filters: [Filter]?) {
+        public init (instanceId: String, clusterType: String, clusterId: String, filters: [Filter]? = nil) {
             self.instanceId = instanceId
             self.clusterType = clusterType
             self.clusterId = clusterId
@@ -70,5 +58,17 @@ extension Tke {
             case jobs = "Jobs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取targets信息
+    @inlinable
+    public func describePrometheusTargets(_ input: DescribePrometheusTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusTargetsResponse > {
+        self.client.execute(action: "DescribePrometheusTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取targets信息
+    @inlinable
+    public func describePrometheusTargets(_ input: DescribePrometheusTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTargetsResponse {
+        try await self.client.execute(action: "DescribePrometheusTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

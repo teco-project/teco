@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 删除转自适应码流模板
-    @inlinable
-    public func deleteAdaptiveDynamicStreamingTemplate(_ input: DeleteAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAdaptiveDynamicStreamingTemplateResponse > {
-        self.client.execute(action: "DeleteAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除转自适应码流模板
-    @inlinable
-    public func deleteAdaptiveDynamicStreamingTemplate(_ input: DeleteAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAdaptiveDynamicStreamingTemplateResponse {
-        try await self.client.execute(action: "DeleteAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAdaptiveDynamicStreamingTemplate请求参数结构体
     public struct DeleteAdaptiveDynamicStreamingTemplateRequest: TCRequestModel {
         /// 自适应转码模板唯一标识。
@@ -49,5 +37,17 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除转自适应码流模板
+    @inlinable
+    public func deleteAdaptiveDynamicStreamingTemplate(_ input: DeleteAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAdaptiveDynamicStreamingTemplateResponse > {
+        self.client.execute(action: "DeleteAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除转自适应码流模板
+    @inlinable
+    public func deleteAdaptiveDynamicStreamingTemplate(_ input: DeleteAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAdaptiveDynamicStreamingTemplateResponse {
+        try await self.client.execute(action: "DeleteAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

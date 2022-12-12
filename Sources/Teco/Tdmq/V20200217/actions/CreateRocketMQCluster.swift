@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 创建RocketMQ集群
-    ///
-    /// 此接口用于创建一个RocketMQ集群
-    @inlinable
-    public func createRocketMQCluster(_ input: CreateRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRocketMQClusterResponse > {
-        self.client.execute(action: "CreateRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建RocketMQ集群
-    ///
-    /// 此接口用于创建一个RocketMQ集群
-    @inlinable
-    public func createRocketMQCluster(_ input: CreateRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQClusterResponse {
-        try await self.client.execute(action: "CreateRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRocketMQCluster请求参数结构体
     public struct CreateRocketMQClusterRequest: TCRequestModel {
         /// 集群名称，3-64个字符，只能包含字母、数字、“-”及“_”
@@ -39,7 +23,7 @@ extension Tdmq {
         /// 集群描述，128个字符以内
         public let remark: String?
         
-        public init (name: String, remark: String?) {
+        public init (name: String, remark: String? = nil) {
             self.name = name
             self.remark = remark
         }
@@ -62,5 +46,21 @@ extension Tdmq {
             case clusterId = "ClusterId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建RocketMQ集群
+    ///
+    /// 此接口用于创建一个RocketMQ集群
+    @inlinable
+    public func createRocketMQCluster(_ input: CreateRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRocketMQClusterResponse > {
+        self.client.execute(action: "CreateRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建RocketMQ集群
+    ///
+    /// 此接口用于创建一个RocketMQ集群
+    @inlinable
+    public func createRocketMQCluster(_ input: CreateRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQClusterResponse {
+        try await self.client.execute(action: "CreateRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

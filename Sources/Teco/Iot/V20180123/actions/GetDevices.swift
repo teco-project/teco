@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 获取设备列表
-    ///
-    /// 提供分页查询某个产品Id下设备信息的能力。
-    @inlinable
-    public func getDevices(_ input: GetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDevicesResponse > {
-        self.client.execute(action: "GetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备列表
-    ///
-    /// 提供分页查询某个产品Id下设备信息的能力。
-    @inlinable
-    public func getDevices(_ input: GetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDevicesResponse {
-        try await self.client.execute(action: "GetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDevices请求参数结构体
     public struct GetDevicesRequest: TCRequestModel {
         /// 产品Id
@@ -45,7 +29,7 @@ extension Iot {
         /// 关键字查询
         public let keyword: String?
         
-        public init (productId: String, offset: UInt64?, length: UInt64?, keyword: String?) {
+        public init (productId: String, offset: UInt64? = nil, length: UInt64? = nil, keyword: String? = nil) {
             self.productId = productId
             self.offset = offset
             self.length = length
@@ -76,5 +60,21 @@ extension Iot {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备列表
+    ///
+    /// 提供分页查询某个产品Id下设备信息的能力。
+    @inlinable
+    public func getDevices(_ input: GetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDevicesResponse > {
+        self.client.execute(action: "GetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备列表
+    ///
+    /// 提供分页查询某个产品Id下设备信息的能力。
+    @inlinable
+    public func getDevices(_ input: GetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDevicesResponse {
+        try await self.client.execute(action: "GetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

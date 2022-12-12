@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 获取证书列表
-    ///
-    /// 本接口（DescribeCertificates）用于获取证书列表。
-    @inlinable
-    public func describeCertificates(_ input: DescribeCertificatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertificatesResponse > {
-        self.client.execute(action: "DescribeCertificates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取证书列表
-    ///
-    /// 本接口（DescribeCertificates）用于获取证书列表。
-    @inlinable
-    public func describeCertificates(_ input: DescribeCertificatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificatesResponse {
-        try await self.client.execute(action: "DescribeCertificates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCertificates请求参数结构体
     public struct DescribeCertificatesRequest: TCRequestModel {
         /// 分页偏移量，从0开始。
@@ -72,7 +56,7 @@ extension Ssl {
         /// 筛选证书是否即将过期，传1是筛选，0不筛选
         public let filterExpiring: UInt64?
         
-        public init (offset: UInt64?, limit: UInt64?, searchKey: String?, certificateType: String?, projectId: UInt64?, expirationSort: String?, certificateStatus: [UInt64]?, deployable: UInt64?, upload: Int64?, renew: Int64?, filterSource: String?, isSM: Int64?, filterExpiring: UInt64?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, certificateType: String? = nil, projectId: UInt64? = nil, expirationSort: String? = nil, certificateStatus: [UInt64]? = nil, deployable: UInt64? = nil, upload: Int64? = nil, renew: Int64? = nil, filterSource: String? = nil, isSM: Int64? = nil, filterExpiring: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
             self.searchKey = searchKey
@@ -123,5 +107,21 @@ extension Ssl {
             case certificates = "Certificates"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取证书列表
+    ///
+    /// 本接口（DescribeCertificates）用于获取证书列表。
+    @inlinable
+    public func describeCertificates(_ input: DescribeCertificatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertificatesResponse > {
+        self.client.execute(action: "DescribeCertificates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取证书列表
+    ///
+    /// 本接口（DescribeCertificates）用于获取证书列表。
+    @inlinable
+    public func describeCertificates(_ input: DescribeCertificatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificatesResponse {
+        try await self.client.execute(action: "DescribeCertificates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

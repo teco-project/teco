@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-创建支付订单
-    ///
-    /// 云企付-创建支付订单。支持B2B网关支付，B2C转账下单。
-    @inlinable
-    public func createOpenBankPaymentOrder(_ input: CreateOpenBankPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankPaymentOrderResponse > {
-        self.client.execute(action: "CreateOpenBankPaymentOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-创建支付订单
-    ///
-    /// 云企付-创建支付订单。支持B2B网关支付，B2C转账下单。
-    @inlinable
-    public func createOpenBankPaymentOrder(_ input: CreateOpenBankPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankPaymentOrderResponse {
-        try await self.client.execute(action: "CreateOpenBankPaymentOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOpenBankPaymentOrder请求参数结构体
     public struct CreateOpenBankPaymentOrderRequest: TCRequestModel {
         /// 云企付渠道商户号。外部接入平台入驻云企付平台后下发。
@@ -85,10 +69,10 @@ extension Cpdp {
         public let refreshUrl: String?
         
         /// 设备信息，条件可选。
-        public let sceneInfo: OpenBankSceneInfo
+        public let sceneInfo: OpenBankSceneInfo?
         
         /// 商品信息，条件可选。
-        public let goodsInfo: OpenBankGoodsInfo
+        public let goodsInfo: OpenBankGoodsInfo?
         
         /// 附加信息，查询时原样返回。
         public let attachment: String?
@@ -103,7 +87,7 @@ extension Cpdp {
         public let profitShareInfoList: [OpenBankProfitShareInfo]?
         
         /// 商企付-担保支付（PaymentMode为 FREEZE ）时需设置该参数
-        public let settlementRulesInfo: OpenBankSettlementRulesInfo
+        public let settlementRulesInfo: OpenBankSettlementRulesInfo?
         
         /// 底层支付渠道特殊字段，若无特殊说明时，可以为空
         public let externalPaymentData: String?
@@ -117,7 +101,7 @@ extension Cpdp {
         /// 缺省默认为生产环境
         public let environment: String?
         
-        public init (channelMerchantId: String, channelName: String, paymentMethod: String, paymentMode: String, outOrderId: String, totalAmount: Int64, currency: String, payerInfo: OpenBankPayerInfo, payeeInfo: OpenBankPayeeInfo, notifyUrl: String?, expireTime: String?, frontUrl: String?, refreshUrl: String?, sceneInfo: OpenBankSceneInfo, goodsInfo: OpenBankGoodsInfo, attachment: String?, profitShareFlag: String?, profitShareInfoList: [OpenBankProfitShareInfo]?, settlementRulesInfo: OpenBankSettlementRulesInfo, externalPaymentData: String?, remark: String?, environment: String?) {
+        public init (channelMerchantId: String, channelName: String, paymentMethod: String, paymentMode: String, outOrderId: String, totalAmount: Int64, currency: String, payerInfo: OpenBankPayerInfo, payeeInfo: OpenBankPayeeInfo, notifyUrl: String? = nil, expireTime: String? = nil, frontUrl: String? = nil, refreshUrl: String? = nil, sceneInfo: OpenBankSceneInfo? = nil, goodsInfo: OpenBankGoodsInfo? = nil, attachment: String? = nil, profitShareFlag: String? = nil, profitShareInfoList: [OpenBankProfitShareInfo]? = nil, settlementRulesInfo: OpenBankSettlementRulesInfo? = nil, externalPaymentData: String? = nil, remark: String? = nil, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.channelName = channelName
             self.paymentMethod = paymentMethod
@@ -179,7 +163,7 @@ extension Cpdp {
         
         /// 统一下单响应对象。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: CreateOpenBankOrderPaymentResult
+        public let result: CreateOpenBankOrderPaymentResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -190,5 +174,21 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-创建支付订单
+    ///
+    /// 云企付-创建支付订单。支持B2B网关支付，B2C转账下单。
+    @inlinable
+    public func createOpenBankPaymentOrder(_ input: CreateOpenBankPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankPaymentOrderResponse > {
+        self.client.execute(action: "CreateOpenBankPaymentOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-创建支付订单
+    ///
+    /// 云企付-创建支付订单。支持B2B网关支付，B2C转账下单。
+    @inlinable
+    public func createOpenBankPaymentOrder(_ input: CreateOpenBankPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankPaymentOrderResponse {
+        try await self.client.execute(action: "CreateOpenBankPaymentOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

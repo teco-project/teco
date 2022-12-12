@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 查询节点属性
-    ///
-    /// 本接口用于查询节点的属性，包括节点所在可用区、节点名称、地址、角色、状态、主从延迟、优先级、投票权、标签等属性。
-    @inlinable
-    public func describeDBInstanceNodeProperty(_ input: DescribeDBInstanceNodePropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceNodePropertyResponse > {
-        self.client.execute(action: "DescribeDBInstanceNodeProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询节点属性
-    ///
-    /// 本接口用于查询节点的属性，包括节点所在可用区、节点名称、地址、角色、状态、主从延迟、优先级、投票权、标签等属性。
-    @inlinable
-    public func describeDBInstanceNodeProperty(_ input: DescribeDBInstanceNodePropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceNodePropertyResponse {
-        try await self.client.execute(action: "DescribeDBInstanceNodeProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBInstanceNodeProperty请求参数结构体
     public struct DescribeDBInstanceNodePropertyRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同。
@@ -56,7 +40,7 @@ extension Mongodb {
         /// 节点标签。
         public let tags: [NodeTag]?
         
-        public init (instanceId: String, nodeIds: [String]?, roles: [String]?, onlyHidden: Bool?, priority: Int64?, votes: Int64?, tags: [NodeTag]?) {
+        public init (instanceId: String, nodeIds: [String]? = nil, roles: [String]? = nil, onlyHidden: Bool? = nil, priority: Int64? = nil, votes: Int64? = nil, tags: [NodeTag]? = nil) {
             self.instanceId = instanceId
             self.nodeIds = nodeIds
             self.roles = roles
@@ -94,5 +78,21 @@ extension Mongodb {
             case replicateSets = "ReplicateSets"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询节点属性
+    ///
+    /// 本接口用于查询节点的属性，包括节点所在可用区、节点名称、地址、角色、状态、主从延迟、优先级、投票权、标签等属性。
+    @inlinable
+    public func describeDBInstanceNodeProperty(_ input: DescribeDBInstanceNodePropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceNodePropertyResponse > {
+        self.client.execute(action: "DescribeDBInstanceNodeProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询节点属性
+    ///
+    /// 本接口用于查询节点的属性，包括节点所在可用区、节点名称、地址、角色、状态、主从延迟、优先级、投票权、标签等属性。
+    @inlinable
+    public func describeDBInstanceNodeProperty(_ input: DescribeDBInstanceNodePropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceNodePropertyResponse {
+        try await self.client.execute(action: "DescribeDBInstanceNodeProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

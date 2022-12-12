@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 删除告警触发策略
-    ///
-    /// 本接口（DeleteScalingPolicy）用于删除告警触发策略。
-    @inlinable
-    public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScalingPolicyResponse > {
-        self.client.execute(action: "DeleteScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除告警触发策略
-    ///
-    /// 本接口（DeleteScalingPolicy）用于删除告警触发策略。
-    @inlinable
-    public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
-        try await self.client.execute(action: "DeleteScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteScalingPolicy请求参数结构体
     public struct DeleteScalingPolicyRequest: TCRequestModel {
         /// 待删除的告警策略ID。
@@ -53,5 +37,21 @@ extension As {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除告警触发策略
+    ///
+    /// 本接口（DeleteScalingPolicy）用于删除告警触发策略。
+    @inlinable
+    public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScalingPolicyResponse > {
+        self.client.execute(action: "DeleteScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除告警触发策略
+    ///
+    /// 本接口（DeleteScalingPolicy）用于删除告警触发策略。
+    @inlinable
+    public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
+        try await self.client.execute(action: "DeleteScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

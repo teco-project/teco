@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 显示日志主题列表
-    ///
-    /// ListClsLogTopics 用于显示日志主题列表。注意：一个日志集下至多含10个日志主题。
-    @inlinable
-    public func listClsLogTopics(_ input: ListClsLogTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListClsLogTopicsResponse > {
-        self.client.execute(action: "ListClsLogTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 显示日志主题列表
-    ///
-    /// ListClsLogTopics 用于显示日志主题列表。注意：一个日志集下至多含10个日志主题。
-    @inlinable
-    public func listClsLogTopics(_ input: ListClsLogTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListClsLogTopicsResponse {
-        try await self.client.execute(action: "ListClsLogTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListClsLogTopics请求参数结构体
     public struct ListClsLogTopicsRequest: TCRequestModel {
         /// 接入渠道，cdn或者ecdn，默认值为cdn
         public let channel: String?
         
-        public init (channel: String?) {
+        public init (channel: String? = nil) {
             self.channel = channel
         }
         
@@ -67,5 +51,21 @@ extension Cdn {
             case extraLogset = "ExtraLogset"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 显示日志主题列表
+    ///
+    /// ListClsLogTopics 用于显示日志主题列表。注意：一个日志集下至多含10个日志主题。
+    @inlinable
+    public func listClsLogTopics(_ input: ListClsLogTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListClsLogTopicsResponse > {
+        self.client.execute(action: "ListClsLogTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 显示日志主题列表
+    ///
+    /// ListClsLogTopics 用于显示日志主题列表。注意：一个日志集下至多含10个日志主题。
+    @inlinable
+    public func listClsLogTopics(_ input: ListClsLogTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListClsLogTopicsResponse {
+        try await self.client.execute(action: "ListClsLogTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

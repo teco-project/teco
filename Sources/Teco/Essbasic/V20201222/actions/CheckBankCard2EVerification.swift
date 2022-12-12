@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 银行卡二要素检测
-    ///
-    /// 该接口为第三方平台向电子签平台验证银行卡二要素
-    @inlinable
-    public func checkBankCard2EVerification(_ input: CheckBankCard2EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBankCard2EVerificationResponse > {
-        self.client.execute(action: "CheckBankCard2EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 银行卡二要素检测
-    ///
-    /// 该接口为第三方平台向电子签平台验证银行卡二要素
-    @inlinable
-    public func checkBankCard2EVerification(_ input: CheckBankCard2EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCard2EVerificationResponse {
-        try await self.client.execute(action: "CheckBankCard2EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckBankCard2EVerification请求参数结构体
     public struct CheckBankCard2EVerificationRequest: TCRequestModel {
         /// 调用方信息; 必选
@@ -92,5 +76,21 @@ extension Essbasic {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 银行卡二要素检测
+    ///
+    /// 该接口为第三方平台向电子签平台验证银行卡二要素
+    @inlinable
+    public func checkBankCard2EVerification(_ input: CheckBankCard2EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBankCard2EVerificationResponse > {
+        self.client.execute(action: "CheckBankCard2EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 银行卡二要素检测
+    ///
+    /// 该接口为第三方平台向电子签平台验证银行卡二要素
+    @inlinable
+    public func checkBankCard2EVerification(_ input: CheckBankCard2EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCard2EVerificationResponse {
+        try await self.client.execute(action: "CheckBankCard2EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

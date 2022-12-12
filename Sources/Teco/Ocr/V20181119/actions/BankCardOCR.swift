@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 银行卡识别
-    ///
-    /// 本接口支持对中国大陆主流银行卡正反面关键字段的检测与识别，包括卡号、卡类型、卡名字、银行信息、有效期。支持竖排异形卡识别、多角度旋转图片识别。支持对复印件、翻拍件、边框遮挡的银行卡进行告警，可应用于各种银行卡信息有效性校验场景，如金融行业身份认证、第三方支付绑卡等场景。
-    /// 默认接口请求频率限制：10次/秒。
-    @inlinable
-    public func bankCardOCR(_ input: BankCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BankCardOCRResponse > {
-        self.client.execute(action: "BankCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 银行卡识别
-    ///
-    /// 本接口支持对中国大陆主流银行卡正反面关键字段的检测与识别，包括卡号、卡类型、卡名字、银行信息、有效期。支持竖排异形卡识别、多角度旋转图片识别。支持对复印件、翻拍件、边框遮挡的银行卡进行告警，可应用于各种银行卡信息有效性校验场景，如金融行业身份认证、第三方支付绑卡等场景。
-    /// 默认接口请求频率限制：10次/秒。
-    @inlinable
-    public func bankCardOCR(_ input: BankCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCardOCRResponse {
-        try await self.client.execute(action: "BankCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BankCardOCR请求参数结构体
     public struct BankCardOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
@@ -61,7 +43,7 @@ extension Ocr {
         /// 是否返回图片质量分数（图片质量分数是评价一个图片的模糊程度的标准），默认false。
         public let enableQualityValue: Bool?
         
-        public init (imageBase64: String?, imageUrl: String?, retBorderCutImage: Bool?, retCardNoImage: Bool?, enableCopyCheck: Bool?, enableReshootCheck: Bool?, enableBorderCheck: Bool?, enableQualityValue: Bool?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, retBorderCutImage: Bool? = nil, retCardNoImage: Bool? = nil, enableCopyCheck: Bool? = nil, enableReshootCheck: Bool? = nil, enableBorderCheck: Bool? = nil, enableQualityValue: Bool? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.retBorderCutImage = retBorderCutImage
@@ -138,5 +120,23 @@ extension Ocr {
             case qualityValue = "QualityValue"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 银行卡识别
+    ///
+    /// 本接口支持对中国大陆主流银行卡正反面关键字段的检测与识别，包括卡号、卡类型、卡名字、银行信息、有效期。支持竖排异形卡识别、多角度旋转图片识别。支持对复印件、翻拍件、边框遮挡的银行卡进行告警，可应用于各种银行卡信息有效性校验场景，如金融行业身份认证、第三方支付绑卡等场景。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func bankCardOCR(_ input: BankCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BankCardOCRResponse > {
+        self.client.execute(action: "BankCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 银行卡识别
+    ///
+    /// 本接口支持对中国大陆主流银行卡正反面关键字段的检测与识别，包括卡号、卡类型、卡名字、银行信息、有效期。支持竖排异形卡识别、多角度旋转图片识别。支持对复印件、翻拍件、边框遮挡的银行卡进行告警，可应用于各种银行卡信息有效性校验场景，如金融行业身份认证、第三方支付绑卡等场景。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func bankCardOCR(_ input: BankCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCardOCRResponse {
+        try await self.client.execute(action: "BankCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

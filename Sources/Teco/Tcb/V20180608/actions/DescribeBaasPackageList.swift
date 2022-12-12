@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 获取新套餐
-    ///
-    /// 获取新套餐列表，含详情，如果传了PackageId，则只获取指定套餐详情
-    @inlinable
-    public func describeBaasPackageList(_ input: DescribeBaasPackageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaasPackageListResponse > {
-        self.client.execute(action: "DescribeBaasPackageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取新套餐
-    ///
-    /// 获取新套餐列表，含详情，如果传了PackageId，则只获取指定套餐详情
-    @inlinable
-    public func describeBaasPackageList(_ input: DescribeBaasPackageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaasPackageListResponse {
-        try await self.client.execute(action: "DescribeBaasPackageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBaasPackageList请求参数结构体
     public struct DescribeBaasPackageListRequest: TCRequestModel {
         /// tcb产品套餐ID，不填拉取全量package信息。
@@ -63,7 +47,7 @@ extension Tcb {
         /// 付费渠道，与回包billTags中的计费参数相关，不填返回默认值。
         public let paymentChannel: String?
         
-        public init (packageName: String?, envId: String?, source: String?, envChannel: String?, targetAction: String?, groupName: String?, packageTypeList: [String]?, paymentChannel: String?) {
+        public init (packageName: String? = nil, envId: String? = nil, source: String? = nil, envChannel: String? = nil, targetAction: String? = nil, groupName: String? = nil, packageTypeList: [String]? = nil, paymentChannel: String? = nil) {
             self.packageName = packageName
             self.envId = envId
             self.source = source
@@ -98,5 +82,21 @@ extension Tcb {
             case packageList = "PackageList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取新套餐
+    ///
+    /// 获取新套餐列表，含详情，如果传了PackageId，则只获取指定套餐详情
+    @inlinable
+    public func describeBaasPackageList(_ input: DescribeBaasPackageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaasPackageListResponse > {
+        self.client.execute(action: "DescribeBaasPackageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取新套餐
+    ///
+    /// 获取新套餐列表，含详情，如果传了PackageId，则只获取指定套餐详情
+    @inlinable
+    public func describeBaasPackageList(_ input: DescribeBaasPackageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaasPackageListResponse {
+        try await self.client.execute(action: "DescribeBaasPackageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -45,7 +45,7 @@ extension Iecp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableServiceLinks: Bool?
         
-        public init (name: String, namespace: String, workflowKind: String, labels: [Label]?, gridUniqKey: String?, nodeSelector: [Label]?, replicas: Int64?, availableReplicas: Int64?, enableServiceLinks: Bool?) {
+        public init (name: String, namespace: String, workflowKind: String, labels: [Label]? = nil, gridUniqKey: String? = nil, nodeSelector: [Label]? = nil, replicas: Int64? = nil, availableReplicas: Int64? = nil, enableServiceLinks: Bool? = nil) {
             self.name = name
             self.namespace = namespace
             self.workflowKind = workflowKind
@@ -88,7 +88,7 @@ extension Iecp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allowVisualModify: Bool?
         
-        public init (name: String, manageUrl: String?, description: String?, createTime: String?, allowVisualModify: Bool?) {
+        public init (name: String, manageUrl: String? = nil, description: String? = nil, createTime: String? = nil, allowVisualModify: Bool? = nil) {
             self.name = name
             self.manageUrl = manageUrl
             self.description = description
@@ -156,7 +156,7 @@ extension Iecp {
         
         /// 应用部署模式
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let deployMode: ApplicationDeployMode
+        public let deployMode: ApplicationDeployMode?
         
         /// 期望Pod数
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -253,7 +253,7 @@ extension Iecp {
         
         /// 卷挂载配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let volumeMounts: [VolumeMount]
+        public let volumeMounts: [VolumeMount]?
         
         /// cpu最低配置
         public let cpuRequest: String
@@ -289,12 +289,12 @@ extension Iecp {
         public let args: [String]?
         
         /// 安全配置
-        public let securityContext: SecurityContext
+        public let securityContext: SecurityContext?
         
         /// 就绪探针配置
-        public let readinessProbe: Probe
+        public let readinessProbe: Probe?
         
-        public init (name: String, imageName: String, imageVersion: String, imagePullPolicy: String, volumeMounts: [VolumeMount], cpuRequest: String, cpuLimit: String, memoryRequest: String, memoryLimit: String, memoryUnit: String, gpuLimit: String?, resourceMapCloud: [KeyValueObj]?, envs: [Env]?, workingDir: String?, commands: [String]?, args: [String]?, securityContext: SecurityContext, readinessProbe: Probe) {
+        public init (name: String, imageName: String, imageVersion: String, imagePullPolicy: String, volumeMounts: [VolumeMount], cpuRequest: String, cpuLimit: String, memoryRequest: String, memoryLimit: String, memoryUnit: String, gpuLimit: String? = nil, resourceMapCloud: [KeyValueObj]? = nil, envs: [Env]? = nil, workingDir: String? = nil, commands: [String]? = nil, args: [String]? = nil, securityContext: SecurityContext? = nil, readinessProbe: Probe? = nil) {
             self.name = name
             self.imageName = imageName
             self.imageVersion = imageVersion
@@ -419,7 +419,7 @@ extension Iecp {
     public struct DockerConfig: TCInputModel, TCOutputModel {
         /// 镜像仓库地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let registryDomain: String
+        public let registryDomain: String?
         
         /// 用户名
         public let userName: String
@@ -451,7 +451,7 @@ extension Iecp {
         /// 节点备注
         public let remark: String?
         
-        public init (sn: String, name: String, remark: String?) {
+        public init (sn: String, name: String, remark: String? = nil) {
             self.sn = sn
             self.name = name
             self.remark = remark
@@ -581,7 +581,7 @@ extension Iecp {
         
         /// 节点资源信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let resource: EdgeNodeResourceInfo
+        public let resource: EdgeNodeResourceInfo?
         
         /// CPU体系结构
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -598,7 +598,7 @@ extension Iecp {
         /// 节点所属的NodeUnit
         /// key：NodeUnit模版ID，Value：NodeUnit模版名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let nodeUnits: KeyValueObj
+        public let nodeUnits: KeyValueObj?
         
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -953,7 +953,7 @@ extension Iecp {
         /// 排序(ASC:升序 DESC:降序
         public let order: String?
         
-        public init (field: String?, order: String?) {
+        public init (field: String? = nil, order: String? = nil) {
             self.field = field
             self.order = order
         }
@@ -1182,11 +1182,11 @@ extension Iecp {
     public struct HttpHeader: TCInputModel, TCOutputModel {
         /// HTTP头的名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let name: String
+        public let name: String?
         
         /// HTTP头的值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let value: String
+        public let value: String?
         
         public init (name: String, value: String) {
             self.name = name
@@ -1203,11 +1203,11 @@ extension Iecp {
     public struct HttpProbe: TCInputModel, TCOutputModel {
         /// 请求路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let path: String
+        public let path: String?
         
         /// 请求端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let port: Int64
+        public let port: Int64?
         
         /// 请求地址，默认Pod的IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1221,7 +1221,7 @@ extension Iecp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headers: [HttpHeader]?
         
-        public init (path: String, port: Int64, host: String?, scheme: String?, headers: [HttpHeader]?) {
+        public init (path: String, port: Int64, host: String? = nil, scheme: String? = nil, headers: [HttpHeader]? = nil) {
             self.path = path
             self.port = port
             self.host = host
@@ -1394,7 +1394,7 @@ extension Iecp {
         /// 无
         public let installed: Bool?
         
-        public init (id: Int64, appName: String, author: String?, releaseTime: String?, outline: String?, detail: String?, icon: String?, version: String?, workloadVisualConfig: String?, detailUrl: String?, installed: Bool?) {
+        public init (id: Int64, appName: String, author: String? = nil, releaseTime: String? = nil, outline: String? = nil, detail: String? = nil, icon: String? = nil, version: String? = nil, workloadVisualConfig: String? = nil, detailUrl: String? = nil, installed: Bool? = nil) {
             self.id = id
             self.appName = appName
             self.author = author
@@ -1726,7 +1726,7 @@ extension Iecp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: [Int64]?
         
-        public init (status: [Int64]?) {
+        public init (status: [Int64]? = nil) {
             self.status = status
         }
         
@@ -1829,13 +1829,13 @@ extension Iecp {
         
         /// HTTP探测配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let httpProbe: HttpProbe
+        public let httpProbe: HttpProbe?
         
         /// TCP探测配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tcpProbe: TcpProbe
+        public let tcpProbe: TcpProbe?
         
-        public init (initialDelaySeconds: Int64?, periodSeconds: Int64?, timeoutSeconds: Int64?, successThreshold: Int64?, failureThreshold: Int64?, httpProbe: HttpProbe, tcpProbe: TcpProbe) {
+        public init (initialDelaySeconds: Int64? = nil, periodSeconds: Int64? = nil, timeoutSeconds: Int64? = nil, successThreshold: Int64? = nil, failureThreshold: Int64? = nil, httpProbe: HttpProbe? = nil, tcpProbe: TcpProbe? = nil) {
             self.initialDelaySeconds = initialDelaySeconds
             self.periodSeconds = periodSeconds
             self.timeoutSeconds = timeoutSeconds
@@ -1991,7 +1991,7 @@ extension Iecp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let drop: [String]?
         
-        public init (add: [String]?, drop: [String]?) {
+        public init (add: [String]? = nil, drop: [String]? = nil) {
             self.add = add
             self.drop = drop
         }
@@ -2011,9 +2011,9 @@ extension Iecp {
         public let procMount: String
         
         /// 安全配置
-        public let capabilities: SecurityCapabilities
+        public let capabilities: SecurityCapabilities?
         
-        public init (privilege: Bool, procMount: String, capabilities: SecurityCapabilities) {
+        public init (privilege: Bool, procMount: String, capabilities: SecurityCapabilities? = nil) {
             self.privilege = privilege
             self.procMount = procMount
             self.capabilities = capabilities
@@ -2046,7 +2046,7 @@ extension Iecp {
         /// 服务IP
         public let clusterIP: String?
         
-        public init (name: String, type: String, ports: [PortConfig], labels: [Label], namespace: String?, clusterIP: String?) {
+        public init (name: String, type: String, ports: [PortConfig], labels: [Label], namespace: String? = nil, clusterIP: String? = nil) {
             self.name = name
             self.type = type
             self.ports = ports
@@ -2073,7 +2073,7 @@ extension Iecp {
         /// 排序方式，升序ASC / 降序DESC
         public let order: String?
         
-        public init (field: String?, order: String?) {
+        public init (field: String? = nil, order: String? = nil) {
             self.field = field
             self.order = order
         }
@@ -2088,7 +2088,7 @@ extension Iecp {
     public struct TcpProbe: TCInputModel, TCOutputModel {
         /// 连接端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let port: Int64
+        public let port: Int64?
         
         public init (port: Int64) {
             self.port = port
@@ -2109,21 +2109,21 @@ extension Iecp {
         
         /// Host挂载配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let hostPath: VolumeHostPath
+        public let hostPath: VolumeHostPath?
         
         /// ConfigMap挂载配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let configMap: VolumeConfigMap
+        public let configMap: VolumeConfigMap?
         
         /// Secret挂载配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let secret: VolumeConfigMap
+        public let secret: VolumeConfigMap?
         
         /// NFS挂载配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let nfs: VolumeNFS
+        public let nfs: VolumeNFS?
         
-        public init (source: String, name: String, hostPath: VolumeHostPath, configMap: VolumeConfigMap, secret: VolumeConfigMap, nfs: VolumeNFS) {
+        public init (source: String, name: String, hostPath: VolumeHostPath? = nil, configMap: VolumeConfigMap? = nil, secret: VolumeConfigMap? = nil, nfs: VolumeNFS? = nil) {
             self.source = source
             self.name = name
             self.hostPath = hostPath
@@ -2220,7 +2220,7 @@ extension Iecp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let readOnly: Bool?
         
-        public init (name: String, mountPath: String, subPath: String?, readOnly: Bool?) {
+        public init (name: String, mountPath: String, subPath: String? = nil, readOnly: Bool? = nil) {
             self.name = name
             self.mountPath = mountPath
             self.subPath = subPath

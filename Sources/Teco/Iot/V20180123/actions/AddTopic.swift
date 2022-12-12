@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 新增Topic
-    ///
-    /// 新增Topic，用于设备或应用发布消息至该Topic或订阅该Topic的消息。
-    @inlinable
-    public func addTopic(_ input: AddTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddTopicResponse > {
-        self.client.execute(action: "AddTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增Topic
-    ///
-    /// 新增Topic，用于设备或应用发布消息至该Topic或订阅该Topic的消息。
-    @inlinable
-    public func addTopic(_ input: AddTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTopicResponse {
-        try await self.client.execute(action: "AddTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddTopic请求参数结构体
     public struct AddTopicRequest: TCRequestModel {
         /// 产品Id
@@ -62,5 +46,21 @@ extension Iot {
             case topic = "Topic"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增Topic
+    ///
+    /// 新增Topic，用于设备或应用发布消息至该Topic或订阅该Topic的消息。
+    @inlinable
+    public func addTopic(_ input: AddTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddTopicResponse > {
+        self.client.execute(action: "AddTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增Topic
+    ///
+    /// 新增Topic，用于设备或应用发布消息至该Topic或订阅该Topic的消息。
+    @inlinable
+    public func addTopic(_ input: AddTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTopicResponse {
+        try await self.client.execute(action: "AddTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

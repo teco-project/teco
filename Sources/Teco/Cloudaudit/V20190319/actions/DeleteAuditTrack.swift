@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudaudit {
-    /// 删除云审计跟踪集
-    @inlinable
-    public func deleteAuditTrack(_ input: DeleteAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAuditTrackResponse > {
-        self.client.execute(action: "DeleteAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除云审计跟踪集
-    @inlinable
-    public func deleteAuditTrack(_ input: DeleteAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditTrackResponse {
-        try await self.client.execute(action: "DeleteAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAuditTrack请求参数结构体
     public struct DeleteAuditTrackRequest: TCRequestModel {
         /// 跟踪集 ID
@@ -49,5 +37,17 @@ extension Cloudaudit {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除云审计跟踪集
+    @inlinable
+    public func deleteAuditTrack(_ input: DeleteAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAuditTrackResponse > {
+        self.client.execute(action: "DeleteAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除云审计跟踪集
+    @inlinable
+    public func deleteAuditTrack(_ input: DeleteAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditTrackResponse {
+        try await self.client.execute(action: "DeleteAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 删除触发器
-    ///
-    /// 该接口根据参数传入删除已有的触发方式。
-    @inlinable
-    public func deleteTrigger(_ input: DeleteTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTriggerResponse > {
-        self.client.execute(action: "DeleteTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除触发器
-    ///
-    /// 该接口根据参数传入删除已有的触发方式。
-    @inlinable
-    public func deleteTrigger(_ input: DeleteTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTriggerResponse {
-        try await self.client.execute(action: "DeleteTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTrigger请求参数结构体
     public struct DeleteTriggerRequest: TCRequestModel {
         /// 函数的名称
@@ -51,7 +35,7 @@ extension Scf {
         /// 函数的版本，默认为 $LATEST，建议填写 [$DEFAULT](https://cloud.tencent.com/document/product/583/36149#.E9.BB.98.E8.AE.A4.E5.88.AB.E5.90.8D)方便后续进行版本的灰度发布。
         public let qualifier: String?
         
-        public init (functionName: String, triggerName: String, type: String, namespace: String?, triggerDesc: String?, qualifier: String?) {
+        public init (functionName: String, triggerName: String, type: String, namespace: String? = nil, triggerDesc: String? = nil, qualifier: String? = nil) {
             self.functionName = functionName
             self.triggerName = triggerName
             self.type = type
@@ -78,5 +62,21 @@ extension Scf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除触发器
+    ///
+    /// 该接口根据参数传入删除已有的触发方式。
+    @inlinable
+    public func deleteTrigger(_ input: DeleteTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTriggerResponse > {
+        self.client.execute(action: "DeleteTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除触发器
+    ///
+    /// 该接口根据参数传入删除已有的触发方式。
+    @inlinable
+    public func deleteTrigger(_ input: DeleteTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTriggerResponse {
+        try await self.client.execute(action: "DeleteTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

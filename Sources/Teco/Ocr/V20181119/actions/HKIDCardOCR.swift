@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 中国香港身份证识别
-    ///
-    /// 本接口支持中国香港身份证人像面中关键字段的识别，包括中文姓名、英文姓名、姓名电码、出生日期、性别、证件符号、首次签发日期、最近领用日期、身份证号、是否是永久性居民身份证；具备防伪识别、人像照片裁剪等扩展功能。
-    /// 默认接口请求频率限制：5次/秒。
-    @inlinable
-    public func hkidCardOCR(_ input: HKIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < HKIDCardOCRResponse > {
-        self.client.execute(action: "HKIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 中国香港身份证识别
-    ///
-    /// 本接口支持中国香港身份证人像面中关键字段的识别，包括中文姓名、英文姓名、姓名电码、出生日期、性别、证件符号、首次签发日期、最近领用日期、身份证号、是否是永久性居民身份证；具备防伪识别、人像照片裁剪等扩展功能。
-    /// 默认接口请求频率限制：5次/秒。
-    @inlinable
-    public func hkidCardOCR(_ input: HKIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HKIDCardOCRResponse {
-        try await self.client.execute(action: "HKIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// HKIDCardOCR请求参数结构体
     public struct HKIDCardOCRRequest: TCRequestModel {
         /// 是否鉴伪。
@@ -53,7 +35,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (detectFake: Bool, returnHeadImage: Bool, imageBase64: String?, imageUrl: String?) {
+        public init (detectFake: Bool, returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil) {
             self.detectFake = detectFake
             self.returnHeadImage = returnHeadImage
             self.imageBase64 = imageBase64
@@ -139,5 +121,23 @@ extension Ocr {
             case warningCode = "WarningCode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 中国香港身份证识别
+    ///
+    /// 本接口支持中国香港身份证人像面中关键字段的识别，包括中文姓名、英文姓名、姓名电码、出生日期、性别、证件符号、首次签发日期、最近领用日期、身份证号、是否是永久性居民身份证；具备防伪识别、人像照片裁剪等扩展功能。
+    /// 默认接口请求频率限制：5次/秒。
+    @inlinable
+    public func hkidCardOCR(_ input: HKIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < HKIDCardOCRResponse > {
+        self.client.execute(action: "HKIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 中国香港身份证识别
+    ///
+    /// 本接口支持中国香港身份证人像面中关键字段的识别，包括中文姓名、英文姓名、姓名电码、出生日期、性别、证件符号、首次签发日期、最近领用日期、身份证号、是否是永久性居民身份证；具备防伪识别、人像照片裁剪等扩展功能。
+    /// 默认接口请求频率限制：5次/秒。
+    @inlinable
+    public func hkidCardOCR(_ input: HKIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HKIDCardOCRResponse {
+        try await self.client.execute(action: "HKIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 修改应用实例数量
-    @inlinable
-    public func modifyApplicationReplicas(_ input: ModifyApplicationReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationReplicasResponse > {
-        self.client.execute(action: "ModifyApplicationReplicas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改应用实例数量
-    @inlinable
-    public func modifyApplicationReplicas(_ input: ModifyApplicationReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationReplicasResponse {
-        try await self.client.execute(action: "ModifyApplicationReplicas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyApplicationReplicas请求参数结构体
     public struct ModifyApplicationReplicasRequest: TCRequestModel {
         /// 服务id
@@ -41,7 +29,7 @@ extension Tem {
         /// 来源渠道
         public let sourceChannel: Int64?
         
-        public init (applicationId: String, environmentId: String, replicas: Int64, sourceChannel: Int64?) {
+        public init (applicationId: String, environmentId: String, replicas: Int64, sourceChannel: Int64? = nil) {
             self.applicationId = applicationId
             self.environmentId = environmentId
             self.replicas = replicas
@@ -69,5 +57,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改应用实例数量
+    @inlinable
+    public func modifyApplicationReplicas(_ input: ModifyApplicationReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationReplicasResponse > {
+        self.client.execute(action: "ModifyApplicationReplicas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用实例数量
+    @inlinable
+    public func modifyApplicationReplicas(_ input: ModifyApplicationReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationReplicasResponse {
+        try await self.client.execute(action: "ModifyApplicationReplicas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

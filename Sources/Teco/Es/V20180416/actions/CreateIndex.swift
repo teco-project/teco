@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 创建索引
-    @inlinable
-    public func createIndex(_ input: CreateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIndexResponse > {
-        self.client.execute(action: "CreateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建索引
-    @inlinable
-    public func createIndex(_ input: CreateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIndexResponse {
-        try await self.client.execute(action: "CreateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateIndex请求参数结构体
     public struct CreateIndexRequest: TCRequestModel {
         /// ES集群ID
@@ -47,7 +35,7 @@ extension Es {
         /// 集群访问密码
         public let password: String?
         
-        public init (instanceId: String, indexType: String, indexName: String, indexMetaJson: String?, username: String?, password: String?) {
+        public init (instanceId: String, indexType: String, indexName: String, indexMetaJson: String? = nil, username: String? = nil, password: String? = nil) {
             self.instanceId = instanceId
             self.indexType = indexType
             self.indexName = indexName
@@ -74,5 +62,17 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建索引
+    @inlinable
+    public func createIndex(_ input: CreateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIndexResponse > {
+        self.client.execute(action: "CreateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建索引
+    @inlinable
+    public func createIndex(_ input: CreateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIndexResponse {
+        try await self.client.execute(action: "CreateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

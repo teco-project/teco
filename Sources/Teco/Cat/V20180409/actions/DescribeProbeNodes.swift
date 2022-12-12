@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cat {
-    /// 查询拨测节点
-    @inlinable
-    public func describeProbeNodes(_ input: DescribeProbeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProbeNodesResponse > {
-        self.client.execute(action: "DescribeProbeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询拨测节点
-    @inlinable
-    public func describeProbeNodes(_ input: DescribeProbeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProbeNodesResponse {
-        try await self.client.execute(action: "DescribeProbeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProbeNodes请求参数结构体
     public struct DescribeProbeNodesRequest: TCRequestModel {
         /// 节点类型
@@ -52,7 +40,7 @@ extension Cat {
         /// <li> 2 = 付费版本 </li>
         public let payMode: Int64?
         
-        public init (nodeType: Int64?, location: Int64?, isIPv6: Bool?, nodeName: String?, payMode: Int64?) {
+        public init (nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil) {
             self.nodeType = nodeType
             self.location = location
             self.isIPv6 = isIPv6
@@ -82,5 +70,17 @@ extension Cat {
             case nodeSet = "NodeSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询拨测节点
+    @inlinable
+    public func describeProbeNodes(_ input: DescribeProbeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProbeNodesResponse > {
+        self.client.execute(action: "DescribeProbeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询拨测节点
+    @inlinable
+    public func describeProbeNodes(_ input: DescribeProbeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProbeNodesResponse {
+        try await self.client.execute(action: "DescribeProbeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

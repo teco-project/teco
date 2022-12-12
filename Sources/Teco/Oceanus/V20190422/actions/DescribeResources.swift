@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 描述资源接口
-    @inlinable
-    public func describeResources(_ input: DescribeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesResponse > {
-        self.client.execute(action: "DescribeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 描述资源接口
-    @inlinable
-    public func describeResources(_ input: DescribeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesResponse {
-        try await self.client.execute(action: "DescribeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResources请求参数结构体
     public struct DescribeResourcesRequest: TCRequestModel {
         /// 需要查询的资源ID数组，数量不超过100个。如果填写了该参数则忽略Filters参数。
@@ -45,7 +33,7 @@ extension Oceanus {
         /// 工作空间 SerialId
         public let workSpaceId: String?
         
-        public init (resourceIds: [String]?, offset: Int64?, limit: Int64?, filters: [Filter]?, workSpaceId: String?) {
+        public init (resourceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, workSpaceId: String? = nil) {
             self.resourceIds = resourceIds
             self.offset = offset
             self.limit = limit
@@ -78,5 +66,17 @@ extension Oceanus {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 描述资源接口
+    @inlinable
+    public func describeResources(_ input: DescribeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesResponse > {
+        self.client.execute(action: "DescribeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 描述资源接口
+    @inlinable
+    public func describeResources(_ input: DescribeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesResponse {
+        try await self.client.execute(action: "DescribeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

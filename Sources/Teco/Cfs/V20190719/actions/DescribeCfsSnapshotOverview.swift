@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 文件系统快照概览
-    @inlinable
-    public func describeCfsSnapshotOverview(_ input: DescribeCfsSnapshotOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfsSnapshotOverviewResponse > {
-        self.client.execute(action: "DescribeCfsSnapshotOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 文件系统快照概览
-    @inlinable
-    public func describeCfsSnapshotOverview(_ input: DescribeCfsSnapshotOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsSnapshotOverviewResponse {
-        try await self.client.execute(action: "DescribeCfsSnapshotOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCfsSnapshotOverview请求参数结构体
     public struct DescribeCfsSnapshotOverviewRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Cfs {
             case statisticsList = "StatisticsList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 文件系统快照概览
+    @inlinable
+    public func describeCfsSnapshotOverview(_ input: DescribeCfsSnapshotOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfsSnapshotOverviewResponse > {
+        self.client.execute(action: "DescribeCfsSnapshotOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 文件系统快照概览
+    @inlinable
+    public func describeCfsSnapshotOverview(_ input: DescribeCfsSnapshotOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsSnapshotOverviewResponse {
+        try await self.client.execute(action: "DescribeCfsSnapshotOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

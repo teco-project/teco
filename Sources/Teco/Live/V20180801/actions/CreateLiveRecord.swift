@@ -15,48 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 创建录制任务(已废弃,请使用新接口)
-    ///
-    /// - 使用前提
-    ///   1. 录制文件存放于点播平台，所以用户如需使用录制功能，需首先自行开通点播服务。
-    ///   2. 录制文件存放后相关费用（含存储以及下行播放流量）按照点播平台计费方式收取，具体请参考 [对应文档](https://cloud.tencent.com/document/product/266/2838)。
-    /// - 模式说明
-    ///   该接口支持两种录制模式：
-    ///   1. 定时录制模式【默认模式】。
-    ///     需要传入开始时间与结束时间，录制任务根据起止时间自动开始与结束。在所设置结束时间过期之前（且未调用StopLiveRecord提前终止任务），录制任务都是有效的，期间多次断流然后重推都会启动录制任务。
-    ///   2. 实时视频录制模式。
-    ///     忽略传入的开始时间，在录制任务创建后立即开始录制，录制时长支持最大为30分钟，如果传入的结束时间与当前时间差大于30分钟，则按30分钟计算，实时视频录制主要用于录制精彩视频场景，时长建议控制在5分钟以内。
-    /// - 注意事项
-    ///   1. 调用接口超时设置应大于3秒，小于3秒重试以及按不同起止时间调用都有可能产生重复录制任务，进而导致额外录制费用。
-    ///   2. 受限于音视频文件格式（FLV/MP4/HLS）对编码类型的支持，视频编码类型支持 H.264，音频编码类型支持 AAC。
-    ///   3. 为避免恶意或非主观的频繁 API 请求，对定时录制模式最大创建任务数做了限制：其中，当天可以创建的最大任务数不超过4000（不含已删除的任务）；当前时刻并发运行的任务数不超过400。有超出此限制的需要提工单申请。
-    ///   4. 此调用方式暂时不支持海外推流录制。
-    @inlinable
-    public func createLiveRecord(_ input: CreateLiveRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveRecordResponse > {
-        self.client.execute(action: "CreateLiveRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建录制任务(已废弃,请使用新接口)
-    ///
-    /// - 使用前提
-    ///   1. 录制文件存放于点播平台，所以用户如需使用录制功能，需首先自行开通点播服务。
-    ///   2. 录制文件存放后相关费用（含存储以及下行播放流量）按照点播平台计费方式收取，具体请参考 [对应文档](https://cloud.tencent.com/document/product/266/2838)。
-    /// - 模式说明
-    ///   该接口支持两种录制模式：
-    ///   1. 定时录制模式【默认模式】。
-    ///     需要传入开始时间与结束时间，录制任务根据起止时间自动开始与结束。在所设置结束时间过期之前（且未调用StopLiveRecord提前终止任务），录制任务都是有效的，期间多次断流然后重推都会启动录制任务。
-    ///   2. 实时视频录制模式。
-    ///     忽略传入的开始时间，在录制任务创建后立即开始录制，录制时长支持最大为30分钟，如果传入的结束时间与当前时间差大于30分钟，则按30分钟计算，实时视频录制主要用于录制精彩视频场景，时长建议控制在5分钟以内。
-    /// - 注意事项
-    ///   1. 调用接口超时设置应大于3秒，小于3秒重试以及按不同起止时间调用都有可能产生重复录制任务，进而导致额外录制费用。
-    ///   2. 受限于音视频文件格式（FLV/MP4/HLS）对编码类型的支持，视频编码类型支持 H.264，音频编码类型支持 AAC。
-    ///   3. 为避免恶意或非主观的频繁 API 请求，对定时录制模式最大创建任务数做了限制：其中，当天可以创建的最大任务数不超过4000（不含已删除的任务）；当前时刻并发运行的任务数不超过400。有超出此限制的需要提工单申请。
-    ///   4. 此调用方式暂时不支持海外推流录制。
-    @inlinable
-    public func createLiveRecord(_ input: CreateLiveRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordResponse {
-        try await self.client.execute(action: "CreateLiveRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLiveRecord请求参数结构体
     public struct CreateLiveRecordRequest: TCRequestModel {
         /// 流名称。
@@ -106,7 +64,7 @@ extension Live {
         /// 在定时录制模式或实时视频录制模式下，该参数均有效。
         public let streamParam: String?
         
-        public init (streamName: String, appName: String?, domainName: String?, startTime: String?, endTime: String?, recordType: String?, fileFormat: String?, highlight: Int64?, mixStream: Int64?, streamParam: String?) {
+        public init (streamName: String, appName: String? = nil, domainName: String? = nil, startTime: String? = nil, endTime: String? = nil, recordType: String? = nil, fileFormat: String? = nil, highlight: Int64? = nil, mixStream: Int64? = nil, streamParam: String? = nil) {
             self.streamName = streamName
             self.appName = appName
             self.domainName = domainName
@@ -145,5 +103,47 @@ extension Live {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建录制任务(已废弃,请使用新接口)
+    ///
+    /// - 使用前提
+    ///   1. 录制文件存放于点播平台，所以用户如需使用录制功能，需首先自行开通点播服务。
+    ///   2. 录制文件存放后相关费用（含存储以及下行播放流量）按照点播平台计费方式收取，具体请参考 [对应文档](https://cloud.tencent.com/document/product/266/2838)。
+    /// - 模式说明
+    ///   该接口支持两种录制模式：
+    ///   1. 定时录制模式【默认模式】。
+    ///     需要传入开始时间与结束时间，录制任务根据起止时间自动开始与结束。在所设置结束时间过期之前（且未调用StopLiveRecord提前终止任务），录制任务都是有效的，期间多次断流然后重推都会启动录制任务。
+    ///   2. 实时视频录制模式。
+    ///     忽略传入的开始时间，在录制任务创建后立即开始录制，录制时长支持最大为30分钟，如果传入的结束时间与当前时间差大于30分钟，则按30分钟计算，实时视频录制主要用于录制精彩视频场景，时长建议控制在5分钟以内。
+    /// - 注意事项
+    ///   1. 调用接口超时设置应大于3秒，小于3秒重试以及按不同起止时间调用都有可能产生重复录制任务，进而导致额外录制费用。
+    ///   2. 受限于音视频文件格式（FLV/MP4/HLS）对编码类型的支持，视频编码类型支持 H.264，音频编码类型支持 AAC。
+    ///   3. 为避免恶意或非主观的频繁 API 请求，对定时录制模式最大创建任务数做了限制：其中，当天可以创建的最大任务数不超过4000（不含已删除的任务）；当前时刻并发运行的任务数不超过400。有超出此限制的需要提工单申请。
+    ///   4. 此调用方式暂时不支持海外推流录制。
+    @inlinable
+    public func createLiveRecord(_ input: CreateLiveRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveRecordResponse > {
+        self.client.execute(action: "CreateLiveRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建录制任务(已废弃,请使用新接口)
+    ///
+    /// - 使用前提
+    ///   1. 录制文件存放于点播平台，所以用户如需使用录制功能，需首先自行开通点播服务。
+    ///   2. 录制文件存放后相关费用（含存储以及下行播放流量）按照点播平台计费方式收取，具体请参考 [对应文档](https://cloud.tencent.com/document/product/266/2838)。
+    /// - 模式说明
+    ///   该接口支持两种录制模式：
+    ///   1. 定时录制模式【默认模式】。
+    ///     需要传入开始时间与结束时间，录制任务根据起止时间自动开始与结束。在所设置结束时间过期之前（且未调用StopLiveRecord提前终止任务），录制任务都是有效的，期间多次断流然后重推都会启动录制任务。
+    ///   2. 实时视频录制模式。
+    ///     忽略传入的开始时间，在录制任务创建后立即开始录制，录制时长支持最大为30分钟，如果传入的结束时间与当前时间差大于30分钟，则按30分钟计算，实时视频录制主要用于录制精彩视频场景，时长建议控制在5分钟以内。
+    /// - 注意事项
+    ///   1. 调用接口超时设置应大于3秒，小于3秒重试以及按不同起止时间调用都有可能产生重复录制任务，进而导致额外录制费用。
+    ///   2. 受限于音视频文件格式（FLV/MP4/HLS）对编码类型的支持，视频编码类型支持 H.264，音频编码类型支持 AAC。
+    ///   3. 为避免恶意或非主观的频繁 API 请求，对定时录制模式最大创建任务数做了限制：其中，当天可以创建的最大任务数不超过4000（不含已删除的任务）；当前时刻并发运行的任务数不超过400。有超出此限制的需要提工单申请。
+    ///   4. 此调用方式暂时不支持海外推流录制。
+    @inlinable
+    public func createLiveRecord(_ input: CreateLiveRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordResponse {
+        try await self.client.execute(action: "CreateLiveRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

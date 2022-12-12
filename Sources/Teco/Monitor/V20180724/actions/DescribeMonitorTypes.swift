@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 查询监控类型
-    ///
-    /// 云监控支持多种类型的监控，此接口列出支持的所有类型
-    @inlinable
-    public func describeMonitorTypes(_ input: DescribeMonitorTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorTypesResponse > {
-        self.client.execute(action: "DescribeMonitorTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询监控类型
-    ///
-    /// 云监控支持多种类型的监控，此接口列出支持的所有类型
-    @inlinable
-    public func describeMonitorTypes(_ input: DescribeMonitorTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorTypesResponse {
-        try await self.client.execute(action: "DescribeMonitorTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMonitorTypes请求参数结构体
     public struct DescribeMonitorTypesRequest: TCRequestModel {
         /// 模块名，固定值 monitor
@@ -61,5 +45,21 @@ extension Monitor {
             case monitorTypeInfos = "MonitorTypeInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询监控类型
+    ///
+    /// 云监控支持多种类型的监控，此接口列出支持的所有类型
+    @inlinable
+    public func describeMonitorTypes(_ input: DescribeMonitorTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorTypesResponse > {
+        self.client.execute(action: "DescribeMonitorTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询监控类型
+    ///
+    /// 云监控支持多种类型的监控，此接口列出支持的所有类型
+    @inlinable
+    public func describeMonitorTypes(_ input: DescribeMonitorTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorTypesResponse {
+        try await self.client.execute(action: "DescribeMonitorTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

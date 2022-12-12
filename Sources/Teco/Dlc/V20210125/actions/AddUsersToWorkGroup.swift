@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 添加用户到工作组
-    @inlinable
-    public func addUsersToWorkGroup(_ input: AddUsersToWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUsersToWorkGroupResponse > {
-        self.client.execute(action: "AddUsersToWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加用户到工作组
-    @inlinable
-    public func addUsersToWorkGroup(_ input: AddUsersToWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUsersToWorkGroupResponse {
-        try await self.client.execute(action: "AddUsersToWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddUsersToWorkGroup请求参数结构体
     public struct AddUsersToWorkGroupRequest: TCRequestModel {
         /// 要操作的工作组和用户信息
@@ -49,5 +37,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加用户到工作组
+    @inlinable
+    public func addUsersToWorkGroup(_ input: AddUsersToWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUsersToWorkGroupResponse > {
+        self.client.execute(action: "AddUsersToWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加用户到工作组
+    @inlinable
+    public func addUsersToWorkGroup(_ input: AddUsersToWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUsersToWorkGroupResponse {
+        try await self.client.execute(action: "AddUsersToWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

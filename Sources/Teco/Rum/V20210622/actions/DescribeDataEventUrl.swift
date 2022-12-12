@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取DescribeDataEventUrl信息
-    @inlinable
-    public func describeDataEventUrl(_ input: DescribeDataEventUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataEventUrlResponse > {
-        self.client.execute(action: "DescribeDataEventUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DescribeDataEventUrl信息
-    @inlinable
-    public func describeDataEventUrl(_ input: DescribeDataEventUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataEventUrlResponse {
-        try await self.client.execute(action: "DescribeDataEventUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDataEventUrl请求参数结构体
     public struct DescribeDataEventUrlRequest: TCRequestModel {
         /// 开始时间
@@ -95,7 +83,7 @@ extension Rum {
         /// 环境
         public let env: String?
         
-        public init (startTime: Int64, type: String, endTime: Int64, id: Int64, extSecond: String?, engine: String?, isp: String?, from: String?, level: String?, brand: String?, area: String?, versionNum: String?, platform: String?, extThird: String?, extFirst: String?, netType: String?, device: String?, isAbroad: String?, os: String?, browser: String?, name: String?, env: String?) {
+        public init (startTime: Int64, type: String, endTime: Int64, id: Int64, extSecond: String? = nil, engine: String? = nil, isp: String? = nil, from: String? = nil, level: String? = nil, brand: String? = nil, area: String? = nil, versionNum: String? = nil, platform: String? = nil, extThird: String? = nil, extFirst: String? = nil, netType: String? = nil, device: String? = nil, isAbroad: String? = nil, os: String? = nil, browser: String? = nil, name: String? = nil, env: String? = nil) {
             self.startTime = startTime
             self.type = type
             self.endTime = endTime
@@ -158,5 +146,17 @@ extension Rum {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DescribeDataEventUrl信息
+    @inlinable
+    public func describeDataEventUrl(_ input: DescribeDataEventUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataEventUrlResponse > {
+        self.client.execute(action: "DescribeDataEventUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DescribeDataEventUrl信息
+    @inlinable
+    public func describeDataEventUrl(_ input: DescribeDataEventUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataEventUrlResponse {
+        try await self.client.execute(action: "DescribeDataEventUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

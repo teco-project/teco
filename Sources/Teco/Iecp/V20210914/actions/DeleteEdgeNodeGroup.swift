@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 删除边缘单元NodeGroup
-    @inlinable
-    public func deleteEdgeNodeGroup(_ input: DeleteEdgeNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeNodeGroupResponse > {
-        self.client.execute(action: "DeleteEdgeNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除边缘单元NodeGroup
-    @inlinable
-    public func deleteEdgeNodeGroup(_ input: DeleteEdgeNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodeGroupResponse {
-        try await self.client.execute(action: "DeleteEdgeNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteEdgeNodeGroup请求参数结构体
     public struct DeleteEdgeNodeGroupRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -38,7 +26,7 @@ extension Iecp {
         /// 命名空间，默认为default
         public let namespace: String?
         
-        public init (edgeUnitId: UInt64, name: String, namespace: String?) {
+        public init (edgeUnitId: UInt64, name: String, namespace: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.name = name
             self.namespace = namespace
@@ -59,5 +47,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除边缘单元NodeGroup
+    @inlinable
+    public func deleteEdgeNodeGroup(_ input: DeleteEdgeNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeNodeGroupResponse > {
+        self.client.execute(action: "DeleteEdgeNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除边缘单元NodeGroup
+    @inlinable
+    public func deleteEdgeNodeGroup(_ input: DeleteEdgeNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodeGroupResponse {
+        try await self.client.execute(action: "DeleteEdgeNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

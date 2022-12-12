@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 基础信息峰值数据
-    ///
-    /// CPU 内存 硬盘等基础信息峰值数据
-    @inlinable
-    public func describePeakBaseOverview(_ input: DescribePeakBaseOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePeakBaseOverviewResponse > {
-        self.client.execute(action: "DescribePeakBaseOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 基础信息峰值数据
-    ///
-    /// CPU 内存 硬盘等基础信息峰值数据
-    @inlinable
-    public func describePeakBaseOverview(_ input: DescribePeakBaseOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePeakBaseOverviewResponse {
-        try await self.client.execute(action: "DescribePeakBaseOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePeakBaseOverview请求参数结构体
     public struct DescribePeakBaseOverviewRequest: TCRequestModel {
         /// 开始时间（xxxx-xx-xx）如2019-08-14，默认为一周之前的日期，不应与当前日期间隔超过90天。
@@ -39,7 +23,7 @@ extension Ecm {
         /// 结束时间（xxxx-xx-xx）如2019-08-14，默认为昨天，不应与当前日期间隔超过90天。当开始与结束间隔不超过30天时返回1小时粒度的数据，否则返回3小时粒度的数据。
         public let endTime: String?
         
-        public init (startTime: String?, endTime: String?) {
+        public init (startTime: String? = nil, endTime: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
         }
@@ -63,5 +47,21 @@ extension Ecm {
             case peakFamilyInfoSet = "PeakFamilyInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 基础信息峰值数据
+    ///
+    /// CPU 内存 硬盘等基础信息峰值数据
+    @inlinable
+    public func describePeakBaseOverview(_ input: DescribePeakBaseOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePeakBaseOverviewResponse > {
+        self.client.execute(action: "DescribePeakBaseOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 基础信息峰值数据
+    ///
+    /// CPU 内存 硬盘等基础信息峰值数据
+    @inlinable
+    public func describePeakBaseOverview(_ input: DescribePeakBaseOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePeakBaseOverviewResponse {
+        try await self.client.execute(action: "DescribePeakBaseOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

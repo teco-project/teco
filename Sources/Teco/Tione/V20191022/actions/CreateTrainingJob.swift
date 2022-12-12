@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 创建训练任务
-    @inlinable
-    public func createTrainingJob(_ input: CreateTrainingJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTrainingJobResponse > {
-        self.client.execute(action: "CreateTrainingJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建训练任务
-    @inlinable
-    public func createTrainingJob(_ input: CreateTrainingJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrainingJobResponse {
-        try await self.client.execute(action: "CreateTrainingJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTrainingJob请求参数结构体
     public struct CreateTrainingJobRequest: TCRequestModel {
         /// 算法镜像配置
@@ -45,10 +33,10 @@ extension Tione {
         public let inputDataConfig: [InputDataConfig]?
         
         /// 中止条件
-        public let stoppingCondition: StoppingCondition
+        public let stoppingCondition: StoppingCondition?
         
         /// 私有网络配置
-        public let vpcConfig: VpcConfig
+        public let vpcConfig: VpcConfig?
         
         /// 算法超级参数
         public let hyperParameters: String?
@@ -63,7 +51,7 @@ extension Tione {
         /// 默认值为Disabled即不重新尝试。设为Enabled时重新尝试有一定的时间期限，定义在 StoppingCondition 中 MaxWaitTimeInSecond中 ，默认值为1天，超过该期限创建失败。
         public let retryWhenResourceInsufficient: String?
         
-        public init (algorithmSpecification: AlgorithmSpecification, outputDataConfig: OutputDataConfig, resourceConfig: ResourceConfig, trainingJobName: String, inputDataConfig: [InputDataConfig]?, stoppingCondition: StoppingCondition, vpcConfig: VpcConfig, hyperParameters: String?, envConfig: [EnvConfig]?, roleName: String?, retryWhenResourceInsufficient: String?) {
+        public init (algorithmSpecification: AlgorithmSpecification, outputDataConfig: OutputDataConfig, resourceConfig: ResourceConfig, trainingJobName: String, inputDataConfig: [InputDataConfig]? = nil, stoppingCondition: StoppingCondition? = nil, vpcConfig: VpcConfig? = nil, hyperParameters: String? = nil, envConfig: [EnvConfig]? = nil, roleName: String? = nil, retryWhenResourceInsufficient: String? = nil) {
             self.algorithmSpecification = algorithmSpecification
             self.outputDataConfig = outputDataConfig
             self.resourceConfig = resourceConfig
@@ -104,5 +92,17 @@ extension Tione {
             case trainingJobName = "TrainingJobName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建训练任务
+    @inlinable
+    public func createTrainingJob(_ input: CreateTrainingJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTrainingJobResponse > {
+        self.client.execute(action: "CreateTrainingJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建训练任务
+    @inlinable
+    public func createTrainingJob(_ input: CreateTrainingJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrainingJobResponse {
+        try await self.client.execute(action: "CreateTrainingJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

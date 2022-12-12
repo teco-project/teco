@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 查询私有CA绑定的产品列表
-    @inlinable
-    public func describePrivateCABindedProducts(_ input: DescribePrivateCABindedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateCABindedProductsResponse > {
-        self.client.execute(action: "DescribePrivateCABindedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询私有CA绑定的产品列表
-    @inlinable
-    public func describePrivateCABindedProducts(_ input: DescribePrivateCABindedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateCABindedProductsResponse {
-        try await self.client.execute(action: "DescribePrivateCABindedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrivateCABindedProducts请求参数结构体
     public struct DescribePrivateCABindedProductsRequest: TCRequestModel {
         /// 证书名称
@@ -63,5 +51,17 @@ extension Iotcloud {
             case products = "Products"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询私有CA绑定的产品列表
+    @inlinable
+    public func describePrivateCABindedProducts(_ input: DescribePrivateCABindedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateCABindedProductsResponse > {
+        self.client.execute(action: "DescribePrivateCABindedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询私有CA绑定的产品列表
+    @inlinable
+    public func describePrivateCABindedProducts(_ input: DescribePrivateCABindedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateCABindedProductsResponse {
+        try await self.client.execute(action: "DescribePrivateCABindedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

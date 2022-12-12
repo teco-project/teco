@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 修改目标组属性
-    ///
-    /// 修改目标组的名称或者默认端口属性
-    @inlinable
-    public func modifyTargetGroupAttribute(_ input: ModifyTargetGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTargetGroupAttributeResponse > {
-        self.client.execute(action: "ModifyTargetGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改目标组属性
-    ///
-    /// 修改目标组的名称或者默认端口属性
-    @inlinable
-    public func modifyTargetGroupAttribute(_ input: ModifyTargetGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupAttributeResponse {
-        try await self.client.execute(action: "ModifyTargetGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTargetGroupAttribute请求参数结构体
     public struct ModifyTargetGroupAttributeRequest: TCRequestModel {
         /// 目标组的ID。
@@ -42,7 +26,7 @@ extension Clb {
         /// 目标组的新默认端口。
         public let port: UInt64?
         
-        public init (targetGroupId: String, targetGroupName: String?, port: UInt64?) {
+        public init (targetGroupId: String, targetGroupName: String? = nil, port: UInt64? = nil) {
             self.targetGroupId = targetGroupId
             self.targetGroupName = targetGroupName
             self.port = port
@@ -63,5 +47,21 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改目标组属性
+    ///
+    /// 修改目标组的名称或者默认端口属性
+    @inlinable
+    public func modifyTargetGroupAttribute(_ input: ModifyTargetGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTargetGroupAttributeResponse > {
+        self.client.execute(action: "ModifyTargetGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改目标组属性
+    ///
+    /// 修改目标组的名称或者默认端口属性
+    @inlinable
+    public func modifyTargetGroupAttribute(_ input: ModifyTargetGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupAttributeResponse {
+        try await self.client.execute(action: "ModifyTargetGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

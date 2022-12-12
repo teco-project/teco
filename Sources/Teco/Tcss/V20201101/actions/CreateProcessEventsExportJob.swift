@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 创建异常进程事件导出异步任务
-    @inlinable
-    public func createProcessEventsExportJob(_ input: CreateProcessEventsExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProcessEventsExportJobResponse > {
-        self.client.execute(action: "CreateProcessEventsExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建异常进程事件导出异步任务
-    @inlinable
-    public func createProcessEventsExportJob(_ input: CreateProcessEventsExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProcessEventsExportJobResponse {
-        try await self.client.execute(action: "CreateProcessEventsExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProcessEventsExportJob请求参数结构体
     public struct CreateProcessEventsExportJobRequest: TCRequestModel {
         /// 需要返回的数量，最大值为10000
@@ -47,7 +35,7 @@ extension Tcss {
         /// 导出字段
         public let exportField: [String]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [AssetFilters]?, order: String?, by: String?, exportField: [String]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -78,5 +66,17 @@ extension Tcss {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建异常进程事件导出异步任务
+    @inlinable
+    public func createProcessEventsExportJob(_ input: CreateProcessEventsExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProcessEventsExportJobResponse > {
+        self.client.execute(action: "CreateProcessEventsExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建异常进程事件导出异步任务
+    @inlinable
+    public func createProcessEventsExportJob(_ input: CreateProcessEventsExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProcessEventsExportJobResponse {
+        try await self.client.execute(action: "CreateProcessEventsExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

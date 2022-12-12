@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 向Topic发布消息
-    ///
-    /// 提供向指定的Topic发布消息的能力，常用于向设备下发控制指令。该接口只适用于产品版本为“基础版”类型的产品，使用高级版的产品需使用“下发设备控制指令”接口
-    @inlinable
-    public func publishMsg(_ input: PublishMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishMsgResponse > {
-        self.client.execute(action: "PublishMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 向Topic发布消息
-    ///
-    /// 提供向指定的Topic发布消息的能力，常用于向设备下发控制指令。该接口只适用于产品版本为“基础版”类型的产品，使用高级版的产品需使用“下发设备控制指令”接口
-    @inlinable
-    public func publishMsg(_ input: PublishMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMsgResponse {
-        try await self.client.execute(action: "PublishMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PublishMsg请求参数结构体
     public struct PublishMsgRequest: TCRequestModel {
         /// Topic
@@ -42,7 +26,7 @@ extension Iot {
         /// Qos(目前QoS支持0与1)
         public let qos: Int64?
         
-        public init (topic: String, message: String, qos: Int64?) {
+        public init (topic: String, message: String, qos: Int64? = nil) {
             self.topic = topic
             self.message = message
             self.qos = qos
@@ -63,5 +47,21 @@ extension Iot {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 向Topic发布消息
+    ///
+    /// 提供向指定的Topic发布消息的能力，常用于向设备下发控制指令。该接口只适用于产品版本为“基础版”类型的产品，使用高级版的产品需使用“下发设备控制指令”接口
+    @inlinable
+    public func publishMsg(_ input: PublishMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishMsgResponse > {
+        self.client.execute(action: "PublishMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 向Topic发布消息
+    ///
+    /// 提供向指定的Topic发布消息的能力，常用于向设备下发控制指令。该接口只适用于产品版本为“基础版”类型的产品，使用高级版的产品需使用“下发设备控制指令”接口
+    @inlinable
+    public func publishMsg(_ input: PublishMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMsgResponse {
+        try await self.client.execute(action: "PublishMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

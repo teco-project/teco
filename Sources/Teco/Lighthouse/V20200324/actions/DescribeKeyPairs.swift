@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询用户密钥对列表
-    ///
-    /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
-    @inlinable
-    public func describeKeyPairs(_ input: DescribeKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeyPairsResponse > {
-        self.client.execute(action: "DescribeKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户密钥对列表
-    ///
-    /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
-    @inlinable
-    public func describeKeyPairs(_ input: DescribeKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyPairsResponse {
-        try await self.client.execute(action: "DescribeKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKeyPairs请求参数结构体
     public struct DescribeKeyPairsRequest: TCRequestModel {
         /// 密钥对 ID 列表。
@@ -52,7 +36,7 @@ extension Lighthouse {
         /// 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 KeyIds 和 Filters。
         public let filters: [Filter]?
         
-        public init (keyIds: [String]?, offset: Int64?, limit: Int64?, filters: [Filter]?) {
+        public init (keyIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.keyIds = keyIds
             self.offset = offset
             self.limit = limit
@@ -83,5 +67,21 @@ extension Lighthouse {
             case keyPairSet = "KeyPairSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户密钥对列表
+    ///
+    /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
+    @inlinable
+    public func describeKeyPairs(_ input: DescribeKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeyPairsResponse > {
+        self.client.execute(action: "DescribeKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户密钥对列表
+    ///
+    /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
+    @inlinable
+    public func describeKeyPairs(_ input: DescribeKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyPairsResponse {
+        try await self.client.execute(action: "DescribeKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

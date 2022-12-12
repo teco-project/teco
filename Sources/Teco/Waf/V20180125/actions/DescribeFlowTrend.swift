@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 获取waf流量访问趋势
-    @inlinable
-    public func describeFlowTrend(_ input: DescribeFlowTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowTrendResponse > {
-        self.client.execute(action: "DescribeFlowTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取waf流量访问趋势
-    @inlinable
-    public func describeFlowTrend(_ input: DescribeFlowTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowTrendResponse {
-        try await self.client.execute(action: "DescribeFlowTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlowTrend请求参数结构体
     public struct DescribeFlowTrendRequest: TCRequestModel {
         /// 需要获取流量趋势的域名, all表示所有域名
@@ -63,5 +51,17 @@ extension Waf {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取waf流量访问趋势
+    @inlinable
+    public func describeFlowTrend(_ input: DescribeFlowTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowTrendResponse > {
+        self.client.execute(action: "DescribeFlowTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取waf流量访问趋势
+    @inlinable
+    public func describeFlowTrend(_ input: DescribeFlowTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowTrendResponse {
+        try await self.client.execute(action: "DescribeFlowTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

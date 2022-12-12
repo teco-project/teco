@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 拉取子用户
-    @inlinable
-    public func listUsers(_ input: ListUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUsersResponse > {
-        self.client.execute(action: "ListUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取子用户
-    @inlinable
-    public func listUsers(_ input: ListUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersResponse {
-        try await self.client.execute(action: "ListUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListUsers请求参数结构体
     public struct ListUsersRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Cam {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取子用户
+    @inlinable
+    public func listUsers(_ input: ListUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUsersResponse > {
+        self.client.execute(action: "ListUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取子用户
+    @inlinable
+    public func listUsers(_ input: ListUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersResponse {
+        try await self.client.execute(action: "ListUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

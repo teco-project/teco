@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Npp {
-    /// 回拨话单获取接口
-    @inlinable
-    public func describeCallBackCdr(_ input: DescribeCallBackCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallBackCdrResponse > {
-        self.client.execute(action: "DescribeCallBackCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 回拨话单获取接口
-    @inlinable
-    public func describeCallBackCdr(_ input: DescribeCallBackCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallBackCdrResponse {
-        try await self.client.execute(action: "DescribeCallBackCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCallBackCdr请求参数结构体
     public struct DescribeCallBackCdrRequest: TCRequestModel {
         /// 业务appid
@@ -44,7 +32,7 @@ extension Npp {
         /// 话单结束时间戳
         public let endTimeStamp: String?
         
-        public init (bizAppId: String, callId: String?, src: String?, startTimeStamp: String?, endTimeStamp: String?) {
+        public init (bizAppId: String, callId: String? = nil, src: String? = nil, startTimeStamp: String? = nil, endTimeStamp: String? = nil) {
             self.bizAppId = bizAppId
             self.callId = callId
             self.src = src
@@ -89,5 +77,17 @@ extension Npp {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 回拨话单获取接口
+    @inlinable
+    public func describeCallBackCdr(_ input: DescribeCallBackCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallBackCdrResponse > {
+        self.client.execute(action: "DescribeCallBackCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 回拨话单获取接口
+    @inlinable
+    public func describeCallBackCdr(_ input: DescribeCallBackCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallBackCdrResponse {
+        try await self.client.execute(action: "DescribeCallBackCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

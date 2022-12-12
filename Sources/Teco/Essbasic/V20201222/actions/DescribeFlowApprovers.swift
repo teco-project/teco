@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 查询流程参与者信息
-    ///
-    /// 第三方应用可通过此接口（DescribeFlowApprovers）查询流程参与者信息。
-    @inlinable
-    public func describeFlowApprovers(_ input: DescribeFlowApproversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowApproversResponse > {
-        self.client.execute(action: "DescribeFlowApprovers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询流程参与者信息
-    ///
-    /// 第三方应用可通过此接口（DescribeFlowApprovers）查询流程参与者信息。
-    @inlinable
-    public func describeFlowApprovers(_ input: DescribeFlowApproversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowApproversResponse {
-        try await self.client.execute(action: "DescribeFlowApprovers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlowApprovers请求参数结构体
     public struct DescribeFlowApproversRequest: TCRequestModel {
         /// 调用方信息
@@ -45,7 +29,7 @@ extension Essbasic {
         /// 需要查询的签署ID，为空则不按签署ID过滤
         public let signId: String?
         
-        public init (caller: Caller, flowId: String, userId: String?, signId: String?) {
+        public init (caller: Caller, flowId: String, userId: String? = nil, signId: String? = nil) {
             self.caller = caller
             self.flowId = flowId
             self.userId = userId
@@ -76,5 +60,21 @@ extension Essbasic {
             case approvers = "Approvers"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询流程参与者信息
+    ///
+    /// 第三方应用可通过此接口（DescribeFlowApprovers）查询流程参与者信息。
+    @inlinable
+    public func describeFlowApprovers(_ input: DescribeFlowApproversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowApproversResponse > {
+        self.client.execute(action: "DescribeFlowApprovers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流程参与者信息
+    ///
+    /// 第三方应用可通过此接口（DescribeFlowApprovers）查询流程参与者信息。
+    @inlinable
+    public func describeFlowApprovers(_ input: DescribeFlowApproversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowApproversResponse {
+        try await self.client.execute(action: "DescribeFlowApprovers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

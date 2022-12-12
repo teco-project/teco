@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 创建项目
-    ///
-    /// 创建项目（归属于某个团队）
-    @inlinable
-    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProjectResponse > {
-        self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建项目
-    ///
-    /// 创建项目（归属于某个团队）
-    @inlinable
-    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
-        try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProject请求参数结构体
     public struct CreateProjectRequest: TCRequestModel {
         /// 创建的项目名(不为空且最长为 200)
@@ -57,7 +41,7 @@ extension Rum {
         /// 创建的项目描述(可选，最长为 1000)
         public let desc: String?
         
-        public init (name: String, instanceID: String, rate: String, enableURLGroup: UInt64, type: String, repo: String?, url: String?, desc: String?) {
+        public init (name: String, instanceID: String, rate: String, enableURLGroup: UInt64, type: String, repo: String? = nil, url: String? = nil, desc: String? = nil) {
             self.name = name
             self.instanceID = instanceID
             self.rate = rate
@@ -96,5 +80,21 @@ extension Rum {
             case key = "Key"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建项目
+    ///
+    /// 创建项目（归属于某个团队）
+    @inlinable
+    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProjectResponse > {
+        self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建项目
+    ///
+    /// 创建项目（归属于某个团队）
+    @inlinable
+    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
+        try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

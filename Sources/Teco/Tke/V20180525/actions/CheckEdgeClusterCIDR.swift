@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 检查边缘计算集群的CIDR是否冲突
-    @inlinable
-    public func checkEdgeClusterCIDR(_ input: CheckEdgeClusterCIDRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckEdgeClusterCIDRResponse > {
-        self.client.execute(action: "CheckEdgeClusterCIDR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检查边缘计算集群的CIDR是否冲突
-    @inlinable
-    public func checkEdgeClusterCIDR(_ input: CheckEdgeClusterCIDRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckEdgeClusterCIDRResponse {
-        try await self.client.execute(action: "CheckEdgeClusterCIDR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckEdgeClusterCIDR请求参数结构体
     public struct CheckEdgeClusterCIDRRequest: TCRequestModel {
         /// 集群的vpc-id
@@ -72,5 +60,17 @@ extension Tke {
             case conflictMsg = "ConflictMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检查边缘计算集群的CIDR是否冲突
+    @inlinable
+    public func checkEdgeClusterCIDR(_ input: CheckEdgeClusterCIDRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckEdgeClusterCIDRResponse > {
+        self.client.execute(action: "CheckEdgeClusterCIDR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检查边缘计算集群的CIDR是否冲突
+    @inlinable
+    public func checkEdgeClusterCIDR(_ input: CheckEdgeClusterCIDRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckEdgeClusterCIDRResponse {
+        try await self.client.execute(action: "CheckEdgeClusterCIDR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

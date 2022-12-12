@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 列出 Grafana 告警通道
-    @inlinable
-    public func describeGrafanaNotificationChannels(_ input: DescribeGrafanaNotificationChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaNotificationChannelsResponse > {
-        self.client.execute(action: "DescribeGrafanaNotificationChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出 Grafana 告警通道
-    @inlinable
-    public func describeGrafanaNotificationChannels(_ input: DescribeGrafanaNotificationChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaNotificationChannelsResponse {
-        try await self.client.execute(action: "DescribeGrafanaNotificationChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGrafanaNotificationChannels请求参数结构体
     public struct DescribeGrafanaNotificationChannelsRequest: TCRequestModel {
         /// 实例 ID
@@ -47,7 +35,7 @@ extension Monitor {
         /// 状态
         public let channelState: Int64?
         
-        public init (instanceId: String, offset: Int64, limit: Int64, channelName: String?, channelIDs: [String]?, channelState: Int64?) {
+        public init (instanceId: String, offset: Int64, limit: Int64, channelName: String? = nil, channelIDs: [String]? = nil, channelState: Int64? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
@@ -78,5 +66,17 @@ extension Monitor {
             case notificationChannelSet = "NotificationChannelSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出 Grafana 告警通道
+    @inlinable
+    public func describeGrafanaNotificationChannels(_ input: DescribeGrafanaNotificationChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaNotificationChannelsResponse > {
+        self.client.execute(action: "DescribeGrafanaNotificationChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出 Grafana 告警通道
+    @inlinable
+    public func describeGrafanaNotificationChannels(_ input: DescribeGrafanaNotificationChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaNotificationChannelsResponse {
+        try await self.client.execute(action: "DescribeGrafanaNotificationChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

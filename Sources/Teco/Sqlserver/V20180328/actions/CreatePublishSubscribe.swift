@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 创建发布订阅
-    ///
-    /// 本接口（CreatePublishSubscribe）用于创建两个数据库之间的发布订阅关系。作为订阅者，不能再充当发布者，作为发布者可以有多个订阅者实例。
-    @inlinable
-    public func createPublishSubscribe(_ input: CreatePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePublishSubscribeResponse > {
-        self.client.execute(action: "CreatePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建发布订阅
-    ///
-    /// 本接口（CreatePublishSubscribe）用于创建两个数据库之间的发布订阅关系。作为订阅者，不能再充当发布者，作为发布者可以有多个订阅者实例。
-    @inlinable
-    public func createPublishSubscribe(_ input: CreatePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePublishSubscribeResponse {
-        try await self.client.execute(action: "CreatePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePublishSubscribe请求参数结构体
     public struct CreatePublishSubscribeRequest: TCRequestModel {
         /// 发布实例ID，形如mssql-j8kv137v
@@ -45,7 +29,7 @@ extension Sqlserver {
         /// 发布订阅的名称，默认值为：default_name
         public let publishSubscribeName: String?
         
-        public init (publishInstanceId: String, subscribeInstanceId: String, databaseTupleSet: [DatabaseTuple], publishSubscribeName: String?) {
+        public init (publishInstanceId: String, subscribeInstanceId: String, databaseTupleSet: [DatabaseTuple], publishSubscribeName: String? = nil) {
             self.publishInstanceId = publishInstanceId
             self.subscribeInstanceId = subscribeInstanceId
             self.databaseTupleSet = databaseTupleSet
@@ -72,5 +56,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建发布订阅
+    ///
+    /// 本接口（CreatePublishSubscribe）用于创建两个数据库之间的发布订阅关系。作为订阅者，不能再充当发布者，作为发布者可以有多个订阅者实例。
+    @inlinable
+    public func createPublishSubscribe(_ input: CreatePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePublishSubscribeResponse > {
+        self.client.execute(action: "CreatePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建发布订阅
+    ///
+    /// 本接口（CreatePublishSubscribe）用于创建两个数据库之间的发布订阅关系。作为订阅者，不能再充当发布者，作为发布者可以有多个订阅者实例。
+    @inlinable
+    public func createPublishSubscribe(_ input: CreatePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePublishSubscribeResponse {
+        try await self.client.execute(action: "CreatePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

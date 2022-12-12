@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dasb {
-    /// 查询资产组成员列表
-    @inlinable
-    public func describeDeviceGroupMembers(_ input: DescribeDeviceGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceGroupMembersResponse > {
-        self.client.execute(action: "DescribeDeviceGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询资产组成员列表
-    @inlinable
-    public func describeDeviceGroupMembers(_ input: DescribeDeviceGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceGroupMembersResponse {
-        try await self.client.execute(action: "DescribeDeviceGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceGroupMembers请求参数结构体
     public struct DescribeDeviceGroupMembersRequest: TCRequestModel {
         /// 资产组ID
@@ -53,7 +41,7 @@ extension Dasb {
         /// 过滤条件，可按照标签键、标签进行过滤。如果同时指定标签键和标签过滤条件，它们之间为“AND”的关系
         public let tagFilters: [TagFilter]?
         
-        public init (id: UInt64, bound: Bool, name: String?, offset: UInt64?, limit: UInt64?, kind: UInt64?, departmentId: String?, tagFilters: [TagFilter]?) {
+        public init (id: UInt64, bound: Bool, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, kind: UInt64? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil) {
             self.id = id
             self.bound = bound
             self.name = name
@@ -92,5 +80,17 @@ extension Dasb {
             case deviceSet = "DeviceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询资产组成员列表
+    @inlinable
+    public func describeDeviceGroupMembers(_ input: DescribeDeviceGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceGroupMembersResponse > {
+        self.client.execute(action: "DescribeDeviceGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资产组成员列表
+    @inlinable
+    public func describeDeviceGroupMembers(_ input: DescribeDeviceGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceGroupMembersResponse {
+        try await self.client.execute(action: "DescribeDeviceGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 升级 Grafana Dashboard
-    @inlinable
-    public func upgradeGrafanaDashboard(_ input: UpgradeGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeGrafanaDashboardResponse > {
-        self.client.execute(action: "UpgradeGrafanaDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 升级 Grafana Dashboard
-    @inlinable
-    public func upgradeGrafanaDashboard(_ input: UpgradeGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGrafanaDashboardResponse {
-        try await self.client.execute(action: "UpgradeGrafanaDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeGrafanaDashboard请求参数结构体
     public struct UpgradeGrafanaDashboardRequest: TCRequestModel {
         /// 实例 ID
@@ -52,7 +40,7 @@ extension Monitor {
         /// <li>etcd</li>
         public let integrationCodes: [String]?
         
-        public init (instanceId: String, integrationCodes: [String]?) {
+        public init (instanceId: String, integrationCodes: [String]? = nil) {
             self.instanceId = instanceId
             self.integrationCodes = integrationCodes
         }
@@ -71,5 +59,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 升级 Grafana Dashboard
+    @inlinable
+    public func upgradeGrafanaDashboard(_ input: UpgradeGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeGrafanaDashboardResponse > {
+        self.client.execute(action: "UpgradeGrafanaDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 升级 Grafana Dashboard
+    @inlinable
+    public func upgradeGrafanaDashboard(_ input: UpgradeGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGrafanaDashboardResponse {
+        try await self.client.execute(action: "UpgradeGrafanaDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫-统一下单接口
-    ///
-    /// 应用需要先调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。
-    @inlinable
-    public func unifiedOrder(_ input: UnifiedOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnifiedOrderResponse > {
-        self.client.execute(action: "UnifiedOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫-统一下单接口
-    ///
-    /// 应用需要先调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。
-    @inlinable
-    public func unifiedOrder(_ input: UnifiedOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnifiedOrderResponse {
-        try await self.client.execute(action: "UnifiedOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnifiedOrder请求参数结构体
     public struct UnifiedOrderRequest: TCRequestModel {
         /// ISO 货币代码，CNY
@@ -117,7 +101,7 @@ extension Cpdp {
         /// 支付通知地址
         public let paymentNotifyUrl: String?
         
-        public init (currencyType: String, midasAppId: String, outTradeNo: String, productDetail: String, productId: String, productName: String, totalAmt: Int64, userId: String, realChannel: String, originalAmt: Int64, midasSecretId: String, midasSignature: String, callbackUrl: String?, channel: String?, metadata: String?, quantity: Int64?, subAppId: String?, subOrderList: [UnifiedOrderInSubOrderList]?, totalMchIncome: Int64?, totalPlatformIncome: Int64?, wxOpenId: String?, wxSubOpenId: String?, midasEnvironment: String?, wxAppId: String?, wxSubAppId: String?, paymentNotifyUrl: String?) {
+        public init (currencyType: String, midasAppId: String, outTradeNo: String, productDetail: String, productId: String, productName: String, totalAmt: Int64, userId: String, realChannel: String, originalAmt: Int64, midasSecretId: String, midasSignature: String, callbackUrl: String? = nil, channel: String? = nil, metadata: String? = nil, quantity: Int64? = nil, subAppId: String? = nil, subOrderList: [UnifiedOrderInSubOrderList]? = nil, totalMchIncome: Int64? = nil, totalPlatformIncome: Int64? = nil, wxOpenId: String? = nil, wxSubOpenId: String? = nil, midasEnvironment: String? = nil, wxAppId: String? = nil, wxSubAppId: String? = nil, paymentNotifyUrl: String? = nil) {
             self.currencyType = currencyType
             self.midasAppId = midasAppId
             self.outTradeNo = outTradeNo
@@ -200,5 +184,21 @@ extension Cpdp {
             case transactionId = "TransactionId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫-统一下单接口
+    ///
+    /// 应用需要先调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。
+    @inlinable
+    public func unifiedOrder(_ input: UnifiedOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnifiedOrderResponse > {
+        self.client.execute(action: "UnifiedOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-统一下单接口
+    ///
+    /// 应用需要先调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。
+    @inlinable
+    public func unifiedOrder(_ input: UnifiedOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnifiedOrderResponse {
+        try await self.client.execute(action: "UnifiedOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

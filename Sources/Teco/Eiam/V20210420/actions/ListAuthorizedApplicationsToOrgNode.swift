@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 获取机构节点被授权访问的应用列表
-    ///
-    /// 通过机构节点ID获得被授权访问的应用列表。
-    @inlinable
-    public func listAuthorizedApplicationsToOrgNode(_ input: ListAuthorizedApplicationsToOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAuthorizedApplicationsToOrgNodeResponse > {
-        self.client.execute(action: "ListAuthorizedApplicationsToOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取机构节点被授权访问的应用列表
-    ///
-    /// 通过机构节点ID获得被授权访问的应用列表。
-    @inlinable
-    public func listAuthorizedApplicationsToOrgNode(_ input: ListAuthorizedApplicationsToOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuthorizedApplicationsToOrgNodeResponse {
-        try await self.client.execute(action: "ListAuthorizedApplicationsToOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListAuthorizedApplicationsToOrgNode请求参数结构体
     public struct ListAuthorizedApplicationsToOrgNodeRequest: TCRequestModel {
         /// 机构节点 Id 。
@@ -58,5 +42,21 @@ extension Eiam {
             case applicationIds = "ApplicationIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取机构节点被授权访问的应用列表
+    ///
+    /// 通过机构节点ID获得被授权访问的应用列表。
+    @inlinable
+    public func listAuthorizedApplicationsToOrgNode(_ input: ListAuthorizedApplicationsToOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAuthorizedApplicationsToOrgNodeResponse > {
+        self.client.execute(action: "ListAuthorizedApplicationsToOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取机构节点被授权访问的应用列表
+    ///
+    /// 通过机构节点ID获得被授权访问的应用列表。
+    @inlinable
+    public func listAuthorizedApplicationsToOrgNode(_ input: ListAuthorizedApplicationsToOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuthorizedApplicationsToOrgNodeResponse {
+        try await self.client.execute(action: "ListAuthorizedApplicationsToOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

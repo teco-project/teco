@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Pts {
-    /// 查询压测过程日志
-    ///
-    /// 压测过程日志日志包括引擎输出日志及用户输出日志
-    @inlinable
-    public func describeNormalLogs(_ input: DescribeNormalLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNormalLogsResponse > {
-        self.client.execute(action: "DescribeNormalLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询压测过程日志
-    ///
-    /// 压测过程日志日志包括引擎输出日志及用户输出日志
-    @inlinable
-    public func describeNormalLogs(_ input: DescribeNormalLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNormalLogsResponse {
-        try await self.client.execute(action: "DescribeNormalLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNormalLogs请求参数结构体
     public struct DescribeNormalLogsRequest: TCRequestModel {
         /// 压测项目ID
@@ -68,7 +52,7 @@ extension Pts {
         /// 返回日志条数限制，最大100
         public let limit: Int64?
         
-        public init (projectId: String, scenarioId: String, jobId: String, context: String?, from: Date?, to: Date?, severityText: String?, instance: String?, instanceRegion: String?, logType: String?, limit: Int64?) {
+        public init (projectId: String, scenarioId: String, jobId: String, context: String? = nil, from: Date? = nil, to: Date? = nil, severityText: String? = nil, instance: String? = nil, instanceRegion: String? = nil, logType: String? = nil, limit: Int64? = nil) {
             self.projectId = projectId
             self.scenarioId = scenarioId
             self.jobId = jobId
@@ -115,5 +99,21 @@ extension Pts {
             case normalLogs = "NormalLogs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询压测过程日志
+    ///
+    /// 压测过程日志日志包括引擎输出日志及用户输出日志
+    @inlinable
+    public func describeNormalLogs(_ input: DescribeNormalLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNormalLogsResponse > {
+        self.client.execute(action: "DescribeNormalLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询压测过程日志
+    ///
+    /// 压测过程日志日志包括引擎输出日志及用户输出日志
+    @inlinable
+    public func describeNormalLogs(_ input: DescribeNormalLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNormalLogsResponse {
+        try await self.client.execute(action: "DescribeNormalLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

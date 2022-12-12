@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdcpg {
-    /// 查询实例
-    @inlinable
-    public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterInstancesResponse > {
-        self.client.execute(action: "DescribeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例
-    @inlinable
-    public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {
-        try await self.client.execute(action: "DescribeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterInstances请求参数结构体
     public struct DescribeClusterInstancesRequest: TCRequestModel {
         /// 集群ID
@@ -56,7 +44,7 @@ extension Tdcpg {
         /// - ASC : 升序
         public let orderByType: String?
         
-        public init (clusterId: String, pageNumber: UInt64?, pageSize: UInt64?, filters: [Filter]?, orderBy: String?, orderByType: String?) {
+        public init (clusterId: String, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.clusterId = clusterId
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -91,5 +79,17 @@ extension Tdcpg {
             case instanceSet = "InstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例
+    @inlinable
+    public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterInstancesResponse > {
+        self.client.execute(action: "DescribeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例
+    @inlinable
+    public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {
+        try await self.client.execute(action: "DescribeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

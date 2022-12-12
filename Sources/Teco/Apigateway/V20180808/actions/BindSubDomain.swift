@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 服务绑定自定义域名
-    ///
-    /// 本接口（BindSubDomain）用于绑定自定义域名到服务。
-    /// API 网关中每个服务都会提供一个默认的域名供用户调用，但当用户想使用自己的已有域名时，也可以将自定义域名绑定到此服务，在做好备案、与默认域名的 CNAME 后，可直接调用自定义域名。
-    @inlinable
-    public func bindSubDomain(_ input: BindSubDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindSubDomainResponse > {
-        self.client.execute(action: "BindSubDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 服务绑定自定义域名
-    ///
-    /// 本接口（BindSubDomain）用于绑定自定义域名到服务。
-    /// API 网关中每个服务都会提供一个默认的域名供用户调用，但当用户想使用自己的已有域名时，也可以将自定义域名绑定到此服务，在做好备案、与默认域名的 CNAME 后，可直接调用自定义域名。
-    @inlinable
-    public func bindSubDomain(_ input: BindSubDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSubDomainResponse {
-        try await self.client.execute(action: "BindSubDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindSubDomain请求参数结构体
     public struct BindSubDomainRequest: TCRequestModel {
         /// 服务唯一 ID。
@@ -62,7 +44,7 @@ extension Apigateway {
         /// 是否将HTTP请求强制跳转 HTTPS，默认为false。参数为 true时，API网关会将所有使用该自定义域名的 HTTP 协议的请求重定向至 HTTPS 协议进行转发。
         public let isForcedHttps: Bool?
         
-        public init (serviceId: String, subDomain: String, `protocol`: String, netType: String, isDefaultMapping: Bool, netSubDomain: String, certificateId: String?, pathMappingSet: [PathMapping]?, isForcedHttps: Bool?) {
+        public init (serviceId: String, subDomain: String, `protocol`: String, netType: String, isDefaultMapping: Bool, netSubDomain: String, certificateId: String? = nil, pathMappingSet: [PathMapping]? = nil, isForcedHttps: Bool? = nil) {
             self.serviceId = serviceId
             self.subDomain = subDomain
             self.`protocol` = `protocol`
@@ -100,5 +82,23 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 服务绑定自定义域名
+    ///
+    /// 本接口（BindSubDomain）用于绑定自定义域名到服务。
+    /// API 网关中每个服务都会提供一个默认的域名供用户调用，但当用户想使用自己的已有域名时，也可以将自定义域名绑定到此服务，在做好备案、与默认域名的 CNAME 后，可直接调用自定义域名。
+    @inlinable
+    public func bindSubDomain(_ input: BindSubDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindSubDomainResponse > {
+        self.client.execute(action: "BindSubDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 服务绑定自定义域名
+    ///
+    /// 本接口（BindSubDomain）用于绑定自定义域名到服务。
+    /// API 网关中每个服务都会提供一个默认的域名供用户调用，但当用户想使用自己的已有域名时，也可以将自定义域名绑定到此服务，在做好备案、与默认域名的 CNAME 后，可直接调用自定义域名。
+    @inlinable
+    public func bindSubDomain(_ input: BindSubDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSubDomainResponse {
+        try await self.client.execute(action: "BindSubDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

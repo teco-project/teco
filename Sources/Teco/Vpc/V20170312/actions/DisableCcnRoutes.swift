@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 禁用云联网路由
-    ///
-    /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由
-    @inlinable
-    public func disableCcnRoutes(_ input: DisableCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableCcnRoutesResponse > {
-        self.client.execute(action: "DisableCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 禁用云联网路由
-    ///
-    /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由
-    @inlinable
-    public func disableCcnRoutes(_ input: DisableCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCcnRoutesResponse {
-        try await self.client.execute(action: "DisableCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableCcnRoutes请求参数结构体
     public struct DisableCcnRoutesRequest: TCRequestModel {
         /// CCN实例ID。形如：ccn-f49l6u0z。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 禁用云联网路由
+    ///
+    /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由
+    @inlinable
+    public func disableCcnRoutes(_ input: DisableCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableCcnRoutesResponse > {
+        self.client.execute(action: "DisableCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用云联网路由
+    ///
+    /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由
+    @inlinable
+    public func disableCcnRoutes(_ input: DisableCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCcnRoutesResponse {
+        try await self.client.execute(action: "DisableCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

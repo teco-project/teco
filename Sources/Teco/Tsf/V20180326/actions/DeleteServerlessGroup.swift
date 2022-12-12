@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 删除部署组
-    ///
-    /// 删除Serverless部署组
-    @inlinable
-    public func deleteServerlessGroup(_ input: DeleteServerlessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServerlessGroupResponse > {
-        self.client.execute(action: "DeleteServerlessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除部署组
-    ///
-    /// 删除Serverless部署组
-    @inlinable
-    public func deleteServerlessGroup(_ input: DeleteServerlessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServerlessGroupResponse {
-        try await self.client.execute(action: "DeleteServerlessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteServerlessGroup请求参数结构体
     public struct DeleteServerlessGroupRequest: TCRequestModel {
         /// groupId，分组唯一标识
@@ -57,5 +41,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除部署组
+    ///
+    /// 删除Serverless部署组
+    @inlinable
+    public func deleteServerlessGroup(_ input: DeleteServerlessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServerlessGroupResponse > {
+        self.client.execute(action: "DeleteServerlessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除部署组
+    ///
+    /// 删除Serverless部署组
+    @inlinable
+    public func deleteServerlessGroup(_ input: DeleteServerlessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServerlessGroupResponse {
+        try await self.client.execute(action: "DeleteServerlessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

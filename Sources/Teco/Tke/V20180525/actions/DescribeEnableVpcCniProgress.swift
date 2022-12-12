@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询开启vpc-cni异步任务的进度
-    ///
-    /// 本接口用于查询开启vpc-cni模式的任务进度
-    @inlinable
-    public func describeEnableVpcCniProgress(_ input: DescribeEnableVpcCniProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnableVpcCniProgressResponse > {
-        self.client.execute(action: "DescribeEnableVpcCniProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询开启vpc-cni异步任务的进度
-    ///
-    /// 本接口用于查询开启vpc-cni模式的任务进度
-    @inlinable
-    public func describeEnableVpcCniProgress(_ input: DescribeEnableVpcCniProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnableVpcCniProgressResponse {
-        try await self.client.execute(action: "DescribeEnableVpcCniProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEnableVpcCniProgress请求参数结构体
     public struct DescribeEnableVpcCniProgressRequest: TCRequestModel {
         /// 开启vpc-cni的集群ID
@@ -62,5 +46,21 @@ extension Tke {
             case errorMessage = "ErrorMessage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询开启vpc-cni异步任务的进度
+    ///
+    /// 本接口用于查询开启vpc-cni模式的任务进度
+    @inlinable
+    public func describeEnableVpcCniProgress(_ input: DescribeEnableVpcCniProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnableVpcCniProgressResponse > {
+        self.client.execute(action: "DescribeEnableVpcCniProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询开启vpc-cni异步任务的进度
+    ///
+    /// 本接口用于查询开启vpc-cni模式的任务进度
+    @inlinable
+    public func describeEnableVpcCniProgress(_ input: DescribeEnableVpcCniProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnableVpcCniProgressResponse {
+        try await self.client.execute(action: "DescribeEnableVpcCniProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

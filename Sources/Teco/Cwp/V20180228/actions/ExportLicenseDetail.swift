@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 导出授权详情
-    ///
-    /// 导出授权列表对应的绑定信息
-    @inlinable
-    public func exportLicenseDetail(_ input: ExportLicenseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportLicenseDetailResponse > {
-        self.client.execute(action: "ExportLicenseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出授权详情
-    ///
-    /// 导出授权列表对应的绑定信息
-    @inlinable
-    public func exportLicenseDetail(_ input: ExportLicenseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportLicenseDetailResponse {
-        try await self.client.execute(action: "ExportLicenseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportLicenseDetail请求参数结构体
     public struct ExportLicenseDetailRequest: TCRequestModel {
         /// 多个条件筛选时 LicenseStatus,DeadlineStatus,ResourceId,Keywords 取交集
@@ -47,7 +31,7 @@ extension Cwp {
         /// 导出月份, 该参数仅在IsHistory 时可选.
         public let exportMonth: String?
         
-        public init (filters: [Filters]?, isHistory: Bool?, tags: [Tags]?, exportMonth: String?) {
+        public init (filters: [Filters]? = nil, isHistory: Bool? = nil, tags: [Tags]? = nil, exportMonth: String? = nil) {
             self.filters = filters
             self.isHistory = isHistory
             self.tags = tags
@@ -78,5 +62,21 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出授权详情
+    ///
+    /// 导出授权列表对应的绑定信息
+    @inlinable
+    public func exportLicenseDetail(_ input: ExportLicenseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportLicenseDetailResponse > {
+        self.client.execute(action: "ExportLicenseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出授权详情
+    ///
+    /// 导出授权列表对应的绑定信息
+    @inlinable
+    public func exportLicenseDetail(_ input: ExportLicenseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportLicenseDetailResponse {
+        try await self.client.execute(action: "ExportLicenseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

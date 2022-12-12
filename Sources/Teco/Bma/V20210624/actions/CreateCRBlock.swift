@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 新建协查处置
-    @inlinable
-    public func createCRBlock(_ input: CreateCRBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRBlockResponse > {
-        self.client.execute(action: "CreateCRBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建协查处置
-    @inlinable
-    public func createCRBlock(_ input: CreateCRBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRBlockResponse {
-        try await self.client.execute(action: "CreateCRBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCRBlock请求参数结构体
     public struct CreateCRBlockRequest: TCRequestModel {
         /// 作品ID
@@ -77,7 +65,7 @@ extension Bma {
         /// 存证证书截止日期
         public let evidenceValidEndDate: String?
         
-        public init (workId: Int64, tortUrl: String, tortTitle: String?, tortPlat: String?, blockUrl: String?, fileUrl: String?, validStartDate: String?, validEndDate: String?, tortPic: String?, commFileUrl: String?, commValidStartDate: String?, commValidEndDate: String?, isProducer: String?, evidenceFileUrl: String?, evidenceValidStartDate: String?, evidenceValidEndDate: String?) {
+        public init (workId: Int64, tortUrl: String, tortTitle: String? = nil, tortPlat: String? = nil, blockUrl: String? = nil, fileUrl: String? = nil, validStartDate: String? = nil, validEndDate: String? = nil, tortPic: String? = nil, commFileUrl: String? = nil, commValidStartDate: String? = nil, commValidEndDate: String? = nil, isProducer: String? = nil, evidenceFileUrl: String? = nil, evidenceValidStartDate: String? = nil, evidenceValidEndDate: String? = nil) {
             self.workId = workId
             self.tortUrl = tortUrl
             self.tortTitle = tortTitle
@@ -132,5 +120,17 @@ extension Bma {
             case tortNum = "TortNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建协查处置
+    @inlinable
+    public func createCRBlock(_ input: CreateCRBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRBlockResponse > {
+        self.client.execute(action: "CreateCRBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建协查处置
+    @inlinable
+    public func createCRBlock(_ input: CreateCRBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRBlockResponse {
+        try await self.client.execute(action: "CreateCRBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

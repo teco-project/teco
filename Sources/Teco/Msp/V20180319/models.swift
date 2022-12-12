@@ -31,7 +31,7 @@ extension Msp {
         /// 迁移目的实例Id
         public let instanceId: String?
         
-        public init (region: String?, ip: String?, port: String?, instanceId: String?) {
+        public init (region: String? = nil, ip: String? = nil, port: String? = nil, instanceId: String? = nil) {
             self.region = region
             self.ip = ip
             self.port = port
@@ -74,7 +74,7 @@ extension Msp {
         /// 迁移源实例Id
         public let instanceId: String?
         
-        public init (region: String?, ip: String?, port: String?, instanceId: String?) {
+        public init (region: String? = nil, ip: String? = nil, port: String? = nil, instanceId: String? = nil) {
             self.region = region
             self.ip = ip
             self.port = port

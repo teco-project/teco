@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 修改同步任务的属性
-    ///
-    /// 本接口 (ModifySyncTaskAttribute) 用于修改同步任务的属性（目前只支持修改任务名称）
-    @inlinable
-    public func modifySyncTaskAttribute(_ input: ModifySyncTaskAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySyncTaskAttributeResponse > {
-        self.client.execute(action: "ModifySyncTaskAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改同步任务的属性
-    ///
-    /// 本接口 (ModifySyncTaskAttribute) 用于修改同步任务的属性（目前只支持修改任务名称）
-    @inlinable
-    public func modifySyncTaskAttribute(_ input: ModifySyncTaskAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySyncTaskAttributeResponse {
-        try await self.client.execute(action: "ModifySyncTaskAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySyncTaskAttribute请求参数结构体
     public struct ModifySyncTaskAttributeRequest: TCRequestModel {
         /// 一个或多个待操作的任务ID。可通过DescribeSyncTasks API返回值中的TaskId获取。每次请求允许操作的任务数量上限是100。
@@ -39,7 +23,7 @@ extension Mariadb {
         /// 任务名称。可任意命名，但不得超过100个字符。
         public let taskName: String?
         
-        public init (taskIds: [String], taskName: String?) {
+        public init (taskIds: [String], taskName: String? = nil) {
             self.taskIds = taskIds
             self.taskName = taskName
         }
@@ -58,5 +42,21 @@ extension Mariadb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改同步任务的属性
+    ///
+    /// 本接口 (ModifySyncTaskAttribute) 用于修改同步任务的属性（目前只支持修改任务名称）
+    @inlinable
+    public func modifySyncTaskAttribute(_ input: ModifySyncTaskAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySyncTaskAttributeResponse > {
+        self.client.execute(action: "ModifySyncTaskAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改同步任务的属性
+    ///
+    /// 本接口 (ModifySyncTaskAttribute) 用于修改同步任务的属性（目前只支持修改任务名称）
+    @inlinable
+    public func modifySyncTaskAttribute(_ input: ModifySyncTaskAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySyncTaskAttributeResponse {
+        try await self.client.execute(action: "ModifySyncTaskAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

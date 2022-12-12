@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ivld {
-    /// 删除自定义人脸
-    ///
-    /// 删除自定义人脸数据
-    @inlinable
-    public func deleteCustomPersonImage(_ input: DeleteCustomPersonImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomPersonImageResponse > {
-        self.client.execute(action: "DeleteCustomPersonImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除自定义人脸
-    ///
-    /// 删除自定义人脸数据
-    @inlinable
-    public func deleteCustomPersonImage(_ input: DeleteCustomPersonImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonImageResponse {
-        try await self.client.execute(action: "DeleteCustomPersonImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCustomPersonImage请求参数结构体
     public struct DeleteCustomPersonImageRequest: TCRequestModel {
         /// 自定义人物Id
@@ -66,5 +50,21 @@ extension Ivld {
             case imageId = "ImageId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除自定义人脸
+    ///
+    /// 删除自定义人脸数据
+    @inlinable
+    public func deleteCustomPersonImage(_ input: DeleteCustomPersonImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomPersonImageResponse > {
+        self.client.execute(action: "DeleteCustomPersonImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除自定义人脸
+    ///
+    /// 删除自定义人脸数据
+    @inlinable
+    public func deleteCustomPersonImage(_ input: DeleteCustomPersonImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonImageResponse {
+        try await self.client.execute(action: "DeleteCustomPersonImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

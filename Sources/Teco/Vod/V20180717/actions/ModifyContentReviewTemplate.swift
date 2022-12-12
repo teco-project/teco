@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Vod {
-    /// 修改音视频内容审核模板
-    ///
-    /// 修改用户自定义音视频内容审核模板。
-    @inlinable
-    public func modifyContentReviewTemplate(_ input: ModifyContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyContentReviewTemplateResponse > {
-        self.client.execute(action: "ModifyContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改音视频内容审核模板
-    ///
-    /// 修改用户自定义音视频内容审核模板。
-    @inlinable
-    public func modifyContentReviewTemplate(_ input: ModifyContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContentReviewTemplateResponse {
-        try await self.client.execute(action: "ModifyContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyContentReviewTemplate请求参数结构体
     public struct ModifyContentReviewTemplateRequest: TCRequestModel {
         /// 内容审核模板唯一标识。
@@ -48,21 +32,21 @@ extension Vod {
         public let comment: String?
         
         /// 令人不安全的信息的控制参数。
-        public let terrorismConfigure: TerrorismConfigureInfoForUpdate
+        public let terrorismConfigure: TerrorismConfigureInfoForUpdate?
         
         /// 令人反感的信息的控制参数。
-        public let pornConfigure: PornConfigureInfoForUpdate
+        public let pornConfigure: PornConfigureInfoForUpdate?
         
         /// 令人不适宜的信息控制参数。
-        public let politicalConfigure: PoliticalConfigureInfoForUpdate
+        public let politicalConfigure: PoliticalConfigureInfoForUpdate?
         
         /// 违禁控制参数。违禁内容包括：
         /// <li>谩骂；</li>
         /// <li>涉毒违法。</li>
-        public let prohibitedConfigure: ProhibitedConfigureInfoForUpdate
+        public let prohibitedConfigure: ProhibitedConfigureInfoForUpdate?
         
         /// 用户自定义内容审核控制参数。
-        public let userDefineConfigure: UserDefineConfigureInfoForUpdate
+        public let userDefineConfigure: UserDefineConfigureInfoForUpdate?
         
         /// 截帧间隔，单位为秒，最小值为 0.5 秒。
         public let screenshotInterval: Float?
@@ -72,7 +56,7 @@ extension Vod {
         /// <li>OFF：否。</li>
         public let reviewWallSwitch: String?
         
-        public init (definition: Int64, subAppId: UInt64?, name: String?, comment: String?, terrorismConfigure: TerrorismConfigureInfoForUpdate, pornConfigure: PornConfigureInfoForUpdate, politicalConfigure: PoliticalConfigureInfoForUpdate, prohibitedConfigure: ProhibitedConfigureInfoForUpdate, userDefineConfigure: UserDefineConfigureInfoForUpdate, screenshotInterval: Float?, reviewWallSwitch: String?) {
+        public init (definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, terrorismConfigure: TerrorismConfigureInfoForUpdate? = nil, pornConfigure: PornConfigureInfoForUpdate? = nil, politicalConfigure: PoliticalConfigureInfoForUpdate? = nil, prohibitedConfigure: ProhibitedConfigureInfoForUpdate? = nil, userDefineConfigure: UserDefineConfigureInfoForUpdate? = nil, screenshotInterval: Float? = nil, reviewWallSwitch: String? = nil) {
             self.definition = definition
             self.subAppId = subAppId
             self.name = name
@@ -109,5 +93,21 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改音视频内容审核模板
+    ///
+    /// 修改用户自定义音视频内容审核模板。
+    @inlinable
+    public func modifyContentReviewTemplate(_ input: ModifyContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyContentReviewTemplateResponse > {
+        self.client.execute(action: "ModifyContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改音视频内容审核模板
+    ///
+    /// 修改用户自定义音视频内容审核模板。
+    @inlinable
+    public func modifyContentReviewTemplate(_ input: ModifyContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContentReviewTemplateResponse {
+        try await self.client.execute(action: "ModifyContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

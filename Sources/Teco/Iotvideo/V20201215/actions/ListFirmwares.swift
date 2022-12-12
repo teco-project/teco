@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取固件列表
-    ///
-    /// 本接口（ListFirmwares）用于获取固件列表 
-    @inlinable
-    public func listFirmwares(_ input: ListFirmwaresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListFirmwaresResponse > {
-        self.client.execute(action: "ListFirmwares", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取固件列表
-    ///
-    /// 本接口（ListFirmwares）用于获取固件列表 
-    @inlinable
-    public func listFirmwares(_ input: ListFirmwaresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFirmwaresResponse {
-        try await self.client.execute(action: "ListFirmwares", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListFirmwares请求参数结构体
     public struct ListFirmwaresRequest: TCRequestModel {
         /// 获取的页数
@@ -45,7 +29,7 @@ extension Iotvideo {
         /// 搜索过滤条件
         public let filters: [SearchKeyword]?
         
-        public init (pageNum: UInt64, pageSize: UInt64, productID: String?, filters: [SearchKeyword]?) {
+        public init (pageNum: UInt64, pageSize: UInt64, productID: String? = nil, filters: [SearchKeyword]? = nil) {
             self.pageNum = pageNum
             self.pageSize = pageSize
             self.productID = productID
@@ -76,5 +60,21 @@ extension Iotvideo {
             case firmwares = "Firmwares"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取固件列表
+    ///
+    /// 本接口（ListFirmwares）用于获取固件列表 
+    @inlinable
+    public func listFirmwares(_ input: ListFirmwaresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListFirmwaresResponse > {
+        self.client.execute(action: "ListFirmwares", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取固件列表
+    ///
+    /// 本接口（ListFirmwares）用于获取固件列表 
+    @inlinable
+    public func listFirmwares(_ input: ListFirmwaresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFirmwaresResponse {
+        try await self.client.execute(action: "ListFirmwares", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 删除溯源信息
-    ///
-    /// 删除溯源信息，如果已经上链则不可删除
-    @inlinable
-    public func deleteTraceData(_ input: DeleteTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTraceDataResponse > {
-        self.client.execute(action: "DeleteTraceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除溯源信息
-    ///
-    /// 删除溯源信息，如果已经上链则不可删除
-    @inlinable
-    public func deleteTraceData(_ input: DeleteTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTraceDataResponse {
-        try await self.client.execute(action: "DeleteTraceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTraceData请求参数结构体
     public struct DeleteTraceDataRequest: TCRequestModel {
         /// 溯源ID
@@ -39,7 +23,7 @@ extension Trp {
         /// 企业ID
         public let corpId: UInt64?
         
-        public init (traceId: String, corpId: UInt64?) {
+        public init (traceId: String, corpId: UInt64? = nil) {
             self.traceId = traceId
             self.corpId = corpId
         }
@@ -63,5 +47,21 @@ extension Trp {
             case traceId = "TraceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除溯源信息
+    ///
+    /// 删除溯源信息，如果已经上链则不可删除
+    @inlinable
+    public func deleteTraceData(_ input: DeleteTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTraceDataResponse > {
+        self.client.execute(action: "DeleteTraceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除溯源信息
+    ///
+    /// 删除溯源信息，如果已经上链则不可删除
+    @inlinable
+    public func deleteTraceData(_ input: DeleteTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTraceDataResponse {
+        try await self.client.execute(action: "DeleteTraceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -21,17 +21,17 @@ extension Iot {
     public struct Action: TCInputModel, TCOutputModel {
         /// 转发至topic
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let topic: TopicAction
+        public let topic: TopicAction?
         
         /// 转发至第三发
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let service: ServiceAction
+        public let service: ServiceAction?
         
         /// 转发至第三发Ckafka
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ckafka: CkafkaAction
+        public let ckafka: CkafkaAction?
         
-        public init (topic: TopicAction, service: ServiceAction, ckafka: CkafkaAction) {
+        public init (topic: TopicAction? = nil, service: ServiceAction? = nil, ckafka: CkafkaAction? = nil) {
             self.topic = topic
             self.service = service
             self.ckafka = ckafka
@@ -231,21 +231,21 @@ extension Iot {
     public struct DataTemplate: TCInputModel, TCOutputModel {
         /// 数字类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let number: NumberData
+        public let number: NumberData?
         
         /// 字符串类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let string: StringData
+        public let string: StringData?
         
         /// 枚举类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let `enum`: EnumData
+        public let `enum`: EnumData?
         
         /// 布尔类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let bool: BoolData
+        public let bool: BoolData?
         
-        public init (number: NumberData, string: StringData, `enum`: EnumData, bool: BoolData) {
+        public init (number: NumberData? = nil, string: StringData? = nil, `enum`: EnumData? = nil, bool: BoolData? = nil) {
             self.number = number
             self.string = string
             self.`enum` = `enum`
@@ -733,7 +733,7 @@ extension Iot {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productId: String?
         
-        public init (field: String, condition: String, topic: String?, productId: String?) {
+        public init (field: String, condition: String, topic: String? = nil, productId: String? = nil) {
             self.field = field
             self.condition = condition
             self.topic = topic

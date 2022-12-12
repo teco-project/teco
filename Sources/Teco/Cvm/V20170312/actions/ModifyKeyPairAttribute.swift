@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 修改密钥对属性
-    ///
-    /// 本接口 (ModifyKeyPairAttribute) 用于修改密钥对属性。
-    /// * 修改密钥对ID所指定的密钥对的名称和描述信息。
-    /// * 密钥对名称不能和已经存在的密钥对的名称重复。
-    /// * 密钥对ID是密钥对的唯一标识，不可修改。
-    @inlinable
-    public func modifyKeyPairAttribute(_ input: ModifyKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyKeyPairAttributeResponse > {
-        self.client.execute(action: "ModifyKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改密钥对属性
-    ///
-    /// 本接口 (ModifyKeyPairAttribute) 用于修改密钥对属性。
-    /// * 修改密钥对ID所指定的密钥对的名称和描述信息。
-    /// * 密钥对名称不能和已经存在的密钥对的名称重复。
-    /// * 密钥对ID是密钥对的唯一标识，不可修改。
-    @inlinable
-    public func modifyKeyPairAttribute(_ input: ModifyKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyKeyPairAttributeResponse {
-        try await self.client.execute(action: "ModifyKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyKeyPairAttribute请求参数结构体
     public struct ModifyKeyPairAttributeRequest: TCRequestModel {
         /// 密钥对ID，密钥对ID形如：`skey-xxxxxxxx`。<br><br>可以通过以下方式获取可用的密钥 ID：<br><li>通过登录[控制台](https://console.cloud.tencent.com/cvm/sshkey)查询密钥 ID。<br><li>通过调用接口 [DescribeKeyPairs](https://cloud.tencent.com/document/api/213/9403) ，取返回信息中的 `KeyId` 获取密钥对 ID。
@@ -48,7 +26,7 @@ extension Cvm {
         /// 修改后的密钥对描述信息。可任意命名，但不得超过60个字符。
         public let description: String?
         
-        public init (keyId: String, keyName: String?, description: String?) {
+        public init (keyId: String, keyName: String? = nil, description: String? = nil) {
             self.keyId = keyId
             self.keyName = keyName
             self.description = description
@@ -69,5 +47,27 @@ extension Cvm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改密钥对属性
+    ///
+    /// 本接口 (ModifyKeyPairAttribute) 用于修改密钥对属性。
+    /// * 修改密钥对ID所指定的密钥对的名称和描述信息。
+    /// * 密钥对名称不能和已经存在的密钥对的名称重复。
+    /// * 密钥对ID是密钥对的唯一标识，不可修改。
+    @inlinable
+    public func modifyKeyPairAttribute(_ input: ModifyKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyKeyPairAttributeResponse > {
+        self.client.execute(action: "ModifyKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改密钥对属性
+    ///
+    /// 本接口 (ModifyKeyPairAttribute) 用于修改密钥对属性。
+    /// * 修改密钥对ID所指定的密钥对的名称和描述信息。
+    /// * 密钥对名称不能和已经存在的密钥对的名称重复。
+    /// * 密钥对ID是密钥对的唯一标识，不可修改。
+    @inlinable
+    public func modifyKeyPairAttribute(_ input: ModifyKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyKeyPairAttributeResponse {
+        try await self.client.execute(action: "ModifyKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

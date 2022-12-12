@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询实例续费价格（包年包月）
-    @inlinable
-    public func inquiryPriceRenewInstance(_ input: InquiryPriceRenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRenewInstanceResponse > {
-        self.client.execute(action: "InquiryPriceRenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例续费价格（包年包月）
-    @inlinable
-    public func inquiryPriceRenewInstance(_ input: InquiryPriceRenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewInstanceResponse {
-        try await self.client.execute(action: "InquiryPriceRenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceRenewInstance请求参数结构体
     public struct InquiryPriceRenewInstanceRequest: TCRequestModel {
         /// 购买时长，单位：月
@@ -59,5 +47,17 @@ extension Redis {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例续费价格（包年包月）
+    @inlinable
+    public func inquiryPriceRenewInstance(_ input: InquiryPriceRenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRenewInstanceResponse > {
+        self.client.execute(action: "InquiryPriceRenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例续费价格（包年包月）
+    @inlinable
+    public func inquiryPriceRenewInstance(_ input: InquiryPriceRenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewInstanceResponse {
+        try await self.client.execute(action: "InquiryPriceRenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

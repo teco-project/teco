@@ -64,7 +64,7 @@ extension Dts {
         /// 目标数据库密码
         public let password: String?
         
-        public init (region: String, instanceId: String?, ip: String?, port: Int64?, readOnly: Int64?, user: String?, password: String?) {
+        public init (region: String, instanceId: String? = nil, ip: String? = nil, port: Int64? = nil, readOnly: Int64? = nil, user: String? = nil, password: String? = nil) {
             self.region = region
             self.instanceId = instanceId
             self.ip = ip
@@ -255,9 +255,9 @@ extension Dts {
         public let externParams: String?
         
         /// 仅用于“抽样数据一致性检测”，ConsistencyType配置为抽样检测时，必选
-        public let consistencyParams: ConsistencyParams
+        public let consistencyParams: ConsistencyParams?
         
-        public init (runMode: Int64, expectTime: Date?, migrateType: Int64?, migrateObject: Int64?, consistencyType: Int64?, isOverrideRoot: Int64?, externParams: String?, consistencyParams: ConsistencyParams) {
+        public init (runMode: Int64, expectTime: Date? = nil, migrateType: Int64? = nil, migrateObject: Int64? = nil, consistencyType: Int64? = nil, isOverrideRoot: Int64? = nil, externParams: String? = nil, consistencyParams: ConsistencyParams? = nil) {
             self.runMode = runMode
             self.expectTime = expectTime
             self.migrateType = migrateType
@@ -358,7 +358,7 @@ extension Dts {
         /// 数据库版本，当实例为RDS实例时才有效，格式如：5.6或者5.7，默认为5.6
         public let engineVersion: String?
         
-        public init (accessKey: String?, ip: String?, port: Int64?, user: String?, password: String?, rdsInstanceId: String?, cvmInstanceId: String?, uniqDcgId: String?, vpcId: String?, subnetId: String?, uniqVpnGwId: String?, instanceId: String?, region: String?, supplier: String?, ccnId: String?, engineVersion: String?) {
+        public init (accessKey: String? = nil, ip: String? = nil, port: Int64? = nil, user: String? = nil, password: String? = nil, rdsInstanceId: String? = nil, cvmInstanceId: String? = nil, uniqDcgId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, uniqVpnGwId: String? = nil, instanceId: String? = nil, region: String? = nil, supplier: String? = nil, ccnId: String? = nil, engineVersion: String? = nil) {
             self.accessKey = accessKey
             self.ip = ip
             self.port = port
@@ -485,7 +485,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subscribeVersion: String?
         
-        public init (subscribeId: String?, subscribeName: String?, channelId: String?, product: String?, instanceId: String?, instanceStatus: String?, subsStatus: String?, modifyTime: String?, createTime: String?, isolateTime: String?, expireTime: String?, offlineTime: String?, consumeStartTime: String?, region: String?, payType: Int64?, vip: String?, vport: Int64?, uniqVpcId: String?, uniqSubnetId: String?, status: String?, sdkConsumedTime: String?, tags: [TagItem]?, autoRenewFlag: Int64?, subscribeVersion: String?) {
+        public init (subscribeId: String? = nil, subscribeName: String? = nil, channelId: String? = nil, product: String? = nil, instanceId: String? = nil, instanceStatus: String? = nil, subsStatus: String? = nil, modifyTime: String? = nil, createTime: String? = nil, isolateTime: String? = nil, expireTime: String? = nil, offlineTime: String? = nil, consumeStartTime: String? = nil, region: String? = nil, payType: Int64? = nil, vip: String? = nil, vport: Int64? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, status: String? = nil, sdkConsumedTime: String? = nil, tags: [TagItem]? = nil, autoRenewFlag: Int64? = nil, subscribeVersion: String? = nil) {
             self.subscribeId = subscribeId
             self.subscribeName = subscribeName
             self.channelId = channelId
@@ -544,17 +544,17 @@ extension Dts {
     public struct SubscribeObject: TCInputModel, TCOutputModel {
         /// 数据订阅对象的类型，0-数据库，1-数据库内的表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let objectsType: Int64
+        public let objectsType: Int64?
         
         /// 订阅数据库的名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let databaseName: String
+        public let databaseName: String?
         
         /// 订阅数据库中表名称数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableNames: [String]?
         
-        public init (objectsType: Int64, databaseName: String, tableNames: [String]?) {
+        public init (objectsType: Int64, databaseName: String, tableNames: [String]? = nil) {
             self.objectsType = objectsType
             self.databaseName = databaseName
             self.tableNames = tableNames
@@ -606,7 +606,7 @@ extension Dts {
         /// 标签值
         public let tagValue: [String]?
         
-        public init (tagKey: String, tagValue: [String]?) {
+        public init (tagKey: String, tagValue: [String]? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
@@ -626,7 +626,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagValue: String?
         
-        public init (tagKey: String, tagValue: String?) {
+        public init (tagKey: String, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }

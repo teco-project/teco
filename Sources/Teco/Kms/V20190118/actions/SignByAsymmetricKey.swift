@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 签名
-    ///
-    /// 非对称密钥签名。
-    /// 注意：只有 KeyUsage 为 ASYMMETRIC_SIGN_VERIFY_SM2、ASYMMETRIC_SIGN_VERIFY_ECC 或其他支持的 ASYMMETRIC_SIGN_VERIFY_${ALGORITHM} 的密钥才可以使用签名功能。
-    @inlinable
-    public func signByAsymmetricKey(_ input: SignByAsymmetricKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SignByAsymmetricKeyResponse > {
-        self.client.execute(action: "SignByAsymmetricKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 签名
-    ///
-    /// 非对称密钥签名。
-    /// 注意：只有 KeyUsage 为 ASYMMETRIC_SIGN_VERIFY_SM2、ASYMMETRIC_SIGN_VERIFY_ECC 或其他支持的 ASYMMETRIC_SIGN_VERIFY_${ALGORITHM} 的密钥才可以使用签名功能。
-    @inlinable
-    public func signByAsymmetricKey(_ input: SignByAsymmetricKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignByAsymmetricKeyResponse {
-        try await self.client.execute(action: "SignByAsymmetricKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SignByAsymmetricKey请求参数结构体
     public struct SignByAsymmetricKeyRequest: TCRequestModel {
         /// 签名算法，支持的算法：SM2DSA，ECC_P256_R1，RSA_PSS_SHA_256，RSA_PKCS1_SHA_256 等。更多支持的算法可通过 ListAlgorithms 接口进行查询。
@@ -47,7 +29,7 @@ extension Kms {
         /// 消息类型：RAW，DIGEST，如果不传，默认为RAW，表示消息原文。
         public let messageType: String?
         
-        public init (algorithm: String, message: String, keyId: String, messageType: String?) {
+        public init (algorithm: String, message: String, keyId: String, messageType: String? = nil) {
             self.algorithm = algorithm
             self.message = message
             self.keyId = keyId
@@ -74,5 +56,23 @@ extension Kms {
             case signature = "Signature"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 签名
+    ///
+    /// 非对称密钥签名。
+    /// 注意：只有 KeyUsage 为 ASYMMETRIC_SIGN_VERIFY_SM2、ASYMMETRIC_SIGN_VERIFY_ECC 或其他支持的 ASYMMETRIC_SIGN_VERIFY_${ALGORITHM} 的密钥才可以使用签名功能。
+    @inlinable
+    public func signByAsymmetricKey(_ input: SignByAsymmetricKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SignByAsymmetricKeyResponse > {
+        self.client.execute(action: "SignByAsymmetricKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 签名
+    ///
+    /// 非对称密钥签名。
+    /// 注意：只有 KeyUsage 为 ASYMMETRIC_SIGN_VERIFY_SM2、ASYMMETRIC_SIGN_VERIFY_ECC 或其他支持的 ASYMMETRIC_SIGN_VERIFY_${ALGORITHM} 的密钥才可以使用签名功能。
+    @inlinable
+    public func signByAsymmetricKey(_ input: SignByAsymmetricKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignByAsymmetricKeyResponse {
+        try await self.client.execute(action: "SignByAsymmetricKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

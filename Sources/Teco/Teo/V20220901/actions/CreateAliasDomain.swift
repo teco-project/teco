@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 创建别称域名
-    ///
-    /// 创建别称域名。
-    @inlinable
-    public func createAliasDomain(_ input: CreateAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAliasDomainResponse > {
-        self.client.execute(action: "CreateAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建别称域名
-    ///
-    /// 创建别称域名。
-    @inlinable
-    public func createAliasDomain(_ input: CreateAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAliasDomainResponse {
-        try await self.client.execute(action: "CreateAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAliasDomain请求参数结构体
     public struct CreateAliasDomainRequest: TCRequestModel {
         /// 站点 ID。
@@ -51,7 +35,7 @@ extension Teo {
         /// 当 CertType 取值为 hosting 时需填入相应证书 ID。
         public let certId: [String]?
         
-        public init (zoneId: String, aliasName: String, targetName: String, certType: String?, certId: [String]?) {
+        public init (zoneId: String, aliasName: String, targetName: String, certType: String? = nil, certId: [String]? = nil) {
             self.zoneId = zoneId
             self.aliasName = aliasName
             self.targetName = targetName
@@ -76,5 +60,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建别称域名
+    ///
+    /// 创建别称域名。
+    @inlinable
+    public func createAliasDomain(_ input: CreateAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAliasDomainResponse > {
+        self.client.execute(action: "CreateAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建别称域名
+    ///
+    /// 创建别称域名。
+    @inlinable
+    public func createAliasDomain(_ input: CreateAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAliasDomainResponse {
+        try await self.client.execute(action: "CreateAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

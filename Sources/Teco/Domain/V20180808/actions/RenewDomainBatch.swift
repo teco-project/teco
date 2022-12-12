@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 批量域名续费
-    ///
-    /// 本接口 ( RenewDomainBatch ) 用于批量续费域名 。
-    @inlinable
-    public func renewDomainBatch(_ input: RenewDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewDomainBatchResponse > {
-        self.client.execute(action: "RenewDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量域名续费
-    ///
-    /// 本接口 ( RenewDomainBatch ) 用于批量续费域名 。
-    @inlinable
-    public func renewDomainBatch(_ input: RenewDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDomainBatchResponse {
-        try await self.client.execute(action: "RenewDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RenewDomainBatch请求参数结构体
     public struct RenewDomainBatchRequest: TCRequestModel {
         /// 域名续费的年限。
@@ -48,7 +32,7 @@ extension Domain {
         /// 2 表示不处理，保留域名原有状态（默认值）
         public let autoRenewFlag: Int64?
         
-        public init (period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64?) {
+        public init (period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil) {
             self.period = period
             self.domains = domains
             self.payMode = payMode
@@ -75,5 +59,21 @@ extension Domain {
             case logId = "LogId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量域名续费
+    ///
+    /// 本接口 ( RenewDomainBatch ) 用于批量续费域名 。
+    @inlinable
+    public func renewDomainBatch(_ input: RenewDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewDomainBatchResponse > {
+        self.client.execute(action: "RenewDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量域名续费
+    ///
+    /// 本接口 ( RenewDomainBatch ) 用于批量续费域名 。
+    @inlinable
+    public func renewDomainBatch(_ input: RenewDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDomainBatchResponse {
+        try await self.client.execute(action: "RenewDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

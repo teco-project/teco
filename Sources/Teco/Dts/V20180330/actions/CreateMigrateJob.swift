@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 创建数据迁移任务
-    ///
-    /// 本接口（CreateMigrateJob）用于创建数据迁移任务。
-    /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
-    @inlinable
-    public func createMigrateJob(_ input: CreateMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMigrateJobResponse > {
-        self.client.execute(action: "CreateMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建数据迁移任务
-    ///
-    /// 本接口（CreateMigrateJob）用于创建数据迁移任务。
-    /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
-    @inlinable
-    public func createMigrateJob(_ input: CreateMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrateJobResponse {
-        try await self.client.execute(action: "CreateMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMigrateJob请求参数结构体
     public struct CreateMigrateJobRequest: TCRequestModel {
         /// 数据迁移任务名称
@@ -75,7 +57,7 @@ extension Dts {
         /// 源实例信息，具体内容跟迁移任务类型相关
         public let srcInfoMulti: [SrcInfo]?
         
-        public init (jobName: String, migrateOption: MigrateOption, srcDatabaseType: String, srcAccessType: String, srcInfo: SrcInfo, dstDatabaseType: String, dstAccessType: String, dstInfo: DstInfo, databaseInfo: String?, tags: [TagItem]?, srcNodeType: String?, srcInfoMulti: [SrcInfo]?) {
+        public init (jobName: String, migrateOption: MigrateOption, srcDatabaseType: String, srcAccessType: String, srcInfo: SrcInfo, dstDatabaseType: String, dstAccessType: String, dstInfo: DstInfo, databaseInfo: String? = nil, tags: [TagItem]? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil) {
             self.jobName = jobName
             self.migrateOption = migrateOption
             self.srcDatabaseType = srcDatabaseType
@@ -118,5 +100,23 @@ extension Dts {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建数据迁移任务
+    ///
+    /// 本接口（CreateMigrateJob）用于创建数据迁移任务。
+    /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
+    @inlinable
+    public func createMigrateJob(_ input: CreateMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMigrateJobResponse > {
+        self.client.execute(action: "CreateMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建数据迁移任务
+    ///
+    /// 本接口（CreateMigrateJob）用于创建数据迁移任务。
+    /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
+    @inlinable
+    public func createMigrateJob(_ input: CreateMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrateJobResponse {
+        try await self.client.execute(action: "CreateMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

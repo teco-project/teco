@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 创建镜像
-    ///
-    /// 本接口(CreateImage)用于将实例的系统盘制作为新镜像，创建后的镜像可以用于创建实例。
-    @inlinable
-    public func createImage(_ input: CreateImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageResponse > {
-        self.client.execute(action: "CreateImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建镜像
-    ///
-    /// 本接口(CreateImage)用于将实例的系统盘制作为新镜像，创建后的镜像可以用于创建实例。
-    @inlinable
-    public func createImage(_ input: CreateImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {
-        try await self.client.execute(action: "CreateImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateImage请求参数结构体
     public struct CreateImageRequest: TCRequestModel {
         /// 镜像名称
@@ -63,7 +47,7 @@ extension Cvm {
         /// 标签描述列表。通过指定该参数可以同时绑定标签到自定义镜像。
         public let tagSpecification: [TagSpecification]?
         
-        public init (imageName: String, instanceId: String?, imageDescription: String?, forcePoweroff: String?, sysprep: String?, dataDiskIds: [String]?, snapshotIds: [String]?, dryRun: Bool?, tagSpecification: [TagSpecification]?) {
+        public init (imageName: String, instanceId: String? = nil, imageDescription: String? = nil, forcePoweroff: String? = nil, sysprep: String? = nil, dataDiskIds: [String]? = nil, snapshotIds: [String]? = nil, dryRun: Bool? = nil, tagSpecification: [TagSpecification]? = nil) {
             self.imageName = imageName
             self.instanceId = instanceId
             self.imageDescription = imageDescription
@@ -101,5 +85,21 @@ extension Cvm {
             case imageId = "ImageId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建镜像
+    ///
+    /// 本接口(CreateImage)用于将实例的系统盘制作为新镜像，创建后的镜像可以用于创建实例。
+    @inlinable
+    public func createImage(_ input: CreateImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageResponse > {
+        self.client.execute(action: "CreateImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建镜像
+    ///
+    /// 本接口(CreateImage)用于将实例的系统盘制作为新镜像，创建后的镜像可以用于创建实例。
+    @inlinable
+    public func createImage(_ input: CreateImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {
+        try await self.client.execute(action: "CreateImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

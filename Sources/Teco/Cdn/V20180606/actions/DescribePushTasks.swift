@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 预热历史查询
-    ///
-    /// DescribePushTasks  用于查询预热任务提交历史记录及执行进度。
-    @inlinable
-    public func describePushTasks(_ input: DescribePushTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePushTasksResponse > {
-        self.client.execute(action: "DescribePushTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 预热历史查询
-    ///
-    /// DescribePushTasks  用于查询预热任务提交历史记录及执行进度。
-    @inlinable
-    public func describePushTasks(_ input: DescribePushTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushTasksResponse {
-        try await self.client.execute(action: "DescribePushTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePushTasks请求参数结构体
     public struct DescribePushTasksRequest: TCRequestModel {
         /// 开始时间，如2018-08-08 00:00:00。
@@ -67,7 +51,7 @@ extension Cdn {
         /// invalid: 预热无效(源站返回4xx或5xx状态码)
         public let status: String?
         
-        public init (startTime: Date?, endTime: Date?, taskId: String?, keyword: String?, offset: Int64?, limit: Int64?, area: String?, status: String?) {
+        public init (startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, keyword: String? = nil, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, status: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.taskId = taskId
@@ -108,5 +92,21 @@ extension Cdn {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 预热历史查询
+    ///
+    /// DescribePushTasks  用于查询预热任务提交历史记录及执行进度。
+    @inlinable
+    public func describePushTasks(_ input: DescribePushTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePushTasksResponse > {
+        self.client.execute(action: "DescribePushTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 预热历史查询
+    ///
+    /// DescribePushTasks  用于查询预热任务提交历史记录及执行进度。
+    @inlinable
+    public func describePushTasks(_ input: DescribePushTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushTasksResponse {
+        try await self.client.execute(action: "DescribePushTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

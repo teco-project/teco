@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询合规化审批单
-    ///
-    /// 本接口（DescribeCrossBorderCompliance）用于查询用户创建的合规化资质审批单。
-    /// 服务商可以查询服务名下的任意 `APPID` 创建的审批单；非服务商，只能查询自己审批单。
-    @inlinable
-    public func describeCrossBorderCompliance(_ input: DescribeCrossBorderComplianceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCrossBorderComplianceResponse > {
-        self.client.execute(action: "DescribeCrossBorderCompliance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询合规化审批单
-    ///
-    /// 本接口（DescribeCrossBorderCompliance）用于查询用户创建的合规化资质审批单。
-    /// 服务商可以查询服务名下的任意 `APPID` 创建的审批单；非服务商，只能查询自己审批单。
-    @inlinable
-    public func describeCrossBorderCompliance(_ input: DescribeCrossBorderComplianceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossBorderComplianceResponse {
-        try await self.client.execute(action: "DescribeCrossBorderCompliance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCrossBorderCompliance请求参数结构体
     public struct DescribeCrossBorderComplianceRequest: TCRequestModel {
         /// （精确匹配）服务商，可选值：`UNICOM`。
@@ -89,7 +71,7 @@ extension Vpc {
         /// 返回数量
         public let limit: UInt64?
         
-        public init (serviceProvider: String?, complianceId: UInt64?, company: String?, uniformSocialCreditCode: String?, legalPerson: String?, issuingAuthority: String?, businessAddress: String?, postCode: UInt64?, manager: String?, managerId: String?, managerAddress: String?, managerTelephone: String?, email: String?, serviceStartDate: String?, serviceEndDate: String?, state: String?, offset: UInt64?, limit: UInt64?) {
+        public init (serviceProvider: String? = nil, complianceId: UInt64? = nil, company: String? = nil, uniformSocialCreditCode: String? = nil, legalPerson: String? = nil, issuingAuthority: String? = nil, businessAddress: String? = nil, postCode: UInt64? = nil, manager: String? = nil, managerId: String? = nil, managerAddress: String? = nil, managerTelephone: String? = nil, email: String? = nil, serviceStartDate: String? = nil, serviceEndDate: String? = nil, state: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.serviceProvider = serviceProvider
             self.complianceId = complianceId
             self.company = company
@@ -148,5 +130,23 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询合规化审批单
+    ///
+    /// 本接口（DescribeCrossBorderCompliance）用于查询用户创建的合规化资质审批单。
+    /// 服务商可以查询服务名下的任意 `APPID` 创建的审批单；非服务商，只能查询自己审批单。
+    @inlinable
+    public func describeCrossBorderCompliance(_ input: DescribeCrossBorderComplianceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCrossBorderComplianceResponse > {
+        self.client.execute(action: "DescribeCrossBorderCompliance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询合规化审批单
+    ///
+    /// 本接口（DescribeCrossBorderCompliance）用于查询用户创建的合规化资质审批单。
+    /// 服务商可以查询服务名下的任意 `APPID` 创建的审批单；非服务商，只能查询自己审批单。
+    @inlinable
+    public func describeCrossBorderCompliance(_ input: DescribeCrossBorderComplianceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossBorderComplianceResponse {
+        try await self.client.execute(action: "DescribeCrossBorderCompliance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

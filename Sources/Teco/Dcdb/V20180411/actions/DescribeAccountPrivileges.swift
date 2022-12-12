@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 查询账号权限
-    ///
-    /// 本接口（DescribeAccountPrivileges）用于查询云数据库账号权限。
-    /// 注意：注意：相同用户名，不同Host是不同的账号。
-    @inlinable
-    public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountPrivilegesResponse > {
-        self.client.execute(action: "DescribeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询账号权限
-    ///
-    /// 本接口（DescribeAccountPrivileges）用于查询云数据库账号权限。
-    /// 注意：注意：相同用户名，不同Host是不同的账号。
-    @inlinable
-    public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountPrivilegesResponse {
-        try await self.client.execute(action: "DescribeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccountPrivileges请求参数结构体
     public struct DescribeAccountPrivilegesRequest: TCRequestModel {
         /// 实例 ID，形如：dcdbt-ow7t8lmc。
@@ -56,7 +38,7 @@ extension Dcdb {
         /// 当 Type=table 时，ColName 为 \* 表示查询表的权限，如果为具体字段名，表示查询对应字段的权限
         public let colName: String?
         
-        public init (instanceId: String, userName: String, host: String, dbName: String, type: String?, object: String?, colName: String?) {
+        public init (instanceId: String, userName: String, host: String, dbName: String, type: String? = nil, object: String? = nil, colName: String? = nil) {
             self.instanceId = instanceId
             self.userName = userName
             self.host = host
@@ -101,5 +83,23 @@ extension Dcdb {
             case host = "Host"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询账号权限
+    ///
+    /// 本接口（DescribeAccountPrivileges）用于查询云数据库账号权限。
+    /// 注意：注意：相同用户名，不同Host是不同的账号。
+    @inlinable
+    public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountPrivilegesResponse > {
+        self.client.execute(action: "DescribeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账号权限
+    ///
+    /// 本接口（DescribeAccountPrivileges）用于查询云数据库账号权限。
+    /// 注意：注意：相同用户名，不同Host是不同的账号。
+    @inlinable
+    public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountPrivilegesResponse {
+        try await self.client.execute(action: "DescribeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

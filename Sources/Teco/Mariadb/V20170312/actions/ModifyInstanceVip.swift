@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 修改实例VIP
-    ///
-    /// 本接口（ModifyInstanceVip）用于修改实例VIP
-    @inlinable
-    public func modifyInstanceVip(_ input: ModifyInstanceVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceVipResponse > {
-        self.client.execute(action: "ModifyInstanceVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例VIP
-    ///
-    /// 本接口（ModifyInstanceVip）用于修改实例VIP
-    @inlinable
-    public func modifyInstanceVip(_ input: ModifyInstanceVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVipResponse {
-        try await self.client.execute(action: "ModifyInstanceVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstanceVip请求参数结构体
     public struct ModifyInstanceVipRequest: TCRequestModel {
         /// 实例ID
@@ -45,7 +29,7 @@ extension Mariadb {
         /// VIP保留时长，单位小时，取值范围（0~168），0表示立即释放，有一分钟释放延迟。不传此参数，默认24小时释放VIP。
         public let vipReleaseDelay: UInt64?
         
-        public init (instanceId: String, vip: String, ipv6Flag: UInt64?, vipReleaseDelay: UInt64?) {
+        public init (instanceId: String, vip: String, ipv6Flag: UInt64? = nil, vipReleaseDelay: UInt64? = nil) {
             self.instanceId = instanceId
             self.vip = vip
             self.ipv6Flag = ipv6Flag
@@ -72,5 +56,21 @@ extension Mariadb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例VIP
+    ///
+    /// 本接口（ModifyInstanceVip）用于修改实例VIP
+    @inlinable
+    public func modifyInstanceVip(_ input: ModifyInstanceVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceVipResponse > {
+        self.client.execute(action: "ModifyInstanceVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例VIP
+    ///
+    /// 本接口（ModifyInstanceVip）用于修改实例VIP
+    @inlinable
+    public func modifyInstanceVip(_ input: ModifyInstanceVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVipResponse {
+        try await self.client.execute(action: "ModifyInstanceVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

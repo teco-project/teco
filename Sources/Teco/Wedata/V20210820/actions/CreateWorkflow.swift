@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 创建工作流【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 创建工作流
-    @inlinable
-    public func createWorkflow(_ input: CreateWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkflowResponse > {
-        self.client.execute(action: "CreateWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建工作流【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 创建工作流
-    @inlinable
-    public func createWorkflow(_ input: CreateWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkflowResponse {
-        try await self.client.execute(action: "CreateWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateWorkflow请求参数结构体
     public struct CreateWorkflowRequest: TCRequestModel {
         /// 项目Id
@@ -44,7 +26,7 @@ extension Wedata {
         /// 所属文件夹id
         public let folderId: String?
         
-        public init (projectId: String, workflowName: String?, folderId: String?) {
+        public init (projectId: String, workflowName: String? = nil, folderId: String? = nil) {
             self.projectId = projectId
             self.workflowName = workflowName
             self.folderId = folderId
@@ -61,7 +43,7 @@ extension Wedata {
     public struct CreateWorkflowResponse: TCResponseModel {
         /// 返回工作流Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: CommonId
+        public let data: CommonId?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -70,5 +52,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 创建工作流
+    @inlinable
+    public func createWorkflow(_ input: CreateWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkflowResponse > {
+        self.client.execute(action: "CreateWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 创建工作流
+    @inlinable
+    public func createWorkflow(_ input: CreateWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkflowResponse {
+        try await self.client.execute(action: "CreateWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

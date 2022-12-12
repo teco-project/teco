@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ses {
-    /// 删除发信域名
-    ///
-    /// 删除发信域名，删除后，将不可再使用该域名进行发信
-    @inlinable
-    public func deleteEmailIdentity(_ input: DeleteEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEmailIdentityResponse > {
-        self.client.execute(action: "DeleteEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除发信域名
-    ///
-    /// 删除发信域名，删除后，将不可再使用该域名进行发信
-    @inlinable
-    public func deleteEmailIdentity(_ input: DeleteEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailIdentityResponse {
-        try await self.client.execute(action: "DeleteEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteEmailIdentity请求参数结构体
     public struct DeleteEmailIdentityRequest: TCRequestModel {
         /// 发信域名
@@ -53,5 +37,21 @@ extension Ses {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除发信域名
+    ///
+    /// 删除发信域名，删除后，将不可再使用该域名进行发信
+    @inlinable
+    public func deleteEmailIdentity(_ input: DeleteEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEmailIdentityResponse > {
+        self.client.execute(action: "DeleteEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除发信域名
+    ///
+    /// 删除发信域名，删除后，将不可再使用该域名进行发信
+    @inlinable
+    public func deleteEmailIdentity(_ input: DeleteEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailIdentityResponse {
+        try await self.client.execute(action: "DeleteEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

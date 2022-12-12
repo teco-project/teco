@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 删除 Grafana Dashboard
-    @inlinable
-    public func uninstallGrafanaDashboard(_ input: UninstallGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UninstallGrafanaDashboardResponse > {
-        self.client.execute(action: "UninstallGrafanaDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除 Grafana Dashboard
-    @inlinable
-    public func uninstallGrafanaDashboard(_ input: UninstallGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaDashboardResponse {
-        try await self.client.execute(action: "UninstallGrafanaDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UninstallGrafanaDashboard请求参数结构体
     public struct UninstallGrafanaDashboardRequest: TCRequestModel {
         /// 实例 ID
@@ -52,7 +40,7 @@ extension Monitor {
         /// <li>etcd</li>
         public let integrationCodes: [String]?
         
-        public init (instanceId: String, integrationCodes: [String]?) {
+        public init (instanceId: String, integrationCodes: [String]? = nil) {
             self.instanceId = instanceId
             self.integrationCodes = integrationCodes
         }
@@ -71,5 +59,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除 Grafana Dashboard
+    @inlinable
+    public func uninstallGrafanaDashboard(_ input: UninstallGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UninstallGrafanaDashboardResponse > {
+        self.client.execute(action: "UninstallGrafanaDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除 Grafana Dashboard
+    @inlinable
+    public func uninstallGrafanaDashboard(_ input: UninstallGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaDashboardResponse {
+        try await self.client.execute(action: "UninstallGrafanaDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

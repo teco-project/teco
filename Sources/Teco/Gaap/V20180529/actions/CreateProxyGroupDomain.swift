@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 开通通道组域名（废弃）
-    ///
-    /// 本接口（CreateProxyGroupDomain）用于创建通道组域名，并开启域名解析。
-    @inlinable
-    public func createProxyGroupDomain(_ input: CreateProxyGroupDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProxyGroupDomainResponse > {
-        self.client.execute(action: "CreateProxyGroupDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开通通道组域名（废弃）
-    ///
-    /// 本接口（CreateProxyGroupDomain）用于创建通道组域名，并开启域名解析。
-    @inlinable
-    public func createProxyGroupDomain(_ input: CreateProxyGroupDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyGroupDomainResponse {
-        try await self.client.execute(action: "CreateProxyGroupDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProxyGroupDomain请求参数结构体
     public struct CreateProxyGroupDomainRequest: TCRequestModel {
         /// 需要开启域名的通道组ID。
@@ -57,5 +41,21 @@ extension Gaap {
             case groupId = "GroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开通通道组域名（废弃）
+    ///
+    /// 本接口（CreateProxyGroupDomain）用于创建通道组域名，并开启域名解析。
+    @inlinable
+    public func createProxyGroupDomain(_ input: CreateProxyGroupDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProxyGroupDomainResponse > {
+        self.client.execute(action: "CreateProxyGroupDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开通通道组域名（废弃）
+    ///
+    /// 本接口（CreateProxyGroupDomain）用于创建通道组域名，并开启域名解析。
+    @inlinable
+    public func createProxyGroupDomain(_ input: CreateProxyGroupDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyGroupDomainResponse {
+        try await self.client.execute(action: "CreateProxyGroupDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

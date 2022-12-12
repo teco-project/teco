@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 查询回收站中的表详情
-    @inlinable
-    public func describeTablesInRecycle(_ input: DescribeTablesInRecycleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTablesInRecycleResponse > {
-        self.client.execute(action: "DescribeTablesInRecycle", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询回收站中的表详情
-    @inlinable
-    public func describeTablesInRecycle(_ input: DescribeTablesInRecycleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTablesInRecycleResponse {
-        try await self.client.execute(action: "DescribeTablesInRecycle", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTablesInRecycle请求参数结构体
     public struct DescribeTablesInRecycleRequest: TCRequestModel {
         /// 待查询表格所属集群ID
@@ -44,7 +32,7 @@ extension Tcaplusdb {
         /// 查询结果返回记录数量
         public let limit: Int64?
         
-        public init (clusterId: String?, tableGroupIds: [String]?, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (clusterId: String? = nil, tableGroupIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.clusterId = clusterId
             self.tableGroupIds = tableGroupIds
             self.filters = filters
@@ -77,5 +65,17 @@ extension Tcaplusdb {
             case tableInfos = "TableInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询回收站中的表详情
+    @inlinable
+    public func describeTablesInRecycle(_ input: DescribeTablesInRecycleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTablesInRecycleResponse > {
+        self.client.execute(action: "DescribeTablesInRecycle", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询回收站中的表详情
+    @inlinable
+    public func describeTablesInRecycle(_ input: DescribeTablesInRecycleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTablesInRecycleResponse {
+        try await self.client.execute(action: "DescribeTablesInRecycle", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

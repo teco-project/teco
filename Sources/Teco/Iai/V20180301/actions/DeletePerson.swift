@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 删除人员
-    ///
-    /// 删除该人员信息，此操作会导致所有人员库均删除此人员。同时，该人员的所有人脸信息将被删除。
-    @inlinable
-    public func deletePerson(_ input: DeletePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePersonResponse > {
-        self.client.execute(action: "DeletePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除人员
-    ///
-    /// 删除该人员信息，此操作会导致所有人员库均删除此人员。同时，该人员的所有人脸信息将被删除。
-    @inlinable
-    public func deletePerson(_ input: DeletePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonResponse {
-        try await self.client.execute(action: "DeletePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePerson请求参数结构体
     public struct DeletePersonRequest: TCRequestModel {
         /// 人员ID
@@ -53,5 +37,21 @@ extension Iai {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除人员
+    ///
+    /// 删除该人员信息，此操作会导致所有人员库均删除此人员。同时，该人员的所有人脸信息将被删除。
+    @inlinable
+    public func deletePerson(_ input: DeletePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePersonResponse > {
+        self.client.execute(action: "DeletePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除人员
+    ///
+    /// 删除该人员信息，此操作会导致所有人员库均删除此人员。同时，该人员的所有人脸信息将被删除。
+    @inlinable
+    public func deletePerson(_ input: DeletePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonResponse {
+        try await self.client.execute(action: "DeletePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dbbrain {
-    /// 获取健康得分
-    ///
-    /// 根据实例ID获取指定时间段（30分钟）的健康得分，以及异常扣分项。
-    @inlinable
-    public func describeHealthScore(_ input: DescribeHealthScoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHealthScoreResponse > {
-        self.client.execute(action: "DescribeHealthScore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取健康得分
-    ///
-    /// 根据实例ID获取指定时间段（30分钟）的健康得分，以及异常扣分项。
-    @inlinable
-    public func describeHealthScore(_ input: DescribeHealthScoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHealthScoreResponse {
-        try await self.client.execute(action: "DescribeHealthScore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHealthScore请求参数结构体
     public struct DescribeHealthScoreRequest: TCRequestModel {
         /// 需要获取健康得分的实例ID。
@@ -70,5 +54,21 @@ extension Dbbrain {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取健康得分
+    ///
+    /// 根据实例ID获取指定时间段（30分钟）的健康得分，以及异常扣分项。
+    @inlinable
+    public func describeHealthScore(_ input: DescribeHealthScoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHealthScoreResponse > {
+        self.client.execute(action: "DescribeHealthScore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取健康得分
+    ///
+    /// 根据实例ID获取指定时间段（30分钟）的健康得分，以及异常扣分项。
+    @inlinable
+    public func describeHealthScore(_ input: DescribeHealthScoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHealthScoreResponse {
+        try await self.client.execute(action: "DescribeHealthScore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

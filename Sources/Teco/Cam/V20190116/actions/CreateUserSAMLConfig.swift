@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 创建用户SAML配置
-    @inlinable
-    public func createUserSAMLConfig(_ input: CreateUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserSAMLConfigResponse > {
-        self.client.execute(action: "CreateUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建用户SAML配置
-    @inlinable
-    public func createUserSAMLConfig(_ input: CreateUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSAMLConfigResponse {
-        try await self.client.execute(action: "CreateUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUserSAMLConfig请求参数结构体
     public struct CreateUserSAMLConfigRequest: TCRequestModel {
         /// SAML元数据文档，需要base64 encode
@@ -49,5 +37,17 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建用户SAML配置
+    @inlinable
+    public func createUserSAMLConfig(_ input: CreateUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserSAMLConfigResponse > {
+        self.client.execute(action: "CreateUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建用户SAML配置
+    @inlinable
+    public func createUserSAMLConfig(_ input: CreateUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSAMLConfigResponse {
+        try await self.client.execute(action: "CreateUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

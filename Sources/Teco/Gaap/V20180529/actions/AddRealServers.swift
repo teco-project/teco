@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 添加源站
-    ///
-    /// 添加源站(服务器)信息，支持IP或域名
-    @inlinable
-    public func addRealServers(_ input: AddRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddRealServersResponse > {
-        self.client.execute(action: "AddRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加源站
-    ///
-    /// 添加源站(服务器)信息，支持IP或域名
-    @inlinable
-    public func addRealServers(_ input: AddRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRealServersResponse {
-        try await self.client.execute(action: "AddRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddRealServers请求参数结构体
     public struct AddRealServersRequest: TCRequestModel {
         /// 源站对应的项目ID
@@ -45,7 +29,7 @@ extension Gaap {
         /// 标签列表
         public let tagSet: [TagPair]?
         
-        public init (projectId: UInt64, realServerIP: [String], realServerName: String, tagSet: [TagPair]?) {
+        public init (projectId: UInt64, realServerIP: [String], realServerName: String, tagSet: [TagPair]? = nil) {
             self.projectId = projectId
             self.realServerIP = realServerIP
             self.realServerName = realServerName
@@ -72,5 +56,21 @@ extension Gaap {
             case realServerSet = "RealServerSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加源站
+    ///
+    /// 添加源站(服务器)信息，支持IP或域名
+    @inlinable
+    public func addRealServers(_ input: AddRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddRealServersResponse > {
+        self.client.execute(action: "AddRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加源站
+    ///
+    /// 添加源站(服务器)信息，支持IP或域名
+    @inlinable
+    public func addRealServers(_ input: AddRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRealServersResponse {
+        try await self.client.execute(action: "AddRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

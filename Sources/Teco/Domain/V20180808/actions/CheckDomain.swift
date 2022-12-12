@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 域名注册查询
-    ///
-    /// 检查域名是否可以注册。
-    @inlinable
-    public func checkDomain(_ input: CheckDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckDomainResponse > {
-        self.client.execute(action: "CheckDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 域名注册查询
-    ///
-    /// 检查域名是否可以注册。
-    @inlinable
-    public func checkDomain(_ input: CheckDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDomainResponse {
-        try await self.client.execute(action: "CheckDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckDomain请求参数结构体
     public struct CheckDomainRequest: TCRequestModel {
         /// 所查询域名名称
@@ -39,7 +23,7 @@ extension Domain {
         /// 年限。该参数为空时无法查询溢价词域名
         public let period: String?
         
-        public init (domainName: String, period: String?) {
+        public init (domainName: String, period: String? = nil) {
             self.domainName = domainName
             self.period = period
         }
@@ -114,5 +98,21 @@ extension Domain {
             case recordSupport = "RecordSupport"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 域名注册查询
+    ///
+    /// 检查域名是否可以注册。
+    @inlinable
+    public func checkDomain(_ input: CheckDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckDomainResponse > {
+        self.client.execute(action: "CheckDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 域名注册查询
+    ///
+    /// 检查域名是否可以注册。
+    @inlinable
+    public func checkDomain(_ input: CheckDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDomainResponse {
+        try await self.client.execute(action: "CheckDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

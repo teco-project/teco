@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tat {
-    /// 启用执行器
-    ///
-    /// 此接口用于启用执行器。
-    @inlinable
-    public func enableInvoker(_ input: EnableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableInvokerResponse > {
-        self.client.execute(action: "EnableInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启用执行器
-    ///
-    /// 此接口用于启用执行器。
-    @inlinable
-    public func enableInvoker(_ input: EnableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableInvokerResponse {
-        try await self.client.execute(action: "EnableInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableInvoker请求参数结构体
     public struct EnableInvokerRequest: TCRequestModel {
         /// 待启用的执行器ID。
@@ -53,5 +37,21 @@ extension Tat {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启用执行器
+    ///
+    /// 此接口用于启用执行器。
+    @inlinable
+    public func enableInvoker(_ input: EnableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableInvokerResponse > {
+        self.client.execute(action: "EnableInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启用执行器
+    ///
+    /// 此接口用于启用执行器。
+    @inlinable
+    public func enableInvoker(_ input: EnableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableInvokerResponse {
+        try await self.client.execute(action: "EnableInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

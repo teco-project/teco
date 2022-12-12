@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询可支持的对端网关厂商信息
-    ///
-    /// 本接口（DescribeCustomerGatewayVendors）用于查询可支持的对端网关厂商信息。
-    @inlinable
-    public func describeCustomerGatewayVendors(_ input: DescribeCustomerGatewayVendorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomerGatewayVendorsResponse > {
-        self.client.execute(action: "DescribeCustomerGatewayVendors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询可支持的对端网关厂商信息
-    ///
-    /// 本接口（DescribeCustomerGatewayVendors）用于查询可支持的对端网关厂商信息。
-    @inlinable
-    public func describeCustomerGatewayVendors(_ input: DescribeCustomerGatewayVendorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomerGatewayVendorsResponse {
-        try await self.client.execute(action: "DescribeCustomerGatewayVendors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomerGatewayVendors请求参数结构体
     public struct DescribeCustomerGatewayVendorsRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Vpc {
             case customerGatewayVendorSet = "CustomerGatewayVendorSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询可支持的对端网关厂商信息
+    ///
+    /// 本接口（DescribeCustomerGatewayVendors）用于查询可支持的对端网关厂商信息。
+    @inlinable
+    public func describeCustomerGatewayVendors(_ input: DescribeCustomerGatewayVendorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomerGatewayVendorsResponse > {
+        self.client.execute(action: "DescribeCustomerGatewayVendors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询可支持的对端网关厂商信息
+    ///
+    /// 本接口（DescribeCustomerGatewayVendors）用于查询可支持的对端网关厂商信息。
+    @inlinable
+    public func describeCustomerGatewayVendors(_ input: DescribeCustomerGatewayVendorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomerGatewayVendorsResponse {
+        try await self.client.execute(action: "DescribeCustomerGatewayVendors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

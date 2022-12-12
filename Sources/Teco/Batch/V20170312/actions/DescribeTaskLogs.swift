@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 获取任务日志详情
-    ///
-    /// 用于获取任务多个实例标准输出和标准错误日志。
-    @inlinable
-    public func describeTaskLogs(_ input: DescribeTaskLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskLogsResponse > {
-        self.client.execute(action: "DescribeTaskLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取任务日志详情
-    ///
-    /// 用于获取任务多个实例标准输出和标准错误日志。
-    @inlinable
-    public func describeTaskLogs(_ input: DescribeTaskLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLogsResponse {
-        try await self.client.execute(action: "DescribeTaskLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskLogs请求参数结构体
     public struct DescribeTaskLogsRequest: TCRequestModel {
         /// 作业ID
@@ -48,7 +32,7 @@ extension Batch {
         /// 最大任务实例数
         public let limit: UInt64?
         
-        public init (jobId: String, taskName: String, taskInstanceIndexes: [UInt64]?, offset: UInt64?, limit: UInt64?) {
+        public init (jobId: String, taskName: String, taskInstanceIndexes: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.jobId = jobId
             self.taskName = taskName
             self.taskInstanceIndexes = taskInstanceIndexes
@@ -81,5 +65,21 @@ extension Batch {
             case taskInstanceLogSet = "TaskInstanceLogSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取任务日志详情
+    ///
+    /// 用于获取任务多个实例标准输出和标准错误日志。
+    @inlinable
+    public func describeTaskLogs(_ input: DescribeTaskLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskLogsResponse > {
+        self.client.execute(action: "DescribeTaskLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务日志详情
+    ///
+    /// 用于获取任务多个实例标准输出和标准错误日志。
+    @inlinable
+    public func describeTaskLogs(_ input: DescribeTaskLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLogsResponse {
+        try await self.client.execute(action: "DescribeTaskLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

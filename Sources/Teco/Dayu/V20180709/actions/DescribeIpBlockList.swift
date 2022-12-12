@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取IP封堵列表
-    @inlinable
-    public func describeIpBlockList(_ input: DescribeIpBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpBlockListResponse > {
-        self.client.execute(action: "DescribeIpBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取IP封堵列表
-    @inlinable
-    public func describeIpBlockList(_ input: DescribeIpBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpBlockListResponse {
-        try await self.client.execute(action: "DescribeIpBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIpBlockList请求参数结构体
     public struct DescribeIpBlockListRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Dayu {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取IP封堵列表
+    @inlinable
+    public func describeIpBlockList(_ input: DescribeIpBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpBlockListResponse > {
+        self.client.execute(action: "DescribeIpBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取IP封堵列表
+    @inlinable
+    public func describeIpBlockList(_ input: DescribeIpBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpBlockListResponse {
+        try await self.client.execute(action: "DescribeIpBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

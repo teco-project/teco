@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 结束白板推流
-    ///
-    /// 停止白板推流任务
-    @inlinable
-    public func stopWhiteboardPush(_ input: StopWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopWhiteboardPushResponse > {
-        self.client.execute(action: "StopWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 结束白板推流
-    ///
-    /// 停止白板推流任务
-    @inlinable
-    public func stopWhiteboardPush(_ input: StopWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopWhiteboardPushResponse {
-        try await self.client.execute(action: "StopWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopWhiteboardPush请求参数结构体
     public struct StopWhiteboardPushRequest: TCRequestModel {
         /// 客户的SdkAppId
@@ -63,5 +47,21 @@ extension Tiw {
             case backup = "Backup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 结束白板推流
+    ///
+    /// 停止白板推流任务
+    @inlinable
+    public func stopWhiteboardPush(_ input: StopWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopWhiteboardPushResponse > {
+        self.client.execute(action: "StopWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 结束白板推流
+    ///
+    /// 停止白板推流任务
+    @inlinable
+    public func stopWhiteboardPush(_ input: StopWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopWhiteboardPushResponse {
+        try await self.client.execute(action: "StopWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

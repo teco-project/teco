@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 获取租户可运维NAT实例
-    ///
-    /// GetNatFwInstanceWithRegion 获取租户新增运维的NAT实例，带上地域
-    @inlinable
-    public func describeNatFwInstanceWithRegion(_ input: DescribeNatFwInstanceWithRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwInstanceWithRegionResponse > {
-        self.client.execute(action: "DescribeNatFwInstanceWithRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取租户可运维NAT实例
-    ///
-    /// GetNatFwInstanceWithRegion 获取租户新增运维的NAT实例，带上地域
-    @inlinable
-    public func describeNatFwInstanceWithRegion(_ input: DescribeNatFwInstanceWithRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstanceWithRegionResponse {
-        try await self.client.execute(action: "DescribeNatFwInstanceWithRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNatFwInstanceWithRegion请求参数结构体
     public struct DescribeNatFwInstanceWithRegionRequest: TCRequestModel {
         public init () {
@@ -50,5 +34,21 @@ extension Cfw {
             case natinsLst = "NatinsLst"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取租户可运维NAT实例
+    ///
+    /// GetNatFwInstanceWithRegion 获取租户新增运维的NAT实例，带上地域
+    @inlinable
+    public func describeNatFwInstanceWithRegion(_ input: DescribeNatFwInstanceWithRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwInstanceWithRegionResponse > {
+        self.client.execute(action: "DescribeNatFwInstanceWithRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取租户可运维NAT实例
+    ///
+    /// GetNatFwInstanceWithRegion 获取租户新增运维的NAT实例，带上地域
+    @inlinable
+    public func describeNatFwInstanceWithRegion(_ input: DescribeNatFwInstanceWithRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstanceWithRegionResponse {
+        try await self.client.execute(action: "DescribeNatFwInstanceWithRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

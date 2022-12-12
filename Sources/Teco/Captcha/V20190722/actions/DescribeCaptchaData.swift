@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Captcha {
-    /// 安全验证码分类查询数据接口
-    ///
-    /// 安全验证码分类查询数据接口，请求量type=0、通过量type=1、验证量type=2、拦截量type=3  分钟级查询
-    @inlinable
-    public func describeCaptchaData(_ input: DescribeCaptchaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaDataResponse > {
-        self.client.execute(action: "DescribeCaptchaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全验证码分类查询数据接口
-    ///
-    /// 安全验证码分类查询数据接口，请求量type=0、通过量type=1、验证量type=2、拦截量type=3  分钟级查询
-    @inlinable
-    public func describeCaptchaData(_ input: DescribeCaptchaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaDataResponse {
-        try await self.client.execute(action: "DescribeCaptchaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCaptchaData请求参数结构体
     public struct DescribeCaptchaDataRequest: TCRequestModel {
         /// 验证码应用ID
@@ -82,5 +66,21 @@ extension Captcha {
             case captchaMsg = "CaptchaMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全验证码分类查询数据接口
+    ///
+    /// 安全验证码分类查询数据接口，请求量type=0、通过量type=1、验证量type=2、拦截量type=3  分钟级查询
+    @inlinable
+    public func describeCaptchaData(_ input: DescribeCaptchaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaDataResponse > {
+        self.client.execute(action: "DescribeCaptchaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全验证码分类查询数据接口
+    ///
+    /// 安全验证码分类查询数据接口，请求量type=0、通过量type=1、验证量type=2、拦截量type=3  分钟级查询
+    @inlinable
+    public func describeCaptchaData(_ input: DescribeCaptchaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaDataResponse {
+        try await self.client.execute(action: "DescribeCaptchaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

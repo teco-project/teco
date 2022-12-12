@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 批量添加域名
-    @inlinable
-    public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainBatchResponse > {
-        self.client.execute(action: "CreateDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量添加域名
-    @inlinable
-    public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainBatchResponse {
-        try await self.client.execute(action: "CreateDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDomainBatch请求参数结构体
     public struct CreateDomainBatchRequest: TCRequestModel {
         /// 域名数组
@@ -35,7 +23,7 @@ extension Dnspod {
         /// 每个域名添加 @ 和 www 的 A 记录值，记录值为IP，如果不传此参数或者传空，将只添加域名，不添加记录。
         public let recordValue: String?
         
-        public init (domainList: [String], recordValue: String?) {
+        public init (domainList: [String], recordValue: String? = nil) {
             self.domainList = domainList
             self.recordValue = recordValue
         }
@@ -62,5 +50,17 @@ extension Dnspod {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量添加域名
+    @inlinable
+    public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainBatchResponse > {
+        self.client.execute(action: "CreateDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量添加域名
+    @inlinable
+    public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainBatchResponse {
+        try await self.client.execute(action: "CreateDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

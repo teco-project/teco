@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcm {
-    /// 查询网格详情
-    @inlinable
-    public func describeMesh(_ input: DescribeMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMeshResponse > {
-        self.client.execute(action: "DescribeMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询网格详情
-    @inlinable
-    public func describeMesh(_ input: DescribeMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMeshResponse {
-        try await self.client.execute(action: "DescribeMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMesh请求参数结构体
     public struct DescribeMeshRequest: TCRequestModel {
         /// 需要查询的网格 Id
@@ -53,5 +41,17 @@ extension Tcm {
             case mesh = "Mesh"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询网格详情
+    @inlinable
+    public func describeMesh(_ input: DescribeMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMeshResponse > {
+        self.client.execute(action: "DescribeMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网格详情
+    @inlinable
+    public func describeMesh(_ input: DescribeMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMeshResponse {
+        try await self.client.execute(action: "DescribeMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

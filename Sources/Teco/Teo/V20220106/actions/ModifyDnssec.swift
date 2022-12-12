@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 修改 DNSSEC
-    ///
-    /// 修改 DNSSEC 状态
-    @inlinable
-    public func modifyDnssec(_ input: ModifyDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDnssecResponse > {
-        self.client.execute(action: "ModifyDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改 DNSSEC
-    ///
-    /// 修改 DNSSEC 状态
-    @inlinable
-    public func modifyDnssec(_ input: ModifyDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDnssecResponse {
-        try await self.client.execute(action: "ModifyDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDnssec请求参数结构体
     public struct ModifyDnssecRequest: TCRequestModel {
         /// 站点 ID
@@ -69,7 +53,7 @@ extension Teo {
         
         /// DNSSEC 相关信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dnssec: DnssecInfo
+        public let dnssec: DnssecInfo?
         
         /// 修改时间
         // FIXME: Codable support not implemented for datetime_iso yet.
@@ -86,5 +70,21 @@ extension Teo {
             case modifiedOn = "ModifiedOn"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改 DNSSEC
+    ///
+    /// 修改 DNSSEC 状态
+    @inlinable
+    public func modifyDnssec(_ input: ModifyDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDnssecResponse > {
+        self.client.execute(action: "ModifyDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改 DNSSEC
+    ///
+    /// 修改 DNSSEC 状态
+    @inlinable
+    public func modifyDnssec(_ input: ModifyDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDnssecResponse {
+        try await self.client.execute(action: "ModifyDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 查询审计日志文件
-    ///
-    /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。
-    @inlinable
-    public func describeAuditLogFiles(_ input: DescribeAuditLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditLogFilesResponse > {
-        self.client.execute(action: "DescribeAuditLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询审计日志文件
-    ///
-    /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。
-    @inlinable
-    public func describeAuditLogFiles(_ input: DescribeAuditLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogFilesResponse {
-        try await self.client.execute(action: "DescribeAuditLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAuditLogFiles请求参数结构体
     public struct DescribeAuditLogFilesRequest: TCRequestModel {
         /// 实例ID
@@ -45,7 +29,7 @@ extension Cynosdb {
         /// 审计日志文件名。
         public let fileName: String?
         
-        public init (instanceId: String, limit: Int64?, offset: Int64?, fileName: String?) {
+        public init (instanceId: String, limit: Int64? = nil, offset: Int64? = nil, fileName: String? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset
@@ -76,5 +60,21 @@ extension Cynosdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询审计日志文件
+    ///
+    /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。
+    @inlinable
+    public func describeAuditLogFiles(_ input: DescribeAuditLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditLogFilesResponse > {
+        self.client.execute(action: "DescribeAuditLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询审计日志文件
+    ///
+    /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。
+    @inlinable
+    public func describeAuditLogFiles(_ input: DescribeAuditLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogFilesResponse {
+        try await self.client.execute(action: "DescribeAuditLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 查询设备绑定的终端用户列表
-    ///
-    /// 本接口（DescribeBindUsr）用于查询设备被分享的所有用户列表。
-    @inlinable
-    public func describeBindUsr(_ input: DescribeBindUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindUsrResponse > {
-        self.client.execute(action: "DescribeBindUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备绑定的终端用户列表
-    ///
-    /// 本接口（DescribeBindUsr）用于查询设备被分享的所有用户列表。
-    @inlinable
-    public func describeBindUsr(_ input: DescribeBindUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindUsrResponse {
-        try await self.client.execute(action: "DescribeBindUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBindUsr请求参数结构体
     public struct DescribeBindUsrRequest: TCRequestModel {
         /// 设备TID
@@ -39,7 +23,7 @@ extension Iotvideo {
         /// 设备主人的AccessId
         public let accessId: String?
         
-        public init (tid: String, accessId: String?) {
+        public init (tid: String, accessId: String? = nil) {
             self.tid = tid
             self.accessId = accessId
         }
@@ -63,5 +47,21 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备绑定的终端用户列表
+    ///
+    /// 本接口（DescribeBindUsr）用于查询设备被分享的所有用户列表。
+    @inlinable
+    public func describeBindUsr(_ input: DescribeBindUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindUsrResponse > {
+        self.client.execute(action: "DescribeBindUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备绑定的终端用户列表
+    ///
+    /// 本接口（DescribeBindUsr）用于查询设备被分享的所有用户列表。
+    @inlinable
+    public func describeBindUsr(_ input: DescribeBindUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindUsrResponse {
+        try await self.client.execute(action: "DescribeBindUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

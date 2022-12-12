@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gme {
-    /// 获取用户自定义送检信息
-    @inlinable
-    public func describeRealtimeScanConfig(_ input: DescribeRealtimeScanConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealtimeScanConfigResponse > {
-        self.client.execute(action: "DescribeRealtimeScanConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户自定义送检信息
-    @inlinable
-    public func describeRealtimeScanConfig(_ input: DescribeRealtimeScanConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealtimeScanConfigResponse {
-        try await self.client.execute(action: "DescribeRealtimeScanConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRealtimeScanConfig请求参数结构体
     public struct DescribeRealtimeScanConfigRequest: TCRequestModel {
         /// 应用ID
@@ -77,5 +65,17 @@ extension Gme {
             case roomIdString = "RoomIdString"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户自定义送检信息
+    @inlinable
+    public func describeRealtimeScanConfig(_ input: DescribeRealtimeScanConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealtimeScanConfigResponse > {
+        self.client.execute(action: "DescribeRealtimeScanConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户自定义送检信息
+    @inlinable
+    public func describeRealtimeScanConfig(_ input: DescribeRealtimeScanConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealtimeScanConfigResponse {
+        try await self.client.execute(action: "DescribeRealtimeScanConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 创建任务
-    @inlinable
-    public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskResponse > {
-        self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建任务
-    @inlinable
-    public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
-        try await self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTask请求参数结构体
     public struct CreateTaskRequest: TCRequestModel {
         /// 任务名称，任务长度64字符
@@ -48,7 +36,7 @@ extension Tsf {
         public let groupId: String
         
         /// 触发规则
-        public let taskRule: TaskRule
+        public let taskRule: TaskRule?
         
         /// 重试次数，0 <= RetryCount<= 10
         public let retryCount: UInt64?
@@ -69,7 +57,7 @@ extension Tsf {
         public let successRatio: String?
         
         /// 高级设置
-        public let advanceSettings: AdvanceSettings
+        public let advanceSettings: AdvanceSettings?
         
         /// 任务参数，长度限制10000个字符
         public let taskArgument: String?
@@ -77,7 +65,7 @@ extension Tsf {
         /// 无
         public let programIdList: [String]?
         
-        public init (taskName: String, taskContent: String, executeType: String, taskType: String, timeOut: UInt64, groupId: String, taskRule: TaskRule, retryCount: UInt64?, retryInterval: UInt64?, shardCount: Int64?, shardArguments: [ShardArgument]?, successOperator: String?, successRatio: String?, advanceSettings: AdvanceSettings, taskArgument: String?, programIdList: [String]?) {
+        public init (taskName: String, taskContent: String, executeType: String, taskType: String, timeOut: UInt64, groupId: String, taskRule: TaskRule? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, successOperator: String? = nil, successRatio: String? = nil, advanceSettings: AdvanceSettings? = nil, taskArgument: String? = nil, programIdList: [String]? = nil) {
             self.taskName = taskName
             self.taskContent = taskContent
             self.executeType = executeType
@@ -129,5 +117,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建任务
+    @inlinable
+    public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskResponse > {
+        self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建任务
+    @inlinable
+    public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
+        try await self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

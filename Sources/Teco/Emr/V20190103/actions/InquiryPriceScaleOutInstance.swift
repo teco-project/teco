@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 扩容询价
-    ///
-    /// 扩容询价. 当扩容时候，请通过该接口查询价格。
-    @inlinable
-    public func inquiryPriceScaleOutInstance(_ input: InquiryPriceScaleOutInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceScaleOutInstanceResponse > {
-        self.client.execute(action: "InquiryPriceScaleOutInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 扩容询价
-    ///
-    /// 扩容询价. 当扩容时候，请通过该接口查询价格。
-    @inlinable
-    public func inquiryPriceScaleOutInstance(_ input: InquiryPriceScaleOutInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceScaleOutInstanceResponse {
-        try await self.client.execute(action: "InquiryPriceScaleOutInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceScaleOutInstance请求参数结构体
     public struct InquiryPriceScaleOutInstanceRequest: TCRequestModel {
         /// 扩容的时间单位。取值范围：
@@ -70,7 +54,7 @@ extension Emr {
         /// 扩容的Master节点数量。
         public let masterCount: UInt64?
         
-        public init (timeUnit: String, timeSpan: UInt64, zoneId: UInt64, payMode: UInt64, instanceId: String, coreCount: UInt64, taskCount: UInt64, currency: String, routerCount: UInt64?, masterCount: UInt64?) {
+        public init (timeUnit: String, timeSpan: UInt64, zoneId: UInt64, payMode: UInt64, instanceId: String, coreCount: UInt64, taskCount: UInt64, currency: String, routerCount: UInt64? = nil, masterCount: UInt64? = nil) {
             self.timeUnit = timeUnit
             self.timeSpan = timeSpan
             self.zoneId = zoneId
@@ -115,7 +99,7 @@ extension Emr {
         
         /// 询价的节点规格。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let priceSpec: PriceResource
+        public let priceSpec: PriceResource?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -127,5 +111,21 @@ extension Emr {
             case priceSpec = "PriceSpec"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 扩容询价
+    ///
+    /// 扩容询价. 当扩容时候，请通过该接口查询价格。
+    @inlinable
+    public func inquiryPriceScaleOutInstance(_ input: InquiryPriceScaleOutInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceScaleOutInstanceResponse > {
+        self.client.execute(action: "InquiryPriceScaleOutInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 扩容询价
+    ///
+    /// 扩容询价. 当扩容时候，请通过该接口查询价格。
+    @inlinable
+    public func inquiryPriceScaleOutInstance(_ input: InquiryPriceScaleOutInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceScaleOutInstanceResponse {
+        try await self.client.execute(action: "InquiryPriceScaleOutInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

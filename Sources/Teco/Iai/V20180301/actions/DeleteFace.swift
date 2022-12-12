@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 删除人脸
-    ///
-    /// 删除一个人员下的人脸图片。如果该人员只有一张人脸图片，则返回错误。
-    @inlinable
-    public func deleteFace(_ input: DeleteFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFaceResponse > {
-        self.client.execute(action: "DeleteFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除人脸
-    ///
-    /// 删除一个人员下的人脸图片。如果该人员只有一张人脸图片，则返回错误。
-    @inlinable
-    public func deleteFace(_ input: DeleteFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFaceResponse {
-        try await self.client.execute(action: "DeleteFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteFace请求参数结构体
     public struct DeleteFaceRequest: TCRequestModel {
         /// 人员ID
@@ -66,5 +50,21 @@ extension Iai {
             case sucFaceIds = "SucFaceIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除人脸
+    ///
+    /// 删除一个人员下的人脸图片。如果该人员只有一张人脸图片，则返回错误。
+    @inlinable
+    public func deleteFace(_ input: DeleteFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFaceResponse > {
+        self.client.execute(action: "DeleteFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除人脸
+    ///
+    /// 删除一个人员下的人脸图片。如果该人员只有一张人脸图片，则返回错误。
+    @inlinable
+    public func deleteFace(_ input: DeleteFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFaceResponse {
+        try await self.client.execute(action: "DeleteFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

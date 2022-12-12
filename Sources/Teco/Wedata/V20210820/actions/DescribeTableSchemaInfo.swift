@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取表schema信息
-    @inlinable
-    public func describeTableSchemaInfo(_ input: DescribeTableSchemaInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableSchemaInfoResponse > {
-        self.client.execute(action: "DescribeTableSchemaInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取表schema信息
-    @inlinable
-    public func describeTableSchemaInfo(_ input: DescribeTableSchemaInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableSchemaInfoResponse {
-        try await self.client.execute(action: "DescribeTableSchemaInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTableSchemaInfo请求参数结构体
     public struct DescribeTableSchemaInfoRequest: TCRequestModel {
         /// 表名称
@@ -47,7 +35,7 @@ extension Wedata {
         /// 元数据Database下的Schema名称
         public let schemaName: String?
         
-        public init (name: String, databaseName: String, msType: String, datasourceId: String, connectionType: String?, schemaName: String?) {
+        public init (name: String, databaseName: String, msType: String, datasourceId: String, connectionType: String? = nil, schemaName: String? = nil) {
             self.name = name
             self.databaseName = databaseName
             self.msType = msType
@@ -79,5 +67,17 @@ extension Wedata {
             case schemaInfoList = "SchemaInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取表schema信息
+    @inlinable
+    public func describeTableSchemaInfo(_ input: DescribeTableSchemaInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableSchemaInfoResponse > {
+        self.client.execute(action: "DescribeTableSchemaInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取表schema信息
+    @inlinable
+    public func describeTableSchemaInfo(_ input: DescribeTableSchemaInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableSchemaInfoResponse {
+        try await self.client.execute(action: "DescribeTableSchemaInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

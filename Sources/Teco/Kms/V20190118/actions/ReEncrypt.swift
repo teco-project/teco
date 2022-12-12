@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 密文刷新
-    ///
-    /// 使用指定CMK对密文重新加密。
-    @inlinable
-    public func reEncrypt(_ input: ReEncryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReEncryptResponse > {
-        self.client.execute(action: "ReEncrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 密文刷新
-    ///
-    /// 使用指定CMK对密文重新加密。
-    @inlinable
-    public func reEncrypt(_ input: ReEncryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReEncryptResponse {
-        try await self.client.execute(action: "ReEncrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReEncrypt请求参数结构体
     public struct ReEncryptRequest: TCRequestModel {
         /// 需要重新加密的密文
@@ -45,7 +29,7 @@ extension Kms {
         /// 重新加密使用的key/value对的json字符串，如果使用该字段，则返回的新密文在解密时需要填入相同的字符串
         public let destinationEncryptionContext: String?
         
-        public init (ciphertextBlob: String, destinationKeyId: String?, sourceEncryptionContext: String?, destinationEncryptionContext: String?) {
+        public init (ciphertextBlob: String, destinationKeyId: String? = nil, sourceEncryptionContext: String? = nil, destinationEncryptionContext: String? = nil) {
             self.ciphertextBlob = ciphertextBlob
             self.destinationKeyId = destinationKeyId
             self.sourceEncryptionContext = sourceEncryptionContext
@@ -84,5 +68,21 @@ extension Kms {
             case reEncrypted = "ReEncrypted"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 密文刷新
+    ///
+    /// 使用指定CMK对密文重新加密。
+    @inlinable
+    public func reEncrypt(_ input: ReEncryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReEncryptResponse > {
+        self.client.execute(action: "ReEncrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 密文刷新
+    ///
+    /// 使用指定CMK对密文重新加密。
+    @inlinable
+    public func reEncrypt(_ input: ReEncryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReEncryptResponse {
+        try await self.client.execute(action: "ReEncrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

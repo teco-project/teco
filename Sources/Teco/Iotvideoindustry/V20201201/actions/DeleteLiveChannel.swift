@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 删除直播接口
-    @inlinable
-    public func deleteLiveChannel(_ input: DeleteLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveChannelResponse > {
-        self.client.execute(action: "DeleteLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除直播接口
-    @inlinable
-    public func deleteLiveChannel(_ input: DeleteLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveChannelResponse {
-        try await self.client.execute(action: "DeleteLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLiveChannel请求参数结构体
     public struct DeleteLiveChannelRequest: TCRequestModel {
         /// 直播频道ID
@@ -49,5 +37,17 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除直播接口
+    @inlinable
+    public func deleteLiveChannel(_ input: DeleteLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveChannelResponse > {
+        self.client.execute(action: "DeleteLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除直播接口
+    @inlinable
+    public func deleteLiveChannel(_ input: DeleteLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveChannelResponse {
+        try await self.client.execute(action: "DeleteLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

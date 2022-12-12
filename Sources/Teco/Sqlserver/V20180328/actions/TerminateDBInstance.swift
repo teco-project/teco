@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 主动隔离实例
-    ///
-    /// 本接口(TerminateDBInstance)用于主动隔离实例，使得实例进入回收站。
-    @inlinable
-    public func terminateDBInstance(_ input: TerminateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateDBInstanceResponse > {
-        self.client.execute(action: "TerminateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 主动隔离实例
-    ///
-    /// 本接口(TerminateDBInstance)用于主动隔离实例，使得实例进入回收站。
-    @inlinable
-    public func terminateDBInstance(_ input: TerminateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstanceResponse {
-        try await self.client.execute(action: "TerminateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TerminateDBInstance请求参数结构体
     public struct TerminateDBInstanceRequest: TCRequestModel {
         /// 主动销毁的实例ID列表，格式如：[mssql-3l3fgqn7]。与云数据库控制台页面中显示的实例ID相同
@@ -53,5 +37,21 @@ extension Sqlserver {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 主动隔离实例
+    ///
+    /// 本接口(TerminateDBInstance)用于主动隔离实例，使得实例进入回收站。
+    @inlinable
+    public func terminateDBInstance(_ input: TerminateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateDBInstanceResponse > {
+        self.client.execute(action: "TerminateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 主动隔离实例
+    ///
+    /// 本接口(TerminateDBInstance)用于主动隔离实例，使得实例进入回收站。
+    @inlinable
+    public func terminateDBInstance(_ input: TerminateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstanceResponse {
+        try await self.client.execute(action: "TerminateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

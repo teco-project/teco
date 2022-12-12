@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 修改用户OIDC配置
-    @inlinable
-    public func updateUserOIDCConfig(_ input: UpdateUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUserOIDCConfigResponse > {
-        self.client.execute(action: "UpdateUserOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改用户OIDC配置
-    @inlinable
-    public func updateUserOIDCConfig(_ input: UpdateUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserOIDCConfigResponse {
-        try await self.client.execute(action: "UpdateUserOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateUserOIDCConfig请求参数结构体
     public struct UpdateUserOIDCConfigRequest: TCRequestModel {
         /// 身份提供商URL。OpenID Connect身份提供商标识。
@@ -57,7 +45,7 @@ extension Cam {
         /// 描述
         public let description: String?
         
-        public init (identityUrl: String, identityKey: String, clientId: String, authorizationEndpoint: String, responseType: String, responseMode: String, mappingFiled: String, scope: [String]?, description: String?) {
+        public init (identityUrl: String, identityKey: String, clientId: String, authorizationEndpoint: String, responseType: String, responseMode: String, mappingFiled: String, scope: [String]? = nil, description: String? = nil) {
             self.identityUrl = identityUrl
             self.identityKey = identityKey
             self.clientId = clientId
@@ -90,5 +78,17 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改用户OIDC配置
+    @inlinable
+    public func updateUserOIDCConfig(_ input: UpdateUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUserOIDCConfigResponse > {
+        self.client.execute(action: "UpdateUserOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改用户OIDC配置
+    @inlinable
+    public func updateUserOIDCConfig(_ input: UpdateUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserOIDCConfigResponse {
+        try await self.client.execute(action: "UpdateUserOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

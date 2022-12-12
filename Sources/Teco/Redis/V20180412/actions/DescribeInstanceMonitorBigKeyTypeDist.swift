@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询实例大Key类型分布
-    @inlinable
-    public func describeInstanceMonitorBigKeyTypeDist(_ input: DescribeInstanceMonitorBigKeyTypeDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorBigKeyTypeDistResponse > {
-        self.client.execute(action: "DescribeInstanceMonitorBigKeyTypeDist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例大Key类型分布
-    @inlinable
-    public func describeInstanceMonitorBigKeyTypeDist(_ input: DescribeInstanceMonitorBigKeyTypeDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeyTypeDistResponse {
-        try await self.client.execute(action: "DescribeInstanceMonitorBigKeyTypeDist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceMonitorBigKeyTypeDist请求参数结构体
     public struct DescribeInstanceMonitorBigKeyTypeDistRequest: TCRequestModel {
         /// 实例Id
@@ -58,5 +46,17 @@ extension Redis {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例大Key类型分布
+    @inlinable
+    public func describeInstanceMonitorBigKeyTypeDist(_ input: DescribeInstanceMonitorBigKeyTypeDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorBigKeyTypeDistResponse > {
+        self.client.execute(action: "DescribeInstanceMonitorBigKeyTypeDist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例大Key类型分布
+    @inlinable
+    public func describeInstanceMonitorBigKeyTypeDist(_ input: DescribeInstanceMonitorBigKeyTypeDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeyTypeDistResponse {
+        try await self.client.execute(action: "DescribeInstanceMonitorBigKeyTypeDist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

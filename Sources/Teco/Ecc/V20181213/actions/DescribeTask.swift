@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecc {
-    /// 查询异步任务结果
-    ///
-    /// 异步任务结果查询接口
-    @inlinable
-    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResponse > {
-        self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询异步任务结果
-    ///
-    /// 异步任务结果查询接口
-    @inlinable
-    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResponse {
-        try await self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTask请求参数结构体
     public struct DescribeTaskRequest: TCRequestModel {
         /// 任务 ID
@@ -39,7 +23,7 @@ extension Ecc {
         /// 业务应用ID，与账号应用APPID无关，是用来方便客户管理服务的参数（暂时无需传入）。
         public let eccAppid: String?
         
-        public init (taskId: String, eccAppid: String?) {
+        public init (taskId: String, eccAppid: String? = nil) {
             self.taskId = taskId
             self.eccAppid = eccAppid
         }
@@ -58,7 +42,7 @@ extension Ecc {
         
         /// 整体的批改结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let correctData: CorrectData
+        public let correctData: CorrectData?
         
         /// 任务状态，“Progressing”: 处理中（此时无结果返回）、“Finished”: 处理完成
         public let status: String
@@ -72,5 +56,21 @@ extension Ecc {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询异步任务结果
+    ///
+    /// 异步任务结果查询接口
+    @inlinable
+    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResponse > {
+        self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询异步任务结果
+    ///
+    /// 异步任务结果查询接口
+    @inlinable
+    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResponse {
+        try await self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

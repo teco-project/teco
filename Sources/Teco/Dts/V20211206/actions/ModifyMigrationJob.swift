@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 配置迁移服务
-    ///
-    /// 配置迁移服务，配置成功后可通过`CreateMigrationCheckJob` 创建迁移校验任务接口发起校验任务，只有校验通过才能启动迁移任务。
-    @inlinable
-    public func modifyMigrationJob(_ input: ModifyMigrationJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrationJobResponse > {
-        self.client.execute(action: "ModifyMigrationJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 配置迁移服务
-    ///
-    /// 配置迁移服务，配置成功后可通过`CreateMigrationCheckJob` 创建迁移校验任务接口发起校验任务，只有校验通过才能启动迁移任务。
-    @inlinable
-    public func modifyMigrationJob(_ input: ModifyMigrationJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationJobResponse {
-        try await self.client.execute(action: "ModifyMigrationJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMigrationJob请求参数结构体
     public struct ModifyMigrationJobRequest: TCRequestModel {
         /// 任务id
@@ -57,7 +41,7 @@ extension Dts {
         /// 标签信息
         public let tags: [TagItem]?
         
-        public init (jobId: String, runMode: String, migrateOption: MigrateOption, srcInfo: DBEndpointInfo, dstInfo: DBEndpointInfo, jobName: String?, expectRunTime: String?, tags: [TagItem]?) {
+        public init (jobId: String, runMode: String, migrateOption: MigrateOption, srcInfo: DBEndpointInfo, dstInfo: DBEndpointInfo, jobName: String? = nil, expectRunTime: String? = nil, tags: [TagItem]? = nil) {
             self.jobId = jobId
             self.runMode = runMode
             self.migrateOption = migrateOption
@@ -88,5 +72,21 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 配置迁移服务
+    ///
+    /// 配置迁移服务，配置成功后可通过`CreateMigrationCheckJob` 创建迁移校验任务接口发起校验任务，只有校验通过才能启动迁移任务。
+    @inlinable
+    public func modifyMigrationJob(_ input: ModifyMigrationJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrationJobResponse > {
+        self.client.execute(action: "ModifyMigrationJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 配置迁移服务
+    ///
+    /// 配置迁移服务，配置成功后可通过`CreateMigrationCheckJob` 创建迁移校验任务接口发起校验任务，只有校验通过才能启动迁移任务。
+    @inlinable
+    public func modifyMigrationJob(_ input: ModifyMigrationJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationJobResponse {
+        try await self.client.execute(action: "ModifyMigrationJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

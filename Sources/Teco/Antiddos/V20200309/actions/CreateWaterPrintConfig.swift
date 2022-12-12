@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 添加DDoS防护的水印防护配置
-    @inlinable
-    public func createWaterPrintConfig(_ input: CreateWaterPrintConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWaterPrintConfigResponse > {
-        self.client.execute(action: "CreateWaterPrintConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加DDoS防护的水印防护配置
-    @inlinable
-    public func createWaterPrintConfig(_ input: CreateWaterPrintConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWaterPrintConfigResponse {
-        try await self.client.execute(action: "CreateWaterPrintConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateWaterPrintConfig请求参数结构体
     public struct CreateWaterPrintConfigRequest: TCRequestModel {
         /// 资源实例ID
@@ -54,5 +42,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加DDoS防护的水印防护配置
+    @inlinable
+    public func createWaterPrintConfig(_ input: CreateWaterPrintConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWaterPrintConfigResponse > {
+        self.client.execute(action: "CreateWaterPrintConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加DDoS防护的水印防护配置
+    @inlinable
+    public func createWaterPrintConfig(_ input: CreateWaterPrintConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWaterPrintConfigResponse {
+        try await self.client.execute(action: "CreateWaterPrintConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

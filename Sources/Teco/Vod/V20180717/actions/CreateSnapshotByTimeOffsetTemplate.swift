@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 创建指定时间点截图模板
-    ///
-    /// 创建用户自定义指定时间点截图模板，数量上限：16。
-    @inlinable
-    public func createSnapshotByTimeOffsetTemplate(_ input: CreateSnapshotByTimeOffsetTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSnapshotByTimeOffsetTemplateResponse > {
-        self.client.execute(action: "CreateSnapshotByTimeOffsetTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建指定时间点截图模板
-    ///
-    /// 创建用户自定义指定时间点截图模板，数量上限：16。
-    @inlinable
-    public func createSnapshotByTimeOffsetTemplate(_ input: CreateSnapshotByTimeOffsetTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotByTimeOffsetTemplateResponse {
-        try await self.client.execute(action: "CreateSnapshotByTimeOffsetTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSnapshotByTimeOffsetTemplate请求参数结构体
     public struct CreateSnapshotByTimeOffsetTemplateRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -75,7 +59,7 @@ extension Vod {
         /// 默认值：black 。
         public let fillType: String?
         
-        public init (subAppId: UInt64?, name: String?, width: UInt64?, height: UInt64?, resolutionAdaptive: String?, format: String?, comment: String?, fillType: String?) {
+        public init (subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil) {
             self.subAppId = subAppId
             self.name = name
             self.width = width
@@ -110,5 +94,21 @@ extension Vod {
             case definition = "Definition"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建指定时间点截图模板
+    ///
+    /// 创建用户自定义指定时间点截图模板，数量上限：16。
+    @inlinable
+    public func createSnapshotByTimeOffsetTemplate(_ input: CreateSnapshotByTimeOffsetTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSnapshotByTimeOffsetTemplateResponse > {
+        self.client.execute(action: "CreateSnapshotByTimeOffsetTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建指定时间点截图模板
+    ///
+    /// 创建用户自定义指定时间点截图模板，数量上限：16。
+    @inlinable
+    public func createSnapshotByTimeOffsetTemplate(_ input: CreateSnapshotByTimeOffsetTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotByTimeOffsetTemplateResponse {
+        try await self.client.execute(action: "CreateSnapshotByTimeOffsetTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

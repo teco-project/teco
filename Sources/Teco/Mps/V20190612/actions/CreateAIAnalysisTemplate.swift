@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 创建内容分析模板
-    ///
-    /// 创建用户自定义内容分析模板，数量上限：50。
-    @inlinable
-    public func createAIAnalysisTemplate(_ input: CreateAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAIAnalysisTemplateResponse > {
-        self.client.execute(action: "CreateAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建内容分析模板
-    ///
-    /// 创建用户自定义内容分析模板，数量上限：50。
-    @inlinable
-    public func createAIAnalysisTemplate(_ input: CreateAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIAnalysisTemplateResponse {
-        try await self.client.execute(action: "CreateAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAIAnalysisTemplate请求参数结构体
     public struct CreateAIAnalysisTemplateRequest: TCRequestModel {
         /// 视频内容分析模板名称，长度限制：64 个字符。
@@ -40,18 +24,18 @@ extension Mps {
         public let comment: String?
         
         /// 智能分类任务控制参数。
-        public let classificationConfigure: ClassificationConfigureInfo
+        public let classificationConfigure: ClassificationConfigureInfo?
         
         /// 智能标签任务控制参数。
-        public let tagConfigure: TagConfigureInfo
+        public let tagConfigure: TagConfigureInfo?
         
         /// 智能封面任务控制参数。
-        public let coverConfigure: CoverConfigureInfo
+        public let coverConfigure: CoverConfigureInfo?
         
         /// 智能按帧标签任务控制参数。
-        public let frameTagConfigure: FrameTagConfigureInfo
+        public let frameTagConfigure: FrameTagConfigureInfo?
         
-        public init (name: String?, comment: String?, classificationConfigure: ClassificationConfigureInfo, tagConfigure: TagConfigureInfo, coverConfigure: CoverConfigureInfo, frameTagConfigure: FrameTagConfigureInfo) {
+        public init (name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfo? = nil, tagConfigure: TagConfigureInfo? = nil, coverConfigure: CoverConfigureInfo? = nil, frameTagConfigure: FrameTagConfigureInfo? = nil) {
             self.name = name
             self.comment = comment
             self.classificationConfigure = classificationConfigure
@@ -82,5 +66,21 @@ extension Mps {
             case definition = "Definition"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建内容分析模板
+    ///
+    /// 创建用户自定义内容分析模板，数量上限：50。
+    @inlinable
+    public func createAIAnalysisTemplate(_ input: CreateAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAIAnalysisTemplateResponse > {
+        self.client.execute(action: "CreateAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建内容分析模板
+    ///
+    /// 创建用户自定义内容分析模板，数量上限：50。
+    @inlinable
+    public func createAIAnalysisTemplate(_ input: CreateAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIAnalysisTemplateResponse {
+        try await self.client.execute(action: "CreateAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

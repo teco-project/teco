@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 更新设备日志级别
-    ///
-    /// 设置设备上报的日志级别  
-    @inlinable
-    public func updateDeviceLogLevel(_ input: UpdateDeviceLogLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDeviceLogLevelResponse > {
-        self.client.execute(action: "UpdateDeviceLogLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新设备日志级别
-    ///
-    /// 设置设备上报的日志级别  
-    @inlinable
-    public func updateDeviceLogLevel(_ input: UpdateDeviceLogLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceLogLevelResponse {
-        try await self.client.execute(action: "UpdateDeviceLogLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateDeviceLogLevel请求参数结构体
     public struct UpdateDeviceLogLevelRequest: TCRequestModel {
         /// 产品ID
@@ -63,5 +47,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新设备日志级别
+    ///
+    /// 设置设备上报的日志级别  
+    @inlinable
+    public func updateDeviceLogLevel(_ input: UpdateDeviceLogLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDeviceLogLevelResponse > {
+        self.client.execute(action: "UpdateDeviceLogLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新设备日志级别
+    ///
+    /// 设置设备上报的日志级别  
+    @inlinable
+    public func updateDeviceLogLevel(_ input: UpdateDeviceLogLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceLogLevelResponse {
+        try await self.client.execute(action: "UpdateDeviceLogLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 拉取目录签署区
-    ///
-    /// 第三方应用可通过此接口（DescribeCatalogSignComponents）拉取目录签署区
-    @inlinable
-    public func describeCatalogSignComponents(_ input: DescribeCatalogSignComponentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCatalogSignComponentsResponse > {
-        self.client.execute(action: "DescribeCatalogSignComponents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取目录签署区
-    ///
-    /// 第三方应用可通过此接口（DescribeCatalogSignComponents）拉取目录签署区
-    @inlinable
-    public func describeCatalogSignComponents(_ input: DescribeCatalogSignComponentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCatalogSignComponentsResponse {
-        try await self.client.execute(action: "DescribeCatalogSignComponents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCatalogSignComponents请求参数结构体
     public struct DescribeCatalogSignComponentsRequest: TCRequestModel {
         /// 调用方信息
@@ -62,5 +46,21 @@ extension Essbasic {
             case signComponents = "SignComponents"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取目录签署区
+    ///
+    /// 第三方应用可通过此接口（DescribeCatalogSignComponents）拉取目录签署区
+    @inlinable
+    public func describeCatalogSignComponents(_ input: DescribeCatalogSignComponentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCatalogSignComponentsResponse > {
+        self.client.execute(action: "DescribeCatalogSignComponents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取目录签署区
+    ///
+    /// 第三方应用可通过此接口（DescribeCatalogSignComponents）拉取目录签署区
+    @inlinable
+    public func describeCatalogSignComponents(_ input: DescribeCatalogSignComponentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCatalogSignComponentsResponse {
+        try await self.client.execute(action: "DescribeCatalogSignComponents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

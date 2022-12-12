@@ -23,7 +23,7 @@ extension Mna {
         /// 终端所处在的省份，建议不填写由服务端自动获取，若需填写请填写带有省、市、自治区、特别行政区等后缀的省份中文全称
         public let province: String?
         
-        public init (ctccToken: String?, province: String?) {
+        public init (ctccToken: String? = nil, province: String? = nil) {
             self.ctccToken = ctccToken
             self.province = province
         }
@@ -37,15 +37,15 @@ extension Mna {
     /// 加速策略关键数据
     public struct Context: TCInputModel {
         /// 测速数据
-        public let networkData: NetworkData
+        public let networkData: NetworkData?
         
         /// 用户期望最低门限
-        public let expectedLowThreshold: ExpectedThreshold
+        public let expectedLowThreshold: ExpectedThreshold?
         
         /// 用户期望最高门限
-        public let expectedHighThreshold: ExpectedThreshold
+        public let expectedHighThreshold: ExpectedThreshold?
         
-        public init (networkData: NetworkData, expectedLowThreshold: ExpectedThreshold, expectedHighThreshold: ExpectedThreshold) {
+        public init (networkData: NetworkData? = nil, expectedLowThreshold: ExpectedThreshold? = nil, expectedHighThreshold: ExpectedThreshold? = nil) {
             self.networkData = networkData
             self.expectedLowThreshold = expectedLowThreshold
             self.expectedHighThreshold = expectedHighThreshold
@@ -144,7 +144,7 @@ extension Mna {
         /// 99：其他
         public let wireless: UInt64?
         
-        public init (vendor: UInt64?, os: UInt64?, deviceId: String?, phoneNum: String?, wireless: UInt64?) {
+        public init (vendor: UInt64? = nil, os: UInt64? = nil, deviceId: String? = nil, phoneNum: String? = nil, wireless: UInt64? = nil) {
             self.vendor = vendor
             self.os = os
             self.deviceId = deviceId
@@ -319,7 +319,7 @@ extension Mna {
         /// 用户 ipv6 地址
         public let srcIpv6: String?
         
-        public init (srcIpv4: String?, srcPublicIpv4: String?, srcIpv6: String?) {
+        public init (srcIpv4: String? = nil, srcPublicIpv4: String? = nil, srcIpv6: String? = nil) {
             self.srcIpv4 = srcIpv4
             self.srcPublicIpv4 = srcPublicIpv4
             self.srcIpv6 = srcIpv6
@@ -351,7 +351,7 @@ extension Mna {
         /// 网卡名
         public let netInfoName: String?
         
-        public init (type: Int64?, dataEnable: Bool?, uploadLimit: UInt64?, downloadLimit: UInt64?, netInfoName: String?) {
+        public init (type: Int64? = nil, dataEnable: Bool? = nil, uploadLimit: UInt64? = nil, downloadLimit: UInt64? = nil, netInfoName: String? = nil) {
             self.type = type
             self.dataEnable = dataEnable
             self.uploadLimit = uploadLimit

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 查询代理节点 kill 会话任务执行状态
-    ///
-    /// 用于查询 redis 执行 kill 会话任务后代理节点的执行结果，入参异步任务 ID 从接口 CreateProxySessionKillTask 调用成功后取得。当前 product 只支持：redis。
-    @inlinable
-    public func describeProxySessionKillTasks(_ input: DescribeProxySessionKillTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxySessionKillTasksResponse > {
-        self.client.execute(action: "DescribeProxySessionKillTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询代理节点 kill 会话任务执行状态
-    ///
-    /// 用于查询 redis 执行 kill 会话任务后代理节点的执行结果，入参异步任务 ID 从接口 CreateProxySessionKillTask 调用成功后取得。当前 product 只支持：redis。
-    @inlinable
-    public func describeProxySessionKillTasks(_ input: DescribeProxySessionKillTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxySessionKillTasksResponse {
-        try await self.client.execute(action: "DescribeProxySessionKillTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProxySessionKillTasks请求参数结构体
     public struct DescribeProxySessionKillTasksRequest: TCRequestModel {
         /// 实例ID。
@@ -71,5 +55,21 @@ extension Dbbrain {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询代理节点 kill 会话任务执行状态
+    ///
+    /// 用于查询 redis 执行 kill 会话任务后代理节点的执行结果，入参异步任务 ID 从接口 CreateProxySessionKillTask 调用成功后取得。当前 product 只支持：redis。
+    @inlinable
+    public func describeProxySessionKillTasks(_ input: DescribeProxySessionKillTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxySessionKillTasksResponse > {
+        self.client.execute(action: "DescribeProxySessionKillTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询代理节点 kill 会话任务执行状态
+    ///
+    /// 用于查询 redis 执行 kill 会话任务后代理节点的执行结果，入参异步任务 ID 从接口 CreateProxySessionKillTask 调用成功后取得。当前 product 只支持：redis。
+    @inlinable
+    public func describeProxySessionKillTasks(_ input: DescribeProxySessionKillTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxySessionKillTasksResponse {
+        try await self.client.execute(action: "DescribeProxySessionKillTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

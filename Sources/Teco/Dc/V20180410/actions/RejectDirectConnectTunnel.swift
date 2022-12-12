@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 拒绝专用通道申请
-    @inlinable
-    public func rejectDirectConnectTunnel(_ input: RejectDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RejectDirectConnectTunnelResponse > {
-        self.client.execute(action: "RejectDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拒绝专用通道申请
-    @inlinable
-    public func rejectDirectConnectTunnel(_ input: RejectDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectDirectConnectTunnelResponse {
-        try await self.client.execute(action: "RejectDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RejectDirectConnectTunnel请求参数结构体
     public struct RejectDirectConnectTunnelRequest: TCRequestModel {
         /// 无
@@ -49,5 +37,17 @@ extension Dc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拒绝专用通道申请
+    @inlinable
+    public func rejectDirectConnectTunnel(_ input: RejectDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RejectDirectConnectTunnelResponse > {
+        self.client.execute(action: "RejectDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拒绝专用通道申请
+    @inlinable
+    public func rejectDirectConnectTunnel(_ input: RejectDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectDirectConnectTunnelResponse {
+        try await self.client.execute(action: "RejectDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

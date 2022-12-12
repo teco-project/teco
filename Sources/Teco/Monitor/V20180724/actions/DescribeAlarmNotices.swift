@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 查询通知模板列表
-    @inlinable
-    public func describeAlarmNotices(_ input: DescribeAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmNoticesResponse > {
-        self.client.execute(action: "DescribeAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询通知模板列表
-    @inlinable
-    public func describeAlarmNotices(_ input: DescribeAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticesResponse {
-        try await self.client.execute(action: "DescribeAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAlarmNotices请求参数结构体
     public struct DescribeAlarmNoticesRequest: TCRequestModel {
         /// 模块名，这里填“monitor”
@@ -62,7 +50,7 @@ extension Monitor {
         /// 模版根据标签过滤
         public let tags: [Tag]?
         
-        public init (module: String, pageNumber: Int64, pageSize: Int64, order: String, ownerUid: Int64?, name: String?, receiverType: String?, userIds: [Int64]?, groupIds: [Int64]?, noticeIds: [String]?, tags: [Tag]?) {
+        public init (module: String, pageNumber: Int64, pageSize: Int64, order: String, ownerUid: Int64? = nil, name: String? = nil, receiverType: String? = nil, userIds: [Int64]? = nil, groupIds: [Int64]? = nil, noticeIds: [String]? = nil, tags: [Tag]? = nil) {
             self.module = module
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -107,5 +95,17 @@ extension Monitor {
             case notices = "Notices"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询通知模板列表
+    @inlinable
+    public func describeAlarmNotices(_ input: DescribeAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmNoticesResponse > {
+        self.client.execute(action: "DescribeAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询通知模板列表
+    @inlinable
+    public func describeAlarmNotices(_ input: DescribeAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticesResponse {
+        try await self.client.execute(action: "DescribeAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

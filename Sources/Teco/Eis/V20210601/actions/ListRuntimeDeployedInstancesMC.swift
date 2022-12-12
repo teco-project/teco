@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Eis {
-    /// 获取运行时部署的应用实例列表
-    @inlinable
-    public func listRuntimeDeployedInstancesMC(_ input: ListRuntimeDeployedInstancesMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListRuntimeDeployedInstancesMCResponse > {
-        self.client.execute(action: "ListRuntimeDeployedInstancesMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取运行时部署的应用实例列表
-    @inlinable
-    public func listRuntimeDeployedInstancesMC(_ input: ListRuntimeDeployedInstancesMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRuntimeDeployedInstancesMCResponse {
-        try await self.client.execute(action: "ListRuntimeDeployedInstancesMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListRuntimeDeployedInstancesMC请求参数结构体
     public struct ListRuntimeDeployedInstancesMCRequest: TCRequestModel {
         /// 运行时id
@@ -61,7 +49,7 @@ extension Eis {
         /// 2: 已停止
         public let status: Int64?
         
-        public init (runtimeId: Int64, limit: Int64, offset: Int64, sortType: Int64, sort: String, zone: String, apiVersion: Int64?, groupId: Int64?, status: Int64?) {
+        public init (runtimeId: Int64, limit: Int64, offset: Int64, sortType: Int64, sort: String, zone: String, apiVersion: Int64? = nil, groupId: Int64? = nil, status: Int64? = nil) {
             self.runtimeId = runtimeId
             self.limit = limit
             self.offset = offset
@@ -89,7 +77,7 @@ extension Eis {
     /// ListRuntimeDeployedInstancesMC返回参数结构体
     public struct ListRuntimeDeployedInstancesMCResponse: TCResponseModel {
         /// 运行时所部属的应用实例列表
-        public let instances: [Date]
+        public let instances: [RuntimeDeployedInstanceMC]
         
         /// 满足条件的记录总数，用于分页器
         public let totalCount: Int64
@@ -102,5 +90,17 @@ extension Eis {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取运行时部署的应用实例列表
+    @inlinable
+    public func listRuntimeDeployedInstancesMC(_ input: ListRuntimeDeployedInstancesMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListRuntimeDeployedInstancesMCResponse > {
+        self.client.execute(action: "ListRuntimeDeployedInstancesMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取运行时部署的应用实例列表
+    @inlinable
+    public func listRuntimeDeployedInstancesMC(_ input: ListRuntimeDeployedInstancesMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRuntimeDeployedInstancesMCResponse {
+        try await self.client.execute(action: "ListRuntimeDeployedInstancesMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

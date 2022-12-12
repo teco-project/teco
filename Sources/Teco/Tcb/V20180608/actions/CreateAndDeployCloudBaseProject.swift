@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 创建云开发项目
-    @inlinable
-    public func createAndDeployCloudBaseProject(_ input: CreateAndDeployCloudBaseProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAndDeployCloudBaseProjectResponse > {
-        self.client.execute(action: "CreateAndDeployCloudBaseProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建云开发项目
-    @inlinable
-    public func createAndDeployCloudBaseProject(_ input: CreateAndDeployCloudBaseProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAndDeployCloudBaseProjectResponse {
-        try await self.client.execute(action: "CreateAndDeployCloudBaseProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAndDeployCloudBaseProject请求参数结构体
     public struct CreateAndDeployCloudBaseProjectRequest: TCRequestModel {
         /// 项目名
@@ -68,7 +56,7 @@ extension Tcb {
         /// 私有仓库地址
         public let repoUrl: String?
         
-        public init (name: String, source: CodeSource, envId: String?, type: String?, parameters: [KVPair]?, envAlias: String?, rcJson: String?, addonConfig: String?, tags: [String]?, networkConfig: String?, freeQuota: String?, autoDeployOnCodeChange: Bool?, repoUrl: String?) {
+        public init (name: String, source: CodeSource, envId: String? = nil, type: String? = nil, parameters: [KVPair]? = nil, envAlias: String? = nil, rcJson: String? = nil, addonConfig: String? = nil, tags: [String]? = nil, networkConfig: String? = nil, freeQuota: String? = nil, autoDeployOnCodeChange: Bool? = nil, repoUrl: String? = nil) {
             self.name = name
             self.source = source
             self.envId = envId
@@ -114,5 +102,17 @@ extension Tcb {
             case envId = "EnvId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建云开发项目
+    @inlinable
+    public func createAndDeployCloudBaseProject(_ input: CreateAndDeployCloudBaseProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAndDeployCloudBaseProjectResponse > {
+        self.client.execute(action: "CreateAndDeployCloudBaseProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云开发项目
+    @inlinable
+    public func createAndDeployCloudBaseProject(_ input: CreateAndDeployCloudBaseProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAndDeployCloudBaseProjectResponse {
+        try await self.client.execute(action: "CreateAndDeployCloudBaseProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

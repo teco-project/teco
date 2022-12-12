@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 更新命名空间
-    @inlinable
-    public func updateNamespace(_ input: UpdateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateNamespaceResponse > {
-        self.client.execute(action: "UpdateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新命名空间
-    @inlinable
-    public func updateNamespace(_ input: UpdateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateNamespaceResponse {
-        try await self.client.execute(action: "UpdateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateNamespace请求参数结构体
     public struct UpdateNamespaceRequest: TCRequestModel {
         /// 命名空间名称
@@ -54,5 +42,17 @@ extension Scf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新命名空间
+    @inlinable
+    public func updateNamespace(_ input: UpdateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateNamespaceResponse > {
+        self.client.execute(action: "UpdateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新命名空间
+    @inlinable
+    public func updateNamespace(_ input: UpdateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateNamespaceResponse {
+        try await self.client.execute(action: "UpdateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

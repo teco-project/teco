@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除CCN
-    ///
-    /// 本接口（DeleteCcn）用于删除云联网。
-    /// * 删除后，云联网关联的所有实例间路由将被删除，网络将会中断，请务必确认
-    /// * 删除云联网是不可逆的操作，请谨慎处理。
-    @inlinable
-    public func deleteCcn(_ input: DeleteCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCcnResponse > {
-        self.client.execute(action: "DeleteCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除CCN
-    ///
-    /// 本接口（DeleteCcn）用于删除云联网。
-    /// * 删除后，云联网关联的所有实例间路由将被删除，网络将会中断，请务必确认
-    /// * 删除云联网是不可逆的操作，请谨慎处理。
-    @inlinable
-    public func deleteCcn(_ input: DeleteCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCcnResponse {
-        try await self.client.execute(action: "DeleteCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCcn请求参数结构体
     public struct DeleteCcnRequest: TCRequestModel {
         /// CCN实例ID。形如：ccn-f49l6u0z。
@@ -57,5 +37,25 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除CCN
+    ///
+    /// 本接口（DeleteCcn）用于删除云联网。
+    /// * 删除后，云联网关联的所有实例间路由将被删除，网络将会中断，请务必确认
+    /// * 删除云联网是不可逆的操作，请谨慎处理。
+    @inlinable
+    public func deleteCcn(_ input: DeleteCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCcnResponse > {
+        self.client.execute(action: "DeleteCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除CCN
+    ///
+    /// 本接口（DeleteCcn）用于删除云联网。
+    /// * 删除后，云联网关联的所有实例间路由将被删除，网络将会中断，请务必确认
+    /// * 删除云联网是不可逆的操作，请谨慎处理。
+    @inlinable
+    public func deleteCcn(_ input: DeleteCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCcnResponse {
+        try await self.client.execute(action: "DeleteCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

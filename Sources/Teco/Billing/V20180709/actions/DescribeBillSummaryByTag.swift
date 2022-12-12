@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Billing {
-    /// 获取按标签汇总费用分布
-    @inlinable
-    public func describeBillSummaryByTag(_ input: DescribeBillSummaryByTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillSummaryByTagResponse > {
-        self.client.execute(action: "DescribeBillSummaryByTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取按标签汇总费用分布
-    @inlinable
-    public func describeBillSummaryByTag(_ input: DescribeBillSummaryByTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByTagResponse {
-        try await self.client.execute(action: "DescribeBillSummaryByTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBillSummaryByTag请求参数结构体
     public struct DescribeBillSummaryByTagRequest: TCRequestModel {
         /// 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
@@ -44,7 +32,7 @@ extension Billing {
         /// 分账标签值
         public let tagValue: String?
         
-        public init (beginTime: String, endTime: String, tagKey: String, payerUin: String?, tagValue: String?) {
+        public init (beginTime: String, endTime: String, tagKey: String, payerUin: String? = nil, tagValue: String? = nil) {
             self.beginTime = beginTime
             self.endTime = endTime
             self.tagKey = tagKey
@@ -72,7 +60,7 @@ extension Billing {
         
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let summaryTotal: SummaryTotal
+        public let summaryTotal: SummaryTotal?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -83,5 +71,17 @@ extension Billing {
             case summaryTotal = "SummaryTotal"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取按标签汇总费用分布
+    @inlinable
+    public func describeBillSummaryByTag(_ input: DescribeBillSummaryByTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillSummaryByTagResponse > {
+        self.client.execute(action: "DescribeBillSummaryByTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取按标签汇总费用分布
+    @inlinable
+    public func describeBillSummaryByTag(_ input: DescribeBillSummaryByTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByTagResponse {
+        try await self.client.execute(action: "DescribeBillSummaryByTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

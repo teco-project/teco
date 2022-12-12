@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 修改表格标签
-    @inlinable
-    public func modifyTableTags(_ input: ModifyTableTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableTagsResponse > {
-        self.client.execute(action: "ModifyTableTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改表格标签
-    @inlinable
-    public func modifyTableTags(_ input: ModifyTableTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableTagsResponse {
-        try await self.client.execute(action: "ModifyTableTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTableTags请求参数结构体
     public struct ModifyTableTagsRequest: TCRequestModel {
         /// 待修改标签表格所属集群ID
@@ -41,7 +29,7 @@ extension Tcaplusdb {
         /// 待删除的标签列表
         public let deleteTags: [TagInfoUnit]?
         
-        public init (clusterId: String, selectedTables: [SelectedTableInfoNew], replaceTags: [TagInfoUnit]?, deleteTags: [TagInfoUnit]?) {
+        public init (clusterId: String, selectedTables: [SelectedTableInfoNew], replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil) {
             self.clusterId = clusterId
             self.selectedTables = selectedTables
             self.replaceTags = replaceTags
@@ -72,5 +60,17 @@ extension Tcaplusdb {
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改表格标签
+    @inlinable
+    public func modifyTableTags(_ input: ModifyTableTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableTagsResponse > {
+        self.client.execute(action: "ModifyTableTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改表格标签
+    @inlinable
+    public func modifyTableTags(_ input: ModifyTableTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableTagsResponse {
+        try await self.client.execute(action: "ModifyTableTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

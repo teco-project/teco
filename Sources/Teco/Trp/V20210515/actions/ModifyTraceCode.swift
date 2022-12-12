@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 修改二维码的状态
-    ///
-    /// 冻结或者激活二维码，所属的批次的冻结状态优先级大于单个二维码的状态，即如果批次是冻结的，那么该批次下二维码的状态都是冻结的
-    @inlinable
-    public func modifyTraceCode(_ input: ModifyTraceCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTraceCodeResponse > {
-        self.client.execute(action: "ModifyTraceCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改二维码的状态
-    ///
-    /// 冻结或者激活二维码，所属的批次的冻结状态优先级大于单个二维码的状态，即如果批次是冻结的，那么该批次下二维码的状态都是冻结的
-    @inlinable
-    public func modifyTraceCode(_ input: ModifyTraceCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceCodeResponse {
-        try await self.client.execute(action: "ModifyTraceCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTraceCode请求参数结构体
     public struct ModifyTraceCodeRequest: TCRequestModel {
         /// 二维码
@@ -42,7 +26,7 @@ extension Trp {
         /// 状态 0: 冻结 1: 激活
         public let status: UInt64?
         
-        public init (code: String, corpId: UInt64?, status: UInt64?) {
+        public init (code: String, corpId: UInt64? = nil, status: UInt64? = nil) {
             self.code = code
             self.corpId = corpId
             self.status = status
@@ -63,5 +47,21 @@ extension Trp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改二维码的状态
+    ///
+    /// 冻结或者激活二维码，所属的批次的冻结状态优先级大于单个二维码的状态，即如果批次是冻结的，那么该批次下二维码的状态都是冻结的
+    @inlinable
+    public func modifyTraceCode(_ input: ModifyTraceCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTraceCodeResponse > {
+        self.client.execute(action: "ModifyTraceCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改二维码的状态
+    ///
+    /// 冻结或者激活二维码，所属的批次的冻结状态优先级大于单个二维码的状态，即如果批次是冻结的，那么该批次下二维码的状态都是冻结的
+    @inlinable
+    public func modifyTraceCode(_ input: ModifyTraceCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceCodeResponse {
+        try await self.client.execute(action: "ModifyTraceCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

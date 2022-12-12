@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 创建子网
-    ///
-    /// 创建子网，若创建成功，则此子网会成为此可用区的默认子网。
-    @inlinable
-    public func createSubnet(_ input: CreateSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubnetResponse > {
-        self.client.execute(action: "CreateSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建子网
-    ///
-    /// 创建子网，若创建成功，则此子网会成为此可用区的默认子网。
-    @inlinable
-    public func createSubnet(_ input: CreateSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
-        try await self.client.execute(action: "CreateSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSubnet请求参数结构体
     public struct CreateSubnetRequest: TCRequestModel {
         /// 待操作的VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
@@ -51,7 +35,7 @@ extension Ecm {
         /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         public let tags: [Tag]?
         
-        public init (vpcId: String, subnetName: String, cidrBlock: String, zone: String, ecmRegion: String, tags: [Tag]?) {
+        public init (vpcId: String, subnetName: String, cidrBlock: String, zone: String, ecmRegion: String, tags: [Tag]? = nil) {
             self.vpcId = vpcId
             self.subnetName = subnetName
             self.cidrBlock = cidrBlock
@@ -82,5 +66,21 @@ extension Ecm {
             case subnet = "Subnet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建子网
+    ///
+    /// 创建子网，若创建成功，则此子网会成为此可用区的默认子网。
+    @inlinable
+    public func createSubnet(_ input: CreateSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubnetResponse > {
+        self.client.execute(action: "CreateSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建子网
+    ///
+    /// 创建子网，若创建成功，则此子网会成为此可用区的默认子网。
+    @inlinable
+    public func createSubnet(_ input: CreateSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
+        try await self.client.execute(action: "CreateSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

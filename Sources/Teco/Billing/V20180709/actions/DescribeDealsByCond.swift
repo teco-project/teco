@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Billing {
-    /// 查询订单数据
-    ///
-    /// 查询订单
-    @inlinable
-    public func describeDealsByCond(_ input: DescribeDealsByCondRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDealsByCondResponse > {
-        self.client.execute(action: "DescribeDealsByCond", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询订单数据
-    ///
-    /// 查询订单
-    @inlinable
-    public func describeDealsByCond(_ input: DescribeDealsByCondRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDealsByCondResponse {
-        try await self.client.execute(action: "DescribeDealsByCond", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDealsByCond请求参数结构体
     public struct DescribeDealsByCondRequest: TCRequestModel {
         /// 开始时间
@@ -73,7 +57,7 @@ extension Billing {
         /// 资源id
         public let resourceId: String?
         
-        public init (startTime: Date, endTime: Date, limit: Int64, offset: Int64?, status: Int64?, orderId: String?, bigDealId: String?, resourceId: String?) {
+        public init (startTime: Date, endTime: Date, limit: Int64, offset: Int64? = nil, status: Int64? = nil, orderId: String? = nil, bigDealId: String? = nil, resourceId: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.limit = limit
@@ -112,5 +96,21 @@ extension Billing {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询订单数据
+    ///
+    /// 查询订单
+    @inlinable
+    public func describeDealsByCond(_ input: DescribeDealsByCondRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDealsByCondResponse > {
+        self.client.execute(action: "DescribeDealsByCond", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询订单数据
+    ///
+    /// 查询订单
+    @inlinable
+    public func describeDealsByCond(_ input: DescribeDealsByCondRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDealsByCondResponse {
+        try await self.client.execute(action: "DescribeDealsByCond", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

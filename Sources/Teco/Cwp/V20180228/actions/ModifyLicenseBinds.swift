@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 授权批量绑定
-    ///
-    /// 设置中心-授权管理 对某个授权批量绑定机器
-    @inlinable
-    public func modifyLicenseBinds(_ input: ModifyLicenseBindsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLicenseBindsResponse > {
-        self.client.execute(action: "ModifyLicenseBinds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 授权批量绑定
-    ///
-    /// 设置中心-授权管理 对某个授权批量绑定机器
-    @inlinable
-    public func modifyLicenseBinds(_ input: ModifyLicenseBindsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLicenseBindsResponse {
-        try await self.client.execute(action: "ModifyLicenseBinds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLicenseBinds请求参数结构体
     public struct ModifyLicenseBindsRequest: TCRequestModel {
         /// 资源ID
@@ -45,7 +29,7 @@ extension Cwp {
         /// 需要绑定的机器quuid列表, 当IsAll = false 时必填,反之忽略该参数. 最大长度=2000
         public let quuidList: [String]?
         
-        public init (resourceId: String, licenseType: UInt64, isAll: Bool?, quuidList: [String]?) {
+        public init (resourceId: String, licenseType: UInt64, isAll: Bool? = nil, quuidList: [String]? = nil) {
             self.resourceId = resourceId
             self.licenseType = licenseType
             self.isAll = isAll
@@ -72,5 +56,21 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 授权批量绑定
+    ///
+    /// 设置中心-授权管理 对某个授权批量绑定机器
+    @inlinable
+    public func modifyLicenseBinds(_ input: ModifyLicenseBindsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLicenseBindsResponse > {
+        self.client.execute(action: "ModifyLicenseBinds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 授权批量绑定
+    ///
+    /// 设置中心-授权管理 对某个授权批量绑定机器
+    @inlinable
+    public func modifyLicenseBinds(_ input: ModifyLicenseBindsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLicenseBindsResponse {
+        try await self.client.execute(action: "ModifyLicenseBinds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

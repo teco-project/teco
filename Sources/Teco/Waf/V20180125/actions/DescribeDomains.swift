@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 查询用户所有域名的详细信息
-    @inlinable
-    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainsResponse > {
-        self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户所有域名的详细信息
-    @inlinable
-    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsResponse {
-        try await self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomains请求参数结构体
     public struct DescribeDomainsRequest: TCRequestModel {
         /// 数据偏移量，从1开始。
@@ -38,7 +26,7 @@ extension Waf {
         /// 过滤数组
         public let filters: [FiltersItemNew]?
         
-        public init (offset: UInt64, limit: UInt64, filters: [FiltersItemNew]?) {
+        public init (offset: UInt64, limit: UInt64, filters: [FiltersItemNew]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -68,5 +56,17 @@ extension Waf {
             case domains = "Domains"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户所有域名的详细信息
+    @inlinable
+    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainsResponse > {
+        self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户所有域名的详细信息
+    @inlinable
+    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsResponse {
+        try await self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

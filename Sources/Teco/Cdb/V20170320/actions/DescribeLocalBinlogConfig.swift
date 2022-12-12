@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询本地binlog保留策略
-    ///
-    /// 该接口用于查询实例本地binlog保留策略。
-    @inlinable
-    public func describeLocalBinlogConfig(_ input: DescribeLocalBinlogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLocalBinlogConfigResponse > {
-        self.client.execute(action: "DescribeLocalBinlogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询本地binlog保留策略
-    ///
-    /// 该接口用于查询实例本地binlog保留策略。
-    @inlinable
-    public func describeLocalBinlogConfig(_ input: DescribeLocalBinlogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLocalBinlogConfigResponse {
-        try await self.client.execute(action: "DescribeLocalBinlogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLocalBinlogConfig请求参数结构体
     public struct DescribeLocalBinlogConfigRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例ID相同。
@@ -61,5 +45,21 @@ extension Cdb {
             case localBinlogConfigDefault = "LocalBinlogConfigDefault"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询本地binlog保留策略
+    ///
+    /// 该接口用于查询实例本地binlog保留策略。
+    @inlinable
+    public func describeLocalBinlogConfig(_ input: DescribeLocalBinlogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLocalBinlogConfigResponse > {
+        self.client.execute(action: "DescribeLocalBinlogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询本地binlog保留策略
+    ///
+    /// 该接口用于查询实例本地binlog保留策略。
+    @inlinable
+    public func describeLocalBinlogConfig(_ input: DescribeLocalBinlogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLocalBinlogConfigResponse {
+        try await self.client.execute(action: "DescribeLocalBinlogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

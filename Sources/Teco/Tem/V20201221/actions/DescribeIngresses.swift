@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 查询 Ingress 规则列表
-    @inlinable
-    public func describeIngresses(_ input: DescribeIngressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIngressesResponse > {
-        self.client.execute(action: "DescribeIngresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询 Ingress 规则列表
-    @inlinable
-    public func describeIngresses(_ input: DescribeIngressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressesResponse {
-        try await self.client.execute(action: "DescribeIngresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIngresses请求参数结构体
     public struct DescribeIngressesRequest: TCRequestModel {
         /// namespace id
@@ -41,7 +29,7 @@ extension Tem {
         /// ingress 规则名列表
         public let names: [String]?
         
-        public init (namespaceId: String?, eksNamespace: String?, sourceChannel: Int64?, names: [String]?) {
+        public init (namespaceId: String? = nil, eksNamespace: String? = nil, sourceChannel: Int64? = nil, names: [String]? = nil) {
             self.namespaceId = namespaceId
             self.eksNamespace = eksNamespace
             self.sourceChannel = sourceChannel
@@ -69,5 +57,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询 Ingress 规则列表
+    @inlinable
+    public func describeIngresses(_ input: DescribeIngressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIngressesResponse > {
+        self.client.execute(action: "DescribeIngresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询 Ingress 规则列表
+    @inlinable
+    public func describeIngresses(_ input: DescribeIngressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressesResponse {
+        try await self.client.execute(action: "DescribeIngresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

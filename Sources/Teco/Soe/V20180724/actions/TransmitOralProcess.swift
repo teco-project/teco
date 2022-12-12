@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Soe {
-    /// 发音数据传输接口
-    ///
-    /// 本接口可用于中英文发音评测数据传输。在使用本接口时需要注意：传输音频数据，必须在完成发音评估初始化接口之后调用，且SessonId要与初始化接口保持一致。分片传输时，尽量保证SeqId顺序传输（请确认SeqId由1开始）。音频源目前仅支持16k采样率16bit单声道编码方式，如有不一致可能导致评估不准确或失败。
-    @inlinable
-    public func transmitOralProcess(_ input: TransmitOralProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransmitOralProcessResponse > {
-        self.client.execute(action: "TransmitOralProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发音数据传输接口
-    ///
-    /// 本接口可用于中英文发音评测数据传输。在使用本接口时需要注意：传输音频数据，必须在完成发音评估初始化接口之后调用，且SessonId要与初始化接口保持一致。分片传输时，尽量保证SeqId顺序传输（请确认SeqId由1开始）。音频源目前仅支持16k采样率16bit单声道编码方式，如有不一致可能导致评估不准确或失败。
-    @inlinable
-    public func transmitOralProcess(_ input: TransmitOralProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransmitOralProcessResponse {
-        try await self.client.execute(action: "TransmitOralProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TransmitOralProcess请求参数结构体
     public struct TransmitOralProcessRequest: TCRequestModel {
         /// 流式数据包的序号，从1开始，当IsEnd字段为1后后续序号无意义，当IsLongLifeSession不为1且为非流式模式时无意义。
@@ -68,7 +52,7 @@ extension Soe {
         /// 查询标识，当该参数为1时，该请求为查询请求，请求返回该 Session 的评估结果。
         public let isQuery: Int64?
         
-        public init (seqId: Int64, isEnd: Int64, voiceFileType: Int64, voiceEncodeType: Int64, userVoiceData: String, sessionId: String, soeAppId: String?, isLongLifeSession: Int64?, isQuery: Int64?) {
+        public init (seqId: Int64, isEnd: Int64, voiceFileType: Int64, voiceEncodeType: Int64, userVoiceData: String, sessionId: String, soeAppId: String? = nil, isLongLifeSession: Int64? = nil, isQuery: Int64? = nil) {
             self.seqId = seqId
             self.isEnd = isEnd
             self.voiceFileType = voiceFileType
@@ -152,5 +136,21 @@ extension Soe {
             case unKeyWordHits = "UnKeyWordHits"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发音数据传输接口
+    ///
+    /// 本接口可用于中英文发音评测数据传输。在使用本接口时需要注意：传输音频数据，必须在完成发音评估初始化接口之后调用，且SessonId要与初始化接口保持一致。分片传输时，尽量保证SeqId顺序传输（请确认SeqId由1开始）。音频源目前仅支持16k采样率16bit单声道编码方式，如有不一致可能导致评估不准确或失败。
+    @inlinable
+    public func transmitOralProcess(_ input: TransmitOralProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransmitOralProcessResponse > {
+        self.client.execute(action: "TransmitOralProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发音数据传输接口
+    ///
+    /// 本接口可用于中英文发音评测数据传输。在使用本接口时需要注意：传输音频数据，必须在完成发音评估初始化接口之后调用，且SessonId要与初始化接口保持一致。分片传输时，尽量保证SeqId顺序传输（请确认SeqId由1开始）。音频源目前仅支持16k采样率16bit单声道编码方式，如有不一致可能导致评估不准确或失败。
+    @inlinable
+    public func transmitOralProcess(_ input: TransmitOralProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransmitOralProcessResponse {
+        try await self.client.execute(action: "TransmitOralProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

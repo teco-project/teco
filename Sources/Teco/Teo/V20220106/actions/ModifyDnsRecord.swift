@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 修改 DNS 记录
-    @inlinable
-    public func modifyDnsRecord(_ input: ModifyDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDnsRecordResponse > {
-        self.client.execute(action: "ModifyDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改 DNS 记录
-    @inlinable
-    public func modifyDnsRecord(_ input: ModifyDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDnsRecordResponse {
-        try await self.client.execute(action: "ModifyDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDnsRecord请求参数结构体
     public struct ModifyDnsRecordRequest: TCRequestModel {
         /// 记录 ID
@@ -55,7 +43,7 @@ extension Teo {
         /// 代理模式
         public let mode: String?
         
-        public init (id: String, zoneId: String, type: String?, name: String?, content: String?, ttl: Int64?, priority: Int64?, mode: String?) {
+        public init (id: String, zoneId: String, type: String? = nil, name: String? = nil, content: String? = nil, ttl: Int64? = nil, priority: Int64? = nil, mode: String? = nil) {
             self.id = id
             self.zoneId = zoneId
             self.type = type
@@ -145,5 +133,17 @@ extension Teo {
             case zoneName = "ZoneName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改 DNS 记录
+    @inlinable
+    public func modifyDnsRecord(_ input: ModifyDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDnsRecordResponse > {
+        self.client.execute(action: "ModifyDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改 DNS 记录
+    @inlinable
+    public func modifyDnsRecord(_ input: ModifyDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDnsRecordResponse {
+        try await self.client.execute(action: "ModifyDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取直播互动曲库联想词
-    @inlinable
-    public func describeKTVSuggestions(_ input: DescribeKTVSuggestionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVSuggestionsResponse > {
-        self.client.execute(action: "DescribeKTVSuggestions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取直播互动曲库联想词
-    @inlinable
-    public func describeKTVSuggestions(_ input: DescribeKTVSuggestionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSuggestionsResponse {
-        try await self.client.execute(action: "DescribeKTVSuggestions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKTVSuggestions请求参数结构体
     public struct DescribeKTVSuggestionsRequest: TCRequestModel {
         /// 联想关键词
@@ -53,5 +41,17 @@ extension Ame {
             case ktvSuggestionInfoSet = "KTVSuggestionInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取直播互动曲库联想词
+    @inlinable
+    public func describeKTVSuggestions(_ input: DescribeKTVSuggestionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVSuggestionsResponse > {
+        self.client.execute(action: "DescribeKTVSuggestions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播互动曲库联想词
+    @inlinable
+    public func describeKTVSuggestions(_ input: DescribeKTVSuggestionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSuggestionsResponse {
+        try await self.client.execute(action: "DescribeKTVSuggestions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

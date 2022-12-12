@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dasb {
-    /// 添加用户组成员
-    @inlinable
-    public func addUserGroupMembers(_ input: AddUserGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserGroupMembersResponse > {
-        self.client.execute(action: "AddUserGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加用户组成员
-    @inlinable
-    public func addUserGroupMembers(_ input: AddUserGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserGroupMembersResponse {
-        try await self.client.execute(action: "AddUserGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddUserGroupMembers请求参数结构体
     public struct AddUserGroupMembersRequest: TCRequestModel {
         /// 用户组ID
@@ -54,5 +42,17 @@ extension Dasb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加用户组成员
+    @inlinable
+    public func addUserGroupMembers(_ input: AddUserGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserGroupMembersResponse > {
+        self.client.execute(action: "AddUserGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加用户组成员
+    @inlinable
+    public func addUserGroupMembers(_ input: AddUserGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserGroupMembersResponse {
+        try await self.client.execute(action: "AddUserGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

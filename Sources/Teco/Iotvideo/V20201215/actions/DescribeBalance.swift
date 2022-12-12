@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 查询账户余额
-    @inlinable
-    public func describeBalance(_ input: DescribeBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBalanceResponse > {
-        self.client.execute(action: "DescribeBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询账户余额
-    @inlinable
-    public func describeBalance(_ input: DescribeBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBalanceResponse {
-        try await self.client.execute(action: "DescribeBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBalance请求参数结构体
     public struct DescribeBalanceRequest: TCRequestModel {
         /// 账户类型：1-设备接入；2-云存。
@@ -53,5 +41,17 @@ extension Iotvideo {
             case balance = "Balance"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询账户余额
+    @inlinable
+    public func describeBalance(_ input: DescribeBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBalanceResponse > {
+        self.client.execute(action: "DescribeBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账户余额
+    @inlinable
+    public func describeBalance(_ input: DescribeBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBalanceResponse {
+        try await self.client.execute(action: "DescribeBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

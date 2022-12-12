@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Youmall {
-    /// 查询客户单次到场轨迹
-    ///
-    /// 输出开始时间到结束时间段内的进出场数据。
-    @inlinable
-    public func describePersonTrace(_ input: DescribePersonTraceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonTraceResponse > {
-        self.client.execute(action: "DescribePersonTrace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询客户单次到场轨迹
-    ///
-    /// 输出开始时间到结束时间段内的进出场数据。
-    @inlinable
-    public func describePersonTrace(_ input: DescribePersonTraceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonTraceResponse {
-        try await self.client.execute(action: "DescribePersonTrace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePersonTrace请求参数结构体
     public struct DescribePersonTraceRequest: TCRequestModel {
         /// 卖场编码
@@ -88,5 +72,21 @@ extension Youmall {
             case traceRouteSet = "TraceRouteSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询客户单次到场轨迹
+    ///
+    /// 输出开始时间到结束时间段内的进出场数据。
+    @inlinable
+    public func describePersonTrace(_ input: DescribePersonTraceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonTraceResponse > {
+        self.client.execute(action: "DescribePersonTrace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询客户单次到场轨迹
+    ///
+    /// 输出开始时间到结束时间段内的进出场数据。
+    @inlinable
+    public func describePersonTrace(_ input: DescribePersonTraceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonTraceResponse {
+        try await self.client.execute(action: "DescribePersonTrace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

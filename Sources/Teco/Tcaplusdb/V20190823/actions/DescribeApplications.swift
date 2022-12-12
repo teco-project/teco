@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 获取审批管理的申请单
-    @inlinable
-    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationsResponse > {
-        self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取审批管理的申请单
-    @inlinable
-    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
-        try await self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplications请求参数结构体
     public struct DescribeApplicationsRequest: TCRequestModel {
         /// 集群ID，用于获取指定集群的单据
@@ -53,7 +41,7 @@ extension Tcaplusdb {
         /// 申请类型，用于过滤，0加表 1删除表 2清理表 3修改表 4表重建 5存储层扩缩容 6接入层扩缩容 7复制表数据 8key回档
         public let applyType: Int64?
         
-        public init (clusterId: String?, limit: UInt64?, offset: UInt64?, censorStatus: Int64?, tableGroupId: String?, tableName: String?, applicant: String?, applyType: Int64?) {
+        public init (clusterId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, censorStatus: Int64? = nil, tableGroupId: String? = nil, tableName: String? = nil, applicant: String? = nil, applyType: Int64? = nil) {
             self.clusterId = clusterId
             self.limit = limit
             self.offset = offset
@@ -92,5 +80,17 @@ extension Tcaplusdb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取审批管理的申请单
+    @inlinable
+    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationsResponse > {
+        self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取审批管理的申请单
+    @inlinable
+    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
+        try await self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

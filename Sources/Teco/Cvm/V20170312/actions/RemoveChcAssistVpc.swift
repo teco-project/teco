@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 清理CHC物理服务器的带外网络和部署网络
-    @inlinable
-    public func removeChcAssistVpc(_ input: RemoveChcAssistVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveChcAssistVpcResponse > {
-        self.client.execute(action: "RemoveChcAssistVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 清理CHC物理服务器的带外网络和部署网络
-    @inlinable
-    public func removeChcAssistVpc(_ input: RemoveChcAssistVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveChcAssistVpcResponse {
-        try await self.client.execute(action: "RemoveChcAssistVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemoveChcAssistVpc请求参数结构体
     public struct RemoveChcAssistVpcRequest: TCRequestModel {
         /// CHC物理服务器Id。
@@ -49,5 +37,17 @@ extension Cvm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 清理CHC物理服务器的带外网络和部署网络
+    @inlinable
+    public func removeChcAssistVpc(_ input: RemoveChcAssistVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveChcAssistVpcResponse > {
+        self.client.execute(action: "RemoveChcAssistVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 清理CHC物理服务器的带外网络和部署网络
+    @inlinable
+    public func removeChcAssistVpc(_ input: RemoveChcAssistVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveChcAssistVpcResponse {
+        try await self.client.execute(action: "RemoveChcAssistVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

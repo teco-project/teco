@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 删除单元化命名空间
-    @inlinable
-    public func deleteUnitNamespaces(_ input: DeleteUnitNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUnitNamespacesResponse > {
-        self.client.execute(action: "DeleteUnitNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除单元化命名空间
-    @inlinable
-    public func deleteUnitNamespaces(_ input: DeleteUnitNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUnitNamespacesResponse {
-        try await self.client.execute(action: "DeleteUnitNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteUnitNamespaces请求参数结构体
     public struct DeleteUnitNamespacesRequest: TCRequestModel {
         /// 网关实体ID
@@ -59,5 +47,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除单元化命名空间
+    @inlinable
+    public func deleteUnitNamespaces(_ input: DeleteUnitNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUnitNamespacesResponse > {
+        self.client.execute(action: "DeleteUnitNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除单元化命名空间
+    @inlinable
+    public func deleteUnitNamespaces(_ input: DeleteUnitNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUnitNamespacesResponse {
+        try await self.client.execute(action: "DeleteUnitNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

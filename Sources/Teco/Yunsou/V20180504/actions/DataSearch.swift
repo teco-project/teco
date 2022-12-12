@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunsou {
-    /// 数据检索接口
-    ///
-    /// 用于检索云搜中的数据
-    @inlinable
-    public func dataSearch(_ input: DataSearchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DataSearchResponse > {
-        self.client.execute(action: "DataSearch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 数据检索接口
-    ///
-    /// 用于检索云搜中的数据
-    @inlinable
-    public func dataSearch(_ input: DataSearchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DataSearchResponse {
-        try await self.client.execute(action: "DataSearch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DataSearch请求参数结构体
     public struct DataSearchRequest: TCRequestModel {
         /// 云搜的业务ID，用以表明当前数据请求的业务
@@ -102,7 +86,7 @@ extension Yunsou {
         /// 分类过滤并集
         public let multiFilter: [String]?
         
-        public init (resourceId: UInt64, searchQuery: String?, pageId: UInt64?, numPerPage: UInt64?, searchId: String?, queryEncode: UInt64?, rankType: UInt64?, numFilter: String?, clFilter: String?, extra: String?, sourceId: UInt64?, secondSearch: UInt64?, maxDocReturn: UInt64?, isSmartbox: UInt64?, enableAbsHighlight: UInt64?, qcBid: UInt64?, groupBy: String?, distinct: String?, l4RankExpression: String?, matchValue: String?, longitude: Float?, latitude: Float?, multiFilter: [String]?) {
+        public init (resourceId: UInt64, searchQuery: String? = nil, pageId: UInt64? = nil, numPerPage: UInt64? = nil, searchId: String? = nil, queryEncode: UInt64? = nil, rankType: UInt64? = nil, numFilter: String? = nil, clFilter: String? = nil, extra: String? = nil, sourceId: UInt64? = nil, secondSearch: UInt64? = nil, maxDocReturn: UInt64? = nil, isSmartbox: UInt64? = nil, enableAbsHighlight: UInt64? = nil, qcBid: UInt64? = nil, groupBy: String? = nil, distinct: String? = nil, l4RankExpression: String? = nil, matchValue: String? = nil, longitude: Float? = nil, latitude: Float? = nil, multiFilter: [String]? = nil) {
             self.resourceId = resourceId
             self.searchQuery = searchQuery
             self.pageId = pageId
@@ -167,5 +151,21 @@ extension Yunsou {
             case retMsg = "RetMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 数据检索接口
+    ///
+    /// 用于检索云搜中的数据
+    @inlinable
+    public func dataSearch(_ input: DataSearchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DataSearchResponse > {
+        self.client.execute(action: "DataSearch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 数据检索接口
+    ///
+    /// 用于检索云搜中的数据
+    @inlinable
+    public func dataSearch(_ input: DataSearchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DataSearchResponse {
+        try await self.client.execute(action: "DataSearch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

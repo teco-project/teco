@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 获取云托管代码上传和下载url
-    ///
-    /// 获取云托管代码上传url
-    @inlinable
-    public func describeCloudBaseBuildService(_ input: DescribeCloudBaseBuildServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseBuildServiceResponse > {
-        self.client.execute(action: "DescribeCloudBaseBuildService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取云托管代码上传和下载url
-    ///
-    /// 获取云托管代码上传url
-    @inlinable
-    public func describeCloudBaseBuildService(_ input: DescribeCloudBaseBuildServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseBuildServiceResponse {
-        try await self.client.execute(action: "DescribeCloudBaseBuildService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudBaseBuildService请求参数结构体
     public struct DescribeCloudBaseBuildServiceRequest: TCRequestModel {
         /// 环境id
@@ -48,7 +32,7 @@ extension Tcb {
         /// 文件后缀
         public let suffix: String?
         
-        public init (envId: String, serviceName: String, ciBusiness: String?, serviceVersion: String?, suffix: String?) {
+        public init (envId: String, serviceName: String, ciBusiness: String? = nil, serviceVersion: String? = nil, suffix: String? = nil) {
             self.envId = envId
             self.serviceName = serviceName
             self.ciBusiness = ciBusiness
@@ -104,5 +88,21 @@ extension Tcb {
             case outDate = "OutDate"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取云托管代码上传和下载url
+    ///
+    /// 获取云托管代码上传url
+    @inlinable
+    public func describeCloudBaseBuildService(_ input: DescribeCloudBaseBuildServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseBuildServiceResponse > {
+        self.client.execute(action: "DescribeCloudBaseBuildService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云托管代码上传和下载url
+    ///
+    /// 获取云托管代码上传url
+    @inlinable
+    public func describeCloudBaseBuildService(_ input: DescribeCloudBaseBuildServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseBuildServiceResponse {
+        try await self.client.execute(action: "DescribeCloudBaseBuildService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

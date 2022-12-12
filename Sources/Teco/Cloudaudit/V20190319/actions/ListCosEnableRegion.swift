@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Cloudaudit {
-    /// 查询云审计支持的cos可用区
-    @inlinable
-    public func listCosEnableRegion(_ input: ListCosEnableRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListCosEnableRegionResponse > {
-        self.client.execute(action: "ListCosEnableRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云审计支持的cos可用区
-    @inlinable
-    public func listCosEnableRegion(_ input: ListCosEnableRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListCosEnableRegionResponse {
-        try await self.client.execute(action: "ListCosEnableRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListCosEnableRegion请求参数结构体
     public struct ListCosEnableRegionRequest: TCRequestModel {
         /// 站点类型。zh表示中国区，en表示国际区。默认中国区。
         public let websiteType: String?
         
-        public init (websiteType: String?) {
+        public init (websiteType: String? = nil) {
             self.websiteType = websiteType
         }
         
@@ -53,5 +41,17 @@ extension Cloudaudit {
             case enableRegions = "EnableRegions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云审计支持的cos可用区
+    @inlinable
+    public func listCosEnableRegion(_ input: ListCosEnableRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListCosEnableRegionResponse > {
+        self.client.execute(action: "ListCosEnableRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云审计支持的cos可用区
+    @inlinable
+    public func listCosEnableRegion(_ input: ListCosEnableRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListCosEnableRegionResponse {
+        try await self.client.execute(action: "ListCosEnableRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

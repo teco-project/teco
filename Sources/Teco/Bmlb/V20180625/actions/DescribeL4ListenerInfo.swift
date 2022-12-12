@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器
-    ///
-    /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器。
-    @inlinable
-    public func describeL4ListenerInfo(_ input: DescribeL4ListenerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL4ListenerInfoResponse > {
-        self.client.execute(action: "DescribeL4ListenerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器
-    ///
-    /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器。
-    @inlinable
-    public func describeL4ListenerInfo(_ input: DescribeL4ListenerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4ListenerInfoResponse {
-        try await self.client.execute(action: "DescribeL4ListenerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeL4ListenerInfo请求参数结构体
     public struct DescribeL4ListenerInfoRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -42,7 +26,7 @@ extension Bmlb {
         /// 主机ID或虚机IP列表，可用于获取绑定了该主机的监听器。
         public let instanceIds: [String]?
         
-        public init (loadBalancerId: String, searchKey: String?, instanceIds: [String]?) {
+        public init (loadBalancerId: String, searchKey: String? = nil, instanceIds: [String]? = nil) {
             self.loadBalancerId = loadBalancerId
             self.searchKey = searchKey
             self.instanceIds = instanceIds
@@ -67,5 +51,21 @@ extension Bmlb {
             case listenerSet = "ListenerSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器
+    ///
+    /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器。
+    @inlinable
+    public func describeL4ListenerInfo(_ input: DescribeL4ListenerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL4ListenerInfoResponse > {
+        self.client.execute(action: "DescribeL4ListenerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器
+    ///
+    /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器。
+    @inlinable
+    public func describeL4ListenerInfo(_ input: DescribeL4ListenerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4ListenerInfoResponse {
+        try await self.client.execute(action: "DescribeL4ListenerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

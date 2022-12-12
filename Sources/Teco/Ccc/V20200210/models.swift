@@ -291,11 +291,11 @@ extension Ccc {
     public struct Filter: TCInputModel {
         /// 筛选字段名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let name: String
+        public let name: String?
         
         /// 筛选条件值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let values: [String]
+        public let values: [String]?
         
         public init (name: String, values: [String]) {
             self.name = name
@@ -353,7 +353,7 @@ extension Ccc {
         
         /// 满意度
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let satisfaction: IMSatisfaction
+        public let satisfaction: IMSatisfaction?
         
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -673,7 +673,7 @@ extension Ccc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let staffNumber: String?
         
-        public init (name: String?, mail: String?, phone: String?, nick: String?, userId: String?, skillGroupNameList: [String]?, staffNumber: String?) {
+        public init (name: String? = nil, mail: String? = nil, phone: String? = nil, nick: String? = nil, userId: String? = nil, skillGroupNameList: [String]? = nil, staffNumber: String? = nil) {
             self.name = name
             self.mail = mail
             self.phone = phone
@@ -1005,7 +1005,7 @@ extension Ccc {
         public let recordURL: String?
         
         /// 坐席信息
-        public let seatUser: SeatUserInfo
+        public let seatUser: SeatUserInfo?
         
         /// 结束状态
         /// 0	错误

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 添加复制组成员
-    @inlinable
-    public func addReplicationInstance(_ input: AddReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddReplicationInstanceResponse > {
-        self.client.execute(action: "AddReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加复制组成员
-    @inlinable
-    public func addReplicationInstance(_ input: AddReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddReplicationInstanceResponse {
-        try await self.client.execute(action: "AddReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddReplicationInstance请求参数结构体
     public struct AddReplicationInstanceRequest: TCRequestModel {
         /// 复制组ID。
@@ -63,5 +51,17 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加复制组成员
+    @inlinable
+    public func addReplicationInstance(_ input: AddReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddReplicationInstanceResponse > {
+        self.client.execute(action: "AddReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加复制组成员
+    @inlinable
+    public func addReplicationInstance(_ input: AddReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddReplicationInstanceResponse {
+        try await self.client.execute(action: "AddReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 创建日志集
-    ///
-    /// 本接口用于创建日志集，返回新创建的日志集的 ID。
-    @inlinable
-    public func createLogset(_ input: CreateLogsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLogsetResponse > {
-        self.client.execute(action: "CreateLogset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建日志集
-    ///
-    /// 本接口用于创建日志集，返回新创建的日志集的 ID。
-    @inlinable
-    public func createLogset(_ input: CreateLogsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogsetResponse {
-        try await self.client.execute(action: "CreateLogset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLogset请求参数结构体
     public struct CreateLogsetRequest: TCRequestModel {
         /// 日志集名字，不能重名
@@ -39,7 +23,7 @@ extension Cls {
         /// 标签描述列表。最大支持10个标签键值对，并且不能有重复的键值对
         public let tags: [Tag]?
         
-        public init (logsetName: String, tags: [Tag]?) {
+        public init (logsetName: String, tags: [Tag]? = nil) {
             self.logsetName = logsetName
             self.tags = tags
         }
@@ -62,5 +46,21 @@ extension Cls {
             case logsetId = "LogsetId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建日志集
+    ///
+    /// 本接口用于创建日志集，返回新创建的日志集的 ID。
+    @inlinable
+    public func createLogset(_ input: CreateLogsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLogsetResponse > {
+        self.client.execute(action: "CreateLogset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建日志集
+    ///
+    /// 本接口用于创建日志集，返回新创建的日志集的 ID。
+    @inlinable
+    public func createLogset(_ input: CreateLogsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogsetResponse {
+        try await self.client.execute(action: "CreateLogset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

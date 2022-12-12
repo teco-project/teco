@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 拉取函数异步事件列表
-    @inlinable
-    public func listAsyncEvents(_ input: ListAsyncEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAsyncEventsResponse > {
-        self.client.execute(action: "ListAsyncEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取函数异步事件列表
-    @inlinable
-    public func listAsyncEvents(_ input: ListAsyncEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAsyncEventsResponse {
-        try await self.client.execute(action: "ListAsyncEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListAsyncEvents请求参数结构体
     public struct ListAsyncEventsRequest: TCRequestModel {
         /// 函数名称
@@ -45,10 +33,10 @@ extension Scf {
         public let status: [String]?
         
         /// 过滤条件，开始执行时间左闭右开区间
-        public let startTimeInterval: TimeInterval
+        public let startTimeInterval: TimeInterval?
         
         /// 过滤条件，结束执行时间左闭右开区间
-        public let endTimeInterval: TimeInterval
+        public let endTimeInterval: TimeInterval?
         
         /// 可选值 ASC 和 DESC，默认 DESC
         public let order: String?
@@ -65,7 +53,7 @@ extension Scf {
         /// 过滤条件，事件调用请求id
         public let invokeRequestId: String?
         
-        public init (functionName: String, namespace: String?, qualifier: String?, invokeType: [String]?, status: [String]?, startTimeInterval: TimeInterval, endTimeInterval: TimeInterval, order: String?, orderby: String?, offset: Int64?, limit: Int64?, invokeRequestId: String?) {
+        public init (functionName: String, namespace: String? = nil, qualifier: String? = nil, invokeType: [String]? = nil, status: [String]? = nil, startTimeInterval: TimeInterval? = nil, endTimeInterval: TimeInterval? = nil, order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, invokeRequestId: String? = nil) {
             self.functionName = functionName
             self.namespace = namespace
             self.qualifier = qualifier
@@ -112,5 +100,17 @@ extension Scf {
             case eventList = "EventList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取函数异步事件列表
+    @inlinable
+    public func listAsyncEvents(_ input: ListAsyncEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAsyncEventsResponse > {
+        self.client.execute(action: "ListAsyncEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取函数异步事件列表
+    @inlinable
+    public func listAsyncEvents(_ input: ListAsyncEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAsyncEventsResponse {
+        try await self.client.execute(action: "ListAsyncEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

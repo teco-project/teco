@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 续费实例
-    ///
-    /// 本接口（RenewDBInstance）用于续费云数据库实例。
-    @inlinable
-    public func renewDBInstance(_ input: RenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewDBInstanceResponse > {
-        self.client.execute(action: "RenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费实例
-    ///
-    /// 本接口（RenewDBInstance）用于续费云数据库实例。
-    @inlinable
-    public func renewDBInstance(_ input: RenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstanceResponse {
-        try await self.client.execute(action: "RenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RenewDBInstance请求参数结构体
     public struct RenewDBInstanceRequest: TCRequestModel {
         /// 待续费的实例ID。形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
@@ -45,7 +29,7 @@ extension Mariadb {
         /// 代金券ID列表，目前仅支持指定一张代金券。
         public let voucherIds: [String]?
         
-        public init (instanceId: String, period: Int64, autoVoucher: Bool?, voucherIds: [String]?) {
+        public init (instanceId: String, period: Int64, autoVoucher: Bool? = nil, voucherIds: [String]? = nil) {
             self.instanceId = instanceId
             self.period = period
             self.autoVoucher = autoVoucher
@@ -73,5 +57,21 @@ extension Mariadb {
             case dealName = "DealName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费实例
+    ///
+    /// 本接口（RenewDBInstance）用于续费云数据库实例。
+    @inlinable
+    public func renewDBInstance(_ input: RenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewDBInstanceResponse > {
+        self.client.execute(action: "RenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费实例
+    ///
+    /// 本接口（RenewDBInstance）用于续费云数据库实例。
+    @inlinable
+    public func renewDBInstance(_ input: RenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstanceResponse {
+        try await self.client.execute(action: "RenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

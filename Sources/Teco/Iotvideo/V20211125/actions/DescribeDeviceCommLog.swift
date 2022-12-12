@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取设备通讯日志
-    ///
-    /// 获取设备在指定时间范围内的通讯日志
-    @inlinable
-    public func describeDeviceCommLog(_ input: DescribeDeviceCommLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceCommLogResponse > {
-        self.client.execute(action: "DescribeDeviceCommLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备通讯日志
-    ///
-    /// 获取设备在指定时间范围内的通讯日志
-    @inlinable
-    public func describeDeviceCommLog(_ input: DescribeDeviceCommLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceCommLogResponse {
-        try await self.client.execute(action: "DescribeDeviceCommLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceCommLog请求参数结构体
     public struct DescribeDeviceCommLogRequest: TCRequestModel {
         /// 开始时间 13位时间戳 单位毫秒
@@ -54,7 +38,7 @@ extension Iotvideo {
         /// 类型：shadow 下行，device 上行 默认为空则全部查询
         public let type: String?
         
-        public init (minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: UInt64?, context: String?, type: String?) {
+        public init (minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: UInt64? = nil, context: String? = nil, type: String? = nil) {
             self.minTime = minTime
             self.maxTime = maxTime
             self.productId = productId
@@ -95,5 +79,21 @@ extension Iotvideo {
             case results = "Results"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备通讯日志
+    ///
+    /// 获取设备在指定时间范围内的通讯日志
+    @inlinable
+    public func describeDeviceCommLog(_ input: DescribeDeviceCommLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceCommLogResponse > {
+        self.client.execute(action: "DescribeDeviceCommLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备通讯日志
+    ///
+    /// 获取设备在指定时间范围内的通讯日志
+    @inlinable
+    public func describeDeviceCommLog(_ input: DescribeDeviceCommLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceCommLogResponse {
+        try await self.client.execute(action: "DescribeDeviceCommLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

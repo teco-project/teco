@@ -15,6 +15,105 @@
 // DO NOT EDIT.
 
 extension Ocr {
+    /// GeneralBasicOCR请求参数结构体
+    public struct GeneralBasicOCRRequest: TCRequestModel {
+        /// 图片/PDF的 Base64 值。
+        /// 要求图片/PDF经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。
+        /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        public let imageBase64: String?
+        
+        /// 图片/PDF的 Url 地址。
+        /// 要求图片/PDF经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。
+        /// 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        public let imageUrl: String?
+        
+        /// 保留字段。
+        public let scene: String?
+        
+        /// 识别语言类型。
+        /// 支持自动识别语言类型，同时支持自选语言种类，默认中英文混合(zh)，各种语言均支持与英文混合的文字识别。
+        /// 可选值：
+        /// zh：中英混合
+        /// zh_rare：支持英文、数字、中文生僻字、繁体字，特殊符号等
+        /// auto：自动
+        /// mix：混合语种
+        /// jap：日语
+        /// kor：韩语
+        /// spa：西班牙语
+        /// fre：法语
+        /// ger：德语
+        /// por：葡萄牙语
+        /// vie：越语
+        /// may：马来语
+        /// rus：俄语
+        /// ita：意大利语
+        /// hol：荷兰语
+        /// swe：瑞典语
+        /// fin：芬兰语
+        /// dan：丹麦语
+        /// nor：挪威语
+        /// hun：匈牙利语
+        /// tha：泰语
+        /// hi：印地语
+        /// ara：阿拉伯语
+        public let languageType: String?
+        
+        /// 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
+        public let isPdf: Bool?
+        
+        /// 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        public let pdfPageNumber: UInt64?
+        
+        /// 是否返回单字信息，默认关
+        public let isWords: Bool?
+        
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, scene: String? = nil, languageType: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, isWords: Bool? = nil) {
+            self.imageBase64 = imageBase64
+            self.imageUrl = imageUrl
+            self.scene = scene
+            self.languageType = languageType
+            self.isPdf = isPdf
+            self.pdfPageNumber = pdfPageNumber
+            self.isWords = isWords
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case imageBase64 = "ImageBase64"
+            case imageUrl = "ImageUrl"
+            case scene = "Scene"
+            case languageType = "LanguageType"
+            case isPdf = "IsPdf"
+            case pdfPageNumber = "PdfPageNumber"
+            case isWords = "IsWords"
+        }
+    }
+    
+    /// GeneralBasicOCR返回参数结构体
+    public struct GeneralBasicOCRResponse: TCResponseModel {
+        /// 检测到的文本信息，包括文本行内容、置信度、文本行坐标以及文本行旋转纠正后的坐标，具体内容请点击左侧链接。
+        public let textDetections: [TextDetection]
+        
+        /// 检测到的语言类型，目前支持的语言类型参考入参LanguageType说明。
+        public let language: String
+        
+        /// 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
+        public let angel: Float
+        
+        /// 图片为PDF时，返回PDF的总页数，默认为0
+        public let pdfPageSize: Int64
+        
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case textDetections = "TextDetections"
+            case language = "Language"
+            case angel = "Angel"
+            case pdfPageSize = "PdfPageSize"
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 通用印刷体识别
     ///
     /// 本接口支持图像整体文字的检测和识别。可以识别中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语，阿拉伯语20种语言，且各种语言均支持与英文混合的文字识别。
@@ -145,104 +244,5 @@ extension Ocr {
     @inlinable
     public func generalBasicOCR(_ input: GeneralBasicOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralBasicOCRResponse {
         try await self.client.execute(action: "GeneralBasicOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// GeneralBasicOCR请求参数结构体
-    public struct GeneralBasicOCRRequest: TCRequestModel {
-        /// 图片/PDF的 Base64 值。
-        /// 要求图片/PDF经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。
-        /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        public let imageBase64: String?
-        
-        /// 图片/PDF的 Url 地址。
-        /// 要求图片/PDF经Base64编码后不超过 7M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。
-        /// 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        public let imageUrl: String?
-        
-        /// 保留字段。
-        public let scene: String?
-        
-        /// 识别语言类型。
-        /// 支持自动识别语言类型，同时支持自选语言种类，默认中英文混合(zh)，各种语言均支持与英文混合的文字识别。
-        /// 可选值：
-        /// zh：中英混合
-        /// zh_rare：支持英文、数字、中文生僻字、繁体字，特殊符号等
-        /// auto：自动
-        /// mix：混合语种
-        /// jap：日语
-        /// kor：韩语
-        /// spa：西班牙语
-        /// fre：法语
-        /// ger：德语
-        /// por：葡萄牙语
-        /// vie：越语
-        /// may：马来语
-        /// rus：俄语
-        /// ita：意大利语
-        /// hol：荷兰语
-        /// swe：瑞典语
-        /// fin：芬兰语
-        /// dan：丹麦语
-        /// nor：挪威语
-        /// hun：匈牙利语
-        /// tha：泰语
-        /// hi：印地语
-        /// ara：阿拉伯语
-        public let languageType: String?
-        
-        /// 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
-        public let isPdf: Bool?
-        
-        /// 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
-        public let pdfPageNumber: UInt64?
-        
-        /// 是否返回单字信息，默认关
-        public let isWords: Bool?
-        
-        public init (imageBase64: String?, imageUrl: String?, scene: String?, languageType: String?, isPdf: Bool?, pdfPageNumber: UInt64?, isWords: Bool?) {
-            self.imageBase64 = imageBase64
-            self.imageUrl = imageUrl
-            self.scene = scene
-            self.languageType = languageType
-            self.isPdf = isPdf
-            self.pdfPageNumber = pdfPageNumber
-            self.isWords = isWords
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case imageBase64 = "ImageBase64"
-            case imageUrl = "ImageUrl"
-            case scene = "Scene"
-            case languageType = "LanguageType"
-            case isPdf = "IsPdf"
-            case pdfPageNumber = "PdfPageNumber"
-            case isWords = "IsWords"
-        }
-    }
-    
-    /// GeneralBasicOCR返回参数结构体
-    public struct GeneralBasicOCRResponse: TCResponseModel {
-        /// 检测到的文本信息，包括文本行内容、置信度、文本行坐标以及文本行旋转纠正后的坐标，具体内容请点击左侧链接。
-        public let textDetections: [TextDetection]
-        
-        /// 检测到的语言类型，目前支持的语言类型参考入参LanguageType说明。
-        public let language: String
-        
-        /// 图片旋转角度（角度制），文本的水平方向为0°；顺时针为正，逆时针为负。点击查看<a href="https://cloud.tencent.com/document/product/866/45139">如何纠正倾斜文本</a>
-        public let angel: Float
-        
-        /// 图片为PDF时，返回PDF的总页数，默认为0
-        public let pdfPageSize: Int64
-        
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case textDetections = "TextDetections"
-            case language = "Language"
-            case angel = "Angel"
-            case pdfPageSize = "PdfPageSize"
-            case requestId = "RequestId"
-        }
     }
 }

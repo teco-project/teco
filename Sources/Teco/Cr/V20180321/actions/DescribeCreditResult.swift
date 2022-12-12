@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cr {
-    /// 获取信审结果
-    ///
-    /// 根据信审任务ID和请求日期，获取相关信审结果。
-    @inlinable
-    public func describeCreditResult(_ input: DescribeCreditResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCreditResultResponse > {
-        self.client.execute(action: "DescribeCreditResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取信审结果
-    ///
-    /// 根据信审任务ID和请求日期，获取相关信审结果。
-    @inlinable
-    public func describeCreditResult(_ input: DescribeCreditResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCreditResultResponse {
-        try await self.client.execute(action: "DescribeCreditResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCreditResult请求参数结构体
     public struct DescribeCreditResultRequest: TCRequestModel {
         /// 模块名，本接口取值：Credit
@@ -108,5 +92,21 @@ extension Cr {
             case contextValue = "ContextValue"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取信审结果
+    ///
+    /// 根据信审任务ID和请求日期，获取相关信审结果。
+    @inlinable
+    public func describeCreditResult(_ input: DescribeCreditResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCreditResultResponse > {
+        self.client.execute(action: "DescribeCreditResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取信审结果
+    ///
+    /// 根据信审任务ID和请求日期，获取相关信审结果。
+    @inlinable
+    public func describeCreditResult(_ input: DescribeCreditResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCreditResultResponse {
+        try await self.client.execute(action: "DescribeCreditResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

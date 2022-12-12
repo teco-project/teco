@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 获取公钥
-    @inlinable
-    public func describePublicKey(_ input: DescribePublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicKeyResponse > {
-        self.client.execute(action: "DescribePublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取公钥
-    @inlinable
-    public func describePublicKey(_ input: DescribePublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicKeyResponse {
-        try await self.client.execute(action: "DescribePublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePublicKey请求参数结构体
     public struct DescribePublicKeyRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Tcss {
             case publicKey = "PublicKey"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取公钥
+    @inlinable
+    public func describePublicKey(_ input: DescribePublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicKeyResponse > {
+        self.client.execute(action: "DescribePublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取公钥
+    @inlinable
+    public func describePublicKey(_ input: DescribePublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicKeyResponse {
+        try await self.client.execute(action: "DescribePublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

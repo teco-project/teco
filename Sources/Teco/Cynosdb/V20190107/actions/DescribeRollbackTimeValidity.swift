@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 查询指定时间是否可回滚
-    ///
-    /// 指定时间和集群查询是否可回滚
-    @inlinable
-    public func describeRollbackTimeValidity(_ input: DescribeRollbackTimeValidityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRollbackTimeValidityResponse > {
-        self.client.execute(action: "DescribeRollbackTimeValidity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询指定时间是否可回滚
-    ///
-    /// 指定时间和集群查询是否可回滚
-    @inlinable
-    public func describeRollbackTimeValidity(_ input: DescribeRollbackTimeValidityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTimeValidityResponse {
-        try await self.client.execute(action: "DescribeRollbackTimeValidity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRollbackTimeValidity请求参数结构体
     public struct DescribeRollbackTimeValidityRequest: TCRequestModel {
         /// 集群ID
@@ -79,5 +63,21 @@ extension Cynosdb {
             case suggestTime = "SuggestTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询指定时间是否可回滚
+    ///
+    /// 指定时间和集群查询是否可回滚
+    @inlinable
+    public func describeRollbackTimeValidity(_ input: DescribeRollbackTimeValidityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRollbackTimeValidityResponse > {
+        self.client.execute(action: "DescribeRollbackTimeValidity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指定时间是否可回滚
+    ///
+    /// 指定时间和集群查询是否可回滚
+    @inlinable
+    public func describeRollbackTimeValidity(_ input: DescribeRollbackTimeValidityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTimeValidityResponse {
+        try await self.client.execute(action: "DescribeRollbackTimeValidity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiia {
-    /// 删除图片
-    ///
-    /// 删除图片。
-    @inlinable
-    public func deleteImages(_ input: DeleteImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImagesResponse > {
-        self.client.execute(action: "DeleteImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除图片
-    ///
-    /// 删除图片。
-    @inlinable
-    public func deleteImages(_ input: DeleteImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
-        try await self.client.execute(action: "DeleteImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteImages请求参数结构体
     public struct DeleteImagesRequest: TCRequestModel {
         /// 图库名称。
@@ -42,7 +26,7 @@ extension Tiia {
         /// 图片名称，如果不指定本参数，则删除EntityId下所有的图片；否则删除指定的图。
         public let picName: String?
         
-        public init (groupId: String, entityId: String, picName: String?) {
+        public init (groupId: String, entityId: String, picName: String? = nil) {
             self.groupId = groupId
             self.entityId = entityId
             self.picName = picName
@@ -63,5 +47,21 @@ extension Tiia {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除图片
+    ///
+    /// 删除图片。
+    @inlinable
+    public func deleteImages(_ input: DeleteImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImagesResponse > {
+        self.client.execute(action: "DeleteImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除图片
+    ///
+    /// 删除图片。
+    @inlinable
+    public func deleteImages(_ input: DeleteImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
+        try await self.client.execute(action: "DeleteImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

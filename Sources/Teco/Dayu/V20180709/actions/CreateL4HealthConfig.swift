@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 上传四层健康检查配置
-    @inlinable
-    public func createL4HealthConfig(_ input: CreateL4HealthConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL4HealthConfigResponse > {
-        self.client.execute(action: "CreateL4HealthConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上传四层健康检查配置
-    @inlinable
-    public func createL4HealthConfig(_ input: CreateL4HealthConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL4HealthConfigResponse {
-        try await self.client.execute(action: "CreateL4HealthConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateL4HealthConfig请求参数结构体
     public struct CreateL4HealthConfigRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -63,5 +51,17 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上传四层健康检查配置
+    @inlinable
+    public func createL4HealthConfig(_ input: CreateL4HealthConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL4HealthConfigResponse > {
+        self.client.execute(action: "CreateL4HealthConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上传四层健康检查配置
+    @inlinable
+    public func createL4HealthConfig(_ input: CreateL4HealthConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL4HealthConfigResponse {
+        try await self.client.execute(action: "CreateL4HealthConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

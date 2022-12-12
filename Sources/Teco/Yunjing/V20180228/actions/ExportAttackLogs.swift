@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 导出网络攻击日志
-    @inlinable
-    public func exportAttackLogs(_ input: ExportAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportAttackLogsResponse > {
-        self.client.execute(action: "ExportAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出网络攻击日志
-    @inlinable
-    public func exportAttackLogs(_ input: ExportAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAttackLogsResponse {
-        try await self.client.execute(action: "ExportAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportAttackLogs请求参数结构体
     public struct ExportAttackLogsRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Yunjing {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出网络攻击日志
+    @inlinable
+    public func exportAttackLogs(_ input: ExportAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportAttackLogsResponse > {
+        self.client.execute(action: "ExportAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出网络攻击日志
+    @inlinable
+    public func exportAttackLogs(_ input: ExportAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAttackLogsResponse {
+        try await self.client.execute(action: "ExportAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

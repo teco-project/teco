@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 根据证书ID查询负载均衡
-    ///
-    /// 根据证书ID查询其在一个地域中所关联到负载均衡实例列表
-    @inlinable
-    public func describeLoadBalancerListByCertId(_ input: DescribeLoadBalancerListByCertIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancerListByCertIdResponse > {
-        self.client.execute(action: "DescribeLoadBalancerListByCertId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据证书ID查询负载均衡
-    ///
-    /// 根据证书ID查询其在一个地域中所关联到负载均衡实例列表
-    @inlinable
-    public func describeLoadBalancerListByCertId(_ input: DescribeLoadBalancerListByCertIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerListByCertIdResponse {
-        try await self.client.execute(action: "DescribeLoadBalancerListByCertId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLoadBalancerListByCertId请求参数结构体
     public struct DescribeLoadBalancerListByCertIdRequest: TCRequestModel {
         /// 服务端证书的ID，或客户端证书的ID
@@ -57,5 +41,21 @@ extension Clb {
             case certSet = "CertSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据证书ID查询负载均衡
+    ///
+    /// 根据证书ID查询其在一个地域中所关联到负载均衡实例列表
+    @inlinable
+    public func describeLoadBalancerListByCertId(_ input: DescribeLoadBalancerListByCertIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancerListByCertIdResponse > {
+        self.client.execute(action: "DescribeLoadBalancerListByCertId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据证书ID查询负载均衡
+    ///
+    /// 根据证书ID查询其在一个地域中所关联到负载均衡实例列表
+    @inlinable
+    public func describeLoadBalancerListByCertId(_ input: DescribeLoadBalancerListByCertIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerListByCertIdResponse {
+        try await self.client.execute(action: "DescribeLoadBalancerListByCertId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

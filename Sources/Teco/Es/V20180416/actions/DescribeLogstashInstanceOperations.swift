@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 查询Logstash实例操作记录
-    ///
-    /// 查询实例指定条件下的操作记录
-    @inlinable
-    public func describeLogstashInstanceOperations(_ input: DescribeLogstashInstanceOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogstashInstanceOperationsResponse > {
-        self.client.execute(action: "DescribeLogstashInstanceOperations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Logstash实例操作记录
-    ///
-    /// 查询实例指定条件下的操作记录
-    @inlinable
-    public func describeLogstashInstanceOperations(_ input: DescribeLogstashInstanceOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashInstanceOperationsResponse {
-        try await self.client.execute(action: "DescribeLogstashInstanceOperations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLogstashInstanceOperations请求参数结构体
     public struct DescribeLogstashInstanceOperationsRequest: TCRequestModel {
         /// 实例ID
@@ -48,7 +32,7 @@ extension Es {
         /// 分页大小
         public let limit: UInt64?
         
-        public init (instanceId: String, startTime: String?, endTime: String?, offset: UInt64?, limit: UInt64?) {
+        public init (instanceId: String, startTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -81,5 +65,21 @@ extension Es {
             case operations = "Operations"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Logstash实例操作记录
+    ///
+    /// 查询实例指定条件下的操作记录
+    @inlinable
+    public func describeLogstashInstanceOperations(_ input: DescribeLogstashInstanceOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogstashInstanceOperationsResponse > {
+        self.client.execute(action: "DescribeLogstashInstanceOperations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Logstash实例操作记录
+    ///
+    /// 查询实例指定条件下的操作记录
+    @inlinable
+    public func describeLogstashInstanceOperations(_ input: DescribeLogstashInstanceOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashInstanceOperationsResponse {
+        try await self.client.execute(action: "DescribeLogstashInstanceOperations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除终端节点服务
-    ///
-    /// 删除终端节点服务。
-    @inlinable
-    public func deleteVpcEndPointService(_ input: DeleteVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcEndPointServiceResponse > {
-        self.client.execute(action: "DeleteVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除终端节点服务
-    ///
-    /// 删除终端节点服务。
-    @inlinable
-    public func deleteVpcEndPointService(_ input: DeleteVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcEndPointServiceResponse {
-        try await self.client.execute(action: "DeleteVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteVpcEndPointService请求参数结构体
     public struct DeleteVpcEndPointServiceRequest: TCRequestModel {
         /// 终端节点ID。
@@ -53,5 +37,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除终端节点服务
+    ///
+    /// 删除终端节点服务。
+    @inlinable
+    public func deleteVpcEndPointService(_ input: DeleteVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcEndPointServiceResponse > {
+        self.client.execute(action: "DeleteVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除终端节点服务
+    ///
+    /// 删除终端节点服务。
+    @inlinable
+    public func deleteVpcEndPointService(_ input: DeleteVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcEndPointServiceResponse {
+        try await self.client.execute(action: "DeleteVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 实例化结果查询
-    @inlinable
-    public func getChaincodeInitializeResultForUser(_ input: GetChaincodeInitializeResultForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetChaincodeInitializeResultForUserResponse > {
-        self.client.execute(action: "GetChaincodeInitializeResultForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实例化结果查询
-    @inlinable
-    public func getChaincodeInitializeResultForUser(_ input: GetChaincodeInitializeResultForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChaincodeInitializeResultForUserResponse {
-        try await self.client.execute(action: "GetChaincodeInitializeResultForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetChaincodeInitializeResultForUser请求参数结构体
     public struct GetChaincodeInitializeResultForUserRequest: TCRequestModel {
         /// 模块名，本接口取值：chaincode_mng
@@ -92,5 +80,17 @@ extension Tbaas {
             case initMessage = "InitMessage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实例化结果查询
+    @inlinable
+    public func getChaincodeInitializeResultForUser(_ input: GetChaincodeInitializeResultForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetChaincodeInitializeResultForUserResponse > {
+        self.client.execute(action: "GetChaincodeInitializeResultForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实例化结果查询
+    @inlinable
+    public func getChaincodeInitializeResultForUser(_ input: GetChaincodeInitializeResultForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChaincodeInitializeResultForUserResponse {
+        try await self.client.execute(action: "GetChaincodeInitializeResultForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

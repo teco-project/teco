@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 重新执行任务的一次执行
-    ///
-    /// 重新执行在某个节点上执行任务。
-    @inlinable
-    public func redoTaskExecute(_ input: RedoTaskExecuteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RedoTaskExecuteResponse > {
-        self.client.execute(action: "RedoTaskExecute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重新执行任务的一次执行
-    ///
-    /// 重新执行在某个节点上执行任务。
-    @inlinable
-    public func redoTaskExecute(_ input: RedoTaskExecuteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskExecuteResponse {
-        try await self.client.execute(action: "RedoTaskExecute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RedoTaskExecute请求参数结构体
     public struct RedoTaskExecuteRequest: TCRequestModel {
         /// 任务批次ID
@@ -67,5 +51,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重新执行任务的一次执行
+    ///
+    /// 重新执行在某个节点上执行任务。
+    @inlinable
+    public func redoTaskExecute(_ input: RedoTaskExecuteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RedoTaskExecuteResponse > {
+        self.client.execute(action: "RedoTaskExecute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重新执行任务的一次执行
+    ///
+    /// 重新执行在某个节点上执行任务。
+    @inlinable
+    public func redoTaskExecute(_ input: RedoTaskExecuteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskExecuteResponse {
+        try await self.client.execute(action: "RedoTaskExecute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

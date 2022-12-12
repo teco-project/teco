@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 修改私有域
-    ///
-    /// 修改私有域信息
-    @inlinable
-    public func modifyPrivateZone(_ input: ModifyPrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrivateZoneResponse > {
-        self.client.execute(action: "ModifyPrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改私有域
-    ///
-    /// 修改私有域信息
-    @inlinable
-    public func modifyPrivateZone(_ input: ModifyPrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneResponse {
-        try await self.client.execute(action: "ModifyPrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPrivateZone请求参数结构体
     public struct ModifyPrivateZoneRequest: TCRequestModel {
         /// 私有域ID
@@ -45,7 +29,7 @@ extension Privatedns {
         /// 是否开启CNAME加速：ENABLED， DISABLED
         public let cnameSpeedupStatus: String?
         
-        public init (zoneId: String, remark: String?, dnsForwardStatus: String?, cnameSpeedupStatus: String?) {
+        public init (zoneId: String, remark: String? = nil, dnsForwardStatus: String? = nil, cnameSpeedupStatus: String? = nil) {
             self.zoneId = zoneId
             self.remark = remark
             self.dnsForwardStatus = dnsForwardStatus
@@ -68,5 +52,21 @@ extension Privatedns {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改私有域
+    ///
+    /// 修改私有域信息
+    @inlinable
+    public func modifyPrivateZone(_ input: ModifyPrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrivateZoneResponse > {
+        self.client.execute(action: "ModifyPrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改私有域
+    ///
+    /// 修改私有域信息
+    @inlinable
+    public func modifyPrivateZone(_ input: ModifyPrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneResponse {
+        try await self.client.execute(action: "ModifyPrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

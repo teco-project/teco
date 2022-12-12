@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 删除固件
-    ///
-    /// 本接口（DeleteFirmware）用于删除固件 
-    @inlinable
-    public func deleteFirmware(_ input: DeleteFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFirmwareResponse > {
-        self.client.execute(action: "DeleteFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除固件
-    ///
-    /// 本接口（DeleteFirmware）用于删除固件 
-    @inlinable
-    public func deleteFirmware(_ input: DeleteFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirmwareResponse {
-        try await self.client.execute(action: "DeleteFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteFirmware请求参数结构体
     public struct DeleteFirmwareRequest: TCRequestModel {
         /// 产品ID
@@ -58,5 +42,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除固件
+    ///
+    /// 本接口（DeleteFirmware）用于删除固件 
+    @inlinable
+    public func deleteFirmware(_ input: DeleteFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFirmwareResponse > {
+        self.client.execute(action: "DeleteFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除固件
+    ///
+    /// 本接口（DeleteFirmware）用于删除固件 
+    @inlinable
+    public func deleteFirmware(_ input: DeleteFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirmwareResponse {
+        try await self.client.execute(action: "DeleteFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

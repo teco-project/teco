@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 集群详情
-    ///
-    /// 显示集群详情
-    @inlinable
-    public func describeClusterDetail(_ input: DescribeClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterDetailResponse > {
-        self.client.execute(action: "DescribeClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 集群详情
-    ///
-    /// 显示集群详情
-    @inlinable
-    public func describeClusterDetail(_ input: DescribeClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterDetailResponse {
-        try await self.client.execute(action: "DescribeClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterDetail请求参数结构体
     public struct DescribeClusterDetailRequest: TCRequestModel {
         /// 集群Id
@@ -57,5 +41,21 @@ extension Cynosdb {
             case detail = "Detail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 集群详情
+    ///
+    /// 显示集群详情
+    @inlinable
+    public func describeClusterDetail(_ input: DescribeClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterDetailResponse > {
+        self.client.execute(action: "DescribeClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 集群详情
+    ///
+    /// 显示集群详情
+    @inlinable
+    public func describeClusterDetail(_ input: DescribeClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterDetailResponse {
+        try await self.client.execute(action: "DescribeClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

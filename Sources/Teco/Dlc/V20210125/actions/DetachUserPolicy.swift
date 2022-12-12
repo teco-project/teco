@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 解绑用户鉴权策略
-    @inlinable
-    public func detachUserPolicy(_ input: DetachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachUserPolicyResponse > {
-        self.client.execute(action: "DetachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑用户鉴权策略
-    @inlinable
-    public func detachUserPolicy(_ input: DetachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachUserPolicyResponse {
-        try await self.client.execute(action: "DetachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetachUserPolicy请求参数结构体
     public struct DetachUserPolicyRequest: TCRequestModel {
         /// 用户Id，和CAM侧Uin匹配
@@ -35,7 +23,7 @@ extension Dlc {
         /// 解绑的权限集合
         public let policySet: [Policy]?
         
-        public init (userId: String, policySet: [Policy]?) {
+        public init (userId: String, policySet: [Policy]? = nil) {
             self.userId = userId
             self.policySet = policySet
         }
@@ -54,5 +42,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑用户鉴权策略
+    @inlinable
+    public func detachUserPolicy(_ input: DetachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachUserPolicyResponse > {
+        self.client.execute(action: "DetachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑用户鉴权策略
+    @inlinable
+    public func detachUserPolicy(_ input: DetachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachUserPolicyResponse {
+        try await self.client.execute(action: "DetachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

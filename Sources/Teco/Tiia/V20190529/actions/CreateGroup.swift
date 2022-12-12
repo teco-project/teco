@@ -15,32 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiia {
-    /// 创建图片库
-    ///
-    /// 本接口用于创建一个空的图片库，图片库主要用于存储在创建图片时提取的图片特征数据，如果图片库已存在则返回错误。不同的图片库类型对应不同的图像搜索服务类型，根据输入参数GroupType区分。
-    /// | 服务类型 | GroupType入参 |功能描述 |
-    /// |  :----------  | :----- |:-----------------  |
-    /// | 相同图像搜索<div style="width: 70pt"> | 4 |在自建图片库中搜索相同原图或高相似图，并给出相似度打分，可支持裁剪、翻转、调色、加水印等二次编辑后的图片搜索。适用于图片版权保护、原图查询等场景。|
-    /// | 商品图像搜索<div style="width: 70pt"> | 5 |在自建图库中搜索同款商品，并给出相似度打分。对于服饰类商品可支持识别服饰类别、属性等信息。适用于商品分类、检索、推荐等电商场景。|
-    /// | 相似图像搜索<div style="width: 70pt"> | 6 |在自建图库中搜索相似的图案、logo、纹理等图像元素或主体，并给出相似度打分。|
-    @inlinable
-    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGroupResponse > {
-        self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建图片库
-    ///
-    /// 本接口用于创建一个空的图片库，图片库主要用于存储在创建图片时提取的图片特征数据，如果图片库已存在则返回错误。不同的图片库类型对应不同的图像搜索服务类型，根据输入参数GroupType区分。
-    /// | 服务类型 | GroupType入参 |功能描述 |
-    /// |  :----------  | :----- |:-----------------  |
-    /// | 相同图像搜索<div style="width: 70pt"> | 4 |在自建图片库中搜索相同原图或高相似图，并给出相似度打分，可支持裁剪、翻转、调色、加水印等二次编辑后的图片搜索。适用于图片版权保护、原图查询等场景。|
-    /// | 商品图像搜索<div style="width: 70pt"> | 5 |在自建图库中搜索同款商品，并给出相似度打分。对于服饰类商品可支持识别服饰类别、属性等信息。适用于商品分类、检索、推荐等电商场景。|
-    /// | 相似图像搜索<div style="width: 70pt"> | 6 |在自建图库中搜索相似的图案、logo、纹理等图像元素或主体，并给出相似度打分。|
-    @inlinable
-    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
-        try await self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateGroup请求参数结构体
     public struct CreateGroupRequest: TCRequestModel {
         /// 图库ID，不可重复，仅支持字母、数字和下划线。
@@ -65,7 +39,7 @@ extension Tiia {
         /// 6：相似图像搜索。
         public let groupType: UInt64?
         
-        public init (groupId: String, groupName: String, maxCapacity: UInt64, brief: String?, maxQps: UInt64?, groupType: UInt64?) {
+        public init (groupId: String, groupName: String, maxCapacity: UInt64, brief: String? = nil, maxQps: UInt64? = nil, groupType: UInt64? = nil) {
             self.groupId = groupId
             self.groupName = groupName
             self.maxCapacity = maxCapacity
@@ -92,5 +66,31 @@ extension Tiia {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建图片库
+    ///
+    /// 本接口用于创建一个空的图片库，图片库主要用于存储在创建图片时提取的图片特征数据，如果图片库已存在则返回错误。不同的图片库类型对应不同的图像搜索服务类型，根据输入参数GroupType区分。
+    /// | 服务类型 | GroupType入参 |功能描述 |
+    /// |  :----------  | :----- |:-----------------  |
+    /// | 相同图像搜索<div style="width: 70pt"> | 4 |在自建图片库中搜索相同原图或高相似图，并给出相似度打分，可支持裁剪、翻转、调色、加水印等二次编辑后的图片搜索。适用于图片版权保护、原图查询等场景。|
+    /// | 商品图像搜索<div style="width: 70pt"> | 5 |在自建图库中搜索同款商品，并给出相似度打分。对于服饰类商品可支持识别服饰类别、属性等信息。适用于商品分类、检索、推荐等电商场景。|
+    /// | 相似图像搜索<div style="width: 70pt"> | 6 |在自建图库中搜索相似的图案、logo、纹理等图像元素或主体，并给出相似度打分。|
+    @inlinable
+    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGroupResponse > {
+        self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建图片库
+    ///
+    /// 本接口用于创建一个空的图片库，图片库主要用于存储在创建图片时提取的图片特征数据，如果图片库已存在则返回错误。不同的图片库类型对应不同的图像搜索服务类型，根据输入参数GroupType区分。
+    /// | 服务类型 | GroupType入参 |功能描述 |
+    /// |  :----------  | :----- |:-----------------  |
+    /// | 相同图像搜索<div style="width: 70pt"> | 4 |在自建图片库中搜索相同原图或高相似图，并给出相似度打分，可支持裁剪、翻转、调色、加水印等二次编辑后的图片搜索。适用于图片版权保护、原图查询等场景。|
+    /// | 商品图像搜索<div style="width: 70pt"> | 5 |在自建图库中搜索同款商品，并给出相似度打分。对于服饰类商品可支持识别服饰类别、属性等信息。适用于商品分类、检索、推荐等电商场景。|
+    /// | 相似图像搜索<div style="width: 70pt"> | 6 |在自建图库中搜索相似的图案、logo、纹理等图像元素或主体，并给出相似度打分。|
+    @inlinable
+    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
+        try await self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

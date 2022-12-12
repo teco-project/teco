@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 新增修改限流
-    @inlinable
-    public func modifyProjectLimit(_ input: ModifyProjectLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectLimitResponse > {
-        self.client.execute(action: "ModifyProjectLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增修改限流
-    @inlinable
-    public func modifyProjectLimit(_ input: ModifyProjectLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectLimitResponse {
-        try await self.client.execute(action: "ModifyProjectLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyProjectLimit请求参数结构体
     public struct ModifyProjectLimitRequest: TCRequestModel {
         /// 项目ID
@@ -44,7 +32,7 @@ extension Rum {
         /// 主键ID
         public let id: Int64?
         
-        public init (projectID: Int64, projectInterface: String?, reportRate: Int64?, reportType: Int64?, id: Int64?) {
+        public init (projectID: Int64, projectInterface: String? = nil, reportRate: Int64? = nil, reportType: Int64? = nil, id: Int64? = nil) {
             self.projectID = projectID
             self.projectInterface = projectInterface
             self.reportRate = reportRate
@@ -74,5 +62,17 @@ extension Rum {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增修改限流
+    @inlinable
+    public func modifyProjectLimit(_ input: ModifyProjectLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectLimitResponse > {
+        self.client.execute(action: "ModifyProjectLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增修改限流
+    @inlinable
+    public func modifyProjectLimit(_ input: ModifyProjectLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectLimitResponse {
+        try await self.client.execute(action: "ModifyProjectLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// trustsql服务统一接口
-    @inlinable
-    public func srvInvoke(_ input: SrvInvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SrvInvokeResponse > {
-        self.client.execute(action: "SrvInvoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// trustsql服务统一接口
-    @inlinable
-    public func srvInvoke(_ input: SrvInvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SrvInvokeResponse {
-        try await self.client.execute(action: "SrvInvoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SrvInvoke请求参数结构体
     public struct SrvInvokeRequest: TCRequestModel {
         /// 服务类型，iss或者dam
@@ -71,5 +59,17 @@ extension Tbaas {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// trustsql服务统一接口
+    @inlinable
+    public func srvInvoke(_ input: SrvInvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SrvInvokeResponse > {
+        self.client.execute(action: "SrvInvoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// trustsql服务统一接口
+    @inlinable
+    public func srvInvoke(_ input: SrvInvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SrvInvokeResponse {
+        try await self.client.execute(action: "SrvInvoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

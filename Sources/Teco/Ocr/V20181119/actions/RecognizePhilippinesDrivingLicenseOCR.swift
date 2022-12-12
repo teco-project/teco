@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 菲律宾驾驶证识别
-    @inlinable
-    public func recognizePhilippinesDrivingLicenseOCR(_ input: RecognizePhilippinesDrivingLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizePhilippinesDrivingLicenseOCRResponse > {
-        self.client.execute(action: "RecognizePhilippinesDrivingLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 菲律宾驾驶证识别
-    @inlinable
-    public func recognizePhilippinesDrivingLicenseOCR(_ input: RecognizePhilippinesDrivingLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesDrivingLicenseOCRResponse {
-        try await self.client.execute(action: "RecognizePhilippinesDrivingLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecognizePhilippinesDrivingLicenseOCR请求参数结构体
     public struct RecognizePhilippinesDrivingLicenseOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -45,7 +33,7 @@ extension Ocr {
         /// 是否返回人像照片。
         public let returnHeadImage: Bool?
         
-        public init (imageBase64: String?, imageUrl: String?, returnHeadImage: Bool?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.returnHeadImage = returnHeadImage
@@ -114,5 +102,17 @@ extension Ocr {
             case birthday = "Birthday"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 菲律宾驾驶证识别
+    @inlinable
+    public func recognizePhilippinesDrivingLicenseOCR(_ input: RecognizePhilippinesDrivingLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizePhilippinesDrivingLicenseOCRResponse > {
+        self.client.execute(action: "RecognizePhilippinesDrivingLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 菲律宾驾驶证识别
+    @inlinable
+    public func recognizePhilippinesDrivingLicenseOCR(_ input: RecognizePhilippinesDrivingLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesDrivingLicenseOCRResponse {
+        try await self.client.execute(action: "RecognizePhilippinesDrivingLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 上传证书确认函
-    ///
-    /// 本接口（UploadConfirmLetter）用于上传证书确认函。
-    @inlinable
-    public func uploadConfirmLetter(_ input: UploadConfirmLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadConfirmLetterResponse > {
-        self.client.execute(action: "UploadConfirmLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上传证书确认函
-    ///
-    /// 本接口（UploadConfirmLetter）用于上传证书确认函。
-    @inlinable
-    public func uploadConfirmLetter(_ input: UploadConfirmLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadConfirmLetterResponse {
-        try await self.client.execute(action: "UploadConfirmLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadConfirmLetter请求参数结构体
     public struct UploadConfirmLetterRequest: TCRequestModel {
         /// 证书ID
@@ -66,5 +50,21 @@ extension Ssl {
             case isSuccess = "IsSuccess"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上传证书确认函
+    ///
+    /// 本接口（UploadConfirmLetter）用于上传证书确认函。
+    @inlinable
+    public func uploadConfirmLetter(_ input: UploadConfirmLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadConfirmLetterResponse > {
+        self.client.execute(action: "UploadConfirmLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上传证书确认函
+    ///
+    /// 本接口（UploadConfirmLetter）用于上传证书确认函。
+    @inlinable
+    public func uploadConfirmLetter(_ input: UploadConfirmLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadConfirmLetterResponse {
+        try await self.client.execute(action: "UploadConfirmLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

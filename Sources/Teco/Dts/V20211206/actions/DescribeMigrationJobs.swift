@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 查询数据迁移任务列表
-    @inlinable
-    public func describeMigrationJobs(_ input: DescribeMigrationJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationJobsResponse > {
-        self.client.execute(action: "DescribeMigrationJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据迁移任务列表
-    @inlinable
-    public func describeMigrationJobs(_ input: DescribeMigrationJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationJobsResponse {
-        try await self.client.execute(action: "DescribeMigrationJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMigrationJobs请求参数结构体
     public struct DescribeMigrationJobsRequest: TCRequestModel {
         /// 数据迁移任务ID，如：dts-amm1jw5q
@@ -77,7 +65,7 @@ extension Dts {
         /// 标签过滤
         public let tagFilters: [TagFilter]?
         
-        public init (jobId: String?, jobName: String?, status: [String]?, srcInstanceId: String?, srcRegion: String?, srcDatabaseType: [String]?, srcAccessType: [String]?, dstInstanceId: String?, dstRegion: String?, dstDatabaseType: [String]?, dstAccessType: [String]?, runMode: String?, orderSeq: String?, limit: UInt64?, offset: UInt64?, tagFilters: [TagFilter]?) {
+        public init (jobId: String? = nil, jobName: String? = nil, status: [String]? = nil, srcInstanceId: String? = nil, srcRegion: String? = nil, srcDatabaseType: [String]? = nil, srcAccessType: [String]? = nil, dstInstanceId: String? = nil, dstRegion: String? = nil, dstDatabaseType: [String]? = nil, dstAccessType: [String]? = nil, runMode: String? = nil, orderSeq: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, tagFilters: [TagFilter]? = nil) {
             self.jobId = jobId
             self.jobName = jobName
             self.status = status
@@ -134,5 +122,17 @@ extension Dts {
             case jobList = "JobList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据迁移任务列表
+    @inlinable
+    public func describeMigrationJobs(_ input: DescribeMigrationJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationJobsResponse > {
+        self.client.execute(action: "DescribeMigrationJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据迁移任务列表
+    @inlinable
+    public func describeMigrationJobs(_ input: DescribeMigrationJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationJobsResponse {
+        try await self.client.execute(action: "DescribeMigrationJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

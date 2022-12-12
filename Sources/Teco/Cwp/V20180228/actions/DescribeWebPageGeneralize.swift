@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询网页防篡改概览信息
-    ///
-    /// 查询网站防篡改概览信息
-    @inlinable
-    public func describeWebPageGeneralize(_ input: DescribeWebPageGeneralizeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebPageGeneralizeResponse > {
-        self.client.execute(action: "DescribeWebPageGeneralize", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询网页防篡改概览信息
-    ///
-    /// 查询网站防篡改概览信息
-    @inlinable
-    public func describeWebPageGeneralize(_ input: DescribeWebPageGeneralizeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageGeneralizeResponse {
-        try await self.client.execute(action: "DescribeWebPageGeneralize", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWebPageGeneralize请求参数结构体
     public struct DescribeWebPageGeneralizeRequest: TCRequestModel {
         public init () {
@@ -73,5 +57,21 @@ extension Cwp {
             case protectHostNum = "ProtectHostNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询网页防篡改概览信息
+    ///
+    /// 查询网站防篡改概览信息
+    @inlinable
+    public func describeWebPageGeneralize(_ input: DescribeWebPageGeneralizeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebPageGeneralizeResponse > {
+        self.client.execute(action: "DescribeWebPageGeneralize", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网页防篡改概览信息
+    ///
+    /// 查询网站防篡改概览信息
+    @inlinable
+    public func describeWebPageGeneralize(_ input: DescribeWebPageGeneralizeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageGeneralizeResponse {
+        try await self.client.execute(action: "DescribeWebPageGeneralize", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

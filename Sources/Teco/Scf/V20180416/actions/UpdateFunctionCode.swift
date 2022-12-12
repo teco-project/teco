@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 更新函数代码
-    ///
-    /// 该接口根据传入参数更新函数代码。
-    @inlinable
-    public func updateFunctionCode(_ input: UpdateFunctionCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFunctionCodeResponse > {
-        self.client.execute(action: "UpdateFunctionCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新函数代码
-    ///
-    /// 该接口根据传入参数更新函数代码。
-    @inlinable
-    public func updateFunctionCode(_ input: UpdateFunctionCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionCodeResponse {
-        try await self.client.execute(action: "UpdateFunctionCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateFunctionCode请求参数结构体
     public struct UpdateFunctionCodeRequest: TCRequestModel {
         /// 要修改的函数名称
@@ -64,12 +48,12 @@ extension Scf {
         public let publish: String?
         
         /// 函数代码
-        public let code: Code
+        public let code: Code?
         
         /// 代码来源方式，支持 ZipFile, Cos, Inline 之一
         public let codeSource: String?
         
-        public init (functionName: String, handler: String?, cosBucketName: String?, cosObjectName: String?, zipFile: String?, namespace: String?, cosBucketRegion: String?, installDependency: String?, envId: String?, publish: String?, code: Code, codeSource: String?) {
+        public init (functionName: String, handler: String? = nil, cosBucketName: String? = nil, cosObjectName: String? = nil, zipFile: String? = nil, namespace: String? = nil, cosBucketRegion: String? = nil, installDependency: String? = nil, envId: String? = nil, publish: String? = nil, code: Code? = nil, codeSource: String? = nil) {
             self.functionName = functionName
             self.handler = handler
             self.cosBucketName = cosBucketName
@@ -108,5 +92,21 @@ extension Scf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新函数代码
+    ///
+    /// 该接口根据传入参数更新函数代码。
+    @inlinable
+    public func updateFunctionCode(_ input: UpdateFunctionCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFunctionCodeResponse > {
+        self.client.execute(action: "UpdateFunctionCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新函数代码
+    ///
+    /// 该接口根据传入参数更新函数代码。
+    @inlinable
+    public func updateFunctionCode(_ input: UpdateFunctionCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionCodeResponse {
+        try await self.client.execute(action: "UpdateFunctionCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

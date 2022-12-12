@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 获取图片优化的配置
-    ///
-    /// DescribeImageConfig 用于获取域名图片优化的当前配置，支持Webp、TPG、 Guetzli 和 Avif。 
-    @inlinable
-    public func describeImageConfig(_ input: DescribeImageConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageConfigResponse > {
-        self.client.execute(action: "DescribeImageConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取图片优化的配置
-    ///
-    /// DescribeImageConfig 用于获取域名图片优化的当前配置，支持Webp、TPG、 Guetzli 和 Avif。 
-    @inlinable
-    public func describeImageConfig(_ input: DescribeImageConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageConfigResponse {
-        try await self.client.execute(action: "DescribeImageConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageConfig请求参数结构体
     public struct DescribeImageConfigRequest: TCRequestModel {
         /// 域名
@@ -49,19 +33,19 @@ extension Cdn {
     public struct DescribeImageConfigResponse: TCResponseModel {
         /// WebpAdapter配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let webpAdapter: WebpAdapter
+        public let webpAdapter: WebpAdapter?
         
         /// TpgAdapter配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tpgAdapter: TpgAdapter
+        public let tpgAdapter: TpgAdapter?
         
         /// GuetzliAdapter配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let guetzliAdapter: GuetzliAdapter
+        public let guetzliAdapter: GuetzliAdapter?
         
         /// AvifAdapter配置项
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let avifAdapter: AvifAdapter
+        public let avifAdapter: AvifAdapter?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -73,5 +57,21 @@ extension Cdn {
             case avifAdapter = "AvifAdapter"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取图片优化的配置
+    ///
+    /// DescribeImageConfig 用于获取域名图片优化的当前配置，支持Webp、TPG、 Guetzli 和 Avif。 
+    @inlinable
+    public func describeImageConfig(_ input: DescribeImageConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageConfigResponse > {
+        self.client.execute(action: "DescribeImageConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取图片优化的配置
+    ///
+    /// DescribeImageConfig 用于获取域名图片优化的当前配置，支持Webp、TPG、 Guetzli 和 Avif。 
+    @inlinable
+    public func describeImageConfig(_ input: DescribeImageConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageConfigResponse {
+        try await self.client.execute(action: "DescribeImageConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

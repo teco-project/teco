@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询受漏洞的容器列表
-    @inlinable
-    public func describeVulContainerList(_ input: DescribeVulContainerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulContainerListResponse > {
-        self.client.execute(action: "DescribeVulContainerList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询受漏洞的容器列表
-    @inlinable
-    public func describeVulContainerList(_ input: DescribeVulContainerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulContainerListResponse {
-        try await self.client.execute(action: "DescribeVulContainerList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulContainerList请求参数结构体
     public struct DescribeVulContainerListRequest: TCRequestModel {
         /// 漏洞PocID
@@ -44,7 +32,7 @@ extension Tcss {
         /// <li>ContainerName- String -是否必填: 否 - 容器名称</li>
         public let filters: [RunTimeFilters]?
         
-        public init (pocID: String, limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?) {
+        public init (pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil) {
             self.pocID = pocID
             self.limit = limit
             self.offset = offset
@@ -75,5 +63,17 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询受漏洞的容器列表
+    @inlinable
+    public func describeVulContainerList(_ input: DescribeVulContainerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulContainerListResponse > {
+        self.client.execute(action: "DescribeVulContainerList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询受漏洞的容器列表
+    @inlinable
+    public func describeVulContainerList(_ input: DescribeVulContainerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulContainerListResponse {
+        try await self.client.execute(action: "DescribeVulContainerList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

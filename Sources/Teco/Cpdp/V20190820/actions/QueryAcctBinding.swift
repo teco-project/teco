@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫-查询子账户绑定银行卡
-    @inlinable
-    public func queryAcctBinding(_ input: QueryAcctBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAcctBindingResponse > {
-        self.client.execute(action: "QueryAcctBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫-查询子账户绑定银行卡
-    @inlinable
-    public func queryAcctBinding(_ input: QueryAcctBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAcctBindingResponse {
-        try await self.client.execute(action: "QueryAcctBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryAcctBinding请求参数结构体
     public struct QueryAcctBindingRequest: TCRequestModel {
         /// 聚鑫分配的支付主MidasAppId
@@ -54,7 +42,7 @@ extension Cpdp {
         /// 缺省: release
         public let midasEnvironment: String?
         
-        public init (midasAppId: String, subAppId: String, midasSecretId: String, midasSignature: String, encryptType: String?, midasEnvironment: String?) {
+        public init (midasAppId: String, subAppId: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil) {
             self.midasAppId = midasAppId
             self.subAppId = subAppId
             self.midasSecretId = midasSecretId
@@ -89,5 +77,17 @@ extension Cpdp {
             case bankCardItems = "BankCardItems"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫-查询子账户绑定银行卡
+    @inlinable
+    public func queryAcctBinding(_ input: QueryAcctBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAcctBindingResponse > {
+        self.client.execute(action: "QueryAcctBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-查询子账户绑定银行卡
+    @inlinable
+    public func queryAcctBinding(_ input: QueryAcctBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAcctBindingResponse {
+        try await self.client.execute(action: "QueryAcctBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

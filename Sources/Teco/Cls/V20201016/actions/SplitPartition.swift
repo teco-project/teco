@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 分裂主题分区
-    ///
-    /// 本接口用于分裂主题分区
-    @inlinable
-    public func splitPartition(_ input: SplitPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SplitPartitionResponse > {
-        self.client.execute(action: "SplitPartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分裂主题分区
-    ///
-    /// 本接口用于分裂主题分区
-    @inlinable
-    public func splitPartition(_ input: SplitPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitPartitionResponse {
-        try await self.client.execute(action: "SplitPartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SplitPartition请求参数结构体
     public struct SplitPartitionRequest: TCRequestModel {
         /// 日志主题ID
@@ -45,7 +29,7 @@ extension Cls {
         /// 分区分裂个数(可选)，默认等于2
         public let number: Int64?
         
-        public init (topicId: String, partitionId: Int64, splitKey: String?, number: Int64?) {
+        public init (topicId: String, partitionId: Int64, splitKey: String? = nil, number: Int64? = nil) {
             self.topicId = topicId
             self.partitionId = partitionId
             self.splitKey = splitKey
@@ -72,5 +56,21 @@ extension Cls {
             case partitions = "Partitions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分裂主题分区
+    ///
+    /// 本接口用于分裂主题分区
+    @inlinable
+    public func splitPartition(_ input: SplitPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SplitPartitionResponse > {
+        self.client.execute(action: "SplitPartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分裂主题分区
+    ///
+    /// 本接口用于分裂主题分区
+    @inlinable
+    public func splitPartition(_ input: SplitPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitPartitionResponse {
+        try await self.client.execute(action: "SplitPartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

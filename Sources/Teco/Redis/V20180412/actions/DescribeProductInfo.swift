@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询产品售卖规格
-    ///
-    /// 本接口查询指定可用区和实例类型下 Redis 的售卖规格， 如果用户不在购买白名单中，将不能查询该可用区或该类型的售卖规格详情。申请购买某地域白名单可以提交工单
-    @inlinable
-    public func describeProductInfo(_ input: DescribeProductInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductInfoResponse > {
-        self.client.execute(action: "DescribeProductInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询产品售卖规格
-    ///
-    /// 本接口查询指定可用区和实例类型下 Redis 的售卖规格， 如果用户不在购买白名单中，将不能查询该可用区或该类型的售卖规格详情。申请购买某地域白名单可以提交工单
-    @inlinable
-    public func describeProductInfo(_ input: DescribeProductInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductInfoResponse {
-        try await self.client.execute(action: "DescribeProductInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProductInfo请求参数结构体
     public struct DescribeProductInfoRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Redis {
             case regionSet = "RegionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询产品售卖规格
+    ///
+    /// 本接口查询指定可用区和实例类型下 Redis 的售卖规格， 如果用户不在购买白名单中，将不能查询该可用区或该类型的售卖规格详情。申请购买某地域白名单可以提交工单
+    @inlinable
+    public func describeProductInfo(_ input: DescribeProductInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductInfoResponse > {
+        self.client.execute(action: "DescribeProductInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询产品售卖规格
+    ///
+    /// 本接口查询指定可用区和实例类型下 Redis 的售卖规格， 如果用户不在购买白名单中，将不能查询该可用区或该类型的售卖规格详情。申请购买某地域白名单可以提交工单
+    @inlinable
+    public func describeProductInfo(_ input: DescribeProductInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductInfoResponse {
+        try await self.client.execute(action: "DescribeProductInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

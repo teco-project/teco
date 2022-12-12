@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 修改表格组标签
-    @inlinable
-    public func modifyTableGroupTags(_ input: ModifyTableGroupTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableGroupTagsResponse > {
-        self.client.execute(action: "ModifyTableGroupTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改表格组标签
-    @inlinable
-    public func modifyTableGroupTags(_ input: ModifyTableGroupTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableGroupTagsResponse {
-        try await self.client.execute(action: "ModifyTableGroupTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTableGroupTags请求参数结构体
     public struct ModifyTableGroupTagsRequest: TCRequestModel {
         /// 待修改标签表格组所属集群ID
@@ -41,7 +29,7 @@ extension Tcaplusdb {
         /// 待删除的标签
         public let deleteTags: [TagInfoUnit]?
         
-        public init (clusterId: String, tableGroupId: String, replaceTags: [TagInfoUnit]?, deleteTags: [TagInfoUnit]?) {
+        public init (clusterId: String, tableGroupId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil) {
             self.clusterId = clusterId
             self.tableGroupId = tableGroupId
             self.replaceTags = replaceTags
@@ -69,5 +57,17 @@ extension Tcaplusdb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改表格组标签
+    @inlinable
+    public func modifyTableGroupTags(_ input: ModifyTableGroupTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableGroupTagsResponse > {
+        self.client.execute(action: "ModifyTableGroupTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改表格组标签
+    @inlinable
+    public func modifyTableGroupTags(_ input: ModifyTableGroupTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableGroupTagsResponse {
+        try await self.client.execute(action: "ModifyTableGroupTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

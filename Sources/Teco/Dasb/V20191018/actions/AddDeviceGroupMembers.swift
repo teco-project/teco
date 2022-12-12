@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dasb {
-    /// 添加资产组成员
-    @inlinable
-    public func addDeviceGroupMembers(_ input: AddDeviceGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDeviceGroupMembersResponse > {
-        self.client.execute(action: "AddDeviceGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加资产组成员
-    @inlinable
-    public func addDeviceGroupMembers(_ input: AddDeviceGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDeviceGroupMembersResponse {
-        try await self.client.execute(action: "AddDeviceGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddDeviceGroupMembers请求参数结构体
     public struct AddDeviceGroupMembersRequest: TCRequestModel {
         /// 资产组ID
@@ -54,5 +42,17 @@ extension Dasb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加资产组成员
+    @inlinable
+    public func addDeviceGroupMembers(_ input: AddDeviceGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDeviceGroupMembersResponse > {
+        self.client.execute(action: "AddDeviceGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加资产组成员
+    @inlinable
+    public func addDeviceGroupMembers(_ input: AddDeviceGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDeviceGroupMembersResponse {
+        try await self.client.execute(action: "AddDeviceGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 预置位控制
-    @inlinable
-    public func controlPreset(_ input: ControlPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlPresetResponse > {
-        self.client.execute(action: "ControlPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 预置位控制
-    @inlinable
-    public func controlPreset(_ input: ControlPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlPresetResponse {
-        try await self.client.execute(action: "ControlPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ControlPreset请求参数结构体
     public struct ControlPresetRequest: TCRequestModel {
         /// 通道ID
@@ -67,5 +55,17 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 预置位控制
+    @inlinable
+    public func controlPreset(_ input: ControlPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlPresetResponse > {
+        self.client.execute(action: "ControlPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 预置位控制
+    @inlinable
+    public func controlPreset(_ input: ControlPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlPresetResponse {
+        try await self.client.execute(action: "ControlPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Fmu {
-    /// 上传唇色素材
-    ///
-    /// 在使用LUT素材的modelid实现试唇色前，您需要先上传 LUT 格式的cube文件注册唇色ID。查看 [LUT文件的使用说明](https://cloud.tencent.com/document/product/1172/41701)。
-    /// 注：您也可以直接使用 [试唇色接口](https://cloud.tencent.com/document/product/1172/40706)，通过输入RGBA模型数值的方式指定唇色，更简单易用。
-    @inlinable
-    public func createModel(_ input: CreateModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateModelResponse > {
-        self.client.execute(action: "CreateModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上传唇色素材
-    ///
-    /// 在使用LUT素材的modelid实现试唇色前，您需要先上传 LUT 格式的cube文件注册唇色ID。查看 [LUT文件的使用说明](https://cloud.tencent.com/document/product/1172/41701)。
-    /// 注：您也可以直接使用 [试唇色接口](https://cloud.tencent.com/document/product/1172/40706)，通过输入RGBA模型数值的方式指定唇色，更简单易用。
-    @inlinable
-    public func createModel(_ input: CreateModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModelResponse {
-        try await self.client.execute(action: "CreateModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateModel请求参数结构体
     public struct CreateModelRequest: TCRequestModel {
         /// 图片base64数据，用于试唇色，要求必须是LUT 格式的cube文件转换成512*512的PNG图片。查看 [LUT文件的使用说明](https://cloud.tencent.com/document/product/1172/41701)。了解 [cube文件转png图片小工具](http://yyb.gtimg.com/aiplat/static/qcloud-cube-to-png.html)。
@@ -41,7 +23,7 @@ extension Fmu {
         /// 文件描述信息，可用于备注。
         public let description: String?
         
-        public init (lutFile: String, description: String?) {
+        public init (lutFile: String, description: String? = nil) {
             self.lutFile = lutFile
             self.description = description
         }
@@ -64,5 +46,23 @@ extension Fmu {
             case modelId = "ModelId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上传唇色素材
+    ///
+    /// 在使用LUT素材的modelid实现试唇色前，您需要先上传 LUT 格式的cube文件注册唇色ID。查看 [LUT文件的使用说明](https://cloud.tencent.com/document/product/1172/41701)。
+    /// 注：您也可以直接使用 [试唇色接口](https://cloud.tencent.com/document/product/1172/40706)，通过输入RGBA模型数值的方式指定唇色，更简单易用。
+    @inlinable
+    public func createModel(_ input: CreateModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateModelResponse > {
+        self.client.execute(action: "CreateModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上传唇色素材
+    ///
+    /// 在使用LUT素材的modelid实现试唇色前，您需要先上传 LUT 格式的cube文件注册唇色ID。查看 [LUT文件的使用说明](https://cloud.tencent.com/document/product/1172/41701)。
+    /// 注：您也可以直接使用 [试唇色接口](https://cloud.tencent.com/document/product/1172/40706)，通过输入RGBA模型数值的方式指定唇色，更简单易用。
+    @inlinable
+    public func createModel(_ input: CreateModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModelResponse {
+        try await self.client.execute(action: "CreateModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

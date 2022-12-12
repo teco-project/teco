@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 元数据锁
-    @inlinable
-    public func lockMetaData(_ input: LockMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LockMetaDataResponse > {
-        self.client.execute(action: "LockMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 元数据锁
-    @inlinable
-    public func lockMetaData(_ input: LockMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LockMetaDataResponse {
-        try await self.client.execute(action: "LockMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// LockMetaData请求参数结构体
     public struct LockMetaDataRequest: TCRequestModel {
         /// 加锁内容
@@ -44,7 +32,7 @@ extension Dlc {
         /// 主机名
         public let hostname: String?
         
-        public init (lockComponentList: [LockComponentInfo], datasourceConnectionName: String?, txnId: Int64?, agentInfo: String?, hostname: String?) {
+        public init (lockComponentList: [LockComponentInfo], datasourceConnectionName: String? = nil, txnId: Int64? = nil, agentInfo: String? = nil, hostname: String? = nil) {
             self.lockComponentList = lockComponentList
             self.datasourceConnectionName = datasourceConnectionName
             self.txnId = txnId
@@ -77,5 +65,17 @@ extension Dlc {
             case lockState = "LockState"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 元数据锁
+    @inlinable
+    public func lockMetaData(_ input: LockMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LockMetaDataResponse > {
+        self.client.execute(action: "LockMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 元数据锁
+    @inlinable
+    public func lockMetaData(_ input: LockMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LockMetaDataResponse {
+        try await self.client.execute(action: "LockMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

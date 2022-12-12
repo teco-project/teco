@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 删除网络攻击日志
-    @inlinable
-    public func deleteAttackLogs(_ input: DeleteAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAttackLogsResponse > {
-        self.client.execute(action: "DeleteAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除网络攻击日志
-    @inlinable
-    public func deleteAttackLogs(_ input: DeleteAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackLogsResponse {
-        try await self.client.execute(action: "DeleteAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAttackLogs请求参数结构体
     public struct DeleteAttackLogsRequest: TCRequestModel {
         /// 日志ID数组，最大100条。
@@ -49,5 +37,17 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除网络攻击日志
+    @inlinable
+    public func deleteAttackLogs(_ input: DeleteAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAttackLogsResponse > {
+        self.client.execute(action: "DeleteAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除网络攻击日志
+    @inlinable
+    public func deleteAttackLogs(_ input: DeleteAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackLogsResponse {
+        try await self.client.execute(action: "DeleteAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

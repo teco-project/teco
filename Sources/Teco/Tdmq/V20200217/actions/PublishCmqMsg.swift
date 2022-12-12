@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 发送cmq主题消息
-    @inlinable
-    public func publishCmqMsg(_ input: PublishCmqMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishCmqMsgResponse > {
-        self.client.execute(action: "PublishCmqMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送cmq主题消息
-    @inlinable
-    public func publishCmqMsg(_ input: PublishCmqMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishCmqMsgResponse {
-        try await self.client.execute(action: "PublishCmqMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PublishCmqMsg请求参数结构体
     public struct PublishCmqMsgRequest: TCRequestModel {
         /// 主题名
@@ -38,7 +26,7 @@ extension Tdmq {
         /// 消息标签，支持传递多标签或单路由，单个标签、路由长度不能超过64个字符。
         public let msgTag: [String]?
         
-        public init (topicName: String, msgContent: String, msgTag: [String]?) {
+        public init (topicName: String, msgContent: String, msgTag: [String]? = nil) {
             self.topicName = topicName
             self.msgContent = msgContent
             self.msgTag = msgTag
@@ -67,5 +55,17 @@ extension Tdmq {
             case msgId = "MsgId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送cmq主题消息
+    @inlinable
+    public func publishCmqMsg(_ input: PublishCmqMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishCmqMsgResponse > {
+        self.client.execute(action: "PublishCmqMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送cmq主题消息
+    @inlinable
+    public func publishCmqMsg(_ input: PublishCmqMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishCmqMsgResponse {
+        try await self.client.execute(action: "PublishCmqMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

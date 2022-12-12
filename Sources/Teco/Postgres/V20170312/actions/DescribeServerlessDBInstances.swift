@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 查询ServerlessDB实例列表
-    ///
-    /// 用于查询一个或多个serverlessDB实例的详细信息
-    @inlinable
-    public func describeServerlessDBInstances(_ input: DescribeServerlessDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServerlessDBInstancesResponse > {
-        self.client.execute(action: "DescribeServerlessDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询ServerlessDB实例列表
-    ///
-    /// 用于查询一个或多个serverlessDB实例的详细信息
-    @inlinable
-    public func describeServerlessDBInstances(_ input: DescribeServerlessDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServerlessDBInstancesResponse {
-        try await self.client.execute(action: "DescribeServerlessDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeServerlessDBInstances请求参数结构体
     public struct DescribeServerlessDBInstancesRequest: TCRequestModel {
         /// 查询条件
@@ -48,7 +32,7 @@ extension Postgres {
         /// 排序方式，包括升序、降序
         public let orderByType: String?
         
-        public init (filter: [Filter]?, limit: UInt64?, offset: UInt64?, orderBy: String?, orderByType: String?) {
+        public init (filter: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.filter = filter
             self.limit = limit
             self.offset = offset
@@ -82,5 +66,21 @@ extension Postgres {
             case dbInstanceSet = "DBInstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询ServerlessDB实例列表
+    ///
+    /// 用于查询一个或多个serverlessDB实例的详细信息
+    @inlinable
+    public func describeServerlessDBInstances(_ input: DescribeServerlessDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServerlessDBInstancesResponse > {
+        self.client.execute(action: "DescribeServerlessDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询ServerlessDB实例列表
+    ///
+    /// 用于查询一个或多个serverlessDB实例的详细信息
+    @inlinable
+    public func describeServerlessDBInstances(_ input: DescribeServerlessDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServerlessDBInstancesResponse {
+        try await self.client.execute(action: "DescribeServerlessDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

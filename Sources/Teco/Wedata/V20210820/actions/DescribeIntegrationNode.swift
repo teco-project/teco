@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询集成节点
-    @inlinable
-    public func describeIntegrationNode(_ input: DescribeIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationNodeResponse > {
-        self.client.execute(action: "DescribeIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集成节点
-    @inlinable
-    public func describeIntegrationNode(_ input: DescribeIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationNodeResponse {
-        try await self.client.execute(action: "DescribeIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIntegrationNode请求参数结构体
     public struct DescribeIntegrationNodeRequest: TCRequestModel {
         /// 节点id
@@ -38,7 +26,7 @@ extension Wedata {
         /// 任务类型
         public let taskType: UInt64?
         
-        public init (id: String, projectId: String, taskType: UInt64?) {
+        public init (id: String, projectId: String, taskType: UInt64? = nil) {
             self.id = id
             self.projectId = projectId
             self.taskType = taskType
@@ -55,7 +43,7 @@ extension Wedata {
     public struct DescribeIntegrationNodeResponse: TCResponseModel {
         /// 节点信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let nodeInfo: IntegrationNodeInfo
+        public let nodeInfo: IntegrationNodeInfo?
         
         /// 上游节点是否已经修改。true 已修改，需要提示；false 没有修改
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -69,5 +57,17 @@ extension Wedata {
             case sourceCheckFlag = "SourceCheckFlag"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集成节点
+    @inlinable
+    public func describeIntegrationNode(_ input: DescribeIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationNodeResponse > {
+        self.client.execute(action: "DescribeIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集成节点
+    @inlinable
+    public func describeIntegrationNode(_ input: DescribeIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationNodeResponse {
+        try await self.client.execute(action: "DescribeIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

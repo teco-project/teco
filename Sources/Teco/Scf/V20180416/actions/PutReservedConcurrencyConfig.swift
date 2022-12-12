@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 设置最大独占配额
-    ///
-    /// 设置函数最大独占配额
-    @inlinable
-    public func putReservedConcurrencyConfig(_ input: PutReservedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutReservedConcurrencyConfigResponse > {
-        self.client.execute(action: "PutReservedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置最大独占配额
-    ///
-    /// 设置函数最大独占配额
-    @inlinable
-    public func putReservedConcurrencyConfig(_ input: PutReservedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutReservedConcurrencyConfigResponse {
-        try await self.client.execute(action: "PutReservedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PutReservedConcurrencyConfig请求参数结构体
     public struct PutReservedConcurrencyConfigRequest: TCRequestModel {
         /// 需要设置最大独占配额的函数的名称
@@ -42,7 +26,7 @@ extension Scf {
         /// 函数所属命名空间，默认为default
         public let namespace: String?
         
-        public init (functionName: String, reservedConcurrencyMem: UInt64, namespace: String?) {
+        public init (functionName: String, reservedConcurrencyMem: UInt64, namespace: String? = nil) {
             self.functionName = functionName
             self.reservedConcurrencyMem = reservedConcurrencyMem
             self.namespace = namespace
@@ -63,5 +47,21 @@ extension Scf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置最大独占配额
+    ///
+    /// 设置函数最大独占配额
+    @inlinable
+    public func putReservedConcurrencyConfig(_ input: PutReservedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutReservedConcurrencyConfigResponse > {
+        self.client.execute(action: "PutReservedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置最大独占配额
+    ///
+    /// 设置函数最大独占配额
+    @inlinable
+    public func putReservedConcurrencyConfig(_ input: PutReservedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutReservedConcurrencyConfigResponse {
+        try await self.client.execute(action: "PutReservedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Solar {
-    /// 员工渠道更改员工状态
-    @inlinable
-    public func checkStaffChUser(_ input: CheckStaffChUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckStaffChUserResponse > {
-        self.client.execute(action: "CheckStaffChUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 员工渠道更改员工状态
-    @inlinable
-    public func checkStaffChUser(_ input: CheckStaffChUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckStaffChUserResponse {
-        try await self.client.execute(action: "CheckStaffChUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckStaffChUser请求参数结构体
     public struct CheckStaffChUserRequest: TCRequestModel {
         /// 员工ID
@@ -54,5 +42,17 @@ extension Solar {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 员工渠道更改员工状态
+    @inlinable
+    public func checkStaffChUser(_ input: CheckStaffChUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckStaffChUserResponse > {
+        self.client.execute(action: "CheckStaffChUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 员工渠道更改员工状态
+    @inlinable
+    public func checkStaffChUser(_ input: CheckStaffChUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckStaffChUserResponse {
+        try await self.client.execute(action: "CheckStaffChUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

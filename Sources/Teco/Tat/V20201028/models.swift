@@ -410,7 +410,7 @@ extension Tat {
         
         /// 执行器周期计划。周期执行器会返回此字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let scheduleSettings: ScheduleSettings
+        public let scheduleSettings: ScheduleSettings?
         
         /// 创建时间。
         // FIXME: Codable support not implemented for datetime_iso yet.
@@ -493,7 +493,7 @@ extension Tat {
         /// 执行器下次执行时间。Policy 为 ONCE 时，需要指定此字段。
         public let invokeTime: Date?
         
-        public init (policy: String, recurrence: String?, invokeTime: Date?) {
+        public init (policy: String, recurrence: String? = nil, invokeTime: Date? = nil) {
             self.policy = policy
             self.recurrence = recurrence
             self.invokeTime = invokeTime

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 修改投递规则
-    ///
-    /// 修改现有的投递规则，客户如果使用此接口，需要自行处理CLS对指定bucket的写权限。
-    @inlinable
-    public func modifyShipper(_ input: ModifyShipperRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyShipperResponse > {
-        self.client.execute(action: "ModifyShipper", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改投递规则
-    ///
-    /// 修改现有的投递规则，客户如果使用此接口，需要自行处理CLS对指定bucket的写权限。
-    @inlinable
-    public func modifyShipper(_ input: ModifyShipperRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyShipperResponse {
-        try await self.client.execute(action: "ModifyShipper", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyShipper请求参数结构体
     public struct ModifyShipperRequest: TCRequestModel {
         /// 投递规则ID
@@ -61,15 +45,15 @@ extension Cls {
         public let partition: String?
         
         /// 投递日志的压缩配置
-        public let compress: CompressInfo
+        public let compress: CompressInfo?
         
         /// 投递日志的内容格式配置
-        public let content: ContentInfo
+        public let content: ContentInfo?
         
         /// 投递文件命名配置，0：随机数命名，1：投递时间命名，默认0（随机数命名）
         public let filenameMode: UInt64?
         
-        public init (shipperId: String, bucket: String?, prefix: String?, status: Bool?, shipperName: String?, interval: UInt64?, maxSize: UInt64?, filterRules: [FilterRuleInfo]?, partition: String?, compress: CompressInfo, content: ContentInfo, filenameMode: UInt64?) {
+        public init (shipperId: String, bucket: String? = nil, prefix: String? = nil, status: Bool? = nil, shipperName: String? = nil, interval: UInt64? = nil, maxSize: UInt64? = nil, filterRules: [FilterRuleInfo]? = nil, partition: String? = nil, compress: CompressInfo? = nil, content: ContentInfo? = nil, filenameMode: UInt64? = nil) {
             self.shipperId = shipperId
             self.bucket = bucket
             self.prefix = prefix
@@ -108,5 +92,21 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改投递规则
+    ///
+    /// 修改现有的投递规则，客户如果使用此接口，需要自行处理CLS对指定bucket的写权限。
+    @inlinable
+    public func modifyShipper(_ input: ModifyShipperRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyShipperResponse > {
+        self.client.execute(action: "ModifyShipper", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改投递规则
+    ///
+    /// 修改现有的投递规则，客户如果使用此接口，需要自行处理CLS对指定bucket的写权限。
+    @inlinable
+    public func modifyShipper(_ input: ModifyShipperRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyShipperResponse {
+        try await self.client.execute(action: "ModifyShipper", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

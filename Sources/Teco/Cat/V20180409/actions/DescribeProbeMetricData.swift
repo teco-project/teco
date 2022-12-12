@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cat {
-    /// 列出云拨测指标详细数据
-    ///
-    /// 查询云拨测指标数据，指标支持使用sum,avg,max,min聚合函数进行指标数据查询
-    @inlinable
-    public func describeProbeMetricData(_ input: DescribeProbeMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProbeMetricDataResponse > {
-        self.client.execute(action: "DescribeProbeMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出云拨测指标详细数据
-    ///
-    /// 查询云拨测指标数据，指标支持使用sum,avg,max,min聚合函数进行指标数据查询
-    @inlinable
-    public func describeProbeMetricData(_ input: DescribeProbeMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProbeMetricDataResponse {
-        try await self.client.execute(action: "DescribeProbeMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProbeMetricData请求参数结构体
     public struct DescribeProbeMetricDataRequest: TCRequestModel {
         /// 分析任务类型，支持以下几种类型：
@@ -57,7 +41,7 @@ extension Cat {
         /// 例如：[""host" = 'www.test.com'", "time >= now()-1h"]
         public let filters: [String]?
         
-        public init (analyzeTaskType: String?, metricType: String?, field: String?, filter: String?, groupBy: String?, filters: [String]?) {
+        public init (analyzeTaskType: String? = nil, metricType: String? = nil, field: String? = nil, filter: String? = nil, groupBy: String? = nil, filters: [String]? = nil) {
             self.analyzeTaskType = analyzeTaskType
             self.metricType = metricType
             self.field = field
@@ -89,5 +73,21 @@ extension Cat {
             case metricSet = "MetricSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出云拨测指标详细数据
+    ///
+    /// 查询云拨测指标数据，指标支持使用sum,avg,max,min聚合函数进行指标数据查询
+    @inlinable
+    public func describeProbeMetricData(_ input: DescribeProbeMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProbeMetricDataResponse > {
+        self.client.execute(action: "DescribeProbeMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出云拨测指标详细数据
+    ///
+    /// 查询云拨测指标数据，指标支持使用sum,avg,max,min聚合函数进行指标数据查询
+    @inlinable
+    public func describeProbeMetricData(_ input: DescribeProbeMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProbeMetricDataResponse {
+        try await self.client.execute(action: "DescribeProbeMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

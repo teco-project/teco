@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 创建token
-    ///
-    /// 创建最高权限的token
-    @inlinable
-    public func createToken(_ input: CreateTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTokenResponse > {
-        self.client.execute(action: "CreateToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建token
-    ///
-    /// 创建最高权限的token
-    @inlinable
-    public func createToken(_ input: CreateTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTokenResponse {
-        try await self.client.execute(action: "CreateToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateToken请求参数结构体
     public struct CreateTokenRequest: TCRequestModel {
         /// 实例ID
@@ -63,5 +47,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建token
+    ///
+    /// 创建最高权限的token
+    @inlinable
+    public func createToken(_ input: CreateTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTokenResponse > {
+        self.client.execute(action: "CreateToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建token
+    ///
+    /// 创建最高权限的token
+    @inlinable
+    public func createToken(_ input: CreateTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTokenResponse {
+        try await self.client.execute(action: "CreateToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

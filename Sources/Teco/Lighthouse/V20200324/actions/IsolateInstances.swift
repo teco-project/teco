@@ -15,6 +15,38 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
+    /// IsolateInstances请求参数结构体
+    public struct IsolateInstancesRequest: TCRequestModel {
+        /// 实例ID列表。一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。每次请求退还实例和数据盘数量总计上限为20。
+        public let instanceIds: [String]
+        
+        /// 是否退还挂载的数据盘。取值范围：
+        /// TRUE：表示退还实例同时退还其挂载的数据盘。
+        /// FALSE：表示退还实例同时不再退还其挂载的数据盘。
+        /// 默认取值：TRUE。
+        public let isolateDataDisk: Bool?
+        
+        public init (instanceIds: [String], isolateDataDisk: Bool? = nil) {
+            self.instanceIds = instanceIds
+            self.isolateDataDisk = isolateDataDisk
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case instanceIds = "InstanceIds"
+            case isolateDataDisk = "IsolateDataDisk"
+        }
+    }
+    
+    /// IsolateInstances返回参数结构体
+    public struct IsolateInstancesResponse: TCResponseModel {
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 隔离实例
     ///
     /// 本接口(IsolateInstances)用于退还一个或多个轻量应用服务器实例。
@@ -37,37 +69,5 @@ extension Lighthouse {
     @inlinable
     public func isolateInstances(_ input: IsolateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateInstancesResponse {
         try await self.client.execute(action: "IsolateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// IsolateInstances请求参数结构体
-    public struct IsolateInstancesRequest: TCRequestModel {
-        /// 实例ID列表。一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。每次请求退还实例和数据盘数量总计上限为20。
-        public let instanceIds: [String]
-        
-        /// 是否退还挂载的数据盘。取值范围：
-        /// TRUE：表示退还实例同时退还其挂载的数据盘。
-        /// FALSE：表示退还实例同时不再退还其挂载的数据盘。
-        /// 默认取值：TRUE。
-        public let isolateDataDisk: Bool?
-        
-        public init (instanceIds: [String], isolateDataDisk: Bool?) {
-            self.instanceIds = instanceIds
-            self.isolateDataDisk = isolateDataDisk
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case instanceIds = "InstanceIds"
-            case isolateDataDisk = "IsolateDataDisk"
-        }
-    }
-    
-    /// IsolateInstances返回参数结构体
-    public struct IsolateInstancesResponse: TCResponseModel {
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case requestId = "RequestId"
-        }
     }
 }

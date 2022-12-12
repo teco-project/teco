@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 创建云数据库只读实例的独立VIP
-    ///
-    /// 本接口(CreateRoInstanceIp)用于创建云数据库只读实例的独立VIP。
-    @inlinable
-    public func createRoInstanceIp(_ input: CreateRoInstanceIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoInstanceIpResponse > {
-        self.client.execute(action: "CreateRoInstanceIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建云数据库只读实例的独立VIP
-    ///
-    /// 本接口(CreateRoInstanceIp)用于创建云数据库只读实例的独立VIP。
-    @inlinable
-    public func createRoInstanceIp(_ input: CreateRoInstanceIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoInstanceIpResponse {
-        try await self.client.execute(action: "CreateRoInstanceIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRoInstanceIp请求参数结构体
     public struct CreateRoInstanceIpRequest: TCRequestModel {
         /// 只读实例ID，格式如：cdbro-3i70uj0k，与云数据库控制台页面中显示的只读实例ID相同。
@@ -42,7 +26,7 @@ extension Cdb {
         /// vpc描述符，例如：vpc-a23yt67j,如果传了该字段则UniqSubnetId必传
         public let uniqVpcId: String?
         
-        public init (instanceId: String, uniqSubnetId: String?, uniqVpcId: String?) {
+        public init (instanceId: String, uniqSubnetId: String? = nil, uniqVpcId: String? = nil) {
             self.instanceId = instanceId
             self.uniqSubnetId = uniqSubnetId
             self.uniqVpcId = uniqVpcId
@@ -79,5 +63,21 @@ extension Cdb {
             case roVport = "RoVport"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建云数据库只读实例的独立VIP
+    ///
+    /// 本接口(CreateRoInstanceIp)用于创建云数据库只读实例的独立VIP。
+    @inlinable
+    public func createRoInstanceIp(_ input: CreateRoInstanceIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoInstanceIpResponse > {
+        self.client.execute(action: "CreateRoInstanceIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云数据库只读实例的独立VIP
+    ///
+    /// 本接口(CreateRoInstanceIp)用于创建云数据库只读实例的独立VIP。
+    @inlinable
+    public func createRoInstanceIp(_ input: CreateRoInstanceIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoInstanceIpResponse {
+        try await self.client.execute(action: "CreateRoInstanceIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

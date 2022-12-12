@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 关联云联网实例
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（AttachCcnInstances）用于关联云联网实例。
-    @inlinable
-    public func attachCcnInstances(_ input: AttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachCcnInstancesResponse > {
-        self.client.execute(action: "AttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关联云联网实例
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（AttachCcnInstances）用于关联云联网实例。
-    @inlinable
-    public func attachCcnInstances(_ input: AttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCcnInstancesResponse {
-        try await self.client.execute(action: "AttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AttachCcnInstances请求参数结构体
     public struct AttachCcnInstancesRequest: TCRequestModel {
         /// 服务器舰队 Id
@@ -44,7 +26,7 @@ extension Gse {
         /// 云联网 Id
         public let ccnId: String?
         
-        public init (fleetId: String?, accountId: String?, ccnId: String?) {
+        public init (fleetId: String? = nil, accountId: String? = nil, ccnId: String? = nil) {
             self.fleetId = fleetId
             self.accountId = accountId
             self.ccnId = ccnId
@@ -65,5 +47,23 @@ extension Gse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关联云联网实例
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（AttachCcnInstances）用于关联云联网实例。
+    @inlinable
+    public func attachCcnInstances(_ input: AttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachCcnInstancesResponse > {
+        self.client.execute(action: "AttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关联云联网实例
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（AttachCcnInstances）用于关联云联网实例。
+    @inlinable
+    public func attachCcnInstances(_ input: AttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCcnInstancesResponse {
+        try await self.client.execute(action: "AttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

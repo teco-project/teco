@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vm {
-    /// 识别统计
-    ///
-    /// 控制台识别统计
-    @inlinable
-    public func describeVideoStat(_ input: DescribeVideoStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoStatResponse > {
-        self.client.execute(action: "DescribeVideoStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 识别统计
-    ///
-    /// 控制台识别统计
-    @inlinable
-    public func describeVideoStat(_ input: DescribeVideoStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoStatResponse {
-        try await self.client.execute(action: "DescribeVideoStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVideoStat请求参数结构体
     public struct DescribeVideoStatRequest: TCRequestModel {
         /// 审核类型 1: 机器审核; 2: 人工审核
@@ -70,5 +54,21 @@ extension Vm {
             case evilCount = "EvilCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 识别统计
+    ///
+    /// 控制台识别统计
+    @inlinable
+    public func describeVideoStat(_ input: DescribeVideoStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoStatResponse > {
+        self.client.execute(action: "DescribeVideoStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 识别统计
+    ///
+    /// 控制台识别统计
+    @inlinable
+    public func describeVideoStat(_ input: DescribeVideoStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoStatResponse {
+        try await self.client.execute(action: "DescribeVideoStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

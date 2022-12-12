@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 查询标签值列表
-    ///
-    /// 用于查询已建立的标签列表中的标签值。
-    @inlinable
-    public func getTagValues(_ input: GetTagValuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTagValuesResponse > {
-        self.client.execute(action: "GetTagValues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询标签值列表
-    ///
-    /// 用于查询已建立的标签列表中的标签值。
-    @inlinable
-    public func getTagValues(_ input: GetTagValuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagValuesResponse {
-        try await self.client.execute(action: "GetTagValues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetTagValues请求参数结构体
     public struct GetTagValuesRequest: TCRequestModel {
         /// 标签键。
@@ -46,7 +30,7 @@ extension Tag {
         /// 缺省值：50。
         public let maxResults: UInt64?
         
-        public init (tagKeys: [String], paginationToken: String?, maxResults: UInt64?) {
+        public init (tagKeys: [String], paginationToken: String? = nil, maxResults: UInt64? = nil) {
             self.tagKeys = tagKeys
             self.paginationToken = paginationToken
             self.maxResults = maxResults
@@ -75,5 +59,21 @@ extension Tag {
             case tags = "Tags"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询标签值列表
+    ///
+    /// 用于查询已建立的标签列表中的标签值。
+    @inlinable
+    public func getTagValues(_ input: GetTagValuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTagValuesResponse > {
+        self.client.execute(action: "GetTagValues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询标签值列表
+    ///
+    /// 用于查询已建立的标签列表中的标签值。
+    @inlinable
+    public func getTagValues(_ input: GetTagValuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagValuesResponse {
+        try await self.client.execute(action: "GetTagValues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

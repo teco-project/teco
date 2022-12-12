@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 查看推送通道
-    @inlinable
-    public func describePushChannel(_ input: DescribePushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePushChannelResponse > {
-        self.client.execute(action: "DescribePushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看推送通道
-    @inlinable
-    public func describePushChannel(_ input: DescribePushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushChannelResponse {
-        try await self.client.execute(action: "DescribePushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePushChannel请求参数结构体
     public struct DescribePushChannelRequest: TCRequestModel {
         /// 产品ID
@@ -78,5 +66,17 @@ extension Iotvideo {
             case cKafkaTopic = "CKafkaTopic"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看推送通道
+    @inlinable
+    public func describePushChannel(_ input: DescribePushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePushChannelResponse > {
+        self.client.execute(action: "DescribePushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看推送通道
+    @inlinable
+    public func describePushChannel(_ input: DescribePushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushChannelResponse {
+        try await self.client.execute(action: "DescribePushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

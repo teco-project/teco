@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 绑定黑石EIP
-    @inlinable
-    public func bindRs(_ input: BindRsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindRsResponse > {
-        self.client.execute(action: "BindRs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定黑石EIP
-    @inlinable
-    public func bindRs(_ input: BindRsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRsResponse {
-        try await self.client.execute(action: "BindRs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindRs请求参数结构体
     public struct BindRsRequest: TCRequestModel {
         /// Eip实例ID
@@ -58,5 +46,17 @@ extension Bmeip {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定黑石EIP
+    @inlinable
+    public func bindRs(_ input: BindRsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindRsResponse > {
+        self.client.execute(action: "BindRs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定黑石EIP
+    @inlinable
+    public func bindRs(_ input: BindRsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRsResponse {
+        try await self.client.execute(action: "BindRs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

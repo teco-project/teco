@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取实时拉取端口任务状态
-    ///
-    /// 本接口 (DescribeOpenPortTaskStatus) 用于获取实时拉取端口任务状态。
-    @inlinable
-    public func describeOpenPortTaskStatus(_ input: DescribeOpenPortTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOpenPortTaskStatusResponse > {
-        self.client.execute(action: "DescribeOpenPortTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实时拉取端口任务状态
-    ///
-    /// 本接口 (DescribeOpenPortTaskStatus) 用于获取实时拉取端口任务状态。
-    @inlinable
-    public func describeOpenPortTaskStatus(_ input: DescribeOpenPortTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortTaskStatusResponse {
-        try await self.client.execute(action: "DescribeOpenPortTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOpenPortTaskStatus请求参数结构体
     public struct DescribeOpenPortTaskStatusRequest: TCRequestModel {
         /// 云镜客户端唯一Uuid。
@@ -61,5 +45,21 @@ extension Yunjing {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实时拉取端口任务状态
+    ///
+    /// 本接口 (DescribeOpenPortTaskStatus) 用于获取实时拉取端口任务状态。
+    @inlinable
+    public func describeOpenPortTaskStatus(_ input: DescribeOpenPortTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOpenPortTaskStatusResponse > {
+        self.client.execute(action: "DescribeOpenPortTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实时拉取端口任务状态
+    ///
+    /// 本接口 (DescribeOpenPortTaskStatus) 用于获取实时拉取端口任务状态。
+    @inlinable
+    public func describeOpenPortTaskStatus(_ input: DescribeOpenPortTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortTaskStatusResponse {
+        try await self.client.execute(action: "DescribeOpenPortTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

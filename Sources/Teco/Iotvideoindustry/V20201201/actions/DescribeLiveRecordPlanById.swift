@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取直播录制计划详情
-    @inlinable
-    public func describeLiveRecordPlanById(_ input: DescribeLiveRecordPlanByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordPlanByIdResponse > {
-        self.client.execute(action: "DescribeLiveRecordPlanById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取直播录制计划详情
-    @inlinable
-    public func describeLiveRecordPlanById(_ input: DescribeLiveRecordPlanByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordPlanByIdResponse {
-        try await self.client.execute(action: "DescribeLiveRecordPlanById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveRecordPlanById请求参数结构体
     public struct DescribeLiveRecordPlanByIdRequest: TCRequestModel {
         /// 录制计划ID
@@ -69,5 +57,17 @@ extension Iotvideoindustry {
             case planType = "PlanType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取直播录制计划详情
+    @inlinable
+    public func describeLiveRecordPlanById(_ input: DescribeLiveRecordPlanByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordPlanByIdResponse > {
+        self.client.execute(action: "DescribeLiveRecordPlanById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播录制计划详情
+    @inlinable
+    public func describeLiveRecordPlanById(_ input: DescribeLiveRecordPlanByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordPlanByIdResponse {
+        try await self.client.execute(action: "DescribeLiveRecordPlanById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

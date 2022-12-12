@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cpdp {
-    /// 直播平台-查询代理商结算单链接
-    @inlinable
-    public func queryAgentStatements(_ input: QueryAgentStatementsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAgentStatementsResponse > {
-        self.client.execute(action: "QueryAgentStatements", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播平台-查询代理商结算单链接
-    @inlinable
-    public func queryAgentStatements(_ input: QueryAgentStatementsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAgentStatementsResponse {
-        try await self.client.execute(action: "QueryAgentStatements", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryAgentStatements请求参数结构体
     public struct QueryAgentStatementsRequest: TCRequestModel {
         /// 结算单日期，月结算单填每月1日
@@ -63,5 +51,17 @@ extension Cpdp {
             case fileUrl = "FileUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播平台-查询代理商结算单链接
+    @inlinable
+    public func queryAgentStatements(_ input: QueryAgentStatementsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAgentStatementsResponse > {
+        self.client.execute(action: "QueryAgentStatements", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-查询代理商结算单链接
+    @inlinable
+    public func queryAgentStatements(_ input: QueryAgentStatementsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAgentStatementsResponse {
+        try await self.client.execute(action: "QueryAgentStatements", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

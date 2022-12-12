@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 修改路径重写
-    @inlinable
-    public func modifyPathRewrite(_ input: ModifyPathRewriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPathRewriteResponse > {
-        self.client.execute(action: "ModifyPathRewrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改路径重写
-    @inlinable
-    public func modifyPathRewrite(_ input: ModifyPathRewriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPathRewriteResponse {
-        try await self.client.execute(action: "ModifyPathRewrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPathRewrite请求参数结构体
     public struct ModifyPathRewriteRequest: TCRequestModel {
         /// 路径重写规则ID
@@ -44,7 +32,7 @@ extension Tsf {
         /// 规则顺序，越小优先级越高
         public let order: Int64?
         
-        public init (pathRewriteId: String, regex: String?, replacement: String?, blocked: String?, order: Int64?) {
+        public init (pathRewriteId: String, regex: String? = nil, replacement: String? = nil, blocked: String? = nil, order: Int64? = nil) {
             self.pathRewriteId = pathRewriteId
             self.regex = regex
             self.replacement = replacement
@@ -73,5 +61,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改路径重写
+    @inlinable
+    public func modifyPathRewrite(_ input: ModifyPathRewriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPathRewriteResponse > {
+        self.client.execute(action: "ModifyPathRewrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改路径重写
+    @inlinable
+    public func modifyPathRewrite(_ input: ModifyPathRewriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPathRewriteResponse {
+        try await self.client.execute(action: "ModifyPathRewrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 删除聚合实例
-    @inlinable
-    public func deletePrometheusRecordRuleYaml(_ input: DeletePrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusRecordRuleYamlResponse > {
-        self.client.execute(action: "DeletePrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除聚合实例
-    @inlinable
-    public func deletePrometheusRecordRuleYaml(_ input: DeletePrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusRecordRuleYamlResponse {
-        try await self.client.execute(action: "DeletePrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePrometheusRecordRuleYaml请求参数结构体
     public struct DeletePrometheusRecordRuleYamlRequest: TCRequestModel {
         /// 实例id
@@ -54,5 +42,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除聚合实例
+    @inlinable
+    public func deletePrometheusRecordRuleYaml(_ input: DeletePrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusRecordRuleYamlResponse > {
+        self.client.execute(action: "DeletePrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除聚合实例
+    @inlinable
+    public func deletePrometheusRecordRuleYaml(_ input: DeletePrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusRecordRuleYamlResponse {
+        try await self.client.execute(action: "DeletePrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

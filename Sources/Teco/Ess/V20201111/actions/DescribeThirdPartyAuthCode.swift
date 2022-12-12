@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ess {
-    /// 通过AuthCode查询用户是否实名
-    @inlinable
-    public func describeThirdPartyAuthCode(_ input: DescribeThirdPartyAuthCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeThirdPartyAuthCodeResponse > {
-        self.client.execute(action: "DescribeThirdPartyAuthCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通过AuthCode查询用户是否实名
-    @inlinable
-    public func describeThirdPartyAuthCode(_ input: DescribeThirdPartyAuthCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeThirdPartyAuthCodeResponse {
-        try await self.client.execute(action: "DescribeThirdPartyAuthCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeThirdPartyAuthCode请求参数结构体
     public struct DescribeThirdPartyAuthCodeRequest: TCRequestModel {
         /// 电子签小程序跳转客户小程序时携带的授权查看码
@@ -53,5 +41,17 @@ extension Ess {
             case verifyStatus = "VerifyStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通过AuthCode查询用户是否实名
+    @inlinable
+    public func describeThirdPartyAuthCode(_ input: DescribeThirdPartyAuthCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeThirdPartyAuthCodeResponse > {
+        self.client.execute(action: "DescribeThirdPartyAuthCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通过AuthCode查询用户是否实名
+    @inlinable
+    public func describeThirdPartyAuthCode(_ input: DescribeThirdPartyAuthCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeThirdPartyAuthCodeResponse {
+        try await self.client.execute(action: "DescribeThirdPartyAuthCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

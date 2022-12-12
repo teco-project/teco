@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 我的域名列表
-    ///
-    /// 本接口 (  DescribeDomainNameList ) 我的域名列表。
-    @inlinable
-    public func describeDomainNameList(_ input: DescribeDomainNameListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainNameListResponse > {
-        self.client.execute(action: "DescribeDomainNameList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 我的域名列表
-    ///
-    /// 本接口 (  DescribeDomainNameList ) 我的域名列表。
-    @inlinable
-    public func describeDomainNameList(_ input: DescribeDomainNameListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainNameListResponse {
-        try await self.client.execute(action: "DescribeDomainNameList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomainNameList请求参数结构体
     public struct DescribeDomainNameListRequest: TCRequestModel {
         /// 偏移量，默认为0
@@ -39,7 +23,7 @@ extension Domain {
         /// 返回数量，默认为20，取值范围[1,100]
         public let limit: UInt64?
         
-        public init (offset: UInt64?, limit: UInt64?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
         }
@@ -67,5 +51,21 @@ extension Domain {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 我的域名列表
+    ///
+    /// 本接口 (  DescribeDomainNameList ) 我的域名列表。
+    @inlinable
+    public func describeDomainNameList(_ input: DescribeDomainNameListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainNameListResponse > {
+        self.client.execute(action: "DescribeDomainNameList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 我的域名列表
+    ///
+    /// 本接口 (  DescribeDomainNameList ) 我的域名列表。
+    @inlinable
+    public func describeDomainNameList(_ input: DescribeDomainNameListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainNameListResponse {
+        try await self.client.execute(action: "DescribeDomainNameList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

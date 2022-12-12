@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cms {
-    /// 查询文本样本库
-    ///
-    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
-    /// <br>
-    /// 支持批量查询文本样本库。
-    @inlinable
-    public func describeTextSample(_ input: DescribeTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTextSampleResponse > {
-        self.client.execute(action: "DescribeTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询文本样本库
-    ///
-    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
-    /// <br>
-    /// 支持批量查询文本样本库。
-    @inlinable
-    public func describeTextSample(_ input: DescribeTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextSampleResponse {
-        try await self.client.execute(action: "DescribeTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTextSample请求参数结构体
     public struct DescribeTextSampleRequest: TCRequestModel {
         /// 支持通过标签值进行筛选
@@ -52,7 +32,7 @@ extension Cms {
         /// 按某个字段排序，目前仅支持CreatedAt排序
         public let orderField: String?
         
-        public init (filters: [Filter]?, limit: UInt64?, offset: UInt64?, orderDirection: String?, orderField: String?) {
+        public init (filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderDirection: String? = nil, orderField: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -85,5 +65,25 @@ extension Cms {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询文本样本库
+    ///
+    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
+    /// <br>
+    /// 支持批量查询文本样本库。
+    @inlinable
+    public func describeTextSample(_ input: DescribeTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTextSampleResponse > {
+        self.client.execute(action: "DescribeTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文本样本库
+    ///
+    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
+    /// <br>
+    /// 支持批量查询文本样本库。
+    @inlinable
+    public func describeTextSample(_ input: DescribeTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextSampleResponse {
+        try await self.client.execute(action: "DescribeTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

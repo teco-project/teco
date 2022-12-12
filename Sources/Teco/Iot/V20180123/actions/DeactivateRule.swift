@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 禁用规则
-    @inlinable
-    public func deactivateRule(_ input: DeactivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeactivateRuleResponse > {
-        self.client.execute(action: "DeactivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 禁用规则
-    @inlinable
-    public func deactivateRule(_ input: DeactivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeactivateRuleResponse {
-        try await self.client.execute(action: "DeactivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeactivateRule请求参数结构体
     public struct DeactivateRuleRequest: TCRequestModel {
         /// 规则Id
@@ -49,5 +37,17 @@ extension Iot {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 禁用规则
+    @inlinable
+    public func deactivateRule(_ input: DeactivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeactivateRuleResponse > {
+        self.client.execute(action: "DeactivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用规则
+    @inlinable
+    public func deactivateRule(_ input: DeactivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeactivateRuleResponse {
+        try await self.client.execute(action: "DeactivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

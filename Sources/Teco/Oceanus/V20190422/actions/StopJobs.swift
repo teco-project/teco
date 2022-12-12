@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 停止作业
-    ///
-    /// 批量停止作业，批量操作数量上限为20
-    @inlinable
-    public func stopJobs(_ input: StopJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopJobsResponse > {
-        self.client.execute(action: "StopJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止作业
-    ///
-    /// 批量停止作业，批量操作数量上限为20
-    @inlinable
-    public func stopJobs(_ input: StopJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopJobsResponse {
-        try await self.client.execute(action: "StopJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopJobs请求参数结构体
     public struct StopJobsRequest: TCRequestModel {
         /// 批量停止作业的描述信息
@@ -39,7 +23,7 @@ extension Oceanus {
         /// 工作空间 SerialId
         public let workSpaceId: String?
         
-        public init (stopJobDescriptions: [StopJobDescription], workSpaceId: String?) {
+        public init (stopJobDescriptions: [StopJobDescription], workSpaceId: String? = nil) {
             self.stopJobDescriptions = stopJobDescriptions
             self.workSpaceId = workSpaceId
         }
@@ -58,5 +42,21 @@ extension Oceanus {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止作业
+    ///
+    /// 批量停止作业，批量操作数量上限为20
+    @inlinable
+    public func stopJobs(_ input: StopJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopJobsResponse > {
+        self.client.execute(action: "StopJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止作业
+    ///
+    /// 批量停止作业，批量操作数量上限为20
+    @inlinable
+    public func stopJobs(_ input: StopJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopJobsResponse {
+        try await self.client.execute(action: "StopJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

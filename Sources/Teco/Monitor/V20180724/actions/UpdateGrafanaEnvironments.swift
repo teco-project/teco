@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 更新 Grafana 环境变量
-    @inlinable
-    public func updateGrafanaEnvironments(_ input: UpdateGrafanaEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGrafanaEnvironmentsResponse > {
-        self.client.execute(action: "UpdateGrafanaEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新 Grafana 环境变量
-    @inlinable
-    public func updateGrafanaEnvironments(_ input: UpdateGrafanaEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaEnvironmentsResponse {
-        try await self.client.execute(action: "UpdateGrafanaEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateGrafanaEnvironments请求参数结构体
     public struct UpdateGrafanaEnvironmentsRequest: TCRequestModel {
         /// 实例 ID
@@ -54,5 +42,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新 Grafana 环境变量
+    @inlinable
+    public func updateGrafanaEnvironments(_ input: UpdateGrafanaEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGrafanaEnvironmentsResponse > {
+        self.client.execute(action: "UpdateGrafanaEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新 Grafana 环境变量
+    @inlinable
+    public func updateGrafanaEnvironments(_ input: UpdateGrafanaEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaEnvironmentsResponse {
+        try await self.client.execute(action: "UpdateGrafanaEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

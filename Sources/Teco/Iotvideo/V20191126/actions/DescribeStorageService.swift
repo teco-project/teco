@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 查询云存服务
-    @inlinable
-    public func describeStorageService(_ input: DescribeStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStorageServiceResponse > {
-        self.client.execute(action: "DescribeStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云存服务
-    @inlinable
-    public func describeStorageService(_ input: DescribeStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageServiceResponse {
-        try await self.client.execute(action: "DescribeStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStorageService请求参数结构体
     public struct DescribeStorageServiceRequest: TCRequestModel {
         /// 云存服务ID
@@ -35,7 +23,7 @@ extension Iotvideo {
         /// 是否返回已结束的订单信息(已过期/已退订/已转移)
         public let getFinishedOrder: Bool?
         
-        public init (serviceId: String, getFinishedOrder: Bool?) {
+        public init (serviceId: String, getFinishedOrder: Bool? = nil) {
             self.serviceId = serviceId
             self.getFinishedOrder = getFinishedOrder
         }
@@ -94,5 +82,17 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云存服务
+    @inlinable
+    public func describeStorageService(_ input: DescribeStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStorageServiceResponse > {
+        self.client.execute(action: "DescribeStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云存服务
+    @inlinable
+    public func describeStorageService(_ input: DescribeStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageServiceResponse {
+        try await self.client.execute(action: "DescribeStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

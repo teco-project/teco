@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 更新应用密钥
-    ///
-    /// 本接口（UpdateApiAppKey）用于更新应用密钥。
-    @inlinable
-    public func updateApiAppKey(_ input: UpdateApiAppKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApiAppKeyResponse > {
-        self.client.execute(action: "UpdateApiAppKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新应用密钥
-    ///
-    /// 本接口（UpdateApiAppKey）用于更新应用密钥。
-    @inlinable
-    public func updateApiAppKey(_ input: UpdateApiAppKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiAppKeyResponse {
-        try await self.client.execute(action: "UpdateApiAppKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateApiAppKey请求参数结构体
     public struct UpdateApiAppKeyRequest: TCRequestModel {
         /// 应用唯一 ID。
@@ -42,7 +26,7 @@ extension Apigateway {
         /// 应用的Secret。
         public let apiAppSecret: String?
         
-        public init (apiAppId: String, apiAppKey: String, apiAppSecret: String?) {
+        public init (apiAppId: String, apiAppKey: String, apiAppSecret: String? = nil) {
             self.apiAppId = apiAppId
             self.apiAppKey = apiAppKey
             self.apiAppSecret = apiAppSecret
@@ -68,5 +52,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新应用密钥
+    ///
+    /// 本接口（UpdateApiAppKey）用于更新应用密钥。
+    @inlinable
+    public func updateApiAppKey(_ input: UpdateApiAppKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApiAppKeyResponse > {
+        self.client.execute(action: "UpdateApiAppKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新应用密钥
+    ///
+    /// 本接口（UpdateApiAppKey）用于更新应用密钥。
+    @inlinable
+    public func updateApiAppKey(_ input: UpdateApiAppKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiAppKeyResponse {
+        try await self.client.execute(action: "UpdateApiAppKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

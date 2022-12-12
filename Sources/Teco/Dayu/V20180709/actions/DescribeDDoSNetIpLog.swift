@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// 获取高防IP专业版资源的DDoSIP攻击日志
-    @inlinable
-    public func describeDDoSNetIpLog(_ input: DescribeDDoSNetIpLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSNetIpLogResponse > {
-        self.client.execute(action: "DescribeDDoSNetIpLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取高防IP专业版资源的DDoSIP攻击日志
-    @inlinable
-    public func describeDDoSNetIpLog(_ input: DescribeDDoSNetIpLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetIpLogResponse {
-        try await self.client.execute(action: "DescribeDDoSNetIpLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSNetIpLog请求参数结构体
     public struct DescribeDDoSNetIpLogRequest: TCRequestModel {
         /// 大禹子产品代号（net表示高防IP专业版）
@@ -92,5 +80,17 @@ extension Dayu {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取高防IP专业版资源的DDoSIP攻击日志
+    @inlinable
+    public func describeDDoSNetIpLog(_ input: DescribeDDoSNetIpLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSNetIpLogResponse > {
+        self.client.execute(action: "DescribeDDoSNetIpLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取高防IP专业版资源的DDoSIP攻击日志
+    @inlinable
+    public func describeDDoSNetIpLog(_ input: DescribeDDoSNetIpLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetIpLogResponse {
+        try await self.client.execute(action: "DescribeDDoSNetIpLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

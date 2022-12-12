@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 拒绝黑石对等连接申请
-    @inlinable
-    public func rejectVpcPeerConnection(_ input: RejectVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RejectVpcPeerConnectionResponse > {
-        self.client.execute(action: "RejectVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拒绝黑石对等连接申请
-    @inlinable
-    public func rejectVpcPeerConnection(_ input: RejectVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectVpcPeerConnectionResponse {
-        try await self.client.execute(action: "RejectVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RejectVpcPeerConnection请求参数结构体
     public struct RejectVpcPeerConnectionRequest: TCRequestModel {
         /// 黑石对等连接实例ID
@@ -53,5 +41,17 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拒绝黑石对等连接申请
+    @inlinable
+    public func rejectVpcPeerConnection(_ input: RejectVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RejectVpcPeerConnectionResponse > {
+        self.client.execute(action: "RejectVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拒绝黑石对等连接申请
+    @inlinable
+    public func rejectVpcPeerConnection(_ input: RejectVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectVpcPeerConnectionResponse {
+        try await self.client.execute(action: "RejectVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

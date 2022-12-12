@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 关闭restful api
-    ///
-    /// 当restful api为关闭状态时，可以通过此接口关闭restful api
-    @inlinable
-    public func disableRestProxy(_ input: DisableRestProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableRestProxyResponse > {
-        self.client.execute(action: "DisableRestProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关闭restful api
-    ///
-    /// 当restful api为关闭状态时，可以通过此接口关闭restful api
-    @inlinable
-    public func disableRestProxy(_ input: DisableRestProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRestProxyResponse {
-        try await self.client.execute(action: "DisableRestProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableRestProxy请求参数结构体
     public struct DisableRestProxyRequest: TCRequestModel {
         /// 对应appid
@@ -61,5 +45,21 @@ extension Tcaplusdb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关闭restful api
+    ///
+    /// 当restful api为关闭状态时，可以通过此接口关闭restful api
+    @inlinable
+    public func disableRestProxy(_ input: DisableRestProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableRestProxyResponse > {
+        self.client.execute(action: "DisableRestProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭restful api
+    ///
+    /// 当restful api为关闭状态时，可以通过此接口关闭restful api
+    @inlinable
+    public func disableRestProxy(_ input: DisableRestProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRestProxyResponse {
+        try await self.client.execute(action: "DisableRestProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

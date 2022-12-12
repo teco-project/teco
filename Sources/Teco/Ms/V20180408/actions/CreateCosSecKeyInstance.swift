@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ms {
-    /// 获取云COS临时密钥
-    ///
-    /// 获取云COS文件存储临时密钥，密钥仅限于临时上传文件，有访问限制和时效性。
-    @inlinable
-    public func createCosSecKeyInstance(_ input: CreateCosSecKeyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCosSecKeyInstanceResponse > {
-        self.client.execute(action: "CreateCosSecKeyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取云COS临时密钥
-    ///
-    /// 获取云COS文件存储临时密钥，密钥仅限于临时上传文件，有访问限制和时效性。
-    @inlinable
-    public func createCosSecKeyInstance(_ input: CreateCosSecKeyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosSecKeyInstanceResponse {
-        try await self.client.execute(action: "CreateCosSecKeyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCosSecKeyInstance请求参数结构体
     public struct CreateCosSecKeyInstanceRequest: TCRequestModel {
         /// 地域信息，例如广州：ap-guangzhou，上海：ap-shanghai，默认为广州。
@@ -39,7 +23,7 @@ extension Ms {
         /// 密钥有效时间，默认为1小时。
         public let duration: UInt64?
         
-        public init (cosRegion: String?, duration: UInt64?) {
+        public init (cosRegion: String? = nil, duration: UInt64? = nil) {
             self.cosRegion = cosRegion
             self.duration = duration
         }
@@ -90,5 +74,21 @@ extension Ms {
             case cosPrefix = "CosPrefix"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取云COS临时密钥
+    ///
+    /// 获取云COS文件存储临时密钥，密钥仅限于临时上传文件，有访问限制和时效性。
+    @inlinable
+    public func createCosSecKeyInstance(_ input: CreateCosSecKeyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCosSecKeyInstanceResponse > {
+        self.client.execute(action: "CreateCosSecKeyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云COS临时密钥
+    ///
+    /// 获取云COS文件存储临时密钥，密钥仅限于临时上传文件，有访问限制和时效性。
+    @inlinable
+    public func createCosSecKeyInstance(_ input: CreateCosSecKeyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosSecKeyInstanceResponse {
+        try await self.client.execute(action: "CreateCosSecKeyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

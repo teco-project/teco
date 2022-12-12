@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询防护目录关联服务器
-    ///
-    /// 查询防护目录关联服务器列表信息
-    @inlinable
-    public func describeProtectDirRelatedServer(_ input: DescribeProtectDirRelatedServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProtectDirRelatedServerResponse > {
-        self.client.execute(action: "DescribeProtectDirRelatedServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询防护目录关联服务器
-    ///
-    /// 查询防护目录关联服务器列表信息
-    @inlinable
-    public func describeProtectDirRelatedServer(_ input: DescribeProtectDirRelatedServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectDirRelatedServerResponse {
-        try await self.client.execute(action: "DescribeProtectDirRelatedServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProtectDirRelatedServer请求参数结构体
     public struct DescribeProtectDirRelatedServerRequest: TCRequestModel {
         /// 唯一ID
@@ -51,7 +35,7 @@ extension Cwp {
         /// 排序值
         public let by: String?
         
-        public init (id: String, limit: UInt64, offset: UInt64, filters: [Filter]?, order: String?, by: String?) {
+        public init (id: String, limit: UInt64, offset: UInt64, filters: [Filter]? = nil, order: String? = nil, by: String? = nil) {
             self.id = id
             self.limit = limit
             self.offset = offset
@@ -90,5 +74,21 @@ extension Cwp {
             case protectServerCount = "ProtectServerCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询防护目录关联服务器
+    ///
+    /// 查询防护目录关联服务器列表信息
+    @inlinable
+    public func describeProtectDirRelatedServer(_ input: DescribeProtectDirRelatedServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProtectDirRelatedServerResponse > {
+        self.client.execute(action: "DescribeProtectDirRelatedServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询防护目录关联服务器
+    ///
+    /// 查询防护目录关联服务器列表信息
+    @inlinable
+    public func describeProtectDirRelatedServer(_ input: DescribeProtectDirRelatedServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectDirRelatedServerResponse {
+        try await self.client.execute(action: "DescribeProtectDirRelatedServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

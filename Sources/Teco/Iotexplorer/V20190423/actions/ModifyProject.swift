@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 修改项目
-    @inlinable
-    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectResponse > {
-        self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改项目
-    @inlinable
-    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
-        try await self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyProject请求参数结构体
     public struct ModifyProjectRequest: TCRequestModel {
         /// 项目ID
@@ -63,5 +51,17 @@ extension Iotexplorer {
             case project = "Project"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改项目
+    @inlinable
+    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectResponse > {
+        self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改项目
+    @inlinable
+    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
+        try await self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 删除登录态
-    ///
-    /// 删除用户登录态，使用户登出多媒体创作引擎平台。
-    @inlinable
-    public func deleteLoginStatus(_ input: DeleteLoginStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoginStatusResponse > {
-        self.client.execute(action: "DeleteLoginStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除登录态
-    ///
-    /// 删除用户登录态，使用户登出多媒体创作引擎平台。
-    @inlinable
-    public func deleteLoginStatus(_ input: DeleteLoginStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoginStatusResponse {
-        try await self.client.execute(action: "DeleteLoginStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLoginStatus请求参数结构体
     public struct DeleteLoginStatusRequest: TCRequestModel {
         /// 平台名称，指定访问的平台。
@@ -58,5 +42,21 @@ extension Cme {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除登录态
+    ///
+    /// 删除用户登录态，使用户登出多媒体创作引擎平台。
+    @inlinable
+    public func deleteLoginStatus(_ input: DeleteLoginStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoginStatusResponse > {
+        self.client.execute(action: "DeleteLoginStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除登录态
+    ///
+    /// 删除用户登录态，使用户登出多媒体创作引擎平台。
+    @inlinable
+    public func deleteLoginStatus(_ input: DeleteLoginStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoginStatusResponse {
+        try await self.client.execute(action: "DeleteLoginStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tse {
-    /// 查询引擎实例列表
-    ///
-    /// 用于查询引擎实例列表
-    @inlinable
-    public func describeSREInstances(_ input: DescribeSREInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSREInstancesResponse > {
-        self.client.execute(action: "DescribeSREInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询引擎实例列表
-    ///
-    /// 用于查询引擎实例列表
-    @inlinable
-    public func describeSREInstances(_ input: DescribeSREInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSREInstancesResponse {
-        try await self.client.execute(action: "DescribeSREInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSREInstances请求参数结构体
     public struct DescribeSREInstancesRequest: TCRequestModel {
         /// 请求过滤参数
@@ -48,7 +32,7 @@ extension Tse {
         /// 调用方来源
         public let querySource: String?
         
-        public init (filters: [Filter]?, limit: Int64?, offset: Int64?, queryType: String?, querySource: String?) {
+        public init (filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, queryType: String? = nil, querySource: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -81,5 +65,21 @@ extension Tse {
             case content = "Content"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询引擎实例列表
+    ///
+    /// 用于查询引擎实例列表
+    @inlinable
+    public func describeSREInstances(_ input: DescribeSREInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSREInstancesResponse > {
+        self.client.execute(action: "DescribeSREInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询引擎实例列表
+    ///
+    /// 用于查询引擎实例列表
+    @inlinable
+    public func describeSREInstances(_ input: DescribeSREInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSREInstancesResponse {
+        try await self.client.execute(action: "DescribeSREInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

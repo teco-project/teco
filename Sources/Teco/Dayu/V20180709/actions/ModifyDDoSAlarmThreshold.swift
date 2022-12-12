@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 设置DDoS告警通知阈值
-    ///
-    /// 为高防包、高防IP、高防IP专业版、棋牌盾等产品设置DDoS攻击的告警通知阈值
-    @inlinable
-    public func modifyDDoSAlarmThreshold(_ input: ModifyDDoSAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSAlarmThresholdResponse > {
-        self.client.execute(action: "ModifyDDoSAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置DDoS告警通知阈值
-    ///
-    /// 为高防包、高防IP、高防IP专业版、棋牌盾等产品设置DDoS攻击的告警通知阈值
-    @inlinable
-    public func modifyDDoSAlarmThreshold(_ input: ModifyDDoSAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSAlarmThresholdResponse {
-        try await self.client.execute(action: "ModifyDDoSAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDDoSAlarmThreshold请求参数结构体
     public struct ModifyDDoSAlarmThresholdRequest: TCRequestModel {
         /// 大禹子产品代号（shield表示棋牌；bgpip表示高防IP；bgp表示高防包；bgp-multip表示多ip高防包；net表示高防IP专业版）
@@ -77,5 +61,21 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置DDoS告警通知阈值
+    ///
+    /// 为高防包、高防IP、高防IP专业版、棋牌盾等产品设置DDoS攻击的告警通知阈值
+    @inlinable
+    public func modifyDDoSAlarmThreshold(_ input: ModifyDDoSAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSAlarmThresholdResponse > {
+        self.client.execute(action: "ModifyDDoSAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置DDoS告警通知阈值
+    ///
+    /// 为高防包、高防IP、高防IP专业版、棋牌盾等产品设置DDoS攻击的告警通知阈值
+    @inlinable
+    public func modifyDDoSAlarmThreshold(_ input: ModifyDDoSAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSAlarmThresholdResponse {
+        try await self.client.execute(action: "ModifyDDoSAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

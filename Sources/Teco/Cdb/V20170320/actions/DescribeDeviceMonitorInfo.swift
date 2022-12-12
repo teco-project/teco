@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 物理机监控信息
-    ///
-    /// 本接口（DescribeDeviceMonitorInfo）用于查询云数据库物理机当天的监控信息，暂只支持内存488G、硬盘6T的实例查询。
-    @inlinable
-    public func describeDeviceMonitorInfo(_ input: DescribeDeviceMonitorInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceMonitorInfoResponse > {
-        self.client.execute(action: "DescribeDeviceMonitorInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 物理机监控信息
-    ///
-    /// 本接口（DescribeDeviceMonitorInfo）用于查询云数据库物理机当天的监控信息，暂只支持内存488G、硬盘6T的实例查询。
-    @inlinable
-    public func describeDeviceMonitorInfo(_ input: DescribeDeviceMonitorInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceMonitorInfoResponse {
-        try await self.client.execute(action: "DescribeDeviceMonitorInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceMonitorInfo请求参数结构体
     public struct DescribeDeviceMonitorInfoRequest: TCRequestModel {
         /// 实例ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例ID相同。
@@ -39,7 +23,7 @@ extension Cdb {
         /// 返回当天最近Count个5分钟粒度的监控数据。最小值1，最大值288，不传该参数默认返回当天所有5分钟粒度监控数据。
         public let count: UInt64?
         
-        public init (instanceId: String, count: UInt64?) {
+        public init (instanceId: String, count: UInt64? = nil) {
             self.instanceId = instanceId
             self.count = count
         }
@@ -74,5 +58,21 @@ extension Cdb {
             case disk = "Disk"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 物理机监控信息
+    ///
+    /// 本接口（DescribeDeviceMonitorInfo）用于查询云数据库物理机当天的监控信息，暂只支持内存488G、硬盘6T的实例查询。
+    @inlinable
+    public func describeDeviceMonitorInfo(_ input: DescribeDeviceMonitorInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceMonitorInfoResponse > {
+        self.client.execute(action: "DescribeDeviceMonitorInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 物理机监控信息
+    ///
+    /// 本接口（DescribeDeviceMonitorInfo）用于查询云数据库物理机当天的监控信息，暂只支持内存488G、硬盘6T的实例查询。
+    @inlinable
+    public func describeDeviceMonitorInfo(_ input: DescribeDeviceMonitorInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceMonitorInfoResponse {
+        try await self.client.execute(action: "DescribeDeviceMonitorInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

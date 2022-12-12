@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 更新镜像仓库信息
-    ///
-    /// 更新镜像仓库信息，可修改仓库描述信息
-    @inlinable
-    public func modifyRepository(_ input: ModifyRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRepositoryResponse > {
-        self.client.execute(action: "ModifyRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新镜像仓库信息
-    ///
-    /// 更新镜像仓库信息，可修改仓库描述信息
-    @inlinable
-    public func modifyRepository(_ input: ModifyRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryResponse {
-        try await self.client.execute(action: "ModifyRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRepository请求参数结构体
     public struct ModifyRepositoryRequest: TCRequestModel {
         /// 实例ID
@@ -73,5 +57,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新镜像仓库信息
+    ///
+    /// 更新镜像仓库信息，可修改仓库描述信息
+    @inlinable
+    public func modifyRepository(_ input: ModifyRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRepositoryResponse > {
+        self.client.execute(action: "ModifyRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新镜像仓库信息
+    ///
+    /// 更新镜像仓库信息，可修改仓库描述信息
+    @inlinable
+    public func modifyRepository(_ input: ModifyRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryResponse {
+        try await self.client.execute(action: "ModifyRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

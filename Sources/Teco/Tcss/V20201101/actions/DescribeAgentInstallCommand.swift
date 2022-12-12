@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询agent安装命令
-    @inlinable
-    public func describeAgentInstallCommand(_ input: DescribeAgentInstallCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentInstallCommandResponse > {
-        self.client.execute(action: "DescribeAgentInstallCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询agent安装命令
-    @inlinable
-    public func describeAgentInstallCommand(_ input: DescribeAgentInstallCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentInstallCommandResponse {
-        try await self.client.execute(action: "DescribeAgentInstallCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAgentInstallCommand请求参数结构体
     public struct DescribeAgentInstallCommandRequest: TCRequestModel {
         /// 是否是腾讯云
@@ -47,7 +35,7 @@ extension Tcss {
         /// 标签ID列表，IsCloud=false时才会生效
         public let tagIds: [UInt64]?
         
-        public init (isCloud: Bool, netType: String, regionCode: String?, vpcId: String?, expireDate: String?, tagIds: [UInt64]?) {
+        public init (isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil, tagIds: [UInt64]? = nil) {
             self.isCloud = isCloud
             self.netType = netType
             self.regionCode = regionCode
@@ -94,5 +82,17 @@ extension Tcss {
             case windowsDownloadUrl = "WindowsDownloadUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询agent安装命令
+    @inlinable
+    public func describeAgentInstallCommand(_ input: DescribeAgentInstallCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentInstallCommandResponse > {
+        self.client.execute(action: "DescribeAgentInstallCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询agent安装命令
+    @inlinable
+    public func describeAgentInstallCommand(_ input: DescribeAgentInstallCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentInstallCommandResponse {
+        try await self.client.execute(action: "DescribeAgentInstallCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

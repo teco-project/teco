@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取智能调度域名列表
-    @inlinable
-    public func describeListSchedulingDomain(_ input: DescribeListSchedulingDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListSchedulingDomainResponse > {
-        self.client.execute(action: "DescribeListSchedulingDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取智能调度域名列表
-    @inlinable
-    public func describeListSchedulingDomain(_ input: DescribeListSchedulingDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListSchedulingDomainResponse {
-        try await self.client.execute(action: "DescribeListSchedulingDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeListSchedulingDomain请求参数结构体
     public struct DescribeListSchedulingDomainRequest: TCRequestModel {
         /// 页起始偏移，取值为(页码-1)*一页条数
@@ -38,7 +26,7 @@ extension Antiddos {
         /// 调度域名搜索
         public let filterDomain: String?
         
-        public init (offset: UInt64, limit: UInt64, filterDomain: String?) {
+        public init (offset: UInt64, limit: UInt64, filterDomain: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filterDomain = filterDomain
@@ -67,5 +55,17 @@ extension Antiddos {
             case domainList = "DomainList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取智能调度域名列表
+    @inlinable
+    public func describeListSchedulingDomain(_ input: DescribeListSchedulingDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListSchedulingDomainResponse > {
+        self.client.execute(action: "DescribeListSchedulingDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取智能调度域名列表
+    @inlinable
+    public func describeListSchedulingDomain(_ input: DescribeListSchedulingDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListSchedulingDomainResponse {
+        try await self.client.execute(action: "DescribeListSchedulingDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

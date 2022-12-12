@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 查询自定义镜像制作进度
-    @inlinable
-    public func describeCustomImageProcess(_ input: DescribeCustomImageProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomImageProcessResponse > {
-        self.client.execute(action: "DescribeCustomImageProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询自定义镜像制作进度
-    @inlinable
-    public func describeCustomImageProcess(_ input: DescribeCustomImageProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImageProcessResponse {
-        try await self.client.execute(action: "DescribeCustomImageProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomImageProcess请求参数结构体
     public struct DescribeCustomImageProcessRequest: TCRequestModel {
         /// 镜像ID
@@ -53,5 +41,17 @@ extension Bm {
             case customImageProcessSet = "CustomImageProcessSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询自定义镜像制作进度
+    @inlinable
+    public func describeCustomImageProcess(_ input: DescribeCustomImageProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomImageProcessResponse > {
+        self.client.execute(action: "DescribeCustomImageProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询自定义镜像制作进度
+    @inlinable
+    public func describeCustomImageProcess(_ input: DescribeCustomImageProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImageProcessResponse {
+        try await self.client.execute(action: "DescribeCustomImageProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

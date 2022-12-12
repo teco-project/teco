@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 启用域名
-    ///
-    /// 启用状态为停用的直播域名。
-    @inlinable
-    public func enableLiveDomain(_ input: EnableLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableLiveDomainResponse > {
-        self.client.execute(action: "EnableLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启用域名
-    ///
-    /// 启用状态为停用的直播域名。
-    @inlinable
-    public func enableLiveDomain(_ input: EnableLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableLiveDomainResponse {
-        try await self.client.execute(action: "EnableLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableLiveDomain请求参数结构体
     public struct EnableLiveDomainRequest: TCRequestModel {
         /// 待启用的直播域名。
@@ -53,5 +37,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启用域名
+    ///
+    /// 启用状态为停用的直播域名。
+    @inlinable
+    public func enableLiveDomain(_ input: EnableLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableLiveDomainResponse > {
+        self.client.execute(action: "EnableLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启用域名
+    ///
+    /// 启用状态为停用的直播域名。
+    @inlinable
+    public func enableLiveDomain(_ input: EnableLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableLiveDomainResponse {
+        try await self.client.execute(action: "EnableLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

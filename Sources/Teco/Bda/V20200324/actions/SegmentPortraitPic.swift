@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bda {
-    /// 人像分割
-    ///
-    /// 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。
-    @inlinable
-    public func segmentPortraitPic(_ input: SegmentPortraitPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SegmentPortraitPicResponse > {
-        self.client.execute(action: "SegmentPortraitPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人像分割
-    ///
-    /// 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。
-    @inlinable
-    public func segmentPortraitPic(_ input: SegmentPortraitPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SegmentPortraitPicResponse {
-        try await self.client.execute(action: "SegmentPortraitPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SegmentPortraitPic请求参数结构体
     public struct SegmentPortraitPicRequest: TCRequestModel {
         /// 图片 base64 数据，base64 编码后大小不可超过5M。
@@ -49,7 +33,7 @@ extension Bda {
         /// 返回图像方式（base64 或 url ) ，二选一。url有效期为30分钟。
         public let rspImgType: String?
         
-        public init (image: String?, url: String?, rspImgType: String?) {
+        public init (image: String? = nil, url: String? = nil, rspImgType: String? = nil) {
             self.image = image
             self.url = url
             self.rspImgType = rspImgType
@@ -95,5 +79,21 @@ extension Bda {
             case resultMaskUrl = "ResultMaskUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人像分割
+    ///
+    /// 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。
+    @inlinable
+    public func segmentPortraitPic(_ input: SegmentPortraitPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SegmentPortraitPicResponse > {
+        self.client.execute(action: "SegmentPortraitPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人像分割
+    ///
+    /// 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。
+    @inlinable
+    public func segmentPortraitPic(_ input: SegmentPortraitPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SegmentPortraitPicResponse {
+        try await self.client.execute(action: "SegmentPortraitPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

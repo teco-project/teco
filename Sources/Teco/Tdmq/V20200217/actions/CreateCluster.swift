@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 创建集群
-    ///
-    /// 创建用户的集群
-    @inlinable
-    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
-        self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建集群
-    ///
-    /// 创建用户的集群
-    @inlinable
-    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
-        try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCluster请求参数结构体
     public struct CreateClusterRequest: TCRequestModel {
         /// 集群名称，不支持中字以及除了短线和下划线外的特殊字符且不超过16个字符。
@@ -48,7 +32,7 @@ extension Tdmq {
         /// 是否开启公网访问，不填时默认开启
         public let publicAccessEnabled: Bool?
         
-        public init (clusterName: String, bindClusterId: UInt64?, remark: String?, tags: [Tag]?, publicAccessEnabled: Bool?) {
+        public init (clusterName: String, bindClusterId: UInt64? = nil, remark: String? = nil, tags: [Tag]? = nil, publicAccessEnabled: Bool? = nil) {
             self.clusterName = clusterName
             self.bindClusterId = bindClusterId
             self.remark = remark
@@ -77,5 +61,21 @@ extension Tdmq {
             case clusterId = "ClusterId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建集群
+    ///
+    /// 创建用户的集群
+    @inlinable
+    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
+        self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群
+    ///
+    /// 创建用户的集群
+    @inlinable
+    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
+        try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

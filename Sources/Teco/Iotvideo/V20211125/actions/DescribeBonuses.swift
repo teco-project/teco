@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 查看运营活动资源包列表
-    @inlinable
-    public func describeBonuses(_ input: DescribeBonusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBonusesResponse > {
-        self.client.execute(action: "DescribeBonuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看运营活动资源包列表
-    @inlinable
-    public func describeBonuses(_ input: DescribeBonusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBonusesResponse {
-        try await self.client.execute(action: "DescribeBonuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBonuses请求参数结构体
     public struct DescribeBonusesRequest: TCRequestModel {
         /// 分页拉取偏移
@@ -62,5 +50,17 @@ extension Iotvideo {
             case bonuses = "Bonuses"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看运营活动资源包列表
+    @inlinable
+    public func describeBonuses(_ input: DescribeBonusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBonusesResponse > {
+        self.client.execute(action: "DescribeBonuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看运营活动资源包列表
+    @inlinable
+    public func describeBonuses(_ input: DescribeBonusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBonusesResponse {
+        try await self.client.execute(action: "DescribeBonuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

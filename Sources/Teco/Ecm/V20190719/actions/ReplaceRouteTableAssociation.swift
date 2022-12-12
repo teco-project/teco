@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 替换路由表绑定关系
-    ///
-    /// 修改子网关联的路由表，一个子网只能关联一个路由表。
-    @inlinable
-    public func replaceRouteTableAssociation(_ input: ReplaceRouteTableAssociationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceRouteTableAssociationResponse > {
-        self.client.execute(action: "ReplaceRouteTableAssociation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 替换路由表绑定关系
-    ///
-    /// 修改子网关联的路由表，一个子网只能关联一个路由表。
-    @inlinable
-    public func replaceRouteTableAssociation(_ input: ReplaceRouteTableAssociationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRouteTableAssociationResponse {
-        try await self.client.execute(action: "ReplaceRouteTableAssociation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReplaceRouteTableAssociation请求参数结构体
     public struct ReplaceRouteTableAssociationRequest: TCRequestModel {
         /// 子网实例ID，例如：subnet-3x5lf5q0。可通过DescribeSubnets接口查询。
@@ -63,5 +47,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 替换路由表绑定关系
+    ///
+    /// 修改子网关联的路由表，一个子网只能关联一个路由表。
+    @inlinable
+    public func replaceRouteTableAssociation(_ input: ReplaceRouteTableAssociationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceRouteTableAssociationResponse > {
+        self.client.execute(action: "ReplaceRouteTableAssociation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 替换路由表绑定关系
+    ///
+    /// 修改子网关联的路由表，一个子网只能关联一个路由表。
+    @inlinable
+    public func replaceRouteTableAssociation(_ input: ReplaceRouteTableAssociationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRouteTableAssociationResponse {
+        try await self.client.execute(action: "ReplaceRouteTableAssociation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

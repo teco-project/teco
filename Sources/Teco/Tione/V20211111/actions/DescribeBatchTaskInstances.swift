@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 跑批实例列表
-    ///
-    /// 查询跑批实例列表
-    @inlinable
-    public func describeBatchTaskInstances(_ input: DescribeBatchTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchTaskInstancesResponse > {
-        self.client.execute(action: "DescribeBatchTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 跑批实例列表
-    ///
-    /// 查询跑批实例列表
-    @inlinable
-    public func describeBatchTaskInstances(_ input: DescribeBatchTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTaskInstancesResponse {
-        try await self.client.execute(action: "DescribeBatchTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBatchTaskInstances请求参数结构体
     public struct DescribeBatchTaskInstancesRequest: TCRequestModel {
         /// 跑批任务id
@@ -58,5 +42,21 @@ extension Tione {
             case batchInstances = "BatchInstances"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 跑批实例列表
+    ///
+    /// 查询跑批实例列表
+    @inlinable
+    public func describeBatchTaskInstances(_ input: DescribeBatchTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchTaskInstancesResponse > {
+        self.client.execute(action: "DescribeBatchTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 跑批实例列表
+    ///
+    /// 查询跑批实例列表
+    @inlinable
+    public func describeBatchTaskInstances(_ input: DescribeBatchTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTaskInstancesResponse {
+        try await self.client.execute(action: "DescribeBatchTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 机动车登记证书识别
-    ///
-    /// 本接口支持国内机动车登记证书主要字段的结构化识别，包括机动车所有人、身份证明名称、号码、车辆型号、车辆识别代号、发动机号、制造厂名称等。
-    @inlinable
-    public func vehicleRegCertOCR(_ input: VehicleRegCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VehicleRegCertOCRResponse > {
-        self.client.execute(action: "VehicleRegCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 机动车登记证书识别
-    ///
-    /// 本接口支持国内机动车登记证书主要字段的结构化识别，包括机动车所有人、身份证明名称、号码、车辆型号、车辆识别代号、发动机号、制造厂名称等。
-    @inlinable
-    public func vehicleRegCertOCR(_ input: VehicleRegCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VehicleRegCertOCRResponse {
-        try await self.client.execute(action: "VehicleRegCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VehicleRegCertOCR请求参数结构体
     public struct VehicleRegCertOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -46,7 +30,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -69,5 +53,21 @@ extension Ocr {
             case vehicleRegCertInfos = "VehicleRegCertInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 机动车登记证书识别
+    ///
+    /// 本接口支持国内机动车登记证书主要字段的结构化识别，包括机动车所有人、身份证明名称、号码、车辆型号、车辆识别代号、发动机号、制造厂名称等。
+    @inlinable
+    public func vehicleRegCertOCR(_ input: VehicleRegCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VehicleRegCertOCRResponse > {
+        self.client.execute(action: "VehicleRegCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 机动车登记证书识别
+    ///
+    /// 本接口支持国内机动车登记证书主要字段的结构化识别，包括机动车所有人、身份证明名称、号码、车辆型号、车辆识别代号、发动机号、制造厂名称等。
+    @inlinable
+    public func vehicleRegCertOCR(_ input: VehicleRegCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VehicleRegCertOCRResponse {
+        try await self.client.execute(action: "VehicleRegCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 容器网络创建检查Yaml网络策略任务
-    @inlinable
-    public func checkNetworkFirewallPolicyYaml(_ input: CheckNetworkFirewallPolicyYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckNetworkFirewallPolicyYamlResponse > {
-        self.client.execute(action: "CheckNetworkFirewallPolicyYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 容器网络创建检查Yaml网络策略任务
-    @inlinable
-    public func checkNetworkFirewallPolicyYaml(_ input: CheckNetworkFirewallPolicyYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckNetworkFirewallPolicyYamlResponse {
-        try await self.client.execute(action: "CheckNetworkFirewallPolicyYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckNetworkFirewallPolicyYaml请求参数结构体
     public struct CheckNetworkFirewallPolicyYamlRequest: TCRequestModel {
         /// 集群Id
@@ -41,7 +29,7 @@ extension Tcss {
         /// 策略描述
         public let description: String?
         
-        public init (clusterId: String, policyName: String, yaml: String?, description: String?) {
+        public init (clusterId: String, policyName: String, yaml: String? = nil, description: String? = nil) {
             self.clusterId = clusterId
             self.policyName = policyName
             self.yaml = yaml
@@ -72,5 +60,17 @@ extension Tcss {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 容器网络创建检查Yaml网络策略任务
+    @inlinable
+    public func checkNetworkFirewallPolicyYaml(_ input: CheckNetworkFirewallPolicyYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckNetworkFirewallPolicyYamlResponse > {
+        self.client.execute(action: "CheckNetworkFirewallPolicyYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络创建检查Yaml网络策略任务
+    @inlinable
+    public func checkNetworkFirewallPolicyYaml(_ input: CheckNetworkFirewallPolicyYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckNetworkFirewallPolicyYamlResponse {
+        try await self.client.execute(action: "CheckNetworkFirewallPolicyYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

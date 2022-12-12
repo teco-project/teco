@@ -15,22 +15,10 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// DMS元数据创建库
-    @inlinable
-    public func createDMSDatabase(_ input: CreateDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDMSDatabaseResponse > {
-        self.client.execute(action: "CreateDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DMS元数据创建库
-    @inlinable
-    public func createDMSDatabase(_ input: CreateDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDMSDatabaseResponse {
-        try await self.client.execute(action: "CreateDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDMSDatabase请求参数结构体
     public struct CreateDMSDatabaseRequest: TCRequestModel {
         /// 基础元数据对象
-        public let asset: Asset
+        public let asset: Asset?
         
         /// Schema目录
         public let schemaName: String?
@@ -41,7 +29,7 @@ extension Dlc {
         /// 数据库名称
         public let name: String?
         
-        public init (asset: Asset, schemaName: String?, location: String?, name: String?) {
+        public init (asset: Asset? = nil, schemaName: String? = nil, location: String? = nil, name: String? = nil) {
             self.asset = asset
             self.schemaName = schemaName
             self.location = location
@@ -64,5 +52,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// DMS元数据创建库
+    @inlinable
+    public func createDMSDatabase(_ input: CreateDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDMSDatabaseResponse > {
+        self.client.execute(action: "CreateDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据创建库
+    @inlinable
+    public func createDMSDatabase(_ input: CreateDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDMSDatabaseResponse {
+        try await self.client.execute(action: "CreateDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

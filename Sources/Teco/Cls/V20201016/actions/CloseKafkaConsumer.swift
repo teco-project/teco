@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 关闭Kafka协议消费
-    @inlinable
-    public func closeKafkaConsumer(_ input: CloseKafkaConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseKafkaConsumerResponse > {
-        self.client.execute(action: "CloseKafkaConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关闭Kafka协议消费
-    @inlinable
-    public func closeKafkaConsumer(_ input: CloseKafkaConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseKafkaConsumerResponse {
-        try await self.client.execute(action: "CloseKafkaConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CloseKafkaConsumer请求参数结构体
     public struct CloseKafkaConsumerRequest: TCRequestModel {
         /// CLS对应的topic标识
@@ -49,5 +37,17 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关闭Kafka协议消费
+    @inlinable
+    public func closeKafkaConsumer(_ input: CloseKafkaConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseKafkaConsumerResponse > {
+        self.client.execute(action: "CloseKafkaConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭Kafka协议消费
+    @inlinable
+    public func closeKafkaConsumer(_ input: CloseKafkaConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseKafkaConsumerResponse {
+        try await self.client.execute(action: "CloseKafkaConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

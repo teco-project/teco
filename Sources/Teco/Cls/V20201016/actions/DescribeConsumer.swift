@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 获取投递配置
-    ///
-    /// 本接口用于获取投递配置
-    @inlinable
-    public func describeConsumer(_ input: DescribeConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConsumerResponse > {
-        self.client.execute(action: "DescribeConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取投递配置
-    ///
-    /// 本接口用于获取投递配置
-    @inlinable
-    public func describeConsumer(_ input: DescribeConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConsumerResponse {
-        try await self.client.execute(action: "DescribeConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeConsumer请求参数结构体
     public struct DescribeConsumerRequest: TCRequestModel {
         /// 投递任务绑定的日志主题 ID
@@ -55,7 +39,7 @@ extension Cls {
         
         /// 如果需要投递元数据信息，元数据信息的描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let content: ConsumerContent
+        public let content: ConsumerContent?
         
         /// CKafka的描述
         public let ckafka: Ckafka
@@ -75,5 +59,21 @@ extension Cls {
             case compression = "Compression"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取投递配置
+    ///
+    /// 本接口用于获取投递配置
+    @inlinable
+    public func describeConsumer(_ input: DescribeConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConsumerResponse > {
+        self.client.execute(action: "DescribeConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取投递配置
+    ///
+    /// 本接口用于获取投递配置
+    @inlinable
+    public func describeConsumer(_ input: DescribeConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConsumerResponse {
+        try await self.client.execute(action: "DescribeConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

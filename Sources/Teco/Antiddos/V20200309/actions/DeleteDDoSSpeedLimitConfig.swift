@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 删除DDoS防护的访问限速配置
-    @inlinable
-    public func deleteDDoSSpeedLimitConfig(_ input: DeleteDDoSSpeedLimitConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDDoSSpeedLimitConfigResponse > {
-        self.client.execute(action: "DeleteDDoSSpeedLimitConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除DDoS防护的访问限速配置
-    @inlinable
-    public func deleteDDoSSpeedLimitConfig(_ input: DeleteDDoSSpeedLimitConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSSpeedLimitConfigResponse {
-        try await self.client.execute(action: "DeleteDDoSSpeedLimitConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDDoSSpeedLimitConfig请求参数结构体
     public struct DeleteDDoSSpeedLimitConfigRequest: TCRequestModel {
         /// 资源实例ID
@@ -54,5 +42,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除DDoS防护的访问限速配置
+    @inlinable
+    public func deleteDDoSSpeedLimitConfig(_ input: DeleteDDoSSpeedLimitConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDDoSSpeedLimitConfigResponse > {
+        self.client.execute(action: "DeleteDDoSSpeedLimitConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除DDoS防护的访问限速配置
+    @inlinable
+    public func deleteDDoSSpeedLimitConfig(_ input: DeleteDDoSSpeedLimitConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSSpeedLimitConfigResponse {
+        try await self.client.execute(action: "DeleteDDoSSpeedLimitConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

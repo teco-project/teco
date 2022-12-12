@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dasb {
-    /// 新建资产组
-    @inlinable
-    public func createDeviceGroup(_ input: CreateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeviceGroupResponse > {
-        self.client.execute(action: "CreateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建资产组
-    @inlinable
-    public func createDeviceGroup(_ input: CreateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceGroupResponse {
-        try await self.client.execute(action: "CreateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDeviceGroup请求参数结构体
     public struct CreateDeviceGroupRequest: TCRequestModel {
         /// 资产组名，最大长度32字符
@@ -35,7 +23,7 @@ extension Dasb {
         /// 资产组所属部门ID，如：1.2.3
         public let departmentId: String?
         
-        public init (name: String, departmentId: String?) {
+        public init (name: String, departmentId: String? = nil) {
             self.name = name
             self.departmentId = departmentId
         }
@@ -58,5 +46,17 @@ extension Dasb {
             case id = "Id"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建资产组
+    @inlinable
+    public func createDeviceGroup(_ input: CreateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeviceGroupResponse > {
+        self.client.execute(action: "CreateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建资产组
+    @inlinable
+    public func createDeviceGroup(_ input: CreateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceGroupResponse {
+        try await self.client.execute(action: "CreateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

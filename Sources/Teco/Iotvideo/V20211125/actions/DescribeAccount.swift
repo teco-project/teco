@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取消费版账号信息
-    @inlinable
-    public func describeAccount(_ input: DescribeAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountResponse > {
-        self.client.execute(action: "DescribeAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取消费版账号信息
-    @inlinable
-    public func describeAccount(_ input: DescribeAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountResponse {
-        try await self.client.execute(action: "DescribeAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccount请求参数结构体
     public struct DescribeAccountRequest: TCRequestModel {
         /// 1设备，2云存，3ai
@@ -61,5 +49,17 @@ extension Iotvideo {
             case billMode = "BillMode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取消费版账号信息
+    @inlinable
+    public func describeAccount(_ input: DescribeAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountResponse > {
+        self.client.execute(action: "DescribeAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取消费版账号信息
+    @inlinable
+    public func describeAccount(_ input: DescribeAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountResponse {
+        try await self.client.execute(action: "DescribeAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

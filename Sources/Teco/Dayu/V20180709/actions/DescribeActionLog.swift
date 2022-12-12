@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// 获取操作日志
-    @inlinable
-    public func describeActionLog(_ input: DescribeActionLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeActionLogResponse > {
-        self.client.execute(action: "DescribeActionLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取操作日志
-    @inlinable
-    public func describeActionLog(_ input: DescribeActionLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeActionLogResponse {
-        try await self.client.execute(action: "DescribeActionLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeActionLog请求参数结构体
     public struct DescribeActionLogRequest: TCRequestModel {
         /// 开始时间
@@ -51,7 +39,7 @@ extension Dayu {
         /// 页起始偏移，取值为(页码-1)*一页条数
         public let offset: UInt64?
         
-        public init (startTime: Date, endTime: Date, business: String?, filter: String?, limit: UInt64?, offset: UInt64?) {
+        public init (startTime: Date, endTime: Date, business: String? = nil, filter: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.business = business
@@ -86,5 +74,17 @@ extension Dayu {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取操作日志
+    @inlinable
+    public func describeActionLog(_ input: DescribeActionLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeActionLogResponse > {
+        self.client.execute(action: "DescribeActionLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取操作日志
+    @inlinable
+    public func describeActionLog(_ input: DescribeActionLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeActionLogResponse {
+        try await self.client.execute(action: "DescribeActionLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

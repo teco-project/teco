@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 创建告警通知接收组
-    @inlinable
-    public func createAlertChannel(_ input: CreateAlertChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAlertChannelResponse > {
-        self.client.execute(action: "CreateAlertChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建告警通知接收组
-    @inlinable
-    public func createAlertChannel(_ input: CreateAlertChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlertChannelResponse {
-        try await self.client.execute(action: "CreateAlertChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAlertChannel请求参数结构体
     public struct CreateAlertChannelRequest: TCRequestModel {
         /// Notice ID
@@ -38,7 +26,7 @@ extension Pts {
         /// AMP Consumer ID
         public let ampConsumerId: String?
         
-        public init (noticeId: String, projectId: String, ampConsumerId: String?) {
+        public init (noticeId: String, projectId: String, ampConsumerId: String? = nil) {
             self.noticeId = noticeId
             self.projectId = projectId
             self.ampConsumerId = ampConsumerId
@@ -59,5 +47,17 @@ extension Pts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建告警通知接收组
+    @inlinable
+    public func createAlertChannel(_ input: CreateAlertChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAlertChannelResponse > {
+        self.client.execute(action: "CreateAlertChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建告警通知接收组
+    @inlinable
+    public func createAlertChannel(_ input: CreateAlertChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlertChannelResponse {
+        try await self.client.execute(action: "CreateAlertChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

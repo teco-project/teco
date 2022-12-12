@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建NAT网关
-    ///
-    /// 本接口(CreateNatGateway)用于创建NAT网关。
-    /// 在对新建的NAT网关做其他操作前，需先确认此网关已被创建完成（DescribeNatGateway接口返回的实例State字段为AVAILABLE）。
-    @inlinable
-    public func createNatGateway(_ input: CreateNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatGatewayResponse > {
-        self.client.execute(action: "CreateNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建NAT网关
-    ///
-    /// 本接口(CreateNatGateway)用于创建NAT网关。
-    /// 在对新建的NAT网关做其他操作前，需先确认此网关已被创建完成（DescribeNatGateway接口返回的实例State字段为AVAILABLE）。
-    @inlinable
-    public func createNatGateway(_ input: CreateNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewayResponse {
-        try await self.client.execute(action: "CreateNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNatGateway请求参数结构体
     public struct CreateNatGatewayRequest: TCRequestModel {
         /// NAT网关名称
@@ -71,7 +53,7 @@ extension Vpc {
         /// 公网IP是否强制与NAT网关来自同可用区，true表示需要与NAT网关同可用区；false表示可与NAT网关不是同一个可用区。此参数只有当参数Zone存在时才能生效。
         public let publicIpFromSameZone: Bool?
         
-        public init (natGatewayName: String, vpcId: String, internetMaxBandwidthOut: UInt64?, maxConcurrentConnection: UInt64?, addressCount: UInt64?, publicIpAddresses: [String]?, zone: String?, tags: [Tag]?, subnetId: String?, stockPublicIpAddressesBandwidthOut: UInt64?, publicIpAddressesBandwidthOut: UInt64?, publicIpFromSameZone: Bool?) {
+        public init (natGatewayName: String, vpcId: String, internetMaxBandwidthOut: UInt64? = nil, maxConcurrentConnection: UInt64? = nil, addressCount: UInt64? = nil, publicIpAddresses: [String]? = nil, zone: String? = nil, tags: [Tag]? = nil, subnetId: String? = nil, stockPublicIpAddressesBandwidthOut: UInt64? = nil, publicIpAddressesBandwidthOut: UInt64? = nil, publicIpFromSameZone: Bool? = nil) {
             self.natGatewayName = natGatewayName
             self.vpcId = vpcId
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
@@ -118,5 +100,23 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建NAT网关
+    ///
+    /// 本接口(CreateNatGateway)用于创建NAT网关。
+    /// 在对新建的NAT网关做其他操作前，需先确认此网关已被创建完成（DescribeNatGateway接口返回的实例State字段为AVAILABLE）。
+    @inlinable
+    public func createNatGateway(_ input: CreateNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatGatewayResponse > {
+        self.client.execute(action: "CreateNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建NAT网关
+    ///
+    /// 本接口(CreateNatGateway)用于创建NAT网关。
+    /// 在对新建的NAT网关做其他操作前，需先确认此网关已被创建完成（DescribeNatGateway接口返回的实例State字段为AVAILABLE）。
+    @inlinable
+    public func createNatGateway(_ input: CreateNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewayResponse {
+        try await self.client.execute(action: "CreateNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

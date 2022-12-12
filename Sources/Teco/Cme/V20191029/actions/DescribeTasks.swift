@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 获取任务列表
-    ///
-    /// 获取任务列表，支持条件筛选，返回对应的任务基础信息列表。
-    @inlinable
-    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
-        self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取任务列表
-    ///
-    /// 获取任务列表，支持条件筛选，返回对应的任务基础信息列表。
-    @inlinable
-    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
-        try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTasks请求参数结构体
     public struct DescribeTasksRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -60,7 +44,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以获取所有任务信息。如果指定操作者，则操作者需要是任务发起者。
         public let `operator`: String?
         
-        public init (platform: String, projectId: String?, taskTypeSet: [String]?, statusSet: [String]?, offset: UInt64?, limit: UInt64?, `operator`: String?) {
+        public init (platform: String, projectId: String? = nil, taskTypeSet: [String]? = nil, statusSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, `operator`: String? = nil) {
             self.platform = platform
             self.projectId = projectId
             self.taskTypeSet = taskTypeSet
@@ -97,5 +81,21 @@ extension Cme {
             case taskBaseInfoSet = "TaskBaseInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取任务列表
+    ///
+    /// 获取任务列表，支持条件筛选，返回对应的任务基础信息列表。
+    @inlinable
+    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
+        self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务列表
+    ///
+    /// 获取任务列表，支持条件筛选，返回对应的任务基础信息列表。
+    @inlinable
+    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
+        try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

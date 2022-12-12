@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 绑定组织成员和组织管理员子账号的授权关系
-    @inlinable
-    public func bindOrganizationMemberAuthAccount(_ input: BindOrganizationMemberAuthAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindOrganizationMemberAuthAccountResponse > {
-        self.client.execute(action: "BindOrganizationMemberAuthAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定组织成员和组织管理员子账号的授权关系
-    @inlinable
-    public func bindOrganizationMemberAuthAccount(_ input: BindOrganizationMemberAuthAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindOrganizationMemberAuthAccountResponse {
-        try await self.client.execute(action: "BindOrganizationMemberAuthAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindOrganizationMemberAuthAccount请求参数结构体
     public struct BindOrganizationMemberAuthAccountRequest: TCRequestModel {
         /// 成员Uin。
@@ -59,5 +47,17 @@ extension Organization {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定组织成员和组织管理员子账号的授权关系
+    @inlinable
+    public func bindOrganizationMemberAuthAccount(_ input: BindOrganizationMemberAuthAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindOrganizationMemberAuthAccountResponse > {
+        self.client.execute(action: "BindOrganizationMemberAuthAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定组织成员和组织管理员子账号的授权关系
+    @inlinable
+    public func bindOrganizationMemberAuthAccount(_ input: BindOrganizationMemberAuthAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindOrganizationMemberAuthAccountResponse {
+        try await self.client.execute(action: "BindOrganizationMemberAuthAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

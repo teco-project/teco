@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ms {
-    /// 查询加固策略
-    ///
-    /// 查询加固策略。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
-    @inlinable
-    public func describeShieldPlanInstance(_ input: DescribeShieldPlanInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShieldPlanInstanceResponse > {
-        self.client.execute(action: "DescribeShieldPlanInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询加固策略
-    ///
-    /// 查询加固策略。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
-    @inlinable
-    public func describeShieldPlanInstance(_ input: DescribeShieldPlanInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShieldPlanInstanceResponse {
-        try await self.client.execute(action: "DescribeShieldPlanInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeShieldPlanInstance请求参数结构体
     public struct DescribeShieldPlanInstanceRequest: TCRequestModel {
         /// 资源id
@@ -70,5 +54,21 @@ extension Ms {
             case resourceServiceInfo = "ResourceServiceInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询加固策略
+    ///
+    /// 查询加固策略。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    @inlinable
+    public func describeShieldPlanInstance(_ input: DescribeShieldPlanInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShieldPlanInstanceResponse > {
+        self.client.execute(action: "DescribeShieldPlanInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询加固策略
+    ///
+    /// 查询加固策略。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    @inlinable
+    public func describeShieldPlanInstance(_ input: DescribeShieldPlanInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShieldPlanInstanceResponse {
+        try await self.client.execute(action: "DescribeShieldPlanInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 创建HTTPS监听器
-    ///
-    /// 该接口（CreateHTTPSListener）用于在通道实例下创建HTTPS协议类型的监听器。
-    @inlinable
-    public func createHTTPSListener(_ input: CreateHTTPSListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHTTPSListenerResponse > {
-        self.client.execute(action: "CreateHTTPSListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建HTTPS监听器
-    ///
-    /// 该接口（CreateHTTPSListener）用于在通道实例下创建HTTPS协议类型的监听器。
-    @inlinable
-    public func createHTTPSListener(_ input: CreateHTTPSListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHTTPSListenerResponse {
-        try await self.client.execute(action: "CreateHTTPSListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateHTTPSListener请求参数结构体
     public struct CreateHTTPSListenerRequest: TCRequestModel {
         /// 监听器名称
@@ -70,7 +54,7 @@ extension Gaap {
         /// 该功能的启停无法在监听器创建完毕后再修改。
         public let http3Supported: Int64?
         
-        public init (listenerName: String, port: UInt64, certificateId: String, forwardProtocol: String, proxyId: String?, authType: UInt64?, clientCertificateId: String?, polyClientCertificateIds: [String]?, groupId: String?, http3Supported: Int64?) {
+        public init (listenerName: String, port: UInt64, certificateId: String, forwardProtocol: String, proxyId: String? = nil, authType: UInt64? = nil, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil, groupId: String? = nil, http3Supported: Int64? = nil) {
             self.listenerName = listenerName
             self.port = port
             self.certificateId = certificateId
@@ -109,5 +93,21 @@ extension Gaap {
             case listenerId = "ListenerId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建HTTPS监听器
+    ///
+    /// 该接口（CreateHTTPSListener）用于在通道实例下创建HTTPS协议类型的监听器。
+    @inlinable
+    public func createHTTPSListener(_ input: CreateHTTPSListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHTTPSListenerResponse > {
+        self.client.execute(action: "CreateHTTPSListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建HTTPS监听器
+    ///
+    /// 该接口（CreateHTTPSListener）用于在通道实例下创建HTTPS协议类型的监听器。
+    @inlinable
+    public func createHTTPSListener(_ input: CreateHTTPSListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHTTPSListenerResponse {
+        try await self.client.execute(action: "CreateHTTPSListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

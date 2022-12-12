@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询创建从实例任务状态
-    @inlinable
-    public func describeReplicationInstanceCreateTasks(_ input: DescribeReplicationInstanceCreateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReplicationInstanceCreateTasksResponse > {
-        self.client.execute(action: "DescribeReplicationInstanceCreateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询创建从实例任务状态
-    @inlinable
-    public func describeReplicationInstanceCreateTasks(_ input: DescribeReplicationInstanceCreateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstanceCreateTasksResponse {
-        try await self.client.execute(action: "DescribeReplicationInstanceCreateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReplicationInstanceCreateTasks请求参数结构体
     public struct DescribeReplicationInstanceCreateTasksRequest: TCRequestModel {
         /// 同步实例Id，见实例返回列表中的同步实例ID
@@ -62,5 +50,17 @@ extension Tcr {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询创建从实例任务状态
+    @inlinable
+    public func describeReplicationInstanceCreateTasks(_ input: DescribeReplicationInstanceCreateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReplicationInstanceCreateTasksResponse > {
+        self.client.execute(action: "DescribeReplicationInstanceCreateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询创建从实例任务状态
+    @inlinable
+    public func describeReplicationInstanceCreateTasks(_ input: DescribeReplicationInstanceCreateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstanceCreateTasksResponse {
+        try await self.client.execute(action: "DescribeReplicationInstanceCreateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

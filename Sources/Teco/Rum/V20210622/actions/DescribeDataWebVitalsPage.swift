@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取DescribeDataWebVitalsPage信息
-    ///
-    /// 获取DescribeDataWebVitalsPage信息，用户核心活动信息
-    /// 页面加载性能之Web Vitals。性能关键点
-    @inlinable
-    public func describeDataWebVitalsPage(_ input: DescribeDataWebVitalsPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataWebVitalsPageResponse > {
-        self.client.execute(action: "DescribeDataWebVitalsPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DescribeDataWebVitalsPage信息
-    ///
-    /// 获取DescribeDataWebVitalsPage信息，用户核心活动信息
-    /// 页面加载性能之Web Vitals。性能关键点
-    @inlinable
-    public func describeDataWebVitalsPage(_ input: DescribeDataWebVitalsPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataWebVitalsPageResponse {
-        try await self.client.execute(action: "DescribeDataWebVitalsPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDataWebVitalsPage请求参数结构体
     public struct DescribeDataWebVitalsPageRequest: TCRequestModel {
         /// 开始时间
@@ -101,7 +83,7 @@ extension Rum {
         /// 环境
         public let env: String?
         
-        public init (startTime: Int64, endTime: Int64, id: Int64, extSecond: String?, engine: String?, isp: String?, from: String?, level: String?, type: String?, brand: String?, area: String?, versionNum: String?, platform: String?, extThird: String?, extFirst: String?, netType: String?, device: String?, isAbroad: String?, os: String?, browser: String?, costType: String?, env: String?) {
+        public init (startTime: Int64, endTime: Int64, id: Int64, extSecond: String? = nil, engine: String? = nil, isp: String? = nil, from: String? = nil, level: String? = nil, type: String? = nil, brand: String? = nil, area: String? = nil, versionNum: String? = nil, platform: String? = nil, extThird: String? = nil, extFirst: String? = nil, netType: String? = nil, device: String? = nil, isAbroad: String? = nil, os: String? = nil, browser: String? = nil, costType: String? = nil, env: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.id = id
@@ -164,5 +146,23 @@ extension Rum {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DescribeDataWebVitalsPage信息
+    ///
+    /// 获取DescribeDataWebVitalsPage信息，用户核心活动信息
+    /// 页面加载性能之Web Vitals。性能关键点
+    @inlinable
+    public func describeDataWebVitalsPage(_ input: DescribeDataWebVitalsPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataWebVitalsPageResponse > {
+        self.client.execute(action: "DescribeDataWebVitalsPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DescribeDataWebVitalsPage信息
+    ///
+    /// 获取DescribeDataWebVitalsPage信息，用户核心活动信息
+    /// 页面加载性能之Web Vitals。性能关键点
+    @inlinable
+    public func describeDataWebVitalsPage(_ input: DescribeDataWebVitalsPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataWebVitalsPageResponse {
+        try await self.client.execute(action: "DescribeDataWebVitalsPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

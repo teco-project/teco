@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 查询某个迁移任务详情
-    @inlinable
-    public func describeMigrationDetail(_ input: DescribeMigrationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationDetailResponse > {
-        self.client.execute(action: "DescribeMigrationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询某个迁移任务详情
-    @inlinable
-    public func describeMigrationDetail(_ input: DescribeMigrationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationDetailResponse {
-        try await self.client.execute(action: "DescribeMigrationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMigrationDetail请求参数结构体
     public struct DescribeMigrationDetailRequest: TCRequestModel {
         /// 数据迁移任务ID
@@ -77,23 +65,23 @@ extension Dts {
         
         /// 任务操作信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let action: MigrateAction
+        public let action: MigrateAction?
         
         /// 迁移执行过程信息，在校验阶段显示校验过程步骤信息，在迁移阶段会显示迁移步骤信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let stepInfo: MigrateDetailInfo
+        public let stepInfo: MigrateDetailInfo?
         
         /// 源实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let srcInfo: DBEndpointInfo
+        public let srcInfo: DBEndpointInfo?
         
         /// 目标端信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dstInfo: DBEndpointInfo
+        public let dstInfo: DBEndpointInfo?
         
         /// 数据一致性校验结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let compareTask: CompareTaskInfo
+        public let compareTask: CompareTaskInfo?
         
         /// 标签信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -109,15 +97,15 @@ extension Dts {
         
         /// 迁移选项，描述任务如何执行迁移等一系列配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let migrateOption: MigrateOption
+        public let migrateOption: MigrateOption?
         
         /// 校验任务运行详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let checkStepInfo: CheckStepInfo
+        public let checkStepInfo: CheckStepInfo?
         
         /// 描述计费相关的信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tradeInfo: TradeInfo
+        public let tradeInfo: TradeInfo?
         
         /// 任务错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -149,5 +137,17 @@ extension Dts {
             case errorInfo = "ErrorInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询某个迁移任务详情
+    @inlinable
+    public func describeMigrationDetail(_ input: DescribeMigrationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationDetailResponse > {
+        self.client.execute(action: "DescribeMigrationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询某个迁移任务详情
+    @inlinable
+    public func describeMigrationDetail(_ input: DescribeMigrationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationDetailResponse {
+        try await self.client.execute(action: "DescribeMigrationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

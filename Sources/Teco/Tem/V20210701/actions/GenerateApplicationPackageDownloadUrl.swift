@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 生成应用程序包预签名下载链接
-    @inlinable
-    public func generateApplicationPackageDownloadUrl(_ input: GenerateApplicationPackageDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateApplicationPackageDownloadUrlResponse > {
-        self.client.execute(action: "GenerateApplicationPackageDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 生成应用程序包预签名下载链接
-    @inlinable
-    public func generateApplicationPackageDownloadUrl(_ input: GenerateApplicationPackageDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateApplicationPackageDownloadUrlResponse {
-        try await self.client.execute(action: "GenerateApplicationPackageDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GenerateApplicationPackageDownloadUrl请求参数结构体
     public struct GenerateApplicationPackageDownloadUrlRequest: TCRequestModel {
         /// 应用ID
@@ -41,7 +29,7 @@ extension Tem {
         /// 来源 channel
         public let sourceChannel: Int64?
         
-        public init (applicationId: String, pkgName: String, deployVersion: String, sourceChannel: Int64?) {
+        public init (applicationId: String, pkgName: String, deployVersion: String, sourceChannel: Int64? = nil) {
             self.applicationId = applicationId
             self.pkgName = pkgName
             self.deployVersion = deployVersion
@@ -69,5 +57,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 生成应用程序包预签名下载链接
+    @inlinable
+    public func generateApplicationPackageDownloadUrl(_ input: GenerateApplicationPackageDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateApplicationPackageDownloadUrlResponse > {
+        self.client.execute(action: "GenerateApplicationPackageDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 生成应用程序包预签名下载链接
+    @inlinable
+    public func generateApplicationPackageDownloadUrl(_ input: GenerateApplicationPackageDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateApplicationPackageDownloadUrlResponse {
+        try await self.client.execute(action: "GenerateApplicationPackageDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 创建实例(预付费包年包月)
-    @inlinable
-    public func createInstancePre(_ input: CreateInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancePreResponse > {
-        self.client.execute(action: "CreateInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例(预付费包年包月)
-    @inlinable
-    public func createInstancePre(_ input: CreateInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancePreResponse {
-        try await self.client.execute(action: "CreateInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateInstancePre请求参数结构体
     public struct CreateInstancePreRequest: TCRequestModel {
         /// 实例名称，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
@@ -84,7 +72,7 @@ extension Ckafka {
         /// 可用区列表，购买多可用区实例时为必填项
         public let zoneIds: [Int64]?
         
-        public init (instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String?, subnetId: String?, msgRetentionTime: Int64?, clusterId: Int64?, renewFlag: Int64?, kafkaVersion: String?, specificationsType: String?, diskSize: Int64?, bandWidth: Int64?, partition: Int64?, tags: [Tag]?, diskType: String?, multiZoneFlag: Bool?, zoneIds: [Int64]?) {
+        public init (instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, clusterId: Int64? = nil, renewFlag: Int64? = nil, kafkaVersion: String? = nil, specificationsType: String? = nil, diskSize: Int64? = nil, bandWidth: Int64? = nil, partition: Int64? = nil, tags: [Tag]? = nil, diskType: String? = nil, multiZoneFlag: Bool? = nil, zoneIds: [Int64]? = nil) {
             self.instanceName = instanceName
             self.zoneId = zoneId
             self.period = period
@@ -139,5 +127,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例(预付费包年包月)
+    @inlinable
+    public func createInstancePre(_ input: CreateInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancePreResponse > {
+        self.client.execute(action: "CreateInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例(预付费包年包月)
+    @inlinable
+    public func createInstancePre(_ input: CreateInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancePreResponse {
+        try await self.client.execute(action: "CreateInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

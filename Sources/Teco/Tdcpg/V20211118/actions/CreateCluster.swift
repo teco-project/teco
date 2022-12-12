@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdcpg {
-    /// 创建集群
-    @inlinable
-    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
-        self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建集群
-    @inlinable
-    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
-        try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCluster请求参数结构体
     public struct CreateClusterRequest: TCRequestModel {
         /// 可用区
@@ -95,7 +83,7 @@ extension Tdcpg {
         /// 存储最大使用量，单位GB。取值参考文档【购买指南】。存储使用预付费模式时必须设置，存储使用按小时后付费时不可设置
         public let storage: UInt64?
         
-        public init (zone: String, masterUserPassword: String, cpu: UInt64, memory: UInt64, vpcId: String, subnetId: String, payMode: String, clusterName: String?, dbVersion: String?, projectId: UInt64?, port: UInt64?, instanceCount: UInt64?, period: UInt64?, autoRenewFlag: UInt64?, dbMajorVersion: String?, dbKernelVersion: String?, storagePayMode: String?, storage: UInt64?) {
+        public init (zone: String, masterUserPassword: String, cpu: UInt64, memory: UInt64, vpcId: String, subnetId: String, payMode: String, clusterName: String? = nil, dbVersion: String? = nil, projectId: UInt64? = nil, port: UInt64? = nil, instanceCount: UInt64? = nil, period: UInt64? = nil, autoRenewFlag: UInt64? = nil, dbMajorVersion: String? = nil, dbKernelVersion: String? = nil, storagePayMode: String? = nil, storage: UInt64? = nil) {
             self.zone = zone
             self.masterUserPassword = masterUserPassword
             self.cpu = cpu
@@ -150,5 +138,17 @@ extension Tdcpg {
             case dealNameSet = "DealNameSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建集群
+    @inlinable
+    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
+        self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群
+    @inlinable
+    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
+        try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

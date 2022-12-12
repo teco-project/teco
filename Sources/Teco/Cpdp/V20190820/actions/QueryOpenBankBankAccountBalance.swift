@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-子商户银行卡余额查询
-    @inlinable
-    public func queryOpenBankBankAccountBalance(_ input: QueryOpenBankBankAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankBankAccountBalanceResponse > {
-        self.client.execute(action: "QueryOpenBankBankAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-子商户银行卡余额查询
-    @inlinable
-    public func queryOpenBankBankAccountBalance(_ input: QueryOpenBankBankAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBankAccountBalanceResponse {
-        try await self.client.execute(action: "QueryOpenBankBankAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryOpenBankBankAccountBalance请求参数结构体
     public struct QueryOpenBankBankAccountBalanceRequest: TCRequestModel {
         /// 云企付渠道商户号。外部接入平台入驻云企付平台后下发。
@@ -55,7 +43,7 @@ extension Cpdp {
         /// 缺省默认为生产环境
         public let environment: String?
         
-        public init (channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, environment: String?) {
+        public init (channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.channelSubMerchantId = channelSubMerchantId
             self.channelName = channelName
@@ -85,7 +73,7 @@ extension Cpdp {
         
         /// 账户余额查询响应对象。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: QueryOpenBankBankAccountBalanceResult
+        public let result: QueryOpenBankBankAccountBalanceResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -96,5 +84,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-子商户银行卡余额查询
+    @inlinable
+    public func queryOpenBankBankAccountBalance(_ input: QueryOpenBankBankAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankBankAccountBalanceResponse > {
+        self.client.execute(action: "QueryOpenBankBankAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-子商户银行卡余额查询
+    @inlinable
+    public func queryOpenBankBankAccountBalance(_ input: QueryOpenBankBankAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBankAccountBalanceResponse {
+        try await self.client.execute(action: "QueryOpenBankBankAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

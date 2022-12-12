@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 修改DDoSIP防护等级
-    ///
-    /// 读取或修改DDoS的防护等级
-    @inlinable
-    public func modifyDDoSLevel(_ input: ModifyDDoSLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSLevelResponse > {
-        self.client.execute(action: "ModifyDDoSLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改DDoSIP防护等级
-    ///
-    /// 读取或修改DDoS的防护等级
-    @inlinable
-    public func modifyDDoSLevel(_ input: ModifyDDoSLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSLevelResponse {
-        try await self.client.execute(action: "ModifyDDoSLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDDoSLevel请求参数结构体
     public struct ModifyDDoSLevelRequest: TCRequestModel {
         /// 资源ID
@@ -45,7 +29,7 @@ extension Antiddos {
         /// 防护等级，取值[low,middle,high]；当Method=set时必填
         public let dDoSLevel: String?
         
-        public init (id: String, business: String, method: String, dDoSLevel: String?) {
+        public init (id: String, business: String, method: String, dDoSLevel: String? = nil) {
             self.id = id
             self.business = business
             self.method = method
@@ -76,5 +60,21 @@ extension Antiddos {
             case id = "Id"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改DDoSIP防护等级
+    ///
+    /// 读取或修改DDoS的防护等级
+    @inlinable
+    public func modifyDDoSLevel(_ input: ModifyDDoSLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSLevelResponse > {
+        self.client.execute(action: "ModifyDDoSLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改DDoSIP防护等级
+    ///
+    /// 读取或修改DDoS的防护等级
+    @inlinable
+    public func modifyDDoSLevel(_ input: ModifyDDoSLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSLevelResponse {
+        try await self.client.execute(action: "ModifyDDoSLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

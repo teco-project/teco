@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 创建商业智能服务文件
-    ///
-    /// 本接口（CreateBusinessIntelligenceFile）用于添加商业智能服务文件。
-    @inlinable
-    public func createBusinessIntelligenceFile(_ input: CreateBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBusinessIntelligenceFileResponse > {
-        self.client.execute(action: "CreateBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建商业智能服务文件
-    ///
-    /// 本接口（CreateBusinessIntelligenceFile）用于添加商业智能服务文件。
-    @inlinable
-    public func createBusinessIntelligenceFile(_ input: CreateBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBusinessIntelligenceFileResponse {
-        try await self.client.execute(action: "CreateBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBusinessIntelligenceFile请求参数结构体
     public struct CreateBusinessIntelligenceFileRequest: TCRequestModel {
         /// 实例ID
@@ -45,7 +29,7 @@ extension Sqlserver {
         /// 备注
         public let remark: String?
         
-        public init (instanceId: String, fileURL: String, fileType: String, remark: String?) {
+        public init (instanceId: String, fileURL: String, fileType: String, remark: String? = nil) {
             self.instanceId = instanceId
             self.fileURL = fileURL
             self.fileType = fileType
@@ -72,5 +56,21 @@ extension Sqlserver {
             case fileTaskId = "FileTaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建商业智能服务文件
+    ///
+    /// 本接口（CreateBusinessIntelligenceFile）用于添加商业智能服务文件。
+    @inlinable
+    public func createBusinessIntelligenceFile(_ input: CreateBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBusinessIntelligenceFileResponse > {
+        self.client.execute(action: "CreateBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建商业智能服务文件
+    ///
+    /// 本接口（CreateBusinessIntelligenceFile）用于添加商业智能服务文件。
+    @inlinable
+    public func createBusinessIntelligenceFile(_ input: CreateBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBusinessIntelligenceFileResponse {
+        try await self.client.execute(action: "CreateBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

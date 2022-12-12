@@ -15,32 +15,6 @@
 // DO NOT EDIT.
 
 extension Trtc {
-    /// 查询TRTC录制用量
-    ///
-    /// 获取TRTC录制的用量明细。
-    /// - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
-    /// - 单次查询统计区间最多不能超过31天。
-    /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
-    /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
-    /// - 默认接口请求频率限制：5次/秒。
-    @inlinable
-    public func describeRecordingUsage(_ input: DescribeRecordingUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordingUsageResponse > {
-        self.client.execute(action: "DescribeRecordingUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询TRTC录制用量
-    ///
-    /// 获取TRTC录制的用量明细。
-    /// - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
-    /// - 单次查询统计区间最多不能超过31天。
-    /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
-    /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
-    /// - 默认接口请求频率限制：5次/秒。
-    @inlinable
-    public func describeRecordingUsage(_ input: DescribeRecordingUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingUsageResponse {
-        try await self.client.execute(action: "DescribeRecordingUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRecordingUsage请求参数结构体
     public struct DescribeRecordingUsageRequest: TCRequestModel {
         /// 查询开始时间，格式为YYYY-MM-DD。
@@ -56,7 +30,7 @@ extension Trtc {
         /// TRTC的SdkAppId，和房间所对应的SdkAppId相同。如果没有这个参数，返回用户下全部实时音视频应用的汇总。
         public let sdkAppId: UInt64?
         
-        public init (startTime: String, endTime: String, mixType: String, sdkAppId: UInt64?) {
+        public init (startTime: String, endTime: String, mixType: String, sdkAppId: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.mixType = mixType
@@ -87,5 +61,31 @@ extension Trtc {
             case usageList = "UsageList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询TRTC录制用量
+    ///
+    /// 获取TRTC录制的用量明细。
+    /// - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+    /// - 单次查询统计区间最多不能超过31天。
+    /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
+    /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
+    /// - 默认接口请求频率限制：5次/秒。
+    @inlinable
+    public func describeRecordingUsage(_ input: DescribeRecordingUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordingUsageResponse > {
+        self.client.execute(action: "DescribeRecordingUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询TRTC录制用量
+    ///
+    /// 获取TRTC录制的用量明细。
+    /// - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+    /// - 单次查询统计区间最多不能超过31天。
+    /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
+    /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
+    /// - 默认接口请求频率限制：5次/秒。
+    @inlinable
+    public func describeRecordingUsage(_ input: DescribeRecordingUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingUsageResponse {
+        try await self.client.execute(action: "DescribeRecordingUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

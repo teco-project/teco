@@ -15,25 +15,13 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 查询应用账号列表
-    @inlinable
-    public func describeAppAccount(_ input: DescribeAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAppAccountResponse > {
-        self.client.execute(action: "DescribeAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询应用账号列表
-    @inlinable
-    public func describeAppAccount(_ input: DescribeAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppAccountResponse {
-        try await self.client.execute(action: "DescribeAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAppAccount请求参数结构体
     public struct DescribeAppAccountRequest: TCRequestModel {
         /// 应用ID。
         public let applicationId: String
         
         /// 查询条件，支持多搜索条件组合、多数据范围匹配的搜索。同时支持查询信息内容全匹配、部分匹配、范围匹配等多种查询方式，具体查询方式为：双引号（“”）表示全匹配、以星号（*）结尾表示字段部分匹配。如果该字段为空，则默认查全量表。
-        public let searchCondition: AppAccountSearchCriteria
+        public let searchCondition: AppAccountSearchCriteria?
         
         /// 偏移量，默认为 0。
         public let offset: Int64?
@@ -41,7 +29,7 @@ extension Eiam {
         /// 返回数量，默认为 20，最大值为 100。
         public let limit: Int64?
         
-        public init (applicationId: String, searchCondition: AppAccountSearchCriteria, offset: Int64?, limit: Int64?) {
+        public init (applicationId: String, searchCondition: AppAccountSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.applicationId = applicationId
             self.searchCondition = searchCondition
             self.offset = offset
@@ -79,5 +67,17 @@ extension Eiam {
             case appAccountList = "AppAccountList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询应用账号列表
+    @inlinable
+    public func describeAppAccount(_ input: DescribeAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAppAccountResponse > {
+        self.client.execute(action: "DescribeAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询应用账号列表
+    @inlinable
+    public func describeAppAccount(_ input: DescribeAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppAccountResponse {
+        try await self.client.execute(action: "DescribeAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

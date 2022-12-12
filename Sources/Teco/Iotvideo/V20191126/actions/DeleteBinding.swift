@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 终端用户解绑设备
-    ///
-    /// 本接口（DeleteBinding）用于终端用户和设备进行解绑定。
-    @inlinable
-    public func deleteBinding(_ input: DeleteBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBindingResponse > {
-        self.client.execute(action: "DeleteBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 终端用户解绑设备
-    ///
-    /// 本接口（DeleteBinding）用于终端用户和设备进行解绑定。
-    @inlinable
-    public func deleteBinding(_ input: DeleteBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBindingResponse {
-        try await self.client.execute(action: "DeleteBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteBinding请求参数结构体
     public struct DeleteBindingRequest: TCRequestModel {
         /// 终端用户在IoT Video上的唯一标识ID
@@ -63,5 +47,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 终端用户解绑设备
+    ///
+    /// 本接口（DeleteBinding）用于终端用户和设备进行解绑定。
+    @inlinable
+    public func deleteBinding(_ input: DeleteBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBindingResponse > {
+        self.client.execute(action: "DeleteBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 终端用户解绑设备
+    ///
+    /// 本接口（DeleteBinding）用于终端用户和设备进行解绑定。
+    @inlinable
+    public func deleteBinding(_ input: DeleteBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBindingResponse {
+        try await self.client.execute(action: "DeleteBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 删除事件集
-    @inlinable
-    public func deleteEventBus(_ input: DeleteEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEventBusResponse > {
-        self.client.execute(action: "DeleteEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除事件集
-    @inlinable
-    public func deleteEventBus(_ input: DeleteEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEventBusResponse {
-        try await self.client.execute(action: "DeleteEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteEventBus请求参数结构体
     public struct DeleteEventBusRequest: TCRequestModel {
         /// 事件集ID
@@ -49,5 +37,17 @@ extension Eb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除事件集
+    @inlinable
+    public func deleteEventBus(_ input: DeleteEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEventBusResponse > {
+        self.client.execute(action: "DeleteEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除事件集
+    @inlinable
+    public func deleteEventBus(_ input: DeleteEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEventBusResponse {
+        try await self.client.execute(action: "DeleteEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

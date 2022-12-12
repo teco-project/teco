@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询参数修改历史列表
-    @inlinable
-    public func describeInstanceParamRecords(_ input: DescribeInstanceParamRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceParamRecordsResponse > {
-        self.client.execute(action: "DescribeInstanceParamRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询参数修改历史列表
-    @inlinable
-    public func describeInstanceParamRecords(_ input: DescribeInstanceParamRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamRecordsResponse {
-        try await self.client.execute(action: "DescribeInstanceParamRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceParamRecords请求参数结构体
     public struct DescribeInstanceParamRecordsRequest: TCRequestModel {
         /// 实例Id
@@ -38,7 +26,7 @@ extension Redis {
         /// 偏移量，取Limit整数倍
         public let offset: UInt64?
         
-        public init (instanceId: String, limit: UInt64?, offset: UInt64?) {
+        public init (instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset
@@ -67,5 +55,17 @@ extension Redis {
             case instanceParamHistory = "InstanceParamHistory"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询参数修改历史列表
+    @inlinable
+    public func describeInstanceParamRecords(_ input: DescribeInstanceParamRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceParamRecordsResponse > {
+        self.client.execute(action: "DescribeInstanceParamRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询参数修改历史列表
+    @inlinable
+    public func describeInstanceParamRecords(_ input: DescribeInstanceParamRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamRecordsResponse {
+        try await self.client.execute(action: "DescribeInstanceParamRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

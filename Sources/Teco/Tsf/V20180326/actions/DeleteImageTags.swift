@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 批量删除镜像版本
-    @inlinable
-    public func deleteImageTags(_ input: DeleteImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageTagsResponse > {
-        self.client.execute(action: "DeleteImageTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量删除镜像版本
-    @inlinable
-    public func deleteImageTags(_ input: DeleteImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageTagsResponse {
-        try await self.client.execute(action: "DeleteImageTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteImageTags请求参数结构体
     public struct DeleteImageTagsRequest: TCRequestModel {
         /// 镜像版本数组
@@ -35,7 +23,7 @@ extension Tsf {
         /// 企业: tcr ；个人: personal或者不填
         public let repoType: String?
         
-        public init (imageTags: [DeleteImageTag], repoType: String?) {
+        public init (imageTags: [DeleteImageTag], repoType: String? = nil) {
             self.imageTags = imageTags
             self.repoType = repoType
         }
@@ -60,5 +48,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量删除镜像版本
+    @inlinable
+    public func deleteImageTags(_ input: DeleteImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageTagsResponse > {
+        self.client.execute(action: "DeleteImageTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除镜像版本
+    @inlinable
+    public func deleteImageTags(_ input: DeleteImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageTagsResponse {
+        try await self.client.execute(action: "DeleteImageTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

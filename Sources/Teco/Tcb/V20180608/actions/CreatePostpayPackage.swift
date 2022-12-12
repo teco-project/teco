@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 开通后付费资源
-    @inlinable
-    public func createPostpayPackage(_ input: CreatePostpayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePostpayPackageResponse > {
-        self.client.execute(action: "CreatePostpayPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开通后付费资源
-    @inlinable
-    public func createPostpayPackage(_ input: CreatePostpayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePostpayPackageResponse {
-        try await self.client.execute(action: "CreatePostpayPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePostpayPackage请求参数结构体
     public struct CreatePostpayPackageRequest: TCRequestModel {
         /// 环境ID，需要系统自动创建环境时，此字段不传
@@ -66,7 +54,7 @@ extension Tcb {
         /// <li>Activity：活动来源</li>
         public let flag: String?
         
-        public init (envId: String?, wxAppId: String?, source: String?, freeQuota: String?, envSource: String?, alias: String?, channel: String?, extensionId: String?, flag: String?) {
+        public init (envId: String? = nil, wxAppId: String? = nil, source: String? = nil, freeQuota: String? = nil, envSource: String? = nil, alias: String? = nil, channel: String? = nil, extensionId: String? = nil, flag: String? = nil) {
             self.envId = envId
             self.wxAppId = wxAppId
             self.source = source
@@ -108,5 +96,17 @@ extension Tcb {
             case envId = "EnvId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开通后付费资源
+    @inlinable
+    public func createPostpayPackage(_ input: CreatePostpayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePostpayPackageResponse > {
+        self.client.execute(action: "CreatePostpayPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开通后付费资源
+    @inlinable
+    public func createPostpayPackage(_ input: CreatePostpayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePostpayPackageResponse {
+        try await self.client.execute(action: "CreatePostpayPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

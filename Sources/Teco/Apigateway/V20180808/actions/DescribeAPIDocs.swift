@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询 API 文档列表
-    @inlinable
-    public func describeAPIDocs(_ input: DescribeAPIDocsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAPIDocsResponse > {
-        self.client.execute(action: "DescribeAPIDocs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询 API 文档列表
-    @inlinable
-    public func describeAPIDocs(_ input: DescribeAPIDocsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAPIDocsResponse {
-        try await self.client.execute(action: "DescribeAPIDocs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAPIDocs请求参数结构体
     public struct DescribeAPIDocsRequest: TCRequestModel {
         /// 返回数量，默认为 20，最大值为 100。
@@ -35,7 +23,7 @@ extension Apigateway {
         /// 偏移量，默认为 0。
         public let offset: Int64?
         
-        public init (limit: Int64?, offset: Int64?) {
+        public init (limit: Int64? = nil, offset: Int64? = nil) {
             self.limit = limit
             self.offset = offset
         }
@@ -58,5 +46,17 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询 API 文档列表
+    @inlinable
+    public func describeAPIDocs(_ input: DescribeAPIDocsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAPIDocsResponse > {
+        self.client.execute(action: "DescribeAPIDocs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询 API 文档列表
+    @inlinable
+    public func describeAPIDocs(_ input: DescribeAPIDocsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAPIDocsResponse {
+        try await self.client.execute(action: "DescribeAPIDocs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

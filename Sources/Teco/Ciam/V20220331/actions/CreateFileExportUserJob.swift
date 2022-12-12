@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ciam {
-    /// 新建文件导出用户任务
-    @inlinable
-    public func createFileExportUserJob(_ input: CreateFileExportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileExportUserJobResponse > {
-        self.client.execute(action: "CreateFileExportUserJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建文件导出用户任务
-    @inlinable
-    public func createFileExportUserJob(_ input: CreateFileExportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileExportUserJobResponse {
-        try await self.client.execute(action: "CreateFileExportUserJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFileExportUserJob请求参数结构体
     public struct CreateFileExportUserJobRequest: TCRequestModel {
         /// 用户目录ID
@@ -45,7 +33,7 @@ extension Ciam {
         /// 导出用户包含的属性和映射名称，为空时包含所有的属性
         public let exportPropertyMaps: [ExportPropertyMap]?
         
-        public init (userStoreId: String, format: String?, filters: [Filter]?, exportPropertyMaps: [ExportPropertyMap]?) {
+        public init (userStoreId: String, format: String? = nil, filters: [Filter]? = nil, exportPropertyMaps: [ExportPropertyMap]? = nil) {
             self.userStoreId = userStoreId
             self.format = format
             self.filters = filters
@@ -72,5 +60,17 @@ extension Ciam {
             case job = "Job"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建文件导出用户任务
+    @inlinable
+    public func createFileExportUserJob(_ input: CreateFileExportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileExportUserJobResponse > {
+        self.client.execute(action: "CreateFileExportUserJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建文件导出用户任务
+    @inlinable
+    public func createFileExportUserJob(_ input: CreateFileExportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileExportUserJobResponse {
+        try await self.client.execute(action: "CreateFileExportUserJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

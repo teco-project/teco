@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 创建录制视频生成任务
-    ///
-    /// 创建视频生成任务
-    @inlinable
-    public func createVideoGenerationTask(_ input: CreateVideoGenerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVideoGenerationTaskResponse > {
-        self.client.execute(action: "CreateVideoGenerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建录制视频生成任务
-    ///
-    /// 创建视频生成任务
-    @inlinable
-    public func createVideoGenerationTask(_ input: CreateVideoGenerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoGenerationTaskResponse {
-        try await self.client.execute(action: "CreateVideoGenerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVideoGenerationTask请求参数结构体
     public struct CreateVideoGenerationTaskRequest: TCRequestModel {
         /// 录制任务的TaskId
@@ -41,24 +25,24 @@ extension Tiw {
         
         /// 视频生成的白板参数，例如白板宽高等。
         /// 此参数与开始录制接口提供的Whiteboard参数互斥，在本接口与开始录制接口都提供了Whiteboard参数时，优先使用本接口指定的Whiteboard参数进行视频生成，否则使用开始录制接口提供的Whiteboard参数进行视频生成。
-        public let whiteboard: Whiteboard
+        public let whiteboard: Whiteboard?
         
         /// 视频拼接参数
         /// 此参数与开始录制接口提供的Concat参数互斥，在本接口与开始录制接口都提供了Concat参数时，优先使用本接口指定的Concat参数进行视频拼接，否则使用开始录制接口提供的Concat参数进行视频拼接。
-        public let concat: Concat
+        public let concat: Concat?
         
         /// 视频生成混流参数
         /// 此参数与开始录制接口提供的MixStream参数互斥，在本接口与开始录制接口都提供了MixStream参数时，优先使用本接口指定的MixStream参数进行视频混流，否则使用开始录制接口提供的MixStream参数进行视频拼混流。
-        public let mixStream: MixStream
+        public let mixStream: MixStream?
         
         /// 视频生成控制参数，用于更精细地指定需要生成哪些流，某一路流是否禁用音频，是否只录制小画面等
         /// 此参数与开始录制接口提供的RecordControl参数互斥，在本接口与开始录制接口都提供了RecordControl参数时，优先使用本接口指定的RecordControl参数进行视频生成控制，否则使用开始录制接口提供的RecordControl参数进行视频拼生成控制。
-        public let recordControl: RecordControl
+        public let recordControl: RecordControl?
         
         /// 内部参数
         public let extraData: String?
         
-        public init (onlineRecordTaskId: String, sdkAppId: Int64, whiteboard: Whiteboard, concat: Concat, mixStream: MixStream, recordControl: RecordControl, extraData: String?) {
+        public init (onlineRecordTaskId: String, sdkAppId: Int64, whiteboard: Whiteboard? = nil, concat: Concat? = nil, mixStream: MixStream? = nil, recordControl: RecordControl? = nil, extraData: String? = nil) {
             self.onlineRecordTaskId = onlineRecordTaskId
             self.sdkAppId = sdkAppId
             self.whiteboard = whiteboard
@@ -91,5 +75,21 @@ extension Tiw {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建录制视频生成任务
+    ///
+    /// 创建视频生成任务
+    @inlinable
+    public func createVideoGenerationTask(_ input: CreateVideoGenerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVideoGenerationTaskResponse > {
+        self.client.execute(action: "CreateVideoGenerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建录制视频生成任务
+    ///
+    /// 创建视频生成任务
+    @inlinable
+    public func createVideoGenerationTask(_ input: CreateVideoGenerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoGenerationTaskResponse {
+        try await self.client.execute(action: "CreateVideoGenerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

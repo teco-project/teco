@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Mna {
-    /// 获取Qos加速状态
-    @inlinable
-    public func describeQos(_ input: DescribeQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQosResponse > {
-        self.client.execute(action: "DescribeQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Qos加速状态
-    @inlinable
-    public func describeQos(_ input: DescribeQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQosResponse {
-        try await self.client.execute(action: "DescribeQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeQos请求参数结构体
     public struct DescribeQosRequest: TCRequestModel {
         /// 单次加速唯一 Id
@@ -74,5 +62,17 @@ extension Mna {
             case qosMenu = "QosMenu"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Qos加速状态
+    @inlinable
+    public func describeQos(_ input: DescribeQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQosResponse > {
+        self.client.execute(action: "DescribeQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Qos加速状态
+    @inlinable
+    public func describeQos(_ input: DescribeQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQosResponse {
+        try await self.client.execute(action: "DescribeQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

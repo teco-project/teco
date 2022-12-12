@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tcss {
-    /// 查询镜像自动授权任务列表
-    @inlinable
-    public func describeImageAutoAuthorizedTaskList(_ input: DescribeImageAutoAuthorizedTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageAutoAuthorizedTaskListResponse > {
-        self.client.execute(action: "DescribeImageAutoAuthorizedTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询镜像自动授权任务列表
-    @inlinable
-    public func describeImageAutoAuthorizedTaskList(_ input: DescribeImageAutoAuthorizedTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAutoAuthorizedTaskListResponse {
-        try await self.client.execute(action: "DescribeImageAutoAuthorizedTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageAutoAuthorizedTaskList请求参数结构体
     public struct DescribeImageAutoAuthorizedTaskListRequest: TCRequestModel {
         /// 开始时间
@@ -51,7 +39,7 @@ extension Tcss {
         /// 偏移量，默认为0
         public let offset: UInt64?
         
-        public init (startTime: Date, endTime: Date, filters: [AssetFilters]?, limit: UInt64?, offset: UInt64?) {
+        public init (startTime: Date, endTime: Date, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.filters = filters
@@ -84,5 +72,17 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询镜像自动授权任务列表
+    @inlinable
+    public func describeImageAutoAuthorizedTaskList(_ input: DescribeImageAutoAuthorizedTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageAutoAuthorizedTaskListResponse > {
+        self.client.execute(action: "DescribeImageAutoAuthorizedTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像自动授权任务列表
+    @inlinable
+    public func describeImageAutoAuthorizedTaskList(_ input: DescribeImageAutoAuthorizedTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAutoAuthorizedTaskListResponse {
+        try await self.client.execute(action: "DescribeImageAutoAuthorizedTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

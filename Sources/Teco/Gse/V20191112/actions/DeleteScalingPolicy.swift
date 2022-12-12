@@ -15,6 +15,35 @@
 // DO NOT EDIT.
 
 extension Gse {
+    /// DeleteScalingPolicy请求参数结构体
+    public struct DeleteScalingPolicyRequest: TCRequestModel {
+        /// 服务器舰队ID
+        public let fleetId: String
+        
+        /// 扩缩容策略名称，最小长度为0，最大长度为1024
+        public let name: String?
+        
+        public init (fleetId: String, name: String? = nil) {
+            self.fleetId = fleetId
+            self.name = name
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case fleetId = "FleetId"
+            case name = "Name"
+        }
+    }
+    
+    /// DeleteScalingPolicy返回参数结构体
+    public struct DeleteScalingPolicyResponse: TCResponseModel {
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 删除扩缩容配置
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -35,34 +64,5 @@ extension Gse {
     @inlinable
     public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
         try await self.client.execute(action: "DeleteScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// DeleteScalingPolicy请求参数结构体
-    public struct DeleteScalingPolicyRequest: TCRequestModel {
-        /// 服务器舰队ID
-        public let fleetId: String
-        
-        /// 扩缩容策略名称，最小长度为0，最大长度为1024
-        public let name: String?
-        
-        public init (fleetId: String, name: String?) {
-            self.fleetId = fleetId
-            self.name = name
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case fleetId = "FleetId"
-            case name = "Name"
-        }
-    }
-    
-    /// DeleteScalingPolicy返回参数结构体
-    public struct DeleteScalingPolicyResponse: TCResponseModel {
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case requestId = "RequestId"
-        }
     }
 }

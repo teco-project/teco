@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 绑定高防弹性公网IP到Clb
-    ///
-    /// 本接口 (AssociateDDoSEipLoadBalancer) 用于将高防弹性公网IP绑定到负载均衡指定内网 IP 上。
-    @inlinable
-    public func associateDDoSEipLoadBalancer(_ input: AssociateDDoSEipLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateDDoSEipLoadBalancerResponse > {
-        self.client.execute(action: "AssociateDDoSEipLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定高防弹性公网IP到Clb
-    ///
-    /// 本接口 (AssociateDDoSEipLoadBalancer) 用于将高防弹性公网IP绑定到负载均衡指定内网 IP 上。
-    @inlinable
-    public func associateDDoSEipLoadBalancer(_ input: AssociateDDoSEipLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDDoSEipLoadBalancerResponse {
-        try await self.client.execute(action: "AssociateDDoSEipLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssociateDDoSEipLoadBalancer请求参数结构体
     public struct AssociateDDoSEipLoadBalancerRequest: TCRequestModel {
         /// 资源实例ID，实例ID形如：bgpip-0000011x。只能填写高防IP实例。
@@ -48,7 +32,7 @@ extension Antiddos {
         /// CLB内网IP
         public let vip: String?
         
-        public init (instanceId: String, eip: String, loadBalancerID: String, loadBalancerRegion: String, vip: String?) {
+        public init (instanceId: String, eip: String, loadBalancerID: String, loadBalancerRegion: String, vip: String? = nil) {
             self.instanceId = instanceId
             self.eip = eip
             self.loadBalancerID = loadBalancerID
@@ -73,5 +57,21 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定高防弹性公网IP到Clb
+    ///
+    /// 本接口 (AssociateDDoSEipLoadBalancer) 用于将高防弹性公网IP绑定到负载均衡指定内网 IP 上。
+    @inlinable
+    public func associateDDoSEipLoadBalancer(_ input: AssociateDDoSEipLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateDDoSEipLoadBalancerResponse > {
+        self.client.execute(action: "AssociateDDoSEipLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定高防弹性公网IP到Clb
+    ///
+    /// 本接口 (AssociateDDoSEipLoadBalancer) 用于将高防弹性公网IP绑定到负载均衡指定内网 IP 上。
+    @inlinable
+    public func associateDDoSEipLoadBalancer(_ input: AssociateDDoSEipLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDDoSEipLoadBalancerResponse {
+        try await self.client.execute(action: "AssociateDDoSEipLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

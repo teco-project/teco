@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 查询签约数据接口
-    ///
-    /// 通过此接口查询签约数据
-    @inlinable
-    public func queryContract(_ input: QueryContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryContractResponse > {
-        self.client.execute(action: "QueryContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询签约数据接口
-    ///
-    /// 通过此接口查询签约数据
-    @inlinable
-    public func queryContract(_ input: QueryContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryContractResponse {
-        try await self.client.execute(action: "QueryContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryContract请求参数结构体
     public struct QueryContractRequest: TCRequestModel {
         /// 聚鑫分配的支付主MidasAppId
@@ -87,7 +71,7 @@ extension Cpdp {
         /// 签约方式
         public let contractMethod: String?
         
-        public init (midasAppId: String, userId: String, channel: String, contractQueryMode: String, midasSignature: String, midasSecretId: String, subAppId: String?, outContractCode: String?, contractSceneId: String?, channelContractCode: String?, externalContractData: String?, midasEnvironment: String?, userType: String?, migrateMode: String?, contractMethod: String?) {
+        public init (midasAppId: String, userId: String, channel: String, contractQueryMode: String, midasSignature: String, midasSecretId: String, subAppId: String? = nil, outContractCode: String? = nil, contractSceneId: String? = nil, channelContractCode: String? = nil, externalContractData: String? = nil, midasEnvironment: String? = nil, userType: String? = nil, migrateMode: String? = nil, contractMethod: String? = nil) {
             self.midasAppId = midasAppId
             self.userId = userId
             self.channel = channel
@@ -140,5 +124,21 @@ extension Cpdp {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询签约数据接口
+    ///
+    /// 通过此接口查询签约数据
+    @inlinable
+    public func queryContract(_ input: QueryContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryContractResponse > {
+        self.client.execute(action: "QueryContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询签约数据接口
+    ///
+    /// 通过此接口查询签约数据
+    @inlinable
+    public func queryContract(_ input: QueryContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryContractResponse {
+        try await self.client.execute(action: "QueryContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

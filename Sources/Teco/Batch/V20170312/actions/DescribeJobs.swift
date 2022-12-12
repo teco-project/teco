@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 查看作业列表
-    ///
-    /// 用于查询若干个作业的概览信息
-    @inlinable
-    public func describeJobs(_ input: DescribeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobsResponse > {
-        self.client.execute(action: "DescribeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看作业列表
-    ///
-    /// 用于查询若干个作业的概览信息
-    @inlinable
-    public func describeJobs(_ input: DescribeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobsResponse {
-        try await self.client.execute(action: "DescribeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeJobs请求参数结构体
     public struct DescribeJobsRequest: TCRequestModel {
         /// 作业ID列表，与Filters参数不能同时指定。
@@ -53,7 +37,7 @@ extension Batch {
         /// 返回数量
         public let limit: Int64?
         
-        public init (jobIds: [String]?, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (jobIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.jobIds = jobIds
             self.filters = filters
             self.offset = offset
@@ -84,5 +68,21 @@ extension Batch {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看作业列表
+    ///
+    /// 用于查询若干个作业的概览信息
+    @inlinable
+    public func describeJobs(_ input: DescribeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobsResponse > {
+        self.client.execute(action: "DescribeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看作业列表
+    ///
+    /// 用于查询若干个作业的概览信息
+    @inlinable
+    public func describeJobs(_ input: DescribeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobsResponse {
+        try await self.client.execute(action: "DescribeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

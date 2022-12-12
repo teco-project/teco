@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取主机相关统计
-    @inlinable
-    public func describeGeneralStat(_ input: DescribeGeneralStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGeneralStatResponse > {
-        self.client.execute(action: "DescribeGeneralStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取主机相关统计
-    @inlinable
-    public func describeGeneralStat(_ input: DescribeGeneralStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralStatResponse {
-        try await self.client.execute(action: "DescribeGeneralStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGeneralStat请求参数结构体
     public struct DescribeGeneralStatRequest: TCRequestModel {
         /// 云主机类型。
@@ -40,7 +28,7 @@ extension Cwp {
         /// 机器所属地域。如：ap-guangzhou，ap-shanghai
         public let machineRegion: String?
         
-        public init (machineType: String?, machineRegion: String?) {
+        public init (machineType: String? = nil, machineRegion: String? = nil) {
             self.machineType = machineType
             self.machineRegion = machineRegion
         }
@@ -118,5 +106,17 @@ extension Cwp {
             case addedOnTheFifteen = "AddedOnTheFifteen"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取主机相关统计
+    @inlinable
+    public func describeGeneralStat(_ input: DescribeGeneralStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGeneralStatResponse > {
+        self.client.execute(action: "DescribeGeneralStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取主机相关统计
+    @inlinable
+    public func describeGeneralStat(_ input: DescribeGeneralStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralStatResponse {
+        try await self.client.execute(action: "DescribeGeneralStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

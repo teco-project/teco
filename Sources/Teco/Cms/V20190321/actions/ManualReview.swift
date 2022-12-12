@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cms {
-    /// 人工审核对外接口
-    @inlinable
-    public func manualReview(_ input: ManualReviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManualReviewResponse > {
-        self.client.execute(action: "ManualReview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人工审核对外接口
-    @inlinable
-    public func manualReview(_ input: ManualReviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualReviewResponse {
-        try await self.client.execute(action: "ManualReview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ManualReview请求参数结构体
     public struct ManualReviewRequest: TCRequestModel {
         /// 人工审核信息
@@ -53,5 +41,17 @@ extension Cms {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人工审核对外接口
+    @inlinable
+    public func manualReview(_ input: ManualReviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManualReviewResponse > {
+        self.client.execute(action: "ManualReview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人工审核对外接口
+    @inlinable
+    public func manualReview(_ input: ManualReviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualReviewResponse {
+        try await self.client.execute(action: "ManualReview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

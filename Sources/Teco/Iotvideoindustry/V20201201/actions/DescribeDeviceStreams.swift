@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取设备实时流地址（旧）
-    ///
-    /// 本接口(DescribeDeviceStreams)用于获取设备实时流地址。
-    /// 请使用DescribeChannelStreamURL接口
-    @inlinable
-    public func describeDeviceStreams(_ input: DescribeDeviceStreamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceStreamsResponse > {
-        self.client.execute(action: "DescribeDeviceStreams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备实时流地址（旧）
-    ///
-    /// 本接口(DescribeDeviceStreams)用于获取设备实时流地址。
-    /// 请使用DescribeChannelStreamURL接口
-    @inlinable
-    public func describeDeviceStreams(_ input: DescribeDeviceStreamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStreamsResponse {
-        try await self.client.execute(action: "DescribeDeviceStreams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceStreams请求参数结构体
     public struct DescribeDeviceStreamsRequest: TCRequestModel {
         /// 设备唯一标识
@@ -44,7 +26,7 @@ extension Iotvideoindustry {
         /// 通道唯一标识（接口升级字段为必填）
         public let channelId: String?
         
-        public init (deviceId: String, expireTime: UInt64, channelId: String?) {
+        public init (deviceId: String, expireTime: UInt64, channelId: String? = nil) {
             self.deviceId = deviceId
             self.expireTime = expireTime
             self.channelId = channelId
@@ -69,5 +51,23 @@ extension Iotvideoindustry {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备实时流地址（旧）
+    ///
+    /// 本接口(DescribeDeviceStreams)用于获取设备实时流地址。
+    /// 请使用DescribeChannelStreamURL接口
+    @inlinable
+    public func describeDeviceStreams(_ input: DescribeDeviceStreamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceStreamsResponse > {
+        self.client.execute(action: "DescribeDeviceStreams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备实时流地址（旧）
+    ///
+    /// 本接口(DescribeDeviceStreams)用于获取设备实时流地址。
+    /// 请使用DescribeChannelStreamURL接口
+    @inlinable
+    public func describeDeviceStreams(_ input: DescribeDeviceStreamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStreamsResponse {
+        try await self.client.execute(action: "DescribeDeviceStreams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

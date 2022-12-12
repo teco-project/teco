@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cam {
-    /// 查看策略详情
-    ///
-    /// 本接口（GetPolicy）可用于查询查看策略详情。
-    @inlinable
-    public func getPolicy(_ input: GetPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPolicyResponse > {
-        self.client.execute(action: "GetPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看策略详情
-    ///
-    /// 本接口（GetPolicy）可用于查询查看策略详情。
-    @inlinable
-    public func getPolicy(_ input: GetPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyResponse {
-        try await self.client.execute(action: "GetPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetPolicy请求参数结构体
     public struct GetPolicyRequest: TCRequestModel {
         /// 策略Id
@@ -95,5 +79,21 @@ extension Cam {
             case isServiceLinkedRolePolicy = "IsServiceLinkedRolePolicy"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看策略详情
+    ///
+    /// 本接口（GetPolicy）可用于查询查看策略详情。
+    @inlinable
+    public func getPolicy(_ input: GetPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPolicyResponse > {
+        self.client.execute(action: "GetPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看策略详情
+    ///
+    /// 本接口（GetPolicy）可用于查询查看策略详情。
+    @inlinable
+    public func getPolicy(_ input: GetPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyResponse {
+        try await self.client.execute(action: "GetPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

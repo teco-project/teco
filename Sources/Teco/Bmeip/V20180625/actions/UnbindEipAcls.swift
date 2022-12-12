@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 解绑弹性公网IP ACL
-    @inlinable
-    public func unbindEipAcls(_ input: UnbindEipAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindEipAclsResponse > {
-        self.client.execute(action: "UnbindEipAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑弹性公网IP ACL
-    @inlinable
-    public func unbindEipAcls(_ input: UnbindEipAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindEipAclsResponse {
-        try await self.client.execute(action: "UnbindEipAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindEipAcls请求参数结构体
     public struct UnbindEipAclsRequest: TCRequestModel {
         /// 待解关联的 EIP 与 ACL列表
@@ -49,5 +37,17 @@ extension Bmeip {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑弹性公网IP ACL
+    @inlinable
+    public func unbindEipAcls(_ input: UnbindEipAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindEipAclsResponse > {
+        self.client.execute(action: "UnbindEipAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑弹性公网IP ACL
+    @inlinable
+    public func unbindEipAcls(_ input: UnbindEipAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindEipAclsResponse {
+        try await self.client.execute(action: "UnbindEipAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

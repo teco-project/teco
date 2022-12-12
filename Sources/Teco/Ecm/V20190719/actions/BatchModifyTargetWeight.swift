@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 批量修改监听器绑定的后端机器的转发权重
-    ///
-    /// 批量修改监听器绑定的后端机器的转发权重。
-    @inlinable
-    public func batchModifyTargetWeight(_ input: BatchModifyTargetWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyTargetWeightResponse > {
-        self.client.execute(action: "BatchModifyTargetWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量修改监听器绑定的后端机器的转发权重
-    ///
-    /// 批量修改监听器绑定的后端机器的转发权重。
-    @inlinable
-    public func batchModifyTargetWeight(_ input: BatchModifyTargetWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTargetWeightResponse {
-        try await self.client.execute(action: "BatchModifyTargetWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchModifyTargetWeight请求参数结构体
     public struct BatchModifyTargetWeightRequest: TCRequestModel {
         /// 负载均衡实例 ID
@@ -58,5 +42,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量修改监听器绑定的后端机器的转发权重
+    ///
+    /// 批量修改监听器绑定的后端机器的转发权重。
+    @inlinable
+    public func batchModifyTargetWeight(_ input: BatchModifyTargetWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyTargetWeightResponse > {
+        self.client.execute(action: "BatchModifyTargetWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量修改监听器绑定的后端机器的转发权重
+    ///
+    /// 批量修改监听器绑定的后端机器的转发权重。
+    @inlinable
+    public func batchModifyTargetWeight(_ input: BatchModifyTargetWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTargetWeightResponse {
+        try await self.client.execute(action: "BatchModifyTargetWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 修改溯源信息的排序
-    @inlinable
-    public func modifyTraceDataRanks(_ input: ModifyTraceDataRanksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTraceDataRanksResponse > {
-        self.client.execute(action: "ModifyTraceDataRanks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改溯源信息的排序
-    @inlinable
-    public func modifyTraceDataRanks(_ input: ModifyTraceDataRanksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceDataRanksResponse {
-        try await self.client.execute(action: "ModifyTraceDataRanks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTraceDataRanks请求参数结构体
     public struct ModifyTraceDataRanksRequest: TCRequestModel {
         /// 企业ID
@@ -41,7 +29,7 @@ extension Trp {
         /// 溯源ID
         public let traceIds: [String]?
         
-        public init (corpId: UInt64?, batchId: String?, taskId: String?, traceIds: [String]?) {
+        public init (corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, traceIds: [String]? = nil) {
             self.corpId = corpId
             self.batchId = batchId
             self.taskId = taskId
@@ -69,5 +57,17 @@ extension Trp {
             case batchId = "BatchId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改溯源信息的排序
+    @inlinable
+    public func modifyTraceDataRanks(_ input: ModifyTraceDataRanksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTraceDataRanksResponse > {
+        self.client.execute(action: "ModifyTraceDataRanks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改溯源信息的排序
+    @inlinable
+    public func modifyTraceDataRanks(_ input: ModifyTraceDataRanksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceDataRanksResponse {
+        try await self.client.execute(action: "ModifyTraceDataRanks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

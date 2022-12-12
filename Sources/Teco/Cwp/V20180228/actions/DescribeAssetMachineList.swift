@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取资源监控列表
-    ///
-    /// 获取资产指纹页面的资源监控列表
-    @inlinable
-    public func describeAssetMachineList(_ input: DescribeAssetMachineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetMachineListResponse > {
-        self.client.execute(action: "DescribeAssetMachineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取资源监控列表
-    ///
-    /// 获取资产指纹页面的资源监控列表
-    @inlinable
-    public func describeAssetMachineList(_ input: DescribeAssetMachineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetMachineListResponse {
-        try await self.client.execute(action: "DescribeAssetMachineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetMachineList请求参数结构体
     public struct DescribeAssetMachineListRequest: TCRequestModel {
         /// 过滤条件。
@@ -63,7 +47,7 @@ extension Cwp {
         /// 可选排序[FirstTime|PartitionCount]
         public let by: String?
         
-        public init (filters: [Filter]?, limit: UInt64?, offset: UInt64?, order: String?, by: String?) {
+        public init (filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -97,5 +81,21 @@ extension Cwp {
             case machines = "Machines"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取资源监控列表
+    ///
+    /// 获取资产指纹页面的资源监控列表
+    @inlinable
+    public func describeAssetMachineList(_ input: DescribeAssetMachineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetMachineListResponse > {
+        self.client.execute(action: "DescribeAssetMachineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资源监控列表
+    ///
+    /// 获取资产指纹页面的资源监控列表
+    @inlinable
+    public func describeAssetMachineList(_ input: DescribeAssetMachineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetMachineListResponse {
+        try await self.client.execute(action: "DescribeAssetMachineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

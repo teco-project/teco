@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查看镜像分享信息
-    ///
-    /// 本接口（DescribeImageSharePermission）用于查询镜像分享信息。
-    @inlinable
-    public func describeImageSharePermission(_ input: DescribeImageSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageSharePermissionResponse > {
-        self.client.execute(action: "DescribeImageSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看镜像分享信息
-    ///
-    /// 本接口（DescribeImageSharePermission）用于查询镜像分享信息。
-    @inlinable
-    public func describeImageSharePermission(_ input: DescribeImageSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSharePermissionResponse {
-        try await self.client.execute(action: "DescribeImageSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageSharePermission请求参数结构体
     public struct DescribeImageSharePermissionRequest: TCRequestModel {
         /// 需要共享的镜像Id
@@ -57,5 +41,21 @@ extension Cvm {
             case sharePermissionSet = "SharePermissionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看镜像分享信息
+    ///
+    /// 本接口（DescribeImageSharePermission）用于查询镜像分享信息。
+    @inlinable
+    public func describeImageSharePermission(_ input: DescribeImageSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageSharePermissionResponse > {
+        self.client.execute(action: "DescribeImageSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看镜像分享信息
+    ///
+    /// 本接口（DescribeImageSharePermission）用于查询镜像分享信息。
+    @inlinable
+    public func describeImageSharePermission(_ input: DescribeImageSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSharePermissionResponse {
+        try await self.client.execute(action: "DescribeImageSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

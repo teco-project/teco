@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudaudit {
-    /// 查询云审计日志
-    @inlinable
-    public func describeEvents(_ input: DescribeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEventsResponse > {
-        self.client.execute(action: "DescribeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云审计日志
-    @inlinable
-    public func describeEvents(_ input: DescribeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventsResponse {
-        try await self.client.execute(action: "DescribeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEvents请求参数结构体
     public struct DescribeEventsRequest: TCRequestModel {
         /// 起始时间戳（单位秒，不超过当前时间 90 天）
@@ -47,7 +35,7 @@ extension Cloudaudit {
         /// 是否返回 IP 归属地（1 返回，0 不返回）
         public let isReturnLocation: UInt64?
         
-        public init (startTime: UInt64, endTime: UInt64, nextToken: UInt64?, maxResults: UInt64?, lookupAttributes: [LookupAttribute]?, isReturnLocation: UInt64?) {
+        public init (startTime: UInt64, endTime: UInt64, nextToken: UInt64? = nil, maxResults: UInt64? = nil, lookupAttributes: [LookupAttribute]? = nil, isReturnLocation: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.nextToken = nextToken
@@ -92,5 +80,17 @@ extension Cloudaudit {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云审计日志
+    @inlinable
+    public func describeEvents(_ input: DescribeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEventsResponse > {
+        self.client.execute(action: "DescribeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云审计日志
+    @inlinable
+    public func describeEvents(_ input: DescribeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventsResponse {
+        try await self.client.execute(action: "DescribeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

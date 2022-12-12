@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 开通CFS服务
-    ///
-    /// 本接口（SignUpCfsService）用于开通CFS服务。
-    @inlinable
-    public func signUpCfsService(_ input: SignUpCfsServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SignUpCfsServiceResponse > {
-        self.client.execute(action: "SignUpCfsService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开通CFS服务
-    ///
-    /// 本接口（SignUpCfsService）用于开通CFS服务。
-    @inlinable
-    public func signUpCfsService(_ input: SignUpCfsServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignUpCfsServiceResponse {
-        try await self.client.execute(action: "SignUpCfsService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SignUpCfsService请求参数结构体
     public struct SignUpCfsServiceRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Cfs {
             case cfsServiceStatus = "CfsServiceStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开通CFS服务
+    ///
+    /// 本接口（SignUpCfsService）用于开通CFS服务。
+    @inlinable
+    public func signUpCfsService(_ input: SignUpCfsServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SignUpCfsServiceResponse > {
+        self.client.execute(action: "SignUpCfsService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开通CFS服务
+    ///
+    /// 本接口（SignUpCfsService）用于开通CFS服务。
+    @inlinable
+    public func signUpCfsService(_ input: SignUpCfsServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignUpCfsServiceResponse {
+        try await self.client.execute(action: "SignUpCfsService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// API分组批量与网关解绑
-    @inlinable
-    public func unbindApiGroup(_ input: UnbindApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindApiGroupResponse > {
-        self.client.execute(action: "UnbindApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// API分组批量与网关解绑
-    @inlinable
-    public func unbindApiGroup(_ input: UnbindApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindApiGroupResponse {
-        try await self.client.execute(action: "UnbindApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindApiGroup请求参数结构体
     public struct UnbindApiGroupRequest: TCRequestModel {
         /// 分组网关id列表
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// API分组批量与网关解绑
+    @inlinable
+    public func unbindApiGroup(_ input: UnbindApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindApiGroupResponse > {
+        self.client.execute(action: "UnbindApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// API分组批量与网关解绑
+    @inlinable
+    public func unbindApiGroup(_ input: UnbindApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindApiGroupResponse {
+        try await self.client.execute(action: "UnbindApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

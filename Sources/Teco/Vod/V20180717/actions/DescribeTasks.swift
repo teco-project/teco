@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 获取任务列表
-    ///
-    /// * 该接口用于查询任务列表；
-    /// * 当列表数据比较多时，单次接口调用无法拉取整个列表，可通过 ScrollToken 参数，分批拉取；
-    /// * 只能查询到最近三天（72 小时）内的任务。
-    @inlinable
-    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
-        self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取任务列表
-    ///
-    /// * 该接口用于查询任务列表；
-    /// * 当列表数据比较多时，单次接口调用无法拉取整个列表，可通过 ScrollToken 参数，分批拉取；
-    /// * 只能查询到最近三天（72 小时）内的任务。
-    @inlinable
-    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
-        try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTasks请求参数结构体
     public struct DescribeTasksRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -47,15 +27,15 @@ extension Vod {
         public let fileId: String?
         
         /// 过滤条件：任务创建时间。
-        public let createTime: TimeRange
+        public let createTime: TimeRange?
         
         /// 过滤条件：任务结束时间。
-        public let finishTime: TimeRange
+        public let finishTime: TimeRange?
         
         /// 排序方式。Sort.Field 可选：
         /// <li> CreateTime 任务创建时间。</li>
         /// <li>FinishTime 任务结束时间。</li>
-        public let sort: SortBy
+        public let sort: SortBy?
         
         /// 返回记录条数，默认值：10，最大值：100。
         public let limit: UInt64?
@@ -63,7 +43,7 @@ extension Vod {
         /// 翻页标识，分批拉取时使用：当单次请求无法拉取所有数据，接口将会返回 ScrollToken，下一次请求携带该 Token，将会从下一条记录开始获取。
         public let scrollToken: String?
         
-        public init (subAppId: UInt64?, status: String?, fileId: String?, createTime: TimeRange, finishTime: TimeRange, sort: SortBy, limit: UInt64?, scrollToken: String?) {
+        public init (subAppId: UInt64? = nil, status: String? = nil, fileId: String? = nil, createTime: TimeRange? = nil, finishTime: TimeRange? = nil, sort: SortBy? = nil, limit: UInt64? = nil, scrollToken: String? = nil) {
             self.subAppId = subAppId
             self.status = status
             self.fileId = fileId
@@ -102,5 +82,25 @@ extension Vod {
             case scrollToken = "ScrollToken"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取任务列表
+    ///
+    /// * 该接口用于查询任务列表；
+    /// * 当列表数据比较多时，单次接口调用无法拉取整个列表，可通过 ScrollToken 参数，分批拉取；
+    /// * 只能查询到最近三天（72 小时）内的任务。
+    @inlinable
+    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
+        self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务列表
+    ///
+    /// * 该接口用于查询任务列表；
+    /// * 当列表数据比较多时，单次接口调用无法拉取整个列表，可通过 ScrollToken 参数，分批拉取；
+    /// * 只能查询到最近三天（72 小时）内的任务。
+    @inlinable
+    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
+        try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

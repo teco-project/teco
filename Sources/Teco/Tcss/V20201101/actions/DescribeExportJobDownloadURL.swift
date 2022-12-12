@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询导出任务下载URL
-    @inlinable
-    public func describeExportJobDownloadURL(_ input: DescribeExportJobDownloadURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExportJobDownloadURLResponse > {
-        self.client.execute(action: "DescribeExportJobDownloadURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询导出任务下载URL
-    @inlinable
-    public func describeExportJobDownloadURL(_ input: DescribeExportJobDownloadURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobDownloadURLResponse {
-        try await self.client.execute(action: "DescribeExportJobDownloadURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExportJobDownloadURL请求参数结构体
     public struct DescribeExportJobDownloadURLRequest: TCRequestModel {
         /// 任务ID
@@ -53,5 +41,17 @@ extension Tcss {
             case downloadURL = "DownloadURL"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询导出任务下载URL
+    @inlinable
+    public func describeExportJobDownloadURL(_ input: DescribeExportJobDownloadURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExportJobDownloadURLResponse > {
+        self.client.execute(action: "DescribeExportJobDownloadURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询导出任务下载URL
+    @inlinable
+    public func describeExportJobDownloadURL(_ input: DescribeExportJobDownloadURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobDownloadURLResponse {
+        try await self.client.execute(action: "DescribeExportJobDownloadURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

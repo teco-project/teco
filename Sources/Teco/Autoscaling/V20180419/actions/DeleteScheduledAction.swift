@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 删除定时任务
-    ///
-    /// 本接口（DeleteScheduledAction）用于删除特定的定时任务。
-    @inlinable
-    public func deleteScheduledAction(_ input: DeleteScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScheduledActionResponse > {
-        self.client.execute(action: "DeleteScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除定时任务
-    ///
-    /// 本接口（DeleteScheduledAction）用于删除特定的定时任务。
-    @inlinable
-    public func deleteScheduledAction(_ input: DeleteScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScheduledActionResponse {
-        try await self.client.execute(action: "DeleteScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteScheduledAction请求参数结构体
     public struct DeleteScheduledActionRequest: TCRequestModel {
         /// 待删除的定时任务ID。
@@ -53,5 +37,21 @@ extension As {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除定时任务
+    ///
+    /// 本接口（DeleteScheduledAction）用于删除特定的定时任务。
+    @inlinable
+    public func deleteScheduledAction(_ input: DeleteScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScheduledActionResponse > {
+        self.client.execute(action: "DeleteScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除定时任务
+    ///
+    /// 本接口（DeleteScheduledAction）用于删除特定的定时任务。
+    @inlinable
+    public func deleteScheduledAction(_ input: DeleteScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScheduledActionResponse {
+        try await self.client.execute(action: "DeleteScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

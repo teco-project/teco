@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 启用规则
-    @inlinable
-    public func activateRule(_ input: ActivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActivateRuleResponse > {
-        self.client.execute(action: "ActivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启用规则
-    @inlinable
-    public func activateRule(_ input: ActivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateRuleResponse {
-        try await self.client.execute(action: "ActivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ActivateRule请求参数结构体
     public struct ActivateRuleRequest: TCRequestModel {
         /// 规则Id
@@ -49,5 +37,17 @@ extension Iot {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启用规则
+    @inlinable
+    public func activateRule(_ input: ActivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActivateRuleResponse > {
+        self.client.execute(action: "ActivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启用规则
+    @inlinable
+    public func activateRule(_ input: ActivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateRuleResponse {
+        try await self.client.execute(action: "ActivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

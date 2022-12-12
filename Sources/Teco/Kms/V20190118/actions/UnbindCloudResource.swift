@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 解绑CMK和云资源的关联关系
-    ///
-    /// 删除指定（key, 资源，云产品）的记录，以表明：指定的云产品的资源已不再使用当前的key。
-    @inlinable
-    public func unbindCloudResource(_ input: UnbindCloudResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindCloudResourceResponse > {
-        self.client.execute(action: "UnbindCloudResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑CMK和云资源的关联关系
-    ///
-    /// 删除指定（key, 资源，云产品）的记录，以表明：指定的云产品的资源已不再使用当前的key。
-    @inlinable
-    public func unbindCloudResource(_ input: UnbindCloudResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindCloudResourceResponse {
-        try await self.client.execute(action: "UnbindCloudResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindCloudResource请求参数结构体
     public struct UnbindCloudResourceRequest: TCRequestModel {
         /// cmk的ID
@@ -63,5 +47,21 @@ extension Kms {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑CMK和云资源的关联关系
+    ///
+    /// 删除指定（key, 资源，云产品）的记录，以表明：指定的云产品的资源已不再使用当前的key。
+    @inlinable
+    public func unbindCloudResource(_ input: UnbindCloudResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindCloudResourceResponse > {
+        self.client.execute(action: "UnbindCloudResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑CMK和云资源的关联关系
+    ///
+    /// 删除指定（key, 资源，云产品）的记录，以表明：指定的云产品的资源已不再使用当前的key。
+    @inlinable
+    public func unbindCloudResource(_ input: UnbindCloudResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindCloudResourceResponse {
+        try await self.client.execute(action: "UnbindCloudResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

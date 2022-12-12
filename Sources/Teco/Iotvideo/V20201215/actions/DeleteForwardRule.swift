@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 删除转发规则
-    @inlinable
-    public func deleteForwardRule(_ input: DeleteForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteForwardRuleResponse > {
-        self.client.execute(action: "DeleteForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除转发规则
-    @inlinable
-    public func deleteForwardRule(_ input: DeleteForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteForwardRuleResponse {
-        try await self.client.execute(action: "DeleteForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteForwardRule请求参数结构体
     public struct DeleteForwardRuleRequest: TCRequestModel {
         /// 产品ID
@@ -84,5 +72,17 @@ extension Iotvideo {
             case errMsg = "ErrMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除转发规则
+    @inlinable
+    public func deleteForwardRule(_ input: DeleteForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteForwardRuleResponse > {
+        self.client.execute(action: "DeleteForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除转发规则
+    @inlinable
+    public func deleteForwardRule(_ input: DeleteForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteForwardRuleResponse {
+        try await self.client.execute(action: "DeleteForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

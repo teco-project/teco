@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 升级ES集群版本
-    @inlinable
-    public func upgradeInstance(_ input: UpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeInstanceResponse > {
-        self.client.execute(action: "UpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 升级ES集群版本
-    @inlinable
-    public func upgradeInstance(_ input: UpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceResponse {
-        try await self.client.execute(action: "UpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeInstance请求参数结构体
     public struct UpgradeInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -53,7 +41,7 @@ extension Es {
         /// 滚动模式时，是否跳过检查，进行强制重启。默认值为false
         public let skipCheckForceRestart: Bool?
         
-        public init (instanceId: String, esVersion: String, checkOnly: Bool?, licenseType: String?, basicSecurityType: UInt64?, upgradeMode: String?, cosBackup: Bool?, skipCheckForceRestart: Bool?) {
+        public init (instanceId: String, esVersion: String, checkOnly: Bool? = nil, licenseType: String? = nil, basicSecurityType: UInt64? = nil, upgradeMode: String? = nil, cosBackup: Bool? = nil, skipCheckForceRestart: Bool? = nil) {
             self.instanceId = instanceId
             self.esVersion = esVersion
             self.checkOnly = checkOnly
@@ -84,5 +72,17 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 升级ES集群版本
+    @inlinable
+    public func upgradeInstance(_ input: UpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeInstanceResponse > {
+        self.client.execute(action: "UpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 升级ES集群版本
+    @inlinable
+    public func upgradeInstance(_ input: UpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceResponse {
+        try await self.client.execute(action: "UpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

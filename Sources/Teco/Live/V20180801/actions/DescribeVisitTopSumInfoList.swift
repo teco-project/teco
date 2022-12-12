@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询某时间段top n的域名或流id信息
-    ///
-    /// 查询某时间段top n的域名或流id信息（暂支持top 1000）。
-    @inlinable
-    public func describeVisitTopSumInfoList(_ input: DescribeVisitTopSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVisitTopSumInfoListResponse > {
-        self.client.execute(action: "DescribeVisitTopSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询某时间段top n的域名或流id信息
-    ///
-    /// 查询某时间段top n的域名或流id信息（暂支持top 1000）。
-    @inlinable
-    public func describeVisitTopSumInfoList(_ input: DescribeVisitTopSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVisitTopSumInfoListResponse {
-        try await self.client.execute(action: "DescribeVisitTopSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVisitTopSumInfoList请求参数结构体
     public struct DescribeVisitTopSumInfoListRequest: TCRequestModel {
         /// 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
@@ -58,7 +42,7 @@ extension Live {
         /// 排序指标，可选值包括” AvgFluxPerSecond”，”TotalRequest”（默认）,“TotalFlux”。
         public let orderParam: String?
         
-        public init (startTime: String, endTime: String, topIndex: String, playDomains: [String]?, pageNum: UInt64?, pageSize: UInt64?, orderParam: String?) {
+        public init (startTime: String, endTime: String, topIndex: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, orderParam: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.topIndex = topIndex
@@ -118,5 +102,21 @@ extension Live {
             case dataInfoList = "DataInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询某时间段top n的域名或流id信息
+    ///
+    /// 查询某时间段top n的域名或流id信息（暂支持top 1000）。
+    @inlinable
+    public func describeVisitTopSumInfoList(_ input: DescribeVisitTopSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVisitTopSumInfoListResponse > {
+        self.client.execute(action: "DescribeVisitTopSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询某时间段top n的域名或流id信息
+    ///
+    /// 查询某时间段top n的域名或流id信息（暂支持top 1000）。
+    @inlinable
+    public func describeVisitTopSumInfoList(_ input: DescribeVisitTopSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVisitTopSumInfoListResponse {
+        try await self.client.execute(action: "DescribeVisitTopSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

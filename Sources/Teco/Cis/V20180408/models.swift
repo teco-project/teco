@@ -44,10 +44,10 @@ extension Cis {
         public let restartCount: UInt64?
         
         /// 当前状态
-        public let currentState: ContainerState
+        public let currentState: ContainerState?
         
         /// 上一次状态
-        public let previousState: ContainerState
+        public let previousState: ContainerState?
         
         /// 容器工作目录
         public let workingDir: String?
@@ -55,7 +55,7 @@ extension Cis {
         /// 容器ID
         public let containerId: String?
         
-        public init (command: String?, args: [String]?, environmentVars: [EnvironmentVar]?, image: String, name: String, cpu: Float, memory: Float, restartCount: UInt64?, currentState: ContainerState, previousState: ContainerState, workingDir: String?, containerId: String?) {
+        public init (command: String? = nil, args: [String]? = nil, environmentVars: [EnvironmentVar]? = nil, image: String, name: String, cpu: Float, memory: Float, restartCount: UInt64? = nil, currentState: ContainerState? = nil, previousState: ContainerState? = nil, workingDir: String? = nil, containerId: String? = nil) {
             self.command = command
             self.args = args
             self.environmentVars = environmentVars
@@ -133,7 +133,7 @@ extension Cis {
         /// 内网IP
         public let lanIp: String?
         
-        public init (instanceId: String?, instanceName: String, vpcId: String, subnetId: String, state: String?, containers: [Container], restartPolicy: String, createTime: Date?, startTime: Date?, zone: String, vpcName: String?, vpcCidr: String?, subnetName: String?, subnetCidr: String?, lanIp: String?) {
+        public init (instanceId: String? = nil, instanceName: String, vpcId: String, subnetId: String, state: String? = nil, containers: [Container], restartPolicy: String, createTime: Date? = nil, startTime: Date? = nil, zone: String, vpcName: String? = nil, vpcCidr: String? = nil, subnetName: String? = nil, subnetCidr: String? = nil, lanIp: String? = nil) {
             self.instanceId = instanceId
             self.instanceName = instanceName
             self.vpcId = vpcId

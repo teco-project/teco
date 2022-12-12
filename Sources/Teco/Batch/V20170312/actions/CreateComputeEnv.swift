@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 创建计算环境
-    ///
-    /// 用于创建计算环境
-    @inlinable
-    public func createComputeEnv(_ input: CreateComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateComputeEnvResponse > {
-        self.client.execute(action: "CreateComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建计算环境
-    ///
-    /// 用于创建计算环境
-    @inlinable
-    public func createComputeEnv(_ input: CreateComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComputeEnvResponse {
-        try await self.client.execute(action: "CreateComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateComputeEnv请求参数结构体
     public struct CreateComputeEnvRequest: TCRequestModel {
         /// 计算环境信息
@@ -42,7 +26,7 @@ extension Batch {
         /// 用于保证请求幂等性的字符串。该字符串由用户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         public let clientToken: String?
         
-        public init (computeEnv: NamedComputeEnv, placement: Placement, clientToken: String?) {
+        public init (computeEnv: NamedComputeEnv, placement: Placement, clientToken: String? = nil) {
             self.computeEnv = computeEnv
             self.placement = placement
             self.clientToken = clientToken
@@ -67,5 +51,21 @@ extension Batch {
             case envId = "EnvId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建计算环境
+    ///
+    /// 用于创建计算环境
+    @inlinable
+    public func createComputeEnv(_ input: CreateComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateComputeEnvResponse > {
+        self.client.execute(action: "CreateComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建计算环境
+    ///
+    /// 用于创建计算环境
+    @inlinable
+    public func createComputeEnv(_ input: CreateComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComputeEnvResponse {
+        try await self.client.execute(action: "CreateComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

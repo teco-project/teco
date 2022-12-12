@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 隔离订阅实例
-    ///
-    /// 本接口（IsolateSubscribe）用于隔离小时计费的订阅实例。调用后，订阅实例将不能使用，同时停止计费。
-    @inlinable
-    public func isolateSubscribe(_ input: IsolateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateSubscribeResponse > {
-        self.client.execute(action: "IsolateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 隔离订阅实例
-    ///
-    /// 本接口（IsolateSubscribe）用于隔离小时计费的订阅实例。调用后，订阅实例将不能使用，同时停止计费。
-    @inlinable
-    public func isolateSubscribe(_ input: IsolateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateSubscribeResponse {
-        try await self.client.execute(action: "IsolateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// IsolateSubscribe请求参数结构体
     public struct IsolateSubscribeRequest: TCRequestModel {
         /// 订阅实例ID
@@ -53,5 +37,21 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 隔离订阅实例
+    ///
+    /// 本接口（IsolateSubscribe）用于隔离小时计费的订阅实例。调用后，订阅实例将不能使用，同时停止计费。
+    @inlinable
+    public func isolateSubscribe(_ input: IsolateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateSubscribeResponse > {
+        self.client.execute(action: "IsolateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 隔离订阅实例
+    ///
+    /// 本接口（IsolateSubscribe）用于隔离小时计费的订阅实例。调用后，订阅实例将不能使用，同时停止计费。
+    @inlinable
+    public func isolateSubscribe(_ input: IsolateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateSubscribeResponse {
+        try await self.client.execute(action: "IsolateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

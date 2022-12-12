@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 释放IPv6子网段
-    ///
-    /// 本接口（UnassignIpv6SubnetCidrBlock）用于释放IPv6子网段。<br />
-    /// 子网段如果还有IP占用且未回收，则子网段无法释放。
-    @inlinable
-    public func unassignIpv6SubnetCidrBlock(_ input: UnassignIpv6SubnetCidrBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnassignIpv6SubnetCidrBlockResponse > {
-        self.client.execute(action: "UnassignIpv6SubnetCidrBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 释放IPv6子网段
-    ///
-    /// 本接口（UnassignIpv6SubnetCidrBlock）用于释放IPv6子网段。<br />
-    /// 子网段如果还有IP占用且未回收，则子网段无法释放。
-    @inlinable
-    public func unassignIpv6SubnetCidrBlock(_ input: UnassignIpv6SubnetCidrBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6SubnetCidrBlockResponse {
-        try await self.client.execute(action: "UnassignIpv6SubnetCidrBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnassignIpv6SubnetCidrBlock请求参数结构体
     public struct UnassignIpv6SubnetCidrBlockRequest: TCRequestModel {
         /// 子网所在私有网络`ID`。形如：`vpc-f49l6u0z`。
@@ -60,5 +42,23 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 释放IPv6子网段
+    ///
+    /// 本接口（UnassignIpv6SubnetCidrBlock）用于释放IPv6子网段。<br />
+    /// 子网段如果还有IP占用且未回收，则子网段无法释放。
+    @inlinable
+    public func unassignIpv6SubnetCidrBlock(_ input: UnassignIpv6SubnetCidrBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnassignIpv6SubnetCidrBlockResponse > {
+        self.client.execute(action: "UnassignIpv6SubnetCidrBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 释放IPv6子网段
+    ///
+    /// 本接口（UnassignIpv6SubnetCidrBlock）用于释放IPv6子网段。<br />
+    /// 子网段如果还有IP占用且未回收，则子网段无法释放。
+    @inlinable
+    public func unassignIpv6SubnetCidrBlock(_ input: UnassignIpv6SubnetCidrBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6SubnetCidrBlockResponse {
+        try await self.client.execute(action: "UnassignIpv6SubnetCidrBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

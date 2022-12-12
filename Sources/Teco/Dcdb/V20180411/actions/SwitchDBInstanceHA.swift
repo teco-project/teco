@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 实例主备切换
-    ///
-    /// 本接口(SwitchDBInstanceHA)用于实例主备切换。
-    @inlinable
-    public func switchDBInstanceHA(_ input: SwitchDBInstanceHARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchDBInstanceHAResponse > {
-        self.client.execute(action: "SwitchDBInstanceHA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实例主备切换
-    ///
-    /// 本接口(SwitchDBInstanceHA)用于实例主备切换。
-    @inlinable
-    public func switchDBInstanceHA(_ input: SwitchDBInstanceHARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDBInstanceHAResponse {
-        try await self.client.execute(action: "SwitchDBInstanceHA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SwitchDBInstanceHA请求参数结构体
     public struct SwitchDBInstanceHARequest: TCRequestModel {
         /// 实例Id，形如 tdsql-ow728lmc。
@@ -62,5 +46,21 @@ extension Dcdb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实例主备切换
+    ///
+    /// 本接口(SwitchDBInstanceHA)用于实例主备切换。
+    @inlinable
+    public func switchDBInstanceHA(_ input: SwitchDBInstanceHARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchDBInstanceHAResponse > {
+        self.client.execute(action: "SwitchDBInstanceHA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实例主备切换
+    ///
+    /// 本接口(SwitchDBInstanceHA)用于实例主备切换。
+    @inlinable
+    public func switchDBInstanceHA(_ input: SwitchDBInstanceHARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDBInstanceHAResponse {
+        try await self.client.execute(action: "SwitchDBInstanceHA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

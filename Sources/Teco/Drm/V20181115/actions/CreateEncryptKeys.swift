@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Drm {
-    /// 设置加密密钥
-    ///
-    /// 该接口用来设置加密的密钥。注意，同一个content id，只能设置一次！
-    @inlinable
-    public func createEncryptKeys(_ input: CreateEncryptKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEncryptKeysResponse > {
-        self.client.execute(action: "CreateEncryptKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置加密密钥
-    ///
-    /// 该接口用来设置加密的密钥。注意，同一个content id，只能设置一次！
-    @inlinable
-    public func createEncryptKeys(_ input: CreateEncryptKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEncryptKeysResponse {
-        try await self.client.execute(action: "CreateEncryptKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEncryptKeys请求参数结构体
     public struct CreateEncryptKeysRequest: TCRequestModel {
         /// 使用的DRM方案类型，接口取值WIDEVINE、FAIRPLAY、NORMALAES。
@@ -45,7 +29,7 @@ extension Drm {
         /// 内容类型。接口取值VodVideo,LiveVideo。
         public let contentType: String?
         
-        public init (drmType: String, keys: [KeyParam], contentId: String?, contentType: String?) {
+        public init (drmType: String, keys: [KeyParam], contentId: String? = nil, contentType: String? = nil) {
             self.drmType = drmType
             self.keys = keys
             self.contentId = contentId
@@ -68,5 +52,21 @@ extension Drm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置加密密钥
+    ///
+    /// 该接口用来设置加密的密钥。注意，同一个content id，只能设置一次！
+    @inlinable
+    public func createEncryptKeys(_ input: CreateEncryptKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEncryptKeysResponse > {
+        self.client.execute(action: "CreateEncryptKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置加密密钥
+    ///
+    /// 该接口用来设置加密的密钥。注意，同一个content id，只能设置一次！
+    @inlinable
+    public func createEncryptKeys(_ input: CreateEncryptKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEncryptKeysResponse {
+        try await self.client.execute(action: "CreateEncryptKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

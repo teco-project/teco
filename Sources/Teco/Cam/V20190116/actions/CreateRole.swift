@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 创建角色
-    ///
-    /// 本接口（CreateRole）用于创建角色。
-    @inlinable
-    public func createRole(_ input: CreateRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoleResponse > {
-        self.client.execute(action: "CreateRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建角色
-    ///
-    /// 本接口（CreateRole）用于创建角色。
-    @inlinable
-    public func createRole(_ input: CreateRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoleResponse {
-        try await self.client.execute(action: "CreateRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRole请求参数结构体
     public struct CreateRoleRequest: TCRequestModel {
         /// 角色名称
@@ -51,7 +35,7 @@ extension Cam {
         /// 角色绑定标签
         public let tags: [RoleTags]?
         
-        public init (roleName: String, policyDocument: String, description: String?, consoleLogin: UInt64?, sessionDuration: UInt64?, tags: [RoleTags]?) {
+        public init (roleName: String, policyDocument: String, description: String? = nil, consoleLogin: UInt64? = nil, sessionDuration: UInt64? = nil, tags: [RoleTags]? = nil) {
             self.roleName = roleName
             self.policyDocument = policyDocument
             self.description = description
@@ -83,5 +67,21 @@ extension Cam {
             case roleId = "RoleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建角色
+    ///
+    /// 本接口（CreateRole）用于创建角色。
+    @inlinable
+    public func createRole(_ input: CreateRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoleResponse > {
+        self.client.execute(action: "CreateRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建角色
+    ///
+    /// 本接口（CreateRole）用于创建角色。
+    @inlinable
+    public func createRole(_ input: CreateRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoleResponse {
+        try await self.client.execute(action: "CreateRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

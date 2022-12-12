@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 创建或者编辑弹性计费上限
-    ///
-    /// CreateOrModifyPostPayCores  创建或者编辑弹性计费上限
-    @inlinable
-    public func createOrModifyPostPayCores(_ input: CreateOrModifyPostPayCoresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrModifyPostPayCoresResponse > {
-        self.client.execute(action: "CreateOrModifyPostPayCores", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建或者编辑弹性计费上限
-    ///
-    /// CreateOrModifyPostPayCores  创建或者编辑弹性计费上限
-    @inlinable
-    public func createOrModifyPostPayCores(_ input: CreateOrModifyPostPayCoresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrModifyPostPayCoresResponse {
-        try await self.client.execute(action: "CreateOrModifyPostPayCores", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOrModifyPostPayCores请求参数结构体
     public struct CreateOrModifyPostPayCoresRequest: TCRequestModel {
         /// 弹性计费上限，最小值500
@@ -53,5 +37,21 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建或者编辑弹性计费上限
+    ///
+    /// CreateOrModifyPostPayCores  创建或者编辑弹性计费上限
+    @inlinable
+    public func createOrModifyPostPayCores(_ input: CreateOrModifyPostPayCoresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrModifyPostPayCoresResponse > {
+        self.client.execute(action: "CreateOrModifyPostPayCores", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建或者编辑弹性计费上限
+    ///
+    /// CreateOrModifyPostPayCores  创建或者编辑弹性计费上限
+    @inlinable
+    public func createOrModifyPostPayCores(_ input: CreateOrModifyPostPayCoresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrModifyPostPayCoresResponse {
+        try await self.client.execute(action: "CreateOrModifyPostPayCores", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

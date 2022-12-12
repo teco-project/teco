@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 更新实例长期访问凭证
-    ///
-    /// 更新实例内指定长期访问凭证的启用状态
-    @inlinable
-    public func modifyInstanceToken(_ input: ModifyInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceTokenResponse > {
-        self.client.execute(action: "ModifyInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新实例长期访问凭证
-    ///
-    /// 更新实例内指定长期访问凭证的启用状态
-    @inlinable
-    public func modifyInstanceToken(_ input: ModifyInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTokenResponse {
-        try await self.client.execute(action: "ModifyInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstanceToken请求参数结构体
     public struct ModifyInstanceTokenRequest: TCRequestModel {
         /// 实例长期访问凭证 ID
@@ -48,7 +32,7 @@ extension Tcr {
         /// 1为修改描述 2为操作启动禁用，默认值为2
         public let modifyFlag: Int64?
         
-        public init (tokenId: String, registryId: String, enable: Bool?, desc: String?, modifyFlag: Int64?) {
+        public init (tokenId: String, registryId: String, enable: Bool? = nil, desc: String? = nil, modifyFlag: Int64? = nil) {
             self.tokenId = tokenId
             self.registryId = registryId
             self.enable = enable
@@ -73,5 +57,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新实例长期访问凭证
+    ///
+    /// 更新实例内指定长期访问凭证的启用状态
+    @inlinable
+    public func modifyInstanceToken(_ input: ModifyInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceTokenResponse > {
+        self.client.execute(action: "ModifyInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新实例长期访问凭证
+    ///
+    /// 更新实例内指定长期访问凭证的启用状态
+    @inlinable
+    public func modifyInstanceToken(_ input: ModifyInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTokenResponse {
+        try await self.client.execute(action: "ModifyInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

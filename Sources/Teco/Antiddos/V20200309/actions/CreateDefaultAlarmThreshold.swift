@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 设置单IP默认告警阈值配置
-    @inlinable
-    public func createDefaultAlarmThreshold(_ input: CreateDefaultAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDefaultAlarmThresholdResponse > {
-        self.client.execute(action: "CreateDefaultAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置单IP默认告警阈值配置
-    @inlinable
-    public func createDefaultAlarmThreshold(_ input: CreateDefaultAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultAlarmThresholdResponse {
-        try await self.client.execute(action: "CreateDefaultAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDefaultAlarmThreshold请求参数结构体
     public struct CreateDefaultAlarmThresholdRequest: TCRequestModel {
         /// 默认告警阈值配置
@@ -57,5 +45,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置单IP默认告警阈值配置
+    @inlinable
+    public func createDefaultAlarmThreshold(_ input: CreateDefaultAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDefaultAlarmThresholdResponse > {
+        self.client.execute(action: "CreateDefaultAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置单IP默认告警阈值配置
+    @inlinable
+    public func createDefaultAlarmThreshold(_ input: CreateDefaultAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultAlarmThresholdResponse {
+        try await self.client.execute(action: "CreateDefaultAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

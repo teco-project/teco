@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 删除训练任务
-    @inlinable
-    public func deleteTrainingTask(_ input: DeleteTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTrainingTaskResponse > {
-        self.client.execute(action: "DeleteTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除训练任务
-    @inlinable
-    public func deleteTrainingTask(_ input: DeleteTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingTaskResponse {
-        try await self.client.execute(action: "DeleteTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTrainingTask请求参数结构体
     public struct DeleteTrainingTaskRequest: TCRequestModel {
         /// 训练任务ID
@@ -49,5 +37,17 @@ extension Tione {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除训练任务
+    @inlinable
+    public func deleteTrainingTask(_ input: DeleteTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTrainingTaskResponse > {
+        self.client.execute(action: "DeleteTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除训练任务
+    @inlinable
+    public func deleteTrainingTask(_ input: DeleteTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingTaskResponse {
+        try await self.client.execute(action: "DeleteTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 判断集成任务名称是否存在
-    @inlinable
-    public func checkIntegrationTaskNameExists(_ input: CheckIntegrationTaskNameExistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIntegrationTaskNameExistsResponse > {
-        self.client.execute(action: "CheckIntegrationTaskNameExists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 判断集成任务名称是否存在
-    @inlinable
-    public func checkIntegrationTaskNameExists(_ input: CheckIntegrationTaskNameExistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIntegrationTaskNameExistsResponse {
-        try await self.client.execute(action: "CheckIntegrationTaskNameExists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckIntegrationTaskNameExists请求参数结构体
     public struct CheckIntegrationTaskNameExistsRequest: TCRequestModel {
         /// 任务名称
@@ -41,7 +29,7 @@ extension Wedata {
         /// 同步类型1.单表同步，2.解决方案
         public let syncType: Int64?
         
-        public init (taskName: String, projectId: String, taskId: String?, syncType: Int64?) {
+        public init (taskName: String, projectId: String, taskId: String? = nil, syncType: Int64? = nil) {
             self.taskName = taskName
             self.projectId = projectId
             self.taskId = taskId
@@ -72,5 +60,17 @@ extension Wedata {
             case existsType = "ExistsType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 判断集成任务名称是否存在
+    @inlinable
+    public func checkIntegrationTaskNameExists(_ input: CheckIntegrationTaskNameExistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIntegrationTaskNameExistsResponse > {
+        self.client.execute(action: "CheckIntegrationTaskNameExists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 判断集成任务名称是否存在
+    @inlinable
+    public func checkIntegrationTaskNameExists(_ input: CheckIntegrationTaskNameExistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIntegrationTaskNameExistsResponse {
+        try await self.client.execute(action: "CheckIntegrationTaskNameExists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

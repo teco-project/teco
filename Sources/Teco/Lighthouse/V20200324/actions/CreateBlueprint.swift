@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 创建镜像
-    ///
-    /// 本接口 (CreateBlueprint) 用于创建镜像。
-    @inlinable
-    public func createBlueprint(_ input: CreateBlueprintRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBlueprintResponse > {
-        self.client.execute(action: "CreateBlueprint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建镜像
-    ///
-    /// 本接口 (CreateBlueprint) 用于创建镜像。
-    @inlinable
-    public func createBlueprint(_ input: CreateBlueprintRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlueprintResponse {
-        try await self.client.execute(action: "CreateBlueprint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBlueprint请求参数结构体
     public struct CreateBlueprintRequest: TCRequestModel {
         /// 镜像名称。最大长度60。
@@ -42,7 +26,7 @@ extension Lighthouse {
         /// 需要制作镜像的实例ID。
         public let instanceId: String?
         
-        public init (blueprintName: String, description: String?, instanceId: String?) {
+        public init (blueprintName: String, description: String? = nil, instanceId: String? = nil) {
             self.blueprintName = blueprintName
             self.description = description
             self.instanceId = instanceId
@@ -67,5 +51,21 @@ extension Lighthouse {
             case blueprintId = "BlueprintId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建镜像
+    ///
+    /// 本接口 (CreateBlueprint) 用于创建镜像。
+    @inlinable
+    public func createBlueprint(_ input: CreateBlueprintRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBlueprintResponse > {
+        self.client.execute(action: "CreateBlueprint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建镜像
+    ///
+    /// 本接口 (CreateBlueprint) 用于创建镜像。
+    @inlinable
+    public func createBlueprint(_ input: CreateBlueprintRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlueprintResponse {
+        try await self.client.execute(action: "CreateBlueprint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

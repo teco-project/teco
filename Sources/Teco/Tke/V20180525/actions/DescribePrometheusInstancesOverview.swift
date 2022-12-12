@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取2.0实例列表
-    ///
-    /// 获取与云监控融合实例列表
-    @inlinable
-    public func describePrometheusInstancesOverview(_ input: DescribePrometheusInstancesOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusInstancesOverviewResponse > {
-        self.client.execute(action: "DescribePrometheusInstancesOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取2.0实例列表
-    ///
-    /// 获取与云监控融合实例列表
-    @inlinable
-    public func describePrometheusInstancesOverview(_ input: DescribePrometheusInstancesOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstancesOverviewResponse {
-        try await self.client.execute(action: "DescribePrometheusInstancesOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrometheusInstancesOverview请求参数结构体
     public struct DescribePrometheusInstancesOverviewRequest: TCRequestModel {
         /// 用于分页
@@ -44,7 +28,7 @@ extension Tke {
         /// Name: 通过实例名称来过滤
         public let filters: [Filter]?
         
-        public init (offset: UInt64?, limit: UInt64?, filters: [Filter]?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -74,5 +58,21 @@ extension Tke {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取2.0实例列表
+    ///
+    /// 获取与云监控融合实例列表
+    @inlinable
+    public func describePrometheusInstancesOverview(_ input: DescribePrometheusInstancesOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusInstancesOverviewResponse > {
+        self.client.execute(action: "DescribePrometheusInstancesOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取2.0实例列表
+    ///
+    /// 获取与云监控融合实例列表
+    @inlinable
+    public func describePrometheusInstancesOverview(_ input: DescribePrometheusInstancesOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstancesOverviewResponse {
+        try await self.client.execute(action: "DescribePrometheusInstancesOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

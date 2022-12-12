@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询资产管理数据库列表
-    @inlinable
-    public func describeAssetDatabaseList(_ input: DescribeAssetDatabaseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetDatabaseListResponse > {
-        self.client.execute(action: "DescribeAssetDatabaseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询资产管理数据库列表
-    @inlinable
-    public func describeAssetDatabaseList(_ input: DescribeAssetDatabaseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDatabaseListResponse {
-        try await self.client.execute(action: "DescribeAssetDatabaseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetDatabaseList请求参数结构体
     public struct DescribeAssetDatabaseListRequest: TCRequestModel {
         /// 查询指定Quuid主机的信息
@@ -66,7 +54,7 @@ extension Cwp {
         /// 排序方式：[FirstTime]
         public let by: String?
         
-        public init (quuid: String?, filters: [AssetFilters]?, offset: UInt64?, limit: UInt64?, order: String?, by: String?) {
+        public init (quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.quuid = quuid
             self.filters = filters
             self.offset = offset
@@ -102,5 +90,17 @@ extension Cwp {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询资产管理数据库列表
+    @inlinable
+    public func describeAssetDatabaseList(_ input: DescribeAssetDatabaseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetDatabaseListResponse > {
+        self.client.execute(action: "DescribeAssetDatabaseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资产管理数据库列表
+    @inlinable
+    public func describeAssetDatabaseList(_ input: DescribeAssetDatabaseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDatabaseListResponse {
+        try await self.client.execute(action: "DescribeAssetDatabaseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

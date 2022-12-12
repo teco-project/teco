@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 删除域名解析记录
-    ///
-    /// 删除域名的某条解析记录
-    @inlinable
-    public func deleteGlobalDomainDns(_ input: DeleteGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGlobalDomainDnsResponse > {
-        self.client.execute(action: "DeleteGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除域名解析记录
-    ///
-    /// 删除域名的某条解析记录
-    @inlinable
-    public func deleteGlobalDomainDns(_ input: DeleteGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGlobalDomainDnsResponse {
-        try await self.client.execute(action: "DeleteGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteGlobalDomainDns请求参数结构体
     public struct DeleteGlobalDomainDnsRequest: TCRequestModel {
         /// 解析记录的ID
@@ -53,5 +37,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除域名解析记录
+    ///
+    /// 删除域名的某条解析记录
+    @inlinable
+    public func deleteGlobalDomainDns(_ input: DeleteGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGlobalDomainDnsResponse > {
+        self.client.execute(action: "DeleteGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除域名解析记录
+    ///
+    /// 删除域名的某条解析记录
+    @inlinable
+    public func deleteGlobalDomainDns(_ input: DeleteGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGlobalDomainDnsResponse {
+        try await self.client.execute(action: "DeleteGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

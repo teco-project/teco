@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 修改容器逃逸扫描规则信息
-    ///
-    /// ModifyEscapeRule  修改容器逃逸扫描规则信息
-    @inlinable
-    public func modifyEscapeRule(_ input: ModifyEscapeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEscapeRuleResponse > {
-        self.client.execute(action: "ModifyEscapeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改容器逃逸扫描规则信息
-    ///
-    /// ModifyEscapeRule  修改容器逃逸扫描规则信息
-    @inlinable
-    public func modifyEscapeRule(_ input: ModifyEscapeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeRuleResponse {
-        try await self.client.execute(action: "ModifyEscapeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyEscapeRule请求参数结构体
     public struct ModifyEscapeRuleRequest: TCRequestModel {
         /// 需要修改的数组
@@ -53,5 +37,21 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改容器逃逸扫描规则信息
+    ///
+    /// ModifyEscapeRule  修改容器逃逸扫描规则信息
+    @inlinable
+    public func modifyEscapeRule(_ input: ModifyEscapeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEscapeRuleResponse > {
+        self.client.execute(action: "ModifyEscapeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改容器逃逸扫描规则信息
+    ///
+    /// ModifyEscapeRule  修改容器逃逸扫描规则信息
+    @inlinable
+    public func modifyEscapeRule(_ input: ModifyEscapeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeRuleResponse {
+        try await self.client.execute(action: "ModifyEscapeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 获取私有域解析概览
-    @inlinable
-    public func describeDashboard(_ input: DescribeDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDashboardResponse > {
-        self.client.execute(action: "DescribeDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取私有域解析概览
-    @inlinable
-    public func describeDashboard(_ input: DescribeDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDashboardResponse {
-        try await self.client.execute(action: "DescribeDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDashboard请求参数结构体
     public struct DescribeDashboardRequest: TCRequestModel {
         public init () {
@@ -57,5 +45,17 @@ extension Privatedns {
             case flowUsage = "FlowUsage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取私有域解析概览
+    @inlinable
+    public func describeDashboard(_ input: DescribeDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDashboardResponse > {
+        self.client.execute(action: "DescribeDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取私有域解析概览
+    @inlinable
+    public func describeDashboard(_ input: DescribeDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDashboardResponse {
+        try await self.client.execute(action: "DescribeDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

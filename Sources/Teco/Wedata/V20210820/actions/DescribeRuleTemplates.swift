@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询规则模版列表
-    @inlinable
-    public func describeRuleTemplates(_ input: DescribeRuleTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleTemplatesResponse > {
-        self.client.execute(action: "DescribeRuleTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询规则模版列表
-    @inlinable
-    public func describeRuleTemplates(_ input: DescribeRuleTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleTemplatesResponse {
-        try await self.client.execute(action: "DescribeRuleTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRuleTemplates请求参数结构体
     public struct DescribeRuleTemplatesRequest: TCRequestModel {
         /// 模版类型 1.系统模版 2.自定义模版
@@ -41,7 +29,7 @@ extension Wedata {
         /// 源端对应的引擎类型
         public let sourceEngineTypes: [UInt64]?
         
-        public init (type: UInt64?, sourceObjectType: UInt64?, projectId: String?, sourceEngineTypes: [UInt64]?) {
+        public init (type: UInt64? = nil, sourceObjectType: UInt64? = nil, projectId: String? = nil, sourceEngineTypes: [UInt64]? = nil) {
             self.type = type
             self.sourceObjectType = sourceObjectType
             self.projectId = projectId
@@ -69,5 +57,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询规则模版列表
+    @inlinable
+    public func describeRuleTemplates(_ input: DescribeRuleTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleTemplatesResponse > {
+        self.client.execute(action: "DescribeRuleTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询规则模版列表
+    @inlinable
+    public func describeRuleTemplates(_ input: DescribeRuleTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleTemplatesResponse {
+        try await self.client.execute(action: "DescribeRuleTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

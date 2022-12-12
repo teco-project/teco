@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询实例可回档时间范围
-    ///
-    /// 本接口（DescribeRollbackTime）用于查询实例可回档时间范围
-    @inlinable
-    public func describeRollbackTime(_ input: DescribeRollbackTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRollbackTimeResponse > {
-        self.client.execute(action: "DescribeRollbackTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例可回档时间范围
-    ///
-    /// 本接口（DescribeRollbackTime）用于查询实例可回档时间范围
-    @inlinable
-    public func describeRollbackTime(_ input: DescribeRollbackTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTimeResponse {
-        try await self.client.execute(action: "DescribeRollbackTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRollbackTime请求参数结构体
     public struct DescribeRollbackTimeRequest: TCRequestModel {
         /// 实例ID
@@ -62,5 +46,21 @@ extension Sqlserver {
             case details = "Details"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例可回档时间范围
+    ///
+    /// 本接口（DescribeRollbackTime）用于查询实例可回档时间范围
+    @inlinable
+    public func describeRollbackTime(_ input: DescribeRollbackTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRollbackTimeResponse > {
+        self.client.execute(action: "DescribeRollbackTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例可回档时间范围
+    ///
+    /// 本接口（DescribeRollbackTime）用于查询实例可回档时间范围
+    @inlinable
+    public func describeRollbackTime(_ input: DescribeRollbackTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTimeResponse {
+        try await self.client.execute(action: "DescribeRollbackTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

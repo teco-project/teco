@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 删除集群
-    @inlinable
-    public func deleteCluster(_ input: DeleteClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterResponse > {
-        self.client.execute(action: "DeleteCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除集群
-    @inlinable
-    public func deleteCluster(_ input: DeleteClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterResponse {
-        try await self.client.execute(action: "DeleteCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCluster请求参数结构体
     public struct DeleteClusterRequest: TCRequestModel {
         /// 集群Id，传入需要删除的集群Id。
@@ -53,5 +41,17 @@ extension Tdmq {
             case clusterId = "ClusterId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除集群
+    @inlinable
+    public func deleteCluster(_ input: DeleteClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterResponse > {
+        self.client.execute(action: "DeleteCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除集群
+    @inlinable
+    public func deleteCluster(_ input: DeleteClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterResponse {
+        try await self.client.execute(action: "DeleteCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

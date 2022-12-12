@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 列举API
-    @inlinable
-    public func describeAPIConfigs(_ input: DescribeAPIConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAPIConfigsResponse > {
-        self.client.execute(action: "DescribeAPIConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列举API
-    @inlinable
-    public func describeAPIConfigs(_ input: DescribeAPIConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAPIConfigsResponse {
-        try await self.client.execute(action: "DescribeAPIConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAPIConfigs请求参数结构体
     public struct DescribeAPIConfigsRequest: TCRequestModel {
         /// 偏移量，默认为0
@@ -45,7 +33,7 @@ extension Tione {
         /// ["ClusterId", "ServiceId", "ServiceGroupName", "ServiceGroupId"]
         public let filters: [Filter]?
         
-        public init (offset: Int64?, limit: Int64?, order: String?, orderField: String?, filters: [Filter]?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.order = order
@@ -80,5 +68,17 @@ extension Tione {
             case details = "Details"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列举API
+    @inlinable
+    public func describeAPIConfigs(_ input: DescribeAPIConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAPIConfigsResponse > {
+        self.client.execute(action: "DescribeAPIConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列举API
+    @inlinable
+    public func describeAPIConfigs(_ input: DescribeAPIConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAPIConfigsResponse {
+        try await self.client.execute(action: "DescribeAPIConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

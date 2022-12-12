@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 查看消息转发配置列表
-    @inlinable
-    public func describeMessageForwards(_ input: DescribeMessageForwardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMessageForwardsResponse > {
-        self.client.execute(action: "DescribeMessageForwards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看消息转发配置列表
-    @inlinable
-    public func describeMessageForwards(_ input: DescribeMessageForwardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageForwardsResponse {
-        try await self.client.execute(action: "DescribeMessageForwards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMessageForwards请求参数结构体
     public struct DescribeMessageForwardsRequest: TCRequestModel {
         /// 数量限制
@@ -35,7 +23,7 @@ extension Iotvideoindustry {
         /// 偏移
         public let offset: Int64?
         
-        public init (limit: Int64, offset: Int64?) {
+        public init (limit: Int64, offset: Int64? = nil) {
             self.limit = limit
             self.offset = offset
         }
@@ -64,5 +52,17 @@ extension Iotvideoindustry {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看消息转发配置列表
+    @inlinable
+    public func describeMessageForwards(_ input: DescribeMessageForwardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMessageForwardsResponse > {
+        self.client.execute(action: "DescribeMessageForwards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看消息转发配置列表
+    @inlinable
+    public func describeMessageForwards(_ input: DescribeMessageForwardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageForwardsResponse {
+        try await self.client.execute(action: "DescribeMessageForwards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

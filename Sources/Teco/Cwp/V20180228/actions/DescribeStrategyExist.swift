@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 根据策略名查询策略是否存在
-    @inlinable
-    public func describeStrategyExist(_ input: DescribeStrategyExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStrategyExistResponse > {
-        self.client.execute(action: "DescribeStrategyExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据策略名查询策略是否存在
-    @inlinable
-    public func describeStrategyExist(_ input: DescribeStrategyExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStrategyExistResponse {
-        try await self.client.execute(action: "DescribeStrategyExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStrategyExist请求参数结构体
     public struct DescribeStrategyExistRequest: TCRequestModel {
         /// 策略名
@@ -54,5 +42,17 @@ extension Cwp {
             case ifExist = "IfExist"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据策略名查询策略是否存在
+    @inlinable
+    public func describeStrategyExist(_ input: DescribeStrategyExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStrategyExistResponse > {
+        self.client.execute(action: "DescribeStrategyExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据策略名查询策略是否存在
+    @inlinable
+    public func describeStrategyExist(_ input: DescribeStrategyExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStrategyExistResponse {
+        try await self.client.execute(action: "DescribeStrategyExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

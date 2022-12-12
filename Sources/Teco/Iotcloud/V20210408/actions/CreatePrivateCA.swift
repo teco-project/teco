@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 创建私有CA证书
-    @inlinable
-    public func createPrivateCA(_ input: CreatePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrivateCAResponse > {
-        self.client.execute(action: "CreatePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建私有CA证书
-    @inlinable
-    public func createPrivateCA(_ input: CreatePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateCAResponse {
-        try await self.client.execute(action: "CreatePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePrivateCA请求参数结构体
     public struct CreatePrivateCARequest: TCRequestModel {
         /// CA证书名称
@@ -59,5 +47,17 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建私有CA证书
+    @inlinable
+    public func createPrivateCA(_ input: CreatePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrivateCAResponse > {
+        self.client.execute(action: "CreatePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建私有CA证书
+    @inlinable
+    public func createPrivateCA(_ input: CreatePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateCAResponse {
+        try await self.client.execute(action: "CreatePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

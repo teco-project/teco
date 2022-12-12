@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 发函申请
-    @inlinable
-    public func modifyCRRightStatus(_ input: ModifyCRRightStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRRightStatusResponse > {
-        self.client.execute(action: "ModifyCRRightStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发函申请
-    @inlinable
-    public func modifyCRRightStatus(_ input: ModifyCRRightStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRRightStatusResponse {
-        try await self.client.execute(action: "ModifyCRRightStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCRRightStatus请求参数结构体
     public struct ModifyCRRightStatusRequest: TCRequestModel {
         /// 侵权ID
@@ -35,7 +23,7 @@ extension Bma {
         /// 发函结果回调地址
         public let rightUrl: String?
         
-        public init (tortId: Int64, rightUrl: String?) {
+        public init (tortId: Int64, rightUrl: String? = nil) {
             self.tortId = tortId
             self.rightUrl = rightUrl
         }
@@ -54,5 +42,17 @@ extension Bma {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发函申请
+    @inlinable
+    public func modifyCRRightStatus(_ input: ModifyCRRightStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRRightStatusResponse > {
+        self.client.execute(action: "ModifyCRRightStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发函申请
+    @inlinable
+    public func modifyCRRightStatus(_ input: ModifyCRRightStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRRightStatusResponse {
+        try await self.client.execute(action: "ModifyCRRightStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

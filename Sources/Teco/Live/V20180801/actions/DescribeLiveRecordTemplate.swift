@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 获取单个录制模板
-    ///
-    /// 获取单个录制模板。
-    @inlinable
-    public func describeLiveRecordTemplate(_ input: DescribeLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordTemplateResponse > {
-        self.client.execute(action: "DescribeLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取单个录制模板
-    ///
-    /// 获取单个录制模板。
-    @inlinable
-    public func describeLiveRecordTemplate(_ input: DescribeLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordTemplateResponse {
-        try await self.client.execute(action: "DescribeLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveRecordTemplate请求参数结构体
     public struct DescribeLiveRecordTemplateRequest: TCRequestModel {
         /// [DescribeLiveRecordTemplates](/document/product/267/32609)接口获取到的模板 ID。
@@ -57,5 +41,21 @@ extension Live {
             case template = "Template"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取单个录制模板
+    ///
+    /// 获取单个录制模板。
+    @inlinable
+    public func describeLiveRecordTemplate(_ input: DescribeLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordTemplateResponse > {
+        self.client.execute(action: "DescribeLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单个录制模板
+    ///
+    /// 获取单个录制模板。
+    @inlinable
+    public func describeLiveRecordTemplate(_ input: DescribeLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordTemplateResponse {
+        try await self.client.execute(action: "DescribeLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

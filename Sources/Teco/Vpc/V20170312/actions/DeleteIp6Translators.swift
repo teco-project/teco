@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 释放IPV6转换实例
-    ///
-    /// 1. 该接口用于释放IPV6转换实例，支持批量。
-    /// 2.  如果IPV6转换实例建立有转换规则，会一并删除。
-    @inlinable
-    public func deleteIp6Translators(_ input: DeleteIp6TranslatorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIp6TranslatorsResponse > {
-        self.client.execute(action: "DeleteIp6Translators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 释放IPV6转换实例
-    ///
-    /// 1. 该接口用于释放IPV6转换实例，支持批量。
-    /// 2.  如果IPV6转换实例建立有转换规则，会一并删除。
-    @inlinable
-    public func deleteIp6Translators(_ input: DeleteIp6TranslatorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIp6TranslatorsResponse {
-        try await self.client.execute(action: "DeleteIp6Translators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteIp6Translators请求参数结构体
     public struct DeleteIp6TranslatorsRequest: TCRequestModel {
         /// 待释放的IPV6转换实例的唯一ID，形如‘ip6-xxxxxxxx’
@@ -55,5 +37,23 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 释放IPV6转换实例
+    ///
+    /// 1. 该接口用于释放IPV6转换实例，支持批量。
+    /// 2.  如果IPV6转换实例建立有转换规则，会一并删除。
+    @inlinable
+    public func deleteIp6Translators(_ input: DeleteIp6TranslatorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIp6TranslatorsResponse > {
+        self.client.execute(action: "DeleteIp6Translators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 释放IPV6转换实例
+    ///
+    /// 1. 该接口用于释放IPV6转换实例，支持批量。
+    /// 2.  如果IPV6转换实例建立有转换规则，会一并删除。
+    @inlinable
+    public func deleteIp6Translators(_ input: DeleteIp6TranslatorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIp6TranslatorsResponse {
+        try await self.client.execute(action: "DeleteIp6Translators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

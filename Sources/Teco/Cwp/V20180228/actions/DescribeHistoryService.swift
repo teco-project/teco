@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询日志检索服务信息
-    @inlinable
-    public func describeHistoryService(_ input: DescribeHistoryServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHistoryServiceResponse > {
-        self.client.execute(action: "DescribeHistoryService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询日志检索服务信息
-    @inlinable
-    public func describeHistoryService(_ input: DescribeHistoryServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHistoryServiceResponse {
-        try await self.client.execute(action: "DescribeHistoryService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHistoryService请求参数结构体
     public struct DescribeHistoryServiceRequest: TCRequestModel {
         public init () {
@@ -69,5 +57,17 @@ extension Cwp {
             case startTime = "StartTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询日志检索服务信息
+    @inlinable
+    public func describeHistoryService(_ input: DescribeHistoryServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHistoryServiceResponse > {
+        self.client.execute(action: "DescribeHistoryService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询日志检索服务信息
+    @inlinable
+    public func describeHistoryService(_ input: DescribeHistoryServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHistoryServiceResponse {
+        try await self.client.execute(action: "DescribeHistoryService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

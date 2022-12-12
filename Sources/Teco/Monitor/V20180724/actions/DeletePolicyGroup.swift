@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 删除告警策略组
-    @inlinable
-    public func deletePolicyGroup(_ input: DeletePolicyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePolicyGroupResponse > {
-        self.client.execute(action: "DeletePolicyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除告警策略组
-    @inlinable
-    public func deletePolicyGroup(_ input: DeletePolicyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyGroupResponse {
-        try await self.client.execute(action: "DeletePolicyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePolicyGroup请求参数结构体
     public struct DeletePolicyGroupRequest: TCRequestModel {
         /// 固定值，为"monitor"
@@ -54,5 +42,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除告警策略组
+    @inlinable
+    public func deletePolicyGroup(_ input: DeletePolicyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePolicyGroupResponse > {
+        self.client.execute(action: "DeletePolicyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除告警策略组
+    @inlinable
+    public func deletePolicyGroup(_ input: DeletePolicyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyGroupResponse {
+        try await self.client.execute(action: "DeletePolicyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

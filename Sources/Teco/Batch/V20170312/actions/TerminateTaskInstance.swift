@@ -15,30 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 终止任务实例
-    ///
-    /// 用于终止任务实例。
-    /// 对于状态已经为“SUCCEED”和“FAILED”的任务实例，不做处理。
-    /// 对于状态为“SUBMITTED”、“PENDING”、“RUNNABLE”的任务实例，状态将置为“FAILED”状态。
-    /// 对于状态为“STARTING”、“RUNNING”、“FAILED_INTERRUPTED”的任务实例，分区两种情况：如果未显示指定计算环境，会先销毁CVM服务器，然后将状态置为“FAILED”，具有一定耗时；如果指定了计算环境EnvId，任务实例状态置为“FAILED”，并重启执行该任务的CVM服务器，具有一定的耗时。
-    /// 对于状态为“FAILED_INTERRUPTED”的任务实例，终止操作实际成功之后，相关资源和配额才会释放。
-    @inlinable
-    public func terminateTaskInstance(_ input: TerminateTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateTaskInstanceResponse > {
-        self.client.execute(action: "TerminateTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 终止任务实例
-    ///
-    /// 用于终止任务实例。
-    /// 对于状态已经为“SUCCEED”和“FAILED”的任务实例，不做处理。
-    /// 对于状态为“SUBMITTED”、“PENDING”、“RUNNABLE”的任务实例，状态将置为“FAILED”状态。
-    /// 对于状态为“STARTING”、“RUNNING”、“FAILED_INTERRUPTED”的任务实例，分区两种情况：如果未显示指定计算环境，会先销毁CVM服务器，然后将状态置为“FAILED”，具有一定耗时；如果指定了计算环境EnvId，任务实例状态置为“FAILED”，并重启执行该任务的CVM服务器，具有一定的耗时。
-    /// 对于状态为“FAILED_INTERRUPTED”的任务实例，终止操作实际成功之后，相关资源和配额才会释放。
-    @inlinable
-    public func terminateTaskInstance(_ input: TerminateTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTaskInstanceResponse {
-        try await self.client.execute(action: "TerminateTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TerminateTaskInstance请求参数结构体
     public struct TerminateTaskInstanceRequest: TCRequestModel {
         /// 作业ID
@@ -71,5 +47,29 @@ extension Batch {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 终止任务实例
+    ///
+    /// 用于终止任务实例。
+    /// 对于状态已经为“SUCCEED”和“FAILED”的任务实例，不做处理。
+    /// 对于状态为“SUBMITTED”、“PENDING”、“RUNNABLE”的任务实例，状态将置为“FAILED”状态。
+    /// 对于状态为“STARTING”、“RUNNING”、“FAILED_INTERRUPTED”的任务实例，分区两种情况：如果未显示指定计算环境，会先销毁CVM服务器，然后将状态置为“FAILED”，具有一定耗时；如果指定了计算环境EnvId，任务实例状态置为“FAILED”，并重启执行该任务的CVM服务器，具有一定的耗时。
+    /// 对于状态为“FAILED_INTERRUPTED”的任务实例，终止操作实际成功之后，相关资源和配额才会释放。
+    @inlinable
+    public func terminateTaskInstance(_ input: TerminateTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateTaskInstanceResponse > {
+        self.client.execute(action: "TerminateTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 终止任务实例
+    ///
+    /// 用于终止任务实例。
+    /// 对于状态已经为“SUCCEED”和“FAILED”的任务实例，不做处理。
+    /// 对于状态为“SUBMITTED”、“PENDING”、“RUNNABLE”的任务实例，状态将置为“FAILED”状态。
+    /// 对于状态为“STARTING”、“RUNNING”、“FAILED_INTERRUPTED”的任务实例，分区两种情况：如果未显示指定计算环境，会先销毁CVM服务器，然后将状态置为“FAILED”，具有一定耗时；如果指定了计算环境EnvId，任务实例状态置为“FAILED”，并重启执行该任务的CVM服务器，具有一定的耗时。
+    /// 对于状态为“FAILED_INTERRUPTED”的任务实例，终止操作实际成功之后，相关资源和配额才会释放。
+    @inlinable
+    public func terminateTaskInstance(_ input: TerminateTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTaskInstanceResponse {
+        try await self.client.execute(action: "TerminateTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

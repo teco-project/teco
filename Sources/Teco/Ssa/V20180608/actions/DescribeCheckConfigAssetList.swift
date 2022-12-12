@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssa {
-    /// 云安全配置管理资产组列表
-    @inlinable
-    public func describeCheckConfigAssetList(_ input: DescribeCheckConfigAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckConfigAssetListResponse > {
-        self.client.execute(action: "DescribeCheckConfigAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云安全配置管理资产组列表
-    @inlinable
-    public func describeCheckConfigAssetList(_ input: DescribeCheckConfigAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigAssetListResponse {
-        try await self.client.execute(action: "DescribeCheckConfigAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCheckConfigAssetList请求参数结构体
     public struct DescribeCheckConfigAssetListRequest: TCRequestModel {
         /// 检查项UUID
@@ -44,7 +32,7 @@ extension Ssa {
         /// ES过滤条件
         public let filter: [Filter]?
         
-        public init (id: String, offset: Int64, limit: Int64, search: [Filter]?, filter: [Filter]?) {
+        public init (id: String, offset: Int64, limit: Int64, search: [Filter]? = nil, filter: [Filter]? = nil) {
             self.id = id
             self.offset = offset
             self.limit = limit
@@ -78,5 +66,17 @@ extension Ssa {
             case checkAssetsList = "CheckAssetsList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云安全配置管理资产组列表
+    @inlinable
+    public func describeCheckConfigAssetList(_ input: DescribeCheckConfigAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckConfigAssetListResponse > {
+        self.client.execute(action: "DescribeCheckConfigAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云安全配置管理资产组列表
+    @inlinable
+    public func describeCheckConfigAssetList(_ input: DescribeCheckConfigAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigAssetListResponse {
+        try await self.client.execute(action: "DescribeCheckConfigAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

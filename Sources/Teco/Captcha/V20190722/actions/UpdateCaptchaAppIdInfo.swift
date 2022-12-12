@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Captcha {
-    /// 更新验证码应用APPId信息
-    @inlinable
-    public func updateCaptchaAppIdInfo(_ input: UpdateCaptchaAppIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCaptchaAppIdInfoResponse > {
-        self.client.execute(action: "UpdateCaptchaAppIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新验证码应用APPId信息
-    @inlinable
-    public func updateCaptchaAppIdInfo(_ input: UpdateCaptchaAppIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCaptchaAppIdInfoResponse {
-        try await self.client.execute(action: "UpdateCaptchaAppIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateCaptchaAppIdInfo请求参数结构体
     public struct UpdateCaptchaAppIdInfoRequest: TCRequestModel {
         /// 验证码应用ID
@@ -118,5 +106,17 @@ extension Captcha {
             case captchaMsg = "CaptchaMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新验证码应用APPId信息
+    @inlinable
+    public func updateCaptchaAppIdInfo(_ input: UpdateCaptchaAppIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCaptchaAppIdInfoResponse > {
+        self.client.execute(action: "UpdateCaptchaAppIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新验证码应用APPId信息
+    @inlinable
+    public func updateCaptchaAppIdInfo(_ input: UpdateCaptchaAppIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCaptchaAppIdInfoResponse {
+        try await self.client.execute(action: "UpdateCaptchaAppIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

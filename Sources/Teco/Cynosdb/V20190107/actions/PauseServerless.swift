@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 暂停serverless集群
-    @inlinable
-    public func pauseServerless(_ input: PauseServerlessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PauseServerlessResponse > {
-        self.client.execute(action: "PauseServerless", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 暂停serverless集群
-    @inlinable
-    public func pauseServerless(_ input: PauseServerlessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PauseServerlessResponse {
-        try await self.client.execute(action: "PauseServerless", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PauseServerless请求参数结构体
     public struct PauseServerlessRequest: TCRequestModel {
         /// 集群ID
@@ -35,7 +23,7 @@ extension Cynosdb {
         /// 是否强制暂停，忽略当前的用户链接  0:不强制  1:强制， 默认为1
         public let forcePause: Int64?
         
-        public init (clusterId: String, forcePause: Int64?) {
+        public init (clusterId: String, forcePause: Int64? = nil) {
             self.clusterId = clusterId
             self.forcePause = forcePause
         }
@@ -58,5 +46,17 @@ extension Cynosdb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 暂停serverless集群
+    @inlinable
+    public func pauseServerless(_ input: PauseServerlessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PauseServerlessResponse > {
+        self.client.execute(action: "PauseServerless", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 暂停serverless集群
+    @inlinable
+    public func pauseServerless(_ input: PauseServerlessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PauseServerlessResponse {
+        try await self.client.execute(action: "PauseServerless", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

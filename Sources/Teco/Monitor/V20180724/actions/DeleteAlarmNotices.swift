@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 删除告警通知模板（批量）
-    ///
-    /// 云监控告警删除告警通知模板
-    @inlinable
-    public func deleteAlarmNotices(_ input: DeleteAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAlarmNoticesResponse > {
-        self.client.execute(action: "DeleteAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除告警通知模板（批量）
-    ///
-    /// 云监控告警删除告警通知模板
-    @inlinable
-    public func deleteAlarmNotices(_ input: DeleteAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticesResponse {
-        try await self.client.execute(action: "DeleteAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAlarmNotices请求参数结构体
     public struct DeleteAlarmNoticesRequest: TCRequestModel {
         /// 模块名，这里填“monitor”
@@ -58,5 +42,21 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除告警通知模板（批量）
+    ///
+    /// 云监控告警删除告警通知模板
+    @inlinable
+    public func deleteAlarmNotices(_ input: DeleteAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAlarmNoticesResponse > {
+        self.client.execute(action: "DeleteAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除告警通知模板（批量）
+    ///
+    /// 云监控告警删除告警通知模板
+    @inlinable
+    public func deleteAlarmNotices(_ input: DeleteAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticesResponse {
+        try await self.client.execute(action: "DeleteAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

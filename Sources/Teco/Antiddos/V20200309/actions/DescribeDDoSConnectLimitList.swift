@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取DDoS连接抑制配置列表
-    @inlinable
-    public func describeDDoSConnectLimitList(_ input: DescribeDDoSConnectLimitListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSConnectLimitListResponse > {
-        self.client.execute(action: "DescribeDDoSConnectLimitList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DDoS连接抑制配置列表
-    @inlinable
-    public func describeDDoSConnectLimitList(_ input: DescribeDDoSConnectLimitListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSConnectLimitListResponse {
-        try await self.client.execute(action: "DescribeDDoSConnectLimitList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSConnectLimitList请求参数结构体
     public struct DescribeDDoSConnectLimitListRequest: TCRequestModel {
         /// 页起始偏移，取值为(页码-1)*一页条数
@@ -41,7 +29,7 @@ extension Antiddos {
         /// 可选参数，按照实例id进行过滤
         public let filterInstanceId: String?
         
-        public init (offset: UInt64, limit: UInt64, filterIp: String?, filterInstanceId: String?) {
+        public init (offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filterIp = filterIp
@@ -72,5 +60,17 @@ extension Antiddos {
             case configList = "ConfigList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DDoS连接抑制配置列表
+    @inlinable
+    public func describeDDoSConnectLimitList(_ input: DescribeDDoSConnectLimitListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSConnectLimitListResponse > {
+        self.client.execute(action: "DescribeDDoSConnectLimitList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS连接抑制配置列表
+    @inlinable
+    public func describeDDoSConnectLimitList(_ input: DescribeDDoSConnectLimitListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSConnectLimitListResponse {
+        try await self.client.execute(action: "DescribeDDoSConnectLimitList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

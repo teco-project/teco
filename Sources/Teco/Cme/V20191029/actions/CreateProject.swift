@@ -15,34 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 创建项目
-    ///
-    /// 创建多媒体创作引擎项目，目前支持的项目类型有：
-    /// <li>视频剪辑项目：用于普通视频剪辑；</li>
-    /// <li>直播剪辑项目：用于直播流剪辑；</li>
-    /// <li>导播台项目：用于云导播台；</li>
-    /// <li>视频拆条：用于视频拆条；</li>
-    /// <li>录制回放项目：用于直播录制回放；</li>
-    /// <li>云转推项目：用于直播云转推。</li>
-    @inlinable
-    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProjectResponse > {
-        self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建项目
-    ///
-    /// 创建多媒体创作引擎项目，目前支持的项目类型有：
-    /// <li>视频剪辑项目：用于普通视频剪辑；</li>
-    /// <li>直播剪辑项目：用于直播流剪辑；</li>
-    /// <li>导播台项目：用于云导播台；</li>
-    /// <li>视频拆条：用于视频拆条；</li>
-    /// <li>录制回放项目：用于直播录制回放；</li>
-    /// <li>云转推项目：用于直播云转推。</li>
-    @inlinable
-    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
-        try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProject请求参数结构体
     public struct CreateProjectRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -78,24 +50,24 @@ extension Cme {
         public let description: String?
         
         /// 导播台项目输入信息，仅当项目类型为 SWITCHER 时必填。
-        public let switcherProjectInput: SwitcherProjectInput
+        public let switcherProjectInput: SwitcherProjectInput?
         
         /// 直播剪辑项目输入信息，暂未开放，请勿使用。
-        public let liveStreamClipProjectInput: LiveStreamClipProjectInput
+        public let liveStreamClipProjectInput: LiveStreamClipProjectInput?
         
         /// 视频编辑项目输入信息，仅当项目类型为 VIDEO_EDIT 时必填。
-        public let videoEditProjectInput: VideoEditProjectInput
+        public let videoEditProjectInput: VideoEditProjectInput?
         
         /// 视频拆条项目输入信息，仅当项目类型为 VIDEO_SEGMENTATION  时必填。
-        public let videoSegmentationProjectInput: VideoSegmentationProjectInput
+        public let videoSegmentationProjectInput: VideoSegmentationProjectInput?
         
         /// 云转推项目输入信息，仅当项目类型为 STREAM_CONNECT 时必填。
-        public let streamConnectProjectInput: StreamConnectProjectInput
+        public let streamConnectProjectInput: StreamConnectProjectInput?
         
         /// 录制回放项目输入信息，仅当项目类型为 RECORD_REPLAY 时必填。
-        public let recordReplayProjectInput: RecordReplayProjectInput
+        public let recordReplayProjectInput: RecordReplayProjectInput?
         
-        public init (platform: String, name: String, owner: Entity, category: String, mode: String?, aspectRatio: String?, description: String?, switcherProjectInput: SwitcherProjectInput, liveStreamClipProjectInput: LiveStreamClipProjectInput, videoEditProjectInput: VideoEditProjectInput, videoSegmentationProjectInput: VideoSegmentationProjectInput, streamConnectProjectInput: StreamConnectProjectInput, recordReplayProjectInput: RecordReplayProjectInput) {
+        public init (platform: String, name: String, owner: Entity, category: String, mode: String? = nil, aspectRatio: String? = nil, description: String? = nil, switcherProjectInput: SwitcherProjectInput? = nil, liveStreamClipProjectInput: LiveStreamClipProjectInput? = nil, videoEditProjectInput: VideoEditProjectInput? = nil, videoSegmentationProjectInput: VideoSegmentationProjectInput? = nil, streamConnectProjectInput: StreamConnectProjectInput? = nil, recordReplayProjectInput: RecordReplayProjectInput? = nil) {
             self.platform = platform
             self.name = name
             self.owner = owner
@@ -144,5 +116,33 @@ extension Cme {
             case rtmpPushInputInfoSet = "RtmpPushInputInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建项目
+    ///
+    /// 创建多媒体创作引擎项目，目前支持的项目类型有：
+    /// <li>视频剪辑项目：用于普通视频剪辑；</li>
+    /// <li>直播剪辑项目：用于直播流剪辑；</li>
+    /// <li>导播台项目：用于云导播台；</li>
+    /// <li>视频拆条：用于视频拆条；</li>
+    /// <li>录制回放项目：用于直播录制回放；</li>
+    /// <li>云转推项目：用于直播云转推。</li>
+    @inlinable
+    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProjectResponse > {
+        self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建项目
+    ///
+    /// 创建多媒体创作引擎项目，目前支持的项目类型有：
+    /// <li>视频剪辑项目：用于普通视频剪辑；</li>
+    /// <li>直播剪辑项目：用于直播流剪辑；</li>
+    /// <li>导播台项目：用于云导播台；</li>
+    /// <li>视频拆条：用于视频拆条；</li>
+    /// <li>录制回放项目：用于直播录制回放；</li>
+    /// <li>云转推项目：用于直播云转推。</li>
+    @inlinable
+    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
+        try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

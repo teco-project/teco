@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 查询文档转码任务
-    ///
-    /// 查询文档转码任务的执行进度与转码结果
-    @inlinable
-    public func describeTranscode(_ input: DescribeTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTranscodeResponse > {
-        self.client.execute(action: "DescribeTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询文档转码任务
-    ///
-    /// 查询文档转码任务的执行进度与转码结果
-    @inlinable
-    public func describeTranscode(_ input: DescribeTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeResponse {
-        try await self.client.execute(action: "DescribeTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTranscode请求参数结构体
     public struct DescribeTranscodeRequest: TCRequestModel {
         /// 客户的SdkAppId
@@ -106,5 +90,21 @@ extension Tiw {
             case compressFileUrl = "CompressFileUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询文档转码任务
+    ///
+    /// 查询文档转码任务的执行进度与转码结果
+    @inlinable
+    public func describeTranscode(_ input: DescribeTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTranscodeResponse > {
+        self.client.execute(action: "DescribeTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文档转码任务
+    ///
+    /// 查询文档转码任务的执行进度与转码结果
+    @inlinable
+    public func describeTranscode(_ input: DescribeTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeResponse {
+        try await self.client.execute(action: "DescribeTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

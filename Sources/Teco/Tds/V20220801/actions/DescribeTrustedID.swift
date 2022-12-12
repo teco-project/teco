@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tds {
-    /// 查询设备标识
-    @inlinable
-    public func describeTrustedID(_ input: DescribeTrustedIDRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrustedIDResponse > {
-        self.client.execute(action: "DescribeTrustedID", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备标识
-    @inlinable
-    public func describeTrustedID(_ input: DescribeTrustedIDRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrustedIDResponse {
-        try await self.client.execute(action: "DescribeTrustedID", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrustedID请求参数结构体
     public struct DescribeTrustedIDRequest: TCRequestModel {
         /// 客户端通过SDK获取的设备Token
@@ -89,5 +77,17 @@ extension Tds {
             case sdkBuildNo = "SdkBuildNo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备标识
+    @inlinable
+    public func describeTrustedID(_ input: DescribeTrustedIDRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrustedIDResponse > {
+        self.client.execute(action: "DescribeTrustedID", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备标识
+    @inlinable
+    public func describeTrustedID(_ input: DescribeTrustedIDRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrustedIDResponse {
+        try await self.client.execute(action: "DescribeTrustedID", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Asr {
-    /// 删除热词表
-    ///
-    /// 用户通过本接口进行热词表的删除。
-    @inlinable
-    public func deleteAsrVocab(_ input: DeleteAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAsrVocabResponse > {
-        self.client.execute(action: "DeleteAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除热词表
-    ///
-    /// 用户通过本接口进行热词表的删除。
-    @inlinable
-    public func deleteAsrVocab(_ input: DeleteAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAsrVocabResponse {
-        try await self.client.execute(action: "DeleteAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAsrVocab请求参数结构体
     public struct DeleteAsrVocabRequest: TCRequestModel {
         /// 热词表Id
@@ -53,5 +37,21 @@ extension Asr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除热词表
+    ///
+    /// 用户通过本接口进行热词表的删除。
+    @inlinable
+    public func deleteAsrVocab(_ input: DeleteAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAsrVocabResponse > {
+        self.client.execute(action: "DeleteAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除热词表
+    ///
+    /// 用户通过本接口进行热词表的删除。
+    @inlinable
+    public func deleteAsrVocab(_ input: DeleteAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAsrVocabResponse {
+        try await self.client.execute(action: "DeleteAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

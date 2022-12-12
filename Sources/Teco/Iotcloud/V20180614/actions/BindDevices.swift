@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 批量绑定子设备
-    ///
-    /// 本接口（BindDevices）用于网关设备批量绑定子设备 
-    @inlinable
-    public func bindDevices(_ input: BindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindDevicesResponse > {
-        self.client.execute(action: "BindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量绑定子设备
-    ///
-    /// 本接口（BindDevices）用于网关设备批量绑定子设备 
-    @inlinable
-    public func bindDevices(_ input: BindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDevicesResponse {
-        try await self.client.execute(action: "BindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindDevices请求参数结构体
     public struct BindDevicesRequest: TCRequestModel {
         /// 网关设备的产品ID
@@ -48,7 +32,7 @@ extension Iotcloud {
         /// 中兴CLAA设备的绑定需要skey，普通的设备不需要
         public let skey: String?
         
-        public init (gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String?) {
+        public init (gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil) {
             self.gatewayProductId = gatewayProductId
             self.gatewayDeviceName = gatewayDeviceName
             self.productId = productId
@@ -73,5 +57,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量绑定子设备
+    ///
+    /// 本接口（BindDevices）用于网关设备批量绑定子设备 
+    @inlinable
+    public func bindDevices(_ input: BindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindDevicesResponse > {
+        self.client.execute(action: "BindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量绑定子设备
+    ///
+    /// 本接口（BindDevices）用于网关设备批量绑定子设备 
+    @inlinable
+    public func bindDevices(_ input: BindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDevicesResponse {
+        try await self.client.execute(action: "BindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

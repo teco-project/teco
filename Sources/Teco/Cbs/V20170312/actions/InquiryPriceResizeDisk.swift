@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 扩容云硬盘询价
-    ///
-    /// 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
-    /// * 只支持预付费模式的云硬盘扩容询价。
-    @inlinable
-    public func inquiryPriceResizeDisk(_ input: InquiryPriceResizeDiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceResizeDiskResponse > {
-        self.client.execute(action: "InquiryPriceResizeDisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 扩容云硬盘询价
-    ///
-    /// 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
-    /// * 只支持预付费模式的云硬盘扩容询价。
-    @inlinable
-    public func inquiryPriceResizeDisk(_ input: InquiryPriceResizeDiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeDiskResponse {
-        try await self.client.execute(action: "InquiryPriceResizeDisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceResizeDisk请求参数结构体
     public struct InquiryPriceResizeDiskRequest: TCRequestModel {
         /// 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。
@@ -44,7 +26,7 @@ extension Cbs {
         /// 云盘所属项目ID。 如传入则仅用于鉴权。
         public let projectId: UInt64?
         
-        public init (diskId: String, diskSize: UInt64, projectId: UInt64?) {
+        public init (diskId: String, diskSize: UInt64, projectId: UInt64? = nil) {
             self.diskId = diskId
             self.diskSize = diskSize
             self.projectId = projectId
@@ -69,5 +51,23 @@ extension Cbs {
             case diskPrice = "DiskPrice"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 扩容云硬盘询价
+    ///
+    /// 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
+    /// * 只支持预付费模式的云硬盘扩容询价。
+    @inlinable
+    public func inquiryPriceResizeDisk(_ input: InquiryPriceResizeDiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceResizeDiskResponse > {
+        self.client.execute(action: "InquiryPriceResizeDisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 扩容云硬盘询价
+    ///
+    /// 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
+    /// * 只支持预付费模式的云硬盘扩容询价。
+    @inlinable
+    public func inquiryPriceResizeDisk(_ input: InquiryPriceResizeDiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeDiskResponse {
+        try await self.client.execute(action: "InquiryPriceResizeDisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

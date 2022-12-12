@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 通过CLS日志计算Top信息
-    ///
-    /// 通过CLS日志计算Top信息。支持近7天的日志数据。
-    @inlinable
-    public func listTopClsLogData(_ input: ListTopClsLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopClsLogDataResponse > {
-        self.client.execute(action: "ListTopClsLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通过CLS日志计算Top信息
-    ///
-    /// 通过CLS日志计算Top信息。支持近7天的日志数据。
-    @inlinable
-    public func listTopClsLogData(_ input: ListTopClsLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopClsLogDataResponse {
-        try await self.client.execute(action: "ListTopClsLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListTopClsLogData请求参数结构体
     public struct ListTopClsLogDataRequest: TCRequestModel {
         /// 需要查询的日志集ID
@@ -63,7 +47,7 @@ extension Cdn {
         /// 按请求量排序， asc（升序）或者 desc（降序），默认为 desc
         public let sort: String?
         
-        public init (logsetId: String, topicIds: String, startTime: String, endTime: String, domain: String, url: String, channel: String?, limit: UInt64?, sort: String?) {
+        public init (logsetId: String, topicIds: String, startTime: String, endTime: String, domain: String, url: String, channel: String? = nil, limit: UInt64? = nil, sort: String? = nil) {
             self.logsetId = logsetId
             self.topicIds = topicIds
             self.startTime = startTime
@@ -108,5 +92,21 @@ extension Cdn {
             case ipCount = "IpCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通过CLS日志计算Top信息
+    ///
+    /// 通过CLS日志计算Top信息。支持近7天的日志数据。
+    @inlinable
+    public func listTopClsLogData(_ input: ListTopClsLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopClsLogDataResponse > {
+        self.client.execute(action: "ListTopClsLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通过CLS日志计算Top信息
+    ///
+    /// 通过CLS日志计算Top信息。支持近7天的日志数据。
+    @inlinable
+    public func listTopClsLogData(_ input: ListTopClsLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopClsLogDataResponse {
+        try await self.client.execute(action: "ListTopClsLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

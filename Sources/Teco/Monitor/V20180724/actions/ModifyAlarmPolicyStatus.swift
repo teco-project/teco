@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 启停告警策略
-    @inlinable
-    public func modifyAlarmPolicyStatus(_ input: ModifyAlarmPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmPolicyStatusResponse > {
-        self.client.execute(action: "ModifyAlarmPolicyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启停告警策略
-    @inlinable
-    public func modifyAlarmPolicyStatus(_ input: ModifyAlarmPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyStatusResponse {
-        try await self.client.execute(action: "ModifyAlarmPolicyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAlarmPolicyStatus请求参数结构体
     public struct ModifyAlarmPolicyStatusRequest: TCRequestModel {
         /// 模块名，固定值 monitor
@@ -59,5 +47,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启停告警策略
+    @inlinable
+    public func modifyAlarmPolicyStatus(_ input: ModifyAlarmPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmPolicyStatusResponse > {
+        self.client.execute(action: "ModifyAlarmPolicyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启停告警策略
+    @inlinable
+    public func modifyAlarmPolicyStatus(_ input: ModifyAlarmPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyStatusResponse {
+        try await self.client.execute(action: "ModifyAlarmPolicyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

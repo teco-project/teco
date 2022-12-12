@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 固件版本正式发布
-    ///
-    /// 本接口（RunOtaVersion）用于固件版本正式发布。
-    @inlinable
-    public func runOtaVersion(_ input: RunOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunOtaVersionResponse > {
-        self.client.execute(action: "RunOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 固件版本正式发布
-    ///
-    /// 本接口（RunOtaVersion）用于固件版本正式发布。
-    @inlinable
-    public func runOtaVersion(_ input: RunOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunOtaVersionResponse {
-        try await self.client.execute(action: "RunOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RunOtaVersion请求参数结构体
     public struct RunOtaVersionRequest: TCRequestModel {
         /// 产品ID
@@ -52,9 +36,9 @@ extension Iotvideo {
         public let remark: String?
         
         /// 版本发布的描述信息，需要国际化，可以为空
-        public let contents: Contents
+        public let contents: Contents?
         
-        public init (productId: String, otaVersion: String, grayValue: UInt64, oldVersions: [String]?, `operator`: String?, remark: String?, contents: Contents) {
+        public init (productId: String, otaVersion: String, grayValue: UInt64, oldVersions: [String]? = nil, `operator`: String? = nil, remark: String? = nil, contents: Contents? = nil) {
             self.productId = productId
             self.otaVersion = otaVersion
             self.grayValue = grayValue
@@ -83,5 +67,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 固件版本正式发布
+    ///
+    /// 本接口（RunOtaVersion）用于固件版本正式发布。
+    @inlinable
+    public func runOtaVersion(_ input: RunOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunOtaVersionResponse > {
+        self.client.execute(action: "RunOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 固件版本正式发布
+    ///
+    /// 本接口（RunOtaVersion）用于固件版本正式发布。
+    @inlinable
+    public func runOtaVersion(_ input: RunOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunOtaVersionResponse {
+        try await self.client.execute(action: "RunOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

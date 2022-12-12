@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 获取网络峰值数据
-    @inlinable
-    public func describePeakNetworkOverview(_ input: DescribePeakNetworkOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePeakNetworkOverviewResponse > {
-        self.client.execute(action: "DescribePeakNetworkOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取网络峰值数据
-    @inlinable
-    public func describePeakNetworkOverview(_ input: DescribePeakNetworkOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePeakNetworkOverviewResponse {
-        try await self.client.execute(action: "DescribePeakNetworkOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePeakNetworkOverview请求参数结构体
     public struct DescribePeakNetworkOverviewRequest: TCRequestModel {
         /// 开始时间（xxxx-xx-xx）如2019-08-14，默认为一周之前的日期，不应与当前日期间隔超过30天。
@@ -45,7 +33,7 @@ extension Ecm {
         /// 统计周期，单位秒。取值60/300。
         public let period: Int64?
         
-        public init (startTime: String?, endTime: String?, filters: [Filter]?, period: Int64?) {
+        public init (startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, period: Int64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.filters = filters
@@ -73,5 +61,17 @@ extension Ecm {
             case peakNetworkRegionSet = "PeakNetworkRegionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取网络峰值数据
+    @inlinable
+    public func describePeakNetworkOverview(_ input: DescribePeakNetworkOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePeakNetworkOverviewResponse > {
+        self.client.execute(action: "DescribePeakNetworkOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取网络峰值数据
+    @inlinable
+    public func describePeakNetworkOverview(_ input: DescribePeakNetworkOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePeakNetworkOverviewResponse {
+        try await self.client.execute(action: "DescribePeakNetworkOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

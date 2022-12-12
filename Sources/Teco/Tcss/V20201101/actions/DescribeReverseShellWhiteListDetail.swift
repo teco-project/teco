@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时反弹shell白名单详细信息
-    ///
-    /// 查询运行时反弹shell白名单详细信息
-    @inlinable
-    public func describeReverseShellWhiteListDetail(_ input: DescribeReverseShellWhiteListDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReverseShellWhiteListDetailResponse > {
-        self.client.execute(action: "DescribeReverseShellWhiteListDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时反弹shell白名单详细信息
-    ///
-    /// 查询运行时反弹shell白名单详细信息
-    @inlinable
-    public func describeReverseShellWhiteListDetail(_ input: DescribeReverseShellWhiteListDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellWhiteListDetailResponse {
-        try await self.client.execute(action: "DescribeReverseShellWhiteListDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReverseShellWhiteListDetail请求参数结构体
     public struct DescribeReverseShellWhiteListDetailRequest: TCRequestModel {
         /// 白名单id
@@ -57,5 +41,21 @@ extension Tcss {
             case whiteListDetailInfo = "WhiteListDetailInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时反弹shell白名单详细信息
+    ///
+    /// 查询运行时反弹shell白名单详细信息
+    @inlinable
+    public func describeReverseShellWhiteListDetail(_ input: DescribeReverseShellWhiteListDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReverseShellWhiteListDetailResponse > {
+        self.client.execute(action: "DescribeReverseShellWhiteListDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时反弹shell白名单详细信息
+    ///
+    /// 查询运行时反弹shell白名单详细信息
+    @inlinable
+    public func describeReverseShellWhiteListDetail(_ input: DescribeReverseShellWhiteListDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellWhiteListDetailResponse {
+        try await self.client.execute(action: "DescribeReverseShellWhiteListDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

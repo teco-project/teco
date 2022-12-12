@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 获取Bot攻击的Top数据列表
-    @inlinable
-    public func listScdnTopBotData(_ input: ListScdnTopBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListScdnTopBotDataResponse > {
-        self.client.execute(action: "ListScdnTopBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Bot攻击的Top数据列表
-    @inlinable
-    public func listScdnTopBotData(_ input: ListScdnTopBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnTopBotDataResponse {
-        try await self.client.execute(action: "ListScdnTopBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListScdnTopBotData请求参数结构体
     public struct ListScdnTopBotDataRequest: TCRequestModel {
         /// 获取Top量，取值范围[1-10]
@@ -53,7 +41,7 @@ extension Cdn {
         /// 域名，仅当Metric=ip，并且Domain为空时有效，不填写表示获取AppID信息
         public let domains: [String]?
         
-        public init (topCount: Int64, startTime: Date, endTime: Date, area: String, metric: String?, domains: [String]?) {
+        public init (topCount: Int64, startTime: Date, endTime: Date, area: String, metric: String? = nil, domains: [String]? = nil) {
             self.topCount = topCount
             self.startTime = startTime
             self.endTime = endTime
@@ -84,5 +72,17 @@ extension Cdn {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Bot攻击的Top数据列表
+    @inlinable
+    public func listScdnTopBotData(_ input: ListScdnTopBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListScdnTopBotDataResponse > {
+        self.client.execute(action: "ListScdnTopBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Bot攻击的Top数据列表
+    @inlinable
+    public func listScdnTopBotData(_ input: ListScdnTopBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnTopBotDataResponse {
+        try await self.client.execute(action: "ListScdnTopBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

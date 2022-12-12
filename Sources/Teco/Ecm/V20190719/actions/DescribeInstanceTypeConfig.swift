@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 获取机型配置列表
-    @inlinable
-    public func describeInstanceTypeConfig(_ input: DescribeInstanceTypeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceTypeConfigResponse > {
-        self.client.execute(action: "DescribeInstanceTypeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取机型配置列表
-    @inlinable
-    public func describeInstanceTypeConfig(_ input: DescribeInstanceTypeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypeConfigResponse {
-        try await self.client.execute(action: "DescribeInstanceTypeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceTypeConfig请求参数结构体
     public struct DescribeInstanceTypeConfigRequest: TCRequestModel {
         public init () {
@@ -50,5 +38,17 @@ extension Ecm {
             case instanceTypeConfigSet = "InstanceTypeConfigSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取机型配置列表
+    @inlinable
+    public func describeInstanceTypeConfig(_ input: DescribeInstanceTypeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceTypeConfigResponse > {
+        self.client.execute(action: "DescribeInstanceTypeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取机型配置列表
+    @inlinable
+    public func describeInstanceTypeConfig(_ input: DescribeInstanceTypeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypeConfigResponse {
+        try await self.client.execute(action: "DescribeInstanceTypeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

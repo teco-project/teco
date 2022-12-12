@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 查询保护网站
-    @inlinable
-    public func describeBPProtectURLs(_ input: DescribeBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBPProtectURLsResponse > {
-        self.client.execute(action: "DescribeBPProtectURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询保护网站
-    @inlinable
-    public func describeBPProtectURLs(_ input: DescribeBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPProtectURLsResponse {
-        try await self.client.execute(action: "DescribeBPProtectURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBPProtectURLs请求参数结构体
     public struct DescribeBPProtectURLsRequest: TCRequestModel {
         /// 页数
@@ -35,7 +23,7 @@ extension Bma {
         /// 页码
         public let pageNumber: Int64?
         
-        public init (pageSize: Int64?, pageNumber: Int64?) {
+        public init (pageSize: Int64? = nil, pageNumber: Int64? = nil) {
             self.pageSize = pageSize
             self.pageNumber = pageNumber
         }
@@ -62,5 +50,17 @@ extension Bma {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询保护网站
+    @inlinable
+    public func describeBPProtectURLs(_ input: DescribeBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBPProtectURLsResponse > {
+        self.client.execute(action: "DescribeBPProtectURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询保护网站
+    @inlinable
+    public func describeBPProtectURLs(_ input: DescribeBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPProtectURLsResponse {
+        try await self.client.execute(action: "DescribeBPProtectURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

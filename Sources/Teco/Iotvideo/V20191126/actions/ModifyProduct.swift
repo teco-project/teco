@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 编辑产品信息
-    ///
-    /// 本接口（ModifyProduct）用于编辑物联网智能视频产品的相关信息。
-    @inlinable
-    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductResponse > {
-        self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑产品信息
-    ///
-    /// 本接口（ModifyProduct）用于编辑物联网智能视频产品的相关信息。
-    @inlinable
-    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
-        try await self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyProduct请求参数结构体
     public struct ModifyProductRequest: TCRequestModel {
         /// 产品ID
@@ -48,7 +32,7 @@ extension Iotvideo {
         /// 主芯片ID
         public let chipId: String?
         
-        public init (productId: String, productName: String, productDescription: String, chipManufactureId: String?, chipId: String?) {
+        public init (productId: String, productName: String, productDescription: String, chipManufactureId: String? = nil, chipId: String? = nil) {
             self.productId = productId
             self.productName = productName
             self.productDescription = productDescription
@@ -73,5 +57,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑产品信息
+    ///
+    /// 本接口（ModifyProduct）用于编辑物联网智能视频产品的相关信息。
+    @inlinable
+    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductResponse > {
+        self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑产品信息
+    ///
+    /// 本接口（ModifyProduct）用于编辑物联网智能视频产品的相关信息。
+    @inlinable
+    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
+        try await self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

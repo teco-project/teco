@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 获取企业组织成员列表
-    @inlinable
-    public func describeOrganizationMembers(_ input: DescribeOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationMembersResponse > {
-        self.client.execute(action: "DescribeOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取企业组织成员列表
-    @inlinable
-    public func describeOrganizationMembers(_ input: DescribeOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMembersResponse {
-        try await self.client.execute(action: "DescribeOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOrganizationMembers请求参数结构体
     public struct DescribeOrganizationMembersRequest: TCRequestModel {
         /// 偏移量。
@@ -47,7 +35,7 @@ extension Organization {
         /// 可信服务产品简称。可信服务管理员查询时必须指定
         public let product: String?
         
-        public init (offset: UInt64, limit: UInt64, lang: String?, searchKey: String?, authName: String?, product: String?) {
+        public init (offset: UInt64, limit: UInt64, lang: String? = nil, searchKey: String? = nil, authName: String? = nil, product: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.lang = lang
@@ -82,5 +70,17 @@ extension Organization {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取企业组织成员列表
+    @inlinable
+    public func describeOrganizationMembers(_ input: DescribeOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationMembersResponse > {
+        self.client.execute(action: "DescribeOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取企业组织成员列表
+    @inlinable
+    public func describeOrganizationMembers(_ input: DescribeOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMembersResponse {
+        try await self.client.execute(action: "DescribeOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

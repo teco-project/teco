@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 查询二维码列表
-    @inlinable
-    public func describeTraceCodes(_ input: DescribeTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTraceCodesResponse > {
-        self.client.execute(action: "DescribeTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询二维码列表
-    @inlinable
-    public func describeTraceCodes(_ input: DescribeTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceCodesResponse {
-        try await self.client.execute(action: "DescribeTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTraceCodes请求参数结构体
     public struct DescribeTraceCodesRequest: TCRequestModel {
         /// 搜索关键字 码标识，或者批次ID
@@ -44,7 +32,7 @@ extension Trp {
         /// 企业ID
         public let corpId: UInt64?
         
-        public init (keyword: String?, pageNumber: UInt64?, pageSize: UInt64?, batchId: String?, corpId: UInt64?) {
+        public init (keyword: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, batchId: String? = nil, corpId: UInt64? = nil) {
             self.keyword = keyword
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -79,5 +67,17 @@ extension Trp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询二维码列表
+    @inlinable
+    public func describeTraceCodes(_ input: DescribeTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTraceCodesResponse > {
+        self.client.execute(action: "DescribeTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询二维码列表
+    @inlinable
+    public func describeTraceCodes(_ input: DescribeTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceCodesResponse {
+        try await self.client.execute(action: "DescribeTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

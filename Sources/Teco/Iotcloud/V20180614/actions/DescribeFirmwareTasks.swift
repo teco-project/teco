@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 查询固件升级任务列表
-    @inlinable
-    public func describeFirmwareTasks(_ input: DescribeFirmwareTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirmwareTasksResponse > {
-        self.client.execute(action: "DescribeFirmwareTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询固件升级任务列表
-    @inlinable
-    public func describeFirmwareTasks(_ input: DescribeFirmwareTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTasksResponse {
-        try await self.client.execute(action: "DescribeFirmwareTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFirmwareTasks请求参数结构体
     public struct DescribeFirmwareTasksRequest: TCRequestModel {
         /// 产品ID
@@ -44,7 +32,7 @@ extension Iotcloud {
         /// 搜索过滤条件
         public let filters: [SearchKeyword]?
         
-        public init (productID: String, firmwareVersion: String, offset: UInt64, limit: UInt64, filters: [SearchKeyword]?) {
+        public init (productID: String, firmwareVersion: String, offset: UInt64, limit: UInt64, filters: [SearchKeyword]? = nil) {
             self.productID = productID
             self.firmwareVersion = firmwareVersion
             self.offset = offset
@@ -79,5 +67,17 @@ extension Iotcloud {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询固件升级任务列表
+    @inlinable
+    public func describeFirmwareTasks(_ input: DescribeFirmwareTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirmwareTasksResponse > {
+        self.client.execute(action: "DescribeFirmwareTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询固件升级任务列表
+    @inlinable
+    public func describeFirmwareTasks(_ input: DescribeFirmwareTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTasksResponse {
+        try await self.client.execute(action: "DescribeFirmwareTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

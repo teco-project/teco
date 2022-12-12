@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 删除备份导入任务
-    ///
-    /// 本接口（DeleteBackupMigration）用于删除备份导入任务。
-    @inlinable
-    public func deleteBackupMigration(_ input: DeleteBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBackupMigrationResponse > {
-        self.client.execute(action: "DeleteBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除备份导入任务
-    ///
-    /// 本接口（DeleteBackupMigration）用于删除备份导入任务。
-    @inlinable
-    public func deleteBackupMigration(_ input: DeleteBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupMigrationResponse {
-        try await self.client.execute(action: "DeleteBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteBackupMigration请求参数结构体
     public struct DeleteBackupMigrationRequest: TCRequestModel {
         /// 目标实例ID，由DescribeBackupMigration接口返回
@@ -58,5 +42,21 @@ extension Sqlserver {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除备份导入任务
+    ///
+    /// 本接口（DeleteBackupMigration）用于删除备份导入任务。
+    @inlinable
+    public func deleteBackupMigration(_ input: DeleteBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBackupMigrationResponse > {
+        self.client.execute(action: "DeleteBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除备份导入任务
+    ///
+    /// 本接口（DeleteBackupMigration）用于删除备份导入任务。
+    @inlinable
+    public func deleteBackupMigration(_ input: DeleteBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupMigrationResponse {
+        try await self.client.execute(action: "DeleteBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

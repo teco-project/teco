@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 建hive表
-    @inlinable
-    public func createHiveTable(_ input: CreateHiveTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHiveTableResponse > {
-        self.client.execute(action: "CreateHiveTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 建hive表
-    @inlinable
-    public func createHiveTable(_ input: CreateHiveTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHiveTableResponse {
-        try await self.client.execute(action: "CreateHiveTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateHiveTable请求参数结构体
     public struct CreateHiveTableRequest: TCRequestModel {
         /// 数据源id
@@ -47,7 +35,7 @@ extension Wedata {
         /// 责任人
         public let incharge: String?
         
-        public init (datasourceId: String, database: String, ddlSql: String, privilege: Int64, projectId: String, incharge: String?) {
+        public init (datasourceId: String, database: String, ddlSql: String, privilege: Int64, projectId: String, incharge: String? = nil) {
             self.datasourceId = datasourceId
             self.database = database
             self.ddlSql = ddlSql
@@ -78,5 +66,17 @@ extension Wedata {
             case isSuccess = "IsSuccess"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 建hive表
+    @inlinable
+    public func createHiveTable(_ input: CreateHiveTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHiveTableResponse > {
+        self.client.execute(action: "CreateHiveTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 建hive表
+    @inlinable
+    public func createHiveTable(_ input: CreateHiveTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHiveTableResponse {
+        try await self.client.execute(action: "CreateHiveTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

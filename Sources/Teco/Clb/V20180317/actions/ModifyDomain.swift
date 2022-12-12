@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 修改七层转发规则的域名
-    ///
-    /// ModifyDomain接口用来修改负载均衡七层监听器下的域名。
-    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
-    public func modifyDomain(_ input: ModifyDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainResponse > {
-        self.client.execute(action: "ModifyDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改七层转发规则的域名
-    ///
-    /// ModifyDomain接口用来修改负载均衡七层监听器下的域名。
-    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
-    public func modifyDomain(_ input: ModifyDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainResponse {
-        try await self.client.execute(action: "ModifyDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDomain请求参数结构体
     public struct ModifyDomainRequest: TCRequestModel {
         /// 负载均衡实例 ID。
@@ -70,5 +52,23 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改七层转发规则的域名
+    ///
+    /// ModifyDomain接口用来修改负载均衡七层监听器下的域名。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func modifyDomain(_ input: ModifyDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainResponse > {
+        self.client.execute(action: "ModifyDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改七层转发规则的域名
+    ///
+    /// ModifyDomain接口用来修改负载均衡七层监听器下的域名。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func modifyDomain(_ input: ModifyDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainResponse {
+        try await self.client.execute(action: "ModifyDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

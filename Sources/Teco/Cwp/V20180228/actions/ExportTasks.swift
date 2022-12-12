@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 异步导出任务
-    ///
-    /// 用于异步导出数据量大的日志文件
-    @inlinable
-    public func exportTasks(_ input: ExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportTasksResponse > {
-        self.client.execute(action: "ExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 异步导出任务
-    ///
-    /// 用于异步导出数据量大的日志文件
-    @inlinable
-    public func exportTasks(_ input: ExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportTasksResponse {
-        try await self.client.execute(action: "ExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportTasks请求参数结构体
     public struct ExportTasksRequest: TCRequestModel {
         /// 任务ID
@@ -61,5 +45,21 @@ extension Cwp {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 异步导出任务
+    ///
+    /// 用于异步导出数据量大的日志文件
+    @inlinable
+    public func exportTasks(_ input: ExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportTasksResponse > {
+        self.client.execute(action: "ExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 异步导出任务
+    ///
+    /// 用于异步导出数据量大的日志文件
+    @inlinable
+    public func exportTasks(_ input: ExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportTasksResponse {
+        try await self.client.execute(action: "ExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

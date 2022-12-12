@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 分配IPv6地址
-    ///
-    /// 本接口（AssignIpv6Addresses）用于弹性网卡申请IPv6地址。
-    @inlinable
-    public func assignIpv6Addresses(_ input: AssignIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssignIpv6AddressesResponse > {
-        self.client.execute(action: "AssignIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分配IPv6地址
-    ///
-    /// 本接口（AssignIpv6Addresses）用于弹性网卡申请IPv6地址。
-    @inlinable
-    public func assignIpv6Addresses(_ input: AssignIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6AddressesResponse {
-        try await self.client.execute(action: "AssignIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssignIpv6Addresses请求参数结构体
     public struct AssignIpv6AddressesRequest: TCRequestModel {
         /// ECM 地域
@@ -51,7 +35,7 @@ extension Ecm {
         /// CMCC：中国移动
         public let ipv6ISP: String?
         
-        public init (ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]?, ipv6AddressCount: Int64?, ipv6ISP: String?) {
+        public init (ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: Int64? = nil, ipv6ISP: String? = nil) {
             self.ecmRegion = ecmRegion
             self.networkInterfaceId = networkInterfaceId
             self.ipv6Addresses = ipv6Addresses
@@ -80,5 +64,21 @@ extension Ecm {
             case ipv6AddressSet = "Ipv6AddressSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分配IPv6地址
+    ///
+    /// 本接口（AssignIpv6Addresses）用于弹性网卡申请IPv6地址。
+    @inlinable
+    public func assignIpv6Addresses(_ input: AssignIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssignIpv6AddressesResponse > {
+        self.client.execute(action: "AssignIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分配IPv6地址
+    ///
+    /// 本接口（AssignIpv6Addresses）用于弹性网卡申请IPv6地址。
+    @inlinable
+    public func assignIpv6Addresses(_ input: AssignIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6AddressesResponse {
+        try await self.client.execute(action: "AssignIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

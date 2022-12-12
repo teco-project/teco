@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Iotvideo {
-    /// 获取云存套餐包消耗详细记录
-    @inlinable
-    public func describeCloudStoragePackageConsumeDetails(_ input: DescribeCloudStoragePackageConsumeDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStoragePackageConsumeDetailsResponse > {
-        self.client.execute(action: "DescribeCloudStoragePackageConsumeDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取云存套餐包消耗详细记录
-    @inlinable
-    public func describeCloudStoragePackageConsumeDetails(_ input: DescribeCloudStoragePackageConsumeDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStoragePackageConsumeDetailsResponse {
-        try await self.client.execute(action: "DescribeCloudStoragePackageConsumeDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudStoragePackageConsumeDetails请求参数结构体
     public struct DescribeCloudStoragePackageConsumeDetailsRequest: TCRequestModel {
         /// 开始日期
@@ -58,5 +46,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取云存套餐包消耗详细记录
+    @inlinable
+    public func describeCloudStoragePackageConsumeDetails(_ input: DescribeCloudStoragePackageConsumeDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStoragePackageConsumeDetailsResponse > {
+        self.client.execute(action: "DescribeCloudStoragePackageConsumeDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云存套餐包消耗详细记录
+    @inlinable
+    public func describeCloudStoragePackageConsumeDetails(_ input: DescribeCloudStoragePackageConsumeDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStoragePackageConsumeDetailsResponse {
+        try await self.client.execute(action: "DescribeCloudStoragePackageConsumeDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

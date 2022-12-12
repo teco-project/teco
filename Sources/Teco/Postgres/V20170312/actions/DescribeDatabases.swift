@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 拉取数据库列表
-    ///
-    /// 接口（DescribeDatabases）用来拉取数据库列表
-    @inlinable
-    public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabasesResponse > {
-        self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取数据库列表
-    ///
-    /// 接口（DescribeDatabases）用来拉取数据库列表
-    @inlinable
-    public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
-        try await self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDatabases请求参数结构体
     public struct DescribeDatabasesRequest: TCRequestModel {
         /// 实例ID
@@ -57,5 +41,21 @@ extension Postgres {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取数据库列表
+    ///
+    /// 接口（DescribeDatabases）用来拉取数据库列表
+    @inlinable
+    public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabasesResponse > {
+        self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取数据库列表
+    ///
+    /// 接口（DescribeDatabases）用来拉取数据库列表
+    @inlinable
+    public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
+        try await self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

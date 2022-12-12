@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 验证凭证
-    @inlinable
-    public func verifyCredential(_ input: VerifyCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyCredentialResponse > {
-        self.client.execute(action: "VerifyCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 验证凭证
-    @inlinable
-    public func verifyCredential(_ input: VerifyCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyCredentialResponse {
-        try await self.client.execute(action: "VerifyCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifyCredential请求参数结构体
     public struct VerifyCredentialRequest: TCRequestModel {
         /// 参数集合
@@ -61,5 +49,17 @@ extension Tdid {
             case verifyMessage = "VerifyMessage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 验证凭证
+    @inlinable
+    public func verifyCredential(_ input: VerifyCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyCredentialResponse > {
+        self.client.execute(action: "VerifyCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 验证凭证
+    @inlinable
+    public func verifyCredential(_ input: VerifyCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyCredentialResponse {
+        try await self.client.execute(action: "VerifyCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改安全配置托管规则
-    @inlinable
-    public func modifySecurityWafGroupPolicy(_ input: ModifySecurityWafGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityWafGroupPolicyResponse > {
-        self.client.execute(action: "ModifySecurityWafGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改安全配置托管规则
-    @inlinable
-    public func modifySecurityWafGroupPolicy(_ input: ModifySecurityWafGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityWafGroupPolicyResponse {
-        try await self.client.execute(action: "ModifySecurityWafGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySecurityWafGroupPolicy请求参数结构体
     public struct ModifySecurityWafGroupPolicyRequest: TCRequestModel {
         /// 站点Id。当使用ZoneId和Entity时可不填写TemplateId，否则必须填写TemplateId。
@@ -54,10 +42,10 @@ extension Teo {
         public let mode: String?
         
         /// 托管规则。不填默认为上次的配置。
-        public let wafRules: WafRule
+        public let wafRules: WafRule?
         
         /// AI引擎模式。不填默认为上次的配置。
-        public let aiRule: AiRule
+        public let aiRule: AiRule?
         
         /// 托管规则等级组。不填默认为上次的配置。
         public let wafGroups: [WafGroup]?
@@ -65,7 +53,7 @@ extension Teo {
         /// 模板Id。当使用模板Id时可不填ZoneId和Entity，否则必须填写ZoneId和Entity。
         public let templateId: String?
         
-        public init (zoneId: String?, entity: String?, `switch`: String?, level: String?, mode: String?, wafRules: WafRule, aiRule: AiRule, wafGroups: [WafGroup]?, templateId: String?) {
+        public init (zoneId: String? = nil, entity: String? = nil, `switch`: String? = nil, level: String? = nil, mode: String? = nil, wafRules: WafRule? = nil, aiRule: AiRule? = nil, wafGroups: [WafGroup]? = nil, templateId: String? = nil) {
             self.zoneId = zoneId
             self.entity = entity
             self.`switch` = `switch`
@@ -98,5 +86,17 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改安全配置托管规则
+    @inlinable
+    public func modifySecurityWafGroupPolicy(_ input: ModifySecurityWafGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityWafGroupPolicyResponse > {
+        self.client.execute(action: "ModifySecurityWafGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改安全配置托管规则
+    @inlinable
+    public func modifySecurityWafGroupPolicy(_ input: ModifySecurityWafGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityWafGroupPolicyResponse {
+        try await self.client.execute(action: "ModifySecurityWafGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

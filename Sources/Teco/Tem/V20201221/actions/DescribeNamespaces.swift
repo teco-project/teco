@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 获取租户命名空间列表
-    ///
-    /// 获取租户环境列表
-    @inlinable
-    public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespacesResponse > {
-        self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取租户命名空间列表
-    ///
-    /// 获取租户环境列表
-    @inlinable
-    public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacesResponse {
-        try await self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNamespaces请求参数结构体
     public struct DescribeNamespacesRequest: TCRequestModel {
         /// 分页limit
@@ -42,7 +26,7 @@ extension Tem {
         /// 来源source
         public let sourceChannel: Int64?
         
-        public init (limit: Int64?, offset: Int64?, sourceChannel: Int64?) {
+        public init (limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil) {
             self.limit = limit
             self.offset = offset
             self.sourceChannel = sourceChannel
@@ -67,5 +51,21 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取租户命名空间列表
+    ///
+    /// 获取租户环境列表
+    @inlinable
+    public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespacesResponse > {
+        self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取租户命名空间列表
+    ///
+    /// 获取租户环境列表
+    @inlinable
+    public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacesResponse {
+        try await self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

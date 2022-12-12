@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 删除运行时反弹shell白名单
-    @inlinable
-    public func deleteReverseShellWhiteLists(_ input: DeleteReverseShellWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReverseShellWhiteListsResponse > {
-        self.client.execute(action: "DeleteReverseShellWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除运行时反弹shell白名单
-    @inlinable
-    public func deleteReverseShellWhiteLists(_ input: DeleteReverseShellWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellWhiteListsResponse {
-        try await self.client.execute(action: "DeleteReverseShellWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteReverseShellWhiteLists请求参数结构体
     public struct DeleteReverseShellWhiteListsRequest: TCRequestModel {
         /// 白名单ids
@@ -49,5 +37,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除运行时反弹shell白名单
+    @inlinable
+    public func deleteReverseShellWhiteLists(_ input: DeleteReverseShellWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReverseShellWhiteListsResponse > {
+        self.client.execute(action: "DeleteReverseShellWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除运行时反弹shell白名单
+    @inlinable
+    public func deleteReverseShellWhiteLists(_ input: DeleteReverseShellWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellWhiteListsResponse {
+        try await self.client.execute(action: "DeleteReverseShellWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

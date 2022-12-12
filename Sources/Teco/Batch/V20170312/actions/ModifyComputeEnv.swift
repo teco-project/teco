@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 修改计算环境
-    ///
-    /// 用于修改计算环境属性
-    @inlinable
-    public func modifyComputeEnv(_ input: ModifyComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyComputeEnvResponse > {
-        self.client.execute(action: "ModifyComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改计算环境
-    ///
-    /// 用于修改计算环境属性
-    @inlinable
-    public func modifyComputeEnv(_ input: ModifyComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyComputeEnvResponse {
-        try await self.client.execute(action: "ModifyComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyComputeEnv请求参数结构体
     public struct ModifyComputeEnvRequest: TCRequestModel {
         /// 计算环境ID
@@ -46,9 +30,9 @@ extension Batch {
         public let envDescription: String?
         
         /// 计算环境属性数据
-        public let envData: ComputeEnvData
+        public let envData: ComputeEnvData?
         
-        public init (envId: String, desiredComputeNodeCount: Int64?, envName: String?, envDescription: String?, envData: ComputeEnvData) {
+        public init (envId: String, desiredComputeNodeCount: Int64? = nil, envName: String? = nil, envDescription: String? = nil, envData: ComputeEnvData? = nil) {
             self.envId = envId
             self.desiredComputeNodeCount = desiredComputeNodeCount
             self.envName = envName
@@ -73,5 +57,21 @@ extension Batch {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改计算环境
+    ///
+    /// 用于修改计算环境属性
+    @inlinable
+    public func modifyComputeEnv(_ input: ModifyComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyComputeEnvResponse > {
+        self.client.execute(action: "ModifyComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改计算环境
+    ///
+    /// 用于修改计算环境属性
+    @inlinable
+    public func modifyComputeEnv(_ input: ModifyComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyComputeEnvResponse {
+        try await self.client.execute(action: "ModifyComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

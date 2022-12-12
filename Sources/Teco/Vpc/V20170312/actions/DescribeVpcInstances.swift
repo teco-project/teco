@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询VPC下的云主机实例列表
-    ///
-    ///  本接口（DescribeVpcInstances）用于查询VPC下的云主机实例列表。
-    @inlinable
-    public func describeVpcInstances(_ input: DescribeVpcInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcInstancesResponse > {
-        self.client.execute(action: "DescribeVpcInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询VPC下的云主机实例列表
-    ///
-    ///  本接口（DescribeVpcInstances）用于查询VPC下的云主机实例列表。
-    @inlinable
-    public func describeVpcInstances(_ input: DescribeVpcInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcInstancesResponse {
-        try await self.client.execute(action: "DescribeVpcInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpcInstances请求参数结构体
     public struct DescribeVpcInstancesRequest: TCRequestModel {
         /// 过滤条件，参数不支持同时指定RouteTableIds和Filters。
@@ -45,7 +29,7 @@ extension Vpc {
         /// 请求对象个数。
         public let limit: UInt64?
         
-        public init (filters: [Filter], offset: UInt64?, limit: UInt64?) {
+        public init (filters: [Filter], offset: UInt64? = nil, limit: UInt64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -74,5 +58,21 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询VPC下的云主机实例列表
+    ///
+    ///  本接口（DescribeVpcInstances）用于查询VPC下的云主机实例列表。
+    @inlinable
+    public func describeVpcInstances(_ input: DescribeVpcInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcInstancesResponse > {
+        self.client.execute(action: "DescribeVpcInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询VPC下的云主机实例列表
+    ///
+    ///  本接口（DescribeVpcInstances）用于查询VPC下的云主机实例列表。
+    @inlinable
+    public func describeVpcInstances(_ input: DescribeVpcInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcInstancesResponse {
+        try await self.client.execute(action: "DescribeVpcInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

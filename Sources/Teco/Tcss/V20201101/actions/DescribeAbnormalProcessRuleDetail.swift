@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询运行时异常进程策略详细信息
-    ///
-    /// 查询运行时异常策略详细信息
-    @inlinable
-    public func describeAbnormalProcessRuleDetail(_ input: DescribeAbnormalProcessRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalProcessRuleDetailResponse > {
-        self.client.execute(action: "DescribeAbnormalProcessRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询运行时异常进程策略详细信息
-    ///
-    /// 查询运行时异常策略详细信息
-    @inlinable
-    public func describeAbnormalProcessRuleDetail(_ input: DescribeAbnormalProcessRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessRuleDetailResponse {
-        try await self.client.execute(action: "DescribeAbnormalProcessRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAbnormalProcessRuleDetail请求参数结构体
     public struct DescribeAbnormalProcessRuleDetailRequest: TCRequestModel {
         /// 策略唯一id
@@ -45,7 +29,7 @@ extension Tcss {
         /// 偏移量，默认为0。
         public let offset: UInt64?
         
-        public init (ruleId: String?, imageId: String?, limit: UInt64?, offset: UInt64?) {
+        public init (ruleId: String? = nil, imageId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.ruleId = ruleId
             self.imageId = imageId
             self.limit = limit
@@ -72,5 +56,21 @@ extension Tcss {
             case ruleDetail = "RuleDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询运行时异常进程策略详细信息
+    ///
+    /// 查询运行时异常策略详细信息
+    @inlinable
+    public func describeAbnormalProcessRuleDetail(_ input: DescribeAbnormalProcessRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalProcessRuleDetailResponse > {
+        self.client.execute(action: "DescribeAbnormalProcessRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询运行时异常进程策略详细信息
+    ///
+    /// 查询运行时异常策略详细信息
+    @inlinable
+    public func describeAbnormalProcessRuleDetail(_ input: DescribeAbnormalProcessRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessRuleDetailResponse {
+        try await self.client.execute(action: "DescribeAbnormalProcessRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

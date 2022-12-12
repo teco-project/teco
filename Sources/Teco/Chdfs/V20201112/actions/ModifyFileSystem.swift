@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 修改文件系统属性
-    ///
-    /// 修改文件系统属性，仅限于创建成功的文件系统。
-    @inlinable
-    public func modifyFileSystem(_ input: ModifyFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFileSystemResponse > {
-        self.client.execute(action: "ModifyFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改文件系统属性
-    ///
-    /// 修改文件系统属性，仅限于创建成功的文件系统。
-    @inlinable
-    public func modifyFileSystem(_ input: ModifyFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFileSystemResponse {
-        try await self.client.execute(action: "ModifyFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyFileSystem请求参数结构体
     public struct ModifyFileSystemRequest: TCRequestModel {
         /// 文件系统ID
@@ -58,7 +42,7 @@ extension Chdfs {
         /// Ranger地址列表，可以为空数组
         public let rangerServiceAddresses: [String]?
         
-        public init (fileSystemId: String, fileSystemName: String?, description: String?, capacityQuota: UInt64?, superUsers: [String]?, posixAcl: Bool?, enableRanger: Bool?, rangerServiceAddresses: [String]?) {
+        public init (fileSystemId: String, fileSystemName: String? = nil, description: String? = nil, capacityQuota: UInt64? = nil, superUsers: [String]? = nil, posixAcl: Bool? = nil, enableRanger: Bool? = nil, rangerServiceAddresses: [String]? = nil) {
             self.fileSystemId = fileSystemId
             self.fileSystemName = fileSystemName
             self.description = description
@@ -89,5 +73,21 @@ extension Chdfs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改文件系统属性
+    ///
+    /// 修改文件系统属性，仅限于创建成功的文件系统。
+    @inlinable
+    public func modifyFileSystem(_ input: ModifyFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFileSystemResponse > {
+        self.client.execute(action: "ModifyFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改文件系统属性
+    ///
+    /// 修改文件系统属性，仅限于创建成功的文件系统。
+    @inlinable
+    public func modifyFileSystem(_ input: ModifyFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFileSystemResponse {
+        try await self.client.execute(action: "ModifyFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

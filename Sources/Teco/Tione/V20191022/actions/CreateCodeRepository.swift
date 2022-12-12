@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 创建存储库
-    @inlinable
-    public func createCodeRepository(_ input: CreateCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCodeRepositoryResponse > {
-        self.client.execute(action: "CreateCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建存储库
-    @inlinable
-    public func createCodeRepository(_ input: CreateCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodeRepositoryResponse {
-        try await self.client.execute(action: "CreateCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCodeRepository请求参数结构体
     public struct CreateCodeRepositoryRequest: TCRequestModel {
         /// 存储库名称
@@ -63,5 +51,17 @@ extension Tione {
             case codeRepositoryName = "CodeRepositoryName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建存储库
+    @inlinable
+    public func createCodeRepository(_ input: CreateCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCodeRepositoryResponse > {
+        self.client.execute(action: "CreateCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建存储库
+    @inlinable
+    public func createCodeRepository(_ input: CreateCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodeRepositoryResponse {
+        try await self.client.execute(action: "CreateCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

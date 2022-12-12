@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Fmu {
-    /// 图片滤镜（高级版）
-    ///
-    /// 上传一张照片，输出滤镜处理后的图片。
-    @inlinable
-    public func styleImagePro(_ input: StyleImageProRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StyleImageProResponse > {
-        self.client.execute(action: "StyleImagePro", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 图片滤镜（高级版）
-    ///
-    /// 上传一张照片，输出滤镜处理后的图片。
-    @inlinable
-    public func styleImagePro(_ input: StyleImageProRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StyleImageProResponse {
-        try await self.client.execute(action: "StyleImagePro", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StyleImagePro请求参数结构体
     public struct StyleImageProRequest: TCRequestModel {
         /// 滤镜类型，取值如下： 
@@ -54,7 +38,7 @@ extension Fmu {
         /// 返回图像方式（base64 或 url ) ，二选一。url有效期为1天。
         public let rspImgType: String?
         
-        public init (filterType: Int64, image: String?, url: String?, filterDegree: Int64?, rspImgType: String?) {
+        public init (filterType: Int64, image: String? = nil, url: String? = nil, filterDegree: Int64? = nil, rspImgType: String? = nil) {
             self.filterType = filterType
             self.image = image
             self.url = url
@@ -89,5 +73,21 @@ extension Fmu {
             case resultUrl = "ResultUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 图片滤镜（高级版）
+    ///
+    /// 上传一张照片，输出滤镜处理后的图片。
+    @inlinable
+    public func styleImagePro(_ input: StyleImageProRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StyleImageProResponse > {
+        self.client.execute(action: "StyleImagePro", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 图片滤镜（高级版）
+    ///
+    /// 上传一张照片，输出滤镜处理后的图片。
+    @inlinable
+    public func styleImagePro(_ input: StyleImageProRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StyleImageProResponse {
+        try await self.client.execute(action: "StyleImagePro", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

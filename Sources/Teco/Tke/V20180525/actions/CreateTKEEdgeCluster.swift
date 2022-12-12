@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 创建边缘计算集群
-    @inlinable
-    public func createTKEEdgeCluster(_ input: CreateTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTKEEdgeClusterResponse > {
-        self.client.execute(action: "CreateTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建边缘计算集群
-    @inlinable
-    public func createTKEEdgeCluster(_ input: CreateTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTKEEdgeClusterResponse {
-        try await self.client.execute(action: "CreateTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTKEEdgeCluster请求参数结构体
     public struct CreateTKEEdgeClusterRequest: TCRequestModel {
         /// k8s版本号
@@ -48,13 +36,13 @@ extension Tke {
         public let clusterDesc: String?
         
         /// 集群高级设置
-        public let clusterAdvancedSettings: EdgeClusterAdvancedSettings
+        public let clusterAdvancedSettings: EdgeClusterAdvancedSettings?
         
         /// 节点上最大Pod数量
         public let maxNodePodNum: Int64?
         
         /// 边缘计算集群公网访问LB信息
-        public let publicLB: EdgeClusterPublicLB
+        public let publicLB: EdgeClusterPublicLB?
         
         /// 集群的级别
         public let clusterLevel: String?
@@ -71,7 +59,7 @@ extension Tke {
         /// 边缘组件镜像仓库前缀
         public let registryPrefix: String?
         
-        public init (k8sVersion: String, vpcId: String, clusterName: String, podCIDR: String, serviceCIDR: String, clusterDesc: String?, clusterAdvancedSettings: EdgeClusterAdvancedSettings, maxNodePodNum: Int64?, publicLB: EdgeClusterPublicLB, clusterLevel: String?, autoUpgradeClusterLevel: Bool?, chargeType: String?, edgeVersion: String?, registryPrefix: String?) {
+        public init (k8sVersion: String, vpcId: String, clusterName: String, podCIDR: String, serviceCIDR: String, clusterDesc: String? = nil, clusterAdvancedSettings: EdgeClusterAdvancedSettings? = nil, maxNodePodNum: Int64? = nil, publicLB: EdgeClusterPublicLB? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: Bool? = nil, chargeType: String? = nil, edgeVersion: String? = nil, registryPrefix: String? = nil) {
             self.k8sVersion = k8sVersion
             self.vpcId = vpcId
             self.clusterName = clusterName
@@ -118,5 +106,17 @@ extension Tke {
             case clusterId = "ClusterId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建边缘计算集群
+    @inlinable
+    public func createTKEEdgeCluster(_ input: CreateTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTKEEdgeClusterResponse > {
+        self.client.execute(action: "CreateTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建边缘计算集群
+    @inlinable
+    public func createTKEEdgeCluster(_ input: CreateTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTKEEdgeClusterResponse {
+        try await self.client.execute(action: "CreateTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

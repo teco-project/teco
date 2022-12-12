@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 获取虚拟机部署组列表
-    @inlinable
-    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupsResponse > {
-        self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取虚拟机部署组列表
-    @inlinable
-    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
-        try await self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGroups请求参数结构体
     public struct DescribeGroupsRequest: TCRequestModel {
         /// 搜索字段
@@ -62,7 +50,7 @@ extension Tsf {
         /// 无
         public let groupIdList: [String]?
         
-        public init (searchWord: String?, applicationId: String?, orderBy: String?, orderType: Int64?, offset: Int64?, limit: Int64?, namespaceId: String?, clusterId: String?, groupResourceTypeList: [String]?, status: String?, groupIdList: [String]?) {
+        public init (searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, groupResourceTypeList: [String]? = nil, status: String? = nil, groupIdList: [String]? = nil) {
             self.searchWord = searchWord
             self.applicationId = applicationId
             self.orderBy = orderBy
@@ -95,7 +83,7 @@ extension Tsf {
     public struct DescribeGroupsResponse: TCResponseModel {
         /// 虚拟机部署组分页信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TsfPageVmGroup
+        public let result: TsfPageVmGroup?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -104,5 +92,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取虚拟机部署组列表
+    @inlinable
+    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupsResponse > {
+        self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取虚拟机部署组列表
+    @inlinable
+    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
+        try await self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 删除设备
-    @inlinable
-    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceResponse > {
-        self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除设备
-    @inlinable
-    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
-        try await self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDevice请求参数结构体
     public struct DeleteDeviceRequest: TCRequestModel {
         /// 产品ID。
@@ -54,5 +42,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除设备
+    @inlinable
+    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceResponse > {
+        self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除设备
+    @inlinable
+    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
+        try await self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

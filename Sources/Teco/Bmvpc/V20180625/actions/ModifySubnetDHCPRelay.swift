@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 修改子网DHCP Relay属性
-    @inlinable
-    public func modifySubnetDHCPRelay(_ input: ModifySubnetDHCPRelayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubnetDHCPRelayResponse > {
-        self.client.execute(action: "ModifySubnetDHCPRelay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改子网DHCP Relay属性
-    @inlinable
-    public func modifySubnetDHCPRelay(_ input: ModifySubnetDHCPRelayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetDHCPRelayResponse {
-        try await self.client.execute(action: "ModifySubnetDHCPRelay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySubnetDHCPRelay请求参数结构体
     public struct ModifySubnetDHCPRelayRequest: TCRequestModel {
         /// 私有网络ID
@@ -44,7 +32,7 @@ extension Bmvpc {
         /// 预留IP个数
         public let reservedIpCount: UInt64?
         
-        public init (vpcId: String, subnetId: String, enableDHCP: Bool, serverIps: [String]?, reservedIpCount: UInt64?) {
+        public init (vpcId: String, subnetId: String, enableDHCP: Bool, serverIps: [String]? = nil, reservedIpCount: UInt64? = nil) {
             self.vpcId = vpcId
             self.subnetId = subnetId
             self.enableDHCP = enableDHCP
@@ -69,5 +57,17 @@ extension Bmvpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改子网DHCP Relay属性
+    @inlinable
+    public func modifySubnetDHCPRelay(_ input: ModifySubnetDHCPRelayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubnetDHCPRelayResponse > {
+        self.client.execute(action: "ModifySubnetDHCPRelay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改子网DHCP Relay属性
+    @inlinable
+    public func modifySubnetDHCPRelay(_ input: ModifySubnetDHCPRelayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetDHCPRelayResponse {
+        try await self.client.execute(action: "ModifySubnetDHCPRelay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

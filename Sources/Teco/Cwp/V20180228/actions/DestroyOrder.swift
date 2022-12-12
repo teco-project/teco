@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 销毁订单
-    ///
-    /// DestroyOrder  该接口可以对资源销毁.
-    @inlinable
-    public func destroyOrder(_ input: DestroyOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyOrderResponse > {
-        self.client.execute(action: "DestroyOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 销毁订单
-    ///
-    /// DestroyOrder  该接口可以对资源销毁.
-    @inlinable
-    public func destroyOrder(_ input: DestroyOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyOrderResponse {
-        try await self.client.execute(action: "DestroyOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DestroyOrder请求参数结构体
     public struct DestroyOrderRequest: TCRequestModel {
         /// 资源ID
@@ -58,5 +42,21 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 销毁订单
+    ///
+    /// DestroyOrder  该接口可以对资源销毁.
+    @inlinable
+    public func destroyOrder(_ input: DestroyOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyOrderResponse > {
+        self.client.execute(action: "DestroyOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁订单
+    ///
+    /// DestroyOrder  该接口可以对资源销毁.
+    @inlinable
+    public func destroyOrder(_ input: DestroyOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyOrderResponse {
+        try await self.client.execute(action: "DestroyOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

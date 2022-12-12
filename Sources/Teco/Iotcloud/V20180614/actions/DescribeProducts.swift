@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取产品列表
-    ///
-    /// 本接口（DescribeProducts）用于列出产品列表。 
-    @inlinable
-    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductsResponse > {
-        self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取产品列表
-    ///
-    /// 本接口（DescribeProducts）用于列出产品列表。 
-    @inlinable
-    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
-        try await self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProducts请求参数结构体
     public struct DescribeProductsRequest: TCRequestModel {
         /// 偏移量，Offset从0开始
@@ -66,5 +50,21 @@ extension Iotcloud {
             case products = "Products"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取产品列表
+    ///
+    /// 本接口（DescribeProducts）用于列出产品列表。 
+    @inlinable
+    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductsResponse > {
+        self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品列表
+    ///
+    /// 本接口（DescribeProducts）用于列出产品列表。 
+    @inlinable
+    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
+        try await self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 查询游戏服务器会话队列
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeGameServerSessionQueues）用于查询游戏服务器会话队列。
-    @inlinable
-    public func describeGameServerSessionQueues(_ input: DescribeGameServerSessionQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGameServerSessionQueuesResponse > {
-        self.client.execute(action: "DescribeGameServerSessionQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询游戏服务器会话队列
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeGameServerSessionQueues）用于查询游戏服务器会话队列。
-    @inlinable
-    public func describeGameServerSessionQueues(_ input: DescribeGameServerSessionQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGameServerSessionQueuesResponse {
-        try await self.client.execute(action: "DescribeGameServerSessionQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGameServerSessionQueues请求参数结构体
     public struct DescribeGameServerSessionQueuesRequest: TCRequestModel {
         /// 游戏服务器会话队列名称数组，单个名字长度1~128
@@ -47,7 +29,7 @@ extension Gse {
         /// 资源过滤字段，可以按照资源名称、资源ID和标签进行过滤- 资源名称过滤    - Key: 固定字符串 "resource:name"    - Values: 资源名称数组（游戏服务器会话队列支持多个名称的过滤）- 标签过滤    - 通过标签键过滤        - Key: 固定字符串 "tag:key"        - Values 不传    - 通过标签键值过滤        - Key: 固定字符串 "tag:key-value"        - Values: 标签键值对数组，例如 ["key1:value1", "key1:value2", "key2:value2"]
         public let filters: [Filter]?
         
-        public init (names: [String]?, limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (names: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.names = names
             self.limit = limit
             self.offset = offset
@@ -79,5 +61,23 @@ extension Gse {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询游戏服务器会话队列
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeGameServerSessionQueues）用于查询游戏服务器会话队列。
+    @inlinable
+    public func describeGameServerSessionQueues(_ input: DescribeGameServerSessionQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGameServerSessionQueuesResponse > {
+        self.client.execute(action: "DescribeGameServerSessionQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询游戏服务器会话队列
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeGameServerSessionQueues）用于查询游戏服务器会话队列。
+    @inlinable
+    public func describeGameServerSessionQueues(_ input: DescribeGameServerSessionQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGameServerSessionQueuesResponse {
+        try await self.client.execute(action: "DescribeGameServerSessionQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

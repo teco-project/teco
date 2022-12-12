@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 创建组织成员访问授权策略
-    @inlinable
-    public func createOrganizationMemberPolicy(_ input: CreateOrganizationMemberPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrganizationMemberPolicyResponse > {
-        self.client.execute(action: "CreateOrganizationMemberPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建组织成员访问授权策略
-    @inlinable
-    public func createOrganizationMemberPolicy(_ input: CreateOrganizationMemberPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrganizationMemberPolicyResponse {
-        try await self.client.execute(action: "CreateOrganizationMemberPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOrganizationMemberPolicy请求参数结构体
     public struct CreateOrganizationMemberPolicyRequest: TCRequestModel {
         /// 成员Uin。
@@ -41,7 +29,7 @@ extension Organization {
         /// 描述。
         public let description: String?
         
-        public init (memberUin: Int64, policyName: String, identityId: Int64, description: String?) {
+        public init (memberUin: Int64, policyName: String, identityId: Int64, description: String? = nil) {
             self.memberUin = memberUin
             self.policyName = policyName
             self.identityId = identityId
@@ -69,5 +57,17 @@ extension Organization {
             case policyId = "PolicyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建组织成员访问授权策略
+    @inlinable
+    public func createOrganizationMemberPolicy(_ input: CreateOrganizationMemberPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrganizationMemberPolicyResponse > {
+        self.client.execute(action: "CreateOrganizationMemberPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建组织成员访问授权策略
+    @inlinable
+    public func createOrganizationMemberPolicy(_ input: CreateOrganizationMemberPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrganizationMemberPolicyResponse {
+        try await self.client.execute(action: "CreateOrganizationMemberPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dbbrain {
-    /// 获取诊断事件列表
-    ///
-    /// 获取指定时间段内的诊断事件列表，支持依据风险等级、实例ID等条件过滤。
-    @inlinable
-    public func describeDBDiagEvents(_ input: DescribeDBDiagEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBDiagEventsResponse > {
-        self.client.execute(action: "DescribeDBDiagEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取诊断事件列表
-    ///
-    /// 获取指定时间段内的诊断事件列表，支持依据风险等级、实例ID等条件过滤。
-    @inlinable
-    public func describeDBDiagEvents(_ input: DescribeDBDiagEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBDiagEventsResponse {
-        try await self.client.execute(action: "DescribeDBDiagEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBDiagEvents请求参数结构体
     public struct DescribeDBDiagEventsRequest: TCRequestModel {
         /// 开始时间，如“2021-05-27 00:00:00”，支持的最早查询时间为当前时间的前30天。
@@ -55,7 +39,7 @@ extension Dbbrain {
         /// 返回数量，默认20，最大值为50。
         public let limit: Int64?
         
-        public init (startTime: Date, endTime: Date, severities: [Int64]?, instanceIds: [String]?, offset: Int64?, limit: Int64?) {
+        public init (startTime: Date, endTime: Date, severities: [Int64]? = nil, instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.severities = severities
@@ -90,5 +74,21 @@ extension Dbbrain {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取诊断事件列表
+    ///
+    /// 获取指定时间段内的诊断事件列表，支持依据风险等级、实例ID等条件过滤。
+    @inlinable
+    public func describeDBDiagEvents(_ input: DescribeDBDiagEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBDiagEventsResponse > {
+        self.client.execute(action: "DescribeDBDiagEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取诊断事件列表
+    ///
+    /// 获取指定时间段内的诊断事件列表，支持依据风险等级、实例ID等条件过滤。
+    @inlinable
+    public func describeDBDiagEvents(_ input: DescribeDBDiagEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBDiagEventsResponse {
+        try await self.client.execute(action: "DescribeDBDiagEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

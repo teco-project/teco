@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取机器详情
-    ///
-    /// 本接口（DescribeMachineInfo）用于获取机器详细信息。
-    @inlinable
-    public func describeMachineInfo(_ input: DescribeMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineInfoResponse > {
-        self.client.execute(action: "DescribeMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取机器详情
-    ///
-    /// 本接口（DescribeMachineInfo）用于获取机器详细信息。
-    @inlinable
-    public func describeMachineInfo(_ input: DescribeMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineInfoResponse {
-        try await self.client.execute(action: "DescribeMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMachineInfo请求参数结构体
     public struct DescribeMachineInfoRequest: TCRequestModel {
         /// 云镜客户端唯一Uuid。
         public let uuid: String?
         
-        public init (uuid: String?) {
+        public init (uuid: String? = nil) {
             self.uuid = uuid
         }
         
@@ -125,5 +109,21 @@ extension Yunjing {
             case freeVulsLeft = "FreeVulsLeft"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取机器详情
+    ///
+    /// 本接口（DescribeMachineInfo）用于获取机器详细信息。
+    @inlinable
+    public func describeMachineInfo(_ input: DescribeMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineInfoResponse > {
+        self.client.execute(action: "DescribeMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取机器详情
+    ///
+    /// 本接口（DescribeMachineInfo）用于获取机器详细信息。
+    @inlinable
+    public func describeMachineInfo(_ input: DescribeMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineInfoResponse {
+        try await self.client.execute(action: "DescribeMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

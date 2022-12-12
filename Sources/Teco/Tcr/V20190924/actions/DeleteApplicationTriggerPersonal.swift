@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 删除应用更新触发器
-    ///
-    /// 用于删除应用更新触发器
-    @inlinable
-    public func deleteApplicationTriggerPersonal(_ input: DeleteApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationTriggerPersonalResponse > {
-        self.client.execute(action: "DeleteApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除应用更新触发器
-    ///
-    /// 用于删除应用更新触发器
-    @inlinable
-    public func deleteApplicationTriggerPersonal(_ input: DeleteApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationTriggerPersonalResponse {
-        try await self.client.execute(action: "DeleteApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteApplicationTriggerPersonal请求参数结构体
     public struct DeleteApplicationTriggerPersonalRequest: TCRequestModel {
         /// 触发器名称
@@ -53,5 +37,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除应用更新触发器
+    ///
+    /// 用于删除应用更新触发器
+    @inlinable
+    public func deleteApplicationTriggerPersonal(_ input: DeleteApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationTriggerPersonalResponse > {
+        self.client.execute(action: "DeleteApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除应用更新触发器
+    ///
+    /// 用于删除应用更新触发器
+    @inlinable
+    public func deleteApplicationTriggerPersonal(_ input: DeleteApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationTriggerPersonalResponse {
+        try await self.client.execute(action: "DeleteApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

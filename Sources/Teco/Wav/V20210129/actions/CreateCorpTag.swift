@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wav {
-    /// 新增标签库接口
-    ///
-    /// 该接口用户设置标签库, 每个企业最多可配置3000个企业标签。
-    @inlinable
-    public func createCorpTag(_ input: CreateCorpTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCorpTagResponse > {
-        self.client.execute(action: "CreateCorpTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增标签库接口
-    ///
-    /// 该接口用户设置标签库, 每个企业最多可配置3000个企业标签。
-    @inlinable
-    public func createCorpTag(_ input: CreateCorpTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCorpTagResponse {
-        try await self.client.execute(action: "CreateCorpTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCorpTag请求参数结构体
     public struct CreateCorpTagRequest: TCRequestModel {
         /// 标签组名称，最长为15个字符
@@ -42,7 +26,7 @@ extension Wav {
         /// 标签组次序值。sort值大的排序靠前。有效的值范围是[0, 2^32)
         public let sort: UInt64?
         
-        public init (groupName: String, tags: [TagInfo], sort: UInt64?) {
+        public init (groupName: String, tags: [TagInfo], sort: UInt64? = nil) {
             self.groupName = groupName
             self.tags = tags
             self.sort = sort
@@ -67,5 +51,21 @@ extension Wav {
             case tagGroup = "TagGroup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增标签库接口
+    ///
+    /// 该接口用户设置标签库, 每个企业最多可配置3000个企业标签。
+    @inlinable
+    public func createCorpTag(_ input: CreateCorpTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCorpTagResponse > {
+        self.client.execute(action: "CreateCorpTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增标签库接口
+    ///
+    /// 该接口用户设置标签库, 每个企业最多可配置3000个企业标签。
+    @inlinable
+    public func createCorpTag(_ input: CreateCorpTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCorpTagResponse {
+        try await self.client.execute(action: "CreateCorpTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

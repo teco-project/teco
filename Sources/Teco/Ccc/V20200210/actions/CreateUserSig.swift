@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 创建用户数据签名
-    @inlinable
-    public func createUserSig(_ input: CreateUserSigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserSigResponse > {
-        self.client.execute(action: "CreateUserSig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建用户数据签名
-    @inlinable
-    public func createUserSig(_ input: CreateUserSigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSigResponse {
-        try await self.client.execute(action: "CreateUserSig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUserSig请求参数结构体
     public struct CreateUserSigRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -41,7 +29,7 @@ extension Ccc {
         /// 用户签名数据
         public let clientData: String?
         
-        public init (sdkAppId: Int64, uid: String, expiredTime: Int64, clientData: String?) {
+        public init (sdkAppId: Int64, uid: String, expiredTime: Int64, clientData: String? = nil) {
             self.sdkAppId = sdkAppId
             self.uid = uid
             self.expiredTime = expiredTime
@@ -68,5 +56,17 @@ extension Ccc {
             case userSig = "UserSig"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建用户数据签名
+    @inlinable
+    public func createUserSig(_ input: CreateUserSigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserSigResponse > {
+        self.client.execute(action: "CreateUserSig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建用户数据签名
+    @inlinable
+    public func createUserSig(_ input: CreateUserSigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSigResponse {
+        try await self.client.execute(action: "CreateUserSig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

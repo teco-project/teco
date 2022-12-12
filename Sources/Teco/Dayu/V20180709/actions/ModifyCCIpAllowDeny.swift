@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 添加或删除CC的IP黑白名单
-    @inlinable
-    public func modifyCCIpAllowDeny(_ input: ModifyCCIpAllowDenyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCIpAllowDenyResponse > {
-        self.client.execute(action: "ModifyCCIpAllowDeny", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加或删除CC的IP黑白名单
-    @inlinable
-    public func modifyCCIpAllowDeny(_ input: ModifyCCIpAllowDenyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCIpAllowDenyResponse {
-        try await self.client.execute(action: "ModifyCCIpAllowDeny", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCCIpAllowDeny请求参数结构体
     public struct ModifyCCIpAllowDenyRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -54,7 +42,7 @@ extension Dayu {
         /// 当Method为delete时，不用填写此字段；
         public let ruleId: String?
         
-        public init (business: String, id: String, method: String, type: String, ipList: [String], `protocol`: String?, domain: String?, ruleId: String?) {
+        public init (business: String, id: String, method: String, type: String, ipList: [String], `protocol`: String? = nil, domain: String? = nil, ruleId: String? = nil) {
             self.business = business
             self.id = id
             self.method = method
@@ -89,5 +77,17 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加或删除CC的IP黑白名单
+    @inlinable
+    public func modifyCCIpAllowDeny(_ input: ModifyCCIpAllowDenyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCIpAllowDenyResponse > {
+        self.client.execute(action: "ModifyCCIpAllowDeny", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加或删除CC的IP黑白名单
+    @inlinable
+    public func modifyCCIpAllowDeny(_ input: ModifyCCIpAllowDenyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCIpAllowDenyResponse {
+        try await self.client.execute(action: "ModifyCCIpAllowDeny", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

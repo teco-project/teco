@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询该实例的可维护时间窗
-    ///
-    /// 本接口（DescribeMaintenanceSpan）根据实例ID查询该实例的可维护时间窗。
-    @inlinable
-    public func describeMaintenanceSpan(_ input: DescribeMaintenanceSpanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaintenanceSpanResponse > {
-        self.client.execute(action: "DescribeMaintenanceSpan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询该实例的可维护时间窗
-    ///
-    /// 本接口（DescribeMaintenanceSpan）根据实例ID查询该实例的可维护时间窗。
-    @inlinable
-    public func describeMaintenanceSpan(_ input: DescribeMaintenanceSpanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintenanceSpanResponse {
-        try await self.client.execute(action: "DescribeMaintenanceSpan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMaintenanceSpan请求参数结构体
     public struct DescribeMaintenanceSpanRequest: TCRequestModel {
         /// 实例ID，形如mssql-k8voqdlz
@@ -65,5 +49,21 @@ extension Sqlserver {
             case span = "Span"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询该实例的可维护时间窗
+    ///
+    /// 本接口（DescribeMaintenanceSpan）根据实例ID查询该实例的可维护时间窗。
+    @inlinable
+    public func describeMaintenanceSpan(_ input: DescribeMaintenanceSpanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaintenanceSpanResponse > {
+        self.client.execute(action: "DescribeMaintenanceSpan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询该实例的可维护时间窗
+    ///
+    /// 本接口（DescribeMaintenanceSpan）根据实例ID查询该实例的可维护时间窗。
+    @inlinable
+    public func describeMaintenanceSpan(_ input: DescribeMaintenanceSpanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintenanceSpanResponse {
+        try await self.client.execute(action: "DescribeMaintenanceSpan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

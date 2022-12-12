@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 查询告警触发策略
-    ///
-    /// 本接口（DescribeScalingPolicies）用于查询告警触发策略。
-    @inlinable
-    public func describeScalingPolicies(_ input: DescribeScalingPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScalingPoliciesResponse > {
-        self.client.execute(action: "DescribeScalingPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询告警触发策略
-    ///
-    /// 本接口（DescribeScalingPolicies）用于查询告警触发策略。
-    @inlinable
-    public func describeScalingPolicies(_ input: DescribeScalingPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScalingPoliciesResponse {
-        try await self.client.execute(action: "DescribeScalingPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScalingPolicies请求参数结构体
     public struct DescribeScalingPoliciesRequest: TCRequestModel {
         /// 按照一个或者多个告警策略ID查询。告警策略ID形如：asp-i9vkg894。每次请求的实例的上限为100。参数不支持同时指定`AutoScalingPolicyIds`和`Filters`。
@@ -49,7 +33,7 @@ extension As {
         /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let offset: UInt64?
         
-        public init (autoScalingPolicyIds: [String]?, filters: [Filter]?, limit: UInt64?, offset: UInt64?) {
+        public init (autoScalingPolicyIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.autoScalingPolicyIds = autoScalingPolicyIds
             self.filters = filters
             self.limit = limit
@@ -80,5 +64,21 @@ extension As {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询告警触发策略
+    ///
+    /// 本接口（DescribeScalingPolicies）用于查询告警触发策略。
+    @inlinable
+    public func describeScalingPolicies(_ input: DescribeScalingPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScalingPoliciesResponse > {
+        self.client.execute(action: "DescribeScalingPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询告警触发策略
+    ///
+    /// 本接口（DescribeScalingPolicies）用于查询告警触发策略。
+    @inlinable
+    public func describeScalingPolicies(_ input: DescribeScalingPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScalingPoliciesResponse {
+        try await self.client.execute(action: "DescribeScalingPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

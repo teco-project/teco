@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询自定义域名列表
-    ///
-    /// 本接口（DescribeServiceSubDomains）用于查询自定义域名列表。
-    /// API 网关可绑定自定义域名到服务，用于服务调用。此接口用于查询用户绑定在服务的自定义域名列表。
-    @inlinable
-    public func describeServiceSubDomains(_ input: DescribeServiceSubDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceSubDomainsResponse > {
-        self.client.execute(action: "DescribeServiceSubDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询自定义域名列表
-    ///
-    /// 本接口（DescribeServiceSubDomains）用于查询自定义域名列表。
-    /// API 网关可绑定自定义域名到服务，用于服务调用。此接口用于查询用户绑定在服务的自定义域名列表。
-    @inlinable
-    public func describeServiceSubDomains(_ input: DescribeServiceSubDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceSubDomainsResponse {
-        try await self.client.execute(action: "DescribeServiceSubDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeServiceSubDomains请求参数结构体
     public struct DescribeServiceSubDomainsRequest: TCRequestModel {
         /// 服务唯一 ID。
@@ -44,7 +26,7 @@ extension Apigateway {
         /// 偏移量，默认为 0。
         public let offset: Int64?
         
-        public init (serviceId: String, limit: Int64?, offset: Int64?) {
+        public init (serviceId: String, limit: Int64? = nil, offset: Int64? = nil) {
             self.serviceId = serviceId
             self.limit = limit
             self.offset = offset
@@ -69,5 +51,23 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询自定义域名列表
+    ///
+    /// 本接口（DescribeServiceSubDomains）用于查询自定义域名列表。
+    /// API 网关可绑定自定义域名到服务，用于服务调用。此接口用于查询用户绑定在服务的自定义域名列表。
+    @inlinable
+    public func describeServiceSubDomains(_ input: DescribeServiceSubDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceSubDomainsResponse > {
+        self.client.execute(action: "DescribeServiceSubDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询自定义域名列表
+    ///
+    /// 本接口（DescribeServiceSubDomains）用于查询自定义域名列表。
+    /// API 网关可绑定自定义域名到服务，用于服务调用。此接口用于查询用户绑定在服务的自定义域名列表。
+    @inlinable
+    public func describeServiceSubDomains(_ input: DescribeServiceSubDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceSubDomainsResponse {
+        try await self.client.execute(action: "DescribeServiceSubDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

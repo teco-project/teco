@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 复制个人版仓库镜像版本
-    ///
-    /// 用于在个人版镜像仓库中复制镜像版本
-    @inlinable
-    public func duplicateImagePersonal(_ input: DuplicateImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DuplicateImagePersonalResponse > {
-        self.client.execute(action: "DuplicateImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 复制个人版仓库镜像版本
-    ///
-    /// 用于在个人版镜像仓库中复制镜像版本
-    @inlinable
-    public func duplicateImagePersonal(_ input: DuplicateImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DuplicateImagePersonalResponse {
-        try await self.client.execute(action: "DuplicateImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DuplicateImagePersonal请求参数结构体
     public struct DuplicateImagePersonalRequest: TCRequestModel {
         /// 源镜像名称，不包含domain。例如： tencentyun/foo:v1
@@ -62,5 +46,21 @@ extension Tcr {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 复制个人版仓库镜像版本
+    ///
+    /// 用于在个人版镜像仓库中复制镜像版本
+    @inlinable
+    public func duplicateImagePersonal(_ input: DuplicateImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DuplicateImagePersonalResponse > {
+        self.client.execute(action: "DuplicateImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 复制个人版仓库镜像版本
+    ///
+    /// 用于在个人版镜像仓库中复制镜像版本
+    @inlinable
+    public func duplicateImagePersonal(_ input: DuplicateImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DuplicateImagePersonalResponse {
+        try await self.client.execute(action: "DuplicateImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

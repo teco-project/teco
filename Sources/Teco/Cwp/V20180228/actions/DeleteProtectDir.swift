@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 删除防护网站
-    @inlinable
-    public func deleteProtectDir(_ input: DeleteProtectDirRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProtectDirResponse > {
-        self.client.execute(action: "DeleteProtectDir", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除防护网站
-    @inlinable
-    public func deleteProtectDir(_ input: DeleteProtectDirRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProtectDirResponse {
-        try await self.client.execute(action: "DeleteProtectDir", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteProtectDir请求参数结构体
     public struct DeleteProtectDirRequest: TCRequestModel {
         /// 删除的目录ID 最大100条
@@ -49,5 +37,17 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除防护网站
+    @inlinable
+    public func deleteProtectDir(_ input: DeleteProtectDirRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProtectDirResponse > {
+        self.client.execute(action: "DeleteProtectDir", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除防护网站
+    @inlinable
+    public func deleteProtectDir(_ input: DeleteProtectDirRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProtectDirResponse {
+        try await self.client.execute(action: "DeleteProtectDir", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

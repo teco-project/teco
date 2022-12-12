@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询剩余可添加的日志推送实体列表
-    ///
-    /// 本接口（DescribeAddableEntityList）用于查询剩余可添加的日志推送实体列表。
-    @inlinable
-    public func describeAddableEntityList(_ input: DescribeAddableEntityListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAddableEntityListResponse > {
-        self.client.execute(action: "DescribeAddableEntityList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询剩余可添加的日志推送实体列表
-    ///
-    /// 本接口（DescribeAddableEntityList）用于查询剩余可添加的日志推送实体列表。
-    @inlinable
-    public func describeAddableEntityList(_ input: DescribeAddableEntityListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddableEntityListResponse {
-        try await self.client.execute(action: "DescribeAddableEntityList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAddableEntityList请求参数结构体
     public struct DescribeAddableEntityListRequest: TCRequestModel {
         /// 站点ID。
@@ -73,5 +57,21 @@ extension Teo {
             case entityList = "EntityList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询剩余可添加的日志推送实体列表
+    ///
+    /// 本接口（DescribeAddableEntityList）用于查询剩余可添加的日志推送实体列表。
+    @inlinable
+    public func describeAddableEntityList(_ input: DescribeAddableEntityListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAddableEntityListResponse > {
+        self.client.execute(action: "DescribeAddableEntityList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询剩余可添加的日志推送实体列表
+    ///
+    /// 本接口（DescribeAddableEntityList）用于查询剩余可添加的日志推送实体列表。
+    @inlinable
+    public func describeAddableEntityList(_ input: DescribeAddableEntityListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddableEntityListResponse {
+        try await self.client.execute(action: "DescribeAddableEntityList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ses {
-    /// 查询发送任务
-    ///
-    /// 分页查询批量发送邮件任务，包含即时发送任务，定时发送任务，周期重复发送任务，查询发送情况，包括请求数量，已发数量，缓存数量，任务状态等信息
-    @inlinable
-    public func listSendTasks(_ input: ListSendTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListSendTasksResponse > {
-        self.client.execute(action: "ListSendTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询发送任务
-    ///
-    /// 分页查询批量发送邮件任务，包含即时发送任务，定时发送任务，周期重复发送任务，查询发送情况，包括请求数量，已发数量，缓存数量，任务状态等信息
-    @inlinable
-    public func listSendTasks(_ input: ListSendTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSendTasksResponse {
-        try await self.client.execute(action: "ListSendTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListSendTasks请求参数结构体
     public struct ListSendTasksRequest: TCRequestModel {
         /// 偏移量，整型，从0开始，0代表跳过0行
@@ -48,7 +32,7 @@ extension Ses {
         /// 任务类型 1即时 2定时 3周期，查询所有类型则不传这个字段
         public let taskType: UInt64?
         
-        public init (offset: UInt64, limit: UInt64, status: UInt64?, receiverId: UInt64?, taskType: UInt64?) {
+        public init (offset: UInt64, limit: UInt64, status: UInt64? = nil, receiverId: UInt64? = nil, taskType: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
             self.status = status
@@ -81,5 +65,21 @@ extension Ses {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询发送任务
+    ///
+    /// 分页查询批量发送邮件任务，包含即时发送任务，定时发送任务，周期重复发送任务，查询发送情况，包括请求数量，已发数量，缓存数量，任务状态等信息
+    @inlinable
+    public func listSendTasks(_ input: ListSendTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListSendTasksResponse > {
+        self.client.execute(action: "ListSendTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询发送任务
+    ///
+    /// 分页查询批量发送邮件任务，包含即时发送任务，定时发送任务，周期重复发送任务，查询发送情况，包括请求数量，已发数量，缓存数量，任务状态等信息
+    @inlinable
+    public func listSendTasks(_ input: ListSendTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSendTasksResponse {
+        try await self.client.execute(action: "ListSendTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

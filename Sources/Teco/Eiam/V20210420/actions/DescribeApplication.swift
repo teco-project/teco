@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 获取应用信息
-    ///
-    /// 获取一个应用的信息。
-    @inlinable
-    public func describeApplication(_ input: DescribeApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationResponse > {
-        self.client.execute(action: "DescribeApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取应用信息
-    ///
-    /// 获取一个应用的信息。
-    @inlinable
-    public func describeApplication(_ input: DescribeApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationResponse {
-        try await self.client.execute(action: "DescribeApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplication请求参数结构体
     public struct DescribeApplicationRequest: TCRequestModel {
         /// 应用id，是应用的全局唯一标识，与ClientId参数不能同时为空。
@@ -39,7 +23,7 @@ extension Eiam {
         /// 客户端id，与ApplicationId参数不能同时为空。
         public let clientId: String?
         
-        public init (applicationId: String?, clientId: String?) {
+        public init (applicationId: String? = nil, clientId: String? = nil) {
             self.applicationId = applicationId
             self.clientId = clientId
         }
@@ -133,5 +117,21 @@ extension Eiam {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取应用信息
+    ///
+    /// 获取一个应用的信息。
+    @inlinable
+    public func describeApplication(_ input: DescribeApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationResponse > {
+        self.client.execute(action: "DescribeApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用信息
+    ///
+    /// 获取一个应用的信息。
+    @inlinable
+    public func describeApplication(_ input: DescribeApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationResponse {
+        try await self.client.execute(action: "DescribeApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

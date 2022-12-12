@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 创建组织成员
-    @inlinable
-    public func createOrganizationMember(_ input: CreateOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrganizationMemberResponse > {
-        self.client.execute(action: "CreateOrganizationMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建组织成员
-    @inlinable
-    public func createOrganizationMember(_ input: CreateOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrganizationMemberResponse {
-        try await self.client.execute(action: "CreateOrganizationMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOrganizationMember请求参数结构体
     public struct CreateOrganizationMemberRequest: TCRequestModel {
         /// 成员名称。最大长度为25个字符，支持英文字母、数字、汉字、符号+@、&._[]-:,
@@ -59,7 +47,7 @@ extension Organization {
         /// 认证主体关系ID。给不同主体创建成员时需要，可以调用DescribeOrganizationAuthNode获取
         public let authRelationId: Int64?
         
-        public init (name: String, policyType: String, permissionIds: [UInt64], nodeId: Int64, accountName: String, remark: String?, recordId: Int64?, payUin: String?, identityRoleID: [UInt64]?, authRelationId: Int64?) {
+        public init (name: String, policyType: String, permissionIds: [UInt64], nodeId: Int64, accountName: String, remark: String? = nil, recordId: Int64? = nil, payUin: String? = nil, identityRoleID: [UInt64]? = nil, authRelationId: Int64? = nil) {
             self.name = name
             self.policyType = policyType
             self.permissionIds = permissionIds
@@ -99,5 +87,17 @@ extension Organization {
             case uin = "Uin"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建组织成员
+    @inlinable
+    public func createOrganizationMember(_ input: CreateOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrganizationMemberResponse > {
+        self.client.execute(action: "CreateOrganizationMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建组织成员
+    @inlinable
+    public func createOrganizationMember(_ input: CreateOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrganizationMemberResponse {
+        try await self.client.execute(action: "CreateOrganizationMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

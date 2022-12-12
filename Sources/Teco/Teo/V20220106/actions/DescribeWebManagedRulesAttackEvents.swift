@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询Web托管攻击事件
-    @inlinable
-    public func describeWebManagedRulesAttackEvents(_ input: DescribeWebManagedRulesAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebManagedRulesAttackEventsResponse > {
-        self.client.execute(action: "DescribeWebManagedRulesAttackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Web托管攻击事件
-    @inlinable
-    public func describeWebManagedRulesAttackEvents(_ input: DescribeWebManagedRulesAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesAttackEventsResponse {
-        try await self.client.execute(action: "DescribeWebManagedRulesAttackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWebManagedRulesAttackEvents请求参数结构体
     public struct DescribeWebManagedRulesAttackEventsRequest: TCRequestModel {
         /// 开始时间
@@ -57,7 +45,7 @@ extension Teo {
         /// 选填{Y、N},默认为Y；Y：展示，N：不展示
         public let isShowDetail: String?
         
-        public init (startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]?, zoneIds: [String]?, domains: [String]?, isShowDetail: String?) {
+        public init (startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, domains: [String]? = nil, isShowDetail: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.pageSize = pageSize
@@ -100,5 +88,17 @@ extension Teo {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Web托管攻击事件
+    @inlinable
+    public func describeWebManagedRulesAttackEvents(_ input: DescribeWebManagedRulesAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebManagedRulesAttackEventsResponse > {
+        self.client.execute(action: "DescribeWebManagedRulesAttackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Web托管攻击事件
+    @inlinable
+    public func describeWebManagedRulesAttackEvents(_ input: DescribeWebManagedRulesAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesAttackEventsResponse {
+        try await self.client.execute(action: "DescribeWebManagedRulesAttackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

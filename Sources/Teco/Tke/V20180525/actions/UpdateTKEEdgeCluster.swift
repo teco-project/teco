@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 修改边缘计算的集群
-    ///
-    /// 修改边缘计算集群名称等属性 
-    @inlinable
-    public func updateTKEEdgeCluster(_ input: UpdateTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTKEEdgeClusterResponse > {
-        self.client.execute(action: "UpdateTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改边缘计算的集群
-    ///
-    /// 修改边缘计算集群名称等属性 
-    @inlinable
-    public func updateTKEEdgeCluster(_ input: UpdateTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTKEEdgeClusterResponse {
-        try await self.client.execute(action: "UpdateTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateTKEEdgeCluster请求参数结构体
     public struct UpdateTKEEdgeClusterRequest: TCRequestModel {
         /// 边缘计算集群ID
@@ -49,10 +33,10 @@ extension Tke {
         public let serviceCIDR: String?
         
         /// 边缘计算集群公网访问LB信息
-        public let publicLB: EdgeClusterPublicLB
+        public let publicLB: EdgeClusterPublicLB?
         
         /// 边缘计算集群内网访问LB信息
-        public let internalLB: EdgeClusterInternalLB
+        public let internalLB: EdgeClusterInternalLB?
         
         /// 边缘计算集群的CoreDns部署信息
         public let coreDns: String?
@@ -72,7 +56,7 @@ extension Tke {
         /// 边缘集群的集群规模
         public let clusterLevel: String?
         
-        public init (clusterId: String, clusterName: String?, clusterDesc: String?, podCIDR: String?, serviceCIDR: String?, publicLB: EdgeClusterPublicLB, internalLB: EdgeClusterInternalLB, coreDns: String?, healthRegion: String?, health: String?, gridDaemon: String?, autoUpgradeClusterLevel: Bool?, clusterLevel: String?) {
+        public init (clusterId: String, clusterName: String? = nil, clusterDesc: String? = nil, podCIDR: String? = nil, serviceCIDR: String? = nil, publicLB: EdgeClusterPublicLB? = nil, internalLB: EdgeClusterInternalLB? = nil, coreDns: String? = nil, healthRegion: String? = nil, health: String? = nil, gridDaemon: String? = nil, autoUpgradeClusterLevel: Bool? = nil, clusterLevel: String? = nil) {
             self.clusterId = clusterId
             self.clusterName = clusterName
             self.clusterDesc = clusterDesc
@@ -113,5 +97,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改边缘计算的集群
+    ///
+    /// 修改边缘计算集群名称等属性 
+    @inlinable
+    public func updateTKEEdgeCluster(_ input: UpdateTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTKEEdgeClusterResponse > {
+        self.client.execute(action: "UpdateTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改边缘计算的集群
+    ///
+    /// 修改边缘计算集群名称等属性 
+    @inlinable
+    public func updateTKEEdgeCluster(_ input: UpdateTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTKEEdgeClusterResponse {
+        try await self.client.execute(action: "UpdateTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

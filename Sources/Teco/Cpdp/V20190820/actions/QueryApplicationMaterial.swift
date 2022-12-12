@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 跨境-成功申报材料查询
-    ///
-    /// 跨境-成功申报材料查询。查询成功入库的申报材料。
-    @inlinable
-    public func queryApplicationMaterial(_ input: QueryApplicationMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryApplicationMaterialResponse > {
-        self.client.execute(action: "QueryApplicationMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 跨境-成功申报材料查询
-    ///
-    /// 跨境-成功申报材料查询。查询成功入库的申报材料。
-    @inlinable
-    public func queryApplicationMaterial(_ input: QueryApplicationMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryApplicationMaterialResponse {
-        try await self.client.execute(action: "QueryApplicationMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryApplicationMaterial请求参数结构体
     public struct QueryApplicationMaterialRequest: TCRequestModel {
         /// 申报流水号
@@ -39,7 +23,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
         
-        public init (declareId: String, profile: String?) {
+        public init (declareId: String, profile: String? = nil) {
             self.declareId = declareId
             self.profile = profile
         }
@@ -62,5 +46,21 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 跨境-成功申报材料查询
+    ///
+    /// 跨境-成功申报材料查询。查询成功入库的申报材料。
+    @inlinable
+    public func queryApplicationMaterial(_ input: QueryApplicationMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryApplicationMaterialResponse > {
+        self.client.execute(action: "QueryApplicationMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 跨境-成功申报材料查询
+    ///
+    /// 跨境-成功申报材料查询。查询成功入库的申报材料。
+    @inlinable
+    public func queryApplicationMaterial(_ input: QueryApplicationMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryApplicationMaterialResponse {
+        try await self.client.execute(action: "QueryApplicationMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询二进制日志备份文件列表
-    ///
-    /// 本接口(DescribeBinlogs)用于查询云数据库实例的 binlog 文件列表。
-    @inlinable
-    public func describeBinlogs(_ input: DescribeBinlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBinlogsResponse > {
-        self.client.execute(action: "DescribeBinlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询二进制日志备份文件列表
-    ///
-    /// 本接口(DescribeBinlogs)用于查询云数据库实例的 binlog 文件列表。
-    @inlinable
-    public func describeBinlogs(_ input: DescribeBinlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogsResponse {
-        try await self.client.execute(action: "DescribeBinlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBinlogs请求参数结构体
     public struct DescribeBinlogsRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
@@ -42,7 +26,7 @@ extension Cdb {
         /// 分页大小，默认值为20，最小值为1，最大值为100。
         public let limit: Int64?
         
-        public init (instanceId: String, offset: Int64?, limit: Int64?) {
+        public init (instanceId: String, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
@@ -71,5 +55,21 @@ extension Cdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询二进制日志备份文件列表
+    ///
+    /// 本接口(DescribeBinlogs)用于查询云数据库实例的 binlog 文件列表。
+    @inlinable
+    public func describeBinlogs(_ input: DescribeBinlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBinlogsResponse > {
+        self.client.execute(action: "DescribeBinlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询二进制日志备份文件列表
+    ///
+    /// 本接口(DescribeBinlogs)用于查询云数据库实例的 binlog 文件列表。
+    @inlinable
+    public func describeBinlogs(_ input: DescribeBinlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogsResponse {
+        try await self.client.execute(action: "DescribeBinlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

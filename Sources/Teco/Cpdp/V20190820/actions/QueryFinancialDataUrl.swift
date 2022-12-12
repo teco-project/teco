@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 财税-查询金融数据文件下载链接
-    @inlinable
-    public func queryFinancialDataUrl(_ input: QueryFinancialDataUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFinancialDataUrlResponse > {
-        self.client.execute(action: "QueryFinancialDataUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 财税-查询金融数据文件下载链接
-    @inlinable
-    public func queryFinancialDataUrl(_ input: QueryFinancialDataUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFinancialDataUrlResponse {
-        try await self.client.execute(action: "QueryFinancialDataUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryFinancialDataUrl请求参数结构体
     public struct QueryFinancialDataUrlRequest: TCRequestModel {
         /// 数据查询范围:结束时间
@@ -69,5 +57,17 @@ extension Cpdp {
             case expireTime = "ExpireTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 财税-查询金融数据文件下载链接
+    @inlinable
+    public func queryFinancialDataUrl(_ input: QueryFinancialDataUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFinancialDataUrlResponse > {
+        self.client.execute(action: "QueryFinancialDataUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 财税-查询金融数据文件下载链接
+    @inlinable
+    public func queryFinancialDataUrl(_ input: QueryFinancialDataUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFinancialDataUrlResponse {
+        try await self.client.execute(action: "QueryFinancialDataUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 获取用户信息
-    @inlinable
-    public func appGetUser(_ input: AppGetUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppGetUserResponse > {
-        self.client.execute(action: "AppGetUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户信息
-    @inlinable
-    public func appGetUser(_ input: AppGetUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetUserResponse {
-        try await self.client.execute(action: "AppGetUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AppGetUser请求参数结构体
     public struct AppGetUserRequest: TCRequestModel {
         /// 访问Token
@@ -53,5 +41,17 @@ extension Iot {
             case appUser = "AppUser"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户信息
+    @inlinable
+    public func appGetUser(_ input: AppGetUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppGetUserResponse > {
+        self.client.execute(action: "AppGetUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户信息
+    @inlinable
+    public func appGetUser(_ input: AppGetUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetUserResponse {
+        try await self.client.execute(action: "AppGetUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

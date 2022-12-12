@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// Waf IP黑白名单Delete接口
-    @inlinable
-    public func deleteIpAccessControl(_ input: DeleteIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIpAccessControlResponse > {
-        self.client.execute(action: "DeleteIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// Waf IP黑白名单Delete接口
-    @inlinable
-    public func deleteIpAccessControl(_ input: DeleteIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIpAccessControlResponse {
-        try await self.client.execute(action: "DeleteIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteIpAccessControl请求参数结构体
     public struct DeleteIpAccessControlRequest: TCRequestModel {
         /// 域名
@@ -41,7 +29,7 @@ extension Waf {
         /// 是否为多域名黑白名单
         public let sourceType: String?
         
-        public init (domain: String, items: [String], deleteAll: Bool?, sourceType: String?) {
+        public init (domain: String, items: [String], deleteAll: Bool? = nil, sourceType: String? = nil) {
             self.domain = domain
             self.items = items
             self.deleteAll = deleteAll
@@ -74,5 +62,17 @@ extension Waf {
             case failedCount = "FailedCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// Waf IP黑白名单Delete接口
+    @inlinable
+    public func deleteIpAccessControl(_ input: DeleteIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIpAccessControlResponse > {
+        self.client.execute(action: "DeleteIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// Waf IP黑白名单Delete接口
+    @inlinable
+    public func deleteIpAccessControl(_ input: DeleteIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIpAccessControlResponse {
+        try await self.client.execute(action: "DeleteIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

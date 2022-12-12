@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询计费项价格
-    ///
-    /// 本接口(DescribeBillingSpecsPrice)用于查询计费项价格。
-    @inlinable
-    public func describeBillingSpecsPrice(_ input: DescribeBillingSpecsPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillingSpecsPriceResponse > {
-        self.client.execute(action: "DescribeBillingSpecsPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询计费项价格
-    ///
-    /// 本接口(DescribeBillingSpecsPrice)用于查询计费项价格。
-    @inlinable
-    public func describeBillingSpecsPrice(_ input: DescribeBillingSpecsPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsPriceResponse {
-        try await self.client.execute(action: "DescribeBillingSpecsPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBillingSpecsPrice请求参数结构体
     public struct DescribeBillingSpecsPriceRequest: TCRequestModel {
         /// 询价参数，支持批量询价
@@ -57,5 +41,21 @@ extension Tione {
             case specsPrice = "SpecsPrice"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询计费项价格
+    ///
+    /// 本接口(DescribeBillingSpecsPrice)用于查询计费项价格。
+    @inlinable
+    public func describeBillingSpecsPrice(_ input: DescribeBillingSpecsPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillingSpecsPriceResponse > {
+        self.client.execute(action: "DescribeBillingSpecsPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询计费项价格
+    ///
+    /// 本接口(DescribeBillingSpecsPrice)用于查询计费项价格。
+    @inlinable
+    public func describeBillingSpecsPrice(_ input: DescribeBillingSpecsPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsPriceResponse {
+        try await self.client.execute(action: "DescribeBillingSpecsPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

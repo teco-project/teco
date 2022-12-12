@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 修改规则
-    @inlinable
-    public func modifyAcRule(_ input: ModifyAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAcRuleResponse > {
-        self.client.execute(action: "ModifyAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改规则
-    @inlinable
-    public func modifyAcRule(_ input: ModifyAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAcRuleResponse {
-        try await self.client.execute(action: "ModifyAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAcRule请求参数结构体
     public struct ModifyAcRuleRequest: TCRequestModel {
         /// 规则数组
@@ -41,7 +29,7 @@ extension Cfw {
         /// NAT地域
         public let area: String?
         
-        public init (data: [RuleInfoData], edgeId: String?, enable: Int64?, area: String?) {
+        public init (data: [RuleInfoData], edgeId: String? = nil, enable: Int64? = nil, area: String? = nil) {
             self.data = data
             self.edgeId = edgeId
             self.enable = enable
@@ -73,5 +61,17 @@ extension Cfw {
             case info = "Info"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改规则
+    @inlinable
+    public func modifyAcRule(_ input: ModifyAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAcRuleResponse > {
+        self.client.execute(action: "ModifyAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改规则
+    @inlinable
+    public func modifyAcRule(_ input: ModifyAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAcRuleResponse {
+        try await self.client.execute(action: "ModifyAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

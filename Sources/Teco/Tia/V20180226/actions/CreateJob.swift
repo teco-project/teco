@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tia {
-    /// 创建Job
-    ///
-    /// 创建训练任务
-    @inlinable
-    public func createJob(_ input: CreateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateJobResponse > {
-        self.client.execute(action: "CreateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建Job
-    ///
-    /// 创建训练任务
-    @inlinable
-    public func createJob(_ input: CreateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobResponse {
-        try await self.client.execute(action: "CreateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateJob请求参数结构体
     public struct CreateJobRequest: TCRequestModel {
         /// 任务名称
@@ -75,7 +59,7 @@ extension Tia {
         /// 运行任务的其他配置信息
         public let runtimeConf: [String]?
         
-        public init (name: String, cluster: String, runtimeVersion: String, packageDir: [String]?, command: [String]?, args: [String]?, scaleTier: String?, masterType: String?, workerType: String?, parameterServerType: String?, workerCount: UInt64?, parameterServerCount: UInt64?, debug: Bool?, runtimeConf: [String]?) {
+        public init (name: String, cluster: String, runtimeVersion: String, packageDir: [String]? = nil, command: [String]? = nil, args: [String]? = nil, scaleTier: String? = nil, masterType: String? = nil, workerType: String? = nil, parameterServerType: String? = nil, workerCount: UInt64? = nil, parameterServerCount: UInt64? = nil, debug: Bool? = nil, runtimeConf: [String]? = nil) {
             self.name = name
             self.cluster = cluster
             self.runtimeVersion = runtimeVersion
@@ -122,5 +106,21 @@ extension Tia {
             case job = "Job"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建Job
+    ///
+    /// 创建训练任务
+    @inlinable
+    public func createJob(_ input: CreateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateJobResponse > {
+        self.client.execute(action: "CreateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建Job
+    ///
+    /// 创建训练任务
+    @inlinable
+    public func createJob(_ input: CreateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobResponse {
+        try await self.client.execute(action: "CreateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 重启实例
-    ///
-    /// 只有状态为RUNNING的实例才可以进行此操作；接口调用成功时，实例会进入REBOOTING状态；重启实例成功时，实例会进入RUNNING状态；支持强制重启，强制重启的效果等同于关闭物理计算机的电源开关再重新启动。强制重启可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常重启时使用。
-    @inlinable
-    public func rebootInstances(_ input: RebootInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RebootInstancesResponse > {
-        self.client.execute(action: "RebootInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重启实例
-    ///
-    /// 只有状态为RUNNING的实例才可以进行此操作；接口调用成功时，实例会进入REBOOTING状态；重启实例成功时，实例会进入RUNNING状态；支持强制重启，强制重启的效果等同于关闭物理计算机的电源开关再重新启动。强制重启可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常重启时使用。
-    @inlinable
-    public func rebootInstances(_ input: RebootInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RebootInstancesResponse {
-        try await self.client.execute(action: "RebootInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RebootInstances请求参数结构体
     public struct RebootInstancesRequest: TCRequestModel {
         /// 待重启的实例ID列表。在单次请求的过程中，单个region下的请求实例数上限为100。
@@ -49,7 +33,7 @@ extension Ecm {
         /// 默认取值：SOFT。
         public let stopType: String?
         
-        public init (instanceIdSet: [String], forceReboot: Bool?, stopType: String?) {
+        public init (instanceIdSet: [String], forceReboot: Bool? = nil, stopType: String? = nil) {
             self.instanceIdSet = instanceIdSet
             self.forceReboot = forceReboot
             self.stopType = stopType
@@ -70,5 +54,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重启实例
+    ///
+    /// 只有状态为RUNNING的实例才可以进行此操作；接口调用成功时，实例会进入REBOOTING状态；重启实例成功时，实例会进入RUNNING状态；支持强制重启，强制重启的效果等同于关闭物理计算机的电源开关再重新启动。强制重启可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常重启时使用。
+    @inlinable
+    public func rebootInstances(_ input: RebootInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RebootInstancesResponse > {
+        self.client.execute(action: "RebootInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重启实例
+    ///
+    /// 只有状态为RUNNING的实例才可以进行此操作；接口调用成功时，实例会进入REBOOTING状态；重启实例成功时，实例会进入RUNNING状态；支持强制重启，强制重启的效果等同于关闭物理计算机的电源开关再重新启动。强制重启可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常重启时使用。
+    @inlinable
+    public func rebootInstances(_ input: RebootInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RebootInstancesResponse {
+        try await self.client.execute(action: "RebootInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

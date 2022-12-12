@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询配置项列表
-    @inlinable
-    public func describeConfigs(_ input: DescribeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigsResponse > {
-        self.client.execute(action: "DescribeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询配置项列表
-    @inlinable
-    public func describeConfigs(_ input: DescribeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigsResponse {
-        try await self.client.execute(action: "DescribeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeConfigs请求参数结构体
     public struct DescribeConfigsRequest: TCRequestModel {
         /// 应用ID，不传入时查询全量
@@ -50,7 +38,7 @@ extension Tsf {
         /// 配置项版本，精确查询，不传入时查询全量
         public let configVersion: String?
         
-        public init (applicationId: String?, configId: String?, offset: Int64?, limit: Int64?, configIdList: [String]?, configName: String?, configVersion: String?) {
+        public init (applicationId: String? = nil, configId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configIdList: [String]? = nil, configName: String? = nil, configVersion: String? = nil) {
             self.applicationId = applicationId
             self.configId = configId
             self.offset = offset
@@ -75,7 +63,7 @@ extension Tsf {
     public struct DescribeConfigsResponse: TCResponseModel {
         /// 分页后的配置项列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TsfPageConfig
+        public let result: TsfPageConfig?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -84,5 +72,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询配置项列表
+    @inlinable
+    public func describeConfigs(_ input: DescribeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigsResponse > {
+        self.client.execute(action: "DescribeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询配置项列表
+    @inlinable
+    public func describeConfigs(_ input: DescribeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigsResponse {
+        try await self.client.execute(action: "DescribeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 创建告警规则
-    @inlinable
-    public func createPrometheusAlertRule(_ input: CreatePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusAlertRuleResponse > {
-        self.client.execute(action: "CreatePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建告警规则
-    @inlinable
-    public func createPrometheusAlertRule(_ input: CreatePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusAlertRuleResponse {
-        try await self.client.execute(action: "CreatePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePrometheusAlertRule请求参数结构体
     public struct CreatePrometheusAlertRuleRequest: TCRequestModel {
         /// 实例id
@@ -58,5 +46,17 @@ extension Tke {
             case id = "Id"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建告警规则
+    @inlinable
+    public func createPrometheusAlertRule(_ input: CreatePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusAlertRuleResponse > {
+        self.client.execute(action: "CreatePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建告警规则
+    @inlinable
+    public func createPrometheusAlertRule(_ input: CreatePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusAlertRuleResponse {
+        try await self.client.execute(action: "CreatePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

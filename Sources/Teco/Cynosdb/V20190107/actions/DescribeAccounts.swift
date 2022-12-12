@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 查询数据库管理账号
-    ///
-    /// 本接口(DescribeAccounts)用于查询数据库管理账号。
-    @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
-        self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据库管理账号
-    ///
-    /// 本接口(DescribeAccounts)用于查询数据库管理账号。
-    @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
-        try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccounts请求参数结构体
     public struct DescribeAccountsRequest: TCRequestModel {
         /// 集群ID
@@ -43,7 +27,7 @@ extension Cynosdb {
         /// <li> MYSQL </li>
         public let dbType: String?
         
-        public init (clusterId: String, accountNames: [String]?, dbType: String?) {
+        public init (clusterId: String, accountNames: [String]? = nil, dbType: String? = nil) {
             self.clusterId = clusterId
             self.accountNames = accountNames
             self.dbType = dbType
@@ -68,5 +52,21 @@ extension Cynosdb {
             case accountSet = "AccountSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据库管理账号
+    ///
+    /// 本接口(DescribeAccounts)用于查询数据库管理账号。
+    @inlinable
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+        self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库管理账号
+    ///
+    /// 本接口(DescribeAccounts)用于查询数据库管理账号。
+    @inlinable
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
+        try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

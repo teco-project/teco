@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 释放黑石弹性公网IP
-    @inlinable
-    public func deleteEip(_ input: DeleteEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEipResponse > {
-        self.client.execute(action: "DeleteEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 释放黑石弹性公网IP
-    @inlinable
-    public func deleteEip(_ input: DeleteEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipResponse {
-        try await self.client.execute(action: "DeleteEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteEip请求参数结构体
     public struct DeleteEipRequest: TCRequestModel {
         /// Eip实例ID列表
@@ -53,5 +41,17 @@ extension Bmeip {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 释放黑石弹性公网IP
+    @inlinable
+    public func deleteEip(_ input: DeleteEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEipResponse > {
+        self.client.execute(action: "DeleteEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 释放黑石弹性公网IP
+    @inlinable
+    public func deleteEip(_ input: DeleteEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipResponse {
+        try await self.client.execute(action: "DeleteEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

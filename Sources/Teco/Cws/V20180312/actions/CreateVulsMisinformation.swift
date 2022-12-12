@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cws {
-    /// 新增漏洞误报信息
-    ///
-    /// 本接口（CreateVulsMisinformation）可以用于新增一个或多个漏洞误报信息。
-    @inlinable
-    public func createVulsMisinformation(_ input: CreateVulsMisinformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVulsMisinformationResponse > {
-        self.client.execute(action: "CreateVulsMisinformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增漏洞误报信息
-    ///
-    /// 本接口（CreateVulsMisinformation）可以用于新增一个或多个漏洞误报信息。
-    @inlinable
-    public func createVulsMisinformation(_ input: CreateVulsMisinformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulsMisinformationResponse {
-        try await self.client.execute(action: "CreateVulsMisinformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVulsMisinformation请求参数结构体
     public struct CreateVulsMisinformationRequest: TCRequestModel {
         /// 漏洞ID列表
@@ -53,5 +37,21 @@ extension Cws {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增漏洞误报信息
+    ///
+    /// 本接口（CreateVulsMisinformation）可以用于新增一个或多个漏洞误报信息。
+    @inlinable
+    public func createVulsMisinformation(_ input: CreateVulsMisinformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVulsMisinformationResponse > {
+        self.client.execute(action: "CreateVulsMisinformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增漏洞误报信息
+    ///
+    /// 本接口（CreateVulsMisinformation）可以用于新增一个或多个漏洞误报信息。
+    @inlinable
+    public func createVulsMisinformation(_ input: CreateVulsMisinformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulsMisinformationResponse {
+        try await self.client.execute(action: "CreateVulsMisinformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

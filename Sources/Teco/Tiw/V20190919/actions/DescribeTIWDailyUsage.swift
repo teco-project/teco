@@ -17,26 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tiw {
-    /// 查询天维度计费用量
-    ///
-    /// 查询互动白板天维度计费用量。
-    /// 1. 单次查询统计区间最多不能超过31天。
-    /// 2. 由于统计延迟等原因，暂时不支持查询当天数据，建议在次日上午7点以后再来查询前一天的用量，例如在10月27日上午7点后，再来查询到10月26日整天的用量
-    @inlinable
-    public func describeTIWDailyUsage(_ input: DescribeTIWDailyUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTIWDailyUsageResponse > {
-        self.client.execute(action: "DescribeTIWDailyUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询天维度计费用量
-    ///
-    /// 查询互动白板天维度计费用量。
-    /// 1. 单次查询统计区间最多不能超过31天。
-    /// 2. 由于统计延迟等原因，暂时不支持查询当天数据，建议在次日上午7点以后再来查询前一天的用量，例如在10月27日上午7点后，再来查询到10月26日整天的用量
-    @inlinable
-    public func describeTIWDailyUsage(_ input: DescribeTIWDailyUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTIWDailyUsageResponse {
-        try await self.client.execute(action: "DescribeTIWDailyUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTIWDailyUsage请求参数结构体
     public struct DescribeTIWDailyUsageRequest: TCRequestModel {
         /// 互动白板应用SdkAppId
@@ -85,5 +65,25 @@ extension Tiw {
             case usages = "Usages"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询天维度计费用量
+    ///
+    /// 查询互动白板天维度计费用量。
+    /// 1. 单次查询统计区间最多不能超过31天。
+    /// 2. 由于统计延迟等原因，暂时不支持查询当天数据，建议在次日上午7点以后再来查询前一天的用量，例如在10月27日上午7点后，再来查询到10月26日整天的用量
+    @inlinable
+    public func describeTIWDailyUsage(_ input: DescribeTIWDailyUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTIWDailyUsageResponse > {
+        self.client.execute(action: "DescribeTIWDailyUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询天维度计费用量
+    ///
+    /// 查询互动白板天维度计费用量。
+    /// 1. 单次查询统计区间最多不能超过31天。
+    /// 2. 由于统计延迟等原因，暂时不支持查询当天数据，建议在次日上午7点以后再来查询前一天的用量，例如在10月27日上午7点后，再来查询到10月26日整天的用量
+    @inlinable
+    public func describeTIWDailyUsage(_ input: DescribeTIWDailyUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTIWDailyUsageResponse {
+        try await self.client.execute(action: "DescribeTIWDailyUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询k8sapi异常事件统计
-    @inlinable
-    public func describeK8sApiAbnormalSummary(_ input: DescribeK8sApiAbnormalSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeK8sApiAbnormalSummaryResponse > {
-        self.client.execute(action: "DescribeK8sApiAbnormalSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询k8sapi异常事件统计
-    @inlinable
-    public func describeK8sApiAbnormalSummary(_ input: DescribeK8sApiAbnormalSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalSummaryResponse {
-        try await self.client.execute(action: "DescribeK8sApiAbnormalSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeK8sApiAbnormalSummary请求参数结构体
     public struct DescribeK8sApiAbnormalSummaryRequest: TCRequestModel {
         public init () {
@@ -61,5 +49,17 @@ extension Tcss {
             case unhandleNoticeLevelEventCount = "UnhandleNoticeLevelEventCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询k8sapi异常事件统计
+    @inlinable
+    public func describeK8sApiAbnormalSummary(_ input: DescribeK8sApiAbnormalSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeK8sApiAbnormalSummaryResponse > {
+        self.client.execute(action: "DescribeK8sApiAbnormalSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询k8sapi异常事件统计
+    @inlinable
+    public func describeK8sApiAbnormalSummary(_ input: DescribeK8sApiAbnormalSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalSummaryResponse {
+        try await self.client.execute(action: "DescribeK8sApiAbnormalSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

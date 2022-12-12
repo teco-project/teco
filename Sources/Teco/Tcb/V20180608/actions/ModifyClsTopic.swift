@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 修改日志主题
-    @inlinable
-    public func modifyClsTopic(_ input: ModifyClsTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClsTopicResponse > {
-        self.client.execute(action: "ModifyClsTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改日志主题
-    @inlinable
-    public func modifyClsTopic(_ input: ModifyClsTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClsTopicResponse {
-        try await self.client.execute(action: "ModifyClsTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClsTopic请求参数结构体
     public struct ModifyClsTopicRequest: TCRequestModel {
         /// 环境ID
@@ -35,7 +23,7 @@ extension Tcb {
         /// 日志生命周期，单位天，可取值范围1~3600，取值为3640时代表永久保存
         public let period: Int64?
         
-        public init (envId: String, period: Int64?) {
+        public init (envId: String, period: Int64? = nil) {
             self.envId = envId
             self.period = period
         }
@@ -54,5 +42,17 @@ extension Tcb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改日志主题
+    @inlinable
+    public func modifyClsTopic(_ input: ModifyClsTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClsTopicResponse > {
+        self.client.execute(action: "ModifyClsTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改日志主题
+    @inlinable
+    public func modifyClsTopic(_ input: ModifyClsTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClsTopicResponse {
+        try await self.client.execute(action: "ModifyClsTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

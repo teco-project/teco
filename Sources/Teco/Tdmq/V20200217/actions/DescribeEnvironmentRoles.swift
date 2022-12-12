@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取命名空间角色列表
-    @inlinable
-    public func describeEnvironmentRoles(_ input: DescribeEnvironmentRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentRolesResponse > {
-        self.client.execute(action: "DescribeEnvironmentRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取命名空间角色列表
-    @inlinable
-    public func describeEnvironmentRoles(_ input: DescribeEnvironmentRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentRolesResponse {
-        try await self.client.execute(action: "DescribeEnvironmentRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEnvironmentRoles请求参数结构体
     public struct DescribeEnvironmentRolesRequest: TCRequestModel {
         /// 必填字段，环境（命名空间）名称。
@@ -50,7 +38,7 @@ extension Tdmq {
         /// 必选：否
         public let filters: [Filter]?
         
-        public init (environmentId: String?, offset: Int64?, limit: Int64?, clusterId: String?, roleName: String?, filters: [Filter]?) {
+        public init (environmentId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, roleName: String? = nil, filters: [Filter]? = nil) {
             self.environmentId = environmentId
             self.offset = offset
             self.limit = limit
@@ -85,5 +73,17 @@ extension Tdmq {
             case environmentRoleSets = "EnvironmentRoleSets"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取命名空间角色列表
+    @inlinable
+    public func describeEnvironmentRoles(_ input: DescribeEnvironmentRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentRolesResponse > {
+        self.client.execute(action: "DescribeEnvironmentRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取命名空间角色列表
+    @inlinable
+    public func describeEnvironmentRoles(_ input: DescribeEnvironmentRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentRolesResponse {
+        try await self.client.execute(action: "DescribeEnvironmentRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

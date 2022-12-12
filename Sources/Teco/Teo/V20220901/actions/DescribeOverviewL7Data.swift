@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询七层监控类时序流量数据
-    ///
-    /// 本接口（DescribeOverviewL7Data）用于查询七层监控类时序流量数据。
-    @inlinable
-    public func describeOverviewL7Data(_ input: DescribeOverviewL7DataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewL7DataResponse > {
-        self.client.execute(action: "DescribeOverviewL7Data", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询七层监控类时序流量数据
-    ///
-    /// 本接口（DescribeOverviewL7Data）用于查询七层监控类时序流量数据。
-    @inlinable
-    public func describeOverviewL7Data(_ input: DescribeOverviewL7DataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewL7DataResponse {
-        try await self.client.execute(action: "DescribeOverviewL7Data", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOverviewL7Data请求参数结构体
     public struct DescribeOverviewL7DataRequest: TCRequestModel {
         /// 开始时间。
@@ -80,7 +64,7 @@ extension Teo {
         /// <li>tagValue<br>   按照【<strong>标签Value</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
         public let filters: [QueryCondition]?
         
-        public init (startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]?, domains: [String]?, `protocol`: String?, interval: String?, area: String?, filters: [QueryCondition]?) {
+        public init (startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, domains: [String]? = nil, `protocol`: String? = nil, interval: String? = nil, area: String? = nil, filters: [QueryCondition]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metricNames = metricNames
@@ -122,5 +106,21 @@ extension Teo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询七层监控类时序流量数据
+    ///
+    /// 本接口（DescribeOverviewL7Data）用于查询七层监控类时序流量数据。
+    @inlinable
+    public func describeOverviewL7Data(_ input: DescribeOverviewL7DataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewL7DataResponse > {
+        self.client.execute(action: "DescribeOverviewL7Data", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询七层监控类时序流量数据
+    ///
+    /// 本接口（DescribeOverviewL7Data）用于查询七层监控类时序流量数据。
+    @inlinable
+    public func describeOverviewL7Data(_ input: DescribeOverviewL7DataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewL7DataResponse {
+        try await self.client.execute(action: "DescribeOverviewL7Data", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

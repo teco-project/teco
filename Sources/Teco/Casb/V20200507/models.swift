@@ -23,7 +23,7 @@ extension Casb {
         /// 表名称
         public let tableNameSet: [String]?
         
-        public init (databaseName: String, tableNameSet: [String]?) {
+        public init (databaseName: String, tableNameSet: [String]? = nil) {
             self.databaseName = databaseName
             self.tableNameSet = tableNameSet
         }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 忽略漏洞
-    ///
-    /// 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。
-    @inlinable
-    public func ignoreImpactedHosts(_ input: IgnoreImpactedHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IgnoreImpactedHostsResponse > {
-        self.client.execute(action: "IgnoreImpactedHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 忽略漏洞
-    ///
-    /// 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。
-    @inlinable
-    public func ignoreImpactedHosts(_ input: IgnoreImpactedHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IgnoreImpactedHostsResponse {
-        try await self.client.execute(action: "IgnoreImpactedHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// IgnoreImpactedHosts请求参数结构体
     public struct IgnoreImpactedHostsRequest: TCRequestModel {
         /// 漏洞ID数组。
@@ -53,5 +37,21 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 忽略漏洞
+    ///
+    /// 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。
+    @inlinable
+    public func ignoreImpactedHosts(_ input: IgnoreImpactedHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IgnoreImpactedHostsResponse > {
+        self.client.execute(action: "IgnoreImpactedHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 忽略漏洞
+    ///
+    /// 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。
+    @inlinable
+    public func ignoreImpactedHosts(_ input: IgnoreImpactedHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IgnoreImpactedHostsResponse {
+        try await self.client.execute(action: "IgnoreImpactedHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

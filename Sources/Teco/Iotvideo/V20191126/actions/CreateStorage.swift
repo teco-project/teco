@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 购买云存套餐
-    ///
-    /// 该接口已经停止维护，请勿使用
-    @inlinable
-    public func createStorage(_ input: CreateStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStorageResponse > {
-        self.client.execute(action: "CreateStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 购买云存套餐
-    ///
-    /// 该接口已经停止维护，请勿使用
-    @inlinable
-    public func createStorage(_ input: CreateStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStorageResponse {
-        try await self.client.execute(action: "CreateStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateStorage请求参数结构体
     public struct CreateStorageRequest: TCRequestModel {
         /// 云存套餐ID
@@ -63,5 +47,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 购买云存套餐
+    ///
+    /// 该接口已经停止维护，请勿使用
+    @inlinable
+    public func createStorage(_ input: CreateStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStorageResponse > {
+        self.client.execute(action: "CreateStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 购买云存套餐
+    ///
+    /// 该接口已经停止维护，请勿使用
+    @inlinable
+    public func createStorage(_ input: CreateStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStorageResponse {
+        try await self.client.execute(action: "CreateStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

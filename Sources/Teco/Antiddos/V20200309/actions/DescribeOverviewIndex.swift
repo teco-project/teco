@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 拉取防护概览指标
-    @inlinable
-    public func describeOverviewIndex(_ input: DescribeOverviewIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewIndexResponse > {
-        self.client.execute(action: "DescribeOverviewIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取防护概览指标
-    @inlinable
-    public func describeOverviewIndex(_ input: DescribeOverviewIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewIndexResponse {
-        try await self.client.execute(action: "DescribeOverviewIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOverviewIndex请求参数结构体
     public struct DescribeOverviewIndexRequest: TCRequestModel {
         /// 拉取指标起始时间
@@ -94,5 +82,17 @@ extension Antiddos {
             case newAttackType = "NewAttackType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取防护概览指标
+    @inlinable
+    public func describeOverviewIndex(_ input: DescribeOverviewIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewIndexResponse > {
+        self.client.execute(action: "DescribeOverviewIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取防护概览指标
+    @inlinable
+    public func describeOverviewIndex(_ input: DescribeOverviewIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewIndexResponse {
+        try await self.client.execute(action: "DescribeOverviewIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

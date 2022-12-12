@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取云端录制文件列表
-    ///
-    /// 根据时间获取云端录制文件列表
-    @inlinable
-    public func describeVideoList(_ input: DescribeVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoListResponse > {
-        self.client.execute(action: "DescribeVideoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取云端录制文件列表
-    ///
-    /// 根据时间获取云端录制文件列表
-    @inlinable
-    public func describeVideoList(_ input: DescribeVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoListResponse {
-        try await self.client.execute(action: "DescribeVideoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVideoList请求参数结构体
     public struct DescribeVideoListRequest: TCRequestModel {
         /// 偏移
@@ -84,7 +68,7 @@ extension Iotvideoindustry {
         /// 录制类型 1: 联动计划录制 2: 告警录制
         public let recordType: [Int64]?
         
-        public init (offset: Int64, limit: Int64, startTime: Int64?, endTime: Int64?, deviceId: String?, startRecordTime: Int64?, endRecordTime: Int64?, startExpireTime: Int64?, endExpireTime: Int64?, startFileSize: Int64?, endFileSize: Int64?, isRecording: Int64?, channelId: String?, planId: String?, sceneId: Int64?, warnId: Int64?, recordType: [Int64]?) {
+        public init (offset: Int64, limit: Int64, startTime: Int64? = nil, endTime: Int64? = nil, deviceId: String? = nil, startRecordTime: Int64? = nil, endRecordTime: Int64? = nil, startExpireTime: Int64? = nil, endExpireTime: Int64? = nil, startFileSize: Int64? = nil, endFileSize: Int64? = nil, isRecording: Int64? = nil, channelId: String? = nil, planId: String? = nil, sceneId: Int64? = nil, warnId: Int64? = nil, recordType: [Int64]? = nil) {
             self.offset = offset
             self.limit = limit
             self.startTime = startTime
@@ -145,5 +129,21 @@ extension Iotvideoindustry {
             case recordList = "RecordList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取云端录制文件列表
+    ///
+    /// 根据时间获取云端录制文件列表
+    @inlinable
+    public func describeVideoList(_ input: DescribeVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoListResponse > {
+        self.client.execute(action: "DescribeVideoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云端录制文件列表
+    ///
+    /// 根据时间获取云端录制文件列表
+    @inlinable
+    public func describeVideoList(_ input: DescribeVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoListResponse {
+        try await self.client.execute(action: "DescribeVideoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

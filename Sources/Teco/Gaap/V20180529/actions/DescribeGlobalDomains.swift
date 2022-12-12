@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 查询域名列表
-    @inlinable
-    public func describeGlobalDomains(_ input: DescribeGlobalDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGlobalDomainsResponse > {
-        self.client.execute(action: "DescribeGlobalDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询域名列表
-    @inlinable
-    public func describeGlobalDomains(_ input: DescribeGlobalDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainsResponse {
-        try await self.client.execute(action: "DescribeGlobalDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGlobalDomains请求参数结构体
     public struct DescribeGlobalDomainsRequest: TCRequestModel {
         /// 项目ID
@@ -45,7 +33,7 @@ extension Gaap {
         /// 最多支持5个标签，当存在两个或两个以上的标签时，满足其中任意一个标签时，域名会被拉取出来。
         public let tagSet: [TagPair]?
         
-        public init (projectId: Int64, offset: UInt64, limit: UInt64, filters: [Filter]?, tagSet: [TagPair]?) {
+        public init (projectId: Int64, offset: UInt64, limit: UInt64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil) {
             self.projectId = projectId
             self.offset = offset
             self.limit = limit
@@ -78,5 +66,17 @@ extension Gaap {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询域名列表
+    @inlinable
+    public func describeGlobalDomains(_ input: DescribeGlobalDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGlobalDomainsResponse > {
+        self.client.execute(action: "DescribeGlobalDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询域名列表
+    @inlinable
+    public func describeGlobalDomains(_ input: DescribeGlobalDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainsResponse {
+        try await self.client.execute(action: "DescribeGlobalDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

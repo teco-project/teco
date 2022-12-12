@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改流日志属性
-    ///
-    /// 本接口（ModifyFlowLogAttribute）用于修改流日志属性
-    @inlinable
-    public func modifyFlowLogAttribute(_ input: ModifyFlowLogAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFlowLogAttributeResponse > {
-        self.client.execute(action: "ModifyFlowLogAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改流日志属性
-    ///
-    /// 本接口（ModifyFlowLogAttribute）用于修改流日志属性
-    @inlinable
-    public func modifyFlowLogAttribute(_ input: ModifyFlowLogAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowLogAttributeResponse {
-        try await self.client.execute(action: "ModifyFlowLogAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyFlowLogAttribute请求参数结构体
     public struct ModifyFlowLogAttributeRequest: TCRequestModel {
         /// 流日志唯一ID
@@ -45,7 +29,7 @@ extension Vpc {
         /// 流日志实例描述
         public let flowLogDescription: String?
         
-        public init (flowLogId: String, vpcId: String?, flowLogName: String?, flowLogDescription: String?) {
+        public init (flowLogId: String, vpcId: String? = nil, flowLogName: String? = nil, flowLogDescription: String? = nil) {
             self.flowLogId = flowLogId
             self.vpcId = vpcId
             self.flowLogName = flowLogName
@@ -68,5 +52,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改流日志属性
+    ///
+    /// 本接口（ModifyFlowLogAttribute）用于修改流日志属性
+    @inlinable
+    public func modifyFlowLogAttribute(_ input: ModifyFlowLogAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFlowLogAttributeResponse > {
+        self.client.execute(action: "ModifyFlowLogAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改流日志属性
+    ///
+    /// 本接口（ModifyFlowLogAttribute）用于修改流日志属性
+    @inlinable
+    public func modifyFlowLogAttribute(_ input: ModifyFlowLogAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowLogAttributeResponse {
+        try await self.client.execute(action: "ModifyFlowLogAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

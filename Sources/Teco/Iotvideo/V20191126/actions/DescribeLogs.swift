@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 查询设备日志列表
-    ///
-    /// 本接口（DescribeLogs）用于查询设备日志列表。
-    /// 设备日志最长保留时长为15天,超期自动清除。
-    @inlinable
-    public func describeLogs(_ input: DescribeLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogsResponse > {
-        self.client.execute(action: "DescribeLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备日志列表
-    ///
-    /// 本接口（DescribeLogs）用于查询设备日志列表。
-    /// 设备日志最长保留时长为15天,超期自动清除。
-    @inlinable
-    public func describeLogs(_ input: DescribeLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
-        try await self.client.execute(action: "DescribeLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLogs请求参数结构体
     public struct DescribeLogsRequest: TCRequestModel {
         /// 设备TID
@@ -56,7 +38,7 @@ extension Iotvideo {
         /// 查询的结束时间 UNIX时间戳，单位秒
         public let endTime: UInt64?
         
-        public init (tid: String, limit: UInt64, offset: UInt64, logType: UInt64?, startTime: UInt64?, dataObject: String?, endTime: UInt64?) {
+        public init (tid: String, limit: UInt64, offset: UInt64, logType: UInt64? = nil, startTime: UInt64? = nil, dataObject: String? = nil, endTime: UInt64? = nil) {
             self.tid = tid
             self.limit = limit
             self.offset = offset
@@ -94,5 +76,23 @@ extension Iotvideo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备日志列表
+    ///
+    /// 本接口（DescribeLogs）用于查询设备日志列表。
+    /// 设备日志最长保留时长为15天,超期自动清除。
+    @inlinable
+    public func describeLogs(_ input: DescribeLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogsResponse > {
+        self.client.execute(action: "DescribeLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备日志列表
+    ///
+    /// 本接口（DescribeLogs）用于查询设备日志列表。
+    /// 设备日志最长保留时长为15天,超期自动清除。
+    @inlinable
+    public func describeLogs(_ input: DescribeLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
+        try await self.client.execute(action: "DescribeLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 删除镜像
-    ///
-    /// 本接口（DeleteImages）用于删除一个或多个镜像。
-    /// * 当[镜像状态](https://cloud.tencent.com/document/product/213/15753#Image)为`创建中`和`使用中`时, 不允许删除。镜像状态可以通过[DescribeImages](https://cloud.tencent.com/document/api/213/9418)获取。
-    /// * 每个地域最多只支持创建10个自定义镜像，删除镜像可以释放账户的配额。
-    /// * 当镜像正在被其它账户分享时，不允许删除。
-    @inlinable
-    public func deleteImages(_ input: DeleteImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImagesResponse > {
-        self.client.execute(action: "DeleteImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除镜像
-    ///
-    /// 本接口（DeleteImages）用于删除一个或多个镜像。
-    /// * 当[镜像状态](https://cloud.tencent.com/document/product/213/15753#Image)为`创建中`和`使用中`时, 不允许删除。镜像状态可以通过[DescribeImages](https://cloud.tencent.com/document/api/213/9418)获取。
-    /// * 每个地域最多只支持创建10个自定义镜像，删除镜像可以释放账户的配额。
-    /// * 当镜像正在被其它账户分享时，不允许删除。
-    @inlinable
-    public func deleteImages(_ input: DeleteImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
-        try await self.client.execute(action: "DeleteImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteImages请求参数结构体
     public struct DeleteImagesRequest: TCRequestModel {
         /// 准备删除的镜像Id列表
@@ -48,7 +26,7 @@ extension Cvm {
         /// 检测是否支持删除镜像
         public let dryRun: Bool?
         
-        public init (imageIds: [String], deleteBindedSnap: Bool?, dryRun: Bool?) {
+        public init (imageIds: [String], deleteBindedSnap: Bool? = nil, dryRun: Bool? = nil) {
             self.imageIds = imageIds
             self.deleteBindedSnap = deleteBindedSnap
             self.dryRun = dryRun
@@ -69,5 +47,27 @@ extension Cvm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除镜像
+    ///
+    /// 本接口（DeleteImages）用于删除一个或多个镜像。
+    /// * 当[镜像状态](https://cloud.tencent.com/document/product/213/15753#Image)为`创建中`和`使用中`时, 不允许删除。镜像状态可以通过[DescribeImages](https://cloud.tencent.com/document/api/213/9418)获取。
+    /// * 每个地域最多只支持创建10个自定义镜像，删除镜像可以释放账户的配额。
+    /// * 当镜像正在被其它账户分享时，不允许删除。
+    @inlinable
+    public func deleteImages(_ input: DeleteImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImagesResponse > {
+        self.client.execute(action: "DeleteImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除镜像
+    ///
+    /// 本接口（DeleteImages）用于删除一个或多个镜像。
+    /// * 当[镜像状态](https://cloud.tencent.com/document/product/213/15753#Image)为`创建中`和`使用中`时, 不允许删除。镜像状态可以通过[DescribeImages](https://cloud.tencent.com/document/api/213/9418)获取。
+    /// * 每个地域最多只支持创建10个自定义镜像，删除镜像可以释放账户的配额。
+    /// * 当镜像正在被其它账户分享时，不允许删除。
+    @inlinable
+    public func deleteImages(_ input: DeleteImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
+        try await self.client.execute(action: "DeleteImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

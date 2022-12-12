@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Waf {
-    /// 创建搜索下载攻击日志任务
-    ///
-    /// 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口
-    @inlinable
-    public func postAttackDownloadTask(_ input: PostAttackDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PostAttackDownloadTaskResponse > {
-        self.client.execute(action: "PostAttackDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建搜索下载攻击日志任务
-    ///
-    /// 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口
-    @inlinable
-    public func postAttackDownloadTask(_ input: PostAttackDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PostAttackDownloadTaskResponse {
-        try await self.client.execute(action: "PostAttackDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PostAttackDownloadTask请求参数结构体
     public struct PostAttackDownloadTaskRequest: TCRequestModel {
         /// 查询的域名，所有域名使用all
@@ -55,7 +39,7 @@ extension Waf {
         /// 默认为desc，可以取值desc和asc
         public let sort: String?
         
-        public init (domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String?) {
+        public init (domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil) {
             self.domain = domain
             self.startTime = startTime
             self.endTime = endTime
@@ -86,5 +70,21 @@ extension Waf {
             case flow = "Flow"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建搜索下载攻击日志任务
+    ///
+    /// 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口
+    @inlinable
+    public func postAttackDownloadTask(_ input: PostAttackDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PostAttackDownloadTaskResponse > {
+        self.client.execute(action: "PostAttackDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建搜索下载攻击日志任务
+    ///
+    /// 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口
+    @inlinable
+    public func postAttackDownloadTask(_ input: PostAttackDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PostAttackDownloadTaskResponse {
+        try await self.client.execute(action: "PostAttackDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

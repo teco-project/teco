@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 获取黑石负载均衡四层监听器绑定的主机列表
-    ///
-    /// 获取黑石负载均衡四层监听器绑定的主机列表。
-    @inlinable
-    public func describeL4Backends(_ input: DescribeL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL4BackendsResponse > {
-        self.client.execute(action: "DescribeL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取黑石负载均衡四层监听器绑定的主机列表
-    ///
-    /// 获取黑石负载均衡四层监听器绑定的主机列表。
-    @inlinable
-    public func describeL4Backends(_ input: DescribeL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4BackendsResponse {
-        try await self.client.execute(action: "DescribeL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeL4Backends请求参数结构体
     public struct DescribeL4BackendsRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -42,7 +26,7 @@ extension Bmlb {
         /// 待查询的主机信息。
         public let backendSet: [DescribeL4Backend]?
         
-        public init (loadBalancerId: String, listenerId: String, backendSet: [DescribeL4Backend]?) {
+        public init (loadBalancerId: String, listenerId: String, backendSet: [DescribeL4Backend]? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.backendSet = backendSet
@@ -67,5 +51,21 @@ extension Bmlb {
             case backendSet = "BackendSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取黑石负载均衡四层监听器绑定的主机列表
+    ///
+    /// 获取黑石负载均衡四层监听器绑定的主机列表。
+    @inlinable
+    public func describeL4Backends(_ input: DescribeL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL4BackendsResponse > {
+        self.client.execute(action: "DescribeL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取黑石负载均衡四层监听器绑定的主机列表
+    ///
+    /// 获取黑石负载均衡四层监听器绑定的主机列表。
+    @inlinable
+    public func describeL4Backends(_ input: DescribeL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4BackendsResponse {
+        try await self.client.execute(action: "DescribeL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

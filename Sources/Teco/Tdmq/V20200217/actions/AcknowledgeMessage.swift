@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 确认消息
-    ///
-    /// 根据提供的 MessageID 确认指定 topic 中的消息
-    @inlinable
-    public func acknowledgeMessage(_ input: AcknowledgeMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcknowledgeMessageResponse > {
-        self.client.execute(action: "AcknowledgeMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 确认消息
-    ///
-    /// 根据提供的 MessageID 确认指定 topic 中的消息
-    @inlinable
-    public func acknowledgeMessage(_ input: AcknowledgeMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcknowledgeMessageResponse {
-        try await self.client.execute(action: "AcknowledgeMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AcknowledgeMessage请求参数结构体
     public struct AcknowledgeMessageRequest: TCRequestModel {
         /// 用作标识消息的唯一的ID（可从 receiveMessage 的返回值中获得）
@@ -68,5 +52,21 @@ extension Tdmq {
             case errorMsg = "ErrorMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 确认消息
+    ///
+    /// 根据提供的 MessageID 确认指定 topic 中的消息
+    @inlinable
+    public func acknowledgeMessage(_ input: AcknowledgeMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcknowledgeMessageResponse > {
+        self.client.execute(action: "AcknowledgeMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 确认消息
+    ///
+    /// 根据提供的 MessageID 确认指定 topic 中的消息
+    @inlinable
+    public func acknowledgeMessage(_ input: AcknowledgeMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcknowledgeMessageResponse {
+        try await self.client.execute(action: "AcknowledgeMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

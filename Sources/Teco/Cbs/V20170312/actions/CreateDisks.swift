@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 创建云硬盘
-    ///
-    /// 本接口（CreateDisks）用于创建云硬盘。
-    /// * 预付费云盘的购买会预先扣除本次云盘购买所需金额，在调用本接口前请确保账户余额充足。
-    /// * 本接口支持传入数据盘快照来创建云盘，实现将快照数据复制到新购云盘上。
-    /// * 本接口为异步接口，当创建请求下发成功后会返回一个新建的云盘ID列表，此时云盘的创建并未立即完成。可以通过调用[DescribeDisks](/document/product/362/16315)接口根据DiskId查询对应云盘，如果能查到云盘，且状态为'UNATTACHED'或'ATTACHED'，则表示创建成功。
-    @inlinable
-    public func createDisks(_ input: CreateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDisksResponse > {
-        self.client.execute(action: "CreateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建云硬盘
-    ///
-    /// 本接口（CreateDisks）用于创建云硬盘。
-    /// * 预付费云盘的购买会预先扣除本次云盘购买所需金额，在调用本接口前请确保账户余额充足。
-    /// * 本接口支持传入数据盘快照来创建云盘，实现将快照数据复制到新购云盘上。
-    /// * 本接口为异步接口，当创建请求下发成功后会返回一个新建的云盘ID列表，此时云盘的创建并未立即完成。可以通过调用[DescribeDisks](/document/product/362/16315)接口根据DiskId查询对应云盘，如果能查到云盘，且状态为'UNATTACHED'或'ATTACHED'，则表示创建成功。
-    @inlinable
-    public func createDisks(_ input: CreateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDisksResponse {
-        try await self.client.execute(action: "CreateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDisks请求参数结构体
     public struct CreateDisksRequest: TCRequestModel {
         /// 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目。若不指定项目，将在默认项目下进行创建。
@@ -76,18 +54,18 @@ extension Cbs {
         public let encrypt: String?
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数指定包年包月云盘的购买时长、是否设置自动续费等属性。<br>创建预付费云盘该参数必传，创建按小时后付费云盘无需传该参数。
-        public let diskChargePrepaid: DiskChargePrepaid
+        public let diskChargePrepaid: DiskChargePrepaid?
         
         /// 销毁云盘时删除关联的非永久保留快照。0 表示非永久快照不随云盘销毁而销毁，1表示非永久快照随云盘销毁而销毁，默认取0。快照是否永久保留可以通过DescribeSnapshots接口返回的快照详情的IsPermanent字段来判断，true表示永久快照，false表示非永久快照。
         public let deleteSnapshot: Int64?
         
         /// 创建云盘时指定自动挂载并初始化该数据盘。
-        public let autoMountConfiguration: AutoMountConfiguration
+        public let autoMountConfiguration: AutoMountConfiguration?
         
         /// 指定云硬盘备份点配额。
         public let diskBackupQuota: UInt64?
         
-        public init (placement: Placement, diskChargeType: String, diskType: String, diskName: String?, tags: [Tag]?, snapshotId: String?, diskCount: UInt64?, throughputPerformance: UInt64?, diskSize: UInt64?, shareable: Bool?, clientToken: String?, encrypt: String?, diskChargePrepaid: DiskChargePrepaid, deleteSnapshot: Int64?, autoMountConfiguration: AutoMountConfiguration, diskBackupQuota: UInt64?) {
+        public init (placement: Placement, diskChargeType: String, diskType: String, diskName: String? = nil, tags: [Tag]? = nil, snapshotId: String? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskSize: UInt64? = nil, shareable: Bool? = nil, clientToken: String? = nil, encrypt: String? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, deleteSnapshot: Int64? = nil, autoMountConfiguration: AutoMountConfiguration? = nil, diskBackupQuota: UInt64? = nil) {
             self.placement = placement
             self.diskChargeType = diskChargeType
             self.diskType = diskType
@@ -138,5 +116,27 @@ extension Cbs {
             case diskIdSet = "DiskIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建云硬盘
+    ///
+    /// 本接口（CreateDisks）用于创建云硬盘。
+    /// * 预付费云盘的购买会预先扣除本次云盘购买所需金额，在调用本接口前请确保账户余额充足。
+    /// * 本接口支持传入数据盘快照来创建云盘，实现将快照数据复制到新购云盘上。
+    /// * 本接口为异步接口，当创建请求下发成功后会返回一个新建的云盘ID列表，此时云盘的创建并未立即完成。可以通过调用[DescribeDisks](/document/product/362/16315)接口根据DiskId查询对应云盘，如果能查到云盘，且状态为'UNATTACHED'或'ATTACHED'，则表示创建成功。
+    @inlinable
+    public func createDisks(_ input: CreateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDisksResponse > {
+        self.client.execute(action: "CreateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云硬盘
+    ///
+    /// 本接口（CreateDisks）用于创建云硬盘。
+    /// * 预付费云盘的购买会预先扣除本次云盘购买所需金额，在调用本接口前请确保账户余额充足。
+    /// * 本接口支持传入数据盘快照来创建云盘，实现将快照数据复制到新购云盘上。
+    /// * 本接口为异步接口，当创建请求下发成功后会返回一个新建的云盘ID列表，此时云盘的创建并未立即完成。可以通过调用[DescribeDisks](/document/product/362/16315)接口根据DiskId查询对应云盘，如果能查到云盘，且状态为'UNATTACHED'或'ATTACHED'，则表示创建成功。
+    @inlinable
+    public func createDisks(_ input: CreateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDisksResponse {
+        try await self.client.execute(action: "CreateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

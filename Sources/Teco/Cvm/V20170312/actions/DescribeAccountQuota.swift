@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查询用户配额详情
-    ///
-    /// 本接口(DescribeAccountQuota)用于查询用户配额详情。
-    @inlinable
-    public func describeAccountQuota(_ input: DescribeAccountQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountQuotaResponse > {
-        self.client.execute(action: "DescribeAccountQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户配额详情
-    ///
-    /// 本接口(DescribeAccountQuota)用于查询用户配额详情。
-    @inlinable
-    public func describeAccountQuota(_ input: DescribeAccountQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountQuotaResponse {
-        try await self.client.execute(action: "DescribeAccountQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccountQuota请求参数结构体
     public struct DescribeAccountQuotaRequest: TCRequestModel {
         /// <li><strong>zone</strong></li>
@@ -39,7 +23,7 @@ extension Cvm {
         /// <p style="padding-left: 30px;">按照【<strong>配额类型</strong>】进行过滤。配额类型形如：PostPaidQuotaSet。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p><p style="padding-left: 30px;">可选项：PostPaidQuotaSet,DisasterRecoverGroupQuotaSet,PrePaidQuotaSet,SpotPaidQuotaSet</p>
         public let filters: [Filter]?
         
-        public init (filters: [Filter]?) {
+        public init (filters: [Filter]? = nil) {
             self.filters = filters
         }
         
@@ -64,5 +48,21 @@ extension Cvm {
             case accountQuotaOverview = "AccountQuotaOverview"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户配额详情
+    ///
+    /// 本接口(DescribeAccountQuota)用于查询用户配额详情。
+    @inlinable
+    public func describeAccountQuota(_ input: DescribeAccountQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountQuotaResponse > {
+        self.client.execute(action: "DescribeAccountQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户配额详情
+    ///
+    /// 本接口(DescribeAccountQuota)用于查询用户配额详情。
+    @inlinable
+    public func describeAccountQuota(_ input: DescribeAccountQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountQuotaResponse {
+        try await self.client.execute(action: "DescribeAccountQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

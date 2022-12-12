@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 重启实例
-    ///
-    /// 本接口(RestartDBInstances)用于重启云数据库实例。
-    /// 注意：
-    /// 1、本接口只支持主实例进行重启操作；
-    /// 2、实例状态必须为正常，并且没有其他异步任务在执行中。
-    @inlinable
-    public func restartDBInstances(_ input: RestartDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartDBInstancesResponse > {
-        self.client.execute(action: "RestartDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重启实例
-    ///
-    /// 本接口(RestartDBInstances)用于重启云数据库实例。
-    /// 注意：
-    /// 1、本接口只支持主实例进行重启操作；
-    /// 2、实例状态必须为正常，并且没有其他异步任务在执行中。
-    @inlinable
-    public func restartDBInstances(_ input: RestartDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstancesResponse {
-        try await self.client.execute(action: "RestartDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestartDBInstances请求参数结构体
     public struct RestartDBInstancesRequest: TCRequestModel {
         /// 实例 ID 数组，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -63,5 +41,27 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重启实例
+    ///
+    /// 本接口(RestartDBInstances)用于重启云数据库实例。
+    /// 注意：
+    /// 1、本接口只支持主实例进行重启操作；
+    /// 2、实例状态必须为正常，并且没有其他异步任务在执行中。
+    @inlinable
+    public func restartDBInstances(_ input: RestartDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartDBInstancesResponse > {
+        self.client.execute(action: "RestartDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重启实例
+    ///
+    /// 本接口(RestartDBInstances)用于重启云数据库实例。
+    /// 注意：
+    /// 1、本接口只支持主实例进行重启操作；
+    /// 2、实例状态必须为正常，并且没有其他异步任务在执行中。
+    @inlinable
+    public func restartDBInstances(_ input: RestartDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstancesResponse {
+        try await self.client.execute(action: "RestartDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

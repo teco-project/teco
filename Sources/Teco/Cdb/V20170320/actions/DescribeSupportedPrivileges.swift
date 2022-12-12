@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询云数据库实例支持的权限信息
-    ///
-    /// 本接口(DescribeSupportedPrivileges)用于查询云数据库的支持的权限信息，包括全局权限，数据库权限，表权限以及列权限。
-    @inlinable
-    public func describeSupportedPrivileges(_ input: DescribeSupportedPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSupportedPrivilegesResponse > {
-        self.client.execute(action: "DescribeSupportedPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云数据库实例支持的权限信息
-    ///
-    /// 本接口(DescribeSupportedPrivileges)用于查询云数据库的支持的权限信息，包括全局权限，数据库权限，表权限以及列权限。
-    @inlinable
-    public func describeSupportedPrivileges(_ input: DescribeSupportedPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedPrivilegesResponse {
-        try await self.client.execute(action: "DescribeSupportedPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSupportedPrivileges请求参数结构体
     public struct DescribeSupportedPrivilegesRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -69,5 +53,21 @@ extension Cdb {
             case columnSupportedPrivileges = "ColumnSupportedPrivileges"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云数据库实例支持的权限信息
+    ///
+    /// 本接口(DescribeSupportedPrivileges)用于查询云数据库的支持的权限信息，包括全局权限，数据库权限，表权限以及列权限。
+    @inlinable
+    public func describeSupportedPrivileges(_ input: DescribeSupportedPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSupportedPrivilegesResponse > {
+        self.client.execute(action: "DescribeSupportedPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云数据库实例支持的权限信息
+    ///
+    /// 本接口(DescribeSupportedPrivileges)用于查询云数据库的支持的权限信息，包括全局权限，数据库权限，表权限以及列权限。
+    @inlinable
+    public func describeSupportedPrivileges(_ input: DescribeSupportedPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedPrivilegesResponse {
+        try await self.client.execute(action: "DescribeSupportedPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

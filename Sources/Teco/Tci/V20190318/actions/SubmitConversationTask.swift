@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 对话任务分析接口
-    @inlinable
-    public func submitConversationTask(_ input: SubmitConversationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitConversationTaskResponse > {
-        self.client.execute(action: "SubmitConversationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 对话任务分析接口
-    @inlinable
-    public func submitConversationTask(_ input: SubmitConversationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitConversationTaskResponse {
-        try await self.client.execute(action: "SubmitConversationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SubmitConversationTask请求参数结构体
     public struct SubmitConversationTaskRequest: TCRequestModel {
         /// 音频源的语言，默认0为英文，1为中文
@@ -45,12 +33,12 @@ extension Tci {
         public let voiceFileType: Int64
         
         /// 功能开关列表，表示是否需要打开相应的功能，返回相应的信息
-        public let functions: Function
+        public let functions: Function?
         
         /// 识别词库名列表，评估过程使用这些词汇库中的词汇进行词汇使用行为分析
         public let vocabLibNameList: [String]?
         
-        public init (lang: Int64, studentUrl: String, teacherUrl: String, voiceEncodeType: Int64, voiceFileType: Int64, functions: Function, vocabLibNameList: [String]?) {
+        public init (lang: Int64, studentUrl: String, teacherUrl: String, voiceEncodeType: Int64, voiceFileType: Int64, functions: Function? = nil, vocabLibNameList: [String]? = nil) {
             self.lang = lang
             self.studentUrl = studentUrl
             self.teacherUrl = teacherUrl
@@ -83,5 +71,17 @@ extension Tci {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 对话任务分析接口
+    @inlinable
+    public func submitConversationTask(_ input: SubmitConversationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitConversationTaskResponse > {
+        self.client.execute(action: "SubmitConversationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 对话任务分析接口
+    @inlinable
+    public func submitConversationTask(_ input: SubmitConversationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitConversationTaskResponse {
+        try await self.client.execute(action: "SubmitConversationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

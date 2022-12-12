@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 绑定云存用户
-    @inlinable
-    public func bindCloudStorageUser(_ input: BindCloudStorageUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindCloudStorageUserResponse > {
-        self.client.execute(action: "BindCloudStorageUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定云存用户
-    @inlinable
-    public func bindCloudStorageUser(_ input: BindCloudStorageUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindCloudStorageUserResponse {
-        try await self.client.execute(action: "BindCloudStorageUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindCloudStorageUser请求参数结构体
     public struct BindCloudStorageUserRequest: TCRequestModel {
         /// 产品ID
@@ -59,5 +47,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定云存用户
+    @inlinable
+    public func bindCloudStorageUser(_ input: BindCloudStorageUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindCloudStorageUserResponse > {
+        self.client.execute(action: "BindCloudStorageUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定云存用户
+    @inlinable
+    public func bindCloudStorageUser(_ input: BindCloudStorageUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindCloudStorageUserResponse {
+        try await self.client.execute(action: "BindCloudStorageUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

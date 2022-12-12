@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 删除VPC
-    ///
-    /// 删除私有网络
-    @inlinable
-    public func deleteVpc(_ input: DeleteVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcResponse > {
-        self.client.execute(action: "DeleteVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除VPC
-    ///
-    /// 删除私有网络
-    @inlinable
-    public func deleteVpc(_ input: DeleteVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
-        try await self.client.execute(action: "DeleteVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteVpc请求参数结构体
     public struct DeleteVpcRequest: TCRequestModel {
         /// VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
@@ -58,5 +42,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除VPC
+    ///
+    /// 删除私有网络
+    @inlinable
+    public func deleteVpc(_ input: DeleteVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcResponse > {
+        self.client.execute(action: "DeleteVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除VPC
+    ///
+    /// 删除私有网络
+    @inlinable
+    public func deleteVpc(_ input: DeleteVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
+        try await self.client.execute(action: "DeleteVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

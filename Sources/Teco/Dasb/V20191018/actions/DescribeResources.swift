@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dasb {
-    /// 查询堡垒机服务信息
-    ///
-    /// 查询用户购买的堡垒机服务信息，包括资源ID、授权点数、VPC、过期时间等。
-    @inlinable
-    public func describeResources(_ input: DescribeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesResponse > {
-        self.client.execute(action: "DescribeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询堡垒机服务信息
-    ///
-    /// 查询用户购买的堡垒机服务信息，包括资源ID、授权点数、VPC、过期时间等。
-    @inlinable
-    public func describeResources(_ input: DescribeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesResponse {
-        try await self.client.execute(action: "DescribeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResources请求参数结构体
     public struct DescribeResourcesRequest: TCRequestModel {
         /// 地域码, 如: ap-guangzhou
@@ -42,7 +26,7 @@ extension Dasb {
         /// 资源ID集合，当传入ID集合时忽略 ApCode 和 VpcId
         public let resourceIds: [String]?
         
-        public init (apCode: String?, vpcId: String?, resourceIds: [String]?) {
+        public init (apCode: String? = nil, vpcId: String? = nil, resourceIds: [String]? = nil) {
             self.apCode = apCode
             self.vpcId = vpcId
             self.resourceIds = resourceIds
@@ -67,5 +51,21 @@ extension Dasb {
             case resourceSet = "ResourceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询堡垒机服务信息
+    ///
+    /// 查询用户购买的堡垒机服务信息，包括资源ID、授权点数、VPC、过期时间等。
+    @inlinable
+    public func describeResources(_ input: DescribeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesResponse > {
+        self.client.execute(action: "DescribeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询堡垒机服务信息
+    ///
+    /// 查询用户购买的堡垒机服务信息，包括资源ID、授权点数、VPC、过期时间等。
+    @inlinable
+    public func describeResources(_ input: DescribeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesResponse {
+        try await self.client.execute(action: "DescribeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 创建备份
-    ///
-    /// 本接口(CreateBackup)用于创建备份。
-    @inlinable
-    public func createBackup(_ input: CreateBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackupResponse > {
-        self.client.execute(action: "CreateBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建备份
-    ///
-    /// 本接口(CreateBackup)用于创建备份。
-    @inlinable
-    public func createBackup(_ input: CreateBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
-        try await self.client.execute(action: "CreateBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBackup请求参数结构体
     public struct CreateBackupRequest: TCRequestModel {
         /// 备份策略(0-实例备份 1-多库备份)
@@ -45,7 +29,7 @@ extension Sqlserver {
         /// 备份名称，若不填则自动生成“实例ID_备份开始时间戳”
         public let backupName: String?
         
-        public init (strategy: Int64?, dbNames: [String]?, instanceId: String?, backupName: String?) {
+        public init (strategy: Int64? = nil, dbNames: [String]? = nil, instanceId: String? = nil, backupName: String? = nil) {
             self.strategy = strategy
             self.dbNames = dbNames
             self.instanceId = instanceId
@@ -72,5 +56,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建备份
+    ///
+    /// 本接口(CreateBackup)用于创建备份。
+    @inlinable
+    public func createBackup(_ input: CreateBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackupResponse > {
+        self.client.execute(action: "CreateBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建备份
+    ///
+    /// 本接口(CreateBackup)用于创建备份。
+    @inlinable
+    public func createBackup(_ input: CreateBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
+        try await self.client.execute(action: "CreateBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 修改命名空间属性
-    ///
-    /// 修改指定命名空间的属性值
-    @inlinable
-    public func modifyEnvironmentAttributes(_ input: ModifyEnvironmentAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEnvironmentAttributesResponse > {
-        self.client.execute(action: "ModifyEnvironmentAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改命名空间属性
-    ///
-    /// 修改指定命名空间的属性值
-    @inlinable
-    public func modifyEnvironmentAttributes(_ input: ModifyEnvironmentAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentAttributesResponse {
-        try await self.client.execute(action: "ModifyEnvironmentAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyEnvironmentAttributes请求参数结构体
     public struct ModifyEnvironmentAttributesRequest: TCRequestModel {
         /// 命名空间名称。
@@ -46,9 +30,9 @@ extension Tdmq {
         public let clusterId: String?
         
         /// 消息保留策略
-        public let retentionPolicy: RetentionPolicy
+        public let retentionPolicy: RetentionPolicy?
         
-        public init (environmentId: String, msgTTL: UInt64, remark: String?, clusterId: String?, retentionPolicy: RetentionPolicy) {
+        public init (environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil) {
             self.environmentId = environmentId
             self.msgTTL = msgTTL
             self.remark = remark
@@ -91,5 +75,21 @@ extension Tdmq {
             case namespaceId = "NamespaceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改命名空间属性
+    ///
+    /// 修改指定命名空间的属性值
+    @inlinable
+    public func modifyEnvironmentAttributes(_ input: ModifyEnvironmentAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEnvironmentAttributesResponse > {
+        self.client.execute(action: "ModifyEnvironmentAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改命名空间属性
+    ///
+    /// 修改指定命名空间的属性值
+    @inlinable
+    public func modifyEnvironmentAttributes(_ input: ModifyEnvironmentAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentAttributesResponse {
+        try await self.client.execute(action: "ModifyEnvironmentAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -237,7 +237,7 @@ extension Tiems {
         
         /// 预测输入
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let predictInput: PredictInput
+        public let predictInput: PredictInput?
         
         /// 任务状态
         public let status: JobStatus
@@ -299,7 +299,7 @@ extension Tiems {
         
         /// 量化输入
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let quantizationInput: QuantizationInput
+        public let quantizationInput: QuantizationInput?
         
         /// Cls日志主题ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -529,7 +529,7 @@ extension Tiems {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let signatureName: String?
         
-        public init (inputPath: String, outputPath: String, inputDataFormat: String?, outputDataFormat: String?, batchSize: UInt64?, signatureName: String?) {
+        public init (inputPath: String, outputPath: String, inputDataFormat: String? = nil, outputDataFormat: String? = nil, batchSize: UInt64? = nil, signatureName: String? = nil) {
             self.inputPath = inputPath
             self.outputPath = outputPath
             self.inputDataFormat = inputDataFormat
@@ -565,7 +565,7 @@ extension Tiems {
         /// 转换类型
         public let convertType: String?
         
-        public init (inputPath: String, outputPath: String, batchSize: UInt64?, precision: String?, convertType: String?) {
+        public init (inputPath: String, outputPath: String, batchSize: UInt64? = nil, precision: String? = nil, convertType: String? = nil) {
             self.inputPath = inputPath
             self.outputPath = outputPath
             self.batchSize = batchSize
@@ -903,7 +903,7 @@ extension Tiems {
         /// 扩缩容指标，选择自动扩缩容时至少需要选择一个指标，支持CPU-UTIL、MEMORY-UTIL
         public let hpaMetrics: [Option]?
         
-        public init (maxReplicas: UInt64, minReplicas: UInt64, startReplicas: UInt64, hpaMetrics: [Option]?) {
+        public init (maxReplicas: UInt64, minReplicas: UInt64, startReplicas: UInt64, hpaMetrics: [Option]? = nil) {
             self.maxReplicas = maxReplicas
             self.minReplicas = minReplicas
             self.startReplicas = startReplicas

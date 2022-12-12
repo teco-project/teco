@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 获取 PSTN 活动会话列表
-    ///
-    /// 获取当前正在通话的会话列表
-    @inlinable
-    public func describePSTNActiveSessionList(_ input: DescribePSTNActiveSessionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePSTNActiveSessionListResponse > {
-        self.client.execute(action: "DescribePSTNActiveSessionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取 PSTN 活动会话列表
-    ///
-    /// 获取当前正在通话的会话列表
-    @inlinable
-    public func describePSTNActiveSessionList(_ input: DescribePSTNActiveSessionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePSTNActiveSessionListResponse {
-        try await self.client.execute(action: "DescribePSTNActiveSessionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePSTNActiveSessionList请求参数结构体
     public struct DescribePSTNActiveSessionListRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -71,5 +55,21 @@ extension Ccc {
             case sessions = "Sessions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取 PSTN 活动会话列表
+    ///
+    /// 获取当前正在通话的会话列表
+    @inlinable
+    public func describePSTNActiveSessionList(_ input: DescribePSTNActiveSessionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePSTNActiveSessionListResponse > {
+        self.client.execute(action: "DescribePSTNActiveSessionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取 PSTN 活动会话列表
+    ///
+    /// 获取当前正在通话的会话列表
+    @inlinable
+    public func describePSTNActiveSessionList(_ input: DescribePSTNActiveSessionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePSTNActiveSessionListResponse {
+        try await self.client.execute(action: "DescribePSTNActiveSessionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

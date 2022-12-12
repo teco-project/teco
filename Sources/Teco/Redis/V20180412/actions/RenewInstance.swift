@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 续费实例
-    ///
-    /// 本接口（RenewInstance）可用于为实例续费。
-    @inlinable
-    public func renewInstance(_ input: RenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewInstanceResponse > {
-        self.client.execute(action: "RenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费实例
-    ///
-    /// 本接口（RenewInstance）可用于为实例续费。
-    @inlinable
-    public func renewInstance(_ input: RenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewInstanceResponse {
-        try await self.client.execute(action: "RenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RenewInstance请求参数结构体
     public struct RenewInstanceRequest: TCRequestModel {
         /// 购买时长，单位：月。
@@ -42,7 +26,7 @@ extension Redis {
         /// 标识是否修改计费模式。<ul><li>当前实例计费模式为按量计费方式，预转换为包年包月而续费，请指定该参数为 <b>prepaid</b>。</li><li>当前实例计费模式为包年包月方式，可不设置该参数。</li></ul>
         public let modifyPayMode: String?
         
-        public init (period: UInt64, instanceId: String, modifyPayMode: String?) {
+        public init (period: UInt64, instanceId: String, modifyPayMode: String? = nil) {
             self.period = period
             self.instanceId = instanceId
             self.modifyPayMode = modifyPayMode
@@ -67,5 +51,21 @@ extension Redis {
             case dealId = "DealId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费实例
+    ///
+    /// 本接口（RenewInstance）可用于为实例续费。
+    @inlinable
+    public func renewInstance(_ input: RenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewInstanceResponse > {
+        self.client.execute(action: "RenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费实例
+    ///
+    /// 本接口（RenewInstance）可用于为实例续费。
+    @inlinable
+    public func renewInstance(_ input: RenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewInstanceResponse {
+        try await self.client.execute(action: "RenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取设备历史位置
-    @inlinable
-    public func getDeviceLocationHistory(_ input: GetDeviceLocationHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceLocationHistoryResponse > {
-        self.client.execute(action: "GetDeviceLocationHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备历史位置
-    @inlinable
-    public func getDeviceLocationHistory(_ input: GetDeviceLocationHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceLocationHistoryResponse {
-        try await self.client.execute(action: "GetDeviceLocationHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDeviceLocationHistory请求参数结构体
     public struct GetDeviceLocationHistoryRequest: TCRequestModel {
         /// 产品Id
@@ -44,7 +32,7 @@ extension Iotexplorer {
         /// 坐标类型
         public let coordinateType: Int64?
         
-        public init (productId: String, deviceName: String, startTime: Int64, endTime: Int64, coordinateType: Int64?) {
+        public init (productId: String, deviceName: String, startTime: Int64, endTime: Int64, coordinateType: Int64? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.startTime = startTime
@@ -73,5 +61,17 @@ extension Iotexplorer {
             case positions = "Positions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备历史位置
+    @inlinable
+    public func getDeviceLocationHistory(_ input: GetDeviceLocationHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceLocationHistoryResponse > {
+        self.client.execute(action: "GetDeviceLocationHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备历史位置
+    @inlinable
+    public func getDeviceLocationHistory(_ input: GetDeviceLocationHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceLocationHistoryResponse {
+        try await self.client.execute(action: "GetDeviceLocationHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

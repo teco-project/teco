@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Trtc {
-    /// 结束云端混流
-    ///
-    /// 接口说明：结束云端混流
-    @inlinable
-    public func stopMCUMixTranscode(_ input: StopMCUMixTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopMCUMixTranscodeResponse > {
-        self.client.execute(action: "StopMCUMixTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 结束云端混流
-    ///
-    /// 接口说明：结束云端混流
-    @inlinable
-    public func stopMCUMixTranscode(_ input: StopMCUMixTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMCUMixTranscodeResponse {
-        try await self.client.execute(action: "StopMCUMixTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopMCUMixTranscode请求参数结构体
     public struct StopMCUMixTranscodeRequest: TCRequestModel {
         /// TRTC的SDKAppId。
@@ -58,5 +42,21 @@ extension Trtc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 结束云端混流
+    ///
+    /// 接口说明：结束云端混流
+    @inlinable
+    public func stopMCUMixTranscode(_ input: StopMCUMixTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopMCUMixTranscodeResponse > {
+        self.client.execute(action: "StopMCUMixTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 结束云端混流
+    ///
+    /// 接口说明：结束云端混流
+    @inlinable
+    public func stopMCUMixTranscode(_ input: StopMCUMixTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMCUMixTranscodeResponse {
+        try await self.client.execute(action: "StopMCUMixTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

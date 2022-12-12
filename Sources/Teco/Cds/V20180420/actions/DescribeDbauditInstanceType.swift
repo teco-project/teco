@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cds {
-    /// 获取产品规格信息列表
-    ///
-    /// 本接口 (DescribeDbauditInstanceType) 用于查询可售卖的产品规格列表。
-    @inlinable
-    public func describeDbauditInstanceType(_ input: DescribeDbauditInstanceTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDbauditInstanceTypeResponse > {
-        self.client.execute(action: "DescribeDbauditInstanceType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取产品规格信息列表
-    ///
-    /// 本接口 (DescribeDbauditInstanceType) 用于查询可售卖的产品规格列表。
-    @inlinable
-    public func describeDbauditInstanceType(_ input: DescribeDbauditInstanceTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditInstanceTypeResponse {
-        try await self.client.execute(action: "DescribeDbauditInstanceType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDbauditInstanceType请求参数结构体
     public struct DescribeDbauditInstanceTypeRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Cds {
             case dbauditTypesSet = "DbauditTypesSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取产品规格信息列表
+    ///
+    /// 本接口 (DescribeDbauditInstanceType) 用于查询可售卖的产品规格列表。
+    @inlinable
+    public func describeDbauditInstanceType(_ input: DescribeDbauditInstanceTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDbauditInstanceTypeResponse > {
+        self.client.execute(action: "DescribeDbauditInstanceType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品规格信息列表
+    ///
+    /// 本接口 (DescribeDbauditInstanceType) 用于查询可售卖的产品规格列表。
+    @inlinable
+    public func describeDbauditInstanceType(_ input: DescribeDbauditInstanceTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditInstanceTypeResponse {
+        try await self.client.execute(action: "DescribeDbauditInstanceType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

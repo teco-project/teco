@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-会员在途充值(经第三方支付渠道)
-    ///
-    /// 见证宝-会员在途充值(经第三方支付渠道)
-    @inlinable
-    public func rechargeMemberThirdPay(_ input: RechargeMemberThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RechargeMemberThirdPayResponse > {
-        self.client.execute(action: "RechargeMemberThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-会员在途充值(经第三方支付渠道)
-    ///
-    /// 见证宝-会员在途充值(经第三方支付渠道)
-    @inlinable
-    public func rechargeMemberThirdPay(_ input: RechargeMemberThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RechargeMemberThirdPayResponse {
-        try await self.client.execute(action: "RechargeMemberThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RechargeMemberThirdPay请求参数结构体
     public struct RechargeMemberThirdPayRequest: TCRequestModel {
         /// STRING(32)，交易网会代码
@@ -81,7 +65,7 @@ extension Cpdp {
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
         
-        public init (tranNetMemberCode: String, memberFillAmt: String, commission: String, ccy: String, payChannelType: String, payChannelAssignMerNo: String, payChannelTranSeqNo: String, ejzbOrderNo: String, mrchCode: String, ejzbOrderContent: String?, remark: String?, reservedMsgOne: String?, reservedMsgTwo: String?, reservedMsgThree: String?, profile: String?) {
+        public init (tranNetMemberCode: String, memberFillAmt: String, commission: String, ccy: String, payChannelType: String, payChannelAssignMerNo: String, payChannelTranSeqNo: String, ejzbOrderNo: String, mrchCode: String, ejzbOrderContent: String? = nil, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil) {
             self.tranNetMemberCode = tranNetMemberCode
             self.memberFillAmt = memberFillAmt
             self.commission = commission
@@ -158,5 +142,21 @@ extension Cpdp {
             case reservedMsgTwo = "ReservedMsgTwo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-会员在途充值(经第三方支付渠道)
+    ///
+    /// 见证宝-会员在途充值(经第三方支付渠道)
+    @inlinable
+    public func rechargeMemberThirdPay(_ input: RechargeMemberThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RechargeMemberThirdPayResponse > {
+        self.client.execute(action: "RechargeMemberThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-会员在途充值(经第三方支付渠道)
+    ///
+    /// 见证宝-会员在途充值(经第三方支付渠道)
+    @inlinable
+    public func rechargeMemberThirdPay(_ input: RechargeMemberThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RechargeMemberThirdPayResponse {
+        try await self.client.execute(action: "RechargeMemberThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

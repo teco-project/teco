@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时停止木马查杀任务
-    @inlinable
-    public func stopVirusScanTask(_ input: StopVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopVirusScanTaskResponse > {
-        self.client.execute(action: "StopVirusScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时停止木马查杀任务
-    @inlinable
-    public func stopVirusScanTask(_ input: StopVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVirusScanTaskResponse {
-        try await self.client.execute(action: "StopVirusScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopVirusScanTask请求参数结构体
     public struct StopVirusScanTaskRequest: TCRequestModel {
         /// 任务ID
@@ -35,7 +23,7 @@ extension Tcss {
         /// 需要停止的容器id 为空默认停止整个任务
         public let containerIds: [String]?
         
-        public init (taskId: String, containerIds: [String]?) {
+        public init (taskId: String, containerIds: [String]? = nil) {
             self.taskId = taskId
             self.containerIds = containerIds
         }
@@ -54,5 +42,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时停止木马查杀任务
+    @inlinable
+    public func stopVirusScanTask(_ input: StopVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopVirusScanTaskResponse > {
+        self.client.execute(action: "StopVirusScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时停止木马查杀任务
+    @inlinable
+    public func stopVirusScanTask(_ input: StopVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVirusScanTaskResponse {
+        try await self.client.execute(action: "StopVirusScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

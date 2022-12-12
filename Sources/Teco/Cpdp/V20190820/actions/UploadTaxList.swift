@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 直播平台-上传代理商完税列表
-    @inlinable
-    public func uploadTaxList(_ input: UploadTaxListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadTaxListResponse > {
-        self.client.execute(action: "UploadTaxList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播平台-上传代理商完税列表
-    @inlinable
-    public func uploadTaxList(_ input: UploadTaxListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadTaxListResponse {
-        try await self.client.execute(action: "UploadTaxList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadTaxList请求参数结构体
     public struct UploadTaxListRequest: TCRequestModel {
         /// 平台渠道
@@ -68,5 +56,17 @@ extension Cpdp {
             case taxId = "TaxId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播平台-上传代理商完税列表
+    @inlinable
+    public func uploadTaxList(_ input: UploadTaxListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadTaxListResponse > {
+        self.client.execute(action: "UploadTaxList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-上传代理商完税列表
+    @inlinable
+    public func uploadTaxList(_ input: UploadTaxListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadTaxListResponse {
+        try await self.client.execute(action: "UploadTaxList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

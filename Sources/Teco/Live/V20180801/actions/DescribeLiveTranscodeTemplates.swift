@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 获取转码模板列表
-    ///
-    /// 获取转码模板列表。
-    @inlinable
-    public func describeLiveTranscodeTemplates(_ input: DescribeLiveTranscodeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTranscodeTemplatesResponse > {
-        self.client.execute(action: "DescribeLiveTranscodeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取转码模板列表
-    ///
-    /// 获取转码模板列表。
-    @inlinable
-    public func describeLiveTranscodeTemplates(_ input: DescribeLiveTranscodeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTemplatesResponse {
-        try await self.client.execute(action: "DescribeLiveTranscodeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveTranscodeTemplates请求参数结构体
     public struct DescribeLiveTranscodeTemplatesRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Live {
             case templates = "Templates"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取转码模板列表
+    ///
+    /// 获取转码模板列表。
+    @inlinable
+    public func describeLiveTranscodeTemplates(_ input: DescribeLiveTranscodeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTranscodeTemplatesResponse > {
+        self.client.execute(action: "DescribeLiveTranscodeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取转码模板列表
+    ///
+    /// 获取转码模板列表。
+    @inlinable
+    public func describeLiveTranscodeTemplates(_ input: DescribeLiveTranscodeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTemplatesResponse {
+        try await self.client.execute(action: "DescribeLiveTranscodeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

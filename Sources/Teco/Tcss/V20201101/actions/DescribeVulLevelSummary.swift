@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询漏洞各威胁等级统计数
-    @inlinable
-    public func describeVulLevelSummary(_ input: DescribeVulLevelSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulLevelSummaryResponse > {
-        self.client.execute(action: "DescribeVulLevelSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询漏洞各威胁等级统计数
-    @inlinable
-    public func describeVulLevelSummary(_ input: DescribeVulLevelSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelSummaryResponse {
-        try await self.client.execute(action: "DescribeVulLevelSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulLevelSummary请求参数结构体
     public struct DescribeVulLevelSummaryRequest: TCRequestModel {
         /// 漏洞分类: SYSTEM:系统漏洞 WEB:web应用漏洞 EMERGENCY:应急漏洞
@@ -65,5 +53,17 @@ extension Tcss {
             case criticalLevelVulCount = "CriticalLevelVulCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询漏洞各威胁等级统计数
+    @inlinable
+    public func describeVulLevelSummary(_ input: DescribeVulLevelSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulLevelSummaryResponse > {
+        self.client.execute(action: "DescribeVulLevelSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞各威胁等级统计数
+    @inlinable
+    public func describeVulLevelSummary(_ input: DescribeVulLevelSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelSummaryResponse {
+        try await self.client.execute(action: "DescribeVulLevelSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

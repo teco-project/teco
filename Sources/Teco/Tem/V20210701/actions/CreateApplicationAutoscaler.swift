@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 创建弹性伸缩策略组合
-    @inlinable
-    public func createApplicationAutoscaler(_ input: CreateApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationAutoscalerResponse > {
-        self.client.execute(action: "CreateApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建弹性伸缩策略组合
-    @inlinable
-    public func createApplicationAutoscaler(_ input: CreateApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationAutoscalerResponse {
-        try await self.client.execute(action: "CreateApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateApplicationAutoscaler请求参数结构体
     public struct CreateApplicationAutoscalerRequest: TCRequestModel {
         /// 服务id
@@ -39,9 +27,9 @@ extension Tem {
         public let sourceChannel: Int64?
         
         /// 弹性伸缩策略
-        public let autoscaler: Autoscaler
+        public let autoscaler: Autoscaler?
         
-        public init (applicationId: String, environmentId: String, sourceChannel: Int64?, autoscaler: Autoscaler) {
+        public init (applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscaler: Autoscaler? = nil) {
             self.applicationId = applicationId
             self.environmentId = environmentId
             self.sourceChannel = sourceChannel
@@ -69,5 +57,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建弹性伸缩策略组合
+    @inlinable
+    public func createApplicationAutoscaler(_ input: CreateApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationAutoscalerResponse > {
+        self.client.execute(action: "CreateApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建弹性伸缩策略组合
+    @inlinable
+    public func createApplicationAutoscaler(_ input: CreateApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationAutoscalerResponse {
+        try await self.client.execute(action: "CreateApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

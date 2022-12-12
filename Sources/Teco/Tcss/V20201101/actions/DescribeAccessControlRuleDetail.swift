@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询运行时访问控制策略详细信息
-    @inlinable
-    public func describeAccessControlRuleDetail(_ input: DescribeAccessControlRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessControlRuleDetailResponse > {
-        self.client.execute(action: "DescribeAccessControlRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询运行时访问控制策略详细信息
-    @inlinable
-    public func describeAccessControlRuleDetail(_ input: DescribeAccessControlRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlRuleDetailResponse {
-        try await self.client.execute(action: "DescribeAccessControlRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccessControlRuleDetail请求参数结构体
     public struct DescribeAccessControlRuleDetailRequest: TCRequestModel {
         /// 策略唯一id
@@ -41,7 +29,7 @@ extension Tcss {
         /// 偏移量，默认为0。
         public let offset: UInt64?
         
-        public init (ruleId: String?, imageId: String?, limit: UInt64?, offset: UInt64?) {
+        public init (ruleId: String? = nil, imageId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.ruleId = ruleId
             self.imageId = imageId
             self.limit = limit
@@ -68,5 +56,17 @@ extension Tcss {
             case ruleDetail = "RuleDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询运行时访问控制策略详细信息
+    @inlinable
+    public func describeAccessControlRuleDetail(_ input: DescribeAccessControlRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessControlRuleDetailResponse > {
+        self.client.execute(action: "DescribeAccessControlRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询运行时访问控制策略详细信息
+    @inlinable
+    public func describeAccessControlRuleDetail(_ input: DescribeAccessControlRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlRuleDetailResponse {
+        try await self.client.execute(action: "DescribeAccessControlRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

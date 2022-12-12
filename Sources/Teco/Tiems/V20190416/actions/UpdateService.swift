@@ -15,31 +15,13 @@
 // DO NOT EDIT.
 
 extension Tiems {
-    /// 更新服务
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 更新服务
-    @inlinable
-    public func updateService(_ input: UpdateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateServiceResponse > {
-        self.client.execute(action: "UpdateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新服务
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 更新服务
-    @inlinable
-    public func updateService(_ input: UpdateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateServiceResponse {
-        try await self.client.execute(action: "UpdateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateService请求参数结构体
     public struct UpdateServiceRequest: TCRequestModel {
         /// 服务Id
         public let serviceId: String
         
         /// 扩缩容配置
-        public let scaler: Scaler
+        public let scaler: Scaler?
         
         /// 服务配置Id
         public let serviceConfigId: String?
@@ -68,7 +50,7 @@ extension Tiems {
         /// Cls日志主题ID
         public let logTopicId: String?
         
-        public init (serviceId: String, scaler: Scaler, serviceConfigId: String?, scaleMode: String?, serviceAction: String?, description: String?, gpuType: String?, cpu: UInt64?, memory: UInt64?, gpu: UInt64?, logTopicId: String?) {
+        public init (serviceId: String, scaler: Scaler? = nil, serviceConfigId: String? = nil, scaleMode: String? = nil, serviceAction: String? = nil, description: String? = nil, gpuType: String? = nil, cpu: UInt64? = nil, memory: UInt64? = nil, gpu: UInt64? = nil, logTopicId: String? = nil) {
             self.serviceId = serviceId
             self.scaler = scaler
             self.serviceConfigId = serviceConfigId
@@ -109,5 +91,23 @@ extension Tiems {
             case service = "Service"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新服务
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 更新服务
+    @inlinable
+    public func updateService(_ input: UpdateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateServiceResponse > {
+        self.client.execute(action: "UpdateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新服务
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 更新服务
+    @inlinable
+    public func updateService(_ input: UpdateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateServiceResponse {
+        try await self.client.execute(action: "UpdateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

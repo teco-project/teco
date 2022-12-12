@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 获取私有域列表
-    @inlinable
-    public func describePrivateZoneList(_ input: DescribePrivateZoneListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateZoneListResponse > {
-        self.client.execute(action: "DescribePrivateZoneList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取私有域列表
-    @inlinable
-    public func describePrivateZoneList(_ input: DescribePrivateZoneListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneListResponse {
-        try await self.client.execute(action: "DescribePrivateZoneList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrivateZoneList请求参数结构体
     public struct DescribePrivateZoneListRequest: TCRequestModel {
         /// 分页偏移量，从0开始
@@ -38,7 +26,7 @@ extension Privatedns {
         /// 过滤参数
         public let filters: [Filter]?
         
-        public init (offset: Int64?, limit: Int64?, filters: [Filter]?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -67,5 +55,17 @@ extension Privatedns {
             case privateZoneSet = "PrivateZoneSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取私有域列表
+    @inlinable
+    public func describePrivateZoneList(_ input: DescribePrivateZoneListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateZoneListResponse > {
+        self.client.execute(action: "DescribePrivateZoneList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取私有域列表
+    @inlinable
+    public func describePrivateZoneList(_ input: DescribePrivateZoneListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneListResponse {
+        try await self.client.execute(action: "DescribePrivateZoneList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 修改证书所属项目
-    ///
-    /// 批量修改证书所属项目。
-    @inlinable
-    public func modifyCertificateProject(_ input: ModifyCertificateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificateProjectResponse > {
-        self.client.execute(action: "ModifyCertificateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改证书所属项目
-    ///
-    /// 批量修改证书所属项目。
-    @inlinable
-    public func modifyCertificateProject(_ input: ModifyCertificateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateProjectResponse {
-        try await self.client.execute(action: "ModifyCertificateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCertificateProject请求参数结构体
     public struct ModifyCertificateProjectRequest: TCRequestModel {
         /// 需要修改所属项目的证书 ID 集合，最多100个证书。
@@ -68,5 +52,21 @@ extension Ssl {
             case failCertificates = "FailCertificates"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改证书所属项目
+    ///
+    /// 批量修改证书所属项目。
+    @inlinable
+    public func modifyCertificateProject(_ input: ModifyCertificateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificateProjectResponse > {
+        self.client.execute(action: "ModifyCertificateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改证书所属项目
+    ///
+    /// 批量修改证书所属项目。
+    @inlinable
+    public func modifyCertificateProject(_ input: ModifyCertificateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateProjectResponse {
+        try await self.client.execute(action: "ModifyCertificateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

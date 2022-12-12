@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 校验证书
-    @inlinable
-    public func checkCertificate(_ input: CheckCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckCertificateResponse > {
-        self.client.execute(action: "CheckCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 校验证书
-    @inlinable
-    public func checkCertificate(_ input: CheckCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCertificateResponse {
-        try await self.client.execute(action: "CheckCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckCertificate请求参数结构体
     public struct CheckCertificateRequest: TCRequestModel {
         /// 证书内容。
@@ -54,5 +42,17 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 校验证书
+    @inlinable
+    public func checkCertificate(_ input: CheckCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckCertificateResponse > {
+        self.client.execute(action: "CheckCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 校验证书
+    @inlinable
+    public func checkCertificate(_ input: CheckCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCertificateResponse {
+        try await self.client.execute(action: "CheckCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 切换数据库代理
-    ///
-    /// 数据库代理配置变更或则升级版本后手动发起立即切换
-    @inlinable
-    public func switchCDBProxy(_ input: SwitchCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchCDBProxyResponse > {
-        self.client.execute(action: "SwitchCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 切换数据库代理
-    ///
-    /// 数据库代理配置变更或则升级版本后手动发起立即切换
-    @inlinable
-    public func switchCDBProxy(_ input: SwitchCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchCDBProxyResponse {
-        try await self.client.execute(action: "SwitchCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SwitchCDBProxy请求参数结构体
     public struct SwitchCDBProxyRequest: TCRequestModel {
         /// 实例ID
@@ -58,5 +42,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 切换数据库代理
+    ///
+    /// 数据库代理配置变更或则升级版本后手动发起立即切换
+    @inlinable
+    public func switchCDBProxy(_ input: SwitchCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchCDBProxyResponse > {
+        self.client.execute(action: "SwitchCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 切换数据库代理
+    ///
+    /// 数据库代理配置变更或则升级版本后手动发起立即切换
+    @inlinable
+    public func switchCDBProxy(_ input: SwitchCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchCDBProxyResponse {
+        try await self.client.execute(action: "SwitchCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

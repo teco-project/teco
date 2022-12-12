@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 启用停用全部规则
-    @inlinable
-    public func modifyAllRuleStatus(_ input: ModifyAllRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAllRuleStatusResponse > {
-        self.client.execute(action: "ModifyAllRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启用停用全部规则
-    @inlinable
-    public func modifyAllRuleStatus(_ input: ModifyAllRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAllRuleStatusResponse {
-        try await self.client.execute(action: "ModifyAllRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAllRuleStatus请求参数结构体
     public struct ModifyAllRuleStatusRequest: TCRequestModel {
         /// 状态，0：全部停用，1：全部启用
@@ -41,7 +29,7 @@ extension Cfw {
         /// NAT地域
         public let area: String?
         
-        public init (status: UInt64, direction: UInt64?, edgeId: String?, area: String?) {
+        public init (status: UInt64, direction: UInt64? = nil, edgeId: String? = nil, area: String? = nil) {
             self.status = status
             self.direction = direction
             self.edgeId = edgeId
@@ -69,5 +57,17 @@ extension Cfw {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启用停用全部规则
+    @inlinable
+    public func modifyAllRuleStatus(_ input: ModifyAllRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAllRuleStatusResponse > {
+        self.client.execute(action: "ModifyAllRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启用停用全部规则
+    @inlinable
+    public func modifyAllRuleStatus(_ input: ModifyAllRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAllRuleStatusResponse {
+        try await self.client.execute(action: "ModifyAllRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

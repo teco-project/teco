@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 弹性网卡绑定云主机
-    @inlinable
-    public func attachNetworkInterface(_ input: AttachNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachNetworkInterfaceResponse > {
-        self.client.execute(action: "AttachNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 弹性网卡绑定云主机
-    @inlinable
-    public func attachNetworkInterface(_ input: AttachNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachNetworkInterfaceResponse {
-        try await self.client.execute(action: "AttachNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AttachNetworkInterface请求参数结构体
     public struct AttachNetworkInterfaceRequest: TCRequestModel {
         /// 弹性网卡实例ID，例如：eni-m6dyj72l。
@@ -59,5 +47,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 弹性网卡绑定云主机
+    @inlinable
+    public func attachNetworkInterface(_ input: AttachNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachNetworkInterfaceResponse > {
+        self.client.execute(action: "AttachNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 弹性网卡绑定云主机
+    @inlinable
+    public func attachNetworkInterface(_ input: AttachNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachNetworkInterfaceResponse {
+        try await self.client.execute(action: "AttachNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 直播平台-文件上传
-    @inlinable
-    public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFileResponse > {
-        self.client.execute(action: "UploadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播平台-文件上传
-    @inlinable
-    public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
-        try await self.client.execute(action: "UploadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadFile请求参数结构体
     public struct UploadFileRequest: TCRequestModel {
         /// 文件名
@@ -48,7 +36,7 @@ extension Cpdp {
         /// 文件扩展信息
         public let fileExtendInfo: [AnchorExtendInfo]?
         
-        public init (fileName: String, fileType: String, fileUrl: String?, fileContent: String?, fileExtendInfo: [AnchorExtendInfo]?) {
+        public init (fileName: String, fileType: String, fileUrl: String? = nil, fileContent: String? = nil, fileExtendInfo: [AnchorExtendInfo]? = nil) {
             self.fileName = fileName
             self.fileType = fileType
             self.fileUrl = fileUrl
@@ -77,5 +65,17 @@ extension Cpdp {
             case fileId = "FileId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播平台-文件上传
+    @inlinable
+    public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFileResponse > {
+        self.client.execute(action: "UploadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-文件上传
+    @inlinable
+    public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
+        try await self.client.execute(action: "UploadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

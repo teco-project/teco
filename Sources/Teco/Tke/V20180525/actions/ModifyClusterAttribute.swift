@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 修改集群属性
-    @inlinable
-    public func modifyClusterAttribute(_ input: ModifyClusterAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterAttributeResponse > {
-        self.client.execute(action: "ModifyClusterAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改集群属性
-    @inlinable
-    public func modifyClusterAttribute(_ input: ModifyClusterAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAttributeResponse {
-        try await self.client.execute(action: "ModifyClusterAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClusterAttribute请求参数结构体
     public struct ModifyClusterAttributeRequest: TCRequestModel {
         /// 集群ID
@@ -45,12 +33,12 @@ extension Tke {
         public let clusterLevel: String?
         
         /// 自动变配集群等级
-        public let autoUpgradeClusterLevel: AutoUpgradeClusterLevel
+        public let autoUpgradeClusterLevel: AutoUpgradeClusterLevel?
         
         /// 是否开启QGPU共享
         public let qgpuShareEnable: Bool?
         
-        public init (clusterId: String, projectId: Int64?, clusterName: String?, clusterDesc: String?, clusterLevel: String?, autoUpgradeClusterLevel: AutoUpgradeClusterLevel, qgpuShareEnable: Bool?) {
+        public init (clusterId: String, projectId: Int64? = nil, clusterName: String? = nil, clusterDesc: String? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: AutoUpgradeClusterLevel? = nil, qgpuShareEnable: Bool? = nil) {
             self.clusterId = clusterId
             self.projectId = projectId
             self.clusterName = clusterName
@@ -91,7 +79,7 @@ extension Tke {
         
         /// 自动变配集群等级
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let autoUpgradeClusterLevel: AutoUpgradeClusterLevel
+        public let autoUpgradeClusterLevel: AutoUpgradeClusterLevel?
         
         /// 是否开启QGPU共享
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -109,5 +97,17 @@ extension Tke {
             case qgpuShareEnable = "QGPUShareEnable"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改集群属性
+    @inlinable
+    public func modifyClusterAttribute(_ input: ModifyClusterAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterAttributeResponse > {
+        self.client.execute(action: "ModifyClusterAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改集群属性
+    @inlinable
+    public func modifyClusterAttribute(_ input: ModifyClusterAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAttributeResponse {
+        try await self.client.execute(action: "ModifyClusterAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

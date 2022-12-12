@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 查询出证报告
-    ///
-    /// 查询出证报告，返回报告 URL。
-    @inlinable
-    public func describeChannelFlowEvidenceReport(_ input: DescribeChannelFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChannelFlowEvidenceReportResponse > {
-        self.client.execute(action: "DescribeChannelFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询出证报告
-    ///
-    /// 查询出证报告，返回报告 URL。
-    @inlinable
-    public func describeChannelFlowEvidenceReport(_ input: DescribeChannelFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelFlowEvidenceReportResponse {
-        try await self.client.execute(action: "DescribeChannelFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeChannelFlowEvidenceReport请求参数结构体
     public struct DescribeChannelFlowEvidenceReportRequest: TCRequestModel {
         /// 出证报告编号
@@ -40,9 +24,9 @@ extension Essbasic {
         public let agent: Agent
         
         /// 操作者的信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
-        public init (reportId: String, agent: Agent, `operator`: UserInfo) {
+        public init (reportId: String, agent: Agent, `operator`: UserInfo? = nil) {
             self.reportId = reportId
             self.agent = agent
             self.`operator` = `operator`
@@ -74,5 +58,21 @@ extension Essbasic {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询出证报告
+    ///
+    /// 查询出证报告，返回报告 URL。
+    @inlinable
+    public func describeChannelFlowEvidenceReport(_ input: DescribeChannelFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChannelFlowEvidenceReportResponse > {
+        self.client.execute(action: "DescribeChannelFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询出证报告
+    ///
+    /// 查询出证报告，返回报告 URL。
+    @inlinable
+    public func describeChannelFlowEvidenceReport(_ input: DescribeChannelFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelFlowEvidenceReportResponse {
+        try await self.client.execute(action: "DescribeChannelFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

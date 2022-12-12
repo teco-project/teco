@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 创建版本保留规则
-    @inlinable
-    public func createTagRetentionRule(_ input: CreateTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTagRetentionRuleResponse > {
-        self.client.execute(action: "CreateTagRetentionRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建版本保留规则
-    @inlinable
-    public func createTagRetentionRule(_ input: CreateTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagRetentionRuleResponse {
-        try await self.client.execute(action: "CreateTagRetentionRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTagRetentionRule请求参数结构体
     public struct CreateTagRetentionRuleRequest: TCRequestModel {
         /// 主实例iD
@@ -44,7 +32,7 @@ extension Tcr {
         /// 是否禁用规则，默认值为false
         public let disabled: Bool?
         
-        public init (registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, disabled: Bool?) {
+        public init (registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, disabled: Bool? = nil) {
             self.registryId = registryId
             self.namespaceId = namespaceId
             self.retentionRule = retentionRule
@@ -69,5 +57,17 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建版本保留规则
+    @inlinable
+    public func createTagRetentionRule(_ input: CreateTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTagRetentionRuleResponse > {
+        self.client.execute(action: "CreateTagRetentionRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建版本保留规则
+    @inlinable
+    public func createTagRetentionRule(_ input: CreateTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagRetentionRuleResponse {
+        try await self.client.execute(action: "CreateTagRetentionRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

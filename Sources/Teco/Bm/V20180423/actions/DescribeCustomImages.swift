@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 查看自定义镜像列表
-    @inlinable
-    public func describeCustomImages(_ input: DescribeCustomImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomImagesResponse > {
-        self.client.execute(action: "DescribeCustomImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看自定义镜像列表
-    @inlinable
-    public func describeCustomImages(_ input: DescribeCustomImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImagesResponse {
-        try await self.client.execute(action: "DescribeCustomImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomImages请求参数结构体
     public struct DescribeCustomImagesRequest: TCRequestModel {
         /// 偏移量
@@ -56,7 +44,7 @@ extension Bm {
         /// </ul>
         public let imageStatus: [UInt64]?
         
-        public init (offset: UInt64, limit: UInt64, orderField: String?, order: UInt64?, imageId: String?, searchKey: String?, imageStatus: [UInt64]?) {
+        public init (offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, imageId: String? = nil, searchKey: String? = nil, imageStatus: [UInt64]? = nil) {
             self.offset = offset
             self.limit = limit
             self.orderField = orderField
@@ -93,5 +81,17 @@ extension Bm {
             case customImageSet = "CustomImageSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看自定义镜像列表
+    @inlinable
+    public func describeCustomImages(_ input: DescribeCustomImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomImagesResponse > {
+        self.client.execute(action: "DescribeCustomImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看自定义镜像列表
+    @inlinable
+    public func describeCustomImages(_ input: DescribeCustomImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImagesResponse {
+        try await self.client.execute(action: "DescribeCustomImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

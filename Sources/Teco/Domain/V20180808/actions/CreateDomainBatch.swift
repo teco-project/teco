@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 批量域名注册
-    ///
-    /// 本接口 ( CreateDomainBatch ) 用于批量域名注册 。
-    @inlinable
-    public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainBatchResponse > {
-        self.client.execute(action: "CreateDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量域名注册
-    ///
-    /// 本接口 ( CreateDomainBatch ) 用于批量域名注册 。
-    @inlinable
-    public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainBatchResponse {
-        try await self.client.execute(action: "CreateDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDomainBatch请求参数结构体
     public struct CreateDomainBatchRequest: TCRequestModel {
         /// 模板ID。详情请查看：[获取模板列表](https://cloud.tencent.com/document/product/242/48940)
@@ -59,7 +43,7 @@ extension Domain {
         /// 是否开启转移锁：0=默认不开启，1=开启
         public let transferProhibition: Int64?
         
-        public init (templateId: String, period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64?, packageResourceId: String?, updateProhibition: Int64?, transferProhibition: Int64?) {
+        public init (templateId: String, period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, packageResourceId: String? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil) {
             self.templateId = templateId
             self.period = period
             self.domains = domains
@@ -95,5 +79,21 @@ extension Domain {
             case logId = "LogId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量域名注册
+    ///
+    /// 本接口 ( CreateDomainBatch ) 用于批量域名注册 。
+    @inlinable
+    public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainBatchResponse > {
+        self.client.execute(action: "CreateDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量域名注册
+    ///
+    /// 本接口 ( CreateDomainBatch ) 用于批量域名注册 。
+    @inlinable
+    public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainBatchResponse {
+        try await self.client.execute(action: "CreateDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

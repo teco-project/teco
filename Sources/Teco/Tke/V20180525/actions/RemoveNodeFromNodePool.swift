@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 移出节点池节点
-    ///
-    /// 移出节点池节点，但保留在集群内
-    @inlinable
-    public func removeNodeFromNodePool(_ input: RemoveNodeFromNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveNodeFromNodePoolResponse > {
-        self.client.execute(action: "RemoveNodeFromNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 移出节点池节点
-    ///
-    /// 移出节点池节点，但保留在集群内
-    @inlinable
-    public func removeNodeFromNodePool(_ input: RemoveNodeFromNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveNodeFromNodePoolResponse {
-        try await self.client.execute(action: "RemoveNodeFromNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemoveNodeFromNodePool请求参数结构体
     public struct RemoveNodeFromNodePoolRequest: TCRequestModel {
         /// 集群id
@@ -63,5 +47,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 移出节点池节点
+    ///
+    /// 移出节点池节点，但保留在集群内
+    @inlinable
+    public func removeNodeFromNodePool(_ input: RemoveNodeFromNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveNodeFromNodePoolResponse > {
+        self.client.execute(action: "RemoveNodeFromNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 移出节点池节点
+    ///
+    /// 移出节点池节点，但保留在集群内
+    @inlinable
+    public func removeNodeFromNodePool(_ input: RemoveNodeFromNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveNodeFromNodePoolResponse {
+        try await self.client.execute(action: "RemoveNodeFromNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

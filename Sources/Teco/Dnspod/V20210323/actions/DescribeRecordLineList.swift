@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 获取等级允许的线路
-    @inlinable
-    public func describeRecordLineList(_ input: DescribeRecordLineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordLineListResponse > {
-        self.client.execute(action: "DescribeRecordLineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取等级允许的线路
-    @inlinable
-    public func describeRecordLineList(_ input: DescribeRecordLineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordLineListResponse {
-        try await self.client.execute(action: "DescribeRecordLineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRecordLineList请求参数结构体
     public struct DescribeRecordLineListRequest: TCRequestModel {
         /// 域名。
@@ -40,7 +28,7 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         public let domainId: UInt64?
         
-        public init (domain: String, domainGrade: String, domainId: UInt64?) {
+        public init (domain: String, domainGrade: String, domainId: UInt64? = nil) {
             self.domain = domain
             self.domainGrade = domainGrade
             self.domainId = domainId
@@ -69,5 +57,17 @@ extension Dnspod {
             case lineGroupList = "LineGroupList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取等级允许的线路
+    @inlinable
+    public func describeRecordLineList(_ input: DescribeRecordLineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordLineListResponse > {
+        self.client.execute(action: "DescribeRecordLineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取等级允许的线路
+    @inlinable
+    public func describeRecordLineList(_ input: DescribeRecordLineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordLineListResponse {
+        try await self.client.execute(action: "DescribeRecordLineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

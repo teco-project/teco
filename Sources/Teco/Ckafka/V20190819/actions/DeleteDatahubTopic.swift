@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 删除Datahub主题
-    @inlinable
-    public func deleteDatahubTopic(_ input: DeleteDatahubTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDatahubTopicResponse > {
-        self.client.execute(action: "DeleteDatahubTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除Datahub主题
-    @inlinable
-    public func deleteDatahubTopic(_ input: DeleteDatahubTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatahubTopicResponse {
-        try await self.client.execute(action: "DeleteDatahubTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDatahubTopic请求参数结构体
     public struct DeleteDatahubTopicRequest: TCRequestModel {
         /// Topic名称
@@ -53,5 +41,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除Datahub主题
+    @inlinable
+    public func deleteDatahubTopic(_ input: DeleteDatahubTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDatahubTopicResponse > {
+        self.client.execute(action: "DeleteDatahubTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Datahub主题
+    @inlinable
+    public func deleteDatahubTopic(_ input: DeleteDatahubTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatahubTopicResponse {
+        try await self.client.execute(action: "DeleteDatahubTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

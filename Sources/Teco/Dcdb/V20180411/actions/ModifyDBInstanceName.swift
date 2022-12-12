@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 修改实例名字
-    ///
-    /// 本接口（ModifyDBInstanceName）用于修改实例名字
-    @inlinable
-    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceNameResponse > {
-        self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例名字
-    ///
-    /// 本接口（ModifyDBInstanceName）用于修改实例名字
-    @inlinable
-    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNameResponse {
-        try await self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBInstanceName请求参数结构体
     public struct ModifyDBInstanceNameRequest: TCRequestModel {
         /// 实例ID，形如tdsql-hdaprz0v
@@ -62,5 +46,21 @@ extension Dcdb {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例名字
+    ///
+    /// 本接口（ModifyDBInstanceName）用于修改实例名字
+    @inlinable
+    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceNameResponse > {
+        self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例名字
+    ///
+    /// 本接口（ModifyDBInstanceName）用于修改实例名字
+    @inlinable
+    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNameResponse {
+        try await self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

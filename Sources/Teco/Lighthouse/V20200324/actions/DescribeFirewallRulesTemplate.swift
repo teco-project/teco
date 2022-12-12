@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询防火墙规则模板
-    ///
-    /// 本接口（DescribeFirewallRulesTemplate）用于查询防火墙规则模板。
-    @inlinable
-    public func describeFirewallRulesTemplate(_ input: DescribeFirewallRulesTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirewallRulesTemplateResponse > {
-        self.client.execute(action: "DescribeFirewallRulesTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询防火墙规则模板
-    ///
-    /// 本接口（DescribeFirewallRulesTemplate）用于查询防火墙规则模板。
-    @inlinable
-    public func describeFirewallRulesTemplate(_ input: DescribeFirewallRulesTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirewallRulesTemplateResponse {
-        try await self.client.execute(action: "DescribeFirewallRulesTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFirewallRulesTemplate请求参数结构体
     public struct DescribeFirewallRulesTemplateRequest: TCRequestModel {
         public init () {
@@ -53,5 +37,21 @@ extension Lighthouse {
             case firewallRuleSet = "FirewallRuleSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询防火墙规则模板
+    ///
+    /// 本接口（DescribeFirewallRulesTemplate）用于查询防火墙规则模板。
+    @inlinable
+    public func describeFirewallRulesTemplate(_ input: DescribeFirewallRulesTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirewallRulesTemplateResponse > {
+        self.client.execute(action: "DescribeFirewallRulesTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询防火墙规则模板
+    ///
+    /// 本接口（DescribeFirewallRulesTemplate）用于查询防火墙规则模板。
+    @inlinable
+    public func describeFirewallRulesTemplate(_ input: DescribeFirewallRulesTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirewallRulesTemplateResponse {
+        try await self.client.execute(action: "DescribeFirewallRulesTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

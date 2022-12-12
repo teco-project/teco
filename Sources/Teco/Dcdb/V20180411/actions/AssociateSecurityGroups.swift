@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 安全组批量绑定云资源
-    ///
-    /// 本接口 (AssociateSecurityGroups) 用于安全组批量绑定云资源。
-    @inlinable
-    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateSecurityGroupsResponse > {
-        self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全组批量绑定云资源
-    ///
-    /// 本接口 (AssociateSecurityGroups) 用于安全组批量绑定云资源。
-    @inlinable
-    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
-        try await self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssociateSecurityGroups请求参数结构体
     public struct AssociateSecurityGroupsRequest: TCRequestModel {
         /// 数据库引擎名称，本接口取值：dcdb。
@@ -63,5 +47,21 @@ extension Dcdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全组批量绑定云资源
+    ///
+    /// 本接口 (AssociateSecurityGroups) 用于安全组批量绑定云资源。
+    @inlinable
+    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateSecurityGroupsResponse > {
+        self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全组批量绑定云资源
+    ///
+    /// 本接口 (AssociateSecurityGroups) 用于安全组批量绑定云资源。
+    @inlinable
+    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
+        try await self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

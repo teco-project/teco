@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 暂停域名解析
-    @inlinable
-    public func disableGlobalDomain(_ input: DisableGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableGlobalDomainResponse > {
-        self.client.execute(action: "DisableGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 暂停域名解析
-    @inlinable
-    public func disableGlobalDomain(_ input: DisableGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableGlobalDomainResponse {
-        try await self.client.execute(action: "DisableGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableGlobalDomain请求参数结构体
     public struct DisableGlobalDomainRequest: TCRequestModel {
         /// 域名ID
@@ -49,5 +37,17 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 暂停域名解析
+    @inlinable
+    public func disableGlobalDomain(_ input: DisableGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableGlobalDomainResponse > {
+        self.client.execute(action: "DisableGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 暂停域名解析
+    @inlinable
+    public func disableGlobalDomain(_ input: DisableGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableGlobalDomainResponse {
+        try await self.client.execute(action: "DisableGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取资产管理主机资源详细信息
-    @inlinable
-    public func describeAssetMachineDetail(_ input: DescribeAssetMachineDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetMachineDetailResponse > {
-        self.client.execute(action: "DescribeAssetMachineDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取资产管理主机资源详细信息
-    @inlinable
-    public func describeAssetMachineDetail(_ input: DescribeAssetMachineDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetMachineDetailResponse {
-        try await self.client.execute(action: "DescribeAssetMachineDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetMachineDetail请求参数结构体
     public struct DescribeAssetMachineDetailRequest: TCRequestModel {
         /// 服务器Quuid
@@ -58,5 +46,17 @@ extension Cwp {
             case machineDetail = "MachineDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取资产管理主机资源详细信息
+    @inlinable
+    public func describeAssetMachineDetail(_ input: DescribeAssetMachineDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetMachineDetailResponse > {
+        self.client.execute(action: "DescribeAssetMachineDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资产管理主机资源详细信息
+    @inlinable
+    public func describeAssetMachineDetail(_ input: DescribeAssetMachineDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetMachineDetailResponse {
+        try await self.client.execute(action: "DescribeAssetMachineDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

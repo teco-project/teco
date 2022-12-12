@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbdc {
-    /// 查询独享集群内的DB实例列表
-    ///
-    /// 本接口用于查询独享集群内的DB实例列表
-    @inlinable
-    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstancesResponse > {
-        self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询独享集群内的DB实例列表
-    ///
-    /// 本接口用于查询独享集群内的DB实例列表
-    @inlinable
-    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
-        try await self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBInstances请求参数结构体
     public struct DescribeDBInstancesRequest: TCRequestModel {
         /// 独享集群实例Id
@@ -48,7 +32,7 @@ extension Dbdc {
         /// 实例类型,0:mariadb, 1:tdsql
         public let shardType: [Int64]?
         
-        public init (instanceId: String, hostId: String?, limit: Int64?, offset: Int64?, shardType: [Int64]?) {
+        public init (instanceId: String, hostId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, shardType: [Int64]? = nil) {
             self.instanceId = instanceId
             self.hostId = hostId
             self.limit = limit
@@ -81,5 +65,21 @@ extension Dbdc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询独享集群内的DB实例列表
+    ///
+    /// 本接口用于查询独享集群内的DB实例列表
+    @inlinable
+    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstancesResponse > {
+        self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询独享集群内的DB实例列表
+    ///
+    /// 本接口用于查询独享集群内的DB实例列表
+    @inlinable
+    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
+        try await self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

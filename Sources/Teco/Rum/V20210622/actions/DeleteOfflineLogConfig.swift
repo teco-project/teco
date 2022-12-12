@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 删除 rum 离线日志监听
-    ///
-    /// 删除 rum 离线日志监听 - 对应用户的离线日志将不会上报
-    @inlinable
-    public func deleteOfflineLogConfig(_ input: DeleteOfflineLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOfflineLogConfigResponse > {
-        self.client.execute(action: "DeleteOfflineLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除 rum 离线日志监听
-    ///
-    /// 删除 rum 离线日志监听 - 对应用户的离线日志将不会上报
-    @inlinable
-    public func deleteOfflineLogConfig(_ input: DeleteOfflineLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOfflineLogConfigResponse {
-        try await self.client.execute(action: "DeleteOfflineLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteOfflineLogConfig请求参数结构体
     public struct DeleteOfflineLogConfigRequest: TCRequestModel {
         /// 项目唯一上报 key
@@ -62,5 +46,21 @@ extension Rum {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除 rum 离线日志监听
+    ///
+    /// 删除 rum 离线日志监听 - 对应用户的离线日志将不会上报
+    @inlinable
+    public func deleteOfflineLogConfig(_ input: DeleteOfflineLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOfflineLogConfigResponse > {
+        self.client.execute(action: "DeleteOfflineLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除 rum 离线日志监听
+    ///
+    /// 删除 rum 离线日志监听 - 对应用户的离线日志将不会上报
+    @inlinable
+    public func deleteOfflineLogConfig(_ input: DeleteOfflineLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOfflineLogConfigResponse {
+        try await self.client.execute(action: "DeleteOfflineLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

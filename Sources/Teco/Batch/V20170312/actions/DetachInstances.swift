@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 从计算环境移出实例
-    ///
-    /// 将添加到计算环境中的实例从计算环境中移出。若是由批量计算自动创建的计算节点实例则不允许移出。
-    @inlinable
-    public func detachInstances(_ input: DetachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachInstancesResponse > {
-        self.client.execute(action: "DetachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 从计算环境移出实例
-    ///
-    /// 将添加到计算环境中的实例从计算环境中移出。若是由批量计算自动创建的计算节点实例则不允许移出。
-    @inlinable
-    public func detachInstances(_ input: DetachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachInstancesResponse {
-        try await self.client.execute(action: "DetachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetachInstances请求参数结构体
     public struct DetachInstancesRequest: TCRequestModel {
         /// 计算环境ID
@@ -58,5 +42,21 @@ extension Batch {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 从计算环境移出实例
+    ///
+    /// 将添加到计算环境中的实例从计算环境中移出。若是由批量计算自动创建的计算节点实例则不允许移出。
+    @inlinable
+    public func detachInstances(_ input: DetachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachInstancesResponse > {
+        self.client.execute(action: "DetachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 从计算环境移出实例
+    ///
+    /// 将添加到计算环境中的实例从计算环境中移出。若是由批量计算自动创建的计算节点实例则不允许移出。
+    @inlinable
+    public func detachInstances(_ input: DetachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachInstancesResponse {
+        try await self.client.execute(action: "DetachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

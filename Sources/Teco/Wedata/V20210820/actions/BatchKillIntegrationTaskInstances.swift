@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 批量终止集成任务实例
-    @inlinable
-    public func batchKillIntegrationTaskInstances(_ input: BatchKillIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchKillIntegrationTaskInstancesResponse > {
-        self.client.execute(action: "BatchKillIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量终止集成任务实例
-    @inlinable
-    public func batchKillIntegrationTaskInstances(_ input: BatchKillIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchKillIntegrationTaskInstancesResponse {
-        try await self.client.execute(action: "BatchKillIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchKillIntegrationTaskInstances请求参数结构体
     public struct BatchKillIntegrationTaskInstancesRequest: TCRequestModel {
         /// 实例信息
@@ -66,5 +54,17 @@ extension Wedata {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量终止集成任务实例
+    @inlinable
+    public func batchKillIntegrationTaskInstances(_ input: BatchKillIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchKillIntegrationTaskInstancesResponse > {
+        self.client.execute(action: "BatchKillIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量终止集成任务实例
+    @inlinable
+    public func batchKillIntegrationTaskInstances(_ input: BatchKillIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchKillIntegrationTaskInstancesResponse {
+        try await self.client.execute(action: "BatchKillIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

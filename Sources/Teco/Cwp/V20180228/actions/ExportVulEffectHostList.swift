@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 导出漏洞影响主机列表
-    @inlinable
-    public func exportVulEffectHostList(_ input: ExportVulEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVulEffectHostListResponse > {
-        self.client.execute(action: "ExportVulEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出漏洞影响主机列表
-    @inlinable
-    public func exportVulEffectHostList(_ input: ExportVulEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulEffectHostListResponse {
-        try await self.client.execute(action: "ExportVulEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportVulEffectHostList请求参数结构体
     public struct ExportVulEffectHostListRequest: TCRequestModel {
         /// 漏洞id
@@ -36,7 +24,7 @@ extension Cwp {
         /// <li>AliasName - String - 主机名筛选</li>
         public let filters: [Filter]?
         
-        public init (vulId: UInt64, filters: [Filter]?) {
+        public init (vulId: UInt64, filters: [Filter]? = nil) {
             self.vulId = vulId
             self.filters = filters
         }
@@ -64,5 +52,17 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出漏洞影响主机列表
+    @inlinable
+    public func exportVulEffectHostList(_ input: ExportVulEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVulEffectHostListResponse > {
+        self.client.execute(action: "ExportVulEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出漏洞影响主机列表
+    @inlinable
+    public func exportVulEffectHostList(_ input: ExportVulEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulEffectHostListResponse {
+        try await self.client.execute(action: "ExportVulEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

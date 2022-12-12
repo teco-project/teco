@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 解隔离DCDB后付费实例
-    @inlinable
-    public func activeHourDCDBInstance(_ input: ActiveHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActiveHourDCDBInstanceResponse > {
-        self.client.execute(action: "ActiveHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解隔离DCDB后付费实例
-    @inlinable
-    public func activeHourDCDBInstance(_ input: ActiveHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActiveHourDCDBInstanceResponse {
-        try await self.client.execute(action: "ActiveHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ActiveHourDCDBInstance请求参数结构体
     public struct ActiveHourDCDBInstanceRequest: TCRequestModel {
         /// 待升级的实例ID列表。形如：["dcdbt-ow728lmc"]，可以通过 DescribeDCDBInstances 查询实例详情获得。
@@ -57,5 +45,17 @@ extension Dcdb {
             case failedInstanceIds = "FailedInstanceIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解隔离DCDB后付费实例
+    @inlinable
+    public func activeHourDCDBInstance(_ input: ActiveHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActiveHourDCDBInstanceResponse > {
+        self.client.execute(action: "ActiveHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解隔离DCDB后付费实例
+    @inlinable
+    public func activeHourDCDBInstance(_ input: ActiveHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActiveHourDCDBInstanceResponse {
+        try await self.client.execute(action: "ActiveHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

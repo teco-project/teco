@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 查询ES集群日志
-    ///
-    /// 查询用户该地域下符合条件的ES集群的日志
-    @inlinable
-    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLogsResponse > {
-        self.client.execute(action: "DescribeInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询ES集群日志
-    ///
-    /// 查询用户该地域下符合条件的ES集群的日志
-    @inlinable
-    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogsResponse {
-        try await self.client.execute(action: "DescribeInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceLogs请求参数结构体
     public struct DescribeInstanceLogsRequest: TCRequestModel {
         /// 集群实例ID
@@ -63,7 +47,7 @@ extension Es {
         /// <li>1, 升序</li>
         public let orderByType: UInt64?
         
-        public init (instanceId: String, logType: UInt64?, searchKey: String?, startTime: String?, endTime: String?, offset: UInt64?, limit: UInt64?, orderByType: UInt64?) {
+        public init (instanceId: String, logType: UInt64? = nil, searchKey: String? = nil, startTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderByType: UInt64? = nil) {
             self.instanceId = instanceId
             self.logType = logType
             self.searchKey = searchKey
@@ -102,5 +86,21 @@ extension Es {
             case instanceLogList = "InstanceLogList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询ES集群日志
+    ///
+    /// 查询用户该地域下符合条件的ES集群的日志
+    @inlinable
+    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLogsResponse > {
+        self.client.execute(action: "DescribeInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询ES集群日志
+    ///
+    /// 查询用户该地域下符合条件的ES集群的日志
+    @inlinable
+    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogsResponse {
+        try await self.client.execute(action: "DescribeInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcbr {
-    /// 查询环境列表
-    ///
-    /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
-    @inlinable
-    public func describeCloudRunEnvs(_ input: DescribeCloudRunEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudRunEnvsResponse > {
-        self.client.execute(action: "DescribeCloudRunEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询环境列表
-    ///
-    /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
-    @inlinable
-    public func describeCloudRunEnvs(_ input: DescribeCloudRunEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRunEnvsResponse {
-        try await self.client.execute(action: "DescribeCloudRunEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudRunEnvs请求参数结构体
     public struct DescribeCloudRunEnvsRequest: TCRequestModel {
         /// 环境ID，如果传了这个参数则只返回该环境的相关信息
@@ -43,7 +27,7 @@ extension Tcbr {
         /// 渠道列表，代表可见或不可见渠道由IsVisible参数指定
         public let channels: [String]?
         
-        public init (envId: String?, isVisible: Bool?, channels: [String]?) {
+        public init (envId: String? = nil, isVisible: Bool? = nil, channels: [String]? = nil) {
             self.envId = envId
             self.isVisible = isVisible
             self.channels = channels
@@ -68,5 +52,21 @@ extension Tcbr {
             case envList = "EnvList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询环境列表
+    ///
+    /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
+    @inlinable
+    public func describeCloudRunEnvs(_ input: DescribeCloudRunEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudRunEnvsResponse > {
+        self.client.execute(action: "DescribeCloudRunEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询环境列表
+    ///
+    /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
+    @inlinable
+    public func describeCloudRunEnvs(_ input: DescribeCloudRunEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRunEnvsResponse {
+        try await self.client.execute(action: "DescribeCloudRunEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

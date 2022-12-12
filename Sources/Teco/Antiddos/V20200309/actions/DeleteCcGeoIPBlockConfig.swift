@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 删除CC防护的区域封禁配置
-    @inlinable
-    public func deleteCcGeoIPBlockConfig(_ input: DeleteCcGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCcGeoIPBlockConfigResponse > {
-        self.client.execute(action: "DeleteCcGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除CC防护的区域封禁配置
-    @inlinable
-    public func deleteCcGeoIPBlockConfig(_ input: DeleteCcGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCcGeoIPBlockConfigResponse {
-        try await self.client.execute(action: "DeleteCcGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCcGeoIPBlockConfig请求参数结构体
     public struct DeleteCcGeoIPBlockConfigRequest: TCRequestModel {
         /// 资源实例ID
@@ -54,5 +42,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除CC防护的区域封禁配置
+    @inlinable
+    public func deleteCcGeoIPBlockConfig(_ input: DeleteCcGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCcGeoIPBlockConfigResponse > {
+        self.client.execute(action: "DeleteCcGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除CC防护的区域封禁配置
+    @inlinable
+    public func deleteCcGeoIPBlockConfig(_ input: DeleteCcGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCcGeoIPBlockConfigResponse {
+        try await self.client.execute(action: "DeleteCcGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

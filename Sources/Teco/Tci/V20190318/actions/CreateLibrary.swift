@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 创建人员库
-    @inlinable
-    public func createLibrary(_ input: CreateLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLibraryResponse > {
-        self.client.execute(action: "CreateLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建人员库
-    @inlinable
-    public func createLibrary(_ input: CreateLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLibraryResponse {
-        try await self.client.execute(action: "CreateLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLibrary请求参数结构体
     public struct CreateLibraryRequest: TCRequestModel {
         /// 人员库名称
@@ -35,7 +23,7 @@ extension Tci {
         /// 人员库唯一标志符，为空则系统自动生成。
         public let libraryId: String?
         
-        public init (libraryName: String, libraryId: String?) {
+        public init (libraryName: String, libraryId: String? = nil) {
             self.libraryName = libraryName
             self.libraryId = libraryId
         }
@@ -62,5 +50,17 @@ extension Tci {
             case libraryName = "LibraryName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建人员库
+    @inlinable
+    public func createLibrary(_ input: CreateLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLibraryResponse > {
+        self.client.execute(action: "CreateLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建人员库
+    @inlinable
+    public func createLibrary(_ input: CreateLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLibraryResponse {
+        try await self.client.execute(action: "CreateLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

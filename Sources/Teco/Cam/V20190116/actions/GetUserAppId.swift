@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 获取用户AppId
-    @inlinable
-    public func getUserAppId(_ input: GetUserAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUserAppIdResponse > {
-        self.client.execute(action: "GetUserAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户AppId
-    @inlinable
-    public func getUserAppId(_ input: GetUserAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserAppIdResponse {
-        try await self.client.execute(action: "GetUserAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetUserAppId请求参数结构体
     public struct GetUserAppIdRequest: TCRequestModel {
         public init () {
@@ -53,5 +41,17 @@ extension Cam {
             case appId = "AppId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户AppId
+    @inlinable
+    public func getUserAppId(_ input: GetUserAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUserAppIdResponse > {
+        self.client.execute(action: "GetUserAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户AppId
+    @inlinable
+    public func getUserAppId(_ input: GetUserAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserAppIdResponse {
+        try await self.client.execute(action: "GetUserAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

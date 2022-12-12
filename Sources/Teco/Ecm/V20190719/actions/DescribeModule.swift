@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 获取模块列表
-    @inlinable
-    public func describeModule(_ input: DescribeModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModuleResponse > {
-        self.client.execute(action: "DescribeModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取模块列表
-    @inlinable
-    public func describeModule(_ input: DescribeModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModuleResponse {
-        try await self.client.execute(action: "DescribeModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeModule请求参数结构体
     public struct DescribeModuleRequest: TCRequestModel {
         /// 过滤条件。
@@ -54,7 +42,7 @@ extension Ecm {
         /// 指定排序是降序还是升序。0表示降序； 1表示升序。如果不传默认为降序
         public let orderDirection: Int64?
         
-        public init (filters: [Filter]?, offset: Int64?, limit: Int64?, orderByField: String?, orderDirection: Int64?) {
+        public init (filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -89,5 +77,17 @@ extension Ecm {
             case moduleItemSet = "ModuleItemSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取模块列表
+    @inlinable
+    public func describeModule(_ input: DescribeModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModuleResponse > {
+        self.client.execute(action: "DescribeModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取模块列表
+    @inlinable
+    public func describeModule(_ input: DescribeModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModuleResponse {
+        try await self.client.execute(action: "DescribeModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

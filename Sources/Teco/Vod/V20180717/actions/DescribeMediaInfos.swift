@@ -15,6 +15,58 @@
 // DO NOT EDIT.
 
 extension Vod {
+    /// DescribeMediaInfos请求参数结构体
+    public struct DescribeMediaInfosRequest: TCRequestModel {
+        /// 媒体文件 ID 列表，N 从 0 开始取值，最大 19。
+        public let fileIds: [String]
+        
+        /// 指定所有媒体文件需要返回的信息，可同时指定多个信息，N 从 0 开始递增。如果未填写该字段，默认返回所有信息。选项有：
+        /// <li>basicInfo（视频基础信息）。</li>
+        /// <li>metaData（视频元信息）。</li>
+        /// <li>transcodeInfo（视频转码结果信息）。</li>
+        /// <li>animatedGraphicsInfo（视频转动图结果信息）。</li>
+        /// <li>imageSpriteInfo（视频雪碧图信息）。</li>
+        /// <li>snapshotByTimeOffsetInfo（视频指定时间点截图信息）。</li>
+        /// <li>sampleSnapshotInfo（采样截图信息）。</li>
+        /// <li>keyFrameDescInfo（打点信息）。</li>
+        /// <li>adaptiveDynamicStreamingInfo（转自适应码流信息）。</li>
+        /// <li>miniProgramReviewInfo（小程序审核信息）。</li>
+        public let filters: [String]?
+        
+        /// 点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        public let subAppId: UInt64?
+        
+        public init (fileIds: [String], filters: [String]? = nil, subAppId: UInt64? = nil) {
+            self.fileIds = fileIds
+            self.filters = filters
+            self.subAppId = subAppId
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case fileIds = "FileIds"
+            case filters = "Filters"
+            case subAppId = "SubAppId"
+        }
+    }
+    
+    /// DescribeMediaInfos返回参数结构体
+    public struct DescribeMediaInfosResponse: TCResponseModel {
+        /// 媒体文件信息列表。
+        public let mediaInfoSet: [MediaInfo]
+        
+        /// 不存在的文件 ID 列表。
+        public let notExistFileIdSet: [String]
+        
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case mediaInfoSet = "MediaInfoSet"
+            case notExistFileIdSet = "NotExistFileIdSet"
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 获取媒体详细信息
     ///
     /// 1. 该接口可以获取多个媒体文件的多种信息，包括：
@@ -49,57 +101,5 @@ extension Vod {
     @inlinable
     public func describeMediaInfos(_ input: DescribeMediaInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaInfosResponse {
         try await self.client.execute(action: "DescribeMediaInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// DescribeMediaInfos请求参数结构体
-    public struct DescribeMediaInfosRequest: TCRequestModel {
-        /// 媒体文件 ID 列表，N 从 0 开始取值，最大 19。
-        public let fileIds: [String]
-        
-        /// 指定所有媒体文件需要返回的信息，可同时指定多个信息，N 从 0 开始递增。如果未填写该字段，默认返回所有信息。选项有：
-        /// <li>basicInfo（视频基础信息）。</li>
-        /// <li>metaData（视频元信息）。</li>
-        /// <li>transcodeInfo（视频转码结果信息）。</li>
-        /// <li>animatedGraphicsInfo（视频转动图结果信息）。</li>
-        /// <li>imageSpriteInfo（视频雪碧图信息）。</li>
-        /// <li>snapshotByTimeOffsetInfo（视频指定时间点截图信息）。</li>
-        /// <li>sampleSnapshotInfo（采样截图信息）。</li>
-        /// <li>keyFrameDescInfo（打点信息）。</li>
-        /// <li>adaptiveDynamicStreamingInfo（转自适应码流信息）。</li>
-        /// <li>miniProgramReviewInfo（小程序审核信息）。</li>
-        public let filters: [String]?
-        
-        /// 点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        public let subAppId: UInt64?
-        
-        public init (fileIds: [String], filters: [String]?, subAppId: UInt64?) {
-            self.fileIds = fileIds
-            self.filters = filters
-            self.subAppId = subAppId
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case fileIds = "FileIds"
-            case filters = "Filters"
-            case subAppId = "SubAppId"
-        }
-    }
-    
-    /// DescribeMediaInfos返回参数结构体
-    public struct DescribeMediaInfosResponse: TCResponseModel {
-        /// 媒体文件信息列表。
-        public let mediaInfoSet: [MediaInfo]
-        
-        /// 不存在的文件 ID 列表。
-        public let notExistFileIdSet: [String]
-        
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case mediaInfoSet = "MediaInfoSet"
-            case notExistFileIdSet = "NotExistFileIdSet"
-            case requestId = "RequestId"
-        }
     }
 }

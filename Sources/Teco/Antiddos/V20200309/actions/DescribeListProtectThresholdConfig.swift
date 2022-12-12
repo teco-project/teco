@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取防护阈值配置列表
-    ///
-    /// 获取防护阈值配置列表，包括DDoS的AI、等级、CC阈值开关等
-    @inlinable
-    public func describeListProtectThresholdConfig(_ input: DescribeListProtectThresholdConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListProtectThresholdConfigResponse > {
-        self.client.execute(action: "DescribeListProtectThresholdConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取防护阈值配置列表
-    ///
-    /// 获取防护阈值配置列表，包括DDoS的AI、等级、CC阈值开关等
-    @inlinable
-    public func describeListProtectThresholdConfig(_ input: DescribeListProtectThresholdConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListProtectThresholdConfigResponse {
-        try await self.client.execute(action: "DescribeListProtectThresholdConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeListProtectThresholdConfig请求参数结构体
     public struct DescribeListProtectThresholdConfigRequest: TCRequestModel {
         /// 页起始偏移，取值为(页码-1)*一页条数
@@ -51,7 +35,7 @@ extension Antiddos {
         /// 协议搜索(查询域名与协议的CC防护阈值时使用）
         public let filterProtocol: String?
         
-        public init (offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String?, filterDomain: String?, filterProtocol: String?) {
+        public init (offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil, filterDomain: String? = nil, filterProtocol: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filterInstanceId = filterInstanceId
@@ -86,5 +70,21 @@ extension Antiddos {
             case configList = "ConfigList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取防护阈值配置列表
+    ///
+    /// 获取防护阈值配置列表，包括DDoS的AI、等级、CC阈值开关等
+    @inlinable
+    public func describeListProtectThresholdConfig(_ input: DescribeListProtectThresholdConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListProtectThresholdConfigResponse > {
+        self.client.execute(action: "DescribeListProtectThresholdConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取防护阈值配置列表
+    ///
+    /// 获取防护阈值配置列表，包括DDoS的AI、等级、CC阈值开关等
+    @inlinable
+    public func describeListProtectThresholdConfig(_ input: DescribeListProtectThresholdConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListProtectThresholdConfigResponse {
+        try await self.client.execute(action: "DescribeListProtectThresholdConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 创建模型服务
-    ///
-    /// 用于创建、发布一个新的模型服务
-    @inlinable
-    public func createModelService(_ input: CreateModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateModelServiceResponse > {
-        self.client.execute(action: "CreateModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建模型服务
-    ///
-    /// 用于创建、发布一个新的模型服务
-    @inlinable
-    public func createModelService(_ input: CreateModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModelServiceResponse {
-        try await self.client.execute(action: "CreateModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateModelService请求参数结构体
     public struct CreateModelServiceRequest: TCRequestModel {
         /// 镜像信息，配置服务运行所需的镜像地址等信息
@@ -52,13 +36,13 @@ extension Tione {
         public let resourceGroupId: String?
         
         /// 模型信息，需要挂载模型时填写
-        public let modelInfo: ModelInfo
+        public let modelInfo: ModelInfo?
         
         /// 环境变量，可选参数，用于配置容器中的环境变量
         public let env: [EnvVar]?
         
         /// 资源描述，指定预付费模式下的cpu,mem,gpu等信息，后付费无需填写
-        public let resources: ResourceInfo
+        public let resources: ResourceInfo?
         
         /// 使用DescribeBillingSpecs接口返回的规格列表中的值，或者参考实例列表:
         /// TI.S.MEDIUM.POST	2C4G
@@ -93,13 +77,13 @@ extension Tione {
         public let replicas: Int64?
         
         /// 自动伸缩信息
-        public let horizontalPodAutoscaler: HorizontalPodAutoscaler
+        public let horizontalPodAutoscaler: HorizontalPodAutoscaler?
         
         /// 是否开启日志投递，开启后需填写配置投递到指定cls
         public let logEnable: Bool?
         
         /// 日志配置，需要投递服务日志到指定cls时填写
-        public let logConfig: LogConfig
+        public let logConfig: LogConfig?
         
         /// 是否开启接口鉴权，开启后自动生成token信息，访问需要token鉴权
         public let authorizationEnable: Bool?
@@ -126,15 +110,15 @@ extension Tione {
         public let modelHotUpdateEnable: Bool?
         
         /// 定时停止配置
-        public let scheduledAction: ScheduledAction
+        public let scheduledAction: ScheduledAction?
         
         /// 挂载配置，目前只支持CFS
-        public let volumeMount: VolumeMount
+        public let volumeMount: VolumeMount?
         
         /// 服务限速限流相关配置
-        public let serviceLimit: ServiceLimit
+        public let serviceLimit: ServiceLimit?
         
-        public init (imageInfo: ImageInfo, serviceGroupId: String?, serviceGroupName: String?, serviceDescription: String?, chargeType: String?, resourceGroupId: String?, modelInfo: ModelInfo, env: [EnvVar]?, resources: ResourceInfo, instanceType: String?, scaleMode: String?, replicas: Int64?, horizontalPodAutoscaler: HorizontalPodAutoscaler, logEnable: Bool?, logConfig: LogConfig, authorizationEnable: Bool?, tags: [Tag]?, newVersion: Bool?, cronScaleJobs: [CronScaleJob]?, scaleStrategy: String?, hybridBillingPrepaidReplicas: Int64?, createSource: String?, modelHotUpdateEnable: Bool?, scheduledAction: ScheduledAction, volumeMount: VolumeMount, serviceLimit: ServiceLimit) {
+        public init (imageInfo: ImageInfo, serviceGroupId: String? = nil, serviceGroupName: String? = nil, serviceDescription: String? = nil, chargeType: String? = nil, resourceGroupId: String? = nil, modelInfo: ModelInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, authorizationEnable: Bool? = nil, tags: [Tag]? = nil, newVersion: Bool? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, hybridBillingPrepaidReplicas: Int64? = nil, createSource: String? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, volumeMount: VolumeMount? = nil, serviceLimit: ServiceLimit? = nil) {
             self.imageInfo = imageInfo
             self.serviceGroupId = serviceGroupId
             self.serviceGroupName = serviceGroupName
@@ -197,7 +181,7 @@ extension Tione {
     public struct CreateModelServiceResponse: TCResponseModel {
         /// 生成的模型服务
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let service: Service
+        public let service: Service?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -206,5 +190,21 @@ extension Tione {
             case service = "Service"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建模型服务
+    ///
+    /// 用于创建、发布一个新的模型服务
+    @inlinable
+    public func createModelService(_ input: CreateModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateModelServiceResponse > {
+        self.client.execute(action: "CreateModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建模型服务
+    ///
+    /// 用于创建、发布一个新的模型服务
+    @inlinable
+    public func createModelService(_ input: CreateModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModelServiceResponse {
+        try await self.client.execute(action: "CreateModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

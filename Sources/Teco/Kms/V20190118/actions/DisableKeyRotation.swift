@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 禁止密钥轮换
-    ///
-    /// 对指定的CMK禁止密钥轮换功能。
-    @inlinable
-    public func disableKeyRotation(_ input: DisableKeyRotationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableKeyRotationResponse > {
-        self.client.execute(action: "DisableKeyRotation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 禁止密钥轮换
-    ///
-    /// 对指定的CMK禁止密钥轮换功能。
-    @inlinable
-    public func disableKeyRotation(_ input: DisableKeyRotationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeyRotationResponse {
-        try await self.client.execute(action: "DisableKeyRotation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableKeyRotation请求参数结构体
     public struct DisableKeyRotationRequest: TCRequestModel {
         /// CMK唯一标识符
@@ -53,5 +37,21 @@ extension Kms {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 禁止密钥轮换
+    ///
+    /// 对指定的CMK禁止密钥轮换功能。
+    @inlinable
+    public func disableKeyRotation(_ input: DisableKeyRotationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableKeyRotationResponse > {
+        self.client.execute(action: "DisableKeyRotation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 禁止密钥轮换
+    ///
+    /// 对指定的CMK禁止密钥轮换功能。
+    @inlinable
+    public func disableKeyRotation(_ input: DisableKeyRotationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeyRotationResponse {
+        try await self.client.execute(action: "DisableKeyRotation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

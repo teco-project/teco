@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 获取环境状态
-    @inlinable
-    public func describeEnvironmentStatus(_ input: DescribeEnvironmentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentStatusResponse > {
-        self.client.execute(action: "DescribeEnvironmentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取环境状态
-    @inlinable
-    public func describeEnvironmentStatus(_ input: DescribeEnvironmentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentStatusResponse {
-        try await self.client.execute(action: "DescribeEnvironmentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEnvironmentStatus请求参数结构体
     public struct DescribeEnvironmentStatusRequest: TCRequestModel {
         /// 命名空间id
@@ -35,7 +23,7 @@ extension Tem {
         /// 来源Channel
         public let sourceChannel: Int64?
         
-        public init (environmentIds: [String], sourceChannel: Int64?) {
+        public init (environmentIds: [String], sourceChannel: Int64? = nil) {
             self.environmentIds = environmentIds
             self.sourceChannel = sourceChannel
         }
@@ -58,5 +46,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取环境状态
+    @inlinable
+    public func describeEnvironmentStatus(_ input: DescribeEnvironmentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentStatusResponse > {
+        self.client.execute(action: "DescribeEnvironmentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取环境状态
+    @inlinable
+    public func describeEnvironmentStatus(_ input: DescribeEnvironmentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentStatusResponse {
+        try await self.client.execute(action: "DescribeEnvironmentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

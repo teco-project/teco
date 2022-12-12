@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Asw {
-    /// 查询状态机详情
-    ///
-    /// 查询该用户指定状态机下的详情数据。
-    @inlinable
-    public func describeFlowServiceDetail(_ input: DescribeFlowServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowServiceDetailResponse > {
-        self.client.execute(action: "DescribeFlowServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询状态机详情
-    ///
-    /// 查询该用户指定状态机下的详情数据。
-    @inlinable
-    public func describeFlowServiceDetail(_ input: DescribeFlowServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowServiceDetailResponse {
-        try await self.client.execute(action: "DescribeFlowServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlowServiceDetail请求参数结构体
     public struct DescribeFlowServiceDetailRequest: TCRequestModel {
         /// 状态机所属服务资源名
@@ -104,5 +88,21 @@ extension Asw {
             case flowInput = "FlowInput"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询状态机详情
+    ///
+    /// 查询该用户指定状态机下的详情数据。
+    @inlinable
+    public func describeFlowServiceDetail(_ input: DescribeFlowServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowServiceDetailResponse > {
+        self.client.execute(action: "DescribeFlowServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询状态机详情
+    ///
+    /// 查询该用户指定状态机下的详情数据。
+    @inlinable
+    public func describeFlowServiceDetail(_ input: DescribeFlowServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowServiceDetailResponse {
+        try await self.client.execute(action: "DescribeFlowServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

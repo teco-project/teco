@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tsf {
-    /// 查询单元化网关API监控明细数据
-    ///
-    /// 查询网关API监控明细数据（仅单元化网关），非单元化网关使用DescribeApiUseDetail
-    @inlinable
-    public func describeUnitApiUseDetail(_ input: DescribeUnitApiUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnitApiUseDetailResponse > {
-        self.client.execute(action: "DescribeUnitApiUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询单元化网关API监控明细数据
-    ///
-    /// 查询网关API监控明细数据（仅单元化网关），非单元化网关使用DescribeApiUseDetail
-    @inlinable
-    public func describeUnitApiUseDetail(_ input: DescribeUnitApiUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnitApiUseDetailResponse {
-        try await self.client.execute(action: "DescribeUnitApiUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUnitApiUseDetail请求参数结构体
     public struct DescribeUnitApiUseDetailRequest: TCRequestModel {
         /// 网关部署组ID
@@ -64,7 +48,7 @@ extension Tsf {
         /// 监控统计数据粒度
         public let period: Int64?
         
-        public init (gatewayDeployGroupId: String, apiId: String, startTime: Date, endTime: Date, gatewayInstanceId: String, groupId: String, offset: Int64, limit: Int64, period: Int64?) {
+        public init (gatewayDeployGroupId: String, apiId: String, startTime: Date, endTime: Date, gatewayInstanceId: String, groupId: String, offset: Int64, limit: Int64, period: Int64? = nil) {
             self.gatewayDeployGroupId = gatewayDeployGroupId
             self.apiId = apiId
             self.startTime = startTime
@@ -101,5 +85,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询单元化网关API监控明细数据
+    ///
+    /// 查询网关API监控明细数据（仅单元化网关），非单元化网关使用DescribeApiUseDetail
+    @inlinable
+    public func describeUnitApiUseDetail(_ input: DescribeUnitApiUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnitApiUseDetailResponse > {
+        self.client.execute(action: "DescribeUnitApiUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询单元化网关API监控明细数据
+    ///
+    /// 查询网关API监控明细数据（仅单元化网关），非单元化网关使用DescribeApiUseDetail
+    @inlinable
+    public func describeUnitApiUseDetail(_ input: DescribeUnitApiUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnitApiUseDetailResponse {
+        try await self.client.execute(action: "DescribeUnitApiUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

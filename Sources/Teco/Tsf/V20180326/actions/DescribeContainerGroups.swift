@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 容器部署组列表
-    @inlinable
-    public func describeContainerGroups(_ input: DescribeContainerGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerGroupsResponse > {
-        self.client.execute(action: "DescribeContainerGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 容器部署组列表
-    @inlinable
-    public func describeContainerGroups(_ input: DescribeContainerGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupsResponse {
-        try await self.client.execute(action: "DescribeContainerGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeContainerGroups请求参数结构体
     public struct DescribeContainerGroupsRequest: TCRequestModel {
         /// 搜索字段，模糊搜索groupName字段
@@ -53,7 +41,7 @@ extension Tsf {
         /// 命名空间 ID
         public let namespaceId: String?
         
-        public init (searchWord: String?, applicationId: String?, orderBy: String?, orderType: Int64?, offset: Int64?, limit: Int64?, clusterId: String?, namespaceId: String?) {
+        public init (searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, namespaceId: String? = nil) {
             self.searchWord = searchWord
             self.applicationId = applicationId
             self.orderBy = orderBy
@@ -88,5 +76,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 容器部署组列表
+    @inlinable
+    public func describeContainerGroups(_ input: DescribeContainerGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerGroupsResponse > {
+        self.client.execute(action: "DescribeContainerGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 容器部署组列表
+    @inlinable
+    public func describeContainerGroups(_ input: DescribeContainerGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupsResponse {
+        try await self.client.execute(action: "DescribeContainerGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

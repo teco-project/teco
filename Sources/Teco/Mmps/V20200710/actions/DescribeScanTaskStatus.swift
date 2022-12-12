@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mmps {
-    /// 查询隐私合规诊断任务状态
-    ///
-    /// 查询小程序隐私合规诊断任务状态
-    @inlinable
-    public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskStatusResponse > {
-        self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询隐私合规诊断任务状态
-    ///
-    /// 查询小程序隐私合规诊断任务状态
-    @inlinable
-    public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskStatusResponse {
-        try await self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScanTaskStatus请求参数结构体
     public struct DescribeScanTaskStatusRequest: TCRequestModel {
         /// 任务类型, 0:基础版, 1:专家版, 2:本地化
@@ -86,5 +70,21 @@ extension Mmps {
             case flowSteps = "FlowSteps"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询隐私合规诊断任务状态
+    ///
+    /// 查询小程序隐私合规诊断任务状态
+    @inlinable
+    public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskStatusResponse > {
+        self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询隐私合规诊断任务状态
+    ///
+    /// 查询小程序隐私合规诊断任务状态
+    @inlinable
+    public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskStatusResponse {
+        try await self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

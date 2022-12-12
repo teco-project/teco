@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 获取集群关联的标签列表
-    @inlinable
-    public func describeClusterTags(_ input: DescribeClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterTagsResponse > {
-        self.client.execute(action: "DescribeClusterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取集群关联的标签列表
-    @inlinable
-    public func describeClusterTags(_ input: DescribeClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterTagsResponse {
-        try await self.client.execute(action: "DescribeClusterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterTags请求参数结构体
     public struct DescribeClusterTagsRequest: TCRequestModel {
         /// 集群ID列表
@@ -59,5 +47,17 @@ extension Tcaplusdb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取集群关联的标签列表
+    @inlinable
+    public func describeClusterTags(_ input: DescribeClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterTagsResponse > {
+        self.client.execute(action: "DescribeClusterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群关联的标签列表
+    @inlinable
+    public func describeClusterTags(_ input: DescribeClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterTagsResponse {
+        try await self.client.execute(action: "DescribeClusterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

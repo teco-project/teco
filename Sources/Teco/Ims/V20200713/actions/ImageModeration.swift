@@ -15,52 +15,6 @@
 // DO NOT EDIT.
 
 extension Ims {
-    /// 图片内容检测
-    ///
-    /// 图片内容检测服务（Image Moderation, IM）能自动扫描图片，识别可能令人反感、不安全或不适宜的内容，同时支持用户配置图片黑名单，打击自定义识别类型的图片。
-    /// <div class="rno-api-explorer" style="margin-bottom:20px">
-    ///     <div class="rno-api-explorer-inner">
-    ///         <div class="rno-api-explorer-hd">
-    ///             <div class="rno-api-explorer-title">
-    ///                 关于版本迭代的描述
-    ///             </div>
-    ///         </div>
-    ///         <div class="rno-api-explorer-body">
-    ///             <div class="rno-api-explorer-cont">
-    ///                 <p>当前页面版本为图片内容安全2020版本，2020.11.3日前接入的图片内容安全接口为2019版本，在此时间前接入的用户可直接访问以下链接进行维护操作：<a href="https://cloud.tencent.com/document/product/1125/38206" target="_blank">图片内容安全-2019版本</a></p>
-    ///                 <p>2020版本相对2019版本进行了升级，支持更灵活的多场景业务策略配置以及更丰富的识别回调信息，满足不同业务的识别需求，建议按照2020版本接入指引进行接口升级；同时，2019版本也会持续维护直至用户不再使用为止。</p>
-    ///             </div>
-    ///         </div>
-    ///     </div>
-    /// </div>
-    @inlinable
-    public func imageModeration(_ input: ImageModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImageModerationResponse > {
-        self.client.execute(action: "ImageModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 图片内容检测
-    ///
-    /// 图片内容检测服务（Image Moderation, IM）能自动扫描图片，识别可能令人反感、不安全或不适宜的内容，同时支持用户配置图片黑名单，打击自定义识别类型的图片。
-    /// <div class="rno-api-explorer" style="margin-bottom:20px">
-    ///     <div class="rno-api-explorer-inner">
-    ///         <div class="rno-api-explorer-hd">
-    ///             <div class="rno-api-explorer-title">
-    ///                 关于版本迭代的描述
-    ///             </div>
-    ///         </div>
-    ///         <div class="rno-api-explorer-body">
-    ///             <div class="rno-api-explorer-cont">
-    ///                 <p>当前页面版本为图片内容安全2020版本，2020.11.3日前接入的图片内容安全接口为2019版本，在此时间前接入的用户可直接访问以下链接进行维护操作：<a href="https://cloud.tencent.com/document/product/1125/38206" target="_blank">图片内容安全-2019版本</a></p>
-    ///                 <p>2020版本相对2019版本进行了升级，支持更灵活的多场景业务策略配置以及更丰富的识别回调信息，满足不同业务的识别需求，建议按照2020版本接入指引进行接口升级；同时，2019版本也会持续维护直至用户不再使用为止。</p>
-    ///             </div>
-    ///         </div>
-    ///     </div>
-    /// </div>
-    @inlinable
-    public func imageModeration(_ input: ImageModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageModerationResponse {
-        try await self.client.execute(action: "ImageModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ImageModeration请求参数结构体
     public struct ImageModerationRequest: TCRequestModel {
         /// 该字段用于标识业务场景。您可以在内容安全控制台创建对应的ID，配置不同的内容审核策略，通过接口调用，默认不填为0，后端使用默认策略。 -- 该字段暂未开放。
@@ -82,12 +36,12 @@ extension Ims {
         public let maxFrames: Int64?
         
         /// 账号相关信息字段，填入后可识别违规风险账号。
-        public let user: User
+        public let user: User?
         
         /// 设备相关信息字段，填入后可识别违规风险设备。
-        public let device: Device
+        public let device: Device?
         
-        public init (bizType: String?, dataId: String?, fileContent: String?, fileUrl: String?, interval: Int64?, maxFrames: Int64?, user: User, device: Device) {
+        public init (bizType: String? = nil, dataId: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, interval: Int64? = nil, maxFrames: Int64? = nil, user: User? = nil, device: Device? = nil) {
             self.bizType = bizType
             self.dataId = dataId
             self.fileContent = fileContent
@@ -177,5 +131,51 @@ extension Ims {
             case extra = "Extra"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 图片内容检测
+    ///
+    /// 图片内容检测服务（Image Moderation, IM）能自动扫描图片，识别可能令人反感、不安全或不适宜的内容，同时支持用户配置图片黑名单，打击自定义识别类型的图片。
+    /// <div class="rno-api-explorer" style="margin-bottom:20px">
+    ///     <div class="rno-api-explorer-inner">
+    ///         <div class="rno-api-explorer-hd">
+    ///             <div class="rno-api-explorer-title">
+    ///                 关于版本迭代的描述
+    ///             </div>
+    ///         </div>
+    ///         <div class="rno-api-explorer-body">
+    ///             <div class="rno-api-explorer-cont">
+    ///                 <p>当前页面版本为图片内容安全2020版本，2020.11.3日前接入的图片内容安全接口为2019版本，在此时间前接入的用户可直接访问以下链接进行维护操作：<a href="https://cloud.tencent.com/document/product/1125/38206" target="_blank">图片内容安全-2019版本</a></p>
+    ///                 <p>2020版本相对2019版本进行了升级，支持更灵活的多场景业务策略配置以及更丰富的识别回调信息，满足不同业务的识别需求，建议按照2020版本接入指引进行接口升级；同时，2019版本也会持续维护直至用户不再使用为止。</p>
+    ///             </div>
+    ///         </div>
+    ///     </div>
+    /// </div>
+    @inlinable
+    public func imageModeration(_ input: ImageModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImageModerationResponse > {
+        self.client.execute(action: "ImageModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 图片内容检测
+    ///
+    /// 图片内容检测服务（Image Moderation, IM）能自动扫描图片，识别可能令人反感、不安全或不适宜的内容，同时支持用户配置图片黑名单，打击自定义识别类型的图片。
+    /// <div class="rno-api-explorer" style="margin-bottom:20px">
+    ///     <div class="rno-api-explorer-inner">
+    ///         <div class="rno-api-explorer-hd">
+    ///             <div class="rno-api-explorer-title">
+    ///                 关于版本迭代的描述
+    ///             </div>
+    ///         </div>
+    ///         <div class="rno-api-explorer-body">
+    ///             <div class="rno-api-explorer-cont">
+    ///                 <p>当前页面版本为图片内容安全2020版本，2020.11.3日前接入的图片内容安全接口为2019版本，在此时间前接入的用户可直接访问以下链接进行维护操作：<a href="https://cloud.tencent.com/document/product/1125/38206" target="_blank">图片内容安全-2019版本</a></p>
+    ///                 <p>2020版本相对2019版本进行了升级，支持更灵活的多场景业务策略配置以及更丰富的识别回调信息，满足不同业务的识别需求，建议按照2020版本接入指引进行接口升级；同时，2019版本也会持续维护直至用户不再使用为止。</p>
+    ///             </div>
+    ///         </div>
+    ///     </div>
+    /// </div>
+    @inlinable
+    public func imageModeration(_ input: ImageModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageModerationResponse {
+        try await self.client.execute(action: "ImageModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

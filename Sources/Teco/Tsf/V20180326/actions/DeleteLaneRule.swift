@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 删除泳道规则
-    @inlinable
-    public func deleteLaneRule(_ input: DeleteLaneRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLaneRuleResponse > {
-        self.client.execute(action: "DeleteLaneRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除泳道规则
-    @inlinable
-    public func deleteLaneRule(_ input: DeleteLaneRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaneRuleResponse {
-        try await self.client.execute(action: "DeleteLaneRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLaneRule请求参数结构体
     public struct DeleteLaneRuleRequest: TCRequestModel {
         /// 泳道规则Id
@@ -54,5 +42,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除泳道规则
+    @inlinable
+    public func deleteLaneRule(_ input: DeleteLaneRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLaneRuleResponse > {
+        self.client.execute(action: "DeleteLaneRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除泳道规则
+    @inlinable
+    public func deleteLaneRule(_ input: DeleteLaneRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaneRuleResponse {
+        try await self.client.execute(action: "DeleteLaneRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

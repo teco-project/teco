@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Irp {
-    /// 上报用户画像
-    @inlinable
-    public func reportPortrait(_ input: ReportPortraitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportPortraitResponse > {
-        self.client.execute(action: "ReportPortrait", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上报用户画像
-    @inlinable
-    public func reportPortrait(_ input: ReportPortraitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportPortraitResponse {
-        try await self.client.execute(action: "ReportPortrait", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReportPortrait请求参数结构体
     public struct ReportPortraitRequest: TCRequestModel {
         /// 推荐平台上的业务id
@@ -54,5 +42,17 @@ extension Irp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上报用户画像
+    @inlinable
+    public func reportPortrait(_ input: ReportPortraitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportPortraitResponse > {
+        self.client.execute(action: "ReportPortrait", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上报用户画像
+    @inlinable
+    public func reportPortrait(_ input: ReportPortraitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportPortraitResponse {
+        try await self.client.execute(action: "ReportPortrait", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

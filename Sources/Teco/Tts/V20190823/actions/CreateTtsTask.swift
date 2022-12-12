@@ -15,48 +15,6 @@
 // DO NOT EDIT.
 
 extension Tts {
-    /// 长文本语音合成请求
-    ///
-    /// 本接口服务对10万字符以内的文本进行语音合成，异步返回音频结果。满足一次性合成较长文本的客户需求，如阅读播报、新闻媒体等场景。
-    /// <li>支持音频格式：mp3,wav,pcm</li>
-    /// <li>支持音频采样率：16000 Hz, 8000 Hz</li>
-    /// <li>支持中文普通话、英文、中英文混读、粤语合成</li>
-    /// <li>支持语速、音量设置</li>
-    /// <li>支持回调或轮询的方式获取结果，结果获取请参考 长文本语音合成结果查询。</li>
-    /// <li>提交长文本语音合成请求后，合成结果在3小时内完成，音频文件在服务端可保存24小时</li>
-    /// <p></p>
-    /// 长文本合成支持 SSML，语法详见 [SSML 标记语言](https://cloud.tencent.com/document/product/1073/49575)，使用时需满足如下使用规范：
-    /// <li>使用 SSML 标签，需置于 speak 闭合标签内部；</li>
-    /// <li>合成文本可包含多组 speak 闭合标签，且无数量限制；</li>
-    /// <li>每个 speak 闭合标签内部，字符数不超过 150 字（标签字符本身不计算在内）；</li>
-    /// <li>每个 speak 闭合标签内部，使用 break 标签数目最大为 10 个。如需要使用更多，可拆解到多个 speak 标签中；</li>
-    /// <p></p>
-    @inlinable
-    public func createTtsTask(_ input: CreateTtsTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTtsTaskResponse > {
-        self.client.execute(action: "CreateTtsTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 长文本语音合成请求
-    ///
-    /// 本接口服务对10万字符以内的文本进行语音合成，异步返回音频结果。满足一次性合成较长文本的客户需求，如阅读播报、新闻媒体等场景。
-    /// <li>支持音频格式：mp3,wav,pcm</li>
-    /// <li>支持音频采样率：16000 Hz, 8000 Hz</li>
-    /// <li>支持中文普通话、英文、中英文混读、粤语合成</li>
-    /// <li>支持语速、音量设置</li>
-    /// <li>支持回调或轮询的方式获取结果，结果获取请参考 长文本语音合成结果查询。</li>
-    /// <li>提交长文本语音合成请求后，合成结果在3小时内完成，音频文件在服务端可保存24小时</li>
-    /// <p></p>
-    /// 长文本合成支持 SSML，语法详见 [SSML 标记语言](https://cloud.tencent.com/document/product/1073/49575)，使用时需满足如下使用规范：
-    /// <li>使用 SSML 标签，需置于 speak 闭合标签内部；</li>
-    /// <li>合成文本可包含多组 speak 闭合标签，且无数量限制；</li>
-    /// <li>每个 speak 闭合标签内部，字符数不超过 150 字（标签字符本身不计算在内）；</li>
-    /// <li>每个 speak 闭合标签内部，使用 break 标签数目最大为 10 个。如需要使用更多，可拆解到多个 speak 标签中；</li>
-    /// <p></p>
-    @inlinable
-    public func createTtsTask(_ input: CreateTtsTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTtsTaskResponse {
-        try await self.client.execute(action: "CreateTtsTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTtsTask请求参数结构体
     public struct CreateTtsTaskRequest: TCRequestModel {
         /// 合成语音的源文本，按UTF-8编码统一计算，最多支持10万字符
@@ -92,7 +50,7 @@ extension Tts {
         /// 旁白与对白文本解析，分别合成相应风格（仅适用于旁对白音色），默认 false
         public let voiceoverDialogueSplit: Bool?
         
-        public init (text: String, modelType: Int64, volume: Float?, speed: Float?, projectId: Int64?, voiceType: Int64?, primaryLanguage: Int64?, sampleRate: UInt64?, codec: String?, callbackUrl: String?, voiceoverDialogueSplit: Bool?) {
+        public init (text: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, callbackUrl: String? = nil, voiceoverDialogueSplit: Bool? = nil) {
             self.text = text
             self.modelType = modelType
             self.volume = volume
@@ -133,5 +91,47 @@ extension Tts {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 长文本语音合成请求
+    ///
+    /// 本接口服务对10万字符以内的文本进行语音合成，异步返回音频结果。满足一次性合成较长文本的客户需求，如阅读播报、新闻媒体等场景。
+    /// <li>支持音频格式：mp3,wav,pcm</li>
+    /// <li>支持音频采样率：16000 Hz, 8000 Hz</li>
+    /// <li>支持中文普通话、英文、中英文混读、粤语合成</li>
+    /// <li>支持语速、音量设置</li>
+    /// <li>支持回调或轮询的方式获取结果，结果获取请参考 长文本语音合成结果查询。</li>
+    /// <li>提交长文本语音合成请求后，合成结果在3小时内完成，音频文件在服务端可保存24小时</li>
+    /// <p></p>
+    /// 长文本合成支持 SSML，语法详见 [SSML 标记语言](https://cloud.tencent.com/document/product/1073/49575)，使用时需满足如下使用规范：
+    /// <li>使用 SSML 标签，需置于 speak 闭合标签内部；</li>
+    /// <li>合成文本可包含多组 speak 闭合标签，且无数量限制；</li>
+    /// <li>每个 speak 闭合标签内部，字符数不超过 150 字（标签字符本身不计算在内）；</li>
+    /// <li>每个 speak 闭合标签内部，使用 break 标签数目最大为 10 个。如需要使用更多，可拆解到多个 speak 标签中；</li>
+    /// <p></p>
+    @inlinable
+    public func createTtsTask(_ input: CreateTtsTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTtsTaskResponse > {
+        self.client.execute(action: "CreateTtsTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 长文本语音合成请求
+    ///
+    /// 本接口服务对10万字符以内的文本进行语音合成，异步返回音频结果。满足一次性合成较长文本的客户需求，如阅读播报、新闻媒体等场景。
+    /// <li>支持音频格式：mp3,wav,pcm</li>
+    /// <li>支持音频采样率：16000 Hz, 8000 Hz</li>
+    /// <li>支持中文普通话、英文、中英文混读、粤语合成</li>
+    /// <li>支持语速、音量设置</li>
+    /// <li>支持回调或轮询的方式获取结果，结果获取请参考 长文本语音合成结果查询。</li>
+    /// <li>提交长文本语音合成请求后，合成结果在3小时内完成，音频文件在服务端可保存24小时</li>
+    /// <p></p>
+    /// 长文本合成支持 SSML，语法详见 [SSML 标记语言](https://cloud.tencent.com/document/product/1073/49575)，使用时需满足如下使用规范：
+    /// <li>使用 SSML 标签，需置于 speak 闭合标签内部；</li>
+    /// <li>合成文本可包含多组 speak 闭合标签，且无数量限制；</li>
+    /// <li>每个 speak 闭合标签内部，字符数不超过 150 字（标签字符本身不计算在内）；</li>
+    /// <li>每个 speak 闭合标签内部，使用 break 标签数目最大为 10 个。如需要使用更多，可拆解到多个 speak 标签中；</li>
+    /// <p></p>
+    @inlinable
+    public func createTtsTask(_ input: CreateTtsTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTtsTaskResponse {
+        try await self.client.execute(action: "CreateTtsTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ses {
-    /// 获取发信地址列表
-    @inlinable
-    public func listEmailAddress(_ input: ListEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListEmailAddressResponse > {
-        self.client.execute(action: "ListEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取发信地址列表
-    @inlinable
-    public func listEmailAddress(_ input: ListEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEmailAddressResponse {
-        try await self.client.execute(action: "ListEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListEmailAddress请求参数结构体
     public struct ListEmailAddressRequest: TCRequestModel {
         public init () {
@@ -46,5 +34,17 @@ extension Ses {
             case emailSenders = "EmailSenders"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取发信地址列表
+    @inlinable
+    public func listEmailAddress(_ input: ListEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListEmailAddressResponse > {
+        self.client.execute(action: "ListEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取发信地址列表
+    @inlinable
+    public func listEmailAddress(_ input: ListEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEmailAddressResponse {
+        try await self.client.execute(action: "ListEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

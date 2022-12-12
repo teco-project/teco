@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查看实例流量包详情
-    ///
-    /// 本接口（DescribeInstancesTrafficPackages）用于查询一个或多个实例的流量包详情。
-    @inlinable
-    public func describeInstancesTrafficPackages(_ input: DescribeInstancesTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesTrafficPackagesResponse > {
-        self.client.execute(action: "DescribeInstancesTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看实例流量包详情
-    ///
-    /// 本接口（DescribeInstancesTrafficPackages）用于查询一个或多个实例的流量包详情。
-    @inlinable
-    public func describeInstancesTrafficPackages(_ input: DescribeInstancesTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesTrafficPackagesResponse {
-        try await self.client.execute(action: "DescribeInstancesTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstancesTrafficPackages请求参数结构体
     public struct DescribeInstancesTrafficPackagesRequest: TCRequestModel {
         /// 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
@@ -42,7 +26,7 @@ extension Lighthouse {
         /// 返回数量，默认为 20，最大值为 100。
         public let limit: Int64?
         
-        public init (instanceIds: [String]?, offset: Int64?, limit: Int64?) {
+        public init (instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceIds = instanceIds
             self.offset = offset
             self.limit = limit
@@ -71,5 +55,21 @@ extension Lighthouse {
             case instanceTrafficPackageSet = "InstanceTrafficPackageSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看实例流量包详情
+    ///
+    /// 本接口（DescribeInstancesTrafficPackages）用于查询一个或多个实例的流量包详情。
+    @inlinable
+    public func describeInstancesTrafficPackages(_ input: DescribeInstancesTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesTrafficPackagesResponse > {
+        self.client.execute(action: "DescribeInstancesTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看实例流量包详情
+    ///
+    /// 本接口（DescribeInstancesTrafficPackages）用于查询一个或多个实例的流量包详情。
+    @inlinable
+    public func describeInstancesTrafficPackages(_ input: DescribeInstancesTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesTrafficPackagesResponse {
+        try await self.client.execute(action: "DescribeInstancesTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

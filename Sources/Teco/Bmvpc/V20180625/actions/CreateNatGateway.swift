@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 创建NAT网关
-    ///
-    /// 创建NAT网关接口，可针对网段方式、子网全部IP、子网部分IP这三种方式创建NAT网关
-    @inlinable
-    public func createNatGateway(_ input: CreateNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatGatewayResponse > {
-        self.client.execute(action: "CreateNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建NAT网关
-    ///
-    /// 创建NAT网关接口，可针对网段方式、子网全部IP、子网部分IP这三种方式创建NAT网关
-    @inlinable
-    public func createNatGateway(_ input: CreateNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewayResponse {
-        try await self.client.execute(action: "CreateNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNatGateway请求参数结构体
     public struct CreateNatGatewayRequest: TCRequestModel {
         /// 转发模式，其中0表示IP方式，1表示网段方式；通过cidr方式可支持更多的IP接入到NAT网关
@@ -60,7 +44,7 @@ extension Bmvpc {
         /// 独占标识，取值为0和1，默认值为0；0和1分别表示创建共享型NAT网关和独占NAT型网关；由于同一个VPC网络内，指向NAT集群的默认路由只有一条，因此VPC内只能创建一种类型NAT网关；创建独占型NAT网关时，需联系对应架构师进行独占NAT集群搭建，否则无法创建独占型NAT网关。
         public let exclusive: UInt64?
         
-        public init (forwardMode: String, vpcId: String, natName: String, maxConcurrent: UInt64, subnetIds: [String]?, ipInfoSet: [IpInfo]?, assignedEips: [String]?, autoAllocEipNum: UInt64?, exclusive: UInt64?) {
+        public init (forwardMode: String, vpcId: String, natName: String, maxConcurrent: UInt64, subnetIds: [String]? = nil, ipInfoSet: [IpInfo]? = nil, assignedEips: [String]? = nil, autoAllocEipNum: UInt64? = nil, exclusive: UInt64? = nil) {
             self.forwardMode = forwardMode
             self.vpcId = vpcId
             self.natName = natName
@@ -97,5 +81,21 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建NAT网关
+    ///
+    /// 创建NAT网关接口，可针对网段方式、子网全部IP、子网部分IP这三种方式创建NAT网关
+    @inlinable
+    public func createNatGateway(_ input: CreateNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatGatewayResponse > {
+        self.client.execute(action: "CreateNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建NAT网关
+    ///
+    /// 创建NAT网关接口，可针对网段方式、子网全部IP、子网部分IP这三种方式创建NAT网关
+    @inlinable
+    public func createNatGateway(_ input: CreateNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewayResponse {
+        try await self.client.execute(action: "CreateNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

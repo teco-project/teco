@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 批量获取直播互动曲目详情
-    ///
-    /// 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。
-    @inlinable
-    public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDescribeKTVMusicDetailsResponse > {
-        self.client.execute(action: "BatchDescribeKTVMusicDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量获取直播互动曲目详情
-    ///
-    /// 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。
-    @inlinable
-    public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
-        try await self.client.execute(action: "BatchDescribeKTVMusicDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchDescribeKTVMusicDetails请求参数结构体
     public struct BatchDescribeKTVMusicDetailsRequest: TCRequestModel {
         /// 歌曲Id列表，注：列表最大长度为50
@@ -61,5 +45,21 @@ extension Ame {
             case notExistMusicIdSet = "NotExistMusicIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量获取直播互动曲目详情
+    ///
+    /// 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。
+    @inlinable
+    public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDescribeKTVMusicDetailsResponse > {
+        self.client.execute(action: "BatchDescribeKTVMusicDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量获取直播互动曲目详情
+    ///
+    /// 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。
+    @inlinable
+    public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
+        try await self.client.execute(action: "BatchDescribeKTVMusicDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 更新事件目标
-    @inlinable
-    public func updateTarget(_ input: UpdateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTargetResponse > {
-        self.client.execute(action: "UpdateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新事件目标
-    @inlinable
-    public func updateTarget(_ input: UpdateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTargetResponse {
-        try await self.client.execute(action: "UpdateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateTarget请求参数结构体
     public struct UpdateTargetRequest: TCRequestModel {
         /// 事件集ID
@@ -47,7 +35,7 @@ extension Eb {
         /// 批量投递最大事件条数
         public let batchEventCount: Int64?
         
-        public init (eventBusId: String, ruleId: String, targetId: String, enableBatchDelivery: Bool?, batchTimeout: Int64?, batchEventCount: Int64?) {
+        public init (eventBusId: String, ruleId: String, targetId: String, enableBatchDelivery: Bool? = nil, batchTimeout: Int64? = nil, batchEventCount: Int64? = nil) {
             self.eventBusId = eventBusId
             self.ruleId = ruleId
             self.targetId = targetId
@@ -74,5 +62,17 @@ extension Eb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新事件目标
+    @inlinable
+    public func updateTarget(_ input: UpdateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTargetResponse > {
+        self.client.execute(action: "UpdateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新事件目标
+    @inlinable
+    public func updateTarget(_ input: UpdateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTargetResponse {
+        try await self.client.execute(action: "UpdateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

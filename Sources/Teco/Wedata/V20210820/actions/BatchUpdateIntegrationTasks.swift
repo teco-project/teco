@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 批量更新集成任务
-    ///
-    /// 批量更新集成任务（暂时仅支持批量更新责任人）
-    @inlinable
-    public func batchUpdateIntegrationTasks(_ input: BatchUpdateIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchUpdateIntegrationTasksResponse > {
-        self.client.execute(action: "BatchUpdateIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量更新集成任务
-    ///
-    /// 批量更新集成任务（暂时仅支持批量更新责任人）
-    @inlinable
-    public func batchUpdateIntegrationTasks(_ input: BatchUpdateIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchUpdateIntegrationTasksResponse {
-        try await self.client.execute(action: "BatchUpdateIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchUpdateIntegrationTasks请求参数结构体
     public struct BatchUpdateIntegrationTasksRequest: TCRequestModel {
         /// 任务id
@@ -80,5 +64,21 @@ extension Wedata {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量更新集成任务
+    ///
+    /// 批量更新集成任务（暂时仅支持批量更新责任人）
+    @inlinable
+    public func batchUpdateIntegrationTasks(_ input: BatchUpdateIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchUpdateIntegrationTasksResponse > {
+        self.client.execute(action: "BatchUpdateIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量更新集成任务
+    ///
+    /// 批量更新集成任务（暂时仅支持批量更新责任人）
+    @inlinable
+    public func batchUpdateIntegrationTasks(_ input: BatchUpdateIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchUpdateIntegrationTasksResponse {
+        try await self.client.execute(action: "BatchUpdateIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

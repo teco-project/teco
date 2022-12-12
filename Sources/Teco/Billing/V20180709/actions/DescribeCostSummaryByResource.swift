@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Billing {
-    /// 获取按资源汇总消耗详情
-    @inlinable
-    public func describeCostSummaryByResource(_ input: DescribeCostSummaryByResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCostSummaryByResourceResponse > {
-        self.client.execute(action: "DescribeCostSummaryByResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取按资源汇总消耗详情
-    @inlinable
-    public func describeCostSummaryByResource(_ input: DescribeCostSummaryByResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByResourceResponse {
-        try await self.client.execute(action: "DescribeCostSummaryByResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCostSummaryByResource请求参数结构体
     public struct DescribeCostSummaryByResourceRequest: TCRequestModel {
         /// 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
@@ -51,9 +39,9 @@ extension Billing {
         public let needConditionValue: UInt64?
         
         /// 过滤条件，只支持ResourceKeyword(资源关键字，支持资源id及资源名称模糊查询)，ProjectIds（项目id），RegionIds(地域id)，PayModes(付费模式，可选prePay和postPay)，HideFreeCost（是否隐藏0元流水，可选0和1），OrderByCost（按费用排序规则，可选desc和asc）
-        public let conditions: Conditions
+        public let conditions: Conditions?
         
-        public init (beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String?, needRecordNum: UInt64?, needConditionValue: UInt64?, conditions: Conditions) {
+        public init (beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, needConditionValue: UInt64? = nil, conditions: Conditions? = nil) {
             self.beginTime = beginTime
             self.endTime = endTime
             self.limit = limit
@@ -83,11 +71,11 @@ extension Billing {
         
         /// 消耗详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let total: ConsumptionSummaryTotal
+        public let total: ConsumptionSummaryTotal?
         
         /// 过滤条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let conditionValue: ConsumptionResourceSummaryConditionValue
+        public let conditionValue: ConsumptionResourceSummaryConditionValue?
         
         /// 记录数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -108,5 +96,17 @@ extension Billing {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取按资源汇总消耗详情
+    @inlinable
+    public func describeCostSummaryByResource(_ input: DescribeCostSummaryByResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCostSummaryByResourceResponse > {
+        self.client.execute(action: "DescribeCostSummaryByResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取按资源汇总消耗详情
+    @inlinable
+    public func describeCostSummaryByResource(_ input: DescribeCostSummaryByResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByResourceResponse {
+        try await self.client.execute(action: "DescribeCostSummaryByResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

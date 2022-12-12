@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改模块默认带宽上限
-    @inlinable
-    public func modifyModuleNetwork(_ input: ModifyModuleNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleNetworkResponse > {
-        self.client.execute(action: "ModifyModuleNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改模块默认带宽上限
-    @inlinable
-    public func modifyModuleNetwork(_ input: ModifyModuleNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleNetworkResponse {
-        try await self.client.execute(action: "ModifyModuleNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyModuleNetwork请求参数结构体
     public struct ModifyModuleNetworkRequest: TCRequestModel {
         /// 模块Id
@@ -38,7 +26,7 @@ extension Ecm {
         /// 默认入带宽上限
         public let defaultBandwidthIn: Int64?
         
-        public init (moduleId: String, defaultBandwidth: Int64, defaultBandwidthIn: Int64?) {
+        public init (moduleId: String, defaultBandwidth: Int64, defaultBandwidthIn: Int64? = nil) {
             self.moduleId = moduleId
             self.defaultBandwidth = defaultBandwidth
             self.defaultBandwidthIn = defaultBandwidthIn
@@ -59,5 +47,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改模块默认带宽上限
+    @inlinable
+    public func modifyModuleNetwork(_ input: ModifyModuleNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleNetworkResponse > {
+        self.client.execute(action: "ModifyModuleNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改模块默认带宽上限
+    @inlinable
+    public func modifyModuleNetwork(_ input: ModifyModuleNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleNetworkResponse {
+        try await self.client.execute(action: "ModifyModuleNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 查询专用集群订单列表
-    @inlinable
-    public func describeDedicatedClusterOrders(_ input: DescribeDedicatedClusterOrdersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterOrdersResponse > {
-        self.client.execute(action: "DescribeDedicatedClusterOrders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询专用集群订单列表
-    @inlinable
-    public func describeDedicatedClusterOrders(_ input: DescribeDedicatedClusterOrdersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterOrdersResponse {
-        try await self.client.execute(action: "DescribeDedicatedClusterOrders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDedicatedClusterOrders请求参数结构体
     public struct DescribeDedicatedClusterOrdersRequest: TCRequestModel {
         /// 按照专用集群id过滤
@@ -47,7 +35,7 @@ extension Cdc {
         /// 订单类型为过滤条件：CREATE  EXTEND
         public let actionType: String?
         
-        public init (dedicatedClusterIds: [String]?, dedicatedClusterOrderIds: String?, offset: Int64?, limit: Int64?, status: String?, actionType: String?) {
+        public init (dedicatedClusterIds: [String]? = nil, dedicatedClusterOrderIds: String? = nil, offset: Int64? = nil, limit: Int64? = nil, status: String? = nil, actionType: String? = nil) {
             self.dedicatedClusterIds = dedicatedClusterIds
             self.dedicatedClusterOrderIds = dedicatedClusterOrderIds
             self.offset = offset
@@ -82,5 +70,17 @@ extension Cdc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询专用集群订单列表
+    @inlinable
+    public func describeDedicatedClusterOrders(_ input: DescribeDedicatedClusterOrdersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterOrdersResponse > {
+        self.client.execute(action: "DescribeDedicatedClusterOrders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专用集群订单列表
+    @inlinable
+    public func describeDedicatedClusterOrders(_ input: DescribeDedicatedClusterOrdersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterOrdersResponse {
+        try await self.client.execute(action: "DescribeDedicatedClusterOrders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

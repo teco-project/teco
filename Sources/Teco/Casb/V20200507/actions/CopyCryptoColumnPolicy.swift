@@ -15,34 +15,6 @@
 // DO NOT EDIT.
 
 extension Casb {
-    /// 复制字段策略
-    ///
-    /// 同region下 根据用户输入的CasbId,MetaDataId 复制策略到DstCasbId,MetaDataId中。
-    /// 场景1：
-    /// 相同CasbId，不同MetadataId 下策略复制
-    /// 场景2：
-    /// 不同Casbid,不同MetaDataId 下策略复制
-    /// 场景3:
-    /// 相同CasbId,相同MetaDataId 且 DatabaseName不同 策略复制
-    @inlinable
-    public func copyCryptoColumnPolicy(_ input: CopyCryptoColumnPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyCryptoColumnPolicyResponse > {
-        self.client.execute(action: "CopyCryptoColumnPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 复制字段策略
-    ///
-    /// 同region下 根据用户输入的CasbId,MetaDataId 复制策略到DstCasbId,MetaDataId中。
-    /// 场景1：
-    /// 相同CasbId，不同MetadataId 下策略复制
-    /// 场景2：
-    /// 不同Casbid,不同MetaDataId 下策略复制
-    /// 场景3:
-    /// 相同CasbId,相同MetaDataId 且 DatabaseName不同 策略复制
-    @inlinable
-    public func copyCryptoColumnPolicy(_ input: CopyCryptoColumnPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyCryptoColumnPolicyResponse {
-        try await self.client.execute(action: "CopyCryptoColumnPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CopyCryptoColumnPolicy请求参数结构体
     public struct CopyCryptoColumnPolicyRequest: TCRequestModel {
         /// 实例Id
@@ -63,7 +35,7 @@ extension Casb {
         /// 复制同元数据下的策略，需要填写目标数据库名
         public let dstDatabaseName: String?
         
-        public init (casbId: String, metaDataId: String, dstCasbId: String, dstMetaDataId: String, srcTableFilter: [CryptoCopyColumnPolicyTableFilter]?, dstDatabaseName: String?) {
+        public init (casbId: String, metaDataId: String, dstCasbId: String, dstMetaDataId: String, srcTableFilter: [CryptoCopyColumnPolicyTableFilter]? = nil, dstDatabaseName: String? = nil) {
             self.casbId = casbId
             self.metaDataId = metaDataId
             self.dstCasbId = dstCasbId
@@ -90,5 +62,33 @@ extension Casb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 复制字段策略
+    ///
+    /// 同region下 根据用户输入的CasbId,MetaDataId 复制策略到DstCasbId,MetaDataId中。
+    /// 场景1：
+    /// 相同CasbId，不同MetadataId 下策略复制
+    /// 场景2：
+    /// 不同Casbid,不同MetaDataId 下策略复制
+    /// 场景3:
+    /// 相同CasbId,相同MetaDataId 且 DatabaseName不同 策略复制
+    @inlinable
+    public func copyCryptoColumnPolicy(_ input: CopyCryptoColumnPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyCryptoColumnPolicyResponse > {
+        self.client.execute(action: "CopyCryptoColumnPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 复制字段策略
+    ///
+    /// 同region下 根据用户输入的CasbId,MetaDataId 复制策略到DstCasbId,MetaDataId中。
+    /// 场景1：
+    /// 相同CasbId，不同MetadataId 下策略复制
+    /// 场景2：
+    /// 不同Casbid,不同MetaDataId 下策略复制
+    /// 场景3:
+    /// 相同CasbId,相同MetaDataId 且 DatabaseName不同 策略复制
+    @inlinable
+    public func copyCryptoColumnPolicy(_ input: CopyCryptoColumnPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyCryptoColumnPolicyResponse {
+        try await self.client.execute(action: "CopyCryptoColumnPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

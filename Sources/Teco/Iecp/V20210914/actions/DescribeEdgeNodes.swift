@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 查询边缘节点列表
-    @inlinable
-    public func describeEdgeNodes(_ input: DescribeEdgeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeNodesResponse > {
-        self.client.execute(action: "DescribeEdgeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询边缘节点列表
-    @inlinable
-    public func describeEdgeNodes(_ input: DescribeEdgeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodesResponse {
-        try await self.client.execute(action: "DescribeEdgeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeNodes请求参数结构体
     public struct DescribeEdgeNodesRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -50,7 +38,7 @@ extension Iecp {
         /// 节点类型
         public let nodeType: Int64?
         
-        public init (edgeUnitId: UInt64, namePattern: String?, nameMatchedList: [String]?, sort: [Sort]?, offset: UInt64?, limit: UInt64?, nodeType: Int64?) {
+        public init (edgeUnitId: UInt64, namePattern: String? = nil, nameMatchedList: [String]? = nil, sort: [Sort]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nodeType: Int64? = nil) {
             self.edgeUnitId = edgeUnitId
             self.namePattern = namePattern
             self.nameMatchedList = nameMatchedList
@@ -88,5 +76,17 @@ extension Iecp {
             case nodeSet = "NodeSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询边缘节点列表
+    @inlinable
+    public func describeEdgeNodes(_ input: DescribeEdgeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeNodesResponse > {
+        self.client.execute(action: "DescribeEdgeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘节点列表
+    @inlinable
+    public func describeEdgeNodes(_ input: DescribeEdgeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodesResponse {
+        try await self.client.execute(action: "DescribeEdgeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

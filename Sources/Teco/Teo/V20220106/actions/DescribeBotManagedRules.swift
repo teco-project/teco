@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 分页查询Bot托管规则
-    @inlinable
-    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotManagedRulesResponse > {
-        self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分页查询Bot托管规则
-    @inlinable
-    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
-        try await self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBotManagedRules请求参数结构体
     public struct DescribeBotManagedRulesRequest: TCRequestModel {
         /// 一级域名
@@ -44,7 +32,7 @@ extension Teo {
         /// idcid/sipbot/uabot规则类型，空代表拉取全部
         public let ruleType: String?
         
-        public init (zoneId: String, entity: String, page: Int64, perPage: Int64, ruleType: String?) {
+        public init (zoneId: String, entity: String, page: Int64, perPage: Int64, ruleType: String? = nil) {
             self.zoneId = zoneId
             self.entity = entity
             self.page = page
@@ -81,5 +69,17 @@ extension Teo {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分页查询Bot托管规则
+    @inlinable
+    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotManagedRulesResponse > {
+        self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分页查询Bot托管规则
+    @inlinable
+    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
+        try await self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

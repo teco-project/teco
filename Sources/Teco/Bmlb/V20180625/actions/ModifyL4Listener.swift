@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 修改黑石负载均衡四层监听器
-    ///
-    /// 修改黑石负载均衡四层监听器。
-    @inlinable
-    public func modifyL4Listener(_ input: ModifyL4ListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL4ListenerResponse > {
-        self.client.execute(action: "ModifyL4Listener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改黑石负载均衡四层监听器
-    ///
-    /// 修改黑石负载均衡四层监听器。
-    @inlinable
-    public func modifyL4Listener(_ input: ModifyL4ListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4ListenerResponse {
-        try await self.client.execute(action: "ModifyL4Listener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyL4Listener请求参数结构体
     public struct ModifyL4ListenerRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -84,7 +68,7 @@ extension Bmlb {
         /// 四层调度方式。wrr，wlc。
         public let balanceMode: String?
         
-        public init (loadBalancerId: String, listenerId: String, listenerName: String?, sessionExpire: Int64?, healthSwitch: Int64?, timeOut: Int64?, intervalTime: Int64?, healthNum: Int64?, unhealthNum: Int64?, bandwidth: Int64?, customHealthSwitch: Int64?, inputType: String?, lineSeparatorType: Int64?, healthRequest: String?, healthResponse: String?, toaFlag: Int64?, balanceMode: String?) {
+        public init (loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, bandwidth: Int64? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil, balanceMode: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.listenerName = listenerName
@@ -137,5 +121,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改黑石负载均衡四层监听器
+    ///
+    /// 修改黑石负载均衡四层监听器。
+    @inlinable
+    public func modifyL4Listener(_ input: ModifyL4ListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL4ListenerResponse > {
+        self.client.execute(action: "ModifyL4Listener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改黑石负载均衡四层监听器
+    ///
+    /// 修改黑石负载均衡四层监听器。
+    @inlinable
+    public func modifyL4Listener(_ input: ModifyL4ListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4ListenerResponse {
+        try await self.client.execute(action: "ModifyL4Listener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

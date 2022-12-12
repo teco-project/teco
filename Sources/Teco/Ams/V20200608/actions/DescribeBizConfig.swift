@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ams {
-    /// 查看单个配置
-    @inlinable
-    public func describeBizConfig(_ input: DescribeBizConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBizConfigResponse > {
-        self.client.execute(action: "DescribeBizConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看单个配置
-    @inlinable
-    public func describeBizConfig(_ input: DescribeBizConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizConfigResponse {
-        try await self.client.execute(action: "DescribeBizConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBizConfig请求参数结构体
     public struct DescribeBizConfigRequest: TCRequestModel {
         /// 审核业务类类型
@@ -55,7 +43,7 @@ extension Ams {
         
         /// 多媒体审核配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mediaModeration: MediaModerationConfig
+        public let mediaModeration: MediaModerationConfig?
         
         /// 创建时间
         public let createdAt: String
@@ -75,5 +63,17 @@ extension Ams {
             case updatedAt = "UpdatedAt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看单个配置
+    @inlinable
+    public func describeBizConfig(_ input: DescribeBizConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBizConfigResponse > {
+        self.client.execute(action: "DescribeBizConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看单个配置
+    @inlinable
+    public func describeBizConfig(_ input: DescribeBizConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizConfigResponse {
+        try await self.client.execute(action: "DescribeBizConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

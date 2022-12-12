@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询本地镜像自动授权规则
-    @inlinable
-    public func describeImageAutoAuthorizedRule(_ input: DescribeImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageAutoAuthorizedRuleResponse > {
-        self.client.execute(action: "DescribeImageAutoAuthorizedRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询本地镜像自动授权规则
-    @inlinable
-    public func describeImageAutoAuthorizedRule(_ input: DescribeImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAutoAuthorizedRuleResponse {
-        try await self.client.execute(action: "DescribeImageAutoAuthorizedRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageAutoAuthorizedRule请求参数结构体
     public struct DescribeImageAutoAuthorizedRuleRequest: TCRequestModel {
         public init () {
@@ -65,5 +53,17 @@ extension Tcss {
             case ruleId = "RuleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询本地镜像自动授权规则
+    @inlinable
+    public func describeImageAutoAuthorizedRule(_ input: DescribeImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageAutoAuthorizedRuleResponse > {
+        self.client.execute(action: "DescribeImageAutoAuthorizedRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询本地镜像自动授权规则
+    @inlinable
+    public func describeImageAutoAuthorizedRule(_ input: DescribeImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAutoAuthorizedRuleResponse {
+        try await self.client.execute(action: "DescribeImageAutoAuthorizedRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 删除规则
-    @inlinable
-    public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRuleResponse > {
-        self.client.execute(action: "DeleteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除规则
-    @inlinable
-    public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
-        try await self.client.execute(action: "DeleteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRule请求参数结构体
     public struct DeleteRuleRequest: TCRequestModel {
         /// 规则Id
@@ -49,5 +37,17 @@ extension Iot {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除规则
+    @inlinable
+    public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRuleResponse > {
+        self.client.execute(action: "DeleteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除规则
+    @inlinable
+    public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
+        try await self.client.execute(action: "DeleteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

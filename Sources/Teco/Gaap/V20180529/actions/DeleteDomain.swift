@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 根据域名删除转发规则
-    ///
-    /// 本接口（DeleteDomain）仅适用于7层监听器，用于删除该监听器下对应域名及域名下的所有规则，所有已绑定源站的规则将自动解绑。
-    @inlinable
-    public func deleteDomain(_ input: DeleteDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDomainResponse > {
-        self.client.execute(action: "DeleteDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据域名删除转发规则
-    ///
-    /// 本接口（DeleteDomain）仅适用于7层监听器，用于删除该监听器下对应域名及域名下的所有规则，所有已绑定源站的规则将自动解绑。
-    @inlinable
-    public func deleteDomain(_ input: DeleteDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainResponse {
-        try await self.client.execute(action: "DeleteDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDomain请求参数结构体
     public struct DeleteDomainRequest: TCRequestModel {
         /// 监听器ID
@@ -64,5 +48,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据域名删除转发规则
+    ///
+    /// 本接口（DeleteDomain）仅适用于7层监听器，用于删除该监听器下对应域名及域名下的所有规则，所有已绑定源站的规则将自动解绑。
+    @inlinable
+    public func deleteDomain(_ input: DeleteDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDomainResponse > {
+        self.client.execute(action: "DeleteDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据域名删除转发规则
+    ///
+    /// 本接口（DeleteDomain）仅适用于7层监听器，用于删除该监听器下对应域名及域名下的所有规则，所有已绑定源站的规则将自动解绑。
+    @inlinable
+    public func deleteDomain(_ input: DeleteDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainResponse {
+        try await self.client.execute(action: "DeleteDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

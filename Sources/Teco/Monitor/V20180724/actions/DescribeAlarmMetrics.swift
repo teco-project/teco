@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 查询告警指标列表
-    @inlinable
-    public func describeAlarmMetrics(_ input: DescribeAlarmMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmMetricsResponse > {
-        self.client.execute(action: "DescribeAlarmMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询告警指标列表
-    @inlinable
-    public func describeAlarmMetrics(_ input: DescribeAlarmMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmMetricsResponse {
-        try await self.client.execute(action: "DescribeAlarmMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAlarmMetrics请求参数结构体
     public struct DescribeAlarmMetricsRequest: TCRequestModel {
         /// 固定值，为"monitor"
@@ -63,5 +51,17 @@ extension Monitor {
             case metrics = "Metrics"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询告警指标列表
+    @inlinable
+    public func describeAlarmMetrics(_ input: DescribeAlarmMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmMetricsResponse > {
+        self.client.execute(action: "DescribeAlarmMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询告警指标列表
+    @inlinable
+    public func describeAlarmMetrics(_ input: DescribeAlarmMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmMetricsResponse {
+        try await self.client.execute(action: "DescribeAlarmMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

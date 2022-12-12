@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询增值服务需购买信息
-    ///
-    /// DescribeValueAddedSrvInfo查询增值服务需购买信息
-    @inlinable
-    public func describeValueAddedSrvInfo(_ input: DescribeValueAddedSrvInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeValueAddedSrvInfoResponse > {
-        self.client.execute(action: "DescribeValueAddedSrvInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询增值服务需购买信息
-    ///
-    /// DescribeValueAddedSrvInfo查询增值服务需购买信息
-    @inlinable
-    public func describeValueAddedSrvInfo(_ input: DescribeValueAddedSrvInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeValueAddedSrvInfoResponse {
-        try await self.client.execute(action: "DescribeValueAddedSrvInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeValueAddedSrvInfo请求参数结构体
     public struct DescribeValueAddedSrvInfoRequest: TCRequestModel {
         public init () {
@@ -57,5 +41,21 @@ extension Tcss {
             case unusedAuthorizedCnt = "UnusedAuthorizedCnt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询增值服务需购买信息
+    ///
+    /// DescribeValueAddedSrvInfo查询增值服务需购买信息
+    @inlinable
+    public func describeValueAddedSrvInfo(_ input: DescribeValueAddedSrvInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeValueAddedSrvInfoResponse > {
+        self.client.execute(action: "DescribeValueAddedSrvInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询增值服务需购买信息
+    ///
+    /// DescribeValueAddedSrvInfo查询增值服务需购买信息
+    @inlinable
+    public func describeValueAddedSrvInfo(_ input: DescribeValueAddedSrvInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeValueAddedSrvInfoResponse {
+        try await self.client.execute(action: "DescribeValueAddedSrvInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

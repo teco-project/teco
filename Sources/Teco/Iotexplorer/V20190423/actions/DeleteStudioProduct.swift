@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 删除产品
-    ///
-    /// 提供删除某个项目下产品的能力
-    @inlinable
-    public func deleteStudioProduct(_ input: DeleteStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStudioProductResponse > {
-        self.client.execute(action: "DeleteStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除产品
-    ///
-    /// 提供删除某个项目下产品的能力
-    @inlinable
-    public func deleteStudioProduct(_ input: DeleteStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStudioProductResponse {
-        try await self.client.execute(action: "DeleteStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteStudioProduct请求参数结构体
     public struct DeleteStudioProductRequest: TCRequestModel {
         /// 产品ID
@@ -53,5 +37,21 @@ extension Iotexplorer {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除产品
+    ///
+    /// 提供删除某个项目下产品的能力
+    @inlinable
+    public func deleteStudioProduct(_ input: DeleteStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStudioProductResponse > {
+        self.client.execute(action: "DeleteStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除产品
+    ///
+    /// 提供删除某个项目下产品的能力
+    @inlinable
+    public func deleteStudioProduct(_ input: DeleteStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStudioProductResponse {
+        try await self.client.execute(action: "DeleteStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

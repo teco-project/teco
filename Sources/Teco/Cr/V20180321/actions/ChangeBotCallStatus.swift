@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cr {
-    /// 更新机器人任务作业状态
-    @inlinable
-    public func changeBotCallStatus(_ input: ChangeBotCallStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeBotCallStatusResponse > {
-        self.client.execute(action: "ChangeBotCallStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新机器人任务作业状态
-    @inlinable
-    public func changeBotCallStatus(_ input: ChangeBotCallStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotCallStatusResponse {
-        try await self.client.execute(action: "ChangeBotCallStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ChangeBotCallStatus请求参数结构体
     public struct ChangeBotCallStatusRequest: TCRequestModel {
         /// 模块名。默认值（固定）：AiApi
@@ -54,7 +42,7 @@ extension Cr {
         /// 任务名称，二者必填一个
         public let botName: String?
         
-        public init (module: String, operation: String, status: String, callId: String, bizDate: Date, botId: String?, botName: String?) {
+        public init (module: String, operation: String, status: String, callId: String, bizDate: Date, botId: String? = nil, botName: String? = nil) {
             self.module = module
             self.operation = operation
             self.status = status
@@ -83,5 +71,17 @@ extension Cr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新机器人任务作业状态
+    @inlinable
+    public func changeBotCallStatus(_ input: ChangeBotCallStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeBotCallStatusResponse > {
+        self.client.execute(action: "ChangeBotCallStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新机器人任务作业状态
+    @inlinable
+    public func changeBotCallStatus(_ input: ChangeBotCallStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotCallStatusResponse {
+        try await self.client.execute(action: "ChangeBotCallStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 查询白板推流回调地址
-    @inlinable
-    public func describeWhiteboardPushCallback(_ input: DescribeWhiteboardPushCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteboardPushCallbackResponse > {
-        self.client.execute(action: "DescribeWhiteboardPushCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询白板推流回调地址
-    @inlinable
-    public func describeWhiteboardPushCallback(_ input: DescribeWhiteboardPushCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteboardPushCallbackResponse {
-        try await self.client.execute(action: "DescribeWhiteboardPushCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWhiteboardPushCallback请求参数结构体
     public struct DescribeWhiteboardPushCallbackRequest: TCRequestModel {
         /// 应用的SdkAppId
@@ -57,5 +45,17 @@ extension Tiw {
             case callbackKey = "CallbackKey"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询白板推流回调地址
+    @inlinable
+    public func describeWhiteboardPushCallback(_ input: DescribeWhiteboardPushCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteboardPushCallbackResponse > {
+        self.client.execute(action: "DescribeWhiteboardPushCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询白板推流回调地址
+    @inlinable
+    public func describeWhiteboardPushCallback(_ input: DescribeWhiteboardPushCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteboardPushCallbackResponse {
+        try await self.client.execute(action: "DescribeWhiteboardPushCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

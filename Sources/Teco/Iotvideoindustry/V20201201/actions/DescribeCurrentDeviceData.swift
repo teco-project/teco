@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 查询设备统计当前信息
-    @inlinable
-    public func describeCurrentDeviceData(_ input: DescribeCurrentDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCurrentDeviceDataResponse > {
-        self.client.execute(action: "DescribeCurrentDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备统计当前信息
-    @inlinable
-    public func describeCurrentDeviceData(_ input: DescribeCurrentDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCurrentDeviceDataResponse {
-        try await self.client.execute(action: "DescribeCurrentDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCurrentDeviceData请求参数结构体
     public struct DescribeCurrentDeviceDataRequest: TCRequestModel {
         public init () {
@@ -61,5 +49,17 @@ extension Iotvideoindustry {
             case recordingChannels = "RecordingChannels"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备统计当前信息
+    @inlinable
+    public func describeCurrentDeviceData(_ input: DescribeCurrentDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCurrentDeviceDataResponse > {
+        self.client.execute(action: "DescribeCurrentDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备统计当前信息
+    @inlinable
+    public func describeCurrentDeviceData(_ input: DescribeCurrentDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCurrentDeviceDataResponse {
+        try await self.client.execute(action: "DescribeCurrentDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

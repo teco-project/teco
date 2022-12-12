@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 强制释放 Prometheus 实例
-    ///
-    /// 彻底删除 Prometheus 实例相关数据，给定的实例必须先被 Terminate
-    @inlinable
-    public func destroyPrometheusInstance(_ input: DestroyPrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyPrometheusInstanceResponse > {
-        self.client.execute(action: "DestroyPrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 强制释放 Prometheus 实例
-    ///
-    /// 彻底删除 Prometheus 实例相关数据，给定的实例必须先被 Terminate
-    @inlinable
-    public func destroyPrometheusInstance(_ input: DestroyPrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPrometheusInstanceResponse {
-        try await self.client.execute(action: "DestroyPrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DestroyPrometheusInstance请求参数结构体
     public struct DestroyPrometheusInstanceRequest: TCRequestModel {
         /// 实例 ID，该实例必须先被 terminate
@@ -53,5 +37,21 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 强制释放 Prometheus 实例
+    ///
+    /// 彻底删除 Prometheus 实例相关数据，给定的实例必须先被 Terminate
+    @inlinable
+    public func destroyPrometheusInstance(_ input: DestroyPrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyPrometheusInstanceResponse > {
+        self.client.execute(action: "DestroyPrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 强制释放 Prometheus 实例
+    ///
+    /// 彻底删除 Prometheus 实例相关数据，给定的实例必须先被 Terminate
+    @inlinable
+    public func destroyPrometheusInstance(_ input: DestroyPrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPrometheusInstanceResponse {
+        try await self.client.execute(action: "DestroyPrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

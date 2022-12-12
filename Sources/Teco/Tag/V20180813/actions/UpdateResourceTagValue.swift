@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 修改资源标签值
-    ///
-    /// 本接口用于修改资源已关联的标签值（标签键不变）
-    @inlinable
-    public func updateResourceTagValue(_ input: UpdateResourceTagValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateResourceTagValueResponse > {
-        self.client.execute(action: "UpdateResourceTagValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改资源标签值
-    ///
-    /// 本接口用于修改资源已关联的标签值（标签键不变）
-    @inlinable
-    public func updateResourceTagValue(_ input: UpdateResourceTagValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateResourceTagValueResponse {
-        try await self.client.execute(action: "UpdateResourceTagValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateResourceTagValue请求参数结构体
     public struct UpdateResourceTagValueRequest: TCRequestModel {
         /// 资源关联的标签键
@@ -63,5 +47,21 @@ extension Tag {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改资源标签值
+    ///
+    /// 本接口用于修改资源已关联的标签值（标签键不变）
+    @inlinable
+    public func updateResourceTagValue(_ input: UpdateResourceTagValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateResourceTagValueResponse > {
+        self.client.execute(action: "UpdateResourceTagValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改资源标签值
+    ///
+    /// 本接口用于修改资源已关联的标签值（标签键不变）
+    @inlinable
+    public func updateResourceTagValue(_ input: UpdateResourceTagValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateResourceTagValueResponse {
+        try await self.client.execute(action: "UpdateResourceTagValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

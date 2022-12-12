@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询集群策略审计列表
-    @inlinable
-    public func describeNetworkFirewallAuditRecord(_ input: DescribeNetworkFirewallAuditRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallAuditRecordResponse > {
-        self.client.execute(action: "DescribeNetworkFirewallAuditRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群策略审计列表
-    @inlinable
-    public func describeNetworkFirewallAuditRecord(_ input: DescribeNetworkFirewallAuditRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallAuditRecordResponse {
-        try await self.client.execute(action: "DescribeNetworkFirewallAuditRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNetworkFirewallAuditRecord请求参数结构体
     public struct DescribeNetworkFirewallAuditRecordRequest: TCRequestModel {
         /// 偏移量
@@ -45,7 +33,7 @@ extension Tcss {
         /// 排序方式 asc,desc
         public let order: String?
         
-        public init (offset: UInt64?, limit: UInt64?, filters: [ComplianceFilters]?, by: String?, order: String?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -78,5 +66,17 @@ extension Tcss {
             case auditList = "AuditList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群策略审计列表
+    @inlinable
+    public func describeNetworkFirewallAuditRecord(_ input: DescribeNetworkFirewallAuditRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallAuditRecordResponse > {
+        self.client.execute(action: "DescribeNetworkFirewallAuditRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群策略审计列表
+    @inlinable
+    public func describeNetworkFirewallAuditRecord(_ input: DescribeNetworkFirewallAuditRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallAuditRecordResponse {
+        try await self.client.execute(action: "DescribeNetworkFirewallAuditRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

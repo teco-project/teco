@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查看任务最近执行批次状态
-    ///
-    /// 查询任务最近一次执行状态
-    @inlinable
-    public func describeTaskLastStatus(_ input: DescribeTaskLastStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskLastStatusResponse > {
-        self.client.execute(action: "DescribeTaskLastStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看任务最近执行批次状态
-    ///
-    /// 查询任务最近一次执行状态
-    @inlinable
-    public func describeTaskLastStatus(_ input: DescribeTaskLastStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLastStatusResponse {
-        try await self.client.execute(action: "DescribeTaskLastStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskLastStatus请求参数结构体
     public struct DescribeTaskLastStatusRequest: TCRequestModel {
         /// 任务ID
@@ -57,5 +41,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看任务最近执行批次状态
+    ///
+    /// 查询任务最近一次执行状态
+    @inlinable
+    public func describeTaskLastStatus(_ input: DescribeTaskLastStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskLastStatusResponse > {
+        self.client.execute(action: "DescribeTaskLastStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看任务最近执行批次状态
+    ///
+    /// 查询任务最近一次执行状态
+    @inlinable
+    public func describeTaskLastStatus(_ input: DescribeTaskLastStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLastStatusResponse {
+        try await self.client.execute(action: "DescribeTaskLastStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

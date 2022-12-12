@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 创建黑石竞价实例
-    @inlinable
-    public func createSpotDevice(_ input: CreateSpotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSpotDeviceResponse > {
-        self.client.execute(action: "CreateSpotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建黑石竞价实例
-    @inlinable
-    public func createSpotDevice(_ input: CreateSpotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSpotDeviceResponse {
-        try await self.client.execute(action: "CreateSpotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSpotDevice请求参数结构体
     public struct CreateSpotDeviceRequest: TCRequestModel {
         /// 可用区名称。如ap-guangzhou-bls-1, 通过DescribeRegions获取
@@ -56,7 +44,7 @@ extension Bm {
         /// 设置竞价实例密码。可选参数，没有指定会生成随机密码
         public let passwd: String?
         
-        public init (zone: String, computeType: String, osTypeId: UInt64, vpcId: String, subnetId: String, goodsNum: UInt64, spotStrategy: String, spotPriceLimit: Float?, passwd: String?) {
+        public init (zone: String, computeType: String, osTypeId: UInt64, vpcId: String, subnetId: String, goodsNum: UInt64, spotStrategy: String, spotPriceLimit: Float? = nil, passwd: String? = nil) {
             self.zone = zone
             self.computeType = computeType
             self.osTypeId = osTypeId
@@ -97,5 +85,17 @@ extension Bm {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建黑石竞价实例
+    @inlinable
+    public func createSpotDevice(_ input: CreateSpotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSpotDeviceResponse > {
+        self.client.execute(action: "CreateSpotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建黑石竞价实例
+    @inlinable
+    public func createSpotDevice(_ input: CreateSpotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSpotDeviceResponse {
+        try await self.client.execute(action: "CreateSpotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

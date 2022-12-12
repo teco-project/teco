@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cr {
-    /// 实时数据查询
-    @inlinable
-    public func queryInstantData(_ input: QueryInstantDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryInstantDataResponse > {
-        self.client.execute(action: "QueryInstantData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实时数据查询
-    @inlinable
-    public func queryInstantData(_ input: QueryInstantDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInstantDataResponse {
-        try await self.client.execute(action: "QueryInstantData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryInstantData请求参数结构体
     public struct QueryInstantDataRequest: TCRequestModel {
         /// 模块名，本接口取值：Data
@@ -47,7 +35,7 @@ extension Cr {
         /// 查询参数
         public let data: String?
         
-        public init (module: String, operation: String, productId: String?, instanceId: String?, queryModel: String?, data: String?) {
+        public init (module: String, operation: String, productId: String? = nil, instanceId: String? = nil, queryModel: String? = nil, data: String? = nil) {
             self.module = module
             self.operation = operation
             self.productId = productId
@@ -84,5 +72,17 @@ extension Cr {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实时数据查询
+    @inlinable
+    public func queryInstantData(_ input: QueryInstantDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryInstantDataResponse > {
+        self.client.execute(action: "QueryInstantData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实时数据查询
+    @inlinable
+    public func queryInstantData(_ input: QueryInstantDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInstantDataResponse {
+        try await self.client.execute(action: "QueryInstantData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取帐号变更历史列表
-    ///
-    /// 本接口 (DescribeHistoryAccounts) 用于获取帐号变更历史列表数据。
-    @inlinable
-    public func describeHistoryAccounts(_ input: DescribeHistoryAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHistoryAccountsResponse > {
-        self.client.execute(action: "DescribeHistoryAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取帐号变更历史列表
-    ///
-    /// 本接口 (DescribeHistoryAccounts) 用于获取帐号变更历史列表数据。
-    @inlinable
-    public func describeHistoryAccounts(_ input: DescribeHistoryAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHistoryAccountsResponse {
-        try await self.client.execute(action: "DescribeHistoryAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHistoryAccounts请求参数结构体
     public struct DescribeHistoryAccountsRequest: TCRequestModel {
         /// 云镜客户端唯一Uuid。
@@ -46,7 +30,7 @@ extension Cwp {
         /// <li>Username - String - 是否必填：否 - 帐号名</li>
         public let filters: [Filter]?
         
-        public init (uuid: String, limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (uuid: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.uuid = uuid
             self.limit = limit
             self.offset = offset
@@ -77,5 +61,21 @@ extension Cwp {
             case historyAccounts = "HistoryAccounts"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取帐号变更历史列表
+    ///
+    /// 本接口 (DescribeHistoryAccounts) 用于获取帐号变更历史列表数据。
+    @inlinable
+    public func describeHistoryAccounts(_ input: DescribeHistoryAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHistoryAccountsResponse > {
+        self.client.execute(action: "DescribeHistoryAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取帐号变更历史列表
+    ///
+    /// 本接口 (DescribeHistoryAccounts) 用于获取帐号变更历史列表数据。
+    @inlinable
+    public func describeHistoryAccounts(_ input: DescribeHistoryAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHistoryAccountsResponse {
+        try await self.client.execute(action: "DescribeHistoryAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 初始化实例
-    ///
-    /// 本接口(InitDBInstances)用于初始化云数据库实例，包括设置默认字符集、表名大小写敏感等。
-    @inlinable
-    public func initDBInstances(_ input: InitDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InitDBInstancesResponse > {
-        self.client.execute(action: "InitDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 初始化实例
-    ///
-    /// 本接口(InitDBInstances)用于初始化云数据库实例，包括设置默认字符集、表名大小写敏感等。
-    @inlinable
-    public func initDBInstances(_ input: InitDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDBInstancesResponse {
-        try await self.client.execute(action: "InitDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InitDBInstances请求参数结构体
     public struct InitDBInstancesRequest: TCRequestModel {
         /// 待初始化的实例ID列表，形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
@@ -66,5 +50,21 @@ extension Mariadb {
             case instanceIds = "InstanceIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 初始化实例
+    ///
+    /// 本接口(InitDBInstances)用于初始化云数据库实例，包括设置默认字符集、表名大小写敏感等。
+    @inlinable
+    public func initDBInstances(_ input: InitDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InitDBInstancesResponse > {
+        self.client.execute(action: "InitDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 初始化实例
+    ///
+    /// 本接口(InitDBInstances)用于初始化云数据库实例，包括设置默认字符集、表名大小写敏感等。
+    @inlinable
+    public func initDBInstances(_ input: InitDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDBInstancesResponse {
+        try await self.client.execute(action: "InitDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

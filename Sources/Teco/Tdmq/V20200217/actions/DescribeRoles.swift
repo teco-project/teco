@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取角色列表
-    @inlinable
-    public func describeRoles(_ input: DescribeRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRolesResponse > {
-        self.client.execute(action: "DescribeRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取角色列表
-    @inlinable
-    public func describeRoles(_ input: DescribeRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRolesResponse {
-        try await self.client.execute(action: "DescribeRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRoles请求参数结构体
     public struct DescribeRolesRequest: TCRequestModel {
         /// 角色名称，模糊查询
@@ -47,7 +35,7 @@ extension Tdmq {
         /// 必选：否
         public let filters: [Filter]?
         
-        public init (roleName: String?, offset: Int64?, limit: Int64?, clusterId: String?, filters: [Filter]?) {
+        public init (roleName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, filters: [Filter]? = nil) {
             self.roleName = roleName
             self.offset = offset
             self.limit = limit
@@ -80,5 +68,17 @@ extension Tdmq {
             case roleSets = "RoleSets"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取角色列表
+    @inlinable
+    public func describeRoles(_ input: DescribeRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRolesResponse > {
+        self.client.execute(action: "DescribeRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取角色列表
+    @inlinable
+    public func describeRoles(_ input: DescribeRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRolesResponse {
+        try await self.client.execute(action: "DescribeRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

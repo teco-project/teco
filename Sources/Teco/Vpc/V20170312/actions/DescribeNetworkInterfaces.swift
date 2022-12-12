@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询弹性网卡列表
-    ///
-    /// 本接口（DescribeNetworkInterfaces）用于查询弹性网卡列表。
-    @inlinable
-    public func describeNetworkInterfaces(_ input: DescribeNetworkInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkInterfacesResponse > {
-        self.client.execute(action: "DescribeNetworkInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询弹性网卡列表
-    ///
-    /// 本接口（DescribeNetworkInterfaces）用于查询弹性网卡列表。
-    @inlinable
-    public func describeNetworkInterfaces(_ input: DescribeNetworkInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkInterfacesResponse {
-        try await self.client.execute(action: "DescribeNetworkInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNetworkInterfaces请求参数结构体
     public struct DescribeNetworkInterfacesRequest: TCRequestModel {
         /// 弹性网卡实例ID查询。形如：eni-pxir56ns。每次请求的实例的上限为100。参数不支持同时指定NetworkInterfaceIds和Filters。
@@ -60,7 +44,7 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。
         public let limit: UInt64?
         
-        public init (networkInterfaceIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (networkInterfaceIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.networkInterfaceIds = networkInterfaceIds
             self.filters = filters
             self.offset = offset
@@ -91,5 +75,21 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询弹性网卡列表
+    ///
+    /// 本接口（DescribeNetworkInterfaces）用于查询弹性网卡列表。
+    @inlinable
+    public func describeNetworkInterfaces(_ input: DescribeNetworkInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkInterfacesResponse > {
+        self.client.execute(action: "DescribeNetworkInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询弹性网卡列表
+    ///
+    /// 本接口（DescribeNetworkInterfaces）用于查询弹性网卡列表。
+    @inlinable
+    public func describeNetworkInterfaces(_ input: DescribeNetworkInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkInterfacesResponse {
+        try await self.client.execute(action: "DescribeNetworkInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

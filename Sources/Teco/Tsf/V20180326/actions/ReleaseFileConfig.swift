@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 发布文件配置
-    @inlinable
-    public func releaseFileConfig(_ input: ReleaseFileConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseFileConfigResponse > {
-        self.client.execute(action: "ReleaseFileConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发布文件配置
-    @inlinable
-    public func releaseFileConfig(_ input: ReleaseFileConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseFileConfigResponse {
-        try await self.client.execute(action: "ReleaseFileConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReleaseFileConfig请求参数结构体
     public struct ReleaseFileConfigRequest: TCRequestModel {
         /// 配置ID
@@ -38,7 +26,7 @@ extension Tsf {
         /// 发布描述
         public let releaseDesc: String?
         
-        public init (configId: String, groupId: String, releaseDesc: String?) {
+        public init (configId: String, groupId: String, releaseDesc: String? = nil) {
             self.configId = configId
             self.groupId = groupId
             self.releaseDesc = releaseDesc
@@ -64,5 +52,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发布文件配置
+    @inlinable
+    public func releaseFileConfig(_ input: ReleaseFileConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseFileConfigResponse > {
+        self.client.execute(action: "ReleaseFileConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发布文件配置
+    @inlinable
+    public func releaseFileConfig(_ input: ReleaseFileConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseFileConfigResponse {
+        try await self.client.execute(action: "ReleaseFileConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

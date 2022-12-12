@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 查看计算环境活动信息
-    ///
-    /// 用于查询计算环境的活动信息
-    @inlinable
-    public func describeComputeEnvActivities(_ input: DescribeComputeEnvActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComputeEnvActivitiesResponse > {
-        self.client.execute(action: "DescribeComputeEnvActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看计算环境活动信息
-    ///
-    /// 用于查询计算环境的活动信息
-    @inlinable
-    public func describeComputeEnvActivities(_ input: DescribeComputeEnvActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvActivitiesResponse {
-        try await self.client.execute(action: "DescribeComputeEnvActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeComputeEnvActivities请求参数结构体
     public struct DescribeComputeEnvActivitiesRequest: TCRequestModel {
         /// 计算环境ID
@@ -44,9 +28,9 @@ extension Batch {
         
         /// 过滤条件
         /// <li> compute-node-id - String - 是否必填：否 -（过滤条件）按照计算节点ID过滤。</li>
-        public let filters: Filter
+        public let filters: Filter?
         
-        public init (envId: String, offset: Int64?, limit: Int64?, filters: Filter) {
+        public init (envId: String, offset: Int64? = nil, limit: Int64? = nil, filters: Filter? = nil) {
             self.envId = envId
             self.offset = offset
             self.limit = limit
@@ -77,5 +61,21 @@ extension Batch {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看计算环境活动信息
+    ///
+    /// 用于查询计算环境的活动信息
+    @inlinable
+    public func describeComputeEnvActivities(_ input: DescribeComputeEnvActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComputeEnvActivitiesResponse > {
+        self.client.execute(action: "DescribeComputeEnvActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看计算环境活动信息
+    ///
+    /// 用于查询计算环境的活动信息
+    @inlinable
+    public func describeComputeEnvActivities(_ input: DescribeComputeEnvActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvActivitiesResponse {
+        try await self.client.execute(action: "DescribeComputeEnvActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

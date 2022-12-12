@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 新增溯源信息
-    @inlinable
-    public func createTraceData(_ input: CreateTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceDataResponse > {
-        self.client.execute(action: "CreateTraceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增溯源信息
-    @inlinable
-    public func createTraceData(_ input: CreateTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceDataResponse {
-        try await self.client.execute(action: "CreateTraceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTraceData请求参数结构体
     public struct CreateTraceDataRequest: TCRequestModel {
         /// 企业ID
@@ -60,9 +48,9 @@ extension Trp {
         public let status: UInt64?
         
         /// 环节数据
-        public let phaseData: PhaseData
+        public let phaseData: PhaseData?
         
-        public init (corpId: UInt64?, batchId: String?, taskId: String?, phase: UInt64?, phaseName: String?, chainStatus: UInt64?, type: UInt64?, traceId: String?, traceItems: [TraceItem]?, status: UInt64?, phaseData: PhaseData) {
+        public init (corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, phase: UInt64? = nil, phaseName: String? = nil, chainStatus: UInt64? = nil, type: UInt64? = nil, traceId: String? = nil, traceItems: [TraceItem]? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil) {
             self.corpId = corpId
             self.batchId = batchId
             self.taskId = taskId
@@ -103,5 +91,17 @@ extension Trp {
             case traceId = "TraceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增溯源信息
+    @inlinable
+    public func createTraceData(_ input: CreateTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceDataResponse > {
+        self.client.execute(action: "CreateTraceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增溯源信息
+    @inlinable
+    public func createTraceData(_ input: CreateTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceDataResponse {
+        try await self.client.execute(action: "CreateTraceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

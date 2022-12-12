@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 更新Api分组
-    @inlinable
-    public func updateApiGroup(_ input: UpdateApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApiGroupResponse > {
-        self.client.execute(action: "UpdateApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新Api分组
-    @inlinable
-    public func updateApiGroup(_ input: UpdateApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiGroupResponse {
-        try await self.client.execute(action: "UpdateApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateApiGroup请求参数结构体
     public struct UpdateApiGroupRequest: TCRequestModel {
         /// Api 分组ID
@@ -56,7 +44,7 @@ extension Tsf {
         /// 微服务名参数位置，path，header或query，默认是path
         public let serviceNameKeyPosition: String?
         
-        public init (groupId: String, groupName: String?, description: String?, authType: String?, groupContext: String?, namespaceNameKey: String?, serviceNameKey: String?, namespaceNameKeyPosition: String?, serviceNameKeyPosition: String?) {
+        public init (groupId: String, groupName: String? = nil, description: String? = nil, authType: String? = nil, groupContext: String? = nil, namespaceNameKey: String? = nil, serviceNameKey: String? = nil, namespaceNameKeyPosition: String? = nil, serviceNameKeyPosition: String? = nil) {
             self.groupId = groupId
             self.groupName = groupName
             self.description = description
@@ -94,5 +82,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新Api分组
+    @inlinable
+    public func updateApiGroup(_ input: UpdateApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApiGroupResponse > {
+        self.client.execute(action: "UpdateApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新Api分组
+    @inlinable
+    public func updateApiGroup(_ input: UpdateApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiGroupResponse {
+        try await self.client.execute(action: "UpdateApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

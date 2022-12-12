@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 获取黑石负载均衡端口相关信息
-    ///
-    /// 获取黑石负载均衡端口相关信息。
-    @inlinable
-    public func describeLoadBalancerPortInfo(_ input: DescribeLoadBalancerPortInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancerPortInfoResponse > {
-        self.client.execute(action: "DescribeLoadBalancerPortInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取黑石负载均衡端口相关信息
-    ///
-    /// 获取黑石负载均衡端口相关信息。
-    @inlinable
-    public func describeLoadBalancerPortInfo(_ input: DescribeLoadBalancerPortInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerPortInfoResponse {
-        try await self.client.execute(action: "DescribeLoadBalancerPortInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLoadBalancerPortInfo请求参数结构体
     public struct DescribeLoadBalancerPortInfoRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -57,5 +41,21 @@ extension Bmlb {
             case listenerSet = "ListenerSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取黑石负载均衡端口相关信息
+    ///
+    /// 获取黑石负载均衡端口相关信息。
+    @inlinable
+    public func describeLoadBalancerPortInfo(_ input: DescribeLoadBalancerPortInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancerPortInfoResponse > {
+        self.client.execute(action: "DescribeLoadBalancerPortInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取黑石负载均衡端口相关信息
+    ///
+    /// 获取黑石负载均衡端口相关信息。
+    @inlinable
+    public func describeLoadBalancerPortInfo(_ input: DescribeLoadBalancerPortInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerPortInfoResponse {
+        try await self.client.execute(action: "DescribeLoadBalancerPortInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ie {
-    /// 获取编辑处理任务结果
-    ///
-    /// 用于获取编辑处理任务的结果。
-    @inlinable
-    public func describeMediaProcessTaskResult(_ input: DescribeMediaProcessTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMediaProcessTaskResultResponse > {
-        self.client.execute(action: "DescribeMediaProcessTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取编辑处理任务结果
-    ///
-    /// 用于获取编辑处理任务的结果。
-    @inlinable
-    public func describeMediaProcessTaskResult(_ input: DescribeMediaProcessTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessTaskResultResponse {
-        try await self.client.execute(action: "DescribeMediaProcessTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMediaProcessTaskResult请求参数结构体
     public struct DescribeMediaProcessTaskResultRequest: TCRequestModel {
         /// 编辑处理任务ID。
@@ -49,7 +33,7 @@ extension Ie {
     public struct DescribeMediaProcessTaskResultResponse: TCResponseModel {
         /// 任务处理结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskResult: MediaProcessTaskResult
+        public let taskResult: MediaProcessTaskResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -58,5 +42,21 @@ extension Ie {
             case taskResult = "TaskResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取编辑处理任务结果
+    ///
+    /// 用于获取编辑处理任务的结果。
+    @inlinable
+    public func describeMediaProcessTaskResult(_ input: DescribeMediaProcessTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMediaProcessTaskResultResponse > {
+        self.client.execute(action: "DescribeMediaProcessTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取编辑处理任务结果
+    ///
+    /// 用于获取编辑处理任务的结果。
+    @inlinable
+    public func describeMediaProcessTaskResult(_ input: DescribeMediaProcessTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessTaskResultResponse {
+        try await self.client.execute(action: "DescribeMediaProcessTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

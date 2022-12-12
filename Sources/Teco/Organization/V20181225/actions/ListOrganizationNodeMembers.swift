@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 获取企业组织单元成员列表
-    @inlinable
-    public func listOrganizationNodeMembers(_ input: ListOrganizationNodeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListOrganizationNodeMembersResponse > {
-        self.client.execute(action: "ListOrganizationNodeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取企业组织单元成员列表
-    @inlinable
-    public func listOrganizationNodeMembers(_ input: ListOrganizationNodeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationNodeMembersResponse {
-        try await self.client.execute(action: "ListOrganizationNodeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListOrganizationNodeMembers请求参数结构体
     public struct ListOrganizationNodeMembersRequest: TCRequestModel {
         /// 企业组织单元ID
@@ -38,7 +26,7 @@ extension Organization {
         /// 限制数目
         public let limit: UInt64?
         
-        public init (nodeId: UInt64, offset: UInt64?, limit: UInt64?) {
+        public init (nodeId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.nodeId = nodeId
             self.offset = offset
             self.limit = limit
@@ -67,5 +55,17 @@ extension Organization {
             case members = "Members"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取企业组织单元成员列表
+    @inlinable
+    public func listOrganizationNodeMembers(_ input: ListOrganizationNodeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListOrganizationNodeMembersResponse > {
+        self.client.execute(action: "ListOrganizationNodeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取企业组织单元成员列表
+    @inlinable
+    public func listOrganizationNodeMembers(_ input: ListOrganizationNodeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationNodeMembersResponse {
+        try await self.client.execute(action: "ListOrganizationNodeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

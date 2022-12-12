@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 开启或关闭CC防护的访问频率控制规则
-    @inlinable
-    public func modifyCCFrequencyRulesStatus(_ input: ModifyCCFrequencyRulesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCFrequencyRulesStatusResponse > {
-        self.client.execute(action: "ModifyCCFrequencyRulesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启或关闭CC防护的访问频率控制规则
-    @inlinable
-    public func modifyCCFrequencyRulesStatus(_ input: ModifyCCFrequencyRulesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCFrequencyRulesStatusResponse {
-        try await self.client.execute(action: "ModifyCCFrequencyRulesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCCFrequencyRulesStatus请求参数结构体
     public struct ModifyCCFrequencyRulesStatusRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -68,5 +56,17 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启或关闭CC防护的访问频率控制规则
+    @inlinable
+    public func modifyCCFrequencyRulesStatus(_ input: ModifyCCFrequencyRulesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCFrequencyRulesStatusResponse > {
+        self.client.execute(action: "ModifyCCFrequencyRulesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启或关闭CC防护的访问频率控制规则
+    @inlinable
+    public func modifyCCFrequencyRulesStatus(_ input: ModifyCCFrequencyRulesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCFrequencyRulesStatusResponse {
+        try await self.client.execute(action: "ModifyCCFrequencyRulesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

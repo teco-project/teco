@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 创建调度的域名
-    ///
-    /// 创建一个域名，可用于在封堵时调度切换IP
-    @inlinable
-    public func createSchedulingDomain(_ input: CreateSchedulingDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSchedulingDomainResponse > {
-        self.client.execute(action: "CreateSchedulingDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建调度的域名
-    ///
-    /// 创建一个域名，可用于在封堵时调度切换IP
-    @inlinable
-    public func createSchedulingDomain(_ input: CreateSchedulingDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchedulingDomainResponse {
-        try await self.client.execute(action: "CreateSchedulingDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSchedulingDomain请求参数结构体
     public struct CreateSchedulingDomainRequest: TCRequestModel {
         /// 代表是否混合云本地化的产品。
@@ -38,7 +22,7 @@ extension Antiddos {
         /// 不填写：其他
         public let product: String?
         
-        public init (product: String?) {
+        public init (product: String? = nil) {
             self.product = product
         }
         
@@ -59,5 +43,21 @@ extension Antiddos {
             case domain = "Domain"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建调度的域名
+    ///
+    /// 创建一个域名，可用于在封堵时调度切换IP
+    @inlinable
+    public func createSchedulingDomain(_ input: CreateSchedulingDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSchedulingDomainResponse > {
+        self.client.execute(action: "CreateSchedulingDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建调度的域名
+    ///
+    /// 创建一个域名，可用于在封堵时调度切换IP
+    @inlinable
+    public func createSchedulingDomain(_ input: CreateSchedulingDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchedulingDomainResponse {
+        try await self.client.execute(action: "CreateSchedulingDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

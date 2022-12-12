@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 修改云硬盘备份点配额询价
-    ///
-    /// 本接口（InquirePricePriceModifyDiskBackupQuota）用于修改云硬盘备份点配额询价。
-    @inlinable
-    public func inquirePriceModifyDiskBackupQuota(_ input: InquirePriceModifyDiskBackupQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceModifyDiskBackupQuotaResponse > {
-        self.client.execute(action: "InquirePriceModifyDiskBackupQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改云硬盘备份点配额询价
-    ///
-    /// 本接口（InquirePricePriceModifyDiskBackupQuota）用于修改云硬盘备份点配额询价。
-    @inlinable
-    public func inquirePriceModifyDiskBackupQuota(_ input: InquirePriceModifyDiskBackupQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceModifyDiskBackupQuotaResponse {
-        try await self.client.execute(action: "InquirePriceModifyDiskBackupQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquirePriceModifyDiskBackupQuota请求参数结构体
     public struct InquirePriceModifyDiskBackupQuotaRequest: TCRequestModel {
         /// 云硬盘ID， 通过DescribeDisks（查询云硬盘信息）接口查询。
@@ -62,5 +46,21 @@ extension Cbs {
             case diskPrice = "DiskPrice"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改云硬盘备份点配额询价
+    ///
+    /// 本接口（InquirePricePriceModifyDiskBackupQuota）用于修改云硬盘备份点配额询价。
+    @inlinable
+    public func inquirePriceModifyDiskBackupQuota(_ input: InquirePriceModifyDiskBackupQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceModifyDiskBackupQuotaResponse > {
+        self.client.execute(action: "InquirePriceModifyDiskBackupQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云硬盘备份点配额询价
+    ///
+    /// 本接口（InquirePricePriceModifyDiskBackupQuota）用于修改云硬盘备份点配额询价。
+    @inlinable
+    public func inquirePriceModifyDiskBackupQuota(_ input: InquirePriceModifyDiskBackupQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceModifyDiskBackupQuotaResponse {
+        try await self.client.execute(action: "InquirePriceModifyDiskBackupQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

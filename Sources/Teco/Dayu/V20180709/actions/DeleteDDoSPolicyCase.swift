@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 删除策略场景
-    @inlinable
-    public func deleteDDoSPolicyCase(_ input: DeleteDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDDoSPolicyCaseResponse > {
-        self.client.execute(action: "DeleteDDoSPolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除策略场景
-    @inlinable
-    public func deleteDDoSPolicyCase(_ input: DeleteDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSPolicyCaseResponse {
-        try await self.client.execute(action: "DeleteDDoSPolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDDoSPolicyCase请求参数结构体
     public struct DeleteDDoSPolicyCaseRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -58,5 +46,17 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除策略场景
+    @inlinable
+    public func deleteDDoSPolicyCase(_ input: DeleteDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDDoSPolicyCaseResponse > {
+        self.client.execute(action: "DeleteDDoSPolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除策略场景
+    @inlinable
+    public func deleteDDoSPolicyCase(_ input: DeleteDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSPolicyCaseResponse {
+        try await self.client.execute(action: "DeleteDDoSPolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

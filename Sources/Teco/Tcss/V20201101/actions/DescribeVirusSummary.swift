@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时查询木马概览信息
-    @inlinable
-    public func describeVirusSummary(_ input: DescribeVirusSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusSummaryResponse > {
-        self.client.execute(action: "DescribeVirusSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时查询木马概览信息
-    @inlinable
-    public func describeVirusSummary(_ input: DescribeVirusSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusSummaryResponse {
-        try await self.client.execute(action: "DescribeVirusSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVirusSummary请求参数结构体
     public struct DescribeVirusSummaryRequest: TCRequestModel {
         public init () {
@@ -80,5 +68,17 @@ extension Tcss {
             case isolateCnt = "IsolateCnt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时查询木马概览信息
+    @inlinable
+    public func describeVirusSummary(_ input: DescribeVirusSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusSummaryResponse > {
+        self.client.execute(action: "DescribeVirusSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时查询木马概览信息
+    @inlinable
+    public func describeVirusSummary(_ input: DescribeVirusSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusSummaryResponse {
+        try await self.client.execute(action: "DescribeVirusSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

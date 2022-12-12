@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 批量加入游戏服务器会话
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（JoinGameServerSessionBatch）用于批量加入游戏服务器会话。
-    @inlinable
-    public func joinGameServerSessionBatch(_ input: JoinGameServerSessionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < JoinGameServerSessionBatchResponse > {
-        self.client.execute(action: "JoinGameServerSessionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量加入游戏服务器会话
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（JoinGameServerSessionBatch）用于批量加入游戏服务器会话。
-    @inlinable
-    public func joinGameServerSessionBatch(_ input: JoinGameServerSessionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionBatchResponse {
-        try await self.client.execute(action: "JoinGameServerSessionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// JoinGameServerSessionBatch请求参数结构体
     public struct JoinGameServerSessionBatchRequest: TCRequestModel {
         /// 游戏服务器会话ID，最小长度1个ASCII字符，最大长度不超过256个ASCII字符
@@ -42,9 +24,9 @@ extension Gse {
         public let playerIds: [String]
         
         /// 玩家自定义数据
-        public let playerDataMap: PlayerDataMap
+        public let playerDataMap: PlayerDataMap?
         
-        public init (gameServerSessionId: String, playerIds: [String], playerDataMap: PlayerDataMap) {
+        public init (gameServerSessionId: String, playerIds: [String], playerDataMap: PlayerDataMap? = nil) {
             self.gameServerSessionId = gameServerSessionId
             self.playerIds = playerIds
             self.playerDataMap = playerDataMap
@@ -70,5 +52,23 @@ extension Gse {
             case playerSessions = "PlayerSessions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量加入游戏服务器会话
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（JoinGameServerSessionBatch）用于批量加入游戏服务器会话。
+    @inlinable
+    public func joinGameServerSessionBatch(_ input: JoinGameServerSessionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < JoinGameServerSessionBatchResponse > {
+        self.client.execute(action: "JoinGameServerSessionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量加入游戏服务器会话
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（JoinGameServerSessionBatch）用于批量加入游戏服务器会话。
+    @inlinable
+    public func joinGameServerSessionBatch(_ input: JoinGameServerSessionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionBatchResponse {
+        try await self.client.execute(action: "JoinGameServerSessionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

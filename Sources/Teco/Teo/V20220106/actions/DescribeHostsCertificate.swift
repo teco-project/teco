@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询域名证书列表
-    ///
-    /// 查询域名证书列表，支持搜索、分页、排序、过滤。
-    @inlinable
-    public func describeHostsCertificate(_ input: DescribeHostsCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostsCertificateResponse > {
-        self.client.execute(action: "DescribeHostsCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询域名证书列表
-    ///
-    /// 查询域名证书列表，支持搜索、分页、排序、过滤。
-    @inlinable
-    public func describeHostsCertificate(_ input: DescribeHostsCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsCertificateResponse {
-        try await self.client.execute(action: "DescribeHostsCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHostsCertificate请求参数结构体
     public struct DescribeHostsCertificateRequest: TCRequestModel {
         /// Zone ID
@@ -46,9 +30,9 @@ extension Teo {
         public let filters: [CertFilter]?
         
         /// 排序方式
-        public let sort: CertSort
+        public let sort: CertSort?
         
-        public init (zoneId: String, offset: Int64?, limit: Int64?, filters: [CertFilter]?, sort: CertSort) {
+        public init (zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [CertFilter]? = nil, sort: CertSort? = nil) {
             self.zoneId = zoneId
             self.offset = offset
             self.limit = limit
@@ -82,5 +66,21 @@ extension Teo {
             case hosts = "Hosts"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询域名证书列表
+    ///
+    /// 查询域名证书列表，支持搜索、分页、排序、过滤。
+    @inlinable
+    public func describeHostsCertificate(_ input: DescribeHostsCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostsCertificateResponse > {
+        self.client.execute(action: "DescribeHostsCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询域名证书列表
+    ///
+    /// 查询域名证书列表，支持搜索、分页、排序、过滤。
+    @inlinable
+    public func describeHostsCertificate(_ input: DescribeHostsCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsCertificateResponse {
+        try await self.client.execute(action: "DescribeHostsCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

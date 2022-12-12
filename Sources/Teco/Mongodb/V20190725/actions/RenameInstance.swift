@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 修改实例名称
-    ///
-    /// 本接口(RenameInstance)用于修改云数据库实例的名称。
-    @inlinable
-    public func renameInstance(_ input: RenameInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenameInstanceResponse > {
-        self.client.execute(action: "RenameInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例名称
-    ///
-    /// 本接口(RenameInstance)用于修改云数据库实例的名称。
-    @inlinable
-    public func renameInstance(_ input: RenameInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenameInstanceResponse {
-        try await self.client.execute(action: "RenameInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RenameInstance请求参数结构体
     public struct RenameInstanceRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -58,5 +42,21 @@ extension Mongodb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例名称
+    ///
+    /// 本接口(RenameInstance)用于修改云数据库实例的名称。
+    @inlinable
+    public func renameInstance(_ input: RenameInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenameInstanceResponse > {
+        self.client.execute(action: "RenameInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例名称
+    ///
+    /// 本接口(RenameInstance)用于修改云数据库实例的名称。
+    @inlinable
+    public func renameInstance(_ input: RenameInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenameInstanceResponse {
+        try await self.client.execute(action: "RenameInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 直播平台-删除代理商完税信息
-    @inlinable
-    public func deleteAgentTaxPaymentInfos(_ input: DeleteAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAgentTaxPaymentInfosResponse > {
-        self.client.execute(action: "DeleteAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播平台-删除代理商完税信息
-    @inlinable
-    public func deleteAgentTaxPaymentInfos(_ input: DeleteAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAgentTaxPaymentInfosResponse {
-        try await self.client.execute(action: "DeleteAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAgentTaxPaymentInfos请求参数结构体
     public struct DeleteAgentTaxPaymentInfosRequest: TCRequestModel {
         /// 批次号
@@ -49,5 +37,17 @@ extension Cpdp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播平台-删除代理商完税信息
+    @inlinable
+    public func deleteAgentTaxPaymentInfos(_ input: DeleteAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAgentTaxPaymentInfosResponse > {
+        self.client.execute(action: "DeleteAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-删除代理商完税信息
+    @inlinable
+    public func deleteAgentTaxPaymentInfos(_ input: DeleteAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAgentTaxPaymentInfosResponse {
+        try await self.client.execute(action: "DeleteAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

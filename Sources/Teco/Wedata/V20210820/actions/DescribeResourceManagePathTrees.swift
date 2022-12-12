@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取资源管理目录树
-    @inlinable
-    public func describeResourceManagePathTrees(_ input: DescribeResourceManagePathTreesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceManagePathTreesResponse > {
-        self.client.execute(action: "DescribeResourceManagePathTrees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取资源管理目录树
-    @inlinable
-    public func describeResourceManagePathTrees(_ input: DescribeResourceManagePathTreesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceManagePathTreesResponse {
-        try await self.client.execute(action: "DescribeResourceManagePathTrees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourceManagePathTrees请求参数结构体
     public struct DescribeResourceManagePathTreesRequest: TCRequestModel {
         /// 项目ID
@@ -44,7 +32,7 @@ extension Wedata {
         /// 文件夹类型
         public let dirType: String?
         
-        public init (projectId: String?, name: String?, fileType: String?, filePath: String?, dirType: String?) {
+        public init (projectId: String? = nil, name: String? = nil, fileType: String? = nil, filePath: String? = nil, dirType: String? = nil) {
             self.projectId = projectId
             self.name = name
             self.fileType = fileType
@@ -74,5 +62,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取资源管理目录树
+    @inlinable
+    public func describeResourceManagePathTrees(_ input: DescribeResourceManagePathTreesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceManagePathTreesResponse > {
+        self.client.execute(action: "DescribeResourceManagePathTrees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资源管理目录树
+    @inlinable
+    public func describeResourceManagePathTrees(_ input: DescribeResourceManagePathTreesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceManagePathTreesResponse {
+        try await self.client.execute(action: "DescribeResourceManagePathTrees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

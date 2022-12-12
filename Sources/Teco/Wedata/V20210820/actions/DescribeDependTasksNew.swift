@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 任务运维-根据层级查找上-下游任务节点【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 根据层级查找上/下游任务节点
-    @inlinable
-    public func describeDependTasksNew(_ input: DescribeDependTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDependTasksNewResponse > {
-        self.client.execute(action: "DescribeDependTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 任务运维-根据层级查找上-下游任务节点【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 根据层级查找上/下游任务节点
-    @inlinable
-    public func describeDependTasksNew(_ input: DescribeDependTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDependTasksNewResponse {
-        try await self.client.execute(action: "DescribeDependTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDependTasksNew请求参数结构体
     public struct DescribeDependTasksNewRequest: TCRequestModel {
         /// 任务Id
@@ -79,5 +61,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 任务运维-根据层级查找上-下游任务节点【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 根据层级查找上/下游任务节点
+    @inlinable
+    public func describeDependTasksNew(_ input: DescribeDependTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDependTasksNewResponse > {
+        self.client.execute(action: "DescribeDependTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 任务运维-根据层级查找上-下游任务节点【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 根据层级查找上/下游任务节点
+    @inlinable
+    public func describeDependTasksNew(_ input: DescribeDependTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDependTasksNewResponse {
+        try await self.client.execute(action: "DescribeDependTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

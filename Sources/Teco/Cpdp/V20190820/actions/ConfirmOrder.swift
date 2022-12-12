@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-消费订单确认接口
-    @inlinable
-    public func confirmOrder(_ input: ConfirmOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ConfirmOrderResponse > {
-        self.client.execute(action: "ConfirmOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-消费订单确认接口
-    @inlinable
-    public func confirmOrder(_ input: ConfirmOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmOrderResponse {
-        try await self.client.execute(action: "ConfirmOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ConfirmOrder请求参数结构体
     public struct ConfirmOrderRequest: TCRequestModel {
         /// 分配给商户的AppId
@@ -73,5 +61,17 @@ extension Cpdp {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-消费订单确认接口
+    @inlinable
+    public func confirmOrder(_ input: ConfirmOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ConfirmOrderResponse > {
+        self.client.execute(action: "ConfirmOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-消费订单确认接口
+    @inlinable
+    public func confirmOrder(_ input: ConfirmOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmOrderResponse {
+        try await self.client.execute(action: "ConfirmOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

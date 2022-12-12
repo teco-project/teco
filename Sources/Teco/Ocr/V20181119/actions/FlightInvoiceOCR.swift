@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 机票行程单识别
-    ///
-    /// 本接口支持机票行程单关键字段的识别，包括旅客姓名、有效身份证件号码、电子客票号码、验证码、填开单位、其他税费、燃油附加费、民航发展基金、保险费、销售单位代号、始发地、目的地、航班号、时间、日期、座位等级、承运人、发票消费类型、票价、合计金额、填开日期、国内国际标签、印刷序号、客票级别/类别、客票生效日期、有效期截止日期、免费行李等字段，支持航班信息多行明细输出。
-    @inlinable
-    public func flightInvoiceOCR(_ input: FlightInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FlightInvoiceOCRResponse > {
-        self.client.execute(action: "FlightInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 机票行程单识别
-    ///
-    /// 本接口支持机票行程单关键字段的识别，包括旅客姓名、有效身份证件号码、电子客票号码、验证码、填开单位、其他税费、燃油附加费、民航发展基金、保险费、销售单位代号、始发地、目的地、航班号、时间、日期、座位等级、承运人、发票消费类型、票价、合计金额、填开日期、国内国际标签、印刷序号、客票级别/类别、客票生效日期、有效期截止日期、免费行李等字段，支持航班信息多行明细输出。
-    @inlinable
-    public func flightInvoiceOCR(_ input: FlightInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlightInvoiceOCRResponse {
-        try await self.client.execute(action: "FlightInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// FlightInvoiceOCR请求参数结构体
     public struct FlightInvoiceOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -52,7 +36,7 @@ extension Ocr {
         /// 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         public let pdfPageNumber: Int64?
         
-        public init (imageBase64: String?, imageUrl: String?, isPdf: Bool?, pdfPageNumber: Int64?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.isPdf = isPdf
@@ -79,5 +63,21 @@ extension Ocr {
             case flightInvoiceInfos = "FlightInvoiceInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 机票行程单识别
+    ///
+    /// 本接口支持机票行程单关键字段的识别，包括旅客姓名、有效身份证件号码、电子客票号码、验证码、填开单位、其他税费、燃油附加费、民航发展基金、保险费、销售单位代号、始发地、目的地、航班号、时间、日期、座位等级、承运人、发票消费类型、票价、合计金额、填开日期、国内国际标签、印刷序号、客票级别/类别、客票生效日期、有效期截止日期、免费行李等字段，支持航班信息多行明细输出。
+    @inlinable
+    public func flightInvoiceOCR(_ input: FlightInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FlightInvoiceOCRResponse > {
+        self.client.execute(action: "FlightInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 机票行程单识别
+    ///
+    /// 本接口支持机票行程单关键字段的识别，包括旅客姓名、有效身份证件号码、电子客票号码、验证码、填开单位、其他税费、燃油附加费、民航发展基金、保险费、销售单位代号、始发地、目的地、航班号、时间、日期、座位等级、承运人、发票消费类型、票价、合计金额、填开日期、国内国际标签、印刷序号、客票级别/类别、客票生效日期、有效期截止日期、免费行李等字段，支持航班信息多行明细输出。
+    @inlinable
+    public func flightInvoiceOCR(_ input: FlightInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlightInvoiceOCRResponse {
+        try await self.client.execute(action: "FlightInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

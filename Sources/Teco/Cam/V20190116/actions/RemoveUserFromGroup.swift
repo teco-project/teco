@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 从用户组删除用户
-    @inlinable
-    public func removeUserFromGroup(_ input: RemoveUserFromGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveUserFromGroupResponse > {
-        self.client.execute(action: "RemoveUserFromGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 从用户组删除用户
-    @inlinable
-    public func removeUserFromGroup(_ input: RemoveUserFromGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserFromGroupResponse {
-        try await self.client.execute(action: "RemoveUserFromGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemoveUserFromGroup请求参数结构体
     public struct RemoveUserFromGroupRequest: TCRequestModel {
         /// 要删除的用户 UIN/UID和用户组 ID对应数组
@@ -49,5 +37,17 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 从用户组删除用户
+    @inlinable
+    public func removeUserFromGroup(_ input: RemoveUserFromGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveUserFromGroupResponse > {
+        self.client.execute(action: "RemoveUserFromGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 从用户组删除用户
+    @inlinable
+    public func removeUserFromGroup(_ input: RemoveUserFromGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserFromGroupResponse {
+        try await self.client.execute(action: "RemoveUserFromGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

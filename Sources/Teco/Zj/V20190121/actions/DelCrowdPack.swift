@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 删除人群包
-    @inlinable
-    public func delCrowdPack(_ input: DelCrowdPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DelCrowdPackResponse > {
-        self.client.execute(action: "DelCrowdPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除人群包
-    @inlinable
-    public func delCrowdPack(_ input: DelCrowdPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelCrowdPackResponse {
-        try await self.client.execute(action: "DelCrowdPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DelCrowdPack请求参数结构体
     public struct DelCrowdPackRequest: TCRequestModel {
         /// 商户证书
@@ -58,5 +46,17 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除人群包
+    @inlinable
+    public func delCrowdPack(_ input: DelCrowdPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DelCrowdPackResponse > {
+        self.client.execute(action: "DelCrowdPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除人群包
+    @inlinable
+    public func delCrowdPack(_ input: DelCrowdPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelCrowdPackResponse {
+        try await self.client.execute(action: "DelCrowdPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

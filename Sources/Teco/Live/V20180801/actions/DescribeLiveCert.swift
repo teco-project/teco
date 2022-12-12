@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 获取证书信息
-    @inlinable
-    public func describeLiveCert(_ input: DescribeLiveCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveCertResponse > {
-        self.client.execute(action: "DescribeLiveCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取证书信息
-    @inlinable
-    public func describeLiveCert(_ input: DescribeLiveCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCertResponse {
-        try await self.client.execute(action: "DescribeLiveCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveCert请求参数结构体
     public struct DescribeLiveCertRequest: TCRequestModel {
         /// DescribeLiveCerts接口获取到的证书Id。
@@ -53,5 +41,17 @@ extension Live {
             case certInfo = "CertInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取证书信息
+    @inlinable
+    public func describeLiveCert(_ input: DescribeLiveCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveCertResponse > {
+        self.client.execute(action: "DescribeLiveCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取证书信息
+    @inlinable
+    public func describeLiveCert(_ input: DescribeLiveCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCertResponse {
+        try await self.client.execute(action: "DescribeLiveCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

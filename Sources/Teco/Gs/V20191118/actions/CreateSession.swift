@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gs {
-    /// 创建会话
-    @inlinable
-    public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSessionResponse > {
-        self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建会话
-    @inlinable
-    public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
-        try await self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSession请求参数结构体
     public struct CreateSessionRequest: TCRequestModel {
         /// 客户端session信息，从JSSDK请求中获得
@@ -85,7 +73,7 @@ extension Gs {
         /// 默认值（空）：要求必须有客户端连接才会保持云端 App 运行。
         public let runMode: String?
         
-        public init (clientSession: String, userId: String, gameId: String, gameRegion: String?, gameParas: String?, resolution: String?, imageUrl: String?, setNo: UInt64?, bitrate: UInt64?, maxBitrate: UInt64?, minBitrate: UInt64?, fps: UInt64?, userIp: String?, optimization: UInt64?, hostUserId: String?, role: String?, gameContext: String?, runMode: String?) {
+        public init (clientSession: String, userId: String, gameId: String, gameRegion: String? = nil, gameParas: String? = nil, resolution: String? = nil, imageUrl: String? = nil, setNo: UInt64? = nil, bitrate: UInt64? = nil, maxBitrate: UInt64? = nil, minBitrate: UInt64? = nil, fps: UInt64? = nil, userIp: String? = nil, optimization: UInt64? = nil, hostUserId: String? = nil, role: String? = nil, gameContext: String? = nil, runMode: String? = nil) {
             self.clientSession = clientSession
             self.userId = userId
             self.gameId = gameId
@@ -148,5 +136,17 @@ extension Gs {
             case role = "Role"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建会话
+    @inlinable
+    public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSessionResponse > {
+        self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建会话
+    @inlinable
+    public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
+        try await self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

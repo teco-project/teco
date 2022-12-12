@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Youmall {
-    /// 获取每日客流人数
-    ///
-    /// 按天提供查询日期范围内门店的单日累计客流人数，支持的时间范围：过去365天，含当天。
-    @inlinable
-    public func describeShopTrafficInfo(_ input: DescribeShopTrafficInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShopTrafficInfoResponse > {
-        self.client.execute(action: "DescribeShopTrafficInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取每日客流人数
-    ///
-    /// 按天提供查询日期范围内门店的单日累计客流人数，支持的时间范围：过去365天，含当天。
-    @inlinable
-    public func describeShopTrafficInfo(_ input: DescribeShopTrafficInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopTrafficInfoResponse {
-        try await self.client.execute(action: "DescribeShopTrafficInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeShopTrafficInfo请求参数结构体
     public struct DescribeShopTrafficInfoRequest: TCRequestModel {
         /// 公司ID
@@ -98,5 +82,21 @@ extension Youmall {
             case shopDayTrafficInfoSet = "ShopDayTrafficInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取每日客流人数
+    ///
+    /// 按天提供查询日期范围内门店的单日累计客流人数，支持的时间范围：过去365天，含当天。
+    @inlinable
+    public func describeShopTrafficInfo(_ input: DescribeShopTrafficInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShopTrafficInfoResponse > {
+        self.client.execute(action: "DescribeShopTrafficInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取每日客流人数
+    ///
+    /// 按天提供查询日期范围内门店的单日累计客流人数，支持的时间范围：过去365天，含当天。
+    @inlinable
+    public func describeShopTrafficInfo(_ input: DescribeShopTrafficInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopTrafficInfoResponse {
+        try await self.client.execute(action: "DescribeShopTrafficInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

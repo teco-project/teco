@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 查询流程文件
-    @inlinable
-    public func describeFlowFiles(_ input: DescribeFlowFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowFilesResponse > {
-        self.client.execute(action: "DescribeFlowFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询流程文件
-    @inlinable
-    public func describeFlowFiles(_ input: DescribeFlowFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowFilesResponse {
-        try await self.client.execute(action: "DescribeFlowFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlowFiles请求参数结构体
     public struct DescribeFlowFilesRequest: TCRequestModel {
         /// 调用方信息; 必选
@@ -62,5 +50,17 @@ extension Essbasic {
             case flowFileInfos = "FlowFileInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询流程文件
+    @inlinable
+    public func describeFlowFiles(_ input: DescribeFlowFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowFilesResponse > {
+        self.client.execute(action: "DescribeFlowFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流程文件
+    @inlinable
+    public func describeFlowFiles(_ input: DescribeFlowFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowFilesResponse {
+        try await self.client.execute(action: "DescribeFlowFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

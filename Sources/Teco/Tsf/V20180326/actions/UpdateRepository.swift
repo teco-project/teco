@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 更新仓库信息
-    @inlinable
-    public func updateRepository(_ input: UpdateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRepositoryResponse > {
-        self.client.execute(action: "UpdateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新仓库信息
-    @inlinable
-    public func updateRepository(_ input: UpdateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRepositoryResponse {
-        try await self.client.execute(action: "UpdateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateRepository请求参数结构体
     public struct UpdateRepositoryRequest: TCRequestModel {
         /// 仓库ID
@@ -35,7 +23,7 @@ extension Tsf {
         /// 仓库描述
         public let repositoryDesc: String?
         
-        public init (repositoryId: String, repositoryDesc: String?) {
+        public init (repositoryId: String, repositoryDesc: String? = nil) {
             self.repositoryId = repositoryId
             self.repositoryDesc = repositoryDesc
         }
@@ -59,5 +47,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新仓库信息
+    @inlinable
+    public func updateRepository(_ input: UpdateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRepositoryResponse > {
+        self.client.execute(action: "UpdateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新仓库信息
+    @inlinable
+    public func updateRepository(_ input: UpdateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRepositoryResponse {
+        try await self.client.execute(action: "UpdateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 查询长安链指定高度区块的交易
-    @inlinable
-    public func queryChainMakerBlockTransaction(_ input: QueryChainMakerBlockTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryChainMakerBlockTransactionResponse > {
-        self.client.execute(action: "QueryChainMakerBlockTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询长安链指定高度区块的交易
-    @inlinable
-    public func queryChainMakerBlockTransaction(_ input: QueryChainMakerBlockTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerBlockTransactionResponse {
-        try await self.client.execute(action: "QueryChainMakerBlockTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryChainMakerBlockTransaction请求参数结构体
     public struct QueryChainMakerBlockTransactionRequest: TCRequestModel {
         /// 网络ID，可在区块链网络详情或列表中获取
@@ -77,5 +65,17 @@ extension Tbaas {
             case blockTimestamp = "BlockTimestamp"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询长安链指定高度区块的交易
+    @inlinable
+    public func queryChainMakerBlockTransaction(_ input: QueryChainMakerBlockTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryChainMakerBlockTransactionResponse > {
+        self.client.execute(action: "QueryChainMakerBlockTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询长安链指定高度区块的交易
+    @inlinable
+    public func queryChainMakerBlockTransaction(_ input: QueryChainMakerBlockTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerBlockTransactionResponse {
+        try await self.client.execute(action: "QueryChainMakerBlockTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

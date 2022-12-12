@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 查询YARN资源调度数据信息
-    @inlinable
-    public func describeResourceSchedule(_ input: DescribeResourceScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceScheduleResponse > {
-        self.client.execute(action: "DescribeResourceSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询YARN资源调度数据信息
-    @inlinable
-    public func describeResourceSchedule(_ input: DescribeResourceScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceScheduleResponse {
-        try await self.client.execute(action: "DescribeResourceSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourceSchedule请求参数结构体
     public struct DescribeResourceScheduleRequest: TCRequestModel {
         /// emr集群的英文id
@@ -65,5 +53,17 @@ extension Emr {
             case csInfo = "CSInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询YARN资源调度数据信息
+    @inlinable
+    public func describeResourceSchedule(_ input: DescribeResourceScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceScheduleResponse > {
+        self.client.execute(action: "DescribeResourceSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询YARN资源调度数据信息
+    @inlinable
+    public func describeResourceSchedule(_ input: DescribeResourceScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceScheduleResponse {
+        try await self.client.execute(action: "DescribeResourceSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

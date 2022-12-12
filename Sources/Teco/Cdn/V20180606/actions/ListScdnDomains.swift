@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 查询SCDN域名列表
-    ///
-    /// ListScdnDomains 用于查询 SCDN 安全加速域名列表，及域名基本配置信息
-    @inlinable
-    public func listScdnDomains(_ input: ListScdnDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListScdnDomainsResponse > {
-        self.client.execute(action: "ListScdnDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询SCDN域名列表
-    ///
-    /// ListScdnDomains 用于查询 SCDN 安全加速域名列表，及域名基本配置信息
-    @inlinable
-    public func listScdnDomains(_ input: ListScdnDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnDomainsResponse {
-        try await self.client.execute(action: "ListScdnDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListScdnDomains请求参数结构体
     public struct ListScdnDomainsRequest: TCRequestModel {
         /// 分页起始地址
@@ -42,7 +26,7 @@ extension Cdn {
         /// 域名信息
         public let domain: String?
         
-        public init (offset: Int64?, limit: Int64?, domain: String?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.domain = domain
@@ -73,5 +57,21 @@ extension Cdn {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询SCDN域名列表
+    ///
+    /// ListScdnDomains 用于查询 SCDN 安全加速域名列表，及域名基本配置信息
+    @inlinable
+    public func listScdnDomains(_ input: ListScdnDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListScdnDomainsResponse > {
+        self.client.execute(action: "ListScdnDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询SCDN域名列表
+    ///
+    /// ListScdnDomains 用于查询 SCDN 安全加速域名列表，及域名基本配置信息
+    @inlinable
+    public func listScdnDomains(_ input: ListScdnDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnDomainsResponse {
+        try await self.client.execute(action: "ListScdnDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

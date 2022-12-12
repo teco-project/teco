@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 创建人员
-    ///
-    /// 创建人员，添加人脸、姓名、性别及其他相关信息。
-    /// >     
-    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func createPerson(_ input: CreatePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePersonResponse > {
-        self.client.execute(action: "CreatePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建人员
-    ///
-    /// 创建人员，添加人脸、姓名、性别及其他相关信息。
-    /// >     
-    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func createPerson(_ input: CreatePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
-        try await self.client.execute(action: "CreatePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePerson请求参数结构体
     public struct CreatePersonRequest: TCRequestModel {
         /// 待加入的人员库ID。
@@ -88,7 +68,7 @@ extension Iai {
         /// 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         public let needRotateDetection: UInt64?
         
-        public init (groupId: String, personName: String, personId: String, gender: Int64?, personExDescriptionInfos: [PersonExDescriptionInfo]?, image: String?, url: String?, uniquePersonControl: UInt64?, qualityControl: UInt64?, needRotateDetection: UInt64?) {
+        public init (groupId: String, personName: String, personId: String, gender: Int64? = nil, personExDescriptionInfos: [PersonExDescriptionInfo]? = nil, image: String? = nil, url: String? = nil, uniquePersonControl: UInt64? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil) {
             self.groupId = groupId
             self.personName = personName
             self.personId = personId
@@ -122,7 +102,7 @@ extension Iai {
         
         /// 检测出的人脸框的位置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let faceRect: FaceRect
+        public let faceRect: FaceRect?
         
         /// 疑似同一人的PersonId。 
         /// 当 UniquePersonControl 参数不为0且人员库中有疑似的同一人，此参数才有意义。
@@ -141,5 +121,25 @@ extension Iai {
             case faceModelVersion = "FaceModelVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建人员
+    ///
+    /// 创建人员，添加人脸、姓名、性别及其他相关信息。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func createPerson(_ input: CreatePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePersonResponse > {
+        self.client.execute(action: "CreatePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建人员
+    ///
+    /// 创建人员，添加人脸、姓名、性别及其他相关信息。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func createPerson(_ input: CreatePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
+        try await self.client.execute(action: "CreatePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

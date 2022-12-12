@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询规则引擎的设置参数
-    ///
-    /// 返回规则引擎可应用匹配请求的设置列表及其详细建议配置信息
-    @inlinable
-    public func describeRulesSetting(_ input: DescribeRulesSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesSettingResponse > {
-        self.client.execute(action: "DescribeRulesSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询规则引擎的设置参数
-    ///
-    /// 返回规则引擎可应用匹配请求的设置列表及其详细建议配置信息
-    @inlinable
-    public func describeRulesSetting(_ input: DescribeRulesSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesSettingResponse {
-        try await self.client.execute(action: "DescribeRulesSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRulesSetting请求参数结构体
     public struct DescribeRulesSettingRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Teo {
             case actions = "Actions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询规则引擎的设置参数
+    ///
+    /// 返回规则引擎可应用匹配请求的设置列表及其详细建议配置信息
+    @inlinable
+    public func describeRulesSetting(_ input: DescribeRulesSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesSettingResponse > {
+        self.client.execute(action: "DescribeRulesSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询规则引擎的设置参数
+    ///
+    /// 返回规则引擎可应用匹配请求的设置列表及其详细建议配置信息
+    @inlinable
+    public func describeRulesSetting(_ input: DescribeRulesSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesSettingResponse {
+        try await self.client.execute(action: "DescribeRulesSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

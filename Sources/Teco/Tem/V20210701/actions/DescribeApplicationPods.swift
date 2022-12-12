@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 获取应用实例列表
-    @inlinable
-    public func describeApplicationPods(_ input: DescribeApplicationPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationPodsResponse > {
-        self.client.execute(action: "DescribeApplicationPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取应用实例列表
-    @inlinable
-    public func describeApplicationPods(_ input: DescribeApplicationPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationPodsResponse {
-        try await self.client.execute(action: "DescribeApplicationPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplicationPods请求参数结构体
     public struct DescribeApplicationPodsRequest: TCRequestModel {
         /// 环境id
@@ -53,7 +41,7 @@ extension Tem {
         /// 来源渠道
         public let sourceChannel: Int64?
         
-        public init (environmentId: String, applicationId: String, limit: Int64?, offset: Int64?, status: String?, podName: String?, sourceChannel: Int64?) {
+        public init (environmentId: String, applicationId: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, podName: String? = nil, sourceChannel: Int64? = nil) {
             self.environmentId = environmentId
             self.applicationId = applicationId
             self.limit = limit
@@ -86,5 +74,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取应用实例列表
+    @inlinable
+    public func describeApplicationPods(_ input: DescribeApplicationPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationPodsResponse > {
+        self.client.execute(action: "DescribeApplicationPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用实例列表
+    @inlinable
+    public func describeApplicationPods(_ input: DescribeApplicationPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationPodsResponse {
+        try await self.client.execute(action: "DescribeApplicationPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

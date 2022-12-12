@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 删除证书
-    ///
-    /// 本接口（DeleteCertificate）用于删除证书。
-    @inlinable
-    public func deleteCertificate(_ input: DeleteCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCertificateResponse > {
-        self.client.execute(action: "DeleteCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除证书
-    ///
-    /// 本接口（DeleteCertificate）用于删除证书。
-    @inlinable
-    public func deleteCertificate(_ input: DeleteCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCertificateResponse {
-        try await self.client.execute(action: "DeleteCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCertificate请求参数结构体
     public struct DeleteCertificateRequest: TCRequestModel {
         /// 证书 ID。
@@ -57,5 +41,21 @@ extension Ssl {
             case deleteResult = "DeleteResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除证书
+    ///
+    /// 本接口（DeleteCertificate）用于删除证书。
+    @inlinable
+    public func deleteCertificate(_ input: DeleteCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCertificateResponse > {
+        self.client.execute(action: "DeleteCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除证书
+    ///
+    /// 本接口（DeleteCertificate）用于删除证书。
+    @inlinable
+    public func deleteCertificate(_ input: DeleteCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCertificateResponse {
+        try await self.client.execute(action: "DeleteCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

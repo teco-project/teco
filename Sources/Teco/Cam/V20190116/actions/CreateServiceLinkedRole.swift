@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 创建服务相关角色
-    @inlinable
-    public func createServiceLinkedRole(_ input: CreateServiceLinkedRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceLinkedRoleResponse > {
-        self.client.execute(action: "CreateServiceLinkedRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建服务相关角色
-    @inlinable
-    public func createServiceLinkedRole(_ input: CreateServiceLinkedRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceLinkedRoleResponse {
-        try await self.client.execute(action: "CreateServiceLinkedRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateServiceLinkedRole请求参数结构体
     public struct CreateServiceLinkedRoleRequest: TCRequestModel {
         /// 授权服务，附加了此角色的腾讯云服务主体。
@@ -41,7 +29,7 @@ extension Cam {
         /// 角色绑定标签。
         public let tags: [RoleTags]?
         
-        public init (qcsServiceName: [String], customSuffix: String?, description: String?, tags: [RoleTags]?) {
+        public init (qcsServiceName: [String], customSuffix: String? = nil, description: String? = nil, tags: [RoleTags]? = nil) {
             self.qcsServiceName = qcsServiceName
             self.customSuffix = customSuffix
             self.description = description
@@ -68,5 +56,17 @@ extension Cam {
             case roleId = "RoleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建服务相关角色
+    @inlinable
+    public func createServiceLinkedRole(_ input: CreateServiceLinkedRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceLinkedRoleResponse > {
+        self.client.execute(action: "CreateServiceLinkedRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建服务相关角色
+    @inlinable
+    public func createServiceLinkedRole(_ input: CreateServiceLinkedRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceLinkedRoleResponse {
+        try await self.client.execute(action: "CreateServiceLinkedRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

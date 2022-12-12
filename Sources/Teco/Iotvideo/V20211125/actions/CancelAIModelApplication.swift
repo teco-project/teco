@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 取消AI模型申请
-    @inlinable
-    public func cancelAIModelApplication(_ input: CancelAIModelApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelAIModelApplicationResponse > {
-        self.client.execute(action: "CancelAIModelApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消AI模型申请
-    @inlinable
-    public func cancelAIModelApplication(_ input: CancelAIModelApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAIModelApplicationResponse {
-        try await self.client.execute(action: "CancelAIModelApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelAIModelApplication请求参数结构体
     public struct CancelAIModelApplicationRequest: TCRequestModel {
         /// AI模型ID
@@ -54,5 +42,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消AI模型申请
+    @inlinable
+    public func cancelAIModelApplication(_ input: CancelAIModelApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelAIModelApplicationResponse > {
+        self.client.execute(action: "CancelAIModelApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消AI模型申请
+    @inlinable
+    public func cancelAIModelApplication(_ input: CancelAIModelApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAIModelApplicationResponse {
+        try await self.client.execute(action: "CancelAIModelApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 配置CHC物理服务器的带外和部署网络
-    ///
-    /// 配置CHC物理服务器的带外和部署网络。传入带外网络和部署网络信息
-    @inlinable
-    public func configureChcAssistVpc(_ input: ConfigureChcAssistVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ConfigureChcAssistVpcResponse > {
-        self.client.execute(action: "ConfigureChcAssistVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 配置CHC物理服务器的带外和部署网络
-    ///
-    /// 配置CHC物理服务器的带外和部署网络。传入带外网络和部署网络信息
-    @inlinable
-    public func configureChcAssistVpc(_ input: ConfigureChcAssistVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureChcAssistVpcResponse {
-        try await self.client.execute(action: "ConfigureChcAssistVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ConfigureChcAssistVpc请求参数结构体
     public struct ConfigureChcAssistVpcRequest: TCRequestModel {
         /// CHC物理服务器的实例Id。
@@ -43,12 +27,12 @@ extension Cvm {
         public let bmcSecurityGroupIds: [String]?
         
         /// 部署网络信息。
-        public let deployVirtualPrivateCloud: VirtualPrivateCloud
+        public let deployVirtualPrivateCloud: VirtualPrivateCloud?
         
         /// 部署网络的安全组列表
         public let deploySecurityGroupIds: [String]?
         
-        public init (chcIds: [String], bmcVirtualPrivateCloud: VirtualPrivateCloud, bmcSecurityGroupIds: [String]?, deployVirtualPrivateCloud: VirtualPrivateCloud, deploySecurityGroupIds: [String]?) {
+        public init (chcIds: [String], bmcVirtualPrivateCloud: VirtualPrivateCloud, bmcSecurityGroupIds: [String]? = nil, deployVirtualPrivateCloud: VirtualPrivateCloud? = nil, deploySecurityGroupIds: [String]? = nil) {
             self.chcIds = chcIds
             self.bmcVirtualPrivateCloud = bmcVirtualPrivateCloud
             self.bmcSecurityGroupIds = bmcSecurityGroupIds
@@ -73,5 +57,21 @@ extension Cvm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 配置CHC物理服务器的带外和部署网络
+    ///
+    /// 配置CHC物理服务器的带外和部署网络。传入带外网络和部署网络信息
+    @inlinable
+    public func configureChcAssistVpc(_ input: ConfigureChcAssistVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ConfigureChcAssistVpcResponse > {
+        self.client.execute(action: "ConfigureChcAssistVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 配置CHC物理服务器的带外和部署网络
+    ///
+    /// 配置CHC物理服务器的带外和部署网络。传入带外网络和部署网络信息
+    @inlinable
+    public func configureChcAssistVpc(_ input: ConfigureChcAssistVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureChcAssistVpcResponse {
+        try await self.client.execute(action: "ConfigureChcAssistVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 查询弹性公网IP ACL
-    @inlinable
-    public func describeEipAcls(_ input: DescribeEipAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEipAclsResponse > {
-        self.client.execute(action: "DescribeEipAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询弹性公网IP ACL
-    @inlinable
-    public func describeEipAcls(_ input: DescribeEipAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipAclsResponse {
-        try await self.client.execute(action: "DescribeEipAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEipAcls请求参数结构体
     public struct DescribeEipAclsRequest: TCRequestModel {
         /// ACL 名称，支持模糊查找
@@ -59,7 +47,7 @@ extension Bmeip {
         /// ACL名称列表，支持模糊查找
         public let aclNames: [String]?
         
-        public init (aclName: String?, aclIds: [String]?, offset: Int64?, limit: Int64?, eipIds: [String]?, eipIps: [String]?, eipNames: [String]?, orderField: String?, order: UInt64?, aclNames: [String]?) {
+        public init (aclName: String? = nil, aclIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, eipIds: [String]? = nil, eipIps: [String]? = nil, eipNames: [String]? = nil, orderField: String? = nil, order: UInt64? = nil, aclNames: [String]? = nil) {
             self.aclName = aclName
             self.aclIds = aclIds
             self.offset = offset
@@ -102,5 +90,17 @@ extension Bmeip {
             case eipAclList = "EipAclList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询弹性公网IP ACL
+    @inlinable
+    public func describeEipAcls(_ input: DescribeEipAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEipAclsResponse > {
+        self.client.execute(action: "DescribeEipAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询弹性公网IP ACL
+    @inlinable
+    public func describeEipAcls(_ input: DescribeEipAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipAclsResponse {
+        try await self.client.execute(action: "DescribeEipAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

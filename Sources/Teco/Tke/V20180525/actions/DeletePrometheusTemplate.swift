@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 删除模板
-    ///
-    /// 删除一个云原生Prometheus配置模板
-    @inlinable
-    public func deletePrometheusTemplate(_ input: DeletePrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusTemplateResponse > {
-        self.client.execute(action: "DeletePrometheusTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除模板
-    ///
-    /// 删除一个云原生Prometheus配置模板
-    @inlinable
-    public func deletePrometheusTemplate(_ input: DeletePrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTemplateResponse {
-        try await self.client.execute(action: "DeletePrometheusTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePrometheusTemplate请求参数结构体
     public struct DeletePrometheusTemplateRequest: TCRequestModel {
         /// 模板id
@@ -53,5 +37,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除模板
+    ///
+    /// 删除一个云原生Prometheus配置模板
+    @inlinable
+    public func deletePrometheusTemplate(_ input: DeletePrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusTemplateResponse > {
+        self.client.execute(action: "DeletePrometheusTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除模板
+    ///
+    /// 删除一个云原生Prometheus配置模板
+    @inlinable
+    public func deletePrometheusTemplate(_ input: DeletePrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTemplateResponse {
+        try await self.client.execute(action: "DeletePrometheusTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

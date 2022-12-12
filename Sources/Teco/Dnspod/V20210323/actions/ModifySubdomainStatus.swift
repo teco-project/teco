@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 暂停子域名的解析记录
-    @inlinable
-    public func modifySubdomainStatus(_ input: ModifySubdomainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubdomainStatusResponse > {
-        self.client.execute(action: "ModifySubdomainStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 暂停子域名的解析记录
-    @inlinable
-    public func modifySubdomainStatus(_ input: ModifySubdomainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubdomainStatusResponse {
-        try await self.client.execute(action: "ModifySubdomainStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySubdomainStatus请求参数结构体
     public struct ModifySubdomainStatusRequest: TCRequestModel {
         /// 域名
@@ -44,7 +32,7 @@ extension Dnspod {
         /// 主机记录，如 www，如果不传，默认为 @。
         public let subDomain: String?
         
-        public init (domain: String, recordType: String, status: String, domainId: UInt64?, subDomain: String?) {
+        public init (domain: String, recordType: String, status: String, domainId: UInt64? = nil, subDomain: String? = nil) {
             self.domain = domain
             self.recordType = recordType
             self.status = status
@@ -69,5 +57,17 @@ extension Dnspod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 暂停子域名的解析记录
+    @inlinable
+    public func modifySubdomainStatus(_ input: ModifySubdomainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubdomainStatusResponse > {
+        self.client.execute(action: "ModifySubdomainStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 暂停子域名的解析记录
+    @inlinable
+    public func modifySubdomainStatus(_ input: ModifySubdomainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubdomainStatusResponse {
+        try await self.client.execute(action: "ModifySubdomainStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

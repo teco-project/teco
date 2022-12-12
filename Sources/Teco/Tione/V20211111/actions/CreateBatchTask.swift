@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 创建跑批任务
-    @inlinable
-    public func createBatchTask(_ input: CreateBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBatchTaskResponse > {
-        self.client.execute(action: "CreateBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建跑批任务
-    @inlinable
-    public func createBatchTask(_ input: CreateBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchTaskResponse {
-        try await self.client.execute(action: "CreateBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBatchTask请求参数结构体
     public struct CreateBatchTaskRequest: TCRequestModel {
         /// 跑批任务名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
@@ -48,7 +36,7 @@ extension Tione {
         public let jobType: UInt64?
         
         /// 任务周期描述
-        public let cronInfo: CronInfo
+        public let cronInfo: CronInfo?
         
         /// 预付费专用资源组
         public let resourceGroupId: String?
@@ -57,13 +45,13 @@ extension Tione {
         public let tags: [Tag]?
         
         /// 服务对应的模型信息，有模型文件时需要填写
-        public let modelInfo: ModelInfo
+        public let modelInfo: ModelInfo?
         
         /// 自定义镜像信息
-        public let imageInfo: ImageInfo
+        public let imageInfo: ImageInfo?
         
         /// 代码包
-        public let codePackage: CosPathInfo
+        public let codePackage: CosPathInfo?
         
         /// 启动命令
         public let startCmd: String?
@@ -72,7 +60,7 @@ extension Tione {
         public let dataConfigs: [DataConfig]?
         
         /// 日志配置
-        public let logConfig: LogConfig
+        public let logConfig: LogConfig?
         
         /// VPC Id
         public let vpcId: String?
@@ -83,7 +71,7 @@ extension Tione {
         /// 备注
         public let remark: String?
         
-        public init (batchTaskName: String, chargeType: String, resourceConfigInfo: ResourceConfigInfo, outputs: [DataConfig], logEnable: Bool, jobType: UInt64?, cronInfo: CronInfo, resourceGroupId: String?, tags: [Tag]?, modelInfo: ModelInfo, imageInfo: ImageInfo, codePackage: CosPathInfo, startCmd: String?, dataConfigs: [DataConfig]?, logConfig: LogConfig, vpcId: String?, subnetId: String?, remark: String?) {
+        public init (batchTaskName: String, chargeType: String, resourceConfigInfo: ResourceConfigInfo, outputs: [DataConfig], logEnable: Bool, jobType: UInt64? = nil, cronInfo: CronInfo? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, modelInfo: ModelInfo? = nil, imageInfo: ImageInfo? = nil, codePackage: CosPathInfo? = nil, startCmd: String? = nil, dataConfigs: [DataConfig]? = nil, logConfig: LogConfig? = nil, vpcId: String? = nil, subnetId: String? = nil, remark: String? = nil) {
             self.batchTaskName = batchTaskName
             self.chargeType = chargeType
             self.resourceConfigInfo = resourceConfigInfo
@@ -138,5 +126,17 @@ extension Tione {
             case batchTaskId = "BatchTaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建跑批任务
+    @inlinable
+    public func createBatchTask(_ input: CreateBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBatchTaskResponse > {
+        self.client.execute(action: "CreateBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建跑批任务
+    @inlinable
+    public func createBatchTask(_ input: CreateBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchTaskResponse {
+        try await self.client.execute(action: "CreateBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

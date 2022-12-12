@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 查询专用集群支持的实例规格列表
-    @inlinable
-    public func describeDedicatedClusterInstanceTypes(_ input: DescribeDedicatedClusterInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterInstanceTypesResponse > {
-        self.client.execute(action: "DescribeDedicatedClusterInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询专用集群支持的实例规格列表
-    @inlinable
-    public func describeDedicatedClusterInstanceTypes(_ input: DescribeDedicatedClusterInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterInstanceTypesResponse {
-        try await self.client.execute(action: "DescribeDedicatedClusterInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDedicatedClusterInstanceTypes请求参数结构体
     public struct DescribeDedicatedClusterInstanceTypesRequest: TCRequestModel {
         /// 查询的专用集群id
@@ -53,5 +41,17 @@ extension Cdc {
             case dedicatedClusterInstanceTypeSet = "DedicatedClusterInstanceTypeSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询专用集群支持的实例规格列表
+    @inlinable
+    public func describeDedicatedClusterInstanceTypes(_ input: DescribeDedicatedClusterInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterInstanceTypesResponse > {
+        self.client.execute(action: "DescribeDedicatedClusterInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专用集群支持的实例规格列表
+    @inlinable
+    public func describeDedicatedClusterInstanceTypes(_ input: DescribeDedicatedClusterInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterInstanceTypesResponse {
+        try await self.client.execute(action: "DescribeDedicatedClusterInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

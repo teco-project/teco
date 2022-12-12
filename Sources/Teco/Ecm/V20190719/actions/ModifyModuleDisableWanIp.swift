@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改模块是否禁止分配外网ip
-    ///
-    /// 修改模块是否禁止分配外网ip的属性。
-    @inlinable
-    public func modifyModuleDisableWanIp(_ input: ModifyModuleDisableWanIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleDisableWanIpResponse > {
-        self.client.execute(action: "ModifyModuleDisableWanIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改模块是否禁止分配外网ip
-    ///
-    /// 修改模块是否禁止分配外网ip的属性。
-    @inlinable
-    public func modifyModuleDisableWanIp(_ input: ModifyModuleDisableWanIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleDisableWanIpResponse {
-        try await self.client.execute(action: "ModifyModuleDisableWanIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyModuleDisableWanIp请求参数结构体
     public struct ModifyModuleDisableWanIpRequest: TCRequestModel {
         /// 模块ID
@@ -58,5 +42,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改模块是否禁止分配外网ip
+    ///
+    /// 修改模块是否禁止分配外网ip的属性。
+    @inlinable
+    public func modifyModuleDisableWanIp(_ input: ModifyModuleDisableWanIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleDisableWanIpResponse > {
+        self.client.execute(action: "ModifyModuleDisableWanIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改模块是否禁止分配外网ip
+    ///
+    /// 修改模块是否禁止分配外网ip的属性。
+    @inlinable
+    public func modifyModuleDisableWanIp(_ input: ModifyModuleDisableWanIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleDisableWanIpResponse {
+        try await self.client.execute(action: "ModifyModuleDisableWanIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 下载Helm Chart
-    ///
-    /// 用于在TCR中下载helm chart
-    @inlinable
-    public func downloadHelmChart(_ input: DownloadHelmChartRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadHelmChartResponse > {
-        self.client.execute(action: "DownloadHelmChart", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下载Helm Chart
-    ///
-    /// 用于在TCR中下载helm chart
-    @inlinable
-    public func downloadHelmChart(_ input: DownloadHelmChartRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadHelmChartResponse {
-        try await self.client.execute(action: "DownloadHelmChart", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DownloadHelmChart请求参数结构体
     public struct DownloadHelmChartRequest: TCRequestModel {
         /// 实例ID
@@ -100,5 +84,21 @@ extension Tcr {
             case expiredTime = "ExpiredTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下载Helm Chart
+    ///
+    /// 用于在TCR中下载helm chart
+    @inlinable
+    public func downloadHelmChart(_ input: DownloadHelmChartRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadHelmChartResponse > {
+        self.client.execute(action: "DownloadHelmChart", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下载Helm Chart
+    ///
+    /// 用于在TCR中下载helm chart
+    @inlinable
+    public func downloadHelmChart(_ input: DownloadHelmChartRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadHelmChartResponse {
+        try await self.client.execute(action: "DownloadHelmChart", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

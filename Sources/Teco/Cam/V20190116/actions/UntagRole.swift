@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 角色解绑标签
-    ///
-    /// 角色解绑标签。
-    @inlinable
-    public func untagRole(_ input: UntagRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UntagRoleResponse > {
-        self.client.execute(action: "UntagRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 角色解绑标签
-    ///
-    /// 角色解绑标签。
-    @inlinable
-    public func untagRole(_ input: UntagRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UntagRoleResponse {
-        try await self.client.execute(action: "UntagRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UntagRole请求参数结构体
     public struct UntagRoleRequest: TCRequestModel {
         /// 标签键
@@ -42,7 +26,7 @@ extension Cam {
         /// 角色ID，与角色名至少输入一个
         public let roleId: String?
         
-        public init (tagKeys: [String], roleName: String?, roleId: String?) {
+        public init (tagKeys: [String], roleName: String? = nil, roleId: String? = nil) {
             self.tagKeys = tagKeys
             self.roleName = roleName
             self.roleId = roleId
@@ -63,5 +47,21 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 角色解绑标签
+    ///
+    /// 角色解绑标签。
+    @inlinable
+    public func untagRole(_ input: UntagRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UntagRoleResponse > {
+        self.client.execute(action: "UntagRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 角色解绑标签
+    ///
+    /// 角色解绑标签。
+    @inlinable
+    public func untagRole(_ input: UntagRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UntagRoleResponse {
+        try await self.client.execute(action: "UntagRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

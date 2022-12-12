@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询实例维护时间窗
-    ///
-    /// 查询实例维护时间窗，在实例需要进行版本升级或者架构升级的时候，会在维护时间窗时间内进行切换
-    @inlinable
-    public func describeMaintenanceWindow(_ input: DescribeMaintenanceWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaintenanceWindowResponse > {
-        self.client.execute(action: "DescribeMaintenanceWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例维护时间窗
-    ///
-    /// 查询实例维护时间窗，在实例需要进行版本升级或者架构升级的时候，会在维护时间窗时间内进行切换
-    @inlinable
-    public func describeMaintenanceWindow(_ input: DescribeMaintenanceWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintenanceWindowResponse {
-        try await self.client.execute(action: "DescribeMaintenanceWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMaintenanceWindow请求参数结构体
     public struct DescribeMaintenanceWindowRequest: TCRequestModel {
         /// 实例ID
@@ -61,5 +45,21 @@ extension Redis {
             case endTime = "EndTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例维护时间窗
+    ///
+    /// 查询实例维护时间窗，在实例需要进行版本升级或者架构升级的时候，会在维护时间窗时间内进行切换
+    @inlinable
+    public func describeMaintenanceWindow(_ input: DescribeMaintenanceWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaintenanceWindowResponse > {
+        self.client.execute(action: "DescribeMaintenanceWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例维护时间窗
+    ///
+    /// 查询实例维护时间窗，在实例需要进行版本升级或者架构升级的时候，会在维护时间窗时间内进行切换
+    @inlinable
+    public func describeMaintenanceWindow(_ input: DescribeMaintenanceWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintenanceWindowResponse {
+        try await self.client.execute(action: "DescribeMaintenanceWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

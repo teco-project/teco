@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Solar {
-    /// 复制活动渠道的策略
-    @inlinable
-    public func copyActivityChannel(_ input: CopyActivityChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyActivityChannelResponse > {
-        self.client.execute(action: "CopyActivityChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 复制活动渠道的策略
-    @inlinable
-    public func copyActivityChannel(_ input: CopyActivityChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyActivityChannelResponse {
-        try await self.client.execute(action: "CopyActivityChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CopyActivityChannel请求参数结构体
     public struct CopyActivityChannelRequest: TCRequestModel {
         /// 活动ID
@@ -59,5 +47,17 @@ extension Solar {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 复制活动渠道的策略
+    @inlinable
+    public func copyActivityChannel(_ input: CopyActivityChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyActivityChannelResponse > {
+        self.client.execute(action: "CopyActivityChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 复制活动渠道的策略
+    @inlinable
+    public func copyActivityChannel(_ input: CopyActivityChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyActivityChannelResponse {
+        try await self.client.execute(action: "CopyActivityChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

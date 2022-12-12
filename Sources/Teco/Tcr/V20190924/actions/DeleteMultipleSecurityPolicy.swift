@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 删除实例公网访问多白名单策略
-    ///
-    /// 用于删除实例多个公网访问白名单策略
-    @inlinable
-    public func deleteMultipleSecurityPolicy(_ input: DeleteMultipleSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMultipleSecurityPolicyResponse > {
-        self.client.execute(action: "DeleteMultipleSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除实例公网访问多白名单策略
-    ///
-    /// 用于删除实例多个公网访问白名单策略
-    @inlinable
-    public func deleteMultipleSecurityPolicy(_ input: DeleteMultipleSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMultipleSecurityPolicyResponse {
-        try await self.client.execute(action: "DeleteMultipleSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMultipleSecurityPolicy请求参数结构体
     public struct DeleteMultipleSecurityPolicyRequest: TCRequestModel {
         /// 实例Id
@@ -62,5 +46,21 @@ extension Tcr {
             case registryId = "RegistryId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除实例公网访问多白名单策略
+    ///
+    /// 用于删除实例多个公网访问白名单策略
+    @inlinable
+    public func deleteMultipleSecurityPolicy(_ input: DeleteMultipleSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMultipleSecurityPolicyResponse > {
+        self.client.execute(action: "DeleteMultipleSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例公网访问多白名单策略
+    ///
+    /// 用于删除实例多个公网访问白名单策略
+    @inlinable
+    public func deleteMultipleSecurityPolicy(_ input: DeleteMultipleSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMultipleSecurityPolicyResponse {
+        try await self.client.execute(action: "DeleteMultipleSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

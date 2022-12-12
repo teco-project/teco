@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取2.0实例初始化任务状态
-    @inlinable
-    public func describePrometheusInstanceInitStatus(_ input: DescribePrometheusInstanceInitStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusInstanceInitStatusResponse > {
-        self.client.execute(action: "DescribePrometheusInstanceInitStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取2.0实例初始化任务状态
-    @inlinable
-    public func describePrometheusInstanceInitStatus(_ input: DescribePrometheusInstanceInitStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstanceInitStatusResponse {
-        try await self.client.execute(action: "DescribePrometheusInstanceInitStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrometheusInstanceInitStatus请求参数结构体
     public struct DescribePrometheusInstanceInitStatusRequest: TCRequestModel {
         /// 实例ID
@@ -67,5 +55,17 @@ extension Tke {
             case eksClusterId = "EksClusterId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取2.0实例初始化任务状态
+    @inlinable
+    public func describePrometheusInstanceInitStatus(_ input: DescribePrometheusInstanceInitStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusInstanceInitStatusResponse > {
+        self.client.execute(action: "DescribePrometheusInstanceInitStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取2.0实例初始化任务状态
+    @inlinable
+    public func describePrometheusInstanceInitStatus(_ input: DescribePrometheusInstanceInitStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstanceInitStatusResponse {
+        try await self.client.execute(action: "DescribePrometheusInstanceInitStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

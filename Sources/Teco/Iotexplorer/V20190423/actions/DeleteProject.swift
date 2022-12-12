@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 删除项目
-    ///
-    /// 提供删除某个项目的能力
-    @inlinable
-    public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProjectResponse > {
-        self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除项目
-    ///
-    /// 提供删除某个项目的能力
-    @inlinable
-    public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
-        try await self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteProject请求参数结构体
     public struct DeleteProjectRequest: TCRequestModel {
         /// 项目ID
@@ -53,5 +37,21 @@ extension Iotexplorer {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除项目
+    ///
+    /// 提供删除某个项目的能力
+    @inlinable
+    public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProjectResponse > {
+        self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除项目
+    ///
+    /// 提供删除某个项目的能力
+    @inlinable
+    public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
+        try await self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

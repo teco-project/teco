@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 修改物理机服务器自动续费标志
-    @inlinable
-    public func modifyDeviceAutoRenewFlag(_ input: ModifyDeviceAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceAutoRenewFlagResponse > {
-        self.client.execute(action: "ModifyDeviceAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改物理机服务器自动续费标志
-    @inlinable
-    public func modifyDeviceAutoRenewFlag(_ input: ModifyDeviceAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAutoRenewFlagResponse {
-        try await self.client.execute(action: "ModifyDeviceAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDeviceAutoRenewFlag请求参数结构体
     public struct ModifyDeviceAutoRenewFlagRequest: TCRequestModel {
         /// 自动续费标志位。0: 不自动续费; 1: 自动续费
@@ -54,5 +42,17 @@ extension Bm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改物理机服务器自动续费标志
+    @inlinable
+    public func modifyDeviceAutoRenewFlag(_ input: ModifyDeviceAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceAutoRenewFlagResponse > {
+        self.client.execute(action: "ModifyDeviceAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改物理机服务器自动续费标志
+    @inlinable
+    public func modifyDeviceAutoRenewFlag(_ input: ModifyDeviceAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAutoRenewFlagResponse {
+        try await self.client.execute(action: "ModifyDeviceAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

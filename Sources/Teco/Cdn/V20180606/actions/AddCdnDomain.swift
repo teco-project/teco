@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 新增加速域名
-    ///
-    /// AddCdnDomain 用于新增内容分发网络加速域名。1分钟内最多可新增100个域名。
-    @inlinable
-    public func addCdnDomain(_ input: AddCdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddCdnDomainResponse > {
-        self.client.execute(action: "AddCdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增加速域名
-    ///
-    /// AddCdnDomain 用于新增内容分发网络加速域名。1分钟内最多可新增100个域名。
-    @inlinable
-    public func addCdnDomain(_ input: AddCdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCdnDomainResponse {
-        try await self.client.execute(action: "AddCdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddCdnDomain请求参数结构体
     public struct AddCdnDomainRequest: TCRequestModel {
         /// 域名
@@ -51,77 +35,77 @@ extension Cdn {
         public let projectId: Int64?
         
         /// IP 黑白名单配置
-        public let ipFilter: IpFilter
+        public let ipFilter: IpFilter?
         
         /// IP 限频配置
-        public let ipFreqLimit: IpFreqLimit
+        public let ipFreqLimit: IpFreqLimit?
         
         /// 状态码缓存配置
-        public let statusCodeCache: StatusCodeCache
+        public let statusCodeCache: StatusCodeCache?
         
         /// 智能压缩配置
-        public let compression: Compression
+        public let compression: Compression?
         
         /// 带宽封顶配置
-        public let bandwidthAlert: BandwidthAlert
+        public let bandwidthAlert: BandwidthAlert?
         
         /// Range 回源配置
-        public let rangeOriginPull: RangeOriginPull
+        public let rangeOriginPull: RangeOriginPull?
         
         /// 301/302 回源跟随配置。
-        public let followRedirect: FollowRedirect
+        public let followRedirect: FollowRedirect?
         
         /// 错误码重定向配置（功能灰度中，尚未全量）
-        public let errorPage: ErrorPage
+        public let errorPage: ErrorPage?
         
         /// 请求头部配置
-        public let requestHeader: RequestHeader
+        public let requestHeader: RequestHeader?
         
         /// 响应头部配置
-        public let responseHeader: ResponseHeader
+        public let responseHeader: ResponseHeader?
         
         /// 下载速度配置
-        public let downstreamCapping: DownstreamCapping
+        public let downstreamCapping: DownstreamCapping?
         
         /// 节点缓存键配置
-        public let cacheKey: CacheKey
+        public let cacheKey: CacheKey?
         
         /// 头部缓存配置
-        public let responseHeaderCache: ResponseHeaderCache
+        public let responseHeaderCache: ResponseHeaderCache?
         
         /// 视频拖拽配置
-        public let videoSeek: VideoSeek
+        public let videoSeek: VideoSeek?
         
         /// 缓存过期时间配置
-        public let cache: Cache
+        public let cache: Cache?
         
         /// 跨国链路优化配置
-        public let originPullOptimization: OriginPullOptimization
+        public let originPullOptimization: OriginPullOptimization?
         
         /// Https 加速配置
-        public let https: Https
+        public let https: Https?
         
         /// 时间戳防盗链配置
-        public let authentication: Authentication
+        public let authentication: Authentication?
         
         /// SEO 优化配置
-        public let seo: Seo
+        public let seo: Seo?
         
         /// 访问协议强制跳转配置
-        public let forceRedirect: ForceRedirect
+        public let forceRedirect: ForceRedirect?
         
         /// Referer 防盗链配置
-        public let referer: Referer
+        public let referer: Referer?
         
         /// 浏览器缓存配置（功能灰度中，尚未全量）
-        public let maxAge: MaxAge
+        public let maxAge: MaxAge?
         
         /// Ipv6 配置（功能灰度中，尚未全量）
-        public let ipv6: Ipv6
+        public let ipv6: Ipv6?
         
         /// 地域属性特殊配置
         /// 适用于域名境内加速、境外加速配置不一致场景
-        public let specificConfig: SpecificConfig
+        public let specificConfig: SpecificConfig?
         
         /// 域名加速区域
         /// mainland：中国境内加速
@@ -131,33 +115,33 @@ extension Cdn {
         public let area: String?
         
         /// 回源超时配置
-        public let originPullTimeout: OriginPullTimeout
+        public let originPullTimeout: OriginPullTimeout?
         
         /// 标签配置
         public let tag: [Tag]?
         
         /// Ipv6 访问配置
-        public let ipv6Access: Ipv6Access
+        public let ipv6Access: Ipv6Access?
         
         /// 离线缓存
-        public let offlineCache: OfflineCache
+        public let offlineCache: OfflineCache?
         
         /// Quic访问（收费服务，详见计费说明和产品文档）
-        public let quic: Quic
+        public let quic: Quic?
         
         /// 回源S3私有鉴权
-        public let awsPrivateAccess: AwsPrivateAccess
+        public let awsPrivateAccess: AwsPrivateAccess?
         
         /// 回源OSS私有鉴权
-        public let ossPrivateAccess: OssPrivateAccess
+        public let ossPrivateAccess: OssPrivateAccess?
         
         /// 华为云对象存储回源鉴权
-        public let hwPrivateAccess: HwPrivateAccess
+        public let hwPrivateAccess: HwPrivateAccess?
         
         /// 七牛云对象存储回源鉴权
-        public let qnPrivateAccess: QnPrivateAccess
+        public let qnPrivateAccess: QnPrivateAccess?
         
-        public init (domain: String, serviceType: String, origin: Origin, projectId: Int64?, ipFilter: IpFilter, ipFreqLimit: IpFreqLimit, statusCodeCache: StatusCodeCache, compression: Compression, bandwidthAlert: BandwidthAlert, rangeOriginPull: RangeOriginPull, followRedirect: FollowRedirect, errorPage: ErrorPage, requestHeader: RequestHeader, responseHeader: ResponseHeader, downstreamCapping: DownstreamCapping, cacheKey: CacheKey, responseHeaderCache: ResponseHeaderCache, videoSeek: VideoSeek, cache: Cache, originPullOptimization: OriginPullOptimization, https: Https, authentication: Authentication, seo: Seo, forceRedirect: ForceRedirect, referer: Referer, maxAge: MaxAge, ipv6: Ipv6, specificConfig: SpecificConfig, area: String?, originPullTimeout: OriginPullTimeout, tag: [Tag]?, ipv6Access: Ipv6Access, offlineCache: OfflineCache, quic: Quic, awsPrivateAccess: AwsPrivateAccess, ossPrivateAccess: OssPrivateAccess, hwPrivateAccess: HwPrivateAccess, qnPrivateAccess: QnPrivateAccess) {
+        public init (domain: String, serviceType: String, origin: Origin, projectId: Int64? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, statusCodeCache: StatusCodeCache? = nil, compression: Compression? = nil, bandwidthAlert: BandwidthAlert? = nil, rangeOriginPull: RangeOriginPull? = nil, followRedirect: FollowRedirect? = nil, errorPage: ErrorPage? = nil, requestHeader: RequestHeader? = nil, responseHeader: ResponseHeader? = nil, downstreamCapping: DownstreamCapping? = nil, cacheKey: CacheKey? = nil, responseHeaderCache: ResponseHeaderCache? = nil, videoSeek: VideoSeek? = nil, cache: Cache? = nil, originPullOptimization: OriginPullOptimization? = nil, https: Https? = nil, authentication: Authentication? = nil, seo: Seo? = nil, forceRedirect: ForceRedirect? = nil, referer: Referer? = nil, maxAge: MaxAge? = nil, ipv6: Ipv6? = nil, specificConfig: SpecificConfig? = nil, area: String? = nil, originPullTimeout: OriginPullTimeout? = nil, tag: [Tag]? = nil, ipv6Access: Ipv6Access? = nil, offlineCache: OfflineCache? = nil, quic: Quic? = nil, awsPrivateAccess: AwsPrivateAccess? = nil, ossPrivateAccess: OssPrivateAccess? = nil, hwPrivateAccess: HwPrivateAccess? = nil, qnPrivateAccess: QnPrivateAccess? = nil) {
             self.domain = domain
             self.serviceType = serviceType
             self.origin = origin
@@ -248,5 +232,21 @@ extension Cdn {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增加速域名
+    ///
+    /// AddCdnDomain 用于新增内容分发网络加速域名。1分钟内最多可新增100个域名。
+    @inlinable
+    public func addCdnDomain(_ input: AddCdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddCdnDomainResponse > {
+        self.client.execute(action: "AddCdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增加速域名
+    ///
+    /// AddCdnDomain 用于新增内容分发网络加速域名。1分钟内最多可新增100个域名。
+    @inlinable
+    public func addCdnDomain(_ input: AddCdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCdnDomainResponse {
+        try await self.client.execute(action: "AddCdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

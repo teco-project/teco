@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 新增白名单规则
-    ///
-    /// 本接口（AddLoginWhiteList）用于添加白名单规则
-    @inlinable
-    public func addLoginWhiteList(_ input: AddLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddLoginWhiteListResponse > {
-        self.client.execute(action: "AddLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增白名单规则
-    ///
-    /// 本接口（AddLoginWhiteList）用于添加白名单规则
-    @inlinable
-    public func addLoginWhiteList(_ input: AddLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLoginWhiteListResponse {
-        try await self.client.execute(action: "AddLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddLoginWhiteList请求参数结构体
     public struct AddLoginWhiteListRequest: TCRequestModel {
         /// 白名单规则
@@ -53,5 +37,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增白名单规则
+    ///
+    /// 本接口（AddLoginWhiteList）用于添加白名单规则
+    @inlinable
+    public func addLoginWhiteList(_ input: AddLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddLoginWhiteListResponse > {
+        self.client.execute(action: "AddLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增白名单规则
+    ///
+    /// 本接口（AddLoginWhiteList）用于添加白名单规则
+    @inlinable
+    public func addLoginWhiteList(_ input: AddLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLoginWhiteListResponse {
+        try await self.client.execute(action: "AddLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

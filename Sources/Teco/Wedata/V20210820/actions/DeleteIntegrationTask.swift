@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 删除集成任务
-    @inlinable
-    public func deleteIntegrationTask(_ input: DeleteIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIntegrationTaskResponse > {
-        self.client.execute(action: "DeleteIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除集成任务
-    @inlinable
-    public func deleteIntegrationTask(_ input: DeleteIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationTaskResponse {
-        try await self.client.execute(action: "DeleteIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteIntegrationTask请求参数结构体
     public struct DeleteIntegrationTaskRequest: TCRequestModel {
         /// 任务id
@@ -58,5 +46,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除集成任务
+    @inlinable
+    public func deleteIntegrationTask(_ input: DeleteIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIntegrationTaskResponse > {
+        self.client.execute(action: "DeleteIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除集成任务
+    @inlinable
+    public func deleteIntegrationTask(_ input: DeleteIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationTaskResponse {
+        try await self.client.execute(action: "DeleteIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

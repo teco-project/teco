@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 披露策略Policy管理列表
-    @inlinable
-    public func getPolicyList(_ input: GetPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPolicyListResponse > {
-        self.client.execute(action: "GetPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 披露策略Policy管理列表
-    @inlinable
-    public func getPolicyList(_ input: GetPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyListResponse {
-        try await self.client.execute(action: "GetPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetPolicyList请求参数结构体
     public struct GetPolicyListRequest: TCRequestModel {
         /// 起始位置
@@ -62,5 +50,17 @@ extension Tdid {
             case allCount = "AllCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 披露策略Policy管理列表
+    @inlinable
+    public func getPolicyList(_ input: GetPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPolicyListResponse > {
+        self.client.execute(action: "GetPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 披露策略Policy管理列表
+    @inlinable
+    public func getPolicyList(_ input: GetPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyListResponse {
+        try await self.client.execute(action: "GetPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

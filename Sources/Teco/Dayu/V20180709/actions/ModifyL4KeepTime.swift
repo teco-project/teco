@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 修改L4转发规则的会话保持
-    ///
-    /// 修改L4转发规则的会话保持，支持的子产品：高防IP、高防IP专业版
-    @inlinable
-    public func modifyL4KeepTime(_ input: ModifyL4KeepTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL4KeepTimeResponse > {
-        self.client.execute(action: "ModifyL4KeepTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改L4转发规则的会话保持
-    ///
-    /// 修改L4转发规则的会话保持，支持的子产品：高防IP、高防IP专业版
-    @inlinable
-    public func modifyL4KeepTime(_ input: ModifyL4KeepTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4KeepTimeResponse {
-        try await self.client.execute(action: "ModifyL4KeepTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyL4KeepTime请求参数结构体
     public struct ModifyL4KeepTimeRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -77,5 +61,21 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改L4转发规则的会话保持
+    ///
+    /// 修改L4转发规则的会话保持，支持的子产品：高防IP、高防IP专业版
+    @inlinable
+    public func modifyL4KeepTime(_ input: ModifyL4KeepTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL4KeepTimeResponse > {
+        self.client.execute(action: "ModifyL4KeepTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改L4转发规则的会话保持
+    ///
+    /// 修改L4转发规则的会话保持，支持的子产品：高防IP、高防IP专业版
+    @inlinable
+    public func modifyL4KeepTime(_ input: ModifyL4KeepTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4KeepTimeResponse {
+        try await self.client.execute(action: "ModifyL4KeepTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

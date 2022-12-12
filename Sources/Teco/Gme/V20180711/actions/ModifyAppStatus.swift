@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gme {
-    /// 修改应用开关状态
-    ///
-    /// 本接口(ModifyAppStatus)用于修改应用总开关状态。
-    @inlinable
-    public func modifyAppStatus(_ input: ModifyAppStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAppStatusResponse > {
-        self.client.execute(action: "ModifyAppStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改应用开关状态
-    ///
-    /// 本接口(ModifyAppStatus)用于修改应用总开关状态。
-    @inlinable
-    public func modifyAppStatus(_ input: ModifyAppStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppStatusResponse {
-        try await self.client.execute(action: "ModifyAppStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAppStatus请求参数结构体
     public struct ModifyAppStatusRequest: TCRequestModel {
         /// 应用ID，创建应用后由后台生成并返回。
@@ -62,5 +46,21 @@ extension Gme {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改应用开关状态
+    ///
+    /// 本接口(ModifyAppStatus)用于修改应用总开关状态。
+    @inlinable
+    public func modifyAppStatus(_ input: ModifyAppStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAppStatusResponse > {
+        self.client.execute(action: "ModifyAppStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用开关状态
+    ///
+    /// 本接口(ModifyAppStatus)用于修改应用总开关状态。
+    @inlinable
+    public func modifyAppStatus(_ input: ModifyAppStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppStatusResponse {
+        try await self.client.execute(action: "ModifyAppStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

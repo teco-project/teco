@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Solar {
-    /// 客户档案查询客户详情
-    @inlinable
-    public func describeCustomer(_ input: DescribeCustomerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomerResponse > {
-        self.client.execute(action: "DescribeCustomer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 客户档案查询客户详情
-    @inlinable
-    public func describeCustomer(_ input: DescribeCustomerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomerResponse {
-        try await self.client.execute(action: "DescribeCustomer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomer请求参数结构体
     public struct DescribeCustomerRequest: TCRequestModel {
         /// 用户ID
@@ -194,5 +182,17 @@ extension Solar {
             case wxProvince = "WxProvince"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 客户档案查询客户详情
+    @inlinable
+    public func describeCustomer(_ input: DescribeCustomerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomerResponse > {
+        self.client.execute(action: "DescribeCustomer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 客户档案查询客户详情
+    @inlinable
+    public func describeCustomer(_ input: DescribeCustomerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomerResponse {
+        try await self.client.execute(action: "DescribeCustomer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

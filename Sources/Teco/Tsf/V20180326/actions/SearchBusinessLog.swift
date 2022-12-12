@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tsf {
-    /// 业务日志搜索
-    @inlinable
-    public func searchBusinessLog(_ input: SearchBusinessLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchBusinessLogResponse > {
-        self.client.execute(action: "SearchBusinessLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 业务日志搜索
-    @inlinable
-    public func searchBusinessLog(_ input: SearchBusinessLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchBusinessLogResponse {
-        try await self.client.execute(action: "SearchBusinessLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SearchBusinessLog请求参数结构体
     public struct SearchBusinessLogRequest: TCRequestModel {
         /// 日志配置项ID
@@ -70,7 +58,7 @@ extension Tsf {
         /// 游标ID
         public let scrollId: String?
         
-        public init (configId: String, instanceIds: [String]?, startTime: Date?, endTime: Date?, offset: UInt64?, limit: UInt64?, orderBy: String?, orderType: String?, searchWords: [String]?, groupIds: [String]?, searchWordType: String?, batchType: String?, scrollId: String?) {
+        public init (configId: String, instanceIds: [String]? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWords: [String]? = nil, groupIds: [String]? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil) {
             self.configId = configId
             self.instanceIds = instanceIds
             self.startTime = startTime
@@ -107,7 +95,7 @@ extension Tsf {
     public struct SearchBusinessLogResponse: TCResponseModel {
         /// 业务日志列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TsfPageBusinessLogV2
+        public let result: TsfPageBusinessLogV2?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -116,5 +104,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 业务日志搜索
+    @inlinable
+    public func searchBusinessLog(_ input: SearchBusinessLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchBusinessLogResponse > {
+        self.client.execute(action: "SearchBusinessLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 业务日志搜索
+    @inlinable
+    public func searchBusinessLog(_ input: SearchBusinessLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchBusinessLogResponse {
+        try await self.client.execute(action: "SearchBusinessLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

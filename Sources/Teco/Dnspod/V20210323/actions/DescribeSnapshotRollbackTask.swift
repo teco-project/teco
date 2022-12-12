@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 查询最近一次回滚
-    @inlinable
-    public func describeSnapshotRollbackTask(_ input: DescribeSnapshotRollbackTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotRollbackTaskResponse > {
-        self.client.execute(action: "DescribeSnapshotRollbackTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询最近一次回滚
-    @inlinable
-    public func describeSnapshotRollbackTask(_ input: DescribeSnapshotRollbackTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotRollbackTaskResponse {
-        try await self.client.execute(action: "DescribeSnapshotRollbackTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSnapshotRollbackTask请求参数结构体
     public struct DescribeSnapshotRollbackTaskRequest: TCRequestModel {
         /// 域名
@@ -35,7 +23,7 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
         public let domainId: UInt64?
         
-        public init (domain: String, domainId: UInt64?) {
+        public init (domain: String, domainId: UInt64? = nil) {
             self.domain = domain
             self.domainId = domainId
         }
@@ -78,5 +66,17 @@ extension Dnspod {
             case createdOn = "CreatedOn"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询最近一次回滚
+    @inlinable
+    public func describeSnapshotRollbackTask(_ input: DescribeSnapshotRollbackTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotRollbackTaskResponse > {
+        self.client.execute(action: "DescribeSnapshotRollbackTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询最近一次回滚
+    @inlinable
+    public func describeSnapshotRollbackTask(_ input: DescribeSnapshotRollbackTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotRollbackTaskResponse {
+        try await self.client.execute(action: "DescribeSnapshotRollbackTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

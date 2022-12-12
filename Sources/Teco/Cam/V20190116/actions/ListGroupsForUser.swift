@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 列出用户关联的用户组
-    @inlinable
-    public func listGroupsForUser(_ input: ListGroupsForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListGroupsForUserResponse > {
-        self.client.execute(action: "ListGroupsForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出用户关联的用户组
-    @inlinable
-    public func listGroupsForUser(_ input: ListGroupsForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListGroupsForUserResponse {
-        try await self.client.execute(action: "ListGroupsForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListGroupsForUser请求参数结构体
     public struct ListGroupsForUserRequest: TCRequestModel {
         /// 子用户 UID
@@ -41,7 +29,7 @@ extension Cam {
         /// 子账号UIN
         public let subUin: UInt64?
         
-        public init (uid: UInt64?, rp: UInt64?, page: UInt64?, subUin: UInt64?) {
+        public init (uid: UInt64? = nil, rp: UInt64? = nil, page: UInt64? = nil, subUin: UInt64? = nil) {
             self.uid = uid
             self.rp = rp
             self.page = page
@@ -72,5 +60,17 @@ extension Cam {
             case groupInfo = "GroupInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出用户关联的用户组
+    @inlinable
+    public func listGroupsForUser(_ input: ListGroupsForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListGroupsForUserResponse > {
+        self.client.execute(action: "ListGroupsForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出用户关联的用户组
+    @inlinable
+    public func listGroupsForUser(_ input: ListGroupsForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListGroupsForUserResponse {
+        try await self.client.execute(action: "ListGroupsForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

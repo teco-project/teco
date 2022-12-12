@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询支持防御的漏洞列表
-    @inlinable
-    public func describeSupportDefenceVul(_ input: DescribeSupportDefenceVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSupportDefenceVulResponse > {
-        self.client.execute(action: "DescribeSupportDefenceVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询支持防御的漏洞列表
-    @inlinable
-    public func describeSupportDefenceVul(_ input: DescribeSupportDefenceVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportDefenceVulResponse {
-        try await self.client.execute(action: "DescribeSupportDefenceVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSupportDefenceVul请求参数结构体
     public struct DescribeSupportDefenceVulRequest: TCRequestModel {
         /// 过滤条件。
@@ -47,7 +35,7 @@ extension Tcss {
         /// 排序字段：披露时间：SubmitTime
         public let by: String?
         
-        public init (filters: [RunTimeFilters]?, limit: UInt64?, offset: UInt64?, order: String?, by: String?) {
+        public init (filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -80,5 +68,17 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询支持防御的漏洞列表
+    @inlinable
+    public func describeSupportDefenceVul(_ input: DescribeSupportDefenceVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSupportDefenceVulResponse > {
+        self.client.execute(action: "DescribeSupportDefenceVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询支持防御的漏洞列表
+    @inlinable
+    public func describeSupportDefenceVul(_ input: DescribeSupportDefenceVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportDefenceVulResponse {
+        try await self.client.execute(action: "DescribeSupportDefenceVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

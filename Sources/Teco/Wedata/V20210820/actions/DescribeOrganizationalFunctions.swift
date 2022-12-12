@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询全量函数（层级化）接口
-    ///
-    /// 查询全量函数
-    @inlinable
-    public func describeOrganizationalFunctions(_ input: DescribeOrganizationalFunctionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationalFunctionsResponse > {
-        self.client.execute(action: "DescribeOrganizationalFunctions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询全量函数（层级化）接口
-    ///
-    /// 查询全量函数
-    @inlinable
-    public func describeOrganizationalFunctions(_ input: DescribeOrganizationalFunctionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationalFunctionsResponse {
-        try await self.client.execute(action: "DescribeOrganizationalFunctions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOrganizationalFunctions请求参数结构体
     public struct DescribeOrganizationalFunctionsRequest: TCRequestModel {
         /// 场景类型：开发、使用
@@ -45,7 +29,7 @@ extension Wedata {
         /// 展示名称
         public let displayName: String?
         
-        public init (type: String, projectId: String, name: String?, displayName: String?) {
+        public init (type: String, projectId: String, name: String? = nil, displayName: String? = nil) {
             self.type = type
             self.projectId = projectId
             self.name = name
@@ -78,5 +62,21 @@ extension Wedata {
             case errorMessage = "ErrorMessage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询全量函数（层级化）接口
+    ///
+    /// 查询全量函数
+    @inlinable
+    public func describeOrganizationalFunctions(_ input: DescribeOrganizationalFunctionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationalFunctionsResponse > {
+        self.client.execute(action: "DescribeOrganizationalFunctions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询全量函数（层级化）接口
+    ///
+    /// 查询全量函数
+    @inlinable
+    public func describeOrganizationalFunctions(_ input: DescribeOrganizationalFunctionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationalFunctionsResponse {
+        try await self.client.execute(action: "DescribeOrganizationalFunctions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

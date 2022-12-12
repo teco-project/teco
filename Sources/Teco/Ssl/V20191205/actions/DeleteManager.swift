@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 删除管理人
-    @inlinable
-    public func deleteManager(_ input: DeleteManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteManagerResponse > {
-        self.client.execute(action: "DeleteManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除管理人
-    @inlinable
-    public func deleteManager(_ input: DeleteManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteManagerResponse {
-        try await self.client.execute(action: "DeleteManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteManager请求参数结构体
     public struct DeleteManagerRequest: TCRequestModel {
         /// 管理人ID
@@ -53,5 +41,17 @@ extension Ssl {
             case managerId = "ManagerId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除管理人
+    @inlinable
+    public func deleteManager(_ input: DeleteManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteManagerResponse > {
+        self.client.execute(action: "DeleteManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除管理人
+    @inlinable
+    public func deleteManager(_ input: DeleteManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteManagerResponse {
+        try await self.client.execute(action: "DeleteManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

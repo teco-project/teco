@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 黑石EIP修改计费方式
-    @inlinable
-    public func modifyEipCharge(_ input: ModifyEipChargeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEipChargeResponse > {
-        self.client.execute(action: "ModifyEipCharge", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 黑石EIP修改计费方式
-    @inlinable
-    public func modifyEipCharge(_ input: ModifyEipChargeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipChargeResponse {
-        try await self.client.execute(action: "ModifyEipCharge", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyEipCharge请求参数结构体
     public struct ModifyEipChargeRequest: TCRequestModel {
         /// EIP计费方式，flow-流量计费；bandwidth-带宽计费
@@ -38,7 +26,7 @@ extension Bmeip {
         /// 带宽设定值（只在带宽计费时生效）
         public let bandwidth: UInt64?
         
-        public init (payMode: String, eipIds: [String]?, bandwidth: UInt64?) {
+        public init (payMode: String, eipIds: [String]? = nil, bandwidth: UInt64? = nil) {
             self.payMode = payMode
             self.eipIds = eipIds
             self.bandwidth = bandwidth
@@ -63,5 +51,17 @@ extension Bmeip {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 黑石EIP修改计费方式
+    @inlinable
+    public func modifyEipCharge(_ input: ModifyEipChargeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEipChargeResponse > {
+        self.client.execute(action: "ModifyEipCharge", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 黑石EIP修改计费方式
+    @inlinable
+    public func modifyEipCharge(_ input: ModifyEipChargeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipChargeResponse {
+        try await self.client.execute(action: "ModifyEipCharge", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

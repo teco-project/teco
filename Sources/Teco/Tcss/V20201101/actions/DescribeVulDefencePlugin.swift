@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询漏洞防御插件列表
-    @inlinable
-    public func describeVulDefencePlugin(_ input: DescribeVulDefencePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefencePluginResponse > {
-        self.client.execute(action: "DescribeVulDefencePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询漏洞防御插件列表
-    @inlinable
-    public func describeVulDefencePlugin(_ input: DescribeVulDefencePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefencePluginResponse {
-        try await self.client.execute(action: "DescribeVulDefencePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulDefencePlugin请求参数结构体
     public struct DescribeVulDefencePluginRequest: TCRequestModel {
         /// 主机HostID即quuid
@@ -42,7 +30,7 @@ extension Tcss {
         /// <li>Status- String - 是否必填：否 -插件运行状态：注入中:INJECTING，注入成功：SUCCESS，注入失败：FAIL，插件超时：TIMEOUT，插件退出：QUIT</li>
         public let filters: [RunTimeFilters]?
         
-        public init (hostID: String?, limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?) {
+        public init (hostID: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil) {
             self.hostID = hostID
             self.limit = limit
             self.offset = offset
@@ -73,5 +61,17 @@ extension Tcss {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询漏洞防御插件列表
+    @inlinable
+    public func describeVulDefencePlugin(_ input: DescribeVulDefencePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefencePluginResponse > {
+        self.client.execute(action: "DescribeVulDefencePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞防御插件列表
+    @inlinable
+    public func describeVulDefencePlugin(_ input: DescribeVulDefencePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefencePluginResponse {
+        try await self.client.execute(action: "DescribeVulDefencePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

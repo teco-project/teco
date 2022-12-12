@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 移出负载均衡器
-    ///
-    /// 本接口（DetachLoadBalancers）用于从伸缩组移出负载均衡器，本接口不会销毁负载均衡器。
-    @inlinable
-    public func detachLoadBalancers(_ input: DetachLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachLoadBalancersResponse > {
-        self.client.execute(action: "DetachLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 移出负载均衡器
-    ///
-    /// 本接口（DetachLoadBalancers）用于从伸缩组移出负载均衡器，本接口不会销毁负载均衡器。
-    @inlinable
-    public func detachLoadBalancers(_ input: DetachLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachLoadBalancersResponse {
-        try await self.client.execute(action: "DetachLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetachLoadBalancers请求参数结构体
     public struct DetachLoadBalancersRequest: TCRequestModel {
         /// 伸缩组ID
@@ -42,7 +26,7 @@ extension As {
         /// 应用型负载均衡器标识信息列表，列表长度上限为100，LoadBalancerIds 和 ForwardLoadBalancerIdentifications二者同时最多只能指定一个
         public let forwardLoadBalancerIdentifications: [ForwardLoadBalancerIdentification]?
         
-        public init (autoScalingGroupId: String, loadBalancerIds: [String]?, forwardLoadBalancerIdentifications: [ForwardLoadBalancerIdentification]?) {
+        public init (autoScalingGroupId: String, loadBalancerIds: [String]? = nil, forwardLoadBalancerIdentifications: [ForwardLoadBalancerIdentification]? = nil) {
             self.autoScalingGroupId = autoScalingGroupId
             self.loadBalancerIds = loadBalancerIds
             self.forwardLoadBalancerIdentifications = forwardLoadBalancerIdentifications
@@ -67,5 +51,21 @@ extension As {
             case activityId = "ActivityId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 移出负载均衡器
+    ///
+    /// 本接口（DetachLoadBalancers）用于从伸缩组移出负载均衡器，本接口不会销毁负载均衡器。
+    @inlinable
+    public func detachLoadBalancers(_ input: DetachLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachLoadBalancersResponse > {
+        self.client.execute(action: "DetachLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 移出负载均衡器
+    ///
+    /// 本接口（DetachLoadBalancers）用于从伸缩组移出负载均衡器，本接口不会销毁负载均衡器。
+    @inlinable
+    public func detachLoadBalancers(_ input: DetachLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachLoadBalancersResponse {
+        try await self.client.execute(action: "DetachLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

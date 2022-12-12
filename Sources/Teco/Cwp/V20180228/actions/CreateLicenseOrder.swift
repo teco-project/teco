@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 创建授权订单
-    ///
-    /// CreateLicenseOrder 该接口可以创建专业版/旗舰版订单
-    /// 支持预付费后付费创建
-    /// 后付费订单直接创建成功
-    /// 预付费订单仅下单不支付,需要调用计费支付接口进行支付
-    @inlinable
-    public func createLicenseOrder(_ input: CreateLicenseOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLicenseOrderResponse > {
-        self.client.execute(action: "CreateLicenseOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建授权订单
-    ///
-    /// CreateLicenseOrder 该接口可以创建专业版/旗舰版订单
-    /// 支持预付费后付费创建
-    /// 后付费订单直接创建成功
-    /// 预付费订单仅下单不支付,需要调用计费支付接口进行支付
-    @inlinable
-    public func createLicenseOrder(_ input: CreateLicenseOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLicenseOrderResponse {
-        try await self.client.execute(action: "CreateLicenseOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLicenseOrder请求参数结构体
     public struct CreateLicenseOrderRequest: TCRequestModel {
         /// 标签数组, 空则表示不需要绑定标签
@@ -69,7 +47,7 @@ extension Cwp {
         /// 自动防护授权配置值, 不空则表示开启
         public let autoProtectOpenConfig: String?
         
-        public init (tags: [Tags]?, licenseType: UInt64?, licenseNum: UInt64?, regionId: UInt64?, projectId: UInt64?, timeSpan: UInt64?, autoRenewFlag: Bool?, autoProtectOpenConfig: String?) {
+        public init (tags: [Tags]? = nil, licenseType: UInt64? = nil, licenseNum: UInt64? = nil, regionId: UInt64? = nil, projectId: UInt64? = nil, timeSpan: UInt64? = nil, autoRenewFlag: Bool? = nil, autoProtectOpenConfig: String? = nil) {
             self.tags = tags
             self.licenseType = licenseType
             self.licenseNum = licenseNum
@@ -112,5 +90,27 @@ extension Cwp {
             case bigDealId = "BigDealId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建授权订单
+    ///
+    /// CreateLicenseOrder 该接口可以创建专业版/旗舰版订单
+    /// 支持预付费后付费创建
+    /// 后付费订单直接创建成功
+    /// 预付费订单仅下单不支付,需要调用计费支付接口进行支付
+    @inlinable
+    public func createLicenseOrder(_ input: CreateLicenseOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLicenseOrderResponse > {
+        self.client.execute(action: "CreateLicenseOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建授权订单
+    ///
+    /// CreateLicenseOrder 该接口可以创建专业版/旗舰版订单
+    /// 支持预付费后付费创建
+    /// 后付费订单直接创建成功
+    /// 预付费订单仅下单不支付,需要调用计费支付接口进行支付
+    @inlinable
+    public func createLicenseOrder(_ input: CreateLicenseOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLicenseOrderResponse {
+        try await self.client.execute(action: "CreateLicenseOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

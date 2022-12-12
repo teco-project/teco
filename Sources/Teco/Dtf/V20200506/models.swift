@@ -92,7 +92,7 @@ extension Dtf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let retryFlag: Bool?
         
-        public init (transactionId: Int64?, transactionBegin: Int64?, transactionEnd: Int64?, transactionCommit: Int64?, transactionRollback: Int64?, transactionError: Int64?, timeout: Int64?, status: Int64?, endFlag: Int64?, timeoutFlag: Int64?, comment: String?, groupId: String?, server: String?, branchQuantity: Int64?, retryFlag: Bool?) {
+        public init (transactionId: Int64? = nil, transactionBegin: Int64? = nil, transactionEnd: Int64? = nil, transactionCommit: Int64? = nil, transactionRollback: Int64? = nil, transactionError: Int64? = nil, timeout: Int64? = nil, status: Int64? = nil, endFlag: Int64? = nil, timeoutFlag: Int64? = nil, comment: String? = nil, groupId: String? = nil, server: String? = nil, branchQuantity: Int64? = nil, retryFlag: Bool? = nil) {
             self.transactionId = transactionId
             self.transactionBegin = transactionBegin
             self.transactionEnd = transactionEnd

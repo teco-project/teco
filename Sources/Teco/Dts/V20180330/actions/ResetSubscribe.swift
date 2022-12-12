@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 重置数据订阅实例
-    ///
-    /// 本接口(ResetSubscribe)用于重置数据订阅实例，已经激活的数据订阅实例，重置后可以使用ActivateSubscribe接口绑定其他的数据库实例
-    @inlinable
-    public func resetSubscribe(_ input: ResetSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetSubscribeResponse > {
-        self.client.execute(action: "ResetSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置数据订阅实例
-    ///
-    /// 本接口(ResetSubscribe)用于重置数据订阅实例，已经激活的数据订阅实例，重置后可以使用ActivateSubscribe接口绑定其他的数据库实例
-    @inlinable
-    public func resetSubscribe(_ input: ResetSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetSubscribeResponse {
-        try await self.client.execute(action: "ResetSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetSubscribe请求参数结构体
     public struct ResetSubscribeRequest: TCRequestModel {
         /// 数据订阅实例的ID
@@ -53,5 +37,21 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置数据订阅实例
+    ///
+    /// 本接口(ResetSubscribe)用于重置数据订阅实例，已经激活的数据订阅实例，重置后可以使用ActivateSubscribe接口绑定其他的数据库实例
+    @inlinable
+    public func resetSubscribe(_ input: ResetSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetSubscribeResponse > {
+        self.client.execute(action: "ResetSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置数据订阅实例
+    ///
+    /// 本接口(ResetSubscribe)用于重置数据订阅实例，已经激活的数据订阅实例，重置后可以使用ActivateSubscribe接口绑定其他的数据库实例
+    @inlinable
+    public func resetSubscribe(_ input: ResetSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetSubscribeResponse {
+        try await self.client.execute(action: "ResetSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

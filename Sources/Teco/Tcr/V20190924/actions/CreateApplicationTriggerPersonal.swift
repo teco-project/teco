@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 创建应用更新触发器
-    ///
-    /// 用于创建应用更新触发器
-    @inlinable
-    public func createApplicationTriggerPersonal(_ input: CreateApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationTriggerPersonalResponse > {
-        self.client.execute(action: "CreateApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建应用更新触发器
-    ///
-    /// 用于创建应用更新触发器
-    @inlinable
-    public func createApplicationTriggerPersonal(_ input: CreateApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationTriggerPersonalResponse {
-        try await self.client.execute(action: "CreateApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateApplicationTriggerPersonal请求参数结构体
     public struct CreateApplicationTriggerPersonalRequest: TCRequestModel {
         /// 触发器关联的镜像仓库，library/test格式
@@ -63,7 +47,7 @@ extension Tcr {
         /// 触发方式对应的表达式
         public let invokeExpr: String?
         
-        public init (repoName: String, triggerName: String, invokeMethod: String, clusterId: String, namespace: String, workloadType: String, workloadName: String, containerName: String, clusterRegion: Int64, invokeExpr: String?) {
+        public init (repoName: String, triggerName: String, invokeMethod: String, clusterId: String, namespace: String, workloadType: String, workloadName: String, containerName: String, clusterRegion: Int64, invokeExpr: String? = nil) {
             self.repoName = repoName
             self.triggerName = triggerName
             self.invokeMethod = invokeMethod
@@ -98,5 +82,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建应用更新触发器
+    ///
+    /// 用于创建应用更新触发器
+    @inlinable
+    public func createApplicationTriggerPersonal(_ input: CreateApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationTriggerPersonalResponse > {
+        self.client.execute(action: "CreateApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建应用更新触发器
+    ///
+    /// 用于创建应用更新触发器
+    @inlinable
+    public func createApplicationTriggerPersonal(_ input: CreateApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationTriggerPersonalResponse {
+        try await self.client.execute(action: "CreateApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

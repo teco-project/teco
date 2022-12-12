@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 修改木马自动隔离设置
-    @inlinable
-    public func modifyVirusAutoIsolateSetting(_ input: ModifyVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVirusAutoIsolateSettingResponse > {
-        self.client.execute(action: "ModifyVirusAutoIsolateSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改木马自动隔离设置
-    @inlinable
-    public func modifyVirusAutoIsolateSetting(_ input: ModifyVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateSettingResponse {
-        try await self.client.execute(action: "ModifyVirusAutoIsolateSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVirusAutoIsolateSetting请求参数结构体
     public struct ModifyVirusAutoIsolateSettingRequest: TCRequestModel {
         /// 自动隔离开关(true:开 false:关)
@@ -54,5 +42,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改木马自动隔离设置
+    @inlinable
+    public func modifyVirusAutoIsolateSetting(_ input: ModifyVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVirusAutoIsolateSettingResponse > {
+        self.client.execute(action: "ModifyVirusAutoIsolateSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改木马自动隔离设置
+    @inlinable
+    public func modifyVirusAutoIsolateSetting(_ input: ModifyVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateSettingResponse {
+        try await self.client.execute(action: "ModifyVirusAutoIsolateSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

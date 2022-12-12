@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 创建IP黑白名单列表
-    @inlinable
-    public func createIpTableList(_ input: CreateIpTableListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIpTableListResponse > {
-        self.client.execute(action: "CreateIpTableList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建IP黑白名单列表
-    @inlinable
-    public func createIpTableList(_ input: CreateIpTableListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIpTableListResponse {
-        try await self.client.execute(action: "CreateIpTableList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateIpTableList请求参数结构体
     public struct CreateIpTableListRequest: TCRequestModel {
         /// 站点Id。
@@ -59,5 +47,17 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建IP黑白名单列表
+    @inlinable
+    public func createIpTableList(_ input: CreateIpTableListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIpTableListResponse > {
+        self.client.execute(action: "CreateIpTableList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建IP黑白名单列表
+    @inlinable
+    public func createIpTableList(_ input: CreateIpTableListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIpTableListResponse {
+        try await self.client.execute(action: "CreateIpTableList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

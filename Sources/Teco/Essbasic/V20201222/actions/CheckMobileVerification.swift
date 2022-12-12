@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 手机号三要素核验
-    ///
-    /// 该接口为第三方平台向电子签平台验证手机号三要素
-    @inlinable
-    public func checkMobileVerification(_ input: CheckMobileVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckMobileVerificationResponse > {
-        self.client.execute(action: "CheckMobileVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 手机号三要素核验
-    ///
-    /// 该接口为第三方平台向电子签平台验证手机号三要素
-    @inlinable
-    public func checkMobileVerification(_ input: CheckMobileVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileVerificationResponse {
-        try await self.client.execute(action: "CheckMobileVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckMobileVerification请求参数结构体
     public struct CheckMobileVerificationRequest: TCRequestModel {
         /// 调用方信息; 必选
@@ -48,7 +32,7 @@ extension Essbasic {
         /// 身份证件类型; ID_CARD
         public let idCardType: String?
         
-        public init (caller: Caller, mobile: String, name: String, idCardNumber: String, idCardType: String?) {
+        public init (caller: Caller, mobile: String, name: String, idCardNumber: String, idCardType: String? = nil) {
             self.caller = caller
             self.mobile = mobile
             self.name = name
@@ -93,5 +77,21 @@ extension Essbasic {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 手机号三要素核验
+    ///
+    /// 该接口为第三方平台向电子签平台验证手机号三要素
+    @inlinable
+    public func checkMobileVerification(_ input: CheckMobileVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckMobileVerificationResponse > {
+        self.client.execute(action: "CheckMobileVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 手机号三要素核验
+    ///
+    /// 该接口为第三方平台向电子签平台验证手机号三要素
+    @inlinable
+    public func checkMobileVerification(_ input: CheckMobileVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileVerificationResponse {
+        try await self.client.execute(action: "CheckMobileVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

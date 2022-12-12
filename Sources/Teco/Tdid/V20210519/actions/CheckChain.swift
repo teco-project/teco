@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 检查区块链信息
-    @inlinable
-    public func checkChain(_ input: CheckChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckChainResponse > {
-        self.client.execute(action: "CheckChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检查区块链信息
-    @inlinable
-    public func checkChain(_ input: CheckChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckChainResponse {
-        try await self.client.execute(action: "CheckChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckChain请求参数结构体
     public struct CheckChainRequest: TCRequestModel {
         /// 群组ID
@@ -71,5 +59,17 @@ extension Tdid {
             case appName = "AppName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检查区块链信息
+    @inlinable
+    public func checkChain(_ input: CheckChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckChainResponse > {
+        self.client.execute(action: "CheckChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检查区块链信息
+    @inlinable
+    public func checkChain(_ input: CheckChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckChainResponse {
+        try await self.client.execute(action: "CheckChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

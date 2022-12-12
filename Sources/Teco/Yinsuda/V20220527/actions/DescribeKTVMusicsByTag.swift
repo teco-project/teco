@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yinsuda {
-    /// 获取标签歌曲
-    ///
-    /// 通过标签过滤歌曲列表。
-    @inlinable
-    public func describeKTVMusicsByTag(_ input: DescribeKTVMusicsByTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVMusicsByTagResponse > {
-        self.client.execute(action: "DescribeKTVMusicsByTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取标签歌曲
-    ///
-    /// 通过标签过滤歌曲列表。
-    @inlinable
-    public func describeKTVMusicsByTag(_ input: DescribeKTVMusicsByTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMusicsByTagResponse {
-        try await self.client.execute(action: "DescribeKTVMusicsByTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKTVMusicsByTag请求参数结构体
     public struct DescribeKTVMusicsByTagRequest: TCRequestModel {
         /// 应用名称。
@@ -53,7 +37,7 @@ extension Yinsuda {
         /// <li>Sing：可唱。</li>
         public let rightFilters: [String]?
         
-        public init (appName: String, userId: String, tagId: String, scrollToken: String?, limit: Int64?, rightFilters: [String]?) {
+        public init (appName: String, userId: String, tagId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil) {
             self.appName = appName
             self.userId = userId
             self.tagId = tagId
@@ -88,5 +72,21 @@ extension Yinsuda {
             case scrollToken = "ScrollToken"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取标签歌曲
+    ///
+    /// 通过标签过滤歌曲列表。
+    @inlinable
+    public func describeKTVMusicsByTag(_ input: DescribeKTVMusicsByTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVMusicsByTagResponse > {
+        self.client.execute(action: "DescribeKTVMusicsByTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取标签歌曲
+    ///
+    /// 通过标签过滤歌曲列表。
+    @inlinable
+    public func describeKTVMusicsByTag(_ input: DescribeKTVMusicsByTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMusicsByTagResponse {
+        try await self.client.execute(action: "DescribeKTVMusicsByTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

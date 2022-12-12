@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 修改反弹shell事件状态
-    ///
-    /// 修改反弹shell事件的状态信息
-    @inlinable
-    public func modifyReverseShellStatus(_ input: ModifyReverseShellStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyReverseShellStatusResponse > {
-        self.client.execute(action: "ModifyReverseShellStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改反弹shell事件状态
-    ///
-    /// 修改反弹shell事件的状态信息
-    @inlinable
-    public func modifyReverseShellStatus(_ input: ModifyReverseShellStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReverseShellStatusResponse {
-        try await self.client.execute(action: "ModifyReverseShellStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyReverseShellStatus请求参数结构体
     public struct ModifyReverseShellStatusRequest: TCRequestModel {
         /// 处理事件ids
@@ -46,7 +30,7 @@ extension Tcss {
         /// 事件备注
         public let remark: String?
         
-        public init (eventIdSet: [String], status: String, remark: String?) {
+        public init (eventIdSet: [String], status: String, remark: String? = nil) {
             self.eventIdSet = eventIdSet
             self.status = status
             self.remark = remark
@@ -67,5 +51,21 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改反弹shell事件状态
+    ///
+    /// 修改反弹shell事件的状态信息
+    @inlinable
+    public func modifyReverseShellStatus(_ input: ModifyReverseShellStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyReverseShellStatusResponse > {
+        self.client.execute(action: "ModifyReverseShellStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改反弹shell事件状态
+    ///
+    /// 修改反弹shell事件的状态信息
+    @inlinable
+    public func modifyReverseShellStatus(_ input: ModifyReverseShellStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReverseShellStatusResponse {
+        try await self.client.execute(action: "ModifyReverseShellStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

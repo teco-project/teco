@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 启用集群删除保护
-    @inlinable
-    public func enableClusterDeletionProtection(_ input: EnableClusterDeletionProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableClusterDeletionProtectionResponse > {
-        self.client.execute(action: "EnableClusterDeletionProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启用集群删除保护
-    @inlinable
-    public func enableClusterDeletionProtection(_ input: EnableClusterDeletionProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClusterDeletionProtectionResponse {
-        try await self.client.execute(action: "EnableClusterDeletionProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableClusterDeletionProtection请求参数结构体
     public struct EnableClusterDeletionProtectionRequest: TCRequestModel {
         /// 集群ID
@@ -49,5 +37,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启用集群删除保护
+    @inlinable
+    public func enableClusterDeletionProtection(_ input: EnableClusterDeletionProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableClusterDeletionProtectionResponse > {
+        self.client.execute(action: "EnableClusterDeletionProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启用集群删除保护
+    @inlinable
+    public func enableClusterDeletionProtection(_ input: EnableClusterDeletionProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClusterDeletionProtectionResponse {
+        try await self.client.execute(action: "EnableClusterDeletionProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

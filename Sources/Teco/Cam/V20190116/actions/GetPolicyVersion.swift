@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 查询策略版本详情
-    ///
-    /// 该接口（GetPolicyVersion）用于查询策略版本详情
-    @inlinable
-    public func getPolicyVersion(_ input: GetPolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPolicyVersionResponse > {
-        self.client.execute(action: "GetPolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询策略版本详情
-    ///
-    /// 该接口（GetPolicyVersion）用于查询策略版本详情
-    @inlinable
-    public func getPolicyVersion(_ input: GetPolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyVersionResponse {
-        try await self.client.execute(action: "GetPolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetPolicyVersion请求参数结构体
     public struct GetPolicyVersionRequest: TCRequestModel {
         /// 策略ID
@@ -54,7 +38,7 @@ extension Cam {
     public struct GetPolicyVersionResponse: TCResponseModel {
         /// 策略版本详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let policyVersion: PolicyVersionDetail
+        public let policyVersion: PolicyVersionDetail?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -63,5 +47,21 @@ extension Cam {
             case policyVersion = "PolicyVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询策略版本详情
+    ///
+    /// 该接口（GetPolicyVersion）用于查询策略版本详情
+    @inlinable
+    public func getPolicyVersion(_ input: GetPolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPolicyVersionResponse > {
+        self.client.execute(action: "GetPolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询策略版本详情
+    ///
+    /// 该接口（GetPolicyVersion）用于查询策略版本详情
+    @inlinable
+    public func getPolicyVersion(_ input: GetPolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyVersionResponse {
+        try await self.client.execute(action: "GetPolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

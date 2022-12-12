@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 修改媒体传输流
-    ///
-    /// 修改媒体传输的传输流配置信息。
-    @inlinable
-    public func modifyStreamLinkFlow(_ input: ModifyStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyStreamLinkFlowResponse > {
-        self.client.execute(action: "ModifyStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改媒体传输流
-    ///
-    /// 修改媒体传输的传输流配置信息。
-    @inlinable
-    public func modifyStreamLinkFlow(_ input: ModifyStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStreamLinkFlowResponse {
-        try await self.client.execute(action: "ModifyStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyStreamLinkFlow请求参数结构体
     public struct ModifyStreamLinkFlowRequest: TCRequestModel {
         /// 流Id。
@@ -58,5 +42,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改媒体传输流
+    ///
+    /// 修改媒体传输的传输流配置信息。
+    @inlinable
+    public func modifyStreamLinkFlow(_ input: ModifyStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyStreamLinkFlowResponse > {
+        self.client.execute(action: "ModifyStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改媒体传输流
+    ///
+    /// 修改媒体传输的传输流配置信息。
+    @inlinable
+    public func modifyStreamLinkFlow(_ input: ModifyStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStreamLinkFlowResponse {
+        try await self.client.execute(action: "ModifyStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

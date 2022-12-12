@@ -15,31 +15,15 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 设置 DRM 密钥提供商信息
-    ///
-    /// 设置 DRM 密钥提供商信息。
-    @inlinable
-    public func setDrmKeyProviderInfo(_ input: SetDrmKeyProviderInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetDrmKeyProviderInfoResponse > {
-        self.client.execute(action: "SetDrmKeyProviderInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置 DRM 密钥提供商信息
-    ///
-    /// 设置 DRM 密钥提供商信息。
-    @inlinable
-    public func setDrmKeyProviderInfo(_ input: SetDrmKeyProviderInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDrmKeyProviderInfoResponse {
-        try await self.client.execute(action: "SetDrmKeyProviderInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetDrmKeyProviderInfo请求参数结构体
     public struct SetDrmKeyProviderInfoRequest: TCRequestModel {
         /// 华曦达（SDMC）相关的 DRM 密钥提供商信息。
-        public let sdmcInfo: SDMCDrmKeyProviderInfo
+        public let sdmcInfo: SDMCDrmKeyProviderInfo?
         
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
         
-        public init (sdmcInfo: SDMCDrmKeyProviderInfo, subAppId: UInt64?) {
+        public init (sdmcInfo: SDMCDrmKeyProviderInfo? = nil, subAppId: UInt64? = nil) {
             self.sdmcInfo = sdmcInfo
             self.subAppId = subAppId
         }
@@ -58,5 +42,21 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置 DRM 密钥提供商信息
+    ///
+    /// 设置 DRM 密钥提供商信息。
+    @inlinable
+    public func setDrmKeyProviderInfo(_ input: SetDrmKeyProviderInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetDrmKeyProviderInfoResponse > {
+        self.client.execute(action: "SetDrmKeyProviderInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置 DRM 密钥提供商信息
+    ///
+    /// 设置 DRM 密钥提供商信息。
+    @inlinable
+    public func setDrmKeyProviderInfo(_ input: SetDrmKeyProviderInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDrmKeyProviderInfoResponse {
+        try await self.client.execute(action: "SetDrmKeyProviderInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

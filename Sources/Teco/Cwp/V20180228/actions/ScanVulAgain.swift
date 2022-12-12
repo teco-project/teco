@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 漏洞管理-重新检测接口
-    @inlinable
-    public func scanVulAgain(_ input: ScanVulAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanVulAgainResponse > {
-        self.client.execute(action: "ScanVulAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 漏洞管理-重新检测接口
-    @inlinable
-    public func scanVulAgain(_ input: ScanVulAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulAgainResponse {
-        try await self.client.execute(action: "ScanVulAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ScanVulAgain请求参数结构体
     public struct ScanVulAgainRequest: TCRequestModel {
         /// 漏洞事件id串，多个用英文逗号分隔
@@ -35,7 +23,7 @@ extension Cwp {
         /// 重新检查的机器uuid,多个逗号分隔
         public let uuids: String?
         
-        public init (eventIds: String, uuids: String?) {
+        public init (eventIds: String, uuids: String? = nil) {
             self.eventIds = eventIds
             self.uuids = uuids
         }
@@ -54,5 +42,17 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 漏洞管理-重新检测接口
+    @inlinable
+    public func scanVulAgain(_ input: ScanVulAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanVulAgainResponse > {
+        self.client.execute(action: "ScanVulAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 漏洞管理-重新检测接口
+    @inlinable
+    public func scanVulAgain(_ input: ScanVulAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulAgainResponse {
+        try await self.client.execute(action: "ScanVulAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

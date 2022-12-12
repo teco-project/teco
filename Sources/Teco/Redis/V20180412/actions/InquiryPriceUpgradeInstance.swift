@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询实例扩容价格
-    @inlinable
-    public func inquiryPriceUpgradeInstance(_ input: InquiryPriceUpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceUpgradeInstanceResponse > {
-        self.client.execute(action: "InquiryPriceUpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例扩容价格
-    @inlinable
-    public func inquiryPriceUpgradeInstance(_ input: InquiryPriceUpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeInstanceResponse {
-        try await self.client.execute(action: "InquiryPriceUpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceUpgradeInstance请求参数结构体
     public struct InquiryPriceUpgradeInstanceRequest: TCRequestModel {
         /// 实例Id
@@ -41,7 +29,7 @@ extension Redis {
         /// 副本数量，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写
         public let redisReplicasNum: UInt64?
         
-        public init (instanceId: String, memSize: UInt64, redisShardNum: UInt64?, redisReplicasNum: UInt64?) {
+        public init (instanceId: String, memSize: UInt64, redisShardNum: UInt64? = nil, redisReplicasNum: UInt64? = nil) {
             self.instanceId = instanceId
             self.memSize = memSize
             self.redisShardNum = redisShardNum
@@ -69,5 +57,17 @@ extension Redis {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例扩容价格
+    @inlinable
+    public func inquiryPriceUpgradeInstance(_ input: InquiryPriceUpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceUpgradeInstanceResponse > {
+        self.client.execute(action: "InquiryPriceUpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例扩容价格
+    @inlinable
+    public func inquiryPriceUpgradeInstance(_ input: InquiryPriceUpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeInstanceResponse {
+        try await self.client.execute(action: "InquiryPriceUpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 导入模型
-    @inlinable
-    public func createTrainingModel(_ input: CreateTrainingModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTrainingModelResponse > {
-        self.client.execute(action: "CreateTrainingModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导入模型
-    @inlinable
-    public func createTrainingModel(_ input: CreateTrainingModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrainingModelResponse {
-        try await self.client.execute(action: "CreateTrainingModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTrainingModel请求参数结构体
     public struct CreateTrainingModelRequest: TCRequestModel {
         /// 导入方式
@@ -63,7 +51,7 @@ extension Tione {
         public let trainingModelVersion: String?
         
         /// 自定义推理环境
-        public let reasoningImageInfo: ImageInfo
+        public let reasoningImageInfo: ImageInfo?
         
         /// 模型移动方式（CUT/COPY）
         public let modelMoveMode: String?
@@ -75,7 +63,7 @@ extension Tione {
         public let trainingModelId: String?
         
         /// 模型存储cos目录
-        public let modelOutputPath: CosPathInfo
+        public let modelOutputPath: CosPathInfo?
         
         /// 模型来源 （JOB/COS）
         public let trainingModelSource: String?
@@ -109,7 +97,7 @@ extension Tione {
         /// 模型清理周期(默认值为1分钟，上限为1440，下限为1分钟，步长为1)
         public let modelCleanPeriod: UInt64?
         
-        public init (importMethod: String, trainingModelCosPath: CosPathInfo, reasoningEnvironmentSource: String, trainingModelName: String?, tags: [Tag]?, trainingJobName: String?, algorithmFramework: String?, reasoningEnvironment: String?, trainingModelIndex: String?, trainingModelVersion: String?, reasoningImageInfo: ImageInfo, modelMoveMode: String?, trainingJobId: String?, trainingModelId: String?, modelOutputPath: CosPathInfo, trainingModelSource: String?, trainingPreference: String?, autoMLTaskId: String?, trainingJobVersion: String?, modelVersionType: String?, modelFormat: String?, reasoningEnvironmentId: String?, autoClean: String?, maxReservedModels: UInt64?, modelCleanPeriod: UInt64?) {
+        public init (importMethod: String, trainingModelCosPath: CosPathInfo, reasoningEnvironmentSource: String, trainingModelName: String? = nil, tags: [Tag]? = nil, trainingJobName: String? = nil, algorithmFramework: String? = nil, reasoningEnvironment: String? = nil, trainingModelIndex: String? = nil, trainingModelVersion: String? = nil, reasoningImageInfo: ImageInfo? = nil, modelMoveMode: String? = nil, trainingJobId: String? = nil, trainingModelId: String? = nil, modelOutputPath: CosPathInfo? = nil, trainingModelSource: String? = nil, trainingPreference: String? = nil, autoMLTaskId: String? = nil, trainingJobVersion: String? = nil, modelVersionType: String? = nil, modelFormat: String? = nil, reasoningEnvironmentId: String? = nil, autoClean: String? = nil, maxReservedModels: UInt64? = nil, modelCleanPeriod: UInt64? = nil) {
             self.importMethod = importMethod
             self.trainingModelCosPath = trainingModelCosPath
             self.reasoningEnvironmentSource = reasoningEnvironmentSource
@@ -182,5 +170,17 @@ extension Tione {
             case trainingModelVersionId = "TrainingModelVersionId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导入模型
+    @inlinable
+    public func createTrainingModel(_ input: CreateTrainingModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTrainingModelResponse > {
+        self.client.execute(action: "CreateTrainingModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导入模型
+    @inlinable
+    public func createTrainingModel(_ input: CreateTrainingModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrainingModelResponse {
+        try await self.client.execute(action: "CreateTrainingModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

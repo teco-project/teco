@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 查询通道详情
-    ///
-    /// 本接口（DescribeProxyDetail）用于查询通道详情。
-    @inlinable
-    public func describeProxyDetail(_ input: DescribeProxyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyDetailResponse > {
-        self.client.execute(action: "DescribeProxyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询通道详情
-    ///
-    /// 本接口（DescribeProxyDetail）用于查询通道详情。
-    @inlinable
-    public func describeProxyDetail(_ input: DescribeProxyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyDetailResponse {
-        try await self.client.execute(action: "DescribeProxyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProxyDetail请求参数结构体
     public struct DescribeProxyDetailRequest: TCRequestModel {
         /// 需查询的通道ID。
@@ -57,5 +41,21 @@ extension Gaap {
             case proxyDetail = "ProxyDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询通道详情
+    ///
+    /// 本接口（DescribeProxyDetail）用于查询通道详情。
+    @inlinable
+    public func describeProxyDetail(_ input: DescribeProxyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyDetailResponse > {
+        self.client.execute(action: "DescribeProxyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询通道详情
+    ///
+    /// 本接口（DescribeProxyDetail）用于查询通道详情。
+    @inlinable
+    public func describeProxyDetail(_ input: DescribeProxyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyDetailResponse {
+        try await self.client.execute(action: "DescribeProxyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

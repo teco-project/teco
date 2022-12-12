@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 用部署组id获取绑定信息
-    @inlinable
-    public func describeDeliveryConfigByGroupId(_ input: DescribeDeliveryConfigByGroupIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeliveryConfigByGroupIdResponse > {
-        self.client.execute(action: "DescribeDeliveryConfigByGroupId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 用部署组id获取绑定信息
-    @inlinable
-    public func describeDeliveryConfigByGroupId(_ input: DescribeDeliveryConfigByGroupIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigByGroupIdResponse {
-        try await self.client.execute(action: "DescribeDeliveryConfigByGroupId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeliveryConfigByGroupId请求参数结构体
     public struct DescribeDeliveryConfigByGroupIdRequest: TCRequestModel {
         /// 部署组id
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 用部署组id获取绑定信息
+    @inlinable
+    public func describeDeliveryConfigByGroupId(_ input: DescribeDeliveryConfigByGroupIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeliveryConfigByGroupIdResponse > {
+        self.client.execute(action: "DescribeDeliveryConfigByGroupId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 用部署组id获取绑定信息
+    @inlinable
+    public func describeDeliveryConfigByGroupId(_ input: DescribeDeliveryConfigByGroupIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigByGroupIdResponse {
+        try await self.client.execute(action: "DescribeDeliveryConfigByGroupId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

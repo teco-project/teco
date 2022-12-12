@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 查询充值记录
-    ///
-    /// 客户可通过本接口获取充值记录信息, 一次最多返回50条记录。
-    @inlinable
-    public func describeRechargeRecords(_ input: DescribeRechargeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRechargeRecordsResponse > {
-        self.client.execute(action: "DescribeRechargeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询充值记录
-    ///
-    /// 客户可通过本接口获取充值记录信息, 一次最多返回50条记录。
-    @inlinable
-    public func describeRechargeRecords(_ input: DescribeRechargeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRechargeRecordsResponse {
-        try await self.client.execute(action: "DescribeRechargeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRechargeRecords请求参数结构体
     public struct DescribeRechargeRecordsRequest: TCRequestModel {
         /// 账户类型 1:设备接入 2:云存。
@@ -42,7 +26,7 @@ extension Iotvideo {
         /// 总共查询多少条记录，默认为值50。
         public let limit: Int64?
         
-        public init (accountType: Int64, offset: Int64?, limit: Int64?) {
+        public init (accountType: Int64, offset: Int64? = nil, limit: Int64? = nil) {
             self.accountType = accountType
             self.offset = offset
             self.limit = limit
@@ -73,5 +57,21 @@ extension Iotvideo {
             case records = "Records"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询充值记录
+    ///
+    /// 客户可通过本接口获取充值记录信息, 一次最多返回50条记录。
+    @inlinable
+    public func describeRechargeRecords(_ input: DescribeRechargeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRechargeRecordsResponse > {
+        self.client.execute(action: "DescribeRechargeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询充值记录
+    ///
+    /// 客户可通过本接口获取充值记录信息, 一次最多返回50条记录。
+    @inlinable
+    public func describeRechargeRecords(_ input: DescribeRechargeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRechargeRecordsResponse {
+        try await self.client.execute(action: "DescribeRechargeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

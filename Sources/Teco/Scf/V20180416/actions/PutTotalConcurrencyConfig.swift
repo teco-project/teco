@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 修改账号并发限制配额
-    @inlinable
-    public func putTotalConcurrencyConfig(_ input: PutTotalConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutTotalConcurrencyConfigResponse > {
-        self.client.execute(action: "PutTotalConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改账号并发限制配额
-    @inlinable
-    public func putTotalConcurrencyConfig(_ input: PutTotalConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutTotalConcurrencyConfigResponse {
-        try await self.client.execute(action: "PutTotalConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PutTotalConcurrencyConfig请求参数结构体
     public struct PutTotalConcurrencyConfigRequest: TCRequestModel {
         /// 账号并发内存配额，注：账号并发内存配额下限：用户已用并发内存总额 + 12800
@@ -35,7 +23,7 @@ extension Scf {
         /// 命名空间，默认为default
         public let namespace: String?
         
-        public init (totalConcurrencyMem: UInt64, namespace: String?) {
+        public init (totalConcurrencyMem: UInt64, namespace: String? = nil) {
             self.totalConcurrencyMem = totalConcurrencyMem
             self.namespace = namespace
         }
@@ -54,5 +42,17 @@ extension Scf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改账号并发限制配额
+    @inlinable
+    public func putTotalConcurrencyConfig(_ input: PutTotalConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutTotalConcurrencyConfigResponse > {
+        self.client.execute(action: "PutTotalConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改账号并发限制配额
+    @inlinable
+    public func putTotalConcurrencyConfig(_ input: PutTotalConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutTotalConcurrencyConfigResponse {
+        try await self.client.execute(action: "PutTotalConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改NAT网关端口转发规则
-    ///
-    /// 本接口（ModifyNatGatewayDestinationIpPortTranslationNatRule）用于修改NAT网关端口转发规则。
-    @inlinable
-    public func modifyNatGatewayDestinationIpPortTranslationNatRule(_ input: ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNatGatewayDestinationIpPortTranslationNatRuleResponse > {
-        self.client.execute(action: "ModifyNatGatewayDestinationIpPortTranslationNatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改NAT网关端口转发规则
-    ///
-    /// 本接口（ModifyNatGatewayDestinationIpPortTranslationNatRule）用于修改NAT网关端口转发规则。
-    @inlinable
-    public func modifyNatGatewayDestinationIpPortTranslationNatRule(_ input: ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatGatewayDestinationIpPortTranslationNatRuleResponse {
-        try await self.client.execute(action: "ModifyNatGatewayDestinationIpPortTranslationNatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNatGatewayDestinationIpPortTranslationNatRule请求参数结构体
     public struct ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest: TCRequestModel {
         /// NAT网关的ID，形如：`nat-df45454`。
@@ -63,5 +47,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改NAT网关端口转发规则
+    ///
+    /// 本接口（ModifyNatGatewayDestinationIpPortTranslationNatRule）用于修改NAT网关端口转发规则。
+    @inlinable
+    public func modifyNatGatewayDestinationIpPortTranslationNatRule(_ input: ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNatGatewayDestinationIpPortTranslationNatRuleResponse > {
+        self.client.execute(action: "ModifyNatGatewayDestinationIpPortTranslationNatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改NAT网关端口转发规则
+    ///
+    /// 本接口（ModifyNatGatewayDestinationIpPortTranslationNatRule）用于修改NAT网关端口转发规则。
+    @inlinable
+    public func modifyNatGatewayDestinationIpPortTranslationNatRule(_ input: ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatGatewayDestinationIpPortTranslationNatRuleResponse {
+        try await self.client.execute(action: "ModifyNatGatewayDestinationIpPortTranslationNatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

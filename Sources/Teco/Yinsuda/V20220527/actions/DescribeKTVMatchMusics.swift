@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yinsuda {
-    /// 匹配歌曲
-    ///
-    /// 根据输入的规则匹配曲库中的歌曲。
-    @inlinable
-    public func describeKTVMatchMusics(_ input: DescribeKTVMatchMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVMatchMusicsResponse > {
-        self.client.execute(action: "DescribeKTVMatchMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 匹配歌曲
-    ///
-    /// 根据输入的规则匹配曲库中的歌曲。
-    @inlinable
-    public func describeKTVMatchMusics(_ input: DescribeKTVMatchMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMatchMusicsResponse {
-        try await self.client.execute(action: "DescribeKTVMatchMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKTVMatchMusics请求参数结构体
     public struct DescribeKTVMatchMusicsRequest: TCRequestModel {
         /// 应用名称。
@@ -71,5 +55,21 @@ extension Yinsuda {
             case notMatchRuleSet = "NotMatchRuleSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 匹配歌曲
+    ///
+    /// 根据输入的规则匹配曲库中的歌曲。
+    @inlinable
+    public func describeKTVMatchMusics(_ input: DescribeKTVMatchMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVMatchMusicsResponse > {
+        self.client.execute(action: "DescribeKTVMatchMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 匹配歌曲
+    ///
+    /// 根据输入的规则匹配曲库中的歌曲。
+    @inlinable
+    public func describeKTVMatchMusics(_ input: DescribeKTVMatchMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMatchMusicsResponse {
+        try await self.client.execute(action: "DescribeKTVMatchMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

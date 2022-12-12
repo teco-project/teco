@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ump {
-    /// 获取底图
-    ///
-    /// 实时获取底图接口
-    @inlinable
-    public func describeImage(_ input: DescribeImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageResponse > {
-        self.client.execute(action: "DescribeImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取底图
-    ///
-    /// 实时获取底图接口
-    @inlinable
-    public func describeImage(_ input: DescribeImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageResponse {
-        try await self.client.execute(action: "DescribeImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImage请求参数结构体
     public struct DescribeImageRequest: TCRequestModel {
         /// 集团编码
@@ -67,5 +51,21 @@ extension Ump {
             case imageUrl = "ImageUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取底图
+    ///
+    /// 实时获取底图接口
+    @inlinable
+    public func describeImage(_ input: DescribeImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageResponse > {
+        self.client.execute(action: "DescribeImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取底图
+    ///
+    /// 实时获取底图接口
+    @inlinable
+    public func describeImage(_ input: DescribeImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageResponse {
+        try await self.client.execute(action: "DescribeImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

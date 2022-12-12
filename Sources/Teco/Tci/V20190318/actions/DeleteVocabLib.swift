@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 删除词汇库
-    @inlinable
-    public func deleteVocabLib(_ input: DeleteVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVocabLibResponse > {
-        self.client.execute(action: "DeleteVocabLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除词汇库
-    @inlinable
-    public func deleteVocabLib(_ input: DeleteVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVocabLibResponse {
-        try await self.client.execute(action: "DeleteVocabLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteVocabLib请求参数结构体
     public struct DeleteVocabLibRequest: TCRequestModel {
         /// 词汇库名称
@@ -49,5 +37,17 @@ extension Tci {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除词汇库
+    @inlinable
+    public func deleteVocabLib(_ input: DeleteVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVocabLibResponse > {
+        self.client.execute(action: "DeleteVocabLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除词汇库
+    @inlinable
+    public func deleteVocabLib(_ input: DeleteVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVocabLibResponse {
+        try await self.client.execute(action: "DeleteVocabLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

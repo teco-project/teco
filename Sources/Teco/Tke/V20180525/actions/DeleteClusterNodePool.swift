@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 删除节点池
-    @inlinable
-    public func deleteClusterNodePool(_ input: DeleteClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterNodePoolResponse > {
-        self.client.execute(action: "DeleteClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除节点池
-    @inlinable
-    public func deleteClusterNodePool(_ input: DeleteClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterNodePoolResponse {
-        try await self.client.execute(action: "DeleteClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteClusterNodePool请求参数结构体
     public struct DeleteClusterNodePoolRequest: TCRequestModel {
         /// 节点池对应的 ClusterId
@@ -59,5 +47,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除节点池
+    @inlinable
+    public func deleteClusterNodePool(_ input: DeleteClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterNodePoolResponse > {
+        self.client.execute(action: "DeleteClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除节点池
+    @inlinable
+    public func deleteClusterNodePool(_ input: DeleteClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterNodePoolResponse {
+        try await self.client.execute(action: "DeleteClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

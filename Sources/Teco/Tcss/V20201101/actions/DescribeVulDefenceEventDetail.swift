@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询漏洞防御事件详情
-    @inlinable
-    public func describeVulDefenceEventDetail(_ input: DescribeVulDefenceEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefenceEventDetailResponse > {
-        self.client.execute(action: "DescribeVulDefenceEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询漏洞防御事件详情
-    @inlinable
-    public func describeVulDefenceEventDetail(_ input: DescribeVulDefenceEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceEventDetailResponse {
-        try await self.client.execute(action: "DescribeVulDefenceEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulDefenceEventDetail请求参数结构体
     public struct DescribeVulDefenceEventDetailRequest: TCRequestModel {
         /// 事件ID
@@ -53,5 +41,17 @@ extension Tcss {
             case eventDetail = "EventDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询漏洞防御事件详情
+    @inlinable
+    public func describeVulDefenceEventDetail(_ input: DescribeVulDefenceEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefenceEventDetailResponse > {
+        self.client.execute(action: "DescribeVulDefenceEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞防御事件详情
+    @inlinable
+    public func describeVulDefenceEventDetail(_ input: DescribeVulDefenceEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceEventDetailResponse {
+        try await self.client.execute(action: "DescribeVulDefenceEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

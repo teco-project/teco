@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 基线影响主机列表
-    ///
-    /// 根据基线id查询基线影响主机列表
-    @inlinable
-    public func describeBaselineEffectHostList(_ input: DescribeBaselineEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineEffectHostListResponse > {
-        self.client.execute(action: "DescribeBaselineEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 基线影响主机列表
-    ///
-    /// 根据基线id查询基线影响主机列表
-    @inlinable
-    public func describeBaselineEffectHostList(_ input: DescribeBaselineEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineEffectHostListResponse {
-        try await self.client.execute(action: "DescribeBaselineEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBaselineEffectHostList请求参数结构体
     public struct DescribeBaselineEffectHostListRequest: TCRequestModel {
         /// 分页参数 最大100条
@@ -53,7 +37,7 @@ extension Cwp {
         /// 主机uuid数组
         public let uuidList: [String]?
         
-        public init (limit: UInt64, offset: UInt64, baselineId: UInt64, filters: [Filters]?, strategyId: UInt64?, uuidList: [String]?) {
+        public init (limit: UInt64, offset: UInt64, baselineId: UInt64, filters: [Filters]? = nil, strategyId: UInt64? = nil, uuidList: [String]? = nil) {
             self.limit = limit
             self.offset = offset
             self.baselineId = baselineId
@@ -90,5 +74,21 @@ extension Cwp {
             case effectHostList = "EffectHostList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 基线影响主机列表
+    ///
+    /// 根据基线id查询基线影响主机列表
+    @inlinable
+    public func describeBaselineEffectHostList(_ input: DescribeBaselineEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineEffectHostListResponse > {
+        self.client.execute(action: "DescribeBaselineEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 基线影响主机列表
+    ///
+    /// 根据基线id查询基线影响主机列表
+    @inlinable
+    public func describeBaselineEffectHostList(_ input: DescribeBaselineEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineEffectHostListResponse {
+        try await self.client.execute(action: "DescribeBaselineEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

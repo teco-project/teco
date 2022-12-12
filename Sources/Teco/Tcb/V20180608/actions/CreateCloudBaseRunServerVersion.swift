@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 创建服务版本
-    @inlinable
-    public func createCloudBaseRunServerVersion(_ input: CreateCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudBaseRunServerVersionResponse > {
-        self.client.execute(action: "CreateCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建服务版本
-    @inlinable
-    public func createCloudBaseRunServerVersion(_ input: CreateCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudBaseRunServerVersionResponse {
-        try await self.client.execute(action: "CreateCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCloudBaseRunServerVersion请求参数结构体
     public struct CreateCloudBaseRunServerVersionRequest: TCRequestModel {
         /// 环境ID
@@ -90,13 +78,13 @@ extension Tcb {
         public let packageVersion: String?
         
         /// Image的详情
-        public let imageInfo: CloudBaseRunImageInfo
+        public let imageInfo: CloudBaseRunImageInfo?
         
         /// Github等拉取代码的详情
-        public let codeDetail: CloudBaseCodeRepoDetail
+        public let codeDetail: CloudBaseCodeRepoDetail?
         
         /// 私有镜像秘钥信息
-        public let imageSecretInfo: CloudBaseRunImageSecretInfo
+        public let imageSecretInfo: CloudBaseRunImageSecretInfo?
         
         /// 私有镜像 认证名称
         public let imagePullSecret: String?
@@ -114,7 +102,7 @@ extension Tcb {
         public let accessType: Int64?
         
         /// es信息
-        public let esInfo: CloudBaseEsInfo
+        public let esInfo: CloudBaseEsInfo?
         
         /// 是否使用统一域名
         public let enableUnion: Bool?
@@ -132,7 +120,7 @@ extension Tcb {
         public let sidecarSpecs: [CloudBaseRunSideSpec]?
         
         /// 安全特性
-        public let security: CloudBaseSecurityContext
+        public let security: CloudBaseSecurityContext?
         
         /// 服务磁盘挂载
         public let serviceVolumes: [CloudRunServiceVolume]?
@@ -161,7 +149,7 @@ extension Tcb {
         /// 自动扩缩容策略组
         public let policyDetail: [HpaPolicy]?
         
-        public init (envId: String, uploadType: String, flowRatio: Int64, cpu: Float, mem: Float, minNum: Int64, maxNum: Int64, policyType: String, policyThreshold: Int64, containerPort: Int64, serverName: String, repositoryType: String?, dockerfilePath: String?, buildDir: String?, envParams: String?, repository: String?, branch: String?, versionRemark: String?, packageName: String?, packageVersion: String?, imageInfo: CloudBaseRunImageInfo, codeDetail: CloudBaseCodeRepoDetail, imageSecretInfo: CloudBaseRunImageSecretInfo, imagePullSecret: String?, customLogs: String?, initialDelaySeconds: Int64?, mountVolumeInfo: [CloudBaseRunVolumeMount]?, accessType: Int64?, esInfo: CloudBaseEsInfo, enableUnion: Bool?, operatorRemark: String?, serverPath: String?, imageReuseKey: String?, sidecarSpecs: [CloudBaseRunSideSpec]?, security: CloudBaseSecurityContext, serviceVolumes: [CloudRunServiceVolume]?, isCreateJnsGw: Int64?, serviceVolumeMounts: [CloudBaseRunServiceVolumeMount]?, hasDockerfile: Int64?, baseImage: String?, entryPoint: String?, repoLanguage: String?, uploadFilename: String?, policyDetail: [HpaPolicy]?) {
+        public init (envId: String, uploadType: String, flowRatio: Int64, cpu: Float, mem: Float, minNum: Int64, maxNum: Int64, policyType: String, policyThreshold: Int64, containerPort: Int64, serverName: String, repositoryType: String? = nil, dockerfilePath: String? = nil, buildDir: String? = nil, envParams: String? = nil, repository: String? = nil, branch: String? = nil, versionRemark: String? = nil, packageName: String? = nil, packageVersion: String? = nil, imageInfo: CloudBaseRunImageInfo? = nil, codeDetail: CloudBaseCodeRepoDetail? = nil, imageSecretInfo: CloudBaseRunImageSecretInfo? = nil, imagePullSecret: String? = nil, customLogs: String? = nil, initialDelaySeconds: Int64? = nil, mountVolumeInfo: [CloudBaseRunVolumeMount]? = nil, accessType: Int64? = nil, esInfo: CloudBaseEsInfo? = nil, enableUnion: Bool? = nil, operatorRemark: String? = nil, serverPath: String? = nil, imageReuseKey: String? = nil, sidecarSpecs: [CloudBaseRunSideSpec]? = nil, security: CloudBaseSecurityContext? = nil, serviceVolumes: [CloudRunServiceVolume]? = nil, isCreateJnsGw: Int64? = nil, serviceVolumeMounts: [CloudBaseRunServiceVolumeMount]? = nil, hasDockerfile: Int64? = nil, baseImage: String? = nil, entryPoint: String? = nil, repoLanguage: String? = nil, uploadFilename: String? = nil, policyDetail: [HpaPolicy]? = nil) {
             self.envId = envId
             self.uploadType = uploadType
             self.flowRatio = flowRatio
@@ -279,5 +267,17 @@ extension Tcb {
             case runId = "RunId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建服务版本
+    @inlinable
+    public func createCloudBaseRunServerVersion(_ input: CreateCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudBaseRunServerVersionResponse > {
+        self.client.execute(action: "CreateCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建服务版本
+    @inlinable
+    public func createCloudBaseRunServerVersion(_ input: CreateCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudBaseRunServerVersionResponse {
+        try await self.client.execute(action: "CreateCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

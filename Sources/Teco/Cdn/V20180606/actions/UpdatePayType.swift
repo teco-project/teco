@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 修改计费类型
-    ///
-    /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
-    @inlinable
-    public func updatePayType(_ input: UpdatePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePayTypeResponse > {
-        self.client.execute(action: "UpdatePayType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改计费类型
-    ///
-    /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
-    @inlinable
-    public func updatePayType(_ input: UpdatePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePayTypeResponse {
-        try await self.client.execute(action: "UpdatePayType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdatePayType请求参数结构体
     public struct UpdatePayTypeRequest: TCRequestModel {
         /// 计费区域，mainland或overseas。
@@ -58,5 +42,21 @@ extension Cdn {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改计费类型
+    ///
+    /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
+    @inlinable
+    public func updatePayType(_ input: UpdatePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePayTypeResponse > {
+        self.client.execute(action: "UpdatePayType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改计费类型
+    ///
+    /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
+    @inlinable
+    public func updatePayType(_ input: UpdatePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePayTypeResponse {
+        try await self.client.execute(action: "UpdatePayType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

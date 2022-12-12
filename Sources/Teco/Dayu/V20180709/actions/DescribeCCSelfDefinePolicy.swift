@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取CC自定义策略
-    @inlinable
-    public func describeCCSelfDefinePolicy(_ input: DescribeCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCSelfDefinePolicyResponse > {
-        self.client.execute(action: "DescribeCCSelfDefinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取CC自定义策略
-    @inlinable
-    public func describeCCSelfDefinePolicy(_ input: DescribeCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCSelfDefinePolicyResponse {
-        try await self.client.execute(action: "DescribeCCSelfDefinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCCSelfDefinePolicy请求参数结构体
     public struct DescribeCCSelfDefinePolicyRequest: TCRequestModel {
         /// 大禹子产品代号（bgp高防包；bgp-multip共享包）
@@ -41,7 +29,7 @@ extension Dayu {
         /// 偏移量
         public let offset: UInt64?
         
-        public init (business: String, id: String, limit: UInt64?, offset: UInt64?) {
+        public init (business: String, id: String, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.business = business
             self.id = id
             self.limit = limit
@@ -72,5 +60,17 @@ extension Dayu {
             case policys = "Policys"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取CC自定义策略
+    @inlinable
+    public func describeCCSelfDefinePolicy(_ input: DescribeCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCSelfDefinePolicyResponse > {
+        self.client.execute(action: "DescribeCCSelfDefinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC自定义策略
+    @inlinable
+    public func describeCCSelfDefinePolicy(_ input: DescribeCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCSelfDefinePolicyResponse {
+        try await self.client.execute(action: "DescribeCCSelfDefinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

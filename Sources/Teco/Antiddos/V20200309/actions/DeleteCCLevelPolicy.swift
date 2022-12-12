@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 删除CC分级策略
-    @inlinable
-    public func deleteCCLevelPolicy(_ input: DeleteCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCCLevelPolicyResponse > {
-        self.client.execute(action: "DeleteCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除CC分级策略
-    @inlinable
-    public func deleteCCLevelPolicy(_ input: DeleteCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCLevelPolicyResponse {
-        try await self.client.execute(action: "DeleteCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCCLevelPolicy请求参数结构体
     public struct DeleteCCLevelPolicyRequest: TCRequestModel {
         /// 实例Id
@@ -64,5 +52,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除CC分级策略
+    @inlinable
+    public func deleteCCLevelPolicy(_ input: DeleteCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCCLevelPolicyResponse > {
+        self.client.execute(action: "DeleteCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除CC分级策略
+    @inlinable
+    public func deleteCCLevelPolicy(_ input: DeleteCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCLevelPolicyResponse {
+        try await self.client.execute(action: "DeleteCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

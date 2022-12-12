@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 创建用户自定义函数
-    ///
-    ///  创建用户自定义函数
-    @inlinable
-    public func createCustomFunction(_ input: CreateCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomFunctionResponse > {
-        self.client.execute(action: "CreateCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建用户自定义函数
-    ///
-    ///  创建用户自定义函数
-    @inlinable
-    public func createCustomFunction(_ input: CreateCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomFunctionResponse {
-        try await self.client.execute(action: "CreateCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCustomFunction请求参数结构体
     public struct CreateCustomFunctionRequest: TCRequestModel {
         /// 类型：HIVE、SPARK
@@ -51,7 +35,7 @@ extension Wedata {
         /// 项目ID
         public let projectId: String?
         
-        public init (type: String, kind: String, name: String, clusterIdentifier: String, dbName: String?, projectId: String?) {
+        public init (type: String, kind: String, name: String, clusterIdentifier: String, dbName: String? = nil, projectId: String? = nil) {
             self.type = type
             self.kind = kind
             self.name = name
@@ -88,5 +72,21 @@ extension Wedata {
             case errorMessage = "ErrorMessage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建用户自定义函数
+    ///
+    ///  创建用户自定义函数
+    @inlinable
+    public func createCustomFunction(_ input: CreateCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomFunctionResponse > {
+        self.client.execute(action: "CreateCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建用户自定义函数
+    ///
+    ///  创建用户自定义函数
+    @inlinable
+    public func createCustomFunction(_ input: CreateCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomFunctionResponse {
+        try await self.client.execute(action: "CreateCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

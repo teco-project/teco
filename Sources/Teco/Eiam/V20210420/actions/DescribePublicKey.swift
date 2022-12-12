@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 获取JWT公钥信息
-    ///
-    /// 获取JWT公钥信息。
-    @inlinable
-    public func describePublicKey(_ input: DescribePublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicKeyResponse > {
-        self.client.execute(action: "DescribePublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取JWT公钥信息
-    ///
-    /// 获取JWT公钥信息。
-    @inlinable
-    public func describePublicKey(_ input: DescribePublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicKeyResponse {
-        try await self.client.execute(action: "DescribePublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePublicKey请求参数结构体
     public struct DescribePublicKeyRequest: TCRequestModel {
         /// 应用ID，是应用的全局唯一标识。
@@ -68,5 +52,21 @@ extension Eiam {
             case applicationId = "ApplicationId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取JWT公钥信息
+    ///
+    /// 获取JWT公钥信息。
+    @inlinable
+    public func describePublicKey(_ input: DescribePublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicKeyResponse > {
+        self.client.execute(action: "DescribePublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取JWT公钥信息
+    ///
+    /// 获取JWT公钥信息。
+    @inlinable
+    public func describePublicKey(_ input: DescribePublicKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicKeyResponse {
+        try await self.client.execute(action: "DescribePublicKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

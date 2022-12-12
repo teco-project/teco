@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 修改播放鉴权key
-    @inlinable
-    public func modifyLivePlayAuthKey(_ input: ModifyLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLivePlayAuthKeyResponse > {
-        self.client.execute(action: "ModifyLivePlayAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改播放鉴权key
-    @inlinable
-    public func modifyLivePlayAuthKey(_ input: ModifyLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayAuthKeyResponse {
-        try await self.client.execute(action: "ModifyLivePlayAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLivePlayAuthKey请求参数结构体
     public struct ModifyLivePlayAuthKeyRequest: TCRequestModel {
         /// 播放域名。
@@ -48,7 +36,7 @@ extension Live {
         /// 不传表示不修改当前值。
         public let authBackKey: String?
         
-        public init (domainName: String, enable: Int64?, authKey: String?, authDelta: UInt64?, authBackKey: String?) {
+        public init (domainName: String, enable: Int64? = nil, authKey: String? = nil, authDelta: UInt64? = nil, authBackKey: String? = nil) {
             self.domainName = domainName
             self.enable = enable
             self.authKey = authKey
@@ -73,5 +61,17 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改播放鉴权key
+    @inlinable
+    public func modifyLivePlayAuthKey(_ input: ModifyLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLivePlayAuthKeyResponse > {
+        self.client.execute(action: "ModifyLivePlayAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改播放鉴权key
+    @inlinable
+    public func modifyLivePlayAuthKey(_ input: ModifyLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayAuthKeyResponse {
+        try await self.client.execute(action: "ModifyLivePlayAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

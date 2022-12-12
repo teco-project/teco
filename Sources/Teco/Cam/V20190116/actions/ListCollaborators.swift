@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 获取协作者列表
-    @inlinable
-    public func listCollaborators(_ input: ListCollaboratorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListCollaboratorsResponse > {
-        self.client.execute(action: "ListCollaborators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取协作者列表
-    @inlinable
-    public func listCollaborators(_ input: ListCollaboratorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListCollaboratorsResponse {
-        try await self.client.execute(action: "ListCollaborators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListCollaborators请求参数结构体
     public struct ListCollaboratorsRequest: TCRequestModel {
         /// 分页条数，缺省为20
@@ -35,7 +23,7 @@ extension Cam {
         /// 分页起始值，缺省为0
         public let offset: UInt64?
         
-        public init (limit: UInt64?, offset: UInt64?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil) {
             self.limit = limit
             self.offset = offset
         }
@@ -62,5 +50,17 @@ extension Cam {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取协作者列表
+    @inlinable
+    public func listCollaborators(_ input: ListCollaboratorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListCollaboratorsResponse > {
+        self.client.execute(action: "ListCollaborators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取协作者列表
+    @inlinable
+    public func listCollaborators(_ input: ListCollaboratorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListCollaboratorsResponse {
+        try await self.client.execute(action: "ListCollaborators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询容器安全服务已购买信息
-    ///
-    /// DescribePurchaseStateInfo 查询容器安全服务已购买信息
-    @inlinable
-    public func describePurchaseStateInfo(_ input: DescribePurchaseStateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePurchaseStateInfoResponse > {
-        self.client.execute(action: "DescribePurchaseStateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器安全服务已购买信息
-    ///
-    /// DescribePurchaseStateInfo 查询容器安全服务已购买信息
-    @inlinable
-    public func describePurchaseStateInfo(_ input: DescribePurchaseStateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurchaseStateInfoResponse {
-        try await self.client.execute(action: "DescribePurchaseStateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePurchaseStateInfo请求参数结构体
     public struct DescribePurchaseStateInfoRequest: TCRequestModel {
         public init () {
@@ -100,5 +84,21 @@ extension Tcss {
             case subState = "SubState"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器安全服务已购买信息
+    ///
+    /// DescribePurchaseStateInfo 查询容器安全服务已购买信息
+    @inlinable
+    public func describePurchaseStateInfo(_ input: DescribePurchaseStateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePurchaseStateInfoResponse > {
+        self.client.execute(action: "DescribePurchaseStateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器安全服务已购买信息
+    ///
+    /// DescribePurchaseStateInfo 查询容器安全服务已购买信息
+    @inlinable
+    public func describePurchaseStateInfo(_ input: DescribePurchaseStateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurchaseStateInfoResponse {
+        try await self.client.execute(action: "DescribePurchaseStateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

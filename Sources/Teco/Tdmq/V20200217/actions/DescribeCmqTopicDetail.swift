@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 查询cmq主题详情
-    @inlinable
-    public func describeCmqTopicDetail(_ input: DescribeCmqTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCmqTopicDetailResponse > {
-        self.client.execute(action: "DescribeCmqTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询cmq主题详情
-    @inlinable
-    public func describeCmqTopicDetail(_ input: DescribeCmqTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqTopicDetailResponse {
-        try await self.client.execute(action: "DescribeCmqTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCmqTopicDetail请求参数结构体
     public struct DescribeCmqTopicDetailRequest: TCRequestModel {
         /// 精确匹配TopicName。
         public let topicName: String?
         
-        public init (topicName: String?) {
+        public init (topicName: String? = nil) {
             self.topicName = topicName
         }
         
@@ -53,5 +41,17 @@ extension Tdmq {
             case topicDescribe = "TopicDescribe"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询cmq主题详情
+    @inlinable
+    public func describeCmqTopicDetail(_ input: DescribeCmqTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCmqTopicDetailResponse > {
+        self.client.execute(action: "DescribeCmqTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询cmq主题详情
+    @inlinable
+    public func describeCmqTopicDetail(_ input: DescribeCmqTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqTopicDetailResponse {
+        try await self.client.execute(action: "DescribeCmqTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

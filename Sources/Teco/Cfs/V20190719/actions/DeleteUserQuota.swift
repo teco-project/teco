@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 删除文件系统配额
-    ///
-    /// 指定条件删除文件系统配额
-    @inlinable
-    public func deleteUserQuota(_ input: DeleteUserQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserQuotaResponse > {
-        self.client.execute(action: "DeleteUserQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除文件系统配额
-    ///
-    /// 指定条件删除文件系统配额
-    @inlinable
-    public func deleteUserQuota(_ input: DeleteUserQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserQuotaResponse {
-        try await self.client.execute(action: "DeleteUserQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteUserQuota请求参数结构体
     public struct DeleteUserQuotaRequest: TCRequestModel {
         /// 文件系统 ID
@@ -63,5 +47,21 @@ extension Cfs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除文件系统配额
+    ///
+    /// 指定条件删除文件系统配额
+    @inlinable
+    public func deleteUserQuota(_ input: DeleteUserQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserQuotaResponse > {
+        self.client.execute(action: "DeleteUserQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除文件系统配额
+    ///
+    /// 指定条件删除文件系统配额
+    @inlinable
+    public func deleteUserQuota(_ input: DeleteUserQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserQuotaResponse {
+        try await self.client.execute(action: "DeleteUserQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

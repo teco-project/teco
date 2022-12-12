@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 获取E证通Token状态
-    ///
-    /// 用于轮询E证通H5场景EidToken验证状态。
-    @inlinable
-    public func checkEidTokenStatus(_ input: CheckEidTokenStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckEidTokenStatusResponse > {
-        self.client.execute(action: "CheckEidTokenStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取E证通Token状态
-    ///
-    /// 用于轮询E证通H5场景EidToken验证状态。
-    @inlinable
-    public func checkEidTokenStatus(_ input: CheckEidTokenStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckEidTokenStatusResponse {
-        try await self.client.execute(action: "CheckEidTokenStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckEidTokenStatus请求参数结构体
     public struct CheckEidTokenStatusRequest: TCRequestModel {
         /// E证通流程的唯一标识，调用GetEidToken接口时生成。
@@ -61,5 +45,21 @@ extension Faceid {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取E证通Token状态
+    ///
+    /// 用于轮询E证通H5场景EidToken验证状态。
+    @inlinable
+    public func checkEidTokenStatus(_ input: CheckEidTokenStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckEidTokenStatusResponse > {
+        self.client.execute(action: "CheckEidTokenStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取E证通Token状态
+    ///
+    /// 用于轮询E证通H5场景EidToken验证状态。
+    @inlinable
+    public func checkEidTokenStatus(_ input: CheckEidTokenStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckEidTokenStatusResponse {
+        try await self.client.execute(action: "CheckEidTokenStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

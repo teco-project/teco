@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 删除 rum 项目
-    ///
-    /// 删除给定的 rum 的项目
-    @inlinable
-    public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProjectResponse > {
-        self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除 rum 项目
-    ///
-    /// 删除给定的 rum 的项目
-    @inlinable
-    public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
-        try await self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteProject请求参数结构体
     public struct DeleteProjectRequest: TCRequestModel {
         /// 需要删除的项目 ID
@@ -57,5 +41,21 @@ extension Rum {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除 rum 项目
+    ///
+    /// 删除给定的 rum 的项目
+    @inlinable
+    public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProjectResponse > {
+        self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除 rum 项目
+    ///
+    /// 删除给定的 rum 的项目
+    @inlinable
+    public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
+        try await self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 删除用户组
-    ///
-    /// 删除一个用户组
-    @inlinable
-    public func deleteUserGroup(_ input: DeleteUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserGroupResponse > {
-        self.client.execute(action: "DeleteUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除用户组
-    ///
-    /// 删除一个用户组
-    @inlinable
-    public func deleteUserGroup(_ input: DeleteUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserGroupResponse {
-        try await self.client.execute(action: "DeleteUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteUserGroup请求参数结构体
     public struct DeleteUserGroupRequest: TCRequestModel {
         /// 用户组ID，是用户组的全局唯一标识。
@@ -53,5 +37,21 @@ extension Eiam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除用户组
+    ///
+    /// 删除一个用户组
+    @inlinable
+    public func deleteUserGroup(_ input: DeleteUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserGroupResponse > {
+        self.client.execute(action: "DeleteUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除用户组
+    ///
+    /// 删除一个用户组
+    @inlinable
+    public func deleteUserGroup(_ input: DeleteUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserGroupResponse {
+        try await self.client.execute(action: "DeleteUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

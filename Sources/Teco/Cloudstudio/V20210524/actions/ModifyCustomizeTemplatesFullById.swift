@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudstudio {
-    /// 全量修改自定义模板，不忽略空
-    @inlinable
-    public func modifyCustomizeTemplatesFullById(_ input: ModifyCustomizeTemplatesFullByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizeTemplatesFullByIdResponse > {
-        self.client.execute(action: "ModifyCustomizeTemplatesFullById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 全量修改自定义模板，不忽略空
-    @inlinable
-    public func modifyCustomizeTemplatesFullById(_ input: ModifyCustomizeTemplatesFullByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplatesFullByIdResponse {
-        try await self.client.execute(action: "ModifyCustomizeTemplatesFullById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCustomizeTemplatesFullById请求参数结构体
     public struct ModifyCustomizeTemplatesFullByIdRequest: TCRequestModel {
         /// 用户所属组
@@ -63,5 +51,17 @@ extension Cloudstudio {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 全量修改自定义模板，不忽略空
+    @inlinable
+    public func modifyCustomizeTemplatesFullById(_ input: ModifyCustomizeTemplatesFullByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizeTemplatesFullByIdResponse > {
+        self.client.execute(action: "ModifyCustomizeTemplatesFullById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 全量修改自定义模板，不忽略空
+    @inlinable
+    public func modifyCustomizeTemplatesFullById(_ input: ModifyCustomizeTemplatesFullByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplatesFullByIdResponse {
+        try await self.client.execute(action: "ModifyCustomizeTemplatesFullById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

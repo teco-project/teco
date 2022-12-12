@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 修改实例用户的密码
-    @inlinable
-    public func resetDBInstancePassword(_ input: ResetDBInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetDBInstancePasswordResponse > {
-        self.client.execute(action: "ResetDBInstancePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例用户的密码
-    @inlinable
-    public func resetDBInstancePassword(_ input: ResetDBInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDBInstancePasswordResponse {
-        try await self.client.execute(action: "ResetDBInstancePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetDBInstancePassword请求参数结构体
     public struct ResetDBInstancePasswordRequest: TCRequestModel {
         /// 实例Id
@@ -63,5 +51,17 @@ extension Mongodb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例用户的密码
+    @inlinable
+    public func resetDBInstancePassword(_ input: ResetDBInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetDBInstancePasswordResponse > {
+        self.client.execute(action: "ResetDBInstancePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例用户的密码
+    @inlinable
+    public func resetDBInstancePassword(_ input: ResetDBInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDBInstancePasswordResponse {
+        try await self.client.execute(action: "ResetDBInstancePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

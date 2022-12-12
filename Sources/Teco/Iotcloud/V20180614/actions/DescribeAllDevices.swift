@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 查询所有设备列表
-    @inlinable
-    public func describeAllDevices(_ input: DescribeAllDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllDevicesResponse > {
-        self.client.execute(action: "DescribeAllDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询所有设备列表
-    @inlinable
-    public func describeAllDevices(_ input: DescribeAllDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllDevicesResponse {
-        try await self.client.execute(action: "DescribeAllDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAllDevices请求参数结构体
     public struct DescribeAllDevicesRequest: TCRequestModel {
         /// 查询偏移量。
@@ -62,5 +50,17 @@ extension Iotcloud {
             case devices = "Devices"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询所有设备列表
+    @inlinable
+    public func describeAllDevices(_ input: DescribeAllDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllDevicesResponse > {
+        self.client.execute(action: "DescribeAllDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询所有设备列表
+    @inlinable
+    public func describeAllDevices(_ input: DescribeAllDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllDevicesResponse {
+        try await self.client.execute(action: "DescribeAllDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

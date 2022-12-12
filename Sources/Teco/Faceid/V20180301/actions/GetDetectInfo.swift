@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 获取实名核身结果信息
-    ///
-    /// 完成验证后，用BizToken调用本接口获取结果信息，BizToken生成后三天内（3\*24\*3,600秒）可多次拉取。
-    @inlinable
-    public func getDetectInfo(_ input: GetDetectInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDetectInfoResponse > {
-        self.client.execute(action: "GetDetectInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实名核身结果信息
-    ///
-    /// 完成验证后，用BizToken调用本接口获取结果信息，BizToken生成后三天内（3\*24\*3,600秒）可多次拉取。
-    @inlinable
-    public func getDetectInfo(_ input: GetDetectInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDetectInfoResponse {
-        try await self.client.execute(action: "GetDetectInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDetectInfo请求参数结构体
     public struct GetDetectInfoRequest: TCRequestModel {
         /// 人脸核身流程的标识，调用DetectAuth接口时生成。
@@ -44,7 +28,7 @@ extension Faceid {
         /// 默认值：0
         public let infoType: String?
         
-        public init (bizToken: String, ruleId: String, infoType: String?) {
+        public init (bizToken: String, ruleId: String, infoType: String? = nil) {
             self.bizToken = bizToken
             self.ruleId = ruleId
             self.infoType = infoType
@@ -117,5 +101,21 @@ extension Faceid {
             case detectInfo = "DetectInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实名核身结果信息
+    ///
+    /// 完成验证后，用BizToken调用本接口获取结果信息，BizToken生成后三天内（3\*24\*3,600秒）可多次拉取。
+    @inlinable
+    public func getDetectInfo(_ input: GetDetectInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDetectInfoResponse > {
+        self.client.execute(action: "GetDetectInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实名核身结果信息
+    ///
+    /// 完成验证后，用BizToken调用本接口获取结果信息，BizToken生成后三天内（3\*24\*3,600秒）可多次拉取。
+    @inlinable
+    public func getDetectInfo(_ input: GetDetectInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDetectInfoResponse {
+        try await self.client.execute(action: "GetDetectInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

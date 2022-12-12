@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询任务列表
-    ///
-    /// 翻页查询任务列表
-    @inlinable
-    public func describeTaskRecords(_ input: DescribeTaskRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskRecordsResponse > {
-        self.client.execute(action: "DescribeTaskRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询任务列表
-    ///
-    /// 翻页查询任务列表
-    @inlinable
-    public func describeTaskRecords(_ input: DescribeTaskRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskRecordsResponse {
-        try await self.client.execute(action: "DescribeTaskRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskRecords请求参数结构体
     public struct DescribeTaskRecordsRequest: TCRequestModel {
         /// 翻页偏移量。
@@ -57,7 +41,7 @@ extension Tsf {
         /// 无
         public let ids: [String]?
         
-        public init (offset: UInt64?, limit: UInt64?, searchWord: String?, taskState: String?, groupId: String?, taskType: String?, executeType: String?, ids: [String]?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, taskState: String? = nil, groupId: String? = nil, taskType: String? = nil, executeType: String? = nil, ids: [String]? = nil) {
             self.offset = offset
             self.limit = limit
             self.searchWord = searchWord
@@ -84,7 +68,7 @@ extension Tsf {
     public struct DescribeTaskRecordsResponse: TCResponseModel {
         /// 任务记录列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TaskRecordPage
+        public let result: TaskRecordPage?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -93,5 +77,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询任务列表
+    ///
+    /// 翻页查询任务列表
+    @inlinable
+    public func describeTaskRecords(_ input: DescribeTaskRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskRecordsResponse > {
+        self.client.execute(action: "DescribeTaskRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务列表
+    ///
+    /// 翻页查询任务列表
+    @inlinable
+    public func describeTaskRecords(_ input: DescribeTaskRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskRecordsResponse {
+        try await self.client.execute(action: "DescribeTaskRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

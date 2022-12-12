@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 创建并返回出证报告
-    ///
-    /// 创建出证报告，返回报告 ID
-    @inlinable
-    public func createChannelFlowEvidenceReport(_ input: CreateChannelFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateChannelFlowEvidenceReportResponse > {
-        self.client.execute(action: "CreateChannelFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建并返回出证报告
-    ///
-    /// 创建出证报告，返回报告 ID
-    @inlinable
-    public func createChannelFlowEvidenceReport(_ input: CreateChannelFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelFlowEvidenceReportResponse {
-        try await self.client.execute(action: "CreateChannelFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateChannelFlowEvidenceReport请求参数结构体
     public struct CreateChannelFlowEvidenceReportRequest: TCRequestModel {
         /// 签署流程编号
@@ -40,9 +24,9 @@ extension Essbasic {
         public let agent: Agent
         
         /// 操作者的信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
-        public init (flowId: String, agent: Agent, `operator`: UserInfo) {
+        public init (flowId: String, agent: Agent, `operator`: UserInfo? = nil) {
             self.flowId = flowId
             self.agent = agent
             self.`operator` = `operator`
@@ -79,5 +63,21 @@ extension Essbasic {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建并返回出证报告
+    ///
+    /// 创建出证报告，返回报告 ID
+    @inlinable
+    public func createChannelFlowEvidenceReport(_ input: CreateChannelFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateChannelFlowEvidenceReportResponse > {
+        self.client.execute(action: "CreateChannelFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建并返回出证报告
+    ///
+    /// 创建出证报告，返回报告 ID
+    @inlinable
+    public func createChannelFlowEvidenceReport(_ input: CreateChannelFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelFlowEvidenceReportResponse {
+        try await self.client.execute(action: "CreateChannelFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

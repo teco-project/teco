@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 拉取AI模型列表
-    @inlinable
-    public func describeAIModels(_ input: DescribeAIModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAIModelsResponse > {
-        self.client.execute(action: "DescribeAIModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取AI模型列表
-    @inlinable
-    public func describeAIModels(_ input: DescribeAIModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelsResponse {
-        try await self.client.execute(action: "DescribeAIModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAIModels请求参数结构体
     public struct DescribeAIModelsRequest: TCRequestModel {
         /// 模型ID
@@ -72,5 +60,17 @@ extension Iotvideo {
             case models = "Models"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取AI模型列表
+    @inlinable
+    public func describeAIModels(_ input: DescribeAIModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAIModelsResponse > {
+        self.client.execute(action: "DescribeAIModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取AI模型列表
+    @inlinable
+    public func describeAIModels(_ input: DescribeAIModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelsResponse {
+        try await self.client.execute(action: "DescribeAIModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -24,17 +24,17 @@ extension Privatedns {
         
         /// Vpc所属地区: ap-guangzhou, ap-shanghai
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let region: String
+        public let region: String?
         
         /// Vpc所属账号: 123456789
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let uin: String
+        public let uin: String?
         
         /// vpc资源名称：testname
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcName: String?
         
-        public init (uniqVpcId: String, region: String, uin: String, vpcName: String?) {
+        public init (uniqVpcId: String, region: String, uin: String, vpcName: String? = nil) {
             self.uniqVpcId = uniqVpcId
             self.region = region
             self.uin = uin
@@ -216,7 +216,7 @@ extension Privatedns {
         /// 用户昵称
         public let nickname: String?
         
-        public init (uin: String, account: String?, nickname: String?) {
+        public init (uin: String, account: String? = nil, nickname: String? = nil) {
             self.uin = uin
             self.account = account
             self.nickname = nickname

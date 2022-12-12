@@ -44,7 +44,7 @@ extension Tke {
         /// 伸缩组最大实例数
         public let maxSize: Int64?
         
-        public init (minSize: Int64?, maxSize: Int64?) {
+        public init (minSize: Int64? = nil, maxSize: Int64? = nil) {
             self.minSize = minSize
             self.maxSize = maxSize
         }
@@ -105,7 +105,7 @@ extension Tke {
         /// cuDNN的Dev名字
         public let devName: String?
         
-        public init (version: String, name: String, docName: String?, devName: String?) {
+        public init (version: String, name: String, docName: String? = nil, devName: String? = nil) {
             self.version = version
             self.name = name
             self.docName = docName
@@ -130,7 +130,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let drop: [String]?
         
-        public init (add: [String]?, drop: [String]?) {
+        public init (add: [String]? = nil, drop: [String]? = nil) {
             self.add = add
             self.drop = drop
         }
@@ -285,7 +285,7 @@ extension Tke {
         public let nodeNameType: String?
         
         /// 集群自定义参数
-        public let extraArgs: ClusterExtraArgs
+        public let extraArgs: ClusterExtraArgs?
         
         /// 集群网络类型（包括GR(全局路由)和VPC-CNI两种模式，默认为GR。
         public let networkType: String?
@@ -335,7 +335,7 @@ extension Tke {
         /// 是否开启QGPU共享
         public let qgpuShareEnable: Bool?
         
-        public init (ipvs: Bool?, asEnabled: Bool?, containerRuntime: String?, nodeNameType: String?, extraArgs: ClusterExtraArgs, networkType: String?, isNonStaticIpMode: Bool?, deletionProtection: Bool?, kubeProxyMode: String?, auditEnabled: Bool?, auditLogsetId: String?, auditLogTopicId: String?, vpcCniType: String?, runtimeVersion: String?, enableCustomizedPodCIDR: Bool?, basePodNumber: Int64?, ciliumMode: String?, isDualStack: Bool?, qgpuShareEnable: Bool?) {
+        public init (ipvs: Bool? = nil, asEnabled: Bool? = nil, containerRuntime: String? = nil, nodeNameType: String? = nil, extraArgs: ClusterExtraArgs? = nil, networkType: String? = nil, isNonStaticIpMode: Bool? = nil, deletionProtection: Bool? = nil, kubeProxyMode: String? = nil, auditEnabled: Bool? = nil, auditLogsetId: String? = nil, auditLogTopicId: String? = nil, vpcCniType: String? = nil, runtimeVersion: String? = nil, enableCustomizedPodCIDR: Bool? = nil, basePodNumber: Int64? = nil, ciliumMode: String? = nil, isDualStack: Bool? = nil, qgpuShareEnable: Bool? = nil) {
             self.ipvs = ipvs
             self.asEnabled = asEnabled
             self.containerRuntime = containerRuntime
@@ -417,9 +417,9 @@ extension Tke {
         public let autoScalingGroupEnabled: Bool?
         
         /// 伸缩组最大最小实例数
-        public let autoScalingGroupRange: AutoScalingGroupRange
+        public let autoScalingGroupRange: AutoScalingGroupRange?
         
-        public init (autoScalingGroupId: String?, autoScalingGroupEnabled: Bool?, autoScalingGroupRange: AutoScalingGroupRange) {
+        public init (autoScalingGroupId: String? = nil, autoScalingGroupEnabled: Bool? = nil, autoScalingGroupRange: AutoScalingGroupRange? = nil) {
             self.autoScalingGroupId = autoScalingGroupId
             self.autoScalingGroupEnabled = autoScalingGroupEnabled
             self.autoScalingGroupRange = autoScalingGroupRange
@@ -539,9 +539,9 @@ extension Tke {
         public let clusterLevel: String?
         
         /// 自动变配集群等级，针对托管集群生效
-        public let autoUpgradeClusterLevel: AutoUpgradeClusterLevel
+        public let autoUpgradeClusterLevel: AutoUpgradeClusterLevel?
         
-        public init (clusterOs: String?, clusterVersion: String?, clusterName: String?, clusterDescription: String?, vpcId: String?, projectId: Int64?, tagSpecification: [TagSpecification]?, osCustomizeType: String?, needWorkSecurityGroup: Bool?, subnetId: String?, clusterLevel: String?, autoUpgradeClusterLevel: AutoUpgradeClusterLevel) {
+        public init (clusterOs: String? = nil, clusterVersion: String? = nil, clusterName: String? = nil, clusterDescription: String? = nil, vpcId: String? = nil, projectId: Int64? = nil, tagSpecification: [TagSpecification]? = nil, osCustomizeType: String? = nil, needWorkSecurityGroup: Bool? = nil, subnetId: String? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: AutoUpgradeClusterLevel? = nil) {
             self.clusterOs = clusterOs
             self.clusterVersion = clusterVersion
             self.clusterName = clusterName
@@ -598,7 +598,7 @@ extension Tke {
         /// 是否忽略 ServiceCIDR 冲突错误, 仅在 VPC-CNI 模式生效，默认不忽略
         public let ignoreServiceCIDRConflict: Bool?
         
-        public init (clusterCIDR: String?, ignoreClusterCIDRConflict: Bool?, maxNodePodNum: UInt64?, maxClusterServiceNum: UInt64?, serviceCIDR: String?, eniSubnetIds: [String]?, claimExpiredSeconds: Int64?, ignoreServiceCIDRConflict: Bool?) {
+        public init (clusterCIDR: String? = nil, ignoreClusterCIDRConflict: Bool? = nil, maxNodePodNum: UInt64? = nil, maxClusterServiceNum: UInt64? = nil, serviceCIDR: String? = nil, eniSubnetIds: [String]? = nil, claimExpiredSeconds: Int64? = nil, ignoreServiceCIDRConflict: Bool? = nil) {
             self.clusterCIDR = clusterCIDR
             self.ignoreClusterCIDRConflict = ignoreClusterCIDRConflict
             self.maxNodePodNum = maxNodePodNum
@@ -663,7 +663,7 @@ extension Tke {
         /// 认证用的Token
         public let token: String?
         
-        public init (caCert: String, token: String?) {
+        public init (caCert: String, token: String? = nil) {
             self.caCert = caCert
             self.token = token
         }
@@ -692,7 +692,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let etcd: [String]?
         
-        public init (kubeAPIServer: [String]?, kubeControllerManager: [String]?, kubeScheduler: [String]?, etcd: [String]?) {
+        public init (kubeAPIServer: [String]? = nil, kubeControllerManager: [String]? = nil, kubeScheduler: [String]? = nil, etcd: [String]? = nil) {
             self.kubeAPIServer = kubeAPIServer
             self.kubeControllerManager = kubeControllerManager
             self.kubeScheduler = kubeScheduler
@@ -715,7 +715,7 @@ extension Tke {
         /// 内网访问LB关联的子网Id
         public let subnetId: String?
         
-        public init (enabled: Bool, subnetId: String?) {
+        public init (enabled: Bool, subnetId: String? = nil) {
             self.enabled = enabled
             self.subnetId = subnetId
         }
@@ -888,7 +888,7 @@ extension Tke {
         /// 新内外网功能，需要传递安全组
         public let securityGroup: String?
         
-        public init (enabled: Bool, allowFromCidrs: [String]?, securityPolicies: [String]?, extraParam: String?, securityGroup: String?) {
+        public init (enabled: Bool, allowFromCidrs: [String]? = nil, securityPolicies: [String]? = nil, extraParam: String? = nil, securityGroup: String? = nil) {
             self.enabled = enabled
             self.allowFromCidrs = allowFromCidrs
             self.securityPolicies = securityPolicies
@@ -1016,7 +1016,7 @@ extension Tke {
         
         /// 当前状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let currentState: ContainerState
+        public let currentState: ContainerState?
         
         /// 重启次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1028,11 +1028,11 @@ extension Tke {
         
         /// 存活探针
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let livenessProbe: LivenessOrReadinessProbe
+        public let livenessProbe: LivenessOrReadinessProbe?
         
         /// 就绪探针
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let readinessProbe: LivenessOrReadinessProbe
+        public let readinessProbe: LivenessOrReadinessProbe?
         
         /// Gpu限制
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1040,9 +1040,9 @@ extension Tke {
         
         /// 容器的安全上下文
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let securityContext: SecurityContext
+        public let securityContext: SecurityContext?
         
-        public init (image: String, name: String, commands: [String]?, args: [String]?, environmentVars: [EnvironmentVariable]?, cpu: Float?, memory: Float?, volumeMounts: [VolumeMount]?, currentState: ContainerState, restartCount: UInt64?, workingDir: String?, livenessProbe: LivenessOrReadinessProbe, readinessProbe: LivenessOrReadinessProbe, gpuLimit: UInt64?, securityContext: SecurityContext) {
+        public init (image: String, name: String, commands: [String]? = nil, args: [String]? = nil, environmentVars: [EnvironmentVariable]? = nil, cpu: Float? = nil, memory: Float? = nil, volumeMounts: [VolumeMount]? = nil, currentState: ContainerState? = nil, restartCount: UInt64? = nil, workingDir: String? = nil, livenessProbe: LivenessOrReadinessProbe? = nil, readinessProbe: LivenessOrReadinessProbe? = nil, gpuLimit: UInt64? = nil, securityContext: SecurityContext? = nil) {
             self.image = image
             self.name = name
             self.commands = commands
@@ -1139,7 +1139,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let address: String?
         
-        public init (address: String?) {
+        public init (address: String? = nil) {
             self.address = address
         }
         
@@ -1162,7 +1162,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let options: [DNSConfigOption]?
         
-        public init (nameservers: [String]?, searches: [String]?, options: [DNSConfigOption]?) {
+        public init (nameservers: [String]? = nil, searches: [String]? = nil, options: [DNSConfigOption]? = nil) {
             self.nameservers = nameservers
             self.searches = searches
             self.options = options
@@ -1179,11 +1179,11 @@ extension Tke {
     public struct DNSConfigOption: TCInputModel, TCOutputModel {
         /// 配置项名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let name: String
+        public let name: String?
         
         /// 项值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let value: String
+        public let value: String?
         
         public init (name: String, value: String) {
             self.name = name
@@ -1273,12 +1273,12 @@ extension Tke {
     /// ECM增强服务
     public struct ECMEnhancedService: TCInputModel {
         /// 是否开启云监控服务
-        public let securityService: ECMRunMonitorServiceEnabled
+        public let securityService: ECMRunMonitorServiceEnabled?
         
         /// 是否开启云镜服务
-        public let monitorService: ECMRunSecurityServiceEnabled
+        public let monitorService: ECMRunSecurityServiceEnabled?
         
-        public init (securityService: ECMRunMonitorServiceEnabled, monitorService: ECMRunSecurityServiceEnabled) {
+        public init (securityService: ECMRunMonitorServiceEnabled? = nil, monitorService: ECMRunSecurityServiceEnabled? = nil) {
             self.securityService = securityService
             self.monitorService = monitorService
         }
@@ -1294,7 +1294,7 @@ extension Tke {
         /// 是否开启
         public let enabled: Bool?
         
-        public init (enabled: Bool?) {
+        public init (enabled: Bool? = nil) {
             self.enabled = enabled
         }
         
@@ -1311,7 +1311,7 @@ extension Tke {
         /// 云镜版本：0 基础版，1 专业版
         public let version: Int64?
         
-        public init (enabled: Bool?, version: Int64?) {
+        public init (enabled: Bool? = nil, version: Int64? = nil) {
             self.enabled = enabled
             self.version = version
         }
@@ -1368,7 +1368,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let constraint: String?
         
-        public init (name: String?, type: String?, usage: String?, `default`: String?, constraint: String?) {
+        public init (name: String? = nil, type: String? = nil, usage: String? = nil, `default`: String? = nil, constraint: String? = nil) {
             self.name = name
             self.type = type
             self.usage = usage
@@ -1403,7 +1403,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubelet: [EdgeArgsFlag]?
         
-        public init (kubeAPIServer: [EdgeArgsFlag]?, kubeControllerManager: [EdgeArgsFlag]?, kubeScheduler: [EdgeArgsFlag]?, kubelet: [EdgeArgsFlag]?) {
+        public init (kubeAPIServer: [EdgeArgsFlag]? = nil, kubeControllerManager: [EdgeArgsFlag]? = nil, kubeScheduler: [EdgeArgsFlag]? = nil, kubelet: [EdgeArgsFlag]? = nil) {
             self.kubeAPIServer = kubeAPIServer
             self.kubeControllerManager = kubeControllerManager
             self.kubeScheduler = kubeScheduler
@@ -1456,13 +1456,13 @@ extension Tke {
         
         /// 集群高级设置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let clusterAdvancedSettings: EdgeClusterAdvancedSettings
+        public let clusterAdvancedSettings: EdgeClusterAdvancedSettings?
         
         /// 边缘容器集群级别
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let level: String?
         
-        public init (clusterId: String, clusterName: String, vpcId: String, podCIDR: String, serviceCIDR: String, k8sVersion: String, status: String?, clusterDesc: String?, createdTime: String?, edgeClusterVersion: String?, maxNodePodNum: Int64?, clusterAdvancedSettings: EdgeClusterAdvancedSettings, level: String?) {
+        public init (clusterId: String, clusterName: String, vpcId: String, podCIDR: String, serviceCIDR: String, k8sVersion: String, status: String? = nil, clusterDesc: String? = nil, createdTime: String? = nil, edgeClusterVersion: String? = nil, maxNodePodNum: Int64? = nil, clusterAdvancedSettings: EdgeClusterAdvancedSettings? = nil, level: String? = nil) {
             self.clusterId = clusterId
             self.clusterName = clusterName
             self.vpcId = vpcId
@@ -1499,7 +1499,7 @@ extension Tke {
     public struct EdgeClusterAdvancedSettings: TCInputModel, TCOutputModel {
         /// 集群自定义参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let extraArgs: EdgeClusterExtraArgs
+        public let extraArgs: EdgeClusterExtraArgs?
         
         /// 运行时类型，支持"docker"和"containerd"，默认为docker
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1509,7 +1509,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyMode: String?
         
-        public init (extraArgs: EdgeClusterExtraArgs, runtime: String?, proxyMode: String?) {
+        public init (extraArgs: EdgeClusterExtraArgs? = nil, runtime: String? = nil, proxyMode: String? = nil) {
             self.extraArgs = extraArgs
             self.runtime = runtime
             self.proxyMode = proxyMode
@@ -1536,7 +1536,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubeScheduler: [String]?
         
-        public init (kubeAPIServer: [String]?, kubeControllerManager: [String]?, kubeScheduler: [String]?) {
+        public init (kubeAPIServer: [String]? = nil, kubeControllerManager: [String]? = nil, kubeScheduler: [String]? = nil) {
             self.kubeAPIServer = kubeAPIServer
             self.kubeControllerManager = kubeControllerManager
             self.kubeScheduler = kubeScheduler
@@ -1553,13 +1553,13 @@ extension Tke {
     public struct EdgeClusterInternalLB: TCInputModel, TCOutputModel {
         /// 是否开启内网访问LB
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let enabled: Bool
+        public let enabled: Bool?
         
         /// 内网访问LB关联的子网Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: [String]?
         
-        public init (enabled: Bool, subnetId: [String]?) {
+        public init (enabled: Bool, subnetId: [String]? = nil) {
             self.enabled = enabled
             self.subnetId = subnetId
         }
@@ -1574,13 +1574,13 @@ extension Tke {
     public struct EdgeClusterPublicLB: TCInputModel, TCOutputModel {
         /// 是否开启公网访问LB
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let enabled: Bool
+        public let enabled: Bool?
         
         /// 允许访问的公网cidr
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allowFromCidrs: [String]?
         
-        public init (enabled: Bool, allowFromCidrs: [String]?) {
+        public init (enabled: Bool, allowFromCidrs: [String]? = nil) {
             self.enabled = enabled
             self.allowFromCidrs = allowFromCidrs
         }
@@ -1610,7 +1610,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let internetMaxBandwidthOut: UInt64?
         
-        public init (deletePolicy: String, internetServiceProvider: String?, internetMaxBandwidthOut: UInt64?) {
+        public init (deletePolicy: String, internetServiceProvider: String? = nil, internetMaxBandwidthOut: UInt64? = nil) {
             self.deletePolicy = deletePolicy
             self.internetServiceProvider = internetServiceProvider
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
@@ -1666,11 +1666,11 @@ extension Tke {
         
         /// 数据卷信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let eksCiVolume: EksCiVolume
+        public let eksCiVolume: EksCiVolume?
         
         /// 容器组运行的安全上下文
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let securityContext: SecurityContext
+        public let securityContext: SecurityContext?
         
         /// 内网ip地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1716,7 +1716,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let persistStatus: Bool?
         
-        public init (eksCiId: String?, eksCiName: String?, memory: Float?, cpu: Float?, securityGroupIds: [String]?, restartPolicy: String?, status: String?, creationTime: String?, succeededTime: String?, containers: [Container]?, eksCiVolume: EksCiVolume, securityContext: SecurityContext, privateIp: String?, eipAddress: String?, gpuType: String?, cpuType: String?, gpuCount: UInt64?, vpcId: String?, subnetId: String?, initContainers: [Container]?, camRoleName: String?, autoCreatedEipId: String?, persistStatus: Bool?) {
+        public init (eksCiId: String? = nil, eksCiName: String? = nil, memory: Float? = nil, cpu: Float? = nil, securityGroupIds: [String]? = nil, restartPolicy: String? = nil, status: String? = nil, creationTime: String? = nil, succeededTime: String? = nil, containers: [Container]? = nil, eksCiVolume: EksCiVolume? = nil, securityContext: SecurityContext? = nil, privateIp: String? = nil, eipAddress: String? = nil, gpuType: String? = nil, cpuType: String? = nil, gpuCount: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, initContainers: [Container]? = nil, camRoleName: String? = nil, autoCreatedEipId: String? = nil, persistStatus: Bool? = nil) {
             self.eksCiId = eksCiId
             self.eksCiName = eksCiName
             self.memory = memory
@@ -1797,7 +1797,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nfsVolumes: [NfsVolume]?
         
-        public init (cbsVolumes: [CbsVolume]?, nfsVolumes: [NfsVolume]?) {
+        public init (cbsVolumes: [CbsVolume]? = nil, nfsVolumes: [NfsVolume]? = nil) {
             self.cbsVolumes = cbsVolumes
             self.nfsVolumes = nfsVolumes
         }
@@ -1850,7 +1850,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagSpecification: [TagSpecification]?
         
-        public init (clusterId: String, clusterName: String, vpcId: String, subnetIds: [String], k8sVersion: String, status: String?, clusterDesc: String?, createdTime: String?, serviceSubnetId: String?, dnsServers: [DnsServerConf]?, needDeleteCbs: Bool?, enableVpcCoreDNS: Bool?, tagSpecification: [TagSpecification]?) {
+        public init (clusterId: String, clusterName: String, vpcId: String, subnetIds: [String], k8sVersion: String, status: String? = nil, clusterDesc: String? = nil, createdTime: String? = nil, serviceSubnetId: String? = nil, dnsServers: [DnsServerConf]? = nil, needDeleteCbs: Bool? = nil, enableVpcCoreDNS: Bool? = nil, tagSpecification: [TagSpecification]? = nil) {
             self.clusterId = clusterId
             self.clusterName = clusterName
             self.vpcId = vpcId
@@ -1886,15 +1886,15 @@ extension Tke {
     /// 描述了实例的增强服务启用情况与其设置，如云安全，云监控等实例 Agent
     public struct EnhancedService: TCInputModel, TCOutputModel {
         /// 开启云安全服务。若不指定该参数，则默认开启云安全服务。
-        public let securityService: RunSecurityServiceEnabled
+        public let securityService: RunSecurityServiceEnabled?
         
         /// 开启云监控服务。若不指定该参数，则默认开启云监控服务。
-        public let monitorService: RunMonitorServiceEnabled
+        public let monitorService: RunMonitorServiceEnabled?
         
         /// 开启云自动化助手服务（TencentCloud Automation Tools，TAT）。若不指定该参数，则公共镜像默认开启云自动化助手服务，其他镜像默认不开启云自动化助手服务。
-        public let automationService: RunAutomationServiceEnabled
+        public let automationService: RunAutomationServiceEnabled?
         
-        public init (securityService: RunSecurityServiceEnabled, monitorService: RunMonitorServiceEnabled, automationService: RunAutomationServiceEnabled) {
+        public init (securityService: RunSecurityServiceEnabled? = nil, monitorService: RunMonitorServiceEnabled? = nil, automationService: RunAutomationServiceEnabled? = nil) {
             self.securityService = securityService
             self.monitorService = monitorService
             self.automationService = automationService
@@ -1915,7 +1915,7 @@ extension Tke {
         /// val
         public let value: String?
         
-        public init (name: String?, value: String?) {
+        public init (name: String? = nil, value: String? = nil) {
             self.name = name
             self.value = value
         }
@@ -1966,7 +1966,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let commands: [String]?
         
-        public init (commands: [String]?) {
+        public init (commands: [String]? = nil) {
             self.commands = commands
         }
         
@@ -2066,12 +2066,12 @@ extension Tke {
         public let existedInstancesPara: ExistedInstancesPara
         
         /// 节点高级设置，会覆盖集群级别设置的InstanceAdvancedSettings（当前只对节点自定义参数ExtraArgs生效）
-        public let instanceAdvancedSettingsOverride: InstanceAdvancedSettings
+        public let instanceAdvancedSettingsOverride: InstanceAdvancedSettings?
         
         /// 自定义模式集群，可指定每个节点的pod数量
         public let desiredPodNumbers: [Int64]?
         
-        public init (nodeRole: String, existedInstancesPara: ExistedInstancesPara, instanceAdvancedSettingsOverride: InstanceAdvancedSettings, desiredPodNumbers: [Int64]?) {
+        public init (nodeRole: String, existedInstancesPara: ExistedInstancesPara, instanceAdvancedSettingsOverride: InstanceAdvancedSettings? = nil, desiredPodNumbers: [Int64]? = nil) {
             self.nodeRole = nodeRole
             self.existedInstancesPara = existedInstancesPara
             self.instanceAdvancedSettingsOverride = instanceAdvancedSettingsOverride
@@ -2092,13 +2092,13 @@ extension Tke {
         public let instanceIds: [String]
         
         /// 实例额外需要设置参数信息
-        public let instanceAdvancedSettings: InstanceAdvancedSettings
+        public let instanceAdvancedSettings: InstanceAdvancedSettings?
         
         /// 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
-        public let enhancedService: EnhancedService
+        public let enhancedService: EnhancedService?
         
         /// 节点登录信息（目前仅支持使用Password或者单个KeyIds）
-        public let loginSettings: LoginSettings
+        public let loginSettings: LoginSettings?
         
         /// 实例所属安全组。该参数可以通过调用 DescribeSecurityGroups 的返回值中的sgId字段来获取。若不指定该参数，则绑定默认安全组。
         public let securityGroupIds: [String]?
@@ -2106,7 +2106,7 @@ extension Tke {
         /// 重装系统时，可以指定修改实例的HostName(集群为HostName模式时，此参数必传，规则名称除不支持大写字符外与[CVM创建实例](https://cloud.tencent.com/document/product/213/15730)接口HostName一致)
         public let hostName: String?
         
-        public init (instanceIds: [String], instanceAdvancedSettings: InstanceAdvancedSettings, enhancedService: EnhancedService, loginSettings: LoginSettings, securityGroupIds: [String]?, hostName: String?) {
+        public init (instanceIds: [String], instanceAdvancedSettings: InstanceAdvancedSettings? = nil, enhancedService: EnhancedService? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, hostName: String? = nil) {
             self.instanceIds = instanceIds
             self.instanceAdvancedSettings = instanceAdvancedSettings
             self.enhancedService = enhancedService
@@ -2170,21 +2170,21 @@ extension Tke {
         public let migEnable: Bool?
         
         /// GPU驱动版本信息
-        public let driver: DriverVersion
+        public let driver: DriverVersion?
         
         /// CUDA版本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cuda: DriverVersion
+        public let cuda: DriverVersion?
         
         /// cuDNN版本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cudnn: CUDNN
+        public let cudnn: CUDNN?
         
         /// 自定义GPU驱动信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let customDriver: CustomDriver
+        public let customDriver: CustomDriver?
         
-        public init (migEnable: Bool?, driver: DriverVersion, cuda: DriverVersion, cudnn: CUDNN, customDriver: CustomDriver) {
+        public init (migEnable: Bool? = nil, driver: DriverVersion? = nil, cuda: DriverVersion? = nil, cudnn: CUDNN? = nil, customDriver: CustomDriver? = nil) {
             self.migEnable = migEnable
             self.driver = driver
             self.cuda = cuda
@@ -2205,15 +2205,15 @@ extension Tke {
     public struct HttpGet: TCInputModel, TCOutputModel {
         /// HttpGet检测的路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let path: String
+        public let path: String?
         
         /// HttpGet检测的端口号
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let port: Int64
+        public let port: Int64?
         
         /// HTTP or HTTPS
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let scheme: String
+        public let scheme: String?
         
         public init (path: String, port: Int64, scheme: String) {
             self.path = path
@@ -2374,7 +2374,7 @@ extension Tke {
         /// ImageRegistryCredential的名字
         public let name: String?
         
-        public init (server: String?, username: String?, password: String?, name: String?) {
+        public init (server: String? = nil, username: String? = nil, password: String? = nil, name: String? = nil) {
             self.server = server
             self.username = username
             self.password = password
@@ -2409,7 +2409,7 @@ extension Tke {
         
         /// 节点配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instanceAdvancedSettings: InstanceAdvancedSettings
+        public let instanceAdvancedSettings: InstanceAdvancedSettings?
         
         /// 添加时间
         public let createdTime: String
@@ -2468,7 +2468,7 @@ extension Tke {
         
         /// 节点相关的自定义参数信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let extraArgs: InstanceExtraArgs
+        public let extraArgs: InstanceExtraArgs?
         
         /// 该节点属于podCIDR大小自定义模式时，可指定节点上运行的pod数量上限
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2476,7 +2476,7 @@ extension Tke {
         
         /// GPU驱动相关参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let gpuArgs: GPUArgs
+        public let gpuArgs: GPUArgs?
         
         /// base64 编码的用户脚本，在初始化节点之前执行，目前只对添加已有节点生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2531,7 +2531,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kubelet: [String]?
         
-        public init (kubelet: [String]?) {
+        public init (kubelet: [String]? = nil) {
             self.kubelet = kubelet
         }
         
@@ -2664,21 +2664,21 @@ extension Tke {
     public struct LivenessOrReadinessProbe: TCInputModel, TCOutputModel {
         /// 探针参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let probe: Probe
+        public let probe: Probe?
         
         /// HttpGet检测参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let httpGet: HttpGet
+        public let httpGet: HttpGet?
         
         /// 容器内检测命令参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let exec: Exec
+        public let exec: Exec?
         
         /// TcpSocket检测的端口参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tcpSocket: TcpSocket
+        public let tcpSocket: TcpSocket?
         
-        public init (probe: Probe, httpGet: HttpGet, exec: Exec, tcpSocket: TcpSocket) {
+        public init (probe: Probe, httpGet: HttpGet? = nil, exec: Exec? = nil, tcpSocket: TcpSocket? = nil) {
             self.probe = probe
             self.httpGet = httpGet
             self.exec = exec
@@ -2707,7 +2707,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keepImageLogin: String?
         
-        public init (password: String?, keyIds: [String]?, keepImageLogin: String?) {
+        public init (password: String? = nil, keyIds: [String]? = nil, keepImageLogin: String? = nil) {
             self.password = password
             self.keyIds = keyIds
             self.keepImageLogin = keepImageLogin
@@ -2756,7 +2756,7 @@ extension Tke {
         /// 默认为 False
         public let readOnly: Bool?
         
-        public init (name: String, server: String, path: String, readOnly: Bool?) {
+        public init (name: String, server: String, path: String, readOnly: Bool? = nil) {
             self.name = name
             self.server = server
             self.path = path
@@ -2775,11 +2775,11 @@ extension Tke {
     public struct NodeCountSummary: TCOutputModel {
         /// 手动管理的节点
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let manuallyAdded: ManuallyAdded
+        public let manuallyAdded: ManuallyAdded?
         
         /// 自动管理的节点
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let autoscalingAdded: AutoscalingAdded
+        public let autoscalingAdded: AutoscalingAdded?
         
         enum CodingKeys: String, CodingKey {
             case manuallyAdded = "ManuallyAdded"
@@ -2895,7 +2895,7 @@ extension Tke {
         /// 是否继承节点池相关配置
         public let inheritConfigurationFromNodePool: Bool?
         
-        public init (addToNodePool: Bool?, nodePoolId: String?, inheritConfigurationFromNodePool: Bool?) {
+        public init (addToNodePool: Bool? = nil, nodePoolId: String? = nil, inheritConfigurationFromNodePool: Bool? = nil) {
             self.addToNodePool = addToNodePool
             self.nodePoolId = nodePoolId
             self.inheritConfigurationFromNodePool = inheritConfigurationFromNodePool
@@ -2922,7 +2922,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoInstallPodIdentityWebhookAddon: Bool?
         
-        public init (autoCreateOIDCConfig: Bool?, autoCreateClientId: [String]?, autoInstallPodIdentityWebhookAddon: Bool?) {
+        public init (autoCreateOIDCConfig: Bool? = nil, autoCreateClientId: [String]? = nil, autoInstallPodIdentityWebhookAddon: Bool? = nil) {
             self.autoCreateOIDCConfig = autoCreateOIDCConfig
             self.autoCreateClientId = autoCreateClientId
             self.autoInstallPodIdentityWebhookAddon = autoInstallPodIdentityWebhookAddon
@@ -3013,7 +3013,7 @@ extension Tke {
         
         /// 机型可支持的最大VPC-CNI模式Pod数量信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let podLimits: PodLimitsByType
+        public let podLimits: PodLimitsByType?
         
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
@@ -3046,7 +3046,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failureThreshold: Int64?
         
-        public init (initialDelaySeconds: Int64?, timeoutSeconds: Int64?, periodSeconds: Int64?, successThreshold: Int64?, failureThreshold: Int64?) {
+        public init (initialDelaySeconds: Int64? = nil, timeoutSeconds: Int64? = nil, periodSeconds: Int64? = nil, successThreshold: Int64? = nil, failureThreshold: Int64? = nil) {
             self.initialDelaySeconds = initialDelaySeconds
             self.timeoutSeconds = timeoutSeconds
             self.periodSeconds = periodSeconds
@@ -3074,7 +3074,7 @@ extension Tke {
         /// 备注
         public let describe: String?
         
-        public init (clusterType: String, clusterId: String, describe: String?) {
+        public init (clusterType: String, clusterId: String, describe: String? = nil) {
             self.clusterType = clusterType
             self.clusterId = clusterId
             self.describe = describe
@@ -3159,7 +3159,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topicName: String?
         
-        public init (ruleName: String, startTime: String, content: String, state: String?, ruleItem: String?, topicId: String?, topicName: String?) {
+        public init (ruleName: String, startTime: String, content: String, state: String? = nil, ruleItem: String? = nil, topicId: String? = nil, topicName: String? = nil) {
             self.ruleName = ruleName
             self.startTime = startTime
             self.content = content
@@ -3193,7 +3193,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
         
-        public init (url: String, clusterType: String?, clusterId: String?) {
+        public init (url: String, clusterType: String? = nil, clusterId: String? = nil) {
             self.url = url
             self.clusterType = clusterType
             self.clusterId = clusterId
@@ -3224,7 +3224,7 @@ extension Tke {
         
         /// 告警渠道，模板中使用可能返回null
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let notification: PrometheusNotificationItem
+        public let notification: PrometheusNotificationItem?
         
         /// 最后修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3234,7 +3234,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
         
-        public init (name: String, rules: [PrometheusAlertRule], id: String?, templateId: String?, notification: PrometheusNotificationItem, updatedAt: String?, clusterId: String?) {
+        public init (name: String, rules: [PrometheusAlertRule], id: String? = nil, templateId: String? = nil, notification: PrometheusNotificationItem? = nil, updatedAt: String? = nil, clusterId: String? = nil) {
             self.name = name
             self.rules = rules
             self.id = id
@@ -3284,7 +3284,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleState: Int64?
         
-        public init (name: String, rule: String, labels: [Label], template: String, `for`: String, describe: String?, annotations: [Label]?, ruleState: Int64?) {
+        public init (name: String, rule: String, labels: [Label], template: String, `for`: String, describe: String? = nil, annotations: [Label]? = nil, ruleState: Int64? = nil) {
             self.name = name
             self.rule = rule
             self.labels = labels
@@ -3319,7 +3319,7 @@ extension Tke {
         public let updatedAt: String?
         
         /// 告警渠道
-        public let notification: PrometheusNotification
+        public let notification: PrometheusNotification?
         
         /// 告警 id
         public let id: String?
@@ -3332,7 +3332,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let interval: String?
         
-        public init (name: String, rules: [PrometheusAlertRule], updatedAt: String?, notification: PrometheusNotification, id: String?, templateId: String?, interval: String?) {
+        public init (name: String, rules: [PrometheusAlertRule], updatedAt: String? = nil, notification: PrometheusNotification? = nil, id: String? = nil, templateId: String? = nil, interval: String? = nil) {
             self.name = name
             self.rules = rules
             self.updatedAt = updatedAt
@@ -3368,7 +3368,7 @@ extension Tke {
         public let enableExternal: Bool
         
         /// 集群内部署组件的pod配置
-        public let inClusterPodConfig: PrometheusClusterAgentPodConfig
+        public let inClusterPodConfig: PrometheusClusterAgentPodConfig?
         
         /// 该集群采集的所有指标都会带上这些labels
         public let externalLabels: [Label]?
@@ -3379,7 +3379,7 @@ extension Tke {
         /// 是否采集指标，true代表drop所有指标，false代表采集默认指标
         public let notScrape: Bool?
         
-        public init (region: String, clusterType: String, clusterId: String, enableExternal: Bool, inClusterPodConfig: PrometheusClusterAgentPodConfig, externalLabels: [Label]?, notInstallBasicScrape: Bool?, notScrape: Bool?) {
+        public init (region: String, clusterType: String, clusterId: String, enableExternal: Bool, inClusterPodConfig: PrometheusClusterAgentPodConfig? = nil, externalLabels: [Label]? = nil, notInstallBasicScrape: Bool? = nil, notScrape: Bool? = nil) {
             self.region = region
             self.clusterType = clusterType
             self.clusterId = clusterId
@@ -3413,7 +3413,7 @@ extension Tke {
         /// 容忍污点
         public let tolerations: [Toleration]?
         
-        public init (hostNet: Bool?, nodeSelector: [Label]?, tolerations: [Toleration]?) {
+        public init (hostNet: Bool? = nil, nodeSelector: [Label]? = nil, tolerations: [Toleration]? = nil) {
             self.hostNet = hostNet
             self.nodeSelector = nodeSelector
             self.tolerations = tolerations
@@ -3438,7 +3438,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templateId: String?
         
-        public init (name: String, config: String, templateId: String?) {
+        public init (name: String, config: String, templateId: String? = nil) {
             self.name = name
             self.config = config
             self.templateId = templateId
@@ -3680,7 +3680,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let webHook: String?
         
-        public init (enabled: Bool, repeatInterval: String, timeRangeStart: String, timeRangeEnd: String, notifyWay: [String]?, receiverGroups: [UInt64]?, phoneNotifyOrder: [UInt64]?, phoneCircleTimes: Int64?, phoneInnerInterval: Int64?, phoneCircleInterval: Int64?, phoneArriveNotice: Bool?, type: String?, webHook: String?) {
+        public init (enabled: Bool, repeatInterval: String, timeRangeStart: String, timeRangeEnd: String, notifyWay: [String]? = nil, receiverGroups: [UInt64]? = nil, phoneNotifyOrder: [UInt64]? = nil, phoneCircleTimes: Int64? = nil, phoneInnerInterval: Int64? = nil, phoneCircleInterval: Int64? = nil, phoneArriveNotice: Bool? = nil, type: String? = nil, webHook: String? = nil) {
             self.enabled = enabled
             self.repeatInterval = repeatInterval
             self.timeRangeStart = timeRangeStart
@@ -3730,7 +3730,7 @@ extension Tke {
         
         /// 如果Type为alertmanager, 则该字段为必填项
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let alertManager: PrometheusAlertManagerConfig
+        public let alertManager: PrometheusAlertManagerConfig?
         
         /// 收敛时间
         public let repeatInterval: String?
@@ -3774,7 +3774,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneArriveNotice: Bool?
         
-        public init (enabled: Bool, type: String, webHook: String?, alertManager: PrometheusAlertManagerConfig, repeatInterval: String?, timeRangeStart: String?, timeRangeEnd: String?, notifyWay: [String]?, receiverGroups: [String]?, phoneNotifyOrder: [UInt64]?, phoneCircleTimes: Int64?, phoneInnerInterval: Int64?, phoneCircleInterval: Int64?, phoneArriveNotice: Bool?) {
+        public init (enabled: Bool, type: String, webHook: String? = nil, alertManager: PrometheusAlertManagerConfig? = nil, repeatInterval: String? = nil, timeRangeStart: String? = nil, timeRangeEnd: String? = nil, notifyWay: [String]? = nil, receiverGroups: [String]? = nil, phoneNotifyOrder: [UInt64]? = nil, phoneCircleTimes: Int64? = nil, phoneInnerInterval: Int64? = nil, phoneCircleInterval: Int64? = nil, phoneArriveNotice: Bool? = nil) {
             self.enabled = enabled
             self.type = type
             self.webHook = webHook
@@ -3929,7 +3929,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetsTotal: Int64?
         
-        public init (name: String, level: String, describe: String?, recordRules: [PrometheusConfigItem]?, serviceMonitors: [PrometheusConfigItem]?, podMonitors: [PrometheusConfigItem]?, rawJobs: [PrometheusConfigItem]?, templateId: String?, updateTime: String?, version: String?, isDefault: Bool?, alertDetailRules: [PrometheusAlertPolicyItem]?, targetsTotal: Int64?) {
+        public init (name: String, level: String, describe: String? = nil, recordRules: [PrometheusConfigItem]? = nil, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, templateId: String? = nil, updateTime: String? = nil, version: String? = nil, isDefault: Bool? = nil, alertDetailRules: [PrometheusAlertPolicyItem]? = nil, targetsTotal: Int64? = nil) {
             self.name = name
             self.level = level
             self.describe = describe
@@ -3995,7 +3995,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertDetailRules: [PrometheusAlertPolicyItem]?
         
-        public init (name: String?, describe: String?, serviceMonitors: [PrometheusConfigItem]?, podMonitors: [PrometheusConfigItem]?, rawJobs: [PrometheusConfigItem]?, recordRules: [PrometheusConfigItem]?, alertDetailRules: [PrometheusAlertPolicyItem]?) {
+        public init (name: String? = nil, describe: String? = nil, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, recordRules: [PrometheusConfigItem]? = nil, alertDetailRules: [PrometheusAlertPolicyItem]? = nil) {
             self.name = name
             self.describe = describe
             self.serviceMonitors = serviceMonitors
@@ -4076,7 +4076,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertDetailRules: [PrometheusAlertRuleDetail]?
         
-        public init (name: String, level: String, describe: String?, alertRules: [PrometheusAlertRule]?, recordRules: [PrometheusConfigItem]?, serviceMonitors: [PrometheusConfigItem]?, podMonitors: [PrometheusConfigItem]?, rawJobs: [PrometheusConfigItem]?, templateId: String?, updateTime: String?, version: String?, isDefault: Bool?, alertDetailRules: [PrometheusAlertRuleDetail]?) {
+        public init (name: String, level: String, describe: String? = nil, alertRules: [PrometheusAlertRule]? = nil, recordRules: [PrometheusConfigItem]? = nil, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, templateId: String? = nil, updateTime: String? = nil, version: String? = nil, isDefault: Bool? = nil, alertDetailRules: [PrometheusAlertRuleDetail]? = nil) {
             self.name = name
             self.level = level
             self.describe = describe
@@ -4146,7 +4146,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertDetailRules: [PrometheusAlertRuleDetail]?
         
-        public init (name: String?, describe: String?, alertRules: [PrometheusAlertRule]?, recordRules: [PrometheusConfigItem]?, serviceMonitors: [PrometheusConfigItem]?, podMonitors: [PrometheusConfigItem]?, rawJobs: [PrometheusConfigItem]?, alertDetailRules: [PrometheusAlertRuleDetail]?) {
+        public init (name: String? = nil, describe: String? = nil, alertRules: [PrometheusAlertRule]? = nil, recordRules: [PrometheusConfigItem]? = nil, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, alertDetailRules: [PrometheusAlertRuleDetail]? = nil) {
             self.name = name
             self.describe = describe
             self.alertRules = alertRules
@@ -4201,7 +4201,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
         
-        public init (region: String, instanceId: String, clusterId: String?, syncTime: String?, version: String?, clusterType: String?, instanceName: String?, clusterName: String?) {
+        public init (region: String, instanceId: String, clusterId: String? = nil, syncTime: String? = nil, version: String? = nil, clusterType: String? = nil, instanceName: String? = nil, clusterName: String? = nil) {
             self.region = region
             self.instanceId = instanceId
             self.clusterId = clusterId
@@ -4568,7 +4568,7 @@ extension Tke {
         /// 是否开启云自动化助手。取值范围：<br><li>TRUE：表示开启云自动化助手服务<br><li>FALSE：表示不开启云自动化助手服务<br><br>默认取值：FALSE。
         public let enabled: Bool?
         
-        public init (enabled: Bool?) {
+        public init (enabled: Bool? = nil) {
             self.enabled = enabled
         }
         
@@ -4588,7 +4588,7 @@ extension Tke {
         /// 节点高级设置，该参数会覆盖集群级别设置的InstanceAdvancedSettings，和上边的RunInstancesPara按照顺序一一对应（当前只对节点自定义参数ExtraArgs生效）。
         public let instanceAdvancedSettingsOverrides: [InstanceAdvancedSettings]?
         
-        public init (nodeRole: String, runInstancesPara: [String], instanceAdvancedSettingsOverrides: [InstanceAdvancedSettings]?) {
+        public init (nodeRole: String, runInstancesPara: [String], instanceAdvancedSettingsOverrides: [InstanceAdvancedSettings]? = nil) {
             self.nodeRole = nodeRole
             self.runInstancesPara = runInstancesPara
             self.instanceAdvancedSettingsOverrides = instanceAdvancedSettingsOverrides
@@ -4606,7 +4606,7 @@ extension Tke {
         /// 是否开启[云监控](/document/product/248)服务。取值范围：<br><li>TRUE：表示开启云监控服务<br><li>FALSE：表示不开启云监控服务<br><br>默认取值：TRUE。
         public let enabled: Bool?
         
-        public init (enabled: Bool?) {
+        public init (enabled: Bool? = nil) {
             self.enabled = enabled
         }
         
@@ -4620,7 +4620,7 @@ extension Tke {
         /// 是否开启[云安全](/document/product/296)服务。取值范围：<br><li>TRUE：表示开启云安全服务<br><li>FALSE：表示不开启云安全服务<br><br>默认取值：TRUE。
         public let enabled: Bool?
         
-        public init (enabled: Bool?) {
+        public init (enabled: Bool? = nil) {
             self.enabled = enabled
         }
         
@@ -4657,9 +4657,9 @@ extension Tke {
     public struct SecurityContext: TCInputModel, TCOutputModel {
         /// 安全能力清单
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let capabilities: Capabilities
+        public let capabilities: Capabilities?
         
-        public init (capabilities: Capabilities) {
+        public init (capabilities: Capabilities? = nil) {
             self.capabilities = capabilities
         }
         
@@ -4682,7 +4682,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoCreateDiscoveryAnonymousAuth: Bool?
         
-        public init (issuer: String?, jwksuri: String?, autoCreateDiscoveryAnonymousAuth: Bool?) {
+        public init (issuer: String? = nil, jwksuri: String? = nil, autoCreateDiscoveryAnonymousAuth: Bool? = nil) {
             self.issuer = issuer
             self.jwksuri = jwksuri
             self.autoCreateDiscoveryAnonymousAuth = autoCreateDiscoveryAnonymousAuth
@@ -4712,7 +4712,7 @@ extension Tke {
         /// 硬件架构
         public let arch: String?
         
-        public init (subnetId: String, name: String, securityGroups: [String]?, os: String?, arch: String?) {
+        public init (subnetId: String, name: String, securityGroups: [String]? = nil, os: String? = nil, arch: String? = nil) {
             self.subnetId = subnetId
             self.name = name
             self.securityGroups = securityGroups
@@ -4737,7 +4737,7 @@ extension Tke {
         /// 标签值
         public let value: String?
         
-        public init (key: String?, value: String?) {
+        public init (key: String? = nil, value: String? = nil) {
             self.key = key
             self.value = value
         }
@@ -4758,7 +4758,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
         
-        public init (resourceType: String?, tags: [Tag]?) {
+        public init (resourceType: String? = nil, tags: [Tag]? = nil) {
             self.resourceType = resourceType
             self.tags = tags
         }
@@ -4780,7 +4780,7 @@ extension Tke {
         /// Effect
         public let effect: String?
         
-        public init (key: String?, value: String?, effect: String?) {
+        public init (key: String? = nil, value: String? = nil, effect: String? = nil) {
             self.key = key
             self.value = value
             self.effect = effect
@@ -4832,7 +4832,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: UInt64?
         
-        public init (port: UInt64?) {
+        public init (port: UInt64? = nil) {
             self.port = port
         }
         
@@ -4852,7 +4852,7 @@ extension Tke {
         /// 要匹配的污点效果
         public let effect: String?
         
-        public init (key: String?, `operator`: String?, effect: String?) {
+        public init (key: String? = nil, `operator`: String? = nil, effect: String? = nil) {
             self.key = key
             self.`operator` = `operator`
             self.effect = effect
@@ -4887,18 +4887,18 @@ extension Tke {
     /// 节点升级重装参数
     public struct UpgradeNodeResetParam: TCInputModel {
         /// 实例额外需要设置参数信息
-        public let instanceAdvancedSettings: InstanceAdvancedSettings
+        public let instanceAdvancedSettings: InstanceAdvancedSettings?
         
         /// 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
-        public let enhancedService: EnhancedService
+        public let enhancedService: EnhancedService?
         
         /// 节点登录信息（目前仅支持使用Password或者单个KeyIds）
-        public let loginSettings: LoginSettings
+        public let loginSettings: LoginSettings?
         
         /// 实例所属安全组。该参数可以通过调用 DescribeSecurityGroups 的返回值中的sgId字段来获取。若不指定该参数，则绑定默认安全组。（目前仅支持设置单个sgId）
         public let securityGroupIds: [String]?
         
-        public init (instanceAdvancedSettings: InstanceAdvancedSettings, enhancedService: EnhancedService, loginSettings: LoginSettings, securityGroupIds: [String]?) {
+        public init (instanceAdvancedSettings: InstanceAdvancedSettings? = nil, enhancedService: EnhancedService? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil) {
             self.instanceAdvancedSettings = instanceAdvancedSettings
             self.enhancedService = enhancedService
             self.loginSettings = loginSettings
@@ -4938,11 +4938,11 @@ extension Tke {
     public struct VolumeMount: TCInputModel, TCOutputModel {
         /// volume名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let name: String
+        public let name: String?
         
         /// 挂载路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mountPath: String
+        public let mountPath: String?
         
         /// 是否只读
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4960,7 +4960,7 @@ extension Tke {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subPathExpr: String?
         
-        public init (name: String, mountPath: String, readOnly: Bool?, subPath: String?, mountPropagation: String?, subPathExpr: String?) {
+        public init (name: String, mountPath: String, readOnly: Bool? = nil, subPath: String? = nil, mountPropagation: String? = nil, subPathExpr: String? = nil) {
             self.name = name
             self.mountPath = mountPath
             self.readOnly = readOnly

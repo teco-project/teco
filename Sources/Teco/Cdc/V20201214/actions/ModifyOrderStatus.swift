@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 修改订单状态
-    ///
-    /// 修改大订单、小订单的状态
-    @inlinable
-    public func modifyOrderStatus(_ input: ModifyOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyOrderStatusResponse > {
-        self.client.execute(action: "ModifyOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改订单状态
-    ///
-    /// 修改大订单、小订单的状态
-    @inlinable
-    public func modifyOrderStatus(_ input: ModifyOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrderStatusResponse {
-        try await self.client.execute(action: "ModifyOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyOrderStatus请求参数结构体
     public struct ModifyOrderStatusRequest: TCRequestModel {
         /// 要更新成的状态
@@ -42,7 +26,7 @@ extension Cdc {
         /// 小订单ID
         public let subOrderIds: [String]?
         
-        public init (status: String, dedicatedClusterOrderId: String?, subOrderIds: [String]?) {
+        public init (status: String, dedicatedClusterOrderId: String? = nil, subOrderIds: [String]? = nil) {
             self.status = status
             self.dedicatedClusterOrderId = dedicatedClusterOrderId
             self.subOrderIds = subOrderIds
@@ -63,5 +47,21 @@ extension Cdc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改订单状态
+    ///
+    /// 修改大订单、小订单的状态
+    @inlinable
+    public func modifyOrderStatus(_ input: ModifyOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyOrderStatusResponse > {
+        self.client.execute(action: "ModifyOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改订单状态
+    ///
+    /// 修改大订单、小订单的状态
+    @inlinable
+    public func modifyOrderStatus(_ input: ModifyOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrderStatusResponse {
+        try await self.client.execute(action: "ModifyOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

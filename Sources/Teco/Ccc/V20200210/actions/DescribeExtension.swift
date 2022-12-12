@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 获取话机信息
-    @inlinable
-    public func describeExtension(_ input: DescribeExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtensionResponse > {
-        self.client.execute(action: "DescribeExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取话机信息
-    @inlinable
-    public func describeExtension(_ input: DescribeExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionResponse {
-        try await self.client.execute(action: "DescribeExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExtension请求参数结构体
     public struct DescribeExtensionRequest: TCRequestModel {
         /// TCCC 实例应用 ID
@@ -74,5 +62,17 @@ extension Ccc {
             case transport = "Transport"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取话机信息
+    @inlinable
+    public func describeExtension(_ input: DescribeExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtensionResponse > {
+        self.client.execute(action: "DescribeExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取话机信息
+    @inlinable
+    public func describeExtension(_ input: DescribeExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionResponse {
+        try await self.client.execute(action: "DescribeExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

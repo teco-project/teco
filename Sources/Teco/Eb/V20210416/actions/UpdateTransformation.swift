@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 更新转换器
-    ///
-    /// 用于更新转换器
-    @inlinable
-    public func updateTransformation(_ input: UpdateTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTransformationResponse > {
-        self.client.execute(action: "UpdateTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新转换器
-    ///
-    /// 用于更新转换器
-    @inlinable
-    public func updateTransformation(_ input: UpdateTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTransformationResponse {
-        try await self.client.execute(action: "UpdateTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateTransformation请求参数结构体
     public struct UpdateTransformationRequest: TCRequestModel {
         /// 事件集ID
@@ -68,5 +52,21 @@ extension Eb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新转换器
+    ///
+    /// 用于更新转换器
+    @inlinable
+    public func updateTransformation(_ input: UpdateTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTransformationResponse > {
+        self.client.execute(action: "UpdateTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新转换器
+    ///
+    /// 用于更新转换器
+    @inlinable
+    public func updateTransformation(_ input: UpdateTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTransformationResponse {
+        try await self.client.execute(action: "UpdateTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

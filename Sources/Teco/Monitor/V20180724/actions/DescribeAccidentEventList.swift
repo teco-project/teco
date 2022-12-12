@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 获取平台事件列表
-    @inlinable
-    public func describeAccidentEventList(_ input: DescribeAccidentEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccidentEventListResponse > {
-        self.client.execute(action: "DescribeAccidentEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取平台事件列表
-    @inlinable
-    public func describeAccidentEventList(_ input: DescribeAccidentEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccidentEventListResponse {
-        try await self.client.execute(action: "DescribeAccidentEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccidentEventList请求参数结构体
     public struct DescribeAccidentEventListRequest: TCRequestModel {
         /// 接口模块名，当前接口取值monitor
@@ -65,7 +53,7 @@ extension Monitor {
         /// 根据影响资源过滤，比如ins-19a06bka
         public let affectResource: String?
         
-        public init (module: String, startTime: Int64?, endTime: Int64?, limit: Int64?, offset: Int64?, updateTimeOrder: String?, occurTimeOrder: String?, accidentType: [Int64]?, accidentEvent: [Int64]?, accidentStatus: [Int64]?, accidentRegion: [String]?, affectResource: String?) {
+        public init (module: String, startTime: Int64? = nil, endTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, updateTimeOrder: String? = nil, occurTimeOrder: String? = nil, accidentType: [Int64]? = nil, accidentEvent: [Int64]? = nil, accidentStatus: [Int64]? = nil, accidentRegion: [String]? = nil, affectResource: String? = nil) {
             self.module = module
             self.startTime = startTime
             self.endTime = endTime
@@ -114,5 +102,17 @@ extension Monitor {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取平台事件列表
+    @inlinable
+    public func describeAccidentEventList(_ input: DescribeAccidentEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccidentEventListResponse > {
+        self.client.execute(action: "DescribeAccidentEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取平台事件列表
+    @inlinable
+    public func describeAccidentEventList(_ input: DescribeAccidentEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccidentEventListResponse {
+        try await self.client.execute(action: "DescribeAccidentEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

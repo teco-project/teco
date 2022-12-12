@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 提交图像分析任务
-    @inlinable
-    public func submitImageTask(_ input: SubmitImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitImageTaskResponse > {
-        self.client.execute(action: "SubmitImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交图像分析任务
-    @inlinable
-    public func submitImageTask(_ input: SubmitImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitImageTaskResponse {
-        try await self.client.execute(action: "SubmitImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SubmitImageTask请求参数结构体
     public struct SubmitImageTaskRequest: TCRequestModel {
         /// 输入分析对象内容，输入数据格式参考FileType参数释义
@@ -36,7 +24,7 @@ extension Tci {
         public let fileType: String
         
         /// 任务控制选项
-        public let functions: ImageTaskFunction
+        public let functions: ImageTaskFunction?
         
         /// 光照标准列表
         public let lightStandardSet: [LightStandard]?
@@ -56,7 +44,7 @@ extension Tci {
         /// 人脸识别中的相似度阈值，默认值为0.89，保留字段，当前不支持填写。
         public let simThreshold: Float?
         
-        public init (fileContent: String, fileType: String, functions: ImageTaskFunction, lightStandardSet: [LightStandard]?, eventsCallBack: String?, frameInterval: Int64?, librarySet: [String]?, maxVideoDuration: Int64?, simThreshold: Float?) {
+        public init (fileContent: String, fileType: String, functions: ImageTaskFunction? = nil, lightStandardSet: [LightStandard]? = nil, eventsCallBack: String? = nil, frameInterval: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil) {
             self.fileContent = fileContent
             self.fileType = fileType
             self.functions = functions
@@ -105,5 +93,17 @@ extension Tci {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交图像分析任务
+    @inlinable
+    public func submitImageTask(_ input: SubmitImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitImageTaskResponse > {
+        self.client.execute(action: "SubmitImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交图像分析任务
+    @inlinable
+    public func submitImageTask(_ input: SubmitImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitImageTaskResponse {
+        try await self.client.execute(action: "SubmitImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

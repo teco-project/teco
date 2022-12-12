@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 镜像仓库仓库列表
-    @inlinable
-    public func describeAssetImageRegistryRegistryList(_ input: DescribeAssetImageRegistryRegistryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryRegistryListResponse > {
-        self.client.execute(action: "DescribeAssetImageRegistryRegistryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 镜像仓库仓库列表
-    @inlinable
-    public func describeAssetImageRegistryRegistryList(_ input: DescribeAssetImageRegistryRegistryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryRegistryListResponse {
-        try await self.client.execute(action: "DescribeAssetImageRegistryRegistryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageRegistryRegistryList请求参数结构体
     public struct DescribeAssetImageRegistryRegistryListRequest: TCRequestModel {
         public init () {
@@ -41,5 +29,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 镜像仓库仓库列表
+    @inlinable
+    public func describeAssetImageRegistryRegistryList(_ input: DescribeAssetImageRegistryRegistryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryRegistryListResponse > {
+        self.client.execute(action: "DescribeAssetImageRegistryRegistryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库仓库列表
+    @inlinable
+    public func describeAssetImageRegistryRegistryList(_ input: DescribeAssetImageRegistryRegistryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryRegistryListResponse {
+        try await self.client.execute(action: "DescribeAssetImageRegistryRegistryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

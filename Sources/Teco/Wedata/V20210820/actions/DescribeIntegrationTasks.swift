@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询集成任务列表
-    @inlinable
-    public func describeIntegrationTasks(_ input: DescribeIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationTasksResponse > {
-        self.client.execute(action: "DescribeIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集成任务列表
-    @inlinable
-    public func describeIntegrationTasks(_ input: DescribeIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationTasksResponse {
-        try await self.client.execute(action: "DescribeIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIntegrationTasks请求参数结构体
     public struct DescribeIntegrationTasksRequest: TCRequestModel {
         /// 项目id
@@ -53,7 +41,7 @@ extension Wedata {
         /// 201. stream, 202. offline 默认实时
         public let taskType: UInt64?
         
-        public init (projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]?, orderFields: [OrderField]?, startTime: String?, endTime: String?, taskType: UInt64?) {
+        public init (projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, startTime: String? = nil, endTime: String? = nil, taskType: UInt64? = nil) {
             self.projectId = projectId
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -89,5 +77,17 @@ extension Wedata {
             case taskInfoSet = "TaskInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集成任务列表
+    @inlinable
+    public func describeIntegrationTasks(_ input: DescribeIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationTasksResponse > {
+        self.client.execute(action: "DescribeIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集成任务列表
+    @inlinable
+    public func describeIntegrationTasks(_ input: DescribeIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationTasksResponse {
+        try await self.client.execute(action: "DescribeIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

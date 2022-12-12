@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 开通容器安全服务试用
-    @inlinable
-    public func openTcssTrial(_ input: OpenTcssTrialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenTcssTrialResponse > {
-        self.client.execute(action: "OpenTcssTrial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开通容器安全服务试用
-    @inlinable
-    public func openTcssTrial(_ input: OpenTcssTrialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenTcssTrialResponse {
-        try await self.client.execute(action: "OpenTcssTrial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OpenTcssTrial请求参数结构体
     public struct OpenTcssTrialRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Tcss {
             case startTime = "StartTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开通容器安全服务试用
+    @inlinable
+    public func openTcssTrial(_ input: OpenTcssTrialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenTcssTrialResponse > {
+        self.client.execute(action: "OpenTcssTrial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开通容器安全服务试用
+    @inlinable
+    public func openTcssTrial(_ input: OpenTcssTrialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenTcssTrialResponse {
+        try await self.client.execute(action: "OpenTcssTrial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

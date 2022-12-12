@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Msp {
-    /// 取消注册迁移任务
-    @inlinable
-    public func deregisterMigrationTask(_ input: DeregisterMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeregisterMigrationTaskResponse > {
-        self.client.execute(action: "DeregisterMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消注册迁移任务
-    @inlinable
-    public func deregisterMigrationTask(_ input: DeregisterMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterMigrationTaskResponse {
-        try await self.client.execute(action: "DeregisterMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeregisterMigrationTask请求参数结构体
     public struct DeregisterMigrationTaskRequest: TCRequestModel {
         /// 任务ID
@@ -49,5 +37,17 @@ extension Msp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消注册迁移任务
+    @inlinable
+    public func deregisterMigrationTask(_ input: DeregisterMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeregisterMigrationTaskResponse > {
+        self.client.execute(action: "DeregisterMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消注册迁移任务
+    @inlinable
+    public func deregisterMigrationTask(_ input: DeregisterMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterMigrationTaskResponse {
+        try await self.client.execute(action: "DeregisterMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

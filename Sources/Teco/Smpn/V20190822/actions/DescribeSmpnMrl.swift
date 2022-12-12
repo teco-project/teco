@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Smpn {
-    /// 恶意标记等级
-    ///
-    /// 查询号码恶意标记等级
-    @inlinable
-    public func describeSmpnMrl(_ input: DescribeSmpnMrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmpnMrlResponse > {
-        self.client.execute(action: "DescribeSmpnMrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 恶意标记等级
-    ///
-    /// 查询号码恶意标记等级
-    @inlinable
-    public func describeSmpnMrl(_ input: DescribeSmpnMrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnMrlResponse {
-        try await self.client.execute(action: "DescribeSmpnMrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSmpnMrl请求参数结构体
     public struct DescribeSmpnMrlRequest: TCRequestModel {
         /// 恶意标记等级请求内容
@@ -62,5 +46,21 @@ extension Smpn {
             case responseData = "ResponseData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 恶意标记等级
+    ///
+    /// 查询号码恶意标记等级
+    @inlinable
+    public func describeSmpnMrl(_ input: DescribeSmpnMrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmpnMrlResponse > {
+        self.client.execute(action: "DescribeSmpnMrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 恶意标记等级
+    ///
+    /// 查询号码恶意标记等级
+    @inlinable
+    public func describeSmpnMrl(_ input: DescribeSmpnMrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnMrlResponse {
+        try await self.client.execute(action: "DescribeSmpnMrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

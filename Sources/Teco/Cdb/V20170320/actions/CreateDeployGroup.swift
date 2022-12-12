@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 创建置放群组
-    ///
-    /// 本接口(CreateDeployGroup)用于创建放置实例的置放群组
-    @inlinable
-    public func createDeployGroup(_ input: CreateDeployGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeployGroupResponse > {
-        self.client.execute(action: "CreateDeployGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建置放群组
-    ///
-    /// 本接口(CreateDeployGroup)用于创建放置实例的置放群组
-    @inlinable
-    public func createDeployGroup(_ input: CreateDeployGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeployGroupResponse {
-        try await self.client.execute(action: "CreateDeployGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDeployGroup请求参数结构体
     public struct CreateDeployGroupRequest: TCRequestModel {
         /// 置放群组名称，最长不能超过60个字符。
@@ -48,7 +32,7 @@ extension Cdb {
         /// 置放群组机型属性，可选参数：SH12+SH02、TS85。
         public let devClass: [String]?
         
-        public init (deployGroupName: String, description: String?, affinity: [Int64]?, limitNum: Int64?, devClass: [String]?) {
+        public init (deployGroupName: String, description: String? = nil, affinity: [Int64]? = nil, limitNum: Int64? = nil, devClass: [String]? = nil) {
             self.deployGroupName = deployGroupName
             self.description = description
             self.affinity = affinity
@@ -77,5 +61,21 @@ extension Cdb {
             case deployGroupId = "DeployGroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建置放群组
+    ///
+    /// 本接口(CreateDeployGroup)用于创建放置实例的置放群组
+    @inlinable
+    public func createDeployGroup(_ input: CreateDeployGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeployGroupResponse > {
+        self.client.execute(action: "CreateDeployGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建置放群组
+    ///
+    /// 本接口(CreateDeployGroup)用于创建放置实例的置放群组
+    @inlinable
+    public func createDeployGroup(_ input: CreateDeployGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeployGroupResponse {
+        try await self.client.execute(action: "CreateDeployGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

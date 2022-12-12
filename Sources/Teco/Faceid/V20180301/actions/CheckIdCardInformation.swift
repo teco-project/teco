@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 身份证人像照片验真
-    ///
-    /// 传入身份证人像面照片，识别身份证照片上的信息，并将姓名、身份证号、身份证人像照片与权威库的证件照进行比对，是否属于同一个人，从而验证身份证信息的真实性。
-    @inlinable
-    public func checkIdCardInformation(_ input: CheckIdCardInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIdCardInformationResponse > {
-        self.client.execute(action: "CheckIdCardInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 身份证人像照片验真
-    ///
-    /// 传入身份证人像面照片，识别身份证照片上的信息，并将姓名、身份证号、身份证人像照片与权威库的证件照进行比对，是否属于同一个人，从而验证身份证信息的真实性。
-    @inlinable
-    public func checkIdCardInformation(_ input: CheckIdCardInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdCardInformationResponse {
-        try await self.client.execute(action: "CheckIdCardInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckIdCardInformation请求参数结构体
     public struct CheckIdCardInformationRequest: TCRequestModel {
         /// 身份证人像面的 Base64 值
@@ -64,7 +48,7 @@ extension Faceid {
         /// 其中敏感信息包括：Response.IdNum、Response.Name
         public let isEncrypt: Bool?
         
-        public init (imageBase64: String?, imageUrl: String?, config: String?, isEncrypt: Bool?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, config: String? = nil, isEncrypt: Bool? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.config = config
@@ -127,7 +111,7 @@ extension Faceid {
         
         /// 敏感数据加密信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let encryption: Encryption
+        public let encryption: Encryption?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -148,5 +132,21 @@ extension Faceid {
             case encryption = "Encryption"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 身份证人像照片验真
+    ///
+    /// 传入身份证人像面照片，识别身份证照片上的信息，并将姓名、身份证号、身份证人像照片与权威库的证件照进行比对，是否属于同一个人，从而验证身份证信息的真实性。
+    @inlinable
+    public func checkIdCardInformation(_ input: CheckIdCardInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIdCardInformationResponse > {
+        self.client.execute(action: "CheckIdCardInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 身份证人像照片验真
+    ///
+    /// 传入身份证人像面照片，识别身份证照片上的信息，并将姓名、身份证号、身份证人像照片与权威库的证件照进行比对，是否属于同一个人，从而验证身份证信息的真实性。
+    @inlinable
+    public func checkIdCardInformation(_ input: CheckIdCardInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdCardInformationResponse {
+        try await self.client.execute(action: "CheckIdCardInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

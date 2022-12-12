@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cms {
-    /// 新增图片样本库
-    ///
-    /// 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。
-    /// <br>
-    /// 通过该接口可以将图片新增到样本库。
-    @inlinable
-    public func createFileSample(_ input: CreateFileSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileSampleResponse > {
-        self.client.execute(action: "CreateFileSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增图片样本库
-    ///
-    /// 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。
-    /// <br>
-    /// 通过该接口可以将图片新增到样本库。
-    @inlinable
-    public func createFileSample(_ input: CreateFileSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSampleResponse {
-        try await self.client.execute(action: "CreateFileSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFileSample请求参数结构体
     public struct CreateFileSampleRequest: TCRequestModel {
         /// 文件类型结构数组
@@ -87,5 +67,25 @@ extension Cms {
             case progress = "Progress"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增图片样本库
+    ///
+    /// 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。
+    /// <br>
+    /// 通过该接口可以将图片新增到样本库。
+    @inlinable
+    public func createFileSample(_ input: CreateFileSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileSampleResponse > {
+        self.client.execute(action: "CreateFileSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增图片样本库
+    ///
+    /// 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。
+    /// <br>
+    /// 通过该接口可以将图片新增到样本库。
+    @inlinable
+    public func createFileSample(_ input: CreateFileSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSampleResponse {
+        try await self.client.execute(action: "CreateFileSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

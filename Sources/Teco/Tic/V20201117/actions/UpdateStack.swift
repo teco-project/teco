@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tic {
-    /// 更新资源栈
-    ///
-    /// 本接口（UpdateStack）用于更新资源栈的名称和描述。
-    @inlinable
-    public func updateStack(_ input: UpdateStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateStackResponse > {
-        self.client.execute(action: "UpdateStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新资源栈
-    ///
-    /// 本接口（UpdateStack）用于更新资源栈的名称和描述。
-    @inlinable
-    public func updateStack(_ input: UpdateStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackResponse {
-        try await self.client.execute(action: "UpdateStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateStack请求参数结构体
     public struct UpdateStackRequest: TCRequestModel {
         /// 待更新的资源栈ID
@@ -42,7 +26,7 @@ extension Tic {
         /// 资源栈描述，不得超过200个字符
         public let description: String?
         
-        public init (stackId: String, stackName: String?, description: String?) {
+        public init (stackId: String, stackName: String? = nil, description: String? = nil) {
             self.stackId = stackId
             self.stackName = stackName
             self.description = description
@@ -63,5 +47,21 @@ extension Tic {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新资源栈
+    ///
+    /// 本接口（UpdateStack）用于更新资源栈的名称和描述。
+    @inlinable
+    public func updateStack(_ input: UpdateStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateStackResponse > {
+        self.client.execute(action: "UpdateStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新资源栈
+    ///
+    /// 本接口（UpdateStack）用于更新资源栈的名称和描述。
+    @inlinable
+    public func updateStack(_ input: UpdateStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackResponse {
+        try await self.client.execute(action: "UpdateStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

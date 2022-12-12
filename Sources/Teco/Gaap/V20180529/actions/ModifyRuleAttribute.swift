@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 修改转发规则信息
-    ///
-    /// 本接口（ModifyRuleAttribute）用于修改转发规则的信息，包括健康检查的配置以及转发策略。
-    @inlinable
-    public func modifyRuleAttribute(_ input: ModifyRuleAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRuleAttributeResponse > {
-        self.client.execute(action: "ModifyRuleAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改转发规则信息
-    ///
-    /// 本接口（ModifyRuleAttribute）用于修改转发规则的信息，包括健康检查的配置以及转发策略。
-    @inlinable
-    public func modifyRuleAttribute(_ input: ModifyRuleAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleAttributeResponse {
-        try await self.client.execute(action: "ModifyRuleAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRuleAttribute请求参数结构体
     public struct ModifyRuleAttributeRequest: TCRequestModel {
         /// 监听器ID
@@ -48,7 +32,7 @@ extension Gaap {
         public let healthCheck: UInt64?
         
         /// 健康检查配置参数
-        public let checkParams: RuleCheckParams
+        public let checkParams: RuleCheckParams?
         
         /// 转发规则路径
         public let path: String?
@@ -70,7 +54,7 @@ extension Gaap {
         /// HTTP强制跳转HTTPS。输入当前规则对应的域名与地址。
         public let forcedRedirect: String?
         
-        public init (listenerId: String, ruleId: String, scheduler: String?, healthCheck: UInt64?, checkParams: RuleCheckParams, path: String?, forwardProtocol: String?, forwardHost: String?, serverNameIndicationSwitch: String?, serverNameIndication: String?, forcedRedirect: String?) {
+        public init (listenerId: String, ruleId: String, scheduler: String? = nil, healthCheck: UInt64? = nil, checkParams: RuleCheckParams? = nil, path: String? = nil, forwardProtocol: String? = nil, forwardHost: String? = nil, serverNameIndicationSwitch: String? = nil, serverNameIndication: String? = nil, forcedRedirect: String? = nil) {
             self.listenerId = listenerId
             self.ruleId = ruleId
             self.scheduler = scheduler
@@ -107,5 +91,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改转发规则信息
+    ///
+    /// 本接口（ModifyRuleAttribute）用于修改转发规则的信息，包括健康检查的配置以及转发策略。
+    @inlinable
+    public func modifyRuleAttribute(_ input: ModifyRuleAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRuleAttributeResponse > {
+        self.client.execute(action: "ModifyRuleAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改转发规则信息
+    ///
+    /// 本接口（ModifyRuleAttribute）用于修改转发规则的信息，包括健康检查的配置以及转发策略。
+    @inlinable
+    public func modifyRuleAttribute(_ input: ModifyRuleAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleAttributeResponse {
+        try await self.client.execute(action: "ModifyRuleAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

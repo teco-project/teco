@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 撤回已发布的配置
-    @inlinable
-    public func revocationConfig(_ input: RevocationConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevocationConfigResponse > {
-        self.client.execute(action: "RevocationConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 撤回已发布的配置
-    @inlinable
-    public func revocationConfig(_ input: RevocationConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevocationConfigResponse {
-        try await self.client.execute(action: "RevocationConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RevocationConfig请求参数结构体
     public struct RevocationConfigRequest: TCRequestModel {
         /// 配置项发布ID
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 撤回已发布的配置
+    @inlinable
+    public func revocationConfig(_ input: RevocationConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevocationConfigResponse > {
+        self.client.execute(action: "RevocationConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 撤回已发布的配置
+    @inlinable
+    public func revocationConfig(_ input: RevocationConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevocationConfigResponse {
+        try await self.client.execute(action: "RevocationConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

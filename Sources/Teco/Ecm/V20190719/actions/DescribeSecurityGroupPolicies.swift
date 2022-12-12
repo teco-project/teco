@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 查询安全组规则
-    @inlinable
-    public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupPoliciesResponse > {
-        self.client.execute(action: "DescribeSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全组规则
-    @inlinable
-    public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupPoliciesResponse {
-        try await self.client.execute(action: "DescribeSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityGroupPolicies请求参数结构体
     public struct DescribeSecurityGroupPoliciesRequest: TCRequestModel {
         /// 安全组实例ID，例如：esg-33ocnj9n，可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/1108/47697)获取。
@@ -53,5 +41,17 @@ extension Ecm {
             case securityGroupPolicySet = "SecurityGroupPolicySet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全组规则
+    @inlinable
+    public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupPoliciesResponse > {
+        self.client.execute(action: "DescribeSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全组规则
+    @inlinable
+    public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupPoliciesResponse {
+        try await self.client.execute(action: "DescribeSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

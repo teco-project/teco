@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ump {
-    /// 服务器监控信息上报
-    ///
-    /// 上报所有服务器硬件监控信息
-    @inlinable
-    public func createServerState(_ input: CreateServerStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServerStateResponse > {
-        self.client.execute(action: "CreateServerState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 服务器监控信息上报
-    ///
-    /// 上报所有服务器硬件监控信息
-    @inlinable
-    public func createServerState(_ input: CreateServerStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServerStateResponse {
-        try await self.client.execute(action: "CreateServerState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateServerState请求参数结构体
     public struct CreateServerStateRequest: TCRequestModel {
         /// 集团编码
@@ -45,7 +29,7 @@ extension Ump {
         /// 服务器监控信息上报时间戳，单位毫秒
         public let reportTime: UInt64?
         
-        public init (groupCode: String, serverStateItems: [ServerStateItem], mallId: UInt64?, reportTime: UInt64?) {
+        public init (groupCode: String, serverStateItems: [ServerStateItem], mallId: UInt64? = nil, reportTime: UInt64? = nil) {
             self.groupCode = groupCode
             self.serverStateItems = serverStateItems
             self.mallId = mallId
@@ -68,5 +52,21 @@ extension Ump {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 服务器监控信息上报
+    ///
+    /// 上报所有服务器硬件监控信息
+    @inlinable
+    public func createServerState(_ input: CreateServerStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServerStateResponse > {
+        self.client.execute(action: "CreateServerState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 服务器监控信息上报
+    ///
+    /// 上报所有服务器硬件监控信息
+    @inlinable
+    public func createServerState(_ input: CreateServerStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServerStateResponse {
+        try await self.client.execute(action: "CreateServerState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

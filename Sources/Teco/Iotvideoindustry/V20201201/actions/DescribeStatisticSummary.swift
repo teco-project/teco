@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 查询统计指标概览数据
-    ///
-    /// 本接口(DescribeStatisticSummary)用于查询用户昨日的概览数据。
-    @inlinable
-    public func describeStatisticSummary(_ input: DescribeStatisticSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatisticSummaryResponse > {
-        self.client.execute(action: "DescribeStatisticSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询统计指标概览数据
-    ///
-    /// 本接口(DescribeStatisticSummary)用于查询用户昨日的概览数据。
-    @inlinable
-    public func describeStatisticSummary(_ input: DescribeStatisticSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticSummaryResponse {
-        try await self.client.execute(action: "DescribeStatisticSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStatisticSummary请求参数结构体
     public struct DescribeStatisticSummaryRequest: TCRequestModel {
         /// 指定日期。格式【YYYY-MM-DD】
@@ -88,5 +72,21 @@ extension Iotvideoindustry {
             case livePushTotal = "LivePushTotal"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询统计指标概览数据
+    ///
+    /// 本接口(DescribeStatisticSummary)用于查询用户昨日的概览数据。
+    @inlinable
+    public func describeStatisticSummary(_ input: DescribeStatisticSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatisticSummaryResponse > {
+        self.client.execute(action: "DescribeStatisticSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询统计指标概览数据
+    ///
+    /// 本接口(DescribeStatisticSummary)用于查询用户昨日的概览数据。
+    @inlinable
+    public func describeStatisticSummary(_ input: DescribeStatisticSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticSummaryResponse {
+        try await self.client.execute(action: "DescribeStatisticSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

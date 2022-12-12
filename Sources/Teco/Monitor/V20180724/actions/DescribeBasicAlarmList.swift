@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 获取基础告警列表
-    @inlinable
-    public func describeBasicAlarmList(_ input: DescribeBasicAlarmListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicAlarmListResponse > {
-        self.client.execute(action: "DescribeBasicAlarmList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取基础告警列表
-    @inlinable
-    public func describeBasicAlarmList(_ input: DescribeBasicAlarmListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicAlarmListResponse {
-        try await self.client.execute(action: "DescribeBasicAlarmList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBasicAlarmList请求参数结构体
     public struct DescribeBasicAlarmListRequest: TCRequestModel {
         /// 接口模块名，当前取值monitor
@@ -65,7 +53,7 @@ extension Monitor {
         /// 根据指标名过滤
         public let metricNames: [String]?
         
-        public init (module: String, startTime: Int64?, endTime: Int64?, limit: Int64?, offset: Int64?, occurTimeOrder: String?, projectIds: [Int64]?, viewNames: [String]?, alarmStatus: [Int64]?, objLike: String?, instanceGroupIds: [Int64]?, metricNames: [String]?) {
+        public init (module: String, startTime: Int64? = nil, endTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, occurTimeOrder: String? = nil, projectIds: [Int64]? = nil, viewNames: [String]? = nil, alarmStatus: [Int64]? = nil, objLike: String? = nil, instanceGroupIds: [Int64]? = nil, metricNames: [String]? = nil) {
             self.module = module
             self.startTime = startTime
             self.endTime = endTime
@@ -119,5 +107,17 @@ extension Monitor {
             case warning = "Warning"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取基础告警列表
+    @inlinable
+    public func describeBasicAlarmList(_ input: DescribeBasicAlarmListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicAlarmListResponse > {
+        self.client.execute(action: "DescribeBasicAlarmList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取基础告警列表
+    @inlinable
+    public func describeBasicAlarmList(_ input: DescribeBasicAlarmListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicAlarmListResponse {
+        try await self.client.execute(action: "DescribeBasicAlarmList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

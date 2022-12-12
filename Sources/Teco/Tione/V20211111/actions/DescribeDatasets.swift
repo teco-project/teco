@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询数据集列表
-    @inlinable
-    public func describeDatasets(_ input: DescribeDatasetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatasetsResponse > {
-        self.client.execute(action: "DescribeDatasets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据集列表
-    @inlinable
-    public func describeDatasets(_ input: DescribeDatasetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasetsResponse {
-        try await self.client.execute(action: "DescribeDatasets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDatasets请求参数结构体
     public struct DescribeDatasetsRequest: TCRequestModel {
         /// 数据集id列表
@@ -52,7 +40,7 @@ extension Tione {
         /// 返回数据个数，默认20，最大支持200
         public let limit: UInt64?
         
-        public init (datasetIds: [String]?, filters: [Filter]?, tagFilters: [TagFilter]?, order: String?, orderField: String?, offset: UInt64?, limit: UInt64?) {
+        public init (datasetIds: [String]? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, order: String? = nil, orderField: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.datasetIds = datasetIds
             self.filters = filters
             self.tagFilters = tagFilters
@@ -96,5 +84,17 @@ extension Tione {
             case datasetIdNums = "DatasetIdNums"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据集列表
+    @inlinable
+    public func describeDatasets(_ input: DescribeDatasetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatasetsResponse > {
+        self.client.execute(action: "DescribeDatasets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据集列表
+    @inlinable
+    public func describeDatasets(_ input: DescribeDatasetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasetsResponse {
+        try await self.client.execute(action: "DescribeDatasets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

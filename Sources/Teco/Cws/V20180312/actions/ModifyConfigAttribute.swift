@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Cws {
-    /// 修改用户配置的属性
-    ///
-    /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
-    @inlinable
-    public func modifyConfigAttribute(_ input: ModifyConfigAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConfigAttributeResponse > {
-        self.client.execute(action: "ModifyConfigAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改用户配置的属性
-    ///
-    /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
-    @inlinable
-    public func modifyConfigAttribute(_ input: ModifyConfigAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigAttributeResponse {
-        try await self.client.execute(action: "ModifyConfigAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyConfigAttribute请求参数结构体
     public struct ModifyConfigAttributeRequest: TCRequestModel {
         /// 漏洞告警通知等级，4位分别代表：高危、中危、低危、提示
         public let noticeLevel: String?
         
-        public init (noticeLevel: String?) {
+        public init (noticeLevel: String? = nil) {
             self.noticeLevel = noticeLevel
         }
         
@@ -53,5 +37,21 @@ extension Cws {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改用户配置的属性
+    ///
+    /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
+    @inlinable
+    public func modifyConfigAttribute(_ input: ModifyConfigAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConfigAttributeResponse > {
+        self.client.execute(action: "ModifyConfigAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改用户配置的属性
+    ///
+    /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
+    @inlinable
+    public func modifyConfigAttribute(_ input: ModifyConfigAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigAttributeResponse {
+        try await self.client.execute(action: "ModifyConfigAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

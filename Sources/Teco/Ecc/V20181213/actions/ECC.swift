@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecc {
-    /// 纯文本英语作文批改
-    ///
-    /// 接口请求域名： ecc.tencentcloudapi.com 
-    /// 纯文本英语作文批改
-    @inlinable
-    public func ecc(_ input: ECCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ECCResponse > {
-        self.client.execute(action: "ECC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 纯文本英语作文批改
-    ///
-    /// 接口请求域名： ecc.tencentcloudapi.com 
-    /// 纯文本英语作文批改
-    @inlinable
-    public func ecc(_ input: ECCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ECCResponse {
-        try await self.client.execute(action: "ECC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ECC请求参数结构体
     public struct ECCRequest: TCRequestModel {
         /// 作文文本，必填
@@ -62,7 +44,7 @@ extension Ecc {
         /// 图像识别唯一标识，一次识别一个 SessionId。当传入此前识别接口使用过的 SessionId，则本次批改按图像批改价格收费；如使用了识别接口且本次没有传入 SessionId，则需要加取文本批改的费用；如果直接使用文本批改接口，则只收取文本批改的费用
         public let sessionId: String?
         
-        public init (content: String, title: String?, grade: String?, requirement: String?, modelTitle: String?, modelContent: String?, eccAppid: String?, isAsync: Int64?, sessionId: String?) {
+        public init (content: String, title: String? = nil, grade: String? = nil, requirement: String? = nil, modelTitle: String? = nil, modelContent: String? = nil, eccAppid: String? = nil, isAsync: Int64? = nil, sessionId: String? = nil) {
             self.content = content
             self.title = title
             self.grade = grade
@@ -91,7 +73,7 @@ extension Ecc {
     public struct ECCResponse: TCResponseModel {
         /// 整体的批改结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: CorrectData
+        public let data: CorrectData?
         
         /// 任务 id，用于查询接口
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -105,5 +87,23 @@ extension Ecc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 纯文本英语作文批改
+    ///
+    /// 接口请求域名： ecc.tencentcloudapi.com 
+    /// 纯文本英语作文批改
+    @inlinable
+    public func ecc(_ input: ECCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ECCResponse > {
+        self.client.execute(action: "ECC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 纯文本英语作文批改
+    ///
+    /// 接口请求域名： ecc.tencentcloudapi.com 
+    /// 纯文本英语作文批改
+    @inlinable
+    public func ecc(_ input: ECCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ECCResponse {
+        try await self.client.execute(action: "ECC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

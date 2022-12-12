@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 修改物理专线属性
-    ///
-    /// 修改物理专线的属性。
-    @inlinable
-    public func modifyDirectConnectAttribute(_ input: ModifyDirectConnectAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDirectConnectAttributeResponse > {
-        self.client.execute(action: "ModifyDirectConnectAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改物理专线属性
-    ///
-    /// 修改物理专线的属性。
-    @inlinable
-    public func modifyDirectConnectAttribute(_ input: ModifyDirectConnectAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectAttributeResponse {
-        try await self.client.execute(action: "ModifyDirectConnectAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDirectConnectAttribute请求参数结构体
     public struct ModifyDirectConnectAttributeRequest: TCRequestModel {
         /// 物理专线的ID。
@@ -72,7 +56,7 @@ extension Dc {
         /// 物理专线带宽
         public let bandwidth: UInt64?
         
-        public init (directConnectId: String, directConnectName: String?, circuitCode: String?, vlan: Int64?, tencentAddress: String?, customerAddress: String?, customerName: String?, customerContactMail: String?, customerContactNumber: String?, faultReportContactPerson: String?, faultReportContactNumber: String?, signLaw: Bool?, bandwidth: UInt64?) {
+        public init (directConnectId: String, directConnectName: String? = nil, circuitCode: String? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, customerName: String? = nil, customerContactMail: String? = nil, customerContactNumber: String? = nil, faultReportContactPerson: String? = nil, faultReportContactNumber: String? = nil, signLaw: Bool? = nil, bandwidth: UInt64? = nil) {
             self.directConnectId = directConnectId
             self.directConnectName = directConnectName
             self.circuitCode = circuitCode
@@ -113,5 +97,21 @@ extension Dc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改物理专线属性
+    ///
+    /// 修改物理专线的属性。
+    @inlinable
+    public func modifyDirectConnectAttribute(_ input: ModifyDirectConnectAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDirectConnectAttributeResponse > {
+        self.client.execute(action: "ModifyDirectConnectAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改物理专线属性
+    ///
+    /// 修改物理专线的属性。
+    @inlinable
+    public func modifyDirectConnectAttribute(_ input: ModifyDirectConnectAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectAttributeResponse {
+        try await self.client.execute(action: "ModifyDirectConnectAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

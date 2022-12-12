@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 修改只读组配置
-    ///
-    /// 本接口(ModifyReadOnlyGroupConfig)用于更新只读组配置信息
-    @inlinable
-    public func modifyReadOnlyGroupConfig(_ input: ModifyReadOnlyGroupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyReadOnlyGroupConfigResponse > {
-        self.client.execute(action: "ModifyReadOnlyGroupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改只读组配置
-    ///
-    /// 本接口(ModifyReadOnlyGroupConfig)用于更新只读组配置信息
-    @inlinable
-    public func modifyReadOnlyGroupConfig(_ input: ModifyReadOnlyGroupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReadOnlyGroupConfigResponse {
-        try await self.client.execute(action: "ModifyReadOnlyGroupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyReadOnlyGroupConfig请求参数结构体
     public struct ModifyReadOnlyGroupConfigRequest: TCRequestModel {
         /// 只读组ID
@@ -57,7 +41,7 @@ extension Postgres {
         /// 延迟剔除最小保留实例数
         public let minDelayEliminateReserve: UInt64?
         
-        public init (readOnlyGroupId: String, readOnlyGroupName: String?, replayLagEliminate: UInt64?, replayLatencyEliminate: UInt64?, maxReplayLatency: UInt64?, maxReplayLag: UInt64?, rebalance: UInt64?, minDelayEliminateReserve: UInt64?) {
+        public init (readOnlyGroupId: String, readOnlyGroupName: String? = nil, replayLagEliminate: UInt64? = nil, replayLatencyEliminate: UInt64? = nil, maxReplayLatency: UInt64? = nil, maxReplayLag: UInt64? = nil, rebalance: UInt64? = nil, minDelayEliminateReserve: UInt64? = nil) {
             self.readOnlyGroupId = readOnlyGroupId
             self.readOnlyGroupName = readOnlyGroupName
             self.replayLagEliminate = replayLagEliminate
@@ -88,5 +72,21 @@ extension Postgres {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改只读组配置
+    ///
+    /// 本接口(ModifyReadOnlyGroupConfig)用于更新只读组配置信息
+    @inlinable
+    public func modifyReadOnlyGroupConfig(_ input: ModifyReadOnlyGroupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyReadOnlyGroupConfigResponse > {
+        self.client.execute(action: "ModifyReadOnlyGroupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改只读组配置
+    ///
+    /// 本接口(ModifyReadOnlyGroupConfig)用于更新只读组配置信息
+    @inlinable
+    public func modifyReadOnlyGroupConfig(_ input: ModifyReadOnlyGroupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReadOnlyGroupConfigResponse {
+        try await self.client.execute(action: "ModifyReadOnlyGroupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

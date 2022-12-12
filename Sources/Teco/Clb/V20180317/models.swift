@@ -144,7 +144,7 @@ extension Clb {
         /// 七层规则 ID。
         public let locationId: String?
         
-        public init (listenerId: String, port: Int64, instanceId: String?, eniIp: String?, weight: Int64?, locationId: String?) {
+        public init (listenerId: String, port: Int64, instanceId: String? = nil, eniIp: String? = nil, weight: Int64? = nil, locationId: String? = nil) {
             self.listenerId = listenerId
             self.port = port
             self.instanceId = instanceId
@@ -260,7 +260,7 @@ extension Clb {
         /// 上传服务端证书的私钥，如果没有 CertId，则此项必传。
         public let certKey: String?
         
-        public init (certId: String?, certName: String?, certContent: String?, certKey: String?) {
+        public init (certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil) {
             self.certId = certId
             self.certName = certName
             self.certContent = certContent
@@ -301,7 +301,7 @@ extension Clb {
         /// 上传客户端证书的内容，如果 SSLMode=mutual，如果没有 CertCaId，则此项必传。
         public let certCaContent: String?
         
-        public init (sslMode: String?, certId: String?, certCaId: String?, certName: String?, certKey: String?, certContent: String?, certCaName: String?, certCaContent: String?) {
+        public init (sslMode: String? = nil, certId: String? = nil, certCaId: String? = nil, certName: String? = nil, certKey: String? = nil, certContent: String? = nil, certCaName: String? = nil, certCaContent: String? = nil) {
             self.sslMode = sslMode
             self.certId = certId
             self.certCaId = certCaId
@@ -514,7 +514,7 @@ extension Clb {
         /// 权重，取值范围 [0, 100]
         public let weight: Int64?
         
-        public init (instanceId: String, weight: Int64?) {
+        public init (instanceId: String, weight: Int64? = nil) {
             self.instanceId = instanceId
             self.weight = weight
         }
@@ -603,7 +603,7 @@ extension Clb {
         
         /// 集群所在的可用区
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let clustersZone: ClustersZone
+        public let clustersZone: ClustersZone?
         
         /// 集群版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -648,7 +648,7 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zone: String?
         
-        public init (clusterId: String, clusterName: String?, zone: String?) {
+        public init (clusterId: String, clusterName: String? = nil, zone: String? = nil) {
             self.clusterId = clusterId
             self.clusterName = clusterName
             self.zone = zone
@@ -793,9 +793,9 @@ extension Clb {
         
         /// vpcgw集群
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let classicalCluster: ClusterItem
+        public let classicalCluster: ClusterItem?
         
-        public init (l4Clusters: [ClusterItem]?, l7Clusters: [ClusterItem]?, classicalCluster: ClusterItem) {
+        public init (l4Clusters: [ClusterItem]? = nil, l7Clusters: [ClusterItem]? = nil, classicalCluster: ClusterItem? = nil) {
             self.l4Clusters = l4Clusters
             self.l7Clusters = l7Clusters
             self.classicalCluster = classicalCluster
@@ -914,7 +914,7 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extendedCode: String?
         
-        public init (healthSwitch: Int64?, timeOut: Int64?, intervalTime: Int64?, healthNum: Int64?, unHealthNum: Int64?, httpCode: Int64?, httpCheckPath: String?, httpCheckDomain: String?, httpCheckMethod: String?, checkPort: Int64?, contextType: String?, sendContext: String?, recvContext: String?, checkType: String?, httpVersion: String?, sourceIpType: Int64?, extendedCode: String?) {
+        public init (healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unHealthNum: Int64? = nil, httpCode: Int64? = nil, httpCheckPath: String? = nil, httpCheckDomain: String? = nil, httpCheckMethod: String? = nil, checkPort: Int64? = nil, contextType: String? = nil, sendContext: String? = nil, recvContext: String? = nil, checkType: String? = nil, httpVersion: String? = nil, sourceIpType: Int64? = nil, extendedCode: String? = nil) {
             self.healthSwitch = healthSwitch
             self.timeOut = timeOut
             self.intervalTime = intervalTime
@@ -1005,7 +1005,7 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bandwidthpkgSubType: String?
         
-        public init (internetChargeType: String?, internetMaxBandwidthOut: Int64?, bandwidthpkgSubType: String?) {
+        public init (internetChargeType: String? = nil, internetMaxBandwidthOut: Int64? = nil, bandwidthpkgSubType: String? = nil) {
             self.internetChargeType = internetChargeType
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
             self.bandwidthpkgSubType = bandwidthpkgSubType
@@ -1028,7 +1028,7 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let period: Int64?
         
-        public init (renewFlag: String?, period: Int64?) {
+        public init (renewFlag: String? = nil, period: Int64? = nil) {
             self.renewFlag = renewFlag
             self.period = period
         }
@@ -1121,11 +1121,11 @@ extension Clb {
         
         /// 监听器绑定的证书信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let certificate: CertificateOutput
+        public let certificate: CertificateOutput?
         
         /// 监听器的健康检查信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let healthCheck: HealthCheck
+        public let healthCheck: HealthCheck?
         
         /// 请求的调度方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1161,7 +1161,7 @@ extension Clb {
         
         /// 绑定的目标组基本信息；当监听器绑定目标组时，会返回该字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let targetGroup: BasicTargetGroupInfo
+        public let targetGroup: BasicTargetGroupInfo?
         
         /// 会话保持类型。NORMAL表示默认会话保持类型。QUIC_CID 表示根据Quic Connection ID做会话保持。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1378,7 +1378,7 @@ extension Clb {
         
         /// 负载均衡实例绑定的后端设备的基本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let targetRegionInfo: TargetRegionInfo
+        public let targetRegionInfo: TargetRegionInfo?
         
         /// anycast负载均衡的发布域，对于非anycast的负载均衡，此字段返回为空字符串
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1398,7 +1398,7 @@ extension Clb {
         
         /// 主可用区
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let masterZone: ZoneInfo
+        public let masterZone: ZoneInfo?
         
         /// 备可用区
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1418,11 +1418,11 @@ extension Clb {
         
         /// 负载均衡实例的网络属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let networkAttributes: InternetAccessible
+        public let networkAttributes: InternetAccessible?
         
         /// 负载均衡实例的预付费相关属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let prepaidAttributes: LBChargePrepaid
+        public let prepaidAttributes: LBChargePrepaid?
         
         /// 负载均衡日志服务(CLS)的日志集ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1438,7 +1438,7 @@ extension Clb {
         
         /// 暂做保留，一般用户无需关注。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let extraInfo: ExtraInfo
+        public let extraInfo: ExtraInfo?
         
         /// 是否可绑定高防包
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1454,7 +1454,7 @@ extension Clb {
         
         /// 内网独占集群
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let exclusiveCluster: ExclusiveCluster
+        public let exclusiveCluster: ExclusiveCluster?
         
         /// IP地址版本为ipv6时此字段有意义， IPv6Nat64 | IPv6FullChain
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1516,7 +1516,7 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attributeFlags: [String]?
         
-        public init (loadBalancerId: String?, loadBalancerName: String?, loadBalancerType: String?, forward: UInt64?, domain: String?, loadBalancerVips: [String]?, status: UInt64?, createTime: String?, statusTime: String?, projectId: UInt64?, vpcId: String?, openBgp: UInt64?, snat: Bool?, isolation: UInt64?, log: String?, subnetId: String?, tags: [TagInfo]?, secureGroups: [String]?, targetRegionInfo: TargetRegionInfo, anycastZone: String?, addressIPVersion: String?, numericalVpcId: UInt64?, vipIsp: String?, masterZone: ZoneInfo, backupZoneSet: [ZoneInfo]?, isolatedTime: String?, expireTime: String?, chargeType: String?, networkAttributes: InternetAccessible, prepaidAttributes: LBChargePrepaid, logSetId: String?, logTopicId: String?, addressIPv6: String?, extraInfo: ExtraInfo, isDDos: Bool?, configId: String?, loadBalancerPassToTarget: Bool?, exclusiveCluster: ExclusiveCluster, iPv6Mode: String?, snatPro: Bool?, snatIps: [SnatIp]?, slaType: String?, isBlock: Bool?, isBlockTime: String?, localBgp: Bool?, clusterTag: String?, mixIpTarget: Bool?, zones: [String]?, nfvInfo: String?, healthLogSetId: String?, healthLogTopicId: String?, clusterIds: [String]?, attributeFlags: [String]?) {
+        public init (loadBalancerId: String? = nil, loadBalancerName: String? = nil, loadBalancerType: String? = nil, forward: UInt64? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, status: UInt64? = nil, createTime: String? = nil, statusTime: String? = nil, projectId: UInt64? = nil, vpcId: String? = nil, openBgp: UInt64? = nil, snat: Bool? = nil, isolation: UInt64? = nil, log: String? = nil, subnetId: String? = nil, tags: [TagInfo]? = nil, secureGroups: [String]? = nil, targetRegionInfo: TargetRegionInfo? = nil, anycastZone: String? = nil, addressIPVersion: String? = nil, numericalVpcId: UInt64? = nil, vipIsp: String? = nil, masterZone: ZoneInfo? = nil, backupZoneSet: [ZoneInfo]? = nil, isolatedTime: String? = nil, expireTime: String? = nil, chargeType: String? = nil, networkAttributes: InternetAccessible? = nil, prepaidAttributes: LBChargePrepaid? = nil, logSetId: String? = nil, logTopicId: String? = nil, addressIPv6: String? = nil, extraInfo: ExtraInfo? = nil, isDDos: Bool? = nil, configId: String? = nil, loadBalancerPassToTarget: Bool? = nil, exclusiveCluster: ExclusiveCluster? = nil, iPv6Mode: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, slaType: String? = nil, isBlock: Bool? = nil, isBlockTime: String? = nil, localBgp: Bool? = nil, clusterTag: String? = nil, mixIpTarget: Bool? = nil, zones: [String]? = nil, nfvInfo: String? = nil, healthLogSetId: String? = nil, healthLogTopicId: String? = nil, clusterIds: [String]? = nil, attributeFlags: [String]? = nil) {
             self.loadBalancerId = loadBalancerId
             self.loadBalancerName = loadBalancerName
             self.loadBalancerType = loadBalancerType
@@ -1689,15 +1689,15 @@ extension Clb {
         
         /// 负载均衡实例的网络属性。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let networkAttributes: InternetAccessible
+        public let networkAttributes: InternetAccessible?
         
         /// 负载均衡实例的预付费相关属性。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let prepaidAttributes: LBChargePrepaid
+        public let prepaidAttributes: LBChargePrepaid?
         
         /// 暂做保留，一般用户无需关注。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let extraInfo: ExtraInfo
+        public let extraInfo: ExtraInfo?
         
         /// 负载均衡维度的个性化配置ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1942,7 +1942,7 @@ extension Clb {
         /// 源转发的域名，必须是SourceLocationId对应的域名，配置RewriteCode时必填
         public let sourceDomain: String?
         
-        public init (sourceLocationId: String, targetLocationId: String, rewriteCode: Int64?, takeUrl: Bool?, sourceDomain: String?) {
+        public init (sourceLocationId: String, targetLocationId: String, rewriteCode: Int64? = nil, takeUrl: Bool? = nil, sourceDomain: String? = nil) {
             self.sourceLocationId = sourceLocationId
             self.targetLocationId = targetLocationId
             self.rewriteCode = rewriteCode
@@ -2012,7 +2012,7 @@ extension Clb {
         /// 后端服务修改后的转发权重，取值范围：[0，100]。此参数的优先级低于前述[Target](https://cloud.tencent.com/document/api/214/30694#Target)中的Weight参数，即最终的权重值以Target中的Weight参数值为准，仅当Target中的Weight参数为空时，才以RsWeightRule中的Weight参数为准。
         public let weight: Int64?
         
-        public init (listenerId: String, targets: [Target], locationId: String?, domain: String?, url: String?, weight: Int64?) {
+        public init (listenerId: String, targets: [Target], locationId: String? = nil, domain: String? = nil, url: String? = nil, weight: Int64? = nil) {
             self.listenerId = listenerId
             self.targets = targets
             self.locationId = locationId
@@ -2068,10 +2068,10 @@ extension Clb {
         public let sessionExpireTime: Int64?
         
         /// 健康检查信息。详情请参见：[健康检查](https://cloud.tencent.com/document/product/214/6097)
-        public let healthCheck: HealthCheck
+        public let healthCheck: HealthCheck?
         
         /// 证书信息；此参数和MultiCertInfo不能同时传入。
-        public let certificate: CertificateInput
+        public let certificate: CertificateInput?
         
         /// 规则的请求转发方式，可选值：WRR、LEAST_CONN、IP_HASH
         /// 分别表示按权重轮询、最小连接数、按IP哈希， 默认为 WRR。
@@ -2102,9 +2102,9 @@ extension Clb {
         public let domains: [String]?
         
         /// 证书信息，支持同时传入不同算法类型的多本服务端证书；此参数和Certificate不能同时传入。
-        public let multiCertInfo: MultiCertInfo
+        public let multiCertInfo: MultiCertInfo?
         
-        public init (url: String, domain: String?, sessionExpireTime: Int64?, healthCheck: HealthCheck, certificate: CertificateInput, scheduler: String?, forwardType: String?, defaultServer: Bool?, http2: Bool?, targetType: String?, trpcCallee: String?, trpcFunc: String?, quic: Bool?, domains: [String]?, multiCertInfo: MultiCertInfo) {
+        public init (url: String, domain: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, scheduler: String? = nil, forwardType: String? = nil, defaultServer: Bool? = nil, http2: Bool? = nil, targetType: String? = nil, trpcCallee: String? = nil, trpcFunc: String? = nil, quic: Bool? = nil, domains: [String]? = nil, multiCertInfo: MultiCertInfo? = nil) {
             self.url = url
             self.domain = domain
             self.sessionExpireTime = sessionExpireTime
@@ -2159,11 +2159,11 @@ extension Clb {
         
         /// 健康检查信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let healthCheck: HealthCheck
+        public let healthCheck: HealthCheck?
         
         /// 证书信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let certificate: CertificateOutput
+        public let certificate: CertificateOutput?
         
         /// 规则的请求转发方式
         public let scheduler: String?
@@ -2173,7 +2173,7 @@ extension Clb {
         
         /// 转发规则的重定向目标信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rewriteTarget: RewriteTarget
+        public let rewriteTarget: RewriteTarget?
         
         /// 是否开启gzip
         public let httpGzip: Bool
@@ -2198,7 +2198,7 @@ extension Clb {
         
         /// 绑定的目标组基本信息；当规则绑定目标组时，会返回该字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let targetGroup: BasicTargetGroupInfo
+        public let targetGroup: BasicTargetGroupInfo?
         
         /// WAF实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2323,7 +2323,7 @@ extension Clb {
         /// IP地址，如192.168.0.1
         public let ip: String?
         
-        public init (subnetId: String, ip: String?) {
+        public init (subnetId: String, ip: String? = nil) {
             self.subnetId = subnetId
             self.ip = ip
         }
@@ -2353,7 +2353,7 @@ extension Clb {
         /// 后端服务的监听端口。
         /// 注意：绑定CVM（云服务器）或ENI（弹性网卡）时必传此参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let port: Int64
+        public let port: Int64?
         
         /// 后端服务的类型，可取：CVM（云服务器）、ENI（弹性网卡）；作为入参时，目前本参数暂不生效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2372,7 +2372,7 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eniIp: String?
         
-        public init (port: Int64, type: String?, instanceId: String?, weight: Int64?, eniIp: String?) {
+        public init (port: Int64, type: String? = nil, instanceId: String? = nil, weight: Int64? = nil, eniIp: String? = nil) {
             self.port = port
             self.type = type
             self.instanceId = instanceId
@@ -2403,7 +2403,7 @@ extension Clb {
         /// 转发规则ID
         public let locationId: String?
         
-        public init (loadBalancerId: String, listenerId: String, targetGroupId: String, locationId: String?) {
+        public init (loadBalancerId: String, listenerId: String, targetGroupId: String, locationId: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.targetGroupId = targetGroupId
@@ -2526,7 +2526,7 @@ extension Clb {
         /// 目标组实例的新端口
         public let newPort: UInt64?
         
-        public init (bindIP: String, port: UInt64, weight: UInt64?, newPort: UInt64?) {
+        public init (bindIP: String, port: UInt64, weight: UInt64? = nil, newPort: UInt64? = nil) {
             self.bindIP = bindIP
             self.port = port
             self.weight = weight

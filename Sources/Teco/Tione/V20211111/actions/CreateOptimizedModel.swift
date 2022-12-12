@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 保存优化模型
-    @inlinable
-    public func createOptimizedModel(_ input: CreateOptimizedModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOptimizedModelResponse > {
-        self.client.execute(action: "CreateOptimizedModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 保存优化模型
-    @inlinable
-    public func createOptimizedModel(_ input: CreateOptimizedModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOptimizedModelResponse {
-        try await self.client.execute(action: "CreateOptimizedModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOptimizedModel请求参数结构体
     public struct CreateOptimizedModelRequest: TCRequestModel {
         /// 模型加速任务ID
@@ -35,7 +23,7 @@ extension Tione {
         /// 标签
         public let tags: [Tag]?
         
-        public init (modelAccTaskId: String, tags: [Tag]?) {
+        public init (modelAccTaskId: String, tags: [Tag]? = nil) {
             self.modelAccTaskId = modelAccTaskId
             self.tags = tags
         }
@@ -64,5 +52,17 @@ extension Tione {
             case modelVersionId = "ModelVersionId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 保存优化模型
+    @inlinable
+    public func createOptimizedModel(_ input: CreateOptimizedModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOptimizedModelResponse > {
+        self.client.execute(action: "CreateOptimizedModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 保存优化模型
+    @inlinable
+    public func createOptimizedModel(_ input: CreateOptimizedModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOptimizedModelResponse {
+        try await self.client.execute(action: "CreateOptimizedModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

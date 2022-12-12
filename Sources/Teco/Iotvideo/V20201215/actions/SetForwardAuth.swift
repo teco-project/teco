@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 设置转发权限
-    @inlinable
-    public func setForwardAuth(_ input: SetForwardAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetForwardAuthResponse > {
-        self.client.execute(action: "SetForwardAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置转发权限
-    @inlinable
-    public func setForwardAuth(_ input: SetForwardAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetForwardAuthResponse {
-        try await self.client.execute(action: "SetForwardAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetForwardAuth请求参数结构体
     public struct SetForwardAuthRequest: TCRequestModel {
         /// 控制台Skey
@@ -78,5 +66,17 @@ extension Iotvideo {
             case errMsg = "ErrMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置转发权限
+    @inlinable
+    public func setForwardAuth(_ input: SetForwardAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetForwardAuthResponse > {
+        self.client.execute(action: "SetForwardAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置转发权限
+    @inlinable
+    public func setForwardAuth(_ input: SetForwardAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetForwardAuthResponse {
+        try await self.client.execute(action: "SetForwardAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 取消任务执行
-    ///
-    /// 用于取消已经提交的任务，目前只支持图像任务。
-    @inlinable
-    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelTaskResponse > {
-        self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消任务执行
-    ///
-    /// 用于取消已经提交的任务，目前只支持图像任务。
-    @inlinable
-    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
-        try await self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelTask请求参数结构体
     public struct CancelTaskRequest: TCRequestModel {
         /// 待取消任务标志符。
         public let jobId: Int64?
         
-        public init (jobId: Int64?) {
+        public init (jobId: Int64? = nil) {
             self.jobId = jobId
         }
         
@@ -57,5 +41,21 @@ extension Tci {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消任务执行
+    ///
+    /// 用于取消已经提交的任务，目前只支持图像任务。
+    @inlinable
+    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelTaskResponse > {
+        self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消任务执行
+    ///
+    /// 用于取消已经提交的任务，目前只支持图像任务。
+    @inlinable
+    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
+        try await self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

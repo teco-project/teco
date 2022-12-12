@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 用户注册
-    ///
-    /// 为APP提供用户注册功能
-    @inlinable
-    public func appAddUser(_ input: AppAddUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppAddUserResponse > {
-        self.client.execute(action: "AppAddUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 用户注册
-    ///
-    /// 为APP提供用户注册功能
-    @inlinable
-    public func appAddUser(_ input: AppAddUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppAddUserResponse {
-        try await self.client.execute(action: "AppAddUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AppAddUser请求参数结构体
     public struct AppAddUserRequest: TCRequestModel {
         /// 用户名
@@ -62,5 +46,21 @@ extension Iot {
             case appUser = "AppUser"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 用户注册
+    ///
+    /// 为APP提供用户注册功能
+    @inlinable
+    public func appAddUser(_ input: AppAddUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppAddUserResponse > {
+        self.client.execute(action: "AppAddUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 用户注册
+    ///
+    /// 为APP提供用户注册功能
+    @inlinable
+    public func appAddUser(_ input: AppAddUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppAddUserResponse {
+        try await self.client.execute(action: "AppAddUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

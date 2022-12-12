@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 查询用户组列表
-    @inlinable
-    public func listGroups(_ input: ListGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListGroupsResponse > {
-        self.client.execute(action: "ListGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户组列表
-    @inlinable
-    public func listGroups(_ input: ListGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListGroupsResponse {
-        try await self.client.execute(action: "ListGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListGroups请求参数结构体
     public struct ListGroupsRequest: TCRequestModel {
         /// 页码。默认为1。
@@ -38,7 +26,7 @@ extension Cam {
         /// 按用户组名称匹配。
         public let keyword: String?
         
-        public init (page: UInt64?, rp: UInt64?, keyword: String?) {
+        public init (page: UInt64? = nil, rp: UInt64? = nil, keyword: String? = nil) {
             self.page = page
             self.rp = rp
             self.keyword = keyword
@@ -67,5 +55,17 @@ extension Cam {
             case groupInfo = "GroupInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户组列表
+    @inlinable
+    public func listGroups(_ input: ListGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListGroupsResponse > {
+        self.client.execute(action: "ListGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户组列表
+    @inlinable
+    public func listGroups(_ input: ListGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListGroupsResponse {
+        try await self.client.execute(action: "ListGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

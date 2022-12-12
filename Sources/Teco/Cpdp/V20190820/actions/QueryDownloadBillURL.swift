@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-查询对账单下载地址接口
-    ///
-    /// 云鉴-查询对账单下载地址的接口
-    @inlinable
-    public func queryDownloadBillURL(_ input: QueryDownloadBillURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryDownloadBillURLResponse > {
-        self.client.execute(action: "QueryDownloadBillURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-查询对账单下载地址接口
-    ///
-    /// 云鉴-查询对账单下载地址的接口
-    @inlinable
-    public func queryDownloadBillURL(_ input: QueryDownloadBillURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryDownloadBillURLResponse {
-        try await self.client.execute(action: "QueryDownloadBillURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryDownloadBillURL请求参数结构体
     public struct QueryDownloadBillURLRequest: TCRequestModel {
         /// 分配给商户的AppId。进件成功后返给商户方的AppId。
@@ -71,5 +55,21 @@ extension Cpdp {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-查询对账单下载地址接口
+    ///
+    /// 云鉴-查询对账单下载地址的接口
+    @inlinable
+    public func queryDownloadBillURL(_ input: QueryDownloadBillURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryDownloadBillURLResponse > {
+        self.client.execute(action: "QueryDownloadBillURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-查询对账单下载地址接口
+    ///
+    /// 云鉴-查询对账单下载地址的接口
+    @inlinable
+    public func queryDownloadBillURL(_ input: QueryDownloadBillURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryDownloadBillURLResponse {
+        try await self.client.execute(action: "QueryDownloadBillURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

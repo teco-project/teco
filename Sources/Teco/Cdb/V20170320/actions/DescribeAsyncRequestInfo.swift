@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询异步任务的执行结果
-    ///
-    /// 本接口(DescribeAsyncRequestInfo)用于查询云数据库实例异步任务的执行结果。
-    @inlinable
-    public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAsyncRequestInfoResponse > {
-        self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询异步任务的执行结果
-    ///
-    /// 本接口(DescribeAsyncRequestInfo)用于查询云数据库实例异步任务的执行结果。
-    @inlinable
-    public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRequestInfoResponse {
-        try await self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAsyncRequestInfo请求参数结构体
     public struct DescribeAsyncRequestInfoRequest: TCRequestModel {
         /// 异步任务的请求 ID。
@@ -63,5 +47,21 @@ extension Cdb {
             case info = "Info"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询异步任务的执行结果
+    ///
+    /// 本接口(DescribeAsyncRequestInfo)用于查询云数据库实例异步任务的执行结果。
+    @inlinable
+    public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAsyncRequestInfoResponse > {
+        self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询异步任务的执行结果
+    ///
+    /// 本接口(DescribeAsyncRequestInfo)用于查询云数据库实例异步任务的执行结果。
+    @inlinable
+    public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRequestInfoResponse {
+        try await self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

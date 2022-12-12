@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 新建模板
-    ///
-    /// 创建一个云原生Prometheus模板
-    @inlinable
-    public func createPrometheusTemp(_ input: CreatePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusTempResponse > {
-        self.client.execute(action: "CreatePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建模板
-    ///
-    /// 创建一个云原生Prometheus模板
-    @inlinable
-    public func createPrometheusTemp(_ input: CreatePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusTempResponse {
-        try await self.client.execute(action: "CreatePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePrometheusTemp请求参数结构体
     public struct CreatePrometheusTempRequest: TCRequestModel {
         /// 模板设置
@@ -57,5 +41,21 @@ extension Tke {
             case templateId = "TemplateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建模板
+    ///
+    /// 创建一个云原生Prometheus模板
+    @inlinable
+    public func createPrometheusTemp(_ input: CreatePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusTempResponse > {
+        self.client.execute(action: "CreatePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建模板
+    ///
+    /// 创建一个云原生Prometheus模板
+    @inlinable
+    public func createPrometheusTemp(_ input: CreatePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusTempResponse {
+        try await self.client.execute(action: "CreatePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

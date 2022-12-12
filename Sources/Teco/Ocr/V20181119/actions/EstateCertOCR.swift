@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 不动产权证识别
-    ///
-    /// 本接口支持不动产权证关键字段的识别，包括使用期限、面积、用途、权利性质、权利类型、坐落、共有情况、权利人、权利其他状况等。
-    @inlinable
-    public func estateCertOCR(_ input: EstateCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EstateCertOCRResponse > {
-        self.client.execute(action: "EstateCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 不动产权证识别
-    ///
-    /// 本接口支持不动产权证关键字段的识别，包括使用期限、面积、用途、权利性质、权利类型、坐落、共有情况、权利人、权利其他状况等。
-    @inlinable
-    public func estateCertOCR(_ input: EstateCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstateCertOCRResponse {
-        try await self.client.execute(action: "EstateCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EstateCertOCR请求参数结构体
     public struct EstateCertOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -46,7 +30,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -113,5 +97,21 @@ extension Ocr {
             case number = "Number"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 不动产权证识别
+    ///
+    /// 本接口支持不动产权证关键字段的识别，包括使用期限、面积、用途、权利性质、权利类型、坐落、共有情况、权利人、权利其他状况等。
+    @inlinable
+    public func estateCertOCR(_ input: EstateCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EstateCertOCRResponse > {
+        self.client.execute(action: "EstateCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 不动产权证识别
+    ///
+    /// 本接口支持不动产权证关键字段的识别，包括使用期限、面积、用途、权利性质、权利类型、坐落、共有情况、权利人、权利其他状况等。
+    @inlinable
+    public func estateCertOCR(_ input: EstateCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstateCertOCRResponse {
+        try await self.client.execute(action: "EstateCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

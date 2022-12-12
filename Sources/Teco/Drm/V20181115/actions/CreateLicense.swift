@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Drm {
-    /// 生成DRM的播放许可证
-    ///
-    /// 本接口用来生成DRM方案对应的播放许可证，开发者需提供DRM方案类型、内容类型参数，后台将生成许可证后返回许可证数据
-    /// 开发者需要转发终端设备发出的许可证请求信息。
-    @inlinable
-    public func createLicense(_ input: CreateLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLicenseResponse > {
-        self.client.execute(action: "CreateLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 生成DRM的播放许可证
-    ///
-    /// 本接口用来生成DRM方案对应的播放许可证，开发者需提供DRM方案类型、内容类型参数，后台将生成许可证后返回许可证数据
-    /// 开发者需要转发终端设备发出的许可证请求信息。
-    @inlinable
-    public func createLicense(_ input: CreateLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLicenseResponse {
-        try await self.client.execute(action: "CreateLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLicense请求参数结构体
     public struct CreateLicenseRequest: TCRequestModel {
         /// DRM方案类型，接口取值：WIDEVINE，FAIRPLAY。
@@ -49,9 +31,9 @@ extension Drm {
         public let tracks: [String]?
         
         /// 播放策略参数。
-        public let playbackPolicy: PlaybackPolicy
+        public let playbackPolicy: PlaybackPolicy?
         
-        public init (drmType: String, licenseRequest: String, contentType: String, tracks: [String]?, playbackPolicy: PlaybackPolicy) {
+        public init (drmType: String, licenseRequest: String, contentType: String, tracks: [String]? = nil, playbackPolicy: PlaybackPolicy? = nil) {
             self.drmType = drmType
             self.licenseRequest = licenseRequest
             self.contentType = contentType
@@ -84,5 +66,23 @@ extension Drm {
             case contentId = "ContentId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 生成DRM的播放许可证
+    ///
+    /// 本接口用来生成DRM方案对应的播放许可证，开发者需提供DRM方案类型、内容类型参数，后台将生成许可证后返回许可证数据
+    /// 开发者需要转发终端设备发出的许可证请求信息。
+    @inlinable
+    public func createLicense(_ input: CreateLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLicenseResponse > {
+        self.client.execute(action: "CreateLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 生成DRM的播放许可证
+    ///
+    /// 本接口用来生成DRM方案对应的播放许可证，开发者需提供DRM方案类型、内容类型参数，后台将生成许可证后返回许可证数据
+    /// 开发者需要转发终端设备发出的许可证请求信息。
+    @inlinable
+    public func createLicense(_ input: CreateLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLicenseResponse {
+        try await self.client.execute(action: "CreateLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

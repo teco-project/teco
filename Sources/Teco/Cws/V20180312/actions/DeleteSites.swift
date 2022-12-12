@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cws {
-    /// 删除站点
-    ///
-    /// 本接口 (DeleteSites) 用于删除站点。
-    @inlinable
-    public func deleteSites(_ input: DeleteSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSitesResponse > {
-        self.client.execute(action: "DeleteSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除站点
-    ///
-    /// 本接口 (DeleteSites) 用于删除站点。
-    @inlinable
-    public func deleteSites(_ input: DeleteSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSitesResponse {
-        try await self.client.execute(action: "DeleteSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSites请求参数结构体
     public struct DeleteSitesRequest: TCRequestModel {
         /// 站点ID列表
@@ -53,5 +37,21 @@ extension Cws {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除站点
+    ///
+    /// 本接口 (DeleteSites) 用于删除站点。
+    @inlinable
+    public func deleteSites(_ input: DeleteSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSitesResponse > {
+        self.client.execute(action: "DeleteSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除站点
+    ///
+    /// 本接口 (DeleteSites) 用于删除站点。
+    @inlinable
+    public func deleteSites(_ input: DeleteSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSitesResponse {
+        try await self.client.execute(action: "DeleteSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

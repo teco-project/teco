@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 批量补数据
-    ///
-    /// 对集成离线任务执行批量补数据操作
-    @inlinable
-    public func batchMakeUpIntegrationTasks(_ input: BatchMakeUpIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchMakeUpIntegrationTasksResponse > {
-        self.client.execute(action: "BatchMakeUpIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量补数据
-    ///
-    /// 对集成离线任务执行批量补数据操作
-    @inlinable
-    public func batchMakeUpIntegrationTasks(_ input: BatchMakeUpIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchMakeUpIntegrationTasksResponse {
-        try await self.client.execute(action: "BatchMakeUpIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchMakeUpIntegrationTasks请求参数结构体
     public struct BatchMakeUpIntegrationTasksRequest: TCRequestModel {
         /// 任务id
@@ -85,5 +69,21 @@ extension Wedata {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量补数据
+    ///
+    /// 对集成离线任务执行批量补数据操作
+    @inlinable
+    public func batchMakeUpIntegrationTasks(_ input: BatchMakeUpIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchMakeUpIntegrationTasksResponse > {
+        self.client.execute(action: "BatchMakeUpIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量补数据
+    ///
+    /// 对集成离线任务执行批量补数据操作
+    @inlinable
+    public func batchMakeUpIntegrationTasks(_ input: BatchMakeUpIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchMakeUpIntegrationTasksResponse {
+        try await self.client.execute(action: "BatchMakeUpIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

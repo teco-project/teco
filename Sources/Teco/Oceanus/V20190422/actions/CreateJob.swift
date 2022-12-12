@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 新建作业
-    ///
-    /// 新建作业接口，一个 AppId 最多允许创建1000个作业
-    @inlinable
-    public func createJob(_ input: CreateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateJobResponse > {
-        self.client.execute(action: "CreateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建作业
-    ///
-    /// 新建作业接口，一个 AppId 最多允许创建1000个作业
-    @inlinable
-    public func createJob(_ input: CreateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobResponse {
-        try await self.client.execute(action: "CreateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateJob请求参数结构体
     public struct CreateJobRequest: TCRequestModel {
         /// 作业名称，允许输入长度小于等于50个字符的中文、英文、数字、-（横线）、_（下划线）、.（点），且符号必须半角字符。注意作业名不能和现有作业同名
@@ -60,7 +44,7 @@ extension Oceanus {
         /// 工作空间 SerialId
         public let workSpaceId: String?
         
-        public init (name: String, jobType: Int64, clusterType: Int64, clusterId: String?, cuMem: UInt64?, remark: String?, folderId: String?, flinkVersion: String?, workSpaceId: String?) {
+        public init (name: String, jobType: Int64, clusterType: Int64, clusterId: String? = nil, cuMem: UInt64? = nil, remark: String? = nil, folderId: String? = nil, flinkVersion: String? = nil, workSpaceId: String? = nil) {
             self.name = name
             self.jobType = jobType
             self.clusterType = clusterType
@@ -97,5 +81,21 @@ extension Oceanus {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建作业
+    ///
+    /// 新建作业接口，一个 AppId 最多允许创建1000个作业
+    @inlinable
+    public func createJob(_ input: CreateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateJobResponse > {
+        self.client.execute(action: "CreateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建作业
+    ///
+    /// 新建作业接口，一个 AppId 最多允许创建1000个作业
+    @inlinable
+    public func createJob(_ input: CreateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobResponse {
+        try await self.client.execute(action: "CreateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

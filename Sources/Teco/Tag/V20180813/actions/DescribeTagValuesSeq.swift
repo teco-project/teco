@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 按顺序查询标签值
-    ///
-    /// 用于查询已建立的标签列表中的标签值。
-    @inlinable
-    public func describeTagValuesSeq(_ input: DescribeTagValuesSeqRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagValuesSeqResponse > {
-        self.client.execute(action: "DescribeTagValuesSeq", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 按顺序查询标签值
-    ///
-    /// 用于查询已建立的标签列表中的标签值。
-    @inlinable
-    public func describeTagValuesSeq(_ input: DescribeTagValuesSeqRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagValuesSeqResponse {
-        try await self.client.execute(action: "DescribeTagValuesSeq", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTagValuesSeq请求参数结构体
     public struct DescribeTagValuesSeqRequest: TCRequestModel {
         /// 标签键列表
@@ -45,7 +29,7 @@ extension Tag {
         /// 每页大小，默认为 15
         public let limit: UInt64?
         
-        public init (tagKeys: [String], createUin: UInt64?, offset: UInt64?, limit: UInt64?) {
+        public init (tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.tagKeys = tagKeys
             self.createUin = createUin
             self.offset = offset
@@ -84,5 +68,21 @@ extension Tag {
             case tags = "Tags"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 按顺序查询标签值
+    ///
+    /// 用于查询已建立的标签列表中的标签值。
+    @inlinable
+    public func describeTagValuesSeq(_ input: DescribeTagValuesSeqRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagValuesSeqResponse > {
+        self.client.execute(action: "DescribeTagValuesSeq", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 按顺序查询标签值
+    ///
+    /// 用于查询已建立的标签列表中的标签值。
+    @inlinable
+    public func describeTagValuesSeq(_ input: DescribeTagValuesSeqRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagValuesSeqResponse {
+        try await self.client.execute(action: "DescribeTagValuesSeq", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

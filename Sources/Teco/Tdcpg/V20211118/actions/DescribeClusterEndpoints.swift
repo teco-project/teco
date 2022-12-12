@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdcpg {
-    /// 查询集群接入点
-    ///
-    /// 查询集群接入点信息
-    @inlinable
-    public func describeClusterEndpoints(_ input: DescribeClusterEndpointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterEndpointsResponse > {
-        self.client.execute(action: "DescribeClusterEndpoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群接入点
-    ///
-    /// 查询集群接入点信息
-    @inlinable
-    public func describeClusterEndpoints(_ input: DescribeClusterEndpointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterEndpointsResponse {
-        try await self.client.execute(action: "DescribeClusterEndpoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterEndpoints请求参数结构体
     public struct DescribeClusterEndpointsRequest: TCRequestModel {
         /// 集群ID
@@ -61,5 +45,21 @@ extension Tdcpg {
             case endpointSet = "EndpointSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群接入点
+    ///
+    /// 查询集群接入点信息
+    @inlinable
+    public func describeClusterEndpoints(_ input: DescribeClusterEndpointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterEndpointsResponse > {
+        self.client.execute(action: "DescribeClusterEndpoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群接入点
+    ///
+    /// 查询集群接入点信息
+    @inlinable
+    public func describeClusterEndpoints(_ input: DescribeClusterEndpointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterEndpointsResponse {
+        try await self.client.execute(action: "DescribeClusterEndpoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

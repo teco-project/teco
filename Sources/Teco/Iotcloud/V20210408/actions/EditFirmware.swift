@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 编辑固件信息
-    @inlinable
-    public func editFirmware(_ input: EditFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditFirmwareResponse > {
-        self.client.execute(action: "EditFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑固件信息
-    @inlinable
-    public func editFirmware(_ input: EditFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditFirmwareResponse {
-        try await self.client.execute(action: "EditFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EditFirmware请求参数结构体
     public struct EditFirmwareRequest: TCRequestModel {
         /// 产品ID。
@@ -41,7 +29,7 @@ extension Iotcloud {
         /// 固件描述
         public let firmwareDescription: String?
         
-        public init (productId: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String?) {
+        public init (productId: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil) {
             self.productId = productId
             self.firmwareVersion = firmwareVersion
             self.firmwareName = firmwareName
@@ -64,5 +52,17 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑固件信息
+    @inlinable
+    public func editFirmware(_ input: EditFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditFirmwareResponse > {
+        self.client.execute(action: "EditFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑固件信息
+    @inlinable
+    public func editFirmware(_ input: EditFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditFirmwareResponse {
+        try await self.client.execute(action: "EditFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

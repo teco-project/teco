@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Tic {
-    /// 查询资源栈列表
-    ///
-    /// 本接口（DescribeStacks）用于查询一个或多个资源栈的详细信息。
-    /// - 可以根据资源栈ID来查询感兴趣的资源栈信息
-    /// - 若参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的资源栈
-    @inlinable
-    public func describeStacks(_ input: DescribeStacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStacksResponse > {
-        self.client.execute(action: "DescribeStacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询资源栈列表
-    ///
-    /// 本接口（DescribeStacks）用于查询一个或多个资源栈的详细信息。
-    /// - 可以根据资源栈ID来查询感兴趣的资源栈信息
-    /// - 若参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的资源栈
-    @inlinable
-    public func describeStacks(_ input: DescribeStacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStacksResponse {
-        try await self.client.execute(action: "DescribeStacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStacks请求参数结构体
     public struct DescribeStacksRequest: TCRequestModel {
         /// 按照⼀个或者多个资源栈ID查询
@@ -46,7 +26,7 @@ extension Tic {
         /// 返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: Int64?
         
-        public init (stackIds: [String]?, offset: Int64?, limit: Int64?) {
+        public init (stackIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.stackIds = stackIds
             self.offset = offset
             self.limit = limit
@@ -75,5 +55,25 @@ extension Tic {
             case stacks = "Stacks"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询资源栈列表
+    ///
+    /// 本接口（DescribeStacks）用于查询一个或多个资源栈的详细信息。
+    /// - 可以根据资源栈ID来查询感兴趣的资源栈信息
+    /// - 若参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的资源栈
+    @inlinable
+    public func describeStacks(_ input: DescribeStacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStacksResponse > {
+        self.client.execute(action: "DescribeStacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资源栈列表
+    ///
+    /// 本接口（DescribeStacks）用于查询一个或多个资源栈的详细信息。
+    /// - 可以根据资源栈ID来查询感兴趣的资源栈信息
+    /// - 若参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的资源栈
+    @inlinable
+    public func describeStacks(_ input: DescribeStacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStacksResponse {
+        try await self.client.execute(action: "DescribeStacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

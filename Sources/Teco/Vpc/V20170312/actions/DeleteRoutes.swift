@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除路由策略
-    ///
-    /// 本接口(DeleteRoutes)用于对某个路由表批量删除路由策略（Route）。
-    @inlinable
-    public func deleteRoutes(_ input: DeleteRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRoutesResponse > {
-        self.client.execute(action: "DeleteRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除路由策略
-    ///
-    /// 本接口(DeleteRoutes)用于对某个路由表批量删除路由策略（Route）。
-    @inlinable
-    public func deleteRoutes(_ input: DeleteRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoutesResponse {
-        try await self.client.execute(action: "DeleteRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRoutes请求参数结构体
     public struct DeleteRoutesRequest: TCRequestModel {
         /// 路由表实例ID。
@@ -62,5 +46,21 @@ extension Vpc {
             case routeSet = "RouteSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除路由策略
+    ///
+    /// 本接口(DeleteRoutes)用于对某个路由表批量删除路由策略（Route）。
+    @inlinable
+    public func deleteRoutes(_ input: DeleteRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRoutesResponse > {
+        self.client.execute(action: "DeleteRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除路由策略
+    ///
+    /// 本接口(DeleteRoutes)用于对某个路由表批量删除路由策略（Route）。
+    @inlinable
+    public func deleteRoutes(_ input: DeleteRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoutesResponse {
+        try await self.client.execute(action: "DeleteRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

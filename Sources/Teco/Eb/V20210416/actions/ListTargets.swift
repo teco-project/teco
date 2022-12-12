@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 获取事件目标列表
-    @inlinable
-    public func listTargets(_ input: ListTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTargetsResponse > {
-        self.client.execute(action: "ListTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取事件目标列表
-    @inlinable
-    public func listTargets(_ input: ListTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTargetsResponse {
-        try await self.client.execute(action: "ListTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListTargets请求参数结构体
     public struct ListTargetsRequest: TCRequestModel {
         /// 事件集ID
@@ -47,7 +35,7 @@ extension Eb {
         /// 以升序还是降序的方式返回结果，可选值 ASC（升序） 和 DESC（降序）
         public let order: String?
         
-        public init (eventBusId: String, orderBy: String?, ruleId: String?, limit: Int64?, offset: Int64?, order: String?) {
+        public init (eventBusId: String, orderBy: String? = nil, ruleId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil) {
             self.eventBusId = eventBusId
             self.orderBy = orderBy
             self.ruleId = ruleId
@@ -82,5 +70,17 @@ extension Eb {
             case targets = "Targets"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取事件目标列表
+    @inlinable
+    public func listTargets(_ input: ListTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTargetsResponse > {
+        self.client.execute(action: "ListTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取事件目标列表
+    @inlinable
+    public func listTargets(_ input: ListTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTargetsResponse {
+        try await self.client.execute(action: "ListTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

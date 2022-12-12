@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mna {
-    /// 停止Qos加速过程
-    ///
-    /// 移动网络停止Qos加速过程
-    @inlinable
-    public func deleteQos(_ input: DeleteQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteQosResponse > {
-        self.client.execute(action: "DeleteQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止Qos加速过程
-    ///
-    /// 移动网络停止Qos加速过程
-    @inlinable
-    public func deleteQos(_ input: DeleteQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQosResponse {
-        try await self.client.execute(action: "DeleteQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteQos请求参数结构体
     public struct DeleteQosRequest: TCRequestModel {
         /// 单次加速唯一 Id
@@ -61,5 +45,21 @@ extension Mna {
             case duration = "Duration"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止Qos加速过程
+    ///
+    /// 移动网络停止Qos加速过程
+    @inlinable
+    public func deleteQos(_ input: DeleteQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteQosResponse > {
+        self.client.execute(action: "DeleteQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止Qos加速过程
+    ///
+    /// 移动网络停止Qos加速过程
+    @inlinable
+    public func deleteQos(_ input: DeleteQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQosResponse {
+        try await self.client.execute(action: "DeleteQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

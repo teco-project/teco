@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 删除公共配置项
-    @inlinable
-    public func deletePublicConfig(_ input: DeletePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePublicConfigResponse > {
-        self.client.execute(action: "DeletePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除公共配置项
-    @inlinable
-    public func deletePublicConfig(_ input: DeletePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublicConfigResponse {
-        try await self.client.execute(action: "DeletePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePublicConfig请求参数结构体
     public struct DeletePublicConfigRequest: TCRequestModel {
         /// 配置项ID
@@ -54,5 +42,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除公共配置项
+    @inlinable
+    public func deletePublicConfig(_ input: DeletePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePublicConfigResponse > {
+        self.client.execute(action: "DeletePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除公共配置项
+    @inlinable
+    public func deletePublicConfig(_ input: DeletePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublicConfigResponse {
+        try await self.client.execute(action: "DeletePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

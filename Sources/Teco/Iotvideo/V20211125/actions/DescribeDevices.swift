@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取设备列表
-    @inlinable
-    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesResponse > {
-        self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备列表
-    @inlinable
-    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
-        try await self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDevices请求参数结构体
     public struct DescribeDevicesRequest: TCRequestModel {
         /// 需要查看设备列表的产品 ID
@@ -41,7 +29,7 @@ extension Iotvideo {
         /// 需要过滤的设备名称
         public let deviceName: String?
         
-        public init (productId: String, offset: UInt64, limit: UInt64, deviceName: String?) {
+        public init (productId: String, offset: UInt64, limit: UInt64, deviceName: String? = nil) {
             self.productId = productId
             self.offset = offset
             self.limit = limit
@@ -72,5 +60,17 @@ extension Iotvideo {
             case devices = "Devices"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备列表
+    @inlinable
+    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesResponse > {
+        self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备列表
+    @inlinable
+    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
+        try await self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

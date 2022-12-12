@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取主机所有资源数量
-    @inlinable
-    public func describeAssetHostTotalCount(_ input: DescribeAssetHostTotalCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetHostTotalCountResponse > {
-        self.client.execute(action: "DescribeAssetHostTotalCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取主机所有资源数量
-    @inlinable
-    public func describeAssetHostTotalCount(_ input: DescribeAssetHostTotalCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostTotalCountResponse {
-        try await self.client.execute(action: "DescribeAssetHostTotalCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetHostTotalCount请求参数结构体
     public struct DescribeAssetHostTotalCountRequest: TCRequestModel {
         /// 主机Uuid
@@ -73,5 +61,17 @@ extension Cwp {
             case types = "Types"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取主机所有资源数量
+    @inlinable
+    public func describeAssetHostTotalCount(_ input: DescribeAssetHostTotalCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetHostTotalCountResponse > {
+        self.client.execute(action: "DescribeAssetHostTotalCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取主机所有资源数量
+    @inlinable
+    public func describeAssetHostTotalCount(_ input: DescribeAssetHostTotalCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostTotalCountResponse {
+        try await self.client.execute(action: "DescribeAssetHostTotalCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

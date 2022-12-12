@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mmps {
-    /// 获取诊断任务列表
-    ///
-    /// 获取翼扬安全诊断任务列表
-    @inlinable
-    public func describeFlySecMiniAppScanTaskList(_ input: DescribeFlySecMiniAppScanTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlySecMiniAppScanTaskListResponse > {
-        self.client.execute(action: "DescribeFlySecMiniAppScanTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取诊断任务列表
-    ///
-    /// 获取翼扬安全诊断任务列表
-    @inlinable
-    public func describeFlySecMiniAppScanTaskList(_ input: DescribeFlySecMiniAppScanTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanTaskListResponse {
-        try await self.client.execute(action: "DescribeFlySecMiniAppScanTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlySecMiniAppScanTaskList请求参数结构体
     public struct DescribeFlySecMiniAppScanTaskListRequest: TCRequestModel {
         /// 诊断方式 1:基础诊断，2:深度诊断
@@ -45,7 +29,7 @@ extension Mmps {
         /// 小程序appid(为空的时候,则查询当前用户诊断的所有小程序)
         public let miniAppID: String?
         
-        public init (mode: Int64, status: Int64, size: Int64, miniAppID: String?) {
+        public init (mode: Int64, status: Int64, size: Int64, miniAppID: String? = nil) {
             self.mode = mode
             self.status = status
             self.size = size
@@ -82,5 +66,21 @@ extension Mmps {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取诊断任务列表
+    ///
+    /// 获取翼扬安全诊断任务列表
+    @inlinable
+    public func describeFlySecMiniAppScanTaskList(_ input: DescribeFlySecMiniAppScanTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlySecMiniAppScanTaskListResponse > {
+        self.client.execute(action: "DescribeFlySecMiniAppScanTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取诊断任务列表
+    ///
+    /// 获取翼扬安全诊断任务列表
+    @inlinable
+    public func describeFlySecMiniAppScanTaskList(_ input: DescribeFlySecMiniAppScanTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanTaskListResponse {
+        try await self.client.execute(action: "DescribeFlySecMiniAppScanTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

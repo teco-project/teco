@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 同步调用设备行为
-    @inlinable
-    public func callDeviceActionSync(_ input: CallDeviceActionSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CallDeviceActionSyncResponse > {
-        self.client.execute(action: "CallDeviceActionSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 同步调用设备行为
-    @inlinable
-    public func callDeviceActionSync(_ input: CallDeviceActionSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallDeviceActionSyncResponse {
-        try await self.client.execute(action: "CallDeviceActionSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CallDeviceActionSync请求参数结构体
     public struct CallDeviceActionSyncRequest: TCRequestModel {
         /// 产品Id
@@ -41,7 +29,7 @@ extension Iotvideo {
         /// 输入参数
         public let inputParams: String?
         
-        public init (productId: String, deviceName: String, actionId: String, inputParams: String?) {
+        public init (productId: String, deviceName: String, actionId: String, inputParams: String? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.actionId = actionId
@@ -79,5 +67,17 @@ extension Iotvideo {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 同步调用设备行为
+    @inlinable
+    public func callDeviceActionSync(_ input: CallDeviceActionSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CallDeviceActionSyncResponse > {
+        self.client.execute(action: "CallDeviceActionSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 同步调用设备行为
+    @inlinable
+    public func callDeviceActionSync(_ input: CallDeviceActionSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallDeviceActionSyncResponse {
+        try await self.client.execute(action: "CallDeviceActionSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

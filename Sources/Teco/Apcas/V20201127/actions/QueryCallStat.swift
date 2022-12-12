@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apcas {
-    /// 获取调用量统计
-    ///
-    /// 按时间维度获取调用量统计
-    @inlinable
-    public func queryCallStat(_ input: QueryCallStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCallStatResponse > {
-        self.client.execute(action: "QueryCallStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取调用量统计
-    ///
-    /// 按时间维度获取调用量统计
-    @inlinable
-    public func queryCallStat(_ input: QueryCallStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallStatResponse {
-        try await self.client.execute(action: "QueryCallStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryCallStat请求参数结构体
     public struct QueryCallStatRequest: TCRequestModel {
         /// 请求类型 1:人群特征洞察统计 2:购车意向预测统计
@@ -67,5 +51,21 @@ extension Apcas {
             case callSet = "CallSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取调用量统计
+    ///
+    /// 按时间维度获取调用量统计
+    @inlinable
+    public func queryCallStat(_ input: QueryCallStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCallStatResponse > {
+        self.client.execute(action: "QueryCallStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取调用量统计
+    ///
+    /// 按时间维度获取调用量统计
+    @inlinable
+    public func queryCallStat(_ input: QueryCallStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallStatResponse {
+        try await self.client.execute(action: "QueryCallStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

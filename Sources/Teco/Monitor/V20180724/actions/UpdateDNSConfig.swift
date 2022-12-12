@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 更新 Grafana 的 DNS 配置
-    @inlinable
-    public func updateDNSConfig(_ input: UpdateDNSConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDNSConfigResponse > {
-        self.client.execute(action: "UpdateDNSConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新 Grafana 的 DNS 配置
-    @inlinable
-    public func updateDNSConfig(_ input: UpdateDNSConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDNSConfigResponse {
-        try await self.client.execute(action: "UpdateDNSConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateDNSConfig请求参数结构体
     public struct UpdateDNSConfigRequest: TCRequestModel {
         /// 实例 ID
@@ -54,5 +42,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新 Grafana 的 DNS 配置
+    @inlinable
+    public func updateDNSConfig(_ input: UpdateDNSConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDNSConfigResponse > {
+        self.client.execute(action: "UpdateDNSConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新 Grafana 的 DNS 配置
+    @inlinable
+    public func updateDNSConfig(_ input: UpdateDNSConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDNSConfigResponse {
+        try await self.client.execute(action: "UpdateDNSConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

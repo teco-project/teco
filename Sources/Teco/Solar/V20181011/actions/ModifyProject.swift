@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Solar {
-    /// 修改项目
-    @inlinable
-    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectResponse > {
-        self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改项目
-    @inlinable
-    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
-        try await self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyProject请求参数结构体
     public struct ModifyProjectRequest: TCRequestModel {
         /// 项目ID
@@ -47,7 +35,7 @@ extension Solar {
         /// 项目机构Id
         public let projectOrgId: String?
         
-        public init (projectId: String, projectName: String, projectBudget: String, projectOrg: String, projectIntroduction: String, projectOrgId: String?) {
+        public init (projectId: String, projectName: String, projectBudget: String, projectOrg: String, projectIntroduction: String, projectOrgId: String? = nil) {
             self.projectId = projectId
             self.projectName = projectName
             self.projectBudget = projectBudget
@@ -74,5 +62,17 @@ extension Solar {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改项目
+    @inlinable
+    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectResponse > {
+        self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改项目
+    @inlinable
+    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
+        try await self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

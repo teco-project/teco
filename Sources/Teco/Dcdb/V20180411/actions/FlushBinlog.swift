@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 切分Binlog
-    ///
-    /// 相当于在所有分片的mysqld中执行flush logs，完成切分的binlog将展示在各个分片控制台binlog列表里。
-    @inlinable
-    public func flushBinlog(_ input: FlushBinlogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FlushBinlogResponse > {
-        self.client.execute(action: "FlushBinlog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 切分Binlog
-    ///
-    /// 相当于在所有分片的mysqld中执行flush logs，完成切分的binlog将展示在各个分片控制台binlog列表里。
-    @inlinable
-    public func flushBinlog(_ input: FlushBinlogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushBinlogResponse {
-        try await self.client.execute(action: "FlushBinlog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// FlushBinlog请求参数结构体
     public struct FlushBinlogRequest: TCRequestModel {
         /// 实例ID
@@ -53,5 +37,21 @@ extension Dcdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 切分Binlog
+    ///
+    /// 相当于在所有分片的mysqld中执行flush logs，完成切分的binlog将展示在各个分片控制台binlog列表里。
+    @inlinable
+    public func flushBinlog(_ input: FlushBinlogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FlushBinlogResponse > {
+        self.client.execute(action: "FlushBinlog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 切分Binlog
+    ///
+    /// 相当于在所有分片的mysqld中执行flush logs，完成切分的binlog将展示在各个分片控制台binlog列表里。
+    @inlinable
+    public func flushBinlog(_ input: FlushBinlogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushBinlogResponse {
+        try await self.client.execute(action: "FlushBinlog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

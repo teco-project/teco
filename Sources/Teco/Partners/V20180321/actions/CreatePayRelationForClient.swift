@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Partners {
-    /// 合作伙伴为客户创建强代付关系
-    @inlinable
-    public func createPayRelationForClient(_ input: CreatePayRelationForClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePayRelationForClientResponse > {
-        self.client.execute(action: "CreatePayRelationForClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 合作伙伴为客户创建强代付关系
-    @inlinable
-    public func createPayRelationForClient(_ input: CreatePayRelationForClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRelationForClientResponse {
-        try await self.client.execute(action: "CreatePayRelationForClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePayRelationForClient请求参数结构体
     public struct CreatePayRelationForClientRequest: TCRequestModel {
         /// 客户账号ID
@@ -49,5 +37,17 @@ extension Partners {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 合作伙伴为客户创建强代付关系
+    @inlinable
+    public func createPayRelationForClient(_ input: CreatePayRelationForClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePayRelationForClientResponse > {
+        self.client.execute(action: "CreatePayRelationForClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 合作伙伴为客户创建强代付关系
+    @inlinable
+    public func createPayRelationForClient(_ input: CreatePayRelationForClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRelationForClientResponse {
+        try await self.client.execute(action: "CreatePayRelationForClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

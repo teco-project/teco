@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 描述资源配置接口
-    @inlinable
-    public func describeResourceConfigs(_ input: DescribeResourceConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceConfigsResponse > {
-        self.client.execute(action: "DescribeResourceConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 描述资源配置接口
-    @inlinable
-    public func describeResourceConfigs(_ input: DescribeResourceConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceConfigsResponse {
-        try await self.client.execute(action: "DescribeResourceConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourceConfigs请求参数结构体
     public struct DescribeResourceConfigsRequest: TCRequestModel {
         /// 资源ID
@@ -50,7 +38,7 @@ extension Oceanus {
         /// 工作空间 SerialId
         public let workSpaceId: String?
         
-        public init (resourceId: String?, offset: Int64?, limit: Int64?, resourceConfigVersions: [Int64]?, jobConfigVersion: Int64?, jobId: String?, workSpaceId: String?) {
+        public init (resourceId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, resourceConfigVersions: [Int64]? = nil, jobConfigVersion: Int64? = nil, jobId: String? = nil, workSpaceId: String? = nil) {
             self.resourceId = resourceId
             self.offset = offset
             self.limit = limit
@@ -87,5 +75,17 @@ extension Oceanus {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 描述资源配置接口
+    @inlinable
+    public func describeResourceConfigs(_ input: DescribeResourceConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceConfigsResponse > {
+        self.client.execute(action: "DescribeResourceConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 描述资源配置接口
+    @inlinable
+    public func describeResourceConfigs(_ input: DescribeResourceConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceConfigsResponse {
+        try await self.client.execute(action: "DescribeResourceConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

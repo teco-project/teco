@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取命名空间属性
-    ///
-    /// 获取指定命名空间的属性
-    @inlinable
-    public func describeEnvironmentAttributes(_ input: DescribeEnvironmentAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentAttributesResponse > {
-        self.client.execute(action: "DescribeEnvironmentAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取命名空间属性
-    ///
-    /// 获取指定命名空间的属性
-    @inlinable
-    public func describeEnvironmentAttributes(_ input: DescribeEnvironmentAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentAttributesResponse {
-        try await self.client.execute(action: "DescribeEnvironmentAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEnvironmentAttributes请求参数结构体
     public struct DescribeEnvironmentAttributesRequest: TCRequestModel {
         /// 环境（命名空间）名称。
@@ -39,7 +23,7 @@ extension Tdmq {
         /// Pulsar 集群的ID
         public let clusterId: String?
         
-        public init (environmentId: String, clusterId: String?) {
+        public init (environmentId: String, clusterId: String? = nil) {
             self.environmentId = environmentId
             self.clusterId = clusterId
         }
@@ -90,5 +74,21 @@ extension Tdmq {
             case remark = "Remark"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取命名空间属性
+    ///
+    /// 获取指定命名空间的属性
+    @inlinable
+    public func describeEnvironmentAttributes(_ input: DescribeEnvironmentAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentAttributesResponse > {
+        self.client.execute(action: "DescribeEnvironmentAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取命名空间属性
+    ///
+    /// 获取指定命名空间的属性
+    @inlinable
+    public func describeEnvironmentAttributes(_ input: DescribeEnvironmentAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentAttributesResponse {
+        try await self.client.execute(action: "DescribeEnvironmentAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

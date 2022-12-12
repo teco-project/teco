@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tcss {
-    /// 查询待处理逃逸事件趋势
-    @inlinable
-    public func describeEscapeEventTendency(_ input: DescribeEscapeEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeEventTendencyResponse > {
-        self.client.execute(action: "DescribeEscapeEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询待处理逃逸事件趋势
-    @inlinable
-    public func describeEscapeEventTendency(_ input: DescribeEscapeEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventTendencyResponse {
-        try await self.client.execute(action: "DescribeEscapeEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEscapeEventTendency请求参数结构体
     public struct DescribeEscapeEventTendencyRequest: TCRequestModel {
         /// 结束时间
@@ -62,5 +50,17 @@ extension Tcss {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询待处理逃逸事件趋势
+    @inlinable
+    public func describeEscapeEventTendency(_ input: DescribeEscapeEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeEventTendencyResponse > {
+        self.client.execute(action: "DescribeEscapeEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询待处理逃逸事件趋势
+    @inlinable
+    public func describeEscapeEventTendency(_ input: DescribeEscapeEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventTendencyResponse {
+        try await self.client.execute(action: "DescribeEscapeEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

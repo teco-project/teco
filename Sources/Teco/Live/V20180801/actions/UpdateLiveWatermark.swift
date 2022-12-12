@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 更新水印
-    ///
-    /// 更新水印。
-    @inlinable
-    public func updateLiveWatermark(_ input: UpdateLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateLiveWatermarkResponse > {
-        self.client.execute(action: "UpdateLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新水印
-    ///
-    /// 更新水印。
-    @inlinable
-    public func updateLiveWatermark(_ input: UpdateLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLiveWatermarkResponse {
-        try await self.client.execute(action: "UpdateLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateLiveWatermark请求参数结构体
     public struct UpdateLiveWatermarkRequest: TCRequestModel {
         /// 水印 ID。
@@ -58,7 +42,7 @@ extension Live {
         /// 水印高度，占直播原始画面宽度百分比，建议高宽只设置一项，另外一项会自适应缩放，避免变形。默认原始高度。
         public let height: Int64?
         
-        public init (watermarkId: Int64, pictureUrl: String, xPosition: Int64, yPosition: Int64, watermarkName: String?, width: Int64?, height: Int64?) {
+        public init (watermarkId: Int64, pictureUrl: String, xPosition: Int64, yPosition: Int64, watermarkName: String? = nil, width: Int64? = nil, height: Int64? = nil) {
             self.watermarkId = watermarkId
             self.pictureUrl = pictureUrl
             self.xPosition = xPosition
@@ -87,5 +71,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新水印
+    ///
+    /// 更新水印。
+    @inlinable
+    public func updateLiveWatermark(_ input: UpdateLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateLiveWatermarkResponse > {
+        self.client.execute(action: "UpdateLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新水印
+    ///
+    /// 更新水印。
+    @inlinable
+    public func updateLiveWatermark(_ input: UpdateLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLiveWatermarkResponse {
+        try await self.client.execute(action: "UpdateLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

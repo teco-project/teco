@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tci {
-    /// 获取人员详情
-    @inlinable
-    public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonResponse > {
-        self.client.execute(action: "DescribePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取人员详情
-    @inlinable
-    public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
-        try await self.client.execute(action: "DescribePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePerson请求参数结构体
     public struct DescribePersonRequest: TCRequestModel {
         /// 人员库唯一标识符
@@ -102,5 +90,17 @@ extension Tci {
             case updateTime = "UpdateTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取人员详情
+    @inlinable
+    public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonResponse > {
+        self.client.execute(action: "DescribePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人员详情
+    @inlinable
+    public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
+        try await self.client.execute(action: "DescribePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

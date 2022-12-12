@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询Notebook实例列表
-    @inlinable
-    public func describeNotebookInstances(_ input: DescribeNotebookInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNotebookInstancesResponse > {
-        self.client.execute(action: "DescribeNotebookInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Notebook实例列表
-    @inlinable
-    public func describeNotebookInstances(_ input: DescribeNotebookInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstancesResponse {
-        try await self.client.execute(action: "DescribeNotebookInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNotebookInstances请求参数结构体
     public struct DescribeNotebookInstancesRequest: TCRequestModel {
         /// 偏移量
@@ -54,7 +42,7 @@ extension Tione {
         /// 【废弃字段】排序字段
         public let sortBy: String?
         
-        public init (offset: UInt64?, limit: UInt64?, sortOrder: String?, filters: [Filter]?, sortBy: String?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, sortOrder: String? = nil, filters: [Filter]? = nil, sortBy: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.sortOrder = sortOrder
@@ -87,5 +75,17 @@ extension Tione {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Notebook实例列表
+    @inlinable
+    public func describeNotebookInstances(_ input: DescribeNotebookInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNotebookInstancesResponse > {
+        self.client.execute(action: "DescribeNotebookInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Notebook实例列表
+    @inlinable
+    public func describeNotebookInstances(_ input: DescribeNotebookInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstancesResponse {
+        try await self.client.execute(action: "DescribeNotebookInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

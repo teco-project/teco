@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 购买负载均衡实例
-    ///
-    /// 本接口(CreateLoadBalancer)用来创建负载均衡实例（本接口只支持购买按量计费的负载均衡，包年包月的负载均衡请通过控制台购买）。为了使用负载均衡服务，您必须购买一个或多个负载均衡实例。成功调用该接口后，会返回负载均衡实例的唯一 ID。负载均衡实例的类型分为：公网、内网。详情可参考产品说明中的产品类型。
-    /// 注意：(1)指定可用区申请负载均衡、跨zone容灾(仅香港支持)【如果您需要体验该功能，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)】；(2)目前只有北京、上海、广州支持IPv6；(3)一个账号在每个地域的默认购买配额为：公网100个，内网100个。
-    /// 本接口为异步接口，接口成功返回后，可使用 DescribeLoadBalancers 接口查询负载均衡实例的状态（如创建中、正常），以确定是否创建成功。
-    @inlinable
-    public func createLoadBalancer(_ input: CreateLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLoadBalancerResponse > {
-        self.client.execute(action: "CreateLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 购买负载均衡实例
-    ///
-    /// 本接口(CreateLoadBalancer)用来创建负载均衡实例（本接口只支持购买按量计费的负载均衡，包年包月的负载均衡请通过控制台购买）。为了使用负载均衡服务，您必须购买一个或多个负载均衡实例。成功调用该接口后，会返回负载均衡实例的唯一 ID。负载均衡实例的类型分为：公网、内网。详情可参考产品说明中的产品类型。
-    /// 注意：(1)指定可用区申请负载均衡、跨zone容灾(仅香港支持)【如果您需要体验该功能，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)】；(2)目前只有北京、上海、广州支持IPv6；(3)一个账号在每个地域的默认购买配额为：公网100个，内网100个。
-    /// 本接口为异步接口，接口成功返回后，可使用 DescribeLoadBalancers 接口查询负载均衡实例的状态（如创建中、正常），以确定是否创建成功。
-    @inlinable
-    public func createLoadBalancer(_ input: CreateLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerResponse {
-        try await self.client.execute(action: "CreateLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLoadBalancer请求参数结构体
     public struct CreateLoadBalancerRequest: TCRequestModel {
         /// 负载均衡实例的网络类型：
@@ -71,7 +51,7 @@ extension Clb {
         public let zoneId: String?
         
         /// 仅适用于公网负载均衡。负载均衡的网络计费模式。
-        public let internetAccessible: InternetAccessible
+        public let internetAccessible: InternetAccessible?
         
         /// 仅适用于公网负载均衡。CMCC | CTCC | CUCC，分别对应 移动 | 电信 | 联通，如果不指定本参数，则默认使用BGP。可通过 DescribeSingleIsp 接口查询一个地域所支持的Isp。如果指定运营商，则网络计费式只能使用按带宽包计费(BANDWIDTH_PACKAGE)。
         public let vipIsp: String?
@@ -89,7 +69,7 @@ extension Clb {
         public let bandwidthPackageId: String?
         
         /// 独占集群信息。若创建独占集群负载均衡实例，则此参数必填。
-        public let exclusiveCluster: ExclusiveCluster
+        public let exclusiveCluster: ExclusiveCluster?
         
         /// 创建性能容量型 CLB 实例。
         /// <ul><li>若需要创建性能容量型 CLB 实例，则此参数必填，且取值为：SLA，表示创建按量计费模式下的默认性能保障规格的性能容量型实例。</li>
@@ -118,7 +98,7 @@ extension Clb {
         /// Target是否放通来自CLB的流量。开启放通（true）：只验证CLB上的安全组；不开启放通（false）：需同时验证CLB和后端实例上的安全组。
         public let loadBalancerPassToTarget: Bool?
         
-        public init (loadBalancerType: String, forward: Int64?, loadBalancerName: String?, vpcId: String?, subnetId: String?, projectId: Int64?, addressIPVersion: String?, number: UInt64?, masterZoneId: String?, zoneId: String?, internetAccessible: InternetAccessible, vipIsp: String?, tags: [TagInfo]?, vip: String?, bandwidthPackageId: String?, exclusiveCluster: ExclusiveCluster, slaType: String?, clientToken: String?, snatPro: Bool?, snatIps: [SnatIp]?, clusterTag: String?, slaveZoneId: String?, eipAddressId: String?, loadBalancerPassToTarget: Bool?) {
+        public init (loadBalancerType: String, forward: Int64? = nil, loadBalancerName: String? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, addressIPVersion: String? = nil, number: UInt64? = nil, masterZoneId: String? = nil, zoneId: String? = nil, internetAccessible: InternetAccessible? = nil, vipIsp: String? = nil, tags: [TagInfo]? = nil, vip: String? = nil, bandwidthPackageId: String? = nil, exclusiveCluster: ExclusiveCluster? = nil, slaType: String? = nil, clientToken: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, clusterTag: String? = nil, slaveZoneId: String? = nil, eipAddressId: String? = nil, loadBalancerPassToTarget: Bool? = nil) {
             self.loadBalancerType = loadBalancerType
             self.forward = forward
             self.loadBalancerName = loadBalancerName
@@ -192,5 +172,25 @@ extension Clb {
             case dealName = "DealName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 购买负载均衡实例
+    ///
+    /// 本接口(CreateLoadBalancer)用来创建负载均衡实例（本接口只支持购买按量计费的负载均衡，包年包月的负载均衡请通过控制台购买）。为了使用负载均衡服务，您必须购买一个或多个负载均衡实例。成功调用该接口后，会返回负载均衡实例的唯一 ID。负载均衡实例的类型分为：公网、内网。详情可参考产品说明中的产品类型。
+    /// 注意：(1)指定可用区申请负载均衡、跨zone容灾(仅香港支持)【如果您需要体验该功能，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)】；(2)目前只有北京、上海、广州支持IPv6；(3)一个账号在每个地域的默认购买配额为：公网100个，内网100个。
+    /// 本接口为异步接口，接口成功返回后，可使用 DescribeLoadBalancers 接口查询负载均衡实例的状态（如创建中、正常），以确定是否创建成功。
+    @inlinable
+    public func createLoadBalancer(_ input: CreateLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLoadBalancerResponse > {
+        self.client.execute(action: "CreateLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 购买负载均衡实例
+    ///
+    /// 本接口(CreateLoadBalancer)用来创建负载均衡实例（本接口只支持购买按量计费的负载均衡，包年包月的负载均衡请通过控制台购买）。为了使用负载均衡服务，您必须购买一个或多个负载均衡实例。成功调用该接口后，会返回负载均衡实例的唯一 ID。负载均衡实例的类型分为：公网、内网。详情可参考产品说明中的产品类型。
+    /// 注意：(1)指定可用区申请负载均衡、跨zone容灾(仅香港支持)【如果您需要体验该功能，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)】；(2)目前只有北京、上海、广州支持IPv6；(3)一个账号在每个地域的默认购买配额为：公网100个，内网100个。
+    /// 本接口为异步接口，接口成功返回后，可使用 DescribeLoadBalancers 接口查询负载均衡实例的状态（如创建中、正常），以确定是否创建成功。
+    @inlinable
+    public func createLoadBalancer(_ input: CreateLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerResponse {
+        try await self.client.execute(action: "CreateLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

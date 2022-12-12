@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gme {
-    /// 查询语音消息转文本自学习模型列表
-    @inlinable
-    public func getCustomizationList(_ input: GetCustomizationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCustomizationListResponse > {
-        self.client.execute(action: "GetCustomizationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询语音消息转文本自学习模型列表
-    @inlinable
-    public func getCustomizationList(_ input: GetCustomizationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomizationListResponse {
-        try await self.client.execute(action: "GetCustomizationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetCustomizationList请求参数结构体
     public struct GetCustomizationListRequest: TCRequestModel {
         /// 应用 ID，登录控制台创建应用得到的AppID
@@ -54,5 +42,17 @@ extension Gme {
             case customizationConfigs = "CustomizationConfigs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询语音消息转文本自学习模型列表
+    @inlinable
+    public func getCustomizationList(_ input: GetCustomizationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCustomizationListResponse > {
+        self.client.execute(action: "GetCustomizationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询语音消息转文本自学习模型列表
+    @inlinable
+    public func getCustomizationList(_ input: GetCustomizationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomizationListResponse {
+        try await self.client.execute(action: "GetCustomizationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

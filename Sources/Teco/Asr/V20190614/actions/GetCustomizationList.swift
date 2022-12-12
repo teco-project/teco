@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Asr {
-    /// 查询自学习模型列表
-    @inlinable
-    public func getCustomizationList(_ input: GetCustomizationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCustomizationListResponse > {
-        self.client.execute(action: "GetCustomizationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询自学习模型列表
-    @inlinable
-    public func getCustomizationList(_ input: GetCustomizationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomizationListResponse {
-        try await self.client.execute(action: "GetCustomizationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetCustomizationList请求参数结构体
     public struct GetCustomizationListRequest: TCRequestModel {
         /// 标签信息，格式为“$TagKey : $TagValue ”，中间分隔符为“空格”+“:”+“空格”
@@ -38,7 +26,7 @@ extension Asr {
         /// 分页offset，默认0
         public let offset: UInt64?
         
-        public init (tagInfos: [String]?, limit: UInt64?, offset: UInt64?) {
+        public init (tagInfos: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.tagInfos = tagInfos
             self.limit = limit
             self.offset = offset
@@ -69,5 +57,17 @@ extension Asr {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询自学习模型列表
+    @inlinable
+    public func getCustomizationList(_ input: GetCustomizationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCustomizationListResponse > {
+        self.client.execute(action: "GetCustomizationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询自学习模型列表
+    @inlinable
+    public func getCustomizationList(_ input: GetCustomizationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomizationListResponse {
+        try await self.client.execute(action: "GetCustomizationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

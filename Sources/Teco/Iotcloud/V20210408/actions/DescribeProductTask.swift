@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 查看产品任务详情
-    ///
-    /// 本接口（DescribeProductTask）用于查看产品级别的任务信息
-    @inlinable
-    public func describeProductTask(_ input: DescribeProductTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductTaskResponse > {
-        self.client.execute(action: "DescribeProductTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看产品任务详情
-    ///
-    /// 本接口（DescribeProductTask）用于查看产品级别的任务信息
-    @inlinable
-    public func describeProductTask(_ input: DescribeProductTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductTaskResponse {
-        try await self.client.execute(action: "DescribeProductTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProductTask请求参数结构体
     public struct DescribeProductTaskRequest: TCRequestModel {
         /// 产品ID
@@ -62,5 +46,21 @@ extension Iotcloud {
             case taskInfo = "TaskInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看产品任务详情
+    ///
+    /// 本接口（DescribeProductTask）用于查看产品级别的任务信息
+    @inlinable
+    public func describeProductTask(_ input: DescribeProductTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductTaskResponse > {
+        self.client.execute(action: "DescribeProductTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看产品任务详情
+    ///
+    /// 本接口（DescribeProductTask）用于查看产品级别的任务信息
+    @inlinable
+    public func describeProductTask(_ input: DescribeProductTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductTaskResponse {
+        try await self.client.execute(action: "DescribeProductTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

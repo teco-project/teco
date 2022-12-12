@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 注册采集器
-    @inlinable
-    public func createInLongAgent(_ input: CreateInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInLongAgentResponse > {
-        self.client.execute(action: "CreateInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 注册采集器
-    @inlinable
-    public func createInLongAgent(_ input: CreateInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInLongAgentResponse {
-        try await self.client.execute(action: "CreateInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateInLongAgent请求参数结构体
     public struct CreateInLongAgentRequest: TCRequestModel {
         /// 采集器类型，1：TKE Agent，2：BOSS SDK，默认：1
@@ -47,7 +35,7 @@ extension Wedata {
         /// 当AgentType为1时，必填。当AgentType为2时，不用填
         public let clusterId: String?
         
-        public init (agentType: UInt64, agentName: String, executorGroupId: String, projectId: String, tkeRegion: String, clusterId: String?) {
+        public init (agentType: UInt64, agentName: String, executorGroupId: String, projectId: String, tkeRegion: String, clusterId: String? = nil) {
             self.agentType = agentType
             self.agentName = agentName
             self.executorGroupId = executorGroupId
@@ -78,5 +66,17 @@ extension Wedata {
             case agentId = "AgentId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 注册采集器
+    @inlinable
+    public func createInLongAgent(_ input: CreateInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInLongAgentResponse > {
+        self.client.execute(action: "CreateInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 注册采集器
+    @inlinable
+    public func createInLongAgent(_ input: CreateInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInLongAgentResponse {
+        try await self.client.execute(action: "CreateInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

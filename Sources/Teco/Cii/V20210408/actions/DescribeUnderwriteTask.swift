@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Cii {
-    /// 查询核保任务数据
-    ///
-    /// 本接口(DescribeUnderwriteTask)用于查询核保任务结果
-    @inlinable
-    public func describeUnderwriteTask(_ input: DescribeUnderwriteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnderwriteTaskResponse > {
-        self.client.execute(action: "DescribeUnderwriteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询核保任务数据
-    ///
-    /// 本接口(DescribeUnderwriteTask)用于查询核保任务结果
-    @inlinable
-    public func describeUnderwriteTask(_ input: DescribeUnderwriteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnderwriteTaskResponse {
-        try await self.client.execute(action: "DescribeUnderwriteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUnderwriteTask请求参数结构体
     public struct DescribeUnderwriteTaskRequest: TCRequestModel {
         /// 任务ID
         public let underwriteTaskId: String?
         
-        public init (underwriteTaskId: String?) {
+        public init (underwriteTaskId: String? = nil) {
             self.underwriteTaskId = underwriteTaskId
         }
         
@@ -84,5 +68,21 @@ extension Cii {
             case underwriteResults = "UnderwriteResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询核保任务数据
+    ///
+    /// 本接口(DescribeUnderwriteTask)用于查询核保任务结果
+    @inlinable
+    public func describeUnderwriteTask(_ input: DescribeUnderwriteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnderwriteTaskResponse > {
+        self.client.execute(action: "DescribeUnderwriteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询核保任务数据
+    ///
+    /// 本接口(DescribeUnderwriteTask)用于查询核保任务结果
+    @inlinable
+    public func describeUnderwriteTask(_ input: DescribeUnderwriteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnderwriteTaskResponse {
+        try await self.client.execute(action: "DescribeUnderwriteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

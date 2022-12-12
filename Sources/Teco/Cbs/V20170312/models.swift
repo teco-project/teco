@@ -138,7 +138,7 @@ extension Cbs {
         
         /// 独享集群的资源容量大小。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cdcResource: CdcSize
+        public let cdcResource: CdcSize?
         
         /// 独享集群实例id。
         public let cdcId: String
@@ -244,7 +244,7 @@ extension Cbs {
         public let snapshotSize: UInt64
         
         /// 云硬盘所在的位置。
-        public let placement: Placement
+        public let placement: Placement?
         
         /// 判断预付费的云盘是否支持主动退还。<br><li>true:支持主动退还<br><li>false:不支持主动退还。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -401,7 +401,7 @@ extension Cbs {
         /// 需要将云盘的到期时间与挂载的子机对齐时，可传入该参数。该参数表示子机当前的到期时间，此时Period如果传入，则表示子机需要续费的时长，云盘会自动按对齐到子机续费后的到期时间续费，示例取值：2018-03-30 20:15:03。
         public let curInstanceDeadline: Date?
         
-        public init (period: UInt64, renewFlag: String?, curInstanceDeadline: Date?) {
+        public init (period: UInt64, renewFlag: String? = nil, curInstanceDeadline: Date? = nil) {
             self.period = period
             self.renewFlag = renewFlag
             self.curInstanceDeadline = curInstanceDeadline
@@ -566,7 +566,7 @@ extension Cbs {
         /// 独享集群id。
         public let dedicatedClusterId: String?
         
-        public init (zone: String, cageId: String?, projectId: UInt64?, cdcName: String?, cdcId: String?, dedicatedClusterId: String?) {
+        public init (zone: String, cageId: String? = nil, projectId: UInt64? = nil, cdcName: String? = nil, cdcId: String? = nil, dedicatedClusterId: String? = nil) {
             self.zone = zone
             self.cageId = cageId
             self.projectId = projectId
@@ -593,7 +593,7 @@ extension Cbs {
         /// 指定每周从周一到周日需要触发定期快照的日期，取值范围：[0, 6]。0表示周日触发，1-6分别表示周一至周六。
         public let dayOfWeek: [UInt64]?
         
-        public init (hour: [UInt64], dayOfWeek: [UInt64]?) {
+        public init (hour: [UInt64], dayOfWeek: [UInt64]? = nil) {
             self.hour = hour
             self.dayOfWeek = dayOfWeek
         }
@@ -724,7 +724,7 @@ extension Cbs {
     /// 描述了快照的详细信息
     public struct Snapshot: TCOutputModel {
         /// 快照所在的位置。
-        public let placement: Placement
+        public let placement: Placement?
         
         /// 是否为跨地域复制的快照。取值范围：<br><li>true：表示为跨地域复制的快照。<br><li>false:本地域的快照。
         public let copyFromRemote: Bool

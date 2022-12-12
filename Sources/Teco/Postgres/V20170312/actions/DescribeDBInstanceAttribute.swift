@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 查询实例详情
-    ///
-    /// 本接口 (DescribeDBInstanceAttribute) 用于查询某个实例的详情信息。
-    @inlinable
-    public func describeDBInstanceAttribute(_ input: DescribeDBInstanceAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceAttributeResponse > {
-        self.client.execute(action: "DescribeDBInstanceAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例详情
-    ///
-    /// 本接口 (DescribeDBInstanceAttribute) 用于查询某个实例的详情信息。
-    @inlinable
-    public func describeDBInstanceAttribute(_ input: DescribeDBInstanceAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceAttributeResponse {
-        try await self.client.execute(action: "DescribeDBInstanceAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBInstanceAttribute请求参数结构体
     public struct DescribeDBInstanceAttributeRequest: TCRequestModel {
         /// 实例ID
@@ -57,5 +41,21 @@ extension Postgres {
             case dbInstance = "DBInstance"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例详情
+    ///
+    /// 本接口 (DescribeDBInstanceAttribute) 用于查询某个实例的详情信息。
+    @inlinable
+    public func describeDBInstanceAttribute(_ input: DescribeDBInstanceAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceAttributeResponse > {
+        self.client.execute(action: "DescribeDBInstanceAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例详情
+    ///
+    /// 本接口 (DescribeDBInstanceAttribute) 用于查询某个实例的详情信息。
+    @inlinable
+    public func describeDBInstanceAttribute(_ input: DescribeDBInstanceAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceAttributeResponse {
+        try await self.client.execute(action: "DescribeDBInstanceAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

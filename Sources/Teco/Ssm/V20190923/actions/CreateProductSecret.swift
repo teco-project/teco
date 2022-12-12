@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssm {
-    /// 创建云产品凭据
-    @inlinable
-    public func createProductSecret(_ input: CreateProductSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProductSecretResponse > {
-        self.client.execute(action: "CreateProductSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建云产品凭据
-    @inlinable
-    public func createProductSecret(_ input: CreateProductSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductSecretResponse {
-        try await self.client.execute(action: "CreateProductSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProductSecret请求参数结构体
     public struct CreateProductSecretRequest: TCRequestModel {
         /// 凭据名称，同一region内不可重复，最长128字节，使用字母、数字或者 - _ 的组合，第一个字符必须为字母或者数字。
@@ -77,7 +65,7 @@ extension Ssm {
         /// 轮转周期，以天为单位，默认为1天。
         public let rotationFrequency: Int64?
         
-        public init (secretName: String, userNamePrefix: String, productName: String, instanceID: String, domains: [String], privilegesList: [ProductPrivilegeUnit], description: String?, kmsKeyId: String?, tags: [Tag]?, rotationBeginTime: String?, enableRotation: Bool?, rotationFrequency: Int64?) {
+        public init (secretName: String, userNamePrefix: String, productName: String, instanceID: String, domains: [String], privilegesList: [ProductPrivilegeUnit], description: String? = nil, kmsKeyId: String? = nil, tags: [Tag]? = nil, rotationBeginTime: String? = nil, enableRotation: Bool? = nil, rotationFrequency: Int64? = nil) {
             self.secretName = secretName
             self.userNamePrefix = userNamePrefix
             self.productName = productName
@@ -135,5 +123,17 @@ extension Ssm {
             case flowID = "FlowID"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建云产品凭据
+    @inlinable
+    public func createProductSecret(_ input: CreateProductSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProductSecretResponse > {
+        self.client.execute(action: "CreateProductSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云产品凭据
+    @inlinable
+    public func createProductSecret(_ input: CreateProductSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductSecretResponse {
+        try await self.client.execute(action: "CreateProductSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

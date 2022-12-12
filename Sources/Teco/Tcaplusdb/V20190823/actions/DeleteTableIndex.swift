@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 删除表格的分布式索引
-    @inlinable
-    public func deleteTableIndex(_ input: DeleteTableIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTableIndexResponse > {
-        self.client.execute(action: "DeleteTableIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除表格的分布式索引
-    @inlinable
-    public func deleteTableIndex(_ input: DeleteTableIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableIndexResponse {
-        try await self.client.execute(action: "DeleteTableIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTableIndex请求参数结构体
     public struct DeleteTableIndexRequest: TCRequestModel {
         /// 表格所属集群实例ID
@@ -62,5 +50,17 @@ extension Tcaplusdb {
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除表格的分布式索引
+    @inlinable
+    public func deleteTableIndex(_ input: DeleteTableIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTableIndexResponse > {
+        self.client.execute(action: "DeleteTableIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除表格的分布式索引
+    @inlinable
+    public func deleteTableIndex(_ input: DeleteTableIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableIndexResponse {
+        try await self.client.execute(action: "DeleteTableIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

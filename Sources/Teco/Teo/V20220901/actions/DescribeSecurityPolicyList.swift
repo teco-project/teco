@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询全部安全实例
-    @inlinable
-    public func describeSecurityPolicyList(_ input: DescribeSecurityPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyListResponse > {
-        self.client.execute(action: "DescribeSecurityPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询全部安全实例
-    @inlinable
-    public func describeSecurityPolicyList(_ input: DescribeSecurityPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyListResponse {
-        try await self.client.execute(action: "DescribeSecurityPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityPolicyList请求参数结构体
     public struct DescribeSecurityPolicyListRequest: TCRequestModel {
         /// 站点Id。
@@ -53,5 +41,17 @@ extension Teo {
             case securityEntities = "SecurityEntities"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询全部安全实例
+    @inlinable
+    public func describeSecurityPolicyList(_ input: DescribeSecurityPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyListResponse > {
+        self.client.execute(action: "DescribeSecurityPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询全部安全实例
+    @inlinable
+    public func describeSecurityPolicyList(_ input: DescribeSecurityPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyListResponse {
+        try await self.client.execute(action: "DescribeSecurityPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

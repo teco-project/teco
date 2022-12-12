@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 黑石EIP查询任务状态
-    @inlinable
-    public func describeEipTask(_ input: DescribeEipTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEipTaskResponse > {
-        self.client.execute(action: "DescribeEipTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 黑石EIP查询任务状态
-    @inlinable
-    public func describeEipTask(_ input: DescribeEipTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipTaskResponse {
-        try await self.client.execute(action: "DescribeEipTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEipTask请求参数结构体
     public struct DescribeEipTaskRequest: TCRequestModel {
         /// EIP查询任务ID
@@ -53,5 +41,17 @@ extension Bmeip {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 黑石EIP查询任务状态
+    @inlinable
+    public func describeEipTask(_ input: DescribeEipTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEipTaskResponse > {
+        self.client.execute(action: "DescribeEipTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 黑石EIP查询任务状态
+    @inlinable
+    public func describeEipTask(_ input: DescribeEipTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipTaskResponse {
+        try await self.client.execute(action: "DescribeEipTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

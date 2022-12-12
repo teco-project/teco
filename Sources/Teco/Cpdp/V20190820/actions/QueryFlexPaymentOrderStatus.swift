@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云V2-查询付款订单状态
-    @inlinable
-    public func queryFlexPaymentOrderStatus(_ input: QueryFlexPaymentOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFlexPaymentOrderStatusResponse > {
-        self.client.execute(action: "QueryFlexPaymentOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云V2-查询付款订单状态
-    @inlinable
-    public func queryFlexPaymentOrderStatus(_ input: QueryFlexPaymentOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPaymentOrderStatusResponse {
-        try await self.client.execute(action: "QueryFlexPaymentOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryFlexPaymentOrderStatus请求参数结构体
     public struct QueryFlexPaymentOrderStatusRequest: TCRequestModel {
         /// 外部订单ID
@@ -42,7 +30,7 @@ extension Cpdp {
         /// 缺省默认为生产环境
         public let environment: String?
         
-        public init (outOrderId: String?, orderId: String?, environment: String?) {
+        public init (outOrderId: String? = nil, orderId: String? = nil, environment: String? = nil) {
             self.outOrderId = outOrderId
             self.orderId = orderId
             self.environment = environment
@@ -65,7 +53,7 @@ extension Cpdp {
         
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: PaymentOrderStatusResult
+        public let result: PaymentOrderStatusResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -76,5 +64,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云V2-查询付款订单状态
+    @inlinable
+    public func queryFlexPaymentOrderStatus(_ input: QueryFlexPaymentOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFlexPaymentOrderStatusResponse > {
+        self.client.execute(action: "QueryFlexPaymentOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云V2-查询付款订单状态
+    @inlinable
+    public func queryFlexPaymentOrderStatus(_ input: QueryFlexPaymentOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPaymentOrderStatusResponse {
+        try await self.client.execute(action: "QueryFlexPaymentOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

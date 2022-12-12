@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecc {
-    /// 多图像识别批改
-    ///
-    /// https://ecc.tencentcloudapi.com/?Action=CorrectMultiImage
-    /// 多图像识别批改接口
-    @inlinable
-    public func correctMultiImage(_ input: CorrectMultiImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CorrectMultiImageResponse > {
-        self.client.execute(action: "CorrectMultiImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 多图像识别批改
-    ///
-    /// https://ecc.tencentcloudapi.com/?Action=CorrectMultiImage
-    /// 多图像识别批改接口
-    @inlinable
-    public func correctMultiImage(_ input: CorrectMultiImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CorrectMultiImageResponse {
-        try await self.client.execute(action: "CorrectMultiImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CorrectMultiImage请求参数结构体
     public struct CorrectMultiImageRequest: TCRequestModel {
         /// 图片的url链接或base64数据。每张图片数据作为数组的一个元素，数组个数与图片个数保持一致。存放类别依据InputType而定，url与base64编码不能混合使用。
@@ -68,7 +50,7 @@ extension Ecc {
         /// 异步模式标识，0：同步模式，1：异步模式。默认为同步模式
         public let isAsync: Int64?
         
-        public init (image: [String], inputType: Int64, eccAppid: String?, sessionId: String?, serverType: Int64?, title: String?, grade: String?, requirement: String?, modelTitle: String?, modelContent: String?, isAsync: Int64?) {
+        public init (image: [String], inputType: Int64, eccAppid: String? = nil, sessionId: String? = nil, serverType: Int64? = nil, title: String? = nil, grade: String? = nil, requirement: String? = nil, modelTitle: String? = nil, modelContent: String? = nil, isAsync: Int64? = nil) {
             self.image = image
             self.inputType = inputType
             self.eccAppid = eccAppid
@@ -109,5 +91,23 @@ extension Ecc {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 多图像识别批改
+    ///
+    /// https://ecc.tencentcloudapi.com/?Action=CorrectMultiImage
+    /// 多图像识别批改接口
+    @inlinable
+    public func correctMultiImage(_ input: CorrectMultiImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CorrectMultiImageResponse > {
+        self.client.execute(action: "CorrectMultiImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 多图像识别批改
+    ///
+    /// https://ecc.tencentcloudapi.com/?Action=CorrectMultiImage
+    /// 多图像识别批改接口
+    @inlinable
+    public func correctMultiImage(_ input: CorrectMultiImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CorrectMultiImageResponse {
+        try await self.client.execute(action: "CorrectMultiImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

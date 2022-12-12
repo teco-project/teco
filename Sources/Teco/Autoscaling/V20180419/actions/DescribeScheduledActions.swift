@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 查询定时任务
-    ///
-    /// 本接口 (DescribeScheduledActions) 用于查询一个或多个定时任务的详细信息。
-    /// * 可以根据定时任务ID、定时任务名称或者伸缩组ID等信息来查询定时任务的详细信息。过滤信息详细请见过滤器`Filter`。
-    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的定时任务。
-    @inlinable
-    public func describeScheduledActions(_ input: DescribeScheduledActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScheduledActionsResponse > {
-        self.client.execute(action: "DescribeScheduledActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询定时任务
-    ///
-    /// 本接口 (DescribeScheduledActions) 用于查询一个或多个定时任务的详细信息。
-    /// * 可以根据定时任务ID、定时任务名称或者伸缩组ID等信息来查询定时任务的详细信息。过滤信息详细请见过滤器`Filter`。
-    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的定时任务。
-    @inlinable
-    public func describeScheduledActions(_ input: DescribeScheduledActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScheduledActionsResponse {
-        try await self.client.execute(action: "DescribeScheduledActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScheduledActions请求参数结构体
     public struct DescribeScheduledActionsRequest: TCRequestModel {
         /// 按照一个或者多个定时任务ID查询。实例ID形如：asst-am691zxo。每次请求的实例的上限为100。参数不支持同时指定ScheduledActionIds和Filters。
@@ -52,7 +32,7 @@ extension As {
         /// 返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: UInt64?
         
-        public init (scheduledActionIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (scheduledActionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.scheduledActionIds = scheduledActionIds
             self.filters = filters
             self.offset = offset
@@ -83,5 +63,25 @@ extension As {
             case scheduledActionSet = "ScheduledActionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询定时任务
+    ///
+    /// 本接口 (DescribeScheduledActions) 用于查询一个或多个定时任务的详细信息。
+    /// * 可以根据定时任务ID、定时任务名称或者伸缩组ID等信息来查询定时任务的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的定时任务。
+    @inlinable
+    public func describeScheduledActions(_ input: DescribeScheduledActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScheduledActionsResponse > {
+        self.client.execute(action: "DescribeScheduledActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询定时任务
+    ///
+    /// 本接口 (DescribeScheduledActions) 用于查询一个或多个定时任务的详细信息。
+    /// * 可以根据定时任务ID、定时任务名称或者伸缩组ID等信息来查询定时任务的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的定时任务。
+    @inlinable
+    public func describeScheduledActions(_ input: DescribeScheduledActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScheduledActionsResponse {
+        try await self.client.execute(action: "DescribeScheduledActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

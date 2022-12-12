@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 创建AMQP队列
-    @inlinable
-    public func createAMQPQueue(_ input: CreateAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAMQPQueueResponse > {
-        self.client.execute(action: "CreateAMQPQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建AMQP队列
-    @inlinable
-    public func createAMQPQueue(_ input: CreateAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPQueueResponse {
-        try await self.client.execute(action: "CreateAMQPQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAMQPQueue请求参数结构体
     public struct CreateAMQPQueueRequest: TCRequestModel {
         /// 队列名称，3-64个字符，只能包含字母、数字、“-”及“_”
@@ -50,7 +38,7 @@ extension Tdmq {
         /// 路由键
         public let deadLetterRoutingKey: String?
         
-        public init (queue: String, vHostId: String, autoDelete: Bool, clusterId: String, remark: String?, deadLetterExchange: String?, deadLetterRoutingKey: String?) {
+        public init (queue: String, vHostId: String, autoDelete: Bool, clusterId: String, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil) {
             self.queue = queue
             self.vHostId = vHostId
             self.autoDelete = autoDelete
@@ -79,5 +67,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建AMQP队列
+    @inlinable
+    public func createAMQPQueue(_ input: CreateAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAMQPQueueResponse > {
+        self.client.execute(action: "CreateAMQPQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建AMQP队列
+    @inlinable
+    public func createAMQPQueue(_ input: CreateAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPQueueResponse {
+        try await self.client.execute(action: "CreateAMQPQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

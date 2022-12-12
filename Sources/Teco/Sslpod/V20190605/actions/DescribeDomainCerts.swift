@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sslpod {
-    /// 获取域名证书
-    ///
-    /// 获取域名关联证书
-    @inlinable
-    public func describeDomainCerts(_ input: DescribeDomainCertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainCertsResponse > {
-        self.client.execute(action: "DescribeDomainCerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取域名证书
-    ///
-    /// 获取域名关联证书
-    @inlinable
-    public func describeDomainCerts(_ input: DescribeDomainCertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainCertsResponse {
-        try await self.client.execute(action: "DescribeDomainCerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomainCerts请求参数结构体
     public struct DescribeDomainCertsRequest: TCRequestModel {
         /// 域名ID，可通过搜索域名接口获得
@@ -57,5 +41,21 @@ extension Sslpod {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取域名证书
+    ///
+    /// 获取域名关联证书
+    @inlinable
+    public func describeDomainCerts(_ input: DescribeDomainCertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainCertsResponse > {
+        self.client.execute(action: "DescribeDomainCerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取域名证书
+    ///
+    /// 获取域名关联证书
+    @inlinable
+    public func describeDomainCerts(_ input: DescribeDomainCertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainCertsResponse {
+        try await self.client.execute(action: "DescribeDomainCerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

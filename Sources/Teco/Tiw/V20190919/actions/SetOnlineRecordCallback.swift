@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 设置实时录制回调地址
-    ///
-    /// 设置实时录制回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40258
-    @inlinable
-    public func setOnlineRecordCallback(_ input: SetOnlineRecordCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetOnlineRecordCallbackResponse > {
-        self.client.execute(action: "SetOnlineRecordCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置实时录制回调地址
-    ///
-    /// 设置实时录制回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40258
-    @inlinable
-    public func setOnlineRecordCallback(_ input: SetOnlineRecordCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetOnlineRecordCallbackResponse {
-        try await self.client.execute(action: "SetOnlineRecordCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetOnlineRecordCallback请求参数结构体
     public struct SetOnlineRecordCallbackRequest: TCRequestModel {
         /// 客户的SdkAppId
@@ -58,5 +42,21 @@ extension Tiw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置实时录制回调地址
+    ///
+    /// 设置实时录制回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40258
+    @inlinable
+    public func setOnlineRecordCallback(_ input: SetOnlineRecordCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetOnlineRecordCallbackResponse > {
+        self.client.execute(action: "SetOnlineRecordCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置实时录制回调地址
+    ///
+    /// 设置实时录制回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40258
+    @inlinable
+    public func setOnlineRecordCallback(_ input: SetOnlineRecordCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetOnlineRecordCallbackResponse {
+        try await self.client.execute(action: "SetOnlineRecordCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

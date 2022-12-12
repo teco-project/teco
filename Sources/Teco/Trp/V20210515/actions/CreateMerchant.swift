@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 新建商户
-    @inlinable
-    public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMerchantResponse > {
-        self.client.execute(action: "CreateMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建商户
-    @inlinable
-    public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMerchantResponse {
-        try await self.client.execute(action: "CreateMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMerchant请求参数结构体
     public struct CreateMerchantRequest: TCRequestModel {
         /// 商户名称
@@ -44,7 +32,7 @@ extension Trp {
         /// 码包前缀地址 第三方码包时必填
         public let codeUrl: String?
         
-        public init (name: String, remark: String?, corpId: UInt64?, codeType: Int64?, codeUrl: String?) {
+        public init (name: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil) {
             self.name = name
             self.remark = remark
             self.corpId = corpId
@@ -74,5 +62,17 @@ extension Trp {
             case merchantId = "MerchantId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建商户
+    @inlinable
+    public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMerchantResponse > {
+        self.client.execute(action: "CreateMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建商户
+    @inlinable
+    public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMerchantResponse {
+        try await self.client.execute(action: "CreateMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

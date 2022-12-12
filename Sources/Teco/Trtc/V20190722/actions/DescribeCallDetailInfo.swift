@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Trtc {
-    /// 查询历史用户列表与通话指标
-    ///
-    /// 查询指定时间内的用户列表及用户通话质量数据，可查询14天内数据。DataType 不为null，查询起止时间不超过1个小时，查询用户不超过6个，支持跨天查询。DataType为null时，查询起止时间不超过4个小时， 默认查询6个用户，同时支持每页查询100以内用户个数（PageSize不超过100）。接口用于查询质量问题，不推荐作为计费使用。（同老接口DescribeCallDetail）
-    /// **注意**：
-    /// 1.该接口只用于历史数据统计或核对数据使用，实时类关键业务逻辑不能使用。
-    /// 2.该接口目前免费提供中，监控仪表盘商业化计费后该接口需要订阅付费版后方可调用，仪表盘商业化说明请见：https://cloud.tencent.com/document/product/647/77735
-    @inlinable
-    public func describeCallDetailInfo(_ input: DescribeCallDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallDetailInfoResponse > {
-        self.client.execute(action: "DescribeCallDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询历史用户列表与通话指标
-    ///
-    /// 查询指定时间内的用户列表及用户通话质量数据，可查询14天内数据。DataType 不为null，查询起止时间不超过1个小时，查询用户不超过6个，支持跨天查询。DataType为null时，查询起止时间不超过4个小时， 默认查询6个用户，同时支持每页查询100以内用户个数（PageSize不超过100）。接口用于查询质量问题，不推荐作为计费使用。（同老接口DescribeCallDetail）
-    /// **注意**：
-    /// 1.该接口只用于历史数据统计或核对数据使用，实时类关键业务逻辑不能使用。
-    /// 2.该接口目前免费提供中，监控仪表盘商业化计费后该接口需要订阅付费版后方可调用，仪表盘商业化说明请见：https://cloud.tencent.com/document/product/647/77735
-    @inlinable
-    public func describeCallDetailInfo(_ input: DescribeCallDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallDetailInfoResponse {
-        try await self.client.execute(action: "DescribeCallDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCallDetailInfo请求参数结构体
     public struct DescribeCallDetailInfoRequest: TCRequestModel {
         /// 通话 ID（唯一标识一次通话）： SdkAppId_RoomId（房间号）_ CreateTime（房间创建时间，unix时间戳，单位为s）例：1400xxxxxx_218695_1590065777。通过 DescribeRoomInfo（查询历史房间列表）接口获取（[查询历史房间列表](https://cloud.tencent.com/document/product/647/44050)）。
@@ -82,7 +60,7 @@ extension Trtc {
         /// DataType 为null，UserIds长度不超过100，PageSize最大不超过100。
         public let pageSize: UInt64?
         
-        public init (commId: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, userIds: [String]?, dataType: [String]?, pageNumber: UInt64?, pageSize: UInt64?) {
+        public init (commId: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, userIds: [String]? = nil, dataType: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil) {
             self.commId = commId
             self.startTime = startTime
             self.endTime = endTime
@@ -127,5 +105,27 @@ extension Trtc {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询历史用户列表与通话指标
+    ///
+    /// 查询指定时间内的用户列表及用户通话质量数据，可查询14天内数据。DataType 不为null，查询起止时间不超过1个小时，查询用户不超过6个，支持跨天查询。DataType为null时，查询起止时间不超过4个小时， 默认查询6个用户，同时支持每页查询100以内用户个数（PageSize不超过100）。接口用于查询质量问题，不推荐作为计费使用。（同老接口DescribeCallDetail）
+    /// **注意**：
+    /// 1.该接口只用于历史数据统计或核对数据使用，实时类关键业务逻辑不能使用。
+    /// 2.该接口目前免费提供中，监控仪表盘商业化计费后该接口需要订阅付费版后方可调用，仪表盘商业化说明请见：https://cloud.tencent.com/document/product/647/77735
+    @inlinable
+    public func describeCallDetailInfo(_ input: DescribeCallDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallDetailInfoResponse > {
+        self.client.execute(action: "DescribeCallDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询历史用户列表与通话指标
+    ///
+    /// 查询指定时间内的用户列表及用户通话质量数据，可查询14天内数据。DataType 不为null，查询起止时间不超过1个小时，查询用户不超过6个，支持跨天查询。DataType为null时，查询起止时间不超过4个小时， 默认查询6个用户，同时支持每页查询100以内用户个数（PageSize不超过100）。接口用于查询质量问题，不推荐作为计费使用。（同老接口DescribeCallDetail）
+    /// **注意**：
+    /// 1.该接口只用于历史数据统计或核对数据使用，实时类关键业务逻辑不能使用。
+    /// 2.该接口目前免费提供中，监控仪表盘商业化计费后该接口需要订阅付费版后方可调用，仪表盘商业化说明请见：https://cloud.tencent.com/document/product/647/77735
+    @inlinable
+    public func describeCallDetailInfo(_ input: DescribeCallDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallDetailInfoResponse {
+        try await self.client.execute(action: "DescribeCallDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

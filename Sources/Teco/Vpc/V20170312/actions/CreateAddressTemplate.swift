@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建IP地址模板
-    ///
-    /// 本接口（CreateAddressTemplate）用于创建IP地址模板。
-    @inlinable
-    public func createAddressTemplate(_ input: CreateAddressTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAddressTemplateResponse > {
-        self.client.execute(action: "CreateAddressTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建IP地址模板
-    ///
-    /// 本接口（CreateAddressTemplate）用于创建IP地址模板。
-    @inlinable
-    public func createAddressTemplate(_ input: CreateAddressTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAddressTemplateResponse {
-        try await self.client.execute(action: "CreateAddressTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAddressTemplate请求参数结构体
     public struct CreateAddressTemplateRequest: TCRequestModel {
         /// IP地址模板名称。
@@ -42,7 +26,7 @@ extension Vpc {
         /// 地址信息，支持携带备注，支持 IP、CIDR、IP 范围。Addresses与AddressesExtra必填其一。
         public let addressesExtra: [AddressInfo]?
         
-        public init (addressTemplateName: String, addresses: [String]?, addressesExtra: [AddressInfo]?) {
+        public init (addressTemplateName: String, addresses: [String]? = nil, addressesExtra: [AddressInfo]? = nil) {
             self.addressTemplateName = addressTemplateName
             self.addresses = addresses
             self.addressesExtra = addressesExtra
@@ -67,5 +51,21 @@ extension Vpc {
             case addressTemplate = "AddressTemplate"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建IP地址模板
+    ///
+    /// 本接口（CreateAddressTemplate）用于创建IP地址模板。
+    @inlinable
+    public func createAddressTemplate(_ input: CreateAddressTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAddressTemplateResponse > {
+        self.client.execute(action: "CreateAddressTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建IP地址模板
+    ///
+    /// 本接口（CreateAddressTemplate）用于创建IP地址模板。
+    @inlinable
+    public func createAddressTemplate(_ input: CreateAddressTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAddressTemplateResponse {
+        try await self.client.execute(action: "CreateAddressTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tat {
-    /// 查询执行活动
-    ///
-    /// 此接口用于查询执行活动详情。
-    @inlinable
-    public func describeInvocations(_ input: DescribeInvocationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvocationsResponse > {
-        self.client.execute(action: "DescribeInvocations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询执行活动
-    ///
-    /// 此接口用于查询执行活动详情。
-    @inlinable
-    public func describeInvocations(_ input: DescribeInvocationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationsResponse {
-        try await self.client.execute(action: "DescribeInvocations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInvocations请求参数结构体
     public struct DescribeInvocationsRequest: TCRequestModel {
         /// 执行活动ID列表，每次请求的上限为100。参数不支持同时指定 `InvocationIds` 和 `Filters`。
@@ -49,7 +33,7 @@ extension Tat {
         /// 偏移量，默认为0。关于 `Offset` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let offset: UInt64?
         
-        public init (invocationIds: [String]?, filters: [Filter]?, limit: UInt64?, offset: UInt64?) {
+        public init (invocationIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.invocationIds = invocationIds
             self.filters = filters
             self.limit = limit
@@ -80,5 +64,21 @@ extension Tat {
             case invocationSet = "InvocationSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询执行活动
+    ///
+    /// 此接口用于查询执行活动详情。
+    @inlinable
+    public func describeInvocations(_ input: DescribeInvocationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvocationsResponse > {
+        self.client.execute(action: "DescribeInvocations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询执行活动
+    ///
+    /// 此接口用于查询执行活动详情。
+    @inlinable
+    public func describeInvocations(_ input: DescribeInvocationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationsResponse {
+        try await self.client.execute(action: "DescribeInvocations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

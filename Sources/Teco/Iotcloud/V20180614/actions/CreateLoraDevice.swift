@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 创建lora设备
-    ///
-    /// 创建lora类型的设备
-    @inlinable
-    public func createLoraDevice(_ input: CreateLoraDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLoraDeviceResponse > {
-        self.client.execute(action: "CreateLoraDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建lora设备
-    ///
-    /// 创建lora类型的设备
-    @inlinable
-    public func createLoraDevice(_ input: CreateLoraDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoraDeviceResponse {
-        try await self.client.execute(action: "CreateLoraDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLoraDevice请求参数结构体
     public struct CreateLoraDeviceRequest: TCRequestModel {
         /// 产品Id ，创建产品时腾讯云为用户分配全局唯一的Id
@@ -57,7 +41,7 @@ extension Iotcloud {
         /// 设备备注
         public let memo: String?
         
-        public init (productId: String, deviceName: String, deviceType: String, appEui: String?, deviceEui: String?, appKey: String?, authKey: String?, memo: String?) {
+        public init (productId: String, deviceName: String, deviceType: String, appEui: String? = nil, deviceEui: String? = nil, appKey: String? = nil, authKey: String? = nil, memo: String? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.deviceType = deviceType
@@ -104,5 +88,21 @@ extension Iotcloud {
             case deviceName = "DeviceName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建lora设备
+    ///
+    /// 创建lora类型的设备
+    @inlinable
+    public func createLoraDevice(_ input: CreateLoraDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLoraDeviceResponse > {
+        self.client.execute(action: "CreateLoraDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建lora设备
+    ///
+    /// 创建lora类型的设备
+    @inlinable
+    public func createLoraDevice(_ input: CreateLoraDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoraDeviceResponse {
+        try await self.client.execute(action: "CreateLoraDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

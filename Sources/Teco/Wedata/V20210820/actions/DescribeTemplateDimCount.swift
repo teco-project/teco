@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询规则模版维度分布情况
-    @inlinable
-    public func describeTemplateDimCount(_ input: DescribeTemplateDimCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateDimCountResponse > {
-        self.client.execute(action: "DescribeTemplateDimCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询规则模版维度分布情况
-    @inlinable
-    public func describeTemplateDimCount(_ input: DescribeTemplateDimCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateDimCountResponse {
-        try await self.client.execute(action: "DescribeTemplateDimCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTemplateDimCount请求参数结构体
     public struct DescribeTemplateDimCountRequest: TCRequestModel {
         /// 模版类型
@@ -35,7 +23,7 @@ extension Wedata {
         /// 项目ID
         public let projectId: String?
         
-        public init (type: UInt64?, projectId: String?) {
+        public init (type: UInt64? = nil, projectId: String? = nil) {
             self.type = type
             self.projectId = projectId
         }
@@ -59,5 +47,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询规则模版维度分布情况
+    @inlinable
+    public func describeTemplateDimCount(_ input: DescribeTemplateDimCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateDimCountResponse > {
+        self.client.execute(action: "DescribeTemplateDimCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询规则模版维度分布情况
+    @inlinable
+    public func describeTemplateDimCount(_ input: DescribeTemplateDimCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateDimCountResponse {
+        try await self.client.execute(action: "DescribeTemplateDimCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

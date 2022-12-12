@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssm {
-    /// 查询异步任务的执行结果
-    @inlinable
-    public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAsyncRequestInfoResponse > {
-        self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询异步任务的执行结果
-    @inlinable
-    public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRequestInfoResponse {
-        try await self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAsyncRequestInfo请求参数结构体
     public struct DescribeAsyncRequestInfoRequest: TCRequestModel {
         /// 异步任务ID号。
@@ -57,5 +45,17 @@ extension Ssm {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询异步任务的执行结果
+    @inlinable
+    public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAsyncRequestInfoResponse > {
+        self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询异步任务的执行结果
+    @inlinable
+    public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRequestInfoResponse {
+        try await self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

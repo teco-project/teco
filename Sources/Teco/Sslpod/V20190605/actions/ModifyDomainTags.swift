@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Sslpod {
-    /// 修改域名tag
-    @inlinable
-    public func modifyDomainTags(_ input: ModifyDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainTagsResponse > {
-        self.client.execute(action: "ModifyDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改域名tag
-    @inlinable
-    public func modifyDomainTags(_ input: ModifyDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainTagsResponse {
-        try await self.client.execute(action: "ModifyDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDomainTags请求参数结构体
     public struct ModifyDomainTagsRequest: TCRequestModel {
         /// 账号下域名ID
@@ -54,5 +42,17 @@ extension Sslpod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改域名tag
+    @inlinable
+    public func modifyDomainTags(_ input: ModifyDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainTagsResponse > {
+        self.client.execute(action: "ModifyDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改域名tag
+    @inlinable
+    public func modifyDomainTags(_ input: ModifyDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainTagsResponse {
+        try await self.client.execute(action: "ModifyDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

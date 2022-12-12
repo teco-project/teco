@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Partners {
-    /// 代理商代付订单查询接口（禁止接入）
-    ///
-    /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
-    @inlinable
-    public func describeAgentPayDeals(_ input: DescribeAgentPayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentPayDealsResponse > {
-        self.client.execute(action: "DescribeAgentPayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 代理商代付订单查询接口（禁止接入）
-    ///
-    /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
-    @inlinable
-    public func describeAgentPayDeals(_ input: DescribeAgentPayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentPayDealsResponse {
-        try await self.client.execute(action: "DescribeAgentPayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAgentPayDeals请求参数结构体
     public struct DescribeAgentPayDealsRequest: TCRequestModel {
         /// 偏移量
@@ -59,7 +43,7 @@ extension Partners {
         /// 订单号列表
         public let dealNames: [String]?
         
-        public init (offset: UInt64, limit: UInt64, creatTimeRangeStart: Date?, creatTimeRangeEnd: Date?, order: UInt64?, status: UInt64?, ownerUins: [String]?, dealNames: [String]?) {
+        public init (offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, ownerUins: [String]? = nil, dealNames: [String]? = nil) {
             self.offset = offset
             self.limit = limit
             self.creatTimeRangeStart = creatTimeRangeStart
@@ -98,5 +82,21 @@ extension Partners {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 代理商代付订单查询接口（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
+    @inlinable
+    public func describeAgentPayDeals(_ input: DescribeAgentPayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentPayDealsResponse > {
+        self.client.execute(action: "DescribeAgentPayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 代理商代付订单查询接口（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
+    @inlinable
+    public func describeAgentPayDeals(_ input: DescribeAgentPayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentPayDealsResponse {
+        try await self.client.execute(action: "DescribeAgentPayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

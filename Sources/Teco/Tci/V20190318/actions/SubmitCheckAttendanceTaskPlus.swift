@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 提交高级人员考勤任务
-    ///
-    /// 支持多路视频流，提交高级人员考勤任务
-    @inlinable
-    public func submitCheckAttendanceTaskPlus(_ input: SubmitCheckAttendanceTaskPlusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitCheckAttendanceTaskPlusResponse > {
-        self.client.execute(action: "SubmitCheckAttendanceTaskPlus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交高级人员考勤任务
-    ///
-    /// 支持多路视频流，提交高级人员考勤任务
-    @inlinable
-    public func submitCheckAttendanceTaskPlus(_ input: SubmitCheckAttendanceTaskPlusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCheckAttendanceTaskPlusResponse {
-        try await self.client.execute(action: "SubmitCheckAttendanceTaskPlus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SubmitCheckAttendanceTaskPlus请求参数结构体
     public struct SubmitCheckAttendanceTaskPlusRequest: TCRequestModel {
         /// 输入数据
@@ -62,7 +46,7 @@ extension Tci {
         /// 识别阈值；默认为0.8
         public let threshold: Float?
         
-        public init (fileContent: [String], fileType: String, libraryIds: [String], attendanceThreshold: Float?, enableStranger: Bool?, endTime: Int64?, noticeUrl: String?, startTime: Int64?, threshold: Float?) {
+        public init (fileContent: [String], fileType: String, libraryIds: [String], attendanceThreshold: Float? = nil, enableStranger: Bool? = nil, endTime: Int64? = nil, noticeUrl: String? = nil, startTime: Int64? = nil, threshold: Float? = nil) {
             self.fileContent = fileContent
             self.fileType = fileType
             self.libraryIds = libraryIds
@@ -103,5 +87,21 @@ extension Tci {
             case notRegisteredSet = "NotRegisteredSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交高级人员考勤任务
+    ///
+    /// 支持多路视频流，提交高级人员考勤任务
+    @inlinable
+    public func submitCheckAttendanceTaskPlus(_ input: SubmitCheckAttendanceTaskPlusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitCheckAttendanceTaskPlusResponse > {
+        self.client.execute(action: "SubmitCheckAttendanceTaskPlus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交高级人员考勤任务
+    ///
+    /// 支持多路视频流，提交高级人员考勤任务
+    @inlinable
+    public func submitCheckAttendanceTaskPlus(_ input: SubmitCheckAttendanceTaskPlusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCheckAttendanceTaskPlusResponse {
+        try await self.client.execute(action: "SubmitCheckAttendanceTaskPlus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

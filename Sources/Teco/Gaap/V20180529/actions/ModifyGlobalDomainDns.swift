@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 修改域名解析记录
-    @inlinable
-    public func modifyGlobalDomainDns(_ input: ModifyGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGlobalDomainDnsResponse > {
-        self.client.execute(action: "ModifyGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改域名解析记录
-    @inlinable
-    public func modifyGlobalDomainDns(_ input: ModifyGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGlobalDomainDnsResponse {
-        try await self.client.execute(action: "ModifyGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyGlobalDomainDns请求参数结构体
     public struct ModifyGlobalDomainDnsRequest: TCRequestModel {
         /// 解析记录ID
@@ -64,5 +52,17 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改域名解析记录
+    @inlinable
+    public func modifyGlobalDomainDns(_ input: ModifyGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGlobalDomainDnsResponse > {
+        self.client.execute(action: "ModifyGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改域名解析记录
+    @inlinable
+    public func modifyGlobalDomainDns(_ input: ModifyGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGlobalDomainDnsResponse {
+        try await self.client.execute(action: "ModifyGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

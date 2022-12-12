@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取首页错误信息
-    @inlinable
-    public func describeError(_ input: DescribeErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeErrorResponse > {
-        self.client.execute(action: "DescribeError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取首页错误信息
-    @inlinable
-    public func describeError(_ input: DescribeErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeErrorResponse {
-        try await self.client.execute(action: "DescribeError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeError请求参数结构体
     public struct DescribeErrorRequest: TCRequestModel {
         /// 日期
@@ -66,5 +54,17 @@ extension Rum {
             case createTime = "CreateTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取首页错误信息
+    @inlinable
+    public func describeError(_ input: DescribeErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeErrorResponse > {
+        self.client.execute(action: "DescribeError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取首页错误信息
+    @inlinable
+    public func describeError(_ input: DescribeErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeErrorResponse {
+        try await self.client.execute(action: "DescribeError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

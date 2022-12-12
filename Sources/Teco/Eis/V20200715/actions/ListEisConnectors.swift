@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eis {
-    /// 获取连接器列表
-    ///
-    /// 连接器列表
-    @inlinable
-    public func listEisConnectors(_ input: ListEisConnectorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListEisConnectorsResponse > {
-        self.client.execute(action: "ListEisConnectors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取连接器列表
-    ///
-    /// 连接器列表
-    @inlinable
-    public func listEisConnectors(_ input: ListEisConnectorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEisConnectorsResponse {
-        try await self.client.execute(action: "ListEisConnectors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListEisConnectors请求参数结构体
     public struct ListEisConnectorsRequest: TCRequestModel {
         /// 连接器名称,非必输，如输入则按照输入值模糊匹配
@@ -42,7 +26,7 @@ extension Eis {
         /// 分页参数,每页显示的条数
         public let limit: Int64?
         
-        public init (connectorName: String?, offset: Int64?, limit: Int64?) {
+        public init (connectorName: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.connectorName = connectorName
             self.offset = offset
             self.limit = limit
@@ -71,5 +55,21 @@ extension Eis {
             case connectors = "Connectors"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取连接器列表
+    ///
+    /// 连接器列表
+    @inlinable
+    public func listEisConnectors(_ input: ListEisConnectorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListEisConnectorsResponse > {
+        self.client.execute(action: "ListEisConnectors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取连接器列表
+    ///
+    /// 连接器列表
+    @inlinable
+    public func listEisConnectors(_ input: ListEisConnectorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEisConnectorsResponse {
+        try await self.client.execute(action: "ListEisConnectors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

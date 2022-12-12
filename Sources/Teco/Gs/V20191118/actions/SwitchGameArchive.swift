@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gs {
-    /// 切换游戏存档
-    @inlinable
-    public func switchGameArchive(_ input: SwitchGameArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchGameArchiveResponse > {
-        self.client.execute(action: "SwitchGameArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 切换游戏存档
-    @inlinable
-    public func switchGameArchive(_ input: SwitchGameArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchGameArchiveResponse {
-        try await self.client.execute(action: "SwitchGameArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SwitchGameArchive请求参数结构体
     public struct SwitchGameArchiveRequest: TCRequestModel {
         /// 游戏用户ID
@@ -41,7 +29,7 @@ extension Gs {
         /// 游戏相关参数
         public let gameContext: String?
         
-        public init (userId: String, gameId: String, gameArchiveUrl: String?, gameContext: String?) {
+        public init (userId: String, gameId: String, gameArchiveUrl: String? = nil, gameContext: String? = nil) {
             self.userId = userId
             self.gameId = gameId
             self.gameArchiveUrl = gameArchiveUrl
@@ -64,5 +52,17 @@ extension Gs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 切换游戏存档
+    @inlinable
+    public func switchGameArchive(_ input: SwitchGameArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchGameArchiveResponse > {
+        self.client.execute(action: "SwitchGameArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 切换游戏存档
+    @inlinable
+    public func switchGameArchive(_ input: SwitchGameArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchGameArchiveResponse {
+        try await self.client.execute(action: "SwitchGameArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

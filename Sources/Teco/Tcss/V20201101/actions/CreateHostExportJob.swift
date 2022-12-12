@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 创建主机列表导出任务
-    @inlinable
-    public func createHostExportJob(_ input: CreateHostExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHostExportJobResponse > {
-        self.client.execute(action: "CreateHostExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建主机列表导出任务
-    @inlinable
-    public func createHostExportJob(_ input: CreateHostExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostExportJobResponse {
-        try await self.client.execute(action: "CreateHostExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateHostExportJob请求参数结构体
     public struct CreateHostExportJobRequest: TCRequestModel {
         /// 过滤条件。
@@ -57,7 +45,7 @@ extension Tcss {
         /// 导出字段
         public let exportField: [String]?
         
-        public init (filters: [AssetFilters]?, limit: UInt64?, offset: UInt64?, by: String?, order: String?, exportField: [String]?) {
+        public init (filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, exportField: [String]? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -88,5 +76,17 @@ extension Tcss {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建主机列表导出任务
+    @inlinable
+    public func createHostExportJob(_ input: CreateHostExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHostExportJobResponse > {
+        self.client.execute(action: "CreateHostExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建主机列表导出任务
+    @inlinable
+    public func createHostExportJob(_ input: CreateHostExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostExportJobResponse {
+        try await self.client.execute(action: "CreateHostExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

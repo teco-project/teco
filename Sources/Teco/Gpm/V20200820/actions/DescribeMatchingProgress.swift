@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gpm {
-    /// 查询匹配进度
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 查询匹配进度。
-    @inlinable
-    public func describeMatchingProgress(_ input: DescribeMatchingProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMatchingProgressResponse > {
-        self.client.execute(action: "DescribeMatchingProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询匹配进度
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 查询匹配进度。
-    @inlinable
-    public func describeMatchingProgress(_ input: DescribeMatchingProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchingProgressResponse {
-        try await self.client.execute(action: "DescribeMatchingProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMatchingProgress请求参数结构体
     public struct DescribeMatchingProgressRequest: TCRequestModel {
         /// 匹配票据 ID列表, 列表长度 12。
@@ -65,5 +47,23 @@ extension Gpm {
             case errCode = "ErrCode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询匹配进度
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 查询匹配进度。
+    @inlinable
+    public func describeMatchingProgress(_ input: DescribeMatchingProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMatchingProgressResponse > {
+        self.client.execute(action: "DescribeMatchingProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询匹配进度
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 查询匹配进度。
+    @inlinable
+    public func describeMatchingProgress(_ input: DescribeMatchingProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchingProgressResponse {
+        try await self.client.execute(action: "DescribeMatchingProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

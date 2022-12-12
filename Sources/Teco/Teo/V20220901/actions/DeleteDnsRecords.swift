@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 批量删除 DNS 记录
-    @inlinable
-    public func deleteDnsRecords(_ input: DeleteDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDnsRecordsResponse > {
-        self.client.execute(action: "DeleteDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量删除 DNS 记录
-    @inlinable
-    public func deleteDnsRecords(_ input: DeleteDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDnsRecordsResponse {
-        try await self.client.execute(action: "DeleteDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDnsRecords请求参数结构体
     public struct DeleteDnsRecordsRequest: TCRequestModel {
         /// 待删除记录所属站点 ID。
@@ -54,5 +42,17 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量删除 DNS 记录
+    @inlinable
+    public func deleteDnsRecords(_ input: DeleteDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDnsRecordsResponse > {
+        self.client.execute(action: "DeleteDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除 DNS 记录
+    @inlinable
+    public func deleteDnsRecords(_ input: DeleteDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDnsRecordsResponse {
+        try await self.client.execute(action: "DeleteDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

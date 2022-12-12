@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcbr {
-    /// 创建环境
-    ///
-    /// 创建云托管环境，并开通资源。	
-    @inlinable
-    public func createCloudRunEnv(_ input: CreateCloudRunEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudRunEnvResponse > {
-        self.client.execute(action: "CreateCloudRunEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建环境
-    ///
-    /// 创建云托管环境，并开通资源。	
-    @inlinable
-    public func createCloudRunEnv(_ input: CreateCloudRunEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRunEnvResponse {
-        try await self.client.execute(action: "CreateCloudRunEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCloudRunEnv请求参数结构体
     public struct CreateCloudRunEnvRequest: TCRequestModel {
         /// Trial,Standard,Professional,Enterprise
@@ -62,7 +46,7 @@ extension Tcbr {
         /// 渠道：wechat | cloud
         public let channel: String?
         
-        public init (packageType: String, alias: String?, freeQuota: String?, flag: String?, vpcId: String?, subNetIds: [String]?, reqKey: String?, source: String?, channel: String?) {
+        public init (packageType: String, alias: String? = nil, freeQuota: String? = nil, flag: String? = nil, vpcId: String? = nil, subNetIds: [String]? = nil, reqKey: String? = nil, source: String? = nil, channel: String? = nil) {
             self.packageType = packageType
             self.alias = alias
             self.freeQuota = freeQuota
@@ -103,5 +87,21 @@ extension Tcbr {
             case tranId = "TranId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建环境
+    ///
+    /// 创建云托管环境，并开通资源。	
+    @inlinable
+    public func createCloudRunEnv(_ input: CreateCloudRunEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudRunEnvResponse > {
+        self.client.execute(action: "CreateCloudRunEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建环境
+    ///
+    /// 创建云托管环境，并开通资源。	
+    @inlinable
+    public func createCloudRunEnv(_ input: CreateCloudRunEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRunEnvResponse {
+        try await self.client.execute(action: "CreateCloudRunEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

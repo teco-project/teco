@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 开启复制
-    ///
-    /// 开启 RO 复制，从主实例同步数据。
-    @inlinable
-    public func startReplication(_ input: StartReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartReplicationResponse > {
-        self.client.execute(action: "StartReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启复制
-    ///
-    /// 开启 RO 复制，从主实例同步数据。
-    @inlinable
-    public func startReplication(_ input: StartReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartReplicationResponse {
-        try await self.client.execute(action: "StartReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartReplication请求参数结构体
     public struct StartReplicationRequest: TCRequestModel {
         /// 实例 ID。仅支持只读实例。
@@ -58,5 +42,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启复制
+    ///
+    /// 开启 RO 复制，从主实例同步数据。
+    @inlinable
+    public func startReplication(_ input: StartReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartReplicationResponse > {
+        self.client.execute(action: "StartReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启复制
+    ///
+    /// 开启 RO 复制，从主实例同步数据。
+    @inlinable
+    public func startReplication(_ input: StartReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartReplicationResponse {
+        try await self.client.execute(action: "StartReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

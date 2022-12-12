@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 查询指定NodeGroup下NodeUnit模板列表
-    @inlinable
-    public func describeNodeUnitTemplateOnNodeGroup(_ input: DescribeNodeUnitTemplateOnNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodeUnitTemplateOnNodeGroupResponse > {
-        self.client.execute(action: "DescribeNodeUnitTemplateOnNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询指定NodeGroup下NodeUnit模板列表
-    @inlinable
-    public func describeNodeUnitTemplateOnNodeGroup(_ input: DescribeNodeUnitTemplateOnNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeUnitTemplateOnNodeGroupResponse {
-        try await self.client.execute(action: "DescribeNodeUnitTemplateOnNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNodeUnitTemplateOnNodeGroup请求参数结构体
     public struct DescribeNodeUnitTemplateOnNodeGroupRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -50,7 +38,7 @@ extension Iecp {
         /// 排序，默认DESC
         public let order: String?
         
-        public init (edgeUnitId: UInt64, nodeGroupName: String, namespace: String?, nodeUnitNamePattern: String?, offset: UInt64?, limit: UInt64?, order: String?) {
+        public init (edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, nodeUnitNamePattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.nodeGroupName = nodeGroupName
             self.namespace = namespace
@@ -88,5 +76,17 @@ extension Iecp {
             case nodeUnitTemplates = "NodeUnitTemplates"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询指定NodeGroup下NodeUnit模板列表
+    @inlinable
+    public func describeNodeUnitTemplateOnNodeGroup(_ input: DescribeNodeUnitTemplateOnNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodeUnitTemplateOnNodeGroupResponse > {
+        self.client.execute(action: "DescribeNodeUnitTemplateOnNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指定NodeGroup下NodeUnit模板列表
+    @inlinable
+    public func describeNodeUnitTemplateOnNodeGroup(_ input: DescribeNodeUnitTemplateOnNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeUnitTemplateOnNodeGroupResponse {
+        try await self.client.execute(action: "DescribeNodeUnitTemplateOnNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询直播转码统计信息
-    ///
-    /// 支持查询某天或某段时间的转码详细信息。
-    @inlinable
-    public func describeLiveTranscodeDetailInfo(_ input: DescribeLiveTranscodeDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTranscodeDetailInfoResponse > {
-        self.client.execute(action: "DescribeLiveTranscodeDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询直播转码统计信息
-    ///
-    /// 支持查询某天或某段时间的转码详细信息。
-    @inlinable
-    public func describeLiveTranscodeDetailInfo(_ input: DescribeLiveTranscodeDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeDetailInfoResponse {
-        try await self.client.execute(action: "DescribeLiveTranscodeDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveTranscodeDetailInfo请求参数结构体
     public struct DescribeLiveTranscodeDetailInfoRequest: TCRequestModel {
         /// 推流域名。
@@ -62,7 +46,7 @@ extension Live {
         /// 注意：支持查询近1个月内的详细数据，截止到昨天，注意DayTime 与（StartDayTime，EndDayTime）必须要传一个，如果都传，会以DayTime为准 。
         public let endDayTime: String?
         
-        public init (pushDomain: String?, streamName: String?, dayTime: String?, pageNum: UInt64?, pageSize: UInt64?, startDayTime: String?, endDayTime: String?) {
+        public init (pushDomain: String? = nil, streamName: String? = nil, dayTime: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, startDayTime: String? = nil, endDayTime: String? = nil) {
             self.pushDomain = pushDomain
             self.streamName = streamName
             self.dayTime = dayTime
@@ -111,5 +95,21 @@ extension Live {
             case totalPage = "TotalPage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询直播转码统计信息
+    ///
+    /// 支持查询某天或某段时间的转码详细信息。
+    @inlinable
+    public func describeLiveTranscodeDetailInfo(_ input: DescribeLiveTranscodeDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTranscodeDetailInfoResponse > {
+        self.client.execute(action: "DescribeLiveTranscodeDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询直播转码统计信息
+    ///
+    /// 支持查询某天或某段时间的转码详细信息。
+    @inlinable
+    public func describeLiveTranscodeDetailInfo(_ input: DescribeLiveTranscodeDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeDetailInfoResponse {
+        try await self.client.execute(action: "DescribeLiveTranscodeDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

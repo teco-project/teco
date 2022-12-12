@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdcpg {
-    /// 修改集群自动续费
-    ///
-    /// 修改集群自动续费，只对预付费集群生效。
-    @inlinable
-    public func modifyClustersAutoRenewFlag(_ input: ModifyClustersAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClustersAutoRenewFlagResponse > {
-        self.client.execute(action: "ModifyClustersAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改集群自动续费
-    ///
-    /// 修改集群自动续费，只对预付费集群生效。
-    @inlinable
-    public func modifyClustersAutoRenewFlag(_ input: ModifyClustersAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClustersAutoRenewFlagResponse {
-        try await self.client.execute(action: "ModifyClustersAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClustersAutoRenewFlag请求参数结构体
     public struct ModifyClustersAutoRenewFlagRequest: TCRequestModel {
         /// 集群ID列表
@@ -58,5 +42,21 @@ extension Tdcpg {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改集群自动续费
+    ///
+    /// 修改集群自动续费，只对预付费集群生效。
+    @inlinable
+    public func modifyClustersAutoRenewFlag(_ input: ModifyClustersAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClustersAutoRenewFlagResponse > {
+        self.client.execute(action: "ModifyClustersAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改集群自动续费
+    ///
+    /// 修改集群自动续费，只对预付费集群生效。
+    @inlinable
+    public func modifyClustersAutoRenewFlag(_ input: ModifyClustersAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClustersAutoRenewFlagResponse {
+        try await self.client.execute(action: "ModifyClustersAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

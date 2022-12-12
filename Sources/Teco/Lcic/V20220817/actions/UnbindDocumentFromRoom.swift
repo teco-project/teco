@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Lcic {
-    /// 文档从房间解绑
-    @inlinable
-    public func unbindDocumentFromRoom(_ input: UnbindDocumentFromRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindDocumentFromRoomResponse > {
-        self.client.execute(action: "UnbindDocumentFromRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 文档从房间解绑
-    @inlinable
-    public func unbindDocumentFromRoom(_ input: UnbindDocumentFromRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDocumentFromRoomResponse {
-        try await self.client.execute(action: "UnbindDocumentFromRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindDocumentFromRoom请求参数结构体
     public struct UnbindDocumentFromRoomRequest: TCRequestModel {
         /// 房间ID。
@@ -54,5 +42,17 @@ extension Lcic {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 文档从房间解绑
+    @inlinable
+    public func unbindDocumentFromRoom(_ input: UnbindDocumentFromRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindDocumentFromRoomResponse > {
+        self.client.execute(action: "UnbindDocumentFromRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 文档从房间解绑
+    @inlinable
+    public func unbindDocumentFromRoom(_ input: UnbindDocumentFromRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDocumentFromRoomResponse {
+        try await self.client.execute(action: "UnbindDocumentFromRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

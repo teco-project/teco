@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取组件列表
-    ///
-    /// 本接口 (DescribeComponents) 用于获取组件列表数据。
-    @inlinable
-    public func describeComponents(_ input: DescribeComponentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComponentsResponse > {
-        self.client.execute(action: "DescribeComponents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取组件列表
-    ///
-    /// 本接口 (DescribeComponents) 用于获取组件列表数据。
-    @inlinable
-    public func describeComponents(_ input: DescribeComponentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentsResponse {
-        try await self.client.execute(action: "DescribeComponents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeComponents请求参数结构体
     public struct DescribeComponentsRequest: TCRequestModel {
         /// 云镜客户端唯一Uuid。Uuid和ComponentId必填其一，使用Uuid表示，查询该主机列表信息。
@@ -50,7 +34,7 @@ extension Yunjing {
         /// <li>MachineIp - String - 是否必填：否 - 主机内网IP</li>
         public let filters: [Filter]?
         
-        public init (uuid: String?, componentId: UInt64?, limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (uuid: String? = nil, componentId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.uuid = uuid
             self.componentId = componentId
             self.limit = limit
@@ -83,5 +67,21 @@ extension Yunjing {
             case components = "Components"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取组件列表
+    ///
+    /// 本接口 (DescribeComponents) 用于获取组件列表数据。
+    @inlinable
+    public func describeComponents(_ input: DescribeComponentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComponentsResponse > {
+        self.client.execute(action: "DescribeComponents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取组件列表
+    ///
+    /// 本接口 (DescribeComponents) 用于获取组件列表数据。
+    @inlinable
+    public func describeComponents(_ input: DescribeComponentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentsResponse {
+        try await self.client.execute(action: "DescribeComponents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

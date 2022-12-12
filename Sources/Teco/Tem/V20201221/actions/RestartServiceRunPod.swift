@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 重启实例
-    @inlinable
-    public func restartServiceRunPod(_ input: RestartServiceRunPodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartServiceRunPodResponse > {
-        self.client.execute(action: "RestartServiceRunPod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重启实例
-    @inlinable
-    public func restartServiceRunPod(_ input: RestartServiceRunPodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartServiceRunPodResponse {
-        try await self.client.execute(action: "RestartServiceRunPod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestartServiceRunPod请求参数结构体
     public struct RestartServiceRunPodRequest: TCRequestModel {
         /// 环境id
@@ -50,7 +38,7 @@ extension Tem {
         /// 来源渠道
         public let sourceChannel: Int64?
         
-        public init (namespaceId: String, serviceId: String, podName: String, limit: Int64?, offset: Int64?, status: String?, sourceChannel: Int64?) {
+        public init (namespaceId: String, serviceId: String, podName: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, sourceChannel: Int64? = nil) {
             self.namespaceId = namespaceId
             self.serviceId = serviceId
             self.podName = podName
@@ -84,5 +72,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重启实例
+    @inlinable
+    public func restartServiceRunPod(_ input: RestartServiceRunPodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartServiceRunPodResponse > {
+        self.client.execute(action: "RestartServiceRunPod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重启实例
+    @inlinable
+    public func restartServiceRunPod(_ input: RestartServiceRunPodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartServiceRunPodResponse {
+        try await self.client.execute(action: "RestartServiceRunPod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

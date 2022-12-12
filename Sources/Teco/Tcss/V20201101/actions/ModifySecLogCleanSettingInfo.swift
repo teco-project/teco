@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 修改安全日志清理设置信息
-    @inlinable
-    public func modifySecLogCleanSettingInfo(_ input: ModifySecLogCleanSettingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogCleanSettingInfoResponse > {
-        self.client.execute(action: "ModifySecLogCleanSettingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改安全日志清理设置信息
-    @inlinable
-    public func modifySecLogCleanSettingInfo(_ input: ModifySecLogCleanSettingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogCleanSettingInfoResponse {
-        try await self.client.execute(action: "ModifySecLogCleanSettingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySecLogCleanSettingInfo请求参数结构体
     public struct ModifySecLogCleanSettingInfoRequest: TCRequestModel {
         /// 触发清理的储量底线(50-99)
@@ -59,5 +47,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改安全日志清理设置信息
+    @inlinable
+    public func modifySecLogCleanSettingInfo(_ input: ModifySecLogCleanSettingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogCleanSettingInfoResponse > {
+        self.client.execute(action: "ModifySecLogCleanSettingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改安全日志清理设置信息
+    @inlinable
+    public func modifySecLogCleanSettingInfo(_ input: ModifySecLogCleanSettingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogCleanSettingInfoResponse {
+        try await self.client.execute(action: "ModifySecLogCleanSettingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

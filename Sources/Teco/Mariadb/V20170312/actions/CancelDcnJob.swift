@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 取消DCN同步
-    @inlinable
-    public func cancelDcnJob(_ input: CancelDcnJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelDcnJobResponse > {
-        self.client.execute(action: "CancelDcnJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消DCN同步
-    @inlinable
-    public func cancelDcnJob(_ input: CancelDcnJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDcnJobResponse {
-        try await self.client.execute(action: "CancelDcnJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelDcnJob请求参数结构体
     public struct CancelDcnJobRequest: TCRequestModel {
         /// 灾备实例ID
@@ -53,5 +41,17 @@ extension Mariadb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消DCN同步
+    @inlinable
+    public func cancelDcnJob(_ input: CancelDcnJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelDcnJobResponse > {
+        self.client.execute(action: "CancelDcnJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消DCN同步
+    @inlinable
+    public func cancelDcnJob(_ input: CancelDcnJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDcnJobResponse {
+        try await self.client.execute(action: "CancelDcnJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

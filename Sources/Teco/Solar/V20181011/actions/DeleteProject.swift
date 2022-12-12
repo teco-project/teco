@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Solar {
-    /// 删除项目
-    @inlinable
-    public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProjectResponse > {
-        self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除项目
-    @inlinable
-    public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
-        try await self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteProject请求参数结构体
     public struct DeleteProjectRequest: TCRequestModel {
         /// 项目ID
@@ -49,5 +37,17 @@ extension Solar {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除项目
+    @inlinable
+    public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProjectResponse > {
+        self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除项目
+    @inlinable
+    public func deleteProject(_ input: DeleteProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
+        try await self.client.execute(action: "DeleteProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

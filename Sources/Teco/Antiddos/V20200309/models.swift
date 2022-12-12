@@ -41,7 +41,7 @@ extension Antiddos {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let priority: UInt64?
         
-        public init (forwardProtocol: String, dPortStart: UInt64, dPortEnd: UInt64, sPortStart: UInt64, sPortEnd: UInt64, action: String, priority: UInt64?) {
+        public init (forwardProtocol: String, dPortStart: UInt64, dPortEnd: UInt64, sPortStart: UInt64, sPortEnd: UInt64, action: String, priority: UInt64? = nil) {
             self.forwardProtocol = forwardProtocol
             self.dPortStart = dPortStart
             self.dPortEnd = dPortEnd
@@ -139,12 +139,12 @@ extension Antiddos {
         /// 资产实例所属的套餐包信息，
         /// 注意：当资产实例不是套餐包的实例时，此字段为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let packInfo: PackInfo
+        public let packInfo: PackInfo?
         
         /// 资产实例所属的三网套餐包详情，
         /// 注意：当资产实例不是三网套餐包的实例时，此字段为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let staticPackRelation: StaticPackRelation
+        public let staticPackRelation: StaticPackRelation?
         
         /// 区分高防IP境外线路
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -165,12 +165,12 @@ extension Antiddos {
         /// 资产实例所属的高防弹性公网IP套餐包详情，
         /// 注意：当资产实例不是高防弹性公网IP套餐包的实例时，此字段为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let eipAddressPackRelation: EipAddressPackRelation
+        public let eipAddressPackRelation: EipAddressPackRelation?
         
         /// 高防弹性公网IP关联的实例信息。
         /// 注意：当资产实例不是高防弹性公网IP实例时，此字段为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let eipAddressInfo: EipAddressRelation
+        public let eipAddressInfo: EipAddressRelation?
         
         /// 建议客户接入的域名，客户可使用域名接入。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -194,7 +194,7 @@ extension Antiddos {
         /// 资产实例所属的全力防护套餐包详情，
         /// 注意：当资产实例不是全力防护套餐包的实例时，此字段为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let anycastOutPackRelation: AnycastOutPackRelation
+        public let anycastOutPackRelation: AnycastOutPackRelation?
         
         /// 资源实例版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -325,7 +325,7 @@ extension Antiddos {
         /// 资产实例所属的套餐包信息，
         /// 注意：当资产实例不是套餐包的实例时，此字段为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let packInfo: PackInfo
+        public let packInfo: PackInfo?
         
         /// 高防包绑定的EIP属于的云产品信息
         public let eipProductInfos: [EipProductInfo]
@@ -488,7 +488,7 @@ extension Antiddos {
         /// 运营商，绑定操作为必填项，解绑操作可不填。0：电信；1：联通；2：移动；5：BGP
         public let ispCode: UInt64?
         
-        public init (ip: String, bizType: String?, instanceId: String?, deviceType: String?, ispCode: UInt64?) {
+        public init (ip: String, bizType: String? = nil, instanceId: String? = nil, deviceType: String? = nil, ispCode: UInt64? = nil) {
             self.ip = ip
             self.bizType = bizType
             self.instanceId = instanceId
@@ -680,7 +680,7 @@ extension Antiddos {
         /// Cookie，三个策略项仅可填其中之一
         public let cookie: String?
         
-        public init (period: UInt64, requestNum: UInt64, action: String, executeDuration: UInt64, mode: String, uri: String?, userAgent: String?, cookie: String?) {
+        public init (period: UInt64, requestNum: UInt64, action: String, executeDuration: UInt64, mode: String, uri: String? = nil, userAgent: String? = nil, cookie: String? = nil) {
             self.period = period
             self.requestNum = requestNum
             self.action = action
@@ -806,7 +806,7 @@ extension Antiddos {
         /// 当RegionType为customized时，必须填写AreaList；当RegionType为china或oversea时，AreaList为空
         public let areaList: [Int64]?
         
-        public init (regionType: String, action: String, id: String?, areaList: [Int64]?) {
+        public init (regionType: String, action: String, id: String? = nil, areaList: [Int64]? = nil) {
             self.regionType = regionType
             self.action = action
             self.id = id
@@ -987,7 +987,7 @@ extension Antiddos {
         /// 当RegionType为customized时，必须填写AreaList，且最多填写128个；
         public let areaList: [Int64]?
         
-        public init (regionType: String, action: String, id: String?, areaList: [Int64]?) {
+        public init (regionType: String, action: String, id: String? = nil, areaList: [Int64]? = nil) {
             self.regionType = regionType
             self.action = action
             self.id = id
@@ -1046,7 +1046,7 @@ extension Antiddos {
         /// 端口范围列表，最多8个，多个;分隔，范围表示用-；此端口范围必须填写；填写样式1:0-65535，样式2:80;443;1000-2000
         public let dstPortList: String?
         
-        public init (mode: UInt64, speedValues: [SpeedValue], dstPortScopes: [PortSegment]?, id: String?, protocolList: String?, dstPortList: String?) {
+        public init (mode: UInt64, speedValues: [SpeedValue], dstPortScopes: [PortSegment]? = nil, id: String? = nil, protocolList: String? = nil, dstPortList: String? = nil) {
             self.mode = mode
             self.speedValues = speedValues
             self.dstPortScopes = dstPortScopes
@@ -1090,7 +1090,7 @@ extension Antiddos {
         /// 告警阈值，单位Mbps，取值>=0；当作为输入参数时，设置0会删除告警阈值配置；
         public let alarmThreshold: UInt64?
         
-        public init (alarmType: UInt64?, alarmThreshold: UInt64?) {
+        public init (alarmType: UInt64? = nil, alarmThreshold: UInt64? = nil) {
             self.alarmType = alarmType
             self.alarmThreshold = alarmThreshold
         }
@@ -1204,7 +1204,7 @@ extension Antiddos {
         /// 转发监听端口上限，取值1~65535
         public let frontendPortEnd: Int64?
         
-        public init (frontendPort: Int64, forwardProtocol: String, frontendPortEnd: Int64?) {
+        public init (frontendPort: Int64, forwardProtocol: String, frontendPortEnd: Int64? = nil) {
             self.frontendPort = frontendPort
             self.forwardProtocol = forwardProtocol
             self.frontendPortEnd = frontendPortEnd
@@ -1264,7 +1264,7 @@ extension Antiddos {
         /// 资源flag，0：高防包资源，1：高防IP资源，2：非高防资源IP
         public let resourceFlag: Int64?
         
-        public init (type: String, eip: String, cname: String?, resourceFlag: Int64?) {
+        public init (type: String, eip: String, cname: String? = nil, resourceFlag: Int64? = nil) {
             self.type = type
             self.eip = eip
             self.cname = cname
@@ -1392,7 +1392,7 @@ extension Antiddos {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backup: UInt64?
         
-        public init (source: String, weight: UInt64, port: UInt64?, backup: UInt64?) {
+        public init (source: String, weight: UInt64, port: UInt64? = nil, backup: UInt64? = nil) {
             self.source = source
             self.weight = weight
             self.port = port
@@ -1477,7 +1477,7 @@ extension Antiddos {
         /// 智能cc开关，取值[0(关闭), 1(开启)]
         public let ccaiEnable: UInt64?
         
-        public init (keepTime: UInt64, domain: String, `protocol`: String, sourceType: UInt64, lbType: UInt64, sourceList: [L4RuleSource], keepEnable: UInt64, status: UInt64?, ruleId: String?, ccThreshold: UInt64?, privateKey: String?, ccEnable: UInt64?, httpsToHttpEnable: UInt64?, certType: UInt64?, cert: String?, ccLevel: String?, ruleName: String?, ccStatus: UInt64?, virtualPort: UInt64?, sslId: String?, id: String?, ccaiEnable: UInt64?) {
+        public init (keepTime: UInt64, domain: String, `protocol`: String, sourceType: UInt64, lbType: UInt64, sourceList: [L4RuleSource], keepEnable: UInt64, status: UInt64? = nil, ruleId: String? = nil, ccThreshold: UInt64? = nil, privateKey: String? = nil, ccEnable: UInt64? = nil, httpsToHttpEnable: UInt64? = nil, certType: UInt64? = nil, cert: String? = nil, ccLevel: String? = nil, ruleName: String? = nil, ccStatus: UInt64? = nil, virtualPort: UInt64? = nil, sslId: String? = nil, id: String? = nil, ccaiEnable: UInt64? = nil) {
             self.keepTime = keepTime
             self.domain = domain
             self.`protocol` = `protocol`
@@ -1575,7 +1575,7 @@ extension Antiddos {
         /// 被动探测判定正常状态码，1xx =1, 2xx=2, 3xx=4, 4xx=8,5xx=16，多个状态码值加和
         public let passiveStatusCode: UInt64?
         
-        public init (status: UInt64, enable: UInt64, ruleId: String, url: String, interval: UInt64, aliveNum: UInt64, kickNum: UInt64, method: String, statusCode: UInt64, protocolFlag: UInt64?, passiveEnable: UInt64?, blockInter: UInt64?, failedCountInter: UInt64?, failedThreshold: UInt64?, passiveStatusCode: UInt64?) {
+        public init (status: UInt64, enable: UInt64, ruleId: String, url: String, interval: UInt64, aliveNum: UInt64, kickNum: UInt64, method: String, statusCode: UInt64, protocolFlag: UInt64? = nil, passiveEnable: UInt64? = nil, blockInter: UInt64? = nil, failedCountInter: UInt64? = nil, failedThreshold: UInt64? = nil, passiveStatusCode: UInt64? = nil) {
             self.status = status
             self.enable = enable
             self.ruleId = ruleId
@@ -1635,7 +1635,7 @@ extension Antiddos {
         /// 规则所属的资源实例
         public let instanceDetailRule: [RuleInstanceRelation]?
         
-        public init (backendPort: UInt64, frontendPort: UInt64, `protocol`: String, realServers: [SourceServer], instanceDetails: [InstanceRelation], instanceDetailRule: [RuleInstanceRelation]?) {
+        public init (backendPort: UInt64, frontendPort: UInt64, `protocol`: String, realServers: [SourceServer], instanceDetails: [InstanceRelation], instanceDetailRule: [RuleInstanceRelation]? = nil) {
             self.backendPort = backendPort
             self.frontendPort = frontendPort
             self.`protocol` = `protocol`
@@ -1671,7 +1671,7 @@ extension Antiddos {
         /// 规则所属的资源实例
         public let instanceDetailRule: [RuleInstanceRelation]?
         
-        public init (domain: String, proxyTypeList: [ProxyTypeInfo], realServers: [SourceServer], instanceDetails: [InstanceRelation], instanceDetailRule: [RuleInstanceRelation]?) {
+        public init (domain: String, proxyTypeList: [ProxyTypeInfo], realServers: [SourceServer], instanceDetails: [InstanceRelation], instanceDetailRule: [RuleInstanceRelation]? = nil) {
             self.domain = domain
             self.proxyTypeList = proxyTypeList
             self.realServers = realServers
@@ -1791,7 +1791,7 @@ extension Antiddos {
         /// 规则配置失败时的详细错误原因(仅当Status=2时有效)，1001证书不存在，1002证书获取失败，1003证书上传失败，1004证书已过期
         public let errCode: UInt64?
         
-        public init (`protocol`: String, domain: String, lbType: UInt64, keepEnable: UInt64, keepTime: UInt64, sourceType: UInt64, sourceList: [L4RuleSource], region: UInt64?, id: String?, ip: String?, ruleId: String?, ruleName: String?, certType: UInt64?, sslId: String?, cert: String?, privateKey: String?, status: UInt64?, ccStatus: UInt64?, ccEnable: UInt64?, ccThreshold: UInt64?, ccLevel: String?, modifyTime: Date?, httpsToHttpEnable: UInt64?, virtualPort: UInt64?, rewriteHttps: UInt64?, errCode: UInt64?) {
+        public init (`protocol`: String, domain: String, lbType: UInt64, keepEnable: UInt64, keepTime: UInt64, sourceType: UInt64, sourceList: [L4RuleSource], region: UInt64? = nil, id: String? = nil, ip: String? = nil, ruleId: String? = nil, ruleName: String? = nil, certType: UInt64? = nil, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, status: UInt64? = nil, ccStatus: UInt64? = nil, ccEnable: UInt64? = nil, ccThreshold: UInt64? = nil, ccLevel: String? = nil, modifyTime: Date? = nil, httpsToHttpEnable: UInt64? = nil, virtualPort: UInt64? = nil, rewriteHttps: UInt64? = nil, errCode: UInt64? = nil) {
             self.`protocol` = `protocol`
             self.domain = domain
             self.lbType = lbType
@@ -2029,7 +2029,7 @@ extension Antiddos {
         /// 大于报文长度，取值1+
         public let pktLenGT: Int64?
         
-        public init (`protocol`: String, sportStart: Int64, sportEnd: Int64, dportStart: Int64, dportEnd: Int64, pktlenMin: Int64, pktlenMax: Int64, action: String, matchBegin: String?, matchType: String?, str: String?, depth: Int64?, offset: Int64?, isNot: Int64?, matchLogic: String?, matchBegin2: String?, matchType2: String?, str2: String?, depth2: Int64?, offset2: Int64?, isNot2: Int64?, id: String?, pktLenGT: Int64?) {
+        public init (`protocol`: String, sportStart: Int64, sportEnd: Int64, dportStart: Int64, dportEnd: Int64, pktlenMin: Int64, pktlenMax: Int64, action: String, matchBegin: String? = nil, matchType: String? = nil, str: String? = nil, depth: Int64? = nil, offset: Int64? = nil, isNot: Int64? = nil, matchLogic: String? = nil, matchBegin2: String? = nil, matchType2: String? = nil, str2: String? = nil, depth2: Int64? = nil, offset2: Int64? = nil, isNot2: Int64? = nil, id: String? = nil, pktLenGT: Int64? = nil) {
             self.`protocol` = `protocol`
             self.sportStart = sportStart
             self.sportEnd = sportEnd
@@ -2236,7 +2236,7 @@ extension Antiddos {
         /// tear drop防护，取值[0(防护关)，1(防护开)]
         public let tearDrop: Int64?
         
-        public init (dropTcp: Int64, dropUdp: Int64, dropIcmp: Int64, dropOther: Int64, checkExceptNullConnect: Int64, pingOfDeath: Int64?, tearDrop: Int64?) {
+        public init (dropTcp: Int64, dropUdp: Int64, dropIcmp: Int64, dropOther: Int64, checkExceptNullConnect: Int64, pingOfDeath: Int64? = nil, tearDrop: Int64? = nil) {
             self.dropTcp = dropTcp
             self.dropUdp = dropUdp
             self.dropIcmp = dropIcmp
@@ -2539,7 +2539,7 @@ extension Antiddos {
         /// ]
         public let verify: String?
         
-        public init (offset: Int64, openStatus: Int64, listeners: [ForwardListener], keys: [WaterPrintKey]?, verify: String?) {
+        public init (offset: Int64, openStatus: Int64, listeners: [ForwardListener], keys: [WaterPrintKey]? = nil, verify: String? = nil) {
             self.offset = offset
             self.openStatus = openStatus
             self.listeners = listeners

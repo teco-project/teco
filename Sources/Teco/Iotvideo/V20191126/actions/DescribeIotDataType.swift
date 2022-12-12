@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 查询自定义物模型数据类型
-    ///
-    /// 本接口（DescribeIotDataType）用于查询自定义的物模型数据类型。
-    @inlinable
-    public func describeIotDataType(_ input: DescribeIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIotDataTypeResponse > {
-        self.client.execute(action: "DescribeIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询自定义物模型数据类型
-    ///
-    /// 本接口（DescribeIotDataType）用于查询自定义的物模型数据类型。
-    @inlinable
-    public func describeIotDataType(_ input: DescribeIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDataTypeResponse {
-        try await self.client.execute(action: "DescribeIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIotDataType请求参数结构体
     public struct DescribeIotDataTypeRequest: TCRequestModel {
         /// 自定义数据类型的标识符，为空则返回全量自定义类型的列表
         public let typeId: String?
         
-        public init (typeId: String?) {
+        public init (typeId: String? = nil) {
             self.typeId = typeId
         }
         
@@ -58,5 +42,21 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询自定义物模型数据类型
+    ///
+    /// 本接口（DescribeIotDataType）用于查询自定义的物模型数据类型。
+    @inlinable
+    public func describeIotDataType(_ input: DescribeIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIotDataTypeResponse > {
+        self.client.execute(action: "DescribeIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询自定义物模型数据类型
+    ///
+    /// 本接口（DescribeIotDataType）用于查询自定义的物模型数据类型。
+    @inlinable
+    public func describeIotDataType(_ input: DescribeIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDataTypeResponse {
+        try await self.client.execute(action: "DescribeIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

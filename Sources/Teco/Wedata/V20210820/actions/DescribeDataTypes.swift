@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取字段类型列表
-    @inlinable
-    public func describeDataTypes(_ input: DescribeDataTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataTypesResponse > {
-        self.client.execute(action: "DescribeDataTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取字段类型列表
-    @inlinable
-    public func describeDataTypes(_ input: DescribeDataTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataTypesResponse {
-        try await self.client.execute(action: "DescribeDataTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDataTypes请求参数结构体
     public struct DescribeDataTypesRequest: TCRequestModel {
         /// 数据源类型，MYSQL|KAFKA等
@@ -58,5 +46,17 @@ extension Wedata {
             case typeInfoSet = "TypeInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取字段类型列表
+    @inlinable
+    public func describeDataTypes(_ input: DescribeDataTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataTypesResponse > {
+        self.client.execute(action: "DescribeDataTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取字段类型列表
+    @inlinable
+    public func describeDataTypes(_ input: DescribeDataTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataTypesResponse {
+        try await self.client.execute(action: "DescribeDataTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

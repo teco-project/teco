@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 查询视图列表
-    ///
-    /// 本接口（DescribeViews）用于查询数据视图列表。
-    @inlinable
-    public func describeViews(_ input: DescribeViewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeViewsResponse > {
-        self.client.execute(action: "DescribeViews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询视图列表
-    ///
-    /// 本接口（DescribeViews）用于查询数据视图列表。
-    @inlinable
-    public func describeViews(_ input: DescribeViewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeViewsResponse {
-        try await self.client.execute(action: "DescribeViews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeViews请求参数结构体
     public struct DescribeViewsRequest: TCRequestModel {
         /// 列出该数据库下所属数据表。
@@ -62,7 +46,7 @@ extension Dlc {
         /// 按视图更新时间筛选，结束时间，如2021-11-12 00:00:00
         public let endTime: String?
         
-        public init (databaseName: String, limit: Int64?, offset: UInt64?, filters: [Filter]?, datasourceConnectionName: String?, sort: String?, asc: Bool?, startTime: String?, endTime: String?) {
+        public init (databaseName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, startTime: String? = nil, endTime: String? = nil) {
             self.databaseName = databaseName
             self.limit = limit
             self.offset = offset
@@ -103,5 +87,21 @@ extension Dlc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询视图列表
+    ///
+    /// 本接口（DescribeViews）用于查询数据视图列表。
+    @inlinable
+    public func describeViews(_ input: DescribeViewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeViewsResponse > {
+        self.client.execute(action: "DescribeViews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询视图列表
+    ///
+    /// 本接口（DescribeViews）用于查询数据视图列表。
+    @inlinable
+    public func describeViews(_ input: DescribeViewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeViewsResponse {
+        try await self.client.execute(action: "DescribeViews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

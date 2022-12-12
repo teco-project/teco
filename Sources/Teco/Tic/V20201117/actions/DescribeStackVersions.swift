@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Tic {
-    /// 查询版本列表
-    ///
-    /// 本接口（DescribeStackVersions）用于查询一个或多个版本的详细信息。
-    /// - 可以根据版本ID查询感兴趣的版本
-    /// - 可以根据版本名字和状态来过滤版本，详见过滤器Filter
-    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的版本
-    @inlinable
-    public func describeStackVersions(_ input: DescribeStackVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStackVersionsResponse > {
-        self.client.execute(action: "DescribeStackVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询版本列表
-    ///
-    /// 本接口（DescribeStackVersions）用于查询一个或多个版本的详细信息。
-    /// - 可以根据版本ID查询感兴趣的版本
-    /// - 可以根据版本名字和状态来过滤版本，详见过滤器Filter
-    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的版本
-    @inlinable
-    public func describeStackVersions(_ input: DescribeStackVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackVersionsResponse {
-        try await self.client.execute(action: "DescribeStackVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStackVersions请求参数结构体
     public struct DescribeStackVersionsRequest: TCRequestModel {
         /// 按照⼀个或者多个版本ID查询
@@ -59,7 +37,7 @@ extension Tic {
         /// 类型：string
         public let filters: [Filter]?
         
-        public init (versionIds: [String]?, offset: Int64?, limit: Int64?, filters: [Filter]?) {
+        public init (versionIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.versionIds = versionIds
             self.offset = offset
             self.limit = limit
@@ -90,5 +68,27 @@ extension Tic {
             case versions = "Versions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询版本列表
+    ///
+    /// 本接口（DescribeStackVersions）用于查询一个或多个版本的详细信息。
+    /// - 可以根据版本ID查询感兴趣的版本
+    /// - 可以根据版本名字和状态来过滤版本，详见过滤器Filter
+    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的版本
+    @inlinable
+    public func describeStackVersions(_ input: DescribeStackVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStackVersionsResponse > {
+        self.client.execute(action: "DescribeStackVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询版本列表
+    ///
+    /// 本接口（DescribeStackVersions）用于查询一个或多个版本的详细信息。
+    /// - 可以根据版本ID查询感兴趣的版本
+    /// - 可以根据版本名字和状态来过滤版本，详见过滤器Filter
+    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的版本
+    @inlinable
+    public func describeStackVersions(_ input: DescribeStackVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackVersionsResponse {
+        try await self.client.execute(action: "DescribeStackVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

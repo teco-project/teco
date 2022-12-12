@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 变更歌曲参数
-    ///
-    /// 根据资源方，需要变更的参数，请求该接口进行变更，为空的参数默认为无变更
-    @inlinable
-    public func modifyMusicOnShelves(_ input: ModifyMusicOnShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMusicOnShelvesResponse > {
-        self.client.execute(action: "ModifyMusicOnShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 变更歌曲参数
-    ///
-    /// 根据资源方，需要变更的参数，请求该接口进行变更，为空的参数默认为无变更
-    @inlinable
-    public func modifyMusicOnShelves(_ input: ModifyMusicOnShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMusicOnShelvesResponse {
-        try await self.client.execute(action: "ModifyMusicOnShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMusicOnShelves请求参数结构体
     public struct ModifyMusicOnShelvesRequest: TCRequestModel {
         /// 歌曲变更信息
@@ -39,7 +23,7 @@ extension Ame {
         /// ame对接资源方密钥
         public let ameKey: String?
         
-        public init (musicDetailInfos: MusicDetailInfo, ameKey: String?) {
+        public init (musicDetailInfos: MusicDetailInfo, ameKey: String? = nil) {
             self.musicDetailInfos = musicDetailInfos
             self.ameKey = ameKey
         }
@@ -58,5 +42,21 @@ extension Ame {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 变更歌曲参数
+    ///
+    /// 根据资源方，需要变更的参数，请求该接口进行变更，为空的参数默认为无变更
+    @inlinable
+    public func modifyMusicOnShelves(_ input: ModifyMusicOnShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMusicOnShelvesResponse > {
+        self.client.execute(action: "ModifyMusicOnShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 变更歌曲参数
+    ///
+    /// 根据资源方，需要变更的参数，请求该接口进行变更，为空的参数默认为无变更
+    @inlinable
+    public func modifyMusicOnShelves(_ input: ModifyMusicOnShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMusicOnShelvesResponse {
+        try await self.client.execute(action: "ModifyMusicOnShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

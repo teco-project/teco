@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 申请互联网地址
-    ///
-    /// 申请互联网CIDR地址
-    @inlinable
-    public func applyInternetAddress(_ input: ApplyInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyInternetAddressResponse > {
-        self.client.execute(action: "ApplyInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 申请互联网地址
-    ///
-    /// 申请互联网CIDR地址
-    @inlinable
-    public func applyInternetAddress(_ input: ApplyInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyInternetAddressResponse {
-        try await self.client.execute(action: "ApplyInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyInternetAddress请求参数结构体
     public struct ApplyInternetAddressRequest: TCRequestModel {
         /// CIDR地址掩码长度
@@ -72,5 +56,21 @@ extension Dc {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 申请互联网地址
+    ///
+    /// 申请互联网CIDR地址
+    @inlinable
+    public func applyInternetAddress(_ input: ApplyInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyInternetAddressResponse > {
+        self.client.execute(action: "ApplyInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 申请互联网地址
+    ///
+    /// 申请互联网CIDR地址
+    @inlinable
+    public func applyInternetAddress(_ input: ApplyInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyInternetAddressResponse {
+        try await self.client.execute(action: "ApplyInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

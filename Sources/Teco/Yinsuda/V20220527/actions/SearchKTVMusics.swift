@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yinsuda {
-    /// 搜索歌曲
-    ///
-    /// 根据关键词搜索歌曲，返回相关歌曲列表。
-    @inlinable
-    public func searchKTVMusics(_ input: SearchKTVMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchKTVMusicsResponse > {
-        self.client.execute(action: "SearchKTVMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 搜索歌曲
-    ///
-    /// 根据关键词搜索歌曲，返回相关歌曲列表。
-    @inlinable
-    public func searchKTVMusics(_ input: SearchKTVMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchKTVMusicsResponse {
-        try await self.client.execute(action: "SearchKTVMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SearchKTVMusics请求参数结构体
     public struct SearchKTVMusicsRequest: TCRequestModel {
         /// 应用名称。
@@ -53,7 +37,7 @@ extension Yinsuda {
         /// <li>Sing：可唱。</li>
         public let rightFilters: [String]?
         
-        public init (appName: String, userId: String, keyWord: String, scrollToken: String?, limit: Int64?, rightFilters: [String]?) {
+        public init (appName: String, userId: String, keyWord: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil) {
             self.appName = appName
             self.userId = userId
             self.keyWord = keyWord
@@ -88,5 +72,21 @@ extension Yinsuda {
             case scrollToken = "ScrollToken"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 搜索歌曲
+    ///
+    /// 根据关键词搜索歌曲，返回相关歌曲列表。
+    @inlinable
+    public func searchKTVMusics(_ input: SearchKTVMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchKTVMusicsResponse > {
+        self.client.execute(action: "SearchKTVMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 搜索歌曲
+    ///
+    /// 根据关键词搜索歌曲，返回相关歌曲列表。
+    @inlinable
+    public func searchKTVMusics(_ input: SearchKTVMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchKTVMusicsResponse {
+        try await self.client.execute(action: "SearchKTVMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

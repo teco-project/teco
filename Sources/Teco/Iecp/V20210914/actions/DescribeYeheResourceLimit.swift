@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 查询用户的资源限制
-    @inlinable
-    public func describeYeheResourceLimit(_ input: DescribeYeheResourceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeYeheResourceLimitResponse > {
-        self.client.execute(action: "DescribeYeheResourceLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户的资源限制
-    @inlinable
-    public func describeYeheResourceLimit(_ input: DescribeYeheResourceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeYeheResourceLimitResponse {
-        try await self.client.execute(action: "DescribeYeheResourceLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeYeheResourceLimit请求参数结构体
     public struct DescribeYeheResourceLimitRequest: TCRequestModel {
         public init () {
@@ -66,5 +54,17 @@ extension Iecp {
             case enablePermAdminNode = "EnablePermAdminNode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户的资源限制
+    @inlinable
+    public func describeYeheResourceLimit(_ input: DescribeYeheResourceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeYeheResourceLimitResponse > {
+        self.client.execute(action: "DescribeYeheResourceLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户的资源限制
+    @inlinable
+    public func describeYeheResourceLimit(_ input: DescribeYeheResourceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeYeheResourceLimitResponse {
+        try await self.client.execute(action: "DescribeYeheResourceLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

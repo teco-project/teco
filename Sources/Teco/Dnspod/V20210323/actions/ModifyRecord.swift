@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 修改记录
-    @inlinable
-    public func modifyRecord(_ input: ModifyRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordResponse > {
-        self.client.execute(action: "ModifyRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改记录
-    @inlinable
-    public func modifyRecord(_ input: ModifyRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordResponse {
-        try await self.client.execute(action: "ModifyRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRecord请求参数结构体
     public struct ModifyRecordRequest: TCRequestModel {
         /// 域名
@@ -65,7 +53,7 @@ extension Dnspod {
         /// 记录初始状态，取值范围为 ENABLE 和 DISABLE 。默认为 ENABLE ，如果传入 DISABLE，解析不会生效，也不会验证负载均衡的限制。
         public let status: String?
         
-        public init (domain: String, recordType: String, recordLine: String, value: String, recordId: UInt64, domainId: UInt64?, subDomain: String?, recordLineId: String?, mx: UInt64?, ttl: UInt64?, weight: UInt64?, status: String?) {
+        public init (domain: String, recordType: String, recordLine: String, value: String, recordId: UInt64, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, weight: UInt64? = nil, status: String? = nil) {
             self.domain = domain
             self.recordType = recordType
             self.recordLine = recordLine
@@ -108,5 +96,17 @@ extension Dnspod {
             case recordId = "RecordId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改记录
+    @inlinable
+    public func modifyRecord(_ input: ModifyRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordResponse > {
+        self.client.execute(action: "ModifyRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改记录
+    @inlinable
+    public func modifyRecord(_ input: ModifyRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordResponse {
+        try await self.client.execute(action: "ModifyRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

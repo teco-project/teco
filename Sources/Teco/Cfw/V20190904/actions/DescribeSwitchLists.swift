@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 防火墙开关列表
-    @inlinable
-    public func describeSwitchLists(_ input: DescribeSwitchListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSwitchListsResponse > {
-        self.client.execute(action: "DescribeSwitchLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 防火墙开关列表
-    @inlinable
-    public func describeSwitchLists(_ input: DescribeSwitchListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSwitchListsResponse {
-        try await self.client.execute(action: "DescribeSwitchLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSwitchLists请求参数结构体
     public struct DescribeSwitchListsRequest: TCRequestModel {
         /// 防火墙状态  0: 关闭，1：开启
@@ -53,7 +41,7 @@ extension Cfw {
         /// 排序字段 PortTimes(风险端口数)
         public let by: String?
         
-        public init (status: Int64?, type: String?, area: String?, searchValue: String?, limit: UInt64?, offset: UInt64?, order: String?, by: String?) {
+        public init (status: Int64? = nil, type: String? = nil, area: String? = nil, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.status = status
             self.type = type
             self.area = area
@@ -106,5 +94,17 @@ extension Cfw {
             case offNum = "OffNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 防火墙开关列表
+    @inlinable
+    public func describeSwitchLists(_ input: DescribeSwitchListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSwitchListsResponse > {
+        self.client.execute(action: "DescribeSwitchLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 防火墙开关列表
+    @inlinable
+    public func describeSwitchLists(_ input: DescribeSwitchListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSwitchListsResponse {
+        try await self.client.execute(action: "DescribeSwitchLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

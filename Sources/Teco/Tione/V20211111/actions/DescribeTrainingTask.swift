@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 训练任务详情
-    @inlinable
-    public func describeTrainingTask(_ input: DescribeTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingTaskResponse > {
-        self.client.execute(action: "DescribeTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 训练任务详情
-    @inlinable
-    public func describeTrainingTask(_ input: DescribeTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTaskResponse {
-        try await self.client.execute(action: "DescribeTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrainingTask请求参数结构体
     public struct DescribeTrainingTaskRequest: TCRequestModel {
         /// 训练任务ID
@@ -53,5 +41,17 @@ extension Tione {
             case trainingTaskDetail = "TrainingTaskDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 训练任务详情
+    @inlinable
+    public func describeTrainingTask(_ input: DescribeTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingTaskResponse > {
+        self.client.execute(action: "DescribeTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 训练任务详情
+    @inlinable
+    public func describeTrainingTask(_ input: DescribeTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTaskResponse {
+        try await self.client.execute(action: "DescribeTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 获取多个主密钥属性
-    ///
-    /// 该接口用于批量获取主密钥属性信息。
-    @inlinable
-    public func describeKeys(_ input: DescribeKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeysResponse > {
-        self.client.execute(action: "DescribeKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取多个主密钥属性
-    ///
-    /// 该接口用于批量获取主密钥属性信息。
-    @inlinable
-    public func describeKeys(_ input: DescribeKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeysResponse {
-        try await self.client.execute(action: "DescribeKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKeys请求参数结构体
     public struct DescribeKeysRequest: TCRequestModel {
         /// 查询CMK的ID列表，批量查询一次最多支持100个KeyId
@@ -58,5 +42,21 @@ extension Kms {
             case keyMetadatas = "KeyMetadatas"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取多个主密钥属性
+    ///
+    /// 该接口用于批量获取主密钥属性信息。
+    @inlinable
+    public func describeKeys(_ input: DescribeKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeysResponse > {
+        self.client.execute(action: "DescribeKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取多个主密钥属性
+    ///
+    /// 该接口用于批量获取主密钥属性信息。
+    @inlinable
+    public func describeKeys(_ input: DescribeKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeysResponse {
+        try await self.client.execute(action: "DescribeKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

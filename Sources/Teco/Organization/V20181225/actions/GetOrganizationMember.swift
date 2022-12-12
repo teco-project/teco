@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Organization {
-    /// 获取企业组织成员
-    @inlinable
-    public func getOrganizationMember(_ input: GetOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetOrganizationMemberResponse > {
-        self.client.execute(action: "GetOrganizationMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取企业组织成员
-    @inlinable
-    public func getOrganizationMember(_ input: GetOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOrganizationMemberResponse {
-        try await self.client.execute(action: "GetOrganizationMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetOrganizationMember请求参数结构体
     public struct GetOrganizationMemberRequest: TCRequestModel {
         /// 组织成员UIN
@@ -80,5 +68,17 @@ extension Organization {
             case parentNodeId = "ParentNodeId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取企业组织成员
+    @inlinable
+    public func getOrganizationMember(_ input: GetOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetOrganizationMemberResponse > {
+        self.client.execute(action: "GetOrganizationMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取企业组织成员
+    @inlinable
+    public func getOrganizationMember(_ input: GetOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOrganizationMemberResponse {
+        try await self.client.execute(action: "GetOrganizationMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

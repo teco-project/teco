@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取采集器列表
-    @inlinable
-    public func describeInLongAgentList(_ input: DescribeInLongAgentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInLongAgentListResponse > {
-        self.client.execute(action: "DescribeInLongAgentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取采集器列表
-    @inlinable
-    public func describeInLongAgentList(_ input: DescribeInLongAgentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentListResponse {
-        try await self.client.execute(action: "DescribeInLongAgentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInLongAgentList请求参数结构体
     public struct DescribeInLongAgentListRequest: TCRequestModel {
         /// WeData项目ID
@@ -56,7 +44,7 @@ extension Wedata {
         /// 名称搜索是否开启模糊匹配，1：开启，0：不开启（精确匹配）
         public let like: UInt64?
         
-        public init (projectId: String, agentId: String?, agentName: String?, agentType: UInt64?, status: String?, vpcId: String?, pageIndex: UInt64?, pageSize: UInt64?, like: UInt64?) {
+        public init (projectId: String, agentId: String? = nil, agentName: String? = nil, agentType: UInt64? = nil, status: String? = nil, vpcId: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, like: UInt64? = nil) {
             self.projectId = projectId
             self.agentId = agentId
             self.agentName = agentName
@@ -109,5 +97,17 @@ extension Wedata {
             case totalPage = "TotalPage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取采集器列表
+    @inlinable
+    public func describeInLongAgentList(_ input: DescribeInLongAgentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInLongAgentListResponse > {
+        self.client.execute(action: "DescribeInLongAgentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取采集器列表
+    @inlinable
+    public func describeInLongAgentList(_ input: DescribeInLongAgentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentListResponse {
+        try await self.client.execute(action: "DescribeInLongAgentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

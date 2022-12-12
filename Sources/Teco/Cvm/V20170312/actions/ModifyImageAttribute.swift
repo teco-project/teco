@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 修改镜像属性
-    ///
-    /// 本接口（ModifyImageAttribute）用于修改镜像属性。
-    /// * 已分享的镜像无法修改属性。
-    @inlinable
-    public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyImageAttributeResponse > {
-        self.client.execute(action: "ModifyImageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改镜像属性
-    ///
-    /// 本接口（ModifyImageAttribute）用于修改镜像属性。
-    /// * 已分享的镜像无法修改属性。
-    @inlinable
-    public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAttributeResponse {
-        try await self.client.execute(action: "ModifyImageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyImageAttribute请求参数结构体
     public struct ModifyImageAttributeRequest: TCRequestModel {
         /// 镜像ID，形如`img-gvbnzy6f`。镜像ID可以通过如下方式获取：<br><li>通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回的`ImageId`获取。<br><li>通过[镜像控制台](https://console.cloud.tencent.com/cvm/image)获取。
@@ -44,7 +26,7 @@ extension Cvm {
         /// 设置新的镜像描述；必须满足下列限制：<br> <li> 不得超过60个字符。
         public let imageDescription: String?
         
-        public init (imageId: String, imageName: String?, imageDescription: String?) {
+        public init (imageId: String, imageName: String? = nil, imageDescription: String? = nil) {
             self.imageId = imageId
             self.imageName = imageName
             self.imageDescription = imageDescription
@@ -65,5 +47,23 @@ extension Cvm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改镜像属性
+    ///
+    /// 本接口（ModifyImageAttribute）用于修改镜像属性。
+    /// * 已分享的镜像无法修改属性。
+    @inlinable
+    public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyImageAttributeResponse > {
+        self.client.execute(action: "ModifyImageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改镜像属性
+    ///
+    /// 本接口（ModifyImageAttribute）用于修改镜像属性。
+    /// * 已分享的镜像无法修改属性。
+    @inlinable
+    public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAttributeResponse {
+        try await self.client.execute(action: "ModifyImageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

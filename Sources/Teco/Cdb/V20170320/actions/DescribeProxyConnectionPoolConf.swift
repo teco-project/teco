@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询代理连接池规格配置
-    ///
-    /// 获取数据库代理连接池相关规格配置
-    @inlinable
-    public func describeProxyConnectionPoolConf(_ input: DescribeProxyConnectionPoolConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyConnectionPoolConfResponse > {
-        self.client.execute(action: "DescribeProxyConnectionPoolConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询代理连接池规格配置
-    ///
-    /// 获取数据库代理连接池相关规格配置
-    @inlinable
-    public func describeProxyConnectionPoolConf(_ input: DescribeProxyConnectionPoolConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyConnectionPoolConfResponse {
-        try await self.client.execute(action: "DescribeProxyConnectionPoolConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProxyConnectionPoolConf请求参数结构体
     public struct DescribeProxyConnectionPoolConfRequest: TCRequestModel {
         /// 实例ID
@@ -42,7 +26,7 @@ extension Cdb {
         /// 分页查询限制
         public let limit: Int64?
         
-        public init (instanceId: String, offset: Int64?, limit: Int64?) {
+        public init (instanceId: String, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
@@ -63,7 +47,7 @@ extension Cdb {
         
         /// 连接池配置规格
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let poolConf: PoolConf
+        public let poolConf: PoolConf?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -73,5 +57,21 @@ extension Cdb {
             case poolConf = "PoolConf"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询代理连接池规格配置
+    ///
+    /// 获取数据库代理连接池相关规格配置
+    @inlinable
+    public func describeProxyConnectionPoolConf(_ input: DescribeProxyConnectionPoolConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyConnectionPoolConfResponse > {
+        self.client.execute(action: "DescribeProxyConnectionPoolConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询代理连接池规格配置
+    ///
+    /// 获取数据库代理连接池相关规格配置
+    @inlinable
+    public func describeProxyConnectionPoolConf(_ input: DescribeProxyConnectionPoolConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyConnectionPoolConfResponse {
+        try await self.client.execute(action: "DescribeProxyConnectionPoolConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

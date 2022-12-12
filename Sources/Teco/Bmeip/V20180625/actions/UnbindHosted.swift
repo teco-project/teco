@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 黑石托管机器解绑EIP
-    ///
-    /// UnbindHosted接口用于解绑托管机器上的EIP
-    @inlinable
-    public func unbindHosted(_ input: UnbindHostedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindHostedResponse > {
-        self.client.execute(action: "UnbindHosted", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 黑石托管机器解绑EIP
-    ///
-    /// UnbindHosted接口用于解绑托管机器上的EIP
-    @inlinable
-    public func unbindHosted(_ input: UnbindHostedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindHostedResponse {
-        try await self.client.execute(action: "UnbindHosted", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindHosted请求参数结构体
     public struct UnbindHostedRequest: TCRequestModel {
         /// 托管机器实例ID
@@ -42,7 +26,7 @@ extension Bmeip {
         /// 弹性IP。Eip和EipId参数必须要填写一个。
         public let eip: String?
         
-        public init (instanceId: String, eipId: String?, eip: String?) {
+        public init (instanceId: String, eipId: String? = nil, eip: String? = nil) {
             self.instanceId = instanceId
             self.eipId = eipId
             self.eip = eip
@@ -67,5 +51,21 @@ extension Bmeip {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 黑石托管机器解绑EIP
+    ///
+    /// UnbindHosted接口用于解绑托管机器上的EIP
+    @inlinable
+    public func unbindHosted(_ input: UnbindHostedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindHostedResponse > {
+        self.client.execute(action: "UnbindHosted", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 黑石托管机器解绑EIP
+    ///
+    /// UnbindHosted接口用于解绑托管机器上的EIP
+    @inlinable
+    public func unbindHosted(_ input: UnbindHostedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindHostedResponse {
+        try await self.client.execute(action: "UnbindHosted", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

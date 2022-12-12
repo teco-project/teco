@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询单元化规则列表
-    @inlinable
-    public func describeUnitRules(_ input: DescribeUnitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnitRulesResponse > {
-        self.client.execute(action: "DescribeUnitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询单元化规则列表
-    @inlinable
-    public func describeUnitRules(_ input: DescribeUnitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnitRulesResponse {
-        try await self.client.execute(action: "DescribeUnitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUnitRules请求参数结构体
     public struct DescribeUnitRulesRequest: TCRequestModel {
         /// 网关实体ID
@@ -44,7 +32,7 @@ extension Tsf {
         /// 翻页查询每页记录数
         public let limit: Int64?
         
-        public init (gatewayInstanceId: String, searchWord: String?, status: String?, offset: Int64?, limit: Int64?) {
+        public init (gatewayInstanceId: String, searchWord: String? = nil, status: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.gatewayInstanceId = gatewayInstanceId
             self.searchWord = searchWord
             self.status = status
@@ -74,5 +62,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询单元化规则列表
+    @inlinable
+    public func describeUnitRules(_ input: DescribeUnitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnitRulesResponse > {
+        self.client.execute(action: "DescribeUnitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询单元化规则列表
+    @inlinable
+    public func describeUnitRules(_ input: DescribeUnitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnitRulesResponse {
+        try await self.client.execute(action: "DescribeUnitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

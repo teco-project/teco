@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 更新spark应用
-    @inlinable
-    public func modifySparkApp(_ input: ModifySparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySparkAppResponse > {
-        self.client.execute(action: "ModifySparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新spark应用
-    @inlinable
-    public func modifySparkApp(_ input: ModifySparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySparkAppResponse {
-        try await self.client.execute(action: "ModifySparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySparkApp请求参数结构体
     public struct ModifySparkAppRequest: TCRequestModel {
         /// spark应用名
@@ -101,7 +89,7 @@ extension Dlc {
         /// archives：依赖资源
         public let appArchives: String?
         
-        public init (appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, sparkAppId: String, eni: String?, isLocal: String?, mainClass: String?, appConf: String?, isLocalJars: String?, appJars: String?, isLocalFiles: String?, appFiles: String?, isLocalPythonFiles: String?, appPythonFiles: String?, cmdArgs: String?, maxRetries: Int64?, dataSource: String?, isLocalArchives: String?, appArchives: String?) {
+        public init (appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, sparkAppId: String, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil) {
             self.appName = appName
             self.appType = appType
             self.dataEngine = dataEngine
@@ -164,5 +152,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新spark应用
+    @inlinable
+    public func modifySparkApp(_ input: ModifySparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySparkAppResponse > {
+        self.client.execute(action: "ModifySparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新spark应用
+    @inlinable
+    public func modifySparkApp(_ input: ModifySparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySparkAppResponse {
+        try await self.client.execute(action: "ModifySparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

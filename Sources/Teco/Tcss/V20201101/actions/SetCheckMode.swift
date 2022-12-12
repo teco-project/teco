@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 设置检测模式和自动检查
-    @inlinable
-    public func setCheckMode(_ input: SetCheckModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetCheckModeResponse > {
-        self.client.execute(action: "SetCheckMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置检测模式和自动检查
-    @inlinable
-    public func setCheckMode(_ input: SetCheckModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCheckModeResponse {
-        try await self.client.execute(action: "SetCheckMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetCheckMode请求参数结构体
     public struct SetCheckModeRequest: TCRequestModel {
         /// 要设置的集群ID列表
@@ -38,7 +26,7 @@ extension Tcss {
         /// 0不设置 1打开 2关闭
         public let clusterAutoCheck: UInt64?
         
-        public init (clusterIds: [String], clusterCheckMode: String?, clusterAutoCheck: UInt64?) {
+        public init (clusterIds: [String], clusterCheckMode: String? = nil, clusterAutoCheck: UInt64? = nil) {
             self.clusterIds = clusterIds
             self.clusterCheckMode = clusterCheckMode
             self.clusterAutoCheck = clusterAutoCheck
@@ -63,5 +51,17 @@ extension Tcss {
             case setCheckResult = "SetCheckResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置检测模式和自动检查
+    @inlinable
+    public func setCheckMode(_ input: SetCheckModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetCheckModeResponse > {
+        self.client.execute(action: "SetCheckMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置检测模式和自动检查
+    @inlinable
+    public func setCheckMode(_ input: SetCheckModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCheckModeResponse {
+        try await self.client.execute(action: "SetCheckMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// NAT网关绑定弹性IP
-    ///
-    /// 本接口(AssociateNatGatewayAddress)用于NAT网关绑定弹性IP（EIP）。
-    @inlinable
-    public func associateNatGatewayAddress(_ input: AssociateNatGatewayAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateNatGatewayAddressResponse > {
-        self.client.execute(action: "AssociateNatGatewayAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// NAT网关绑定弹性IP
-    ///
-    /// 本接口(AssociateNatGatewayAddress)用于NAT网关绑定弹性IP（EIP）。
-    @inlinable
-    public func associateNatGatewayAddress(_ input: AssociateNatGatewayAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateNatGatewayAddressResponse {
-        try await self.client.execute(action: "AssociateNatGatewayAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssociateNatGatewayAddress请求参数结构体
     public struct AssociateNatGatewayAddressRequest: TCRequestModel {
         /// NAT网关的ID，形如：`nat-df45454`。
@@ -54,7 +38,7 @@ extension Vpc {
         /// 公网IP是否强制与NAT网关来自同可用区，true表示需要与NAT网关同可用区；false表示可与NAT网关不是同一个可用区。此参数只有当参数Zone存在时才能生效。
         public let publicIpFromSameZone: Bool?
         
-        public init (natGatewayId: String, addressCount: UInt64?, publicIpAddresses: [String]?, zone: String?, stockPublicIpAddressesBandwidthOut: UInt64?, publicIpAddressesBandwidthOut: UInt64?, publicIpFromSameZone: Bool?) {
+        public init (natGatewayId: String, addressCount: UInt64? = nil, publicIpAddresses: [String]? = nil, zone: String? = nil, stockPublicIpAddressesBandwidthOut: UInt64? = nil, publicIpAddressesBandwidthOut: UInt64? = nil, publicIpFromSameZone: Bool? = nil) {
             self.natGatewayId = natGatewayId
             self.addressCount = addressCount
             self.publicIpAddresses = publicIpAddresses
@@ -83,5 +67,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// NAT网关绑定弹性IP
+    ///
+    /// 本接口(AssociateNatGatewayAddress)用于NAT网关绑定弹性IP（EIP）。
+    @inlinable
+    public func associateNatGatewayAddress(_ input: AssociateNatGatewayAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateNatGatewayAddressResponse > {
+        self.client.execute(action: "AssociateNatGatewayAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// NAT网关绑定弹性IP
+    ///
+    /// 本接口(AssociateNatGatewayAddress)用于NAT网关绑定弹性IP（EIP）。
+    @inlinable
+    public func associateNatGatewayAddress(_ input: AssociateNatGatewayAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateNatGatewayAddressResponse {
+        try await self.client.execute(action: "AssociateNatGatewayAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// API绑定IP策略
-    ///
-    /// 本接口（BindIPStrategy）用于API绑定IP策略。
-    @inlinable
-    public func bindIPStrategy(_ input: BindIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindIPStrategyResponse > {
-        self.client.execute(action: "BindIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// API绑定IP策略
-    ///
-    /// 本接口（BindIPStrategy）用于API绑定IP策略。
-    @inlinable
-    public func bindIPStrategy(_ input: BindIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindIPStrategyResponse {
-        try await self.client.execute(action: "BindIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindIPStrategy请求参数结构体
     public struct BindIPStrategyRequest: TCRequestModel {
         /// 待绑定的IP策略所属的服务唯一ID。
@@ -73,5 +57,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// API绑定IP策略
+    ///
+    /// 本接口（BindIPStrategy）用于API绑定IP策略。
+    @inlinable
+    public func bindIPStrategy(_ input: BindIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindIPStrategyResponse > {
+        self.client.execute(action: "BindIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// API绑定IP策略
+    ///
+    /// 本接口（BindIPStrategy）用于API绑定IP策略。
+    @inlinable
+    public func bindIPStrategy(_ input: BindIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindIPStrategyResponse {
+        try await self.client.execute(action: "BindIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

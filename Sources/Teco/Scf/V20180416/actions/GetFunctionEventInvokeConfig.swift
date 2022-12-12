@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 获取函数异步重试配置
-    ///
-    /// 获取函数异步重试配置，包括重试次数和消息保留时间
-    @inlinable
-    public func getFunctionEventInvokeConfig(_ input: GetFunctionEventInvokeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFunctionEventInvokeConfigResponse > {
-        self.client.execute(action: "GetFunctionEventInvokeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取函数异步重试配置
-    ///
-    /// 获取函数异步重试配置，包括重试次数和消息保留时间
-    @inlinable
-    public func getFunctionEventInvokeConfig(_ input: GetFunctionEventInvokeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionEventInvokeConfigResponse {
-        try await self.client.execute(action: "GetFunctionEventInvokeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetFunctionEventInvokeConfig请求参数结构体
     public struct GetFunctionEventInvokeConfigRequest: TCRequestModel {
         /// 函数名称
@@ -42,7 +26,7 @@ extension Scf {
         /// 函数版本，默认为$LATEST
         public let qualifier: String?
         
-        public init (functionName: String, namespace: String?, qualifier: String?) {
+        public init (functionName: String, namespace: String? = nil, qualifier: String? = nil) {
             self.functionName = functionName
             self.namespace = namespace
             self.qualifier = qualifier
@@ -67,5 +51,21 @@ extension Scf {
             case asyncTriggerConfig = "AsyncTriggerConfig"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取函数异步重试配置
+    ///
+    /// 获取函数异步重试配置，包括重试次数和消息保留时间
+    @inlinable
+    public func getFunctionEventInvokeConfig(_ input: GetFunctionEventInvokeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFunctionEventInvokeConfigResponse > {
+        self.client.execute(action: "GetFunctionEventInvokeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数异步重试配置
+    ///
+    /// 获取函数异步重试配置，包括重试次数和消息保留时间
+    @inlinable
+    public func getFunctionEventInvokeConfig(_ input: GetFunctionEventInvokeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionEventInvokeConfigResponse {
+        try await self.client.execute(action: "GetFunctionEventInvokeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

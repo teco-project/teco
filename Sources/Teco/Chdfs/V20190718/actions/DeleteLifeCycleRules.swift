@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 批量删除生命周期规则
-    ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    /// 批量删除生命周期规则。
-    @inlinable
-    public func deleteLifeCycleRules(_ input: DeleteLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLifeCycleRulesResponse > {
-        self.client.execute(action: "DeleteLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量删除生命周期规则
-    ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    /// 批量删除生命周期规则。
-    @inlinable
-    public func deleteLifeCycleRules(_ input: DeleteLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLifeCycleRulesResponse {
-        try await self.client.execute(action: "DeleteLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLifeCycleRules请求参数结构体
     public struct DeleteLifeCycleRulesRequest: TCRequestModel {
         /// 多个生命周期规则ID，上限为10
@@ -55,5 +37,23 @@ extension Chdfs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量删除生命周期规则
+    ///
+    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    /// 批量删除生命周期规则。
+    @inlinable
+    public func deleteLifeCycleRules(_ input: DeleteLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLifeCycleRulesResponse > {
+        self.client.execute(action: "DeleteLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除生命周期规则
+    ///
+    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    /// 批量删除生命周期规则。
+    @inlinable
+    public func deleteLifeCycleRules(_ input: DeleteLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLifeCycleRulesResponse {
+        try await self.client.execute(action: "DeleteLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

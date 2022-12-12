@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取规则列表
-    ///
-    /// 本接口（ListTopicRules）用于分页获取规则列表
-    @inlinable
-    public func listTopicRules(_ input: ListTopicRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopicRulesResponse > {
-        self.client.execute(action: "ListTopicRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取规则列表
-    ///
-    /// 本接口（ListTopicRules）用于分页获取规则列表
-    @inlinable
-    public func listTopicRules(_ input: ListTopicRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopicRulesResponse {
-        try await self.client.execute(action: "ListTopicRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListTopicRules请求参数结构体
     public struct ListTopicRulesRequest: TCRequestModel {
         /// 请求的页数
@@ -66,5 +50,21 @@ extension Iotcloud {
             case rules = "Rules"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取规则列表
+    ///
+    /// 本接口（ListTopicRules）用于分页获取规则列表
+    @inlinable
+    public func listTopicRules(_ input: ListTopicRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopicRulesResponse > {
+        self.client.execute(action: "ListTopicRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取规则列表
+    ///
+    /// 本接口（ListTopicRules）用于分页获取规则列表
+    @inlinable
+    public func listTopicRules(_ input: ListTopicRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopicRulesResponse {
+        try await self.client.execute(action: "ListTopicRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

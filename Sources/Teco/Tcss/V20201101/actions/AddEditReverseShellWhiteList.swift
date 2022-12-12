@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 添加编辑反弹shell白名单
-    ///
-    /// 添加编辑运行时反弹shell白名单
-    @inlinable
-    public func addEditReverseShellWhiteList(_ input: AddEditReverseShellWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEditReverseShellWhiteListResponse > {
-        self.client.execute(action: "AddEditReverseShellWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加编辑反弹shell白名单
-    ///
-    /// 添加编辑运行时反弹shell白名单
-    @inlinable
-    public func addEditReverseShellWhiteList(_ input: AddEditReverseShellWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditReverseShellWhiteListResponse {
-        try await self.client.execute(action: "AddEditReverseShellWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddEditReverseShellWhiteList请求参数结构体
     public struct AddEditReverseShellWhiteListRequest: TCRequestModel {
         /// 增加或编辑白名单信息。新增白名单时WhiteListInfo.id为空，编辑白名单WhiteListInfo.id不能为空。
@@ -39,7 +23,7 @@ extension Tcss {
         /// 仅在添加事件白名单时候使用
         public let eventId: String?
         
-        public init (whiteListInfo: ReverseShellWhiteListInfo, eventId: String?) {
+        public init (whiteListInfo: ReverseShellWhiteListInfo, eventId: String? = nil) {
             self.whiteListInfo = whiteListInfo
             self.eventId = eventId
         }
@@ -58,5 +42,21 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加编辑反弹shell白名单
+    ///
+    /// 添加编辑运行时反弹shell白名单
+    @inlinable
+    public func addEditReverseShellWhiteList(_ input: AddEditReverseShellWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEditReverseShellWhiteListResponse > {
+        self.client.execute(action: "AddEditReverseShellWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加编辑反弹shell白名单
+    ///
+    /// 添加编辑运行时反弹shell白名单
+    @inlinable
+    public func addEditReverseShellWhiteList(_ input: AddEditReverseShellWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditReverseShellWhiteListResponse {
+        try await self.client.execute(action: "AddEditReverseShellWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

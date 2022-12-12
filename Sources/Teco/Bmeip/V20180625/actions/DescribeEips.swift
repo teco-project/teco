@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 黑石EIP查询接口
-    @inlinable
-    public func describeEips(_ input: DescribeEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEipsResponse > {
-        self.client.execute(action: "DescribeEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 黑石EIP查询接口
-    @inlinable
-    public func describeEips(_ input: DescribeEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipsResponse {
-        try await self.client.execute(action: "DescribeEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEips请求参数结构体
     public struct DescribeEipsRequest: TCRequestModel {
         /// EIP实例ID列表
@@ -74,7 +62,7 @@ extension Bmeip {
         /// 搜索条件，是否绑定了EIP ACL， 0：未绑定，1：绑定
         public let bindAcl: Int64?
         
-        public init (eipIds: [String]?, eips: [String]?, instanceIds: [String]?, searchKey: String?, status: [Int64]?, offset: Int64?, limit: Int64?, orderField: String?, order: Int64?, payMode: String?, vpcId: String?, bindTypes: [Int64]?, exclusiveTag: Int64?, aclId: String?, bindAcl: Int64?) {
+        public init (eipIds: [String]? = nil, eips: [String]? = nil, instanceIds: [String]? = nil, searchKey: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, payMode: String? = nil, vpcId: String? = nil, bindTypes: [Int64]? = nil, exclusiveTag: Int64? = nil, aclId: String? = nil, bindAcl: Int64? = nil) {
             self.eipIds = eipIds
             self.eips = eips
             self.instanceIds = instanceIds
@@ -127,5 +115,17 @@ extension Bmeip {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 黑石EIP查询接口
+    @inlinable
+    public func describeEips(_ input: DescribeEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEipsResponse > {
+        self.client.execute(action: "DescribeEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 黑石EIP查询接口
+    @inlinable
+    public func describeEips(_ input: DescribeEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipsResponse {
+        try await self.client.execute(action: "DescribeEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

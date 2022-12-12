@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 创建、选择vpc
-    @inlinable
-    public func createChooseVpcs(_ input: CreateChooseVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateChooseVpcsResponse > {
-        self.client.execute(action: "CreateChooseVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建、选择vpc
-    @inlinable
-    public func createChooseVpcs(_ input: CreateChooseVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChooseVpcsResponse {
-        try await self.client.execute(action: "CreateChooseVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateChooseVpcs请求参数结构体
     public struct CreateChooseVpcsRequest: TCRequestModel {
         /// vpc列表
@@ -54,5 +42,17 @@ extension Cfw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建、选择vpc
+    @inlinable
+    public func createChooseVpcs(_ input: CreateChooseVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateChooseVpcsResponse > {
+        self.client.execute(action: "CreateChooseVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建、选择vpc
+    @inlinable
+    public func createChooseVpcs(_ input: CreateChooseVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChooseVpcsResponse {
+        try await self.client.execute(action: "CreateChooseVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

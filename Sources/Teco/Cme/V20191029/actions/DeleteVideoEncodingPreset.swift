@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 删除视频编码配置
-    ///
-    /// 删除指定 ID 的视频编码配置
-    @inlinable
-    public func deleteVideoEncodingPreset(_ input: DeleteVideoEncodingPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVideoEncodingPresetResponse > {
-        self.client.execute(action: "DeleteVideoEncodingPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除视频编码配置
-    ///
-    /// 删除指定 ID 的视频编码配置
-    @inlinable
-    public func deleteVideoEncodingPreset(_ input: DeleteVideoEncodingPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVideoEncodingPresetResponse {
-        try await self.client.execute(action: "DeleteVideoEncodingPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteVideoEncodingPreset请求参数结构体
     public struct DeleteVideoEncodingPresetRequest: TCRequestModel {
         /// 平台名称，指定访问的平台。
@@ -58,5 +42,21 @@ extension Cme {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除视频编码配置
+    ///
+    /// 删除指定 ID 的视频编码配置
+    @inlinable
+    public func deleteVideoEncodingPreset(_ input: DeleteVideoEncodingPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVideoEncodingPresetResponse > {
+        self.client.execute(action: "DeleteVideoEncodingPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除视频编码配置
+    ///
+    /// 删除指定 ID 的视频编码配置
+    @inlinable
+    public func deleteVideoEncodingPreset(_ input: DeleteVideoEncodingPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVideoEncodingPresetResponse {
+        try await self.client.execute(action: "DeleteVideoEncodingPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

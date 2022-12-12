@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Soe {
-    /// 发音评估初始化
-    ///
-    /// 初始化发音评估过程，每一轮评估前进行调用。语音输入模式分为流式模式和非流式模式，流式模式支持数据分片传输，可以加快评估响应速度。评估模式分为词模式和句子模式，词模式会标注每个音节的详细信息；句子模式会有完整度和流利度的评估。
-    @inlinable
-    public func initOralProcess(_ input: InitOralProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InitOralProcessResponse > {
-        self.client.execute(action: "InitOralProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发音评估初始化
-    ///
-    /// 初始化发音评估过程，每一轮评估前进行调用。语音输入模式分为流式模式和非流式模式，流式模式支持数据分片传输，可以加快评估响应速度。评估模式分为词模式和句子模式，词模式会标注每个音节的详细信息；句子模式会有完整度和流利度的评估。
-    @inlinable
-    public func initOralProcess(_ input: InitOralProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitOralProcessResponse {
-        try await self.client.execute(action: "InitOralProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InitOralProcess请求参数结构体
     public struct InitOralProcessRequest: TCRequestModel {
         /// 语音段唯一标识，一段完整语音使用一个SessionId，不同语音段的评测需要使用不同的SessionId。一般使用uuid(通用唯一识别码)来作为它的值，要尽量保证SessionId的唯一性。
@@ -101,7 +85,7 @@ extension Soe {
         /// 主题词和关键词
         public let keyword: String?
         
-        public init (sessionId: String, refText: String, workMode: Int64, evalMode: Int64, scoreCoeff: Float, soeAppId: String?, isLongLifeSession: Int64?, storageMode: Int64?, sentenceInfoEnabled: Int64?, serverType: Int64?, isAsync: Int64?, textMode: Int64?, keyword: String?) {
+        public init (sessionId: String, refText: String, workMode: Int64, evalMode: Int64, scoreCoeff: Float, soeAppId: String? = nil, isLongLifeSession: Int64? = nil, storageMode: Int64? = nil, sentenceInfoEnabled: Int64? = nil, serverType: Int64? = nil, isAsync: Int64? = nil, textMode: Int64? = nil, keyword: String? = nil) {
             self.sessionId = sessionId
             self.refText = refText
             self.workMode = workMode
@@ -146,5 +130,21 @@ extension Soe {
             case sessionId = "SessionId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发音评估初始化
+    ///
+    /// 初始化发音评估过程，每一轮评估前进行调用。语音输入模式分为流式模式和非流式模式，流式模式支持数据分片传输，可以加快评估响应速度。评估模式分为词模式和句子模式，词模式会标注每个音节的详细信息；句子模式会有完整度和流利度的评估。
+    @inlinable
+    public func initOralProcess(_ input: InitOralProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InitOralProcessResponse > {
+        self.client.execute(action: "InitOralProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发音评估初始化
+    ///
+    /// 初始化发音评估过程，每一轮评估前进行调用。语音输入模式分为流式模式和非流式模式，流式模式支持数据分片传输，可以加快评估响应速度。评估模式分为词模式和句子模式，词模式会标注每个音节的详细信息；句子模式会有完整度和流利度的评估。
+    @inlinable
+    public func initOralProcess(_ input: InitOralProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitOralProcessResponse {
+        try await self.client.execute(action: "InitOralProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

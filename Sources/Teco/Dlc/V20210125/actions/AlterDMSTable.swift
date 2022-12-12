@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dlc {
-    /// DMS元数据更新表
-    @inlinable
-    public func alterDMSTable(_ input: AlterDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AlterDMSTableResponse > {
-        self.client.execute(action: "AlterDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DMS元数据更新表
-    @inlinable
-    public func alterDMSTable(_ input: AlterDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSTableResponse {
-        try await self.client.execute(action: "AlterDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AlterDMSTable请求参数结构体
     public struct AlterDMSTableRequest: TCRequestModel {
         /// 当前名称
@@ -38,7 +26,7 @@ extension Dlc {
         public let currentDbName: String
         
         /// 基础对象
-        public let asset: Asset
+        public let asset: Asset?
         
         /// 表类型
         public let type: String?
@@ -65,7 +53,7 @@ extension Dlc {
         public let lastAccessTime: Date?
         
         /// 存储对象
-        public let sds: DMSSds
+        public let sds: DMSSds?
         
         /// 列
         public let columns: [DMSColumn]?
@@ -85,7 +73,7 @@ extension Dlc {
         /// 当前表名
         public let name: String?
         
-        public init (currentName: String, currentDbName: String, asset: Asset, type: String?, dbName: String?, storageSize: Int64?, recordCount: Int64?, lifeTime: Int64?, dataUpdateTime: Date?, structUpdateTime: Date?, lastAccessTime: Date?, sds: DMSSds, columns: [DMSColumn]?, partitionKeys: [DMSColumn]?, viewOriginalText: String?, viewExpandedText: String?, partitions: [DMSPartition]?, name: String?) {
+        public init (currentName: String, currentDbName: String, asset: Asset? = nil, type: String? = nil, dbName: String? = nil, storageSize: Int64? = nil, recordCount: Int64? = nil, lifeTime: Int64? = nil, dataUpdateTime: Date? = nil, structUpdateTime: Date? = nil, lastAccessTime: Date? = nil, sds: DMSSds? = nil, columns: [DMSColumn]? = nil, partitionKeys: [DMSColumn]? = nil, viewOriginalText: String? = nil, viewExpandedText: String? = nil, partitions: [DMSPartition]? = nil, name: String? = nil) {
             self.currentName = currentName
             self.currentDbName = currentDbName
             self.asset = asset
@@ -136,5 +124,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// DMS元数据更新表
+    @inlinable
+    public func alterDMSTable(_ input: AlterDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AlterDMSTableResponse > {
+        self.client.execute(action: "AlterDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据更新表
+    @inlinable
+    public func alterDMSTable(_ input: AlterDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSTableResponse {
+        try await self.client.execute(action: "AlterDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

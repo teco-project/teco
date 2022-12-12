@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 修改批次
-    @inlinable
-    public func modifyCodeBatch(_ input: ModifyCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCodeBatchResponse > {
-        self.client.execute(action: "ModifyCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改批次
-    @inlinable
-    public func modifyCodeBatch(_ input: ModifyCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCodeBatchResponse {
-        try await self.client.execute(action: "ModifyCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCodeBatch请求参数结构体
     public struct ModifyCodeBatchRequest: TCRequestModel {
         /// 批次ID
@@ -50,7 +38,7 @@ extension Trp {
         /// 备注
         public let remark: String?
         
-        public init (batchId: String, corpId: UInt64?, status: Int64?, mpTpl: String?, merchantId: String?, productId: String?, remark: String?) {
+        public init (batchId: String, corpId: UInt64? = nil, status: Int64? = nil, mpTpl: String? = nil, merchantId: String? = nil, productId: String? = nil, remark: String? = nil) {
             self.batchId = batchId
             self.corpId = corpId
             self.status = status
@@ -83,5 +71,17 @@ extension Trp {
             case batchId = "BatchId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改批次
+    @inlinable
+    public func modifyCodeBatch(_ input: ModifyCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCodeBatchResponse > {
+        self.client.execute(action: "ModifyCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改批次
+    @inlinable
+    public func modifyCodeBatch(_ input: ModifyCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCodeBatchResponse {
+        try await self.client.execute(action: "ModifyCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

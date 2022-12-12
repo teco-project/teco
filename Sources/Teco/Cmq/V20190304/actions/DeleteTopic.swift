@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cmq {
-    /// 删除主题
-    @inlinable
-    public func deleteTopic(_ input: DeleteTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTopicResponse > {
-        self.client.execute(action: "DeleteTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除主题
-    @inlinable
-    public func deleteTopic(_ input: DeleteTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicResponse {
-        try await self.client.execute(action: "DeleteTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTopic请求参数结构体
     public struct DeleteTopicRequest: TCRequestModel {
         /// 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
@@ -49,5 +37,17 @@ extension Cmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除主题
+    @inlinable
+    public func deleteTopic(_ input: DeleteTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTopicResponse > {
+        self.client.execute(action: "DeleteTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除主题
+    @inlinable
+    public func deleteTopic(_ input: DeleteTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicResponse {
+        try await self.client.execute(action: "DeleteTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

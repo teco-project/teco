@@ -26,7 +26,7 @@ extension Nlp {
         /// 错别字纠错结果
         public let correctWord: String?
         
-        public init (word: String?, beginOffset: UInt64?, correctWord: String?) {
+        public init (word: String? = nil, beginOffset: UInt64? = nil, correctWord: String? = nil) {
             self.word = word
             self.beginOffset = beginOffset
             self.correctWord = correctWord
@@ -79,7 +79,7 @@ extension Nlp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fifthClassProbability: Float?
         
-        public init (firstClassName: String?, secondClassName: String?, firstClassProbability: Float?, secondClassProbability: Float?, thirdClassName: String?, thirdClassProbability: Float?, fourthClassName: String?, fourthClassProbability: Float?, fifthClassName: String?, fifthClassProbability: Float?) {
+        public init (firstClassName: String? = nil, secondClassName: String? = nil, firstClassProbability: Float? = nil, secondClassProbability: Float? = nil, thirdClassName: String? = nil, thirdClassProbability: Float? = nil, fourthClassName: String? = nil, fourthClassProbability: Float? = nil, fifthClassName: String? = nil, fifthClassProbability: Float? = nil) {
             self.firstClassName = firstClassName
             self.secondClassName = secondClassName
             self.firstClassProbability = firstClassProbability
@@ -126,7 +126,7 @@ extension Nlp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
         
-        public init (name: String, id: String, description: String?, updateTime: String?, createTime: String?) {
+        public init (name: String, id: String, description: String? = nil, updateTime: String? = nil, createTime: String? = nil) {
             self.name = name
             self.id = id
             self.description = description
@@ -161,7 +161,7 @@ extension Nlp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: UInt64?
         
-        public init (relation: String?, headId: UInt64?, word: String?, id: UInt64?) {
+        public init (relation: String? = nil, headId: UInt64? = nil, word: String? = nil, id: UInt64? = nil) {
             self.relation = relation
             self.headId = headId
             self.word = word
@@ -184,7 +184,7 @@ extension Nlp {
         /// 关键词
         public let word: String?
         
-        public init (score: Float?, word: String?) {
+        public init (score: Float? = nil, word: String? = nil) {
             self.score = score
             self.word = word
         }
@@ -249,13 +249,13 @@ extension Nlp {
         
         /// 匹配到的词条文本。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let matchText: String
+        public let matchText: String?
         
         /// 词条的词性。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pos: String?
         
-        public init (text: String, isExist: UInt64, matchText: String, pos: String?) {
+        public init (text: String, isExist: UInt64, matchText: String, pos: String? = nil) {
             self.text = text
             self.isExist = isExist
             self.matchText = matchText
@@ -301,7 +301,7 @@ extension Nlp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pos: String?
         
-        public init (text: String, createTime: String?, pos: String?) {
+        public init (text: String, createTime: String? = nil, pos: String? = nil) {
             self.text = text
             self.createTime = createTime
             self.pos = pos

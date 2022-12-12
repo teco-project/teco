@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 查询私有域解析开通状态
-    @inlinable
-    public func describePrivateZoneService(_ input: DescribePrivateZoneServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateZoneServiceResponse > {
-        self.client.execute(action: "DescribePrivateZoneService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询私有域解析开通状态
-    @inlinable
-    public func describePrivateZoneService(_ input: DescribePrivateZoneServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneServiceResponse {
-        try await self.client.execute(action: "DescribePrivateZoneService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrivateZoneService请求参数结构体
     public struct DescribePrivateZoneServiceRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Privatedns {
             case serviceStatus = "ServiceStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询私有域解析开通状态
+    @inlinable
+    public func describePrivateZoneService(_ input: DescribePrivateZoneServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateZoneServiceResponse > {
+        self.client.execute(action: "DescribePrivateZoneService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询私有域解析开通状态
+    @inlinable
+    public func describePrivateZoneService(_ input: DescribePrivateZoneServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneServiceResponse {
+        try await self.client.execute(action: "DescribePrivateZoneService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

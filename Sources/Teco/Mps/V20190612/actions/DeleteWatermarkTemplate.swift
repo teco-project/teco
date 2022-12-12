@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 删除水印模板
-    ///
-    /// 删除用户自定义水印模板。
-    @inlinable
-    public func deleteWatermarkTemplate(_ input: DeleteWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWatermarkTemplateResponse > {
-        self.client.execute(action: "DeleteWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除水印模板
-    ///
-    /// 删除用户自定义水印模板。
-    @inlinable
-    public func deleteWatermarkTemplate(_ input: DeleteWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWatermarkTemplateResponse {
-        try await self.client.execute(action: "DeleteWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteWatermarkTemplate请求参数结构体
     public struct DeleteWatermarkTemplateRequest: TCRequestModel {
         /// 水印模板唯一标识。
@@ -53,5 +37,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除水印模板
+    ///
+    /// 删除用户自定义水印模板。
+    @inlinable
+    public func deleteWatermarkTemplate(_ input: DeleteWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWatermarkTemplateResponse > {
+        self.client.execute(action: "DeleteWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除水印模板
+    ///
+    /// 删除用户自定义水印模板。
+    @inlinable
+    public func deleteWatermarkTemplate(_ input: DeleteWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWatermarkTemplateResponse {
+        try await self.client.execute(action: "DeleteWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

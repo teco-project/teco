@@ -767,7 +767,7 @@ extension Iotvideo {
         /// 搜索条件的值
         public let value: String?
         
-        public init (key: String, value: String?) {
+        public init (key: String, value: String? = nil) {
             self.key = key
             self.value = value
         }

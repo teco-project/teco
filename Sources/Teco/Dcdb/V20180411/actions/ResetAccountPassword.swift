@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 重置账号密码
-    ///
-    /// 本接口（ResetAccountPassword）用于重置云数据库账号的密码。
-    /// 注意：相同用户名，不同Host是不同的账号。
-    @inlinable
-    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAccountPasswordResponse > {
-        self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置账号密码
-    ///
-    /// 本接口（ResetAccountPassword）用于重置云数据库账号的密码。
-    /// 注意：相同用户名，不同Host是不同的账号。
-    @inlinable
-    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
-        try await self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetAccountPassword请求参数结构体
     public struct ResetAccountPasswordRequest: TCRequestModel {
         /// 实例 ID，形如：dcdbt-ow728lmc。
@@ -70,5 +52,23 @@ extension Dcdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置账号密码
+    ///
+    /// 本接口（ResetAccountPassword）用于重置云数据库账号的密码。
+    /// 注意：相同用户名，不同Host是不同的账号。
+    @inlinable
+    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAccountPasswordResponse > {
+        self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置账号密码
+    ///
+    /// 本接口（ResetAccountPassword）用于重置云数据库账号的密码。
+    /// 注意：相同用户名，不同Host是不同的账号。
+    @inlinable
+    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
+        try await self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

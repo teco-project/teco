@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// 获取CC攻击事件列表
-    @inlinable
-    public func describeCCEvList(_ input: DescribeCCEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCEvListResponse > {
-        self.client.execute(action: "DescribeCCEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取CC攻击事件列表
-    @inlinable
-    public func describeCCEvList(_ input: DescribeCCEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCEvListResponse {
-        try await self.client.execute(action: "DescribeCCEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCCEvList请求参数结构体
     public struct DescribeCCEvListRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
@@ -54,7 +42,7 @@ extension Dayu {
         /// 页起始偏移，取值为(页码-1)*一页条数
         public let offset: UInt64?
         
-        public init (business: String, startTime: Date, endTime: Date, id: String?, ipList: [String]?, limit: UInt64?, offset: UInt64?) {
+        public init (business: String, startTime: Date, endTime: Date, id: String? = nil, ipList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.business = business
             self.startTime = startTime
             self.endTime = endTime
@@ -114,5 +102,17 @@ extension Dayu {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取CC攻击事件列表
+    @inlinable
+    public func describeCCEvList(_ input: DescribeCCEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCEvListResponse > {
+        self.client.execute(action: "DescribeCCEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC攻击事件列表
+    @inlinable
+    public func describeCCEvList(_ input: DescribeCCEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCEvListResponse {
+        try await self.client.execute(action: "DescribeCCEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

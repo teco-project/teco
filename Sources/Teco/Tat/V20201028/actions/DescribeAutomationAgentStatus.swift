@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tat {
-    /// 查询客户端状态
-    ///
-    /// 此接口用于查询自动化助手客户端的状态。
-    @inlinable
-    public func describeAutomationAgentStatus(_ input: DescribeAutomationAgentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutomationAgentStatusResponse > {
-        self.client.execute(action: "DescribeAutomationAgentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询客户端状态
-    ///
-    /// 此接口用于查询自动化助手客户端的状态。
-    @inlinable
-    public func describeAutomationAgentStatus(_ input: DescribeAutomationAgentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutomationAgentStatusResponse {
-        try await self.client.execute(action: "DescribeAutomationAgentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAutomationAgentStatus请求参数结构体
     public struct DescribeAutomationAgentStatusRequest: TCRequestModel {
         /// 待查询的实例ID列表。
@@ -45,7 +29,7 @@ extension Tat {
         /// 偏移量，默认为0。关于 `Offset` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let offset: UInt64?
         
-        public init (instanceIds: [String]?, filters: [Filter]?, limit: UInt64?, offset: UInt64?) {
+        public init (instanceIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.instanceIds = instanceIds
             self.filters = filters
             self.limit = limit
@@ -76,5 +60,21 @@ extension Tat {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询客户端状态
+    ///
+    /// 此接口用于查询自动化助手客户端的状态。
+    @inlinable
+    public func describeAutomationAgentStatus(_ input: DescribeAutomationAgentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutomationAgentStatusResponse > {
+        self.client.execute(action: "DescribeAutomationAgentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询客户端状态
+    ///
+    /// 此接口用于查询自动化助手客户端的状态。
+    @inlinable
+    public func describeAutomationAgentStatus(_ input: DescribeAutomationAgentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutomationAgentStatusResponse {
+        try await self.client.execute(action: "DescribeAutomationAgentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

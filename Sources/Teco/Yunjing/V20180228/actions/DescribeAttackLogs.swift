@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 网络攻击日志列表
-    ///
-    /// 按分页形式展示网络攻击日志列表
-    @inlinable
-    public func describeAttackLogs(_ input: DescribeAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAttackLogsResponse > {
-        self.client.execute(action: "DescribeAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 网络攻击日志列表
-    ///
-    /// 按分页形式展示网络攻击日志列表
-    @inlinable
-    public func describeAttackLogs(_ input: DescribeAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackLogsResponse {
-        try await self.client.execute(action: "DescribeAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAttackLogs请求参数结构体
     public struct DescribeAttackLogsRequest: TCRequestModel {
         /// 返回数量，默认为10，最大值为100。
@@ -51,7 +35,7 @@ extension Yunjing {
         /// 云主机机器ID
         public let quuid: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?, uuid: String?, quuid: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, uuid: String? = nil, quuid: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -85,5 +69,21 @@ extension Yunjing {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 网络攻击日志列表
+    ///
+    /// 按分页形式展示网络攻击日志列表
+    @inlinable
+    public func describeAttackLogs(_ input: DescribeAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAttackLogsResponse > {
+        self.client.execute(action: "DescribeAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 网络攻击日志列表
+    ///
+    /// 按分页形式展示网络攻击日志列表
+    @inlinable
+    public func describeAttackLogs(_ input: DescribeAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackLogsResponse {
+        try await self.client.execute(action: "DescribeAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

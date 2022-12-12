@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Mps {
-    /// 修改内容审核模板
-    ///
-    /// 修改用户自定义内容审核模板。
-    @inlinable
-    public func modifyContentReviewTemplate(_ input: ModifyContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyContentReviewTemplateResponse > {
-        self.client.execute(action: "ModifyContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改内容审核模板
-    ///
-    /// 修改用户自定义内容审核模板。
-    @inlinable
-    public func modifyContentReviewTemplate(_ input: ModifyContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContentReviewTemplateResponse {
-        try await self.client.execute(action: "ModifyContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyContentReviewTemplate请求参数结构体
     public struct ModifyContentReviewTemplateRequest: TCRequestModel {
         /// 内容审核模板唯一标识。
@@ -45,24 +29,24 @@ extension Mps {
         public let comment: String?
         
         /// 令人反感的信息的控制参数。
-        public let pornConfigure: PornConfigureInfoForUpdate
+        public let pornConfigure: PornConfigureInfoForUpdate?
         
         /// 令人不安全的信息的控制参数。
-        public let terrorismConfigure: TerrorismConfigureInfoForUpdate
+        public let terrorismConfigure: TerrorismConfigureInfoForUpdate?
         
         /// 令人不适宜的控制参数。
-        public let politicalConfigure: PoliticalConfigureInfoForUpdate
+        public let politicalConfigure: PoliticalConfigureInfoForUpdate?
         
         /// 违禁控制参数。违禁内容包括：
         /// <li>谩骂；</li>
         /// <li>涉毒违法。</li>
         /// 注意：此参数尚未支持。
-        public let prohibitedConfigure: ProhibitedConfigureInfoForUpdate
+        public let prohibitedConfigure: ProhibitedConfigureInfoForUpdate?
         
         /// 用户自定义内容审核控制参数。
-        public let userDefineConfigure: UserDefineConfigureInfoForUpdate
+        public let userDefineConfigure: UserDefineConfigureInfoForUpdate?
         
-        public init (definition: Int64, name: String?, comment: String?, pornConfigure: PornConfigureInfoForUpdate, terrorismConfigure: TerrorismConfigureInfoForUpdate, politicalConfigure: PoliticalConfigureInfoForUpdate, prohibitedConfigure: ProhibitedConfigureInfoForUpdate, userDefineConfigure: UserDefineConfigureInfoForUpdate) {
+        public init (definition: Int64, name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfoForUpdate? = nil, terrorismConfigure: TerrorismConfigureInfoForUpdate? = nil, politicalConfigure: PoliticalConfigureInfoForUpdate? = nil, prohibitedConfigure: ProhibitedConfigureInfoForUpdate? = nil, userDefineConfigure: UserDefineConfigureInfoForUpdate? = nil) {
             self.definition = definition
             self.name = name
             self.comment = comment
@@ -93,5 +77,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改内容审核模板
+    ///
+    /// 修改用户自定义内容审核模板。
+    @inlinable
+    public func modifyContentReviewTemplate(_ input: ModifyContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyContentReviewTemplateResponse > {
+        self.client.execute(action: "ModifyContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改内容审核模板
+    ///
+    /// 修改用户自定义内容审核模板。
+    @inlinable
+    public func modifyContentReviewTemplate(_ input: ModifyContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContentReviewTemplateResponse {
+        try await self.client.execute(action: "ModifyContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

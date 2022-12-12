@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tat {
-    /// 查询执行器执行记录
-    ///
-    /// 此接口用于查询执行器的执行记录。
-    @inlinable
-    public func describeInvokerRecords(_ input: DescribeInvokerRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvokerRecordsResponse > {
-        self.client.execute(action: "DescribeInvokerRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询执行器执行记录
-    ///
-    /// 此接口用于查询执行器的执行记录。
-    @inlinable
-    public func describeInvokerRecords(_ input: DescribeInvokerRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvokerRecordsResponse {
-        try await self.client.execute(action: "DescribeInvokerRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInvokerRecords请求参数结构体
     public struct DescribeInvokerRecordsRequest: TCRequestModel {
         /// 执行器ID列表。列表上限 100。
@@ -42,7 +26,7 @@ extension Tat {
         /// 偏移量，默认为0。
         public let offset: UInt64?
         
-        public init (invokerIds: [String]?, limit: UInt64?, offset: UInt64?) {
+        public init (invokerIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.invokerIds = invokerIds
             self.limit = limit
             self.offset = offset
@@ -71,5 +55,21 @@ extension Tat {
             case invokerRecordSet = "InvokerRecordSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询执行器执行记录
+    ///
+    /// 此接口用于查询执行器的执行记录。
+    @inlinable
+    public func describeInvokerRecords(_ input: DescribeInvokerRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvokerRecordsResponse > {
+        self.client.execute(action: "DescribeInvokerRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询执行器执行记录
+    ///
+    /// 此接口用于查询执行器的执行记录。
+    @inlinable
+    public func describeInvokerRecords(_ input: DescribeInvokerRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvokerRecordsResponse {
+        try await self.client.execute(action: "DescribeInvokerRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

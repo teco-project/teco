@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 修改云数据库实例账号的备注信息
-    ///
-    /// 本接口(ModifyAccountDescription)用于修改云数据库账户的备注信息。
-    @inlinable
-    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountDescriptionResponse > {
-        self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改云数据库实例账号的备注信息
-    ///
-    /// 本接口(ModifyAccountDescription)用于修改云数据库账户的备注信息。
-    @inlinable
-    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
-        try await self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAccountDescription请求参数结构体
     public struct ModifyAccountDescriptionRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -42,7 +26,7 @@ extension Cdb {
         /// 数据库账号的备注信息。
         public let description: String?
         
-        public init (instanceId: String, accounts: [Account], description: String?) {
+        public init (instanceId: String, accounts: [Account], description: String? = nil) {
             self.instanceId = instanceId
             self.accounts = accounts
             self.description = description
@@ -67,5 +51,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改云数据库实例账号的备注信息
+    ///
+    /// 本接口(ModifyAccountDescription)用于修改云数据库账户的备注信息。
+    @inlinable
+    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountDescriptionResponse > {
+        self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库实例账号的备注信息
+    ///
+    /// 本接口(ModifyAccountDescription)用于修改云数据库账户的备注信息。
+    @inlinable
+    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
+        try await self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 获取绑定设备列表
-    ///
-    /// 获取用户的绑定设备列表
-    @inlinable
-    public func appGetDevices(_ input: AppGetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppGetDevicesResponse > {
-        self.client.execute(action: "AppGetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取绑定设备列表
-    ///
-    /// 获取用户的绑定设备列表
-    @inlinable
-    public func appGetDevices(_ input: AppGetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetDevicesResponse {
-        try await self.client.execute(action: "AppGetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AppGetDevices请求参数结构体
     public struct AppGetDevicesRequest: TCRequestModel {
         /// 访问Token
@@ -57,5 +41,21 @@ extension Iot {
             case devices = "Devices"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取绑定设备列表
+    ///
+    /// 获取用户的绑定设备列表
+    @inlinable
+    public func appGetDevices(_ input: AppGetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppGetDevicesResponse > {
+        self.client.execute(action: "AppGetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取绑定设备列表
+    ///
+    /// 获取用户的绑定设备列表
+    @inlinable
+    public func appGetDevices(_ input: AppGetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetDevicesResponse {
+        try await self.client.execute(action: "AppGetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

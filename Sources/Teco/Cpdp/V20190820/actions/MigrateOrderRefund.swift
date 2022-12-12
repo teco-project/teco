@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 智慧零售-系统迁移存量订单退款
-    ///
-    /// 山姆聚合支付项目-存量订单退款接口。可以通过本接口将支付款全部或部分退还给付款方，在收到用户退款请求并且验证成功之后，按照退款规则将支付款按原路退回到支付帐号。
-    @inlinable
-    public func migrateOrderRefund(_ input: MigrateOrderRefundRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MigrateOrderRefundResponse > {
-        self.client.execute(action: "MigrateOrderRefund", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 智慧零售-系统迁移存量订单退款
-    ///
-    /// 山姆聚合支付项目-存量订单退款接口。可以通过本接口将支付款全部或部分退还给付款方，在收到用户退款请求并且验证成功之后，按照退款规则将支付款按原路退回到支付帐号。
-    @inlinable
-    public func migrateOrderRefund(_ input: MigrateOrderRefundRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateOrderRefundResponse {
-        try await self.client.execute(action: "MigrateOrderRefund", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// MigrateOrderRefund请求参数结构体
     public struct MigrateOrderRefundRequest: TCRequestModel {
         /// 商户代码
@@ -60,7 +44,7 @@ extension Cpdp {
         /// 退款原因
         public let refundReason: String?
         
-        public init (merchantId: String, payChannel: String, payOrderId: String, refundOrderId: String, refundAmt: UInt64, thirdChannelOrderId: String, payAmt: UInt64?, profile: String?, refundReason: String?) {
+        public init (merchantId: String, payChannel: String, payOrderId: String, refundOrderId: String, refundAmt: UInt64, thirdChannelOrderId: String, payAmt: UInt64? = nil, profile: String? = nil, refundReason: String? = nil) {
             self.merchantId = merchantId
             self.payChannel = payChannel
             self.payOrderId = payOrderId
@@ -105,5 +89,21 @@ extension Cpdp {
             case tradeMsg = "TradeMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 智慧零售-系统迁移存量订单退款
+    ///
+    /// 山姆聚合支付项目-存量订单退款接口。可以通过本接口将支付款全部或部分退还给付款方，在收到用户退款请求并且验证成功之后，按照退款规则将支付款按原路退回到支付帐号。
+    @inlinable
+    public func migrateOrderRefund(_ input: MigrateOrderRefundRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MigrateOrderRefundResponse > {
+        self.client.execute(action: "MigrateOrderRefund", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 智慧零售-系统迁移存量订单退款
+    ///
+    /// 山姆聚合支付项目-存量订单退款接口。可以通过本接口将支付款全部或部分退还给付款方，在收到用户退款请求并且验证成功之后，按照退款规则将支付款按原路退回到支付帐号。
+    @inlinable
+    public func migrateOrderRefund(_ input: MigrateOrderRefundRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateOrderRefundResponse {
+        try await self.client.execute(action: "MigrateOrderRefund", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 音视频审核
-    ///
-    /// 对点播中的音视频媒体发起审核任务，智能检测视频画面、画面中的文字、语音中的文字、声音出现的违规内容。
-    /// 如使用事件通知，事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
-    @inlinable
-    public func reviewAudioVideo(_ input: ReviewAudioVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReviewAudioVideoResponse > {
-        self.client.execute(action: "ReviewAudioVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 音视频审核
-    ///
-    /// 对点播中的音视频媒体发起审核任务，智能检测视频画面、画面中的文字、语音中的文字、声音出现的违规内容。
-    /// 如使用事件通知，事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
-    @inlinable
-    public func reviewAudioVideo(_ input: ReviewAudioVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewAudioVideoResponse {
-        try await self.client.execute(action: "ReviewAudioVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReviewAudioVideo请求参数结构体
     public struct ReviewAudioVideoRequest: TCRequestModel {
         /// 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
@@ -57,7 +39,7 @@ extension Vod {
         /// 保留字段，特殊用途时使用。
         public let extInfo: String?
         
-        public init (fileId: String, subAppId: UInt64?, definition: UInt64?, tasksPriority: Int64?, sessionContext: String?, sessionId: String?, extInfo: String?) {
+        public init (fileId: String, subAppId: UInt64? = nil, definition: UInt64? = nil, tasksPriority: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil) {
             self.fileId = fileId
             self.subAppId = subAppId
             self.definition = definition
@@ -90,5 +72,23 @@ extension Vod {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 音视频审核
+    ///
+    /// 对点播中的音视频媒体发起审核任务，智能检测视频画面、画面中的文字、语音中的文字、声音出现的违规内容。
+    /// 如使用事件通知，事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
+    @inlinable
+    public func reviewAudioVideo(_ input: ReviewAudioVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReviewAudioVideoResponse > {
+        self.client.execute(action: "ReviewAudioVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 音视频审核
+    ///
+    /// 对点播中的音视频媒体发起审核任务，智能检测视频画面、画面中的文字、语音中的文字、声音出现的违规内容。
+    /// 如使用事件通知，事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
+    @inlinable
+    public func reviewAudioVideo(_ input: ReviewAudioVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewAudioVideoResponse {
+        try await self.client.execute(action: "ReviewAudioVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

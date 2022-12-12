@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 获取黑石负载均衡七层转发路径绑定的主机列表
-    ///
-    /// 获取黑石负载均衡七层监听器绑定的主机列表
-    @inlinable
-    public func describeL7Backends(_ input: DescribeL7BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7BackendsResponse > {
-        self.client.execute(action: "DescribeL7Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取黑石负载均衡七层转发路径绑定的主机列表
-    ///
-    /// 获取黑石负载均衡七层监听器绑定的主机列表
-    @inlinable
-    public func describeL7Backends(_ input: DescribeL7BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7BackendsResponse {
-        try await self.client.execute(action: "DescribeL7Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeL7Backends请求参数结构体
     public struct DescribeL7BackendsRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -48,7 +32,7 @@ extension Bmlb {
         /// 查询条件，传'all'则查询所有与规则绑定的主机信息。如果为all时，DomainId和LocationId参数没有意义不必传入，否则DomainId和LocationId参数必须传入。
         public let queryType: String?
         
-        public init (loadBalancerId: String, listenerId: String, domainId: String?, locationId: String?, queryType: String?) {
+        public init (loadBalancerId: String, listenerId: String, domainId: String? = nil, locationId: String? = nil, queryType: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.domainId = domainId
@@ -77,5 +61,21 @@ extension Bmlb {
             case backendSet = "BackendSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取黑石负载均衡七层转发路径绑定的主机列表
+    ///
+    /// 获取黑石负载均衡七层监听器绑定的主机列表
+    @inlinable
+    public func describeL7Backends(_ input: DescribeL7BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7BackendsResponse > {
+        self.client.execute(action: "DescribeL7Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取黑石负载均衡七层转发路径绑定的主机列表
+    ///
+    /// 获取黑石负载均衡七层监听器绑定的主机列表
+    @inlinable
+    public func describeL7Backends(_ input: DescribeL7BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7BackendsResponse {
+        try await self.client.execute(action: "DescribeL7Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

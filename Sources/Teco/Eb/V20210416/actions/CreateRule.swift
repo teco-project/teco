@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 创建事件规则
-    @inlinable
-    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRuleResponse > {
-        self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建事件规则
-    @inlinable
-    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
-        try await self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRule请求参数结构体
     public struct CreateRuleRequest: TCRequestModel {
         /// 参考：[事件模式](https://cloud.tencent.com/document/product/1359/56084)
@@ -44,7 +32,7 @@ extension Eb {
         /// 事件集描述，不限字符类型，200字符描述以内
         public let description: String?
         
-        public init (eventPattern: String, eventBusId: String, ruleName: String, enable: Bool?, description: String?) {
+        public init (eventPattern: String, eventBusId: String, ruleName: String, enable: Bool? = nil, description: String? = nil) {
             self.eventPattern = eventPattern
             self.eventBusId = eventBusId
             self.ruleName = ruleName
@@ -73,5 +61,17 @@ extension Eb {
             case ruleId = "RuleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建事件规则
+    @inlinable
+    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRuleResponse > {
+        self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建事件规则
+    @inlinable
+    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
+        try await self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

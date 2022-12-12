@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 安装检查组件
-    ///
-    /// 安装检查组件，创建防护容器
-    @inlinable
-    public func createCheckComponent(_ input: CreateCheckComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCheckComponentResponse > {
-        self.client.execute(action: "CreateCheckComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安装检查组件
-    ///
-    /// 安装检查组件，创建防护容器
-    @inlinable
-    public func createCheckComponent(_ input: CreateCheckComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckComponentResponse {
-        try await self.client.execute(action: "CreateCheckComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCheckComponent请求参数结构体
     public struct CreateCheckComponentRequest: TCRequestModel {
         /// 要安装的集群列表信息
@@ -57,5 +41,21 @@ extension Tcss {
             case installResult = "InstallResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安装检查组件
+    ///
+    /// 安装检查组件，创建防护容器
+    @inlinable
+    public func createCheckComponent(_ input: CreateCheckComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCheckComponentResponse > {
+        self.client.execute(action: "CreateCheckComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安装检查组件
+    ///
+    /// 安装检查组件，创建防护容器
+    @inlinable
+    public func createCheckComponent(_ input: CreateCheckComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckComponentResponse {
+        try await self.client.execute(action: "CreateCheckComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

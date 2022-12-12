@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 更新ES集群词典
-    @inlinable
-    public func updateDictionaries(_ input: UpdateDictionariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDictionariesResponse > {
-        self.client.execute(action: "UpdateDictionaries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新ES集群词典
-    @inlinable
-    public func updateDictionaries(_ input: UpdateDictionariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictionariesResponse {
-        try await self.client.execute(action: "UpdateDictionaries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateDictionaries请求参数结构体
     public struct UpdateDictionariesRequest: TCRequestModel {
         /// ES实例ID
@@ -50,7 +38,7 @@ extension Es {
         /// 是否强制重启集群。默认值false
         public let forceRestart: Bool?
         
-        public init (instanceId: String, ikMainDicts: [String]?, ikStopwords: [String]?, synonym: [String]?, qqDict: [String]?, updateType: Int64?, forceRestart: Bool?) {
+        public init (instanceId: String, ikMainDicts: [String]? = nil, ikStopwords: [String]? = nil, synonym: [String]? = nil, qqDict: [String]? = nil, updateType: Int64? = nil, forceRestart: Bool? = nil) {
             self.instanceId = instanceId
             self.ikMainDicts = ikMainDicts
             self.ikStopwords = ikStopwords
@@ -79,5 +67,17 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新ES集群词典
+    @inlinable
+    public func updateDictionaries(_ input: UpdateDictionariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDictionariesResponse > {
+        self.client.execute(action: "UpdateDictionaries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新ES集群词典
+    @inlinable
+    public func updateDictionaries(_ input: UpdateDictionariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictionariesResponse {
+        try await self.client.execute(action: "UpdateDictionaries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

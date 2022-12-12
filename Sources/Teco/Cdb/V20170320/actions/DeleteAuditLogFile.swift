@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 删除审计日志文件
-    ///
-    /// 本接口(DeleteAuditLogFile)用于删除云数据库实例的审计日志文件。
-    @inlinable
-    public func deleteAuditLogFile(_ input: DeleteAuditLogFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAuditLogFileResponse > {
-        self.client.execute(action: "DeleteAuditLogFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除审计日志文件
-    ///
-    /// 本接口(DeleteAuditLogFile)用于删除云数据库实例的审计日志文件。
-    @inlinable
-    public func deleteAuditLogFile(_ input: DeleteAuditLogFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditLogFileResponse {
-        try await self.client.execute(action: "DeleteAuditLogFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAuditLogFile请求参数结构体
     public struct DeleteAuditLogFileRequest: TCRequestModel {
         /// 审计日志文件名称。
@@ -58,5 +42,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除审计日志文件
+    ///
+    /// 本接口(DeleteAuditLogFile)用于删除云数据库实例的审计日志文件。
+    @inlinable
+    public func deleteAuditLogFile(_ input: DeleteAuditLogFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAuditLogFileResponse > {
+        self.client.execute(action: "DeleteAuditLogFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除审计日志文件
+    ///
+    /// 本接口(DeleteAuditLogFile)用于删除云数据库实例的审计日志文件。
+    @inlinable
+    public func deleteAuditLogFile(_ input: DeleteAuditLogFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditLogFileResponse {
+        try await self.client.execute(action: "DeleteAuditLogFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

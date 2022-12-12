@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询套餐折扣
-    ///
-    /// 本接口（DescribeBundleDiscount）用于查询套餐折扣信息。
-    @inlinable
-    public func describeBundleDiscount(_ input: DescribeBundleDiscountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBundleDiscountResponse > {
-        self.client.execute(action: "DescribeBundleDiscount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询套餐折扣
-    ///
-    /// 本接口（DescribeBundleDiscount）用于查询套餐折扣信息。
-    @inlinable
-    public func describeBundleDiscount(_ input: DescribeBundleDiscountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundleDiscountResponse {
-        try await self.client.execute(action: "DescribeBundleDiscount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBundleDiscount请求参数结构体
     public struct DescribeBundleDiscountRequest: TCRequestModel {
         /// 套餐 ID。
@@ -61,5 +45,21 @@ extension Lighthouse {
             case discountDetail = "DiscountDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询套餐折扣
+    ///
+    /// 本接口（DescribeBundleDiscount）用于查询套餐折扣信息。
+    @inlinable
+    public func describeBundleDiscount(_ input: DescribeBundleDiscountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBundleDiscountResponse > {
+        self.client.execute(action: "DescribeBundleDiscount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询套餐折扣
+    ///
+    /// 本接口（DescribeBundleDiscount）用于查询套餐折扣信息。
+    @inlinable
+    public func describeBundleDiscount(_ input: DescribeBundleDiscountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundleDiscountResponse {
+        try await self.client.execute(action: "DescribeBundleDiscount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

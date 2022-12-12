@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssm {
-    /// 查询凭据轮转历史版本
-    ///
-    /// 查询凭据轮转历史版本。
-    /// 本接口仅适用于云产品凭据。
-    @inlinable
-    public func describeRotationHistory(_ input: DescribeRotationHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRotationHistoryResponse > {
-        self.client.execute(action: "DescribeRotationHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询凭据轮转历史版本
-    ///
-    /// 查询凭据轮转历史版本。
-    /// 本接口仅适用于云产品凭据。
-    @inlinable
-    public func describeRotationHistory(_ input: DescribeRotationHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRotationHistoryResponse {
-        try await self.client.execute(action: "DescribeRotationHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRotationHistory请求参数结构体
     public struct DescribeRotationHistoryRequest: TCRequestModel {
         /// 指定需要获取凭据轮转历史的凭据名称。
@@ -63,5 +45,23 @@ extension Ssm {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询凭据轮转历史版本
+    ///
+    /// 查询凭据轮转历史版本。
+    /// 本接口仅适用于云产品凭据。
+    @inlinable
+    public func describeRotationHistory(_ input: DescribeRotationHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRotationHistoryResponse > {
+        self.client.execute(action: "DescribeRotationHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询凭据轮转历史版本
+    ///
+    /// 查询凭据轮转历史版本。
+    /// 本接口仅适用于云产品凭据。
+    @inlinable
+    public func describeRotationHistory(_ input: DescribeRotationHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRotationHistoryResponse {
+        try await self.client.execute(action: "DescribeRotationHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

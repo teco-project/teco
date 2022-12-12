@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 删除数据集
-    @inlinable
-    public func deleteDataset(_ input: DeleteDatasetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDatasetResponse > {
-        self.client.execute(action: "DeleteDataset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除数据集
-    @inlinable
-    public func deleteDataset(_ input: DeleteDatasetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatasetResponse {
-        try await self.client.execute(action: "DeleteDataset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDataset请求参数结构体
     public struct DeleteDatasetRequest: TCRequestModel {
         /// 数据集id
@@ -58,5 +46,17 @@ extension Tione {
             case datasetId = "DatasetId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除数据集
+    @inlinable
+    public func deleteDataset(_ input: DeleteDatasetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDatasetResponse > {
+        self.client.execute(action: "DeleteDataset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除数据集
+    @inlinable
+    public func deleteDataset(_ input: DeleteDatasetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatasetResponse {
+        try await self.client.execute(action: "DeleteDataset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

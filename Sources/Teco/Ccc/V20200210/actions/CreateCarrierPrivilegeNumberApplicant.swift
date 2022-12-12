@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 申请运营商白名单号码
-    ///
-    /// 用于无限频率地呼叫坐席手机
-    @inlinable
-    public func createCarrierPrivilegeNumberApplicant(_ input: CreateCarrierPrivilegeNumberApplicantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCarrierPrivilegeNumberApplicantResponse > {
-        self.client.execute(action: "CreateCarrierPrivilegeNumberApplicant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 申请运营商白名单号码
-    ///
-    /// 用于无限频率地呼叫坐席手机
-    @inlinable
-    public func createCarrierPrivilegeNumberApplicant(_ input: CreateCarrierPrivilegeNumberApplicantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCarrierPrivilegeNumberApplicantResponse {
-        try await self.client.execute(action: "CreateCarrierPrivilegeNumberApplicant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCarrierPrivilegeNumberApplicant请求参数结构体
     public struct CreateCarrierPrivilegeNumberApplicantRequest: TCRequestModel {
         /// SdkAppId
@@ -45,7 +29,7 @@ extension Ccc {
         /// 描述
         public let description: String?
         
-        public init (sdkAppId: UInt64, callers: [String], callees: [String], description: String?) {
+        public init (sdkAppId: UInt64, callers: [String], callees: [String], description: String? = nil) {
             self.sdkAppId = sdkAppId
             self.callers = callers
             self.callees = callees
@@ -72,5 +56,21 @@ extension Ccc {
             case applicantId = "ApplicantId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 申请运营商白名单号码
+    ///
+    /// 用于无限频率地呼叫坐席手机
+    @inlinable
+    public func createCarrierPrivilegeNumberApplicant(_ input: CreateCarrierPrivilegeNumberApplicantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCarrierPrivilegeNumberApplicantResponse > {
+        self.client.execute(action: "CreateCarrierPrivilegeNumberApplicant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 申请运营商白名单号码
+    ///
+    /// 用于无限频率地呼叫坐席手机
+    @inlinable
+    public func createCarrierPrivilegeNumberApplicant(_ input: CreateCarrierPrivilegeNumberApplicantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCarrierPrivilegeNumberApplicantResponse {
+        try await self.client.execute(action: "CreateCarrierPrivilegeNumberApplicant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

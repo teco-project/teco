@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 签署流程
-    ///
-    /// 此接口（SignFlow）可用于对流程文件进行签署。
-    @inlinable
-    public func signFlow(_ input: SignFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SignFlowResponse > {
-        self.client.execute(action: "SignFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 签署流程
-    ///
-    /// 此接口（SignFlow）可用于对流程文件进行签署。
-    @inlinable
-    public func signFlow(_ input: SignFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignFlowResponse {
-        try await self.client.execute(action: "SignFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SignFlow请求参数结构体
     public struct SignFlowRequest: TCRequestModel {
         /// 调用方信息
@@ -68,7 +52,7 @@ extension Essbasic {
         /// 签署参与者编号
         public let signId: String?
         
-        public init (caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, signSeals: [SignSeal], approveMessage: String?, signId: String?) {
+        public init (caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, signSeals: [SignSeal], approveMessage: String? = nil, signId: String? = nil) {
             self.caller = caller
             self.flowId = flowId
             self.verifyResult = verifyResult
@@ -103,5 +87,21 @@ extension Essbasic {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 签署流程
+    ///
+    /// 此接口（SignFlow）可用于对流程文件进行签署。
+    @inlinable
+    public func signFlow(_ input: SignFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SignFlowResponse > {
+        self.client.execute(action: "SignFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 签署流程
+    ///
+    /// 此接口（SignFlow）可用于对流程文件进行签署。
+    @inlinable
+    public func signFlow(_ input: SignFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignFlowResponse {
+        try await self.client.execute(action: "SignFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

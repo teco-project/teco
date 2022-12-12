@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询容器安全资产概览
-    ///
-    /// 查询容器资产概览信息
-    @inlinable
-    public func describeContainerAssetSummary(_ input: DescribeContainerAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerAssetSummaryResponse > {
-        self.client.execute(action: "DescribeContainerAssetSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器安全资产概览
-    ///
-    /// 查询容器资产概览信息
-    @inlinable
-    public func describeContainerAssetSummary(_ input: DescribeContainerAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerAssetSummaryResponse {
-        try await self.client.execute(action: "DescribeContainerAssetSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeContainerAssetSummary请求参数结构体
     public struct DescribeContainerAssetSummaryRequest: TCRequestModel {
         public init () {
@@ -89,5 +73,21 @@ extension Tcss {
             case hostUnInstallCnt = "HostUnInstallCnt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器安全资产概览
+    ///
+    /// 查询容器资产概览信息
+    @inlinable
+    public func describeContainerAssetSummary(_ input: DescribeContainerAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerAssetSummaryResponse > {
+        self.client.execute(action: "DescribeContainerAssetSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器安全资产概览
+    ///
+    /// 查询容器资产概览信息
+    @inlinable
+    public func describeContainerAssetSummary(_ input: DescribeContainerAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerAssetSummaryResponse {
+        try await self.client.execute(action: "DescribeContainerAssetSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

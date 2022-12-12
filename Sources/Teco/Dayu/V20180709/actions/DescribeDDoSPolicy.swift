@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取DDoS高级策略
-    @inlinable
-    public func describeDDoSPolicy(_ input: DescribeDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSPolicyResponse > {
-        self.client.execute(action: "DescribeDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DDoS高级策略
-    @inlinable
-    public func describeDDoSPolicy(_ input: DescribeDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSPolicyResponse {
-        try await self.client.execute(action: "DescribeDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSPolicy请求参数结构体
     public struct DescribeDDoSPolicyRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -35,7 +23,7 @@ extension Dayu {
         /// 可选字段，资源ID，如果填写则表示该资源绑定的DDoS高级策略
         public let id: String?
         
-        public init (business: String, id: String?) {
+        public init (business: String, id: String? = nil) {
             self.business = business
             self.id = id
         }
@@ -58,5 +46,17 @@ extension Dayu {
             case dDosPolicyList = "DDosPolicyList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DDoS高级策略
+    @inlinable
+    public func describeDDoSPolicy(_ input: DescribeDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSPolicyResponse > {
+        self.client.execute(action: "DescribeDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS高级策略
+    @inlinable
+    public func describeDDoSPolicy(_ input: DescribeDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSPolicyResponse {
+        try await self.client.execute(action: "DescribeDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

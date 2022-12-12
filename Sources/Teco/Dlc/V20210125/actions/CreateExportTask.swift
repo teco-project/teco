@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 创建导出任务
-    ///
-    /// 该接口（CreateExportTask）用于创建导出任务
-    @inlinable
-    public func createExportTask(_ input: CreateExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExportTaskResponse > {
-        self.client.execute(action: "CreateExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建导出任务
-    ///
-    /// 该接口（CreateExportTask）用于创建导出任务
-    @inlinable
-    public func createExportTask(_ input: CreateExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportTaskResponse {
-        try await self.client.execute(action: "CreateExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateExportTask请求参数结构体
     public struct CreateExportTaskRequest: TCRequestModel {
         /// 数据来源，lakefsStorage、taskResult
@@ -45,7 +29,7 @@ extension Dlc {
         /// 目标数据源的类型，目前支持导出到cos
         public let outputType: String?
         
-        public init (inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String?) {
+        public init (inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil) {
             self.inputType = inputType
             self.inputConf = inputConf
             self.outputConf = outputConf
@@ -72,5 +56,21 @@ extension Dlc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建导出任务
+    ///
+    /// 该接口（CreateExportTask）用于创建导出任务
+    @inlinable
+    public func createExportTask(_ input: CreateExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExportTaskResponse > {
+        self.client.execute(action: "CreateExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建导出任务
+    ///
+    /// 该接口（CreateExportTask）用于创建导出任务
+    @inlinable
+    public func createExportTask(_ input: CreateExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportTaskResponse {
+        try await self.client.execute(action: "CreateExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

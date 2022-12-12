@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改安全组出站和入站规则
-    @inlinable
-    public func modifySecurityGroupPolicies(_ input: ModifySecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupPoliciesResponse > {
-        self.client.execute(action: "ModifySecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改安全组出站和入站规则
-    @inlinable
-    public func modifySecurityGroupPolicies(_ input: ModifySecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupPoliciesResponse {
-        try await self.client.execute(action: "ModifySecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySecurityGroupPolicies请求参数结构体
     public struct ModifySecurityGroupPoliciesRequest: TCRequestModel {
         /// 安全组实例ID，例如esg-33ocnj9n，可通过DescribeSecurityGroups获取。
@@ -38,7 +26,7 @@ extension Ecm {
         /// 排序安全组标识。值为True时，支持安全组排序；SortPolicys不存在或SortPolicys为False时，为修改安全组规则。
         public let sortPolicys: Bool?
         
-        public init (securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, sortPolicys: Bool?) {
+        public init (securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, sortPolicys: Bool? = nil) {
             self.securityGroupId = securityGroupId
             self.securityGroupPolicySet = securityGroupPolicySet
             self.sortPolicys = sortPolicys
@@ -59,5 +47,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改安全组出站和入站规则
+    @inlinable
+    public func modifySecurityGroupPolicies(_ input: ModifySecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupPoliciesResponse > {
+        self.client.execute(action: "ModifySecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改安全组出站和入站规则
+    @inlinable
+    public func modifySecurityGroupPolicies(_ input: ModifySecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupPoliciesResponse {
+        try await self.client.execute(action: "ModifySecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

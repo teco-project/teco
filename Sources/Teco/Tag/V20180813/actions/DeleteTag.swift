@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 删除标签
-    ///
-    /// 本接口用于删除一对标签键和标签值
-    @inlinable
-    public func deleteTag(_ input: DeleteTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTagResponse > {
-        self.client.execute(action: "DeleteTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除标签
-    ///
-    /// 本接口用于删除一对标签键和标签值
-    @inlinable
-    public func deleteTag(_ input: DeleteTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagResponse {
-        try await self.client.execute(action: "DeleteTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTag请求参数结构体
     public struct DeleteTagRequest: TCRequestModel {
         /// 需要删除的标签键
@@ -58,5 +42,21 @@ extension Tag {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除标签
+    ///
+    /// 本接口用于删除一对标签键和标签值
+    @inlinable
+    public func deleteTag(_ input: DeleteTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTagResponse > {
+        self.client.execute(action: "DeleteTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除标签
+    ///
+    /// 本接口用于删除一对标签键和标签值
+    @inlinable
+    public func deleteTag(_ input: DeleteTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagResponse {
+        try await self.client.execute(action: "DeleteTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

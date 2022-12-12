@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取项目对应sourcemap文件列表
-    @inlinable
-    public func describeReleaseFiles(_ input: DescribeReleaseFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReleaseFilesResponse > {
-        self.client.execute(action: "DescribeReleaseFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取项目对应sourcemap文件列表
-    @inlinable
-    public func describeReleaseFiles(_ input: DescribeReleaseFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFilesResponse {
-        try await self.client.execute(action: "DescribeReleaseFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReleaseFiles请求参数结构体
     public struct DescribeReleaseFilesRequest: TCRequestModel {
         /// 项目 id
@@ -35,7 +23,7 @@ extension Rum {
         /// 文件版本
         public let fileVersion: String?
         
-        public init (projectID: Int64, fileVersion: String?) {
+        public init (projectID: Int64, fileVersion: String? = nil) {
             self.projectID = projectID
             self.fileVersion = fileVersion
         }
@@ -58,5 +46,17 @@ extension Rum {
             case files = "Files"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取项目对应sourcemap文件列表
+    @inlinable
+    public func describeReleaseFiles(_ input: DescribeReleaseFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReleaseFilesResponse > {
+        self.client.execute(action: "DescribeReleaseFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取项目对应sourcemap文件列表
+    @inlinable
+    public func describeReleaseFiles(_ input: DescribeReleaseFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFilesResponse {
+        try await self.client.execute(action: "DescribeReleaseFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

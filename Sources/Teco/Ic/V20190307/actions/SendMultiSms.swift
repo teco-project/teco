@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ic {
-    /// 群发短信接口
-    ///
-    /// 群发短信
-    @inlinable
-    public func sendMultiSms(_ input: SendMultiSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendMultiSmsResponse > {
-        self.client.execute(action: "SendMultiSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 群发短信接口
-    ///
-    /// 群发短信
-    @inlinable
-    public func sendMultiSms(_ input: SendMultiSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMultiSmsResponse {
-        try await self.client.execute(action: "SendMultiSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendMultiSms请求参数结构体
     public struct SendMultiSmsRequest: TCRequestModel {
         /// 应用ID
@@ -68,5 +52,21 @@ extension Ic {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 群发短信接口
+    ///
+    /// 群发短信
+    @inlinable
+    public func sendMultiSms(_ input: SendMultiSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendMultiSmsResponse > {
+        self.client.execute(action: "SendMultiSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 群发短信接口
+    ///
+    /// 群发短信
+    @inlinable
+    public func sendMultiSms(_ input: SendMultiSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMultiSmsResponse {
+        try await self.client.execute(action: "SendMultiSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

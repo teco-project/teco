@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 更新集群信息
-    @inlinable
-    public func modifyCluster(_ input: ModifyClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterResponse > {
-        self.client.execute(action: "ModifyCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新集群信息
-    @inlinable
-    public func modifyCluster(_ input: ModifyClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterResponse {
-        try await self.client.execute(action: "ModifyCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCluster请求参数结构体
     public struct ModifyClusterRequest: TCRequestModel {
         /// Pulsar 集群的ID，需要更新的集群Id。
@@ -41,7 +29,7 @@ extension Tdmq {
         /// 开启公网访问，只能为true
         public let publicAccessEnabled: Bool?
         
-        public init (clusterId: String, clusterName: String?, remark: String?, publicAccessEnabled: Bool?) {
+        public init (clusterId: String, clusterName: String? = nil, remark: String? = nil, publicAccessEnabled: Bool? = nil) {
             self.clusterId = clusterId
             self.clusterName = clusterName
             self.remark = remark
@@ -68,5 +56,17 @@ extension Tdmq {
             case clusterId = "ClusterId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新集群信息
+    @inlinable
+    public func modifyCluster(_ input: ModifyClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterResponse > {
+        self.client.execute(action: "ModifyCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新集群信息
+    @inlinable
+    public func modifyCluster(_ input: ModifyClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterResponse {
+        try await self.client.execute(action: "ModifyCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

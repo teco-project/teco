@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取专业版概览信息
-    ///
-    /// 用于获取专业版概览信息。
-    @inlinable
-    public func describeProVersionInfo(_ input: DescribeProVersionInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProVersionInfoResponse > {
-        self.client.execute(action: "DescribeProVersionInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取专业版概览信息
-    ///
-    /// 用于获取专业版概览信息。
-    @inlinable
-    public func describeProVersionInfo(_ input: DescribeProVersionInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionInfoResponse {
-        try await self.client.execute(action: "DescribeProVersionInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProVersionInfo请求参数结构体
     public struct DescribeProVersionInfoRequest: TCRequestModel {
         public init () {
@@ -57,5 +41,21 @@ extension Cwp {
             case proVersionNum = "ProVersionNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取专业版概览信息
+    ///
+    /// 用于获取专业版概览信息。
+    @inlinable
+    public func describeProVersionInfo(_ input: DescribeProVersionInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProVersionInfoResponse > {
+        self.client.execute(action: "DescribeProVersionInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取专业版概览信息
+    ///
+    /// 用于获取专业版概览信息。
+    @inlinable
+    public func describeProVersionInfo(_ input: DescribeProVersionInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionInfoResponse {
+        try await self.client.execute(action: "DescribeProVersionInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

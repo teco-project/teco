@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunsou {
-    /// 云搜数据上传
-    ///
-    /// 上传云搜数据的API接口。
-    @inlinable
-    public func dataManipulation(_ input: DataManipulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DataManipulationResponse > {
-        self.client.execute(action: "DataManipulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云搜数据上传
-    ///
-    /// 上传云搜数据的API接口。
-    @inlinable
-    public func dataManipulation(_ input: DataManipulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DataManipulationResponse {
-        try await self.client.execute(action: "DataManipulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DataManipulation请求参数结构体
     public struct DataManipulationRequest: TCRequestModel {
         /// 操作类型，add或del
@@ -72,5 +56,21 @@ extension Yunsou {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云搜数据上传
+    ///
+    /// 上传云搜数据的API接口。
+    @inlinable
+    public func dataManipulation(_ input: DataManipulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DataManipulationResponse > {
+        self.client.execute(action: "DataManipulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云搜数据上传
+    ///
+    /// 上传云搜数据的API接口。
+    @inlinable
+    public func dataManipulation(_ input: DataManipulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DataManipulationResponse {
+        try await self.client.execute(action: "DataManipulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

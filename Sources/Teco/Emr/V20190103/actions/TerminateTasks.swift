@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 缩容Task节点
-    @inlinable
-    public func terminateTasks(_ input: TerminateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateTasksResponse > {
-        self.client.execute(action: "TerminateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 缩容Task节点
-    @inlinable
-    public func terminateTasks(_ input: TerminateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTasksResponse {
-        try await self.client.execute(action: "TerminateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TerminateTasks请求参数结构体
     public struct TerminateTasksRequest: TCRequestModel {
         /// 实例ID。
@@ -54,5 +42,17 @@ extension Emr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 缩容Task节点
+    @inlinable
+    public func terminateTasks(_ input: TerminateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateTasksResponse > {
+        self.client.execute(action: "TerminateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 缩容Task节点
+    @inlinable
+    public func terminateTasks(_ input: TerminateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTasksResponse {
+        try await self.client.execute(action: "TerminateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

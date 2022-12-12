@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 直播平台-主播入驻
-    @inlinable
-    public func createAnchor(_ input: CreateAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAnchorResponse > {
-        self.client.execute(action: "CreateAnchor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播平台-主播入驻
-    @inlinable
-    public func createAnchor(_ input: CreateAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnchorResponse {
-        try await self.client.execute(action: "CreateAnchor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAnchor请求参数结构体
     public struct CreateAnchorRequest: TCRequestModel {
         /// 主播业务ID，唯一
@@ -60,7 +48,7 @@ extension Cpdp {
         /// 主播扩展信息
         public let anchorExtendInfo: [AnchorExtendInfo]?
         
-        public init (anchorUid: String, anchorName: String, anchorPhone: String, anchorEmail: String, anchorAddress: String, anchorIdNo: String, anchorType: String, anchorExtendInfo: [AnchorExtendInfo]?) {
+        public init (anchorUid: String, anchorName: String, anchorPhone: String, anchorEmail: String, anchorAddress: String, anchorIdNo: String, anchorType: String, anchorExtendInfo: [AnchorExtendInfo]? = nil) {
             self.anchorUid = anchorUid
             self.anchorName = anchorName
             self.anchorPhone = anchorPhone
@@ -95,5 +83,17 @@ extension Cpdp {
             case anchorId = "AnchorId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播平台-主播入驻
+    @inlinable
+    public func createAnchor(_ input: CreateAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAnchorResponse > {
+        self.client.execute(action: "CreateAnchor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-主播入驻
+    @inlinable
+    public func createAnchor(_ input: CreateAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnchorResponse {
+        try await self.client.execute(action: "CreateAnchor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

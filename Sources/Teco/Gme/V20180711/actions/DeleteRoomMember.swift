@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gme {
-    /// 剔除房间或房间成员
-    ///
-    /// 本接口(DeleteRoomMember)用户删除房间或者剔除房间内用户
-    @inlinable
-    public func deleteRoomMember(_ input: DeleteRoomMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRoomMemberResponse > {
-        self.client.execute(action: "DeleteRoomMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 剔除房间或房间成员
-    ///
-    /// 本接口(DeleteRoomMember)用户删除房间或者剔除房间内用户
-    @inlinable
-    public func deleteRoomMember(_ input: DeleteRoomMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomMemberResponse {
-        try await self.client.execute(action: "DeleteRoomMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRoomMember请求参数结构体
     public struct DeleteRoomMemberRequest: TCRequestModel {
         /// 要操作的房间id
@@ -72,5 +56,21 @@ extension Gme {
             case deleteResult = "DeleteResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 剔除房间或房间成员
+    ///
+    /// 本接口(DeleteRoomMember)用户删除房间或者剔除房间内用户
+    @inlinable
+    public func deleteRoomMember(_ input: DeleteRoomMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRoomMemberResponse > {
+        self.client.execute(action: "DeleteRoomMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 剔除房间或房间成员
+    ///
+    /// 本接口(DeleteRoomMember)用户删除房间或者剔除房间内用户
+    @inlinable
+    public func deleteRoomMember(_ input: DeleteRoomMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomMemberResponse {
+        try await self.client.execute(action: "DeleteRoomMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

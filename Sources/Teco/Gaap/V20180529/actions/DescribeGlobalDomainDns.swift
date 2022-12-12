@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 查询域名解析列表
-    @inlinable
-    public func describeGlobalDomainDns(_ input: DescribeGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGlobalDomainDnsResponse > {
-        self.client.execute(action: "DescribeGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询域名解析列表
-    @inlinable
-    public func describeGlobalDomainDns(_ input: DescribeGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainDnsResponse {
-        try await self.client.execute(action: "DescribeGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGlobalDomainDns请求参数结构体
     public struct DescribeGlobalDomainDnsRequest: TCRequestModel {
         /// 域名ID
@@ -53,5 +41,17 @@ extension Gaap {
             case globalDnsList = "GlobalDnsList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询域名解析列表
+    @inlinable
+    public func describeGlobalDomainDns(_ input: DescribeGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGlobalDomainDnsResponse > {
+        self.client.execute(action: "DescribeGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询域名解析列表
+    @inlinable
+    public func describeGlobalDomainDns(_ input: DescribeGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainDnsResponse {
+        try await self.client.execute(action: "DescribeGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

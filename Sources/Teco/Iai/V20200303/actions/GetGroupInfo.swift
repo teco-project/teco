@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 获取人员库信息
-    ///
-    /// 获取人员库信息。
-    @inlinable
-    public func getGroupInfo(_ input: GetGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGroupInfoResponse > {
-        self.client.execute(action: "GetGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取人员库信息
-    ///
-    /// 获取人员库信息。
-    @inlinable
-    public func getGroupInfo(_ input: GetGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupInfoResponse {
-        try await self.client.execute(action: "GetGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetGroupInfo请求参数结构体
     public struct GetGroupInfoRequest: TCRequestModel {
         /// 人员库 ID，取值为创建人员库接口中的GroupId
@@ -77,5 +61,21 @@ extension Iai {
             case creationTimestamp = "CreationTimestamp"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取人员库信息
+    ///
+    /// 获取人员库信息。
+    @inlinable
+    public func getGroupInfo(_ input: GetGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGroupInfoResponse > {
+        self.client.execute(action: "GetGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人员库信息
+    ///
+    /// 获取人员库信息。
+    @inlinable
+    public func getGroupInfo(_ input: GetGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupInfoResponse {
+        try await self.client.execute(action: "GetGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

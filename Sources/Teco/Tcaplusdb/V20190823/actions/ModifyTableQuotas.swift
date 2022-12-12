@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 表扩缩容
-    ///
-    /// 表格扩缩容
-    @inlinable
-    public func modifyTableQuotas(_ input: ModifyTableQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableQuotasResponse > {
-        self.client.execute(action: "ModifyTableQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 表扩缩容
-    ///
-    /// 表格扩缩容
-    @inlinable
-    public func modifyTableQuotas(_ input: ModifyTableQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableQuotasResponse {
-        try await self.client.execute(action: "ModifyTableQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTableQuotas请求参数结构体
     public struct ModifyTableQuotasRequest: TCRequestModel {
         /// 带扩缩容表所属集群ID
@@ -66,5 +50,21 @@ extension Tcaplusdb {
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 表扩缩容
+    ///
+    /// 表格扩缩容
+    @inlinable
+    public func modifyTableQuotas(_ input: ModifyTableQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableQuotasResponse > {
+        self.client.execute(action: "ModifyTableQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 表扩缩容
+    ///
+    /// 表格扩缩容
+    @inlinable
+    public func modifyTableQuotas(_ input: ModifyTableQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableQuotasResponse {
+        try await self.client.execute(action: "ModifyTableQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

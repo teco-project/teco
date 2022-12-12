@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gme {
-    /// 创建语音消息转文本自学习模型
-    ///
-    /// 用户使用该接口可以创建语音消息转文本自学习模型，以供识别调用
-    @inlinable
-    public func createCustomization(_ input: CreateCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomizationResponse > {
-        self.client.execute(action: "CreateCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建语音消息转文本自学习模型
-    ///
-    /// 用户使用该接口可以创建语音消息转文本自学习模型，以供识别调用
-    @inlinable
-    public func createCustomization(_ input: CreateCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizationResponse {
-        try await self.client.execute(action: "CreateCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCustomization请求参数结构体
     public struct CreateCustomizationRequest: TCRequestModel {
         /// 应用 ID，登录控制台创建应用得到的AppID
@@ -42,7 +26,7 @@ extension Gme {
         /// 模型名称，名称长度不超过36，默认为BizId。
         public let modelName: String?
         
-        public init (bizId: Int64, textUrl: String, modelName: String?) {
+        public init (bizId: Int64, textUrl: String, modelName: String? = nil) {
             self.bizId = bizId
             self.textUrl = textUrl
             self.modelName = modelName
@@ -67,5 +51,21 @@ extension Gme {
             case modelId = "ModelId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建语音消息转文本自学习模型
+    ///
+    /// 用户使用该接口可以创建语音消息转文本自学习模型，以供识别调用
+    @inlinable
+    public func createCustomization(_ input: CreateCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomizationResponse > {
+        self.client.execute(action: "CreateCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建语音消息转文本自学习模型
+    ///
+    /// 用户使用该接口可以创建语音消息转文本自学习模型，以供识别调用
+    @inlinable
+    public func createCustomization(_ input: CreateCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizationResponse {
+        try await self.client.execute(action: "CreateCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

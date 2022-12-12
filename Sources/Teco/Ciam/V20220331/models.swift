@@ -78,7 +78,7 @@ extension Ciam {
         /// 逻辑值
         public let logic: Bool?
         
-        public init (key: String?, values: [String]?, logic: Bool?) {
+        public init (key: String? = nil, values: [String]? = nil, logic: Bool? = nil) {
             self.key = key
             self.values = values
             self.logic = logic
@@ -172,7 +172,7 @@ extension Ciam {
         public let customizationAttributes: [MemberMap]?
         
         /// 密码盐
-        public let salt: Salt
+        public let salt: Salt?
         
         /// 密码加密方式（SHA1;BCRYPT）
         public let passwordEncryptTypeEnum: String?
@@ -192,7 +192,7 @@ extension Ciam {
         /// 索引字段5
         public let indexedAttribute5: String?
         
-        public init (userName: String?, phoneNumber: String?, email: String?, residentIdentityCard: String?, nickname: String?, address: String?, userGroup: [String]?, qqOpenId: String?, qqUnionId: String?, wechatOpenId: String?, wechatUnionId: String?, alipayUserId: String?, description: String?, birthdate: Date?, name: String?, locale: String?, gender: String?, identityVerificationMethod: String?, identityVerified: Bool?, job: String?, nationality: String?, zone: String?, password: String?, customizationAttributes: [MemberMap]?, salt: Salt, passwordEncryptTypeEnum: String?, indexedAttribute1: String?, indexedAttribute2: String?, indexedAttribute3: String?, indexedAttribute4: String?, indexedAttribute5: String?) {
+        public init (userName: String? = nil, phoneNumber: String? = nil, email: String? = nil, residentIdentityCard: String? = nil, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, qqOpenId: String? = nil, qqUnionId: String? = nil, wechatOpenId: String? = nil, wechatUnionId: String? = nil, alipayUserId: String? = nil, description: String? = nil, birthdate: Date? = nil, name: String? = nil, locale: String? = nil, gender: String? = nil, identityVerificationMethod: String? = nil, identityVerified: Bool? = nil, job: String? = nil, nationality: String? = nil, zone: String? = nil, password: String? = nil, customizationAttributes: [MemberMap]? = nil, salt: Salt? = nil, passwordEncryptTypeEnum: String? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil) {
             self.userName = userName
             self.phoneNumber = phoneNumber
             self.email = email
@@ -415,7 +415,7 @@ extension Ciam {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
         
-        public init (name: String, value: String, type: String?) {
+        public init (name: String, value: String, type: String? = nil) {
             self.name = name
             self.value = value
             self.type = type
@@ -461,7 +461,7 @@ extension Ciam {
         /// 操作逻辑符（支持> < = >= <=  != between）
         public let operateLogic: String?
         
-        public init (propertyKey: String?, propertyValue: String?, logic: Bool?, operateLogic: String?) {
+        public init (propertyKey: String? = nil, propertyValue: String? = nil, logic: Bool? = nil, operateLogic: String? = nil) {
             self.propertyKey = propertyKey
             self.propertyValue = propertyValue
             self.logic = logic
@@ -482,9 +482,9 @@ extension Ciam {
         public let saltValue: String?
         
         /// 盐值位置
-        public let saltLocation: SaltLocation
+        public let saltLocation: SaltLocation?
         
-        public init (saltValue: String?, saltLocation: SaltLocation) {
+        public init (saltValue: String? = nil, saltLocation: SaltLocation? = nil) {
             self.saltValue = saltValue
             self.saltLocation = saltLocation
         }
@@ -501,9 +501,9 @@ extension Ciam {
         public let saltLocationTypeEnum: String?
         
         /// 加盐规则
-        public let saltLocationRule: SaltLocationRule
+        public let saltLocationRule: SaltLocationRule?
         
-        public init (saltLocationTypeEnum: String?, saltLocationRule: SaltLocationRule) {
+        public init (saltLocationTypeEnum: String? = nil, saltLocationRule: SaltLocationRule? = nil) {
             self.saltLocationTypeEnum = saltLocationTypeEnum
             self.saltLocationRule = saltLocationRule
         }
@@ -519,7 +519,7 @@ extension Ciam {
         /// 表达式
         public let regex: String?
         
-        public init (regex: String?) {
+        public init (regex: String? = nil) {
             self.regex = regex
         }
         
@@ -536,7 +536,7 @@ extension Ciam {
         /// 升序或者降序，ASC/DESC
         public let order: String?
         
-        public init (propertyKey: String?, order: String?) {
+        public init (propertyKey: String? = nil, order: String? = nil) {
             self.propertyKey = propertyKey
             self.order = order
         }

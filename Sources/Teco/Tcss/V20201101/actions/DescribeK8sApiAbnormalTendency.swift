@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询k8sapi异常事件趋势
-    @inlinable
-    public func describeK8sApiAbnormalTendency(_ input: DescribeK8sApiAbnormalTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeK8sApiAbnormalTendencyResponse > {
-        self.client.execute(action: "DescribeK8sApiAbnormalTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询k8sapi异常事件趋势
-    @inlinable
-    public func describeK8sApiAbnormalTendency(_ input: DescribeK8sApiAbnormalTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalTendencyResponse {
-        try await self.client.execute(action: "DescribeK8sApiAbnormalTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeK8sApiAbnormalTendency请求参数结构体
     public struct DescribeK8sApiAbnormalTendencyRequest: TCRequestModel {
         /// 趋势周期(默认为7天)
@@ -53,5 +41,17 @@ extension Tcss {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询k8sapi异常事件趋势
+    @inlinable
+    public func describeK8sApiAbnormalTendency(_ input: DescribeK8sApiAbnormalTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeK8sApiAbnormalTendencyResponse > {
+        self.client.execute(action: "DescribeK8sApiAbnormalTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询k8sapi异常事件趋势
+    @inlinable
+    public func describeK8sApiAbnormalTendency(_ input: DescribeK8sApiAbnormalTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalTendencyResponse {
+        try await self.client.execute(action: "DescribeK8sApiAbnormalTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

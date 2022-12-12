@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询私有域名解析状态
-    ///
-    /// 批量查询vpc是否已经添加私有域名解析
-    @inlinable
-    public func describeInternalEndpointDnsStatus(_ input: DescribeInternalEndpointDnsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternalEndpointDnsStatusResponse > {
-        self.client.execute(action: "DescribeInternalEndpointDnsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询私有域名解析状态
-    ///
-    /// 批量查询vpc是否已经添加私有域名解析
-    @inlinable
-    public func describeInternalEndpointDnsStatus(_ input: DescribeInternalEndpointDnsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternalEndpointDnsStatusResponse {
-        try await self.client.execute(action: "DescribeInternalEndpointDnsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInternalEndpointDnsStatus请求参数结构体
     public struct DescribeInternalEndpointDnsStatusRequest: TCRequestModel {
         /// vpc列表
@@ -58,5 +42,21 @@ extension Tcr {
             case vpcSet = "VpcSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询私有域名解析状态
+    ///
+    /// 批量查询vpc是否已经添加私有域名解析
+    @inlinable
+    public func describeInternalEndpointDnsStatus(_ input: DescribeInternalEndpointDnsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternalEndpointDnsStatusResponse > {
+        self.client.execute(action: "DescribeInternalEndpointDnsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询私有域名解析状态
+    ///
+    /// 批量查询vpc是否已经添加私有域名解析
+    @inlinable
+    public func describeInternalEndpointDnsStatus(_ input: DescribeInternalEndpointDnsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternalEndpointDnsStatusResponse {
+        try await self.client.execute(action: "DescribeInternalEndpointDnsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

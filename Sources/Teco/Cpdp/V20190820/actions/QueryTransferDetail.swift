@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 智慧薪酬-通过明细单号查询批明细单
-    ///
-    /// 通过商家或者微信批次明细单号查询明细单
-    @inlinable
-    public func queryTransferDetail(_ input: QueryTransferDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryTransferDetailResponse > {
-        self.client.execute(action: "QueryTransferDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 智慧薪酬-通过明细单号查询批明细单
-    ///
-    /// 通过商家或者微信批次明细单号查询明细单
-    @inlinable
-    public func queryTransferDetail(_ input: QueryTransferDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferDetailResponse {
-        try await self.client.execute(action: "QueryTransferDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryTransferDetail请求参数结构体
     public struct QueryTransferDetailRequest: TCRequestModel {
         /// 商户号。
@@ -65,7 +49,7 @@ extension Cpdp {
         /// 缺省: release
         public let profile: String?
         
-        public init (merchantId: String, merchantBatchNo: String?, merchantDetailNo: String?, batchId: String?, detailId: String?, profile: String?) {
+        public init (merchantId: String, merchantBatchNo: String? = nil, merchantDetailNo: String? = nil, batchId: String? = nil, detailId: String? = nil, profile: String? = nil) {
             self.merchantId = merchantId
             self.merchantBatchNo = merchantBatchNo
             self.merchantDetailNo = merchantDetailNo
@@ -192,5 +176,21 @@ extension Cpdp {
             case openId = "OpenId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 智慧薪酬-通过明细单号查询批明细单
+    ///
+    /// 通过商家或者微信批次明细单号查询明细单
+    @inlinable
+    public func queryTransferDetail(_ input: QueryTransferDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryTransferDetailResponse > {
+        self.client.execute(action: "QueryTransferDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 智慧薪酬-通过明细单号查询批明细单
+    ///
+    /// 通过商家或者微信批次明细单号查询明细单
+    @inlinable
+    public func queryTransferDetail(_ input: QueryTransferDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferDetailResponse {
+        try await self.client.execute(action: "QueryTransferDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

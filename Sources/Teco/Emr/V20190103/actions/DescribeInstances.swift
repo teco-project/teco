@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 查询集群实例信息
-    @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
-        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群实例信息
-    @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstances请求参数结构体
     public struct DescribeInstancesRequest: TCRequestModel {
         /// 集群筛选策略。取值范围：
@@ -60,7 +48,7 @@ extension Emr {
         /// <li>1：表示升序。</li>默认值为0。
         public let asc: Int64?
         
-        public init (displayStrategy: String, instanceIds: [String]?, offset: UInt64?, limit: UInt64?, projectId: Int64?, orderField: String?, asc: Int64?) {
+        public init (displayStrategy: String, instanceIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, projectId: Int64? = nil, orderField: String? = nil, asc: Int64? = nil) {
             self.displayStrategy = displayStrategy
             self.instanceIds = instanceIds
             self.offset = offset
@@ -103,5 +91,17 @@ extension Emr {
             case tagKeys = "TagKeys"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群实例信息
+    @inlinable
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群实例信息
+    @inlinable
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

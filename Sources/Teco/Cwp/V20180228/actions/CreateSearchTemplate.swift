@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 添加检索模板
-    @inlinable
-    public func createSearchTemplate(_ input: CreateSearchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSearchTemplateResponse > {
-        self.client.execute(action: "CreateSearchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加检索模板
-    @inlinable
-    public func createSearchTemplate(_ input: CreateSearchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchTemplateResponse {
-        try await self.client.execute(action: "CreateSearchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSearchTemplate请求参数结构体
     public struct CreateSearchTemplateRequest: TCRequestModel {
         /// 搜索模板
@@ -53,5 +41,17 @@ extension Cwp {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加检索模板
+    @inlinable
+    public func createSearchTemplate(_ input: CreateSearchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSearchTemplateResponse > {
+        self.client.execute(action: "CreateSearchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加检索模板
+    @inlinable
+    public func createSearchTemplate(_ input: CreateSearchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchTemplateResponse {
+        try await self.client.execute(action: "CreateSearchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

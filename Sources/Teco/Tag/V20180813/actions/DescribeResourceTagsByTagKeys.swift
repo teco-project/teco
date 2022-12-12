@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 根据标签键获取资源标签
-    @inlinable
-    public func describeResourceTagsByTagKeys(_ input: DescribeResourceTagsByTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceTagsByTagKeysResponse > {
-        self.client.execute(action: "DescribeResourceTagsByTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据标签键获取资源标签
-    @inlinable
-    public func describeResourceTagsByTagKeys(_ input: DescribeResourceTagsByTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsByTagKeysResponse {
-        try await self.client.execute(action: "DescribeResourceTagsByTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourceTagsByTagKeys请求参数结构体
     public struct DescribeResourceTagsByTagKeysRequest: TCRequestModel {
         /// 业务类型
@@ -50,7 +38,7 @@ extension Tag {
         /// 数据偏移量，默认为 0, 必须为Limit参数的整数倍
         public let offset: UInt64?
         
-        public init (serviceType: String, resourcePrefix: String, resourceRegion: String, resourceIds: [String], tagKeys: [String], limit: UInt64?, offset: UInt64?) {
+        public init (serviceType: String, resourcePrefix: String, resourceRegion: String, resourceIds: [String], tagKeys: [String], limit: UInt64? = nil, offset: UInt64? = nil) {
             self.serviceType = serviceType
             self.resourcePrefix = resourcePrefix
             self.resourceRegion = resourceRegion
@@ -95,5 +83,17 @@ extension Tag {
             case rows = "Rows"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据标签键获取资源标签
+    @inlinable
+    public func describeResourceTagsByTagKeys(_ input: DescribeResourceTagsByTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceTagsByTagKeysResponse > {
+        self.client.execute(action: "DescribeResourceTagsByTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据标签键获取资源标签
+    @inlinable
+    public func describeResourceTagsByTagKeys(_ input: DescribeResourceTagsByTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsByTagKeysResponse {
+        try await self.client.execute(action: "DescribeResourceTagsByTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

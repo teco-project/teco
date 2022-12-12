@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 解析事件通知
-    ///
-    /// 从 CMQ 获取到消息后，从消息的 msgBody 字段中解析出 MPS 事件通知的内容。
-    /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
-    @inlinable
-    public func parseNotification(_ input: ParseNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ParseNotificationResponse > {
-        self.client.execute(action: "ParseNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解析事件通知
-    ///
-    /// 从 CMQ 获取到消息后，从消息的 msgBody 字段中解析出 MPS 事件通知的内容。
-    /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
-    @inlinable
-    public func parseNotification(_ input: ParseNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseNotificationResponse {
-        try await self.client.execute(action: "ParseNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ParseNotification请求参数结构体
     public struct ParseNotificationRequest: TCRequestModel {
         /// 从 CMQ 获取到的事件通知内容。
@@ -57,11 +39,11 @@ extension Mps {
         
         /// 视频处理任务信息，仅当 EventType 为 WorkflowTask，该字段有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let workflowTaskEvent: WorkflowTask
+        public let workflowTaskEvent: WorkflowTask?
         
         /// 视频编辑任务信息，仅当 EventType 为 EditMediaTask，该字段有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let editMediaTaskEvent: EditMediaTask
+        public let editMediaTaskEvent: EditMediaTask?
         
         /// 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长50个字符，不带或者带空字符串表示不做去重。
         public let sessionId: String
@@ -71,7 +53,7 @@ extension Mps {
         
         /// 编排任务信息，仅当 EventType 为 ScheduleTask，该字段有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let scheduleTaskEvent: ScheduleTask
+        public let scheduleTaskEvent: ScheduleTask?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -85,5 +67,23 @@ extension Mps {
             case scheduleTaskEvent = "ScheduleTaskEvent"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解析事件通知
+    ///
+    /// 从 CMQ 获取到消息后，从消息的 msgBody 字段中解析出 MPS 事件通知的内容。
+    /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
+    @inlinable
+    public func parseNotification(_ input: ParseNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ParseNotificationResponse > {
+        self.client.execute(action: "ParseNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解析事件通知
+    ///
+    /// 从 CMQ 获取到消息后，从消息的 msgBody 字段中解析出 MPS 事件通知的内容。
+    /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
+    @inlinable
+    public func parseNotification(_ input: ParseNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseNotificationResponse {
+        try await self.client.execute(action: "ParseNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

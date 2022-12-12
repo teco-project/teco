@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Sts {
-    /// 获取联合身份临时访问凭证
-    @inlinable
-    public func getFederationToken(_ input: GetFederationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFederationTokenResponse > {
-        self.client.execute(action: "GetFederationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取联合身份临时访问凭证
-    @inlinable
-    public func getFederationToken(_ input: GetFederationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFederationTokenResponse {
-        try await self.client.execute(action: "GetFederationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetFederationToken请求参数结构体
     public struct GetFederationTokenRequest: TCRequestModel {
         /// 您可以自定义调用方英文名称，由字母组成。
@@ -42,7 +30,7 @@ extension Sts {
         /// 指定临时证书的有效期，单位：秒，默认1800秒，主账号最长可设定有效期为7200秒，子账号最长可设定有效期为129600秒。
         public let durationSeconds: UInt64?
         
-        public init (name: String, policy: String, durationSeconds: UInt64?) {
+        public init (name: String, policy: String, durationSeconds: UInt64? = nil) {
             self.name = name
             self.policy = policy
             self.durationSeconds = durationSeconds
@@ -76,5 +64,17 @@ extension Sts {
             case expiration = "Expiration"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取联合身份临时访问凭证
+    @inlinable
+    public func getFederationToken(_ input: GetFederationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFederationTokenResponse > {
+        self.client.execute(action: "GetFederationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取联合身份临时访问凭证
+    @inlinable
+    public func getFederationToken(_ input: GetFederationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFederationTokenResponse {
+        try await self.client.execute(action: "GetFederationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

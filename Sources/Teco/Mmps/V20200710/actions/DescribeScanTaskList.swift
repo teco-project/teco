@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mmps {
-    /// 获取隐私合规诊断任务列表
-    ///
-    /// 获取小程序隐私合规诊断任务列表
-    @inlinable
-    public func describeScanTaskList(_ input: DescribeScanTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskListResponse > {
-        self.client.execute(action: "DescribeScanTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取隐私合规诊断任务列表
-    ///
-    /// 获取小程序隐私合规诊断任务列表
-    @inlinable
-    public func describeScanTaskList(_ input: DescribeScanTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskListResponse {
-        try await self.client.execute(action: "DescribeScanTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScanTaskList请求参数结构体
     public struct DescribeScanTaskListRequest: TCRequestModel {
         /// 任务来源, -1:所有, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
@@ -60,7 +44,7 @@ extension Mmps {
         /// 查询时间范围, 查询结束时间(2021-09-30 或 2021-09-30 10:57:34)
         public let endTime: String?
         
-        public init (source: Int64, platform: Int64, taskStatuses: String, taskTypes: String, pageNo: Int64, pageSize: Int64, appName: String?, startTime: String?, endTime: String?) {
+        public init (source: Int64, platform: Int64, taskStatuses: String, taskTypes: String, pageNo: Int64, pageSize: Int64, appName: String? = nil, startTime: String? = nil, endTime: String? = nil) {
             self.source = source
             self.platform = platform
             self.taskStatuses = taskStatuses
@@ -107,5 +91,21 @@ extension Mmps {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取隐私合规诊断任务列表
+    ///
+    /// 获取小程序隐私合规诊断任务列表
+    @inlinable
+    public func describeScanTaskList(_ input: DescribeScanTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskListResponse > {
+        self.client.execute(action: "DescribeScanTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取隐私合规诊断任务列表
+    ///
+    /// 获取小程序隐私合规诊断任务列表
+    @inlinable
+    public func describeScanTaskList(_ input: DescribeScanTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskListResponse {
+        try await self.client.execute(action: "DescribeScanTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 更新位置空间
-    @inlinable
-    public func modifyPositionSpace(_ input: ModifyPositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPositionSpaceResponse > {
-        self.client.execute(action: "ModifyPositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新位置空间
-    @inlinable
-    public func modifyPositionSpace(_ input: ModifyPositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPositionSpaceResponse {
-        try await self.client.execute(action: "ModifyPositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPositionSpace请求参数结构体
     public struct ModifyPositionSpaceRequest: TCRequestModel {
         /// 位置空间Id
@@ -47,7 +35,7 @@ extension Iotexplorer {
         /// 缩略图
         public let icon: String?
         
-        public init (spaceId: String, spaceName: String, authorizeType: Int64, productIdList: [String], description: String?, icon: String?) {
+        public init (spaceId: String, spaceName: String, authorizeType: Int64, productIdList: [String], description: String? = nil, icon: String? = nil) {
             self.spaceId = spaceId
             self.spaceName = spaceName
             self.authorizeType = authorizeType
@@ -74,5 +62,17 @@ extension Iotexplorer {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新位置空间
+    @inlinable
+    public func modifyPositionSpace(_ input: ModifyPositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPositionSpaceResponse > {
+        self.client.execute(action: "ModifyPositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新位置空间
+    @inlinable
+    public func modifyPositionSpace(_ input: ModifyPositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPositionSpaceResponse {
+        try await self.client.execute(action: "ModifyPositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

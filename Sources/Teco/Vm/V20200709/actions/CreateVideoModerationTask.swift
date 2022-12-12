@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vm {
-    /// 创建视频审核任务
-    ///
-    /// 通过URL或存储桶创建审核任务
-    @inlinable
-    public func createVideoModerationTask(_ input: CreateVideoModerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVideoModerationTaskResponse > {
-        self.client.execute(action: "CreateVideoModerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建视频审核任务
-    ///
-    /// 通过URL或存储桶创建审核任务
-    @inlinable
-    public func createVideoModerationTask(_ input: CreateVideoModerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoModerationTaskResponse {
-        try await self.client.execute(action: "CreateVideoModerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVideoModerationTask请求参数结构体
     public struct CreateVideoModerationTaskRequest: TCRequestModel {
         /// 业务类型, 定义 模版策略，输出存储配置。如果没有BizType，可以先参考 【创建业务配置】接口进行创建
@@ -51,7 +35,7 @@ extension Vm {
         /// 审核排队优先级。当您有多个视频审核任务排队时，可以根据这个参数控制排队优先级。用于处理插队等逻辑。默认该参数为0
         public let priority: Int64?
         
-        public init (bizType: String, type: String, tasks: [TaskInput], seed: String?, callbackUrl: String?, priority: Int64?) {
+        public init (bizType: String, type: String, tasks: [TaskInput], seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil) {
             self.bizType = bizType
             self.type = type
             self.tasks = tasks
@@ -83,5 +67,21 @@ extension Vm {
             case results = "Results"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建视频审核任务
+    ///
+    /// 通过URL或存储桶创建审核任务
+    @inlinable
+    public func createVideoModerationTask(_ input: CreateVideoModerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVideoModerationTaskResponse > {
+        self.client.execute(action: "CreateVideoModerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建视频审核任务
+    ///
+    /// 通过URL或存储桶创建审核任务
+    @inlinable
+    public func createVideoModerationTask(_ input: CreateVideoModerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoModerationTaskResponse {
+        try await self.client.execute(action: "CreateVideoModerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

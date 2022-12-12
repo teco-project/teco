@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 镜像仓库停止镜像一键扫描任务
-    @inlinable
-    public func modifyAssetImageRegistryScanStopOneKey(_ input: ModifyAssetImageRegistryScanStopOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAssetImageRegistryScanStopOneKeyResponse > {
-        self.client.execute(action: "ModifyAssetImageRegistryScanStopOneKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 镜像仓库停止镜像一键扫描任务
-    @inlinable
-    public func modifyAssetImageRegistryScanStopOneKey(_ input: ModifyAssetImageRegistryScanStopOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetImageRegistryScanStopOneKeyResponse {
-        try await self.client.execute(action: "ModifyAssetImageRegistryScanStopOneKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAssetImageRegistryScanStopOneKey请求参数结构体
     public struct ModifyAssetImageRegistryScanStopOneKeyRequest: TCRequestModel {
         /// 是否扫描全部镜像
@@ -38,7 +26,7 @@ extension Tcss {
         /// 扫描的镜像列表Id
         public let id: [UInt64]?
         
-        public init (all: Bool?, images: [ImageInfo]?, id: [UInt64]?) {
+        public init (all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil) {
             self.all = all
             self.images = images
             self.id = id
@@ -59,5 +47,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 镜像仓库停止镜像一键扫描任务
+    @inlinable
+    public func modifyAssetImageRegistryScanStopOneKey(_ input: ModifyAssetImageRegistryScanStopOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAssetImageRegistryScanStopOneKeyResponse > {
+        self.client.execute(action: "ModifyAssetImageRegistryScanStopOneKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库停止镜像一键扫描任务
+    @inlinable
+    public func modifyAssetImageRegistryScanStopOneKey(_ input: ModifyAssetImageRegistryScanStopOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetImageRegistryScanStopOneKeyResponse {
+        try await self.client.execute(action: "ModifyAssetImageRegistryScanStopOneKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

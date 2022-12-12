@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 删除录制计划（旧）
-    ///
-    /// 本接口(DeleteRecordPlan)用于删除录制计划
-    /// 录制计划删除的同时，会停止该录制计划下的全部录制任务。
-    /// 请使用DeleteRecordingPlan接口
-    @inlinable
-    public func deleteRecordPlan(_ input: DeleteRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordPlanResponse > {
-        self.client.execute(action: "DeleteRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除录制计划（旧）
-    ///
-    /// 本接口(DeleteRecordPlan)用于删除录制计划
-    /// 录制计划删除的同时，会停止该录制计划下的全部录制任务。
-    /// 请使用DeleteRecordingPlan接口
-    @inlinable
-    public func deleteRecordPlan(_ input: DeleteRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordPlanResponse {
-        try await self.client.execute(action: "DeleteRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRecordPlan请求参数结构体
     public struct DeleteRecordPlanRequest: TCRequestModel {
         /// 录制计划ID
@@ -61,5 +41,25 @@ extension Iotvideoindustry {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除录制计划（旧）
+    ///
+    /// 本接口(DeleteRecordPlan)用于删除录制计划
+    /// 录制计划删除的同时，会停止该录制计划下的全部录制任务。
+    /// 请使用DeleteRecordingPlan接口
+    @inlinable
+    public func deleteRecordPlan(_ input: DeleteRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordPlanResponse > {
+        self.client.execute(action: "DeleteRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除录制计划（旧）
+    ///
+    /// 本接口(DeleteRecordPlan)用于删除录制计划
+    /// 录制计划删除的同时，会停止该录制计划下的全部录制任务。
+    /// 请使用DeleteRecordingPlan接口
+    @inlinable
+    public func deleteRecordPlan(_ input: DeleteRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordPlanResponse {
+        try await self.client.execute(action: "DeleteRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

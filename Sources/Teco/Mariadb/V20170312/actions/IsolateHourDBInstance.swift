@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 隔离后付费实例
-    @inlinable
-    public func isolateHourDBInstance(_ input: IsolateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateHourDBInstanceResponse > {
-        self.client.execute(action: "IsolateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 隔离后付费实例
-    @inlinable
-    public func isolateHourDBInstance(_ input: IsolateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateHourDBInstanceResponse {
-        try await self.client.execute(action: "IsolateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// IsolateHourDBInstance请求参数结构体
     public struct IsolateHourDBInstanceRequest: TCRequestModel {
         /// 实例ID列表
@@ -57,5 +45,17 @@ extension Mariadb {
             case failedInstanceIds = "FailedInstanceIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 隔离后付费实例
+    @inlinable
+    public func isolateHourDBInstance(_ input: IsolateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateHourDBInstanceResponse > {
+        self.client.execute(action: "IsolateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 隔离后付费实例
+    @inlinable
+    public func isolateHourDBInstance(_ input: IsolateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateHourDBInstanceResponse {
+        try await self.client.execute(action: "IsolateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

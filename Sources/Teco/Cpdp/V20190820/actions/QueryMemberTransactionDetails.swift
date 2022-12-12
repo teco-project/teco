@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫-查询会员间交易信息列表
-    @inlinable
-    public func queryMemberTransactionDetails(_ input: QueryMemberTransactionDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMemberTransactionDetailsResponse > {
-        self.client.execute(action: "QueryMemberTransactionDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫-查询会员间交易信息列表
-    @inlinable
-    public func queryMemberTransactionDetails(_ input: QueryMemberTransactionDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberTransactionDetailsResponse {
-        try await self.client.execute(action: "QueryMemberTransactionDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryMemberTransactionDetails请求参数结构体
     public struct QueryMemberTransactionDetailsRequest: TCRequestModel {
         /// 查询的交易发生时间类型。
@@ -66,7 +54,7 @@ extension Cpdp {
         /// _缺省: release_
         public let midasEnvironment: String?
         
-        public init (queryDateType: String, queryTranType: String, bankAccountNumber: String, subAccountNumber: String, pageOffSet: String, queryStartDate: String?, queryEndDate: String?, midasEnvironment: String?) {
+        public init (queryDateType: String, queryTranType: String, bankAccountNumber: String, subAccountNumber: String, pageOffSet: String, queryStartDate: String? = nil, queryEndDate: String? = nil, midasEnvironment: String? = nil) {
             self.queryDateType = queryDateType
             self.queryTranType = queryTranType
             self.bankAccountNumber = bankAccountNumber
@@ -101,7 +89,7 @@ extension Cpdp {
         
         /// 返回结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: QueryMemberTransactionDetailsResult
+        public let result: QueryMemberTransactionDetailsResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -112,5 +100,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫-查询会员间交易信息列表
+    @inlinable
+    public func queryMemberTransactionDetails(_ input: QueryMemberTransactionDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMemberTransactionDetailsResponse > {
+        self.client.execute(action: "QueryMemberTransactionDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-查询会员间交易信息列表
+    @inlinable
+    public func queryMemberTransactionDetails(_ input: QueryMemberTransactionDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberTransactionDetailsResponse {
+        try await self.client.execute(action: "QueryMemberTransactionDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

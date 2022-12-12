@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取防护概览的ddos攻击事件
-    @inlinable
-    public func describeOverviewDDoSEventList(_ input: DescribeOverviewDDoSEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewDDoSEventListResponse > {
-        self.client.execute(action: "DescribeOverviewDDoSEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取防护概览的ddos攻击事件
-    @inlinable
-    public func describeOverviewDDoSEventList(_ input: DescribeOverviewDDoSEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSEventListResponse {
-        try await self.client.execute(action: "DescribeOverviewDDoSEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOverviewDDoSEventList请求参数结构体
     public struct DescribeOverviewDDoSEventListRequest: TCRequestModel {
         /// 起始时间
@@ -44,7 +32,7 @@ extension Antiddos {
         /// 记录条数
         public let limit: UInt64?
         
-        public init (startTime: String, endTime: String, attackStatus: String?, offset: UInt64?, limit: UInt64?) {
+        public init (startTime: String, endTime: String, attackStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.attackStatus = attackStatus
@@ -77,5 +65,17 @@ extension Antiddos {
             case eventList = "EventList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取防护概览的ddos攻击事件
+    @inlinable
+    public func describeOverviewDDoSEventList(_ input: DescribeOverviewDDoSEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewDDoSEventListResponse > {
+        self.client.execute(action: "DescribeOverviewDDoSEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取防护概览的ddos攻击事件
+    @inlinable
+    public func describeOverviewDDoSEventList(_ input: DescribeOverviewDDoSEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSEventListResponse {
+        try await self.client.execute(action: "DescribeOverviewDDoSEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

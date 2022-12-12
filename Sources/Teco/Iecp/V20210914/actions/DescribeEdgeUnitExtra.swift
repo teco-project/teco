@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 查询边缘单元额外信息
-    @inlinable
-    public func describeEdgeUnitExtra(_ input: DescribeEdgeUnitExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitExtraResponse > {
-        self.client.execute(action: "DescribeEdgeUnitExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询边缘单元额外信息
-    @inlinable
-    public func describeEdgeUnitExtra(_ input: DescribeEdgeUnitExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitExtraResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeUnitExtra请求参数结构体
     public struct DescribeEdgeUnitExtraRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -73,5 +61,17 @@ extension Iecp {
             case isCreatePrometheus = "IsCreatePrometheus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询边缘单元额外信息
+    @inlinable
+    public func describeEdgeUnitExtra(_ input: DescribeEdgeUnitExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitExtraResponse > {
+        self.client.execute(action: "DescribeEdgeUnitExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘单元额外信息
+    @inlinable
+    public func describeEdgeUnitExtra(_ input: DescribeEdgeUnitExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitExtraResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

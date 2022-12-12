@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 人员库版本回滚
-    ///
-    /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
-    /// 回滚操作会在10s内生效，回滚操作中，您对人员库的操作可能会失效。
-    @inlinable
-    public func revertGroupFaceModelVersion(_ input: RevertGroupFaceModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevertGroupFaceModelVersionResponse > {
-        self.client.execute(action: "RevertGroupFaceModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人员库版本回滚
-    ///
-    /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
-    /// 回滚操作会在10s内生效，回滚操作中，您对人员库的操作可能会失效。
-    @inlinable
-    public func revertGroupFaceModelVersion(_ input: RevertGroupFaceModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertGroupFaceModelVersionResponse {
-        try await self.client.execute(action: "RevertGroupFaceModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RevertGroupFaceModelVersion请求参数结构体
     public struct RevertGroupFaceModelVersionRequest: TCRequestModel {
         /// 需要回滚的升级任务ID。
@@ -55,5 +37,23 @@ extension Iai {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人员库版本回滚
+    ///
+    /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
+    /// 回滚操作会在10s内生效，回滚操作中，您对人员库的操作可能会失效。
+    @inlinable
+    public func revertGroupFaceModelVersion(_ input: RevertGroupFaceModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevertGroupFaceModelVersionResponse > {
+        self.client.execute(action: "RevertGroupFaceModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人员库版本回滚
+    ///
+    /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
+    /// 回滚操作会在10s内生效，回滚操作中，您对人员库的操作可能会失效。
+    @inlinable
+    public func revertGroupFaceModelVersion(_ input: RevertGroupFaceModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertGroupFaceModelVersionResponse {
+        try await self.client.execute(action: "RevertGroupFaceModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

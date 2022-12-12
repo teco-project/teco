@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询个人收藏仓库
-    @inlinable
-    public func describeFavorRepositoryPersonal(_ input: DescribeFavorRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFavorRepositoryPersonalResponse > {
-        self.client.execute(action: "DescribeFavorRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询个人收藏仓库
-    @inlinable
-    public func describeFavorRepositoryPersonal(_ input: DescribeFavorRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFavorRepositoryPersonalResponse {
-        try await self.client.execute(action: "DescribeFavorRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFavorRepositoryPersonal请求参数结构体
     public struct DescribeFavorRepositoryPersonalRequest: TCRequestModel {
         /// 仓库名称
@@ -63,5 +51,17 @@ extension Tcr {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询个人收藏仓库
+    @inlinable
+    public func describeFavorRepositoryPersonal(_ input: DescribeFavorRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFavorRepositoryPersonalResponse > {
+        self.client.execute(action: "DescribeFavorRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询个人收藏仓库
+    @inlinable
+    public func describeFavorRepositoryPersonal(_ input: DescribeFavorRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFavorRepositoryPersonalResponse {
+        try await self.client.execute(action: "DescribeFavorRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

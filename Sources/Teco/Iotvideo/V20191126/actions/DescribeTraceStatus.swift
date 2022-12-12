@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 查询指定设备是否在白名单
-    ///
-    /// 本接口（DescribeTraceStatus）用于查询指定设备是否在白名单中。
-    @inlinable
-    public func describeTraceStatus(_ input: DescribeTraceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTraceStatusResponse > {
-        self.client.execute(action: "DescribeTraceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询指定设备是否在白名单
-    ///
-    /// 本接口（DescribeTraceStatus）用于查询指定设备是否在白名单中。
-    @inlinable
-    public func describeTraceStatus(_ input: DescribeTraceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceStatusResponse {
-        try await self.client.execute(action: "DescribeTraceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTraceStatus请求参数结构体
     public struct DescribeTraceStatusRequest: TCRequestModel {
         /// 设备TID列表
@@ -58,5 +42,21 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询指定设备是否在白名单
+    ///
+    /// 本接口（DescribeTraceStatus）用于查询指定设备是否在白名单中。
+    @inlinable
+    public func describeTraceStatus(_ input: DescribeTraceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTraceStatusResponse > {
+        self.client.execute(action: "DescribeTraceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指定设备是否在白名单
+    ///
+    /// 本接口（DescribeTraceStatus）用于查询指定设备是否在白名单中。
+    @inlinable
+    public func describeTraceStatus(_ input: DescribeTraceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceStatusResponse {
+        try await self.client.execute(action: "DescribeTraceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

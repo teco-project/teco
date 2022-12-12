@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 拉取云存用户列表
-    @inlinable
-    public func describeCloudStorageUsers(_ input: DescribeCloudStorageUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStorageUsersResponse > {
-        self.client.execute(action: "DescribeCloudStorageUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取云存用户列表
-    @inlinable
-    public func describeCloudStorageUsers(_ input: DescribeCloudStorageUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageUsersResponse {
-        try await self.client.execute(action: "DescribeCloudStorageUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudStorageUsers请求参数结构体
     public struct DescribeCloudStorageUsersRequest: TCRequestModel {
         /// 产品ID
@@ -72,5 +60,17 @@ extension Iotvideo {
             case users = "Users"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取云存用户列表
+    @inlinable
+    public func describeCloudStorageUsers(_ input: DescribeCloudStorageUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStorageUsersResponse > {
+        self.client.execute(action: "DescribeCloudStorageUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取云存用户列表
+    @inlinable
+    public func describeCloudStorageUsers(_ input: DescribeCloudStorageUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageUsersResponse {
+        try await self.client.execute(action: "DescribeCloudStorageUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

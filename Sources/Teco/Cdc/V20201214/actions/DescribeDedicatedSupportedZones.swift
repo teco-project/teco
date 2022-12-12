@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 查询专用集群支持的可用区列表
-    @inlinable
-    public func describeDedicatedSupportedZones(_ input: DescribeDedicatedSupportedZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedSupportedZonesResponse > {
-        self.client.execute(action: "DescribeDedicatedSupportedZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询专用集群支持的可用区列表
-    @inlinable
-    public func describeDedicatedSupportedZones(_ input: DescribeDedicatedSupportedZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedSupportedZonesResponse {
-        try await self.client.execute(action: "DescribeDedicatedSupportedZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDedicatedSupportedZones请求参数结构体
     public struct DescribeDedicatedSupportedZonesRequest: TCRequestModel {
         /// 传入region列表
         public let regions: [Int64]?
         
-        public init (regions: [Int64]?) {
+        public init (regions: [Int64]? = nil) {
             self.regions = regions
         }
         
@@ -53,5 +41,17 @@ extension Cdc {
             case zoneSet = "ZoneSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询专用集群支持的可用区列表
+    @inlinable
+    public func describeDedicatedSupportedZones(_ input: DescribeDedicatedSupportedZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedSupportedZonesResponse > {
+        self.client.execute(action: "DescribeDedicatedSupportedZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专用集群支持的可用区列表
+    @inlinable
+    public func describeDedicatedSupportedZones(_ input: DescribeDedicatedSupportedZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedSupportedZonesResponse {
+        try await self.client.execute(action: "DescribeDedicatedSupportedZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

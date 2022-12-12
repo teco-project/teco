@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云-绑定账号
-    @inlinable
-    public func bindAccount(_ input: BindAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindAccountResponse > {
-        self.client.execute(action: "BindAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云-绑定账号
-    @inlinable
-    public func bindAccount(_ input: BindAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAccountResponse {
-        try await self.client.execute(action: "BindAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindAccount请求参数结构体
     public struct BindAccountRequest: TCRequestModel {
         /// 主播Id
@@ -82,5 +70,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云-绑定账号
+    @inlinable
+    public func bindAccount(_ input: BindAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindAccountResponse > {
+        self.client.execute(action: "BindAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云-绑定账号
+    @inlinable
+    public func bindAccount(_ input: BindAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAccountResponse {
+        try await self.client.execute(action: "BindAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

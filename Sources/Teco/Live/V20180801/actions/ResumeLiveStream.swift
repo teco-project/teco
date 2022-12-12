@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 恢复直播推流
-    ///
-    /// 恢复某条流的推流。
-    @inlinable
-    public func resumeLiveStream(_ input: ResumeLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeLiveStreamResponse > {
-        self.client.execute(action: "ResumeLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 恢复直播推流
-    ///
-    /// 恢复某条流的推流。
-    @inlinable
-    public func resumeLiveStream(_ input: ResumeLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeLiveStreamResponse {
-        try await self.client.execute(action: "ResumeLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResumeLiveStream请求参数结构体
     public struct ResumeLiveStreamRequest: TCRequestModel {
         /// 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
@@ -63,5 +47,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 恢复直播推流
+    ///
+    /// 恢复某条流的推流。
+    @inlinable
+    public func resumeLiveStream(_ input: ResumeLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeLiveStreamResponse > {
+        self.client.execute(action: "ResumeLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复直播推流
+    ///
+    /// 恢复某条流的推流。
+    @inlinable
+    public func resumeLiveStream(_ input: ResumeLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeLiveStreamResponse {
+        try await self.client.execute(action: "ResumeLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

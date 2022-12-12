@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bda {
-    /// 获取人体库汇总信息
-    ///
-    /// 获取人体库汇总信息。
-    @inlinable
-    public func getSummaryInfo(_ input: GetSummaryInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSummaryInfoResponse > {
-        self.client.execute(action: "GetSummaryInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取人体库汇总信息
-    ///
-    /// 获取人体库汇总信息。
-    @inlinable
-    public func getSummaryInfo(_ input: GetSummaryInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSummaryInfoResponse {
-        try await self.client.execute(action: "GetSummaryInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetSummaryInfo请求参数结构体
     public struct GetSummaryInfoRequest: TCRequestModel {
         public init () {
@@ -57,5 +41,21 @@ extension Bda {
             case traceCount = "TraceCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取人体库汇总信息
+    ///
+    /// 获取人体库汇总信息。
+    @inlinable
+    public func getSummaryInfo(_ input: GetSummaryInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSummaryInfoResponse > {
+        self.client.execute(action: "GetSummaryInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人体库汇总信息
+    ///
+    /// 获取人体库汇总信息。
+    @inlinable
+    public func getSummaryInfo(_ input: GetSummaryInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSummaryInfoResponse {
+        try await self.client.execute(action: "GetSummaryInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

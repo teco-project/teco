@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 调整实例规格
-    ///
-    /// 调整实例规格，此接口只支持按量计费任务的调整。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
-    @inlinable
-    public func modifyMigrateJobSpec(_ input: ModifyMigrateJobSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrateJobSpecResponse > {
-        self.client.execute(action: "ModifyMigrateJobSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调整实例规格
-    ///
-    /// 调整实例规格，此接口只支持按量计费任务的调整。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
-    @inlinable
-    public func modifyMigrateJobSpec(_ input: ModifyMigrateJobSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateJobSpecResponse {
-        try await self.client.execute(action: "ModifyMigrateJobSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMigrateJobSpec请求参数结构体
     public struct ModifyMigrateJobSpecRequest: TCRequestModel {
         /// 任务id
@@ -58,5 +42,21 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调整实例规格
+    ///
+    /// 调整实例规格，此接口只支持按量计费任务的调整。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
+    @inlinable
+    public func modifyMigrateJobSpec(_ input: ModifyMigrateJobSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrateJobSpecResponse > {
+        self.client.execute(action: "ModifyMigrateJobSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调整实例规格
+    ///
+    /// 调整实例规格，此接口只支持按量计费任务的调整。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
+    @inlinable
+    public func modifyMigrateJobSpec(_ input: ModifyMigrateJobSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateJobSpecResponse {
+        try await self.client.execute(action: "ModifyMigrateJobSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

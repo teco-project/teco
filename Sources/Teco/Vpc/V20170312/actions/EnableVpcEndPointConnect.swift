@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 是否接受终端节点连接请求
-    ///
-    /// 是否接受终端节点连接请求。
-    @inlinable
-    public func enableVpcEndPointConnect(_ input: EnableVpcEndPointConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableVpcEndPointConnectResponse > {
-        self.client.execute(action: "EnableVpcEndPointConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 是否接受终端节点连接请求
-    ///
-    /// 是否接受终端节点连接请求。
-    @inlinable
-    public func enableVpcEndPointConnect(_ input: EnableVpcEndPointConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcEndPointConnectResponse {
-        try await self.client.execute(action: "EnableVpcEndPointConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableVpcEndPointConnect请求参数结构体
     public struct EnableVpcEndPointConnectRequest: TCRequestModel {
         /// 终端节点服务ID。
@@ -63,5 +47,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 是否接受终端节点连接请求
+    ///
+    /// 是否接受终端节点连接请求。
+    @inlinable
+    public func enableVpcEndPointConnect(_ input: EnableVpcEndPointConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableVpcEndPointConnectResponse > {
+        self.client.execute(action: "EnableVpcEndPointConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 是否接受终端节点连接请求
+    ///
+    /// 是否接受终端节点连接请求。
+    @inlinable
+    public func enableVpcEndPointConnect(_ input: EnableVpcEndPointConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcEndPointConnectResponse {
+        try await self.client.execute(action: "EnableVpcEndPointConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

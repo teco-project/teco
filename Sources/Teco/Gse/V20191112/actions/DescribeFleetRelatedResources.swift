@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 获取与游戏服务器舰队关联的资源信息
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeFleetRelatedResources）用于获取与游戏服务器舰队关联的资源信息，如别名、队列
-    @inlinable
-    public func describeFleetRelatedResources(_ input: DescribeFleetRelatedResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFleetRelatedResourcesResponse > {
-        self.client.execute(action: "DescribeFleetRelatedResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取与游戏服务器舰队关联的资源信息
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeFleetRelatedResources）用于获取与游戏服务器舰队关联的资源信息，如别名、队列
-    @inlinable
-    public func describeFleetRelatedResources(_ input: DescribeFleetRelatedResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetRelatedResourcesResponse {
-        try await self.client.execute(action: "DescribeFleetRelatedResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFleetRelatedResources请求参数结构体
     public struct DescribeFleetRelatedResourcesRequest: TCRequestModel {
         /// 服务器舰队 Id
@@ -60,5 +42,23 @@ extension Gse {
             case resources = "Resources"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取与游戏服务器舰队关联的资源信息
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeFleetRelatedResources）用于获取与游戏服务器舰队关联的资源信息，如别名、队列
+    @inlinable
+    public func describeFleetRelatedResources(_ input: DescribeFleetRelatedResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFleetRelatedResourcesResponse > {
+        self.client.execute(action: "DescribeFleetRelatedResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取与游戏服务器舰队关联的资源信息
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeFleetRelatedResources）用于获取与游戏服务器舰队关联的资源信息，如别名、队列
+    @inlinable
+    public func describeFleetRelatedResources(_ input: DescribeFleetRelatedResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetRelatedResourcesResponse {
+        try await self.client.execute(action: "DescribeFleetRelatedResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

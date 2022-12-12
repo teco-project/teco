@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 列出 Grafana DNS 配置
-    @inlinable
-    public func describeDNSConfig(_ input: DescribeDNSConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDNSConfigResponse > {
-        self.client.execute(action: "DescribeDNSConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出 Grafana DNS 配置
-    @inlinable
-    public func describeDNSConfig(_ input: DescribeDNSConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDNSConfigResponse {
-        try await self.client.execute(action: "DescribeDNSConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDNSConfig请求参数结构体
     public struct DescribeDNSConfigRequest: TCRequestModel {
         /// 实例 ID
@@ -53,5 +41,17 @@ extension Monitor {
             case nameServers = "NameServers"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出 Grafana DNS 配置
+    @inlinable
+    public func describeDNSConfig(_ input: DescribeDNSConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDNSConfigResponse > {
+        self.client.execute(action: "DescribeDNSConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出 Grafana DNS 配置
+    @inlinable
+    public func describeDNSConfig(_ input: DescribeDNSConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDNSConfigResponse {
+        try await self.client.execute(action: "DescribeDNSConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

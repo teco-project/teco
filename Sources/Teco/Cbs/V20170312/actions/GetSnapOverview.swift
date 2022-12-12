@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 获取快照概览信息
-    @inlinable
-    public func getSnapOverview(_ input: GetSnapOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSnapOverviewResponse > {
-        self.client.execute(action: "GetSnapOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取快照概览信息
-    @inlinable
-    public func getSnapOverview(_ input: GetSnapOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSnapOverviewResponse {
-        try await self.client.execute(action: "GetSnapOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetSnapOverview请求参数结构体
     public struct GetSnapOverviewRequest: TCRequestModel {
         public init () {
@@ -57,5 +45,17 @@ extension Cbs {
             case totalNums = "TotalNums"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取快照概览信息
+    @inlinable
+    public func getSnapOverview(_ input: GetSnapOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSnapOverviewResponse > {
+        self.client.execute(action: "GetSnapOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取快照概览信息
+    @inlinable
+    public func getSnapOverview(_ input: GetSnapOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSnapOverviewResponse {
+        try await self.client.execute(action: "GetSnapOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

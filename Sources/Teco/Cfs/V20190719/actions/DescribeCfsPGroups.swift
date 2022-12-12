@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 查询权限组列表
-    ///
-    /// 本接口（DescribeCfsPGroups）用于查询权限组列表。
-    @inlinable
-    public func describeCfsPGroups(_ input: DescribeCfsPGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfsPGroupsResponse > {
-        self.client.execute(action: "DescribeCfsPGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询权限组列表
-    ///
-    /// 本接口（DescribeCfsPGroups）用于查询权限组列表。
-    @inlinable
-    public func describeCfsPGroups(_ input: DescribeCfsPGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsPGroupsResponse {
-        try await self.client.execute(action: "DescribeCfsPGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCfsPGroups请求参数结构体
     public struct DescribeCfsPGroupsRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Cfs {
             case pGroupList = "PGroupList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询权限组列表
+    ///
+    /// 本接口（DescribeCfsPGroups）用于查询权限组列表。
+    @inlinable
+    public func describeCfsPGroups(_ input: DescribeCfsPGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfsPGroupsResponse > {
+        self.client.execute(action: "DescribeCfsPGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询权限组列表
+    ///
+    /// 本接口（DescribeCfsPGroups）用于查询权限组列表。
+    @inlinable
+    public func describeCfsPGroups(_ input: DescribeCfsPGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsPGroupsResponse {
+        try await self.client.execute(action: "DescribeCfsPGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

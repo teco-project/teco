@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 查看设备详情
-    ///
-    /// 用于查看某个设备的详细信息
-    @inlinable
-    public func describeDevice(_ input: DescribeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceResponse > {
-        self.client.execute(action: "DescribeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看设备详情
-    ///
-    /// 用于查看某个设备的详细信息
-    @inlinable
-    public func describeDevice(_ input: DescribeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceResponse {
-        try await self.client.execute(action: "DescribeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDevice请求参数结构体
     public struct DescribeDeviceRequest: TCRequestModel {
         /// 产品ID
@@ -42,7 +26,7 @@ extension Iotexplorer {
         /// 设备ID，该字段有值将代替 ProductId/DeviceName
         public let deviceId: String?
         
-        public init (productId: String, deviceName: String, deviceId: String?) {
+        public init (productId: String, deviceName: String, deviceId: String? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.deviceId = deviceId
@@ -67,5 +51,21 @@ extension Iotexplorer {
             case device = "Device"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看设备详情
+    ///
+    /// 用于查看某个设备的详细信息
+    @inlinable
+    public func describeDevice(_ input: DescribeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceResponse > {
+        self.client.execute(action: "DescribeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看设备详情
+    ///
+    /// 用于查看某个设备的详细信息
+    @inlinable
+    public func describeDevice(_ input: DescribeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceResponse {
+        try await self.client.execute(action: "DescribeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

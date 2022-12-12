@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 批量创建任务告警规则
-    @inlinable
-    public func batchCreateIntegrationTaskAlarms(_ input: BatchCreateIntegrationTaskAlarmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchCreateIntegrationTaskAlarmsResponse > {
-        self.client.execute(action: "BatchCreateIntegrationTaskAlarms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量创建任务告警规则
-    @inlinable
-    public func batchCreateIntegrationTaskAlarms(_ input: BatchCreateIntegrationTaskAlarmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchCreateIntegrationTaskAlarmsResponse {
-        try await self.client.execute(action: "BatchCreateIntegrationTaskAlarms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchCreateIntegrationTaskAlarms请求参数结构体
     public struct BatchCreateIntegrationTaskAlarmsRequest: TCRequestModel {
         /// 任务id
@@ -74,5 +62,17 @@ extension Wedata {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量创建任务告警规则
+    @inlinable
+    public func batchCreateIntegrationTaskAlarms(_ input: BatchCreateIntegrationTaskAlarmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchCreateIntegrationTaskAlarmsResponse > {
+        self.client.execute(action: "BatchCreateIntegrationTaskAlarms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量创建任务告警规则
+    @inlinable
+    public func batchCreateIntegrationTaskAlarms(_ input: BatchCreateIntegrationTaskAlarmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchCreateIntegrationTaskAlarmsResponse {
+        try await self.client.execute(action: "BatchCreateIntegrationTaskAlarms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

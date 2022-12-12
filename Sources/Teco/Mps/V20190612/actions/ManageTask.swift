@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 任务管理
-    ///
-    /// 对已发起的任务进行管理。
-    @inlinable
-    public func manageTask(_ input: ManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageTaskResponse > {
-        self.client.execute(action: "ManageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 任务管理
-    ///
-    /// 对已发起的任务进行管理。
-    @inlinable
-    public func manageTask(_ input: ManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageTaskResponse {
-        try await self.client.execute(action: "ManageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ManageTask请求参数结构体
     public struct ManageTaskRequest: TCRequestModel {
         /// 操作类型，取值范围：
@@ -63,5 +47,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 任务管理
+    ///
+    /// 对已发起的任务进行管理。
+    @inlinable
+    public func manageTask(_ input: ManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageTaskResponse > {
+        self.client.execute(action: "ManageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 任务管理
+    ///
+    /// 对已发起的任务进行管理。
+    @inlinable
+    public func manageTask(_ input: ManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageTaskResponse {
+        try await self.client.execute(action: "ManageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

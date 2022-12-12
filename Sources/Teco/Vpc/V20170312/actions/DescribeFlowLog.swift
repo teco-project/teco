@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询流日志实例信息
-    ///
-    /// 本接口（DescribeFlowLog）用于查询流日志实例信息
-    @inlinable
-    public func describeFlowLog(_ input: DescribeFlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowLogResponse > {
-        self.client.execute(action: "DescribeFlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询流日志实例信息
-    ///
-    /// 本接口（DescribeFlowLog）用于查询流日志实例信息
-    @inlinable
-    public func describeFlowLog(_ input: DescribeFlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLogResponse {
-        try await self.client.execute(action: "DescribeFlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlowLog请求参数结构体
     public struct DescribeFlowLogRequest: TCRequestModel {
         /// 私用网络ID或者统一ID，建议使用统一ID
@@ -62,5 +46,21 @@ extension Vpc {
             case flowLog = "FlowLog"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询流日志实例信息
+    ///
+    /// 本接口（DescribeFlowLog）用于查询流日志实例信息
+    @inlinable
+    public func describeFlowLog(_ input: DescribeFlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowLogResponse > {
+        self.client.execute(action: "DescribeFlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流日志实例信息
+    ///
+    /// 本接口（DescribeFlowLog）用于查询流日志实例信息
+    @inlinable
+    public func describeFlowLog(_ input: DescribeFlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLogResponse {
+        try await self.client.execute(action: "DescribeFlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 删除复制组成员
-    ///
-    /// 移除复制组成员 注：接口下线中，请使用 RemoveReplicationInstance
-    @inlinable
-    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReplicationInstanceResponse > {
-        self.client.execute(action: "DeleteReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除复制组成员
-    ///
-    /// 移除复制组成员 注：接口下线中，请使用 RemoveReplicationInstance
-    @inlinable
-    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReplicationInstanceResponse {
-        try await self.client.execute(action: "DeleteReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteReplicationInstance请求参数结构体
     public struct DeleteReplicationInstanceRequest: TCRequestModel {
         /// 复制组ID
@@ -67,5 +51,21 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除复制组成员
+    ///
+    /// 移除复制组成员 注：接口下线中，请使用 RemoveReplicationInstance
+    @inlinable
+    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReplicationInstanceResponse > {
+        self.client.execute(action: "DeleteReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除复制组成员
+    ///
+    /// 移除复制组成员 注：接口下线中，请使用 RemoveReplicationInstance
+    @inlinable
+    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReplicationInstanceResponse {
+        try await self.client.execute(action: "DeleteReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

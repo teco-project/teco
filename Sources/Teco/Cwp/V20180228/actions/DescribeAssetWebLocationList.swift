@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取Web站点列表
-    @inlinable
-    public func describeAssetWebLocationList(_ input: DescribeAssetWebLocationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetWebLocationListResponse > {
-        self.client.execute(action: "DescribeAssetWebLocationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Web站点列表
-    @inlinable
-    public func describeAssetWebLocationList(_ input: DescribeAssetWebLocationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebLocationListResponse {
-        try await self.client.execute(action: "DescribeAssetWebLocationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetWebLocationList请求参数结构体
     public struct DescribeAssetWebLocationListRequest: TCRequestModel {
         /// 查询指定Quuid主机的信息
@@ -65,7 +53,7 @@ extension Cwp {
         /// 可选排序：[FirstTime|PathCount]
         public let by: String?
         
-        public init (quuid: String?, filters: [Filter]?, offset: UInt64?, limit: UInt64?, order: String?, by: String?) {
+        public init (quuid: String? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.quuid = quuid
             self.filters = filters
             self.offset = offset
@@ -101,5 +89,17 @@ extension Cwp {
             case locations = "Locations"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Web站点列表
+    @inlinable
+    public func describeAssetWebLocationList(_ input: DescribeAssetWebLocationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetWebLocationListResponse > {
+        self.client.execute(action: "DescribeAssetWebLocationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Web站点列表
+    @inlinable
+    public func describeAssetWebLocationList(_ input: DescribeAssetWebLocationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebLocationListResponse {
+        try await self.client.execute(action: "DescribeAssetWebLocationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

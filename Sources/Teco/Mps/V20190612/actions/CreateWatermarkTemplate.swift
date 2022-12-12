@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 创建水印模板
-    ///
-    /// 创建用户自定义水印模板，数量上限：1000。
-    @inlinable
-    public func createWatermarkTemplate(_ input: CreateWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWatermarkTemplateResponse > {
-        self.client.execute(action: "CreateWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建水印模板
-    ///
-    /// 创建用户自定义水印模板，数量上限：1000。
-    @inlinable
-    public func createWatermarkTemplate(_ input: CreateWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWatermarkTemplateResponse {
-        try await self.client.execute(action: "CreateWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateWatermarkTemplate请求参数结构体
     public struct CreateWatermarkTemplateRequest: TCRequestModel {
         /// 水印类型，可选值：
@@ -66,15 +50,15 @@ extension Mps {
         public let yPos: String?
         
         /// 图片水印模板，仅当 Type 为 image，该字段必填且有效。
-        public let imageTemplate: ImageWatermarkInput
+        public let imageTemplate: ImageWatermarkInput?
         
         /// 文字水印模板，仅当 Type 为 text，该字段必填且有效。
-        public let textTemplate: TextWatermarkTemplateInput
+        public let textTemplate: TextWatermarkTemplateInput?
         
         /// SVG 水印模板，仅当 Type 为 svg，该字段必填且有效。
-        public let svgTemplate: SvgWatermarkInput
+        public let svgTemplate: SvgWatermarkInput?
         
-        public init (type: String, name: String?, comment: String?, coordinateOrigin: String?, xPos: String?, yPos: String?, imageTemplate: ImageWatermarkInput, textTemplate: TextWatermarkTemplateInput, svgTemplate: SvgWatermarkInput) {
+        public init (type: String, name: String? = nil, comment: String? = nil, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, imageTemplate: ImageWatermarkInput? = nil, textTemplate: TextWatermarkTemplateInput? = nil, svgTemplate: SvgWatermarkInput? = nil) {
             self.type = type
             self.name = name
             self.comment = comment
@@ -115,5 +99,21 @@ extension Mps {
             case imageUrl = "ImageUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建水印模板
+    ///
+    /// 创建用户自定义水印模板，数量上限：1000。
+    @inlinable
+    public func createWatermarkTemplate(_ input: CreateWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWatermarkTemplateResponse > {
+        self.client.execute(action: "CreateWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建水印模板
+    ///
+    /// 创建用户自定义水印模板，数量上限：1000。
+    @inlinable
+    public func createWatermarkTemplate(_ input: CreateWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWatermarkTemplateResponse {
+        try await self.client.execute(action: "CreateWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

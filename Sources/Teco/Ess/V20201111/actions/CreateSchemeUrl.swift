@@ -15,30 +15,6 @@
 // DO NOT EDIT.
 
 extension Ess {
-    /// 获取小程序跳转链接
-    ///
-    /// 获取小程序跳转链接
-    /// 适用场景：如果需要签署人在自己的APP、小程序、H5应用中签署，可以通过此接口获取跳转腾讯电子签小程序的签署跳转链接。
-    /// 注：如果签署人是在PC端扫码签署，可以通过生成跳转链接自主转换成二维码，让签署人在PC端扫码签署。
-    /// 跳转到小程序的实现，参考官方文档（分为<a href="https://developers.weixin.qq.com/miniprogram/dev/api/navigate/wx.navigateToMiniProgram.html">全屏</a>、<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/openEmbeddedMiniProgram.html">半屏</a>两种方式）
-    /// 如您需要自主配置小程序跳转链接，请参考: <a href="https://cloud.tencent.com/document/product/1323/74774">跳转小程序链接配置说明</a>
-    @inlinable
-    public func createSchemeUrl(_ input: CreateSchemeUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSchemeUrlResponse > {
-        self.client.execute(action: "CreateSchemeUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取小程序跳转链接
-    ///
-    /// 获取小程序跳转链接
-    /// 适用场景：如果需要签署人在自己的APP、小程序、H5应用中签署，可以通过此接口获取跳转腾讯电子签小程序的签署跳转链接。
-    /// 注：如果签署人是在PC端扫码签署，可以通过生成跳转链接自主转换成二维码，让签署人在PC端扫码签署。
-    /// 跳转到小程序的实现，参考官方文档（分为<a href="https://developers.weixin.qq.com/miniprogram/dev/api/navigate/wx.navigateToMiniProgram.html">全屏</a>、<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/openEmbeddedMiniProgram.html">半屏</a>两种方式）
-    /// 如您需要自主配置小程序跳转链接，请参考: <a href="https://cloud.tencent.com/document/product/1323/74774">跳转小程序链接配置说明</a>
-    @inlinable
-    public func createSchemeUrl(_ input: CreateSchemeUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchemeUrlResponse {
-        try await self.client.execute(action: "CreateSchemeUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSchemeUrl请求参数结构体
     public struct CreateSchemeUrlRequest: TCRequestModel {
         /// 调用方用户信息，userId 必填
@@ -69,9 +45,9 @@ extension Ess {
         public let autoJumpBack: Bool?
         
         /// 应用相关信息
-        public let agent: Agent
+        public let agent: Agent?
         
-        public init (`operator`: UserInfo, organizationName: String?, name: String?, mobile: String?, endPoint: String?, flowId: String?, pathType: UInt64?, autoJumpBack: Bool?, agent: Agent) {
+        public init (`operator`: UserInfo, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, endPoint: String? = nil, flowId: String? = nil, pathType: UInt64? = nil, autoJumpBack: Bool? = nil, agent: Agent? = nil) {
             self.`operator` = `operator`
             self.organizationName = organizationName
             self.name = name
@@ -108,5 +84,29 @@ extension Ess {
             case schemeUrl = "SchemeUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取小程序跳转链接
+    ///
+    /// 获取小程序跳转链接
+    /// 适用场景：如果需要签署人在自己的APP、小程序、H5应用中签署，可以通过此接口获取跳转腾讯电子签小程序的签署跳转链接。
+    /// 注：如果签署人是在PC端扫码签署，可以通过生成跳转链接自主转换成二维码，让签署人在PC端扫码签署。
+    /// 跳转到小程序的实现，参考官方文档（分为<a href="https://developers.weixin.qq.com/miniprogram/dev/api/navigate/wx.navigateToMiniProgram.html">全屏</a>、<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/openEmbeddedMiniProgram.html">半屏</a>两种方式）
+    /// 如您需要自主配置小程序跳转链接，请参考: <a href="https://cloud.tencent.com/document/product/1323/74774">跳转小程序链接配置说明</a>
+    @inlinable
+    public func createSchemeUrl(_ input: CreateSchemeUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSchemeUrlResponse > {
+        self.client.execute(action: "CreateSchemeUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取小程序跳转链接
+    ///
+    /// 获取小程序跳转链接
+    /// 适用场景：如果需要签署人在自己的APP、小程序、H5应用中签署，可以通过此接口获取跳转腾讯电子签小程序的签署跳转链接。
+    /// 注：如果签署人是在PC端扫码签署，可以通过生成跳转链接自主转换成二维码，让签署人在PC端扫码签署。
+    /// 跳转到小程序的实现，参考官方文档（分为<a href="https://developers.weixin.qq.com/miniprogram/dev/api/navigate/wx.navigateToMiniProgram.html">全屏</a>、<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/openEmbeddedMiniProgram.html">半屏</a>两种方式）
+    /// 如您需要自主配置小程序跳转链接，请参考: <a href="https://cloud.tencent.com/document/product/1323/74774">跳转小程序链接配置说明</a>
+    @inlinable
+    public func createSchemeUrl(_ input: CreateSchemeUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchemeUrlResponse {
+        try await self.client.execute(action: "CreateSchemeUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

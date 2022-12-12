@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdcpg {
-    /// 恢复集群
-    ///
-    /// 恢复集群，恢复集群的接入点网络，恢复后继续连接使用数据库。只有当集群状态处于isolated(已隔离)时才生效。
-    @inlinable
-    public func recoverCluster(_ input: RecoverClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverClusterResponse > {
-        self.client.execute(action: "RecoverCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 恢复集群
-    ///
-    /// 恢复集群，恢复集群的接入点网络，恢复后继续连接使用数据库。只有当集群状态处于isolated(已隔离)时才生效。
-    @inlinable
-    public func recoverCluster(_ input: RecoverClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverClusterResponse {
-        try await self.client.execute(action: "RecoverCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecoverCluster请求参数结构体
     public struct RecoverClusterRequest: TCRequestModel {
         /// 集群ID
@@ -40,7 +24,7 @@ extension Tdcpg {
         /// 只有当PayMode为PREPAID时生效。
         public let period: UInt64?
         
-        public init (clusterId: String, period: UInt64?) {
+        public init (clusterId: String, period: UInt64? = nil) {
             self.clusterId = clusterId
             self.period = period
         }
@@ -59,5 +43,21 @@ extension Tdcpg {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 恢复集群
+    ///
+    /// 恢复集群，恢复集群的接入点网络，恢复后继续连接使用数据库。只有当集群状态处于isolated(已隔离)时才生效。
+    @inlinable
+    public func recoverCluster(_ input: RecoverClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverClusterResponse > {
+        self.client.execute(action: "RecoverCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复集群
+    ///
+    /// 恢复集群，恢复集群的接入点网络，恢复后继续连接使用数据库。只有当集群状态处于isolated(已隔离)时才生效。
+    @inlinable
+    public func recoverCluster(_ input: RecoverClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverClusterResponse {
+        try await self.client.execute(action: "RecoverCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

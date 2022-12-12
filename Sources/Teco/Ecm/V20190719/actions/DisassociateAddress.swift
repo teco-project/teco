@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 解绑定弹性公网IP
-    ///
-    /// 解绑弹性公网IP（简称 EIP）
-    /// 只有状态为 BIND 和 BIND_ENI 的 EIP 才能进行解绑定操作。
-    /// EIP 如果被封堵，则不能进行解绑定操作。
-    @inlinable
-    public func disassociateAddress(_ input: DisassociateAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateAddressResponse > {
-        self.client.execute(action: "DisassociateAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑定弹性公网IP
-    ///
-    /// 解绑弹性公网IP（简称 EIP）
-    /// 只有状态为 BIND 和 BIND_ENI 的 EIP 才能进行解绑定操作。
-    /// EIP 如果被封堵，则不能进行解绑定操作。
-    @inlinable
-    public func disassociateAddress(_ input: DisassociateAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateAddressResponse {
-        try await self.client.execute(action: "DisassociateAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisassociateAddress请求参数结构体
     public struct DisassociateAddressRequest: TCRequestModel {
         /// ECM 地域
@@ -52,7 +32,7 @@ extension Ecm {
         /// 解绑 EIP 后重新分配普通公网 IP 操作一个账号每天最多操作 10 次；详情可通过 DescribeAddressQuota 接口获取。
         public let reallocateNormalPublicIp: Bool?
         
-        public init (ecmRegion: String, addressId: String, reallocateNormalPublicIp: Bool?) {
+        public init (ecmRegion: String, addressId: String, reallocateNormalPublicIp: Bool? = nil) {
             self.ecmRegion = ecmRegion
             self.addressId = addressId
             self.reallocateNormalPublicIp = reallocateNormalPublicIp
@@ -77,5 +57,25 @@ extension Ecm {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑定弹性公网IP
+    ///
+    /// 解绑弹性公网IP（简称 EIP）
+    /// 只有状态为 BIND 和 BIND_ENI 的 EIP 才能进行解绑定操作。
+    /// EIP 如果被封堵，则不能进行解绑定操作。
+    @inlinable
+    public func disassociateAddress(_ input: DisassociateAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateAddressResponse > {
+        self.client.execute(action: "DisassociateAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑定弹性公网IP
+    ///
+    /// 解绑弹性公网IP（简称 EIP）
+    /// 只有状态为 BIND 和 BIND_ENI 的 EIP 才能进行解绑定操作。
+    /// EIP 如果被封堵，则不能进行解绑定操作。
+    @inlinable
+    public func disassociateAddress(_ input: DisassociateAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateAddressResponse {
+        try await self.client.execute(action: "DisassociateAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

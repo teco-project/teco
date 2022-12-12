@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 设置实例属性
-    @inlinable
-    public func modifyInstanceAttributes(_ input: ModifyInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceAttributesResponse > {
-        self.client.execute(action: "ModifyInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置实例属性
-    @inlinable
-    public func modifyInstanceAttributes(_ input: ModifyInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAttributesResponse {
-        try await self.client.execute(action: "ModifyInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstanceAttributes请求参数结构体
     public struct ModifyInstanceAttributesRequest: TCRequestModel {
         /// 实例id
@@ -39,10 +27,10 @@ extension Ckafka {
         public let instanceName: String?
         
         /// 实例配置
-        public let config: ModifyInstanceAttributesConfig
+        public let config: ModifyInstanceAttributesConfig?
         
         /// 动态消息保留策略配置
-        public let dynamicRetentionConfig: DynamicRetentionTime
+        public let dynamicRetentionConfig: DynamicRetentionTime?
         
         /// 修改升配置rebalance时间
         public let rebalanceTime: Int64?
@@ -51,12 +39,12 @@ extension Ckafka {
         public let publicNetwork: Int64?
         
         /// 动态硬盘扩容策略配置
-        public let dynamicDiskConfig: DynamicDiskConfig
+        public let dynamicDiskConfig: DynamicDiskConfig?
         
         /// 实例级别单条消息大小（单位byte)
         public let maxMessageByte: UInt64?
         
-        public init (instanceId: String, msgRetentionTime: Int64?, instanceName: String?, config: ModifyInstanceAttributesConfig, dynamicRetentionConfig: DynamicRetentionTime, rebalanceTime: Int64?, publicNetwork: Int64?, dynamicDiskConfig: DynamicDiskConfig, maxMessageByte: UInt64?) {
+        public init (instanceId: String, msgRetentionTime: Int64? = nil, instanceName: String? = nil, config: ModifyInstanceAttributesConfig? = nil, dynamicRetentionConfig: DynamicRetentionTime? = nil, rebalanceTime: Int64? = nil, publicNetwork: Int64? = nil, dynamicDiskConfig: DynamicDiskConfig? = nil, maxMessageByte: UInt64? = nil) {
             self.instanceId = instanceId
             self.msgRetentionTime = msgRetentionTime
             self.instanceName = instanceName
@@ -93,5 +81,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置实例属性
+    @inlinable
+    public func modifyInstanceAttributes(_ input: ModifyInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceAttributesResponse > {
+        self.client.execute(action: "ModifyInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置实例属性
+    @inlinable
+    public func modifyInstanceAttributes(_ input: ModifyInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAttributesResponse {
+        try await self.client.execute(action: "ModifyInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

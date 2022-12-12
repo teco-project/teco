@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 查询TCP监听器列表
-    ///
-    /// 该接口（DescribeTCPListeners）用于查询单通道或者通道组下的TCP监听器信息。
-    @inlinable
-    public func describeTCPListeners(_ input: DescribeTCPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTCPListenersResponse > {
-        self.client.execute(action: "DescribeTCPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询TCP监听器列表
-    ///
-    /// 该接口（DescribeTCPListeners）用于查询单通道或者通道组下的TCP监听器信息。
-    @inlinable
-    public func describeTCPListeners(_ input: DescribeTCPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTCPListenersResponse {
-        try await self.client.execute(action: "DescribeTCPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTCPListeners请求参数结构体
     public struct DescribeTCPListenersRequest: TCRequestModel {
         /// 过滤条件，根据通道ID进行拉取，ProxyId/GroupId/ListenerId必须设置一个，但ProxyId和GroupId不能同时设置。
@@ -59,7 +43,7 @@ extension Gaap {
         /// 过滤条件，支持按照端口或监听器名称进行模糊查询，该参数不能与ListenerName和Port同时使用
         public let searchValue: String?
         
-        public init (proxyId: String?, listenerId: String?, listenerName: String?, port: UInt64?, offset: UInt64?, limit: UInt64?, groupId: String?, searchValue: String?) {
+        public init (proxyId: String? = nil, listenerId: String? = nil, listenerName: String? = nil, port: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, groupId: String? = nil, searchValue: String? = nil) {
             self.proxyId = proxyId
             self.listenerId = listenerId
             self.listenerName = listenerName
@@ -98,5 +82,21 @@ extension Gaap {
             case listenerSet = "ListenerSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询TCP监听器列表
+    ///
+    /// 该接口（DescribeTCPListeners）用于查询单通道或者通道组下的TCP监听器信息。
+    @inlinable
+    public func describeTCPListeners(_ input: DescribeTCPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTCPListenersResponse > {
+        self.client.execute(action: "DescribeTCPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询TCP监听器列表
+    ///
+    /// 该接口（DescribeTCPListeners）用于查询单通道或者通道组下的TCP监听器信息。
+    @inlinable
+    public func describeTCPListeners(_ input: DescribeTCPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTCPListenersResponse {
+        try await self.client.execute(action: "DescribeTCPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

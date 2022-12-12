@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 创建实例子账号
-    @inlinable
-    public func createInstanceAccount(_ input: CreateInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceAccountResponse > {
-        self.client.execute(action: "CreateInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例子账号
-    @inlinable
-    public func createInstanceAccount(_ input: CreateInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceAccountResponse {
-        try await self.client.execute(action: "CreateInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateInstanceAccount请求参数结构体
     public struct CreateInstanceAccountRequest: TCRequestModel {
         /// 实例ID
@@ -53,7 +41,7 @@ extension Redis {
         /// 子账号描述信息
         public let remark: String?
         
-        public init (instanceId: String, accountName: String, accountPassword: String, readonlyPolicy: [String], privilege: String, remark: String?) {
+        public init (instanceId: String, accountName: String, accountPassword: String, readonlyPolicy: [String], privilege: String, remark: String? = nil) {
             self.instanceId = instanceId
             self.accountName = accountName
             self.accountPassword = accountPassword
@@ -84,5 +72,17 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例子账号
+    @inlinable
+    public func createInstanceAccount(_ input: CreateInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceAccountResponse > {
+        self.client.execute(action: "CreateInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例子账号
+    @inlinable
+    public func createInstanceAccount(_ input: CreateInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceAccountResponse {
+        try await self.client.execute(action: "CreateInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

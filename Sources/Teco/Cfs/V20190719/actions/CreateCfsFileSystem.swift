@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 创建文件系统
-    ///
-    /// 用于添加新文件系统
-    @inlinable
-    public func createCfsFileSystem(_ input: CreateCfsFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCfsFileSystemResponse > {
-        self.client.execute(action: "CreateCfsFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建文件系统
-    ///
-    /// 用于添加新文件系统
-    @inlinable
-    public func createCfsFileSystem(_ input: CreateCfsFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsFileSystemResponse {
-        try await self.client.execute(action: "CreateCfsFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCfsFileSystem请求参数结构体
     public struct CreateCfsFileSystemRequest: TCRequestModel {
         /// 可用区名称，例如ap-beijing-1，请参考 [概览](https://cloud.tencent.com/document/product/582/13225) 文档中的地域与可用区列表
@@ -75,7 +59,7 @@ extension Cfs {
         /// 文件系统容量，turbo系列必填，单位为GiB。 turbo标准型单位GB，起售40TiB，即40960 GiB；扩容步长20TiB，即20480 GiB。turbo性能型起售20TiB，即20480 GiB；扩容步长10TiB，10240 GiB。
         public let capacity: UInt64?
         
-        public init (zone: String, netInterface: String, pGroupId: String, `protocol`: String?, storageType: String?, vpcId: String?, subnetId: String?, mountIP: String?, fsName: String?, resourceTags: [TagInfo]?, clientToken: String?, ccnId: String?, cidrBlock: String?, capacity: UInt64?) {
+        public init (zone: String, netInterface: String, pGroupId: String, `protocol`: String? = nil, storageType: String? = nil, vpcId: String? = nil, subnetId: String? = nil, mountIP: String? = nil, fsName: String? = nil, resourceTags: [TagInfo]? = nil, clientToken: String? = nil, ccnId: String? = nil, cidrBlock: String? = nil, capacity: UInt64? = nil) {
             self.zone = zone
             self.netInterface = netInterface
             self.pGroupId = pGroupId
@@ -150,5 +134,21 @@ extension Cfs {
             case encrypted = "Encrypted"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建文件系统
+    ///
+    /// 用于添加新文件系统
+    @inlinable
+    public func createCfsFileSystem(_ input: CreateCfsFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCfsFileSystemResponse > {
+        self.client.execute(action: "CreateCfsFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文件系统
+    ///
+    /// 用于添加新文件系统
+    @inlinable
+    public func createCfsFileSystem(_ input: CreateCfsFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsFileSystemResponse {
+        try await self.client.execute(action: "CreateCfsFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

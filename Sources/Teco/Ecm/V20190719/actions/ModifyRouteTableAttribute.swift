@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改路由表属性
-    @inlinable
-    public func modifyRouteTableAttribute(_ input: ModifyRouteTableAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRouteTableAttributeResponse > {
-        self.client.execute(action: "ModifyRouteTableAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改路由表属性
-    @inlinable
-    public func modifyRouteTableAttribute(_ input: ModifyRouteTableAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRouteTableAttributeResponse {
-        try await self.client.execute(action: "ModifyRouteTableAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRouteTableAttribute请求参数结构体
     public struct ModifyRouteTableAttributeRequest: TCRequestModel {
         /// 路由表实例ID，例如：rtb-azd4dt1c
@@ -54,5 +42,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改路由表属性
+    @inlinable
+    public func modifyRouteTableAttribute(_ input: ModifyRouteTableAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRouteTableAttributeResponse > {
+        self.client.execute(action: "ModifyRouteTableAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改路由表属性
+    @inlinable
+    public func modifyRouteTableAttribute(_ input: ModifyRouteTableAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRouteTableAttributeResponse {
+        try await self.client.execute(action: "ModifyRouteTableAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

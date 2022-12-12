@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 描述WAF自动封禁IP详情
-    ///
-    /// 描述WAF自动封禁IP详情,对齐自动封堵状态
-    @inlinable
-    public func describeAutoDenyIP(_ input: DescribeAutoDenyIPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoDenyIPResponse > {
-        self.client.execute(action: "DescribeAutoDenyIP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 描述WAF自动封禁IP详情
-    ///
-    /// 描述WAF自动封禁IP详情,对齐自动封堵状态
-    @inlinable
-    public func describeAutoDenyIP(_ input: DescribeAutoDenyIPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoDenyIPResponse {
-        try await self.client.execute(action: "DescribeAutoDenyIP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAutoDenyIP请求参数结构体
     public struct DescribeAutoDenyIPRequest: TCRequestModel {
         /// 域名
@@ -69,7 +53,7 @@ extension Waf {
         /// 排序参数
         public let sort: String?
         
-        public init (domain: String, ip: String?, count: Int64?, category: String?, vtsMin: UInt64?, vtsMax: UInt64?, ctsMin: UInt64?, ctsMax: UInt64?, skip: UInt64?, limit: UInt64?, name: String?, sort: String?) {
+        public init (domain: String, ip: String? = nil, count: Int64? = nil, category: String? = nil, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, skip: UInt64? = nil, limit: UInt64? = nil, name: String? = nil, sort: String? = nil) {
             self.domain = domain
             self.ip = ip
             self.count = count
@@ -112,5 +96,21 @@ extension Waf {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 描述WAF自动封禁IP详情
+    ///
+    /// 描述WAF自动封禁IP详情,对齐自动封堵状态
+    @inlinable
+    public func describeAutoDenyIP(_ input: DescribeAutoDenyIPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoDenyIPResponse > {
+        self.client.execute(action: "DescribeAutoDenyIP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 描述WAF自动封禁IP详情
+    ///
+    /// 描述WAF自动封禁IP详情,对齐自动封堵状态
+    @inlinable
+    public func describeAutoDenyIP(_ input: DescribeAutoDenyIPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoDenyIPResponse {
+        try await self.client.execute(action: "DescribeAutoDenyIP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

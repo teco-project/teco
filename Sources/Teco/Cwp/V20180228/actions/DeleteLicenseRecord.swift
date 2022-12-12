@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 删除授权记录
-    ///
-    /// 对授权管理-订单列表内已过期的订单进行删除.(删除后的订单不在统计范畴内)
-    @inlinable
-    public func deleteLicenseRecord(_ input: DeleteLicenseRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLicenseRecordResponse > {
-        self.client.execute(action: "DeleteLicenseRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除授权记录
-    ///
-    /// 对授权管理-订单列表内已过期的订单进行删除.(删除后的订单不在统计范畴内)
-    @inlinable
-    public func deleteLicenseRecord(_ input: DeleteLicenseRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLicenseRecordResponse {
-        try await self.client.execute(action: "DeleteLicenseRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLicenseRecord请求参数结构体
     public struct DeleteLicenseRecordRequest: TCRequestModel {
         /// 授权ID ,可以用授权订单列表获取.
@@ -63,5 +47,21 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除授权记录
+    ///
+    /// 对授权管理-订单列表内已过期的订单进行删除.(删除后的订单不在统计范畴内)
+    @inlinable
+    public func deleteLicenseRecord(_ input: DeleteLicenseRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLicenseRecordResponse > {
+        self.client.execute(action: "DeleteLicenseRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除授权记录
+    ///
+    /// 对授权管理-订单列表内已过期的订单进行删除.(删除后的订单不在统计范畴内)
+    @inlinable
+    public func deleteLicenseRecord(_ input: DeleteLicenseRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLicenseRecordResponse {
+        try await self.client.execute(action: "DeleteLicenseRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

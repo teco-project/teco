@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询推理镜像模板
-    @inlinable
-    public func describeInferTemplates(_ input: DescribeInferTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInferTemplatesResponse > {
-        self.client.execute(action: "DescribeInferTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询推理镜像模板
-    @inlinable
-    public func describeInferTemplates(_ input: DescribeInferTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInferTemplatesResponse {
-        try await self.client.execute(action: "DescribeInferTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInferTemplates请求参数结构体
     public struct DescribeInferTemplatesRequest: TCRequestModel {
         public init () {
@@ -46,5 +34,17 @@ extension Tione {
             case frameworkTemplates = "FrameworkTemplates"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询推理镜像模板
+    @inlinable
+    public func describeInferTemplates(_ input: DescribeInferTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInferTemplatesResponse > {
+        self.client.execute(action: "DescribeInferTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询推理镜像模板
+    @inlinable
+    public func describeInferTemplates(_ input: DescribeInferTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInferTemplatesResponse {
+        try await self.client.execute(action: "DescribeInferTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

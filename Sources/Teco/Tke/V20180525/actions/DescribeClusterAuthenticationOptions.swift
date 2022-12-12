@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查看集群认证配置
-    @inlinable
-    public func describeClusterAuthenticationOptions(_ input: DescribeClusterAuthenticationOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterAuthenticationOptionsResponse > {
-        self.client.execute(action: "DescribeClusterAuthenticationOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看集群认证配置
-    @inlinable
-    public func describeClusterAuthenticationOptions(_ input: DescribeClusterAuthenticationOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterAuthenticationOptionsResponse {
-        try await self.client.execute(action: "DescribeClusterAuthenticationOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterAuthenticationOptions请求参数结构体
     public struct DescribeClusterAuthenticationOptionsRequest: TCRequestModel {
         /// 集群ID
@@ -45,7 +33,7 @@ extension Tke {
     public struct DescribeClusterAuthenticationOptionsResponse: TCResponseModel {
         /// ServiceAccount认证配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let serviceAccounts: ServiceAccountAuthenticationOptions
+        public let serviceAccounts: ServiceAccountAuthenticationOptions?
         
         /// 最近一次修改操作结果，返回值可能为：Updating，Success，Failed，TimeOut
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -53,7 +41,7 @@ extension Tke {
         
         /// OIDC认证配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let oidcConfig: OIDCConfigAuthenticationOptions
+        public let oidcConfig: OIDCConfigAuthenticationOptions?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -64,5 +52,17 @@ extension Tke {
             case oidcConfig = "OIDCConfig"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看集群认证配置
+    @inlinable
+    public func describeClusterAuthenticationOptions(_ input: DescribeClusterAuthenticationOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterAuthenticationOptionsResponse > {
+        self.client.execute(action: "DescribeClusterAuthenticationOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看集群认证配置
+    @inlinable
+    public func describeClusterAuthenticationOptions(_ input: DescribeClusterAuthenticationOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterAuthenticationOptionsResponse {
+        try await self.client.execute(action: "DescribeClusterAuthenticationOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

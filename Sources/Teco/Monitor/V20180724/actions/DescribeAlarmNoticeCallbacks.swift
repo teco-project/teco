@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 查询账号下所有回调URL列表
-    ///
-    /// 云监控告警获取告警通知模板所有回调URL
-    @inlinable
-    public func describeAlarmNoticeCallbacks(_ input: DescribeAlarmNoticeCallbacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmNoticeCallbacksResponse > {
-        self.client.execute(action: "DescribeAlarmNoticeCallbacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询账号下所有回调URL列表
-    ///
-    /// 云监控告警获取告警通知模板所有回调URL
-    @inlinable
-    public func describeAlarmNoticeCallbacks(_ input: DescribeAlarmNoticeCallbacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticeCallbacksResponse {
-        try await self.client.execute(action: "DescribeAlarmNoticeCallbacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAlarmNoticeCallbacks请求参数结构体
     public struct DescribeAlarmNoticeCallbacksRequest: TCRequestModel {
         /// 模块名，这里填“monitor”
@@ -58,5 +42,21 @@ extension Monitor {
             case urlNotices = "URLNotices"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询账号下所有回调URL列表
+    ///
+    /// 云监控告警获取告警通知模板所有回调URL
+    @inlinable
+    public func describeAlarmNoticeCallbacks(_ input: DescribeAlarmNoticeCallbacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmNoticeCallbacksResponse > {
+        self.client.execute(action: "DescribeAlarmNoticeCallbacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账号下所有回调URL列表
+    ///
+    /// 云监控告警获取告警通知模板所有回调URL
+    @inlinable
+    public func describeAlarmNoticeCallbacks(_ input: DescribeAlarmNoticeCallbacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticeCallbacksResponse {
+        try await self.client.execute(action: "DescribeAlarmNoticeCallbacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

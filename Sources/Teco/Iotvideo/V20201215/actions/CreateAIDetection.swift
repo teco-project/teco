@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 发起AI推理请求
-    @inlinable
-    public func createAIDetection(_ input: CreateAIDetectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAIDetectionResponse > {
-        self.client.execute(action: "CreateAIDetection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发起AI推理请求
-    @inlinable
-    public func createAIDetection(_ input: CreateAIDetectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIDetectionResponse {
-        try await self.client.execute(action: "CreateAIDetection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAIDetection请求参数结构体
     public struct CreateAIDetectionRequest: TCRequestModel {
         /// 产品ID
@@ -69,5 +57,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发起AI推理请求
+    @inlinable
+    public func createAIDetection(_ input: CreateAIDetectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAIDetectionResponse > {
+        self.client.execute(action: "CreateAIDetection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发起AI推理请求
+    @inlinable
+    public func createAIDetection(_ input: CreateAIDetectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIDetectionResponse {
+        try await self.client.execute(action: "CreateAIDetection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

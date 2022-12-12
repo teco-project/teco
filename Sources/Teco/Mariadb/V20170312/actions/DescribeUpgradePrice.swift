@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 变配实例询价
-    ///
-    /// 本接口（DescribeUpgradePrice）用于在扩容云数据库实例时，查询变配的价格。
-    @inlinable
-    public func describeUpgradePrice(_ input: DescribeUpgradePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUpgradePriceResponse > {
-        self.client.execute(action: "DescribeUpgradePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 变配实例询价
-    ///
-    /// 本接口（DescribeUpgradePrice）用于在扩容云数据库实例时，查询变配的价格。
-    @inlinable
-    public func describeUpgradePrice(_ input: DescribeUpgradePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpgradePriceResponse {
-        try await self.client.execute(action: "DescribeUpgradePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUpgradePrice请求参数结构体
     public struct DescribeUpgradePriceRequest: TCRequestModel {
         /// 待升级的实例ID。形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
@@ -52,7 +36,7 @@ extension Mariadb {
         /// * microPent：微分
         public let amountUnit: String?
         
-        public init (instanceId: String, memory: Int64, storage: Int64, nodeCount: Int64?, amountUnit: String?) {
+        public init (instanceId: String, memory: Int64, storage: Int64, nodeCount: Int64? = nil, amountUnit: String? = nil) {
             self.instanceId = instanceId
             self.memory = memory
             self.storage = storage
@@ -93,5 +77,21 @@ extension Mariadb {
             case formula = "Formula"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 变配实例询价
+    ///
+    /// 本接口（DescribeUpgradePrice）用于在扩容云数据库实例时，查询变配的价格。
+    @inlinable
+    public func describeUpgradePrice(_ input: DescribeUpgradePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUpgradePriceResponse > {
+        self.client.execute(action: "DescribeUpgradePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 变配实例询价
+    ///
+    /// 本接口（DescribeUpgradePrice）用于在扩容云数据库实例时，查询变配的价格。
+    @inlinable
+    public func describeUpgradePrice(_ input: DescribeUpgradePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpgradePriceResponse {
+        try await self.client.execute(action: "DescribeUpgradePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

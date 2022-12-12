@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取云音乐播放信息
-    ///
-    /// 获取云音乐播放信息接口
-    @inlinable
-    public func describeCloudMusic(_ input: DescribeCloudMusicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudMusicResponse > {
-        self.client.execute(action: "DescribeCloudMusic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取云音乐播放信息
-    ///
-    /// 获取云音乐播放信息接口
-    @inlinable
-    public func describeCloudMusic(_ input: DescribeCloudMusicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudMusicResponse {
-        try await self.client.execute(action: "DescribeCloudMusic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudMusic请求参数结构体
     public struct DescribeCloudMusicRequest: TCRequestModel {
         /// 歌曲Id
@@ -43,7 +27,7 @@ extension Ame {
         /// 默认为：MP3-128K-FTW
         public let musicType: String?
         
-        public init (musicId: String, musicType: String?) {
+        public init (musicId: String, musicType: String? = nil) {
             self.musicId = musicId
             self.musicType = musicType
         }
@@ -89,5 +73,21 @@ extension Ame {
             case singers = "Singers"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取云音乐播放信息
+    ///
+    /// 获取云音乐播放信息接口
+    @inlinable
+    public func describeCloudMusic(_ input: DescribeCloudMusicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudMusicResponse > {
+        self.client.execute(action: "DescribeCloudMusic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云音乐播放信息
+    ///
+    /// 获取云音乐播放信息接口
+    @inlinable
+    public func describeCloudMusic(_ input: DescribeCloudMusicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudMusicResponse {
+        try await self.client.execute(action: "DescribeCloudMusic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

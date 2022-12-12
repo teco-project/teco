@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Car {
-    /// 创建会话
-    @inlinable
-    public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSessionResponse > {
-        self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建会话
-    @inlinable
-    public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
-        try await self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSession请求参数结构体
     public struct CreateSessionRequest: TCRequestModel {
         /// 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
@@ -43,7 +31,7 @@ extension Car {
         /// 默认值（空）：要求必须有客户端连接才会保持云端 App 运行。
         public let runMode: String?
         
-        public init (userId: String, userIp: String, clientSession: String, runMode: String?) {
+        public init (userId: String, userIp: String, clientSession: String, runMode: String? = nil) {
             self.userId = userId
             self.userIp = userIp
             self.clientSession = clientSession
@@ -70,5 +58,17 @@ extension Car {
             case serverSession = "ServerSession"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建会话
+    @inlinable
+    public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSessionResponse > {
+        self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建会话
+    @inlinable
+    public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
+        try await self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

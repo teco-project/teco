@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 创建实时获取端口任务
-    ///
-    /// 本接口 (CreateOpenPortTask) 用于创建实时获取端口任务。
-    @inlinable
-    public func createOpenPortTask(_ input: CreateOpenPortTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenPortTaskResponse > {
-        self.client.execute(action: "CreateOpenPortTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实时获取端口任务
-    ///
-    /// 本接口 (CreateOpenPortTask) 用于创建实时获取端口任务。
-    @inlinable
-    public func createOpenPortTask(_ input: CreateOpenPortTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenPortTaskResponse {
-        try await self.client.execute(action: "CreateOpenPortTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOpenPortTask请求参数结构体
     public struct CreateOpenPortTaskRequest: TCRequestModel {
         /// 云镜客户端唯一Uuid。
@@ -53,5 +37,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实时获取端口任务
+    ///
+    /// 本接口 (CreateOpenPortTask) 用于创建实时获取端口任务。
+    @inlinable
+    public func createOpenPortTask(_ input: CreateOpenPortTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenPortTaskResponse > {
+        self.client.execute(action: "CreateOpenPortTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实时获取端口任务
+    ///
+    /// 本接口 (CreateOpenPortTask) 用于创建实时获取端口任务。
+    @inlinable
+    public func createOpenPortTask(_ input: CreateOpenPortTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenPortTaskResponse {
+        try await self.client.execute(action: "CreateOpenPortTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

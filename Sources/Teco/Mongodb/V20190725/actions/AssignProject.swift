@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 指定云数据库实例的所属项目
-    ///
-    /// 本接口(AssignProject)用于指定云数据库实例的所属项目。
-    @inlinable
-    public func assignProject(_ input: AssignProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssignProjectResponse > {
-        self.client.execute(action: "AssignProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 指定云数据库实例的所属项目
-    ///
-    /// 本接口(AssignProject)用于指定云数据库实例的所属项目。
-    @inlinable
-    public func assignProject(_ input: AssignProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignProjectResponse {
-        try await self.client.execute(action: "AssignProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssignProject请求参数结构体
     public struct AssignProjectRequest: TCRequestModel {
         /// 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -62,5 +46,21 @@ extension Mongodb {
             case flowIds = "FlowIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 指定云数据库实例的所属项目
+    ///
+    /// 本接口(AssignProject)用于指定云数据库实例的所属项目。
+    @inlinable
+    public func assignProject(_ input: AssignProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssignProjectResponse > {
+        self.client.execute(action: "AssignProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 指定云数据库实例的所属项目
+    ///
+    /// 本接口(AssignProject)用于指定云数据库实例的所属项目。
+    @inlinable
+    public func assignProject(_ input: AssignProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignProjectResponse {
+        try await self.client.execute(action: "AssignProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

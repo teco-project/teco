@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 获取负载均衡后端服务的健康检查状态
-    ///
-    /// 获取负载均衡后端服务的健康检查状态。
-    @inlinable
-    public func describeTargetHealth(_ input: DescribeTargetHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTargetHealthResponse > {
-        self.client.execute(action: "DescribeTargetHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取负载均衡后端服务的健康检查状态
-    ///
-    /// 获取负载均衡后端服务的健康检查状态。
-    @inlinable
-    public func describeTargetHealth(_ input: DescribeTargetHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetHealthResponse {
-        try await self.client.execute(action: "DescribeTargetHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTargetHealth请求参数结构体
     public struct DescribeTargetHealthRequest: TCRequestModel {
         /// 要查询的负载均衡实例 ID列表
@@ -58,5 +42,21 @@ extension Ecm {
             case loadBalancers = "LoadBalancers"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取负载均衡后端服务的健康检查状态
+    ///
+    /// 获取负载均衡后端服务的健康检查状态。
+    @inlinable
+    public func describeTargetHealth(_ input: DescribeTargetHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTargetHealthResponse > {
+        self.client.execute(action: "DescribeTargetHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取负载均衡后端服务的健康检查状态
+    ///
+    /// 获取负载均衡后端服务的健康检查状态。
+    @inlinable
+    public func describeTargetHealth(_ input: DescribeTargetHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetHealthResponse {
+        try await self.client.execute(action: "DescribeTargetHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

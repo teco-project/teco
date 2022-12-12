@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 获取平台列表
-    ///
-    /// <li>支持获取所创建的所有平台列表信息；</li>
-    /// <li>支持获取指定的平台列表信息。</li>
-    /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
-    @inlinable
-    public func describePlatforms(_ input: DescribePlatformsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePlatformsResponse > {
-        self.client.execute(action: "DescribePlatforms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取平台列表
-    ///
-    /// <li>支持获取所创建的所有平台列表信息；</li>
-    /// <li>支持获取指定的平台列表信息。</li>
-    /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
-    @inlinable
-    public func describePlatforms(_ input: DescribePlatformsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlatformsResponse {
-        try await self.client.execute(action: "DescribePlatforms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePlatforms请求参数结构体
     public struct DescribePlatformsRequest: TCRequestModel {
         /// 平台 Id 列表。如果不填，则不按平台 Id 进行过滤。
@@ -49,7 +29,7 @@ extension Cme {
         /// 分页返回的记录条数，默认值：10，最大值：20。
         public let limit: UInt64?
         
-        public init (platforms: [String]?, licenseIds: [String]?, offset: UInt64?, limit: UInt64?) {
+        public init (platforms: [String]? = nil, licenseIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.platforms = platforms
             self.licenseIds = licenseIds
             self.offset = offset
@@ -80,5 +60,25 @@ extension Cme {
             case platformInfoSet = "PlatformInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取平台列表
+    ///
+    /// <li>支持获取所创建的所有平台列表信息；</li>
+    /// <li>支持获取指定的平台列表信息。</li>
+    /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
+    @inlinable
+    public func describePlatforms(_ input: DescribePlatformsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePlatformsResponse > {
+        self.client.execute(action: "DescribePlatforms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取平台列表
+    ///
+    /// <li>支持获取所创建的所有平台列表信息；</li>
+    /// <li>支持获取指定的平台列表信息。</li>
+    /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
+    @inlinable
+    public func describePlatforms(_ input: DescribePlatformsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlatformsResponse {
+        try await self.client.execute(action: "DescribePlatforms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

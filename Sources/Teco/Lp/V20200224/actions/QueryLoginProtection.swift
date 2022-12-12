@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lp {
-    /// 登录保护
-    ///
-    /// 登录保护服务（LoginProtection，LP）针对网站和 APP 的用户登录场景，实时检测是否存在盗号、撞库等恶意登录行为，帮助开发者发现异常登录，降低恶意用户登录给业务带来的风险。
-    @inlinable
-    public func queryLoginProtection(_ input: QueryLoginProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryLoginProtectionResponse > {
-        self.client.execute(action: "QueryLoginProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 登录保护
-    ///
-    /// 登录保护服务（LoginProtection，LP）针对网站和 APP 的用户登录场景，实时检测是否存在盗号、撞库等恶意登录行为，帮助开发者发现异常登录，降低恶意用户登录给业务带来的风险。
-    @inlinable
-    public func queryLoginProtection(_ input: QueryLoginProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLoginProtectionResponse {
-        try await self.client.execute(action: "QueryLoginProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryLoginProtection请求参数结构体
     public struct QueryLoginProtectionRequest: TCRequestModel {
         /// 登录来源的外网 IP。
@@ -148,7 +132,7 @@ extension Lp {
         /// 如果是微信公众号或第三方登录，则为授权的 access_token（注意：不是普通 access_token，具体看 微信官方文档）。
         public let wxToken: String?
         
-        public init (loginIp: String, uid: String, loginTime: String, accountType: String, appIdU: String?, associateAccount: String?, nickName: String?, phoneNumber: String?, emailAddress: String?, registerTime: String?, address: String?, cookieHash: String?, loginSource: String?, loginType: String?, referer: String?, jumpUrl: String?, userAgent: String?, xForwardedFor: String?, mouseClickCount: String?, keyboardClickCount: String?, result: String?, reason: String?, loginSpend: String?, macAddress: String?, vendorId: String?, appVersion: String?, imei: String?, businessId: String?, wxSubType: String?, randNum: String?, wxToken: String?) {
+        public init (loginIp: String, uid: String, loginTime: String, accountType: String, appIdU: String? = nil, associateAccount: String? = nil, nickName: String? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, registerTime: String? = nil, address: String? = nil, cookieHash: String? = nil, loginSource: String? = nil, loginType: String? = nil, referer: String? = nil, jumpUrl: String? = nil, userAgent: String? = nil, xForwardedFor: String? = nil, mouseClickCount: String? = nil, keyboardClickCount: String? = nil, result: String? = nil, reason: String? = nil, loginSpend: String? = nil, macAddress: String? = nil, vendorId: String? = nil, appVersion: String? = nil, imei: String? = nil, businessId: String? = nil, wxSubType: String? = nil, randNum: String? = nil, wxToken: String? = nil) {
             self.loginIp = loginIp
             self.uid = uid
             self.loginTime = loginTime
@@ -277,5 +261,21 @@ extension Lp {
             case rootId = "RootId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 登录保护
+    ///
+    /// 登录保护服务（LoginProtection，LP）针对网站和 APP 的用户登录场景，实时检测是否存在盗号、撞库等恶意登录行为，帮助开发者发现异常登录，降低恶意用户登录给业务带来的风险。
+    @inlinable
+    public func queryLoginProtection(_ input: QueryLoginProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryLoginProtectionResponse > {
+        self.client.execute(action: "QueryLoginProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 登录保护
+    ///
+    /// 登录保护服务（LoginProtection，LP）针对网站和 APP 的用户登录场景，实时检测是否存在盗号、撞库等恶意登录行为，帮助开发者发现异常登录，降低恶意用户登录给业务带来的风险。
+    @inlinable
+    public func queryLoginProtection(_ input: QueryLoginProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLoginProtectionResponse {
+        try await self.client.execute(action: "QueryLoginProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

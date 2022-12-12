@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询平行容器安装命令
-    @inlinable
-    public func describeAgentDaemonSetCmd(_ input: DescribeAgentDaemonSetCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentDaemonSetCmdResponse > {
-        self.client.execute(action: "DescribeAgentDaemonSetCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询平行容器安装命令
-    @inlinable
-    public func describeAgentDaemonSetCmd(_ input: DescribeAgentDaemonSetCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentDaemonSetCmdResponse {
-        try await self.client.execute(action: "DescribeAgentDaemonSetCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAgentDaemonSetCmd请求参数结构体
     public struct DescribeAgentDaemonSetCmdRequest: TCRequestModel {
         /// 是否是腾讯云
@@ -44,7 +32,7 @@ extension Tcss {
         /// 命令有效期，非腾讯云时必填
         public let expireDate: String?
         
-        public init (isCloud: Bool, netType: String, regionCode: String?, vpcId: String?, expireDate: String?) {
+        public init (isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil) {
             self.isCloud = isCloud
             self.netType = netType
             self.regionCode = regionCode
@@ -73,5 +61,17 @@ extension Tcss {
             case command = "Command"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询平行容器安装命令
+    @inlinable
+    public func describeAgentDaemonSetCmd(_ input: DescribeAgentDaemonSetCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentDaemonSetCmdResponse > {
+        self.client.execute(action: "DescribeAgentDaemonSetCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询平行容器安装命令
+    @inlinable
+    public func describeAgentDaemonSetCmd(_ input: DescribeAgentDaemonSetCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentDaemonSetCmdResponse {
+        try await self.client.execute(action: "DescribeAgentDaemonSetCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

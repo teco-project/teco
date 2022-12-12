@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 标记顾客身份类型
-    ///
-    /// 标记到店顾客的身份类型，例如黑名单、白名单等
-    @inlinable
-    public func modifyPersonTagInfo(_ input: ModifyPersonTagInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonTagInfoResponse > {
-        self.client.execute(action: "ModifyPersonTagInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 标记顾客身份类型
-    ///
-    /// 标记到店顾客的身份类型，例如黑名单、白名单等
-    @inlinable
-    public func modifyPersonTagInfo(_ input: ModifyPersonTagInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTagInfoResponse {
-        try await self.client.execute(action: "ModifyPersonTagInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPersonTagInfo请求参数结构体
     public struct ModifyPersonTagInfoRequest: TCRequestModel {
         /// 优mall集团id，通过"指定身份标识获取客户门店列表"接口获取
@@ -63,5 +47,21 @@ extension Youmall {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 标记顾客身份类型
+    ///
+    /// 标记到店顾客的身份类型，例如黑名单、白名单等
+    @inlinable
+    public func modifyPersonTagInfo(_ input: ModifyPersonTagInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonTagInfoResponse > {
+        self.client.execute(action: "ModifyPersonTagInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 标记顾客身份类型
+    ///
+    /// 标记到店顾客的身份类型，例如黑名单、白名单等
+    @inlinable
+    public func modifyPersonTagInfo(_ input: ModifyPersonTagInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTagInfoResponse {
+        try await self.client.execute(action: "ModifyPersonTagInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

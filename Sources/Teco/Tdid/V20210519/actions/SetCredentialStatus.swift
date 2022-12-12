@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 设置凭证链上状态
-    @inlinable
-    public func setCredentialStatus(_ input: SetCredentialStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetCredentialStatusResponse > {
-        self.client.execute(action: "SetCredentialStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置凭证链上状态
-    @inlinable
-    public func setCredentialStatus(_ input: SetCredentialStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCredentialStatusResponse {
-        try await self.client.execute(action: "SetCredentialStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetCredentialStatus请求参数结构体
     public struct SetCredentialStatusRequest: TCRequestModel {
         /// 凭证状态
@@ -49,5 +37,17 @@ extension Tdid {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置凭证链上状态
+    @inlinable
+    public func setCredentialStatus(_ input: SetCredentialStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetCredentialStatusResponse > {
+        self.client.execute(action: "SetCredentialStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置凭证链上状态
+    @inlinable
+    public func setCredentialStatus(_ input: SetCredentialStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCredentialStatusResponse {
+        try await self.client.execute(action: "SetCredentialStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

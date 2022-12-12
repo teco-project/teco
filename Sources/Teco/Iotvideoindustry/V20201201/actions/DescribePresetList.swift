@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取预置位列表
-    @inlinable
-    public func describePresetList(_ input: DescribePresetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePresetListResponse > {
-        self.client.execute(action: "DescribePresetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取预置位列表
-    @inlinable
-    public func describePresetList(_ input: DescribePresetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePresetListResponse {
-        try await self.client.execute(action: "DescribePresetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePresetList请求参数结构体
     public struct DescribePresetListRequest: TCRequestModel {
         /// 视频通道唯一标识
@@ -59,5 +47,17 @@ extension Iotvideoindustry {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取预置位列表
+    @inlinable
+    public func describePresetList(_ input: DescribePresetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePresetListResponse > {
+        self.client.execute(action: "DescribePresetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取预置位列表
+    @inlinable
+    public func describePresetList(_ input: DescribePresetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePresetListResponse {
+        try await self.client.execute(action: "DescribePresetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

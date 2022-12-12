@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 查询产品绑定的CA证书
-    @inlinable
-    public func describeProductCA(_ input: DescribeProductCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductCAResponse > {
-        self.client.execute(action: "DescribeProductCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询产品绑定的CA证书
-    @inlinable
-    public func describeProductCA(_ input: DescribeProductCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductCAResponse {
-        try await self.client.execute(action: "DescribeProductCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProductCA请求参数结构体
     public struct DescribeProductCARequest: TCRequestModel {
         /// 产品ID
@@ -53,5 +41,17 @@ extension Iotcloud {
             case cAs = "CAs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询产品绑定的CA证书
+    @inlinable
+    public func describeProductCA(_ input: DescribeProductCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductCAResponse > {
+        self.client.execute(action: "DescribeProductCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询产品绑定的CA证书
+    @inlinable
+    public func describeProductCA(_ input: DescribeProductCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductCAResponse {
+        try await self.client.execute(action: "DescribeProductCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

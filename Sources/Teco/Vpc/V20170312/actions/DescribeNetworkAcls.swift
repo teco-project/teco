@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询网络ACL列表
-    ///
-    /// 本接口（DescribeNetworkAcls）用于查询网络ACL列表。
-    @inlinable
-    public func describeNetworkAcls(_ input: DescribeNetworkAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkAclsResponse > {
-        self.client.execute(action: "DescribeNetworkAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询网络ACL列表
-    ///
-    /// 本接口（DescribeNetworkAcls）用于查询网络ACL列表。
-    @inlinable
-    public func describeNetworkAcls(_ input: DescribeNetworkAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkAclsResponse {
-        try await self.client.execute(action: "DescribeNetworkAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNetworkAcls请求参数结构体
     public struct DescribeNetworkAclsRequest: TCRequestModel {
         /// 过滤条件，参数不支持同时指定NetworkAclIds和Filters。
@@ -48,7 +32,7 @@ extension Vpc {
         /// 返回数量，默认为20，最小值为1，最大值为100。
         public let limit: UInt64?
         
-        public init (filters: [Filter]?, networkAclIds: [String]?, offset: UInt64?, limit: UInt64?) {
+        public init (filters: [Filter]? = nil, networkAclIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.filters = filters
             self.networkAclIds = networkAclIds
             self.offset = offset
@@ -79,5 +63,21 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询网络ACL列表
+    ///
+    /// 本接口（DescribeNetworkAcls）用于查询网络ACL列表。
+    @inlinable
+    public func describeNetworkAcls(_ input: DescribeNetworkAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkAclsResponse > {
+        self.client.execute(action: "DescribeNetworkAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网络ACL列表
+    ///
+    /// 本接口（DescribeNetworkAcls）用于查询网络ACL列表。
+    @inlinable
+    public func describeNetworkAcls(_ input: DescribeNetworkAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkAclsResponse {
+        try await self.client.execute(action: "DescribeNetworkAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

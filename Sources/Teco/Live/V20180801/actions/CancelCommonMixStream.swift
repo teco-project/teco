@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 取消通用混流
-    ///
-    /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
-    @inlinable
-    public func cancelCommonMixStream(_ input: CancelCommonMixStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelCommonMixStreamResponse > {
-        self.client.execute(action: "CancelCommonMixStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消通用混流
-    ///
-    /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
-    @inlinable
-    public func cancelCommonMixStream(_ input: CancelCommonMixStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCommonMixStreamResponse {
-        try await self.client.execute(action: "CancelCommonMixStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelCommonMixStream请求参数结构体
     public struct CancelCommonMixStreamRequest: TCRequestModel {
         /// 混流会话（申请混流开始到取消混流结束）标识 ID。
@@ -54,5 +38,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消通用混流
+    ///
+    /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
+    @inlinable
+    public func cancelCommonMixStream(_ input: CancelCommonMixStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelCommonMixStreamResponse > {
+        self.client.execute(action: "CancelCommonMixStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消通用混流
+    ///
+    /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
+    @inlinable
+    public func cancelCommonMixStream(_ input: CancelCommonMixStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCommonMixStreamResponse {
+        try await self.client.execute(action: "CancelCommonMixStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

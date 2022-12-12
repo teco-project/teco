@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 直播平台-代理商完税信息录入
-    @inlinable
-    public func createAgentTaxPaymentInfos(_ input: CreateAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAgentTaxPaymentInfosResponse > {
-        self.client.execute(action: "CreateAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播平台-代理商完税信息录入
-    @inlinable
-    public func createAgentTaxPaymentInfos(_ input: CreateAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgentTaxPaymentInfosResponse {
-        try await self.client.execute(action: "CreateAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAgentTaxPaymentInfos请求参数结构体
     public struct CreateAgentTaxPaymentInfosRequest: TCRequestModel {
         /// 代理商ID
@@ -50,7 +38,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
         
-        public init (agentId: String, channel: Int64, type: Int64, rawElectronicCertUrl: String, fileName: String, agentTaxPaymentInfos: [AgentTaxPayment], profile: String?) {
+        public init (agentId: String, channel: Int64, type: Int64, rawElectronicCertUrl: String, fileName: String, agentTaxPaymentInfos: [AgentTaxPayment], profile: String? = nil) {
             self.agentId = agentId
             self.channel = channel
             self.type = type
@@ -83,5 +71,17 @@ extension Cpdp {
             case agentTaxPaymentBatch = "AgentTaxPaymentBatch"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播平台-代理商完税信息录入
+    @inlinable
+    public func createAgentTaxPaymentInfos(_ input: CreateAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAgentTaxPaymentInfosResponse > {
+        self.client.execute(action: "CreateAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-代理商完税信息录入
+    @inlinable
+    public func createAgentTaxPaymentInfos(_ input: CreateAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgentTaxPaymentInfosResponse {
+        try await self.client.execute(action: "CreateAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

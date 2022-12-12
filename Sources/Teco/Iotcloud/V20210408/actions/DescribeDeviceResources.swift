@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取设备资源列表
-    ///
-    /// 本接口（DescribeDeviceResources）用于查询设备资源列表。 
-    @inlinable
-    public func describeDeviceResources(_ input: DescribeDeviceResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceResourcesResponse > {
-        self.client.execute(action: "DescribeDeviceResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备资源列表
-    ///
-    /// 本接口（DescribeDeviceResources）用于查询设备资源列表。 
-    @inlinable
-    public func describeDeviceResources(_ input: DescribeDeviceResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceResourcesResponse {
-        try await self.client.execute(action: "DescribeDeviceResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceResources请求参数结构体
     public struct DescribeDeviceResourcesRequest: TCRequestModel {
         /// 偏移量，Offset从0开始
@@ -51,7 +35,7 @@ extension Iotcloud {
         /// 资源搜索结束时间
         public let endTime: String?
         
-        public init (offset: UInt64, limit: UInt64, productID: String?, deviceName: String?, startTime: String?, endTime: String?) {
+        public init (offset: UInt64, limit: UInt64, productID: String? = nil, deviceName: String? = nil, startTime: String? = nil, endTime: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.productID = productID
@@ -87,5 +71,21 @@ extension Iotcloud {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备资源列表
+    ///
+    /// 本接口（DescribeDeviceResources）用于查询设备资源列表。 
+    @inlinable
+    public func describeDeviceResources(_ input: DescribeDeviceResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceResourcesResponse > {
+        self.client.execute(action: "DescribeDeviceResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备资源列表
+    ///
+    /// 本接口（DescribeDeviceResources）用于查询设备资源列表。 
+    @inlinable
+    public func describeDeviceResources(_ input: DescribeDeviceResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceResourcesResponse {
+        try await self.client.execute(action: "DescribeDeviceResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

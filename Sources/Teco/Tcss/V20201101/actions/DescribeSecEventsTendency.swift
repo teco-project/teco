@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tcss {
-    /// 查询容器运行时安全时间趋势
-    ///
-    /// 查询容器运行时安全事件趋势
-    @inlinable
-    public func describeSecEventsTendency(_ input: DescribeSecEventsTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecEventsTendencyResponse > {
-        self.client.execute(action: "DescribeSecEventsTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器运行时安全时间趋势
-    ///
-    /// 查询容器运行时安全事件趋势
-    @inlinable
-    public func describeSecEventsTendency(_ input: DescribeSecEventsTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecEventsTendencyResponse {
-        try await self.client.execute(action: "DescribeSecEventsTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecEventsTendency请求参数结构体
     public struct DescribeSecEventsTendencyRequest: TCRequestModel {
         /// 开始时间
@@ -66,5 +50,21 @@ extension Tcss {
             case eventTendencySet = "EventTendencySet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器运行时安全时间趋势
+    ///
+    /// 查询容器运行时安全事件趋势
+    @inlinable
+    public func describeSecEventsTendency(_ input: DescribeSecEventsTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecEventsTendencyResponse > {
+        self.client.execute(action: "DescribeSecEventsTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器运行时安全时间趋势
+    ///
+    /// 查询容器运行时安全事件趋势
+    @inlinable
+    public func describeSecEventsTendency(_ input: DescribeSecEventsTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecEventsTendencyResponse {
+        try await self.client.execute(action: "DescribeSecEventsTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

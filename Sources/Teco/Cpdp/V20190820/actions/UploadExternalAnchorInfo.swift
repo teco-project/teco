@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云-上传主播信息
-    @inlinable
-    public func uploadExternalAnchorInfo(_ input: UploadExternalAnchorInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadExternalAnchorInfoResponse > {
-        self.client.execute(action: "UploadExternalAnchorInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云-上传主播信息
-    @inlinable
-    public func uploadExternalAnchorInfo(_ input: UploadExternalAnchorInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadExternalAnchorInfoResponse {
-        try await self.client.execute(action: "UploadExternalAnchorInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadExternalAnchorInfo请求参数结构体
     public struct UploadExternalAnchorInfoRequest: TCRequestModel {
         /// 主播Id
@@ -38,7 +26,7 @@ extension Cpdp {
         /// 身份证反面图片下载链接
         public let idCardReverse: String?
         
-        public init (anchorId: String, idCardFront: String?, idCardReverse: String?) {
+        public init (anchorId: String, idCardFront: String? = nil, idCardReverse: String? = nil) {
             self.anchorId = anchorId
             self.idCardFront = idCardFront
             self.idCardReverse = idCardReverse
@@ -72,5 +60,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云-上传主播信息
+    @inlinable
+    public func uploadExternalAnchorInfo(_ input: UploadExternalAnchorInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadExternalAnchorInfoResponse > {
+        self.client.execute(action: "UploadExternalAnchorInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云-上传主播信息
+    @inlinable
+    public func uploadExternalAnchorInfo(_ input: UploadExternalAnchorInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadExternalAnchorInfoResponse {
+        try await self.client.execute(action: "UploadExternalAnchorInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

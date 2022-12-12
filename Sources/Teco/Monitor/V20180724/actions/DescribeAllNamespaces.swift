@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 查询所有名字空间
-    @inlinable
-    public func describeAllNamespaces(_ input: DescribeAllNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllNamespacesResponse > {
-        self.client.execute(action: "DescribeAllNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询所有名字空间
-    @inlinable
-    public func describeAllNamespaces(_ input: DescribeAllNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllNamespacesResponse {
-        try await self.client.execute(action: "DescribeAllNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAllNamespaces请求参数结构体
     public struct DescribeAllNamespacesRequest: TCRequestModel {
         /// 根据使用场景过滤 目前仅有"ST_ALARM"=告警类型
@@ -41,7 +29,7 @@ extension Monitor {
         /// 根据namespace的Id过滤 不填默认查询所有
         public let ids: [String]?
         
-        public init (sceneType: String, module: String, monitorTypes: [String]?, ids: [String]?) {
+        public init (sceneType: String, module: String, monitorTypes: [String]? = nil, ids: [String]? = nil) {
             self.sceneType = sceneType
             self.module = module
             self.monitorTypes = monitorTypes
@@ -85,5 +73,17 @@ extension Monitor {
             case commonNamespaces = "CommonNamespaces"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询所有名字空间
+    @inlinable
+    public func describeAllNamespaces(_ input: DescribeAllNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllNamespacesResponse > {
+        self.client.execute(action: "DescribeAllNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询所有名字空间
+    @inlinable
+    public func describeAllNamespaces(_ input: DescribeAllNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllNamespacesResponse {
+        try await self.client.execute(action: "DescribeAllNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,30 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 行驶证识别
-    ///
-    /// 本接口支持行驶证主页和副页所有字段的自动定位与识别。
-    /// 行驶证主页：车牌号码、车辆类型、所有人、住址、使用性质、品牌型号、识别代码、发动机号、注册日期、发证日期、发证单位。
-    /// 行驶证副页：号牌号码、档案编号、核定载人数、总质量、整备质量、核定载质量、外廓尺寸、准牵引总质量、备注、检验记录。
-    /// 另外，本接口还支持复印件、翻拍和PS告警功能。
-    /// 默认接口请求频率限制：10次/秒。
-    @inlinable
-    public func vehicleLicenseOCR(_ input: VehicleLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VehicleLicenseOCRResponse > {
-        self.client.execute(action: "VehicleLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 行驶证识别
-    ///
-    /// 本接口支持行驶证主页和副页所有字段的自动定位与识别。
-    /// 行驶证主页：车牌号码、车辆类型、所有人、住址、使用性质、品牌型号、识别代码、发动机号、注册日期、发证日期、发证单位。
-    /// 行驶证副页：号牌号码、档案编号、核定载人数、总质量、整备质量、核定载质量、外廓尺寸、准牵引总质量、备注、检验记录。
-    /// 另外，本接口还支持复印件、翻拍和PS告警功能。
-    /// 默认接口请求频率限制：10次/秒。
-    @inlinable
-    public func vehicleLicenseOCR(_ input: VehicleLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VehicleLicenseOCRResponse {
-        try await self.client.execute(action: "VehicleLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VehicleLicenseOCR请求参数结构体
     public struct VehicleLicenseOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
@@ -55,7 +31,7 @@ extension Ocr {
         /// 默认值为：FRONT。
         public let cardSide: String?
         
-        public init (imageBase64: String?, imageUrl: String?, cardSide: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.cardSide = cardSide
@@ -72,11 +48,11 @@ extension Ocr {
     public struct VehicleLicenseOCRResponse: TCResponseModel {
         /// 行驶证主页正面的识别结果，CardSide 为 FRONT。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let frontInfo: TextVehicleFront
+        public let frontInfo: TextVehicleFront?
         
         /// 行驶证副页正面的识别结果，CardSide 为 BACK。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let backInfo: TextVehicleBack
+        public let backInfo: TextVehicleBack?
         
         /// Code 告警码列表和释义：
         /// -9102 复印件告警
@@ -102,5 +78,29 @@ extension Ocr {
             case recognizeWarnMsg = "RecognizeWarnMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 行驶证识别
+    ///
+    /// 本接口支持行驶证主页和副页所有字段的自动定位与识别。
+    /// 行驶证主页：车牌号码、车辆类型、所有人、住址、使用性质、品牌型号、识别代码、发动机号、注册日期、发证日期、发证单位。
+    /// 行驶证副页：号牌号码、档案编号、核定载人数、总质量、整备质量、核定载质量、外廓尺寸、准牵引总质量、备注、检验记录。
+    /// 另外，本接口还支持复印件、翻拍和PS告警功能。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func vehicleLicenseOCR(_ input: VehicleLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VehicleLicenseOCRResponse > {
+        self.client.execute(action: "VehicleLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 行驶证识别
+    ///
+    /// 本接口支持行驶证主页和副页所有字段的自动定位与识别。
+    /// 行驶证主页：车牌号码、车辆类型、所有人、住址、使用性质、品牌型号、识别代码、发动机号、注册日期、发证日期、发证单位。
+    /// 行驶证副页：号牌号码、档案编号、核定载人数、总质量、整备质量、核定载质量、外廓尺寸、准牵引总质量、备注、检验记录。
+    /// 另外，本接口还支持复印件、翻拍和PS告警功能。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func vehicleLicenseOCR(_ input: VehicleLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VehicleLicenseOCRResponse {
+        try await self.client.execute(action: "VehicleLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

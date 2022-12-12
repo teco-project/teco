@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询后端通道所绑定的API列表
-    @inlinable
-    public func describeUpstreamBindApis(_ input: DescribeUpstreamBindApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUpstreamBindApisResponse > {
-        self.client.execute(action: "DescribeUpstreamBindApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询后端通道所绑定的API列表
-    @inlinable
-    public func describeUpstreamBindApis(_ input: DescribeUpstreamBindApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpstreamBindApisResponse {
-        try await self.client.execute(action: "DescribeUpstreamBindApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUpstreamBindApis请求参数结构体
     public struct DescribeUpstreamBindApisRequest: TCRequestModel {
         /// 分页大小
@@ -41,7 +29,7 @@ extension Apigateway {
         /// ServiceId和ApiId过滤查询
         public let filters: [Filter]?
         
-        public init (limit: UInt64, offset: UInt64, upstreamId: String, filters: [Filter]?) {
+        public init (limit: UInt64, offset: UInt64, upstreamId: String, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.upstreamId = upstreamId
@@ -68,5 +56,17 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询后端通道所绑定的API列表
+    @inlinable
+    public func describeUpstreamBindApis(_ input: DescribeUpstreamBindApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUpstreamBindApisResponse > {
+        self.client.execute(action: "DescribeUpstreamBindApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询后端通道所绑定的API列表
+    @inlinable
+    public func describeUpstreamBindApis(_ input: DescribeUpstreamBindApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpstreamBindApisResponse {
+        try await self.client.execute(action: "DescribeUpstreamBindApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

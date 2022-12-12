@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 获取联盟列表
-    @inlinable
-    public func getConsortiumList(_ input: GetConsortiumListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetConsortiumListResponse > {
-        self.client.execute(action: "GetConsortiumList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取联盟列表
-    @inlinable
-    public func getConsortiumList(_ input: GetConsortiumListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetConsortiumListResponse {
-        try await self.client.execute(action: "GetConsortiumList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetConsortiumList请求参数结构体
     public struct GetConsortiumListRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Tdid {
             case consortiumList = "ConsortiumList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取联盟列表
+    @inlinable
+    public func getConsortiumList(_ input: GetConsortiumListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetConsortiumListResponse > {
+        self.client.execute(action: "GetConsortiumList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取联盟列表
+    @inlinable
+    public func getConsortiumList(_ input: GetConsortiumListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetConsortiumListResponse {
+        try await self.client.execute(action: "GetConsortiumList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

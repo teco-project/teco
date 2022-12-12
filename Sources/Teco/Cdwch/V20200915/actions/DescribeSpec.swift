@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdwch {
-    /// 获取集群规格
-    ///
-    /// 购买页拉取集群的数据节点和zookeeper节点的规格列表
-    @inlinable
-    public func describeSpec(_ input: DescribeSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpecResponse > {
-        self.client.execute(action: "DescribeSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取集群规格
-    ///
-    /// 购买页拉取集群的数据节点和zookeeper节点的规格列表
-    @inlinable
-    public func describeSpec(_ input: DescribeSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecResponse {
-        try await self.client.execute(action: "DescribeSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSpec请求参数结构体
     public struct DescribeSpecRequest: TCRequestModel {
         /// 地域信息，例如"ap-guangzhou-1"
@@ -42,7 +26,7 @@ extension Cdwch {
         /// 是否弹性ck
         public let isElastic: Bool?
         
-        public init (zone: String, payMode: String?, isElastic: Bool?) {
+        public init (zone: String, payMode: String? = nil, isElastic: Bool? = nil) {
             self.zone = zone
             self.payMode = payMode
             self.isElastic = isElastic
@@ -76,5 +60,21 @@ extension Cdwch {
             case attachCBSSpec = "AttachCBSSpec"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取集群规格
+    ///
+    /// 购买页拉取集群的数据节点和zookeeper节点的规格列表
+    @inlinable
+    public func describeSpec(_ input: DescribeSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpecResponse > {
+        self.client.execute(action: "DescribeSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群规格
+    ///
+    /// 购买页拉取集群的数据节点和zookeeper节点的规格列表
+    @inlinable
+    public func describeSpec(_ input: DescribeSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecResponse {
+        try await self.client.execute(action: "DescribeSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

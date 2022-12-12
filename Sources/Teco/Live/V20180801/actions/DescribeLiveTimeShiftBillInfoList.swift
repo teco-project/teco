@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 直播时移计费信息查询
-    ///
-    /// 提供给客户对账，按天统计，维度：推流域名、时移文件时长（累加）、配置天数（不累加）、时移总时长（累加）。
-    @inlinable
-    public func describeLiveTimeShiftBillInfoList(_ input: DescribeLiveTimeShiftBillInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTimeShiftBillInfoListResponse > {
-        self.client.execute(action: "DescribeLiveTimeShiftBillInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播时移计费信息查询
-    ///
-    /// 提供给客户对账，按天统计，维度：推流域名、时移文件时长（累加）、配置天数（不累加）、时移总时长（累加）。
-    @inlinable
-    public func describeLiveTimeShiftBillInfoList(_ input: DescribeLiveTimeShiftBillInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTimeShiftBillInfoListResponse {
-        try await self.client.execute(action: "DescribeLiveTimeShiftBillInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveTimeShiftBillInfoList请求参数结构体
     public struct DescribeLiveTimeShiftBillInfoListRequest: TCRequestModel {
         /// UTC开始时间，支持最近三个月的查询，查询时间最长跨度为一个月。
@@ -48,7 +32,7 @@ extension Live {
         /// 推流域名列表，若不传递此参数，则表示查询总体数据。
         public let pushDomains: [String]?
         
-        public init (startTime: String, endTime: String, pushDomains: [String]?) {
+        public init (startTime: String, endTime: String, pushDomains: [String]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.pushDomains = pushDomains
@@ -73,5 +57,21 @@ extension Live {
             case dataInfoList = "DataInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播时移计费信息查询
+    ///
+    /// 提供给客户对账，按天统计，维度：推流域名、时移文件时长（累加）、配置天数（不累加）、时移总时长（累加）。
+    @inlinable
+    public func describeLiveTimeShiftBillInfoList(_ input: DescribeLiveTimeShiftBillInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTimeShiftBillInfoListResponse > {
+        self.client.execute(action: "DescribeLiveTimeShiftBillInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播时移计费信息查询
+    ///
+    /// 提供给客户对账，按天统计，维度：推流域名、时移文件时长（累加）、配置天数（不累加）、时移总时长（累加）。
+    @inlinable
+    public func describeLiveTimeShiftBillInfoList(_ input: DescribeLiveTimeShiftBillInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTimeShiftBillInfoListResponse {
+        try await self.client.execute(action: "DescribeLiveTimeShiftBillInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

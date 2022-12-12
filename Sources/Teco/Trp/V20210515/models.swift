@@ -96,7 +96,7 @@ extension Trp {
         
         /// 未使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ext: Ext
+        public let ext: Ext?
         
         /// 模板名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -104,7 +104,7 @@ extension Trp {
         
         /// 调度任务
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let job: Job
+        public let job: Job?
         
         enum CodingKeys: String, CodingKey {
             case batchId = "BatchId"
@@ -132,7 +132,7 @@ extension Trp {
         /// 无
         public let code: String?
         
-        public init (code: String?) {
+        public init (code: String? = nil) {
             self.code = code
         }
         
@@ -425,7 +425,7 @@ extension Trp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codeParts: [CodePart]?
         
-        public init (level: UInt64, rate: UInt64, amount: UInt64, customId: String?, codeParts: [CodePart]?) {
+        public init (level: UInt64, rate: UInt64, amount: UInt64, customId: String? = nil, codeParts: [CodePart]? = nil) {
             self.level = level
             self.rate = rate
             self.amount = amount
@@ -462,7 +462,7 @@ extension Trp {
         /// 小程序名称AppName
         public let appName: String?
         
-        public init (headEnabled: Bool?, headTitle: String?, key: String?, appId: String?, appPath: String?, appName: String?) {
+        public init (headEnabled: Bool? = nil, headTitle: String? = nil, key: String? = nil, appId: String? = nil, appPath: String? = nil, appName: String? = nil) {
             self.headEnabled = headEnabled
             self.headTitle = headTitle
             self.key = key
@@ -518,7 +518,7 @@ extension Trp {
         
         /// 预留字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ext: Ext
+        public let ext: Ext?
         
         /// 商户名称
         public let merchantName: String
@@ -543,11 +543,11 @@ extension Trp {
     public struct Quota: TCInputModel, TCOutputModel {
         /// 服务开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let startTime: String
+        public let startTime: String?
         
         /// 服务结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let endTime: String
+        public let endTime: String?
         
         /// 配额ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -593,7 +593,7 @@ extension Trp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let version: String?
         
-        public init (startTime: String, endTime: String, quotaId: UInt64?, corpId: UInt64?, services: [String]?, factoryQuota: Int64?, itemQuota: Int64?, trackQuota: Int64?, saleQuota: Int64?, chainQuota: Int64?, riskQuota: Int64?, trackType: Int64?, version: String?) {
+        public init (startTime: String, endTime: String, quotaId: UInt64? = nil, corpId: UInt64? = nil, services: [String]? = nil, factoryQuota: Int64? = nil, itemQuota: Int64? = nil, trackQuota: Int64? = nil, saleQuota: Int64? = nil, chainQuota: Int64? = nil, riskQuota: Int64? = nil, trackType: Int64? = nil, version: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.quotaId = quotaId
@@ -728,11 +728,11 @@ extension Trp {
         
         /// 上链数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let chainData: ChainData
+        public let chainData: ChainData?
         
         /// 溯源阶段配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let phaseData: PhaseData
+        public let phaseData: PhaseData?
         
         /// 溯源阶段状态 0: 无效, 1: 有效
         /// 注意：此字段可能返回 null，表示取不到有效值。

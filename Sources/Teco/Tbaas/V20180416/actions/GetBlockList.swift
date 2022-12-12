@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 查询区块列表
-    ///
-    /// 查看当前网络下的所有区块列表，分页展示
-    @inlinable
-    public func getBlockList(_ input: GetBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBlockListResponse > {
-        self.client.execute(action: "GetBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询区块列表
-    ///
-    /// 查看当前网络下的所有区块列表，分页展示
-    @inlinable
-    public func getBlockList(_ input: GetBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBlockListResponse {
-        try await self.client.execute(action: "GetBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetBlockList请求参数结构体
     public struct GetBlockListRequest: TCRequestModel {
         /// 模块名称，固定字段：block
@@ -60,7 +44,7 @@ extension Tbaas {
         /// 需要获取的交易数量
         public let limit: UInt64?
         
-        public init (module: String, operation: String, channelId: UInt64, groupId: UInt64, channelName: String, groupName: String, clusterId: String, offset: UInt64?, limit: UInt64?) {
+        public init (module: String, operation: String, channelId: UInt64, groupId: UInt64, channelName: String, groupName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.module = module
             self.operation = operation
             self.channelId = channelId
@@ -101,5 +85,21 @@ extension Tbaas {
             case blockList = "BlockList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询区块列表
+    ///
+    /// 查看当前网络下的所有区块列表，分页展示
+    @inlinable
+    public func getBlockList(_ input: GetBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBlockListResponse > {
+        self.client.execute(action: "GetBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询区块列表
+    ///
+    /// 查看当前网络下的所有区块列表，分页展示
+    @inlinable
+    public func getBlockList(_ input: GetBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBlockListResponse {
+        try await self.client.execute(action: "GetBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

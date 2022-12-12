@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// 获取DDoS攻击源列表
-    @inlinable
-    public func describeDDoSAttackSource(_ input: DescribeDDoSAttackSourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAttackSourceResponse > {
-        self.client.execute(action: "DescribeDDoSAttackSource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DDoS攻击源列表
-    @inlinable
-    public func describeDDoSAttackSource(_ input: DescribeDDoSAttackSourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackSourceResponse {
-        try await self.client.execute(action: "DescribeDDoSAttackSource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSAttackSource请求参数结构体
     public struct DescribeDDoSAttackSourceRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -54,7 +42,7 @@ extension Dayu {
         /// 获取指定资源的特定ip的攻击源，可选
         public let ipList: [String]?
         
-        public init (business: String, id: String, startTime: Date, endTime: Date, limit: UInt64, offset: UInt64, ipList: [String]?) {
+        public init (business: String, id: String, startTime: Date, endTime: Date, limit: UInt64, offset: UInt64, ipList: [String]? = nil) {
             self.business = business
             self.id = id
             self.startTime = startTime
@@ -91,5 +79,17 @@ extension Dayu {
             case attackSourceList = "AttackSourceList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DDoS攻击源列表
+    @inlinable
+    public func describeDDoSAttackSource(_ input: DescribeDDoSAttackSourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAttackSourceResponse > {
+        self.client.execute(action: "DescribeDDoSAttackSource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS攻击源列表
+    @inlinable
+    public func describeDDoSAttackSource(_ input: DescribeDDoSAttackSourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackSourceResponse {
+        try await self.client.execute(action: "DescribeDDoSAttackSource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

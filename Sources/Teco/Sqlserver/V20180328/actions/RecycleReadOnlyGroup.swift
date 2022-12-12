@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 立即回收只读组的资源
-    ///
-    /// 本接口（RecycleReadOnlyGroup）立即回收只读组的资源，只读组占用的vip等资源将立即释放且不可找回。
-    @inlinable
-    public func recycleReadOnlyGroup(_ input: RecycleReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecycleReadOnlyGroupResponse > {
-        self.client.execute(action: "RecycleReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 立即回收只读组的资源
-    ///
-    /// 本接口（RecycleReadOnlyGroup）立即回收只读组的资源，只读组占用的vip等资源将立即释放且不可找回。
-    @inlinable
-    public func recycleReadOnlyGroup(_ input: RecycleReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecycleReadOnlyGroupResponse {
-        try await self.client.execute(action: "RecycleReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecycleReadOnlyGroup请求参数结构体
     public struct RecycleReadOnlyGroupRequest: TCRequestModel {
         /// 主实例的ID
@@ -62,5 +46,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 立即回收只读组的资源
+    ///
+    /// 本接口（RecycleReadOnlyGroup）立即回收只读组的资源，只读组占用的vip等资源将立即释放且不可找回。
+    @inlinable
+    public func recycleReadOnlyGroup(_ input: RecycleReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecycleReadOnlyGroupResponse > {
+        self.client.execute(action: "RecycleReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 立即回收只读组的资源
+    ///
+    /// 本接口（RecycleReadOnlyGroup）立即回收只读组的资源，只读组占用的vip等资源将立即释放且不可找回。
+    @inlinable
+    public func recycleReadOnlyGroup(_ input: RecycleReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecycleReadOnlyGroupResponse {
+        try await self.client.execute(action: "RecycleReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

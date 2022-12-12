@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 修改自定义脚本
-    @inlinable
-    public func modifyUserCmd(_ input: ModifyUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserCmdResponse > {
-        self.client.execute(action: "ModifyUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改自定义脚本
-    @inlinable
-    public func modifyUserCmd(_ input: ModifyUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserCmdResponse {
-        try await self.client.execute(action: "ModifyUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyUserCmd请求参数结构体
     public struct ModifyUserCmdRequest: TCRequestModel {
         /// 待修改的脚本ID
@@ -41,7 +29,7 @@ extension Bm {
         /// 待修改的脚本内容，必须经过base64编码
         public let content: String?
         
-        public init (cmdId: String, alias: String?, osType: String?, content: String?) {
+        public init (cmdId: String, alias: String? = nil, osType: String? = nil, content: String? = nil) {
             self.cmdId = cmdId
             self.alias = alias
             self.osType = osType
@@ -64,5 +52,17 @@ extension Bm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改自定义脚本
+    @inlinable
+    public func modifyUserCmd(_ input: ModifyUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserCmdResponse > {
+        self.client.execute(action: "ModifyUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改自定义脚本
+    @inlinable
+    public func modifyUserCmd(_ input: ModifyUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserCmdResponse {
+        try await self.client.execute(action: "ModifyUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

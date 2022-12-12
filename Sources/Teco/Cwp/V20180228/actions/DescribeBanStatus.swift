@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取阻断按钮状态
-    @inlinable
-    public func describeBanStatus(_ input: DescribeBanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBanStatusResponse > {
-        self.client.execute(action: "DescribeBanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取阻断按钮状态
-    @inlinable
-    public func describeBanStatus(_ input: DescribeBanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanStatusResponse {
-        try await self.client.execute(action: "DescribeBanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBanStatus请求参数结构体
     public struct DescribeBanStatusRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Cwp {
             case showTips = "ShowTips"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取阻断按钮状态
+    @inlinable
+    public func describeBanStatus(_ input: DescribeBanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBanStatusResponse > {
+        self.client.execute(action: "DescribeBanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取阻断按钮状态
+    @inlinable
+    public func describeBanStatus(_ input: DescribeBanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanStatusResponse {
+        try await self.client.execute(action: "DescribeBanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

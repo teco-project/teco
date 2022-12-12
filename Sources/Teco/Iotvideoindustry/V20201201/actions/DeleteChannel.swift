@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 删除指定设备下通道
-    ///
-    /// 本接口用于删除设备下的通道
-    /// 注意： 在线状态的设备不允许删除
-    @inlinable
-    public func deleteChannel(_ input: DeleteChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteChannelResponse > {
-        self.client.execute(action: "DeleteChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除指定设备下通道
-    ///
-    /// 本接口用于删除设备下的通道
-    /// 注意： 在线状态的设备不允许删除
-    @inlinable
-    public func deleteChannel(_ input: DeleteChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteChannelResponse {
-        try await self.client.execute(action: "DeleteChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteChannel请求参数结构体
     public struct DeleteChannelRequest: TCRequestModel {
         /// 设备ID
@@ -60,5 +42,23 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除指定设备下通道
+    ///
+    /// 本接口用于删除设备下的通道
+    /// 注意： 在线状态的设备不允许删除
+    @inlinable
+    public func deleteChannel(_ input: DeleteChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteChannelResponse > {
+        self.client.execute(action: "DeleteChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除指定设备下通道
+    ///
+    /// 本接口用于删除设备下的通道
+    /// 注意： 在线状态的设备不允许删除
+    @inlinable
+    public func deleteChannel(_ input: DeleteChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteChannelResponse {
+        try await self.client.execute(action: "DeleteChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

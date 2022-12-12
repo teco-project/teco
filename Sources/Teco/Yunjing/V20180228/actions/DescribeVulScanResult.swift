@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取漏洞检测结果
-    ///
-    /// 本接口 (DescribeVulScanResult) 用于获取漏洞检测结果。
-    @inlinable
-    public func describeVulScanResult(_ input: DescribeVulScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulScanResultResponse > {
-        self.client.execute(action: "DescribeVulScanResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取漏洞检测结果
-    ///
-    /// 本接口 (DescribeVulScanResult) 用于获取漏洞检测结果。
-    @inlinable
-    public func describeVulScanResult(_ input: DescribeVulScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanResultResponse {
-        try await self.client.execute(action: "DescribeVulScanResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulScanResult请求参数结构体
     public struct DescribeVulScanResultRequest: TCRequestModel {
         public init () {
@@ -65,5 +49,21 @@ extension Yunjing {
             case basicVersionNum = "BasicVersionNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取漏洞检测结果
+    ///
+    /// 本接口 (DescribeVulScanResult) 用于获取漏洞检测结果。
+    @inlinable
+    public func describeVulScanResult(_ input: DescribeVulScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulScanResultResponse > {
+        self.client.execute(action: "DescribeVulScanResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取漏洞检测结果
+    ///
+    /// 本接口 (DescribeVulScanResult) 用于获取漏洞检测结果。
+    @inlinable
+    public func describeVulScanResult(_ input: DescribeVulScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanResultResponse {
+        try await self.client.execute(action: "DescribeVulScanResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 集群的密钥信息
-    @inlinable
-    public func describeClusterSecurity(_ input: DescribeClusterSecurityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterSecurityResponse > {
-        self.client.execute(action: "DescribeClusterSecurity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 集群的密钥信息
-    @inlinable
-    public func describeClusterSecurity(_ input: DescribeClusterSecurityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterSecurityResponse {
-        try await self.client.execute(action: "DescribeClusterSecurity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterSecurity请求参数结构体
     public struct DescribeClusterSecurityRequest: TCRequestModel {
         /// 集群 ID，请填写 查询集群列表 接口中返回的 clusterId 字段
@@ -88,5 +76,17 @@ extension Tke {
             case jnsGwEndpoint = "JnsGwEndpoint"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 集群的密钥信息
+    @inlinable
+    public func describeClusterSecurity(_ input: DescribeClusterSecurityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterSecurityResponse > {
+        self.client.execute(action: "DescribeClusterSecurity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 集群的密钥信息
+    @inlinable
+    public func describeClusterSecurity(_ input: DescribeClusterSecurityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterSecurityResponse {
+        try await self.client.execute(action: "DescribeClusterSecurity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

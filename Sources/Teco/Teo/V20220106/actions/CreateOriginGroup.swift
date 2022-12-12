@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 源站组创建
-    @inlinable
-    public func createOriginGroup(_ input: CreateOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOriginGroupResponse > {
-        self.client.execute(action: "CreateOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 源站组创建
-    @inlinable
-    public func createOriginGroup(_ input: CreateOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOriginGroupResponse {
-        try await self.client.execute(action: "CreateOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOriginGroup请求参数结构体
     public struct CreateOriginGroupRequest: TCRequestModel {
         /// 源站组名称
@@ -50,7 +38,7 @@ extension Teo {
         /// cos：腾讯云COS源站
         public let originType: String?
         
-        public init (originName: String, type: String, record: [OriginRecord], zoneId: String, originType: String?) {
+        public init (originName: String, type: String, record: [OriginRecord], zoneId: String, originType: String? = nil) {
             self.originName = originName
             self.type = type
             self.record = record
@@ -79,5 +67,17 @@ extension Teo {
             case originId = "OriginId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 源站组创建
+    @inlinable
+    public func createOriginGroup(_ input: CreateOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOriginGroupResponse > {
+        self.client.execute(action: "CreateOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 源站组创建
+    @inlinable
+    public func createOriginGroup(_ input: CreateOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOriginGroupResponse {
+        try await self.client.execute(action: "CreateOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

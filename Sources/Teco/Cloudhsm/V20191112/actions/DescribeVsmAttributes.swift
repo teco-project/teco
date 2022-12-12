@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudhsm {
-    /// 获取VSM属性
-    @inlinable
-    public func describeVsmAttributes(_ input: DescribeVsmAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVsmAttributesResponse > {
-        self.client.execute(action: "DescribeVsmAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取VSM属性
-    @inlinable
-    public func describeVsmAttributes(_ input: DescribeVsmAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVsmAttributesResponse {
-        try await self.client.execute(action: "DescribeVsmAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVsmAttributes请求参数结构体
     public struct DescribeVsmAttributesRequest: TCRequestModel {
         /// 资源Id
@@ -153,5 +141,17 @@ extension Cloudhsm {
             case manufacturer = "Manufacturer"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取VSM属性
+    @inlinable
+    public func describeVsmAttributes(_ input: DescribeVsmAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVsmAttributesResponse > {
+        self.client.execute(action: "DescribeVsmAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取VSM属性
+    @inlinable
+    public func describeVsmAttributes(_ input: DescribeVsmAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVsmAttributesResponse {
+        try await self.client.execute(action: "DescribeVsmAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

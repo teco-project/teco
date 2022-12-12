@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 修改用户
-    ///
-    /// 通过用户名或用户 id 冻结用户
-    @inlinable
-    public func modifyUserInfo(_ input: ModifyUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserInfoResponse > {
-        self.client.execute(action: "ModifyUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改用户
-    ///
-    /// 通过用户名或用户 id 冻结用户
-    @inlinable
-    public func modifyUserInfo(_ input: ModifyUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserInfoResponse {
-        try await self.client.execute(action: "ModifyUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyUserInfo请求参数结构体
     public struct ModifyUserInfoRequest: TCRequestModel {
         /// 用户名，长度限制：32个字符。 Username 和 UserId 需选择一个作为搜索条件；如两个条件同时使用则默认使用Username作为搜索条件。
@@ -69,7 +53,7 @@ extension Eiam {
         /// 用户所属的次要组织机构ID列表。
         public let secondaryOrgNodeIdList: [String]?
         
-        public init (userName: String?, displayName: String?, description: String?, userGroupIds: [String]?, userId: String?, phone: String?, expirationTime: String?, password: String?, email: String?, pwdNeedReset: Bool?, orgNodeId: String?, secondaryOrgNodeIdList: [String]?) {
+        public init (userName: String? = nil, displayName: String? = nil, description: String? = nil, userGroupIds: [String]? = nil, userId: String? = nil, phone: String? = nil, expirationTime: String? = nil, password: String? = nil, email: String? = nil, pwdNeedReset: Bool? = nil, orgNodeId: String? = nil, secondaryOrgNodeIdList: [String]? = nil) {
             self.userName = userName
             self.displayName = displayName
             self.description = description
@@ -108,5 +92,21 @@ extension Eiam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改用户
+    ///
+    /// 通过用户名或用户 id 冻结用户
+    @inlinable
+    public func modifyUserInfo(_ input: ModifyUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserInfoResponse > {
+        self.client.execute(action: "ModifyUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改用户
+    ///
+    /// 通过用户名或用户 id 冻结用户
+    @inlinable
+    public func modifyUserInfo(_ input: ModifyUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserInfoResponse {
+        try await self.client.execute(action: "ModifyUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

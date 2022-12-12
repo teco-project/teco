@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询安全日志清理设置详情
-    @inlinable
-    public func describeSecLogCleanSettingInfo(_ input: DescribeSecLogCleanSettingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogCleanSettingInfoResponse > {
-        self.client.execute(action: "DescribeSecLogCleanSettingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全日志清理设置详情
-    @inlinable
-    public func describeSecLogCleanSettingInfo(_ input: DescribeSecLogCleanSettingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogCleanSettingInfoResponse {
-        try await self.client.execute(action: "DescribeSecLogCleanSettingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecLogCleanSettingInfo请求参数结构体
     public struct DescribeSecLogCleanSettingInfoRequest: TCRequestModel {
         public init () {
@@ -53,5 +41,17 @@ extension Tcss {
             case dayLimit = "DayLimit"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全日志清理设置详情
+    @inlinable
+    public func describeSecLogCleanSettingInfo(_ input: DescribeSecLogCleanSettingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogCleanSettingInfoResponse > {
+        self.client.execute(action: "DescribeSecLogCleanSettingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全日志清理设置详情
+    @inlinable
+    public func describeSecLogCleanSettingInfo(_ input: DescribeSecLogCleanSettingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogCleanSettingInfoResponse {
+        try await self.client.execute(action: "DescribeSecLogCleanSettingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

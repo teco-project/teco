@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询只读组列表
-    ///
-    /// 本接口（DescribeReadOnlyGroupList）用于查询只读组列表。
-    @inlinable
-    public func describeReadOnlyGroupList(_ input: DescribeReadOnlyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReadOnlyGroupListResponse > {
-        self.client.execute(action: "DescribeReadOnlyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询只读组列表
-    ///
-    /// 本接口（DescribeReadOnlyGroupList）用于查询只读组列表。
-    @inlinable
-    public func describeReadOnlyGroupList(_ input: DescribeReadOnlyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupListResponse {
-        try await self.client.execute(action: "DescribeReadOnlyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReadOnlyGroupList请求参数结构体
     public struct DescribeReadOnlyGroupListRequest: TCRequestModel {
         /// 主实例ID，格式如：mssql-3l3fgqn7
@@ -57,5 +41,21 @@ extension Sqlserver {
             case readOnlyGroupSet = "ReadOnlyGroupSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询只读组列表
+    ///
+    /// 本接口（DescribeReadOnlyGroupList）用于查询只读组列表。
+    @inlinable
+    public func describeReadOnlyGroupList(_ input: DescribeReadOnlyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReadOnlyGroupListResponse > {
+        self.client.execute(action: "DescribeReadOnlyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询只读组列表
+    ///
+    /// 本接口（DescribeReadOnlyGroupList）用于查询只读组列表。
+    @inlinable
+    public func describeReadOnlyGroupList(_ input: DescribeReadOnlyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupListResponse {
+        try await self.client.execute(action: "DescribeReadOnlyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

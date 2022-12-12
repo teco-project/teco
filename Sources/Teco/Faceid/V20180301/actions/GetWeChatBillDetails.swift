@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Faceid {
-    /// 查询账单明细（微信渠道）
-    ///
-    /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
-    @inlinable
-    public func getWeChatBillDetails(_ input: GetWeChatBillDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetWeChatBillDetailsResponse > {
-        self.client.execute(action: "GetWeChatBillDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询账单明细（微信渠道）
-    ///
-    /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
-    @inlinable
-    public func getWeChatBillDetails(_ input: GetWeChatBillDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetWeChatBillDetailsResponse {
-        try await self.client.execute(action: "GetWeChatBillDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetWeChatBillDetails请求参数结构体
     public struct GetWeChatBillDetailsRequest: TCRequestModel {
         /// 拉取的日期（YYYY-MM-DD）。最大可追溯到365天前。当天6点后才能拉取前一天的数据。
@@ -45,7 +29,7 @@ extension Faceid {
         /// 需要拉取账单详情业务对应的RuleId。不传会返回所有RuleId数据。默认为空字符串。
         public let ruleId: String?
         
-        public init (date: Date, cursor: UInt64, ruleId: String?) {
+        public init (date: Date, cursor: UInt64, ruleId: String? = nil) {
             self.date = date
             self.cursor = cursor
             self.ruleId = ruleId
@@ -78,5 +62,21 @@ extension Faceid {
             case weChatBillDetails = "WeChatBillDetails"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询账单明细（微信渠道）
+    ///
+    /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
+    @inlinable
+    public func getWeChatBillDetails(_ input: GetWeChatBillDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetWeChatBillDetailsResponse > {
+        self.client.execute(action: "GetWeChatBillDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账单明细（微信渠道）
+    ///
+    /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
+    @inlinable
+    public func getWeChatBillDetails(_ input: GetWeChatBillDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetWeChatBillDetailsResponse {
+        try await self.client.execute(action: "GetWeChatBillDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

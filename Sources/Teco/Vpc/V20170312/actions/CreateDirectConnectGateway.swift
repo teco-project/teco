@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建专线网关
-    ///
-    /// 本接口（CreateDirectConnectGateway）用于创建专线网关。
-    @inlinable
-    public func createDirectConnectGateway(_ input: CreateDirectConnectGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDirectConnectGatewayResponse > {
-        self.client.execute(action: "CreateDirectConnectGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建专线网关
-    ///
-    /// 本接口（CreateDirectConnectGateway）用于创建专线网关。
-    @inlinable
-    public func createDirectConnectGateway(_ input: CreateDirectConnectGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectGatewayResponse {
-        try await self.client.execute(action: "CreateDirectConnectGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDirectConnectGateway请求参数结构体
     public struct CreateDirectConnectGatewayRequest: TCRequestModel {
         /// 专线网关名称
@@ -59,7 +43,7 @@ extension Vpc {
         /// 专线网关高可用区容灾组ID
         public let haZoneGroupId: String?
         
-        public init (directConnectGatewayName: String, networkType: String, networkInstanceId: String, gatewayType: String?, modeType: String?, zone: String?, haZoneGroupId: String?) {
+        public init (directConnectGatewayName: String, networkType: String, networkInstanceId: String, gatewayType: String? = nil, modeType: String? = nil, zone: String? = nil, haZoneGroupId: String? = nil) {
             self.directConnectGatewayName = directConnectGatewayName
             self.networkType = networkType
             self.networkInstanceId = networkInstanceId
@@ -92,5 +76,21 @@ extension Vpc {
             case directConnectGateway = "DirectConnectGateway"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建专线网关
+    ///
+    /// 本接口（CreateDirectConnectGateway）用于创建专线网关。
+    @inlinable
+    public func createDirectConnectGateway(_ input: CreateDirectConnectGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDirectConnectGatewayResponse > {
+        self.client.execute(action: "CreateDirectConnectGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建专线网关
+    ///
+    /// 本接口（CreateDirectConnectGateway）用于创建专线网关。
+    @inlinable
+    public func createDirectConnectGateway(_ input: CreateDirectConnectGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectGatewayResponse {
+        try await self.client.execute(action: "CreateDirectConnectGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

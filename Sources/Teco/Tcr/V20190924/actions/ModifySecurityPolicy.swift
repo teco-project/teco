@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 更新实例公网访问白名单
-    @inlinable
-    public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityPolicyResponse > {
-        self.client.execute(action: "ModifySecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新实例公网访问白名单
-    @inlinable
-    public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityPolicyResponse {
-        try await self.client.execute(action: "ModifySecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySecurityPolicy请求参数结构体
     public struct ModifySecurityPolicyRequest: TCRequestModel {
         /// 实例的Id
@@ -68,5 +56,17 @@ extension Tcr {
             case registryId = "RegistryId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新实例公网访问白名单
+    @inlinable
+    public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityPolicyResponse > {
+        self.client.execute(action: "ModifySecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新实例公网访问白名单
+    @inlinable
+    public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityPolicyResponse {
+        try await self.client.execute(action: "ModifySecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

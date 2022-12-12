@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 停止定时任务
-    @inlinable
-    public func abortCronJobs(_ input: AbortCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AbortCronJobsResponse > {
-        self.client.execute(action: "AbortCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止定时任务
-    @inlinable
-    public func abortCronJobs(_ input: AbortCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortCronJobsResponse {
-        try await self.client.execute(action: "AbortCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AbortCronJobs请求参数结构体
     public struct AbortCronJobsRequest: TCRequestModel {
         /// 项目ID
@@ -54,5 +42,17 @@ extension Pts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止定时任务
+    @inlinable
+    public func abortCronJobs(_ input: AbortCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AbortCronJobsResponse > {
+        self.client.execute(action: "AbortCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止定时任务
+    @inlinable
+    public func abortCronJobs(_ input: AbortCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortCronJobsResponse {
+        try await self.client.execute(action: "AbortCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

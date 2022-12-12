@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 创建凭证
-    @inlinable
-    public func createCredential(_ input: CreateCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCredentialResponse > {
-        self.client.execute(action: "CreateCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建凭证
-    @inlinable
-    public func createCredential(_ input: CreateCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
-        try await self.client.execute(action: "CreateCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCredential请求参数结构体
     public struct CreateCredentialRequest: TCRequestModel {
         /// 参数集合，详见示例
@@ -41,7 +29,7 @@ extension Tdid {
         /// 是否未签名
         public let unSigned: Bool?
         
-        public init (functionArg: FunctionArg, transactionArg: TransactionArg, versionCredential: String, unSigned: Bool?) {
+        public init (functionArg: FunctionArg, transactionArg: TransactionArg, versionCredential: String, unSigned: Bool? = nil) {
             self.functionArg = functionArg
             self.transactionArg = transactionArg
             self.versionCredential = versionCredential
@@ -68,5 +56,17 @@ extension Tdid {
             case credentialData = "CredentialData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建凭证
+    @inlinable
+    public func createCredential(_ input: CreateCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCredentialResponse > {
+        self.client.execute(action: "CreateCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建凭证
+    @inlinable
+    public func createCredential(_ input: CreateCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
+        try await self.client.execute(action: "CreateCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

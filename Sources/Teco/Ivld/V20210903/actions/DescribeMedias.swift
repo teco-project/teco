@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Ivld {
-    /// 批量描述媒资文件
-    ///
-    /// 依照输入条件，描述命中的媒资文件信息，包括媒资状态，分辨率，帧率等。
-    /// 请注意，本接口最多支持同时描述**50**个媒资文件
-    /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
-    @inlinable
-    public func describeMedias(_ input: DescribeMediasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMediasResponse > {
-        self.client.execute(action: "DescribeMedias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量描述媒资文件
-    ///
-    /// 依照输入条件，描述命中的媒资文件信息，包括媒资状态，分辨率，帧率等。
-    /// 请注意，本接口最多支持同时描述**50**个媒资文件
-    /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
-    @inlinable
-    public func describeMedias(_ input: DescribeMediasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediasResponse {
-        try await self.client.execute(action: "DescribeMedias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMedias请求参数结构体
     public struct DescribeMediasRequest: TCRequestModel {
         /// 分页序号，从1开始
@@ -44,12 +24,12 @@ extension Ivld {
         public let pageSize: Int64
         
         /// 列举过滤条件，相关限制相见MediaFilter
-        public let mediaFilter: MediaFilter
+        public let mediaFilter: MediaFilter?
         
         /// 返回结果排序信息，By字段只支持CreateTime
-        public let sortBy: SortBy
+        public let sortBy: SortBy?
         
-        public init (pageNumber: Int64, pageSize: Int64, mediaFilter: MediaFilter, sortBy: SortBy) {
+        public init (pageNumber: Int64, pageSize: Int64, mediaFilter: MediaFilter? = nil, sortBy: SortBy? = nil) {
             self.pageNumber = pageNumber
             self.pageSize = pageSize
             self.mediaFilter = mediaFilter
@@ -81,5 +61,25 @@ extension Ivld {
             case mediaInfoSet = "MediaInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量描述媒资文件
+    ///
+    /// 依照输入条件，描述命中的媒资文件信息，包括媒资状态，分辨率，帧率等。
+    /// 请注意，本接口最多支持同时描述**50**个媒资文件
+    /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
+    @inlinable
+    public func describeMedias(_ input: DescribeMediasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMediasResponse > {
+        self.client.execute(action: "DescribeMedias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量描述媒资文件
+    ///
+    /// 依照输入条件，描述命中的媒资文件信息，包括媒资状态，分辨率，帧率等。
+    /// 请注意，本接口最多支持同时描述**50**个媒资文件
+    /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
+    @inlinable
+    public func describeMedias(_ input: DescribeMediasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediasResponse {
+        try await self.client.execute(action: "DescribeMedias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

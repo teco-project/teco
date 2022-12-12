@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 解绑用户上的用户组
-    @inlinable
-    public func unbindWorkGroupsFromUser(_ input: UnbindWorkGroupsFromUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindWorkGroupsFromUserResponse > {
-        self.client.execute(action: "UnbindWorkGroupsFromUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑用户上的用户组
-    @inlinable
-    public func unbindWorkGroupsFromUser(_ input: UnbindWorkGroupsFromUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindWorkGroupsFromUserResponse {
-        try await self.client.execute(action: "UnbindWorkGroupsFromUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindWorkGroupsFromUser请求参数结构体
     public struct UnbindWorkGroupsFromUserRequest: TCRequestModel {
         /// 解绑的工作组Id和用户Id的关联关系
@@ -49,5 +37,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑用户上的用户组
+    @inlinable
+    public func unbindWorkGroupsFromUser(_ input: UnbindWorkGroupsFromUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindWorkGroupsFromUserResponse > {
+        self.client.execute(action: "UnbindWorkGroupsFromUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑用户上的用户组
+    @inlinable
+    public func unbindWorkGroupsFromUser(_ input: UnbindWorkGroupsFromUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindWorkGroupsFromUserResponse {
+        try await self.client.execute(action: "UnbindWorkGroupsFromUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

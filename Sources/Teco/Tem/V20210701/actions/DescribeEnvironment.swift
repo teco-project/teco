@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 获取环境基础信息
-    @inlinable
-    public func describeEnvironment(_ input: DescribeEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentResponse > {
-        self.client.execute(action: "DescribeEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取环境基础信息
-    @inlinable
-    public func describeEnvironment(_ input: DescribeEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentResponse {
-        try await self.client.execute(action: "DescribeEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEnvironment请求参数结构体
     public struct DescribeEnvironmentRequest: TCRequestModel {
         /// 命名空间id
@@ -35,7 +23,7 @@ extension Tem {
         /// 来源Channel
         public let sourceChannel: Int64?
         
-        public init (environmentId: String, sourceChannel: Int64?) {
+        public init (environmentId: String, sourceChannel: Int64? = nil) {
             self.environmentId = environmentId
             self.sourceChannel = sourceChannel
         }
@@ -58,5 +46,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取环境基础信息
+    @inlinable
+    public func describeEnvironment(_ input: DescribeEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentResponse > {
+        self.client.execute(action: "DescribeEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取环境基础信息
+    @inlinable
+    public func describeEnvironment(_ input: DescribeEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentResponse {
+        try await self.client.execute(action: "DescribeEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 检查部署情况
-    @inlinable
-    public func checkDidDeploy(_ input: CheckDidDeployRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckDidDeployResponse > {
-        self.client.execute(action: "CheckDidDeploy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检查部署情况
-    @inlinable
-    public func checkDidDeploy(_ input: CheckDidDeployRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDidDeployResponse {
-        try await self.client.execute(action: "CheckDidDeploy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckDidDeploy请求参数结构体
     public struct CheckDidDeployRequest: TCRequestModel {
         /// 任务ID
@@ -53,5 +41,17 @@ extension Tdid {
             case task = "Task"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检查部署情况
+    @inlinable
+    public func checkDidDeploy(_ input: CheckDidDeployRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckDidDeployResponse > {
+        self.client.execute(action: "CheckDidDeploy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检查部署情况
+    @inlinable
+    public func checkDidDeploy(_ input: CheckDidDeployRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDidDeployResponse {
+        try await self.client.execute(action: "CheckDidDeploy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

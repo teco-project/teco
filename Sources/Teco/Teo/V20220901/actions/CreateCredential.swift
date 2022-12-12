@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 创建凭证
-    ///
-    /// 用于创建COS回源私有凭证
-    @inlinable
-    public func createCredential(_ input: CreateCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCredentialResponse > {
-        self.client.execute(action: "CreateCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建凭证
-    ///
-    /// 用于创建COS回源私有凭证
-    @inlinable
-    public func createCredential(_ input: CreateCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
-        try await self.client.execute(action: "CreateCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCredential请求参数结构体
     public struct CreateCredentialRequest: TCRequestModel {
         public init () {
@@ -45,5 +29,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建凭证
+    ///
+    /// 用于创建COS回源私有凭证
+    @inlinable
+    public func createCredential(_ input: CreateCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCredentialResponse > {
+        self.client.execute(action: "CreateCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建凭证
+    ///
+    /// 用于创建COS回源私有凭证
+    @inlinable
+    public func createCredential(_ input: CreateCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
+        try await self.client.execute(action: "CreateCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

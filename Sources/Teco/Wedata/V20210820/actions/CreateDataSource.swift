@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 数据源管理-创建数据源【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 创建数据源
-    @inlinable
-    public func createDataSource(_ input: CreateDataSourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDataSourceResponse > {
-        self.client.execute(action: "CreateDataSource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 数据源管理-创建数据源【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 创建数据源
-    @inlinable
-    public func createDataSource(_ input: CreateDataSourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataSourceResponse {
-        try await self.client.execute(action: "CreateDataSource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDataSource请求参数结构体
     public struct CreateDataSourceRequest: TCRequestModel {
         /// 数据源名称，在相同SpaceName下，数据源名称不能为空
@@ -86,7 +68,7 @@ extension Wedata {
         /// cos region
         public let cosRegion: String?
         
-        public init (name: String, category: String, type: String, ownerProjectId: String, ownerProjectName: String, ownerProjectIdent: String, bizParams: String?, params: String?, description: String?, display: String?, databaseName: String?, instance: String?, status: UInt64?, clusterId: String?, collect: String?, cosBucket: String?, cosRegion: String?) {
+        public init (name: String, category: String, type: String, ownerProjectId: String, ownerProjectName: String, ownerProjectIdent: String, bizParams: String? = nil, params: String? = nil, description: String? = nil, display: String? = nil, databaseName: String? = nil, instance: String? = nil, status: UInt64? = nil, clusterId: String? = nil, collect: String? = nil, cosBucket: String? = nil, cosRegion: String? = nil) {
             self.name = name
             self.category = category
             self.type = type
@@ -140,5 +122,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 数据源管理-创建数据源【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 创建数据源
+    @inlinable
+    public func createDataSource(_ input: CreateDataSourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDataSourceResponse > {
+        self.client.execute(action: "CreateDataSource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 数据源管理-创建数据源【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 创建数据源
+    @inlinable
+    public func createDataSource(_ input: CreateDataSourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataSourceResponse {
+        try await self.client.execute(action: "CreateDataSource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

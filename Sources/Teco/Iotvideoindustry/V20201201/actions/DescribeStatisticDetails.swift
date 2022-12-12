@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 查询指定统计项详情
-    ///
-    /// 本接口(DescribeStatisticDetails)用于查询指定统计项详情，返回结果按天为单位聚合，支持的最大时间查询范围为31天。
-    @inlinable
-    public func describeStatisticDetails(_ input: DescribeStatisticDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatisticDetailsResponse > {
-        self.client.execute(action: "DescribeStatisticDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询指定统计项详情
-    ///
-    /// 本接口(DescribeStatisticDetails)用于查询指定统计项详情，返回结果按天为单位聚合，支持的最大时间查询范围为31天。
-    @inlinable
-    public func describeStatisticDetails(_ input: DescribeStatisticDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticDetailsResponse {
-        try await self.client.execute(action: "DescribeStatisticDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStatisticDetails请求参数结构体
     public struct DescribeStatisticDetailsRequest: TCRequestModel {
         /// 开始日期，格式【YYYY-MM-DD】
@@ -75,5 +59,21 @@ extension Iotvideoindustry {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询指定统计项详情
+    ///
+    /// 本接口(DescribeStatisticDetails)用于查询指定统计项详情，返回结果按天为单位聚合，支持的最大时间查询范围为31天。
+    @inlinable
+    public func describeStatisticDetails(_ input: DescribeStatisticDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatisticDetailsResponse > {
+        self.client.execute(action: "DescribeStatisticDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指定统计项详情
+    ///
+    /// 本接口(DescribeStatisticDetails)用于查询指定统计项详情，返回结果按天为单位聚合，支持的最大时间查询范围为31天。
+    @inlinable
+    public func describeStatisticDetails(_ input: DescribeStatisticDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticDetailsResponse {
+        try await self.client.execute(action: "DescribeStatisticDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

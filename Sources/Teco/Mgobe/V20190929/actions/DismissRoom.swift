@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mgobe {
-    /// 解散房间
-    ///
-    /// 通过game_id、room_id解散房间
-    @inlinable
-    public func dismissRoom(_ input: DismissRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DismissRoomResponse > {
-        self.client.execute(action: "DismissRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解散房间
-    ///
-    /// 通过game_id、room_id解散房间
-    @inlinable
-    public func dismissRoom(_ input: DismissRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomResponse {
-        try await self.client.execute(action: "DismissRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DismissRoom请求参数结构体
     public struct DismissRoomRequest: TCRequestModel {
         /// 表示游戏资源唯一 ID, 由后台自动分配, 无法修改。
@@ -58,5 +42,21 @@ extension Mgobe {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解散房间
+    ///
+    /// 通过game_id、room_id解散房间
+    @inlinable
+    public func dismissRoom(_ input: DismissRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DismissRoomResponse > {
+        self.client.execute(action: "DismissRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解散房间
+    ///
+    /// 通过game_id、room_id解散房间
+    @inlinable
+    public func dismissRoom(_ input: DismissRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomResponse {
+        try await self.client.execute(action: "DismissRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

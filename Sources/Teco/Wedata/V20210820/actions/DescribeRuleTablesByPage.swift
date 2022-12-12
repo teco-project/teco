@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取表列表
-    @inlinable
-    public func describeRuleTablesByPage(_ input: DescribeRuleTablesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleTablesByPageResponse > {
-        self.client.execute(action: "DescribeRuleTablesByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取表列表
-    @inlinable
-    public func describeRuleTablesByPage(_ input: DescribeRuleTablesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleTablesByPageResponse {
-        try await self.client.execute(action: "DescribeRuleTablesByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRuleTablesByPage请求参数结构体
     public struct DescribeRuleTablesByPageRequest: TCRequestModel {
         /// 项目Id
@@ -44,7 +32,7 @@ extension Wedata {
         /// 排序条件
         public let orderFields: [OrderField]?
         
-        public init (projectId: String?, pageSize: UInt64?, pageNumber: UInt64?, filters: [Filter]?, orderFields: [OrderField]?) {
+        public init (projectId: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil) {
             self.projectId = projectId
             self.pageSize = pageSize
             self.pageNumber = pageNumber
@@ -65,7 +53,7 @@ extension Wedata {
     public struct DescribeRuleTablesByPageResponse: TCResponseModel {
         /// 表列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: RuleGroupPage
+        public let data: RuleGroupPage?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -74,5 +62,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取表列表
+    @inlinable
+    public func describeRuleTablesByPage(_ input: DescribeRuleTablesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleTablesByPageResponse > {
+        self.client.execute(action: "DescribeRuleTablesByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取表列表
+    @inlinable
+    public func describeRuleTablesByPage(_ input: DescribeRuleTablesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleTablesByPageResponse {
+        try await self.client.execute(action: "DescribeRuleTablesByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

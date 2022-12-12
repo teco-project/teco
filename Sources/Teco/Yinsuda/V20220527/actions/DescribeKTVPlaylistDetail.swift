@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yinsuda {
-    /// 获取歌单详情
-    ///
-    /// 根据歌单 Id 获取歌单详情。
-    @inlinable
-    public func describeKTVPlaylistDetail(_ input: DescribeKTVPlaylistDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVPlaylistDetailResponse > {
-        self.client.execute(action: "DescribeKTVPlaylistDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取歌单详情
-    ///
-    /// 根据歌单 Id 获取歌单详情。
-    @inlinable
-    public func describeKTVPlaylistDetail(_ input: DescribeKTVPlaylistDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistDetailResponse {
-        try await self.client.execute(action: "DescribeKTVPlaylistDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKTVPlaylistDetail请求参数结构体
     public struct DescribeKTVPlaylistDetailRequest: TCRequestModel {
         /// 应用名称。
@@ -53,7 +37,7 @@ extension Yinsuda {
         /// <li>Sing：可唱。</li>
         public let rightFilters: [String]?
         
-        public init (appName: String, userId: String, playlistId: String, scrollToken: String?, limit: Int64?, rightFilters: [String]?) {
+        public init (appName: String, userId: String, playlistId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil) {
             self.appName = appName
             self.userId = userId
             self.playlistId = playlistId
@@ -88,5 +72,21 @@ extension Yinsuda {
             case scrollToken = "ScrollToken"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取歌单详情
+    ///
+    /// 根据歌单 Id 获取歌单详情。
+    @inlinable
+    public func describeKTVPlaylistDetail(_ input: DescribeKTVPlaylistDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVPlaylistDetailResponse > {
+        self.client.execute(action: "DescribeKTVPlaylistDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取歌单详情
+    ///
+    /// 根据歌单 Id 获取歌单详情。
+    @inlinable
+    public func describeKTVPlaylistDetail(_ input: DescribeKTVPlaylistDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistDetailResponse {
+        try await self.client.execute(action: "DescribeKTVPlaylistDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 启用设备
-    ///
-    /// 本接口（RunDevice）用于启用设备，可进行批量操作，每次操作最多100台设备。
-    @inlinable
-    public func runDevice(_ input: RunDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunDeviceResponse > {
-        self.client.execute(action: "RunDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启用设备
-    ///
-    /// 本接口（RunDevice）用于启用设备，可进行批量操作，每次操作最多100台设备。
-    @inlinable
-    public func runDevice(_ input: RunDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunDeviceResponse {
-        try await self.client.execute(action: "RunDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RunDevice请求参数结构体
     public struct RunDeviceRequest: TCRequestModel {
         /// TID列表 ≤100
@@ -53,5 +37,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启用设备
+    ///
+    /// 本接口（RunDevice）用于启用设备，可进行批量操作，每次操作最多100台设备。
+    @inlinable
+    public func runDevice(_ input: RunDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunDeviceResponse > {
+        self.client.execute(action: "RunDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启用设备
+    ///
+    /// 本接口（RunDevice）用于启用设备，可进行批量操作，每次操作最多100台设备。
+    @inlinable
+    public func runDevice(_ input: RunDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunDeviceResponse {
+        try await self.client.execute(action: "RunDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 回档集群
-    ///
-    /// 本接口（RollBackCluster）用于回档集群
-    @inlinable
-    public func rollBackCluster(_ input: RollBackClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollBackClusterResponse > {
-        self.client.execute(action: "RollBackCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 回档集群
-    ///
-    /// 本接口（RollBackCluster）用于回档集群
-    @inlinable
-    public func rollBackCluster(_ input: RollBackClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollBackClusterResponse {
-        try await self.client.execute(action: "RollBackCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RollBackCluster请求参数结构体
     public struct RollBackClusterRequest: TCRequestModel {
         /// 集群ID
@@ -54,7 +38,7 @@ extension Cynosdb {
         /// 回档数据库表列表
         public let rollbackTables: [RollbackTable]?
         
-        public init (clusterId: String, rollbackStrategy: String, rollbackId: UInt64, expectTime: String?, expectTimeThresh: UInt64?, rollbackDatabases: [RollbackDatabase]?, rollbackTables: [RollbackTable]?) {
+        public init (clusterId: String, rollbackStrategy: String, rollbackId: UInt64, expectTime: String? = nil, expectTimeThresh: UInt64? = nil, rollbackDatabases: [RollbackDatabase]? = nil, rollbackTables: [RollbackTable]? = nil) {
             self.clusterId = clusterId
             self.rollbackStrategy = rollbackStrategy
             self.rollbackId = rollbackId
@@ -87,5 +71,21 @@ extension Cynosdb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 回档集群
+    ///
+    /// 本接口（RollBackCluster）用于回档集群
+    @inlinable
+    public func rollBackCluster(_ input: RollBackClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollBackClusterResponse > {
+        self.client.execute(action: "RollBackCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 回档集群
+    ///
+    /// 本接口（RollBackCluster）用于回档集群
+    @inlinable
+    public func rollBackCluster(_ input: RollBackClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollBackClusterResponse {
+        try await self.client.execute(action: "RollBackCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

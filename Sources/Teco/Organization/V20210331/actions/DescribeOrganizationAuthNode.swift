@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 获取可创建组织成员的认证主体关系列表
-    @inlinable
-    public func describeOrganizationAuthNode(_ input: DescribeOrganizationAuthNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationAuthNodeResponse > {
-        self.client.execute(action: "DescribeOrganizationAuthNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取可创建组织成员的认证主体关系列表
-    @inlinable
-    public func describeOrganizationAuthNode(_ input: DescribeOrganizationAuthNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationAuthNodeResponse {
-        try await self.client.execute(action: "DescribeOrganizationAuthNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOrganizationAuthNode请求参数结构体
     public struct DescribeOrganizationAuthNodeRequest: TCRequestModel {
         /// 偏移量。
@@ -64,5 +52,17 @@ extension Organization {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取可创建组织成员的认证主体关系列表
+    @inlinable
+    public func describeOrganizationAuthNode(_ input: DescribeOrganizationAuthNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationAuthNodeResponse > {
+        self.client.execute(action: "DescribeOrganizationAuthNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取可创建组织成员的认证主体关系列表
+    @inlinable
+    public func describeOrganizationAuthNode(_ input: DescribeOrganizationAuthNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationAuthNodeResponse {
+        try await self.client.execute(action: "DescribeOrganizationAuthNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

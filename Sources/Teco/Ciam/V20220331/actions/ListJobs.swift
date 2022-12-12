@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ciam {
-    /// 查询任务详情
-    @inlinable
-    public func listJobs(_ input: ListJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListJobsResponse > {
-        self.client.execute(action: "ListJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询任务详情
-    @inlinable
-    public func listJobs(_ input: ListJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListJobsResponse {
-        try await self.client.execute(action: "ListJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListJobs请求参数结构体
     public struct ListJobsRequest: TCRequestModel {
         /// 用户目录ID
@@ -35,7 +23,7 @@ extension Ciam {
         /// 任务ID列表，为空时返回全部任务
         public let jobIds: [String]?
         
-        public init (userStoreId: String, jobIds: [String]?) {
+        public init (userStoreId: String, jobIds: [String]? = nil) {
             self.userStoreId = userStoreId
             self.jobIds = jobIds
         }
@@ -59,5 +47,17 @@ extension Ciam {
             case jobSet = "JobSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询任务详情
+    @inlinable
+    public func listJobs(_ input: ListJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListJobsResponse > {
+        self.client.execute(action: "ListJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务详情
+    @inlinable
+    public func listJobs(_ input: ListJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListJobsResponse {
+        try await self.client.execute(action: "ListJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

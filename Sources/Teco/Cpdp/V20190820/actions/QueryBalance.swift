@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫-余额查询
-    ///
-    /// 子商户余额查询
-    @inlinable
-    public func queryBalance(_ input: QueryBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBalanceResponse > {
-        self.client.execute(action: "QueryBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫-余额查询
-    ///
-    /// 子商户余额查询
-    @inlinable
-    public func queryBalance(_ input: QueryBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBalanceResponse {
-        try await self.client.execute(action: "QueryBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryBalance请求参数结构体
     public struct QueryBalanceRequest: TCRequestModel {
         /// 聚鑫分配的支付主MidasAppId
@@ -59,7 +43,7 @@ extension Cpdp {
         /// 缺省: release
         public let midasEnvironment: String?
         
-        public init (midasAppId: String, subAppId: String, queryFlag: String, pageOffset: String, midasSecretId: String, midasSignature: String, midasEnvironment: String?) {
+        public init (midasAppId: String, subAppId: String, queryFlag: String, pageOffset: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil) {
             self.midasAppId = midasAppId
             self.subAppId = subAppId
             self.queryFlag = queryFlag
@@ -108,5 +92,21 @@ extension Cpdp {
             case queryItems = "QueryItems"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫-余额查询
+    ///
+    /// 子商户余额查询
+    @inlinable
+    public func queryBalance(_ input: QueryBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBalanceResponse > {
+        self.client.execute(action: "QueryBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-余额查询
+    ///
+    /// 子商户余额查询
+    @inlinable
+    public func queryBalance(_ input: QueryBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBalanceResponse {
+        try await self.client.execute(action: "QueryBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

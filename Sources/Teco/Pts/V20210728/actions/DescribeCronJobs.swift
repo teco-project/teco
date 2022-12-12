@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 列出定时任务
-    ///
-    /// 列出定时任务，非必填数组为空就默认全选
-    @inlinable
-    public func describeCronJobs(_ input: DescribeCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCronJobsResponse > {
-        self.client.execute(action: "DescribeCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出定时任务
-    ///
-    /// 列出定时任务，非必填数组为空就默认全选
-    @inlinable
-    public func describeCronJobs(_ input: DescribeCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCronJobsResponse {
-        try await self.client.execute(action: "DescribeCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCronJobs请求参数结构体
     public struct DescribeCronJobsRequest: TCRequestModel {
         /// 项目ID数组
@@ -57,7 +41,7 @@ extension Pts {
         /// 是否正序
         public let ascend: Bool?
         
-        public init (projectIds: [String], offset: Int64?, limit: Int64?, cronJobIds: [String]?, cronJobName: String?, cronJobStatus: [Int64]?, orderBy: String?, ascend: Bool?) {
+        public init (projectIds: [String], offset: Int64? = nil, limit: Int64? = nil, cronJobIds: [String]? = nil, cronJobName: String? = nil, cronJobStatus: [Int64]? = nil, orderBy: String? = nil, ascend: Bool? = nil) {
             self.projectIds = projectIds
             self.offset = offset
             self.limit = limit
@@ -97,5 +81,21 @@ extension Pts {
             case cronJobSet = "CronJobSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出定时任务
+    ///
+    /// 列出定时任务，非必填数组为空就默认全选
+    @inlinable
+    public func describeCronJobs(_ input: DescribeCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCronJobsResponse > {
+        self.client.execute(action: "DescribeCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出定时任务
+    ///
+    /// 列出定时任务，非必填数组为空就默认全选
+    @inlinable
+    public func describeCronJobs(_ input: DescribeCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCronJobsResponse {
+        try await self.client.execute(action: "DescribeCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

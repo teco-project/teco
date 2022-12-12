@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cis {
-    /// 获取容器实例信息
-    ///
-    /// 此接口（DescribeContainerInstance）用于获取容器实例详情
-    @inlinable
-    public func describeContainerInstance(_ input: DescribeContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerInstanceResponse > {
-        self.client.execute(action: "DescribeContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取容器实例信息
-    ///
-    /// 此接口（DescribeContainerInstance）用于获取容器实例详情
-    @inlinable
-    public func describeContainerInstance(_ input: DescribeContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerInstanceResponse {
-        try await self.client.execute(action: "DescribeContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeContainerInstance请求参数结构体
     public struct DescribeContainerInstanceRequest: TCRequestModel {
         /// 容器实例名称
@@ -57,5 +41,21 @@ extension Cis {
             case containerInstance = "ContainerInstance"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取容器实例信息
+    ///
+    /// 此接口（DescribeContainerInstance）用于获取容器实例详情
+    @inlinable
+    public func describeContainerInstance(_ input: DescribeContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerInstanceResponse > {
+        self.client.execute(action: "DescribeContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取容器实例信息
+    ///
+    /// 此接口（DescribeContainerInstance）用于获取容器实例详情
+    @inlinable
+    public func describeContainerInstance(_ input: DescribeContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerInstanceResponse {
+        try await self.client.execute(action: "DescribeContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

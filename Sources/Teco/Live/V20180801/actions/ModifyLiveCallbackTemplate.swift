@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 修改回调模板
-    ///
-    /// 修改回调模板。
-    @inlinable
-    public func modifyLiveCallbackTemplate(_ input: ModifyLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveCallbackTemplateResponse > {
-        self.client.execute(action: "ModifyLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改回调模板
-    ///
-    /// 修改回调模板。
-    @inlinable
-    public func modifyLiveCallbackTemplate(_ input: ModifyLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveCallbackTemplateResponse {
-        try await self.client.execute(action: "ModifyLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLiveCallbackTemplate请求参数结构体
     public struct ModifyLiveCallbackTemplateRequest: TCRequestModel {
         /// DescribeLiveCallbackTemplates接口返回的模板 ID。
@@ -61,7 +45,7 @@ extension Live {
         /// [事件消息通知](/document/product/267/32744)。
         public let callbackKey: String?
         
-        public init (templateId: Int64, templateName: String?, description: String?, streamBeginNotifyUrl: String?, streamEndNotifyUrl: String?, recordNotifyUrl: String?, snapshotNotifyUrl: String?, pornCensorshipNotifyUrl: String?, callbackKey: String?) {
+        public init (templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil) {
             self.templateId = templateId
             self.templateName = templateName
             self.description = description
@@ -94,5 +78,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改回调模板
+    ///
+    /// 修改回调模板。
+    @inlinable
+    public func modifyLiveCallbackTemplate(_ input: ModifyLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveCallbackTemplateResponse > {
+        self.client.execute(action: "ModifyLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改回调模板
+    ///
+    /// 修改回调模板。
+    @inlinable
+    public func modifyLiveCallbackTemplate(_ input: ModifyLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveCallbackTemplateResponse {
+        try await self.client.execute(action: "ModifyLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

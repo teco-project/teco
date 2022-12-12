@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 创建 SDK 登录 Token
-    ///
-    /// 创建 SDK 登录 Token。
-    @inlinable
-    public func createSDKLoginToken(_ input: CreateSDKLoginTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSDKLoginTokenResponse > {
-        self.client.execute(action: "CreateSDKLoginToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建 SDK 登录 Token
-    ///
-    /// 创建 SDK 登录 Token。
-    @inlinable
-    public func createSDKLoginToken(_ input: CreateSDKLoginTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSDKLoginTokenResponse {
-        try await self.client.execute(action: "CreateSDKLoginToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSDKLoginToken请求参数结构体
     public struct CreateSDKLoginTokenRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -70,5 +54,21 @@ extension Ccc {
             case sdkURL = "SdkURL"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建 SDK 登录 Token
+    ///
+    /// 创建 SDK 登录 Token。
+    @inlinable
+    public func createSDKLoginToken(_ input: CreateSDKLoginTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSDKLoginTokenResponse > {
+        self.client.execute(action: "CreateSDKLoginToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建 SDK 登录 Token
+    ///
+    /// 创建 SDK 登录 Token。
+    @inlinable
+    public func createSDKLoginToken(_ input: CreateSDKLoginTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSDKLoginTokenResponse {
+        try await self.client.execute(action: "CreateSDKLoginToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

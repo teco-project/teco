@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 删除弹性公网IP ACL
-    @inlinable
-    public func deleteEipAcl(_ input: DeleteEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEipAclResponse > {
-        self.client.execute(action: "DeleteEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除弹性公网IP ACL
-    @inlinable
-    public func deleteEipAcl(_ input: DeleteEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipAclResponse {
-        try await self.client.execute(action: "DeleteEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteEipAcl请求参数结构体
     public struct DeleteEipAclRequest: TCRequestModel {
         /// 待删除的 ACL 实例 ID
@@ -49,5 +37,17 @@ extension Bmeip {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除弹性公网IP ACL
+    @inlinable
+    public func deleteEipAcl(_ input: DeleteEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEipAclResponse > {
+        self.client.execute(action: "DeleteEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除弹性公网IP ACL
+    @inlinable
+    public func deleteEipAcl(_ input: DeleteEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipAclResponse {
+        try await self.client.execute(action: "DeleteEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

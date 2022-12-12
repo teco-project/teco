@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 创建泳道规则
-    @inlinable
-    public func createLaneRule(_ input: CreateLaneRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLaneRuleResponse > {
-        self.client.execute(action: "CreateLaneRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建泳道规则
-    @inlinable
-    public func createLaneRule(_ input: CreateLaneRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneRuleResponse {
-        try await self.client.execute(action: "CreateLaneRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLaneRule请求参数结构体
     public struct CreateLaneRuleRequest: TCRequestModel {
         /// 泳道规则名称
@@ -47,7 +35,7 @@ extension Tsf {
         /// 无
         public let programIdList: [String]?
         
-        public init (ruleName: String, remark: String, ruleTagList: [LaneRuleTag], ruleTagRelationship: String, laneId: String, programIdList: [String]?) {
+        public init (ruleName: String, remark: String, ruleTagList: [LaneRuleTag], ruleTagRelationship: String, laneId: String, programIdList: [String]? = nil) {
             self.ruleName = ruleName
             self.remark = remark
             self.ruleTagList = ruleTagList
@@ -79,5 +67,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建泳道规则
+    @inlinable
+    public func createLaneRule(_ input: CreateLaneRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLaneRuleResponse > {
+        self.client.execute(action: "CreateLaneRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建泳道规则
+    @inlinable
+    public func createLaneRule(_ input: CreateLaneRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneRuleResponse {
+        try await self.client.execute(action: "CreateLaneRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

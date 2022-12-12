@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiia {
-    /// 检索图片
-    ///
-    /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
-    @inlinable
-    public func searchImage(_ input: SearchImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchImageResponse > {
-        self.client.execute(action: "SearchImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检索图片
-    ///
-    /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
-    @inlinable
-    public func searchImage(_ input: SearchImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchImageResponse {
-        try await self.client.execute(action: "SearchImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SearchImage请求参数结构体
     public struct SearchImageRequest: TCRequestModel {
         /// 图库名称。
@@ -78,7 +62,7 @@ extension Tiia {
         
         /// 图像主体区域。
         /// 若设置主体区域，提取指定的区域进行检索。
-        public let imageRect: ImageRect
+        public let imageRect: ImageRect?
         
         /// 是否需要启用主体识别，默认为**TRUE** 。
         /// • 为**TRUE**时，启用主体识别，返回主体信息。若没有指定**ImageRect**，自动提取最大面积主体进行检索并进行主体识别。主体识别结果可在**Response中**获取。
@@ -98,7 +82,7 @@ extension Tiia {
         /// **<font color=#1E90FF>注意：仅服务类型为商品图像搜索时才生效。</font>**
         public let categoryId: Int64?
         
-        public init (groupId: String, imageUrl: String?, imageBase64: String?, limit: Int64?, offset: Int64?, matchThreshold: Int64?, filter: String?, imageRect: ImageRect, enableDetect: Bool?, categoryId: Int64?) {
+        public init (groupId: String, imageUrl: String? = nil, imageBase64: String? = nil, limit: Int64? = nil, offset: Int64? = nil, matchThreshold: Int64? = nil, filter: String? = nil, imageRect: ImageRect? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil) {
             self.groupId = groupId
             self.imageUrl = imageUrl
             self.imageBase64 = imageBase64
@@ -138,7 +122,7 @@ extension Tiia {
         /// 若启用主体识别且在请求中指定了类目ID或主体区域，以指定的主体为准。若启用主体识别且没有指定，以最大面积主体为准。
         /// **<font color=#1E90FF>注意：仅服务类型为商品图像搜索时才生效。</font>**
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let object: ObjectInfo
+        public let object: ObjectInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -149,5 +133,21 @@ extension Tiia {
             case object = "Object"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检索图片
+    ///
+    /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
+    @inlinable
+    public func searchImage(_ input: SearchImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchImageResponse > {
+        self.client.execute(action: "SearchImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检索图片
+    ///
+    /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
+    @inlinable
+    public func searchImage(_ input: SearchImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchImageResponse {
+        try await self.client.execute(action: "SearchImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

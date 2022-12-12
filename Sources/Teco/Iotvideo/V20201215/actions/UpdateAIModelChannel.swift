@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 更新AI推理结果推送配置
-    @inlinable
-    public func updateAIModelChannel(_ input: UpdateAIModelChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAIModelChannelResponse > {
-        self.client.execute(action: "UpdateAIModelChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新AI推理结果推送配置
-    @inlinable
-    public func updateAIModelChannel(_ input: UpdateAIModelChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAIModelChannelResponse {
-        try await self.client.execute(action: "UpdateAIModelChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateAIModelChannel请求参数结构体
     public struct UpdateAIModelChannelRequest: TCRequestModel {
         /// 模型ID
@@ -53,7 +41,7 @@ extension Iotvideo {
         /// ckafka订阅主题
         public let cKafkaTopic: String?
         
-        public init (modelId: String, productId: String, type: String, forwardAddress: String?, forwardKey: String?, cKafkaRegion: String?, cKafkaInstance: String?, cKafkaTopic: String?) {
+        public init (modelId: String, productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil) {
             self.modelId = modelId
             self.productId = productId
             self.type = type
@@ -89,5 +77,17 @@ extension Iotvideo {
             case forwardKey = "ForwardKey"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新AI推理结果推送配置
+    @inlinable
+    public func updateAIModelChannel(_ input: UpdateAIModelChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAIModelChannelResponse > {
+        self.client.execute(action: "UpdateAIModelChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新AI推理结果推送配置
+    @inlinable
+    public func updateAIModelChannel(_ input: UpdateAIModelChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAIModelChannelResponse {
+        try await self.client.execute(action: "UpdateAIModelChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

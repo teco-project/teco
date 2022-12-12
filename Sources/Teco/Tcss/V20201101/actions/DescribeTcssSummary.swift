@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询容器安全概览信息
-    @inlinable
-    public func describeTcssSummary(_ input: DescribeTcssSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTcssSummaryResponse > {
-        self.client.execute(action: "DescribeTcssSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器安全概览信息
-    @inlinable
-    public func describeTcssSummary(_ input: DescribeTcssSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTcssSummaryResponse {
-        try await self.client.execute(action: "DescribeTcssSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTcssSummary请求参数结构体
     public struct DescribeTcssSummaryRequest: TCRequestModel {
         public init () {
@@ -129,5 +117,17 @@ extension Tcss {
             case vulRiskImageCnt = "VulRiskImageCnt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器安全概览信息
+    @inlinable
+    public func describeTcssSummary(_ input: DescribeTcssSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTcssSummaryResponse > {
+        self.client.execute(action: "DescribeTcssSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器安全概览信息
+    @inlinable
+    public func describeTcssSummary(_ input: DescribeTcssSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTcssSummaryResponse {
+        try await self.client.execute(action: "DescribeTcssSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

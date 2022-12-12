@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 创建CDH实例
-    ///
-    /// 本接口 (AllocateHosts) 用于创建一个或多个指定配置的CDH实例。
-    /// * 当HostChargeType为PREPAID时，必须指定HostChargePrepaid参数。
-    @inlinable
-    public func allocateHosts(_ input: AllocateHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AllocateHostsResponse > {
-        self.client.execute(action: "AllocateHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建CDH实例
-    ///
-    /// 本接口 (AllocateHosts) 用于创建一个或多个指定配置的CDH实例。
-    /// * 当HostChargeType为PREPAID时，必须指定HostChargePrepaid参数。
-    @inlinable
-    public func allocateHosts(_ input: AllocateHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateHostsResponse {
-        try await self.client.execute(action: "AllocateHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AllocateHosts请求参数结构体
     public struct AllocateHostsRequest: TCRequestModel {
         /// 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
@@ -42,7 +24,7 @@ extension Cvm {
         public let clientToken: String?
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
-        public let hostChargePrepaid: ChargePrepaid
+        public let hostChargePrepaid: ChargePrepaid?
         
         /// 实例计费类型。目前仅支持：PREPAID（预付费，即包年包月模式），默认为：'PREPAID'。
         public let hostChargeType: String?
@@ -56,7 +38,7 @@ extension Cvm {
         /// 标签描述列表。通过指定该参数可以同时绑定标签到相应的资源实例。
         public let tagSpecification: [TagSpecification]?
         
-        public init (placement: Placement, clientToken: String?, hostChargePrepaid: ChargePrepaid, hostChargeType: String?, hostType: String?, hostCount: UInt64?, tagSpecification: [TagSpecification]?) {
+        public init (placement: Placement, clientToken: String? = nil, hostChargePrepaid: ChargePrepaid? = nil, hostChargeType: String? = nil, hostType: String? = nil, hostCount: UInt64? = nil, tagSpecification: [TagSpecification]? = nil) {
             self.placement = placement
             self.clientToken = clientToken
             self.hostChargePrepaid = hostChargePrepaid
@@ -89,5 +71,23 @@ extension Cvm {
             case hostIdSet = "HostIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建CDH实例
+    ///
+    /// 本接口 (AllocateHosts) 用于创建一个或多个指定配置的CDH实例。
+    /// * 当HostChargeType为PREPAID时，必须指定HostChargePrepaid参数。
+    @inlinable
+    public func allocateHosts(_ input: AllocateHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AllocateHostsResponse > {
+        self.client.execute(action: "AllocateHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建CDH实例
+    ///
+    /// 本接口 (AllocateHosts) 用于创建一个或多个指定配置的CDH实例。
+    /// * 当HostChargeType为PREPAID时，必须指定HostChargePrepaid参数。
+    @inlinable
+    public func allocateHosts(_ input: AllocateHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateHostsResponse {
+        try await self.client.execute(action: "AllocateHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

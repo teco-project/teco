@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 查询备份下载地址
-    ///
-    /// 此接口（DescribeBackupDownloadUrl）用于查询集群备份文件下载地址。
-    @inlinable
-    public func describeBackupDownloadUrl(_ input: DescribeBackupDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupDownloadUrlResponse > {
-        self.client.execute(action: "DescribeBackupDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询备份下载地址
-    ///
-    /// 此接口（DescribeBackupDownloadUrl）用于查询集群备份文件下载地址。
-    @inlinable
-    public func describeBackupDownloadUrl(_ input: DescribeBackupDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadUrlResponse {
-        try await self.client.execute(action: "DescribeBackupDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBackupDownloadUrl请求参数结构体
     public struct DescribeBackupDownloadUrlRequest: TCRequestModel {
         /// 集群ID
@@ -62,5 +46,21 @@ extension Cynosdb {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询备份下载地址
+    ///
+    /// 此接口（DescribeBackupDownloadUrl）用于查询集群备份文件下载地址。
+    @inlinable
+    public func describeBackupDownloadUrl(_ input: DescribeBackupDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupDownloadUrlResponse > {
+        self.client.execute(action: "DescribeBackupDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份下载地址
+    ///
+    /// 此接口（DescribeBackupDownloadUrl）用于查询集群备份文件下载地址。
+    @inlinable
+    public func describeBackupDownloadUrl(_ input: DescribeBackupDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadUrlResponse {
+        try await self.client.execute(action: "DescribeBackupDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

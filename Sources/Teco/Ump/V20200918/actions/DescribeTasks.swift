@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ump {
-    /// 查询任务列表
-    ///
-    /// 查询集团广场对应的任务列表
-    @inlinable
-    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
-        self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询任务列表
-    ///
-    /// 查询集团广场对应的任务列表
-    @inlinable
-    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
-        try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTasks请求参数结构体
     public struct DescribeTasksRequest: TCRequestModel {
         /// 集团编码
@@ -68,5 +52,21 @@ extension Ump {
             case tasks = "Tasks"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询任务列表
+    ///
+    /// 查询集团广场对应的任务列表
+    @inlinable
+    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
+        self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务列表
+    ///
+    /// 查询集团广场对应的任务列表
+    @inlinable
+    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
+        try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

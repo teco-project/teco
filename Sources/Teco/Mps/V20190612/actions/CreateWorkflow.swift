@@ -15,42 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 创建工作流
-    ///
-    /// 对 COS 中指定 Bucket 的目录下上传的媒体文件，设置处理规则，包括：
-    /// 1. 视频转码（带水印）；
-    /// 2. 视频转动图；
-    /// 3. 对视频按指定时间点截图；
-    /// 4. 对视频采样截图；
-    /// 5. 对视频截图雪碧图；
-    /// 6. 对视频转自适应码流；
-    /// 7. 智能内容审核（鉴黄、敏感信息检测）；
-    /// 8. 智能内容分析（标签、分类、封面、按帧标签）；
-    /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词）。
-    /// 注意：创建工作流成功后是禁用状态，需要手动启用。
-    @inlinable
-    public func createWorkflow(_ input: CreateWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkflowResponse > {
-        self.client.execute(action: "CreateWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建工作流
-    ///
-    /// 对 COS 中指定 Bucket 的目录下上传的媒体文件，设置处理规则，包括：
-    /// 1. 视频转码（带水印）；
-    /// 2. 视频转动图；
-    /// 3. 对视频按指定时间点截图；
-    /// 4. 对视频采样截图；
-    /// 5. 对视频截图雪碧图；
-    /// 6. 对视频转自适应码流；
-    /// 7. 智能内容审核（鉴黄、敏感信息检测）；
-    /// 8. 智能内容分析（标签、分类、封面、按帧标签）；
-    /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词）。
-    /// 注意：创建工作流成功后是禁用状态，需要手动启用。
-    @inlinable
-    public func createWorkflow(_ input: CreateWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkflowResponse {
-        try await self.client.execute(action: "CreateWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateWorkflow请求参数结构体
     public struct CreateWorkflowRequest: TCRequestModel {
         /// 工作流名称，最多128字符。同一个用户该名称唯一。
@@ -60,30 +24,30 @@ extension Mps {
         public let trigger: WorkflowTrigger
         
         /// 媒体处理的文件输出存储位置。不填则继承 Trigger 中的存储位置。
-        public let outputStorage: TaskOutputStorage
+        public let outputStorage: TaskOutputStorage?
         
         /// 媒体处理生成的文件输出的目标目录，如`/movie/201907/`。如果不填，表示与触发文件所在的目录一致。
         public let outputDir: String?
         
         /// 媒体处理类型任务参数。
-        public let mediaProcessTask: MediaProcessTaskInput
+        public let mediaProcessTask: MediaProcessTaskInput?
         
         /// 视频内容审核类型任务参数。
-        public let aiContentReviewTask: AiContentReviewTaskInput
+        public let aiContentReviewTask: AiContentReviewTaskInput?
         
         /// 视频内容分析类型任务参数。
-        public let aiAnalysisTask: AiAnalysisTaskInput
+        public let aiAnalysisTask: AiAnalysisTaskInput?
         
         /// 视频内容识别类型任务参数。
-        public let aiRecognitionTask: AiRecognitionTaskInput
+        public let aiRecognitionTask: AiRecognitionTaskInput?
         
         /// 任务的事件通知配置，不填代表不获取事件通知。
-        public let taskNotifyConfig: TaskNotifyConfig
+        public let taskNotifyConfig: TaskNotifyConfig?
         
         /// 工作流的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
         public let taskPriority: Int64?
         
-        public init (workflowName: String, trigger: WorkflowTrigger, outputStorage: TaskOutputStorage, outputDir: String?, mediaProcessTask: MediaProcessTaskInput, aiContentReviewTask: AiContentReviewTaskInput, aiAnalysisTask: AiAnalysisTaskInput, aiRecognitionTask: AiRecognitionTaskInput, taskNotifyConfig: TaskNotifyConfig, taskPriority: Int64?) {
+        public init (workflowName: String, trigger: WorkflowTrigger, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, taskPriority: Int64? = nil) {
             self.workflowName = workflowName
             self.trigger = trigger
             self.outputStorage = outputStorage
@@ -122,5 +86,41 @@ extension Mps {
             case workflowId = "WorkflowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建工作流
+    ///
+    /// 对 COS 中指定 Bucket 的目录下上传的媒体文件，设置处理规则，包括：
+    /// 1. 视频转码（带水印）；
+    /// 2. 视频转动图；
+    /// 3. 对视频按指定时间点截图；
+    /// 4. 对视频采样截图；
+    /// 5. 对视频截图雪碧图；
+    /// 6. 对视频转自适应码流；
+    /// 7. 智能内容审核（鉴黄、敏感信息检测）；
+    /// 8. 智能内容分析（标签、分类、封面、按帧标签）；
+    /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词）。
+    /// 注意：创建工作流成功后是禁用状态，需要手动启用。
+    @inlinable
+    public func createWorkflow(_ input: CreateWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkflowResponse > {
+        self.client.execute(action: "CreateWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建工作流
+    ///
+    /// 对 COS 中指定 Bucket 的目录下上传的媒体文件，设置处理规则，包括：
+    /// 1. 视频转码（带水印）；
+    /// 2. 视频转动图；
+    /// 3. 对视频按指定时间点截图；
+    /// 4. 对视频采样截图；
+    /// 5. 对视频截图雪碧图；
+    /// 6. 对视频转自适应码流；
+    /// 7. 智能内容审核（鉴黄、敏感信息检测）；
+    /// 8. 智能内容分析（标签、分类、封面、按帧标签）；
+    /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词）。
+    /// 注意：创建工作流成功后是禁用状态，需要手动启用。
+    @inlinable
+    public func createWorkflow(_ input: CreateWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkflowResponse {
+        try await self.client.execute(action: "CreateWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

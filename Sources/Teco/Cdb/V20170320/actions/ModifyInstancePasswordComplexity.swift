@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 修改实例密码复杂度
-    ///
-    /// 本接口(ModifyInstancePasswordComplexity)用于修改云数据库实例的密码复杂度。
-    @inlinable
-    public func modifyInstancePasswordComplexity(_ input: ModifyInstancePasswordComplexityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancePasswordComplexityResponse > {
-        self.client.execute(action: "ModifyInstancePasswordComplexity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例密码复杂度
-    ///
-    /// 本接口(ModifyInstancePasswordComplexity)用于修改云数据库实例的密码复杂度。
-    @inlinable
-    public func modifyInstancePasswordComplexity(_ input: ModifyInstancePasswordComplexityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancePasswordComplexityResponse {
-        try await self.client.execute(action: "ModifyInstancePasswordComplexity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstancePasswordComplexity请求参数结构体
     public struct ModifyInstancePasswordComplexityRequest: TCRequestModel {
         /// 实例短 ID 列表。
@@ -39,7 +23,7 @@ extension Cdb {
         /// 要修改的参数列表。每一个元素是Name和CurrentValue的组合。Name是参数名，CurrentValue是要修改成的值。8.0版本Name支持范围：["validate_password.policy","validate_password.length","validate_password.mixed_case_count","validate_password.number_count","validate_password.special_char_count"],5.6和5.7版本支持范围：["validate_password_policy","validate_password_length","validate_password_mixed_case_count","validate_password_number_count","validate_password_special_char_count"]
         public let paramList: [Parameter]?
         
-        public init (instanceIds: [String], paramList: [Parameter]?) {
+        public init (instanceIds: [String], paramList: [Parameter]? = nil) {
             self.instanceIds = instanceIds
             self.paramList = paramList
         }
@@ -62,5 +46,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例密码复杂度
+    ///
+    /// 本接口(ModifyInstancePasswordComplexity)用于修改云数据库实例的密码复杂度。
+    @inlinable
+    public func modifyInstancePasswordComplexity(_ input: ModifyInstancePasswordComplexityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancePasswordComplexityResponse > {
+        self.client.execute(action: "ModifyInstancePasswordComplexity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例密码复杂度
+    ///
+    /// 本接口(ModifyInstancePasswordComplexity)用于修改云数据库实例的密码复杂度。
+    @inlinable
+    public func modifyInstancePasswordComplexity(_ input: ModifyInstancePasswordComplexityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancePasswordComplexityResponse {
+        try await self.client.execute(action: "ModifyInstancePasswordComplexity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

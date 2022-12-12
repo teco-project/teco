@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取单IP默认告警阈值配置
-    @inlinable
-    public func describeDefaultAlarmThreshold(_ input: DescribeDefaultAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDefaultAlarmThresholdResponse > {
-        self.client.execute(action: "DescribeDefaultAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取单IP默认告警阈值配置
-    @inlinable
-    public func describeDefaultAlarmThreshold(_ input: DescribeDefaultAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultAlarmThresholdResponse {
-        try await self.client.execute(action: "DescribeDefaultAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDefaultAlarmThreshold请求参数结构体
     public struct DescribeDefaultAlarmThresholdRequest: TCRequestModel {
         /// 产品类型，取值[
@@ -64,5 +52,17 @@ extension Antiddos {
             case defaultAlarmConfigList = "DefaultAlarmConfigList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取单IP默认告警阈值配置
+    @inlinable
+    public func describeDefaultAlarmThreshold(_ input: DescribeDefaultAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDefaultAlarmThresholdResponse > {
+        self.client.execute(action: "DescribeDefaultAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单IP默认告警阈值配置
+    @inlinable
+    public func describeDefaultAlarmThreshold(_ input: DescribeDefaultAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultAlarmThresholdResponse {
+        try await self.client.execute(action: "DescribeDefaultAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

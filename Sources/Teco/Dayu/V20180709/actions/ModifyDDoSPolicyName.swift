@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 修改DDoS高级策略名称
-    @inlinable
-    public func modifyDDoSPolicyName(_ input: ModifyDDoSPolicyNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyNameResponse > {
-        self.client.execute(action: "ModifyDDoSPolicyName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改DDoS高级策略名称
-    @inlinable
-    public func modifyDDoSPolicyName(_ input: ModifyDDoSPolicyNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyNameResponse {
-        try await self.client.execute(action: "ModifyDDoSPolicyName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDDoSPolicyName请求参数结构体
     public struct ModifyDDoSPolicyNameRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -63,5 +51,17 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改DDoS高级策略名称
+    @inlinable
+    public func modifyDDoSPolicyName(_ input: ModifyDDoSPolicyNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyNameResponse > {
+        self.client.execute(action: "ModifyDDoSPolicyName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改DDoS高级策略名称
+    @inlinable
+    public func modifyDDoSPolicyName(_ input: ModifyDDoSPolicyNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyNameResponse {
+        try await self.client.execute(action: "ModifyDDoSPolicyName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

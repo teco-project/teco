@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 删除个人版镜像仓库
-    ///
-    /// 用于个人版镜像仓库中删除
-    @inlinable
-    public func deleteRepositoryPersonal(_ input: DeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRepositoryPersonalResponse > {
-        self.client.execute(action: "DeleteRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除个人版镜像仓库
-    ///
-    /// 用于个人版镜像仓库中删除
-    @inlinable
-    public func deleteRepositoryPersonal(_ input: DeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryPersonalResponse {
-        try await self.client.execute(action: "DeleteRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRepositoryPersonal请求参数结构体
     public struct DeleteRepositoryPersonalRequest: TCRequestModel {
         /// 仓库名称
@@ -53,5 +37,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除个人版镜像仓库
+    ///
+    /// 用于个人版镜像仓库中删除
+    @inlinable
+    public func deleteRepositoryPersonal(_ input: DeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRepositoryPersonalResponse > {
+        self.client.execute(action: "DeleteRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除个人版镜像仓库
+    ///
+    /// 用于个人版镜像仓库中删除
+    @inlinable
+    public func deleteRepositoryPersonal(_ input: DeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryPersonalResponse {
+        try await self.client.execute(action: "DeleteRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

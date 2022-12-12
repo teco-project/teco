@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 删除事件记录
-    ///
-    /// 网站防篡改-删除事件记录
-    @inlinable
-    public func deleteWebPageEventLog(_ input: DeleteWebPageEventLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWebPageEventLogResponse > {
-        self.client.execute(action: "DeleteWebPageEventLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除事件记录
-    ///
-    /// 网站防篡改-删除事件记录
-    @inlinable
-    public func deleteWebPageEventLog(_ input: DeleteWebPageEventLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebPageEventLogResponse {
-        try await self.client.execute(action: "DeleteWebPageEventLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteWebPageEventLog请求参数结构体
     public struct DeleteWebPageEventLogRequest: TCRequestModel {
         public init () {
@@ -45,5 +29,21 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除事件记录
+    ///
+    /// 网站防篡改-删除事件记录
+    @inlinable
+    public func deleteWebPageEventLog(_ input: DeleteWebPageEventLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWebPageEventLogResponse > {
+        self.client.execute(action: "DeleteWebPageEventLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除事件记录
+    ///
+    /// 网站防篡改-删除事件记录
+    @inlinable
+    public func deleteWebPageEventLog(_ input: DeleteWebPageEventLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebPageEventLogResponse {
+        try await self.client.execute(action: "DeleteWebPageEventLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

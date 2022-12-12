@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 获取企业组织单元列表
-    @inlinable
-    public func listOrganizationNodes(_ input: ListOrganizationNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListOrganizationNodesResponse > {
-        self.client.execute(action: "ListOrganizationNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取企业组织单元列表
-    @inlinable
-    public func listOrganizationNodes(_ input: ListOrganizationNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationNodesResponse {
-        try await self.client.execute(action: "ListOrganizationNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListOrganizationNodes请求参数结构体
     public struct ListOrganizationNodesRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Organization {
             case nodes = "Nodes"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取企业组织单元列表
+    @inlinable
+    public func listOrganizationNodes(_ input: ListOrganizationNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListOrganizationNodesResponse > {
+        self.client.execute(action: "ListOrganizationNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取企业组织单元列表
+    @inlinable
+    public func listOrganizationNodes(_ input: ListOrganizationNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationNodesResponse {
+        try await self.client.execute(action: "ListOrganizationNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

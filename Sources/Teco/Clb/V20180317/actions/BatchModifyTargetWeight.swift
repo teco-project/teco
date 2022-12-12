@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 批量修改监听器绑定的后端机器的转发权重
-    ///
-    /// BatchModifyTargetWeight 接口用于批量修改负载均衡监听器绑定的后端机器的转发权重。批量修改的资源数量上限为500。本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。<br/>负载均衡的4层和7层监听器支持此接口，传统型负载均衡不支持。
-    @inlinable
-    public func batchModifyTargetWeight(_ input: BatchModifyTargetWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyTargetWeightResponse > {
-        self.client.execute(action: "BatchModifyTargetWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量修改监听器绑定的后端机器的转发权重
-    ///
-    /// BatchModifyTargetWeight 接口用于批量修改负载均衡监听器绑定的后端机器的转发权重。批量修改的资源数量上限为500。本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。<br/>负载均衡的4层和7层监听器支持此接口，传统型负载均衡不支持。
-    @inlinable
-    public func batchModifyTargetWeight(_ input: BatchModifyTargetWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTargetWeightResponse {
-        try await self.client.execute(action: "BatchModifyTargetWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchModifyTargetWeight请求参数结构体
     public struct BatchModifyTargetWeightRequest: TCRequestModel {
         /// 负载均衡实例 ID。
@@ -58,5 +42,21 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量修改监听器绑定的后端机器的转发权重
+    ///
+    /// BatchModifyTargetWeight 接口用于批量修改负载均衡监听器绑定的后端机器的转发权重。批量修改的资源数量上限为500。本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。<br/>负载均衡的4层和7层监听器支持此接口，传统型负载均衡不支持。
+    @inlinable
+    public func batchModifyTargetWeight(_ input: BatchModifyTargetWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyTargetWeightResponse > {
+        self.client.execute(action: "BatchModifyTargetWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量修改监听器绑定的后端机器的转发权重
+    ///
+    /// BatchModifyTargetWeight 接口用于批量修改负载均衡监听器绑定的后端机器的转发权重。批量修改的资源数量上限为500。本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。<br/>负载均衡的4层和7层监听器支持此接口，传统型负载均衡不支持。
+    @inlinable
+    public func batchModifyTargetWeight(_ input: BatchModifyTargetWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTargetWeightResponse {
+        try await self.client.execute(action: "BatchModifyTargetWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

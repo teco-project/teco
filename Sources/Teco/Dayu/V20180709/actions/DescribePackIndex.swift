@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取产品总览
-    ///
-    /// 获取产品总览统计，支持高防包、高防IP、高防IP专业版；
-    @inlinable
-    public func describePackIndex(_ input: DescribePackIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePackIndexResponse > {
-        self.client.execute(action: "DescribePackIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取产品总览
-    ///
-    /// 获取产品总览统计，支持高防包、高防IP、高防IP专业版；
-    @inlinable
-    public func describePackIndex(_ input: DescribePackIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackIndexResponse {
-        try await self.client.execute(action: "DescribePackIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePackIndex请求参数结构体
     public struct DescribePackIndexRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示高防包；net表示高防IP专业版）
@@ -63,5 +47,21 @@ extension Dayu {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取产品总览
+    ///
+    /// 获取产品总览统计，支持高防包、高防IP、高防IP专业版；
+    @inlinable
+    public func describePackIndex(_ input: DescribePackIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePackIndexResponse > {
+        self.client.execute(action: "DescribePackIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品总览
+    ///
+    /// 获取产品总览统计，支持高防包、高防IP、高防IP专业版；
+    @inlinable
+    public func describePackIndex(_ input: DescribePackIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackIndexResponse {
+        try await self.client.execute(action: "DescribePackIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

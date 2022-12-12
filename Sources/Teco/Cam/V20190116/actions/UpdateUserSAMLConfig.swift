@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 修改用户SAML配置
-    @inlinable
-    public func updateUserSAMLConfig(_ input: UpdateUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUserSAMLConfigResponse > {
-        self.client.execute(action: "UpdateUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改用户SAML配置
-    @inlinable
-    public func updateUserSAMLConfig(_ input: UpdateUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserSAMLConfigResponse {
-        try await self.client.execute(action: "UpdateUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateUserSAMLConfig请求参数结构体
     public struct UpdateUserSAMLConfigRequest: TCRequestModel {
         /// 修改的操作类型:enable:启用,disable:禁用,updateSAML:修改元数据文档
@@ -35,7 +23,7 @@ extension Cam {
         /// 元数据文档，需要base64 encode，仅当Operate为updateSAML时需要此参数
         public let samlMetadataDocument: String?
         
-        public init (operate: String, samlMetadataDocument: String?) {
+        public init (operate: String, samlMetadataDocument: String? = nil) {
             self.operate = operate
             self.samlMetadataDocument = samlMetadataDocument
         }
@@ -54,5 +42,17 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改用户SAML配置
+    @inlinable
+    public func updateUserSAMLConfig(_ input: UpdateUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUserSAMLConfigResponse > {
+        self.client.execute(action: "UpdateUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改用户SAML配置
+    @inlinable
+    public func updateUserSAMLConfig(_ input: UpdateUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserSAMLConfigResponse {
+        try await self.client.execute(action: "UpdateUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

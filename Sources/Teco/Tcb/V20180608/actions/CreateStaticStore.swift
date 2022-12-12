@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 创建静态托管资源
-    ///
-    /// 创建静态托管资源，包括COS和CDN，异步任务创建，查看创建结果需要根据DescribeStaticStore接口来查看
-    @inlinable
-    public func createStaticStore(_ input: CreateStaticStoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStaticStoreResponse > {
-        self.client.execute(action: "CreateStaticStore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建静态托管资源
-    ///
-    /// 创建静态托管资源，包括COS和CDN，异步任务创建，查看创建结果需要根据DescribeStaticStore接口来查看
-    @inlinable
-    public func createStaticStore(_ input: CreateStaticStoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStaticStoreResponse {
-        try await self.client.execute(action: "CreateStaticStore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateStaticStore请求参数结构体
     public struct CreateStaticStoreRequest: TCRequestModel {
         /// 环境ID
@@ -39,7 +23,7 @@ extension Tcb {
         /// 是否启用统一域名
         public let enableUnion: Bool?
         
-        public init (envId: String, enableUnion: Bool?) {
+        public init (envId: String, enableUnion: Bool? = nil) {
             self.envId = envId
             self.enableUnion = enableUnion
         }
@@ -63,5 +47,21 @@ extension Tcb {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建静态托管资源
+    ///
+    /// 创建静态托管资源，包括COS和CDN，异步任务创建，查看创建结果需要根据DescribeStaticStore接口来查看
+    @inlinable
+    public func createStaticStore(_ input: CreateStaticStoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStaticStoreResponse > {
+        self.client.execute(action: "CreateStaticStore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建静态托管资源
+    ///
+    /// 创建静态托管资源，包括COS和CDN，异步任务创建，查看创建结果需要根据DescribeStaticStore接口来查看
+    @inlinable
+    public func createStaticStore(_ input: CreateStaticStoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStaticStoreResponse {
+        try await self.client.execute(action: "CreateStaticStore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

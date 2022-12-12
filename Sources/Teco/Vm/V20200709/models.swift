@@ -197,7 +197,7 @@ extension Vm {
         
         /// 结果集
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: AudioResult
+        public let result: AudioResult?
         
         enum CodingKeys: String, CodingKey {
             case offsetTime = "OffsetTime"
@@ -426,7 +426,7 @@ extension Vm {
         
         /// 位置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let location: ImageResultsResultDetailLocation
+        public let location: ImageResultsResultDetailLocation?
         
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -576,12 +576,12 @@ extension Vm {
         public let audioFrequency: Int64?
         
         /// 临时文件存储位置
-        public let segmentOutput: FileOutput
+        public let segmentOutput: FileOutput?
         
         /// 回调地址
         public let callbackUrl: String?
         
-        public init (useOCR: Bool, useAudio: Bool, imageFrequency: Int64?, audioFrequency: Int64?, segmentOutput: FileOutput, callbackUrl: String?) {
+        public init (useOCR: Bool, useAudio: Bool, imageFrequency: Int64? = nil, audioFrequency: Int64? = nil, segmentOutput: FileOutput? = nil, callbackUrl: String? = nil) {
             self.useOCR = useOCR
             self.useAudio = useAudio
             self.imageFrequency = imageFrequency
@@ -649,9 +649,9 @@ extension Vm {
         public let url: String?
         
         /// 腾讯云存储桶信息
-        public let bucketInfo: BucketInfo
+        public let bucketInfo: BucketInfo?
         
-        public init (type: String?, url: String?, bucketInfo: BucketInfo) {
+        public init (type: String? = nil, url: String? = nil, bucketInfo: BucketInfo? = nil) {
             self.type = type
             self.url = url
             self.bucketInfo = bucketInfo
@@ -673,9 +673,9 @@ extension Vm {
         public let name: String?
         
         /// 任务输入
-        public let input: StorageInfo
+        public let input: StorageInfo?
         
-        public init (dataId: String?, name: String?, input: StorageInfo) {
+        public init (dataId: String? = nil, name: String? = nil, input: StorageInfo? = nil) {
             self.dataId = dataId
             self.name = name
             self.input = input

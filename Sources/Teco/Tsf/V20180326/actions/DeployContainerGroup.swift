@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 部署容器应用
-    ///
-    /// 部署容器应用-更新
-    @inlinable
-    public func deployContainerGroup(_ input: DeployContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeployContainerGroupResponse > {
-        self.client.execute(action: "DeployContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 部署容器应用
-    ///
-    /// 部署容器应用-更新
-    @inlinable
-    public func deployContainerGroup(_ input: DeployContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployContainerGroupResponse {
-        try await self.client.execute(action: "DeployContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeployContainerGroup请求参数结构体
     public struct DeployContainerGroupRequest: TCRequestModel {
         /// 部署组ID，分组唯一标识
@@ -106,19 +90,19 @@ extension Tsf {
         public let maxUnavailable: String?
         
         /// 健康检查配置信息，若不指定该参数，则默认不设置健康检查。
-        public let healthCheckSettings: HealthCheckSettings
+        public let healthCheckSettings: HealthCheckSettings?
         
         /// 部署组应用运行的环境变量。若不指定该参数，则默认不设置额外的环境变量。
         public let envs: [Env]?
         
         /// 容器部署组的网络设置。
-        public let serviceSetting: ServiceSetting
+        public let serviceSetting: ServiceSetting?
         
         /// 是否部署 agent 容器。若不指定该参数，则默认不部署 agent 容器。
         public let deployAgent: Bool?
         
         /// 节点调度策略。若不指定改参数，则默认不使用节点调度策略。
-        public let schedulingStrategy: SchedulingStrategy
+        public let schedulingStrategy: SchedulingStrategy?
         
         /// 是否进行增量部署，默认为false，全量更新
         public let incrementalDeployment: Bool?
@@ -127,10 +111,10 @@ extension Tsf {
         public let repoType: String?
         
         /// 数据卷信息-废弃，请用VolumeInfoList参数
-        public let volumeInfos: VolumeInfo
+        public let volumeInfos: VolumeInfo?
         
         /// 数据卷挂载点信息-废弃，请用VolumeMountInfoList参数
-        public let volumeMountInfos: VolumeMountInfo
+        public let volumeMountInfos: VolumeMountInfo?
         
         /// 数据卷信息，list
         public let volumeInfoList: [VolumeInfo]?
@@ -145,9 +129,9 @@ extension Tsf {
         public let agentProfileList: [AgentProfile]?
         
         /// 预热配置信息
-        public let warmupSetting: WarmupSetting
+        public let warmupSetting: WarmupSetting?
         
-        public init (groupId: String, tagName: String, instanceNum: Int64, server: String?, reponame: String?, cpuLimit: String?, memLimit: String?, jvmOpts: String?, cpuRequest: String?, memRequest: String?, doNotStart: Bool?, repoName: String?, updateType: Int64?, updateIvl: Int64?, agentCpuRequest: String?, agentCpuLimit: String?, agentMemRequest: String?, agentMemLimit: String?, istioCpuRequest: String?, istioCpuLimit: String?, istioMemRequest: String?, istioMemLimit: String?, maxSurge: String?, maxUnavailable: String?, healthCheckSettings: HealthCheckSettings, envs: [Env]?, serviceSetting: ServiceSetting, deployAgent: Bool?, schedulingStrategy: SchedulingStrategy, incrementalDeployment: Bool?, repoType: String?, volumeInfos: VolumeInfo, volumeMountInfos: VolumeMountInfo, volumeInfoList: [VolumeInfo]?, volumeMountInfoList: [VolumeMountInfo]?, volumeClean: Bool?, agentProfileList: [AgentProfile]?, warmupSetting: WarmupSetting) {
+        public init (groupId: String, tagName: String, instanceNum: Int64, server: String? = nil, reponame: String? = nil, cpuLimit: String? = nil, memLimit: String? = nil, jvmOpts: String? = nil, cpuRequest: String? = nil, memRequest: String? = nil, doNotStart: Bool? = nil, repoName: String? = nil, updateType: Int64? = nil, updateIvl: Int64? = nil, agentCpuRequest: String? = nil, agentCpuLimit: String? = nil, agentMemRequest: String? = nil, agentMemLimit: String? = nil, istioCpuRequest: String? = nil, istioCpuLimit: String? = nil, istioMemRequest: String? = nil, istioMemLimit: String? = nil, maxSurge: String? = nil, maxUnavailable: String? = nil, healthCheckSettings: HealthCheckSettings? = nil, envs: [Env]? = nil, serviceSetting: ServiceSetting? = nil, deployAgent: Bool? = nil, schedulingStrategy: SchedulingStrategy? = nil, incrementalDeployment: Bool? = nil, repoType: String? = nil, volumeInfos: VolumeInfo? = nil, volumeMountInfos: VolumeMountInfo? = nil, volumeInfoList: [VolumeInfo]? = nil, volumeMountInfoList: [VolumeMountInfo]? = nil, volumeClean: Bool? = nil, agentProfileList: [AgentProfile]? = nil, warmupSetting: WarmupSetting? = nil) {
             self.groupId = groupId
             self.tagName = tagName
             self.instanceNum = instanceNum
@@ -245,5 +229,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 部署容器应用
+    ///
+    /// 部署容器应用-更新
+    @inlinable
+    public func deployContainerGroup(_ input: DeployContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeployContainerGroupResponse > {
+        self.client.execute(action: "DeployContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 部署容器应用
+    ///
+    /// 部署容器应用-更新
+    @inlinable
+    public func deployContainerGroup(_ input: DeployContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployContainerGroupResponse {
+        try await self.client.execute(action: "DeployContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

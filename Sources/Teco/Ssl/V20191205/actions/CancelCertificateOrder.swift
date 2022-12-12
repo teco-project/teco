@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 取消证书订单
-    ///
-    /// 取消证书订单。
-    @inlinable
-    public func cancelCertificateOrder(_ input: CancelCertificateOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelCertificateOrderResponse > {
-        self.client.execute(action: "CancelCertificateOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消证书订单
-    ///
-    /// 取消证书订单。
-    @inlinable
-    public func cancelCertificateOrder(_ input: CancelCertificateOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCertificateOrderResponse {
-        try await self.client.execute(action: "CancelCertificateOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelCertificateOrder请求参数结构体
     public struct CancelCertificateOrderRequest: TCRequestModel {
         /// 证书 ID。
@@ -57,5 +41,21 @@ extension Ssl {
             case certificateId = "CertificateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消证书订单
+    ///
+    /// 取消证书订单。
+    @inlinable
+    public func cancelCertificateOrder(_ input: CancelCertificateOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelCertificateOrderResponse > {
+        self.client.execute(action: "CancelCertificateOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消证书订单
+    ///
+    /// 取消证书订单。
+    @inlinable
+    public func cancelCertificateOrder(_ input: CancelCertificateOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCertificateOrderResponse {
+        try await self.client.execute(action: "CancelCertificateOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

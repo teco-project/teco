@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 删除发布文件
-    ///
-    /// 将对应 sourcemap 文件删除
-    @inlinable
-    public func deleteReleaseFile(_ input: DeleteReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReleaseFileResponse > {
-        self.client.execute(action: "DeleteReleaseFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除发布文件
-    ///
-    /// 将对应 sourcemap 文件删除
-    @inlinable
-    public func deleteReleaseFile(_ input: DeleteReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReleaseFileResponse {
-        try await self.client.execute(action: "DeleteReleaseFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteReleaseFile请求参数结构体
     public struct DeleteReleaseFileRequest: TCRequestModel {
         /// 文件 id
@@ -57,5 +41,21 @@ extension Rum {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除发布文件
+    ///
+    /// 将对应 sourcemap 文件删除
+    @inlinable
+    public func deleteReleaseFile(_ input: DeleteReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReleaseFileResponse > {
+        self.client.execute(action: "DeleteReleaseFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除发布文件
+    ///
+    /// 将对应 sourcemap 文件删除
+    @inlinable
+    public func deleteReleaseFile(_ input: DeleteReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReleaseFileResponse {
+        try await self.client.execute(action: "DeleteReleaseFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

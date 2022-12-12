@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiia {
-    /// 文件封识别
-    ///
-    /// 文件封识别可检测图片中是否包含符合文件封（即文件、单据、资料等的袋状包装）特征的物品，覆盖顺丰快递文件封、文件袋、档案袋等多种文件封类型，可应用于物流行业对文件快递的包装审核等场景。
-    /// >?   
-    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func detectEnvelope(_ input: DetectEnvelopeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectEnvelopeResponse > {
-        self.client.execute(action: "DetectEnvelope", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 文件封识别
-    ///
-    /// 文件封识别可检测图片中是否包含符合文件封（即文件、单据、资料等的袋状包装）特征的物品，覆盖顺丰快递文件封、文件袋、档案袋等多种文件封类型，可应用于物流行业对文件快递的包装审核等场景。
-    /// >?   
-    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func detectEnvelope(_ input: DetectEnvelopeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectEnvelopeResponse {
-        try await self.client.execute(action: "DetectEnvelope", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetectEnvelope请求参数结构体
     public struct DetectEnvelopeRequest: TCRequestModel {
         /// 图片的URL地址。图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。 
@@ -47,7 +27,7 @@ extension Tiia {
         /// **注意：图片需要base64编码，并且要去掉编码头部。
         public let imageBase64: String?
         
-        public init (imageUrl: String?, imageBase64: String?) {
+        public init (imageUrl: String? = nil, imageBase64: String? = nil) {
             self.imageUrl = imageUrl
             self.imageBase64 = imageBase64
         }
@@ -76,5 +56,25 @@ extension Tiia {
             case secondTags = "SecondTags"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 文件封识别
+    ///
+    /// 文件封识别可检测图片中是否包含符合文件封（即文件、单据、资料等的袋状包装）特征的物品，覆盖顺丰快递文件封、文件袋、档案袋等多种文件封类型，可应用于物流行业对文件快递的包装审核等场景。
+    /// >?   
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func detectEnvelope(_ input: DetectEnvelopeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectEnvelopeResponse > {
+        self.client.execute(action: "DetectEnvelope", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 文件封识别
+    ///
+    /// 文件封识别可检测图片中是否包含符合文件封（即文件、单据、资料等的袋状包装）特征的物品，覆盖顺丰快递文件封、文件袋、档案袋等多种文件封类型，可应用于物流行业对文件快递的包装审核等场景。
+    /// >?   
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func detectEnvelope(_ input: DetectEnvelopeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectEnvelopeResponse {
+        try await self.client.execute(action: "DetectEnvelope", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

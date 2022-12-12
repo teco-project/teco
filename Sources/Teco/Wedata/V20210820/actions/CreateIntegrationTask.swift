@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 创建集成任务
-    @inlinable
-    public func createIntegrationTask(_ input: CreateIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIntegrationTaskResponse > {
-        self.client.execute(action: "CreateIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建集成任务
-    @inlinable
-    public func createIntegrationTask(_ input: CreateIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationTaskResponse {
-        try await self.client.execute(action: "CreateIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateIntegrationTask请求参数结构体
     public struct CreateIntegrationTaskRequest: TCRequestModel {
         /// 任务信息
@@ -58,5 +46,17 @@ extension Wedata {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建集成任务
+    @inlinable
+    public func createIntegrationTask(_ input: CreateIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIntegrationTaskResponse > {
+        self.client.execute(action: "CreateIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集成任务
+    @inlinable
+    public func createIntegrationTask(_ input: CreateIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationTaskResponse {
+        try await self.client.execute(action: "CreateIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

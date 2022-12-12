@@ -29,7 +29,7 @@ extension Gaap {
         /// 网络类型，可取值：normal、cn2，默认值为normal
         public let networkType: String?
         
-        public init (accessRegion: String, bandwidth: UInt64, concurrent: UInt64, networkType: String?) {
+        public init (accessRegion: String, bandwidth: UInt64, concurrent: UInt64, networkType: String? = nil) {
             self.accessRegion = accessRegion
             self.bandwidth = bandwidth
             self.concurrent = concurrent
@@ -101,7 +101,7 @@ extension Gaap {
         /// 就近接入区域国家内部编码，编码列表可通过DescribeCountryAreaMapping接口获取。
         public let nationCountryInnerList: [String]?
         
-        public init (regionId: String, nationCountryInnerList: [String]?) {
+        public init (regionId: String, nationCountryInnerList: [String]? = nil) {
             self.regionId = regionId
             self.nationCountryInnerList = nationCountryInnerList
         }
@@ -204,7 +204,7 @@ extension Gaap {
         /// 终端所处在的省份，建议不填写由服务端自动获取，若需填写请填写带有省、市、自治区、特别行政区等后缀的省份中文全称
         public let province: String?
         
-        public init (ctccToken: String?, province: String?) {
+        public init (ctccToken: String? = nil, province: String? = nil) {
             self.ctccToken = ctccToken
             self.province = province
         }
@@ -409,7 +409,7 @@ extension Gaap {
         /// 99：其他
         public let wireless: Int64?
         
-        public init (vendor: Int64?, os: Int64?, deviceId: String?, phoneNum: String?, wireless: Int64?) {
+        public init (vendor: Int64? = nil, os: Int64? = nil, deviceId: String? = nil, phoneNum: String? = nil, wireless: Int64? = nil) {
             self.vendor = vendor
             self.os = os
             self.deviceId = deviceId
@@ -1294,11 +1294,11 @@ extension Gaap {
         
         /// 接入地域详细信息，包括地域ID和地域名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let accessRegionInfo: RegionDetail
+        public let accessRegionInfo: RegionDetail?
         
         /// 源站地域详细信息，包括地域ID和地域名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let realServerRegionInfo: RegionDetail
+        public let realServerRegionInfo: RegionDetail?
         
         /// 通道转发IP
         public let forwardIP: String
@@ -1502,7 +1502,7 @@ extension Gaap {
         /// 源站主备角色：master表示主，slave表示备，该参数必须在监听器打开了源站主备模式。
         public let realServerFailoverRole: String?
         
-        public init (realServerId: String, realServerPort: UInt64, realServerIP: String, realServerWeight: UInt64?, realServerFailoverRole: String?) {
+        public init (realServerId: String, realServerPort: UInt64, realServerIP: String, realServerWeight: UInt64? = nil, realServerFailoverRole: String? = nil) {
             self.realServerId = realServerId
             self.realServerPort = realServerPort
             self.realServerIP = realServerIP
@@ -1616,7 +1616,7 @@ extension Gaap {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let blockInter: UInt64?
         
-        public init (delayLoop: UInt64, connectTimeout: UInt64, path: String, method: String, statusCode: [UInt64], domain: String?, failedCountInter: UInt64?, failedThreshold: UInt64?, blockInter: UInt64?) {
+        public init (delayLoop: UInt64, connectTimeout: UInt64, path: String, method: String, statusCode: [UInt64], domain: String? = nil, failedCountInter: UInt64? = nil, failedThreshold: UInt64? = nil, blockInter: UInt64? = nil) {
             self.delayLoop = delayLoop
             self.connectTimeout = connectTimeout
             self.path = path
@@ -1736,7 +1736,7 @@ extension Gaap {
         /// 所有端口: ALL
         public let destPortRange: String?
         
-        public init (sourceCidr: String, action: String, aliasName: String?, `protocol`: String?, destPortRange: String?) {
+        public init (sourceCidr: String, action: String, aliasName: String? = nil, `protocol`: String? = nil, destPortRange: String? = nil) {
             self.sourceCidr = sourceCidr
             self.action = action
             self.aliasName = aliasName

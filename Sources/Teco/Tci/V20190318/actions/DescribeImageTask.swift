@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 拉取任务详情
-    @inlinable
-    public func describeImageTask(_ input: DescribeImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageTaskResponse > {
-        self.client.execute(action: "DescribeImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取任务详情
-    @inlinable
-    public func describeImageTask(_ input: DescribeImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTaskResponse {
-        try await self.client.execute(action: "DescribeImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageTask请求参数结构体
     public struct DescribeImageTaskRequest: TCRequestModel {
         /// 任务标识符
@@ -38,7 +26,7 @@ extension Tci {
         /// 偏移量
         public let offset: Int64?
         
-        public init (jobId: Int64, limit: Int64?, offset: Int64?) {
+        public init (jobId: Int64, limit: Int64? = nil, offset: Int64? = nil) {
             self.jobId = jobId
             self.limit = limit
             self.offset = offset
@@ -75,5 +63,17 @@ extension Tci {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取任务详情
+    @inlinable
+    public func describeImageTask(_ input: DescribeImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageTaskResponse > {
+        self.client.execute(action: "DescribeImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取任务详情
+    @inlinable
+    public func describeImageTask(_ input: DescribeImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTaskResponse {
+        try await self.client.execute(action: "DescribeImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

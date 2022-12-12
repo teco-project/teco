@@ -15,6 +15,30 @@
 // DO NOT EDIT.
 
 extension As {
+    /// DisableAutoScalingGroup请求参数结构体
+    public struct DisableAutoScalingGroupRequest: TCRequestModel {
+        /// 伸缩组ID
+        public let autoScalingGroupId: String
+        
+        public init (autoScalingGroupId: String) {
+            self.autoScalingGroupId = autoScalingGroupId
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case autoScalingGroupId = "AutoScalingGroupId"
+        }
+    }
+    
+    /// DisableAutoScalingGroup返回参数结构体
+    public struct DisableAutoScalingGroupResponse: TCResponseModel {
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 停用伸缩组
     ///
     /// 本接口（DisableAutoScalingGroup）用于停用指定伸缩组。
@@ -55,29 +79,5 @@ extension As {
     @inlinable
     public func disableAutoScalingGroup(_ input: DisableAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableAutoScalingGroupResponse {
         try await self.client.execute(action: "DisableAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// DisableAutoScalingGroup请求参数结构体
-    public struct DisableAutoScalingGroupRequest: TCRequestModel {
-        /// 伸缩组ID
-        public let autoScalingGroupId: String
-        
-        public init (autoScalingGroupId: String) {
-            self.autoScalingGroupId = autoScalingGroupId
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case autoScalingGroupId = "AutoScalingGroupId"
-        }
-    }
-    
-    /// DisableAutoScalingGroup返回参数结构体
-    public struct DisableAutoScalingGroupResponse: TCResponseModel {
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case requestId = "RequestId"
-        }
     }
 }

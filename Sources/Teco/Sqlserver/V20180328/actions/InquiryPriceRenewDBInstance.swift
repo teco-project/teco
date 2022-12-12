@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询实例续费价格
-    ///
-    /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
-    @inlinable
-    public func inquiryPriceRenewDBInstance(_ input: InquiryPriceRenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRenewDBInstanceResponse > {
-        self.client.execute(action: "InquiryPriceRenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例续费价格
-    ///
-    /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
-    @inlinable
-    public func inquiryPriceRenewDBInstance(_ input: InquiryPriceRenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewDBInstanceResponse {
-        try await self.client.execute(action: "InquiryPriceRenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceRenewDBInstance请求参数结构体
     public struct InquiryPriceRenewDBInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -42,7 +26,7 @@ extension Sqlserver {
         /// 续费周期单位。month表示按月续费，当前只支持按月付费查询价格
         public let timeUnit: String?
         
-        public init (instanceId: String, period: UInt64?, timeUnit: String?) {
+        public init (instanceId: String, period: UInt64? = nil, timeUnit: String? = nil) {
             self.instanceId = instanceId
             self.period = period
             self.timeUnit = timeUnit
@@ -71,5 +55,21 @@ extension Sqlserver {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例续费价格
+    ///
+    /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
+    @inlinable
+    public func inquiryPriceRenewDBInstance(_ input: InquiryPriceRenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRenewDBInstanceResponse > {
+        self.client.execute(action: "InquiryPriceRenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例续费价格
+    ///
+    /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
+    @inlinable
+    public func inquiryPriceRenewDBInstance(_ input: InquiryPriceRenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewDBInstanceResponse {
+        try await self.client.execute(action: "InquiryPriceRenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

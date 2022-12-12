@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 查询实例信息
-    @inlinable
-    public func describeTawInstances(_ input: DescribeTawInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTawInstancesResponse > {
-        self.client.execute(action: "DescribeTawInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例信息
-    @inlinable
-    public func describeTawInstances(_ input: DescribeTawInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTawInstancesResponse {
-        try await self.client.execute(action: "DescribeTawInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTawInstances请求参数结构体
     public struct DescribeTawInstancesRequest: TCRequestModel {
         /// 计费状态
@@ -56,7 +44,7 @@ extension Rum {
         /// 该参数已废弃，demo模式请在Filters内注明
         public let isDemo: Int64?
         
-        public init (chargeStatuses: [Int64]?, chargeTypes: [Int64]?, limit: Int64?, offset: Int64?, areaIds: [Int64]?, instanceStatuses: [Int64]?, instanceIds: [String]?, filters: [Filter]?, isDemo: Int64?) {
+        public init (chargeStatuses: [Int64]? = nil, chargeTypes: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, areaIds: [Int64]? = nil, instanceStatuses: [Int64]? = nil, instanceIds: [String]? = nil, filters: [Filter]? = nil, isDemo: Int64? = nil) {
             self.chargeStatuses = chargeStatuses
             self.chargeTypes = chargeTypes
             self.limit = limit
@@ -97,5 +85,17 @@ extension Rum {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例信息
+    @inlinable
+    public func describeTawInstances(_ input: DescribeTawInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTawInstancesResponse > {
+        self.client.execute(action: "DescribeTawInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例信息
+    @inlinable
+    public func describeTawInstances(_ input: DescribeTawInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTawInstancesResponse {
+        try await self.client.execute(action: "DescribeTawInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

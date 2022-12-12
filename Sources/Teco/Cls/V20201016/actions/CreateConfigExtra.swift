@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 创建特殊采集配置任务
-    ///
-    /// 本接口用于创建特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
-    @inlinable
-    public func createConfigExtra(_ input: CreateConfigExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConfigExtraResponse > {
-        self.client.execute(action: "CreateConfigExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建特殊采集配置任务
-    ///
-    /// 本接口用于创建特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
-    @inlinable
-    public func createConfigExtra(_ input: CreateConfigExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigExtraResponse {
-        try await self.client.execute(action: "CreateConfigExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateConfigExtra请求参数结构体
     public struct CreateConfigExtraRequest: TCRequestModel {
         /// 采集配置规程名称，最长63个字符，只能包含小写字符、数字及分隔符（“-”），且必须以小写字符开头，数字或小写字符结尾
@@ -58,19 +42,19 @@ extension Cls {
         public let topicName: String
         
         /// 节点文件配置信息
-        public let hostFile: HostFileInfo
+        public let hostFile: HostFileInfo?
         
         /// 容器文件路径信息
-        public let containerFile: ContainerFileInfo
+        public let containerFile: ContainerFileInfo?
         
         /// 容器标准输出信息
-        public let containerStdout: ContainerStdoutInfo
+        public let containerStdout: ContainerStdoutInfo?
         
         /// 日志格式化方式
         public let logFormat: String?
         
         /// 提取规则，如果设置了ExtractRule，则必须设置LogType
-        public let extractRule: ExtractRuleInfo
+        public let extractRule: ExtractRuleInfo?
         
         /// 采集黑名单路径列表
         public let excludePaths: [ExcludePathInfo]?
@@ -84,7 +68,7 @@ extension Cls {
         /// 绑定的机器组id列表
         public let groupIds: [String]?
         
-        public init (name: String, topicId: String, type: String, logType: String, configFlag: String, logsetId: String, logsetName: String, topicName: String, hostFile: HostFileInfo, containerFile: ContainerFileInfo, containerStdout: ContainerStdoutInfo, logFormat: String?, extractRule: ExtractRuleInfo, excludePaths: [ExcludePathInfo]?, userDefineRule: String?, groupId: String?, groupIds: [String]?) {
+        public init (name: String, topicId: String, type: String, logType: String, configFlag: String, logsetId: String, logsetName: String, topicName: String, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, groupId: String? = nil, groupIds: [String]? = nil) {
             self.name = name
             self.topicId = topicId
             self.type = type
@@ -137,5 +121,21 @@ extension Cls {
             case configExtraId = "ConfigExtraId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建特殊采集配置任务
+    ///
+    /// 本接口用于创建特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
+    @inlinable
+    public func createConfigExtra(_ input: CreateConfigExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConfigExtraResponse > {
+        self.client.execute(action: "CreateConfigExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建特殊采集配置任务
+    ///
+    /// 本接口用于创建特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
+    @inlinable
+    public func createConfigExtra(_ input: CreateConfigExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigExtraResponse {
+        try await self.client.execute(action: "CreateConfigExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

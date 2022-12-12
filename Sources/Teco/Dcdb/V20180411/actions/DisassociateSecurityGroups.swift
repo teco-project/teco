@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 安全组批量解绑云资源
-    ///
-    /// 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
-    @inlinable
-    public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateSecurityGroupsResponse > {
-        self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全组批量解绑云资源
-    ///
-    /// 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
-    @inlinable
-    public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
-        try await self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisassociateSecurityGroups请求参数结构体
     public struct DisassociateSecurityGroupsRequest: TCRequestModel {
         /// 数据库引擎名称，本接口取值：dcdb。
@@ -63,5 +47,21 @@ extension Dcdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全组批量解绑云资源
+    ///
+    /// 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
+    @inlinable
+    public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateSecurityGroupsResponse > {
+        self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全组批量解绑云资源
+    ///
+    /// 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
+    @inlinable
+    public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
+        try await self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

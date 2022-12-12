@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 删除Vhost
-    @inlinable
-    public func deleteAMQPVHost(_ input: DeleteAMQPVHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAMQPVHostResponse > {
-        self.client.execute(action: "DeleteAMQPVHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除Vhost
-    @inlinable
-    public func deleteAMQPVHost(_ input: DeleteAMQPVHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPVHostResponse {
-        try await self.client.execute(action: "DeleteAMQPVHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAMQPVHost请求参数结构体
     public struct DeleteAMQPVHostRequest: TCRequestModel {
         /// 集群ID
@@ -54,5 +42,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除Vhost
+    @inlinable
+    public func deleteAMQPVHost(_ input: DeleteAMQPVHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAMQPVHostResponse > {
+        self.client.execute(action: "DeleteAMQPVHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Vhost
+    @inlinable
+    public func deleteAMQPVHost(_ input: DeleteAMQPVHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPVHostResponse {
+        try await self.client.execute(action: "DeleteAMQPVHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

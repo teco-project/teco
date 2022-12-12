@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 回调事件查询
-    ///
-    /// 用于查询回调事件。
-    @inlinable
-    public func describeCallbackRecordsList(_ input: DescribeCallbackRecordsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallbackRecordsListResponse > {
-        self.client.execute(action: "DescribeCallbackRecordsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 回调事件查询
-    ///
-    /// 用于查询回调事件。
-    @inlinable
-    public func describeCallbackRecordsList(_ input: DescribeCallbackRecordsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallbackRecordsListResponse {
-        try await self.client.execute(action: "DescribeCallbackRecordsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCallbackRecordsList请求参数结构体
     public struct DescribeCallbackRecordsListRequest: TCRequestModel {
         /// 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
@@ -59,7 +43,7 @@ extension Live {
         /// 0为成功，其他为失败。
         public let resultCode: UInt64?
         
-        public init (startTime: String, endTime: String, streamName: String, pageNum: UInt64, pageSize: UInt64, eventType: UInt64?, resultCode: UInt64?) {
+        public init (startTime: String, endTime: String, streamName: String, pageNum: UInt64, pageSize: UInt64, eventType: UInt64? = nil, resultCode: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.streamName = streamName
@@ -108,5 +92,21 @@ extension Live {
             case totalPage = "TotalPage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 回调事件查询
+    ///
+    /// 用于查询回调事件。
+    @inlinable
+    public func describeCallbackRecordsList(_ input: DescribeCallbackRecordsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallbackRecordsListResponse > {
+        self.client.execute(action: "DescribeCallbackRecordsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 回调事件查询
+    ///
+    /// 用于查询回调事件。
+    @inlinable
+    public func describeCallbackRecordsList(_ input: DescribeCallbackRecordsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallbackRecordsListResponse {
+        try await self.client.execute(action: "DescribeCallbackRecordsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

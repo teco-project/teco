@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 获取黑石负载均衡七层监听器列表信息
-    ///
-    /// 获取黑石负载均衡七层监听器列表信息。
-    @inlinable
-    public func describeL7Listeners(_ input: DescribeL7ListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7ListenersResponse > {
-        self.client.execute(action: "DescribeL7Listeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取黑石负载均衡七层监听器列表信息
-    ///
-    /// 获取黑石负载均衡七层监听器列表信息。
-    @inlinable
-    public func describeL7Listeners(_ input: DescribeL7ListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersResponse {
-        try await self.client.execute(action: "DescribeL7Listeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeL7Listeners请求参数结构体
     public struct DescribeL7ListenersRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -39,7 +23,7 @@ extension Bmlb {
         /// 七层监听器实例ID列表，可通过接口DescribeL7Listeners查询。
         public let listenerIds: [String]?
         
-        public init (loadBalancerId: String, listenerIds: [String]?) {
+        public init (loadBalancerId: String, listenerIds: [String]? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerIds = listenerIds
         }
@@ -62,5 +46,21 @@ extension Bmlb {
             case listenerSet = "ListenerSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取黑石负载均衡七层监听器列表信息
+    ///
+    /// 获取黑石负载均衡七层监听器列表信息。
+    @inlinable
+    public func describeL7Listeners(_ input: DescribeL7ListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7ListenersResponse > {
+        self.client.execute(action: "DescribeL7Listeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取黑石负载均衡七层监听器列表信息
+    ///
+    /// 获取黑石负载均衡七层监听器列表信息。
+    @inlinable
+    public func describeL7Listeners(_ input: DescribeL7ListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersResponse {
+        try await self.client.execute(action: "DescribeL7Listeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

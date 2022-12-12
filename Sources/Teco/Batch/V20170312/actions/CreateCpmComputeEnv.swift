@@ -15,30 +15,18 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 创建黑石计算环境
-    @inlinable
-    public func createCpmComputeEnv(_ input: CreateCpmComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCpmComputeEnvResponse > {
-        self.client.execute(action: "CreateCpmComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建黑石计算环境
-    @inlinable
-    public func createCpmComputeEnv(_ input: CreateCpmComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCpmComputeEnvResponse {
-        try await self.client.execute(action: "CreateCpmComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCpmComputeEnv请求参数结构体
     public struct CreateCpmComputeEnvRequest: TCRequestModel {
         /// 计算环境信息
         public let computeEnv: NamedCpmComputeEnv
         
         /// 位置信息
-        public let placement: Placement
+        public let placement: Placement?
         
         /// 用于保证请求幂等性的字符串。该字符串由用户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         public let clientToken: String?
         
-        public init (computeEnv: NamedCpmComputeEnv, placement: Placement, clientToken: String?) {
+        public init (computeEnv: NamedCpmComputeEnv, placement: Placement? = nil, clientToken: String? = nil) {
             self.computeEnv = computeEnv
             self.placement = placement
             self.clientToken = clientToken
@@ -63,5 +51,17 @@ extension Batch {
             case envId = "EnvId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建黑石计算环境
+    @inlinable
+    public func createCpmComputeEnv(_ input: CreateCpmComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCpmComputeEnvResponse > {
+        self.client.execute(action: "CreateCpmComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建黑石计算环境
+    @inlinable
+    public func createCpmComputeEnv(_ input: CreateCpmComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCpmComputeEnvResponse {
+        try await self.client.execute(action: "CreateCpmComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

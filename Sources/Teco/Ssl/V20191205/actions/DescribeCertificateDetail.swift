@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Ssl {
-    /// 获取证书详情
-    ///
-    /// 获取证书详情。
-    @inlinable
-    public func describeCertificateDetail(_ input: DescribeCertificateDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertificateDetailResponse > {
-        self.client.execute(action: "DescribeCertificateDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取证书详情
-    ///
-    /// 获取证书详情。
-    @inlinable
-    public func describeCertificateDetail(_ input: DescribeCertificateDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateDetailResponse {
-        try await self.client.execute(action: "DescribeCertificateDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCertificateDetail请求参数结构体
     public struct DescribeCertificateDetailRequest: TCRequestModel {
         /// 证书 ID。
@@ -119,7 +103,7 @@ extension Ssl {
         
         /// 证书扩展信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let certificateExtra: CertificateExtra
+        public let certificateExtra: CertificateExtra?
         
         /// 证书私钥
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -131,7 +115,7 @@ extension Ssl {
         
         /// DV 认证信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dvAuthDetail: DvAuthDetail
+        public let dvAuthDetail: DvAuthDetail?
         
         /// 漏洞扫描评估报告。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -171,7 +155,7 @@ extension Ssl {
         
         /// 提交的资料信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let submittedData: SubmittedData
+        public let submittedData: SubmittedData?
         
         /// 是否可续费。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -187,7 +171,7 @@ extension Ssl {
         
         /// 根证书。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rootCert: RootCertificates
+        public let rootCert: RootCertificates?
         
         /// 国密加密证书
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -255,5 +239,21 @@ extension Ssl {
             case encryptAlgorithm = "EncryptAlgorithm"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取证书详情
+    ///
+    /// 获取证书详情。
+    @inlinable
+    public func describeCertificateDetail(_ input: DescribeCertificateDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertificateDetailResponse > {
+        self.client.execute(action: "DescribeCertificateDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取证书详情
+    ///
+    /// 获取证书详情。
+    @inlinable
+    public func describeCertificateDetail(_ input: DescribeCertificateDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateDetailResponse {
+        try await self.client.execute(action: "DescribeCertificateDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 创建边缘计算ECM机器
-    @inlinable
-    public func createECMInstances(_ input: CreateECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateECMInstancesResponse > {
-        self.client.execute(action: "CreateECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建边缘计算ECM机器
-    @inlinable
-    public func createECMInstances(_ input: CreateECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateECMInstancesResponse {
-        try await self.client.execute(action: "CreateECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateECMInstances请求参数结构体
     public struct CreateECMInstancesRequest: TCRequestModel {
         /// 集群id
@@ -54,7 +42,7 @@ extension Tke {
         public let hostName: String?
         
         /// 增强服务，包括云镜和云监控
-        public let enhancedService: ECMEnhancedService
+        public let enhancedService: ECMEnhancedService?
         
         /// 用户自定义脚本
         public let userData: String?
@@ -65,7 +53,7 @@ extension Tke {
         /// 实例所属安全组
         public let securityGroupIds: [String]?
         
-        public init (clusterID: String, moduleId: String, zoneInstanceCountISPSet: [ECMZoneInstanceCountISP], password: String?, internetMaxBandwidthOut: Int64?, imageId: String?, instanceName: String?, hostName: String?, enhancedService: ECMEnhancedService, userData: String?, external: String?, securityGroupIds: [String]?) {
+        public init (clusterID: String, moduleId: String, zoneInstanceCountISPSet: [ECMZoneInstanceCountISP], password: String? = nil, internetMaxBandwidthOut: Int64? = nil, imageId: String? = nil, instanceName: String? = nil, hostName: String? = nil, enhancedService: ECMEnhancedService? = nil, userData: String? = nil, external: String? = nil, securityGroupIds: [String]? = nil) {
             self.clusterID = clusterID
             self.moduleId = moduleId
             self.zoneInstanceCountISPSet = zoneInstanceCountISPSet
@@ -108,5 +96,17 @@ extension Tke {
             case ecmIdSet = "EcmIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建边缘计算ECM机器
+    @inlinable
+    public func createECMInstances(_ input: CreateECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateECMInstancesResponse > {
+        self.client.execute(action: "CreateECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建边缘计算ECM机器
+    @inlinable
+    public func createECMInstances(_ input: CreateECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateECMInstancesResponse {
+        try await self.client.execute(action: "CreateECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

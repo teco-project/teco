@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 撤消权威机构认证
-    @inlinable
-    public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelAuthorityIssuerResponse > {
-        self.client.execute(action: "CancelAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 撤消权威机构认证
-    @inlinable
-    public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorityIssuerResponse {
-        try await self.client.execute(action: "CancelAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelAuthorityIssuer请求参数结构体
     public struct CancelAuthorityIssuerRequest: TCRequestModel {
         /// did具体信息
@@ -49,5 +37,17 @@ extension Tdid {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 撤消权威机构认证
+    @inlinable
+    public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelAuthorityIssuerResponse > {
+        self.client.execute(action: "CancelAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 撤消权威机构认证
+    @inlinable
+    public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorityIssuerResponse {
+        try await self.client.execute(action: "CancelAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

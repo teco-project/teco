@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 创建恶意请求事件导出任务
-    @inlinable
-    public func createRiskDnsEventExportJob(_ input: CreateRiskDnsEventExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRiskDnsEventExportJobResponse > {
-        self.client.execute(action: "CreateRiskDnsEventExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建恶意请求事件导出任务
-    @inlinable
-    public func createRiskDnsEventExportJob(_ input: CreateRiskDnsEventExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRiskDnsEventExportJobResponse {
-        try await self.client.execute(action: "CreateRiskDnsEventExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRiskDnsEventExportJob请求参数结构体
     public struct CreateRiskDnsEventExportJobRequest: TCRequestModel {
         /// 过滤条件。
@@ -58,7 +46,7 @@ extension Tcss {
         /// 排序字段：事件数量：EventCount
         public let by: String?
         
-        public init (filters: [RunTimeFilters]?, limit: UInt64?, offset: UInt64?, order: String?, by: String?) {
+        public init (filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -87,5 +75,17 @@ extension Tcss {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建恶意请求事件导出任务
+    @inlinable
+    public func createRiskDnsEventExportJob(_ input: CreateRiskDnsEventExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRiskDnsEventExportJobResponse > {
+        self.client.execute(action: "CreateRiskDnsEventExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建恶意请求事件导出任务
+    @inlinable
+    public func createRiskDnsEventExportJob(_ input: CreateRiskDnsEventExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRiskDnsEventExportJobResponse {
+        try await self.client.execute(action: "CreateRiskDnsEventExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

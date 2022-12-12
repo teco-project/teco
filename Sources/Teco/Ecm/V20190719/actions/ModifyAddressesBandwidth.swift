@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 调整弹性公网IP带宽
-    @inlinable
-    public func modifyAddressesBandwidth(_ input: ModifyAddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressesBandwidthResponse > {
-        self.client.execute(action: "ModifyAddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调整弹性公网IP带宽
-    @inlinable
-    public func modifyAddressesBandwidth(_ input: ModifyAddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressesBandwidthResponse {
-        try await self.client.execute(action: "ModifyAddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAddressesBandwidth请求参数结构体
     public struct ModifyAddressesBandwidthRequest: TCRequestModel {
         /// ECM 地域
@@ -63,5 +51,17 @@ extension Ecm {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调整弹性公网IP带宽
+    @inlinable
+    public func modifyAddressesBandwidth(_ input: ModifyAddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressesBandwidthResponse > {
+        self.client.execute(action: "ModifyAddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调整弹性公网IP带宽
+    @inlinable
+    public func modifyAddressesBandwidth(_ input: ModifyAddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressesBandwidthResponse {
+        try await self.client.execute(action: "ModifyAddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

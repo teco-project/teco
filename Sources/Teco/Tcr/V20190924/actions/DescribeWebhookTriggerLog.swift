@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 获取触发器日志
-    @inlinable
-    public func describeWebhookTriggerLog(_ input: DescribeWebhookTriggerLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebhookTriggerLogResponse > {
-        self.client.execute(action: "DescribeWebhookTriggerLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取触发器日志
-    @inlinable
-    public func describeWebhookTriggerLog(_ input: DescribeWebhookTriggerLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebhookTriggerLogResponse {
-        try await self.client.execute(action: "DescribeWebhookTriggerLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWebhookTriggerLog请求参数结构体
     public struct DescribeWebhookTriggerLogRequest: TCRequestModel {
         /// 实例 Id
@@ -44,7 +32,7 @@ extension Tcr {
         /// 分页偏移量
         public let offset: Int64?
         
-        public init (registryId: String, namespace: String, id: Int64?, limit: Int64?, offset: Int64?) {
+        public init (registryId: String, namespace: String, id: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.registryId = registryId
             self.namespace = namespace
             self.id = id
@@ -77,5 +65,17 @@ extension Tcr {
             case logs = "Logs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取触发器日志
+    @inlinable
+    public func describeWebhookTriggerLog(_ input: DescribeWebhookTriggerLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebhookTriggerLogResponse > {
+        self.client.execute(action: "DescribeWebhookTriggerLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取触发器日志
+    @inlinable
+    public func describeWebhookTriggerLog(_ input: DescribeWebhookTriggerLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebhookTriggerLogResponse {
+        try await self.client.execute(action: "DescribeWebhookTriggerLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

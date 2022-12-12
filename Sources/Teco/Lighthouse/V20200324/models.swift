@@ -506,7 +506,7 @@ extension Lighthouse {
         /// 新购单位. 默认值: "m"。
         public let timeUnit: String?
         
-        public init (period: Int64, renewFlag: String?, timeUnit: String?) {
+        public init (period: Int64, renewFlag: String? = nil, timeUnit: String? = nil) {
             self.period = period
             self.renewFlag = renewFlag
             self.timeUnit = timeUnit
@@ -631,7 +631,7 @@ extension Lighthouse {
         /// 运行的命令
         public let command: String?
         
-        public init (containerImage: String, containerName: String?, envs: [ContainerEnv]?, publishPorts: [DockerContainerPublishPort]?, volumes: [DockerContainerVolume]?, command: String?) {
+        public init (containerImage: String, containerName: String? = nil, envs: [ContainerEnv]? = nil, publishPorts: [DockerContainerPublishPort]? = nil, volumes: [DockerContainerVolume]? = nil, command: String? = nil) {
             self.containerImage = containerImage
             self.containerName = containerName
             self.envs = envs
@@ -666,7 +666,7 @@ extension Lighthouse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `protocol`: String?
         
-        public init (hostPort: Int64, containerPort: Int64, ip: String?, `protocol`: String?) {
+        public init (hostPort: Int64, containerPort: Int64, ip: String? = nil, `protocol`: String? = nil) {
             self.hostPort = hostPort
             self.containerPort = containerPort
             self.ip = ip
@@ -689,7 +689,7 @@ extension Lighthouse {
         /// 主机路径
         public let hostPath: String?
         
-        public init (containerPath: String, hostPath: String?) {
+        public init (containerPath: String, hostPath: String? = nil) {
             self.containerPath = containerPath
             self.hostPath = hostPath
         }
@@ -746,7 +746,7 @@ extension Lighthouse {
         /// 防火墙规则描述。
         public let firewallRuleDescription: String?
         
-        public init (`protocol`: String, port: String?, cidrBlock: String?, action: String?, firewallRuleDescription: String?) {
+        public init (`protocol`: String, port: String? = nil, cidrBlock: String? = nil, action: String? = nil, firewallRuleDescription: String? = nil) {
             self.`protocol` = `protocol`
             self.port = port
             self.cidrBlock = cidrBlock
@@ -951,7 +951,7 @@ extension Lighthouse {
         /// 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费，用户需要手动续费<br><li>DISABLE_NOTIFY_AND_AUTO_RENEW：不自动续费，且不通知<br><br>默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String?
         
-        public init (period: Int64, renewFlag: String?) {
+        public init (period: Int64, renewFlag: String? = nil) {
             self.period = period
             self.renewFlag = renewFlag
         }
@@ -1007,7 +1007,7 @@ extension Lighthouse {
         
         /// 询价信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instancePrice: InstancePrice
+        public let instancePrice: InstancePrice?
         
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
@@ -1118,7 +1118,7 @@ extension Lighthouse {
         /// <li>特殊字符：()`~!@#$%^&*-+=_|{}[]:;' <>,.?/</li>
         public let password: String?
         
-        public init (autoGeneratePassword: String, password: String?) {
+        public init (autoGeneratePassword: String, password: String? = nil) {
             self.autoGeneratePassword = autoGeneratePassword
             self.password = password
         }
@@ -1229,7 +1229,7 @@ extension Lighthouse {
         /// 当前实例到期时间。
         public let curInstanceDeadline: String?
         
-        public init (period: Int64?, renewFlag: String?, timeUnit: String?, curInstanceDeadline: String?) {
+        public init (period: Int64? = nil, renewFlag: String? = nil, timeUnit: String? = nil, curInstanceDeadline: String? = nil) {
             self.period = period
             self.renewFlag = renewFlag
             self.timeUnit = timeUnit

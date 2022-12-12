@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询直播套餐包信息
-    ///
-    /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
-    @inlinable
-    public func describeLivePackageInfo(_ input: DescribeLivePackageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLivePackageInfoResponse > {
-        self.client.execute(action: "DescribeLivePackageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询直播套餐包信息
-    ///
-    /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
-    @inlinable
-    public func describeLivePackageInfo(_ input: DescribeLivePackageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePackageInfoResponse {
-        try await self.client.execute(action: "DescribeLivePackageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLivePackageInfo请求参数结构体
     public struct DescribeLivePackageInfoRequest: TCRequestModel {
         /// 包类型，可选值：
@@ -55,7 +39,7 @@ extension Live {
         /// 取值：10 ～ 100 之间的任意整数。
         public let pageSize: Int64?
         
-        public init (packageType: Int64, orderBy: String?, pageNum: Int64?, pageSize: Int64?) {
+        public init (packageType: Int64, orderBy: String? = nil, pageNum: Int64? = nil, pageSize: Int64? = nil) {
             self.packageType = packageType
             self.orderBy = orderBy
             self.pageNum = pageNum
@@ -126,5 +110,21 @@ extension Live {
             case fluxPackageBillMode = "FluxPackageBillMode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询直播套餐包信息
+    ///
+    /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
+    @inlinable
+    public func describeLivePackageInfo(_ input: DescribeLivePackageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLivePackageInfoResponse > {
+        self.client.execute(action: "DescribeLivePackageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询直播套餐包信息
+    ///
+    /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
+    @inlinable
+    public func describeLivePackageInfo(_ input: DescribeLivePackageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePackageInfoResponse {
+        try await self.client.execute(action: "DescribeLivePackageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

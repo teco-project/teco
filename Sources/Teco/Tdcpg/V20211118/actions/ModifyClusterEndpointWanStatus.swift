@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdcpg {
-    /// 修改接入点外网状态
-    ///
-    /// 开启或者关闭接入点外网
-    @inlinable
-    public func modifyClusterEndpointWanStatus(_ input: ModifyClusterEndpointWanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterEndpointWanStatusResponse > {
-        self.client.execute(action: "ModifyClusterEndpointWanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改接入点外网状态
-    ///
-    /// 开启或者关闭接入点外网
-    @inlinable
-    public func modifyClusterEndpointWanStatus(_ input: ModifyClusterEndpointWanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterEndpointWanStatusResponse {
-        try await self.client.execute(action: "ModifyClusterEndpointWanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClusterEndpointWanStatus请求参数结构体
     public struct ModifyClusterEndpointWanStatusRequest: TCRequestModel {
         /// 集群ID
@@ -65,5 +49,21 @@ extension Tdcpg {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改接入点外网状态
+    ///
+    /// 开启或者关闭接入点外网
+    @inlinable
+    public func modifyClusterEndpointWanStatus(_ input: ModifyClusterEndpointWanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterEndpointWanStatusResponse > {
+        self.client.execute(action: "ModifyClusterEndpointWanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改接入点外网状态
+    ///
+    /// 开启或者关闭接入点外网
+    @inlinable
+    public func modifyClusterEndpointWanStatus(_ input: ModifyClusterEndpointWanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterEndpointWanStatusResponse {
+        try await self.client.execute(action: "ModifyClusterEndpointWanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

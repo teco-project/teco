@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询弹性公网IP列表
-    ///
-    /// 本接口 (DescribeAddresses) 用于查询一个或多个[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的详细信息。
-    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的 EIP。
-    @inlinable
-    public func describeAddresses(_ input: DescribeAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAddressesResponse > {
-        self.client.execute(action: "DescribeAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询弹性公网IP列表
-    ///
-    /// 本接口 (DescribeAddresses) 用于查询一个或多个[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的详细信息。
-    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的 EIP。
-    @inlinable
-    public func describeAddresses(_ input: DescribeAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressesResponse {
-        try await self.client.execute(action: "DescribeAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAddresses请求参数结构体
     public struct DescribeAddressesRequest: TCRequestModel {
         /// 标识 EIP 的唯一 ID 列表。EIP 唯一 ID 形如：`eip-11112222`。参数不支持同时指定`AddressIds`和`Filters.address-id`。
@@ -61,7 +43,7 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API 中的相关小节。
         public let limit: Int64?
         
-        public init (addressIds: [String]?, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (addressIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.addressIds = addressIds
             self.filters = filters
             self.offset = offset
@@ -92,5 +74,23 @@ extension Vpc {
             case addressSet = "AddressSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询弹性公网IP列表
+    ///
+    /// 本接口 (DescribeAddresses) 用于查询一个或多个[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的详细信息。
+    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的 EIP。
+    @inlinable
+    public func describeAddresses(_ input: DescribeAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAddressesResponse > {
+        self.client.execute(action: "DescribeAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询弹性公网IP列表
+    ///
+    /// 本接口 (DescribeAddresses) 用于查询一个或多个[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的详细信息。
+    /// * 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的 EIP。
+    @inlinable
+    public func describeAddresses(_ input: DescribeAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressesResponse {
+        try await self.client.execute(action: "DescribeAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取 LoRa 网关列表
-    ///
-    /// 获取 LoRa 网关列表接口
-    @inlinable
-    public func getLoRaGatewayList(_ input: GetLoRaGatewayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLoRaGatewayListResponse > {
-        self.client.execute(action: "GetLoRaGatewayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取 LoRa 网关列表
-    ///
-    /// 获取 LoRa 网关列表接口
-    @inlinable
-    public func getLoRaGatewayList(_ input: GetLoRaGatewayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLoRaGatewayListResponse {
-        try await self.client.execute(action: "GetLoRaGatewayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetLoRaGatewayList请求参数结构体
     public struct GetLoRaGatewayListRequest: TCRequestModel {
         /// 是否是社区网关
@@ -42,7 +26,7 @@ extension Iotexplorer {
         /// 限制个数
         public let limit: UInt64?
         
-        public init (isCommunity: Bool, offset: UInt64?, limit: UInt64?) {
+        public init (isCommunity: Bool, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.isCommunity = isCommunity
             self.offset = offset
             self.limit = limit
@@ -72,5 +56,21 @@ extension Iotexplorer {
             case gateways = "Gateways"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取 LoRa 网关列表
+    ///
+    /// 获取 LoRa 网关列表接口
+    @inlinable
+    public func getLoRaGatewayList(_ input: GetLoRaGatewayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLoRaGatewayListResponse > {
+        self.client.execute(action: "GetLoRaGatewayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取 LoRa 网关列表
+    ///
+    /// 获取 LoRa 网关列表接口
+    @inlinable
+    public func getLoRaGatewayList(_ input: GetLoRaGatewayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLoRaGatewayListResponse {
+        try await self.client.execute(action: "GetLoRaGatewayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

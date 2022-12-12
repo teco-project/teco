@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 删除批次
-    @inlinable
-    public func deleteCodeBatch(_ input: DeleteCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCodeBatchResponse > {
-        self.client.execute(action: "DeleteCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除批次
-    @inlinable
-    public func deleteCodeBatch(_ input: DeleteCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCodeBatchResponse {
-        try await self.client.execute(action: "DeleteCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCodeBatch请求参数结构体
     public struct DeleteCodeBatchRequest: TCRequestModel {
         /// 企业ID
@@ -35,7 +23,7 @@ extension Trp {
         /// 批次ID
         public let batchId: String?
         
-        public init (corpId: UInt64?, batchId: String?) {
+        public init (corpId: UInt64? = nil, batchId: String? = nil) {
             self.corpId = corpId
             self.batchId = batchId
         }
@@ -58,5 +46,17 @@ extension Trp {
             case batchId = "BatchId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除批次
+    @inlinable
+    public func deleteCodeBatch(_ input: DeleteCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCodeBatchResponse > {
+        self.client.execute(action: "DeleteCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除批次
+    @inlinable
+    public func deleteCodeBatch(_ input: DeleteCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCodeBatchResponse {
+        try await self.client.execute(action: "DeleteCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

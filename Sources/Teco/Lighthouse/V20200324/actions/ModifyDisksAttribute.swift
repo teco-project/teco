@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 修改云硬盘属性
-    ///
-    /// 本接口(ModifyDisksAttribute)用于修改云硬盘属性。
-    @inlinable
-    public func modifyDisksAttribute(_ input: ModifyDisksAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDisksAttributeResponse > {
-        self.client.execute(action: "ModifyDisksAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改云硬盘属性
-    ///
-    /// 本接口(ModifyDisksAttribute)用于修改云硬盘属性。
-    @inlinable
-    public func modifyDisksAttribute(_ input: ModifyDisksAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksAttributeResponse {
-        try await self.client.execute(action: "ModifyDisksAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDisksAttribute请求参数结构体
     public struct ModifyDisksAttributeRequest: TCRequestModel {
         /// 云硬盘ID列表。
@@ -58,5 +42,21 @@ extension Lighthouse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改云硬盘属性
+    ///
+    /// 本接口(ModifyDisksAttribute)用于修改云硬盘属性。
+    @inlinable
+    public func modifyDisksAttribute(_ input: ModifyDisksAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDisksAttributeResponse > {
+        self.client.execute(action: "ModifyDisksAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云硬盘属性
+    ///
+    /// 本接口(ModifyDisksAttribute)用于修改云硬盘属性。
+    @inlinable
+    public func modifyDisksAttribute(_ input: ModifyDisksAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksAttributeResponse {
+        try await self.client.execute(action: "ModifyDisksAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

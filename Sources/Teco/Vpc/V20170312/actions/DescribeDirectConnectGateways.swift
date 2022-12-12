@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询专线网关
-    ///
-    /// 本接口（DescribeDirectConnectGateways）用于查询专线网关。
-    @inlinable
-    public func describeDirectConnectGateways(_ input: DescribeDirectConnectGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDirectConnectGatewaysResponse > {
-        self.client.execute(action: "DescribeDirectConnectGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询专线网关
-    ///
-    /// 本接口（DescribeDirectConnectGateways）用于查询专线网关。
-    @inlinable
-    public func describeDirectConnectGateways(_ input: DescribeDirectConnectGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectGatewaysResponse {
-        try await self.client.execute(action: "DescribeDirectConnectGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDirectConnectGateways请求参数结构体
     public struct DescribeDirectConnectGatewaysRequest: TCRequestModel {
         /// 专线网关唯一`ID`，形如：`dcg-9o233uri`。
@@ -52,7 +36,7 @@ extension Vpc {
         /// 返回数量。
         public let limit: UInt64?
         
-        public init (directConnectGatewayIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (directConnectGatewayIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.directConnectGatewayIds = directConnectGatewayIds
             self.filters = filters
             self.offset = offset
@@ -83,5 +67,21 @@ extension Vpc {
             case directConnectGatewaySet = "DirectConnectGatewaySet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询专线网关
+    ///
+    /// 本接口（DescribeDirectConnectGateways）用于查询专线网关。
+    @inlinable
+    public func describeDirectConnectGateways(_ input: DescribeDirectConnectGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDirectConnectGatewaysResponse > {
+        self.client.execute(action: "DescribeDirectConnectGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专线网关
+    ///
+    /// 本接口（DescribeDirectConnectGateways）用于查询专线网关。
+    @inlinable
+    public func describeDirectConnectGateways(_ input: DescribeDirectConnectGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectGatewaysResponse {
+        try await self.client.execute(action: "DescribeDirectConnectGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 用户加入到用户组
-    @inlinable
-    public func addUserToGroup(_ input: AddUserToGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserToGroupResponse > {
-        self.client.execute(action: "AddUserToGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 用户加入到用户组
-    @inlinable
-    public func addUserToGroup(_ input: AddUserToGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserToGroupResponse {
-        try await self.client.execute(action: "AddUserToGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddUserToGroup请求参数结构体
     public struct AddUserToGroupRequest: TCRequestModel {
         /// 添加的子用户 UIN/UID 和用户组 ID 关联关系
@@ -49,5 +37,17 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 用户加入到用户组
+    @inlinable
+    public func addUserToGroup(_ input: AddUserToGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserToGroupResponse > {
+        self.client.execute(action: "AddUserToGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 用户加入到用户组
+    @inlinable
+    public func addUserToGroup(_ input: AddUserToGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserToGroupResponse {
+        try await self.client.execute(action: "AddUserToGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

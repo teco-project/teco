@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 创建角色OIDC配置
-    @inlinable
-    public func createOIDCConfig(_ input: CreateOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOIDCConfigResponse > {
-        self.client.execute(action: "CreateOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建角色OIDC配置
-    @inlinable
-    public func createOIDCConfig(_ input: CreateOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOIDCConfigResponse {
-        try await self.client.execute(action: "CreateOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOIDCConfig请求参数结构体
     public struct CreateOIDCConfigRequest: TCRequestModel {
         /// 身份提供商URL
@@ -44,7 +32,7 @@ extension Cam {
         /// 描述
         public let description: String?
         
-        public init (identityUrl: String, identityKey: String, clientId: [String], name: String, description: String?) {
+        public init (identityUrl: String, identityKey: String, clientId: [String], name: String, description: String? = nil) {
             self.identityUrl = identityUrl
             self.identityKey = identityKey
             self.clientId = clientId
@@ -69,5 +57,17 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建角色OIDC配置
+    @inlinable
+    public func createOIDCConfig(_ input: CreateOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOIDCConfigResponse > {
+        self.client.execute(action: "CreateOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建角色OIDC配置
+    @inlinable
+    public func createOIDCConfig(_ input: CreateOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOIDCConfigResponse {
+        try await self.client.execute(action: "CreateOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

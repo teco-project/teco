@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 重启集群节点
-    ///
-    /// 用于重启集群节点
-    @inlinable
-    public func restartNodes(_ input: RestartNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartNodesResponse > {
-        self.client.execute(action: "RestartNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重启集群节点
-    ///
-    /// 用于重启集群节点
-    @inlinable
-    public func restartNodes(_ input: RestartNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartNodesResponse {
-        try await self.client.execute(action: "RestartNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestartNodes请求参数结构体
     public struct RestartNodesRequest: TCRequestModel {
         /// 集群实例ID
@@ -48,7 +32,7 @@ extension Es {
         /// 节点状态，在蓝绿模式中使用；离线节点蓝绿有风险
         public let isOffline: Bool?
         
-        public init (instanceId: String, nodeNames: [String], forceRestart: Bool?, restartMode: String?, isOffline: Bool?) {
+        public init (instanceId: String, nodeNames: [String], forceRestart: Bool? = nil, restartMode: String? = nil, isOffline: Bool? = nil) {
             self.instanceId = instanceId
             self.nodeNames = nodeNames
             self.forceRestart = forceRestart
@@ -73,5 +57,21 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重启集群节点
+    ///
+    /// 用于重启集群节点
+    @inlinable
+    public func restartNodes(_ input: RestartNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartNodesResponse > {
+        self.client.execute(action: "RestartNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重启集群节点
+    ///
+    /// 用于重启集群节点
+    @inlinable
+    public func restartNodes(_ input: RestartNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartNodesResponse {
+        try await self.client.execute(action: "RestartNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

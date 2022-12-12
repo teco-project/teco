@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 绑定 Grafana 可视化服务实例
-    @inlinable
-    public func bindPrometheusManagedGrafana(_ input: BindPrometheusManagedGrafanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindPrometheusManagedGrafanaResponse > {
-        self.client.execute(action: "BindPrometheusManagedGrafana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定 Grafana 可视化服务实例
-    @inlinable
-    public func bindPrometheusManagedGrafana(_ input: BindPrometheusManagedGrafanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPrometheusManagedGrafanaResponse {
-        try await self.client.execute(action: "BindPrometheusManagedGrafana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindPrometheusManagedGrafana请求参数结构体
     public struct BindPrometheusManagedGrafanaRequest: TCRequestModel {
         /// Prometheus 实例 ID
@@ -54,5 +42,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定 Grafana 可视化服务实例
+    @inlinable
+    public func bindPrometheusManagedGrafana(_ input: BindPrometheusManagedGrafanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindPrometheusManagedGrafanaResponse > {
+        self.client.execute(action: "BindPrometheusManagedGrafana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定 Grafana 可视化服务实例
+    @inlinable
+    public func bindPrometheusManagedGrafana(_ input: BindPrometheusManagedGrafanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPrometheusManagedGrafanaResponse {
+        try await self.client.execute(action: "BindPrometheusManagedGrafana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

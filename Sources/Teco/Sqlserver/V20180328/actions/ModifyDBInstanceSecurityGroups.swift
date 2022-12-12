@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 修改云数据库安全组
-    ///
-    /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
-    @inlinable
-    public func modifyDBInstanceSecurityGroups(_ input: ModifyDBInstanceSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceSecurityGroupsResponse > {
-        self.client.execute(action: "ModifyDBInstanceSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改云数据库安全组
-    ///
-    /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
-    @inlinable
-    public func modifyDBInstanceSecurityGroups(_ input: ModifyDBInstanceSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupsResponse {
-        try await self.client.execute(action: "ModifyDBInstanceSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBInstanceSecurityGroups请求参数结构体
     public struct ModifyDBInstanceSecurityGroupsRequest: TCRequestModel {
         /// 实例 ID，格式如：mssql-c1nl9rpv 或者 mssqlro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -58,5 +42,21 @@ extension Sqlserver {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改云数据库安全组
+    ///
+    /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
+    @inlinable
+    public func modifyDBInstanceSecurityGroups(_ input: ModifyDBInstanceSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceSecurityGroupsResponse > {
+        self.client.execute(action: "ModifyDBInstanceSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库安全组
+    ///
+    /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
+    @inlinable
+    public func modifyDBInstanceSecurityGroups(_ input: ModifyDBInstanceSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupsResponse {
+        try await self.client.execute(action: "ModifyDBInstanceSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

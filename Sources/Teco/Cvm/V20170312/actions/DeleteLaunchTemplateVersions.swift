@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 删除实例启动模板版本
-    ///
-    /// 本接口（DeleteLaunchTemplateVersions）用于删除一个或者多个实例启动模板版本。
-    @inlinable
-    public func deleteLaunchTemplateVersions(_ input: DeleteLaunchTemplateVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLaunchTemplateVersionsResponse > {
-        self.client.execute(action: "DeleteLaunchTemplateVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除实例启动模板版本
-    ///
-    /// 本接口（DeleteLaunchTemplateVersions）用于删除一个或者多个实例启动模板版本。
-    @inlinable
-    public func deleteLaunchTemplateVersions(_ input: DeleteLaunchTemplateVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchTemplateVersionsResponse {
-        try await self.client.execute(action: "DeleteLaunchTemplateVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLaunchTemplateVersions请求参数结构体
     public struct DeleteLaunchTemplateVersionsRequest: TCRequestModel {
         /// 启动模板ID。
@@ -58,5 +42,21 @@ extension Cvm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除实例启动模板版本
+    ///
+    /// 本接口（DeleteLaunchTemplateVersions）用于删除一个或者多个实例启动模板版本。
+    @inlinable
+    public func deleteLaunchTemplateVersions(_ input: DeleteLaunchTemplateVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLaunchTemplateVersionsResponse > {
+        self.client.execute(action: "DeleteLaunchTemplateVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例启动模板版本
+    ///
+    /// 本接口（DeleteLaunchTemplateVersions）用于删除一个或者多个实例启动模板版本。
+    @inlinable
+    public func deleteLaunchTemplateVersions(_ input: DeleteLaunchTemplateVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchTemplateVersionsResponse {
+        try await self.client.execute(action: "DeleteLaunchTemplateVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

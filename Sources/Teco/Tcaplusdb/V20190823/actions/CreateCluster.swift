@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 创建集群
-    ///
-    /// 本接口用于创建TcaplusDB集群
-    @inlinable
-    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
-        self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建集群
-    ///
-    /// 本接口用于创建TcaplusDB集群
-    @inlinable
-    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
-        try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCluster请求参数结构体
     public struct CreateClusterRequest: TCRequestModel {
         /// 集群数据描述语言类型，如：`PROTO`，`TDR`或`MIX`
@@ -66,7 +50,7 @@ extension Tcaplusdb {
         /// 密码认证类型，0 静态认证， 1 签名认证
         public let authType: Int64?
         
-        public init (idlType: String, clusterName: String, vpcId: String, subnetId: String, password: String, resourceTags: [TagInfoUnit]?, ipv6Enable: Int64?, serverList: [MachineInfo]?, proxyList: [MachineInfo]?, clusterType: Int64?, authType: Int64?) {
+        public init (idlType: String, clusterName: String, vpcId: String, subnetId: String, password: String, resourceTags: [TagInfoUnit]? = nil, ipv6Enable: Int64? = nil, serverList: [MachineInfo]? = nil, proxyList: [MachineInfo]? = nil, clusterType: Int64? = nil, authType: Int64? = nil) {
             self.idlType = idlType
             self.clusterName = clusterName
             self.vpcId = vpcId
@@ -107,5 +91,21 @@ extension Tcaplusdb {
             case clusterId = "ClusterId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建集群
+    ///
+    /// 本接口用于创建TcaplusDB集群
+    @inlinable
+    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
+        self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群
+    ///
+    /// 本接口用于创建TcaplusDB集群
+    @inlinable
+    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
+        try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

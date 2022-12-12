@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 删除产品
-    ///
-    /// 删除用户指定的产品Id对应的信息。
-    @inlinable
-    public func deleteProduct(_ input: DeleteProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProductResponse > {
-        self.client.execute(action: "DeleteProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除产品
-    ///
-    /// 删除用户指定的产品Id对应的信息。
-    @inlinable
-    public func deleteProduct(_ input: DeleteProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProductResponse {
-        try await self.client.execute(action: "DeleteProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteProduct请求参数结构体
     public struct DeleteProductRequest: TCRequestModel {
         /// 产品Id
@@ -53,5 +37,21 @@ extension Iot {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除产品
+    ///
+    /// 删除用户指定的产品Id对应的信息。
+    @inlinable
+    public func deleteProduct(_ input: DeleteProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProductResponse > {
+        self.client.execute(action: "DeleteProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除产品
+    ///
+    /// 删除用户指定的产品Id对应的信息。
+    @inlinable
+    public func deleteProduct(_ input: DeleteProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProductResponse {
+        try await self.client.execute(action: "DeleteProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

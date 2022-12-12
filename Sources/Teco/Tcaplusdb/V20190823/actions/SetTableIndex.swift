@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 设置表格分布式索引
-    @inlinable
-    public func setTableIndex(_ input: SetTableIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTableIndexResponse > {
-        self.client.execute(action: "SetTableIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置表格分布式索引
-    @inlinable
-    public func setTableIndex(_ input: SetTableIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableIndexResponse {
-        try await self.client.execute(action: "SetTableIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetTableIndex请求参数结构体
     public struct SetTableIndexRequest: TCRequestModel {
         /// 表所属集群实例ID
@@ -62,5 +50,17 @@ extension Tcaplusdb {
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置表格分布式索引
+    @inlinable
+    public func setTableIndex(_ input: SetTableIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTableIndexResponse > {
+        self.client.execute(action: "SetTableIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置表格分布式索引
+    @inlinable
+    public func setTableIndex(_ input: SetTableIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableIndexResponse {
+        try await self.client.execute(action: "SetTableIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

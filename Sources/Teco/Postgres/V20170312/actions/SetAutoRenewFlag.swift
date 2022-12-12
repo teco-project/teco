@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 设置自动续费
-    ///
-    /// 本接口（SetAutoRenewFlag）用于设置自动续费。
-    @inlinable
-    public func setAutoRenewFlag(_ input: SetAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAutoRenewFlagResponse > {
-        self.client.execute(action: "SetAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置自动续费
-    ///
-    /// 本接口（SetAutoRenewFlag）用于设置自动续费。
-    @inlinable
-    public func setAutoRenewFlag(_ input: SetAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAutoRenewFlagResponse {
-        try await self.client.execute(action: "SetAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetAutoRenewFlag请求参数结构体
     public struct SetAutoRenewFlagRequest: TCRequestModel {
         /// 实例ID集合。注意：当前已不支持同时操作多个实例，这里只能传入单个实例ID。
@@ -62,5 +46,21 @@ extension Postgres {
             case count = "Count"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置自动续费
+    ///
+    /// 本接口（SetAutoRenewFlag）用于设置自动续费。
+    @inlinable
+    public func setAutoRenewFlag(_ input: SetAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAutoRenewFlagResponse > {
+        self.client.execute(action: "SetAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置自动续费
+    ///
+    /// 本接口（SetAutoRenewFlag）用于设置自动续费。
+    @inlinable
+    public func setAutoRenewFlag(_ input: SetAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAutoRenewFlagResponse {
+        try await self.client.execute(action: "SetAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

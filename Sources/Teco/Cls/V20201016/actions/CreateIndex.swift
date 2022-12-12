@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 创建索引
-    ///
-    /// 本接口用于创建索引
-    @inlinable
-    public func createIndex(_ input: CreateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIndexResponse > {
-        self.client.execute(action: "CreateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建索引
-    ///
-    /// 本接口用于创建索引
-    @inlinable
-    public func createIndex(_ input: CreateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIndexResponse {
-        try await self.client.execute(action: "CreateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateIndex请求参数结构体
     public struct CreateIndexRequest: TCRequestModel {
         /// 日志主题ID
@@ -48,7 +32,7 @@ extension Cls {
         /// 元数据相关标志位，默认为0。 0：全文索引包括开启键值索引的元数据字段， 1：全文索引包括所有元数据字段，2：全文索引不包括元数据字段。
         public let metadataFlag: UInt64?
         
-        public init (topicId: String, rule: RuleInfo, status: Bool?, includeInternalFields: Bool?, metadataFlag: UInt64?) {
+        public init (topicId: String, rule: RuleInfo, status: Bool? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil) {
             self.topicId = topicId
             self.rule = rule
             self.status = status
@@ -73,5 +57,21 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建索引
+    ///
+    /// 本接口用于创建索引
+    @inlinable
+    public func createIndex(_ input: CreateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIndexResponse > {
+        self.client.execute(action: "CreateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建索引
+    ///
+    /// 本接口用于创建索引
+    @inlinable
+    public func createIndex(_ input: CreateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIndexResponse {
+        try await self.client.execute(action: "CreateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

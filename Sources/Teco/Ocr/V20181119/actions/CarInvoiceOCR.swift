@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 购车发票识别
-    ///
-    /// 本接口支持机动车销售统一发票和二手车销售统一发票的识别，包括发票号码、发票代码、合计金额、合计税额等二十多个字段。
-    @inlinable
-    public func carInvoiceOCR(_ input: CarInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CarInvoiceOCRResponse > {
-        self.client.execute(action: "CarInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 购车发票识别
-    ///
-    /// 本接口支持机动车销售统一发票和二手车销售统一发票的识别，包括发票号码、发票代码、合计金额、合计税额等二十多个字段。
-    @inlinable
-    public func carInvoiceOCR(_ input: CarInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CarInvoiceOCRResponse {
-        try await self.client.execute(action: "CarInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CarInvoiceOCR请求参数结构体
     public struct CarInvoiceOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -52,7 +36,7 @@ extension Ocr {
         /// 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         public let pdfPageNumber: Int64?
         
-        public init (imageBase64: String?, imageUrl: String?, isPdf: Bool?, pdfPageNumber: Int64?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.isPdf = isPdf
@@ -79,5 +63,21 @@ extension Ocr {
             case carInvoiceInfos = "CarInvoiceInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 购车发票识别
+    ///
+    /// 本接口支持机动车销售统一发票和二手车销售统一发票的识别，包括发票号码、发票代码、合计金额、合计税额等二十多个字段。
+    @inlinable
+    public func carInvoiceOCR(_ input: CarInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CarInvoiceOCRResponse > {
+        self.client.execute(action: "CarInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 购车发票识别
+    ///
+    /// 本接口支持机动车销售统一发票和二手车销售统一发票的识别，包括发票号码、发票代码、合计金额、合计税额等二十多个字段。
+    @inlinable
+    public func carInvoiceOCR(_ input: CarInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CarInvoiceOCRResponse {
+        try await self.client.execute(action: "CarInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 获取动作顺序
-    ///
-    /// 使用动作活体检测模式前，需调用本接口获取动作顺序。
-    @inlinable
-    public func getActionSequence(_ input: GetActionSequenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetActionSequenceResponse > {
-        self.client.execute(action: "GetActionSequence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取动作顺序
-    ///
-    /// 使用动作活体检测模式前，需调用本接口获取动作顺序。
-    @inlinable
-    public func getActionSequence(_ input: GetActionSequenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetActionSequenceResponse {
-        try await self.client.execute(action: "GetActionSequence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetActionSequence请求参数结构体
     public struct GetActionSequenceRequest: TCRequestModel {
         /// 默认不需要使用
         public let actionType: String?
         
-        public init (actionType: String?) {
+        public init (actionType: String? = nil) {
             self.actionType = actionType
         }
         
@@ -57,5 +41,21 @@ extension Faceid {
             case actionSequence = "ActionSequence"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取动作顺序
+    ///
+    /// 使用动作活体检测模式前，需调用本接口获取动作顺序。
+    @inlinable
+    public func getActionSequence(_ input: GetActionSequenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetActionSequenceResponse > {
+        self.client.execute(action: "GetActionSequence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取动作顺序
+    ///
+    /// 使用动作活体检测模式前，需调用本接口获取动作顺序。
+    @inlinable
+    public func getActionSequence(_ input: GetActionSequenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetActionSequenceResponse {
+        try await self.client.execute(action: "GetActionSequence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

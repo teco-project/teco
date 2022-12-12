@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// OFD发票识别
-    ///
-    /// 本接口支持OFD格式的增值税电子普通发票和增值税电子专用发票的识别，返回发票代码、发票号码、开票日期、验证码、机器编号、密码区，购买方和销售方信息，包括名称、纳税人识别号、地址电话、开户行及账号，以及价税合计、开票人、收款人、复核人、税额、不含税金额等字段信息。
-    @inlinable
-    public func verifyOfdVatInvoiceOCR(_ input: VerifyOfdVatInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyOfdVatInvoiceOCRResponse > {
-        self.client.execute(action: "VerifyOfdVatInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// OFD发票识别
-    ///
-    /// 本接口支持OFD格式的增值税电子普通发票和增值税电子专用发票的识别，返回发票代码、发票号码、开票日期、验证码、机器编号、密码区，购买方和销售方信息，包括名称、纳税人识别号、地址电话、开户行及账号，以及价税合计、开票人、收款人、复核人、税额、不含税金额等字段信息。
-    @inlinable
-    public func verifyOfdVatInvoiceOCR(_ input: VerifyOfdVatInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyOfdVatInvoiceOCRResponse {
-        try await self.client.execute(action: "VerifyOfdVatInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifyOfdVatInvoiceOCR请求参数结构体
     public struct VerifyOfdVatInvoiceOCRRequest: TCRequestModel {
         /// OFD文件的 Url 地址。
@@ -40,7 +24,7 @@ extension Ocr {
         /// OfdFileUrl 和 OfdFileBase64 必传其一，若两者都传，只解析OfdFileBase64。
         public let ofdFileBase64: String?
         
-        public init (ofdFileUrl: String?, ofdFileBase64: String?) {
+        public init (ofdFileUrl: String? = nil, ofdFileBase64: String? = nil) {
             self.ofdFileUrl = ofdFileUrl
             self.ofdFileBase64 = ofdFileBase64
         }
@@ -129,5 +113,21 @@ extension Ocr {
             case goodsInfos = "GoodsInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// OFD发票识别
+    ///
+    /// 本接口支持OFD格式的增值税电子普通发票和增值税电子专用发票的识别，返回发票代码、发票号码、开票日期、验证码、机器编号、密码区，购买方和销售方信息，包括名称、纳税人识别号、地址电话、开户行及账号，以及价税合计、开票人、收款人、复核人、税额、不含税金额等字段信息。
+    @inlinable
+    public func verifyOfdVatInvoiceOCR(_ input: VerifyOfdVatInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyOfdVatInvoiceOCRResponse > {
+        self.client.execute(action: "VerifyOfdVatInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// OFD发票识别
+    ///
+    /// 本接口支持OFD格式的增值税电子普通发票和增值税电子专用发票的识别，返回发票代码、发票号码、开票日期、验证码、机器编号、密码区，购买方和销售方信息，包括名称、纳税人识别号、地址电话、开户行及账号，以及价税合计、开票人、收款人、复核人、税额、不含税金额等字段信息。
+    @inlinable
+    public func verifyOfdVatInvoiceOCR(_ input: VerifyOfdVatInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyOfdVatInvoiceOCRResponse {
+        try await self.client.execute(action: "VerifyOfdVatInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

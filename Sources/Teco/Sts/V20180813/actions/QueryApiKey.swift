@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Sts {
-    /// 拉取API密钥列表
-    @inlinable
-    public func queryApiKey(_ input: QueryApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryApiKeyResponse > {
-        self.client.execute(action: "QueryApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取API密钥列表
-    @inlinable
-    public func queryApiKey(_ input: QueryApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryApiKeyResponse {
-        try await self.client.execute(action: "QueryApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryApiKey请求参数结构体
     public struct QueryApiKeyRequest: TCRequestModel {
         /// 待查询的账号(不填默认查当前账号)
         public let targetUin: UInt64?
         
-        public init (targetUin: UInt64?) {
+        public init (targetUin: UInt64? = nil) {
             self.targetUin = targetUin
         }
         
@@ -53,5 +41,17 @@ extension Sts {
             case idKeys = "IdKeys"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取API密钥列表
+    @inlinable
+    public func queryApiKey(_ input: QueryApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryApiKeyResponse > {
+        self.client.execute(action: "QueryApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取API密钥列表
+    @inlinable
+    public func queryApiKey(_ input: QueryApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryApiKeyResponse {
+        try await self.client.execute(action: "QueryApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

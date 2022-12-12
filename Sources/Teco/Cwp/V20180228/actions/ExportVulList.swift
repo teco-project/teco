@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 漏洞管理-导出漏洞列表
-    @inlinable
-    public func exportVulList(_ input: ExportVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVulListResponse > {
-        self.client.execute(action: "ExportVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 漏洞管理-导出漏洞列表
-    @inlinable
-    public func exportVulList(_ input: ExportVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulListResponse {
-        try await self.client.execute(action: "ExportVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportVulList请求参数结构体
     public struct ExportVulListRequest: TCRequestModel {
         /// 过滤条件。
@@ -40,7 +28,7 @@ extension Cwp {
         /// 是否导出详情,1是 0不是
         public let ifDetail: UInt64?
         
-        public init (filters: [Filter]?, ifDetail: UInt64?) {
+        public init (filters: [Filter]? = nil, ifDetail: UInt64? = nil) {
             self.filters = filters
             self.ifDetail = ifDetail
         }
@@ -68,5 +56,17 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 漏洞管理-导出漏洞列表
+    @inlinable
+    public func exportVulList(_ input: ExportVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVulListResponse > {
+        self.client.execute(action: "ExportVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 漏洞管理-导出漏洞列表
+    @inlinable
+    public func exportVulList(_ input: ExportVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulListResponse {
+        try await self.client.execute(action: "ExportVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

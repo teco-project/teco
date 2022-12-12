@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 获取数字验证码
-    ///
-    /// 使用数字活体检测模式前，需调用本接口获取数字验证码。
-    @inlinable
-    public func getLiveCode(_ input: GetLiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLiveCodeResponse > {
-        self.client.execute(action: "GetLiveCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取数字验证码
-    ///
-    /// 使用数字活体检测模式前，需调用本接口获取数字验证码。
-    @inlinable
-    public func getLiveCode(_ input: GetLiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLiveCodeResponse {
-        try await self.client.execute(action: "GetLiveCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetLiveCode请求参数结构体
     public struct GetLiveCodeRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Faceid {
             case liveCode = "LiveCode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取数字验证码
+    ///
+    /// 使用数字活体检测模式前，需调用本接口获取数字验证码。
+    @inlinable
+    public func getLiveCode(_ input: GetLiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLiveCodeResponse > {
+        self.client.execute(action: "GetLiveCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取数字验证码
+    ///
+    /// 使用数字活体检测模式前，需调用本接口获取数字验证码。
+    @inlinable
+    public func getLiveCode(_ input: GetLiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLiveCodeResponse {
+        try await self.client.execute(action: "GetLiveCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

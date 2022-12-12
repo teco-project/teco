@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 修改数据订阅实例的IP和端口号
-    ///
-    /// 本接口(ModifySubscribeVipVport)用于修改数据订阅实例的IP和端口号
-    @inlinable
-    public func modifySubscribeVipVport(_ input: ModifySubscribeVipVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscribeVipVportResponse > {
-        self.client.execute(action: "ModifySubscribeVipVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改数据订阅实例的IP和端口号
-    ///
-    /// 本接口(ModifySubscribeVipVport)用于修改数据订阅实例的IP和端口号
-    @inlinable
-    public func modifySubscribeVipVport(_ input: ModifySubscribeVipVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeVipVportResponse {
-        try await self.client.execute(action: "ModifySubscribeVipVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySubscribeVipVport请求参数结构体
     public struct ModifySubscribeVipVportRequest: TCRequestModel {
         /// 数据订阅实例的ID
@@ -45,7 +29,7 @@ extension Dts {
         /// 目标PORT，支持范围为：[1025-65535]
         public let dstPort: Int64?
         
-        public init (subscribeId: String, dstUniqSubnetId: String?, dstIp: String?, dstPort: Int64?) {
+        public init (subscribeId: String, dstUniqSubnetId: String? = nil, dstIp: String? = nil, dstPort: Int64? = nil) {
             self.subscribeId = subscribeId
             self.dstUniqSubnetId = dstUniqSubnetId
             self.dstIp = dstIp
@@ -68,5 +52,21 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改数据订阅实例的IP和端口号
+    ///
+    /// 本接口(ModifySubscribeVipVport)用于修改数据订阅实例的IP和端口号
+    @inlinable
+    public func modifySubscribeVipVport(_ input: ModifySubscribeVipVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscribeVipVportResponse > {
+        self.client.execute(action: "ModifySubscribeVipVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改数据订阅实例的IP和端口号
+    ///
+    /// 本接口(ModifySubscribeVipVport)用于修改数据订阅实例的IP和端口号
+    @inlinable
+    public func modifySubscribeVipVport(_ input: ModifySubscribeVipVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeVipVportResponse {
+        try await self.client.execute(action: "ModifySubscribeVipVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

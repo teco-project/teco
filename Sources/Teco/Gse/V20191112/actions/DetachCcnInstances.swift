@@ -15,30 +15,12 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 解关联云联网实例
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DetachCcnInstances）用于解关联云联网实例。
-    @inlinable
-    public func detachCcnInstances(_ input: DetachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachCcnInstancesResponse > {
-        self.client.execute(action: "DetachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解关联云联网实例
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DetachCcnInstances）用于解关联云联网实例。
-    @inlinable
-    public func detachCcnInstances(_ input: DetachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnInstancesResponse {
-        try await self.client.execute(action: "DetachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetachCcnInstances请求参数结构体
     public struct DetachCcnInstancesRequest: TCRequestModel {
         /// 服务器舰队 Id
         public let fleetId: String?
         
-        public init (fleetId: String?) {
+        public init (fleetId: String? = nil) {
             self.fleetId = fleetId
         }
         
@@ -55,5 +37,23 @@ extension Gse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解关联云联网实例
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DetachCcnInstances）用于解关联云联网实例。
+    @inlinable
+    public func detachCcnInstances(_ input: DetachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachCcnInstancesResponse > {
+        self.client.execute(action: "DetachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解关联云联网实例
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DetachCcnInstances）用于解关联云联网实例。
+    @inlinable
+    public func detachCcnInstances(_ input: DetachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnInstancesResponse {
+        try await self.client.execute(action: "DetachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

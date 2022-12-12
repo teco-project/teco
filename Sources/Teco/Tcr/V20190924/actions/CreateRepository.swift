@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 创建镜像仓库
-    ///
-    /// 用于企业版创建镜像仓库
-    @inlinable
-    public func createRepository(_ input: CreateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRepositoryResponse > {
-        self.client.execute(action: "CreateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建镜像仓库
-    ///
-    /// 用于企业版创建镜像仓库
-    @inlinable
-    public func createRepository(_ input: CreateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryResponse {
-        try await self.client.execute(action: "CreateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRepository请求参数结构体
     public struct CreateRepositoryRequest: TCRequestModel {
         /// 实例ID
@@ -48,7 +32,7 @@ extension Tcr {
         /// 仓库详细描述
         public let description: String?
         
-        public init (registryId: String, namespaceName: String, repositoryName: String, briefDescription: String?, description: String?) {
+        public init (registryId: String, namespaceName: String, repositoryName: String, briefDescription: String? = nil, description: String? = nil) {
             self.registryId = registryId
             self.namespaceName = namespaceName
             self.repositoryName = repositoryName
@@ -73,5 +57,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建镜像仓库
+    ///
+    /// 用于企业版创建镜像仓库
+    @inlinable
+    public func createRepository(_ input: CreateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRepositoryResponse > {
+        self.client.execute(action: "CreateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建镜像仓库
+    ///
+    /// 用于企业版创建镜像仓库
+    @inlinable
+    public func createRepository(_ input: CreateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryResponse {
+        try await self.client.execute(action: "CreateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

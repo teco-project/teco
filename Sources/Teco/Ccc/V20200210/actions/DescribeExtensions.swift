@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 查询话机列表信息
-    @inlinable
-    public func describeExtensions(_ input: DescribeExtensionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtensionsResponse > {
-        self.client.execute(action: "DescribeExtensions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询话机列表信息
-    @inlinable
-    public func describeExtensions(_ input: DescribeExtensionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionsResponse {
-        try await self.client.execute(action: "DescribeExtensions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExtensions请求参数结构体
     public struct DescribeExtensionsRequest: TCRequestModel {
         /// TCCC 实例应用 ID
@@ -47,7 +35,7 @@ extension Ccc {
         /// 是否需要返回话机当前状态
         public let isNeedStatus: Bool?
         
-        public init (sdkAppId: UInt64, pageNumber: Int64, extensionIds: [String]?, pageSize: Int64?, fuzzingKeyWord: String?, isNeedStatus: Bool?) {
+        public init (sdkAppId: UInt64, pageNumber: Int64, extensionIds: [String]? = nil, pageSize: Int64? = nil, fuzzingKeyWord: String? = nil, isNeedStatus: Bool? = nil) {
             self.sdkAppId = sdkAppId
             self.pageNumber = pageNumber
             self.extensionIds = extensionIds
@@ -82,5 +70,17 @@ extension Ccc {
             case extensionList = "ExtensionList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询话机列表信息
+    @inlinable
+    public func describeExtensions(_ input: DescribeExtensionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtensionsResponse > {
+        self.client.execute(action: "DescribeExtensions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询话机列表信息
+    @inlinable
+    public func describeExtensions(_ input: DescribeExtensionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionsResponse {
+        try await self.client.execute(action: "DescribeExtensions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

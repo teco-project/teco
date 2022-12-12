@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 发送手机邮箱验证码
-    ///
-    /// 此接口用于发送手机邮箱验证码。
-    @inlinable
-    public func sendPhoneEmailCode(_ input: SendPhoneEmailCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendPhoneEmailCodeResponse > {
-        self.client.execute(action: "SendPhoneEmailCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送手机邮箱验证码
-    ///
-    /// 此接口用于发送手机邮箱验证码。
-    @inlinable
-    public func sendPhoneEmailCode(_ input: SendPhoneEmailCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendPhoneEmailCodeResponse {
-        try await self.client.execute(action: "SendPhoneEmailCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendPhoneEmailCode请求参数结构体
     public struct SendPhoneEmailCodeRequest: TCRequestModel {
         /// 手机或者邮箱号。
@@ -58,5 +42,21 @@ extension Domain {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送手机邮箱验证码
+    ///
+    /// 此接口用于发送手机邮箱验证码。
+    @inlinable
+    public func sendPhoneEmailCode(_ input: SendPhoneEmailCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendPhoneEmailCodeResponse > {
+        self.client.execute(action: "SendPhoneEmailCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送手机邮箱验证码
+    ///
+    /// 此接口用于发送手机邮箱验证码。
+    @inlinable
+    public func sendPhoneEmailCode(_ input: SendPhoneEmailCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendPhoneEmailCodeResponse {
+        try await self.client.execute(action: "SendPhoneEmailCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

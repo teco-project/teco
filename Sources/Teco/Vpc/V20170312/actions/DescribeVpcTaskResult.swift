@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询VPC异步任务执行结果
-    ///
-    /// 本接口（DescribeVpcTaskResult）用于查询VPC任务执行结果。
-    @inlinable
-    public func describeVpcTaskResult(_ input: DescribeVpcTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcTaskResultResponse > {
-        self.client.execute(action: "DescribeVpcTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询VPC异步任务执行结果
-    ///
-    /// 本接口（DescribeVpcTaskResult）用于查询VPC任务执行结果。
-    @inlinable
-    public func describeVpcTaskResult(_ input: DescribeVpcTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcTaskResultResponse {
-        try await self.client.execute(action: "DescribeVpcTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpcTaskResult请求参数结构体
     public struct DescribeVpcTaskResultRequest: TCRequestModel {
         /// 异步任务请求返回的RequestId。
@@ -61,5 +45,21 @@ extension Vpc {
             case output = "Output"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询VPC异步任务执行结果
+    ///
+    /// 本接口（DescribeVpcTaskResult）用于查询VPC任务执行结果。
+    @inlinable
+    public func describeVpcTaskResult(_ input: DescribeVpcTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcTaskResultResponse > {
+        self.client.execute(action: "DescribeVpcTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询VPC异步任务执行结果
+    ///
+    /// 本接口（DescribeVpcTaskResult）用于查询VPC任务执行结果。
+    @inlinable
+    public func describeVpcTaskResult(_ input: DescribeVpcTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcTaskResultResponse {
+        try await self.client.execute(action: "DescribeVpcTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

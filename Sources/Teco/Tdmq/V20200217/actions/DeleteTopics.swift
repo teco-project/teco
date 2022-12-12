@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 删除主题
-    ///
-    /// 批量删除topics
-    @inlinable
-    public func deleteTopics(_ input: DeleteTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTopicsResponse > {
-        self.client.execute(action: "DeleteTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除主题
-    ///
-    /// 批量删除topics
-    @inlinable
-    public func deleteTopics(_ input: DeleteTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicsResponse {
-        try await self.client.execute(action: "DeleteTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTopics请求参数结构体
     public struct DeleteTopicsRequest: TCRequestModel {
         /// 主题集合，每次最多删除20个。
@@ -45,7 +29,7 @@ extension Tdmq {
         /// 是否强制删除，默认为false
         public let force: Bool?
         
-        public init (topicSets: [TopicRecord], clusterId: String?, environmentId: String?, force: Bool?) {
+        public init (topicSets: [TopicRecord], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil) {
             self.topicSets = topicSets
             self.clusterId = clusterId
             self.environmentId = environmentId
@@ -72,5 +56,21 @@ extension Tdmq {
             case topicSets = "TopicSets"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除主题
+    ///
+    /// 批量删除topics
+    @inlinable
+    public func deleteTopics(_ input: DeleteTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTopicsResponse > {
+        self.client.execute(action: "DeleteTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除主题
+    ///
+    /// 批量删除topics
+    @inlinable
+    public func deleteTopics(_ input: DeleteTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicsResponse {
+        try await self.client.execute(action: "DeleteTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// 获取高防IP专业版资源的DDoS攻击事件详情
-    @inlinable
-    public func describeDDoSNetEvInfo(_ input: DescribeDDoSNetEvInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSNetEvInfoResponse > {
-        self.client.execute(action: "DescribeDDoSNetEvInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取高防IP专业版资源的DDoS攻击事件详情
-    @inlinable
-    public func describeDDoSNetEvInfo(_ input: DescribeDDoSNetEvInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetEvInfoResponse {
-        try await self.client.execute(action: "DescribeDDoSNetEvInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSNetEvInfo请求参数结构体
     public struct DescribeDDoSNetEvInfoRequest: TCRequestModel {
         /// 大禹子产品代号（net表示高防IP专业版）
@@ -132,5 +120,17 @@ extension Dayu {
             case pcapUrl = "PcapUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取高防IP专业版资源的DDoS攻击事件详情
+    @inlinable
+    public func describeDDoSNetEvInfo(_ input: DescribeDDoSNetEvInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSNetEvInfoResponse > {
+        self.client.execute(action: "DescribeDDoSNetEvInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取高防IP专业版资源的DDoS攻击事件详情
+    @inlinable
+    public func describeDDoSNetEvInfo(_ input: DescribeDDoSNetEvInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetEvInfoResponse {
+        try await self.client.execute(action: "DescribeDDoSNetEvInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

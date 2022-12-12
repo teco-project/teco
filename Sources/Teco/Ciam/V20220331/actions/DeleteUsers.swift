@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ciam {
-    /// 批量删除用户
-    @inlinable
-    public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUsersResponse > {
-        self.client.execute(action: "DeleteUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量删除用户
-    @inlinable
-    public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersResponse {
-        try await self.client.execute(action: "DeleteUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteUsers请求参数结构体
     public struct DeleteUsersRequest: TCRequestModel {
         /// 用户目录ID
@@ -54,5 +42,17 @@ extension Ciam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量删除用户
+    @inlinable
+    public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUsersResponse > {
+        self.client.execute(action: "DeleteUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除用户
+    @inlinable
+    public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersResponse {
+        try await self.client.execute(action: "DeleteUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

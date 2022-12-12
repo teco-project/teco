@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 应用参数模板
-    ///
-    /// 应用参数模板到实例
-    @inlinable
-    public func applyParamsTemplate(_ input: ApplyParamsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyParamsTemplateResponse > {
-        self.client.execute(action: "ApplyParamsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 应用参数模板
-    ///
-    /// 应用参数模板到实例
-    @inlinable
-    public func applyParamsTemplate(_ input: ApplyParamsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyParamsTemplateResponse {
-        try await self.client.execute(action: "ApplyParamsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyParamsTemplate请求参数结构体
     public struct ApplyParamsTemplateRequest: TCRequestModel {
         /// 实例ID列表
@@ -62,5 +46,21 @@ extension Redis {
             case taskIds = "TaskIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 应用参数模板
+    ///
+    /// 应用参数模板到实例
+    @inlinable
+    public func applyParamsTemplate(_ input: ApplyParamsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyParamsTemplateResponse > {
+        self.client.execute(action: "ApplyParamsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 应用参数模板
+    ///
+    /// 应用参数模板到实例
+    @inlinable
+    public func applyParamsTemplate(_ input: ApplyParamsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyParamsTemplateResponse {
+        try await self.client.execute(action: "ApplyParamsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

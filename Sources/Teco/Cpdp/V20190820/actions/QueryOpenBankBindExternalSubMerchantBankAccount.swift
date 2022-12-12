@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-子商户银行卡绑定结果查询
-    @inlinable
-    public func queryOpenBankBindExternalSubMerchantBankAccount(_ input: QueryOpenBankBindExternalSubMerchantBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankBindExternalSubMerchantBankAccountResponse > {
-        self.client.execute(action: "QueryOpenBankBindExternalSubMerchantBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-子商户银行卡绑定结果查询
-    @inlinable
-    public func queryOpenBankBindExternalSubMerchantBankAccount(_ input: QueryOpenBankBindExternalSubMerchantBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBindExternalSubMerchantBankAccountResponse {
-        try await self.client.execute(action: "QueryOpenBankBindExternalSubMerchantBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryOpenBankBindExternalSubMerchantBankAccount请求参数结构体
     public struct QueryOpenBankBindExternalSubMerchantBankAccountRequest: TCRequestModel {
         /// 渠道子商户ID。
@@ -47,7 +35,7 @@ extension Cpdp {
         /// 外部申请编号，与渠道申请编号二者选填其一。
         public let outApplyId: String?
         
-        public init (channelSubMerchantId: String, channelMerchantId: String, channelApplyId: String?, environment: String?, outApplyId: String?) {
+        public init (channelSubMerchantId: String, channelMerchantId: String, channelApplyId: String? = nil, environment: String? = nil, outApplyId: String? = nil) {
             self.channelSubMerchantId = channelSubMerchantId
             self.channelMerchantId = channelMerchantId
             self.channelApplyId = channelApplyId
@@ -76,7 +64,7 @@ extension Cpdp {
         
         /// 返回结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: QueryOpenBankBindExternalSubMerchantBankAccountResult
+        public let result: QueryOpenBankBindExternalSubMerchantBankAccountResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -87,5 +75,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-子商户银行卡绑定结果查询
+    @inlinable
+    public func queryOpenBankBindExternalSubMerchantBankAccount(_ input: QueryOpenBankBindExternalSubMerchantBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankBindExternalSubMerchantBankAccountResponse > {
+        self.client.execute(action: "QueryOpenBankBindExternalSubMerchantBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-子商户银行卡绑定结果查询
+    @inlinable
+    public func queryOpenBankBindExternalSubMerchantBankAccount(_ input: QueryOpenBankBindExternalSubMerchantBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBindExternalSubMerchantBankAccountResponse {
+        try await self.client.execute(action: "QueryOpenBankBindExternalSubMerchantBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

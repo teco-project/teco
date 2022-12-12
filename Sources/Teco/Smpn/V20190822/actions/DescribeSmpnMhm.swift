@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Smpn {
-    /// 号码营销监控
-    @inlinable
-    public func describeSmpnMhm(_ input: DescribeSmpnMhmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmpnMhmResponse > {
-        self.client.execute(action: "DescribeSmpnMhm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 号码营销监控
-    @inlinable
-    public func describeSmpnMhm(_ input: DescribeSmpnMhmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnMhmResponse {
-        try await self.client.execute(action: "DescribeSmpnMhm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSmpnMhm请求参数结构体
     public struct DescribeSmpnMhmRequest: TCRequestModel {
         /// 号码营销监控请求内容
@@ -58,5 +46,17 @@ extension Smpn {
             case responseData = "ResponseData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 号码营销监控
+    @inlinable
+    public func describeSmpnMhm(_ input: DescribeSmpnMhmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmpnMhmResponse > {
+        self.client.execute(action: "DescribeSmpnMhm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 号码营销监控
+    @inlinable
+    public func describeSmpnMhm(_ input: DescribeSmpnMhmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnMhmResponse {
+        try await self.client.execute(action: "DescribeSmpnMhm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

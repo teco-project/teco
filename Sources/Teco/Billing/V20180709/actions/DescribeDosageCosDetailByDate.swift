@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Billing {
-    /// 获取COS产品用量明细
-    @inlinable
-    public func describeDosageCosDetailByDate(_ input: DescribeDosageCosDetailByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDosageCosDetailByDateResponse > {
-        self.client.execute(action: "DescribeDosageCosDetailByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取COS产品用量明细
-    @inlinable
-    public func describeDosageCosDetailByDate(_ input: DescribeDosageCosDetailByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDosageCosDetailByDateResponse {
-        try await self.client.execute(action: "DescribeDosageCosDetailByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDosageCosDetailByDate请求参数结构体
     public struct DescribeDosageCosDetailByDateRequest: TCRequestModel {
         /// 查询用量开始时间
@@ -63,5 +51,17 @@ extension Billing {
             case detailSets = "DetailSets"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取COS产品用量明细
+    @inlinable
+    public func describeDosageCosDetailByDate(_ input: DescribeDosageCosDetailByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDosageCosDetailByDateResponse > {
+        self.client.execute(action: "DescribeDosageCosDetailByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取COS产品用量明细
+    @inlinable
+    public func describeDosageCosDetailByDate(_ input: DescribeDosageCosDetailByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDosageCosDetailByDateResponse {
+        try await self.client.execute(action: "DescribeDosageCosDetailByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tse {
-    /// 创建引擎实例
-    @inlinable
-    public func createEngine(_ input: CreateEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEngineResponse > {
-        self.client.execute(action: "CreateEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建引擎实例
-    @inlinable
-    public func createEngine(_ input: CreateEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEngineResponse {
-        try await self.client.execute(action: "CreateEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEngine请求参数结构体
     public struct CreateEngineRequest: TCRequestModel {
         /// 引擎类型。参考值：
@@ -113,7 +101,7 @@ extension Tse {
         /// - Name：控制台初始用户名
         /// - Password：控制台初始密码
         /// - Token：引擎接口的管理员 Token
-        public let engineAdmin: EngineAdmin
+        public let engineAdmin: EngineAdmin?
         
         /// 预付费时长，以月为单位
         public let prepaidPeriod: Int64?
@@ -123,7 +111,7 @@ extension Tse {
         /// - 1：自动续费
         public let prepaidRenewFlag: Int64?
         
-        public init (engineType: String, engineVersion: String, engineProductVersion: String, engineRegion: String, engineName: String, tradeType: Int64, engineResourceSpec: String?, engineNodeNum: Int64?, vpcId: String?, subnetId: String?, apolloEnvParams: [ApolloEnvParam]?, engineTags: [InstanceTagInfo]?, engineAdmin: EngineAdmin, prepaidPeriod: Int64?, prepaidRenewFlag: Int64?) {
+        public init (engineType: String, engineVersion: String, engineProductVersion: String, engineRegion: String, engineName: String, tradeType: Int64, engineResourceSpec: String? = nil, engineNodeNum: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, apolloEnvParams: [ApolloEnvParam]? = nil, engineTags: [InstanceTagInfo]? = nil, engineAdmin: EngineAdmin? = nil, prepaidPeriod: Int64? = nil, prepaidRenewFlag: Int64? = nil) {
             self.engineType = engineType
             self.engineVersion = engineVersion
             self.engineProductVersion = engineProductVersion
@@ -172,5 +160,17 @@ extension Tse {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建引擎实例
+    @inlinable
+    public func createEngine(_ input: CreateEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEngineResponse > {
+        self.client.execute(action: "CreateEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建引擎实例
+    @inlinable
+    public func createEngine(_ input: CreateEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEngineResponse {
+        try await self.client.execute(action: "CreateEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

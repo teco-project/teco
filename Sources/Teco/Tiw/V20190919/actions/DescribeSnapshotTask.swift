@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 获取白板板书生成任务信息
-    ///
-    /// 获取指定白板板书生成任务信息
-    @inlinable
-    public func describeSnapshotTask(_ input: DescribeSnapshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotTaskResponse > {
-        self.client.execute(action: "DescribeSnapshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取白板板书生成任务信息
-    ///
-    /// 获取指定白板板书生成任务信息
-    @inlinable
-    public func describeSnapshotTask(_ input: DescribeSnapshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotTaskResponse {
-        try await self.client.execute(action: "DescribeSnapshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSnapshotTask请求参数结构体
     public struct DescribeSnapshotTaskRequest: TCRequestModel {
         /// 查询任务ID
@@ -72,7 +56,7 @@ extension Tiw {
         
         /// 任务结果信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: SnapshotResult
+        public let result: SnapshotResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -85,5 +69,21 @@ extension Tiw {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取白板板书生成任务信息
+    ///
+    /// 获取指定白板板书生成任务信息
+    @inlinable
+    public func describeSnapshotTask(_ input: DescribeSnapshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotTaskResponse > {
+        self.client.execute(action: "DescribeSnapshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取白板板书生成任务信息
+    ///
+    /// 获取指定白板板书生成任务信息
+    @inlinable
+    public func describeSnapshotTask(_ input: DescribeSnapshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotTaskResponse {
+        try await self.client.execute(action: "DescribeSnapshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

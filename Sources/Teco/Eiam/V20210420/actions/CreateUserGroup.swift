@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 新建用户组
-    @inlinable
-    public func createUserGroup(_ input: CreateUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserGroupResponse > {
-        self.client.execute(action: "CreateUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建用户组
-    @inlinable
-    public func createUserGroup(_ input: CreateUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserGroupResponse {
-        try await self.client.execute(action: "CreateUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUserGroup请求参数结构体
     public struct CreateUserGroupRequest: TCRequestModel {
         /// 用户组昵称，长度限制：64个字符。 DisplayName是唯一的。
@@ -35,7 +23,7 @@ extension Eiam {
         /// 用户组备注，长度限制：512个字符。
         public let description: String?
         
-        public init (displayName: String, description: String?) {
+        public init (displayName: String, description: String? = nil) {
             self.displayName = displayName
             self.description = description
         }
@@ -59,5 +47,17 @@ extension Eiam {
             case userGroupId = "UserGroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建用户组
+    @inlinable
+    public func createUserGroup(_ input: CreateUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserGroupResponse > {
+        self.client.execute(action: "CreateUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建用户组
+    @inlinable
+    public func createUserGroup(_ input: CreateUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserGroupResponse {
+        try await self.client.execute(action: "CreateUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

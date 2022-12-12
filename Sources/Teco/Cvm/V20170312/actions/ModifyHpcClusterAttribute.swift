@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 修改高性能计算集群属性
-    ///
-    /// 修改高性能计算集群属性。
-    @inlinable
-    public func modifyHpcClusterAttribute(_ input: ModifyHpcClusterAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHpcClusterAttributeResponse > {
-        self.client.execute(action: "ModifyHpcClusterAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改高性能计算集群属性
-    ///
-    /// 修改高性能计算集群属性。
-    @inlinable
-    public func modifyHpcClusterAttribute(_ input: ModifyHpcClusterAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHpcClusterAttributeResponse {
-        try await self.client.execute(action: "ModifyHpcClusterAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyHpcClusterAttribute请求参数结构体
     public struct ModifyHpcClusterAttributeRequest: TCRequestModel {
         /// 高性能计算集群ID。
@@ -42,7 +26,7 @@ extension Cvm {
         /// 高性能计算集群新备注。
         public let remark: String?
         
-        public init (hpcClusterId: String, name: String?, remark: String?) {
+        public init (hpcClusterId: String, name: String? = nil, remark: String? = nil) {
             self.hpcClusterId = hpcClusterId
             self.name = name
             self.remark = remark
@@ -63,5 +47,21 @@ extension Cvm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改高性能计算集群属性
+    ///
+    /// 修改高性能计算集群属性。
+    @inlinable
+    public func modifyHpcClusterAttribute(_ input: ModifyHpcClusterAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHpcClusterAttributeResponse > {
+        self.client.execute(action: "ModifyHpcClusterAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改高性能计算集群属性
+    ///
+    /// 修改高性能计算集群属性。
+    @inlinable
+    public func modifyHpcClusterAttribute(_ input: ModifyHpcClusterAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHpcClusterAttributeResponse {
+        try await self.client.execute(action: "ModifyHpcClusterAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

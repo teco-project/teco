@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 事件投递
-    ///
-    /// 用于Event事件投递
-    @inlinable
-    public func putEvents(_ input: PutEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutEventsResponse > {
-        self.client.execute(action: "PutEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 事件投递
-    ///
-    /// 用于Event事件投递
-    @inlinable
-    public func putEvents(_ input: PutEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutEventsResponse {
-        try await self.client.execute(action: "PutEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PutEvents请求参数结构体
     public struct PutEventsRequest: TCRequestModel {
         /// 事件列表
@@ -58,5 +42,21 @@ extension Eb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 事件投递
+    ///
+    /// 用于Event事件投递
+    @inlinable
+    public func putEvents(_ input: PutEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutEventsResponse > {
+        self.client.execute(action: "PutEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 事件投递
+    ///
+    /// 用于Event事件投递
+    @inlinable
+    public func putEvents(_ input: PutEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutEventsResponse {
+        try await self.client.execute(action: "PutEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

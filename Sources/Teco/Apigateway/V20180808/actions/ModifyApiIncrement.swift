@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 增量更新API接口
-    ///
-    /// 提供增量更新API能力，主要是给程序调用（区别于ModifyApi，该接口是需要传入API的全量参数，对console使用较友好）
-    @inlinable
-    public func modifyApiIncrement(_ input: ModifyApiIncrementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApiIncrementResponse > {
-        self.client.execute(action: "ModifyApiIncrement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 增量更新API接口
-    ///
-    /// 提供增量更新API能力，主要是给程序调用（区别于ModifyApi，该接口是需要传入API的全量参数，对console使用较友好）
-    @inlinable
-    public func modifyApiIncrement(_ input: ModifyApiIncrementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiIncrementResponse {
-        try await self.client.execute(action: "ModifyApiIncrement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyApiIncrement请求参数结构体
     public struct ModifyApiIncrementRequest: TCRequestModel {
         /// 服务ID
@@ -48,7 +32,7 @@ extension Apigateway {
         /// oauth接口重定向地址
         public let loginRedirectUrl: String?
         
-        public init (serviceId: String, apiId: String, businessType: String, publicKey: String?, loginRedirectUrl: String?) {
+        public init (serviceId: String, apiId: String, businessType: String, publicKey: String? = nil, loginRedirectUrl: String? = nil) {
             self.serviceId = serviceId
             self.apiId = apiId
             self.businessType = businessType
@@ -73,5 +57,21 @@ extension Apigateway {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 增量更新API接口
+    ///
+    /// 提供增量更新API能力，主要是给程序调用（区别于ModifyApi，该接口是需要传入API的全量参数，对console使用较友好）
+    @inlinable
+    public func modifyApiIncrement(_ input: ModifyApiIncrementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApiIncrementResponse > {
+        self.client.execute(action: "ModifyApiIncrement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 增量更新API接口
+    ///
+    /// 提供增量更新API能力，主要是给程序调用（区别于ModifyApi，该接口是需要传入API的全量参数，对console使用较友好）
+    @inlinable
+    public func modifyApiIncrement(_ input: ModifyApiIncrementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiIncrementResponse {
+        try await self.client.execute(action: "ModifyApiIncrement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

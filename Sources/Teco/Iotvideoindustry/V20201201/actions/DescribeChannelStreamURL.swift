@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取设备通道实时流地址（旧）
-    ///
-    /// 本接口(DescribeChannelStreamURL)用于获取设备指定通道实时流地址，地址是动态生成，如重新播放需要调用此接口重新获取最新播放地址。
-    /// 正常推流，如未设置对应录制计划，且180s无人观看此流，将会被自动掐断。
-    @inlinable
-    public func describeChannelStreamURL(_ input: DescribeChannelStreamURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChannelStreamURLResponse > {
-        self.client.execute(action: "DescribeChannelStreamURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备通道实时流地址（旧）
-    ///
-    /// 本接口(DescribeChannelStreamURL)用于获取设备指定通道实时流地址，地址是动态生成，如重新播放需要调用此接口重新获取最新播放地址。
-    /// 正常推流，如未设置对应录制计划，且180s无人观看此流，将会被自动掐断。
-    @inlinable
-    public func describeChannelStreamURL(_ input: DescribeChannelStreamURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelStreamURLResponse {
-        try await self.client.execute(action: "DescribeChannelStreamURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeChannelStreamURL请求参数结构体
     public struct DescribeChannelStreamURLRequest: TCRequestModel {
         /// 设备唯一标识，必填参数
@@ -44,7 +26,7 @@ extension Iotvideoindustry {
         /// 通道唯一标识（接口升级字段为必填），必填参数
         public let channelId: String?
         
-        public init (deviceId: String, expireTime: UInt64, channelId: String?) {
+        public init (deviceId: String, expireTime: UInt64, channelId: String? = nil) {
             self.deviceId = deviceId
             self.expireTime = expireTime
             self.channelId = channelId
@@ -69,5 +51,23 @@ extension Iotvideoindustry {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备通道实时流地址（旧）
+    ///
+    /// 本接口(DescribeChannelStreamURL)用于获取设备指定通道实时流地址，地址是动态生成，如重新播放需要调用此接口重新获取最新播放地址。
+    /// 正常推流，如未设置对应录制计划，且180s无人观看此流，将会被自动掐断。
+    @inlinable
+    public func describeChannelStreamURL(_ input: DescribeChannelStreamURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChannelStreamURLResponse > {
+        self.client.execute(action: "DescribeChannelStreamURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备通道实时流地址（旧）
+    ///
+    /// 本接口(DescribeChannelStreamURL)用于获取设备指定通道实时流地址，地址是动态生成，如重新播放需要调用此接口重新获取最新播放地址。
+    /// 正常推流，如未设置对应录制计划，且180s无人观看此流，将会被自动掐断。
+    @inlinable
+    public func describeChannelStreamURL(_ input: DescribeChannelStreamURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelStreamURLResponse {
+        try await self.client.execute(action: "DescribeChannelStreamURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 添加记录
-    @inlinable
-    public func createRecord(_ input: CreateRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRecordResponse > {
-        self.client.execute(action: "CreateRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加记录
-    @inlinable
-    public func createRecord(_ input: CreateRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordResponse {
-        try await self.client.execute(action: "CreateRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRecord请求参数结构体
     public struct CreateRecordRequest: TCRequestModel {
         /// 域名
@@ -62,7 +50,7 @@ extension Dnspod {
         /// 记录初始状态，取值范围为 ENABLE 和 DISABLE 。默认为 ENABLE ，如果传入 DISABLE，解析不会生效，也不会验证负载均衡的限制。
         public let status: String?
         
-        public init (domain: String, recordType: String, recordLine: String, value: String, domainId: UInt64?, subDomain: String?, recordLineId: String?, mx: UInt64?, ttl: UInt64?, weight: UInt64?, status: String?) {
+        public init (domain: String, recordType: String, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, weight: UInt64? = nil, status: String? = nil) {
             self.domain = domain
             self.recordType = recordType
             self.recordLine = recordLine
@@ -103,5 +91,17 @@ extension Dnspod {
             case recordId = "RecordId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加记录
+    @inlinable
+    public func createRecord(_ input: CreateRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRecordResponse > {
+        self.client.execute(action: "CreateRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加记录
+    @inlinable
+    public func createRecord(_ input: CreateRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordResponse {
+        try await self.client.execute(action: "CreateRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

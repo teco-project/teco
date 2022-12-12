@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 获取主密钥属性
-    ///
-    /// 用于获取指定KeyId的主密钥属性详情信息。
-    @inlinable
-    public func describeKey(_ input: DescribeKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeyResponse > {
-        self.client.execute(action: "DescribeKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取主密钥属性
-    ///
-    /// 用于获取指定KeyId的主密钥属性详情信息。
-    @inlinable
-    public func describeKey(_ input: DescribeKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyResponse {
-        try await self.client.execute(action: "DescribeKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKey请求参数结构体
     public struct DescribeKeyRequest: TCRequestModel {
         /// CMK全局唯一标识符
@@ -49,7 +33,7 @@ extension Kms {
     public struct DescribeKeyResponse: TCResponseModel {
         /// 密钥属性信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let keyMetadata: KeyMetadata
+        public let keyMetadata: KeyMetadata?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -58,5 +42,21 @@ extension Kms {
             case keyMetadata = "KeyMetadata"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取主密钥属性
+    ///
+    /// 用于获取指定KeyId的主密钥属性详情信息。
+    @inlinable
+    public func describeKey(_ input: DescribeKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeyResponse > {
+        self.client.execute(action: "DescribeKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取主密钥属性
+    ///
+    /// 用于获取指定KeyId的主密钥属性详情信息。
+    @inlinable
+    public func describeKey(_ input: DescribeKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyResponse {
+        try await self.client.execute(action: "DescribeKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

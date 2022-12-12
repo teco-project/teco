@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 获取访问日志导出列表
-    ///
-    /// 本接口用于获取访问日志导出列表
-    @inlinable
-    public func describeAccessExports(_ input: DescribeAccessExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessExportsResponse > {
-        self.client.execute(action: "DescribeAccessExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取访问日志导出列表
-    ///
-    /// 本接口用于获取访问日志导出列表
-    @inlinable
-    public func describeAccessExports(_ input: DescribeAccessExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessExportsResponse {
-        try await self.client.execute(action: "DescribeAccessExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccessExports请求参数结构体
     public struct DescribeAccessExportsRequest: TCRequestModel {
         /// 客户要查询的日志主题ID，每个客户都有对应的一个主题
@@ -42,7 +26,7 @@ extension Waf {
         /// 分页单页限制数目，默认值为20，最大值100
         public let limit: Int64?
         
-        public init (topicId: String, offset: Int64?, limit: Int64?) {
+        public init (topicId: String, offset: Int64? = nil, limit: Int64? = nil) {
             self.topicId = topicId
             self.offset = offset
             self.limit = limit
@@ -72,5 +56,21 @@ extension Waf {
             case exports = "Exports"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取访问日志导出列表
+    ///
+    /// 本接口用于获取访问日志导出列表
+    @inlinable
+    public func describeAccessExports(_ input: DescribeAccessExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessExportsResponse > {
+        self.client.execute(action: "DescribeAccessExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取访问日志导出列表
+    ///
+    /// 本接口用于获取访问日志导出列表
+    @inlinable
+    public func describeAccessExports(_ input: DescribeAccessExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessExportsResponse {
+        try await self.client.execute(action: "DescribeAccessExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

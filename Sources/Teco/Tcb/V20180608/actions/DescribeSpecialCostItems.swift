@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询环境1分钱抵扣信息
-    @inlinable
-    public func describeSpecialCostItems(_ input: DescribeSpecialCostItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpecialCostItemsResponse > {
-        self.client.execute(action: "DescribeSpecialCostItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询环境1分钱抵扣信息
-    @inlinable
-    public func describeSpecialCostItems(_ input: DescribeSpecialCostItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecialCostItemsResponse {
-        try await self.client.execute(action: "DescribeSpecialCostItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSpecialCostItems请求参数结构体
     public struct DescribeSpecialCostItemsRequest: TCRequestModel {
         /// 环境id
@@ -38,7 +26,7 @@ extension Tcb {
         /// 查询结束时间
         public let endTime: String?
         
-        public init (envId: String?, startTime: String?, endTime: String?) {
+        public init (envId: String? = nil, startTime: String? = nil, endTime: String? = nil) {
             self.envId = envId
             self.startTime = startTime
             self.endTime = endTime
@@ -64,5 +52,17 @@ extension Tcb {
             case specialCostItems = "SpecialCostItems"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询环境1分钱抵扣信息
+    @inlinable
+    public func describeSpecialCostItems(_ input: DescribeSpecialCostItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpecialCostItemsResponse > {
+        self.client.execute(action: "DescribeSpecialCostItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询环境1分钱抵扣信息
+    @inlinable
+    public func describeSpecialCostItems(_ input: DescribeSpecialCostItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecialCostItemsResponse {
+        try await self.client.execute(action: "DescribeSpecialCostItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

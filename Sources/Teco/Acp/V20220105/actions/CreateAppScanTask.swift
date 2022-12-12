@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Acp {
-    /// 创建应用合规隐私诊断任务
-    @inlinable
-    public func createAppScanTask(_ input: CreateAppScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppScanTaskResponse > {
-        self.client.execute(action: "CreateAppScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建应用合规隐私诊断任务
-    @inlinable
-    public func createAppScanTask(_ input: CreateAppScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskResponse {
-        try await self.client.execute(action: "CreateAppScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAppScanTask请求参数结构体
     public struct CreateAppScanTaskRequest: TCRequestModel {
         /// 任务类型, 0:基础版, 1:专家版, 2:本地化
@@ -86,7 +74,7 @@ extension Acp {
         /// 隐私申明文本md5(AppSha1不为空时必填)
         public let privacyTextMD5: String?
         
-        public init (taskType: Int64, source: Int64, platform: Int64, appPackage: String?, appName: String?, appVersion: String?, fileID: String?, appDownloadUrl: String?, privacyTextUrl: String?, contactName: String?, telNumber: String?, email: String?, corpName: String?, salesPerson: String?, remark: String?, isAgreePrivacy: Int64?, privacyTextName: String?, appSha1: String?, privacyTextMD5: String?) {
+        public init (taskType: Int64, source: Int64, platform: Int64, appPackage: String? = nil, appName: String? = nil, appVersion: String? = nil, fileID: String? = nil, appDownloadUrl: String? = nil, privacyTextUrl: String? = nil, contactName: String? = nil, telNumber: String? = nil, email: String? = nil, corpName: String? = nil, salesPerson: String? = nil, remark: String? = nil, isAgreePrivacy: Int64? = nil, privacyTextName: String? = nil, appSha1: String? = nil, privacyTextMD5: String? = nil) {
             self.taskType = taskType
             self.source = source
             self.platform = platform
@@ -148,5 +136,17 @@ extension Acp {
             case taskID = "TaskID"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建应用合规隐私诊断任务
+    @inlinable
+    public func createAppScanTask(_ input: CreateAppScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppScanTaskResponse > {
+        self.client.execute(action: "CreateAppScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建应用合规隐私诊断任务
+    @inlinable
+    public func createAppScanTask(_ input: CreateAppScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskResponse {
+        try await self.client.execute(action: "CreateAppScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

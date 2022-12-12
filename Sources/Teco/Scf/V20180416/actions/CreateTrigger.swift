@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 设置函数触发方式
-    ///
-    /// 该接口根据参数输入设置新的触发方式。
-    @inlinable
-    public func createTrigger(_ input: CreateTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTriggerResponse > {
-        self.client.execute(action: "CreateTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置函数触发方式
-    ///
-    /// 该接口根据参数输入设置新的触发方式。
-    @inlinable
-    public func createTrigger(_ input: CreateTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTriggerResponse {
-        try await self.client.execute(action: "CreateTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTrigger请求参数结构体
     public struct CreateTriggerRequest: TCRequestModel {
         /// 新建触发器绑定的函数名称
@@ -57,7 +41,7 @@ extension Scf {
         /// 用户自定义参数，仅支持timer触发器
         public let customArgument: String?
         
-        public init (functionName: String, triggerName: String, type: String, triggerDesc: String?, namespace: String?, qualifier: String?, enable: String?, customArgument: String?) {
+        public init (functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil) {
             self.functionName = functionName
             self.triggerName = triggerName
             self.type = type
@@ -92,5 +76,21 @@ extension Scf {
             case triggerInfo = "TriggerInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置函数触发方式
+    ///
+    /// 该接口根据参数输入设置新的触发方式。
+    @inlinable
+    public func createTrigger(_ input: CreateTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTriggerResponse > {
+        self.client.execute(action: "CreateTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置函数触发方式
+    ///
+    /// 该接口根据参数输入设置新的触发方式。
+    @inlinable
+    public func createTrigger(_ input: CreateTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTriggerResponse {
+        try await self.client.execute(action: "CreateTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

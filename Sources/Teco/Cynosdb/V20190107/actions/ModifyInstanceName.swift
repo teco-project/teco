@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 修改实例名称
-    ///
-    /// 本接口(ModifyInstanceName)用于修改实例名称。
-    @inlinable
-    public func modifyInstanceName(_ input: ModifyInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceNameResponse > {
-        self.client.execute(action: "ModifyInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例名称
-    ///
-    /// 本接口(ModifyInstanceName)用于修改实例名称。
-    @inlinable
-    public func modifyInstanceName(_ input: ModifyInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceNameResponse {
-        try await self.client.execute(action: "ModifyInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstanceName请求参数结构体
     public struct ModifyInstanceNameRequest: TCRequestModel {
         /// 实例ID
@@ -58,5 +42,21 @@ extension Cynosdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例名称
+    ///
+    /// 本接口(ModifyInstanceName)用于修改实例名称。
+    @inlinable
+    public func modifyInstanceName(_ input: ModifyInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceNameResponse > {
+        self.client.execute(action: "ModifyInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例名称
+    ///
+    /// 本接口(ModifyInstanceName)用于修改实例名称。
+    @inlinable
+    public func modifyInstanceName(_ input: ModifyInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceNameResponse {
+        try await self.client.execute(action: "ModifyInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

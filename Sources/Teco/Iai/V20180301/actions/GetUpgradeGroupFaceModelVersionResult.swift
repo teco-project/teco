@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 人员库升级结果查询
-    @inlinable
-    public func getUpgradeGroupFaceModelVersionResult(_ input: GetUpgradeGroupFaceModelVersionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUpgradeGroupFaceModelVersionResultResponse > {
-        self.client.execute(action: "GetUpgradeGroupFaceModelVersionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人员库升级结果查询
-    @inlinable
-    public func getUpgradeGroupFaceModelVersionResult(_ input: GetUpgradeGroupFaceModelVersionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionResultResponse {
-        try await self.client.execute(action: "GetUpgradeGroupFaceModelVersionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetUpgradeGroupFaceModelVersionResult请求参数结构体
     public struct GetUpgradeGroupFaceModelVersionResultRequest: TCRequestModel {
         /// 升级任务ID，用于查询、获取人员库升级的进度和结果。
@@ -86,5 +74,17 @@ extension Iai {
             case failedFacesUrl = "FailedFacesUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人员库升级结果查询
+    @inlinable
+    public func getUpgradeGroupFaceModelVersionResult(_ input: GetUpgradeGroupFaceModelVersionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUpgradeGroupFaceModelVersionResultResponse > {
+        self.client.execute(action: "GetUpgradeGroupFaceModelVersionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人员库升级结果查询
+    @inlinable
+    public func getUpgradeGroupFaceModelVersionResult(_ input: GetUpgradeGroupFaceModelVersionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionResultResponse {
+        try await self.client.execute(action: "GetUpgradeGroupFaceModelVersionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

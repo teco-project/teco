@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Partners {
-    /// 合作伙伴为客户消除强代付关系
-    @inlinable
-    public func removePayRelationForClient(_ input: RemovePayRelationForClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemovePayRelationForClientResponse > {
-        self.client.execute(action: "RemovePayRelationForClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 合作伙伴为客户消除强代付关系
-    @inlinable
-    public func removePayRelationForClient(_ input: RemovePayRelationForClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemovePayRelationForClientResponse {
-        try await self.client.execute(action: "RemovePayRelationForClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemovePayRelationForClient请求参数结构体
     public struct RemovePayRelationForClientRequest: TCRequestModel {
         /// 客户账号ID
@@ -49,5 +37,17 @@ extension Partners {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 合作伙伴为客户消除强代付关系
+    @inlinable
+    public func removePayRelationForClient(_ input: RemovePayRelationForClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemovePayRelationForClientResponse > {
+        self.client.execute(action: "RemovePayRelationForClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 合作伙伴为客户消除强代付关系
+    @inlinable
+    public func removePayRelationForClient(_ input: RemovePayRelationForClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemovePayRelationForClientResponse {
+        try await self.client.execute(action: "RemovePayRelationForClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

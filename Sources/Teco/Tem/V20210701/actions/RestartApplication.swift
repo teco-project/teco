@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 服务重启
-    @inlinable
-    public func restartApplication(_ input: RestartApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartApplicationResponse > {
-        self.client.execute(action: "RestartApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 服务重启
-    @inlinable
-    public func restartApplication(_ input: RestartApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartApplicationResponse {
-        try await self.client.execute(action: "RestartApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestartApplication请求参数结构体
     public struct RestartApplicationRequest: TCRequestModel {
         /// 服务id
@@ -38,7 +26,7 @@ extension Tem {
         /// 环境ID
         public let environmentId: String?
         
-        public init (applicationId: String, sourceChannel: Int64?, environmentId: String?) {
+        public init (applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil) {
             self.applicationId = applicationId
             self.sourceChannel = sourceChannel
             self.environmentId = environmentId
@@ -63,5 +51,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 服务重启
+    @inlinable
+    public func restartApplication(_ input: RestartApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartApplicationResponse > {
+        self.client.execute(action: "RestartApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 服务重启
+    @inlinable
+    public func restartApplication(_ input: RestartApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartApplicationResponse {
+        try await self.client.execute(action: "RestartApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

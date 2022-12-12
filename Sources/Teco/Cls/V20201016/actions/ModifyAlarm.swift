@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 修改告警策略
-    ///
-    /// 本接口用于修改告警策略。需要至少修改一项有效内容。
-    @inlinable
-    public func modifyAlarm(_ input: ModifyAlarmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmResponse > {
-        self.client.execute(action: "ModifyAlarm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改告警策略
-    ///
-    /// 本接口用于修改告警策略。需要至少修改一项有效内容。
-    @inlinable
-    public func modifyAlarm(_ input: ModifyAlarmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmResponse {
-        try await self.client.execute(action: "ModifyAlarm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAlarm请求参数结构体
     public struct ModifyAlarmRequest: TCRequestModel {
         /// 告警策略ID。
@@ -40,7 +24,7 @@ extension Cls {
         public let name: String?
         
         /// 监控任务运行时间点。
-        public let monitorTime: MonitorTime
+        public let monitorTime: MonitorTime?
         
         /// 触发条件。
         public let condition: String?
@@ -64,12 +48,12 @@ extension Cls {
         public let messageTemplate: String?
         
         /// 用户自定义回调
-        public let callBack: CallBackInfo
+        public let callBack: CallBackInfo?
         
         /// 多维分析
         public let analysis: [AnalysisDimensional]?
         
-        public init (alarmId: String, name: String?, monitorTime: MonitorTime, condition: String?, triggerCount: Int64?, alarmPeriod: Int64?, alarmNoticeIds: [String]?, alarmTargets: [AlarmTarget]?, status: Bool?, messageTemplate: String?, callBack: CallBackInfo, analysis: [AnalysisDimensional]?) {
+        public init (alarmId: String, name: String? = nil, monitorTime: MonitorTime? = nil, condition: String? = nil, triggerCount: Int64? = nil, alarmPeriod: Int64? = nil, alarmNoticeIds: [String]? = nil, alarmTargets: [AlarmTarget]? = nil, status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil) {
             self.alarmId = alarmId
             self.name = name
             self.monitorTime = monitorTime
@@ -108,5 +92,21 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改告警策略
+    ///
+    /// 本接口用于修改告警策略。需要至少修改一项有效内容。
+    @inlinable
+    public func modifyAlarm(_ input: ModifyAlarmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmResponse > {
+        self.client.execute(action: "ModifyAlarm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改告警策略
+    ///
+    /// 本接口用于修改告警策略。需要至少修改一项有效内容。
+    @inlinable
+    public func modifyAlarm(_ input: ModifyAlarmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmResponse {
+        try await self.client.execute(action: "ModifyAlarm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

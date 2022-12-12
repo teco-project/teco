@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ump {
-    /// 获取多经点位底图
-    @inlinable
-    public func describeMultiBizBaseImage(_ input: DescribeMultiBizBaseImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMultiBizBaseImageResponse > {
-        self.client.execute(action: "DescribeMultiBizBaseImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取多经点位底图
-    @inlinable
-    public func describeMultiBizBaseImage(_ input: DescribeMultiBizBaseImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiBizBaseImageResponse {
-        try await self.client.execute(action: "DescribeMultiBizBaseImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMultiBizBaseImage请求参数结构体
     public struct DescribeMultiBizBaseImageRequest: TCRequestModel {
         /// 集团编码
@@ -68,5 +56,17 @@ extension Ump {
             case imageUrl = "ImageUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取多经点位底图
+    @inlinable
+    public func describeMultiBizBaseImage(_ input: DescribeMultiBizBaseImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMultiBizBaseImageResponse > {
+        self.client.execute(action: "DescribeMultiBizBaseImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取多经点位底图
+    @inlinable
+    public func describeMultiBizBaseImage(_ input: DescribeMultiBizBaseImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiBizBaseImageResponse {
+        try await self.client.execute(action: "DescribeMultiBizBaseImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

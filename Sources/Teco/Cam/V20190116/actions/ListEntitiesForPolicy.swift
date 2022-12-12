@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 查询策略关联的实体列表
-    ///
-    /// 本接口（ListEntitiesForPolicy）可用于查询策略关联的实体列表。
-    @inlinable
-    public func listEntitiesForPolicy(_ input: ListEntitiesForPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListEntitiesForPolicyResponse > {
-        self.client.execute(action: "ListEntitiesForPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询策略关联的实体列表
-    ///
-    /// 本接口（ListEntitiesForPolicy）可用于查询策略关联的实体列表。
-    @inlinable
-    public func listEntitiesForPolicy(_ input: ListEntitiesForPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEntitiesForPolicyResponse {
-        try await self.client.execute(action: "ListEntitiesForPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListEntitiesForPolicy请求参数结构体
     public struct ListEntitiesForPolicyRequest: TCRequestModel {
         /// 策略 id
@@ -45,7 +29,7 @@ extension Cam {
         /// 可取值 'All'、'User'、'Group' 和 'Role'，'All' 表示获取所有实体类型，'User' 表示只获取子账号，'Group' 表示只获取用户组，'Role' 表示只获取角色，默认取 'All'
         public let entityFilter: String?
         
-        public init (policyId: UInt64, page: UInt64?, rp: UInt64?, entityFilter: String?) {
+        public init (policyId: UInt64, page: UInt64? = nil, rp: UInt64? = nil, entityFilter: String? = nil) {
             self.policyId = policyId
             self.page = page
             self.rp = rp
@@ -78,5 +62,21 @@ extension Cam {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询策略关联的实体列表
+    ///
+    /// 本接口（ListEntitiesForPolicy）可用于查询策略关联的实体列表。
+    @inlinable
+    public func listEntitiesForPolicy(_ input: ListEntitiesForPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListEntitiesForPolicyResponse > {
+        self.client.execute(action: "ListEntitiesForPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询策略关联的实体列表
+    ///
+    /// 本接口（ListEntitiesForPolicy）可用于查询策略关联的实体列表。
+    @inlinable
+    public func listEntitiesForPolicy(_ input: ListEntitiesForPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEntitiesForPolicyResponse {
+        try await self.client.execute(action: "ListEntitiesForPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

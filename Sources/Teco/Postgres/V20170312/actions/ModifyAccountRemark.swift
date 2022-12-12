@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 修改帐号备注
-    ///
-    /// 本接口（ModifyAccountRemark）用于修改帐号备注。
-    @inlinable
-    public func modifyAccountRemark(_ input: ModifyAccountRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountRemarkResponse > {
-        self.client.execute(action: "ModifyAccountRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改帐号备注
-    ///
-    /// 本接口（ModifyAccountRemark）用于修改帐号备注。
-    @inlinable
-    public func modifyAccountRemark(_ input: ModifyAccountRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountRemarkResponse {
-        try await self.client.execute(action: "ModifyAccountRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAccountRemark请求参数结构体
     public struct ModifyAccountRemarkRequest: TCRequestModel {
         /// 实例ID，形如postgres-4wdeb0zv
@@ -63,5 +47,21 @@ extension Postgres {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改帐号备注
+    ///
+    /// 本接口（ModifyAccountRemark）用于修改帐号备注。
+    @inlinable
+    public func modifyAccountRemark(_ input: ModifyAccountRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountRemarkResponse > {
+        self.client.execute(action: "ModifyAccountRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改帐号备注
+    ///
+    /// 本接口（ModifyAccountRemark）用于修改帐号备注。
+    @inlinable
+    public func modifyAccountRemark(_ input: ModifyAccountRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountRemarkResponse {
+        try await self.client.execute(action: "ModifyAccountRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

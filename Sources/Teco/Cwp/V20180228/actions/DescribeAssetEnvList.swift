@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询资产管理环境变量列表
-    @inlinable
-    public func describeAssetEnvList(_ input: DescribeAssetEnvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetEnvListResponse > {
-        self.client.execute(action: "DescribeAssetEnvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询资产管理环境变量列表
-    @inlinable
-    public func describeAssetEnvList(_ input: DescribeAssetEnvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetEnvListResponse {
-        try await self.client.execute(action: "DescribeAssetEnvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetEnvList请求参数结构体
     public struct DescribeAssetEnvListRequest: TCRequestModel {
         /// 服务器Uuid
@@ -56,7 +44,7 @@ extension Cwp {
         /// 排序方式：[FirstTime]
         public let by: String?
         
-        public init (uuid: String?, quuid: String?, type: UInt64?, filters: [AssetFilters]?, offset: UInt64?, limit: UInt64?, order: String?, by: String?) {
+        public init (uuid: String? = nil, quuid: String? = nil, type: UInt64? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.uuid = uuid
             self.quuid = quuid
             self.type = type
@@ -96,5 +84,17 @@ extension Cwp {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询资产管理环境变量列表
+    @inlinable
+    public func describeAssetEnvList(_ input: DescribeAssetEnvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetEnvListResponse > {
+        self.client.execute(action: "DescribeAssetEnvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资产管理环境变量列表
+    @inlinable
+    public func describeAssetEnvList(_ input: DescribeAssetEnvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetEnvListResponse {
+        try await self.client.execute(action: "DescribeAssetEnvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

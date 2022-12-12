@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 删除机器组信息
-    ///
-    /// 用于删除机器组信息
-    @inlinable
-    public func deleteMachineGroupInfo(_ input: DeleteMachineGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMachineGroupInfoResponse > {
-        self.client.execute(action: "DeleteMachineGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除机器组信息
-    ///
-    /// 用于删除机器组信息
-    @inlinable
-    public func deleteMachineGroupInfo(_ input: DeleteMachineGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupInfoResponse {
-        try await self.client.execute(action: "DeleteMachineGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMachineGroupInfo请求参数结构体
     public struct DeleteMachineGroupInfoRequest: TCRequestModel {
         /// 机器组ID
@@ -59,5 +43,21 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除机器组信息
+    ///
+    /// 用于删除机器组信息
+    @inlinable
+    public func deleteMachineGroupInfo(_ input: DeleteMachineGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMachineGroupInfoResponse > {
+        self.client.execute(action: "DeleteMachineGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除机器组信息
+    ///
+    /// 用于删除机器组信息
+    @inlinable
+    public func deleteMachineGroupInfo(_ input: DeleteMachineGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupInfoResponse {
+        try await self.client.execute(action: "DeleteMachineGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

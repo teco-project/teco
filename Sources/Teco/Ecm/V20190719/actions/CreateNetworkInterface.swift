@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 创建弹性网卡
-    @inlinable
-    public func createNetworkInterface(_ input: CreateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkInterfaceResponse > {
-        self.client.execute(action: "CreateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建弹性网卡
-    @inlinable
-    public func createNetworkInterface(_ input: CreateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkInterfaceResponse {
-        try await self.client.execute(action: "CreateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNetworkInterface请求参数结构体
     public struct CreateNetworkInterfaceRequest: TCRequestModel {
         /// VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
@@ -56,7 +44,7 @@ extension Ecm {
         /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         public let tags: [Tag]?
         
-        public init (vpcId: String, networkInterfaceName: String, subnetId: String, ecmRegion: String, networkInterfaceDescription: String?, secondaryPrivateIpAddressCount: UInt64?, securityGroupIds: [String]?, privateIpAddresses: [PrivateIpAddressSpecification]?, tags: [Tag]?) {
+        public init (vpcId: String, networkInterfaceName: String, subnetId: String, ecmRegion: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil) {
             self.vpcId = vpcId
             self.networkInterfaceName = networkInterfaceName
             self.subnetId = subnetId
@@ -93,5 +81,17 @@ extension Ecm {
             case networkInterface = "NetworkInterface"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建弹性网卡
+    @inlinable
+    public func createNetworkInterface(_ input: CreateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkInterfaceResponse > {
+        self.client.execute(action: "CreateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建弹性网卡
+    @inlinable
+    public func createNetworkInterface(_ input: CreateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkInterfaceResponse {
+        try await self.client.execute(action: "CreateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

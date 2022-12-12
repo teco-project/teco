@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询安全组被引用信息
-    ///
-    /// 本接口（DescribeSecurityGroupReferences）用于查询安全组被引用信息。
-    @inlinable
-    public func describeSecurityGroupReferences(_ input: DescribeSecurityGroupReferencesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupReferencesResponse > {
-        self.client.execute(action: "DescribeSecurityGroupReferences", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全组被引用信息
-    ///
-    /// 本接口（DescribeSecurityGroupReferences）用于查询安全组被引用信息。
-    @inlinable
-    public func describeSecurityGroupReferences(_ input: DescribeSecurityGroupReferencesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupReferencesResponse {
-        try await self.client.execute(action: "DescribeSecurityGroupReferences", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityGroupReferences请求参数结构体
     public struct DescribeSecurityGroupReferencesRequest: TCRequestModel {
         /// 安全组实例ID数组。格式如：['sg-12345678']
@@ -57,5 +41,21 @@ extension Vpc {
             case referredSecurityGroupSet = "ReferredSecurityGroupSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全组被引用信息
+    ///
+    /// 本接口（DescribeSecurityGroupReferences）用于查询安全组被引用信息。
+    @inlinable
+    public func describeSecurityGroupReferences(_ input: DescribeSecurityGroupReferencesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupReferencesResponse > {
+        self.client.execute(action: "DescribeSecurityGroupReferences", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全组被引用信息
+    ///
+    /// 本接口（DescribeSecurityGroupReferences）用于查询安全组被引用信息。
+    @inlinable
+    public func describeSecurityGroupReferences(_ input: DescribeSecurityGroupReferencesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupReferencesResponse {
+        try await self.client.execute(action: "DescribeSecurityGroupReferences", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

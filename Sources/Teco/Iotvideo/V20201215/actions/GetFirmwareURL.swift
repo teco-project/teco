@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取固件下载地址
-    ///
-    /// 本接口（GetFirmwareURL）用于获取固件存储的URL 
-    @inlinable
-    public func getFirmwareURL(_ input: GetFirmwareURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFirmwareURLResponse > {
-        self.client.execute(action: "GetFirmwareURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取固件下载地址
-    ///
-    /// 本接口（GetFirmwareURL）用于获取固件存储的URL 
-    @inlinable
-    public func getFirmwareURL(_ input: GetFirmwareURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFirmwareURLResponse {
-        try await self.client.execute(action: "GetFirmwareURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetFirmwareURL请求参数结构体
     public struct GetFirmwareURLRequest: TCRequestModel {
         /// 产品ID
@@ -62,5 +46,21 @@ extension Iotvideo {
             case url = "Url"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取固件下载地址
+    ///
+    /// 本接口（GetFirmwareURL）用于获取固件存储的URL 
+    @inlinable
+    public func getFirmwareURL(_ input: GetFirmwareURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFirmwareURLResponse > {
+        self.client.execute(action: "GetFirmwareURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取固件下载地址
+    ///
+    /// 本接口（GetFirmwareURL）用于获取固件存储的URL 
+    @inlinable
+    public func getFirmwareURL(_ input: GetFirmwareURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFirmwareURLResponse {
+        try await self.client.execute(action: "GetFirmwareURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

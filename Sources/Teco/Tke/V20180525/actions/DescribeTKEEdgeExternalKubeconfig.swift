@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取边缘计算外部访问的kubeconfig
-    @inlinable
-    public func describeTKEEdgeExternalKubeconfig(_ input: DescribeTKEEdgeExternalKubeconfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTKEEdgeExternalKubeconfigResponse > {
-        self.client.execute(action: "DescribeTKEEdgeExternalKubeconfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取边缘计算外部访问的kubeconfig
-    @inlinable
-    public func describeTKEEdgeExternalKubeconfig(_ input: DescribeTKEEdgeExternalKubeconfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeExternalKubeconfigResponse {
-        try await self.client.execute(action: "DescribeTKEEdgeExternalKubeconfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTKEEdgeExternalKubeconfig请求参数结构体
     public struct DescribeTKEEdgeExternalKubeconfigRequest: TCRequestModel {
         /// 集群id
@@ -53,5 +41,17 @@ extension Tke {
             case kubeconfig = "Kubeconfig"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取边缘计算外部访问的kubeconfig
+    @inlinable
+    public func describeTKEEdgeExternalKubeconfig(_ input: DescribeTKEEdgeExternalKubeconfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTKEEdgeExternalKubeconfigResponse > {
+        self.client.execute(action: "DescribeTKEEdgeExternalKubeconfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取边缘计算外部访问的kubeconfig
+    @inlinable
+    public func describeTKEEdgeExternalKubeconfig(_ input: DescribeTKEEdgeExternalKubeconfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeExternalKubeconfigResponse {
+        try await self.client.execute(action: "DescribeTKEEdgeExternalKubeconfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

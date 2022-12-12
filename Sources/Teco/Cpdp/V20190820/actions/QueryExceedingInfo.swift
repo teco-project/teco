@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云-查询超额信息
-    @inlinable
-    public func queryExceedingInfo(_ input: QueryExceedingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryExceedingInfoResponse > {
-        self.client.execute(action: "QueryExceedingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云-查询超额信息
-    @inlinable
-    public func queryExceedingInfo(_ input: QueryExceedingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExceedingInfoResponse {
-        try await self.client.execute(action: "QueryExceedingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryExceedingInfo请求参数结构体
     public struct QueryExceedingInfoRequest: TCRequestModel {
         /// 超额日期。格式为yyyy-MM-dd。
@@ -36,9 +24,9 @@ extension Cpdp {
         public let dimension: String?
         
         /// 分页信息。不填默认Index为1，Count为100。
-        public let pageNumber: Paging
+        public let pageNumber: Paging?
         
-        public init (timeStr: String, dimension: String?, pageNumber: Paging) {
+        public init (timeStr: String, dimension: String? = nil, pageNumber: Paging? = nil) {
             self.timeStr = timeStr
             self.dimension = dimension
             self.pageNumber = pageNumber
@@ -61,7 +49,7 @@ extension Cpdp {
         
         /// 超额信息结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: QueryExceedingInfoResult
+        public let result: QueryExceedingInfoResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -72,5 +60,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云-查询超额信息
+    @inlinable
+    public func queryExceedingInfo(_ input: QueryExceedingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryExceedingInfoResponse > {
+        self.client.execute(action: "QueryExceedingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云-查询超额信息
+    @inlinable
+    public func queryExceedingInfo(_ input: QueryExceedingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExceedingInfoResponse {
+        try await self.client.execute(action: "QueryExceedingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

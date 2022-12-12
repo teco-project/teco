@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询数据库导入任务记录
-    ///
-    /// 本接口(DescribeDBImportRecords)用于查询云数据库导入任务操作日志。
-    @inlinable
-    public func describeDBImportRecords(_ input: DescribeDBImportRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBImportRecordsResponse > {
-        self.client.execute(action: "DescribeDBImportRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据库导入任务记录
-    ///
-    /// 本接口(DescribeDBImportRecords)用于查询云数据库导入任务操作日志。
-    @inlinable
-    public func describeDBImportRecords(_ input: DescribeDBImportRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBImportRecordsResponse {
-        try await self.client.execute(action: "DescribeDBImportRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBImportRecords请求参数结构体
     public struct DescribeDBImportRecordsRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -48,7 +32,7 @@ extension Cdb {
         /// 分页参数，单次请求返回的数量，默认值为20，最小值为1，最大值为100。
         public let limit: Int64?
         
-        public init (instanceId: String, startTime: String?, endTime: String?, offset: Int64?, limit: Int64?) {
+        public init (instanceId: String, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -81,5 +65,21 @@ extension Cdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据库导入任务记录
+    ///
+    /// 本接口(DescribeDBImportRecords)用于查询云数据库导入任务操作日志。
+    @inlinable
+    public func describeDBImportRecords(_ input: DescribeDBImportRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBImportRecordsResponse > {
+        self.client.execute(action: "DescribeDBImportRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库导入任务记录
+    ///
+    /// 本接口(DescribeDBImportRecords)用于查询云数据库导入任务操作日志。
+    @inlinable
+    public func describeDBImportRecords(_ input: DescribeDBImportRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBImportRecordsResponse {
+        try await self.client.execute(action: "DescribeDBImportRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

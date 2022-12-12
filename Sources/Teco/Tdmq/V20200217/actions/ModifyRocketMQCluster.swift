@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 更新RocketMQ集群信息
-    @inlinable
-    public func modifyRocketMQCluster(_ input: ModifyRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRocketMQClusterResponse > {
-        self.client.execute(action: "ModifyRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新RocketMQ集群信息
-    @inlinable
-    public func modifyRocketMQCluster(_ input: ModifyRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQClusterResponse {
-        try await self.client.execute(action: "ModifyRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRocketMQCluster请求参数结构体
     public struct ModifyRocketMQClusterRequest: TCRequestModel {
         /// RocketMQ集群ID
@@ -38,7 +26,7 @@ extension Tdmq {
         /// 说明信息，不超过128个字符
         public let remark: String?
         
-        public init (clusterId: String, clusterName: String?, remark: String?) {
+        public init (clusterId: String, clusterName: String? = nil, remark: String? = nil) {
             self.clusterId = clusterId
             self.clusterName = clusterName
             self.remark = remark
@@ -59,5 +47,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新RocketMQ集群信息
+    @inlinable
+    public func modifyRocketMQCluster(_ input: ModifyRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRocketMQClusterResponse > {
+        self.client.execute(action: "ModifyRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新RocketMQ集群信息
+    @inlinable
+    public func modifyRocketMQCluster(_ input: ModifyRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQClusterResponse {
+        try await self.client.execute(action: "ModifyRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

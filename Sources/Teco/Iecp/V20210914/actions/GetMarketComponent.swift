@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取组件市场的组件信息
-    @inlinable
-    public func getMarketComponent(_ input: GetMarketComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetMarketComponentResponse > {
-        self.client.execute(action: "GetMarketComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取组件市场的组件信息
-    @inlinable
-    public func getMarketComponent(_ input: GetMarketComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetMarketComponentResponse {
-        try await self.client.execute(action: "GetMarketComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetMarketComponent请求参数结构体
     public struct GetMarketComponentRequest: TCRequestModel {
         /// 组件ID
@@ -85,5 +73,17 @@ extension Iecp {
             case workloadVisualConfig = "WorkloadVisualConfig"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取组件市场的组件信息
+    @inlinable
+    public func getMarketComponent(_ input: GetMarketComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetMarketComponentResponse > {
+        self.client.execute(action: "GetMarketComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取组件市场的组件信息
+    @inlinable
+    public func getMarketComponent(_ input: GetMarketComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetMarketComponentResponse {
+        try await self.client.execute(action: "GetMarketComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

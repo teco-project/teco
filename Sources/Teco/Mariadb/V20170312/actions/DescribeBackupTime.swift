@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 查询备份时间
-    ///
-    /// 本接口（DescribeBackupTime）用于获取云数据库的备份时间。后台系统将根据此配置定期进行实例备份。
-    @inlinable
-    public func describeBackupTime(_ input: DescribeBackupTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupTimeResponse > {
-        self.client.execute(action: "DescribeBackupTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询备份时间
-    ///
-    /// 本接口（DescribeBackupTime）用于获取云数据库的备份时间。后台系统将根据此配置定期进行实例备份。
-    @inlinable
-    public func describeBackupTime(_ input: DescribeBackupTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupTimeResponse {
-        try await self.client.execute(action: "DescribeBackupTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBackupTime请求参数结构体
     public struct DescribeBackupTimeRequest: TCRequestModel {
         /// 实例ID，形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
@@ -62,5 +46,21 @@ extension Mariadb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询备份时间
+    ///
+    /// 本接口（DescribeBackupTime）用于获取云数据库的备份时间。后台系统将根据此配置定期进行实例备份。
+    @inlinable
+    public func describeBackupTime(_ input: DescribeBackupTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupTimeResponse > {
+        self.client.execute(action: "DescribeBackupTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份时间
+    ///
+    /// 本接口（DescribeBackupTime）用于获取云数据库的备份时间。后台系统将根据此配置定期进行实例备份。
+    @inlinable
+    public func describeBackupTime(_ input: DescribeBackupTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupTimeResponse {
+        try await self.client.execute(action: "DescribeBackupTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

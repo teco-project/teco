@@ -135,7 +135,7 @@ extension Domain {
         /// 国家（英文）。作为入参时可以不填
         public let country: String?
         
-        public init (organizationNameCN: String, organizationName: String, registrantNameCN: String, registrantName: String, provinceCN: String, cityCN: String, streetCN: String, street: String, countryCN: String, telephone: String, email: String, zipCode: String, registrantType: String, province: String?, city: String?, country: String?) {
+        public init (organizationNameCN: String, organizationName: String, registrantNameCN: String, registrantName: String, provinceCN: String, cityCN: String, streetCN: String, street: String, countryCN: String, telephone: String, email: String, zipCode: String, registrantType: String, province: String? = nil, city: String? = nil, country: String? = nil) {
             self.organizationNameCN = organizationNameCN
             self.organizationName = organizationName
             self.registrantNameCN = registrantNameCN

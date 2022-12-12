@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取保险包套餐列表
-    @inlinable
-    public func describeInsurePacks(_ input: DescribeInsurePacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInsurePacksResponse > {
-        self.client.execute(action: "DescribeInsurePacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取保险包套餐列表
-    @inlinable
-    public func describeInsurePacks(_ input: DescribeInsurePacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInsurePacksResponse {
-        try await self.client.execute(action: "DescribeInsurePacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInsurePacks请求参数结构体
     public struct DescribeInsurePacksRequest: TCRequestModel {
         /// 可选字段，保险包套餐ID，当要获取指定ID（例如insure-000000xe）的保险包套餐时请填写此字段；
         public let idList: [String]?
         
-        public init (idList: [String]?) {
+        public init (idList: [String]? = nil) {
             self.idList = idList
         }
         
@@ -53,5 +41,17 @@ extension Dayu {
             case insurePacks = "InsurePacks"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取保险包套餐列表
+    @inlinable
+    public func describeInsurePacks(_ input: DescribeInsurePacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInsurePacksResponse > {
+        self.client.execute(action: "DescribeInsurePacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取保险包套餐列表
+    @inlinable
+    public func describeInsurePacks(_ input: DescribeInsurePacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInsurePacksResponse {
+        try await self.client.execute(action: "DescribeInsurePacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

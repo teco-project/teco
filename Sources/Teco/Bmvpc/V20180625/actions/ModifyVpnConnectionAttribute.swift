@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 修改VPN通道
-    ///
-    /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
-    @inlinable
-    public func modifyVpnConnectionAttribute(_ input: ModifyVpnConnectionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpnConnectionAttributeResponse > {
-        self.client.execute(action: "ModifyVpnConnectionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改VPN通道
-    ///
-    /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
-    @inlinable
-    public func modifyVpnConnectionAttribute(_ input: ModifyVpnConnectionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnConnectionAttributeResponse {
-        try await self.client.execute(action: "ModifyVpnConnectionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVpnConnectionAttribute请求参数结构体
     public struct ModifyVpnConnectionAttributeRequest: TCRequestModel {
         /// VPN通道实例ID。形如：bmvpnx-f49l6u0z。
@@ -49,12 +33,12 @@ extension Bmvpc {
         public let securityPolicyDatabases: [SecurityPolicyDatabase]?
         
         /// IKE配置（Internet Key Exchange，因特网密钥交换），IKE具有一套自我保护机制，用户配置网络安全协议。
-        public let ikeOptionsSpecification: IKEOptionsSpecification
+        public let ikeOptionsSpecification: IKEOptionsSpecification?
         
         /// IPSec配置，腾讯云提供IPSec安全会话设置。
-        public let ipsecOptionsSpecification: IPSECOptionsSpecification
+        public let ipsecOptionsSpecification: IPSECOptionsSpecification?
         
-        public init (vpnConnectionId: String, vpcId: String, vpnConnectionName: String?, preShareKey: String?, securityPolicyDatabases: [SecurityPolicyDatabase]?, ikeOptionsSpecification: IKEOptionsSpecification, ipsecOptionsSpecification: IPSECOptionsSpecification) {
+        public init (vpnConnectionId: String, vpcId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil) {
             self.vpnConnectionId = vpnConnectionId
             self.vpcId = vpcId
             self.vpnConnectionName = vpnConnectionName
@@ -87,5 +71,21 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改VPN通道
+    ///
+    /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
+    @inlinable
+    public func modifyVpnConnectionAttribute(_ input: ModifyVpnConnectionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpnConnectionAttributeResponse > {
+        self.client.execute(action: "ModifyVpnConnectionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改VPN通道
+    ///
+    /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
+    @inlinable
+    public func modifyVpnConnectionAttribute(_ input: ModifyVpnConnectionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnConnectionAttributeResponse {
+        try await self.client.execute(action: "ModifyVpnConnectionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 批量切换设备可用状态
-    ///
-    /// 批量启用或者禁用设备 
-    @inlinable
-    public func updateDevicesEnableState(_ input: UpdateDevicesEnableStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDevicesEnableStateResponse > {
-        self.client.execute(action: "UpdateDevicesEnableState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量切换设备可用状态
-    ///
-    /// 批量启用或者禁用设备 
-    @inlinable
-    public func updateDevicesEnableState(_ input: UpdateDevicesEnableStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicesEnableStateResponse {
-        try await self.client.execute(action: "UpdateDevicesEnableState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateDevicesEnableState请求参数结构体
     public struct UpdateDevicesEnableStateRequest: TCRequestModel {
         /// 设备所属产品id
@@ -63,5 +47,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量切换设备可用状态
+    ///
+    /// 批量启用或者禁用设备 
+    @inlinable
+    public func updateDevicesEnableState(_ input: UpdateDevicesEnableStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDevicesEnableStateResponse > {
+        self.client.execute(action: "UpdateDevicesEnableState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量切换设备可用状态
+    ///
+    /// 批量启用或者禁用设备 
+    @inlinable
+    public func updateDevicesEnableState(_ input: UpdateDevicesEnableStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicesEnableStateResponse {
+        try await self.client.execute(action: "UpdateDevicesEnableState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

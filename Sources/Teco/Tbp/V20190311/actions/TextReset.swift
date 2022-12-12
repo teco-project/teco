@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbp {
-    /// 会话重置
-    ///
-    /// 会话重置接口。已废弃，推荐使用最新版TextReset接口。
-    @inlinable
-    public func textReset(_ input: TextResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextResetResponse > {
-        self.client.execute(action: "TextReset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 会话重置
-    ///
-    /// 会话重置接口。已废弃，推荐使用最新版TextReset接口。
-    @inlinable
-    public func textReset(_ input: TextResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextResetResponse {
-        try await self.client.execute(action: "TextReset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TextReset请求参数结构体
     public struct TextResetRequest: TCRequestModel {
         /// 机器人标识，用于定义抽象机器人。
@@ -42,7 +26,7 @@ extension Tbp {
         /// 机器人版本，取值"dev"或"release"，{调试版本：dev；线上版本：release}。
         public let botEnv: String?
         
-        public init (botId: String, terminalId: String, botEnv: String?) {
+        public init (botId: String, terminalId: String, botEnv: String? = nil) {
             self.botId = botId
             self.terminalId = terminalId
             self.botEnv = botEnv
@@ -98,5 +82,21 @@ extension Tbp {
             case responseText = "ResponseText"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 会话重置
+    ///
+    /// 会话重置接口。已废弃，推荐使用最新版TextReset接口。
+    @inlinable
+    public func textReset(_ input: TextResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextResetResponse > {
+        self.client.execute(action: "TextReset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 会话重置
+    ///
+    /// 会话重置接口。已废弃，推荐使用最新版TextReset接口。
+    @inlinable
+    public func textReset(_ input: TextResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextResetResponse {
+        try await self.client.execute(action: "TextReset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

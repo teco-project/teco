@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 导入其它产品的数据模板
-    ///
-    /// 导入其它产品的数据模板，覆盖现有数据模板的物模型和产品分类信息
-    @inlinable
-    public func importModelDefinition(_ input: ImportModelDefinitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportModelDefinitionResponse > {
-        self.client.execute(action: "ImportModelDefinition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导入其它产品的数据模板
-    ///
-    /// 导入其它产品的数据模板，覆盖现有数据模板的物模型和产品分类信息
-    @inlinable
-    public func importModelDefinition(_ input: ImportModelDefinitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportModelDefinitionResponse {
-        try await self.client.execute(action: "ImportModelDefinition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ImportModelDefinition请求参数结构体
     public struct ImportModelDefinitionRequest: TCRequestModel {
         /// 产品ID
@@ -58,5 +42,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导入其它产品的数据模板
+    ///
+    /// 导入其它产品的数据模板，覆盖现有数据模板的物模型和产品分类信息
+    @inlinable
+    public func importModelDefinition(_ input: ImportModelDefinitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportModelDefinitionResponse > {
+        self.client.execute(action: "ImportModelDefinition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导入其它产品的数据模板
+    ///
+    /// 导入其它产品的数据模板，覆盖现有数据模板的物模型和产品分类信息
+    @inlinable
+    public func importModelDefinition(_ input: ImportModelDefinitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportModelDefinitionResponse {
+        try await self.client.execute(action: "ImportModelDefinition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

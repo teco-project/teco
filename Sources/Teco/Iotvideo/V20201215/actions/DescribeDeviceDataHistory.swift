@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取设备历史数据
-    ///
-    /// 获取设备在指定时间范围内上报的历史数据。
-    @inlinable
-    public func describeDeviceDataHistory(_ input: DescribeDeviceDataHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceDataHistoryResponse > {
-        self.client.execute(action: "DescribeDeviceDataHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备历史数据
-    ///
-    /// 获取设备在指定时间范围内上报的历史数据。
-    @inlinable
-    public func describeDeviceDataHistory(_ input: DescribeDeviceDataHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataHistoryResponse {
-        try await self.client.execute(action: "DescribeDeviceDataHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceDataHistory请求参数结构体
     public struct DescribeDeviceDataHistoryRequest: TCRequestModel {
         /// 区间开始时间（Unix 时间戳，毫秒级）
@@ -54,7 +38,7 @@ extension Iotvideo {
         /// 检索上下文
         public let context: String?
         
-        public init (minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, fieldName: String, limit: [UInt64]?, context: String?) {
+        public init (minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, fieldName: String, limit: [UInt64]? = nil, context: String? = nil) {
             self.minTime = minTime
             self.maxTime = maxTime
             self.productId = productId
@@ -103,5 +87,21 @@ extension Iotvideo {
             case results = "Results"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备历史数据
+    ///
+    /// 获取设备在指定时间范围内上报的历史数据。
+    @inlinable
+    public func describeDeviceDataHistory(_ input: DescribeDeviceDataHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceDataHistoryResponse > {
+        self.client.execute(action: "DescribeDeviceDataHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备历史数据
+    ///
+    /// 获取设备在指定时间范围内上报的历史数据。
+    @inlinable
+    public func describeDeviceDataHistory(_ input: DescribeDeviceDataHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataHistoryResponse {
+        try await self.client.execute(action: "DescribeDeviceDataHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

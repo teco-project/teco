@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云支付-查询已添加分账接收方接口
-    @inlinable
-    public func distributeQueryReceiver(_ input: DistributeQueryReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DistributeQueryReceiverResponse > {
-        self.client.execute(action: "DistributeQueryReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云支付-查询已添加分账接收方接口
-    @inlinable
-    public func distributeQueryReceiver(_ input: DistributeQueryReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeQueryReceiverResponse {
-        try await self.client.execute(action: "DistributeQueryReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DistributeQueryReceiver请求参数结构体
     public struct DistributeQueryReceiverRequest: TCRequestModel {
         /// 使用门店OpenId
@@ -38,7 +26,7 @@ extension Cpdp {
         /// 沙箱环境填sandbox，正式环境不填
         public let profile: String?
         
-        public init (openId: String, openKey: String, profile: String?) {
+        public init (openId: String, openKey: String, profile: String? = nil) {
             self.openId = openId
             self.openKey = openKey
             self.profile = profile
@@ -62,7 +50,7 @@ extension Cpdp {
         
         /// 查询询已添加分账接收方响应对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: DistributeReceiverResult
+        public let result: DistributeReceiverResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -73,5 +61,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云支付-查询已添加分账接收方接口
+    @inlinable
+    public func distributeQueryReceiver(_ input: DistributeQueryReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DistributeQueryReceiverResponse > {
+        self.client.execute(action: "DistributeQueryReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-查询已添加分账接收方接口
+    @inlinable
+    public func distributeQueryReceiver(_ input: DistributeQueryReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeQueryReceiverResponse {
+        try await self.client.execute(action: "DistributeQueryReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

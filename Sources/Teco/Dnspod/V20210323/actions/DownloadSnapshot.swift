@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 下载快照
-    @inlinable
-    public func downloadSnapshot(_ input: DownloadSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadSnapshotResponse > {
-        self.client.execute(action: "DownloadSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下载快照
-    @inlinable
-    public func downloadSnapshot(_ input: DownloadSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadSnapshotResponse {
-        try await self.client.execute(action: "DownloadSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DownloadSnapshot请求参数结构体
     public struct DownloadSnapshotRequest: TCRequestModel {
         /// 域名
@@ -38,7 +26,7 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
         public let domainId: UInt64?
         
-        public init (domain: String, snapshotId: String, domainId: UInt64?) {
+        public init (domain: String, snapshotId: String, domainId: UInt64? = nil) {
             self.domain = domain
             self.snapshotId = snapshotId
             self.domainId = domainId
@@ -63,5 +51,17 @@ extension Dnspod {
             case cosUrl = "CosUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下载快照
+    @inlinable
+    public func downloadSnapshot(_ input: DownloadSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadSnapshotResponse > {
+        self.client.execute(action: "DownloadSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下载快照
+    @inlinable
+    public func downloadSnapshot(_ input: DownloadSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadSnapshotResponse {
+        try await self.client.execute(action: "DownloadSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

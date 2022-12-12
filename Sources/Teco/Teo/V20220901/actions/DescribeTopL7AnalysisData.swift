@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询七层数据分析Top数据
-    ///
-    /// 本接口（DescribeTopL7AnalysisData）用于查询七层流量前topN的数据。
-    @inlinable
-    public func describeTopL7AnalysisData(_ input: DescribeTopL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopL7AnalysisDataResponse > {
-        self.client.execute(action: "DescribeTopL7AnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询七层数据分析Top数据
-    ///
-    /// 本接口（DescribeTopL7AnalysisData）用于查询七层流量前topN的数据。
-    @inlinable
-    public func describeTopL7AnalysisData(_ input: DescribeTopL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopL7AnalysisDataResponse {
-        try await self.client.execute(action: "DescribeTopL7AnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTopL7AnalysisData请求参数结构体
     public struct DescribeTopL7AnalysisDataRequest: TCRequestModel {
         /// 开始时间。
@@ -91,7 +75,7 @@ extension Teo {
         /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
         public let area: String?
         
-        public init (startTime: Date, endTime: Date, metricName: String, zoneIds: [String]?, limit: Int64?, filters: [QueryCondition]?, interval: String?, area: String?) {
+        public init (startTime: Date, endTime: Date, metricName: String, zoneIds: [String]? = nil, limit: Int64? = nil, filters: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metricName = metricName
@@ -131,5 +115,21 @@ extension Teo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询七层数据分析Top数据
+    ///
+    /// 本接口（DescribeTopL7AnalysisData）用于查询七层流量前topN的数据。
+    @inlinable
+    public func describeTopL7AnalysisData(_ input: DescribeTopL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopL7AnalysisDataResponse > {
+        self.client.execute(action: "DescribeTopL7AnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询七层数据分析Top数据
+    ///
+    /// 本接口（DescribeTopL7AnalysisData）用于查询七层流量前topN的数据。
+    @inlinable
+    public func describeTopL7AnalysisData(_ input: DescribeTopL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopL7AnalysisDataResponse {
+        try await self.client.execute(action: "DescribeTopL7AnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

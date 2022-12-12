@@ -112,7 +112,7 @@ extension Tione {
         /// SavedModel保存时配置的签名
         public let modelSignature: String?
         
-        public init (modelId: String, modelVersion: String, modelSource: String, modelFormat: String, tensorInfos: [String], accEngineVersion: String, modelInputPath: CosPathInfo, modelName: String?, modelSignature: String?) {
+        public init (modelId: String, modelVersion: String, modelSource: String, modelFormat: String, tensorInfos: [String], accEngineVersion: String, modelInputPath: CosPathInfo, modelName: String? = nil, modelSignature: String? = nil) {
             self.modelId = modelId
             self.modelVersion = modelVersion
             self.modelSource = modelSource
@@ -174,15 +174,15 @@ extension Tione {
         
         /// 服务对应的模型信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let modelInfo: ModelInfo
+        public let modelInfo: ModelInfo?
         
         /// 自定义镜像信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imageInfo: ImageInfo
+        public let imageInfo: ImageInfo?
         
         /// 代码包
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let codePackagePath: CosPathInfo
+        public let codePackagePath: CosPathInfo?
         
         /// 启动命令
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -200,7 +200,7 @@ extension Tione {
         
         /// 日志配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let logConfig: LogConfig
+        public let logConfig: LogConfig?
         
         /// vpc id
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -324,7 +324,7 @@ extension Tione {
         
         /// 模型信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let modelInfo: ModelInfo
+        public let modelInfo: ModelInfo?
         
         /// 镜像信息
         public let imageInfo: ImageInfo
@@ -427,15 +427,15 @@ extension Tione {
     public struct CosPathInfo: TCInputModel, TCOutputModel {
         /// 存储桶
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let bucket: String
+        public let bucket: String?
         
         /// 所在地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let region: String
+        public let region: String?
         
         /// 路径列表，目前只支持单个
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let paths: [String]
+        public let paths: [String]?
         
         public init (bucket: String, region: String, paths: [String]) {
             self.bucket = bucket
@@ -463,7 +463,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: Date?
         
-        public init (cronConfig: String, startTime: Date?, endTime: Date?) {
+        public init (cronConfig: String, startTime: Date? = nil, endTime: Date? = nil) {
             self.cronConfig = cronConfig
             self.startTime = startTime
             self.endTime = endTime
@@ -501,7 +501,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let excludeDates: [String]?
         
-        public init (schedule: String, name: String?, targetReplicas: Int64?, minReplicas: Int64?, maxReplicas: Int64?, excludeDates: [String]?) {
+        public init (schedule: String, name: String? = nil, targetReplicas: Int64? = nil, minReplicas: Int64? = nil, maxReplicas: Int64? = nil, excludeDates: [String]? = nil) {
             self.schedule = schedule
             self.name = name
             self.targetReplicas = targetReplicas
@@ -530,7 +530,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metrics: [CustomTrainingMetric]?
         
-        public init (metricName: String?, metrics: [CustomTrainingMetric]?) {
+        public init (metricName: String? = nil, metrics: [CustomTrainingMetric]? = nil) {
             self.metricName = metricName
             self.metrics = metrics
         }
@@ -550,7 +550,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let points: [CustomTrainingPoint]?
         
-        public init (xType: String?, points: [CustomTrainingPoint]?) {
+        public init (xType: String? = nil, points: [CustomTrainingPoint]? = nil) {
             self.xType = xType
             self.points = points
         }
@@ -569,7 +569,7 @@ extension Tione {
         /// Y值
         public let yValue: Float?
         
-        public init (xValue: Float?, yValue: Float?) {
+        public init (xValue: Float? = nil, yValue: Float? = nil) {
             self.xValue = xValue
             self.yValue = yValue
         }
@@ -591,19 +591,19 @@ extension Tione {
         
         /// 来自数据集的数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dataSetSource: DataSetConfig
+        public let dataSetSource: DataSetConfig?
         
         /// 来自cos的数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cosSource: CosPathInfo
+        public let cosSource: CosPathInfo?
         
         /// 来自CFS的数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cfsSource: CFSConfig
+        public let cfsSource: CFSConfig?
         
         /// 来自HDFS的数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let hdfsSource: HDFSConfig
+        public let hdfsSource: HDFSConfig?
         
         enum CodingKeys: String, CodingKey {
             case mappingPath = "MappingPath"
@@ -716,11 +716,11 @@ extension Tione {
         
         /// 数据集源COS路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let storageDataPath: CosPathInfo
+        public let storageDataPath: CosPathInfo?
         
         /// 数据集标签存储路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let storageLabelPath: CosPathInfo
+        public let storageLabelPath: CosPathInfo?
         
         /// 数据集版本聚合详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -837,11 +837,11 @@ extension Tione {
         
         /// 数据集源cos 路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let storageDataPath: CosPathInfo
+        public let storageDataPath: CosPathInfo?
         
         /// 数据集输出cos路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let storageLabelPath: CosPathInfo
+        public let storageLabelPath: CosPathInfo?
         
         /// 数据集标注状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -932,7 +932,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
         
-        public init (name: String?, value: String?) {
+        public init (name: String? = nil, value: String? = nil) {
             self.name = name
             self.value = value
         }
@@ -957,7 +957,7 @@ extension Tione {
         /// 是否开启模糊匹配
         public let fuzzy: Bool?
         
-        public init (name: String?, values: [String]?, negative: Bool?, fuzzy: Bool?) {
+        public init (name: String? = nil, values: [String]? = nil, negative: Bool? = nil, fuzzy: Bool? = nil) {
             self.name = name
             self.values = values
             self.negative = negative
@@ -1087,7 +1087,7 @@ extension Tione {
         /// 框架运行环境
         public let environment: String?
         
-        public init (version: String, trainingModes: [String], environment: String?) {
+        public init (version: String, trainingModes: [String], environment: String? = nil) {
             self.version = version
             self.trainingModes = trainingModes
             self.environment = environment
@@ -1163,15 +1163,15 @@ extension Tione {
     public struct HorizontalPodAutoscaler: TCInputModel, TCOutputModel {
         /// 最小实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let minReplicas: Int64
+        public let minReplicas: Int64?
         
         /// 最大实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let maxReplicas: Int64
+        public let maxReplicas: Int64?
         
         /// 扩缩容指标
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let hpaMetrics: [Option]
+        public let hpaMetrics: [Option]?
         
         public init (minReplicas: Int64, maxReplicas: Int64, hpaMetrics: [Option]) {
             self.minReplicas = minReplicas
@@ -1216,7 +1216,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let minBlockSizeTf: String?
         
-        public init (maxNNZ: String?, slotNum: String?, cpuCachePercentage: String?, gpuCachePercentage: String?, enableDistributed: String?, minBlockSizePt: String?, minBlockSizeTf: String?) {
+        public init (maxNNZ: String? = nil, slotNum: String? = nil, cpuCachePercentage: String? = nil, gpuCachePercentage: String? = nil, enableDistributed: String? = nil, minBlockSizePt: String? = nil, minBlockSizeTf: String? = nil) {
             self.maxNNZ = maxNNZ
             self.slotNum = slotNum
             self.cpuCachePercentage = cpuCachePercentage
@@ -1253,7 +1253,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registryId: String?
         
-        public init (imageType: String, imageUrl: String, registryRegion: String?, registryId: String?) {
+        public init (imageType: String, imageUrl: String, registryRegion: String? = nil, registryId: String? = nil) {
             self.imageType = imageType
             self.imageUrl = imageUrl
             self.registryRegion = registryRegion
@@ -1346,11 +1346,11 @@ extension Tione {
         
         /// 节点已用资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let usedResource: ResourceInfo
+        public let usedResource: ResourceInfo?
         
         /// 节点总资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let totalResource: ResourceInfo
+        public let totalResource: ResourceInfo?
         
         /// 节点状态 
         /// 注意：此字段为枚举值
@@ -1410,11 +1410,11 @@ extension Tione {
     public struct LogConfig: TCInputModel, TCOutputModel {
         /// 日志需要投递到cls的日志集
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let logsetId: String
+        public let logsetId: String?
         
         /// 日志需要投递到cls的主题
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let topicId: String
+        public let topicId: String?
         
         public init (logsetId: String, topicId: String) {
             self.logsetId = logsetId
@@ -1482,7 +1482,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let points: [DataPoint]?
         
-        public init (taskId: String, timestamp: Int64?, uin: String?, epoch: Int64?, step: Int64?, totalSteps: Int64?, points: [DataPoint]?) {
+        public init (taskId: String, timestamp: Int64? = nil, uin: String? = nil, epoch: Int64? = nil, step: Int64? = nil, totalSteps: Int64? = nil, points: [DataPoint]? = nil) {
             self.taskId = taskId
             self.timestamp = timestamp
             self.uin = uin
@@ -1575,11 +1575,11 @@ extension Tione {
         
         /// 模型输入cos路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let modelInputPath: CosPathInfo
+        public let modelInputPath: CosPathInfo?
         
         /// 模型输出cos路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let modelOutputPath: CosPathInfo
+        public let modelOutputPath: CosPathInfo?
         
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1611,7 +1611,7 @@ extension Tione {
         
         /// 模型专业参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let hyperParameter: HyperParameter
+        public let hyperParameter: HyperParameter?
         
         /// 加速引擎版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1679,7 +1679,7 @@ extension Tione {
         public let modelSource: String?
         
         /// cos路径信息
-        public let cosPathInfo: CosPathInfo
+        public let cosPathInfo: CosPathInfo?
         
         /// 模型对应的算法框架，预留
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1689,7 +1689,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modelType: String?
         
-        public init (modelVersionId: String, modelId: String?, modelName: String?, modelVersion: String?, modelSource: String?, cosPathInfo: CosPathInfo, algorithmFramework: String?, modelType: String?) {
+        public init (modelVersionId: String, modelId: String? = nil, modelName: String? = nil, modelVersion: String? = nil, modelSource: String? = nil, cosPathInfo: CosPathInfo? = nil, algorithmFramework: String? = nil, modelType: String? = nil) {
             self.modelVersionId = modelVersionId
             self.modelId = modelId
             self.modelName = modelName
@@ -1718,11 +1718,11 @@ extension Tione {
         /// FIXED：固定
         /// RANGE：浮动
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let modelInputType: String
+        public let modelInputType: String?
         
         /// input数据尺寸
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let modelInputDimension: [String]
+        public let modelInputDimension: [String]?
         
         public init (modelInputType: String, modelInputDimension: [String]) {
             self.modelInputType = modelInputType
@@ -1876,7 +1876,7 @@ extension Tione {
         /// 80C32
         public let instanceTypeAlias: String?
         
-        public init (role: String, cpu: UInt64?, memory: UInt64?, gpuType: String?, gpu: UInt64?, instanceType: String?, instanceNum: UInt64?, instanceTypeAlias: String?) {
+        public init (role: String, cpu: UInt64? = nil, memory: UInt64? = nil, gpuType: String? = nil, gpu: UInt64? = nil, instanceType: String? = nil, instanceNum: UInt64? = nil, instanceTypeAlias: String? = nil) {
             self.role = role
             self.cpu = cpu
             self.memory = memory
@@ -1915,11 +1915,11 @@ extension Tione {
         
         /// 资资源组已用的资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let usedResource: GroupResource
+        public let usedResource: GroupResource?
         
         /// 资源组总资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let totalResource: GroupResource
+        public let totalResource: GroupResource?
         
         /// 节点信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1945,11 +1945,11 @@ extension Tione {
     public struct ResourceInfo: TCInputModel, TCOutputModel {
         /// 处理器资源, 单位为1/1000核
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cpu: UInt64
+        public let cpu: UInt64?
         
         /// 内存资源, 单位为1M
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let memory: UInt64
+        public let memory: UInt64?
         
         /// Gpu卡个数资源, 单位为0.01单位的GpuType.
         /// Gpu=100表示使用了“一张”gpu卡, 但此处的“一张”卡有可能是虚拟化后的1/4卡, 也有可能是整张卡. 取决于实例的机型
@@ -1972,7 +1972,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let realGpuDetailSet: [GpuDetail]?
         
-        public init (cpu: UInt64, memory: UInt64, gpu: UInt64?, gpuType: String?, realGpu: UInt64?, realGpuDetailSet: [GpuDetail]?) {
+        public init (cpu: UInt64, memory: UInt64, gpu: UInt64? = nil, gpuType: String? = nil, realGpu: UInt64? = nil, realGpuDetailSet: [GpuDetail]? = nil) {
             self.cpu = cpu
             self.memory = memory
             self.gpu = gpu
@@ -2025,7 +2025,7 @@ extension Tione {
         /// 要执行定时停止的时间，格式：“2022-01-26T19:46:22+08:00”
         public let scheduleStopTime: String?
         
-        public init (scheduleStop: Bool?, scheduleStopTime: String?) {
+        public init (scheduleStop: Bool? = nil, scheduleStopTime: String? = nil) {
             self.scheduleStop = scheduleStop
             self.scheduleStopTime = scheduleStopTime
         }
@@ -2150,7 +2150,7 @@ extension Tione {
         
         /// 服务的详细信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let serviceInfo: ServiceInfo
+        public let serviceInfo: ServiceInfo?
         
         /// 服务的业务状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2188,11 +2188,11 @@ extension Tione {
         
         /// 服务限速限流相关配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let serviceLimit: ServiceLimit
+        public let serviceLimit: ServiceLimit?
         
         /// 定时停止的配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let scheduledAction: ScheduledAction
+        public let scheduledAction: ScheduledAction?
         
         /// 服务创建失败的原因，创建成功后该字段为默认值 CREATE_SUCCEED
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2423,7 +2423,7 @@ extension Tione {
         
         /// 镜像信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imageInfo: ImageInfo
+        public let imageInfo: ImageInfo?
         
         /// 环境变量
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2431,7 +2431,7 @@ extension Tione {
         
         /// 资源信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let resources: ResourceInfo
+        public let resources: ResourceInfo?
         
         /// 后付费实例对应的机型规格
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2439,7 +2439,7 @@ extension Tione {
         
         /// 模型信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let modelInfo: ModelInfo
+        public let modelInfo: ModelInfo?
         
         /// 是否启用日志
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2447,7 +2447,7 @@ extension Tione {
         
         /// 日志配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let logConfig: LogConfig
+        public let logConfig: LogConfig?
         
         /// 是否开启鉴权
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2455,11 +2455,11 @@ extension Tione {
         
         /// hpa配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let horizontalPodAutoscaler: HorizontalPodAutoscaler
+        public let horizontalPodAutoscaler: HorizontalPodAutoscaler?
         
         /// 服务的状态描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let status: WorkloadStatus
+        public let status: WorkloadStatus?
         
         /// 权重
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2471,7 +2471,7 @@ extension Tione {
         
         /// 资源总量
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let resourceTotal: ResourceInfo
+        public let resourceTotal: ResourceInfo?
         
         /// 历史实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2519,7 +2519,7 @@ extension Tione {
         /// 每个服务实例的 request per second 限速, 0 为不限流
         public let instanceRpsLimit: Int64?
         
-        public init (enableInstanceRpsLimit: Bool?, instanceRpsLimit: Int64?) {
+        public init (enableInstanceRpsLimit: Bool? = nil, instanceRpsLimit: Int64? = nil) {
             self.enableInstanceRpsLimit = enableInstanceRpsLimit
             self.instanceRpsLimit = instanceRpsLimit
         }
@@ -2596,7 +2596,7 @@ extension Tione {
         /// worker启动命令
         public let workerStartCmd: String?
         
-        public init (startCmd: String?, psStartCmd: String?, workerStartCmd: String?) {
+        public init (startCmd: String? = nil, psStartCmd: String? = nil, workerStartCmd: String? = nil) {
             self.startCmd = startCmd
             self.psStartCmd = psStartCmd
             self.workerStartCmd = workerStartCmd
@@ -2613,23 +2613,23 @@ extension Tione {
     public struct StatefulSetCondition: TCInputModel, TCOutputModel {
         /// 信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let message: String
+        public let message: String?
         
         /// 原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let reason: String
+        public let reason: String?
         
         /// Status of the condition, one of True, False, Unknown.
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let status: String
+        public let status: String?
         
         /// 类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let type: String
+        public let type: String?
         
         /// 上次更新的时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let lastTransitionTime: String
+        public let lastTransitionTime: String?
         
         public init (message: String, reason: String, status: String, type: String, lastTransitionTime: String) {
             self.message = message
@@ -2652,11 +2652,11 @@ extension Tione {
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tagKey: String
+        public let tagKey: String?
         
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tagValue: String
+        public let tagValue: String?
         
         public init (tagKey: String, tagValue: String) {
             self.tagKey = tagKey
@@ -2677,7 +2677,7 @@ extension Tione {
         /// 多个标签值
         public let tagValues: [String]?
         
-        public init (tagKey: String?, tagValues: [String]?) {
+        public init (tagKey: String? = nil, tagValues: [String]? = nil) {
             self.tagKey = tagKey
             self.tagValues = tagValues
         }
@@ -2702,7 +2702,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labelPercentage: Float?
         
-        public init (labelValue: String?, labelCount: UInt64?, labelPercentage: Float?) {
+        public init (labelValue: String? = nil, labelCount: UInt64? = nil, labelPercentage: Float? = nil) {
             self.labelValue = labelValue
             self.labelCount = labelCount
             self.labelPercentage = labelPercentage
@@ -2733,7 +2733,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let childLabelList: [TextLabelDistributionDetailInfoSecondClass]?
         
-        public init (labelValue: String?, labelCount: UInt64?, labelPercentage: Float?, childLabelList: [TextLabelDistributionDetailInfoSecondClass]?) {
+        public init (labelValue: String? = nil, labelCount: UInt64? = nil, labelPercentage: Float? = nil, childLabelList: [TextLabelDistributionDetailInfoSecondClass]? = nil) {
             self.labelValue = labelValue
             self.labelCount = labelCount
             self.labelPercentage = labelPercentage
@@ -2766,7 +2766,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let childLabelList: [TextLabelDistributionDetailInfoFifthClass]?
         
-        public init (labelValue: String?, labelCount: UInt64?, labelPercentage: Float?, childLabelList: [TextLabelDistributionDetailInfoFifthClass]?) {
+        public init (labelValue: String? = nil, labelCount: UInt64? = nil, labelPercentage: Float? = nil, childLabelList: [TextLabelDistributionDetailInfoFifthClass]? = nil) {
             self.labelValue = labelValue
             self.labelCount = labelCount
             self.labelPercentage = labelPercentage
@@ -2799,7 +2799,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let childLabelList: [TextLabelDistributionDetailInfoThirdClass]?
         
-        public init (labelValue: String?, labelCount: UInt64?, labelPercentage: Float?, childLabelList: [TextLabelDistributionDetailInfoThirdClass]?) {
+        public init (labelValue: String? = nil, labelCount: UInt64? = nil, labelPercentage: Float? = nil, childLabelList: [TextLabelDistributionDetailInfoThirdClass]? = nil) {
             self.labelValue = labelValue
             self.labelCount = labelCount
             self.labelPercentage = labelPercentage
@@ -2832,7 +2832,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let childLabelList: [TextLabelDistributionDetailInfoFourthClass]?
         
-        public init (labelValue: String?, labelCount: UInt64?, labelPercentage: Float?, childLabelList: [TextLabelDistributionDetailInfoFourthClass]?) {
+        public init (labelValue: String? = nil, labelCount: UInt64? = nil, labelPercentage: Float? = nil, childLabelList: [TextLabelDistributionDetailInfoFourthClass]? = nil) {
             self.labelValue = labelValue
             self.labelCount = labelCount
             self.labelPercentage = labelPercentage
@@ -2857,7 +2857,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let classLabelList: [TextLabelDistributionDetailInfoFirstClass]?
         
-        public init (theme: String?, classLabelList: [TextLabelDistributionDetailInfoFirstClass]?) {
+        public init (theme: String? = nil, classLabelList: [TextLabelDistributionDetailInfoFirstClass]? = nil) {
             self.theme = theme
             self.classLabelList = classLabelList
         }
@@ -3017,7 +3017,7 @@ extension Tione {
         
         /// 模型热更新目录
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let modelHotUpdatePath: CosPathInfo
+        public let modelHotUpdatePath: CosPathInfo?
         
         enum CodingKeys: String, CodingKey {
             case trainingModelId = "TrainingModelId"
@@ -3122,7 +3122,7 @@ extension Tione {
         
         /// 日志配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let logConfig: LogConfig
+        public let logConfig: LogConfig?
         
         /// VPC ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3134,7 +3134,7 @@ extension Tione {
         
         /// 自定义镜像信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imageInfo: ImageInfo
+        public let imageInfo: ImageInfo?
         
         /// 运行时长
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3303,7 +3303,7 @@ extension Tione {
         
         /// 自定义镜像信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imageInfo: ImageInfo
+        public let imageInfo: ImageInfo?
         
         /// 任务信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3348,7 +3348,7 @@ extension Tione {
         /// 挂载源类型
         public let volumeSourceType: String?
         
-        public init (cfsConfig: CFSConfig, volumeSourceType: String?) {
+        public init (cfsConfig: CFSConfig, volumeSourceType: String? = nil) {
             self.cfsConfig = cfsConfig
             self.volumeSourceType = volumeSourceType
         }
@@ -3409,7 +3409,7 @@ extension Tione {
         /// 工作负载历史的状况信息
         public let conditions: [StatefulSetCondition]?
         
-        public init (replicas: Int64, updatedReplicas: Int64, readyReplicas: Int64, availableReplicas: Int64, unavailableReplicas: Int64, status: String, statefulSetCondition: [StatefulSetCondition]?, conditions: [StatefulSetCondition]?) {
+        public init (replicas: Int64, updatedReplicas: Int64, readyReplicas: Int64, availableReplicas: Int64, unavailableReplicas: Int64, status: String, statefulSetCondition: [StatefulSetCondition]? = nil, conditions: [StatefulSetCondition]? = nil) {
             self.replicas = replicas
             self.updatedReplicas = updatedReplicas
             self.readyReplicas = readyReplicas

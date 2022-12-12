@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 验证root账号权限
-    ///
-    /// 本接口(VerifyRootAccount)用于校验云数据库实例的 ROOT 账号是否有足够的权限进行授权操作。
-    @inlinable
-    public func verifyRootAccount(_ input: VerifyRootAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyRootAccountResponse > {
-        self.client.execute(action: "VerifyRootAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 验证root账号权限
-    ///
-    /// 本接口(VerifyRootAccount)用于校验云数据库实例的 ROOT 账号是否有足够的权限进行授权操作。
-    @inlinable
-    public func verifyRootAccount(_ input: VerifyRootAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyRootAccountResponse {
-        try await self.client.execute(action: "VerifyRootAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifyRootAccount请求参数结构体
     public struct VerifyRootAccountRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -62,5 +46,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 验证root账号权限
+    ///
+    /// 本接口(VerifyRootAccount)用于校验云数据库实例的 ROOT 账号是否有足够的权限进行授权操作。
+    @inlinable
+    public func verifyRootAccount(_ input: VerifyRootAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyRootAccountResponse > {
+        self.client.execute(action: "VerifyRootAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 验证root账号权限
+    ///
+    /// 本接口(VerifyRootAccount)用于校验云数据库实例的 ROOT 账号是否有足够的权限进行授权操作。
+    @inlinable
+    public func verifyRootAccount(_ input: VerifyRootAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyRootAccountResponse {
+        try await self.client.execute(action: "VerifyRootAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

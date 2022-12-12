@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 批量账号间转移
-    ///
-    /// 本接口 ( ModifyDomainOwnerBatch) 用于域名批量账号间转移 。
-    @inlinable
-    public func modifyDomainOwnerBatch(_ input: ModifyDomainOwnerBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainOwnerBatchResponse > {
-        self.client.execute(action: "ModifyDomainOwnerBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量账号间转移
-    ///
-    /// 本接口 ( ModifyDomainOwnerBatch) 用于域名批量账号间转移 。
-    @inlinable
-    public func modifyDomainOwnerBatch(_ input: ModifyDomainOwnerBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainOwnerBatchResponse {
-        try await self.client.execute(action: "ModifyDomainOwnerBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDomainOwnerBatch请求参数结构体
     public struct ModifyDomainOwnerBatchRequest: TCRequestModel {
         /// 要过户的域名。
@@ -45,7 +29,7 @@ extension Domain {
         /// 转入账户的appid。
         public let newOwnerAppId: String?
         
-        public init (domains: [String], newOwnerUin: String, transferDns: Bool?, newOwnerAppId: String?) {
+        public init (domains: [String], newOwnerUin: String, transferDns: Bool? = nil, newOwnerAppId: String? = nil) {
             self.domains = domains
             self.newOwnerUin = newOwnerUin
             self.transferDns = transferDns
@@ -72,5 +56,21 @@ extension Domain {
             case logId = "LogId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量账号间转移
+    ///
+    /// 本接口 ( ModifyDomainOwnerBatch) 用于域名批量账号间转移 。
+    @inlinable
+    public func modifyDomainOwnerBatch(_ input: ModifyDomainOwnerBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainOwnerBatchResponse > {
+        self.client.execute(action: "ModifyDomainOwnerBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量账号间转移
+    ///
+    /// 本接口 ( ModifyDomainOwnerBatch) 用于域名批量账号间转移 。
+    @inlinable
+    public func modifyDomainOwnerBatch(_ input: ModifyDomainOwnerBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainOwnerBatchResponse {
+        try await self.client.execute(action: "ModifyDomainOwnerBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

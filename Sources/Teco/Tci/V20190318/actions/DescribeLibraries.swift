@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 获取人员库列表
-    @inlinable
-    public func describeLibraries(_ input: DescribeLibrariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLibrariesResponse > {
-        self.client.execute(action: "DescribeLibraries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取人员库列表
-    @inlinable
-    public func describeLibraries(_ input: DescribeLibrariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLibrariesResponse {
-        try await self.client.execute(action: "DescribeLibraries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLibraries请求参数结构体
     public struct DescribeLibrariesRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Tci {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取人员库列表
+    @inlinable
+    public func describeLibraries(_ input: DescribeLibrariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLibrariesResponse > {
+        self.client.execute(action: "DescribeLibraries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人员库列表
+    @inlinable
+    public func describeLibraries(_ input: DescribeLibrariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLibrariesResponse {
+        try await self.client.execute(action: "DescribeLibraries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

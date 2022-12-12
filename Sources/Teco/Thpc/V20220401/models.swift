@@ -34,7 +34,7 @@ extension Thpc {
         /// 文件系统存储类型，默认值SD；其中 SD 为通用标准型标准型存储， HP为通用性能型存储， TB为turbo标准型， TP 为turbo性能型。
         public let storageType: String?
         
-        public init (localPath: String, remotePath: String, `protocol`: String?, storageType: String?) {
+        public init (localPath: String, remotePath: String, `protocol`: String? = nil, storageType: String? = nil) {
             self.localPath = localPath
             self.remotePath = remotePath
             self.`protocol` = `protocol`
@@ -168,27 +168,27 @@ extension Thpc {
         public let instanceChargeType: String?
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 节点机型。不同实例机型指定了不同的资源规格。
         /// <br><li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
         public let instanceType: String?
         
         /// 节点系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
-        public let systemDisk: SystemDisk
+        public let systemDisk: SystemDisk?
         
         /// 节点数据盘配置信息。若不指定该参数，则默认不购买数据盘。支持购买的时候指定21块数据盘，其中最多包含1块LOCAL_BASIC数据盘或者LOCAL_SSD数据盘，最多包含20块CLOUD_BASIC数据盘、CLOUD_PREMIUM数据盘或者CLOUD_SSD数据盘。
         public let dataDisks: [DataDisk]?
         
         /// 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
-        public let internetAccessible: InternetAccessible
+        public let internetAccessible: InternetAccessible?
         
         /// 节点显示名称。<br><li>
         /// 不指定节点显示名称则默认显示‘未命名’。
         /// 最多支持60个字符。
         public let instanceName: String?
         
-        public init (instanceChargeType: String?, instanceChargePrepaid: InstanceChargePrepaid, instanceType: String?, systemDisk: SystemDisk, dataDisks: [DataDisk]?, internetAccessible: InternetAccessible, instanceName: String?) {
+        public init (instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil) {
             self.instanceChargeType = instanceChargeType
             self.instanceChargePrepaid = instanceChargePrepaid
             self.instanceType = instanceType
@@ -228,7 +228,7 @@ extension Thpc {
         /// 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定<br><li>LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_HSSD：增强型SSD云硬盘<br><li>CLOUD_TSSD：极速型SSD云硬盘<br><br>默认取值：LOCAL_BASIC。
         public let diskType: String?
         
-        public init (diskSize: Int64, diskType: String?) {
+        public init (diskSize: Int64, diskType: String? = nil) {
             self.diskSize = diskSize
             self.diskType = diskType
         }
@@ -248,16 +248,16 @@ extension Thpc {
         public let instanceChargeType: String?
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 节点机型。不同实例机型指定了不同的资源规格。
         /// <br><li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
         public let instanceType: String?
         
         /// 私有网络相关信息配置。
-        public let virtualPrivateCloud: VirtualPrivateCloud
+        public let virtualPrivateCloud: VirtualPrivateCloud?
         
-        public init (placement: Placement, instanceChargeType: String?, instanceChargePrepaid: InstanceChargePrepaid, instanceType: String?, virtualPrivateCloud: VirtualPrivateCloud) {
+        public init (placement: Placement, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil) {
             self.placement = placement
             self.instanceChargeType = instanceChargeType
             self.instanceChargePrepaid = instanceChargePrepaid
@@ -310,7 +310,7 @@ extension Thpc {
         /// 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String?
         
-        public init (period: Int64, renewFlag: String?) {
+        public init (period: Int64, renewFlag: String? = nil) {
             self.period = period
             self.renewFlag = renewFlag
         }
@@ -334,7 +334,7 @@ extension Thpc {
         /// 公网出带宽上限，单位：Mbps。默认值：0Mbps。不同机型带宽上限范围不一致，具体限制详见购买网络带宽。
         public let internetMaxBandwidthOut: Int64?
         
-        public init (internetChargeType: String?, internetMaxBandwidthOut: Int64?) {
+        public init (internetChargeType: String? = nil, internetMaxBandwidthOut: Int64? = nil) {
             self.internetChargeType = internetChargeType
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
         }
@@ -351,7 +351,7 @@ extension Thpc {
         public let instanceChargeType: String?
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 节点机型。不同实例机型指定了不同的资源规格。
         /// <br><li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
@@ -371,7 +371,7 @@ extension Thpc {
         /// 最多支持60个字符。
         public let instanceName: String?
         
-        public init (instanceChargeType: String?, instanceChargePrepaid: InstanceChargePrepaid, instanceType: String?, systemDisk: [SystemDisk]?, dataDisks: [DataDisk]?, internetAccessible: [InternetAccessible]?, instanceName: String?) {
+        public init (instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: [SystemDisk]? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: [InternetAccessible]? = nil, instanceName: String? = nil) {
             self.instanceChargeType = instanceChargeType
             self.instanceChargePrepaid = instanceChargePrepaid
             self.instanceType = instanceType
@@ -407,7 +407,7 @@ extension Thpc {
         /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：<br><li>Linux实例密码必须8到30位，至少包括两项[a-z]，[A-Z]、[0-9] 和 [( ) \` ~ ! @ # $ % ^ & *  - + = | { } [ ] : ; ' , . ? / ]中的特殊符号。<br><li>Windows实例密码必须12到30位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) \` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? /]中的特殊符号。<br><br>若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
         public let password: String?
         
-        public init (password: String?) {
+        public init (password: String? = nil) {
             self.password = password
         }
         
@@ -422,20 +422,20 @@ extension Thpc {
         public let instanceChargeType: String?
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 节点机型。不同实例机型指定了不同的资源规格。
         /// <br><li>对于付费模式为PREPAID或POSTPAID\_BY\_HOUR的实例创建，具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
         public let instanceType: String?
         
         /// 节点系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
-        public let systemDisk: SystemDisk
+        public let systemDisk: SystemDisk?
         
         /// 节点数据盘配置信息。若不指定该参数，则默认不购买数据盘。支持购买的时候指定21块数据盘，其中最多包含1块LOCAL_BASIC数据盘或者LOCAL_SSD数据盘，最多包含20块CLOUD_BASIC数据盘、CLOUD_PREMIUM数据盘或者CLOUD_SSD数据盘。
         public let dataDisks: [DataDisk]?
         
         /// 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
-        public let internetAccessible: InternetAccessible
+        public let internetAccessible: InternetAccessible?
         
         /// 节点显示名称。<br><li>
         /// 不指定节点显示名称则默认显示‘未命名’。
@@ -444,7 +444,7 @@ extension Thpc {
         /// 最多支持60个字符（包含模式串）。
         public let instanceName: String?
         
-        public init (instanceChargeType: String?, instanceChargePrepaid: InstanceChargePrepaid, instanceType: String?, systemDisk: SystemDisk, dataDisks: [DataDisk]?, internetAccessible: InternetAccessible, instanceName: String?) {
+        public init (instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil) {
             self.instanceChargeType = instanceChargeType
             self.instanceChargePrepaid = instanceChargePrepaid
             self.instanceType = instanceType
@@ -536,18 +536,18 @@ extension Thpc {
         public let imageId: String?
         
         /// 节点系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
-        public let systemDisk: SystemDisk
+        public let systemDisk: SystemDisk?
         
         /// 节点数据盘配置信息。若不指定该参数，则默认不购买数据盘。支持购买的时候指定21块数据盘，其中最多包含1块LOCAL_BASIC数据盘或者LOCAL_SSD数据盘，最多包含20块CLOUD_BASIC数据盘、CLOUD_PREMIUM数据盘或者CLOUD_SSD数据盘。
         public let dataDisks: [DataDisk]?
         
         /// 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
-        public let internetAccessible: InternetAccessible
+        public let internetAccessible: InternetAccessible?
         
         /// 扩容节点配置信息。
         public let expansionNodeConfigs: [ExpansionNodeConfig]?
         
-        public init (queueName: String, minSize: UInt64?, maxSize: UInt64?, enableAutoExpansion: Bool?, enableAutoShrink: Bool?, imageId: String?, systemDisk: SystemDisk, dataDisks: [DataDisk]?, internetAccessible: InternetAccessible, expansionNodeConfigs: [ExpansionNodeConfig]?) {
+        public init (queueName: String, minSize: UInt64? = nil, maxSize: UInt64? = nil, enableAutoExpansion: Bool? = nil, enableAutoShrink: Bool? = nil, imageId: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, expansionNodeConfigs: [ExpansionNodeConfig]? = nil) {
             self.queueName = queueName
             self.minSize = minSize
             self.maxSize = maxSize
@@ -582,7 +582,7 @@ extension Thpc {
         /// 集群挂在GooseFS文件系统选项
         public let gooseFSOptions: [GooseFSOption]?
         
-        public init (cfsOptions: [CFSOption]?, gooseFSOptions: [GooseFSOption]?) {
+        public init (cfsOptions: [CFSOption]? = nil, gooseFSOptions: [GooseFSOption]? = nil) {
             self.cfsOptions = cfsOptions
             self.gooseFSOptions = gooseFSOptions
         }
@@ -607,7 +607,7 @@ extension Thpc {
         /// 系统盘大小，单位：GB。默认值为 50
         public let diskSize: Int64?
         
-        public init (diskType: String?, diskSize: Int64?) {
+        public init (diskType: String? = nil, diskSize: Int64? = nil) {
             self.diskType = diskType
             self.diskSize = diskSize
         }

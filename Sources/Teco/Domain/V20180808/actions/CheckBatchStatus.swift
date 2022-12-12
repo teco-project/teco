@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 批量操作日志状态
-    ///
-    /// 本接口 ( CheckBatchStatus ) 用于查询批量操作日志状态 。
-    @inlinable
-    public func checkBatchStatus(_ input: CheckBatchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBatchStatusResponse > {
-        self.client.execute(action: "CheckBatchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量操作日志状态
-    ///
-    /// 本接口 ( CheckBatchStatus ) 用于查询批量操作日志状态 。
-    @inlinable
-    public func checkBatchStatus(_ input: CheckBatchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBatchStatusResponse {
-        try await self.client.execute(action: "CheckBatchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckBatchStatus请求参数结构体
     public struct CheckBatchStatusRequest: TCRequestModel {
         /// 操作日志 ID数组，最多 200 个
@@ -57,5 +41,21 @@ extension Domain {
             case statusSet = "StatusSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量操作日志状态
+    ///
+    /// 本接口 ( CheckBatchStatus ) 用于查询批量操作日志状态 。
+    @inlinable
+    public func checkBatchStatus(_ input: CheckBatchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBatchStatusResponse > {
+        self.client.execute(action: "CheckBatchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量操作日志状态
+    ///
+    /// 本接口 ( CheckBatchStatus ) 用于查询批量操作日志状态 。
+    @inlinable
+    public func checkBatchStatus(_ input: CheckBatchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBatchStatusResponse {
+        try await self.client.execute(action: "CheckBatchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

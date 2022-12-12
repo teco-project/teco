@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 查询举报列表
-    @inlinable
-    public func describeBPReportFakeURLs(_ input: DescribeBPReportFakeURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBPReportFakeURLsResponse > {
-        self.client.execute(action: "DescribeBPReportFakeURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询举报列表
-    @inlinable
-    public func describeBPReportFakeURLs(_ input: DescribeBPReportFakeURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPReportFakeURLsResponse {
-        try await self.client.execute(action: "DescribeBPReportFakeURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBPReportFakeURLs请求参数结构体
     public struct DescribeBPReportFakeURLsRequest: TCRequestModel {
         /// 过滤条件
@@ -38,7 +26,7 @@ extension Bma {
         /// 页码
         public let pageNumber: Int64?
         
-        public init (filters: [Filter]?, pageSize: Int64?, pageNumber: Int64?) {
+        public init (filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil) {
             self.filters = filters
             self.pageSize = pageSize
             self.pageNumber = pageNumber
@@ -67,5 +55,17 @@ extension Bma {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询举报列表
+    @inlinable
+    public func describeBPReportFakeURLs(_ input: DescribeBPReportFakeURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBPReportFakeURLsResponse > {
+        self.client.execute(action: "DescribeBPReportFakeURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询举报列表
+    @inlinable
+    public func describeBPReportFakeURLs(_ input: DescribeBPReportFakeURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPReportFakeURLsResponse {
+        try await self.client.execute(action: "DescribeBPReportFakeURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

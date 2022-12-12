@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 批量查询自动任务外呼
-    @inlinable
-    public func describeAutoCalloutTasks(_ input: DescribeAutoCalloutTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoCalloutTasksResponse > {
-        self.client.execute(action: "DescribeAutoCalloutTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量查询自动任务外呼
-    @inlinable
-    public func describeAutoCalloutTasks(_ input: DescribeAutoCalloutTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoCalloutTasksResponse {
-        try await self.client.execute(action: "DescribeAutoCalloutTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAutoCalloutTasks请求参数结构体
     public struct DescribeAutoCalloutTasksRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -67,5 +55,17 @@ extension Ccc {
             case tasks = "Tasks"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量查询自动任务外呼
+    @inlinable
+    public func describeAutoCalloutTasks(_ input: DescribeAutoCalloutTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoCalloutTasksResponse > {
+        self.client.execute(action: "DescribeAutoCalloutTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量查询自动任务外呼
+    @inlinable
+    public func describeAutoCalloutTasks(_ input: DescribeAutoCalloutTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoCalloutTasksResponse {
+        try await self.client.execute(action: "DescribeAutoCalloutTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

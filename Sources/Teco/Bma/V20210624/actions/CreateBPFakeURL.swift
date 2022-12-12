@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 添加仿冒链接（举报）
-    @inlinable
-    public func createBPFakeURL(_ input: CreateBPFakeURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPFakeURLResponse > {
-        self.client.execute(action: "CreateBPFakeURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加仿冒链接（举报）
-    @inlinable
-    public func createBPFakeURL(_ input: CreateBPFakeURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFakeURLResponse {
-        try await self.client.execute(action: "CreateBPFakeURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBPFakeURL请求参数结构体
     public struct CreateBPFakeURLRequest: TCRequestModel {
         /// 保护网址ID
@@ -41,7 +29,7 @@ extension Bma {
         /// 举报说明
         public let note: String?
         
-        public init (protectURLId: Int64?, fakeURL: String?, snapshotNames: [String]?, note: String?) {
+        public init (protectURLId: Int64? = nil, fakeURL: String? = nil, snapshotNames: [String]? = nil, note: String? = nil) {
             self.protectURLId = protectURLId
             self.fakeURL = fakeURL
             self.snapshotNames = snapshotNames
@@ -64,5 +52,17 @@ extension Bma {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加仿冒链接（举报）
+    @inlinable
+    public func createBPFakeURL(_ input: CreateBPFakeURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPFakeURLResponse > {
+        self.client.execute(action: "CreateBPFakeURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加仿冒链接（举报）
+    @inlinable
+    public func createBPFakeURL(_ input: CreateBPFakeURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFakeURLResponse {
+        try await self.client.execute(action: "CreateBPFakeURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

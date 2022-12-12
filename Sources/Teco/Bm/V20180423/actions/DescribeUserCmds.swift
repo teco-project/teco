@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 获取自定义脚本信息列表
-    @inlinable
-    public func describeUserCmds(_ input: DescribeUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserCmdsResponse > {
-        self.client.execute(action: "DescribeUserCmds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取自定义脚本信息列表
-    @inlinable
-    public func describeUserCmds(_ input: DescribeUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdsResponse {
-        try await self.client.execute(action: "DescribeUserCmds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserCmds请求参数结构体
     public struct DescribeUserCmdsRequest: TCRequestModel {
         /// 偏移量
@@ -47,7 +35,7 @@ extension Bm {
         /// 查询的脚本ID
         public let cmdId: String?
         
-        public init (offset: UInt64, limit: UInt64, orderField: String?, order: UInt64?, searchKey: String?, cmdId: String?) {
+        public init (offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil, cmdId: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.orderField = orderField
@@ -82,5 +70,17 @@ extension Bm {
             case userCmds = "UserCmds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取自定义脚本信息列表
+    @inlinable
+    public func describeUserCmds(_ input: DescribeUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserCmdsResponse > {
+        self.client.execute(action: "DescribeUserCmds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取自定义脚本信息列表
+    @inlinable
+    public func describeUserCmds(_ input: DescribeUserCmdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdsResponse {
+        try await self.client.execute(action: "DescribeUserCmds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

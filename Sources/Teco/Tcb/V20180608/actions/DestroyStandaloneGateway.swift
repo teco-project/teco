@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 销毁小租户网关
-    ///
-    /// 本接口（DestroyStandaloneGateway）用于销毁小租户网关。
-    @inlinable
-    public func destroyStandaloneGateway(_ input: DestroyStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyStandaloneGatewayResponse > {
-        self.client.execute(action: "DestroyStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 销毁小租户网关
-    ///
-    /// 本接口（DestroyStandaloneGateway）用于销毁小租户网关。
-    @inlinable
-    public func destroyStandaloneGateway(_ input: DestroyStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStandaloneGatewayResponse {
-        try await self.client.execute(action: "DestroyStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DestroyStandaloneGateway请求参数结构体
     public struct DestroyStandaloneGatewayRequest: TCRequestModel {
         /// 环境ID
@@ -67,5 +51,21 @@ extension Tcb {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 销毁小租户网关
+    ///
+    /// 本接口（DestroyStandaloneGateway）用于销毁小租户网关。
+    @inlinable
+    public func destroyStandaloneGateway(_ input: DestroyStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyStandaloneGatewayResponse > {
+        self.client.execute(action: "DestroyStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁小租户网关
+    ///
+    /// 本接口（DestroyStandaloneGateway）用于销毁小租户网关。
+    @inlinable
+    public func destroyStandaloneGateway(_ input: DestroyStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStandaloneGatewayResponse {
+        try await self.client.execute(action: "DestroyStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

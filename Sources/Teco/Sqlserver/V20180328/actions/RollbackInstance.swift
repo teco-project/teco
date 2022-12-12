@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Sqlserver {
-    /// 回档实例
-    ///
-    /// 本接口（RollbackInstance）用于回档实例
-    @inlinable
-    public func rollbackInstance(_ input: RollbackInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollbackInstanceResponse > {
-        self.client.execute(action: "RollbackInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 回档实例
-    ///
-    /// 本接口（RollbackInstance）用于回档实例
-    @inlinable
-    public func rollbackInstance(_ input: RollbackInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackInstanceResponse {
-        try await self.client.execute(action: "RollbackInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RollbackInstance请求参数结构体
     public struct RollbackInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -54,7 +38,7 @@ extension Sqlserver {
         /// 按照ReNameRestoreDatabase中的库进行重命名，仅在Type = 1重命名回档方式有效；不填则按照默认方式命名库，DBs参数确定要恢复的库
         public let renameRestore: [RenameRestoreDatabase]?
         
-        public init (instanceId: String, type: UInt64, dBs: [String], time: Date, targetInstanceId: String?, renameRestore: [RenameRestoreDatabase]?) {
+        public init (instanceId: String, type: UInt64, dBs: [String], time: Date, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil) {
             self.instanceId = instanceId
             self.type = type
             self.dBs = dBs
@@ -85,5 +69,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 回档实例
+    ///
+    /// 本接口（RollbackInstance）用于回档实例
+    @inlinable
+    public func rollbackInstance(_ input: RollbackInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollbackInstanceResponse > {
+        self.client.execute(action: "RollbackInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 回档实例
+    ///
+    /// 本接口（RollbackInstance）用于回档实例
+    @inlinable
+    public func rollbackInstance(_ input: RollbackInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackInstanceResponse {
+        try await self.client.execute(action: "RollbackInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

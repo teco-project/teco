@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Sts {
-    /// 申请OIDC角色临时密钥
-    @inlinable
-    public func assumeRoleWithWebIdentity(_ input: AssumeRoleWithWebIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssumeRoleWithWebIdentityResponse > {
-        self.client.execute(action: "AssumeRoleWithWebIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 申请OIDC角色临时密钥
-    @inlinable
-    public func assumeRoleWithWebIdentity(_ input: AssumeRoleWithWebIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithWebIdentityResponse {
-        try await self.client.execute(action: "AssumeRoleWithWebIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssumeRoleWithWebIdentity请求参数结构体
     public struct AssumeRoleWithWebIdentityRequest: TCRequestModel {
         /// 身份提供商名称
@@ -44,7 +32,7 @@ extension Sts {
         /// 指定临时证书的有效期，单位：秒，默认 7200 秒，最长可设定有效期为 43200 秒
         public let durationSeconds: Int64?
         
-        public init (providerId: String, webIdentityToken: String, roleArn: String, roleSessionName: String, durationSeconds: Int64?) {
+        public init (providerId: String, webIdentityToken: String, roleArn: String, roleSessionName: String, durationSeconds: Int64? = nil) {
             self.providerId = providerId
             self.webIdentityToken = webIdentityToken
             self.roleArn = roleArn
@@ -81,5 +69,17 @@ extension Sts {
             case credentials = "Credentials"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 申请OIDC角色临时密钥
+    @inlinable
+    public func assumeRoleWithWebIdentity(_ input: AssumeRoleWithWebIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssumeRoleWithWebIdentityResponse > {
+        self.client.execute(action: "AssumeRoleWithWebIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 申请OIDC角色临时密钥
+    @inlinable
+    public func assumeRoleWithWebIdentity(_ input: AssumeRoleWithWebIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithWebIdentityResponse {
+        try await self.client.execute(action: "AssumeRoleWithWebIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

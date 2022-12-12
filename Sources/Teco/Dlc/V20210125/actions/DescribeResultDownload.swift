@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 查询结果下载任务
-    @inlinable
-    public func describeResultDownload(_ input: DescribeResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResultDownloadResponse > {
-        self.client.execute(action: "DescribeResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询结果下载任务
-    @inlinable
-    public func describeResultDownload(_ input: DescribeResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResultDownloadResponse {
-        try await self.client.execute(action: "DescribeResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResultDownload请求参数结构体
     public struct DescribeResultDownloadRequest: TCRequestModel {
         /// 查询任务Id
@@ -78,5 +66,17 @@ extension Dlc {
             case token = "Token"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询结果下载任务
+    @inlinable
+    public func describeResultDownload(_ input: DescribeResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResultDownloadResponse > {
+        self.client.execute(action: "DescribeResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询结果下载任务
+    @inlinable
+    public func describeResultDownload(_ input: DescribeResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResultDownloadResponse {
+        try await self.client.execute(action: "DescribeResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

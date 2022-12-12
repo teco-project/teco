@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 获取邮件配置
-    ///
-    /// 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。
-    @inlinable
-    public func describeMailProfile(_ input: DescribeMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMailProfileResponse > {
-        self.client.execute(action: "DescribeMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取邮件配置
-    ///
-    /// 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。
-    @inlinable
-    public func describeMailProfile(_ input: DescribeMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMailProfileResponse {
-        try await self.client.execute(action: "DescribeMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMailProfile请求参数结构体
     public struct DescribeMailProfileRequest: TCRequestModel {
         /// 配置类型，支持值包括："dbScan_mail_configuration" - 数据库巡检邮件配置，"scheduler_mail_configuration" - 定期生成邮件配置。
@@ -48,7 +32,7 @@ extension Dbbrain {
         /// 根据邮件配置名称查询，定期发送的邮件配置名称遵循："scheduler_"+{instanceId}的规则。
         public let profileName: String?
         
-        public init (profileType: String, product: String, offset: Int64, limit: Int64, profileName: String?) {
+        public init (profileType: String, product: String, offset: Int64, limit: Int64, profileName: String? = nil) {
             self.profileType = profileType
             self.product = product
             self.offset = offset
@@ -83,5 +67,21 @@ extension Dbbrain {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取邮件配置
+    ///
+    /// 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。
+    @inlinable
+    public func describeMailProfile(_ input: DescribeMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMailProfileResponse > {
+        self.client.execute(action: "DescribeMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取邮件配置
+    ///
+    /// 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。
+    @inlinable
+    public func describeMailProfile(_ input: DescribeMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMailProfileResponse {
+        try await self.client.execute(action: "DescribeMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

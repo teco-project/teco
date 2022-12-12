@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 创建规则引擎规则
-    ///
-    /// 规则引擎创建规则。
-    @inlinable
-    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRuleResponse > {
-        self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建规则引擎规则
-    ///
-    /// 规则引擎创建规则。
-    @inlinable
-    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
-        try await self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRule请求参数结构体
     public struct CreateRuleRequest: TCRequestModel {
         /// 站点 ID。
@@ -50,7 +34,7 @@ extension Teo {
         /// 规则标签。
         public let tags: [String]?
         
-        public init (zoneId: String, ruleName: String, status: String, rules: [Rule], tags: [String]?) {
+        public init (zoneId: String, ruleName: String, status: String, rules: [Rule], tags: [String]? = nil) {
             self.zoneId = zoneId
             self.ruleName = ruleName
             self.status = status
@@ -79,5 +63,21 @@ extension Teo {
             case ruleId = "RuleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建规则引擎规则
+    ///
+    /// 规则引擎创建规则。
+    @inlinable
+    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRuleResponse > {
+        self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建规则引擎规则
+    ///
+    /// 规则引擎创建规则。
+    @inlinable
+    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
+        try await self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

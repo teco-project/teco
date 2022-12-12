@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 获取指定时间点截图模板列表
-    ///
-    /// 查询指定时间点截图模板，支持根据条件，分页查询。
-    @inlinable
-    public func describeSnapshotByTimeOffsetTemplates(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotByTimeOffsetTemplatesResponse > {
-        self.client.execute(action: "DescribeSnapshotByTimeOffsetTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取指定时间点截图模板列表
-    ///
-    /// 查询指定时间点截图模板，支持根据条件，分页查询。
-    @inlinable
-    public func describeSnapshotByTimeOffsetTemplates(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotByTimeOffsetTemplatesResponse {
-        try await self.client.execute(action: "DescribeSnapshotByTimeOffsetTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSnapshotByTimeOffsetTemplates请求参数结构体
     public struct DescribeSnapshotByTimeOffsetTemplatesRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -50,7 +34,7 @@ extension Vod {
         /// <li>Custom：用户自定义模板。</li>
         public let type: String?
         
-        public init (subAppId: UInt64?, definitions: [UInt64]?, offset: UInt64?, limit: UInt64?, type: String?) {
+        public init (subAppId: UInt64? = nil, definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil) {
             self.subAppId = subAppId
             self.definitions = definitions
             self.offset = offset
@@ -83,5 +67,21 @@ extension Vod {
             case snapshotByTimeOffsetTemplateSet = "SnapshotByTimeOffsetTemplateSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取指定时间点截图模板列表
+    ///
+    /// 查询指定时间点截图模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeSnapshotByTimeOffsetTemplates(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotByTimeOffsetTemplatesResponse > {
+        self.client.execute(action: "DescribeSnapshotByTimeOffsetTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定时间点截图模板列表
+    ///
+    /// 查询指定时间点截图模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeSnapshotByTimeOffsetTemplates(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotByTimeOffsetTemplatesResponse {
+        try await self.client.execute(action: "DescribeSnapshotByTimeOffsetTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apcas {
-    /// 购车意向评级接口
-    ///
-    /// 根据传入的设备号（IMEI、IDFA、手机号、手机号MD5），返回意向评级结果
-    @inlinable
-    public func predictRating(_ input: PredictRatingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PredictRatingResponse > {
-        self.client.execute(action: "PredictRating", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 购车意向评级接口
-    ///
-    /// 根据传入的设备号（IMEI、IDFA、手机号、手机号MD5），返回意向评级结果
-    @inlinable
-    public func predictRating(_ input: PredictRatingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PredictRatingResponse {
-        try await self.client.execute(action: "PredictRating", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PredictRating请求参数结构体
     public struct PredictRatingRequest: TCRequestModel {
         /// ID标志的类型，0:IMEI 7:IDFA 8:MD5(imei) 100: 手机号明文 101: 手机号md5加密
@@ -62,5 +46,21 @@ extension Apcas {
             case ratingData = "RatingData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 购车意向评级接口
+    ///
+    /// 根据传入的设备号（IMEI、IDFA、手机号、手机号MD5），返回意向评级结果
+    @inlinable
+    public func predictRating(_ input: PredictRatingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PredictRatingResponse > {
+        self.client.execute(action: "PredictRating", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 购车意向评级接口
+    ///
+    /// 根据传入的设备号（IMEI、IDFA、手机号、手机号MD5），返回意向评级结果
+    @inlinable
+    public func predictRating(_ input: PredictRatingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PredictRatingResponse {
+        try await self.client.execute(action: "PredictRating", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

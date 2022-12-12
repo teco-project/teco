@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 修改告警接收人
-    @inlinable
-    public func modifyAlarmReceivers(_ input: ModifyAlarmReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmReceiversResponse > {
-        self.client.execute(action: "ModifyAlarmReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改告警接收人
-    @inlinable
-    public func modifyAlarmReceivers(_ input: ModifyAlarmReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmReceiversResponse {
-        try await self.client.execute(action: "ModifyAlarmReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAlarmReceivers请求参数结构体
     public struct ModifyAlarmReceiversRequest: TCRequestModel {
         /// 需要修改接收人的策略组Id
@@ -38,7 +26,7 @@ extension Monitor {
         /// 新接收人信息, 没有填写则删除所有接收人
         public let receiverInfos: [ReceiverInfo]?
         
-        public init (groupId: Int64, module: String, receiverInfos: [ReceiverInfo]?) {
+        public init (groupId: Int64, module: String, receiverInfos: [ReceiverInfo]? = nil) {
             self.groupId = groupId
             self.module = module
             self.receiverInfos = receiverInfos
@@ -59,5 +47,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改告警接收人
+    @inlinable
+    public func modifyAlarmReceivers(_ input: ModifyAlarmReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmReceiversResponse > {
+        self.client.execute(action: "ModifyAlarmReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改告警接收人
+    @inlinable
+    public func modifyAlarmReceivers(_ input: ModifyAlarmReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmReceiversResponse {
+        try await self.client.execute(action: "ModifyAlarmReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 户口本识别
-    ///
-    /// 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。
-    @inlinable
-    public func residenceBookletOCR(_ input: ResidenceBookletOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResidenceBookletOCRResponse > {
-        self.client.execute(action: "ResidenceBookletOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 户口本识别
-    ///
-    /// 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。
-    @inlinable
-    public func residenceBookletOCR(_ input: ResidenceBookletOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResidenceBookletOCRResponse {
-        try await self.client.execute(action: "ResidenceBookletOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResidenceBookletOCR请求参数结构体
     public struct ResidenceBookletOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -46,7 +30,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -177,5 +161,21 @@ extension Ocr {
             case formerName = "FormerName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 户口本识别
+    ///
+    /// 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。
+    @inlinable
+    public func residenceBookletOCR(_ input: ResidenceBookletOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResidenceBookletOCRResponse > {
+        self.client.execute(action: "ResidenceBookletOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 户口本识别
+    ///
+    /// 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。
+    @inlinable
+    public func residenceBookletOCR(_ input: ResidenceBookletOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResidenceBookletOCRResponse {
+        try await self.client.execute(action: "ResidenceBookletOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

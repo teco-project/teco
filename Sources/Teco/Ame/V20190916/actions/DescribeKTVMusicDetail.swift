@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取直播互动曲目详情
-    ///
-    /// 根据 Id 查询歌曲的详细信息，包含基础信息及播放信息。
-    @inlinable
-    public func describeKTVMusicDetail(_ input: DescribeKTVMusicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVMusicDetailResponse > {
-        self.client.execute(action: "DescribeKTVMusicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取直播互动曲目详情
-    ///
-    /// 根据 Id 查询歌曲的详细信息，包含基础信息及播放信息。
-    @inlinable
-    public func describeKTVMusicDetail(_ input: DescribeKTVMusicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMusicDetailResponse {
-        try await self.client.execute(action: "DescribeKTVMusicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKTVMusicDetail请求参数结构体
     public struct DescribeKTVMusicDetailRequest: TCRequestModel {
         /// 曲目 Id
@@ -81,5 +65,21 @@ extension Ame {
             case preludeInterval = "PreludeInterval"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取直播互动曲目详情
+    ///
+    /// 根据 Id 查询歌曲的详细信息，包含基础信息及播放信息。
+    @inlinable
+    public func describeKTVMusicDetail(_ input: DescribeKTVMusicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVMusicDetailResponse > {
+        self.client.execute(action: "DescribeKTVMusicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播互动曲目详情
+    ///
+    /// 根据 Id 查询歌曲的详细信息，包含基础信息及播放信息。
+    @inlinable
+    public func describeKTVMusicDetail(_ input: DescribeKTVMusicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMusicDetailResponse {
+        try await self.client.execute(action: "DescribeKTVMusicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

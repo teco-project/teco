@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 修改L4转发规则健康检查参数
-    ///
-    /// 修改L4转发规则健康检查参数，支持的子产品：高防IP、高防IP专业版
-    @inlinable
-    public func modifyL4Health(_ input: ModifyL4HealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL4HealthResponse > {
-        self.client.execute(action: "ModifyL4Health", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改L4转发规则健康检查参数
-    ///
-    /// 修改L4转发规则健康检查参数，支持的子产品：高防IP、高防IP专业版
-    @inlinable
-    public func modifyL4Health(_ input: ModifyL4HealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4HealthResponse {
-        try await self.client.execute(action: "ModifyL4Health", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyL4Health请求参数结构体
     public struct ModifyL4HealthRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -67,5 +51,21 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改L4转发规则健康检查参数
+    ///
+    /// 修改L4转发规则健康检查参数，支持的子产品：高防IP、高防IP专业版
+    @inlinable
+    public func modifyL4Health(_ input: ModifyL4HealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL4HealthResponse > {
+        self.client.execute(action: "ModifyL4Health", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改L4转发规则健康检查参数
+    ///
+    /// 修改L4转发规则健康检查参数，支持的子产品：高防IP、高防IP专业版
+    @inlinable
+    public func modifyL4Health(_ input: ModifyL4HealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4HealthResponse {
+        try await self.client.execute(action: "ModifyL4Health", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

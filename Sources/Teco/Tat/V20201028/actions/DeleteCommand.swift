@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Tat {
-    /// 删除命令
-    ///
-    /// 此接口用于删除命令。
-    /// 如果命令与执行器关联，则无法被删除。
-    @inlinable
-    public func deleteCommand(_ input: DeleteCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCommandResponse > {
-        self.client.execute(action: "DeleteCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除命令
-    ///
-    /// 此接口用于删除命令。
-    /// 如果命令与执行器关联，则无法被删除。
-    @inlinable
-    public func deleteCommand(_ input: DeleteCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCommandResponse {
-        try await self.client.execute(action: "DeleteCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCommand请求参数结构体
     public struct DeleteCommandRequest: TCRequestModel {
         /// 待删除的命令ID。
@@ -55,5 +37,23 @@ extension Tat {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除命令
+    ///
+    /// 此接口用于删除命令。
+    /// 如果命令与执行器关联，则无法被删除。
+    @inlinable
+    public func deleteCommand(_ input: DeleteCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCommandResponse > {
+        self.client.execute(action: "DeleteCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除命令
+    ///
+    /// 此接口用于删除命令。
+    /// 如果命令与执行器关联，则无法被删除。
+    @inlinable
+    public func deleteCommand(_ input: DeleteCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCommandResponse {
+        try await self.client.execute(action: "DeleteCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

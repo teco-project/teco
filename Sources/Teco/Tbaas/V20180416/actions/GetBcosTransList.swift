@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 分页查询Bcos交易列表
-    ///
-    /// Bcos分页查询当前群组的交易信息列表
-    @inlinable
-    public func getBcosTransList(_ input: GetBcosTransListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBcosTransListResponse > {
-        self.client.execute(action: "GetBcosTransList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分页查询Bcos交易列表
-    ///
-    /// Bcos分页查询当前群组的交易信息列表
-    @inlinable
-    public func getBcosTransList(_ input: GetBcosTransListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosTransListResponse {
-        try await self.client.execute(action: "GetBcosTransList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetBcosTransList请求参数结构体
     public struct GetBcosTransListRequest: TCRequestModel {
         /// 网络ID，可在区块链网络详情或列表中获取
@@ -51,7 +35,7 @@ extension Tbaas {
         /// 交易哈希，可以从InvokeBcosTrans接口的返回值中解析获取
         public let transHash: String?
         
-        public init (clusterId: String, groupId: Int64, pageNumber: Int64?, pageSize: Int64?, blockNumber: Int64?, transHash: String?) {
+        public init (clusterId: String, groupId: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, blockNumber: Int64? = nil, transHash: String? = nil) {
             self.clusterId = clusterId
             self.groupId = groupId
             self.pageNumber = pageNumber
@@ -86,5 +70,21 @@ extension Tbaas {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分页查询Bcos交易列表
+    ///
+    /// Bcos分页查询当前群组的交易信息列表
+    @inlinable
+    public func getBcosTransList(_ input: GetBcosTransListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBcosTransListResponse > {
+        self.client.execute(action: "GetBcosTransList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分页查询Bcos交易列表
+    ///
+    /// Bcos分页查询当前群组的交易信息列表
+    @inlinable
+    public func getBcosTransList(_ input: GetBcosTransListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosTransListResponse {
+        try await self.client.execute(action: "GetBcosTransList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

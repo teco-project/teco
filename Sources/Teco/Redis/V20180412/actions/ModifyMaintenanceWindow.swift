@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 修改实例维护时间窗时间
-    ///
-    /// 修改实例维护时间窗时间，需要进行版本升级或者架构升级的实例，会在维护时间窗内进行时间切换。注意：已经发起版本升级或者架构升级的实例，无法修改维护时间窗。
-    @inlinable
-    public func modifyMaintenanceWindow(_ input: ModifyMaintenanceWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMaintenanceWindowResponse > {
-        self.client.execute(action: "ModifyMaintenanceWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例维护时间窗时间
-    ///
-    /// 修改实例维护时间窗时间，需要进行版本升级或者架构升级的实例，会在维护时间窗内进行时间切换。注意：已经发起版本升级或者架构升级的实例，无法修改维护时间窗。
-    @inlinable
-    public func modifyMaintenanceWindow(_ input: ModifyMaintenanceWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaintenanceWindowResponse {
-        try await self.client.execute(action: "ModifyMaintenanceWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMaintenanceWindow请求参数结构体
     public struct ModifyMaintenanceWindowRequest: TCRequestModel {
         /// 实例ID
@@ -67,5 +51,21 @@ extension Redis {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例维护时间窗时间
+    ///
+    /// 修改实例维护时间窗时间，需要进行版本升级或者架构升级的实例，会在维护时间窗内进行时间切换。注意：已经发起版本升级或者架构升级的实例，无法修改维护时间窗。
+    @inlinable
+    public func modifyMaintenanceWindow(_ input: ModifyMaintenanceWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMaintenanceWindowResponse > {
+        self.client.execute(action: "ModifyMaintenanceWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例维护时间窗时间
+    ///
+    /// 修改实例维护时间窗时间，需要进行版本升级或者架构升级的实例，会在维护时间窗内进行时间切换。注意：已经发起版本升级或者架构升级的实例，无法修改维护时间窗。
+    @inlinable
+    public func modifyMaintenanceWindow(_ input: ModifyMaintenanceWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaintenanceWindowResponse {
+        try await self.client.execute(action: "ModifyMaintenanceWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 回滚配置
-    @inlinable
-    public func rollbackConfig(_ input: RollbackConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollbackConfigResponse > {
-        self.client.execute(action: "RollbackConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 回滚配置
-    @inlinable
-    public func rollbackConfig(_ input: RollbackConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackConfigResponse {
-        try await self.client.execute(action: "RollbackConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RollbackConfig请求参数结构体
     public struct RollbackConfigRequest: TCRequestModel {
         /// 配置项发布历史ID
@@ -35,7 +23,7 @@ extension Tsf {
         /// 回滚描述
         public let releaseDesc: String?
         
-        public init (configReleaseLogId: String, releaseDesc: String?) {
+        public init (configReleaseLogId: String, releaseDesc: String? = nil) {
             self.configReleaseLogId = configReleaseLogId
             self.releaseDesc = releaseDesc
         }
@@ -58,5 +46,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 回滚配置
+    @inlinable
+    public func rollbackConfig(_ input: RollbackConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollbackConfigResponse > {
+        self.client.execute(action: "RollbackConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 回滚配置
+    @inlinable
+    public func rollbackConfig(_ input: RollbackConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackConfigResponse {
+        try await self.client.execute(action: "RollbackConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

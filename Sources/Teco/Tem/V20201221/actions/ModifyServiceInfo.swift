@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 修改服务基本信息
-    @inlinable
-    public func modifyServiceInfo(_ input: ModifyServiceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyServiceInfoResponse > {
-        self.client.execute(action: "ModifyServiceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改服务基本信息
-    @inlinable
-    public func modifyServiceInfo(_ input: ModifyServiceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceInfoResponse {
-        try await self.client.execute(action: "ModifyServiceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyServiceInfo请求参数结构体
     public struct ModifyServiceInfoRequest: TCRequestModel {
         /// 服务ID
@@ -38,7 +26,7 @@ extension Tem {
         /// 来源渠道
         public let sourceChannel: Int64?
         
-        public init (serviceId: String, description: String, sourceChannel: Int64?) {
+        public init (serviceId: String, description: String, sourceChannel: Int64? = nil) {
             self.serviceId = serviceId
             self.description = description
             self.sourceChannel = sourceChannel
@@ -64,5 +52,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改服务基本信息
+    @inlinable
+    public func modifyServiceInfo(_ input: ModifyServiceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyServiceInfoResponse > {
+        self.client.execute(action: "ModifyServiceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改服务基本信息
+    @inlinable
+    public func modifyServiceInfo(_ input: ModifyServiceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceInfoResponse {
+        try await self.client.execute(action: "ModifyServiceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

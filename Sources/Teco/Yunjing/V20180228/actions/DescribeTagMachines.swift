@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取指定标签关联的服务器信息
-    @inlinable
-    public func describeTagMachines(_ input: DescribeTagMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagMachinesResponse > {
-        self.client.execute(action: "DescribeTagMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取指定标签关联的服务器信息
-    @inlinable
-    public func describeTagMachines(_ input: DescribeTagMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagMachinesResponse {
-        try await self.client.execute(action: "DescribeTagMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTagMachines请求参数结构体
     public struct DescribeTagMachinesRequest: TCRequestModel {
         /// 标签ID
@@ -53,5 +41,17 @@ extension Yunjing {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取指定标签关联的服务器信息
+    @inlinable
+    public func describeTagMachines(_ input: DescribeTagMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagMachinesResponse > {
+        self.client.execute(action: "DescribeTagMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定标签关联的服务器信息
+    @inlinable
+    public func describeTagMachines(_ input: DescribeTagMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagMachinesResponse {
+        try await self.client.execute(action: "DescribeTagMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

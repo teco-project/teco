@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 查询操作系统信息
-    ///
-    /// 查询指定机型所支持的操作系统
-    @inlinable
-    public func describeOsInfo(_ input: DescribeOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOsInfoResponse > {
-        self.client.execute(action: "DescribeOsInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询操作系统信息
-    ///
-    /// 查询指定机型所支持的操作系统
-    @inlinable
-    public func describeOsInfo(_ input: DescribeOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOsInfoResponse {
-        try await self.client.execute(action: "DescribeOsInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOsInfo请求参数结构体
     public struct DescribeOsInfoRequest: TCRequestModel {
         /// 设备类型代号。 可以从DescribeDeviceClass查询设备类型列表
         public let deviceClassCode: String?
         
-        public init (deviceClassCode: String?) {
+        public init (deviceClassCode: String? = nil) {
             self.deviceClassCode = deviceClassCode
         }
         
@@ -57,5 +41,21 @@ extension Bm {
             case osInfoSet = "OsInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询操作系统信息
+    ///
+    /// 查询指定机型所支持的操作系统
+    @inlinable
+    public func describeOsInfo(_ input: DescribeOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOsInfoResponse > {
+        self.client.execute(action: "DescribeOsInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询操作系统信息
+    ///
+    /// 查询指定机型所支持的操作系统
+    @inlinable
+    public func describeOsInfo(_ input: DescribeOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOsInfoResponse {
+        try await self.client.execute(action: "DescribeOsInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询域名详细配置
-    ///
-    /// 用于查询域名配置信息
-    @inlinable
-    public func describeHostsSetting(_ input: DescribeHostsSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostsSettingResponse > {
-        self.client.execute(action: "DescribeHostsSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询域名详细配置
-    ///
-    /// 用于查询域名配置信息
-    @inlinable
-    public func describeHostsSetting(_ input: DescribeHostsSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsSettingResponse {
-        try await self.client.execute(action: "DescribeHostsSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHostsSetting请求参数结构体
     public struct DescribeHostsSettingRequest: TCRequestModel {
         /// 站点ID。
@@ -46,7 +30,7 @@ extension Teo {
         /// <li>host<br>   按照【<strong>域名</strong>】进行过滤。<br>   类型：string<br>   必选：否</li>
         public let filters: [Filter]?
         
-        public init (zoneId: String, offset: Int64?, limit: Int64?, filters: [Filter]?) {
+        public init (zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.zoneId = zoneId
             self.offset = offset
             self.limit = limit
@@ -77,5 +61,21 @@ extension Teo {
             case totalNumber = "TotalNumber"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询域名详细配置
+    ///
+    /// 用于查询域名配置信息
+    @inlinable
+    public func describeHostsSetting(_ input: DescribeHostsSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostsSettingResponse > {
+        self.client.execute(action: "DescribeHostsSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询域名详细配置
+    ///
+    /// 用于查询域名配置信息
+    @inlinable
+    public func describeHostsSetting(_ input: DescribeHostsSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsSettingResponse {
+        try await self.client.execute(action: "DescribeHostsSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

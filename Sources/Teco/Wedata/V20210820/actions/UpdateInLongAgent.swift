@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 更新采集器
-    @inlinable
-    public func updateInLongAgent(_ input: UpdateInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateInLongAgentResponse > {
-        self.client.execute(action: "UpdateInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新采集器
-    @inlinable
-    public func updateInLongAgent(_ input: UpdateInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateInLongAgentResponse {
-        try await self.client.execute(action: "UpdateInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateInLongAgent请求参数结构体
     public struct UpdateInLongAgentRequest: TCRequestModel {
         /// 采集器ID
@@ -41,7 +29,7 @@ extension Wedata {
         /// 集成资源组ID
         public let executorGroupId: String?
         
-        public init (agentId: String, projectId: String, agentName: String?, executorGroupId: String?) {
+        public init (agentId: String, projectId: String, agentName: String? = nil, executorGroupId: String? = nil) {
             self.agentId = agentId
             self.projectId = projectId
             self.agentName = agentName
@@ -64,5 +52,17 @@ extension Wedata {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新采集器
+    @inlinable
+    public func updateInLongAgent(_ input: UpdateInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateInLongAgentResponse > {
+        self.client.execute(action: "UpdateInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新采集器
+    @inlinable
+    public func updateInLongAgent(_ input: UpdateInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateInLongAgentResponse {
+        try await self.client.execute(action: "UpdateInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

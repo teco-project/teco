@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改协议端口模板
-    ///
-    /// 本接口（ModifyServiceTemplateAttribute）用于修改协议端口模板
-    @inlinable
-    public func modifyServiceTemplateAttribute(_ input: ModifyServiceTemplateAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyServiceTemplateAttributeResponse > {
-        self.client.execute(action: "ModifyServiceTemplateAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改协议端口模板
-    ///
-    /// 本接口（ModifyServiceTemplateAttribute）用于修改协议端口模板
-    @inlinable
-    public func modifyServiceTemplateAttribute(_ input: ModifyServiceTemplateAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceTemplateAttributeResponse {
-        try await self.client.execute(action: "ModifyServiceTemplateAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyServiceTemplateAttribute请求参数结构体
     public struct ModifyServiceTemplateAttributeRequest: TCRequestModel {
         /// 协议端口模板实例ID，例如：ppm-529nwwj8。
@@ -45,7 +29,7 @@ extension Vpc {
         /// 支持添加备注的协议端口信息，支持单个端口、多个端口、连续端口及所有端口，协议支持：TCP、UDP、ICMP、GRE 协议。
         public let servicesExtra: [ServicesInfo]?
         
-        public init (serviceTemplateId: String, serviceTemplateName: String?, services: [String]?, servicesExtra: [ServicesInfo]?) {
+        public init (serviceTemplateId: String, serviceTemplateName: String? = nil, services: [String]? = nil, servicesExtra: [ServicesInfo]? = nil) {
             self.serviceTemplateId = serviceTemplateId
             self.serviceTemplateName = serviceTemplateName
             self.services = services
@@ -68,5 +52,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改协议端口模板
+    ///
+    /// 本接口（ModifyServiceTemplateAttribute）用于修改协议端口模板
+    @inlinable
+    public func modifyServiceTemplateAttribute(_ input: ModifyServiceTemplateAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyServiceTemplateAttributeResponse > {
+        self.client.execute(action: "ModifyServiceTemplateAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改协议端口模板
+    ///
+    /// 本接口（ModifyServiceTemplateAttribute）用于修改协议端口模板
+    @inlinable
+    public func modifyServiceTemplateAttribute(_ input: ModifyServiceTemplateAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceTemplateAttributeResponse {
+        try await self.client.execute(action: "ModifyServiceTemplateAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

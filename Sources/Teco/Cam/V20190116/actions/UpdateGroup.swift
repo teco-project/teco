@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 更新用户组
-    @inlinable
-    public func updateGroup(_ input: UpdateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGroupResponse > {
-        self.client.execute(action: "UpdateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新用户组
-    @inlinable
-    public func updateGroup(_ input: UpdateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGroupResponse {
-        try await self.client.execute(action: "UpdateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateGroup请求参数结构体
     public struct UpdateGroupRequest: TCRequestModel {
         /// 用户组 ID
@@ -38,7 +26,7 @@ extension Cam {
         /// 用户组描述
         public let remark: String?
         
-        public init (groupId: UInt64, groupName: String?, remark: String?) {
+        public init (groupId: UInt64, groupName: String? = nil, remark: String? = nil) {
             self.groupId = groupId
             self.groupName = groupName
             self.remark = remark
@@ -59,5 +47,17 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新用户组
+    @inlinable
+    public func updateGroup(_ input: UpdateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGroupResponse > {
+        self.client.execute(action: "UpdateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新用户组
+    @inlinable
+    public func updateGroup(_ input: UpdateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGroupResponse {
+        try await self.client.execute(action: "UpdateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

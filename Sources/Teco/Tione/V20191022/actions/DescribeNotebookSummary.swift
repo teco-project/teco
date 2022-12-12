@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询Notebook概览
-    ///
-    /// 查询Notebook概览数据
-    @inlinable
-    public func describeNotebookSummary(_ input: DescribeNotebookSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNotebookSummaryResponse > {
-        self.client.execute(action: "DescribeNotebookSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Notebook概览
-    ///
-    /// 查询Notebook概览数据
-    @inlinable
-    public func describeNotebookSummary(_ input: DescribeNotebookSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookSummaryResponse {
-        try await self.client.execute(action: "DescribeNotebookSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNotebookSummary请求参数结构体
     public struct DescribeNotebookSummaryRequest: TCRequestModel {
         public init () {
@@ -61,5 +45,21 @@ extension Tione {
             case computingBillingInstanceCnt = "ComputingBillingInstanceCnt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Notebook概览
+    ///
+    /// 查询Notebook概览数据
+    @inlinable
+    public func describeNotebookSummary(_ input: DescribeNotebookSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNotebookSummaryResponse > {
+        self.client.execute(action: "DescribeNotebookSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Notebook概览
+    ///
+    /// 查询Notebook概览数据
+    @inlinable
+    public func describeNotebookSummary(_ input: DescribeNotebookSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookSummaryResponse {
+        try await self.client.execute(action: "DescribeNotebookSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

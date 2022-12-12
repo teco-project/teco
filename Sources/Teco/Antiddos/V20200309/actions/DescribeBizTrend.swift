@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Antiddos {
-    /// 获取业务流量曲线
-    @inlinable
-    public func describeBizTrend(_ input: DescribeBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBizTrendResponse > {
-        self.client.execute(action: "DescribeBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取业务流量曲线
-    @inlinable
-    public func describeBizTrend(_ input: DescribeBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizTrendResponse {
-        try await self.client.execute(action: "DescribeBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBizTrend请求参数结构体
     public struct DescribeBizTrendRequest: TCRequestModel {
         /// 统计方式，可取值max, min, avg, sum, 如统计纬度是流量速率或包量速率，仅可取值max
@@ -60,7 +48,7 @@ extension Antiddos {
         /// 协议及端口列表，协议可取值TCP, UDP, HTTP, HTTPS，仅统计纬度为连接数时有效
         public let protoInfo: [ProtocolPort]?
         
-        public init (statistics: String, business: String, period: UInt64, startTime: Date, endTime: Date, id: String, metricName: String, domain: String?, protoInfo: [ProtocolPort]?) {
+        public init (statistics: String, business: String, period: UInt64, startTime: Date, endTime: Date, id: String, metricName: String, domain: String? = nil, protoInfo: [ProtocolPort]? = nil) {
             self.statistics = statistics
             self.business = business
             self.period = period
@@ -101,5 +89,17 @@ extension Antiddos {
             case metricName = "MetricName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取业务流量曲线
+    @inlinable
+    public func describeBizTrend(_ input: DescribeBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBizTrendResponse > {
+        self.client.execute(action: "DescribeBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取业务流量曲线
+    @inlinable
+    public func describeBizTrend(_ input: DescribeBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizTrendResponse {
+        try await self.client.execute(action: "DescribeBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

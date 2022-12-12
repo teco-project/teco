@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 刷新专线直连NAT路由
-    ///
-    /// 刷新专线直连nat路由，更新nat到专线的路由表
-    @inlinable
-    public func refreshDirectConnectGatewayRouteToNatGateway(_ input: RefreshDirectConnectGatewayRouteToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefreshDirectConnectGatewayRouteToNatGatewayResponse > {
-        self.client.execute(action: "RefreshDirectConnectGatewayRouteToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 刷新专线直连NAT路由
-    ///
-    /// 刷新专线直连nat路由，更新nat到专线的路由表
-    @inlinable
-    public func refreshDirectConnectGatewayRouteToNatGateway(_ input: RefreshDirectConnectGatewayRouteToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDirectConnectGatewayRouteToNatGatewayResponse {
-        try await self.client.execute(action: "RefreshDirectConnectGatewayRouteToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RefreshDirectConnectGatewayRouteToNatGateway请求参数结构体
     public struct RefreshDirectConnectGatewayRouteToNatGatewayRequest: TCRequestModel {
         /// vpc的ID
@@ -67,5 +51,21 @@ extension Vpc {
             case directConnectSubnetSet = "DirectConnectSubnetSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 刷新专线直连NAT路由
+    ///
+    /// 刷新专线直连nat路由，更新nat到专线的路由表
+    @inlinable
+    public func refreshDirectConnectGatewayRouteToNatGateway(_ input: RefreshDirectConnectGatewayRouteToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefreshDirectConnectGatewayRouteToNatGatewayResponse > {
+        self.client.execute(action: "RefreshDirectConnectGatewayRouteToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 刷新专线直连NAT路由
+    ///
+    /// 刷新专线直连nat路由，更新nat到专线的路由表
+    @inlinable
+    public func refreshDirectConnectGatewayRouteToNatGateway(_ input: RefreshDirectConnectGatewayRouteToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDirectConnectGatewayRouteToNatGatewayResponse {
+        try await self.client.execute(action: "RefreshDirectConnectGatewayRouteToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 查询电子印章
-    ///
-    /// 此接口（DescribeSeals）用于查询指定ID的印章信息。
-    @inlinable
-    public func describeSeals(_ input: DescribeSealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSealsResponse > {
-        self.client.execute(action: "DescribeSeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询电子印章
-    ///
-    /// 此接口（DescribeSeals）用于查询指定ID的印章信息。
-    @inlinable
-    public func describeSeals(_ input: DescribeSealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSealsResponse {
-        try await self.client.execute(action: "DescribeSeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSeals请求参数结构体
     public struct DescribeSealsRequest: TCRequestModel {
         /// 调用方信息
@@ -42,7 +26,7 @@ extension Essbasic {
         /// 用户唯一标识
         public let userId: String?
         
-        public init (caller: Caller, sealIds: [String], userId: String?) {
+        public init (caller: Caller, sealIds: [String], userId: String? = nil) {
             self.caller = caller
             self.sealIds = sealIds
             self.userId = userId
@@ -67,5 +51,21 @@ extension Essbasic {
             case seals = "Seals"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询电子印章
+    ///
+    /// 此接口（DescribeSeals）用于查询指定ID的印章信息。
+    @inlinable
+    public func describeSeals(_ input: DescribeSealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSealsResponse > {
+        self.client.execute(action: "DescribeSeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询电子印章
+    ///
+    /// 此接口（DescribeSeals）用于查询指定ID的印章信息。
+    @inlinable
+    public func describeSeals(_ input: DescribeSealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSealsResponse {
+        try await self.client.execute(action: "DescribeSeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

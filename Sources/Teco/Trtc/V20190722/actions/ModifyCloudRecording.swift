@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Trtc {
-    /// 更新云端录制任务
-    ///
-    /// 成功开启录制后，可以使用此接口来更新录制任务。仅在录制任务进行时有效，录制退出后更新将会返回错误。更新操作是全量覆盖，并不是增量更新的模式，也就是说每次更新都需要携带全量的信息。
-    @inlinable
-    public func modifyCloudRecording(_ input: ModifyCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCloudRecordingResponse > {
-        self.client.execute(action: "ModifyCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新云端录制任务
-    ///
-    /// 成功开启录制后，可以使用此接口来更新录制任务。仅在录制任务进行时有效，录制退出后更新将会返回错误。更新操作是全量覆盖，并不是增量更新的模式，也就是说每次更新都需要携带全量的信息。
-    @inlinable
-    public func modifyCloudRecording(_ input: ModifyCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudRecordingResponse {
-        try await self.client.execute(action: "ModifyCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCloudRecording请求参数结构体
     public struct ModifyCloudRecordingRequest: TCRequestModel {
         /// TRTC的SDKAppId，和录制的房间所对应的SDKAppId相同。
@@ -40,12 +24,12 @@ extension Trtc {
         public let taskId: String
         
         /// 需要更新的混流的布局参数。
-        public let mixLayoutParams: MixLayoutParams
+        public let mixLayoutParams: MixLayoutParams?
         
         /// 指定订阅流白名单或者黑名单。
-        public let subscribeStreamUserIds: SubscribeStreamUserIds
+        public let subscribeStreamUserIds: SubscribeStreamUserIds?
         
-        public init (sdkAppId: UInt64, taskId: String, mixLayoutParams: MixLayoutParams, subscribeStreamUserIds: SubscribeStreamUserIds) {
+        public init (sdkAppId: UInt64, taskId: String, mixLayoutParams: MixLayoutParams? = nil, subscribeStreamUserIds: SubscribeStreamUserIds? = nil) {
             self.sdkAppId = sdkAppId
             self.taskId = taskId
             self.mixLayoutParams = mixLayoutParams
@@ -72,5 +56,21 @@ extension Trtc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新云端录制任务
+    ///
+    /// 成功开启录制后，可以使用此接口来更新录制任务。仅在录制任务进行时有效，录制退出后更新将会返回错误。更新操作是全量覆盖，并不是增量更新的模式，也就是说每次更新都需要携带全量的信息。
+    @inlinable
+    public func modifyCloudRecording(_ input: ModifyCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCloudRecordingResponse > {
+        self.client.execute(action: "ModifyCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新云端录制任务
+    ///
+    /// 成功开启录制后，可以使用此接口来更新录制任务。仅在录制任务进行时有效，录制退出后更新将会返回错误。更新操作是全量覆盖，并不是增量更新的模式，也就是说每次更新都需要携带全量的信息。
+    @inlinable
+    public func modifyCloudRecording(_ input: ModifyCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudRecordingResponse {
+        try await self.client.execute(action: "ModifyCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

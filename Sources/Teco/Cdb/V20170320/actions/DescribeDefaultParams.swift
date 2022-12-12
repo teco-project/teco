@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询默认的可设置参数列表
-    ///
-    /// 该接口（DescribeDefaultParams）用于查询默认的可设置参数列表。
-    @inlinable
-    public func describeDefaultParams(_ input: DescribeDefaultParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDefaultParamsResponse > {
-        self.client.execute(action: "DescribeDefaultParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询默认的可设置参数列表
-    ///
-    /// 该接口（DescribeDefaultParams）用于查询默认的可设置参数列表。
-    @inlinable
-    public func describeDefaultParams(_ input: DescribeDefaultParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultParamsResponse {
-        try await self.client.execute(action: "DescribeDefaultParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDefaultParams请求参数结构体
     public struct DescribeDefaultParamsRequest: TCRequestModel {
         /// mysql版本，目前支持 ["5.1", "5.5", "5.6", "5.7"]。
@@ -39,7 +23,7 @@ extension Cdb {
         /// 默认参数模板类型。支持值包括："HIGH_STABILITY" - 高稳定模板，"HIGH_PERFORMANCE" - 高性能模板。
         public let templateType: String?
         
-        public init (engineVersion: String, templateType: String?) {
+        public init (engineVersion: String, templateType: String? = nil) {
             self.engineVersion = engineVersion
             self.templateType = templateType
         }
@@ -66,5 +50,21 @@ extension Cdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询默认的可设置参数列表
+    ///
+    /// 该接口（DescribeDefaultParams）用于查询默认的可设置参数列表。
+    @inlinable
+    public func describeDefaultParams(_ input: DescribeDefaultParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDefaultParamsResponse > {
+        self.client.execute(action: "DescribeDefaultParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询默认的可设置参数列表
+    ///
+    /// 该接口（DescribeDefaultParams）用于查询默认的可设置参数列表。
+    @inlinable
+    public func describeDefaultParams(_ input: DescribeDefaultParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultParamsResponse {
+        try await self.client.execute(action: "DescribeDefaultParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

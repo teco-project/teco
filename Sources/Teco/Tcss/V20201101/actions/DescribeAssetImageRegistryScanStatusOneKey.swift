@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 镜像仓库查询一键镜像扫描状态
-    @inlinable
-    public func describeAssetImageRegistryScanStatusOneKey(_ input: DescribeAssetImageRegistryScanStatusOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryScanStatusOneKeyResponse > {
-        self.client.execute(action: "DescribeAssetImageRegistryScanStatusOneKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 镜像仓库查询一键镜像扫描状态
-    @inlinable
-    public func describeAssetImageRegistryScanStatusOneKey(_ input: DescribeAssetImageRegistryScanStatusOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryScanStatusOneKeyResponse {
-        try await self.client.execute(action: "DescribeAssetImageRegistryScanStatusOneKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageRegistryScanStatusOneKey请求参数结构体
     public struct DescribeAssetImageRegistryScanStatusOneKeyRequest: TCRequestModel {
         /// 需要获取进度的镜像列表
@@ -38,7 +26,7 @@ extension Tcss {
         /// 需要获取进度的镜像列表Id
         public let id: [UInt64]?
         
-        public init (images: [ImageInfo]?, all: Bool?, id: [UInt64]?) {
+        public init (images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil) {
             self.images = images
             self.all = all
             self.id = id
@@ -93,5 +81,17 @@ extension Tcss {
             case scanRemainTime = "ScanRemainTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 镜像仓库查询一键镜像扫描状态
+    @inlinable
+    public func describeAssetImageRegistryScanStatusOneKey(_ input: DescribeAssetImageRegistryScanStatusOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryScanStatusOneKeyResponse > {
+        self.client.execute(action: "DescribeAssetImageRegistryScanStatusOneKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库查询一键镜像扫描状态
+    @inlinable
+    public func describeAssetImageRegistryScanStatusOneKey(_ input: DescribeAssetImageRegistryScanStatusOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryScanStatusOneKeyResponse {
+        try await self.client.execute(action: "DescribeAssetImageRegistryScanStatusOneKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

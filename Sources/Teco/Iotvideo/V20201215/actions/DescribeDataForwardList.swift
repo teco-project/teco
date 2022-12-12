@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取数据转发列表
-    @inlinable
-    public func describeDataForwardList(_ input: DescribeDataForwardListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataForwardListResponse > {
-        self.client.execute(action: "DescribeDataForwardList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取数据转发列表
-    @inlinable
-    public func describeDataForwardList(_ input: DescribeDataForwardListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataForwardListResponse {
-        try await self.client.execute(action: "DescribeDataForwardList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDataForwardList请求参数结构体
     public struct DescribeDataForwardListRequest: TCRequestModel {
         /// 产品ID列表
@@ -54,5 +42,17 @@ extension Iotvideo {
             case dataForwardList = "DataForwardList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取数据转发列表
+    @inlinable
+    public func describeDataForwardList(_ input: DescribeDataForwardListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataForwardListResponse > {
+        self.client.execute(action: "DescribeDataForwardList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取数据转发列表
+    @inlinable
+    public func describeDataForwardList(_ input: DescribeDataForwardListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataForwardListResponse {
+        try await self.client.execute(action: "DescribeDataForwardList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

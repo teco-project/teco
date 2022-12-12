@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 修改数据库账号备注
-    ///
-    /// 本接口（ModifyAccountDescription）用于修改云数据库账号备注。
-    /// 注意：相同用户名，不同Host是不同的账号。
-    @inlinable
-    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountDescriptionResponse > {
-        self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改数据库账号备注
-    ///
-    /// 本接口（ModifyAccountDescription）用于修改云数据库账号备注。
-    /// 注意：相同用户名，不同Host是不同的账号。
-    @inlinable
-    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
-        try await self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAccountDescription请求参数结构体
     public struct ModifyAccountDescriptionRequest: TCRequestModel {
         /// 实例 ID，形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
@@ -70,5 +52,23 @@ extension Mariadb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改数据库账号备注
+    ///
+    /// 本接口（ModifyAccountDescription）用于修改云数据库账号备注。
+    /// 注意：相同用户名，不同Host是不同的账号。
+    @inlinable
+    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountDescriptionResponse > {
+        self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改数据库账号备注
+    ///
+    /// 本接口（ModifyAccountDescription）用于修改云数据库账号备注。
+    /// 注意：相同用户名，不同Host是不同的账号。
+    @inlinable
+    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
+        try await self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

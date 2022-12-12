@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cat {
-    /// 列出单次拨测详情数据
-    ///
-    /// 根据时间范围、任务ID、运营商等条件查询单次拨测详情数据
-    @inlinable
-    public func describeDetailedSingleProbeData(_ input: DescribeDetailedSingleProbeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDetailedSingleProbeDataResponse > {
-        self.client.execute(action: "DescribeDetailedSingleProbeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出单次拨测详情数据
-    ///
-    /// 根据时间范围、任务ID、运营商等条件查询单次拨测详情数据
-    @inlinable
-    public func describeDetailedSingleProbeData(_ input: DescribeDetailedSingleProbeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDetailedSingleProbeDataResponse {
-        try await self.client.execute(action: "DescribeDetailedSingleProbeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDetailedSingleProbeData请求参数结构体
     public struct DescribeDetailedSingleProbeDataRequest: TCRequestModel {
         /// 开始时间戳（毫秒级）
@@ -94,7 +78,7 @@ extension Cat {
         /// 多伦多
         public let city: [String]?
         
-        public init (beginTime: UInt64, endTime: UInt64, taskType: String, sortField: String, ascending: Bool, selectedFields: [String], offset: Int64, limit: Int64, taskID: [String]?, operators: [String]?, districts: [String]?, errorTypes: [String]?, city: [String]?) {
+        public init (beginTime: UInt64, endTime: UInt64, taskType: String, sortField: String, ascending: Bool, selectedFields: [String], offset: Int64, limit: Int64, taskID: [String]? = nil, operators: [String]? = nil, districts: [String]? = nil, errorTypes: [String]? = nil, city: [String]? = nil) {
             self.beginTime = beginTime
             self.endTime = endTime
             self.taskType = taskType
@@ -143,5 +127,21 @@ extension Cat {
             case totalNumber = "TotalNumber"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出单次拨测详情数据
+    ///
+    /// 根据时间范围、任务ID、运营商等条件查询单次拨测详情数据
+    @inlinable
+    public func describeDetailedSingleProbeData(_ input: DescribeDetailedSingleProbeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDetailedSingleProbeDataResponse > {
+        self.client.execute(action: "DescribeDetailedSingleProbeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出单次拨测详情数据
+    ///
+    /// 根据时间范围、任务ID、运营商等条件查询单次拨测详情数据
+    @inlinable
+    public func describeDetailedSingleProbeData(_ input: DescribeDetailedSingleProbeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDetailedSingleProbeDataResponse {
+        try await self.client.execute(action: "DescribeDetailedSingleProbeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

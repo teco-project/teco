@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询安全日志投递kafka可选项
-    @inlinable
-    public func describeSecLogDeliveryKafkaOptions(_ input: DescribeSecLogDeliveryKafkaOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogDeliveryKafkaOptionsResponse > {
-        self.client.execute(action: "DescribeSecLogDeliveryKafkaOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全日志投递kafka可选项
-    @inlinable
-    public func describeSecLogDeliveryKafkaOptions(_ input: DescribeSecLogDeliveryKafkaOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryKafkaOptionsResponse {
-        try await self.client.execute(action: "DescribeSecLogDeliveryKafkaOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecLogDeliveryKafkaOptions请求参数结构体
     public struct DescribeSecLogDeliveryKafkaOptionsRequest: TCRequestModel {
         /// 地域，若为空则返回所有可选地域
         public let regionID: String?
         
-        public init (regionID: String?) {
+        public init (regionID: String? = nil) {
             self.regionID = regionID
         }
         
@@ -57,5 +45,17 @@ extension Tcss {
             case regionList = "RegionList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全日志投递kafka可选项
+    @inlinable
+    public func describeSecLogDeliveryKafkaOptions(_ input: DescribeSecLogDeliveryKafkaOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogDeliveryKafkaOptionsResponse > {
+        self.client.execute(action: "DescribeSecLogDeliveryKafkaOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全日志投递kafka可选项
+    @inlinable
+    public func describeSecLogDeliveryKafkaOptions(_ input: DescribeSecLogDeliveryKafkaOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryKafkaOptionsResponse {
+        try await self.client.execute(action: "DescribeSecLogDeliveryKafkaOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

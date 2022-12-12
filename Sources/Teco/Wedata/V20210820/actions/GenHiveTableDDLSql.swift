@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 生成建hive表的sql
-    @inlinable
-    public func genHiveTableDDLSql(_ input: GenHiveTableDDLSqlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenHiveTableDDLSqlResponse > {
-        self.client.execute(action: "GenHiveTableDDLSql", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 生成建hive表的sql
-    @inlinable
-    public func genHiveTableDDLSql(_ input: GenHiveTableDDLSqlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenHiveTableDDLSqlResponse {
-        try await self.client.execute(action: "GenHiveTableDDLSql", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GenHiveTableDDLSql请求参数结构体
     public struct GenHiveTableDDLSqlRequest: TCRequestModel {
         /// 项目id
@@ -59,7 +47,7 @@ extension Wedata {
         /// 上游节点的字段信息
         public let sourceFieldInfoList: [SourceFieldInfo]?
         
-        public init (projectId: String, sinkDatabase: String, id: String?, msType: String?, datasourceId: String?, sourceDatabase: String?, tableName: String?, sinkType: String?, schemaName: String?, sourceFieldInfoList: [SourceFieldInfo]?) {
+        public init (projectId: String, sinkDatabase: String, id: String? = nil, msType: String? = nil, datasourceId: String? = nil, sourceDatabase: String? = nil, tableName: String? = nil, sinkType: String? = nil, schemaName: String? = nil, sourceFieldInfoList: [SourceFieldInfo]? = nil) {
             self.projectId = projectId
             self.sinkDatabase = sinkDatabase
             self.id = id
@@ -98,5 +86,17 @@ extension Wedata {
             case ddlSql = "DDLSql"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 生成建hive表的sql
+    @inlinable
+    public func genHiveTableDDLSql(_ input: GenHiveTableDDLSqlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenHiveTableDDLSqlResponse > {
+        self.client.execute(action: "GenHiveTableDDLSql", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 生成建hive表的sql
+    @inlinable
+    public func genHiveTableDDLSql(_ input: GenHiveTableDDLSqlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenHiveTableDDLSqlResponse {
+        try await self.client.execute(action: "GenHiveTableDDLSql", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Irp {
-    /// 获取推荐结果
-    @inlinable
-    public func recommendContent(_ input: RecommendContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecommendContentResponse > {
-        self.client.execute(action: "RecommendContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取推荐结果
-    @inlinable
-    public func recommendContent(_ input: RecommendContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecommendContentResponse {
-        try await self.client.execute(action: "RecommendContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecommendContent请求参数结构体
     public struct RecommendContentRequest: TCRequestModel {
         /// 业务id
@@ -56,7 +44,7 @@ extension Irp {
         /// 返回结果中不同物料类型的比例，比例顺序需严格按照（图文，长视频，短视频，小视频）进行。只允许传[0,100]数字，多个请用**英文冒号**分割，且加起来不能超过100，以及比例数量不能超过**场景绑定的物料类型**（图文，长视频，短视频，小视频）数。**示例：**图文和短视频比例为40%:60%时，则填40:60图文和短视频比例为0%:100%时，则填0:100图文，长视频和短视频的比例为，图文占20%，剩余80%由长视频和短视频随机返回，则填20:80或仅填20均可
         public let itemTypeRatio: String?
         
-        public init (bid: String, sceneId: String, userIdList: [UserIdInfo]?, recTraceId: String?, itemCnt: Int64?, poolId: String?, currentItemId: String?, responseTimeout: Int64?, itemTypeRatio: String?) {
+        public init (bid: String, sceneId: String, userIdList: [UserIdInfo]? = nil, recTraceId: String? = nil, itemCnt: Int64? = nil, poolId: String? = nil, currentItemId: String? = nil, responseTimeout: Int64? = nil, itemTypeRatio: String? = nil) {
             self.bid = bid
             self.sceneId = sceneId
             self.userIdList = userIdList
@@ -97,5 +85,17 @@ extension Irp {
             case dataList = "DataList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取推荐结果
+    @inlinable
+    public func recommendContent(_ input: RecommendContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecommendContentResponse > {
+        self.client.execute(action: "RecommendContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取推荐结果
+    @inlinable
+    public func recommendContent(_ input: RecommendContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecommendContentResponse {
+        try await self.client.execute(action: "RecommendContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

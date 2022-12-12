@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ivld {
-    /// 查询回调设置
-    ///
-    /// 查询用户回调设置
-    @inlinable
-    public func queryCallback(_ input: QueryCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCallbackResponse > {
-        self.client.execute(action: "QueryCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询回调设置
-    ///
-    /// 查询用户回调设置
-    @inlinable
-    public func queryCallback(_ input: QueryCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallbackResponse {
-        try await self.client.execute(action: "QueryCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryCallback请求参数结构体
     public struct QueryCallbackRequest: TCRequestModel {
         public init () {
@@ -53,5 +37,21 @@ extension Ivld {
             case mediaFinishNotifyURL = "MediaFinishNotifyURL"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询回调设置
+    ///
+    /// 查询用户回调设置
+    @inlinable
+    public func queryCallback(_ input: QueryCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCallbackResponse > {
+        self.client.execute(action: "QueryCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询回调设置
+    ///
+    /// 查询用户回调设置
+    @inlinable
+    public func queryCallback(_ input: QueryCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallbackResponse {
+        try await self.client.execute(action: "QueryCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

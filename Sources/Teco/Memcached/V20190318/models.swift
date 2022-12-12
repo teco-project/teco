@@ -92,7 +92,7 @@ extension Memcached {
         /// 实例端口号
         public let vport: Int64?
         
-        public init (modTimeStamp: Date?, isolateTimeStamp: Date?, autoRenewFlag: Int64?, setId: Int64?, status: Int64?, cmemId: Int64?, tags: [TagInfo]?, instanceId: String?, regionId: Int64?, instanceDesc: String?, expire: Int64?, subnetId: Int64?, projectId: Int64?, addTimeStamp: Date?, zoneId: Int64?, payMode: Int64?, vpcId: Int64?, instanceName: String?, deadlineTimeStamp: Date?, uniqVpcId: String?, vip: String?, uniqSubnetId: String?, appId: Int64?, vport: Int64?) {
+        public init (modTimeStamp: Date? = nil, isolateTimeStamp: Date? = nil, autoRenewFlag: Int64? = nil, setId: Int64? = nil, status: Int64? = nil, cmemId: Int64? = nil, tags: [TagInfo]? = nil, instanceId: String? = nil, regionId: Int64? = nil, instanceDesc: String? = nil, expire: Int64? = nil, subnetId: Int64? = nil, projectId: Int64? = nil, addTimeStamp: Date? = nil, zoneId: Int64? = nil, payMode: Int64? = nil, vpcId: Int64? = nil, instanceName: String? = nil, deadlineTimeStamp: Date? = nil, uniqVpcId: String? = nil, vip: String? = nil, uniqSubnetId: String? = nil, appId: Int64? = nil, vport: Int64? = nil) {
             self.modTimeStamp = modTimeStamp
             self.isolateTimeStamp = isolateTimeStamp
             self.autoRenewFlag = autoRenewFlag
@@ -155,7 +155,7 @@ extension Memcached {
         /// 标签值
         public let tagValue: String?
         
-        public init (tagKey: String, tagValue: String?) {
+        public init (tagKey: String, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }

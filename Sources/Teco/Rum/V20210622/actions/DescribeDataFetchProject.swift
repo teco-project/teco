@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取DescribeDataFetchProject信息（已下线，请使用DescribeDataFetchUrl）
-    ///
-    /// 获取DescribeDataFetchProject信息。已下线，请使用DescribeDataFetchUrl
-    @inlinable
-    public func describeDataFetchProject(_ input: DescribeDataFetchProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataFetchProjectResponse > {
-        self.client.execute(action: "DescribeDataFetchProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DescribeDataFetchProject信息（已下线，请使用DescribeDataFetchUrl）
-    ///
-    /// 获取DescribeDataFetchProject信息。已下线，请使用DescribeDataFetchUrl
-    @inlinable
-    public func describeDataFetchProject(_ input: DescribeDataFetchProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataFetchProjectResponse {
-        try await self.client.execute(action: "DescribeDataFetchProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDataFetchProject请求参数结构体
     public struct DescribeDataFetchProjectRequest: TCRequestModel {
         /// 开始时间
@@ -108,7 +92,7 @@ extension Rum {
         /// retcode
         public let ret: String?
         
-        public init (startTime: Int64, type: String, endTime: Int64, id: Int64, extSecond: String?, engine: String?, isp: String?, from: String?, level: String?, brand: String?, area: String?, versionNum: String?, platform: String?, extThird: String?, extFirst: String?, netType: String?, device: String?, isAbroad: String?, os: String?, browser: String?, costType: String?, url: String?, env: String?, status: String?, ret: String?) {
+        public init (startTime: Int64, type: String, endTime: Int64, id: Int64, extSecond: String? = nil, engine: String? = nil, isp: String? = nil, from: String? = nil, level: String? = nil, brand: String? = nil, area: String? = nil, versionNum: String? = nil, platform: String? = nil, extThird: String? = nil, extFirst: String? = nil, netType: String? = nil, device: String? = nil, isAbroad: String? = nil, os: String? = nil, browser: String? = nil, costType: String? = nil, url: String? = nil, env: String? = nil, status: String? = nil, ret: String? = nil) {
             self.startTime = startTime
             self.type = type
             self.endTime = endTime
@@ -177,5 +161,21 @@ extension Rum {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DescribeDataFetchProject信息（已下线，请使用DescribeDataFetchUrl）
+    ///
+    /// 获取DescribeDataFetchProject信息。已下线，请使用DescribeDataFetchUrl
+    @inlinable
+    public func describeDataFetchProject(_ input: DescribeDataFetchProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataFetchProjectResponse > {
+        self.client.execute(action: "DescribeDataFetchProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DescribeDataFetchProject信息（已下线，请使用DescribeDataFetchUrl）
+    ///
+    /// 获取DescribeDataFetchProject信息。已下线，请使用DescribeDataFetchUrl
+    @inlinable
+    public func describeDataFetchProject(_ input: DescribeDataFetchProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataFetchProjectResponse {
+        try await self.client.execute(action: "DescribeDataFetchProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

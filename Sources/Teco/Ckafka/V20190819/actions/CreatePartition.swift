@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 增加主题分区
-    ///
-    /// 本接口用于增加主题中的分区
-    @inlinable
-    public func createPartition(_ input: CreatePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePartitionResponse > {
-        self.client.execute(action: "CreatePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 增加主题分区
-    ///
-    /// 本接口用于增加主题中的分区
-    @inlinable
-    public func createPartition(_ input: CreatePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePartitionResponse {
-        try await self.client.execute(action: "CreatePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePartition请求参数结构体
     public struct CreatePartitionRequest: TCRequestModel {
         /// 实例Id
@@ -67,5 +51,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 增加主题分区
+    ///
+    /// 本接口用于增加主题中的分区
+    @inlinable
+    public func createPartition(_ input: CreatePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePartitionResponse > {
+        self.client.execute(action: "CreatePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 增加主题分区
+    ///
+    /// 本接口用于增加主题中的分区
+    @inlinable
+    public func createPartition(_ input: CreatePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePartitionResponse {
+        try await self.client.execute(action: "CreatePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

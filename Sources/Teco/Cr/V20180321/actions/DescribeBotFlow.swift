@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cr {
-    /// 查询机器人对话流
-    @inlinable
-    public func describeBotFlow(_ input: DescribeBotFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotFlowResponse > {
-        self.client.execute(action: "DescribeBotFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询机器人对话流
-    @inlinable
-    public func describeBotFlow(_ input: DescribeBotFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotFlowResponse {
-        try await self.client.execute(action: "DescribeBotFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBotFlow请求参数结构体
     public struct DescribeBotFlowRequest: TCRequestModel {
         /// 模块名。默认值（固定）：AiApi
@@ -69,5 +57,17 @@ extension Cr {
             case smsTemplateList = "SmsTemplateList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询机器人对话流
+    @inlinable
+    public func describeBotFlow(_ input: DescribeBotFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotFlowResponse > {
+        self.client.execute(action: "DescribeBotFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询机器人对话流
+    @inlinable
+    public func describeBotFlow(_ input: DescribeBotFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotFlowResponse {
+        try await self.client.execute(action: "DescribeBotFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

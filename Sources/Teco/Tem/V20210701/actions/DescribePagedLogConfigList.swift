@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 查询分页的日志收集配置列表
-    @inlinable
-    public func describePagedLogConfigList(_ input: DescribePagedLogConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePagedLogConfigListResponse > {
-        self.client.execute(action: "DescribePagedLogConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询分页的日志收集配置列表
-    @inlinable
-    public func describePagedLogConfigList(_ input: DescribePagedLogConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePagedLogConfigListResponse {
-        try await self.client.execute(action: "DescribePagedLogConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePagedLogConfigList请求参数结构体
     public struct DescribePagedLogConfigListRequest: TCRequestModel {
         /// 环境 ID
@@ -47,7 +35,7 @@ extension Tem {
         /// 翻页游标
         public let continueToken: String?
         
-        public init (environmentId: String, applicationId: String?, applicationName: String?, name: String?, limit: Int64?, continueToken: String?) {
+        public init (environmentId: String, applicationId: String? = nil, applicationName: String? = nil, name: String? = nil, limit: Int64? = nil, continueToken: String? = nil) {
             self.environmentId = environmentId
             self.applicationId = applicationId
             self.applicationName = applicationName
@@ -78,5 +66,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询分页的日志收集配置列表
+    @inlinable
+    public func describePagedLogConfigList(_ input: DescribePagedLogConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePagedLogConfigListResponse > {
+        self.client.execute(action: "DescribePagedLogConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询分页的日志收集配置列表
+    @inlinable
+    public func describePagedLogConfigList(_ input: DescribePagedLogConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePagedLogConfigListResponse {
+        try await self.client.execute(action: "DescribePagedLogConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

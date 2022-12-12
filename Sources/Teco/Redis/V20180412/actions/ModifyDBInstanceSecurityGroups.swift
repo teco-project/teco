@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 修改云数据库安全组
-    ///
-    /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
-    @inlinable
-    public func modifyDBInstanceSecurityGroups(_ input: ModifyDBInstanceSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceSecurityGroupsResponse > {
-        self.client.execute(action: "ModifyDBInstanceSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改云数据库安全组
-    ///
-    /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
-    @inlinable
-    public func modifyDBInstanceSecurityGroups(_ input: ModifyDBInstanceSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupsResponse {
-        try await self.client.execute(action: "ModifyDBInstanceSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBInstanceSecurityGroups请求参数结构体
     public struct ModifyDBInstanceSecurityGroupsRequest: TCRequestModel {
         /// 数据库引擎名称，本接口取值：redis。
@@ -63,5 +47,21 @@ extension Redis {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改云数据库安全组
+    ///
+    /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
+    @inlinable
+    public func modifyDBInstanceSecurityGroups(_ input: ModifyDBInstanceSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceSecurityGroupsResponse > {
+        self.client.execute(action: "ModifyDBInstanceSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库安全组
+    ///
+    /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
+    @inlinable
+    public func modifyDBInstanceSecurityGroups(_ input: ModifyDBInstanceSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupsResponse {
+        try await self.client.execute(action: "ModifyDBInstanceSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改VPC属性
-    ///
-    /// 修改私有网络（VPC）的相关属性
-    @inlinable
-    public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpcAttributeResponse > {
-        self.client.execute(action: "ModifyVpcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改VPC属性
-    ///
-    /// 修改私有网络（VPC）的相关属性
-    @inlinable
-    public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
-        try await self.client.execute(action: "ModifyVpcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVpcAttribute请求参数结构体
     public struct ModifyVpcAttributeRequest: TCRequestModel {
         /// VPC实例ID。形如：vpc-f49l6u0z。
@@ -48,7 +32,7 @@ extension Ecm {
         /// 私有网络描述
         public let description: String?
         
-        public init (vpcId: String, ecmRegion: String, vpcName: String?, tags: [Tag]?, description: String?) {
+        public init (vpcId: String, ecmRegion: String, vpcName: String? = nil, tags: [Tag]? = nil, description: String? = nil) {
             self.vpcId = vpcId
             self.ecmRegion = ecmRegion
             self.vpcName = vpcName
@@ -73,5 +57,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改VPC属性
+    ///
+    /// 修改私有网络（VPC）的相关属性
+    @inlinable
+    public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpcAttributeResponse > {
+        self.client.execute(action: "ModifyVpcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改VPC属性
+    ///
+    /// 修改私有网络（VPC）的相关属性
+    @inlinable
+    public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
+        try await self.client.execute(action: "ModifyVpcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

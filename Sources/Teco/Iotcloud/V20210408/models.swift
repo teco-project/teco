@@ -20,7 +20,7 @@ extension Iotcloud {
         /// 属性列表
         public let tags: [DeviceTag]?
         
-        public init (tags: [DeviceTag]?) {
+        public init (tags: [DeviceTag]? = nil) {
             self.tags = tags
         }
         
@@ -359,7 +359,7 @@ extension Iotcloud {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
         
-        public init (tag: String, type: UInt64, value: String, name: String?) {
+        public init (tag: String, type: UInt64, value: String, name: String? = nil) {
             self.tag = tag
             self.type = type
             self.value = value
@@ -612,7 +612,7 @@ extension Iotcloud {
         /// 划归的产品，展示为源用户ID，其余为空
         public let originUserId: UInt64?
         
-        public init (productDescription: String?, encryptionType: String?, region: String?, productType: UInt64?, format: String?, platform: String?, appeui: String?, modelId: String?, modelName: String?, productKey: String?, registerType: UInt64?, productSecret: String?, registerLimit: UInt64?, originProductId: String?, privateCAName: String?, originUserId: UInt64?) {
+        public init (productDescription: String? = nil, encryptionType: String? = nil, region: String? = nil, productType: UInt64? = nil, format: String? = nil, platform: String? = nil, appeui: String? = nil, modelId: String? = nil, modelName: String? = nil, productKey: String? = nil, registerType: UInt64? = nil, productSecret: String? = nil, registerLimit: UInt64? = nil, originProductId: String? = nil, privateCAName: String? = nil, originUserId: UInt64? = nil) {
             self.productDescription = productDescription
             self.encryptionType = encryptionType
             self.region = region
@@ -798,7 +798,7 @@ extension Iotcloud {
         /// 搜索条件的值
         public let value: String?
         
-        public init (key: String, value: String?) {
+        public init (key: String, value: String? = nil) {
             self.key = key
             self.value = value
         }
@@ -914,7 +914,7 @@ extension Iotcloud {
         /// 是否禁用规则
         public let ruleDisabled: Bool?
         
-        public init (sql: String, actions: String?, description: String?, ruleDisabled: Bool?) {
+        public init (sql: String, actions: String? = nil, description: String? = nil, ruleDisabled: Bool? = nil) {
             self.sql = sql
             self.actions = actions
             self.description = description

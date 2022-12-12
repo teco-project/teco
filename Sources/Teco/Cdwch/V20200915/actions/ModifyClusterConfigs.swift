@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdwch {
-    /// 修改集群配置文件接口
-    ///
-    /// 在集群配置页面修改集群配置文件接口，xml模式
-    @inlinable
-    public func modifyClusterConfigs(_ input: ModifyClusterConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterConfigsResponse > {
-        self.client.execute(action: "ModifyClusterConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改集群配置文件接口
-    ///
-    /// 在集群配置页面修改集群配置文件接口，xml模式
-    @inlinable
-    public func modifyClusterConfigs(_ input: ModifyClusterConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterConfigsResponse {
-        try await self.client.execute(action: "ModifyClusterConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClusterConfigs请求参数结构体
     public struct ModifyClusterConfigsRequest: TCRequestModel {
         /// 集群ID，例如cdwch-xxxx
@@ -42,7 +26,7 @@ extension Cdwch {
         /// 修改原因
         public let remark: String?
         
-        public init (instanceId: String, modifyConfContext: [ConfigSubmitContext], remark: String?) {
+        public init (instanceId: String, modifyConfContext: [ConfigSubmitContext], remark: String? = nil) {
             self.instanceId = instanceId
             self.modifyConfContext = modifyConfContext
             self.remark = remark
@@ -71,5 +55,21 @@ extension Cdwch {
             case errorMsg = "ErrorMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改集群配置文件接口
+    ///
+    /// 在集群配置页面修改集群配置文件接口，xml模式
+    @inlinable
+    public func modifyClusterConfigs(_ input: ModifyClusterConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterConfigsResponse > {
+        self.client.execute(action: "ModifyClusterConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改集群配置文件接口
+    ///
+    /// 在集群配置页面修改集群配置文件接口，xml模式
+    @inlinable
+    public func modifyClusterConfigs(_ input: ModifyClusterConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterConfigsResponse {
+        try await self.client.execute(action: "ModifyClusterConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

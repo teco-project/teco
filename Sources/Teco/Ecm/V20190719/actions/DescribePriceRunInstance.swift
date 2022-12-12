@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 查询实例价格
-    @inlinable
-    public func describePriceRunInstance(_ input: DescribePriceRunInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePriceRunInstanceResponse > {
-        self.client.execute(action: "DescribePriceRunInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例价格
-    @inlinable
-    public func describePriceRunInstance(_ input: DescribePriceRunInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePriceRunInstanceResponse {
-        try await self.client.execute(action: "DescribePriceRunInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePriceRunInstance请求参数结构体
     public struct DescribePriceRunInstanceRequest: TCRequestModel {
         /// 实例的机型信息
@@ -48,7 +36,7 @@ extension Ecm {
         /// 该字段不填时，非GNR机型会默认选择0；GNR机型默认选择2。
         public let instanceChargeType: Int64?
         
-        public init (instanceType: String, systemDisk: SystemDisk, instanceCount: UInt64, dataDisk: [DataDisk]?, instanceChargeType: Int64?) {
+        public init (instanceType: String, systemDisk: SystemDisk, instanceCount: UInt64, dataDisk: [DataDisk]? = nil, instanceChargeType: Int64? = nil) {
             self.instanceType = instanceType
             self.systemDisk = systemDisk
             self.instanceCount = instanceCount
@@ -77,5 +65,17 @@ extension Ecm {
             case instancePrice = "InstancePrice"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例价格
+    @inlinable
+    public func describePriceRunInstance(_ input: DescribePriceRunInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePriceRunInstanceResponse > {
+        self.client.execute(action: "DescribePriceRunInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例价格
+    @inlinable
+    public func describePriceRunInstance(_ input: DescribePriceRunInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePriceRunInstanceResponse {
+        try await self.client.execute(action: "DescribePriceRunInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

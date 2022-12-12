@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询简单部署组列表
-    @inlinable
-    public func describeSimpleGroups(_ input: DescribeSimpleGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSimpleGroupsResponse > {
-        self.client.execute(action: "DescribeSimpleGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询简单部署组列表
-    @inlinable
-    public func describeSimpleGroups(_ input: DescribeSimpleGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleGroupsResponse {
-        try await self.client.execute(action: "DescribeSimpleGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSimpleGroups请求参数结构体
     public struct DescribeSimpleGroupsRequest: TCRequestModel {
         /// 部署组ID列表，不填写时查询全量
@@ -56,7 +44,7 @@ extension Tsf {
         /// 部署组类型，精确过滤字段，M：service mesh, P：原生应用， G：网关应用
         public let appMicroServiceType: String?
         
-        public init (groupIdList: [String]?, applicationId: String?, clusterId: String?, namespaceId: String?, limit: Int64?, offset: Int64?, groupId: String?, searchWord: String?, appMicroServiceType: String?) {
+        public init (groupIdList: [String]? = nil, applicationId: String? = nil, clusterId: String? = nil, namespaceId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, groupId: String? = nil, searchWord: String? = nil, appMicroServiceType: String? = nil) {
             self.groupIdList = groupIdList
             self.applicationId = applicationId
             self.clusterId = clusterId
@@ -85,7 +73,7 @@ extension Tsf {
     public struct DescribeSimpleGroupsResponse: TCResponseModel {
         /// 简单部署组列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TsfPageSimpleGroup
+        public let result: TsfPageSimpleGroup?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -94,5 +82,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询简单部署组列表
+    @inlinable
+    public func describeSimpleGroups(_ input: DescribeSimpleGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSimpleGroupsResponse > {
+        self.client.execute(action: "DescribeSimpleGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询简单部署组列表
+    @inlinable
+    public func describeSimpleGroups(_ input: DescribeSimpleGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleGroupsResponse {
+        try await self.client.execute(action: "DescribeSimpleGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

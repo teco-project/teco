@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 获取已绑定对象列表
-    @inlinable
-    public func describeBindingPolicyObjectList(_ input: DescribeBindingPolicyObjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindingPolicyObjectListResponse > {
-        self.client.execute(action: "DescribeBindingPolicyObjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取已绑定对象列表
-    @inlinable
-    public func describeBindingPolicyObjectList(_ input: DescribeBindingPolicyObjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindingPolicyObjectListResponse {
-        try await self.client.execute(action: "DescribeBindingPolicyObjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBindingPolicyObjectList请求参数结构体
     public struct DescribeBindingPolicyObjectListRequest: TCRequestModel {
         /// 固定值，为"monitor"
@@ -47,7 +35,7 @@ extension Monitor {
         /// 筛选对象的维度信息
         public let dimensions: [DescribeBindingPolicyObjectListDimension]?
         
-        public init (module: String, groupId: Int64, policyId: String?, limit: Int64?, offset: Int64?, dimensions: [DescribeBindingPolicyObjectListDimension]?) {
+        public init (module: String, groupId: Int64, policyId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, dimensions: [DescribeBindingPolicyObjectListDimension]? = nil) {
             self.module = module
             self.groupId = groupId
             self.policyId = policyId
@@ -80,7 +68,7 @@ extension Monitor {
         
         /// 绑定的实例分组信息，没有绑定实例分组则为空
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instanceGroup: DescribeBindingPolicyObjectListInstanceGroup
+        public let instanceGroup: DescribeBindingPolicyObjectListInstanceGroup?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -92,5 +80,17 @@ extension Monitor {
             case instanceGroup = "InstanceGroup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取已绑定对象列表
+    @inlinable
+    public func describeBindingPolicyObjectList(_ input: DescribeBindingPolicyObjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindingPolicyObjectListResponse > {
+        self.client.execute(action: "DescribeBindingPolicyObjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取已绑定对象列表
+    @inlinable
+    public func describeBindingPolicyObjectList(_ input: DescribeBindingPolicyObjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindingPolicyObjectListResponse {
+        try await self.client.execute(action: "DescribeBindingPolicyObjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

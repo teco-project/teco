@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 恢复 Grafana 实例
-    @inlinable
-    public func resumeGrafanaInstance(_ input: ResumeGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeGrafanaInstanceResponse > {
-        self.client.execute(action: "ResumeGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 恢复 Grafana 实例
-    @inlinable
-    public func resumeGrafanaInstance(_ input: ResumeGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeGrafanaInstanceResponse {
-        try await self.client.execute(action: "ResumeGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResumeGrafanaInstance请求参数结构体
     public struct ResumeGrafanaInstanceRequest: TCRequestModel {
         /// 实例 ID
@@ -49,5 +37,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 恢复 Grafana 实例
+    @inlinable
+    public func resumeGrafanaInstance(_ input: ResumeGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeGrafanaInstanceResponse > {
+        self.client.execute(action: "ResumeGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复 Grafana 实例
+    @inlinable
+    public func resumeGrafanaInstance(_ input: ResumeGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeGrafanaInstanceResponse {
+        try await self.client.execute(action: "ResumeGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

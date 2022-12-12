@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 创建函数版本别名
-    ///
-    /// 为某个函数版本创建一个别名，您可以使用别名来标记特定的函数版本，如DEV/RELEASE版本，也可以随时修改别名指向的版本。
-    /// 一个别名必须指向一个主版本，此外还可以同时指向一个附加版本。调用函数时指定特定的别名，则请求会被发送到别名指向的版本上，您可以配置请求发送到主版本和附加版本的比例。
-    @inlinable
-    public func createAlias(_ input: CreateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAliasResponse > {
-        self.client.execute(action: "CreateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建函数版本别名
-    ///
-    /// 为某个函数版本创建一个别名，您可以使用别名来标记特定的函数版本，如DEV/RELEASE版本，也可以随时修改别名指向的版本。
-    /// 一个别名必须指向一个主版本，此外还可以同时指向一个附加版本。调用函数时指定特定的别名，则请求会被发送到别名指向的版本上，您可以配置请求发送到主版本和附加版本的比例。
-    @inlinable
-    public func createAlias(_ input: CreateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAliasResponse {
-        try await self.client.execute(action: "CreateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAlias请求参数结构体
     public struct CreateAliasRequest: TCRequestModel {
         /// 别名的名称，在函数级别中唯一，只能包含字母、数字、'_'和‘-’，且必须以字母开头，长度限制为1-64
@@ -48,12 +30,12 @@ extension Scf {
         public let namespace: String?
         
         /// 别名的请求路由配置
-        public let routingConfig: RoutingConfig
+        public let routingConfig: RoutingConfig?
         
         /// 别名的描述信息
         public let description: String?
         
-        public init (name: String, functionName: String, functionVersion: String, namespace: String?, routingConfig: RoutingConfig, description: String?) {
+        public init (name: String, functionName: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil) {
             self.name = name
             self.functionName = functionName
             self.functionVersion = functionVersion
@@ -80,5 +62,23 @@ extension Scf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建函数版本别名
+    ///
+    /// 为某个函数版本创建一个别名，您可以使用别名来标记特定的函数版本，如DEV/RELEASE版本，也可以随时修改别名指向的版本。
+    /// 一个别名必须指向一个主版本，此外还可以同时指向一个附加版本。调用函数时指定特定的别名，则请求会被发送到别名指向的版本上，您可以配置请求发送到主版本和附加版本的比例。
+    @inlinable
+    public func createAlias(_ input: CreateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAliasResponse > {
+        self.client.execute(action: "CreateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建函数版本别名
+    ///
+    /// 为某个函数版本创建一个别名，您可以使用别名来标记特定的函数版本，如DEV/RELEASE版本，也可以随时修改别名指向的版本。
+    /// 一个别名必须指向一个主版本，此外还可以同时指向一个附加版本。调用函数时指定特定的别名，则请求会被发送到别名指向的版本上，您可以配置请求发送到主版本和附加版本的比例。
+    @inlinable
+    public func createAlias(_ input: CreateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAliasResponse {
+        try await self.client.execute(action: "CreateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

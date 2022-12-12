@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-结算单查询结果
-    @inlinable
-    public func queryOpenBankSettleOrder(_ input: QueryOpenBankSettleOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankSettleOrderResponse > {
-        self.client.execute(action: "QueryOpenBankSettleOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-结算单查询结果
-    @inlinable
-    public func queryOpenBankSettleOrder(_ input: QueryOpenBankSettleOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSettleOrderResponse {
-        try await self.client.execute(action: "QueryOpenBankSettleOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryOpenBankSettleOrder请求参数结构体
     public struct QueryOpenBankSettleOrderRequest: TCRequestModel {
         /// 渠道商户号
@@ -44,7 +32,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填 sandbox。缺省默认调用生产环境
         public let environment: String?
         
-        public init (channelMerchantId: String, channelSubMerchantId: String?, outSettleId: String?, channelSettleId: String?, environment: String?) {
+        public init (channelMerchantId: String, channelSubMerchantId: String? = nil, outSettleId: String? = nil, channelSettleId: String? = nil, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.channelSubMerchantId = channelSubMerchantId
             self.outSettleId = outSettleId
@@ -71,7 +59,7 @@ extension Cpdp {
         
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: QueryOpenBankSettleOrderResult
+        public let result: QueryOpenBankSettleOrderResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -82,5 +70,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-结算单查询结果
+    @inlinable
+    public func queryOpenBankSettleOrder(_ input: QueryOpenBankSettleOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankSettleOrderResponse > {
+        self.client.execute(action: "QueryOpenBankSettleOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-结算单查询结果
+    @inlinable
+    public func queryOpenBankSettleOrder(_ input: QueryOpenBankSettleOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSettleOrderResponse {
+        try await self.client.execute(action: "QueryOpenBankSettleOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

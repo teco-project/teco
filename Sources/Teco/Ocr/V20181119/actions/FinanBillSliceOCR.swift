@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 金融票据切片识别
-    ///
-    /// 本接口支持常见银行票据的自动分类和识别。切片识别包括金融行业常见票据的重要切片字段识别，包括金额、账号、日期、凭证号码等。（金融票据切片：金融票据中待识别字段及其周围局部区域的裁剪图像。）
-    @inlinable
-    public func finanBillSliceOCR(_ input: FinanBillSliceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FinanBillSliceOCRResponse > {
-        self.client.execute(action: "FinanBillSliceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 金融票据切片识别
-    ///
-    /// 本接口支持常见银行票据的自动分类和识别。切片识别包括金融行业常见票据的重要切片字段识别，包括金额、账号、日期、凭证号码等。（金融票据切片：金融票据中待识别字段及其周围局部区域的裁剪图像。）
-    @inlinable
-    public func finanBillSliceOCR(_ input: FinanBillSliceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FinanBillSliceOCRResponse {
-        try await self.client.execute(action: "FinanBillSliceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// FinanBillSliceOCR请求参数结构体
     public struct FinanBillSliceOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -46,7 +30,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -69,5 +53,21 @@ extension Ocr {
             case finanBillSliceInfos = "FinanBillSliceInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 金融票据切片识别
+    ///
+    /// 本接口支持常见银行票据的自动分类和识别。切片识别包括金融行业常见票据的重要切片字段识别，包括金额、账号、日期、凭证号码等。（金融票据切片：金融票据中待识别字段及其周围局部区域的裁剪图像。）
+    @inlinable
+    public func finanBillSliceOCR(_ input: FinanBillSliceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FinanBillSliceOCRResponse > {
+        self.client.execute(action: "FinanBillSliceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 金融票据切片识别
+    ///
+    /// 本接口支持常见银行票据的自动分类和识别。切片识别包括金融行业常见票据的重要切片字段识别，包括金额、账号、日期、凭证号码等。（金融票据切片：金融票据中待识别字段及其周围局部区域的裁剪图像。）
+    @inlinable
+    public func finanBillSliceOCR(_ input: FinanBillSliceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FinanBillSliceOCRResponse {
+        try await self.client.execute(action: "FinanBillSliceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 获取单个水印
-    ///
-    /// 获取单个水印信息。
-    @inlinable
-    public func describeLiveWatermark(_ input: DescribeLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveWatermarkResponse > {
-        self.client.execute(action: "DescribeLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取单个水印
-    ///
-    /// 获取单个水印信息。
-    @inlinable
-    public func describeLiveWatermark(_ input: DescribeLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarkResponse {
-        try await self.client.execute(action: "DescribeLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveWatermark请求参数结构体
     public struct DescribeLiveWatermarkRequest: TCRequestModel {
         /// DescribeLiveWatermarks接口返回的水印 ID。
@@ -57,5 +41,21 @@ extension Live {
             case watermark = "Watermark"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取单个水印
+    ///
+    /// 获取单个水印信息。
+    @inlinable
+    public func describeLiveWatermark(_ input: DescribeLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveWatermarkResponse > {
+        self.client.execute(action: "DescribeLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单个水印
+    ///
+    /// 获取单个水印信息。
+    @inlinable
+    public func describeLiveWatermark(_ input: DescribeLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarkResponse {
+        try await self.client.execute(action: "DescribeLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

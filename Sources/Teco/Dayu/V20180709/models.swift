@@ -59,7 +59,7 @@ extension Dayu {
         /// 运营商，0：电信；1：联通；2：移动；5：BGP
         public let ispCode: UInt64?
         
-        public init (ip: String, bizType: String?, deviceType: String?, instanceId: String?, ispCode: UInt64?) {
+        public init (ip: String, bizType: String? = nil, deviceType: String? = nil, instanceId: String? = nil, ispCode: UInt64? = nil) {
             self.ip = ip
             self.bizType = bizType
             self.deviceType = deviceType
@@ -226,7 +226,7 @@ extension Dayu {
         /// HTTPS的CC防护域名
         public let domain: String?
         
-        public init (name: String, smode: String, setId: String?, frequency: UInt64?, exeMode: String?, `switch`: UInt64?, createTime: String?, ruleList: [CCRule]?, ipList: [String]?, `protocol`: String?, ruleId: String?, domain: String?) {
+        public init (name: String, smode: String, setId: String? = nil, frequency: UInt64? = nil, exeMode: String? = nil, `switch`: UInt64? = nil, createTime: String? = nil, ruleList: [CCRule]? = nil, ipList: [String]? = nil, `protocol`: String? = nil, ruleId: String? = nil, domain: String? = nil) {
             self.name = name
             self.smode = smode
             self.setId = setId
@@ -471,7 +471,7 @@ extension Dayu {
         /// other协议限速，取值范围[0,4294967295]
         public let dOtherMbpsLimit: UInt64?
         
-        public init (dropTcp: UInt64, dropUdp: UInt64, dropIcmp: UInt64, dropOther: UInt64, dropAbroad: UInt64, checkSyncConn: UInt64, sdNewLimit: UInt64?, dstNewLimit: UInt64?, sdConnLimit: UInt64?, dstConnLimit: UInt64?, badConnThreshold: UInt64?, nullConnEnable: UInt64?, connTimeout: UInt64?, synRate: UInt64?, synLimit: UInt64?, dTcpMbpsLimit: UInt64?, dUdpMbpsLimit: UInt64?, dIcmpMbpsLimit: UInt64?, dOtherMbpsLimit: UInt64?) {
+        public init (dropTcp: UInt64, dropUdp: UInt64, dropIcmp: UInt64, dropOther: UInt64, dropAbroad: UInt64, checkSyncConn: UInt64, sdNewLimit: UInt64? = nil, dstNewLimit: UInt64? = nil, sdConnLimit: UInt64? = nil, dstConnLimit: UInt64? = nil, badConnThreshold: UInt64? = nil, nullConnEnable: UInt64? = nil, connTimeout: UInt64? = nil, synRate: UInt64? = nil, synLimit: UInt64? = nil, dTcpMbpsLimit: UInt64? = nil, dUdpMbpsLimit: UInt64? = nil, dIcmpMbpsLimit: UInt64? = nil, dOtherMbpsLimit: UInt64? = nil) {
             self.dropTcp = dropTcp
             self.dropUdp = dropUdp
             self.dropIcmp = dropIcmp
@@ -627,7 +627,7 @@ extension Dayu {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kind: UInt64?
         
-        public init (`protocol`: String, dPortStart: UInt64, dPortEnd: UInt64, sPortStart: UInt64?, sPortEnd: UInt64?, action: String?, kind: UInt64?) {
+        public init (`protocol`: String, dPortStart: UInt64, dPortEnd: UInt64, sPortStart: UInt64? = nil, sPortEnd: UInt64? = nil, action: String? = nil, kind: UInt64? = nil) {
             self.`protocol` = `protocol`
             self.dPortStart = dPortStart
             self.dPortEnd = dPortEnd
@@ -953,7 +953,7 @@ extension Dayu {
         /// 移除水印状态，取值[0(关闭)，1(开启)]
         public let removeSwitch: UInt64?
         
-        public init (`protocol`: String, virtualPort: UInt64, sourcePort: UInt64, sourceType: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, ruleId: String?, ruleName: String?, removeSwitch: UInt64?) {
+        public init (`protocol`: String, virtualPort: UInt64, sourcePort: UInt64, sourceType: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, ruleId: String? = nil, ruleName: String? = nil, removeSwitch: UInt64? = nil) {
             self.`protocol` = `protocol`
             self.virtualPort = virtualPort
             self.sourcePort = sourcePort
@@ -1158,7 +1158,7 @@ extension Dayu {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let virtualPort: UInt64?
         
-        public init (`protocol`: String, domain: String, sourceType: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, ruleId: String?, certType: UInt64?, sslId: String?, cert: String?, privateKey: String?, ruleName: String?, status: UInt64?, ccStatus: UInt64?, ccEnable: UInt64?, ccThreshold: UInt64?, ccLevel: String?, httpsToHttpEnable: UInt64?, virtualPort: UInt64?) {
+        public init (`protocol`: String, domain: String, sourceType: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, ruleId: String? = nil, certType: UInt64? = nil, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, ruleName: String? = nil, status: UInt64? = nil, ccStatus: UInt64? = nil, ccEnable: UInt64? = nil, ccThreshold: UInt64? = nil, ccLevel: String? = nil, httpsToHttpEnable: UInt64? = nil, virtualPort: UInt64? = nil) {
             self.`protocol` = `protocol`
             self.domain = domain
             self.sourceType = sourceType
@@ -1306,7 +1306,7 @@ extension Dayu {
         /// 绑定资源Id信息
         public let id: String?
         
-        public init (`protocol`: String, virtualPort: UInt64, sourcePort: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, sourceType: UInt64, ruleId: String?, ruleName: String?, removeSwitch: UInt64?, modifyTime: Date?, region: UInt64?, ip: String?, id: String?) {
+        public init (`protocol`: String, virtualPort: UInt64, sourcePort: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, sourceType: UInt64, ruleId: String? = nil, ruleName: String? = nil, removeSwitch: UInt64? = nil, modifyTime: Date? = nil, region: UInt64? = nil, ip: String? = nil, id: String? = nil) {
             self.`protocol` = `protocol`
             self.virtualPort = virtualPort
             self.sourcePort = sourcePort
@@ -1418,7 +1418,7 @@ extension Dayu {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let virtualPort: UInt64?
         
-        public init (`protocol`: String, domain: String, sourceType: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, ruleId: String?, certType: UInt64?, sslId: String?, cert: String?, privateKey: String?, ruleName: String?, status: UInt64?, ccStatus: UInt64?, ccEnable: UInt64?, ccThreshold: UInt64?, ccLevel: String?, region: UInt64?, id: String?, ip: String?, modifyTime: Date?, httpsToHttpEnable: UInt64?, virtualPort: UInt64?) {
+        public init (`protocol`: String, domain: String, sourceType: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, ruleId: String? = nil, certType: UInt64? = nil, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, ruleName: String? = nil, status: UInt64? = nil, ccStatus: UInt64? = nil, ccEnable: UInt64? = nil, ccThreshold: UInt64? = nil, ccLevel: String? = nil, region: UInt64? = nil, id: String? = nil, ip: String? = nil, modifyTime: Date? = nil, httpsToHttpEnable: UInt64? = nil, virtualPort: UInt64? = nil) {
             self.`protocol` = `protocol`
             self.domain = domain
             self.sourceType = sourceType
@@ -1559,7 +1559,7 @@ extension Dayu {
         /// 资源的IP数组
         public let ipList: [String]?
         
-        public init (id: String, ipList: [String]?) {
+        public init (id: String, ipList: [String]? = nil) {
             self.id = id
             self.ipList = ipList
         }

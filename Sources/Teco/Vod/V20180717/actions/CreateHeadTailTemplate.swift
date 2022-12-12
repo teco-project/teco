@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 创建片头片尾模板
-    ///
-    /// 创建片头片尾模板。
-    @inlinable
-    public func createHeadTailTemplate(_ input: CreateHeadTailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHeadTailTemplateResponse > {
-        self.client.execute(action: "CreateHeadTailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建片头片尾模板
-    ///
-    /// 创建片头片尾模板。
-    @inlinable
-    public func createHeadTailTemplate(_ input: CreateHeadTailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHeadTailTemplateResponse {
-        try await self.client.execute(action: "CreateHeadTailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateHeadTailTemplate请求参数结构体
     public struct CreateHeadTailTemplateRequest: TCRequestModel {
         /// 模板名，长度限制 64 个字符。
@@ -56,7 +40,7 @@ extension Vod {
         /// 默认值：stretch 。
         public let fillType: String?
         
-        public init (name: String, subAppId: UInt64?, comment: String?, headCandidateSet: [String]?, tailCandidateSet: [String]?, fillType: String?) {
+        public init (name: String, subAppId: UInt64? = nil, comment: String? = nil, headCandidateSet: [String]? = nil, tailCandidateSet: [String]? = nil, fillType: String? = nil) {
             self.name = name
             self.subAppId = subAppId
             self.comment = comment
@@ -87,5 +71,21 @@ extension Vod {
             case definition = "Definition"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建片头片尾模板
+    ///
+    /// 创建片头片尾模板。
+    @inlinable
+    public func createHeadTailTemplate(_ input: CreateHeadTailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHeadTailTemplateResponse > {
+        self.client.execute(action: "CreateHeadTailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建片头片尾模板
+    ///
+    /// 创建片头片尾模板。
+    @inlinable
+    public func createHeadTailTemplate(_ input: CreateHeadTailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHeadTailTemplateResponse {
+        try await self.client.execute(action: "CreateHeadTailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

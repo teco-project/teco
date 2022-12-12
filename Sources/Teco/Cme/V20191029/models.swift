@@ -52,7 +52,7 @@ extension Cme {
         /// <li>Member：普通成员。</li>
         public let role: String?
         
-        public init (memberId: String, remark: String?, role: String?) {
+        public init (memberId: String, remark: String? = nil, role: String? = nil) {
             self.memberId = memberId
             self.remark = remark
             self.role = role
@@ -78,7 +78,7 @@ extension Cme {
         
         /// 素材状态。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let materialStatus: MaterialStatus
+        public let materialStatus: MaterialStatus?
         
         /// 素材媒体文件的原始 URL 地址。
         public let originalUrl: String
@@ -141,7 +141,7 @@ extension Cme {
         /// 音频片段的时长，单位为秒。默认和媒体本身长度一致，表示截取全部媒体。
         public let duration: Float?
         
-        public init (sourceType: String, sourceMedia: String, sourceMediaStartTime: Float?, duration: Float?) {
+        public init (sourceType: String, sourceMedia: String, sourceMediaStartTime: Float? = nil, duration: Float? = nil) {
             self.sourceType = sourceType
             self.sourceMedia = sourceMedia
             self.sourceMediaStartTime = sourceMediaStartTime
@@ -215,7 +215,7 @@ extension Cme {
         /// 第三方平台发布信息列表。暂未正式对外，请勿使用。
         public let thirdPartyPublishInfos: [ThirdPartyPublishInfo]?
         
-        public init (owner: Entity, name: String?, description: String?, classPath: String?, tagSet: [String]?, thirdPartyPublishInfos: [ThirdPartyPublishInfo]?) {
+        public init (owner: Entity, name: String? = nil, description: String? = nil, classPath: String? = nil, tagSet: [String]? = nil, thirdPartyPublishInfos: [ThirdPartyPublishInfo]? = nil) {
             self.owner = owner
             self.name = name
             self.description = description
@@ -391,47 +391,47 @@ extension Cme {
         
         /// 导播台项目状态变更事件。仅当 EventType 为 Project.Switcher.StatusChanged 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let projectSwitcherStatusChangedEvent: ProjectSwitcherStatusChangedEvent
+        public let projectSwitcherStatusChangedEvent: ProjectSwitcherStatusChangedEvent?
         
         /// 媒体导入事件。仅当 EventType 为 Material.Imported 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let materialImportedEvent: MaterialImportedEvent
+        public let materialImportedEvent: MaterialImportedEvent?
         
         /// 媒体添加事件。仅当 EventType 为 Material.Added 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let materialAddedEvent: MaterialAddedEvent
+        public let materialAddedEvent: MaterialAddedEvent?
         
         /// 媒体移动事件。仅当 EventType 为 Material.Moved 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let materialMovedEvent: MaterialMovedEvent
+        public let materialMovedEvent: MaterialMovedEvent?
         
         /// 媒体更新事件。仅当 EventType 为 Material.Modified 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let materialModifiedEvent: MaterialModifiedEvent
+        public let materialModifiedEvent: MaterialModifiedEvent?
         
         /// 媒体删除事件。仅当 EventType 为 Material.Deleted 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let materialDeletedEvent: MaterialDeletedEvent
+        public let materialDeletedEvent: MaterialDeletedEvent?
         
         /// 分类创建事件。仅当 EventType 为 Class.Created 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let classCreatedEvent: ClassCreatedEvent
+        public let classCreatedEvent: ClassCreatedEvent?
         
         /// 分类移动事件。仅当 EventType 为 Class.Moved 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let classMovedEvent: ClassMovedEvent
+        public let classMovedEvent: ClassMovedEvent?
         
         /// 分类删除事件。仅当 EventType 为 Class.Deleted 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let classDeletedEvent: ClassDeletedEvent
+        public let classDeletedEvent: ClassDeletedEvent?
         
         /// 视频导出完成事件。仅当 EventType 为 Task.VideoExportCompleted 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let videoExportCompletedEvent: VideoExportCompletedEvent
+        public let videoExportCompletedEvent: VideoExportCompletedEvent?
         
         /// 点播转直播项目状态变更事件。仅当 EventType 为 Project.MediaCast.StatusChanged 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let projectMediaCastStatusChangedEvent: ProjectMediaCastStatusChangedEvent
+        public let projectMediaCastStatusChangedEvent: ProjectMediaCastStatusChangedEvent?
         
         enum CodingKeys: String, CodingKey {
             case eventType = "EventType"
@@ -463,7 +463,7 @@ extension Cme {
         /// 媒资挂载的存储 Id。
         public let storageId: String?
         
-        public init (mediaKey: String, definition: Int64?, storageId: String?) {
+        public init (mediaKey: String, definition: Int64? = nil, storageId: String? = nil) {
             self.mediaKey = mediaKey
             self.definition = definition
             self.storageId = storageId
@@ -569,7 +569,7 @@ extension Cme {
         /// 视频发布标题，限30个字符。
         public let title: String?
         
-        public init (title: String?) {
+        public init (title: String? = nil) {
             self.title = title
         }
         
@@ -592,11 +592,11 @@ extension Cme {
         
         /// 素材链接详细信息，当LinkType="MATERIAL"时有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let linkMaterialInfo: LinkMaterialInfo
+        public let linkMaterialInfo: LinkMaterialInfo?
         
         /// 分类链接目标信息，当LinkType=“CLASS”时有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let linkClassInfo: ClassInfo
+        public let linkClassInfo: ClassInfo?
         
         enum CodingKeys: String, CodingKey {
             case linkType = "LinkType"
@@ -613,15 +613,15 @@ extension Cme {
         
         /// 视频素材信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let videoMaterial: VideoMaterial
+        public let videoMaterial: VideoMaterial?
         
         /// 音频素材信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let audioMaterial: AudioMaterial
+        public let audioMaterial: AudioMaterial?
         
         /// 图片素材信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imageMaterial: ImageMaterial
+        public let imageMaterial: ImageMaterial?
         
         enum CodingKeys: String, CodingKey {
             case basicInfo = "BasicInfo"
@@ -786,31 +786,31 @@ extension Cme {
     /// 媒体详情信息
     public struct MaterialInfo: TCOutputModel {
         /// 媒体基本信息。
-        public let basicInfo: MaterialBasicInfo
+        public let basicInfo: MaterialBasicInfo?
         
         /// 视频媒体信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let videoMaterial: VideoMaterial
+        public let videoMaterial: VideoMaterial?
         
         /// 音频媒体信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let audioMaterial: AudioMaterial
+        public let audioMaterial: AudioMaterial?
         
         /// 图片媒体信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imageMaterial: ImageMaterial
+        public let imageMaterial: ImageMaterial?
         
         /// 链接媒体信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let linkMaterial: LinkMaterial
+        public let linkMaterial: LinkMaterial?
         
         /// 模板媒体信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let videoEditTemplateMaterial: VideoEditTemplateMaterial
+        public let videoEditTemplateMaterial: VideoEditTemplateMaterial?
         
         /// 其他类型媒体信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let otherMaterial: OtherMaterial
+        public let otherMaterial: OtherMaterial?
         
         enum CodingKeys: String, CodingKey {
             case basicInfo = "BasicInfo"
@@ -920,7 +920,7 @@ extension Cme {
         /// 输出直播流地址。支持的直播流类型为 RTMP 和 SRT。
         public let pushUrl: String?
         
-        public init (index: Int64?, name: String?, pushUrl: String?) {
+        public init (index: Int64? = nil, name: String? = nil, pushUrl: String? = nil) {
             self.index = index
             self.name = name
             self.pushUrl = pushUrl
@@ -971,7 +971,7 @@ extension Cme {
         /// 结束时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let endTime: String?
         
-        public init (loopCount: Int64?, endTime: String?) {
+        public init (loopCount: Int64? = nil, endTime: String? = nil) {
             self.loopCount = loopCount
             self.endTime = endTime
         }
@@ -1034,7 +1034,7 @@ extension Cme {
         /// 序号，位于输入源列表中的序号，由系统分配。
         public let index: Int64?
         
-        public init (type: String, materialId: String?, fileId: String?, index: Int64?) {
+        public init (type: String, materialId: String? = nil, fileId: String? = nil, index: Int64? = nil) {
             self.type = type
             self.materialId = materialId
             self.fileId = fileId
@@ -1079,7 +1079,7 @@ extension Cme {
         /// 视频帧率，单位：Hz，默认值为25。最大值为60。
         public let frameRate: Float?
         
-        public init (width: Int64, height: Int64, bitrate: Int64?, frameRate: Float?) {
+        public init (width: Int64, height: Int64, bitrate: Int64? = nil, frameRate: Float? = nil) {
             self.width = width
             self.height = height
             self.bitrate = bitrate
@@ -1172,7 +1172,7 @@ extension Cme {
         /// 当 Type 取值 ImageTextMask 时，参数为要保留的文字。
         public let args: [String]?
         
-        public init (type: String, args: [String]?) {
+        public init (type: String, args: [String]? = nil) {
             self.type = type
             self.args = args
         }
@@ -1205,9 +1205,9 @@ extension Cme {
         
         /// 预处理操作。
         /// 注：目前该功能暂不支持，请勿使用。
-        public let preprocessOperation: MediaPreprocessOperation
+        public let preprocessOperation: MediaPreprocessOperation?
         
-        public init (mediaType: String?, materialId: String?, mediaUrl: String?, startTimeOffset: Float?, preprocessOperation: MediaPreprocessOperation) {
+        public init (mediaType: String? = nil, materialId: String? = nil, mediaUrl: String? = nil, startTimeOffset: Float? = nil, preprocessOperation: MediaPreprocessOperation? = nil) {
             self.mediaType = mediaType
             self.materialId = materialId
             self.mediaUrl = mediaUrl
@@ -1257,19 +1257,19 @@ extension Cme {
         public let type: String
         
         /// 视频片段，当 Type = Video 时有效。
-        public let videoItem: VideoTrackItem
+        public let videoItem: VideoTrackItem?
         
         /// 音频片段，当 Type = Audio 时有效。
-        public let audioItem: AudioTrackItem
+        public let audioItem: AudioTrackItem?
         
         /// 空白片段，当 Type = Empty 时有效。空片段用于时间轴的占位。<li>如需要两个音频片段之间有一段时间的静音，可以用 EmptyTrackItem 来进行占位。</li>
         /// <li>使用 EmptyTrackItem 进行占位，来定位某个Item。</li>
-        public let emptyItem: EmptyTrackItem
+        public let emptyItem: EmptyTrackItem?
         
         /// 转场，当 Type = Transition 时有效。
-        public let transitionItem: MediaTransitionItem
+        public let transitionItem: MediaTransitionItem?
         
-        public init (type: String, videoItem: VideoTrackItem, audioItem: AudioTrackItem, emptyItem: EmptyTrackItem, transitionItem: MediaTransitionItem) {
+        public init (type: String, videoItem: VideoTrackItem? = nil, audioItem: AudioTrackItem? = nil, emptyItem: EmptyTrackItem? = nil, transitionItem: MediaTransitionItem? = nil) {
             self.type = type
             self.videoItem = videoItem
             self.audioItem = audioItem
@@ -1294,7 +1294,7 @@ extension Cme {
         /// 转场持续时间，单位为秒，默认为2秒。进行转场处理的两个媒体片段，第二个片段在轨道上的起始时间会自动进行调整，设置为前面一个片段的结束时间减去转场的持续时间。
         public let duration: Float?
         
-        public init (transitionId: String, duration: Float?) {
+        public init (transitionId: String, duration: Float? = nil) {
             self.transitionId = transitionId
             self.duration = duration
         }
@@ -1333,7 +1333,7 @@ extension Cme {
         /// 视频分类，详见[企鹅号官网](https://open.om.qq.com/resources/resourcesCenter)视频分类。
         public let category: Int64?
         
-        public init (title: String?, description: String?, tags: [String]?, category: Int64?) {
+        public init (title: String? = nil, description: String? = nil, tags: [String]? = nil, category: Int64? = nil) {
             self.title = title
             self.description = description
             self.tags = tags
@@ -1396,7 +1396,7 @@ extension Cme {
         /// 父级预设 Id。
         public let parentTagId: String?
         
-        public init (id: String, name: String, parentTagId: String?) {
+        public init (id: String, name: String, parentTagId: String? = nil) {
             self.id = id
             self.name = name
             self.parentTagId = parentTagId
@@ -1436,11 +1436,11 @@ extension Cme {
         
         /// 云转推项目信息，仅当项目类别取值 STREAM_CONNECT 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let streamConnectProjectInfo: StreamConnectProjectInfo
+        public let streamConnectProjectInfo: StreamConnectProjectInfo?
         
         /// 点播转直播项目信息，仅当项目类别取值为 MEDIA_CAST 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mediaCastProjectInfo: MediaCastProjectInfo
+        public let mediaCastProjectInfo: MediaCastProjectInfo?
         
         /// 项目更新时间，格式按照 ISO 8601 标准表示。
         public let updateTime: String
@@ -1502,11 +1502,11 @@ extension Cme {
         
         /// 云转推输入断流信息，仅当 Status 取值 InputInterrupted 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let inputInterruptInfo: StreamConnectInputInterruptInfo
+        public let inputInterruptInfo: StreamConnectInputInterruptInfo?
         
         /// 云转推输出断流信息，仅当 Status 取值 OutputInterrupted 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let outputInterruptInfo: StreamConnectOutputInterruptInfo
+        public let outputInterruptInfo: StreamConnectOutputInterruptInfo?
         
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
@@ -1590,7 +1590,7 @@ extension Cme {
     public struct ResourceInfo: TCInputModel {
         /// 媒资和分类资源。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let resource: Resource
+        public let resource: Resource?
         
         /// 资源归属，个人或团队。
         public let owner: Entity
@@ -1614,7 +1614,7 @@ extension Cme {
         /// 直播推流地址，入参不填默认由多媒体创作引擎生成。
         public let pushUrl: String?
         
-        public init (expiredSecond: UInt64, pushUrl: String?) {
+        public init (expiredSecond: UInt64, pushUrl: String? = nil) {
             self.expiredSecond = expiredSecond
             self.pushUrl = pushUrl
         }
@@ -1633,7 +1633,7 @@ extension Cme {
         /// 按分类路径检索。 不填则默认按根分类路径检索。
         public let classPath: String?
         
-        public init (owner: Entity, classPath: String?) {
+        public init (owner: Entity, classPath: String? = nil) {
             self.owner = owner
             self.classPath = classPath
         }
@@ -1661,7 +1661,7 @@ extension Cme {
         
         /// 默认文本卡槽信息。当卡槽类型为 TEXT 时有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let defaultTextSlotInfo: TextSlotInfo
+        public let defaultTextSlotInfo: TextSlotInfo?
         
         /// 素材时长，单位秒。
         public let duration: Float
@@ -1689,12 +1689,12 @@ extension Cme {
         public let replacementType: String
         
         /// 媒体替换信息，仅当要替换的媒体类型为音频、视频、图片时有效。
-        public let mediaReplacementInfo: MediaReplacementInfo
+        public let mediaReplacementInfo: MediaReplacementInfo?
         
         /// 文本替换信息，仅当要替换的卡槽类型为文本时有效。
-        public let textReplacementInfo: TextReplacementInfo
+        public let textReplacementInfo: TextReplacementInfo?
         
-        public init (id: Int64, replacementType: String, mediaReplacementInfo: MediaReplacementInfo, textReplacementInfo: TextReplacementInfo) {
+        public init (id: Int64, replacementType: String, mediaReplacementInfo: MediaReplacementInfo? = nil, textReplacementInfo: TextReplacementInfo? = nil) {
             self.id = id
             self.replacementType = replacementType
             self.mediaReplacementInfo = mediaReplacementInfo
@@ -1717,7 +1717,7 @@ extension Cme {
         /// 排序方式，可选值：Asc（升序）、Desc（降序），默认降序。
         public let order: String?
         
-        public init (field: String, order: String?) {
+        public init (field: String, order: String? = nil) {
             self.field = field
             self.order = order
         }
@@ -1799,7 +1799,7 @@ extension Cme {
         /// 云转推推流地址。
         public let pushUrl: String?
         
-        public init (id: String?, name: String?, type: String?, pushUrl: String?) {
+        public init (id: String? = nil, name: String? = nil, type: String? = nil, pushUrl: String? = nil) {
             self.id = id
             self.name = name
             self.type = type
@@ -1818,7 +1818,7 @@ extension Cme {
     public struct StreamConnectOutputInfo: TCOutputModel {
         /// 输出源。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let streamConnectOutput: StreamConnectOutput
+        public let streamConnectOutput: StreamConnectOutput?
         
         /// 输出流状态：
         /// <li>On ：开；</li>
@@ -1872,11 +1872,11 @@ extension Cme {
         
         /// 云转推主输入源。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mainInput: StreamInputInfo
+        public let mainInput: StreamInputInfo?
         
         /// 云转推备输入源。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let backupInput: StreamInputInfo
+        public let backupInput: StreamInputInfo?
         
         /// 云转推输出源。
         public let outputSet: [StreamConnectOutputInfo]
@@ -1896,15 +1896,15 @@ extension Cme {
     /// 云转推项目输入信息。
     public struct StreamConnectProjectInput: TCInputModel {
         /// 云转推主输入源信息。
-        public let mainInput: StreamInputInfo
+        public let mainInput: StreamInputInfo?
         
         /// 云转推备输入源信息。
-        public let backupInput: StreamInputInfo
+        public let backupInput: StreamInputInfo?
         
         /// 云转推输出源信息。
         public let outputs: [StreamConnectOutput]?
         
-        public init (mainInput: StreamInputInfo, backupInput: StreamInputInfo, outputs: [StreamConnectOutput]?) {
+        public init (mainInput: StreamInputInfo? = nil, backupInput: StreamInputInfo? = nil, outputs: [StreamConnectOutput]? = nil) {
             self.mainInput = mainInput
             self.backupInput = backupInput
             self.outputs = outputs
@@ -1927,17 +1927,17 @@ extension Cme {
         
         /// 点播拉流信息，当 InputType = VodPull 时必填。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let vodPullInputInfo: VodPullInputInfo
+        public let vodPullInputInfo: VodPullInputInfo?
         
         /// 直播拉流信息，当 InputType = LivePull  时必填。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let livePullInputInfo: LivePullInputInfo
+        public let livePullInputInfo: LivePullInputInfo?
         
         /// 直播推流信息，当 InputType = RtmpPush 时必填。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rtmpPushInputInfo: RtmpPushInputInfo
+        public let rtmpPushInputInfo: RtmpPushInputInfo?
         
-        public init (inputType: String, vodPullInputInfo: VodPullInputInfo, livePullInputInfo: LivePullInputInfo, rtmpPushInputInfo: RtmpPushInputInfo) {
+        public init (inputType: String, vodPullInputInfo: VodPullInputInfo? = nil, livePullInputInfo: LivePullInputInfo? = nil, rtmpPushInputInfo: RtmpPushInputInfo? = nil) {
             self.inputType = inputType
             self.vodPullInputInfo = vodPullInputInfo
             self.livePullInputInfo = livePullInputInfo
@@ -1972,7 +1972,7 @@ extension Cme {
         /// 导播台输出码率， 单位：bit/s。
         public let bitRate: UInt64?
         
-        public init (templateId: Int64?, width: UInt64?, height: UInt64?, fps: UInt64?, bitRate: UInt64?) {
+        public init (templateId: Int64? = nil, width: UInt64? = nil, height: UInt64? = nil, fps: UInt64? = nil, bitRate: UInt64? = nil) {
             self.templateId = templateId
             self.width = width
             self.height = height
@@ -1995,9 +1995,9 @@ extension Cme {
         public let stopTime: String?
         
         /// 导播台主监输出配置信息。若不填，默认输出 720P。
-        public let pgmOutputConfig: SwitcherPgmOutputConfig
+        public let pgmOutputConfig: SwitcherPgmOutputConfig?
         
-        public init (stopTime: String?, pgmOutputConfig: SwitcherPgmOutputConfig) {
+        public init (stopTime: String? = nil, pgmOutputConfig: SwitcherPgmOutputConfig? = nil) {
             self.stopTime = stopTime
             self.pgmOutputConfig = pgmOutputConfig
         }
@@ -2088,7 +2088,7 @@ extension Cme {
         /// <li>Member：普通成员。</li>
         public let role: String?
         
-        public init (memberId: String, remark: String?, role: String?) {
+        public init (memberId: String, remark: String? = nil, role: String? = nil) {
             self.memberId = memberId
             self.remark = remark
             self.role = role
@@ -2131,18 +2131,18 @@ extension Cme {
         public let channelMaterialId: String
         
         /// 企鹅号发布信息，如果使用的发布通道为企鹅号时必填。
-        public let penguinMediaPlatformPublishInfo: PenguinMediaPlatformPublishInfo
+        public let penguinMediaPlatformPublishInfo: PenguinMediaPlatformPublishInfo?
         
         /// 新浪微博发布信息，如果使用的发布通道为新浪微博时必填。
-        public let weiboPublishInfo: WeiboPublishInfo
+        public let weiboPublishInfo: WeiboPublishInfo?
         
         /// 快手发布信息，如果使用的发布通道为快手时必填。
-        public let kuaishouPublishInfo: KuaishouPublishInfo
+        public let kuaishouPublishInfo: KuaishouPublishInfo?
         
         /// 腾讯云对象存储发布信息， 如果使用的发布通道为腾讯云对象存储时必填。
-        public let cosPublishInfo: CosPublishInputInfo
+        public let cosPublishInfo: CosPublishInputInfo?
         
-        public init (channelMaterialId: String, penguinMediaPlatformPublishInfo: PenguinMediaPlatformPublishInfo, weiboPublishInfo: WeiboPublishInfo, kuaishouPublishInfo: KuaishouPublishInfo, cosPublishInfo: CosPublishInputInfo) {
+        public init (channelMaterialId: String, penguinMediaPlatformPublishInfo: PenguinMediaPlatformPublishInfo? = nil, weiboPublishInfo: WeiboPublishInfo? = nil, kuaishouPublishInfo: KuaishouPublishInfo? = nil, cosPublishInfo: CosPublishInputInfo? = nil) {
             self.channelMaterialId = channelMaterialId
             self.penguinMediaPlatformPublishInfo = penguinMediaPlatformPublishInfo
             self.weiboPublishInfo = weiboPublishInfo
@@ -2189,7 +2189,7 @@ extension Cme {
         /// 第三方平台发布信息列表。暂未正式对外，请勿使用。
         public let thirdPartyPublishInfos: [ThirdPartyPublishInfo]?
         
-        public init (name: String?, classId: UInt64?, thirdPartyPublishInfos: [ThirdPartyPublishInfo]?) {
+        public init (name: String? = nil, classId: UInt64? = nil, thirdPartyPublishInfos: [ThirdPartyPublishInfo]? = nil) {
             self.name = name
             self.classId = classId
             self.thirdPartyPublishInfos = thirdPartyPublishInfos
@@ -2218,7 +2218,7 @@ extension Cme {
         /// 注：当从模板导入项目时（即 VideoEditTemplateId 不为空时），该参数无效。
         public let initTracks: [MediaTrack]?
         
-        public init (aspectRatio: String?, videoEditTemplateId: String?, initTracks: [MediaTrack]?) {
+        public init (aspectRatio: String? = nil, videoEditTemplateId: String? = nil, initTracks: [MediaTrack]? = nil) {
             self.aspectRatio = aspectRatio
             self.videoEditTemplateId = videoEditTemplateId
             self.initTracks = initTracks
@@ -2244,7 +2244,7 @@ extension Cme {
         
         /// 元信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let metaData: MediaMetaData
+        public let metaData: MediaMetaData?
         
         enum CodingKeys: String, CodingKey {
             case materialId = "MaterialId"
@@ -2335,7 +2335,7 @@ extension Cme {
         /// 默认值：16000。
         public let sampleRate: UInt64?
         
-        public init (codec: String?, bitrate: UInt64?, channels: UInt64?, sampleRate: UInt64?) {
+        public init (codec: String? = nil, bitrate: UInt64? = nil, channels: UInt64? = nil, sampleRate: UInt64? = nil) {
             self.codec = codec
             self.bitrate = bitrate
             self.channels = channels
@@ -2366,7 +2366,7 @@ extension Cme {
         /// 不填则不修改。
         public let sampleRate: UInt64?
         
-        public init (bitrate: String?, channels: UInt64?, sampleRate: UInt64?) {
+        public init (bitrate: String? = nil, channels: UInt64? = nil, sampleRate: UInt64? = nil) {
             self.bitrate = bitrate
             self.channels = channels
             self.sampleRate = sampleRate
@@ -2400,7 +2400,7 @@ extension Cme {
         /// 默认值：0。
         public let bitrate: UInt64?
         
-        public init (codec: String?, shortEdge: UInt64?, bitrate: UInt64?) {
+        public init (codec: String? = nil, shortEdge: UInt64? = nil, bitrate: UInt64? = nil) {
             self.codec = codec
             self.shortEdge = shortEdge
             self.bitrate = bitrate
@@ -2434,7 +2434,7 @@ extension Cme {
         /// 不填则不修改。
         public let frameRate: Float?
         
-        public init (shortEdge: UInt64?, bitrate: UInt64?, frameRate: Float?) {
+        public init (shortEdge: UInt64? = nil, bitrate: UInt64? = nil, frameRate: Float? = nil) {
             self.shortEdge = shortEdge
             self.bitrate = bitrate
             self.frameRate = frameRate
@@ -2467,7 +2467,7 @@ extension Cme {
         
         /// 任务输出。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let output: VideoEditProjectOutput
+        public let output: VideoEditProjectOutput?
         
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
@@ -2519,7 +2519,7 @@ extension Cme {
         /// 片段结束时间，单位：毫秒。
         public let endTime: Int64?
         
-        public init (container: String?, shortEdge: UInt64?, videoBitrate: UInt64?, frameRate: Float?, removeVideo: Int64?, removeAudio: Int64?, startTime: Int64?, endTime: Int64?) {
+        public init (container: String? = nil, shortEdge: UInt64? = nil, videoBitrate: UInt64? = nil, frameRate: Float? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, startTime: Int64? = nil, endTime: Int64? = nil) {
             self.container = container
             self.shortEdge = shortEdge
             self.videoBitrate = videoBitrate
@@ -2561,7 +2561,7 @@ extension Cme {
         
         /// 素材状态。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let materialStatus: MaterialStatus
+        public let materialStatus: MaterialStatus?
         
         /// 素材媒体文件的原始 URL 地址。
         public let originalUrl: String
@@ -2599,7 +2599,7 @@ extension Cme {
         /// <li>AI.NewsSegmentation：新闻拆条。</li>
         public let processModel: String?
         
-        public init (aspectRatio: String?, processModel: String?) {
+        public init (aspectRatio: String? = nil, processModel: String? = nil) {
             self.aspectRatio = aspectRatio
             self.processModel = processModel
         }
@@ -2696,7 +2696,7 @@ extension Cme {
         /// <li>当 Width 非空，Height 为空，则 Height 按比例缩放。</li>
         public let width: String?
         
-        public init (sourceType: String, sourceMedia: String, sourceMediaStartTime: Float?, duration: Float?, xPos: String?, yPos: String?, coordinateOrigin: String?, height: String?, width: String?) {
+        public init (sourceType: String, sourceMedia: String, sourceMediaStartTime: Float? = nil, duration: Float? = nil, xPos: String? = nil, yPos: String? = nil, coordinateOrigin: String? = nil, height: String? = nil, width: String? = nil) {
             self.sourceType = sourceType
             self.sourceMedia = sourceMedia
             self.sourceMediaStartTime = sourceMediaStartTime
@@ -2733,7 +2733,7 @@ extension Cme {
         /// 默认不循环。
         public let loopTimes: Int64?
         
-        public init (inputUrls: [String], loopTimes: Int64?) {
+        public init (inputUrls: [String], loopTimes: Int64? = nil) {
             self.inputUrls = inputUrls
             self.loopTimes = loopTimes
         }
@@ -2772,7 +2772,7 @@ extension Cme {
         /// 默认为 Public，所有人可见。
         public let visible: String?
         
-        public init (title: String?, description: String?, visible: String?) {
+        public init (title: String? = nil, description: String? = nil, visible: String? = nil) {
             self.title = title
             self.description = description
             self.visible = visible

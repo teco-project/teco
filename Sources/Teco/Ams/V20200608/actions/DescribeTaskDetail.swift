@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ams {
-    /// 查看任务详情
-    @inlinable
-    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
-        self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看任务详情
-    @inlinable
-    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
-        try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskDetail请求参数结构体
     public struct DescribeTaskDetailRequest: TCRequestModel {
         /// 任务ID，创建任务后返回的TaskId字段
@@ -35,7 +23,7 @@ extension Ams {
         /// 是否展示所有分片，默认只展示命中规则的分片
         public let showAllSegments: Bool?
         
-        public init (taskId: String, showAllSegments: Bool?) {
+        public init (taskId: String, showAllSegments: Bool? = nil) {
             self.taskId = taskId
             self.showAllSegments = showAllSegments
         }
@@ -92,11 +80,11 @@ extension Ams {
         
         /// 传入媒体的解码信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mediaInfo: MediaInfo
+        public let mediaInfo: MediaInfo?
         
         /// 审核任务的信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let inputInfo: InputInfo
+        public let inputInfo: InputInfo?
         
         /// 审核任务的创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -144,5 +132,17 @@ extension Ams {
             case audioText = "AudioText"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看任务详情
+    @inlinable
+    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
+        self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看任务详情
+    @inlinable
+    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
+        try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

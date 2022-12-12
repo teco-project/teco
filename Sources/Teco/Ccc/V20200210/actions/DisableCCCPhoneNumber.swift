@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 停用号码
-    @inlinable
-    public func disableCCCPhoneNumber(_ input: DisableCCCPhoneNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableCCCPhoneNumberResponse > {
-        self.client.execute(action: "DisableCCCPhoneNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停用号码
-    @inlinable
-    public func disableCCCPhoneNumber(_ input: DisableCCCPhoneNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCCCPhoneNumberResponse {
-        try await self.client.execute(action: "DisableCCCPhoneNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableCCCPhoneNumber请求参数结构体
     public struct DisableCCCPhoneNumberRequest: TCRequestModel {
         /// TCCC 实例应用 ID
@@ -59,5 +47,17 @@ extension Ccc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停用号码
+    @inlinable
+    public func disableCCCPhoneNumber(_ input: DisableCCCPhoneNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableCCCPhoneNumberResponse > {
+        self.client.execute(action: "DisableCCCPhoneNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停用号码
+    @inlinable
+    public func disableCCCPhoneNumber(_ input: DisableCCCPhoneNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCCCPhoneNumberResponse {
+        try await self.client.execute(action: "DisableCCCPhoneNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

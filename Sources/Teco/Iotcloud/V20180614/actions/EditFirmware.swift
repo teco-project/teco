@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 编辑固件信息
-    @inlinable
-    public func editFirmware(_ input: EditFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditFirmwareResponse > {
-        self.client.execute(action: "EditFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑固件信息
-    @inlinable
-    public func editFirmware(_ input: EditFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditFirmwareResponse {
-        try await self.client.execute(action: "EditFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EditFirmware请求参数结构体
     public struct EditFirmwareRequest: TCRequestModel {
         /// 产品ID。
@@ -44,7 +32,7 @@ extension Iotcloud {
         /// 固件类型：选填 mcu、moudule。默认：mcu
         public let fwType: String?
         
-        public init (productID: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String?, fwType: String?) {
+        public init (productID: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil, fwType: String? = nil) {
             self.productID = productID
             self.firmwareVersion = firmwareVersion
             self.firmwareName = firmwareName
@@ -69,5 +57,17 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑固件信息
+    @inlinable
+    public func editFirmware(_ input: EditFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditFirmwareResponse > {
+        self.client.execute(action: "EditFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑固件信息
+    @inlinable
+    public func editFirmware(_ input: EditFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditFirmwareResponse {
+        try await self.client.execute(action: "EditFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

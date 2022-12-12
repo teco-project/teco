@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 导出资产管理Web服务列表
-    @inlinable
-    public func exportAssetWebServiceInfoList(_ input: ExportAssetWebServiceInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportAssetWebServiceInfoListResponse > {
-        self.client.execute(action: "ExportAssetWebServiceInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出资产管理Web服务列表
-    @inlinable
-    public func exportAssetWebServiceInfoList(_ input: ExportAssetWebServiceInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAssetWebServiceInfoListResponse {
-        try await self.client.execute(action: "ExportAssetWebServiceInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportAssetWebServiceInfoList请求参数结构体
     public struct ExportAssetWebServiceInfoListRequest: TCRequestModel {
         /// 查询指定Quuid主机的信息
@@ -54,7 +42,7 @@ extension Cwp {
         /// 可选排序：[FirstTime|ProcessCount]
         public let by: String?
         
-        public init (quuid: String?, filters: [AssetFilters]?, order: String?, by: String?) {
+        public init (quuid: String? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.quuid = quuid
             self.filters = filters
             self.order = order
@@ -81,5 +69,17 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出资产管理Web服务列表
+    @inlinable
+    public func exportAssetWebServiceInfoList(_ input: ExportAssetWebServiceInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportAssetWebServiceInfoListResponse > {
+        self.client.execute(action: "ExportAssetWebServiceInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出资产管理Web服务列表
+    @inlinable
+    public func exportAssetWebServiceInfoList(_ input: ExportAssetWebServiceInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAssetWebServiceInfoListResponse {
+        try await self.client.execute(action: "ExportAssetWebServiceInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询VPN网关
-    ///
-    /// 本接口（DescribeVpnGateways）用于查询VPN网关列表。
-    @inlinable
-    public func describeVpnGateways(_ input: DescribeVpnGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpnGatewaysResponse > {
-        self.client.execute(action: "DescribeVpnGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询VPN网关
-    ///
-    /// 本接口（DescribeVpnGateways）用于查询VPN网关列表。
-    @inlinable
-    public func describeVpnGateways(_ input: DescribeVpnGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaysResponse {
-        try await self.client.execute(action: "DescribeVpnGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpnGateways请求参数结构体
     public struct DescribeVpnGatewaysRequest: TCRequestModel {
         /// VPN网关实例ID。形如：vpngw-f49l6u0z。每次请求的实例的上限为100。参数不支持同时指定VpnGatewayIds和Filters。
@@ -52,7 +36,7 @@ extension Vpc {
         /// 请求对象个数
         public let limit: UInt64?
         
-        public init (vpnGatewayIds: [String]?, filters: [FilterObject]?, offset: UInt64?, limit: UInt64?) {
+        public init (vpnGatewayIds: [String]? = nil, filters: [FilterObject]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.vpnGatewayIds = vpnGatewayIds
             self.filters = filters
             self.offset = offset
@@ -83,5 +67,21 @@ extension Vpc {
             case vpnGatewaySet = "VpnGatewaySet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询VPN网关
+    ///
+    /// 本接口（DescribeVpnGateways）用于查询VPN网关列表。
+    @inlinable
+    public func describeVpnGateways(_ input: DescribeVpnGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpnGatewaysResponse > {
+        self.client.execute(action: "DescribeVpnGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询VPN网关
+    ///
+    /// 本接口（DescribeVpnGateways）用于查询VPN网关列表。
+    @inlinable
+    public func describeVpnGateways(_ input: DescribeVpnGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaysResponse {
+        try await self.client.execute(action: "DescribeVpnGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

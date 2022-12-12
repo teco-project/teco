@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取直播互动曲库歌手
-    ///
-    /// 根据过滤条件，返回匹配的歌手列表。
-    @inlinable
-    public func describeKTVSingers(_ input: DescribeKTVSingersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVSingersResponse > {
-        self.client.execute(action: "DescribeKTVSingers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取直播互动曲库歌手
-    ///
-    /// 根据过滤条件，返回匹配的歌手列表。
-    @inlinable
-    public func describeKTVSingers(_ input: DescribeKTVSingersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingersResponse {
-        try await self.client.execute(action: "DescribeKTVSingers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKTVSingers请求参数结构体
     public struct DescribeKTVSingersRequest: TCRequestModel {
         /// 歌手id集合，精确匹配歌手id
@@ -49,7 +33,7 @@ extension Ame {
         
         /// 排序方式。默认按照播放数倒序
         /// <li> Sort.Field 可选 PlayCount。</li>
-        public let sort: SortBy
+        public let sort: SortBy?
         
         /// 分页偏移量，默认值：0。
         public let offset: Int64?
@@ -57,7 +41,7 @@ extension Ame {
         /// 分页返回的记录条数，默认值：50。将返回第 Offset 到第 Offset+Limit-1 条。
         public let limit: Int64?
         
-        public init (singerIds: [String]?, genders: [String]?, areas: [String]?, sort: SortBy, offset: Int64?, limit: Int64?) {
+        public init (singerIds: [String]? = nil, genders: [String]? = nil, areas: [String]? = nil, sort: SortBy? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.singerIds = singerIds
             self.genders = genders
             self.areas = areas
@@ -92,5 +76,21 @@ extension Ame {
             case ktvSingerInfoSet = "KTVSingerInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取直播互动曲库歌手
+    ///
+    /// 根据过滤条件，返回匹配的歌手列表。
+    @inlinable
+    public func describeKTVSingers(_ input: DescribeKTVSingersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVSingersResponse > {
+        self.client.execute(action: "DescribeKTVSingers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播互动曲库歌手
+    ///
+    /// 根据过滤条件，返回匹配的歌手列表。
+    @inlinable
+    public func describeKTVSingers(_ input: DescribeKTVSingersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingersResponse {
+        try await self.client.execute(action: "DescribeKTVSingers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

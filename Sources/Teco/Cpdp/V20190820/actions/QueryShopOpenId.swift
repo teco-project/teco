@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云支付-获取门店OpenId接口
-    @inlinable
-    public func queryShopOpenId(_ input: QueryShopOpenIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryShopOpenIdResponse > {
-        self.client.execute(action: "QueryShopOpenId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云支付-获取门店OpenId接口
-    @inlinable
-    public func queryShopOpenId(_ input: QueryShopOpenIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryShopOpenIdResponse {
-        try await self.client.execute(action: "QueryShopOpenId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryShopOpenId请求参数结构体
     public struct QueryShopOpenIdRequest: TCRequestModel {
         /// 收单系统分配的开放ID
@@ -41,7 +29,7 @@ extension Cpdp {
         /// 沙箱环境填sandbox，正式环境不填
         public let profile: String?
         
-        public init (openId: String, openKey: String, shopNo: String, profile: String?) {
+        public init (openId: String, openKey: String, shopNo: String, profile: String? = nil) {
             self.openId = openId
             self.openKey = openKey
             self.shopNo = shopNo
@@ -67,7 +55,7 @@ extension Cpdp {
         
         /// 获取门店OpenId响应对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: QueryShopOpenIdResult
+        public let result: QueryShopOpenIdResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -78,5 +66,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云支付-获取门店OpenId接口
+    @inlinable
+    public func queryShopOpenId(_ input: QueryShopOpenIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryShopOpenIdResponse > {
+        self.client.execute(action: "QueryShopOpenId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-获取门店OpenId接口
+    @inlinable
+    public func queryShopOpenId(_ input: QueryShopOpenIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryShopOpenIdResponse {
+        try await self.client.execute(action: "QueryShopOpenId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

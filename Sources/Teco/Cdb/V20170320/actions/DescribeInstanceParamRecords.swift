@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询实例参数修改历史
-    ///
-    /// 该接口（DescribeInstanceParamRecords）用于查询实例参数修改历史。
-    @inlinable
-    public func describeInstanceParamRecords(_ input: DescribeInstanceParamRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceParamRecordsResponse > {
-        self.client.execute(action: "DescribeInstanceParamRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例参数修改历史
-    ///
-    /// 该接口（DescribeInstanceParamRecords）用于查询实例参数修改历史。
-    @inlinable
-    public func describeInstanceParamRecords(_ input: DescribeInstanceParamRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamRecordsResponse {
-        try await self.client.execute(action: "DescribeInstanceParamRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceParamRecords请求参数结构体
     public struct DescribeInstanceParamRecordsRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
@@ -42,7 +26,7 @@ extension Cdb {
         /// 分页大小，默认值：20。
         public let limit: Int64?
         
-        public init (instanceId: String, offset: Int64?, limit: Int64?) {
+        public init (instanceId: String, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
@@ -71,5 +55,21 @@ extension Cdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例参数修改历史
+    ///
+    /// 该接口（DescribeInstanceParamRecords）用于查询实例参数修改历史。
+    @inlinable
+    public func describeInstanceParamRecords(_ input: DescribeInstanceParamRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceParamRecordsResponse > {
+        self.client.execute(action: "DescribeInstanceParamRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例参数修改历史
+    ///
+    /// 该接口（DescribeInstanceParamRecords）用于查询实例参数修改历史。
+    @inlinable
+    public func describeInstanceParamRecords(_ input: DescribeInstanceParamRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamRecordsResponse {
+        try await self.client.execute(action: "DescribeInstanceParamRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

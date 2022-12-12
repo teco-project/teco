@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取日志下载任务列表
-    ///
-    /// 接口请求域名： rum.tencentcloudapi.com 。
-    /// 本接口用于获取日志下载任务列表
-    /// 默认接口请求频率限制：20次/秒
-    @inlinable
-    public func describeLogExports(_ input: DescribeLogExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogExportsResponse > {
-        self.client.execute(action: "DescribeLogExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取日志下载任务列表
-    ///
-    /// 接口请求域名： rum.tencentcloudapi.com 。
-    /// 本接口用于获取日志下载任务列表
-    /// 默认接口请求频率限制：20次/秒
-    @inlinable
-    public func describeLogExports(_ input: DescribeLogExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogExportsResponse {
-        try await self.client.execute(action: "DescribeLogExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLogExports请求参数结构体
     public struct DescribeLogExportsRequest: TCRequestModel {
         /// 项目ID
@@ -61,5 +41,25 @@ extension Rum {
             case logExportSet = "LogExportSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取日志下载任务列表
+    ///
+    /// 接口请求域名： rum.tencentcloudapi.com 。
+    /// 本接口用于获取日志下载任务列表
+    /// 默认接口请求频率限制：20次/秒
+    @inlinable
+    public func describeLogExports(_ input: DescribeLogExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogExportsResponse > {
+        self.client.execute(action: "DescribeLogExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志下载任务列表
+    ///
+    /// 接口请求域名： rum.tencentcloudapi.com 。
+    /// 本接口用于获取日志下载任务列表
+    /// 默认接口请求频率限制：20次/秒
+    @inlinable
+    public func describeLogExports(_ input: DescribeLogExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogExportsResponse {
+        try await self.client.execute(action: "DescribeLogExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

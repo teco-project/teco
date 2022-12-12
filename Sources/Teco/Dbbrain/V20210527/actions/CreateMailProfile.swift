@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 创建邮件配置
-    ///
-    /// 创建邮件配置。其中入参ProfileType表示所创建配置的类型，ProfileType 取值包括：dbScan_mail_configuration（数据库巡检邮件配置）、scheduler_mail_configuration（定期生成健康报告的邮件发送配置）。Region统一选择广州，和实例所属地域无关。
-    @inlinable
-    public func createMailProfile(_ input: CreateMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMailProfileResponse > {
-        self.client.execute(action: "CreateMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建邮件配置
-    ///
-    /// 创建邮件配置。其中入参ProfileType表示所创建配置的类型，ProfileType 取值包括：dbScan_mail_configuration（数据库巡检邮件配置）、scheduler_mail_configuration（定期生成健康报告的邮件发送配置）。Region统一选择广州，和实例所属地域无关。
-    @inlinable
-    public func createMailProfile(_ input: CreateMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMailProfileResponse {
-        try await self.client.execute(action: "CreateMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMailProfile请求参数结构体
     public struct CreateMailProfileRequest: TCRequestModel {
         /// 邮件配置内容。
@@ -51,7 +35,7 @@ extension Dbbrain {
         /// 配置绑定的实例ID，当配置级别为"Instance"时需要传入且只能为一个实例；当配置级别为“User”时，此参数不填。
         public let bindInstanceIds: [String]?
         
-        public init (profileInfo: ProfileInfo, profileLevel: String, profileName: String, profileType: String, product: String, bindInstanceIds: [String]?) {
+        public init (profileInfo: ProfileInfo, profileLevel: String, profileName: String, profileType: String, product: String, bindInstanceIds: [String]? = nil) {
             self.profileInfo = profileInfo
             self.profileLevel = profileLevel
             self.profileName = profileName
@@ -78,5 +62,21 @@ extension Dbbrain {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建邮件配置
+    ///
+    /// 创建邮件配置。其中入参ProfileType表示所创建配置的类型，ProfileType 取值包括：dbScan_mail_configuration（数据库巡检邮件配置）、scheduler_mail_configuration（定期生成健康报告的邮件发送配置）。Region统一选择广州，和实例所属地域无关。
+    @inlinable
+    public func createMailProfile(_ input: CreateMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMailProfileResponse > {
+        self.client.execute(action: "CreateMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建邮件配置
+    ///
+    /// 创建邮件配置。其中入参ProfileType表示所创建配置的类型，ProfileType 取值包括：dbScan_mail_configuration（数据库巡检邮件配置）、scheduler_mail_configuration（定期生成健康报告的邮件发送配置）。Region统一选择广州，和实例所属地域无关。
+    @inlinable
+    public func createMailProfile(_ input: CreateMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMailProfileResponse {
+        try await self.client.execute(action: "CreateMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 修改资源自动续费标记
-    @inlinable
-    public func modifyResourceRenewFlag(_ input: ModifyResourceRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourceRenewFlagResponse > {
-        self.client.execute(action: "ModifyResourceRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改资源自动续费标记
-    @inlinable
-    public func modifyResourceRenewFlag(_ input: ModifyResourceRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceRenewFlagResponse {
-        try await self.client.execute(action: "ModifyResourceRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyResourceRenewFlag请求参数结构体
     public struct ModifyResourceRenewFlagRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版；shield表示棋牌盾；bgp表示独享包；bgp-multip表示共享包；insurance表示保险包；staticpack表示三网套餐包）
@@ -63,5 +51,17 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改资源自动续费标记
+    @inlinable
+    public func modifyResourceRenewFlag(_ input: ModifyResourceRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourceRenewFlagResponse > {
+        self.client.execute(action: "ModifyResourceRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改资源自动续费标记
+    @inlinable
+    public func modifyResourceRenewFlag(_ input: ModifyResourceRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceRenewFlagResponse {
+        try await self.client.execute(action: "ModifyResourceRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 批量绑定后端目标
-    ///
-    /// 批量绑定后端目标。
-    @inlinable
-    public func batchRegisterTargets(_ input: BatchRegisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchRegisterTargetsResponse > {
-        self.client.execute(action: "BatchRegisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量绑定后端目标
-    ///
-    /// 批量绑定后端目标。
-    @inlinable
-    public func batchRegisterTargets(_ input: BatchRegisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRegisterTargetsResponse {
-        try await self.client.execute(action: "BatchRegisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchRegisterTargets请求参数结构体
     public struct BatchRegisterTargetsRequest: TCRequestModel {
         /// 负载均衡ID
@@ -63,5 +47,21 @@ extension Ecm {
             case failListenerIdSet = "FailListenerIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量绑定后端目标
+    ///
+    /// 批量绑定后端目标。
+    @inlinable
+    public func batchRegisterTargets(_ input: BatchRegisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchRegisterTargetsResponse > {
+        self.client.execute(action: "BatchRegisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量绑定后端目标
+    ///
+    /// 批量绑定后端目标。
+    @inlinable
+    public func batchRegisterTargets(_ input: BatchRegisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRegisterTargetsResponse {
+        try await self.client.execute(action: "BatchRegisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

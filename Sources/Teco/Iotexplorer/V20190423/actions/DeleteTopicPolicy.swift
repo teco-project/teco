@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 删除Topic
-    ///
-    /// 本接口（DeleteTopicPolicy）用于删除Topic 
-    @inlinable
-    public func deleteTopicPolicy(_ input: DeleteTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTopicPolicyResponse > {
-        self.client.execute(action: "DeleteTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除Topic
-    ///
-    /// 本接口（DeleteTopicPolicy）用于删除Topic 
-    @inlinable
-    public func deleteTopicPolicy(_ input: DeleteTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicPolicyResponse {
-        try await self.client.execute(action: "DeleteTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTopicPolicy请求参数结构体
     public struct DeleteTopicPolicyRequest: TCRequestModel {
         /// 产品ID
@@ -58,5 +42,21 @@ extension Iotexplorer {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除Topic
+    ///
+    /// 本接口（DeleteTopicPolicy）用于删除Topic 
+    @inlinable
+    public func deleteTopicPolicy(_ input: DeleteTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTopicPolicyResponse > {
+        self.client.execute(action: "DeleteTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Topic
+    ///
+    /// 本接口（DeleteTopicPolicy）用于删除Topic 
+    @inlinable
+    public func deleteTopicPolicy(_ input: DeleteTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicPolicyResponse {
+        try await self.client.execute(action: "DeleteTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 编辑配置
-    @inlinable
-    public func modifyConfigData(_ input: ModifyConfigDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConfigDataResponse > {
-        self.client.execute(action: "ModifyConfigData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑配置
-    @inlinable
-    public func modifyConfigData(_ input: ModifyConfigDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigDataResponse {
-        try await self.client.execute(action: "ModifyConfigData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyConfigData请求参数结构体
     public struct ModifyConfigDataRequest: TCRequestModel {
         /// 环境 ID
@@ -41,7 +29,7 @@ extension Tem {
         /// 配置信息
         public let data: [Pair]?
         
-        public init (environmentId: String, name: String, sourceChannel: Int64?, data: [Pair]?) {
+        public init (environmentId: String, name: String, sourceChannel: Int64? = nil, data: [Pair]? = nil) {
             self.environmentId = environmentId
             self.name = name
             self.sourceChannel = sourceChannel
@@ -68,5 +56,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑配置
+    @inlinable
+    public func modifyConfigData(_ input: ModifyConfigDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConfigDataResponse > {
+        self.client.execute(action: "ModifyConfigData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑配置
+    @inlinable
+    public func modifyConfigData(_ input: ModifyConfigDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigDataResponse {
+        try await self.client.execute(action: "ModifyConfigData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

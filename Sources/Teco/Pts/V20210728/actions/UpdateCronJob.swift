@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Pts {
-    /// 更新定时任务
-    @inlinable
-    public func updateCronJob(_ input: UpdateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCronJobResponse > {
-        self.client.execute(action: "UpdateCronJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新定时任务
-    @inlinable
-    public func updateCronJob(_ input: UpdateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCronJobResponse {
-        try await self.client.execute(action: "UpdateCronJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateCronJob请求参数结构体
     public struct UpdateCronJobRequest: TCRequestModel {
         /// 项目ID
@@ -64,7 +52,7 @@ extension Pts {
         /// Notice ID
         public let noticeId: String?
         
-        public init (projectId: String, cronJobId: String, note: String, cronExpression: String, frequencyType: Int64, name: String, scenarioId: String, scenarioName: String, jobOwner: String, endTime: Date?, noticeId: String?) {
+        public init (projectId: String, cronJobId: String, note: String, cronExpression: String, frequencyType: Int64, name: String, scenarioId: String, scenarioName: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil) {
             self.projectId = projectId
             self.cronJobId = cronJobId
             self.note = note
@@ -101,5 +89,17 @@ extension Pts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新定时任务
+    @inlinable
+    public func updateCronJob(_ input: UpdateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCronJobResponse > {
+        self.client.execute(action: "UpdateCronJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新定时任务
+    @inlinable
+    public func updateCronJob(_ input: UpdateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCronJobResponse {
+        try await self.client.execute(action: "UpdateCronJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

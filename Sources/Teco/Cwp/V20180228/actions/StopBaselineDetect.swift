@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 停止基线检测
-    @inlinable
-    public func stopBaselineDetect(_ input: StopBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopBaselineDetectResponse > {
-        self.client.execute(action: "StopBaselineDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止基线检测
-    @inlinable
-    public func stopBaselineDetect(_ input: StopBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopBaselineDetectResponse {
-        try await self.client.execute(action: "StopBaselineDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopBaselineDetect请求参数结构体
     public struct StopBaselineDetectRequest: TCRequestModel {
         /// 取消任务ID集合
@@ -49,5 +37,17 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止基线检测
+    @inlinable
+    public func stopBaselineDetect(_ input: StopBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopBaselineDetectResponse > {
+        self.client.execute(action: "StopBaselineDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止基线检测
+    @inlinable
+    public func stopBaselineDetect(_ input: StopBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopBaselineDetectResponse {
+        try await self.client.execute(action: "StopBaselineDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

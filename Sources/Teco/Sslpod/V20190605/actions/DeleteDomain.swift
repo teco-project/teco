@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sslpod {
-    /// 删除域名
-    ///
-    /// 通过域名ID删除监控的域名
-    @inlinable
-    public func deleteDomain(_ input: DeleteDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDomainResponse > {
-        self.client.execute(action: "DeleteDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除域名
-    ///
-    /// 通过域名ID删除监控的域名
-    @inlinable
-    public func deleteDomain(_ input: DeleteDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainResponse {
-        try await self.client.execute(action: "DeleteDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDomain请求参数结构体
     public struct DeleteDomainRequest: TCRequestModel {
         /// 域名ID，可通过<a href="https://cloud.tencent.com/document/api/1084/49339">搜索域名</a>接口获得
@@ -53,5 +37,21 @@ extension Sslpod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除域名
+    ///
+    /// 通过域名ID删除监控的域名
+    @inlinable
+    public func deleteDomain(_ input: DeleteDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDomainResponse > {
+        self.client.execute(action: "DeleteDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除域名
+    ///
+    /// 通过域名ID删除监控的域名
+    @inlinable
+    public func deleteDomain(_ input: DeleteDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainResponse {
+        try await self.client.execute(action: "DeleteDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

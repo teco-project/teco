@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Sms {
-    /// 短信模板状态查询
-    ///
-    /// ⚠️注意：个人认证用户不支持使用 API 查询短信正文模板，请参阅了解 [实名认证基本介绍](https://cloud.tencent.com/document/product/378/3629)。
-    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
-    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
-    @inlinable
-    public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmsTemplateListResponse > {
-        self.client.execute(action: "DescribeSmsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 短信模板状态查询
-    ///
-    /// ⚠️注意：个人认证用户不支持使用 API 查询短信正文模板，请参阅了解 [实名认证基本介绍](https://cloud.tencent.com/document/product/378/3629)。
-    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
-    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
-    @inlinable
-    public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
-        try await self.client.execute(action: "DescribeSmsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSmsTemplateList请求参数结构体
     public struct DescribeSmsTemplateListRequest: TCRequestModel {
         /// 是否国际/港澳台短信：
@@ -54,7 +34,7 @@ extension Sms {
         /// 注：默认为0，TemplateIdSet 为空时启用。
         public let offset: UInt64?
         
-        public init (international: UInt64, templateIdSet: [UInt64]?, limit: UInt64?, offset: UInt64?) {
+        public init (international: UInt64, templateIdSet: [UInt64]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.international = international
             self.templateIdSet = templateIdSet
             self.limit = limit
@@ -81,5 +61,25 @@ extension Sms {
             case describeTemplateStatusSet = "DescribeTemplateStatusSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 短信模板状态查询
+    ///
+    /// ⚠️注意：个人认证用户不支持使用 API 查询短信正文模板，请参阅了解 [实名认证基本介绍](https://cloud.tencent.com/document/product/378/3629)。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
+    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    @inlinable
+    public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmsTemplateListResponse > {
+        self.client.execute(action: "DescribeSmsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 短信模板状态查询
+    ///
+    /// ⚠️注意：个人认证用户不支持使用 API 查询短信正文模板，请参阅了解 [实名认证基本介绍](https://cloud.tencent.com/document/product/378/3629)。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
+    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    @inlinable
+    public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
+        try await self.client.execute(action: "DescribeSmsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 启用互联网公网地址
-    ///
-    /// 启用已停用的互联网公网地址
-    @inlinable
-    public func enableInternetAddress(_ input: EnableInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableInternetAddressResponse > {
-        self.client.execute(action: "EnableInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启用互联网公网地址
-    ///
-    /// 启用已停用的互联网公网地址
-    @inlinable
-    public func enableInternetAddress(_ input: EnableInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableInternetAddressResponse {
-        try await self.client.execute(action: "EnableInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableInternetAddress请求参数结构体
     public struct EnableInternetAddressRequest: TCRequestModel {
         /// 互联网公网地址ID
@@ -53,5 +37,21 @@ extension Dc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启用互联网公网地址
+    ///
+    /// 启用已停用的互联网公网地址
+    @inlinable
+    public func enableInternetAddress(_ input: EnableInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableInternetAddressResponse > {
+        self.client.execute(action: "EnableInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启用互联网公网地址
+    ///
+    /// 启用已停用的互联网公网地址
+    @inlinable
+    public func enableInternetAddress(_ input: EnableInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableInternetAddressResponse {
+        try await self.client.execute(action: "EnableInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

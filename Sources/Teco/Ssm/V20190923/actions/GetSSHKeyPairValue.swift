@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssm {
-    /// 获取SSH密钥对凭据明文
-    ///
-    /// 获取SSH密钥对凭据明文信息。
-    @inlinable
-    public func getSSHKeyPairValue(_ input: GetSSHKeyPairValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSSHKeyPairValueResponse > {
-        self.client.execute(action: "GetSSHKeyPairValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取SSH密钥对凭据明文
-    ///
-    /// 获取SSH密钥对凭据明文信息。
-    @inlinable
-    public func getSSHKeyPairValue(_ input: GetSSHKeyPairValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSSHKeyPairValueResponse {
-        try await self.client.execute(action: "GetSSHKeyPairValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetSSHKeyPairValue请求参数结构体
     public struct GetSSHKeyPairValueRequest: TCRequestModel {
         /// 凭据名称，此凭据只能为SSH密钥对凭据类型。
@@ -39,7 +23,7 @@ extension Ssm {
         /// 密钥对ID，是云服务器中密钥对的唯一标识。
         public let sshKeyId: String?
         
-        public init (secretName: String?, sshKeyId: String?) {
+        public init (secretName: String? = nil, sshKeyId: String? = nil) {
             self.secretName = secretName
             self.sshKeyId = sshKeyId
         }
@@ -84,5 +68,21 @@ extension Ssm {
             case sshKeyName = "SSHKeyName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取SSH密钥对凭据明文
+    ///
+    /// 获取SSH密钥对凭据明文信息。
+    @inlinable
+    public func getSSHKeyPairValue(_ input: GetSSHKeyPairValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSSHKeyPairValueResponse > {
+        self.client.execute(action: "GetSSHKeyPairValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取SSH密钥对凭据明文
+    ///
+    /// 获取SSH密钥对凭据明文信息。
+    @inlinable
+    public func getSSHKeyPairValue(_ input: GetSSHKeyPairValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSSHKeyPairValueResponse {
+        try await self.client.execute(action: "GetSSHKeyPairValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

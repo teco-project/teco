@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 获取日志集列表
-    ///
-    /// 本接口（DescribeLogSets）用于获取日志集列表。
-    @inlinable
-    public func describeLogSets(_ input: DescribeLogSetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogSetsResponse > {
-        self.client.execute(action: "DescribeLogSets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取日志集列表
-    ///
-    /// 本接口（DescribeLogSets）用于获取日志集列表。
-    @inlinable
-    public func describeLogSets(_ input: DescribeLogSetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSetsResponse {
-        try await self.client.execute(action: "DescribeLogSets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLogSets请求参数结构体
     public struct DescribeLogSetsRequest: TCRequestModel {
         /// 日志集所属的地域。
@@ -42,7 +26,7 @@ extension Teo {
         /// 日志集名称。
         public let logSetName: String?
         
-        public init (logSetRegion: String, logSetId: String?, logSetName: String?) {
+        public init (logSetRegion: String, logSetId: String? = nil, logSetName: String? = nil) {
             self.logSetRegion = logSetRegion
             self.logSetId = logSetId
             self.logSetName = logSetName
@@ -72,5 +56,21 @@ extension Teo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取日志集列表
+    ///
+    /// 本接口（DescribeLogSets）用于获取日志集列表。
+    @inlinable
+    public func describeLogSets(_ input: DescribeLogSetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogSetsResponse > {
+        self.client.execute(action: "DescribeLogSets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志集列表
+    ///
+    /// 本接口（DescribeLogSets）用于获取日志集列表。
+    @inlinable
+    public func describeLogSets(_ input: DescribeLogSetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSetsResponse {
+        try await self.client.execute(action: "DescribeLogSets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,30 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 指定数量扩容实例
-    ///
-    /// 为伸缩组指定数量扩容实例，返回扩容活动的 ActivityId。
-    /// * 伸缩组需要未处于活动中
-    /// * 伸缩组处于停用状态时，该接口也会生效，可参考[停用伸缩组](https://cloud.tencent.com/document/api/377/20435)文档查看伸缩组停用状态的影响范围
-    /// * 接口会增加期望实例数，新的期望实例数需要小于等于最大实例数
-    /// * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
-    @inlinable
-    public func scaleOutInstances(_ input: ScaleOutInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleOutInstancesResponse > {
-        self.client.execute(action: "ScaleOutInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 指定数量扩容实例
-    ///
-    /// 为伸缩组指定数量扩容实例，返回扩容活动的 ActivityId。
-    /// * 伸缩组需要未处于活动中
-    /// * 伸缩组处于停用状态时，该接口也会生效，可参考[停用伸缩组](https://cloud.tencent.com/document/api/377/20435)文档查看伸缩组停用状态的影响范围
-    /// * 接口会增加期望实例数，新的期望实例数需要小于等于最大实例数
-    /// * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
-    @inlinable
-    public func scaleOutInstances(_ input: ScaleOutInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutInstancesResponse {
-        try await self.client.execute(action: "ScaleOutInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ScaleOutInstances请求参数结构体
     public struct ScaleOutInstancesRequest: TCRequestModel {
         /// 伸缩组ID。
@@ -70,5 +46,29 @@ extension As {
             case activityId = "ActivityId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 指定数量扩容实例
+    ///
+    /// 为伸缩组指定数量扩容实例，返回扩容活动的 ActivityId。
+    /// * 伸缩组需要未处于活动中
+    /// * 伸缩组处于停用状态时，该接口也会生效，可参考[停用伸缩组](https://cloud.tencent.com/document/api/377/20435)文档查看伸缩组停用状态的影响范围
+    /// * 接口会增加期望实例数，新的期望实例数需要小于等于最大实例数
+    /// * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
+    @inlinable
+    public func scaleOutInstances(_ input: ScaleOutInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleOutInstancesResponse > {
+        self.client.execute(action: "ScaleOutInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 指定数量扩容实例
+    ///
+    /// 为伸缩组指定数量扩容实例，返回扩容活动的 ActivityId。
+    /// * 伸缩组需要未处于活动中
+    /// * 伸缩组处于停用状态时，该接口也会生效，可参考[停用伸缩组](https://cloud.tencent.com/document/api/377/20435)文档查看伸缩组停用状态的影响范围
+    /// * 接口会增加期望实例数，新的期望实例数需要小于等于最大实例数
+    /// * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
+    @inlinable
+    public func scaleOutInstances(_ input: ScaleOutInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutInstancesResponse {
+        try await self.client.execute(action: "ScaleOutInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

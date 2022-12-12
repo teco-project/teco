@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 获取推送任务列表
-    ///
-    /// 本接口（DescribeLogTopicTasks）用于获取日志推送任务列表。
-    @inlinable
-    public func describeLogTopicTasks(_ input: DescribeLogTopicTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogTopicTasksResponse > {
-        self.client.execute(action: "DescribeLogTopicTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取推送任务列表
-    ///
-    /// 本接口（DescribeLogTopicTasks）用于获取日志推送任务列表。
-    @inlinable
-    public func describeLogTopicTasks(_ input: DescribeLogTopicTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogTopicTasksResponse {
-        try await self.client.execute(action: "DescribeLogTopicTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLogTopicTasks请求参数结构体
     public struct DescribeLogTopicTasksRequest: TCRequestModel {
         /// 站点ID。
@@ -42,7 +26,7 @@ extension Teo {
         /// 分页的偏移量，默认值为0。
         public let offset: Int64?
         
-        public init (zoneId: String, limit: UInt64?, offset: Int64?) {
+        public init (zoneId: String, limit: UInt64? = nil, offset: Int64? = nil) {
             self.zoneId = zoneId
             self.limit = limit
             self.offset = offset
@@ -72,5 +56,21 @@ extension Teo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取推送任务列表
+    ///
+    /// 本接口（DescribeLogTopicTasks）用于获取日志推送任务列表。
+    @inlinable
+    public func describeLogTopicTasks(_ input: DescribeLogTopicTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogTopicTasksResponse > {
+        self.client.execute(action: "DescribeLogTopicTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取推送任务列表
+    ///
+    /// 本接口（DescribeLogTopicTasks）用于获取日志推送任务列表。
+    @inlinable
+    public func describeLogTopicTasks(_ input: DescribeLogTopicTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogTopicTasksResponse {
+        try await self.client.execute(action: "DescribeLogTopicTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

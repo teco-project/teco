@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 创建基线策略
-    ///
-    /// 根据策略信息创建基线策略
-    @inlinable
-    public func createBaselineStrategy(_ input: CreateBaselineStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBaselineStrategyResponse > {
-        self.client.execute(action: "CreateBaselineStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建基线策略
-    ///
-    /// 根据策略信息创建基线策略
-    @inlinable
-    public func createBaselineStrategy(_ input: CreateBaselineStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBaselineStrategyResponse {
-        try await self.client.execute(action: "CreateBaselineStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBaselineStrategy请求参数结构体
     public struct CreateBaselineStrategyRequest: TCRequestModel {
         /// 策略名称
@@ -62,7 +46,7 @@ extension Cwp {
         /// 主机id数组. 示例: ["quuid1","quuid2"]
         public let quuids: [String]?
         
-        public init (strategyName: String, scanCycle: UInt64, scanAt: String, categoryIds: [UInt64], isGlobal: UInt64, machineType: String, regionCode: String, quuids: [String]?) {
+        public init (strategyName: String, scanCycle: UInt64, scanAt: String, categoryIds: [UInt64], isGlobal: UInt64, machineType: String, regionCode: String, quuids: [String]? = nil) {
             self.strategyName = strategyName
             self.scanCycle = scanCycle
             self.scanAt = scanAt
@@ -93,5 +77,21 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建基线策略
+    ///
+    /// 根据策略信息创建基线策略
+    @inlinable
+    public func createBaselineStrategy(_ input: CreateBaselineStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBaselineStrategyResponse > {
+        self.client.execute(action: "CreateBaselineStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建基线策略
+    ///
+    /// 根据策略信息创建基线策略
+    @inlinable
+    public func createBaselineStrategy(_ input: CreateBaselineStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBaselineStrategyResponse {
+        try await self.client.execute(action: "CreateBaselineStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

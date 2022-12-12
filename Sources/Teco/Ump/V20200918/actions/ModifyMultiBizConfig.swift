@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ump {
-    /// 多经点位配置更新
-    ///
-    /// 集团广场的多经点位配置更新
-    @inlinable
-    public func modifyMultiBizConfig(_ input: ModifyMultiBizConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMultiBizConfigResponse > {
-        self.client.execute(action: "ModifyMultiBizConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 多经点位配置更新
-    ///
-    /// 集团广场的多经点位配置更新
-    @inlinable
-    public func modifyMultiBizConfig(_ input: ModifyMultiBizConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMultiBizConfigResponse {
-        try await self.client.execute(action: "ModifyMultiBizConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMultiBizConfig请求参数结构体
     public struct ModifyMultiBizConfigRequest: TCRequestModel {
         /// 集团编码
@@ -73,5 +57,21 @@ extension Ump {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 多经点位配置更新
+    ///
+    /// 集团广场的多经点位配置更新
+    @inlinable
+    public func modifyMultiBizConfig(_ input: ModifyMultiBizConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMultiBizConfigResponse > {
+        self.client.execute(action: "ModifyMultiBizConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 多经点位配置更新
+    ///
+    /// 集团广场的多经点位配置更新
+    @inlinable
+    public func modifyMultiBizConfig(_ input: ModifyMultiBizConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMultiBizConfigResponse {
+        try await self.client.execute(action: "ModifyMultiBizConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

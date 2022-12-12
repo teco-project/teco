@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取集群命名空间列表
-    @inlinable
-    public func describeClusterNamespaceList(_ input: DescribeClusterNamespaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterNamespaceListResponse > {
-        self.client.execute(action: "DescribeClusterNamespaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取集群命名空间列表
-    @inlinable
-    public func describeClusterNamespaceList(_ input: DescribeClusterNamespaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNamespaceListResponse {
-        try await self.client.execute(action: "DescribeClusterNamespaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterNamespaceList请求参数结构体
     public struct DescribeClusterNamespaceListRequest: TCRequestModel {
         /// 集群ID
@@ -58,5 +46,17 @@ extension Wedata {
             case namespaces = "Namespaces"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取集群命名空间列表
+    @inlinable
+    public func describeClusterNamespaceList(_ input: DescribeClusterNamespaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterNamespaceListResponse > {
+        self.client.execute(action: "DescribeClusterNamespaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群命名空间列表
+    @inlinable
+    public func describeClusterNamespaceList(_ input: DescribeClusterNamespaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNamespaceListResponse {
+        try await self.client.execute(action: "DescribeClusterNamespaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

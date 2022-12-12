@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 终端用户临时访问设备授权
-    ///
-    /// 本接口（CreateDevToken）用于以下场景：
-    /// 终端用户与设备没有强绑定关联关系;
-    /// 允许终端用户短时或一次性临时访问设备;
-    /// 当终端用户与设备有强绑定关系时，可以不用调用此接口
-    @inlinable
-    public func createDevToken(_ input: CreateDevTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDevTokenResponse > {
-        self.client.execute(action: "CreateDevToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 终端用户临时访问设备授权
-    ///
-    /// 本接口（CreateDevToken）用于以下场景：
-    /// 终端用户与设备没有强绑定关联关系;
-    /// 允许终端用户短时或一次性临时访问设备;
-    /// 当终端用户与设备有强绑定关系时，可以不用调用此接口
-    @inlinable
-    public func createDevToken(_ input: CreateDevTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDevTokenResponse {
-        try await self.client.execute(action: "CreateDevToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDevToken请求参数结构体
     public struct CreateDevTokenRequest: TCRequestModel {
         /// 客户的终端用户在IoT Video上的唯一标识ID
@@ -74,5 +52,27 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 终端用户临时访问设备授权
+    ///
+    /// 本接口（CreateDevToken）用于以下场景：
+    /// 终端用户与设备没有强绑定关联关系;
+    /// 允许终端用户短时或一次性临时访问设备;
+    /// 当终端用户与设备有强绑定关系时，可以不用调用此接口
+    @inlinable
+    public func createDevToken(_ input: CreateDevTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDevTokenResponse > {
+        self.client.execute(action: "CreateDevToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 终端用户临时访问设备授权
+    ///
+    /// 本接口（CreateDevToken）用于以下场景：
+    /// 终端用户与设备没有强绑定关联关系;
+    /// 允许终端用户短时或一次性临时访问设备;
+    /// 当终端用户与设备有强绑定关系时，可以不用调用此接口
+    @inlinable
+    public func createDevToken(_ input: CreateDevTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDevTokenResponse {
+        try await self.client.execute(action: "CreateDevToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

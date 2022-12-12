@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tav {
-    /// 文件上传扫描结果查询
-    ///
-    /// tav文件上传扫描结果查询
-    @inlinable
-    public func getScanResult(_ input: GetScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetScanResultResponse > {
-        self.client.execute(action: "GetScanResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 文件上传扫描结果查询
-    ///
-    /// tav文件上传扫描结果查询
-    @inlinable
-    public func getScanResult(_ input: GetScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetScanResultResponse {
-        try await self.client.execute(action: "GetScanResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetScanResult请求参数结构体
     public struct GetScanResultRequest: TCRequestModel {
         /// 购买服务后获得的授权信息，用于保证请求有效性
@@ -71,5 +55,21 @@ extension Tav {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 文件上传扫描结果查询
+    ///
+    /// tav文件上传扫描结果查询
+    @inlinable
+    public func getScanResult(_ input: GetScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetScanResultResponse > {
+        self.client.execute(action: "GetScanResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 文件上传扫描结果查询
+    ///
+    /// tav文件上传扫描结果查询
+    @inlinable
+    public func getScanResult(_ input: GetScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetScanResultResponse {
+        try await self.client.execute(action: "GetScanResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

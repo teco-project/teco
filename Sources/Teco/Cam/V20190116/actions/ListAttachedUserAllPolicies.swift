@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 列出用户关联的策略（包括随组关联）
-    @inlinable
-    public func listAttachedUserAllPolicies(_ input: ListAttachedUserAllPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAttachedUserAllPoliciesResponse > {
-        self.client.execute(action: "ListAttachedUserAllPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出用户关联的策略（包括随组关联）
-    @inlinable
-    public func listAttachedUserAllPolicies(_ input: ListAttachedUserAllPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedUserAllPoliciesResponse {
-        try await self.client.execute(action: "ListAttachedUserAllPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListAttachedUserAllPolicies请求参数结构体
     public struct ListAttachedUserAllPoliciesRequest: TCRequestModel {
         /// 目标用户ID
@@ -47,7 +35,7 @@ extension Cam {
         /// 搜索关键字
         public let keyword: String?
         
-        public init (targetUin: UInt64, rp: UInt64, page: UInt64, attachType: UInt64, strategyType: UInt64?, keyword: String?) {
+        public init (targetUin: UInt64, rp: UInt64, page: UInt64, attachType: UInt64, strategyType: UInt64? = nil, keyword: String? = nil) {
             self.targetUin = targetUin
             self.rp = rp
             self.page = page
@@ -82,5 +70,17 @@ extension Cam {
             case totalNum = "TotalNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出用户关联的策略（包括随组关联）
+    @inlinable
+    public func listAttachedUserAllPolicies(_ input: ListAttachedUserAllPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAttachedUserAllPoliciesResponse > {
+        self.client.execute(action: "ListAttachedUserAllPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出用户关联的策略（包括随组关联）
+    @inlinable
+    public func listAttachedUserAllPolicies(_ input: ListAttachedUserAllPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedUserAllPoliciesResponse {
+        try await self.client.execute(action: "ListAttachedUserAllPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

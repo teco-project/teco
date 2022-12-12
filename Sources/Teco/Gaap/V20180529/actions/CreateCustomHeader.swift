@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 创建自定义header
-    ///
-    /// 本接口（CreateCustomHeader）用于创建HTTP/HTTPS监听器的自定义header，客户端请求通过访问该监听器时，会将监听器中配置的header信息发送到源站。
-    @inlinable
-    public func createCustomHeader(_ input: CreateCustomHeaderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomHeaderResponse > {
-        self.client.execute(action: "CreateCustomHeader", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建自定义header
-    ///
-    /// 本接口（CreateCustomHeader）用于创建HTTP/HTTPS监听器的自定义header，客户端请求通过访问该监听器时，会将监听器中配置的header信息发送到源站。
-    @inlinable
-    public func createCustomHeader(_ input: CreateCustomHeaderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomHeaderResponse {
-        try await self.client.execute(action: "CreateCustomHeader", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCustomHeader请求参数结构体
     public struct CreateCustomHeaderRequest: TCRequestModel {
         /// 规则id
@@ -39,7 +23,7 @@ extension Gaap {
         /// 新增的header名称和内容列表， ‘’$remote_addr‘’会被解析替换成客户端ip，其他值原样透传到源站。
         public let headers: [HttpHeaderParam]?
         
-        public init (ruleId: String, headers: [HttpHeaderParam]?) {
+        public init (ruleId: String, headers: [HttpHeaderParam]? = nil) {
             self.ruleId = ruleId
             self.headers = headers
         }
@@ -58,5 +42,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建自定义header
+    ///
+    /// 本接口（CreateCustomHeader）用于创建HTTP/HTTPS监听器的自定义header，客户端请求通过访问该监听器时，会将监听器中配置的header信息发送到源站。
+    @inlinable
+    public func createCustomHeader(_ input: CreateCustomHeaderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomHeaderResponse > {
+        self.client.execute(action: "CreateCustomHeader", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建自定义header
+    ///
+    /// 本接口（CreateCustomHeader）用于创建HTTP/HTTPS监听器的自定义header，客户端请求通过访问该监听器时，会将监听器中配置的header信息发送到源站。
+    @inlinable
+    public func createCustomHeader(_ input: CreateCustomHeaderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomHeaderResponse {
+        try await self.client.execute(action: "CreateCustomHeader", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

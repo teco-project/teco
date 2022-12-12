@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 删除转换器
-    ///
-    /// 用于删除转换器
-    @inlinable
-    public func deleteTransformation(_ input: DeleteTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTransformationResponse > {
-        self.client.execute(action: "DeleteTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除转换器
-    ///
-    /// 用于删除转换器
-    @inlinable
-    public func deleteTransformation(_ input: DeleteTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTransformationResponse {
-        try await self.client.execute(action: "DeleteTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTransformation请求参数结构体
     public struct DeleteTransformationRequest: TCRequestModel {
         /// 事件集ID
@@ -63,5 +47,21 @@ extension Eb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除转换器
+    ///
+    /// 用于删除转换器
+    @inlinable
+    public func deleteTransformation(_ input: DeleteTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTransformationResponse > {
+        self.client.execute(action: "DeleteTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除转换器
+    ///
+    /// 用于删除转换器
+    @inlinable
+    public func deleteTransformation(_ input: DeleteTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTransformationResponse {
+        try await self.client.execute(action: "DeleteTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

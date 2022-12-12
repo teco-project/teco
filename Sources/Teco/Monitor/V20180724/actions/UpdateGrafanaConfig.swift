@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 更新 Grafana 配置
-    @inlinable
-    public func updateGrafanaConfig(_ input: UpdateGrafanaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGrafanaConfigResponse > {
-        self.client.execute(action: "UpdateGrafanaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新 Grafana 配置
-    @inlinable
-    public func updateGrafanaConfig(_ input: UpdateGrafanaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaConfigResponse {
-        try await self.client.execute(action: "UpdateGrafanaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateGrafanaConfig请求参数结构体
     public struct UpdateGrafanaConfigRequest: TCRequestModel {
         /// 实例 ID
@@ -54,5 +42,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新 Grafana 配置
+    @inlinable
+    public func updateGrafanaConfig(_ input: UpdateGrafanaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGrafanaConfigResponse > {
+        self.client.execute(action: "UpdateGrafanaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新 Grafana 配置
+    @inlinable
+    public func updateGrafanaConfig(_ input: UpdateGrafanaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaConfigResponse {
+        try await self.client.execute(action: "UpdateGrafanaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

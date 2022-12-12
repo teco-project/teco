@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 获取日志下载任务列表
-    ///
-    /// 本接口用于获取日志下载任务列表
-    @inlinable
-    public func describeExports(_ input: DescribeExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExportsResponse > {
-        self.client.execute(action: "DescribeExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取日志下载任务列表
-    ///
-    /// 本接口用于获取日志下载任务列表
-    @inlinable
-    public func describeExports(_ input: DescribeExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportsResponse {
-        try await self.client.execute(action: "DescribeExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExports请求参数结构体
     public struct DescribeExportsRequest: TCRequestModel {
         /// 日志主题ID
@@ -42,7 +26,7 @@ extension Cls {
         /// 分页单页限制数目，默认值为20，最大值100
         public let limit: Int64?
         
-        public init (topicId: String, offset: Int64?, limit: Int64?) {
+        public init (topicId: String, offset: Int64? = nil, limit: Int64? = nil) {
             self.topicId = topicId
             self.offset = offset
             self.limit = limit
@@ -71,5 +55,21 @@ extension Cls {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取日志下载任务列表
+    ///
+    /// 本接口用于获取日志下载任务列表
+    @inlinable
+    public func describeExports(_ input: DescribeExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExportsResponse > {
+        self.client.execute(action: "DescribeExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志下载任务列表
+    ///
+    /// 本接口用于获取日志下载任务列表
+    @inlinable
+    public func describeExports(_ input: DescribeExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportsResponse {
+        try await self.client.execute(action: "DescribeExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

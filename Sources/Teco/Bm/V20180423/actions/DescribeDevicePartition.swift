@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 获取物理机的分区格式
-    @inlinable
-    public func describeDevicePartition(_ input: DescribeDevicePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePartitionResponse > {
-        self.client.execute(action: "DescribeDevicePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取物理机的分区格式
-    @inlinable
-    public func describeDevicePartition(_ input: DescribeDevicePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePartitionResponse {
-        try await self.client.execute(action: "DescribeDevicePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDevicePartition请求参数结构体
     public struct DescribeDevicePartitionRequest: TCRequestModel {
         /// 物理机ID
@@ -53,5 +41,17 @@ extension Bm {
             case devicePartition = "DevicePartition"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取物理机的分区格式
+    @inlinable
+    public func describeDevicePartition(_ input: DescribeDevicePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePartitionResponse > {
+        self.client.execute(action: "DescribeDevicePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取物理机的分区格式
+    @inlinable
+    public func describeDevicePartition(_ input: DescribeDevicePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePartitionResponse {
+        try await self.client.execute(action: "DescribeDevicePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

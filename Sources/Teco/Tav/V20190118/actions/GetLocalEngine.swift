@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tav {
-    /// 本地引擎下载地址获取
-    ///
-    /// 获取TAV本地引擎
-    @inlinable
-    public func getLocalEngine(_ input: GetLocalEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLocalEngineResponse > {
-        self.client.execute(action: "GetLocalEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 本地引擎下载地址获取
-    ///
-    /// 获取TAV本地引擎
-    @inlinable
-    public func getLocalEngine(_ input: GetLocalEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLocalEngineResponse {
-        try await self.client.execute(action: "GetLocalEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetLocalEngine请求参数结构体
     public struct GetLocalEngineRequest: TCRequestModel {
         /// 购买服务后获得的授权信息，用于保证请求有效性
@@ -65,5 +49,21 @@ extension Tav {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 本地引擎下载地址获取
+    ///
+    /// 获取TAV本地引擎
+    @inlinable
+    public func getLocalEngine(_ input: GetLocalEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLocalEngineResponse > {
+        self.client.execute(action: "GetLocalEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 本地引擎下载地址获取
+    ///
+    /// 获取TAV本地引擎
+    @inlinable
+    public func getLocalEngine(_ input: GetLocalEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLocalEngineResponse {
+        try await self.client.execute(action: "GetLocalEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

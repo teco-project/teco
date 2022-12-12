@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 获取日志检索容量使用统计
-    @inlinable
-    public func describeLogStorageStatistic(_ input: DescribeLogStorageStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogStorageStatisticResponse > {
-        self.client.execute(action: "DescribeLogStorageStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取日志检索容量使用统计
-    @inlinable
-    public func describeLogStorageStatistic(_ input: DescribeLogStorageStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogStorageStatisticResponse {
-        try await self.client.execute(action: "DescribeLogStorageStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLogStorageStatistic请求参数结构体
     public struct DescribeLogStorageStatisticRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Tcss {
             case usedSize = "UsedSize"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取日志检索容量使用统计
+    @inlinable
+    public func describeLogStorageStatistic(_ input: DescribeLogStorageStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogStorageStatisticResponse > {
+        self.client.execute(action: "DescribeLogStorageStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志检索容量使用统计
+    @inlinable
+    public func describeLogStorageStatistic(_ input: DescribeLogStorageStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogStorageStatisticResponse {
+        try await self.client.execute(action: "DescribeLogStorageStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

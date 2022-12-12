@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 释放弹性公网IP
-    ///
-    /// 释放一个或多个弹性公网IP（简称 EIP）。
-    /// 该操作不可逆，释放后 EIP 关联的 IP 地址将不再属于您的名下。
-    /// 只有状态为 UNBIND 的 EIP 才能进行释放操作。
-    @inlinable
-    public func releaseAddresses(_ input: ReleaseAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseAddressesResponse > {
-        self.client.execute(action: "ReleaseAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 释放弹性公网IP
-    ///
-    /// 释放一个或多个弹性公网IP（简称 EIP）。
-    /// 该操作不可逆，释放后 EIP 关联的 IP 地址将不再属于您的名下。
-    /// 只有状态为 UNBIND 的 EIP 才能进行释放操作。
-    @inlinable
-    public func releaseAddresses(_ input: ReleaseAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseAddressesResponse {
-        try await self.client.execute(action: "ReleaseAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReleaseAddresses请求参数结构体
     public struct ReleaseAddressesRequest: TCRequestModel {
         /// ECM 地域
@@ -66,5 +46,25 @@ extension Ecm {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 释放弹性公网IP
+    ///
+    /// 释放一个或多个弹性公网IP（简称 EIP）。
+    /// 该操作不可逆，释放后 EIP 关联的 IP 地址将不再属于您的名下。
+    /// 只有状态为 UNBIND 的 EIP 才能进行释放操作。
+    @inlinable
+    public func releaseAddresses(_ input: ReleaseAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseAddressesResponse > {
+        self.client.execute(action: "ReleaseAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 释放弹性公网IP
+    ///
+    /// 释放一个或多个弹性公网IP（简称 EIP）。
+    /// 该操作不可逆，释放后 EIP 关联的 IP 地址将不再属于您的名下。
+    /// 只有状态为 UNBIND 的 EIP 才能进行释放操作。
+    @inlinable
+    public func releaseAddresses(_ input: ReleaseAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseAddressesResponse {
+        try await self.client.execute(action: "ReleaseAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

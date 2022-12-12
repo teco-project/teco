@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 创建实例SQL限流任务
-    ///
-    /// 创建实例SQL限流任务。
-    @inlinable
-    public func createSqlFilter(_ input: CreateSqlFilterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSqlFilterResponse > {
-        self.client.execute(action: "CreateSqlFilter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例SQL限流任务
-    ///
-    /// 创建实例SQL限流任务。
-    @inlinable
-    public func createSqlFilter(_ input: CreateSqlFilterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSqlFilterResponse {
-        try await self.client.execute(action: "CreateSqlFilter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSqlFilter请求参数结构体
     public struct CreateSqlFilterRequest: TCRequestModel {
         /// 实例ID。
@@ -54,7 +38,7 @@ extension Dbbrain {
         /// 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         public let product: String?
         
-        public init (instanceId: String, sessionToken: String, sqlType: String, filterKey: String, maxConcurrency: Int64, duration: Int64, product: String?) {
+        public init (instanceId: String, sessionToken: String, sqlType: String, filterKey: String, maxConcurrency: Int64, duration: Int64, product: String? = nil) {
             self.instanceId = instanceId
             self.sessionToken = sessionToken
             self.sqlType = sqlType
@@ -87,5 +71,21 @@ extension Dbbrain {
             case filterId = "FilterId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例SQL限流任务
+    ///
+    /// 创建实例SQL限流任务。
+    @inlinable
+    public func createSqlFilter(_ input: CreateSqlFilterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSqlFilterResponse > {
+        self.client.execute(action: "CreateSqlFilter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例SQL限流任务
+    ///
+    /// 创建实例SQL限流任务。
+    @inlinable
+    public func createSqlFilter(_ input: CreateSqlFilterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSqlFilterResponse {
+        try await self.client.execute(action: "CreateSqlFilter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

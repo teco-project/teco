@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 获取直播延播列表
-    ///
-    /// 获取直播延播列表。
-    @inlinable
-    public func describeLiveDelayInfoList(_ input: DescribeLiveDelayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveDelayInfoListResponse > {
-        self.client.execute(action: "DescribeLiveDelayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取直播延播列表
-    ///
-    /// 获取直播延播列表。
-    @inlinable
-    public func describeLiveDelayInfoList(_ input: DescribeLiveDelayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDelayInfoListResponse {
-        try await self.client.execute(action: "DescribeLiveDelayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveDelayInfoList请求参数结构体
     public struct DescribeLiveDelayInfoListRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Live {
             case delayInfoList = "DelayInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取直播延播列表
+    ///
+    /// 获取直播延播列表。
+    @inlinable
+    public func describeLiveDelayInfoList(_ input: DescribeLiveDelayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveDelayInfoListResponse > {
+        self.client.execute(action: "DescribeLiveDelayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播延播列表
+    ///
+    /// 获取直播延播列表。
+    @inlinable
+    public func describeLiveDelayInfoList(_ input: DescribeLiveDelayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDelayInfoListResponse {
+        try await self.client.execute(action: "DescribeLiveDelayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

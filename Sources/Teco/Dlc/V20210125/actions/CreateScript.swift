@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 创建sql脚本
-    ///
-    /// 该接口（CreateScript）用于创建sql脚本。
-    @inlinable
-    public func createScript(_ input: CreateScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScriptResponse > {
-        self.client.execute(action: "CreateScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建sql脚本
-    ///
-    /// 该接口（CreateScript）用于创建sql脚本。
-    @inlinable
-    public func createScript(_ input: CreateScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScriptResponse {
-        try await self.client.execute(action: "CreateScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateScript请求参数结构体
     public struct CreateScriptRequest: TCRequestModel {
         /// 脚本名称，最大不能超过255个字符。
@@ -45,7 +29,7 @@ extension Dlc {
         /// 数据库名称
         public let databaseName: String?
         
-        public init (scriptName: String, sqlStatement: String, scriptDesc: String?, databaseName: String?) {
+        public init (scriptName: String, sqlStatement: String, scriptDesc: String? = nil, databaseName: String? = nil) {
             self.scriptName = scriptName
             self.sqlStatement = sqlStatement
             self.scriptDesc = scriptDesc
@@ -68,5 +52,21 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建sql脚本
+    ///
+    /// 该接口（CreateScript）用于创建sql脚本。
+    @inlinable
+    public func createScript(_ input: CreateScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScriptResponse > {
+        self.client.execute(action: "CreateScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建sql脚本
+    ///
+    /// 该接口（CreateScript）用于创建sql脚本。
+    @inlinable
+    public func createScript(_ input: CreateScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScriptResponse {
+        try await self.client.execute(action: "CreateScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

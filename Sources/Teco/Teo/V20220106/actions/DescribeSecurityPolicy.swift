@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询安全防护配置详情
-    @inlinable
-    public func describeSecurityPolicy(_ input: DescribeSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyResponse > {
-        self.client.execute(action: "DescribeSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全防护配置详情
-    @inlinable
-    public func describeSecurityPolicy(_ input: DescribeSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyResponse {
-        try await self.client.execute(action: "DescribeSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityPolicy请求参数结构体
     public struct DescribeSecurityPolicyRequest: TCRequestModel {
         /// 一级域名
@@ -59,7 +47,7 @@ extension Teo {
         
         /// 安全配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let config: SecurityConfig
+        public let config: SecurityConfig?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -71,5 +59,17 @@ extension Teo {
             case config = "Config"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全防护配置详情
+    @inlinable
+    public func describeSecurityPolicy(_ input: DescribeSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyResponse > {
+        self.client.execute(action: "DescribeSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全防护配置详情
+    @inlinable
+    public func describeSecurityPolicy(_ input: DescribeSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyResponse {
+        try await self.client.execute(action: "DescribeSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

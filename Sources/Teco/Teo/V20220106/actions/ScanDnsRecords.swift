@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 扫描站点历史解析记录
-    @inlinable
-    public func scanDnsRecords(_ input: ScanDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanDnsRecordsResponse > {
-        self.client.execute(action: "ScanDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 扫描站点历史解析记录
-    @inlinable
-    public func scanDnsRecords(_ input: ScanDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanDnsRecordsResponse {
-        try await self.client.execute(action: "ScanDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ScanDnsRecords请求参数结构体
     public struct ScanDnsRecordsRequest: TCRequestModel {
         /// 站点 ID
@@ -59,5 +47,17 @@ extension Teo {
             case recordsAdded = "RecordsAdded"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 扫描站点历史解析记录
+    @inlinable
+    public func scanDnsRecords(_ input: ScanDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanDnsRecordsResponse > {
+        self.client.execute(action: "ScanDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 扫描站点历史解析记录
+    @inlinable
+    public func scanDnsRecords(_ input: ScanDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanDnsRecordsResponse {
+        try await self.client.execute(action: "ScanDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

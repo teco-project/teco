@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 创建DIP转储任务
-    @inlinable
-    public func createDatahubTask(_ input: CreateDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDatahubTaskResponse > {
-        self.client.execute(action: "CreateDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建DIP转储任务
-    @inlinable
-    public func createDatahubTask(_ input: CreateDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatahubTaskResponse {
-        try await self.client.execute(action: "CreateDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDatahubTask请求参数结构体
     public struct CreateDatahubTaskRequest: TCRequestModel {
         /// 任务名称
@@ -36,22 +24,22 @@ extension Ckafka {
         public let taskType: String
         
         /// 数据源
-        public let sourceResource: DatahubResource
+        public let sourceResource: DatahubResource?
         
         /// 数据目标
-        public let targetResource: DatahubResource
+        public let targetResource: DatahubResource?
         
         /// 数据处理规则
-        public let transformParam: TransformParam
+        public let transformParam: TransformParam?
         
         /// 实例连接参数【已废弃】
-        public let privateLinkParam: PrivateLinkParam
+        public let privateLinkParam: PrivateLinkParam?
         
         /// 选择所要绑定的SchemaId
         public let schemaId: String?
         
         /// 数据处理规则
-        public let transformsParam: TransformsParam
+        public let transformsParam: TransformsParam?
         
         /// 任务ID
         public let taskId: String?
@@ -59,7 +47,7 @@ extension Ckafka {
         /// 标签列表
         public let tags: [Tag]?
         
-        public init (taskName: String, taskType: String, sourceResource: DatahubResource, targetResource: DatahubResource, transformParam: TransformParam, privateLinkParam: PrivateLinkParam, schemaId: String?, transformsParam: TransformsParam, taskId: String?, tags: [Tag]?) {
+        public init (taskName: String, taskType: String, sourceResource: DatahubResource? = nil, targetResource: DatahubResource? = nil, transformParam: TransformParam? = nil, privateLinkParam: PrivateLinkParam? = nil, schemaId: String? = nil, transformsParam: TransformsParam? = nil, taskId: String? = nil, tags: [Tag]? = nil) {
             self.taskName = taskName
             self.taskType = taskType
             self.sourceResource = sourceResource
@@ -98,5 +86,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建DIP转储任务
+    @inlinable
+    public func createDatahubTask(_ input: CreateDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDatahubTaskResponse > {
+        self.client.execute(action: "CreateDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建DIP转储任务
+    @inlinable
+    public func createDatahubTask(_ input: CreateDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatahubTaskResponse {
+        try await self.client.execute(action: "CreateDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

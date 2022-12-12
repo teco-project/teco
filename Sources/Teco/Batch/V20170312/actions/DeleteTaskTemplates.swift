@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 删除任务模板
-    ///
-    /// 用于删除任务模板信息
-    @inlinable
-    public func deleteTaskTemplates(_ input: DeleteTaskTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTaskTemplatesResponse > {
-        self.client.execute(action: "DeleteTaskTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除任务模板
-    ///
-    /// 用于删除任务模板信息
-    @inlinable
-    public func deleteTaskTemplates(_ input: DeleteTaskTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskTemplatesResponse {
-        try await self.client.execute(action: "DeleteTaskTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTaskTemplates请求参数结构体
     public struct DeleteTaskTemplatesRequest: TCRequestModel {
         /// 用于删除任务模板信息
@@ -53,5 +37,21 @@ extension Batch {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除任务模板
+    ///
+    /// 用于删除任务模板信息
+    @inlinable
+    public func deleteTaskTemplates(_ input: DeleteTaskTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTaskTemplatesResponse > {
+        self.client.execute(action: "DeleteTaskTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除任务模板
+    ///
+    /// 用于删除任务模板信息
+    @inlinable
+    public func deleteTaskTemplates(_ input: DeleteTaskTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskTemplatesResponse {
+        try await self.client.execute(action: "DeleteTaskTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

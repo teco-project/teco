@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 单元应用重部署
-    @inlinable
-    public func redeployEdgeUnitApplication(_ input: RedeployEdgeUnitApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RedeployEdgeUnitApplicationResponse > {
-        self.client.execute(action: "RedeployEdgeUnitApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 单元应用重部署
-    @inlinable
-    public func redeployEdgeUnitApplication(_ input: RedeployEdgeUnitApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedeployEdgeUnitApplicationResponse {
-        try await self.client.execute(action: "RedeployEdgeUnitApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RedeployEdgeUnitApplication请求参数结构体
     public struct RedeployEdgeUnitApplicationRequest: TCRequestModel {
         /// 单元ID
@@ -54,5 +42,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 单元应用重部署
+    @inlinable
+    public func redeployEdgeUnitApplication(_ input: RedeployEdgeUnitApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RedeployEdgeUnitApplicationResponse > {
+        self.client.execute(action: "RedeployEdgeUnitApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 单元应用重部署
+    @inlinable
+    public func redeployEdgeUnitApplication(_ input: RedeployEdgeUnitApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedeployEdgeUnitApplicationResponse {
+        try await self.client.execute(action: "RedeployEdgeUnitApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

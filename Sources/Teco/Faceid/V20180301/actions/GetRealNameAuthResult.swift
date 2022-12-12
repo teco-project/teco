@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 获取微信实名认证结果
-    @inlinable
-    public func getRealNameAuthResult(_ input: GetRealNameAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRealNameAuthResultResponse > {
-        self.client.execute(action: "GetRealNameAuthResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取微信实名认证结果
-    @inlinable
-    public func getRealNameAuthResult(_ input: GetRealNameAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRealNameAuthResultResponse {
-        try await self.client.execute(action: "GetRealNameAuthResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetRealNameAuthResult请求参数结构体
     public struct GetRealNameAuthResultRequest: TCRequestModel {
         /// 实名认证凭证
@@ -59,5 +47,17 @@ extension Faceid {
             case resultType = "ResultType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取微信实名认证结果
+    @inlinable
+    public func getRealNameAuthResult(_ input: GetRealNameAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRealNameAuthResultResponse > {
+        self.client.execute(action: "GetRealNameAuthResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取微信实名认证结果
+    @inlinable
+    public func getRealNameAuthResult(_ input: GetRealNameAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRealNameAuthResultResponse {
+        try await self.client.execute(action: "GetRealNameAuthResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

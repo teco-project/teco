@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 修改集群参数
-    @inlinable
-    public func modifyClusterParam(_ input: ModifyClusterParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterParamResponse > {
-        self.client.execute(action: "ModifyClusterParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改集群参数
-    @inlinable
-    public func modifyClusterParam(_ input: ModifyClusterParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterParamResponse {
-        try await self.client.execute(action: "ModifyClusterParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClusterParam请求参数结构体
     public struct ModifyClusterParamRequest: TCRequestModel {
         /// 集群ID
@@ -38,7 +26,7 @@ extension Cynosdb {
         /// 维护期间执行-yes,立即执行-no
         public let isInMaintainPeriod: String?
         
-        public init (clusterId: String, paramList: [ParamItem], isInMaintainPeriod: String?) {
+        public init (clusterId: String, paramList: [ParamItem], isInMaintainPeriod: String? = nil) {
             self.clusterId = clusterId
             self.paramList = paramList
             self.isInMaintainPeriod = isInMaintainPeriod
@@ -63,5 +51,17 @@ extension Cynosdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改集群参数
+    @inlinable
+    public func modifyClusterParam(_ input: ModifyClusterParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterParamResponse > {
+        self.client.execute(action: "ModifyClusterParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改集群参数
+    @inlinable
+    public func modifyClusterParam(_ input: ModifyClusterParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterParamResponse {
+        try await self.client.execute(action: "ModifyClusterParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

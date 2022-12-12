@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 直播上行路数查询
-    @inlinable
-    public func describeUploadStreamNums(_ input: DescribeUploadStreamNumsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUploadStreamNumsResponse > {
-        self.client.execute(action: "DescribeUploadStreamNums", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播上行路数查询
-    @inlinable
-    public func describeUploadStreamNums(_ input: DescribeUploadStreamNumsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadStreamNumsResponse {
-        try await self.client.execute(action: "DescribeUploadStreamNums", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUploadStreamNums请求参数结构体
     public struct DescribeUploadStreamNumsRequest: TCRequestModel {
         /// 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
@@ -44,7 +32,7 @@ extension Live {
         /// 默认值：5。
         public let granularity: UInt64?
         
-        public init (startTime: String, endTime: String, domains: [String]?, granularity: UInt64?) {
+        public init (startTime: String, endTime: String, domains: [String]? = nil, granularity: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.domains = domains
@@ -71,5 +59,17 @@ extension Live {
             case dataInfoList = "DataInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播上行路数查询
+    @inlinable
+    public func describeUploadStreamNums(_ input: DescribeUploadStreamNumsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUploadStreamNumsResponse > {
+        self.client.execute(action: "DescribeUploadStreamNums", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播上行路数查询
+    @inlinable
+    public func describeUploadStreamNums(_ input: DescribeUploadStreamNumsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadStreamNumsResponse {
+        try await self.client.execute(action: "DescribeUploadStreamNums", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

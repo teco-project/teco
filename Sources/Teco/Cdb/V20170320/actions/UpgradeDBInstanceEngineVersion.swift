@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 升级实例版本
-    ///
-    /// 本接口(UpgradeDBInstanceEngineVersion)用于升级云数据库实例版本，实例类型支持主实例、灾备实例和只读实例。
-    @inlinable
-    public func upgradeDBInstanceEngineVersion(_ input: UpgradeDBInstanceEngineVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDBInstanceEngineVersionResponse > {
-        self.client.execute(action: "UpgradeDBInstanceEngineVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 升级实例版本
-    ///
-    /// 本接口(UpgradeDBInstanceEngineVersion)用于升级云数据库实例版本，实例类型支持主实例、灾备实例和只读实例。
-    @inlinable
-    public func upgradeDBInstanceEngineVersion(_ input: UpgradeDBInstanceEngineVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceEngineVersionResponse {
-        try await self.client.execute(action: "UpgradeDBInstanceEngineVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeDBInstanceEngineVersion请求参数结构体
     public struct UpgradeDBInstanceEngineVersionRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
@@ -48,7 +32,7 @@ extension Cdb {
         /// 延迟阈值。取值范围1~10
         public let maxDelayTime: Int64?
         
-        public init (instanceId: String, engineVersion: String, waitSwitch: Int64?, upgradeSubversion: Int64?, maxDelayTime: Int64?) {
+        public init (instanceId: String, engineVersion: String, waitSwitch: Int64? = nil, upgradeSubversion: Int64? = nil, maxDelayTime: Int64? = nil) {
             self.instanceId = instanceId
             self.engineVersion = engineVersion
             self.waitSwitch = waitSwitch
@@ -77,5 +61,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 升级实例版本
+    ///
+    /// 本接口(UpgradeDBInstanceEngineVersion)用于升级云数据库实例版本，实例类型支持主实例、灾备实例和只读实例。
+    @inlinable
+    public func upgradeDBInstanceEngineVersion(_ input: UpgradeDBInstanceEngineVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDBInstanceEngineVersionResponse > {
+        self.client.execute(action: "UpgradeDBInstanceEngineVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 升级实例版本
+    ///
+    /// 本接口(UpgradeDBInstanceEngineVersion)用于升级云数据库实例版本，实例类型支持主实例、灾备实例和只读实例。
+    @inlinable
+    public func upgradeDBInstanceEngineVersion(_ input: UpgradeDBInstanceEngineVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceEngineVersionResponse {
+        try await self.client.execute(action: "UpgradeDBInstanceEngineVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

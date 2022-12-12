@@ -15,38 +15,22 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 更新模型服务
-    ///
-    /// 用于更新模型服务
-    @inlinable
-    public func modifyModelService(_ input: ModifyModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModelServiceResponse > {
-        self.client.execute(action: "ModifyModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新模型服务
-    ///
-    /// 用于更新模型服务
-    @inlinable
-    public func modifyModelService(_ input: ModifyModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelServiceResponse {
-        try await self.client.execute(action: "ModifyModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyModelService请求参数结构体
     public struct ModifyModelServiceRequest: TCRequestModel {
         /// 服务id
         public let serviceId: String
         
         /// 模型信息，需要挂载模型时填写
-        public let modelInfo: ModelInfo
+        public let modelInfo: ModelInfo?
         
         /// 镜像信息，配置服务运行所需的镜像地址等信息
-        public let imageInfo: ImageInfo
+        public let imageInfo: ImageInfo?
         
         /// 环境变量，可选参数，用于配置容器中的环境变量
         public let env: [EnvVar]?
         
         /// 资源描述，指定预付费模式下的cpu,mem,gpu等信息，后付费无需填写
-        public let resources: ResourceInfo
+        public let resources: ResourceInfo?
         
         /// 使用DescribeBillingSpecs接口返回的规格列表中的值，或者参考实例列表:
         /// TI.S.MEDIUM.POST	2C4G
@@ -81,13 +65,13 @@ extension Tione {
         public let replicas: Int64?
         
         /// 自动伸缩信息
-        public let horizontalPodAutoscaler: HorizontalPodAutoscaler
+        public let horizontalPodAutoscaler: HorizontalPodAutoscaler?
         
         /// 是否开启日志投递，开启后需填写配置投递到指定cls
         public let logEnable: Bool?
         
         /// 日志配置，需要投递服务日志到指定cls时填写
-        public let logConfig: LogConfig
+        public let logConfig: LogConfig?
         
         /// 特殊更新行为： "STOP": 停止, "RESUME": 重启, "SCALE": 扩缩容, 存在这些特殊更新行为时，会忽略其他更新字段
         public let serviceAction: String?
@@ -108,15 +92,15 @@ extension Tione {
         public let modelHotUpdateEnable: Bool?
         
         /// 定时停止配置
-        public let scheduledAction: ScheduledAction
+        public let scheduledAction: ScheduledAction?
         
         /// 服务限速限流相关配置
-        public let serviceLimit: ServiceLimit
+        public let serviceLimit: ServiceLimit?
         
         /// 挂载配置，目前只支持CFS
-        public let volumeMount: VolumeMount
+        public let volumeMount: VolumeMount?
         
-        public init (serviceId: String, modelInfo: ModelInfo, imageInfo: ImageInfo, env: [EnvVar]?, resources: ResourceInfo, instanceType: String?, scaleMode: String?, replicas: Int64?, horizontalPodAutoscaler: HorizontalPodAutoscaler, logEnable: Bool?, logConfig: LogConfig, serviceAction: String?, serviceDescription: String?, scaleStrategy: String?, cronScaleJobs: [CronScaleJob]?, hybridBillingPrepaidReplicas: Int64?, modelHotUpdateEnable: Bool?, scheduledAction: ScheduledAction, serviceLimit: ServiceLimit, volumeMount: VolumeMount) {
+        public init (serviceId: String, modelInfo: ModelInfo? = nil, imageInfo: ImageInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, serviceAction: String? = nil, serviceDescription: String? = nil, scaleStrategy: String? = nil, cronScaleJobs: [CronScaleJob]? = nil, hybridBillingPrepaidReplicas: Int64? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, serviceLimit: ServiceLimit? = nil, volumeMount: VolumeMount? = nil) {
             self.serviceId = serviceId
             self.modelInfo = modelInfo
             self.imageInfo = imageInfo
@@ -167,7 +151,7 @@ extension Tione {
     public struct ModifyModelServiceResponse: TCResponseModel {
         /// 生成的模型服务
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let service: Service
+        public let service: Service?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -176,5 +160,21 @@ extension Tione {
             case service = "Service"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新模型服务
+    ///
+    /// 用于更新模型服务
+    @inlinable
+    public func modifyModelService(_ input: ModifyModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModelServiceResponse > {
+        self.client.execute(action: "ModifyModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新模型服务
+    ///
+    /// 用于更新模型服务
+    @inlinable
+    public func modifyModelService(_ input: ModifyModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelServiceResponse {
+        try await self.client.execute(action: "ModifyModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询按省份和运营商分组的播放数据
-    ///
-    /// 查询按省份和运营商分组的下行播放数据。
-    @inlinable
-    public func describeGroupProIspPlayInfoList(_ input: DescribeGroupProIspPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupProIspPlayInfoListResponse > {
-        self.client.execute(action: "DescribeGroupProIspPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询按省份和运营商分组的播放数据
-    ///
-    /// 查询按省份和运营商分组的下行播放数据。
-    @inlinable
-    public func describeGroupProIspPlayInfoList(_ input: DescribeGroupProIspPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupProIspPlayInfoListResponse {
-        try await self.client.execute(action: "DescribeGroupProIspPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGroupProIspPlayInfoList请求参数结构体
     public struct DescribeGroupProIspPlayInfoListRequest: TCRequestModel {
         /// 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
@@ -52,7 +36,7 @@ extension Live {
         /// 国内还是国外，如果为空，查询所有地区数据；如果为“Mainland”，查询国内数据；如果为“Oversea”，则查询国外数据。
         public let mainlandOrOversea: String?
         
-        public init (startTime: String, endTime: String, playDomains: [String]?, provinceNames: [String]?, ispNames: [String]?, mainlandOrOversea: String?) {
+        public init (startTime: String, endTime: String, playDomains: [String]? = nil, provinceNames: [String]? = nil, ispNames: [String]? = nil, mainlandOrOversea: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.playDomains = playDomains
@@ -83,5 +67,21 @@ extension Live {
             case dataInfoList = "DataInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询按省份和运营商分组的播放数据
+    ///
+    /// 查询按省份和运营商分组的下行播放数据。
+    @inlinable
+    public func describeGroupProIspPlayInfoList(_ input: DescribeGroupProIspPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupProIspPlayInfoListResponse > {
+        self.client.execute(action: "DescribeGroupProIspPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询按省份和运营商分组的播放数据
+    ///
+    /// 查询按省份和运营商分组的下行播放数据。
+    @inlinable
+    public func describeGroupProIspPlayInfoList(_ input: DescribeGroupProIspPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupProIspPlayInfoListResponse {
+        try await self.client.execute(action: "DescribeGroupProIspPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

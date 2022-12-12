@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// DID详情
-    @inlinable
-    public func getDidDetail(_ input: GetDidDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidDetailResponse > {
-        self.client.execute(action: "GetDidDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DID详情
-    @inlinable
-    public func getDidDetail(_ input: GetDidDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDetailResponse {
-        try await self.client.execute(action: "GetDidDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDidDetail请求参数结构体
     public struct GetDidDetailRequest: TCRequestModel {
         /// DID号码的具体信息
@@ -89,5 +77,17 @@ extension Tdid {
             case createTime = "CreateTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// DID详情
+    @inlinable
+    public func getDidDetail(_ input: GetDidDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidDetailResponse > {
+        self.client.execute(action: "GetDidDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DID详情
+    @inlinable
+    public func getDidDetail(_ input: GetDidDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDetailResponse {
+        try await self.client.execute(action: "GetDidDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

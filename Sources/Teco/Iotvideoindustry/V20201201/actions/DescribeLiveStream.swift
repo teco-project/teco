@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 直播拉流接口
-    @inlinable
-    public func describeLiveStream(_ input: DescribeLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveStreamResponse > {
-        self.client.execute(action: "DescribeLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播拉流接口
-    @inlinable
-    public func describeLiveStream(_ input: DescribeLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamResponse {
-        try await self.client.execute(action: "DescribeLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveStream请求参数结构体
     public struct DescribeLiveStreamRequest: TCRequestModel {
         /// 频道ID
@@ -50,7 +38,7 @@ extension Iotvideoindustry {
     public struct DescribeLiveStreamResponse: TCResponseModel {
         /// 拉流地址，只有在推流情况下才有
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: StreamAddress
+        public let data: StreamAddress?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -59,5 +47,17 @@ extension Iotvideoindustry {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播拉流接口
+    @inlinable
+    public func describeLiveStream(_ input: DescribeLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveStreamResponse > {
+        self.client.execute(action: "DescribeLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播拉流接口
+    @inlinable
+    public func describeLiveStream(_ input: DescribeLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamResponse {
+        try await self.client.execute(action: "DescribeLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

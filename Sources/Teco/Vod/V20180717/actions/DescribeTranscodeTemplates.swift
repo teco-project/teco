@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 获取转码模板列表
-    ///
-    /// 根据转码模板唯一标识，获取转码模板详情列表。返回结果包含符合条件的所有用户自定义模板及[系统预置转码模板](https://cloud.tencent.com/document/product/266/33476#.E9.A2.84.E7.BD.AE.E8.BD.AC.E7.A0.81.E6.A8.A1.E6.9D.BF)。
-    @inlinable
-    public func describeTranscodeTemplates(_ input: DescribeTranscodeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTranscodeTemplatesResponse > {
-        self.client.execute(action: "DescribeTranscodeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取转码模板列表
-    ///
-    /// 根据转码模板唯一标识，获取转码模板详情列表。返回结果包含符合条件的所有用户自定义模板及[系统预置转码模板](https://cloud.tencent.com/document/product/266/33476#.E9.A2.84.E7.BD.AE.E8.BD.AC.E7.A0.81.E6.A8.A1.E6.9D.BF)。
-    @inlinable
-    public func describeTranscodeTemplates(_ input: DescribeTranscodeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeTemplatesResponse {
-        try await self.client.execute(action: "DescribeTranscodeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTranscodeTemplates请求参数结构体
     public struct DescribeTranscodeTemplatesRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -60,7 +44,7 @@ extension Vod {
         /// 返回记录条数，默认值：10，最大值：100。
         public let limit: UInt64?
         
-        public init (subAppId: UInt64?, definitions: [Int64]?, type: String?, containerType: String?, tehdType: String?, offset: UInt64?, limit: UInt64?) {
+        public init (subAppId: UInt64? = nil, definitions: [Int64]? = nil, type: String? = nil, containerType: String? = nil, tehdType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.subAppId = subAppId
             self.definitions = definitions
             self.type = type
@@ -98,5 +82,21 @@ extension Vod {
             case transcodeTemplateSet = "TranscodeTemplateSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取转码模板列表
+    ///
+    /// 根据转码模板唯一标识，获取转码模板详情列表。返回结果包含符合条件的所有用户自定义模板及[系统预置转码模板](https://cloud.tencent.com/document/product/266/33476#.E9.A2.84.E7.BD.AE.E8.BD.AC.E7.A0.81.E6.A8.A1.E6.9D.BF)。
+    @inlinable
+    public func describeTranscodeTemplates(_ input: DescribeTranscodeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTranscodeTemplatesResponse > {
+        self.client.execute(action: "DescribeTranscodeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取转码模板列表
+    ///
+    /// 根据转码模板唯一标识，获取转码模板详情列表。返回结果包含符合条件的所有用户自定义模板及[系统预置转码模板](https://cloud.tencent.com/document/product/266/33476#.E9.A2.84.E7.BD.AE.E8.BD.AC.E7.A0.81.E6.A8.A1.E6.9D.BF)。
+    @inlinable
+    public func describeTranscodeTemplates(_ input: DescribeTranscodeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeTemplatesResponse {
+        try await self.client.execute(action: "DescribeTranscodeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

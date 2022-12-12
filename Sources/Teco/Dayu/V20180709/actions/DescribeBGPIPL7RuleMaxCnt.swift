@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取高防IP可添加的最多7层规则数量
-    @inlinable
-    public func describeBGPIPL7RuleMaxCnt(_ input: DescribeBGPIPL7RuleMaxCntRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBGPIPL7RuleMaxCntResponse > {
-        self.client.execute(action: "DescribeBGPIPL7RuleMaxCnt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取高防IP可添加的最多7层规则数量
-    @inlinable
-    public func describeBGPIPL7RuleMaxCnt(_ input: DescribeBGPIPL7RuleMaxCntRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBGPIPL7RuleMaxCntResponse {
-        try await self.client.execute(action: "DescribeBGPIPL7RuleMaxCnt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBGPIPL7RuleMaxCnt请求参数结构体
     public struct DescribeBGPIPL7RuleMaxCntRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP）
@@ -58,5 +46,17 @@ extension Dayu {
             case count = "Count"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取高防IP可添加的最多7层规则数量
+    @inlinable
+    public func describeBGPIPL7RuleMaxCnt(_ input: DescribeBGPIPL7RuleMaxCntRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBGPIPL7RuleMaxCntResponse > {
+        self.client.execute(action: "DescribeBGPIPL7RuleMaxCnt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取高防IP可添加的最多7层规则数量
+    @inlinable
+    public func describeBGPIPL7RuleMaxCnt(_ input: DescribeBGPIPL7RuleMaxCntRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBGPIPL7RuleMaxCntResponse {
+        try await self.client.execute(action: "DescribeBGPIPL7RuleMaxCnt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

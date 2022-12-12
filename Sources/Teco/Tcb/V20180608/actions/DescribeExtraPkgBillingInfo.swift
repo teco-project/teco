@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 获取增值包计费相关信息
-    @inlinable
-    public func describeExtraPkgBillingInfo(_ input: DescribeExtraPkgBillingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtraPkgBillingInfoResponse > {
-        self.client.execute(action: "DescribeExtraPkgBillingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取增值包计费相关信息
-    @inlinable
-    public func describeExtraPkgBillingInfo(_ input: DescribeExtraPkgBillingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtraPkgBillingInfoResponse {
-        try await self.client.execute(action: "DescribeExtraPkgBillingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExtraPkgBillingInfo请求参数结构体
     public struct DescribeExtraPkgBillingInfoRequest: TCRequestModel {
         /// 已购买增值包的环境ID
         public let envId: String?
         
-        public init (envId: String?) {
+        public init (envId: String? = nil) {
             self.envId = envId
         }
         
@@ -57,5 +45,17 @@ extension Tcb {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取增值包计费相关信息
+    @inlinable
+    public func describeExtraPkgBillingInfo(_ input: DescribeExtraPkgBillingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtraPkgBillingInfoResponse > {
+        self.client.execute(action: "DescribeExtraPkgBillingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取增值包计费相关信息
+    @inlinable
+    public func describeExtraPkgBillingInfo(_ input: DescribeExtraPkgBillingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtraPkgBillingInfoResponse {
+        try await self.client.execute(action: "DescribeExtraPkgBillingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

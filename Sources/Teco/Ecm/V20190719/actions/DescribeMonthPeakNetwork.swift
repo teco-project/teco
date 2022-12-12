@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 获取客户节点上的出入月峰和计费带宽
-    ///
-    /// 获取客户节点上的出入带宽月峰和计费带宽信息
-    @inlinable
-    public func describeMonthPeakNetwork(_ input: DescribeMonthPeakNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonthPeakNetworkResponse > {
-        self.client.execute(action: "DescribeMonthPeakNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取客户节点上的出入月峰和计费带宽
-    ///
-    /// 获取客户节点上的出入带宽月峰和计费带宽信息
-    @inlinable
-    public func describeMonthPeakNetwork(_ input: DescribeMonthPeakNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonthPeakNetworkResponse {
-        try await self.client.execute(action: "DescribeMonthPeakNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMonthPeakNetwork请求参数结构体
     public struct DescribeMonthPeakNetworkRequest: TCRequestModel {
         /// 月份时间(xxxx-xx) 如2021-03,默认取当前时间的上一个月份
@@ -39,7 +23,7 @@ extension Ecm {
         /// 过滤条件
         public let filters: [Filter]?
         
-        public init (month: String, filters: [Filter]?) {
+        public init (month: String, filters: [Filter]? = nil) {
             self.month = month
             self.filters = filters
         }
@@ -63,5 +47,21 @@ extension Ecm {
             case monthNetWorkData = "MonthNetWorkData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取客户节点上的出入月峰和计费带宽
+    ///
+    /// 获取客户节点上的出入带宽月峰和计费带宽信息
+    @inlinable
+    public func describeMonthPeakNetwork(_ input: DescribeMonthPeakNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonthPeakNetworkResponse > {
+        self.client.execute(action: "DescribeMonthPeakNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取客户节点上的出入月峰和计费带宽
+    ///
+    /// 获取客户节点上的出入带宽月峰和计费带宽信息
+    @inlinable
+    public func describeMonthPeakNetwork(_ input: DescribeMonthPeakNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonthPeakNetworkResponse {
+        try await self.client.execute(action: "DescribeMonthPeakNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

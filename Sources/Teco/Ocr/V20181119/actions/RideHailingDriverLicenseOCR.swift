@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 网约车驾驶证识别
-    ///
-    /// 本接口支持网约车驾驶证关键字段的识别，包括姓名、证号、起始日期、截止日期、发证日期。
-    @inlinable
-    public func rideHailingDriverLicenseOCR(_ input: RideHailingDriverLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RideHailingDriverLicenseOCRResponse > {
-        self.client.execute(action: "RideHailingDriverLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 网约车驾驶证识别
-    ///
-    /// 本接口支持网约车驾驶证关键字段的识别，包括姓名、证号、起始日期、截止日期、发证日期。
-    @inlinable
-    public func rideHailingDriverLicenseOCR(_ input: RideHailingDriverLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RideHailingDriverLicenseOCRResponse {
-        try await self.client.execute(action: "RideHailingDriverLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RideHailingDriverLicenseOCR请求参数结构体
     public struct RideHailingDriverLicenseOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
@@ -41,7 +25,7 @@ extension Ocr {
         /// 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -80,5 +64,21 @@ extension Ocr {
             case releaseDate = "ReleaseDate"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 网约车驾驶证识别
+    ///
+    /// 本接口支持网约车驾驶证关键字段的识别，包括姓名、证号、起始日期、截止日期、发证日期。
+    @inlinable
+    public func rideHailingDriverLicenseOCR(_ input: RideHailingDriverLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RideHailingDriverLicenseOCRResponse > {
+        self.client.execute(action: "RideHailingDriverLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 网约车驾驶证识别
+    ///
+    /// 本接口支持网约车驾驶证关键字段的识别，包括姓名、证号、起始日期、截止日期、发证日期。
+    @inlinable
+    public func rideHailingDriverLicenseOCR(_ input: RideHailingDriverLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RideHailingDriverLicenseOCRResponse {
+        try await self.client.execute(action: "RideHailingDriverLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

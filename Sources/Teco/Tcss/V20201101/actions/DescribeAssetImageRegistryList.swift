@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 镜像仓库查询镜像仓库列表
-    ///
-    /// 镜像仓库镜像仓库列表
-    @inlinable
-    public func describeAssetImageRegistryList(_ input: DescribeAssetImageRegistryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryListResponse > {
-        self.client.execute(action: "DescribeAssetImageRegistryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 镜像仓库查询镜像仓库列表
-    ///
-    /// 镜像仓库镜像仓库列表
-    @inlinable
-    public func describeAssetImageRegistryList(_ input: DescribeAssetImageRegistryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryListResponse {
-        try await self.client.execute(action: "DescribeAssetImageRegistryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageRegistryList请求参数结构体
     public struct DescribeAssetImageRegistryListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -52,7 +36,7 @@ extension Tcss {
         /// 是否仅展示各repository最新的镜像, 默认为false
         public let onlyShowLatest: Bool?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [AssetFilters]?, by: String?, order: String?, onlyShowLatest: Bool?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, onlyShowLatest: Bool? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -89,5 +73,21 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 镜像仓库查询镜像仓库列表
+    ///
+    /// 镜像仓库镜像仓库列表
+    @inlinable
+    public func describeAssetImageRegistryList(_ input: DescribeAssetImageRegistryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryListResponse > {
+        self.client.execute(action: "DescribeAssetImageRegistryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库查询镜像仓库列表
+    ///
+    /// 镜像仓库镜像仓库列表
+    @inlinable
+    public func describeAssetImageRegistryList(_ input: DescribeAssetImageRegistryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryListResponse {
+        try await self.client.execute(action: "DescribeAssetImageRegistryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 获取应用列表
-    @inlinable
-    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationsResponse > {
-        self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取应用列表
-    @inlinable
-    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
-        try await self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplications请求参数结构体
     public struct DescribeApplicationsRequest: TCRequestModel {
         /// 搜索字段
@@ -56,7 +44,7 @@ extension Tsf {
         /// IdList
         public let applicationIdList: [String]?
         
-        public init (searchWord: String?, orderBy: String?, orderType: Int64?, offset: Int64?, limit: Int64?, applicationType: String?, microserviceType: String?, applicationResourceTypeList: [String]?, applicationIdList: [String]?) {
+        public init (searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, applicationType: String? = nil, microserviceType: String? = nil, applicationResourceTypeList: [String]? = nil, applicationIdList: [String]? = nil) {
             self.searchWord = searchWord
             self.orderBy = orderBy
             self.orderType = orderType
@@ -85,7 +73,7 @@ extension Tsf {
     public struct DescribeApplicationsResponse: TCResponseModel {
         /// 应用分页列表信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TsfPageApplication
+        public let result: TsfPageApplication?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -94,5 +82,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取应用列表
+    @inlinable
+    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationsResponse > {
+        self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用列表
+    @inlinable
+    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
+        try await self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

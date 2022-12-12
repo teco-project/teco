@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 查询可用区的默认子网
-    @inlinable
-    public func describeDefaultSubnet(_ input: DescribeDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDefaultSubnetResponse > {
-        self.client.execute(action: "DescribeDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询可用区的默认子网
-    @inlinable
-    public func describeDefaultSubnet(_ input: DescribeDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultSubnetResponse {
-        try await self.client.execute(action: "DescribeDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDefaultSubnet请求参数结构体
     public struct DescribeDefaultSubnetRequest: TCRequestModel {
         /// ECM地域
@@ -58,5 +46,17 @@ extension Ecm {
             case subnet = "Subnet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询可用区的默认子网
+    @inlinable
+    public func describeDefaultSubnet(_ input: DescribeDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDefaultSubnetResponse > {
+        self.client.execute(action: "DescribeDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询可用区的默认子网
+    @inlinable
+    public func describeDefaultSubnet(_ input: DescribeDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultSubnetResponse {
+        try await self.client.execute(action: "DescribeDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

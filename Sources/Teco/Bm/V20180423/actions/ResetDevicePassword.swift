@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 重置密码
-    ///
-    /// 重置服务器密码
-    @inlinable
-    public func resetDevicePassword(_ input: ResetDevicePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetDevicePasswordResponse > {
-        self.client.execute(action: "ResetDevicePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置密码
-    ///
-    /// 重置服务器密码
-    @inlinable
-    public func resetDevicePassword(_ input: ResetDevicePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDevicePasswordResponse {
-        try await self.client.execute(action: "ResetDevicePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetDevicePassword请求参数结构体
     public struct ResetDevicePasswordRequest: TCRequestModel {
         /// 需要重置密码的服务器ID列表
@@ -62,5 +46,21 @@ extension Bm {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置密码
+    ///
+    /// 重置服务器密码
+    @inlinable
+    public func resetDevicePassword(_ input: ResetDevicePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetDevicePasswordResponse > {
+        self.client.execute(action: "ResetDevicePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置密码
+    ///
+    /// 重置服务器密码
+    @inlinable
+    public func resetDevicePassword(_ input: ResetDevicePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDevicePasswordResponse {
+        try await self.client.execute(action: "ResetDevicePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

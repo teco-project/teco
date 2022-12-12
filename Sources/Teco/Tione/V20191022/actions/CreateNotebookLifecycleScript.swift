@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 创建Notebook生命周期脚本
-    @inlinable
-    public func createNotebookLifecycleScript(_ input: CreateNotebookLifecycleScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNotebookLifecycleScriptResponse > {
-        self.client.execute(action: "CreateNotebookLifecycleScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建Notebook生命周期脚本
-    @inlinable
-    public func createNotebookLifecycleScript(_ input: CreateNotebookLifecycleScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookLifecycleScriptResponse {
-        try await self.client.execute(action: "CreateNotebookLifecycleScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNotebookLifecycleScript请求参数结构体
     public struct CreateNotebookLifecycleScriptRequest: TCRequestModel {
         /// Notebook生命周期脚本名称
@@ -40,7 +28,7 @@ extension Tione {
         /// base64后的脚本长度不能超过16384个字符
         public let startScript: String?
         
-        public init (notebookLifecycleScriptsName: String, createScript: String?, startScript: String?) {
+        public init (notebookLifecycleScriptsName: String, createScript: String? = nil, startScript: String? = nil) {
             self.notebookLifecycleScriptsName = notebookLifecycleScriptsName
             self.createScript = createScript
             self.startScript = startScript
@@ -65,5 +53,17 @@ extension Tione {
             case notebookLifecycleScriptsName = "NotebookLifecycleScriptsName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建Notebook生命周期脚本
+    @inlinable
+    public func createNotebookLifecycleScript(_ input: CreateNotebookLifecycleScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNotebookLifecycleScriptResponse > {
+        self.client.execute(action: "CreateNotebookLifecycleScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建Notebook生命周期脚本
+    @inlinable
+    public func createNotebookLifecycleScript(_ input: CreateNotebookLifecycleScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookLifecycleScriptResponse {
+        try await self.client.execute(action: "CreateNotebookLifecycleScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

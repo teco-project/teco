@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 创建云监控告警策略
-    @inlinable
-    public func createAlarmPolicy(_ input: CreateAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAlarmPolicyResponse > {
-        self.client.execute(action: "CreateAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建云监控告警策略
-    @inlinable
-    public func createAlarmPolicy(_ input: CreateAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmPolicyResponse {
-        try await self.client.execute(action: "CreateAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAlarmPolicy请求参数结构体
     public struct CreateAlarmPolicyRequest: TCRequestModel {
         /// 固定值，为"monitor"
@@ -54,10 +42,10 @@ extension Monitor {
         public let conditionTemplateId: Int64?
         
         /// 指标触发条件，支持的指标可以从 [DescribeAlarmMetrics](https://cloud.tencent.com/document/product/248/51283) 查询。
-        public let condition: AlarmPolicyCondition
+        public let condition: AlarmPolicyCondition?
         
         /// 事件触发条件，支持的事件可以从 [DescribeAlarmEvents](https://cloud.tencent.com/document/product/248/51284) 查询。
-        public let eventCondition: AlarmPolicyEventCondition
+        public let eventCondition: AlarmPolicyEventCondition?
         
         /// 通知规则 Id 列表，由 [DescribeAlarmNotices](https://cloud.tencent.com/document/product/248/51280) 获得
         public let noticeIds: [String]?
@@ -66,7 +54,7 @@ extension Monitor {
         public let triggerTasks: [AlarmPolicyTriggerTask]?
         
         /// 全局过滤条件
-        public let filter: AlarmPolicyFilter
+        public let filter: AlarmPolicyFilter?
         
         /// 聚合维度列表，指定按哪些维度 key 来做 group by
         public let groupBy: [String]?
@@ -75,7 +63,7 @@ extension Monitor {
         public let tags: [Tag]?
         
         /// 日志告警信息
-        public let logAlarmReqInfo: LogAlarmReq
+        public let logAlarmReqInfo: LogAlarmReq?
         
         /// 告警分级通知规则配置
         public let hierarchicalNotices: [AlarmHierarchicalNotice]?
@@ -83,7 +71,7 @@ extension Monitor {
         /// 迁移策略专用字段，0-走鉴权逻辑，1-跳过鉴权逻辑
         public let migrateFlag: Int64?
         
-        public init (module: String, policyName: String, monitorType: String, namespace: String, remark: String?, enable: Int64?, projectId: Int64?, conditionTemplateId: Int64?, condition: AlarmPolicyCondition, eventCondition: AlarmPolicyEventCondition, noticeIds: [String]?, triggerTasks: [AlarmPolicyTriggerTask]?, filter: AlarmPolicyFilter, groupBy: [String]?, tags: [Tag]?, logAlarmReqInfo: LogAlarmReq, hierarchicalNotices: [AlarmHierarchicalNotice]?, migrateFlag: Int64?) {
+        public init (module: String, policyName: String, monitorType: String, namespace: String, remark: String? = nil, enable: Int64? = nil, projectId: Int64? = nil, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, noticeIds: [String]? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, tags: [Tag]? = nil, logAlarmReqInfo: LogAlarmReq? = nil, hierarchicalNotices: [AlarmHierarchicalNotice]? = nil, migrateFlag: Int64? = nil) {
             self.module = module
             self.policyName = policyName
             self.monitorType = monitorType
@@ -142,5 +130,17 @@ extension Monitor {
             case originId = "OriginId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建云监控告警策略
+    @inlinable
+    public func createAlarmPolicy(_ input: CreateAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAlarmPolicyResponse > {
+        self.client.execute(action: "CreateAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云监控告警策略
+    @inlinable
+    public func createAlarmPolicy(_ input: CreateAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmPolicyResponse {
+        try await self.client.execute(action: "CreateAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

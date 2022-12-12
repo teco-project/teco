@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 创建量产任务
-    ///
-    /// 用于新建批量生产设备
-    @inlinable
-    public func createBatchProduction(_ input: CreateBatchProductionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBatchProductionResponse > {
-        self.client.execute(action: "CreateBatchProduction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建量产任务
-    ///
-    /// 用于新建批量生产设备
-    @inlinable
-    public func createBatchProduction(_ input: CreateBatchProductionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchProductionResponse {
-        try await self.client.execute(action: "CreateBatchProduction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBatchProduction请求参数结构体
     public struct CreateBatchProductionRequest: TCRequestModel {
         /// 项目ID
@@ -54,7 +38,7 @@ extension Iotexplorer {
         /// 是否生成二维码,0为不生成，1为生成。
         public let generationQRCode: Int64?
         
-        public init (projectId: String, productId: String, burnMethod: Int64, generationMethod: Int64, uploadUrl: String?, batchCnt: Int64?, generationQRCode: Int64?) {
+        public init (projectId: String, productId: String, burnMethod: Int64, generationMethod: Int64, uploadUrl: String? = nil, batchCnt: Int64? = nil, generationQRCode: Int64? = nil) {
             self.projectId = projectId
             self.productId = productId
             self.burnMethod = burnMethod
@@ -95,5 +79,21 @@ extension Iotexplorer {
             case batchProductionId = "BatchProductionId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建量产任务
+    ///
+    /// 用于新建批量生产设备
+    @inlinable
+    public func createBatchProduction(_ input: CreateBatchProductionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBatchProductionResponse > {
+        self.client.execute(action: "CreateBatchProduction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建量产任务
+    ///
+    /// 用于新建批量生产设备
+    @inlinable
+    public func createBatchProduction(_ input: CreateBatchProductionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchProductionResponse {
+        try await self.client.execute(action: "CreateBatchProduction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

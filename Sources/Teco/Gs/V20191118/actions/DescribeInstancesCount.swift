@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gs {
-    /// 获取并发总数和运行数
-    @inlinable
-    public func describeInstancesCount(_ input: DescribeInstancesCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesCountResponse > {
-        self.client.execute(action: "DescribeInstancesCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取并发总数和运行数
-    @inlinable
-    public func describeInstancesCount(_ input: DescribeInstancesCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesCountResponse {
-        try await self.client.execute(action: "DescribeInstancesCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstancesCount请求参数结构体
     public struct DescribeInstancesCountRequest: TCRequestModel {
         /// 游戏ID
@@ -38,7 +26,7 @@ extension Gs {
         /// 游戏区域
         public let gameRegion: String?
         
-        public init (gameId: String?, groupId: String?, gameRegion: String?) {
+        public init (gameId: String? = nil, groupId: String? = nil, gameRegion: String? = nil) {
             self.gameId = gameId
             self.groupId = groupId
             self.gameRegion = gameRegion
@@ -67,5 +55,17 @@ extension Gs {
             case running = "Running"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取并发总数和运行数
+    @inlinable
+    public func describeInstancesCount(_ input: DescribeInstancesCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesCountResponse > {
+        self.client.execute(action: "DescribeInstancesCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取并发总数和运行数
+    @inlinable
+    public func describeInstancesCount(_ input: DescribeInstancesCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesCountResponse {
+        try await self.client.execute(action: "DescribeInstancesCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

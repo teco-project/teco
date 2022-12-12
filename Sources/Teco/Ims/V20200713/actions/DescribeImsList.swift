@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ims {
-    /// 获取图片审核明细数据
-    ///
-    /// 图片机器审核明细
-    @inlinable
-    public func describeImsList(_ input: DescribeImsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImsListResponse > {
-        self.client.execute(action: "DescribeImsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取图片审核明细数据
-    ///
-    /// 图片机器审核明细
-    @inlinable
-    public func describeImsList(_ input: DescribeImsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImsListResponse {
-        try await self.client.execute(action: "DescribeImsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImsList请求参数结构体
     public struct DescribeImsListRequest: TCRequestModel {
         /// 分页 页索引
@@ -42,7 +26,7 @@ extension Ims {
         /// 过滤条件
         public let filters: [Filter]?
         
-        public init (pageIndex: Int64, pageSize: Int64, filters: [Filter]?) {
+        public init (pageIndex: Int64, pageSize: Int64, filters: [Filter]? = nil) {
             self.pageIndex = pageIndex
             self.pageSize = pageSize
             self.filters = filters
@@ -72,5 +56,21 @@ extension Ims {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取图片审核明细数据
+    ///
+    /// 图片机器审核明细
+    @inlinable
+    public func describeImsList(_ input: DescribeImsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImsListResponse > {
+        self.client.execute(action: "DescribeImsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取图片审核明细数据
+    ///
+    /// 图片机器审核明细
+    @inlinable
+    public func describeImsList(_ input: DescribeImsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImsListResponse {
+        try await self.client.execute(action: "DescribeImsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

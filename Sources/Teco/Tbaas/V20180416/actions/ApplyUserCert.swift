@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 申请用户证书
-    @inlinable
-    public func applyUserCert(_ input: ApplyUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyUserCertResponse > {
-        self.client.execute(action: "ApplyUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 申请用户证书
-    @inlinable
-    public func applyUserCert(_ input: ApplyUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyUserCertResponse {
-        try await self.client.execute(action: "ApplyUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyUserCert请求参数结构体
     public struct ApplyUserCertRequest: TCRequestModel {
         /// 模块名，固定字段：cert_mng
@@ -56,7 +44,7 @@ extension Tbaas {
         /// 证书备注信息
         public let notes: String?
         
-        public init (module: String, operation: String, clusterId: String, groupName: String, userIdentity: String, applicant: String, identityNum: String, csrData: String, notes: String?) {
+        public init (module: String, operation: String, clusterId: String, groupName: String, userIdentity: String, applicant: String, identityNum: String, csrData: String, notes: String? = nil) {
             self.module = module
             self.operation = operation
             self.clusterId = clusterId
@@ -97,5 +85,17 @@ extension Tbaas {
             case certDn = "CertDn"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 申请用户证书
+    @inlinable
+    public func applyUserCert(_ input: ApplyUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyUserCertResponse > {
+        self.client.execute(action: "ApplyUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 申请用户证书
+    @inlinable
+    public func applyUserCert(_ input: ApplyUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyUserCertResponse {
+        try await self.client.execute(action: "ApplyUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

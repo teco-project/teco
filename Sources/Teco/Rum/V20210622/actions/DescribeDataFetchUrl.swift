@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取DescribeDataFetchUrl信息
-    @inlinable
-    public func describeDataFetchUrl(_ input: DescribeDataFetchUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataFetchUrlResponse > {
-        self.client.execute(action: "DescribeDataFetchUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DescribeDataFetchUrl信息
-    @inlinable
-    public func describeDataFetchUrl(_ input: DescribeDataFetchUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataFetchUrlResponse {
-        try await self.client.execute(action: "DescribeDataFetchUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDataFetchUrl请求参数结构体
     public struct DescribeDataFetchUrlRequest: TCRequestModel {
         /// 开始时间
@@ -107,7 +95,7 @@ extension Rum {
         /// 网络状态
         public let netStatus: String?
         
-        public init (startTime: Int64, type: String, endTime: Int64, id: Int64, extSecond: String?, engine: String?, isp: String?, from: String?, level: String?, brand: String?, area: String?, versionNum: String?, platform: String?, extThird: String?, extFirst: String?, netType: String?, device: String?, isAbroad: String?, os: String?, browser: String?, costType: String?, url: String?, env: String?, status: String?, ret: String?, netStatus: String?) {
+        public init (startTime: Int64, type: String, endTime: Int64, id: Int64, extSecond: String? = nil, engine: String? = nil, isp: String? = nil, from: String? = nil, level: String? = nil, brand: String? = nil, area: String? = nil, versionNum: String? = nil, platform: String? = nil, extThird: String? = nil, extFirst: String? = nil, netType: String? = nil, device: String? = nil, isAbroad: String? = nil, os: String? = nil, browser: String? = nil, costType: String? = nil, url: String? = nil, env: String? = nil, status: String? = nil, ret: String? = nil, netStatus: String? = nil) {
             self.startTime = startTime
             self.type = type
             self.endTime = endTime
@@ -178,5 +166,17 @@ extension Rum {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DescribeDataFetchUrl信息
+    @inlinable
+    public func describeDataFetchUrl(_ input: DescribeDataFetchUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataFetchUrlResponse > {
+        self.client.execute(action: "DescribeDataFetchUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DescribeDataFetchUrl信息
+    @inlinable
+    public func describeDataFetchUrl(_ input: DescribeDataFetchUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataFetchUrlResponse {
+        try await self.client.execute(action: "DescribeDataFetchUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

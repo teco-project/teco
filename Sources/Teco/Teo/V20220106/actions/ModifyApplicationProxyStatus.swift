@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改应用代理的状态
-    @inlinable
-    public func modifyApplicationProxyStatus(_ input: ModifyApplicationProxyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationProxyStatusResponse > {
-        self.client.execute(action: "ModifyApplicationProxyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改应用代理的状态
-    @inlinable
-    public func modifyApplicationProxyStatus(_ input: ModifyApplicationProxyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyStatusResponse {
-        try await self.client.execute(action: "ModifyApplicationProxyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyApplicationProxyStatus请求参数结构体
     public struct ModifyApplicationProxyStatusRequest: TCRequestModel {
         /// 站点ID
@@ -65,5 +53,17 @@ extension Teo {
             case proxyId = "ProxyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改应用代理的状态
+    @inlinable
+    public func modifyApplicationProxyStatus(_ input: ModifyApplicationProxyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationProxyStatusResponse > {
+        self.client.execute(action: "ModifyApplicationProxyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用代理的状态
+    @inlinable
+    public func modifyApplicationProxyStatus(_ input: ModifyApplicationProxyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyStatusResponse {
+        try await self.client.execute(action: "ModifyApplicationProxyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

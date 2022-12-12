@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 创建应用账号
-    @inlinable
-    public func createAppAccount(_ input: CreateAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppAccountResponse > {
-        self.client.execute(action: "CreateAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建应用账号
-    @inlinable
-    public func createAppAccount(_ input: CreateAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppAccountResponse {
-        try await self.client.execute(action: "CreateAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAppAccount请求参数结构体
     public struct CreateAppAccountRequest: TCRequestModel {
         /// 应用ID
@@ -41,7 +29,7 @@ extension Eiam {
         /// 描述
         public let description: String?
         
-        public init (applicationId: String, accountName: String, password: String?, description: String?) {
+        public init (applicationId: String, accountName: String, password: String? = nil, description: String? = nil) {
             self.applicationId = applicationId
             self.accountName = accountName
             self.password = password
@@ -69,5 +57,17 @@ extension Eiam {
             case accountId = "AccountId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建应用账号
+    @inlinable
+    public func createAppAccount(_ input: CreateAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppAccountResponse > {
+        self.client.execute(action: "CreateAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建应用账号
+    @inlinable
+    public func createAppAccount(_ input: CreateAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppAccountResponse {
+        try await self.client.execute(action: "CreateAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

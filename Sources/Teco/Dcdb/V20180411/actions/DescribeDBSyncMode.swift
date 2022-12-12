@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 查询同步模式
-    ///
-    /// 本接口（DescribeDBSyncMode）用于查询云数据库实例的同步模式。
-    @inlinable
-    public func describeDBSyncMode(_ input: DescribeDBSyncModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBSyncModeResponse > {
-        self.client.execute(action: "DescribeDBSyncMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询同步模式
-    ///
-    /// 本接口（DescribeDBSyncMode）用于查询云数据库实例的同步模式。
-    @inlinable
-    public func describeDBSyncMode(_ input: DescribeDBSyncModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSyncModeResponse {
-        try await self.client.execute(action: "DescribeDBSyncMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBSyncMode请求参数结构体
     public struct DescribeDBSyncModeRequest: TCRequestModel {
         /// 待修改同步模式的实例ID。形如：dcdbt-ow728lmc。
@@ -65,5 +49,21 @@ extension Dcdb {
             case currentSyncMode = "CurrentSyncMode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询同步模式
+    ///
+    /// 本接口（DescribeDBSyncMode）用于查询云数据库实例的同步模式。
+    @inlinable
+    public func describeDBSyncMode(_ input: DescribeDBSyncModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBSyncModeResponse > {
+        self.client.execute(action: "DescribeDBSyncMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询同步模式
+    ///
+    /// 本接口（DescribeDBSyncMode）用于查询云数据库实例的同步模式。
+    @inlinable
+    public func describeDBSyncMode(_ input: DescribeDBSyncModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSyncModeResponse {
+        try await self.client.execute(action: "DescribeDBSyncMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

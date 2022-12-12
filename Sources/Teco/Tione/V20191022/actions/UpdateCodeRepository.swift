@@ -15,27 +15,15 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 更新存储库
-    @inlinable
-    public func updateCodeRepository(_ input: UpdateCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCodeRepositoryResponse > {
-        self.client.execute(action: "UpdateCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新存储库
-    @inlinable
-    public func updateCodeRepository(_ input: UpdateCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCodeRepositoryResponse {
-        try await self.client.execute(action: "UpdateCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateCodeRepository请求参数结构体
     public struct UpdateCodeRepositoryRequest: TCRequestModel {
         /// 查询存储库名称
         public let codeRepositoryName: String
         
         /// Git凭证
-        public let gitSecret: GitSecret
+        public let gitSecret: GitSecret?
         
-        public init (codeRepositoryName: String, gitSecret: GitSecret) {
+        public init (codeRepositoryName: String, gitSecret: GitSecret? = nil) {
             self.codeRepositoryName = codeRepositoryName
             self.gitSecret = gitSecret
         }
@@ -58,5 +46,17 @@ extension Tione {
             case codeRepositoryName = "CodeRepositoryName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新存储库
+    @inlinable
+    public func updateCodeRepository(_ input: UpdateCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCodeRepositoryResponse > {
+        self.client.execute(action: "UpdateCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新存储库
+    @inlinable
+    public func updateCodeRepository(_ input: UpdateCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCodeRepositoryResponse {
+        try await self.client.execute(action: "UpdateCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

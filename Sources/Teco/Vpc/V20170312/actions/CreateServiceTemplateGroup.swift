@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建协议端口模板集合
-    ///
-    /// 本接口（CreateServiceTemplateGroup）用于创建协议端口模板集合
-    @inlinable
-    public func createServiceTemplateGroup(_ input: CreateServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceTemplateGroupResponse > {
-        self.client.execute(action: "CreateServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建协议端口模板集合
-    ///
-    /// 本接口（CreateServiceTemplateGroup）用于创建协议端口模板集合
-    @inlinable
-    public func createServiceTemplateGroup(_ input: CreateServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceTemplateGroupResponse {
-        try await self.client.execute(action: "CreateServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateServiceTemplateGroup请求参数结构体
     public struct CreateServiceTemplateGroupRequest: TCRequestModel {
         /// 协议端口模板集合名称
@@ -62,5 +46,21 @@ extension Vpc {
             case serviceTemplateGroup = "ServiceTemplateGroup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建协议端口模板集合
+    ///
+    /// 本接口（CreateServiceTemplateGroup）用于创建协议端口模板集合
+    @inlinable
+    public func createServiceTemplateGroup(_ input: CreateServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceTemplateGroupResponse > {
+        self.client.execute(action: "CreateServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建协议端口模板集合
+    ///
+    /// 本接口（CreateServiceTemplateGroup）用于创建协议端口模板集合
+    @inlinable
+    public func createServiceTemplateGroup(_ input: CreateServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceTemplateGroupResponse {
+        try await self.client.execute(action: "CreateServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

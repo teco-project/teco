@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 创建单元化规则
-    @inlinable
-    public func createUnitRule(_ input: CreateUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUnitRuleResponse > {
-        self.client.execute(action: "CreateUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建单元化规则
-    @inlinable
-    public func createUnitRule(_ input: CreateUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnitRuleResponse {
-        try await self.client.execute(action: "CreateUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUnitRule请求参数结构体
     public struct CreateUnitRuleRequest: TCRequestModel {
         /// 网关实体ID
@@ -41,7 +29,7 @@ extension Tsf {
         /// 规则项列表
         public let unitRuleItemList: [UnitRuleItem]?
         
-        public init (gatewayInstanceId: String, name: String, description: String?, unitRuleItemList: [UnitRuleItem]?) {
+        public init (gatewayInstanceId: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil) {
             self.gatewayInstanceId = gatewayInstanceId
             self.name = name
             self.description = description
@@ -69,5 +57,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建单元化规则
+    @inlinable
+    public func createUnitRule(_ input: CreateUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUnitRuleResponse > {
+        self.client.execute(action: "CreateUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建单元化规则
+    @inlinable
+    public func createUnitRule(_ input: CreateUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnitRuleResponse {
+        try await self.client.execute(action: "CreateUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

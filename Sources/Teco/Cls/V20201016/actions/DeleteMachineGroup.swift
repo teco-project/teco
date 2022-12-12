@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 删除机器组
-    @inlinable
-    public func deleteMachineGroup(_ input: DeleteMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMachineGroupResponse > {
-        self.client.execute(action: "DeleteMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除机器组
-    @inlinable
-    public func deleteMachineGroup(_ input: DeleteMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupResponse {
-        try await self.client.execute(action: "DeleteMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMachineGroup请求参数结构体
     public struct DeleteMachineGroupRequest: TCRequestModel {
         /// 机器组ID
@@ -49,5 +37,17 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除机器组
+    @inlinable
+    public func deleteMachineGroup(_ input: DeleteMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMachineGroupResponse > {
+        self.client.execute(action: "DeleteMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除机器组
+    @inlinable
+    public func deleteMachineGroup(_ input: DeleteMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupResponse {
+        try await self.client.execute(action: "DeleteMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

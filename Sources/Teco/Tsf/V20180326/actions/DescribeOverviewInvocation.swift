@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tsf {
-    /// 服务调用监控统计概览
-    @inlinable
-    public func describeOverviewInvocation(_ input: DescribeOverviewInvocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewInvocationResponse > {
-        self.client.execute(action: "DescribeOverviewInvocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 服务调用监控统计概览
-    @inlinable
-    public func describeOverviewInvocation(_ input: DescribeOverviewInvocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewInvocationResponse {
-        try await self.client.execute(action: "DescribeOverviewInvocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOverviewInvocation请求参数结构体
     public struct DescribeOverviewInvocationRequest: TCRequestModel {
         /// 命名空间ID
@@ -46,7 +34,7 @@ extension Tsf {
         /// 查询结束时间，默认为当前时间
         public let endTime: Date?
         
-        public init (namespaceId: String?, type: String?, period: Int64?, startTime: Date?, endTime: Date?) {
+        public init (namespaceId: String? = nil, type: String? = nil, period: Int64? = nil, startTime: Date? = nil, endTime: Date? = nil) {
             self.namespaceId = namespaceId
             self.type = type
             self.period = period
@@ -76,5 +64,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 服务调用监控统计概览
+    @inlinable
+    public func describeOverviewInvocation(_ input: DescribeOverviewInvocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewInvocationResponse > {
+        self.client.execute(action: "DescribeOverviewInvocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 服务调用监控统计概览
+    @inlinable
+    public func describeOverviewInvocation(_ input: DescribeOverviewInvocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewInvocationResponse {
+        try await self.client.execute(action: "DescribeOverviewInvocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 查询服务的聊天记录
-    ///
-    /// 包括具体聊天内容
-    @inlinable
-    public func describeChatMessages(_ input: DescribeChatMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChatMessagesResponse > {
-        self.client.execute(action: "DescribeChatMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询服务的聊天记录
-    ///
-    /// 包括具体聊天内容
-    @inlinable
-    public func describeChatMessages(_ input: DescribeChatMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChatMessagesResponse {
-        try await self.client.execute(action: "DescribeChatMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeChatMessages请求参数结构体
     public struct DescribeChatMessagesRequest: TCRequestModel {
         /// 实例 ID（废弃）
@@ -54,7 +38,7 @@ extension Ccc {
         /// 服务记录SessionID
         public let sessionId: String?
         
-        public init (instanceId: Int64?, sdkAppId: Int64?, cdrId: String?, limit: Int64?, offset: Int64?, order: Int64?, sessionId: String?) {
+        public init (instanceId: Int64? = nil, sdkAppId: Int64? = nil, cdrId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: Int64? = nil, sessionId: String? = nil) {
             self.instanceId = instanceId
             self.sdkAppId = sdkAppId
             self.cdrId = cdrId
@@ -92,5 +76,21 @@ extension Ccc {
             case messages = "Messages"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询服务的聊天记录
+    ///
+    /// 包括具体聊天内容
+    @inlinable
+    public func describeChatMessages(_ input: DescribeChatMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChatMessagesResponse > {
+        self.client.execute(action: "DescribeChatMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务的聊天记录
+    ///
+    /// 包括具体聊天内容
+    @inlinable
+    public func describeChatMessages(_ input: DescribeChatMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChatMessagesResponse {
+        try await self.client.execute(action: "DescribeChatMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

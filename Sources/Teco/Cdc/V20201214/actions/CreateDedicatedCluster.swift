@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 创建专用集群
-    @inlinable
-    public func createDedicatedCluster(_ input: CreateDedicatedClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDedicatedClusterResponse > {
-        self.client.execute(action: "CreateDedicatedCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建专用集群
-    @inlinable
-    public func createDedicatedCluster(_ input: CreateDedicatedClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterResponse {
-        try await self.client.execute(action: "CreateDedicatedCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDedicatedCluster请求参数结构体
     public struct CreateDedicatedClusterRequest: TCRequestModel {
         /// 专用集群所属的SiteId
@@ -41,7 +29,7 @@ extension Cdc {
         /// 专用集群的描述
         public let description: String?
         
-        public init (siteId: String, name: String, zone: String, description: String?) {
+        public init (siteId: String, name: String, zone: String, description: String? = nil) {
             self.siteId = siteId
             self.name = name
             self.zone = zone
@@ -68,5 +56,17 @@ extension Cdc {
             case dedicatedClusterId = "DedicatedClusterId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建专用集群
+    @inlinable
+    public func createDedicatedCluster(_ input: CreateDedicatedClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDedicatedClusterResponse > {
+        self.client.execute(action: "CreateDedicatedCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建专用集群
+    @inlinable
+    public func createDedicatedCluster(_ input: CreateDedicatedClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterResponse {
+        try await self.client.execute(action: "CreateDedicatedCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

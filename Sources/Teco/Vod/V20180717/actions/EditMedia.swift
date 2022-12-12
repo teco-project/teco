@@ -15,42 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 编辑视频
-    ///
-    /// 对视频进行编辑（剪辑、拼接等），生成一个新的点播视频。编辑的功能包括：
-    /// 1. 对点播中的一个文件进行剪辑，生成一个新的视频；
-    /// 2. 对点播中的多个文件进行拼接，生成一个新的视频；
-    /// 3. 对点播中的多个文件进行剪辑，然后再拼接，生成一个新的视频；
-    /// 4. 对点播中的一个流，直接生成一个新的视频；
-    /// 5. 对点播中的一个流进行剪辑，生成一个新的视频；
-    /// 6. 对点播中的多个流进行拼接，生成一个新的视频；
-    /// 7. 对点播中的多个流进行剪辑，然后拼接，生成一个新的视频。
-    /// 对于生成的新视频，还可以指定生成后的视频是否要执行任务流。
-    /// >当对直播流做剪辑、拼接等操作时，请确保流结束后再操作。否则生成的视频可能不完整。
-    /// 如使用事件通知，事件通知的类型为 [视频编辑完成](https://cloud.tencent.com/document/product/266/33794)。
-    @inlinable
-    public func editMedia(_ input: EditMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditMediaResponse > {
-        self.client.execute(action: "EditMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑视频
-    ///
-    /// 对视频进行编辑（剪辑、拼接等），生成一个新的点播视频。编辑的功能包括：
-    /// 1. 对点播中的一个文件进行剪辑，生成一个新的视频；
-    /// 2. 对点播中的多个文件进行拼接，生成一个新的视频；
-    /// 3. 对点播中的多个文件进行剪辑，然后再拼接，生成一个新的视频；
-    /// 4. 对点播中的一个流，直接生成一个新的视频；
-    /// 5. 对点播中的一个流进行剪辑，生成一个新的视频；
-    /// 6. 对点播中的多个流进行拼接，生成一个新的视频；
-    /// 7. 对点播中的多个流进行剪辑，然后拼接，生成一个新的视频。
-    /// 对于生成的新视频，还可以指定生成后的视频是否要执行任务流。
-    /// >当对直播流做剪辑、拼接等操作时，请确保流结束后再操作。否则生成的视频可能不完整。
-    /// 如使用事件通知，事件通知的类型为 [视频编辑完成](https://cloud.tencent.com/document/product/266/33794)。
-    @inlinable
-    public func editMedia(_ input: EditMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditMediaResponse {
-        try await self.client.execute(action: "EditMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EditMedia请求参数结构体
     public struct EditMediaRequest: TCRequestModel {
         /// 输入视频的类型，可以取的值为  File，Stream 两种。
@@ -74,7 +38,7 @@ extension Vod {
         public let procedureName: String?
         
         /// 编辑后生成的文件配置。
-        public let outputConfig: EditMediaOutputConfig
+        public let outputConfig: EditMediaOutputConfig?
         
         /// 标识来源上下文，用于透传用户请求信息，在EditMediaComplete回调和任务流状态变更回调将返回该字段值，最长 1000个字符。
         public let sessionContext: String?
@@ -88,7 +52,7 @@ extension Vod {
         /// 保留字段，特殊用途时使用。
         public let extInfo: String?
         
-        public init (inputType: String, subAppId: UInt64?, fileInfos: [EditMediaFileInfo]?, streamInfos: [EditMediaStreamInfo]?, definition: UInt64?, procedureName: String?, outputConfig: EditMediaOutputConfig, sessionContext: String?, tasksPriority: Int64?, sessionId: String?, extInfo: String?) {
+        public init (inputType: String, subAppId: UInt64? = nil, fileInfos: [EditMediaFileInfo]? = nil, streamInfos: [EditMediaStreamInfo]? = nil, definition: UInt64? = nil, procedureName: String? = nil, outputConfig: EditMediaOutputConfig? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, extInfo: String? = nil) {
             self.inputType = inputType
             self.subAppId = subAppId
             self.fileInfos = fileInfos
@@ -129,5 +93,41 @@ extension Vod {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑视频
+    ///
+    /// 对视频进行编辑（剪辑、拼接等），生成一个新的点播视频。编辑的功能包括：
+    /// 1. 对点播中的一个文件进行剪辑，生成一个新的视频；
+    /// 2. 对点播中的多个文件进行拼接，生成一个新的视频；
+    /// 3. 对点播中的多个文件进行剪辑，然后再拼接，生成一个新的视频；
+    /// 4. 对点播中的一个流，直接生成一个新的视频；
+    /// 5. 对点播中的一个流进行剪辑，生成一个新的视频；
+    /// 6. 对点播中的多个流进行拼接，生成一个新的视频；
+    /// 7. 对点播中的多个流进行剪辑，然后拼接，生成一个新的视频。
+    /// 对于生成的新视频，还可以指定生成后的视频是否要执行任务流。
+    /// >当对直播流做剪辑、拼接等操作时，请确保流结束后再操作。否则生成的视频可能不完整。
+    /// 如使用事件通知，事件通知的类型为 [视频编辑完成](https://cloud.tencent.com/document/product/266/33794)。
+    @inlinable
+    public func editMedia(_ input: EditMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditMediaResponse > {
+        self.client.execute(action: "EditMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑视频
+    ///
+    /// 对视频进行编辑（剪辑、拼接等），生成一个新的点播视频。编辑的功能包括：
+    /// 1. 对点播中的一个文件进行剪辑，生成一个新的视频；
+    /// 2. 对点播中的多个文件进行拼接，生成一个新的视频；
+    /// 3. 对点播中的多个文件进行剪辑，然后再拼接，生成一个新的视频；
+    /// 4. 对点播中的一个流，直接生成一个新的视频；
+    /// 5. 对点播中的一个流进行剪辑，生成一个新的视频；
+    /// 6. 对点播中的多个流进行拼接，生成一个新的视频；
+    /// 7. 对点播中的多个流进行剪辑，然后拼接，生成一个新的视频。
+    /// 对于生成的新视频，还可以指定生成后的视频是否要执行任务流。
+    /// >当对直播流做剪辑、拼接等操作时，请确保流结束后再操作。否则生成的视频可能不完整。
+    /// 如使用事件通知，事件通知的类型为 [视频编辑完成](https://cloud.tencent.com/document/product/266/33794)。
+    @inlinable
+    public func editMedia(_ input: EditMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditMediaResponse {
+        try await self.client.execute(action: "EditMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

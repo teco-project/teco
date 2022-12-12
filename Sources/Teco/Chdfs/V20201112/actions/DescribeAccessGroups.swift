@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 查看权限组列表
-    ///
-    /// 查看权限组列表。
-    @inlinable
-    public func describeAccessGroups(_ input: DescribeAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessGroupsResponse > {
-        self.client.execute(action: "DescribeAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看权限组列表
-    ///
-    /// 查看权限组列表。
-    @inlinable
-    public func describeAccessGroups(_ input: DescribeAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessGroupsResponse {
-        try await self.client.execute(action: "DescribeAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccessGroups请求参数结构体
     public struct DescribeAccessGroupsRequest: TCRequestModel {
         /// VPC网络ID
@@ -40,7 +24,7 @@ extension Chdfs {
         /// 资源所属者Uin
         public let ownerUin: UInt64?
         
-        public init (vpcId: String?, ownerUin: UInt64?) {
+        public init (vpcId: String? = nil, ownerUin: UInt64? = nil) {
             self.vpcId = vpcId
             self.ownerUin = ownerUin
         }
@@ -63,5 +47,21 @@ extension Chdfs {
             case accessGroups = "AccessGroups"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看权限组列表
+    ///
+    /// 查看权限组列表。
+    @inlinable
+    public func describeAccessGroups(_ input: DescribeAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessGroupsResponse > {
+        self.client.execute(action: "DescribeAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看权限组列表
+    ///
+    /// 查看权限组列表。
+    @inlinable
+    public func describeAccessGroups(_ input: DescribeAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessGroupsResponse {
+        try await self.client.execute(action: "DescribeAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

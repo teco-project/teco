@@ -47,7 +47,7 @@ extension Tiw {
         /// 背景颜色，默认为黑色，格式为RGB格式，如红色为"#FF0000"
         public let backgroundColor: String?
         
-        public init (layoutParams: LayoutParams, backgroundColor: String?) {
+        public init (layoutParams: LayoutParams, backgroundColor: String? = nil) {
             self.layoutParams = layoutParams
             self.backgroundColor = backgroundColor
         }
@@ -67,7 +67,7 @@ extension Tiw {
         /// 视频拼接时使用的垫片图片下载地址，不填默认用全黑的图片进行视频垫片
         public let image: String?
         
-        public init (enabled: Bool, image: String?) {
+        public init (enabled: Bool, image: String? = nil) {
             self.enabled = enabled
             self.image = image
         }
@@ -131,7 +131,7 @@ extension Tiw {
         /// z轴确定了重叠画面的遮盖顺序，z轴值大的画面处于顶层
         public let zOrder: Int64?
         
-        public init (width: Int64, height: Int64, x: Int64?, y: Int64?, zOrder: Int64?) {
+        public init (width: Int64, height: Int64, x: Int64? = nil, y: Int64? = nil, zOrder: Int64? = nil) {
             self.width = width
             self.height = height
             self.x = x
@@ -167,9 +167,9 @@ extension Tiw {
         
         /// 自定义混流布局参数
         /// 当此字段存在时，ModelId 及 TeacherId 字段将被忽略
-        public let custom: CustomLayout
+        public let custom: CustomLayout?
         
-        public init (enabled: Bool, disableAudio: Bool?, modelId: Int64?, teacherId: String?, custom: CustomLayout) {
+        public init (enabled: Bool, disableAudio: Bool? = nil, modelId: Int64? = nil, teacherId: String? = nil, custom: CustomLayout? = nil) {
             self.enabled = enabled
             self.disableAudio = disableAudio
             self.modelId = modelId
@@ -230,7 +230,7 @@ extension Tiw {
         /// 针对具体流指定控制参数，如果列表为空，则所有流采用全局配置的控制参数进行录制。列表不为空，则列表中指定的流将优先按此列表指定的控制参数进行录制。
         public let streamControls: [StreamControl]?
         
-        public init (enabled: Bool, disableRecord: Bool?, disableAudio: Bool?, pullSmallVideo: Bool?, streamControls: [StreamControl]?) {
+        public init (enabled: Bool, disableRecord: Bool? = nil, disableAudio: Bool? = nil, pullSmallVideo: Bool? = nil, streamControls: [StreamControl]? = nil) {
             self.enabled = enabled
             self.disableRecord = disableRecord
             self.disableAudio = disableAudio
@@ -293,7 +293,7 @@ extension Tiw {
         /// CDN加速域名
         public let domain: String?
         
-        public init (uin: UInt64, region: String, bucket: String, targetDir: String?, domain: String?) {
+        public init (uin: UInt64, region: String, bucket: String, targetDir: String? = nil, domain: String? = nil) {
             self.uin = uin
             self.region = region
             self.bucket = bucket
@@ -347,7 +347,7 @@ extension Tiw {
         /// 白板初始化参数的JSON转义字符串，透传到白板 SDK
         public let initParams: String?
         
-        public init (width: UInt64?, height: UInt64?, initParams: String?) {
+        public init (width: UInt64? = nil, height: UInt64? = nil, initParams: String? = nil) {
             self.width = width
             self.height = height
             self.initParams = initParams
@@ -388,7 +388,7 @@ extension Tiw {
         /// 默认为 false。
         public let pullSmallVideo: Bool?
         
-        public init (streamId: String, disableRecord: Bool?, disableAudio: Bool?, pullSmallVideo: Bool?) {
+        public init (streamId: String, disableRecord: Bool? = nil, disableAudio: Bool? = nil, pullSmallVideo: Bool? = nil) {
             self.streamId = streamId
             self.disableRecord = disableRecord
             self.disableAudio = disableAudio
@@ -424,7 +424,7 @@ extension Tiw {
         /// 1 - 全屏模式，对视频画面进行等比例缩放，让画面填充满整个指定区域。此模式不会存在黑边，但会将超出区域的那一部分画面裁剪掉。
         public let fillMode: Int64?
         
-        public init (layoutParams: LayoutParams, inputStreamId: String?, backgroundColor: String?, fillMode: Int64?) {
+        public init (layoutParams: LayoutParams, inputStreamId: String? = nil, backgroundColor: String? = nil, fillMode: Int64? = nil) {
             self.layoutParams = layoutParams
             self.inputStreamId = inputStreamId
             self.backgroundColor = backgroundColor
@@ -543,7 +543,7 @@ extension Tiw {
         /// 白板初始化参数，透传到白板 SDK
         public let initParam: String?
         
-        public init (width: Int64?, height: Int64?, initParam: String?) {
+        public init (width: Int64? = nil, height: Int64? = nil, initParam: String? = nil) {
             self.width = width
             self.height = height
             self.initParam = initParam

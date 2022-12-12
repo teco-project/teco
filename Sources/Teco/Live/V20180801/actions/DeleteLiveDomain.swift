@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 删除域名
-    ///
-    /// 删除已添加的直播域名
-    @inlinable
-    public func deleteLiveDomain(_ input: DeleteLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveDomainResponse > {
-        self.client.execute(action: "DeleteLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除域名
-    ///
-    /// 删除已添加的直播域名
-    @inlinable
-    public func deleteLiveDomain(_ input: DeleteLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveDomainResponse {
-        try await self.client.execute(action: "DeleteLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLiveDomain请求参数结构体
     public struct DeleteLiveDomainRequest: TCRequestModel {
         /// 要删除的域名
@@ -58,5 +42,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除域名
+    ///
+    /// 删除已添加的直播域名
+    @inlinable
+    public func deleteLiveDomain(_ input: DeleteLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveDomainResponse > {
+        self.client.execute(action: "DeleteLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除域名
+    ///
+    /// 删除已添加的直播域名
+    @inlinable
+    public func deleteLiveDomain(_ input: DeleteLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveDomainResponse {
+        try await self.client.execute(action: "DeleteLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

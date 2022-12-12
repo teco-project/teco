@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Emr {
-    /// 变配询价
-    @inlinable
-    public func inquiryPriceUpdateInstance(_ input: InquiryPriceUpdateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceUpdateInstanceResponse > {
-        self.client.execute(action: "InquiryPriceUpdateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 变配询价
-    @inlinable
-    public func inquiryPriceUpdateInstance(_ input: InquiryPriceUpdateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpdateInstanceResponse {
-        try await self.client.execute(action: "InquiryPriceUpdateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceUpdateInstance请求参数结构体
     public struct InquiryPriceUpdateInstanceRequest: TCRequestModel {
         /// 变配的时间单位。取值范围：
@@ -59,7 +47,7 @@ extension Emr {
         /// 批量变配资源ID列表
         public let resourceIdList: [String]?
         
-        public init (timeUnit: String, timeSpan: UInt64, updateSpec: UpdateInstanceSettings, payMode: UInt64, placement: Placement, currency: String?, resourceIdList: [String]?) {
+        public init (timeUnit: String, timeSpan: UInt64, updateSpec: UpdateInstanceSettings, payMode: UInt64, placement: Placement, currency: String? = nil, resourceIdList: [String]? = nil) {
             self.timeUnit = timeUnit
             self.timeSpan = timeSpan
             self.updateSpec = updateSpec
@@ -115,5 +103,17 @@ extension Emr {
             case priceDetail = "PriceDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 变配询价
+    @inlinable
+    public func inquiryPriceUpdateInstance(_ input: InquiryPriceUpdateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceUpdateInstanceResponse > {
+        self.client.execute(action: "InquiryPriceUpdateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 变配询价
+    @inlinable
+    public func inquiryPriceUpdateInstance(_ input: InquiryPriceUpdateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpdateInstanceResponse {
+        try await self.client.execute(action: "InquiryPriceUpdateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

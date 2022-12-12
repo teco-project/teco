@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 拉取Prometheus配置
-    @inlinable
-    public func describePrometheusConfig(_ input: DescribePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusConfigResponse > {
-        self.client.execute(action: "DescribePrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取Prometheus配置
-    @inlinable
-    public func describePrometheusConfig(_ input: DescribePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusConfigResponse {
-        try await self.client.execute(action: "DescribePrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrometheusConfig请求参数结构体
     public struct DescribePrometheusConfigRequest: TCRequestModel {
         /// 实例id
@@ -75,5 +63,17 @@ extension Tke {
             case rawJobs = "RawJobs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取Prometheus配置
+    @inlinable
+    public func describePrometheusConfig(_ input: DescribePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusConfigResponse > {
+        self.client.execute(action: "DescribePrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取Prometheus配置
+    @inlinable
+    public func describePrometheusConfig(_ input: DescribePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusConfigResponse {
+        try await self.client.execute(action: "DescribePrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

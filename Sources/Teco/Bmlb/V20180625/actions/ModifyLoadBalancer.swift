@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 修改黑石负载均衡实例的基本配置信息
-    ///
-    /// 根据输入参数来修改黑石负载均衡实例的基本配置信息。可能的信息包括负载均衡实例的名称，域名前缀。
-    @inlinable
-    public func modifyLoadBalancer(_ input: ModifyLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancerResponse > {
-        self.client.execute(action: "ModifyLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改黑石负载均衡实例的基本配置信息
-    ///
-    /// 根据输入参数来修改黑石负载均衡实例的基本配置信息。可能的信息包括负载均衡实例的名称，域名前缀。
-    @inlinable
-    public func modifyLoadBalancer(_ input: ModifyLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerResponse {
-        try await self.client.execute(action: "ModifyLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLoadBalancer请求参数结构体
     public struct ModifyLoadBalancerRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -42,7 +26,7 @@ extension Bmlb {
         /// 域名前缀，负载均衡的域名由用户输入的域名前缀与配置文件中的域名后缀一起组合而成，保证是唯一的域名。规则：1-20个小写英文字母、数字或连接线“-”。内网类型的负载均衡不能配置该字段。
         public let domainPrefix: String?
         
-        public init (loadBalancerId: String, loadBalancerName: String?, domainPrefix: String?) {
+        public init (loadBalancerId: String, loadBalancerName: String? = nil, domainPrefix: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.loadBalancerName = loadBalancerName
             self.domainPrefix = domainPrefix
@@ -67,5 +51,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改黑石负载均衡实例的基本配置信息
+    ///
+    /// 根据输入参数来修改黑石负载均衡实例的基本配置信息。可能的信息包括负载均衡实例的名称，域名前缀。
+    @inlinable
+    public func modifyLoadBalancer(_ input: ModifyLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancerResponse > {
+        self.client.execute(action: "ModifyLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改黑石负载均衡实例的基本配置信息
+    ///
+    /// 根据输入参数来修改黑石负载均衡实例的基本配置信息。可能的信息包括负载均衡实例的名称，域名前缀。
+    @inlinable
+    public func modifyLoadBalancer(_ input: ModifyLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerResponse {
+        try await self.client.execute(action: "ModifyLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

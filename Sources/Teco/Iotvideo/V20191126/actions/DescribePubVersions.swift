@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取某一产品发布过的全部固件版本
-    ///
-    /// 本接口（DescribePubVersions）用于获取某一产品发布过的全部固件版本。
-    @inlinable
-    public func describePubVersions(_ input: DescribePubVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePubVersionsResponse > {
-        self.client.execute(action: "DescribePubVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取某一产品发布过的全部固件版本
-    ///
-    /// 本接口（DescribePubVersions）用于获取某一产品发布过的全部固件版本。
-    @inlinable
-    public func describePubVersions(_ input: DescribePubVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePubVersionsResponse {
-        try await self.client.execute(action: "DescribePubVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePubVersions请求参数结构体
     public struct DescribePubVersionsRequest: TCRequestModel {
         /// 产品ID
@@ -58,5 +42,21 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取某一产品发布过的全部固件版本
+    ///
+    /// 本接口（DescribePubVersions）用于获取某一产品发布过的全部固件版本。
+    @inlinable
+    public func describePubVersions(_ input: DescribePubVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePubVersionsResponse > {
+        self.client.execute(action: "DescribePubVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取某一产品发布过的全部固件版本
+    ///
+    /// 本接口（DescribePubVersions）用于获取某一产品发布过的全部固件版本。
+    @inlinable
+    public func describePubVersions(_ input: DescribePubVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePubVersionsResponse {
+        try await self.client.execute(action: "DescribePubVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

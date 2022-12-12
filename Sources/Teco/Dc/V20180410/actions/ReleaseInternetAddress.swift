@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 释放互联网地址
-    ///
-    /// 释放已申请的互联网地址
-    @inlinable
-    public func releaseInternetAddress(_ input: ReleaseInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseInternetAddressResponse > {
-        self.client.execute(action: "ReleaseInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 释放互联网地址
-    ///
-    /// 释放已申请的互联网地址
-    @inlinable
-    public func releaseInternetAddress(_ input: ReleaseInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseInternetAddressResponse {
-        try await self.client.execute(action: "ReleaseInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReleaseInternetAddress请求参数结构体
     public struct ReleaseInternetAddressRequest: TCRequestModel {
         /// 公网互联网地址ID
@@ -53,5 +37,21 @@ extension Dc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 释放互联网地址
+    ///
+    /// 释放已申请的互联网地址
+    @inlinable
+    public func releaseInternetAddress(_ input: ReleaseInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseInternetAddressResponse > {
+        self.client.execute(action: "ReleaseInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 释放互联网地址
+    ///
+    /// 释放已申请的互联网地址
+    @inlinable
+    public func releaseInternetAddress(_ input: ReleaseInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseInternetAddressResponse {
+        try await self.client.execute(action: "ReleaseInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 停止复制
-    ///
-    /// 停止 RO 复制，中断从主实例同步数据。
-    @inlinable
-    public func stopReplication(_ input: StopReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopReplicationResponse > {
-        self.client.execute(action: "StopReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止复制
-    ///
-    /// 停止 RO 复制，中断从主实例同步数据。
-    @inlinable
-    public func stopReplication(_ input: StopReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopReplicationResponse {
-        try await self.client.execute(action: "StopReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopReplication请求参数结构体
     public struct StopReplicationRequest: TCRequestModel {
         /// 实例 ID。仅支持只读实例。
@@ -58,5 +42,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止复制
+    ///
+    /// 停止 RO 复制，中断从主实例同步数据。
+    @inlinable
+    public func stopReplication(_ input: StopReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopReplicationResponse > {
+        self.client.execute(action: "StopReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止复制
+    ///
+    /// 停止 RO 复制，中断从主实例同步数据。
+    @inlinable
+    public func stopReplication(_ input: StopReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopReplicationResponse {
+        try await self.client.execute(action: "StopReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

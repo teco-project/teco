@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Asr {
-    /// 获取热词表
-    ///
-    /// 用户根据词表的ID可以获取对应的热词表信息
-    @inlinable
-    public func getAsrVocab(_ input: GetAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAsrVocabResponse > {
-        self.client.execute(action: "GetAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取热词表
-    ///
-    /// 用户根据词表的ID可以获取对应的热词表信息
-    @inlinable
-    public func getAsrVocab(_ input: GetAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabResponse {
-        try await self.client.execute(action: "GetAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetAsrVocab请求参数结构体
     public struct GetAsrVocabRequest: TCRequestModel {
         /// 热词表ID
@@ -85,5 +69,21 @@ extension Asr {
             case state = "State"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取热词表
+    ///
+    /// 用户根据词表的ID可以获取对应的热词表信息
+    @inlinable
+    public func getAsrVocab(_ input: GetAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAsrVocabResponse > {
+        self.client.execute(action: "GetAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取热词表
+    ///
+    /// 用户根据词表的ID可以获取对应的热词表信息
+    @inlinable
+    public func getAsrVocab(_ input: GetAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabResponse {
+        try await self.client.execute(action: "GetAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

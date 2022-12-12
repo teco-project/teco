@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 批量域名 DNS 修改
-    ///
-    /// 本接口 ( ModifyDomainDNSBatch) 用于批量域名 DNS 修改 。
-    @inlinable
-    public func modifyDomainDNSBatch(_ input: ModifyDomainDNSBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainDNSBatchResponse > {
-        self.client.execute(action: "ModifyDomainDNSBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量域名 DNS 修改
-    ///
-    /// 本接口 ( ModifyDomainDNSBatch) 用于批量域名 DNS 修改 。
-    @inlinable
-    public func modifyDomainDNSBatch(_ input: ModifyDomainDNSBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainDNSBatchResponse {
-        try await self.client.execute(action: "ModifyDomainDNSBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDomainDNSBatch请求参数结构体
     public struct ModifyDomainDNSBatchRequest: TCRequestModel {
         /// 批量操作的域名。
@@ -62,5 +46,21 @@ extension Domain {
             case logId = "LogId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量域名 DNS 修改
+    ///
+    /// 本接口 ( ModifyDomainDNSBatch) 用于批量域名 DNS 修改 。
+    @inlinable
+    public func modifyDomainDNSBatch(_ input: ModifyDomainDNSBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainDNSBatchResponse > {
+        self.client.execute(action: "ModifyDomainDNSBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量域名 DNS 修改
+    ///
+    /// 本接口 ( ModifyDomainDNSBatch) 用于批量域名 DNS 修改 。
+    @inlinable
+    public func modifyDomainDNSBatch(_ input: ModifyDomainDNSBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainDNSBatchResponse {
+        try await self.client.execute(action: "ModifyDomainDNSBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

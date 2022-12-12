@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 创建托管集群外网访问端口
-    ///
-    /// 创建托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
-    @inlinable
-    public func createClusterEndpointVip(_ input: CreateClusterEndpointVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterEndpointVipResponse > {
-        self.client.execute(action: "CreateClusterEndpointVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建托管集群外网访问端口
-    ///
-    /// 创建托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
-    @inlinable
-    public func createClusterEndpointVip(_ input: CreateClusterEndpointVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterEndpointVipResponse {
-        try await self.client.execute(action: "CreateClusterEndpointVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateClusterEndpointVip请求参数结构体
     public struct CreateClusterEndpointVipRequest: TCRequestModel {
         /// 集群ID
@@ -39,7 +23,7 @@ extension Tke {
         /// 安全策略放通单个IP或CIDR(例如: "192.168.1.0/24",默认为拒绝所有)
         public let securityPolicies: [String]?
         
-        public init (clusterId: String, securityPolicies: [String]?) {
+        public init (clusterId: String, securityPolicies: [String]? = nil) {
             self.clusterId = clusterId
             self.securityPolicies = securityPolicies
         }
@@ -62,5 +46,21 @@ extension Tke {
             case requestFlowId = "RequestFlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建托管集群外网访问端口
+    ///
+    /// 创建托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
+    @inlinable
+    public func createClusterEndpointVip(_ input: CreateClusterEndpointVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterEndpointVipResponse > {
+        self.client.execute(action: "CreateClusterEndpointVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建托管集群外网访问端口
+    ///
+    /// 创建托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
+    @inlinable
+    public func createClusterEndpointVip(_ input: CreateClusterEndpointVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterEndpointVipResponse {
+        try await self.client.execute(action: "CreateClusterEndpointVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

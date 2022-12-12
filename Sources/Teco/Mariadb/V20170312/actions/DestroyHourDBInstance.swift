@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 销毁按量计费实例
-    ///
-    /// 本接口（DestroyHourDBInstance）用于销毁按量计费实例。
-    @inlinable
-    public func destroyHourDBInstance(_ input: DestroyHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyHourDBInstanceResponse > {
-        self.client.execute(action: "DestroyHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 销毁按量计费实例
-    ///
-    /// 本接口（DestroyHourDBInstance）用于销毁按量计费实例。
-    @inlinable
-    public func destroyHourDBInstance(_ input: DestroyHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyHourDBInstanceResponse {
-        try await self.client.execute(action: "DestroyHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DestroyHourDBInstance请求参数结构体
     public struct DestroyHourDBInstanceRequest: TCRequestModel {
         /// 实例 ID，格式如：tdsql-avw0207d，与云数据库控制台页面中显示的实例 ID 相同。
@@ -61,5 +45,21 @@ extension Mariadb {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 销毁按量计费实例
+    ///
+    /// 本接口（DestroyHourDBInstance）用于销毁按量计费实例。
+    @inlinable
+    public func destroyHourDBInstance(_ input: DestroyHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyHourDBInstanceResponse > {
+        self.client.execute(action: "DestroyHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁按量计费实例
+    ///
+    /// 本接口（DestroyHourDBInstance）用于销毁按量计费实例。
+    @inlinable
+    public func destroyHourDBInstance(_ input: DestroyHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyHourDBInstanceResponse {
+        try await self.client.execute(action: "DestroyHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

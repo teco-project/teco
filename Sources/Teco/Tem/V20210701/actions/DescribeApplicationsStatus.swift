@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 单环境下所有应用状态查看
-    @inlinable
-    public func describeApplicationsStatus(_ input: DescribeApplicationsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationsStatusResponse > {
-        self.client.execute(action: "DescribeApplicationsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 单环境下所有应用状态查看
-    @inlinable
-    public func describeApplicationsStatus(_ input: DescribeApplicationsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsStatusResponse {
-        try await self.client.execute(action: "DescribeApplicationsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplicationsStatus请求参数结构体
     public struct DescribeApplicationsStatusRequest: TCRequestModel {
         /// 来源渠道
@@ -35,7 +23,7 @@ extension Tem {
         /// 环境ID
         public let environmentId: String?
         
-        public init (sourceChannel: Int64?, environmentId: String?) {
+        public init (sourceChannel: Int64? = nil, environmentId: String? = nil) {
             self.sourceChannel = sourceChannel
             self.environmentId = environmentId
         }
@@ -58,5 +46,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 单环境下所有应用状态查看
+    @inlinable
+    public func describeApplicationsStatus(_ input: DescribeApplicationsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationsStatusResponse > {
+        self.client.execute(action: "DescribeApplicationsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 单环境下所有应用状态查看
+    @inlinable
+    public func describeApplicationsStatus(_ input: DescribeApplicationsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsStatusResponse {
+        try await self.client.execute(action: "DescribeApplicationsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

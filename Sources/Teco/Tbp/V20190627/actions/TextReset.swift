@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbp {
-    /// 会话重置
-    ///
-    /// 会话重置接口。
-    @inlinable
-    public func textReset(_ input: TextResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextResetResponse > {
-        self.client.execute(action: "TextReset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 会话重置
-    ///
-    /// 会话重置接口。
-    @inlinable
-    public func textReset(_ input: TextResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextResetResponse {
-        try await self.client.execute(action: "TextReset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TextReset请求参数结构体
     public struct TextResetRequest: TCRequestModel {
         /// 机器人标识，用于定义抽象机器人。
@@ -48,7 +32,7 @@ extension Tbp {
         /// 当PlatformType为微信公众号或企业微信时，传递对应微信公众号或企业微信的唯一标识
         public let platformId: String?
         
-        public init (botId: String, botEnv: String, terminalId: String, platformType: String?, platformId: String?) {
+        public init (botId: String, botEnv: String, terminalId: String, platformType: String? = nil, platformId: String? = nil) {
             self.botId = botId
             self.botEnv = botEnv
             self.terminalId = terminalId
@@ -89,7 +73,7 @@ extension Tbp {
         
         /// 机器人应答。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let responseMessage: ResponseMessage
+        public let responseMessage: ResponseMessage?
         
         /// 透传字段，由用户自定义的WebService服务返回。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -113,5 +97,21 @@ extension Tbp {
             case resultType = "ResultType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 会话重置
+    ///
+    /// 会话重置接口。
+    @inlinable
+    public func textReset(_ input: TextResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextResetResponse > {
+        self.client.execute(action: "TextReset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 会话重置
+    ///
+    /// 会话重置接口。
+    @inlinable
+    public func textReset(_ input: TextResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextResetResponse {
+        try await self.client.execute(action: "TextReset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取日志内容列表
-    @inlinable
-    public func listLogPayload(_ input: ListLogPayloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListLogPayloadResponse > {
-        self.client.execute(action: "ListLogPayload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取日志内容列表
-    @inlinable
-    public func listLogPayload(_ input: ListLogPayloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogPayloadResponse {
-        try await self.client.execute(action: "ListLogPayload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListLogPayload请求参数结构体
     public struct ListLogPayloadRequest: TCRequestModel {
         /// 日志开始时间，毫秒级时间戳
@@ -45,7 +33,7 @@ extension Iotcloud {
         /// 日志最大条数
         public let maxNum: Int64?
         
-        public init (minTime: UInt64, maxTime: UInt64, keywords: String, context: String?, maxNum: Int64?) {
+        public init (minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: Int64? = nil) {
             self.minTime = minTime
             self.maxTime = maxTime
             self.keywords = keywords
@@ -82,5 +70,17 @@ extension Iotcloud {
             case results = "Results"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取日志内容列表
+    @inlinable
+    public func listLogPayload(_ input: ListLogPayloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListLogPayloadResponse > {
+        self.client.execute(action: "ListLogPayload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志内容列表
+    @inlinable
+    public func listLogPayload(_ input: ListLogPayloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogPayloadResponse {
+        try await self.client.execute(action: "ListLogPayload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

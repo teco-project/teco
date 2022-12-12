@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 创建离线日志监听
-    ///
-    /// 创建离线日志监听，对应用户的离线日志将上报
-    @inlinable
-    public func createOfflineLogConfig(_ input: CreateOfflineLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOfflineLogConfigResponse > {
-        self.client.execute(action: "CreateOfflineLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建离线日志监听
-    ///
-    /// 创建离线日志监听，对应用户的离线日志将上报
-    @inlinable
-    public func createOfflineLogConfig(_ input: CreateOfflineLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOfflineLogConfigResponse {
-        try await self.client.execute(action: "CreateOfflineLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOfflineLogConfig请求参数结构体
     public struct CreateOfflineLogConfigRequest: TCRequestModel {
         /// 项目唯一上报 key
@@ -62,5 +46,21 @@ extension Rum {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建离线日志监听
+    ///
+    /// 创建离线日志监听，对应用户的离线日志将上报
+    @inlinable
+    public func createOfflineLogConfig(_ input: CreateOfflineLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOfflineLogConfigResponse > {
+        self.client.execute(action: "CreateOfflineLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建离线日志监听
+    ///
+    /// 创建离线日志监听，对应用户的离线日志将上报
+    @inlinable
+    public func createOfflineLogConfig(_ input: CreateOfflineLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOfflineLogConfigResponse {
+        try await self.client.execute(action: "CreateOfflineLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

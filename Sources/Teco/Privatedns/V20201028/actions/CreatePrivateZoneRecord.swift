@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 添加私有域解析记录
-    @inlinable
-    public func createPrivateZoneRecord(_ input: CreatePrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrivateZoneRecordResponse > {
-        self.client.execute(action: "CreatePrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加私有域解析记录
-    @inlinable
-    public func createPrivateZoneRecord(_ input: CreatePrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateZoneRecordResponse {
-        try await self.client.execute(action: "CreatePrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePrivateZoneRecord请求参数结构体
     public struct CreatePrivateZoneRecordRequest: TCRequestModel {
         /// 私有域ID
@@ -50,7 +38,7 @@ extension Privatedns {
         /// 记录缓存时间，数值越小生效越快，取值1-86400s, 默认 600
         public let ttl: Int64?
         
-        public init (zoneId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64?, mx: Int64?, ttl: Int64?) {
+        public init (zoneId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil) {
             self.zoneId = zoneId
             self.recordType = recordType
             self.subDomain = subDomain
@@ -83,5 +71,17 @@ extension Privatedns {
             case recordId = "RecordId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加私有域解析记录
+    @inlinable
+    public func createPrivateZoneRecord(_ input: CreatePrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrivateZoneRecordResponse > {
+        self.client.execute(action: "CreatePrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加私有域解析记录
+    @inlinable
+    public func createPrivateZoneRecord(_ input: CreatePrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateZoneRecordResponse {
+        try await self.client.execute(action: "CreatePrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

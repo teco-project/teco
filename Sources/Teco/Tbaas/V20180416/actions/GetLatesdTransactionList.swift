@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 获取最新交易列表
-    @inlinable
-    public func getLatesdTransactionList(_ input: GetLatesdTransactionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLatesdTransactionListResponse > {
-        self.client.execute(action: "GetLatesdTransactionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取最新交易列表
-    @inlinable
-    public func getLatesdTransactionList(_ input: GetLatesdTransactionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLatesdTransactionListResponse {
-        try await self.client.execute(action: "GetLatesdTransactionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetLatesdTransactionList请求参数结构体
     public struct GetLatesdTransactionListRequest: TCRequestModel {
         /// 模块名称，固定字段：transaction
@@ -59,7 +47,7 @@ extension Tbaas {
         /// 需要获取的交易数量
         public let limit: UInt64?
         
-        public init (module: String, operation: String, groupId: UInt64, channelId: UInt64, latestBlockNumber: UInt64, groupName: String, channelName: String, clusterId: String, offset: UInt64?, limit: UInt64?) {
+        public init (module: String, operation: String, groupId: UInt64, channelId: UInt64, latestBlockNumber: UInt64, groupName: String, channelName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.module = module
             self.operation = operation
             self.groupId = groupId
@@ -102,5 +90,17 @@ extension Tbaas {
             case transactionList = "TransactionList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取最新交易列表
+    @inlinable
+    public func getLatesdTransactionList(_ input: GetLatesdTransactionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLatesdTransactionListResponse > {
+        self.client.execute(action: "GetLatesdTransactionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取最新交易列表
+    @inlinable
+    public func getLatesdTransactionList(_ input: GetLatesdTransactionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLatesdTransactionListResponse {
+        try await self.client.execute(action: "GetLatesdTransactionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

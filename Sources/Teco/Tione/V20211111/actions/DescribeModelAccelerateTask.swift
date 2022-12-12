@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询模型优化任务详情
-    @inlinable
-    public func describeModelAccelerateTask(_ input: DescribeModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelAccelerateTaskResponse > {
-        self.client.execute(action: "DescribeModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询模型优化任务详情
-    @inlinable
-    public func describeModelAccelerateTask(_ input: DescribeModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelAccelerateTaskResponse {
-        try await self.client.execute(action: "DescribeModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeModelAccelerateTask请求参数结构体
     public struct DescribeModelAccelerateTaskRequest: TCRequestModel {
         /// 模型加速任务ID
@@ -45,7 +33,7 @@ extension Tione {
     public struct DescribeModelAccelerateTaskResponse: TCResponseModel {
         /// 模型加速任务详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let modelAccelerateTask: ModelAccelerateTask
+        public let modelAccelerateTask: ModelAccelerateTask?
         
         /// 模型加速时长，单位s
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -69,5 +57,17 @@ extension Tione {
             case modelAccEndTime = "ModelAccEndTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询模型优化任务详情
+    @inlinable
+    public func describeModelAccelerateTask(_ input: DescribeModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelAccelerateTaskResponse > {
+        self.client.execute(action: "DescribeModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询模型优化任务详情
+    @inlinable
+    public func describeModelAccelerateTask(_ input: DescribeModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelAccelerateTaskResponse {
+        try await self.client.execute(action: "DescribeModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 终端节点解绑安全组
-    ///
-    /// 终端节点解绑安全组。
-    @inlinable
-    public func disassociateVpcEndPointSecurityGroups(_ input: DisassociateVpcEndPointSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateVpcEndPointSecurityGroupsResponse > {
-        self.client.execute(action: "DisassociateVpcEndPointSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 终端节点解绑安全组
-    ///
-    /// 终端节点解绑安全组。
-    @inlinable
-    public func disassociateVpcEndPointSecurityGroups(_ input: DisassociateVpcEndPointSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateVpcEndPointSecurityGroupsResponse {
-        try await self.client.execute(action: "DisassociateVpcEndPointSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisassociateVpcEndPointSecurityGroups请求参数结构体
     public struct DisassociateVpcEndPointSecurityGroupsRequest: TCRequestModel {
         /// 安全组ID数组。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 终端节点解绑安全组
+    ///
+    /// 终端节点解绑安全组。
+    @inlinable
+    public func disassociateVpcEndPointSecurityGroups(_ input: DisassociateVpcEndPointSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateVpcEndPointSecurityGroupsResponse > {
+        self.client.execute(action: "DisassociateVpcEndPointSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 终端节点解绑安全组
+    ///
+    /// 终端节点解绑安全组。
+    @inlinable
+    public func disassociateVpcEndPointSecurityGroups(_ input: DisassociateVpcEndPointSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateVpcEndPointSecurityGroupsResponse {
+        try await self.client.execute(action: "DisassociateVpcEndPointSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

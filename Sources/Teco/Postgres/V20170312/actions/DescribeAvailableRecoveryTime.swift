@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 查询实例可恢复的时间范围
-    ///
-    /// 本接口（DescribeAvailableRecoveryTime）用于查询实例可恢复的时间范围。
-    @inlinable
-    public func describeAvailableRecoveryTime(_ input: DescribeAvailableRecoveryTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableRecoveryTimeResponse > {
-        self.client.execute(action: "DescribeAvailableRecoveryTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例可恢复的时间范围
-    ///
-    /// 本接口（DescribeAvailableRecoveryTime）用于查询实例可恢复的时间范围。
-    @inlinable
-    public func describeAvailableRecoveryTime(_ input: DescribeAvailableRecoveryTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableRecoveryTimeResponse {
-        try await self.client.execute(action: "DescribeAvailableRecoveryTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAvailableRecoveryTime请求参数结构体
     public struct DescribeAvailableRecoveryTimeRequest: TCRequestModel {
         /// 实例ID
@@ -61,5 +45,21 @@ extension Postgres {
             case recoveryEndTime = "RecoveryEndTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例可恢复的时间范围
+    ///
+    /// 本接口（DescribeAvailableRecoveryTime）用于查询实例可恢复的时间范围。
+    @inlinable
+    public func describeAvailableRecoveryTime(_ input: DescribeAvailableRecoveryTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableRecoveryTimeResponse > {
+        self.client.execute(action: "DescribeAvailableRecoveryTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例可恢复的时间范围
+    ///
+    /// 本接口（DescribeAvailableRecoveryTime）用于查询实例可恢复的时间范围。
+    @inlinable
+    public func describeAvailableRecoveryTime(_ input: DescribeAvailableRecoveryTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableRecoveryTimeResponse {
+        try await self.client.execute(action: "DescribeAvailableRecoveryTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

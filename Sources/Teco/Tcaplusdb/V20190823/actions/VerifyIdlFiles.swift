@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 上传并校验创建表格文件
-    ///
-    /// 上传并校验创建表格文件，返回校验合法的表格定义
-    @inlinable
-    public func verifyIdlFiles(_ input: VerifyIdlFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyIdlFilesResponse > {
-        self.client.execute(action: "VerifyIdlFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上传并校验创建表格文件
-    ///
-    /// 上传并校验创建表格文件，返回校验合法的表格定义
-    @inlinable
-    public func verifyIdlFiles(_ input: VerifyIdlFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyIdlFilesResponse {
-        try await self.client.execute(action: "VerifyIdlFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifyIdlFiles请求参数结构体
     public struct VerifyIdlFilesRequest: TCRequestModel {
         /// 待创建表格的集群ID
@@ -45,7 +29,7 @@ extension Tcaplusdb {
         /// 待上传的IDL文件信息列表，与ExistingIdlFiles至少有一者
         public let newIdlFiles: [IdlFileInfo]?
         
-        public init (clusterId: String, tableGroupId: String?, existingIdlFiles: [IdlFileInfo]?, newIdlFiles: [IdlFileInfo]?) {
+        public init (clusterId: String, tableGroupId: String? = nil, existingIdlFiles: [IdlFileInfo]? = nil, newIdlFiles: [IdlFileInfo]? = nil) {
             self.clusterId = clusterId
             self.tableGroupId = tableGroupId
             self.existingIdlFiles = existingIdlFiles
@@ -80,5 +64,21 @@ extension Tcaplusdb {
             case tableInfos = "TableInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上传并校验创建表格文件
+    ///
+    /// 上传并校验创建表格文件，返回校验合法的表格定义
+    @inlinable
+    public func verifyIdlFiles(_ input: VerifyIdlFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyIdlFilesResponse > {
+        self.client.execute(action: "VerifyIdlFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上传并校验创建表格文件
+    ///
+    /// 上传并校验创建表格文件，返回校验合法的表格定义
+    @inlinable
+    public func verifyIdlFiles(_ input: VerifyIdlFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyIdlFilesResponse {
+        try await self.client.execute(action: "VerifyIdlFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

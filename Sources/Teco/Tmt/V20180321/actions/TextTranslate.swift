@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Tmt {
-    /// 文本翻译
-    ///
-    /// 提供中文到英文、英文到中文的等多种语言的文本内容翻译服务， 经过大数据语料库、多种解码算法、翻译引擎深度优化，在新闻文章、生活口语等不同语言场景中都有深厚积累，翻译结果专业评价处于行业领先水平。<br />
-    /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
-    @inlinable
-    public func textTranslate(_ input: TextTranslateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextTranslateResponse > {
-        self.client.execute(action: "TextTranslate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 文本翻译
-    ///
-    /// 提供中文到英文、英文到中文的等多种语言的文本内容翻译服务， 经过大数据语料库、多种解码算法、翻译引擎深度优化，在新闻文章、生活口语等不同语言场景中都有深厚积累，翻译结果专业评价处于行业领先水平。<br />
-    /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
-    @inlinable
-    public func textTranslate(_ input: TextTranslateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextTranslateResponse {
-        try await self.client.execute(action: "TextTranslate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TextTranslate请求参数结构体
     public struct TextTranslateRequest: TCRequestModel {
         /// 待翻译的文本，文本统一使用utf-8格式编码，非utf-8格式编码字符会翻译失败，请传入有效文本，html标记等非常规翻译文本可能会翻译失败。单次请求的文本长度需要低于2000字符。
@@ -87,7 +69,7 @@ extension Tmt {
         /// 用来标记不希望被翻译的文本内容，如句子中的特殊符号、人名、地名等；每次请求只支持配置一个不被翻译的单词；仅支持配置人名、地名等名词，不要配置动词或短语，否则会影响翻译结果。
         public let untranslatedText: String?
         
-        public init (sourceText: String, source: String, target: String, projectId: Int64, untranslatedText: String?) {
+        public init (sourceText: String, source: String, target: String, projectId: Int64, untranslatedText: String? = nil) {
             self.sourceText = sourceText
             self.source = source
             self.target = target
@@ -124,5 +106,23 @@ extension Tmt {
             case target = "Target"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 文本翻译
+    ///
+    /// 提供中文到英文、英文到中文的等多种语言的文本内容翻译服务， 经过大数据语料库、多种解码算法、翻译引擎深度优化，在新闻文章、生活口语等不同语言场景中都有深厚积累，翻译结果专业评价处于行业领先水平。<br />
+    /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
+    @inlinable
+    public func textTranslate(_ input: TextTranslateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextTranslateResponse > {
+        self.client.execute(action: "TextTranslate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 文本翻译
+    ///
+    /// 提供中文到英文、英文到中文的等多种语言的文本内容翻译服务， 经过大数据语料库、多种解码算法、翻译引擎深度优化，在新闻文章、生活口语等不同语言场景中都有深厚积累，翻译结果专业评价处于行业领先水平。<br />
+    /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
+    @inlinable
+    public func textTranslate(_ input: TextTranslateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextTranslateResponse {
+        try await self.client.execute(action: "TextTranslate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

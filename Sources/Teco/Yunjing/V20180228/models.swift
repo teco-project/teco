@@ -316,7 +316,7 @@ extension Yunjing {
         /// 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String?
         
-        public init (period: UInt64, renewFlag: String?) {
+        public init (period: UInt64, renewFlag: String? = nil) {
             self.period = period
             self.renewFlag = renewFlag
         }
@@ -647,7 +647,7 @@ extension Yunjing {
         /// 结束时间
         public let endTime: String?
         
-        public init (places: [Place], srcIp: String, userName: String, isGlobal: Bool, hostIp: String, id: UInt64?, startTime: String?, endTime: String?) {
+        public init (places: [Place], srcIp: String, userName: String, isGlobal: Bool, hostIp: String, id: UInt64? = nil, startTime: String? = nil, endTime: String? = nil) {
             self.places = places
             self.srcIp = srcIp
             self.userName = userName

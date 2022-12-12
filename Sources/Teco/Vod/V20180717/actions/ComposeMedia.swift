@@ -15,6 +15,59 @@
 // DO NOT EDIT.
 
 extension Vod {
+    /// ComposeMedia请求参数结构体
+    public struct ComposeMediaRequest: TCRequestModel {
+        /// 输入的媒体轨道列表，包括视频、音频、图片等素材组成的多个轨道信息，其中：<li>输入的多个轨道在时间轴上和输出媒体文件的时间轴对齐；</li><li>时间轴上相同时间点的各个轨道的素材进行重叠，视频或者图片按轨道顺序进行图像的叠加，轨道顺序高的素材叠加在上面，音频素材进行混音；</li><li>视频、音频、图片，每一种类型的轨道最多支持 10 个。</li><li>所有类型的轨道上放置的媒体片段数量总和最多支持 500 个。</li>
+        public let tracks: [MediaTrack]
+        
+        /// 输出的媒体文件信息。
+        public let output: ComposeMediaOutput
+        
+        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        public let subAppId: UInt64?
+        
+        /// 制作视频文件时使用的画布。
+        public let canvas: Canvas?
+        
+        /// 标识来源上下文，用于透传用户请求信息，在ComposeMediaComplete回调将返回该字段值，最长 1000个字符。
+        public let sessionContext: String?
+        
+        /// 用于任务去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        public let sessionId: String?
+        
+        public init (tracks: [MediaTrack], output: ComposeMediaOutput, subAppId: UInt64? = nil, canvas: Canvas? = nil, sessionContext: String? = nil, sessionId: String? = nil) {
+            self.tracks = tracks
+            self.output = output
+            self.subAppId = subAppId
+            self.canvas = canvas
+            self.sessionContext = sessionContext
+            self.sessionId = sessionId
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case tracks = "Tracks"
+            case output = "Output"
+            case subAppId = "SubAppId"
+            case canvas = "Canvas"
+            case sessionContext = "SessionContext"
+            case sessionId = "SessionId"
+        }
+    }
+    
+    /// ComposeMedia返回参数结构体
+    public struct ComposeMediaResponse: TCResponseModel {
+        /// 制作媒体文件的任务 ID，可以通过该 ID 查询制作任务（任务类型为 MakeMedia）的状态。
+        public let taskId: String
+        
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case taskId = "TaskId"
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 视频合成
     ///
     /// 该接口用于合成媒体文件，可以达到以下效果：
@@ -47,58 +100,5 @@ extension Vod {
     @inlinable
     public func composeMedia(_ input: ComposeMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ComposeMediaResponse {
         try await self.client.execute(action: "ComposeMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// ComposeMedia请求参数结构体
-    public struct ComposeMediaRequest: TCRequestModel {
-        /// 输入的媒体轨道列表，包括视频、音频、图片等素材组成的多个轨道信息，其中：<li>输入的多个轨道在时间轴上和输出媒体文件的时间轴对齐；</li><li>时间轴上相同时间点的各个轨道的素材进行重叠，视频或者图片按轨道顺序进行图像的叠加，轨道顺序高的素材叠加在上面，音频素材进行混音；</li><li>视频、音频、图片，每一种类型的轨道最多支持 10 个。</li><li>所有类型的轨道上放置的媒体片段数量总和最多支持 500 个。</li>
-        public let tracks: [MediaTrack]
-        
-        /// 输出的媒体文件信息。
-        public let output: ComposeMediaOutput
-        
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
-        public let subAppId: UInt64?
-        
-        /// 制作视频文件时使用的画布。
-        public let canvas: Canvas
-        
-        /// 标识来源上下文，用于透传用户请求信息，在ComposeMediaComplete回调将返回该字段值，最长 1000个字符。
-        public let sessionContext: String?
-        
-        /// 用于任务去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
-        public let sessionId: String?
-        
-        public init (tracks: [MediaTrack], output: ComposeMediaOutput, subAppId: UInt64?, canvas: Canvas, sessionContext: String?, sessionId: String?) {
-            self.tracks = tracks
-            self.output = output
-            self.subAppId = subAppId
-            self.canvas = canvas
-            self.sessionContext = sessionContext
-            self.sessionId = sessionId
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case tracks = "Tracks"
-            case output = "Output"
-            case subAppId = "SubAppId"
-            case canvas = "Canvas"
-            case sessionContext = "SessionContext"
-            case sessionId = "SessionId"
-        }
-    }
-    
-    /// ComposeMedia返回参数结构体
-    public struct ComposeMediaResponse: TCResponseModel {
-        /// 制作媒体文件的任务 ID，可以通过该 ID 查询制作任务（任务类型为 MakeMedia）的状态。
-        public let taskId: String
-        
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case taskId = "TaskId"
-            case requestId = "RequestId"
-        }
     }
 }

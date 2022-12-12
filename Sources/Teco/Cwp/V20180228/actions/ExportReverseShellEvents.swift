@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 导出反弹Shell事件
-    @inlinable
-    public func exportReverseShellEvents(_ input: ExportReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportReverseShellEventsResponse > {
-        self.client.execute(action: "ExportReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出反弹Shell事件
-    @inlinable
-    public func exportReverseShellEvents(_ input: ExportReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportReverseShellEventsResponse {
-        try await self.client.execute(action: "ExportReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportReverseShellEvents请求参数结构体
     public struct ExportReverseShellEventsRequest: TCRequestModel {
         /// 过滤参数
         public let filters: [Filters]?
         
-        public init (filters: [Filters]?) {
+        public init (filters: [Filters]? = nil) {
             self.filters = filters
         }
         
@@ -57,5 +45,17 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出反弹Shell事件
+    @inlinable
+    public func exportReverseShellEvents(_ input: ExportReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportReverseShellEventsResponse > {
+        self.client.execute(action: "ExportReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出反弹Shell事件
+    @inlinable
+    public func exportReverseShellEvents(_ input: ExportReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportReverseShellEventsResponse {
+        try await self.client.execute(action: "ExportReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

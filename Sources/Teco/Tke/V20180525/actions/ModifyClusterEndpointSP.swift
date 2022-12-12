@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 修改托管集群外网端口的安全策略
-    ///
-    /// 修改托管集群外网端口的安全策略（老的方式，仅支持托管集群外网端口）
-    @inlinable
-    public func modifyClusterEndpointSP(_ input: ModifyClusterEndpointSPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterEndpointSPResponse > {
-        self.client.execute(action: "ModifyClusterEndpointSP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改托管集群外网端口的安全策略
-    ///
-    /// 修改托管集群外网端口的安全策略（老的方式，仅支持托管集群外网端口）
-    @inlinable
-    public func modifyClusterEndpointSP(_ input: ModifyClusterEndpointSPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterEndpointSPResponse {
-        try await self.client.execute(action: "ModifyClusterEndpointSP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClusterEndpointSP请求参数结构体
     public struct ModifyClusterEndpointSPRequest: TCRequestModel {
         /// 集群ID
@@ -42,7 +26,7 @@ extension Tke {
         /// 修改外网访问安全组
         public let securityGroup: String?
         
-        public init (clusterId: String, securityPolicies: [String]?, securityGroup: String?) {
+        public init (clusterId: String, securityPolicies: [String]? = nil, securityGroup: String? = nil) {
             self.clusterId = clusterId
             self.securityPolicies = securityPolicies
             self.securityGroup = securityGroup
@@ -63,5 +47,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改托管集群外网端口的安全策略
+    ///
+    /// 修改托管集群外网端口的安全策略（老的方式，仅支持托管集群外网端口）
+    @inlinable
+    public func modifyClusterEndpointSP(_ input: ModifyClusterEndpointSPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterEndpointSPResponse > {
+        self.client.execute(action: "ModifyClusterEndpointSP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改托管集群外网端口的安全策略
+    ///
+    /// 修改托管集群外网端口的安全策略（老的方式，仅支持托管集群外网端口）
+    @inlinable
+    public func modifyClusterEndpointSP(_ input: ModifyClusterEndpointSPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterEndpointSPResponse {
+        try await self.client.execute(action: "ModifyClusterEndpointSP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

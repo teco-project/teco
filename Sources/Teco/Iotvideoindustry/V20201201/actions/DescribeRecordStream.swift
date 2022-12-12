@@ -15,30 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取通道本地回放流地址（旧）
-    ///
-    /// 获取回放视频流地址
-    /// 请使用DescribeChannelLocalRecordURL接口
-    /// RecordId和StartTime/EndTime互斥
-    /// 当存在RecordId时，StartTime和EndTime无效
-    /// 当RecordId为空，StartTime和EndTime生效
-    @inlinable
-    public func describeRecordStream(_ input: DescribeRecordStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordStreamResponse > {
-        self.client.execute(action: "DescribeRecordStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取通道本地回放流地址（旧）
-    ///
-    /// 获取回放视频流地址
-    /// 请使用DescribeChannelLocalRecordURL接口
-    /// RecordId和StartTime/EndTime互斥
-    /// 当存在RecordId时，StartTime和EndTime无效
-    /// 当RecordId为空，StartTime和EndTime生效
-    @inlinable
-    public func describeRecordStream(_ input: DescribeRecordStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordStreamResponse {
-        try await self.client.execute(action: "DescribeRecordStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRecordStream请求参数结构体
     public struct DescribeRecordStreamRequest: TCRequestModel {
         /// 设备Id
@@ -59,7 +35,7 @@ extension Iotvideoindustry {
         /// 通道唯一标识（此接口升级为必填字段）
         public let channelId: String?
         
-        public init (deviceId: String, expireTime: Int64, recordId: String?, startTime: Int64?, endTime: Int64?, channelId: String?) {
+        public init (deviceId: String, expireTime: Int64, recordId: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, channelId: String? = nil) {
             self.deviceId = deviceId
             self.expireTime = expireTime
             self.recordId = recordId
@@ -90,5 +66,29 @@ extension Iotvideoindustry {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取通道本地回放流地址（旧）
+    ///
+    /// 获取回放视频流地址
+    /// 请使用DescribeChannelLocalRecordURL接口
+    /// RecordId和StartTime/EndTime互斥
+    /// 当存在RecordId时，StartTime和EndTime无效
+    /// 当RecordId为空，StartTime和EndTime生效
+    @inlinable
+    public func describeRecordStream(_ input: DescribeRecordStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordStreamResponse > {
+        self.client.execute(action: "DescribeRecordStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取通道本地回放流地址（旧）
+    ///
+    /// 获取回放视频流地址
+    /// 请使用DescribeChannelLocalRecordURL接口
+    /// RecordId和StartTime/EndTime互斥
+    /// 当存在RecordId时，StartTime和EndTime无效
+    /// 当RecordId为空，StartTime和EndTime生效
+    @inlinable
+    public func describeRecordStream(_ input: DescribeRecordStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordStreamResponse {
+        try await self.client.execute(action: "DescribeRecordStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

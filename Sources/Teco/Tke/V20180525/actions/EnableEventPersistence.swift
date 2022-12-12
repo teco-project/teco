@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 开启事件持久化功能
-    @inlinable
-    public func enableEventPersistence(_ input: EnableEventPersistenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableEventPersistenceResponse > {
-        self.client.execute(action: "EnableEventPersistence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启事件持久化功能
-    @inlinable
-    public func enableEventPersistence(_ input: EnableEventPersistenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableEventPersistenceResponse {
-        try await self.client.execute(action: "EnableEventPersistence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableEventPersistence请求参数结构体
     public struct EnableEventPersistenceRequest: TCRequestModel {
         /// 集群ID
@@ -38,7 +26,7 @@ extension Tke {
         /// cls服务的topicID
         public let topicId: String?
         
-        public init (clusterId: String, logsetId: String?, topicId: String?) {
+        public init (clusterId: String, logsetId: String? = nil, topicId: String? = nil) {
             self.clusterId = clusterId
             self.logsetId = logsetId
             self.topicId = topicId
@@ -59,5 +47,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启事件持久化功能
+    @inlinable
+    public func enableEventPersistence(_ input: EnableEventPersistenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableEventPersistenceResponse > {
+        self.client.execute(action: "EnableEventPersistence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启事件持久化功能
+    @inlinable
+    public func enableEventPersistence(_ input: EnableEventPersistenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableEventPersistenceResponse {
+        try await self.client.execute(action: "EnableEventPersistence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

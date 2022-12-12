@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 获取域名共享信息
-    @inlinable
-    public func describeDomainShareInfo(_ input: DescribeDomainShareInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainShareInfoResponse > {
-        self.client.execute(action: "DescribeDomainShareInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取域名共享信息
-    @inlinable
-    public func describeDomainShareInfo(_ input: DescribeDomainShareInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainShareInfoResponse {
-        try await self.client.execute(action: "DescribeDomainShareInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomainShareInfo请求参数结构体
     public struct DescribeDomainShareInfoRequest: TCRequestModel {
         /// 域名
@@ -35,7 +23,7 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         public let domainId: UInt64?
         
-        public init (domain: String, domainId: UInt64?) {
+        public init (domain: String, domainId: UInt64? = nil) {
             self.domain = domain
             self.domainId = domainId
         }
@@ -62,5 +50,17 @@ extension Dnspod {
             case owner = "Owner"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取域名共享信息
+    @inlinable
+    public func describeDomainShareInfo(_ input: DescribeDomainShareInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainShareInfoResponse > {
+        self.client.execute(action: "DescribeDomainShareInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取域名共享信息
+    @inlinable
+    public func describeDomainShareInfo(_ input: DescribeDomainShareInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainShareInfoResponse {
+        try await self.client.execute(action: "DescribeDomainShareInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

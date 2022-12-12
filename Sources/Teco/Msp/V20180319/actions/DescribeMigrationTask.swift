@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Msp {
-    /// 获取指定迁移任务详情
-    @inlinable
-    public func describeMigrationTask(_ input: DescribeMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationTaskResponse > {
-        self.client.execute(action: "DescribeMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取指定迁移任务详情
-    @inlinable
-    public func describeMigrationTask(_ input: DescribeMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationTaskResponse {
-        try await self.client.execute(action: "DescribeMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMigrationTask请求参数结构体
     public struct DescribeMigrationTaskRequest: TCRequestModel {
         /// 任务ID，例如msp-jitoh33n
@@ -53,5 +41,17 @@ extension Msp {
             case taskStatus = "TaskStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取指定迁移任务详情
+    @inlinable
+    public func describeMigrationTask(_ input: DescribeMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationTaskResponse > {
+        self.client.execute(action: "DescribeMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定迁移任务详情
+    @inlinable
+    public func describeMigrationTask(_ input: DescribeMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationTaskResponse {
+        try await self.client.execute(action: "DescribeMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

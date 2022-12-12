@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 修改集群标签
-    @inlinable
-    public func modifyClusterTags(_ input: ModifyClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterTagsResponse > {
-        self.client.execute(action: "ModifyClusterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改集群标签
-    @inlinable
-    public func modifyClusterTags(_ input: ModifyClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterTagsResponse {
-        try await self.client.execute(action: "ModifyClusterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClusterTags请求参数结构体
     public struct ModifyClusterTagsRequest: TCRequestModel {
         /// 待修改标签的集群ID
@@ -38,7 +26,7 @@ extension Tcaplusdb {
         /// 待删除的标签
         public let deleteTags: [TagInfoUnit]?
         
-        public init (clusterId: String, replaceTags: [TagInfoUnit]?, deleteTags: [TagInfoUnit]?) {
+        public init (clusterId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil) {
             self.clusterId = clusterId
             self.replaceTags = replaceTags
             self.deleteTags = deleteTags
@@ -64,5 +52,17 @@ extension Tcaplusdb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改集群标签
+    @inlinable
+    public func modifyClusterTags(_ input: ModifyClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterTagsResponse > {
+        self.client.execute(action: "ModifyClusterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改集群标签
+    @inlinable
+    public func modifyClusterTags(_ input: ModifyClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterTagsResponse {
+        try await self.client.execute(action: "ModifyClusterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

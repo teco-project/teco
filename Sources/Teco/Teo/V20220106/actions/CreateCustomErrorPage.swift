@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 创建自定义页
-    ///
-    /// 创建自定义规则的自定义页
-    @inlinable
-    public func createCustomErrorPage(_ input: CreateCustomErrorPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomErrorPageResponse > {
-        self.client.execute(action: "CreateCustomErrorPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建自定义页
-    ///
-    /// 创建自定义规则的自定义页
-    @inlinable
-    public func createCustomErrorPage(_ input: CreateCustomErrorPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomErrorPageResponse {
-        try await self.client.execute(action: "CreateCustomErrorPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCustomErrorPage请求参数结构体
     public struct CreateCustomErrorPageRequest: TCRequestModel {
         /// zone的id
@@ -72,5 +56,21 @@ extension Teo {
             case pageId = "PageId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建自定义页
+    ///
+    /// 创建自定义规则的自定义页
+    @inlinable
+    public func createCustomErrorPage(_ input: CreateCustomErrorPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomErrorPageResponse > {
+        self.client.execute(action: "CreateCustomErrorPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建自定义页
+    ///
+    /// 创建自定义规则的自定义页
+    @inlinable
+    public func createCustomErrorPage(_ input: CreateCustomErrorPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomErrorPageResponse {
+        try await self.client.execute(action: "CreateCustomErrorPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

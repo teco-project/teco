@@ -15,6 +15,45 @@
 // DO NOT EDIT.
 
 extension Cvm {
+    /// ResetInstancesInternetMaxBandwidth请求参数结构体
+    public struct ResetInstancesInternetMaxBandwidthRequest: TCRequestModel {
+        /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/9388)接口返回值中的 `InstanceId` 获取。 每次请求批量实例的上限为100。当调整 `BANDWIDTH_PREPAID` 和 `BANDWIDTH_POSTPAID_BY_HOUR` 计费方式的带宽时，只支持一个实例。
+        public let instanceIds: [String]
+        
+        /// 公网出带宽配置。不同机型带宽上限范围不一致，具体限制详见带宽限制对账表。暂时只支持 `InternetMaxBandwidthOut` 参数。
+        public let internetAccessible: InternetAccessible
+        
+        /// 带宽生效的起始时间。格式：`YYYY-MM-DD`，例如：`2016-10-30`。起始时间不能早于当前时间。如果起始时间是今天则新设置的带宽立即生效。该参数只对包年包月带宽有效，其他模式带宽不支持该参数，否则接口会以相应错误码返回。
+        public let startTime: String?
+        
+        /// 带宽生效的终止时间。格式： `YYYY-MM-DD` ，例如：`2016-10-30` 。新设置的带宽的有效期包含终止时间此日期。终止时间不能晚于包年包月实例的到期时间。实例的到期时间可通过 [`DescribeInstances`](https://cloud.tencent.com/document/api/213/9388)接口返回值中的`ExpiredTime`获取。该参数只对包年包月带宽有效，其他模式带宽不支持该参数，否则接口会以相应错误码返回。
+        public let endTime: String?
+        
+        public init (instanceIds: [String], internetAccessible: InternetAccessible, startTime: String? = nil, endTime: String? = nil) {
+            self.instanceIds = instanceIds
+            self.internetAccessible = internetAccessible
+            self.startTime = startTime
+            self.endTime = endTime
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case instanceIds = "InstanceIds"
+            case internetAccessible = "InternetAccessible"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+        }
+    }
+    
+    /// ResetInstancesInternetMaxBandwidth返回参数结构体
+    public struct ResetInstancesInternetMaxBandwidthResponse: TCResponseModel {
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 调整实例带宽上限
     ///
     /// 本接口 (ResetInstancesInternetMaxBandwidth) 用于调整实例公网带宽上限。
@@ -43,44 +82,5 @@ extension Cvm {
     @inlinable
     public func resetInstancesInternetMaxBandwidth(_ input: ResetInstancesInternetMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesInternetMaxBandwidthResponse {
         try await self.client.execute(action: "ResetInstancesInternetMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// ResetInstancesInternetMaxBandwidth请求参数结构体
-    public struct ResetInstancesInternetMaxBandwidthRequest: TCRequestModel {
-        /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/9388)接口返回值中的 `InstanceId` 获取。 每次请求批量实例的上限为100。当调整 `BANDWIDTH_PREPAID` 和 `BANDWIDTH_POSTPAID_BY_HOUR` 计费方式的带宽时，只支持一个实例。
-        public let instanceIds: [String]
-        
-        /// 公网出带宽配置。不同机型带宽上限范围不一致，具体限制详见带宽限制对账表。暂时只支持 `InternetMaxBandwidthOut` 参数。
-        public let internetAccessible: InternetAccessible
-        
-        /// 带宽生效的起始时间。格式：`YYYY-MM-DD`，例如：`2016-10-30`。起始时间不能早于当前时间。如果起始时间是今天则新设置的带宽立即生效。该参数只对包年包月带宽有效，其他模式带宽不支持该参数，否则接口会以相应错误码返回。
-        public let startTime: String?
-        
-        /// 带宽生效的终止时间。格式： `YYYY-MM-DD` ，例如：`2016-10-30` 。新设置的带宽的有效期包含终止时间此日期。终止时间不能晚于包年包月实例的到期时间。实例的到期时间可通过 [`DescribeInstances`](https://cloud.tencent.com/document/api/213/9388)接口返回值中的`ExpiredTime`获取。该参数只对包年包月带宽有效，其他模式带宽不支持该参数，否则接口会以相应错误码返回。
-        public let endTime: String?
-        
-        public init (instanceIds: [String], internetAccessible: InternetAccessible, startTime: String?, endTime: String?) {
-            self.instanceIds = instanceIds
-            self.internetAccessible = internetAccessible
-            self.startTime = startTime
-            self.endTime = endTime
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case instanceIds = "InstanceIds"
-            case internetAccessible = "InternetAccessible"
-            case startTime = "StartTime"
-            case endTime = "EndTime"
-        }
-    }
-    
-    /// ResetInstancesInternetMaxBandwidth返回参数结构体
-    public struct ResetInstancesInternetMaxBandwidthResponse: TCResponseModel {
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case requestId = "RequestId"
-        }
     }
 }

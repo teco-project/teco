@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 创建镜像签名
-    ///
-    /// 为一个镜像版本创建签名
-    @inlinable
-    public func createSignature(_ input: CreateSignatureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSignatureResponse > {
-        self.client.execute(action: "CreateSignature", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建镜像签名
-    ///
-    /// 为一个镜像版本创建签名
-    @inlinable
-    public func createSignature(_ input: CreateSignatureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignatureResponse {
-        try await self.client.execute(action: "CreateSignature", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSignature请求参数结构体
     public struct CreateSignatureRequest: TCRequestModel {
         /// 实例ID
@@ -68,5 +52,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建镜像签名
+    ///
+    /// 为一个镜像版本创建签名
+    @inlinable
+    public func createSignature(_ input: CreateSignatureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSignatureResponse > {
+        self.client.execute(action: "CreateSignature", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建镜像签名
+    ///
+    /// 为一个镜像版本创建签名
+    @inlinable
+    public func createSignature(_ input: CreateSignatureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignatureResponse {
+        try await self.client.execute(action: "CreateSignature", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

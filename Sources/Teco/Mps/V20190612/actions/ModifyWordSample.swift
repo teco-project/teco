@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 修改关键词样本
-    ///
-    /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
-    @inlinable
-    public func modifyWordSample(_ input: ModifyWordSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWordSampleResponse > {
-        self.client.execute(action: "ModifyWordSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改关键词样本
-    ///
-    /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
-    @inlinable
-    public func modifyWordSample(_ input: ModifyWordSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWordSampleResponse {
-        try await self.client.execute(action: "ModifyWordSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyWordSample请求参数结构体
     public struct ModifyWordSampleRequest: TCRequestModel {
         /// 关键词，长度限制：128 个字符。
@@ -48,9 +32,9 @@ extension Mps {
         public let usages: [String]?
         
         /// 标签操作信息。
-        public let tagOperationInfo: AiSampleTagOperation
+        public let tagOperationInfo: AiSampleTagOperation?
         
-        public init (keyword: String, usages: [String]?, tagOperationInfo: AiSampleTagOperation) {
+        public init (keyword: String, usages: [String]? = nil, tagOperationInfo: AiSampleTagOperation? = nil) {
             self.keyword = keyword
             self.usages = usages
             self.tagOperationInfo = tagOperationInfo
@@ -71,5 +55,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改关键词样本
+    ///
+    /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
+    @inlinable
+    public func modifyWordSample(_ input: ModifyWordSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWordSampleResponse > {
+        self.client.execute(action: "ModifyWordSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改关键词样本
+    ///
+    /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
+    @inlinable
+    public func modifyWordSample(_ input: ModifyWordSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWordSampleResponse {
+        try await self.client.execute(action: "ModifyWordSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

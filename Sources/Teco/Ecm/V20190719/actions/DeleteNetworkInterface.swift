@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 删除弹性网卡
-    @inlinable
-    public func deleteNetworkInterface(_ input: DeleteNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetworkInterfaceResponse > {
-        self.client.execute(action: "DeleteNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除弹性网卡
-    @inlinable
-    public func deleteNetworkInterface(_ input: DeleteNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkInterfaceResponse {
-        try await self.client.execute(action: "DeleteNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteNetworkInterface请求参数结构体
     public struct DeleteNetworkInterfaceRequest: TCRequestModel {
         /// 弹性网卡实例ID，例如：eni-m6dyj72l。
@@ -54,5 +42,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除弹性网卡
+    @inlinable
+    public func deleteNetworkInterface(_ input: DeleteNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetworkInterfaceResponse > {
+        self.client.execute(action: "DeleteNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除弹性网卡
+    @inlinable
+    public func deleteNetworkInterface(_ input: DeleteNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkInterfaceResponse {
+        try await self.client.execute(action: "DeleteNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

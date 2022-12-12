@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 删除攻击日志下载任务记录
-    @inlinable
-    public func deleteAttackDownloadRecord(_ input: DeleteAttackDownloadRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAttackDownloadRecordResponse > {
-        self.client.execute(action: "DeleteAttackDownloadRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除攻击日志下载任务记录
-    @inlinable
-    public func deleteAttackDownloadRecord(_ input: DeleteAttackDownloadRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackDownloadRecordResponse {
-        try await self.client.execute(action: "DeleteAttackDownloadRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAttackDownloadRecord请求参数结构体
     public struct DeleteAttackDownloadRecordRequest: TCRequestModel {
         /// 下载任务记录唯一标记
@@ -49,5 +37,17 @@ extension Waf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除攻击日志下载任务记录
+    @inlinable
+    public func deleteAttackDownloadRecord(_ input: DeleteAttackDownloadRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAttackDownloadRecordResponse > {
+        self.client.execute(action: "DeleteAttackDownloadRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除攻击日志下载任务记录
+    @inlinable
+    public func deleteAttackDownloadRecord(_ input: DeleteAttackDownloadRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackDownloadRecordResponse {
+        try await self.client.execute(action: "DeleteAttackDownloadRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

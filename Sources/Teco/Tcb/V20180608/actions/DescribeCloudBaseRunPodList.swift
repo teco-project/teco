@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询云应用服务版本容器列表
-    @inlinable
-    public func describeCloudBaseRunPodList(_ input: DescribeCloudBaseRunPodListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunPodListResponse > {
-        self.client.execute(action: "DescribeCloudBaseRunPodList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云应用服务版本容器列表
-    @inlinable
-    public func describeCloudBaseRunPodList(_ input: DescribeCloudBaseRunPodListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunPodListResponse {
-        try await self.client.execute(action: "DescribeCloudBaseRunPodList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudBaseRunPodList请求参数结构体
     public struct DescribeCloudBaseRunPodListRequest: TCRequestModel {
         /// 环境id
@@ -50,7 +38,7 @@ extension Tcb {
         /// 容器名
         public let podName: String?
         
-        public init (envId: String, serverName: String, versionName: String, limit: Int64?, offset: Int64?, status: String?, podName: String?) {
+        public init (envId: String, serverName: String, versionName: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, podName: String? = nil) {
             self.envId = envId
             self.serverName = serverName
             self.versionName = versionName
@@ -79,5 +67,17 @@ extension Tcb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云应用服务版本容器列表
+    @inlinable
+    public func describeCloudBaseRunPodList(_ input: DescribeCloudBaseRunPodListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunPodListResponse > {
+        self.client.execute(action: "DescribeCloudBaseRunPodList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云应用服务版本容器列表
+    @inlinable
+    public func describeCloudBaseRunPodList(_ input: DescribeCloudBaseRunPodListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunPodListResponse {
+        try await self.client.execute(action: "DescribeCloudBaseRunPodList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

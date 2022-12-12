@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 增加机器关联标签
-    @inlinable
-    public func addMachineTag(_ input: AddMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddMachineTagResponse > {
-        self.client.execute(action: "AddMachineTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 增加机器关联标签
-    @inlinable
-    public func addMachineTag(_ input: AddMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddMachineTagResponse {
-        try await self.client.execute(action: "AddMachineTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddMachineTag请求参数结构体
     public struct AddMachineTagRequest: TCRequestModel {
         /// 云服务器ID
@@ -64,5 +52,17 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 增加机器关联标签
+    @inlinable
+    public func addMachineTag(_ input: AddMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddMachineTagResponse > {
+        self.client.execute(action: "AddMachineTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 增加机器关联标签
+    @inlinable
+    public func addMachineTag(_ input: AddMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddMachineTagResponse {
+        try await self.client.execute(action: "AddMachineTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

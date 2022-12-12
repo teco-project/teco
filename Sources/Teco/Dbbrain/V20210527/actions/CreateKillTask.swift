@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 创建中断会话的任务
-    ///
-    /// 创建中断会话的任务。
-    @inlinable
-    public func createKillTask(_ input: CreateKillTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateKillTaskResponse > {
-        self.client.execute(action: "CreateKillTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建中断会话的任务
-    ///
-    /// 创建中断会话的任务。
-    @inlinable
-    public func createKillTask(_ input: CreateKillTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKillTaskResponse {
-        try await self.client.execute(action: "CreateKillTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateKillTask请求参数结构体
     public struct CreateKillTaskRequest: TCRequestModel {
         /// kill会话任务的关联实例ID。
@@ -60,7 +44,7 @@ extension Dbbrain {
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
         public let product: String?
         
-        public init (instanceId: String, duration: Int64, host: String?, db: String?, command: String?, info: String?, user: String?, time: Int64?, product: String?) {
+        public init (instanceId: String, duration: Int64, host: String? = nil, db: String? = nil, command: String? = nil, info: String? = nil, user: String? = nil, time: Int64? = nil, product: String? = nil) {
             self.instanceId = instanceId
             self.duration = duration
             self.host = host
@@ -97,5 +81,21 @@ extension Dbbrain {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建中断会话的任务
+    ///
+    /// 创建中断会话的任务。
+    @inlinable
+    public func createKillTask(_ input: CreateKillTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateKillTaskResponse > {
+        self.client.execute(action: "CreateKillTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建中断会话的任务
+    ///
+    /// 创建中断会话的任务。
+    @inlinable
+    public func createKillTask(_ input: CreateKillTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKillTaskResponse {
+        try await self.client.execute(action: "CreateKillTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

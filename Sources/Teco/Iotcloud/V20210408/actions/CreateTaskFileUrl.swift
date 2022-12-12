@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取任务文件上传链接
-    ///
-    /// 本接口（CreateTaskFileUrl）用于获取产品级任务文件上传链接
-    @inlinable
-    public func createTaskFileUrl(_ input: CreateTaskFileUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskFileUrlResponse > {
-        self.client.execute(action: "CreateTaskFileUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取任务文件上传链接
-    ///
-    /// 本接口（CreateTaskFileUrl）用于获取产品级任务文件上传链接
-    @inlinable
-    public func createTaskFileUrl(_ input: CreateTaskFileUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFileUrlResponse {
-        try await self.client.execute(action: "CreateTaskFileUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTaskFileUrl请求参数结构体
     public struct CreateTaskFileUrlRequest: TCRequestModel {
         /// 产品ID
@@ -61,5 +45,21 @@ extension Iotcloud {
             case fileName = "FileName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取任务文件上传链接
+    ///
+    /// 本接口（CreateTaskFileUrl）用于获取产品级任务文件上传链接
+    @inlinable
+    public func createTaskFileUrl(_ input: CreateTaskFileUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskFileUrlResponse > {
+        self.client.execute(action: "CreateTaskFileUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务文件上传链接
+    ///
+    /// 本接口（CreateTaskFileUrl）用于获取产品级任务文件上传链接
+    @inlinable
+    public func createTaskFileUrl(_ input: CreateTaskFileUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFileUrlResponse {
+        try await self.client.execute(action: "CreateTaskFileUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

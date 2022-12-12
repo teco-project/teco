@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取爆破阻断模式
-    @inlinable
-    public func describeBanMode(_ input: DescribeBanModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBanModeResponse > {
-        self.client.execute(action: "DescribeBanMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取爆破阻断模式
-    @inlinable
-    public func describeBanMode(_ input: DescribeBanModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanModeResponse {
-        try await self.client.execute(action: "DescribeBanMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBanMode请求参数结构体
     public struct DescribeBanModeRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Cwp {
             case standardModeConfig = "StandardModeConfig"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取爆破阻断模式
+    @inlinable
+    public func describeBanMode(_ input: DescribeBanModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBanModeResponse > {
+        self.client.execute(action: "DescribeBanMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取爆破阻断模式
+    @inlinable
+    public func describeBanMode(_ input: DescribeBanModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanModeResponse {
+        try await self.client.execute(action: "DescribeBanMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

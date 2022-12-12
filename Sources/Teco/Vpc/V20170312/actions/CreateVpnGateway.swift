@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建VPN网关
-    ///
-    /// 本接口（CreateVpnGateway）用于创建VPN网关。
-    @inlinable
-    public func createVpnGateway(_ input: CreateVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpnGatewayResponse > {
-        self.client.execute(action: "CreateVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建VPN网关
-    ///
-    /// 本接口（CreateVpnGateway）用于创建VPN网关。
-    @inlinable
-    public func createVpnGateway(_ input: CreateVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewayResponse {
-        try await self.client.execute(action: "CreateVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVpnGateway请求参数结构体
     public struct CreateVpnGatewayRequest: TCRequestModel {
         /// VPC实例ID。可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口返回值中的VpcId获取。
@@ -46,7 +30,7 @@ extension Vpc {
         public let instanceChargeType: String?
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 可用区，如：ap-guangzhou-2。
         public let zone: String?
@@ -63,7 +47,7 @@ extension Vpc {
         /// SSL-VPN 最大CLIENT 连接数。可选 [5, 10, 20, 50, 100]。仅SSL-VPN 需要选这个参数。
         public let maxConnection: UInt64?
         
-        public init (vpcId: String, vpnGatewayName: String, internetMaxBandwidthOut: UInt64, instanceChargeType: String?, instanceChargePrepaid: InstanceChargePrepaid, zone: String?, type: String?, tags: [Tag]?, cdcId: String?, maxConnection: UInt64?) {
+        public init (vpcId: String, vpnGatewayName: String, internetMaxBandwidthOut: UInt64, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, zone: String? = nil, type: String? = nil, tags: [Tag]? = nil, cdcId: String? = nil, maxConnection: UInt64? = nil) {
             self.vpcId = vpcId
             self.vpnGatewayName = vpnGatewayName
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
@@ -102,5 +86,21 @@ extension Vpc {
             case vpnGateway = "VpnGateway"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建VPN网关
+    ///
+    /// 本接口（CreateVpnGateway）用于创建VPN网关。
+    @inlinable
+    public func createVpnGateway(_ input: CreateVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpnGatewayResponse > {
+        self.client.execute(action: "CreateVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建VPN网关
+    ///
+    /// 本接口（CreateVpnGateway）用于创建VPN网关。
+    @inlinable
+    public func createVpnGateway(_ input: CreateVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewayResponse {
+        try await self.client.execute(action: "CreateVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

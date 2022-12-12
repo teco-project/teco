@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 查询负载均衡闲置实例
-    ///
-    /// 闲置实例是指创建超过7天后付费实例，且没有创建规则或创建规则没有绑定子机的负载均衡实例。
-    @inlinable
-    public func describeIdleLoadBalancers(_ input: DescribeIdleLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIdleLoadBalancersResponse > {
-        self.client.execute(action: "DescribeIdleLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询负载均衡闲置实例
-    ///
-    /// 闲置实例是指创建超过7天后付费实例，且没有创建规则或创建规则没有绑定子机的负载均衡实例。
-    @inlinable
-    public func describeIdleLoadBalancers(_ input: DescribeIdleLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdleLoadBalancersResponse {
-        try await self.client.execute(action: "DescribeIdleLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIdleLoadBalancers请求参数结构体
     public struct DescribeIdleLoadBalancersRequest: TCRequestModel {
         /// 数据偏移量，默认为0。
@@ -42,7 +26,7 @@ extension Clb {
         /// 负载均衡所在地域。
         public let loadBalancerRegion: String?
         
-        public init (offset: UInt64?, limit: UInt64?, loadBalancerRegion: String?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, loadBalancerRegion: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.loadBalancerRegion = loadBalancerRegion
@@ -72,5 +56,21 @@ extension Clb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询负载均衡闲置实例
+    ///
+    /// 闲置实例是指创建超过7天后付费实例，且没有创建规则或创建规则没有绑定子机的负载均衡实例。
+    @inlinable
+    public func describeIdleLoadBalancers(_ input: DescribeIdleLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIdleLoadBalancersResponse > {
+        self.client.execute(action: "DescribeIdleLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询负载均衡闲置实例
+    ///
+    /// 闲置实例是指创建超过7天后付费实例，且没有创建规则或创建规则没有绑定子机的负载均衡实例。
+    @inlinable
+    public func describeIdleLoadBalancers(_ input: DescribeIdleLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdleLoadBalancersResponse {
+        try await self.client.execute(action: "DescribeIdleLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

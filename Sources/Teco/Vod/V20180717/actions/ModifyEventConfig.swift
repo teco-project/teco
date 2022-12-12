@@ -15,30 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 修改事件通知配置
-    ///
-    /// 腾讯云点播为客户提供了媒体上传、媒体管理、媒体处理等等服务，在这些服务执行过程或执行结束时，腾讯云点播也提供各种对应的事件通知，方便开发者感知服务处理状态，并做下一步的业务操作。
-    /// 开发者可以通过调用本接口来实现：
-    /// - 设置接收回调通知的类型，目前有[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779) 和 [基于消息队列的可靠通知](https://cloud.tencent.com/document/product/266/33779) 两种类型。
-    /// - 对于[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779)，可设置 3.0 格式回调的地址。3.0 格式回调的说明参见 [历史格式回调](https://cloud.tencent.com/document/product/266/33796)。
-    /// - 对具体事件服务的通知事件选择设置接收或者忽略。
-    @inlinable
-    public func modifyEventConfig(_ input: ModifyEventConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEventConfigResponse > {
-        self.client.execute(action: "ModifyEventConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改事件通知配置
-    ///
-    /// 腾讯云点播为客户提供了媒体上传、媒体管理、媒体处理等等服务，在这些服务执行过程或执行结束时，腾讯云点播也提供各种对应的事件通知，方便开发者感知服务处理状态，并做下一步的业务操作。
-    /// 开发者可以通过调用本接口来实现：
-    /// - 设置接收回调通知的类型，目前有[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779) 和 [基于消息队列的可靠通知](https://cloud.tencent.com/document/product/266/33779) 两种类型。
-    /// - 对于[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779)，可设置 3.0 格式回调的地址。3.0 格式回调的说明参见 [历史格式回调](https://cloud.tencent.com/document/product/266/33796)。
-    /// - 对具体事件服务的通知事件选择设置接收或者忽略。
-    @inlinable
-    public func modifyEventConfig(_ input: ModifyEventConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEventConfigResponse {
-        try await self.client.execute(action: "ModifyEventConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyEventConfig请求参数结构体
     public struct ModifyEventConfigRequest: TCRequestModel {
         /// 接收事件通知的方式。
@@ -59,7 +35,7 @@ extension Vod {
         /// 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
         public let subAppId: UInt64?
         
-        public init (mode: String?, notificationUrl: String?, uploadMediaCompleteEventSwitch: String?, deleteMediaCompleteEventSwitch: String?, subAppId: UInt64?) {
+        public init (mode: String? = nil, notificationUrl: String? = nil, uploadMediaCompleteEventSwitch: String? = nil, deleteMediaCompleteEventSwitch: String? = nil, subAppId: UInt64? = nil) {
             self.mode = mode
             self.notificationUrl = notificationUrl
             self.uploadMediaCompleteEventSwitch = uploadMediaCompleteEventSwitch
@@ -84,5 +60,29 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改事件通知配置
+    ///
+    /// 腾讯云点播为客户提供了媒体上传、媒体管理、媒体处理等等服务，在这些服务执行过程或执行结束时，腾讯云点播也提供各种对应的事件通知，方便开发者感知服务处理状态，并做下一步的业务操作。
+    /// 开发者可以通过调用本接口来实现：
+    /// - 设置接收回调通知的类型，目前有[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779) 和 [基于消息队列的可靠通知](https://cloud.tencent.com/document/product/266/33779) 两种类型。
+    /// - 对于[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779)，可设置 3.0 格式回调的地址。3.0 格式回调的说明参见 [历史格式回调](https://cloud.tencent.com/document/product/266/33796)。
+    /// - 对具体事件服务的通知事件选择设置接收或者忽略。
+    @inlinable
+    public func modifyEventConfig(_ input: ModifyEventConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEventConfigResponse > {
+        self.client.execute(action: "ModifyEventConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改事件通知配置
+    ///
+    /// 腾讯云点播为客户提供了媒体上传、媒体管理、媒体处理等等服务，在这些服务执行过程或执行结束时，腾讯云点播也提供各种对应的事件通知，方便开发者感知服务处理状态，并做下一步的业务操作。
+    /// 开发者可以通过调用本接口来实现：
+    /// - 设置接收回调通知的类型，目前有[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779) 和 [基于消息队列的可靠通知](https://cloud.tencent.com/document/product/266/33779) 两种类型。
+    /// - 对于[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779)，可设置 3.0 格式回调的地址。3.0 格式回调的说明参见 [历史格式回调](https://cloud.tencent.com/document/product/266/33796)。
+    /// - 对具体事件服务的通知事件选择设置接收或者忽略。
+    @inlinable
+    public func modifyEventConfig(_ input: ModifyEventConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEventConfigResponse {
+        try await self.client.execute(action: "ModifyEventConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

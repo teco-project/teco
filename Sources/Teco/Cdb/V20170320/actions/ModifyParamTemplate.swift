@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 修改参数模板
-    ///
-    /// 该接口（ModifyParamTemplate）用于修改参数模板，全地域公共参数Region均为ap-guangzhou。
-    @inlinable
-    public func modifyParamTemplate(_ input: ModifyParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyParamTemplateResponse > {
-        self.client.execute(action: "ModifyParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改参数模板
-    ///
-    /// 该接口（ModifyParamTemplate）用于修改参数模板，全地域公共参数Region均为ap-guangzhou。
-    @inlinable
-    public func modifyParamTemplate(_ input: ModifyParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyParamTemplateResponse {
-        try await self.client.execute(action: "ModifyParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyParamTemplate请求参数结构体
     public struct ModifyParamTemplateRequest: TCRequestModel {
         /// 模板 ID。
@@ -45,7 +29,7 @@ extension Cdb {
         /// 参数列表。
         public let paramList: [Parameter]?
         
-        public init (templateId: Int64, name: String?, description: String?, paramList: [Parameter]?) {
+        public init (templateId: Int64, name: String? = nil, description: String? = nil, paramList: [Parameter]? = nil) {
             self.templateId = templateId
             self.name = name
             self.description = description
@@ -68,5 +52,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改参数模板
+    ///
+    /// 该接口（ModifyParamTemplate）用于修改参数模板，全地域公共参数Region均为ap-guangzhou。
+    @inlinable
+    public func modifyParamTemplate(_ input: ModifyParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyParamTemplateResponse > {
+        self.client.execute(action: "ModifyParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改参数模板
+    ///
+    /// 该接口（ModifyParamTemplate）用于修改参数模板，全地域公共参数Region均为ap-guangzhou。
+    @inlinable
+    public func modifyParamTemplate(_ input: ModifyParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyParamTemplateResponse {
+        try await self.client.execute(action: "ModifyParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

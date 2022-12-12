@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ciam {
-    /// 新建接口导入用户任务
-    @inlinable
-    public func createApiImportUserJob(_ input: CreateApiImportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApiImportUserJobResponse > {
-        self.client.execute(action: "CreateApiImportUserJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建接口导入用户任务
-    @inlinable
-    public func createApiImportUserJob(_ input: CreateApiImportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiImportUserJobResponse {
-        try await self.client.execute(action: "CreateApiImportUserJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateApiImportUserJob请求参数结构体
     public struct CreateApiImportUserJobRequest: TCRequestModel {
         /// 用户目录ID
@@ -58,5 +46,17 @@ extension Ciam {
             case job = "Job"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建接口导入用户任务
+    @inlinable
+    public func createApiImportUserJob(_ input: CreateApiImportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApiImportUserJobResponse > {
+        self.client.execute(action: "CreateApiImportUserJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建接口导入用户任务
+    @inlinable
+    public func createApiImportUserJob(_ input: CreateApiImportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiImportUserJobResponse {
+        try await self.client.execute(action: "CreateApiImportUserJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

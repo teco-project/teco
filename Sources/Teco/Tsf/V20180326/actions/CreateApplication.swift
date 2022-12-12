@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 创建应用
-    @inlinable
-    public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationResponse > {
-        self.client.execute(action: "CreateApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建应用
-    @inlinable
-    public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationResponse {
-        try await self.client.execute(action: "CreateApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateApplication请求参数结构体
     public struct CreateApplicationRequest: TCRequestModel {
         /// 应用名称
@@ -62,7 +50,7 @@ extension Tsf {
         /// 无
         public let programIdList: [String]?
         
-        public init (applicationName: String, applicationType: String, microserviceType: String, applicationDesc: String?, applicationLogConfig: String?, applicationResourceType: String?, applicationRuntimeType: String?, programId: String?, serviceConfigList: [ServiceConfig]?, ignoreCreateImageRepository: Bool?, programIdList: [String]?) {
+        public init (applicationName: String, applicationType: String, microserviceType: String, applicationDesc: String? = nil, applicationLogConfig: String? = nil, applicationResourceType: String? = nil, applicationRuntimeType: String? = nil, programId: String? = nil, serviceConfigList: [ServiceConfig]? = nil, ignoreCreateImageRepository: Bool? = nil, programIdList: [String]? = nil) {
             self.applicationName = applicationName
             self.applicationType = applicationType
             self.microserviceType = microserviceType
@@ -104,5 +92,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建应用
+    @inlinable
+    public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationResponse > {
+        self.client.execute(action: "CreateApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建应用
+    @inlinable
+    public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationResponse {
+        try await self.client.execute(action: "CreateApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

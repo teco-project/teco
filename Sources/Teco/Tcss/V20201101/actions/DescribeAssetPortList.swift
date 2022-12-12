@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询端口占用列表
-    ///
-    /// 容器安全搜索查询端口占用列表
-    @inlinable
-    public func describeAssetPortList(_ input: DescribeAssetPortListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetPortListResponse > {
-        self.client.execute(action: "DescribeAssetPortList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询端口占用列表
-    ///
-    /// 容器安全搜索查询端口占用列表
-    @inlinable
-    public func describeAssetPortList(_ input: DescribeAssetPortListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetPortListResponse {
-        try await self.client.execute(action: "DescribeAssetPortList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetPortList请求参数结构体
     public struct DescribeAssetPortListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -48,7 +32,7 @@ extension Tcss {
         /// <li>ProcessName- string - 是否必填：否 - 进程名搜索</li>
         public let filters: [AssetFilters]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [AssetFilters]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -77,5 +61,21 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询端口占用列表
+    ///
+    /// 容器安全搜索查询端口占用列表
+    @inlinable
+    public func describeAssetPortList(_ input: DescribeAssetPortListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetPortListResponse > {
+        self.client.execute(action: "DescribeAssetPortList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询端口占用列表
+    ///
+    /// 容器安全搜索查询端口占用列表
+    @inlinable
+    public func describeAssetPortList(_ input: DescribeAssetPortListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetPortListResponse {
+        try await self.client.execute(action: "DescribeAssetPortList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

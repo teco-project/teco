@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 修改专用通道扩展信息
-    ///
-    /// 本接口（ModifyDirectConnectTunnelExtra）用于修改专用通道扩展信息
-    @inlinable
-    public func modifyDirectConnectTunnelExtra(_ input: ModifyDirectConnectTunnelExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDirectConnectTunnelExtraResponse > {
-        self.client.execute(action: "ModifyDirectConnectTunnelExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改专用通道扩展信息
-    ///
-    /// 本接口（ModifyDirectConnectTunnelExtra）用于修改专用通道扩展信息
-    @inlinable
-    public func modifyDirectConnectTunnelExtra(_ input: ModifyDirectConnectTunnelExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectTunnelExtraResponse {
-        try await self.client.execute(action: "ModifyDirectConnectTunnelExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDirectConnectTunnelExtra请求参数结构体
     public struct ModifyDirectConnectTunnelExtraRequest: TCRequestModel {
         /// 专用通道ID
@@ -40,10 +24,10 @@ extension Dc {
         public let vlan: Int64?
         
         /// 用户侧BGP，Asn，AuthKey
-        public let bgpPeer: BgpPeer
+        public let bgpPeer: BgpPeer?
         
         /// 用户侧过滤网段地址
-        public let routeFilterPrefixes: RouteFilterPrefix
+        public let routeFilterPrefixes: RouteFilterPrefix?
         
         /// 腾讯侧互联IP
         public let tencentAddress: String?
@@ -67,10 +51,10 @@ extension Dc {
         public let nqaEnable: Int64?
         
         /// BFD配置信息
-        public let bfdInfo: BFDInfo
+        public let bfdInfo: BFDInfo?
         
         /// NQA配置信息
-        public let nqaInfo: NQAInfo
+        public let nqaInfo: NQAInfo?
         
         /// 0：停用IPv6
         /// 1: 启用IPv6
@@ -84,7 +68,7 @@ extension Dc {
         /// 0：不开启
         public let jumboEnable: Int64?
         
-        public init (directConnectTunnelId: String, vlan: Int64?, bgpPeer: BgpPeer, routeFilterPrefixes: RouteFilterPrefix, tencentAddress: String?, tencentBackupAddress: String?, customerAddress: String?, bandwidth: Int64?, enableBGPCommunity: Bool?, bfdEnable: Int64?, nqaEnable: Int64?, bfdInfo: BFDInfo, nqaInfo: NQAInfo, iPv6Enable: Int64?, customerIDCRoutes: [RouteFilterPrefix]?, jumboEnable: Int64?) {
+        public init (directConnectTunnelId: String, vlan: Int64? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: RouteFilterPrefix? = nil, tencentAddress: String? = nil, tencentBackupAddress: String? = nil, customerAddress: String? = nil, bandwidth: Int64? = nil, enableBGPCommunity: Bool? = nil, bfdEnable: Int64? = nil, nqaEnable: Int64? = nil, bfdInfo: BFDInfo? = nil, nqaInfo: NQAInfo? = nil, iPv6Enable: Int64? = nil, customerIDCRoutes: [RouteFilterPrefix]? = nil, jumboEnable: Int64? = nil) {
             self.directConnectTunnelId = directConnectTunnelId
             self.vlan = vlan
             self.bgpPeer = bgpPeer
@@ -131,5 +115,21 @@ extension Dc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改专用通道扩展信息
+    ///
+    /// 本接口（ModifyDirectConnectTunnelExtra）用于修改专用通道扩展信息
+    @inlinable
+    public func modifyDirectConnectTunnelExtra(_ input: ModifyDirectConnectTunnelExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDirectConnectTunnelExtraResponse > {
+        self.client.execute(action: "ModifyDirectConnectTunnelExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改专用通道扩展信息
+    ///
+    /// 本接口（ModifyDirectConnectTunnelExtra）用于修改专用通道扩展信息
+    @inlinable
+    public func modifyDirectConnectTunnelExtra(_ input: ModifyDirectConnectTunnelExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectTunnelExtraResponse {
+        try await self.client.execute(action: "ModifyDirectConnectTunnelExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

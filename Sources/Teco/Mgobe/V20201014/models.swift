@@ -38,7 +38,7 @@ extension Mgobe {
         /// 自定义玩家属性。最长不超过256个字符。默认为空字符串。
         public let customProfile: String?
         
-        public init (openId: String, name: String, teamId: String, isRobot: Bool, playerId: String?, customPlayerStatus: UInt64?, customProfile: String?) {
+        public init (openId: String, name: String, teamId: String, isRobot: Bool, playerId: String? = nil, customPlayerStatus: UInt64? = nil, customProfile: String? = nil) {
             self.openId = openId
             self.name = name
             self.teamId = teamId
@@ -112,7 +112,7 @@ extension Mgobe {
         /// 表示房主PlayerId。
         public let owner: String?
         
-        public init (name: String, maxPlayers: Int64, ownerOpenId: String, isPrivate: Bool, players: [Player], teams: [Team], id: String?, type: String?, createType: Int64?, customProperties: String?, frameSyncState: Int64?, frameRate: Int64?, routeId: String?, createTime: Int64?, startGameTime: Int64?, isForbidJoin: Bool?, owner: String?) {
+        public init (name: String, maxPlayers: Int64, ownerOpenId: String, isPrivate: Bool, players: [Player], teams: [Team], id: String? = nil, type: String? = nil, createType: Int64? = nil, customProperties: String? = nil, frameSyncState: Int64? = nil, frameRate: Int64? = nil, routeId: String? = nil, createTime: Int64? = nil, startGameTime: Int64? = nil, isForbidJoin: Bool? = nil, owner: String? = nil) {
             self.name = name
             self.maxPlayers = maxPlayers
             self.ownerOpenId = ownerOpenId

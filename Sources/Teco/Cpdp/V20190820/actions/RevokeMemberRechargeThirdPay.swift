@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-撤销会员在途充值(经第三方支付渠道)
-    ///
-    /// 撤销会员在途充值(经第三方支付渠道)
-    @inlinable
-    public func revokeMemberRechargeThirdPay(_ input: RevokeMemberRechargeThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevokeMemberRechargeThirdPayResponse > {
-        self.client.execute(action: "RevokeMemberRechargeThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-撤销会员在途充值(经第三方支付渠道)
-    ///
-    /// 撤销会员在途充值(经第三方支付渠道)
-    @inlinable
-    public func revokeMemberRechargeThirdPay(_ input: RevokeMemberRechargeThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeMemberRechargeThirdPayResponse {
-        try await self.client.execute(action: "RevokeMemberRechargeThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RevokeMemberRechargeThirdPay请求参数结构体
     public struct RevokeMemberRechargeThirdPayRequest: TCRequestModel {
         /// STRING(52)，原充值的前置流水号
@@ -69,7 +53,7 @@ extension Cpdp {
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
         
-        public init (oldFillFrontSeqNo: String, oldFillPayChannelType: String, oldPayChannelTranSeqNo: String, oldFillEjzbOrderNo: String, applyCancelMemberAmt: String, applyCancelCommission: String, mrchCode: String, remark: String?, reservedMsgOne: String?, reservedMsgTwo: String?, reservedMsgThree: String?, profile: String?) {
+        public init (oldFillFrontSeqNo: String, oldFillPayChannelType: String, oldPayChannelTranSeqNo: String, oldFillEjzbOrderNo: String, applyCancelMemberAmt: String, applyCancelCommission: String, mrchCode: String, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil) {
             self.oldFillFrontSeqNo = oldFillFrontSeqNo
             self.oldFillPayChannelType = oldFillPayChannelType
             self.oldPayChannelTranSeqNo = oldPayChannelTranSeqNo
@@ -135,5 +119,21 @@ extension Cpdp {
             case reservedMsgTwo = "ReservedMsgTwo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-撤销会员在途充值(经第三方支付渠道)
+    ///
+    /// 撤销会员在途充值(经第三方支付渠道)
+    @inlinable
+    public func revokeMemberRechargeThirdPay(_ input: RevokeMemberRechargeThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevokeMemberRechargeThirdPayResponse > {
+        self.client.execute(action: "RevokeMemberRechargeThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-撤销会员在途充值(经第三方支付渠道)
+    ///
+    /// 撤销会员在途充值(经第三方支付渠道)
+    @inlinable
+    public func revokeMemberRechargeThirdPay(_ input: RevokeMemberRechargeThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeMemberRechargeThirdPayResponse {
+        try await self.client.execute(action: "RevokeMemberRechargeThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

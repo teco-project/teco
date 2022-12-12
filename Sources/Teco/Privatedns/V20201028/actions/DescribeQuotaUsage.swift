@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 查询额度使用情况
-    @inlinable
-    public func describeQuotaUsage(_ input: DescribeQuotaUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQuotaUsageResponse > {
-        self.client.execute(action: "DescribeQuotaUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询额度使用情况
-    @inlinable
-    public func describeQuotaUsage(_ input: DescribeQuotaUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaUsageResponse {
-        try await self.client.execute(action: "DescribeQuotaUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeQuotaUsage请求参数结构体
     public struct DescribeQuotaUsageRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Privatedns {
             case tldQuota = "TldQuota"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询额度使用情况
+    @inlinable
+    public func describeQuotaUsage(_ input: DescribeQuotaUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQuotaUsageResponse > {
+        self.client.execute(action: "DescribeQuotaUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询额度使用情况
+    @inlinable
+    public func describeQuotaUsage(_ input: DescribeQuotaUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaUsageResponse {
+        try await self.client.execute(action: "DescribeQuotaUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

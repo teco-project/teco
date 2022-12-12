@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 展示当前natfw 实例对应的vpc dns开关
-    @inlinable
-    public func describeNatFwVpcDnsLst(_ input: DescribeNatFwVpcDnsLstRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwVpcDnsLstResponse > {
-        self.client.execute(action: "DescribeNatFwVpcDnsLst", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 展示当前natfw 实例对应的vpc dns开关
-    @inlinable
-    public func describeNatFwVpcDnsLst(_ input: DescribeNatFwVpcDnsLstRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwVpcDnsLstResponse {
-        try await self.client.execute(action: "DescribeNatFwVpcDnsLst", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNatFwVpcDnsLst请求参数结构体
     public struct DescribeNatFwVpcDnsLstRequest: TCRequestModel {
         /// natfw 防火墙实例id
@@ -41,7 +29,7 @@ extension Cfw {
         /// 每页最多个数
         public let limit: Int64?
         
-        public init (natFwInsId: String, natInsIdFilter: String?, offset: Int64?, limit: Int64?) {
+        public init (natFwInsId: String, natInsIdFilter: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.natFwInsId = natFwInsId
             self.natInsIdFilter = natInsIdFilter
             self.offset = offset
@@ -79,5 +67,17 @@ extension Cfw {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 展示当前natfw 实例对应的vpc dns开关
+    @inlinable
+    public func describeNatFwVpcDnsLst(_ input: DescribeNatFwVpcDnsLstRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwVpcDnsLstResponse > {
+        self.client.execute(action: "DescribeNatFwVpcDnsLst", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 展示当前natfw 实例对应的vpc dns开关
+    @inlinable
+    public func describeNatFwVpcDnsLst(_ input: DescribeNatFwVpcDnsLstRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwVpcDnsLstResponse {
+        try await self.client.execute(action: "DescribeNatFwVpcDnsLst", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

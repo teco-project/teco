@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 定义的物模型发布
-    ///
-    /// 本接口（RunIotModel）用于对定义的物模型进行发布。
-    @inlinable
-    public func runIotModel(_ input: RunIotModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunIotModelResponse > {
-        self.client.execute(action: "RunIotModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 定义的物模型发布
-    ///
-    /// 本接口（RunIotModel）用于对定义的物模型进行发布。
-    @inlinable
-    public func runIotModel(_ input: RunIotModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunIotModelResponse {
-        try await self.client.execute(action: "RunIotModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RunIotModel请求参数结构体
     public struct RunIotModelRequest: TCRequestModel {
         /// 产品ID
@@ -58,5 +42,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 定义的物模型发布
+    ///
+    /// 本接口（RunIotModel）用于对定义的物模型进行发布。
+    @inlinable
+    public func runIotModel(_ input: RunIotModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunIotModelResponse > {
+        self.client.execute(action: "RunIotModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 定义的物模型发布
+    ///
+    /// 本接口（RunIotModel）用于对定义的物模型进行发布。
+    @inlinable
+    public func runIotModel(_ input: RunIotModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunIotModelResponse {
+        try await self.client.execute(action: "RunIotModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 修改运行时访问控制事件状态
-    ///
-    /// 修改运行时访问控制事件状态信息
-    @inlinable
-    public func modifyAccessControlStatus(_ input: ModifyAccessControlStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccessControlStatusResponse > {
-        self.client.execute(action: "ModifyAccessControlStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改运行时访问控制事件状态
-    ///
-    /// 修改运行时访问控制事件状态信息
-    @inlinable
-    public func modifyAccessControlStatus(_ input: ModifyAccessControlStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessControlStatusResponse {
-        try await self.client.execute(action: "ModifyAccessControlStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAccessControlStatus请求参数结构体
     public struct ModifyAccessControlStatusRequest: TCRequestModel {
         /// 处理事件ids
@@ -46,7 +30,7 @@ extension Tcss {
         /// 备注事件信息
         public let remark: String?
         
-        public init (eventIdSet: [String], status: String, remark: String?) {
+        public init (eventIdSet: [String], status: String, remark: String? = nil) {
             self.eventIdSet = eventIdSet
             self.status = status
             self.remark = remark
@@ -67,5 +51,21 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改运行时访问控制事件状态
+    ///
+    /// 修改运行时访问控制事件状态信息
+    @inlinable
+    public func modifyAccessControlStatus(_ input: ModifyAccessControlStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccessControlStatusResponse > {
+        self.client.execute(action: "ModifyAccessControlStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改运行时访问控制事件状态
+    ///
+    /// 修改运行时访问控制事件状态信息
+    @inlinable
+    public func modifyAccessControlStatus(_ input: ModifyAccessControlStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessControlStatusResponse {
+        try await self.client.execute(action: "ModifyAccessControlStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

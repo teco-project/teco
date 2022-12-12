@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 创建边缘容器CVM机器
-    @inlinable
-    public func createEdgeCVMInstances(_ input: CreateEdgeCVMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeCVMInstancesResponse > {
-        self.client.execute(action: "CreateEdgeCVMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建边缘容器CVM机器
-    @inlinable
-    public func createEdgeCVMInstances(_ input: CreateEdgeCVMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeCVMInstancesResponse {
-        try await self.client.execute(action: "CreateEdgeCVMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEdgeCVMInstances请求参数结构体
     public struct CreateEdgeCVMInstancesRequest: TCRequestModel {
         /// 集群id
@@ -50,7 +38,7 @@ extension Tke {
         /// 是否开启弹性网卡功能
         public let enableEni: Bool?
         
-        public init (clusterID: String, runInstancePara: String, cvmRegion: String, cvmCount: Int64, external: String?, userScript: String?, enableEni: Bool?) {
+        public init (clusterID: String, runInstancePara: String, cvmRegion: String, cvmCount: Int64, external: String? = nil, userScript: String? = nil, enableEni: Bool? = nil) {
             self.clusterID = clusterID
             self.runInstancePara = runInstancePara
             self.cvmRegion = cvmRegion
@@ -83,5 +71,17 @@ extension Tke {
             case cvmIdSet = "CvmIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建边缘容器CVM机器
+    @inlinable
+    public func createEdgeCVMInstances(_ input: CreateEdgeCVMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeCVMInstancesResponse > {
+        self.client.execute(action: "CreateEdgeCVMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建边缘容器CVM机器
+    @inlinable
+    public func createEdgeCVMInstances(_ input: CreateEdgeCVMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeCVMInstancesResponse {
+        try await self.client.execute(action: "CreateEdgeCVMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 上报定时刷新预热任务执行状态
-    ///
-    /// ModifyPurgeFetchTaskStatus 用于上报定时刷新预热任务执行状态
-    @inlinable
-    public func modifyPurgeFetchTaskStatus(_ input: ModifyPurgeFetchTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPurgeFetchTaskStatusResponse > {
-        self.client.execute(action: "ModifyPurgeFetchTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上报定时刷新预热任务执行状态
-    ///
-    /// ModifyPurgeFetchTaskStatus 用于上报定时刷新预热任务执行状态
-    @inlinable
-    public func modifyPurgeFetchTaskStatus(_ input: ModifyPurgeFetchTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPurgeFetchTaskStatusResponse {
-        try await self.client.execute(action: "ModifyPurgeFetchTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPurgeFetchTaskStatus请求参数结构体
     public struct ModifyPurgeFetchTaskStatusRequest: TCRequestModel {
         /// 执行时间
@@ -50,7 +34,7 @@ extension Cdn {
         /// 执行状态详情
         public let executionStatusDesc: String?
         
-        public init (executionTime: Date, executionStatus: String, id: String, executionStatusDesc: String?) {
+        public init (executionTime: Date, executionStatus: String, id: String, executionStatusDesc: String? = nil) {
             self.executionTime = executionTime
             self.executionStatus = executionStatus
             self.id = id
@@ -73,5 +57,21 @@ extension Cdn {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上报定时刷新预热任务执行状态
+    ///
+    /// ModifyPurgeFetchTaskStatus 用于上报定时刷新预热任务执行状态
+    @inlinable
+    public func modifyPurgeFetchTaskStatus(_ input: ModifyPurgeFetchTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPurgeFetchTaskStatusResponse > {
+        self.client.execute(action: "ModifyPurgeFetchTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上报定时刷新预热任务执行状态
+    ///
+    /// ModifyPurgeFetchTaskStatus 用于上报定时刷新预热任务执行状态
+    @inlinable
+    public func modifyPurgeFetchTaskStatus(_ input: ModifyPurgeFetchTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPurgeFetchTaskStatusResponse {
+        try await self.client.execute(action: "ModifyPurgeFetchTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

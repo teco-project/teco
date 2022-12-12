@@ -15,34 +15,18 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 创建产品
-    ///
-    /// 本接口（CreateProduct）用于创建一个新的物联网通信产品 
-    @inlinable
-    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProductResponse > {
-        self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建产品
-    ///
-    /// 本接口（CreateProduct）用于创建一个新的物联网通信产品 
-    @inlinable
-    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
-        try await self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProduct请求参数结构体
     public struct CreateProductRequest: TCRequestModel {
         /// 产品名称，名称不能和已经存在的产品名称重复。命名规则：[a-zA-Z0-9:_-]{1,32}
         public let productName: String
         
         /// 产品属性
-        public let productProperties: ProductProperties
+        public let productProperties: ProductProperties?
         
         /// 创建CLAA产品时，需要Skey
         public let skey: String?
         
-        public init (productName: String, productProperties: ProductProperties, skey: String?) {
+        public init (productName: String, productProperties: ProductProperties? = nil, skey: String? = nil) {
             self.productName = productName
             self.productProperties = productProperties
             self.skey = skey
@@ -75,5 +59,21 @@ extension Iotcloud {
             case productProperties = "ProductProperties"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建产品
+    ///
+    /// 本接口（CreateProduct）用于创建一个新的物联网通信产品 
+    @inlinable
+    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProductResponse > {
+        self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建产品
+    ///
+    /// 本接口（CreateProduct）用于创建一个新的物联网通信产品 
+    @inlinable
+    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
+        try await self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

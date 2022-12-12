@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查看镜像仓库资产更新进度状态
-    @inlinable
-    public func describeAssetImageRegistryAssetStatus(_ input: DescribeAssetImageRegistryAssetStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryAssetStatusResponse > {
-        self.client.execute(action: "DescribeAssetImageRegistryAssetStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看镜像仓库资产更新进度状态
-    @inlinable
-    public func describeAssetImageRegistryAssetStatus(_ input: DescribeAssetImageRegistryAssetStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryAssetStatusResponse {
-        try await self.client.execute(action: "DescribeAssetImageRegistryAssetStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageRegistryAssetStatus请求参数结构体
     public struct DescribeAssetImageRegistryAssetStatusRequest: TCRequestModel {
         public init () {
@@ -50,5 +38,17 @@ extension Tcss {
             case err = "Err"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看镜像仓库资产更新进度状态
+    @inlinable
+    public func describeAssetImageRegistryAssetStatus(_ input: DescribeAssetImageRegistryAssetStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryAssetStatusResponse > {
+        self.client.execute(action: "DescribeAssetImageRegistryAssetStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看镜像仓库资产更新进度状态
+    @inlinable
+    public func describeAssetImageRegistryAssetStatus(_ input: DescribeAssetImageRegistryAssetStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryAssetStatusResponse {
+        try await self.client.execute(action: "DescribeAssetImageRegistryAssetStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

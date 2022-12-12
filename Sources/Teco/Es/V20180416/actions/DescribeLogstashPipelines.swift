@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 获取Logstash实例管道列表
-    ///
-    /// 用于获取Logstash实例管道列表
-    @inlinable
-    public func describeLogstashPipelines(_ input: DescribeLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogstashPipelinesResponse > {
-        self.client.execute(action: "DescribeLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Logstash实例管道列表
-    ///
-    /// 用于获取Logstash实例管道列表
-    @inlinable
-    public func describeLogstashPipelines(_ input: DescribeLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashPipelinesResponse {
-        try await self.client.execute(action: "DescribeLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLogstashPipelines请求参数结构体
     public struct DescribeLogstashPipelinesRequest: TCRequestModel {
         /// 实例ID
@@ -61,5 +45,21 @@ extension Es {
             case logstashPipelineList = "LogstashPipelineList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Logstash实例管道列表
+    ///
+    /// 用于获取Logstash实例管道列表
+    @inlinable
+    public func describeLogstashPipelines(_ input: DescribeLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogstashPipelinesResponse > {
+        self.client.execute(action: "DescribeLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Logstash实例管道列表
+    ///
+    /// 用于获取Logstash实例管道列表
+    @inlinable
+    public func describeLogstashPipelines(_ input: DescribeLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashPipelinesResponse {
+        try await self.client.execute(action: "DescribeLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

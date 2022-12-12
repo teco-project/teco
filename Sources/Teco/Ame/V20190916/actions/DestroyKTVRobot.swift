@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 销毁直播互动机器人
-    ///
-    /// 销毁机器人，机器人退出 RTC 房间。
-    @inlinable
-    public func destroyKTVRobot(_ input: DestroyKTVRobotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyKTVRobotResponse > {
-        self.client.execute(action: "DestroyKTVRobot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 销毁直播互动机器人
-    ///
-    /// 销毁机器人，机器人退出 RTC 房间。
-    @inlinable
-    public func destroyKTVRobot(_ input: DestroyKTVRobotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyKTVRobotResponse {
-        try await self.client.execute(action: "DestroyKTVRobot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DestroyKTVRobot请求参数结构体
     public struct DestroyKTVRobotRequest: TCRequestModel {
         /// 机器人Id。
@@ -53,5 +37,21 @@ extension Ame {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 销毁直播互动机器人
+    ///
+    /// 销毁机器人，机器人退出 RTC 房间。
+    @inlinable
+    public func destroyKTVRobot(_ input: DestroyKTVRobotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyKTVRobotResponse > {
+        self.client.execute(action: "DestroyKTVRobot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁直播互动机器人
+    ///
+    /// 销毁机器人，机器人退出 RTC 房间。
+    @inlinable
+    public func destroyKTVRobot(_ input: DestroyKTVRobotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyKTVRobotResponse {
+        try await self.client.execute(action: "DestroyKTVRobot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

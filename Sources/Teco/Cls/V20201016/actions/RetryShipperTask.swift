@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 重试失败的投递任务
-    @inlinable
-    public func retryShipperTask(_ input: RetryShipperTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RetryShipperTaskResponse > {
-        self.client.execute(action: "RetryShipperTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重试失败的投递任务
-    @inlinable
-    public func retryShipperTask(_ input: RetryShipperTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryShipperTaskResponse {
-        try await self.client.execute(action: "RetryShipperTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RetryShipperTask请求参数结构体
     public struct RetryShipperTaskRequest: TCRequestModel {
         /// 投递规则ID
@@ -54,5 +42,17 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重试失败的投递任务
+    @inlinable
+    public func retryShipperTask(_ input: RetryShipperTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RetryShipperTaskResponse > {
+        self.client.execute(action: "RetryShipperTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重试失败的投递任务
+    @inlinable
+    public func retryShipperTask(_ input: RetryShipperTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryShipperTaskResponse {
+        try await self.client.execute(action: "RetryShipperTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

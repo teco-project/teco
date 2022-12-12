@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 设置预置并发
-    ///
-    /// 设置函数某一非$LATEST版本的预置并发。
-    @inlinable
-    public func putProvisionedConcurrencyConfig(_ input: PutProvisionedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutProvisionedConcurrencyConfigResponse > {
-        self.client.execute(action: "PutProvisionedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置预置并发
-    ///
-    /// 设置函数某一非$LATEST版本的预置并发。
-    @inlinable
-    public func putProvisionedConcurrencyConfig(_ input: PutProvisionedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutProvisionedConcurrencyConfigResponse {
-        try await self.client.execute(action: "PutProvisionedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PutProvisionedConcurrencyConfig请求参数结构体
     public struct PutProvisionedConcurrencyConfigRequest: TCRequestModel {
         /// 需要设置预置并发的函数的名称
@@ -64,7 +48,7 @@ extension Scf {
         /// 扩容时的最大值
         public let maxCapacity: UInt64?
         
-        public init (functionName: String, qualifier: String, versionProvisionedConcurrencyNum: UInt64, namespace: String?, triggerActions: [TriggerAction]?, provisionedType: String?, trackingTarget: Float?, minCapacity: UInt64?, maxCapacity: UInt64?) {
+        public init (functionName: String, qualifier: String, versionProvisionedConcurrencyNum: UInt64, namespace: String? = nil, triggerActions: [TriggerAction]? = nil, provisionedType: String? = nil, trackingTarget: Float? = nil, minCapacity: UInt64? = nil, maxCapacity: UInt64? = nil) {
             self.functionName = functionName
             self.qualifier = qualifier
             self.versionProvisionedConcurrencyNum = versionProvisionedConcurrencyNum
@@ -97,5 +81,21 @@ extension Scf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置预置并发
+    ///
+    /// 设置函数某一非$LATEST版本的预置并发。
+    @inlinable
+    public func putProvisionedConcurrencyConfig(_ input: PutProvisionedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutProvisionedConcurrencyConfigResponse > {
+        self.client.execute(action: "PutProvisionedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置预置并发
+    ///
+    /// 设置函数某一非$LATEST版本的预置并发。
+    @inlinable
+    public func putProvisionedConcurrencyConfig(_ input: PutProvisionedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutProvisionedConcurrencyConfigResponse {
+        try await self.client.execute(action: "PutProvisionedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

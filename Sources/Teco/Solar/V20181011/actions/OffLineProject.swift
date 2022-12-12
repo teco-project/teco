@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Solar {
-    /// 下线项目
-    @inlinable
-    public func offLineProject(_ input: OffLineProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OffLineProjectResponse > {
-        self.client.execute(action: "OffLineProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下线项目
-    @inlinable
-    public func offLineProject(_ input: OffLineProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OffLineProjectResponse {
-        try await self.client.execute(action: "OffLineProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OffLineProject请求参数结构体
     public struct OffLineProjectRequest: TCRequestModel {
         /// 项目ID
@@ -49,5 +37,17 @@ extension Solar {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下线项目
+    @inlinable
+    public func offLineProject(_ input: OffLineProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OffLineProjectResponse > {
+        self.client.execute(action: "OffLineProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下线项目
+    @inlinable
+    public func offLineProject(_ input: OffLineProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OffLineProjectResponse {
+        try await self.client.execute(action: "OffLineProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 查询密钥轮换状态
-    ///
-    /// 查询指定的CMK是否开启了密钥轮换功能。
-    @inlinable
-    public func getKeyRotationStatus(_ input: GetKeyRotationStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetKeyRotationStatusResponse > {
-        self.client.execute(action: "GetKeyRotationStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询密钥轮换状态
-    ///
-    /// 查询指定的CMK是否开启了密钥轮换功能。
-    @inlinable
-    public func getKeyRotationStatus(_ input: GetKeyRotationStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetKeyRotationStatusResponse {
-        try await self.client.execute(action: "GetKeyRotationStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetKeyRotationStatus请求参数结构体
     public struct GetKeyRotationStatusRequest: TCRequestModel {
         /// CMK唯一标识符
@@ -57,5 +41,21 @@ extension Kms {
             case keyRotationEnabled = "KeyRotationEnabled"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询密钥轮换状态
+    ///
+    /// 查询指定的CMK是否开启了密钥轮换功能。
+    @inlinable
+    public func getKeyRotationStatus(_ input: GetKeyRotationStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetKeyRotationStatusResponse > {
+        self.client.execute(action: "GetKeyRotationStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询密钥轮换状态
+    ///
+    /// 查询指定的CMK是否开启了密钥轮换功能。
+    @inlinable
+    public func getKeyRotationStatus(_ input: GetKeyRotationStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetKeyRotationStatusResponse {
+        try await self.client.execute(action: "GetKeyRotationStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

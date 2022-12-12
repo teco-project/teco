@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 修改应用
-    ///
-    /// 本接口（ModifyApiApp）用于修改已经创建的应用。
-    @inlinable
-    public func modifyApiApp(_ input: ModifyApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApiAppResponse > {
-        self.client.execute(action: "ModifyApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改应用
-    ///
-    /// 本接口（ModifyApiApp）用于修改已经创建的应用。
-    @inlinable
-    public func modifyApiApp(_ input: ModifyApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiAppResponse {
-        try await self.client.execute(action: "ModifyApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyApiApp请求参数结构体
     public struct ModifyApiAppRequest: TCRequestModel {
         /// 应用唯一 ID。
@@ -42,7 +26,7 @@ extension Apigateway {
         /// 修改的应用描述
         public let apiAppDesc: String?
         
-        public init (apiAppId: String, apiAppName: String?, apiAppDesc: String?) {
+        public init (apiAppId: String, apiAppName: String? = nil, apiAppDesc: String? = nil) {
             self.apiAppId = apiAppId
             self.apiAppName = apiAppName
             self.apiAppDesc = apiAppDesc
@@ -68,5 +52,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改应用
+    ///
+    /// 本接口（ModifyApiApp）用于修改已经创建的应用。
+    @inlinable
+    public func modifyApiApp(_ input: ModifyApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApiAppResponse > {
+        self.client.execute(action: "ModifyApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用
+    ///
+    /// 本接口（ModifyApiApp）用于修改已经创建的应用。
+    @inlinable
+    public func modifyApiApp(_ input: ModifyApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiAppResponse {
+        try await self.client.execute(action: "ModifyApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

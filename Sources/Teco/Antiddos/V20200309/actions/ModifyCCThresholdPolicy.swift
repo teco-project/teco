@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 修改CC清洗阈值
-    @inlinable
-    public func modifyCCThresholdPolicy(_ input: ModifyCCThresholdPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCThresholdPolicyResponse > {
-        self.client.execute(action: "ModifyCCThresholdPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改CC清洗阈值
-    @inlinable
-    public func modifyCCThresholdPolicy(_ input: ModifyCCThresholdPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCThresholdPolicyResponse {
-        try await self.client.execute(action: "ModifyCCThresholdPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCCThresholdPolicy请求参数结构体
     public struct ModifyCCThresholdPolicyRequest: TCRequestModel {
         /// 实例Id
@@ -69,5 +57,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改CC清洗阈值
+    @inlinable
+    public func modifyCCThresholdPolicy(_ input: ModifyCCThresholdPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCThresholdPolicyResponse > {
+        self.client.execute(action: "ModifyCCThresholdPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CC清洗阈值
+    @inlinable
+    public func modifyCCThresholdPolicy(_ input: ModifyCCThresholdPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCThresholdPolicyResponse {
+        try await self.client.execute(action: "ModifyCCThresholdPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

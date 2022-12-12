@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询app服务列表
-    ///
-    /// 容器安全查询app服务列表
-    @inlinable
-    public func describeAssetAppServiceList(_ input: DescribeAssetAppServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetAppServiceListResponse > {
-        self.client.execute(action: "DescribeAssetAppServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询app服务列表
-    ///
-    /// 容器安全查询app服务列表
-    @inlinable
-    public func describeAssetAppServiceList(_ input: DescribeAssetAppServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetAppServiceListResponse {
-        try await self.client.execute(action: "DescribeAssetAppServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetAppServiceList请求参数结构体
     public struct DescribeAssetAppServiceListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -43,7 +27,7 @@ extension Tcss {
         /// <li>Keywords- String - 是否必填：否 - 模糊查询可选字段</li>
         public let filters: [AssetFilters]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [AssetFilters]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -72,5 +56,21 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询app服务列表
+    ///
+    /// 容器安全查询app服务列表
+    @inlinable
+    public func describeAssetAppServiceList(_ input: DescribeAssetAppServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetAppServiceListResponse > {
+        self.client.execute(action: "DescribeAssetAppServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询app服务列表
+    ///
+    /// 容器安全查询app服务列表
+    @inlinable
+    public func describeAssetAppServiceList(_ input: DescribeAssetAppServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetAppServiceListResponse {
+        try await self.client.execute(action: "DescribeAssetAppServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

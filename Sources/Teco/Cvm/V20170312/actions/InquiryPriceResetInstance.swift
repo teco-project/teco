@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 重装实例询价
-    ///
-    /// 本接口 (InquiryPriceResetInstance) 用于重装实例询价。
-    /// * 如果指定了`ImageId`参数，则使用指定的镜像进行重装询价；否则按照当前实例使用的镜像进行重装询价。
-    /// * 目前只支持[系统盘类型](https://cloud.tencent.com/document/api/213/15753#SystemDisk)是`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`类型的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
-    /// * 目前不支持境外地域的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
-    @inlinable
-    public func inquiryPriceResetInstance(_ input: InquiryPriceResetInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceResetInstanceResponse > {
-        self.client.execute(action: "InquiryPriceResetInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重装实例询价
-    ///
-    /// 本接口 (InquiryPriceResetInstance) 用于重装实例询价。
-    /// * 如果指定了`ImageId`参数，则使用指定的镜像进行重装询价；否则按照当前实例使用的镜像进行重装询价。
-    /// * 目前只支持[系统盘类型](https://cloud.tencent.com/document/api/213/15753#SystemDisk)是`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`类型的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
-    /// * 目前不支持境外地域的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
-    @inlinable
-    public func inquiryPriceResetInstance(_ input: InquiryPriceResetInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstanceResponse {
-        try await self.client.execute(action: "InquiryPriceResetInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceResetInstance请求参数结构体
     public struct InquiryPriceResetInstanceRequest: TCRequestModel {
         /// 实例ID。可通过 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) API返回值中的`InstanceId`获取。
@@ -46,15 +24,15 @@ extension Cvm {
         public let imageId: String?
         
         /// 实例系统盘配置信息。系统盘为云盘的实例可以通过该参数指定重装后的系统盘大小来实现对系统盘的扩容操作，若不指定则默认系统盘大小保持不变。系统盘大小只支持扩容不支持缩容；重装只支持修改系统盘的大小，不能修改系统盘的类型。
-        public let systemDisk: SystemDisk
+        public let systemDisk: SystemDisk?
         
         /// 实例登录设置。通过该参数可以设置实例的登录方式密码、密钥或保持镜像的原始登录设置。默认情况下会随机生成密码，并以站内信方式知会到用户。
-        public let loginSettings: LoginSettings
+        public let loginSettings: LoginSettings?
         
         /// 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
-        public let enhancedService: EnhancedService
+        public let enhancedService: EnhancedService?
         
-        public init (instanceId: String, imageId: String?, systemDisk: SystemDisk, loginSettings: LoginSettings, enhancedService: EnhancedService) {
+        public init (instanceId: String, imageId: String? = nil, systemDisk: SystemDisk? = nil, loginSettings: LoginSettings? = nil, enhancedService: EnhancedService? = nil) {
             self.instanceId = instanceId
             self.imageId = imageId
             self.systemDisk = systemDisk
@@ -83,5 +61,27 @@ extension Cvm {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重装实例询价
+    ///
+    /// 本接口 (InquiryPriceResetInstance) 用于重装实例询价。
+    /// * 如果指定了`ImageId`参数，则使用指定的镜像进行重装询价；否则按照当前实例使用的镜像进行重装询价。
+    /// * 目前只支持[系统盘类型](https://cloud.tencent.com/document/api/213/15753#SystemDisk)是`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`类型的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
+    /// * 目前不支持境外地域的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
+    @inlinable
+    public func inquiryPriceResetInstance(_ input: InquiryPriceResetInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceResetInstanceResponse > {
+        self.client.execute(action: "InquiryPriceResetInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重装实例询价
+    ///
+    /// 本接口 (InquiryPriceResetInstance) 用于重装实例询价。
+    /// * 如果指定了`ImageId`参数，则使用指定的镜像进行重装询价；否则按照当前实例使用的镜像进行重装询价。
+    /// * 目前只支持[系统盘类型](https://cloud.tencent.com/document/api/213/15753#SystemDisk)是`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`类型的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
+    /// * 目前不支持境外地域的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
+    @inlinable
+    public func inquiryPriceResetInstance(_ input: InquiryPriceResetInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstanceResponse {
+        try await self.client.execute(action: "InquiryPriceResetInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

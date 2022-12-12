@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ms {
-    /// 创建资源
-    ///
-    /// 用户可以使用该接口自建资源，只支持白名单用户
-    @inlinable
-    public func createResourceInstances(_ input: CreateResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourceInstancesResponse > {
-        self.client.execute(action: "CreateResourceInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建资源
-    ///
-    /// 用户可以使用该接口自建资源，只支持白名单用户
-    @inlinable
-    public func createResourceInstances(_ input: CreateResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceInstancesResponse {
-        try await self.client.execute(action: "CreateResourceInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateResourceInstances请求参数结构体
     public struct CreateResourceInstancesRequest: TCRequestModel {
         /// 资源类型id。13624：加固专业版。
@@ -72,5 +56,21 @@ extension Ms {
             case resourceSet = "ResourceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建资源
+    ///
+    /// 用户可以使用该接口自建资源，只支持白名单用户
+    @inlinable
+    public func createResourceInstances(_ input: CreateResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourceInstancesResponse > {
+        self.client.execute(action: "CreateResourceInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建资源
+    ///
+    /// 用户可以使用该接口自建资源，只支持白名单用户
+    @inlinable
+    public func createResourceInstances(_ input: CreateResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceInstancesResponse {
+        try await self.client.execute(action: "CreateResourceInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

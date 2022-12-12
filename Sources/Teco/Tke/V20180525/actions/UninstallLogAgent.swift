@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 卸载日志采集组件
-    ///
-    /// 从TKE集群中卸载CLS日志采集组件
-    @inlinable
-    public func uninstallLogAgent(_ input: UninstallLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UninstallLogAgentResponse > {
-        self.client.execute(action: "UninstallLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 卸载日志采集组件
-    ///
-    /// 从TKE集群中卸载CLS日志采集组件
-    @inlinable
-    public func uninstallLogAgent(_ input: UninstallLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallLogAgentResponse {
-        try await self.client.execute(action: "UninstallLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UninstallLogAgent请求参数结构体
     public struct UninstallLogAgentRequest: TCRequestModel {
         /// 集群ID
@@ -53,5 +37,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 卸载日志采集组件
+    ///
+    /// 从TKE集群中卸载CLS日志采集组件
+    @inlinable
+    public func uninstallLogAgent(_ input: UninstallLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UninstallLogAgentResponse > {
+        self.client.execute(action: "UninstallLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 卸载日志采集组件
+    ///
+    /// 从TKE集群中卸载CLS日志采集组件
+    @inlinable
+    public func uninstallLogAgent(_ input: UninstallLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallLogAgentResponse {
+        try await self.client.execute(action: "UninstallLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

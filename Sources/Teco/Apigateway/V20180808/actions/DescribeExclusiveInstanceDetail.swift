@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询独享实例详情
-    ///
-    /// 本接口（DescribeExclusiveInstanceDetail）用于查询独享实例详情信息。​
-    @inlinable
-    public func describeExclusiveInstanceDetail(_ input: DescribeExclusiveInstanceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExclusiveInstanceDetailResponse > {
-        self.client.execute(action: "DescribeExclusiveInstanceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询独享实例详情
-    ///
-    /// 本接口（DescribeExclusiveInstanceDetail）用于查询独享实例详情信息。​
-    @inlinable
-    public func describeExclusiveInstanceDetail(_ input: DescribeExclusiveInstanceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveInstanceDetailResponse {
-        try await self.client.execute(action: "DescribeExclusiveInstanceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExclusiveInstanceDetail请求参数结构体
     public struct DescribeExclusiveInstanceDetailRequest: TCRequestModel {
         /// 独享实例唯一id
@@ -57,5 +41,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询独享实例详情
+    ///
+    /// 本接口（DescribeExclusiveInstanceDetail）用于查询独享实例详情信息。​
+    @inlinable
+    public func describeExclusiveInstanceDetail(_ input: DescribeExclusiveInstanceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExclusiveInstanceDetailResponse > {
+        self.client.execute(action: "DescribeExclusiveInstanceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询独享实例详情
+    ///
+    /// 本接口（DescribeExclusiveInstanceDetail）用于查询独享实例详情信息。​
+    @inlinable
+    public func describeExclusiveInstanceDetail(_ input: DescribeExclusiveInstanceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveInstanceDetailResponse {
+        try await self.client.execute(action: "DescribeExclusiveInstanceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

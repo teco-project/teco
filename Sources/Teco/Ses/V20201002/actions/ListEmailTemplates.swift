@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ses {
-    /// 获取当前邮件模板列表
-    @inlinable
-    public func listEmailTemplates(_ input: ListEmailTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListEmailTemplatesResponse > {
-        self.client.execute(action: "ListEmailTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取当前邮件模板列表
-    @inlinable
-    public func listEmailTemplates(_ input: ListEmailTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEmailTemplatesResponse {
-        try await self.client.execute(action: "ListEmailTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListEmailTemplates请求参数结构体
     public struct ListEmailTemplatesRequest: TCRequestModel {
         /// 获取模板数据量，用于分页
@@ -62,5 +50,17 @@ extension Ses {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取当前邮件模板列表
+    @inlinable
+    public func listEmailTemplates(_ input: ListEmailTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListEmailTemplatesResponse > {
+        self.client.execute(action: "ListEmailTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取当前邮件模板列表
+    @inlinable
+    public func listEmailTemplates(_ input: ListEmailTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEmailTemplatesResponse {
+        try await self.client.execute(action: "ListEmailTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

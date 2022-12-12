@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 安全管家月巡检报告下载
-    ///
-    /// 专家服务-安全管家月巡检报告下载
-    @inlinable
-    public func describeMonthInspectionReport(_ input: DescribeMonthInspectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonthInspectionReportResponse > {
-        self.client.execute(action: "DescribeMonthInspectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全管家月巡检报告下载
-    ///
-    /// 专家服务-安全管家月巡检报告下载
-    @inlinable
-    public func describeMonthInspectionReport(_ input: DescribeMonthInspectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonthInspectionReportResponse {
-        try await self.client.execute(action: "DescribeMonthInspectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMonthInspectionReport请求参数结构体
     public struct DescribeMonthInspectionReportRequest: TCRequestModel {
         /// 分页大小
@@ -66,5 +50,21 @@ extension Cwp {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全管家月巡检报告下载
+    ///
+    /// 专家服务-安全管家月巡检报告下载
+    @inlinable
+    public func describeMonthInspectionReport(_ input: DescribeMonthInspectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonthInspectionReportResponse > {
+        self.client.execute(action: "DescribeMonthInspectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全管家月巡检报告下载
+    ///
+    /// 专家服务-安全管家月巡检报告下载
+    @inlinable
+    public func describeMonthInspectionReport(_ input: DescribeMonthInspectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonthInspectionReportResponse {
+        try await self.client.execute(action: "DescribeMonthInspectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

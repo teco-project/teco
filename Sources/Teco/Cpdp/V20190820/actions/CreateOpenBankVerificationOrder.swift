@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-创建核销申请
-    ///
-    /// 云企付-创建核销申请，适用于针对支付订单维度的确认收货，解冻等业务场景。目前支持的渠道有TENPAY下的EBANK_PAYMENT付款方式创建支付订单时，选择担保支付下单的订单进行解冻。
-    @inlinable
-    public func createOpenBankVerificationOrder(_ input: CreateOpenBankVerificationOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankVerificationOrderResponse > {
-        self.client.execute(action: "CreateOpenBankVerificationOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-创建核销申请
-    ///
-    /// 云企付-创建核销申请，适用于针对支付订单维度的确认收货，解冻等业务场景。目前支持的渠道有TENPAY下的EBANK_PAYMENT付款方式创建支付订单时，选择担保支付下单的订单进行解冻。
-    @inlinable
-    public func createOpenBankVerificationOrder(_ input: CreateOpenBankVerificationOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankVerificationOrderResponse {
-        try await self.client.execute(action: "CreateOpenBankVerificationOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOpenBankVerificationOrder请求参数结构体
     public struct CreateOpenBankVerificationOrderRequest: TCRequestModel {
         /// 云企付渠道商户号。外部接入平台入驻云企付平台后下发。
@@ -63,7 +47,7 @@ extension Cpdp {
         /// _不填默认为生产环境_
         public let environment: String?
         
-        public init (channelMerchantId: String, outVerificationId: String, verificationAmount: Int64, outOrderId: String?, channelOrderId: String?, notifyUrl: String?, remark: String?, externalVerificationData: String?, environment: String?) {
+        public init (channelMerchantId: String, outVerificationId: String, verificationAmount: Int64, outOrderId: String? = nil, channelOrderId: String? = nil, notifyUrl: String? = nil, remark: String? = nil, externalVerificationData: String? = nil, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.outVerificationId = outVerificationId
             self.verificationAmount = verificationAmount
@@ -99,7 +83,7 @@ extension Cpdp {
         
         /// 核销申请响应对象。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: CreateOpenBankVerificationResult
+        public let result: CreateOpenBankVerificationResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -110,5 +94,21 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-创建核销申请
+    ///
+    /// 云企付-创建核销申请，适用于针对支付订单维度的确认收货，解冻等业务场景。目前支持的渠道有TENPAY下的EBANK_PAYMENT付款方式创建支付订单时，选择担保支付下单的订单进行解冻。
+    @inlinable
+    public func createOpenBankVerificationOrder(_ input: CreateOpenBankVerificationOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankVerificationOrderResponse > {
+        self.client.execute(action: "CreateOpenBankVerificationOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-创建核销申请
+    ///
+    /// 云企付-创建核销申请，适用于针对支付订单维度的确认收货，解冻等业务场景。目前支持的渠道有TENPAY下的EBANK_PAYMENT付款方式创建支付订单时，选择担保支付下单的订单进行解冻。
+    @inlinable
+    public func createOpenBankVerificationOrder(_ input: CreateOpenBankVerificationOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankVerificationOrderResponse {
+        try await self.client.execute(action: "CreateOpenBankVerificationOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

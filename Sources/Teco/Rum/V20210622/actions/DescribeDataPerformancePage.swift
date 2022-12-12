@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取PerformancePage信息
-    @inlinable
-    public func describeDataPerformancePage(_ input: DescribeDataPerformancePageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataPerformancePageResponse > {
-        self.client.execute(action: "DescribeDataPerformancePage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取PerformancePage信息
-    @inlinable
-    public func describeDataPerformancePage(_ input: DescribeDataPerformancePageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataPerformancePageResponse {
-        try await self.client.execute(action: "DescribeDataPerformancePage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDataPerformancePage请求参数结构体
     public struct DescribeDataPerformancePageRequest: TCRequestModel {
         /// 项目ID
@@ -98,7 +86,7 @@ extension Rum {
         /// 网络状态
         public let netStatus: String?
         
-        public init (id: Int64, startTime: Int64, endTime: Int64, type: String, level: String?, isp: String?, area: String?, netType: String?, platform: String?, device: String?, versionNum: String?, extFirst: String?, extSecond: String?, extThird: String?, isAbroad: String?, browser: String?, os: String?, engine: String?, brand: String?, from: String?, costType: String?, env: String?, netStatus: String?) {
+        public init (id: Int64, startTime: Int64, endTime: Int64, type: String, level: String? = nil, isp: String? = nil, area: String? = nil, netType: String? = nil, platform: String? = nil, device: String? = nil, versionNum: String? = nil, extFirst: String? = nil, extSecond: String? = nil, extThird: String? = nil, isAbroad: String? = nil, browser: String? = nil, os: String? = nil, engine: String? = nil, brand: String? = nil, from: String? = nil, costType: String? = nil, env: String? = nil, netStatus: String? = nil) {
             self.id = id
             self.startTime = startTime
             self.endTime = endTime
@@ -163,5 +151,17 @@ extension Rum {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取PerformancePage信息
+    @inlinable
+    public func describeDataPerformancePage(_ input: DescribeDataPerformancePageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataPerformancePageResponse > {
+        self.client.execute(action: "DescribeDataPerformancePage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取PerformancePage信息
+    @inlinable
+    public func describeDataPerformancePage(_ input: DescribeDataPerformancePageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataPerformancePageResponse {
+        try await self.client.execute(action: "DescribeDataPerformancePage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

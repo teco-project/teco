@@ -15,6 +15,30 @@
 // DO NOT EDIT.
 
 extension Cvm {
+    /// TerminateInstances请求参数结构体
+    public struct TerminateInstancesRequest: TCRequestModel {
+        /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
+        public let instanceIds: [String]
+        
+        public init (instanceIds: [String]) {
+            self.instanceIds = instanceIds
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case instanceIds = "InstanceIds"
+        }
+    }
+    
+    /// TerminateInstances返回参数结构体
+    public struct TerminateInstancesResponse: TCResponseModel {
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 退还实例
     ///
     /// 本接口 (TerminateInstances) 用于主动退还实例。
@@ -39,29 +63,5 @@ extension Cvm {
     @inlinable
     public func terminateInstances(_ input: TerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
         try await self.client.execute(action: "TerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// TerminateInstances请求参数结构体
-    public struct TerminateInstancesRequest: TCRequestModel {
-        /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
-        public let instanceIds: [String]
-        
-        public init (instanceIds: [String]) {
-            self.instanceIds = instanceIds
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case instanceIds = "InstanceIds"
-        }
-    }
-    
-    /// TerminateInstances返回参数结构体
-    public struct TerminateInstancesResponse: TCResponseModel {
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case requestId = "RequestId"
-        }
     }
 }

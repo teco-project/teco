@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 创建一个导出安全合规信息的任务
-    @inlinable
-    public func createExportComplianceStatusListJob(_ input: CreateExportComplianceStatusListJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExportComplianceStatusListJobResponse > {
-        self.client.execute(action: "CreateExportComplianceStatusListJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建一个导出安全合规信息的任务
-    @inlinable
-    public func createExportComplianceStatusListJob(_ input: CreateExportComplianceStatusListJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportComplianceStatusListJobResponse {
-        try await self.client.execute(action: "CreateExportComplianceStatusListJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateExportComplianceStatusListJob请求参数结构体
     public struct CreateExportComplianceStatusListJobRequest: TCRequestModel {
         /// 要导出信息的资产类型
@@ -41,7 +29,7 @@ extension Tcss {
         /// 要导出的资产ID列表或检测项ID列表，由ExportByAsset的取值决定。
         public let idList: [UInt64]?
         
-        public init (assetType: String, exportByAsset: Bool, exportAll: Bool, idList: [UInt64]?) {
+        public init (assetType: String, exportByAsset: Bool, exportAll: Bool, idList: [UInt64]? = nil) {
             self.assetType = assetType
             self.exportByAsset = exportByAsset
             self.exportAll = exportAll
@@ -69,5 +57,17 @@ extension Tcss {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建一个导出安全合规信息的任务
+    @inlinable
+    public func createExportComplianceStatusListJob(_ input: CreateExportComplianceStatusListJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExportComplianceStatusListJobResponse > {
+        self.client.execute(action: "CreateExportComplianceStatusListJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建一个导出安全合规信息的任务
+    @inlinable
+    public func createExportComplianceStatusListJob(_ input: CreateExportComplianceStatusListJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportComplianceStatusListJobResponse {
+        try await self.client.execute(action: "CreateExportComplianceStatusListJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

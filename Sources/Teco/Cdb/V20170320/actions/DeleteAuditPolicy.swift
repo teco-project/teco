@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 删除审计策略
-    ///
-    /// 本接口(DeleteAuditPolicy)用于删除用户的审计策略。
-    @inlinable
-    public func deleteAuditPolicy(_ input: DeleteAuditPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAuditPolicyResponse > {
-        self.client.execute(action: "DeleteAuditPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除审计策略
-    ///
-    /// 本接口(DeleteAuditPolicy)用于删除用户的审计策略。
-    @inlinable
-    public func deleteAuditPolicy(_ input: DeleteAuditPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditPolicyResponse {
-        try await self.client.execute(action: "DeleteAuditPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAuditPolicy请求参数结构体
     public struct DeleteAuditPolicyRequest: TCRequestModel {
         /// 审计策略 ID。
@@ -39,7 +23,7 @@ extension Cdb {
         /// 实例 ID。
         public let instanceId: String?
         
-        public init (policyId: String, instanceId: String?) {
+        public init (policyId: String, instanceId: String? = nil) {
             self.policyId = policyId
             self.instanceId = instanceId
         }
@@ -58,5 +42,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除审计策略
+    ///
+    /// 本接口(DeleteAuditPolicy)用于删除用户的审计策略。
+    @inlinable
+    public func deleteAuditPolicy(_ input: DeleteAuditPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAuditPolicyResponse > {
+        self.client.execute(action: "DeleteAuditPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除审计策略
+    ///
+    /// 本接口(DeleteAuditPolicy)用于删除用户的审计策略。
+    @inlinable
+    public func deleteAuditPolicy(_ input: DeleteAuditPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditPolicyResponse {
+        try await self.client.execute(action: "DeleteAuditPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

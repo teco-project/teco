@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 查询游戏服务器舰队容量配置
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeFleetCapacity）用于查询服务部署容量配置。
-    @inlinable
-    public func describeFleetCapacity(_ input: DescribeFleetCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFleetCapacityResponse > {
-        self.client.execute(action: "DescribeFleetCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询游戏服务器舰队容量配置
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeFleetCapacity）用于查询服务部署容量配置。
-    @inlinable
-    public func describeFleetCapacity(_ input: DescribeFleetCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetCapacityResponse {
-        try await self.client.execute(action: "DescribeFleetCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFleetCapacity请求参数结构体
     public struct DescribeFleetCapacityRequest: TCRequestModel {
         /// 服务器舰队ID列表
@@ -44,7 +26,7 @@ extension Gse {
         /// 返回结果偏移，最小值 0
         public let offset: UInt64?
         
-        public init (fleetIds: [String], limit: UInt64?, offset: UInt64?) {
+        public init (fleetIds: [String], limit: UInt64? = nil, offset: UInt64? = nil) {
             self.fleetIds = fleetIds
             self.limit = limit
             self.offset = offset
@@ -75,5 +57,23 @@ extension Gse {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询游戏服务器舰队容量配置
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeFleetCapacity）用于查询服务部署容量配置。
+    @inlinable
+    public func describeFleetCapacity(_ input: DescribeFleetCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFleetCapacityResponse > {
+        self.client.execute(action: "DescribeFleetCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询游戏服务器舰队容量配置
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeFleetCapacity）用于查询服务部署容量配置。
+    @inlinable
+    public func describeFleetCapacity(_ input: DescribeFleetCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetCapacityResponse {
+        try await self.client.execute(action: "DescribeFleetCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

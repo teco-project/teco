@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Partners {
-    /// 查询客户级别
-    ///
-    /// 传入代客uin，查客户级别，客户审核状态，客户实名认证状态
-    @inlinable
-    public func describeAgentClientGrade(_ input: DescribeAgentClientGradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentClientGradeResponse > {
-        self.client.execute(action: "DescribeAgentClientGrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询客户级别
-    ///
-    /// 传入代客uin，查客户级别，客户审核状态，客户实名认证状态
-    @inlinable
-    public func describeAgentClientGrade(_ input: DescribeAgentClientGradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientGradeResponse {
-        try await self.client.execute(action: "DescribeAgentClientGrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAgentClientGrade请求参数结构体
     public struct DescribeAgentClientGradeRequest: TCRequestModel {
         /// 代客uin
@@ -69,5 +53,21 @@ extension Partners {
             case clientType = "ClientType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询客户级别
+    ///
+    /// 传入代客uin，查客户级别，客户审核状态，客户实名认证状态
+    @inlinable
+    public func describeAgentClientGrade(_ input: DescribeAgentClientGradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentClientGradeResponse > {
+        self.client.execute(action: "DescribeAgentClientGrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询客户级别
+    ///
+    /// 传入代客uin，查客户级别，客户审核状态，客户实名认证状态
+    @inlinable
+    public func describeAgentClientGrade(_ input: DescribeAgentClientGradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientGradeResponse {
+        try await self.client.execute(action: "DescribeAgentClientGrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

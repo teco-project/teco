@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Gme {
-    /// 创建GME应用
-    ///
-    /// 本接口(CreateApp)用于创建一个GME应用。
-    @inlinable
-    public func createApp(_ input: CreateAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppResponse > {
-        self.client.execute(action: "CreateApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建GME应用
-    ///
-    /// 本接口(CreateApp)用于创建一个GME应用。
-    @inlinable
-    public func createApp(_ input: CreateAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppResponse {
-        try await self.client.execute(action: "CreateApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateApp请求参数结构体
     public struct CreateAppRequest: TCRequestModel {
         /// 应用名称
@@ -48,18 +32,18 @@ extension Gme {
         public let regionList: [String]?
         
         /// 实时语音服务配置数据
-        public let realtimeSpeechConf: RealtimeSpeechConf
+        public let realtimeSpeechConf: RealtimeSpeechConf?
         
         /// 语音消息及转文本服务配置数据
-        public let voiceMessageConf: VoiceMessageConf
+        public let voiceMessageConf: VoiceMessageConf?
         
         /// 语音分析服务配置数据
-        public let voiceFilterConf: VoiceFilterConf
+        public let voiceFilterConf: VoiceFilterConf?
         
         /// 需要添加的标签列表
         public let tags: [Tag]?
         
-        public init (appName: String, projectId: UInt64?, engineList: [String]?, regionList: [String]?, realtimeSpeechConf: RealtimeSpeechConf, voiceMessageConf: VoiceMessageConf, voiceFilterConf: VoiceFilterConf, tags: [Tag]?) {
+        public init (appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, tags: [Tag]? = nil) {
             self.appName = appName
             self.projectId = projectId
             self.engineList = engineList
@@ -94,5 +78,21 @@ extension Gme {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建GME应用
+    ///
+    /// 本接口(CreateApp)用于创建一个GME应用。
+    @inlinable
+    public func createApp(_ input: CreateAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppResponse > {
+        self.client.execute(action: "CreateApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建GME应用
+    ///
+    /// 本接口(CreateApp)用于创建一个GME应用。
+    @inlinable
+    public func createApp(_ input: CreateAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppResponse {
+        try await self.client.execute(action: "CreateApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

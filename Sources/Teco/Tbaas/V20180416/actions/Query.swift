@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 查询交易
-    @inlinable
-    public func query(_ input: QueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryResponse > {
-        self.client.execute(action: "Query", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询交易
-    @inlinable
-    public func query(_ input: QueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryResponse {
-        try await self.client.execute(action: "Query", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// Query请求参数结构体
     public struct QueryRequest: TCRequestModel {
         /// 模块名，固定字段：transaction
@@ -56,7 +44,7 @@ extension Tbaas {
         /// 被调用的函数参数列表
         public let args: [String]?
         
-        public init (module: String, operation: String, clusterId: String, chaincodeName: String, channelName: String, peers: [PeerSet], funcName: String, groupName: String, args: [String]?) {
+        public init (module: String, operation: String, clusterId: String, chaincodeName: String, channelName: String, peers: [PeerSet], funcName: String, groupName: String, args: [String]? = nil) {
             self.module = module
             self.operation = operation
             self.clusterId = clusterId
@@ -93,5 +81,17 @@ extension Tbaas {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询交易
+    @inlinable
+    public func query(_ input: QueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryResponse > {
+        self.client.execute(action: "Query", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询交易
+    @inlinable
+    public func query(_ input: QueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryResponse {
+        try await self.client.execute(action: "Query", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

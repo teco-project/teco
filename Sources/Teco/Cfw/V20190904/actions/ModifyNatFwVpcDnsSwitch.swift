@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// nat 防火墙VPC DNS 开关切换
-    @inlinable
-    public func modifyNatFwVpcDnsSwitch(_ input: ModifyNatFwVpcDnsSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNatFwVpcDnsSwitchResponse > {
-        self.client.execute(action: "ModifyNatFwVpcDnsSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// nat 防火墙VPC DNS 开关切换
-    @inlinable
-    public func modifyNatFwVpcDnsSwitch(_ input: ModifyNatFwVpcDnsSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatFwVpcDnsSwitchResponse {
-        try await self.client.execute(action: "ModifyNatFwVpcDnsSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNatFwVpcDnsSwitch请求参数结构体
     public struct ModifyNatFwVpcDnsSwitchRequest: TCRequestModel {
         /// nat 防火墙 id
@@ -59,5 +47,17 @@ extension Cfw {
             case returnMsg = "ReturnMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// nat 防火墙VPC DNS 开关切换
+    @inlinable
+    public func modifyNatFwVpcDnsSwitch(_ input: ModifyNatFwVpcDnsSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNatFwVpcDnsSwitchResponse > {
+        self.client.execute(action: "ModifyNatFwVpcDnsSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// nat 防火墙VPC DNS 开关切换
+    @inlinable
+    public func modifyNatFwVpcDnsSwitch(_ input: ModifyNatFwVpcDnsSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatFwVpcDnsSwitchResponse {
+        try await self.client.execute(action: "ModifyNatFwVpcDnsSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

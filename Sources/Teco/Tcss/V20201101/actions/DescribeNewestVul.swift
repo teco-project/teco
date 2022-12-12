@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询最新披露漏洞列表
-    @inlinable
-    public func describeNewestVul(_ input: DescribeNewestVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewestVulResponse > {
-        self.client.execute(action: "DescribeNewestVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询最新披露漏洞列表
-    @inlinable
-    public func describeNewestVul(_ input: DescribeNewestVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewestVulResponse {
-        try await self.client.execute(action: "DescribeNewestVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNewestVul请求参数结构体
     public struct DescribeNewestVulRequest: TCRequestModel {
         public init () {
@@ -61,5 +49,17 @@ extension Tcss {
             case cveid = "CVEID"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询最新披露漏洞列表
+    @inlinable
+    public func describeNewestVul(_ input: DescribeNewestVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewestVulResponse > {
+        self.client.execute(action: "DescribeNewestVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询最新披露漏洞列表
+    @inlinable
+    public func describeNewestVul(_ input: DescribeNewestVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewestVulResponse {
+        try await self.client.execute(action: "DescribeNewestVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

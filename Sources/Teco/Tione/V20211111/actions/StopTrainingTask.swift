@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 停止模型训练任务
-    @inlinable
-    public func stopTrainingTask(_ input: StopTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopTrainingTaskResponse > {
-        self.client.execute(action: "StopTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止模型训练任务
-    @inlinable
-    public func stopTrainingTask(_ input: StopTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTrainingTaskResponse {
-        try await self.client.execute(action: "StopTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopTrainingTask请求参数结构体
     public struct StopTrainingTaskRequest: TCRequestModel {
         /// 训练任务ID
@@ -49,5 +37,17 @@ extension Tione {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止模型训练任务
+    @inlinable
+    public func stopTrainingTask(_ input: StopTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopTrainingTaskResponse > {
+        self.client.execute(action: "StopTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止模型训练任务
+    @inlinable
+    public func stopTrainingTask(_ input: StopTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTrainingTaskResponse {
+        try await self.client.execute(action: "StopTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

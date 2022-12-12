@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取异地登录白名单列表
-    @inlinable
-    public func describeLoginWhiteList(_ input: DescribeLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoginWhiteListResponse > {
-        self.client.execute(action: "DescribeLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取异地登录白名单列表
-    @inlinable
-    public func describeLoginWhiteList(_ input: DescribeLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoginWhiteListResponse {
-        try await self.client.execute(action: "DescribeLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLoginWhiteList请求参数结构体
     public struct DescribeLoginWhiteListRequest: TCRequestModel {
         /// 返回数量，默认为10，最大值为100。
@@ -39,7 +27,7 @@ extension Yunjing {
         /// <li>Keywords - String - 是否必填：否 - 查询关键字 </li>
         public let filters: [Filter]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -68,5 +56,17 @@ extension Yunjing {
             case loginWhiteLists = "LoginWhiteLists"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取异地登录白名单列表
+    @inlinable
+    public func describeLoginWhiteList(_ input: DescribeLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoginWhiteListResponse > {
+        self.client.execute(action: "DescribeLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取异地登录白名单列表
+    @inlinable
+    public func describeLoginWhiteList(_ input: DescribeLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoginWhiteListResponse {
+        try await self.client.execute(action: "DescribeLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

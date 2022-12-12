@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tbm {
-    /// 获取品牌社交渠道观点
-    ///
-    /// 检测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的内容，每天聚合近30天热度最高的观点列表。
-    @inlinable
-    public func describeBrandSocialOpinion(_ input: DescribeBrandSocialOpinionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandSocialOpinionResponse > {
-        self.client.execute(action: "DescribeBrandSocialOpinion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取品牌社交渠道观点
-    ///
-    /// 检测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的内容，每天聚合近30天热度最高的观点列表。
-    @inlinable
-    public func describeBrandSocialOpinion(_ input: DescribeBrandSocialOpinionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandSocialOpinionResponse {
-        try await self.client.execute(action: "DescribeBrandSocialOpinion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBrandSocialOpinion请求参数结构体
     public struct DescribeBrandSocialOpinionRequest: TCRequestModel {
         /// 品牌ID
@@ -55,7 +39,7 @@ extension Tbm {
         /// 列表显示标记，若为true，则返回文章列表详情
         public let showList: Bool?
         
-        public init (brandId: String, startDate: Date, endDate: Date, offset: Int64?, limit: Int64?, showList: Bool?) {
+        public init (brandId: String, startDate: Date, endDate: Date, offset: Int64? = nil, limit: Int64? = nil, showList: Bool? = nil) {
             self.brandId = brandId
             self.startDate = startDate
             self.endDate = endDate
@@ -98,5 +82,21 @@ extension Tbm {
             case articleSet = "ArticleSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取品牌社交渠道观点
+    ///
+    /// 检测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的内容，每天聚合近30天热度最高的观点列表。
+    @inlinable
+    public func describeBrandSocialOpinion(_ input: DescribeBrandSocialOpinionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandSocialOpinionResponse > {
+        self.client.execute(action: "DescribeBrandSocialOpinion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取品牌社交渠道观点
+    ///
+    /// 检测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的内容，每天聚合近30天热度最高的观点列表。
+    @inlinable
+    public func describeBrandSocialOpinion(_ input: DescribeBrandSocialOpinionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandSocialOpinionResponse {
+        try await self.client.execute(action: "DescribeBrandSocialOpinion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

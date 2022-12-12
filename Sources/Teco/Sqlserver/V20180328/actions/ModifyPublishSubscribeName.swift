@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 修改发布订阅的名称
-    ///
-    /// 本接口（ModifyPublishSubscribeName）修改发布订阅的名称。
-    @inlinable
-    public func modifyPublishSubscribeName(_ input: ModifyPublishSubscribeNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPublishSubscribeNameResponse > {
-        self.client.execute(action: "ModifyPublishSubscribeName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改发布订阅的名称
-    ///
-    /// 本接口（ModifyPublishSubscribeName）修改发布订阅的名称。
-    @inlinable
-    public func modifyPublishSubscribeName(_ input: ModifyPublishSubscribeNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublishSubscribeNameResponse {
-        try await self.client.execute(action: "ModifyPublishSubscribeName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPublishSubscribeName请求参数结构体
     public struct ModifyPublishSubscribeNameRequest: TCRequestModel {
         /// 发布订阅ID
@@ -58,5 +42,21 @@ extension Sqlserver {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改发布订阅的名称
+    ///
+    /// 本接口（ModifyPublishSubscribeName）修改发布订阅的名称。
+    @inlinable
+    public func modifyPublishSubscribeName(_ input: ModifyPublishSubscribeNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPublishSubscribeNameResponse > {
+        self.client.execute(action: "ModifyPublishSubscribeName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改发布订阅的名称
+    ///
+    /// 本接口（ModifyPublishSubscribeName）修改发布订阅的名称。
+    @inlinable
+    public func modifyPublishSubscribeName(_ input: ModifyPublishSubscribeNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublishSubscribeNameResponse {
+        try await self.client.execute(action: "ModifyPublishSubscribeName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

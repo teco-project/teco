@@ -233,7 +233,7 @@ extension Ivld {
     public struct Data: TCOutputModel {
         /// 节目粒度结构化结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let showInfo: ShowInfo
+        public let showInfo: ShowInfo?
         
         enum CodingKeys: String, CodingKey {
             case showInfo = "ShowInfo"
@@ -248,7 +248,7 @@ extension Ivld {
         
         /// 图片中出现的帧标签识别结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let frameTagSet: MultiLevelTag
+        public let frameTagSet: MultiLevelTag?
         
         /// 图片中出现的层级人物识别结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -256,11 +256,11 @@ extension Ivld {
         
         /// 图片中出现的台标识别结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tvLogo: ImageLogo
+        public let tvLogo: ImageLogo?
         
         /// 图片中出现的来源信息识别结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sourceLogo: ImageLogo
+        public let sourceLogo: ImageLogo?
         
         enum CodingKeys: String, CodingKey {
             case ocrSet = "OcrSet"
@@ -279,7 +279,7 @@ extension Ivld {
         
         /// Logo在图片中出现的位置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let appearRect: Rectf
+        public let appearRect: Rectf?
         
         enum CodingKeys: String, CodingKey {
             case logo = "Logo"
@@ -326,7 +326,7 @@ extension Ivld {
         
         /// 可视文本在图片中的位置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let appearRect: Rectf
+        public let appearRect: Rectf?
         
         enum CodingKeys: String, CodingKey {
             case content = "Content"
@@ -429,7 +429,7 @@ extension Ivld {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaType: Int64?
         
-        public init (mediaNameSet: [String]?, statusSet: [Int64]?, mediaIdSet: [String]?, labelSet: [String]?, mediaType: Int64?) {
+        public init (mediaNameSet: [String]? = nil, statusSet: [Int64]? = nil, mediaIdSet: [String]? = nil, labelSet: [String]? = nil, mediaType: Int64? = nil) {
             self.mediaNameSet = mediaNameSet
             self.statusSet = statusSet
             self.mediaIdSet = mediaIdSet
@@ -483,7 +483,7 @@ extension Ivld {
         
         /// 媒资视频元信息，仅在MediaType=VIDEO时有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let metadata: MediaMetadata
+        public let metadata: MediaMetadata?
         
         /// 导入视频进度，取值范围为[0,100]
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -503,15 +503,15 @@ extension Ivld {
         
         /// 媒资音频元信息，仅在MediaType=Audio时有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let audioMetadata: AudioMetadata
+        public let audioMetadata: AudioMetadata?
         
         /// 媒资图片文件元信息，仅在MediaType=Image时有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imageMetadata: ImageMetadata
+        public let imageMetadata: ImageMetadata?
         
         /// 媒资文本文件元信息，仅在MediaType=Text时有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let textMetadata: TextMetadata
+        public let textMetadata: TextMetadata?
         
         enum CodingKeys: String, CodingKey {
             case mediaId = "MediaId"
@@ -617,13 +617,13 @@ extension Ivld {
         
         /// 媒资素材二级类型，参见MediaPreknownInfo结构体定义
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mediaSecondLabel: Int64
+        public let mediaSecondLabel: Int64?
         
         /// 媒资音频类型，参见MediaPreknownInfo结构体定义
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaLang: Int64?
         
-        public init (mediaType: Int64, mediaLabel: Int64, mediaSecondLabel: Int64, mediaLang: Int64?) {
+        public init (mediaType: Int64, mediaLabel: Int64, mediaSecondLabel: Int64, mediaLang: Int64? = nil) {
             self.mediaType = mediaType
             self.mediaLabel = mediaLabel
             self.mediaSecondLabel = mediaSecondLabel
@@ -668,7 +668,7 @@ extension Ivld {
         
         /// 标签在识别结果中的定位信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let appearInfo: AppearInfo
+        public let appearInfo: AppearInfo?
         
         enum CodingKeys: String, CodingKey {
             case tagSet = "TagSet"
@@ -714,7 +714,7 @@ extension Ivld {
         
         /// 人脸在图片中的位置，仅在图片标签任务有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let appearRect: Rectf
+        public let appearRect: Rectf?
         
         enum CodingKeys: String, CodingKey {
             case name = "Name"
@@ -795,11 +795,11 @@ extension Ivld {
         
         /// 文本标签列表，包含标签内容和出现信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let textTagSet: MultiLevelTag
+        public let textTagSet: MultiLevelTag?
         
         /// 帧标签列表，包括人物信息，场景信息等
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let frameTagSet: MultiLevelTag
+        public let frameTagSet: MultiLevelTag?
         
         /// 视频下载地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -850,7 +850,7 @@ extension Ivld {
         /// true表示降序，false表示升序
         public let descend: Bool?
         
-        public init (by: String?, descend: Bool?) {
+        public init (by: String? = nil, descend: Bool? = nil) {
             self.by = by
             self.descend = descend
         }
@@ -887,7 +887,7 @@ extension Ivld {
         /// 媒资自定义标签数组
         public let labelSet: [String]?
         
-        public init (mediaTypeSet: [Int64]?, taskStatusSet: [Int64]?, taskNameSet: [String]?, taskIdSet: [String]?, mediaNameSet: [String]?, mediaLangSet: [Int64]?, mediaLabelSet: [Int64]?, labelSet: [String]?) {
+        public init (mediaTypeSet: [Int64]? = nil, taskStatusSet: [Int64]? = nil, taskNameSet: [String]? = nil, taskIdSet: [String]? = nil, mediaNameSet: [String]? = nil, mediaLangSet: [Int64]? = nil, mediaLabelSet: [Int64]? = nil, labelSet: [String]? = nil) {
             self.mediaTypeSet = mediaTypeSet
             self.taskStatusSet = taskStatusSet
             self.taskNameSet = taskNameSet
@@ -974,19 +974,19 @@ extension Ivld {
         
         /// 任务对应的媒资文件元信息，仅在MediaType为Audio时有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let audioMetadata: AudioMetadata
+        public let audioMetadata: AudioMetadata?
         
         /// 任务对应的媒资文件元信息，仅在MediaType为Audio时有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imageMetadata: ImageMetadata
+        public let imageMetadata: ImageMetadata?
         
         /// 任务对应的媒资文件元信息，仅在MediaType为Text时有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let textMetadata: TextMetadata
+        public let textMetadata: TextMetadata?
         
         /// 任务对应的媒资文件元信息，仅在MediaType为Video时有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let metadata: MediaMetadata
+        public let metadata: MediaMetadata?
         
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
@@ -1040,7 +1040,7 @@ extension Ivld {
         
         /// 文本标签信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let textTagSet: MultiLevelTag
+        public let textTagSet: MultiLevelTag?
         
         enum CodingKeys: String, CodingKey {
             case content = "Content"

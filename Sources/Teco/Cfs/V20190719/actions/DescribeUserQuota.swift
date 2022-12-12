@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 查询文件系统配额
-    @inlinable
-    public func describeUserQuota(_ input: DescribeUserQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserQuotaResponse > {
-        self.client.execute(action: "DescribeUserQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询文件系统配额
-    @inlinable
-    public func describeUserQuota(_ input: DescribeUserQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaResponse {
-        try await self.client.execute(action: "DescribeUserQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserQuota请求参数结构体
     public struct DescribeUserQuotaRequest: TCRequestModel {
         /// 文件系统 ID
@@ -43,7 +31,7 @@ extension Cfs {
         /// Limit 页面大小
         public let limit: UInt64?
         
-        public init (fileSystemId: String, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (fileSystemId: String, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.fileSystemId = fileSystemId
             self.filters = filters
             self.offset = offset
@@ -74,5 +62,17 @@ extension Cfs {
             case userQuotaInfo = "UserQuotaInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询文件系统配额
+    @inlinable
+    public func describeUserQuota(_ input: DescribeUserQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserQuotaResponse > {
+        self.client.execute(action: "DescribeUserQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文件系统配额
+    @inlinable
+    public func describeUserQuota(_ input: DescribeUserQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaResponse {
+        try await self.client.execute(action: "DescribeUserQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 查询站点详情
-    @inlinable
-    public func describeSitesDetail(_ input: DescribeSitesDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSitesDetailResponse > {
-        self.client.execute(action: "DescribeSitesDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询站点详情
-    @inlinable
-    public func describeSitesDetail(_ input: DescribeSitesDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesDetailResponse {
-        try await self.client.execute(action: "DescribeSitesDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSitesDetail请求参数结构体
     public struct DescribeSitesDetailRequest: TCRequestModel {
         /// 按照站点id过滤
@@ -41,7 +29,7 @@ extension Cdc {
         /// 按照站定名称模糊匹配
         public let name: String?
         
-        public init (siteIds: [String]?, offset: Int64?, limit: Int64?, name: String?) {
+        public init (siteIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, name: String? = nil) {
             self.siteIds = siteIds
             self.offset = offset
             self.limit = limit
@@ -72,5 +60,17 @@ extension Cdc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询站点详情
+    @inlinable
+    public func describeSitesDetail(_ input: DescribeSitesDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSitesDetailResponse > {
+        self.client.execute(action: "DescribeSitesDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询站点详情
+    @inlinable
+    public func describeSitesDetail(_ input: DescribeSitesDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesDetailResponse {
+        try await self.client.execute(action: "DescribeSitesDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

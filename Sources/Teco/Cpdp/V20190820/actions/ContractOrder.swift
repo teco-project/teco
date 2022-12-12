@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 支付中签约接口
-    ///
-    /// 应用需要先带上签约信息调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。
-    @inlinable
-    public func contractOrder(_ input: ContractOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ContractOrderResponse > {
-        self.client.execute(action: "ContractOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 支付中签约接口
-    ///
-    /// 应用需要先带上签约信息调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。
-    @inlinable
-    public func contractOrder(_ input: ContractOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ContractOrderResponse {
-        try await self.client.execute(action: "ContractOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ContractOrder请求参数结构体
     public struct ContractOrderRequest: TCRequestModel {
         /// ISO 货币代码，CNY
@@ -135,7 +119,7 @@ extension Cpdp {
         /// 展示用的签约用户名称，若不传入时，默认取UserId
         public let contractDisplayName: String?
         
-        public init (currencyType: String, midasAppId: String, outTradeNo: String, productDetail: String, productId: String, productName: String, totalAmt: Int64, userId: String, realChannel: String, originalAmt: Int64, midasSecretId: String, midasSignature: String, contractNotifyUrl: String, callbackUrl: String?, channel: String?, metadata: String?, quantity: Int64?, subAppId: String?, subOrderList: [ContractOrderInSubOrder]?, totalMchIncome: Int64?, totalPlatformIncome: Int64?, wxOpenId: String?, wxSubOpenId: String?, midasEnvironment: String?, wxAppId: String?, wxSubAppId: String?, paymentNotifyUrl: String?, contractSceneId: String?, externalContractData: String?, outContractCode: String?, attachData: String?, contractDisplayName: String?) {
+        public init (currencyType: String, midasAppId: String, outTradeNo: String, productDetail: String, productId: String, productName: String, totalAmt: Int64, userId: String, realChannel: String, originalAmt: Int64, midasSecretId: String, midasSignature: String, contractNotifyUrl: String, callbackUrl: String? = nil, channel: String? = nil, metadata: String? = nil, quantity: Int64? = nil, subAppId: String? = nil, subOrderList: [ContractOrderInSubOrder]? = nil, totalMchIncome: Int64? = nil, totalPlatformIncome: Int64? = nil, wxOpenId: String? = nil, wxSubOpenId: String? = nil, midasEnvironment: String? = nil, wxAppId: String? = nil, wxSubAppId: String? = nil, paymentNotifyUrl: String? = nil, contractSceneId: String? = nil, externalContractData: String? = nil, outContractCode: String? = nil, attachData: String? = nil, contractDisplayName: String? = nil) {
             self.currencyType = currencyType
             self.midasAppId = midasAppId
             self.outTradeNo = outTradeNo
@@ -234,5 +218,21 @@ extension Cpdp {
             case outContractCode = "OutContractCode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 支付中签约接口
+    ///
+    /// 应用需要先带上签约信息调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。
+    @inlinable
+    public func contractOrder(_ input: ContractOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ContractOrderResponse > {
+        self.client.execute(action: "ContractOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 支付中签约接口
+    ///
+    /// 应用需要先带上签约信息调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。
+    @inlinable
+    public func contractOrder(_ input: ContractOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ContractOrderResponse {
+        try await self.client.execute(action: "ContractOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 按省份运营商查询播放信息
-    ///
-    /// 查询某省份某运营商下行播放数据，包括带宽，流量，请求数，并发连接数信息。
-    @inlinable
-    public func describeProvinceIspPlayInfoList(_ input: DescribeProvinceIspPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProvinceIspPlayInfoListResponse > {
-        self.client.execute(action: "DescribeProvinceIspPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 按省份运营商查询播放信息
-    ///
-    /// 查询某省份某运营商下行播放数据，包括带宽，流量，请求数，并发连接数信息。
-    @inlinable
-    public func describeProvinceIspPlayInfoList(_ input: DescribeProvinceIspPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProvinceIspPlayInfoListResponse {
-        try await self.client.execute(action: "DescribeProvinceIspPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProvinceIspPlayInfoList请求参数结构体
     public struct DescribeProvinceIspPlayInfoListRequest: TCRequestModel {
         /// 起始时间点，当前使用北京时间，
@@ -71,7 +55,7 @@ extension Live {
         /// 如果为空，查询总的数据；
         public let ipType: String?
         
-        public init (startTime: String, endTime: String, granularity: UInt64, statType: String, playDomains: [String]?, provinceNames: [String]?, ispNames: [String]?, mainlandOrOversea: String?, ipType: String?) {
+        public init (startTime: String, endTime: String, granularity: UInt64, statType: String, playDomains: [String]? = nil, provinceNames: [String]? = nil, ispNames: [String]? = nil, mainlandOrOversea: String? = nil, ipType: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.granularity = granularity
@@ -112,5 +96,21 @@ extension Live {
             case statType = "StatType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 按省份运营商查询播放信息
+    ///
+    /// 查询某省份某运营商下行播放数据，包括带宽，流量，请求数，并发连接数信息。
+    @inlinable
+    public func describeProvinceIspPlayInfoList(_ input: DescribeProvinceIspPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProvinceIspPlayInfoListResponse > {
+        self.client.execute(action: "DescribeProvinceIspPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 按省份运营商查询播放信息
+    ///
+    /// 查询某省份某运营商下行播放数据，包括带宽，流量，请求数，并发连接数信息。
+    @inlinable
+    public func describeProvinceIspPlayInfoList(_ input: DescribeProvinceIspPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProvinceIspPlayInfoListResponse {
+        try await self.client.execute(action: "DescribeProvinceIspPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

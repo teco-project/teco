@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云支付-添加商户接口
-    @inlinable
-    public func addMerchant(_ input: AddMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddMerchantResponse > {
-        self.client.execute(action: "AddMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云支付-添加商户接口
-    @inlinable
-    public func addMerchant(_ input: AddMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddMerchantResponse {
-        try await self.client.execute(action: "AddMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddMerchant请求参数结构体
     public struct AddMerchantRequest: TCRequestModel {
         /// 收单系统分配的开放ID
@@ -203,7 +191,7 @@ extension Cpdp {
         /// 沙箱环境填sandbox，正式环境不填
         public let profile: String?
         
-        public init (openId: String, openKey: String, outMerchantId: String, merchantName: String, businessLicenseType: String, businessLicenseNo: String, businessLicensePicture: String, businessLicenseStartDate: String, businessLicenseEndDate: String, classificationIds: [String], brandName: String, telephone: String, cityId: String, address: String, openHours: String, accountType: String, bankNo: String, bankName: String, accountNo: String, accountName: String, bossIdType: String, bossIdNo: String, bossName: String, bossSex: String, bossIdCountry: String, bossPositive: String, bossBack: String, bossStartDate: String, bossEndDate: String, licencePicture: String, type: String?, organizationNo: String?, organizationStartDate: String?, organizationPicture: String?, organizationEndDate: String?, intro: String?, logo: String?, tag: String?, financialTelephone: String?, financialContact: String?, taxRegistrationNo: String?, taxRegistrationPicture: String?, taxRegistrationStartDate: String?, taxRegistrationEndDate: String?, accountBoss: String?, accountManagerName: String?, bossTelephone: String?, bossJob: String?, bossEmail: String?, bossAddress: String?, accountIdType: String?, accountIdNo: String?, licencePictureTwo: String?, otherPictureOne: String?, otherPictureTwo: String?, otherPictureThree: String?, otherPictureFour: String?, profile: String?) {
+        public init (openId: String, openKey: String, outMerchantId: String, merchantName: String, businessLicenseType: String, businessLicenseNo: String, businessLicensePicture: String, businessLicenseStartDate: String, businessLicenseEndDate: String, classificationIds: [String], brandName: String, telephone: String, cityId: String, address: String, openHours: String, accountType: String, bankNo: String, bankName: String, accountNo: String, accountName: String, bossIdType: String, bossIdNo: String, bossName: String, bossSex: String, bossIdCountry: String, bossPositive: String, bossBack: String, bossStartDate: String, bossEndDate: String, licencePicture: String, type: String? = nil, organizationNo: String? = nil, organizationStartDate: String? = nil, organizationPicture: String? = nil, organizationEndDate: String? = nil, intro: String? = nil, logo: String? = nil, tag: String? = nil, financialTelephone: String? = nil, financialContact: String? = nil, taxRegistrationNo: String? = nil, taxRegistrationPicture: String? = nil, taxRegistrationStartDate: String? = nil, taxRegistrationEndDate: String? = nil, accountBoss: String? = nil, accountManagerName: String? = nil, bossTelephone: String? = nil, bossJob: String? = nil, bossEmail: String? = nil, bossAddress: String? = nil, accountIdType: String? = nil, accountIdNo: String? = nil, licencePictureTwo: String? = nil, otherPictureOne: String? = nil, otherPictureTwo: String? = nil, otherPictureThree: String? = nil, otherPictureFour: String? = nil, profile: String? = nil) {
             self.openId = openId
             self.openKey = openKey
             self.outMerchantId = outMerchantId
@@ -337,7 +325,7 @@ extension Cpdp {
         
         /// 添加商户响应对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: AddMerchantResult
+        public let result: AddMerchantResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -348,5 +336,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云支付-添加商户接口
+    @inlinable
+    public func addMerchant(_ input: AddMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddMerchantResponse > {
+        self.client.execute(action: "AddMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-添加商户接口
+    @inlinable
+    public func addMerchant(_ input: AddMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddMerchantResponse {
+        try await self.client.execute(action: "AddMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

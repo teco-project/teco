@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-查询小额鉴权转账结果
-    ///
-    /// 查询小额鉴权转账结果。查询小额往账鉴权的转账状态。
-    @inlinable
-    public func querySmallAmountTransfer(_ input: QuerySmallAmountTransferRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QuerySmallAmountTransferResponse > {
-        self.client.execute(action: "QuerySmallAmountTransfer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-查询小额鉴权转账结果
-    ///
-    /// 查询小额鉴权转账结果。查询小额往账鉴权的转账状态。
-    @inlinable
-    public func querySmallAmountTransfer(_ input: QuerySmallAmountTransferRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuerySmallAmountTransferResponse {
-        try await self.client.execute(action: "QuerySmallAmountTransfer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QuerySmallAmountTransfer请求参数结构体
     public struct QuerySmallAmountTransferRequest: TCRequestModel {
         /// String(22)，商户号（签约客户号）
@@ -48,7 +32,7 @@ extension Cpdp {
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
         
-        public init (mrchCode: String, oldTranSeqNo: String, tranDate: String, reservedMsg: String?, profile: String?) {
+        public init (mrchCode: String, oldTranSeqNo: String, tranDate: String, reservedMsg: String? = nil, profile: String? = nil) {
             self.mrchCode = mrchCode
             self.oldTranSeqNo = oldTranSeqNo
             self.tranDate = tranDate
@@ -100,5 +84,21 @@ extension Cpdp {
             case reservedMsg = "ReservedMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-查询小额鉴权转账结果
+    ///
+    /// 查询小额鉴权转账结果。查询小额往账鉴权的转账状态。
+    @inlinable
+    public func querySmallAmountTransfer(_ input: QuerySmallAmountTransferRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QuerySmallAmountTransferResponse > {
+        self.client.execute(action: "QuerySmallAmountTransfer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-查询小额鉴权转账结果
+    ///
+    /// 查询小额鉴权转账结果。查询小额往账鉴权的转账状态。
+    @inlinable
+    public func querySmallAmountTransfer(_ input: QuerySmallAmountTransferRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuerySmallAmountTransferResponse {
+        try await self.client.execute(action: "QuerySmallAmountTransfer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

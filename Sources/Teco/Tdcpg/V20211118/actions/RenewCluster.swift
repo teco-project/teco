@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdcpg {
-    /// 续费集群
-    @inlinable
-    public func renewCluster(_ input: RenewClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewClusterResponse > {
-        self.client.execute(action: "RenewCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费集群
-    @inlinable
-    public func renewCluster(_ input: RenewClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewClusterResponse {
-        try await self.client.execute(action: "RenewCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RenewCluster请求参数结构体
     public struct RenewClusterRequest: TCRequestModel {
         /// 集群ID
@@ -35,7 +23,7 @@ extension Tdcpg {
         /// 续费时间，单位：月。取值范围为[1,60]，默认值为1。
         public let period: UInt64?
         
-        public init (clusterId: String, period: UInt64?) {
+        public init (clusterId: String, period: UInt64? = nil) {
             self.clusterId = clusterId
             self.period = period
         }
@@ -54,5 +42,17 @@ extension Tdcpg {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费集群
+    @inlinable
+    public func renewCluster(_ input: RenewClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewClusterResponse > {
+        self.client.execute(action: "RenewCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费集群
+    @inlinable
+    public func renewCluster(_ input: RenewClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewClusterResponse {
+        try await self.client.execute(action: "RenewCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

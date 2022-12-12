@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 修改云数据库实例的IP和端口号
-    ///
-    /// 本接口(ModifyDBInstanceVipVport)用于修改云数据库实例的IP和端口号，也可进行基础网络转 VPC 网络和 VPC 网络下的子网变更。
-    @inlinable
-    public func modifyDBInstanceVipVport(_ input: ModifyDBInstanceVipVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceVipVportResponse > {
-        self.client.execute(action: "ModifyDBInstanceVipVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改云数据库实例的IP和端口号
-    ///
-    /// 本接口(ModifyDBInstanceVipVport)用于修改云数据库实例的IP和端口号，也可进行基础网络转 VPC 网络和 VPC 网络下的子网变更。
-    @inlinable
-    public func modifyDBInstanceVipVport(_ input: ModifyDBInstanceVipVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceVipVportResponse {
-        try await self.client.execute(action: "ModifyDBInstanceVipVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBInstanceVipVport请求参数结构体
     public struct ModifyDBInstanceVipVportRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c2nl9rpv 或者 cdbrg-c3nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
@@ -51,7 +35,7 @@ extension Cdb {
         /// 进行基础网络转 VPC 网络和 VPC 网络下的子网变更时，原网络中旧IP的回收时间，单位为小时，取值范围为0-168，默认值为24小时。
         public let releaseDuration: Int64?
         
-        public init (instanceId: String, dstIp: String?, dstPort: Int64?, uniqVpcId: String?, uniqSubnetId: String?, releaseDuration: Int64?) {
+        public init (instanceId: String, dstIp: String? = nil, dstPort: Int64? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, releaseDuration: Int64? = nil) {
             self.instanceId = instanceId
             self.dstIp = dstIp
             self.dstPort = dstPort
@@ -83,5 +67,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改云数据库实例的IP和端口号
+    ///
+    /// 本接口(ModifyDBInstanceVipVport)用于修改云数据库实例的IP和端口号，也可进行基础网络转 VPC 网络和 VPC 网络下的子网变更。
+    @inlinable
+    public func modifyDBInstanceVipVport(_ input: ModifyDBInstanceVipVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceVipVportResponse > {
+        self.client.execute(action: "ModifyDBInstanceVipVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库实例的IP和端口号
+    ///
+    /// 本接口(ModifyDBInstanceVipVport)用于修改云数据库实例的IP和端口号，也可进行基础网络转 VPC 网络和 VPC 网络下的子网变更。
+    @inlinable
+    public func modifyDBInstanceVipVport(_ input: ModifyDBInstanceVipVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceVipVportResponse {
+        try await self.client.execute(action: "ModifyDBInstanceVipVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

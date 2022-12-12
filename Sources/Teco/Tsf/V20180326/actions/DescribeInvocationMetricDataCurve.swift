@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tsf {
-    /// 查询调用指标数据变化曲线
-    @inlinable
-    public func describeInvocationMetricDataCurve(_ input: DescribeInvocationMetricDataCurveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvocationMetricDataCurveResponse > {
-        self.client.execute(action: "DescribeInvocationMetricDataCurve", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询调用指标数据变化曲线
-    @inlinable
-    public func describeInvocationMetricDataCurve(_ input: DescribeInvocationMetricDataCurveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataCurveResponse {
-        try await self.client.execute(action: "DescribeInvocationMetricDataCurve", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInvocationMetricDataCurve请求参数结构体
     public struct DescribeInvocationMetricDataCurveRequest: TCRequestModel {
         /// 查询开始时间
@@ -52,7 +40,7 @@ extension Tsf {
         /// 类型。组件监控使用，可选值：SQL 或者 NoSQL
         public let type: String?
         
-        public init (startTime: Date?, endTime: Date?, period: Int64?, metricDimensions: [MetricDimension]?, metrics: [Metric]?, kind: String?, type: String?) {
+        public init (startTime: Date? = nil, endTime: Date? = nil, period: Int64? = nil, metricDimensions: [MetricDimension]? = nil, metrics: [Metric]? = nil, kind: String? = nil, type: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.period = period
@@ -86,5 +74,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询调用指标数据变化曲线
+    @inlinable
+    public func describeInvocationMetricDataCurve(_ input: DescribeInvocationMetricDataCurveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvocationMetricDataCurveResponse > {
+        self.client.execute(action: "DescribeInvocationMetricDataCurve", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询调用指标数据变化曲线
+    @inlinable
+    public func describeInvocationMetricDataCurve(_ input: DescribeInvocationMetricDataCurveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataCurveResponse {
+        try await self.client.execute(action: "DescribeInvocationMetricDataCurve", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

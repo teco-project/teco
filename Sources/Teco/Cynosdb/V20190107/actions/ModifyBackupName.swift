@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 修改备份文件备注名
-    ///
-    /// 此接口（ModifyBackupName）用于修改备份文件备注名。
-    @inlinable
-    public func modifyBackupName(_ input: ModifyBackupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupNameResponse > {
-        self.client.execute(action: "ModifyBackupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改备份文件备注名
-    ///
-    /// 此接口（ModifyBackupName）用于修改备份文件备注名。
-    @inlinable
-    public func modifyBackupName(_ input: ModifyBackupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupNameResponse {
-        try await self.client.execute(action: "ModifyBackupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyBackupName请求参数结构体
     public struct ModifyBackupNameRequest: TCRequestModel {
         /// 集群ID
@@ -63,5 +47,21 @@ extension Cynosdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改备份文件备注名
+    ///
+    /// 此接口（ModifyBackupName）用于修改备份文件备注名。
+    @inlinable
+    public func modifyBackupName(_ input: ModifyBackupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupNameResponse > {
+        self.client.execute(action: "ModifyBackupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改备份文件备注名
+    ///
+    /// 此接口（ModifyBackupName）用于修改备份文件备注名。
+    @inlinable
+    public func modifyBackupName(_ input: ModifyBackupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupNameResponse {
+        try await self.client.execute(action: "ModifyBackupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

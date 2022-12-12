@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 复制组实例切主
-    @inlinable
-    public func changeMasterInstance(_ input: ChangeMasterInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeMasterInstanceResponse > {
-        self.client.execute(action: "ChangeMasterInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 复制组实例切主
-    @inlinable
-    public func changeMasterInstance(_ input: ChangeMasterInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeMasterInstanceResponse {
-        try await self.client.execute(action: "ChangeMasterInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ChangeMasterInstance请求参数结构体
     public struct ChangeMasterInstanceRequest: TCRequestModel {
         /// 复制组ID
@@ -58,5 +46,17 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 复制组实例切主
+    @inlinable
+    public func changeMasterInstance(_ input: ChangeMasterInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeMasterInstanceResponse > {
+        self.client.execute(action: "ChangeMasterInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 复制组实例切主
+    @inlinable
+    public func changeMasterInstance(_ input: ChangeMasterInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeMasterInstanceResponse {
+        try await self.client.execute(action: "ChangeMasterInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

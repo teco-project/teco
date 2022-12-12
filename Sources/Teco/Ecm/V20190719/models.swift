@@ -97,15 +97,15 @@ extension Ecm {
     public struct AddressInfo: TCOutputModel {
         /// 实例的外网ip相关信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let publicIPAddressInfo: PublicIPAddressInfo
+        public let publicIPAddressInfo: PublicIPAddressInfo?
         
         /// 实例的内网ip相关信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let privateIPAddressInfo: PrivateIPAddressInfo
+        public let privateIPAddressInfo: PrivateIPAddressInfo?
         
         /// 实例的外网ipv6相关信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let publicIPv6AddressInfo: PublicIPAddressInfo
+        public let publicIPv6AddressInfo: PublicIPAddressInfo?
         
         enum CodingKeys: String, CodingKey {
             case publicIPAddressInfo = "PublicIPAddressInfo"
@@ -239,7 +239,7 @@ extension Ecm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weight: Int64?
         
-        public init (listenerId: String?, port: Int64?, instanceId: String?, eniIp: String?, weight: Int64?) {
+        public init (listenerId: String? = nil, port: Int64? = nil, instanceId: String? = nil, eniIp: String? = nil, weight: Int64? = nil) {
             self.listenerId = listenerId
             self.port = port
             self.instanceId = instanceId
@@ -295,7 +295,7 @@ extension Ecm {
         /// 默认取值： LOCAL_BASIC。
         public let diskType: String?
         
-        public init (diskSize: Int64, diskType: String?) {
+        public init (diskSize: Int64, diskType: String? = nil) {
             self.diskSize = diskSize
             self.diskType = diskType
         }
@@ -370,7 +370,7 @@ extension Ecm {
         public let snapshotSize: UInt64
         
         /// 云硬盘所在的位置。
-        public let placement: Placement
+        public let placement: Placement?
         
         /// 判断预付费的云盘是否支持主动退还。<br><li>true:支持主动退还<br><li>false:不支持主动退还。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -477,7 +477,7 @@ extension Ecm {
         /// 需要将云盘的到期时间与挂载的子机对齐时，可传入该参数。该参数表示子机当前的到期时间，此时Period如果传入，则表示子机需要续费的时长，云盘会自动按对齐到子机续费后的到期时间续费，示例取值：2018-03-30 20:15:03。
         public let curInstanceDeadline: Date?
         
-        public init (period: UInt64, renewFlag: String?, curInstanceDeadline: Date?) {
+        public init (period: UInt64, renewFlag: String? = nil, curInstanceDeadline: Date? = nil) {
             self.period = period
             self.renewFlag = renewFlag
             self.curInstanceDeadline = curInstanceDeadline
@@ -532,15 +532,15 @@ extension Ecm {
     /// 增强服务
     public struct EnhancedService: TCInputModel {
         /// 是否开启云镜服务。
-        public let securityService: RunSecurityServiceEnabled
+        public let securityService: RunSecurityServiceEnabled?
         
         /// 是否开启云监控服务。
-        public let monitorService: RunMonitorServiceEnabled
+        public let monitorService: RunMonitorServiceEnabled?
         
         /// 是否开通IP直通。若不指定该参数，则Linux镜像默认开通，windows镜像暂不支持IP直通。
-        public let eipDirectService: RunEIPDirectServiceEnabled
+        public let eipDirectService: RunEIPDirectServiceEnabled?
         
-        public init (securityService: RunSecurityServiceEnabled, monitorService: RunMonitorServiceEnabled, eipDirectService: RunEIPDirectServiceEnabled) {
+        public init (securityService: RunSecurityServiceEnabled? = nil, monitorService: RunMonitorServiceEnabled? = nil, eipDirectService: RunEIPDirectServiceEnabled? = nil) {
             self.securityService = securityService
             self.monitorService = monitorService
             self.eipDirectService = eipDirectService
@@ -666,7 +666,7 @@ extension Ecm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let checkType: String?
         
-        public init (healthSwitch: Int64?, timeOut: Int64?, intervalTime: Int64?, healthNum: Int64?, unHealthyNum: Int64?, checkPort: Int64?, contextType: String?, sendContext: String?, recvContext: String?, checkType: String?) {
+        public init (healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unHealthyNum: Int64? = nil, checkPort: Int64? = nil, contextType: String? = nil, sendContext: String? = nil, recvContext: String? = nil, checkType: String? = nil) {
             self.healthSwitch = healthSwitch
             self.timeOut = timeOut
             self.intervalTime = intervalTime
@@ -889,23 +889,23 @@ extension Ecm {
         
         /// 实例当前使用的镜像的信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let image: Image
+        public let image: Image?
         
         /// 实例当前所属的模块简要信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let simpleModule: SimpleModule
+        public let simpleModule: SimpleModule?
         
         /// 实例所在的位置相关信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let position: Position
+        public let position: Position?
         
         /// 实例的网络相关信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let internet: Internet
+        public let internet: Internet?
         
         /// 实例的配置相关信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instanceTypeConfig: InstanceTypeConfig
+        public let instanceTypeConfig: InstanceTypeConfig?
         
         /// 实例的创建时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -971,7 +971,7 @@ extension Ecm {
         
         /// 系统盘信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let systemDisk: DiskInfo
+        public let systemDisk: DiskInfo?
         
         /// 数据盘信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -987,7 +987,7 @@ extension Ecm {
         
         /// VPC属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let virtualPrivateCloud: VirtualPrivateCloud
+        public let virtualPrivateCloud: VirtualPrivateCloud?
         
         /// 实例运营商字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -995,7 +995,7 @@ extension Ecm {
         
         /// 物理位置信息。注意该字段目前为保留字段，均为空值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let physicalPosition: PhysicalPosition
+        public let physicalPosition: PhysicalPosition?
         
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
@@ -1279,7 +1279,7 @@ extension Ecm {
         /// AVAILABLE：可用的
         public let state: String?
         
-        public init (address: String, primary: Bool?, addressId: String?, description: String?, isWanIpBlocked: Bool?, state: String?) {
+        public init (address: String, primary: Bool? = nil, addressId: String? = nil, description: String? = nil, isWanIpBlocked: Bool? = nil, state: String? = nil) {
             self.address = address
             self.primary = primary
             self.addressId = addressId
@@ -1360,7 +1360,7 @@ extension Ecm {
         
         /// 监听器的健康检查信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let healthCheck: HealthCheck
+        public let healthCheck: HealthCheck?
         
         /// 请求的调度方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1465,7 +1465,7 @@ extension Ecm {
         
         /// 位置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let position: Position
+        public let position: Position?
         
         /// 负载均衡实例 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1510,7 +1510,7 @@ extension Ecm {
         
         /// 负载均衡实例的网络属性。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let networkAttributes: LoadBalancerInternetAccessible
+        public let networkAttributes: LoadBalancerInternetAccessible?
         
         /// 安全组。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1565,7 +1565,7 @@ extension Ecm {
         /// 最大出带宽，单位Mbps。默认值10
         public let internetMaxBandwidthOut: Int64?
         
-        public init (internetMaxBandwidthOut: Int64?) {
+        public init (internetMaxBandwidthOut: Int64? = nil) {
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
         }
         
@@ -1788,7 +1788,7 @@ extension Ecm {
         /// 绑定的云服务器对象。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let attachment: NetworkInterfaceAttachment
+        public let attachment: NetworkInterfaceAttachment?
         
         /// 可用区。
         public let zone: String
@@ -2166,7 +2166,7 @@ extension Ecm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cdcId: String?
         
-        public init (zone: String, cageId: String?, projectId: UInt64?, cdcName: String?, cdcId: String?) {
+        public init (zone: String, cageId: String? = nil, projectId: UInt64? = nil, cdcName: String? = nil, cdcId: String? = nil) {
             self.zone = zone
             self.cageId = cageId
             self.projectId = projectId
@@ -2277,7 +2277,7 @@ extension Ecm {
         /// AVAILABLE：可用的
         public let state: String?
         
-        public init (privateIpAddress: String, primary: Bool?, publicIpAddress: String?, addressId: String?, description: String?, isWanIpBlocked: Bool?, state: String?) {
+        public init (privateIpAddress: String, primary: Bool? = nil, publicIpAddress: String? = nil, addressId: String? = nil, description: String? = nil, isWanIpBlocked: Bool? = nil, state: String? = nil) {
             self.privateIpAddress = privateIpAddress
             self.primary = primary
             self.publicIpAddress = publicIpAddress
@@ -2389,7 +2389,7 @@ extension Ecm {
         /// 路由策略ID。IPv4路由策略ID是有意义的值，IPv6路由策略是无意义的值0。后续建议完全使用字符串唯一ID `RouteItemId`操作路由策略
         public let routeId: UInt64?
         
-        public init (destinationCidrBlock: String?, gatewayType: String?, gatewayId: String?, routeItemId: String?, routeDescription: String?, enabled: Bool?, routeType: String?, routeId: UInt64?) {
+        public init (destinationCidrBlock: String? = nil, gatewayType: String? = nil, gatewayId: String? = nil, routeItemId: String? = nil, routeDescription: String? = nil, enabled: Bool? = nil, routeType: String? = nil, routeId: UInt64? = nil) {
             self.destinationCidrBlock = destinationCidrBlock
             self.gatewayType = gatewayType
             self.gatewayId = gatewayId
@@ -2456,7 +2456,7 @@ extension Ecm {
         /// 创建时间
         public let createdTime: String?
         
-        public init (vpcId: String?, routeTableId: String?, routeTableName: String?, associationSet: [RouteTableAssociation]?, routeSet: [Route]?, main: Bool?, createdTime: String?) {
+        public init (vpcId: String? = nil, routeTableId: String? = nil, routeTableName: String? = nil, associationSet: [RouteTableAssociation]? = nil, routeSet: [Route]? = nil, main: Bool? = nil, createdTime: String? = nil) {
             self.vpcId = vpcId
             self.routeTableId = routeTableId
             self.routeTableName = routeTableName
@@ -2485,7 +2485,7 @@ extension Ecm {
         /// 路由表实例ID
         public let routeTableId: String?
         
-        public init (subnetId: String?, routeTableId: String?) {
+        public init (subnetId: String? = nil, routeTableId: String? = nil) {
             self.subnetId = subnetId
             self.routeTableId = routeTableId
         }
@@ -2516,7 +2516,7 @@ extension Ecm {
         /// windows镜像目前不支持IP直通。
         public let enabled: Bool?
         
-        public init (enabled: Bool?) {
+        public init (enabled: Bool? = nil) {
             self.enabled = enabled
         }
         
@@ -2530,7 +2530,7 @@ extension Ecm {
         /// 是否开启。
         public let enabled: Bool?
         
-        public init (enabled: Bool?) {
+        public init (enabled: Bool? = nil) {
             self.enabled = enabled
         }
         
@@ -2547,7 +2547,7 @@ extension Ecm {
         /// 云镜版本：0 基础版，1 专业版。目前仅支持基础版
         public let version: Int64?
         
-        public init (enabled: Bool?, version: Int64?) {
+        public init (enabled: Bool? = nil, version: Int64? = nil) {
             self.enabled = enabled
             self.version = version
         }
@@ -2578,7 +2578,7 @@ extension Ecm {
         /// 标签键值对。
         public let tagSet: [Tag]?
         
-        public init (securityGroupId: String, securityGroupName: String, securityGroupDesc: String, isDefault: Bool?, createdTime: String?, tagSet: [Tag]?) {
+        public init (securityGroupId: String, securityGroupName: String, securityGroupDesc: String, isDefault: Bool? = nil, createdTime: String? = nil, tagSet: [Tag]? = nil) {
             self.securityGroupId = securityGroupId
             self.securityGroupName = securityGroupName
             self.securityGroupDesc = securityGroupDesc
@@ -2681,7 +2681,7 @@ extension Ecm {
         public let port: String?
         
         /// 协议端口ID或者协议端口组ID。ServiceTemplate和Protocol+Port互斥。
-        public let serviceTemplate: ServiceTemplateSpecification
+        public let serviceTemplate: ServiceTemplateSpecification?
         
         /// 网段或IP(互斥)。
         public let cidrBlock: String?
@@ -2690,7 +2690,7 @@ extension Ecm {
         public let securityGroupId: String?
         
         /// IP地址ID或者ID地址组ID。
-        public let addressTemplate: AddressTemplateSpecification
+        public let addressTemplate: AddressTemplateSpecification?
         
         /// ACCEPT 或 DROP。
         public let action: String?
@@ -2706,7 +2706,7 @@ extension Ecm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipv6CidrBlock: String?
         
-        public init (policyIndex: Int64?, `protocol`: String?, port: String?, serviceTemplate: ServiceTemplateSpecification, cidrBlock: String?, securityGroupId: String?, addressTemplate: AddressTemplateSpecification, action: String?, policyDescription: String?, modifyTime: String?, ipv6CidrBlock: String?) {
+        public init (policyIndex: Int64? = nil, `protocol`: String? = nil, port: String? = nil, serviceTemplate: ServiceTemplateSpecification? = nil, cidrBlock: String? = nil, securityGroupId: String? = nil, addressTemplate: AddressTemplateSpecification? = nil, action: String? = nil, policyDescription: String? = nil, modifyTime: String? = nil, ipv6CidrBlock: String? = nil) {
             self.policyIndex = policyIndex
             self.`protocol` = `protocol`
             self.port = port
@@ -2746,7 +2746,7 @@ extension Ecm {
         /// 入站规则。其中出站规则和入站规则必须选一个。
         public let ingress: [SecurityGroupPolicy]?
         
-        public init (version: String?, egress: [SecurityGroupPolicy]?, ingress: [SecurityGroupPolicy]?) {
+        public init (version: String? = nil, egress: [SecurityGroupPolicy]? = nil, ingress: [SecurityGroupPolicy]? = nil) {
             self.version = version
             self.egress = egress
             self.ingress = ingress
@@ -2795,7 +2795,7 @@ extension Ecm {
     /// 描述了快照的详细信息
     public struct Snapshot: TCOutputModel {
         /// 快照所在的位置。
-        public let placement: Placement
+        public let placement: Placement?
         
         /// 是否为跨地域复制的快照。取值范围：<br><li>true：表示为跨地域复制的快照。<br><li>false:本地域的快照。
         public let copyFromRemote: Bool
@@ -3023,7 +3023,7 @@ extension Ecm {
         /// 硬盘容量大小。单位GB。
         public let diskSize: Int64?
         
-        public init (diskType: String?, diskId: String?, diskSize: Int64?) {
+        public init (diskType: String? = nil, diskId: String? = nil, diskSize: Int64? = nil) {
             self.diskType = diskType
             self.diskId = diskId
             self.diskSize = diskSize
@@ -3040,11 +3040,11 @@ extension Ecm {
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签健。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let key: String
+        public let key: String?
         
         /// 标签值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let value: String
+        public let value: String?
         
         public init (key: String, value: String) {
             self.key = key
@@ -3065,7 +3065,7 @@ extension Ecm {
         /// 标签的值。
         public let tagValue: String?
         
-        public init (tagKey: String?, tagValue: String?) {
+        public init (tagKey: String? = nil, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
@@ -3113,7 +3113,7 @@ extension Ecm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eniIp: String?
         
-        public init (port: Int64?, instanceId: String?, weight: Int64?, eniIp: String?) {
+        public init (port: Int64? = nil, instanceId: String? = nil, weight: Int64? = nil, eniIp: String? = nil) {
             self.port = port
             self.instanceId = instanceId
             self.weight = weight
@@ -3173,7 +3173,7 @@ extension Ecm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weight: Int64?
         
-        public init (listenerId: String?, targets: [Target]?, weight: Int64?) {
+        public init (listenerId: String? = nil, targets: [Target]? = nil, weight: Int64? = nil) {
             self.listenerId = listenerId
             self.targets = targets
             self.weight = weight
@@ -3255,7 +3255,7 @@ extension Ecm {
         /// 为弹性网卡指定随机生成的 IPv6 地址数量。
         public let ipv6AddressCount: Int64?
         
-        public init (vpcId: String, subnetId: String, asVpcGateway: Bool?, privateIpAddresses: [String]?, ipv6AddressCount: Int64?) {
+        public init (vpcId: String, subnetId: String, asVpcGateway: Bool? = nil, privateIpAddresses: [String]? = nil, ipv6AddressCount: Int64? = nil) {
             self.vpcId = vpcId
             self.subnetId = subnetId
             self.asVpcGateway = asVpcGateway
@@ -3398,7 +3398,7 @@ extension Ecm {
         /// 为弹性网卡指定随机生成的IPv6地址数量，目前数量不能大于1。
         public let ipv6AddressCount: Int64?
         
-        public init (zone: String, instanceCount: Int64, isp: String, vpcId: String?, subnetId: String?, privateIpAddresses: [String]?, ipv6AddressCount: Int64?) {
+        public init (zone: String, instanceCount: Int64, isp: String, vpcId: String? = nil, subnetId: String? = nil, privateIpAddresses: [String]? = nil, ipv6AddressCount: Int64? = nil) {
             self.zone = zone
             self.instanceCount = instanceCount
             self.isp = isp

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 创建分组
-    ///
-    /// 本接口(CreateDeviceGroup) 用于创建设备管理分组。
-    @inlinable
-    public func createDeviceGroup(_ input: CreateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeviceGroupResponse > {
-        self.client.execute(action: "CreateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建分组
-    ///
-    /// 本接口(CreateDeviceGroup) 用于创建设备管理分组。
-    @inlinable
-    public func createDeviceGroup(_ input: CreateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceGroupResponse {
-        try await self.client.execute(action: "CreateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDeviceGroup请求参数结构体
     public struct CreateDeviceGroupRequest: TCRequestModel {
         /// 分组名称
@@ -42,7 +26,7 @@ extension Iotvideoindustry {
         /// 分组描述
         public let groupDescribe: String?
         
-        public init (groupName: String, parentId: String, groupDescribe: String?) {
+        public init (groupName: String, parentId: String, groupDescribe: String? = nil) {
             self.groupName = groupName
             self.parentId = parentId
             self.groupDescribe = groupDescribe
@@ -73,5 +57,21 @@ extension Iotvideoindustry {
             case groupId = "GroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建分组
+    ///
+    /// 本接口(CreateDeviceGroup) 用于创建设备管理分组。
+    @inlinable
+    public func createDeviceGroup(_ input: CreateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeviceGroupResponse > {
+        self.client.execute(action: "CreateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建分组
+    ///
+    /// 本接口(CreateDeviceGroup) 用于创建设备管理分组。
+    @inlinable
+    public func createDeviceGroup(_ input: CreateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceGroupResponse {
+        try await self.client.execute(action: "CreateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询基线检测项信息
-    ///
-    /// 根据基线id查询下属检测项信息
-    @inlinable
-    public func describeBaselineRule(_ input: DescribeBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineRuleResponse > {
-        self.client.execute(action: "DescribeBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询基线检测项信息
-    ///
-    /// 根据基线id查询下属检测项信息
-    @inlinable
-    public func describeBaselineRule(_ input: DescribeBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineRuleResponse {
-        try await self.client.execute(action: "DescribeBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBaselineRule请求参数结构体
     public struct DescribeBaselineRuleRequest: TCRequestModel {
         /// 基线id
@@ -54,7 +38,7 @@ extension Cwp {
         /// 主机uuid
         public let uuid: String?
         
-        public init (baselineId: UInt64, limit: UInt64, offset: UInt64, level: [UInt64]?, status: UInt64?, quuid: String?, uuid: String?) {
+        public init (baselineId: UInt64, limit: UInt64, offset: UInt64, level: [UInt64]? = nil, status: UInt64? = nil, quuid: String? = nil, uuid: String? = nil) {
             self.baselineId = baselineId
             self.limit = limit
             self.offset = offset
@@ -97,5 +81,21 @@ extension Cwp {
             case showRuleRemark = "ShowRuleRemark"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询基线检测项信息
+    ///
+    /// 根据基线id查询下属检测项信息
+    @inlinable
+    public func describeBaselineRule(_ input: DescribeBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineRuleResponse > {
+        self.client.execute(action: "DescribeBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询基线检测项信息
+    ///
+    /// 根据基线id查询下属检测项信息
+    @inlinable
+    public func describeBaselineRule(_ input: DescribeBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineRuleResponse {
+        try await self.client.execute(action: "DescribeBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

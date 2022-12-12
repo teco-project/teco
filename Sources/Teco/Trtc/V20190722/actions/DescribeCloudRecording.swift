@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Trtc {
-    /// 查询云端录制状态
-    ///
-    /// 成功开启录制后，可以使用此接口来查询录制状态。仅在录制任务进行时有效，录制退出后查询将会返回错误。
-    /// 录制文件上传到云点播VOD时，StorageFileList中不会返回录制文件信息，请订阅相关录制文件回调事件，获取录制文件信息。
-    @inlinable
-    public func describeCloudRecording(_ input: DescribeCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudRecordingResponse > {
-        self.client.execute(action: "DescribeCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云端录制状态
-    ///
-    /// 成功开启录制后，可以使用此接口来查询录制状态。仅在录制任务进行时有效，录制退出后查询将会返回错误。
-    /// 录制文件上传到云点播VOD时，StorageFileList中不会返回录制文件信息，请订阅相关录制文件回调事件，获取录制文件信息。
-    @inlinable
-    public func describeCloudRecording(_ input: DescribeCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRecordingResponse {
-        try await self.client.execute(action: "DescribeCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudRecording请求参数结构体
     public struct DescribeCloudRecordingRequest: TCRequestModel {
         /// TRTC的SDKAppId，和录制的房间所对应的SDKAppId相同。
@@ -76,5 +58,23 @@ extension Trtc {
             case storageFileList = "StorageFileList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云端录制状态
+    ///
+    /// 成功开启录制后，可以使用此接口来查询录制状态。仅在录制任务进行时有效，录制退出后查询将会返回错误。
+    /// 录制文件上传到云点播VOD时，StorageFileList中不会返回录制文件信息，请订阅相关录制文件回调事件，获取录制文件信息。
+    @inlinable
+    public func describeCloudRecording(_ input: DescribeCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudRecordingResponse > {
+        self.client.execute(action: "DescribeCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云端录制状态
+    ///
+    /// 成功开启录制后，可以使用此接口来查询录制状态。仅在录制任务进行时有效，录制退出后查询将会返回错误。
+    /// 录制文件上传到云点播VOD时，StorageFileList中不会返回录制文件信息，请订阅相关录制文件回调事件，获取录制文件信息。
+    @inlinable
+    public func describeCloudRecording(_ input: DescribeCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRecordingResponse {
+        try await self.client.execute(action: "DescribeCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

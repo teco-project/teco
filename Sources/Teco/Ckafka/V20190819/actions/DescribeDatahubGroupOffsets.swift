@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 获取Datahub消费分组offset
-    @inlinable
-    public func describeDatahubGroupOffsets(_ input: DescribeDatahubGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatahubGroupOffsetsResponse > {
-        self.client.execute(action: "DescribeDatahubGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Datahub消费分组offset
-    @inlinable
-    public func describeDatahubGroupOffsets(_ input: DescribeDatahubGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatahubGroupOffsetsResponse {
-        try await self.client.execute(action: "DescribeDatahubGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDatahubGroupOffsets请求参数结构体
     public struct DescribeDatahubGroupOffsetsRequest: TCRequestModel {
         /// （过滤条件）按照实例 ID 过滤
@@ -44,7 +32,7 @@ extension Ckafka {
         /// 本次返回结果的最大个数，默认为50，最大值为50
         public let limit: Int64?
         
-        public init (name: String, group: String, searchWord: String?, offset: Int64?, limit: Int64?) {
+        public init (name: String, group: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.name = name
             self.group = group
             self.searchWord = searchWord
@@ -73,5 +61,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Datahub消费分组offset
+    @inlinable
+    public func describeDatahubGroupOffsets(_ input: DescribeDatahubGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatahubGroupOffsetsResponse > {
+        self.client.execute(action: "DescribeDatahubGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Datahub消费分组offset
+    @inlinable
+    public func describeDatahubGroupOffsets(_ input: DescribeDatahubGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatahubGroupOffsetsResponse {
+        try await self.client.execute(action: "DescribeDatahubGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

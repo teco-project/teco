@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取网络攻击威胁类型列表
-    @inlinable
-    public func describeAttackVulTypeList(_ input: DescribeAttackVulTypeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAttackVulTypeListResponse > {
-        self.client.execute(action: "DescribeAttackVulTypeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取网络攻击威胁类型列表
-    @inlinable
-    public func describeAttackVulTypeList(_ input: DescribeAttackVulTypeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackVulTypeListResponse {
-        try await self.client.execute(action: "DescribeAttackVulTypeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAttackVulTypeList请求参数结构体
     public struct DescribeAttackVulTypeListRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Cwp {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取网络攻击威胁类型列表
+    @inlinable
+    public func describeAttackVulTypeList(_ input: DescribeAttackVulTypeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAttackVulTypeListResponse > {
+        self.client.execute(action: "DescribeAttackVulTypeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取网络攻击威胁类型列表
+    @inlinable
+    public func describeAttackVulTypeList(_ input: DescribeAttackVulTypeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackVulTypeListResponse {
+        try await self.client.execute(action: "DescribeAttackVulTypeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

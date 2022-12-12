@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询基础网络互通列表
-    ///
-    /// 本接口(DescribeClassicLinkInstances)用于查询私有网络和基础网络设备互通列表。
-    @inlinable
-    public func describeClassicLinkInstances(_ input: DescribeClassicLinkInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClassicLinkInstancesResponse > {
-        self.client.execute(action: "DescribeClassicLinkInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询基础网络互通列表
-    ///
-    /// 本接口(DescribeClassicLinkInstances)用于查询私有网络和基础网络设备互通列表。
-    @inlinable
-    public func describeClassicLinkInstances(_ input: DescribeClassicLinkInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicLinkInstancesResponse {
-        try await self.client.execute(action: "DescribeClassicLinkInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClassicLinkInstances请求参数结构体
     public struct DescribeClassicLinkInstancesRequest: TCRequestModel {
         /// 过滤条件。
@@ -44,7 +28,7 @@ extension Vpc {
         /// 返回数量
         public let limit: String?
         
-        public init (filters: [FilterObject]?, offset: String?, limit: String?) {
+        public init (filters: [FilterObject]? = nil, offset: String? = nil, limit: String? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -73,5 +57,21 @@ extension Vpc {
             case classicLinkInstanceSet = "ClassicLinkInstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询基础网络互通列表
+    ///
+    /// 本接口(DescribeClassicLinkInstances)用于查询私有网络和基础网络设备互通列表。
+    @inlinable
+    public func describeClassicLinkInstances(_ input: DescribeClassicLinkInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClassicLinkInstancesResponse > {
+        self.client.execute(action: "DescribeClassicLinkInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询基础网络互通列表
+    ///
+    /// 本接口(DescribeClassicLinkInstances)用于查询私有网络和基础网络设备互通列表。
+    @inlinable
+    public func describeClassicLinkInstances(_ input: DescribeClassicLinkInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicLinkInstancesResponse {
+        try await self.client.execute(action: "DescribeClassicLinkInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

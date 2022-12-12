@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询托管集群开启外网端口流程状态
-    ///
-    /// 查询集群开启端口流程状态(仅支持托管集群外网端口)
-    @inlinable
-    public func describeClusterEndpointVipStatus(_ input: DescribeClusterEndpointVipStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterEndpointVipStatusResponse > {
-        self.client.execute(action: "DescribeClusterEndpointVipStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询托管集群开启外网端口流程状态
-    ///
-    /// 查询集群开启端口流程状态(仅支持托管集群外网端口)
-    @inlinable
-    public func describeClusterEndpointVipStatus(_ input: DescribeClusterEndpointVipStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterEndpointVipStatusResponse {
-        try await self.client.execute(action: "DescribeClusterEndpointVipStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterEndpointVipStatus请求参数结构体
     public struct DescribeClusterEndpointVipStatusRequest: TCRequestModel {
         /// 集群ID
@@ -62,5 +46,21 @@ extension Tke {
             case errorMsg = "ErrorMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询托管集群开启外网端口流程状态
+    ///
+    /// 查询集群开启端口流程状态(仅支持托管集群外网端口)
+    @inlinable
+    public func describeClusterEndpointVipStatus(_ input: DescribeClusterEndpointVipStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterEndpointVipStatusResponse > {
+        self.client.execute(action: "DescribeClusterEndpointVipStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询托管集群开启外网端口流程状态
+    ///
+    /// 查询集群开启端口流程状态(仅支持托管集群外网端口)
+    @inlinable
+    public func describeClusterEndpointVipStatus(_ input: DescribeClusterEndpointVipStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterEndpointVipStatusResponse {
+        try await self.client.execute(action: "DescribeClusterEndpointVipStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询数据集列表
-    @inlinable
-    public func describePrograms(_ input: DescribeProgramsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProgramsResponse > {
-        self.client.execute(action: "DescribePrograms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据集列表
-    @inlinable
-    public func describePrograms(_ input: DescribeProgramsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProgramsResponse {
-        try await self.client.execute(action: "DescribePrograms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrograms请求参数结构体
     public struct DescribeProgramsRequest: TCRequestModel {
         /// 模糊查询数据集ID，数据集名称，不传入时查询全量
@@ -38,7 +26,7 @@ extension Tsf {
         /// 起始偏移量
         public let offset: Int64?
         
-        public init (searchWord: String?, limit: Int64?, offset: Int64?) {
+        public init (searchWord: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.searchWord = searchWord
             self.limit = limit
             self.offset = offset
@@ -63,5 +51,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据集列表
+    @inlinable
+    public func describePrograms(_ input: DescribeProgramsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProgramsResponse > {
+        self.client.execute(action: "DescribePrograms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据集列表
+    @inlinable
+    public func describePrograms(_ input: DescribeProgramsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProgramsResponse {
+        try await self.client.execute(action: "DescribePrograms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

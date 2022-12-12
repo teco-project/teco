@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 免费证书申请
-    ///
-    /// 本接口（ApplyCertificate）用于免费证书申请。
-    @inlinable
-    public func applyCertificate(_ input: ApplyCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyCertificateResponse > {
-        self.client.execute(action: "ApplyCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 免费证书申请
-    ///
-    /// 本接口（ApplyCertificate）用于免费证书申请。
-    @inlinable
-    public func applyCertificate(_ input: ApplyCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyCertificateResponse {
-        try await self.client.execute(action: "ApplyCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyCertificate请求参数结构体
     public struct ApplyCertificateRequest: TCRequestModel {
         /// 验证方式：DNS_AUTO = 自动DNS验证，DNS = 手动DNS验证，FILE = 文件验证。
@@ -72,7 +56,7 @@ extension Ssl {
         /// 权益包ID，用于免费证书扩容包使用
         public let packageId: String?
         
-        public init (dvAuthMethod: String, domainName: String, projectId: UInt64?, packageType: String?, contactEmail: String?, contactPhone: String?, validityPeriod: String?, csrEncryptAlgo: String?, csrKeyParameter: String?, csrKeyPassword: String?, alias: String?, oldCertificateId: String?, packageId: String?) {
+        public init (dvAuthMethod: String, domainName: String, projectId: UInt64? = nil, packageType: String? = nil, contactEmail: String? = nil, contactPhone: String? = nil, validityPeriod: String? = nil, csrEncryptAlgo: String? = nil, csrKeyParameter: String? = nil, csrKeyPassword: String? = nil, alias: String? = nil, oldCertificateId: String? = nil, packageId: String? = nil) {
             self.dvAuthMethod = dvAuthMethod
             self.domainName = domainName
             self.projectId = projectId
@@ -117,5 +101,21 @@ extension Ssl {
             case certificateId = "CertificateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 免费证书申请
+    ///
+    /// 本接口（ApplyCertificate）用于免费证书申请。
+    @inlinable
+    public func applyCertificate(_ input: ApplyCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyCertificateResponse > {
+        self.client.execute(action: "ApplyCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 免费证书申请
+    ///
+    /// 本接口（ApplyCertificate）用于免费证书申请。
+    @inlinable
+    public func applyCertificate(_ input: ApplyCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyCertificateResponse {
+        try await self.client.execute(action: "ApplyCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

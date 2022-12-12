@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 安全合规创建合规检查任务
-    ///
-    /// 创建合规检查任务，在资产级别触发重新检测时使用。
-    @inlinable
-    public func createComplianceTask(_ input: CreateComplianceTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateComplianceTaskResponse > {
-        self.client.execute(action: "CreateComplianceTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全合规创建合规检查任务
-    ///
-    /// 创建合规检查任务，在资产级别触发重新检测时使用。
-    @inlinable
-    public func createComplianceTask(_ input: CreateComplianceTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComplianceTaskResponse {
-        try await self.client.execute(action: "CreateComplianceTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateComplianceTask请求参数结构体
     public struct CreateComplianceTaskRequest: TCRequestModel {
         /// 指定要扫描的资产类型列表。
@@ -47,7 +31,7 @@ extension Tcss {
         /// 按照定时任务ID指定的策略执行合规检查。
         public let periodTaskId: UInt64?
         
-        public init (assetTypeSet: [String]?, policySetId: UInt64?, periodTaskId: UInt64?) {
+        public init (assetTypeSet: [String]? = nil, policySetId: UInt64? = nil, periodTaskId: UInt64? = nil) {
             self.assetTypeSet = assetTypeSet
             self.policySetId = policySetId
             self.periodTaskId = periodTaskId
@@ -72,5 +56,21 @@ extension Tcss {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全合规创建合规检查任务
+    ///
+    /// 创建合规检查任务，在资产级别触发重新检测时使用。
+    @inlinable
+    public func createComplianceTask(_ input: CreateComplianceTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateComplianceTaskResponse > {
+        self.client.execute(action: "CreateComplianceTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规创建合规检查任务
+    ///
+    /// 创建合规检查任务，在资产级别触发重新检测时使用。
+    @inlinable
+    public func createComplianceTask(_ input: CreateComplianceTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComplianceTaskResponse {
+        try await self.client.execute(action: "CreateComplianceTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

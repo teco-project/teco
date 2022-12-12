@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时访问控制事件详细信息
-    ///
-    /// 查询运行时访问控制事件的详细信息
-    @inlinable
-    public func describeAccessControlDetail(_ input: DescribeAccessControlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessControlDetailResponse > {
-        self.client.execute(action: "DescribeAccessControlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时访问控制事件详细信息
-    ///
-    /// 查询运行时访问控制事件的详细信息
-    @inlinable
-    public func describeAccessControlDetail(_ input: DescribeAccessControlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlDetailResponse {
-        try await self.client.execute(action: "DescribeAccessControlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccessControlDetail请求参数结构体
     public struct DescribeAccessControlDetailRequest: TCRequestModel {
         /// 事件唯一id
@@ -64,7 +48,7 @@ extension Tcss {
         
         /// 祖先进程信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ancestorProcessInfo: ProcessBaseInfo
+        public let ancestorProcessInfo: ProcessBaseInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -78,5 +62,21 @@ extension Tcss {
             case ancestorProcessInfo = "AncestorProcessInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时访问控制事件详细信息
+    ///
+    /// 查询运行时访问控制事件的详细信息
+    @inlinable
+    public func describeAccessControlDetail(_ input: DescribeAccessControlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessControlDetailResponse > {
+        self.client.execute(action: "DescribeAccessControlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时访问控制事件详细信息
+    ///
+    /// 查询运行时访问控制事件的详细信息
+    @inlinable
+    public func describeAccessControlDetail(_ input: DescribeAccessControlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlDetailResponse {
+        try await self.client.execute(action: "DescribeAccessControlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

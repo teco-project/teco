@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 修改是否忽略证书到期通知
-    ///
-    /// 修改忽略证书到期通知。打开或关闭证书到期通知。
-    @inlinable
-    public func modifyCertificatesExpiringNotificationSwitch(_ input: ModifyCertificatesExpiringNotificationSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificatesExpiringNotificationSwitchResponse > {
-        self.client.execute(action: "ModifyCertificatesExpiringNotificationSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改是否忽略证书到期通知
-    ///
-    /// 修改忽略证书到期通知。打开或关闭证书到期通知。
-    @inlinable
-    public func modifyCertificatesExpiringNotificationSwitch(_ input: ModifyCertificatesExpiringNotificationSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificatesExpiringNotificationSwitchResponse {
-        try await self.client.execute(action: "ModifyCertificatesExpiringNotificationSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCertificatesExpiringNotificationSwitch请求参数结构体
     public struct ModifyCertificatesExpiringNotificationSwitchRequest: TCRequestModel {
         /// 证书ID列表。最多50个
@@ -62,5 +46,21 @@ extension Ssl {
             case certificateIds = "CertificateIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改是否忽略证书到期通知
+    ///
+    /// 修改忽略证书到期通知。打开或关闭证书到期通知。
+    @inlinable
+    public func modifyCertificatesExpiringNotificationSwitch(_ input: ModifyCertificatesExpiringNotificationSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificatesExpiringNotificationSwitchResponse > {
+        self.client.execute(action: "ModifyCertificatesExpiringNotificationSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改是否忽略证书到期通知
+    ///
+    /// 修改忽略证书到期通知。打开或关闭证书到期通知。
+    @inlinable
+    public func modifyCertificatesExpiringNotificationSwitch(_ input: ModifyCertificatesExpiringNotificationSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificatesExpiringNotificationSwitchResponse {
+        try await self.client.execute(action: "ModifyCertificatesExpiringNotificationSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

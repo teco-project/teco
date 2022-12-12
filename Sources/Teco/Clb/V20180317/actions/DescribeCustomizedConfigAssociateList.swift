@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 拉取配置绑定的server或location。
-    ///
-    /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
-    @inlinable
-    public func describeCustomizedConfigAssociateList(_ input: DescribeCustomizedConfigAssociateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomizedConfigAssociateListResponse > {
-        self.client.execute(action: "DescribeCustomizedConfigAssociateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取配置绑定的server或location。
-    ///
-    /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
-    @inlinable
-    public func describeCustomizedConfigAssociateList(_ input: DescribeCustomizedConfigAssociateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizedConfigAssociateListResponse {
-        try await self.client.execute(action: "DescribeCustomizedConfigAssociateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomizedConfigAssociateList请求参数结构体
     public struct DescribeCustomizedConfigAssociateListRequest: TCRequestModel {
         /// 配置ID
@@ -45,7 +29,7 @@ extension Clb {
         /// 搜索域名
         public let domain: String?
         
-        public init (uconfigId: String?, offset: Int64?, limit: Int64?, domain: String?) {
+        public init (uconfigId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil) {
             self.uconfigId = uconfigId
             self.offset = offset
             self.limit = limit
@@ -76,5 +60,21 @@ extension Clb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取配置绑定的server或location。
+    ///
+    /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
+    @inlinable
+    public func describeCustomizedConfigAssociateList(_ input: DescribeCustomizedConfigAssociateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomizedConfigAssociateListResponse > {
+        self.client.execute(action: "DescribeCustomizedConfigAssociateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取配置绑定的server或location。
+    ///
+    /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
+    @inlinable
+    public func describeCustomizedConfigAssociateList(_ input: DescribeCustomizedConfigAssociateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizedConfigAssociateListResponse {
+        try await self.client.execute(action: "DescribeCustomizedConfigAssociateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 查询视频处理用量统计数据
-    ///
-    /// 该接口返回查询时间范围内每天使用的视频处理用量信息。
-    ///    1. 可以查询最近365天内的视频处理统计数据。
-    ///    2. 查询时间跨度不超过90天。
-    @inlinable
-    public func describeMediaProcessUsageData(_ input: DescribeMediaProcessUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMediaProcessUsageDataResponse > {
-        self.client.execute(action: "DescribeMediaProcessUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询视频处理用量统计数据
-    ///
-    /// 该接口返回查询时间范围内每天使用的视频处理用量信息。
-    ///    1. 可以查询最近365天内的视频处理统计数据。
-    ///    2. 查询时间跨度不超过90天。
-    @inlinable
-    public func describeMediaProcessUsageData(_ input: DescribeMediaProcessUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessUsageDataResponse {
-        try await self.client.execute(action: "DescribeMediaProcessUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMediaProcessUsageData请求参数结构体
     public struct DescribeMediaProcessUsageDataRequest: TCRequestModel {
         /// 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
@@ -60,7 +40,7 @@ extension Vod {
         /// <li>Transcode: 转码，包含普通转码、极速高清和视频编辑（不推荐使用）</li>
         public let type: String?
         
-        public init (startTime: String, endTime: String, subAppId: UInt64?, type: String?) {
+        public init (startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.subAppId = subAppId
@@ -87,5 +67,25 @@ extension Vod {
             case mediaProcessDataSet = "MediaProcessDataSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询视频处理用量统计数据
+    ///
+    /// 该接口返回查询时间范围内每天使用的视频处理用量信息。
+    ///    1. 可以查询最近365天内的视频处理统计数据。
+    ///    2. 查询时间跨度不超过90天。
+    @inlinable
+    public func describeMediaProcessUsageData(_ input: DescribeMediaProcessUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMediaProcessUsageDataResponse > {
+        self.client.execute(action: "DescribeMediaProcessUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询视频处理用量统计数据
+    ///
+    /// 该接口返回查询时间范围内每天使用的视频处理用量信息。
+    ///    1. 可以查询最近365天内的视频处理统计数据。
+    ///    2. 查询时间跨度不超过90天。
+    @inlinable
+    public func describeMediaProcessUsageData(_ input: DescribeMediaProcessUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessUsageDataResponse {
+        try await self.client.execute(action: "DescribeMediaProcessUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

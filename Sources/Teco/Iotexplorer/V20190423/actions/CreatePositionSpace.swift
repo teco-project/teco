@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 创建位置空间
-    @inlinable
-    public func createPositionSpace(_ input: CreatePositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePositionSpaceResponse > {
-        self.client.execute(action: "CreatePositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建位置空间
-    @inlinable
-    public func createPositionSpace(_ input: CreatePositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePositionSpaceResponse {
-        try await self.client.execute(action: "CreatePositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePositionSpace请求参数结构体
     public struct CreatePositionSpaceRequest: TCRequestModel {
         /// 项目ID
@@ -47,7 +35,7 @@ extension Iotexplorer {
         /// 缩略图
         public let icon: String?
         
-        public init (projectId: String, spaceName: String, authorizeType: Int64, productIdList: [String], description: String?, icon: String?) {
+        public init (projectId: String, spaceName: String, authorizeType: Int64, productIdList: [String], description: String? = nil, icon: String? = nil) {
             self.projectId = projectId
             self.spaceName = spaceName
             self.authorizeType = authorizeType
@@ -79,5 +67,17 @@ extension Iotexplorer {
             case spaceId = "SpaceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建位置空间
+    @inlinable
+    public func createPositionSpace(_ input: CreatePositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePositionSpaceResponse > {
+        self.client.execute(action: "CreatePositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建位置空间
+    @inlinable
+    public func createPositionSpace(_ input: CreatePositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePositionSpaceResponse {
+        try await self.client.execute(action: "CreatePositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

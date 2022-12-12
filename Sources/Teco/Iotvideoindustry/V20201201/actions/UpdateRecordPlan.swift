@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 更新录制计划（旧）
-    ///
-    /// 本接口(UpdateRecordPlan)用于更新录制计划。
-    /// 请使用 ModifyRecordingPlan接口和ModifyBindRecordingPlan接口
-    @inlinable
-    public func updateRecordPlan(_ input: UpdateRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRecordPlanResponse > {
-        self.client.execute(action: "UpdateRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新录制计划（旧）
-    ///
-    /// 本接口(UpdateRecordPlan)用于更新录制计划。
-    /// 请使用 ModifyRecordingPlan接口和ModifyBindRecordingPlan接口
-    @inlinable
-    public func updateRecordPlan(_ input: UpdateRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRecordPlanResponse {
-        try await self.client.execute(action: "UpdateRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateRecordPlan请求参数结构体
     public struct UpdateRecordPlanRequest: TCRequestModel {
         /// 录制计划ID
@@ -55,7 +37,7 @@ extension Iotvideoindustry {
         /// 1 - 更新，如果Devices参数为空则清空设备列表，Devices不为空则全量更新设备列表
         public let isModifyDevices: Int64?
         
-        public init (planId: String, name: String?, timeTemplateId: String?, eventId: Int64?, devices: [DeviceItem]?, isModifyDevices: Int64?) {
+        public init (planId: String, name: String? = nil, timeTemplateId: String? = nil, eventId: Int64? = nil, devices: [DeviceItem]? = nil, isModifyDevices: Int64? = nil) {
             self.planId = planId
             self.name = name
             self.timeTemplateId = timeTemplateId
@@ -86,5 +68,23 @@ extension Iotvideoindustry {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新录制计划（旧）
+    ///
+    /// 本接口(UpdateRecordPlan)用于更新录制计划。
+    /// 请使用 ModifyRecordingPlan接口和ModifyBindRecordingPlan接口
+    @inlinable
+    public func updateRecordPlan(_ input: UpdateRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRecordPlanResponse > {
+        self.client.execute(action: "UpdateRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新录制计划（旧）
+    ///
+    /// 本接口(UpdateRecordPlan)用于更新录制计划。
+    /// 请使用 ModifyRecordingPlan接口和ModifyBindRecordingPlan接口
+    @inlinable
+    public func updateRecordPlan(_ input: UpdateRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRecordPlanResponse {
+        try await self.client.execute(action: "UpdateRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

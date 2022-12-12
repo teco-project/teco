@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tms {
-    /// 获取用户词库列表
-    ///
-    /// 控制台获取用户词库列表
-    @inlinable
-    public func describeTextLib(_ input: DescribeTextLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTextLibResponse > {
-        self.client.execute(action: "DescribeTextLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户词库列表
-    ///
-    /// 控制台获取用户词库列表
-    @inlinable
-    public func describeTextLib(_ input: DescribeTextLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextLibResponse {
-        try await self.client.execute(action: "DescribeTextLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTextLib请求参数结构体
     public struct DescribeTextLibRequest: TCRequestModel {
         /// 内容类型 text: 1; image: 2; audio: 3; video: 4
@@ -57,5 +41,21 @@ extension Tms {
             case textLib = "TextLib"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户词库列表
+    ///
+    /// 控制台获取用户词库列表
+    @inlinable
+    public func describeTextLib(_ input: DescribeTextLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTextLibResponse > {
+        self.client.execute(action: "DescribeTextLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户词库列表
+    ///
+    /// 控制台获取用户词库列表
+    @inlinable
+    public func describeTextLib(_ input: DescribeTextLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextLibResponse {
+        try await self.client.execute(action: "DescribeTextLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

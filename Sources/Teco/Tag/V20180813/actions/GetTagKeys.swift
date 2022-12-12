@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 查询标签键列表
-    ///
-    /// 查询标签键列表。
-    @inlinable
-    public func getTagKeys(_ input: GetTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTagKeysResponse > {
-        self.client.execute(action: "GetTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询标签键列表
-    ///
-    /// 查询标签键列表。
-    @inlinable
-    public func getTagKeys(_ input: GetTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagKeysResponse {
-        try await self.client.execute(action: "GetTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetTagKeys请求参数结构体
     public struct GetTagKeysRequest: TCRequestModel {
         /// 从上一页的响应中获取的下一页的Token值。
@@ -41,7 +25,7 @@ extension Tag {
         /// 缺省值：50。
         public let maxResults: UInt64?
         
-        public init (paginationToken: String?, maxResults: UInt64?) {
+        public init (paginationToken: String? = nil, maxResults: UInt64? = nil) {
             self.paginationToken = paginationToken
             self.maxResults = maxResults
         }
@@ -68,5 +52,21 @@ extension Tag {
             case tagKeys = "TagKeys"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询标签键列表
+    ///
+    /// 查询标签键列表。
+    @inlinable
+    public func getTagKeys(_ input: GetTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTagKeysResponse > {
+        self.client.execute(action: "GetTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询标签键列表
+    ///
+    /// 查询标签键列表。
+    @inlinable
+    public func getTagKeys(_ input: GetTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagKeysResponse {
+        try await self.client.execute(action: "GetTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

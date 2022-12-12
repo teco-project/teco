@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 更新企业成员信息
-    @inlinable
-    public func updateOrganizationMember(_ input: UpdateOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateOrganizationMemberResponse > {
-        self.client.execute(action: "UpdateOrganizationMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新企业成员信息
-    @inlinable
-    public func updateOrganizationMember(_ input: UpdateOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrganizationMemberResponse {
-        try await self.client.execute(action: "UpdateOrganizationMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateOrganizationMember请求参数结构体
     public struct UpdateOrganizationMemberRequest: TCRequestModel {
         /// 成员UIN
@@ -38,7 +26,7 @@ extension Organization {
         /// 备注
         public let remark: String?
         
-        public init (memberUin: UInt64, name: String?, remark: String?) {
+        public init (memberUin: UInt64, name: String? = nil, remark: String? = nil) {
             self.memberUin = memberUin
             self.name = name
             self.remark = remark
@@ -59,5 +47,17 @@ extension Organization {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新企业成员信息
+    @inlinable
+    public func updateOrganizationMember(_ input: UpdateOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateOrganizationMemberResponse > {
+        self.client.execute(action: "UpdateOrganizationMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新企业成员信息
+    @inlinable
+    public func updateOrganizationMember(_ input: UpdateOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrganizationMemberResponse {
+        try await self.client.execute(action: "UpdateOrganizationMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

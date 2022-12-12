@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Asr {
-    /// 更新自学习模型
-    ///
-    /// 用户通过该接口可以更新自学习模型，如模型名称、模型类型、模型语料。
-    @inlinable
-    public func modifyCustomization(_ input: ModifyCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizationResponse > {
-        self.client.execute(action: "ModifyCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新自学习模型
-    ///
-    /// 用户通过该接口可以更新自学习模型，如模型名称、模型类型、模型语料。
-    @inlinable
-    public func modifyCustomization(_ input: ModifyCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationResponse {
-        try await self.client.execute(action: "ModifyCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCustomization请求参数结构体
     public struct ModifyCustomizationRequest: TCRequestModel {
         /// 要修改的模型ID
@@ -45,7 +29,7 @@ extension Asr {
         /// 要修改的模型语料的下载地址，目前仅支持腾讯云cos
         public let textUrl: String?
         
-        public init (modelId: String, modelName: String?, modelType: String?, textUrl: String?) {
+        public init (modelId: String, modelName: String? = nil, modelType: String? = nil, textUrl: String? = nil) {
             self.modelId = modelId
             self.modelName = modelName
             self.modelType = modelType
@@ -68,5 +52,21 @@ extension Asr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新自学习模型
+    ///
+    /// 用户通过该接口可以更新自学习模型，如模型名称、模型类型、模型语料。
+    @inlinable
+    public func modifyCustomization(_ input: ModifyCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizationResponse > {
+        self.client.execute(action: "ModifyCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新自学习模型
+    ///
+    /// 用户通过该接口可以更新自学习模型，如模型名称、模型类型、模型语料。
+    @inlinable
+    public func modifyCustomization(_ input: ModifyCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationResponse {
+        try await self.client.execute(action: "ModifyCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

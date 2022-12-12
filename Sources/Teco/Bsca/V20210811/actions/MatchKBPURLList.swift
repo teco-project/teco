@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Bsca {
-    /// 匹配知识库组件列表
-    ///
-    /// 本接口(MatchKBPURLList)用于在知识库中匹配与特征对应的开源组件列表。
-    @inlinable
-    public func matchKBPURLList(_ input: MatchKBPURLListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MatchKBPURLListResponse > {
-        self.client.execute(action: "MatchKBPURLList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 匹配知识库组件列表
-    ///
-    /// 本接口(MatchKBPURLList)用于在知识库中匹配与特征对应的开源组件列表。
-    @inlinable
-    public func matchKBPURLList(_ input: MatchKBPURLListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MatchKBPURLListResponse {
-        try await self.client.execute(action: "MatchKBPURLList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// MatchKBPURLList请求参数结构体
     public struct MatchKBPURLListRequest: TCRequestModel {
         /// SHA1。
         public let sha1: String?
         
-        public init (sha1: String?) {
+        public init (sha1: String? = nil) {
             self.sha1 = sha1
         }
         
@@ -61,5 +45,21 @@ extension Bsca {
             case hit = "Hit"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 匹配知识库组件列表
+    ///
+    /// 本接口(MatchKBPURLList)用于在知识库中匹配与特征对应的开源组件列表。
+    @inlinable
+    public func matchKBPURLList(_ input: MatchKBPURLListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MatchKBPURLListResponse > {
+        self.client.execute(action: "MatchKBPURLList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 匹配知识库组件列表
+    ///
+    /// 本接口(MatchKBPURLList)用于在知识库中匹配与特征对应的开源组件列表。
+    @inlinable
+    public func matchKBPURLList(_ input: MatchKBPURLListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MatchKBPURLListResponse {
+        try await self.client.execute(action: "MatchKBPURLList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

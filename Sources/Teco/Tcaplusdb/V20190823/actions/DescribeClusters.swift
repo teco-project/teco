@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 查询集群信息列表
-    ///
-    /// 查询TcaplusDB集群列表，包含集群详细信息。
-    @inlinable
-    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
-        self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群信息列表
-    ///
-    /// 查询TcaplusDB集群列表，包含集群详细信息。
-    @inlinable
-    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
-        try await self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusters请求参数结构体
     public struct DescribeClustersRequest: TCRequestModel {
         /// 指定查询的集群ID列表
@@ -48,7 +32,7 @@ extension Tcaplusdb {
         /// 是否启用Ipv6
         public let ipv6Enable: Int64?
         
-        public init (clusterIds: [String]?, filters: [Filter]?, offset: Int64?, limit: Int64?, ipv6Enable: Int64?) {
+        public init (clusterIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, ipv6Enable: Int64? = nil) {
             self.clusterIds = clusterIds
             self.filters = filters
             self.offset = offset
@@ -81,5 +65,21 @@ extension Tcaplusdb {
             case clusters = "Clusters"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群信息列表
+    ///
+    /// 查询TcaplusDB集群列表，包含集群详细信息。
+    @inlinable
+    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClustersResponse > {
+        self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群信息列表
+    ///
+    /// 查询TcaplusDB集群列表，包含集群详细信息。
+    @inlinable
+    public func describeClusters(_ input: DescribeClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
+        try await self.client.execute(action: "DescribeClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

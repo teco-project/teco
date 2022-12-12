@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 更新规则组执行策略
-    @inlinable
-    public func modifyExecStrategy(_ input: ModifyExecStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyExecStrategyResponse > {
-        self.client.execute(action: "ModifyExecStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新规则组执行策略
-    @inlinable
-    public func modifyExecStrategy(_ input: ModifyExecStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExecStrategyResponse {
-        try await self.client.execute(action: "ModifyExecStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyExecStrategy请求参数结构体
     public struct ModifyExecStrategyRequest: TCRequestModel {
         /// 规则组ID
@@ -82,7 +70,7 @@ extension Wedata {
         /// 数据表Id
         public let tableId: String?
         
-        public init (ruleGroupId: UInt64?, monitorType: UInt64?, execQueue: String?, executorGroupId: String?, executorGroupName: String?, tasks: [ProdSchedulerTask]?, projectId: String?, startTime: String?, endTime: String?, cycleType: String?, cycleStep: UInt64?, taskAction: String?, delayTime: UInt64?, databaseId: String?, datasourceId: String?, tableId: String?) {
+        public init (ruleGroupId: UInt64? = nil, monitorType: UInt64? = nil, execQueue: String? = nil, executorGroupId: String? = nil, executorGroupName: String? = nil, tasks: [ProdSchedulerTask]? = nil, projectId: String? = nil, startTime: String? = nil, endTime: String? = nil, cycleType: String? = nil, cycleStep: UInt64? = nil, taskAction: String? = nil, delayTime: UInt64? = nil, databaseId: String? = nil, datasourceId: String? = nil, tableId: String? = nil) {
             self.ruleGroupId = ruleGroupId
             self.monitorType = monitorType
             self.execQueue = execQueue
@@ -134,5 +122,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新规则组执行策略
+    @inlinable
+    public func modifyExecStrategy(_ input: ModifyExecStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyExecStrategyResponse > {
+        self.client.execute(action: "ModifyExecStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新规则组执行策略
+    @inlinable
+    public func modifyExecStrategy(_ input: ModifyExecStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExecStrategyResponse {
+        try await self.client.execute(action: "ModifyExecStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

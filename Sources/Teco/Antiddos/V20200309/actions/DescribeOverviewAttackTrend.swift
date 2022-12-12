@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 拉取防护概览攻击趋势
-    @inlinable
-    public func describeOverviewAttackTrend(_ input: DescribeOverviewAttackTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewAttackTrendResponse > {
-        self.client.execute(action: "DescribeOverviewAttackTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取防护概览攻击趋势
-    @inlinable
-    public func describeOverviewAttackTrend(_ input: DescribeOverviewAttackTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewAttackTrendResponse {
-        try await self.client.execute(action: "DescribeOverviewAttackTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOverviewAttackTrend请求参数结构体
     public struct DescribeOverviewAttackTrendRequest: TCRequestModel {
         /// 攻击类型，取值ddos， cc
@@ -93,5 +81,17 @@ extension Antiddos {
             case count = "Count"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取防护概览攻击趋势
+    @inlinable
+    public func describeOverviewAttackTrend(_ input: DescribeOverviewAttackTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewAttackTrendResponse > {
+        self.client.execute(action: "DescribeOverviewAttackTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取防护概览攻击趋势
+    @inlinable
+    public func describeOverviewAttackTrend(_ input: DescribeOverviewAttackTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewAttackTrendResponse {
+        try await self.client.execute(action: "DescribeOverviewAttackTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

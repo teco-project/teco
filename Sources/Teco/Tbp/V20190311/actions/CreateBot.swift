@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbp {
-    /// 创建机器人
-    @inlinable
-    public func createBot(_ input: CreateBotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBotResponse > {
-        self.client.execute(action: "CreateBot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建机器人
-    @inlinable
-    public func createBot(_ input: CreateBotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBotResponse {
-        try await self.client.execute(action: "CreateBot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBot请求参数结构体
     public struct CreateBotRequest: TCRequestModel {
         /// 机器人名称
@@ -35,7 +23,7 @@ extension Tbp {
         /// 机器人中文名称
         public let botCnName: String?
         
-        public init (botName: String, botCnName: String?) {
+        public init (botName: String, botCnName: String? = nil) {
             self.botName = botName
             self.botCnName = botCnName
         }
@@ -62,5 +50,17 @@ extension Tbp {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建机器人
+    @inlinable
+    public func createBot(_ input: CreateBotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBotResponse > {
+        self.client.execute(action: "CreateBot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建机器人
+    @inlinable
+    public func createBot(_ input: CreateBotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBotResponse {
+        try await self.client.execute(action: "CreateBot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

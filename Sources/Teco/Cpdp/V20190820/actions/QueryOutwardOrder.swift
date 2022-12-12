@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 跨境-查询汇出结果
-    @inlinable
-    public func queryOutwardOrder(_ input: QueryOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOutwardOrderResponse > {
-        self.client.execute(action: "QueryOutwardOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 跨境-查询汇出结果
-    @inlinable
-    public func queryOutwardOrder(_ input: QueryOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOutwardOrderResponse {
-        try await self.client.execute(action: "QueryOutwardOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryOutwardOrder请求参数结构体
     public struct QueryOutwardOrderRequest: TCRequestModel {
         /// 对接方汇出指令编号
@@ -35,7 +23,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
         
-        public init (transactionId: String, profile: String?) {
+        public init (transactionId: String, profile: String? = nil) {
             self.transactionId = transactionId
             self.profile = profile
         }
@@ -58,5 +46,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 跨境-查询汇出结果
+    @inlinable
+    public func queryOutwardOrder(_ input: QueryOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOutwardOrderResponse > {
+        self.client.execute(action: "QueryOutwardOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 跨境-查询汇出结果
+    @inlinable
+    public func queryOutwardOrder(_ input: QueryOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOutwardOrderResponse {
+        try await self.client.execute(action: "QueryOutwardOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

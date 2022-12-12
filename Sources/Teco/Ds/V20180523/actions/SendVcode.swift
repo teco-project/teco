@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ds {
-    /// 发送验证码
-    ///
-    /// 发送验证码接口。此接口用于：企业电子合同平台需要腾讯云发送验证码对其用户进行验证时调用，腾讯云将向其用户联系手机(企业电子合同平台为用户开户时通过接口传入)发送验证码，以验证码授权方式签署合同。用户验证工作由企业电子合同平台自身完成。
-    @inlinable
-    public func sendVcode(_ input: SendVcodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendVcodeResponse > {
-        self.client.execute(action: "SendVcode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送验证码
-    ///
-    /// 发送验证码接口。此接口用于：企业电子合同平台需要腾讯云发送验证码对其用户进行验证时调用，腾讯云将向其用户联系手机(企业电子合同平台为用户开户时通过接口传入)发送验证码，以验证码授权方式签署合同。用户验证工作由企业电子合同平台自身完成。
-    @inlinable
-    public func sendVcode(_ input: SendVcodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendVcodeResponse {
-        try await self.client.execute(action: "SendVcode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendVcode请求参数结构体
     public struct SendVcodeRequest: TCRequestModel {
         /// 模块名VerifyCode
@@ -68,5 +52,21 @@ extension Ds {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送验证码
+    ///
+    /// 发送验证码接口。此接口用于：企业电子合同平台需要腾讯云发送验证码对其用户进行验证时调用，腾讯云将向其用户联系手机(企业电子合同平台为用户开户时通过接口传入)发送验证码，以验证码授权方式签署合同。用户验证工作由企业电子合同平台自身完成。
+    @inlinable
+    public func sendVcode(_ input: SendVcodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendVcodeResponse > {
+        self.client.execute(action: "SendVcode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送验证码
+    ///
+    /// 发送验证码接口。此接口用于：企业电子合同平台需要腾讯云发送验证码对其用户进行验证时调用，腾讯云将向其用户联系手机(企业电子合同平台为用户开户时通过接口传入)发送验证码，以验证码授权方式签署合同。用户验证工作由企业电子合同平台自身完成。
+    @inlinable
+    public func sendVcode(_ input: SendVcodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendVcodeResponse {
+        try await self.client.execute(action: "SendVcode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

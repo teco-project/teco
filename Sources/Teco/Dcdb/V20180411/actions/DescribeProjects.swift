@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 查询项目列表
-    ///
-    /// 本接口（DescribeProjects）用于查询项目列表
-    @inlinable
-    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
-        self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询项目列表
-    ///
-    /// 本接口（DescribeProjects）用于查询项目列表
-    @inlinable
-    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
-        try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProjects请求参数结构体
     public struct DescribeProjectsRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Dcdb {
             case projects = "Projects"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询项目列表
+    ///
+    /// 本接口（DescribeProjects）用于查询项目列表
+    @inlinable
+    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
+        self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询项目列表
+    ///
+    /// 本接口（DescribeProjects）用于查询项目列表
+    @inlinable
+    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
+        try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,6 +15,50 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
+    /// ModifyDeviceProperty请求参数结构体
+    public struct ModifyDevicePropertyRequest: TCRequestModel {
+        /// 设备TID
+        public let tid: String
+        
+        /// 如果设备处于休眠状态，是否唤醒设备
+        public let wakeup: Bool
+        
+        /// 物模型的分支路径
+        public let branch: String
+        
+        /// 写入的物模型数据，如果是json需要转义成字符串
+        public let value: String
+        
+        /// Value字段是否为数值（float、int）
+        public let isNum: Bool?
+        
+        public init (tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil) {
+            self.tid = tid
+            self.wakeup = wakeup
+            self.branch = branch
+            self.value = value
+            self.isNum = isNum
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case tid = "Tid"
+            case wakeup = "Wakeup"
+            case branch = "Branch"
+            case value = "Value"
+            case isNum = "IsNum"
+        }
+    }
+    
+    /// ModifyDeviceProperty返回参数结构体
+    public struct ModifyDevicePropertyResponse: TCResponseModel {
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 修改设备物模型属性
     ///
     /// 本接口（ModifyDeviceProperty）用于修改设备物模型的属性（ProWritable）。
@@ -41,49 +85,5 @@ extension Iotvideo {
     @inlinable
     public func modifyDeviceProperty(_ input: ModifyDevicePropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDevicePropertyResponse {
         try await self.client.execute(action: "ModifyDeviceProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// ModifyDeviceProperty请求参数结构体
-    public struct ModifyDevicePropertyRequest: TCRequestModel {
-        /// 设备TID
-        public let tid: String
-        
-        /// 如果设备处于休眠状态，是否唤醒设备
-        public let wakeup: Bool
-        
-        /// 物模型的分支路径
-        public let branch: String
-        
-        /// 写入的物模型数据，如果是json需要转义成字符串
-        public let value: String
-        
-        /// Value字段是否为数值（float、int）
-        public let isNum: Bool?
-        
-        public init (tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool?) {
-            self.tid = tid
-            self.wakeup = wakeup
-            self.branch = branch
-            self.value = value
-            self.isNum = isNum
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case tid = "Tid"
-            case wakeup = "Wakeup"
-            case branch = "Branch"
-            case value = "Value"
-            case isNum = "IsNum"
-        }
-    }
-    
-    /// ModifyDeviceProperty返回参数结构体
-    public struct ModifyDevicePropertyResponse: TCResponseModel {
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case requestId = "RequestId"
-        }
     }
 }

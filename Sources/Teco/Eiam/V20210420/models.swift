@@ -42,7 +42,7 @@ extension Eiam {
         /// 关键字
         public let keyword: String?
         
-        public init (keyword: String?) {
+        public init (keyword: String? = nil) {
             self.keyword = keyword
         }
         
@@ -86,7 +86,7 @@ extension Eiam {
         /// 关键字
         public let keyword: String?
         
-        public init (keyword: String?) {
+        public init (keyword: String? = nil) {
             self.keyword = keyword
         }
         
@@ -107,7 +107,7 @@ extension Eiam {
         
         /// 展示用户所在的用户组、机构节点拥有该应用的访问权限的ID信息列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let inheritedForm: InheritedForm
+        public let inheritedForm: InheritedForm?
         
         /// 应用名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -134,7 +134,7 @@ extension Eiam {
         /// 应用类型。ApplicationType的取值范围有：OAUTH2、JWT、CAS、SAML2、FORM、OIDC、APIGW。
         public let applicationType: String?
         
-        public init (keyword: String?, applicationType: String?) {
+        public init (keyword: String? = nil, applicationType: String? = nil) {
             self.keyword = keyword
             self.applicationType = applicationType
         }
@@ -225,7 +225,7 @@ extension Eiam {
         /// 名称匹配搜索，当查询类型为用户时，匹配范围包括：用户名称、应用名称；当查询类型为用户组时，匹配范围包括：用户组名称、应用名称；当查询类型为组织机构时，匹配范围包括：组织机构名称、应用名称。
         public let keyword: String?
         
-        public init (keyword: String?) {
+        public init (keyword: String? = nil) {
             self.keyword = keyword
         }
         
@@ -276,7 +276,7 @@ extension Eiam {
         
         /// 继承关系
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let inheritedForm: InheritedForm
+        public let inheritedForm: InheritedForm?
         
         /// 应用账户
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -351,7 +351,7 @@ extension Eiam {
         /// 名称匹配搜索，匹配范围包括：用户名称、用户手机号。
         public let keyword: String?
         
-        public init (userName: String?, phone: String?, email: String?, status: String?, creationTime: String?, lastUpdateTime: String?, keyword: String?) {
+        public init (userName: String? = nil, phone: String? = nil, email: String? = nil, status: String? = nil, creationTime: String? = nil, lastUpdateTime: String? = nil, keyword: String? = nil) {
             self.userName = userName
             self.phone = phone
             self.email = email
@@ -515,7 +515,7 @@ extension Eiam {
         /// 名称匹配搜索，匹配范围包括：用户组名称、用户组ID。
         public let keyword: String?
         
-        public init (keyword: String?) {
+        public init (keyword: String? = nil) {
             self.keyword = keyword
         }
         
@@ -548,7 +548,7 @@ extension Eiam {
         /// 名称匹配搜索，匹配范围包括：用户组名称。
         public let keyword: String?
         
-        public init (keyword: String?) {
+        public init (keyword: String? = nil) {
             self.keyword = keyword
         }
         
@@ -687,7 +687,7 @@ extension Eiam {
         /// 名称匹配搜索，匹配范围包括：用户名称、用户ID。
         public let keyword: String?
         
-        public init (userName: String?, phone: String?, email: String?, status: String?, creationTime: String?, lastUpdateTime: String?, keyword: String?) {
+        public init (userName: String? = nil, phone: String? = nil, email: String? = nil, status: String? = nil, creationTime: String? = nil, lastUpdateTime: String? = nil, keyword: String? = nil) {
             self.userName = userName
             self.phone = phone
             self.email = email

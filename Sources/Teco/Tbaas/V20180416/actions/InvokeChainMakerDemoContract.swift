@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 调用长安链体验网络合约执行交易
-    @inlinable
-    public func invokeChainMakerDemoContract(_ input: InvokeChainMakerDemoContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeChainMakerDemoContractResponse > {
-        self.client.execute(action: "InvokeChainMakerDemoContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调用长安链体验网络合约执行交易
-    @inlinable
-    public func invokeChainMakerDemoContract(_ input: InvokeChainMakerDemoContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeChainMakerDemoContractResponse {
-        try await self.client.execute(action: "InvokeChainMakerDemoContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InvokeChainMakerDemoContract请求参数结构体
     public struct InvokeChainMakerDemoContractRequest: TCRequestModel {
         /// 网络ID，可在区块链网络详情或列表中获取
@@ -47,7 +35,7 @@ extension Tbaas {
         /// 是否异步执行，1为是，否则为0；如果异步执行，可使用返回值中的交易TxID查询执行结果
         public let asyncFlag: Int64?
         
-        public init (clusterId: String, chainId: String, contractName: String, funcName: String, funcParam: String?, asyncFlag: Int64?) {
+        public init (clusterId: String, chainId: String, contractName: String, funcName: String, funcParam: String? = nil, asyncFlag: Int64? = nil) {
             self.clusterId = clusterId
             self.chainId = chainId
             self.contractName = contractName
@@ -70,7 +58,7 @@ extension Tbaas {
     public struct InvokeChainMakerDemoContractResponse: TCResponseModel {
         /// 交易结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: ChainMakerContractResult
+        public let result: ChainMakerContractResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -79,5 +67,17 @@ extension Tbaas {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调用长安链体验网络合约执行交易
+    @inlinable
+    public func invokeChainMakerDemoContract(_ input: InvokeChainMakerDemoContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeChainMakerDemoContractResponse > {
+        self.client.execute(action: "InvokeChainMakerDemoContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调用长安链体验网络合约执行交易
+    @inlinable
+    public func invokeChainMakerDemoContract(_ input: InvokeChainMakerDemoContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeChainMakerDemoContractResponse {
+        try await self.client.execute(action: "InvokeChainMakerDemoContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

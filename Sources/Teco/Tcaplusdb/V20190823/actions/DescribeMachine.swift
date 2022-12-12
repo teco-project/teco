@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 查询独占集群剩余机器
-    ///
-    /// 查询独占集群可以申请的剩余机器
-    @inlinable
-    public func describeMachine(_ input: DescribeMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineResponse > {
-        self.client.execute(action: "DescribeMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询独占集群剩余机器
-    ///
-    /// 查询独占集群可以申请的剩余机器
-    @inlinable
-    public func describeMachine(_ input: DescribeMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineResponse {
-        try await self.client.execute(action: "DescribeMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMachine请求参数结构体
     public struct DescribeMachineRequest: TCRequestModel {
         /// 不为0，表示查询支持ipv6的机器
         public let ipv6Enable: Int64?
         
-        public init (ipv6Enable: Int64?) {
+        public init (ipv6Enable: Int64? = nil) {
             self.ipv6Enable = ipv6Enable
         }
         
@@ -57,5 +41,21 @@ extension Tcaplusdb {
             case poolList = "PoolList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询独占集群剩余机器
+    ///
+    /// 查询独占集群可以申请的剩余机器
+    @inlinable
+    public func describeMachine(_ input: DescribeMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineResponse > {
+        self.client.execute(action: "DescribeMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询独占集群剩余机器
+    ///
+    /// 查询独占集群可以申请的剩余机器
+    @inlinable
+    public func describeMachine(_ input: DescribeMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineResponse {
+        try await self.client.execute(action: "DescribeMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

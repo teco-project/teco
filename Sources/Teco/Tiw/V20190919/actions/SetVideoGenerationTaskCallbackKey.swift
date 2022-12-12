@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 设置录制视频生成回调密钥
-    ///
-    /// 设置视频生成回调鉴权密钥
-    @inlinable
-    public func setVideoGenerationTaskCallbackKey(_ input: SetVideoGenerationTaskCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetVideoGenerationTaskCallbackKeyResponse > {
-        self.client.execute(action: "SetVideoGenerationTaskCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置录制视频生成回调密钥
-    ///
-    /// 设置视频生成回调鉴权密钥
-    @inlinable
-    public func setVideoGenerationTaskCallbackKey(_ input: SetVideoGenerationTaskCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVideoGenerationTaskCallbackKeyResponse {
-        try await self.client.execute(action: "SetVideoGenerationTaskCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetVideoGenerationTaskCallbackKey请求参数结构体
     public struct SetVideoGenerationTaskCallbackKeyRequest: TCRequestModel {
         /// 应用的SdkAppId
@@ -58,5 +42,21 @@ extension Tiw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置录制视频生成回调密钥
+    ///
+    /// 设置视频生成回调鉴权密钥
+    @inlinable
+    public func setVideoGenerationTaskCallbackKey(_ input: SetVideoGenerationTaskCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetVideoGenerationTaskCallbackKeyResponse > {
+        self.client.execute(action: "SetVideoGenerationTaskCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置录制视频生成回调密钥
+    ///
+    /// 设置视频生成回调鉴权密钥
+    @inlinable
+    public func setVideoGenerationTaskCallbackKey(_ input: SetVideoGenerationTaskCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVideoGenerationTaskCallbackKeyResponse {
+        try await self.client.execute(action: "SetVideoGenerationTaskCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

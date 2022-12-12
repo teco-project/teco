@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ims {
-    /// 识别统计
-    ///
-    /// 控制台识别统计
-    @inlinable
-    public func describeImageStat(_ input: DescribeImageStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageStatResponse > {
-        self.client.execute(action: "DescribeImageStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 识别统计
-    ///
-    /// 控制台识别统计
-    @inlinable
-    public func describeImageStat(_ input: DescribeImageStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageStatResponse {
-        try await self.client.execute(action: "DescribeImageStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageStat请求参数结构体
     public struct DescribeImageStatRequest: TCRequestModel {
         /// 审核类型 1: 机器审核; 2: 人工审核
@@ -71,5 +55,21 @@ extension Ims {
             case evilCount = "EvilCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 识别统计
+    ///
+    /// 控制台识别统计
+    @inlinable
+    public func describeImageStat(_ input: DescribeImageStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageStatResponse > {
+        self.client.execute(action: "DescribeImageStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 识别统计
+    ///
+    /// 控制台识别统计
+    @inlinable
+    public func describeImageStat(_ input: DescribeImageStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageStatResponse {
+        try await self.client.execute(action: "DescribeImageStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

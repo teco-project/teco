@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudaudit {
-    /// 修改云审计跟踪
-    @inlinable
-    public func modifyAuditTrack(_ input: ModifyAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAuditTrackResponse > {
-        self.client.execute(action: "ModifyAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改云审计跟踪
-    @inlinable
-    public func modifyAuditTrack(_ input: ModifyAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditTrackResponse {
-        try await self.client.execute(action: "ModifyAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAuditTrack请求参数结构体
     public struct ModifyAuditTrackRequest: TCRequestModel {
         /// 跟踪集 ID
@@ -48,12 +36,12 @@ extension Cloudaudit {
         public let eventNames: [String]?
         
         /// 数据投递存储（目前支持 cos、cls）
-        public let storage: Storage
+        public let storage: Storage?
         
         /// 是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号(0：未开启，1：开启，只能集团管理账号或者可信服务管理账号开启此项功能)
         public let trackForAllMembers: UInt64?
         
-        public init (trackId: UInt64, name: String?, actionType: String?, resourceType: String?, status: UInt64?, eventNames: [String]?, storage: Storage, trackForAllMembers: UInt64?) {
+        public init (trackId: UInt64, name: String? = nil, actionType: String? = nil, resourceType: String? = nil, status: UInt64? = nil, eventNames: [String]? = nil, storage: Storage? = nil, trackForAllMembers: UInt64? = nil) {
             self.trackId = trackId
             self.name = name
             self.actionType = actionType
@@ -84,5 +72,17 @@ extension Cloudaudit {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改云审计跟踪
+    @inlinable
+    public func modifyAuditTrack(_ input: ModifyAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAuditTrackResponse > {
+        self.client.execute(action: "ModifyAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云审计跟踪
+    @inlinable
+    public func modifyAuditTrack(_ input: ModifyAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditTrackResponse {
+        try await self.client.execute(action: "ModifyAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

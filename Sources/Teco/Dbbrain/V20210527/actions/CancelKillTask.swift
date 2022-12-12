@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 终止中断会话任务
-    ///
-    /// 终止中断会话任务。
-    @inlinable
-    public func cancelKillTask(_ input: CancelKillTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelKillTaskResponse > {
-        self.client.execute(action: "CancelKillTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 终止中断会话任务
-    ///
-    /// 终止中断会话任务。
-    @inlinable
-    public func cancelKillTask(_ input: CancelKillTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKillTaskResponse {
-        try await self.client.execute(action: "CancelKillTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelKillTask请求参数结构体
     public struct CancelKillTaskRequest: TCRequestModel {
         /// 实例ID。
@@ -39,7 +23,7 @@ extension Dbbrain {
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
         public let product: String?
         
-        public init (instanceId: String, product: String?) {
+        public init (instanceId: String, product: String? = nil) {
             self.instanceId = instanceId
             self.product = product
         }
@@ -62,5 +46,21 @@ extension Dbbrain {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 终止中断会话任务
+    ///
+    /// 终止中断会话任务。
+    @inlinable
+    public func cancelKillTask(_ input: CancelKillTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelKillTaskResponse > {
+        self.client.execute(action: "CancelKillTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 终止中断会话任务
+    ///
+    /// 终止中断会话任务。
+    @inlinable
+    public func cancelKillTask(_ input: CancelKillTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKillTaskResponse {
+        try await self.client.execute(action: "CancelKillTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

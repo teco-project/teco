@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 获取镜像扫描设置信息
-    @inlinable
-    public func describeAssetImageScanSetting(_ input: DescribeAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageScanSettingResponse > {
-        self.client.execute(action: "DescribeAssetImageScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取镜像扫描设置信息
-    @inlinable
-    public func describeAssetImageScanSetting(_ input: DescribeAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanSettingResponse {
-        try await self.client.execute(action: "DescribeAssetImageScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageScanSetting请求参数结构体
     public struct DescribeAssetImageScanSettingRequest: TCRequestModel {
         public init () {
@@ -73,5 +61,17 @@ extension Tcss {
             case images = "Images"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取镜像扫描设置信息
+    @inlinable
+    public func describeAssetImageScanSetting(_ input: DescribeAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageScanSettingResponse > {
+        self.client.execute(action: "DescribeAssetImageScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取镜像扫描设置信息
+    @inlinable
+    public func describeAssetImageScanSetting(_ input: DescribeAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanSettingResponse {
+        try await self.client.execute(action: "DescribeAssetImageScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

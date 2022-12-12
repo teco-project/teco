@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ciam {
-    /// 更新用户状态
-    @inlinable
-    public func updateUserStatus(_ input: UpdateUserStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUserStatusResponse > {
-        self.client.execute(action: "UpdateUserStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新用户状态
-    @inlinable
-    public func updateUserStatus(_ input: UpdateUserStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserStatusResponse {
-        try await self.client.execute(action: "UpdateUserStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateUserStatus请求参数结构体
     public struct UpdateUserStatusRequest: TCRequestModel {
         /// 用户目录ID
@@ -62,5 +50,17 @@ extension Ciam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新用户状态
+    @inlinable
+    public func updateUserStatus(_ input: UpdateUserStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUserStatusResponse > {
+        self.client.execute(action: "UpdateUserStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新用户状态
+    @inlinable
+    public func updateUserStatus(_ input: UpdateUserStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserStatusResponse {
+        try await self.client.execute(action: "UpdateUserStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiems {
-    /// 创建资源组的伸缩组
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 创建资源组的伸缩组。当前一个资源组仅允许创建一个伸缩组。
-    @inlinable
-    public func createRsgAsGroup(_ input: CreateRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRsgAsGroupResponse > {
-        self.client.execute(action: "CreateRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建资源组的伸缩组
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 创建资源组的伸缩组。当前一个资源组仅允许创建一个伸缩组。
-    @inlinable
-    public func createRsgAsGroup(_ input: CreateRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRsgAsGroupResponse {
-        try await self.client.execute(action: "CreateRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRsgAsGroup请求参数结构体
     public struct CreateRsgAsGroupRequest: TCRequestModel {
         /// 资源组 ID
@@ -56,7 +38,7 @@ extension Tiems {
         /// 伸缩组期望的节点数
         public let desiredSize: UInt64?
         
-        public init (rsgId: String, maxSize: UInt64, minSize: UInt64, instanceType: String, cluster: String?, name: String?, desiredSize: UInt64?) {
+        public init (rsgId: String, maxSize: UInt64, minSize: UInt64, instanceType: String, cluster: String? = nil, name: String? = nil, desiredSize: UInt64? = nil) {
             self.rsgId = rsgId
             self.maxSize = maxSize
             self.minSize = minSize
@@ -89,5 +71,23 @@ extension Tiems {
             case rsgAsGroup = "RsgAsGroup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建资源组的伸缩组
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 创建资源组的伸缩组。当前一个资源组仅允许创建一个伸缩组。
+    @inlinable
+    public func createRsgAsGroup(_ input: CreateRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRsgAsGroupResponse > {
+        self.client.execute(action: "CreateRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建资源组的伸缩组
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 创建资源组的伸缩组。当前一个资源组仅允许创建一个伸缩组。
+    @inlinable
+    public func createRsgAsGroup(_ input: CreateRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRsgAsGroupResponse {
+        try await self.client.execute(action: "CreateRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

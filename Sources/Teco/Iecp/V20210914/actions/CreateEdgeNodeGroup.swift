@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 创建边缘单元NodeGroup
-    @inlinable
-    public func createEdgeNodeGroup(_ input: CreateEdgeNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeNodeGroupResponse > {
-        self.client.execute(action: "CreateEdgeNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建边缘单元NodeGroup
-    @inlinable
-    public func createEdgeNodeGroup(_ input: CreateEdgeNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeGroupResponse {
-        try await self.client.execute(action: "CreateEdgeNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEdgeNodeGroup请求参数结构体
     public struct CreateEdgeNodeGroupRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -44,7 +32,7 @@ extension Iecp {
         /// 模版ID数组
         public let nodeUnitTemplateIDs: [UInt64]?
         
-        public init (edgeUnitId: UInt64, name: String, namespace: String?, description: String?, nodeUnitTemplateIDs: [UInt64]?) {
+        public init (edgeUnitId: UInt64, name: String, namespace: String? = nil, description: String? = nil, nodeUnitTemplateIDs: [UInt64]? = nil) {
             self.edgeUnitId = edgeUnitId
             self.name = name
             self.namespace = namespace
@@ -69,5 +57,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建边缘单元NodeGroup
+    @inlinable
+    public func createEdgeNodeGroup(_ input: CreateEdgeNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeNodeGroupResponse > {
+        self.client.execute(action: "CreateEdgeNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建边缘单元NodeGroup
+    @inlinable
+    public func createEdgeNodeGroup(_ input: CreateEdgeNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeGroupResponse {
+        try await self.client.execute(action: "CreateEdgeNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

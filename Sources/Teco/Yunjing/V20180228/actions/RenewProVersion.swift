@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 续费专业版
-    ///
-    /// 本接口 (RenewProVersion) 用于续费专业版(包年包月)。
-    @inlinable
-    public func renewProVersion(_ input: RenewProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewProVersionResponse > {
-        self.client.execute(action: "RenewProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费专业版
-    ///
-    /// 本接口 (RenewProVersion) 用于续费专业版(包年包月)。
-    @inlinable
-    public func renewProVersion(_ input: RenewProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewProVersionResponse {
-        try await self.client.execute(action: "RenewProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RenewProVersion请求参数结构体
     public struct RenewProVersionRequest: TCRequestModel {
         /// 购买相关参数。
@@ -58,5 +42,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费专业版
+    ///
+    /// 本接口 (RenewProVersion) 用于续费专业版(包年包月)。
+    @inlinable
+    public func renewProVersion(_ input: RenewProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewProVersionResponse > {
+        self.client.execute(action: "RenewProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费专业版
+    ///
+    /// 本接口 (RenewProVersion) 用于续费专业版(包年包月)。
+    @inlinable
+    public func renewProVersion(_ input: RenewProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewProVersionResponse {
+        try await self.client.execute(action: "RenewProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

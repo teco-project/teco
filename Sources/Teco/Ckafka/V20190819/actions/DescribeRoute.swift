@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 查看路由信息
-    @inlinable
-    public func describeRoute(_ input: DescribeRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteResponse > {
-        self.client.execute(action: "DescribeRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看路由信息
-    @inlinable
-    public func describeRoute(_ input: DescribeRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteResponse {
-        try await self.client.execute(action: "DescribeRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRoute请求参数结构体
     public struct DescribeRouteRequest: TCRequestModel {
         /// 实例唯一id
@@ -53,5 +41,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看路由信息
+    @inlinable
+    public func describeRoute(_ input: DescribeRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteResponse > {
+        self.client.execute(action: "DescribeRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看路由信息
+    @inlinable
+    public func describeRoute(_ input: DescribeRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteResponse {
+        try await self.client.execute(action: "DescribeRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

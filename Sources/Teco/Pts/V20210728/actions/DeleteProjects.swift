@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 删除项目
-    @inlinable
-    public func deleteProjects(_ input: DeleteProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProjectsResponse > {
-        self.client.execute(action: "DeleteProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除项目
-    @inlinable
-    public func deleteProjects(_ input: DeleteProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectsResponse {
-        try await self.client.execute(action: "DeleteProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteProjects请求参数结构体
     public struct DeleteProjectsRequest: TCRequestModel {
         /// 项目ID数组
@@ -38,7 +26,7 @@ extension Pts {
         /// 是否删除项目相关的任务。默认为否。
         public let deleteJobs: Bool?
         
-        public init (projectIds: [String], deleteScenarios: Bool?, deleteJobs: Bool?) {
+        public init (projectIds: [String], deleteScenarios: Bool? = nil, deleteJobs: Bool? = nil) {
             self.projectIds = projectIds
             self.deleteScenarios = deleteScenarios
             self.deleteJobs = deleteJobs
@@ -59,5 +47,17 @@ extension Pts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除项目
+    @inlinable
+    public func deleteProjects(_ input: DeleteProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProjectsResponse > {
+        self.client.execute(action: "DeleteProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除项目
+    @inlinable
+    public func deleteProjects(_ input: DeleteProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectsResponse {
+        try await self.client.execute(action: "DeleteProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

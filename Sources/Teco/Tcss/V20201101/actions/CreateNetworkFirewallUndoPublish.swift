@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 容器网络创建网络策略撤销任务
-    @inlinable
-    public func createNetworkFirewallUndoPublish(_ input: CreateNetworkFirewallUndoPublishRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkFirewallUndoPublishResponse > {
-        self.client.execute(action: "CreateNetworkFirewallUndoPublish", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 容器网络创建网络策略撤销任务
-    @inlinable
-    public func createNetworkFirewallUndoPublish(_ input: CreateNetworkFirewallUndoPublishRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallUndoPublishResponse {
-        try await self.client.execute(action: "CreateNetworkFirewallUndoPublish", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNetworkFirewallUndoPublish请求参数结构体
     public struct CreateNetworkFirewallUndoPublishRequest: TCRequestModel {
         /// 集群Id
@@ -62,5 +50,17 @@ extension Tcss {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 容器网络创建网络策略撤销任务
+    @inlinable
+    public func createNetworkFirewallUndoPublish(_ input: CreateNetworkFirewallUndoPublishRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkFirewallUndoPublishResponse > {
+        self.client.execute(action: "CreateNetworkFirewallUndoPublish", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络创建网络策略撤销任务
+    @inlinable
+    public func createNetworkFirewallUndoPublish(_ input: CreateNetworkFirewallUndoPublishRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallUndoPublishResponse {
+        try await self.client.execute(action: "CreateNetworkFirewallUndoPublish", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

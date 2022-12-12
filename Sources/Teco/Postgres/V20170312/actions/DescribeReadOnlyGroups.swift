@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 查询只读组信息
-    ///
-    /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
-    @inlinable
-    public func describeReadOnlyGroups(_ input: DescribeReadOnlyGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReadOnlyGroupsResponse > {
-        self.client.execute(action: "DescribeReadOnlyGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询只读组信息
-    ///
-    /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
-    @inlinable
-    public func describeReadOnlyGroups(_ input: DescribeReadOnlyGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupsResponse {
-        try await self.client.execute(action: "DescribeReadOnlyGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReadOnlyGroups请求参数结构体
     public struct DescribeReadOnlyGroupsRequest: TCRequestModel {
         /// 过滤条件，必须传入主实例ID进行过滤，否则返回值将为空，过滤参数为：db-master-instance-id
@@ -48,7 +32,7 @@ extension Postgres {
         /// 查询排序依据类型，目前支持:desc,asc
         public let orderByType: String?
         
-        public init (filters: [Filter]?, pageSize: Int64?, pageNumber: Int64?, orderBy: String?, orderByType: String?) {
+        public init (filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.filters = filters
             self.pageSize = pageSize
             self.pageNumber = pageNumber
@@ -77,5 +61,21 @@ extension Postgres {
             case readOnlyGroupList = "ReadOnlyGroupList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询只读组信息
+    ///
+    /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
+    @inlinable
+    public func describeReadOnlyGroups(_ input: DescribeReadOnlyGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReadOnlyGroupsResponse > {
+        self.client.execute(action: "DescribeReadOnlyGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询只读组信息
+    ///
+    /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
+    @inlinable
+    public func describeReadOnlyGroups(_ input: DescribeReadOnlyGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupsResponse {
+        try await self.client.execute(action: "DescribeReadOnlyGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

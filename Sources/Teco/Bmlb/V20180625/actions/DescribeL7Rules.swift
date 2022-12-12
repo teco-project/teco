@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 获取黑石负载均衡七层转发规则
-    ///
-    /// 获取黑石负载均衡七层转发规则。
-    @inlinable
-    public func describeL7Rules(_ input: DescribeL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7RulesResponse > {
-        self.client.execute(action: "DescribeL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取黑石负载均衡七层转发规则
-    ///
-    /// 获取黑石负载均衡七层转发规则。
-    @inlinable
-    public func describeL7Rules(_ input: DescribeL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7RulesResponse {
-        try await self.client.execute(action: "DescribeL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeL7Rules请求参数结构体
     public struct DescribeL7RulesRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -42,7 +26,7 @@ extension Bmlb {
         /// 转发域名ID列表，可通过接口DescribeL7Rules查询。
         public let domainIds: [String]?
         
-        public init (loadBalancerId: String, listenerId: String, domainIds: [String]?) {
+        public init (loadBalancerId: String, listenerId: String, domainIds: [String]? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.domainIds = domainIds
@@ -67,5 +51,21 @@ extension Bmlb {
             case ruleSet = "RuleSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取黑石负载均衡七层转发规则
+    ///
+    /// 获取黑石负载均衡七层转发规则。
+    @inlinable
+    public func describeL7Rules(_ input: DescribeL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7RulesResponse > {
+        self.client.execute(action: "DescribeL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取黑石负载均衡七层转发规则
+    ///
+    /// 获取黑石负载均衡七层转发规则。
+    @inlinable
+    public func describeL7Rules(_ input: DescribeL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7RulesResponse {
+        try await self.client.execute(action: "DescribeL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

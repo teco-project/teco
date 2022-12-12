@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 分页查询规则组接口
-    ///
-    /// 【过滤条件】
-    /// {表名称TableName,支持模糊匹配}       {表负责人TableOwnerName,支持模糊匹配}      {监控方式MonitorTypes，1.未配置 2.关联生产调度 3.离线周期检测,支持多选}  {订阅人ReceiverUin}
-    /// 【必要字段】
-    /// {数据来源DatasourceId}
-    @inlinable
-    public func describeRuleGroupsByPage(_ input: DescribeRuleGroupsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleGroupsByPageResponse > {
-        self.client.execute(action: "DescribeRuleGroupsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分页查询规则组接口
-    ///
-    /// 【过滤条件】
-    /// {表名称TableName,支持模糊匹配}       {表负责人TableOwnerName,支持模糊匹配}      {监控方式MonitorTypes，1.未配置 2.关联生产调度 3.离线周期检测,支持多选}  {订阅人ReceiverUin}
-    /// 【必要字段】
-    /// {数据来源DatasourceId}
-    @inlinable
-    public func describeRuleGroupsByPage(_ input: DescribeRuleGroupsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupsByPageResponse {
-        try await self.client.execute(action: "DescribeRuleGroupsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRuleGroupsByPage请求参数结构体
     public struct DescribeRuleGroupsByPageRequest: TCRequestModel {
         /// 分页序号
@@ -54,7 +32,7 @@ extension Wedata {
         /// 项目Id
         public let projectId: String?
         
-        public init (pageNumber: UInt64?, pageSize: UInt64?, filters: [Filter]?, orderFields: [OrderField]?, projectId: String?) {
+        public init (pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil) {
             self.pageNumber = pageNumber
             self.pageSize = pageSize
             self.filters = filters
@@ -75,7 +53,7 @@ extension Wedata {
     public struct DescribeRuleGroupsByPageResponse: TCResponseModel {
         /// 规则组列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: RuleGroupPage
+        public let data: RuleGroupPage?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -84,5 +62,27 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分页查询规则组接口
+    ///
+    /// 【过滤条件】
+    /// {表名称TableName,支持模糊匹配}       {表负责人TableOwnerName,支持模糊匹配}      {监控方式MonitorTypes，1.未配置 2.关联生产调度 3.离线周期检测,支持多选}  {订阅人ReceiverUin}
+    /// 【必要字段】
+    /// {数据来源DatasourceId}
+    @inlinable
+    public func describeRuleGroupsByPage(_ input: DescribeRuleGroupsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleGroupsByPageResponse > {
+        self.client.execute(action: "DescribeRuleGroupsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分页查询规则组接口
+    ///
+    /// 【过滤条件】
+    /// {表名称TableName,支持模糊匹配}       {表负责人TableOwnerName,支持模糊匹配}      {监控方式MonitorTypes，1.未配置 2.关联生产调度 3.离线周期检测,支持多选}  {订阅人ReceiverUin}
+    /// 【必要字段】
+    /// {数据来源DatasourceId}
+    @inlinable
+    public func describeRuleGroupsByPage(_ input: DescribeRuleGroupsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupsByPageResponse {
+        try await self.client.execute(action: "DescribeRuleGroupsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

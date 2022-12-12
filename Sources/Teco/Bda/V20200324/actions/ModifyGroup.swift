@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bda {
-    /// 修改人体库
-    ///
-    /// 修改人体库名称、备注。
-    @inlinable
-    public func modifyGroup(_ input: ModifyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGroupResponse > {
-        self.client.execute(action: "ModifyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改人体库
-    ///
-    /// 修改人体库名称、备注。
-    @inlinable
-    public func modifyGroup(_ input: ModifyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupResponse {
-        try await self.client.execute(action: "ModifyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyGroup请求参数结构体
     public struct ModifyGroupRequest: TCRequestModel {
         /// 人体库ID。
@@ -42,7 +26,7 @@ extension Bda {
         /// 人体库信息备注。
         public let tag: String?
         
-        public init (groupId: String, groupName: String?, tag: String?) {
+        public init (groupId: String, groupName: String? = nil, tag: String? = nil) {
             self.groupId = groupId
             self.groupName = groupName
             self.tag = tag
@@ -63,5 +47,21 @@ extension Bda {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改人体库
+    ///
+    /// 修改人体库名称、备注。
+    @inlinable
+    public func modifyGroup(_ input: ModifyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGroupResponse > {
+        self.client.execute(action: "ModifyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改人体库
+    ///
+    /// 修改人体库名称、备注。
+    @inlinable
+    public func modifyGroup(_ input: ModifyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupResponse {
+        try await self.client.execute(action: "ModifyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

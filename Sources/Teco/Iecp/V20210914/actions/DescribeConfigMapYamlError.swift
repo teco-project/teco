@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 校验ConfigMap的Yaml语法
-    @inlinable
-    public func describeConfigMapYamlError(_ input: DescribeConfigMapYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigMapYamlErrorResponse > {
-        self.client.execute(action: "DescribeConfigMapYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 校验ConfigMap的Yaml语法
-    @inlinable
-    public func describeConfigMapYamlError(_ input: DescribeConfigMapYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapYamlErrorResponse {
-        try await self.client.execute(action: "DescribeConfigMapYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeConfigMapYamlError请求参数结构体
     public struct DescribeConfigMapYamlErrorRequest: TCRequestModel {
         /// yaml文件
@@ -64,5 +52,17 @@ extension Iecp {
             case errInfo = "ErrInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 校验ConfigMap的Yaml语法
+    @inlinable
+    public func describeConfigMapYamlError(_ input: DescribeConfigMapYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigMapYamlErrorResponse > {
+        self.client.execute(action: "DescribeConfigMapYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 校验ConfigMap的Yaml语法
+    @inlinable
+    public func describeConfigMapYamlError(_ input: DescribeConfigMapYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapYamlErrorResponse {
+        try await self.client.execute(action: "DescribeConfigMapYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 删除仓库
-    @inlinable
-    public func deleteRepository(_ input: DeleteRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRepositoryResponse > {
-        self.client.execute(action: "DeleteRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除仓库
-    @inlinable
-    public func deleteRepository(_ input: DeleteRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryResponse {
-        try await self.client.execute(action: "DeleteRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRepository请求参数结构体
     public struct DeleteRepositoryRequest: TCRequestModel {
         /// 仓库ID
@@ -54,5 +42,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除仓库
+    @inlinable
+    public func deleteRepository(_ input: DeleteRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRepositoryResponse > {
+        self.client.execute(action: "DeleteRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除仓库
+    @inlinable
+    public func deleteRepository(_ input: DeleteRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryResponse {
+        try await self.client.execute(action: "DeleteRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

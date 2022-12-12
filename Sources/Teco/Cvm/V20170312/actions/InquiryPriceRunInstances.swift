@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 创建实例询价
-    ///
-    /// 本接口(InquiryPriceRunInstances)用于创建实例询价。本接口仅允许针对购买限制范围内的实例配置进行询价, 详见：[创建实例](https://cloud.tencent.com/document/api/213/15730)。
-    @inlinable
-    public func inquiryPriceRunInstances(_ input: InquiryPriceRunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRunInstancesResponse > {
-        self.client.execute(action: "InquiryPriceRunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例询价
-    ///
-    /// 本接口(InquiryPriceRunInstances)用于创建实例询价。本接口仅允许针对购买限制范围内的实例配置进行询价, 详见：[创建实例](https://cloud.tencent.com/document/api/213/15730)。
-    @inlinable
-    public func inquiryPriceRunInstances(_ input: InquiryPriceRunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRunInstancesResponse {
-        try await self.client.execute(action: "InquiryPriceRunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceRunInstances请求参数结构体
     public struct InquiryPriceRunInstancesRequest: TCRequestModel {
         /// 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
@@ -45,22 +29,22 @@ extension Cvm {
         public let instanceChargeType: String?
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 实例机型。不同实例机型指定了不同的资源规格，具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。若不指定该参数，则默认机型为S1.SMALL1。
         public let instanceType: String?
         
         /// 实例系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
-        public let systemDisk: SystemDisk
+        public let systemDisk: SystemDisk?
         
         /// 实例数据盘配置信息。若不指定该参数，则默认不购买数据盘。支持购买的时候指定21块数据盘，其中最多包含1块LOCAL_BASIC数据盘或者LOCAL_SSD数据盘，最多包含20块CLOUD_BASIC数据盘、CLOUD_PREMIUM数据盘或者CLOUD_SSD数据盘。
         public let dataDisks: [DataDisk]?
         
         /// 私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。若不指定该参数，则默认使用基础网络。若在此参数中指定了私有网络IP，那么InstanceCount参数只能为1。
-        public let virtualPrivateCloud: VirtualPrivateCloud
+        public let virtualPrivateCloud: VirtualPrivateCloud?
         
         /// 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
-        public let internetAccessible: InternetAccessible
+        public let internetAccessible: InternetAccessible?
         
         /// 购买实例数量。取值范围：[1，100]。默认取值：1。指定购买实例的数量不能超过用户所能购买的剩余配额数量，具体配额相关限制详见[CVM实例购买限制](https://cloud.tencent.com/document/product/213/2664)。
         public let instanceCount: Int64?
@@ -69,13 +53,13 @@ extension Cvm {
         public let instanceName: String?
         
         /// 实例登录设置。通过该参数可以设置实例的登录方式密码、密钥或保持镜像的原始登录设置。默认情况下会随机生成密码，并以站内信方式知会到用户。
-        public let loginSettings: LoginSettings
+        public let loginSettings: LoginSettings?
         
         /// 实例所属安全组。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来获取。若不指定该参数，则默认不绑定安全组。
         public let securityGroupIds: [String]?
         
         /// 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
-        public let enhancedService: EnhancedService
+        public let enhancedService: EnhancedService?
         
         /// 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。<br>更多详细信息请参阅：如何保证幂等性。
         public let clientToken: String?
@@ -87,12 +71,12 @@ extension Cvm {
         public let tagSpecification: [TagSpecification]?
         
         /// 实例的市场相关选项，如竞价实例相关参数
-        public let instanceMarketOptions: InstanceMarketOptionsRequest
+        public let instanceMarketOptions: InstanceMarketOptionsRequest?
         
         /// 高性能计算集群ID。
         public let hpcClusterId: String?
         
-        public init (placement: Placement, imageId: String, instanceChargeType: String?, instanceChargePrepaid: InstanceChargePrepaid, instanceType: String?, systemDisk: SystemDisk, dataDisks: [DataDisk]?, virtualPrivateCloud: VirtualPrivateCloud, internetAccessible: InternetAccessible, instanceCount: Int64?, instanceName: String?, loginSettings: LoginSettings, securityGroupIds: [String]?, enhancedService: EnhancedService, clientToken: String?, hostName: String?, tagSpecification: [TagSpecification]?, instanceMarketOptions: InstanceMarketOptionsRequest, hpcClusterId: String?) {
+        public init (placement: Placement, imageId: String, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, internetAccessible: InternetAccessible? = nil, instanceCount: Int64? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, enhancedService: EnhancedService? = nil, clientToken: String? = nil, hostName: String? = nil, tagSpecification: [TagSpecification]? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, hpcClusterId: String? = nil) {
             self.placement = placement
             self.imageId = imageId
             self.instanceChargeType = instanceChargeType
@@ -149,5 +133,21 @@ extension Cvm {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例询价
+    ///
+    /// 本接口(InquiryPriceRunInstances)用于创建实例询价。本接口仅允许针对购买限制范围内的实例配置进行询价, 详见：[创建实例](https://cloud.tencent.com/document/api/213/15730)。
+    @inlinable
+    public func inquiryPriceRunInstances(_ input: InquiryPriceRunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRunInstancesResponse > {
+        self.client.execute(action: "InquiryPriceRunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例询价
+    ///
+    /// 本接口(InquiryPriceRunInstances)用于创建实例询价。本接口仅允许针对购买限制范围内的实例配置进行询价, 详见：[创建实例](https://cloud.tencent.com/document/api/213/15730)。
+    @inlinable
+    public func inquiryPriceRunInstances(_ input: InquiryPriceRunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRunInstancesResponse {
+        try await self.client.execute(action: "InquiryPriceRunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

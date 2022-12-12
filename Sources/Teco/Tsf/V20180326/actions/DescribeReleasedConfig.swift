@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询group发布的配置
-    @inlinable
-    public func describeReleasedConfig(_ input: DescribeReleasedConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReleasedConfigResponse > {
-        self.client.execute(action: "DescribeReleasedConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询group发布的配置
-    @inlinable
-    public func describeReleasedConfig(_ input: DescribeReleasedConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleasedConfigResponse {
-        try await self.client.execute(action: "DescribeReleasedConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReleasedConfig请求参数结构体
     public struct DescribeReleasedConfigRequest: TCRequestModel {
         /// 部署组ID
@@ -54,5 +42,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询group发布的配置
+    @inlinable
+    public func describeReleasedConfig(_ input: DescribeReleasedConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReleasedConfigResponse > {
+        self.client.execute(action: "DescribeReleasedConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询group发布的配置
+    @inlinable
+    public func describeReleasedConfig(_ input: DescribeReleasedConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleasedConfigResponse {
+        try await self.client.execute(action: "DescribeReleasedConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

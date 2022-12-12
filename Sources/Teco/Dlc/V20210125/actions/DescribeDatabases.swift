@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 查询数据库列表
-    ///
-    /// 本接口（DescribeDatabases）用于查询数据库列表。
-    @inlinable
-    public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabasesResponse > {
-        self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据库列表
-    ///
-    /// 本接口（DescribeDatabases）用于查询数据库列表。
-    @inlinable
-    public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
-        try await self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDatabases请求参数结构体
     public struct DescribeDatabasesRequest: TCRequestModel {
         /// 返回数量，默认为10，最大值为100。
@@ -51,7 +35,7 @@ extension Dlc {
         /// 排序类型：false：降序（默认）、true：升序
         public let asc: Bool?
         
-        public init (limit: UInt64?, offset: Int64?, keyWord: String?, datasourceConnectionName: String?, sort: String?, asc: Bool?) {
+        public init (limit: UInt64? = nil, offset: Int64? = nil, keyWord: String? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil) {
             self.limit = limit
             self.offset = offset
             self.keyWord = keyWord
@@ -86,5 +70,21 @@ extension Dlc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据库列表
+    ///
+    /// 本接口（DescribeDatabases）用于查询数据库列表。
+    @inlinable
+    public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabasesResponse > {
+        self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库列表
+    ///
+    /// 本接口（DescribeDatabases）用于查询数据库列表。
+    @inlinable
+    public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
+        try await self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

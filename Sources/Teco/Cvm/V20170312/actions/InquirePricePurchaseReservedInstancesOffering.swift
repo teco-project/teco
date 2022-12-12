@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 创建预留实例询价
-    ///
-    /// 本接口(InquirePricePurchaseReservedInstancesOffering)用于创建预留实例询价。本接口仅允许针对购买限制范围内的预留实例配置进行询价。预留实例当前只针对国际站白名单用户开放。
-    @inlinable
-    public func inquirePricePurchaseReservedInstancesOffering(_ input: InquirePricePurchaseReservedInstancesOfferingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePricePurchaseReservedInstancesOfferingResponse > {
-        self.client.execute(action: "InquirePricePurchaseReservedInstancesOffering", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建预留实例询价
-    ///
-    /// 本接口(InquirePricePurchaseReservedInstancesOffering)用于创建预留实例询价。本接口仅允许针对购买限制范围内的预留实例配置进行询价。预留实例当前只针对国际站白名单用户开放。
-    @inlinable
-    public func inquirePricePurchaseReservedInstancesOffering(_ input: InquirePricePurchaseReservedInstancesOfferingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePricePurchaseReservedInstancesOfferingResponse {
-        try await self.client.execute(action: "InquirePricePurchaseReservedInstancesOffering", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquirePricePurchaseReservedInstancesOffering请求参数结构体
     public struct InquirePricePurchaseReservedInstancesOfferingRequest: TCRequestModel {
         /// 购买预留实例计费数量
@@ -48,7 +32,7 @@ extension Cvm {
         /// 预留实例显示名称。<br><li>不指定实例显示名称则默认显示‘未命名’。</li><li>最多支持60个字符（包含模式串）。</li>
         public let reservedInstanceName: String?
         
-        public init (instanceCount: UInt64, reservedInstancesOfferingId: String, dryRun: Bool?, clientToken: String?, reservedInstanceName: String?) {
+        public init (instanceCount: UInt64, reservedInstancesOfferingId: String, dryRun: Bool? = nil, clientToken: String? = nil, reservedInstanceName: String? = nil) {
             self.instanceCount = instanceCount
             self.reservedInstancesOfferingId = reservedInstancesOfferingId
             self.dryRun = dryRun
@@ -77,5 +61,21 @@ extension Cvm {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建预留实例询价
+    ///
+    /// 本接口(InquirePricePurchaseReservedInstancesOffering)用于创建预留实例询价。本接口仅允许针对购买限制范围内的预留实例配置进行询价。预留实例当前只针对国际站白名单用户开放。
+    @inlinable
+    public func inquirePricePurchaseReservedInstancesOffering(_ input: InquirePricePurchaseReservedInstancesOfferingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePricePurchaseReservedInstancesOfferingResponse > {
+        self.client.execute(action: "InquirePricePurchaseReservedInstancesOffering", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建预留实例询价
+    ///
+    /// 本接口(InquirePricePurchaseReservedInstancesOffering)用于创建预留实例询价。本接口仅允许针对购买限制范围内的预留实例配置进行询价。预留实例当前只针对国际站白名单用户开放。
+    @inlinable
+    public func inquirePricePurchaseReservedInstancesOffering(_ input: InquirePricePurchaseReservedInstancesOfferingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePricePurchaseReservedInstancesOfferingResponse {
+        try await self.client.execute(action: "InquirePricePurchaseReservedInstancesOffering", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

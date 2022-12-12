@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sslpod {
-    /// 重新检测域名
-    ///
-    /// 强制重新检测域名
-    @inlinable
-    public func refreshDomain(_ input: RefreshDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefreshDomainResponse > {
-        self.client.execute(action: "RefreshDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重新检测域名
-    ///
-    /// 强制重新检测域名
-    @inlinable
-    public func refreshDomain(_ input: RefreshDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDomainResponse {
-        try await self.client.execute(action: "RefreshDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RefreshDomain请求参数结构体
     public struct RefreshDomainRequest: TCRequestModel {
         /// 域名列表中的ID，可通过搜索域名接口获得
@@ -53,5 +37,21 @@ extension Sslpod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重新检测域名
+    ///
+    /// 强制重新检测域名
+    @inlinable
+    public func refreshDomain(_ input: RefreshDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefreshDomainResponse > {
+        self.client.execute(action: "RefreshDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重新检测域名
+    ///
+    /// 强制重新检测域名
+    @inlinable
+    public func refreshDomain(_ input: RefreshDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDomainResponse {
+        try await self.client.execute(action: "RefreshDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

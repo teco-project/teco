@@ -47,7 +47,7 @@ extension Waf {
         
         /// 字段的索引描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let value: AccessValueInfo
+        public let value: AccessValueInfo?
         
         enum CodingKeys: String, CodingKey {
             case key = "Key"
@@ -134,17 +134,17 @@ extension Waf {
         /// 全文索引配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let fullText: AccessFullTextInfo
+        public let fullText: AccessFullTextInfo?
         
         /// 键值索引配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let keyValue: AccessRuleKeyValueInfo
+        public let keyValue: AccessRuleKeyValueInfo?
         
         /// 元字段索引配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tag: AccessRuleTagInfo
+        public let tag: AccessRuleTagInfo?
         
         enum CodingKeys: String, CodingKey {
             case fullText = "FullText"
@@ -232,7 +232,7 @@ extension Waf {
         /// 最后更新时间
         public let lastUpdateTime: Date?
         
-        public init (attackTags: [String], attackThreshold: Int64, defenseStatus: Int64, timeThreshold: Int64, denyTimeThreshold: Int64, lastUpdateTime: Date?) {
+        public init (attackTags: [String], attackThreshold: Int64, defenseStatus: Int64, timeThreshold: Int64, denyTimeThreshold: Int64, lastUpdateTime: Date? = nil) {
             self.attackTags = attackTags
             self.attackThreshold = attackThreshold
             self.defenseStatus = defenseStatus
@@ -285,7 +285,7 @@ extension Waf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
         
-        public init (resourceIds: String?, status: Int64?, region: Int64?, beginTime: String?, endTime: String?, inquireNum: Int64?, usedNum: Int64?, type: String?) {
+        public init (resourceIds: String? = nil, status: Int64? = nil, region: Int64? = nil, beginTime: String? = nil, endTime: String? = nil, inquireNum: Int64? = nil, usedNum: Int64? = nil, type: String? = nil) {
             self.resourceIds = resourceIds
             self.status = status
             self.region = region
@@ -363,7 +363,7 @@ extension Waf {
         
         /// cdc的集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let name: String
+        public let name: String?
         
         public init (id: String, name: String) {
             self.id = id
@@ -383,7 +383,7 @@ extension Waf {
         
         /// 该地域对应的集群信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let clusters: [CdcCluster]
+        public let clusters: [CdcCluster]?
         
         public init (region: String, clusters: [CdcCluster]) {
             self.region = region
@@ -470,7 +470,7 @@ extension Waf {
         /// 是否开启投递CKafka功能
         public let postCKafkaStatus: Int64?
         
-        public init (domain: String, domainId: String, instanceId: String, cname: String, edition: String, region: String, instanceName: String, clsStatus: UInt64, flowMode: UInt64, status: UInt64, mode: UInt64, engine: UInt64, ccList: [String], rsList: [String], ports: [PortInfo], loadBalancerSet: [LoadBalancerPackageNew], appId: UInt64, state: Int64, createTime: String?, ipv6Status: Int64?, botStatus: Int64?, level: Int64?, postCLSStatus: Int64?, postCKafkaStatus: Int64?) {
+        public init (domain: String, domainId: String, instanceId: String, cname: String, edition: String, region: String, instanceName: String, clsStatus: UInt64, flowMode: UInt64, status: UInt64, mode: UInt64, engine: UInt64, ccList: [String], rsList: [String], ports: [PortInfo], loadBalancerSet: [LoadBalancerPackageNew], appId: UInt64, state: Int64, createTime: String? = nil, ipv6Status: Int64? = nil, botStatus: Int64? = nil, level: Int64? = nil, postCLSStatus: Int64? = nil, postCKafkaStatus: Int64? = nil) {
             self.domain = domain
             self.domainId = domainId
             self.instanceId = instanceId
@@ -838,7 +838,7 @@ extension Waf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let usedNum: Int64?
         
-        public init (resourceIds: String?, status: Int64?, region: Int64?, beginTime: String?, endTime: String?, inquireNum: Int64?, usedNum: Int64?) {
+        public init (resourceIds: String? = nil, status: Int64? = nil, region: Int64? = nil, beginTime: String? = nil, endTime: String? = nil, inquireNum: Int64? = nil, usedNum: Int64? = nil) {
             self.resourceIds = resourceIds
             self.status = status
             self.region = region
@@ -920,15 +920,15 @@ extension Waf {
         
         /// 业务安全包
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let fraudPkg: FraudPkg
+        public let fraudPkg: FraudPkg?
         
         /// Bot资源包
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let botPkg: BotPkg
+        public let botPkg: BotPkg?
         
         /// bot的qps详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let botQPS: BotQPS
+        public let botQPS: BotQPS?
         
         /// qps弹性计费上限
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -942,7 +942,7 @@ extension Waf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxBandwidth: UInt64?
         
-        public init (instanceId: String, instanceName: String, resourceIds: String, region: String, payMode: UInt64, renewFlag: UInt64, mode: UInt64, level: UInt64, validTime: String, beginTime: String, domainCount: UInt64, subDomainLimit: UInt64, mainDomainCount: UInt64, mainDomainLimit: UInt64, maxQPS: UInt64, qps: QPSPackageNew, domainPkg: DomainPackageNew, appId: UInt64, edition: String, fraudPkg: FraudPkg, botPkg: BotPkg, botQPS: BotQPS, elasticBilling: UInt64?, attackLogPost: Int64?, maxBandwidth: UInt64?) {
+        public init (instanceId: String, instanceName: String, resourceIds: String, region: String, payMode: UInt64, renewFlag: UInt64, mode: UInt64, level: UInt64, validTime: String, beginTime: String, domainCount: UInt64, subDomainLimit: UInt64, mainDomainCount: UInt64, mainDomainLimit: UInt64, maxQPS: UInt64, qps: QPSPackageNew, domainPkg: DomainPackageNew, appId: UInt64, edition: String, fraudPkg: FraudPkg? = nil, botPkg: BotPkg? = nil, botQPS: BotQPS? = nil, elasticBilling: UInt64? = nil, attackLogPost: Int64? = nil, maxBandwidth: UInt64? = nil) {
             self.instanceId = instanceId
             self.instanceName = instanceName
             self.resourceIds = resourceIds
@@ -1250,7 +1250,7 @@ extension Waf {
         /// 最后更新时间
         public let lastUpdateTime: Date?
         
-        public init (defenseStatus: Int64, tags: [String]?, lastUpdateTime: Date?) {
+        public init (defenseStatus: Int64, tags: [String]? = nil, lastUpdateTime: Date? = nil) {
             self.defenseStatus = defenseStatus
             self.tags = tags
             self.lastUpdateTime = lastUpdateTime

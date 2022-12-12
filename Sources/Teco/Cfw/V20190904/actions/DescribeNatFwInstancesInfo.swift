@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 获取租户所有NAT实例卡片信息
-    ///
-    /// GetNatInstance 获取租户所有NAT实例及实例卡片信息
-    @inlinable
-    public func describeNatFwInstancesInfo(_ input: DescribeNatFwInstancesInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwInstancesInfoResponse > {
-        self.client.execute(action: "DescribeNatFwInstancesInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取租户所有NAT实例卡片信息
-    ///
-    /// GetNatInstance 获取租户所有NAT实例及实例卡片信息
-    @inlinable
-    public func describeNatFwInstancesInfo(_ input: DescribeNatFwInstancesInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstancesInfoResponse {
-        try await self.client.execute(action: "DescribeNatFwInstancesInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNatFwInstancesInfo请求参数结构体
     public struct DescribeNatFwInstancesInfoRequest: TCRequestModel {
         /// 获取实例列表过滤字段
@@ -42,7 +26,7 @@ extension Cfw {
         /// 每页长度
         public let limit: Int64?
         
-        public init (filter: [NatFwFilter]?, offset: Int64?, limit: Int64?) {
+        public init (filter: [NatFwFilter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.filter = filter
             self.offset = offset
             self.limit = limit
@@ -73,5 +57,21 @@ extension Cfw {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取租户所有NAT实例卡片信息
+    ///
+    /// GetNatInstance 获取租户所有NAT实例及实例卡片信息
+    @inlinable
+    public func describeNatFwInstancesInfo(_ input: DescribeNatFwInstancesInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwInstancesInfoResponse > {
+        self.client.execute(action: "DescribeNatFwInstancesInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取租户所有NAT实例卡片信息
+    ///
+    /// GetNatInstance 获取租户所有NAT实例及实例卡片信息
+    @inlinable
+    public func describeNatFwInstancesInfo(_ input: DescribeNatFwInstancesInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstancesInfoResponse {
+        try await self.client.execute(action: "DescribeNatFwInstancesInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

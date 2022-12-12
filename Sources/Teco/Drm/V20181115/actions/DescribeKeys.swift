@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Drm {
-    /// 查询加密密钥列表
-    ///
-    /// 开发者需要指定使用的DRM类型、和需要加密的Track类型，后台返回加密使用的密钥
-    /// 如果加密使用的ContentID没有关联的密钥信息，后台会自动生成新的密钥返回
-    @inlinable
-    public func describeKeys(_ input: DescribeKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeysResponse > {
-        self.client.execute(action: "DescribeKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询加密密钥列表
-    ///
-    /// 开发者需要指定使用的DRM类型、和需要加密的Track类型，后台返回加密使用的密钥
-    /// 如果加密使用的ContentID没有关联的密钥信息，后台会自动生成新的密钥返回
-    @inlinable
-    public func describeKeys(_ input: DescribeKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeysResponse {
-        try await self.client.execute(action: "DescribeKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKeys请求参数结构体
     public struct DescribeKeysRequest: TCRequestModel {
         /// 使用的DRM方案类型，接口取值WIDEVINE、FAIRPLAY、NORMALAES。
@@ -52,7 +34,7 @@ extension Drm {
         /// 如果该参数为空，则后台自动生成
         public let contentId: String?
         
-        public init (drmType: String, tracks: [String], contentType: String, rsaPublicKey: String?, contentId: String?) {
+        public init (drmType: String, tracks: [String], contentType: String, rsaPublicKey: String? = nil, contentId: String? = nil) {
             self.drmType = drmType
             self.tracks = tracks
             self.contentType = contentType
@@ -96,5 +78,23 @@ extension Drm {
             case pssh = "Pssh"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询加密密钥列表
+    ///
+    /// 开发者需要指定使用的DRM类型、和需要加密的Track类型，后台返回加密使用的密钥
+    /// 如果加密使用的ContentID没有关联的密钥信息，后台会自动生成新的密钥返回
+    @inlinable
+    public func describeKeys(_ input: DescribeKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeysResponse > {
+        self.client.execute(action: "DescribeKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询加密密钥列表
+    ///
+    /// 开发者需要指定使用的DRM类型、和需要加密的Track类型，后台返回加密使用的密钥
+    /// 如果加密使用的ContentID没有关联的密钥信息，后台会自动生成新的密钥返回
+    @inlinable
+    public func describeKeys(_ input: DescribeKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeysResponse {
+        try await self.client.execute(action: "DescribeKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

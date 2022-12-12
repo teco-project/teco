@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云-批量转账结果查询
-    @inlinable
-    public func queryBatchPaymentResult(_ input: QueryBatchPaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBatchPaymentResultResponse > {
-        self.client.execute(action: "QueryBatchPaymentResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云-批量转账结果查询
-    @inlinable
-    public func queryBatchPaymentResult(_ input: QueryBatchPaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBatchPaymentResultResponse {
-        try await self.client.execute(action: "QueryBatchPaymentResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryBatchPaymentResult请求参数结构体
     public struct QueryBatchPaymentResultRequest: TCRequestModel {
         /// 批次号
@@ -61,5 +49,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云-批量转账结果查询
+    @inlinable
+    public func queryBatchPaymentResult(_ input: QueryBatchPaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBatchPaymentResultResponse > {
+        self.client.execute(action: "QueryBatchPaymentResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云-批量转账结果查询
+    @inlinable
+    public func queryBatchPaymentResult(_ input: QueryBatchPaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBatchPaymentResultResponse {
+        try await self.client.execute(action: "QueryBatchPaymentResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

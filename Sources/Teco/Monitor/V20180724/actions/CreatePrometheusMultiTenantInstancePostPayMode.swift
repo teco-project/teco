@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 创建按量 Prometheus 实例
-    ///
-    /// 创建按量 Prometheus 实例，根据用量收费实例
-    @inlinable
-    public func createPrometheusMultiTenantInstancePostPayMode(_ input: CreatePrometheusMultiTenantInstancePostPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusMultiTenantInstancePostPayModeResponse > {
-        self.client.execute(action: "CreatePrometheusMultiTenantInstancePostPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建按量 Prometheus 实例
-    ///
-    /// 创建按量 Prometheus 实例，根据用量收费实例
-    @inlinable
-    public func createPrometheusMultiTenantInstancePostPayMode(_ input: CreatePrometheusMultiTenantInstancePostPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusMultiTenantInstancePostPayModeResponse {
-        try await self.client.execute(action: "CreatePrometheusMultiTenantInstancePostPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePrometheusMultiTenantInstancePostPayMode请求参数结构体
     public struct CreatePrometheusMultiTenantInstancePostPayModeRequest: TCRequestModel {
         /// 实例名
@@ -54,7 +38,7 @@ extension Monitor {
         /// 需要关联的 Grafana 实例
         public let grafanaInstanceId: String?
         
-        public init (instanceName: String, vpcId: String, subnetId: String, dataRetentionTime: Int64, zone: String, tagSpecification: [PrometheusTag]?, grafanaInstanceId: String?) {
+        public init (instanceName: String, vpcId: String, subnetId: String, dataRetentionTime: Int64, zone: String, tagSpecification: [PrometheusTag]? = nil, grafanaInstanceId: String? = nil) {
             self.instanceName = instanceName
             self.vpcId = vpcId
             self.subnetId = subnetId
@@ -87,5 +71,21 @@ extension Monitor {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建按量 Prometheus 实例
+    ///
+    /// 创建按量 Prometheus 实例，根据用量收费实例
+    @inlinable
+    public func createPrometheusMultiTenantInstancePostPayMode(_ input: CreatePrometheusMultiTenantInstancePostPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusMultiTenantInstancePostPayModeResponse > {
+        self.client.execute(action: "CreatePrometheusMultiTenantInstancePostPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建按量 Prometheus 实例
+    ///
+    /// 创建按量 Prometheus 实例，根据用量收费实例
+    @inlinable
+    public func createPrometheusMultiTenantInstancePostPayMode(_ input: CreatePrometheusMultiTenantInstancePostPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusMultiTenantInstancePostPayModeResponse {
+        try await self.client.execute(action: "CreatePrometheusMultiTenantInstancePostPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

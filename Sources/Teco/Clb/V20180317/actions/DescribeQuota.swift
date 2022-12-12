@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 查询配额
-    ///
-    /// 查询用户当前地域下的各项配额
-    @inlinable
-    public func describeQuota(_ input: DescribeQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQuotaResponse > {
-        self.client.execute(action: "DescribeQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询配额
-    ///
-    /// 查询用户当前地域下的各项配额
-    @inlinable
-    public func describeQuota(_ input: DescribeQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaResponse {
-        try await self.client.execute(action: "DescribeQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeQuota请求参数结构体
     public struct DescribeQuotaRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Clb {
             case quotaSet = "QuotaSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询配额
+    ///
+    /// 查询用户当前地域下的各项配额
+    @inlinable
+    public func describeQuota(_ input: DescribeQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQuotaResponse > {
+        self.client.execute(action: "DescribeQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询配额
+    ///
+    /// 查询用户当前地域下的各项配额
+    @inlinable
+    public func describeQuota(_ input: DescribeQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaResponse {
+        try await self.client.execute(action: "DescribeQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

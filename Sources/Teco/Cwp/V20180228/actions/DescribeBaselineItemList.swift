@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取基线项检测结果列表
-    @inlinable
-    public func describeBaselineItemList(_ input: DescribeBaselineItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineItemListResponse > {
-        self.client.execute(action: "DescribeBaselineItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取基线项检测结果列表
-    @inlinable
-    public func describeBaselineItemList(_ input: DescribeBaselineItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineItemListResponse {
-        try await self.client.execute(action: "DescribeBaselineItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBaselineItemList请求参数结构体
     public struct DescribeBaselineItemListRequest: TCRequestModel {
         /// <li>PolicyId - int64 - 是否必填：否 - 策略Id</li>
@@ -54,7 +42,7 @@ extension Cwp {
         /// 可选排序列
         public let by: String?
         
-        public init (filters: [Filter]?, limit: Int64?, offset: Int64?, order: String?, by: String?) {
+        public init (filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -87,5 +75,17 @@ extension Cwp {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取基线项检测结果列表
+    @inlinable
+    public func describeBaselineItemList(_ input: DescribeBaselineItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineItemListResponse > {
+        self.client.execute(action: "DescribeBaselineItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取基线项检测结果列表
+    @inlinable
+    public func describeBaselineItemList(_ input: DescribeBaselineItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineItemListResponse {
+        try await self.client.execute(action: "DescribeBaselineItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

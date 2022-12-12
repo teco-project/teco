@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 删除特殊采集规则配置
-    ///
-    /// 本接口用于删除特殊采集规则配置，特殊采集配置应用于自建K8S环境的采集Agent
-    @inlinable
-    public func deleteConfigExtra(_ input: DeleteConfigExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConfigExtraResponse > {
-        self.client.execute(action: "DeleteConfigExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除特殊采集规则配置
-    ///
-    /// 本接口用于删除特殊采集规则配置，特殊采集配置应用于自建K8S环境的采集Agent
-    @inlinable
-    public func deleteConfigExtra(_ input: DeleteConfigExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigExtraResponse {
-        try await self.client.execute(action: "DeleteConfigExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteConfigExtra请求参数结构体
     public struct DeleteConfigExtraRequest: TCRequestModel {
         /// 采集规则扩展配置ID
@@ -53,5 +37,21 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除特殊采集规则配置
+    ///
+    /// 本接口用于删除特殊采集规则配置，特殊采集配置应用于自建K8S环境的采集Agent
+    @inlinable
+    public func deleteConfigExtra(_ input: DeleteConfigExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConfigExtraResponse > {
+        self.client.execute(action: "DeleteConfigExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除特殊采集规则配置
+    ///
+    /// 本接口用于删除特殊采集规则配置，特殊采集配置应用于自建K8S环境的采集Agent
+    @inlinable
+    public func deleteConfigExtra(_ input: DeleteConfigExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigExtraResponse {
+        try await self.client.execute(action: "DeleteConfigExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

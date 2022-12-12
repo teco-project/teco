@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 新增或修改本地提权规则
-    @inlinable
-    public func editPrivilegeRule(_ input: EditPrivilegeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditPrivilegeRuleResponse > {
-        self.client.execute(action: "EditPrivilegeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增或修改本地提权规则
-    @inlinable
-    public func editPrivilegeRule(_ input: EditPrivilegeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditPrivilegeRuleResponse {
-        try await self.client.execute(action: "EditPrivilegeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EditPrivilegeRule请求参数结构体
     public struct EditPrivilegeRuleRequest: TCRequestModel {
         /// 规则ID(新增时请留空)
@@ -47,7 +35,7 @@ extension Yunjing {
         /// 是否全局规则(默认否)
         public let isGlobal: UInt64?
         
-        public init (id: UInt64?, uuid: String?, hostip: String?, processName: String?, sMode: UInt64?, isGlobal: UInt64?) {
+        public init (id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, processName: String? = nil, sMode: UInt64? = nil, isGlobal: UInt64? = nil) {
             self.id = id
             self.uuid = uuid
             self.hostip = hostip
@@ -74,5 +62,17 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增或修改本地提权规则
+    @inlinable
+    public func editPrivilegeRule(_ input: EditPrivilegeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditPrivilegeRuleResponse > {
+        self.client.execute(action: "EditPrivilegeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增或修改本地提权规则
+    @inlinable
+    public func editPrivilegeRule(_ input: EditPrivilegeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditPrivilegeRuleResponse {
+        try await self.client.execute(action: "EditPrivilegeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

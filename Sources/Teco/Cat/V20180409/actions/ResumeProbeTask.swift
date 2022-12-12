@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cat {
-    /// 恢复拨测任务
-    @inlinable
-    public func resumeProbeTask(_ input: ResumeProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeProbeTaskResponse > {
-        self.client.execute(action: "ResumeProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 恢复拨测任务
-    @inlinable
-    public func resumeProbeTask(_ input: ResumeProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeProbeTaskResponse {
-        try await self.client.execute(action: "ResumeProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResumeProbeTask请求参数结构体
     public struct ResumeProbeTaskRequest: TCRequestModel {
         /// 任务 ID
@@ -63,5 +51,17 @@ extension Cat {
             case results = "Results"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 恢复拨测任务
+    @inlinable
+    public func resumeProbeTask(_ input: ResumeProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeProbeTaskResponse > {
+        self.client.execute(action: "ResumeProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复拨测任务
+    @inlinable
+    public func resumeProbeTask(_ input: ResumeProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeProbeTaskResponse {
+        try await self.client.execute(action: "ResumeProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

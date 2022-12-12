@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 获取国家地区编码映射表
-    ///
-    /// 本接口（DescribeCountryAreaMapping）用于获取国家地区编码映射表。
-    @inlinable
-    public func describeCountryAreaMapping(_ input: DescribeCountryAreaMappingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCountryAreaMappingResponse > {
-        self.client.execute(action: "DescribeCountryAreaMapping", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取国家地区编码映射表
-    ///
-    /// 本接口（DescribeCountryAreaMapping）用于获取国家地区编码映射表。
-    @inlinable
-    public func describeCountryAreaMapping(_ input: DescribeCountryAreaMappingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCountryAreaMappingResponse {
-        try await self.client.execute(action: "DescribeCountryAreaMapping", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCountryAreaMapping请求参数结构体
     public struct DescribeCountryAreaMappingRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Gaap {
             case countryAreaMappingList = "CountryAreaMappingList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取国家地区编码映射表
+    ///
+    /// 本接口（DescribeCountryAreaMapping）用于获取国家地区编码映射表。
+    @inlinable
+    public func describeCountryAreaMapping(_ input: DescribeCountryAreaMappingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCountryAreaMappingResponse > {
+        self.client.execute(action: "DescribeCountryAreaMapping", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取国家地区编码映射表
+    ///
+    /// 本接口（DescribeCountryAreaMapping）用于获取国家地区编码映射表。
+    @inlinable
+    public func describeCountryAreaMapping(_ input: DescribeCountryAreaMappingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCountryAreaMappingResponse {
+        try await self.client.execute(action: "DescribeCountryAreaMapping", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

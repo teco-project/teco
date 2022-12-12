@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 提交规则组运行任务接口
-    @inlinable
-    public func commitRuleGroupTask(_ input: CommitRuleGroupTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitRuleGroupTaskResponse > {
-        self.client.execute(action: "CommitRuleGroupTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交规则组运行任务接口
-    @inlinable
-    public func commitRuleGroupTask(_ input: CommitRuleGroupTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupTaskResponse {
-        try await self.client.execute(action: "CommitRuleGroupTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CommitRuleGroupTask请求参数结构体
     public struct CommitRuleGroupTaskRequest: TCRequestModel {
         /// 规则组ID
@@ -39,12 +27,12 @@ extension Wedata {
         public let execRuleConfig: [RuleConfig]?
         
         /// 执行配置
-        public let execConfig: RuleExecConfig
+        public let execConfig: RuleExecConfig?
         
         /// 项目ID
         public let projectId: String?
         
-        public init (ruleGroupId: UInt64?, triggerType: UInt64?, execRuleConfig: [RuleConfig]?, execConfig: RuleExecConfig, projectId: String?) {
+        public init (ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil) {
             self.ruleGroupId = ruleGroupId
             self.triggerType = triggerType
             self.execRuleConfig = execRuleConfig
@@ -65,7 +53,7 @@ extension Wedata {
     public struct CommitRuleGroupTaskResponse: TCResponseModel {
         /// 规则组执行id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: RuleGroupExecResult
+        public let data: RuleGroupExecResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -74,5 +62,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交规则组运行任务接口
+    @inlinable
+    public func commitRuleGroupTask(_ input: CommitRuleGroupTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitRuleGroupTaskResponse > {
+        self.client.execute(action: "CommitRuleGroupTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交规则组运行任务接口
+    @inlinable
+    public func commitRuleGroupTask(_ input: CommitRuleGroupTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupTaskResponse {
+        try await self.client.execute(action: "CommitRuleGroupTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

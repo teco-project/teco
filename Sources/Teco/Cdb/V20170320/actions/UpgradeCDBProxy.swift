@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 升级数据库代理配置
-    ///
-    /// 调整数据库代理配置
-    @inlinable
-    public func upgradeCDBProxy(_ input: UpgradeCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeCDBProxyResponse > {
-        self.client.execute(action: "UpgradeCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 升级数据库代理配置
-    ///
-    /// 调整数据库代理配置
-    @inlinable
-    public func upgradeCDBProxy(_ input: UpgradeCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyResponse {
-        try await self.client.execute(action: "UpgradeCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeCDBProxy请求参数结构体
     public struct UpgradeCDBProxyRequest: TCRequestModel {
         /// 实例ID
@@ -88,5 +72,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 升级数据库代理配置
+    ///
+    /// 调整数据库代理配置
+    @inlinable
+    public func upgradeCDBProxy(_ input: UpgradeCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeCDBProxyResponse > {
+        self.client.execute(action: "UpgradeCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 升级数据库代理配置
+    ///
+    /// 调整数据库代理配置
+    @inlinable
+    public func upgradeCDBProxy(_ input: UpgradeCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyResponse {
+        try await self.client.execute(action: "UpgradeCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

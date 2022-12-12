@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 实例扩容
-    ///
-    /// 扩容节点
-    @inlinable
-    public func scaleOutInstance(_ input: ScaleOutInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleOutInstanceResponse > {
-        self.client.execute(action: "ScaleOutInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实例扩容
-    ///
-    /// 扩容节点
-    @inlinable
-    public func scaleOutInstance(_ input: ScaleOutInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutInstanceResponse {
-        try await self.client.execute(action: "ScaleOutInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ScaleOutInstance请求参数结构体
     public struct ScaleOutInstanceRequest: TCRequestModel {
         /// 扩容的时间单位。取值范围：
@@ -87,7 +71,7 @@ extension Emr {
         public let hardwareResourceType: String?
         
         /// 使用Pod资源扩容时，指定的Pod规格以及来源等信息
-        public let podSpec: PodSpec
+        public let podSpec: PodSpec?
         
         /// 使用clickhouse集群扩容时，选择的机器分组名称
         public let clickHouseClusterName: String?
@@ -99,7 +83,7 @@ extension Emr {
         public let yarnNodeLabel: String?
         
         /// POD自定义权限和自定义参数
-        public let podParameter: PodParameter
+        public let podParameter: PodParameter?
         
         /// 扩容的Master节点的数量。
         /// 使用clickhouse集群扩容时，该参数不生效。
@@ -122,7 +106,7 @@ extension Emr {
         /// 0表示关闭自动续费，1表示开启自动续费
         public let autoRenew: Int64?
         
-        public init (timeUnit: String, timeSpan: UInt64, instanceId: String, payMode: UInt64, clientToken: String?, preExecutedFileSettings: [PreExecuteFileSettings]?, taskCount: UInt64?, coreCount: UInt64?, unNecessaryNodeList: [UInt64]?, routerCount: UInt64?, softDeployInfo: [UInt64]?, serviceNodeInfo: [UInt64]?, disasterRecoverGroupIds: [String]?, tags: [Tag]?, hardwareResourceType: String?, podSpec: PodSpec, clickHouseClusterName: String?, clickHouseClusterType: String?, yarnNodeLabel: String?, podParameter: PodParameter, masterCount: UInt64?, startServiceAfterScaleOut: String?, zoneId: Int64?, subnetId: String?, scaleOutServiceConfAssign: String?, autoRenew: Int64?) {
+        public init (timeUnit: String, timeSpan: UInt64, instanceId: String, payMode: UInt64, clientToken: String? = nil, preExecutedFileSettings: [PreExecuteFileSettings]? = nil, taskCount: UInt64? = nil, coreCount: UInt64? = nil, unNecessaryNodeList: [UInt64]? = nil, routerCount: UInt64? = nil, softDeployInfo: [UInt64]? = nil, serviceNodeInfo: [UInt64]? = nil, disasterRecoverGroupIds: [String]? = nil, tags: [Tag]? = nil, hardwareResourceType: String? = nil, podSpec: PodSpec? = nil, clickHouseClusterName: String? = nil, clickHouseClusterType: String? = nil, yarnNodeLabel: String? = nil, podParameter: PodParameter? = nil, masterCount: UInt64? = nil, startServiceAfterScaleOut: String? = nil, zoneId: Int64? = nil, subnetId: String? = nil, scaleOutServiceConfAssign: String? = nil, autoRenew: Int64? = nil) {
             self.timeUnit = timeUnit
             self.timeSpan = timeSpan
             self.instanceId = instanceId
@@ -213,5 +197,21 @@ extension Emr {
             case billId = "BillId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实例扩容
+    ///
+    /// 扩容节点
+    @inlinable
+    public func scaleOutInstance(_ input: ScaleOutInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleOutInstanceResponse > {
+        self.client.execute(action: "ScaleOutInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实例扩容
+    ///
+    /// 扩容节点
+    @inlinable
+    public func scaleOutInstance(_ input: ScaleOutInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutInstanceResponse {
+        try await self.client.execute(action: "ScaleOutInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

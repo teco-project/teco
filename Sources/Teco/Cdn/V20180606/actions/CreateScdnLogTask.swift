@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 创建事件日志任务
-    ///
-    /// CreateScdnLogTask 用于创建事件日志任务
-    @inlinable
-    public func createScdnLogTask(_ input: CreateScdnLogTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScdnLogTaskResponse > {
-        self.client.execute(action: "CreateScdnLogTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建事件日志任务
-    ///
-    /// CreateScdnLogTask 用于创建事件日志任务
-    @inlinable
-    public func createScdnLogTask(_ input: CreateScdnLogTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScdnLogTaskResponse {
-        try await self.client.execute(action: "CreateScdnLogTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateScdnLogTask请求参数结构体
     public struct CreateScdnLogTaskRequest: TCRequestModel {
         /// 防护类型
@@ -100,7 +84,7 @@ extension Cdn {
         /// 地域：mainland 或 overseas
         public let area: String?
         
-        public init (mode: String, startTime: Date, endTime: Date, domain: String?, attackType: String?, defenceMode: String?, ip: String?, domains: [String]?, attackTypes: [String]?, conditions: [ScdnEventLogConditions]?, source: String?, area: String?) {
+        public init (mode: String, startTime: Date, endTime: Date, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, ip: String? = nil, domains: [String]? = nil, attackTypes: [String]? = nil, conditions: [ScdnEventLogConditions]? = nil, source: String? = nil, area: String? = nil) {
             self.mode = mode
             self.startTime = startTime
             self.endTime = endTime
@@ -144,5 +128,21 @@ extension Cdn {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建事件日志任务
+    ///
+    /// CreateScdnLogTask 用于创建事件日志任务
+    @inlinable
+    public func createScdnLogTask(_ input: CreateScdnLogTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScdnLogTaskResponse > {
+        self.client.execute(action: "CreateScdnLogTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建事件日志任务
+    ///
+    /// CreateScdnLogTask 用于创建事件日志任务
+    @inlinable
+    public func createScdnLogTask(_ input: CreateScdnLogTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScdnLogTaskResponse {
+        try await self.client.execute(action: "CreateScdnLogTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

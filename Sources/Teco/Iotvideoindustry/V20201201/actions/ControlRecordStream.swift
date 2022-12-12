@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 控制通道本地回放流（旧）
-    ///
-    /// 对回放流进行控制，包括暂停、播放、拉动、结束等
-    /// 请使用ControlChannelLocalRecord接口
-    @inlinable
-    public func controlRecordStream(_ input: ControlRecordStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlRecordStreamResponse > {
-        self.client.execute(action: "ControlRecordStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 控制通道本地回放流（旧）
-    ///
-    /// 对回放流进行控制，包括暂停、播放、拉动、结束等
-    /// 请使用ControlChannelLocalRecord接口
-    @inlinable
-    public func controlRecordStream(_ input: ControlRecordStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlRecordStreamResponse {
-        try await self.client.execute(action: "ControlRecordStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ControlRecordStream请求参数结构体
     public struct ControlRecordStreamRequest: TCRequestModel {
         /// 设备Id，设备的唯一标识
@@ -52,7 +34,7 @@ extension Iotvideoindustry {
         /// 通道唯一标识
         public let channelId: String?
         
-        public init (deviceId: String, streamId: String, command: String, channelId: String?) {
+        public init (deviceId: String, streamId: String, command: String, channelId: String? = nil) {
             self.deviceId = deviceId
             self.streamId = streamId
             self.command = command
@@ -75,5 +57,23 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 控制通道本地回放流（旧）
+    ///
+    /// 对回放流进行控制，包括暂停、播放、拉动、结束等
+    /// 请使用ControlChannelLocalRecord接口
+    @inlinable
+    public func controlRecordStream(_ input: ControlRecordStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlRecordStreamResponse > {
+        self.client.execute(action: "ControlRecordStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 控制通道本地回放流（旧）
+    ///
+    /// 对回放流进行控制，包括暂停、播放、拉动、结束等
+    /// 请使用ControlChannelLocalRecord接口
+    @inlinable
+    public func controlRecordStream(_ input: ControlRecordStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlRecordStreamResponse {
+        try await self.client.execute(action: "ControlRecordStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

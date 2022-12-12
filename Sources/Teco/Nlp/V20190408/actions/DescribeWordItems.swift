@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Nlp {
-    /// 查询指定词库的词条信息
-    ///
-    /// 依据自定义词库的ID，查询对应的词条信息。
-    @inlinable
-    public func describeWordItems(_ input: DescribeWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWordItemsResponse > {
-        self.client.execute(action: "DescribeWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询指定词库的词条信息
-    ///
-    /// 依据自定义词库的ID，查询对应的词条信息。
-    @inlinable
-    public func describeWordItems(_ input: DescribeWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWordItemsResponse {
-        try await self.client.execute(action: "DescribeWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWordItems请求参数结构体
     public struct DescribeWordItemsRequest: TCRequestModel {
         /// 自定义词库ID。
@@ -45,7 +29,7 @@ extension Nlp {
         /// 待检索的词条文本，支持模糊匹配。
         public let text: String?
         
-        public init (dictId: String, offset: UInt64?, limit: UInt64?, text: String?) {
+        public init (dictId: String, offset: UInt64? = nil, limit: UInt64? = nil, text: String? = nil) {
             self.dictId = dictId
             self.offset = offset
             self.limit = limit
@@ -77,5 +61,21 @@ extension Nlp {
             case wordItems = "WordItems"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询指定词库的词条信息
+    ///
+    /// 依据自定义词库的ID，查询对应的词条信息。
+    @inlinable
+    public func describeWordItems(_ input: DescribeWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWordItemsResponse > {
+        self.client.execute(action: "DescribeWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指定词库的词条信息
+    ///
+    /// 依据自定义词库的ID，查询对应的词条信息。
+    @inlinable
+    public func describeWordItems(_ input: DescribeWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWordItemsResponse {
+        try await self.client.execute(action: "DescribeWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

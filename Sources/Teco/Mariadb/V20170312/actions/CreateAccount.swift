@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 创建账号
-    ///
-    /// 本接口（CreateAccount）用于创建云数据库账号。一个实例可以创建多个不同的账号，相同的用户名+不同的host是不同的账号。
-    @inlinable
-    public func createAccount(_ input: CreateAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccountResponse > {
-        self.client.execute(action: "CreateAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建账号
-    ///
-    /// 本接口（CreateAccount）用于创建云数据库账号。一个实例可以创建多个不同的账号，相同的用户名+不同的host是不同的账号。
-    @inlinable
-    public func createAccount(_ input: CreateAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountResponse {
-        try await self.client.execute(action: "CreateAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAccount请求参数结构体
     public struct CreateAccountRequest: TCRequestModel {
         /// 实例 ID，形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
@@ -60,7 +44,7 @@ extension Mariadb {
         /// 用户最大连接数限制参数。不传或者传0表示为不限制，对应max_user_connections参数，目前10.1内核版本不支持设置。
         public let maxUserConnections: UInt64?
         
-        public init (instanceId: String, userName: String, host: String, password: String, readOnly: Int64?, description: String?, delayThresh: Int64?, slaveConst: Int64?, maxUserConnections: UInt64?) {
+        public init (instanceId: String, userName: String, host: String, password: String, readOnly: Int64? = nil, description: String? = nil, delayThresh: Int64? = nil, slaveConst: Int64? = nil, maxUserConnections: UInt64? = nil) {
             self.instanceId = instanceId
             self.userName = userName
             self.host = host
@@ -109,5 +93,21 @@ extension Mariadb {
             case readOnly = "ReadOnly"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建账号
+    ///
+    /// 本接口（CreateAccount）用于创建云数据库账号。一个实例可以创建多个不同的账号，相同的用户名+不同的host是不同的账号。
+    @inlinable
+    public func createAccount(_ input: CreateAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccountResponse > {
+        self.client.execute(action: "CreateAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建账号
+    ///
+    /// 本接口（CreateAccount）用于创建云数据库账号。一个实例可以创建多个不同的账号，相同的用户名+不同的host是不同的账号。
+    @inlinable
+    public func createAccount(_ input: CreateAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountResponse {
+        try await self.client.execute(action: "CreateAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

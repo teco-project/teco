@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 删除服务器关联的标签
-    @inlinable
-    public func deleteMachineTag(_ input: DeleteMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMachineTagResponse > {
-        self.client.execute(action: "DeleteMachineTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除服务器关联的标签
-    @inlinable
-    public func deleteMachineTag(_ input: DeleteMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineTagResponse {
-        try await self.client.execute(action: "DeleteMachineTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMachineTag请求参数结构体
     public struct DeleteMachineTagRequest: TCRequestModel {
         /// 关联的标签ID
@@ -49,5 +37,17 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除服务器关联的标签
+    @inlinable
+    public func deleteMachineTag(_ input: DeleteMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMachineTagResponse > {
+        self.client.execute(action: "DeleteMachineTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除服务器关联的标签
+    @inlinable
+    public func deleteMachineTag(_ input: DeleteMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineTagResponse {
+        try await self.client.execute(action: "DeleteMachineTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

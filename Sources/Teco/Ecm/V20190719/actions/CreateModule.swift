@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 创建模块
-    @inlinable
-    public func createModule(_ input: CreateModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateModuleResponse > {
-        self.client.execute(action: "CreateModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建模块
-    @inlinable
-    public func createModule(_ input: CreateModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModuleResponse {
-        try await self.client.execute(action: "CreateModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateModule请求参数结构体
     public struct CreateModuleRequest: TCRequestModel {
         /// 模块名称，如视频直播模块。限制：模块名称不得以空格开头，长度不得超过60个字符。
@@ -65,12 +53,12 @@ extension Ecm {
         public let disableWanIp: Bool?
         
         /// 系统盘信息。
-        public let systemDisk: SystemDisk
+        public let systemDisk: SystemDisk?
         
         /// 数据盘信息。
         public let dataDisks: [DataDisk]?
         
-        public init (moduleName: String, defaultBandWidth: Int64, defaultImageId: String, instanceType: String, defaultSystemDiskSize: Int64, defaultDataDiskSize: Int64, closeIpDirect: Bool?, tagSpecification: [TagSpecification]?, securityGroups: [String]?, defaultBandWidthIn: Int64?, disableWanIp: Bool?, systemDisk: SystemDisk, dataDisks: [DataDisk]?) {
+        public init (moduleName: String, defaultBandWidth: Int64, defaultImageId: String, instanceType: String, defaultSystemDiskSize: Int64, defaultDataDiskSize: Int64, closeIpDirect: Bool? = nil, tagSpecification: [TagSpecification]? = nil, securityGroups: [String]? = nil, defaultBandWidthIn: Int64? = nil, disableWanIp: Bool? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil) {
             self.moduleName = moduleName
             self.defaultBandWidth = defaultBandWidth
             self.defaultImageId = defaultImageId
@@ -115,5 +103,17 @@ extension Ecm {
             case moduleId = "ModuleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建模块
+    @inlinable
+    public func createModule(_ input: CreateModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateModuleResponse > {
+        self.client.execute(action: "CreateModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建模块
+    @inlinable
+    public func createModule(_ input: CreateModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModuleResponse {
+        try await self.client.execute(action: "CreateModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

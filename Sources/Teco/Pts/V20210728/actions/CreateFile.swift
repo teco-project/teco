@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 创建文件
-    @inlinable
-    public func createFile(_ input: CreateFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileResponse > {
-        self.client.execute(action: "CreateFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建文件
-    @inlinable
-    public func createFile(_ input: CreateFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileResponse {
-        try await self.client.execute(action: "CreateFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFile请求参数结构体
     public struct CreateFileRequest: TCRequestModel {
         /// 文件 ID
@@ -65,7 +53,7 @@ extension Pts {
         /// 文件夹中的文件
         public let fileInfos: [FileInfo]?
         
-        public init (fileId: String, projectId: String, kind: Int64, name: String, size: Int64, type: String, lineCount: Int64?, headLines: [String]?, tailLines: [String]?, headerInFile: Bool?, headerColumns: [String]?, fileInfos: [FileInfo]?) {
+        public init (fileId: String, projectId: String, kind: Int64, name: String, size: Int64, type: String, lineCount: Int64? = nil, headLines: [String]? = nil, tailLines: [String]? = nil, headerInFile: Bool? = nil, headerColumns: [String]? = nil, fileInfos: [FileInfo]? = nil) {
             self.fileId = fileId
             self.projectId = projectId
             self.kind = kind
@@ -104,5 +92,17 @@ extension Pts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建文件
+    @inlinable
+    public func createFile(_ input: CreateFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileResponse > {
+        self.client.execute(action: "CreateFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文件
+    @inlinable
+    public func createFile(_ input: CreateFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileResponse {
+        try await self.client.execute(action: "CreateFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

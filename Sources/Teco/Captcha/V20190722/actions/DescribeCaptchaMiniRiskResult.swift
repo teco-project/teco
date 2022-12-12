@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Captcha {
-    /// 核查验证码小程序插件票据接入风控结果(Beta)
-    @inlinable
-    public func describeCaptchaMiniRiskResult(_ input: DescribeCaptchaMiniRiskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaMiniRiskResultResponse > {
-        self.client.execute(action: "DescribeCaptchaMiniRiskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 核查验证码小程序插件票据接入风控结果(Beta)
-    @inlinable
-    public func describeCaptchaMiniRiskResult(_ input: DescribeCaptchaMiniRiskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniRiskResultResponse {
-        try await self.client.execute(action: "DescribeCaptchaMiniRiskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCaptchaMiniRiskResult请求参数结构体
     public struct DescribeCaptchaMiniRiskResultRequest: TCRequestModel {
         /// 固定填值：9（滑块验证码）
@@ -62,7 +50,7 @@ extension Captcha {
         /// 用户操作来源的微信开放账号
         public let weChatOpenId: String?
         
-        public init (captchaType: UInt64, ticket: String, userIp: String, captchaAppId: UInt64, appSecretKey: String, businessId: UInt64?, sceneId: UInt64?, macAddress: String?, imei: String?, sceneCode: Int64?, weChatOpenId: String?) {
+        public init (captchaType: UInt64, ticket: String, userIp: String, captchaAppId: UInt64, appSecretKey: String, businessId: UInt64? = nil, sceneId: UInt64? = nil, macAddress: String? = nil, imei: String? = nil, sceneCode: Int64? = nil, weChatOpenId: String? = nil) {
             self.captchaType = captchaType
             self.ticket = ticket
             self.userIp = userIp
@@ -113,7 +101,7 @@ extension Captcha {
         /// 拦截策略返回信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let manageMarketingRiskValue: OutputManageMarketingRiskValue
+        public let manageMarketingRiskValue: OutputManageMarketingRiskValue?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -124,5 +112,17 @@ extension Captcha {
             case manageMarketingRiskValue = "ManageMarketingRiskValue"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 核查验证码小程序插件票据接入风控结果(Beta)
+    @inlinable
+    public func describeCaptchaMiniRiskResult(_ input: DescribeCaptchaMiniRiskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaMiniRiskResultResponse > {
+        self.client.execute(action: "DescribeCaptchaMiniRiskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 核查验证码小程序插件票据接入风控结果(Beta)
+    @inlinable
+    public func describeCaptchaMiniRiskResult(_ input: DescribeCaptchaMiniRiskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniRiskResultResponse {
+        try await self.client.execute(action: "DescribeCaptchaMiniRiskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

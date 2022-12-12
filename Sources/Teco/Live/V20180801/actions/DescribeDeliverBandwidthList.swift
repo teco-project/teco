@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询直播转推计费带宽
-    ///
-    /// 查询直播转推计费带宽，查询时间范围最大支持3个月内的数据，时间跨度最长31天。
-    @inlinable
-    public func describeDeliverBandwidthList(_ input: DescribeDeliverBandwidthListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeliverBandwidthListResponse > {
-        self.client.execute(action: "DescribeDeliverBandwidthList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询直播转推计费带宽
-    ///
-    /// 查询直播转推计费带宽，查询时间范围最大支持3个月内的数据，时间跨度最长31天。
-    @inlinable
-    public func describeDeliverBandwidthList(_ input: DescribeDeliverBandwidthListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliverBandwidthListResponse {
-        try await self.client.execute(action: "DescribeDeliverBandwidthList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeliverBandwidthList请求参数结构体
     public struct DescribeDeliverBandwidthListRequest: TCRequestModel {
         /// 起始时间，格式为%Y-%m-%d %H:%M:%S。
@@ -62,5 +46,21 @@ extension Live {
             case dataInfoList = "DataInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询直播转推计费带宽
+    ///
+    /// 查询直播转推计费带宽，查询时间范围最大支持3个月内的数据，时间跨度最长31天。
+    @inlinable
+    public func describeDeliverBandwidthList(_ input: DescribeDeliverBandwidthListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeliverBandwidthListResponse > {
+        self.client.execute(action: "DescribeDeliverBandwidthList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询直播转推计费带宽
+    ///
+    /// 查询直播转推计费带宽，查询时间范围最大支持3个月内的数据，时间跨度最长31天。
+    @inlinable
+    public func describeDeliverBandwidthList(_ input: DescribeDeliverBandwidthListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliverBandwidthListResponse {
+        try await self.client.execute(action: "DescribeDeliverBandwidthList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 生成企业电子印章
-    @inlinable
-    public func generateOrganizationSeal(_ input: GenerateOrganizationSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateOrganizationSealResponse > {
-        self.client.execute(action: "GenerateOrganizationSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 生成企业电子印章
-    @inlinable
-    public func generateOrganizationSeal(_ input: GenerateOrganizationSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateOrganizationSealResponse {
-        try await self.client.execute(action: "GenerateOrganizationSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GenerateOrganizationSeal请求参数结构体
     public struct GenerateOrganizationSealRequest: TCRequestModel {
         /// 调用方信息
@@ -53,7 +41,7 @@ extension Essbasic {
         /// 是否是默认印章 true：是，false：否
         public let isDefault: Bool?
         
-        public init (caller: Caller, sealType: String, sourceIp: String, sealName: String?, sealHorizontalText: String?, isDefault: Bool?) {
+        public init (caller: Caller, sealType: String, sourceIp: String, sealName: String? = nil, sealHorizontalText: String? = nil, isDefault: Bool? = nil) {
             self.caller = caller
             self.sealType = sealType
             self.sourceIp = sourceIp
@@ -84,5 +72,17 @@ extension Essbasic {
             case sealId = "SealId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 生成企业电子印章
+    @inlinable
+    public func generateOrganizationSeal(_ input: GenerateOrganizationSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateOrganizationSealResponse > {
+        self.client.execute(action: "GenerateOrganizationSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 生成企业电子印章
+    @inlinable
+    public func generateOrganizationSeal(_ input: GenerateOrganizationSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateOrganizationSealResponse {
+        try await self.client.execute(action: "GenerateOrganizationSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 注册事件监听器【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 注册事件监听器
-    @inlinable
-    public func registerEventListener(_ input: RegisterEventListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterEventListenerResponse > {
-        self.client.execute(action: "RegisterEventListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 注册事件监听器【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 注册事件监听器
-    @inlinable
-    public func registerEventListener(_ input: RegisterEventListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterEventListenerResponse {
-        try await self.client.execute(action: "RegisterEventListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RegisterEventListener请求参数结构体
     public struct RegisterEventListenerRequest: TCRequestModel {
         /// 关键字，如果是任务，则传任务Id
@@ -50,7 +32,7 @@ extension Wedata {
         /// 配置信息，比如最长等待时间1天配置json：{"maxWaitEventTime":1,"maxWaitEventTimeUnit":"DAYS"}
         public let properties: String?
         
-        public init (key: String, eventName: String, projectId: String, type: String?, properties: String?) {
+        public init (key: String, eventName: String, projectId: String, type: String? = nil, properties: String? = nil) {
             self.key = key
             self.eventName = eventName
             self.projectId = projectId
@@ -71,7 +53,7 @@ extension Wedata {
     public struct RegisterEventListenerResponse: TCResponseModel {
         /// 成功或者失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: BatchReturn
+        public let data: BatchReturn?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -80,5 +62,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 注册事件监听器【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 注册事件监听器
+    @inlinable
+    public func registerEventListener(_ input: RegisterEventListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterEventListenerResponse > {
+        self.client.execute(action: "RegisterEventListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 注册事件监听器【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 注册事件监听器
+    @inlinable
+    public func registerEventListener(_ input: RegisterEventListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterEventListenerResponse {
+        try await self.client.execute(action: "RegisterEventListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

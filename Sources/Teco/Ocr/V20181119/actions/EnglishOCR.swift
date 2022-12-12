@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 英文识别
-    ///
-    /// 本接口支持图像英文文字的检测和识别，返回文字框位置与文字内容。支持多场景、任意版面下的英文、字母、数字和常见字符的识别，同时覆盖英文印刷体和英文手写体识别。
-    /// 默认接口请求频率限制：10次/秒。
-    @inlinable
-    public func englishOCR(_ input: EnglishOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnglishOCRResponse > {
-        self.client.execute(action: "EnglishOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 英文识别
-    ///
-    /// 本接口支持图像英文文字的检测和识别，返回文字框位置与文字内容。支持多场景、任意版面下的英文、字母、数字和常见字符的识别，同时覆盖英文印刷体和英文手写体识别。
-    /// 默认接口请求频率限制：10次/秒。
-    @inlinable
-    public func englishOCR(_ input: EnglishOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnglishOCRResponse {
-        try await self.client.execute(action: "EnglishOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnglishOCR请求参数结构体
     public struct EnglishOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -59,7 +41,7 @@ extension Ocr {
         /// 预处理开关，功能是检测图片倾斜的角度，将原本倾斜的图片矫正。该参数默认值为true。
         public let preprocess: Bool?
         
-        public init (imageBase64: String?, imageUrl: String?, enableCoordPoint: Bool?, enableCandWord: Bool?, preprocess: Bool?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, enableCoordPoint: Bool? = nil, enableCandWord: Bool? = nil, preprocess: Bool? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.enableCoordPoint = enableCoordPoint
@@ -92,5 +74,23 @@ extension Ocr {
             case angel = "Angel"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 英文识别
+    ///
+    /// 本接口支持图像英文文字的检测和识别，返回文字框位置与文字内容。支持多场景、任意版面下的英文、字母、数字和常见字符的识别，同时覆盖英文印刷体和英文手写体识别。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func englishOCR(_ input: EnglishOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnglishOCRResponse > {
+        self.client.execute(action: "EnglishOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 英文识别
+    ///
+    /// 本接口支持图像英文文字的检测和识别，返回文字框位置与文字内容。支持多场景、任意版面下的英文、字母、数字和常见字符的识别，同时覆盖英文印刷体和英文手写体识别。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func englishOCR(_ input: EnglishOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnglishOCRResponse {
+        try await self.client.execute(action: "EnglishOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

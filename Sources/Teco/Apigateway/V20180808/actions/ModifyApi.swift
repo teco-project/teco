@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 修改API
-    ///
-    /// 本接口（ModifyApi）用于修改 API 接口，可调用此接口对已经配置的 API 接口进行编辑修改。修改后的 API 需要重新发布 API 所在的服务到对应环境方能生效。
-    @inlinable
-    public func modifyApi(_ input: ModifyApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApiResponse > {
-        self.client.execute(action: "ModifyApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改API
-    ///
-    /// 本接口（ModifyApi）用于修改 API 接口，可调用此接口对已经配置的 API 接口进行编辑修改。修改后的 API 需要重新发布 API 所在的服务到对应环境方能生效。
-    @inlinable
-    public func modifyApi(_ input: ModifyApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiResponse {
-        try await self.client.execute(action: "ModifyApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyApi请求参数结构体
     public struct ModifyApiRequest: TCRequestModel {
         /// API 所在的服务唯一 ID。
@@ -85,16 +69,16 @@ extension Apigateway {
         public let microServices: [MicroServiceReq]?
         
         /// 微服务的负载均衡配置。
-        public let serviceTsfLoadBalanceConf: TsfLoadBalanceConfResp
+        public let serviceTsfLoadBalanceConf: TsfLoadBalanceConfResp?
         
         /// 微服务的健康检查配置。
-        public let serviceTsfHealthCheckConf: HealthCheckConf
+        public let serviceTsfHealthCheckConf: HealthCheckConf?
         
         /// target类型负载均衡配置。（内测阶段）
         public let targetServicesLoadBalanceConf: Int64?
         
         /// target健康检查配置。（内测阶段）
-        public let targetServicesHealthCheckConf: HealthCheckConf
+        public let targetServicesHealthCheckConf: HealthCheckConf?
         
         /// scf 函数名称。当后端类型是SCF时生效。
         public let serviceScfFunctionName: String?
@@ -139,7 +123,7 @@ extension Apigateway {
         public let isDebugAfterCharge: Bool?
         
         /// 标签。
-        public let tagSpecifications: Tag
+        public let tagSpecifications: Tag?
         
         /// 是否删除自定义响应配置错误码，如果不传或者传 False，不删除，当传 True 时，则删除此 API 所有自定义响应配置错误码。
         public let isDeleteResponseErrorCodes: Bool?
@@ -154,7 +138,7 @@ extension Apigateway {
         public let responseFailExample: String?
         
         /// API 的后端服务配置。
-        public let serviceConfig: ServiceConfig
+        public let serviceConfig: ServiceConfig?
         
         /// 关联的授权API 唯一 ID，当AuthType为OAUTH且ApiBusinessType为NORMAL时生效。标示业务API绑定的oauth2.0授权API唯一ID。
         public let authRelationApiId: String?
@@ -163,7 +147,7 @@ extension Apigateway {
         public let serviceParameters: [ServiceParameter]?
         
         /// oauth配置。当AuthType是OAUTH时生效。
-        public let oauthConfig: OauthConfig
+        public let oauthConfig: OauthConfig?
         
         /// 用户自定义错误码配置。
         public let responseErrorCodes: [ResponseErrorCodeReq]?
@@ -195,7 +179,7 @@ extension Apigateway {
         /// EIAM应用ID。
         public let tokenTimeout: Int64?
         
-        public init (serviceId: String, serviceType: String, requestConfig: RequestConfig, apiId: String, apiName: String?, apiDesc: String?, apiType: String?, authType: String?, authRequired: Bool?, serviceTimeout: Int64?, `protocol`: String?, enableCORS: Bool?, constantParameters: [ConstantParameter]?, requestParameters: [ReqParameter]?, apiBusinessType: String?, serviceMockReturnMessage: String?, microServices: [MicroServiceReq]?, serviceTsfLoadBalanceConf: TsfLoadBalanceConfResp, serviceTsfHealthCheckConf: HealthCheckConf, targetServicesLoadBalanceConf: Int64?, targetServicesHealthCheckConf: HealthCheckConf, serviceScfFunctionName: String?, serviceWebsocketRegisterFunctionName: String?, serviceWebsocketCleanupFunctionName: String?, serviceWebsocketTransportFunctionName: String?, serviceScfFunctionNamespace: String?, serviceScfFunctionQualifier: String?, serviceWebsocketRegisterFunctionNamespace: String?, serviceWebsocketRegisterFunctionQualifier: String?, serviceWebsocketTransportFunctionNamespace: String?, serviceWebsocketTransportFunctionQualifier: String?, serviceWebsocketCleanupFunctionNamespace: String?, serviceWebsocketCleanupFunctionQualifier: String?, serviceScfIsIntegratedResponse: Bool?, isDebugAfterCharge: Bool?, tagSpecifications: Tag, isDeleteResponseErrorCodes: Bool?, responseType: String?, responseSuccessExample: String?, responseFailExample: String?, serviceConfig: ServiceConfig, authRelationApiId: String?, serviceParameters: [ServiceParameter]?, oauthConfig: OauthConfig, responseErrorCodes: [ResponseErrorCodeReq]?, isBase64Encoded: Bool?, isBase64Trigger: Bool?, base64EncodedTriggerRules: [Base64EncodedTriggerRule]?, eventBusId: String?, serviceScfFunctionType: String?, eiamAppType: String?, eiamAuthType: String?, eiamAppId: String?, tokenTimeout: Int64?) {
+        public init (serviceId: String, serviceType: String, requestConfig: RequestConfig, apiId: String, apiName: String? = nil, apiDesc: String? = nil, apiType: String? = nil, authType: String? = nil, authRequired: Bool? = nil, serviceTimeout: Int64? = nil, `protocol`: String? = nil, enableCORS: Bool? = nil, constantParameters: [ConstantParameter]? = nil, requestParameters: [ReqParameter]? = nil, apiBusinessType: String? = nil, serviceMockReturnMessage: String? = nil, microServices: [MicroServiceReq]? = nil, serviceTsfLoadBalanceConf: TsfLoadBalanceConfResp? = nil, serviceTsfHealthCheckConf: HealthCheckConf? = nil, targetServicesLoadBalanceConf: Int64? = nil, targetServicesHealthCheckConf: HealthCheckConf? = nil, serviceScfFunctionName: String? = nil, serviceWebsocketRegisterFunctionName: String? = nil, serviceWebsocketCleanupFunctionName: String? = nil, serviceWebsocketTransportFunctionName: String? = nil, serviceScfFunctionNamespace: String? = nil, serviceScfFunctionQualifier: String? = nil, serviceWebsocketRegisterFunctionNamespace: String? = nil, serviceWebsocketRegisterFunctionQualifier: String? = nil, serviceWebsocketTransportFunctionNamespace: String? = nil, serviceWebsocketTransportFunctionQualifier: String? = nil, serviceWebsocketCleanupFunctionNamespace: String? = nil, serviceWebsocketCleanupFunctionQualifier: String? = nil, serviceScfIsIntegratedResponse: Bool? = nil, isDebugAfterCharge: Bool? = nil, tagSpecifications: Tag? = nil, isDeleteResponseErrorCodes: Bool? = nil, responseType: String? = nil, responseSuccessExample: String? = nil, responseFailExample: String? = nil, serviceConfig: ServiceConfig? = nil, authRelationApiId: String? = nil, serviceParameters: [ServiceParameter]? = nil, oauthConfig: OauthConfig? = nil, responseErrorCodes: [ResponseErrorCodeReq]? = nil, isBase64Encoded: Bool? = nil, isBase64Trigger: Bool? = nil, base64EncodedTriggerRules: [Base64EncodedTriggerRule]? = nil, eventBusId: String? = nil, serviceScfFunctionType: String? = nil, eiamAppType: String? = nil, eiamAuthType: String? = nil, eiamAppId: String? = nil, tokenTimeout: Int64? = nil) {
             self.serviceId = serviceId
             self.serviceType = serviceType
             self.requestConfig = requestConfig
@@ -318,5 +302,21 @@ extension Apigateway {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改API
+    ///
+    /// 本接口（ModifyApi）用于修改 API 接口，可调用此接口对已经配置的 API 接口进行编辑修改。修改后的 API 需要重新发布 API 所在的服务到对应环境方能生效。
+    @inlinable
+    public func modifyApi(_ input: ModifyApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApiResponse > {
+        self.client.execute(action: "ModifyApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改API
+    ///
+    /// 本接口（ModifyApi）用于修改 API 接口，可调用此接口对已经配置的 API 接口进行编辑修改。修改后的 API 需要重新发布 API 所在的服务到对应环境方能生效。
+    @inlinable
+    public func modifyApi(_ input: ModifyApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiResponse {
+        try await self.client.execute(action: "ModifyApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

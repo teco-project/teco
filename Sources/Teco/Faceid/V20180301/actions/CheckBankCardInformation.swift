@@ -15,27 +15,15 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 银行卡基础信息查询
-    @inlinable
-    public func checkBankCardInformation(_ input: CheckBankCardInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBankCardInformationResponse > {
-        self.client.execute(action: "CheckBankCardInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 银行卡基础信息查询
-    @inlinable
-    public func checkBankCardInformation(_ input: CheckBankCardInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCardInformationResponse {
-        try await self.client.execute(action: "CheckBankCardInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckBankCardInformation请求参数结构体
     public struct CheckBankCardInformationRequest: TCRequestModel {
         /// 银行卡号。
         public let bankCard: String
         
         /// 敏感数据加密信息。对传入信息（银行卡号）有加密需求的用户可使用此参数，详情请点击左侧链接。
-        public let encryption: Encryption
+        public let encryption: Encryption?
         
-        public init (bankCard: String, encryption: Encryption) {
+        public init (bankCard: String, encryption: Encryption? = nil) {
             self.bankCard = bankCard
             self.encryption = encryption
         }
@@ -76,5 +64,17 @@ extension Faceid {
             case accountType = "AccountType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 银行卡基础信息查询
+    @inlinable
+    public func checkBankCardInformation(_ input: CheckBankCardInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBankCardInformationResponse > {
+        self.client.execute(action: "CheckBankCardInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 银行卡基础信息查询
+    @inlinable
+    public func checkBankCardInformation(_ input: CheckBankCardInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCardInformationResponse {
+        try await self.client.execute(action: "CheckBankCardInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

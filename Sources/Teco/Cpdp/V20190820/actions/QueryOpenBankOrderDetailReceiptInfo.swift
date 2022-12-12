@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-单笔交易回单申请结果查询
-    @inlinable
-    public func queryOpenBankOrderDetailReceiptInfo(_ input: QueryOpenBankOrderDetailReceiptInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankOrderDetailReceiptInfoResponse > {
-        self.client.execute(action: "QueryOpenBankOrderDetailReceiptInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-单笔交易回单申请结果查询
-    @inlinable
-    public func queryOpenBankOrderDetailReceiptInfo(_ input: QueryOpenBankOrderDetailReceiptInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankOrderDetailReceiptInfoResponse {
-        try await self.client.execute(action: "QueryOpenBankOrderDetailReceiptInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryOpenBankOrderDetailReceiptInfo请求参数结构体
     public struct QueryOpenBankOrderDetailReceiptInfoRequest: TCRequestModel {
         /// 渠道商户ID
@@ -53,7 +41,7 @@ extension Cpdp {
         /// _不填默认为生产环境_
         public let environment: String?
         
-        public init (channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, outApplyId: String?, channelApplyId: String?, environment: String?) {
+        public init (channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, outApplyId: String? = nil, channelApplyId: String? = nil, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.channelSubMerchantId = channelSubMerchantId
             self.channelName = channelName
@@ -85,7 +73,7 @@ extension Cpdp {
         
         /// 返回结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: QueryOpenBankOrderDetailReceiptInfoResult
+        public let result: QueryOpenBankOrderDetailReceiptInfoResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -96,5 +84,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-单笔交易回单申请结果查询
+    @inlinable
+    public func queryOpenBankOrderDetailReceiptInfo(_ input: QueryOpenBankOrderDetailReceiptInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankOrderDetailReceiptInfoResponse > {
+        self.client.execute(action: "QueryOpenBankOrderDetailReceiptInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-单笔交易回单申请结果查询
+    @inlinable
+    public func queryOpenBankOrderDetailReceiptInfo(_ input: QueryOpenBankOrderDetailReceiptInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankOrderDetailReceiptInfoResponse {
+        try await self.client.execute(action: "QueryOpenBankOrderDetailReceiptInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

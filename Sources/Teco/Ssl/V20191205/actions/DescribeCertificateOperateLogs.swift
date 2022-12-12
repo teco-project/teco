@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Ssl {
-    /// 获取证书操作日志
-    ///
-    /// 获取用户账号下有关证书的操作日志。
-    @inlinable
-    public func describeCertificateOperateLogs(_ input: DescribeCertificateOperateLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertificateOperateLogsResponse > {
-        self.client.execute(action: "DescribeCertificateOperateLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取证书操作日志
-    ///
-    /// 获取用户账号下有关证书的操作日志。
-    @inlinable
-    public func describeCertificateOperateLogs(_ input: DescribeCertificateOperateLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateOperateLogsResponse {
-        try await self.client.execute(action: "DescribeCertificateOperateLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCertificateOperateLogs请求参数结构体
     public struct DescribeCertificateOperateLogsRequest: TCRequestModel {
         /// 偏移量，默认为0。
@@ -47,7 +31,7 @@ extension Ssl {
         /// 结束时间，默认现在时间。
         public let endTime: Date?
         
-        public init (offset: UInt64?, limit: UInt64?, startTime: Date?, endTime: Date?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil) {
             self.offset = offset
             self.limit = limit
             self.startTime = startTime
@@ -83,5 +67,21 @@ extension Ssl {
             case operateLogs = "OperateLogs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取证书操作日志
+    ///
+    /// 获取用户账号下有关证书的操作日志。
+    @inlinable
+    public func describeCertificateOperateLogs(_ input: DescribeCertificateOperateLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertificateOperateLogsResponse > {
+        self.client.execute(action: "DescribeCertificateOperateLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取证书操作日志
+    ///
+    /// 获取用户账号下有关证书的操作日志。
+    @inlinable
+    public func describeCertificateOperateLogs(_ input: DescribeCertificateOperateLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateOperateLogsResponse {
+        try await self.client.execute(action: "DescribeCertificateOperateLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

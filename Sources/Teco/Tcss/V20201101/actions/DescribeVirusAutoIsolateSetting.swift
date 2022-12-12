@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询木马自动隔离设置
-    @inlinable
-    public func describeVirusAutoIsolateSetting(_ input: DescribeVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusAutoIsolateSettingResponse > {
-        self.client.execute(action: "DescribeVirusAutoIsolateSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询木马自动隔离设置
-    @inlinable
-    public func describeVirusAutoIsolateSetting(_ input: DescribeVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSettingResponse {
-        try await self.client.execute(action: "DescribeVirusAutoIsolateSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVirusAutoIsolateSetting请求参数结构体
     public struct DescribeVirusAutoIsolateSettingRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Tcss {
             case isKillProgress = "IsKillProgress"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询木马自动隔离设置
+    @inlinable
+    public func describeVirusAutoIsolateSetting(_ input: DescribeVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusAutoIsolateSettingResponse > {
+        self.client.execute(action: "DescribeVirusAutoIsolateSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询木马自动隔离设置
+    @inlinable
+    public func describeVirusAutoIsolateSetting(_ input: DescribeVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSettingResponse {
+        try await self.client.execute(action: "DescribeVirusAutoIsolateSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

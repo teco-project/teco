@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Apcas {
-    /// 查询调用明细
-    @inlinable
-    public func queryCallDetails(_ input: QueryCallDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCallDetailsResponse > {
-        self.client.execute(action: "QueryCallDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询调用明细
-    @inlinable
-    public func queryCallDetails(_ input: QueryCallDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallDetailsResponse {
-        try await self.client.execute(action: "QueryCallDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryCallDetails请求参数结构体
     public struct QueryCallDetailsRequest: TCRequestModel {
         /// 请求类型 1:人群特征洞察统计 2:购车意向预测统计
@@ -73,5 +61,17 @@ extension Apcas {
             case callDetails = "CallDetails"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询调用明细
+    @inlinable
+    public func queryCallDetails(_ input: QueryCallDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCallDetailsResponse > {
+        self.client.execute(action: "QueryCallDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询调用明细
+    @inlinable
+    public func queryCallDetails(_ input: QueryCallDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallDetailsResponse {
+        try await self.client.execute(action: "QueryCallDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

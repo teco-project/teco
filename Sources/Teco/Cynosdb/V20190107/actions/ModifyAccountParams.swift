@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 修改账号参数
-    @inlinable
-    public func modifyAccountParams(_ input: ModifyAccountParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountParamsResponse > {
-        self.client.execute(action: "ModifyAccountParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改账号参数
-    @inlinable
-    public func modifyAccountParams(_ input: ModifyAccountParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountParamsResponse {
-        try await self.client.execute(action: "ModifyAccountParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAccountParams请求参数结构体
     public struct ModifyAccountParamsRequest: TCRequestModel {
         /// 集群id，不超过32个字符
@@ -59,5 +47,17 @@ extension Cynosdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改账号参数
+    @inlinable
+    public func modifyAccountParams(_ input: ModifyAccountParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountParamsResponse > {
+        self.client.execute(action: "ModifyAccountParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改账号参数
+    @inlinable
+    public func modifyAccountParams(_ input: ModifyAccountParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountParamsResponse {
+        try await self.client.execute(action: "ModifyAccountParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

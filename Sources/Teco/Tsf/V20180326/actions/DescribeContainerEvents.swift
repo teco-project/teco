@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 获取容器事件列表
-    @inlinable
-    public func describeContainerEvents(_ input: DescribeContainerEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerEventsResponse > {
-        self.client.execute(action: "DescribeContainerEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取容器事件列表
-    @inlinable
-    public func describeContainerEvents(_ input: DescribeContainerEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerEventsResponse {
-        try await self.client.execute(action: "DescribeContainerEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeContainerEvents请求参数结构体
     public struct DescribeContainerEventsRequest: TCRequestModel {
         /// event 的资源类型, group 或者 instance
@@ -44,7 +32,7 @@ extension Tsf {
         /// 当类型是 instance 时需要
         public let groupId: String?
         
-        public init (resourceType: String, resourceId: String, offset: Int64?, limit: Int64?, groupId: String?) {
+        public init (resourceType: String, resourceId: String, offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil) {
             self.resourceType = resourceType
             self.resourceId = resourceId
             self.offset = offset
@@ -65,7 +53,7 @@ extension Tsf {
     public struct DescribeContainerEventsResponse: TCResponseModel {
         /// events 分页列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TsfPageContainerEvent
+        public let result: TsfPageContainerEvent?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -74,5 +62,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取容器事件列表
+    @inlinable
+    public func describeContainerEvents(_ input: DescribeContainerEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerEventsResponse > {
+        self.client.execute(action: "DescribeContainerEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取容器事件列表
+    @inlinable
+    public func describeContainerEvents(_ input: DescribeContainerEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerEventsResponse {
+        try await self.client.execute(action: "DescribeContainerEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

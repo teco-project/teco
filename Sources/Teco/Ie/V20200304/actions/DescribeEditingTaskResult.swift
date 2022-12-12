@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ie {
-    /// 获取编辑理解任务结果
-    ///
-    /// 获取编辑理解任务结果。
-    @inlinable
-    public func describeEditingTaskResult(_ input: DescribeEditingTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEditingTaskResultResponse > {
-        self.client.execute(action: "DescribeEditingTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取编辑理解任务结果
-    ///
-    /// 获取编辑理解任务结果。
-    @inlinable
-    public func describeEditingTaskResult(_ input: DescribeEditingTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEditingTaskResultResponse {
-        try await self.client.execute(action: "DescribeEditingTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEditingTaskResult请求参数结构体
     public struct DescribeEditingTaskResultRequest: TCRequestModel {
         /// 编辑任务 ID。
@@ -57,5 +41,21 @@ extension Ie {
             case taskResult = "TaskResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取编辑理解任务结果
+    ///
+    /// 获取编辑理解任务结果。
+    @inlinable
+    public func describeEditingTaskResult(_ input: DescribeEditingTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEditingTaskResultResponse > {
+        self.client.execute(action: "DescribeEditingTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取编辑理解任务结果
+    ///
+    /// 获取编辑理解任务结果。
+    @inlinable
+    public func describeEditingTaskResult(_ input: DescribeEditingTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEditingTaskResultResponse {
+        try await self.client.execute(action: "DescribeEditingTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

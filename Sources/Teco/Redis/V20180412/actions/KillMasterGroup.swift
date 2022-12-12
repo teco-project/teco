@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 模拟故障接口
-    ///
-    /// 模拟故障
-    @inlinable
-    public func killMasterGroup(_ input: KillMasterGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < KillMasterGroupResponse > {
-        self.client.execute(action: "KillMasterGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 模拟故障接口
-    ///
-    /// 模拟故障
-    @inlinable
-    public func killMasterGroup(_ input: KillMasterGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillMasterGroupResponse {
-        try await self.client.execute(action: "KillMasterGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// KillMasterGroup请求参数结构体
     public struct KillMasterGroupRequest: TCRequestModel {
         /// 实例ID
@@ -48,7 +32,7 @@ extension Redis {
         /// 单AZ实例节点信息
         public let shardIds: [Int64]?
         
-        public init (instanceId: String, password: String, shardIds: [Int64]?) {
+        public init (instanceId: String, password: String, shardIds: [Int64]? = nil) {
             self.instanceId = instanceId
             self.password = password
             self.shardIds = shardIds
@@ -73,5 +57,21 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 模拟故障接口
+    ///
+    /// 模拟故障
+    @inlinable
+    public func killMasterGroup(_ input: KillMasterGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < KillMasterGroupResponse > {
+        self.client.execute(action: "KillMasterGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 模拟故障接口
+    ///
+    /// 模拟故障
+    @inlinable
+    public func killMasterGroup(_ input: KillMasterGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillMasterGroupResponse {
+        try await self.client.execute(action: "KillMasterGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

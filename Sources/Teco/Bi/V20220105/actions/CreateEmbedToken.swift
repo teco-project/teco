@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bi {
-    /// 创建嵌出报表Token
-    ///
-    /// 创建嵌出报表-强鉴权
-    @inlinable
-    public func createEmbedToken(_ input: CreateEmbedTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEmbedTokenResponse > {
-        self.client.execute(action: "CreateEmbedToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建嵌出报表Token
-    ///
-    /// 创建嵌出报表-强鉴权
-    @inlinable
-    public func createEmbedToken(_ input: CreateEmbedTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmbedTokenResponse {
-        try await self.client.execute(action: "CreateEmbedToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEmbedToken请求参数结构体
     public struct CreateEmbedTokenRequest: TCRequestModel {
         /// 分享项目id，必选
@@ -48,7 +32,7 @@ extension Bi {
         /// 备用字段
         public let extraParam: String?
         
-        public init (projectId: UInt64?, pageId: UInt64?, scope: String?, expireTime: String?, extraParam: String?) {
+        public init (projectId: UInt64? = nil, pageId: UInt64? = nil, scope: String? = nil, expireTime: String? = nil, extraParam: String? = nil) {
             self.projectId = projectId
             self.pageId = pageId
             self.scope = scope
@@ -73,7 +57,7 @@ extension Bi {
         
         /// 数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: EmbedTokenInfo
+        public let data: EmbedTokenInfo?
         
         /// 结果描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -88,5 +72,21 @@ extension Bi {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建嵌出报表Token
+    ///
+    /// 创建嵌出报表-强鉴权
+    @inlinable
+    public func createEmbedToken(_ input: CreateEmbedTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEmbedTokenResponse > {
+        self.client.execute(action: "CreateEmbedToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建嵌出报表Token
+    ///
+    /// 创建嵌出报表-强鉴权
+    @inlinable
+    public func createEmbedToken(_ input: CreateEmbedTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmbedTokenResponse {
+        try await self.client.execute(action: "CreateEmbedToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

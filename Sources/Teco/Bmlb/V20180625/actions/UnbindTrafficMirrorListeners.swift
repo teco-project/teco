@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 解绑流量镜像监听器
-    ///
-    /// 解绑流量镜像监听器。
-    @inlinable
-    public func unbindTrafficMirrorListeners(_ input: UnbindTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindTrafficMirrorListenersResponse > {
-        self.client.execute(action: "UnbindTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑流量镜像监听器
-    ///
-    /// 解绑流量镜像监听器。
-    @inlinable
-    public func unbindTrafficMirrorListeners(_ input: UnbindTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindTrafficMirrorListenersResponse {
-        try await self.client.execute(action: "UnbindTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindTrafficMirrorListeners请求参数结构体
     public struct UnbindTrafficMirrorListenersRequest: TCRequestModel {
         /// 流量镜像实例ID。
@@ -62,5 +46,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑流量镜像监听器
+    ///
+    /// 解绑流量镜像监听器。
+    @inlinable
+    public func unbindTrafficMirrorListeners(_ input: UnbindTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindTrafficMirrorListenersResponse > {
+        self.client.execute(action: "UnbindTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑流量镜像监听器
+    ///
+    /// 解绑流量镜像监听器。
+    @inlinable
+    public func unbindTrafficMirrorListeners(_ input: UnbindTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindTrafficMirrorListenersResponse {
+        try await self.client.execute(action: "UnbindTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

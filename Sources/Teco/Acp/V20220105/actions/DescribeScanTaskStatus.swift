@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Acp {
-    /// 查询应用合规隐私诊断任务状态
-    ///
-    /// 查询App隐私合规诊断任务状态
-    @inlinable
-    public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskStatusResponse > {
-        self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询应用合规隐私诊断任务状态
-    ///
-    /// 查询App隐私合规诊断任务状态
-    @inlinable
-    public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskStatusResponse {
-        try await self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScanTaskStatus请求参数结构体
     public struct DescribeScanTaskStatusRequest: TCRequestModel {
         /// 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android), 3:app漏洞扫描;
@@ -86,5 +70,21 @@ extension Acp {
             case flowSteps = "FlowSteps"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询应用合规隐私诊断任务状态
+    ///
+    /// 查询App隐私合规诊断任务状态
+    @inlinable
+    public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskStatusResponse > {
+        self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询应用合规隐私诊断任务状态
+    ///
+    /// 查询App隐私合规诊断任务状态
+    @inlinable
+    public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskStatusResponse {
+        try await self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

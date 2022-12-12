@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 更新智能运维配置
-    @inlinable
-    public func updateDiagnoseSettings(_ input: UpdateDiagnoseSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDiagnoseSettingsResponse > {
-        self.client.execute(action: "UpdateDiagnoseSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新智能运维配置
-    @inlinable
-    public func updateDiagnoseSettings(_ input: UpdateDiagnoseSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDiagnoseSettingsResponse {
-        try await self.client.execute(action: "UpdateDiagnoseSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateDiagnoseSettings请求参数结构体
     public struct UpdateDiagnoseSettingsRequest: TCRequestModel {
         /// ES实例ID
@@ -38,7 +26,7 @@ extension Es {
         /// 智能运维每天定时巡检时间
         public let cronTime: String?
         
-        public init (instanceId: String, status: Int64?, cronTime: String?) {
+        public init (instanceId: String, status: Int64? = nil, cronTime: String? = nil) {
             self.instanceId = instanceId
             self.status = status
             self.cronTime = cronTime
@@ -59,5 +47,17 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新智能运维配置
+    @inlinable
+    public func updateDiagnoseSettings(_ input: UpdateDiagnoseSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDiagnoseSettingsResponse > {
+        self.client.execute(action: "UpdateDiagnoseSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新智能运维配置
+    @inlinable
+    public func updateDiagnoseSettings(_ input: UpdateDiagnoseSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDiagnoseSettingsResponse {
+        try await self.client.execute(action: "UpdateDiagnoseSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

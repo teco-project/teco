@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取QueryData
-    ///
-    /// 转发monitor查询
-    @inlinable
-    public func describeData(_ input: DescribeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataResponse > {
-        self.client.execute(action: "DescribeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取QueryData
-    ///
-    /// 转发monitor查询
-    @inlinable
-    public func describeData(_ input: DescribeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataResponse {
-        try await self.client.execute(action: "DescribeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeData请求参数结构体
     public struct DescribeDataRequest: TCRequestModel {
         /// 查询字符串
@@ -62,5 +46,21 @@ extension Rum {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取QueryData
+    ///
+    /// 转发monitor查询
+    @inlinable
+    public func describeData(_ input: DescribeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataResponse > {
+        self.client.execute(action: "DescribeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取QueryData
+    ///
+    /// 转发monitor查询
+    @inlinable
+    public func describeData(_ input: DescribeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataResponse {
+        try await self.client.execute(action: "DescribeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

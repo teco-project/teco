@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询后付费资源免费量
-    @inlinable
-    public func describePostpayFreeQuotas(_ input: DescribePostpayFreeQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePostpayFreeQuotasResponse > {
-        self.client.execute(action: "DescribePostpayFreeQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询后付费资源免费量
-    @inlinable
-    public func describePostpayFreeQuotas(_ input: DescribePostpayFreeQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePostpayFreeQuotasResponse {
-        try await self.client.execute(action: "DescribePostpayFreeQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePostpayFreeQuotas请求参数结构体
     public struct DescribePostpayFreeQuotasRequest: TCRequestModel {
         /// 环境ID
@@ -54,5 +42,17 @@ extension Tcb {
             case freequotaInfoList = "FreequotaInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询后付费资源免费量
+    @inlinable
+    public func describePostpayFreeQuotas(_ input: DescribePostpayFreeQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePostpayFreeQuotasResponse > {
+        self.client.execute(action: "DescribePostpayFreeQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询后付费资源免费量
+    @inlinable
+    public func describePostpayFreeQuotas(_ input: DescribePostpayFreeQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePostpayFreeQuotasResponse {
+        try await self.client.execute(action: "DescribePostpayFreeQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

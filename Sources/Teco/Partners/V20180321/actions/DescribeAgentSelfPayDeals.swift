@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Partners {
-    /// 代理商自付订单查询接口（禁止接入）
-    ///
-    /// 【该接口已下线，请切换使用升级版本DescribeAgentSelfPayDealsV2】可以查询代理商下指定客户的自付订单
-    @inlinable
-    public func describeAgentSelfPayDeals(_ input: DescribeAgentSelfPayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentSelfPayDealsResponse > {
-        self.client.execute(action: "DescribeAgentSelfPayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 代理商自付订单查询接口（禁止接入）
-    ///
-    /// 【该接口已下线，请切换使用升级版本DescribeAgentSelfPayDealsV2】可以查询代理商下指定客户的自付订单
-    @inlinable
-    public func describeAgentSelfPayDeals(_ input: DescribeAgentSelfPayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentSelfPayDealsResponse {
-        try await self.client.execute(action: "DescribeAgentSelfPayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAgentSelfPayDeals请求参数结构体
     public struct DescribeAgentSelfPayDealsRequest: TCRequestModel {
         /// 下单人账号ID
@@ -59,7 +43,7 @@ extension Partners {
         /// 订单号列表
         public let dealNames: [String]?
         
-        public init (ownerUin: String, offset: UInt64, limit: UInt64, creatTimeRangeStart: Date?, creatTimeRangeEnd: Date?, order: UInt64?, status: UInt64?, dealNames: [String]?) {
+        public init (ownerUin: String, offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, dealNames: [String]? = nil) {
             self.ownerUin = ownerUin
             self.offset = offset
             self.limit = limit
@@ -98,5 +82,21 @@ extension Partners {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 代理商自付订单查询接口（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeAgentSelfPayDealsV2】可以查询代理商下指定客户的自付订单
+    @inlinable
+    public func describeAgentSelfPayDeals(_ input: DescribeAgentSelfPayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentSelfPayDealsResponse > {
+        self.client.execute(action: "DescribeAgentSelfPayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 代理商自付订单查询接口（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeAgentSelfPayDealsV2】可以查询代理商下指定客户的自付订单
+    @inlinable
+    public func describeAgentSelfPayDeals(_ input: DescribeAgentSelfPayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentSelfPayDealsResponse {
+        try await self.client.execute(action: "DescribeAgentSelfPayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

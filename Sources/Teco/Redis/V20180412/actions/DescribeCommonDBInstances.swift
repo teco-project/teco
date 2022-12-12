@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询Redis实例列表信息
-    ///
-    /// 查询Redis实例列表信息。该接口已废弃。
-    @inlinable
-    public func describeCommonDBInstances(_ input: DescribeCommonDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCommonDBInstancesResponse > {
-        self.client.execute(action: "DescribeCommonDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Redis实例列表信息
-    ///
-    /// 查询Redis实例列表信息。该接口已废弃。
-    @inlinable
-    public func describeCommonDBInstances(_ input: DescribeCommonDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCommonDBInstancesResponse {
-        try await self.client.execute(action: "DescribeCommonDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCommonDBInstances请求参数结构体
     public struct DescribeCommonDBInstancesRequest: TCRequestModel {
         /// vpc网络ID信息列表
@@ -72,7 +56,7 @@ extension Redis {
         /// 偏移量，默认0
         public let offset: Int64?
         
-        public init (vpcIds: [Int64]?, subnetIds: [Int64]?, payMode: Int64?, instanceIds: [String]?, instanceNames: [String]?, status: [String]?, orderBy: String?, orderByType: String?, vips: [String]?, uniqVpcIds: [String]?, uniqSubnetIds: [String]?, limit: Int64?, offset: Int64?) {
+        public init (vpcIds: [Int64]? = nil, subnetIds: [Int64]? = nil, payMode: Int64? = nil, instanceIds: [String]? = nil, instanceNames: [String]? = nil, status: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, vips: [String]? = nil, uniqVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.vpcIds = vpcIds
             self.subnetIds = subnetIds
             self.payMode = payMode
@@ -121,5 +105,21 @@ extension Redis {
             case instanceDetails = "InstanceDetails"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Redis实例列表信息
+    ///
+    /// 查询Redis实例列表信息。该接口已废弃。
+    @inlinable
+    public func describeCommonDBInstances(_ input: DescribeCommonDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCommonDBInstancesResponse > {
+        self.client.execute(action: "DescribeCommonDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Redis实例列表信息
+    ///
+    /// 查询Redis实例列表信息。该接口已废弃。
+    @inlinable
+    public func describeCommonDBInstances(_ input: DescribeCommonDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCommonDBInstancesResponse {
+        try await self.client.execute(action: "DescribeCommonDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 修改人员库信息
-    @inlinable
-    public func modifyLibrary(_ input: ModifyLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLibraryResponse > {
-        self.client.execute(action: "ModifyLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改人员库信息
-    @inlinable
-    public func modifyLibrary(_ input: ModifyLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLibraryResponse {
-        try await self.client.execute(action: "ModifyLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLibrary请求参数结构体
     public struct ModifyLibraryRequest: TCRequestModel {
         /// 人员库唯一标识符
@@ -62,5 +50,17 @@ extension Tci {
             case libraryName = "LibraryName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改人员库信息
+    @inlinable
+    public func modifyLibrary(_ input: ModifyLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLibraryResponse > {
+        self.client.execute(action: "ModifyLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改人员库信息
+    @inlinable
+    public func modifyLibrary(_ input: ModifyLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLibraryResponse {
+        try await self.client.execute(action: "ModifyLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

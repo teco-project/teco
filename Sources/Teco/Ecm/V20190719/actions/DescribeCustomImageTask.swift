@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 查询导入镜像任务
-    @inlinable
-    public func describeCustomImageTask(_ input: DescribeCustomImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomImageTaskResponse > {
-        self.client.execute(action: "DescribeCustomImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询导入镜像任务
-    @inlinable
-    public func describeCustomImageTask(_ input: DescribeCustomImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImageTaskResponse {
-        try await self.client.execute(action: "DescribeCustomImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomImageTask请求参数结构体
     public struct DescribeCustomImageTaskRequest: TCRequestModel {
         /// 支持key,value查询
@@ -61,5 +49,17 @@ extension Ecm {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询导入镜像任务
+    @inlinable
+    public func describeCustomImageTask(_ input: DescribeCustomImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomImageTaskResponse > {
+        self.client.execute(action: "DescribeCustomImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询导入镜像任务
+    @inlinable
+    public func describeCustomImageTask(_ input: DescribeCustomImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImageTaskResponse {
+        try await self.client.execute(action: "DescribeCustomImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

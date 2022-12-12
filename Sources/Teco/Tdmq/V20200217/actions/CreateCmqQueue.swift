@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 创建cmq队列接口
-    @inlinable
-    public func createCmqQueue(_ input: CreateCmqQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCmqQueueResponse > {
-        self.client.execute(action: "CreateCmqQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建cmq队列接口
-    @inlinable
-    public func createCmqQueue(_ input: CreateCmqQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCmqQueueResponse {
-        try await self.client.execute(action: "CreateCmqQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCmqQueue请求参数结构体
     public struct CreateCmqQueueRequest: TCRequestModel {
         /// 队列名字，在单个地域同一帐号下唯一。队列名称是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
@@ -80,7 +68,7 @@ extension Tdmq {
         /// 队列可回溯存储空间：若开启消息回溯，取值范围：10240MB - 512000MB，若不开启消息回溯，取值：0
         public let retentionSizeInMB: UInt64?
         
-        public init (queueName: String, maxMsgHeapNum: UInt64?, pollingWaitSeconds: UInt64?, visibilityTimeout: UInt64?, maxMsgSize: UInt64?, msgRetentionSeconds: UInt64?, rewindSeconds: UInt64?, transaction: UInt64?, firstQueryInterval: UInt64?, maxQueryCount: UInt64?, deadLetterQueueName: String?, policy: UInt64?, maxReceiveCount: UInt64?, maxTimeToLive: UInt64?, trace: Bool?, tags: [Tag]?, retentionSizeInMB: UInt64?) {
+        public init (queueName: String, maxMsgHeapNum: UInt64? = nil, pollingWaitSeconds: UInt64? = nil, visibilityTimeout: UInt64? = nil, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, rewindSeconds: UInt64? = nil, transaction: UInt64? = nil, firstQueryInterval: UInt64? = nil, maxQueryCount: UInt64? = nil, deadLetterQueueName: String? = nil, policy: UInt64? = nil, maxReceiveCount: UInt64? = nil, maxTimeToLive: UInt64? = nil, trace: Bool? = nil, tags: [Tag]? = nil, retentionSizeInMB: UInt64? = nil) {
             self.queueName = queueName
             self.maxMsgHeapNum = maxMsgHeapNum
             self.pollingWaitSeconds = pollingWaitSeconds
@@ -133,5 +121,17 @@ extension Tdmq {
             case queueId = "QueueId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建cmq队列接口
+    @inlinable
+    public func createCmqQueue(_ input: CreateCmqQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCmqQueueResponse > {
+        self.client.execute(action: "CreateCmqQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建cmq队列接口
+    @inlinable
+    public func createCmqQueue(_ input: CreateCmqQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCmqQueueResponse {
+        try await self.client.execute(action: "CreateCmqQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

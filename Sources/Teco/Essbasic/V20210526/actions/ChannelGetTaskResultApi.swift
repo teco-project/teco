@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 渠道版查询转换任务状态
-    @inlinable
-    public func channelGetTaskResultApi(_ input: ChannelGetTaskResultApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelGetTaskResultApiResponse > {
-        self.client.execute(action: "ChannelGetTaskResultApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 渠道版查询转换任务状态
-    @inlinable
-    public func channelGetTaskResultApi(_ input: ChannelGetTaskResultApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelGetTaskResultApiResponse {
-        try await self.client.execute(action: "ChannelGetTaskResultApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ChannelGetTaskResultApi请求参数结构体
     public struct ChannelGetTaskResultApiRequest: TCRequestModel {
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -36,12 +24,12 @@ extension Essbasic {
         public let taskId: String
         
         /// 操作者的信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
         /// 暂未开放
-        public let organization: OrganizationInfo
+        public let organization: OrganizationInfo?
         
-        public init (agent: Agent, taskId: String, `operator`: UserInfo, organization: OrganizationInfo) {
+        public init (agent: Agent, taskId: String, `operator`: UserInfo? = nil, organization: OrganizationInfo? = nil) {
             self.agent = agent
             self.taskId = taskId
             self.`operator` = `operator`
@@ -97,5 +85,17 @@ extension Essbasic {
             case previewUrl = "PreviewUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 渠道版查询转换任务状态
+    @inlinable
+    public func channelGetTaskResultApi(_ input: ChannelGetTaskResultApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelGetTaskResultApiResponse > {
+        self.client.execute(action: "ChannelGetTaskResultApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 渠道版查询转换任务状态
+    @inlinable
+    public func channelGetTaskResultApi(_ input: ChannelGetTaskResultApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelGetTaskResultApiResponse {
+        try await self.client.execute(action: "ChannelGetTaskResultApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

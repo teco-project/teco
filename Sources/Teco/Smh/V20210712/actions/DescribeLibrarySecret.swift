@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Smh {
-    /// 查询媒体库密钥
-    ///
-    /// 查询 PaaS 服务媒体库密钥
-    @inlinable
-    public func describeLibrarySecret(_ input: DescribeLibrarySecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLibrarySecretResponse > {
-        self.client.execute(action: "DescribeLibrarySecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询媒体库密钥
-    ///
-    /// 查询 PaaS 服务媒体库密钥
-    @inlinable
-    public func describeLibrarySecret(_ input: DescribeLibrarySecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLibrarySecretResponse {
-        try await self.client.execute(action: "DescribeLibrarySecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLibrarySecret请求参数结构体
     public struct DescribeLibrarySecretRequest: TCRequestModel {
         /// 媒体库 ID
@@ -61,5 +45,21 @@ extension Smh {
             case librarySecret = "LibrarySecret"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询媒体库密钥
+    ///
+    /// 查询 PaaS 服务媒体库密钥
+    @inlinable
+    public func describeLibrarySecret(_ input: DescribeLibrarySecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLibrarySecretResponse > {
+        self.client.execute(action: "DescribeLibrarySecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询媒体库密钥
+    ///
+    /// 查询 PaaS 服务媒体库密钥
+    @inlinable
+    public func describeLibrarySecret(_ input: DescribeLibrarySecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLibrarySecretResponse {
+        try await self.client.execute(action: "DescribeLibrarySecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

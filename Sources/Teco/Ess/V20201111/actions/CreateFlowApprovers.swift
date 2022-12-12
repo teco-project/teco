@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Ess {
-    /// 补充签署流程本企业签署人信息
-    ///
-    /// 补充签署流程本企业签署人信息
-    /// 适用场景：在通过模板或者文件发起合同时，若未指定本企业签署人信息，则流程发起后，可以调用此接口补充签署人。
-    /// 同一签署人可以补充多个员工作为候选签署人,最终签署人取决于谁先领取合同完成签署。
-    /// 注：目前暂时只支持补充来源于企业微信的员工作为候选签署人
-    @inlinable
-    public func createFlowApprovers(_ input: CreateFlowApproversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowApproversResponse > {
-        self.client.execute(action: "CreateFlowApprovers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 补充签署流程本企业签署人信息
-    ///
-    /// 补充签署流程本企业签署人信息
-    /// 适用场景：在通过模板或者文件发起合同时，若未指定本企业签署人信息，则流程发起后，可以调用此接口补充签署人。
-    /// 同一签署人可以补充多个员工作为候选签署人,最终签署人取决于谁先领取合同完成签署。
-    /// 注：目前暂时只支持补充来源于企业微信的员工作为候选签署人
-    @inlinable
-    public func createFlowApprovers(_ input: CreateFlowApproversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowApproversResponse {
-        try await self.client.execute(action: "CreateFlowApprovers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFlowApprovers请求参数结构体
     public struct CreateFlowApproversRequest: TCRequestModel {
         /// 调用方用户信息，userId 必填
@@ -69,5 +47,27 @@ extension Ess {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 补充签署流程本企业签署人信息
+    ///
+    /// 补充签署流程本企业签署人信息
+    /// 适用场景：在通过模板或者文件发起合同时，若未指定本企业签署人信息，则流程发起后，可以调用此接口补充签署人。
+    /// 同一签署人可以补充多个员工作为候选签署人,最终签署人取决于谁先领取合同完成签署。
+    /// 注：目前暂时只支持补充来源于企业微信的员工作为候选签署人
+    @inlinable
+    public func createFlowApprovers(_ input: CreateFlowApproversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowApproversResponse > {
+        self.client.execute(action: "CreateFlowApprovers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 补充签署流程本企业签署人信息
+    ///
+    /// 补充签署流程本企业签署人信息
+    /// 适用场景：在通过模板或者文件发起合同时，若未指定本企业签署人信息，则流程发起后，可以调用此接口补充签署人。
+    /// 同一签署人可以补充多个员工作为候选签署人,最终签署人取决于谁先领取合同完成签署。
+    /// 注：目前暂时只支持补充来源于企业微信的员工作为候选签署人
+    @inlinable
+    public func createFlowApprovers(_ input: CreateFlowApproversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowApproversResponse {
+        try await self.client.execute(action: "CreateFlowApprovers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

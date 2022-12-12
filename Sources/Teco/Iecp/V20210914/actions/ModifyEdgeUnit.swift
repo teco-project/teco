@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 修改边缘集群
-    @inlinable
-    public func modifyEdgeUnit(_ input: ModifyEdgeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitResponse > {
-        self.client.execute(action: "ModifyEdgeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改边缘集群
-    @inlinable
-    public func modifyEdgeUnit(_ input: ModifyEdgeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitResponse {
-        try await self.client.execute(action: "ModifyEdgeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyEdgeUnit请求参数结构体
     public struct ModifyEdgeUnitRequest: TCRequestModel {
         /// 边缘集群ID
@@ -38,7 +26,7 @@ extension Iecp {
         /// 集群描述，200字符以内
         public let description: String?
         
-        public init (edgeUnitId: UInt64, name: String, description: String?) {
+        public init (edgeUnitId: UInt64, name: String, description: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.name = name
             self.description = description
@@ -59,5 +47,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改边缘集群
+    @inlinable
+    public func modifyEdgeUnit(_ input: ModifyEdgeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitResponse > {
+        self.client.execute(action: "ModifyEdgeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改边缘集群
+    @inlinable
+    public func modifyEdgeUnit(_ input: ModifyEdgeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitResponse {
+        try await self.client.execute(action: "ModifyEdgeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

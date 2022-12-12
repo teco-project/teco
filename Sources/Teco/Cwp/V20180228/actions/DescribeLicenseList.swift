@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取授权订单列表
-    ///
-    /// 获取用户所有授权订单信息
-    @inlinable
-    public func describeLicenseList(_ input: DescribeLicenseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLicenseListResponse > {
-        self.client.execute(action: "DescribeLicenseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取授权订单列表
-    ///
-    /// 获取用户所有授权订单信息
-    @inlinable
-    public func describeLicenseList(_ input: DescribeLicenseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseListResponse {
-        try await self.client.execute(action: "DescribeLicenseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLicenseList请求参数结构体
     public struct DescribeLicenseListRequest: TCRequestModel {
         /// 多个条件筛选时 LicenseStatus,DeadlineStatus,ResourceId,Keywords 取交集
@@ -53,7 +37,7 @@ extension Cwp {
         /// 标签筛选,平台标签能力,这里传入 标签键,标签值作为一个对象
         public let tags: [Tags]?
         
-        public init (filters: [Filters]?, limit: UInt64?, offset: UInt64?, tags: [Tags]?) {
+        public init (filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, tags: [Tags]? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -84,5 +68,21 @@ extension Cwp {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取授权订单列表
+    ///
+    /// 获取用户所有授权订单信息
+    @inlinable
+    public func describeLicenseList(_ input: DescribeLicenseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLicenseListResponse > {
+        self.client.execute(action: "DescribeLicenseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取授权订单列表
+    ///
+    /// 获取用户所有授权订单信息
+    @inlinable
+    public func describeLicenseList(_ input: DescribeLicenseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseListResponse {
+        try await self.client.execute(action: "DescribeLicenseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

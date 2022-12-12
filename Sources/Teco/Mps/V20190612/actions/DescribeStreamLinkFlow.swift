@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 查询媒体输入流
-    ///
-    /// 查询媒体输入流的配置信息。
-    @inlinable
-    public func describeStreamLinkFlow(_ input: DescribeStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkFlowResponse > {
-        self.client.execute(action: "DescribeStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询媒体输入流
-    ///
-    /// 查询媒体输入流的配置信息。
-    @inlinable
-    public func describeStreamLinkFlow(_ input: DescribeStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowResponse {
-        try await self.client.execute(action: "DescribeStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStreamLinkFlow请求参数结构体
     public struct DescribeStreamLinkFlowRequest: TCRequestModel {
         /// 流Id。
@@ -57,5 +41,21 @@ extension Mps {
             case info = "Info"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询媒体输入流
+    ///
+    /// 查询媒体输入流的配置信息。
+    @inlinable
+    public func describeStreamLinkFlow(_ input: DescribeStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkFlowResponse > {
+        self.client.execute(action: "DescribeStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询媒体输入流
+    ///
+    /// 查询媒体输入流的配置信息。
+    @inlinable
+    public func describeStreamLinkFlow(_ input: DescribeStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowResponse {
+        try await self.client.execute(action: "DescribeStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

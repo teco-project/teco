@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询参数模板详情
-    ///
-    /// 查询参数模板详情。
-    @inlinable
-    public func describeParamTemplateInfo(_ input: DescribeParamTemplateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeParamTemplateInfoResponse > {
-        self.client.execute(action: "DescribeParamTemplateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询参数模板详情
-    ///
-    /// 查询参数模板详情。
-    @inlinable
-    public func describeParamTemplateInfo(_ input: DescribeParamTemplateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplateInfoResponse {
-        try await self.client.execute(action: "DescribeParamTemplateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeParamTemplateInfo请求参数结构体
     public struct DescribeParamTemplateInfoRequest: TCRequestModel {
         /// 参数模板 ID。
@@ -77,5 +61,21 @@ extension Redis {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询参数模板详情
+    ///
+    /// 查询参数模板详情。
+    @inlinable
+    public func describeParamTemplateInfo(_ input: DescribeParamTemplateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeParamTemplateInfoResponse > {
+        self.client.execute(action: "DescribeParamTemplateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询参数模板详情
+    ///
+    /// 查询参数模板详情。
+    @inlinable
+    public func describeParamTemplateInfo(_ input: DescribeParamTemplateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplateInfoResponse {
+        try await self.client.execute(action: "DescribeParamTemplateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

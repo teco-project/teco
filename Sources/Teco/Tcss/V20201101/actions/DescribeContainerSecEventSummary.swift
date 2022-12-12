@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询容器安全未处理事件概览
-    ///
-    /// 查询容器安全未处理事件信息
-    @inlinable
-    public func describeContainerSecEventSummary(_ input: DescribeContainerSecEventSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerSecEventSummaryResponse > {
-        self.client.execute(action: "DescribeContainerSecEventSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器安全未处理事件概览
-    ///
-    /// 查询容器安全未处理事件信息
-    @inlinable
-    public func describeContainerSecEventSummary(_ input: DescribeContainerSecEventSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerSecEventSummaryResponse {
-        try await self.client.execute(action: "DescribeContainerSecEventSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeContainerSecEventSummary请求参数结构体
     public struct DescribeContainerSecEventSummaryRequest: TCRequestModel {
         public init () {
@@ -78,5 +62,21 @@ extension Tcss {
             case unhandledK8sApiEventCnt = "UnhandledK8sApiEventCnt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器安全未处理事件概览
+    ///
+    /// 查询容器安全未处理事件信息
+    @inlinable
+    public func describeContainerSecEventSummary(_ input: DescribeContainerSecEventSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerSecEventSummaryResponse > {
+        self.client.execute(action: "DescribeContainerSecEventSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器安全未处理事件概览
+    ///
+    /// 查询容器安全未处理事件信息
+    @inlinable
+    public func describeContainerSecEventSummary(_ input: DescribeContainerSecEventSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerSecEventSummaryResponse {
+        try await self.client.execute(action: "DescribeContainerSecEventSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

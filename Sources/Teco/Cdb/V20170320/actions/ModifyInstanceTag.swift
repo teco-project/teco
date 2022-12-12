@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 修改实例标签
-    ///
-    /// 本接口(ModifyInstanceTag)用于对实例标签进行添加、修改或者删除。
-    @inlinable
-    public func modifyInstanceTag(_ input: ModifyInstanceTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceTagResponse > {
-        self.client.execute(action: "ModifyInstanceTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例标签
-    ///
-    /// 本接口(ModifyInstanceTag)用于对实例标签进行添加、修改或者删除。
-    @inlinable
-    public func modifyInstanceTag(_ input: ModifyInstanceTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTagResponse {
-        try await self.client.execute(action: "ModifyInstanceTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstanceTag请求参数结构体
     public struct ModifyInstanceTagRequest: TCRequestModel {
         /// 实例 ID。
@@ -42,7 +26,7 @@ extension Cdb {
         /// 要删除的标签。
         public let deleteTags: [TagInfo]?
         
-        public init (instanceId: String, replaceTags: [TagInfo]?, deleteTags: [TagInfo]?) {
+        public init (instanceId: String, replaceTags: [TagInfo]? = nil, deleteTags: [TagInfo]? = nil) {
             self.instanceId = instanceId
             self.replaceTags = replaceTags
             self.deleteTags = deleteTags
@@ -63,5 +47,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例标签
+    ///
+    /// 本接口(ModifyInstanceTag)用于对实例标签进行添加、修改或者删除。
+    @inlinable
+    public func modifyInstanceTag(_ input: ModifyInstanceTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceTagResponse > {
+        self.client.execute(action: "ModifyInstanceTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例标签
+    ///
+    /// 本接口(ModifyInstanceTag)用于对实例标签进行添加、修改或者删除。
+    @inlinable
+    public func modifyInstanceTag(_ input: ModifyInstanceTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTagResponse {
+        try await self.client.execute(action: "ModifyInstanceTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

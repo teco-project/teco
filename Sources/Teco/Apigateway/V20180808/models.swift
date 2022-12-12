@@ -332,7 +332,7 @@ extension Apigateway {
         
         /// oauth配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let oauthConfig: OauthConfig
+        public let oauthConfig: OauthConfig?
         
         /// oauth2.0API请求，token存放位置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -416,7 +416,7 @@ extension Apigateway {
         
         /// OAUTH配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let oauthConfig: OauthConfig
+        public let oauthConfig: OauthConfig?
         
         /// 是否购买后调试（云市场预留参数）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -424,7 +424,7 @@ extension Apigateway {
         
         /// 请求的前端配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let requestConfig: RequestConfig
+        public let requestConfig: RequestConfig?
         
         /// 返回类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -456,7 +456,7 @@ extension Apigateway {
         
         /// API 的后端服务配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let serviceConfig: ServiceConfig
+        public let serviceConfig: ServiceConfig?
         
         /// API的后端服务参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -536,11 +536,11 @@ extension Apigateway {
         
         /// 微服务的负载均衡配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let serviceTsfLoadBalanceConf: TsfLoadBalanceConfResp
+        public let serviceTsfLoadBalanceConf: TsfLoadBalanceConfResp?
         
         /// 微服务的健康检查配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let serviceTsfHealthCheckConf: HealthCheckConf
+        public let serviceTsfHealthCheckConf: HealthCheckConf?
         
         /// 是否开启跨域。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1024,7 +1024,7 @@ extension Apigateway {
         /// 常量参数默认值。只有 ServiceType 是 HTTP 才会用到此参数。
         public let defaultValue: String?
         
-        public init (name: String?, desc: String?, position: String?, defaultValue: String?) {
+        public init (name: String? = nil, desc: String? = nil, position: String? = nil, defaultValue: String? = nil) {
             self.name = name
             self.desc = desc
             self.position = position
@@ -1048,11 +1048,11 @@ extension Apigateway {
         /// HEAD： HeadObject
         /// DELETE： DeleteObject。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let action: String
+        public let action: String?
         
         /// API后端COS的存储桶名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let bucketName: String
+        public let bucketName: String?
         
         /// API调用后端COS的签名开关，默认为false。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1065,7 +1065,7 @@ extension Apigateway {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pathMatchMode: String?
         
-        public init (action: String, bucketName: String, authorization: Bool?, pathMatchMode: String?) {
+        public init (action: String, bucketName: String, authorization: Bool? = nil, pathMatchMode: String? = nil) {
             self.action = action
             self.bucketName = bucketName
             self.authorization = authorization
@@ -1193,7 +1193,7 @@ extension Apigateway {
         
         /// OAUTH 配置信息。当AuthType是OAUTH时生效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let oauthConfig: OauthConfig
+        public let oauthConfig: OauthConfig?
         
         /// 授权API关联的业务API列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1391,7 +1391,7 @@ extension Apigateway {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let needConvert: Bool?
         
-        public init (code: Int64?, msg: String?, desc: String?, convertedCode: Int64?, needConvert: Bool?) {
+        public init (code: Int64? = nil, msg: String? = nil, desc: String? = nil, convertedCode: Int64? = nil, needConvert: Bool? = nil) {
             self.code = code
             self.msg = msg
             self.desc = desc
@@ -1444,7 +1444,7 @@ extension Apigateway {
         /// 阈值百分比。
         public let errorThresholdPercentage: Int64?
         
-        public init (isHealthCheck: Bool?, requestVolumeThreshold: Int64?, sleepWindowInMilliseconds: Int64?, errorThresholdPercentage: Int64?) {
+        public init (isHealthCheck: Bool? = nil, requestVolumeThreshold: Int64? = nil, sleepWindowInMilliseconds: Int64? = nil, errorThresholdPercentage: Int64? = nil) {
             self.isHealthCheck = isHealthCheck
             self.requestVolumeThreshold = requestVolumeThreshold
             self.sleepWindowInMilliseconds = sleepWindowInMilliseconds
@@ -1613,14 +1613,14 @@ extension Apigateway {
         
         /// 独享实例预付费类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 独享实例类型
         public let instanceType: String
         
         /// 独享实例网络类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let networkConfig: NetworkConfig
+        public let networkConfig: NetworkConfig?
         
         /// 独享实例vpc配置
         public let vpcConfig: VpcConfig
@@ -1780,7 +1780,7 @@ extension Apigateway {
         /// 自定义的服务名字，可选
         public let name: String?
         
-        public init (weight: Int64, clusterId: String, namespace: String, serviceName: String, port: Int64, extraLabels: [K8sLabel], name: String?) {
+        public init (weight: Int64, clusterId: String, namespace: String, serviceName: String, port: Int64, extraLabels: [K8sLabel], name: String? = nil) {
             self.weight = weight
             self.clusterId = clusterId
             self.namespace = namespace
@@ -1836,7 +1836,7 @@ extension Apigateway {
         /// 微服务名称。
         public let microServiceName: String?
         
-        public init (clusterId: String?, namespaceId: String?, microServiceName: String?) {
+        public init (clusterId: String? = nil, namespaceId: String? = nil, microServiceName: String? = nil) {
             self.clusterId = clusterId
             self.namespaceId = namespaceId
             self.microServiceName = microServiceName
@@ -1910,7 +1910,7 @@ extension Apigateway {
         /// 重定向地址，用于引导用户登录操作。
         public let loginRedirectUrl: String?
         
-        public init (publicKey: String, tokenLocation: String, loginRedirectUrl: String?) {
+        public init (publicKey: String, tokenLocation: String, loginRedirectUrl: String? = nil) {
             self.publicKey = publicKey
             self.tokenLocation = tokenLocation
             self.loginRedirectUrl = loginRedirectUrl
@@ -2151,7 +2151,7 @@ extension Apigateway {
         /// 是否必须
         public let required: Bool?
         
-        public init (name: String?, desc: String?, position: String?, type: String?, defaultValue: String?, required: Bool?) {
+        public init (name: String? = nil, desc: String? = nil, position: String? = nil, type: String? = nil, defaultValue: String? = nil, required: Bool? = nil) {
             self.name = name
             self.desc = desc
             self.position = position
@@ -2187,7 +2187,7 @@ extension Apigateway {
         /// 是否需要开启错误码转换。
         public let needConvert: Bool?
         
-        public init (code: Int64?, msg: String?, desc: String?, convertedCode: Int64?, needConvert: Bool?) {
+        public init (code: Int64? = nil, msg: String? = nil, desc: String? = nil, convertedCode: Int64? = nil, needConvert: Bool? = nil) {
             self.code = code
             self.msg = msg
             self.desc = desc
@@ -2328,9 +2328,9 @@ extension Apigateway {
         
         /// API后端COS配置。如果 ServiceType 是 COS，则此参数必传。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cosConfig: CosConfig
+        public let cosConfig: CosConfig?
         
-        public init (product: String?, uniqVpcId: String?, url: String?, path: String?, method: String?, upstreamId: String?, cosConfig: CosConfig) {
+        public init (product: String? = nil, uniqVpcId: String? = nil, url: String? = nil, path: String? = nil, method: String? = nil, upstreamId: String? = nil, cosConfig: CosConfig? = nil) {
             self.product = product
             self.uniqVpcId = uniqVpcId
             self.url = url
@@ -2445,7 +2445,7 @@ extension Apigateway {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let relevantRequestParameterType: String?
         
-        public init (name: String?, position: String?, relevantRequestParameterPosition: String?, relevantRequestParameterName: String?, defaultValue: String?, relevantRequestParameterDesc: String?, relevantRequestParameterType: String?) {
+        public init (name: String? = nil, position: String? = nil, relevantRequestParameterPosition: String? = nil, relevantRequestParameterName: String? = nil, defaultValue: String? = nil, relevantRequestParameterDesc: String? = nil, relevantRequestParameterType: String? = nil) {
             self.name = name
             self.position = position
             self.relevantRequestParameterPosition = relevantRequestParameterPosition
@@ -2596,7 +2596,7 @@ extension Apigateway {
         /// docker ip
         public let dockerIp: String?
         
-        public init (vmIp: String, vpcId: String, vmPort: Int64, hostIp: String, dockerIp: String?) {
+        public init (vmIp: String, vpcId: String, vmPort: Int64, hostIp: String, dockerIp: String? = nil) {
             self.vmIp = vmIp
             self.vpcId = vpcId
             self.vmPort = vmPort
@@ -2677,7 +2677,7 @@ extension Apigateway {
         /// 异常节点的状态自动恢复时间，单位秒。当只开启被动检查的话，必须设置为 > 0 的值，否则被动异常节点将无法恢复。默认30秒。
         public let unhealthyTimeout: UInt64?
         
-        public init (enableActiveCheck: Bool, enablePassiveCheck: Bool, healthyHttpStatus: String, unhealthyHttpStatus: String, tcpFailureThreshold: UInt64, timeoutThreshold: UInt64, httpFailureThreshold: UInt64, activeCheckHttpPath: String?, activeCheckTimeout: UInt64?, activeCheckInterval: UInt64?, activeRequestHeader: [UpstreamHealthCheckerReqHeaders]?, unhealthyTimeout: UInt64?) {
+        public init (enableActiveCheck: Bool, enablePassiveCheck: Bool, healthyHttpStatus: String, unhealthyHttpStatus: String, tcpFailureThreshold: UInt64, timeoutThreshold: UInt64, httpFailureThreshold: UInt64, activeCheckHttpPath: String? = nil, activeCheckTimeout: UInt64? = nil, activeCheckInterval: UInt64? = nil, activeRequestHeader: [UpstreamHealthCheckerReqHeaders]? = nil, unhealthyTimeout: UInt64? = nil) {
             self.enableActiveCheck = enableActiveCheck
             self.enablePassiveCheck = enablePassiveCheck
             self.healthyHttpStatus = healthyHttpStatus
@@ -2750,7 +2750,7 @@ extension Apigateway {
         
         /// 健康检查配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let healthChecker: UpstreamHealthChecker
+        public let healthChecker: UpstreamHealthChecker?
         
         /// 后端的类型，取值范围：IP_PORT, K8S
         public let upstreamType: String
@@ -2824,7 +2824,7 @@ extension Apigateway {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uniqueServiceName: String?
         
-        public init (host: String, port: UInt64, weight: UInt64, vmInstanceId: String?, tags: [String]?, healthy: String?, serviceName: String?, nameSpace: String?, clusterId: String?, source: String?, uniqueServiceName: String?) {
+        public init (host: String, port: UInt64, weight: UInt64, vmInstanceId: String? = nil, tags: [String]? = nil, healthy: String? = nil, serviceName: String? = nil, nameSpace: String? = nil, clusterId: String? = nil, source: String? = nil, uniqueServiceName: String? = nil) {
             self.host = host
             self.port = port
             self.weight = weight

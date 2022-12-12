@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询集群路由
-    @inlinable
-    public func describeClusterRoutes(_ input: DescribeClusterRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterRoutesResponse > {
-        self.client.execute(action: "DescribeClusterRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群路由
-    @inlinable
-    public func describeClusterRoutes(_ input: DescribeClusterRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRoutesResponse {
-        try await self.client.execute(action: "DescribeClusterRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterRoutes请求参数结构体
     public struct DescribeClusterRoutesRequest: TCRequestModel {
         /// 路由表名称。
@@ -35,7 +23,7 @@ extension Tke {
         /// 过滤条件,当前只支持按照单个条件GatewayIP进行过滤（可选）
         public let filters: [Filter]?
         
-        public init (routeTableName: String, filters: [Filter]?) {
+        public init (routeTableName: String, filters: [Filter]? = nil) {
             self.routeTableName = routeTableName
             self.filters = filters
         }
@@ -62,5 +50,17 @@ extension Tke {
             case routeSet = "RouteSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群路由
+    @inlinable
+    public func describeClusterRoutes(_ input: DescribeClusterRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterRoutesResponse > {
+        self.client.execute(action: "DescribeClusterRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群路由
+    @inlinable
+    public func describeClusterRoutes(_ input: DescribeClusterRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRoutesResponse {
+        try await self.client.execute(action: "DescribeClusterRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

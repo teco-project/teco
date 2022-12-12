@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 创建文件夹
-    ///
-    /// 作业列表页面新建文件夹请求
-    @inlinable
-    public func createFolder(_ input: CreateFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFolderResponse > {
-        self.client.execute(action: "CreateFolder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建文件夹
-    ///
-    /// 作业列表页面新建文件夹请求
-    @inlinable
-    public func createFolder(_ input: CreateFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFolderResponse {
-        try await self.client.execute(action: "CreateFolder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFolder请求参数结构体
     public struct CreateFolderRequest: TCRequestModel {
         /// 新建文件夹名
@@ -45,7 +29,7 @@ extension Oceanus {
         /// 工作空间 SerialId
         public let workSpaceId: String?
         
-        public init (folderName: String, parentId: String, folderType: Int64?, workSpaceId: String?) {
+        public init (folderName: String, parentId: String, folderType: Int64? = nil, workSpaceId: String? = nil) {
             self.folderName = folderName
             self.parentId = parentId
             self.folderType = folderType
@@ -72,5 +56,21 @@ extension Oceanus {
             case folderId = "FolderId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建文件夹
+    ///
+    /// 作业列表页面新建文件夹请求
+    @inlinable
+    public func createFolder(_ input: CreateFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFolderResponse > {
+        self.client.execute(action: "CreateFolder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文件夹
+    ///
+    /// 作业列表页面新建文件夹请求
+    @inlinable
+    public func createFolder(_ input: CreateFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFolderResponse {
+        try await self.client.execute(action: "CreateFolder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

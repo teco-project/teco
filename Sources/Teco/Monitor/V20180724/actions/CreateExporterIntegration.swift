@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 创建 exporter 集成
-    @inlinable
-    public func createExporterIntegration(_ input: CreateExporterIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExporterIntegrationResponse > {
-        self.client.execute(action: "CreateExporterIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建 exporter 集成
-    @inlinable
-    public func createExporterIntegration(_ input: CreateExporterIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExporterIntegrationResponse {
-        try await self.client.execute(action: "CreateExporterIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateExporterIntegration请求参数结构体
     public struct CreateExporterIntegrationRequest: TCRequestModel {
         /// 实例 ID
@@ -47,7 +35,7 @@ extension Monitor {
         /// 集群 ID
         public let clusterId: String?
         
-        public init (instanceId: String, kind: String, content: String, kubeType: Int64?, clusterId: String?) {
+        public init (instanceId: String, kind: String, content: String, kubeType: Int64? = nil, clusterId: String? = nil) {
             self.instanceId = instanceId
             self.kind = kind
             self.content = content
@@ -76,5 +64,17 @@ extension Monitor {
             case names = "Names"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建 exporter 集成
+    @inlinable
+    public func createExporterIntegration(_ input: CreateExporterIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExporterIntegrationResponse > {
+        self.client.execute(action: "CreateExporterIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建 exporter 集成
+    @inlinable
+    public func createExporterIntegration(_ input: CreateExporterIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExporterIntegrationResponse {
+        try await self.client.execute(action: "CreateExporterIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

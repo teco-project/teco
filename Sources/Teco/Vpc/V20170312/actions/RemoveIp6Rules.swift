@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除IPV6转换规则
-    ///
-    /// 1. 该接口用于删除IPV6转换规则
-    /// 2. 支持批量删除同一个转换实例下的多个转换规则
-    @inlinable
-    public func removeIp6Rules(_ input: RemoveIp6RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveIp6RulesResponse > {
-        self.client.execute(action: "RemoveIp6Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除IPV6转换规则
-    ///
-    /// 1. 该接口用于删除IPV6转换规则
-    /// 2. 支持批量删除同一个转换实例下的多个转换规则
-    @inlinable
-    public func removeIp6Rules(_ input: RemoveIp6RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveIp6RulesResponse {
-        try await self.client.execute(action: "RemoveIp6Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemoveIp6Rules请求参数结构体
     public struct RemoveIp6RulesRequest: TCRequestModel {
         /// IPV6转换规则所属的转换实例唯一ID，形如ip6-xxxxxxxx
@@ -60,5 +42,23 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除IPV6转换规则
+    ///
+    /// 1. 该接口用于删除IPV6转换规则
+    /// 2. 支持批量删除同一个转换实例下的多个转换规则
+    @inlinable
+    public func removeIp6Rules(_ input: RemoveIp6RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveIp6RulesResponse > {
+        self.client.execute(action: "RemoveIp6Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除IPV6转换规则
+    ///
+    /// 1. 该接口用于删除IPV6转换规则
+    /// 2. 支持批量删除同一个转换实例下的多个转换规则
+    @inlinable
+    public func removeIp6Rules(_ input: RemoveIp6RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveIp6RulesResponse {
+        try await self.client.execute(action: "RemoveIp6Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

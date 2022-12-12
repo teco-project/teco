@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询数据备份概览
-    ///
-    /// 本接口(DescribeDataBackupOverview)用于查询用户在当前地域总的数据备份概览。
-    @inlinable
-    public func describeDataBackupOverview(_ input: DescribeDataBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataBackupOverviewResponse > {
-        self.client.execute(action: "DescribeDataBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据备份概览
-    ///
-    /// 本接口(DescribeDataBackupOverview)用于查询用户在当前地域总的数据备份概览。
-    @inlinable
-    public func describeDataBackupOverview(_ input: DescribeDataBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBackupOverviewResponse {
-        try await self.client.execute(action: "DescribeDataBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDataBackupOverview请求参数结构体
     public struct DescribeDataBackupOverviewRequest: TCRequestModel {
         /// 需要查询的云数据库产品类型，目前仅支持 "mysql"。
@@ -93,5 +77,21 @@ extension Cdb {
             case dataBackupArchiveCount = "DataBackupArchiveCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据备份概览
+    ///
+    /// 本接口(DescribeDataBackupOverview)用于查询用户在当前地域总的数据备份概览。
+    @inlinable
+    public func describeDataBackupOverview(_ input: DescribeDataBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataBackupOverviewResponse > {
+        self.client.execute(action: "DescribeDataBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据备份概览
+    ///
+    /// 本接口(DescribeDataBackupOverview)用于查询用户在当前地域总的数据备份概览。
+    @inlinable
+    public func describeDataBackupOverview(_ input: DescribeDataBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBackupOverviewResponse {
+        try await self.client.execute(action: "DescribeDataBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 查看数据库参数
-    ///
-    /// 本接口(DescribeDBParameters)用于获取数据库的当前参数设置。
-    @inlinable
-    public func describeDBParameters(_ input: DescribeDBParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBParametersResponse > {
-        self.client.execute(action: "DescribeDBParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看数据库参数
-    ///
-    /// 本接口(DescribeDBParameters)用于获取数据库的当前参数设置。
-    @inlinable
-    public func describeDBParameters(_ input: DescribeDBParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBParametersResponse {
-        try await self.client.execute(action: "DescribeDBParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBParameters请求参数结构体
     public struct DescribeDBParametersRequest: TCRequestModel {
         /// 实例 ID，形如：dcdbt-ow7t8lmc。
@@ -61,5 +45,21 @@ extension Dcdb {
             case params = "Params"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看数据库参数
+    ///
+    /// 本接口(DescribeDBParameters)用于获取数据库的当前参数设置。
+    @inlinable
+    public func describeDBParameters(_ input: DescribeDBParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBParametersResponse > {
+        self.client.execute(action: "DescribeDBParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看数据库参数
+    ///
+    /// 本接口(DescribeDBParameters)用于获取数据库的当前参数设置。
+    @inlinable
+    public func describeDBParameters(_ input: DescribeDBParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBParametersResponse {
+        try await self.client.execute(action: "DescribeDBParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

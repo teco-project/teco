@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 批量解绑后端服务
-    ///
-    /// 批量解绑后端服务。
-    @inlinable
-    public func batchDeregisterTargets(_ input: BatchDeregisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDeregisterTargetsResponse > {
-        self.client.execute(action: "BatchDeregisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量解绑后端服务
-    ///
-    /// 批量解绑后端服务。
-    @inlinable
-    public func batchDeregisterTargets(_ input: BatchDeregisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeregisterTargetsResponse {
-        try await self.client.execute(action: "BatchDeregisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchDeregisterTargets请求参数结构体
     public struct BatchDeregisterTargetsRequest: TCRequestModel {
         /// 负载均衡ID
@@ -63,5 +47,21 @@ extension Ecm {
             case failListenerIdSet = "FailListenerIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量解绑后端服务
+    ///
+    /// 批量解绑后端服务。
+    @inlinable
+    public func batchDeregisterTargets(_ input: BatchDeregisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDeregisterTargetsResponse > {
+        self.client.execute(action: "BatchDeregisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量解绑后端服务
+    ///
+    /// 批量解绑后端服务。
+    @inlinable
+    public func batchDeregisterTargets(_ input: BatchDeregisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeregisterTargetsResponse {
+        try await self.client.execute(action: "BatchDeregisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

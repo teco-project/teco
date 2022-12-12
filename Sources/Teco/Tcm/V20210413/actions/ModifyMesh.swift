@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcm {
-    /// 修改网格
-    @inlinable
-    public func modifyMesh(_ input: ModifyMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMeshResponse > {
-        self.client.execute(action: "ModifyMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改网格
-    @inlinable
-    public func modifyMesh(_ input: ModifyMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMeshResponse {
-        try await self.client.execute(action: "ModifyMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMesh请求参数结构体
     public struct ModifyMeshRequest: TCRequestModel {
         /// 需要修改的网格Id
@@ -36,12 +24,12 @@ extension Tcm {
         public let displayName: String?
         
         /// 修改的网格配置
-        public let config: MeshConfig
+        public let config: MeshConfig?
         
         /// 修改的集群配置
         public let clusterList: [Cluster]?
         
-        public init (meshId: String, displayName: String?, config: MeshConfig, clusterList: [Cluster]?) {
+        public init (meshId: String, displayName: String? = nil, config: MeshConfig? = nil, clusterList: [Cluster]? = nil) {
             self.meshId = meshId
             self.displayName = displayName
             self.config = config
@@ -64,5 +52,17 @@ extension Tcm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改网格
+    @inlinable
+    public func modifyMesh(_ input: ModifyMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMeshResponse > {
+        self.client.execute(action: "ModifyMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改网格
+    @inlinable
+    public func modifyMesh(_ input: ModifyMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMeshResponse {
+        try await self.client.execute(action: "ModifyMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

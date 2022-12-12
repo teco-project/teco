@@ -19,17 +19,17 @@ extension Bpaas {
     public struct ApplyParam: TCInputModel, TCOutputModel {
         /// 审批流中表单唯一标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let key: String
+        public let key: String?
         
         /// 表单value
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let value: [String]
+        public let value: [String]?
         
         /// 表单参数描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
         
-        public init (key: String, value: [String], name: String?) {
+        public init (key: String, value: [String], name: String? = nil) {
             self.key = key
             self.value = value
             self.name = name
@@ -51,7 +51,7 @@ extension Bpaas {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [String]?
         
-        public init (type: UInt64, content: [String]?) {
+        public init (type: UInt64, content: [String]? = nil) {
             self.type = type
             self.content = content
         }
@@ -80,9 +80,9 @@ extension Bpaas {
         
         /// 动态获取Scf
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let scf: Scf
+        public let scf: Scf?
         
-        public init (uin: UInt64, type: UInt64, desc: String?, nick: String?, scf: Scf) {
+        public init (uin: UInt64, type: UInt64, desc: String? = nil, nick: String? = nil, scf: Scf? = nil) {
             self.uin = uin
             self.type = type
             self.desc = desc
@@ -115,7 +115,7 @@ extension Bpaas {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let params: [ScfParam]?
         
-        public init (scfRegion: String, scfRegionName: String, scfName: String?, params: [ScfParam]?) {
+        public init (scfRegion: String, scfRegionName: String, scfName: String? = nil, params: [ScfParam]? = nil) {
             self.scfRegion = scfRegion
             self.scfRegionName = scfRegionName
             self.scfName = scfName
@@ -145,7 +145,7 @@ extension Bpaas {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
         
-        public init (key: String, type: UInt64, values: [String], name: String?) {
+        public init (key: String, type: UInt64, values: [String], name: String? = nil) {
             self.key = key
             self.type = type
             self.values = values
@@ -176,7 +176,7 @@ extension Bpaas {
         
         /// 审批意见模型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let opinion: ApproveOpinion
+        public let opinion: ApproveOpinion?
         
         /// scf函数名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -200,7 +200,7 @@ extension Bpaas {
         
         /// 有权限审批该节点的uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let users: ApproveUser
+        public let users: ApproveUser?
         
         /// 是否有权限审批该节点
         /// 注意：此字段可能返回 null，表示取不到有效值。

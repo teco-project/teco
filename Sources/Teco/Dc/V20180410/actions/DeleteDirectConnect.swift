@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 删除物理专线
-    ///
-    /// 删除物理专线。
-    /// 只能删除处于已连接状态的物理专线。
-    @inlinable
-    public func deleteDirectConnect(_ input: DeleteDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDirectConnectResponse > {
-        self.client.execute(action: "DeleteDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除物理专线
-    ///
-    /// 删除物理专线。
-    /// 只能删除处于已连接状态的物理专线。
-    @inlinable
-    public func deleteDirectConnect(_ input: DeleteDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectResponse {
-        try await self.client.execute(action: "DeleteDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDirectConnect请求参数结构体
     public struct DeleteDirectConnectRequest: TCRequestModel {
         /// 物理专线的ID。
@@ -55,5 +37,23 @@ extension Dc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除物理专线
+    ///
+    /// 删除物理专线。
+    /// 只能删除处于已连接状态的物理专线。
+    @inlinable
+    public func deleteDirectConnect(_ input: DeleteDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDirectConnectResponse > {
+        self.client.execute(action: "DeleteDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除物理专线
+    ///
+    /// 删除物理专线。
+    /// 只能删除处于已连接状态的物理专线。
+    @inlinable
+    public func deleteDirectConnect(_ input: DeleteDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectResponse {
+        try await self.client.execute(action: "DeleteDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

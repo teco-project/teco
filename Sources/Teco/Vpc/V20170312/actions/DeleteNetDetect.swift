@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除网络探测
-    ///
-    /// 本接口(DeleteNetDetect)用于删除网络探测实例。
-    @inlinable
-    public func deleteNetDetect(_ input: DeleteNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetDetectResponse > {
-        self.client.execute(action: "DeleteNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除网络探测
-    ///
-    /// 本接口(DeleteNetDetect)用于删除网络探测实例。
-    @inlinable
-    public func deleteNetDetect(_ input: DeleteNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetDetectResponse {
-        try await self.client.execute(action: "DeleteNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteNetDetect请求参数结构体
     public struct DeleteNetDetectRequest: TCRequestModel {
         /// 网络探测实例`ID`。形如：`netd-12345678`
@@ -53,5 +37,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除网络探测
+    ///
+    /// 本接口(DeleteNetDetect)用于删除网络探测实例。
+    @inlinable
+    public func deleteNetDetect(_ input: DeleteNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetDetectResponse > {
+        self.client.execute(action: "DeleteNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除网络探测
+    ///
+    /// 本接口(DeleteNetDetect)用于删除网络探测实例。
+    @inlinable
+    public func deleteNetDetect(_ input: DeleteNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetDetectResponse {
+        try await self.client.execute(action: "DeleteNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

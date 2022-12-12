@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 添加误报工单
-    @inlinable
-    public func createBPFalseTicket(_ input: CreateBPFalseTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPFalseTicketResponse > {
-        self.client.execute(action: "CreateBPFalseTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加误报工单
-    @inlinable
-    public func createBPFalseTicket(_ input: CreateBPFalseTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFalseTicketResponse {
-        try await self.client.execute(action: "CreateBPFalseTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBPFalseTicket请求参数结构体
     public struct CreateBPFalseTicketRequest: TCRequestModel {
         /// 仿冒网址
         public let fakeURL: String?
         
-        public init (fakeURL: String?) {
+        public init (fakeURL: String? = nil) {
             self.fakeURL = fakeURL
         }
         
@@ -49,5 +37,17 @@ extension Bma {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加误报工单
+    @inlinable
+    public func createBPFalseTicket(_ input: CreateBPFalseTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPFalseTicketResponse > {
+        self.client.execute(action: "CreateBPFalseTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加误报工单
+    @inlinable
+    public func createBPFalseTicket(_ input: CreateBPFalseTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFalseTicketResponse {
+        try await self.client.execute(action: "CreateBPFalseTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

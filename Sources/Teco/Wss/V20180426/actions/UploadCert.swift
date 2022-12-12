@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wss {
-    /// 上传证书
-    ///
-    /// 本接口（UploadCert）用于上传证书。
-    @inlinable
-    public func uploadCert(_ input: UploadCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadCertResponse > {
-        self.client.execute(action: "UploadCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上传证书
-    ///
-    /// 本接口（UploadCert）用于上传证书。
-    @inlinable
-    public func uploadCert(_ input: UploadCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
-        try await self.client.execute(action: "UploadCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadCert请求参数结构体
     public struct UploadCertRequest: TCRequestModel {
         /// 证书内容。
@@ -51,7 +35,7 @@ extension Wss {
         /// 证书备注。
         public let alias: String?
         
-        public init (cert: String, certType: String, projectId: String, moduleType: String, key: String?, alias: String?) {
+        public init (cert: String, certType: String, projectId: String, moduleType: String, key: String? = nil, alias: String? = nil) {
             self.cert = cert
             self.certType = certType
             self.projectId = projectId
@@ -82,5 +66,21 @@ extension Wss {
             case id = "Id"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上传证书
+    ///
+    /// 本接口（UploadCert）用于上传证书。
+    @inlinable
+    public func uploadCert(_ input: UploadCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadCertResponse > {
+        self.client.execute(action: "UploadCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上传证书
+    ///
+    /// 本接口（UploadCert）用于上传证书。
+    @inlinable
+    public func uploadCert(_ input: UploadCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
+        try await self.client.execute(action: "UploadCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 重装实例
-    ///
-    /// 重装实例，若指定了ImageId参数，则使用指定的镜像重装；否则按照当前实例使用的镜像进行重装；若未指定密码，则密码通过站内信形式随后发送。
-    @inlinable
-    public func resetInstances(_ input: ResetInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetInstancesResponse > {
-        self.client.execute(action: "ResetInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重装实例
-    ///
-    /// 重装实例，若指定了ImageId参数，则使用指定的镜像重装；否则按照当前实例使用的镜像进行重装；若未指定密码，则密码通过站内信形式随后发送。
-    @inlinable
-    public func resetInstances(_ input: ResetInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesResponse {
-        try await self.client.execute(action: "ResetInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetInstances请求参数结构体
     public struct ResetInstancesRequest: TCRequestModel {
         /// 待重装的实例ID列表。
@@ -43,7 +27,7 @@ extension Ecm {
         public let password: String?
         
         /// 是否开启云监控和云镜服务，未指定时默认开启。
-        public let enhancedService: EnhancedService
+        public let enhancedService: EnhancedService?
         
         /// 是否保留数据盘数据，取值"true"/"false"。默认为"true"
         public let keepData: String?
@@ -55,7 +39,7 @@ extension Ecm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keepImageLogin: String?
         
-        public init (instanceIdSet: [String], imageId: String?, password: String?, enhancedService: EnhancedService, keepData: String?, keepImageLogin: String?) {
+        public init (instanceIdSet: [String], imageId: String? = nil, password: String? = nil, enhancedService: EnhancedService? = nil, keepData: String? = nil, keepImageLogin: String? = nil) {
             self.instanceIdSet = instanceIdSet
             self.imageId = imageId
             self.password = password
@@ -82,5 +66,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重装实例
+    ///
+    /// 重装实例，若指定了ImageId参数，则使用指定的镜像重装；否则按照当前实例使用的镜像进行重装；若未指定密码，则密码通过站内信形式随后发送。
+    @inlinable
+    public func resetInstances(_ input: ResetInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetInstancesResponse > {
+        self.client.execute(action: "ResetInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重装实例
+    ///
+    /// 重装实例，若指定了ImageId参数，则使用指定的镜像重装；否则按照当前实例使用的镜像进行重装；若未指定密码，则密码通过站内信形式随后发送。
+    @inlinable
+    public func resetInstances(_ input: ResetInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesResponse {
+        try await self.client.execute(action: "ResetInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

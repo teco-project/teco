@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 更新应用部署版本
-    @inlinable
-    public func rollingUpdateApplicationByVersion(_ input: RollingUpdateApplicationByVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollingUpdateApplicationByVersionResponse > {
-        self.client.execute(action: "RollingUpdateApplicationByVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新应用部署版本
-    @inlinable
-    public func rollingUpdateApplicationByVersion(_ input: RollingUpdateApplicationByVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollingUpdateApplicationByVersionResponse {
-        try await self.client.execute(action: "RollingUpdateApplicationByVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RollingUpdateApplicationByVersion请求参数结构体
     public struct RollingUpdateApplicationByVersionRequest: TCRequestModel {
         /// 应用ID
@@ -59,7 +47,7 @@ extension Tem {
         /// 发布过程中保障的最小可用实例数
         public let minAvailable: Int64?
         
-        public init (applicationId: String, environmentId: String, deployVersion: String, packageName: String?, from: String?, deployStrategyType: String?, totalBatchCount: Int64?, batchInterval: Int64?, betaBatchNum: Int64?, minAvailable: Int64?) {
+        public init (applicationId: String, environmentId: String, deployVersion: String, packageName: String? = nil, from: String? = nil, deployStrategyType: String? = nil, totalBatchCount: Int64? = nil, batchInterval: Int64? = nil, betaBatchNum: Int64? = nil, minAvailable: Int64? = nil) {
             self.applicationId = applicationId
             self.environmentId = environmentId
             self.deployVersion = deployVersion
@@ -98,5 +86,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新应用部署版本
+    @inlinable
+    public func rollingUpdateApplicationByVersion(_ input: RollingUpdateApplicationByVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollingUpdateApplicationByVersionResponse > {
+        self.client.execute(action: "RollingUpdateApplicationByVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新应用部署版本
+    @inlinable
+    public func rollingUpdateApplicationByVersion(_ input: RollingUpdateApplicationByVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollingUpdateApplicationByVersionResponse {
+        try await self.client.execute(action: "RollingUpdateApplicationByVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

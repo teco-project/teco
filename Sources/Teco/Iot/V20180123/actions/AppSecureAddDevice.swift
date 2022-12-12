@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 用户绑定设备
-    ///
-    /// 用户绑定设备，绑定后可以在APP端进行控制。绑定设备前需调用“获取设备绑定签名”接口
-    @inlinable
-    public func appSecureAddDevice(_ input: AppSecureAddDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppSecureAddDeviceResponse > {
-        self.client.execute(action: "AppSecureAddDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 用户绑定设备
-    ///
-    /// 用户绑定设备，绑定后可以在APP端进行控制。绑定设备前需调用“获取设备绑定签名”接口
-    @inlinable
-    public func appSecureAddDevice(_ input: AppSecureAddDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppSecureAddDeviceResponse {
-        try await self.client.execute(action: "AppSecureAddDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AppSecureAddDevice请求参数结构体
     public struct AppSecureAddDeviceRequest: TCRequestModel {
         /// 访问Token
@@ -62,5 +46,21 @@ extension Iot {
             case appDevice = "AppDevice"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 用户绑定设备
+    ///
+    /// 用户绑定设备，绑定后可以在APP端进行控制。绑定设备前需调用“获取设备绑定签名”接口
+    @inlinable
+    public func appSecureAddDevice(_ input: AppSecureAddDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppSecureAddDeviceResponse > {
+        self.client.execute(action: "AppSecureAddDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 用户绑定设备
+    ///
+    /// 用户绑定设备，绑定后可以在APP端进行控制。绑定设备前需调用“获取设备绑定签名”接口
+    @inlinable
+    public func appSecureAddDevice(_ input: AppSecureAddDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppSecureAddDeviceResponse {
+        try await self.client.execute(action: "AppSecureAddDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

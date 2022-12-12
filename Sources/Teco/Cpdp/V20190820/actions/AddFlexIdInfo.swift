@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云V2-补充证件信息
-    @inlinable
-    public func addFlexIdInfo(_ input: AddFlexIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddFlexIdInfoResponse > {
-        self.client.execute(action: "AddFlexIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云V2-补充证件信息
-    @inlinable
-    public func addFlexIdInfo(_ input: AddFlexIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexIdInfoResponse {
-        try await self.client.execute(action: "AddFlexIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddFlexIdInfo请求参数结构体
     public struct AddFlexIdInfoRequest: TCRequestModel {
         /// 证件类型
@@ -50,7 +38,7 @@ extension Cpdp {
         /// 姓名
         public let name: String?
         
-        public init (idType: Int64, idNo: String, payeeId: String, environment: String?, name: String?) {
+        public init (idType: Int64, idNo: String, payeeId: String, environment: String? = nil, name: String? = nil) {
             self.idType = idType
             self.idNo = idNo
             self.payeeId = payeeId
@@ -88,5 +76,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云V2-补充证件信息
+    @inlinable
+    public func addFlexIdInfo(_ input: AddFlexIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddFlexIdInfoResponse > {
+        self.client.execute(action: "AddFlexIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云V2-补充证件信息
+    @inlinable
+    public func addFlexIdInfo(_ input: AddFlexIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexIdInfoResponse {
+        try await self.client.execute(action: "AddFlexIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

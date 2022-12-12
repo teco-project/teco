@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 添加子用户
-    @inlinable
-    public func addUser(_ input: AddUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserResponse > {
-        self.client.execute(action: "AddUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加子用户
-    @inlinable
-    public func addUser(_ input: AddUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserResponse {
-        try await self.client.execute(action: "AddUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddUser请求参数结构体
     public struct AddUserRequest: TCRequestModel {
         /// 子用户用户名
@@ -56,7 +44,7 @@ extension Cam {
         /// 邮箱
         public let email: String?
         
-        public init (name: String, remark: String?, consoleLogin: UInt64?, useApi: UInt64?, password: String?, needResetPassword: UInt64?, phoneNum: String?, countryCode: String?, email: String?) {
+        public init (name: String, remark: String? = nil, consoleLogin: UInt64? = nil, useApi: UInt64? = nil, password: String? = nil, needResetPassword: UInt64? = nil, phoneNum: String? = nil, countryCode: String? = nil, email: String? = nil) {
             self.name = name
             self.remark = remark
             self.consoleLogin = consoleLogin
@@ -113,5 +101,17 @@ extension Cam {
             case uid = "Uid"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加子用户
+    @inlinable
+    public func addUser(_ input: AddUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserResponse > {
+        self.client.execute(action: "AddUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加子用户
+    @inlinable
+    public func addUser(_ input: AddUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserResponse {
+        try await self.client.execute(action: "AddUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

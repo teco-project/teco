@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 服务下发消息到lora设备
-    ///
-    /// 服务器端下发消息给lora类型的设备
-    @inlinable
-    public func publishToDevice(_ input: PublishToDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishToDeviceResponse > {
-        self.client.execute(action: "PublishToDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 服务下发消息到lora设备
-    ///
-    /// 服务器端下发消息给lora类型的设备
-    @inlinable
-    public func publishToDevice(_ input: PublishToDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishToDeviceResponse {
-        try await self.client.execute(action: "PublishToDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PublishToDevice请求参数结构体
     public struct PublishToDeviceRequest: TCRequestModel {
         /// 产品id
@@ -68,5 +52,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 服务下发消息到lora设备
+    ///
+    /// 服务器端下发消息给lora类型的设备
+    @inlinable
+    public func publishToDevice(_ input: PublishToDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishToDeviceResponse > {
+        self.client.execute(action: "PublishToDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 服务下发消息到lora设备
+    ///
+    /// 服务器端下发消息给lora类型的设备
+    @inlinable
+    public func publishToDevice(_ input: PublishToDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishToDeviceResponse {
+        try await self.client.execute(action: "PublishToDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

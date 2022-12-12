@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Car {
-    /// 销毁会话
-    @inlinable
-    public func destroySession(_ input: DestroySessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroySessionResponse > {
-        self.client.execute(action: "DestroySession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 销毁会话
-    @inlinable
-    public func destroySession(_ input: DestroySessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroySessionResponse {
-        try await self.client.execute(action: "DestroySession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DestroySession请求参数结构体
     public struct DestroySessionRequest: TCRequestModel {
         /// 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
@@ -49,5 +37,17 @@ extension Car {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 销毁会话
+    @inlinable
+    public func destroySession(_ input: DestroySessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroySessionResponse > {
+        self.client.execute(action: "DestroySession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁会话
+    @inlinable
+    public func destroySession(_ input: DestroySessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroySessionResponse {
+        try await self.client.execute(action: "DestroySession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

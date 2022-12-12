@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 查看权限组详细信息
-    ///
-    /// 查看权限组详细信息。
-    @inlinable
-    public func describeAccessGroup(_ input: DescribeAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessGroupResponse > {
-        self.client.execute(action: "DescribeAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看权限组详细信息
-    ///
-    /// 查看权限组详细信息。
-    @inlinable
-    public func describeAccessGroup(_ input: DescribeAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessGroupResponse {
-        try await self.client.execute(action: "DescribeAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccessGroup请求参数结构体
     public struct DescribeAccessGroupRequest: TCRequestModel {
         /// 权限组ID
@@ -57,5 +41,21 @@ extension Chdfs {
             case accessGroup = "AccessGroup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看权限组详细信息
+    ///
+    /// 查看权限组详细信息。
+    @inlinable
+    public func describeAccessGroup(_ input: DescribeAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessGroupResponse > {
+        self.client.execute(action: "DescribeAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看权限组详细信息
+    ///
+    /// 查看权限组详细信息。
+    @inlinable
+    public func describeAccessGroup(_ input: DescribeAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessGroupResponse {
+        try await self.client.execute(action: "DescribeAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

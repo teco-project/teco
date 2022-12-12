@@ -17,26 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Vod {
-    /// 申请上传
-    ///
-    /// * 我们强烈建议您使用云点播提供的 [服务端上传 SDK](/document/product/266/9759#1.-.E5.8F.91.E8.B5.B7.E4.B8.8A.E4.BC.A0) 来上传文件。直接调用 API 进行上传的难度和工作量都显著大于使用 SDK。
-    /// * 该接口用于申请媒体文件（和封面文件）的上传，获取文件上传到云点播的元信息（包括上传路径、上传签名等），用于后续上传接口。
-    /// * 上传流程请参考 [服务端上传综述](/document/product/266/9759)。
-    @inlinable
-    public func applyUpload(_ input: ApplyUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyUploadResponse > {
-        self.client.execute(action: "ApplyUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 申请上传
-    ///
-    /// * 我们强烈建议您使用云点播提供的 [服务端上传 SDK](/document/product/266/9759#1.-.E5.8F.91.E8.B5.B7.E4.B8.8A.E4.BC.A0) 来上传文件。直接调用 API 进行上传的难度和工作量都显著大于使用 SDK。
-    /// * 该接口用于申请媒体文件（和封面文件）的上传，获取文件上传到云点播的元信息（包括上传路径、上传签名等），用于后续上传接口。
-    /// * 上传流程请参考 [服务端上传综述](/document/product/266/9759)。
-    @inlinable
-    public func applyUpload(_ input: ApplyUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyUploadResponse {
-        try await self.client.execute(action: "ApplyUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyUpload请求参数结构体
     public struct ApplyUploadRequest: TCRequestModel {
         /// 媒体类型，可选值请参考 [上传能力综述](/document/product/266/9760#.E6.96.87.E4.BB.B6.E7.B1.BB.E5.9E.8B)。
@@ -73,7 +53,7 @@ extension Vod {
         /// 保留字段，特殊用途时使用。
         public let extInfo: String?
         
-        public init (mediaType: String, subAppId: UInt64?, mediaName: String?, coverType: String?, procedure: String?, expireTime: Date?, storageRegion: String?, classId: Int64?, sourceContext: String?, sessionContext: String?, extInfo: String?) {
+        public init (mediaType: String, subAppId: UInt64? = nil, mediaName: String? = nil, coverType: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sourceContext: String? = nil, sessionContext: String? = nil, extInfo: String? = nil) {
             self.mediaType = mediaType
             self.subAppId = subAppId
             self.mediaName = mediaName
@@ -134,5 +114,25 @@ extension Vod {
             case tempCertificate = "TempCertificate"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 申请上传
+    ///
+    /// * 我们强烈建议您使用云点播提供的 [服务端上传 SDK](/document/product/266/9759#1.-.E5.8F.91.E8.B5.B7.E4.B8.8A.E4.BC.A0) 来上传文件。直接调用 API 进行上传的难度和工作量都显著大于使用 SDK。
+    /// * 该接口用于申请媒体文件（和封面文件）的上传，获取文件上传到云点播的元信息（包括上传路径、上传签名等），用于后续上传接口。
+    /// * 上传流程请参考 [服务端上传综述](/document/product/266/9759)。
+    @inlinable
+    public func applyUpload(_ input: ApplyUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyUploadResponse > {
+        self.client.execute(action: "ApplyUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 申请上传
+    ///
+    /// * 我们强烈建议您使用云点播提供的 [服务端上传 SDK](/document/product/266/9759#1.-.E5.8F.91.E8.B5.B7.E4.B8.8A.E4.BC.A0) 来上传文件。直接调用 API 进行上传的难度和工作量都显著大于使用 SDK。
+    /// * 该接口用于申请媒体文件（和封面文件）的上传，获取文件上传到云点播的元信息（包括上传路径、上传签名等），用于后续上传接口。
+    /// * 上传流程请参考 [服务端上传综述](/document/product/266/9759)。
+    @inlinable
+    public func applyUpload(_ input: ApplyUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyUploadResponse {
+        try await self.client.execute(action: "ApplyUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

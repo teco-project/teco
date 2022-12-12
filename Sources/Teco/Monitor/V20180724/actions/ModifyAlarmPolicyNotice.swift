@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 修改告警策略绑定的告警通知模板
-    ///
-    /// 云监控告警修改告警策略绑定的告警通知模板
-    @inlinable
-    public func modifyAlarmPolicyNotice(_ input: ModifyAlarmPolicyNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmPolicyNoticeResponse > {
-        self.client.execute(action: "ModifyAlarmPolicyNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改告警策略绑定的告警通知模板
-    ///
-    /// 云监控告警修改告警策略绑定的告警通知模板
-    @inlinable
-    public func modifyAlarmPolicyNotice(_ input: ModifyAlarmPolicyNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyNoticeResponse {
-        try await self.client.execute(action: "ModifyAlarmPolicyNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAlarmPolicyNotice请求参数结构体
     public struct ModifyAlarmPolicyNoticeRequest: TCRequestModel {
         /// 模块名，这里填“monitor”。
@@ -45,7 +29,7 @@ extension Monitor {
         /// 告警策略ID数组，支持给多个告警策略批量绑定通知模板。最多30个。
         public let policyIds: [String]?
         
-        public init (module: String, policyId: String?, noticeIds: [String]?, policyIds: [String]?) {
+        public init (module: String, policyId: String? = nil, noticeIds: [String]? = nil, policyIds: [String]? = nil) {
             self.module = module
             self.policyId = policyId
             self.noticeIds = noticeIds
@@ -68,5 +52,21 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改告警策略绑定的告警通知模板
+    ///
+    /// 云监控告警修改告警策略绑定的告警通知模板
+    @inlinable
+    public func modifyAlarmPolicyNotice(_ input: ModifyAlarmPolicyNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmPolicyNoticeResponse > {
+        self.client.execute(action: "ModifyAlarmPolicyNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改告警策略绑定的告警通知模板
+    ///
+    /// 云监控告警修改告警策略绑定的告警通知模板
+    @inlinable
+    public func modifyAlarmPolicyNotice(_ input: ModifyAlarmPolicyNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyNoticeResponse {
+        try await self.client.execute(action: "ModifyAlarmPolicyNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

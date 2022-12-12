@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 开启通道组
-    ///
-    /// 该接口（OpenProxyGroup）用于开启一条通道组中的所有通道
-    @inlinable
-    public func openProxyGroup(_ input: OpenProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenProxyGroupResponse > {
-        self.client.execute(action: "OpenProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启通道组
-    ///
-    /// 该接口（OpenProxyGroup）用于开启一条通道组中的所有通道
-    @inlinable
-    public func openProxyGroup(_ input: OpenProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProxyGroupResponse {
-        try await self.client.execute(action: "OpenProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OpenProxyGroup请求参数结构体
     public struct OpenProxyGroupRequest: TCRequestModel {
         /// 通道组实例 ID
@@ -61,5 +45,21 @@ extension Gaap {
             case operationFailedInstanceSet = "OperationFailedInstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启通道组
+    ///
+    /// 该接口（OpenProxyGroup）用于开启一条通道组中的所有通道
+    @inlinable
+    public func openProxyGroup(_ input: OpenProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenProxyGroupResponse > {
+        self.client.execute(action: "OpenProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启通道组
+    ///
+    /// 该接口（OpenProxyGroup）用于开启一条通道组中的所有通道
+    @inlinable
+    public func openProxyGroup(_ input: OpenProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProxyGroupResponse {
+        try await self.client.execute(action: "OpenProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

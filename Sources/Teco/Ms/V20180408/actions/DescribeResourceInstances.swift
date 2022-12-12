@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ms {
-    /// 获取用户的所有资源信息
-    ///
-    /// 获取某个用户的所有资源信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
-    @inlinable
-    public func describeResourceInstances(_ input: DescribeResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceInstancesResponse > {
-        self.client.execute(action: "DescribeResourceInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户的所有资源信息
-    ///
-    /// 获取某个用户的所有资源信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
-    @inlinable
-    public func describeResourceInstances(_ input: DescribeResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceInstancesResponse {
-        try await self.client.execute(action: "DescribeResourceInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourceInstances请求参数结构体
     public struct DescribeResourceInstancesRequest: TCRequestModel {
         /// 支持CreateTime、ExpireTime、AppName、AppPkgName、BindValue、IsBind过滤
@@ -51,7 +35,7 @@ extension Ms {
         /// 升序（asc）还是降序（desc），默认：desc。
         public let orderDirection: String?
         
-        public init (filters: [Filter]?, offset: UInt64?, limit: UInt64?, pids: [UInt64]?, orderField: String?, orderDirection: String?) {
+        public init (filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, pids: [UInt64]? = nil, orderField: String? = nil, orderDirection: String? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -86,5 +70,21 @@ extension Ms {
             case resourceSet = "ResourceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户的所有资源信息
+    ///
+    /// 获取某个用户的所有资源信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    @inlinable
+    public func describeResourceInstances(_ input: DescribeResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceInstancesResponse > {
+        self.client.execute(action: "DescribeResourceInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户的所有资源信息
+    ///
+    /// 获取某个用户的所有资源信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    @inlinable
+    public func describeResourceInstances(_ input: DescribeResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceInstancesResponse {
+        try await self.client.execute(action: "DescribeResourceInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

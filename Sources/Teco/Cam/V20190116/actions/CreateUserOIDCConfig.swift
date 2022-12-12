@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 创建用户OIDC配置
-    ///
-    /// 创建用户OIDC配置。只能创建一个用户OIDC身份提供商，并且创建用户OIDC配置之后会自动关闭用户SAML SSO身份提供商。
-    @inlinable
-    public func createUserOIDCConfig(_ input: CreateUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserOIDCConfigResponse > {
-        self.client.execute(action: "CreateUserOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建用户OIDC配置
-    ///
-    /// 创建用户OIDC配置。只能创建一个用户OIDC身份提供商，并且创建用户OIDC配置之后会自动关闭用户SAML SSO身份提供商。
-    @inlinable
-    public func createUserOIDCConfig(_ input: CreateUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserOIDCConfigResponse {
-        try await self.client.execute(action: "CreateUserOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUserOIDCConfig请求参数结构体
     public struct CreateUserOIDCConfigRequest: TCRequestModel {
         /// 身份提供商URL。OpenID Connect身份提供商标识。
@@ -61,7 +45,7 @@ extension Cam {
         /// 描述
         public let description: String?
         
-        public init (identityUrl: String, identityKey: String, clientId: String, authorizationEndpoint: String, responseType: String, responseMode: String, mappingFiled: String, scope: [String]?, description: String?) {
+        public init (identityUrl: String, identityKey: String, clientId: String, authorizationEndpoint: String, responseType: String, responseMode: String, mappingFiled: String, scope: [String]? = nil, description: String? = nil) {
             self.identityUrl = identityUrl
             self.identityKey = identityKey
             self.clientId = clientId
@@ -94,5 +78,21 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建用户OIDC配置
+    ///
+    /// 创建用户OIDC配置。只能创建一个用户OIDC身份提供商，并且创建用户OIDC配置之后会自动关闭用户SAML SSO身份提供商。
+    @inlinable
+    public func createUserOIDCConfig(_ input: CreateUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserOIDCConfigResponse > {
+        self.client.execute(action: "CreateUserOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建用户OIDC配置
+    ///
+    /// 创建用户OIDC配置。只能创建一个用户OIDC身份提供商，并且创建用户OIDC配置之后会自动关闭用户SAML SSO身份提供商。
+    @inlinable
+    public func createUserOIDCConfig(_ input: CreateUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserOIDCConfigResponse {
+        try await self.client.execute(action: "CreateUserOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

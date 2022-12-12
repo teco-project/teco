@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 查询可售卖订阅地域
-    ///
-    /// 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
-    @inlinable
-    public func describeRegionConf(_ input: DescribeRegionConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionConfResponse > {
-        self.client.execute(action: "DescribeRegionConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询可售卖订阅地域
-    ///
-    /// 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
-    @inlinable
-    public func describeRegionConf(_ input: DescribeRegionConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionConfResponse {
-        try await self.client.execute(action: "DescribeRegionConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRegionConf请求参数结构体
     public struct DescribeRegionConfRequest: TCRequestModel {
         public init () {
@@ -53,5 +37,21 @@ extension Dts {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询可售卖订阅地域
+    ///
+    /// 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
+    @inlinable
+    public func describeRegionConf(_ input: DescribeRegionConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionConfResponse > {
+        self.client.execute(action: "DescribeRegionConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询可售卖订阅地域
+    ///
+    /// 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
+    @inlinable
+    public func describeRegionConf(_ input: DescribeRegionConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionConfResponse {
+        try await self.client.execute(action: "DescribeRegionConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

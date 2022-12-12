@@ -17,24 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Gse {
-    /// 复制服务器舰队
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（CopyFleet）用于复制服务器舰队。
-    @inlinable
-    public func copyFleet(_ input: CopyFleetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyFleetResponse > {
-        self.client.execute(action: "CopyFleet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 复制服务器舰队
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（CopyFleet）用于复制服务器舰队。
-    @inlinable
-    public func copyFleet(_ input: CopyFleetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyFleetResponse {
-        try await self.client.execute(action: "CopyFleet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CopyFleet请求参数结构体
     public struct CopyFleetRequest: TCRequestModel {
         /// 服务器舰队 Id
@@ -65,10 +47,10 @@ extension Gse {
         public let newGameServerSessionProtectionPolicy: String?
         
         /// 资源创建限制策略
-        public let resourceCreationLimitPolicy: ResourceCreationLimitPolicy
+        public let resourceCreationLimitPolicy: ResourceCreationLimitPolicy?
         
         /// 进程配置
-        public let runtimeConfiguration: RuntimeConfiguration
+        public let runtimeConfiguration: RuntimeConfiguration?
         
         /// 时限保护超时时间，默认60分钟，最小值5，最大值1440；当NewGameSessionProtectionPolicy为TimeLimitProtection时参数有效
         public let gameServerSessionProtectionTimeLimit: Int64?
@@ -83,7 +65,7 @@ extension Gse {
         public let tags: [Tag]?
         
         /// 系统盘，储存类型为 SSD 云硬盘（CLOUD_SSD）时，100-500GB；储存类型为高性能云硬盘（CLOUD_PREMIUM）时，50-500GB；容量以1为单位
-        public let systemDiskInfo: DiskInfo
+        public let systemDiskInfo: DiskInfo?
         
         /// 数据盘，储存类型为 SSD 云硬盘（CLOUD_SSD）时，100-32000GB；储存类型为高性能云硬盘（CLOUD_PREMIUM）时，10-32000GB；容量以10为单位
         public let dataDiskInfo: [DiskInfo]?
@@ -97,7 +79,7 @@ extension Gse {
         /// fleet公网出带宽最大值，默认100Mbps，范围1-200Mbps
         public let internetMaxBandwidthOut: Int64?
         
-        public init (fleetId: String, copyNumber: Int64, assetId: String?, description: String?, inboundPermissions: [InboundPermission]?, instanceType: String?, fleetType: String?, name: String?, newGameServerSessionProtectionPolicy: String?, resourceCreationLimitPolicy: ResourceCreationLimitPolicy, runtimeConfiguration: RuntimeConfiguration, gameServerSessionProtectionTimeLimit: Int64?, selectedScalingType: String?, selectedCcnType: String?, tags: [Tag]?, systemDiskInfo: DiskInfo, dataDiskInfo: [DiskInfo]?, selectedTimerType: String?, ccnInfos: [CcnInfo]?, internetMaxBandwidthOut: Int64?) {
+        public init (fleetId: String, copyNumber: Int64, assetId: String? = nil, description: String? = nil, inboundPermissions: [InboundPermission]? = nil, instanceType: String? = nil, fleetType: String? = nil, name: String? = nil, newGameServerSessionProtectionPolicy: String? = nil, resourceCreationLimitPolicy: ResourceCreationLimitPolicy? = nil, runtimeConfiguration: RuntimeConfiguration? = nil, gameServerSessionProtectionTimeLimit: Int64? = nil, selectedScalingType: String? = nil, selectedCcnType: String? = nil, tags: [Tag]? = nil, systemDiskInfo: DiskInfo? = nil, dataDiskInfo: [DiskInfo]? = nil, selectedTimerType: String? = nil, ccnInfos: [CcnInfo]? = nil, internetMaxBandwidthOut: Int64? = nil) {
             self.fleetId = fleetId
             self.copyNumber = copyNumber
             self.assetId = assetId
@@ -161,5 +143,23 @@ extension Gse {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 复制服务器舰队
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（CopyFleet）用于复制服务器舰队。
+    @inlinable
+    public func copyFleet(_ input: CopyFleetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyFleetResponse > {
+        self.client.execute(action: "CopyFleet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 复制服务器舰队
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（CopyFleet）用于复制服务器舰队。
+    @inlinable
+    public func copyFleet(_ input: CopyFleetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyFleetResponse {
+        try await self.client.execute(action: "CopyFleet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

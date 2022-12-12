@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Npp {
-    /// 回拨拉取主叫显号号码集合
-    @inlinable
-    public func describeCallerDisplayList(_ input: DescribeCallerDisplayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallerDisplayListResponse > {
-        self.client.execute(action: "DescribeCallerDisplayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 回拨拉取主叫显号号码集合
-    @inlinable
-    public func describeCallerDisplayList(_ input: DescribeCallerDisplayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallerDisplayListResponse {
-        try await self.client.execute(action: "DescribeCallerDisplayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCallerDisplayList请求参数结构体
     public struct DescribeCallerDisplayListRequest: TCRequestModel {
         /// 业务appid
@@ -68,5 +56,17 @@ extension Npp {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 回拨拉取主叫显号号码集合
+    @inlinable
+    public func describeCallerDisplayList(_ input: DescribeCallerDisplayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallerDisplayListResponse > {
+        self.client.execute(action: "DescribeCallerDisplayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 回拨拉取主叫显号号码集合
+    @inlinable
+    public func describeCallerDisplayList(_ input: DescribeCallerDisplayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallerDisplayListResponse {
+        try await self.client.execute(action: "DescribeCallerDisplayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

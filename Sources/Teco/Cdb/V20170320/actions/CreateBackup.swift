@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 创建云数据库备份
-    ///
-    /// 本接口(CreateBackup)用于创建数据库备份。
-    @inlinable
-    public func createBackup(_ input: CreateBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackupResponse > {
-        self.client.execute(action: "CreateBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建云数据库备份
-    ///
-    /// 本接口(CreateBackup)用于创建数据库备份。
-    @inlinable
-    public func createBackup(_ input: CreateBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
-        try await self.client.execute(action: "CreateBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBackup请求参数结构体
     public struct CreateBackupRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
@@ -46,7 +30,7 @@ extension Cdb {
         /// 手动备份别名
         public let manualBackupName: String?
         
-        public init (instanceId: String, backupMethod: String, backupDBTableList: [BackupItem]?, manualBackupName: String?) {
+        public init (instanceId: String, backupMethod: String, backupDBTableList: [BackupItem]? = nil, manualBackupName: String? = nil) {
             self.instanceId = instanceId
             self.backupMethod = backupMethod
             self.backupDBTableList = backupDBTableList
@@ -73,5 +57,21 @@ extension Cdb {
             case backupId = "BackupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建云数据库备份
+    ///
+    /// 本接口(CreateBackup)用于创建数据库备份。
+    @inlinable
+    public func createBackup(_ input: CreateBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackupResponse > {
+        self.client.execute(action: "CreateBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云数据库备份
+    ///
+    /// 本接口(CreateBackup)用于创建数据库备份。
+    @inlinable
+    public func createBackup(_ input: CreateBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
+        try await self.client.execute(action: "CreateBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

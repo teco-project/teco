@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 删除采集规则配置
-    @inlinable
-    public func deleteConfig(_ input: DeleteConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConfigResponse > {
-        self.client.execute(action: "DeleteConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除采集规则配置
-    @inlinable
-    public func deleteConfig(_ input: DeleteConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigResponse {
-        try await self.client.execute(action: "DeleteConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteConfig请求参数结构体
     public struct DeleteConfigRequest: TCRequestModel {
         /// 采集规则配置ID
@@ -49,5 +37,17 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除采集规则配置
+    @inlinable
+    public func deleteConfig(_ input: DeleteConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConfigResponse > {
+        self.client.execute(action: "DeleteConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除采集规则配置
+    @inlinable
+    public func deleteConfig(_ input: DeleteConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigResponse {
+        try await self.client.execute(action: "DeleteConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 删除记录
-    @inlinable
-    public func deleteRecord(_ input: DeleteRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordResponse > {
-        self.client.execute(action: "DeleteRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除记录
-    @inlinable
-    public func deleteRecord(_ input: DeleteRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordResponse {
-        try await self.client.execute(action: "DeleteRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRecord请求参数结构体
     public struct DeleteRecordRequest: TCRequestModel {
         /// 域名
@@ -38,7 +26,7 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         public let domainId: UInt64?
         
-        public init (domain: String, recordId: UInt64, domainId: UInt64?) {
+        public init (domain: String, recordId: UInt64, domainId: UInt64? = nil) {
             self.domain = domain
             self.recordId = recordId
             self.domainId = domainId
@@ -59,5 +47,17 @@ extension Dnspod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除记录
+    @inlinable
+    public func deleteRecord(_ input: DeleteRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordResponse > {
+        self.client.execute(action: "DeleteRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除记录
+    @inlinable
+    public func deleteRecord(_ input: DeleteRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordResponse {
+        try await self.client.execute(action: "DeleteRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

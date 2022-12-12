@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改DDoS防护分区配置
-    @inlinable
-    public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyResponse > {
-        self.client.execute(action: "ModifyDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改DDoS防护分区配置
-    @inlinable
-    public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {
-        try await self.client.execute(action: "ModifyDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDDoSPolicy请求参数结构体
     public struct ModifyDDoSPolicyRequest: TCRequestModel {
         /// 策略id。
@@ -36,9 +24,9 @@ extension Teo {
         public let zoneId: String
         
         /// DDoS防护配置详情。
-        public let ddosRule: DdosRule
+        public let ddosRule: DdosRule?
         
-        public init (policyId: Int64, zoneId: String, ddosRule: DdosRule) {
+        public init (policyId: Int64, zoneId: String, ddosRule: DdosRule? = nil) {
             self.policyId = policyId
             self.zoneId = zoneId
             self.ddosRule = ddosRule
@@ -63,5 +51,17 @@ extension Teo {
             case policyId = "PolicyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改DDoS防护分区配置
+    @inlinable
+    public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyResponse > {
+        self.client.execute(action: "ModifyDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改DDoS防护分区配置
+    @inlinable
+    public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {
+        try await self.client.execute(action: "ModifyDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

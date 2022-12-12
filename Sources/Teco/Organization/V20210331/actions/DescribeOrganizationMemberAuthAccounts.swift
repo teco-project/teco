@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 获取组织成员被绑定授权关系的子账号列表
-    @inlinable
-    public func describeOrganizationMemberAuthAccounts(_ input: DescribeOrganizationMemberAuthAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationMemberAuthAccountsResponse > {
-        self.client.execute(action: "DescribeOrganizationMemberAuthAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取组织成员被绑定授权关系的子账号列表
-    @inlinable
-    public func describeOrganizationMemberAuthAccounts(_ input: DescribeOrganizationMemberAuthAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthAccountsResponse {
-        try await self.client.execute(action: "DescribeOrganizationMemberAuthAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOrganizationMemberAuthAccounts请求参数结构体
     public struct DescribeOrganizationMemberAuthAccountsRequest: TCRequestModel {
         /// 偏移量。
@@ -74,5 +62,17 @@ extension Organization {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取组织成员被绑定授权关系的子账号列表
+    @inlinable
+    public func describeOrganizationMemberAuthAccounts(_ input: DescribeOrganizationMemberAuthAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationMemberAuthAccountsResponse > {
+        self.client.execute(action: "DescribeOrganizationMemberAuthAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取组织成员被绑定授权关系的子账号列表
+    @inlinable
+    public func describeOrganizationMemberAuthAccounts(_ input: DescribeOrganizationMemberAuthAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthAccountsResponse {
+        try await self.client.execute(action: "DescribeOrganizationMemberAuthAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

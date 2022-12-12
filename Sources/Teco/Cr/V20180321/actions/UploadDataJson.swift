@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cr {
-    /// 上传Json格式数据
-    ///
-    /// 上传Json格式数据，接口返回数据任务ID
-    @inlinable
-    public func uploadDataJson(_ input: UploadDataJsonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadDataJsonResponse > {
-        self.client.execute(action: "UploadDataJson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上传Json格式数据
-    ///
-    /// 上传Json格式数据，接口返回数据任务ID
-    @inlinable
-    public func uploadDataJson(_ input: UploadDataJsonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadDataJsonResponse {
-        try await self.client.execute(action: "UploadDataJson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadDataJson请求参数结构体
     public struct UploadDataJsonRequest: TCRequestModel {
         /// 模块名，本接口取值：Data
@@ -48,7 +32,7 @@ extension Cr {
         /// 实例ID，不传默认为系统分配的初始实例。
         public let instanceId: String?
         
-        public init (module: String, operation: String, data: String, uploadModel: String?, instanceId: String?) {
+        public init (module: String, operation: String, data: String, uploadModel: String? = nil, instanceId: String? = nil) {
             self.module = module
             self.operation = operation
             self.data = data
@@ -78,5 +62,21 @@ extension Cr {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上传Json格式数据
+    ///
+    /// 上传Json格式数据，接口返回数据任务ID
+    @inlinable
+    public func uploadDataJson(_ input: UploadDataJsonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadDataJsonResponse > {
+        self.client.execute(action: "UploadDataJson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上传Json格式数据
+    ///
+    /// 上传Json格式数据，接口返回数据任务ID
+    @inlinable
+    public func uploadDataJson(_ input: UploadDataJsonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadDataJsonResponse {
+        try await self.client.execute(action: "UploadDataJson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

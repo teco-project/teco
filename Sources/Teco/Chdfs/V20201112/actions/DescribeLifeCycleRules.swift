@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 查看生命周期规则列表
-    ///
-    /// 通过文件系统ID查看生命周期规则列表。
-    @inlinable
-    public func describeLifeCycleRules(_ input: DescribeLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLifeCycleRulesResponse > {
-        self.client.execute(action: "DescribeLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看生命周期规则列表
-    ///
-    /// 通过文件系统ID查看生命周期规则列表。
-    @inlinable
-    public func describeLifeCycleRules(_ input: DescribeLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLifeCycleRulesResponse {
-        try await self.client.execute(action: "DescribeLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLifeCycleRules请求参数结构体
     public struct DescribeLifeCycleRulesRequest: TCRequestModel {
         /// 文件系统ID
@@ -57,5 +41,21 @@ extension Chdfs {
             case lifeCycleRules = "LifeCycleRules"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看生命周期规则列表
+    ///
+    /// 通过文件系统ID查看生命周期规则列表。
+    @inlinable
+    public func describeLifeCycleRules(_ input: DescribeLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLifeCycleRulesResponse > {
+        self.client.execute(action: "DescribeLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看生命周期规则列表
+    ///
+    /// 通过文件系统ID查看生命周期规则列表。
+    @inlinable
+    public func describeLifeCycleRules(_ input: DescribeLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLifeCycleRulesResponse {
+        try await self.client.execute(action: "DescribeLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

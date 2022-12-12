@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 任务创建
-    ///
-    /// 本接口（CreateTask）用于创建sql查询任务。（推荐使用CreateTasks接口）
-    @inlinable
-    public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskResponse > {
-        self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 任务创建
-    ///
-    /// 本接口（CreateTask）用于创建sql查询任务。（推荐使用CreateTasks接口）
-    @inlinable
-    public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
-        try await self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTask请求参数结构体
     public struct CreateTaskRequest: TCRequestModel {
         /// 计算任务，该参数中包含任务类型及其相关配置信息
@@ -45,7 +29,7 @@ extension Dlc {
         /// 数据引擎名称，不填提交到默认集群
         public let dataEngineName: String?
         
-        public init (task: Task, databaseName: String?, datasourceConnectionName: String?, dataEngineName: String?) {
+        public init (task: Task, databaseName: String? = nil, datasourceConnectionName: String? = nil, dataEngineName: String? = nil) {
             self.task = task
             self.databaseName = databaseName
             self.datasourceConnectionName = datasourceConnectionName
@@ -73,5 +57,21 @@ extension Dlc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 任务创建
+    ///
+    /// 本接口（CreateTask）用于创建sql查询任务。（推荐使用CreateTasks接口）
+    @inlinable
+    public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskResponse > {
+        self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 任务创建
+    ///
+    /// 本接口（CreateTask）用于创建sql查询任务。（推荐使用CreateTasks接口）
+    @inlinable
+    public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
+        try await self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

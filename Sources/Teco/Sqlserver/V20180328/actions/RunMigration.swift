@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 执行迁移任务
-    ///
-    /// 本接口（RunMigration）用于启动迁移任务，开始迁移
-    @inlinable
-    public func runMigration(_ input: RunMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunMigrationResponse > {
-        self.client.execute(action: "RunMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 执行迁移任务
-    ///
-    /// 本接口（RunMigration）用于启动迁移任务，开始迁移
-    @inlinable
-    public func runMigration(_ input: RunMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunMigrationResponse {
-        try await self.client.execute(action: "RunMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RunMigration请求参数结构体
     public struct RunMigrationRequest: TCRequestModel {
         /// 迁移任务ID
@@ -57,5 +41,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 执行迁移任务
+    ///
+    /// 本接口（RunMigration）用于启动迁移任务，开始迁移
+    @inlinable
+    public func runMigration(_ input: RunMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunMigrationResponse > {
+        self.client.execute(action: "RunMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 执行迁移任务
+    ///
+    /// 本接口（RunMigration）用于启动迁移任务，开始迁移
+    @inlinable
+    public func runMigration(_ input: RunMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunMigrationResponse {
+        try await self.client.execute(action: "RunMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

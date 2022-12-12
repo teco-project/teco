@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 添加点播加速域名
-    ///
-    /// 该接口用于将加速域名添加到点播，一个用户最多添加20个加速域名。
-    /// 1.域名添加成功后点播会进行域名的部署，域名由部署状态变为在线状态大概需要2分钟的时间。
-    @inlinable
-    public func createVodDomain(_ input: CreateVodDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVodDomainResponse > {
-        self.client.execute(action: "CreateVodDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加点播加速域名
-    ///
-    /// 该接口用于将加速域名添加到点播，一个用户最多添加20个加速域名。
-    /// 1.域名添加成功后点播会进行域名的部署，域名由部署状态变为在线状态大概需要2分钟的时间。
-    @inlinable
-    public func createVodDomain(_ input: CreateVodDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVodDomainResponse {
-        try await self.client.execute(action: "CreateVodDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVodDomain请求参数结构体
     public struct CreateVodDomainRequest: TCRequestModel {
         /// 需要接入点播的加速域名。注意：不支持填写泛域名。
@@ -48,7 +30,7 @@ extension Vod {
         /// 如果没有设置 AccelerateArea， 点播会根据用户在腾讯云设置的地域信息自动开通中国境内或者中国境外的 CDN 加速。开启中国境内加速的域名，需要先[备案域名](/document/product/243/18905)。
         public let accelerateArea: String?
         
-        public init (domain: String, subAppId: UInt64?, accelerateArea: String?) {
+        public init (domain: String, subAppId: UInt64? = nil, accelerateArea: String? = nil) {
             self.domain = domain
             self.subAppId = subAppId
             self.accelerateArea = accelerateArea
@@ -69,5 +51,23 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加点播加速域名
+    ///
+    /// 该接口用于将加速域名添加到点播，一个用户最多添加20个加速域名。
+    /// 1.域名添加成功后点播会进行域名的部署，域名由部署状态变为在线状态大概需要2分钟的时间。
+    @inlinable
+    public func createVodDomain(_ input: CreateVodDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVodDomainResponse > {
+        self.client.execute(action: "CreateVodDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加点播加速域名
+    ///
+    /// 该接口用于将加速域名添加到点播，一个用户最多添加20个加速域名。
+    /// 1.域名添加成功后点播会进行域名的部署，域名由部署状态变为在线状态大概需要2分钟的时间。
+    @inlinable
+    public func createVodDomain(_ input: CreateVodDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVodDomainResponse {
+        try await self.client.execute(action: "CreateVodDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 名片识别
-    ///
-    /// 本接口支持名片各字段的自动定位与识别，包含姓名、电话、手机号、邮箱、公司、部门、职位、网址、地址、QQ、微信、MSN等。
-    @inlinable
-    public func businessCardOCR(_ input: BusinessCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BusinessCardOCRResponse > {
-        self.client.execute(action: "BusinessCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 名片识别
-    ///
-    /// 本接口支持名片各字段的自动定位与识别，包含姓名、电话、手机号、邮箱、公司、部门、职位、网址、地址、QQ、微信、MSN等。
-    @inlinable
-    public func businessCardOCR(_ input: BusinessCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BusinessCardOCRResponse {
-        try await self.client.execute(action: "BusinessCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BusinessCardOCR请求参数结构体
     public struct BusinessCardOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -56,7 +40,7 @@ extension Ocr {
         /// Config = {"RetImageType":"PROPROCESS"}
         public let config: String?
         
-        public init (imageBase64: String?, imageUrl: String?, config: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, config: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.config = config
@@ -89,5 +73,21 @@ extension Ocr {
             case angle = "Angle"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 名片识别
+    ///
+    /// 本接口支持名片各字段的自动定位与识别，包含姓名、电话、手机号、邮箱、公司、部门、职位、网址、地址、QQ、微信、MSN等。
+    @inlinable
+    public func businessCardOCR(_ input: BusinessCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BusinessCardOCRResponse > {
+        self.client.execute(action: "BusinessCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 名片识别
+    ///
+    /// 本接口支持名片各字段的自动定位与识别，包含姓名、电话、手机号、邮箱、公司、部门、职位、网址、地址、QQ、微信、MSN等。
+    @inlinable
+    public func businessCardOCR(_ input: BusinessCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BusinessCardOCRResponse {
+        try await self.client.execute(action: "BusinessCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

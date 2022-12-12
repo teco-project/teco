@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 车辆VIN码识别
-    ///
-    /// 本接口支持图片内车辆识别代号（VIN）的检测和识别。
-    @inlinable
-    public func vinOCR(_ input: VinOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VinOCRResponse > {
-        self.client.execute(action: "VinOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 车辆VIN码识别
-    ///
-    /// 本接口支持图片内车辆识别代号（VIN）的检测和识别。
-    @inlinable
-    public func vinOCR(_ input: VinOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VinOCRResponse {
-        try await self.client.execute(action: "VinOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VinOCR请求参数结构体
     public struct VinOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -46,7 +30,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -69,5 +53,21 @@ extension Ocr {
             case vin = "Vin"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 车辆VIN码识别
+    ///
+    /// 本接口支持图片内车辆识别代号（VIN）的检测和识别。
+    @inlinable
+    public func vinOCR(_ input: VinOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VinOCRResponse > {
+        self.client.execute(action: "VinOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 车辆VIN码识别
+    ///
+    /// 本接口支持图片内车辆识别代号（VIN）的检测和识别。
+    @inlinable
+    public func vinOCR(_ input: VinOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VinOCRResponse {
+        try await self.client.execute(action: "VinOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

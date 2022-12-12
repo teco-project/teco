@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 查询固件升级任务统计信息
-    @inlinable
-    public func describeFirmwareTaskStatistics(_ input: DescribeFirmwareTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirmwareTaskStatisticsResponse > {
-        self.client.execute(action: "DescribeFirmwareTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询固件升级任务统计信息
-    @inlinable
-    public func describeFirmwareTaskStatistics(_ input: DescribeFirmwareTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskStatisticsResponse {
-        try await self.client.execute(action: "DescribeFirmwareTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFirmwareTaskStatistics请求参数结构体
     public struct DescribeFirmwareTaskStatisticsRequest: TCRequestModel {
         /// 产品ID
@@ -69,5 +57,17 @@ extension Iotcloud {
             case upgradingTotal = "UpgradingTotal"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询固件升级任务统计信息
+    @inlinable
+    public func describeFirmwareTaskStatistics(_ input: DescribeFirmwareTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirmwareTaskStatisticsResponse > {
+        self.client.execute(action: "DescribeFirmwareTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询固件升级任务统计信息
+    @inlinable
+    public func describeFirmwareTaskStatistics(_ input: DescribeFirmwareTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskStatisticsResponse {
+        try await self.client.execute(action: "DescribeFirmwareTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

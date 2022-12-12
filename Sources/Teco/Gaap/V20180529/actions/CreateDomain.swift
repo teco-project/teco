@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 创建HTTPS监听器的访问域名
-    ///
-    /// 本接口（CreateDomain）用于创建HTTP/HTTPS监听器的访问域名，客户端请求通过访问该域名来请求后端业务。
-    /// 该接口仅支持version3.0的通道。
-    @inlinable
-    public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainResponse > {
-        self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建HTTPS监听器的访问域名
-    ///
-    /// 本接口（CreateDomain）用于创建HTTP/HTTPS监听器的访问域名，客户端请求通过访问该域名来请求后端业务。
-    /// 该接口仅支持version3.0的通道。
-    @inlinable
-    public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
-        try await self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDomain请求参数结构体
     public struct CreateDomainRequest: TCRequestModel {
         /// 监听器ID。
@@ -58,7 +40,7 @@ extension Gaap {
         /// 默认不开启Http3。可以通过SetDomainHttp3开启。
         public let http3Supported: Int64?
         
-        public init (listenerId: String, domain: String, certificateId: String?, clientCertificateId: String?, polyClientCertificateIds: [String]?, http3Supported: Int64?) {
+        public init (listenerId: String, domain: String, certificateId: String? = nil, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil, http3Supported: Int64? = nil) {
             self.listenerId = listenerId
             self.domain = domain
             self.certificateId = certificateId
@@ -85,5 +67,23 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建HTTPS监听器的访问域名
+    ///
+    /// 本接口（CreateDomain）用于创建HTTP/HTTPS监听器的访问域名，客户端请求通过访问该域名来请求后端业务。
+    /// 该接口仅支持version3.0的通道。
+    @inlinable
+    public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainResponse > {
+        self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建HTTPS监听器的访问域名
+    ///
+    /// 本接口（CreateDomain）用于创建HTTP/HTTPS监听器的访问域名，客户端请求通过访问该域名来请求后端业务。
+    /// 该接口仅支持version3.0的通道。
+    @inlinable
+    public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
+        try await self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

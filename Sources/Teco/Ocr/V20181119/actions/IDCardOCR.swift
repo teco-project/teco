@@ -15,6 +15,113 @@
 // DO NOT EDIT.
 
 extension Ocr {
+    /// IDCardOCR请求参数结构体
+    public struct IDCardOCRRequest: TCRequestModel {
+        /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
+        /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        public let imageBase64: String?
+        
+        /// 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
+        /// 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
+        public let imageUrl: String?
+        
+        /// FRONT：身份证有照片的一面（人像面），
+        /// BACK：身份证有国徽的一面（国徽面），
+        /// 该参数如果不填，将为您自动判断身份证正反面。
+        public let cardSide: String?
+        
+        /// 以下可选字段均为bool 类型，默认false：
+        /// CropIdCard，身份证照片裁剪（去掉证件外多余的边缘、自动矫正拍摄角度）
+        /// CropPortrait，人像照片裁剪（自动抠取身份证头像区域）
+        /// CopyWarn，复印件告警
+        /// BorderCheckWarn，边框和框内遮挡告警
+        /// ReshootWarn，翻拍告警
+        /// DetectPsWarn，PS检测告警
+        /// TempIdWarn，临时身份证告警
+        /// InvalidDateWarn，身份证有效日期不合法告警
+        /// Quality，图片质量分数（评价图片的模糊程度）
+        /// MultiCardDetect，是否开启多卡证检测
+        /// ReflectWarn，是否开启反光检测
+        /// SDK 设置方式参考：
+        /// Config = Json.stringify({"CropIdCard":true,"CropPortrait":true})
+        /// API 3.0 Explorer 设置方式参考：
+        /// Config = {"CropIdCard":true,"CropPortrait":true}
+        public let config: String?
+        
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, config: String? = nil) {
+            self.imageBase64 = imageBase64
+            self.imageUrl = imageUrl
+            self.cardSide = cardSide
+            self.config = config
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case imageBase64 = "ImageBase64"
+            case imageUrl = "ImageUrl"
+            case cardSide = "CardSide"
+            case config = "Config"
+        }
+    }
+    
+    /// IDCardOCR返回参数结构体
+    public struct IDCardOCRResponse: TCResponseModel {
+        /// 姓名（人像面）
+        public let name: String
+        
+        /// 性别（人像面）
+        public let sex: String
+        
+        /// 民族（人像面）
+        public let nation: String
+        
+        /// 出生日期（人像面）
+        public let birth: String
+        
+        /// 地址（人像面）
+        public let address: String
+        
+        /// 身份证号（人像面）
+        public let idNum: String
+        
+        /// 发证机关（国徽面）
+        public let authority: String
+        
+        /// 证件有效期（国徽面）
+        public let validDate: String
+        
+        /// 扩展信息，不请求则不返回，具体输入参考示例3和示例4。
+        /// IdCard，裁剪后身份证照片的base64编码，请求 Config.CropIdCard 时返回；
+        /// Portrait，身份证头像照片的base64编码，请求 Config.CropPortrait 时返回；
+        /// Quality，图片质量分数，请求 Config.Quality 时返回（取值范围：0 ~ 100，分数越低越模糊，建议阈值≥50）;
+        /// BorderCodeValue，身份证边框不完整告警阈值分数，请求 Config.BorderCheckWarn时返回（取值范围：0 ~ 100，分数越低边框遮挡可能性越低，建议阈值≤50）;
+        /// WarnInfos，告警信息，Code 告警码列表和释义：
+        /// -9100	身份证有效日期不合法告警，
+        /// -9101	身份证边框不完整告警，
+        /// -9102	身份证复印件告警，
+        /// -9103	身份证翻拍告警，
+        /// -9105	身份证框内遮挡告警，
+        /// -9104	临时身份证告警，
+        /// -9106	身份证 PS 告警，
+        /// -9107       身份证反光告警。
+        public let advancedInfo: String
+        
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case sex = "Sex"
+            case nation = "Nation"
+            case birth = "Birth"
+            case address = "Address"
+            case idNum = "IdNum"
+            case authority = "Authority"
+            case validDate = "ValidDate"
+            case advancedInfo = "AdvancedInfo"
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 身份证识别
     ///
     /// 本接口支持中国大陆居民二代身份证正反面所有字段的识别，包括姓名、性别、民族、出生日期、住址、公民身份证号、签发机关、有效期限，识别准确度达到99%以上。
@@ -117,112 +224,5 @@ extension Ocr {
     @inlinable
     public func idCardOCR(_ input: IDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IDCardOCRResponse {
         try await self.client.execute(action: "IDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// IDCardOCR请求参数结构体
-    public struct IDCardOCRRequest: TCRequestModel {
-        /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
-        /// 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        public let imageBase64: String?
-        
-        /// 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
-        /// 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
-        public let imageUrl: String?
-        
-        /// FRONT：身份证有照片的一面（人像面），
-        /// BACK：身份证有国徽的一面（国徽面），
-        /// 该参数如果不填，将为您自动判断身份证正反面。
-        public let cardSide: String?
-        
-        /// 以下可选字段均为bool 类型，默认false：
-        /// CropIdCard，身份证照片裁剪（去掉证件外多余的边缘、自动矫正拍摄角度）
-        /// CropPortrait，人像照片裁剪（自动抠取身份证头像区域）
-        /// CopyWarn，复印件告警
-        /// BorderCheckWarn，边框和框内遮挡告警
-        /// ReshootWarn，翻拍告警
-        /// DetectPsWarn，PS检测告警
-        /// TempIdWarn，临时身份证告警
-        /// InvalidDateWarn，身份证有效日期不合法告警
-        /// Quality，图片质量分数（评价图片的模糊程度）
-        /// MultiCardDetect，是否开启多卡证检测
-        /// ReflectWarn，是否开启反光检测
-        /// SDK 设置方式参考：
-        /// Config = Json.stringify({"CropIdCard":true,"CropPortrait":true})
-        /// API 3.0 Explorer 设置方式参考：
-        /// Config = {"CropIdCard":true,"CropPortrait":true}
-        public let config: String?
-        
-        public init (imageBase64: String?, imageUrl: String?, cardSide: String?, config: String?) {
-            self.imageBase64 = imageBase64
-            self.imageUrl = imageUrl
-            self.cardSide = cardSide
-            self.config = config
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case imageBase64 = "ImageBase64"
-            case imageUrl = "ImageUrl"
-            case cardSide = "CardSide"
-            case config = "Config"
-        }
-    }
-    
-    /// IDCardOCR返回参数结构体
-    public struct IDCardOCRResponse: TCResponseModel {
-        /// 姓名（人像面）
-        public let name: String
-        
-        /// 性别（人像面）
-        public let sex: String
-        
-        /// 民族（人像面）
-        public let nation: String
-        
-        /// 出生日期（人像面）
-        public let birth: String
-        
-        /// 地址（人像面）
-        public let address: String
-        
-        /// 身份证号（人像面）
-        public let idNum: String
-        
-        /// 发证机关（国徽面）
-        public let authority: String
-        
-        /// 证件有效期（国徽面）
-        public let validDate: String
-        
-        /// 扩展信息，不请求则不返回，具体输入参考示例3和示例4。
-        /// IdCard，裁剪后身份证照片的base64编码，请求 Config.CropIdCard 时返回；
-        /// Portrait，身份证头像照片的base64编码，请求 Config.CropPortrait 时返回；
-        /// Quality，图片质量分数，请求 Config.Quality 时返回（取值范围：0 ~ 100，分数越低越模糊，建议阈值≥50）;
-        /// BorderCodeValue，身份证边框不完整告警阈值分数，请求 Config.BorderCheckWarn时返回（取值范围：0 ~ 100，分数越低边框遮挡可能性越低，建议阈值≤50）;
-        /// WarnInfos，告警信息，Code 告警码列表和释义：
-        /// -9100	身份证有效日期不合法告警，
-        /// -9101	身份证边框不完整告警，
-        /// -9102	身份证复印件告警，
-        /// -9103	身份证翻拍告警，
-        /// -9105	身份证框内遮挡告警，
-        /// -9104	临时身份证告警，
-        /// -9106	身份证 PS 告警，
-        /// -9107       身份证反光告警。
-        public let advancedInfo: String
-        
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case name = "Name"
-            case sex = "Sex"
-            case nation = "Nation"
-            case birth = "Birth"
-            case address = "Address"
-            case idNum = "IdNum"
-            case authority = "Authority"
-            case validDate = "ValidDate"
-            case advancedInfo = "AdvancedInfo"
-            case requestId = "RequestId"
-        }
     }
 }

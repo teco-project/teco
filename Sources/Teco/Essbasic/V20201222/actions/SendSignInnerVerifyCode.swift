@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 发送签署验证码
-    ///
-    /// 此接口用于发送签署验证码
-    @inlinable
-    public func sendSignInnerVerifyCode(_ input: SendSignInnerVerifyCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendSignInnerVerifyCodeResponse > {
-        self.client.execute(action: "SendSignInnerVerifyCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送签署验证码
-    ///
-    /// 此接口用于发送签署验证码
-    @inlinable
-    public func sendSignInnerVerifyCode(_ input: SendSignInnerVerifyCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSignInnerVerifyCodeResponse {
-        try await self.client.execute(action: "SendSignInnerVerifyCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendSignInnerVerifyCode请求参数结构体
     public struct SendSignInnerVerifyCodeRequest: TCRequestModel {
         /// 调用方信息
@@ -57,7 +41,7 @@ extension Essbasic {
         /// 三要素检测结果
         public let checkThreeElementResult: Int64?
         
-        public init (caller: Caller, mobile: String, verifyType: String, userId: String?, verifyTemplateId: String?, verifySign: String?, flowId: String?, checkThreeElementResult: Int64?) {
+        public init (caller: Caller, mobile: String, verifyType: String, userId: String? = nil, verifyTemplateId: String? = nil, verifySign: String? = nil, flowId: String? = nil, checkThreeElementResult: Int64? = nil) {
             self.caller = caller
             self.mobile = mobile
             self.verifyType = verifyType
@@ -92,5 +76,21 @@ extension Essbasic {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送签署验证码
+    ///
+    /// 此接口用于发送签署验证码
+    @inlinable
+    public func sendSignInnerVerifyCode(_ input: SendSignInnerVerifyCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendSignInnerVerifyCodeResponse > {
+        self.client.execute(action: "SendSignInnerVerifyCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送签署验证码
+    ///
+    /// 此接口用于发送签署验证码
+    @inlinable
+    public func sendSignInnerVerifyCode(_ input: SendSignInnerVerifyCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSignInnerVerifyCodeResponse {
+        try await self.client.execute(action: "SendSignInnerVerifyCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

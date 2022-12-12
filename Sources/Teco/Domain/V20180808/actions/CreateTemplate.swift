@@ -15,31 +15,15 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 添加域名信息模板
-    ///
-    /// 本接口 ( CreateTemplate ) 用于添加域名信息模板 。
-    @inlinable
-    public func createTemplate(_ input: CreateTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTemplateResponse > {
-        self.client.execute(action: "CreateTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加域名信息模板
-    ///
-    /// 本接口 ( CreateTemplate ) 用于添加域名信息模板 。
-    @inlinable
-    public func createTemplate(_ input: CreateTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTemplateResponse {
-        try await self.client.execute(action: "CreateTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTemplate请求参数结构体
     public struct CreateTemplateRequest: TCRequestModel {
         /// 联系人信息
         public let contactInfo: ContactInfo
         
         /// 证件信息
-        public let certificateInfo: CertificateInfo
+        public let certificateInfo: CertificateInfo?
         
-        public init (contactInfo: ContactInfo, certificateInfo: CertificateInfo) {
+        public init (contactInfo: ContactInfo, certificateInfo: CertificateInfo? = nil) {
             self.contactInfo = contactInfo
             self.certificateInfo = certificateInfo
         }
@@ -62,5 +46,21 @@ extension Domain {
             case template = "Template"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加域名信息模板
+    ///
+    /// 本接口 ( CreateTemplate ) 用于添加域名信息模板 。
+    @inlinable
+    public func createTemplate(_ input: CreateTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTemplateResponse > {
+        self.client.execute(action: "CreateTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加域名信息模板
+    ///
+    /// 本接口 ( CreateTemplate ) 用于添加域名信息模板 。
+    @inlinable
+    public func createTemplate(_ input: CreateTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTemplateResponse {
+        try await self.client.execute(action: "CreateTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

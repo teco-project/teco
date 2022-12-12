@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 批量修改任务责任人【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 批量修改任务责任人
-    @inlinable
-    public func batchModifyOwnersNew(_ input: BatchModifyOwnersNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyOwnersNewResponse > {
-        self.client.execute(action: "BatchModifyOwnersNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量修改任务责任人【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 批量修改任务责任人
-    @inlinable
-    public func batchModifyOwnersNew(_ input: BatchModifyOwnersNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyOwnersNewResponse {
-        try await self.client.execute(action: "BatchModifyOwnersNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchModifyOwnersNew请求参数结构体
     public struct BatchModifyOwnersNewRequest: TCRequestModel {
         /// 需要更新责任人的TaskId数组
@@ -69,5 +51,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量修改任务责任人【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 批量修改任务责任人
+    @inlinable
+    public func batchModifyOwnersNew(_ input: BatchModifyOwnersNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyOwnersNewResponse > {
+        self.client.execute(action: "BatchModifyOwnersNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量修改任务责任人【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 批量修改任务责任人
+    @inlinable
+    public func batchModifyOwnersNew(_ input: BatchModifyOwnersNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyOwnersNewResponse {
+        try await self.client.execute(action: "BatchModifyOwnersNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

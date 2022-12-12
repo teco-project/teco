@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Trtc {
-    /// 结束云端混流（字符串房间号）
-    ///
-    /// 接口说明：结束云端混流
-    @inlinable
-    public func stopMCUMixTranscodeByStrRoomId(_ input: StopMCUMixTranscodeByStrRoomIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopMCUMixTranscodeByStrRoomIdResponse > {
-        self.client.execute(action: "StopMCUMixTranscodeByStrRoomId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 结束云端混流（字符串房间号）
-    ///
-    /// 接口说明：结束云端混流
-    @inlinable
-    public func stopMCUMixTranscodeByStrRoomId(_ input: StopMCUMixTranscodeByStrRoomIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMCUMixTranscodeByStrRoomIdResponse {
-        try await self.client.execute(action: "StopMCUMixTranscodeByStrRoomId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopMCUMixTranscodeByStrRoomId请求参数结构体
     public struct StopMCUMixTranscodeByStrRoomIdRequest: TCRequestModel {
         /// TRTC的SDKAppId。
@@ -58,5 +42,21 @@ extension Trtc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 结束云端混流（字符串房间号）
+    ///
+    /// 接口说明：结束云端混流
+    @inlinable
+    public func stopMCUMixTranscodeByStrRoomId(_ input: StopMCUMixTranscodeByStrRoomIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopMCUMixTranscodeByStrRoomIdResponse > {
+        self.client.execute(action: "StopMCUMixTranscodeByStrRoomId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 结束云端混流（字符串房间号）
+    ///
+    /// 接口说明：结束云端混流
+    @inlinable
+    public func stopMCUMixTranscodeByStrRoomId(_ input: StopMCUMixTranscodeByStrRoomIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMCUMixTranscodeByStrRoomIdResponse {
+        try await self.client.execute(action: "StopMCUMixTranscodeByStrRoomId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

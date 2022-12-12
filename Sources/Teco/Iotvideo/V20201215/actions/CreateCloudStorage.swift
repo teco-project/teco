@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 开通云存服务
-    @inlinable
-    public func createCloudStorage(_ input: CreateCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudStorageResponse > {
-        self.client.execute(action: "CreateCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开通云存服务
-    @inlinable
-    public func createCloudStorage(_ input: CreateCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudStorageResponse {
-        try await self.client.execute(action: "CreateCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCloudStorage请求参数结构体
     public struct CreateCloudStorageRequest: TCRequestModel {
         /// 产品ID
@@ -55,7 +43,7 @@ extension Iotvideo {
         /// 如果当前设备已开启云存套餐，Override=1会使用新套餐覆盖原有套餐。不传此参数则默认为0。
         public let override: UInt64?
         
-        public init (productId: String, deviceName: String, packageId: String, override: UInt64?) {
+        public init (productId: String, deviceName: String, packageId: String, override: UInt64? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.packageId = packageId
@@ -78,5 +66,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开通云存服务
+    @inlinable
+    public func createCloudStorage(_ input: CreateCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudStorageResponse > {
+        self.client.execute(action: "CreateCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开通云存服务
+    @inlinable
+    public func createCloudStorage(_ input: CreateCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudStorageResponse {
+        try await self.client.execute(action: "CreateCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

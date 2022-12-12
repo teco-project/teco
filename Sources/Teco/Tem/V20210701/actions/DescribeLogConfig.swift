@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 查询日志收集配置详情
-    @inlinable
-    public func describeLogConfig(_ input: DescribeLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogConfigResponse > {
-        self.client.execute(action: "DescribeLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询日志收集配置详情
-    @inlinable
-    public func describeLogConfig(_ input: DescribeLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogConfigResponse {
-        try await self.client.execute(action: "DescribeLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLogConfig请求参数结构体
     public struct DescribeLogConfigRequest: TCRequestModel {
         /// 环境 ID
@@ -38,7 +26,7 @@ extension Tem {
         /// 应用 ID
         public let applicationId: String?
         
-        public init (environmentId: String, name: String, applicationId: String?) {
+        public init (environmentId: String, name: String, applicationId: String? = nil) {
             self.environmentId = environmentId
             self.name = name
             self.applicationId = applicationId
@@ -63,5 +51,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询日志收集配置详情
+    @inlinable
+    public func describeLogConfig(_ input: DescribeLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogConfigResponse > {
+        self.client.execute(action: "DescribeLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询日志收集配置详情
+    @inlinable
+    public func describeLogConfig(_ input: DescribeLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogConfigResponse {
+        try await self.client.execute(action: "DescribeLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

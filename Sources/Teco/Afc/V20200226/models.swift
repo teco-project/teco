@@ -23,7 +23,7 @@ extension Afc {
         /// 约定用入参，默认不涉及
         public let cryptoContent: String?
         
-        public init (cryptoType: String?, cryptoContent: String?) {
+        public init (cryptoType: String? = nil, cryptoContent: String? = nil) {
             self.cryptoType = cryptoType
             self.cryptoContent = cryptoContent
         }
@@ -157,7 +157,7 @@ extension Afc {
         /// 1：md5
         public let nameCryptoType: String?
         
-        public init (customerUin: String, customerAppid: String, idNumber: String, phoneNumber: String, scene: String?, customerSubUin: String?, authorization: String?, name: String?, bankCardNumber: String?, userIp: String?, imei: String?, idfa: String?, emailAddress: String?, address: String?, mac: String?, imsi: String?, accountType: String?, uid: String?, appIdU: String?, wifiMac: String?, wifiSSID: String?, wifiBSSID: String?, extensionId: String?, extensionIn: String?, businessId: String?, idCryptoType: String?, phoneCryptoType: String?, nameCryptoType: String?) {
+        public init (customerUin: String, customerAppid: String, idNumber: String, phoneNumber: String, scene: String? = nil, customerSubUin: String? = nil, authorization: String? = nil, name: String? = nil, bankCardNumber: String? = nil, userIp: String? = nil, imei: String? = nil, idfa: String? = nil, emailAddress: String? = nil, address: String? = nil, mac: String? = nil, imsi: String? = nil, accountType: String? = nil, uid: String? = nil, appIdU: String? = nil, wifiMac: String? = nil, wifiSSID: String? = nil, wifiBSSID: String? = nil, extensionId: String? = nil, extensionIn: String? = nil, businessId: String? = nil, idCryptoType: String? = nil, phoneCryptoType: String? = nil, nameCryptoType: String? = nil) {
             self.customerUin = customerUin
             self.customerAppid = customerAppid
             self.idNumber = idNumber
@@ -334,7 +334,7 @@ extension Afc {
         /// 业务二层详情入参的哈希签名
         public let notarizationSign: String?
         
-        public init (interfaceName: String?, notarizationInput: String?, notarizationSign: String?) {
+        public init (interfaceName: String? = nil, notarizationInput: String? = nil, notarizationSign: String? = nil) {
             self.interfaceName = interfaceName
             self.notarizationInput = notarizationInput
             self.notarizationSign = notarizationSign

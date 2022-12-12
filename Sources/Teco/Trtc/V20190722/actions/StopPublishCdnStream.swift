@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Trtc {
-    /// 停止转推任务
-    ///
-    /// 停止转推任务。
-    @inlinable
-    public func stopPublishCdnStream(_ input: StopPublishCdnStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopPublishCdnStreamResponse > {
-        self.client.execute(action: "StopPublishCdnStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止转推任务
-    ///
-    /// 停止转推任务。
-    @inlinable
-    public func stopPublishCdnStream(_ input: StopPublishCdnStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopPublishCdnStreamResponse {
-        try await self.client.execute(action: "StopPublishCdnStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopPublishCdnStream请求参数结构体
     public struct StopPublishCdnStreamRequest: TCRequestModel {
         /// TRTC的[SdkAppId](https://cloud.tencent.com/document/product/647/46351#sdkappid)，和转推的房间所对应的SdkAppId相同。
@@ -62,5 +46,21 @@ extension Trtc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止转推任务
+    ///
+    /// 停止转推任务。
+    @inlinable
+    public func stopPublishCdnStream(_ input: StopPublishCdnStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopPublishCdnStreamResponse > {
+        self.client.execute(action: "StopPublishCdnStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止转推任务
+    ///
+    /// 停止转推任务。
+    @inlinable
+    public func stopPublishCdnStream(_ input: StopPublishCdnStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopPublishCdnStreamResponse {
+        try await self.client.execute(action: "StopPublishCdnStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

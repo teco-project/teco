@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 镜像木马列表导出
-    ///
-    /// 容器安全搜索查询镜像木马列表导出
-    @inlinable
-    public func describeAssetImageVirusListExport(_ input: DescribeAssetImageVirusListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageVirusListExportResponse > {
-        self.client.execute(action: "DescribeAssetImageVirusListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 镜像木马列表导出
-    ///
-    /// 容器安全搜索查询镜像木马列表导出
-    @inlinable
-    public func describeAssetImageVirusListExport(_ input: DescribeAssetImageVirusListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVirusListExportResponse {
-        try await self.client.execute(action: "DescribeAssetImageVirusListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageVirusListExport请求参数结构体
     public struct DescribeAssetImageVirusListExportRequest: TCRequestModel {
         /// 列表支持字段
@@ -44,7 +28,7 @@ extension Tcss {
         /// <li>RiskLevel - String - 是否必填：否 - 风险等级  1,2,3,4</li>
         public let filters: [AssetFilters]?
         
-        public init (exportField: [String], imageID: String, filters: [AssetFilters]?) {
+        public init (exportField: [String], imageID: String, filters: [AssetFilters]? = nil) {
             self.exportField = exportField
             self.imageID = imageID
             self.filters = filters
@@ -73,5 +57,21 @@ extension Tcss {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 镜像木马列表导出
+    ///
+    /// 容器安全搜索查询镜像木马列表导出
+    @inlinable
+    public func describeAssetImageVirusListExport(_ input: DescribeAssetImageVirusListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageVirusListExportResponse > {
+        self.client.execute(action: "DescribeAssetImageVirusListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像木马列表导出
+    ///
+    /// 容器安全搜索查询镜像木马列表导出
+    @inlinable
+    public func describeAssetImageVirusListExport(_ input: DescribeAssetImageVirusListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVirusListExportResponse {
+        try await self.client.execute(action: "DescribeAssetImageVirusListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建专线网关云联网路由
-    ///
-    /// 本接口（CreateDirectConnectGatewayCcnRoutes）用于创建专线网关的云联网路由（IDC网段）
-    @inlinable
-    public func createDirectConnectGatewayCcnRoutes(_ input: CreateDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDirectConnectGatewayCcnRoutesResponse > {
-        self.client.execute(action: "CreateDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建专线网关云联网路由
-    ///
-    /// 本接口（CreateDirectConnectGatewayCcnRoutes）用于创建专线网关的云联网路由（IDC网段）
-    @inlinable
-    public func createDirectConnectGatewayCcnRoutes(_ input: CreateDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectGatewayCcnRoutesResponse {
-        try await self.client.execute(action: "CreateDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDirectConnectGatewayCcnRoutes请求参数结构体
     public struct CreateDirectConnectGatewayCcnRoutesRequest: TCRequestModel {
         /// 专线网关ID，形如：dcg-prpqlmg1
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建专线网关云联网路由
+    ///
+    /// 本接口（CreateDirectConnectGatewayCcnRoutes）用于创建专线网关的云联网路由（IDC网段）
+    @inlinable
+    public func createDirectConnectGatewayCcnRoutes(_ input: CreateDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDirectConnectGatewayCcnRoutesResponse > {
+        self.client.execute(action: "CreateDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建专线网关云联网路由
+    ///
+    /// 本接口（CreateDirectConnectGatewayCcnRoutes）用于创建专线网关的云联网路由（IDC网段）
+    @inlinable
+    public func createDirectConnectGatewayCcnRoutes(_ input: CreateDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectGatewayCcnRoutesResponse {
+        try await self.client.execute(action: "CreateDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

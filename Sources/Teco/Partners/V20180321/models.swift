@@ -229,7 +229,7 @@ extension Partners {
         
         /// 价格详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let goodsPrice: DealGoodsPriceElem
+        public let goodsPrice: DealGoodsPriceElem?
         
         /// 下单人
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -371,7 +371,7 @@ extension Partners {
         
         /// 价格详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let goodsPrice: DealGoodsPriceNewElem
+        public let goodsPrice: DealGoodsPriceNewElem?
         
         /// 下单人
         /// 注意：此字段可能返回 null，表示取不到有效值。

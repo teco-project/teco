@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 批量暂停集成任务
-    @inlinable
-    public func batchSuspendIntegrationTasks(_ input: BatchSuspendIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchSuspendIntegrationTasksResponse > {
-        self.client.execute(action: "BatchSuspendIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量暂停集成任务
-    @inlinable
-    public func batchSuspendIntegrationTasks(_ input: BatchSuspendIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchSuspendIntegrationTasksResponse {
-        try await self.client.execute(action: "BatchSuspendIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchSuspendIntegrationTasks请求参数结构体
     public struct BatchSuspendIntegrationTasksRequest: TCRequestModel {
         /// 任务id
@@ -71,5 +59,17 @@ extension Wedata {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量暂停集成任务
+    @inlinable
+    public func batchSuspendIntegrationTasks(_ input: BatchSuspendIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchSuspendIntegrationTasksResponse > {
+        self.client.execute(action: "BatchSuspendIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量暂停集成任务
+    @inlinable
+    public func batchSuspendIntegrationTasks(_ input: BatchSuspendIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchSuspendIntegrationTasksResponse {
+        try await self.client.execute(action: "BatchSuspendIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

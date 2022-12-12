@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 创建负载均衡
-    @inlinable
-    public func createLoadBalancing(_ input: CreateLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLoadBalancingResponse > {
-        self.client.execute(action: "CreateLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建负载均衡
-    @inlinable
-    public func createLoadBalancing(_ input: CreateLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancingResponse {
-        try await self.client.execute(action: "CreateLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLoadBalancing请求参数结构体
     public struct CreateLoadBalancingRequest: TCRequestModel {
         /// 站点ID
@@ -46,7 +34,7 @@ extension Teo {
         /// 当Type=dns_only表示DNS的TTL时间
         public let ttl: UInt64?
         
-        public init (zoneId: String, host: String, type: String, originId: [String], ttl: UInt64?) {
+        public init (zoneId: String, host: String, type: String, originId: [String], ttl: UInt64? = nil) {
             self.zoneId = zoneId
             self.host = host
             self.type = type
@@ -75,5 +63,17 @@ extension Teo {
             case loadBalancingId = "LoadBalancingId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建负载均衡
+    @inlinable
+    public func createLoadBalancing(_ input: CreateLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLoadBalancingResponse > {
+        self.client.execute(action: "CreateLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建负载均衡
+    @inlinable
+    public func createLoadBalancing(_ input: CreateLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancingResponse {
+        try await self.client.execute(action: "CreateLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

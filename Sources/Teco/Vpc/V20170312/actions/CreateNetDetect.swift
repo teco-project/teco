@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建网络探测
-    ///
-    /// 本接口(CreateNetDetect)用于创建网络探测。
-    @inlinable
-    public func createNetDetect(_ input: CreateNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetDetectResponse > {
-        self.client.execute(action: "CreateNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建网络探测
-    ///
-    /// 本接口(CreateNetDetect)用于创建网络探测。
-    @inlinable
-    public func createNetDetect(_ input: CreateNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetDetectResponse {
-        try await self.client.execute(action: "CreateNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNetDetect请求参数结构体
     public struct CreateNetDetectRequest: TCRequestModel {
         /// `VPC`实例`ID`。形如：`vpc-12345678`
@@ -66,7 +50,7 @@ extension Vpc {
         /// 网络探测描述。
         public let netDetectDescription: String?
         
-        public init (vpcId: String, subnetId: String, netDetectName: String, detectDestinationIp: [String], nextHopType: String?, nextHopDestination: String?, netDetectDescription: String?) {
+        public init (vpcId: String, subnetId: String, netDetectName: String, detectDestinationIp: [String], nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil) {
             self.vpcId = vpcId
             self.subnetId = subnetId
             self.netDetectName = netDetectName
@@ -99,5 +83,21 @@ extension Vpc {
             case netDetect = "NetDetect"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建网络探测
+    ///
+    /// 本接口(CreateNetDetect)用于创建网络探测。
+    @inlinable
+    public func createNetDetect(_ input: CreateNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetDetectResponse > {
+        self.client.execute(action: "CreateNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建网络探测
+    ///
+    /// 本接口(CreateNetDetect)用于创建网络探测。
+    @inlinable
+    public func createNetDetect(_ input: CreateNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetDetectResponse {
+        try await self.client.execute(action: "CreateNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

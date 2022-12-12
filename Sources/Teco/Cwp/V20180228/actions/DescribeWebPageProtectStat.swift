@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询网页防篡改防护统计
-    ///
-    /// 网站防篡改-查询动态防护信息
-    @inlinable
-    public func describeWebPageProtectStat(_ input: DescribeWebPageProtectStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebPageProtectStatResponse > {
-        self.client.execute(action: "DescribeWebPageProtectStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询网页防篡改防护统计
-    ///
-    /// 网站防篡改-查询动态防护信息
-    @inlinable
-    public func describeWebPageProtectStat(_ input: DescribeWebPageProtectStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageProtectStatResponse {
-        try await self.client.execute(action: "DescribeWebPageProtectStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWebPageProtectStat请求参数结构体
     public struct DescribeWebPageProtectStatRequest: TCRequestModel {
         public init () {
@@ -53,5 +37,21 @@ extension Cwp {
             case protectFileType = "ProtectFileType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询网页防篡改防护统计
+    ///
+    /// 网站防篡改-查询动态防护信息
+    @inlinable
+    public func describeWebPageProtectStat(_ input: DescribeWebPageProtectStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebPageProtectStatResponse > {
+        self.client.execute(action: "DescribeWebPageProtectStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网页防篡改防护统计
+    ///
+    /// 网站防篡改-查询动态防护信息
+    @inlinable
+    public func describeWebPageProtectStat(_ input: DescribeWebPageProtectStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageProtectStatResponse {
+        try await self.client.execute(action: "DescribeWebPageProtectStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

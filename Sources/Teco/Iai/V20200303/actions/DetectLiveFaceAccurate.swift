@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 人脸静态活体检测（高精度版）
-    ///
-    /// 人脸静态活体检测（高精度版）可用于对用户上传的静态图片进行防翻拍活体检测，以判断是否是翻拍图片。
-    /// 相比现有静态活体检测服务，高精度版在维持高真人通过率的前提下，增强了对高清屏幕、裁剪纸片、3D面具等攻击的防御能力，攻击拦截率约为业内同类型产品形态4-5倍。同时支持多场景人脸核验，满足移动端、PC端各类型场景的图片活体检验需求，适用于各个行业不同的活体检验应用。
-    /// 人脸静态活体检测（高精度版）接口于2022年8月1日 00:00起正式开始计费，采取后付费按量计费模式，详见[计费概述](https://cloud.tencent.com/document/product/867/17640)。
-    @inlinable
-    public func detectLiveFaceAccurate(_ input: DetectLiveFaceAccurateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectLiveFaceAccurateResponse > {
-        self.client.execute(action: "DetectLiveFaceAccurate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人脸静态活体检测（高精度版）
-    ///
-    /// 人脸静态活体检测（高精度版）可用于对用户上传的静态图片进行防翻拍活体检测，以判断是否是翻拍图片。
-    /// 相比现有静态活体检测服务，高精度版在维持高真人通过率的前提下，增强了对高清屏幕、裁剪纸片、3D面具等攻击的防御能力，攻击拦截率约为业内同类型产品形态4-5倍。同时支持多场景人脸核验，满足移动端、PC端各类型场景的图片活体检验需求，适用于各个行业不同的活体检验应用。
-    /// 人脸静态活体检测（高精度版）接口于2022年8月1日 00:00起正式开始计费，采取后付费按量计费模式，详见[计费概述](https://cloud.tencent.com/document/product/867/17640)。
-    @inlinable
-    public func detectLiveFaceAccurate(_ input: DetectLiveFaceAccurateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLiveFaceAccurateResponse {
-        try await self.client.execute(action: "DetectLiveFaceAccurate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetectLiveFaceAccurate请求参数结构体
     public struct DetectLiveFaceAccurateRequest: TCRequestModel {
         /// 图片 base64 数据，base64 编码后大小不可超过5M。
@@ -56,7 +36,7 @@ extension Iai {
         /// 人脸识别服务所用的算法模型版本。目前入参支持“3.0“。
         public let faceModelVersion: String?
         
-        public init (image: String?, url: String?, faceModelVersion: String?) {
+        public init (image: String? = nil, url: String? = nil, faceModelVersion: String? = nil) {
             self.image = image
             self.url = url
             self.faceModelVersion = faceModelVersion
@@ -85,5 +65,25 @@ extension Iai {
             case faceModelVersion = "FaceModelVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人脸静态活体检测（高精度版）
+    ///
+    /// 人脸静态活体检测（高精度版）可用于对用户上传的静态图片进行防翻拍活体检测，以判断是否是翻拍图片。
+    /// 相比现有静态活体检测服务，高精度版在维持高真人通过率的前提下，增强了对高清屏幕、裁剪纸片、3D面具等攻击的防御能力，攻击拦截率约为业内同类型产品形态4-5倍。同时支持多场景人脸核验，满足移动端、PC端各类型场景的图片活体检验需求，适用于各个行业不同的活体检验应用。
+    /// 人脸静态活体检测（高精度版）接口于2022年8月1日 00:00起正式开始计费，采取后付费按量计费模式，详见[计费概述](https://cloud.tencent.com/document/product/867/17640)。
+    @inlinable
+    public func detectLiveFaceAccurate(_ input: DetectLiveFaceAccurateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectLiveFaceAccurateResponse > {
+        self.client.execute(action: "DetectLiveFaceAccurate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人脸静态活体检测（高精度版）
+    ///
+    /// 人脸静态活体检测（高精度版）可用于对用户上传的静态图片进行防翻拍活体检测，以判断是否是翻拍图片。
+    /// 相比现有静态活体检测服务，高精度版在维持高真人通过率的前提下，增强了对高清屏幕、裁剪纸片、3D面具等攻击的防御能力，攻击拦截率约为业内同类型产品形态4-5倍。同时支持多场景人脸核验，满足移动端、PC端各类型场景的图片活体检验需求，适用于各个行业不同的活体检验应用。
+    /// 人脸静态活体检测（高精度版）接口于2022年8月1日 00:00起正式开始计费，采取后付费按量计费模式，详见[计费概述](https://cloud.tencent.com/document/product/867/17640)。
+    @inlinable
+    public func detectLiveFaceAccurate(_ input: DetectLiveFaceAccurateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLiveFaceAccurateResponse {
+        try await self.client.execute(action: "DetectLiveFaceAccurate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

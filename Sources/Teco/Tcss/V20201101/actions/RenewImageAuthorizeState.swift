@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 授权镜像扫描
-    ///
-    /// RenewImageAuthorizeState   授权镜像扫描
-    @inlinable
-    public func renewImageAuthorizeState(_ input: RenewImageAuthorizeStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewImageAuthorizeStateResponse > {
-        self.client.execute(action: "RenewImageAuthorizeState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 授权镜像扫描
-    ///
-    /// RenewImageAuthorizeState   授权镜像扫描
-    @inlinable
-    public func renewImageAuthorizeState(_ input: RenewImageAuthorizeStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewImageAuthorizeStateResponse {
-        try await self.client.execute(action: "RenewImageAuthorizeState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RenewImageAuthorizeState请求参数结构体
     public struct RenewImageAuthorizeStateRequest: TCRequestModel {
         /// 是否全部未授权镜像
@@ -39,7 +23,7 @@ extension Tcss {
         /// 镜像ids
         public let imageIds: [String]?
         
-        public init (allImages: Bool, imageIds: [String]?) {
+        public init (allImages: Bool, imageIds: [String]? = nil) {
             self.allImages = allImages
             self.imageIds = imageIds
         }
@@ -58,5 +42,21 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 授权镜像扫描
+    ///
+    /// RenewImageAuthorizeState   授权镜像扫描
+    @inlinable
+    public func renewImageAuthorizeState(_ input: RenewImageAuthorizeStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewImageAuthorizeStateResponse > {
+        self.client.execute(action: "RenewImageAuthorizeState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 授权镜像扫描
+    ///
+    /// RenewImageAuthorizeState   授权镜像扫描
+    @inlinable
+    public func renewImageAuthorizeState(_ input: RenewImageAuthorizeStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewImageAuthorizeStateResponse {
+        try await self.client.execute(action: "RenewImageAuthorizeState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

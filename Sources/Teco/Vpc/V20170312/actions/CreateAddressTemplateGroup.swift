@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建IP地址模板集合
-    ///
-    /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
-    @inlinable
-    public func createAddressTemplateGroup(_ input: CreateAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAddressTemplateGroupResponse > {
-        self.client.execute(action: "CreateAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建IP地址模板集合
-    ///
-    /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
-    @inlinable
-    public func createAddressTemplateGroup(_ input: CreateAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAddressTemplateGroupResponse {
-        try await self.client.execute(action: "CreateAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAddressTemplateGroup请求参数结构体
     public struct CreateAddressTemplateGroupRequest: TCRequestModel {
         /// IP地址模板集合名称。
@@ -62,5 +46,21 @@ extension Vpc {
             case addressTemplateGroup = "AddressTemplateGroup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建IP地址模板集合
+    ///
+    /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
+    @inlinable
+    public func createAddressTemplateGroup(_ input: CreateAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAddressTemplateGroupResponse > {
+        self.client.execute(action: "CreateAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建IP地址模板集合
+    ///
+    /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
+    @inlinable
+    public func createAddressTemplateGroup(_ input: CreateAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAddressTemplateGroupResponse {
+        try await self.client.execute(action: "CreateAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

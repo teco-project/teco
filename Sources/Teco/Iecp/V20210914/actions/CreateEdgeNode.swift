@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 创建边缘节点
-    @inlinable
-    public func createEdgeNode(_ input: CreateEdgeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeNodeResponse > {
-        self.client.execute(action: "CreateEdgeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建边缘节点
-    @inlinable
-    public func createEdgeNode(_ input: CreateEdgeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeResponse {
-        try await self.client.execute(action: "CreateEdgeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEdgeNode请求参数结构体
     public struct CreateEdgeNodeRequest: TCRequestModel {
         /// 边缘单元ID
@@ -54,5 +42,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建边缘节点
+    @inlinable
+    public func createEdgeNode(_ input: CreateEdgeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeNodeResponse > {
+        self.client.execute(action: "CreateEdgeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建边缘节点
+    @inlinable
+    public func createEdgeNode(_ input: CreateEdgeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeResponse {
+        try await self.client.execute(action: "CreateEdgeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

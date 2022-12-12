@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 创建文件夹【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 创建文件夹
-    @inlinable
-    public func createFolder(_ input: CreateFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFolderResponse > {
-        self.client.execute(action: "CreateFolder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建文件夹【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 创建文件夹
-    @inlinable
-    public func createFolder(_ input: CreateFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFolderResponse {
-        try await self.client.execute(action: "CreateFolder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFolder请求参数结构体
     public struct CreateFolderRequest: TCRequestModel {
         /// 项目Id
@@ -44,7 +26,7 @@ extension Wedata {
         /// 父文件夹ID
         public let parentsFolderId: String?
         
-        public init (projectId: String, folderName: String, parentsFolderId: String?) {
+        public init (projectId: String, folderName: String, parentsFolderId: String? = nil) {
             self.projectId = projectId
             self.folderName = folderName
             self.parentsFolderId = parentsFolderId
@@ -61,7 +43,7 @@ extension Wedata {
     public struct CreateFolderResponse: TCResponseModel {
         /// 文件夹Id，null则创建失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: CommonId
+        public let data: CommonId?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -70,5 +52,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建文件夹【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 创建文件夹
+    @inlinable
+    public func createFolder(_ input: CreateFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFolderResponse > {
+        self.client.execute(action: "CreateFolder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文件夹【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 创建文件夹
+    @inlinable
+    public func createFolder(_ input: CreateFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFolderResponse {
+        try await self.client.execute(action: "CreateFolder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

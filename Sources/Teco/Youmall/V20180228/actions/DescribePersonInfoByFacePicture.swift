@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Youmall {
-    /// 图片检索身份接口
-    ///
-    /// 通过上传人脸图片检索系统face id、顾客身份信息及底图
-    @inlinable
-    public func describePersonInfoByFacePicture(_ input: DescribePersonInfoByFacePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonInfoByFacePictureResponse > {
-        self.client.execute(action: "DescribePersonInfoByFacePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 图片检索身份接口
-    ///
-    /// 通过上传人脸图片检索系统face id、顾客身份信息及底图
-    @inlinable
-    public func describePersonInfoByFacePicture(_ input: DescribePersonInfoByFacePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonInfoByFacePictureResponse {
-        try await self.client.execute(action: "DescribePersonInfoByFacePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePersonInfoByFacePicture请求参数结构体
     public struct DescribePersonInfoByFacePictureRequest: TCRequestModel {
         /// 优mall集团id，通过"指定身份标识获取客户门店列表"接口获取
@@ -94,5 +78,21 @@ extension Youmall {
             case visitTimes = "VisitTimes"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 图片检索身份接口
+    ///
+    /// 通过上传人脸图片检索系统face id、顾客身份信息及底图
+    @inlinable
+    public func describePersonInfoByFacePicture(_ input: DescribePersonInfoByFacePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonInfoByFacePictureResponse > {
+        self.client.execute(action: "DescribePersonInfoByFacePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 图片检索身份接口
+    ///
+    /// 通过上传人脸图片检索系统face id、顾客身份信息及底图
+    @inlinable
+    public func describePersonInfoByFacePicture(_ input: DescribePersonInfoByFacePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonInfoByFacePictureResponse {
+        try await self.client.execute(action: "DescribePersonInfoByFacePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

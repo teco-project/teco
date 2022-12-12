@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tics {
-    /// 查询IP信誉
-    ///
-    /// 提供IP相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
-    @inlinable
-    public func describeIpInfo(_ input: DescribeIpInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpInfoResponse > {
-        self.client.execute(action: "DescribeIpInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询IP信誉
-    ///
-    /// 提供IP相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
-    @inlinable
-    public func describeIpInfo(_ input: DescribeIpInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpInfoResponse {
-        try await self.client.execute(action: "DescribeIpInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIpInfo请求参数结构体
     public struct DescribeIpInfoRequest: TCRequestModel {
         /// 要查询的IP
@@ -39,7 +23,7 @@ extension Tics {
         /// 附加字段，是否返回上下文。当为0时不返回上下文，当为1时返回上下文。
         public let option: UInt64?
         
-        public init (key: String, option: UInt64?) {
+        public init (key: String, option: UInt64? = nil) {
             self.key = key
             self.option = option
         }
@@ -102,5 +86,21 @@ extension Tics {
             case context = "Context"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询IP信誉
+    ///
+    /// 提供IP相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
+    @inlinable
+    public func describeIpInfo(_ input: DescribeIpInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpInfoResponse > {
+        self.client.execute(action: "DescribeIpInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询IP信誉
+    ///
+    /// 提供IP相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
+    @inlinable
+    public func describeIpInfo(_ input: DescribeIpInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpInfoResponse {
+        try await self.client.execute(action: "DescribeIpInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

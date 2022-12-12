@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取应用事件列表
-    @inlinable
-    public func describeEdgeUnitApplicationEvents(_ input: DescribeEdgeUnitApplicationEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitApplicationEventsResponse > {
-        self.client.execute(action: "DescribeEdgeUnitApplicationEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取应用事件列表
-    @inlinable
-    public func describeEdgeUnitApplicationEvents(_ input: DescribeEdgeUnitApplicationEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationEventsResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitApplicationEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeUnitApplicationEvents请求参数结构体
     public struct DescribeEdgeUnitApplicationEventsRequest: TCRequestModel {
         /// 单元ID
@@ -59,5 +47,17 @@ extension Iecp {
             case eventSet = "EventSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取应用事件列表
+    @inlinable
+    public func describeEdgeUnitApplicationEvents(_ input: DescribeEdgeUnitApplicationEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitApplicationEventsResponse > {
+        self.client.execute(action: "DescribeEdgeUnitApplicationEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用事件列表
+    @inlinable
+    public func describeEdgeUnitApplicationEvents(_ input: DescribeEdgeUnitApplicationEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationEventsResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitApplicationEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

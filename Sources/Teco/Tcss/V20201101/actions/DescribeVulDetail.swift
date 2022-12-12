@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询漏洞详情
-    @inlinable
-    public func describeVulDetail(_ input: DescribeVulDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDetailResponse > {
-        self.client.execute(action: "DescribeVulDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询漏洞详情
-    @inlinable
-    public func describeVulDetail(_ input: DescribeVulDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDetailResponse {
-        try await self.client.execute(action: "DescribeVulDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulDetail请求参数结构体
     public struct DescribeVulDetailRequest: TCRequestModel {
         /// 漏洞PocID
@@ -53,5 +41,17 @@ extension Tcss {
             case vulInfo = "VulInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询漏洞详情
+    @inlinable
+    public func describeVulDetail(_ input: DescribeVulDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDetailResponse > {
+        self.client.execute(action: "DescribeVulDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞详情
+    @inlinable
+    public func describeVulDetail(_ input: DescribeVulDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDetailResponse {
+        try await self.client.execute(action: "DescribeVulDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

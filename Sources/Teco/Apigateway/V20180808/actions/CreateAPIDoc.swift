@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 创建 API 文档
-    @inlinable
-    public func createAPIDoc(_ input: CreateAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAPIDocResponse > {
-        self.client.execute(action: "CreateAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建 API 文档
-    @inlinable
-    public func createAPIDoc(_ input: CreateAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAPIDocResponse {
-        try await self.client.execute(action: "CreateAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAPIDoc请求参数结构体
     public struct CreateAPIDocRequest: TCRequestModel {
         /// API文档名称
@@ -68,5 +56,17 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建 API 文档
+    @inlinable
+    public func createAPIDoc(_ input: CreateAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAPIDocResponse > {
+        self.client.execute(action: "CreateAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建 API 文档
+    @inlinable
+    public func createAPIDoc(_ input: CreateAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAPIDocResponse {
+        try await self.client.execute(action: "CreateAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

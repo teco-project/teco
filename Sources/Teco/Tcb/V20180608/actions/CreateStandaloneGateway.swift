@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 创建独立网关
-    ///
-    /// 本接口（CreateStandaloneGateway）用于创建独立网关。
-    @inlinable
-    public func createStandaloneGateway(_ input: CreateStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStandaloneGatewayResponse > {
-        self.client.execute(action: "CreateStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建独立网关
-    ///
-    /// 本接口（CreateStandaloneGateway）用于创建独立网关。
-    @inlinable
-    public func createStandaloneGateway(_ input: CreateStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStandaloneGatewayResponse {
-        try await self.client.execute(action: "CreateStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateStandaloneGateway请求参数结构体
     public struct CreateStandaloneGatewayRequest: TCRequestModel {
         /// 环境ID
@@ -82,5 +66,21 @@ extension Tcb {
             case gatewayName = "GatewayName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建独立网关
+    ///
+    /// 本接口（CreateStandaloneGateway）用于创建独立网关。
+    @inlinable
+    public func createStandaloneGateway(_ input: CreateStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStandaloneGatewayResponse > {
+        self.client.execute(action: "CreateStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建独立网关
+    ///
+    /// 本接口（CreateStandaloneGateway）用于创建独立网关。
+    @inlinable
+    public func createStandaloneGateway(_ input: CreateStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStandaloneGatewayResponse {
+        try await self.client.execute(action: "CreateStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

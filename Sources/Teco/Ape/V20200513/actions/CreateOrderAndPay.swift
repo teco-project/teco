@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ape {
-    /// 创建订单并支付
-    ///
-    /// 购买一张图片并且支付
-    @inlinable
-    public func createOrderAndPay(_ input: CreateOrderAndPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrderAndPayResponse > {
-        self.client.execute(action: "CreateOrderAndPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建订单并支付
-    ///
-    /// 购买一张图片并且支付
-    @inlinable
-    public func createOrderAndPay(_ input: CreateOrderAndPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderAndPayResponse {
-        try await self.client.execute(action: "CreateOrderAndPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOrderAndPay请求参数结构体
     public struct CreateOrderAndPayRequest: TCRequestModel {
         /// 图片ID
@@ -67,5 +51,21 @@ extension Ape {
             case orderId = "OrderId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建订单并支付
+    ///
+    /// 购买一张图片并且支付
+    @inlinable
+    public func createOrderAndPay(_ input: CreateOrderAndPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrderAndPayResponse > {
+        self.client.execute(action: "CreateOrderAndPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建订单并支付
+    ///
+    /// 购买一张图片并且支付
+    @inlinable
+    public func createOrderAndPay(_ input: CreateOrderAndPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderAndPayResponse {
+        try await self.client.execute(action: "CreateOrderAndPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

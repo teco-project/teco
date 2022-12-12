@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Sqlserver {
-    /// 根据流程ID查询备份信息
-    ///
-    /// 本接口(DescribeBackupByFlowId)用于通过备份创建流程的ID查询创建的备份详情，流程ID可从接口CreateBackup中获得。
-    @inlinable
-    public func describeBackupByFlowId(_ input: DescribeBackupByFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupByFlowIdResponse > {
-        self.client.execute(action: "DescribeBackupByFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据流程ID查询备份信息
-    ///
-    /// 本接口(DescribeBackupByFlowId)用于通过备份创建流程的ID查询创建的备份详情，流程ID可从接口CreateBackup中获得。
-    @inlinable
-    public func describeBackupByFlowId(_ input: DescribeBackupByFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupByFlowIdResponse {
-        try await self.client.execute(action: "DescribeBackupByFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBackupByFlowId请求参数结构体
     public struct DescribeBackupByFlowIdRequest: TCRequestModel {
         /// 实例ID，格式如：mssql-3l3fgqn7
@@ -114,5 +98,21 @@ extension Sqlserver {
             case groupId = "GroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据流程ID查询备份信息
+    ///
+    /// 本接口(DescribeBackupByFlowId)用于通过备份创建流程的ID查询创建的备份详情，流程ID可从接口CreateBackup中获得。
+    @inlinable
+    public func describeBackupByFlowId(_ input: DescribeBackupByFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupByFlowIdResponse > {
+        self.client.execute(action: "DescribeBackupByFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据流程ID查询备份信息
+    ///
+    /// 本接口(DescribeBackupByFlowId)用于通过备份创建流程的ID查询创建的备份详情，流程ID可从接口CreateBackup中获得。
+    @inlinable
+    public func describeBackupByFlowId(_ input: DescribeBackupByFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupByFlowIdResponse {
+        try await self.client.execute(action: "DescribeBackupByFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

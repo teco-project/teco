@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// 获取DDoS攻击事件列表
-    @inlinable
-    public func describeDDoSEvList(_ input: DescribeDDoSEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSEvListResponse > {
-        self.client.execute(action: "DescribeDDoSEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DDoS攻击事件列表
-    @inlinable
-    public func describeDDoSEvList(_ input: DescribeDDoSEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSEvListResponse {
-        try await self.client.execute(action: "DescribeDDoSEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSEvList请求参数结构体
     public struct DescribeDDoSEvListRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
@@ -57,7 +45,7 @@ extension Dayu {
         /// 页起始偏移，取值为(页码-1)*一页条数
         public let offset: UInt64?
         
-        public init (business: String, startTime: Date, endTime: Date, id: String?, ipList: [String]?, overLoad: String?, limit: UInt64?, offset: UInt64?) {
+        public init (business: String, startTime: Date, endTime: Date, id: String? = nil, ipList: [String]? = nil, overLoad: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.business = business
             self.startTime = startTime
             self.endTime = endTime
@@ -117,5 +105,17 @@ extension Dayu {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DDoS攻击事件列表
+    @inlinable
+    public func describeDDoSEvList(_ input: DescribeDDoSEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSEvListResponse > {
+        self.client.execute(action: "DescribeDDoSEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS攻击事件列表
+    @inlinable
+    public func describeDDoSEvList(_ input: DescribeDDoSEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSEvListResponse {
+        try await self.client.execute(action: "DescribeDDoSEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

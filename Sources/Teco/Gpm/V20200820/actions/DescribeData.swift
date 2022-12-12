@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gpm {
-    /// 统计数据
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 统计数据
-    @inlinable
-    public func describeData(_ input: DescribeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataResponse > {
-        self.client.execute(action: "DescribeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 统计数据
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 统计数据
-    @inlinable
-    public func describeData(_ input: DescribeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataResponse {
-        try await self.client.execute(action: "DescribeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeData请求参数结构体
     public struct DescribeDataRequest: TCRequestModel {
         /// 起始时间，单位：秒
@@ -47,7 +29,7 @@ extension Gpm {
         /// 匹配code
         public let matchCode: String?
         
-        public init (startTime: Int64, endTime: Int64, timeType: Int64, matchCode: String?) {
+        public init (startTime: Int64, endTime: Int64, timeType: Int64, matchCode: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.timeType = timeType
@@ -66,11 +48,11 @@ extension Gpm {
     public struct DescribeDataResponse: TCResponseModel {
         /// 匹配概况
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let overviewData: ReportOverviewData
+        public let overviewData: ReportOverviewData?
         
         /// 匹配请求次数趋势数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let trendData: ReportTrendData
+        public let trendData: ReportTrendData?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -80,5 +62,23 @@ extension Gpm {
             case trendData = "TrendData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 统计数据
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 统计数据
+    @inlinable
+    public func describeData(_ input: DescribeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataResponse > {
+        self.client.execute(action: "DescribeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 统计数据
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 统计数据
+    @inlinable
+    public func describeData(_ input: DescribeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataResponse {
+        try await self.client.execute(action: "DescribeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 更新命名空间信息
-    ///
-    /// 更新命名空间信息，当前仅支持修改命名空间访问级别
-    @inlinable
-    public func modifyNamespace(_ input: ModifyNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNamespaceResponse > {
-        self.client.execute(action: "ModifyNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新命名空间信息
-    ///
-    /// 更新命名空间信息，当前仅支持修改命名空间访问级别
-    @inlinable
-    public func modifyNamespace(_ input: ModifyNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
-        try await self.client.execute(action: "ModifyNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNamespace请求参数结构体
     public struct ModifyNamespaceRequest: TCRequestModel {
         /// 实例Id
@@ -63,5 +47,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新命名空间信息
+    ///
+    /// 更新命名空间信息，当前仅支持修改命名空间访问级别
+    @inlinable
+    public func modifyNamespace(_ input: ModifyNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNamespaceResponse > {
+        self.client.execute(action: "ModifyNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新命名空间信息
+    ///
+    /// 更新命名空间信息，当前仅支持修改命名空间访问级别
+    @inlinable
+    public func modifyNamespace(_ input: ModifyNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
+        try await self.client.execute(action: "ModifyNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

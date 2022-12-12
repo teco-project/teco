@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 分页查询门神规则
-    @inlinable
-    public func describeSecurityPolicyManagedRules(_ input: DescribeSecurityPolicyManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyManagedRulesResponse > {
-        self.client.execute(action: "DescribeSecurityPolicyManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分页查询门神规则
-    @inlinable
-    public func describeSecurityPolicyManagedRules(_ input: DescribeSecurityPolicyManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyManagedRulesResponse {
-        try await self.client.execute(action: "DescribeSecurityPolicyManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityPolicyManagedRules请求参数结构体
     public struct DescribeSecurityPolicyManagedRulesRequest: TCRequestModel {
         /// 一级域名
@@ -76,5 +64,17 @@ extension Teo {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分页查询门神规则
+    @inlinable
+    public func describeSecurityPolicyManagedRules(_ input: DescribeSecurityPolicyManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyManagedRulesResponse > {
+        self.client.execute(action: "DescribeSecurityPolicyManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分页查询门神规则
+    @inlinable
+    public func describeSecurityPolicyManagedRules(_ input: DescribeSecurityPolicyManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyManagedRulesResponse {
+        try await self.client.execute(action: "DescribeSecurityPolicyManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

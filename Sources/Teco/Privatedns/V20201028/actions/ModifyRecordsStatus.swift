@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 修改解析记录状态
-    @inlinable
-    public func modifyRecordsStatus(_ input: ModifyRecordsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordsStatusResponse > {
-        self.client.execute(action: "ModifyRecordsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改解析记录状态
-    @inlinable
-    public func modifyRecordsStatus(_ input: ModifyRecordsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordsStatusResponse {
-        try await self.client.execute(action: "ModifyRecordsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRecordsStatus请求参数结构体
     public struct ModifyRecordsStatusRequest: TCRequestModel {
         /// 私有域ID
@@ -71,5 +59,17 @@ extension Privatedns {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改解析记录状态
+    @inlinable
+    public func modifyRecordsStatus(_ input: ModifyRecordsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordsStatusResponse > {
+        self.client.execute(action: "ModifyRecordsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改解析记录状态
+    @inlinable
+    public func modifyRecordsStatus(_ input: ModifyRecordsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordsStatusResponse {
+        try await self.client.execute(action: "ModifyRecordsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

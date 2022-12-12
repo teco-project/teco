@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除SSL-VPN-SERVER
-    ///
-    /// 删除SSL-VPN-SERVER 实例
-    @inlinable
-    public func deleteVpnGatewaySslServer(_ input: DeleteVpnGatewaySslServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnGatewaySslServerResponse > {
-        self.client.execute(action: "DeleteVpnGatewaySslServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除SSL-VPN-SERVER
-    ///
-    /// 删除SSL-VPN-SERVER 实例
-    @inlinable
-    public func deleteVpnGatewaySslServer(_ input: DeleteVpnGatewaySslServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewaySslServerResponse {
-        try await self.client.execute(action: "DeleteVpnGatewaySslServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteVpnGatewaySslServer请求参数结构体
     public struct DeleteVpnGatewaySslServerRequest: TCRequestModel {
         /// SSL-VPN-SERVER 实例ID。
@@ -57,5 +41,21 @@ extension Vpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除SSL-VPN-SERVER
+    ///
+    /// 删除SSL-VPN-SERVER 实例
+    @inlinable
+    public func deleteVpnGatewaySslServer(_ input: DeleteVpnGatewaySslServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnGatewaySslServerResponse > {
+        self.client.execute(action: "DeleteVpnGatewaySslServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除SSL-VPN-SERVER
+    ///
+    /// 删除SSL-VPN-SERVER 实例
+    @inlinable
+    public func deleteVpnGatewaySslServer(_ input: DeleteVpnGatewaySslServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewaySslServerResponse {
+        try await self.client.execute(action: "DeleteVpnGatewaySslServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

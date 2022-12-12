@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取单IP告警阈值配置列表
-    @inlinable
-    public func describeListIPAlarmConfig(_ input: DescribeListIPAlarmConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListIPAlarmConfigResponse > {
-        self.client.execute(action: "DescribeListIPAlarmConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取单IP告警阈值配置列表
-    @inlinable
-    public func describeListIPAlarmConfig(_ input: DescribeListIPAlarmConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListIPAlarmConfigResponse {
-        try await self.client.execute(action: "DescribeListIPAlarmConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeListIPAlarmConfig请求参数结构体
     public struct DescribeListIPAlarmConfigRequest: TCRequestModel {
         /// 页起始偏移，取值为(页码-1)*一页条数
@@ -50,7 +38,7 @@ extension Antiddos {
         /// 高防IP实例资源的cname
         public let filterCname: String?
         
-        public init (offset: Int64, limit: Int64, filterInstanceId: String, filterAlarmType: Int64, filterIp: String?, filterCname: String?) {
+        public init (offset: Int64, limit: Int64, filterInstanceId: String, filterAlarmType: Int64, filterIp: String? = nil, filterCname: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filterInstanceId = filterInstanceId
@@ -85,5 +73,17 @@ extension Antiddos {
             case configList = "ConfigList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取单IP告警阈值配置列表
+    @inlinable
+    public func describeListIPAlarmConfig(_ input: DescribeListIPAlarmConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListIPAlarmConfigResponse > {
+        self.client.execute(action: "DescribeListIPAlarmConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单IP告警阈值配置列表
+    @inlinable
+    public func describeListIPAlarmConfig(_ input: DescribeListIPAlarmConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListIPAlarmConfigResponse {
+        try await self.client.execute(action: "DescribeListIPAlarmConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

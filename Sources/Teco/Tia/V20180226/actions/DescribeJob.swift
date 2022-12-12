@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tia {
-    /// 获取Job详情
-    ///
-    /// 获取训练任务详情
-    @inlinable
-    public func describeJob(_ input: DescribeJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobResponse > {
-        self.client.execute(action: "DescribeJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Job详情
-    ///
-    /// 获取训练任务详情
-    @inlinable
-    public func describeJob(_ input: DescribeJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobResponse {
-        try await self.client.execute(action: "DescribeJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeJob请求参数结构体
     public struct DescribeJobRequest: TCRequestModel {
         /// 任务名称
@@ -62,5 +46,21 @@ extension Tia {
             case job = "Job"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Job详情
+    ///
+    /// 获取训练任务详情
+    @inlinable
+    public func describeJob(_ input: DescribeJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobResponse > {
+        self.client.execute(action: "DescribeJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Job详情
+    ///
+    /// 获取训练任务详情
+    @inlinable
+    public func describeJob(_ input: DescribeJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobResponse {
+        try await self.client.execute(action: "DescribeJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiia {
-    /// 商品识别
-    ///
-    /// 本接口支持识别图片中包含的商品，能够输出商品的品类名称、类别，还可以输出商品在图片中的位置。支持一张图片多个商品的识别。
-    /// >?    
-    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func detectProduct(_ input: DetectProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectProductResponse > {
-        self.client.execute(action: "DetectProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 商品识别
-    ///
-    /// 本接口支持识别图片中包含的商品，能够输出商品的品类名称、类别，还可以输出商品在图片中的位置。支持一张图片多个商品的识别。
-    /// >?    
-    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func detectProduct(_ input: DetectProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectProductResponse {
-        try await self.client.execute(action: "DetectProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetectProduct请求参数结构体
     public struct DetectProductRequest: TCRequestModel {
         /// 图片URL地址。 
@@ -51,7 +31,7 @@ extension Tiia {
         /// **注意：图片需要base64编码，并且要去掉编码头部。**
         public let imageBase64: String?
         
-        public init (imageUrl: String?, imageBase64: String?) {
+        public init (imageUrl: String? = nil, imageBase64: String? = nil) {
             self.imageUrl = imageUrl
             self.imageBase64 = imageBase64
         }
@@ -74,5 +54,25 @@ extension Tiia {
             case products = "Products"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 商品识别
+    ///
+    /// 本接口支持识别图片中包含的商品，能够输出商品的品类名称、类别，还可以输出商品在图片中的位置。支持一张图片多个商品的识别。
+    /// >?    
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func detectProduct(_ input: DetectProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectProductResponse > {
+        self.client.execute(action: "DetectProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 商品识别
+    ///
+    /// 本接口支持识别图片中包含的商品，能够输出商品的品类名称、类别，还可以输出商品在图片中的位置。支持一张图片多个商品的识别。
+    /// >?    
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func detectProduct(_ input: DetectProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectProductResponse {
+        try await self.client.execute(action: "DetectProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

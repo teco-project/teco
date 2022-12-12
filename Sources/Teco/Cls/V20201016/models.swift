@@ -77,7 +77,7 @@ extension Cls {
         
         /// 自定义回调模板
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let callBack: CallBackInfo
+        public let callBack: CallBackInfo?
         
         /// 多维分析设置
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -234,7 +234,7 @@ extension Cls {
         /// 配置
         public let configInfo: [AlarmAnalysisConfig]?
         
-        public init (name: String, type: String, content: String, configInfo: [AlarmAnalysisConfig]?) {
+        public init (name: String, type: String, content: String, configInfo: [AlarmAnalysisConfig]? = nil) {
             self.name = name
             self.type = type
             self.content = content
@@ -258,7 +258,7 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headers: [String]?
         
-        public init (body: String, headers: [String]?) {
+        public init (body: String, headers: [String]? = nil) {
             self.body = body
             self.headers = headers
         }
@@ -352,15 +352,15 @@ extension Cls {
         
         /// 节点文件配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let hostFile: HostFileInfo
+        public let hostFile: HostFileInfo?
         
         /// 容器文件路径信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let containerFile: ContainerFileInfo
+        public let containerFile: ContainerFileInfo?
         
         /// 容器标准输出信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let containerStdout: ContainerStdoutInfo
+        public let containerStdout: ContainerStdoutInfo?
         
         /// 日志格式化方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -372,7 +372,7 @@ extension Cls {
         
         /// 提取规则，如果设置了ExtractRule，则必须设置LogType
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let extractRule: ExtractRuleInfo
+        public let extractRule: ExtractRuleInfo?
         
         /// 采集黑名单路径列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -453,7 +453,7 @@ extension Cls {
         
         /// 提取规则，如果设置了ExtractRule，则必须设置LogType
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let extractRule: ExtractRuleInfo
+        public let extractRule: ExtractRuleInfo?
         
         /// 采集黑名单路径列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -493,11 +493,11 @@ extension Cls {
     public struct ConsumerContent: TCInputModel, TCOutputModel {
         /// 是否投递 TAG 信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let enableTag: Bool
+        public let enableTag: Bool?
         
         /// 需要投递的元数据列表，目前仅支持：\_\_SOURCE\_\_，\_\_FILENAME\_\_，\_\_TIMESTAMP\_\_，\_\_HOSTNAME\_\_和\_\_PKGID\_\_
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let metaFields: [String]
+        public let metaFields: [String]?
         
         /// 当EnableTag为true时，必须填写TagJsonNotTiled字段，TagJsonNotTiled用于标识tag信息是否json平铺，TagJsonNotTiled为true时不平铺，false时平铺
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -507,7 +507,7 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timestampAccuracy: Int64?
         
-        public init (enableTag: Bool, metaFields: [String], tagJsonNotTiled: Bool?, timestampAccuracy: Int64?) {
+        public init (enableTag: Bool, metaFields: [String], tagJsonNotTiled: Bool? = nil, timestampAccuracy: Int64? = nil) {
             self.enableTag = enableTag
             self.metaFields = metaFields
             self.tagJsonNotTiled = tagJsonNotTiled
@@ -542,7 +542,7 @@ extension Cls {
         
         /// 工作负载信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let workLoad: ContainerWorkLoadInfo
+        public let workLoad: ContainerWorkLoadInfo?
         
         /// 需要排除的namespace可以多个，用分隔号分割,例如A,B
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -552,7 +552,7 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let excludeLabels: [String]?
         
-        public init (namespace: String, container: String, logPath: String, filePattern: String, includeLabels: [String]?, workLoad: ContainerWorkLoadInfo, excludeNamespace: String?, excludeLabels: [String]?) {
+        public init (namespace: String, container: String, logPath: String, filePattern: String, includeLabels: [String]? = nil, workLoad: ContainerWorkLoadInfo? = nil, excludeNamespace: String? = nil, excludeLabels: [String]? = nil) {
             self.namespace = namespace
             self.container = container
             self.logPath = logPath
@@ -604,7 +604,7 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let excludeLabels: [String]?
         
-        public init (allContainers: Bool, container: String?, namespace: String?, includeLabels: [String]?, workLoads: [ContainerWorkLoadInfo]?, excludeNamespace: String?, excludeLabels: [String]?) {
+        public init (allContainers: Bool, container: String? = nil, namespace: String? = nil, includeLabels: [String]? = nil, workLoads: [ContainerWorkLoadInfo]? = nil, excludeNamespace: String? = nil, excludeLabels: [String]? = nil) {
             self.allContainers = allContainers
             self.container = container
             self.namespace = namespace
@@ -641,7 +641,7 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespace: String?
         
-        public init (kind: String, name: String, container: String?, namespace: String?) {
+        public init (kind: String, name: String, container: String? = nil, namespace: String? = nil) {
             self.kind = kind
             self.name = name
             self.container = container
@@ -663,17 +663,17 @@ extension Cls {
         
         /// csv格式内容描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let csv: CsvInfo
+        public let csv: CsvInfo?
         
         /// json格式内容描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let json: JsonInfo
+        public let json: JsonInfo?
         
         /// parquet格式内容描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let parquet: ParquetInfo
+        public let parquet: ParquetInfo?
         
-        public init (format: String, csv: CsvInfo, json: JsonInfo, parquet: ParquetInfo) {
+        public init (format: String, csv: CsvInfo? = nil, json: JsonInfo? = nil, parquet: ParquetInfo? = nil) {
             self.format = format
             self.csv = csv
             self.json = json
@@ -695,7 +695,7 @@ extension Cls {
         
         /// 每列key的名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let keys: [String]
+        public let keys: [String]?
         
         /// 各字段间的分隔符
         public let delimiter: String
@@ -867,7 +867,7 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let parseProtocol: String?
         
-        public init (timeKey: String?, timeFormat: String?, delimiter: String?, logRegex: String?, beginRegex: String?, keys: [String]?, filterKeyRegex: [KeyRegexInfo]?, unMatchUpLoadSwitch: Bool?, unMatchLogKey: String?, backtracking: Int64?, isGBK: Int64?, jsonStandard: Int64?, `protocol`: String?, address: String?, parseProtocol: String?) {
+        public init (timeKey: String? = nil, timeFormat: String? = nil, delimiter: String? = nil, logRegex: String? = nil, beginRegex: String? = nil, keys: [String]? = nil, filterKeyRegex: [KeyRegexInfo]? = nil, unMatchUpLoadSwitch: Bool? = nil, unMatchLogKey: String? = nil, backtracking: Int64? = nil, isGBK: Int64? = nil, jsonStandard: Int64? = nil, `protocol`: String? = nil, address: String? = nil, parseProtocol: String? = nil) {
             self.timeKey = timeKey
             self.timeFormat = timeFormat
             self.delimiter = delimiter
@@ -961,7 +961,7 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let containZH: Bool?
         
-        public init (caseSensitive: Bool, tokenizer: String, containZH: Bool?) {
+        public init (caseSensitive: Bool, tokenizer: String, containZH: Bool? = nil) {
             self.caseSensitive = caseSensitive
             self.tokenizer = tokenizer
             self.containZH = containZH
@@ -1000,7 +1000,7 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customLabels: [String]?
         
-        public init (logPath: String, filePattern: String, customLabels: [String]?) {
+        public init (logPath: String, filePattern: String, customLabels: [String]? = nil) {
             self.logPath = logPath
             self.filePattern = filePattern
             self.customLabels = customLabels
@@ -1020,7 +1020,7 @@ extension Cls {
         
         /// 元数据信息列表, 可选值为 __SOURCE__、__FILENAME__、__TIMESTAMP__、__HOSTNAME__。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let metaFields: [String]
+        public let metaFields: [String]?
         
         public init (enableTag: Bool, metaFields: [String]) {
             self.enableTag = enableTag
@@ -1362,7 +1362,7 @@ extension Cls {
         /// 位序
         public let index: Int64?
         
-        public init (receiverType: String, receiverIds: [Int64], receiverChannels: [String], startTime: String?, endTime: String?, index: Int64?) {
+        public init (receiverType: String, receiverIds: [Int64], receiverChannels: [String], startTime: String? = nil, endTime: String? = nil, index: Int64? = nil) {
             self.receiverType = receiverType
             self.receiverIds = receiverIds
             self.receiverChannels = receiverChannels
@@ -1405,7 +1405,7 @@ extension Cls {
         
         /// 解析失败赋值信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let keyNonExistingField: String
+        public let keyNonExistingField: String?
         
         public init (keyName: String, keyType: String, keyNonExistingField: String) {
             self.keyName = keyName
@@ -1455,17 +1455,17 @@ extension Cls {
     public struct RuleInfo: TCInputModel, TCOutputModel {
         /// 全文索引配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let fullText: FullTextInfo
+        public let fullText: FullTextInfo?
         
         /// 键值索引配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let keyValue: RuleKeyValueInfo
+        public let keyValue: RuleKeyValueInfo?
         
         /// 元字段索引配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tag: RuleTagInfo
+        public let tag: RuleTagInfo?
         
-        public init (fullText: FullTextInfo, keyValue: RuleKeyValueInfo, tag: RuleTagInfo) {
+        public init (fullText: FullTextInfo? = nil, keyValue: RuleKeyValueInfo? = nil, tag: RuleTagInfo? = nil) {
             self.fullText = fullText
             self.keyValue = keyValue
             self.tag = tag
@@ -1486,7 +1486,7 @@ extension Cls {
         /// 需要建立索引的键值对信息；最大只能配置100个键值对
         public let keyValues: [KeyValueInfo]?
         
-        public init (caseSensitive: Bool, keyValues: [KeyValueInfo]?) {
+        public init (caseSensitive: Bool, keyValues: [KeyValueInfo]? = nil) {
             self.caseSensitive = caseSensitive
             self.keyValues = keyValues
         }
@@ -1551,11 +1551,11 @@ extension Cls {
         
         /// 投递日志的压缩配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let compress: CompressInfo
+        public let compress: CompressInfo?
         
         /// 投递日志的内容格式配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let content: ContentInfo
+        public let content: ContentInfo?
         
         /// 投递日志的创建时间
         public let createTime: String
@@ -1735,7 +1735,7 @@ extension Cls {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let containZH: Bool?
         
-        public init (type: String, tokenizer: String?, sqlFlag: Bool?, containZH: Bool?) {
+        public init (type: String, tokenizer: String? = nil, sqlFlag: Bool? = nil, containZH: Bool? = nil) {
             self.type = type
             self.tokenizer = tokenizer
             self.sqlFlag = sqlFlag
@@ -1780,7 +1780,7 @@ extension Cls {
         /// 序号
         public let index: Int64?
         
-        public init (url: String, callbackType: String, method: String?, headers: [String]?, body: String?, index: Int64?) {
+        public init (url: String, callbackType: String, method: String? = nil, headers: [String]? = nil, body: String? = nil, index: Int64? = nil) {
             self.url = url
             self.callbackType = callbackType
             self.method = method

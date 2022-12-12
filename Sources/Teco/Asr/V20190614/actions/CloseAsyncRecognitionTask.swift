@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Asr {
-    /// 语音流异步识别任务关闭
-    ///
-    /// 本接口用于关闭语音流异步识别任务。
-    @inlinable
-    public func closeAsyncRecognitionTask(_ input: CloseAsyncRecognitionTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseAsyncRecognitionTaskResponse > {
-        self.client.execute(action: "CloseAsyncRecognitionTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 语音流异步识别任务关闭
-    ///
-    /// 本接口用于关闭语音流异步识别任务。
-    @inlinable
-    public func closeAsyncRecognitionTask(_ input: CloseAsyncRecognitionTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseAsyncRecognitionTaskResponse {
-        try await self.client.execute(action: "CloseAsyncRecognitionTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CloseAsyncRecognitionTask请求参数结构体
     public struct CloseAsyncRecognitionTaskRequest: TCRequestModel {
         /// 语音流异步识别任务的唯一标识，在创建任务时会返回
@@ -53,5 +37,21 @@ extension Asr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 语音流异步识别任务关闭
+    ///
+    /// 本接口用于关闭语音流异步识别任务。
+    @inlinable
+    public func closeAsyncRecognitionTask(_ input: CloseAsyncRecognitionTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseAsyncRecognitionTaskResponse > {
+        self.client.execute(action: "CloseAsyncRecognitionTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 语音流异步识别任务关闭
+    ///
+    /// 本接口用于关闭语音流异步识别任务。
+    @inlinable
+    public func closeAsyncRecognitionTask(_ input: CloseAsyncRecognitionTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseAsyncRecognitionTaskResponse {
+        try await self.client.execute(action: "CloseAsyncRecognitionTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

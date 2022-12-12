@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 关闭外网访问
-    ///
-    /// 本接口(CloseDBExtranetAccess)用于关闭云数据库实例的外网访问。关闭外网访问后，外网地址将不可访问，查询实例列表接口将不返回对应实例的外网域名和端口信息。
-    @inlinable
-    public func closeDBExtranetAccess(_ input: CloseDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseDBExtranetAccessResponse > {
-        self.client.execute(action: "CloseDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关闭外网访问
-    ///
-    /// 本接口(CloseDBExtranetAccess)用于关闭云数据库实例的外网访问。关闭外网访问后，外网地址将不可访问，查询实例列表接口将不返回对应实例的外网域名和端口信息。
-    @inlinable
-    public func closeDBExtranetAccess(_ input: CloseDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseDBExtranetAccessResponse {
-        try await self.client.execute(action: "CloseDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CloseDBExtranetAccess请求参数结构体
     public struct CloseDBExtranetAccessRequest: TCRequestModel {
         /// 待关闭外网访问的实例ID。形如：dcdbt-ow728lmc，可以通过 DescribeDCDBInstances 查询实例详情获得。
@@ -39,7 +23,7 @@ extension Dcdb {
         /// 是否IPv6，默认0
         public let ipv6Flag: Int64?
         
-        public init (instanceId: String, ipv6Flag: Int64?) {
+        public init (instanceId: String, ipv6Flag: Int64? = nil) {
             self.instanceId = instanceId
             self.ipv6Flag = ipv6Flag
         }
@@ -62,5 +46,21 @@ extension Dcdb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关闭外网访问
+    ///
+    /// 本接口(CloseDBExtranetAccess)用于关闭云数据库实例的外网访问。关闭外网访问后，外网地址将不可访问，查询实例列表接口将不返回对应实例的外网域名和端口信息。
+    @inlinable
+    public func closeDBExtranetAccess(_ input: CloseDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseDBExtranetAccessResponse > {
+        self.client.execute(action: "CloseDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭外网访问
+    ///
+    /// 本接口(CloseDBExtranetAccess)用于关闭云数据库实例的外网访问。关闭外网访问后，外网地址将不可访问，查询实例列表接口将不返回对应实例的外网域名和端口信息。
+    @inlinable
+    public func closeDBExtranetAccess(_ input: CloseDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseDBExtranetAccessResponse {
+        try await self.client.execute(action: "CloseDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 安全合规查询上次检测失败的资产的列表
-    ///
-    /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
-    @inlinable
-    public func describeComplianceScanFailedAssetList(_ input: DescribeComplianceScanFailedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceScanFailedAssetListResponse > {
-        self.client.execute(action: "DescribeComplianceScanFailedAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全合规查询上次检测失败的资产的列表
-    ///
-    /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
-    @inlinable
-    public func describeComplianceScanFailedAssetList(_ input: DescribeComplianceScanFailedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceScanFailedAssetListResponse {
-        try await self.client.execute(action: "DescribeComplianceScanFailedAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeComplianceScanFailedAssetList请求参数结构体
     public struct DescribeComplianceScanFailedAssetListRequest: TCRequestModel {
         /// 资产类型列表。
@@ -49,7 +33,7 @@ extension Tcss {
         /// 查询过滤器
         public let filters: [ComplianceFilters]?
         
-        public init (assetTypeSet: [String]?, offset: UInt64?, limit: UInt64?, filters: [ComplianceFilters]?) {
+        public init (assetTypeSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil) {
             self.assetTypeSet = assetTypeSet
             self.offset = offset
             self.limit = limit
@@ -81,5 +65,21 @@ extension Tcss {
             case scanFailedAssetList = "ScanFailedAssetList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全合规查询上次检测失败的资产的列表
+    ///
+    /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
+    @inlinable
+    public func describeComplianceScanFailedAssetList(_ input: DescribeComplianceScanFailedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceScanFailedAssetListResponse > {
+        self.client.execute(action: "DescribeComplianceScanFailedAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规查询上次检测失败的资产的列表
+    ///
+    /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
+    @inlinable
+    public func describeComplianceScanFailedAssetList(_ input: DescribeComplianceScanFailedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceScanFailedAssetListResponse {
+        try await self.client.execute(action: "DescribeComplianceScanFailedAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

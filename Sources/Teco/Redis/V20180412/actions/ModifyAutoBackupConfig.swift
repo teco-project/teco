@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 设置自动备份配置
-    @inlinable
-    public func modifyAutoBackupConfig(_ input: ModifyAutoBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAutoBackupConfigResponse > {
-        self.client.execute(action: "ModifyAutoBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置自动备份配置
-    @inlinable
-    public func modifyAutoBackupConfig(_ input: ModifyAutoBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoBackupConfigResponse {
-        try await self.client.execute(action: "ModifyAutoBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAutoBackupConfig请求参数结构体
     public struct ModifyAutoBackupConfigRequest: TCRequestModel {
         /// 实例ID
@@ -41,7 +29,7 @@ extension Redis {
         /// 自动备份类型： 1 “定时回档”
         public let autoBackupType: Int64?
         
-        public init (instanceId: String, weekDays: [String], timePeriod: String, autoBackupType: Int64?) {
+        public init (instanceId: String, weekDays: [String], timePeriod: String, autoBackupType: Int64? = nil) {
             self.instanceId = instanceId
             self.weekDays = weekDays
             self.timePeriod = timePeriod
@@ -80,5 +68,17 @@ extension Redis {
             case backupStorageDays = "BackupStorageDays"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置自动备份配置
+    @inlinable
+    public func modifyAutoBackupConfig(_ input: ModifyAutoBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAutoBackupConfigResponse > {
+        self.client.execute(action: "ModifyAutoBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置自动备份配置
+    @inlinable
+    public func modifyAutoBackupConfig(_ input: ModifyAutoBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoBackupConfigResponse {
+        try await self.client.execute(action: "ModifyAutoBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

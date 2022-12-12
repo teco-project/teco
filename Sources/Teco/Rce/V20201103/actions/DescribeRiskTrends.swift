@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rce {
-    /// 风险趋势统计
-    ///
-    /// 以图表形式展示三种请求状态的趋势变化
-    @inlinable
-    public func describeRiskTrends(_ input: DescribeRiskTrendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskTrendsResponse > {
-        self.client.execute(action: "DescribeRiskTrends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 风险趋势统计
-    ///
-    /// 以图表形式展示三种请求状态的趋势变化
-    @inlinable
-    public func describeRiskTrends(_ input: DescribeRiskTrendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskTrendsResponse {
-        try await self.client.execute(action: "DescribeRiskTrends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRiskTrends请求参数结构体
     public struct DescribeRiskTrendsRequest: TCRequestModel {
         /// 业务入参
@@ -57,5 +41,21 @@ extension Rce {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 风险趋势统计
+    ///
+    /// 以图表形式展示三种请求状态的趋势变化
+    @inlinable
+    public func describeRiskTrends(_ input: DescribeRiskTrendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskTrendsResponse > {
+        self.client.execute(action: "DescribeRiskTrends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 风险趋势统计
+    ///
+    /// 以图表形式展示三种请求状态的趋势变化
+    @inlinable
+    public func describeRiskTrends(_ input: DescribeRiskTrendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskTrendsResponse {
+        try await self.client.execute(action: "DescribeRiskTrends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

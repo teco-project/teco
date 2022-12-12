@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 解析视频索引文件
-    ///
-    /// 上传 HLS 视频时，解析索引文件内容，返回待上传的分片文件列表。分片文件路径必须是当前目录或子目录的相对路径，不能是 URL，不能是绝对路径。
-    @inlinable
-    public func parseStreamingManifest(_ input: ParseStreamingManifestRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ParseStreamingManifestResponse > {
-        self.client.execute(action: "ParseStreamingManifest", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解析视频索引文件
-    ///
-    /// 上传 HLS 视频时，解析索引文件内容，返回待上传的分片文件列表。分片文件路径必须是当前目录或子目录的相对路径，不能是 URL，不能是绝对路径。
-    @inlinable
-    public func parseStreamingManifest(_ input: ParseStreamingManifestRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseStreamingManifestResponse {
-        try await self.client.execute(action: "ParseStreamingManifest", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ParseStreamingManifest请求参数结构体
     public struct ParseStreamingManifestRequest: TCRequestModel {
         /// 待解析的索引文件内容。
@@ -41,7 +25,7 @@ extension Vod {
         /// <li>mpd</li>
         public let manifestType: String?
         
-        public init (mediaManifestContent: String, manifestType: String?) {
+        public init (mediaManifestContent: String, manifestType: String? = nil) {
             self.mediaManifestContent = mediaManifestContent
             self.manifestType = manifestType
         }
@@ -64,5 +48,21 @@ extension Vod {
             case mediaSegmentSet = "MediaSegmentSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解析视频索引文件
+    ///
+    /// 上传 HLS 视频时，解析索引文件内容，返回待上传的分片文件列表。分片文件路径必须是当前目录或子目录的相对路径，不能是 URL，不能是绝对路径。
+    @inlinable
+    public func parseStreamingManifest(_ input: ParseStreamingManifestRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ParseStreamingManifestResponse > {
+        self.client.execute(action: "ParseStreamingManifest", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解析视频索引文件
+    ///
+    /// 上传 HLS 视频时，解析索引文件内容，返回待上传的分片文件列表。分片文件路径必须是当前目录或子目录的相对路径，不能是 URL，不能是绝对路径。
+    @inlinable
+    public func parseStreamingManifest(_ input: ParseStreamingManifestRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseStreamingManifestResponse {
+        try await self.client.execute(action: "ParseStreamingManifest", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

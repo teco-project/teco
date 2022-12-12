@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dasb {
-    /// 查询资产组列表
-    @inlinable
-    public func describeDeviceGroups(_ input: DescribeDeviceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceGroupsResponse > {
-        self.client.execute(action: "DescribeDeviceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询资产组列表
-    @inlinable
-    public func describeDeviceGroups(_ input: DescribeDeviceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceGroupsResponse {
-        try await self.client.execute(action: "DescribeDeviceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceGroups请求参数结构体
     public struct DescribeDeviceGroupsRequest: TCRequestModel {
         /// 资产组ID集合
@@ -44,7 +32,7 @@ extension Dasb {
         /// 部门ID，用于过滤属于某个部门的资产组
         public let departmentId: String?
         
-        public init (idSet: [UInt64]?, name: String?, offset: UInt64?, limit: UInt64?, departmentId: String?) {
+        public init (idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, departmentId: String? = nil) {
             self.idSet = idSet
             self.name = name
             self.offset = offset
@@ -77,5 +65,17 @@ extension Dasb {
             case groupSet = "GroupSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询资产组列表
+    @inlinable
+    public func describeDeviceGroups(_ input: DescribeDeviceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceGroupsResponse > {
+        self.client.execute(action: "DescribeDeviceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资产组列表
+    @inlinable
+    public func describeDeviceGroups(_ input: DescribeDeviceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceGroupsResponse {
+        try await self.client.execute(action: "DescribeDeviceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

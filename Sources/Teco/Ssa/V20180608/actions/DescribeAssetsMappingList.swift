@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssa {
-    /// 资产测绘-测绘列表
-    @inlinable
-    public func describeAssetsMappingList(_ input: DescribeAssetsMappingListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetsMappingListResponse > {
-        self.client.execute(action: "DescribeAssetsMappingList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 资产测绘-测绘列表
-    @inlinable
-    public func describeAssetsMappingList(_ input: DescribeAssetsMappingListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsMappingListResponse {
-        try await self.client.execute(action: "DescribeAssetsMappingList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetsMappingList请求参数结构体
     public struct DescribeAssetsMappingListRequest: TCRequestModel {
         /// 请求参数
@@ -62,5 +50,17 @@ extension Ssa {
             case countByType = "CountByType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 资产测绘-测绘列表
+    @inlinable
+    public func describeAssetsMappingList(_ input: DescribeAssetsMappingListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetsMappingListResponse > {
+        self.client.execute(action: "DescribeAssetsMappingList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 资产测绘-测绘列表
+    @inlinable
+    public func describeAssetsMappingList(_ input: DescribeAssetsMappingListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsMappingListResponse {
+        try await self.client.execute(action: "DescribeAssetsMappingList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

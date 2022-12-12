@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 获取操作日志列表
-    @inlinable
-    public func describeAuditLog(_ input: DescribeAuditLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditLogResponse > {
-        self.client.execute(action: "DescribeAuditLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取操作日志列表
-    @inlinable
-    public func describeAuditLog(_ input: DescribeAuditLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogResponse {
-        try await self.client.execute(action: "DescribeAuditLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAuditLog请求参数结构体
     public struct DescribeAuditLogRequest: TCRequestModel {
         /// 请求量统计起始时间
@@ -44,7 +32,7 @@ extension Privatedns {
         /// 分页限制数目， 最大100，默认20
         public let limit: Int64?
         
-        public init (timeRangeBegin: String, filters: [Filter]?, timeRangeEnd: String?, offset: Int64?, limit: Int64?) {
+        public init (timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.timeRangeBegin = timeRangeBegin
             self.filters = filters
             self.timeRangeEnd = timeRangeEnd
@@ -73,5 +61,17 @@ extension Privatedns {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取操作日志列表
+    @inlinable
+    public func describeAuditLog(_ input: DescribeAuditLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditLogResponse > {
+        self.client.execute(action: "DescribeAuditLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取操作日志列表
+    @inlinable
+    public func describeAuditLog(_ input: DescribeAuditLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogResponse {
+        try await self.client.execute(action: "DescribeAuditLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudhsm {
-    /// 获取安全组详情
-    @inlinable
-    public func describeUsgRule(_ input: DescribeUsgRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsgRuleResponse > {
-        self.client.execute(action: "DescribeUsgRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取安全组详情
-    @inlinable
-    public func describeUsgRule(_ input: DescribeUsgRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgRuleResponse {
-        try await self.client.execute(action: "DescribeUsgRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUsgRule请求参数结构体
     public struct DescribeUsgRuleRequest: TCRequestModel {
         /// 根据安全组Id获取安全组详情
@@ -59,5 +47,17 @@ extension Cloudhsm {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取安全组详情
+    @inlinable
+    public func describeUsgRule(_ input: DescribeUsgRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsgRuleResponse > {
+        self.client.execute(action: "DescribeUsgRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全组详情
+    @inlinable
+    public func describeUsgRule(_ input: DescribeUsgRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgRuleResponse {
+        try await self.client.execute(action: "DescribeUsgRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

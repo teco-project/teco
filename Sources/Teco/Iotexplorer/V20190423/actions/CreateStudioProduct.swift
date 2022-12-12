@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 新建产品
-    ///
-    /// 为用户提供新建产品的能力，用于管理用户的设备
-    @inlinable
-    public func createStudioProduct(_ input: CreateStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStudioProductResponse > {
-        self.client.execute(action: "CreateStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建产品
-    ///
-    /// 为用户提供新建产品的能力，用于管理用户的设备
-    @inlinable
-    public func createStudioProduct(_ input: CreateStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStudioProductResponse {
-        try await self.client.execute(action: "CreateStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateStudioProduct请求参数结构体
     public struct CreateStudioProductRequest: TCRequestModel {
         /// 产品名称，名称不能和已经存在的产品名称重复。命名规则：[a-zA-Z0-9:_-]{1,32}
@@ -92,5 +76,21 @@ extension Iotexplorer {
             case product = "Product"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建产品
+    ///
+    /// 为用户提供新建产品的能力，用于管理用户的设备
+    @inlinable
+    public func createStudioProduct(_ input: CreateStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStudioProductResponse > {
+        self.client.execute(action: "CreateStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建产品
+    ///
+    /// 为用户提供新建产品的能力，用于管理用户的设备
+    @inlinable
+    public func createStudioProduct(_ input: CreateStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStudioProductResponse {
+        try await self.client.execute(action: "CreateStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

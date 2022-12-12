@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 修改机器组
-    @inlinable
-    public func modifyMachineGroup(_ input: ModifyMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMachineGroupResponse > {
-        self.client.execute(action: "ModifyMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改机器组
-    @inlinable
-    public func modifyMachineGroup(_ input: ModifyMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMachineGroupResponse {
-        try await self.client.execute(action: "ModifyMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMachineGroup请求参数结构体
     public struct ModifyMachineGroupRequest: TCRequestModel {
         /// 机器组ID
@@ -36,7 +24,7 @@ extension Cls {
         public let groupName: String?
         
         /// 机器组类型
-        public let machineGroupType: MachineGroupTypeInfo
+        public let machineGroupType: MachineGroupTypeInfo?
         
         /// 标签列表
         public let tags: [Tag]?
@@ -53,7 +41,7 @@ extension Cls {
         /// 是否开启服务日志，用于记录因Loglistener 服务自身产生的log，开启后，会创建内部日志集cls_service_logging和日志主题loglistener_status,loglistener_alarm,loglistener_business，不产生计费
         public let serviceLogging: Bool?
         
-        public init (groupId: String, groupName: String?, machineGroupType: MachineGroupTypeInfo, tags: [Tag]?, autoUpdate: Bool?, updateStartTime: String?, updateEndTime: String?, serviceLogging: Bool?) {
+        public init (groupId: String, groupName: String? = nil, machineGroupType: MachineGroupTypeInfo? = nil, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil) {
             self.groupId = groupId
             self.groupName = groupName
             self.machineGroupType = machineGroupType
@@ -84,5 +72,17 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改机器组
+    @inlinable
+    public func modifyMachineGroup(_ input: ModifyMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMachineGroupResponse > {
+        self.client.execute(action: "ModifyMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改机器组
+    @inlinable
+    public func modifyMachineGroup(_ input: ModifyMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMachineGroupResponse {
+        try await self.client.execute(action: "ModifyMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

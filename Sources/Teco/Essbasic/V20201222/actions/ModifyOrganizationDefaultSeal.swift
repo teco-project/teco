@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 修改企业默认印章
-    ///
-    /// 此接口 (ModifyOrganizationDefaultSeal) 用于重新指定企业默认印章。
-    @inlinable
-    public func modifyOrganizationDefaultSeal(_ input: ModifyOrganizationDefaultSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyOrganizationDefaultSealResponse > {
-        self.client.execute(action: "ModifyOrganizationDefaultSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改企业默认印章
-    ///
-    /// 此接口 (ModifyOrganizationDefaultSeal) 用于重新指定企业默认印章。
-    @inlinable
-    public func modifyOrganizationDefaultSeal(_ input: ModifyOrganizationDefaultSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrganizationDefaultSealResponse {
-        try await self.client.execute(action: "ModifyOrganizationDefaultSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyOrganizationDefaultSeal请求参数结构体
     public struct ModifyOrganizationDefaultSealRequest: TCRequestModel {
         /// 调用方信息
@@ -63,5 +47,21 @@ extension Essbasic {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改企业默认印章
+    ///
+    /// 此接口 (ModifyOrganizationDefaultSeal) 用于重新指定企业默认印章。
+    @inlinable
+    public func modifyOrganizationDefaultSeal(_ input: ModifyOrganizationDefaultSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyOrganizationDefaultSealResponse > {
+        self.client.execute(action: "ModifyOrganizationDefaultSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改企业默认印章
+    ///
+    /// 此接口 (ModifyOrganizationDefaultSeal) 用于重新指定企业默认印章。
+    @inlinable
+    public func modifyOrganizationDefaultSeal(_ input: ModifyOrganizationDefaultSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrganizationDefaultSealResponse {
+        try await self.client.execute(action: "ModifyOrganizationDefaultSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 隔离集群
-    @inlinable
-    public func isolateCluster(_ input: IsolateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateClusterResponse > {
-        self.client.execute(action: "IsolateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 隔离集群
-    @inlinable
-    public func isolateCluster(_ input: IsolateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterResponse {
-        try await self.client.execute(action: "IsolateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// IsolateCluster请求参数结构体
     public struct IsolateClusterRequest: TCRequestModel {
         /// 集群ID
@@ -35,7 +23,7 @@ extension Cynosdb {
         /// 该参数已废用
         public let dbType: String?
         
-        public init (clusterId: String, dbType: String?) {
+        public init (clusterId: String, dbType: String? = nil) {
             self.clusterId = clusterId
             self.dbType = dbType
         }
@@ -64,5 +52,17 @@ extension Cynosdb {
             case dealNames = "DealNames"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 隔离集群
+    @inlinable
+    public func isolateCluster(_ input: IsolateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateClusterResponse > {
+        self.client.execute(action: "IsolateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 隔离集群
+    @inlinable
+    public func isolateCluster(_ input: IsolateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterResponse {
+        try await self.client.execute(action: "IsolateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询实时任务日志列表
-    @inlinable
-    public func describeStreamTaskLogList(_ input: DescribeStreamTaskLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamTaskLogListResponse > {
-        self.client.execute(action: "DescribeStreamTaskLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实时任务日志列表
-    @inlinable
-    public func describeStreamTaskLogList(_ input: DescribeStreamTaskLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamTaskLogListResponse {
-        try await self.client.execute(action: "DescribeStreamTaskLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStreamTaskLogList请求参数结构体
     public struct DescribeStreamTaskLogListRequest: TCRequestModel {
         /// 项目ID
@@ -56,7 +44,7 @@ extension Wedata {
         /// 作业运行的实例ID
         public let runningOrderId: UInt64?
         
-        public init (projectId: String, taskId: String, jobId: String, endTime: UInt64, startTime: UInt64, container: String?, limit: UInt64?, orderType: String?, runningOrderId: UInt64?) {
+        public init (projectId: String, taskId: String, jobId: String, endTime: UInt64, startTime: UInt64, container: String? = nil, limit: UInt64? = nil, orderType: String? = nil, runningOrderId: UInt64? = nil) {
             self.projectId = projectId
             self.taskId = taskId
             self.jobId = jobId
@@ -99,5 +87,17 @@ extension Wedata {
             case logContentList = "LogContentList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实时任务日志列表
+    @inlinable
+    public func describeStreamTaskLogList(_ input: DescribeStreamTaskLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamTaskLogListResponse > {
+        self.client.execute(action: "DescribeStreamTaskLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实时任务日志列表
+    @inlinable
+    public func describeStreamTaskLogList(_ input: DescribeStreamTaskLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamTaskLogListResponse {
+        try await self.client.execute(action: "DescribeStreamTaskLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

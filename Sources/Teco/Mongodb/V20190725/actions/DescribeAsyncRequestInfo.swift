@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 查询异步任务状态接口
-    @inlinable
-    public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAsyncRequestInfoResponse > {
-        self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询异步任务状态接口
-    @inlinable
-    public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRequestInfoResponse {
-        try await self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAsyncRequestInfo请求参数结构体
     public struct DescribeAsyncRequestInfoRequest: TCRequestModel {
         /// 异步请求Id，涉及到异步流程的接口返回，如CreateBackupDBInstance
@@ -53,5 +41,17 @@ extension Mongodb {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询异步任务状态接口
+    @inlinable
+    public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAsyncRequestInfoResponse > {
+        self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询异步任务状态接口
+    @inlinable
+    public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRequestInfoResponse {
+        try await self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

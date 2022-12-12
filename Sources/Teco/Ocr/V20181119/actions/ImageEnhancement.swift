@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 文本图像增强
-    ///
-    /// 文本图像增强是面向文档类图片提供的图像增强处理能力，包括切边增强、图像矫正、阴影去除、摩尔纹去除等；可以有效优化文档类的图片质量，提升文字的清晰度。
-    @inlinable
-    public func imageEnhancement(_ input: ImageEnhancementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImageEnhancementResponse > {
-        self.client.execute(action: "ImageEnhancement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 文本图像增强
-    ///
-    /// 文本图像增强是面向文档类图片提供的图像增强处理能力，包括切边增强、图像矫正、阴影去除、摩尔纹去除等；可以有效优化文档类的图片质量，提升文字的清晰度。
-    @inlinable
-    public func imageEnhancement(_ input: ImageEnhancementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageEnhancementResponse {
-        try await self.client.execute(action: "ImageEnhancement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ImageEnhancement请求参数结构体
     public struct ImageEnhancementRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -67,7 +51,7 @@ extension Ocr {
         /// 304：去除过曝
         public let taskType: Int64?
         
-        public init (imageBase64: String?, imageUrl: String?, returnImage: String?, taskType: Int64?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, returnImage: String? = nil, taskType: Int64? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.returnImage = returnImage
@@ -100,5 +84,21 @@ extension Ocr {
             case image = "Image"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 文本图像增强
+    ///
+    /// 文本图像增强是面向文档类图片提供的图像增强处理能力，包括切边增强、图像矫正、阴影去除、摩尔纹去除等；可以有效优化文档类的图片质量，提升文字的清晰度。
+    @inlinable
+    public func imageEnhancement(_ input: ImageEnhancementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImageEnhancementResponse > {
+        self.client.execute(action: "ImageEnhancement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 文本图像增强
+    ///
+    /// 文本图像增强是面向文档类图片提供的图像增强处理能力，包括切边增强、图像矫正、阴影去除、摩尔纹去除等；可以有效优化文档类的图片质量，提升文字的清晰度。
+    @inlinable
+    public func imageEnhancement(_ input: ImageEnhancementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageEnhancementResponse {
+        try await self.client.execute(action: "ImageEnhancement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

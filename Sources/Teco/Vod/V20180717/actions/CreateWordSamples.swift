@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 创建关键词样本
-    ///
-    /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
-    @inlinable
-    public func createWordSamples(_ input: CreateWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWordSamplesResponse > {
-        self.client.execute(action: "CreateWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建关键词样本
-    ///
-    /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
-    @inlinable
-    public func createWordSamples(_ input: CreateWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordSamplesResponse {
-        try await self.client.execute(action: "CreateWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateWordSamples请求参数结构体
     public struct CreateWordSamplesRequest: TCRequestModel {
         /// <b>关键词应用场景，可选值：</b>
@@ -50,7 +34,7 @@ extension Vod {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
         
-        public init (usages: [String], words: [AiSampleWordInfo], subAppId: UInt64?) {
+        public init (usages: [String], words: [AiSampleWordInfo], subAppId: UInt64? = nil) {
             self.usages = usages
             self.words = words
             self.subAppId = subAppId
@@ -71,5 +55,21 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建关键词样本
+    ///
+    /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
+    @inlinable
+    public func createWordSamples(_ input: CreateWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWordSamplesResponse > {
+        self.client.execute(action: "CreateWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建关键词样本
+    ///
+    /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
+    @inlinable
+    public func createWordSamples(_ input: CreateWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordSamplesResponse {
+        try await self.client.execute(action: "CreateWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

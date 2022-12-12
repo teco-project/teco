@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 删除企业组织成员
-    @inlinable
-    public func deleteOrganizationMemberFromNode(_ input: DeleteOrganizationMemberFromNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOrganizationMemberFromNodeResponse > {
-        self.client.execute(action: "DeleteOrganizationMemberFromNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除企业组织成员
-    @inlinable
-    public func deleteOrganizationMemberFromNode(_ input: DeleteOrganizationMemberFromNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationMemberFromNodeResponse {
-        try await self.client.execute(action: "DeleteOrganizationMemberFromNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteOrganizationMemberFromNode请求参数结构体
     public struct DeleteOrganizationMemberFromNodeRequest: TCRequestModel {
         /// 被删除成员UIN
@@ -54,5 +42,17 @@ extension Organization {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除企业组织成员
+    @inlinable
+    public func deleteOrganizationMemberFromNode(_ input: DeleteOrganizationMemberFromNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOrganizationMemberFromNodeResponse > {
+        self.client.execute(action: "DeleteOrganizationMemberFromNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除企业组织成员
+    @inlinable
+    public func deleteOrganizationMemberFromNode(_ input: DeleteOrganizationMemberFromNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationMemberFromNodeResponse {
+        try await self.client.execute(action: "DeleteOrganizationMemberFromNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

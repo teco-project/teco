@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询漏洞扫描忽略的仓库镜像列表
-    @inlinable
-    public func describeVulIgnoreRegistryImageList(_ input: DescribeVulIgnoreRegistryImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulIgnoreRegistryImageListResponse > {
-        self.client.execute(action: "DescribeVulIgnoreRegistryImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询漏洞扫描忽略的仓库镜像列表
-    @inlinable
-    public func describeVulIgnoreRegistryImageList(_ input: DescribeVulIgnoreRegistryImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulIgnoreRegistryImageListResponse {
-        try await self.client.execute(action: "DescribeVulIgnoreRegistryImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulIgnoreRegistryImageList请求参数结构体
     public struct DescribeVulIgnoreRegistryImageListRequest: TCRequestModel {
         /// 漏洞PocID
@@ -38,7 +26,7 @@ extension Tcss {
         /// 偏移量，默认为0。
         public let offset: UInt64?
         
-        public init (pocID: String, limit: UInt64?, offset: UInt64?) {
+        public init (pocID: String, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.pocID = pocID
             self.limit = limit
             self.offset = offset
@@ -67,5 +55,17 @@ extension Tcss {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询漏洞扫描忽略的仓库镜像列表
+    @inlinable
+    public func describeVulIgnoreRegistryImageList(_ input: DescribeVulIgnoreRegistryImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulIgnoreRegistryImageListResponse > {
+        self.client.execute(action: "DescribeVulIgnoreRegistryImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞扫描忽略的仓库镜像列表
+    @inlinable
+    public func describeVulIgnoreRegistryImageList(_ input: DescribeVulIgnoreRegistryImageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulIgnoreRegistryImageListResponse {
+        try await self.client.execute(action: "DescribeVulIgnoreRegistryImageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

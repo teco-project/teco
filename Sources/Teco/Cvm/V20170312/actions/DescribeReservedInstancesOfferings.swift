@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 列出可购买的预留实例配置
-    ///
-    /// 本接口(DescribeReservedInstancesOfferings)供用户列出可购买的预留实例配置
-    @inlinable
-    public func describeReservedInstancesOfferings(_ input: DescribeReservedInstancesOfferingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReservedInstancesOfferingsResponse > {
-        self.client.execute(action: "DescribeReservedInstancesOfferings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出可购买的预留实例配置
-    ///
-    /// 本接口(DescribeReservedInstancesOfferings)供用户列出可购买的预留实例配置
-    @inlinable
-    public func describeReservedInstancesOfferings(_ input: DescribeReservedInstancesOfferingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReservedInstancesOfferingsResponse {
-        try await self.client.execute(action: "DescribeReservedInstancesOfferings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReservedInstancesOfferings请求参数结构体
     public struct DescribeReservedInstancesOfferingsRequest: TCRequestModel {
         /// 试运行, 默认为 false。
@@ -67,7 +51,7 @@ extension Cvm {
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。
         public let filters: [Filter]?
         
-        public init (dryRun: Bool?, offset: Int64?, limit: Int64?, maxDuration: Int64?, minDuration: Int64?, filters: [Filter]?) {
+        public init (dryRun: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil, maxDuration: Int64? = nil, minDuration: Int64? = nil, filters: [Filter]? = nil) {
             self.dryRun = dryRun
             self.offset = offset
             self.limit = limit
@@ -102,5 +86,21 @@ extension Cvm {
             case reservedInstancesOfferingsSet = "ReservedInstancesOfferingsSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出可购买的预留实例配置
+    ///
+    /// 本接口(DescribeReservedInstancesOfferings)供用户列出可购买的预留实例配置
+    @inlinable
+    public func describeReservedInstancesOfferings(_ input: DescribeReservedInstancesOfferingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReservedInstancesOfferingsResponse > {
+        self.client.execute(action: "DescribeReservedInstancesOfferings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出可购买的预留实例配置
+    ///
+    /// 本接口(DescribeReservedInstancesOfferings)供用户列出可购买的预留实例配置
+    @inlinable
+    public func describeReservedInstancesOfferings(_ input: DescribeReservedInstancesOfferingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReservedInstancesOfferingsResponse {
+        try await self.client.execute(action: "DescribeReservedInstancesOfferings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

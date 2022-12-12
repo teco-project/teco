@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Tmt {
-    /// 语种识别
-    ///
-    /// 可自动识别文本内容的语言种类，轻量高效，无需额外实现判断方式，使面向客户的服务体验更佳。 <br />
-    /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
-    @inlinable
-    public func languageDetect(_ input: LanguageDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LanguageDetectResponse > {
-        self.client.execute(action: "LanguageDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 语种识别
-    ///
-    /// 可自动识别文本内容的语言种类，轻量高效，无需额外实现判断方式，使面向客户的服务体验更佳。 <br />
-    /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
-    @inlinable
-    public func languageDetect(_ input: LanguageDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LanguageDetectResponse {
-        try await self.client.execute(action: "LanguageDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// LanguageDetect请求参数结构体
     public struct LanguageDetectRequest: TCRequestModel {
         /// 待识别的文本，文本统一使用utf-8格式编码，非utf-8格式编码字符会翻译失败。单次请求的文本长度需要低于2000。
@@ -65,5 +47,23 @@ extension Tmt {
             case lang = "Lang"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 语种识别
+    ///
+    /// 可自动识别文本内容的语言种类，轻量高效，无需额外实现判断方式，使面向客户的服务体验更佳。 <br />
+    /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
+    @inlinable
+    public func languageDetect(_ input: LanguageDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LanguageDetectResponse > {
+        self.client.execute(action: "LanguageDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 语种识别
+    ///
+    /// 可自动识别文本内容的语言种类，轻量高效，无需额外实现判断方式，使面向客户的服务体验更佳。 <br />
+    /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
+    @inlinable
+    public func languageDetect(_ input: LanguageDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LanguageDetectResponse {
+        try await self.client.execute(action: "LanguageDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

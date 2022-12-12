@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 编辑设备信息
-    ///
-    /// 本接口(ModifyDeviceData)用于编辑设备信息。
-    @inlinable
-    public func modifyDeviceData(_ input: ModifyDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceDataResponse > {
-        self.client.execute(action: "ModifyDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑设备信息
-    ///
-    /// 本接口(ModifyDeviceData)用于编辑设备信息。
-    @inlinable
-    public func modifyDeviceData(_ input: ModifyDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceDataResponse {
-        try await self.client.execute(action: "ModifyDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDeviceData请求参数结构体
     public struct ModifyDeviceDataRequest: TCRequestModel {
         /// 设备唯一标识
@@ -63,5 +47,21 @@ extension Iotvideoindustry {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑设备信息
+    ///
+    /// 本接口(ModifyDeviceData)用于编辑设备信息。
+    @inlinable
+    public func modifyDeviceData(_ input: ModifyDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceDataResponse > {
+        self.client.execute(action: "ModifyDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑设备信息
+    ///
+    /// 本接口(ModifyDeviceData)用于编辑设备信息。
+    @inlinable
+    public func modifyDeviceData(_ input: ModifyDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceDataResponse {
+        try await self.client.execute(action: "ModifyDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

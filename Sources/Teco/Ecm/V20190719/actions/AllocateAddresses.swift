@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 创建弹性公网IP
-    ///
-    /// 申请一个或多个弹性公网IP（简称 EIP）
-    @inlinable
-    public func allocateAddresses(_ input: AllocateAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AllocateAddressesResponse > {
-        self.client.execute(action: "AllocateAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建弹性公网IP
-    ///
-    /// 申请一个或多个弹性公网IP（简称 EIP）
-    @inlinable
-    public func allocateAddresses(_ input: AllocateAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateAddressesResponse {
-        try await self.client.execute(action: "AllocateAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AllocateAddresses请求参数结构体
     public struct AllocateAddressesRequest: TCRequestModel {
         /// ECM 地域
@@ -59,7 +43,7 @@ extension Ecm {
         /// 要绑定的内网 IP。如果指定了 NetworkInterfaceId 则也必须指定 PrivateIpAddress ，表示将 EIP 绑定到指定弹性网卡的指定内网 IP 上。同时要确保指定的 PrivateIpAddress 是指定的 NetworkInterfaceId 上的一个内网 IP。指定弹性网卡的内网 IP 可通过DescribeNetworkInterfaces接口返回值中的privateIpAddress获取。
         public let privateIpAddress: String?
         
-        public init (ecmRegion: String, addressCount: UInt64?, internetServiceProvider: String?, internetMaxBandwidthOut: UInt64?, tags: [Tag]?, instanceId: String?, networkInterfaceId: String?, privateIpAddress: String?) {
+        public init (ecmRegion: String, addressCount: UInt64? = nil, internetServiceProvider: String? = nil, internetMaxBandwidthOut: UInt64? = nil, tags: [Tag]? = nil, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil) {
             self.ecmRegion = ecmRegion
             self.addressCount = addressCount
             self.internetServiceProvider = internetServiceProvider
@@ -99,5 +83,21 @@ extension Ecm {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建弹性公网IP
+    ///
+    /// 申请一个或多个弹性公网IP（简称 EIP）
+    @inlinable
+    public func allocateAddresses(_ input: AllocateAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AllocateAddressesResponse > {
+        self.client.execute(action: "AllocateAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建弹性公网IP
+    ///
+    /// 申请一个或多个弹性公网IP（简称 EIP）
+    @inlinable
+    public func allocateAddresses(_ input: AllocateAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateAddressesResponse {
+        try await self.client.execute(action: "AllocateAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

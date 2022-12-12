@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询云数据库实例的预期重启时间
-    ///
-    /// 本接口(DescribeDBInstanceRebootTime)用于查询云数据库实例重启预计所需的时间。
-    @inlinable
-    public func describeDBInstanceRebootTime(_ input: DescribeDBInstanceRebootTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceRebootTimeResponse > {
-        self.client.execute(action: "DescribeDBInstanceRebootTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云数据库实例的预期重启时间
-    ///
-    /// 本接口(DescribeDBInstanceRebootTime)用于查询云数据库实例重启预计所需的时间。
-    @inlinable
-    public func describeDBInstanceRebootTime(_ input: DescribeDBInstanceRebootTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceRebootTimeResponse {
-        try await self.client.execute(action: "DescribeDBInstanceRebootTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBInstanceRebootTime请求参数结构体
     public struct DescribeDBInstanceRebootTimeRequest: TCRequestModel {
         /// 实例的 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -61,5 +45,21 @@ extension Cdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云数据库实例的预期重启时间
+    ///
+    /// 本接口(DescribeDBInstanceRebootTime)用于查询云数据库实例重启预计所需的时间。
+    @inlinable
+    public func describeDBInstanceRebootTime(_ input: DescribeDBInstanceRebootTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceRebootTimeResponse > {
+        self.client.execute(action: "DescribeDBInstanceRebootTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云数据库实例的预期重启时间
+    ///
+    /// 本接口(DescribeDBInstanceRebootTime)用于查询云数据库实例重启预计所需的时间。
+    @inlinable
+    public func describeDBInstanceRebootTime(_ input: DescribeDBInstanceRebootTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceRebootTimeResponse {
+        try await self.client.execute(action: "DescribeDBInstanceRebootTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

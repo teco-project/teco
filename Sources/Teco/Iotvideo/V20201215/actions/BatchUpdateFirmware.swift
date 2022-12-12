@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 批量更新固件
-    ///
-    /// 本接口（BatchUpdateFirmware）用于批量更新设备固件 
-    @inlinable
-    public func batchUpdateFirmware(_ input: BatchUpdateFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchUpdateFirmwareResponse > {
-        self.client.execute(action: "BatchUpdateFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量更新固件
-    ///
-    /// 本接口（BatchUpdateFirmware）用于批量更新设备固件 
-    @inlinable
-    public func batchUpdateFirmware(_ input: BatchUpdateFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchUpdateFirmwareResponse {
-        try await self.client.execute(action: "BatchUpdateFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchUpdateFirmware请求参数结构体
     public struct BatchUpdateFirmwareRequest: TCRequestModel {
         /// 产品ID
@@ -57,7 +41,7 @@ extension Iotvideo {
         /// 需要升级的设备名称列表
         public let deviceNames: [String]?
         
-        public init (productID: String, firmwareVersion: String, firmwareOriVersion: String?, upgradeMethod: UInt64?, fileName: String?, fileMd5: String?, fileSize: UInt64?, deviceNames: [String]?) {
+        public init (productID: String, firmwareVersion: String, firmwareOriVersion: String? = nil, upgradeMethod: UInt64? = nil, fileName: String? = nil, fileMd5: String? = nil, fileSize: UInt64? = nil, deviceNames: [String]? = nil) {
             self.productID = productID
             self.firmwareVersion = firmwareVersion
             self.firmwareOriVersion = firmwareOriVersion
@@ -92,5 +76,21 @@ extension Iotvideo {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量更新固件
+    ///
+    /// 本接口（BatchUpdateFirmware）用于批量更新设备固件 
+    @inlinable
+    public func batchUpdateFirmware(_ input: BatchUpdateFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchUpdateFirmwareResponse > {
+        self.client.execute(action: "BatchUpdateFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量更新固件
+    ///
+    /// 本接口（BatchUpdateFirmware）用于批量更新设备固件 
+    @inlinable
+    public func batchUpdateFirmware(_ input: BatchUpdateFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchUpdateFirmwareResponse {
+        try await self.client.execute(action: "BatchUpdateFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

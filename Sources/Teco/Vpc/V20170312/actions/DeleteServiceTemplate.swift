@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除协议端口模板
-    ///
-    /// 本接口（DeleteServiceTemplate）用于删除协议端口模板
-    @inlinable
-    public func deleteServiceTemplate(_ input: DeleteServiceTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServiceTemplateResponse > {
-        self.client.execute(action: "DeleteServiceTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除协议端口模板
-    ///
-    /// 本接口（DeleteServiceTemplate）用于删除协议端口模板
-    @inlinable
-    public func deleteServiceTemplate(_ input: DeleteServiceTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateResponse {
-        try await self.client.execute(action: "DeleteServiceTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteServiceTemplate请求参数结构体
     public struct DeleteServiceTemplateRequest: TCRequestModel {
         /// 协议端口模板实例ID，例如：ppm-e6dy460g。
@@ -53,5 +37,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除协议端口模板
+    ///
+    /// 本接口（DeleteServiceTemplate）用于删除协议端口模板
+    @inlinable
+    public func deleteServiceTemplate(_ input: DeleteServiceTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServiceTemplateResponse > {
+        self.client.execute(action: "DeleteServiceTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除协议端口模板
+    ///
+    /// 本接口（DeleteServiceTemplate）用于删除协议端口模板
+    @inlinable
+    public func deleteServiceTemplate(_ input: DeleteServiceTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateResponse {
+        try await self.client.execute(action: "DeleteServiceTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

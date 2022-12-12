@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 合约部署列表
-    @inlinable
-    public func getDeployList(_ input: GetDeployListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeployListResponse > {
-        self.client.execute(action: "GetDeployList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 合约部署列表
-    @inlinable
-    public func getDeployList(_ input: GetDeployListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployListResponse {
-        try await self.client.execute(action: "GetDeployList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDeployList请求参数结构体
     public struct GetDeployListRequest: TCRequestModel {
         /// 网络ID
@@ -72,5 +60,17 @@ extension Tdid {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 合约部署列表
+    @inlinable
+    public func getDeployList(_ input: GetDeployListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeployListResponse > {
+        self.client.execute(action: "GetDeployList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 合约部署列表
+    @inlinable
+    public func getDeployList(_ input: GetDeployListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployListResponse {
+        try await self.client.execute(action: "GetDeployList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

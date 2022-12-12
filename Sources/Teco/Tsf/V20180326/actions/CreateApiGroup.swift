@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 创建API分组
-    @inlinable
-    public func createApiGroup(_ input: CreateApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApiGroupResponse > {
-        self.client.execute(action: "CreateApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建API分组
-    @inlinable
-    public func createApiGroup(_ input: CreateApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiGroupResponse {
-        try await self.client.execute(action: "CreateApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateApiGroup请求参数结构体
     public struct CreateApiGroupRequest: TCRequestModel {
         /// 分组名称, 不能包含中文
@@ -59,7 +47,7 @@ extension Tsf {
         /// 微服务名参数位置，path，header或query，默认是path
         public let serviceNameKeyPosition: String?
         
-        public init (groupName: String, groupContext: String, authType: String?, description: String?, groupType: String?, gatewayInstanceId: String?, namespaceNameKey: String?, serviceNameKey: String?, namespaceNameKeyPosition: String?, serviceNameKeyPosition: String?) {
+        public init (groupName: String, groupContext: String, authType: String? = nil, description: String? = nil, groupType: String? = nil, gatewayInstanceId: String? = nil, namespaceNameKey: String? = nil, serviceNameKey: String? = nil, namespaceNameKeyPosition: String? = nil, serviceNameKeyPosition: String? = nil) {
             self.groupName = groupName
             self.groupContext = groupContext
             self.authType = authType
@@ -99,5 +87,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建API分组
+    @inlinable
+    public func createApiGroup(_ input: CreateApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApiGroupResponse > {
+        self.client.execute(action: "CreateApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建API分组
+    @inlinable
+    public func createApiGroup(_ input: CreateApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiGroupResponse {
+        try await self.client.execute(action: "CreateApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

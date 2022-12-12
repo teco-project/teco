@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 创建边缘单元NodeUnit模板
-    @inlinable
-    public func createEdgeNodeUnitTemplate(_ input: CreateEdgeNodeUnitTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeNodeUnitTemplateResponse > {
-        self.client.execute(action: "CreateEdgeNodeUnitTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建边缘单元NodeUnit模板
-    @inlinable
-    public func createEdgeNodeUnitTemplate(_ input: CreateEdgeNodeUnitTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeUnitTemplateResponse {
-        try await self.client.execute(action: "CreateEdgeNodeUnitTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEdgeNodeUnitTemplate请求参数结构体
     public struct CreateEdgeNodeUnitTemplateRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -44,7 +32,7 @@ extension Iecp {
         /// 描述
         public let description: String?
         
-        public init (edgeUnitId: UInt64, name: String, namespace: String?, nodes: [String]?, description: String?) {
+        public init (edgeUnitId: UInt64, name: String, namespace: String? = nil, nodes: [String]? = nil, description: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.name = name
             self.namespace = namespace
@@ -69,5 +57,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建边缘单元NodeUnit模板
+    @inlinable
+    public func createEdgeNodeUnitTemplate(_ input: CreateEdgeNodeUnitTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeNodeUnitTemplateResponse > {
+        self.client.execute(action: "CreateEdgeNodeUnitTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建边缘单元NodeUnit模板
+    @inlinable
+    public func createEdgeNodeUnitTemplate(_ input: CreateEdgeNodeUnitTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeUnitTemplateResponse {
+        try await self.client.execute(action: "CreateEdgeNodeUnitTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

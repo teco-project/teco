@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudstudio {
-    /// 获取所有模板列表
-    @inlinable
-    public func describeCustomizeTemplates(_ input: DescribeCustomizeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomizeTemplatesResponse > {
-        self.client.execute(action: "DescribeCustomizeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取所有模板列表
-    @inlinable
-    public func describeCustomizeTemplates(_ input: DescribeCustomizeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizeTemplatesResponse {
-        try await self.client.execute(action: "DescribeCustomizeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomizeTemplates请求参数结构体
     public struct DescribeCustomizeTemplatesRequest: TCRequestModel {
         /// 用户所属组
@@ -54,5 +42,17 @@ extension Cloudstudio {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取所有模板列表
+    @inlinable
+    public func describeCustomizeTemplates(_ input: DescribeCustomizeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomizeTemplatesResponse > {
+        self.client.execute(action: "DescribeCustomizeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取所有模板列表
+    @inlinable
+    public func describeCustomizeTemplates(_ input: DescribeCustomizeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizeTemplatesResponse {
+        try await self.client.execute(action: "DescribeCustomizeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

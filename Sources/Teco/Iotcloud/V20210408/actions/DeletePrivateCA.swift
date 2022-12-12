@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 删除私有CA证书
-    @inlinable
-    public func deletePrivateCA(_ input: DeletePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivateCAResponse > {
-        self.client.execute(action: "DeletePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除私有CA证书
-    @inlinable
-    public func deletePrivateCA(_ input: DeletePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateCAResponse {
-        try await self.client.execute(action: "DeletePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePrivateCA请求参数结构体
     public struct DeletePrivateCARequest: TCRequestModel {
         /// 私有CA证书名称
@@ -49,5 +37,17 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除私有CA证书
+    @inlinable
+    public func deletePrivateCA(_ input: DeletePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivateCAResponse > {
+        self.client.execute(action: "DeletePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除私有CA证书
+    @inlinable
+    public func deletePrivateCA(_ input: DeletePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateCAResponse {
+        try await self.client.execute(action: "DeletePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

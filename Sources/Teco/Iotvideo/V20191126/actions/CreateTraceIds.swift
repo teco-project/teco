@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 将设备加到白名单
-    ///
-    /// 本接口（CreateTraceIds）用于将设备加到日志跟踪白名单。
-    @inlinable
-    public func createTraceIds(_ input: CreateTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceIdsResponse > {
-        self.client.execute(action: "CreateTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 将设备加到白名单
-    ///
-    /// 本接口（CreateTraceIds）用于将设备加到日志跟踪白名单。
-    @inlinable
-    public func createTraceIds(_ input: CreateTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceIdsResponse {
-        try await self.client.execute(action: "CreateTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTraceIds请求参数结构体
     public struct CreateTraceIdsRequest: TCRequestModel {
         /// 设备TID列表
@@ -53,5 +37,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 将设备加到白名单
+    ///
+    /// 本接口（CreateTraceIds）用于将设备加到日志跟踪白名单。
+    @inlinable
+    public func createTraceIds(_ input: CreateTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceIdsResponse > {
+        self.client.execute(action: "CreateTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 将设备加到白名单
+    ///
+    /// 本接口（CreateTraceIds）用于将设备加到日志跟踪白名单。
+    @inlinable
+    public func createTraceIds(_ input: CreateTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceIdsResponse {
+        try await self.client.execute(action: "CreateTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

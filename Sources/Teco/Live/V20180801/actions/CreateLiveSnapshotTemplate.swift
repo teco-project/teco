@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 创建截图模板
-    ///
-    /// 创建截图模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveSnapshotRule](/document/product/267/32625)接口，将模板id绑定到流使用。
-    /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
-    @inlinable
-    public func createLiveSnapshotTemplate(_ input: CreateLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveSnapshotTemplateResponse > {
-        self.client.execute(action: "CreateLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建截图模板
-    ///
-    /// 创建截图模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveSnapshotRule](/document/product/267/32625)接口，将模板id绑定到流使用。
-    /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
-    @inlinable
-    public func createLiveSnapshotTemplate(_ input: CreateLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveSnapshotTemplateResponse {
-        try await self.client.execute(action: "CreateLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLiveSnapshotTemplate请求参数结构体
     public struct CreateLiveSnapshotTemplateRequest: TCRequestModel {
         /// 模板名称。
@@ -82,7 +64,7 @@ extension Live {
         /// 生效
         public let cosFileName: String?
         
-        public init (templateName: String, cosAppId: Int64, cosBucket: String, cosRegion: String, description: String?, snapshotInterval: Int64?, width: Int64?, height: Int64?, pornFlag: Int64?, cosPrefix: String?, cosFileName: String?) {
+        public init (templateName: String, cosAppId: Int64, cosBucket: String, cosRegion: String, description: String? = nil, snapshotInterval: Int64? = nil, width: Int64? = nil, height: Int64? = nil, pornFlag: Int64? = nil, cosPrefix: String? = nil, cosFileName: String? = nil) {
             self.templateName = templateName
             self.cosAppId = cosAppId
             self.cosBucket = cosBucket
@@ -123,5 +105,23 @@ extension Live {
             case templateId = "TemplateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建截图模板
+    ///
+    /// 创建截图模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveSnapshotRule](/document/product/267/32625)接口，将模板id绑定到流使用。
+    /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
+    @inlinable
+    public func createLiveSnapshotTemplate(_ input: CreateLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveSnapshotTemplateResponse > {
+        self.client.execute(action: "CreateLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建截图模板
+    ///
+    /// 创建截图模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveSnapshotRule](/document/product/267/32625)接口，将模板id绑定到流使用。
+    /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
+    @inlinable
+    public func createLiveSnapshotTemplate(_ input: CreateLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveSnapshotTemplateResponse {
+        try await self.client.execute(action: "CreateLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 添加只读实例到只读组
-    ///
-    /// 本接口（AddDBInstanceToReadOnlyGroup）用于添加只读实例到只读组
-    @inlinable
-    public func addDBInstanceToReadOnlyGroup(_ input: AddDBInstanceToReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDBInstanceToReadOnlyGroupResponse > {
-        self.client.execute(action: "AddDBInstanceToReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加只读实例到只读组
-    ///
-    /// 本接口（AddDBInstanceToReadOnlyGroup）用于添加只读实例到只读组
-    @inlinable
-    public func addDBInstanceToReadOnlyGroup(_ input: AddDBInstanceToReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDBInstanceToReadOnlyGroupResponse {
-        try await self.client.execute(action: "AddDBInstanceToReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddDBInstanceToReadOnlyGroup请求参数结构体
     public struct AddDBInstanceToReadOnlyGroupRequest: TCRequestModel {
         /// 实例ID
@@ -62,5 +46,21 @@ extension Postgres {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加只读实例到只读组
+    ///
+    /// 本接口（AddDBInstanceToReadOnlyGroup）用于添加只读实例到只读组
+    @inlinable
+    public func addDBInstanceToReadOnlyGroup(_ input: AddDBInstanceToReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDBInstanceToReadOnlyGroupResponse > {
+        self.client.execute(action: "AddDBInstanceToReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加只读实例到只读组
+    ///
+    /// 本接口（AddDBInstanceToReadOnlyGroup）用于添加只读实例到只读组
+    @inlinable
+    public func addDBInstanceToReadOnlyGroup(_ input: AddDBInstanceToReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDBInstanceToReadOnlyGroupResponse {
+        try await self.client.execute(action: "AddDBInstanceToReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

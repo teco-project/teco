@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 车牌识别
-    ///
-    /// 本接口支持对中国大陆机动车车牌的自动定位和识别，返回地域编号和车牌号码与车牌颜色信息。
-    /// 默认接口请求频率限制：10次/秒。
-    @inlinable
-    public func licensePlateOCR(_ input: LicensePlateOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LicensePlateOCRResponse > {
-        self.client.execute(action: "LicensePlateOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 车牌识别
-    ///
-    /// 本接口支持对中国大陆机动车车牌的自动定位和识别，返回地域编号和车牌号码与车牌颜色信息。
-    /// 默认接口请求频率限制：10次/秒。
-    @inlinable
-    public func licensePlateOCR(_ input: LicensePlateOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LicensePlateOCRResponse {
-        try await self.client.execute(action: "LicensePlateOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// LicensePlateOCR请求参数结构体
     public struct LicensePlateOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -48,7 +30,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -87,5 +69,23 @@ extension Ocr {
             case licensePlateInfos = "LicensePlateInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 车牌识别
+    ///
+    /// 本接口支持对中国大陆机动车车牌的自动定位和识别，返回地域编号和车牌号码与车牌颜色信息。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func licensePlateOCR(_ input: LicensePlateOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LicensePlateOCRResponse > {
+        self.client.execute(action: "LicensePlateOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 车牌识别
+    ///
+    /// 本接口支持对中国大陆机动车车牌的自动定位和识别，返回地域编号和车牌号码与车牌颜色信息。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func licensePlateOCR(_ input: LicensePlateOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LicensePlateOCRResponse {
+        try await self.client.execute(action: "LicensePlateOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ic {
-    /// 查询短信列表
-    @inlinable
-    public func describeSms(_ input: DescribeSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmsResponse > {
-        self.client.execute(action: "DescribeSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询短信列表
-    @inlinable
-    public func describeSms(_ input: DescribeSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsResponse {
-        try await self.client.execute(action: "DescribeSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSms请求参数结构体
     public struct DescribeSmsRequest: TCRequestModel {
         /// 应用ID
@@ -53,7 +41,7 @@ extension Ic {
         /// 小于200
         public let limit: UInt64?
         
-        public init (sdkappid: Int64, iccid: String?, msisdn: String?, smsType: Int64?, beginTime: String?, endTime: String?, offset: UInt64?, limit: UInt64?) {
+        public init (sdkappid: Int64, iccid: String? = nil, msisdn: String? = nil, smsType: Int64? = nil, beginTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.sdkappid = sdkappid
             self.iccid = iccid
             self.msisdn = msisdn
@@ -94,5 +82,17 @@ extension Ic {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询短信列表
+    @inlinable
+    public func describeSms(_ input: DescribeSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmsResponse > {
+        self.client.execute(action: "DescribeSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询短信列表
+    @inlinable
+    public func describeSms(_ input: DescribeSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsResponse {
+        try await self.client.execute(action: "DescribeSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

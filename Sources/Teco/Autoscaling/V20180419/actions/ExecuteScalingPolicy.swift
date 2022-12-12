@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 触发伸缩策略
-    ///
-    /// 本接口（ExecuteScalingPolicy）用于执行伸缩策略。
-    /// * 可以根据伸缩策略ID执行伸缩策略。
-    /// * 伸缩策略所属伸缩组处于伸缩活动时，会拒绝执行伸缩策略。
-    @inlinable
-    public func executeScalingPolicy(_ input: ExecuteScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteScalingPolicyResponse > {
-        self.client.execute(action: "ExecuteScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 触发伸缩策略
-    ///
-    /// 本接口（ExecuteScalingPolicy）用于执行伸缩策略。
-    /// * 可以根据伸缩策略ID执行伸缩策略。
-    /// * 伸缩策略所属伸缩组处于伸缩活动时，会拒绝执行伸缩策略。
-    @inlinable
-    public func executeScalingPolicy(_ input: ExecuteScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteScalingPolicyResponse {
-        try await self.client.execute(action: "ExecuteScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExecuteScalingPolicy请求参数结构体
     public struct ExecuteScalingPolicyRequest: TCRequestModel {
         /// 告警伸缩策略ID
@@ -46,7 +26,7 @@ extension As {
         /// 执行伸缩策略的触发来源，取值包括 API 和 CLOUD_MONITOR，默认值为 API。CLOUD_MONITOR 专门供云监控触发调用。
         public let triggerSource: String?
         
-        public init (autoScalingPolicyId: String, honorCooldown: Bool?, triggerSource: String?) {
+        public init (autoScalingPolicyId: String, honorCooldown: Bool? = nil, triggerSource: String? = nil) {
             self.autoScalingPolicyId = autoScalingPolicyId
             self.honorCooldown = honorCooldown
             self.triggerSource = triggerSource
@@ -71,5 +51,25 @@ extension As {
             case activityId = "ActivityId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 触发伸缩策略
+    ///
+    /// 本接口（ExecuteScalingPolicy）用于执行伸缩策略。
+    /// * 可以根据伸缩策略ID执行伸缩策略。
+    /// * 伸缩策略所属伸缩组处于伸缩活动时，会拒绝执行伸缩策略。
+    @inlinable
+    public func executeScalingPolicy(_ input: ExecuteScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteScalingPolicyResponse > {
+        self.client.execute(action: "ExecuteScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 触发伸缩策略
+    ///
+    /// 本接口（ExecuteScalingPolicy）用于执行伸缩策略。
+    /// * 可以根据伸缩策略ID执行伸缩策略。
+    /// * 伸缩策略所属伸缩组处于伸缩活动时，会拒绝执行伸缩策略。
+    @inlinable
+    public func executeScalingPolicy(_ input: ExecuteScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteScalingPolicyResponse {
+        try await self.client.execute(action: "ExecuteScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

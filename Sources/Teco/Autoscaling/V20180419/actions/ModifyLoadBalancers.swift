@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 修改伸缩组的负载均衡器
-    ///
-    /// 本接口（ModifyLoadBalancers）用于修改伸缩组的负载均衡器。
-    /// * 本接口用于为伸缩组指定新的负载均衡器配置，采用`完全覆盖`风格，无论之前配置如何，`统一按照接口参数配置为新的负载均衡器`。
-    /// * 如果要为伸缩组清空负载均衡器，则在调用本接口时仅指定伸缩组ID，不指定具体负载均衡器。
-    /// * 本接口会立即修改伸缩组的负载均衡器，并生成一个伸缩活动，异步修改存量实例的负载均衡器。
-    @inlinable
-    public func modifyLoadBalancers(_ input: ModifyLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancersResponse > {
-        self.client.execute(action: "ModifyLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改伸缩组的负载均衡器
-    ///
-    /// 本接口（ModifyLoadBalancers）用于修改伸缩组的负载均衡器。
-    /// * 本接口用于为伸缩组指定新的负载均衡器配置，采用`完全覆盖`风格，无论之前配置如何，`统一按照接口参数配置为新的负载均衡器`。
-    /// * 如果要为伸缩组清空负载均衡器，则在调用本接口时仅指定伸缩组ID，不指定具体负载均衡器。
-    /// * 本接口会立即修改伸缩组的负载均衡器，并生成一个伸缩活动，异步修改存量实例的负载均衡器。
-    @inlinable
-    public func modifyLoadBalancers(_ input: ModifyLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancersResponse {
-        try await self.client.execute(action: "ModifyLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLoadBalancers请求参数结构体
     public struct ModifyLoadBalancersRequest: TCRequestModel {
         /// 伸缩组ID
@@ -53,7 +31,7 @@ extension As {
         /// <br><li> DIFF，仅校验负载均衡器参数中实际变化的部分，如果合法则通过校验，否则校验报错。
         public let loadBalancersCheckPolicy: String?
         
-        public init (autoScalingGroupId: String, loadBalancerIds: [String]?, forwardLoadBalancers: [ForwardLoadBalancer]?, loadBalancersCheckPolicy: String?) {
+        public init (autoScalingGroupId: String, loadBalancerIds: [String]? = nil, forwardLoadBalancers: [ForwardLoadBalancer]? = nil, loadBalancersCheckPolicy: String? = nil) {
             self.autoScalingGroupId = autoScalingGroupId
             self.loadBalancerIds = loadBalancerIds
             self.forwardLoadBalancers = forwardLoadBalancers
@@ -80,5 +58,27 @@ extension As {
             case activityId = "ActivityId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改伸缩组的负载均衡器
+    ///
+    /// 本接口（ModifyLoadBalancers）用于修改伸缩组的负载均衡器。
+    /// * 本接口用于为伸缩组指定新的负载均衡器配置，采用`完全覆盖`风格，无论之前配置如何，`统一按照接口参数配置为新的负载均衡器`。
+    /// * 如果要为伸缩组清空负载均衡器，则在调用本接口时仅指定伸缩组ID，不指定具体负载均衡器。
+    /// * 本接口会立即修改伸缩组的负载均衡器，并生成一个伸缩活动，异步修改存量实例的负载均衡器。
+    @inlinable
+    public func modifyLoadBalancers(_ input: ModifyLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancersResponse > {
+        self.client.execute(action: "ModifyLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改伸缩组的负载均衡器
+    ///
+    /// 本接口（ModifyLoadBalancers）用于修改伸缩组的负载均衡器。
+    /// * 本接口用于为伸缩组指定新的负载均衡器配置，采用`完全覆盖`风格，无论之前配置如何，`统一按照接口参数配置为新的负载均衡器`。
+    /// * 如果要为伸缩组清空负载均衡器，则在调用本接口时仅指定伸缩组ID，不指定具体负载均衡器。
+    /// * 本接口会立即修改伸缩组的负载均衡器，并生成一个伸缩活动，异步修改存量实例的负载均衡器。
+    @inlinable
+    public func modifyLoadBalancers(_ input: ModifyLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancersResponse {
+        try await self.client.execute(action: "ModifyLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

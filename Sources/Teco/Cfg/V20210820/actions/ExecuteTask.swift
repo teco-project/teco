@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfg {
-    /// 执行任务
-    @inlinable
-    public func executeTask(_ input: ExecuteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteTaskResponse > {
-        self.client.execute(action: "ExecuteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 执行任务
-    @inlinable
-    public func executeTask(_ input: ExecuteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskResponse {
-        try await self.client.execute(action: "ExecuteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExecuteTask请求参数结构体
     public struct ExecuteTaskRequest: TCRequestModel {
         /// 需要执行的任务ID
@@ -49,5 +37,17 @@ extension Cfg {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 执行任务
+    @inlinable
+    public func executeTask(_ input: ExecuteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteTaskResponse > {
+        self.client.execute(action: "ExecuteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 执行任务
+    @inlinable
+    public func executeTask(_ input: ExecuteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskResponse {
+        try await self.client.execute(action: "ExecuteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

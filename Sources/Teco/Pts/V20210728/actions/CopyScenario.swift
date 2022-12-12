@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 复制场景
-    @inlinable
-    public func copyScenario(_ input: CopyScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyScenarioResponse > {
-        self.client.execute(action: "CopyScenario", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 复制场景
-    @inlinable
-    public func copyScenario(_ input: CopyScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyScenarioResponse {
-        try await self.client.execute(action: "CopyScenario", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CopyScenario请求参数结构体
     public struct CopyScenarioRequest: TCRequestModel {
         /// 项目 ID
@@ -58,5 +46,17 @@ extension Pts {
             case scenarioId = "ScenarioId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 复制场景
+    @inlinable
+    public func copyScenario(_ input: CopyScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyScenarioResponse > {
+        self.client.execute(action: "CopyScenario", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 复制场景
+    @inlinable
+    public func copyScenario(_ input: CopyScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyScenarioResponse {
+        try await self.client.execute(action: "CopyScenario", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

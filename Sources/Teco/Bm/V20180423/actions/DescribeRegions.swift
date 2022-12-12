@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 查询地域以及可用区
-    @inlinable
-    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionsResponse > {
-        self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询地域以及可用区
-    @inlinable
-    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
-        try await self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRegions请求参数结构体
     public struct DescribeRegionsRequest: TCRequestModel {
         /// 地域整型ID，目前黑石可用地域包括：8-北京，4-上海，1-广州， 19-重庆
         public let regionId: UInt64?
         
-        public init (regionId: UInt64?) {
+        public init (regionId: UInt64? = nil) {
             self.regionId = regionId
         }
         
@@ -53,5 +41,17 @@ extension Bm {
             case regionInfoSet = "RegionInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询地域以及可用区
+    @inlinable
+    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionsResponse > {
+        self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询地域以及可用区
+    @inlinable
+    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
+        try await self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

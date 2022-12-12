@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 修改物理机内网IP（不重装系统）
-    @inlinable
-    public func modifyLanIp(_ input: ModifyLanIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLanIpResponse > {
-        self.client.execute(action: "ModifyLanIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改物理机内网IP（不重装系统）
-    @inlinable
-    public func modifyLanIp(_ input: ModifyLanIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLanIpResponse {
-        try await self.client.execute(action: "ModifyLanIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLanIp请求参数结构体
     public struct ModifyLanIpRequest: TCRequestModel {
         /// 物理机ID
@@ -44,7 +32,7 @@ extension Bm {
         /// 是否需要重启机器，取值 1(需要) 0(不需要)，默认取值0
         public let rebootDevice: UInt64?
         
-        public init (instanceId: String, vpcId: String, subnetId: String, lanIp: String?, rebootDevice: UInt64?) {
+        public init (instanceId: String, vpcId: String, subnetId: String, lanIp: String? = nil, rebootDevice: UInt64? = nil) {
             self.instanceId = instanceId
             self.vpcId = vpcId
             self.subnetId = subnetId
@@ -73,5 +61,17 @@ extension Bm {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改物理机内网IP（不重装系统）
+    @inlinable
+    public func modifyLanIp(_ input: ModifyLanIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLanIpResponse > {
+        self.client.execute(action: "ModifyLanIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改物理机内网IP（不重装系统）
+    @inlinable
+    public func modifyLanIp(_ input: ModifyLanIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLanIpResponse {
+        try await self.client.execute(action: "ModifyLanIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

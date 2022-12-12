@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Ssa {
-    /// 获取安全事件列表
-    @inlinable
-    public func describeSafetyEventList(_ input: DescribeSafetyEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSafetyEventListResponse > {
-        self.client.execute(action: "DescribeSafetyEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取安全事件列表
-    @inlinable
-    public func describeSafetyEventList(_ input: DescribeSafetyEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafetyEventListResponse {
-        try await self.client.execute(action: "DescribeSafetyEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSafetyEventList请求参数结构体
     public struct DescribeSafetyEventListRequest: TCRequestModel {
         /// 搜索过滤查询参数
@@ -55,7 +43,7 @@ extension Ssa {
         /// 是否过滤响应时间
         public let isFilterResponseTime: Bool?
         
-        public init (filter: String, limit: UInt64, offset: UInt64, order: String?, by: String?, startTime: Date?, endTime: Date?, isFilterResponseTime: Bool?) {
+        public init (filter: String, limit: UInt64, offset: UInt64, order: String? = nil, by: String? = nil, startTime: Date? = nil, endTime: Date? = nil, isFilterResponseTime: Bool? = nil) {
             self.filter = filter
             self.limit = limit
             self.offset = offset
@@ -94,5 +82,17 @@ extension Ssa {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取安全事件列表
+    @inlinable
+    public func describeSafetyEventList(_ input: DescribeSafetyEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSafetyEventListResponse > {
+        self.client.execute(action: "DescribeSafetyEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全事件列表
+    @inlinable
+    public func describeSafetyEventList(_ input: DescribeSafetyEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafetyEventListResponse {
+        try await self.client.execute(action: "DescribeSafetyEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

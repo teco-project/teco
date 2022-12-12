@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询公共配置（单条）
-    @inlinable
-    public func describePublicConfig(_ input: DescribePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicConfigResponse > {
-        self.client.execute(action: "DescribePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询公共配置（单条）
-    @inlinable
-    public func describePublicConfig(_ input: DescribePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigResponse {
-        try await self.client.execute(action: "DescribePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePublicConfig请求参数结构体
     public struct DescribePublicConfigRequest: TCRequestModel {
         /// 需要查询的配置项ID
@@ -45,7 +33,7 @@ extension Tsf {
     public struct DescribePublicConfigResponse: TCResponseModel {
         /// 全局配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: Config
+        public let result: Config?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -54,5 +42,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询公共配置（单条）
+    @inlinable
+    public func describePublicConfig(_ input: DescribePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicConfigResponse > {
+        self.client.execute(action: "DescribePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询公共配置（单条）
+    @inlinable
+    public func describePublicConfig(_ input: DescribePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigResponse {
+        try await self.client.execute(action: "DescribePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

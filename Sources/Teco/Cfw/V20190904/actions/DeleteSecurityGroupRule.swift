@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 删除安全组规则
-    ///
-    /// 删除规则
-    @inlinable
-    public func deleteSecurityGroupRule(_ input: DeleteSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityGroupRuleResponse > {
-        self.client.execute(action: "DeleteSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除安全组规则
-    ///
-    /// 删除规则
-    @inlinable
-    public func deleteSecurityGroupRule(_ input: DeleteSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityGroupRuleResponse {
-        try await self.client.execute(action: "DeleteSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSecurityGroupRule请求参数结构体
     public struct DeleteSecurityGroupRuleRequest: TCRequestModel {
         /// 所需要删除规则的ID
@@ -45,7 +29,7 @@ extension Cfw {
         /// 是否删除反向规则，0：否，1：是
         public let isDelReverse: UInt64?
         
-        public init (id: UInt64, area: String, direction: UInt64, isDelReverse: UInt64?) {
+        public init (id: UInt64, area: String, direction: UInt64, isDelReverse: UInt64? = nil) {
             self.id = id
             self.area = area
             self.direction = direction
@@ -77,5 +61,21 @@ extension Cfw {
             case info = "Info"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除安全组规则
+    ///
+    /// 删除规则
+    @inlinable
+    public func deleteSecurityGroupRule(_ input: DeleteSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityGroupRuleResponse > {
+        self.client.execute(action: "DeleteSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除安全组规则
+    ///
+    /// 删除规则
+    @inlinable
+    public func deleteSecurityGroupRule(_ input: DeleteSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityGroupRuleResponse {
+        try await self.client.execute(action: "DeleteSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

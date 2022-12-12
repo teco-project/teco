@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 创建Redis实例
-    ///
-    /// 本接口(CreateInstances)用于创建redis实例。
-    @inlinable
-    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancesResponse > {
-        self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建Redis实例
-    ///
-    /// 本接口(CreateInstances)用于创建redis实例。
-    @inlinable
-    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
-        try await self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateInstances请求参数结构体
     public struct CreateInstancesRequest: TCRequestModel {
         /// 实例类型：2 – Redis2.8内存版(标准架构)，3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，6 – Redis4.0内存版(标准架构)，7 – Redis4.0内存版(集群架构)，8 – Redis5.0内存版(标准架构)，9 – Redis5.0内存版(集群架构)，15 – Redis6.0内存版(标准架构)，16 – Redis6.0内存版(集群架构)。
@@ -111,7 +95,7 @@ extension Redis {
         /// 独享集群id，ProductVersion="cdc"时必传
         public let redisClusterId: String?
         
-        public init (typeId: UInt64, memSize: UInt64, goodsNum: UInt64, period: UInt64, billingMode: Int64, zoneId: UInt64?, password: String?, vpcId: String?, subnetId: String?, projectId: Int64?, autoRenew: UInt64?, securityGroupIdList: [String]?, vPort: UInt64?, redisShardNum: Int64?, redisReplicasNum: Int64?, replicasReadonly: Bool?, instanceName: String?, noAuth: Bool?, nodeSet: [RedisNodeInfo]?, resourceTags: [ResourceTag]?, zoneName: String?, templateId: String?, dryRun: Bool?, productVersion: String?, redisClusterId: String?) {
+        public init (typeId: UInt64, memSize: UInt64, goodsNum: UInt64, period: UInt64, billingMode: Int64, zoneId: UInt64? = nil, password: String? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, autoRenew: UInt64? = nil, securityGroupIdList: [String]? = nil, vPort: UInt64? = nil, redisShardNum: Int64? = nil, redisReplicasNum: Int64? = nil, replicasReadonly: Bool? = nil, instanceName: String? = nil, noAuth: Bool? = nil, nodeSet: [RedisNodeInfo]? = nil, resourceTags: [ResourceTag]? = nil, zoneName: String? = nil, templateId: String? = nil, dryRun: Bool? = nil, productVersion: String? = nil, redisClusterId: String? = nil) {
             self.typeId = typeId
             self.memSize = memSize
             self.goodsNum = goodsNum
@@ -184,5 +168,21 @@ extension Redis {
             case instanceIds = "InstanceIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建Redis实例
+    ///
+    /// 本接口(CreateInstances)用于创建redis实例。
+    @inlinable
+    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancesResponse > {
+        self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建Redis实例
+    ///
+    /// 本接口(CreateInstances)用于创建redis实例。
+    @inlinable
+    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
+        try await self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

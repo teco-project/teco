@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 检查是否开通Tcb服务
-    @inlinable
-    public func checkTcbService(_ input: CheckTcbServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckTcbServiceResponse > {
-        self.client.execute(action: "CheckTcbService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检查是否开通Tcb服务
-    @inlinable
-    public func checkTcbService(_ input: CheckTcbServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTcbServiceResponse {
-        try await self.client.execute(action: "CheckTcbService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckTcbService请求参数结构体
     public struct CheckTcbServiceRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Tcb {
             case initialized = "Initialized"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检查是否开通Tcb服务
+    @inlinable
+    public func checkTcbService(_ input: CheckTcbServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckTcbServiceResponse > {
+        self.client.execute(action: "CheckTcbService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检查是否开通Tcb服务
+    @inlinable
+    public func checkTcbService(_ input: CheckTcbServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTcbServiceResponse {
+        try await self.client.execute(action: "CheckTcbService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

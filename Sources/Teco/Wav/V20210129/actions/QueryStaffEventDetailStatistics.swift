@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wav {
-    /// 企业成员SaaS使用明细数据接口
-    ///
-    /// 通过接口拉取SaaS内企业成员在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
-    @inlinable
-    public func queryStaffEventDetailStatistics(_ input: QueryStaffEventDetailStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryStaffEventDetailStatisticsResponse > {
-        self.client.execute(action: "QueryStaffEventDetailStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 企业成员SaaS使用明细数据接口
-    ///
-    /// 通过接口拉取SaaS内企业成员在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
-    @inlinable
-    public func queryStaffEventDetailStatistics(_ input: QueryStaffEventDetailStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryStaffEventDetailStatisticsResponse {
-        try await self.client.execute(action: "QueryStaffEventDetailStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryStaffEventDetailStatistics请求参数结构体
     public struct QueryStaffEventDetailStatisticsRequest: TCRequestModel {
         /// 查询开始时间， 单位秒
@@ -45,7 +29,7 @@ extension Wav {
         /// 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
         public let limit: Int64?
         
-        public init (beginTime: UInt64, endTime: UInt64, cursor: String?, limit: Int64?) {
+        public init (beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil) {
             self.beginTime = beginTime
             self.endTime = endTime
             self.cursor = cursor
@@ -78,5 +62,21 @@ extension Wav {
             case pageData = "PageData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 企业成员SaaS使用明细数据接口
+    ///
+    /// 通过接口拉取SaaS内企业成员在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
+    @inlinable
+    public func queryStaffEventDetailStatistics(_ input: QueryStaffEventDetailStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryStaffEventDetailStatisticsResponse > {
+        self.client.execute(action: "QueryStaffEventDetailStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 企业成员SaaS使用明细数据接口
+    ///
+    /// 通过接口拉取SaaS内企业成员在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
+    @inlinable
+    public func queryStaffEventDetailStatistics(_ input: QueryStaffEventDetailStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryStaffEventDetailStatisticsResponse {
+        try await self.client.execute(action: "QueryStaffEventDetailStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

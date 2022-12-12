@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取直播互动曲库推荐歌单列表
-    ///
-    /// 获取直播互动曲库推荐歌单列表。
-    @inlinable
-    public func describeKTVPlaylists(_ input: DescribeKTVPlaylistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVPlaylistsResponse > {
-        self.client.execute(action: "DescribeKTVPlaylists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取直播互动曲库推荐歌单列表
-    ///
-    /// 获取直播互动曲库推荐歌单列表。
-    @inlinable
-    public func describeKTVPlaylists(_ input: DescribeKTVPlaylistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistsResponse {
-        try await self.client.execute(action: "DescribeKTVPlaylists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKTVPlaylists请求参数结构体
     public struct DescribeKTVPlaylistsRequest: TCRequestModel {
         /// 歌单类型，取值有：
@@ -47,7 +31,7 @@ extension Ame {
         /// 取值范围：Offset + Limit 不超过5000
         public let limit: Int64?
         
-        public init (type: String?, offset: Int64?, limit: Int64?) {
+        public init (type: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.type = type
             self.offset = offset
             self.limit = limit
@@ -76,5 +60,21 @@ extension Ame {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取直播互动曲库推荐歌单列表
+    ///
+    /// 获取直播互动曲库推荐歌单列表。
+    @inlinable
+    public func describeKTVPlaylists(_ input: DescribeKTVPlaylistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVPlaylistsResponse > {
+        self.client.execute(action: "DescribeKTVPlaylists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播互动曲库推荐歌单列表
+    ///
+    /// 获取直播互动曲库推荐歌单列表。
+    @inlinable
+    public func describeKTVPlaylists(_ input: DescribeKTVPlaylistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistsResponse {
+        try await self.client.execute(action: "DescribeKTVPlaylists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

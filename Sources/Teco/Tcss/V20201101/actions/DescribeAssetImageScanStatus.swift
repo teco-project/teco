@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询镜像扫描状态
-    ///
-    /// 容器安全查询镜像扫描状态
-    @inlinable
-    public func describeAssetImageScanStatus(_ input: DescribeAssetImageScanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageScanStatusResponse > {
-        self.client.execute(action: "DescribeAssetImageScanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询镜像扫描状态
-    ///
-    /// 容器安全查询镜像扫描状态
-    @inlinable
-    public func describeAssetImageScanStatus(_ input: DescribeAssetImageScanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanStatusResponse {
-        try await self.client.execute(action: "DescribeAssetImageScanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageScanStatus请求参数结构体
     public struct DescribeAssetImageScanStatusRequest: TCRequestModel {
         /// 任务id
         public let taskID: String?
         
-        public init (taskID: String?) {
+        public init (taskID: String? = nil) {
             self.taskID = taskID
         }
         
@@ -81,5 +65,21 @@ extension Tcss {
             case leftSeconds = "LeftSeconds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询镜像扫描状态
+    ///
+    /// 容器安全查询镜像扫描状态
+    @inlinable
+    public func describeAssetImageScanStatus(_ input: DescribeAssetImageScanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageScanStatusResponse > {
+        self.client.execute(action: "DescribeAssetImageScanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像扫描状态
+    ///
+    /// 容器安全查询镜像扫描状态
+    @inlinable
+    public func describeAssetImageScanStatus(_ input: DescribeAssetImageScanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanStatusResponse {
+        try await self.client.execute(action: "DescribeAssetImageScanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

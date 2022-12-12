@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取CC频率限制策略列表
-    @inlinable
-    public func describeCCReqLimitPolicyList(_ input: DescribeCCReqLimitPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCReqLimitPolicyListResponse > {
-        self.client.execute(action: "DescribeCCReqLimitPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取CC频率限制策略列表
-    @inlinable
-    public func describeCCReqLimitPolicyList(_ input: DescribeCCReqLimitPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCReqLimitPolicyListResponse {
-        try await self.client.execute(action: "DescribeCCReqLimitPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCCReqLimitPolicyList请求参数结构体
     public struct DescribeCCReqLimitPolicyListRequest: TCRequestModel {
         /// 大禹子产品代号（bgp-multip表示高防包，bgpip表示高防IP）
@@ -50,7 +38,7 @@ extension Antiddos {
         /// 协议，普通高防IP要传该字段
         public let `protocol`: String?
         
-        public init (business: String, offset: UInt64, limit: UInt64, instanceId: String?, ip: String?, domain: String?, `protocol`: String?) {
+        public init (business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, `protocol`: String? = nil) {
             self.business = business
             self.offset = offset
             self.limit = limit
@@ -87,5 +75,17 @@ extension Antiddos {
             case requestLimitPolicyList = "RequestLimitPolicyList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取CC频率限制策略列表
+    @inlinable
+    public func describeCCReqLimitPolicyList(_ input: DescribeCCReqLimitPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCReqLimitPolicyListResponse > {
+        self.client.execute(action: "DescribeCCReqLimitPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC频率限制策略列表
+    @inlinable
+    public func describeCCReqLimitPolicyList(_ input: DescribeCCReqLimitPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCReqLimitPolicyListResponse {
+        try await self.client.execute(action: "DescribeCCReqLimitPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

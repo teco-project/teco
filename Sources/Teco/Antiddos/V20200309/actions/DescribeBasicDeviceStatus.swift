@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取基础防护攻击状态
-    @inlinable
-    public func describeBasicDeviceStatus(_ input: DescribeBasicDeviceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicDeviceStatusResponse > {
-        self.client.execute(action: "DescribeBasicDeviceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取基础防护攻击状态
-    @inlinable
-    public func describeBasicDeviceStatus(_ input: DescribeBasicDeviceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceStatusResponse {
-        try await self.client.execute(action: "DescribeBasicDeviceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBasicDeviceStatus请求参数结构体
     public struct DescribeBasicDeviceStatusRequest: TCRequestModel {
         /// IP 资源列表
@@ -56,5 +44,17 @@ extension Antiddos {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取基础防护攻击状态
+    @inlinable
+    public func describeBasicDeviceStatus(_ input: DescribeBasicDeviceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicDeviceStatusResponse > {
+        self.client.execute(action: "DescribeBasicDeviceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取基础防护攻击状态
+    @inlinable
+    public func describeBasicDeviceStatus(_ input: DescribeBasicDeviceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceStatusResponse {
+        try await self.client.execute(action: "DescribeBasicDeviceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

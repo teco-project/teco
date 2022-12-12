@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 获取任务列表
-    ///
-    /// * 该接口用于查询任务列表；
-    /// * 当列表数据比较多时，单次接口调用无法拉取整个列表，可通过 ScrollToken 参数，分批拉取；
-    /// * 只能查询到最近七天（168小时）内的任务。
-    @inlinable
-    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
-        self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取任务列表
-    ///
-    /// * 该接口用于查询任务列表；
-    /// * 当列表数据比较多时，单次接口调用无法拉取整个列表，可通过 ScrollToken 参数，分批拉取；
-    /// * 只能查询到最近七天（168小时）内的任务。
-    @inlinable
-    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
-        try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTasks请求参数结构体
     public struct DescribeTasksRequest: TCRequestModel {
         /// 过滤条件：任务状态，可选值：WAITING（等待中）、PROCESSING（处理中）、FINISH（已完成）。
@@ -46,7 +26,7 @@ extension Mps {
         /// 翻页标识，分批拉取时使用：当单次请求无法拉取所有数据，接口将会返回 ScrollToken，下一次请求携带该 Token，将会从下一条记录开始获取。
         public let scrollToken: String?
         
-        public init (status: String, limit: UInt64?, scrollToken: String?) {
+        public init (status: String, limit: UInt64? = nil, scrollToken: String? = nil) {
             self.status = status
             self.limit = limit
             self.scrollToken = scrollToken
@@ -79,5 +59,25 @@ extension Mps {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取任务列表
+    ///
+    /// * 该接口用于查询任务列表；
+    /// * 当列表数据比较多时，单次接口调用无法拉取整个列表，可通过 ScrollToken 参数，分批拉取；
+    /// * 只能查询到最近七天（168小时）内的任务。
+    @inlinable
+    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
+        self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务列表
+    ///
+    /// * 该接口用于查询任务列表；
+    /// * 当列表数据比较多时，单次接口调用无法拉取整个列表，可通过 ScrollToken 参数，分批拉取；
+    /// * 只能查询到最近七天（168小时）内的任务。
+    @inlinable
+    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
+        try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

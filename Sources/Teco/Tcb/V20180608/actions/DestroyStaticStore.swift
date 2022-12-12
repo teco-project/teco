@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 销毁静态资源
-    ///
-    /// 销毁静态托管资源，该接口创建异步销毁任务，资源最终状态可从DestroyStaticStore接口查看
-    @inlinable
-    public func destroyStaticStore(_ input: DestroyStaticStoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyStaticStoreResponse > {
-        self.client.execute(action: "DestroyStaticStore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 销毁静态资源
-    ///
-    /// 销毁静态托管资源，该接口创建异步销毁任务，资源最终状态可从DestroyStaticStore接口查看
-    @inlinable
-    public func destroyStaticStore(_ input: DestroyStaticStoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStaticStoreResponse {
-        try await self.client.execute(action: "DestroyStaticStore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DestroyStaticStore请求参数结构体
     public struct DestroyStaticStoreRequest: TCRequestModel {
         /// 环境ID
@@ -39,7 +23,7 @@ extension Tcb {
         /// cdn域名
         public let cdnDomain: String?
         
-        public init (envId: String, cdnDomain: String?) {
+        public init (envId: String, cdnDomain: String? = nil) {
             self.envId = envId
             self.cdnDomain = cdnDomain
         }
@@ -62,5 +46,21 @@ extension Tcb {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 销毁静态资源
+    ///
+    /// 销毁静态托管资源，该接口创建异步销毁任务，资源最终状态可从DestroyStaticStore接口查看
+    @inlinable
+    public func destroyStaticStore(_ input: DestroyStaticStoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyStaticStoreResponse > {
+        self.client.execute(action: "DestroyStaticStore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁静态资源
+    ///
+    /// 销毁静态托管资源，该接口创建异步销毁任务，资源最终状态可从DestroyStaticStore接口查看
+    @inlinable
+    public func destroyStaticStore(_ input: DestroyStaticStoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStaticStoreResponse {
+        try await self.client.execute(action: "DestroyStaticStore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

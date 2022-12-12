@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cws {
-    /// 查看站点列表的验证信息列表
-    ///
-    /// 本接口 (DescribeSitesVerification) 用于查询一个或多个待验证站点的验证信息。
-    @inlinable
-    public func describeSitesVerification(_ input: DescribeSitesVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSitesVerificationResponse > {
-        self.client.execute(action: "DescribeSitesVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看站点列表的验证信息列表
-    ///
-    /// 本接口 (DescribeSitesVerification) 用于查询一个或多个待验证站点的验证信息。
-    @inlinable
-    public func describeSitesVerification(_ input: DescribeSitesVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesVerificationResponse {
-        try await self.client.execute(action: "DescribeSitesVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSitesVerification请求参数结构体
     public struct DescribeSitesVerificationRequest: TCRequestModel {
         /// 站点的url列表
@@ -61,5 +45,21 @@ extension Cws {
             case sitesVerification = "SitesVerification"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看站点列表的验证信息列表
+    ///
+    /// 本接口 (DescribeSitesVerification) 用于查询一个或多个待验证站点的验证信息。
+    @inlinable
+    public func describeSitesVerification(_ input: DescribeSitesVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSitesVerificationResponse > {
+        self.client.execute(action: "DescribeSitesVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看站点列表的验证信息列表
+    ///
+    /// 本接口 (DescribeSitesVerification) 用于查询一个或多个待验证站点的验证信息。
+    @inlinable
+    public func describeSitesVerification(_ input: DescribeSitesVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesVerificationResponse {
+        try await self.client.execute(action: "DescribeSitesVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

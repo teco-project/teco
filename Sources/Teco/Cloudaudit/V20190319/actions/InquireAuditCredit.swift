@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudaudit {
-    /// 查询用户可创建跟踪集的数量
-    @inlinable
-    public func inquireAuditCredit(_ input: InquireAuditCreditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquireAuditCreditResponse > {
-        self.client.execute(action: "InquireAuditCredit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户可创建跟踪集的数量
-    @inlinable
-    public func inquireAuditCredit(_ input: InquireAuditCreditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquireAuditCreditResponse {
-        try await self.client.execute(action: "InquireAuditCredit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquireAuditCredit请求参数结构体
     public struct InquireAuditCreditRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Cloudaudit {
             case auditAmount = "AuditAmount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户可创建跟踪集的数量
+    @inlinable
+    public func inquireAuditCredit(_ input: InquireAuditCreditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquireAuditCreditResponse > {
+        self.client.execute(action: "InquireAuditCredit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户可创建跟踪集的数量
+    @inlinable
+    public func inquireAuditCredit(_ input: InquireAuditCreditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquireAuditCreditResponse {
+        try await self.client.execute(action: "InquireAuditCredit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

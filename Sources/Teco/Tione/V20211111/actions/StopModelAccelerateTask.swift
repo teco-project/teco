@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 停止模型加速任务
-    @inlinable
-    public func stopModelAccelerateTask(_ input: StopModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopModelAccelerateTaskResponse > {
-        self.client.execute(action: "StopModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止模型加速任务
-    @inlinable
-    public func stopModelAccelerateTask(_ input: StopModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopModelAccelerateTaskResponse {
-        try await self.client.execute(action: "StopModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopModelAccelerateTask请求参数结构体
     public struct StopModelAccelerateTaskRequest: TCRequestModel {
         /// 模型加速任务ID
@@ -59,5 +47,17 @@ extension Tione {
             case asyncTaskId = "AsyncTaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止模型加速任务
+    @inlinable
+    public func stopModelAccelerateTask(_ input: StopModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopModelAccelerateTaskResponse > {
+        self.client.execute(action: "StopModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止模型加速任务
+    @inlinable
+    public func stopModelAccelerateTask(_ input: StopModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopModelAccelerateTaskResponse {
+        try await self.client.execute(action: "StopModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

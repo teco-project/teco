@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 变更插件列表
-    @inlinable
-    public func updatePlugins(_ input: UpdatePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePluginsResponse > {
-        self.client.execute(action: "UpdatePlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 变更插件列表
-    @inlinable
-    public func updatePlugins(_ input: UpdatePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePluginsResponse {
-        try await self.client.execute(action: "UpdatePlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdatePlugins请求参数结构体
     public struct UpdatePluginsRequest: TCRequestModel {
         /// 实例ID
@@ -47,7 +35,7 @@ extension Es {
         /// 0：系统插件
         public let pluginType: UInt64?
         
-        public init (instanceId: String, installPluginList: [String]?, removePluginList: [String]?, forceRestart: Bool?, forceUpdate: Bool?, pluginType: UInt64?) {
+        public init (instanceId: String, installPluginList: [String]? = nil, removePluginList: [String]? = nil, forceRestart: Bool? = nil, forceUpdate: Bool? = nil, pluginType: UInt64? = nil) {
             self.instanceId = instanceId
             self.installPluginList = installPluginList
             self.removePluginList = removePluginList
@@ -74,5 +62,17 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 变更插件列表
+    @inlinable
+    public func updatePlugins(_ input: UpdatePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePluginsResponse > {
+        self.client.execute(action: "UpdatePlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 变更插件列表
+    @inlinable
+    public func updatePlugins(_ input: UpdatePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePluginsResponse {
+        try await self.client.execute(action: "UpdatePlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ape {
-    /// 查询图片详情
-    ///
-    /// 根据ID查询一张图片的详细信息
-    @inlinable
-    public func describeImage(_ input: DescribeImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageResponse > {
-        self.client.execute(action: "DescribeImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询图片详情
-    ///
-    /// 根据ID查询一张图片的详细信息
-    @inlinable
-    public func describeImage(_ input: DescribeImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageResponse {
-        try await self.client.execute(action: "DescribeImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImage请求参数结构体
     public struct DescribeImageRequest: TCRequestModel {
         /// 图片ID
@@ -109,5 +93,21 @@ extension Ape {
             case orientation = "Orientation"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询图片详情
+    ///
+    /// 根据ID查询一张图片的详细信息
+    @inlinable
+    public func describeImage(_ input: DescribeImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageResponse > {
+        self.client.execute(action: "DescribeImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询图片详情
+    ///
+    /// 根据ID查询一张图片的详细信息
+    @inlinable
+    public func describeImage(_ input: DescribeImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageResponse {
+        try await self.client.execute(action: "DescribeImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

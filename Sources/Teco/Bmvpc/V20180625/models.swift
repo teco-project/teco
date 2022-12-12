@@ -101,7 +101,7 @@ extension Bmvpc {
         /// IKE版本
         public let ikeVersion: String?
         
-        public init (propoEncryAlgorithm: String?, propoAuthenAlgorithm: String?, exchangeMode: String?, localIdentity: String?, remoteIdentity: String?, localAddress: String?, remoteAddress: String?, localFqdnName: String?, remoteFqdnName: String?, dhGroupName: String?, ikeSaLifetimeSeconds: UInt64?, ikeVersion: String?) {
+        public init (propoEncryAlgorithm: String? = nil, propoAuthenAlgorithm: String? = nil, exchangeMode: String? = nil, localIdentity: String? = nil, remoteIdentity: String? = nil, localAddress: String? = nil, remoteAddress: String? = nil, localFqdnName: String? = nil, remoteFqdnName: String? = nil, dhGroupName: String? = nil, ikeSaLifetimeSeconds: UInt64? = nil, ikeVersion: String? = nil) {
             self.propoEncryAlgorithm = propoEncryAlgorithm
             self.propoAuthenAlgorithm = propoAuthenAlgorithm
             self.exchangeMode = exchangeMode
@@ -155,7 +155,7 @@ extension Bmvpc {
         /// 报文封装模式:默认为Tunnel
         public let encapMode: String?
         
-        public init (pfsDhGroup: String, ipsecSaLifetimeTraffic: UInt64, encryptAlgorithm: String?, integrityAlgorith: String?, ipsecSaLifetimeSeconds: UInt64?, securityProto: String?, encapMode: String?) {
+        public init (pfsDhGroup: String, ipsecSaLifetimeTraffic: UInt64, encryptAlgorithm: String? = nil, integrityAlgorith: String? = nil, ipsecSaLifetimeSeconds: UInt64? = nil, securityProto: String? = nil, encapMode: String? = nil) {
             self.pfsDhGroup = pfsDhGroup
             self.ipsecSaLifetimeTraffic = ipsecSaLifetimeTraffic
             self.encryptAlgorithm = encryptAlgorithm
@@ -322,7 +322,7 @@ extension Bmvpc {
         /// 是否启用
         public let enabled: Bool?
         
-        public init (destinationCidrBlock: String?, gatewayType: String?, gatewayId: String?, routeDescription: String?, routePolicyId: String?, routePolicyType: String?, enabled: Bool?) {
+        public init (destinationCidrBlock: String? = nil, gatewayType: String? = nil, gatewayId: String? = nil, routeDescription: String? = nil, routePolicyId: String? = nil, routePolicyType: String? = nil, enabled: Bool? = nil) {
             self.destinationCidrBlock = destinationCidrBlock
             self.gatewayType = gatewayType
             self.gatewayId = gatewayId
@@ -426,7 +426,7 @@ extension Bmvpc {
         /// 是否25G子网，1为是，0为否。
         public let isSmartNic: UInt64?
         
-        public init (subnetName: String, cidrBlock: String, distributedFlag: UInt64?, dhcpEnable: UInt64?, dhcpServerIp: [String]?, ipReserve: UInt64?, vlanId: UInt64?, zone: String?, isSmartNic: UInt64?) {
+        public init (subnetName: String, cidrBlock: String, distributedFlag: UInt64? = nil, dhcpEnable: UInt64? = nil, dhcpServerIp: [String]? = nil, ipReserve: UInt64? = nil, vlanId: UInt64? = nil, zone: String? = nil, isSmartNic: UInt64? = nil) {
             self.subnetName = subnetName
             self.cidrBlock = cidrBlock
             self.distributedFlag = distributedFlag
@@ -791,7 +791,7 @@ extension Bmvpc {
         /// 子网的可用区
         public let zone: String?
         
-        public init (subnetName: String, cidrBlock: String, zone: String?) {
+        public init (subnetName: String, cidrBlock: String, zone: String? = nil) {
             self.subnetName = subnetName
             self.cidrBlock = cidrBlock
             self.zone = zone

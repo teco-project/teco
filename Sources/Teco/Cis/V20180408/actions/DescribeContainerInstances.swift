@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cis {
-    /// 查询容器实例列表
-    ///
-    /// 此接口（DescribeContainerInstances）查询容器实例列表
-    @inlinable
-    public func describeContainerInstances(_ input: DescribeContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerInstancesResponse > {
-        self.client.execute(action: "DescribeContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器实例列表
-    ///
-    /// 此接口（DescribeContainerInstances）查询容器实例列表
-    @inlinable
-    public func describeContainerInstances(_ input: DescribeContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerInstancesResponse {
-        try await self.client.execute(action: "DescribeContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeContainerInstances请求参数结构体
     public struct DescribeContainerInstancesRequest: TCRequestModel {
         /// 偏移量，默认为0
@@ -45,7 +29,7 @@ extension Cis {
         /// - InstanceName - String - 是否必填：否 -（过滤条件）按照容器实例名称做模糊查询。
         public let filters: [Filter]?
         
-        public init (offset: UInt64?, limit: UInt64?, filters: [Filter]?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -74,5 +58,21 @@ extension Cis {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器实例列表
+    ///
+    /// 此接口（DescribeContainerInstances）查询容器实例列表
+    @inlinable
+    public func describeContainerInstances(_ input: DescribeContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerInstancesResponse > {
+        self.client.execute(action: "DescribeContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器实例列表
+    ///
+    /// 此接口（DescribeContainerInstances）查询容器实例列表
+    @inlinable
+    public func describeContainerInstances(_ input: DescribeContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerInstancesResponse {
+        try await self.client.execute(action: "DescribeContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

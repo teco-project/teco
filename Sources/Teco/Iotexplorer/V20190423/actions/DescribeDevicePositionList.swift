@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取设备位置列表
-    @inlinable
-    public func describeDevicePositionList(_ input: DescribeDevicePositionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePositionListResponse > {
-        self.client.execute(action: "DescribeDevicePositionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备位置列表
-    @inlinable
-    public func describeDevicePositionList(_ input: DescribeDevicePositionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePositionListResponse {
-        try await self.client.execute(action: "DescribeDevicePositionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDevicePositionList请求参数结构体
     public struct DescribeDevicePositionListRequest: TCRequestModel {
         /// 产品标识列表
@@ -41,7 +29,7 @@ extension Iotexplorer {
         /// 分页的大小
         public let limit: Int64?
         
-        public init (productIdList: [String], coordinateType: Int64?, offset: Int64?, limit: Int64?) {
+        public init (productIdList: [String], coordinateType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.productIdList = productIdList
             self.coordinateType = coordinateType
             self.offset = offset
@@ -72,5 +60,17 @@ extension Iotexplorer {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备位置列表
+    @inlinable
+    public func describeDevicePositionList(_ input: DescribeDevicePositionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePositionListResponse > {
+        self.client.execute(action: "DescribeDevicePositionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备位置列表
+    @inlinable
+    public func describeDevicePositionList(_ input: DescribeDevicePositionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePositionListResponse {
+        try await self.client.execute(action: "DescribeDevicePositionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

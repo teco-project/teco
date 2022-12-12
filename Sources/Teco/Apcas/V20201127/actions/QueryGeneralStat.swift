@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apcas {
-    /// 总统计数据
-    ///
-    /// 获取日/月/周/总调用量统计数据
-    @inlinable
-    public func queryGeneralStat(_ input: QueryGeneralStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryGeneralStatResponse > {
-        self.client.execute(action: "QueryGeneralStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 总统计数据
-    ///
-    /// 获取日/月/周/总调用量统计数据
-    @inlinable
-    public func queryGeneralStat(_ input: QueryGeneralStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryGeneralStatResponse {
-        try await self.client.execute(action: "QueryGeneralStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryGeneralStat请求参数结构体
     public struct QueryGeneralStatRequest: TCRequestModel {
         /// 请求类型:1,人群特征洞察统计 2购车意向预测统计
@@ -57,5 +41,21 @@ extension Apcas {
             case generalStat = "GeneralStat"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 总统计数据
+    ///
+    /// 获取日/月/周/总调用量统计数据
+    @inlinable
+    public func queryGeneralStat(_ input: QueryGeneralStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryGeneralStatResponse > {
+        self.client.execute(action: "QueryGeneralStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 总统计数据
+    ///
+    /// 获取日/月/周/总调用量统计数据
+    @inlinable
+    public func queryGeneralStat(_ input: QueryGeneralStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryGeneralStatResponse {
+        try await self.client.execute(action: "QueryGeneralStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

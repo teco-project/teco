@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询用户镜像仓库下的项目名称列表
-    @inlinable
-    public func describeImageRegistryNamespaceList(_ input: DescribeImageRegistryNamespaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRegistryNamespaceListResponse > {
-        self.client.execute(action: "DescribeImageRegistryNamespaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户镜像仓库下的项目名称列表
-    @inlinable
-    public func describeImageRegistryNamespaceList(_ input: DescribeImageRegistryNamespaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRegistryNamespaceListResponse {
-        try await self.client.execute(action: "DescribeImageRegistryNamespaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageRegistryNamespaceList请求参数结构体
     public struct DescribeImageRegistryNamespaceListRequest: TCRequestModel {
         /// 本次查询的起始偏移量，默认为0。
@@ -38,7 +26,7 @@ extension Tcss {
         /// 查询的过滤条件。Name字段可取值"Namespace"。
         public let filters: [AssetFilters]?
         
-        public init (offset: UInt64?, limit: UInt64?, filters: [AssetFilters]?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [AssetFilters]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -67,5 +55,17 @@ extension Tcss {
             case namespaceList = "NamespaceList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户镜像仓库下的项目名称列表
+    @inlinable
+    public func describeImageRegistryNamespaceList(_ input: DescribeImageRegistryNamespaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRegistryNamespaceListResponse > {
+        self.client.execute(action: "DescribeImageRegistryNamespaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户镜像仓库下的项目名称列表
+    @inlinable
+    public func describeImageRegistryNamespaceList(_ input: DescribeImageRegistryNamespaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRegistryNamespaceListResponse {
+        try await self.client.execute(action: "DescribeImageRegistryNamespaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

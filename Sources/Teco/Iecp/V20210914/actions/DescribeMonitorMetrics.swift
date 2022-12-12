@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 查询边缘单元监控数据
-    @inlinable
-    public func describeMonitorMetrics(_ input: DescribeMonitorMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorMetricsResponse > {
-        self.client.execute(action: "DescribeMonitorMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询边缘单元监控数据
-    @inlinable
-    public func describeMonitorMetrics(_ input: DescribeMonitorMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorMetricsResponse {
-        try await self.client.execute(action: "DescribeMonitorMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMonitorMetrics请求参数结构体
     public struct DescribeMonitorMetricsRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -56,7 +44,7 @@ extension Iecp {
         /// Workload名称，查询Workload监控时必填
         public let workloadName: String?
         
-        public init (edgeUnitId: UInt64, queryType: String, startTime: Int64, endTime: Int64, interval: Int64, nodeName: String?, namespace: String?, podName: String?, workloadName: String?) {
+        public init (edgeUnitId: UInt64, queryType: String, startTime: Int64, endTime: Int64, interval: Int64, nodeName: String? = nil, namespace: String? = nil, podName: String? = nil, workloadName: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.queryType = queryType
             self.startTime = startTime
@@ -94,5 +82,17 @@ extension Iecp {
             case metrics = "Metrics"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询边缘单元监控数据
+    @inlinable
+    public func describeMonitorMetrics(_ input: DescribeMonitorMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorMetricsResponse > {
+        self.client.execute(action: "DescribeMonitorMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘单元监控数据
+    @inlinable
+    public func describeMonitorMetrics(_ input: DescribeMonitorMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorMetricsResponse {
+        try await self.client.execute(action: "DescribeMonitorMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

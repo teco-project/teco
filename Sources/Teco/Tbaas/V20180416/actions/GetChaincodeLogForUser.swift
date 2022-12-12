@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 获取合约容器日志
-    @inlinable
-    public func getChaincodeLogForUser(_ input: GetChaincodeLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetChaincodeLogForUserResponse > {
-        self.client.execute(action: "GetChaincodeLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取合约容器日志
-    @inlinable
-    public func getChaincodeLogForUser(_ input: GetChaincodeLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChaincodeLogForUserResponse {
-        try await self.client.execute(action: "GetChaincodeLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetChaincodeLogForUser请求参数结构体
     public struct GetChaincodeLogForUserRequest: TCRequestModel {
         /// 模块名，本接口取值：chaincode_mng
@@ -97,5 +85,17 @@ extension Tbaas {
             case chaincodeLogList = "ChaincodeLogList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取合约容器日志
+    @inlinable
+    public func getChaincodeLogForUser(_ input: GetChaincodeLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetChaincodeLogForUserResponse > {
+        self.client.execute(action: "GetChaincodeLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取合约容器日志
+    @inlinable
+    public func getChaincodeLogForUser(_ input: GetChaincodeLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChaincodeLogForUserResponse {
+        try await self.client.execute(action: "GetChaincodeLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

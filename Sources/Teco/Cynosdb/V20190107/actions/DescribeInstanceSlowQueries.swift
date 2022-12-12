@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 查询实例慢查询日志
-    ///
-    /// 此接口（DescribeInstanceSlowQueries）用于查询实例慢查询日志。
-    @inlinable
-    public func describeInstanceSlowQueries(_ input: DescribeInstanceSlowQueriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceSlowQueriesResponse > {
-        self.client.execute(action: "DescribeInstanceSlowQueries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例慢查询日志
-    ///
-    /// 此接口（DescribeInstanceSlowQueries）用于查询实例慢查询日志。
-    @inlinable
-    public func describeInstanceSlowQueries(_ input: DescribeInstanceSlowQueriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSlowQueriesResponse {
-        try await self.client.execute(action: "DescribeInstanceSlowQueries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceSlowQueries请求参数结构体
     public struct DescribeInstanceSlowQueriesRequest: TCRequestModel {
         /// 实例ID
@@ -63,7 +47,7 @@ extension Cynosdb {
         /// 排序类型，可选值：asc,desc
         public let orderByType: String?
         
-        public init (instanceId: String, startTime: String?, endTime: String?, limit: Int64?, offset: Int64?, username: String?, host: String?, database: String?, orderBy: String?, orderByType: String?) {
+        public init (instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -106,5 +90,21 @@ extension Cynosdb {
             case slowQueries = "SlowQueries"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例慢查询日志
+    ///
+    /// 此接口（DescribeInstanceSlowQueries）用于查询实例慢查询日志。
+    @inlinable
+    public func describeInstanceSlowQueries(_ input: DescribeInstanceSlowQueriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceSlowQueriesResponse > {
+        self.client.execute(action: "DescribeInstanceSlowQueries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例慢查询日志
+    ///
+    /// 此接口（DescribeInstanceSlowQueries）用于查询实例慢查询日志。
+    @inlinable
+    public func describeInstanceSlowQueries(_ input: DescribeInstanceSlowQueriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSlowQueriesResponse {
+        try await self.client.execute(action: "DescribeInstanceSlowQueries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

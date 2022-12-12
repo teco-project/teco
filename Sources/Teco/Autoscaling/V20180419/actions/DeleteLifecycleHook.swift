@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 删除生命周期挂钩
-    ///
-    /// 本接口（DeleteLifecycleHook）用于删除生命周期挂钩。
-    @inlinable
-    public func deleteLifecycleHook(_ input: DeleteLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLifecycleHookResponse > {
-        self.client.execute(action: "DeleteLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除生命周期挂钩
-    ///
-    /// 本接口（DeleteLifecycleHook）用于删除生命周期挂钩。
-    @inlinable
-    public func deleteLifecycleHook(_ input: DeleteLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLifecycleHookResponse {
-        try await self.client.execute(action: "DeleteLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLifecycleHook请求参数结构体
     public struct DeleteLifecycleHookRequest: TCRequestModel {
         /// 生命周期挂钩ID
@@ -53,5 +37,21 @@ extension As {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除生命周期挂钩
+    ///
+    /// 本接口（DeleteLifecycleHook）用于删除生命周期挂钩。
+    @inlinable
+    public func deleteLifecycleHook(_ input: DeleteLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLifecycleHookResponse > {
+        self.client.execute(action: "DeleteLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除生命周期挂钩
+    ///
+    /// 本接口（DeleteLifecycleHook）用于删除生命周期挂钩。
+    @inlinable
+    public func deleteLifecycleHook(_ input: DeleteLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLifecycleHookResponse {
+        try await self.client.execute(action: "DeleteLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

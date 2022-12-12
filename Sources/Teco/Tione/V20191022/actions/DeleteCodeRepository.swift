@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 删除存储库
-    @inlinable
-    public func deleteCodeRepository(_ input: DeleteCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCodeRepositoryResponse > {
-        self.client.execute(action: "DeleteCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除存储库
-    @inlinable
-    public func deleteCodeRepository(_ input: DeleteCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCodeRepositoryResponse {
-        try await self.client.execute(action: "DeleteCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCodeRepository请求参数结构体
     public struct DeleteCodeRepositoryRequest: TCRequestModel {
         /// 存储库名称
@@ -53,5 +41,17 @@ extension Tione {
             case codeRepositoryName = "CodeRepositoryName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除存储库
+    @inlinable
+    public func deleteCodeRepository(_ input: DeleteCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCodeRepositoryResponse > {
+        self.client.execute(action: "DeleteCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除存储库
+    @inlinable
+    public func deleteCodeRepository(_ input: DeleteCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCodeRepositoryResponse {
+        try await self.client.execute(action: "DeleteCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

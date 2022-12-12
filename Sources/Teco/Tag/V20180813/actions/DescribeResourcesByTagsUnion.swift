@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 通过标签查询资源列表并集
-    @inlinable
-    public func describeResourcesByTagsUnion(_ input: DescribeResourcesByTagsUnionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesByTagsUnionResponse > {
-        self.client.execute(action: "DescribeResourcesByTagsUnion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通过标签查询资源列表并集
-    @inlinable
-    public func describeResourcesByTagsUnion(_ input: DescribeResourcesByTagsUnionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByTagsUnionResponse {
-        try await self.client.execute(action: "DescribeResourcesByTagsUnion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourcesByTagsUnion请求参数结构体
     public struct DescribeResourcesByTagsUnionRequest: TCRequestModel {
         /// 标签过滤数组
@@ -53,7 +41,7 @@ extension Tag {
         /// 业务类型
         public let serviceType: String?
         
-        public init (tagFilters: [TagFilter], createUin: UInt64?, offset: UInt64?, limit: UInt64?, resourcePrefix: String?, resourceId: String?, resourceRegion: String?, serviceType: String?) {
+        public init (tagFilters: [TagFilter], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, resourcePrefix: String? = nil, resourceId: String? = nil, resourceRegion: String? = nil, serviceType: String? = nil) {
             self.tagFilters = tagFilters
             self.createUin = createUin
             self.offset = offset
@@ -100,5 +88,17 @@ extension Tag {
             case rows = "Rows"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通过标签查询资源列表并集
+    @inlinable
+    public func describeResourcesByTagsUnion(_ input: DescribeResourcesByTagsUnionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesByTagsUnionResponse > {
+        self.client.execute(action: "DescribeResourcesByTagsUnion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通过标签查询资源列表并集
+    @inlinable
+    public func describeResourcesByTagsUnion(_ input: DescribeResourcesByTagsUnionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByTagsUnionResponse {
+        try await self.client.execute(action: "DescribeResourcesByTagsUnion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

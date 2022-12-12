@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询容器逃逸事件列表
-    ///
-    /// DescribeEscapeEventInfo 查询容器逃逸事件列表
-    @inlinable
-    public func describeEscapeEventInfo(_ input: DescribeEscapeEventInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeEventInfoResponse > {
-        self.client.execute(action: "DescribeEscapeEventInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器逃逸事件列表
-    ///
-    /// DescribeEscapeEventInfo 查询容器逃逸事件列表
-    @inlinable
-    public func describeEscapeEventInfo(_ input: DescribeEscapeEventInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventInfoResponse {
-        try await self.client.execute(action: "DescribeEscapeEventInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEscapeEventInfo请求参数结构体
     public struct DescribeEscapeEventInfoRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -48,7 +32,7 @@ extension Tcss {
         /// 排序字段
         public let by: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, order: String?, by: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -81,5 +65,21 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器逃逸事件列表
+    ///
+    /// DescribeEscapeEventInfo 查询容器逃逸事件列表
+    @inlinable
+    public func describeEscapeEventInfo(_ input: DescribeEscapeEventInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeEventInfoResponse > {
+        self.client.execute(action: "DescribeEscapeEventInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器逃逸事件列表
+    ///
+    /// DescribeEscapeEventInfo 查询容器逃逸事件列表
+    @inlinable
+    public func describeEscapeEventInfo(_ input: DescribeEscapeEventInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventInfoResponse {
+        try await self.client.execute(action: "DescribeEscapeEventInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

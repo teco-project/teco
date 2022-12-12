@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 删除规则模版
-    @inlinable
-    public func deleteRuleTemplate(_ input: DeleteRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRuleTemplateResponse > {
-        self.client.execute(action: "DeleteRuleTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除规则模版
-    @inlinable
-    public func deleteRuleTemplate(_ input: DeleteRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleTemplateResponse {
-        try await self.client.execute(action: "DeleteRuleTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRuleTemplate请求参数结构体
     public struct DeleteRuleTemplateRequest: TCRequestModel {
         /// 项目Id
@@ -35,7 +23,7 @@ extension Wedata {
         /// 模版Id列表
         public let ids: [UInt64]?
         
-        public init (projectId: String?, ids: [UInt64]?) {
+        public init (projectId: String? = nil, ids: [UInt64]? = nil) {
             self.projectId = projectId
             self.ids = ids
         }
@@ -59,5 +47,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除规则模版
+    @inlinable
+    public func deleteRuleTemplate(_ input: DeleteRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRuleTemplateResponse > {
+        self.client.execute(action: "DeleteRuleTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除规则模版
+    @inlinable
+    public func deleteRuleTemplate(_ input: DeleteRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleTemplateResponse {
+        try await self.client.execute(action: "DeleteRuleTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

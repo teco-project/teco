@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 删除域名的定制错误
-    @inlinable
-    public func deleteDomainErrorPageInfo(_ input: DeleteDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDomainErrorPageInfoResponse > {
-        self.client.execute(action: "DeleteDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除域名的定制错误
-    @inlinable
-    public func deleteDomainErrorPageInfo(_ input: DeleteDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainErrorPageInfoResponse {
-        try await self.client.execute(action: "DeleteDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDomainErrorPageInfo请求参数结构体
     public struct DeleteDomainErrorPageInfoRequest: TCRequestModel {
         /// 定制错误响应页的唯一ID，请参考CreateDomainErrorPageInfo的响应
@@ -49,5 +37,17 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除域名的定制错误
+    @inlinable
+    public func deleteDomainErrorPageInfo(_ input: DeleteDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDomainErrorPageInfoResponse > {
+        self.client.execute(action: "DeleteDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除域名的定制错误
+    @inlinable
+    public func deleteDomainErrorPageInfo(_ input: DeleteDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainErrorPageInfoResponse {
+        try await self.client.execute(action: "DeleteDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

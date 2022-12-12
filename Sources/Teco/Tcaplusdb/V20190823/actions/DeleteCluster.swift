@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 删除集群
-    ///
-    /// 删除TcaplusDB集群，必须在集群所属所有资源（包括表格组，表）都已经释放的情况下才会成功。
-    @inlinable
-    public func deleteCluster(_ input: DeleteClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterResponse > {
-        self.client.execute(action: "DeleteCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除集群
-    ///
-    /// 删除TcaplusDB集群，必须在集群所属所有资源（包括表格组，表）都已经释放的情况下才会成功。
-    @inlinable
-    public func deleteCluster(_ input: DeleteClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterResponse {
-        try await self.client.execute(action: "DeleteCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCluster请求参数结构体
     public struct DeleteClusterRequest: TCRequestModel {
         /// 待删除的集群ID
@@ -57,5 +41,21 @@ extension Tcaplusdb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除集群
+    ///
+    /// 删除TcaplusDB集群，必须在集群所属所有资源（包括表格组，表）都已经释放的情况下才会成功。
+    @inlinable
+    public func deleteCluster(_ input: DeleteClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterResponse > {
+        self.client.execute(action: "DeleteCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除集群
+    ///
+    /// 删除TcaplusDB集群，必须在集群所属所有资源（包括表格组，表）都已经释放的情况下才会成功。
+    @inlinable
+    public func deleteCluster(_ input: DeleteClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterResponse {
+        try await self.client.execute(action: "DeleteCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

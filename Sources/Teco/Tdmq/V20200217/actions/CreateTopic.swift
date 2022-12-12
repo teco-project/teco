@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 新增主题
-    ///
-    /// 新增指定分区、类型的消息主题
-    @inlinable
-    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicResponse > {
-        self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增主题
-    ///
-    /// 新增指定分区、类型的消息主题
-    @inlinable
-    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
-        try await self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTopic请求参数结构体
     public struct CreateTopicRequest: TCRequestModel {
         /// 环境（命名空间）名称。
@@ -63,7 +47,7 @@ extension Tdmq {
         /// 3: 持久分区
         public let pulsarTopicType: Int64?
         
-        public init (environmentId: String, topicName: String, partitions: UInt64, remark: String?, topicType: UInt64?, clusterId: String?, pulsarTopicType: Int64?) {
+        public init (environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, topicType: UInt64? = nil, clusterId: String? = nil, pulsarTopicType: Int64? = nil) {
             self.environmentId = environmentId
             self.topicName = topicName
             self.partitions = partitions
@@ -118,5 +102,21 @@ extension Tdmq {
             case topicType = "TopicType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增主题
+    ///
+    /// 新增指定分区、类型的消息主题
+    @inlinable
+    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicResponse > {
+        self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增主题
+    ///
+    /// 新增指定分区、类型的消息主题
+    @inlinable
+    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
+        try await self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

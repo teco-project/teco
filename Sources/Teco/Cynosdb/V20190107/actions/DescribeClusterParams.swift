@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 查询集群参数
-    ///
-    /// 本接口（DescribeClusterParams）用于查询集群参数
-    @inlinable
-    public func describeClusterParams(_ input: DescribeClusterParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterParamsResponse > {
-        self.client.execute(action: "DescribeClusterParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群参数
-    ///
-    /// 本接口（DescribeClusterParams）用于查询集群参数
-    @inlinable
-    public func describeClusterParams(_ input: DescribeClusterParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamsResponse {
-        try await self.client.execute(action: "DescribeClusterParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterParams请求参数结构体
     public struct DescribeClusterParamsRequest: TCRequestModel {
         /// 集群ID
@@ -61,5 +45,21 @@ extension Cynosdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群参数
+    ///
+    /// 本接口（DescribeClusterParams）用于查询集群参数
+    @inlinable
+    public func describeClusterParams(_ input: DescribeClusterParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterParamsResponse > {
+        self.client.execute(action: "DescribeClusterParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群参数
+    ///
+    /// 本接口（DescribeClusterParams）用于查询集群参数
+    @inlinable
+    public func describeClusterParams(_ input: DescribeClusterParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamsResponse {
+        try await self.client.execute(action: "DescribeClusterParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

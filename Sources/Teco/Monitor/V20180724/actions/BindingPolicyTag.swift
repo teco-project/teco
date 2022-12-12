@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 策略绑定标签
-    @inlinable
-    public func bindingPolicyTag(_ input: BindingPolicyTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindingPolicyTagResponse > {
-        self.client.execute(action: "BindingPolicyTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 策略绑定标签
-    @inlinable
-    public func bindingPolicyTag(_ input: BindingPolicyTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindingPolicyTagResponse {
-        try await self.client.execute(action: "BindingPolicyTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindingPolicyTag请求参数结构体
     public struct BindingPolicyTagRequest: TCRequestModel {
         /// 固定取值 monitor
@@ -42,7 +30,7 @@ extension Monitor {
         public let serviceType: String
         
         /// 策略标签
-        public let tag: PolicyTag
+        public let tag: PolicyTag?
         
         /// 实例分组ID
         public let instanceGroupId: Int64?
@@ -50,7 +38,7 @@ extension Monitor {
         /// 批量绑定标签
         public let batchTag: [PolicyTag]?
         
-        public init (module: String, policyId: String, groupId: String, serviceType: String, tag: PolicyTag, instanceGroupId: Int64?, batchTag: [PolicyTag]?) {
+        public init (module: String, policyId: String, groupId: String, serviceType: String, tag: PolicyTag? = nil, instanceGroupId: Int64? = nil, batchTag: [PolicyTag]? = nil) {
             self.module = module
             self.policyId = policyId
             self.groupId = groupId
@@ -79,5 +67,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 策略绑定标签
+    @inlinable
+    public func bindingPolicyTag(_ input: BindingPolicyTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindingPolicyTagResponse > {
+        self.client.execute(action: "BindingPolicyTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 策略绑定标签
+    @inlinable
+    public func bindingPolicyTag(_ input: BindingPolicyTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindingPolicyTagResponse {
+        try await self.client.execute(action: "BindingPolicyTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

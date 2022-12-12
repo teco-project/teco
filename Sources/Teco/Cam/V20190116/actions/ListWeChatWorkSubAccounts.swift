@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 获取企业微信子用户列表
-    @inlinable
-    public func listWeChatWorkSubAccounts(_ input: ListWeChatWorkSubAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListWeChatWorkSubAccountsResponse > {
-        self.client.execute(action: "ListWeChatWorkSubAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取企业微信子用户列表
-    @inlinable
-    public func listWeChatWorkSubAccounts(_ input: ListWeChatWorkSubAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListWeChatWorkSubAccountsResponse {
-        try await self.client.execute(action: "ListWeChatWorkSubAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListWeChatWorkSubAccounts请求参数结构体
     public struct ListWeChatWorkSubAccountsRequest: TCRequestModel {
         /// 偏移量
@@ -62,5 +50,17 @@ extension Cam {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取企业微信子用户列表
+    @inlinable
+    public func listWeChatWorkSubAccounts(_ input: ListWeChatWorkSubAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListWeChatWorkSubAccountsResponse > {
+        self.client.execute(action: "ListWeChatWorkSubAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取企业微信子用户列表
+    @inlinable
+    public func listWeChatWorkSubAccounts(_ input: ListWeChatWorkSubAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListWeChatWorkSubAccountsResponse {
+        try await self.client.execute(action: "ListWeChatWorkSubAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

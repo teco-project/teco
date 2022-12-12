@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 删除表格的数据订阅
-    @inlinable
-    public func deleteTableDataFlow(_ input: DeleteTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTableDataFlowResponse > {
-        self.client.execute(action: "DeleteTableDataFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除表格的数据订阅
-    @inlinable
-    public func deleteTableDataFlow(_ input: DeleteTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableDataFlowResponse {
-        try await self.client.execute(action: "DeleteTableDataFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTableDataFlow请求参数结构体
     public struct DeleteTableDataFlowRequest: TCRequestModel {
         /// 表格所属集群实例ID
@@ -62,5 +50,17 @@ extension Tcaplusdb {
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除表格的数据订阅
+    @inlinable
+    public func deleteTableDataFlow(_ input: DeleteTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTableDataFlowResponse > {
+        self.client.execute(action: "DeleteTableDataFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除表格的数据订阅
+    @inlinable
+    public func deleteTableDataFlow(_ input: DeleteTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableDataFlowResponse {
+        try await self.client.execute(action: "DeleteTableDataFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

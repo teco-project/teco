@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询镜像关联主机
-    ///
-    /// 容器安全查询镜像关联主机
-    @inlinable
-    public func describeAssetImageHostList(_ input: DescribeAssetImageHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageHostListResponse > {
-        self.client.execute(action: "DescribeAssetImageHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询镜像关联主机
-    ///
-    /// 容器安全查询镜像关联主机
-    @inlinable
-    public func describeAssetImageHostList(_ input: DescribeAssetImageHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageHostListResponse {
-        try await self.client.execute(action: "DescribeAssetImageHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageHostList请求参数结构体
     public struct DescribeAssetImageHostListRequest: TCRequestModel {
         /// 过滤条件 支持ImageID,HostID
         public let filters: [AssetFilters]?
         
-        public init (filters: [AssetFilters]?) {
+        public init (filters: [AssetFilters]? = nil) {
             self.filters = filters
         }
         
@@ -61,5 +45,21 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询镜像关联主机
+    ///
+    /// 容器安全查询镜像关联主机
+    @inlinable
+    public func describeAssetImageHostList(_ input: DescribeAssetImageHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageHostListResponse > {
+        self.client.execute(action: "DescribeAssetImageHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像关联主机
+    ///
+    /// 容器安全查询镜像关联主机
+    @inlinable
+    public func describeAssetImageHostList(_ input: DescribeAssetImageHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageHostListResponse {
+        try await self.client.execute(action: "DescribeAssetImageHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

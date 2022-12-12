@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 创建设备
-    ///
-    /// 本接口(CreateDevice) 用于创建设备。
-    @inlinable
-    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeviceResponse > {
-        self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建设备
-    ///
-    /// 本接口(CreateDevice) 用于创建设备。
-    @inlinable
-    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
-        try await self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDevice请求参数结构体
     public struct CreateDeviceRequest: TCRequestModel {
         /// 设备名称
@@ -45,7 +29,7 @@ extension Iotvideoindustry {
         /// 设备需要绑定的分组ID，参数为空则默认绑定到根分组
         public let groupId: String?
         
-        public init (nickName: String, passWord: String, deviceType: Int64?, groupId: String?) {
+        public init (nickName: String, passWord: String, deviceType: Int64? = nil, groupId: String? = nil) {
             self.nickName = nickName
             self.passWord = passWord
             self.deviceType = deviceType
@@ -83,5 +67,21 @@ extension Iotvideoindustry {
             case virtualGroupId = "VirtualGroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建设备
+    ///
+    /// 本接口(CreateDevice) 用于创建设备。
+    @inlinable
+    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeviceResponse > {
+        self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建设备
+    ///
+    /// 本接口(CreateDevice) 用于创建设备。
+    @inlinable
+    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
+        try await self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

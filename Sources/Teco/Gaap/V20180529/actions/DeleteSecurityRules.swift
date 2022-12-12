@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 删除安全策略规则
-    @inlinable
-    public func deleteSecurityRules(_ input: DeleteSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityRulesResponse > {
-        self.client.execute(action: "DeleteSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除安全策略规则
-    @inlinable
-    public func deleteSecurityRules(_ input: DeleteSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityRulesResponse {
-        try await self.client.execute(action: "DeleteSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSecurityRules请求参数结构体
     public struct DeleteSecurityRulesRequest: TCRequestModel {
         /// 安全策略ID
@@ -54,5 +42,17 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除安全策略规则
+    @inlinable
+    public func deleteSecurityRules(_ input: DeleteSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityRulesResponse > {
+        self.client.execute(action: "DeleteSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除安全策略规则
+    @inlinable
+    public func deleteSecurityRules(_ input: DeleteSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityRulesResponse {
+        try await self.client.execute(action: "DeleteSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

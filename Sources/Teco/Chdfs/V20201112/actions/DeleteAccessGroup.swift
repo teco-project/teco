@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 删除权限组
-    ///
-    /// 删除权限组。
-    @inlinable
-    public func deleteAccessGroup(_ input: DeleteAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccessGroupResponse > {
-        self.client.execute(action: "DeleteAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除权限组
-    ///
-    /// 删除权限组。
-    @inlinable
-    public func deleteAccessGroup(_ input: DeleteAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessGroupResponse {
-        try await self.client.execute(action: "DeleteAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAccessGroup请求参数结构体
     public struct DeleteAccessGroupRequest: TCRequestModel {
         /// 权限组ID
@@ -53,5 +37,21 @@ extension Chdfs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除权限组
+    ///
+    /// 删除权限组。
+    @inlinable
+    public func deleteAccessGroup(_ input: DeleteAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccessGroupResponse > {
+        self.client.execute(action: "DeleteAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除权限组
+    ///
+    /// 删除权限组。
+    @inlinable
+    public func deleteAccessGroup(_ input: DeleteAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessGroupResponse {
+        try await self.client.execute(action: "DeleteAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

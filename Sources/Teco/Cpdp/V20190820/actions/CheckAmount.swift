@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-验证鉴权金额
-    ///
-    /// 验证鉴权金额。此接口可受理BindRelateAcctSmallAmount接口发起的转账金额（往账鉴权方式）的验证处理。若所回填的验证金额验证通过，则会绑定原申请中的银行账户作为提现账户。通过此接口也可以查得BindRelateAcctSmallAmount接口发起的来账鉴权方式的申请的当前状态。
-    @inlinable
-    public func checkAmount(_ input: CheckAmountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckAmountResponse > {
-        self.client.execute(action: "CheckAmount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-验证鉴权金额
-    ///
-    /// 验证鉴权金额。此接口可受理BindRelateAcctSmallAmount接口发起的转账金额（往账鉴权方式）的验证处理。若所回填的验证金额验证通过，则会绑定原申请中的银行账户作为提现账户。通过此接口也可以查得BindRelateAcctSmallAmount接口发起的来账鉴权方式的申请的当前状态。
-    @inlinable
-    public func checkAmount(_ input: CheckAmountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAmountResponse {
-        try await self.client.execute(action: "CheckAmount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckAmount请求参数结构体
     public struct CheckAmountRequest: TCRequestModel {
         /// String(22)，商户号（签约客户号）
@@ -54,7 +38,7 @@ extension Cpdp {
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
         
-        public init (mrchCode: String, tranNetMemberCode: String, takeCashAcctNo: String, authAmt: String, ccy: String, reservedMsg: String?, profile: String?) {
+        public init (mrchCode: String, tranNetMemberCode: String, takeCashAcctNo: String, authAmt: String, ccy: String, reservedMsg: String? = nil, profile: String? = nil) {
             self.mrchCode = mrchCode
             self.tranNetMemberCode = tranNetMemberCode
             self.takeCashAcctNo = takeCashAcctNo
@@ -103,5 +87,21 @@ extension Cpdp {
             case reservedMsg = "ReservedMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-验证鉴权金额
+    ///
+    /// 验证鉴权金额。此接口可受理BindRelateAcctSmallAmount接口发起的转账金额（往账鉴权方式）的验证处理。若所回填的验证金额验证通过，则会绑定原申请中的银行账户作为提现账户。通过此接口也可以查得BindRelateAcctSmallAmount接口发起的来账鉴权方式的申请的当前状态。
+    @inlinable
+    public func checkAmount(_ input: CheckAmountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckAmountResponse > {
+        self.client.execute(action: "CheckAmount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-验证鉴权金额
+    ///
+    /// 验证鉴权金额。此接口可受理BindRelateAcctSmallAmount接口发起的转账金额（往账鉴权方式）的验证处理。若所回填的验证金额验证通过，则会绑定原申请中的银行账户作为提现账户。通过此接口也可以查得BindRelateAcctSmallAmount接口发起的来账鉴权方式的申请的当前状态。
+    @inlinable
+    public func checkAmount(_ input: CheckAmountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAmountResponse {
+        try await self.client.execute(action: "CheckAmount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mmps {
-    /// 提交深度诊断任务
-    ///
-    /// 创建小程序安全深度诊断任务
-    @inlinable
-    public func createFlySecMiniAppProfessionalScanTask(_ input: CreateFlySecMiniAppProfessionalScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlySecMiniAppProfessionalScanTaskResponse > {
-        self.client.execute(action: "CreateFlySecMiniAppProfessionalScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交深度诊断任务
-    ///
-    /// 创建小程序安全深度诊断任务
-    @inlinable
-    public func createFlySecMiniAppProfessionalScanTask(_ input: CreateFlySecMiniAppProfessionalScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlySecMiniAppProfessionalScanTaskResponse {
-        try await self.client.execute(action: "CreateFlySecMiniAppProfessionalScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFlySecMiniAppProfessionalScanTask请求参数结构体
     public struct CreateFlySecMiniAppProfessionalScanTaskRequest: TCRequestModel {
         /// 小程序AppID
@@ -54,7 +38,7 @@ extension Mmps {
         /// 备注信息
         public let remark: String?
         
-        public init (miniAppID: String, miniAppName: String, mode: Int64, corpName: String, mobile: String, email: String, remark: String?) {
+        public init (miniAppID: String, miniAppName: String, mode: Int64, corpName: String, mobile: String, email: String, remark: String? = nil) {
             self.miniAppID = miniAppID
             self.miniAppName = miniAppName
             self.mode = mode
@@ -87,5 +71,21 @@ extension Mmps {
             case ret = "Ret"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交深度诊断任务
+    ///
+    /// 创建小程序安全深度诊断任务
+    @inlinable
+    public func createFlySecMiniAppProfessionalScanTask(_ input: CreateFlySecMiniAppProfessionalScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlySecMiniAppProfessionalScanTaskResponse > {
+        self.client.execute(action: "CreateFlySecMiniAppProfessionalScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交深度诊断任务
+    ///
+    /// 创建小程序安全深度诊断任务
+    @inlinable
+    public func createFlySecMiniAppProfessionalScanTask(_ input: CreateFlySecMiniAppProfessionalScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlySecMiniAppProfessionalScanTaskResponse {
+        try await self.client.execute(action: "CreateFlySecMiniAppProfessionalScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

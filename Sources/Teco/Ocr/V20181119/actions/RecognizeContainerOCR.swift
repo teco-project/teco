@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 集装箱识别
-    ///
-    /// 本接口支持集装箱箱门信息识别，识别字段包括集装箱箱号、类型、总重量、有效承重、容量、自身重量，具备集装箱箱号、类型不完整或者不清晰的告警功能。
-    @inlinable
-    public func recognizeContainerOCR(_ input: RecognizeContainerOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeContainerOCRResponse > {
-        self.client.execute(action: "RecognizeContainerOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 集装箱识别
-    ///
-    /// 本接口支持集装箱箱门信息识别，识别字段包括集装箱箱号、类型、总重量、有效承重、容量、自身重量，具备集装箱箱号、类型不完整或者不清晰的告警功能。
-    @inlinable
-    public func recognizeContainerOCR(_ input: RecognizeContainerOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeContainerOCRResponse {
-        try await self.client.execute(action: "RecognizeContainerOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecognizeContainerOCR请求参数结构体
     public struct RecognizeContainerOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -46,7 +30,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -111,5 +95,21 @@ extension Ocr {
             case tareLB = "TareLB"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 集装箱识别
+    ///
+    /// 本接口支持集装箱箱门信息识别，识别字段包括集装箱箱号、类型、总重量、有效承重、容量、自身重量，具备集装箱箱号、类型不完整或者不清晰的告警功能。
+    @inlinable
+    public func recognizeContainerOCR(_ input: RecognizeContainerOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeContainerOCRResponse > {
+        self.client.execute(action: "RecognizeContainerOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 集装箱识别
+    ///
+    /// 本接口支持集装箱箱门信息识别，识别字段包括集装箱箱号、类型、总重量、有效承重、容量、自身重量，具备集装箱箱号、类型不完整或者不清晰的告警功能。
+    @inlinable
+    public func recognizeContainerOCR(_ input: RecognizeContainerOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeContainerOCRResponse {
+        try await self.client.execute(action: "RecognizeContainerOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

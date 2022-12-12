@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建对端网关
-    ///
-    /// 本接口（CreateCustomerGateway）用于创建对端网关。
-    @inlinable
-    public func createCustomerGateway(_ input: CreateCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomerGatewayResponse > {
-        self.client.execute(action: "CreateCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建对端网关
-    ///
-    /// 本接口（CreateCustomerGateway）用于创建对端网关。
-    @inlinable
-    public func createCustomerGateway(_ input: CreateCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomerGatewayResponse {
-        try await self.client.execute(action: "CreateCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCustomerGateway请求参数结构体
     public struct CreateCustomerGatewayRequest: TCRequestModel {
         /// 对端网关名称，可任意命名，但不得超过60个字符。
@@ -42,7 +26,7 @@ extension Vpc {
         /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         public let tags: [Tag]?
         
-        public init (customerGatewayName: String, ipAddress: String, tags: [Tag]?) {
+        public init (customerGatewayName: String, ipAddress: String, tags: [Tag]? = nil) {
             self.customerGatewayName = customerGatewayName
             self.ipAddress = ipAddress
             self.tags = tags
@@ -67,5 +51,21 @@ extension Vpc {
             case customerGateway = "CustomerGateway"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建对端网关
+    ///
+    /// 本接口（CreateCustomerGateway）用于创建对端网关。
+    @inlinable
+    public func createCustomerGateway(_ input: CreateCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomerGatewayResponse > {
+        self.client.execute(action: "CreateCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建对端网关
+    ///
+    /// 本接口（CreateCustomerGateway）用于创建对端网关。
+    @inlinable
+    public func createCustomerGateway(_ input: CreateCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomerGatewayResponse {
+        try await self.client.execute(action: "CreateCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

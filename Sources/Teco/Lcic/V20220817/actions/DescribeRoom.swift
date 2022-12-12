@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lcic {
-    /// 房间信息
-    ///
-    /// 获取房间信息
-    @inlinable
-    public func describeRoom(_ input: DescribeRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoomResponse > {
-        self.client.execute(action: "DescribeRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 房间信息
-    ///
-    /// 获取房间信息
-    @inlinable
-    public func describeRoom(_ input: DescribeRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomResponse {
-        try await self.client.execute(action: "DescribeRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRoom请求参数结构体
     public struct DescribeRoomRequest: TCRequestModel {
         /// 房间Id。
@@ -119,5 +103,21 @@ extension Lcic {
             case recordUrl = "RecordUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 房间信息
+    ///
+    /// 获取房间信息
+    @inlinable
+    public func describeRoom(_ input: DescribeRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoomResponse > {
+        self.client.execute(action: "DescribeRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 房间信息
+    ///
+    /// 获取房间信息
+    @inlinable
+    public func describeRoom(_ input: DescribeRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomResponse {
+        try await self.client.execute(action: "DescribeRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

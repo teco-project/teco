@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cis {
-    /// 获取容器日志信息
-    ///
-    /// 此接口（DescribeContainerLog）用于获取容器日志信息
-    @inlinable
-    public func describeContainerLog(_ input: DescribeContainerLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerLogResponse > {
-        self.client.execute(action: "DescribeContainerLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取容器日志信息
-    ///
-    /// 此接口（DescribeContainerLog）用于获取容器日志信息
-    @inlinable
-    public func describeContainerLog(_ input: DescribeContainerLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerLogResponse {
-        try await self.client.execute(action: "DescribeContainerLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeContainerLog请求参数结构体
     public struct DescribeContainerLogRequest: TCRequestModel {
         /// 容器实例名称
@@ -45,7 +29,7 @@ extension Cis {
         /// 日志起始时间
         public let sinceTime: String?
         
-        public init (instanceName: String, containerName: String?, tail: UInt64?, sinceTime: String?) {
+        public init (instanceName: String, containerName: String? = nil, tail: UInt64? = nil, sinceTime: String? = nil) {
             self.instanceName = instanceName
             self.containerName = containerName
             self.tail = tail
@@ -72,5 +56,21 @@ extension Cis {
             case containerLogList = "ContainerLogList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取容器日志信息
+    ///
+    /// 此接口（DescribeContainerLog）用于获取容器日志信息
+    @inlinable
+    public func describeContainerLog(_ input: DescribeContainerLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerLogResponse > {
+        self.client.execute(action: "DescribeContainerLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取容器日志信息
+    ///
+    /// 此接口（DescribeContainerLog）用于获取容器日志信息
+    @inlinable
+    public func describeContainerLog(_ input: DescribeContainerLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerLogResponse {
+        try await self.client.execute(action: "DescribeContainerLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

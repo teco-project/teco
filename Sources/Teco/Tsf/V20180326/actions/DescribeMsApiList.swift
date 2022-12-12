@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询服务API列表
-    @inlinable
-    public func describeMsApiList(_ input: DescribeMsApiListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMsApiListResponse > {
-        self.client.execute(action: "DescribeMsApiList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询服务API列表
-    @inlinable
-    public func describeMsApiList(_ input: DescribeMsApiListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMsApiListResponse {
-        try await self.client.execute(action: "DescribeMsApiList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMsApiList请求参数结构体
     public struct DescribeMsApiListRequest: TCRequestModel {
         /// 微服务ID
@@ -41,7 +29,7 @@ extension Tsf {
         /// 翻页偏移量
         public let offset: Int64?
         
-        public init (microserviceId: String, searchWord: String?, limit: Int64?, offset: Int64?) {
+        public init (microserviceId: String, searchWord: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.microserviceId = microserviceId
             self.searchWord = searchWord
             self.limit = limit
@@ -68,5 +56,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询服务API列表
+    @inlinable
+    public func describeMsApiList(_ input: DescribeMsApiListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMsApiListResponse > {
+        self.client.execute(action: "DescribeMsApiList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务API列表
+    @inlinable
+    public func describeMsApiList(_ input: DescribeMsApiListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMsApiListResponse {
+        try await self.client.execute(action: "DescribeMsApiList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

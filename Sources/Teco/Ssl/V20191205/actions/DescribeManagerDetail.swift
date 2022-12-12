@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 查询管理人详情
-    @inlinable
-    public func describeManagerDetail(_ input: DescribeManagerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeManagerDetailResponse > {
-        self.client.execute(action: "DescribeManagerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询管理人详情
-    @inlinable
-    public func describeManagerDetail(_ input: DescribeManagerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeManagerDetailResponse {
-        try await self.client.execute(action: "DescribeManagerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeManagerDetail请求参数结构体
     public struct DescribeManagerDetailRequest: TCRequestModel {
         /// 管理人ID
@@ -38,7 +26,7 @@ extension Ssl {
         /// 分页偏移量
         public let offset: Int64?
         
-        public init (managerId: Int64, limit: Int64?, offset: Int64?) {
+        public init (managerId: Int64, limit: Int64? = nil, offset: Int64? = nil) {
             self.managerId = managerId
             self.limit = limit
             self.offset = offset
@@ -133,5 +121,17 @@ extension Ssl {
             case managerId = "ManagerId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询管理人详情
+    @inlinable
+    public func describeManagerDetail(_ input: DescribeManagerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeManagerDetailResponse > {
+        self.client.execute(action: "DescribeManagerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询管理人详情
+    @inlinable
+    public func describeManagerDetail(_ input: DescribeManagerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeManagerDetailResponse {
+        try await self.client.execute(action: "DescribeManagerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 修改通知模板
-    ///
-    /// 云监控告警编辑告警通知模板
-    @inlinable
-    public func modifyAlarmNotice(_ input: ModifyAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmNoticeResponse > {
-        self.client.execute(action: "ModifyAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改通知模板
-    ///
-    /// 云监控告警编辑告警通知模板
-    @inlinable
-    public func modifyAlarmNotice(_ input: ModifyAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmNoticeResponse {
-        try await self.client.execute(action: "ModifyAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAlarmNotice请求参数结构体
     public struct ModifyAlarmNoticeRequest: TCRequestModel {
         /// 模块名，这里填“monitor”
@@ -57,7 +41,7 @@ extension Monitor {
         /// 告警通知推送到CLS服务 最多1个
         public let clsNotices: [CLSNotice]?
         
-        public init (module: String, name: String, noticeType: String, noticeLanguage: String, noticeId: String, userNotices: [UserNotice]?, urlNotices: [URLNotice]?, clsNotices: [CLSNotice]?) {
+        public init (module: String, name: String, noticeType: String, noticeLanguage: String, noticeId: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil) {
             self.module = module
             self.name = name
             self.noticeType = noticeType
@@ -88,5 +72,21 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改通知模板
+    ///
+    /// 云监控告警编辑告警通知模板
+    @inlinable
+    public func modifyAlarmNotice(_ input: ModifyAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmNoticeResponse > {
+        self.client.execute(action: "ModifyAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改通知模板
+    ///
+    /// 云监控告警编辑告警通知模板
+    @inlinable
+    public func modifyAlarmNotice(_ input: ModifyAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmNoticeResponse {
+        try await self.client.execute(action: "ModifyAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

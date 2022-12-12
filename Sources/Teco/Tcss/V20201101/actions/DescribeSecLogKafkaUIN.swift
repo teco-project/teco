@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询安全日志KafkaUIN
-    @inlinable
-    public func describeSecLogKafkaUIN(_ input: DescribeSecLogKafkaUINRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogKafkaUINResponse > {
-        self.client.execute(action: "DescribeSecLogKafkaUIN", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全日志KafkaUIN
-    @inlinable
-    public func describeSecLogKafkaUIN(_ input: DescribeSecLogKafkaUINRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogKafkaUINResponse {
-        try await self.client.execute(action: "DescribeSecLogKafkaUIN", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecLogKafkaUIN请求参数结构体
     public struct DescribeSecLogKafkaUINRequest: TCRequestModel {
         public init () {
@@ -51,5 +39,17 @@ extension Tcss {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全日志KafkaUIN
+    @inlinable
+    public func describeSecLogKafkaUIN(_ input: DescribeSecLogKafkaUINRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogKafkaUINResponse > {
+        self.client.execute(action: "DescribeSecLogKafkaUIN", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全日志KafkaUIN
+    @inlinable
+    public func describeSecLogKafkaUIN(_ input: DescribeSecLogKafkaUINRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogKafkaUINResponse {
+        try await self.client.execute(action: "DescribeSecLogKafkaUIN", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询订单信息
-    ///
-    /// 本接口（DescribeOrders）用于查询订单信息
-    @inlinable
-    public func describeOrders(_ input: DescribeOrdersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrdersResponse > {
-        self.client.execute(action: "DescribeOrders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询订单信息
-    ///
-    /// 本接口（DescribeOrders）用于查询订单信息
-    @inlinable
-    public func describeOrders(_ input: DescribeOrdersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrdersResponse {
-        try await self.client.execute(action: "DescribeOrders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOrders请求参数结构体
     public struct DescribeOrdersRequest: TCRequestModel {
         /// 订单数组。发货时会返回订单名字，利用该订单名字调用DescribeOrders接口查询发货情况
@@ -61,5 +45,21 @@ extension Sqlserver {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询订单信息
+    ///
+    /// 本接口（DescribeOrders）用于查询订单信息
+    @inlinable
+    public func describeOrders(_ input: DescribeOrdersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrdersResponse > {
+        self.client.execute(action: "DescribeOrders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询订单信息
+    ///
+    /// 本接口（DescribeOrders）用于查询订单信息
+    @inlinable
+    public func describeOrders(_ input: DescribeOrdersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrdersResponse {
+        try await self.client.execute(action: "DescribeOrders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

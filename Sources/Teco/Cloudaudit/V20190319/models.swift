@@ -63,7 +63,7 @@ extension Cloudaudit {
         /// 日志前缀
         public let logFilePrefix: String?
         
-        public init (auditStatus: Int64?, cosBucketName: String?, auditName: String?, logFilePrefix: String?) {
+        public init (auditStatus: Int64? = nil, cosBucketName: String? = nil, auditName: String? = nil, logFilePrefix: String? = nil) {
             self.auditStatus = auditStatus
             self.cosBucketName = cosBucketName
             self.auditName = auditName
@@ -86,7 +86,7 @@ extension Cloudaudit {
         /// cmq地域
         public let cmqRegion: String?
         
-        public init (cmqRegionName: String?, cmqRegion: String?) {
+        public init (cmqRegionName: String? = nil, cmqRegion: String? = nil) {
             self.cmqRegionName = cmqRegionName
             self.cmqRegion = cmqRegion
         }
@@ -105,7 +105,7 @@ extension Cloudaudit {
         /// 地域描述
         public let cosRegionName: String?
         
-        public init (cosRegion: String?, cosRegionName: String?) {
+        public init (cosRegion: String? = nil, cosRegionName: String? = nil) {
             self.cosRegion = cosRegion
             self.cosRegionName = cosRegionName
         }
@@ -163,7 +163,7 @@ extension Cloudaudit {
         public let eventNameCn: String?
         
         /// 资源对
-        public let resources: Resource
+        public let resources: Resource?
         
         /// 事件地域
         public let eventRegion: String?
@@ -171,7 +171,7 @@ extension Cloudaudit {
         /// IP 归属地
         public let location: String?
         
-        public init (eventId: String?, username: String?, eventTime: String?, cloudAuditEvent: String?, resourceTypeCn: String?, errorCode: Int64?, eventName: String?, secretId: String?, eventSource: String?, requestID: String?, resourceRegion: String?, accountID: Int64?, sourceIPAddress: String?, eventNameCn: String?, resources: Resource, eventRegion: String?, location: String?) {
+        public init (eventId: String? = nil, username: String? = nil, eventTime: String? = nil, cloudAuditEvent: String? = nil, resourceTypeCn: String? = nil, errorCode: Int64? = nil, eventName: String? = nil, secretId: String? = nil, eventSource: String? = nil, requestID: String? = nil, resourceRegion: String? = nil, accountID: Int64? = nil, sourceIPAddress: String? = nil, eventNameCn: String? = nil, resources: Resource? = nil, eventRegion: String? = nil, location: String? = nil) {
             self.eventId = eventId
             self.username = username
             self.eventTime = eventTime
@@ -220,7 +220,7 @@ extension Cloudaudit {
         /// CMK的全局唯一标识
         public let keyId: String?
         
-        public init (alias: String?, keyId: String?) {
+        public init (alias: String? = nil, keyId: String? = nil) {
             self.alias = alias
             self.keyId = keyId
         }
@@ -235,13 +235,13 @@ extension Cloudaudit {
     public struct LookupAttribute: TCInputModel {
         /// AttributeKey的有效取值范围是:RequestId、EventName、ReadOnly、Username、ResourceType、ResourceName和AccessKeyId，EventId
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let attributeKey: String
+        public let attributeKey: String?
         
         /// AttributeValue的值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attributeValue: String?
         
-        public init (attributeKey: String, attributeValue: String?) {
+        public init (attributeKey: String, attributeValue: String? = nil) {
             self.attributeKey = attributeKey
             self.attributeValue = attributeValue
         }
@@ -261,7 +261,7 @@ extension Cloudaudit {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceName: String?
         
-        public init (resourceType: String?, resourceName: String?) {
+        public init (resourceType: String? = nil, resourceName: String? = nil) {
             self.resourceType = resourceType
             self.resourceName = resourceName
         }

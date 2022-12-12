@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 设置VPNGW续费标记
-    @inlinable
-    public func setVpnGatewaysRenewFlag(_ input: SetVpnGatewaysRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetVpnGatewaysRenewFlagResponse > {
-        self.client.execute(action: "SetVpnGatewaysRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置VPNGW续费标记
-    @inlinable
-    public func setVpnGatewaysRenewFlag(_ input: SetVpnGatewaysRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVpnGatewaysRenewFlagResponse {
-        try await self.client.execute(action: "SetVpnGatewaysRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetVpnGatewaysRenewFlag请求参数结构体
     public struct SetVpnGatewaysRenewFlagRequest: TCRequestModel {
         /// VPNGW字符型ID列表
@@ -39,7 +27,7 @@ extension Vpc {
         /// VPNGW类型['IPSEC', 'SSL']
         public let type: String?
         
-        public init (vpnGatewayIds: [String], autoRenewFlag: Int64, type: String?) {
+        public init (vpnGatewayIds: [String], autoRenewFlag: Int64, type: String? = nil) {
             self.vpnGatewayIds = vpnGatewayIds
             self.autoRenewFlag = autoRenewFlag
             self.type = type
@@ -60,5 +48,17 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置VPNGW续费标记
+    @inlinable
+    public func setVpnGatewaysRenewFlag(_ input: SetVpnGatewaysRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetVpnGatewaysRenewFlagResponse > {
+        self.client.execute(action: "SetVpnGatewaysRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置VPNGW续费标记
+    @inlinable
+    public func setVpnGatewaysRenewFlag(_ input: SetVpnGatewaysRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVpnGatewaysRenewFlagResponse {
+        try await self.client.execute(action: "SetVpnGatewaysRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

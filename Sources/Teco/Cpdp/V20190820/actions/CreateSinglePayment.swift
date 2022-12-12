@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云-单笔主播转账接口
-    @inlinable
-    public func createSinglePayment(_ input: CreateSinglePaymentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSinglePaymentResponse > {
-        self.client.execute(action: "CreateSinglePayment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云-单笔主播转账接口
-    @inlinable
-    public func createSinglePayment(_ input: CreateSinglePaymentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSinglePaymentResponse {
-        try await self.client.execute(action: "CreateSinglePayment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSinglePayment请求参数结构体
     public struct CreateSinglePaymentRequest: TCRequestModel {
         /// 转账类型
@@ -59,7 +47,7 @@ extension Cpdp {
         /// 转账结果回调通知URL。若不填，则不进行回调。
         public let notifyUrl: String?
         
-        public init (transferType: UInt64, orderId: String, transferAmount: UInt64, anchorId: String, reqReserved: String?, remark: String?, anchorName: String?, uid: String?, notifyUrl: String?) {
+        public init (transferType: UInt64, orderId: String, transferAmount: UInt64, anchorId: String, reqReserved: String? = nil, remark: String? = nil, anchorName: String? = nil, uid: String? = nil, notifyUrl: String? = nil) {
             self.transferType = transferType
             self.orderId = orderId
             self.transferAmount = transferAmount
@@ -94,7 +82,7 @@ extension Cpdp {
         
         /// 返回数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: CreateSinglePaymentData
+        public let result: CreateSinglePaymentData?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -105,5 +93,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云-单笔主播转账接口
+    @inlinable
+    public func createSinglePayment(_ input: CreateSinglePaymentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSinglePaymentResponse > {
+        self.client.execute(action: "CreateSinglePayment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云-单笔主播转账接口
+    @inlinable
+    public func createSinglePayment(_ input: CreateSinglePaymentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSinglePaymentResponse {
+        try await self.client.execute(action: "CreateSinglePayment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

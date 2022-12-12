@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 跨境-查询汇率
-    @inlinable
-    public func queryExchangeRate(_ input: QueryExchangeRateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryExchangeRateResponse > {
-        self.client.execute(action: "QueryExchangeRate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 跨境-查询汇率
-    @inlinable
-    public func queryExchangeRate(_ input: QueryExchangeRateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExchangeRateResponse {
-        try await self.client.execute(action: "QueryExchangeRate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryExchangeRate请求参数结构体
     public struct QueryExchangeRateRequest: TCRequestModel {
         /// 源币种 (默认CNY)
@@ -38,7 +26,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
         
-        public init (sourceCurrency: String, targetCurrency: String?, profile: String?) {
+        public init (sourceCurrency: String, targetCurrency: String? = nil, profile: String? = nil) {
             self.sourceCurrency = sourceCurrency
             self.targetCurrency = targetCurrency
             self.profile = profile
@@ -63,5 +51,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 跨境-查询汇率
+    @inlinable
+    public func queryExchangeRate(_ input: QueryExchangeRateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryExchangeRateResponse > {
+        self.client.execute(action: "QueryExchangeRate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 跨境-查询汇率
+    @inlinable
+    public func queryExchangeRate(_ input: QueryExchangeRateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExchangeRateResponse {
+        try await self.client.execute(action: "QueryExchangeRate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

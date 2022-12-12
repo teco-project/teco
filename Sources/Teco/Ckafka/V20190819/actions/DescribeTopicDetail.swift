@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 获取主题列表详情
-    ///
-    /// 获取主题列表详情（仅控制台调用）
-    @inlinable
-    public func describeTopicDetail(_ input: DescribeTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicDetailResponse > {
-        self.client.execute(action: "DescribeTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取主题列表详情
-    ///
-    /// 获取主题列表详情（仅控制台调用）
-    @inlinable
-    public func describeTopicDetail(_ input: DescribeTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicDetailResponse {
-        try await self.client.execute(action: "DescribeTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTopicDetail请求参数结构体
     public struct DescribeTopicDetailRequest: TCRequestModel {
         /// 实例id
@@ -48,7 +32,7 @@ extension Ckafka {
         /// Acl预设策略名称
         public let aclRuleName: String?
         
-        public init (instanceId: String, searchWord: String?, offset: Int64?, limit: Int64?, aclRuleName: String?) {
+        public init (instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, aclRuleName: String? = nil) {
             self.instanceId = instanceId
             self.searchWord = searchWord
             self.offset = offset
@@ -77,5 +61,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取主题列表详情
+    ///
+    /// 获取主题列表详情（仅控制台调用）
+    @inlinable
+    public func describeTopicDetail(_ input: DescribeTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicDetailResponse > {
+        self.client.execute(action: "DescribeTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取主题列表详情
+    ///
+    /// 获取主题列表详情（仅控制台调用）
+    @inlinable
+    public func describeTopicDetail(_ input: DescribeTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicDetailResponse {
+        try await self.client.execute(action: "DescribeTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

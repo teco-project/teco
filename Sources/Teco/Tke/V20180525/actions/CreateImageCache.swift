@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 创建镜像缓存
-    ///
-    /// 创建镜像缓存的接口。创建过程中，请勿删除EKSCI实例和云盘，否则镜像缓存将创建失败。
-    @inlinable
-    public func createImageCache(_ input: CreateImageCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageCacheResponse > {
-        self.client.execute(action: "CreateImageCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建镜像缓存
-    ///
-    /// 创建镜像缓存的接口。创建过程中，请勿删除EKSCI实例和云盘，否则镜像缓存将创建失败。
-    @inlinable
-    public func createImageCache(_ input: CreateImageCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageCacheResponse {
-        try await self.client.execute(action: "CreateImageCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateImageCache请求参数结构体
     public struct CreateImageCacheRequest: TCRequestModel {
         /// 用于制作镜像缓存的容器镜像列表
@@ -59,7 +43,7 @@ extension Tke {
         
         /// 自动创建EIP的可选参数。若传此参数，则会自动创建EIP。
         /// 另外此参数和ExistedEipIds互斥
-        public let autoCreateEipAttribute: EipAttribute
+        public let autoCreateEipAttribute: EipAttribute?
         
         /// 镜像缓存的大小。默认为20 GiB。取值范围参考[云硬盘类型](https://cloud.tencent.com/document/product/362/2353)中的高性能云盘类型的大小限制。
         public let imageCacheSize: UInt64?
@@ -67,7 +51,7 @@ extension Tke {
         /// 镜像缓存保留时间天数，过期将会自动清理，默认为0，永不过期。
         public let retentionDays: UInt64?
         
-        public init (images: [String], subnetId: String, vpcId: String, imageCacheName: String?, securityGroupIds: [String]?, imageRegistryCredentials: [ImageRegistryCredential]?, existedEipId: String?, autoCreateEip: Bool?, autoCreateEipAttribute: EipAttribute, imageCacheSize: UInt64?, retentionDays: UInt64?) {
+        public init (images: [String], subnetId: String, vpcId: String, imageCacheName: String? = nil, securityGroupIds: [String]? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, existedEipId: String? = nil, autoCreateEip: Bool? = nil, autoCreateEipAttribute: EipAttribute? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil) {
             self.images = images
             self.subnetId = subnetId
             self.vpcId = vpcId
@@ -108,5 +92,21 @@ extension Tke {
             case imageCacheId = "ImageCacheId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建镜像缓存
+    ///
+    /// 创建镜像缓存的接口。创建过程中，请勿删除EKSCI实例和云盘，否则镜像缓存将创建失败。
+    @inlinable
+    public func createImageCache(_ input: CreateImageCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageCacheResponse > {
+        self.client.execute(action: "CreateImageCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建镜像缓存
+    ///
+    /// 创建镜像缓存的接口。创建过程中，请勿删除EKSCI实例和云盘，否则镜像缓存将创建失败。
+    @inlinable
+    public func createImageCache(_ input: CreateImageCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageCacheResponse {
+        try await self.client.execute(action: "CreateImageCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

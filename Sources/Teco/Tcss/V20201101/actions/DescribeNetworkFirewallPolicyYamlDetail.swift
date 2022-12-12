@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 容器网络集群查看Yaml网络策略详情
-    @inlinable
-    public func describeNetworkFirewallPolicyYamlDetail(_ input: DescribeNetworkFirewallPolicyYamlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallPolicyYamlDetailResponse > {
-        self.client.execute(action: "DescribeNetworkFirewallPolicyYamlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 容器网络集群查看Yaml网络策略详情
-    @inlinable
-    public func describeNetworkFirewallPolicyYamlDetail(_ input: DescribeNetworkFirewallPolicyYamlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyYamlDetailResponse {
-        try await self.client.execute(action: "DescribeNetworkFirewallPolicyYamlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNetworkFirewallPolicyYamlDetail请求参数结构体
     public struct DescribeNetworkFirewallPolicyYamlDetailRequest: TCRequestModel {
         /// 策略Id
@@ -89,5 +77,17 @@ extension Tcss {
             case publishResult = "PublishResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 容器网络集群查看Yaml网络策略详情
+    @inlinable
+    public func describeNetworkFirewallPolicyYamlDetail(_ input: DescribeNetworkFirewallPolicyYamlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallPolicyYamlDetailResponse > {
+        self.client.execute(action: "DescribeNetworkFirewallPolicyYamlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络集群查看Yaml网络策略详情
+    @inlinable
+    public func describeNetworkFirewallPolicyYamlDetail(_ input: DescribeNetworkFirewallPolicyYamlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyYamlDetailResponse {
+        try await self.client.execute(action: "DescribeNetworkFirewallPolicyYamlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

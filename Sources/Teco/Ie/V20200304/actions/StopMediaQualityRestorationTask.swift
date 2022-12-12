@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ie {
-    /// 删除画质重生任务
-    ///
-    /// 删除正在进行的画质重生任务
-    @inlinable
-    public func stopMediaQualityRestorationTask(_ input: StopMediaQualityRestorationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopMediaQualityRestorationTaskResponse > {
-        self.client.execute(action: "StopMediaQualityRestorationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除画质重生任务
-    ///
-    /// 删除正在进行的画质重生任务
-    @inlinable
-    public func stopMediaQualityRestorationTask(_ input: StopMediaQualityRestorationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMediaQualityRestorationTaskResponse {
-        try await self.client.execute(action: "StopMediaQualityRestorationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopMediaQualityRestorationTask请求参数结构体
     public struct StopMediaQualityRestorationTaskRequest: TCRequestModel {
         /// 要删除的画质重生任务ID。
@@ -53,5 +37,21 @@ extension Ie {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除画质重生任务
+    ///
+    /// 删除正在进行的画质重生任务
+    @inlinable
+    public func stopMediaQualityRestorationTask(_ input: StopMediaQualityRestorationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopMediaQualityRestorationTaskResponse > {
+        self.client.execute(action: "StopMediaQualityRestorationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除画质重生任务
+    ///
+    /// 删除正在进行的画质重生任务
+    @inlinable
+    public func stopMediaQualityRestorationTask(_ input: StopMediaQualityRestorationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMediaQualityRestorationTaskResponse {
+        try await self.client.execute(action: "StopMediaQualityRestorationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

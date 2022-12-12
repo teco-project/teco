@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取实例日志列表【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 获取实例日志列表
-    @inlinable
-    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLogsResponse > {
-        self.client.execute(action: "DescribeInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实例日志列表【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 获取实例日志列表
-    @inlinable
-    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogsResponse {
-        try await self.client.execute(action: "DescribeInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceLogs请求参数结构体
     public struct DescribeInstanceLogsRequest: TCRequestModel {
         /// 项目Id
@@ -70,5 +52,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实例日志列表【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 获取实例日志列表
+    @inlinable
+    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLogsResponse > {
+        self.client.execute(action: "DescribeInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例日志列表【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 获取实例日志列表
+    @inlinable
+    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogsResponse {
+        try await self.client.execute(action: "DescribeInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

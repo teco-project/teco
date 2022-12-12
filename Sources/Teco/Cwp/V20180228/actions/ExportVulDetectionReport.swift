@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 导出漏洞检测报告
-    ///
-    /// 导出漏洞检测报告。
-    @inlinable
-    public func exportVulDetectionReport(_ input: ExportVulDetectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVulDetectionReportResponse > {
-        self.client.execute(action: "ExportVulDetectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出漏洞检测报告
-    ///
-    /// 导出漏洞检测报告。
-    @inlinable
-    public func exportVulDetectionReport(_ input: ExportVulDetectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulDetectionReportResponse {
-        try await self.client.execute(action: "ExportVulDetectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportVulDetectionReport请求参数结构体
     public struct ExportVulDetectionReportRequest: TCRequestModel {
         /// 漏洞扫描任务id（不同于出参的导出检测报告的任务Id）
@@ -45,7 +29,7 @@ extension Cwp {
         /// 偏移量，默认为0。
         public let offset: UInt64?
         
-        public init (taskId: UInt64, filters: [Filters]?, limit: UInt64?, offset: UInt64?) {
+        public init (taskId: UInt64, filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.taskId = taskId
             self.filters = filters
             self.limit = limit
@@ -76,5 +60,21 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出漏洞检测报告
+    ///
+    /// 导出漏洞检测报告。
+    @inlinable
+    public func exportVulDetectionReport(_ input: ExportVulDetectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVulDetectionReportResponse > {
+        self.client.execute(action: "ExportVulDetectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出漏洞检测报告
+    ///
+    /// 导出漏洞检测报告。
+    @inlinable
+    public func exportVulDetectionReport(_ input: ExportVulDetectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulDetectionReportResponse {
+        try await self.client.execute(action: "ExportVulDetectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

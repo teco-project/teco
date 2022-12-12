@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gs {
-    /// 强制退出游戏
-    @inlinable
-    public func stopGame(_ input: StopGameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopGameResponse > {
-        self.client.execute(action: "StopGame", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 强制退出游戏
-    @inlinable
-    public func stopGame(_ input: StopGameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameResponse {
-        try await self.client.execute(action: "StopGame", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopGame请求参数结构体
     public struct StopGameRequest: TCRequestModel {
         /// 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
@@ -35,7 +23,7 @@ extension Gs {
         /// 【多人游戏】游戏主机用户ID
         public let hostUserId: String?
         
-        public init (userId: String, hostUserId: String?) {
+        public init (userId: String, hostUserId: String? = nil) {
             self.userId = userId
             self.hostUserId = hostUserId
         }
@@ -54,5 +42,17 @@ extension Gs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 强制退出游戏
+    @inlinable
+    public func stopGame(_ input: StopGameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopGameResponse > {
+        self.client.execute(action: "StopGame", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 强制退出游戏
+    @inlinable
+    public func stopGame(_ input: StopGameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameResponse {
+        try await self.client.execute(action: "StopGame", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

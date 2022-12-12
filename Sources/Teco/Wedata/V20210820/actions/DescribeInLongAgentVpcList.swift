@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取采集器所在集群的VPC列表
-    @inlinable
-    public func describeInLongAgentVpcList(_ input: DescribeInLongAgentVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInLongAgentVpcListResponse > {
-        self.client.execute(action: "DescribeInLongAgentVpcList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取采集器所在集群的VPC列表
-    @inlinable
-    public func describeInLongAgentVpcList(_ input: DescribeInLongAgentVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentVpcListResponse {
-        try await self.client.execute(action: "DescribeInLongAgentVpcList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInLongAgentVpcList请求参数结构体
     public struct DescribeInLongAgentVpcListRequest: TCRequestModel {
         /// WeData项目ID
@@ -53,5 +41,17 @@ extension Wedata {
             case vpcList = "VpcList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取采集器所在集群的VPC列表
+    @inlinable
+    public func describeInLongAgentVpcList(_ input: DescribeInLongAgentVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInLongAgentVpcListResponse > {
+        self.client.execute(action: "DescribeInLongAgentVpcList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取采集器所在集群的VPC列表
+    @inlinable
+    public func describeInLongAgentVpcList(_ input: DescribeInLongAgentVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentVpcListResponse {
+        try await self.client.execute(action: "DescribeInLongAgentVpcList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

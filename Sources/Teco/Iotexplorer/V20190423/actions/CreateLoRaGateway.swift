@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 新建 LoRa 网关设备
-    ///
-    /// 创建新 LoRa 网关设备接口
-    @inlinable
-    public func createLoRaGateway(_ input: CreateLoRaGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLoRaGatewayResponse > {
-        self.client.execute(action: "CreateLoRaGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建 LoRa 网关设备
-    ///
-    /// 创建新 LoRa 网关设备接口
-    @inlinable
-    public func createLoRaGateway(_ input: CreateLoRaGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoRaGatewayResponse {
-        try await self.client.execute(action: "CreateLoRaGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLoRaGateway请求参数结构体
     public struct CreateLoRaGatewayRequest: TCRequestModel {
         /// LoRa 网关Id
@@ -57,7 +41,7 @@ extension Iotexplorer {
         /// 频点ID
         public let frequencyId: String?
         
-        public init (gatewayId: String, name: String, description: String, location: LoRaGatewayLocation, position: String?, positionDetails: String?, isPublic: Bool?, frequencyId: String?) {
+        public init (gatewayId: String, name: String, description: String, location: LoRaGatewayLocation, position: String? = nil, positionDetails: String? = nil, isPublic: Bool? = nil, frequencyId: String? = nil) {
             self.gatewayId = gatewayId
             self.name = name
             self.description = description
@@ -92,5 +76,21 @@ extension Iotexplorer {
             case gateway = "Gateway"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建 LoRa 网关设备
+    ///
+    /// 创建新 LoRa 网关设备接口
+    @inlinable
+    public func createLoRaGateway(_ input: CreateLoRaGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLoRaGatewayResponse > {
+        self.client.execute(action: "CreateLoRaGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建 LoRa 网关设备
+    ///
+    /// 创建新 LoRa 网关设备接口
+    @inlinable
+    public func createLoRaGateway(_ input: CreateLoRaGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoRaGatewayResponse {
+        try await self.client.execute(action: "CreateLoRaGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

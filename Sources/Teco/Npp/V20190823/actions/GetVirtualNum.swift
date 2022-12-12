@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Npp {
-    /// 直拨获取中间号
-    ///
-    /// 直拨获取中间号（App 使用方发起）
-    @inlinable
-    public func getVirtualNum(_ input: GetVirtualNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetVirtualNumResponse > {
-        self.client.execute(action: "GetVirtualNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直拨获取中间号
-    ///
-    /// 直拨获取中间号（App 使用方发起）
-    @inlinable
-    public func getVirtualNum(_ input: GetVirtualNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetVirtualNumResponse {
-        try await self.client.execute(action: "GetVirtualNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetVirtualNum请求参数结构体
     public struct GetVirtualNumRequest: TCRequestModel {
         /// 业务appid
@@ -87,7 +71,7 @@ extension Npp {
         /// 录单 URL 回调通知地址，正式环境可以配置默认推送地址
         public let recordUrl: String?
         
-        public init (bizAppId: String, dst: String, src: String?, accreditList: [String]?, assignVirtualNum: String?, record: String?, cityId: String?, bizId: String?, maxAssignTime: String?, statusFlag: String?, statusUrl: String?, hangupUrl: String?, recordUrl: String?) {
+        public init (bizAppId: String, dst: String, src: String? = nil, accreditList: [String]? = nil, assignVirtualNum: String? = nil, record: String? = nil, cityId: String? = nil, bizId: String? = nil, maxAssignTime: String? = nil, statusFlag: String? = nil, statusUrl: String? = nil, hangupUrl: String? = nil, recordUrl: String? = nil) {
             self.bizAppId = bizAppId
             self.dst = dst
             self.src = src
@@ -152,5 +136,21 @@ extension Npp {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直拨获取中间号
+    ///
+    /// 直拨获取中间号（App 使用方发起）
+    @inlinable
+    public func getVirtualNum(_ input: GetVirtualNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetVirtualNumResponse > {
+        self.client.execute(action: "GetVirtualNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直拨获取中间号
+    ///
+    /// 直拨获取中间号（App 使用方发起）
+    @inlinable
+    public func getVirtualNum(_ input: GetVirtualNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetVirtualNumResponse {
+        try await self.client.execute(action: "GetVirtualNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

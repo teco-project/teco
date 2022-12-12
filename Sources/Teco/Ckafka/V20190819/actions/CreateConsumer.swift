@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 创建消费者组
-    @inlinable
-    public func createConsumer(_ input: CreateConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConsumerResponse > {
-        self.client.execute(action: "CreateConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建消费者组
-    @inlinable
-    public func createConsumer(_ input: CreateConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsumerResponse {
-        try await self.client.execute(action: "CreateConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateConsumer请求参数结构体
     public struct CreateConsumerRequest: TCRequestModel {
         /// 实例id
@@ -41,7 +29,7 @@ extension Ckafka {
         /// topic名称数组
         public let topicNameList: [String]?
         
-        public init (instanceId: String, groupName: String, topicName: String?, topicNameList: [String]?) {
+        public init (instanceId: String, groupName: String, topicName: String? = nil, topicNameList: [String]? = nil) {
             self.instanceId = instanceId
             self.groupName = groupName
             self.topicName = topicName
@@ -68,5 +56,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建消费者组
+    @inlinable
+    public func createConsumer(_ input: CreateConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConsumerResponse > {
+        self.client.execute(action: "CreateConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建消费者组
+    @inlinable
+    public func createConsumer(_ input: CreateConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsumerResponse {
+        try await self.client.execute(action: "CreateConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

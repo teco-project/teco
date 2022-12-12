@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 创建 Grafana 实例
-    @inlinable
-    public func createGrafanaInstance(_ input: CreateGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGrafanaInstanceResponse > {
-        self.client.execute(action: "CreateGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建 Grafana 实例
-    @inlinable
-    public func createGrafanaInstance(_ input: CreateGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaInstanceResponse {
-        try await self.client.execute(action: "CreateGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateGrafanaInstance请求参数结构体
     public struct CreateGrafanaInstanceRequest: TCRequestModel {
         /// 实例名
@@ -47,7 +35,7 @@ extension Monitor {
         /// 标签
         public let tagSpecification: [PrometheusTag]?
         
-        public init (instanceName: String, vpcId: String, subnetIds: [String], grafanaInitPassword: String, enableInternet: Bool, tagSpecification: [PrometheusTag]?) {
+        public init (instanceName: String, vpcId: String, subnetIds: [String], grafanaInitPassword: String, enableInternet: Bool, tagSpecification: [PrometheusTag]? = nil) {
             self.instanceName = instanceName
             self.vpcId = vpcId
             self.subnetIds = subnetIds
@@ -78,5 +66,17 @@ extension Monitor {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建 Grafana 实例
+    @inlinable
+    public func createGrafanaInstance(_ input: CreateGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGrafanaInstanceResponse > {
+        self.client.execute(action: "CreateGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建 Grafana 实例
+    @inlinable
+    public func createGrafanaInstance(_ input: CreateGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaInstanceResponse {
+        try await self.client.execute(action: "CreateGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

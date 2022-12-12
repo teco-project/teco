@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 自动获取Draco设备的安装包
-    @inlinable
-    public func describeDracoEdgeNodeInstaller(_ input: DescribeDracoEdgeNodeInstallerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDracoEdgeNodeInstallerResponse > {
-        self.client.execute(action: "DescribeDracoEdgeNodeInstaller", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 自动获取Draco设备的安装包
-    @inlinable
-    public func describeDracoEdgeNodeInstaller(_ input: DescribeDracoEdgeNodeInstallerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDracoEdgeNodeInstallerResponse {
-        try await self.client.execute(action: "DescribeDracoEdgeNodeInstaller", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDracoEdgeNodeInstaller请求参数结构体
     public struct DescribeDracoEdgeNodeInstallerRequest: TCRequestModel {
         /// 设备SN
@@ -54,5 +42,17 @@ extension Iecp {
             case onlineInstallationCommand = "OnlineInstallationCommand"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 自动获取Draco设备的安装包
+    @inlinable
+    public func describeDracoEdgeNodeInstaller(_ input: DescribeDracoEdgeNodeInstallerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDracoEdgeNodeInstallerResponse > {
+        self.client.execute(action: "DescribeDracoEdgeNodeInstaller", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 自动获取Draco设备的安装包
+    @inlinable
+    public func describeDracoEdgeNodeInstaller(_ input: DescribeDracoEdgeNodeInstallerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDracoEdgeNodeInstallerResponse {
+        try await self.client.execute(action: "DescribeDracoEdgeNodeInstaller", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

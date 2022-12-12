@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 添加DDoS防护的端口acl策略
-    @inlinable
-    public func createPortAclConfig(_ input: CreatePortAclConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePortAclConfigResponse > {
-        self.client.execute(action: "CreatePortAclConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加DDoS防护的端口acl策略
-    @inlinable
-    public func createPortAclConfig(_ input: CreatePortAclConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePortAclConfigResponse {
-        try await self.client.execute(action: "CreatePortAclConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePortAclConfig请求参数结构体
     public struct CreatePortAclConfigRequest: TCRequestModel {
         /// 资源实例ID
@@ -54,5 +42,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加DDoS防护的端口acl策略
+    @inlinable
+    public func createPortAclConfig(_ input: CreatePortAclConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePortAclConfigResponse > {
+        self.client.execute(action: "CreatePortAclConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加DDoS防护的端口acl策略
+    @inlinable
+    public func createPortAclConfig(_ input: CreatePortAclConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePortAclConfigResponse {
+        try await self.client.execute(action: "CreatePortAclConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

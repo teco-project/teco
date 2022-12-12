@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 智能运维诊断集群
-    @inlinable
-    public func diagnoseInstance(_ input: DiagnoseInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DiagnoseInstanceResponse > {
-        self.client.execute(action: "DiagnoseInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 智能运维诊断集群
-    @inlinable
-    public func diagnoseInstance(_ input: DiagnoseInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DiagnoseInstanceResponse {
-        try await self.client.execute(action: "DiagnoseInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DiagnoseInstance请求参数结构体
     public struct DiagnoseInstanceRequest: TCRequestModel {
         /// ES实例ID
@@ -38,7 +26,7 @@ extension Es {
         /// 需要诊断的索引，支持通配符
         public let diagnoseIndices: String?
         
-        public init (instanceId: String, diagnoseJobs: [String]?, diagnoseIndices: String?) {
+        public init (instanceId: String, diagnoseJobs: [String]? = nil, diagnoseIndices: String? = nil) {
             self.instanceId = instanceId
             self.diagnoseJobs = diagnoseJobs
             self.diagnoseIndices = diagnoseIndices
@@ -59,5 +47,17 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 智能运维诊断集群
+    @inlinable
+    public func diagnoseInstance(_ input: DiagnoseInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DiagnoseInstanceResponse > {
+        self.client.execute(action: "DiagnoseInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 智能运维诊断集群
+    @inlinable
+    public func diagnoseInstance(_ input: DiagnoseInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DiagnoseInstanceResponse {
+        try await self.client.execute(action: "DiagnoseInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

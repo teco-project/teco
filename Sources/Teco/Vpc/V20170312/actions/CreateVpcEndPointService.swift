@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建终端节点服务
-    ///
-    /// 本接口(CreateVpcEndPointService)用于创建终端节点服务。
-    @inlinable
-    public func createVpcEndPointService(_ input: CreateVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpcEndPointServiceResponse > {
-        self.client.execute(action: "CreateVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建终端节点服务
-    ///
-    /// 本接口(CreateVpcEndPointService)用于创建终端节点服务。
-    @inlinable
-    public func createVpcEndPointService(_ input: CreateVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceResponse {
-        try await self.client.execute(action: "CreateVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVpcEndPointService请求参数结构体
     public struct CreateVpcEndPointServiceRequest: TCRequestModel {
         /// VPC实例ID。
@@ -48,7 +32,7 @@ extension Vpc {
         /// 是否是PassService类型。
         public let isPassService: Bool?
         
-        public init (vpcId: String, endPointServiceName: String, autoAcceptFlag: Bool, serviceInstanceId: String, isPassService: Bool?) {
+        public init (vpcId: String, endPointServiceName: String, autoAcceptFlag: Bool, serviceInstanceId: String, isPassService: Bool? = nil) {
             self.vpcId = vpcId
             self.endPointServiceName = endPointServiceName
             self.autoAcceptFlag = autoAcceptFlag
@@ -77,5 +61,21 @@ extension Vpc {
             case endPointService = "EndPointService"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建终端节点服务
+    ///
+    /// 本接口(CreateVpcEndPointService)用于创建终端节点服务。
+    @inlinable
+    public func createVpcEndPointService(_ input: CreateVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpcEndPointServiceResponse > {
+        self.client.execute(action: "CreateVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建终端节点服务
+    ///
+    /// 本接口(CreateVpcEndPointService)用于创建终端节点服务。
+    @inlinable
+    public func createVpcEndPointService(_ input: CreateVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceResponse {
+        try await self.client.execute(action: "CreateVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

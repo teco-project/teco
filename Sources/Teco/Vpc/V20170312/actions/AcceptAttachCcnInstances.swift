@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 云联网接受关联实例
-    ///
-    /// 本接口（AcceptAttachCcnInstances）用于跨账号关联实例时，云联网所有者接受并同意关联操作。
-    @inlinable
-    public func acceptAttachCcnInstances(_ input: AcceptAttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcceptAttachCcnInstancesResponse > {
-        self.client.execute(action: "AcceptAttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云联网接受关联实例
-    ///
-    /// 本接口（AcceptAttachCcnInstances）用于跨账号关联实例时，云联网所有者接受并同意关联操作。
-    @inlinable
-    public func acceptAttachCcnInstances(_ input: AcceptAttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptAttachCcnInstancesResponse {
-        try await self.client.execute(action: "AcceptAttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AcceptAttachCcnInstances请求参数结构体
     public struct AcceptAttachCcnInstancesRequest: TCRequestModel {
         /// CCN实例ID。形如：ccn-f49l6u0z。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云联网接受关联实例
+    ///
+    /// 本接口（AcceptAttachCcnInstances）用于跨账号关联实例时，云联网所有者接受并同意关联操作。
+    @inlinable
+    public func acceptAttachCcnInstances(_ input: AcceptAttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcceptAttachCcnInstancesResponse > {
+        self.client.execute(action: "AcceptAttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云联网接受关联实例
+    ///
+    /// 本接口（AcceptAttachCcnInstances）用于跨账号关联实例时，云联网所有者接受并同意关联操作。
+    @inlinable
+    public func acceptAttachCcnInstances(_ input: AcceptAttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptAttachCcnInstancesResponse {
+        try await self.client.execute(action: "AcceptAttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

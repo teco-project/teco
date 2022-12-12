@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取消息生产概览
-    ///
-    /// 获取消息生产概览信息
-    @inlinable
-    public func describePublisherSummary(_ input: DescribePublisherSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublisherSummaryResponse > {
-        self.client.execute(action: "DescribePublisherSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取消息生产概览
-    ///
-    /// 获取消息生产概览信息
-    @inlinable
-    public func describePublisherSummary(_ input: DescribePublisherSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublisherSummaryResponse {
-        try await self.client.execute(action: "DescribePublisherSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePublisherSummary请求参数结构体
     public struct DescribePublisherSummaryRequest: TCRequestModel {
         /// 集群ID
@@ -83,5 +67,21 @@ extension Tdmq {
             case storageSize = "StorageSize"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取消息生产概览
+    ///
+    /// 获取消息生产概览信息
+    @inlinable
+    public func describePublisherSummary(_ input: DescribePublisherSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublisherSummaryResponse > {
+        self.client.execute(action: "DescribePublisherSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取消息生产概览
+    ///
+    /// 获取消息生产概览信息
+    @inlinable
+    public func describePublisherSummary(_ input: DescribePublisherSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublisherSummaryResponse {
+        try await self.client.execute(action: "DescribePublisherSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

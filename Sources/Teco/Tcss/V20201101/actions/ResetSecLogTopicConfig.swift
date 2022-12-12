@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 重置安全日志主题设置
-    @inlinable
-    public func resetSecLogTopicConfig(_ input: ResetSecLogTopicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetSecLogTopicConfigResponse > {
-        self.client.execute(action: "ResetSecLogTopicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置安全日志主题设置
-    @inlinable
-    public func resetSecLogTopicConfig(_ input: ResetSecLogTopicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetSecLogTopicConfigResponse {
-        try await self.client.execute(action: "ResetSecLogTopicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetSecLogTopicConfig请求参数结构体
     public struct ResetSecLogTopicConfigRequest: TCRequestModel {
         /// 配置类型(ckafka/cls)
@@ -54,5 +42,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置安全日志主题设置
+    @inlinable
+    public func resetSecLogTopicConfig(_ input: ResetSecLogTopicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetSecLogTopicConfigResponse > {
+        self.client.execute(action: "ResetSecLogTopicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置安全日志主题设置
+    @inlinable
+    public func resetSecLogTopicConfig(_ input: ResetSecLogTopicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetSecLogTopicConfigResponse {
+        try await self.client.execute(action: "ResetSecLogTopicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

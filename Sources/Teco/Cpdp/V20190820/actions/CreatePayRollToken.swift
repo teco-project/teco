@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 务工卡-生成授权令牌
-    @inlinable
-    public func createPayRollToken(_ input: CreatePayRollTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePayRollTokenResponse > {
-        self.client.execute(action: "CreatePayRollToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 务工卡-生成授权令牌
-    @inlinable
-    public func createPayRollToken(_ input: CreatePayRollTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRollTokenResponse {
-        try await self.client.execute(action: "CreatePayRollToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePayRollToken请求参数结构体
     public struct CreatePayRollTokenRequest: TCRequestModel {
         /// 用户在商户对应appid下的唯一标识
@@ -55,7 +43,7 @@ extension Cpdp {
         /// 当输入特约商户Appid时，会校验其与特约商户号的绑定关系。服务商APPID和与特约商户APPID至少输入一个，且必须要有拉起领薪卡小程序时使用的APPID
         public let wechatSubAppId: String?
         
-        public init (openId: String, subMerchantId: String, userName: String, idNo: String, employmentType: String, wechatAppId: String?, wechatSubAppId: String?) {
+        public init (openId: String, subMerchantId: String, userName: String, idNo: String, employmentType: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil) {
             self.openId = openId
             self.subMerchantId = subMerchantId
             self.userName = userName
@@ -104,5 +92,17 @@ extension Cpdp {
             case token = "Token"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 务工卡-生成授权令牌
+    @inlinable
+    public func createPayRollToken(_ input: CreatePayRollTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePayRollTokenResponse > {
+        self.client.execute(action: "CreatePayRollToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 务工卡-生成授权令牌
+    @inlinable
+    public func createPayRollToken(_ input: CreatePayRollTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRollTokenResponse {
+        try await self.client.execute(action: "CreatePayRollToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

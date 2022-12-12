@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 根据定制错误ID查询错误响应
-    @inlinable
-    public func describeDomainErrorPageInfoByIds(_ input: DescribeDomainErrorPageInfoByIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainErrorPageInfoByIdsResponse > {
-        self.client.execute(action: "DescribeDomainErrorPageInfoByIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据定制错误ID查询错误响应
-    @inlinable
-    public func describeDomainErrorPageInfoByIds(_ input: DescribeDomainErrorPageInfoByIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainErrorPageInfoByIdsResponse {
-        try await self.client.execute(action: "DescribeDomainErrorPageInfoByIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomainErrorPageInfoByIds请求参数结构体
     public struct DescribeDomainErrorPageInfoByIdsRequest: TCRequestModel {
         /// 定制错误ID列表,最多支持10个
@@ -54,5 +42,17 @@ extension Gaap {
             case errorPageSet = "ErrorPageSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据定制错误ID查询错误响应
+    @inlinable
+    public func describeDomainErrorPageInfoByIds(_ input: DescribeDomainErrorPageInfoByIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainErrorPageInfoByIdsResponse > {
+        self.client.execute(action: "DescribeDomainErrorPageInfoByIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据定制错误ID查询错误响应
+    @inlinable
+    public func describeDomainErrorPageInfoByIds(_ input: DescribeDomainErrorPageInfoByIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainErrorPageInfoByIdsResponse {
+        try await self.client.execute(action: "DescribeDomainErrorPageInfoByIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

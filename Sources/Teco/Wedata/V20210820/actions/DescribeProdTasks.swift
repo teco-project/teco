@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取生产调度任务列表
-    ///
-    /// 数据质量获取生产调度任务列表
-    @inlinable
-    public func describeProdTasks(_ input: DescribeProdTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProdTasksResponse > {
-        self.client.execute(action: "DescribeProdTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取生产调度任务列表
-    ///
-    /// 数据质量获取生产调度任务列表
-    @inlinable
-    public func describeProdTasks(_ input: DescribeProdTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProdTasksResponse {
-        try await self.client.execute(action: "DescribeProdTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProdTasks请求参数结构体
     public struct DescribeProdTasksRequest: TCRequestModel {
         /// 项目ID
@@ -45,7 +29,7 @@ extension Wedata {
         /// 过滤条件
         public let filters: [Filter]?
         
-        public init (projectId: String?, pageSize: UInt64?, pageNumber: UInt64?, filters: [Filter]?) {
+        public init (projectId: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, filters: [Filter]? = nil) {
             self.projectId = projectId
             self.pageSize = pageSize
             self.pageNumber = pageNumber
@@ -73,5 +57,21 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取生产调度任务列表
+    ///
+    /// 数据质量获取生产调度任务列表
+    @inlinable
+    public func describeProdTasks(_ input: DescribeProdTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProdTasksResponse > {
+        self.client.execute(action: "DescribeProdTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取生产调度任务列表
+    ///
+    /// 数据质量获取生产调度任务列表
+    @inlinable
+    public func describeProdTasks(_ input: DescribeProdTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProdTasksResponse {
+        try await self.client.execute(action: "DescribeProdTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

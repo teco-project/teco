@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Billing {
-    /// 获取账户余额
-    ///
-    /// 获取云账户余额信息。
-    @inlinable
-    public func describeAccountBalance(_ input: DescribeAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountBalanceResponse > {
-        self.client.execute(action: "DescribeAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取账户余额
-    ///
-    /// 获取云账户余额信息。
-    @inlinable
-    public func describeAccountBalance(_ input: DescribeAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountBalanceResponse {
-        try await self.client.execute(action: "DescribeAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccountBalance请求参数结构体
     public struct DescribeAccountBalanceRequest: TCRequestModel {
         public init () {
@@ -97,5 +81,21 @@ extension Billing {
             case realCreditBalance = "RealCreditBalance"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取账户余额
+    ///
+    /// 获取云账户余额信息。
+    @inlinable
+    public func describeAccountBalance(_ input: DescribeAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountBalanceResponse > {
+        self.client.execute(action: "DescribeAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取账户余额
+    ///
+    /// 获取云账户余额信息。
+    @inlinable
+    public func describeAccountBalance(_ input: DescribeAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountBalanceResponse {
+        try await self.client.execute(action: "DescribeAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

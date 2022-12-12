@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 自定义树状结构
-    ///
-    /// 生成树状作业显示结构
-    @inlinable
-    public func describeTreeJobs(_ input: DescribeTreeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTreeJobsResponse > {
-        self.client.execute(action: "DescribeTreeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 自定义树状结构
-    ///
-    /// 生成树状作业显示结构
-    @inlinable
-    public func describeTreeJobs(_ input: DescribeTreeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeJobsResponse {
-        try await self.client.execute(action: "DescribeTreeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTreeJobs请求参数结构体
     public struct DescribeTreeJobsRequest: TCRequestModel {
         /// 工作空间 Serialid
         public let workSpaceId: String?
         
-        public init (workSpaceId: String?) {
+        public init (workSpaceId: String? = nil) {
             self.workSpaceId = workSpaceId
         }
         
@@ -53,5 +37,21 @@ extension Oceanus {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 自定义树状结构
+    ///
+    /// 生成树状作业显示结构
+    @inlinable
+    public func describeTreeJobs(_ input: DescribeTreeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTreeJobsResponse > {
+        self.client.execute(action: "DescribeTreeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 自定义树状结构
+    ///
+    /// 生成树状作业显示结构
+    @inlinable
+    public func describeTreeJobs(_ input: DescribeTreeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeJobsResponse {
+        try await self.client.execute(action: "DescribeTreeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

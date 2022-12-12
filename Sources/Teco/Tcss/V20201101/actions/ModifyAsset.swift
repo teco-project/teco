@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 主机资产刷新
-    ///
-    /// 容器安全主机资产刷新
-    @inlinable
-    public func modifyAsset(_ input: ModifyAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAssetResponse > {
-        self.client.execute(action: "ModifyAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 主机资产刷新
-    ///
-    /// 容器安全主机资产刷新
-    @inlinable
-    public func modifyAsset(_ input: ModifyAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetResponse {
-        try await self.client.execute(action: "ModifyAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAsset请求参数结构体
     public struct ModifyAssetRequest: TCRequestModel {
         /// 全部同步
@@ -39,7 +23,7 @@ extension Tcss {
         /// 要同步的主机列表 两个参数必选一个 All优先
         public let hosts: [String]?
         
-        public init (all: Bool?, hosts: [String]?) {
+        public init (all: Bool? = nil, hosts: [String]? = nil) {
             self.all = all
             self.hosts = hosts
         }
@@ -62,5 +46,21 @@ extension Tcss {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 主机资产刷新
+    ///
+    /// 容器安全主机资产刷新
+    @inlinable
+    public func modifyAsset(_ input: ModifyAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAssetResponse > {
+        self.client.execute(action: "ModifyAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 主机资产刷新
+    ///
+    /// 容器安全主机资产刷新
+    @inlinable
+    public func modifyAsset(_ input: ModifyAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetResponse {
+        try await self.client.execute(action: "ModifyAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

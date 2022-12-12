@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 查询配置列表
-    @inlinable
-    public func describeConfigDataList(_ input: DescribeConfigDataListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigDataListResponse > {
-        self.client.execute(action: "DescribeConfigDataList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询配置列表
-    @inlinable
-    public func describeConfigDataList(_ input: DescribeConfigDataListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigDataListResponse {
-        try await self.client.execute(action: "DescribeConfigDataList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeConfigDataList请求参数结构体
     public struct DescribeConfigDataListRequest: TCRequestModel {
         /// 环境 ID
@@ -41,7 +29,7 @@ extension Tem {
         /// 分页 limit
         public let limit: Int64?
         
-        public init (environmentId: String, sourceChannel: Int64?, continueToken: String?, limit: Int64?) {
+        public init (environmentId: String, sourceChannel: Int64? = nil, continueToken: String? = nil, limit: Int64? = nil) {
             self.environmentId = environmentId
             self.sourceChannel = sourceChannel
             self.continueToken = continueToken
@@ -68,5 +56,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询配置列表
+    @inlinable
+    public func describeConfigDataList(_ input: DescribeConfigDataListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigDataListResponse > {
+        self.client.execute(action: "DescribeConfigDataList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询配置列表
+    @inlinable
+    public func describeConfigDataList(_ input: DescribeConfigDataListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigDataListResponse {
+        try await self.client.execute(action: "DescribeConfigDataList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

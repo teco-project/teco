@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建网络ACL
-    ///
-    /// 本接口（CreateNetworkAcl）用于创建新的<a href="https://cloud.tencent.com/document/product/215/20088">网络ACL</a>。
-    /// * 新建的网络ACL的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用ModifyNetworkAclEntries将网络ACL的规则设置为需要的规则。
-    @inlinable
-    public func createNetworkAcl(_ input: CreateNetworkAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkAclResponse > {
-        self.client.execute(action: "CreateNetworkAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建网络ACL
-    ///
-    /// 本接口（CreateNetworkAcl）用于创建新的<a href="https://cloud.tencent.com/document/product/215/20088">网络ACL</a>。
-    /// * 新建的网络ACL的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用ModifyNetworkAclEntries将网络ACL的规则设置为需要的规则。
-    @inlinable
-    public func createNetworkAcl(_ input: CreateNetworkAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkAclResponse {
-        try await self.client.execute(action: "CreateNetworkAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNetworkAcl请求参数结构体
     public struct CreateNetworkAclRequest: TCRequestModel {
         /// VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
@@ -47,7 +29,7 @@ extension Vpc {
         /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         public let tags: [Tag]?
         
-        public init (vpcId: String, networkAclName: String, networkAclType: String?, tags: [Tag]?) {
+        public init (vpcId: String, networkAclName: String, networkAclType: String? = nil, tags: [Tag]? = nil) {
             self.vpcId = vpcId
             self.networkAclName = networkAclName
             self.networkAclType = networkAclType
@@ -74,5 +56,23 @@ extension Vpc {
             case networkAcl = "NetworkAcl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建网络ACL
+    ///
+    /// 本接口（CreateNetworkAcl）用于创建新的<a href="https://cloud.tencent.com/document/product/215/20088">网络ACL</a>。
+    /// * 新建的网络ACL的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用ModifyNetworkAclEntries将网络ACL的规则设置为需要的规则。
+    @inlinable
+    public func createNetworkAcl(_ input: CreateNetworkAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkAclResponse > {
+        self.client.execute(action: "CreateNetworkAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建网络ACL
+    ///
+    /// 本接口（CreateNetworkAcl）用于创建新的<a href="https://cloud.tencent.com/document/product/215/20088">网络ACL</a>。
+    /// * 新建的网络ACL的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用ModifyNetworkAclEntries将网络ACL的规则设置为需要的规则。
+    @inlinable
+    public func createNetworkAcl(_ input: CreateNetworkAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkAclResponse {
+        try await self.client.execute(action: "CreateNetworkAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

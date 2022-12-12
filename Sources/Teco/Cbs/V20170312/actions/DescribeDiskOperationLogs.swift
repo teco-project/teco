@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cbs {
-    /// 查询云盘操作日志列表
-    ///
-    /// 查询云盘操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeDiskOperationLogs）即将下线，后续不再提供调用，请知悉。
-    @inlinable
-    public func describeDiskOperationLogs(_ input: DescribeDiskOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskOperationLogsResponse > {
-        self.client.execute(action: "DescribeDiskOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云盘操作日志列表
-    ///
-    /// 查询云盘操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeDiskOperationLogs）即将下线，后续不再提供调用，请知悉。
-    @inlinable
-    public func describeDiskOperationLogs(_ input: DescribeDiskOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskOperationLogsResponse {
-        try await self.client.execute(action: "DescribeDiskOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDiskOperationLogs请求参数结构体
     public struct DescribeDiskOperationLogsRequest: TCRequestModel {
         /// 过滤条件。支持以下条件：
@@ -45,7 +29,7 @@ extension Cbs {
         /// 要查询的操作日志的起始时间，例如：“2019-11-22 00:00:00"
         public let beginTime: Date?
         
-        public init (filters: [Filter], endTime: Date?, beginTime: Date?) {
+        public init (filters: [Filter], endTime: Date? = nil, beginTime: Date? = nil) {
             self.filters = filters
             self.endTime = endTime
             self.beginTime = beginTime
@@ -70,5 +54,21 @@ extension Cbs {
             case diskOperationLogSet = "DiskOperationLogSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云盘操作日志列表
+    ///
+    /// 查询云盘操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeDiskOperationLogs）即将下线，后续不再提供调用，请知悉。
+    @inlinable
+    public func describeDiskOperationLogs(_ input: DescribeDiskOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskOperationLogsResponse > {
+        self.client.execute(action: "DescribeDiskOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云盘操作日志列表
+    ///
+    /// 查询云盘操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeDiskOperationLogs）即将下线，后续不再提供调用，请知悉。
+    @inlinable
+    public func describeDiskOperationLogs(_ input: DescribeDiskOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskOperationLogsResponse {
+        try await self.client.execute(action: "DescribeDiskOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

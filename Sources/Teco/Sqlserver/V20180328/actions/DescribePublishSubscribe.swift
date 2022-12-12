@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询订阅发布
-    ///
-    /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
-    @inlinable
-    public func describePublishSubscribe(_ input: DescribePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublishSubscribeResponse > {
-        self.client.execute(action: "DescribePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询订阅发布
-    ///
-    /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
-    @inlinable
-    public func describePublishSubscribe(_ input: DescribePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublishSubscribeResponse {
-        try await self.client.execute(action: "DescribePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePublishSubscribe请求参数结构体
     public struct DescribePublishSubscribeRequest: TCRequestModel {
         /// 实例ID，形如mssql-j8kv137v
@@ -60,7 +44,7 @@ extension Sqlserver {
         /// 分页，页大小
         public let limit: UInt64?
         
-        public init (instanceId: String, pubOrSubInstanceId: String?, pubOrSubInstanceIp: String?, publishSubscribeId: UInt64?, publishSubscribeName: String?, publishDBName: String?, subscribeDBName: String?, offset: UInt64?, limit: UInt64?) {
+        public init (instanceId: String, pubOrSubInstanceId: String? = nil, pubOrSubInstanceIp: String? = nil, publishSubscribeId: UInt64? = nil, publishSubscribeName: String? = nil, publishDBName: String? = nil, subscribeDBName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.instanceId = instanceId
             self.pubOrSubInstanceId = pubOrSubInstanceId
             self.pubOrSubInstanceIp = pubOrSubInstanceIp
@@ -101,5 +85,21 @@ extension Sqlserver {
             case publishSubscribeSet = "PublishSubscribeSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询订阅发布
+    ///
+    /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
+    @inlinable
+    public func describePublishSubscribe(_ input: DescribePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublishSubscribeResponse > {
+        self.client.execute(action: "DescribePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询订阅发布
+    ///
+    /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
+    @inlinable
+    public func describePublishSubscribe(_ input: DescribePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublishSubscribeResponse {
+        try await self.client.execute(action: "DescribePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

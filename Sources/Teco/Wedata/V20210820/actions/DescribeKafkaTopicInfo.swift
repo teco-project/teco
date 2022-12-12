@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取kafka的topic信息
-    @inlinable
-    public func describeKafkaTopicInfo(_ input: DescribeKafkaTopicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKafkaTopicInfoResponse > {
-        self.client.execute(action: "DescribeKafkaTopicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取kafka的topic信息
-    @inlinable
-    public func describeKafkaTopicInfo(_ input: DescribeKafkaTopicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKafkaTopicInfoResponse {
-        try await self.client.execute(action: "DescribeKafkaTopicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKafkaTopicInfo请求参数结构体
     public struct DescribeKafkaTopicInfoRequest: TCRequestModel {
         /// 数据源id
@@ -54,5 +42,17 @@ extension Wedata {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取kafka的topic信息
+    @inlinable
+    public func describeKafkaTopicInfo(_ input: DescribeKafkaTopicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKafkaTopicInfoResponse > {
+        self.client.execute(action: "DescribeKafkaTopicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取kafka的topic信息
+    @inlinable
+    public func describeKafkaTopicInfo(_ input: DescribeKafkaTopicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKafkaTopicInfoResponse {
+        try await self.client.execute(action: "DescribeKafkaTopicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

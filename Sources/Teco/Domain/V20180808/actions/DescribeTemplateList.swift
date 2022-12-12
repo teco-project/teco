@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 信息模板列表
-    ///
-    /// 本接口 (DescribeTemplateList) 用于获取信息模板列表。
-    @inlinable
-    public func describeTemplateList(_ input: DescribeTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateListResponse > {
-        self.client.execute(action: "DescribeTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 信息模板列表
-    ///
-    /// 本接口 (DescribeTemplateList) 用于获取信息模板列表。
-    @inlinable
-    public func describeTemplateList(_ input: DescribeTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateListResponse {
-        try await self.client.execute(action: "DescribeTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTemplateList请求参数结构体
     public struct DescribeTemplateListRequest: TCRequestModel {
         /// 偏移量，默认为0。
@@ -48,7 +32,7 @@ extension Domain {
         /// 域名所有者筛选
         public let keyword: String?
         
-        public init (offset: UInt64?, limit: UInt64?, type: String?, status: String?, keyword: String?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, status: String? = nil, keyword: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.type = type
@@ -81,5 +65,21 @@ extension Domain {
             case templateSet = "TemplateSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 信息模板列表
+    ///
+    /// 本接口 (DescribeTemplateList) 用于获取信息模板列表。
+    @inlinable
+    public func describeTemplateList(_ input: DescribeTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateListResponse > {
+        self.client.execute(action: "DescribeTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 信息模板列表
+    ///
+    /// 本接口 (DescribeTemplateList) 用于获取信息模板列表。
+    @inlinable
+    public func describeTemplateList(_ input: DescribeTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateListResponse {
+        try await self.client.execute(action: "DescribeTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

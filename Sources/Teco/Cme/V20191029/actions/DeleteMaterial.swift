@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 删除媒体
-    ///
-    /// 根据媒体 Id 删除媒体。
-    @inlinable
-    public func deleteMaterial(_ input: DeleteMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMaterialResponse > {
-        self.client.execute(action: "DeleteMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除媒体
-    ///
-    /// 根据媒体 Id 删除媒体。
-    @inlinable
-    public func deleteMaterial(_ input: DeleteMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMaterialResponse {
-        try await self.client.execute(action: "DeleteMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMaterial请求参数结构体
     public struct DeleteMaterialRequest: TCRequestModel {
         /// 平台名称，指定访问的平台。
@@ -42,7 +26,7 @@ extension Cme {
         /// 操作者。填写用户的 Id，用于标识调用者及校验媒体删除权限。
         public let `operator`: String?
         
-        public init (platform: String, materialId: String, `operator`: String?) {
+        public init (platform: String, materialId: String, `operator`: String? = nil) {
             self.platform = platform
             self.materialId = materialId
             self.`operator` = `operator`
@@ -63,5 +47,21 @@ extension Cme {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除媒体
+    ///
+    /// 根据媒体 Id 删除媒体。
+    @inlinable
+    public func deleteMaterial(_ input: DeleteMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMaterialResponse > {
+        self.client.execute(action: "DeleteMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除媒体
+    ///
+    /// 根据媒体 Id 删除媒体。
+    @inlinable
+    public func deleteMaterial(_ input: DeleteMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMaterialResponse {
+        try await self.client.execute(action: "DeleteMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

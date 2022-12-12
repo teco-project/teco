@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 禁用白盒密钥
-    @inlinable
-    public func disableWhiteBoxKey(_ input: DisableWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableWhiteBoxKeyResponse > {
-        self.client.execute(action: "DisableWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 禁用白盒密钥
-    @inlinable
-    public func disableWhiteBoxKey(_ input: DisableWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableWhiteBoxKeyResponse {
-        try await self.client.execute(action: "DisableWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableWhiteBoxKey请求参数结构体
     public struct DisableWhiteBoxKeyRequest: TCRequestModel {
         /// 白盒密钥的全局唯一标识符
@@ -49,5 +37,17 @@ extension Kms {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 禁用白盒密钥
+    @inlinable
+    public func disableWhiteBoxKey(_ input: DisableWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableWhiteBoxKeyResponse > {
+        self.client.execute(action: "DisableWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用白盒密钥
+    @inlinable
+    public func disableWhiteBoxKey(_ input: DisableWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableWhiteBoxKeyResponse {
+        try await self.client.execute(action: "DisableWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取设备信息
-    ///
-    /// 本接口（DescribeDevice）获取设备信息。
-    @inlinable
-    public func describeDevice(_ input: DescribeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceResponse > {
-        self.client.execute(action: "DescribeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备信息
-    ///
-    /// 本接口（DescribeDevice）获取设备信息。
-    @inlinable
-    public func describeDevice(_ input: DescribeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceResponse {
-        try await self.client.execute(action: "DescribeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDevice请求参数结构体
     public struct DescribeDeviceRequest: TCRequestModel {
         /// 设备TID
@@ -49,7 +33,7 @@ extension Iotvideo {
     public struct DescribeDeviceResponse: TCResponseModel {
         /// 设备信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: DeviceData
+        public let data: DeviceData?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -58,5 +42,21 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备信息
+    ///
+    /// 本接口（DescribeDevice）获取设备信息。
+    @inlinable
+    public func describeDevice(_ input: DescribeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceResponse > {
+        self.client.execute(action: "DescribeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备信息
+    ///
+    /// 本接口（DescribeDevice）获取设备信息。
+    @inlinable
+    public func describeDevice(_ input: DescribeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceResponse {
+        try await self.client.execute(action: "DescribeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-查询对账单下载地址
-    @inlinable
-    public func queryOpenBankDownLoadUrl(_ input: QueryOpenBankDownLoadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankDownLoadUrlResponse > {
-        self.client.execute(action: "QueryOpenBankDownLoadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-查询对账单下载地址
-    @inlinable
-    public func queryOpenBankDownLoadUrl(_ input: QueryOpenBankDownLoadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankDownLoadUrlResponse {
-        try await self.client.execute(action: "QueryOpenBankDownLoadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryOpenBankDownLoadUrl请求参数结构体
     public struct QueryOpenBankDownLoadUrlRequest: TCRequestModel {
         /// 渠道商户号，外部接入平台方入驻云企付平台后下发。
@@ -55,7 +43,7 @@ extension Cpdp {
         /// __SAFT_ISV__: 人资ISV支付
         public let paymentMethod: String?
         
-        public init (channelMerchantId: String, billDate: String, billType: String?, environment: String?, channelName: String?, paymentMethod: String?) {
+        public init (channelMerchantId: String, billDate: String, billType: String? = nil, environment: String? = nil, channelName: String? = nil, paymentMethod: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.billDate = billDate
             self.billType = billType
@@ -84,7 +72,7 @@ extension Cpdp {
         
         /// 查询对账文件下载响应对象。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: QueryOpenBankDownLoadUrlResult
+        public let result: QueryOpenBankDownLoadUrlResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -95,5 +83,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-查询对账单下载地址
+    @inlinable
+    public func queryOpenBankDownLoadUrl(_ input: QueryOpenBankDownLoadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankDownLoadUrlResponse > {
+        self.client.execute(action: "QueryOpenBankDownLoadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-查询对账单下载地址
+    @inlinable
+    public func queryOpenBankDownLoadUrl(_ input: QueryOpenBankDownLoadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankDownLoadUrlResponse {
+        try await self.client.execute(action: "QueryOpenBankDownLoadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询申请实例价格
-    ///
-    /// 本接口（InquiryPriceCreateDBInstances）用于查询申请实例价格。
-    @inlinable
-    public func inquiryPriceCreateDBInstances(_ input: InquiryPriceCreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateDBInstancesResponse > {
-        self.client.execute(action: "InquiryPriceCreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询申请实例价格
-    ///
-    /// 本接口（InquiryPriceCreateDBInstances）用于查询申请实例价格。
-    @inlinable
-    public func inquiryPriceCreateDBInstances(_ input: InquiryPriceCreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDBInstancesResponse {
-        try await self.client.execute(action: "InquiryPriceCreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceCreateDBInstances请求参数结构体
     public struct InquiryPriceCreateDBInstancesRequest: TCRequestModel {
         /// 可用区ID。该参数可以通过调用 DescribeZones 接口的返回值中的Zone字段来获取。
@@ -63,7 +47,7 @@ extension Sqlserver {
         /// 购买实例的宿主机类型，PM-物理机, CLOUD_PREMIUM-虚拟机高性能云盘，CLOUD_SSD-虚拟机SSD云盘，默认取值PM
         public let machineType: String?
         
-        public init (zone: String, memory: Int64, storage: Int64, instanceChargeType: String?, period: Int64?, goodsNum: Int64?, dbVersion: String?, cpu: Int64?, instanceType: String?, machineType: String?) {
+        public init (zone: String, memory: Int64, storage: Int64, instanceChargeType: String? = nil, period: Int64? = nil, goodsNum: Int64? = nil, dbVersion: String? = nil, cpu: Int64? = nil, instanceType: String? = nil, machineType: String? = nil) {
             self.zone = zone
             self.memory = memory
             self.storage = storage
@@ -106,5 +90,21 @@ extension Sqlserver {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询申请实例价格
+    ///
+    /// 本接口（InquiryPriceCreateDBInstances）用于查询申请实例价格。
+    @inlinable
+    public func inquiryPriceCreateDBInstances(_ input: InquiryPriceCreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateDBInstancesResponse > {
+        self.client.execute(action: "InquiryPriceCreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询申请实例价格
+    ///
+    /// 本接口（InquiryPriceCreateDBInstances）用于查询申请实例价格。
+    @inlinable
+    public func inquiryPriceCreateDBInstances(_ input: InquiryPriceCreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDBInstancesResponse {
+        try await self.client.execute(action: "InquiryPriceCreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

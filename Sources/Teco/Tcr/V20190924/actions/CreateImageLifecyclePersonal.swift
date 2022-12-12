@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 创建个人版镜像版本清理策略
-    ///
-    /// 用于在个人版中创建清理策略
-    @inlinable
-    public func createImageLifecyclePersonal(_ input: CreateImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageLifecyclePersonalResponse > {
-        self.client.execute(action: "CreateImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建个人版镜像版本清理策略
-    ///
-    /// 用于在个人版中创建清理策略
-    @inlinable
-    public func createImageLifecyclePersonal(_ input: CreateImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageLifecyclePersonalResponse {
-        try await self.client.execute(action: "CreateImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateImageLifecyclePersonal请求参数结构体
     public struct CreateImageLifecyclePersonalRequest: TCRequestModel {
         /// 仓库名称
@@ -63,5 +47,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建个人版镜像版本清理策略
+    ///
+    /// 用于在个人版中创建清理策略
+    @inlinable
+    public func createImageLifecyclePersonal(_ input: CreateImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageLifecyclePersonalResponse > {
+        self.client.execute(action: "CreateImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建个人版镜像版本清理策略
+    ///
+    /// 用于在个人版中创建清理策略
+    @inlinable
+    public func createImageLifecyclePersonal(_ input: CreateImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageLifecyclePersonalResponse {
+        try await self.client.execute(action: "CreateImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

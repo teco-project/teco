@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 修改用户信息
-    @inlinable
-    public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserResponse > {
-        self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改用户信息
-    @inlinable
-    public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
-        try await self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyUser请求参数结构体
     public struct ModifyUserRequest: TCRequestModel {
         /// 用户Id，和CAM侧Uin匹配
@@ -54,5 +42,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改用户信息
+    @inlinable
+    public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserResponse > {
+        self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改用户信息
+    @inlinable
+    public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
+        try await self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

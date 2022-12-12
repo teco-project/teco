@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 删除迁移任务
-    ///
-    /// 本接口（DeleteMigration）用于删除迁移任务
-    @inlinable
-    public func deleteMigration(_ input: DeleteMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMigrationResponse > {
-        self.client.execute(action: "DeleteMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除迁移任务
-    ///
-    /// 本接口（DeleteMigration）用于删除迁移任务
-    @inlinable
-    public func deleteMigration(_ input: DeleteMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMigrationResponse {
-        try await self.client.execute(action: "DeleteMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMigration请求参数结构体
     public struct DeleteMigrationRequest: TCRequestModel {
         /// 迁移任务ID
@@ -53,5 +37,21 @@ extension Sqlserver {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除迁移任务
+    ///
+    /// 本接口（DeleteMigration）用于删除迁移任务
+    @inlinable
+    public func deleteMigration(_ input: DeleteMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMigrationResponse > {
+        self.client.execute(action: "DeleteMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除迁移任务
+    ///
+    /// 本接口（DeleteMigration）用于删除迁移任务
+    @inlinable
+    public func deleteMigration(_ input: DeleteMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMigrationResponse {
+        try await self.client.execute(action: "DeleteMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

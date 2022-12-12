@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Aai {
-    /// 智能闲聊
-    ///
-    /// 提供基于文本的基础聊天能力，可以让您的应用快速拥有具备深度语义理解的机器聊天功能。
-    @inlinable
-    public func chat(_ input: ChatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChatResponse > {
-        self.client.execute(action: "Chat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 智能闲聊
-    ///
-    /// 提供基于文本的基础聊天能力，可以让您的应用快速拥有具备深度语义理解的机器聊天功能。
-    @inlinable
-    public func chat(_ input: ChatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChatResponse {
-        try await self.client.execute(action: "Chat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// Chat请求参数结构体
     public struct ChatRequest: TCRequestModel {
         /// 聊天输入文本
@@ -42,7 +26,7 @@ extension Aai {
         /// json格式，比如 {"id":"test","gender":"male"}。记录当前与机器人交互的用户id，非必须但强烈建议传入，否则多轮聊天功能会受影响
         public let user: String?
         
-        public init (text: String, projectId: Int64, user: String?) {
+        public init (text: String, projectId: Int64 = 0, user: String? = nil) {
             self.text = text
             self.projectId = projectId
             self.user = user
@@ -67,5 +51,21 @@ extension Aai {
             case answer = "Answer"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 智能闲聊
+    ///
+    /// 提供基于文本的基础聊天能力，可以让您的应用快速拥有具备深度语义理解的机器聊天功能。
+    @inlinable
+    public func chat(_ input: ChatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChatResponse > {
+        self.client.execute(action: "Chat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 智能闲聊
+    ///
+    /// 提供基于文本的基础聊天能力，可以让您的应用快速拥有具备深度语义理解的机器聊天功能。
+    @inlinable
+    public func chat(_ input: ChatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChatResponse {
+        try await self.client.execute(action: "Chat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

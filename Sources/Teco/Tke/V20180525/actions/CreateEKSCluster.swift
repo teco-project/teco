@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 创建弹性集群
-    @inlinable
-    public func createEKSCluster(_ input: CreateEKSClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEKSClusterResponse > {
-        self.client.execute(action: "CreateEKSCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建弹性集群
-    @inlinable
-    public func createEKSCluster(_ input: CreateEKSClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEKSClusterResponse {
-        try await self.client.execute(action: "CreateEKSCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEKSCluster请求参数结构体
     public struct CreateEKSClusterRequest: TCRequestModel {
         /// k8s版本号。可为1.18.4 1.20.6。
@@ -62,7 +50,7 @@ extension Tke {
         /// 子网信息列表
         public let subnetInfos: [SubnetInfos]?
         
-        public init (k8sVersion: String, vpcId: String, clusterName: String, subnetIds: [String], clusterDesc: String?, serviceSubnetId: String?, dnsServers: [DnsServerConf]?, extraParam: String?, enableVpcCoreDNS: Bool?, tagSpecification: [TagSpecification]?, subnetInfos: [SubnetInfos]?) {
+        public init (k8sVersion: String, vpcId: String, clusterName: String, subnetIds: [String], clusterDesc: String? = nil, serviceSubnetId: String? = nil, dnsServers: [DnsServerConf]? = nil, extraParam: String? = nil, enableVpcCoreDNS: Bool? = nil, tagSpecification: [TagSpecification]? = nil, subnetInfos: [SubnetInfos]? = nil) {
             self.k8sVersion = k8sVersion
             self.vpcId = vpcId
             self.clusterName = clusterName
@@ -103,5 +91,17 @@ extension Tke {
             case clusterId = "ClusterId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建弹性集群
+    @inlinable
+    public func createEKSCluster(_ input: CreateEKSClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEKSClusterResponse > {
+        self.client.execute(action: "CreateEKSCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建弹性集群
+    @inlinable
+    public func createEKSCluster(_ input: CreateEKSClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEKSClusterResponse {
+        try await self.client.execute(action: "CreateEKSCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

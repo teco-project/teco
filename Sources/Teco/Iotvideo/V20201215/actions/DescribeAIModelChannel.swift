@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 查看AI推理结果推送配置
-    @inlinable
-    public func describeAIModelChannel(_ input: DescribeAIModelChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAIModelChannelResponse > {
-        self.client.execute(action: "DescribeAIModelChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看AI推理结果推送配置
-    @inlinable
-    public func describeAIModelChannel(_ input: DescribeAIModelChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelChannelResponse {
-        try await self.client.execute(action: "DescribeAIModelChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAIModelChannel请求参数结构体
     public struct DescribeAIModelChannelRequest: TCRequestModel {
         /// 模型ID
@@ -83,5 +71,17 @@ extension Iotvideo {
             case cKafkaTopic = "CKafkaTopic"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看AI推理结果推送配置
+    @inlinable
+    public func describeAIModelChannel(_ input: DescribeAIModelChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAIModelChannelResponse > {
+        self.client.execute(action: "DescribeAIModelChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看AI推理结果推送配置
+    @inlinable
+    public func describeAIModelChannel(_ input: DescribeAIModelChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelChannelResponse {
+        try await self.client.execute(action: "DescribeAIModelChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

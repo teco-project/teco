@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 获取已绑定收银台顾客FaceID
-    ///
-    /// 通过DescribeCameraPerson接口上报的收银台身份ID查询顾客的FaceID。查询最佳时间为收银台上报的次日1点后。
-    @inlinable
-    public func describeFaceIdByTempId(_ input: DescribeFaceIdByTempIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFaceIdByTempIdResponse > {
-        self.client.execute(action: "DescribeFaceIdByTempId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取已绑定收银台顾客FaceID
-    ///
-    /// 通过DescribeCameraPerson接口上报的收银台身份ID查询顾客的FaceID。查询最佳时间为收银台上报的次日1点后。
-    @inlinable
-    public func describeFaceIdByTempId(_ input: DescribeFaceIdByTempIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdByTempIdResponse {
-        try await self.client.execute(action: "DescribeFaceIdByTempId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFaceIdByTempId请求参数结构体
     public struct DescribeFaceIdByTempIdRequest: TCRequestModel {
         /// 优mall集团id，通过"指定身份标识获取客户门店列表"接口获取
@@ -51,7 +35,7 @@ extension Youmall {
         /// 图片url过期时间：在当前时间+PictureExpires秒后，图片url无法继续正常访问；单位s；默认值1*24*60*60（1天）
         public let pictureExpires: Int64?
         
-        public init (companyId: String, shopId: Int64, tempId: String, cameraId: Int64, posId: String?, pictureExpires: Int64?) {
+        public init (companyId: String, shopId: Int64, tempId: String, cameraId: Int64, posId: String? = nil, pictureExpires: Int64? = nil) {
             self.companyId = companyId
             self.shopId = shopId
             self.tempId = tempId
@@ -106,5 +90,21 @@ extension Youmall {
             case personInfo = "PersonInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取已绑定收银台顾客FaceID
+    ///
+    /// 通过DescribeCameraPerson接口上报的收银台身份ID查询顾客的FaceID。查询最佳时间为收银台上报的次日1点后。
+    @inlinable
+    public func describeFaceIdByTempId(_ input: DescribeFaceIdByTempIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFaceIdByTempIdResponse > {
+        self.client.execute(action: "DescribeFaceIdByTempId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取已绑定收银台顾客FaceID
+    ///
+    /// 通过DescribeCameraPerson接口上报的收银台身份ID查询顾客的FaceID。查询最佳时间为收银台上报的次日1点后。
+    @inlinable
+    public func describeFaceIdByTempId(_ input: DescribeFaceIdByTempIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdByTempIdResponse {
+        try await self.client.execute(action: "DescribeFaceIdByTempId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

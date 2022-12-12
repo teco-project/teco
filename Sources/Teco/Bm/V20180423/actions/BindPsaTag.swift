@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 为预授权规则绑定标签
-    @inlinable
-    public func bindPsaTag(_ input: BindPsaTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindPsaTagResponse > {
-        self.client.execute(action: "BindPsaTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 为预授权规则绑定标签
-    @inlinable
-    public func bindPsaTag(_ input: BindPsaTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPsaTagResponse {
-        try await self.client.execute(action: "BindPsaTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindPsaTag请求参数结构体
     public struct BindPsaTagRequest: TCRequestModel {
         /// 预授权规则ID
@@ -59,5 +47,17 @@ extension Bm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 为预授权规则绑定标签
+    @inlinable
+    public func bindPsaTag(_ input: BindPsaTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindPsaTagResponse > {
+        self.client.execute(action: "BindPsaTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 为预授权规则绑定标签
+    @inlinable
+    public func bindPsaTag(_ input: BindPsaTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPsaTagResponse {
+        try await self.client.execute(action: "BindPsaTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

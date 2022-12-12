@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 查询集群列表
-    ///
-    /// 查询集群信息列表，支持以集群类型、集群唯一ID、集群名字、集群标签、集群内vip、集群内负载均衡唯一id、集群网络类型、可用区等条件进行检索
-    @inlinable
-    public func describeExclusiveClusters(_ input: DescribeExclusiveClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExclusiveClustersResponse > {
-        self.client.execute(action: "DescribeExclusiveClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群列表
-    ///
-    /// 查询集群信息列表，支持以集群类型、集群唯一ID、集群名字、集群标签、集群内vip、集群内负载均衡唯一id、集群网络类型、可用区等条件进行检索
-    @inlinable
-    public func describeExclusiveClusters(_ input: DescribeExclusiveClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveClustersResponse {
-        try await self.client.execute(action: "DescribeExclusiveClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExclusiveClusters请求参数结构体
     public struct DescribeExclusiveClustersRequest: TCRequestModel {
         /// 返回集群列表数目，默认值为20，最大值为100。
@@ -51,7 +35,7 @@ extension Clb {
         /// <li> isp -- String - 是否必填：否 - （过滤条件）按照TGW集群的 Isp 类型过滤，如："BGP","CMCC","CUCC","CTCC","INTERNAL"。</li>
         public let filters: [Filter]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -80,5 +64,21 @@ extension Clb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群列表
+    ///
+    /// 查询集群信息列表，支持以集群类型、集群唯一ID、集群名字、集群标签、集群内vip、集群内负载均衡唯一id、集群网络类型、可用区等条件进行检索
+    @inlinable
+    public func describeExclusiveClusters(_ input: DescribeExclusiveClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExclusiveClustersResponse > {
+        self.client.execute(action: "DescribeExclusiveClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群列表
+    ///
+    /// 查询集群信息列表，支持以集群类型、集群唯一ID、集群名字、集群标签、集群内vip、集群内负载均衡唯一id、集群网络类型、可用区等条件进行检索
+    @inlinable
+    public func describeExclusiveClusters(_ input: DescribeExclusiveClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveClustersResponse {
+        try await self.client.execute(action: "DescribeExclusiveClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

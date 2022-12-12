@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 获取所有已授权服务
-    @inlinable
-    public func listPoliciesGrantingServiceAccess(_ input: ListPoliciesGrantingServiceAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListPoliciesGrantingServiceAccessResponse > {
-        self.client.execute(action: "ListPoliciesGrantingServiceAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取所有已授权服务
-    @inlinable
-    public func listPoliciesGrantingServiceAccess(_ input: ListPoliciesGrantingServiceAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPoliciesGrantingServiceAccessResponse {
-        try await self.client.execute(action: "ListPoliciesGrantingServiceAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListPoliciesGrantingServiceAccess请求参数结构体
     public struct ListPoliciesGrantingServiceAccessRequest: TCRequestModel {
         /// 子账号uin，与RoleId、GroupId三选一必传
@@ -41,7 +29,7 @@ extension Cam {
         /// 服务名，查看服务授权接口详情时需传该字段
         public let serviceType: String?
         
-        public init (targetUin: UInt64?, roleId: UInt64?, groupId: UInt64?, serviceType: String?) {
+        public init (targetUin: UInt64? = nil, roleId: UInt64? = nil, groupId: UInt64? = nil, serviceType: String? = nil) {
             self.targetUin = targetUin
             self.roleId = roleId
             self.groupId = groupId
@@ -68,5 +56,17 @@ extension Cam {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取所有已授权服务
+    @inlinable
+    public func listPoliciesGrantingServiceAccess(_ input: ListPoliciesGrantingServiceAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListPoliciesGrantingServiceAccessResponse > {
+        self.client.execute(action: "ListPoliciesGrantingServiceAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取所有已授权服务
+    @inlinable
+    public func listPoliciesGrantingServiceAccess(_ input: ListPoliciesGrantingServiceAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPoliciesGrantingServiceAccessResponse {
+        try await self.client.execute(action: "ListPoliciesGrantingServiceAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

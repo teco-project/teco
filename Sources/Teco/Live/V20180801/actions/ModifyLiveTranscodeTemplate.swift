@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 修改转码模板配置
-    ///
-    /// 修改转码模板配置。
-    @inlinable
-    public func modifyLiveTranscodeTemplate(_ input: ModifyLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveTranscodeTemplateResponse > {
-        self.client.execute(action: "ModifyLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改转码模板配置
-    ///
-    /// 修改转码模板配置。
-    @inlinable
-    public func modifyLiveTranscodeTemplate(_ input: ModifyLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveTranscodeTemplateResponse {
-        try await self.client.execute(action: "ModifyLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLiveTranscodeTemplate请求参数结构体
     public struct ModifyLiveTranscodeTemplateRequest: TCRequestModel {
         /// 模板 Id。
@@ -117,7 +101,7 @@ extension Live {
         /// 不传递或着为空字符串，清空之前的DRM配置。
         public let drmTracks: String?
         
-        public init (templateId: Int64, vcodec: String?, acodec: String?, audioBitrate: Int64?, description: String?, videoBitrate: Int64?, width: Int64?, needVideo: Int64?, needAudio: Int64?, height: Int64?, fps: Int64?, gop: Int64?, rotate: Int64?, profile: String?, bitrateToOrig: Int64?, heightToOrig: Int64?, fpsToOrig: Int64?, adaptBitratePercent: Float?, shortEdgeAsHeight: Int64?, drmType: String?, drmTracks: String?) {
+        public init (templateId: Int64, vcodec: String? = nil, acodec: String? = nil, audioBitrate: Int64? = nil, description: String? = nil, videoBitrate: Int64? = nil, width: Int64? = nil, needVideo: Int64? = nil, needAudio: Int64? = nil, height: Int64? = nil, fps: Int64? = nil, gop: Int64? = nil, rotate: Int64? = nil, profile: String? = nil, bitrateToOrig: Int64? = nil, heightToOrig: Int64? = nil, fpsToOrig: Int64? = nil, adaptBitratePercent: Float? = nil, shortEdgeAsHeight: Int64? = nil, drmType: String? = nil, drmTracks: String? = nil) {
             self.templateId = templateId
             self.vcodec = vcodec
             self.acodec = acodec
@@ -174,5 +158,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改转码模板配置
+    ///
+    /// 修改转码模板配置。
+    @inlinable
+    public func modifyLiveTranscodeTemplate(_ input: ModifyLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveTranscodeTemplateResponse > {
+        self.client.execute(action: "ModifyLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改转码模板配置
+    ///
+    /// 修改转码模板配置。
+    @inlinable
+    public func modifyLiveTranscodeTemplate(_ input: ModifyLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveTranscodeTemplateResponse {
+        try await self.client.execute(action: "ModifyLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

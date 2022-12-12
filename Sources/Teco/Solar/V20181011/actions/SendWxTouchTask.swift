@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Solar {
-    /// 发送微信触达任务
-    ///
-    /// 发送企业微信触达任务
-    @inlinable
-    public func sendWxTouchTask(_ input: SendWxTouchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendWxTouchTaskResponse > {
-        self.client.execute(action: "SendWxTouchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送微信触达任务
-    ///
-    /// 发送企业微信触达任务
-    @inlinable
-    public func sendWxTouchTask(_ input: SendWxTouchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendWxTouchTaskResponse {
-        try await self.client.execute(action: "SendWxTouchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendWxTouchTask请求参数结构体
     public struct SendWxTouchTaskRequest: TCRequestModel {
         /// 客户分组ID
@@ -69,7 +53,7 @@ extension Solar {
         /// 微信公众号appId
         public let wxAppId: String?
         
-        public init (groupId: String, distinctFlag: Bool, isSendNow: Bool, sendDate: Int64, taskName: String, wxTouchType: String, title: String?, content: String?, newsId: String?, smallProgramId: String?, templateId: String?, wxAppId: String?) {
+        public init (groupId: String, distinctFlag: Bool, isSendNow: Bool, sendDate: Int64, taskName: String, wxTouchType: String, title: String? = nil, content: String? = nil, newsId: String? = nil, smallProgramId: String? = nil, templateId: String? = nil, wxAppId: String? = nil) {
             self.groupId = groupId
             self.distinctFlag = distinctFlag
             self.isSendNow = isSendNow
@@ -108,5 +92,21 @@ extension Solar {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送微信触达任务
+    ///
+    /// 发送企业微信触达任务
+    @inlinable
+    public func sendWxTouchTask(_ input: SendWxTouchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendWxTouchTaskResponse > {
+        self.client.execute(action: "SendWxTouchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送微信触达任务
+    ///
+    /// 发送企业微信触达任务
+    @inlinable
+    public func sendWxTouchTask(_ input: SendWxTouchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendWxTouchTaskResponse {
+        try await self.client.execute(action: "SendWxTouchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

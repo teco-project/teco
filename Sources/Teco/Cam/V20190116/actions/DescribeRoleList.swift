@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 获取角色列表
-    ///
-    /// 本接口（DescribeRoleList）用于获取账号下的角色列表。
-    @inlinable
-    public func describeRoleList(_ input: DescribeRoleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoleListResponse > {
-        self.client.execute(action: "DescribeRoleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取角色列表
-    ///
-    /// 本接口（DescribeRoleList）用于获取账号下的角色列表。
-    @inlinable
-    public func describeRoleList(_ input: DescribeRoleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoleListResponse {
-        try await self.client.execute(action: "DescribeRoleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRoleList请求参数结构体
     public struct DescribeRoleListRequest: TCRequestModel {
         /// 页码，从1开始
@@ -42,7 +26,7 @@ extension Cam {
         /// 标签筛选
         public let tags: [RoleTags]?
         
-        public init (page: UInt64, rp: UInt64, tags: [RoleTags]?) {
+        public init (page: UInt64, rp: UInt64, tags: [RoleTags]? = nil) {
             self.page = page
             self.rp = rp
             self.tags = tags
@@ -72,5 +56,21 @@ extension Cam {
             case totalNum = "TotalNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取角色列表
+    ///
+    /// 本接口（DescribeRoleList）用于获取账号下的角色列表。
+    @inlinable
+    public func describeRoleList(_ input: DescribeRoleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoleListResponse > {
+        self.client.execute(action: "DescribeRoleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取角色列表
+    ///
+    /// 本接口（DescribeRoleList）用于获取账号下的角色列表。
+    @inlinable
+    public func describeRoleList(_ input: DescribeRoleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoleListResponse {
+        try await self.client.execute(action: "DescribeRoleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

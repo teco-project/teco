@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 创建事件目标
-    @inlinable
-    public func createTarget(_ input: CreateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTargetResponse > {
-        self.client.execute(action: "CreateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建事件目标
-    @inlinable
-    public func createTarget(_ input: CreateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTargetResponse {
-        try await self.client.execute(action: "CreateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTarget请求参数结构体
     public struct CreateTargetRequest: TCRequestModel {
         /// 事件集ID
@@ -68,5 +56,17 @@ extension Eb {
             case targetId = "TargetId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建事件目标
+    @inlinable
+    public func createTarget(_ input: CreateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTargetResponse > {
+        self.client.execute(action: "CreateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建事件目标
+    @inlinable
+    public func createTarget(_ input: CreateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTargetResponse {
+        try await self.client.execute(action: "CreateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

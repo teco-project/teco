@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建VPN网关路由
-    ///
-    /// 创建路由型VPN网关的目的路由
-    @inlinable
-    public func createVpnGatewayRoutes(_ input: CreateVpnGatewayRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpnGatewayRoutesResponse > {
-        self.client.execute(action: "CreateVpnGatewayRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建VPN网关路由
-    ///
-    /// 创建路由型VPN网关的目的路由
-    @inlinable
-    public func createVpnGatewayRoutes(_ input: CreateVpnGatewayRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewayRoutesResponse {
-        try await self.client.execute(action: "CreateVpnGatewayRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVpnGatewayRoutes请求参数结构体
     public struct CreateVpnGatewayRoutesRequest: TCRequestModel {
         /// VPN网关的ID
@@ -62,5 +46,21 @@ extension Vpc {
             case routes = "Routes"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建VPN网关路由
+    ///
+    /// 创建路由型VPN网关的目的路由
+    @inlinable
+    public func createVpnGatewayRoutes(_ input: CreateVpnGatewayRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpnGatewayRoutesResponse > {
+        self.client.execute(action: "CreateVpnGatewayRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建VPN网关路由
+    ///
+    /// 创建路由型VPN网关的目的路由
+    @inlinable
+    public func createVpnGatewayRoutes(_ input: CreateVpnGatewayRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewayRoutesResponse {
+        try await self.client.execute(action: "CreateVpnGatewayRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

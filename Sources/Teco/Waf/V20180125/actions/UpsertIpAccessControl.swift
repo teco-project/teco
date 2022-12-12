@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// Waf IP黑白名单Upsert接口
-    @inlinable
-    public func upsertIpAccessControl(_ input: UpsertIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpsertIpAccessControlResponse > {
-        self.client.execute(action: "UpsertIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// Waf IP黑白名单Upsert接口
-    @inlinable
-    public func upsertIpAccessControl(_ input: UpsertIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpsertIpAccessControlResponse {
-        try await self.client.execute(action: "UpsertIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpsertIpAccessControl请求参数结构体
     public struct UpsertIpAccessControlRequest: TCRequestModel {
         /// 域名
@@ -41,7 +29,7 @@ extension Waf {
         /// 是否为多域名黑白名单
         public let sourceType: String?
         
-        public init (domain: String, items: [String], edition: String?, sourceType: String?) {
+        public init (domain: String, items: [String], edition: String? = nil, sourceType: String? = nil) {
             self.domain = domain
             self.items = items
             self.edition = edition
@@ -74,5 +62,17 @@ extension Waf {
             case failedCount = "FailedCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// Waf IP黑白名单Upsert接口
+    @inlinable
+    public func upsertIpAccessControl(_ input: UpsertIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpsertIpAccessControlResponse > {
+        self.client.execute(action: "UpsertIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// Waf IP黑白名单Upsert接口
+    @inlinable
+    public func upsertIpAccessControl(_ input: UpsertIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpsertIpAccessControlResponse {
+        try await self.client.execute(action: "UpsertIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

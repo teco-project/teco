@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 创建实例账号
-    ///
-    /// 本接口（CreateAccount）用于创建实例账号
-    @inlinable
-    public func createAccount(_ input: CreateAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccountResponse > {
-        self.client.execute(action: "CreateAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例账号
-    ///
-    /// 本接口（CreateAccount）用于创建实例账号
-    @inlinable
-    public func createAccount(_ input: CreateAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountResponse {
-        try await self.client.execute(action: "CreateAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAccount请求参数结构体
     public struct CreateAccountRequest: TCRequestModel {
         /// 数据库实例ID，形如mssql-njj2mtpl
@@ -62,5 +46,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例账号
+    ///
+    /// 本接口（CreateAccount）用于创建实例账号
+    @inlinable
+    public func createAccount(_ input: CreateAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccountResponse > {
+        self.client.execute(action: "CreateAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例账号
+    ///
+    /// 本接口（CreateAccount）用于创建实例账号
+    @inlinable
+    public func createAccount(_ input: CreateAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountResponse {
+        try await self.client.execute(action: "CreateAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

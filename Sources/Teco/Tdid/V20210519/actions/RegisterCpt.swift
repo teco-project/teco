@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 凭证模版新建
-    @inlinable
-    public func registerCpt(_ input: RegisterCptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterCptResponse > {
-        self.client.execute(action: "RegisterCpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 凭证模版新建
-    @inlinable
-    public func registerCpt(_ input: RegisterCptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterCptResponse {
-        try await self.client.execute(action: "RegisterCpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RegisterCpt请求参数结构体
     public struct RegisterCptRequest: TCRequestModel {
         /// 群组ID
@@ -41,7 +29,7 @@ extension Tdid {
         /// cptId 不填默认自增
         public let cptId: UInt64?
         
-        public init (groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64?) {
+        public init (groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil) {
             self.groupId = groupId
             self.clusterId = clusterId
             self.cptJson = cptJson
@@ -72,5 +60,17 @@ extension Tdid {
             case cptId = "CptId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 凭证模版新建
+    @inlinable
+    public func registerCpt(_ input: RegisterCptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterCptResponse > {
+        self.client.execute(action: "RegisterCpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 凭证模版新建
+    @inlinable
+    public func registerCpt(_ input: RegisterCptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterCptResponse {
+        try await self.client.execute(action: "RegisterCpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

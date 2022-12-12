@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 凭证模版列表
-    @inlinable
-    public func getCptList(_ input: GetCptListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCptListResponse > {
-        self.client.execute(action: "GetCptList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 凭证模版列表
-    @inlinable
-    public func getCptList(_ input: GetCptListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptListResponse {
-        try await self.client.execute(action: "GetCptList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetCptList请求参数结构体
     public struct GetCptListRequest: TCRequestModel {
         /// 起始位置
@@ -38,7 +26,7 @@ extension Tdid {
         /// 模板类型，0: 所有模板，1: 系统模板，2: 用户模板，3:普通模板
         public let cptType: UInt64?
         
-        public init (displayStart: UInt64, displayLength: UInt64, cptType: UInt64?) {
+        public init (displayStart: UInt64, displayLength: UInt64, cptType: UInt64? = nil) {
             self.displayStart = displayStart
             self.displayLength = displayLength
             self.cptType = cptType
@@ -67,5 +55,17 @@ extension Tdid {
             case allCount = "AllCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 凭证模版列表
+    @inlinable
+    public func getCptList(_ input: GetCptListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCptListResponse > {
+        self.client.execute(action: "GetCptList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 凭证模版列表
+    @inlinable
+    public func getCptList(_ input: GetCptListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptListResponse {
+        try await self.client.execute(action: "GetCptList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

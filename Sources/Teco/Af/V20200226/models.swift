@@ -23,7 +23,7 @@ extension Af {
         /// 约定用入参，默认不涉及
         public let cryptoContent: String?
         
-        public init (cryptoType: String?, cryptoContent: String?) {
+        public init (cryptoType: String? = nil, cryptoContent: String? = nil) {
             self.cryptoType = cryptoType
             self.cryptoContent = cryptoContent
         }
@@ -160,7 +160,7 @@ extension Af {
         /// 是否使用旧回包
         public let oldResponseType: String?
         
-        public init (customerUin: String, customerAppid: String, idNumber: String, phoneNumber: String, scene: String?, customerSubUin: String?, authorization: String?, name: String?, bankCardNumber: String?, userIp: String?, imei: String?, idfa: String?, emailAddress: String?, address: String?, mac: String?, imsi: String?, accountType: String?, uid: String?, appIdU: String?, wifiMac: String?, wifiSSID: String?, wifiBSSID: String?, extensionId: String?, extensionIn: String?, businessId: String?, idCryptoType: String?, phoneCryptoType: String?, nameCryptoType: String?, oldResponseType: String?) {
+        public init (customerUin: String, customerAppid: String, idNumber: String, phoneNumber: String, scene: String? = nil, customerSubUin: String? = nil, authorization: String? = nil, name: String? = nil, bankCardNumber: String? = nil, userIp: String? = nil, imei: String? = nil, idfa: String? = nil, emailAddress: String? = nil, address: String? = nil, mac: String? = nil, imsi: String? = nil, accountType: String? = nil, uid: String? = nil, appIdU: String? = nil, wifiMac: String? = nil, wifiSSID: String? = nil, wifiBSSID: String? = nil, extensionId: String? = nil, extensionIn: String? = nil, businessId: String? = nil, idCryptoType: String? = nil, phoneCryptoType: String? = nil, nameCryptoType: String? = nil, oldResponseType: String? = nil) {
             self.customerUin = customerUin
             self.customerAppid = customerAppid
             self.idNumber = idNumber
@@ -296,7 +296,7 @@ extension Af {
         /// 业务字段BusinessSecurityData的json数据格式，采用CryptoType相应的加密方式计算后得到的bash64编码内容。比如对{"PhoneNumber":"13430420001","IdNumber":"420115199501010001","BankCardNumber":"6214000100010001"}包体做加密。
         public let cryptoContent: String?
         
-        public init (cryptoType: String?, cryptoContent: String?) {
+        public init (cryptoType: String? = nil, cryptoContent: String? = nil) {
             self.cryptoType = cryptoType
             self.cryptoContent = cryptoContent
         }
@@ -375,7 +375,7 @@ extension Af {
         /// 姓名加密类型 0：不加密（默认值）；1：md5；2：sha256；3：SM3
         public let nameCryptoType: String?
         
-        public init (phoneNumber: String?, idNumber: String?, bankCardNumber: String?, userIp: String?, imei: String?, idfa: String?, scene: String?, name: String?, emailAddress: String?, address: String?, mac: String?, imsi: String?, accountType: String?, uid: String?, appIdU: String?, wifiMac: String?, wifiSSID: String?, wifiBSSID: String?, businessId: String?, phoneCryptoType: String?, idCryptoType: String?, nameCryptoType: String?) {
+        public init (phoneNumber: String? = nil, idNumber: String? = nil, bankCardNumber: String? = nil, userIp: String? = nil, imei: String? = nil, idfa: String? = nil, scene: String? = nil, name: String? = nil, emailAddress: String? = nil, address: String? = nil, mac: String? = nil, imsi: String? = nil, accountType: String? = nil, uid: String? = nil, appIdU: String? = nil, wifiMac: String? = nil, wifiSSID: String? = nil, wifiBSSID: String? = nil, businessId: String? = nil, phoneCryptoType: String? = nil, idCryptoType: String? = nil, nameCryptoType: String? = nil) {
             self.phoneNumber = phoneNumber
             self.idNumber = idNumber
             self.bankCardNumber = bankCardNumber

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 智慧零售-商户注册
-    @inlinable
-    public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMerchantResponse > {
-        self.client.execute(action: "CreateMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 智慧零售-商户注册
-    @inlinable
-    public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMerchantResponse {
-        try await self.client.execute(action: "CreateMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMerchant请求参数结构体
     public struct CreateMerchantRequest: TCRequestModel {
         /// 开票平台ID
@@ -96,7 +84,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填 sandbox。
         public let profile: String?
         
-        public init (invoicePlatformId: Int64, taxpayerName: String, taxpayerNum: String, legalPersonName: String, contactsName: String, phone: String, address: String, regionCode: Int64, cityName: String, drawer: String, taxRegistrationCertificate: String, email: String?, businessMobile: String?, bankName: String?, bankAccount: String?, reviewer: String?, payee: String?, registerCode: String?, state: String?, callbackUrl: String?, profile: String?) {
+        public init (invoicePlatformId: Int64, taxpayerName: String, taxpayerNum: String, legalPersonName: String, contactsName: String, phone: String, address: String, regionCode: Int64, cityName: String, drawer: String, taxRegistrationCertificate: String, email: String? = nil, businessMobile: String? = nil, bankName: String? = nil, bankAccount: String? = nil, reviewer: String? = nil, payee: String? = nil, registerCode: String? = nil, state: String? = nil, callbackUrl: String? = nil, profile: String? = nil) {
             self.invoicePlatformId = invoicePlatformId
             self.taxpayerName = taxpayerName
             self.taxpayerNum = taxpayerNum
@@ -157,5 +145,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 智慧零售-商户注册
+    @inlinable
+    public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMerchantResponse > {
+        self.client.execute(action: "CreateMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 智慧零售-商户注册
+    @inlinable
+    public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMerchantResponse {
+        try await self.client.execute(action: "CreateMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

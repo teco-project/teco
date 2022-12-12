@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取dataloginfo信息
-    ///
-    /// 获取loginfo信息
-    @inlinable
-    public func describeDataLogUrlInfo(_ input: DescribeDataLogUrlInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataLogUrlInfoResponse > {
-        self.client.execute(action: "DescribeDataLogUrlInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取dataloginfo信息
-    ///
-    /// 获取loginfo信息
-    @inlinable
-    public func describeDataLogUrlInfo(_ input: DescribeDataLogUrlInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataLogUrlInfoResponse {
-        try await self.client.execute(action: "DescribeDataLogUrlInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDataLogUrlInfo请求参数结构体
     public struct DescribeDataLogUrlInfoRequest: TCRequestModel {
         /// 项目ID
@@ -67,5 +51,21 @@ extension Rum {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取dataloginfo信息
+    ///
+    /// 获取loginfo信息
+    @inlinable
+    public func describeDataLogUrlInfo(_ input: DescribeDataLogUrlInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataLogUrlInfoResponse > {
+        self.client.execute(action: "DescribeDataLogUrlInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取dataloginfo信息
+    ///
+    /// 获取loginfo信息
+    @inlinable
+    public func describeDataLogUrlInfo(_ input: DescribeDataLogUrlInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataLogUrlInfoResponse {
+        try await self.client.execute(action: "DescribeDataLogUrlInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

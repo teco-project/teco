@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取网关绑定的子设备列表
-    ///
-    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表 
-    @inlinable
-    public func describeGatewayBindDevices(_ input: DescribeGatewayBindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewayBindDevicesResponse > {
-        self.client.execute(action: "DescribeGatewayBindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取网关绑定的子设备列表
-    ///
-    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表 
-    @inlinable
-    public func describeGatewayBindDevices(_ input: DescribeGatewayBindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayBindDevicesResponse {
-        try await self.client.execute(action: "DescribeGatewayBindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGatewayBindDevices请求参数结构体
     public struct DescribeGatewayBindDevicesRequest: TCRequestModel {
         /// 网关设备的产品ID
@@ -48,7 +32,7 @@ extension Iotcloud {
         /// LoRa产品的ID
         public let productId: String?
         
-        public init (gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, productId: String?) {
+        public init (gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, productId: String? = nil) {
             self.gatewayProductId = gatewayProductId
             self.gatewayDeviceName = gatewayDeviceName
             self.offset = offset
@@ -85,5 +69,21 @@ extension Iotcloud {
             case productName = "ProductName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取网关绑定的子设备列表
+    ///
+    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表 
+    @inlinable
+    public func describeGatewayBindDevices(_ input: DescribeGatewayBindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewayBindDevicesResponse > {
+        self.client.execute(action: "DescribeGatewayBindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取网关绑定的子设备列表
+    ///
+    /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表 
+    @inlinable
+    public func describeGatewayBindDevices(_ input: DescribeGatewayBindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayBindDevicesResponse {
+        try await self.client.execute(action: "DescribeGatewayBindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

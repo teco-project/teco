@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cii {
-    /// 查询机器核保任务数据
-    ///
-    /// 本接口(DescribeMachineUnderwrite)用于查询机器核保任务数据
-    @inlinable
-    public func describeMachineUnderwrite(_ input: DescribeMachineUnderwriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineUnderwriteResponse > {
-        self.client.execute(action: "DescribeMachineUnderwrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询机器核保任务数据
-    ///
-    /// 本接口(DescribeMachineUnderwrite)用于查询机器核保任务数据
-    @inlinable
-    public func describeMachineUnderwrite(_ input: DescribeMachineUnderwriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineUnderwriteResponse {
-        try await self.client.execute(action: "DescribeMachineUnderwrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMachineUnderwrite请求参数结构体
     public struct DescribeMachineUnderwriteRequest: TCRequestModel {
         /// 核保任务ID
@@ -84,5 +68,21 @@ extension Cii {
             case underwriteResults = "UnderwriteResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询机器核保任务数据
+    ///
+    /// 本接口(DescribeMachineUnderwrite)用于查询机器核保任务数据
+    @inlinable
+    public func describeMachineUnderwrite(_ input: DescribeMachineUnderwriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineUnderwriteResponse > {
+        self.client.execute(action: "DescribeMachineUnderwrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询机器核保任务数据
+    ///
+    /// 本接口(DescribeMachineUnderwrite)用于查询机器核保任务数据
+    @inlinable
+    public func describeMachineUnderwrite(_ input: DescribeMachineUnderwriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineUnderwriteResponse {
+        try await self.client.execute(action: "DescribeMachineUnderwrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

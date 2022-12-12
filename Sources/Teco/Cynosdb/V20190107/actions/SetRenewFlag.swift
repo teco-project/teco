@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 设置自动续费
-    ///
-    /// SetRenewFlag设置实例的自动续费功能
-    @inlinable
-    public func setRenewFlag(_ input: SetRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetRenewFlagResponse > {
-        self.client.execute(action: "SetRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置自动续费
-    ///
-    /// SetRenewFlag设置实例的自动续费功能
-    @inlinable
-    public func setRenewFlag(_ input: SetRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetRenewFlagResponse {
-        try await self.client.execute(action: "SetRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetRenewFlag请求参数结构体
     public struct SetRenewFlagRequest: TCRequestModel {
         /// 需操作的实例ID
@@ -62,5 +46,21 @@ extension Cynosdb {
             case count = "Count"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置自动续费
+    ///
+    /// SetRenewFlag设置实例的自动续费功能
+    @inlinable
+    public func setRenewFlag(_ input: SetRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetRenewFlagResponse > {
+        self.client.execute(action: "SetRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置自动续费
+    ///
+    /// SetRenewFlag设置实例的自动续费功能
+    @inlinable
+    public func setRenewFlag(_ input: SetRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetRenewFlagResponse {
+        try await self.client.execute(action: "SetRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

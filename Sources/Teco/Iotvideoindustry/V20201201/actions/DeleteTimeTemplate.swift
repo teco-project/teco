@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 删除时间模板
-    ///
-    /// 本接口(DeleteTimeTemplate) 用于删除时间模板。
-    @inlinable
-    public func deleteTimeTemplate(_ input: DeleteTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTimeTemplateResponse > {
-        self.client.execute(action: "DeleteTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除时间模板
-    ///
-    /// 本接口(DeleteTimeTemplate) 用于删除时间模板。
-    @inlinable
-    public func deleteTimeTemplate(_ input: DeleteTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTimeTemplateResponse {
-        try await self.client.execute(action: "DeleteTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTimeTemplate请求参数结构体
     public struct DeleteTimeTemplateRequest: TCRequestModel {
         /// 时间模板ID
@@ -58,5 +42,21 @@ extension Iotvideoindustry {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除时间模板
+    ///
+    /// 本接口(DeleteTimeTemplate) 用于删除时间模板。
+    @inlinable
+    public func deleteTimeTemplate(_ input: DeleteTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTimeTemplateResponse > {
+        self.client.execute(action: "DeleteTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除时间模板
+    ///
+    /// 本接口(DeleteTimeTemplate) 用于删除时间模板。
+    @inlinable
+    public func deleteTimeTemplate(_ input: DeleteTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTimeTemplateResponse {
+        try await self.client.execute(action: "DeleteTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

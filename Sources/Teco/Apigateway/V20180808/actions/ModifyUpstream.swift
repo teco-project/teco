@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 修改后端通道
-    @inlinable
-    public func modifyUpstream(_ input: ModifyUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUpstreamResponse > {
-        self.client.execute(action: "ModifyUpstream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改后端通道
-    @inlinable
-    public func modifyUpstream(_ input: ModifyUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUpstreamResponse {
-        try await self.client.execute(action: "ModifyUpstream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyUpstream请求参数结构体
     public struct ModifyUpstreamRequest: TCRequestModel {
         /// 后端通道唯一ID
@@ -60,12 +48,12 @@ extension Apigateway {
         public let nodes: [UpstreamNode]?
         
         /// 健康检查配置，目前只支持VPC通道
-        public let healthChecker: UpstreamHealthChecker
+        public let healthChecker: UpstreamHealthChecker?
         
         /// 容器服务配置
         public let k8sService: [K8sService]?
         
-        public init (upstreamId: String, upstreamName: String?, upstreamDescription: String?, scheme: String?, upstreamType: String?, algorithm: String?, uniqVpcId: String?, retries: UInt64?, upstreamHost: String?, nodes: [UpstreamNode]?, healthChecker: UpstreamHealthChecker, k8sService: [K8sService]?) {
+        public init (upstreamId: String, upstreamName: String? = nil, upstreamDescription: String? = nil, scheme: String? = nil, upstreamType: String? = nil, algorithm: String? = nil, uniqVpcId: String? = nil, retries: UInt64? = nil, upstreamHost: String? = nil, nodes: [UpstreamNode]? = nil, healthChecker: UpstreamHealthChecker? = nil, k8sService: [K8sService]? = nil) {
             self.upstreamId = upstreamId
             self.upstreamName = upstreamName
             self.upstreamDescription = upstreamDescription
@@ -100,7 +88,7 @@ extension Apigateway {
     public struct ModifyUpstreamResponse: TCResponseModel {
         /// 返回修改后的后端通道信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: UpstreamInfo
+        public let result: UpstreamInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -109,5 +97,17 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改后端通道
+    @inlinable
+    public func modifyUpstream(_ input: ModifyUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUpstreamResponse > {
+        self.client.execute(action: "ModifyUpstream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改后端通道
+    @inlinable
+    public func modifyUpstream(_ input: ModifyUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUpstreamResponse {
+        try await self.client.execute(action: "ModifyUpstream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

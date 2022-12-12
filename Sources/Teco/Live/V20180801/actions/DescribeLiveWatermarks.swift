@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询水印列表
-    ///
-    /// 查询水印列表。
-    @inlinable
-    public func describeLiveWatermarks(_ input: DescribeLiveWatermarksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveWatermarksResponse > {
-        self.client.execute(action: "DescribeLiveWatermarks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询水印列表
-    ///
-    /// 查询水印列表。
-    @inlinable
-    public func describeLiveWatermarks(_ input: DescribeLiveWatermarksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarksResponse {
-        try await self.client.execute(action: "DescribeLiveWatermarks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveWatermarks请求参数结构体
     public struct DescribeLiveWatermarksRequest: TCRequestModel {
         public init () {
@@ -53,5 +37,21 @@ extension Live {
             case watermarkList = "WatermarkList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询水印列表
+    ///
+    /// 查询水印列表。
+    @inlinable
+    public func describeLiveWatermarks(_ input: DescribeLiveWatermarksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveWatermarksResponse > {
+        self.client.execute(action: "DescribeLiveWatermarks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询水印列表
+    ///
+    /// 查询水印列表。
+    @inlinable
+    public func describeLiveWatermarks(_ input: DescribeLiveWatermarksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarksResponse {
+        try await self.client.execute(action: "DescribeLiveWatermarks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

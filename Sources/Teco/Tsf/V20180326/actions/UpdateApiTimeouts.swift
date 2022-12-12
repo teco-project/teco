@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 更新API超时
-    ///
-    /// 批量更新API超时
-    @inlinable
-    public func updateApiTimeouts(_ input: UpdateApiTimeoutsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApiTimeoutsResponse > {
-        self.client.execute(action: "UpdateApiTimeouts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新API超时
-    ///
-    /// 批量更新API超时
-    @inlinable
-    public func updateApiTimeouts(_ input: UpdateApiTimeoutsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiTimeoutsResponse {
-        try await self.client.execute(action: "UpdateApiTimeouts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateApiTimeouts请求参数结构体
     public struct UpdateApiTimeoutsRequest: TCRequestModel {
         /// API ID 列表
@@ -42,7 +26,7 @@ extension Tsf {
         /// 超时时间，单位毫秒，开启API超时时，必填
         public let timeout: Int64?
         
-        public init (apiIds: [String], usableStatus: String, timeout: Int64?) {
+        public init (apiIds: [String], usableStatus: String, timeout: Int64? = nil) {
             self.apiIds = apiIds
             self.usableStatus = usableStatus
             self.timeout = timeout
@@ -67,5 +51,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新API超时
+    ///
+    /// 批量更新API超时
+    @inlinable
+    public func updateApiTimeouts(_ input: UpdateApiTimeoutsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateApiTimeoutsResponse > {
+        self.client.execute(action: "UpdateApiTimeouts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新API超时
+    ///
+    /// 批量更新API超时
+    @inlinable
+    public func updateApiTimeouts(_ input: UpdateApiTimeoutsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiTimeoutsResponse {
+        try await self.client.execute(action: "UpdateApiTimeouts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

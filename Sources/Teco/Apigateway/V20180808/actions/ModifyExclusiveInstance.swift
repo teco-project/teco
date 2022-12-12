@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 修改独享实例
-    ///
-    /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。​
-    @inlinable
-    public func modifyExclusiveInstance(_ input: ModifyExclusiveInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyExclusiveInstanceResponse > {
-        self.client.execute(action: "ModifyExclusiveInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改独享实例
-    ///
-    /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。​
-    @inlinable
-    public func modifyExclusiveInstance(_ input: ModifyExclusiveInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExclusiveInstanceResponse {
-        try await self.client.execute(action: "ModifyExclusiveInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyExclusiveInstance请求参数结构体
     public struct ModifyExclusiveInstanceRequest: TCRequestModel {
         /// 独享实例唯一id
@@ -45,7 +29,7 @@ extension Apigateway {
         /// 独享实例参数配置
         public let parameters: [InstanceParameterInput]?
         
-        public init (instanceId: String, instanceName: String?, instanceDescription: String?, parameters: [InstanceParameterInput]?) {
+        public init (instanceId: String, instanceName: String? = nil, instanceDescription: String? = nil, parameters: [InstanceParameterInput]? = nil) {
             self.instanceId = instanceId
             self.instanceName = instanceName
             self.instanceDescription = instanceDescription
@@ -72,5 +56,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改独享实例
+    ///
+    /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。​
+    @inlinable
+    public func modifyExclusiveInstance(_ input: ModifyExclusiveInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyExclusiveInstanceResponse > {
+        self.client.execute(action: "ModifyExclusiveInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改独享实例
+    ///
+    /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。​
+    @inlinable
+    public func modifyExclusiveInstance(_ input: ModifyExclusiveInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExclusiveInstanceResponse {
+        try await self.client.execute(action: "ModifyExclusiveInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

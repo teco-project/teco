@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询k8sapi异常请求规则列表
-    @inlinable
-    public func describeK8sApiAbnormalRuleList(_ input: DescribeK8sApiAbnormalRuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeK8sApiAbnormalRuleListResponse > {
-        self.client.execute(action: "DescribeK8sApiAbnormalRuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询k8sapi异常请求规则列表
-    @inlinable
-    public func describeK8sApiAbnormalRuleList(_ input: DescribeK8sApiAbnormalRuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalRuleListResponse {
-        try await self.client.execute(action: "DescribeK8sApiAbnormalRuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeK8sApiAbnormalRuleList请求参数结构体
     public struct DescribeK8sApiAbnormalRuleListRequest: TCRequestModel {
         /// 过滤条件。
@@ -48,7 +36,7 @@ extension Tcss {
         /// <li>EffectClusterCount - string  - 是否必填: 否 -影响集群数</li>
         public let by: String?
         
-        public init (filters: [RunTimeFilters]?, limit: UInt64?, offset: UInt64?, order: String?, by: String?) {
+        public init (filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -81,5 +69,17 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询k8sapi异常请求规则列表
+    @inlinable
+    public func describeK8sApiAbnormalRuleList(_ input: DescribeK8sApiAbnormalRuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeK8sApiAbnormalRuleListResponse > {
+        self.client.execute(action: "DescribeK8sApiAbnormalRuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询k8sapi异常请求规则列表
+    @inlinable
+    public func describeK8sApiAbnormalRuleList(_ input: DescribeK8sApiAbnormalRuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalRuleListResponse {
+        try await self.client.execute(action: "DescribeK8sApiAbnormalRuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

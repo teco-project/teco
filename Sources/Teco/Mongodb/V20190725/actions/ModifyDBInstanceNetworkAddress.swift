@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 修改云数据库实例网络信息
-    ///
-    /// 本接口(ModifyDBInstanceNetworkAddress)用于修改云数据库实例的网络信息，可进行基础网络转VPC网络和VPC网络之间的变换。
-    @inlinable
-    public func modifyDBInstanceNetworkAddress(_ input: ModifyDBInstanceNetworkAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceNetworkAddressResponse > {
-        self.client.execute(action: "ModifyDBInstanceNetworkAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改云数据库实例网络信息
-    ///
-    /// 本接口(ModifyDBInstanceNetworkAddress)用于修改云数据库实例的网络信息，可进行基础网络转VPC网络和VPC网络之间的变换。
-    @inlinable
-    public func modifyDBInstanceNetworkAddress(_ input: ModifyDBInstanceNetworkAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNetworkAddressResponse {
-        try await self.client.execute(action: "ModifyDBInstanceNetworkAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBInstanceNetworkAddress请求参数结构体
     public struct ModifyDBInstanceNetworkAddressRequest: TCRequestModel {
         /// 实例ID
@@ -48,7 +32,7 @@ extension Mongodb {
         /// 待修改IP信息
         public let networkAddresses: [ModifyNetworkAddress]?
         
-        public init (instanceId: String, oldIpExpiredTime: UInt64, newUniqVpcId: String, newUniqSubnetId: String, networkAddresses: [ModifyNetworkAddress]?) {
+        public init (instanceId: String, oldIpExpiredTime: UInt64, newUniqVpcId: String, newUniqSubnetId: String, networkAddresses: [ModifyNetworkAddress]? = nil) {
             self.instanceId = instanceId
             self.oldIpExpiredTime = oldIpExpiredTime
             self.newUniqVpcId = newUniqVpcId
@@ -73,5 +57,21 @@ extension Mongodb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改云数据库实例网络信息
+    ///
+    /// 本接口(ModifyDBInstanceNetworkAddress)用于修改云数据库实例的网络信息，可进行基础网络转VPC网络和VPC网络之间的变换。
+    @inlinable
+    public func modifyDBInstanceNetworkAddress(_ input: ModifyDBInstanceNetworkAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceNetworkAddressResponse > {
+        self.client.execute(action: "ModifyDBInstanceNetworkAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库实例网络信息
+    ///
+    /// 本接口(ModifyDBInstanceNetworkAddress)用于修改云数据库实例的网络信息，可进行基础网络转VPC网络和VPC网络之间的变换。
+    @inlinable
+    public func modifyDBInstanceNetworkAddress(_ input: ModifyDBInstanceNetworkAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNetworkAddressResponse {
+        try await self.client.execute(action: "ModifyDBInstanceNetworkAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询漏洞镜像统计
-    @inlinable
-    public func describeVulImageSummary(_ input: DescribeVulImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulImageSummaryResponse > {
-        self.client.execute(action: "DescribeVulImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询漏洞镜像统计
-    @inlinable
-    public func describeVulImageSummary(_ input: DescribeVulImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulImageSummaryResponse {
-        try await self.client.execute(action: "DescribeVulImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulImageSummary请求参数结构体
     public struct DescribeVulImageSummaryRequest: TCRequestModel {
         public init () {
@@ -77,5 +65,17 @@ extension Tcss {
             case vulLibraryUpdateTime = "VulLibraryUpdateTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询漏洞镜像统计
+    @inlinable
+    public func describeVulImageSummary(_ input: DescribeVulImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulImageSummaryResponse > {
+        self.client.execute(action: "DescribeVulImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞镜像统计
+    @inlinable
+    public func describeVulImageSummary(_ input: DescribeVulImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulImageSummaryResponse {
+        try await self.client.execute(action: "DescribeVulImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

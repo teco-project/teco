@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tics {
-    /// 查询威胁情报
-    ///
-    /// 提供IP和域名相关威胁情报信息查询，这些信息可以辅助检测失陷主机、帮助SIEM/SOC等系统做研判决策、帮助运营团队对设备报警的编排处理。
-    @inlinable
-    public func describeThreatInfo(_ input: DescribeThreatInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeThreatInfoResponse > {
-        self.client.execute(action: "DescribeThreatInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询威胁情报
-    ///
-    /// 提供IP和域名相关威胁情报信息查询，这些信息可以辅助检测失陷主机、帮助SIEM/SOC等系统做研判决策、帮助运营团队对设备报警的编排处理。
-    @inlinable
-    public func describeThreatInfo(_ input: DescribeThreatInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeThreatInfoResponse {
-        try await self.client.execute(action: "DescribeThreatInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeThreatInfo请求参数结构体
     public struct DescribeThreatInfoRequest: TCRequestModel {
         /// 查询对象，域名或IP
@@ -42,7 +26,7 @@ extension Tics {
         /// 附加字段，是否返回上下文。当为0时不返回上下文，当为1时返回上下文。
         public let option: UInt64?
         
-        public init (key: String, type: String, option: UInt64?) {
+        public init (key: String, type: String, option: UInt64? = nil) {
             self.key = key
             self.type = type
             self.option = option
@@ -113,5 +97,21 @@ extension Tics {
             case context = "Context"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询威胁情报
+    ///
+    /// 提供IP和域名相关威胁情报信息查询，这些信息可以辅助检测失陷主机、帮助SIEM/SOC等系统做研判决策、帮助运营团队对设备报警的编排处理。
+    @inlinable
+    public func describeThreatInfo(_ input: DescribeThreatInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeThreatInfoResponse > {
+        self.client.execute(action: "DescribeThreatInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询威胁情报
+    ///
+    /// 提供IP和域名相关威胁情报信息查询，这些信息可以辅助检测失陷主机、帮助SIEM/SOC等系统做研判决策、帮助运营团队对设备报警的编排处理。
+    @inlinable
+    public func describeThreatInfo(_ input: DescribeThreatInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeThreatInfoResponse {
+        try await self.client.execute(action: "DescribeThreatInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

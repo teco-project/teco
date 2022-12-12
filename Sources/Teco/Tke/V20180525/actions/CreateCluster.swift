@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 创建集群
-    @inlinable
-    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
-        self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建集群
-    @inlinable
-    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
-        try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCluster请求参数结构体
     public struct CreateClusterRequest: TCRequestModel {
         /// 集群容器网络配置信息
@@ -39,13 +27,13 @@ extension Tke {
         public let runInstancesForNode: [RunInstancesForNode]?
         
         /// 集群的基本配置信息
-        public let clusterBasicSettings: ClusterBasicSettings
+        public let clusterBasicSettings: ClusterBasicSettings?
         
         /// 集群高级配置信息
-        public let clusterAdvancedSettings: ClusterAdvancedSettings
+        public let clusterAdvancedSettings: ClusterAdvancedSettings?
         
         /// 节点高级配置信息
-        public let instanceAdvancedSettings: InstanceAdvancedSettings
+        public let instanceAdvancedSettings: InstanceAdvancedSettings?
         
         /// 已存在实例的配置信息。所有实例必须在同一个VPC中，最大数量不超过100，不支持添加竞价实例。
         public let existedInstancesForNode: [ExistedInstancesForNode]?
@@ -56,7 +44,7 @@ extension Tke {
         /// 需要安装的扩展组件信息
         public let extensionAddons: [ExtensionAddon]?
         
-        public init (clusterCIDRSettings: ClusterCIDRSettings, clusterType: String, runInstancesForNode: [RunInstancesForNode]?, clusterBasicSettings: ClusterBasicSettings, clusterAdvancedSettings: ClusterAdvancedSettings, instanceAdvancedSettings: InstanceAdvancedSettings, existedInstancesForNode: [ExistedInstancesForNode]?, instanceDataDiskMountSettings: [InstanceDataDiskMountSetting]?, extensionAddons: [ExtensionAddon]?) {
+        public init (clusterCIDRSettings: ClusterCIDRSettings, clusterType: String, runInstancesForNode: [RunInstancesForNode]? = nil, clusterBasicSettings: ClusterBasicSettings? = nil, clusterAdvancedSettings: ClusterAdvancedSettings? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, existedInstancesForNode: [ExistedInstancesForNode]? = nil, instanceDataDiskMountSettings: [InstanceDataDiskMountSetting]? = nil, extensionAddons: [ExtensionAddon]? = nil) {
             self.clusterCIDRSettings = clusterCIDRSettings
             self.clusterType = clusterType
             self.runInstancesForNode = runInstancesForNode
@@ -93,5 +81,17 @@ extension Tke {
             case clusterId = "ClusterId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建集群
+    @inlinable
+    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
+        self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群
+    @inlinable
+    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
+        try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

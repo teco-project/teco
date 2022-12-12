@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 删除终端用户
-    ///
-    /// 本接口（DeleteAppUsr）用于删除终端用户。
-    @inlinable
-    public func deleteAppUsr(_ input: DeleteAppUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAppUsrResponse > {
-        self.client.execute(action: "DeleteAppUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除终端用户
-    ///
-    /// 本接口（DeleteAppUsr）用于删除终端用户。
-    @inlinable
-    public func deleteAppUsr(_ input: DeleteAppUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAppUsrResponse {
-        try await self.client.execute(action: "DeleteAppUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAppUsr请求参数结构体
     public struct DeleteAppUsrRequest: TCRequestModel {
         /// 客户的终端用户在IoT Video上的唯一标识ID
@@ -53,5 +37,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除终端用户
+    ///
+    /// 本接口（DeleteAppUsr）用于删除终端用户。
+    @inlinable
+    public func deleteAppUsr(_ input: DeleteAppUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAppUsrResponse > {
+        self.client.execute(action: "DeleteAppUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除终端用户
+    ///
+    /// 本接口（DeleteAppUsr）用于删除终端用户。
+    @inlinable
+    public func deleteAppUsr(_ input: DeleteAppUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAppUsrResponse {
+        try await self.client.execute(action: "DeleteAppUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

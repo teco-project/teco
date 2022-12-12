@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 查询同步校验任务结果
-    @inlinable
-    public func describeCheckSyncJobResult(_ input: DescribeCheckSyncJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckSyncJobResultResponse > {
-        self.client.execute(action: "DescribeCheckSyncJobResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询同步校验任务结果
-    @inlinable
-    public func describeCheckSyncJobResult(_ input: DescribeCheckSyncJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckSyncJobResultResponse {
-        try await self.client.execute(action: "DescribeCheckSyncJobResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCheckSyncJobResult请求参数结构体
     public struct DescribeCheckSyncJobResultRequest: TCRequestModel {
         /// 同步任务id
         public let jobId: String?
         
-        public init (jobId: String?) {
+        public init (jobId: String? = nil) {
             self.jobId = jobId
         }
         
@@ -74,5 +62,17 @@ extension Dts {
             case stepInfos = "StepInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询同步校验任务结果
+    @inlinable
+    public func describeCheckSyncJobResult(_ input: DescribeCheckSyncJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckSyncJobResultResponse > {
+        self.client.execute(action: "DescribeCheckSyncJobResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询同步校验任务结果
+    @inlinable
+    public func describeCheckSyncJobResult(_ input: DescribeCheckSyncJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckSyncJobResultResponse {
+        try await self.client.execute(action: "DescribeCheckSyncJobResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

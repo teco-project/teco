@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 删除印章
-    ///
-    /// 此接口 (DeleteSeal) 用于删除指定ID的印章。
-    /// 注意：默认印章不支持删除
-    @inlinable
-    public func deleteSeal(_ input: DeleteSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSealResponse > {
-        self.client.execute(action: "DeleteSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除印章
-    ///
-    /// 此接口 (DeleteSeal) 用于删除指定ID的印章。
-    /// 注意：默认印章不支持删除
-    @inlinable
-    public func deleteSeal(_ input: DeleteSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealResponse {
-        try await self.client.execute(action: "DeleteSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSeal请求参数结构体
     public struct DeleteSealRequest: TCRequestModel {
         /// 调用方信息
@@ -47,7 +29,7 @@ extension Essbasic {
         /// 用户唯一标识，默认为空时删除企业印章，如非空则删除个人印章
         public let userId: String?
         
-        public init (caller: Caller, sealId: String, sourceIp: String, userId: String?) {
+        public init (caller: Caller, sealId: String, sourceIp: String, userId: String? = nil) {
             self.caller = caller
             self.sealId = sealId
             self.sourceIp = sourceIp
@@ -70,5 +52,23 @@ extension Essbasic {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除印章
+    ///
+    /// 此接口 (DeleteSeal) 用于删除指定ID的印章。
+    /// 注意：默认印章不支持删除
+    @inlinable
+    public func deleteSeal(_ input: DeleteSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSealResponse > {
+        self.client.execute(action: "DeleteSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除印章
+    ///
+    /// 此接口 (DeleteSeal) 用于删除指定ID的印章。
+    /// 注意：默认印章不支持删除
+    @inlinable
+    public func deleteSeal(_ input: DeleteSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealResponse {
+        try await self.client.execute(action: "DeleteSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

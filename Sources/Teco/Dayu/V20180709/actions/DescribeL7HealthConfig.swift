@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 导出七层健康检查配置
-    @inlinable
-    public func describeL7HealthConfig(_ input: DescribeL7HealthConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7HealthConfigResponse > {
-        self.client.execute(action: "DescribeL7HealthConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出七层健康检查配置
-    @inlinable
-    public func describeL7HealthConfig(_ input: DescribeL7HealthConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7HealthConfigResponse {
-        try await self.client.execute(action: "DescribeL7HealthConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeL7HealthConfig请求参数结构体
     public struct DescribeL7HealthConfigRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -38,7 +26,7 @@ extension Dayu {
         /// 规则ID数组，当导出所有规则的健康检查配置则不填或填空数组；
         public let ruleIdList: [String]?
         
-        public init (business: String, id: String, ruleIdList: [String]?) {
+        public init (business: String, id: String, ruleIdList: [String]? = nil) {
             self.business = business
             self.id = id
             self.ruleIdList = ruleIdList
@@ -63,5 +51,17 @@ extension Dayu {
             case healthConfig = "HealthConfig"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出七层健康检查配置
+    @inlinable
+    public func describeL7HealthConfig(_ input: DescribeL7HealthConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7HealthConfigResponse > {
+        self.client.execute(action: "DescribeL7HealthConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出七层健康检查配置
+    @inlinable
+    public func describeL7HealthConfig(_ input: DescribeL7HealthConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7HealthConfigResponse {
+        try await self.client.execute(action: "DescribeL7HealthConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

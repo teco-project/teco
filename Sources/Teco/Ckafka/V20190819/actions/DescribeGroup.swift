@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 枚举消费分组(精简版)
-    @inlinable
-    public func describeGroup(_ input: DescribeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupResponse > {
-        self.client.execute(action: "DescribeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 枚举消费分组(精简版)
-    @inlinable
-    public func describeGroup(_ input: DescribeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupResponse {
-        try await self.client.execute(action: "DescribeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGroup请求参数结构体
     public struct DescribeGroupRequest: TCRequestModel {
         /// 实例ID
@@ -41,7 +29,7 @@ extension Ckafka {
         /// 最大返回数量
         public let limit: Int64?
         
-        public init (instanceId: String, searchWord: String?, offset: Int64?, limit: Int64?) {
+        public init (instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.searchWord = searchWord
             self.offset = offset
@@ -68,5 +56,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 枚举消费分组(精简版)
+    @inlinable
+    public func describeGroup(_ input: DescribeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupResponse > {
+        self.client.execute(action: "DescribeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 枚举消费分组(精简版)
+    @inlinable
+    public func describeGroup(_ input: DescribeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupResponse {
+        try await self.client.execute(action: "DescribeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

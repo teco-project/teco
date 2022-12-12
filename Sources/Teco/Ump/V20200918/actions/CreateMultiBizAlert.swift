@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ump {
-    /// 多经点位告警
-    ///
-    /// 集团广场的多经点位告警
-    @inlinable
-    public func createMultiBizAlert(_ input: CreateMultiBizAlertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMultiBizAlertResponse > {
-        self.client.execute(action: "CreateMultiBizAlert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 多经点位告警
-    ///
-    /// 集团广场的多经点位告警
-    @inlinable
-    public func createMultiBizAlert(_ input: CreateMultiBizAlertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiBizAlertResponse {
-        try await self.client.execute(action: "CreateMultiBizAlert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMultiBizAlert请求参数结构体
     public struct CreateMultiBizAlertRequest: TCRequestModel {
         /// 集团编码
@@ -60,7 +44,7 @@ extension Ump {
         /// 告警列表
         public let warnings: [MultiBizWarning]?
         
-        public init (groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, captureTime: UInt64, state: Int64, image: String?, warnings: [MultiBizWarning]?) {
+        public init (groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, captureTime: UInt64, state: Int64, image: String? = nil, warnings: [MultiBizWarning]? = nil) {
             self.groupCode = groupCode
             self.mallId = mallId
             self.zoneId = zoneId
@@ -91,5 +75,21 @@ extension Ump {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 多经点位告警
+    ///
+    /// 集团广场的多经点位告警
+    @inlinable
+    public func createMultiBizAlert(_ input: CreateMultiBizAlertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMultiBizAlertResponse > {
+        self.client.execute(action: "CreateMultiBizAlert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 多经点位告警
+    ///
+    /// 集团广场的多经点位告警
+    @inlinable
+    public func createMultiBizAlert(_ input: CreateMultiBizAlertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiBizAlertResponse {
+        try await self.client.execute(action: "CreateMultiBizAlert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

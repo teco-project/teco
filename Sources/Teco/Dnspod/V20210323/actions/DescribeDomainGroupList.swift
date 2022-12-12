@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 获取域名分组列表
-    @inlinable
-    public func describeDomainGroupList(_ input: DescribeDomainGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainGroupListResponse > {
-        self.client.execute(action: "DescribeDomainGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取域名分组列表
-    @inlinable
-    public func describeDomainGroupList(_ input: DescribeDomainGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainGroupListResponse {
-        try await self.client.execute(action: "DescribeDomainGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomainGroupList请求参数结构体
     public struct DescribeDomainGroupListRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Dnspod {
             case groupList = "GroupList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取域名分组列表
+    @inlinable
+    public func describeDomainGroupList(_ input: DescribeDomainGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainGroupListResponse > {
+        self.client.execute(action: "DescribeDomainGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取域名分组列表
+    @inlinable
+    public func describeDomainGroupList(_ input: DescribeDomainGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainGroupListResponse {
+        try await self.client.execute(action: "DescribeDomainGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

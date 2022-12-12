@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Irp {
-    /// 上报信息流行为数据
-    ///
-    /// 上报信息流场景内的行为数据，随着数据的积累，模型的效果会逐渐稳定。
-    @inlinable
-    public func reportFeedBehavior(_ input: ReportFeedBehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportFeedBehaviorResponse > {
-        self.client.execute(action: "ReportFeedBehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上报信息流行为数据
-    ///
-    /// 上报信息流场景内的行为数据，随着数据的积累，模型的效果会逐渐稳定。
-    @inlinable
-    public func reportFeedBehavior(_ input: ReportFeedBehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedBehaviorResponse {
-        try await self.client.execute(action: "ReportFeedBehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReportFeedBehavior请求参数结构体
     public struct ReportFeedBehaviorRequest: TCRequestModel {
         /// 实例ID，在控制台获取
@@ -58,5 +42,21 @@ extension Irp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上报信息流行为数据
+    ///
+    /// 上报信息流场景内的行为数据，随着数据的积累，模型的效果会逐渐稳定。
+    @inlinable
+    public func reportFeedBehavior(_ input: ReportFeedBehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportFeedBehaviorResponse > {
+        self.client.execute(action: "ReportFeedBehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上报信息流行为数据
+    ///
+    /// 上报信息流场景内的行为数据，随着数据的积累，模型的效果会逐渐稳定。
+    @inlinable
+    public func reportFeedBehavior(_ input: ReportFeedBehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedBehaviorResponse {
+        try await self.client.execute(action: "ReportFeedBehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

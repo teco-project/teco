@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiia {
-    /// 不良行为识别
-    ///
-    /// 可以识别输入的图片中是否包含不良行为，例如打架斗殴、赌博、抽烟等，可以应用于广告图、直播截图、短视频截图等审核，减少不良行为对平台内容质量的影响，维护健康向上的互联网环境。
-    /// >     
-    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func detectMisbehavior(_ input: DetectMisbehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectMisbehaviorResponse > {
-        self.client.execute(action: "DetectMisbehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 不良行为识别
-    ///
-    /// 可以识别输入的图片中是否包含不良行为，例如打架斗殴、赌博、抽烟等，可以应用于广告图、直播截图、短视频截图等审核，减少不良行为对平台内容质量的影响，维护健康向上的互联网环境。
-    /// >     
-    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func detectMisbehavior(_ input: DetectMisbehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectMisbehaviorResponse {
-        try await self.client.execute(action: "DetectMisbehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetectMisbehavior请求参数结构体
     public struct DetectMisbehaviorRequest: TCRequestModel {
         /// 图片URL地址。 
@@ -51,7 +31,7 @@ extension Tiia {
         /// **注意：图片需要base64编码，并且要去掉编码头部。**
         public let imageBase64: String?
         
-        public init (imageUrl: String?, imageBase64: String?) {
+        public init (imageUrl: String? = nil, imageBase64: String? = nil) {
             self.imageUrl = imageUrl
             self.imageBase64 = imageBase64
         }
@@ -78,5 +58,25 @@ extension Tiia {
             case type = "Type"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 不良行为识别
+    ///
+    /// 可以识别输入的图片中是否包含不良行为，例如打架斗殴、赌博、抽烟等，可以应用于广告图、直播截图、短视频截图等审核，减少不良行为对平台内容质量的影响，维护健康向上的互联网环境。
+    /// >     
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func detectMisbehavior(_ input: DetectMisbehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectMisbehaviorResponse > {
+        self.client.execute(action: "DetectMisbehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 不良行为识别
+    ///
+    /// 可以识别输入的图片中是否包含不良行为，例如打架斗殴、赌博、抽烟等，可以应用于广告图、直播截图、短视频截图等审核，减少不良行为对平台内容质量的影响，维护健康向上的互联网环境。
+    /// >     
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func detectMisbehavior(_ input: DetectMisbehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectMisbehaviorResponse {
+        try await self.client.execute(action: "DetectMisbehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

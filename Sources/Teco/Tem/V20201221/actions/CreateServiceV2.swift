@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 创建服务
-    @inlinable
-    public func createServiceV2(_ input: CreateServiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceV2Response > {
-        self.client.execute(action: "CreateServiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建服务
-    @inlinable
-    public func createServiceV2(_ input: CreateServiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceV2Response {
-        try await self.client.execute(action: "CreateServiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateServiceV2请求参数结构体
     public struct CreateServiceV2Request: TCRequestModel {
         /// 服务名
@@ -67,7 +55,7 @@ extension Tem {
         /// - WAR
         public let deployMode: String?
         
-        public init (serviceName: String, description: String, useDefaultImageService: Int64?, repoType: Int64?, instanceId: String?, repoServer: String?, repoName: String?, sourceChannel: Int64?, subnetList: [String]?, codingLanguage: String?, deployMode: String?) {
+        public init (serviceName: String, description: String, useDefaultImageService: Int64? = nil, repoType: Int64? = nil, instanceId: String? = nil, repoServer: String? = nil, repoName: String? = nil, sourceChannel: Int64? = nil, subnetList: [String]? = nil, codingLanguage: String? = nil, deployMode: String? = nil) {
             self.serviceName = serviceName
             self.description = description
             self.useDefaultImageService = useDefaultImageService
@@ -108,5 +96,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建服务
+    @inlinable
+    public func createServiceV2(_ input: CreateServiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceV2Response > {
+        self.client.execute(action: "CreateServiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建服务
+    @inlinable
+    public func createServiceV2(_ input: CreateServiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceV2Response {
+        try await self.client.execute(action: "CreateServiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

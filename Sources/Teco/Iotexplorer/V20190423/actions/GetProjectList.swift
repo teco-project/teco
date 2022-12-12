@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取项目列表
-    ///
-    /// 提供查询用户所创建的项目列表查询功能。
-    @inlinable
-    public func getProjectList(_ input: GetProjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetProjectListResponse > {
-        self.client.execute(action: "GetProjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取项目列表
-    ///
-    /// 提供查询用户所创建的项目列表查询功能。
-    @inlinable
-    public func getProjectList(_ input: GetProjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProjectListResponse {
-        try await self.client.execute(action: "GetProjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetProjectList请求参数结构体
     public struct GetProjectListRequest: TCRequestModel {
         /// 偏移量
@@ -54,7 +38,7 @@ extension Iotexplorer {
         /// 按项目名称搜索
         public let projectName: String?
         
-        public init (offset: Int64?, limit: Int64?, instanceId: String?, projectId: String?, productId: String?, includes: [String]?, projectName: String?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, instanceId: String? = nil, projectId: String? = nil, productId: String? = nil, includes: [String]? = nil, projectName: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.instanceId = instanceId
@@ -93,5 +77,21 @@ extension Iotexplorer {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取项目列表
+    ///
+    /// 提供查询用户所创建的项目列表查询功能。
+    @inlinable
+    public func getProjectList(_ input: GetProjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetProjectListResponse > {
+        self.client.execute(action: "GetProjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取项目列表
+    ///
+    /// 提供查询用户所创建的项目列表查询功能。
+    @inlinable
+    public func getProjectList(_ input: GetProjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProjectListResponse {
+        try await self.client.execute(action: "GetProjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

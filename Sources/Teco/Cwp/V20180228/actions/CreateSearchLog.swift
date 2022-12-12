@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 添加历史搜索记录
-    @inlinable
-    public func createSearchLog(_ input: CreateSearchLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSearchLogResponse > {
-        self.client.execute(action: "CreateSearchLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加历史搜索记录
-    @inlinable
-    public func createSearchLog(_ input: CreateSearchLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchLogResponse {
-        try await self.client.execute(action: "CreateSearchLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSearchLog请求参数结构体
     public struct CreateSearchLogRequest: TCRequestModel {
         /// 搜索内容
@@ -53,5 +41,17 @@ extension Cwp {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加历史搜索记录
+    @inlinable
+    public func createSearchLog(_ input: CreateSearchLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSearchLogResponse > {
+        self.client.execute(action: "CreateSearchLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加历史搜索记录
+    @inlinable
+    public func createSearchLog(_ input: CreateSearchLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchLogResponse {
+        try await self.client.execute(action: "CreateSearchLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

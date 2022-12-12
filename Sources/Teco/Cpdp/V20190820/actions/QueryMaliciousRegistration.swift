@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 商户恶意注册接口
-    @inlinable
-    public func queryMaliciousRegistration(_ input: QueryMaliciousRegistrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMaliciousRegistrationResponse > {
-        self.client.execute(action: "QueryMaliciousRegistration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 商户恶意注册接口
-    @inlinable
-    public func queryMaliciousRegistration(_ input: QueryMaliciousRegistrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMaliciousRegistrationResponse {
-        try await self.client.execute(action: "QueryMaliciousRegistration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryMaliciousRegistration请求参数结构体
     public struct QueryMaliciousRegistrationRequest: TCRequestModel {
         /// 商户ID，调用方使用的商户号信息，与商户主体一一对应
@@ -65,7 +53,7 @@ extension Cpdp {
         /// 进件渠道号，客户自行编码即可
         public let channel: String?
         
-        public init (merchantId: String, merchantName: String, companyName: String, regAddress: String, regTime: UInt64, usci: String?, regNumber: String?, encryptedPhoneNumber: String?, encryptedEmailAddress: String?, encryptedPersonId: String?, ip: String?, channel: String?) {
+        public init (merchantId: String, merchantName: String, companyName: String, regAddress: String, regTime: UInt64, usci: String? = nil, regNumber: String? = nil, encryptedPhoneNumber: String? = nil, encryptedEmailAddress: String? = nil, encryptedPersonId: String? = nil, ip: String? = nil, channel: String? = nil) {
             self.merchantId = merchantId
             self.merchantName = merchantName
             self.companyName = companyName
@@ -106,7 +94,7 @@ extension Cpdp {
         
         /// 商户风险信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: MerchantRiskInfo
+        public let result: MerchantRiskInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -117,5 +105,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 商户恶意注册接口
+    @inlinable
+    public func queryMaliciousRegistration(_ input: QueryMaliciousRegistrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMaliciousRegistrationResponse > {
+        self.client.execute(action: "QueryMaliciousRegistration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 商户恶意注册接口
+    @inlinable
+    public func queryMaliciousRegistration(_ input: QueryMaliciousRegistrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMaliciousRegistrationResponse {
+        try await self.client.execute(action: "QueryMaliciousRegistration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

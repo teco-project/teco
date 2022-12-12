@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 获取上传的临时密钥
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（GetUploadFederationToken）用于 获取生成包上传所需要的临时密钥。
-    @inlinable
-    public func getUploadFederationToken(_ input: GetUploadFederationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUploadFederationTokenResponse > {
-        self.client.execute(action: "GetUploadFederationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取上传的临时密钥
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（GetUploadFederationToken）用于 获取生成包上传所需要的临时密钥。
-    @inlinable
-    public func getUploadFederationToken(_ input: GetUploadFederationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUploadFederationTokenResponse {
-        try await self.client.execute(action: "GetUploadFederationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetUploadFederationToken请求参数结构体
     public struct GetUploadFederationTokenRequest: TCRequestModel {
         public init () {
@@ -55,5 +37,23 @@ extension Gse {
             case assetCredentials = "AssetCredentials"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取上传的临时密钥
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（GetUploadFederationToken）用于 获取生成包上传所需要的临时密钥。
+    @inlinable
+    public func getUploadFederationToken(_ input: GetUploadFederationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUploadFederationTokenResponse > {
+        self.client.execute(action: "GetUploadFederationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取上传的临时密钥
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（GetUploadFederationToken）用于 获取生成包上传所需要的临时密钥。
+    @inlinable
+    public func getUploadFederationToken(_ input: GetUploadFederationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUploadFederationTokenResponse {
+        try await self.client.execute(action: "GetUploadFederationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

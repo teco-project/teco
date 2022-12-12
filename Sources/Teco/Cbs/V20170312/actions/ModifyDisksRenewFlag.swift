@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 修改云硬盘续费标识
-    ///
-    /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识，支持批量修改。
-    @inlinable
-    public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDisksRenewFlagResponse > {
-        self.client.execute(action: "ModifyDisksRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改云硬盘续费标识
-    ///
-    /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识，支持批量修改。
-    @inlinable
-    public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksRenewFlagResponse {
-        try await self.client.execute(action: "ModifyDisksRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDisksRenewFlag请求参数结构体
     public struct ModifyDisksRenewFlagRequest: TCRequestModel {
         /// 一个或多个待操作的云硬盘ID。
@@ -58,5 +42,21 @@ extension Cbs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改云硬盘续费标识
+    ///
+    /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识，支持批量修改。
+    @inlinable
+    public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDisksRenewFlagResponse > {
+        self.client.execute(action: "ModifyDisksRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云硬盘续费标识
+    ///
+    /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识，支持批量修改。
+    @inlinable
+    public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksRenewFlagResponse {
+        try await self.client.execute(action: "ModifyDisksRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

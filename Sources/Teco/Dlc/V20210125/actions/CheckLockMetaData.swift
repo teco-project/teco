@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 元数据锁检查
-    @inlinable
-    public func checkLockMetaData(_ input: CheckLockMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckLockMetaDataResponse > {
-        self.client.execute(action: "CheckLockMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 元数据锁检查
-    @inlinable
-    public func checkLockMetaData(_ input: CheckLockMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckLockMetaDataResponse {
-        try await self.client.execute(action: "CheckLockMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckLockMetaData请求参数结构体
     public struct CheckLockMetaDataRequest: TCRequestModel {
         /// 锁ID
@@ -41,7 +29,7 @@ extension Dlc {
         /// 过期时间ms
         public let elapsedMs: Int64?
         
-        public init (lockId: Int64, datasourceConnectionName: String?, txnId: Int64?, elapsedMs: Int64?) {
+        public init (lockId: Int64, datasourceConnectionName: String? = nil, txnId: Int64? = nil, elapsedMs: Int64? = nil) {
             self.lockId = lockId
             self.datasourceConnectionName = datasourceConnectionName
             self.txnId = txnId
@@ -72,5 +60,17 @@ extension Dlc {
             case lockState = "LockState"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 元数据锁检查
+    @inlinable
+    public func checkLockMetaData(_ input: CheckLockMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckLockMetaDataResponse > {
+        self.client.execute(action: "CheckLockMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 元数据锁检查
+    @inlinable
+    public func checkLockMetaData(_ input: CheckLockMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckLockMetaDataResponse {
+        try await self.client.execute(action: "CheckLockMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

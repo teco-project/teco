@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Apm {
-    /// 获取指标数据通用接口
-    ///
-    /// 获取指标数据通用接口。用户根据需要上送请求参数，返回对应的指标数据。
-    /// 接口调用频率限制为：20次/秒，1200次/分钟。单请求的数据点数限制为1440个。
-    @inlinable
-    public func describeGeneralMetricData(_ input: DescribeGeneralMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGeneralMetricDataResponse > {
-        self.client.execute(action: "DescribeGeneralMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取指标数据通用接口
-    ///
-    /// 获取指标数据通用接口。用户根据需要上送请求参数，返回对应的指标数据。
-    /// 接口调用频率限制为：20次/秒，1200次/分钟。单请求的数据点数限制为1440个。
-    @inlinable
-    public func describeGeneralMetricData(_ input: DescribeGeneralMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralMetricDataResponse {
-        try await self.client.execute(action: "DescribeGeneralMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGeneralMetricData请求参数结构体
     public struct DescribeGeneralMetricDataRequest: TCRequestModel {
         /// 要过滤的维度信息：
@@ -78,12 +60,12 @@ extension Apm {
         /// sql_metric视图支持：service_slow_sql_count（慢sql）、sql_duration_avg（耗时）。
         /// asc:对查询指标进行升序排序
         /// desc：对查询指标进行降序排序
-        public let orderBy: OrderBy
+        public let orderBy: OrderBy?
         
         /// 查询指标的限制条数，目前最多展示50条数据，PageSize取值为1-50，上送PageSize则根据PageSize的值展示限制条数。
         public let pageSize: Int64?
         
-        public init (filters: [GeneralFilter], metrics: [String], instanceId: String, viewName: String, groupBy: [String]?, startTime: Int64?, endTime: Int64?, period: Int64?, orderBy: OrderBy, pageSize: Int64?) {
+        public init (filters: [GeneralFilter], metrics: [String], instanceId: String, viewName: String, groupBy: [String]? = nil, startTime: Int64? = nil, endTime: Int64? = nil, period: Int64? = nil, orderBy: OrderBy? = nil, pageSize: Int64? = nil) {
             self.filters = filters
             self.metrics = metrics
             self.instanceId = instanceId
@@ -123,5 +105,23 @@ extension Apm {
             case records = "Records"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取指标数据通用接口
+    ///
+    /// 获取指标数据通用接口。用户根据需要上送请求参数，返回对应的指标数据。
+    /// 接口调用频率限制为：20次/秒，1200次/分钟。单请求的数据点数限制为1440个。
+    @inlinable
+    public func describeGeneralMetricData(_ input: DescribeGeneralMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGeneralMetricDataResponse > {
+        self.client.execute(action: "DescribeGeneralMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指标数据通用接口
+    ///
+    /// 获取指标数据通用接口。用户根据需要上送请求参数，返回对应的指标数据。
+    /// 接口调用频率限制为：20次/秒，1200次/分钟。单请求的数据点数限制为1440个。
+    @inlinable
+    public func describeGeneralMetricData(_ input: DescribeGeneralMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralMetricDataResponse {
+        try await self.client.execute(action: "DescribeGeneralMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

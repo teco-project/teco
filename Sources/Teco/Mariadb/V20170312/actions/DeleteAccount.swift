@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 删除账号
-    ///
-    /// 本接口（DeleteAccount）用于删除云数据库账号。用户名+host唯一确定一个账号。
-    @inlinable
-    public func deleteAccount(_ input: DeleteAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccountResponse > {
-        self.client.execute(action: "DeleteAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除账号
-    ///
-    /// 本接口（DeleteAccount）用于删除云数据库账号。用户名+host唯一确定一个账号。
-    @inlinable
-    public func deleteAccount(_ input: DeleteAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountResponse {
-        try await self.client.execute(action: "DeleteAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAccount请求参数结构体
     public struct DeleteAccountRequest: TCRequestModel {
         /// 实例ID，形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
@@ -63,5 +47,21 @@ extension Mariadb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除账号
+    ///
+    /// 本接口（DeleteAccount）用于删除云数据库账号。用户名+host唯一确定一个账号。
+    @inlinable
+    public func deleteAccount(_ input: DeleteAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccountResponse > {
+        self.client.execute(action: "DeleteAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除账号
+    ///
+    /// 本接口（DeleteAccount）用于删除云数据库账号。用户名+host唯一确定一个账号。
+    @inlinable
+    public func deleteAccount(_ input: DeleteAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountResponse {
+        try await self.client.execute(action: "DeleteAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

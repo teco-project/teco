@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改实例属性
-    ///
-    /// 修改实例的属性。
-    @inlinable
-    public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesAttributeResponse > {
-        self.client.execute(action: "ModifyInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例属性
-    ///
-    /// 修改实例的属性。
-    @inlinable
-    public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
-        try await self.client.execute(action: "ModifyInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstancesAttribute请求参数结构体
     public struct ModifyInstancesAttributeRequest: TCRequestModel {
         /// 待修改的实例ID列表。在单次请求的过程中，请求实例数上限为100。
@@ -42,7 +26,7 @@ extension Ecm {
         /// 指定实例的安全组Id列表，子机将重新关联指定列表的安全组，原本关联的安全组会被解绑。限制不超过5个。
         public let securityGroups: [String]?
         
-        public init (instanceIdSet: [String], instanceName: String?, securityGroups: [String]?) {
+        public init (instanceIdSet: [String], instanceName: String? = nil, securityGroups: [String]? = nil) {
             self.instanceIdSet = instanceIdSet
             self.instanceName = instanceName
             self.securityGroups = securityGroups
@@ -63,5 +47,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例属性
+    ///
+    /// 修改实例的属性。
+    @inlinable
+    public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesAttributeResponse > {
+        self.client.execute(action: "ModifyInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例属性
+    ///
+    /// 修改实例的属性。
+    @inlinable
+    public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
+        try await self.client.execute(action: "ModifyInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

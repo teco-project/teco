@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 修改网站防护设置
-    @inlinable
-    public func modifyWebPageProtectSetting(_ input: ModifyWebPageProtectSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWebPageProtectSettingResponse > {
-        self.client.execute(action: "ModifyWebPageProtectSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改网站防护设置
-    @inlinable
-    public func modifyWebPageProtectSetting(_ input: ModifyWebPageProtectSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectSettingResponse {
-        try await self.client.execute(action: "ModifyWebPageProtectSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyWebPageProtectSetting请求参数结构体
     public struct ModifyWebPageProtectSettingRequest: TCRequestModel {
         /// 需要操作的类型1 目录名称 2 防护文件类型
@@ -59,5 +47,17 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改网站防护设置
+    @inlinable
+    public func modifyWebPageProtectSetting(_ input: ModifyWebPageProtectSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWebPageProtectSettingResponse > {
+        self.client.execute(action: "ModifyWebPageProtectSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改网站防护设置
+    @inlinable
+    public func modifyWebPageProtectSetting(_ input: ModifyWebPageProtectSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectSettingResponse {
+        try await self.client.execute(action: "ModifyWebPageProtectSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 查询物理专线接入点
-    @inlinable
-    public func describeAccessPoints(_ input: DescribeAccessPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessPointsResponse > {
-        self.client.execute(action: "DescribeAccessPoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询物理专线接入点
-    @inlinable
-    public func describeAccessPoints(_ input: DescribeAccessPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessPointsResponse {
-        try await self.client.execute(action: "DescribeAccessPoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccessPoints请求参数结构体
     public struct DescribeAccessPointsRequest: TCRequestModel {
         /// 接入点所在的地域。使用DescribeRegions查询
@@ -39,7 +27,7 @@ extension Dc {
         /// 返回数量，默认为20，最大值为100。
         public let limit: Int64?
         
-        public init (regionId: String?, offset: Int64?, limit: Int64?) {
+        public init (regionId: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.regionId = regionId
             self.offset = offset
             self.limit = limit
@@ -68,5 +56,17 @@ extension Dc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询物理专线接入点
+    @inlinable
+    public func describeAccessPoints(_ input: DescribeAccessPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessPointsResponse > {
+        self.client.execute(action: "DescribeAccessPoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询物理专线接入点
+    @inlinable
+    public func describeAccessPoints(_ input: DescribeAccessPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessPointsResponse {
+        try await self.client.execute(action: "DescribeAccessPoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询实例公网访问入口状态
-    @inlinable
-    public func describeExternalEndpointStatus(_ input: DescribeExternalEndpointStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExternalEndpointStatusResponse > {
-        self.client.execute(action: "DescribeExternalEndpointStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例公网访问入口状态
-    @inlinable
-    public func describeExternalEndpointStatus(_ input: DescribeExternalEndpointStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExternalEndpointStatusResponse {
-        try await self.client.execute(action: "DescribeExternalEndpointStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExternalEndpointStatus请求参数结构体
     public struct DescribeExternalEndpointStatusRequest: TCRequestModel {
         /// 实例Id
@@ -58,5 +46,17 @@ extension Tcr {
             case reason = "Reason"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例公网访问入口状态
+    @inlinable
+    public func describeExternalEndpointStatus(_ input: DescribeExternalEndpointStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExternalEndpointStatusResponse > {
+        self.client.execute(action: "DescribeExternalEndpointStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例公网访问入口状态
+    @inlinable
+    public func describeExternalEndpointStatus(_ input: DescribeExternalEndpointStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExternalEndpointStatusResponse {
+        try await self.client.execute(action: "DescribeExternalEndpointStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

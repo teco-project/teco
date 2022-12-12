@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 删除拉流配置(该接口已下线,请使用新接口 DeleteLivePullStreamTask)
-    ///
-    /// 删除直播拉流配置。该接口已下线,请使用新接口 DeleteLivePullStreamTask。
-    @inlinable
-    public func deletePullStreamConfig(_ input: DeletePullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePullStreamConfigResponse > {
-        self.client.execute(action: "DeletePullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除拉流配置(该接口已下线,请使用新接口 DeleteLivePullStreamTask)
-    ///
-    /// 删除直播拉流配置。该接口已下线,请使用新接口 DeleteLivePullStreamTask。
-    @inlinable
-    public func deletePullStreamConfig(_ input: DeletePullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePullStreamConfigResponse {
-        try await self.client.execute(action: "DeletePullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePullStreamConfig请求参数结构体
     public struct DeletePullStreamConfigRequest: TCRequestModel {
         /// 配置 ID。
@@ -55,5 +39,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除拉流配置(该接口已下线,请使用新接口 DeleteLivePullStreamTask)
+    ///
+    /// 删除直播拉流配置。该接口已下线,请使用新接口 DeleteLivePullStreamTask。
+    @inlinable
+    public func deletePullStreamConfig(_ input: DeletePullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePullStreamConfigResponse > {
+        self.client.execute(action: "DeletePullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除拉流配置(该接口已下线,请使用新接口 DeleteLivePullStreamTask)
+    ///
+    /// 删除直播拉流配置。该接口已下线,请使用新接口 DeleteLivePullStreamTask。
+    @inlinable
+    public func deletePullStreamConfig(_ input: DeletePullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePullStreamConfigResponse {
+        try await self.client.execute(action: "DeletePullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

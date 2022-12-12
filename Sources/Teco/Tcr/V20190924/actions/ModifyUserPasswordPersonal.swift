@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 修改个人用户登录密码
-    @inlinable
-    public func modifyUserPasswordPersonal(_ input: ModifyUserPasswordPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserPasswordPersonalResponse > {
-        self.client.execute(action: "ModifyUserPasswordPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改个人用户登录密码
-    @inlinable
-    public func modifyUserPasswordPersonal(_ input: ModifyUserPasswordPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserPasswordPersonalResponse {
-        try await self.client.execute(action: "ModifyUserPasswordPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyUserPasswordPersonal请求参数结构体
     public struct ModifyUserPasswordPersonalRequest: TCRequestModel {
         /// 更新后的密码
@@ -49,5 +37,17 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改个人用户登录密码
+    @inlinable
+    public func modifyUserPasswordPersonal(_ input: ModifyUserPasswordPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserPasswordPersonalResponse > {
+        self.client.execute(action: "ModifyUserPasswordPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改个人用户登录密码
+    @inlinable
+    public func modifyUserPasswordPersonal(_ input: ModifyUserPasswordPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserPasswordPersonalResponse {
+        try await self.client.execute(action: "ModifyUserPasswordPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

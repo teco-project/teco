@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 修改快照信息
-    ///
-    /// 本接口（ModifySnapshotAttribute）用于修改指定快照的属性。
-    /// <li>“快照名称”仅为方便用户自己管理之用。</li>
-    @inlinable
-    public func modifySnapshotAttribute(_ input: ModifySnapshotAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySnapshotAttributeResponse > {
-        self.client.execute(action: "ModifySnapshotAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改快照信息
-    ///
-    /// 本接口（ModifySnapshotAttribute）用于修改指定快照的属性。
-    /// <li>“快照名称”仅为方便用户自己管理之用。</li>
-    @inlinable
-    public func modifySnapshotAttribute(_ input: ModifySnapshotAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotAttributeResponse {
-        try await self.client.execute(action: "ModifySnapshotAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySnapshotAttribute请求参数结构体
     public struct ModifySnapshotAttributeRequest: TCRequestModel {
         /// 快照 ID, 可通过 DescribeSnapshots 查询。
@@ -41,7 +23,7 @@ extension Lighthouse {
         /// 新的快照名称，最长为 60 个字符。
         public let snapshotName: String?
         
-        public init (snapshotId: String, snapshotName: String?) {
+        public init (snapshotId: String, snapshotName: String? = nil) {
             self.snapshotId = snapshotId
             self.snapshotName = snapshotName
         }
@@ -60,5 +42,23 @@ extension Lighthouse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改快照信息
+    ///
+    /// 本接口（ModifySnapshotAttribute）用于修改指定快照的属性。
+    /// <li>“快照名称”仅为方便用户自己管理之用。</li>
+    @inlinable
+    public func modifySnapshotAttribute(_ input: ModifySnapshotAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySnapshotAttributeResponse > {
+        self.client.execute(action: "ModifySnapshotAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改快照信息
+    ///
+    /// 本接口（ModifySnapshotAttribute）用于修改指定快照的属性。
+    /// <li>“快照名称”仅为方便用户自己管理之用。</li>
+    @inlinable
+    public func modifySnapshotAttribute(_ input: ModifySnapshotAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotAttributeResponse {
+        try await self.client.execute(action: "ModifySnapshotAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

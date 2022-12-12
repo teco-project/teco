@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iottid {
-    /// 请求空发TID信息
-    ///
-    /// 设备服务商请求空发产品订单的TID信息 
-    @inlinable
-    public func deliverTids(_ input: DeliverTidsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeliverTidsResponse > {
-        self.client.execute(action: "DeliverTids", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 请求空发TID信息
-    ///
-    /// 设备服务商请求空发产品订单的TID信息 
-    @inlinable
-    public func deliverTids(_ input: DeliverTidsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidsResponse {
-        try await self.client.execute(action: "DeliverTids", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeliverTids请求参数结构体
     public struct DeliverTidsRequest: TCRequestModel {
         /// 订单ID
@@ -67,5 +51,21 @@ extension Iottid {
             case productKey = "ProductKey"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 请求空发TID信息
+    ///
+    /// 设备服务商请求空发产品订单的TID信息 
+    @inlinable
+    public func deliverTids(_ input: DeliverTidsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeliverTidsResponse > {
+        self.client.execute(action: "DeliverTids", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 请求空发TID信息
+    ///
+    /// 设备服务商请求空发产品订单的TID信息 
+    @inlinable
+    public func deliverTids(_ input: DeliverTidsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidsResponse {
+        try await self.client.execute(action: "DeliverTids", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

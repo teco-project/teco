@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询函数分类
-    @inlinable
-    public func describeFunctionKinds(_ input: DescribeFunctionKindsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFunctionKindsResponse > {
-        self.client.execute(action: "DescribeFunctionKinds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询函数分类
-    @inlinable
-    public func describeFunctionKinds(_ input: DescribeFunctionKindsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFunctionKindsResponse {
-        try await self.client.execute(action: "DescribeFunctionKinds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFunctionKinds请求参数结构体
     public struct DescribeFunctionKindsRequest: TCRequestModel {
         public init () {
@@ -51,5 +39,17 @@ extension Wedata {
             case errorMessage = "ErrorMessage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询函数分类
+    @inlinable
+    public func describeFunctionKinds(_ input: DescribeFunctionKindsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFunctionKindsResponse > {
+        self.client.execute(action: "DescribeFunctionKinds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询函数分类
+    @inlinable
+    public func describeFunctionKinds(_ input: DescribeFunctionKindsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFunctionKindsResponse {
+        try await self.client.execute(action: "DescribeFunctionKinds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

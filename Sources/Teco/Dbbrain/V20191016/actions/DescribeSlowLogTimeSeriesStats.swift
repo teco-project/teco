@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dbbrain {
-    /// 获取慢日志统计柱状图
-    ///
-    /// 获取慢日志统计柱状图。
-    @inlinable
-    public func describeSlowLogTimeSeriesStats(_ input: DescribeSlowLogTimeSeriesStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogTimeSeriesStatsResponse > {
-        self.client.execute(action: "DescribeSlowLogTimeSeriesStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取慢日志统计柱状图
-    ///
-    /// 获取慢日志统计柱状图。
-    @inlinable
-    public func describeSlowLogTimeSeriesStats(_ input: DescribeSlowLogTimeSeriesStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogTimeSeriesStatsResponse {
-        try await self.client.execute(action: "DescribeSlowLogTimeSeriesStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSlowLogTimeSeriesStats请求参数结构体
     public struct DescribeSlowLogTimeSeriesStatsRequest: TCRequestModel {
         /// 实例 ID 。
@@ -49,7 +33,7 @@ extension Dbbrain {
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
         public let product: String?
         
-        public init (instanceId: String, startTime: Date, endTime: Date, product: String?) {
+        public init (instanceId: String, startTime: Date, endTime: Date, product: String? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -84,5 +68,21 @@ extension Dbbrain {
             case seriesData = "SeriesData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取慢日志统计柱状图
+    ///
+    /// 获取慢日志统计柱状图。
+    @inlinable
+    public func describeSlowLogTimeSeriesStats(_ input: DescribeSlowLogTimeSeriesStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogTimeSeriesStatsResponse > {
+        self.client.execute(action: "DescribeSlowLogTimeSeriesStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取慢日志统计柱状图
+    ///
+    /// 获取慢日志统计柱状图。
+    @inlinable
+    public func describeSlowLogTimeSeriesStats(_ input: DescribeSlowLogTimeSeriesStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogTimeSeriesStatsResponse {
+        try await self.client.execute(action: "DescribeSlowLogTimeSeriesStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

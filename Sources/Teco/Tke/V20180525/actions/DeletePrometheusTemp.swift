@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 删除模板实例
-    ///
-    /// 删除一个云原生Prometheus配置模板
-    @inlinable
-    public func deletePrometheusTemp(_ input: DeletePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusTempResponse > {
-        self.client.execute(action: "DeletePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除模板实例
-    ///
-    /// 删除一个云原生Prometheus配置模板
-    @inlinable
-    public func deletePrometheusTemp(_ input: DeletePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTempResponse {
-        try await self.client.execute(action: "DeletePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePrometheusTemp请求参数结构体
     public struct DeletePrometheusTempRequest: TCRequestModel {
         /// 模板id
@@ -53,5 +37,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除模板实例
+    ///
+    /// 删除一个云原生Prometheus配置模板
+    @inlinable
+    public func deletePrometheusTemp(_ input: DeletePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusTempResponse > {
+        self.client.execute(action: "DeletePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除模板实例
+    ///
+    /// 删除一个云原生Prometheus配置模板
+    @inlinable
+    public func deletePrometheusTemp(_ input: DeletePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTempResponse {
+        try await self.client.execute(action: "DeletePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

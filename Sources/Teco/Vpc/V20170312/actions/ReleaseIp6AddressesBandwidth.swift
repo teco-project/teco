@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 释放弹性公网IPv6地址带宽
-    ///
-    /// 该接口用于给弹性公网IPv6地址释放带宽。
-    @inlinable
-    public func releaseIp6AddressesBandwidth(_ input: ReleaseIp6AddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseIp6AddressesBandwidthResponse > {
-        self.client.execute(action: "ReleaseIp6AddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 释放弹性公网IPv6地址带宽
-    ///
-    /// 该接口用于给弹性公网IPv6地址释放带宽。
-    @inlinable
-    public func releaseIp6AddressesBandwidth(_ input: ReleaseIp6AddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseIp6AddressesBandwidthResponse {
-        try await self.client.execute(action: "ReleaseIp6AddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReleaseIp6AddressesBandwidth请求参数结构体
     public struct ReleaseIp6AddressesBandwidthRequest: TCRequestModel {
         /// IPV6地址。Ip6Addresses和Ip6AddressIds必须且只能传一个
@@ -39,7 +23,7 @@ extension Vpc {
         /// IPV6地址对应的唯一ID，形如eip-xxxxxxxx。Ip6Addresses和Ip6AddressIds必须且只能传一个。
         public let ip6AddressIds: [String]?
         
-        public init (ip6Addresses: [String]?, ip6AddressIds: [String]?) {
+        public init (ip6Addresses: [String]? = nil, ip6AddressIds: [String]? = nil) {
             self.ip6Addresses = ip6Addresses
             self.ip6AddressIds = ip6AddressIds
         }
@@ -62,5 +46,21 @@ extension Vpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 释放弹性公网IPv6地址带宽
+    ///
+    /// 该接口用于给弹性公网IPv6地址释放带宽。
+    @inlinable
+    public func releaseIp6AddressesBandwidth(_ input: ReleaseIp6AddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseIp6AddressesBandwidthResponse > {
+        self.client.execute(action: "ReleaseIp6AddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 释放弹性公网IPv6地址带宽
+    ///
+    /// 该接口用于给弹性公网IPv6地址释放带宽。
+    @inlinable
+    public func releaseIp6AddressesBandwidth(_ input: ReleaseIp6AddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseIp6AddressesBandwidthResponse {
+        try await self.client.execute(action: "ReleaseIp6AddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

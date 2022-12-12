@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 绑定黑石物理服务器成为流量镜像接收机
-    ///
-    /// 绑定黑石物理服务器成为流量镜像接收机。
-    @inlinable
-    public func bindTrafficMirrorReceivers(_ input: BindTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindTrafficMirrorReceiversResponse > {
-        self.client.execute(action: "BindTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定黑石物理服务器成为流量镜像接收机
-    ///
-    /// 绑定黑石物理服务器成为流量镜像接收机。
-    @inlinable
-    public func bindTrafficMirrorReceivers(_ input: BindTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindTrafficMirrorReceiversResponse {
-        try await self.client.execute(action: "BindTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindTrafficMirrorReceivers请求参数结构体
     public struct BindTrafficMirrorReceiversRequest: TCRequestModel {
         /// 流量镜像实例ID。
@@ -62,5 +46,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定黑石物理服务器成为流量镜像接收机
+    ///
+    /// 绑定黑石物理服务器成为流量镜像接收机。
+    @inlinable
+    public func bindTrafficMirrorReceivers(_ input: BindTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindTrafficMirrorReceiversResponse > {
+        self.client.execute(action: "BindTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定黑石物理服务器成为流量镜像接收机
+    ///
+    /// 绑定黑石物理服务器成为流量镜像接收机。
+    @inlinable
+    public func bindTrafficMirrorReceivers(_ input: BindTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindTrafficMirrorReceiversResponse {
+        try await self.client.execute(action: "BindTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

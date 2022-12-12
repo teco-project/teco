@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 获取转自适应码流模板列表
-    ///
-    /// 查询转自适应码流模板，支持根据条件，分页查询。
-    @inlinable
-    public func describeAdaptiveDynamicStreamingTemplates(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAdaptiveDynamicStreamingTemplatesResponse > {
-        self.client.execute(action: "DescribeAdaptiveDynamicStreamingTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取转自适应码流模板列表
-    ///
-    /// 查询转自适应码流模板，支持根据条件，分页查询。
-    @inlinable
-    public func describeAdaptiveDynamicStreamingTemplates(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAdaptiveDynamicStreamingTemplatesResponse {
-        try await self.client.execute(action: "DescribeAdaptiveDynamicStreamingTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAdaptiveDynamicStreamingTemplates请求参数结构体
     public struct DescribeAdaptiveDynamicStreamingTemplatesRequest: TCRequestModel {
         /// 转自适应码流模板唯一标识过滤条件，数组长度限制：100。
@@ -47,7 +31,7 @@ extension Mps {
         /// <li>Custom：用户自定义模板。</li>
         public let type: String?
         
-        public init (definitions: [UInt64]?, offset: UInt64?, limit: UInt64?, type: String?) {
+        public init (definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil) {
             self.definitions = definitions
             self.offset = offset
             self.limit = limit
@@ -78,5 +62,21 @@ extension Mps {
             case adaptiveDynamicStreamingTemplateSet = "AdaptiveDynamicStreamingTemplateSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取转自适应码流模板列表
+    ///
+    /// 查询转自适应码流模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeAdaptiveDynamicStreamingTemplates(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAdaptiveDynamicStreamingTemplatesResponse > {
+        self.client.execute(action: "DescribeAdaptiveDynamicStreamingTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取转自适应码流模板列表
+    ///
+    /// 查询转自适应码流模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeAdaptiveDynamicStreamingTemplates(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAdaptiveDynamicStreamingTemplatesResponse {
+        try await self.client.execute(action: "DescribeAdaptiveDynamicStreamingTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

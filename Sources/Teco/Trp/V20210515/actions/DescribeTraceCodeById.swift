@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 查询二维码信息
-    @inlinable
-    public func describeTraceCodeById(_ input: DescribeTraceCodeByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTraceCodeByIdResponse > {
-        self.client.execute(action: "DescribeTraceCodeById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询二维码信息
-    @inlinable
-    public func describeTraceCodeById(_ input: DescribeTraceCodeByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceCodeByIdResponse {
-        try await self.client.execute(action: "DescribeTraceCodeById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTraceCodeById请求参数结构体
     public struct DescribeTraceCodeByIdRequest: TCRequestModel {
         /// 企业ID
@@ -35,7 +23,7 @@ extension Trp {
         /// 二维码
         public let code: String?
         
-        public init (corpId: UInt64?, code: String?) {
+        public init (corpId: UInt64? = nil, code: String? = nil) {
             self.corpId = corpId
             self.code = code
         }
@@ -58,5 +46,17 @@ extension Trp {
             case traceCode = "TraceCode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询二维码信息
+    @inlinable
+    public func describeTraceCodeById(_ input: DescribeTraceCodeByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTraceCodeByIdResponse > {
+        self.client.execute(action: "DescribeTraceCodeById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询二维码信息
+    @inlinable
+    public func describeTraceCodeById(_ input: DescribeTraceCodeByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceCodeByIdResponse {
+        try await self.client.execute(action: "DescribeTraceCodeById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

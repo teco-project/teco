@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取场景绑定通道列表
-    @inlinable
-    public func describeBindSceneChannels(_ input: DescribeBindSceneChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindSceneChannelsResponse > {
-        self.client.execute(action: "DescribeBindSceneChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取场景绑定通道列表
-    @inlinable
-    public func describeBindSceneChannels(_ input: DescribeBindSceneChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindSceneChannelsResponse {
-        try await self.client.execute(action: "DescribeBindSceneChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBindSceneChannels请求参数结构体
     public struct DescribeBindSceneChannelsRequest: TCRequestModel {
         /// 条数限制最大不能超过1000
@@ -38,7 +26,7 @@ extension Iotvideoindustry {
         /// 偏移值
         public let offset: Int64?
         
-        public init (limit: Int64, sceneId: Int64?, offset: Int64?) {
+        public init (limit: Int64, sceneId: Int64? = nil, offset: Int64? = nil) {
             self.limit = limit
             self.sceneId = sceneId
             self.offset = offset
@@ -69,5 +57,17 @@ extension Iotvideoindustry {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取场景绑定通道列表
+    @inlinable
+    public func describeBindSceneChannels(_ input: DescribeBindSceneChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindSceneChannelsResponse > {
+        self.client.execute(action: "DescribeBindSceneChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取场景绑定通道列表
+    @inlinable
+    public func describeBindSceneChannels(_ input: DescribeBindSceneChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindSceneChannelsResponse {
+        try await self.client.execute(action: "DescribeBindSceneChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Btoe {
-    /// 核验存证内容hash
-    ///
-    /// 用户存证内容hash向BTOE核验存证记录的真实性。
-    @inlinable
-    public func verifyEvidenceHash(_ input: VerifyEvidenceHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyEvidenceHashResponse > {
-        self.client.execute(action: "VerifyEvidenceHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 核验存证内容hash
-    ///
-    /// 用户存证内容hash向BTOE核验存证记录的真实性。
-    @inlinable
-    public func verifyEvidenceHash(_ input: VerifyEvidenceHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEvidenceHashResponse {
-        try await self.client.execute(action: "VerifyEvidenceHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifyEvidenceHash请求参数结构体
     public struct VerifyEvidenceHashRequest: TCRequestModel {
         /// 存证内容hash，hash类型即为用户在存证时所用或所选的hash类型
@@ -57,5 +41,21 @@ extension Btoe {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 核验存证内容hash
+    ///
+    /// 用户存证内容hash向BTOE核验存证记录的真实性。
+    @inlinable
+    public func verifyEvidenceHash(_ input: VerifyEvidenceHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyEvidenceHashResponse > {
+        self.client.execute(action: "VerifyEvidenceHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 核验存证内容hash
+    ///
+    /// 用户存证内容hash向BTOE核验存证记录的真实性。
+    @inlinable
+    public func verifyEvidenceHash(_ input: VerifyEvidenceHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEvidenceHashResponse {
+        try await self.client.execute(action: "VerifyEvidenceHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

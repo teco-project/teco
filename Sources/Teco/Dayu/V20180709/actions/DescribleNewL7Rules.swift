@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取7层规则
-    @inlinable
-    public func describleNewL7Rules(_ input: DescribleNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribleNewL7RulesResponse > {
-        self.client.execute(action: "DescribleNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取7层规则
-    @inlinable
-    public func describleNewL7Rules(_ input: DescribleNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleNewL7RulesResponse {
-        try await self.client.execute(action: "DescribleNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribleNewL7Rules请求参数结构体
     public struct DescribleNewL7RulesRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP）
@@ -50,7 +38,7 @@ extension Dayu {
         /// IP搜索，选填，当需要搜索IP请填写
         public let ip: String?
         
-        public init (business: String, limit: UInt64?, offset: UInt64?, domain: String?, protocolList: [String]?, statusList: [UInt64]?, ip: String?) {
+        public init (business: String, limit: UInt64? = nil, offset: UInt64? = nil, domain: String? = nil, protocolList: [String]? = nil, statusList: [UInt64]? = nil, ip: String? = nil) {
             self.business = business
             self.limit = limit
             self.offset = offset
@@ -91,5 +79,17 @@ extension Dayu {
             case healths = "Healths"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取7层规则
+    @inlinable
+    public func describleNewL7Rules(_ input: DescribleNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribleNewL7RulesResponse > {
+        self.client.execute(action: "DescribleNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取7层规则
+    @inlinable
+    public func describleNewL7Rules(_ input: DescribleNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleNewL7RulesResponse {
+        try await self.client.execute(action: "DescribleNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

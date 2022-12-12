@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 查询固件升级任务详情
-    @inlinable
-    public func describeFirmwareTask(_ input: DescribeFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirmwareTaskResponse > {
-        self.client.execute(action: "DescribeFirmwareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询固件升级任务详情
-    @inlinable
-    public func describeFirmwareTask(_ input: DescribeFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskResponse {
-        try await self.client.execute(action: "DescribeFirmwareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFirmwareTask请求参数结构体
     public struct DescribeFirmwareTaskRequest: TCRequestModel {
         /// 产品ID
@@ -99,5 +87,17 @@ extension Iotcloud {
             case originalVersion = "OriginalVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询固件升级任务详情
+    @inlinable
+    public func describeFirmwareTask(_ input: DescribeFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirmwareTaskResponse > {
+        self.client.execute(action: "DescribeFirmwareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询固件升级任务详情
+    @inlinable
+    public func describeFirmwareTask(_ input: DescribeFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskResponse {
+        try await self.client.execute(action: "DescribeFirmwareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

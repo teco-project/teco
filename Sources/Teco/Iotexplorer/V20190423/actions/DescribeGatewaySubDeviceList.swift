@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 查询绑定到家庭的网关设备的子设备列表
-    @inlinable
-    public func describeGatewaySubDeviceList(_ input: DescribeGatewaySubDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewaySubDeviceListResponse > {
-        self.client.execute(action: "DescribeGatewaySubDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询绑定到家庭的网关设备的子设备列表
-    @inlinable
-    public func describeGatewaySubDeviceList(_ input: DescribeGatewaySubDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewaySubDeviceListResponse {
-        try await self.client.execute(action: "DescribeGatewaySubDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGatewaySubDeviceList请求参数结构体
     public struct DescribeGatewaySubDeviceListRequest: TCRequestModel {
         /// 网关产品ID
@@ -74,5 +62,17 @@ extension Iotexplorer {
             case deviceList = "DeviceList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询绑定到家庭的网关设备的子设备列表
+    @inlinable
+    public func describeGatewaySubDeviceList(_ input: DescribeGatewaySubDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewaySubDeviceListResponse > {
+        self.client.execute(action: "DescribeGatewaySubDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询绑定到家庭的网关设备的子设备列表
+    @inlinable
+    public func describeGatewaySubDeviceList(_ input: DescribeGatewaySubDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewaySubDeviceListResponse {
+        try await self.client.execute(action: "DescribeGatewaySubDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

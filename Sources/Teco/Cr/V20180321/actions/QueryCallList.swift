@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cr {
-    /// 机器人任务查询
-    @inlinable
-    public func queryCallList(_ input: QueryCallListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCallListResponse > {
-        self.client.execute(action: "QueryCallList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 机器人任务查询
-    @inlinable
-    public func queryCallList(_ input: QueryCallListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallListResponse {
-        try await self.client.execute(action: "QueryCallList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryCallList请求参数结构体
     public struct QueryCallListRequest: TCRequestModel {
         /// 模块名。默认值（固定）：AiApi
@@ -50,7 +38,7 @@ extension Cr {
         /// 通过API或平台上传的文件完整名称
         public let fileName: String?
         
-        public init (module: String, operation: String, bizDate: Date, botId: String?, botName: String?, fileName: String?) {
+        public init (module: String, operation: String, bizDate: Date, botId: String? = nil, botName: String? = nil, fileName: String? = nil) {
             self.module = module
             self.operation = operation
             self.bizDate = bizDate
@@ -82,5 +70,17 @@ extension Cr {
             case callList = "CallList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 机器人任务查询
+    @inlinable
+    public func queryCallList(_ input: QueryCallListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCallListResponse > {
+        self.client.execute(action: "QueryCallList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 机器人任务查询
+    @inlinable
+    public func queryCallList(_ input: QueryCallListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallListResponse {
+        try await self.client.execute(action: "QueryCallList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

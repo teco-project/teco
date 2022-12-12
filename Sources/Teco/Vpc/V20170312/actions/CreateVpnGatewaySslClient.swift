@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建SSL-VPN-CLIENT
-    @inlinable
-    public func createVpnGatewaySslClient(_ input: CreateVpnGatewaySslClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpnGatewaySslClientResponse > {
-        self.client.execute(action: "CreateVpnGatewaySslClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建SSL-VPN-CLIENT
-    @inlinable
-    public func createVpnGatewaySslClient(_ input: CreateVpnGatewaySslClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewaySslClientResponse {
-        try await self.client.execute(action: "CreateVpnGatewaySslClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVpnGatewaySslClient请求参数结构体
     public struct CreateVpnGatewaySslClientRequest: TCRequestModel {
         /// SSL-VPN-SERVER 实例ID。
@@ -62,5 +50,17 @@ extension Vpc {
             case sslVpnClientId = "SslVpnClientId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建SSL-VPN-CLIENT
+    @inlinable
+    public func createVpnGatewaySslClient(_ input: CreateVpnGatewaySslClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpnGatewaySslClientResponse > {
+        self.client.execute(action: "CreateVpnGatewaySslClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建SSL-VPN-CLIENT
+    @inlinable
+    public func createVpnGatewaySslClient(_ input: CreateVpnGatewaySslClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewaySslClientResponse {
+        try await self.client.execute(action: "CreateVpnGatewaySslClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

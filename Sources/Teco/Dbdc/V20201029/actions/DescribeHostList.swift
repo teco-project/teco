@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbdc {
-    /// 查询主机列表
-    ///
-    /// 本接口用于查询主机列表
-    @inlinable
-    public func describeHostList(_ input: DescribeHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostListResponse > {
-        self.client.execute(action: "DescribeHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询主机列表
-    ///
-    /// 本接口用于查询主机列表
-    @inlinable
-    public func describeHostList(_ input: DescribeHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostListResponse {
-        try await self.client.execute(action: "DescribeHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHostList请求参数结构体
     public struct DescribeHostListRequest: TCRequestModel {
         /// 独享集群实例Id
@@ -45,7 +29,7 @@ extension Dbdc {
         /// 分配状态过滤，0-可分配，1-禁止分配
         public let assignStatus: [Int64]?
         
-        public init (instanceId: String, limit: Int64?, offset: Int64?, assignStatus: [Int64]?) {
+        public init (instanceId: String, limit: Int64? = nil, offset: Int64? = nil, assignStatus: [Int64]? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset
@@ -76,5 +60,21 @@ extension Dbdc {
             case hosts = "Hosts"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询主机列表
+    ///
+    /// 本接口用于查询主机列表
+    @inlinable
+    public func describeHostList(_ input: DescribeHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostListResponse > {
+        self.client.execute(action: "DescribeHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询主机列表
+    ///
+    /// 本接口用于查询主机列表
+    @inlinable
+    public func describeHostList(_ input: DescribeHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostListResponse {
+        try await self.client.execute(action: "DescribeHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

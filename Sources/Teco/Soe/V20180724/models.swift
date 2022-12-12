@@ -33,7 +33,7 @@ extension Soe {
         /// 输入文本模式，0: 普通文本，1：[音素结构](https://cloud.tencent.com/document/product/884/33698)文本。
         public let textMode: UInt64?
         
-        public init (refText: String, evalMode: UInt64, scoreCoeff: Float, serverType: UInt64?, textMode: UInt64?) {
+        public init (refText: String, evalMode: UInt64, scoreCoeff: Float, serverType: UInt64? = nil, textMode: UInt64? = nil) {
             self.refText = refText
             self.evalMode = evalMode
             self.scoreCoeff = scoreCoeff

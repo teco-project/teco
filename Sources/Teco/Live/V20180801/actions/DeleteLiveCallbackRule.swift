@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 删除回调规则
-    ///
-    /// 删除回调规则。
-    @inlinable
-    public func deleteLiveCallbackRule(_ input: DeleteLiveCallbackRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveCallbackRuleResponse > {
-        self.client.execute(action: "DeleteLiveCallbackRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除回调规则
-    ///
-    /// 删除回调规则。
-    @inlinable
-    public func deleteLiveCallbackRule(_ input: DeleteLiveCallbackRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveCallbackRuleResponse {
-        try await self.client.execute(action: "DeleteLiveCallbackRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLiveCallbackRule请求参数结构体
     public struct DeleteLiveCallbackRuleRequest: TCRequestModel {
         /// 推流域名。
@@ -58,5 +42,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除回调规则
+    ///
+    /// 删除回调规则。
+    @inlinable
+    public func deleteLiveCallbackRule(_ input: DeleteLiveCallbackRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveCallbackRuleResponse > {
+        self.client.execute(action: "DeleteLiveCallbackRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除回调规则
+    ///
+    /// 删除回调规则。
+    @inlinable
+    public func deleteLiveCallbackRule(_ input: DeleteLiveCallbackRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveCallbackRuleResponse {
+        try await self.client.execute(action: "DeleteLiveCallbackRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

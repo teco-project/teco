@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wav {
-    /// 查询会话存档列表接口
-    ///
-    /// 根据游标拉取会话存档列表信息
-    @inlinable
-    public func queryChatArchivingList(_ input: QueryChatArchivingListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryChatArchivingListResponse > {
-        self.client.execute(action: "QueryChatArchivingList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询会话存档列表接口
-    ///
-    /// 根据游标拉取会话存档列表信息
-    @inlinable
-    public func queryChatArchivingList(_ input: QueryChatArchivingListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChatArchivingListResponse {
-        try await self.client.execute(action: "QueryChatArchivingList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryChatArchivingList请求参数结构体
     public struct QueryChatArchivingListRequest: TCRequestModel {
         /// 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
@@ -39,7 +23,7 @@ extension Wav {
         /// 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
         public let limit: Int64?
         
-        public init (cursor: String?, limit: Int64?) {
+        public init (cursor: String? = nil, limit: Int64? = nil) {
             self.cursor = cursor
             self.limit = limit
         }
@@ -68,5 +52,21 @@ extension Wav {
             case pageData = "PageData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询会话存档列表接口
+    ///
+    /// 根据游标拉取会话存档列表信息
+    @inlinable
+    public func queryChatArchivingList(_ input: QueryChatArchivingListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryChatArchivingListResponse > {
+        self.client.execute(action: "QueryChatArchivingList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询会话存档列表接口
+    ///
+    /// 根据游标拉取会话存档列表信息
+    @inlinable
+    public func queryChatArchivingList(_ input: QueryChatArchivingListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChatArchivingListResponse {
+        try await self.client.execute(action: "QueryChatArchivingList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

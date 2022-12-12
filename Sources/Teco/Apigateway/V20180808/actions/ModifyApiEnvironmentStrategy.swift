@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 修改API限流策略
-    ///
-    /// 本接口（ModifyApiEnvironmentStrategy）用于修改API限流策略
-    @inlinable
-    public func modifyApiEnvironmentStrategy(_ input: ModifyApiEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApiEnvironmentStrategyResponse > {
-        self.client.execute(action: "ModifyApiEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改API限流策略
-    ///
-    /// 本接口（ModifyApiEnvironmentStrategy）用于修改API限流策略
-    @inlinable
-    public func modifyApiEnvironmentStrategy(_ input: ModifyApiEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiEnvironmentStrategyResponse {
-        try await self.client.execute(action: "ModifyApiEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyApiEnvironmentStrategy请求参数结构体
     public struct ModifyApiEnvironmentStrategyRequest: TCRequestModel {
         /// 服务唯一ID。
@@ -73,5 +57,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改API限流策略
+    ///
+    /// 本接口（ModifyApiEnvironmentStrategy）用于修改API限流策略
+    @inlinable
+    public func modifyApiEnvironmentStrategy(_ input: ModifyApiEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApiEnvironmentStrategyResponse > {
+        self.client.execute(action: "ModifyApiEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改API限流策略
+    ///
+    /// 本接口（ModifyApiEnvironmentStrategy）用于修改API限流策略
+    @inlinable
+    public func modifyApiEnvironmentStrategy(_ input: ModifyApiEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiEnvironmentStrategyResponse {
+        try await self.client.execute(action: "ModifyApiEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

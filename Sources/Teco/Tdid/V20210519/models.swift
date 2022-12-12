@@ -308,15 +308,15 @@ extension Tdid {
         
         /// 凭证摘要
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let digest: String
+        public let digest: String?
         
         /// 凭证签名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let signature: String
+        public let signature: String?
         
         /// 更新时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let timeStamp: UInt64
+        public let timeStamp: UInt64?
         
         public init (credentialId: String, status: UInt64, issuer: String, digest: String, signature: String, timeStamp: UInt64) {
             self.credentialId = credentialId

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ivld {
-    /// 创建任务
-    ///
-    /// 创建智能标签任务。
-    /// 请注意，本接口为异步接口，**返回TaskId只代表任务创建成功，不代表任务执行成功**。
-    @inlinable
-    public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskResponse > {
-        self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建任务
-    ///
-    /// 创建智能标签任务。
-    /// 请注意，本接口为异步接口，**返回TaskId只代表任务创建成功，不代表任务执行成功**。
-    @inlinable
-    public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
-        try await self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTask请求参数结构体
     public struct CreateTaskRequest: TCRequestModel {
         /// 媒资文件ID，最长32B
@@ -53,7 +35,7 @@ extension Ivld {
         /// 任务分析完成的回调地址，该设置优先级高于控制台全局的设置；
         public let callbackURL: String?
         
-        public init (mediaId: String, mediaPreknownInfo: MediaPreknownInfo, taskName: String?, uploadVideo: Bool?, label: String?, callbackURL: String?) {
+        public init (mediaId: String, mediaPreknownInfo: MediaPreknownInfo, taskName: String? = nil, uploadVideo: Bool? = nil, label: String? = nil, callbackURL: String? = nil) {
             self.mediaId = mediaId
             self.mediaPreknownInfo = mediaPreknownInfo
             self.taskName = taskName
@@ -84,5 +66,23 @@ extension Ivld {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建任务
+    ///
+    /// 创建智能标签任务。
+    /// 请注意，本接口为异步接口，**返回TaskId只代表任务创建成功，不代表任务执行成功**。
+    @inlinable
+    public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskResponse > {
+        self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建任务
+    ///
+    /// 创建智能标签任务。
+    /// 请注意，本接口为异步接口，**返回TaskId只代表任务创建成功，不代表任务执行成功**。
+    @inlinable
+    public func createTask(_ input: CreateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
+        try await self.client.execute(action: "CreateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

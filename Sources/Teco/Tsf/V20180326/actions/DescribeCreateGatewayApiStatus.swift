@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询一键导入API分组任务的状态
-    @inlinable
-    public func describeCreateGatewayApiStatus(_ input: DescribeCreateGatewayApiStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCreateGatewayApiStatusResponse > {
-        self.client.execute(action: "DescribeCreateGatewayApiStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询一键导入API分组任务的状态
-    @inlinable
-    public func describeCreateGatewayApiStatus(_ input: DescribeCreateGatewayApiStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCreateGatewayApiStatusResponse {
-        try await self.client.execute(action: "DescribeCreateGatewayApiStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCreateGatewayApiStatus请求参数结构体
     public struct DescribeCreateGatewayApiStatusRequest: TCRequestModel {
         /// 请求方法
@@ -35,7 +23,7 @@ extension Tsf {
         /// 微服务ID
         public let microserviceId: String?
         
-        public init (groupId: String?, microserviceId: String?) {
+        public init (groupId: String? = nil, microserviceId: String? = nil) {
             self.groupId = groupId
             self.microserviceId = microserviceId
         }
@@ -58,5 +46,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询一键导入API分组任务的状态
+    @inlinable
+    public func describeCreateGatewayApiStatus(_ input: DescribeCreateGatewayApiStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCreateGatewayApiStatusResponse > {
+        self.client.execute(action: "DescribeCreateGatewayApiStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询一键导入API分组任务的状态
+    @inlinable
+    public func describeCreateGatewayApiStatus(_ input: DescribeCreateGatewayApiStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCreateGatewayApiStatusResponse {
+        try await self.client.execute(action: "DescribeCreateGatewayApiStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

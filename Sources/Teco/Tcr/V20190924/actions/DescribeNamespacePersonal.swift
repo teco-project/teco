@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询个人版命名空间信息
-    @inlinable
-    public func describeNamespacePersonal(_ input: DescribeNamespacePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespacePersonalResponse > {
-        self.client.execute(action: "DescribeNamespacePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询个人版命名空间信息
-    @inlinable
-    public func describeNamespacePersonal(_ input: DescribeNamespacePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacePersonalResponse {
-        try await self.client.execute(action: "DescribeNamespacePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNamespacePersonal请求参数结构体
     public struct DescribeNamespacePersonalRequest: TCRequestModel {
         /// 命名空间，支持模糊查询
@@ -63,5 +51,17 @@ extension Tcr {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询个人版命名空间信息
+    @inlinable
+    public func describeNamespacePersonal(_ input: DescribeNamespacePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespacePersonalResponse > {
+        self.client.execute(action: "DescribeNamespacePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询个人版命名空间信息
+    @inlinable
+    public func describeNamespacePersonal(_ input: DescribeNamespacePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacePersonalResponse {
+        try await self.client.execute(action: "DescribeNamespacePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

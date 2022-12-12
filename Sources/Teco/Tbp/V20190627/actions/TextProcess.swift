@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbp {
-    /// 文本处理
-    ///
-    /// 接收调用侧的文本输入，返回应答文本。
-    @inlinable
-    public func textProcess(_ input: TextProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextProcessResponse > {
-        self.client.execute(action: "TextProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 文本处理
-    ///
-    /// 接收调用侧的文本输入，返回应答文本。
-    @inlinable
-    public func textProcess(_ input: TextProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextProcessResponse {
-        try await self.client.execute(action: "TextProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TextProcess请求参数结构体
     public struct TextProcessRequest: TCRequestModel {
         /// 机器人标识，用于定义抽象机器人。
@@ -54,7 +38,7 @@ extension Tbp {
         /// 当PlatformType为微信公众号或企业微信时，传递对应微信公众号或企业微信的唯一标识
         public let platformId: String?
         
-        public init (botId: String, botEnv: String, terminalId: String, inputText: String, sessionAttributes: String?, platformType: String?, platformId: String?) {
+        public init (botId: String, botEnv: String, terminalId: String, inputText: String, sessionAttributes: String? = nil, platformType: String? = nil, platformId: String? = nil) {
             self.botId = botId
             self.botEnv = botEnv
             self.terminalId = terminalId
@@ -99,7 +83,7 @@ extension Tbp {
         
         /// 机器人应答。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let responseMessage: ResponseMessage
+        public let responseMessage: ResponseMessage?
         
         /// 透传字段，由用户自定义的WebService服务返回。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -123,5 +107,21 @@ extension Tbp {
             case resultType = "ResultType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 文本处理
+    ///
+    /// 接收调用侧的文本输入，返回应答文本。
+    @inlinable
+    public func textProcess(_ input: TextProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextProcessResponse > {
+        self.client.execute(action: "TextProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 文本处理
+    ///
+    /// 接收调用侧的文本输入，返回应答文本。
+    @inlinable
+    public func textProcess(_ input: TextProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextProcessResponse {
+        try await self.client.execute(action: "TextProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

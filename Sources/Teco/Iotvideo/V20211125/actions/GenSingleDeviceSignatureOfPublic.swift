@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 生成单个设备绑定的签名
-    ///
-    /// 获取设备的绑定签名
-    @inlinable
-    public func genSingleDeviceSignatureOfPublic(_ input: GenSingleDeviceSignatureOfPublicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenSingleDeviceSignatureOfPublicResponse > {
-        self.client.execute(action: "GenSingleDeviceSignatureOfPublic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 生成单个设备绑定的签名
-    ///
-    /// 获取设备的绑定签名
-    @inlinable
-    public func genSingleDeviceSignatureOfPublic(_ input: GenSingleDeviceSignatureOfPublicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenSingleDeviceSignatureOfPublicResponse {
-        try await self.client.execute(action: "GenSingleDeviceSignatureOfPublic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GenSingleDeviceSignatureOfPublic请求参数结构体
     public struct GenSingleDeviceSignatureOfPublicRequest: TCRequestModel {
         /// 设备所属的产品ID
@@ -67,5 +51,21 @@ extension Iotvideo {
             case deviceSignature = "DeviceSignature"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 生成单个设备绑定的签名
+    ///
+    /// 获取设备的绑定签名
+    @inlinable
+    public func genSingleDeviceSignatureOfPublic(_ input: GenSingleDeviceSignatureOfPublicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenSingleDeviceSignatureOfPublicResponse > {
+        self.client.execute(action: "GenSingleDeviceSignatureOfPublic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 生成单个设备绑定的签名
+    ///
+    /// 获取设备的绑定签名
+    @inlinable
+    public func genSingleDeviceSignatureOfPublic(_ input: GenSingleDeviceSignatureOfPublicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenSingleDeviceSignatureOfPublicResponse {
+        try await self.client.execute(action: "GenSingleDeviceSignatureOfPublic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

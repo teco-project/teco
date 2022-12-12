@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 动态部署并发布Bcos合约
-    @inlinable
-    public func deployDynamicBcosContract(_ input: DeployDynamicBcosContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeployDynamicBcosContractResponse > {
-        self.client.execute(action: "DeployDynamicBcosContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 动态部署并发布Bcos合约
-    @inlinable
-    public func deployDynamicBcosContract(_ input: DeployDynamicBcosContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployDynamicBcosContractResponse {
-        try await self.client.execute(action: "DeployDynamicBcosContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeployDynamicBcosContract请求参数结构体
     public struct DeployDynamicBcosContractRequest: TCRequestModel {
         /// 网络ID，可在区块链网络详情或列表中获取
@@ -47,7 +35,7 @@ extension Tbaas {
         /// 构造函数入参，Json数组，多个参数以逗号分隔（参数为数组时同理），如：["str1",["arr1","arr2"]]
         public let constructorParams: String?
         
-        public init (clusterId: String, groupId: Int64, abiInfo: String, byteCodeBin: String, signUserId: String, constructorParams: String?) {
+        public init (clusterId: String, groupId: Int64, abiInfo: String, byteCodeBin: String, signUserId: String, constructorParams: String? = nil) {
             self.clusterId = clusterId
             self.groupId = groupId
             self.abiInfo = abiInfo
@@ -78,5 +66,17 @@ extension Tbaas {
             case contractAddress = "ContractAddress"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 动态部署并发布Bcos合约
+    @inlinable
+    public func deployDynamicBcosContract(_ input: DeployDynamicBcosContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeployDynamicBcosContractResponse > {
+        self.client.execute(action: "DeployDynamicBcosContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 动态部署并发布Bcos合约
+    @inlinable
+    public func deployDynamicBcosContract(_ input: DeployDynamicBcosContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployDynamicBcosContractResponse {
+        try await self.client.execute(action: "DeployDynamicBcosContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

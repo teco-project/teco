@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 获取环境列表
-    @inlinable
-    public func describeEnvironments(_ input: DescribeEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentsResponse > {
-        self.client.execute(action: "DescribeEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取环境列表
-    @inlinable
-    public func describeEnvironments(_ input: DescribeEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentsResponse {
-        try await self.client.execute(action: "DescribeEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEnvironments请求参数结构体
     public struct DescribeEnvironmentsRequest: TCRequestModel {
         /// 分页limit
@@ -42,9 +30,9 @@ extension Tem {
         public let filters: [QueryFilter]?
         
         /// 排序字段
-        public let sortInfo: SortType
+        public let sortInfo: SortType?
         
-        public init (limit: Int64?, offset: Int64?, sourceChannel: Int64?, filters: [QueryFilter]?, sortInfo: SortType) {
+        public init (limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, filters: [QueryFilter]? = nil, sortInfo: SortType? = nil) {
             self.limit = limit
             self.offset = offset
             self.sourceChannel = sourceChannel
@@ -73,5 +61,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取环境列表
+    @inlinable
+    public func describeEnvironments(_ input: DescribeEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvironmentsResponse > {
+        self.client.execute(action: "DescribeEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取环境列表
+    @inlinable
+    public func describeEnvironments(_ input: DescribeEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentsResponse {
+        try await self.client.execute(action: "DescribeEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

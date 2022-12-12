@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 使用组件市场中的组件
-    ///
-    /// 从组件市场选中组件并添加到应用模板列表
-    @inlinable
-    public func applyMarketComponent(_ input: ApplyMarketComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyMarketComponentResponse > {
-        self.client.execute(action: "ApplyMarketComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 使用组件市场中的组件
-    ///
-    /// 从组件市场选中组件并添加到应用模板列表
-    @inlinable
-    public func applyMarketComponent(_ input: ApplyMarketComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyMarketComponentResponse {
-        try await self.client.execute(action: "ApplyMarketComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyMarketComponent请求参数结构体
     public struct ApplyMarketComponentRequest: TCRequestModel {
         /// 组件ID
@@ -53,5 +37,21 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 使用组件市场中的组件
+    ///
+    /// 从组件市场选中组件并添加到应用模板列表
+    @inlinable
+    public func applyMarketComponent(_ input: ApplyMarketComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyMarketComponentResponse > {
+        self.client.execute(action: "ApplyMarketComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 使用组件市场中的组件
+    ///
+    /// 从组件市场选中组件并添加到应用模板列表
+    @inlinable
+    public func applyMarketComponent(_ input: ApplyMarketComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyMarketComponentResponse {
+        try await self.client.execute(action: "ApplyMarketComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

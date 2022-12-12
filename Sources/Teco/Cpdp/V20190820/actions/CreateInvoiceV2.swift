@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 智慧零售-发票开具V2
-    @inlinable
-    public func createInvoiceV2(_ input: CreateInvoiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInvoiceV2Response > {
-        self.client.execute(action: "CreateInvoiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 智慧零售-发票开具V2
-    @inlinable
-    public func createInvoiceV2(_ input: CreateInvoiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInvoiceV2Response {
-        try await self.client.execute(action: "CreateInvoiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateInvoiceV2请求参数结构体
     public struct CreateInvoiceV2Request: TCRequestModel {
         /// 开票平台ID。0：高灯，1：票易通
@@ -143,7 +131,7 @@ extension Cpdp {
         /// 开票渠道。0：APP渠道，1：线下渠道，2：小程序渠道。不填默认为APP渠道
         public let invoiceChannel: Int64?
         
-        public init (invoicePlatformId: Int64, titleType: Int64, buyerTitle: String, orderId: String, amountHasTax: Int64, taxAmount: Int64, amountWithoutTax: Int64, sellerTaxpayerNum: String, sellerName: String?, sellerAddress: String?, sellerPhone: String?, sellerBankName: String?, sellerBankAccount: String?, buyerTaxpayerNum: String?, buyerAddress: String?, buyerBankName: String?, buyerBankAccount: String?, buyerPhone: String?, buyerEmail: String?, takerPhone: String?, invoiceType: Int64?, callbackUrl: String?, drawer: String?, payee: String?, checker: String?, terminalCode: String?, levyMethod: String?, deduction: Int64?, remark: String?, items: [CreateInvoiceItem]?, profile: String?, undoPart: Int64?, orderDate: String?, discount: Int64?, storeNo: String?, invoiceChannel: Int64?) {
+        public init (invoicePlatformId: Int64, titleType: Int64, buyerTitle: String, orderId: String, amountHasTax: Int64, taxAmount: Int64, amountWithoutTax: Int64, sellerTaxpayerNum: String, sellerName: String? = nil, sellerAddress: String? = nil, sellerPhone: String? = nil, sellerBankName: String? = nil, sellerBankAccount: String? = nil, buyerTaxpayerNum: String? = nil, buyerAddress: String? = nil, buyerBankName: String? = nil, buyerBankAccount: String? = nil, buyerPhone: String? = nil, buyerEmail: String? = nil, takerPhone: String? = nil, invoiceType: Int64? = nil, callbackUrl: String? = nil, drawer: String? = nil, payee: String? = nil, checker: String? = nil, terminalCode: String? = nil, levyMethod: String? = nil, deduction: Int64? = nil, remark: String? = nil, items: [CreateInvoiceItem]? = nil, profile: String? = nil, undoPart: Int64? = nil, orderDate: String? = nil, discount: Int64? = nil, storeNo: String? = nil, invoiceChannel: Int64? = nil) {
             self.invoicePlatformId = invoicePlatformId
             self.titleType = titleType
             self.buyerTitle = buyerTitle
@@ -226,7 +214,7 @@ extension Cpdp {
     public struct CreateInvoiceV2Response: TCResponseModel {
         /// 发票开具结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: CreateInvoiceResultV2
+        public let result: CreateInvoiceResultV2?
         
         /// 错误码
         public let errCode: String
@@ -243,5 +231,17 @@ extension Cpdp {
             case errMessage = "ErrMessage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 智慧零售-发票开具V2
+    @inlinable
+    public func createInvoiceV2(_ input: CreateInvoiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInvoiceV2Response > {
+        self.client.execute(action: "CreateInvoiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 智慧零售-发票开具V2
+    @inlinable
+    public func createInvoiceV2(_ input: CreateInvoiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInvoiceV2Response {
+        try await self.client.execute(action: "CreateInvoiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

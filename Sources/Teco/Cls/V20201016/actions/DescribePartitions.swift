@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 获取分区列表
-    ///
-    /// 本接口用于获取主题分区列表。
-    @inlinable
-    public func describePartitions(_ input: DescribePartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePartitionsResponse > {
-        self.client.execute(action: "DescribePartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取分区列表
-    ///
-    /// 本接口用于获取主题分区列表。
-    @inlinable
-    public func describePartitions(_ input: DescribePartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePartitionsResponse {
-        try await self.client.execute(action: "DescribePartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePartitions请求参数结构体
     public struct DescribePartitionsRequest: TCRequestModel {
         /// 日志主题ID
@@ -57,5 +41,21 @@ extension Cls {
             case partitions = "Partitions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取分区列表
+    ///
+    /// 本接口用于获取主题分区列表。
+    @inlinable
+    public func describePartitions(_ input: DescribePartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePartitionsResponse > {
+        self.client.execute(action: "DescribePartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取分区列表
+    ///
+    /// 本接口用于获取主题分区列表。
+    @inlinable
+    public func describePartitions(_ input: DescribePartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePartitionsResponse {
+        try await self.client.execute(action: "DescribePartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

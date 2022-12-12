@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ds {
-    /// 删除签章
-    ///
-    /// 删除印章接口，删除指定账号的某个印章
-    @inlinable
-    public func deleteSeal(_ input: DeleteSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSealResponse > {
-        self.client.execute(action: "DeleteSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除签章
-    ///
-    /// 删除印章接口，删除指定账号的某个印章
-    @inlinable
-    public func deleteSeal(_ input: DeleteSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealResponse {
-        try await self.client.execute(action: "DeleteSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSeal请求参数结构体
     public struct DeleteSealRequest: TCRequestModel {
         /// 模块名SealMng
@@ -72,5 +56,21 @@ extension Ds {
             case sealResId = "SealResId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除签章
+    ///
+    /// 删除印章接口，删除指定账号的某个印章
+    @inlinable
+    public func deleteSeal(_ input: DeleteSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSealResponse > {
+        self.client.execute(action: "DeleteSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除签章
+    ///
+    /// 删除印章接口，删除指定账号的某个印章
+    @inlinable
+    public func deleteSeal(_ input: DeleteSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealResponse {
+        try await self.client.execute(action: "DeleteSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

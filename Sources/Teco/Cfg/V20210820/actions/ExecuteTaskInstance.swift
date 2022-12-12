@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfg {
-    /// 执行任务动作实例
-    ///
-    /// 触发混沌演练任务的动作，对于实例进行演练操作
-    @inlinable
-    public func executeTaskInstance(_ input: ExecuteTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteTaskInstanceResponse > {
-        self.client.execute(action: "ExecuteTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 执行任务动作实例
-    ///
-    /// 触发混沌演练任务的动作，对于实例进行演练操作
-    @inlinable
-    public func executeTaskInstance(_ input: ExecuteTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskInstanceResponse {
-        try await self.client.execute(action: "ExecuteTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExecuteTaskInstance请求参数结构体
     public struct ExecuteTaskInstanceRequest: TCRequestModel {
         /// 任务ID
@@ -78,5 +62,21 @@ extension Cfg {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 执行任务动作实例
+    ///
+    /// 触发混沌演练任务的动作，对于实例进行演练操作
+    @inlinable
+    public func executeTaskInstance(_ input: ExecuteTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteTaskInstanceResponse > {
+        self.client.execute(action: "ExecuteTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 执行任务动作实例
+    ///
+    /// 触发混沌演练任务的动作，对于实例进行演练操作
+    @inlinable
+    public func executeTaskInstance(_ input: ExecuteTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskInstanceResponse {
+        try await self.client.execute(action: "ExecuteTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

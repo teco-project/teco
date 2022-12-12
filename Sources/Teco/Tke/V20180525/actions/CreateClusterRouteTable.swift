@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 创建集群路由表
-    @inlinable
-    public func createClusterRouteTable(_ input: CreateClusterRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterRouteTableResponse > {
-        self.client.execute(action: "CreateClusterRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建集群路由表
-    @inlinable
-    public func createClusterRouteTable(_ input: CreateClusterRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteTableResponse {
-        try await self.client.execute(action: "CreateClusterRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateClusterRouteTable请求参数结构体
     public struct CreateClusterRouteTableRequest: TCRequestModel {
         /// 路由表名称
@@ -41,7 +29,7 @@ extension Tke {
         /// 是否忽略CIDR冲突
         public let ignoreClusterCidrConflict: Int64?
         
-        public init (routeTableName: String, routeTableCidrBlock: String, vpcId: String, ignoreClusterCidrConflict: Int64?) {
+        public init (routeTableName: String, routeTableCidrBlock: String, vpcId: String, ignoreClusterCidrConflict: Int64? = nil) {
             self.routeTableName = routeTableName
             self.routeTableCidrBlock = routeTableCidrBlock
             self.vpcId = vpcId
@@ -64,5 +52,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建集群路由表
+    @inlinable
+    public func createClusterRouteTable(_ input: CreateClusterRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterRouteTableResponse > {
+        self.client.execute(action: "CreateClusterRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群路由表
+    @inlinable
+    public func createClusterRouteTable(_ input: CreateClusterRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteTableResponse {
+        try await self.client.execute(action: "CreateClusterRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

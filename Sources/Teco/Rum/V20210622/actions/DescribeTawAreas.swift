@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 查询片区信息
-    @inlinable
-    public func describeTawAreas(_ input: DescribeTawAreasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTawAreasResponse > {
-        self.client.execute(action: "DescribeTawAreas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询片区信息
-    @inlinable
-    public func describeTawAreas(_ input: DescribeTawAreasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTawAreasResponse {
-        try await self.client.execute(action: "DescribeTawAreas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTawAreas请求参数结构体
     public struct DescribeTawAreasRequest: TCRequestModel {
         /// 片区Id
@@ -44,7 +32,7 @@ extension Rum {
         /// 分页Offset
         public let offset: Int64?
         
-        public init (areaIds: [Int64]?, areaKeys: [String]?, limit: Int64?, areaStatuses: [Int64]?, offset: Int64?) {
+        public init (areaIds: [Int64]? = nil, areaKeys: [String]? = nil, limit: Int64? = nil, areaStatuses: [Int64]? = nil, offset: Int64? = nil) {
             self.areaIds = areaIds
             self.areaKeys = areaKeys
             self.limit = limit
@@ -77,5 +65,17 @@ extension Rum {
             case areaSet = "AreaSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询片区信息
+    @inlinable
+    public func describeTawAreas(_ input: DescribeTawAreasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTawAreasResponse > {
+        self.client.execute(action: "DescribeTawAreas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询片区信息
+    @inlinable
+    public func describeTawAreas(_ input: DescribeTawAreasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTawAreasResponse {
+        try await self.client.execute(action: "DescribeTawAreas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

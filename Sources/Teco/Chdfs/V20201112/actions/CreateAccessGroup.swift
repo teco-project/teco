@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 创建权限组
-    ///
-    /// 创建权限组。
-    @inlinable
-    public func createAccessGroup(_ input: CreateAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccessGroupResponse > {
-        self.client.execute(action: "CreateAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建权限组
-    ///
-    /// 创建权限组。
-    @inlinable
-    public func createAccessGroup(_ input: CreateAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessGroupResponse {
-        try await self.client.execute(action: "CreateAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAccessGroup请求参数结构体
     public struct CreateAccessGroupRequest: TCRequestModel {
         /// 权限组名称
@@ -45,7 +29,7 @@ extension Chdfs {
         /// 权限组描述，默认为空字符串
         public let description: String?
         
-        public init (accessGroupName: String, vpcType: UInt64, vpcId: String, description: String?) {
+        public init (accessGroupName: String, vpcType: UInt64, vpcId: String, description: String? = nil) {
             self.accessGroupName = accessGroupName
             self.vpcType = vpcType
             self.vpcId = vpcId
@@ -72,5 +56,21 @@ extension Chdfs {
             case accessGroup = "AccessGroup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建权限组
+    ///
+    /// 创建权限组。
+    @inlinable
+    public func createAccessGroup(_ input: CreateAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccessGroupResponse > {
+        self.client.execute(action: "CreateAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建权限组
+    ///
+    /// 创建权限组。
+    @inlinable
+    public func createAccessGroup(_ input: CreateAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessGroupResponse {
+        try await self.client.execute(action: "CreateAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

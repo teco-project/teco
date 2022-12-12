@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改子网属性
-    @inlinable
-    public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubnetAttributeResponse > {
-        self.client.execute(action: "ModifySubnetAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改子网属性
-    @inlinable
-    public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetAttributeResponse {
-        try await self.client.execute(action: "ModifySubnetAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySubnetAttribute请求参数结构体
     public struct ModifySubnetAttributeRequest: TCRequestModel {
         /// 子网实例ID。形如：subnet-pxir56ns。
@@ -44,7 +32,7 @@ extension Ecm {
         /// 子网的标签键值
         public let tags: [Tag]?
         
-        public init (subnetId: String, ecmRegion: String, subnetName: String?, enableBroadcast: String?, tags: [Tag]?) {
+        public init (subnetId: String, ecmRegion: String, subnetName: String? = nil, enableBroadcast: String? = nil, tags: [Tag]? = nil) {
             self.subnetId = subnetId
             self.ecmRegion = ecmRegion
             self.subnetName = subnetName
@@ -69,5 +57,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改子网属性
+    @inlinable
+    public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubnetAttributeResponse > {
+        self.client.execute(action: "ModifySubnetAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改子网属性
+    @inlinable
+    public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetAttributeResponse {
+        try await self.client.execute(action: "ModifySubnetAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

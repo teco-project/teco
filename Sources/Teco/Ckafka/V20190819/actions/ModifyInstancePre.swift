@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 预付费实例变配接口
-    ///
-    /// 预付费实例变配接口，调整磁盘，带宽
-    @inlinable
-    public func modifyInstancePre(_ input: ModifyInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancePreResponse > {
-        self.client.execute(action: "ModifyInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 预付费实例变配接口
-    ///
-    /// 预付费实例变配接口，调整磁盘，带宽
-    @inlinable
-    public func modifyInstancePre(_ input: ModifyInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancePreResponse {
-        try await self.client.execute(action: "ModifyInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstancePre请求参数结构体
     public struct ModifyInstancePreRequest: TCRequestModel {
         /// 实例名称
@@ -45,7 +29,7 @@ extension Ckafka {
         /// 预计分区，根据带宽步长，规格向上调整。
         public let partition: Int64?
         
-        public init (instanceId: String, diskSize: Int64, bandWidth: Int64, partition: Int64?) {
+        public init (instanceId: String, diskSize: Int64, bandWidth: Int64, partition: Int64? = nil) {
             self.instanceId = instanceId
             self.diskSize = diskSize
             self.bandWidth = bandWidth
@@ -72,5 +56,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 预付费实例变配接口
+    ///
+    /// 预付费实例变配接口，调整磁盘，带宽
+    @inlinable
+    public func modifyInstancePre(_ input: ModifyInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancePreResponse > {
+        self.client.execute(action: "ModifyInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 预付费实例变配接口
+    ///
+    /// 预付费实例变配接口，调整磁盘，带宽
+    @inlinable
+    public func modifyInstancePre(_ input: ModifyInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancePreResponse {
+        try await self.client.execute(action: "ModifyInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

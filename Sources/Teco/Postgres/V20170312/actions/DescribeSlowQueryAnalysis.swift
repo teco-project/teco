@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 获取慢查询统计分析列表
-    ///
-    /// 此接口（DescribeSlowQueryAnalysis）用于统计指定时间范围内的所有慢查询，根据SQL语句抽象参数后，进行聚合分析，并返回同类SQL列表。
-    @inlinable
-    public func describeSlowQueryAnalysis(_ input: DescribeSlowQueryAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowQueryAnalysisResponse > {
-        self.client.execute(action: "DescribeSlowQueryAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取慢查询统计分析列表
-    ///
-    /// 此接口（DescribeSlowQueryAnalysis）用于统计指定时间范围内的所有慢查询，根据SQL语句抽象参数后，进行聚合分析，并返回同类SQL列表。
-    @inlinable
-    public func describeSlowQueryAnalysis(_ input: DescribeSlowQueryAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowQueryAnalysisResponse {
-        try await self.client.execute(action: "DescribeSlowQueryAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSlowQueryAnalysis请求参数结构体
     public struct DescribeSlowQueryAnalysisRequest: TCRequestModel {
         /// 实例ID。
@@ -57,7 +41,7 @@ extension Postgres {
         /// 分页偏移。取值范围[0,INF)。默认0。
         public let offset: Int64?
         
-        public init (dbInstanceId: String, startTime: String, endTime: String, databaseName: String?, orderBy: String?, orderByType: String?, limit: Int64?, offset: Int64?) {
+        public init (dbInstanceId: String, startTime: String, endTime: String, databaseName: String? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.dbInstanceId = dbInstanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -96,5 +80,21 @@ extension Postgres {
             case detail = "Detail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取慢查询统计分析列表
+    ///
+    /// 此接口（DescribeSlowQueryAnalysis）用于统计指定时间范围内的所有慢查询，根据SQL语句抽象参数后，进行聚合分析，并返回同类SQL列表。
+    @inlinable
+    public func describeSlowQueryAnalysis(_ input: DescribeSlowQueryAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowQueryAnalysisResponse > {
+        self.client.execute(action: "DescribeSlowQueryAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取慢查询统计分析列表
+    ///
+    /// 此接口（DescribeSlowQueryAnalysis）用于统计指定时间范围内的所有慢查询，根据SQL语句抽象参数后，进行聚合分析，并返回同类SQL列表。
+    @inlinable
+    public func describeSlowQueryAnalysis(_ input: DescribeSlowQueryAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowQueryAnalysisResponse {
+        try await self.client.execute(action: "DescribeSlowQueryAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

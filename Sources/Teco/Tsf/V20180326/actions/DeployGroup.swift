@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 部署虚拟机部署组应用
-    @inlinable
-    public func deployGroup(_ input: DeployGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeployGroupResponse > {
-        self.client.execute(action: "DeployGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 部署虚拟机部署组应用
-    @inlinable
-    public func deployGroup(_ input: DeployGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployGroupResponse {
-        try await self.client.execute(action: "DeployGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeployGroup请求参数结构体
     public struct DeployGroupRequest: TCRequestModel {
         /// 部署组ID
@@ -48,7 +36,7 @@ extension Tsf {
         public let enableHealthCheck: Bool?
         
         /// 开启健康检查时，配置健康检查
-        public let healthCheckSettings: HealthCheckSettings
+        public let healthCheckSettings: HealthCheckSettings?
         
         /// 部署方式，0表示快速更新，1表示滚动更新
         public let updateType: UInt64?
@@ -84,9 +72,9 @@ extension Tsf {
         public let agentProfileList: [AgentProfile]?
         
         /// 预热参数配置
-        public let warmupSetting: WarmupSetting
+        public let warmupSetting: WarmupSetting?
         
-        public init (groupId: String, pkgId: String, startupParameters: String?, deployDesc: String?, forceStart: Bool?, enableHealthCheck: Bool?, healthCheckSettings: HealthCheckSettings, updateType: UInt64?, deployBetaEnable: Bool?, deployBatch: [Float]?, deployExeMode: String?, deployWaitTime: UInt64?, startScript: String?, stopScript: String?, incrementalDeployment: Bool?, jdkName: String?, jdkVersion: String?, agentProfileList: [AgentProfile]?, warmupSetting: WarmupSetting) {
+        public init (groupId: String, pkgId: String, startupParameters: String? = nil, deployDesc: String? = nil, forceStart: Bool? = nil, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, updateType: UInt64? = nil, deployBetaEnable: Bool? = nil, deployBatch: [Float]? = nil, deployExeMode: String? = nil, deployWaitTime: UInt64? = nil, startScript: String? = nil, stopScript: String? = nil, incrementalDeployment: Bool? = nil, jdkName: String? = nil, jdkVersion: String? = nil, agentProfileList: [AgentProfile]? = nil, warmupSetting: WarmupSetting? = nil) {
             self.groupId = groupId
             self.pkgId = pkgId
             self.startupParameters = startupParameters
@@ -135,7 +123,7 @@ extension Tsf {
     public struct DeployGroupResponse: TCResponseModel {
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TaskId
+        public let result: TaskId?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -144,5 +132,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 部署虚拟机部署组应用
+    @inlinable
+    public func deployGroup(_ input: DeployGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeployGroupResponse > {
+        self.client.execute(action: "DeployGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 部署虚拟机部署组应用
+    @inlinable
+    public func deployGroup(_ input: DeployGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployGroupResponse {
+        try await self.client.execute(action: "DeployGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

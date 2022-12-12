@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Acp {
-    /// 获取应用合规文件上传凭证接口
-    ///
-    /// 获取应用合规文件上传凭证，用于上传诊断文件
-    @inlinable
-    public func describeFileTicket(_ input: DescribeFileTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileTicketResponse > {
-        self.client.execute(action: "DescribeFileTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取应用合规文件上传凭证接口
-    ///
-    /// 获取应用合规文件上传凭证，用于上传诊断文件
-    @inlinable
-    public func describeFileTicket(_ input: DescribeFileTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileTicketResponse {
-        try await self.client.execute(action: "DescribeFileTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFileTicket请求参数结构体
     public struct DescribeFileTicketRequest: TCRequestModel {
         /// 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android), 3:app漏洞扫描;
@@ -76,5 +60,21 @@ extension Acp {
             case fildID = "FildID"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取应用合规文件上传凭证接口
+    ///
+    /// 获取应用合规文件上传凭证，用于上传诊断文件
+    @inlinable
+    public func describeFileTicket(_ input: DescribeFileTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileTicketResponse > {
+        self.client.execute(action: "DescribeFileTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用合规文件上传凭证接口
+    ///
+    /// 获取应用合规文件上传凭证，用于上传诊断文件
+    @inlinable
+    public func describeFileTicket(_ input: DescribeFileTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileTicketResponse {
+        try await self.client.execute(action: "DescribeFileTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

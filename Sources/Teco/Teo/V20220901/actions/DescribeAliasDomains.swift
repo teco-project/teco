@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询别称域名信息列表
-    ///
-    /// 查询别称域名信息列表。
-    @inlinable
-    public func describeAliasDomains(_ input: DescribeAliasDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAliasDomainsResponse > {
-        self.client.execute(action: "DescribeAliasDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询别称域名信息列表
-    ///
-    /// 查询别称域名信息列表。
-    @inlinable
-    public func describeAliasDomains(_ input: DescribeAliasDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAliasDomainsResponse {
-        try await self.client.execute(action: "DescribeAliasDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAliasDomains请求参数结构体
     public struct DescribeAliasDomainsRequest: TCRequestModel {
         /// 站点 ID。
@@ -46,7 +30,7 @@ extension Teo {
         /// <li>target-name<br>   按照【<strong>目标域名名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li><li>alias-name<br>   按照【<strong>别称域名名称</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>模糊查询时仅支持过滤字段名为alias-name。
         public let filters: [AdvancedFilter]?
         
-        public init (zoneId: String, offset: Int64?, limit: Int64?, filters: [AdvancedFilter]?) {
+        public init (zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil) {
             self.zoneId = zoneId
             self.offset = offset
             self.limit = limit
@@ -77,5 +61,21 @@ extension Teo {
             case aliasDomains = "AliasDomains"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询别称域名信息列表
+    ///
+    /// 查询别称域名信息列表。
+    @inlinable
+    public func describeAliasDomains(_ input: DescribeAliasDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAliasDomainsResponse > {
+        self.client.execute(action: "DescribeAliasDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询别称域名信息列表
+    ///
+    /// 查询别称域名信息列表。
+    @inlinable
+    public func describeAliasDomains(_ input: DescribeAliasDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAliasDomainsResponse {
+        try await self.client.execute(action: "DescribeAliasDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

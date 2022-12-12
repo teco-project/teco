@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 查询地域列表
-    ///
-    /// 查询TcaplusDB服务支持的地域列表
-    @inlinable
-    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionsResponse > {
-        self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询地域列表
-    ///
-    /// 查询TcaplusDB服务支持的地域列表
-    @inlinable
-    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
-        try await self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRegions请求参数结构体
     public struct DescribeRegionsRequest: TCRequestModel {
         public init () {
@@ -53,5 +37,21 @@ extension Tcaplusdb {
             case regionInfos = "RegionInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询地域列表
+    ///
+    /// 查询TcaplusDB服务支持的地域列表
+    @inlinable
+    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionsResponse > {
+        self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询地域列表
+    ///
+    /// 查询TcaplusDB服务支持的地域列表
+    @inlinable
+    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
+        try await self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 创建COS上传密钥
-    @inlinable
-    public func createCOSCredentials(_ input: CreateCOSCredentialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCOSCredentialsResponse > {
-        self.client.execute(action: "CreateCOSCredentials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建COS上传密钥
-    @inlinable
-    public func createCOSCredentials(_ input: CreateCOSCredentialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCOSCredentialsResponse {
-        try await self.client.execute(action: "CreateCOSCredentials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCOSCredentials请求参数结构体
     public struct CreateCOSCredentialsRequest: TCRequestModel {
         /// 产品ID
@@ -82,5 +70,17 @@ extension Iotvideo {
             case expiredTime = "ExpiredTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建COS上传密钥
+    @inlinable
+    public func createCOSCredentials(_ input: CreateCOSCredentialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCOSCredentialsResponse > {
+        self.client.execute(action: "CreateCOSCredentials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建COS上传密钥
+    @inlinable
+    public func createCOSCredentials(_ input: CreateCOSCredentialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCOSCredentialsResponse {
+        try await self.client.execute(action: "CreateCOSCredentials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

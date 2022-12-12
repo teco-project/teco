@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 创建云数据库的账户
-    ///
-    /// 本接口(CreateAccounts)用于创建云数据库的账户，需要指定新的账户名和域名，以及所对应的密码，同时可以设置账号的备注信息以及最大可用连接数。
-    @inlinable
-    public func createAccounts(_ input: CreateAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccountsResponse > {
-        self.client.execute(action: "CreateAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建云数据库的账户
-    ///
-    /// 本接口(CreateAccounts)用于创建云数据库的账户，需要指定新的账户名和域名，以及所对应的密码，同时可以设置账号的备注信息以及最大可用连接数。
-    @inlinable
-    public func createAccounts(_ input: CreateAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountsResponse {
-        try await self.client.execute(action: "CreateAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAccounts请求参数结构体
     public struct CreateAccountsRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -48,7 +32,7 @@ extension Cdb {
         /// 新账户最大可用连接数，默认值为10240，最大可设置值为10240。
         public let maxUserConnections: Int64?
         
-        public init (instanceId: String, accounts: [Account], password: String, description: String?, maxUserConnections: Int64?) {
+        public init (instanceId: String, accounts: [Account], password: String, description: String? = nil, maxUserConnections: Int64? = nil) {
             self.instanceId = instanceId
             self.accounts = accounts
             self.password = password
@@ -77,5 +61,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建云数据库的账户
+    ///
+    /// 本接口(CreateAccounts)用于创建云数据库的账户，需要指定新的账户名和域名，以及所对应的密码，同时可以设置账号的备注信息以及最大可用连接数。
+    @inlinable
+    public func createAccounts(_ input: CreateAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccountsResponse > {
+        self.client.execute(action: "CreateAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云数据库的账户
+    ///
+    /// 本接口(CreateAccounts)用于创建云数据库的账户，需要指定新的账户名和域名，以及所对应的密码，同时可以设置账号的备注信息以及最大可用连接数。
+    @inlinable
+    public func createAccounts(_ input: CreateAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountsResponse {
+        try await self.client.execute(action: "CreateAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

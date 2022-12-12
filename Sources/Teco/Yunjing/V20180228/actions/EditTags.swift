@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 新增或编辑标签
-    @inlinable
-    public func editTags(_ input: EditTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditTagsResponse > {
-        self.client.execute(action: "EditTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增或编辑标签
-    @inlinable
-    public func editTags(_ input: EditTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditTagsResponse {
-        try await self.client.execute(action: "EditTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EditTags请求参数结构体
     public struct EditTagsRequest: TCRequestModel {
         /// 标签名
@@ -38,7 +26,7 @@ extension Yunjing {
         /// CVM主机ID
         public let quuids: [String]?
         
-        public init (name: String, id: UInt64?, quuids: [String]?) {
+        public init (name: String, id: UInt64? = nil, quuids: [String]? = nil) {
             self.name = name
             self.id = id
             self.quuids = quuids
@@ -59,5 +47,17 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增或编辑标签
+    @inlinable
+    public func editTags(_ input: EditTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditTagsResponse > {
+        self.client.execute(action: "EditTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增或编辑标签
+    @inlinable
+    public func editTags(_ input: EditTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditTagsResponse {
+        try await self.client.execute(action: "EditTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

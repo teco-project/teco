@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cws {
-    /// 新增站点
-    ///
-    /// 本接口（CreateSites）用于新增一个或多个站点。
-    @inlinable
-    public func createSites(_ input: CreateSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSitesResponse > {
-        self.client.execute(action: "CreateSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增站点
-    ///
-    /// 本接口（CreateSites）用于新增一个或多个站点。
-    @inlinable
-    public func createSites(_ input: CreateSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSitesResponse {
-        try await self.client.execute(action: "CreateSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSites请求参数结构体
     public struct CreateSitesRequest: TCRequestModel {
         /// 站点的url列表
@@ -39,7 +23,7 @@ extension Cws {
         /// 访问网站的客户端标识
         public let userAgent: String?
         
-        public init (urls: [String], userAgent: String?) {
+        public init (urls: [String], userAgent: String? = nil) {
             self.urls = urls
             self.userAgent = userAgent
         }
@@ -66,5 +50,21 @@ extension Cws {
             case sites = "Sites"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增站点
+    ///
+    /// 本接口（CreateSites）用于新增一个或多个站点。
+    @inlinable
+    public func createSites(_ input: CreateSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSitesResponse > {
+        self.client.execute(action: "CreateSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增站点
+    ///
+    /// 本接口（CreateSites）用于新增一个或多个站点。
+    @inlinable
+    public func createSites(_ input: CreateSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSitesResponse {
+        try await self.client.execute(action: "CreateSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

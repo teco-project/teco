@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 设置防火墙实例弹性公网ip
-    ///
-    /// 设置防火墙实例弹性公网ip，目前仅支持新增模式的防火墙实例
-    @inlinable
-    public func setNatFwEip(_ input: SetNatFwEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetNatFwEipResponse > {
-        self.client.execute(action: "SetNatFwEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置防火墙实例弹性公网ip
-    ///
-    /// 设置防火墙实例弹性公网ip，目前仅支持新增模式的防火墙实例
-    @inlinable
-    public func setNatFwEip(_ input: SetNatFwEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNatFwEipResponse {
-        try await self.client.execute(action: "SetNatFwEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetNatFwEip请求参数结构体
     public struct SetNatFwEipRequest: TCRequestModel {
         /// bind：绑定eip；unbind：解绑eip；newAdd：新增防火墙弹性公网ip
@@ -42,7 +26,7 @@ extension Cfw {
         /// 当OperationType 为bind或unbind操作时，使用该字段。
         public let eipList: [String]?
         
-        public init (operationType: String, cfwInstance: String, eipList: [String]?) {
+        public init (operationType: String, cfwInstance: String, eipList: [String]? = nil) {
             self.operationType = operationType
             self.cfwInstance = cfwInstance
             self.eipList = eipList
@@ -63,5 +47,21 @@ extension Cfw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置防火墙实例弹性公网ip
+    ///
+    /// 设置防火墙实例弹性公网ip，目前仅支持新增模式的防火墙实例
+    @inlinable
+    public func setNatFwEip(_ input: SetNatFwEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetNatFwEipResponse > {
+        self.client.execute(action: "SetNatFwEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置防火墙实例弹性公网ip
+    ///
+    /// 设置防火墙实例弹性公网ip，目前仅支持新增模式的防火墙实例
+    @inlinable
+    public func setNatFwEip(_ input: SetNatFwEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNatFwEipResponse {
+        try await self.client.execute(action: "SetNatFwEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

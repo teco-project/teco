@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 查询黑石路由表条目
-    ///
-    /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
-    @inlinable
-    public func describeRoutePolicies(_ input: DescribeRoutePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoutePoliciesResponse > {
-        self.client.execute(action: "DescribeRoutePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询黑石路由表条目
-    ///
-    /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
-    @inlinable
-    public func describeRoutePolicies(_ input: DescribeRoutePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoutePoliciesResponse {
-        try await self.client.execute(action: "DescribeRoutePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRoutePolicies请求参数结构体
     public struct DescribeRoutePoliciesRequest: TCRequestModel {
         /// 路由表实例ID，例如：rtb-afg8md3c。
@@ -57,7 +41,7 @@ extension Bmvpc {
         /// 每页行数，默认为20。
         public let limit: UInt64?
         
-        public init (routeTableId: String, routePolicyIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (routeTableId: String, routePolicyIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.routeTableId = routeTableId
             self.routePolicyIds = routePolicyIds
             self.filters = filters
@@ -90,5 +74,21 @@ extension Bmvpc {
             case routePolicySet = "RoutePolicySet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询黑石路由表条目
+    ///
+    /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
+    @inlinable
+    public func describeRoutePolicies(_ input: DescribeRoutePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoutePoliciesResponse > {
+        self.client.execute(action: "DescribeRoutePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询黑石路由表条目
+    ///
+    /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
+    @inlinable
+    public func describeRoutePolicies(_ input: DescribeRoutePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoutePoliciesResponse {
+        try await self.client.execute(action: "DescribeRoutePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

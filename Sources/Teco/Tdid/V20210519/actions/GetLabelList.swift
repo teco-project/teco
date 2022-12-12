@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 标签列表
-    @inlinable
-    public func getLabelList(_ input: GetLabelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLabelListResponse > {
-        self.client.execute(action: "GetLabelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 标签列表
-    @inlinable
-    public func getLabelList(_ input: GetLabelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLabelListResponse {
-        try await self.client.execute(action: "GetLabelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetLabelList请求参数结构体
     public struct GetLabelListRequest: TCRequestModel {
         /// 每页大小
@@ -41,7 +29,7 @@ extension Tdid {
         /// 群组ID
         public let groupId: Int64?
         
-        public init (pageSize: Int64, pageNumber: Int64, clusterId: String?, groupId: Int64?) {
+        public init (pageSize: Int64, pageNumber: Int64, clusterId: String? = nil, groupId: Int64? = nil) {
             self.pageSize = pageSize
             self.pageNumber = pageNumber
             self.clusterId = clusterId
@@ -72,5 +60,17 @@ extension Tdid {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 标签列表
+    @inlinable
+    public func getLabelList(_ input: GetLabelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetLabelListResponse > {
+        self.client.execute(action: "GetLabelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 标签列表
+    @inlinable
+    public func getLabelList(_ input: GetLabelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLabelListResponse {
+        try await self.client.execute(action: "GetLabelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

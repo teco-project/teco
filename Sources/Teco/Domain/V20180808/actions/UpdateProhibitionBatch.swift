@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 批量禁止更新锁
-    ///
-    /// 本接口 ( UpdateProhibitionBatch ) 用于批量禁止更新锁。
-    @inlinable
-    public func updateProhibitionBatch(_ input: UpdateProhibitionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProhibitionBatchResponse > {
-        self.client.execute(action: "UpdateProhibitionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量禁止更新锁
-    ///
-    /// 本接口 ( UpdateProhibitionBatch ) 用于批量禁止更新锁。
-    @inlinable
-    public func updateProhibitionBatch(_ input: UpdateProhibitionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProhibitionBatchResponse {
-        try await self.client.execute(action: "UpdateProhibitionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateProhibitionBatch请求参数结构体
     public struct UpdateProhibitionBatchRequest: TCRequestModel {
         /// 批量操作的域名。
@@ -64,5 +48,21 @@ extension Domain {
             case logId = "LogId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量禁止更新锁
+    ///
+    /// 本接口 ( UpdateProhibitionBatch ) 用于批量禁止更新锁。
+    @inlinable
+    public func updateProhibitionBatch(_ input: UpdateProhibitionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProhibitionBatchResponse > {
+        self.client.execute(action: "UpdateProhibitionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量禁止更新锁
+    ///
+    /// 本接口 ( UpdateProhibitionBatch ) 用于批量禁止更新锁。
+    @inlinable
+    public func updateProhibitionBatch(_ input: UpdateProhibitionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProhibitionBatchResponse {
+        try await self.client.execute(action: "UpdateProhibitionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

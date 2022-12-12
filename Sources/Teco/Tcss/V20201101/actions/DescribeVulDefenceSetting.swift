@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询漏洞防御设置信息
-    @inlinable
-    public func describeVulDefenceSetting(_ input: DescribeVulDefenceSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefenceSettingResponse > {
-        self.client.execute(action: "DescribeVulDefenceSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询漏洞防御设置信息
-    @inlinable
-    public func describeVulDefenceSetting(_ input: DescribeVulDefenceSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceSettingResponse {
-        try await self.client.execute(action: "DescribeVulDefenceSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulDefenceSetting请求参数结构体
     public struct DescribeVulDefenceSettingRequest: TCRequestModel {
         public init () {
@@ -72,5 +60,17 @@ extension Tcss {
             case supportDefenseVulCount = "SupportDefenseVulCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询漏洞防御设置信息
+    @inlinable
+    public func describeVulDefenceSetting(_ input: DescribeVulDefenceSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefenceSettingResponse > {
+        self.client.execute(action: "DescribeVulDefenceSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞防御设置信息
+    @inlinable
+    public func describeVulDefenceSetting(_ input: DescribeVulDefenceSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceSettingResponse {
+        try await self.client.execute(action: "DescribeVulDefenceSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

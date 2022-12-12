@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 查询通道状态列表
-    ///
-    /// 本接口（DescribeProxiesStatus）用于查询通道状态列表。
-    @inlinable
-    public func describeProxiesStatus(_ input: DescribeProxiesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxiesStatusResponse > {
-        self.client.execute(action: "DescribeProxiesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询通道状态列表
-    ///
-    /// 本接口（DescribeProxiesStatus）用于查询通道状态列表。
-    @inlinable
-    public func describeProxiesStatus(_ input: DescribeProxiesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxiesStatusResponse {
-        try await self.client.execute(action: "DescribeProxiesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProxiesStatus请求参数结构体
     public struct DescribeProxiesStatusRequest: TCRequestModel {
         /// （旧参数，请切换到ProxyIds）通道ID列表。
@@ -39,7 +23,7 @@ extension Gaap {
         /// （新参数）通道ID列表。
         public let proxyIds: [String]?
         
-        public init (instanceIds: [String]?, proxyIds: [String]?) {
+        public init (instanceIds: [String]? = nil, proxyIds: [String]? = nil) {
             self.instanceIds = instanceIds
             self.proxyIds = proxyIds
         }
@@ -62,5 +46,21 @@ extension Gaap {
             case instanceStatusSet = "InstanceStatusSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询通道状态列表
+    ///
+    /// 本接口（DescribeProxiesStatus）用于查询通道状态列表。
+    @inlinable
+    public func describeProxiesStatus(_ input: DescribeProxiesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxiesStatusResponse > {
+        self.client.execute(action: "DescribeProxiesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询通道状态列表
+    ///
+    /// 本接口（DescribeProxiesStatus）用于查询通道状态列表。
+    @inlinable
+    public func describeProxiesStatus(_ input: DescribeProxiesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxiesStatusResponse {
+        try await self.client.execute(action: "DescribeProxiesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

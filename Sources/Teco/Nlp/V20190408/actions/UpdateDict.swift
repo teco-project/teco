@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Nlp {
-    /// 修改自定义词库
-    ///
-    /// 修改自定义词库元数据信息，包括名称、描述。
-    @inlinable
-    public func updateDict(_ input: UpdateDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDictResponse > {
-        self.client.execute(action: "UpdateDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改自定义词库
-    ///
-    /// 修改自定义词库元数据信息，包括名称、描述。
-    @inlinable
-    public func updateDict(_ input: UpdateDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictResponse {
-        try await self.client.execute(action: "UpdateDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateDict请求参数结构体
     public struct UpdateDictRequest: TCRequestModel {
         /// 自定义词库ID。
@@ -42,7 +26,7 @@ extension Nlp {
         /// 词库名称，不超过20字。
         public let name: String?
         
-        public init (dictId: String, description: String?, name: String?) {
+        public init (dictId: String, description: String? = nil, name: String? = nil) {
             self.dictId = dictId
             self.description = description
             self.name = name
@@ -63,5 +47,21 @@ extension Nlp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改自定义词库
+    ///
+    /// 修改自定义词库元数据信息，包括名称、描述。
+    @inlinable
+    public func updateDict(_ input: UpdateDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDictResponse > {
+        self.client.execute(action: "UpdateDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改自定义词库
+    ///
+    /// 修改自定义词库元数据信息，包括名称、描述。
+    @inlinable
+    public func updateDict(_ input: UpdateDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictResponse {
+        try await self.client.execute(action: "UpdateDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

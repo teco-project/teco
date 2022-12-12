@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 增量更新网络ACL五元组规则接口
-    ///
-    /// 本接口（ModifyNetworkAclQuintupleEntries）用于修改网络ACL五元组的入站规则和出站规则。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
-    @inlinable
-    public func modifyNetworkAclQuintupleEntries(_ input: ModifyNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkAclQuintupleEntriesResponse > {
-        self.client.execute(action: "ModifyNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 增量更新网络ACL五元组规则接口
-    ///
-    /// 本接口（ModifyNetworkAclQuintupleEntries）用于修改网络ACL五元组的入站规则和出站规则。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
-    @inlinable
-    public func modifyNetworkAclQuintupleEntries(_ input: ModifyNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclQuintupleEntriesResponse {
-        try await self.client.execute(action: "ModifyNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNetworkAclQuintupleEntries请求参数结构体
     public struct ModifyNetworkAclQuintupleEntriesRequest: TCRequestModel {
         /// 网络ACL实例ID。例如：acl-12345678。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 增量更新网络ACL五元组规则接口
+    ///
+    /// 本接口（ModifyNetworkAclQuintupleEntries）用于修改网络ACL五元组的入站规则和出站规则。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
+    @inlinable
+    public func modifyNetworkAclQuintupleEntries(_ input: ModifyNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkAclQuintupleEntriesResponse > {
+        self.client.execute(action: "ModifyNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 增量更新网络ACL五元组规则接口
+    ///
+    /// 本接口（ModifyNetworkAclQuintupleEntries）用于修改网络ACL五元组的入站规则和出站规则。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
+    @inlinable
+    public func modifyNetworkAclQuintupleEntries(_ input: ModifyNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclQuintupleEntriesResponse {
+        try await self.client.execute(action: "ModifyNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

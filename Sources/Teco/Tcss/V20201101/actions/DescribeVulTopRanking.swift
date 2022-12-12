@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询漏洞Top排名列表
-    @inlinable
-    public func describeVulTopRanking(_ input: DescribeVulTopRankingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulTopRankingResponse > {
-        self.client.execute(action: "DescribeVulTopRanking", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询漏洞Top排名列表
-    @inlinable
-    public func describeVulTopRanking(_ input: DescribeVulTopRankingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTopRankingResponse {
-        try await self.client.execute(action: "DescribeVulTopRanking", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulTopRanking请求参数结构体
     public struct DescribeVulTopRankingRequest: TCRequestModel {
         /// 漏洞分类: SYSTEM:系统漏洞 WEB:web应用漏洞 EMERGENCY:应急漏洞
@@ -53,5 +41,17 @@ extension Tcss {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询漏洞Top排名列表
+    @inlinable
+    public func describeVulTopRanking(_ input: DescribeVulTopRankingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulTopRankingResponse > {
+        self.client.execute(action: "DescribeVulTopRanking", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞Top排名列表
+    @inlinable
+    public func describeVulTopRanking(_ input: DescribeVulTopRankingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTopRankingResponse {
+        try await self.client.execute(action: "DescribeVulTopRanking", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

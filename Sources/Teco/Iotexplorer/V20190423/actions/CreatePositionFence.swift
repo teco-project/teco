@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 创建围栏
-    @inlinable
-    public func createPositionFence(_ input: CreatePositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePositionFenceResponse > {
-        self.client.execute(action: "CreatePositionFence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建围栏
-    @inlinable
-    public func createPositionFence(_ input: CreatePositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePositionFenceResponse {
-        try await self.client.execute(action: "CreatePositionFence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePositionFence请求参数结构体
     public struct CreatePositionFenceRequest: TCRequestModel {
         /// 位置空间Id
@@ -41,7 +29,7 @@ extension Iotexplorer {
         /// 围栏描述
         public let fenceDesc: String?
         
-        public init (spaceId: String, fenceName: String, fenceArea: String, fenceDesc: String?) {
+        public init (spaceId: String, fenceName: String, fenceArea: String, fenceDesc: String? = nil) {
             self.spaceId = spaceId
             self.fenceName = fenceName
             self.fenceArea = fenceArea
@@ -64,5 +52,17 @@ extension Iotexplorer {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建围栏
+    @inlinable
+    public func createPositionFence(_ input: CreatePositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePositionFenceResponse > {
+        self.client.execute(action: "CreatePositionFence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建围栏
+    @inlinable
+    public func createPositionFence(_ input: CreatePositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePositionFenceResponse {
+        try await self.client.execute(action: "CreatePositionFence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

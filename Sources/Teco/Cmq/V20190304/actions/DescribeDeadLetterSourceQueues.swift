@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cmq {
-    /// 枚举死信队列源队列
-    @inlinable
-    public func describeDeadLetterSourceQueues(_ input: DescribeDeadLetterSourceQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeadLetterSourceQueuesResponse > {
-        self.client.execute(action: "DescribeDeadLetterSourceQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 枚举死信队列源队列
-    @inlinable
-    public func describeDeadLetterSourceQueues(_ input: DescribeDeadLetterSourceQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeadLetterSourceQueuesResponse {
-        try await self.client.execute(action: "DescribeDeadLetterSourceQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeadLetterSourceQueues请求参数结构体
     public struct DescribeDeadLetterSourceQueuesRequest: TCRequestModel {
         /// 死信队列名称
@@ -41,7 +29,7 @@ extension Cmq {
         /// 过滤死信队列源队列名称，目前仅支持SourceQueueName过滤
         public let filters: [Filter]?
         
-        public init (deadLetterQueueName: String, limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (deadLetterQueueName: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.deadLetterQueueName = deadLetterQueueName
             self.limit = limit
             self.offset = offset
@@ -72,5 +60,17 @@ extension Cmq {
             case queueSet = "QueueSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 枚举死信队列源队列
+    @inlinable
+    public func describeDeadLetterSourceQueues(_ input: DescribeDeadLetterSourceQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeadLetterSourceQueuesResponse > {
+        self.client.execute(action: "DescribeDeadLetterSourceQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 枚举死信队列源队列
+    @inlinable
+    public func describeDeadLetterSourceQueues(_ input: DescribeDeadLetterSourceQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeadLetterSourceQueuesResponse {
+        try await self.client.execute(action: "DescribeDeadLetterSourceQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Postgres {
-    /// 获取慢查询日志 （废弃）
-    ///
-    /// 本接口（DescribeDBSlowlogs）用于获取慢查询日志。已于2021.09.01日正式废弃，后续此接口将不再返回任何数据，新接口为DescribeSlowQueryList，详细请查看：https://cloud.tencent.com/document/product/409/60540
-    @inlinable
-    public func describeDBSlowlogs(_ input: DescribeDBSlowlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBSlowlogsResponse > {
-        self.client.execute(action: "DescribeDBSlowlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取慢查询日志 （废弃）
-    ///
-    /// 本接口（DescribeDBSlowlogs）用于获取慢查询日志。已于2021.09.01日正式废弃，后续此接口将不再返回任何数据，新接口为DescribeSlowQueryList，详细请查看：https://cloud.tencent.com/document/product/409/60540
-    @inlinable
-    public func describeDBSlowlogs(_ input: DescribeDBSlowlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSlowlogsResponse {
-        try await self.client.execute(action: "DescribeDBSlowlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBSlowlogs请求参数结构体
     public struct DescribeDBSlowlogsRequest: TCRequestModel {
         /// 实例ID，形如postgres-lnp6j617
@@ -61,7 +45,7 @@ extension Postgres {
         /// 分页返回结果，返回结果的第几页，从0开始计数
         public let offset: Int64?
         
-        public init (dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String?, orderBy: String?, orderByType: String?, limit: Int64?, offset: Int64?) {
+        public init (dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.dbInstanceId = dbInstanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -100,5 +84,21 @@ extension Postgres {
             case detail = "Detail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取慢查询日志 （废弃）
+    ///
+    /// 本接口（DescribeDBSlowlogs）用于获取慢查询日志。已于2021.09.01日正式废弃，后续此接口将不再返回任何数据，新接口为DescribeSlowQueryList，详细请查看：https://cloud.tencent.com/document/product/409/60540
+    @inlinable
+    public func describeDBSlowlogs(_ input: DescribeDBSlowlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBSlowlogsResponse > {
+        self.client.execute(action: "DescribeDBSlowlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取慢查询日志 （废弃）
+    ///
+    /// 本接口（DescribeDBSlowlogs）用于获取慢查询日志。已于2021.09.01日正式废弃，后续此接口将不再返回任何数据，新接口为DescribeSlowQueryList，详细请查看：https://cloud.tencent.com/document/product/409/60540
+    @inlinable
+    public func describeDBSlowlogs(_ input: DescribeDBSlowlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSlowlogsResponse {
+        try await self.client.execute(action: "DescribeDBSlowlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

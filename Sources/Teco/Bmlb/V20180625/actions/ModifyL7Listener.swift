@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 修改黑石负载均衡七层监听器
-    ///
-    /// 修改黑石负载均衡七层监听器。
-    @inlinable
-    public func modifyL7Listener(_ input: ModifyL7ListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL7ListenerResponse > {
-        self.client.execute(action: "ModifyL7Listener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改黑石负载均衡七层监听器
-    ///
-    /// 修改黑石负载均衡七层监听器。
-    @inlinable
-    public func modifyL7Listener(_ input: ModifyL7ListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7ListenerResponse {
-        try await self.client.execute(action: "ModifyL7Listener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyL7Listener请求参数结构体
     public struct ModifyL7ListenerRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -72,7 +56,7 @@ extension Bmlb {
         /// 转发协议。当监听器Protocol为https时并且SslMode为1或2时，有意义。可选的值为0：https，1：spdy，2：http2，3：spdy+http2。
         public let forwardProtocol: Int64?
         
-        public init (loadBalancerId: String, listenerId: String, listenerName: String?, sslMode: Int64?, certId: String?, certName: String?, certContent: String?, certKey: String?, certCaId: String?, certCaName: String?, certCaContent: String?, bandwidth: Int64?, forwardProtocol: Int64?) {
+        public init (loadBalancerId: String, listenerId: String, listenerName: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil, certCaId: String? = nil, certCaName: String? = nil, certCaContent: String? = nil, bandwidth: Int64? = nil, forwardProtocol: Int64? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.listenerName = listenerName
@@ -117,5 +101,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改黑石负载均衡七层监听器
+    ///
+    /// 修改黑石负载均衡七层监听器。
+    @inlinable
+    public func modifyL7Listener(_ input: ModifyL7ListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL7ListenerResponse > {
+        self.client.execute(action: "ModifyL7Listener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改黑石负载均衡七层监听器
+    ///
+    /// 修改黑石负载均衡七层监听器。
+    @inlinable
+    public func modifyL7Listener(_ input: ModifyL7ListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7ListenerResponse {
+        try await self.client.execute(action: "ModifyL7Listener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

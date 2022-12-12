@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 替换路由策略
-    ///
-    /// 本接口（ReplaceRoutes）根据路由策略ID（RouteId）修改指定的路由策略（Route），支持批量修改。
-    @inlinable
-    public func replaceRoutes(_ input: ReplaceRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceRoutesResponse > {
-        self.client.execute(action: "ReplaceRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 替换路由策略
-    ///
-    /// 本接口（ReplaceRoutes）根据路由策略ID（RouteId）修改指定的路由策略（Route），支持批量修改。
-    @inlinable
-    public func replaceRoutes(_ input: ReplaceRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRoutesResponse {
-        try await self.client.execute(action: "ReplaceRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReplaceRoutes请求参数结构体
     public struct ReplaceRoutesRequest: TCRequestModel {
         /// 路由表实例ID，例如：rtb-azd4dt1c。
@@ -66,5 +50,21 @@ extension Vpc {
             case newRouteSet = "NewRouteSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 替换路由策略
+    ///
+    /// 本接口（ReplaceRoutes）根据路由策略ID（RouteId）修改指定的路由策略（Route），支持批量修改。
+    @inlinable
+    public func replaceRoutes(_ input: ReplaceRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceRoutesResponse > {
+        self.client.execute(action: "ReplaceRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 替换路由策略
+    ///
+    /// 本接口（ReplaceRoutes）根据路由策略ID（RouteId）修改指定的路由策略（Route），支持批量修改。
+    @inlinable
+    public func replaceRoutes(_ input: ReplaceRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRoutesResponse {
+        try await self.client.execute(action: "ReplaceRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

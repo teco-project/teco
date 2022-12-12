@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建路由策略
-    ///
-    /// 本接口(CreateRoutes)用于创建路由策略。
-    /// * 向指定路由表批量新增路由策略。
-    @inlinable
-    public func createRoutes(_ input: CreateRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoutesResponse > {
-        self.client.execute(action: "CreateRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建路由策略
-    ///
-    /// 本接口(CreateRoutes)用于创建路由策略。
-    /// * 向指定路由表批量新增路由策略。
-    @inlinable
-    public func createRoutes(_ input: CreateRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutesResponse {
-        try await self.client.execute(action: "CreateRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRoutes请求参数结构体
     public struct CreateRoutesRequest: TCRequestModel {
         /// 路由表实例ID。
@@ -68,5 +50,23 @@ extension Vpc {
             case routeTableSet = "RouteTableSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建路由策略
+    ///
+    /// 本接口(CreateRoutes)用于创建路由策略。
+    /// * 向指定路由表批量新增路由策略。
+    @inlinable
+    public func createRoutes(_ input: CreateRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoutesResponse > {
+        self.client.execute(action: "CreateRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建路由策略
+    ///
+    /// 本接口(CreateRoutes)用于创建路由策略。
+    /// * 向指定路由表批量新增路由策略。
+    @inlinable
+    public func createRoutes(_ input: CreateRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutesResponse {
+        try await self.client.execute(action: "CreateRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

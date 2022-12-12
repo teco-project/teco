@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 修改任务
-    @inlinable
-    public func modifyTask(_ input: ModifyTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskResponse > {
-        self.client.execute(action: "ModifyTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改任务
-    @inlinable
-    public func modifyTask(_ input: ModifyTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskResponse {
-        try await self.client.execute(action: "ModifyTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTask请求参数结构体
     public struct ModifyTaskRequest: TCRequestModel {
         /// 任务ID
@@ -45,7 +33,7 @@ extension Tsf {
         public let executeType: String?
         
         /// 触发规则
-        public let taskRule: TaskRule
+        public let taskRule: TaskRule?
         
         /// 超时时间，单位 ms
         public let timeOut: UInt64?
@@ -60,7 +48,7 @@ extension Tsf {
         public let shardArguments: [ShardArgument]?
         
         /// 高级设置
-        public let advanceSettings: AdvanceSettings
+        public let advanceSettings: AdvanceSettings?
         
         /// 判断任务成功的操作符 GT/GTE
         public let successOperator: String?
@@ -80,7 +68,7 @@ extension Tsf {
         /// 无
         public let programIdList: [String]?
         
-        public init (taskId: String, taskName: String?, taskType: String?, taskContent: String?, executeType: String?, taskRule: TaskRule, timeOut: UInt64?, groupId: String?, shardCount: Int64?, shardArguments: [ShardArgument]?, advanceSettings: AdvanceSettings, successOperator: String?, successRatio: Int64?, retryCount: UInt64?, retryInterval: UInt64?, taskArgument: String?, programIdList: [String]?) {
+        public init (taskId: String, taskName: String? = nil, taskType: String? = nil, taskContent: String? = nil, executeType: String? = nil, taskRule: TaskRule? = nil, timeOut: UInt64? = nil, groupId: String? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, advanceSettings: AdvanceSettings? = nil, successOperator: String? = nil, successRatio: Int64? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, taskArgument: String? = nil, programIdList: [String]? = nil) {
             self.taskId = taskId
             self.taskName = taskName
             self.taskType = taskType
@@ -134,5 +122,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改任务
+    @inlinable
+    public func modifyTask(_ input: ModifyTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskResponse > {
+        self.client.execute(action: "ModifyTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改任务
+    @inlinable
+    public func modifyTask(_ input: ModifyTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskResponse {
+        try await self.client.execute(action: "ModifyTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

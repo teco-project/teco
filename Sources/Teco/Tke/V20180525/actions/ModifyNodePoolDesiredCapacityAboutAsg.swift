@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 修改节点池关联伸缩组的期望实例数
-    @inlinable
-    public func modifyNodePoolDesiredCapacityAboutAsg(_ input: ModifyNodePoolDesiredCapacityAboutAsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNodePoolDesiredCapacityAboutAsgResponse > {
-        self.client.execute(action: "ModifyNodePoolDesiredCapacityAboutAsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改节点池关联伸缩组的期望实例数
-    @inlinable
-    public func modifyNodePoolDesiredCapacityAboutAsg(_ input: ModifyNodePoolDesiredCapacityAboutAsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodePoolDesiredCapacityAboutAsgResponse {
-        try await self.client.execute(action: "ModifyNodePoolDesiredCapacityAboutAsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNodePoolDesiredCapacityAboutAsg请求参数结构体
     public struct ModifyNodePoolDesiredCapacityAboutAsgRequest: TCRequestModel {
         /// 集群id
@@ -59,5 +47,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改节点池关联伸缩组的期望实例数
+    @inlinable
+    public func modifyNodePoolDesiredCapacityAboutAsg(_ input: ModifyNodePoolDesiredCapacityAboutAsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNodePoolDesiredCapacityAboutAsgResponse > {
+        self.client.execute(action: "ModifyNodePoolDesiredCapacityAboutAsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改节点池关联伸缩组的期望实例数
+    @inlinable
+    public func modifyNodePoolDesiredCapacityAboutAsg(_ input: ModifyNodePoolDesiredCapacityAboutAsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodePoolDesiredCapacityAboutAsgResponse {
+        try await self.client.execute(action: "ModifyNodePoolDesiredCapacityAboutAsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

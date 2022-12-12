@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 续费实例询价
-    ///
-    /// 本接口 (InquiryPriceRenewDBInstances) 用于续费包年包月实例询价。
-    @inlinable
-    public func inquirePriceRenewDBInstances(_ input: InquirePriceRenewDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceRenewDBInstancesResponse > {
-        self.client.execute(action: "InquirePriceRenewDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费实例询价
-    ///
-    /// 本接口 (InquiryPriceRenewDBInstances) 用于续费包年包月实例询价。
-    @inlinable
-    public func inquirePriceRenewDBInstances(_ input: InquirePriceRenewDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewDBInstancesResponse {
-        try await self.client.execute(action: "InquirePriceRenewDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquirePriceRenewDBInstances请求参数结构体
     public struct InquirePriceRenewDBInstancesRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同，接口单次最多只支持5个实例进行操作。
@@ -62,5 +46,21 @@ extension Mongodb {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费实例询价
+    ///
+    /// 本接口 (InquiryPriceRenewDBInstances) 用于续费包年包月实例询价。
+    @inlinable
+    public func inquirePriceRenewDBInstances(_ input: InquirePriceRenewDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceRenewDBInstancesResponse > {
+        self.client.execute(action: "InquirePriceRenewDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费实例询价
+    ///
+    /// 本接口 (InquiryPriceRenewDBInstances) 用于续费包年包月实例询价。
+    @inlinable
+    public func inquirePriceRenewDBInstances(_ input: InquirePriceRenewDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewDBInstancesResponse {
+        try await self.client.execute(action: "InquirePriceRenewDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

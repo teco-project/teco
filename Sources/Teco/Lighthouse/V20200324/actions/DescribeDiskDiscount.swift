@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询云硬盘折扣信息
-    ///
-    /// 本接口(DescribeDiskDiscount)用于查询云硬盘折扣信息。
-    @inlinable
-    public func describeDiskDiscount(_ input: DescribeDiskDiscountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskDiscountResponse > {
-        self.client.execute(action: "DescribeDiskDiscount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云硬盘折扣信息
-    ///
-    /// 本接口(DescribeDiskDiscount)用于查询云硬盘折扣信息。
-    @inlinable
-    public func describeDiskDiscount(_ input: DescribeDiskDiscountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskDiscountResponse {
-        try await self.client.execute(action: "DescribeDiskDiscount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDiskDiscount请求参数结构体
     public struct DescribeDiskDiscountRequest: TCRequestModel {
         /// 云硬盘类型, 取值: "CLOUD_PREMIUM"。
@@ -42,7 +26,7 @@ extension Lighthouse {
         /// 指定云硬盘备份点配额，不传时默认为不带备份点配额。目前只支持不带或设置1个云硬盘备份点配额。
         public let diskBackupQuota: Int64?
         
-        public init (diskType: String, diskSize: Int64, diskBackupQuota: Int64?) {
+        public init (diskType: String, diskSize: Int64, diskBackupQuota: Int64? = nil) {
             self.diskType = diskType
             self.diskSize = diskSize
             self.diskBackupQuota = diskBackupQuota
@@ -71,5 +55,21 @@ extension Lighthouse {
             case discountDetail = "DiscountDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云硬盘折扣信息
+    ///
+    /// 本接口(DescribeDiskDiscount)用于查询云硬盘折扣信息。
+    @inlinable
+    public func describeDiskDiscount(_ input: DescribeDiskDiscountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskDiscountResponse > {
+        self.client.execute(action: "DescribeDiskDiscount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云硬盘折扣信息
+    ///
+    /// 本接口(DescribeDiskDiscount)用于查询云硬盘折扣信息。
+    @inlinable
+    public func describeDiskDiscount(_ input: DescribeDiskDiscountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskDiscountResponse {
+        try await self.client.execute(action: "DescribeDiskDiscount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

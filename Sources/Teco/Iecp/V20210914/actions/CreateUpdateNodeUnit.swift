@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 创建或更新边缘单元NodeUnit
-    @inlinable
-    public func createUpdateNodeUnit(_ input: CreateUpdateNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUpdateNodeUnitResponse > {
-        self.client.execute(action: "CreateUpdateNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建或更新边缘单元NodeUnit
-    @inlinable
-    public func createUpdateNodeUnit(_ input: CreateUpdateNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUpdateNodeUnitResponse {
-        try await self.client.execute(action: "CreateUpdateNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUpdateNodeUnit请求参数结构体
     public struct CreateUpdateNodeUnitRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -47,7 +35,7 @@ extension Iecp {
         /// NodeUnit模版ID列表
         public let nodeUnitTemplateIDs: [UInt64]?
         
-        public init (edgeUnitId: UInt64, nodeGroupName: String, namespace: String?, nodeUnitName: String?, nodes: [String]?, nodeUnitTemplateIDs: [UInt64]?) {
+        public init (edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, nodeUnitName: String? = nil, nodes: [String]? = nil, nodeUnitTemplateIDs: [UInt64]? = nil) {
             self.edgeUnitId = edgeUnitId
             self.nodeGroupName = nodeGroupName
             self.namespace = namespace
@@ -74,5 +62,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建或更新边缘单元NodeUnit
+    @inlinable
+    public func createUpdateNodeUnit(_ input: CreateUpdateNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUpdateNodeUnitResponse > {
+        self.client.execute(action: "CreateUpdateNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建或更新边缘单元NodeUnit
+    @inlinable
+    public func createUpdateNodeUnit(_ input: CreateUpdateNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUpdateNodeUnitResponse {
+        try await self.client.execute(action: "CreateUpdateNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

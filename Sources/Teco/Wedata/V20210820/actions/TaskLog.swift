@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 管控日志接口
-    ///
-    /// 查询Inlong manager日志
-    @inlinable
-    public func taskLog(_ input: TaskLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TaskLogResponse > {
-        self.client.execute(action: "TaskLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 管控日志接口
-    ///
-    /// 查询Inlong manager日志
-    @inlinable
-    public func taskLog(_ input: TaskLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TaskLogResponse {
-        try await self.client.execute(action: "TaskLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TaskLog请求参数结构体
     public struct TaskLogRequest: TCRequestModel {
         /// 任务id
@@ -54,7 +38,7 @@ extension Wedata {
         /// 实时任务 201   离线任务 202  默认实时任务
         public let taskType: UInt64?
         
-        public init (taskId: String, startTime: UInt64, endTime: UInt64, projectId: String, limit: UInt64?, orderType: String?, taskType: UInt64?) {
+        public init (taskId: String, startTime: UInt64, endTime: UInt64, projectId: String, limit: UInt64? = nil, orderType: String? = nil, taskType: UInt64? = nil) {
             self.taskId = taskId
             self.startTime = startTime
             self.endTime = endTime
@@ -87,5 +71,21 @@ extension Wedata {
             case logContentList = "LogContentList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 管控日志接口
+    ///
+    /// 查询Inlong manager日志
+    @inlinable
+    public func taskLog(_ input: TaskLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TaskLogResponse > {
+        self.client.execute(action: "TaskLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 管控日志接口
+    ///
+    /// 查询Inlong manager日志
+    @inlinable
+    public func taskLog(_ input: TaskLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TaskLogResponse {
+        try await self.client.execute(action: "TaskLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

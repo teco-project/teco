@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// DMS元数据更新库
-    @inlinable
-    public func alterDMSDatabase(_ input: AlterDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AlterDMSDatabaseResponse > {
-        self.client.execute(action: "AlterDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DMS元数据更新库
-    @inlinable
-    public func alterDMSDatabase(_ input: AlterDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSDatabaseResponse {
-        try await self.client.execute(action: "AlterDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AlterDMSDatabase请求参数结构体
     public struct AlterDMSDatabaseRequest: TCRequestModel {
         /// 当前名称
@@ -39,9 +27,9 @@ extension Dlc {
         public let location: String?
         
         /// 基础对象
-        public let asset: Asset
+        public let asset: Asset?
         
-        public init (currentName: String?, schemaName: String?, location: String?, asset: Asset) {
+        public init (currentName: String? = nil, schemaName: String? = nil, location: String? = nil, asset: Asset? = nil) {
             self.currentName = currentName
             self.schemaName = schemaName
             self.location = location
@@ -64,5 +52,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// DMS元数据更新库
+    @inlinable
+    public func alterDMSDatabase(_ input: AlterDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AlterDMSDatabaseResponse > {
+        self.client.execute(action: "AlterDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据更新库
+    @inlinable
+    public func alterDMSDatabase(_ input: AlterDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSDatabaseResponse {
+        try await self.client.execute(action: "AlterDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

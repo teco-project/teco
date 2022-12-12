@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询VPC列表
-    ///
-    /// 本接口（DescribeVpcs）用于查询私有网络列表。
-    @inlinable
-    public func describeVpcs(_ input: DescribeVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcsResponse > {
-        self.client.execute(action: "DescribeVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询VPC列表
-    ///
-    /// 本接口（DescribeVpcs）用于查询私有网络列表。
-    @inlinable
-    public func describeVpcs(_ input: DescribeVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcsResponse {
-        try await self.client.execute(action: "DescribeVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpcs请求参数结构体
     public struct DescribeVpcsRequest: TCRequestModel {
         /// VPC实例ID。形如：vpc-f49l6u0z。每次请求的实例的上限为100。参数不支持同时指定VpcIds和Filters。
@@ -53,7 +37,7 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。
         public let limit: String?
         
-        public init (vpcIds: [String]?, filters: [Filter]?, offset: String?, limit: String?) {
+        public init (vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil) {
             self.vpcIds = vpcIds
             self.filters = filters
             self.offset = offset
@@ -84,5 +68,21 @@ extension Vpc {
             case vpcSet = "VpcSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询VPC列表
+    ///
+    /// 本接口（DescribeVpcs）用于查询私有网络列表。
+    @inlinable
+    public func describeVpcs(_ input: DescribeVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcsResponse > {
+        self.client.execute(action: "DescribeVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询VPC列表
+    ///
+    /// 本接口（DescribeVpcs）用于查询私有网络列表。
+    @inlinable
+    public func describeVpcs(_ input: DescribeVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcsResponse {
+        try await self.client.execute(action: "DescribeVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

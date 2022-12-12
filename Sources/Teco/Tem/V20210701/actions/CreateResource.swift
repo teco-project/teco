@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 绑定云资源
-    @inlinable
-    public func createResource(_ input: CreateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourceResponse > {
-        self.client.execute(action: "CreateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定云资源
-    @inlinable
-    public func createResource(_ input: CreateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
-        try await self.client.execute(action: "CreateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateResource请求参数结构体
     public struct CreateResourceRequest: TCRequestModel {
         /// 环境 Id
@@ -47,7 +35,7 @@ extension Tem {
         /// 设置 resource 的额外配置
         public let resourceConfig: String?
         
-        public init (environmentId: String, resourceType: String, resourceId: String, sourceChannel: Int64?, resourceFrom: String?, resourceConfig: String?) {
+        public init (environmentId: String, resourceType: String, resourceId: String, sourceChannel: Int64? = nil, resourceFrom: String? = nil, resourceConfig: String? = nil) {
             self.environmentId = environmentId
             self.resourceType = resourceType
             self.resourceId = resourceId
@@ -79,5 +67,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定云资源
+    @inlinable
+    public func createResource(_ input: CreateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourceResponse > {
+        self.client.execute(action: "CreateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定云资源
+    @inlinable
+    public func createResource(_ input: CreateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
+        try await self.client.execute(action: "CreateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 发布新版本
-    ///
-    /// 该接口用于用户发布新版本函数。
-    @inlinable
-    public func publishVersion(_ input: PublishVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishVersionResponse > {
-        self.client.execute(action: "PublishVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发布新版本
-    ///
-    /// 该接口用于用户发布新版本函数。
-    @inlinable
-    public func publishVersion(_ input: PublishVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishVersionResponse {
-        try await self.client.execute(action: "PublishVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PublishVersion请求参数结构体
     public struct PublishVersionRequest: TCRequestModel {
         /// 发布函数的名称
@@ -42,7 +26,7 @@ extension Scf {
         /// 函数的命名空间
         public let namespace: String?
         
-        public init (functionName: String, description: String?, namespace: String?) {
+        public init (functionName: String, description: String? = nil, namespace: String? = nil) {
             self.functionName = functionName
             self.description = description
             self.namespace = namespace
@@ -95,5 +79,21 @@ extension Scf {
             case namespace = "Namespace"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发布新版本
+    ///
+    /// 该接口用于用户发布新版本函数。
+    @inlinable
+    public func publishVersion(_ input: PublishVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishVersionResponse > {
+        self.client.execute(action: "PublishVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发布新版本
+    ///
+    /// 该接口用于用户发布新版本函数。
+    @inlinable
+    public func publishVersion(_ input: PublishVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishVersionResponse {
+        try await self.client.execute(action: "PublishVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

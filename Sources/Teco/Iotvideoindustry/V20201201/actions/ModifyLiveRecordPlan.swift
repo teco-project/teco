@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 编辑直播录制计划
-    @inlinable
-    public func modifyLiveRecordPlan(_ input: ModifyLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveRecordPlanResponse > {
-        self.client.execute(action: "ModifyLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑直播录制计划
-    @inlinable
-    public func modifyLiveRecordPlan(_ input: ModifyLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveRecordPlanResponse {
-        try await self.client.execute(action: "ModifyLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLiveRecordPlan请求参数结构体
     public struct ModifyLiveRecordPlanRequest: TCRequestModel {
         /// 录制计划ID
@@ -38,7 +26,7 @@ extension Iotvideoindustry {
         /// 时间模板ID，固定直播时为必填
         public let templateId: String?
         
-        public init (planId: String, planName: String, templateId: String?) {
+        public init (planId: String, planName: String, templateId: String? = nil) {
             self.planId = planId
             self.planName = planName
             self.templateId = templateId
@@ -59,5 +47,17 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑直播录制计划
+    @inlinable
+    public func modifyLiveRecordPlan(_ input: ModifyLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveRecordPlanResponse > {
+        self.client.execute(action: "ModifyLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑直播录制计划
+    @inlinable
+    public func modifyLiveRecordPlan(_ input: ModifyLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveRecordPlanResponse {
+        try await self.client.execute(action: "ModifyLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iottid {
-    /// 安全芯片TID烧录回执
-    ///
-    /// 安全芯片TID烧录回执 
-    @inlinable
-    public func burnTidNotify(_ input: BurnTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BurnTidNotifyResponse > {
-        self.client.execute(action: "BurnTidNotify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全芯片TID烧录回执
-    ///
-    /// 安全芯片TID烧录回执 
-    @inlinable
-    public func burnTidNotify(_ input: BurnTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BurnTidNotifyResponse {
-        try await self.client.execute(action: "BurnTidNotify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BurnTidNotify请求参数结构体
     public struct BurnTidNotifyRequest: TCRequestModel {
         /// 订单编号
@@ -62,5 +46,21 @@ extension Iottid {
             case tid = "Tid"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全芯片TID烧录回执
+    ///
+    /// 安全芯片TID烧录回执 
+    @inlinable
+    public func burnTidNotify(_ input: BurnTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BurnTidNotifyResponse > {
+        self.client.execute(action: "BurnTidNotify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全芯片TID烧录回执
+    ///
+    /// 安全芯片TID烧录回执 
+    @inlinable
+    public func burnTidNotify(_ input: BurnTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BurnTidNotifyResponse {
+        try await self.client.execute(action: "BurnTidNotify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

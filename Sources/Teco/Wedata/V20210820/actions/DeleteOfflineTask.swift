@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 删除任务
-    @inlinable
-    public func deleteOfflineTask(_ input: DeleteOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOfflineTaskResponse > {
-        self.client.execute(action: "DeleteOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除任务
-    @inlinable
-    public func deleteOfflineTask(_ input: DeleteOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOfflineTaskResponse {
-        try await self.client.execute(action: "DeleteOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteOfflineTask请求参数结构体
     public struct DeleteOfflineTaskRequest: TCRequestModel {
         /// 操作者name
@@ -68,5 +56,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除任务
+    @inlinable
+    public func deleteOfflineTask(_ input: DeleteOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOfflineTaskResponse > {
+        self.client.execute(action: "DeleteOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除任务
+    @inlinable
+    public func deleteOfflineTask(_ input: DeleteOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOfflineTaskResponse {
+        try await self.client.execute(action: "DeleteOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询漏洞数量等级分布统计
-    ///
-    /// 漏洞数量等级分布统计
-    @inlinable
-    public func describeVulLevelCount(_ input: DescribeVulLevelCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulLevelCountResponse > {
-        self.client.execute(action: "DescribeVulLevelCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询漏洞数量等级分布统计
-    ///
-    /// 漏洞数量等级分布统计
-    @inlinable
-    public func describeVulLevelCount(_ input: DescribeVulLevelCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelCountResponse {
-        try await self.client.execute(action: "DescribeVulLevelCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulLevelCount请求参数结构体
     public struct DescribeVulLevelCountRequest: TCRequestModel {
         /// 1:web-cms 漏洞，2.应用漏洞 3:安全基线 4: Linux软件漏洞 5: windows系统漏洞 6:应急漏洞，不填或者填0时返回 1，2，4，5 的总统计数据
@@ -39,7 +23,7 @@ extension Cwp {
         /// 是否仅统计重点关注漏洞 1=仅统计重点关注漏洞, 0=统计全部漏洞
         public let isFollowVul: UInt64?
         
-        public init (vulCategory: UInt64?, isFollowVul: UInt64?) {
+        public init (vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil) {
             self.vulCategory = vulCategory
             self.isFollowVul = isFollowVul
         }
@@ -63,5 +47,21 @@ extension Cwp {
             case vulLevelList = "VulLevelList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询漏洞数量等级分布统计
+    ///
+    /// 漏洞数量等级分布统计
+    @inlinable
+    public func describeVulLevelCount(_ input: DescribeVulLevelCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulLevelCountResponse > {
+        self.client.execute(action: "DescribeVulLevelCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞数量等级分布统计
+    ///
+    /// 漏洞数量等级分布统计
+    @inlinable
+    public func describeVulLevelCount(_ input: DescribeVulLevelCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelCountResponse {
+        try await self.client.execute(action: "DescribeVulLevelCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

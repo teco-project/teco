@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 批量创建任务
-    ///
-    /// 本接口（CreateTasks），用于批量创建任务
-    @inlinable
-    public func createTasks(_ input: CreateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTasksResponse > {
-        self.client.execute(action: "CreateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量创建任务
-    ///
-    /// 本接口（CreateTasks），用于批量创建任务
-    @inlinable
-    public func createTasks(_ input: CreateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTasksResponse {
-        try await self.client.execute(action: "CreateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTasks请求参数结构体
     public struct CreateTasksRequest: TCRequestModel {
         /// 数据库名称。如果SQL语句中有数据库名称，优先使用SQL语句中的数据库，否则使用该参数指定的数据库（注：当提交建库sql时，该字段传空字符串）。
@@ -45,7 +29,7 @@ extension Dlc {
         /// 计算引擎名称，不填任务提交到默认集群
         public let dataEngineName: String?
         
-        public init (databaseName: String, tasks: TasksInfo, datasourceConnectionName: String?, dataEngineName: String?) {
+        public init (databaseName: String, tasks: TasksInfo, datasourceConnectionName: String? = nil, dataEngineName: String? = nil) {
             self.databaseName = databaseName
             self.tasks = tasks
             self.datasourceConnectionName = datasourceConnectionName
@@ -76,5 +60,21 @@ extension Dlc {
             case taskIdSet = "TaskIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量创建任务
+    ///
+    /// 本接口（CreateTasks），用于批量创建任务
+    @inlinable
+    public func createTasks(_ input: CreateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTasksResponse > {
+        self.client.execute(action: "CreateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量创建任务
+    ///
+    /// 本接口（CreateTasks），用于批量创建任务
+    @inlinable
+    public func createTasks(_ input: CreateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTasksResponse {
+        try await self.client.execute(action: "CreateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

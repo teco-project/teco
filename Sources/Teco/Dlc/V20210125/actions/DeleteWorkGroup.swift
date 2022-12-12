@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 删除工作组
-    @inlinable
-    public func deleteWorkGroup(_ input: DeleteWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWorkGroupResponse > {
-        self.client.execute(action: "DeleteWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除工作组
-    @inlinable
-    public func deleteWorkGroup(_ input: DeleteWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkGroupResponse {
-        try await self.client.execute(action: "DeleteWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteWorkGroup请求参数结构体
     public struct DeleteWorkGroupRequest: TCRequestModel {
         /// 要删除的工作组Id集合
@@ -49,5 +37,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除工作组
+    @inlinable
+    public func deleteWorkGroup(_ input: DeleteWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWorkGroupResponse > {
+        self.client.execute(action: "DeleteWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除工作组
+    @inlinable
+    public func deleteWorkGroup(_ input: DeleteWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkGroupResponse {
+        try await self.client.execute(action: "DeleteWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 修改截图模板
-    ///
-    /// 修改截图模板配置。
-    @inlinable
-    public func modifyLiveSnapshotTemplate(_ input: ModifyLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveSnapshotTemplateResponse > {
-        self.client.execute(action: "ModifyLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改截图模板
-    ///
-    /// 修改截图模板配置。
-    @inlinable
-    public func modifyLiveSnapshotTemplate(_ input: ModifyLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveSnapshotTemplateResponse {
-        try await self.client.execute(action: "ModifyLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLiveSnapshotTemplate请求参数结构体
     public struct ModifyLiveSnapshotTemplateRequest: TCRequestModel {
         /// 模板 ID。
@@ -78,7 +62,7 @@ extension Live {
         /// Cos 文件名称。
         public let cosFileName: String?
         
-        public init (templateId: Int64, cosAppId: Int64, cosBucket: String, cosRegion: String, templateName: String?, description: String?, snapshotInterval: Int64?, width: Int64?, height: Int64?, pornFlag: Int64?, cosPrefix: String?, cosFileName: String?) {
+        public init (templateId: Int64, cosAppId: Int64, cosBucket: String, cosRegion: String, templateName: String? = nil, description: String? = nil, snapshotInterval: Int64? = nil, width: Int64? = nil, height: Int64? = nil, pornFlag: Int64? = nil, cosPrefix: String? = nil, cosFileName: String? = nil) {
             self.templateId = templateId
             self.cosAppId = cosAppId
             self.cosBucket = cosBucket
@@ -117,5 +101,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改截图模板
+    ///
+    /// 修改截图模板配置。
+    @inlinable
+    public func modifyLiveSnapshotTemplate(_ input: ModifyLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveSnapshotTemplateResponse > {
+        self.client.execute(action: "ModifyLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改截图模板
+    ///
+    /// 修改截图模板配置。
+    @inlinable
+    public func modifyLiveSnapshotTemplate(_ input: ModifyLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveSnapshotTemplateResponse {
+        try await self.client.execute(action: "ModifyLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

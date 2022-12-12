@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取指定漏洞分类统计数
-    ///
-    /// 获取漏洞管理模块指定类型的待处理漏洞数、主机数和非专业版主机数量
-    @inlinable
-    public func describeUndoVulCounts(_ input: DescribeUndoVulCountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUndoVulCountsResponse > {
-        self.client.execute(action: "DescribeUndoVulCounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取指定漏洞分类统计数
-    ///
-    /// 获取漏洞管理模块指定类型的待处理漏洞数、主机数和非专业版主机数量
-    @inlinable
-    public func describeUndoVulCounts(_ input: DescribeUndoVulCountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUndoVulCountsResponse {
-        try await self.client.execute(action: "DescribeUndoVulCounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUndoVulCounts请求参数结构体
     public struct DescribeUndoVulCountsRequest: TCRequestModel {
         /// 漏洞分类，1: web-cms漏洞 2:应用漏洞  4: Linux软件漏洞 5: Windows系统漏洞
@@ -39,7 +23,7 @@ extension Cwp {
         /// 是否应急漏洞筛选, 是 : yes
         public let ifEmergency: String?
         
-        public init (vulCategory: UInt64?, ifEmergency: String?) {
+        public init (vulCategory: UInt64? = nil, ifEmergency: String? = nil) {
             self.vulCategory = vulCategory
             self.ifEmergency = ifEmergency
         }
@@ -73,5 +57,21 @@ extension Cwp {
             case notProfessionCount = "NotProfessionCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取指定漏洞分类统计数
+    ///
+    /// 获取漏洞管理模块指定类型的待处理漏洞数、主机数和非专业版主机数量
+    @inlinable
+    public func describeUndoVulCounts(_ input: DescribeUndoVulCountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUndoVulCountsResponse > {
+        self.client.execute(action: "DescribeUndoVulCounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定漏洞分类统计数
+    ///
+    /// 获取漏洞管理模块指定类型的待处理漏洞数、主机数和非专业版主机数量
+    @inlinable
+    public func describeUndoVulCounts(_ input: DescribeUndoVulCountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUndoVulCountsResponse {
+        try await self.client.execute(action: "DescribeUndoVulCounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

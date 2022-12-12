@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 取消漏洞扫描忽略漏洞
-    @inlinable
-    public func deleteIgnoreVul(_ input: DeleteIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIgnoreVulResponse > {
-        self.client.execute(action: "DeleteIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消漏洞扫描忽略漏洞
-    @inlinable
-    public func deleteIgnoreVul(_ input: DeleteIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIgnoreVulResponse {
-        try await self.client.execute(action: "DeleteIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteIgnoreVul请求参数结构体
     public struct DeleteIgnoreVulRequest: TCRequestModel {
         /// 漏洞PocID 信息列表
@@ -49,5 +37,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消漏洞扫描忽略漏洞
+    @inlinable
+    public func deleteIgnoreVul(_ input: DeleteIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIgnoreVulResponse > {
+        self.client.execute(action: "DeleteIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消漏洞扫描忽略漏洞
+    @inlinable
+    public func deleteIgnoreVul(_ input: DeleteIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIgnoreVulResponse {
+        try await self.client.execute(action: "DeleteIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

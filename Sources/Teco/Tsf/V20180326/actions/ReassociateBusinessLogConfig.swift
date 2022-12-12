@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 重关联业务日志配置
-    @inlinable
-    public func reassociateBusinessLogConfig(_ input: ReassociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReassociateBusinessLogConfigResponse > {
-        self.client.execute(action: "ReassociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重关联业务日志配置
-    @inlinable
-    public func reassociateBusinessLogConfig(_ input: ReassociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReassociateBusinessLogConfigResponse {
-        try await self.client.execute(action: "ReassociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReassociateBusinessLogConfig请求参数结构体
     public struct ReassociateBusinessLogConfigRequest: TCRequestModel {
         /// 原关联日志配置ID
@@ -64,5 +52,17 @@ extension Tsf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重关联业务日志配置
+    @inlinable
+    public func reassociateBusinessLogConfig(_ input: ReassociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReassociateBusinessLogConfigResponse > {
+        self.client.execute(action: "ReassociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重关联业务日志配置
+    @inlinable
+    public func reassociateBusinessLogConfig(_ input: ReassociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReassociateBusinessLogConfigResponse {
+        try await self.client.execute(action: "ReassociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

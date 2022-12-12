@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ump {
-    /// 获取点位列表
-    ///
-    /// 获取集团广场的点位列表
-    @inlinable
-    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
-        self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取点位列表
-    ///
-    /// 获取集团广场的点位列表
-    @inlinable
-    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
-        try await self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeZones请求参数结构体
     public struct DescribeZonesRequest: TCRequestModel {
         /// 集团编码
@@ -62,5 +46,21 @@ extension Ump {
             case zones = "Zones"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取点位列表
+    ///
+    /// 获取集团广场的点位列表
+    @inlinable
+    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
+        self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取点位列表
+    ///
+    /// 获取集团广场的点位列表
+    @inlinable
+    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
+        try await self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

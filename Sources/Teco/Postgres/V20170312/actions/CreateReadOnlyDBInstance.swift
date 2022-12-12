@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 创建只读实例
-    ///
-    /// 本接口(CreateReadOnlyDBInstance)用于创建只读实例
-    @inlinable
-    public func createReadOnlyDBInstance(_ input: CreateReadOnlyDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReadOnlyDBInstanceResponse > {
-        self.client.execute(action: "CreateReadOnlyDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建只读实例
-    ///
-    /// 本接口(CreateReadOnlyDBInstance)用于创建只读实例
-    @inlinable
-    public func createReadOnlyDBInstance(_ input: CreateReadOnlyDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyDBInstanceResponse {
-        try await self.client.execute(action: "CreateReadOnlyDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateReadOnlyDBInstance请求参数结构体
     public struct CreateReadOnlyDBInstanceRequest: TCRequestModel {
         /// 售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
@@ -88,12 +72,12 @@ extension Postgres {
         public let readOnlyGroupId: String?
         
         /// 实例需要绑定的Tag信息，默认为空（该类型为Tag数组类型）
-        public let tagList: Tag
+        public let tagList: Tag?
         
         /// 安全组id
         public let securityGroupIds: [String]?
         
-        public init (specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, masterDBInstanceId: String, zone: String, projectId: UInt64?, dbVersion: String?, instanceChargeType: String?, autoVoucher: UInt64?, voucherIds: [String]?, autoRenewFlag: Int64?, vpcId: String?, subnetId: String?, activityId: Int64?, name: String?, needSupportIpv6: UInt64?, readOnlyGroupId: String?, tagList: Tag, securityGroupIds: [String]?) {
+        public init (specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, masterDBInstanceId: String, zone: String, projectId: UInt64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, readOnlyGroupId: String? = nil, tagList: Tag? = nil, securityGroupIds: [String]? = nil) {
             self.specCode = specCode
             self.storage = storage
             self.instanceCount = instanceCount
@@ -160,5 +144,21 @@ extension Postgres {
             case dbInstanceIdSet = "DBInstanceIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建只读实例
+    ///
+    /// 本接口(CreateReadOnlyDBInstance)用于创建只读实例
+    @inlinable
+    public func createReadOnlyDBInstance(_ input: CreateReadOnlyDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReadOnlyDBInstanceResponse > {
+        self.client.execute(action: "CreateReadOnlyDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建只读实例
+    ///
+    /// 本接口(CreateReadOnlyDBInstance)用于创建只读实例
+    @inlinable
+    public func createReadOnlyDBInstance(_ input: CreateReadOnlyDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyDBInstanceResponse {
+        try await self.client.execute(action: "CreateReadOnlyDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

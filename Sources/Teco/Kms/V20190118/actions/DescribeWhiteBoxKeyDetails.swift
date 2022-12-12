@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 获取白盒密钥列表
-    @inlinable
-    public func describeWhiteBoxKeyDetails(_ input: DescribeWhiteBoxKeyDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxKeyDetailsResponse > {
-        self.client.execute(action: "DescribeWhiteBoxKeyDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取白盒密钥列表
-    @inlinable
-    public func describeWhiteBoxKeyDetails(_ input: DescribeWhiteBoxKeyDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxKeyDetailsResponse {
-        try await self.client.execute(action: "DescribeWhiteBoxKeyDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWhiteBoxKeyDetails请求参数结构体
     public struct DescribeWhiteBoxKeyDetailsRequest: TCRequestModel {
         /// 过滤条件：密钥的状态，0：disabled，1：enabled
@@ -41,7 +29,7 @@ extension Kms {
         /// 标签过滤条件
         public let tagFilters: [TagFilter]?
         
-        public init (keyStatus: Int64?, offset: UInt64?, limit: UInt64?, tagFilters: [TagFilter]?) {
+        public init (keyStatus: Int64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil) {
             self.keyStatus = keyStatus
             self.offset = offset
             self.limit = limit
@@ -73,5 +61,17 @@ extension Kms {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取白盒密钥列表
+    @inlinable
+    public func describeWhiteBoxKeyDetails(_ input: DescribeWhiteBoxKeyDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxKeyDetailsResponse > {
+        self.client.execute(action: "DescribeWhiteBoxKeyDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取白盒密钥列表
+    @inlinable
+    public func describeWhiteBoxKeyDetails(_ input: DescribeWhiteBoxKeyDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxKeyDetailsResponse {
+        try await self.client.execute(action: "DescribeWhiteBoxKeyDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

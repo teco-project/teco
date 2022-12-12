@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Billing {
-    /// 查询账单明细数据
-    @inlinable
-    public func describeBillDetail(_ input: DescribeBillDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillDetailResponse > {
-        self.client.execute(action: "DescribeBillDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询账单明细数据
-    @inlinable
-    public func describeBillDetail(_ input: DescribeBillDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillDetailResponse {
-        try await self.client.execute(action: "DescribeBillDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBillDetail请求参数结构体
     public struct DescribeBillDetailRequest: TCRequestModel {
         /// 偏移量
@@ -96,7 +84,7 @@ extension Billing {
         /// 备注：如需获取当月使用过的BusinessCode，请调用API：<a href="https://cloud.tencent.com/document/product/555/35761">获取产品汇总费用分布</a>
         public let businessCode: String?
         
-        public init (offset: UInt64, limit: UInt64, periodType: String?, month: String?, beginTime: String?, endTime: String?, needRecordNum: Int64?, productCode: String?, payMode: String?, resourceId: String?, actionType: String?, projectId: Int64?, businessCode: String?) {
+        public init (offset: UInt64, limit: UInt64, periodType: String? = nil, month: String? = nil, beginTime: String? = nil, endTime: String? = nil, needRecordNum: Int64? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, actionType: String? = nil, projectId: Int64? = nil, businessCode: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.periodType = periodType
@@ -146,5 +134,17 @@ extension Billing {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询账单明细数据
+    @inlinable
+    public func describeBillDetail(_ input: DescribeBillDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillDetailResponse > {
+        self.client.execute(action: "DescribeBillDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账单明细数据
+    @inlinable
+    public func describeBillDetail(_ input: DescribeBillDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillDetailResponse {
+        try await self.client.execute(action: "DescribeBillDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

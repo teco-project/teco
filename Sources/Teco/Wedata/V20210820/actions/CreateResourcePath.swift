@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 资源管理创建文件路径
-    ///
-    /// 文件路径的根目录为 /datastudio/resource，如果要在根目录下创建 aaa 文件夹，FilePath的值应该为 /datastudio/resource，如果根目录下已经创建了 aaa 文件夹，要在 aaa 下创建  bbb 文件夹，FilePath的值应该为 /datastudio/resource/aaa
-    @inlinable
-    public func createResourcePath(_ input: CreateResourcePathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourcePathResponse > {
-        self.client.execute(action: "CreateResourcePath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 资源管理创建文件路径
-    ///
-    /// 文件路径的根目录为 /datastudio/resource，如果要在根目录下创建 aaa 文件夹，FilePath的值应该为 /datastudio/resource，如果根目录下已经创建了 aaa 文件夹，要在 aaa 下创建  bbb 文件夹，FilePath的值应该为 /datastudio/resource/aaa
-    @inlinable
-    public func createResourcePath(_ input: CreateResourcePathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourcePathResponse {
-        try await self.client.execute(action: "CreateResourcePath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateResourcePath请求参数结构体
     public struct CreateResourcePathRequest: TCRequestModel {
         /// 文件夹名称，如 aaa
@@ -68,5 +52,21 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 资源管理创建文件路径
+    ///
+    /// 文件路径的根目录为 /datastudio/resource，如果要在根目录下创建 aaa 文件夹，FilePath的值应该为 /datastudio/resource，如果根目录下已经创建了 aaa 文件夹，要在 aaa 下创建  bbb 文件夹，FilePath的值应该为 /datastudio/resource/aaa
+    @inlinable
+    public func createResourcePath(_ input: CreateResourcePathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourcePathResponse > {
+        self.client.execute(action: "CreateResourcePath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 资源管理创建文件路径
+    ///
+    /// 文件路径的根目录为 /datastudio/resource，如果要在根目录下创建 aaa 文件夹，FilePath的值应该为 /datastudio/resource，如果根目录下已经创建了 aaa 文件夹，要在 aaa 下创建  bbb 文件夹，FilePath的值应该为 /datastudio/resource/aaa
+    @inlinable
+    public func createResourcePath(_ input: CreateResourcePathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourcePathResponse {
+        try await self.client.execute(action: "CreateResourcePath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

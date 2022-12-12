@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudstudio {
-    /// 删除工作空间
-    @inlinable
-    public func removeWorkspace(_ input: RemoveWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveWorkspaceResponse > {
-        self.client.execute(action: "RemoveWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除工作空间
-    @inlinable
-    public func removeWorkspace(_ input: RemoveWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWorkspaceResponse {
-        try await self.client.execute(action: "RemoveWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemoveWorkspace请求参数结构体
     public struct RemoveWorkspaceRequest: TCRequestModel {
         /// 无
@@ -38,7 +26,7 @@ extension Cloudstudio {
         /// 是否强制，true或者false
         public let force: Bool?
         
-        public init (cloudStudioSessionTeam: String, spaceKey: String, force: Bool?) {
+        public init (cloudStudioSessionTeam: String, spaceKey: String, force: Bool? = nil) {
             self.cloudStudioSessionTeam = cloudStudioSessionTeam
             self.spaceKey = spaceKey
             self.force = force
@@ -59,5 +47,17 @@ extension Cloudstudio {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除工作空间
+    @inlinable
+    public func removeWorkspace(_ input: RemoveWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveWorkspaceResponse > {
+        self.client.execute(action: "RemoveWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除工作空间
+    @inlinable
+    public func removeWorkspace(_ input: RemoveWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWorkspaceResponse {
+        try await self.client.execute(action: "RemoveWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -229,7 +229,7 @@ extension Mongodb {
     public struct DBInstancePrice: TCInputModel, TCOutputModel {
         /// 单价
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let unitPrice: Float
+        public let unitPrice: Float?
         
         /// 原价
         public let originalPrice: Float
@@ -264,7 +264,7 @@ extension Mongodb {
         /// （InquirePriceRenewDBInstances，RenewDBInstances调用时必填）
         public let renewFlag: String?
         
-        public init (period: Int64?, renewFlag: String?) {
+        public init (period: Int64? = nil, renewFlag: String? = nil) {
             self.period = period
             self.renewFlag = renewFlag
         }
@@ -685,7 +685,7 @@ extension Mongodb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagValue: String?
         
-        public init (tagKey: String?, tagValue: String?) {
+        public init (tagKey: String? = nil, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }

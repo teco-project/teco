@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 查询数据库实例当前正在执行的操作
-    ///
-    /// 本接口(DescribeCurrentOp)用于查询MongoDB云数据库实例的当前正在执行的操作。
-    @inlinable
-    public func describeCurrentOp(_ input: DescribeCurrentOpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCurrentOpResponse > {
-        self.client.execute(action: "DescribeCurrentOp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据库实例当前正在执行的操作
-    ///
-    /// 本接口(DescribeCurrentOp)用于查询MongoDB云数据库实例的当前正在执行的操作。
-    @inlinable
-    public func describeCurrentOp(_ input: DescribeCurrentOpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCurrentOpResponse {
-        try await self.client.execute(action: "DescribeCurrentOp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCurrentOp请求参数结构体
     public struct DescribeCurrentOpRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -64,7 +48,7 @@ extension Mongodb {
         /// 返回结果集排序方式，可能的取值："ASC"/"asc"或"DESC"/"desc"
         public let orderByType: String?
         
-        public init (instanceId: String, ns: String?, millisecondRunning: UInt64?, op: String?, replicaSetName: String?, state: String?, limit: UInt64?, offset: UInt64?, orderBy: String?, orderByType: String?) {
+        public init (instanceId: String, ns: String? = nil, millisecondRunning: UInt64? = nil, op: String? = nil, replicaSetName: String? = nil, state: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.instanceId = instanceId
             self.ns = ns
             self.millisecondRunning = millisecondRunning
@@ -107,5 +91,21 @@ extension Mongodb {
             case currentOps = "CurrentOps"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据库实例当前正在执行的操作
+    ///
+    /// 本接口(DescribeCurrentOp)用于查询MongoDB云数据库实例的当前正在执行的操作。
+    @inlinable
+    public func describeCurrentOp(_ input: DescribeCurrentOpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCurrentOpResponse > {
+        self.client.execute(action: "DescribeCurrentOp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库实例当前正在执行的操作
+    ///
+    /// 本接口(DescribeCurrentOp)用于查询MongoDB云数据库实例的当前正在执行的操作。
+    @inlinable
+    public func describeCurrentOp(_ input: DescribeCurrentOpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCurrentOpResponse {
+        try await self.client.execute(action: "DescribeCurrentOp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

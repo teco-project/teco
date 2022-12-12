@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 删除消息转发配置
-    @inlinable
-    public func deleteMessageForward(_ input: DeleteMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMessageForwardResponse > {
-        self.client.execute(action: "DeleteMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除消息转发配置
-    @inlinable
-    public func deleteMessageForward(_ input: DeleteMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageForwardResponse {
-        try await self.client.execute(action: "DeleteMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMessageForward请求参数结构体
     public struct DeleteMessageForwardRequest: TCRequestModel {
         /// 配置ID
@@ -49,5 +37,17 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除消息转发配置
+    @inlinable
+    public func deleteMessageForward(_ input: DeleteMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMessageForwardResponse > {
+        self.client.execute(action: "DeleteMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除消息转发配置
+    @inlinable
+    public func deleteMessageForward(_ input: DeleteMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageForwardResponse {
+        try await self.client.execute(action: "DeleteMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

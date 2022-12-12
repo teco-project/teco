@@ -15,35 +15,19 @@
 // DO NOT EDIT.
 
 extension Thpc {
-    /// 创建集群
-    ///
-    /// 本接口 (CreateCluster) 用于创建并启动集群。
-    @inlinable
-    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
-        self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建集群
-    ///
-    /// 本接口 (CreateCluster) 用于创建并启动集群。
-    @inlinable
-    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
-        try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCluster请求参数结构体
     public struct CreateClusterRequest: TCRequestModel {
         /// 集群中实例所在的位置。
         public let placement: Placement
         
         /// 指定管理节点。
-        public let managerNode: ManagerNode
+        public let managerNode: ManagerNode?
         
         /// 指定管理节点的数量。默认取值：1。取值范围：1～2。
         public let managerNodeCount: Int64?
         
         /// 指定计算节点。
-        public let computeNode: ComputeNode
+        public let computeNode: ComputeNode?
         
         /// 指定计算节点的数量。默认取值：0。
         public let computeNodeCount: Int64?
@@ -55,10 +39,10 @@ extension Thpc {
         public let imageId: String?
         
         /// 私有网络相关信息配置。
-        public let virtualPrivateCloud: VirtualPrivateCloud
+        public let virtualPrivateCloud: VirtualPrivateCloud?
         
         /// 集群登录设置。
-        public let loginSettings: LoginSettings
+        public let loginSettings: LoginSettings?
         
         /// 集群中实例所属安全组。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来获取。若不指定该参数，则绑定默认安全组。
         public let securityGroupIds: [String]?
@@ -81,10 +65,10 @@ extension Thpc {
         public let clusterName: String?
         
         /// 集群存储选项
-        public let storageOption: StorageOption
+        public let storageOption: StorageOption?
         
         /// 指定登录节点。
-        public let loginNode: LoginNode
+        public let loginNode: LoginNode?
         
         /// 指定登录节点的数量。默认取值：0。取值范围：0～10。
         public let loginNodeCount: Int64?
@@ -95,7 +79,7 @@ extension Thpc {
         /// 弹性伸缩类型。<br><li>AS：集群自动扩缩容由[弹性伸缩](https://cloud.tencent.com/document/product/377/3154)产品实现。<br><li>THPC_AS：集群自动扩缩容由THPC产品内部实现。
         public let autoScalingType: String?
         
-        public init (placement: Placement, managerNode: ManagerNode, managerNodeCount: Int64?, computeNode: ComputeNode, computeNodeCount: Int64?, schedulerType: String?, imageId: String?, virtualPrivateCloud: VirtualPrivateCloud, loginSettings: LoginSettings, securityGroupIds: [String]?, clientToken: String?, dryRun: Bool?, accountType: String?, clusterName: String?, storageOption: StorageOption, loginNode: LoginNode, loginNodeCount: Int64?, tags: [Tag]?, autoScalingType: String?) {
+        public init (placement: Placement, managerNode: ManagerNode? = nil, managerNodeCount: Int64? = nil, computeNode: ComputeNode? = nil, computeNodeCount: Int64? = nil, schedulerType: String? = nil, imageId: String? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, dryRun: Bool? = nil, accountType: String? = nil, clusterName: String? = nil, storageOption: StorageOption? = nil, loginNode: LoginNode? = nil, loginNodeCount: Int64? = nil, tags: [Tag]? = nil, autoScalingType: String? = nil) {
             self.placement = placement
             self.managerNode = managerNode
             self.managerNodeCount = managerNodeCount
@@ -153,5 +137,21 @@ extension Thpc {
             case clusterId = "ClusterId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建集群
+    ///
+    /// 本接口 (CreateCluster) 用于创建并启动集群。
+    @inlinable
+    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
+        self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群
+    ///
+    /// 本接口 (CreateCluster) 用于创建并启动集群。
+    @inlinable
+    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
+        try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

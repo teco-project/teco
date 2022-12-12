@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 创建人员库
-    ///
-    /// 用于创建一个空的人员库，如果人员库已存在返回错误。
-    /// 可根据需要创建自定义描述字段，用于辅助描述该人员库下的人员信息。
-    /// 1个APPID下最多创建10万个人员库（Group）、最多包含5000万张人脸（Face）。
-    /// 不同算法模型版本（FaceModelVersion）的人员库（Group）最多可包含人脸（Face）数不同。算法模型版本为2.0的人员库最多包含100万张人脸，算法模型版本为3.0的人员库最多可包含300万张人脸。
-    @inlinable
-    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGroupResponse > {
-        self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建人员库
-    ///
-    /// 用于创建一个空的人员库，如果人员库已存在返回错误。
-    /// 可根据需要创建自定义描述字段，用于辅助描述该人员库下的人员信息。
-    /// 1个APPID下最多创建10万个人员库（Group）、最多包含5000万张人脸（Face）。
-    /// 不同算法模型版本（FaceModelVersion）的人员库（Group）最多可包含人脸（Face）数不同。算法模型版本为2.0的人员库最多包含100万张人脸，算法模型版本为3.0的人员库最多可包含300万张人脸。
-    @inlinable
-    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
-        try await self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateGroup请求参数结构体
     public struct CreateGroupRequest: TCRequestModel {
         /// 人员库名称，[1,60]个字符，可修改，不可重复。
@@ -64,7 +42,7 @@ extension Iai {
         /// 不同算法模型版本对应的人脸识别算法不同，新版本的整体效果会优于旧版本，建议使用“3.0”版本。
         public let faceModelVersion: String?
         
-        public init (groupName: String, groupId: String, groupExDescriptions: [String]?, tag: String?, faceModelVersion: String?) {
+        public init (groupName: String, groupId: String, groupExDescriptions: [String]? = nil, tag: String? = nil, faceModelVersion: String? = nil) {
             self.groupName = groupName
             self.groupId = groupId
             self.groupExDescriptions = groupExDescriptions
@@ -93,5 +71,27 @@ extension Iai {
             case faceModelVersion = "FaceModelVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建人员库
+    ///
+    /// 用于创建一个空的人员库，如果人员库已存在返回错误。
+    /// 可根据需要创建自定义描述字段，用于辅助描述该人员库下的人员信息。
+    /// 1个APPID下最多创建10万个人员库（Group）、最多包含5000万张人脸（Face）。
+    /// 不同算法模型版本（FaceModelVersion）的人员库（Group）最多可包含人脸（Face）数不同。算法模型版本为2.0的人员库最多包含100万张人脸，算法模型版本为3.0的人员库最多可包含300万张人脸。
+    @inlinable
+    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGroupResponse > {
+        self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建人员库
+    ///
+    /// 用于创建一个空的人员库，如果人员库已存在返回错误。
+    /// 可根据需要创建自定义描述字段，用于辅助描述该人员库下的人员信息。
+    /// 1个APPID下最多创建10万个人员库（Group）、最多包含5000万张人脸（Face）。
+    /// 不同算法模型版本（FaceModelVersion）的人员库（Group）最多可包含人脸（Face）数不同。算法模型版本为2.0的人员库最多包含100万张人脸，算法模型版本为3.0的人员库最多可包含300万张人脸。
+    @inlinable
+    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
+        try await self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

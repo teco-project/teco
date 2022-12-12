@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 创建cmq主题
-    @inlinable
-    public func createCmqTopic(_ input: CreateCmqTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCmqTopicResponse > {
-        self.client.execute(action: "CreateCmqTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建cmq主题
-    @inlinable
-    public func createCmqTopic(_ input: CreateCmqTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCmqTopicResponse {
-        try await self.client.execute(action: "CreateCmqTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCmqTopic请求参数结构体
     public struct CreateCmqTopicRequest: TCRequestModel {
         /// 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
@@ -47,7 +35,7 @@ extension Tdmq {
         /// 标签数组
         public let tags: [Tag]?
         
-        public init (topicName: String, maxMsgSize: UInt64?, filterType: UInt64?, msgRetentionSeconds: UInt64?, trace: Bool?, tags: [Tag]?) {
+        public init (topicName: String, maxMsgSize: UInt64? = nil, filterType: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, tags: [Tag]? = nil) {
             self.topicName = topicName
             self.maxMsgSize = maxMsgSize
             self.filterType = filterType
@@ -78,5 +66,17 @@ extension Tdmq {
             case topicId = "TopicId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建cmq主题
+    @inlinable
+    public func createCmqTopic(_ input: CreateCmqTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCmqTopicResponse > {
+        self.client.execute(action: "CreateCmqTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建cmq主题
+    @inlinable
+    public func createCmqTopic(_ input: CreateCmqTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCmqTopicResponse {
+        try await self.client.execute(action: "CreateCmqTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

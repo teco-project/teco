@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cr {
-    /// 导出机器人数据
-    @inlinable
-    public func exportBotData(_ input: ExportBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBotDataResponse > {
-        self.client.execute(action: "ExportBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出机器人数据
-    @inlinable
-    public func exportBotData(_ input: ExportBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBotDataResponse {
-        try await self.client.execute(action: "ExportBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportBotData请求参数结构体
     public struct ExportBotDataRequest: TCRequestModel {
         /// 模块名。默认值（固定）：AiApi
@@ -47,7 +35,7 @@ extension Cr {
         /// 任务名称，二者必填一个
         public let botName: String?
         
-        public init (module: String, operation: String, bizDate: Date, botId: String?, botName: String?) {
+        public init (module: String, operation: String, bizDate: Date, botId: String? = nil, botName: String? = nil) {
             self.module = module
             self.operation = operation
             self.bizDate = bizDate
@@ -76,5 +64,17 @@ extension Cr {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出机器人数据
+    @inlinable
+    public func exportBotData(_ input: ExportBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBotDataResponse > {
+        self.client.execute(action: "ExportBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出机器人数据
+    @inlinable
+    public func exportBotData(_ input: ExportBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBotDataResponse {
+        try await self.client.execute(action: "ExportBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

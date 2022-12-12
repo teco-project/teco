@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询配置汇总列表
-    @inlinable
-    public func describeConfigSummary(_ input: DescribeConfigSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigSummaryResponse > {
-        self.client.execute(action: "DescribeConfigSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询配置汇总列表
-    @inlinable
-    public func describeConfigSummary(_ input: DescribeConfigSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigSummaryResponse {
-        try await self.client.execute(action: "DescribeConfigSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeConfigSummary请求参数结构体
     public struct DescribeConfigSummaryRequest: TCRequestModel {
         /// 应用ID，不传入时查询全量
@@ -56,7 +44,7 @@ extension Tsf {
         /// 无
         public let configIdList: [String]?
         
-        public init (applicationId: String?, searchWord: String?, offset: Int64?, limit: Int64?, orderBy: String?, orderType: Int64?, configTagList: [String]?, disableProgramAuthCheck: Bool?, configIdList: [String]?) {
+        public init (applicationId: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, configTagList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil) {
             self.applicationId = applicationId
             self.searchWord = searchWord
             self.offset = offset
@@ -93,5 +81,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询配置汇总列表
+    @inlinable
+    public func describeConfigSummary(_ input: DescribeConfigSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigSummaryResponse > {
+        self.client.execute(action: "DescribeConfigSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询配置汇总列表
+    @inlinable
+    public func describeConfigSummary(_ input: DescribeConfigSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigSummaryResponse {
+        try await self.client.execute(action: "DescribeConfigSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

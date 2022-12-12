@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取反弹Shell列表
-    @inlinable
-    public func describeReverseShellEvents(_ input: DescribeReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReverseShellEventsResponse > {
-        self.client.execute(action: "DescribeReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取反弹Shell列表
-    @inlinable
-    public func describeReverseShellEvents(_ input: DescribeReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellEventsResponse {
-        try await self.client.execute(action: "DescribeReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReverseShellEvents请求参数结构体
     public struct DescribeReverseShellEventsRequest: TCRequestModel {
         /// 返回数量，默认为10，最大值为100。
@@ -39,7 +27,7 @@ extension Yunjing {
         /// <li>Keywords - String - 是否必填：否 - 关键字(主机内网IP|进程名)</li>
         public let filters: [Filter]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -68,5 +56,17 @@ extension Yunjing {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取反弹Shell列表
+    @inlinable
+    public func describeReverseShellEvents(_ input: DescribeReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReverseShellEventsResponse > {
+        self.client.execute(action: "DescribeReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取反弹Shell列表
+    @inlinable
+    public func describeReverseShellEvents(_ input: DescribeReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellEventsResponse {
+        try await self.client.execute(action: "DescribeReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

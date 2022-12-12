@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 修改工作组信息
-    @inlinable
-    public func modifyWorkGroup(_ input: ModifyWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWorkGroupResponse > {
-        self.client.execute(action: "ModifyWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改工作组信息
-    @inlinable
-    public func modifyWorkGroup(_ input: ModifyWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkGroupResponse {
-        try await self.client.execute(action: "ModifyWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyWorkGroup请求参数结构体
     public struct ModifyWorkGroupRequest: TCRequestModel {
         /// 工作组Id
@@ -54,5 +42,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改工作组信息
+    @inlinable
+    public func modifyWorkGroup(_ input: ModifyWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWorkGroupResponse > {
+        self.client.execute(action: "ModifyWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改工作组信息
+    @inlinable
+    public func modifyWorkGroup(_ input: ModifyWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkGroupResponse {
+        try await self.client.execute(action: "ModifyWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 修改服务IP策略
-    ///
-    /// 本接口（ModifyIPStrategy）用于修改服务IP策略。
-    @inlinable
-    public func modifyIPStrategy(_ input: ModifyIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIPStrategyResponse > {
-        self.client.execute(action: "ModifyIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改服务IP策略
-    ///
-    /// 本接口（ModifyIPStrategy）用于修改服务IP策略。
-    @inlinable
-    public func modifyIPStrategy(_ input: ModifyIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIPStrategyResponse {
-        try await self.client.execute(action: "ModifyIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyIPStrategy请求参数结构体
     public struct ModifyIPStrategyRequest: TCRequestModel {
         /// 待修改的策略所属服务的唯一ID。
@@ -68,5 +52,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改服务IP策略
+    ///
+    /// 本接口（ModifyIPStrategy）用于修改服务IP策略。
+    @inlinable
+    public func modifyIPStrategy(_ input: ModifyIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIPStrategyResponse > {
+        self.client.execute(action: "ModifyIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改服务IP策略
+    ///
+    /// 本接口（ModifyIPStrategy）用于修改服务IP策略。
+    @inlinable
+    public func modifyIPStrategy(_ input: ModifyIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIPStrategyResponse {
+        try await self.client.execute(action: "ModifyIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

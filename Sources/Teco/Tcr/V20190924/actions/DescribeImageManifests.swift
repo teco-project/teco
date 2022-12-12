@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询容器镜像Manifest信息
-    @inlinable
-    public func describeImageManifests(_ input: DescribeImageManifestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageManifestsResponse > {
-        self.client.execute(action: "DescribeImageManifests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器镜像Manifest信息
-    @inlinable
-    public func describeImageManifests(_ input: DescribeImageManifestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageManifestsResponse {
-        try await self.client.execute(action: "DescribeImageManifests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageManifests请求参数结构体
     public struct DescribeImageManifestsRequest: TCRequestModel {
         /// 实例ID
@@ -72,5 +60,17 @@ extension Tcr {
             case config = "Config"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器镜像Manifest信息
+    @inlinable
+    public func describeImageManifests(_ input: DescribeImageManifestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageManifestsResponse > {
+        self.client.execute(action: "DescribeImageManifests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器镜像Manifest信息
+    @inlinable
+    public func describeImageManifests(_ input: DescribeImageManifestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageManifestsResponse {
+        try await self.client.execute(action: "DescribeImageManifests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

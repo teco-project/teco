@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询使用计划绑定密钥列表
-    ///
-    /// 本接口（DescribeUsagePlanSecretIds）用于查询使用计划绑定的密钥列表。
-    /// 在 API 网关中，一个使用计划可绑定多个密钥对，可使用本接口查询使用计划绑定的密钥列表。
-    @inlinable
-    public func describeUsagePlanSecretIds(_ input: DescribeUsagePlanSecretIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsagePlanSecretIdsResponse > {
-        self.client.execute(action: "DescribeUsagePlanSecretIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询使用计划绑定密钥列表
-    ///
-    /// 本接口（DescribeUsagePlanSecretIds）用于查询使用计划绑定的密钥列表。
-    /// 在 API 网关中，一个使用计划可绑定多个密钥对，可使用本接口查询使用计划绑定的密钥列表。
-    @inlinable
-    public func describeUsagePlanSecretIds(_ input: DescribeUsagePlanSecretIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlanSecretIdsResponse {
-        try await self.client.execute(action: "DescribeUsagePlanSecretIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUsagePlanSecretIds请求参数结构体
     public struct DescribeUsagePlanSecretIdsRequest: TCRequestModel {
         /// 绑定的使用计划唯一 ID。
@@ -44,7 +26,7 @@ extension Apigateway {
         /// 偏移量，默认为 0。
         public let offset: Int64?
         
-        public init (usagePlanId: String, limit: Int64?, offset: Int64?) {
+        public init (usagePlanId: String, limit: Int64? = nil, offset: Int64? = nil) {
             self.usagePlanId = usagePlanId
             self.limit = limit
             self.offset = offset
@@ -61,7 +43,7 @@ extension Apigateway {
     public struct DescribeUsagePlanSecretIdsResponse: TCResponseModel {
         /// 使用计划绑定的密钥列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: UsagePlanBindSecretStatus
+        public let result: UsagePlanBindSecretStatus?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -70,5 +52,23 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询使用计划绑定密钥列表
+    ///
+    /// 本接口（DescribeUsagePlanSecretIds）用于查询使用计划绑定的密钥列表。
+    /// 在 API 网关中，一个使用计划可绑定多个密钥对，可使用本接口查询使用计划绑定的密钥列表。
+    @inlinable
+    public func describeUsagePlanSecretIds(_ input: DescribeUsagePlanSecretIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsagePlanSecretIdsResponse > {
+        self.client.execute(action: "DescribeUsagePlanSecretIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询使用计划绑定密钥列表
+    ///
+    /// 本接口（DescribeUsagePlanSecretIds）用于查询使用计划绑定的密钥列表。
+    /// 在 API 网关中，一个使用计划可绑定多个密钥对，可使用本接口查询使用计划绑定的密钥列表。
+    @inlinable
+    public func describeUsagePlanSecretIds(_ input: DescribeUsagePlanSecretIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlanSecretIdsResponse {
+        try await self.client.execute(action: "DescribeUsagePlanSecretIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 图片审核
-    ///
-    /// 对点播中的图片文件发起审核（令人反感的信息、不安全的信息、不适宜的信息）任务。
-    /// ><li>图片文件大小支持：文件 < 5M；</li>
-    /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响审核效果；</li>
-    /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
-    @inlinable
-    public func reviewImage(_ input: ReviewImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReviewImageResponse > {
-        self.client.execute(action: "ReviewImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 图片审核
-    ///
-    /// 对点播中的图片文件发起审核（令人反感的信息、不安全的信息、不适宜的信息）任务。
-    /// ><li>图片文件大小支持：文件 < 5M；</li>
-    /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响审核效果；</li>
-    /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
-    @inlinable
-    public func reviewImage(_ input: ReviewImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewImageResponse {
-        try await self.client.execute(action: "ReviewImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReviewImage请求参数结构体
     public struct ReviewImageRequest: TCRequestModel {
         /// 媒体文件 ID，即该文件在云点播上的全局唯一标识符。本接口要求媒体文件必须是图片格式。
@@ -48,7 +26,7 @@ extension Vod {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
         
-        public init (fileId: String, definition: UInt64, subAppId: UInt64?) {
+        public init (fileId: String, definition: UInt64, subAppId: UInt64? = nil) {
             self.fileId = fileId
             self.definition = definition
             self.subAppId = subAppId
@@ -73,5 +51,27 @@ extension Vod {
             case reviewResultSet = "ReviewResultSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 图片审核
+    ///
+    /// 对点播中的图片文件发起审核（令人反感的信息、不安全的信息、不适宜的信息）任务。
+    /// ><li>图片文件大小支持：文件 < 5M；</li>
+    /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响审核效果；</li>
+    /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
+    @inlinable
+    public func reviewImage(_ input: ReviewImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReviewImageResponse > {
+        self.client.execute(action: "ReviewImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 图片审核
+    ///
+    /// 对点播中的图片文件发起审核（令人反感的信息、不安全的信息、不适宜的信息）任务。
+    /// ><li>图片文件大小支持：文件 < 5M；</li>
+    /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响审核效果；</li>
+    /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
+    @inlinable
+    public func reviewImage(_ input: ReviewImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewImageResponse {
+        try await self.client.execute(action: "ReviewImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

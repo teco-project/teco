@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cr {
-    /// 创建机器人任务
-    @inlinable
-    public func createBotTask(_ input: CreateBotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBotTaskResponse > {
-        self.client.execute(action: "CreateBotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建机器人任务
-    @inlinable
-    public func createBotTask(_ input: CreateBotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBotTaskResponse {
-        try await self.client.execute(action: "CreateBotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBotTask请求参数结构体
     public struct CreateBotTaskRequest: TCRequestModel {
         /// 模块名。默认值（固定）：AiApi
@@ -48,7 +36,7 @@ extension Cr {
         public let phoneCollection: String
         
         /// 产品拨打时间集合
-        public let callTimeCollection: CallTimeDict
+        public let callTimeCollection: CallTimeDict?
         
         /// 禁止拨打起始时间。默认130000
         public let startTimeBan: String?
@@ -83,7 +71,7 @@ extension Cr {
         /// 拨打结束日期。CallType=PERIOD 时有值，yyyy-MM-dd
         public let callEndDate: String?
         
-        public init (module: String, operation: String, botName: String, flowId: String, banCall: String, phoneCollection: String, callTimeCollection: CallTimeDict, startTimeBan: String?, endTimeBan: String?, codeType: String?, codeCollection: String?, callCount: Int64?, callInterval: Int64?, smsSignId: String?, smsTemplateId: String?, callType: String?, callStartDate: String?, callEndDate: String?) {
+        public init (module: String, operation: String, botName: String, flowId: String, banCall: String, phoneCollection: String, callTimeCollection: CallTimeDict? = nil, startTimeBan: String? = nil, endTimeBan: String? = nil, codeType: String? = nil, codeCollection: String? = nil, callCount: Int64? = nil, callInterval: Int64? = nil, smsSignId: String? = nil, smsTemplateId: String? = nil, callType: String? = nil, callStartDate: String? = nil, callEndDate: String? = nil) {
             self.module = module
             self.operation = operation
             self.botName = botName
@@ -138,5 +126,17 @@ extension Cr {
             case botId = "BotId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建机器人任务
+    @inlinable
+    public func createBotTask(_ input: CreateBotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBotTaskResponse > {
+        self.client.execute(action: "CreateBotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建机器人任务
+    @inlinable
+    public func createBotTask(_ input: CreateBotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBotTaskResponse {
+        try await self.client.execute(action: "CreateBotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

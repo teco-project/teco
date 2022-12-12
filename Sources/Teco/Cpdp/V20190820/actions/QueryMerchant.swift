@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-商户信息查询接口
-    @inlinable
-    public func queryMerchant(_ input: QueryMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMerchantResponse > {
-        self.client.execute(action: "QueryMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-商户信息查询接口
-    @inlinable
-    public func queryMerchant(_ input: QueryMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantResponse {
-        try await self.client.execute(action: "QueryMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryMerchant请求参数结构体
     public struct QueryMerchantRequest: TCRequestModel {
         /// 进件成功后返给商户方的 AppId
@@ -61,5 +49,17 @@ extension Cpdp {
             case businessPayFlag = "BusinessPayFlag"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-商户信息查询接口
+    @inlinable
+    public func queryMerchant(_ input: QueryMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMerchantResponse > {
+        self.client.execute(action: "QueryMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-商户信息查询接口
+    @inlinable
+    public func queryMerchant(_ input: QueryMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantResponse {
+        try await self.client.execute(action: "QueryMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

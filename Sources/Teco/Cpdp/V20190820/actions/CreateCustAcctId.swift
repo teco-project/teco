@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-会员子账户开立
-    ///
-    /// 会员子账户开立。会员在银行注册，并开立会员子账户，交易网会员代码即会员在平台端系统的会员编号。
-    /// 平台需保存银行返回的子账户账号，后续交易接口都会用到。会员属性字段为预留扩展字段，当前必须送默认值。
-    @inlinable
-    public func createCustAcctId(_ input: CreateCustAcctIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustAcctIdResponse > {
-        self.client.execute(action: "CreateCustAcctId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-会员子账户开立
-    ///
-    /// 会员子账户开立。会员在银行注册，并开立会员子账户，交易网会员代码即会员在平台端系统的会员编号。
-    /// 平台需保存银行返回的子账户账号，后续交易接口都会用到。会员属性字段为预留扩展字段，当前必须送默认值。
-    @inlinable
-    public func createCustAcctId(_ input: CreateCustAcctIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustAcctIdResponse {
-        try await self.client.execute(action: "CreateCustAcctId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCustAcctId请求参数结构体
     public struct CreateCustAcctIdRequest: TCRequestModel {
         /// STRING(2)，功能标志（1: 开户; 3: 销户）
@@ -80,7 +62,7 @@ extension Cpdp {
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
         
-        public init (functionFlag: String, fundSummaryAcctNo: String, tranNetMemberCode: String, memberProperty: String, mobile: String, mrchCode: String, selfBusiness: Bool, contactName: String, subAcctName: String, subAcctShortName: String, subAcctType: Int64, userNickname: String?, email: String?, reservedMsg: String?, profile: String?) {
+        public init (functionFlag: String, fundSummaryAcctNo: String, tranNetMemberCode: String, memberProperty: String, mobile: String, mrchCode: String, selfBusiness: Bool, contactName: String, subAcctName: String, subAcctShortName: String, subAcctType: Int64, userNickname: String? = nil, email: String? = nil, reservedMsg: String? = nil, profile: String? = nil) {
             self.functionFlag = functionFlag
             self.fundSummaryAcctNo = fundSummaryAcctNo
             self.tranNetMemberCode = tranNetMemberCode
@@ -147,5 +129,23 @@ extension Cpdp {
             case cnsmrSeqNo = "CnsmrSeqNo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-会员子账户开立
+    ///
+    /// 会员子账户开立。会员在银行注册，并开立会员子账户，交易网会员代码即会员在平台端系统的会员编号。
+    /// 平台需保存银行返回的子账户账号，后续交易接口都会用到。会员属性字段为预留扩展字段，当前必须送默认值。
+    @inlinable
+    public func createCustAcctId(_ input: CreateCustAcctIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustAcctIdResponse > {
+        self.client.execute(action: "CreateCustAcctId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-会员子账户开立
+    ///
+    /// 会员子账户开立。会员在银行注册，并开立会员子账户，交易网会员代码即会员在平台端系统的会员编号。
+    /// 平台需保存银行返回的子账户账号，后续交易接口都会用到。会员属性字段为预留扩展字段，当前必须送默认值。
+    @inlinable
+    public func createCustAcctId(_ input: CreateCustAcctIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustAcctIdResponse {
+        try await self.client.execute(action: "CreateCustAcctId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

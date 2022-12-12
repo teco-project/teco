@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询所有检查项接口
-    ///
-    /// 查询所有检查项接口，返回总数和检查项列表
-    @inlinable
-    public func describeCheckItemList(_ input: DescribeCheckItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckItemListResponse > {
-        self.client.execute(action: "DescribeCheckItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询所有检查项接口
-    ///
-    /// 查询所有检查项接口，返回总数和检查项列表
-    @inlinable
-    public func describeCheckItemList(_ input: DescribeCheckItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckItemListResponse {
-        try await self.client.execute(action: "DescribeCheckItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCheckItemList请求参数结构体
     public struct DescribeCheckItemListRequest: TCRequestModel {
         /// 偏移量
@@ -42,7 +26,7 @@ extension Tcss {
         /// Name 可取值：risk_level风险等级, risk_target检查对象，风险对象,risk_type风险类别,risk_attri检测项所属的风险类型
         public let filters: [ComplianceFilters]?
         
-        public init (offset: UInt64?, limit: UInt64?, filters: [ComplianceFilters]?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -71,5 +55,21 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询所有检查项接口
+    ///
+    /// 查询所有检查项接口，返回总数和检查项列表
+    @inlinable
+    public func describeCheckItemList(_ input: DescribeCheckItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckItemListResponse > {
+        self.client.execute(action: "DescribeCheckItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询所有检查项接口
+    ///
+    /// 查询所有检查项接口，返回总数和检查项列表
+    @inlinable
+    public func describeCheckItemList(_ input: DescribeCheckItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckItemListResponse {
+        try await self.client.execute(action: "DescribeCheckItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

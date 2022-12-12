@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取漏洞列表
-    ///
-    /// 本接口 (DescribeVuls) 用于获取漏洞列表数据。
-    @inlinable
-    public func describeVuls(_ input: DescribeVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulsResponse > {
-        self.client.execute(action: "DescribeVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取漏洞列表
-    ///
-    /// 本接口 (DescribeVuls) 用于获取漏洞列表数据。
-    @inlinable
-    public func describeVuls(_ input: DescribeVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsResponse {
-        try await self.client.execute(action: "DescribeVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVuls请求参数结构体
     public struct DescribeVulsRequest: TCRequestModel {
         /// 漏洞类型。
@@ -50,7 +34,7 @@ extension Yunjing {
         /// Status过滤条件值只能取其一，不能是“或”逻辑。
         public let filters: [Filter]?
         
-        public init (vulType: String, limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (vulType: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.vulType = vulType
             self.limit = limit
             self.offset = offset
@@ -81,5 +65,21 @@ extension Yunjing {
             case vuls = "Vuls"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取漏洞列表
+    ///
+    /// 本接口 (DescribeVuls) 用于获取漏洞列表数据。
+    @inlinable
+    public func describeVuls(_ input: DescribeVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulsResponse > {
+        self.client.execute(action: "DescribeVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取漏洞列表
+    ///
+    /// 本接口 (DescribeVuls) 用于获取漏洞列表数据。
+    @inlinable
+    public func describeVuls(_ input: DescribeVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsResponse {
+        try await self.client.execute(action: "DescribeVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改用户告警配置
-    ///
-    /// 本接口（ModifyAlarmConfig）用于修改用户告警配置。
-    @inlinable
-    public func modifyAlarmConfig(_ input: ModifyAlarmConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmConfigResponse > {
-        self.client.execute(action: "ModifyAlarmConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改用户告警配置
-    ///
-    /// 本接口（ModifyAlarmConfig）用于修改用户告警配置。
-    @inlinable
-    public func modifyAlarmConfig(_ input: ModifyAlarmConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmConfigResponse {
-        try await self.client.execute(action: "ModifyAlarmConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAlarmConfig请求参数结构体
     public struct ModifyAlarmConfigRequest: TCRequestModel {
         /// 告警服务类型，取值有：
@@ -49,7 +33,7 @@ extension Teo {
         /// 是否使用默认值，只有在不传Threshold或者Threshold=0时该参数有效。
         public let isDefault: Bool?
         
-        public init (serviceType: String, zoneId: String, entityList: [String], threshold: Int64?, isDefault: Bool?) {
+        public init (serviceType: String, zoneId: String, entityList: [String], threshold: Int64? = nil, isDefault: Bool? = nil) {
             self.serviceType = serviceType
             self.zoneId = zoneId
             self.entityList = entityList
@@ -74,5 +58,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改用户告警配置
+    ///
+    /// 本接口（ModifyAlarmConfig）用于修改用户告警配置。
+    @inlinable
+    public func modifyAlarmConfig(_ input: ModifyAlarmConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmConfigResponse > {
+        self.client.execute(action: "ModifyAlarmConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改用户告警配置
+    ///
+    /// 本接口（ModifyAlarmConfig）用于修改用户告警配置。
+    @inlinable
+    public func modifyAlarmConfig(_ input: ModifyAlarmConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmConfigResponse {
+        try await self.client.execute(action: "ModifyAlarmConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

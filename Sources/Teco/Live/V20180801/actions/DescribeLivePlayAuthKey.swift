@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询播放鉴权key
-    ///
-    /// 查询播放鉴权key。
-    @inlinable
-    public func describeLivePlayAuthKey(_ input: DescribeLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLivePlayAuthKeyResponse > {
-        self.client.execute(action: "DescribeLivePlayAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询播放鉴权key
-    ///
-    /// 查询播放鉴权key。
-    @inlinable
-    public func describeLivePlayAuthKey(_ input: DescribeLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePlayAuthKeyResponse {
-        try await self.client.execute(action: "DescribeLivePlayAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLivePlayAuthKey请求参数结构体
     public struct DescribeLivePlayAuthKeyRequest: TCRequestModel {
         /// 域名。
@@ -57,5 +41,21 @@ extension Live {
             case playAuthKeyInfo = "PlayAuthKeyInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询播放鉴权key
+    ///
+    /// 查询播放鉴权key。
+    @inlinable
+    public func describeLivePlayAuthKey(_ input: DescribeLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLivePlayAuthKeyResponse > {
+        self.client.execute(action: "DescribeLivePlayAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询播放鉴权key
+    ///
+    /// 查询播放鉴权key。
+    @inlinable
+    public func describeLivePlayAuthKey(_ input: DescribeLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePlayAuthKeyResponse {
+        try await self.client.execute(action: "DescribeLivePlayAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

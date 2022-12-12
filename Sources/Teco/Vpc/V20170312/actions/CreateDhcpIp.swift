@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建DhcpIp
-    ///
-    /// 本接口（CreateDhcpIp）用于创建DhcpIp
-    @inlinable
-    public func createDhcpIp(_ input: CreateDhcpIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDhcpIpResponse > {
-        self.client.execute(action: "CreateDhcpIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建DhcpIp
-    ///
-    /// 本接口（CreateDhcpIp）用于创建DhcpIp
-    @inlinable
-    public func createDhcpIp(_ input: CreateDhcpIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDhcpIpResponse {
-        try await self.client.execute(action: "CreateDhcpIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDhcpIp请求参数结构体
     public struct CreateDhcpIpRequest: TCRequestModel {
         /// 私有网络`ID`。
@@ -45,7 +29,7 @@ extension Vpc {
         /// 新申请的内网IP地址个数。总数不能超过64个。
         public let secondaryPrivateIpAddressCount: UInt64?
         
-        public init (vpcId: String, subnetId: String, dhcpIpName: String, secondaryPrivateIpAddressCount: UInt64?) {
+        public init (vpcId: String, subnetId: String, dhcpIpName: String, secondaryPrivateIpAddressCount: UInt64? = nil) {
             self.vpcId = vpcId
             self.subnetId = subnetId
             self.dhcpIpName = dhcpIpName
@@ -72,5 +56,21 @@ extension Vpc {
             case dhcpIpSet = "DhcpIpSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建DhcpIp
+    ///
+    /// 本接口（CreateDhcpIp）用于创建DhcpIp
+    @inlinable
+    public func createDhcpIp(_ input: CreateDhcpIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDhcpIpResponse > {
+        self.client.execute(action: "CreateDhcpIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建DhcpIp
+    ///
+    /// 本接口（CreateDhcpIp）用于创建DhcpIp
+    @inlinable
+    public func createDhcpIp(_ input: CreateDhcpIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDhcpIpResponse {
+        try await self.client.execute(action: "CreateDhcpIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

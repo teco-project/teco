@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询Api绑定的应用列表
-    ///
-    /// 本接口（DescribeApiBindApiAppsStatus）查询Api绑定的应用列表。
-    @inlinable
-    public func describeApiBindApiAppsStatus(_ input: DescribeApiBindApiAppsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiBindApiAppsStatusResponse > {
-        self.client.execute(action: "DescribeApiBindApiAppsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Api绑定的应用列表
-    ///
-    /// 本接口（DescribeApiBindApiAppsStatus）查询Api绑定的应用列表。
-    @inlinable
-    public func describeApiBindApiAppsStatus(_ input: DescribeApiBindApiAppsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiBindApiAppsStatusResponse {
-        try await self.client.execute(action: "DescribeApiBindApiAppsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApiBindApiAppsStatus请求参数结构体
     public struct DescribeApiBindApiAppsStatusRequest: TCRequestModel {
         /// 服务ID
@@ -48,7 +32,7 @@ extension Apigateway {
         /// 过滤条件。支持ApiAppId、Environment、KeyWord（ 可以匹配name或者ID）。
         public let filters: [Filter]?
         
-        public init (serviceId: String, apiIds: [String], limit: Int64?, offset: Int64?, filters: [Filter]?) {
+        public init (serviceId: String, apiIds: [String], limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil) {
             self.serviceId = serviceId
             self.apiIds = apiIds
             self.limit = limit
@@ -69,7 +53,7 @@ extension Apigateway {
     public struct DescribeApiBindApiAppsStatusResponse: TCResponseModel {
         /// 应用绑定的Api列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: ApiAppApiInfos
+        public let result: ApiAppApiInfos?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -78,5 +62,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Api绑定的应用列表
+    ///
+    /// 本接口（DescribeApiBindApiAppsStatus）查询Api绑定的应用列表。
+    @inlinable
+    public func describeApiBindApiAppsStatus(_ input: DescribeApiBindApiAppsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiBindApiAppsStatusResponse > {
+        self.client.execute(action: "DescribeApiBindApiAppsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Api绑定的应用列表
+    ///
+    /// 本接口（DescribeApiBindApiAppsStatus）查询Api绑定的应用列表。
+    @inlinable
+    public func describeApiBindApiAppsStatus(_ input: DescribeApiBindApiAppsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiBindApiAppsStatusResponse {
+        try await self.client.execute(action: "DescribeApiBindApiAppsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

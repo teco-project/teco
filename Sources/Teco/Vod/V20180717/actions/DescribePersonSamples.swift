@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 获取素材样本列表
-    ///
-    /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
-    @inlinable
-    public func describePersonSamples(_ input: DescribePersonSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonSamplesResponse > {
-        self.client.execute(action: "DescribePersonSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取素材样本列表
-    ///
-    /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
-    @inlinable
-    public func describePersonSamples(_ input: DescribePersonSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonSamplesResponse {
-        try await self.client.execute(action: "DescribePersonSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePersonSamples请求参数结构体
     public struct DescribePersonSamplesRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -58,7 +42,7 @@ extension Vod {
         /// 返回记录条数，默认值：100，最大值：100。
         public let limit: UInt64?
         
-        public init (subAppId: UInt64?, type: String?, personIds: [String]?, names: [String]?, tags: [String]?, offset: UInt64?, limit: UInt64?) {
+        public init (subAppId: UInt64? = nil, type: String? = nil, personIds: [String]? = nil, names: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.subAppId = subAppId
             self.type = type
             self.personIds = personIds
@@ -95,5 +79,21 @@ extension Vod {
             case personSet = "PersonSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取素材样本列表
+    ///
+    /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
+    @inlinable
+    public func describePersonSamples(_ input: DescribePersonSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonSamplesResponse > {
+        self.client.execute(action: "DescribePersonSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取素材样本列表
+    ///
+    /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
+    @inlinable
+    public func describePersonSamples(_ input: DescribePersonSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonSamplesResponse {
+        try await self.client.execute(action: "DescribePersonSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

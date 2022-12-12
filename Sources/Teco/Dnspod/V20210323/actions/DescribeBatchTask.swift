@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 获取任务详情
-    @inlinable
-    public func describeBatchTask(_ input: DescribeBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchTaskResponse > {
-        self.client.execute(action: "DescribeBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取任务详情
-    @inlinable
-    public func describeBatchTask(_ input: DescribeBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTaskResponse {
-        try await self.client.execute(action: "DescribeBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBatchTask请求参数结构体
     public struct DescribeBatchTaskRequest: TCRequestModel {
         /// 任务ID。操作批量接口时会返回JobId
@@ -73,5 +61,17 @@ extension Dnspod {
             case createdAt = "CreatedAt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取任务详情
+    @inlinable
+    public func describeBatchTask(_ input: DescribeBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchTaskResponse > {
+        self.client.execute(action: "DescribeBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务详情
+    @inlinable
+    public func describeBatchTask(_ input: DescribeBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTaskResponse {
+        try await self.client.execute(action: "DescribeBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

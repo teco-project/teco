@@ -116,7 +116,7 @@ extension Tcaplusdb {
         
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let error: ErrorInfo
+        public let error: ErrorInfo?
         
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
@@ -247,7 +247,7 @@ extension Tcaplusdb {
         
         /// 数据订阅的kafka信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let kafkaInfo: KafkaInfo
+        public let kafkaInfo: KafkaInfo?
         
         /// 集群Txh备份文件多少天后过期删除
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -371,7 +371,7 @@ extension Tcaplusdb {
         /// 字段长度
         public let fieldSize: Int64?
         
-        public init (fieldName: String, isPrimaryKey: String, fieldType: String?, fieldSize: Int64?) {
+        public init (fieldName: String, isPrimaryKey: String, fieldType: String? = nil, fieldSize: Int64? = nil) {
             self.fieldName = fieldName
             self.isPrimaryKey = isPrimaryKey
             self.fieldType = fieldType
@@ -397,7 +397,7 @@ extension Tcaplusdb {
         /// 过滤字段值
         public let values: [String]?
         
-        public init (name: String, value: String?, values: [String]?) {
+        public init (name: String, value: String? = nil, values: [String]? = nil) {
             self.name = name
             self.value = value
             self.values = values
@@ -432,7 +432,7 @@ extension Tcaplusdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileContent: String?
         
-        public init (fileName: String, fileType: String, fileExtType: String, fileSize: Int64, fileId: Int64?, fileContent: String?) {
+        public init (fileName: String, fileType: String, fileExtType: String, fileSize: Int64, fileId: Int64? = nil, fileContent: String? = nil) {
             self.fileName = fileName
             self.fileType = fileType
             self.fileExtType = fileExtType
@@ -475,7 +475,7 @@ extension Tcaplusdb {
         
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let error: ErrorInfo
+        public let error: ErrorInfo?
         
         enum CodingKeys: String, CodingKey {
             case fileName = "FileName"
@@ -540,7 +540,7 @@ extension Tcaplusdb {
         /// key文件大小
         public let fileSize: Int64?
         
-        public init (fileName: String, fileExtType: String, fileContent: String, fileSize: Int64?) {
+        public init (fileName: String, fileExtType: String, fileContent: String, fileSize: Int64? = nil) {
             self.fileName = fileName
             self.fileExtType = fileExtType
             self.fileContent = fileContent
@@ -582,7 +582,7 @@ extension Tcaplusdb {
         
         /// 成功时此字段返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let error: ErrorInfo
+        public let error: ErrorInfo?
         
         /// 对比的表格信息
         public let table: CompareTablesInfo
@@ -678,7 +678,7 @@ extension Tcaplusdb {
         
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let error: ErrorInfo
+        public let error: ErrorInfo?
         
         /// LIST类型表格元素个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -850,7 +850,7 @@ extension Tcaplusdb {
         /// Key回档文件内容，回档专用
         public let fileContent: String?
         
-        public init (tableGroupId: String, tableName: String, tableInstanceId: String?, tableIdlType: String?, tableType: String?, listElementNum: Int64?, reservedVolume: Int64?, reservedReadQps: Int64?, reservedWriteQps: Int64?, memo: String?, fileName: String?, fileExtType: String?, fileSize: Int64?, fileContent: String?) {
+        public init (tableGroupId: String, tableName: String, tableInstanceId: String? = nil, tableIdlType: String? = nil, tableType: String? = nil, listElementNum: Int64? = nil, reservedVolume: Int64? = nil, reservedReadQps: Int64? = nil, reservedWriteQps: Int64? = nil, memo: String? = nil, fileName: String? = nil, fileExtType: String? = nil, fileSize: Int64? = nil, fileContent: String? = nil) {
             self.tableGroupId = tableGroupId
             self.tableName = tableName
             self.tableInstanceId = tableInstanceId
@@ -909,9 +909,9 @@ extension Tcaplusdb {
         public let shardNum: UInt64?
         
         /// ckafka实例信息
-        public let kafkaInfo: KafkaInfo
+        public let kafkaInfo: KafkaInfo?
         
-        public init (tableGroupId: String, tableName: String, tableInstanceId: String?, tableIdlType: String?, tableType: String?, selectedFields: [FieldInfo]?, shardNum: UInt64?, kafkaInfo: KafkaInfo) {
+        public init (tableGroupId: String, tableName: String, tableInstanceId: String? = nil, tableIdlType: String? = nil, tableType: String? = nil, selectedFields: [FieldInfo]? = nil, shardNum: UInt64? = nil, kafkaInfo: KafkaInfo? = nil) {
             self.tableGroupId = tableGroupId
             self.tableName = tableName
             self.tableInstanceId = tableInstanceId
@@ -1028,7 +1028,7 @@ extension Tcaplusdb {
         /// 快照过期时间点
         public let snapshotDeadTime: Date?
         
-        public init (tableGroupId: String, tableName: String, snapshotName: String, snapshotDeadTime: Date?) {
+        public init (tableGroupId: String, tableName: String, snapshotName: String, snapshotDeadTime: Date? = nil) {
             self.tableGroupId = tableGroupId
             self.tableName = tableName
             self.snapshotName = snapshotName
@@ -1059,7 +1059,7 @@ extension Tcaplusdb {
         
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let error: ErrorInfo
+        public let error: ErrorInfo?
         
         /// 快照名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1287,7 +1287,7 @@ extension Tcaplusdb {
         
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let error: ErrorInfo
+        public let error: ErrorInfo?
         
         /// TcaplusDB SDK数据访问接入ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1311,7 +1311,7 @@ extension Tcaplusdb {
         
         /// 表格的缓写信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let syncTableInfo: SyncTableInfo
+        public let syncTableInfo: SyncTableInfo?
         
         enum CodingKeys: String, CodingKey {
             case tableName = "TableName"
@@ -1374,7 +1374,7 @@ extension Tcaplusdb {
         
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let error: ErrorInfo
+        public let error: ErrorInfo?
         
         /// 任务ID列表，对于创建多任务的接口有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1425,7 +1425,7 @@ extension Tcaplusdb {
         
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let error: ErrorInfo
+        public let error: ErrorInfo?
         
         /// 任务ID列表，对于创建多任务的接口有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1467,7 +1467,7 @@ extension Tcaplusdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagValue: String?
         
-        public init (tagKey: String, tagValue: String?) {
+        public init (tagKey: String, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
@@ -1490,7 +1490,7 @@ extension Tcaplusdb {
         
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let error: ErrorInfo
+        public let error: ErrorInfo?
         
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
@@ -1519,7 +1519,7 @@ extension Tcaplusdb {
         
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let error: ErrorInfo
+        public let error: ErrorInfo?
         
         enum CodingKeys: String, CodingKey {
             case tableInstanceId = "TableInstanceId"
@@ -1546,7 +1546,7 @@ extension Tcaplusdb {
         
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let error: ErrorInfo
+        public let error: ErrorInfo?
         
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"

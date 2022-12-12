@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudaudit {
-    /// 检索日志
-    ///
-    /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
-    @inlinable
-    public func lookUpEvents(_ input: LookUpEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LookUpEventsResponse > {
-        self.client.execute(action: "LookUpEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检索日志
-    ///
-    /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
-    @inlinable
-    public func lookUpEvents(_ input: LookUpEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LookUpEventsResponse {
-        try await self.client.execute(action: "LookUpEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// LookUpEvents请求参数结构体
     public struct LookUpEventsRequest: TCRequestModel {
         /// 开始时间
@@ -51,7 +35,7 @@ extension Cloudaudit {
         /// 云审计模式，有效值：standard | quick，其中standard是标准模式，quick是极速模式。默认为标准模式
         public let mode: String?
         
-        public init (startTime: Int64, endTime: Int64, lookupAttributes: [LookupAttribute]?, nextToken: String?, maxResults: Int64?, mode: String?) {
+        public init (startTime: Int64, endTime: Int64, lookupAttributes: [LookupAttribute]? = nil, nextToken: String? = nil, maxResults: Int64? = nil, mode: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.lookupAttributes = lookupAttributes
@@ -93,5 +77,21 @@ extension Cloudaudit {
             case listOver = "ListOver"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检索日志
+    ///
+    /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
+    @inlinable
+    public func lookUpEvents(_ input: LookUpEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LookUpEventsResponse > {
+        self.client.execute(action: "LookUpEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检索日志
+    ///
+    /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
+    @inlinable
+    public func lookUpEvents(_ input: LookUpEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LookUpEventsResponse {
+        try await self.client.execute(action: "LookUpEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

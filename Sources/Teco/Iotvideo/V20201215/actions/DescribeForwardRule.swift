@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取产品转发规则
-    @inlinable
-    public func describeForwardRule(_ input: DescribeForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeForwardRuleResponse > {
-        self.client.execute(action: "DescribeForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取产品转发规则
-    @inlinable
-    public func describeForwardRule(_ input: DescribeForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeForwardRuleResponse {
-        try await self.client.execute(action: "DescribeForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeForwardRule请求参数结构体
     public struct DescribeForwardRuleRequest: TCRequestModel {
         /// 产品ID
@@ -41,7 +29,7 @@ extension Iotvideo {
         /// 临时密钥
         public let consecretid: String?
         
-        public init (productID: String, skey: String, queueType: UInt64, consecretid: String?) {
+        public init (productID: String, skey: String, queueType: UInt64, consecretid: String? = nil) {
             self.productID = productID
             self.skey = skey
             self.queueType = queueType
@@ -112,5 +100,17 @@ extension Iotvideo {
             case errMsg = "ErrMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取产品转发规则
+    @inlinable
+    public func describeForwardRule(_ input: DescribeForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeForwardRuleResponse > {
+        self.client.execute(action: "DescribeForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品转发规则
+    @inlinable
+    public func describeForwardRule(_ input: DescribeForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeForwardRuleResponse {
+        try await self.client.execute(action: "DescribeForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

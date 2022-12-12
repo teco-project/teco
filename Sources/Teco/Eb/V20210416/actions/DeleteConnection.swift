@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 删除事件连接器
-    @inlinable
-    public func deleteConnection(_ input: DeleteConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConnectionResponse > {
-        self.client.execute(action: "DeleteConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除事件连接器
-    @inlinable
-    public func deleteConnection(_ input: DeleteConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConnectionResponse {
-        try await self.client.execute(action: "DeleteConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteConnection请求参数结构体
     public struct DeleteConnectionRequest: TCRequestModel {
         /// 连接器ID
@@ -54,5 +42,17 @@ extension Eb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除事件连接器
+    @inlinable
+    public func deleteConnection(_ input: DeleteConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConnectionResponse > {
+        self.client.execute(action: "DeleteConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除事件连接器
+    @inlinable
+    public func deleteConnection(_ input: DeleteConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConnectionResponse {
+        try await self.client.execute(action: "DeleteConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

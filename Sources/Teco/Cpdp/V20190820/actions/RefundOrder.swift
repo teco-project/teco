@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-消费订单退款接口
-    ///
-    /// 云鉴-消费订单退款的接口
-    @inlinable
-    public func refundOrder(_ input: RefundOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefundOrderResponse > {
-        self.client.execute(action: "RefundOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-消费订单退款接口
-    ///
-    /// 云鉴-消费订单退款的接口
-    @inlinable
-    public func refundOrder(_ input: RefundOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundOrderResponse {
-        try await self.client.execute(action: "RefundOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RefundOrder请求参数结构体
     public struct RefundOrderRequest: TCRequestModel {
         /// 进件成功后返给商户方的AppId
@@ -77,5 +61,21 @@ extension Cpdp {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-消费订单退款接口
+    ///
+    /// 云鉴-消费订单退款的接口
+    @inlinable
+    public func refundOrder(_ input: RefundOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefundOrderResponse > {
+        self.client.execute(action: "RefundOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-消费订单退款接口
+    ///
+    /// 云鉴-消费订单退款的接口
+    @inlinable
+    public func refundOrder(_ input: RefundOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundOrderResponse {
+        try await self.client.execute(action: "RefundOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

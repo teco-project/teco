@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 查询用户组关联的策略列表
-    ///
-    /// 本接口（ListAttachedGroupPolicies）可用于查询用户组关联的策略列表。
-    @inlinable
-    public func listAttachedGroupPolicies(_ input: ListAttachedGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAttachedGroupPoliciesResponse > {
-        self.client.execute(action: "ListAttachedGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户组关联的策略列表
-    ///
-    /// 本接口（ListAttachedGroupPolicies）可用于查询用户组关联的策略列表。
-    @inlinable
-    public func listAttachedGroupPolicies(_ input: ListAttachedGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedGroupPoliciesResponse {
-        try await self.client.execute(action: "ListAttachedGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListAttachedGroupPolicies请求参数结构体
     public struct ListAttachedGroupPoliciesRequest: TCRequestModel {
         /// 用户组ID
@@ -45,7 +29,7 @@ extension Cam {
         /// 搜索关键字
         public let keyword: String?
         
-        public init (targetGroupId: UInt64, page: UInt64?, rp: UInt64?, keyword: String?) {
+        public init (targetGroupId: UInt64, page: UInt64? = nil, rp: UInt64? = nil, keyword: String? = nil) {
             self.targetGroupId = targetGroupId
             self.page = page
             self.rp = rp
@@ -76,5 +60,21 @@ extension Cam {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户组关联的策略列表
+    ///
+    /// 本接口（ListAttachedGroupPolicies）可用于查询用户组关联的策略列表。
+    @inlinable
+    public func listAttachedGroupPolicies(_ input: ListAttachedGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAttachedGroupPoliciesResponse > {
+        self.client.execute(action: "ListAttachedGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户组关联的策略列表
+    ///
+    /// 本接口（ListAttachedGroupPolicies）可用于查询用户组关联的策略列表。
+    @inlinable
+    public func listAttachedGroupPolicies(_ input: ListAttachedGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedGroupPoliciesResponse {
+        try await self.client.execute(action: "ListAttachedGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

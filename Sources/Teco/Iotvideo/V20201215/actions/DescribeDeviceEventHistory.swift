@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取设备的历史事件
-    @inlinable
-    public func describeDeviceEventHistory(_ input: DescribeDeviceEventHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceEventHistoryResponse > {
-        self.client.execute(action: "DescribeDeviceEventHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备的历史事件
-    @inlinable
-    public func describeDeviceEventHistory(_ input: DescribeDeviceEventHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceEventHistoryResponse {
-        try await self.client.execute(action: "DescribeDeviceEventHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceEventHistory请求参数结构体
     public struct DescribeDeviceEventHistoryRequest: TCRequestModel {
         /// 产品ID
@@ -53,7 +41,7 @@ extension Iotvideo {
         /// 事件标识符，可以用来指定查询特定的事件，如果不指定，则查询所有事件。
         public let eventId: String?
         
-        public init (productId: String, deviceName: String, type: String?, startTime: UInt64?, endTime: UInt64?, context: String?, size: UInt64?, eventId: String?) {
+        public init (productId: String, deviceName: String, type: String? = nil, startTime: UInt64? = nil, endTime: UInt64? = nil, context: String? = nil, size: UInt64? = nil, eventId: String? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.type = type
@@ -104,5 +92,17 @@ extension Iotvideo {
             case eventHistory = "EventHistory"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备的历史事件
+    @inlinable
+    public func describeDeviceEventHistory(_ input: DescribeDeviceEventHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceEventHistoryResponse > {
+        self.client.execute(action: "DescribeDeviceEventHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备的历史事件
+    @inlinable
+    public func describeDeviceEventHistory(_ input: DescribeDeviceEventHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceEventHistoryResponse {
+        try await self.client.execute(action: "DescribeDeviceEventHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

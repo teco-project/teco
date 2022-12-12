@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改网络探测
-    ///
-    /// 本接口(ModifyNetDetect)用于修改网络探测参数。
-    @inlinable
-    public func modifyNetDetect(_ input: ModifyNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetDetectResponse > {
-        self.client.execute(action: "ModifyNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改网络探测
-    ///
-    /// 本接口(ModifyNetDetect)用于修改网络探测参数。
-    @inlinable
-    public func modifyNetDetect(_ input: ModifyNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetDetectResponse {
-        try await self.client.execute(action: "ModifyNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNetDetect请求参数结构体
     public struct ModifyNetDetectRequest: TCRequestModel {
         /// 网络探测实例`ID`。形如：`netd-12345678`
@@ -63,7 +47,7 @@ extension Vpc {
         /// 网络探测描述。
         public let netDetectDescription: String?
         
-        public init (netDetectId: String, netDetectName: String?, detectDestinationIp: [String]?, nextHopType: String?, nextHopDestination: String?, netDetectDescription: String?) {
+        public init (netDetectId: String, netDetectName: String? = nil, detectDestinationIp: [String]? = nil, nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil) {
             self.netDetectId = netDetectId
             self.netDetectName = netDetectName
             self.detectDestinationIp = detectDestinationIp
@@ -90,5 +74,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改网络探测
+    ///
+    /// 本接口(ModifyNetDetect)用于修改网络探测参数。
+    @inlinable
+    public func modifyNetDetect(_ input: ModifyNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetDetectResponse > {
+        self.client.execute(action: "ModifyNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改网络探测
+    ///
+    /// 本接口(ModifyNetDetect)用于修改网络探测参数。
+    @inlinable
+    public func modifyNetDetect(_ input: ModifyNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetDetectResponse {
+        try await self.client.execute(action: "ModifyNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

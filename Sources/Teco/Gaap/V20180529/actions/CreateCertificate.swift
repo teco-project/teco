@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 创建证书
-    ///
-    /// 本接口（CreateCertificate）用于创建Gaap相关证书和配置文件，包括基础认证配置文件，客户端CA证书，服务器SSL证书，Gaap SSL证书以及源站CA证书。
-    @inlinable
-    public func createCertificate(_ input: CreateCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCertificateResponse > {
-        self.client.execute(action: "CreateCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建证书
-    ///
-    /// 本接口（CreateCertificate）用于创建Gaap相关证书和配置文件，包括基础认证配置文件，客户端CA证书，服务器SSL证书，Gaap SSL证书以及源站CA证书。
-    @inlinable
-    public func createCertificate(_ input: CreateCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCertificateResponse {
-        try await self.client.execute(action: "CreateCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCertificate请求参数结构体
     public struct CreateCertificateRequest: TCRequestModel {
         /// 证书类型。其中：
@@ -52,7 +36,7 @@ extension Gaap {
         /// 密钥内容。采用url编码。仅当证书类型为SSL证书时，需要填写该参数。格式为pem。
         public let certificateKey: String?
         
-        public init (certificateType: Int64, certificateContent: String, certificateAlias: String?, certificateKey: String?) {
+        public init (certificateType: Int64, certificateContent: String, certificateAlias: String? = nil, certificateKey: String? = nil) {
             self.certificateType = certificateType
             self.certificateContent = certificateContent
             self.certificateAlias = certificateAlias
@@ -79,5 +63,21 @@ extension Gaap {
             case certificateId = "CertificateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建证书
+    ///
+    /// 本接口（CreateCertificate）用于创建Gaap相关证书和配置文件，包括基础认证配置文件，客户端CA证书，服务器SSL证书，Gaap SSL证书以及源站CA证书。
+    @inlinable
+    public func createCertificate(_ input: CreateCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCertificateResponse > {
+        self.client.execute(action: "CreateCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建证书
+    ///
+    /// 本接口（CreateCertificate）用于创建Gaap相关证书和配置文件，包括基础认证配置文件，客户端CA证书，服务器SSL证书，Gaap SSL证书以及源站CA证书。
+    @inlinable
+    public func createCertificate(_ input: CreateCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCertificateResponse {
+        try await self.client.execute(action: "CreateCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

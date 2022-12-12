@@ -25,9 +25,9 @@ extension Trdp {
         public let accountType: Int64
         
         /// 通用账号信息，当AccountType为1、2、3、100时必填
-        public let universalAccount: UniversalAccountInfo
+        public let universalAccount: UniversalAccountInfo?
         
-        public init (accountType: Int64, universalAccount: UniversalAccountInfo) {
+        public init (accountType: Int64, universalAccount: UniversalAccountInfo? = nil) {
             self.accountType = accountType
             self.universalAccount = universalAccount
         }
@@ -196,7 +196,7 @@ extension Trdp {
         /// 所在纬度
         public let lat: String?
         
-        public init (macAddress: String?, model: String?, osSystem: String?, osSystemVersion: String?, bidFloor: Int64?, deviceVersion: String?, maker: String?, deviceType: String?, carrier: String?, accessMode: String?, phoneChipInfo: String?, cpuModel: String?, cpuCore: String?, memory: String?, language: String?, volume: String?, batteryPower: String?, resolutionWidth: Int64?, resolutionHeight: Int64?, ua: String?, app: String?, appPackageName: String?, serialNumber: String?, mobileCountryAndNetworkCode: String?, vendorId: String?, androidApiLevel: String?, brightness: String?, bluetoothAddress: String?, baseBandVersion: String?, kernelVersion: String?, storage: String?, packageName: String?, appVersion: String?, appName: String?, isDebug: String?, isRoot: String?, isProxy: String?, isEmulator: String?, chargeStatus: String?, networkType: String?, wifiMac: String?, deviceName: String?, startupTime: String?, lon: String?, lat: String?) {
+        public init (macAddress: String? = nil, model: String? = nil, osSystem: String? = nil, osSystemVersion: String? = nil, bidFloor: Int64? = nil, deviceVersion: String? = nil, maker: String? = nil, deviceType: String? = nil, carrier: String? = nil, accessMode: String? = nil, phoneChipInfo: String? = nil, cpuModel: String? = nil, cpuCore: String? = nil, memory: String? = nil, language: String? = nil, volume: String? = nil, batteryPower: String? = nil, resolutionWidth: Int64? = nil, resolutionHeight: Int64? = nil, ua: String? = nil, app: String? = nil, appPackageName: String? = nil, serialNumber: String? = nil, mobileCountryAndNetworkCode: String? = nil, vendorId: String? = nil, androidApiLevel: String? = nil, brightness: String? = nil, bluetoothAddress: String? = nil, baseBandVersion: String? = nil, kernelVersion: String? = nil, storage: String? = nil, packageName: String? = nil, appVersion: String? = nil, appName: String? = nil, isDebug: String? = nil, isRoot: String? = nil, isProxy: String? = nil, isEmulator: String? = nil, chargeStatus: String? = nil, networkType: String? = nil, wifiMac: String? = nil, deviceName: String? = nil, startupTime: String? = nil, lon: String? = nil, lat: String? = nil) {
             self.macAddress = macAddress
             self.model = model
             self.osSystem = osSystem
@@ -430,7 +430,7 @@ extension Trdp {
         /// 网址
         public let url: String?
         
-        public init (deliveryMode: Int64?, advertisingType: Int64?, fullScreen: Int64?, advertisingSpaceWidth: Int64?, advertisingSpaceHeight: Int64?, url: String?) {
+        public init (deliveryMode: Int64? = nil, advertisingType: Int64? = nil, fullScreen: Int64? = nil, advertisingSpaceWidth: Int64? = nil, advertisingSpaceHeight: Int64? = nil, url: String? = nil) {
             self.deliveryMode = deliveryMode
             self.advertisingType = advertisingType
             self.fullScreen = fullScreen
@@ -499,7 +499,7 @@ extension Trdp {
         /// 用户昵称
         public let nickname: String?
         
-        public init (ip: String, channelSource: String?, platform: Int64?, name: String?, age: Int64?, gender: String?, residentIdentityCard: String?, email: String?, address: String?, nickname: String?) {
+        public init (ip: String, channelSource: String? = nil, platform: Int64? = nil, name: String? = nil, age: Int64? = nil, gender: String? = nil, residentIdentityCard: String? = nil, email: String? = nil, address: String? = nil, nickname: String? = nil) {
             self.ip = ip
             self.channelSource = channelSource
             self.platform = platform

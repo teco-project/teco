@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 开关消息路由
-    @inlinable
-    public func setRouteOnOff(_ input: SetRouteOnOffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetRouteOnOffResponse > {
-        self.client.execute(action: "SetRouteOnOff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开关消息路由
-    @inlinable
-    public func setRouteOnOff(_ input: SetRouteOnOffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetRouteOnOffResponse {
-        try await self.client.execute(action: "SetRouteOnOff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetRouteOnOff请求参数结构体
     public struct SetRouteOnOffRequest: TCRequestModel {
         /// 无
@@ -54,5 +42,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开关消息路由
+    @inlinable
+    public func setRouteOnOff(_ input: SetRouteOnOffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetRouteOnOffResponse > {
+        self.client.execute(action: "SetRouteOnOff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开关消息路由
+    @inlinable
+    public func setRouteOnOff(_ input: SetRouteOnOffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetRouteOnOffResponse {
+        try await self.client.execute(action: "SetRouteOnOff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

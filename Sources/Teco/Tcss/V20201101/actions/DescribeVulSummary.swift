@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询漏洞风险统计概览
-    @inlinable
-    public func describeVulSummary(_ input: DescribeVulSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulSummaryResponse > {
-        self.client.execute(action: "DescribeVulSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询漏洞风险统计概览
-    @inlinable
-    public func describeVulSummary(_ input: DescribeVulSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulSummaryResponse {
-        try await self.client.execute(action: "DescribeVulSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulSummary请求参数结构体
     public struct DescribeVulSummaryRequest: TCRequestModel {
         /// 过滤条件。
@@ -35,7 +23,7 @@ extension Tcss {
         /// <li>CategoryType- string - 是否必填：否 - 漏洞分类: SYSTEM:系统漏洞 WEB:web应用漏洞 ALL:全部漏洞</li>
         public let filters: [RunTimeFilters]?
         
-        public init (filters: [RunTimeFilters]?) {
+        public init (filters: [RunTimeFilters]? = nil) {
             self.filters = filters
         }
         
@@ -76,5 +64,17 @@ extension Tcss {
             case seriousVulNewestImageCount = "SeriousVulNewestImageCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询漏洞风险统计概览
+    @inlinable
+    public func describeVulSummary(_ input: DescribeVulSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulSummaryResponse > {
+        self.client.execute(action: "DescribeVulSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞风险统计概览
+    @inlinable
+    public func describeVulSummary(_ input: DescribeVulSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulSummaryResponse {
+        try await self.client.execute(action: "DescribeVulSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

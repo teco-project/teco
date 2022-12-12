@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询数据库代理
-    ///
-    /// 查询数据库代理（待下线，替换接口QueryCDBProxy）
-    @inlinable
-    public func describeCDBProxy(_ input: DescribeCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCDBProxyResponse > {
-        self.client.execute(action: "DescribeCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据库代理
-    ///
-    /// 查询数据库代理（待下线，替换接口QueryCDBProxy）
-    @inlinable
-    public func describeCDBProxy(_ input: DescribeCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDBProxyResponse {
-        try await self.client.execute(action: "DescribeCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCDBProxy请求参数结构体
     public struct DescribeCDBProxyRequest: TCRequestModel {
         /// 实例ID
@@ -39,7 +23,7 @@ extension Cdb {
         /// 代理组ID
         public let proxyGroupId: String?
         
-        public init (instanceId: String, proxyGroupId: String?) {
+        public init (instanceId: String, proxyGroupId: String? = nil) {
             self.instanceId = instanceId
             self.proxyGroupId = proxyGroupId
         }
@@ -54,23 +38,23 @@ extension Cdb {
     public struct DescribeCDBProxyResponse: TCResponseModel {
         /// 代理组基本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let baseGroup: BaseGroupInfo
+        public let baseGroup: BaseGroupInfo?
         
         /// 代理组地址信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let address: Address
+        public let address: Address?
         
         /// 代理组节点信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let proxyNode: ProxyNodeInfo
+        public let proxyNode: ProxyNodeInfo?
         
         /// 读写分析信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rwInstInfo: RWInfo
+        public let rwInstInfo: RWInfo?
         
         /// 连接池信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let connectionPoolInfo: ConnectionPoolInfo
+        public let connectionPoolInfo: ConnectionPoolInfo?
         
         /// 代理数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -93,5 +77,21 @@ extension Cdb {
             case proxyGroup = "ProxyGroup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据库代理
+    ///
+    /// 查询数据库代理（待下线，替换接口QueryCDBProxy）
+    @inlinable
+    public func describeCDBProxy(_ input: DescribeCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCDBProxyResponse > {
+        self.client.execute(action: "DescribeCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库代理
+    ///
+    /// 查询数据库代理（待下线，替换接口QueryCDBProxy）
+    @inlinable
+    public func describeCDBProxy(_ input: DescribeCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDBProxyResponse {
+        try await self.client.execute(action: "DescribeCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

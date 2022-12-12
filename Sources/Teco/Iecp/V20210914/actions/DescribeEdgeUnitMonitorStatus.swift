@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 查询边缘集群监控状态
-    @inlinable
-    public func describeEdgeUnitMonitorStatus(_ input: DescribeEdgeUnitMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitMonitorStatusResponse > {
-        self.client.execute(action: "DescribeEdgeUnitMonitorStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询边缘集群监控状态
-    @inlinable
-    public func describeEdgeUnitMonitorStatus(_ input: DescribeEdgeUnitMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitMonitorStatusResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitMonitorStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeUnitMonitorStatus请求参数结构体
     public struct DescribeEdgeUnitMonitorStatusRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -62,5 +50,17 @@ extension Iecp {
             case isAvailable = "IsAvailable"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询边缘集群监控状态
+    @inlinable
+    public func describeEdgeUnitMonitorStatus(_ input: DescribeEdgeUnitMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitMonitorStatusResponse > {
+        self.client.execute(action: "DescribeEdgeUnitMonitorStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘集群监控状态
+    @inlinable
+    public func describeEdgeUnitMonitorStatus(_ input: DescribeEdgeUnitMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitMonitorStatusResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitMonitorStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 更新单元化规则
-    @inlinable
-    public func updateUnitRule(_ input: UpdateUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUnitRuleResponse > {
-        self.client.execute(action: "UpdateUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新单元化规则
-    @inlinable
-    public func updateUnitRule(_ input: UpdateUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUnitRuleResponse {
-        try await self.client.execute(action: "UpdateUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateUnitRule请求参数结构体
     public struct UpdateUnitRuleRequest: TCRequestModel {
         /// 规则ID
@@ -41,7 +29,7 @@ extension Tsf {
         /// 规则项列表
         public let unitRuleItemList: [UnitRuleItem]?
         
-        public init (id: String, name: String, description: String?, unitRuleItemList: [UnitRuleItem]?) {
+        public init (id: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil) {
             self.id = id
             self.name = name
             self.description = description
@@ -69,5 +57,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新单元化规则
+    @inlinable
+    public func updateUnitRule(_ input: UpdateUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUnitRuleResponse > {
+        self.client.execute(action: "UpdateUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新单元化规则
+    @inlinable
+    public func updateUnitRule(_ input: UpdateUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUnitRuleResponse {
+        try await self.client.execute(action: "UpdateUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

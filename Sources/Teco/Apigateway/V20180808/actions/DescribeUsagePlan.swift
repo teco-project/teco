@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询使用计划详情
-    ///
-    /// 本接口（DescribeUsagePlan）用于查询一个使用计划的详细信息，包括名称、QPS、创建时间绑定的环境等。
-    @inlinable
-    public func describeUsagePlan(_ input: DescribeUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsagePlanResponse > {
-        self.client.execute(action: "DescribeUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询使用计划详情
-    ///
-    /// 本接口（DescribeUsagePlan）用于查询一个使用计划的详细信息，包括名称、QPS、创建时间绑定的环境等。
-    @inlinable
-    public func describeUsagePlan(_ input: DescribeUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlanResponse {
-        try await self.client.execute(action: "DescribeUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUsagePlan请求参数结构体
     public struct DescribeUsagePlanRequest: TCRequestModel {
         /// 待查询的使用计划唯一 ID。
@@ -49,7 +33,7 @@ extension Apigateway {
     public struct DescribeUsagePlanResponse: TCResponseModel {
         /// 使用计划详情。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: UsagePlanInfo
+        public let result: UsagePlanInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -58,5 +42,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询使用计划详情
+    ///
+    /// 本接口（DescribeUsagePlan）用于查询一个使用计划的详细信息，包括名称、QPS、创建时间绑定的环境等。
+    @inlinable
+    public func describeUsagePlan(_ input: DescribeUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsagePlanResponse > {
+        self.client.execute(action: "DescribeUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询使用计划详情
+    ///
+    /// 本接口（DescribeUsagePlan）用于查询一个使用计划的详细信息，包括名称、QPS、创建时间绑定的环境等。
+    @inlinable
+    public func describeUsagePlan(_ input: DescribeUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlanResponse {
+        try await self.client.execute(action: "DescribeUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

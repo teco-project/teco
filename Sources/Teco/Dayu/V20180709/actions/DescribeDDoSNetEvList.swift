@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// 获取高防IP专业版资源的DDoS攻击事件列表
-    @inlinable
-    public func describeDDoSNetEvList(_ input: DescribeDDoSNetEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSNetEvListResponse > {
-        self.client.execute(action: "DescribeDDoSNetEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取高防IP专业版资源的DDoS攻击事件列表
-    @inlinable
-    public func describeDDoSNetEvList(_ input: DescribeDDoSNetEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetEvListResponse {
-        try await self.client.execute(action: "DescribeDDoSNetEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSNetEvList请求参数结构体
     public struct DescribeDDoSNetEvListRequest: TCRequestModel {
         /// 大禹子产品代号（net表示高防IP专业版）
@@ -51,7 +39,7 @@ extension Dayu {
         /// 页起始偏移，取值为(页码-1)*一页条数
         public let offset: UInt64?
         
-        public init (business: String, id: String, startTime: Date, endTime: Date, limit: UInt64?, offset: UInt64?) {
+        public init (business: String, id: String, startTime: Date, endTime: Date, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.business = business
             self.id = id
             self.startTime = startTime
@@ -104,5 +92,17 @@ extension Dayu {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取高防IP专业版资源的DDoS攻击事件列表
+    @inlinable
+    public func describeDDoSNetEvList(_ input: DescribeDDoSNetEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSNetEvListResponse > {
+        self.client.execute(action: "DescribeDDoSNetEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取高防IP专业版资源的DDoS攻击事件列表
+    @inlinable
+    public func describeDDoSNetEvList(_ input: DescribeDDoSNetEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetEvListResponse {
+        try await self.client.execute(action: "DescribeDDoSNetEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dasb {
-    /// 查询用户组成员列表
-    @inlinable
-    public func describeUserGroupMembers(_ input: DescribeUserGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserGroupMembersResponse > {
-        self.client.execute(action: "DescribeUserGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户组成员列表
-    @inlinable
-    public func describeUserGroupMembers(_ input: DescribeUserGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserGroupMembersResponse {
-        try await self.client.execute(action: "DescribeUserGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserGroupMembers请求参数结构体
     public struct DescribeUserGroupMembersRequest: TCRequestModel {
         /// 用户组ID
@@ -47,7 +35,7 @@ extension Dasb {
         /// 所属部门ID
         public let departmentId: String?
         
-        public init (id: UInt64, bound: Bool, name: String?, offset: UInt64?, limit: UInt64?, departmentId: String?) {
+        public init (id: UInt64, bound: Bool, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, departmentId: String? = nil) {
             self.id = id
             self.bound = bound
             self.name = name
@@ -82,5 +70,17 @@ extension Dasb {
             case userSet = "UserSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户组成员列表
+    @inlinable
+    public func describeUserGroupMembers(_ input: DescribeUserGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserGroupMembersResponse > {
+        self.client.execute(action: "DescribeUserGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户组成员列表
+    @inlinable
+    public func describeUserGroupMembers(_ input: DescribeUserGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserGroupMembersResponse {
+        try await self.client.execute(action: "DescribeUserGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询实例热Key
-    @inlinable
-    public func describeInstanceMonitorHotKey(_ input: DescribeInstanceMonitorHotKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorHotKeyResponse > {
-        self.client.execute(action: "DescribeInstanceMonitorHotKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例热Key
-    @inlinable
-    public func describeInstanceMonitorHotKey(_ input: DescribeInstanceMonitorHotKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorHotKeyResponse {
-        try await self.client.execute(action: "DescribeInstanceMonitorHotKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceMonitorHotKey请求参数结构体
     public struct DescribeInstanceMonitorHotKeyRequest: TCRequestModel {
         /// 实例Id
@@ -58,5 +46,17 @@ extension Redis {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例热Key
+    @inlinable
+    public func describeInstanceMonitorHotKey(_ input: DescribeInstanceMonitorHotKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorHotKeyResponse > {
+        self.client.execute(action: "DescribeInstanceMonitorHotKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例热Key
+    @inlinable
+    public func describeInstanceMonitorHotKey(_ input: DescribeInstanceMonitorHotKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorHotKeyResponse {
+        try await self.client.execute(action: "DescribeInstanceMonitorHotKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 停止漏洞扫描任务
-    @inlinable
-    public func stopVulScanTask(_ input: StopVulScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopVulScanTaskResponse > {
-        self.client.execute(action: "StopVulScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止漏洞扫描任务
-    @inlinable
-    public func stopVulScanTask(_ input: StopVulScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVulScanTaskResponse {
-        try await self.client.execute(action: "StopVulScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopVulScanTask请求参数结构体
     public struct StopVulScanTaskRequest: TCRequestModel {
         /// 本地镜像漏洞扫描任务ID
@@ -41,7 +29,7 @@ extension Tcss {
         /// 仓库镜像漏洞扫描任务ID
         public let registryTaskID: Int64?
         
-        public init (localTaskID: Int64?, localImageIDs: [String]?, registryImageIDs: [UInt64]?, registryTaskID: Int64?) {
+        public init (localTaskID: Int64? = nil, localImageIDs: [String]? = nil, registryImageIDs: [UInt64]? = nil, registryTaskID: Int64? = nil) {
             self.localTaskID = localTaskID
             self.localImageIDs = localImageIDs
             self.registryImageIDs = registryImageIDs
@@ -64,5 +52,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止漏洞扫描任务
+    @inlinable
+    public func stopVulScanTask(_ input: StopVulScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopVulScanTaskResponse > {
+        self.client.execute(action: "StopVulScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止漏洞扫描任务
+    @inlinable
+    public func stopVulScanTask(_ input: StopVulScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVulScanTaskResponse {
+        try await self.client.execute(action: "StopVulScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

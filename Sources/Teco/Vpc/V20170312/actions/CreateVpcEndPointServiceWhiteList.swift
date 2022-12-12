@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建终端服务白名单
-    ///
-    /// 创建终端服务白名单。
-    @inlinable
-    public func createVpcEndPointServiceWhiteList(_ input: CreateVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpcEndPointServiceWhiteListResponse > {
-        self.client.execute(action: "CreateVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建终端服务白名单
-    ///
-    /// 创建终端服务白名单。
-    @inlinable
-    public func createVpcEndPointServiceWhiteList(_ input: CreateVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceWhiteListResponse {
-        try await self.client.execute(action: "CreateVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVpcEndPointServiceWhiteList请求参数结构体
     public struct CreateVpcEndPointServiceWhiteListRequest: TCRequestModel {
         /// UIN。
@@ -42,7 +26,7 @@ extension Vpc {
         /// 白名单描述。
         public let description: String?
         
-        public init (userUin: String, endPointServiceId: String, description: String?) {
+        public init (userUin: String, endPointServiceId: String, description: String? = nil) {
             self.userUin = userUin
             self.endPointServiceId = endPointServiceId
             self.description = description
@@ -63,5 +47,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建终端服务白名单
+    ///
+    /// 创建终端服务白名单。
+    @inlinable
+    public func createVpcEndPointServiceWhiteList(_ input: CreateVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpcEndPointServiceWhiteListResponse > {
+        self.client.execute(action: "CreateVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建终端服务白名单
+    ///
+    /// 创建终端服务白名单。
+    @inlinable
+    public func createVpcEndPointServiceWhiteList(_ input: CreateVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceWhiteListResponse {
+        try await self.client.execute(action: "CreateVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

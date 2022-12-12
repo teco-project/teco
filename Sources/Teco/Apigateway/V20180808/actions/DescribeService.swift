@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Apigateway {
-    /// 查询服务详情
-    ///
-    /// 本接口（DescribeService）用于查询一个服务的详细信息、包括服务的描述、域名、协议、创建时间、发布情况等信息。
-    @inlinable
-    public func describeService(_ input: DescribeServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceResponse > {
-        self.client.execute(action: "DescribeService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询服务详情
-    ///
-    /// 本接口（DescribeService）用于查询一个服务的详细信息、包括服务的描述、域名、协议、创建时间、发布情况等信息。
-    @inlinable
-    public func describeService(_ input: DescribeServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceResponse {
-        try await self.client.execute(action: "DescribeService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeService请求参数结构体
     public struct DescribeServiceRequest: TCRequestModel {
         /// 待查询的服务唯一 ID。
@@ -173,5 +157,21 @@ extension Apigateway {
             case specialUse = "SpecialUse"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询服务详情
+    ///
+    /// 本接口（DescribeService）用于查询一个服务的详细信息、包括服务的描述、域名、协议、创建时间、发布情况等信息。
+    @inlinable
+    public func describeService(_ input: DescribeServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceResponse > {
+        self.client.execute(action: "DescribeService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务详情
+    ///
+    /// 本接口（DescribeService）用于查询一个服务的详细信息、包括服务的描述、域名、协议、创建时间、发布情况等信息。
+    @inlinable
+    public func describeService(_ input: DescribeServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceResponse {
+        try await self.client.execute(action: "DescribeService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

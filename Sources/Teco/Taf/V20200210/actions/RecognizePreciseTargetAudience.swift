@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Taf {
-    /// 流量反欺诈-流量验准高级版
-    @inlinable
-    public func recognizePreciseTargetAudience(_ input: RecognizePreciseTargetAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizePreciseTargetAudienceResponse > {
-        self.client.execute(action: "RecognizePreciseTargetAudience", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 流量反欺诈-流量验准高级版
-    @inlinable
-    public func recognizePreciseTargetAudience(_ input: RecognizePreciseTargetAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePreciseTargetAudienceResponse {
-        try await self.client.execute(action: "RecognizePreciseTargetAudience", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecognizePreciseTargetAudience请求参数结构体
     public struct RecognizePreciseTargetAudienceRequest: TCRequestModel {
         /// 业务数据
@@ -45,7 +33,7 @@ extension Taf {
     public struct RecognizePreciseTargetAudienceResponse: TCResponseModel {
         /// 回包数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: OutputRecognizeTargetAudience
+        public let data: OutputRecognizeTargetAudience?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -54,5 +42,17 @@ extension Taf {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 流量反欺诈-流量验准高级版
+    @inlinable
+    public func recognizePreciseTargetAudience(_ input: RecognizePreciseTargetAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizePreciseTargetAudienceResponse > {
+        self.client.execute(action: "RecognizePreciseTargetAudience", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 流量反欺诈-流量验准高级版
+    @inlinable
+    public func recognizePreciseTargetAudience(_ input: RecognizePreciseTargetAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePreciseTargetAudienceResponse {
+        try await self.client.execute(action: "RecognizePreciseTargetAudience", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

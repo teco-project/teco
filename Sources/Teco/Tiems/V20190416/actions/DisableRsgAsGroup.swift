@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiems {
-    /// 停用资源组的伸缩组
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 停用资源组的伸缩组
-    @inlinable
-    public func disableRsgAsGroup(_ input: DisableRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableRsgAsGroupResponse > {
-        self.client.execute(action: "DisableRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停用资源组的伸缩组
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 停用资源组的伸缩组
-    @inlinable
-    public func disableRsgAsGroup(_ input: DisableRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRsgAsGroupResponse {
-        try await self.client.execute(action: "DisableRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableRsgAsGroup请求参数结构体
     public struct DisableRsgAsGroupRequest: TCRequestModel {
         /// 伸缩组 ID
@@ -55,5 +37,23 @@ extension Tiems {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停用资源组的伸缩组
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 停用资源组的伸缩组
+    @inlinable
+    public func disableRsgAsGroup(_ input: DisableRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableRsgAsGroupResponse > {
+        self.client.execute(action: "DisableRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停用资源组的伸缩组
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 停用资源组的伸缩组
+    @inlinable
+    public func disableRsgAsGroup(_ input: DisableRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRsgAsGroupResponse {
+        try await self.client.execute(action: "DisableRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 镜像仓库敏感信息列表导出
-    @inlinable
-    public func describeAssetImageRegistryRiskListExport(_ input: DescribeAssetImageRegistryRiskListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryRiskListExportResponse > {
-        self.client.execute(action: "DescribeAssetImageRegistryRiskListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 镜像仓库敏感信息列表导出
-    @inlinable
-    public func describeAssetImageRegistryRiskListExport(_ input: DescribeAssetImageRegistryRiskListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryRiskListExportResponse {
-        try await self.client.execute(action: "DescribeAssetImageRegistryRiskListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageRegistryRiskListExport请求参数结构体
     public struct DescribeAssetImageRegistryRiskListExportRequest: TCRequestModel {
         /// 导出字段
@@ -44,12 +32,12 @@ extension Tcss {
         public let filters: [AssetFilters]?
         
         /// 镜像信息
-        public let imageInfo: ImageInfo
+        public let imageInfo: ImageInfo?
         
         /// 镜像标识Id
         public let id: UInt64?
         
-        public init (exportField: [String], limit: UInt64?, offset: UInt64?, filters: [AssetFilters]?, imageInfo: ImageInfo, id: UInt64?) {
+        public init (exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil) {
             self.exportField = exportField
             self.limit = limit
             self.offset = offset
@@ -81,5 +69,17 @@ extension Tcss {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 镜像仓库敏感信息列表导出
+    @inlinable
+    public func describeAssetImageRegistryRiskListExport(_ input: DescribeAssetImageRegistryRiskListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryRiskListExportResponse > {
+        self.client.execute(action: "DescribeAssetImageRegistryRiskListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库敏感信息列表导出
+    @inlinable
+    public func describeAssetImageRegistryRiskListExport(_ input: DescribeAssetImageRegistryRiskListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryRiskListExportResponse {
+        try await self.client.execute(action: "DescribeAssetImageRegistryRiskListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

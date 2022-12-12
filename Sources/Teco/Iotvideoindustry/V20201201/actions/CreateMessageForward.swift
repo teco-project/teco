@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 创建消息转发配置
-    @inlinable
-    public func createMessageForward(_ input: CreateMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMessageForwardResponse > {
-        self.client.execute(action: "CreateMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建消息转发配置
-    @inlinable
-    public func createMessageForward(_ input: CreateMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageForwardResponse {
-        try await self.client.execute(action: "CreateMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMessageForward请求参数结构体
     public struct CreateMessageForwardRequest: TCRequestModel {
         /// 区域ID
@@ -84,5 +72,17 @@ extension Iotvideoindustry {
             case intId = "IntId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建消息转发配置
+    @inlinable
+    public func createMessageForward(_ input: CreateMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMessageForwardResponse > {
+        self.client.execute(action: "CreateMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建消息转发配置
+    @inlinable
+    public func createMessageForward(_ input: CreateMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageForwardResponse {
+        try await self.client.execute(action: "CreateMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

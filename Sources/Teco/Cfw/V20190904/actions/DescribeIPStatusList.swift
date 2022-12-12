@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// ip防护状态查询
-    @inlinable
-    public func describeIPStatusList(_ input: DescribeIPStatusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIPStatusListResponse > {
-        self.client.execute(action: "DescribeIPStatusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// ip防护状态查询
-    @inlinable
-    public func describeIPStatusList(_ input: DescribeIPStatusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStatusListResponse {
-        try await self.client.execute(action: "DescribeIPStatusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIPStatusList请求参数结构体
     public struct DescribeIPStatusListRequest: TCRequestModel {
         /// 资产Id
@@ -61,5 +49,17 @@ extension Cfw {
             case returnMsg = "ReturnMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// ip防护状态查询
+    @inlinable
+    public func describeIPStatusList(_ input: DescribeIPStatusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIPStatusListResponse > {
+        self.client.execute(action: "DescribeIPStatusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// ip防护状态查询
+    @inlinable
+    public func describeIPStatusList(_ input: DescribeIPStatusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStatusListResponse {
+        try await self.client.execute(action: "DescribeIPStatusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

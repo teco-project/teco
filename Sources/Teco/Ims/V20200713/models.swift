@@ -41,7 +41,7 @@ extension Ims {
         /// IP地址类型 0 代表ipv4 1 代表ipv6
         public let ipType: UInt64?
         
-        public init (ip: String?, mac: String?, tokenId: String?, deviceId: String?, imei: String?, idfa: String?, idfv: String?, ipType: UInt64?) {
+        public init (ip: String? = nil, mac: String? = nil, tokenId: String? = nil, deviceId: String? = nil, imei: String? = nil, idfa: String? = nil, idfv: String? = nil, ipType: UInt64? = nil) {
             self.ip = ip
             self.mac = mac
             self.tokenId = tokenId
@@ -86,7 +86,7 @@ extension Ims {
         /// 一个或者多个过滤值。
         public let values: [String]?
         
-        public init (name: String?, values: [String]?) {
+        public init (name: String? = nil, values: [String]? = nil) {
             self.name = name
             self.values = values
         }
@@ -568,7 +568,7 @@ extension Ims {
         /// 用户头像图片链接
         public let headUrl: String?
         
-        public init (userId: String?, accountType: String?, nickname: String?, gender: UInt64?, age: UInt64?, level: UInt64?, phone: String?, desc: String?, headUrl: String?) {
+        public init (userId: String? = nil, accountType: String? = nil, nickname: String? = nil, gender: UInt64? = nil, age: UInt64? = nil, level: UInt64? = nil, phone: String? = nil, desc: String? = nil, headUrl: String? = nil) {
             self.userId = userId
             self.accountType = accountType
             self.nickname = nickname

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询实例的可设置参数列表
-    ///
-    /// 该接口（DescribeInstanceParams）用于查询实例的参数列表。
-    @inlinable
-    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceParamsResponse > {
-        self.client.execute(action: "DescribeInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例的可设置参数列表
-    ///
-    /// 该接口（DescribeInstanceParams）用于查询实例的参数列表。
-    @inlinable
-    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
-        try await self.client.execute(action: "DescribeInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceParams请求参数结构体
     public struct DescribeInstanceParamsRequest: TCRequestModel {
         /// 实例 ID，格式如：mssql-dj5i29c5n，与云数据库控制台页面中显示的实例 ID 相同，可使用 DescribeDBInstances 接口获取，其值为输出参数中字段 InstanceId 的值。
@@ -61,5 +45,21 @@ extension Sqlserver {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例的可设置参数列表
+    ///
+    /// 该接口（DescribeInstanceParams）用于查询实例的参数列表。
+    @inlinable
+    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceParamsResponse > {
+        self.client.execute(action: "DescribeInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例的可设置参数列表
+    ///
+    /// 该接口（DescribeInstanceParams）用于查询实例的参数列表。
+    @inlinable
+    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
+        try await self.client.execute(action: "DescribeInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

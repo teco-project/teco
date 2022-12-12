@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取UV列表
-    ///
-    /// 获取项目下的UV列表
-    @inlinable
-    public func describeUvList(_ input: DescribeUvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUvListResponse > {
-        self.client.execute(action: "DescribeUvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取UV列表
-    ///
-    /// 获取项目下的UV列表
-    @inlinable
-    public func describeUvList(_ input: DescribeUvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUvListResponse {
-        try await self.client.execute(action: "DescribeUvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUvList请求参数结构体
     public struct DescribeUvListRequest: TCRequestModel {
         /// ID
@@ -45,7 +29,7 @@ extension Rum {
         /// 获取day：d，   min:m
         public let dimension: String?
         
-        public init (projectId: Int64, endTime: String, startTime: String, dimension: String?) {
+        public init (projectId: Int64, endTime: String, startTime: String, dimension: String? = nil) {
             self.projectId = projectId
             self.endTime = endTime
             self.startTime = startTime
@@ -72,5 +56,21 @@ extension Rum {
             case projectUvSet = "ProjectUvSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取UV列表
+    ///
+    /// 获取项目下的UV列表
+    @inlinable
+    public func describeUvList(_ input: DescribeUvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUvListResponse > {
+        self.client.execute(action: "DescribeUvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取UV列表
+    ///
+    /// 获取项目下的UV列表
+    @inlinable
+    public func describeUvList(_ input: DescribeUvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUvListResponse {
+        try await self.client.execute(action: "DescribeUvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

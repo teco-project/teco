@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// Waf  IP封堵状态查询
-    @inlinable
-    public func describeIpHitItems(_ input: DescribeIpHitItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpHitItemsResponse > {
-        self.client.execute(action: "DescribeIpHitItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// Waf  IP封堵状态查询
-    @inlinable
-    public func describeIpHitItems(_ input: DescribeIpHitItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpHitItemsResponse {
-        try await self.client.execute(action: "DescribeIpHitItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIpHitItems请求参数结构体
     public struct DescribeIpHitItemsRequest: TCRequestModel {
         /// 域名
@@ -65,7 +53,7 @@ extension Waf {
         /// IP
         public let ip: String?
         
-        public init (domain: String, count: Int64, category: String, vtsMin: UInt64?, vtsMax: UInt64?, ctsMin: UInt64?, ctsMax: UInt64?, skip: UInt64?, limit: UInt64?, name: String?, sort: String?, ip: String?) {
+        public init (domain: String, count: Int64, category: String, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, skip: UInt64? = nil, limit: UInt64? = nil, name: String? = nil, sort: String? = nil, ip: String? = nil) {
             self.domain = domain
             self.count = count
             self.category = category
@@ -100,7 +88,7 @@ extension Waf {
     public struct DescribeIpHitItemsResponse: TCResponseModel {
         /// 结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: IpHitItemsData
+        public let data: IpHitItemsData?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -109,5 +97,17 @@ extension Waf {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// Waf  IP封堵状态查询
+    @inlinable
+    public func describeIpHitItems(_ input: DescribeIpHitItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpHitItemsResponse > {
+        self.client.execute(action: "DescribeIpHitItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// Waf  IP封堵状态查询
+    @inlinable
+    public func describeIpHitItems(_ input: DescribeIpHitItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpHitItemsResponse {
+        try await self.client.execute(action: "DescribeIpHitItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

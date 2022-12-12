@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询云数据库实例的所有RO组的信息
-    ///
-    /// 本接口(DescribeRoGroups)用于查询云数据库实例的所有的RO组的信息。
-    @inlinable
-    public func describeRoGroups(_ input: DescribeRoGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoGroupsResponse > {
-        self.client.execute(action: "DescribeRoGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云数据库实例的所有RO组的信息
-    ///
-    /// 本接口(DescribeRoGroups)用于查询云数据库实例的所有的RO组的信息。
-    @inlinable
-    public func describeRoGroups(_ input: DescribeRoGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoGroupsResponse {
-        try await self.client.execute(action: "DescribeRoGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRoGroups请求参数结构体
     public struct DescribeRoGroupsRequest: TCRequestModel {
         /// 实例ID，格式如：cdb-c1nl9rpv或者cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同。
@@ -57,5 +41,21 @@ extension Cdb {
             case roGroups = "RoGroups"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云数据库实例的所有RO组的信息
+    ///
+    /// 本接口(DescribeRoGroups)用于查询云数据库实例的所有的RO组的信息。
+    @inlinable
+    public func describeRoGroups(_ input: DescribeRoGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoGroupsResponse > {
+        self.client.execute(action: "DescribeRoGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云数据库实例的所有RO组的信息
+    ///
+    /// 本接口(DescribeRoGroups)用于查询云数据库实例的所有的RO组的信息。
+    @inlinable
+    public func describeRoGroups(_ input: DescribeRoGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoGroupsResponse {
+        try await self.client.execute(action: "DescribeRoGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 查询参数修改日志
-    ///
-    /// 本接口（DescribeClusterParamLogs）查询参数修改日志
-    @inlinable
-    public func describeClusterParamLogs(_ input: DescribeClusterParamLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterParamLogsResponse > {
-        self.client.execute(action: "DescribeClusterParamLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询参数修改日志
-    ///
-    /// 本接口（DescribeClusterParamLogs）查询参数修改日志
-    @inlinable
-    public func describeClusterParamLogs(_ input: DescribeClusterParamLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamLogsResponse {
-        try await self.client.execute(action: "DescribeClusterParamLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterParamLogs请求参数结构体
     public struct DescribeClusterParamLogsRequest: TCRequestModel {
         /// 集群ID
@@ -51,7 +35,7 @@ extension Cynosdb {
         /// 记录偏移量，默认值为0，取值范围为[0,INF)
         public let offset: Int64?
         
-        public init (clusterId: String, instanceIds: [String]?, orderBy: String?, orderByType: String?, limit: Int64?, offset: Int64?) {
+        public init (clusterId: String, instanceIds: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.clusterId = clusterId
             self.instanceIds = instanceIds
             self.orderBy = orderBy
@@ -87,5 +71,21 @@ extension Cynosdb {
             case clusterParamLogs = "ClusterParamLogs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询参数修改日志
+    ///
+    /// 本接口（DescribeClusterParamLogs）查询参数修改日志
+    @inlinable
+    public func describeClusterParamLogs(_ input: DescribeClusterParamLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterParamLogsResponse > {
+        self.client.execute(action: "DescribeClusterParamLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询参数修改日志
+    ///
+    /// 本接口（DescribeClusterParamLogs）查询参数修改日志
+    @inlinable
+    public func describeClusterParamLogs(_ input: DescribeClusterParamLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamLogsResponse {
+        try await self.client.execute(action: "DescribeClusterParamLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ump {
-    /// 上报服务注册
-    ///
-    /// 上报服务注册自身的服务地址作为回调地址, 用于信息回传。
-    @inlinable
-    public func reportServiceRegister(_ input: ReportServiceRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportServiceRegisterResponse > {
-        self.client.execute(action: "ReportServiceRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上报服务注册
-    ///
-    /// 上报服务注册自身的服务地址作为回调地址, 用于信息回传。
-    @inlinable
-    public func reportServiceRegister(_ input: ReportServiceRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportServiceRegisterResponse {
-        try await self.client.execute(action: "ReportServiceRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReportServiceRegister请求参数结构体
     public struct ReportServiceRegisterRequest: TCRequestModel {
         /// 集团编码
@@ -78,5 +62,21 @@ extension Ump {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上报服务注册
+    ///
+    /// 上报服务注册自身的服务地址作为回调地址, 用于信息回传。
+    @inlinable
+    public func reportServiceRegister(_ input: ReportServiceRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportServiceRegisterResponse > {
+        self.client.execute(action: "ReportServiceRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上报服务注册
+    ///
+    /// 上报服务注册自身的服务地址作为回调地址, 用于信息回传。
+    @inlinable
+    public func reportServiceRegister(_ input: ReportServiceRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportServiceRegisterResponse {
+        try await self.client.execute(action: "ReportServiceRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

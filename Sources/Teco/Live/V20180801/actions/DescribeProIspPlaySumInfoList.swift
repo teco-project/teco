@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询分省份分运营商播放汇总数据
-    ///
-    /// 查询某段时间内每个国家地区每个省份每个运营商的平均每秒流量，总流量，总请求数信息。
-    @inlinable
-    public func describeProIspPlaySumInfoList(_ input: DescribeProIspPlaySumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProIspPlaySumInfoListResponse > {
-        self.client.execute(action: "DescribeProIspPlaySumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询分省份分运营商播放汇总数据
-    ///
-    /// 查询某段时间内每个国家地区每个省份每个运营商的平均每秒流量，总流量，总请求数信息。
-    @inlinable
-    public func describeProIspPlaySumInfoList(_ input: DescribeProIspPlaySumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProIspPlaySumInfoListResponse {
-        try await self.client.execute(action: "DescribeProIspPlaySumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProIspPlaySumInfoList请求参数结构体
     public struct DescribeProIspPlaySumInfoListRequest: TCRequestModel {
         /// 起始时间，北京时间，
@@ -60,7 +44,7 @@ extension Live {
         /// 输出字段使用的语言，可选值：Chinese（默认值），English；目前国家，省份和运营商支持多语言。
         public let outLanguage: String?
         
-        public init (startTime: String, endTime: String, statType: String, playDomains: [String]?, pageNum: UInt64?, pageSize: UInt64?, mainlandOrOversea: String?, outLanguage: String?) {
+        public init (startTime: String, endTime: String, statType: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, outLanguage: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.statType = statType
@@ -127,5 +111,21 @@ extension Live {
             case avgFluxPerSecond = "AvgFluxPerSecond"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询分省份分运营商播放汇总数据
+    ///
+    /// 查询某段时间内每个国家地区每个省份每个运营商的平均每秒流量，总流量，总请求数信息。
+    @inlinable
+    public func describeProIspPlaySumInfoList(_ input: DescribeProIspPlaySumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProIspPlaySumInfoListResponse > {
+        self.client.execute(action: "DescribeProIspPlaySumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询分省份分运营商播放汇总数据
+    ///
+    /// 查询某段时间内每个国家地区每个省份每个运营商的平均每秒流量，总流量，总请求数信息。
+    @inlinable
+    public func describeProIspPlaySumInfoList(_ input: DescribeProIspPlaySumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProIspPlaySumInfoListResponse {
+        try await self.client.execute(action: "DescribeProIspPlaySumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

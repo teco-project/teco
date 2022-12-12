@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 查询互联网通道路由列表
-    ///
-    /// 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表
-    @inlinable
-    public func describePublicDirectConnectTunnelRoutes(_ input: DescribePublicDirectConnectTunnelRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicDirectConnectTunnelRoutesResponse > {
-        self.client.execute(action: "DescribePublicDirectConnectTunnelRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询互联网通道路由列表
-    ///
-    /// 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表
-    @inlinable
-    public func describePublicDirectConnectTunnelRoutes(_ input: DescribePublicDirectConnectTunnelRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicDirectConnectTunnelRoutesResponse {
-        try await self.client.execute(action: "DescribePublicDirectConnectTunnelRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePublicDirectConnectTunnelRoutes请求参数结构体
     public struct DescribePublicDirectConnectTunnelRoutesRequest: TCRequestModel {
         /// 专用通道ID
@@ -47,7 +31,7 @@ extension Dc {
         /// 返回数量，默认为20，最大值为100
         public let limit: Int64?
         
-        public init (directConnectTunnelId: String, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (directConnectTunnelId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.directConnectTunnelId = directConnectTunnelId
             self.filters = filters
             self.offset = offset
@@ -78,5 +62,21 @@ extension Dc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询互联网通道路由列表
+    ///
+    /// 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表
+    @inlinable
+    public func describePublicDirectConnectTunnelRoutes(_ input: DescribePublicDirectConnectTunnelRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicDirectConnectTunnelRoutesResponse > {
+        self.client.execute(action: "DescribePublicDirectConnectTunnelRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询互联网通道路由列表
+    ///
+    /// 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表
+    @inlinable
+    public func describePublicDirectConnectTunnelRoutes(_ input: DescribePublicDirectConnectTunnelRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicDirectConnectTunnelRoutesResponse {
+        try await self.client.execute(action: "DescribePublicDirectConnectTunnelRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

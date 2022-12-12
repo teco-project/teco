@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询地域列表
-    ///
-    /// 获取容器服务支持的所有地域
-    @inlinable
-    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionsResponse > {
-        self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询地域列表
-    ///
-    /// 获取容器服务支持的所有地域
-    @inlinable
-    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
-        try await self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRegions请求参数结构体
     public struct DescribeRegionsRequest: TCRequestModel {
         public init () {
@@ -55,5 +39,21 @@ extension Tke {
             case regionInstanceSet = "RegionInstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询地域列表
+    ///
+    /// 获取容器服务支持的所有地域
+    @inlinable
+    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionsResponse > {
+        self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询地域列表
+    ///
+    /// 获取容器服务支持的所有地域
+    @inlinable
+    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
+        try await self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

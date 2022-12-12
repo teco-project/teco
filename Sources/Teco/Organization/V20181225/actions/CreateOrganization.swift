@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 创建企业组织
-    @inlinable
-    public func createOrganization(_ input: CreateOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrganizationResponse > {
-        self.client.execute(action: "CreateOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建企业组织
-    @inlinable
-    public func createOrganization(_ input: CreateOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrganizationResponse {
-        try await self.client.execute(action: "CreateOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOrganization请求参数结构体
     public struct CreateOrganizationRequest: TCRequestModel {
         /// 组织类型（目前固定为1）
@@ -65,5 +53,17 @@ extension Organization {
             case orgType = "OrgType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建企业组织
+    @inlinable
+    public func createOrganization(_ input: CreateOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrganizationResponse > {
+        self.client.execute(action: "CreateOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建企业组织
+    @inlinable
+    public func createOrganization(_ input: CreateOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrganizationResponse {
+        try await self.client.execute(action: "CreateOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 配置通道组就近接入域名（废弃）
-    ///
-    /// 本接口（ModifyGroupDomainConfig）用于配置通道组就近接入域名。
-    @inlinable
-    public func modifyGroupDomainConfig(_ input: ModifyGroupDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGroupDomainConfigResponse > {
-        self.client.execute(action: "ModifyGroupDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 配置通道组就近接入域名（废弃）
-    ///
-    /// 本接口（ModifyGroupDomainConfig）用于配置通道组就近接入域名。
-    @inlinable
-    public func modifyGroupDomainConfig(_ input: ModifyGroupDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupDomainConfigResponse {
-        try await self.client.execute(action: "ModifyGroupDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyGroupDomainConfig请求参数结构体
     public struct ModifyGroupDomainConfigRequest: TCRequestModel {
         /// 通道组ID。
@@ -42,7 +26,7 @@ extension Gaap {
         /// 就近接入区域配置。
         public let accessRegionList: [AccessRegionDomainConf]?
         
-        public init (groupId: String, defaultDnsIp: String, accessRegionList: [AccessRegionDomainConf]?) {
+        public init (groupId: String, defaultDnsIp: String, accessRegionList: [AccessRegionDomainConf]? = nil) {
             self.groupId = groupId
             self.defaultDnsIp = defaultDnsIp
             self.accessRegionList = accessRegionList
@@ -63,5 +47,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 配置通道组就近接入域名（废弃）
+    ///
+    /// 本接口（ModifyGroupDomainConfig）用于配置通道组就近接入域名。
+    @inlinable
+    public func modifyGroupDomainConfig(_ input: ModifyGroupDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGroupDomainConfigResponse > {
+        self.client.execute(action: "ModifyGroupDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 配置通道组就近接入域名（废弃）
+    ///
+    /// 本接口（ModifyGroupDomainConfig）用于配置通道组就近接入域名。
+    @inlinable
+    public func modifyGroupDomainConfig(_ input: ModifyGroupDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupDomainConfigResponse {
+        try await self.client.execute(action: "ModifyGroupDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

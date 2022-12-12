@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bpaas {
-    /// 查看审批详情
-    @inlinable
-    public func getBpaasApproveDetail(_ input: GetBpaasApproveDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBpaasApproveDetailResponse > {
-        self.client.execute(action: "GetBpaasApproveDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看审批详情
-    @inlinable
-    public func getBpaasApproveDetail(_ input: GetBpaasApproveDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBpaasApproveDetailResponse {
-        try await self.client.execute(action: "GetBpaasApproveDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetBpaasApproveDetail请求参数结构体
     public struct GetBpaasApproveDetailRequest: TCRequestModel {
         /// 审批id
@@ -100,5 +88,17 @@ extension Bpaas {
             case approvingNodeId = "ApprovingNodeId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看审批详情
+    @inlinable
+    public func getBpaasApproveDetail(_ input: GetBpaasApproveDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBpaasApproveDetailResponse > {
+        self.client.execute(action: "GetBpaasApproveDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看审批详情
+    @inlinable
+    public func getBpaasApproveDetail(_ input: GetBpaasApproveDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBpaasApproveDetailResponse {
+        try await self.client.execute(action: "GetBpaasApproveDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

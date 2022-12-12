@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 删除只读组
-    ///
-    /// 本接口(DeleteReadOnlyGroup)用于删除指定的只读组
-    @inlinable
-    public func deleteReadOnlyGroup(_ input: DeleteReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReadOnlyGroupResponse > {
-        self.client.execute(action: "DeleteReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除只读组
-    ///
-    /// 本接口(DeleteReadOnlyGroup)用于删除指定的只读组
-    @inlinable
-    public func deleteReadOnlyGroup(_ input: DeleteReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReadOnlyGroupResponse {
-        try await self.client.execute(action: "DeleteReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteReadOnlyGroup请求参数结构体
     public struct DeleteReadOnlyGroupRequest: TCRequestModel {
         /// 待删除只读组ID
@@ -58,5 +42,21 @@ extension Postgres {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除只读组
+    ///
+    /// 本接口(DeleteReadOnlyGroup)用于删除指定的只读组
+    @inlinable
+    public func deleteReadOnlyGroup(_ input: DeleteReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReadOnlyGroupResponse > {
+        self.client.execute(action: "DeleteReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除只读组
+    ///
+    /// 本接口(DeleteReadOnlyGroup)用于删除指定的只读组
+    @inlinable
+    public func deleteReadOnlyGroup(_ input: DeleteReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReadOnlyGroupResponse {
+        try await self.client.execute(action: "DeleteReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建辅助CIDR
-    ///
-    /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
-    @inlinable
-    public func createAssistantCidr(_ input: CreateAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssistantCidrResponse > {
-        self.client.execute(action: "CreateAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建辅助CIDR
-    ///
-    /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
-    @inlinable
-    public func createAssistantCidr(_ input: CreateAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssistantCidrResponse {
-        try await self.client.execute(action: "CreateAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAssistantCidr请求参数结构体
     public struct CreateAssistantCidrRequest: TCRequestModel {
         /// `VPC`实例`ID`。形如：`vpc-6v2ht8q5`
@@ -63,5 +47,21 @@ extension Vpc {
             case assistantCidrSet = "AssistantCidrSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建辅助CIDR
+    ///
+    /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
+    @inlinable
+    public func createAssistantCidr(_ input: CreateAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssistantCidrResponse > {
+        self.client.execute(action: "CreateAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建辅助CIDR
+    ///
+    /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
+    @inlinable
+    public func createAssistantCidr(_ input: CreateAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssistantCidrResponse {
+        try await self.client.execute(action: "CreateAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

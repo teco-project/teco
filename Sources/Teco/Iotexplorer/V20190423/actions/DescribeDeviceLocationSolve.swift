@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取实时位置解析
-    @inlinable
-    public func describeDeviceLocationSolve(_ input: DescribeDeviceLocationSolveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceLocationSolveResponse > {
-        self.client.execute(action: "DescribeDeviceLocationSolve", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实时位置解析
-    @inlinable
-    public func describeDeviceLocationSolve(_ input: DescribeDeviceLocationSolveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceLocationSolveResponse {
-        try await self.client.execute(action: "DescribeDeviceLocationSolve", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceLocationSolve请求参数结构体
     public struct DescribeDeviceLocationSolveRequest: TCRequestModel {
         /// 产品ID
@@ -44,7 +32,7 @@ extension Iotexplorer {
         /// wifi信息
         public let wiFiInfo: [WifiInfo]?
         
-        public init (productId: String, deviceName: String, locationType: String, gnssNavigation: String?, wiFiInfo: [WifiInfo]?) {
+        public init (productId: String, deviceName: String, locationType: String, gnssNavigation: String? = nil, wiFiInfo: [WifiInfo]? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.locationType = locationType
@@ -86,5 +74,17 @@ extension Iotexplorer {
             case accuracy = "Accuracy"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实时位置解析
+    @inlinable
+    public func describeDeviceLocationSolve(_ input: DescribeDeviceLocationSolveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceLocationSolveResponse > {
+        self.client.execute(action: "DescribeDeviceLocationSolve", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实时位置解析
+    @inlinable
+    public func describeDeviceLocationSolve(_ input: DescribeDeviceLocationSolveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceLocationSolveResponse {
+        try await self.client.execute(action: "DescribeDeviceLocationSolve", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

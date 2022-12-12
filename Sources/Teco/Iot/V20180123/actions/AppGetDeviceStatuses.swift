@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 获取绑定设备状态
-    ///
-    /// 获取绑定设备的上下线状态
-    @inlinable
-    public func appGetDeviceStatuses(_ input: AppGetDeviceStatusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppGetDeviceStatusesResponse > {
-        self.client.execute(action: "AppGetDeviceStatuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取绑定设备状态
-    ///
-    /// 获取绑定设备的上下线状态
-    @inlinable
-    public func appGetDeviceStatuses(_ input: AppGetDeviceStatusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetDeviceStatusesResponse {
-        try await self.client.execute(action: "AppGetDeviceStatuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AppGetDeviceStatuses请求参数结构体
     public struct AppGetDeviceStatusesRequest: TCRequestModel {
         /// 访问Token
@@ -62,5 +46,21 @@ extension Iot {
             case deviceStatuses = "DeviceStatuses"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取绑定设备状态
+    ///
+    /// 获取绑定设备的上下线状态
+    @inlinable
+    public func appGetDeviceStatuses(_ input: AppGetDeviceStatusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppGetDeviceStatusesResponse > {
+        self.client.execute(action: "AppGetDeviceStatuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取绑定设备状态
+    ///
+    /// 获取绑定设备的上下线状态
+    @inlinable
+    public func appGetDeviceStatuses(_ input: AppGetDeviceStatusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetDeviceStatusesResponse {
+        try await self.client.execute(action: "AppGetDeviceStatuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 获取只读实例购买或升级的最小规格
-    ///
-    /// 本接口(DescribeRoMinScale)用于获取只读实例购买、升级时的最小规格。
-    @inlinable
-    public func describeRoMinScale(_ input: DescribeRoMinScaleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoMinScaleResponse > {
-        self.client.execute(action: "DescribeRoMinScale", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取只读实例购买或升级的最小规格
-    ///
-    /// 本接口(DescribeRoMinScale)用于获取只读实例购买、升级时的最小规格。
-    @inlinable
-    public func describeRoMinScale(_ input: DescribeRoMinScaleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoMinScaleResponse {
-        try await self.client.execute(action: "DescribeRoMinScale", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRoMinScale请求参数结构体
     public struct DescribeRoMinScaleRequest: TCRequestModel {
         /// 只读实例ID，格式如：cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同，该参数与MasterInstanceId参数不能同时为空。
@@ -39,7 +23,7 @@ extension Cdb {
         /// 主实例ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同，该参数与RoInstanceId参数不能同时为空。注意，当传入参数包含RoInstanceId时，返回值为只读实例升级时的最小规格；当传入参数只包含MasterInstanceId时，返回值为只读实例购买时的最小规格。
         public let masterInstanceId: String?
         
-        public init (roInstanceId: String?, masterInstanceId: String?) {
+        public init (roInstanceId: String? = nil, masterInstanceId: String? = nil) {
             self.roInstanceId = roInstanceId
             self.masterInstanceId = masterInstanceId
         }
@@ -66,5 +50,21 @@ extension Cdb {
             case volume = "Volume"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取只读实例购买或升级的最小规格
+    ///
+    /// 本接口(DescribeRoMinScale)用于获取只读实例购买、升级时的最小规格。
+    @inlinable
+    public func describeRoMinScale(_ input: DescribeRoMinScaleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoMinScaleResponse > {
+        self.client.execute(action: "DescribeRoMinScale", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取只读实例购买或升级的最小规格
+    ///
+    /// 本接口(DescribeRoMinScale)用于获取只读实例购买、升级时的最小规格。
+    @inlinable
+    public func describeRoMinScale(_ input: DescribeRoMinScaleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoMinScaleResponse {
+        try await self.client.execute(action: "DescribeRoMinScale", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

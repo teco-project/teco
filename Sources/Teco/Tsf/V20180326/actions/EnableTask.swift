@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 启用任务
-    @inlinable
-    public func enableTask(_ input: EnableTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableTaskResponse > {
-        self.client.execute(action: "EnableTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启用任务
-    @inlinable
-    public func enableTask(_ input: EnableTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableTaskResponse {
-        try await self.client.execute(action: "EnableTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableTask请求参数结构体
     public struct EnableTaskRequest: TCRequestModel {
         /// 启用任务
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启用任务
+    @inlinable
+    public func enableTask(_ input: EnableTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableTaskResponse > {
+        self.client.execute(action: "EnableTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启用任务
+    @inlinable
+    public func enableTask(_ input: EnableTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableTaskResponse {
+        try await self.client.execute(action: "EnableTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

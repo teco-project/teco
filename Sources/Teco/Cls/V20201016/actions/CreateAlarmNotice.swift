@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 创建通知渠道组
-    ///
-    /// 该接口用于创建通知渠道组。
-    @inlinable
-    public func createAlarmNotice(_ input: CreateAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAlarmNoticeResponse > {
-        self.client.execute(action: "CreateAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建通知渠道组
-    ///
-    /// 该接口用于创建通知渠道组。
-    @inlinable
-    public func createAlarmNotice(_ input: CreateAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmNoticeResponse {
-        try await self.client.execute(action: "CreateAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAlarmNotice请求参数结构体
     public struct CreateAlarmNoticeRequest: TCRequestModel {
         /// 通知渠道组名称。
@@ -48,7 +32,7 @@ extension Cls {
         /// 接口回调信息（包括企业微信）。
         public let webCallbacks: [WebCallback]?
         
-        public init (name: String, type: String, noticeReceivers: [NoticeReceiver]?, webCallbacks: [WebCallback]?) {
+        public init (name: String, type: String, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil) {
             self.name = name
             self.type = type
             self.noticeReceivers = noticeReceivers
@@ -75,5 +59,21 @@ extension Cls {
             case alarmNoticeId = "AlarmNoticeId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建通知渠道组
+    ///
+    /// 该接口用于创建通知渠道组。
+    @inlinable
+    public func createAlarmNotice(_ input: CreateAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAlarmNoticeResponse > {
+        self.client.execute(action: "CreateAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建通知渠道组
+    ///
+    /// 该接口用于创建通知渠道组。
+    @inlinable
+    public func createAlarmNotice(_ input: CreateAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmNoticeResponse {
+        try await self.client.execute(action: "CreateAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

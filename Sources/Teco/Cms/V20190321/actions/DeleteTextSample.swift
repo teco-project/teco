@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cms {
-    /// 删除文本样本库
-    ///
-    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
-    /// <br>
-    /// 删除文本样本库，暂时只支持单个删除。
-    @inlinable
-    public func deleteTextSample(_ input: DeleteTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTextSampleResponse > {
-        self.client.execute(action: "DeleteTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除文本样本库
-    ///
-    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
-    /// <br>
-    /// 删除文本样本库，暂时只支持单个删除。
-    @inlinable
-    public func deleteTextSample(_ input: DeleteTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTextSampleResponse {
-        try await self.client.execute(action: "DeleteTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTextSample请求参数结构体
     public struct DeleteTextSampleRequest: TCRequestModel {
         /// 唯一标识数组，目前暂时只支持单个删除
@@ -63,5 +43,25 @@ extension Cms {
             case progress = "Progress"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除文本样本库
+    ///
+    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
+    /// <br>
+    /// 删除文本样本库，暂时只支持单个删除。
+    @inlinable
+    public func deleteTextSample(_ input: DeleteTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTextSampleResponse > {
+        self.client.execute(action: "DeleteTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除文本样本库
+    ///
+    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
+    /// <br>
+    /// 删除文本样本库，暂时只支持单个删除。
+    @inlinable
+    public func deleteTextSample(_ input: DeleteTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTextSampleResponse {
+        try await self.client.execute(action: "DeleteTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 导出密码破解记录
-    ///
-    /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
-    @inlinable
-    public func exportBruteAttacks(_ input: ExportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBruteAttacksResponse > {
-        self.client.execute(action: "ExportBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出密码破解记录
-    ///
-    /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
-    @inlinable
-    public func exportBruteAttacks(_ input: ExportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBruteAttacksResponse {
-        try await self.client.execute(action: "ExportBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportBruteAttacks请求参数结构体
     public struct ExportBruteAttacksRequest: TCRequestModel {
         /// 过滤参数
         public let filters: [Filters]?
         
-        public init (filters: [Filters]?) {
+        public init (filters: [Filters]? = nil) {
             self.filters = filters
         }
         
@@ -61,5 +45,21 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出密码破解记录
+    ///
+    /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
+    @inlinable
+    public func exportBruteAttacks(_ input: ExportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBruteAttacksResponse > {
+        self.client.execute(action: "ExportBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出密码破解记录
+    ///
+    /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
+    @inlinable
+    public func exportBruteAttacks(_ input: ExportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBruteAttacksResponse {
+        try await self.client.execute(action: "ExportBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

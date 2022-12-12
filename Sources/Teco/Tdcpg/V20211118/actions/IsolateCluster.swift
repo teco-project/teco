@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdcpg {
-    /// 隔离集群
-    ///
-    /// 隔离集群，集群的接入点网络将会断掉无法连接使用数据库。只有当集群状态处于running(运行中)时才生效。
-    @inlinable
-    public func isolateCluster(_ input: IsolateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateClusterResponse > {
-        self.client.execute(action: "IsolateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 隔离集群
-    ///
-    /// 隔离集群，集群的接入点网络将会断掉无法连接使用数据库。只有当集群状态处于running(运行中)时才生效。
-    @inlinable
-    public func isolateCluster(_ input: IsolateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterResponse {
-        try await self.client.execute(action: "IsolateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// IsolateCluster请求参数结构体
     public struct IsolateClusterRequest: TCRequestModel {
         /// 集群ID
@@ -53,5 +37,21 @@ extension Tdcpg {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 隔离集群
+    ///
+    /// 隔离集群，集群的接入点网络将会断掉无法连接使用数据库。只有当集群状态处于running(运行中)时才生效。
+    @inlinable
+    public func isolateCluster(_ input: IsolateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateClusterResponse > {
+        self.client.execute(action: "IsolateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 隔离集群
+    ///
+    /// 隔离集群，集群的接入点网络将会断掉无法连接使用数据库。只有当集群状态处于running(运行中)时才生效。
+    @inlinable
+    public func isolateCluster(_ input: IsolateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterResponse {
+        try await self.client.execute(action: "IsolateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

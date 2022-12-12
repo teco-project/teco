@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取单台主机的漏洞列表
-    ///
-    /// 本接口 (DescribeAgentVuls) 用于获取单台主机的漏洞列表。
-    @inlinable
-    public func describeAgentVuls(_ input: DescribeAgentVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentVulsResponse > {
-        self.client.execute(action: "DescribeAgentVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取单台主机的漏洞列表
-    ///
-    /// 本接口 (DescribeAgentVuls) 用于获取单台主机的漏洞列表。
-    @inlinable
-    public func describeAgentVuls(_ input: DescribeAgentVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentVulsResponse {
-        try await self.client.execute(action: "DescribeAgentVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAgentVuls请求参数结构体
     public struct DescribeAgentVulsRequest: TCRequestModel {
         /// 漏洞类型。
@@ -52,7 +36,7 @@ extension Yunjing {
         /// <li>Status - String - 是否必填：否 - 状态筛选（UN_OPERATED: 待处理 | FIXED：已修复）
         public let filters: [Filter]?
         
-        public init (vulType: String, uuid: String, limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (vulType: String, uuid: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.vulType = vulType
             self.uuid = uuid
             self.limit = limit
@@ -85,5 +69,21 @@ extension Yunjing {
             case agentVuls = "AgentVuls"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取单台主机的漏洞列表
+    ///
+    /// 本接口 (DescribeAgentVuls) 用于获取单台主机的漏洞列表。
+    @inlinable
+    public func describeAgentVuls(_ input: DescribeAgentVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentVulsResponse > {
+        self.client.execute(action: "DescribeAgentVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单台主机的漏洞列表
+    ///
+    /// 本接口 (DescribeAgentVuls) 用于获取单台主机的漏洞列表。
+    @inlinable
+    public func describeAgentVuls(_ input: DescribeAgentVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentVulsResponse {
+        try await self.client.execute(action: "DescribeAgentVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 查询应用关联的 Ingress 规则列表
-    @inlinable
-    public func describeRelatedIngresses(_ input: DescribeRelatedIngressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRelatedIngressesResponse > {
-        self.client.execute(action: "DescribeRelatedIngresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询应用关联的 Ingress 规则列表
-    @inlinable
-    public func describeRelatedIngresses(_ input: DescribeRelatedIngressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRelatedIngressesResponse {
-        try await self.client.execute(action: "DescribeRelatedIngresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRelatedIngresses请求参数结构体
     public struct DescribeRelatedIngressesRequest: TCRequestModel {
         /// 环境 id
@@ -41,7 +29,7 @@ extension Tem {
         /// 应用 ID
         public let applicationId: String?
         
-        public init (environmentId: String?, clusterNamespace: String?, sourceChannel: Int64?, applicationId: String?) {
+        public init (environmentId: String? = nil, clusterNamespace: String? = nil, sourceChannel: Int64? = nil, applicationId: String? = nil) {
             self.environmentId = environmentId
             self.clusterNamespace = clusterNamespace
             self.sourceChannel = sourceChannel
@@ -69,5 +57,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询应用关联的 Ingress 规则列表
+    @inlinable
+    public func describeRelatedIngresses(_ input: DescribeRelatedIngressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRelatedIngressesResponse > {
+        self.client.execute(action: "DescribeRelatedIngresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询应用关联的 Ingress 规则列表
+    @inlinable
+    public func describeRelatedIngresses(_ input: DescribeRelatedIngressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRelatedIngressesResponse {
+        try await self.client.execute(action: "DescribeRelatedIngresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

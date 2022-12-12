@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改别称域名
-    ///
-    /// 修改别称域名。
-    @inlinable
-    public func modifyAliasDomain(_ input: ModifyAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAliasDomainResponse > {
-        self.client.execute(action: "ModifyAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改别称域名
-    ///
-    /// 修改别称域名。
-    @inlinable
-    public func modifyAliasDomain(_ input: ModifyAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAliasDomainResponse {
-        try await self.client.execute(action: "ModifyAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAliasDomain请求参数结构体
     public struct ModifyAliasDomainRequest: TCRequestModel {
         /// 站点 ID。
@@ -51,7 +35,7 @@ extension Teo {
         /// 当 CertType 取值为 hosting 时填入相应证书 ID。
         public let certId: [String]?
         
-        public init (zoneId: String, aliasName: String, targetName: String, certType: String?, certId: [String]?) {
+        public init (zoneId: String, aliasName: String, targetName: String, certType: String? = nil, certId: [String]? = nil) {
             self.zoneId = zoneId
             self.aliasName = aliasName
             self.targetName = targetName
@@ -76,5 +60,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改别称域名
+    ///
+    /// 修改别称域名。
+    @inlinable
+    public func modifyAliasDomain(_ input: ModifyAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAliasDomainResponse > {
+        self.client.execute(action: "ModifyAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改别称域名
+    ///
+    /// 修改别称域名。
+    @inlinable
+    public func modifyAliasDomain(_ input: ModifyAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAliasDomainResponse {
+        try await self.client.execute(action: "ModifyAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

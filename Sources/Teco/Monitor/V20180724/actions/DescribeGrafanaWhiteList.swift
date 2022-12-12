@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 列出 Grafana 白名单
-    @inlinable
-    public func describeGrafanaWhiteList(_ input: DescribeGrafanaWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaWhiteListResponse > {
-        self.client.execute(action: "DescribeGrafanaWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出 Grafana 白名单
-    @inlinable
-    public func describeGrafanaWhiteList(_ input: DescribeGrafanaWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaWhiteListResponse {
-        try await self.client.execute(action: "DescribeGrafanaWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGrafanaWhiteList请求参数结构体
     public struct DescribeGrafanaWhiteListRequest: TCRequestModel {
         /// Grafana 实例 ID，例如：grafana-abcdefgh
@@ -53,5 +41,17 @@ extension Monitor {
             case whiteList = "WhiteList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出 Grafana 白名单
+    @inlinable
+    public func describeGrafanaWhiteList(_ input: DescribeGrafanaWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaWhiteListResponse > {
+        self.client.execute(action: "DescribeGrafanaWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出 Grafana 白名单
+    @inlinable
+    public func describeGrafanaWhiteList(_ input: DescribeGrafanaWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaWhiteListResponse {
+        try await self.client.execute(action: "DescribeGrafanaWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

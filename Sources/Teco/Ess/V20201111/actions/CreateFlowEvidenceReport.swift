@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ess {
-    /// 创建并返回出证报告
-    ///
-    /// 创建出证报告，返回报告 ID。
-    @inlinable
-    public func createFlowEvidenceReport(_ input: CreateFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowEvidenceReportResponse > {
-        self.client.execute(action: "CreateFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建并返回出证报告
-    ///
-    /// 创建出证报告，返回报告 ID。
-    @inlinable
-    public func createFlowEvidenceReport(_ input: CreateFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowEvidenceReportResponse {
-        try await self.client.execute(action: "CreateFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFlowEvidenceReport请求参数结构体
     public struct CreateFlowEvidenceReportRequest: TCRequestModel {
         /// 调用方用户信息，userId 必填
@@ -74,5 +58,21 @@ extension Ess {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建并返回出证报告
+    ///
+    /// 创建出证报告，返回报告 ID。
+    @inlinable
+    public func createFlowEvidenceReport(_ input: CreateFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowEvidenceReportResponse > {
+        self.client.execute(action: "CreateFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建并返回出证报告
+    ///
+    /// 创建出证报告，返回报告 ID。
+    @inlinable
+    public func createFlowEvidenceReport(_ input: CreateFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowEvidenceReportResponse {
+        try await self.client.execute(action: "CreateFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

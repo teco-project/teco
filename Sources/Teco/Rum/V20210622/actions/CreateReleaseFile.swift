@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 创建发布文件记录
-    ///
-    /// 创建对应项目的文件记录
-    @inlinable
-    public func createReleaseFile(_ input: CreateReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReleaseFileResponse > {
-        self.client.execute(action: "CreateReleaseFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建发布文件记录
-    ///
-    /// 创建对应项目的文件记录
-    @inlinable
-    public func createReleaseFile(_ input: CreateReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReleaseFileResponse {
-        try await self.client.execute(action: "CreateReleaseFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateReleaseFile请求参数结构体
     public struct CreateReleaseFileRequest: TCRequestModel {
         /// 项目 id
@@ -62,5 +46,21 @@ extension Rum {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建发布文件记录
+    ///
+    /// 创建对应项目的文件记录
+    @inlinable
+    public func createReleaseFile(_ input: CreateReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReleaseFileResponse > {
+        self.client.execute(action: "CreateReleaseFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建发布文件记录
+    ///
+    /// 创建对应项目的文件记录
+    @inlinable
+    public func createReleaseFile(_ input: CreateReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReleaseFileResponse {
+        try await self.client.execute(action: "CreateReleaseFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

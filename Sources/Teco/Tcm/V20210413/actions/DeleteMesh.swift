@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcm {
-    /// 删除网格
-    @inlinable
-    public func deleteMesh(_ input: DeleteMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMeshResponse > {
-        self.client.execute(action: "DeleteMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除网格
-    @inlinable
-    public func deleteMesh(_ input: DeleteMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMeshResponse {
-        try await self.client.execute(action: "DeleteMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMesh请求参数结构体
     public struct DeleteMeshRequest: TCRequestModel {
         /// 需要删除的MeshId
@@ -44,7 +32,7 @@ extension Tcm {
         /// Grafana组件是否被删除
         public let needDeleteGrafana: Bool?
         
-        public init (meshId: String, needDeleteCLS: Bool?, needDeleteTMP: Bool?, needDeleteAPM: Bool?, needDeleteGrafana: Bool?) {
+        public init (meshId: String, needDeleteCLS: Bool? = nil, needDeleteTMP: Bool? = nil, needDeleteAPM: Bool? = nil, needDeleteGrafana: Bool? = nil) {
             self.meshId = meshId
             self.needDeleteCLS = needDeleteCLS
             self.needDeleteTMP = needDeleteTMP
@@ -69,5 +57,17 @@ extension Tcm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除网格
+    @inlinable
+    public func deleteMesh(_ input: DeleteMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMeshResponse > {
+        self.client.execute(action: "DeleteMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除网格
+    @inlinable
+    public func deleteMesh(_ input: DeleteMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMeshResponse {
+        try await self.client.execute(action: "DeleteMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

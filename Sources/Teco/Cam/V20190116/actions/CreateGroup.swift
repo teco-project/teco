@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 创建用户组
-    @inlinable
-    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGroupResponse > {
-        self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建用户组
-    @inlinable
-    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
-        try await self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateGroup请求参数结构体
     public struct CreateGroupRequest: TCRequestModel {
         /// 用户组名
@@ -35,7 +23,7 @@ extension Cam {
         /// 用户组描述
         public let remark: String?
         
-        public init (groupName: String, remark: String?) {
+        public init (groupName: String, remark: String? = nil) {
             self.groupName = groupName
             self.remark = remark
         }
@@ -58,5 +46,17 @@ extension Cam {
             case groupId = "GroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建用户组
+    @inlinable
+    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGroupResponse > {
+        self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建用户组
+    @inlinable
+    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
+        try await self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 更新工作流【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 更新工作流
-    @inlinable
-    public func modifyWorkflowInfo(_ input: ModifyWorkflowInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWorkflowInfoResponse > {
-        self.client.execute(action: "ModifyWorkflowInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新工作流【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 更新工作流
-    @inlinable
-    public func modifyWorkflowInfo(_ input: ModifyWorkflowInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowInfoResponse {
-        try await self.client.execute(action: "ModifyWorkflowInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyWorkflowInfo请求参数结构体
     public struct ModifyWorkflowInfoRequest: TCRequestModel {
         /// 项目Id
@@ -68,7 +50,7 @@ extension Wedata {
         /// 用于配置优化参数（线程、内存、CPU核数等），仅作用于Spark SQL节点。多个参数用英文分号分隔。
         public let generalTaskParams: [GeneralTaskParam]?
         
-        public init (projectId: String, workflowId: String, owner: String?, ownerId: String?, workflowDesc: String?, workflowName: String?, folderId: String?, userGroupId: String?, userGroupName: String?, workflowParams: [ParamInfo]?, generalTaskParams: [GeneralTaskParam]?) {
+        public init (projectId: String, workflowId: String, owner: String? = nil, ownerId: String? = nil, workflowDesc: String? = nil, workflowName: String? = nil, folderId: String? = nil, userGroupId: String? = nil, userGroupName: String? = nil, workflowParams: [ParamInfo]? = nil, generalTaskParams: [GeneralTaskParam]? = nil) {
             self.projectId = projectId
             self.workflowId = workflowId
             self.owner = owner
@@ -109,5 +91,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 更新工作流
+    @inlinable
+    public func modifyWorkflowInfo(_ input: ModifyWorkflowInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWorkflowInfoResponse > {
+        self.client.execute(action: "ModifyWorkflowInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 更新工作流
+    @inlinable
+    public func modifyWorkflowInfo(_ input: ModifyWorkflowInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowInfoResponse {
+        try await self.client.execute(action: "ModifyWorkflowInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 导出区域主机列表
-    ///
-    /// 本接口 (DescribeExportMachines) 用于导出区域主机列表。
-    @inlinable
-    public func describeExportMachines(_ input: DescribeExportMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExportMachinesResponse > {
-        self.client.execute(action: "DescribeExportMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出区域主机列表
-    ///
-    /// 本接口 (DescribeExportMachines) 用于导出区域主机列表。
-    @inlinable
-    public func describeExportMachines(_ input: DescribeExportMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportMachinesResponse {
-        try await self.client.execute(action: "DescribeExportMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExportMachines请求参数结构体
     public struct DescribeExportMachinesRequest: TCRequestModel {
         /// 云主机类型。
@@ -57,7 +41,7 @@ extension Cwp {
         /// 机器所属业务ID列表
         public let projectIds: [UInt64]?
         
-        public init (machineType: String, machineRegion: String, limit: UInt64?, offset: UInt64?, filters: [Filter]?, projectIds: [UInt64]?) {
+        public init (machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, projectIds: [UInt64]? = nil) {
             self.machineType = machineType
             self.machineRegion = machineRegion
             self.limit = limit
@@ -88,5 +72,21 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出区域主机列表
+    ///
+    /// 本接口 (DescribeExportMachines) 用于导出区域主机列表。
+    @inlinable
+    public func describeExportMachines(_ input: DescribeExportMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExportMachinesResponse > {
+        self.client.execute(action: "DescribeExportMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出区域主机列表
+    ///
+    /// 本接口 (DescribeExportMachines) 用于导出区域主机列表。
+    @inlinable
+    public func describeExportMachines(_ input: DescribeExportMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportMachinesResponse {
+        try await self.client.execute(action: "DescribeExportMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

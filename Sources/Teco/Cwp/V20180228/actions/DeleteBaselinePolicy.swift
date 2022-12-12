@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 删除基线策略配置
-    @inlinable
-    public func deleteBaselinePolicy(_ input: DeleteBaselinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBaselinePolicyResponse > {
-        self.client.execute(action: "DeleteBaselinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除基线策略配置
-    @inlinable
-    public func deleteBaselinePolicy(_ input: DeleteBaselinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBaselinePolicyResponse {
-        try await self.client.execute(action: "DeleteBaselinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteBaselinePolicy请求参数结构体
     public struct DeleteBaselinePolicyRequest: TCRequestModel {
         /// 策略Id
@@ -49,5 +37,17 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除基线策略配置
+    @inlinable
+    public func deleteBaselinePolicy(_ input: DeleteBaselinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBaselinePolicyResponse > {
+        self.client.execute(action: "DeleteBaselinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除基线策略配置
+    @inlinable
+    public func deleteBaselinePolicy(_ input: DeleteBaselinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBaselinePolicyResponse {
+        try await self.client.execute(action: "DeleteBaselinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

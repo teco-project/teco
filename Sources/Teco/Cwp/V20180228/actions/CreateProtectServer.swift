@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 添加网站防护服务器
-    @inlinable
-    public func createProtectServer(_ input: CreateProtectServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProtectServerResponse > {
-        self.client.execute(action: "CreateProtectServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加网站防护服务器
-    @inlinable
-    public func createProtectServer(_ input: CreateProtectServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtectServerResponse {
-        try await self.client.execute(action: "CreateProtectServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProtectServer请求参数结构体
     public struct CreateProtectServerRequest: TCRequestModel {
         /// 防护目录地址
@@ -54,5 +42,17 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加网站防护服务器
+    @inlinable
+    public func createProtectServer(_ input: CreateProtectServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProtectServerResponse > {
+        self.client.execute(action: "CreateProtectServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加网站防护服务器
+    @inlinable
+    public func createProtectServer(_ input: CreateProtectServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtectServerResponse {
+        try await self.client.execute(action: "CreateProtectServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

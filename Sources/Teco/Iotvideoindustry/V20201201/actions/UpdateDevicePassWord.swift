@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 修改设备密码
-    ///
-    /// 本接口(UpdateDevicePassWord)用于修改设备密码。
-    @inlinable
-    public func updateDevicePassWord(_ input: UpdateDevicePassWordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDevicePassWordResponse > {
-        self.client.execute(action: "UpdateDevicePassWord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改设备密码
-    ///
-    /// 本接口(UpdateDevicePassWord)用于修改设备密码。
-    @inlinable
-    public func updateDevicePassWord(_ input: UpdateDevicePassWordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePassWordResponse {
-        try await self.client.execute(action: "UpdateDevicePassWord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateDevicePassWord请求参数结构体
     public struct UpdateDevicePassWordRequest: TCRequestModel {
         /// 设备密码
@@ -63,5 +47,21 @@ extension Iotvideoindustry {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改设备密码
+    ///
+    /// 本接口(UpdateDevicePassWord)用于修改设备密码。
+    @inlinable
+    public func updateDevicePassWord(_ input: UpdateDevicePassWordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDevicePassWordResponse > {
+        self.client.execute(action: "UpdateDevicePassWord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改设备密码
+    ///
+    /// 本接口(UpdateDevicePassWord)用于修改设备密码。
+    @inlinable
+    public func updateDevicePassWord(_ input: UpdateDevicePassWordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePassWordResponse {
+        try await self.client.execute(action: "UpdateDevicePassWord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

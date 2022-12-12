@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 添加记录分组
-    @inlinable
-    public func createRecordGroup(_ input: CreateRecordGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRecordGroupResponse > {
-        self.client.execute(action: "CreateRecordGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加记录分组
-    @inlinable
-    public func createRecordGroup(_ input: CreateRecordGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordGroupResponse {
-        try await self.client.execute(action: "CreateRecordGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRecordGroup请求参数结构体
     public struct CreateRecordGroupRequest: TCRequestModel {
         /// 域名
@@ -38,7 +26,7 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
         public let domainId: UInt64?
         
-        public init (domain: String, groupName: String, domainId: UInt64?) {
+        public init (domain: String, groupName: String, domainId: UInt64? = nil) {
             self.domain = domain
             self.groupName = groupName
             self.domainId = domainId
@@ -63,5 +51,17 @@ extension Dnspod {
             case groupId = "GroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加记录分组
+    @inlinable
+    public func createRecordGroup(_ input: CreateRecordGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRecordGroupResponse > {
+        self.client.execute(action: "CreateRecordGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加记录分组
+    @inlinable
+    public func createRecordGroup(_ input: CreateRecordGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordGroupResponse {
+        try await self.client.execute(action: "CreateRecordGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tse {
-    /// 查询引擎实例访问地址
-    @inlinable
-    public func describeSREInstanceAccessAddress(_ input: DescribeSREInstanceAccessAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSREInstanceAccessAddressResponse > {
-        self.client.execute(action: "DescribeSREInstanceAccessAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询引擎实例访问地址
-    @inlinable
-    public func describeSREInstanceAccessAddress(_ input: DescribeSREInstanceAccessAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSREInstanceAccessAddressResponse {
-        try await self.client.execute(action: "DescribeSREInstanceAccessAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSREInstanceAccessAddress请求参数结构体
     public struct DescribeSREInstanceAccessAddressRequest: TCRequestModel {
         /// 注册引擎实例Id
@@ -44,7 +32,7 @@ extension Tse {
         /// 部署地域
         public let engineRegion: String?
         
-        public init (instanceId: String?, vpcId: String?, subnetId: String?, workload: String?, engineRegion: String?) {
+        public init (instanceId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, workload: String? = nil, engineRegion: String? = nil) {
             self.instanceId = instanceId
             self.vpcId = vpcId
             self.subnetId = subnetId
@@ -106,5 +94,17 @@ extension Tse {
             case limiterAddressInfos = "LimiterAddressInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询引擎实例访问地址
+    @inlinable
+    public func describeSREInstanceAccessAddress(_ input: DescribeSREInstanceAccessAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSREInstanceAccessAddressResponse > {
+        self.client.execute(action: "DescribeSREInstanceAccessAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询引擎实例访问地址
+    @inlinable
+    public func describeSREInstanceAccessAddress(_ input: DescribeSREInstanceAccessAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSREInstanceAccessAddressResponse {
+        try await self.client.execute(action: "DescribeSREInstanceAccessAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 更新RocketMQ消费组信息
-    @inlinable
-    public func modifyRocketMQGroup(_ input: ModifyRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRocketMQGroupResponse > {
-        self.client.execute(action: "ModifyRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新RocketMQ消费组信息
-    @inlinable
-    public func modifyRocketMQGroup(_ input: ModifyRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQGroupResponse {
-        try await self.client.execute(action: "ModifyRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRocketMQGroup请求参数结构体
     public struct ModifyRocketMQGroupRequest: TCRequestModel {
         /// 集群ID
@@ -47,7 +35,7 @@ extension Tdmq {
         /// 是否开启广播消费
         public let broadcastEnable: Bool?
         
-        public init (clusterId: String, namespaceId: String, groupId: String, remark: String?, readEnable: Bool?, broadcastEnable: Bool?) {
+        public init (clusterId: String, namespaceId: String, groupId: String, remark: String? = nil, readEnable: Bool? = nil, broadcastEnable: Bool? = nil) {
             self.clusterId = clusterId
             self.namespaceId = namespaceId
             self.groupId = groupId
@@ -74,5 +62,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新RocketMQ消费组信息
+    @inlinable
+    public func modifyRocketMQGroup(_ input: ModifyRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRocketMQGroupResponse > {
+        self.client.execute(action: "ModifyRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新RocketMQ消费组信息
+    @inlinable
+    public func modifyRocketMQGroup(_ input: ModifyRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQGroupResponse {
+        try await self.client.execute(action: "ModifyRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

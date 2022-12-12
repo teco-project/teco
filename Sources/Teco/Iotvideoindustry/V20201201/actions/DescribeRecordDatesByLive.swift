@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 直播录像存储日期列表
-    @inlinable
-    public func describeRecordDatesByLive(_ input: DescribeRecordDatesByLiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordDatesByLiveResponse > {
-        self.client.execute(action: "DescribeRecordDatesByLive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播录像存储日期列表
-    @inlinable
-    public func describeRecordDatesByLive(_ input: DescribeRecordDatesByLiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordDatesByLiveResponse {
-        try await self.client.execute(action: "DescribeRecordDatesByLive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRecordDatesByLive请求参数结构体
     public struct DescribeRecordDatesByLiveRequest: TCRequestModel {
         /// 直播频道ID
@@ -64,5 +52,17 @@ extension Iotvideoindustry {
             case dates = "Dates"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播录像存储日期列表
+    @inlinable
+    public func describeRecordDatesByLive(_ input: DescribeRecordDatesByLiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordDatesByLiveResponse > {
+        self.client.execute(action: "DescribeRecordDatesByLive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播录像存储日期列表
+    @inlinable
+    public func describeRecordDatesByLive(_ input: DescribeRecordDatesByLiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordDatesByLiveResponse {
+        try await self.client.execute(action: "DescribeRecordDatesByLive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

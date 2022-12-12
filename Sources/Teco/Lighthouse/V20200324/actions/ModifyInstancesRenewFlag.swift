@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 修改实例续费标识
-    ///
-    /// 本接口 (ModifyInstancesRenewFlag) 用于修改包年包月实例续费标识。
-    /// * 实例被标识为自动续费后，每次在实例到期时，会自动续费一个月。
-    /// * 支持批量操作。每次请求批量实例的上限为100。
-    /// * 实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
-    @inlinable
-    public func modifyInstancesRenewFlag(_ input: ModifyInstancesRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesRenewFlagResponse > {
-        self.client.execute(action: "ModifyInstancesRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例续费标识
-    ///
-    /// 本接口 (ModifyInstancesRenewFlag) 用于修改包年包月实例续费标识。
-    /// * 实例被标识为自动续费后，每次在实例到期时，会自动续费一个月。
-    /// * 支持批量操作。每次请求批量实例的上限为100。
-    /// * 实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
-    @inlinable
-    public func modifyInstancesRenewFlag(_ input: ModifyInstancesRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesRenewFlagResponse {
-        try await self.client.execute(action: "ModifyInstancesRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstancesRenewFlag请求参数结构体
     public struct ModifyInstancesRenewFlagRequest: TCRequestModel {
         /// 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
@@ -64,5 +42,27 @@ extension Lighthouse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例续费标识
+    ///
+    /// 本接口 (ModifyInstancesRenewFlag) 用于修改包年包月实例续费标识。
+    /// * 实例被标识为自动续费后，每次在实例到期时，会自动续费一个月。
+    /// * 支持批量操作。每次请求批量实例的上限为100。
+    /// * 实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
+    @inlinable
+    public func modifyInstancesRenewFlag(_ input: ModifyInstancesRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesRenewFlagResponse > {
+        self.client.execute(action: "ModifyInstancesRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例续费标识
+    ///
+    /// 本接口 (ModifyInstancesRenewFlag) 用于修改包年包月实例续费标识。
+    /// * 实例被标识为自动续费后，每次在实例到期时，会自动续费一个月。
+    /// * 支持批量操作。每次请求批量实例的上限为100。
+    /// * 实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
+    @inlinable
+    public func modifyInstancesRenewFlag(_ input: ModifyInstancesRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesRenewFlagResponse {
+        try await self.client.execute(action: "ModifyInstancesRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

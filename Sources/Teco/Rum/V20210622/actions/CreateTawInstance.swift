@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 创建Rum实例
-    @inlinable
-    public func createTawInstance(_ input: CreateTawInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTawInstanceResponse > {
-        self.client.execute(action: "CreateTawInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建Rum实例
-    @inlinable
-    public func createTawInstance(_ input: CreateTawInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTawInstanceResponse {
-        try await self.client.execute(action: "CreateTawInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTawInstance请求参数结构体
     public struct CreateTawInstanceRequest: TCRequestModel {
         /// 片区Id，(至少大于0)
@@ -62,7 +50,7 @@ extension Rum {
         /// 预付费资源包数量(仅预付费需要)
         public let resourcePackageNum: UInt64?
         
-        public init (areaId: Int64, chargeType: Int64, dataRetentionDays: Int64, instanceName: String, tags: [Tag]?, instanceDesc: String?, countNum: String?, periodRetain: String?, buyingChannel: String?, resourcePackageType: UInt64?, resourcePackageNum: UInt64?) {
+        public init (areaId: Int64, chargeType: Int64, dataRetentionDays: Int64, instanceName: String, tags: [Tag]? = nil, instanceDesc: String? = nil, countNum: String? = nil, periodRetain: String? = nil, buyingChannel: String? = nil, resourcePackageType: UInt64? = nil, resourcePackageNum: UInt64? = nil) {
             self.areaId = areaId
             self.chargeType = chargeType
             self.dataRetentionDays = dataRetentionDays
@@ -108,5 +96,17 @@ extension Rum {
             case dealName = "DealName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建Rum实例
+    @inlinable
+    public func createTawInstance(_ input: CreateTawInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTawInstanceResponse > {
+        self.client.execute(action: "CreateTawInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建Rum实例
+    @inlinable
+    public func createTawInstance(_ input: CreateTawInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTawInstanceResponse {
+        try await self.client.execute(action: "CreateTawInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

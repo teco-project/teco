@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询回档任务详情
-    ///
-    /// 本接口(DescribeRollbackTaskDetail)用于查询云数据库实例回档任务详情。
-    @inlinable
-    public func describeRollbackTaskDetail(_ input: DescribeRollbackTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRollbackTaskDetailResponse > {
-        self.client.execute(action: "DescribeRollbackTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询回档任务详情
-    ///
-    /// 本接口(DescribeRollbackTaskDetail)用于查询云数据库实例回档任务详情。
-    @inlinable
-    public func describeRollbackTaskDetail(_ input: DescribeRollbackTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTaskDetailResponse {
-        try await self.client.execute(action: "DescribeRollbackTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRollbackTaskDetail请求参数结构体
     public struct DescribeRollbackTaskDetailRequest: TCRequestModel {
         /// 实例 ID。与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872)。
@@ -45,7 +29,7 @@ extension Cdb {
         /// 分页偏移量。默认为 0。
         public let offset: Int64?
         
-        public init (instanceId: String, asyncRequestId: String?, limit: Int64?, offset: Int64?) {
+        public init (instanceId: String, asyncRequestId: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.instanceId = instanceId
             self.asyncRequestId = asyncRequestId
             self.limit = limit
@@ -77,5 +61,21 @@ extension Cdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询回档任务详情
+    ///
+    /// 本接口(DescribeRollbackTaskDetail)用于查询云数据库实例回档任务详情。
+    @inlinable
+    public func describeRollbackTaskDetail(_ input: DescribeRollbackTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRollbackTaskDetailResponse > {
+        self.client.execute(action: "DescribeRollbackTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询回档任务详情
+    ///
+    /// 本接口(DescribeRollbackTaskDetail)用于查询云数据库实例回档任务详情。
+    @inlinable
+    public func describeRollbackTaskDetail(_ input: DescribeRollbackTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTaskDetailResponse {
+        try await self.client.execute(action: "DescribeRollbackTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

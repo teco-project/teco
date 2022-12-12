@@ -15,6 +15,47 @@
 // DO NOT EDIT.
 
 extension Cvm {
+    /// CreateKeyPair请求参数结构体
+    public struct CreateKeyPairRequest: TCRequestModel {
+        /// 密钥对名称，可由数字，字母和下划线组成，长度不超过25个字符。
+        public let keyName: String
+        
+        /// 密钥对创建后所属的项目ID。
+        /// 可以通过以下方式获取项目ID：
+        /// <li>通过项目列表查询项目ID。
+        /// <li>通过调用接口DescribeProject，取返回信息中的`projectId `获取项目ID。
+        public let projectId: Int64
+        
+        /// 标签描述列表。通过指定该参数可以同时绑定标签到密钥对。
+        public let tagSpecification: [TagSpecification]?
+        
+        public init (keyName: String, projectId: Int64, tagSpecification: [TagSpecification]? = nil) {
+            self.keyName = keyName
+            self.projectId = projectId
+            self.tagSpecification = tagSpecification
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case keyName = "KeyName"
+            case projectId = "ProjectId"
+            case tagSpecification = "TagSpecification"
+        }
+    }
+    
+    /// CreateKeyPair返回参数结构体
+    public struct CreateKeyPairResponse: TCResponseModel {
+        /// 密钥对信息。
+        public let keyPair: KeyPair?
+        
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case keyPair = "KeyPair"
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 创建密钥对
     ///
     /// 本接口 (CreateKeyPair) 用于创建一个 `OpenSSH RSA` 密钥对，可以用于登录 `Linux` 实例。
@@ -37,46 +78,5 @@ extension Cvm {
     @inlinable
     public func createKeyPair(_ input: CreateKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKeyPairResponse {
         try await self.client.execute(action: "CreateKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// CreateKeyPair请求参数结构体
-    public struct CreateKeyPairRequest: TCRequestModel {
-        /// 密钥对名称，可由数字，字母和下划线组成，长度不超过25个字符。
-        public let keyName: String
-        
-        /// 密钥对创建后所属的项目ID。
-        /// 可以通过以下方式获取项目ID：
-        /// <li>通过项目列表查询项目ID。
-        /// <li>通过调用接口DescribeProject，取返回信息中的`projectId `获取项目ID。
-        public let projectId: Int64
-        
-        /// 标签描述列表。通过指定该参数可以同时绑定标签到密钥对。
-        public let tagSpecification: [TagSpecification]?
-        
-        public init (keyName: String, projectId: Int64, tagSpecification: [TagSpecification]?) {
-            self.keyName = keyName
-            self.projectId = projectId
-            self.tagSpecification = tagSpecification
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case keyName = "KeyName"
-            case projectId = "ProjectId"
-            case tagSpecification = "TagSpecification"
-        }
-    }
-    
-    /// CreateKeyPair返回参数结构体
-    public struct CreateKeyPairResponse: TCResponseModel {
-        /// 密钥对信息。
-        public let keyPair: KeyPair
-        
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case keyPair = "KeyPair"
-            case requestId = "RequestId"
-        }
     }
 }

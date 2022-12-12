@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时更新木马文件事件状态
-    @inlinable
-    public func modifyVirusFileStatus(_ input: ModifyVirusFileStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVirusFileStatusResponse > {
-        self.client.execute(action: "ModifyVirusFileStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时更新木马文件事件状态
-    @inlinable
-    public func modifyVirusFileStatus(_ input: ModifyVirusFileStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusFileStatusResponse {
-        try await self.client.execute(action: "ModifyVirusFileStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVirusFileStatus请求参数结构体
     public struct ModifyVirusFileStatusRequest: TCRequestModel {
         /// 处理事件id
@@ -48,7 +36,7 @@ extension Tcss {
         /// 是否后续自动隔离相同MD5文件
         public let autoIsolate: Bool?
         
-        public init (eventIdSet: [String], status: String, remark: String?, autoIsolate: Bool?) {
+        public init (eventIdSet: [String], status: String, remark: String? = nil, autoIsolate: Bool? = nil) {
             self.eventIdSet = eventIdSet
             self.status = status
             self.remark = remark
@@ -71,5 +59,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时更新木马文件事件状态
+    @inlinable
+    public func modifyVirusFileStatus(_ input: ModifyVirusFileStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVirusFileStatusResponse > {
+        self.client.execute(action: "ModifyVirusFileStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时更新木马文件事件状态
+    @inlinable
+    public func modifyVirusFileStatus(_ input: ModifyVirusFileStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusFileStatusResponse {
+        try await self.client.execute(action: "ModifyVirusFileStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

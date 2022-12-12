@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 使用计划绑定密钥
-    ///
-    /// 本接口（BindSecretIds）用于为使用计划绑定密钥。
-    /// 将密钥绑定到某个使用计划，并将此使用计划绑定到某个服务发布的环境上，调用者方可使用此密钥调用这个服务中的 API，可使用本接口为使用计划绑定密钥。
-    @inlinable
-    public func bindSecretIds(_ input: BindSecretIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindSecretIdsResponse > {
-        self.client.execute(action: "BindSecretIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 使用计划绑定密钥
-    ///
-    /// 本接口（BindSecretIds）用于为使用计划绑定密钥。
-    /// 将密钥绑定到某个使用计划，并将此使用计划绑定到某个服务发布的环境上，调用者方可使用此密钥调用这个服务中的 API，可使用本接口为使用计划绑定密钥。
-    @inlinable
-    public func bindSecretIds(_ input: BindSecretIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSecretIdsResponse {
-        try await self.client.execute(action: "BindSecretIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindSecretIds请求参数结构体
     public struct BindSecretIdsRequest: TCRequestModel {
         /// 待绑定的使用计划唯一 ID。
@@ -65,5 +47,23 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 使用计划绑定密钥
+    ///
+    /// 本接口（BindSecretIds）用于为使用计划绑定密钥。
+    /// 将密钥绑定到某个使用计划，并将此使用计划绑定到某个服务发布的环境上，调用者方可使用此密钥调用这个服务中的 API，可使用本接口为使用计划绑定密钥。
+    @inlinable
+    public func bindSecretIds(_ input: BindSecretIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindSecretIdsResponse > {
+        self.client.execute(action: "BindSecretIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 使用计划绑定密钥
+    ///
+    /// 本接口（BindSecretIds）用于为使用计划绑定密钥。
+    /// 将密钥绑定到某个使用计划，并将此使用计划绑定到某个服务发布的环境上，调用者方可使用此密钥调用这个服务中的 API，可使用本接口为使用计划绑定密钥。
+    @inlinable
+    public func bindSecretIds(_ input: BindSecretIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSecretIdsResponse {
+        try await self.client.execute(action: "BindSecretIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

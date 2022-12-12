@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取异地登录事件
-    ///
-    /// 本接口(DescribeNonlocalLoginPlaces)用于获取异地登录事件。
-    @inlinable
-    public func describeNonlocalLoginPlaces(_ input: DescribeNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNonlocalLoginPlacesResponse > {
-        self.client.execute(action: "DescribeNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取异地登录事件
-    ///
-    /// 本接口(DescribeNonlocalLoginPlaces)用于获取异地登录事件。
-    @inlinable
-    public func describeNonlocalLoginPlaces(_ input: DescribeNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNonlocalLoginPlacesResponse {
-        try await self.client.execute(action: "DescribeNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNonlocalLoginPlaces请求参数结构体
     public struct DescribeNonlocalLoginPlacesRequest: TCRequestModel {
         /// 客户端唯一Uuid。
@@ -47,7 +31,7 @@ extension Yunjing {
         /// <li>Status - String - 是否必填：否 -  登录状态（NON_LOCAL_LOGIN: 异地登录 | NORMAL_LOGIN : 正常登录）</li>
         public let filters: [Filter]?
         
-        public init (uuid: String?, limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (uuid: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.uuid = uuid
             self.limit = limit
             self.offset = offset
@@ -78,5 +62,21 @@ extension Yunjing {
             case nonLocalLoginPlaces = "NonLocalLoginPlaces"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取异地登录事件
+    ///
+    /// 本接口(DescribeNonlocalLoginPlaces)用于获取异地登录事件。
+    @inlinable
+    public func describeNonlocalLoginPlaces(_ input: DescribeNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNonlocalLoginPlacesResponse > {
+        self.client.execute(action: "DescribeNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取异地登录事件
+    ///
+    /// 本接口(DescribeNonlocalLoginPlaces)用于获取异地登录事件。
+    @inlinable
+    public func describeNonlocalLoginPlaces(_ input: DescribeNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNonlocalLoginPlacesResponse {
+        try await self.client.execute(action: "DescribeNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

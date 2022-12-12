@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 绑定设备到分组
-    ///
-    /// 本接口(BindGroupDevices) 用于绑定设备到分组。
-    @inlinable
-    public func bindGroupDevices(_ input: BindGroupDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindGroupDevicesResponse > {
-        self.client.execute(action: "BindGroupDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定设备到分组
-    ///
-    /// 本接口(BindGroupDevices) 用于绑定设备到分组。
-    @inlinable
-    public func bindGroupDevices(_ input: BindGroupDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindGroupDevicesResponse {
-        try await self.client.execute(action: "BindGroupDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindGroupDevices请求参数结构体
     public struct BindGroupDevicesRequest: TCRequestModel {
         /// 分组ID
@@ -58,5 +42,21 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定设备到分组
+    ///
+    /// 本接口(BindGroupDevices) 用于绑定设备到分组。
+    @inlinable
+    public func bindGroupDevices(_ input: BindGroupDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindGroupDevicesResponse > {
+        self.client.execute(action: "BindGroupDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定设备到分组
+    ///
+    /// 本接口(BindGroupDevices) 用于绑定设备到分组。
+    @inlinable
+    public func bindGroupDevices(_ input: BindGroupDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindGroupDevicesResponse {
+        try await self.client.execute(action: "BindGroupDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

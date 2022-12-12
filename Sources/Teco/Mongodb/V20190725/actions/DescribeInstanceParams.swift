@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 获取当前实例可修改的参数列表
-    ///
-    /// 本接口(DescribeInstanceParams)用于查询当前实例可修改的参数列表。
-    @inlinable
-    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceParamsResponse > {
-        self.client.execute(action: "DescribeInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取当前实例可修改的参数列表
-    ///
-    /// 本接口(DescribeInstanceParams)用于查询当前实例可修改的参数列表。
-    @inlinable
-    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
-        try await self.client.execute(action: "DescribeInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceParams请求参数结构体
     public struct DescribeInstanceParamsRequest: TCRequestModel {
         /// 实例ID
@@ -73,5 +57,21 @@ extension Mongodb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取当前实例可修改的参数列表
+    ///
+    /// 本接口(DescribeInstanceParams)用于查询当前实例可修改的参数列表。
+    @inlinable
+    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceParamsResponse > {
+        self.client.execute(action: "DescribeInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取当前实例可修改的参数列表
+    ///
+    /// 本接口(DescribeInstanceParams)用于查询当前实例可修改的参数列表。
+    @inlinable
+    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
+        try await self.client.execute(action: "DescribeInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

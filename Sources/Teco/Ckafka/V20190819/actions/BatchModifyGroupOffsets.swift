@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 批量修改消费组offset
-    @inlinable
-    public func batchModifyGroupOffsets(_ input: BatchModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyGroupOffsetsResponse > {
-        self.client.execute(action: "BatchModifyGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量修改消费组offset
-    @inlinable
-    public func batchModifyGroupOffsets(_ input: BatchModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyGroupOffsetsResponse {
-        try await self.client.execute(action: "BatchModifyGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchModifyGroupOffsets请求参数结构体
     public struct BatchModifyGroupOffsetsRequest: TCRequestModel {
         /// 消费分组名称
@@ -41,7 +29,7 @@ extension Ckafka {
         /// 指定topic，默认所有topic
         public let topicName: [String]?
         
-        public init (groupName: String, instanceId: String, partitions: [Partitions], topicName: [String]?) {
+        public init (groupName: String, instanceId: String, partitions: [Partitions], topicName: [String]? = nil) {
             self.groupName = groupName
             self.instanceId = instanceId
             self.partitions = partitions
@@ -68,5 +56,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量修改消费组offset
+    @inlinable
+    public func batchModifyGroupOffsets(_ input: BatchModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyGroupOffsetsResponse > {
+        self.client.execute(action: "BatchModifyGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量修改消费组offset
+    @inlinable
+    public func batchModifyGroupOffsets(_ input: BatchModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyGroupOffsetsResponse {
+        try await self.client.execute(action: "BatchModifyGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

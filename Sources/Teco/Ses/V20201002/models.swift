@@ -62,7 +62,7 @@ extension Ses {
         /// 是否终止周期，用于任务更新 0否1是
         public let termCycle: UInt64?
         
-        public init (beginTime: String, intervalTime: UInt64, termCycle: UInt64?) {
+        public init (beginTime: String, intervalTime: UInt64, termCycle: UInt64? = nil) {
             self.beginTime = beginTime
             self.intervalTime = intervalTime
             self.termCycle = termCycle
@@ -319,15 +319,15 @@ extension Ses {
         
         /// 模板和模板数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let template: Template
+        public let template: Template?
         
         /// 周期任务参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cycleParam: CycleEmailParam
+        public let cycleParam: CycleEmailParam?
         
         /// 定时任务参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let timedParam: TimedEmailParam
+        public let timedParam: TimedEmailParam?
         
         /// 任务异常信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -364,7 +364,7 @@ extension Ses {
         /// base64之后的纯文本信息，如果没有Html，邮件中会直接显示纯文本；如果有Html，它代表邮件的纯文本样式
         public let text: String?
         
-        public init (html: String?, text: String?) {
+        public init (html: String? = nil, text: String? = nil) {
             self.html = html
             self.text = text
         }
@@ -404,7 +404,7 @@ extension Ses {
         /// base64之后的文本内容
         public let text: String?
         
-        public init (html: String?, text: String?) {
+        public init (html: String? = nil, text: String? = nil) {
             self.html = html
             self.text = text
         }

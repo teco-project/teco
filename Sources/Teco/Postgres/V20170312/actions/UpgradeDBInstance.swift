@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 升级实例配置（废弃）
-    ///
-    /// 本接口（UpgradeDBInstance）用于升级实例配置。
-    @inlinable
-    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDBInstanceResponse > {
-        self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 升级实例配置（废弃）
-    ///
-    /// 本接口（UpgradeDBInstance）用于升级实例配置。
-    @inlinable
-    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
-        try await self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeDBInstance请求参数结构体
     public struct UpgradeDBInstanceRequest: TCRequestModel {
         /// 升级后的实例内存大小，单位GB
@@ -60,7 +44,7 @@ extension Postgres {
         /// 切换截止时间
         public let switchEndTime: String?
         
-        public init (memory: Int64, storage: Int64, dbInstanceId: String, autoVoucher: Int64?, voucherIds: [String]?, activityId: Int64?, switchTag: Int64?, switchStartTime: String?, switchEndTime: String?) {
+        public init (memory: Int64, storage: Int64, dbInstanceId: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, activityId: Int64? = nil, switchTag: Int64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil) {
             self.memory = memory
             self.storage = storage
             self.dbInstanceId = dbInstanceId
@@ -101,5 +85,21 @@ extension Postgres {
             case billId = "BillId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 升级实例配置（废弃）
+    ///
+    /// 本接口（UpgradeDBInstance）用于升级实例配置。
+    @inlinable
+    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDBInstanceResponse > {
+        self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 升级实例配置（废弃）
+    ///
+    /// 本接口（UpgradeDBInstance）用于升级实例配置。
+    @inlinable
+    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
+        try await self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

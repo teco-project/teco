@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 取消子设备产品与网关设备产品的关联
-    @inlinable
-    public func unassociateSubDeviceFromGatewayProduct(_ input: UnassociateSubDeviceFromGatewayProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnassociateSubDeviceFromGatewayProductResponse > {
-        self.client.execute(action: "UnassociateSubDeviceFromGatewayProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消子设备产品与网关设备产品的关联
-    @inlinable
-    public func unassociateSubDeviceFromGatewayProduct(_ input: UnassociateSubDeviceFromGatewayProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassociateSubDeviceFromGatewayProductResponse {
-        try await self.client.execute(action: "UnassociateSubDeviceFromGatewayProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnassociateSubDeviceFromGatewayProduct请求参数结构体
     public struct UnassociateSubDeviceFromGatewayProductRequest: TCRequestModel {
         /// 子设备产品Id
@@ -54,5 +42,17 @@ extension Iot {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消子设备产品与网关设备产品的关联
+    @inlinable
+    public func unassociateSubDeviceFromGatewayProduct(_ input: UnassociateSubDeviceFromGatewayProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnassociateSubDeviceFromGatewayProductResponse > {
+        self.client.execute(action: "UnassociateSubDeviceFromGatewayProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消子设备产品与网关设备产品的关联
+    @inlinable
+    public func unassociateSubDeviceFromGatewayProduct(_ input: UnassociateSubDeviceFromGatewayProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassociateSubDeviceFromGatewayProductResponse {
+        try await self.client.execute(action: "UnassociateSubDeviceFromGatewayProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

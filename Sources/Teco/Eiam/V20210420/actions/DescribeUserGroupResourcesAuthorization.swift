@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 查询指定用户组下的资源授权列表
-    @inlinable
-    public func describeUserGroupResourcesAuthorization(_ input: DescribeUserGroupResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserGroupResourcesAuthorizationResponse > {
-        self.client.execute(action: "DescribeUserGroupResourcesAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询指定用户组下的资源授权列表
-    @inlinable
-    public func describeUserGroupResourcesAuthorization(_ input: DescribeUserGroupResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserGroupResourcesAuthorizationResponse {
-        try await self.client.execute(action: "DescribeUserGroupResourcesAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserGroupResourcesAuthorization请求参数结构体
     public struct DescribeUserGroupResourcesAuthorizationRequest: TCRequestModel {
         /// 应用ID
@@ -74,5 +62,17 @@ extension Eiam {
             case authorizationUserGroupResourceList = "AuthorizationUserGroupResourceList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询指定用户组下的资源授权列表
+    @inlinable
+    public func describeUserGroupResourcesAuthorization(_ input: DescribeUserGroupResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserGroupResourcesAuthorizationResponse > {
+        self.client.execute(action: "DescribeUserGroupResourcesAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指定用户组下的资源授权列表
+    @inlinable
+    public func describeUserGroupResourcesAuthorization(_ input: DescribeUserGroupResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserGroupResourcesAuthorizationResponse {
+        try await self.client.execute(action: "DescribeUserGroupResourcesAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

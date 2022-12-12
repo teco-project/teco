@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 修改机房信息
-    @inlinable
-    public func modifySiteInfo(_ input: ModifySiteInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySiteInfoResponse > {
-        self.client.execute(action: "ModifySiteInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改机房信息
-    @inlinable
-    public func modifySiteInfo(_ input: ModifySiteInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteInfoResponse {
-        try await self.client.execute(action: "ModifySiteInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySiteInfo请求参数结构体
     public struct ModifySiteInfoRequest: TCRequestModel {
         /// 机房ID
@@ -56,7 +44,7 @@ extension Cdc {
         /// 站点所在地区的详细地址信息
         public let addressLine: String?
         
-        public init (siteId: String, name: String?, description: String?, note: String?, country: String?, province: String?, city: String?, postalCode: String?, addressLine: String?) {
+        public init (siteId: String, name: String? = nil, description: String? = nil, note: String? = nil, country: String? = nil, province: String? = nil, city: String? = nil, postalCode: String? = nil, addressLine: String? = nil) {
             self.siteId = siteId
             self.name = name
             self.description = description
@@ -89,5 +77,17 @@ extension Cdc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改机房信息
+    @inlinable
+    public func modifySiteInfo(_ input: ModifySiteInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySiteInfoResponse > {
+        self.client.execute(action: "ModifySiteInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改机房信息
+    @inlinable
+    public func modifySiteInfo(_ input: ModifySiteInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteInfoResponse {
+        try await self.client.execute(action: "ModifySiteInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

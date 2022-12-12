@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apcas {
-    /// 上传群体画像的ID列表
-    ///
-    /// 上传群体画像的ID列表（支持的ID类型：0:imei 7:IDFA 8:MD5(imei)），后台返回生成的画像分析任务ID
-    @inlinable
-    public func uploadId(_ input: UploadIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadIdResponse > {
-        self.client.execute(action: "UploadId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上传群体画像的ID列表
-    ///
-    /// 上传群体画像的ID列表（支持的ID类型：0:imei 7:IDFA 8:MD5(imei)），后台返回生成的画像分析任务ID
-    @inlinable
-    public func uploadId(_ input: UploadIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadIdResponse {
-        try await self.client.execute(action: "UploadId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadId请求参数结构体
     public struct UploadIdRequest: TCRequestModel {
         /// id标志的类型: 0:imei 7:IDFA 8:MD5(imei)
@@ -67,5 +51,21 @@ extension Apcas {
             case taskData = "TaskData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上传群体画像的ID列表
+    ///
+    /// 上传群体画像的ID列表（支持的ID类型：0:imei 7:IDFA 8:MD5(imei)），后台返回生成的画像分析任务ID
+    @inlinable
+    public func uploadId(_ input: UploadIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadIdResponse > {
+        self.client.execute(action: "UploadId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上传群体画像的ID列表
+    ///
+    /// 上传群体画像的ID列表（支持的ID类型：0:imei 7:IDFA 8:MD5(imei)），后台返回生成的画像分析任务ID
+    @inlinable
+    public func uploadId(_ input: UploadIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadIdResponse {
+        try await self.client.execute(action: "UploadId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

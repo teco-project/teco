@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情
-    ///
-    /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情。
-    @inlinable
-    public func describeDevicesBindInfo(_ input: DescribeDevicesBindInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesBindInfoResponse > {
-        self.client.execute(action: "DescribeDevicesBindInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情
-    ///
-    /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情。
-    @inlinable
-    public func describeDevicesBindInfo(_ input: DescribeDevicesBindInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesBindInfoResponse {
-        try await self.client.execute(action: "DescribeDevicesBindInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDevicesBindInfo请求参数结构体
     public struct DescribeDevicesBindInfoRequest: TCRequestModel {
         /// 黑石私有网络唯一ID。
@@ -62,5 +46,21 @@ extension Bmlb {
             case loadBalancerSet = "LoadBalancerSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情
+    ///
+    /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情。
+    @inlinable
+    public func describeDevicesBindInfo(_ input: DescribeDevicesBindInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesBindInfoResponse > {
+        self.client.execute(action: "DescribeDevicesBindInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情
+    ///
+    /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情。
+    @inlinable
+    public func describeDevicesBindInfo(_ input: DescribeDevicesBindInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesBindInfoResponse {
+        try await self.client.execute(action: "DescribeDevicesBindInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

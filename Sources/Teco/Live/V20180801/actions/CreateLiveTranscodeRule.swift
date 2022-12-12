@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 创建转码规则
-    ///
-    /// 创建转码规则，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
-    /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
-    @inlinable
-    public func createLiveTranscodeRule(_ input: CreateLiveTranscodeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveTranscodeRuleResponse > {
-        self.client.execute(action: "CreateLiveTranscodeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建转码规则
-    ///
-    /// 创建转码规则，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
-    /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
-    @inlinable
-    public func createLiveTranscodeRule(_ input: CreateLiveTranscodeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTranscodeRuleResponse {
-        try await self.client.execute(action: "CreateLiveTranscodeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLiveTranscodeRule请求参数结构体
     public struct CreateLiveTranscodeRuleRequest: TCRequestModel {
         /// 播放域名。
@@ -70,5 +52,23 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建转码规则
+    ///
+    /// 创建转码规则，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
+    /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
+    @inlinable
+    public func createLiveTranscodeRule(_ input: CreateLiveTranscodeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveTranscodeRuleResponse > {
+        self.client.execute(action: "CreateLiveTranscodeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建转码规则
+    ///
+    /// 创建转码规则，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
+    /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
+    @inlinable
+    public func createLiveTranscodeRule(_ input: CreateLiveTranscodeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTranscodeRuleResponse {
+        try await self.client.execute(action: "CreateLiveTranscodeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

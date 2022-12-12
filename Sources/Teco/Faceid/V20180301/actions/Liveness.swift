@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 活体检测
-    @inlinable
-    public func liveness(_ input: LivenessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LivenessResponse > {
-        self.client.execute(action: "Liveness", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 活体检测
-    @inlinable
-    public func liveness(_ input: LivenessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessResponse {
-        try await self.client.execute(action: "Liveness", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// Liveness请求参数结构体
     public struct LivenessRequest: TCRequestModel {
         /// 用于活体检测的视频，视频的BASE64值；
@@ -48,7 +36,7 @@ extension Faceid {
         /// }
         public let optional: String?
         
-        public init (videoBase64: String, livenessType: String, validateData: String?, optional: String?) {
+        public init (videoBase64: String, livenessType: String, validateData: String? = nil, optional: String? = nil) {
             self.videoBase64 = videoBase64
             self.livenessType = livenessType
             self.validateData = validateData
@@ -89,5 +77,17 @@ extension Faceid {
             case bestFrameList = "BestFrameList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 活体检测
+    @inlinable
+    public func liveness(_ input: LivenessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LivenessResponse > {
+        self.client.execute(action: "Liveness", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 活体检测
+    @inlinable
+    public func liveness(_ input: LivenessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessResponse {
+        try await self.client.execute(action: "Liveness", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

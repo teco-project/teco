@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ivld {
-    /// 批量描述自定义人物
-    @inlinable
-    public func describeCustomPersons(_ input: DescribeCustomPersonsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomPersonsResponse > {
-        self.client.execute(action: "DescribeCustomPersons", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量描述自定义人物
-    @inlinable
-    public func describeCustomPersons(_ input: DescribeCustomPersonsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomPersonsResponse {
-        try await self.client.execute(action: "DescribeCustomPersons", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomPersons请求参数结构体
     public struct DescribeCustomPersonsRequest: TCRequestModel {
         /// 分页序号，从1开始
@@ -36,12 +24,12 @@ extension Ivld {
         public let pageSize: Int64
         
         /// 排序信息，默认倒序
-        public let sortBy: SortBy
+        public let sortBy: SortBy?
         
         /// 自定义人物过滤条件
-        public let filter: CustomPersonFilter
+        public let filter: CustomPersonFilter?
         
-        public init (pageNumber: Int64, pageSize: Int64, sortBy: SortBy, filter: CustomPersonFilter) {
+        public init (pageNumber: Int64, pageSize: Int64, sortBy: SortBy? = nil, filter: CustomPersonFilter? = nil) {
             self.pageNumber = pageNumber
             self.pageSize = pageSize
             self.sortBy = sortBy
@@ -72,5 +60,17 @@ extension Ivld {
             case personInfoSet = "PersonInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量描述自定义人物
+    @inlinable
+    public func describeCustomPersons(_ input: DescribeCustomPersonsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomPersonsResponse > {
+        self.client.execute(action: "DescribeCustomPersons", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量描述自定义人物
+    @inlinable
+    public func describeCustomPersons(_ input: DescribeCustomPersonsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomPersonsResponse {
+        try await self.client.execute(action: "DescribeCustomPersons", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 查询实例续费价格
-    ///
-    /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
-    @inlinable
-    public func inquiryPriceRenewDBInstance(_ input: InquiryPriceRenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRenewDBInstanceResponse > {
-        self.client.execute(action: "InquiryPriceRenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例续费价格
-    ///
-    /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
-    @inlinable
-    public func inquiryPriceRenewDBInstance(_ input: InquiryPriceRenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewDBInstanceResponse {
-        try await self.client.execute(action: "InquiryPriceRenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceRenewDBInstance请求参数结构体
     public struct InquiryPriceRenewDBInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -70,5 +54,21 @@ extension Postgres {
             case currency = "Currency"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例续费价格
+    ///
+    /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
+    @inlinable
+    public func inquiryPriceRenewDBInstance(_ input: InquiryPriceRenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRenewDBInstanceResponse > {
+        self.client.execute(action: "InquiryPriceRenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例续费价格
+    ///
+    /// 本接口（InquiryPriceRenewDBInstance）用于查询续费实例的价格。
+    @inlinable
+    public func inquiryPriceRenewDBInstance(_ input: InquiryPriceRenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewDBInstanceResponse {
+        try await self.client.execute(action: "InquiryPriceRenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

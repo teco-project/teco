@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 容器网络创建网络策略发布任务
-    @inlinable
-    public func createNetworkFirewallPublish(_ input: CreateNetworkFirewallPublishRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkFirewallPublishResponse > {
-        self.client.execute(action: "CreateNetworkFirewallPublish", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 容器网络创建网络策略发布任务
-    @inlinable
-    public func createNetworkFirewallPublish(_ input: CreateNetworkFirewallPublishRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallPublishResponse {
-        try await self.client.execute(action: "CreateNetworkFirewallPublish", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNetworkFirewallPublish请求参数结构体
     public struct CreateNetworkFirewallPublishRequest: TCRequestModel {
         /// 集群Id
@@ -62,5 +50,17 @@ extension Tcss {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 容器网络创建网络策略发布任务
+    @inlinable
+    public func createNetworkFirewallPublish(_ input: CreateNetworkFirewallPublishRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkFirewallPublishResponse > {
+        self.client.execute(action: "CreateNetworkFirewallPublish", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络创建网络策略发布任务
+    @inlinable
+    public func createNetworkFirewallPublish(_ input: CreateNetworkFirewallPublishRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallPublishResponse {
+        try await self.client.execute(action: "CreateNetworkFirewallPublish", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

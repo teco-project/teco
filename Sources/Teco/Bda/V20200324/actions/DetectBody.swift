@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bda {
-    /// 人体检测与属性分析
-    ///
-    /// 检测给定图片中的人体（Body）的位置信息及属性信息。
-    @inlinable
-    public func detectBody(_ input: DetectBodyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectBodyResponse > {
-        self.client.execute(action: "DetectBody", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人体检测与属性分析
-    ///
-    /// 检测给定图片中的人体（Body）的位置信息及属性信息。
-    @inlinable
-    public func detectBody(_ input: DetectBodyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectBodyResponse {
-        try await self.client.execute(action: "DetectBody", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetectBody请求参数结构体
     public struct DetectBodyRequest: TCRequestModel {
         /// 人体图片 Base64 数据。
@@ -57,9 +41,9 @@ extension Bda {
         /// 需要将属性组成一个用逗号分隔的字符串，属性之间的顺序没有要求。 
         /// 关于各属性的详细描述，参见下文出参。 
         /// 最多返回面积最大的 5 个人体属性信息，超过 5 个人体（第 6 个及以后的人体）的 BodyAttributesInfo 不具备参考意义。
-        public let attributesOptions: AttributesOptions
+        public let attributesOptions: AttributesOptions?
         
-        public init (image: String?, maxBodyNum: UInt64?, url: String?, attributesOptions: AttributesOptions) {
+        public init (image: String? = nil, maxBodyNum: UInt64? = nil, url: String? = nil, attributesOptions: AttributesOptions? = nil) {
             self.image = image
             self.maxBodyNum = maxBodyNum
             self.url = url
@@ -90,5 +74,21 @@ extension Bda {
             case bodyModelVersion = "BodyModelVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人体检测与属性分析
+    ///
+    /// 检测给定图片中的人体（Body）的位置信息及属性信息。
+    @inlinable
+    public func detectBody(_ input: DetectBodyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectBodyResponse > {
+        self.client.execute(action: "DetectBody", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人体检测与属性分析
+    ///
+    /// 检测给定图片中的人体（Body）的位置信息及属性信息。
+    @inlinable
+    public func detectBody(_ input: DetectBodyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectBodyResponse {
+        try await self.client.execute(action: "DetectBody", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

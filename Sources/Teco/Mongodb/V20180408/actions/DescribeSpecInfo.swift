@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 查询云数据库的售卖规格
-    ///
-    /// 本接口(DescribeSpecInfo)用于查询实例的售卖规格。
-    @inlinable
-    public func describeSpecInfo(_ input: DescribeSpecInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpecInfoResponse > {
-        self.client.execute(action: "DescribeSpecInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云数据库的售卖规格
-    ///
-    /// 本接口(DescribeSpecInfo)用于查询实例的售卖规格。
-    @inlinable
-    public func describeSpecInfo(_ input: DescribeSpecInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecInfoResponse {
-        try await self.client.execute(action: "DescribeSpecInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSpecInfo请求参数结构体
     public struct DescribeSpecInfoRequest: TCRequestModel {
         /// 可用区
         public let zone: String?
         
-        public init (zone: String?) {
+        public init (zone: String? = nil) {
             self.zone = zone
         }
         
@@ -57,5 +41,21 @@ extension Mongodb {
             case specInfoList = "SpecInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云数据库的售卖规格
+    ///
+    /// 本接口(DescribeSpecInfo)用于查询实例的售卖规格。
+    @inlinable
+    public func describeSpecInfo(_ input: DescribeSpecInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpecInfoResponse > {
+        self.client.execute(action: "DescribeSpecInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云数据库的售卖规格
+    ///
+    /// 本接口(DescribeSpecInfo)用于查询实例的售卖规格。
+    @inlinable
+    public func describeSpecInfo(_ input: DescribeSpecInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecInfoResponse {
+        try await self.client.execute(action: "DescribeSpecInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 删除黑石对等连接
-    @inlinable
-    public func deleteVpcPeerConnection(_ input: DeleteVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcPeerConnectionResponse > {
-        self.client.execute(action: "DeleteVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除黑石对等连接
-    @inlinable
-    public func deleteVpcPeerConnection(_ input: DeleteVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcPeerConnectionResponse {
-        try await self.client.execute(action: "DeleteVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteVpcPeerConnection请求参数结构体
     public struct DeleteVpcPeerConnectionRequest: TCRequestModel {
         /// 黑石对等连接实例ID
@@ -53,5 +41,17 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除黑石对等连接
+    @inlinable
+    public func deleteVpcPeerConnection(_ input: DeleteVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcPeerConnectionResponse > {
+        self.client.execute(action: "DeleteVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除黑石对等连接
+    @inlinable
+    public func deleteVpcPeerConnection(_ input: DeleteVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcPeerConnectionResponse {
+        try await self.client.execute(action: "DeleteVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

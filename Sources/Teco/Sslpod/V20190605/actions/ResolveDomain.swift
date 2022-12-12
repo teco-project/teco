@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sslpod {
-    /// 域名解析
-    ///
-    /// 解析域名获得多个IP地址
-    @inlinable
-    public func resolveDomain(_ input: ResolveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResolveDomainResponse > {
-        self.client.execute(action: "ResolveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 域名解析
-    ///
-    /// 解析域名获得多个IP地址
-    @inlinable
-    public func resolveDomain(_ input: ResolveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResolveDomainResponse {
-        try await self.client.execute(action: "ResolveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResolveDomain请求参数结构体
     public struct ResolveDomainRequest: TCRequestModel {
         /// 域名
@@ -57,5 +41,21 @@ extension Sslpod {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 域名解析
+    ///
+    /// 解析域名获得多个IP地址
+    @inlinable
+    public func resolveDomain(_ input: ResolveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResolveDomainResponse > {
+        self.client.execute(action: "ResolveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 域名解析
+    ///
+    /// 解析域名获得多个IP地址
+    @inlinable
+    public func resolveDomain(_ input: ResolveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResolveDomainResponse {
+        try await self.client.execute(action: "ResolveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

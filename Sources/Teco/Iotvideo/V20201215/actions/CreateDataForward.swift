@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 创建数据转发
-    @inlinable
-    public func createDataForward(_ input: CreateDataForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDataForwardResponse > {
-        self.client.execute(action: "CreateDataForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建数据转发
-    @inlinable
-    public func createDataForward(_ input: CreateDataForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataForwardResponse {
-        try await self.client.execute(action: "CreateDataForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDataForward请求参数结构体
     public struct CreateDataForwardRequest: TCRequestModel {
         /// 产品ID。
@@ -38,7 +26,7 @@ extension Iotvideo {
         /// 1-数据信息转发 2-设备上下线状态转发 3-数据信息转发&设备上下线状态转发
         public let dataChose: Int64?
         
-        public init (productId: String, forwardAddr: String, dataChose: Int64?) {
+        public init (productId: String, forwardAddr: String, dataChose: Int64? = nil) {
             self.productId = productId
             self.forwardAddr = forwardAddr
             self.dataChose = dataChose
@@ -59,5 +47,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建数据转发
+    @inlinable
+    public func createDataForward(_ input: CreateDataForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDataForwardResponse > {
+        self.client.execute(action: "CreateDataForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建数据转发
+    @inlinable
+    public func createDataForward(_ input: CreateDataForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataForwardResponse {
+        try await self.client.execute(action: "CreateDataForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

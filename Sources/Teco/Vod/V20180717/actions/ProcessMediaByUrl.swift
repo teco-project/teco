@@ -15,38 +15,22 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 对指定 URL 的视频发起视频处理
-    ///
-    /// 该 API 已经<font color='red'>不再维护</font>，请使用 MPS 产品的 [ProcessMedia](https://cloud.tencent.com/document/product/862/37578) 接口，在入参 InputInfo.UrlInputInfo.Url 中指定视频 URL。
-    @inlinable
-    public func processMediaByUrl(_ input: ProcessMediaByUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ProcessMediaByUrlResponse > {
-        self.client.execute(action: "ProcessMediaByUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 对指定 URL 的视频发起视频处理
-    ///
-    /// 该 API 已经<font color='red'>不再维护</font>，请使用 MPS 产品的 [ProcessMedia](https://cloud.tencent.com/document/product/862/37578) 接口，在入参 InputInfo.UrlInputInfo.Url 中指定视频 URL。
-    @inlinable
-    public func processMediaByUrl(_ input: ProcessMediaByUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaByUrlResponse {
-        try await self.client.execute(action: "ProcessMediaByUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ProcessMediaByUrl请求参数结构体
     public struct ProcessMediaByUrlRequest: TCRequestModel {
         /// API 已经<font color='red'>不再维护</font>。推荐使用的替代 API 请参考接口描述。
-        public let inputInfo: MediaInputInfo
+        public let inputInfo: MediaInputInfo?
         
         /// 输出文件 COS 路径信息。
-        public let outputInfo: MediaOutputInfo
+        public let outputInfo: MediaOutputInfo?
         
         /// 视频内容审核类型任务参数。
-        public let aiContentReviewTask: AiContentReviewTaskInput
+        public let aiContentReviewTask: AiContentReviewTaskInput?
         
         /// 视频内容分析类型任务参数。
-        public let aiAnalysisTask: AiAnalysisTaskInput
+        public let aiAnalysisTask: AiAnalysisTaskInput?
         
         /// 视频内容识别类型任务参数。
-        public let aiRecognitionTask: AiRecognitionTaskInput
+        public let aiRecognitionTask: AiRecognitionTaskInput?
         
         /// 任务流的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
         public let tasksPriority: Int64?
@@ -63,7 +47,7 @@ extension Vod {
         /// 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
         public let subAppId: UInt64?
         
-        public init (inputInfo: MediaInputInfo, outputInfo: MediaOutputInfo, aiContentReviewTask: AiContentReviewTaskInput, aiAnalysisTask: AiAnalysisTaskInput, aiRecognitionTask: AiRecognitionTaskInput, tasksPriority: Int64?, tasksNotifyMode: String?, sessionContext: String?, sessionId: String?, subAppId: UInt64?) {
+        public init (inputInfo: MediaInputInfo? = nil, outputInfo: MediaOutputInfo? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, subAppId: UInt64? = nil) {
             self.inputInfo = inputInfo
             self.outputInfo = outputInfo
             self.aiContentReviewTask = aiContentReviewTask
@@ -102,5 +86,21 @@ extension Vod {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 对指定 URL 的视频发起视频处理
+    ///
+    /// 该 API 已经<font color='red'>不再维护</font>，请使用 MPS 产品的 [ProcessMedia](https://cloud.tencent.com/document/product/862/37578) 接口，在入参 InputInfo.UrlInputInfo.Url 中指定视频 URL。
+    @inlinable
+    public func processMediaByUrl(_ input: ProcessMediaByUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ProcessMediaByUrlResponse > {
+        self.client.execute(action: "ProcessMediaByUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 对指定 URL 的视频发起视频处理
+    ///
+    /// 该 API 已经<font color='red'>不再维护</font>，请使用 MPS 产品的 [ProcessMedia](https://cloud.tencent.com/document/product/862/37578) 接口，在入参 InputInfo.UrlInputInfo.Url 中指定视频 URL。
+    @inlinable
+    public func processMediaByUrl(_ input: ProcessMediaByUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaByUrlResponse {
+        try await self.client.execute(action: "ProcessMediaByUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

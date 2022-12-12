@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// NAT网关绑定IP
-    ///
-    /// 可用于将子网的部分IP绑定到NAT网关
-    @inlinable
-    public func bindIpsToNatGateway(_ input: BindIpsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindIpsToNatGatewayResponse > {
-        self.client.execute(action: "BindIpsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// NAT网关绑定IP
-    ///
-    /// 可用于将子网的部分IP绑定到NAT网关
-    @inlinable
-    public func bindIpsToNatGateway(_ input: BindIpsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindIpsToNatGatewayResponse {
-        try await self.client.execute(action: "BindIpsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindIpsToNatGateway请求参数结构体
     public struct BindIpsToNatGatewayRequest: TCRequestModel {
         /// NAT网关ID，例如：nat-kdm476mp
@@ -67,5 +51,21 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// NAT网关绑定IP
+    ///
+    /// 可用于将子网的部分IP绑定到NAT网关
+    @inlinable
+    public func bindIpsToNatGateway(_ input: BindIpsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindIpsToNatGatewayResponse > {
+        self.client.execute(action: "BindIpsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// NAT网关绑定IP
+    ///
+    /// 可用于将子网的部分IP绑定到NAT网关
+    @inlinable
+    public func bindIpsToNatGateway(_ input: BindIpsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindIpsToNatGatewayResponse {
+        try await self.client.execute(action: "BindIpsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

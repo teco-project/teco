@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 发送企业组织邀请
-    @inlinable
-    public func sendOrganizationInvitation(_ input: SendOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendOrganizationInvitationResponse > {
-        self.client.execute(action: "SendOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送企业组织邀请
-    @inlinable
-    public func sendOrganizationInvitation(_ input: SendOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendOrganizationInvitationResponse {
-        try await self.client.execute(action: "SendOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendOrganizationInvitation请求参数结构体
     public struct SendOrganizationInvitationRequest: TCRequestModel {
         /// 被邀请账户UIN
@@ -59,5 +47,17 @@ extension Organization {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送企业组织邀请
+    @inlinable
+    public func sendOrganizationInvitation(_ input: SendOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendOrganizationInvitationResponse > {
+        self.client.execute(action: "SendOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送企业组织邀请
+    @inlinable
+    public func sendOrganizationInvitation(_ input: SendOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendOrganizationInvitationResponse {
+        try await self.client.execute(action: "SendOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

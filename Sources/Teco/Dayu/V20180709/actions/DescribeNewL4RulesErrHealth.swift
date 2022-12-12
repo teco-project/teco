@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取四层转发规则健康检查异常结果
-    ///
-    /// 获取L4转发规则健康检查异常结果
-    @inlinable
-    public func describeNewL4RulesErrHealth(_ input: DescribeNewL4RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewL4RulesErrHealthResponse > {
-        self.client.execute(action: "DescribeNewL4RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取四层转发规则健康检查异常结果
-    ///
-    /// 获取L4转发规则健康检查异常结果
-    @inlinable
-    public func describeNewL4RulesErrHealth(_ input: DescribeNewL4RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL4RulesErrHealthResponse {
-        try await self.client.execute(action: "DescribeNewL4RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNewL4RulesErrHealth请求参数结构体
     public struct DescribeNewL4RulesErrHealthRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP）
@@ -39,7 +23,7 @@ extension Dayu {
         /// 规则ID列表
         public let ruleIdList: [String]?
         
-        public init (business: String, ruleIdList: [String]?) {
+        public init (business: String, ruleIdList: [String]? = nil) {
             self.business = business
             self.ruleIdList = ruleIdList
         }
@@ -66,5 +50,21 @@ extension Dayu {
             case errHealths = "ErrHealths"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取四层转发规则健康检查异常结果
+    ///
+    /// 获取L4转发规则健康检查异常结果
+    @inlinable
+    public func describeNewL4RulesErrHealth(_ input: DescribeNewL4RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewL4RulesErrHealthResponse > {
+        self.client.execute(action: "DescribeNewL4RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取四层转发规则健康检查异常结果
+    ///
+    /// 获取L4转发规则健康检查异常结果
+    @inlinable
+    public func describeNewL4RulesErrHealth(_ input: DescribeNewL4RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL4RulesErrHealthResponse {
+        try await self.client.execute(action: "DescribeNewL4RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ape {
-    /// 查询授权人列表
-    ///
-    /// 分页查询授权人列表
-    @inlinable
-    public func describeAuthUsers(_ input: DescribeAuthUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuthUsersResponse > {
-        self.client.execute(action: "DescribeAuthUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询授权人列表
-    ///
-    /// 分页查询授权人列表
-    @inlinable
-    public func describeAuthUsers(_ input: DescribeAuthUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthUsersResponse {
-        try await self.client.execute(action: "DescribeAuthUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAuthUsers请求参数结构体
     public struct DescribeAuthUsersRequest: TCRequestModel {
         /// 分页大小
@@ -71,5 +55,21 @@ extension Ape {
             case oldUser = "OldUser"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询授权人列表
+    ///
+    /// 分页查询授权人列表
+    @inlinable
+    public func describeAuthUsers(_ input: DescribeAuthUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuthUsersResponse > {
+        self.client.execute(action: "DescribeAuthUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询授权人列表
+    ///
+    /// 分页查询授权人列表
+    @inlinable
+    public func describeAuthUsers(_ input: DescribeAuthUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthUsersResponse {
+        try await self.client.execute(action: "DescribeAuthUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

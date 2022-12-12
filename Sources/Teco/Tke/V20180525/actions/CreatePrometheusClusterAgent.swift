@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 2.0实例关联集群
-    ///
-    /// 与云监控融合的2.0实例关联集群
-    @inlinable
-    public func createPrometheusClusterAgent(_ input: CreatePrometheusClusterAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusClusterAgentResponse > {
-        self.client.execute(action: "CreatePrometheusClusterAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 2.0实例关联集群
-    ///
-    /// 与云监控融合的2.0实例关联集群
-    @inlinable
-    public func createPrometheusClusterAgent(_ input: CreatePrometheusClusterAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusClusterAgentResponse {
-        try await self.client.execute(action: "CreatePrometheusClusterAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePrometheusClusterAgent请求参数结构体
     public struct CreatePrometheusClusterAgentRequest: TCRequestModel {
         /// 实例ID
@@ -58,5 +42,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 2.0实例关联集群
+    ///
+    /// 与云监控融合的2.0实例关联集群
+    @inlinable
+    public func createPrometheusClusterAgent(_ input: CreatePrometheusClusterAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusClusterAgentResponse > {
+        self.client.execute(action: "CreatePrometheusClusterAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 2.0实例关联集群
+    ///
+    /// 与云监控融合的2.0实例关联集群
+    @inlinable
+    public func createPrometheusClusterAgent(_ input: CreatePrometheusClusterAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusClusterAgentResponse {
+        try await self.client.execute(action: "CreatePrometheusClusterAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

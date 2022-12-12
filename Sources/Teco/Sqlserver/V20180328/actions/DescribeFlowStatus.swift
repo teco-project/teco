@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询流程状态
-    ///
-    /// 本接口(DescribeFlowStatus)用于查询流程状态。
-    @inlinable
-    public func describeFlowStatus(_ input: DescribeFlowStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowStatusResponse > {
-        self.client.execute(action: "DescribeFlowStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询流程状态
-    ///
-    /// 本接口(DescribeFlowStatus)用于查询流程状态。
-    @inlinable
-    public func describeFlowStatus(_ input: DescribeFlowStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowStatusResponse {
-        try await self.client.execute(action: "DescribeFlowStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlowStatus请求参数结构体
     public struct DescribeFlowStatusRequest: TCRequestModel {
         /// 流程ID
@@ -57,5 +41,21 @@ extension Sqlserver {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询流程状态
+    ///
+    /// 本接口(DescribeFlowStatus)用于查询流程状态。
+    @inlinable
+    public func describeFlowStatus(_ input: DescribeFlowStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowStatusResponse > {
+        self.client.execute(action: "DescribeFlowStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流程状态
+    ///
+    /// 本接口(DescribeFlowStatus)用于查询流程状态。
+    @inlinable
+    public func describeFlowStatus(_ input: DescribeFlowStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowStatusResponse {
+        try await self.client.execute(action: "DescribeFlowStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

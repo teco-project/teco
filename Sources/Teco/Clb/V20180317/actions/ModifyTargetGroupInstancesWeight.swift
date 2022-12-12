@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 批量修改目标组的服务器权重
-    ///
-    /// 批量修改目标组的服务器权重。
-    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
-    public func modifyTargetGroupInstancesWeight(_ input: ModifyTargetGroupInstancesWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTargetGroupInstancesWeightResponse > {
-        self.client.execute(action: "ModifyTargetGroupInstancesWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量修改目标组的服务器权重
-    ///
-    /// 批量修改目标组的服务器权重。
-    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
-    public func modifyTargetGroupInstancesWeight(_ input: ModifyTargetGroupInstancesWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupInstancesWeightResponse {
-        try await self.client.execute(action: "ModifyTargetGroupInstancesWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTargetGroupInstancesWeight请求参数结构体
     public struct ModifyTargetGroupInstancesWeightRequest: TCRequestModel {
         /// 目标组ID。
@@ -60,5 +42,23 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量修改目标组的服务器权重
+    ///
+    /// 批量修改目标组的服务器权重。
+    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func modifyTargetGroupInstancesWeight(_ input: ModifyTargetGroupInstancesWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTargetGroupInstancesWeightResponse > {
+        self.client.execute(action: "ModifyTargetGroupInstancesWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量修改目标组的服务器权重
+    ///
+    /// 批量修改目标组的服务器权重。
+    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func modifyTargetGroupInstancesWeight(_ input: ModifyTargetGroupInstancesWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupInstancesWeightResponse {
+        try await self.client.execute(action: "ModifyTargetGroupInstancesWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

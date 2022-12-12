@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 获取负载均衡详细信息
-    @inlinable
-    public func describeLoadBalancingDetail(_ input: DescribeLoadBalancingDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancingDetailResponse > {
-        self.client.execute(action: "DescribeLoadBalancingDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取负载均衡详细信息
-    @inlinable
-    public func describeLoadBalancingDetail(_ input: DescribeLoadBalancingDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancingDetailResponse {
-        try await self.client.execute(action: "DescribeLoadBalancingDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLoadBalancingDetail请求参数结构体
     public struct DescribeLoadBalancingDetailRequest: TCRequestModel {
         /// 站点ID
@@ -100,5 +88,17 @@ extension Teo {
             case cname = "Cname"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取负载均衡详细信息
+    @inlinable
+    public func describeLoadBalancingDetail(_ input: DescribeLoadBalancingDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancingDetailResponse > {
+        self.client.execute(action: "DescribeLoadBalancingDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取负载均衡详细信息
+    @inlinable
+    public func describeLoadBalancingDetail(_ input: DescribeLoadBalancingDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancingDetailResponse {
+        try await self.client.execute(action: "DescribeLoadBalancingDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

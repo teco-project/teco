@@ -15,29 +15,13 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 获取应用列表信息
-    ///
-    /// 获取应用列表信息。
-    @inlinable
-    public func listApplications(_ input: ListApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListApplicationsResponse > {
-        self.client.execute(action: "ListApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取应用列表信息
-    ///
-    /// 获取应用列表信息。
-    @inlinable
-    public func listApplications(_ input: ListApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListApplicationsResponse {
-        try await self.client.execute(action: "ListApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListApplications请求参数结构体
     public struct ListApplicationsRequest: TCRequestModel {
         /// 模糊匹配搜索条件，支持多搜索条件组合、多数据范围匹配的搜索。同时支持查询信息内容全匹配、部分匹配、范围匹配等多种查询方式，具体查询方式为：双引号（""）表示全匹配、以星号（* ) 结尾表示字段部分匹配。模糊匹配搜索功能与精准匹配查询不会同时生效，如果SearchCondition与ApplicationIdList均不为空，则默认以ApplicationIdList进行精准查询。如果SearchCondition字段与ApplicationIdList字段均为空，则默认返回全部的应用信息。
-        public let searchCondition: ApplicationInfoSearchCriteria
+        public let searchCondition: ApplicationInfoSearchCriteria?
         
         /// 排序条件集合。可排序的属性支持：应用名字（DisplayName）、创建时间（CreatedDate）、上次修改时间（LastModifiedDate）。如果该字段为空，则默认按照应用名字正向排序。
-        public let sort: SortCondition
+        public let sort: SortCondition?
         
         /// 排序条件集合。可排序的属性支持：应用名字（DisplayName）、创建时间（CreatedDate）、上次修改时间（LastModifiedDate）。如果该字段为空，则默认按照应用名字正向排序。
         public let offset: UInt64?
@@ -48,7 +32,7 @@ extension Eiam {
         /// 应用ID列表，通过应用ID列表精准匹配对应的应用信息。模糊匹配搜索功能与精准匹配查询不会同时生效，如果SearchCondition与ApplicationIdList均不为空，则默认以ApplicationIdList进行精准查询。如果SearchCondition字段与ApplicationIdList字段均为空，则默认返回全部的应用信息。
         public let applicationIdList: [String]?
         
-        public init (searchCondition: ApplicationInfoSearchCriteria, sort: SortCondition, offset: UInt64?, limit: UInt64?, applicationIdList: [String]?) {
+        public init (searchCondition: ApplicationInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, applicationIdList: [String]? = nil) {
             self.searchCondition = searchCondition
             self.sort = sort
             self.offset = offset
@@ -83,5 +67,21 @@ extension Eiam {
             case applicationInfoList = "ApplicationInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取应用列表信息
+    ///
+    /// 获取应用列表信息。
+    @inlinable
+    public func listApplications(_ input: ListApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListApplicationsResponse > {
+        self.client.execute(action: "ListApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用列表信息
+    ///
+    /// 获取应用列表信息。
+    @inlinable
+    public func listApplications(_ input: ListApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListApplicationsResponse {
+        try await self.client.execute(action: "ListApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

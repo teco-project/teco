@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dasb {
-    /// 删除访问权限
-    @inlinable
-    public func deleteAcls(_ input: DeleteAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAclsResponse > {
-        self.client.execute(action: "DeleteAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除访问权限
-    @inlinable
-    public func deleteAcls(_ input: DeleteAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclsResponse {
-        try await self.client.execute(action: "DeleteAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAcls请求参数结构体
     public struct DeleteAclsRequest: TCRequestModel {
         /// 待删除的权限ID集合
@@ -49,5 +37,17 @@ extension Dasb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除访问权限
+    @inlinable
+    public func deleteAcls(_ input: DeleteAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAclsResponse > {
+        self.client.execute(action: "DeleteAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除访问权限
+    @inlinable
+    public func deleteAcls(_ input: DeleteAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclsResponse {
+        try await self.client.execute(action: "DeleteAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 使用计划解绑密钥
-    ///
-    /// 本接口（UnBindSecretIds）用于为使用计划解绑密钥。
-    @inlinable
-    public func unBindSecretIds(_ input: UnBindSecretIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindSecretIdsResponse > {
-        self.client.execute(action: "UnBindSecretIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 使用计划解绑密钥
-    ///
-    /// 本接口（UnBindSecretIds）用于为使用计划解绑密钥。
-    @inlinable
-    public func unBindSecretIds(_ input: UnBindSecretIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindSecretIdsResponse {
-        try await self.client.execute(action: "UnBindSecretIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnBindSecretIds请求参数结构体
     public struct UnBindSecretIdsRequest: TCRequestModel {
         /// 待解绑的使用计划唯一 ID。
@@ -63,5 +47,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 使用计划解绑密钥
+    ///
+    /// 本接口（UnBindSecretIds）用于为使用计划解绑密钥。
+    @inlinable
+    public func unBindSecretIds(_ input: UnBindSecretIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindSecretIdsResponse > {
+        self.client.execute(action: "UnBindSecretIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 使用计划解绑密钥
+    ///
+    /// 本接口（UnBindSecretIds）用于为使用计划解绑密钥。
+    @inlinable
+    public func unBindSecretIds(_ input: UnBindSecretIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindSecretIdsResponse {
+        try await self.client.execute(action: "UnBindSecretIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

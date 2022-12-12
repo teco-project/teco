@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 访问日志快速分析统计
-    ///
-    /// 本接口用于访问日志的快速分析
-    @inlinable
-    public func describeAccessFastAnalysis(_ input: DescribeAccessFastAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessFastAnalysisResponse > {
-        self.client.execute(action: "DescribeAccessFastAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 访问日志快速分析统计
-    ///
-    /// 本接口用于访问日志的快速分析
-    @inlinable
-    public func describeAccessFastAnalysis(_ input: DescribeAccessFastAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessFastAnalysisResponse {
-        try await self.client.execute(action: "DescribeAccessFastAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccessFastAnalysis请求参数结构体
     public struct DescribeAccessFastAnalysisRequest: TCRequestModel {
         /// 客户要查询的日志主题ID，每个客户都有对应的一个主题
@@ -73,5 +57,21 @@ extension Waf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 访问日志快速分析统计
+    ///
+    /// 本接口用于访问日志的快速分析
+    @inlinable
+    public func describeAccessFastAnalysis(_ input: DescribeAccessFastAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessFastAnalysisResponse > {
+        self.client.execute(action: "DescribeAccessFastAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 访问日志快速分析统计
+    ///
+    /// 本接口用于访问日志的快速分析
+    @inlinable
+    public func describeAccessFastAnalysis(_ input: DescribeAccessFastAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessFastAnalysisResponse {
+        try await self.client.execute(action: "DescribeAccessFastAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 获取互联网公网地址配额
-    ///
-    /// 获取用户互联网公网地址配额
-    @inlinable
-    public func describeInternetAddressQuota(_ input: DescribeInternetAddressQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternetAddressQuotaResponse > {
-        self.client.execute(action: "DescribeInternetAddressQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取互联网公网地址配额
-    ///
-    /// 获取用户互联网公网地址配额
-    @inlinable
-    public func describeInternetAddressQuota(_ input: DescribeInternetAddressQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressQuotaResponse {
-        try await self.client.execute(action: "DescribeInternetAddressQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInternetAddressQuota请求参数结构体
     public struct DescribeInternetAddressQuotaRequest: TCRequestModel {
         public init () {
@@ -70,5 +54,21 @@ extension Dc {
             case ipv4OtherNum = "Ipv4OtherNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取互联网公网地址配额
+    ///
+    /// 获取用户互联网公网地址配额
+    @inlinable
+    public func describeInternetAddressQuota(_ input: DescribeInternetAddressQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternetAddressQuotaResponse > {
+        self.client.execute(action: "DescribeInternetAddressQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取互联网公网地址配额
+    ///
+    /// 获取用户互联网公网地址配额
+    @inlinable
+    public func describeInternetAddressQuota(_ input: DescribeInternetAddressQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressQuotaResponse {
+        try await self.client.execute(action: "DescribeInternetAddressQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

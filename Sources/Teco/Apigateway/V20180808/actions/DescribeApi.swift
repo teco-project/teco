@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询API详情
-    ///
-    /// 本接口（DescribeApi）用于查询用户 API 网关的 API 接口的详细信息。​
-    @inlinable
-    public func describeApi(_ input: DescribeApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiResponse > {
-        self.client.execute(action: "DescribeApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询API详情
-    ///
-    /// 本接口（DescribeApi）用于查询用户 API 网关的 API 接口的详细信息。​
-    @inlinable
-    public func describeApi(_ input: DescribeApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiResponse {
-        try await self.client.execute(action: "DescribeApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApi请求参数结构体
     public struct DescribeApiRequest: TCRequestModel {
         /// API 所在的服务唯一 ID。
@@ -62,5 +46,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询API详情
+    ///
+    /// 本接口（DescribeApi）用于查询用户 API 网关的 API 接口的详细信息。​
+    @inlinable
+    public func describeApi(_ input: DescribeApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiResponse > {
+        self.client.execute(action: "DescribeApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询API详情
+    ///
+    /// 本接口（DescribeApi）用于查询用户 API 网关的 API 接口的详细信息。​
+    @inlinable
+    public func describeApi(_ input: DescribeApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiResponse {
+        try await self.client.execute(action: "DescribeApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

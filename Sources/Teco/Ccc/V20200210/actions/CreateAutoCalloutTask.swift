@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 创建自动外呼任务
-    @inlinable
-    public func createAutoCalloutTask(_ input: CreateAutoCalloutTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAutoCalloutTaskResponse > {
-        self.client.execute(action: "CreateAutoCalloutTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建自动外呼任务
-    @inlinable
-    public func createAutoCalloutTask(_ input: CreateAutoCalloutTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoCalloutTaskResponse {
-        try await self.client.execute(action: "CreateAutoCalloutTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAutoCalloutTask请求参数结构体
     public struct CreateAutoCalloutTaskRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -59,7 +47,7 @@ extension Ccc {
         /// 自定义变量（仅高级版支持）
         public let variables: [Variable]?
         
-        public init (sdkAppId: UInt64, notBefore: Int64, callees: [String], callers: [String], ivrId: UInt64, name: String?, description: String?, notAfter: Int64?, tries: UInt64?, variables: [Variable]?) {
+        public init (sdkAppId: UInt64, notBefore: Int64, callees: [String], callers: [String], ivrId: UInt64, name: String? = nil, description: String? = nil, notAfter: Int64? = nil, tries: UInt64? = nil, variables: [Variable]? = nil) {
             self.sdkAppId = sdkAppId
             self.notBefore = notBefore
             self.callees = callees
@@ -98,5 +86,17 @@ extension Ccc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建自动外呼任务
+    @inlinable
+    public func createAutoCalloutTask(_ input: CreateAutoCalloutTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAutoCalloutTaskResponse > {
+        self.client.execute(action: "CreateAutoCalloutTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建自动外呼任务
+    @inlinable
+    public func createAutoCalloutTask(_ input: CreateAutoCalloutTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoCalloutTaskResponse {
+        try await self.client.execute(action: "CreateAutoCalloutTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

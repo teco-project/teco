@@ -15,36 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 创建云数据库实例（包年包月）
-    ///
-    /// 本接口(CreateDBInstance)用于创建包年包月的云数据库实例（包括主实例、灾备实例和只读实例），可通过传入实例规格、MySQL 版本号、购买时长和数量等信息创建云数据库实例。
-    /// 该接口为异步接口，您还可以使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口查询该实例的详细信息。当该实例的 Status 为1，且 TaskStatus 为0，表示实例已经发货成功。
-    /// 1. 首先请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口查询可创建的实例规格信息，然后请使用 [查询数据库价格](https://cloud.tencent.com/document/api/236/18566) 接口查询可创建实例的售卖价格；
-    /// 2. 单次创建实例最大支持 100 个，实例时长最大支持 36 个月；
-    /// 3. 支持创建 MySQL 5.5 、 MySQL 5.6 、 MySQL 5.7 、 MySQL 8.0 版本；
-    /// 4. 支持创建主实例、只读实例、灾备实例；
-    /// 5. 当入参指定 Port，ParamList 或 Password 时，该实例会进行初始化操作（不支持基础版实例）；
-    /// 6. 当入参指定 ParamTemplateId 或 AlarmPolicyList 时，需将SDK提升至最新版本方可支持；
-    @inlinable
-    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceResponse > {
-        self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建云数据库实例（包年包月）
-    ///
-    /// 本接口(CreateDBInstance)用于创建包年包月的云数据库实例（包括主实例、灾备实例和只读实例），可通过传入实例规格、MySQL 版本号、购买时长和数量等信息创建云数据库实例。
-    /// 该接口为异步接口，您还可以使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口查询该实例的详细信息。当该实例的 Status 为1，且 TaskStatus 为0，表示实例已经发货成功。
-    /// 1. 首先请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口查询可创建的实例规格信息，然后请使用 [查询数据库价格](https://cloud.tencent.com/document/api/236/18566) 接口查询可创建实例的售卖价格；
-    /// 2. 单次创建实例最大支持 100 个，实例时长最大支持 36 个月；
-    /// 3. 支持创建 MySQL 5.5 、 MySQL 5.6 、 MySQL 5.7 、 MySQL 8.0 版本；
-    /// 4. 支持创建主实例、只读实例、灾备实例；
-    /// 5. 当入参指定 Port，ParamList 或 Password 时，该实例会进行初始化操作（不支持基础版实例）；
-    /// 6. 当入参指定 ParamTemplateId 或 AlarmPolicyList 时，需将SDK提升至最新版本方可支持；
-    @inlinable
-    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
-        try await self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDBInstance请求参数结构体
     public struct CreateDBInstanceRequest: TCRequestModel {
         /// 实例内存大小，单位：MB，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口获取可创建的内存规格。
@@ -111,7 +81,7 @@ extension Cdb {
         public let securityGroup: [String]?
         
         /// 只读实例参数。购买只读实例时，该参数必传。
-        public let roGroup: RoGroup
+        public let roGroup: RoGroup?
         
         /// 实例名称。一次购买多个实例命名会用后缀数字区分，例instnaceName=db，goodsNum=3，实例命名分别为db1，db2，db3。
         public let instanceName: String?
@@ -161,7 +131,7 @@ extension Cdb {
         /// 指定实例的IP列表。仅支持主实例指定，按实例顺序，不足则按未指定处理。
         public let vips: [String]?
         
-        public init (memory: Int64, volume: Int64, period: Int64, goodsNum: Int64, zone: String?, uniqVpcId: String?, uniqSubnetId: String?, projectId: Int64?, port: Int64?, instanceRole: String?, masterInstanceId: String?, engineVersion: String?, password: String?, protectMode: Int64?, deployMode: Int64?, slaveZone: String?, paramList: [ParamInfo]?, backupZone: String?, autoRenewFlag: Int64?, masterRegion: String?, securityGroup: [String]?, roGroup: RoGroup, instanceName: String?, resourceTags: [TagInfo]?, deployGroupId: String?, clientToken: String?, deviceType: String?, paramTemplateId: Int64?, alarmPolicyList: [Int64]?, instanceNodes: Int64?, cpu: Int64?, autoSyncFlag: Int64?, cageId: String?, paramTemplateType: String?, alarmPolicyIdList: [String]?, dryRun: Bool?, engineType: String?, vips: [String]?) {
+        public init (memory: Int64, volume: Int64, period: Int64, goodsNum: Int64, zone: String? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, projectId: Int64? = nil, port: Int64? = nil, instanceRole: String? = nil, masterInstanceId: String? = nil, engineVersion: String? = nil, password: String? = nil, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, paramList: [ParamInfo]? = nil, backupZone: String? = nil, autoRenewFlag: Int64? = nil, masterRegion: String? = nil, securityGroup: [String]? = nil, roGroup: RoGroup? = nil, instanceName: String? = nil, resourceTags: [TagInfo]? = nil, deployGroupId: String? = nil, clientToken: String? = nil, deviceType: String? = nil, paramTemplateId: Int64? = nil, alarmPolicyList: [Int64]? = nil, instanceNodes: Int64? = nil, cpu: Int64? = nil, autoSyncFlag: Int64? = nil, cageId: String? = nil, paramTemplateType: String? = nil, alarmPolicyIdList: [String]? = nil, dryRun: Bool? = nil, engineType: String? = nil, vips: [String]? = nil) {
             self.memory = memory
             self.volume = volume
             self.period = period
@@ -260,5 +230,35 @@ extension Cdb {
             case instanceIds = "InstanceIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建云数据库实例（包年包月）
+    ///
+    /// 本接口(CreateDBInstance)用于创建包年包月的云数据库实例（包括主实例、灾备实例和只读实例），可通过传入实例规格、MySQL 版本号、购买时长和数量等信息创建云数据库实例。
+    /// 该接口为异步接口，您还可以使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口查询该实例的详细信息。当该实例的 Status 为1，且 TaskStatus 为0，表示实例已经发货成功。
+    /// 1. 首先请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口查询可创建的实例规格信息，然后请使用 [查询数据库价格](https://cloud.tencent.com/document/api/236/18566) 接口查询可创建实例的售卖价格；
+    /// 2. 单次创建实例最大支持 100 个，实例时长最大支持 36 个月；
+    /// 3. 支持创建 MySQL 5.5 、 MySQL 5.6 、 MySQL 5.7 、 MySQL 8.0 版本；
+    /// 4. 支持创建主实例、只读实例、灾备实例；
+    /// 5. 当入参指定 Port，ParamList 或 Password 时，该实例会进行初始化操作（不支持基础版实例）；
+    /// 6. 当入参指定 ParamTemplateId 或 AlarmPolicyList 时，需将SDK提升至最新版本方可支持；
+    @inlinable
+    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceResponse > {
+        self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云数据库实例（包年包月）
+    ///
+    /// 本接口(CreateDBInstance)用于创建包年包月的云数据库实例（包括主实例、灾备实例和只读实例），可通过传入实例规格、MySQL 版本号、购买时长和数量等信息创建云数据库实例。
+    /// 该接口为异步接口，您还可以使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口查询该实例的详细信息。当该实例的 Status 为1，且 TaskStatus 为0，表示实例已经发货成功。
+    /// 1. 首先请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口查询可创建的实例规格信息，然后请使用 [查询数据库价格](https://cloud.tencent.com/document/api/236/18566) 接口查询可创建实例的售卖价格；
+    /// 2. 单次创建实例最大支持 100 个，实例时长最大支持 36 个月；
+    /// 3. 支持创建 MySQL 5.5 、 MySQL 5.6 、 MySQL 5.7 、 MySQL 8.0 版本；
+    /// 4. 支持创建主实例、只读实例、灾备实例；
+    /// 5. 当入参指定 Port，ParamList 或 Password 时，该实例会进行初始化操作（不支持基础版实例）；
+    /// 6. 当入参指定 ParamTemplateId 或 AlarmPolicyList 时，需将SDK提升至最新版本方可支持；
+    @inlinable
+    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
+        try await self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

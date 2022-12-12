@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 获取策略版本列表
-    ///
-    /// 该接口（ListPolicyVersions）用于获取策略版本列表
-    @inlinable
-    public func listPolicyVersions(_ input: ListPolicyVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListPolicyVersionsResponse > {
-        self.client.execute(action: "ListPolicyVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取策略版本列表
-    ///
-    /// 该接口（ListPolicyVersions）用于获取策略版本列表
-    @inlinable
-    public func listPolicyVersions(_ input: ListPolicyVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPolicyVersionsResponse {
-        try await self.client.execute(action: "ListPolicyVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListPolicyVersions请求参数结构体
     public struct ListPolicyVersionsRequest: TCRequestModel {
         /// 策略ID
@@ -58,5 +42,21 @@ extension Cam {
             case versions = "Versions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取策略版本列表
+    ///
+    /// 该接口（ListPolicyVersions）用于获取策略版本列表
+    @inlinable
+    public func listPolicyVersions(_ input: ListPolicyVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListPolicyVersionsResponse > {
+        self.client.execute(action: "ListPolicyVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取策略版本列表
+    ///
+    /// 该接口（ListPolicyVersions）用于获取策略版本列表
+    @inlinable
+    public func listPolicyVersions(_ input: ListPolicyVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPolicyVersionsResponse {
+        try await self.client.execute(action: "ListPolicyVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

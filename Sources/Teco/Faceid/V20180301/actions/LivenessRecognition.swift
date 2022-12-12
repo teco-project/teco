@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 活体人脸核身
-    ///
-    /// 传入视频和身份信息，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与权威库的证件照是否属于同一个人。
-    @inlinable
-    public func livenessRecognition(_ input: LivenessRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LivenessRecognitionResponse > {
-        self.client.execute(action: "LivenessRecognition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 活体人脸核身
-    ///
-    /// 传入视频和身份信息，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与权威库的证件照是否属于同一个人。
-    @inlinable
-    public func livenessRecognition(_ input: LivenessRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessRecognitionResponse {
-        try await self.client.execute(action: "LivenessRecognition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// LivenessRecognition请求参数结构体
     public struct LivenessRecognitionRequest: TCRequestModel {
         /// 身份证号
@@ -64,9 +48,9 @@ extension Faceid {
         public let optional: String?
         
         /// 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
-        public let encryption: Encryption
+        public let encryption: Encryption?
         
-        public init (idCard: String, name: String, livenessType: String, videoBase64: String?, videoUrl: String?, validateData: String?, optional: String?, encryption: Encryption) {
+        public init (idCard: String, name: String, livenessType: String, videoBase64: String? = nil, videoUrl: String? = nil, validateData: String? = nil, optional: String? = nil, encryption: Encryption? = nil) {
             self.idCard = idCard
             self.name = name
             self.livenessType = livenessType
@@ -119,5 +103,21 @@ extension Faceid {
             case bestFrameList = "BestFrameList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 活体人脸核身
+    ///
+    /// 传入视频和身份信息，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与权威库的证件照是否属于同一个人。
+    @inlinable
+    public func livenessRecognition(_ input: LivenessRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LivenessRecognitionResponse > {
+        self.client.execute(action: "LivenessRecognition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 活体人脸核身
+    ///
+    /// 传入视频和身份信息，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与权威库的证件照是否属于同一个人。
+    @inlinable
+    public func livenessRecognition(_ input: LivenessRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessRecognitionResponse {
+        try await self.client.execute(action: "LivenessRecognition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 获取禁止的操作列表
-    ///
-    /// 通过实例id获取当前禁止的操作
-    @inlinable
-    public func describeInstancesDeniedActions(_ input: DescribeInstancesDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesDeniedActionsResponse > {
-        self.client.execute(action: "DescribeInstancesDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取禁止的操作列表
-    ///
-    /// 通过实例id获取当前禁止的操作
-    @inlinable
-    public func describeInstancesDeniedActions(_ input: DescribeInstancesDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDeniedActionsResponse {
-        try await self.client.execute(action: "DescribeInstancesDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstancesDeniedActions请求参数结构体
     public struct DescribeInstancesDeniedActionsRequest: TCRequestModel {
         /// 无
@@ -57,5 +41,21 @@ extension Ecm {
             case instanceOperatorSet = "InstanceOperatorSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取禁止的操作列表
+    ///
+    /// 通过实例id获取当前禁止的操作
+    @inlinable
+    public func describeInstancesDeniedActions(_ input: DescribeInstancesDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesDeniedActionsResponse > {
+        self.client.execute(action: "DescribeInstancesDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取禁止的操作列表
+    ///
+    /// 通过实例id获取当前禁止的操作
+    @inlinable
+    public func describeInstancesDeniedActions(_ input: DescribeInstancesDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDeniedActionsResponse {
+        try await self.client.execute(action: "DescribeInstancesDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

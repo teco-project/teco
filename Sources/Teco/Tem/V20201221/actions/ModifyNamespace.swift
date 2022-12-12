@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 编辑命名空间
-    ///
-    /// 编辑环境
-    @inlinable
-    public func modifyNamespace(_ input: ModifyNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNamespaceResponse > {
-        self.client.execute(action: "ModifyNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑命名空间
-    ///
-    /// 编辑环境
-    @inlinable
-    public func modifyNamespace(_ input: ModifyNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
-        try await self.client.execute(action: "ModifyNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNamespace请求参数结构体
     public struct ModifyNamespaceRequest: TCRequestModel {
         /// 环境id
@@ -51,7 +35,7 @@ extension Tem {
         /// 来源渠道
         public let sourceChannel: Int64?
         
-        public init (namespaceId: String, namespaceName: String?, description: String?, vpc: String?, subnetIds: [String]?, sourceChannel: Int64?) {
+        public init (namespaceId: String, namespaceName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil) {
             self.namespaceId = namespaceId
             self.namespaceName = namespaceName
             self.description = description
@@ -83,5 +67,21 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑命名空间
+    ///
+    /// 编辑环境
+    @inlinable
+    public func modifyNamespace(_ input: ModifyNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNamespaceResponse > {
+        self.client.execute(action: "ModifyNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑命名空间
+    ///
+    /// 编辑环境
+    @inlinable
+    public func modifyNamespace(_ input: ModifyNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
+        try await self.client.execute(action: "ModifyNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

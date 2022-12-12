@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取DDoS防护的端口acl策略列表
-    @inlinable
-    public func describeListPortAclList(_ input: DescribeListPortAclListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListPortAclListResponse > {
-        self.client.execute(action: "DescribeListPortAclList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DDoS防护的端口acl策略列表
-    @inlinable
-    public func describeListPortAclList(_ input: DescribeListPortAclListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListPortAclListResponse {
-        try await self.client.execute(action: "DescribeListPortAclList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeListPortAclList请求参数结构体
     public struct DescribeListPortAclListRequest: TCRequestModel {
         /// 页起始偏移，取值为(页码-1)*一页条数
@@ -41,7 +29,7 @@ extension Antiddos {
         /// ip搜索
         public let filterIp: String?
         
-        public init (offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String?) {
+        public init (offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filterInstanceId = filterInstanceId
@@ -72,5 +60,17 @@ extension Antiddos {
             case aclList = "AclList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DDoS防护的端口acl策略列表
+    @inlinable
+    public func describeListPortAclList(_ input: DescribeListPortAclListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListPortAclListResponse > {
+        self.client.execute(action: "DescribeListPortAclList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS防护的端口acl策略列表
+    @inlinable
+    public func describeListPortAclList(_ input: DescribeListPortAclListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListPortAclListResponse {
+        try await self.client.execute(action: "DescribeListPortAclList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

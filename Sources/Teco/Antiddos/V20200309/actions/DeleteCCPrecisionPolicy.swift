@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 删除CC精准防护策略
-    @inlinable
-    public func deleteCCPrecisionPolicy(_ input: DeleteCCPrecisionPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCCPrecisionPolicyResponse > {
-        self.client.execute(action: "DeleteCCPrecisionPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除CC精准防护策略
-    @inlinable
-    public func deleteCCPrecisionPolicy(_ input: DeleteCCPrecisionPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCPrecisionPolicyResponse {
-        try await self.client.execute(action: "DeleteCCPrecisionPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCCPrecisionPolicy请求参数结构体
     public struct DeleteCCPrecisionPolicyRequest: TCRequestModel {
         /// 实例Id
@@ -54,5 +42,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除CC精准防护策略
+    @inlinable
+    public func deleteCCPrecisionPolicy(_ input: DeleteCCPrecisionPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCCPrecisionPolicyResponse > {
+        self.client.execute(action: "DeleteCCPrecisionPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除CC精准防护策略
+    @inlinable
+    public func deleteCCPrecisionPolicy(_ input: DeleteCCPrecisionPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCPrecisionPolicyResponse {
+        try await self.client.execute(action: "DeleteCCPrecisionPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

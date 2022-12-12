@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 协查处置申请
-    @inlinable
-    public func modifyCRBlockStatus(_ input: ModifyCRBlockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRBlockStatusResponse > {
-        self.client.execute(action: "ModifyCRBlockStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 协查处置申请
-    @inlinable
-    public func modifyCRBlockStatus(_ input: ModifyCRBlockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRBlockStatusResponse {
-        try await self.client.execute(action: "ModifyCRBlockStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCRBlockStatus请求参数结构体
     public struct ModifyCRBlockStatusRequest: TCRequestModel {
         /// 侵权ID
@@ -35,7 +23,7 @@ extension Bma {
         /// 拦截结果回调地址
         public let blockUrl: String?
         
-        public init (tortId: Int64, blockUrl: String?) {
+        public init (tortId: Int64, blockUrl: String? = nil) {
             self.tortId = tortId
             self.blockUrl = blockUrl
         }
@@ -54,5 +42,17 @@ extension Bma {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 协查处置申请
+    @inlinable
+    public func modifyCRBlockStatus(_ input: ModifyCRBlockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRBlockStatusResponse > {
+        self.client.execute(action: "ModifyCRBlockStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 协查处置申请
+    @inlinable
+    public func modifyCRBlockStatus(_ input: ModifyCRBlockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRBlockStatusResponse {
+        try await self.client.execute(action: "ModifyCRBlockStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

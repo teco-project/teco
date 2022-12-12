@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 创建文件系统
-    ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    /// 创建文件系统（异步）。
-    @inlinable
-    public func createFileSystem(_ input: CreateFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileSystemResponse > {
-        self.client.execute(action: "CreateFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建文件系统
-    ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    /// 创建文件系统（异步）。
-    @inlinable
-    public func createFileSystem(_ input: CreateFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSystemResponse {
-        try await self.client.execute(action: "CreateFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFileSystem请求参数结构体
     public struct CreateFileSystemRequest: TCRequestModel {
         /// 文件系统名称
@@ -44,7 +26,7 @@ extension Chdfs {
         /// 文件系统描述
         public let description: String?
         
-        public init (fileSystemName: String, capacityQuota: UInt64, description: String?) {
+        public init (fileSystemName: String, capacityQuota: UInt64, description: String? = nil) {
             self.fileSystemName = fileSystemName
             self.capacityQuota = capacityQuota
             self.description = description
@@ -69,5 +51,23 @@ extension Chdfs {
             case fileSystem = "FileSystem"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建文件系统
+    ///
+    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    /// 创建文件系统（异步）。
+    @inlinable
+    public func createFileSystem(_ input: CreateFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileSystemResponse > {
+        self.client.execute(action: "CreateFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文件系统
+    ///
+    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    /// 创建文件系统（异步）。
+    @inlinable
+    public func createFileSystem(_ input: CreateFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSystemResponse {
+        try await self.client.execute(action: "CreateFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

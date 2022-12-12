@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 清除设备激活码
-    @inlinable
-    public func clearDeviceActiveCode(_ input: ClearDeviceActiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClearDeviceActiveCodeResponse > {
-        self.client.execute(action: "ClearDeviceActiveCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 清除设备激活码
-    @inlinable
-    public func clearDeviceActiveCode(_ input: ClearDeviceActiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearDeviceActiveCodeResponse {
-        try await self.client.execute(action: "ClearDeviceActiveCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ClearDeviceActiveCode请求参数结构体
     public struct ClearDeviceActiveCodeRequest: TCRequestModel {
         /// 设备TID列表，0<元素数量<=100
@@ -49,5 +37,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 清除设备激活码
+    @inlinable
+    public func clearDeviceActiveCode(_ input: ClearDeviceActiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClearDeviceActiveCodeResponse > {
+        self.client.execute(action: "ClearDeviceActiveCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 清除设备激活码
+    @inlinable
+    public func clearDeviceActiveCode(_ input: ClearDeviceActiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearDeviceActiveCodeResponse {
+        try await self.client.execute(action: "ClearDeviceActiveCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

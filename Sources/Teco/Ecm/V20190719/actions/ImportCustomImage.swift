@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 导入自定义镜像
-    ///
-    /// 导入自定义镜像，支持 RAW、VHD、QCOW2、VMDK 镜像格式
-    @inlinable
-    public func importCustomImage(_ input: ImportCustomImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportCustomImageResponse > {
-        self.client.execute(action: "ImportCustomImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导入自定义镜像
-    ///
-    /// 导入自定义镜像，支持 RAW、VHD、QCOW2、VMDK 镜像格式
-    @inlinable
-    public func importCustomImage(_ input: ImportCustomImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportCustomImageResponse {
-        try await self.client.execute(action: "ImportCustomImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ImportCustomImage请求参数结构体
     public struct ImportCustomImageRequest: TCRequestModel {
         /// 镜像名称
@@ -54,7 +38,7 @@ extension Ecm {
         /// 镜像文件描述，多层镜像按顺序传入
         public let imageUrls: [ImageUrl]?
         
-        public init (imageName: String, architecture: String, osType: String, osVersion: String, imageDescription: String?, initFlag: String?, imageUrls: [ImageUrl]?) {
+        public init (imageName: String, architecture: String, osType: String, osVersion: String, imageDescription: String? = nil, initFlag: String? = nil, imageUrls: [ImageUrl]? = nil) {
             self.imageName = imageName
             self.architecture = architecture
             self.osType = osType
@@ -91,5 +75,21 @@ extension Ecm {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导入自定义镜像
+    ///
+    /// 导入自定义镜像，支持 RAW、VHD、QCOW2、VMDK 镜像格式
+    @inlinable
+    public func importCustomImage(_ input: ImportCustomImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportCustomImageResponse > {
+        self.client.execute(action: "ImportCustomImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导入自定义镜像
+    ///
+    /// 导入自定义镜像，支持 RAW、VHD、QCOW2、VMDK 镜像格式
+    @inlinable
+    public func importCustomImage(_ input: ImportCustomImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportCustomImageResponse {
+        try await self.client.execute(action: "ImportCustomImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

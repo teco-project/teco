@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 删除人员库
-    ///
-    /// 删除该人员库及包含的所有的人员。同时，人员对应的所有人脸信息将被删除。若某人员同时存在多个人员库中，该人员不会被删除，但属于该人员库中的自定义描述字段信息会被删除，属于其他人员库的自定义描述字段信息不受影响。
-    @inlinable
-    public func deleteGroup(_ input: DeleteGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGroupResponse > {
-        self.client.execute(action: "DeleteGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除人员库
-    ///
-    /// 删除该人员库及包含的所有的人员。同时，人员对应的所有人脸信息将被删除。若某人员同时存在多个人员库中，该人员不会被删除，但属于该人员库中的自定义描述字段信息会被删除，属于其他人员库的自定义描述字段信息不受影响。
-    @inlinable
-    public func deleteGroup(_ input: DeleteGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGroupResponse {
-        try await self.client.execute(action: "DeleteGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteGroup请求参数结构体
     public struct DeleteGroupRequest: TCRequestModel {
         /// 人员库ID，取值为创建人员库接口中的GroupId
@@ -53,5 +37,21 @@ extension Iai {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除人员库
+    ///
+    /// 删除该人员库及包含的所有的人员。同时，人员对应的所有人脸信息将被删除。若某人员同时存在多个人员库中，该人员不会被删除，但属于该人员库中的自定义描述字段信息会被删除，属于其他人员库的自定义描述字段信息不受影响。
+    @inlinable
+    public func deleteGroup(_ input: DeleteGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGroupResponse > {
+        self.client.execute(action: "DeleteGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除人员库
+    ///
+    /// 删除该人员库及包含的所有的人员。同时，人员对应的所有人脸信息将被删除。若某人员同时存在多个人员库中，该人员不会被删除，但属于该人员库中的自定义描述字段信息会被删除，属于其他人员库的自定义描述字段信息不受影响。
+    @inlinable
+    public func deleteGroup(_ input: DeleteGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGroupResponse {
+        try await self.client.execute(action: "DeleteGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

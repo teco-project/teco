@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 推送超级短信内容
-    ///
-    /// 推送超级短信
-    @inlinable
-    public func pushMmsContent(_ input: PushMmsContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PushMmsContentResponse > {
-        self.client.execute(action: "PushMmsContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 推送超级短信内容
-    ///
-    /// 推送超级短信
-    @inlinable
-    public func pushMmsContent(_ input: PushMmsContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushMmsContentResponse {
-        try await self.client.execute(action: "PushMmsContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PushMmsContent请求参数结构体
     public struct PushMmsContentRequest: TCRequestModel {
         /// 商户证书
@@ -51,7 +35,7 @@ extension Zj {
         /// 动态参数值,和DynamicParaKey对应
         public let dynamicParaValue: [String]?
         
-        public init (license: String, instanceId: Int64, tel: String, session: String?, dynamicParaKey: [String]?, dynamicParaValue: [String]?) {
+        public init (license: String, instanceId: Int64, tel: String, session: String? = nil, dynamicParaKey: [String]? = nil, dynamicParaValue: [String]? = nil) {
             self.license = license
             self.instanceId = instanceId
             self.tel = tel
@@ -82,5 +66,21 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 推送超级短信内容
+    ///
+    /// 推送超级短信
+    @inlinable
+    public func pushMmsContent(_ input: PushMmsContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PushMmsContentResponse > {
+        self.client.execute(action: "PushMmsContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 推送超级短信内容
+    ///
+    /// 推送超级短信
+    @inlinable
+    public func pushMmsContent(_ input: PushMmsContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushMmsContentResponse {
+        try await self.client.execute(action: "PushMmsContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

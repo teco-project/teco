@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 开通外网访问
-    ///
-    /// 本接口（OpenDBExtranetAccess）用于开通云数据库实例的外网访问。开通外网访问后，您可通过外网域名和端口访问实例，可使用查询实例列表接口获取外网域名和端口信息。
-    @inlinable
-    public func openDBExtranetAccess(_ input: OpenDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenDBExtranetAccessResponse > {
-        self.client.execute(action: "OpenDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开通外网访问
-    ///
-    /// 本接口（OpenDBExtranetAccess）用于开通云数据库实例的外网访问。开通外网访问后，您可通过外网域名和端口访问实例，可使用查询实例列表接口获取外网域名和端口信息。
-    @inlinable
-    public func openDBExtranetAccess(_ input: OpenDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenDBExtranetAccessResponse {
-        try await self.client.execute(action: "OpenDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OpenDBExtranetAccess请求参数结构体
     public struct OpenDBExtranetAccessRequest: TCRequestModel {
         /// 待开放外网访问的实例ID。形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
@@ -39,7 +23,7 @@ extension Mariadb {
         /// 是否IPv6，默认0
         public let ipv6Flag: Int64?
         
-        public init (instanceId: String, ipv6Flag: Int64?) {
+        public init (instanceId: String, ipv6Flag: Int64? = nil) {
             self.instanceId = instanceId
             self.ipv6Flag = ipv6Flag
         }
@@ -62,5 +46,21 @@ extension Mariadb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开通外网访问
+    ///
+    /// 本接口（OpenDBExtranetAccess）用于开通云数据库实例的外网访问。开通外网访问后，您可通过外网域名和端口访问实例，可使用查询实例列表接口获取外网域名和端口信息。
+    @inlinable
+    public func openDBExtranetAccess(_ input: OpenDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenDBExtranetAccessResponse > {
+        self.client.execute(action: "OpenDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开通外网访问
+    ///
+    /// 本接口（OpenDBExtranetAccess）用于开通云数据库实例的外网访问。开通外网访问后，您可通过外网域名和端口访问实例，可使用查询实例列表接口获取外网域名和端口信息。
+    @inlinable
+    public func openDBExtranetAccess(_ input: OpenDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenDBExtranetAccessResponse {
+        try await self.client.execute(action: "OpenDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

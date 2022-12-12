@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫V2-退款申请
-    ///
-    /// 如交易订单需退款，可以通过本接口将支付款全部或部分退还给付款方，聚鑫将在收到退款请求并且验证成功之后，按照退款规则将支付款按原路退回到支付帐号。最长支持1年的订单退款。在订单包含多个子订单的情况下，如果使用本接口传入OutTradeNo或TransactionId退款，则只支持全单退款；如果需要部分退款，请通过传入子订单的方式来指定部分金额退款。 
-    @inlinable
-    public func refundCloudOrder(_ input: RefundCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefundCloudOrderResponse > {
-        self.client.execute(action: "RefundCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫V2-退款申请
-    ///
-    /// 如交易订单需退款，可以通过本接口将支付款全部或部分退还给付款方，聚鑫将在收到退款请求并且验证成功之后，按照退款规则将支付款按原路退回到支付帐号。最长支持1年的订单退款。在订单包含多个子订单的情况下，如果使用本接口传入OutTradeNo或TransactionId退款，则只支持全单退款；如果需要部分退款，请通过传入子订单的方式来指定部分金额退款。 
-    @inlinable
-    public func refundCloudOrder(_ input: RefundCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundCloudOrderResponse {
-        try await self.client.execute(action: "RefundCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RefundCloudOrder请求参数结构体
     public struct RefundCloudOrderRequest: TCRequestModel {
         /// 米大师分配的支付主MidasAppId
@@ -78,7 +62,7 @@ extension Cpdp {
         /// 渠道扩展退款促销列表，可将各个渠道的退款促销信息放于该列表
         public let externalRefundPromptGroupList: String?
         
-        public init (midasAppId: String, userId: String, refundId: String, totalRefundAmt: Int64, outTradeNo: String, midasEnvironment: String?, platformRefundAmt: Int64?, mchRefundAmt: Int64?, subOrderRefundList: [CloudSubOrderRefund]?, channelOrderId: String?, refundNotifyUrl: String?, metadata: String?, externalRefundPromptGroupList: String?) {
+        public init (midasAppId: String, userId: String, refundId: String, totalRefundAmt: Int64, outTradeNo: String, midasEnvironment: String? = nil, platformRefundAmt: Int64? = nil, mchRefundAmt: Int64? = nil, subOrderRefundList: [CloudSubOrderRefund]? = nil, channelOrderId: String? = nil, refundNotifyUrl: String? = nil, metadata: String? = nil, externalRefundPromptGroupList: String? = nil) {
             self.midasAppId = midasAppId
             self.userId = userId
             self.refundId = refundId
@@ -119,5 +103,21 @@ extension Cpdp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫V2-退款申请
+    ///
+    /// 如交易订单需退款，可以通过本接口将支付款全部或部分退还给付款方，聚鑫将在收到退款请求并且验证成功之后，按照退款规则将支付款按原路退回到支付帐号。最长支持1年的订单退款。在订单包含多个子订单的情况下，如果使用本接口传入OutTradeNo或TransactionId退款，则只支持全单退款；如果需要部分退款，请通过传入子订单的方式来指定部分金额退款。 
+    @inlinable
+    public func refundCloudOrder(_ input: RefundCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefundCloudOrderResponse > {
+        self.client.execute(action: "RefundCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫V2-退款申请
+    ///
+    /// 如交易订单需退款，可以通过本接口将支付款全部或部分退还给付款方，聚鑫将在收到退款请求并且验证成功之后，按照退款规则将支付款按原路退回到支付帐号。最长支持1年的订单退款。在订单包含多个子订单的情况下，如果使用本接口传入OutTradeNo或TransactionId退款，则只支持全单退款；如果需要部分退款，请通过传入子订单的方式来指定部分金额退款。 
+    @inlinable
+    public func refundCloudOrder(_ input: RefundCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundCloudOrderResponse {
+        try await self.client.execute(action: "RefundCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

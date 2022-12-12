@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 获取实例相关信息
-    ///
-    /// 获取实例的相关信息。
-    @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
-        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实例相关信息
-    ///
-    /// 获取实例的相关信息。
-    @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstances请求参数结构体
     public struct DescribeInstancesRequest: TCRequestModel {
         /// 过滤条件。
@@ -69,7 +53,7 @@ extension Ecm {
         /// 指定排序是降序还是升序。0表示降序； 1表示升序。如果不传默认为降序
         public let orderDirection: Int64?
         
-        public init (filters: [Filter]?, offset: Int64?, limit: Int64?, orderByField: String?, orderDirection: Int64?) {
+        public init (filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderByField: String? = nil, orderDirection: Int64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -103,5 +87,21 @@ extension Ecm {
             case instanceSet = "InstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实例相关信息
+    ///
+    /// 获取实例的相关信息。
+    @inlinable
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例相关信息
+    ///
+    /// 获取实例的相关信息。
+    @inlinable
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

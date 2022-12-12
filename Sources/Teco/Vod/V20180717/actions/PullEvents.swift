@@ -15,6 +15,40 @@
 // DO NOT EDIT.
 
 extension Vod {
+    /// PullEvents请求参数结构体
+    public struct PullEventsRequest: TCRequestModel {
+        /// 保留字段，特殊用途时使用。
+        public let extInfo: String?
+        
+        /// 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
+        public let subAppId: UInt64?
+        
+        public init (extInfo: String? = nil, subAppId: UInt64? = nil) {
+            self.extInfo = extInfo
+            self.subAppId = subAppId
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case extInfo = "ExtInfo"
+            case subAppId = "SubAppId"
+        }
+    }
+    
+    /// PullEvents返回参数结构体
+    public struct PullEventsResponse: TCResponseModel {
+        /// 事件列表。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let eventSet: [EventContent]?
+        
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case eventSet = "EventSet"
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 拉取事件通知
     ///
     /// * 该接口用于业务服务器以 [可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83) 的方式获取事件通知；
@@ -39,39 +73,5 @@ extension Vod {
     @inlinable
     public func pullEvents(_ input: PullEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullEventsResponse {
         try await self.client.execute(action: "PullEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// PullEvents请求参数结构体
-    public struct PullEventsRequest: TCRequestModel {
-        /// 保留字段，特殊用途时使用。
-        public let extInfo: String?
-        
-        /// 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        public let subAppId: UInt64?
-        
-        public init (extInfo: String?, subAppId: UInt64?) {
-            self.extInfo = extInfo
-            self.subAppId = subAppId
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case extInfo = "ExtInfo"
-            case subAppId = "SubAppId"
-        }
-    }
-    
-    /// PullEvents返回参数结构体
-    public struct PullEventsResponse: TCResponseModel {
-        /// 事件列表。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let eventSet: [EventContent]?
-        
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case eventSet = "EventSet"
-            case requestId = "RequestId"
-        }
     }
 }

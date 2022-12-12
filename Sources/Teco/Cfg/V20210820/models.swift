@@ -84,18 +84,18 @@ extension Cfg {
         
         /// 自定义标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskTag: String
+        public let taskTag: String?
         
         /// 任务状态，1001--未开始  1002--进行中（执行）1003--进行中（暂停）1004--执行结束
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskStatus: Int64
+        public let taskStatus: Int64?
         
         /// 任务结束状态，表明任务以何种状态结束: 0 -- 尚未结束，1 -- 成功，2-- 失败，3--终止
         public let taskStatusType: Int64
         
         /// 保护策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskProtectStrategy: String
+        public let taskProtectStrategy: String?
         
         /// 任务创建时间
         public let taskCreateTime: String
@@ -108,19 +108,19 @@ extension Cfg {
         
         /// 开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskStartTime: String
+        public let taskStartTime: String?
         
         /// 结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskEndTime: String
+        public let taskEndTime: String?
         
         /// 是否符合预期。1：符合预期，2：不符合预期
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskExpect: Int64
+        public let taskExpect: Int64?
         
         /// 演习记录
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskSummary: String
+        public let taskSummary: String?
         
         /// 任务模式。1:手工执行，2:自动执行
         public let taskMode: Int64
@@ -136,17 +136,17 @@ extension Cfg {
         
         /// 监控指标列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskMonitors: [TaskMonitor]
+        public let taskMonitors: [TaskMonitor]?
         
         /// 保护策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskPolicy: DescribePolicy
+        public let taskPolicy: DescribePolicy?
         
         /// 标签列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [TagWithDescribe]?
         
-        public init (taskId: Int64, taskTitle: String, taskDescription: String, taskTag: String, taskStatus: Int64, taskStatusType: Int64, taskProtectStrategy: String, taskCreateTime: String, taskUpdateTime: String, taskGroups: [TaskGroup], taskStartTime: String, taskEndTime: String, taskExpect: Int64, taskSummary: String, taskMode: Int64, taskPauseDuration: Int64, taskOwnerUin: String, taskRegionId: Int64, taskMonitors: [TaskMonitor], taskPolicy: DescribePolicy, tags: [TagWithDescribe]?) {
+        public init (taskId: Int64, taskTitle: String, taskDescription: String, taskTag: String, taskStatus: Int64, taskStatusType: Int64, taskProtectStrategy: String, taskCreateTime: String, taskUpdateTime: String, taskGroups: [TaskGroup], taskStartTime: String, taskEndTime: String, taskExpect: Int64, taskSummary: String, taskMode: Int64, taskPauseDuration: Int64, taskOwnerUin: String, taskRegionId: Int64, taskMonitors: [TaskMonitor], taskPolicy: DescribePolicy, tags: [TagWithDescribe]? = nil) {
             self.taskId = taskId
             self.taskTitle = taskTitle
             self.taskDescription = taskDescription
@@ -215,7 +215,7 @@ extension Cfg {
         /// 演练标签信息，不填则默认取经验标签
         public let tags: [TagWithCreate]?
         
-        public init (taskGroupsConfig: [TaskGroupConfig], taskTitle: String?, taskDescription: String?, taskMode: UInt64?, taskPauseDuration: UInt64?, tags: [TagWithCreate]?) {
+        public init (taskGroupsConfig: [TaskGroupConfig], taskTitle: String? = nil, taskDescription: String? = nil, taskMode: UInt64? = nil, taskPauseDuration: UInt64? = nil, tags: [TagWithCreate]? = nil) {
             self.taskGroupsConfig = taskGroupsConfig
             self.taskTitle = taskTitle
             self.taskDescription = taskDescription
@@ -244,7 +244,7 @@ extension Cfg {
         
         /// 分组描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskGroupDescription: String
+        public let taskGroupDescription: String?
         
         /// 任务分组顺序
         public let taskGroupOrder: Int64
@@ -310,11 +310,11 @@ extension Cfg {
         
         /// 分组动作通用配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskGroupActionGeneralConfiguration: String
+        public let taskGroupActionGeneralConfiguration: String?
         
         /// 分组动作自定义配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskGroupActionCustomConfiguration: String
+        public let taskGroupActionCustomConfiguration: String?
         
         /// 分组动作状态
         public let taskGroupActionStatus: Int64
@@ -333,15 +333,15 @@ extension Cfg {
         
         /// RandomId
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskGroupActionRandomId: Int64
+        public let taskGroupActionRandomId: Int64?
         
         /// RecoverId
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskGroupActionRecoverId: Int64
+        public let taskGroupActionRecoverId: Int64?
         
         /// ExecuteId
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskGroupActionExecuteId: Int64
+        public let taskGroupActionExecuteId: Int64?
         
         /// 调用api类型，0:tat, 1:云api
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -367,7 +367,7 @@ extension Cfg {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskGroupActionExecuteTime: Int64?
         
-        public init (taskGroupActionId: Int64, taskGroupInstances: [TaskGroupInstance], actionId: Int64, taskGroupActionOrder: Int64, taskGroupActionGeneralConfiguration: String, taskGroupActionCustomConfiguration: String, taskGroupActionStatus: Int64, taskGroupActionCreateTime: String, taskGroupActionUpdateTime: String, actionTitle: String, taskGroupActionStatusType: Int64, taskGroupActionRandomId: Int64, taskGroupActionRecoverId: Int64, taskGroupActionExecuteId: Int64, actionApiType: Int64?, actionAttribute: Int64?, actionType: String?, isExecuteRedo: Bool?, actionRisk: String?, taskGroupActionExecuteTime: Int64?) {
+        public init (taskGroupActionId: Int64, taskGroupInstances: [TaskGroupInstance], actionId: Int64, taskGroupActionOrder: Int64, taskGroupActionGeneralConfiguration: String, taskGroupActionCustomConfiguration: String, taskGroupActionStatus: Int64, taskGroupActionCreateTime: String, taskGroupActionUpdateTime: String, actionTitle: String, taskGroupActionStatusType: Int64, taskGroupActionRandomId: Int64, taskGroupActionRecoverId: Int64, taskGroupActionExecuteId: Int64, actionApiType: Int64? = nil, actionAttribute: Int64? = nil, actionType: String? = nil, isExecuteRedo: Bool? = nil, actionRisk: String? = nil, taskGroupActionExecuteTime: Int64? = nil) {
             self.taskGroupActionId = taskGroupActionId
             self.taskGroupInstances = taskGroupInstances
             self.actionId = actionId
@@ -425,7 +425,7 @@ extension Cfg {
         /// 动作自定义参数，需要json序列化传入，可以从查询经验详情接口获取，不填默认使用经验中动作参数
         public let taskGroupActionCustomConfiguration: String?
         
-        public init (taskGroupActionOrder: UInt64?, taskGroupActionGeneralConfiguration: String?, taskGroupActionCustomConfiguration: String?) {
+        public init (taskGroupActionOrder: UInt64? = nil, taskGroupActionGeneralConfiguration: String? = nil, taskGroupActionCustomConfiguration: String? = nil) {
             self.taskGroupActionOrder = taskGroupActionOrder
             self.taskGroupActionGeneralConfiguration = taskGroupActionGeneralConfiguration
             self.taskGroupActionCustomConfiguration = taskGroupActionCustomConfiguration
@@ -455,7 +455,7 @@ extension Cfg {
         /// 动作组中的动作参数，不填默认使用经验中的动作参数，配置时可以只指定想要修改参数的动作
         public let taskGroupActionsConfig: [TaskGroupActionConfig]?
         
-        public init (taskGroupInstances: [String], taskGroupTitle: String?, taskGroupDescription: String?, taskGroupMode: UInt64?, taskGroupActionsConfig: [TaskGroupActionConfig]?) {
+        public init (taskGroupInstances: [String], taskGroupTitle: String? = nil, taskGroupDescription: String? = nil, taskGroupMode: UInt64? = nil, taskGroupActionsConfig: [TaskGroupActionConfig]? = nil) {
             self.taskGroupInstances = taskGroupInstances
             self.taskGroupTitle = taskGroupTitle
             self.taskGroupDescription = taskGroupDescription
@@ -479,14 +479,14 @@ extension Cfg {
         
         /// 实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskGroupInstanceObjectId: String
+        public let taskGroupInstanceObjectId: String?
         
         /// 实例动作执行状态
         public let taskGroupInstanceStatus: Int64
         
         /// 实例动作执行日志
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskGroupInstanceExecuteLog: String
+        public let taskGroupInstanceExecuteLog: String?
         
         /// 实例创建时间
         public let taskGroupInstanceCreateTime: String
@@ -499,11 +499,11 @@ extension Cfg {
         
         /// 执行开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskGroupInstanceStartTime: String
+        public let taskGroupInstanceStartTime: String?
         
         /// 执行结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskGroupInstanceEndTime: String
+        public let taskGroupInstanceEndTime: String?
         
         /// 实例是否可重试
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -513,7 +513,7 @@ extension Cfg {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskGroupInstanceExecuteTime: Int64?
         
-        public init (taskGroupInstanceId: Int64, taskGroupInstanceObjectId: String, taskGroupInstanceStatus: Int64, taskGroupInstanceExecuteLog: String, taskGroupInstanceCreateTime: String, taskGroupInstanceUpdateTime: String, taskGroupInstanceStatusType: Int64, taskGroupInstanceStartTime: String, taskGroupInstanceEndTime: String, taskGroupInstanceIsRedo: Bool?, taskGroupInstanceExecuteTime: Int64?) {
+        public init (taskGroupInstanceId: Int64, taskGroupInstanceObjectId: String, taskGroupInstanceStatus: Int64, taskGroupInstanceExecuteLog: String, taskGroupInstanceCreateTime: String, taskGroupInstanceUpdateTime: String, taskGroupInstanceStatusType: Int64, taskGroupInstanceStartTime: String, taskGroupInstanceEndTime: String, taskGroupInstanceIsRedo: Bool? = nil, taskGroupInstanceExecuteTime: Int64? = nil) {
             self.taskGroupInstanceId = taskGroupInstanceId
             self.taskGroupInstanceObjectId = taskGroupInstanceObjectId
             self.taskGroupInstanceStatus = taskGroupInstanceStatus
@@ -663,7 +663,7 @@ extension Cfg {
         
         /// 护栏监控
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let templatePolicy: TemplatePolicy
+        public let templatePolicy: TemplatePolicy?
         
         /// 标签列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -701,7 +701,7 @@ extension Cfg {
         
         /// 分组描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let description: String
+        public let description: String?
         
         /// 分组顺序
         public let order: Int64
@@ -756,11 +756,11 @@ extension Cfg {
         
         /// 分组动作通用配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let generalConfiguration: String
+        public let generalConfiguration: String?
         
         /// 分组动作自定义配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let customConfiguration: String
+        public let customConfiguration: String?
         
         /// 动作分组创建时间
         public let createTime: String
@@ -773,15 +773,15 @@ extension Cfg {
         
         /// 自身随机id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let randomId: Int64
+        public let randomId: Int64?
         
         /// 恢复动作id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let recoverId: Int64
+        public let recoverId: Int64?
         
         /// 执行动作id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let executeId: Int64
+        public let executeId: Int64?
         
         /// 调用api类型，0:tat, 1:云api
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -795,7 +795,7 @@ extension Cfg {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let actionType: String?
         
-        public init (templateGroupActionId: Int64, actionId: Int64, order: Int64, generalConfiguration: String, customConfiguration: String, createTime: String, updateTime: String, actionTitle: String, randomId: Int64, recoverId: Int64, executeId: Int64, actionApiType: Int64?, actionAttribute: Int64?, actionType: String?) {
+        public init (templateGroupActionId: Int64, actionId: Int64, order: Int64, generalConfiguration: String, customConfiguration: String, createTime: String, updateTime: String, actionTitle: String, randomId: Int64, recoverId: Int64, executeId: Int64, actionApiType: Int64? = nil, actionAttribute: Int64? = nil, actionType: String? = nil) {
             self.templateGroupActionId = templateGroupActionId
             self.actionId = actionId
             self.order = order

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询忽略检测项信息
-    ///
-    /// 查询已经忽略的检测项信息
-    @inlinable
-    public func describeIgnoreBaselineRule(_ input: DescribeIgnoreBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIgnoreBaselineRuleResponse > {
-        self.client.execute(action: "DescribeIgnoreBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询忽略检测项信息
-    ///
-    /// 查询已经忽略的检测项信息
-    @inlinable
-    public func describeIgnoreBaselineRule(_ input: DescribeIgnoreBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIgnoreBaselineRuleResponse {
-        try await self.client.execute(action: "DescribeIgnoreBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIgnoreBaselineRule请求参数结构体
     public struct DescribeIgnoreBaselineRuleRequest: TCRequestModel {
         /// 分页参数 最大100条
@@ -42,7 +26,7 @@ extension Cwp {
         /// 检测项名称
         public let ruleName: String?
         
-        public init (limit: UInt64, offset: UInt64, ruleName: String?) {
+        public init (limit: UInt64, offset: UInt64, ruleName: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.ruleName = ruleName
@@ -73,5 +57,21 @@ extension Cwp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询忽略检测项信息
+    ///
+    /// 查询已经忽略的检测项信息
+    @inlinable
+    public func describeIgnoreBaselineRule(_ input: DescribeIgnoreBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIgnoreBaselineRuleResponse > {
+        self.client.execute(action: "DescribeIgnoreBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询忽略检测项信息
+    ///
+    /// 查询已经忽略的检测项信息
+    @inlinable
+    public func describeIgnoreBaselineRule(_ input: DescribeIgnoreBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIgnoreBaselineRuleResponse {
+        try await self.client.execute(action: "DescribeIgnoreBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

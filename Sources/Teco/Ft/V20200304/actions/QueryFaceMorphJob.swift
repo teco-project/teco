@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ft {
-    /// 查询人像渐变任务
-    ///
-    /// 查询人像渐变处理进度
-    @inlinable
-    public func queryFaceMorphJob(_ input: QueryFaceMorphJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFaceMorphJobResponse > {
-        self.client.execute(action: "QueryFaceMorphJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询人像渐变任务
-    ///
-    /// 查询人像渐变处理进度
-    @inlinable
-    public func queryFaceMorphJob(_ input: QueryFaceMorphJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFaceMorphJobResponse {
-        try await self.client.execute(action: "QueryFaceMorphJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryFaceMorphJob请求参数结构体
     public struct QueryFaceMorphJobRequest: TCRequestModel {
         /// 人像渐变任务Job id
@@ -52,7 +36,7 @@ extension Ft {
         
         /// 人像渐变输出的结果信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let faceMorphOutput: FaceMorphOutput
+        public let faceMorphOutput: FaceMorphOutput?
         
         /// 当前任务状态码：1：排队中、3: 处理中、5: 处理失败、7:处理完成
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -67,5 +51,21 @@ extension Ft {
             case jobStatusCode = "JobStatusCode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询人像渐变任务
+    ///
+    /// 查询人像渐变处理进度
+    @inlinable
+    public func queryFaceMorphJob(_ input: QueryFaceMorphJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFaceMorphJobResponse > {
+        self.client.execute(action: "QueryFaceMorphJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询人像渐变任务
+    ///
+    /// 查询人像渐变处理进度
+    @inlinable
+    public func queryFaceMorphJob(_ input: QueryFaceMorphJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFaceMorphJobResponse {
+        try await self.client.execute(action: "QueryFaceMorphJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

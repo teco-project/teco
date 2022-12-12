@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 运单识别
-    ///
-    /// 本接口支持市面上主流版式电子运单的识别，包括收件人和寄件人的姓名、电话、地址以及运单号等字段，精度均处于业界领先水平，识别准确率达到99%以上。
-    /// 默认接口请求频率限制：10次/秒。
-    @inlinable
-    public func waybillOCR(_ input: WaybillOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < WaybillOCRResponse > {
-        self.client.execute(action: "WaybillOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运单识别
-    ///
-    /// 本接口支持市面上主流版式电子运单的识别，包括收件人和寄件人的姓名、电话、地址以及运单号等字段，精度均处于业界领先水平，识别准确率达到99%以上。
-    /// 默认接口请求频率限制：10次/秒。
-    @inlinable
-    public func waybillOCR(_ input: WaybillOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WaybillOCRResponse {
-        try await self.client.execute(action: "WaybillOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// WaybillOCR请求参数结构体
     public struct WaybillOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -57,7 +39,7 @@ extension Ocr {
         /// 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         public let pdfPageNumber: Int64?
         
-        public init (imageBase64: String?, imageUrl: String?, enablePreDetect: Bool?, isPdf: Bool?, pdfPageNumber: Int64?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, enablePreDetect: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.enablePreDetect = enablePreDetect
@@ -86,5 +68,23 @@ extension Ocr {
             case textDetections = "TextDetections"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运单识别
+    ///
+    /// 本接口支持市面上主流版式电子运单的识别，包括收件人和寄件人的姓名、电话、地址以及运单号等字段，精度均处于业界领先水平，识别准确率达到99%以上。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func waybillOCR(_ input: WaybillOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < WaybillOCRResponse > {
+        self.client.execute(action: "WaybillOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运单识别
+    ///
+    /// 本接口支持市面上主流版式电子运单的识别，包括收件人和寄件人的姓名、电话、地址以及运单号等字段，精度均处于业界领先水平，识别准确率达到99%以上。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func waybillOCR(_ input: WaybillOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WaybillOCRResponse {
+        try await self.client.execute(action: "WaybillOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

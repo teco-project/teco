@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 添加实例网络
-    ///
-    /// 可对实例进行网络的添加操作。
-    @inlinable
-    public func createDBInstanceNetworkAccess(_ input: CreateDBInstanceNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceNetworkAccessResponse > {
-        self.client.execute(action: "CreateDBInstanceNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加实例网络
-    ///
-    /// 可对实例进行网络的添加操作。
-    @inlinable
-    public func createDBInstanceNetworkAccess(_ input: CreateDBInstanceNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceNetworkAccessResponse {
-        try await self.client.execute(action: "CreateDBInstanceNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDBInstanceNetworkAccess请求参数结构体
     public struct CreateDBInstanceNetworkAccessRequest: TCRequestModel {
         /// 实例ID，形如：postgres-6bwgamo3。
@@ -48,7 +32,7 @@ extension Postgres {
         /// 目标VIP地址。
         public let vip: String?
         
-        public init (dbInstanceId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String?) {
+        public init (dbInstanceId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil) {
             self.dbInstanceId = dbInstanceId
             self.vpcId = vpcId
             self.subnetId = subnetId
@@ -78,5 +62,21 @@ extension Postgres {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加实例网络
+    ///
+    /// 可对实例进行网络的添加操作。
+    @inlinable
+    public func createDBInstanceNetworkAccess(_ input: CreateDBInstanceNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceNetworkAccessResponse > {
+        self.client.execute(action: "CreateDBInstanceNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加实例网络
+    ///
+    /// 可对实例进行网络的添加操作。
+    @inlinable
+    public func createDBInstanceNetworkAccess(_ input: CreateDBInstanceNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceNetworkAccessResponse {
+        try await self.client.execute(action: "CreateDBInstanceNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 导出异地登录记录
-    ///
-    /// 本接口 (ExportNonlocalLoginPlaces) 用于导出异地登录事件记录CSV文件。
-    @inlinable
-    public func exportNonlocalLoginPlaces(_ input: ExportNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportNonlocalLoginPlacesResponse > {
-        self.client.execute(action: "ExportNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出异地登录记录
-    ///
-    /// 本接口 (ExportNonlocalLoginPlaces) 用于导出异地登录事件记录CSV文件。
-    @inlinable
-    public func exportNonlocalLoginPlaces(_ input: ExportNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportNonlocalLoginPlacesResponse {
-        try await self.client.execute(action: "ExportNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportNonlocalLoginPlaces请求参数结构体
     public struct ExportNonlocalLoginPlacesRequest: TCRequestModel {
         public init () {
@@ -53,5 +37,21 @@ extension Yunjing {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出异地登录记录
+    ///
+    /// 本接口 (ExportNonlocalLoginPlaces) 用于导出异地登录事件记录CSV文件。
+    @inlinable
+    public func exportNonlocalLoginPlaces(_ input: ExportNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportNonlocalLoginPlacesResponse > {
+        self.client.execute(action: "ExportNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出异地登录记录
+    ///
+    /// 本接口 (ExportNonlocalLoginPlaces) 用于导出异地登录事件记录CSV文件。
+    @inlinable
+    public func exportNonlocalLoginPlaces(_ input: ExportNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportNonlocalLoginPlacesResponse {
+        try await self.client.execute(action: "ExportNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

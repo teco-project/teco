@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ba {
-    /// 获取实名认证信息
-    @inlinable
-    public func describeGetAuthInfo(_ input: DescribeGetAuthInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGetAuthInfoResponse > {
-        self.client.execute(action: "DescribeGetAuthInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实名认证信息
-    @inlinable
-    public func describeGetAuthInfo(_ input: DescribeGetAuthInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGetAuthInfoResponse {
-        try await self.client.execute(action: "DescribeGetAuthInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGetAuthInfo请求参数结构体
     public struct DescribeGetAuthInfoRequest: TCRequestModel {
         public init () {
@@ -53,5 +41,17 @@ extension Ba {
             case type = "Type"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实名认证信息
+    @inlinable
+    public func describeGetAuthInfo(_ input: DescribeGetAuthInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGetAuthInfoResponse > {
+        self.client.execute(action: "DescribeGetAuthInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实名认证信息
+    @inlinable
+    public func describeGetAuthInfo(_ input: DescribeGetAuthInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGetAuthInfoResponse {
+        try await self.client.execute(action: "DescribeGetAuthInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

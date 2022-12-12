@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 设置服务器权重
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（SetServerWeight）用于设置服务器权重。
-    @inlinable
-    public func setServerWeight(_ input: SetServerWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetServerWeightResponse > {
-        self.client.execute(action: "SetServerWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置服务器权重
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（SetServerWeight）用于设置服务器权重。
-    @inlinable
-    public func setServerWeight(_ input: SetServerWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetServerWeightResponse {
-        try await self.client.execute(action: "SetServerWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetServerWeight请求参数结构体
     public struct SetServerWeightRequest: TCRequestModel {
         /// 服务器舰队ID
@@ -65,5 +47,23 @@ extension Gse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置服务器权重
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（SetServerWeight）用于设置服务器权重。
+    @inlinable
+    public func setServerWeight(_ input: SetServerWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetServerWeightResponse > {
+        self.client.execute(action: "SetServerWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置服务器权重
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（SetServerWeight）用于设置服务器权重。
+    @inlinable
+    public func setServerWeight(_ input: SetServerWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetServerWeightResponse {
+        try await self.client.execute(action: "SetServerWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

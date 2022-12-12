@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 增加域名规则白名单
-    @inlinable
-    public func addDomainWhiteRule(_ input: AddDomainWhiteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDomainWhiteRuleResponse > {
-        self.client.execute(action: "AddDomainWhiteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 增加域名规则白名单
-    @inlinable
-    public func addDomainWhiteRule(_ input: AddDomainWhiteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDomainWhiteRuleResponse {
-        try await self.client.execute(action: "AddDomainWhiteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddDomainWhiteRule请求参数结构体
     public struct AddDomainWhiteRuleRequest: TCRequestModel {
         /// 需要添加的域名
@@ -73,5 +61,17 @@ extension Waf {
             case id = "Id"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 增加域名规则白名单
+    @inlinable
+    public func addDomainWhiteRule(_ input: AddDomainWhiteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDomainWhiteRuleResponse > {
+        self.client.execute(action: "AddDomainWhiteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 增加域名规则白名单
+    @inlinable
+    public func addDomainWhiteRule(_ input: AddDomainWhiteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDomainWhiteRuleResponse {
+        try await self.client.execute(action: "AddDomainWhiteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

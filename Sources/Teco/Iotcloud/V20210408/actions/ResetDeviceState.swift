@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 重置设备状态
-    ///
-    /// 重置设备的连接状态 
-    @inlinable
-    public func resetDeviceState(_ input: ResetDeviceStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetDeviceStateResponse > {
-        self.client.execute(action: "ResetDeviceState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置设备状态
-    ///
-    /// 重置设备的连接状态 
-    @inlinable
-    public func resetDeviceState(_ input: ResetDeviceStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDeviceStateResponse {
-        try await self.client.execute(action: "ResetDeviceState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetDeviceState请求参数结构体
     public struct ResetDeviceStateRequest: TCRequestModel {
         /// 产品ID
@@ -66,5 +50,21 @@ extension Iotcloud {
             case resetDeviceResults = "ResetDeviceResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置设备状态
+    ///
+    /// 重置设备的连接状态 
+    @inlinable
+    public func resetDeviceState(_ input: ResetDeviceStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetDeviceStateResponse > {
+        self.client.execute(action: "ResetDeviceState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置设备状态
+    ///
+    /// 重置设备的连接状态 
+    @inlinable
+    public func resetDeviceState(_ input: ResetDeviceStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDeviceStateResponse {
+        try await self.client.execute(action: "ResetDeviceState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

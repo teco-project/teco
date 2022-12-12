@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 身份信息认证
-    ///
-    /// 传入姓名和身份证号，校验两者的真实性和一致性。
-    @inlinable
-    public func idCardVerification(_ input: IdCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IdCardVerificationResponse > {
-        self.client.execute(action: "IdCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 身份信息认证
-    ///
-    /// 传入姓名和身份证号，校验两者的真实性和一致性。
-    @inlinable
-    public func idCardVerification(_ input: IdCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdCardVerificationResponse {
-        try await self.client.execute(action: "IdCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// IdCardVerification请求参数结构体
     public struct IdCardVerificationRequest: TCRequestModel {
         /// 身份证号
@@ -40,9 +24,9 @@ extension Faceid {
         public let name: String
         
         /// 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
-        public let encryption: Encryption
+        public let encryption: Encryption?
         
-        public init (idCard: String, name: String, encryption: Encryption) {
+        public init (idCard: String, name: String, encryption: Encryption? = nil) {
             self.idCard = idCard
             self.name = name
             self.encryption = encryption
@@ -81,5 +65,21 @@ extension Faceid {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 身份信息认证
+    ///
+    /// 传入姓名和身份证号，校验两者的真实性和一致性。
+    @inlinable
+    public func idCardVerification(_ input: IdCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IdCardVerificationResponse > {
+        self.client.execute(action: "IdCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 身份信息认证
+    ///
+    /// 传入姓名和身份证号，校验两者的真实性和一致性。
+    @inlinable
+    public func idCardVerification(_ input: IdCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdCardVerificationResponse {
+        try await self.client.execute(action: "IdCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,6 +17,67 @@
 @_exported import struct Foundation.Date
 
 extension Bda {
+    /// SearchTrace请求参数结构体
+    public struct SearchTraceRequest: TCRequestModel {
+        /// 希望搜索的人体库ID。
+        public let groupId: String
+        
+        /// 人体动作轨迹信息。
+        public let trace: Trace
+        
+        /// 单张被识别的人体动作轨迹返回的最相似人员数量。
+        /// 默认值为5，最大值为100。
+        ///  例，设MaxPersonNum为8，则返回Top8相似的人员信息。 值越大，需要处理的时间越长。建议不要超过10。
+        public let maxPersonNum: UInt64?
+        
+        /// 出参Score中，只有超过TraceMatchThreshold值的结果才会返回。
+        /// 默认为0。范围[0, 100.0]。
+        public let traceMatchThreshold: Float?
+        
+        public init (groupId: String, trace: Trace, maxPersonNum: UInt64? = nil, traceMatchThreshold: Float? = nil) {
+            self.groupId = groupId
+            self.trace = trace
+            self.maxPersonNum = maxPersonNum
+            self.traceMatchThreshold = traceMatchThreshold
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case groupId = "GroupId"
+            case trace = "Trace"
+            case maxPersonNum = "MaxPersonNum"
+            case traceMatchThreshold = "TraceMatchThreshold"
+        }
+    }
+    
+    /// SearchTrace返回参数结构体
+    public struct SearchTraceResponse: TCResponseModel {
+        /// 识别出的最相似候选人。
+        public let candidates: [Candidate]
+        
+        /// 输入的人体动作轨迹图片中的合法性校验结果。
+        /// 只有为0时结果才有意义。
+        /// -1001: 输入图片不合法。-1002: 输入图片不能构成动作轨迹。
+        public let inputRetCode: Int64
+        
+        /// 输入的人体动作轨迹图片中的合法性校验结果详情。 
+        /// -1101:图片无效，-1102:url不合法。-1103:图片过大。-1104:图片下载失败。-1105:图片解码失败。-1109:图片分辨率过高。-2023:动作轨迹中有非同人图片。-2024: 动作轨迹提取失败。-2025: 人体检测失败。
+        public let inputRetCodeDetails: [Int64]
+        
+        /// 人体识别所用的算法模型版本。
+        public let bodyModelVersion: String
+        
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case candidates = "Candidates"
+            case inputRetCode = "InputRetCode"
+            case inputRetCodeDetails = "InputRetCodeDetails"
+            case bodyModelVersion = "BodyModelVersion"
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 人体搜索
     ///
     /// 本接口用于对一组待识别的人体动作轨迹（Trace）图片，在人体库中识别出最相似的 TopK 人体，按照相似度从大到小排列。
@@ -41,66 +102,5 @@ extension Bda {
     @inlinable
     public func searchTrace(_ input: SearchTraceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchTraceResponse {
         try await self.client.execute(action: "SearchTrace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// SearchTrace请求参数结构体
-    public struct SearchTraceRequest: TCRequestModel {
-        /// 希望搜索的人体库ID。
-        public let groupId: String
-        
-        /// 人体动作轨迹信息。
-        public let trace: Trace
-        
-        /// 单张被识别的人体动作轨迹返回的最相似人员数量。
-        /// 默认值为5，最大值为100。
-        ///  例，设MaxPersonNum为8，则返回Top8相似的人员信息。 值越大，需要处理的时间越长。建议不要超过10。
-        public let maxPersonNum: UInt64?
-        
-        /// 出参Score中，只有超过TraceMatchThreshold值的结果才会返回。
-        /// 默认为0。范围[0, 100.0]。
-        public let traceMatchThreshold: Float?
-        
-        public init (groupId: String, trace: Trace, maxPersonNum: UInt64?, traceMatchThreshold: Float?) {
-            self.groupId = groupId
-            self.trace = trace
-            self.maxPersonNum = maxPersonNum
-            self.traceMatchThreshold = traceMatchThreshold
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case groupId = "GroupId"
-            case trace = "Trace"
-            case maxPersonNum = "MaxPersonNum"
-            case traceMatchThreshold = "TraceMatchThreshold"
-        }
-    }
-    
-    /// SearchTrace返回参数结构体
-    public struct SearchTraceResponse: TCResponseModel {
-        /// 识别出的最相似候选人。
-        public let candidates: [Date]
-        
-        /// 输入的人体动作轨迹图片中的合法性校验结果。
-        /// 只有为0时结果才有意义。
-        /// -1001: 输入图片不合法。-1002: 输入图片不能构成动作轨迹。
-        public let inputRetCode: Int64
-        
-        /// 输入的人体动作轨迹图片中的合法性校验结果详情。 
-        /// -1101:图片无效，-1102:url不合法。-1103:图片过大。-1104:图片下载失败。-1105:图片解码失败。-1109:图片分辨率过高。-2023:动作轨迹中有非同人图片。-2024: 动作轨迹提取失败。-2025: 人体检测失败。
-        public let inputRetCodeDetails: [Int64]
-        
-        /// 人体识别所用的算法模型版本。
-        public let bodyModelVersion: String
-        
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case candidates = "Candidates"
-            case inputRetCode = "InputRetCode"
-            case inputRetCodeDetails = "InputRetCodeDetails"
-            case bodyModelVersion = "BodyModelVersion"
-            case requestId = "RequestId"
-        }
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 发布服务
-    ///
-    /// 本接口（ReleaseService）用于发布服务。
-    /// API 网关的服务创建后，需要发布到某个环境方生效后，使用者才能进行调用，此接口用于发布服务到环境，如 release 环境。
-    @inlinable
-    public func releaseService(_ input: ReleaseServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseServiceResponse > {
-        self.client.execute(action: "ReleaseService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发布服务
-    ///
-    /// 本接口（ReleaseService）用于发布服务。
-    /// API 网关的服务创建后，需要发布到某个环境方生效后，使用者才能进行调用，此接口用于发布服务到环境，如 release 环境。
-    @inlinable
-    public func releaseService(_ input: ReleaseServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseServiceResponse {
-        try await self.client.execute(action: "ReleaseService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReleaseService请求参数结构体
     public struct ReleaseServiceRequest: TCRequestModel {
         /// 待发布服务的唯一 ID。
@@ -47,7 +29,7 @@ extension Apigateway {
         /// apiId列表，预留字段，默认全量api发布。
         public let apiIds: [String]?
         
-        public init (serviceId: String, environmentName: String, releaseDesc: String, apiIds: [String]?) {
+        public init (serviceId: String, environmentName: String, releaseDesc: String, apiIds: [String]? = nil) {
             self.serviceId = serviceId
             self.environmentName = environmentName
             self.releaseDesc = releaseDesc
@@ -74,5 +56,23 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发布服务
+    ///
+    /// 本接口（ReleaseService）用于发布服务。
+    /// API 网关的服务创建后，需要发布到某个环境方生效后，使用者才能进行调用，此接口用于发布服务到环境，如 release 环境。
+    @inlinable
+    public func releaseService(_ input: ReleaseServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseServiceResponse > {
+        self.client.execute(action: "ReleaseService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发布服务
+    ///
+    /// 本接口（ReleaseService）用于发布服务。
+    /// API 网关的服务创建后，需要发布到某个环境方生效后，使用者才能进行调用，此接口用于发布服务到环境，如 release 环境。
+    @inlinable
+    public func releaseService(_ input: ReleaseServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseServiceResponse {
+        try await self.client.execute(action: "ReleaseService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

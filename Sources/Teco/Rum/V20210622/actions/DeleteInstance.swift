@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 删除实例
-    ///
-    /// 删除实例，谨慎操作，不可恢复
-    @inlinable
-    public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstanceResponse > {
-        self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除实例
-    ///
-    /// 删除实例，谨慎操作，不可恢复
-    @inlinable
-    public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
-        try await self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteInstance请求参数结构体
     public struct DeleteInstanceRequest: TCRequestModel {
         /// 需要删除的实例id
@@ -53,5 +37,21 @@ extension Rum {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除实例
+    ///
+    /// 删除实例，谨慎操作，不可恢复
+    @inlinable
+    public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstanceResponse > {
+        self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例
+    ///
+    /// 删除实例，谨慎操作，不可恢复
+    @inlinable
+    public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
+        try await self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

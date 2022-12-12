@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 创建 DNS 记录
-    @inlinable
-    public func createDnsRecord(_ input: CreateDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDnsRecordResponse > {
-        self.client.execute(action: "CreateDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建 DNS 记录
-    @inlinable
-    public func createDnsRecord(_ input: CreateDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDnsRecordResponse {
-        try await self.client.execute(action: "CreateDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDnsRecord请求参数结构体
     public struct CreateDnsRecordRequest: TCRequestModel {
         /// DNS记录所属站点ID。
@@ -60,7 +48,7 @@ extension Teo {
         /// 该参数在创建MX记录时生效，值越小优先级越高，用户可指定值范围1~50，不指定默认为0。
         public let priority: Int64?
         
-        public init (zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64?, priority: Int64?) {
+        public init (zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64? = nil, priority: Int64? = nil) {
             self.zoneId = zoneId
             self.type = type
             self.name = name
@@ -93,5 +81,17 @@ extension Teo {
             case dnsRecordId = "DnsRecordId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建 DNS 记录
+    @inlinable
+    public func createDnsRecord(_ input: CreateDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDnsRecordResponse > {
+        self.client.execute(action: "CreateDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建 DNS 记录
+    @inlinable
+    public func createDnsRecord(_ input: CreateDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDnsRecordResponse {
+        try await self.client.execute(action: "CreateDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

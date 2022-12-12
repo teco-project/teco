@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 提交高级图像分析任务
-    ///
-    /// 高级图像分析任务，开放了图像任务里的所有开关，可以根据场景深度定制图像分析任务。支持的图像类别有，图片链接、图片二进制数据、点播链接和直播链接。
-    @inlinable
-    public func submitImageTaskPlus(_ input: SubmitImageTaskPlusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitImageTaskPlusResponse > {
-        self.client.execute(action: "SubmitImageTaskPlus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交高级图像分析任务
-    ///
-    /// 高级图像分析任务，开放了图像任务里的所有开关，可以根据场景深度定制图像分析任务。支持的图像类别有，图片链接、图片二进制数据、点播链接和直播链接。
-    @inlinable
-    public func submitImageTaskPlus(_ input: SubmitImageTaskPlusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitImageTaskPlusResponse {
-        try await self.client.execute(action: "SubmitImageTaskPlus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SubmitImageTaskPlus请求参数结构体
     public struct SubmitImageTaskPlusRequest: TCRequestModel {
         /// 输入分析对象内容，输入数据格式参考FileType参数释义
@@ -40,7 +24,7 @@ extension Tci {
         public let fileType: String
         
         /// 任务控制选项
-        public let functions: ImageTaskFunction
+        public let functions: ImageTaskFunction?
         
         /// 光照标准列表
         public let lightStandardSet: [LightStandard]?
@@ -57,7 +41,7 @@ extension Tci {
         /// 人脸识别中的相似度阈值，默认值为0.89，保留字段，当前不支持填写。
         public let simThreshold: Float?
         
-        public init (fileContent: [String], fileType: String, functions: ImageTaskFunction, lightStandardSet: [LightStandard]?, frameInterval: Int64?, librarySet: [String]?, maxVideoDuration: Int64?, simThreshold: Float?) {
+        public init (fileContent: [String], fileType: String, functions: ImageTaskFunction? = nil, lightStandardSet: [LightStandard]? = nil, frameInterval: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil) {
             self.fileContent = fileContent
             self.fileType = fileType
             self.functions = functions
@@ -104,5 +88,21 @@ extension Tci {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交高级图像分析任务
+    ///
+    /// 高级图像分析任务，开放了图像任务里的所有开关，可以根据场景深度定制图像分析任务。支持的图像类别有，图片链接、图片二进制数据、点播链接和直播链接。
+    @inlinable
+    public func submitImageTaskPlus(_ input: SubmitImageTaskPlusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitImageTaskPlusResponse > {
+        self.client.execute(action: "SubmitImageTaskPlus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交高级图像分析任务
+    ///
+    /// 高级图像分析任务，开放了图像任务里的所有开关，可以根据场景深度定制图像分析任务。支持的图像类别有，图片链接、图片二进制数据、点播链接和直播链接。
+    @inlinable
+    public func submitImageTaskPlus(_ input: SubmitImageTaskPlusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitImageTaskPlusResponse {
+        try await self.client.execute(action: "SubmitImageTaskPlus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

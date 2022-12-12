@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 更新录制计划绑定的通道
-    ///
-    /// 本接口(ModifyBindRecordingPlan)用于更新录制计划绑定的通道
-    @inlinable
-    public func modifyBindRecordingPlan(_ input: ModifyBindRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindRecordingPlanResponse > {
-        self.client.execute(action: "ModifyBindRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新录制计划绑定的通道
-    ///
-    /// 本接口(ModifyBindRecordingPlan)用于更新录制计划绑定的通道
-    @inlinable
-    public func modifyBindRecordingPlan(_ input: ModifyBindRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindRecordingPlanResponse {
-        try await self.client.execute(action: "ModifyBindRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyBindRecordingPlan请求参数结构体
     public struct ModifyBindRecordingPlanRequest: TCRequestModel {
         /// 操作类型： 1-绑定设备 ；2-解绑设备
@@ -42,7 +26,7 @@ extension Iotvideoindustry {
         /// 录制通道列表
         public let channels: [ChannelItem]?
         
-        public init (type: Int64, planId: String, channels: [ChannelItem]?) {
+        public init (type: Int64, planId: String, channels: [ChannelItem]? = nil) {
             self.type = type
             self.planId = planId
             self.channels = channels
@@ -63,5 +47,21 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新录制计划绑定的通道
+    ///
+    /// 本接口(ModifyBindRecordingPlan)用于更新录制计划绑定的通道
+    @inlinable
+    public func modifyBindRecordingPlan(_ input: ModifyBindRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindRecordingPlanResponse > {
+        self.client.execute(action: "ModifyBindRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新录制计划绑定的通道
+    ///
+    /// 本接口(ModifyBindRecordingPlan)用于更新录制计划绑定的通道
+    @inlinable
+    public func modifyBindRecordingPlan(_ input: ModifyBindRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindRecordingPlanResponse {
+        try await self.client.execute(action: "ModifyBindRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

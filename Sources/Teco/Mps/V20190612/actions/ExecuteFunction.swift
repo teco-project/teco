@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 执行定制 API
-    ///
-    /// 本接口仅用于定制开发的特殊场景，除非云媒体处理客服人员主动告知您需要使用本接口，其它情况请勿调用。
-    @inlinable
-    public func executeFunction(_ input: ExecuteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteFunctionResponse > {
-        self.client.execute(action: "ExecuteFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 执行定制 API
-    ///
-    /// 本接口仅用于定制开发的特殊场景，除非云媒体处理客服人员主动告知您需要使用本接口，其它情况请勿调用。
-    @inlinable
-    public func executeFunction(_ input: ExecuteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteFunctionResponse {
-        try await self.client.execute(action: "ExecuteFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExecuteFunction请求参数结构体
     public struct ExecuteFunctionRequest: TCRequestModel {
         /// 调用后端接口名称。
@@ -62,5 +46,21 @@ extension Mps {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 执行定制 API
+    ///
+    /// 本接口仅用于定制开发的特殊场景，除非云媒体处理客服人员主动告知您需要使用本接口，其它情况请勿调用。
+    @inlinable
+    public func executeFunction(_ input: ExecuteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteFunctionResponse > {
+        self.client.execute(action: "ExecuteFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 执行定制 API
+    ///
+    /// 本接口仅用于定制开发的特殊场景，除非云媒体处理客服人员主动告知您需要使用本接口，其它情况请勿调用。
+    @inlinable
+    public func executeFunction(_ input: ExecuteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteFunctionResponse {
+        try await self.client.execute(action: "ExecuteFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

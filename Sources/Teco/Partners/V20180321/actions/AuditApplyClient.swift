@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Partners {
-    /// 审核客户
-    ///
-    /// 代理商可以审核其名下申请中代客
-    @inlinable
-    public func auditApplyClient(_ input: AuditApplyClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AuditApplyClientResponse > {
-        self.client.execute(action: "AuditApplyClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 审核客户
-    ///
-    /// 代理商可以审核其名下申请中代客
-    @inlinable
-    public func auditApplyClient(_ input: AuditApplyClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuditApplyClientResponse {
-        try await self.client.execute(action: "AuditApplyClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AuditApplyClient请求参数结构体
     public struct AuditApplyClientRequest: TCRequestModel {
         /// 待审核客户账号ID
@@ -80,5 +64,21 @@ extension Partners {
             case agentTime = "AgentTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 审核客户
+    ///
+    /// 代理商可以审核其名下申请中代客
+    @inlinable
+    public func auditApplyClient(_ input: AuditApplyClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AuditApplyClientResponse > {
+        self.client.execute(action: "AuditApplyClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 审核客户
+    ///
+    /// 代理商可以审核其名下申请中代客
+    @inlinable
+    public func auditApplyClient(_ input: AuditApplyClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuditApplyClientResponse {
+        try await self.client.execute(action: "AuditApplyClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 修改本地binlog保留策略
-    ///
-    /// 该接口用于修改实例本地binlog保留策略。
-    @inlinable
-    public func modifyLocalBinlogConfig(_ input: ModifyLocalBinlogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLocalBinlogConfigResponse > {
-        self.client.execute(action: "ModifyLocalBinlogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改本地binlog保留策略
-    ///
-    /// 该接口用于修改实例本地binlog保留策略。
-    @inlinable
-    public func modifyLocalBinlogConfig(_ input: ModifyLocalBinlogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLocalBinlogConfigResponse {
-        try await self.client.execute(action: "ModifyLocalBinlogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLocalBinlogConfig请求参数结构体
     public struct ModifyLocalBinlogConfigRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例ID相同。
@@ -63,5 +47,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改本地binlog保留策略
+    ///
+    /// 该接口用于修改实例本地binlog保留策略。
+    @inlinable
+    public func modifyLocalBinlogConfig(_ input: ModifyLocalBinlogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLocalBinlogConfigResponse > {
+        self.client.execute(action: "ModifyLocalBinlogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改本地binlog保留策略
+    ///
+    /// 该接口用于修改实例本地binlog保留策略。
+    @inlinable
+    public func modifyLocalBinlogConfig(_ input: ModifyLocalBinlogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLocalBinlogConfigResponse {
+        try await self.client.execute(action: "ModifyLocalBinlogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

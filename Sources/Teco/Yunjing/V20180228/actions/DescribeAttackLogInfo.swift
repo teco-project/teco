@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 网络攻击日志详情
-    @inlinable
-    public func describeAttackLogInfo(_ input: DescribeAttackLogInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAttackLogInfoResponse > {
-        self.client.execute(action: "DescribeAttackLogInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 网络攻击日志详情
-    @inlinable
-    public func describeAttackLogInfo(_ input: DescribeAttackLogInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackLogInfoResponse {
-        try await self.client.execute(action: "DescribeAttackLogInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAttackLogInfo请求参数结构体
     public struct DescribeAttackLogInfoRequest: TCRequestModel {
         /// 日志ID
@@ -113,5 +101,17 @@ extension Yunjing {
             case httpContent = "HttpContent"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 网络攻击日志详情
+    @inlinable
+    public func describeAttackLogInfo(_ input: DescribeAttackLogInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAttackLogInfoResponse > {
+        self.client.execute(action: "DescribeAttackLogInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 网络攻击日志详情
+    @inlinable
+    public func describeAttackLogInfo(_ input: DescribeAttackLogInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackLogInfoResponse {
+        try await self.client.execute(action: "DescribeAttackLogInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

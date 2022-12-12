@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取TKE集群列表
-    @inlinable
-    public func describeInLongTkeClusterList(_ input: DescribeInLongTkeClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInLongTkeClusterListResponse > {
-        self.client.execute(action: "DescribeInLongTkeClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取TKE集群列表
-    @inlinable
-    public func describeInLongTkeClusterList(_ input: DescribeInLongTkeClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongTkeClusterListResponse {
-        try await self.client.execute(action: "DescribeInLongTkeClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInLongTkeClusterList请求参数结构体
     public struct DescribeInLongTkeClusterListRequest: TCRequestModel {
         /// WeData项目ID
@@ -56,7 +44,7 @@ extension Wedata {
         /// 分页每页记录数，默认10
         public let pageSize: UInt64?
         
-        public init (projectId: String, tkeRegion: String, clusterName: String?, status: String?, hasAgent: Bool?, clusterType: String?, pageIndex: UInt64?, pageSize: UInt64?) {
+        public init (projectId: String, tkeRegion: String, clusterName: String? = nil, status: String? = nil, hasAgent: Bool? = nil, clusterType: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil) {
             self.projectId = projectId
             self.tkeRegion = tkeRegion
             self.clusterName = clusterName
@@ -107,5 +95,17 @@ extension Wedata {
             case totalPage = "TotalPage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取TKE集群列表
+    @inlinable
+    public func describeInLongTkeClusterList(_ input: DescribeInLongTkeClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInLongTkeClusterListResponse > {
+        self.client.execute(action: "DescribeInLongTkeClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取TKE集群列表
+    @inlinable
+    public func describeInLongTkeClusterList(_ input: DescribeInLongTkeClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongTkeClusterListResponse {
+        try await self.client.execute(action: "DescribeInLongTkeClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

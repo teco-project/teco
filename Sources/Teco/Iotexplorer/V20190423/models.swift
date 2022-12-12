@@ -680,7 +680,7 @@ extension Iotexplorer {
         /// 频点ID
         public let frequencyId: String?
         
-        public init (gatewayId: String, isPublic: Bool, description: String, name: String, position: String, positionDetails: String, location: LoRaGatewayLocation, updatedAt: String, createdAt: String, lastSeenAt: String, frequencyId: String?) {
+        public init (gatewayId: String, isPublic: Bool, description: String, name: String, position: String, positionDetails: String, location: LoRaGatewayLocation, updatedAt: String, createdAt: String, lastSeenAt: String, frequencyId: String? = nil) {
             self.gatewayId = gatewayId
             self.isPublic = isPublic
             self.description = description
@@ -723,7 +723,7 @@ extension Iotexplorer {
         /// 海拔
         public let altitude: Float?
         
-        public init (latitude: Float, longitude: Float, accuracy: Float?, altitude: Float?) {
+        public init (latitude: Float, longitude: Float, accuracy: Float? = nil, altitude: Float? = nil) {
             self.latitude = latitude
             self.longitude = longitude
             self.accuracy = accuracy
@@ -1071,7 +1071,7 @@ extension Iotexplorer {
         /// 搜索条件的值
         public let value: String?
         
-        public init (key: String, value: String?) {
+        public init (key: String, value: String? = nil) {
             self.key = key
             self.value = value
         }
@@ -1209,7 +1209,7 @@ extension Iotexplorer {
         /// 是否禁用规则
         public let ruleDisabled: Bool?
         
-        public init (sql: String, actions: String?, description: String?, ruleDisabled: Bool?) {
+        public init (sql: String, actions: String? = nil, description: String? = nil, ruleDisabled: Bool? = nil) {
             self.sql = sql
             self.actions = actions
             self.description = description

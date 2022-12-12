@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 搜索直播互动曲库歌曲
-    ///
-    /// 根据搜索条件，返回匹配的歌曲列表。
-    @inlinable
-    public func searchKTVMusics(_ input: SearchKTVMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchKTVMusicsResponse > {
-        self.client.execute(action: "SearchKTVMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 搜索直播互动曲库歌曲
-    ///
-    /// 根据搜索条件，返回匹配的歌曲列表。
-    @inlinable
-    public func searchKTVMusics(_ input: SearchKTVMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchKTVMusicsResponse {
-        try await self.client.execute(action: "SearchKTVMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SearchKTVMusics请求参数结构体
     public struct SearchKTVMusicsRequest: TCRequestModel {
         /// 搜索关键词
@@ -47,13 +31,13 @@ extension Ame {
         /// <li> Sort.Field 可选 CreateTime</li>
         /// <li> Sort.Order 可选 Desc </li>
         /// <li> 当 KeyWord 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。</li>
-        public let sort: SortBy
+        public let sort: SortBy?
         
         /// 标签 ID 集合，匹配集合指定所有 ID 。
         /// <li>数组长度限制：10。</li>
         public let tagIds: [String]?
         
-        public init (keyWord: String, offset: Int64, limit: Int64, sort: SortBy, tagIds: [String]?) {
+        public init (keyWord: String, offset: Int64, limit: Int64, sort: SortBy? = nil, tagIds: [String]? = nil) {
             self.keyWord = keyWord
             self.offset = offset
             self.limit = limit
@@ -86,5 +70,21 @@ extension Ame {
             case ktvMusicInfoSet = "KTVMusicInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 搜索直播互动曲库歌曲
+    ///
+    /// 根据搜索条件，返回匹配的歌曲列表。
+    @inlinable
+    public func searchKTVMusics(_ input: SearchKTVMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchKTVMusicsResponse > {
+        self.client.execute(action: "SearchKTVMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 搜索直播互动曲库歌曲
+    ///
+    /// 根据搜索条件，返回匹配的歌曲列表。
+    @inlinable
+    public func searchKTVMusics(_ input: SearchKTVMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchKTVMusicsResponse {
+        try await self.client.execute(action: "SearchKTVMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

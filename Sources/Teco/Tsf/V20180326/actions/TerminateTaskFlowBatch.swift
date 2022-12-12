@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 停止一个工作流批次
-    @inlinable
-    public func terminateTaskFlowBatch(_ input: TerminateTaskFlowBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateTaskFlowBatchResponse > {
-        self.client.execute(action: "TerminateTaskFlowBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止一个工作流批次
-    @inlinable
-    public func terminateTaskFlowBatch(_ input: TerminateTaskFlowBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTaskFlowBatchResponse {
-        try await self.client.execute(action: "TerminateTaskFlowBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TerminateTaskFlowBatch请求参数结构体
     public struct TerminateTaskFlowBatchRequest: TCRequestModel {
         /// 工作流批次 ID
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止一个工作流批次
+    @inlinable
+    public func terminateTaskFlowBatch(_ input: TerminateTaskFlowBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateTaskFlowBatchResponse > {
+        self.client.execute(action: "TerminateTaskFlowBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止一个工作流批次
+    @inlinable
+    public func terminateTaskFlowBatch(_ input: TerminateTaskFlowBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTaskFlowBatchResponse {
+        try await self.client.execute(action: "TerminateTaskFlowBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

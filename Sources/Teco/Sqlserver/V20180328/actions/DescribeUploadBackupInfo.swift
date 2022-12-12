@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询备份上传权限
-    ///
-    /// 本接口（DescribeUploadBackupInfo）用于查询备份上传权限。
-    @inlinable
-    public func describeUploadBackupInfo(_ input: DescribeUploadBackupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUploadBackupInfoResponse > {
-        self.client.execute(action: "DescribeUploadBackupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询备份上传权限
-    ///
-    /// 本接口（DescribeUploadBackupInfo）用于查询备份上传权限。
-    @inlinable
-    public func describeUploadBackupInfo(_ input: DescribeUploadBackupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadBackupInfoResponse {
-        try await self.client.execute(action: "DescribeUploadBackupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUploadBackupInfo请求参数结构体
     public struct DescribeUploadBackupInfoRequest: TCRequestModel {
         /// 导入目标实例ID
@@ -90,5 +74,21 @@ extension Sqlserver {
             case expiredTime = "ExpiredTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询备份上传权限
+    ///
+    /// 本接口（DescribeUploadBackupInfo）用于查询备份上传权限。
+    @inlinable
+    public func describeUploadBackupInfo(_ input: DescribeUploadBackupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUploadBackupInfoResponse > {
+        self.client.execute(action: "DescribeUploadBackupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份上传权限
+    ///
+    /// 本接口（DescribeUploadBackupInfo）用于查询备份上传权限。
+    @inlinable
+    public func describeUploadBackupInfo(_ input: DescribeUploadBackupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadBackupInfoResponse {
+        try await self.client.execute(action: "DescribeUploadBackupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

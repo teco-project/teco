@@ -15,32 +15,6 @@
 // DO NOT EDIT.
 
 extension Asr {
-    /// 创建热词表
-    ///
-    /// 用户通过本接口进行热词表的创建。
-    /// <br>•   默认最多可创建30个热词表。
-    /// <br>•   每个热词表最多可添加128个词，每个词最长10个字，不能超出限制。
-    /// <br>•   热词表可以通过数组或者本地文件形式上传。
-    /// <br>•   本地文件必须为UTF-8编码格式，每行仅添加一个热词且不能包含标点和特殊字符。
-    /// <br>•   热词权重取值范围为[1,10]之间的整数，权重越大代表该词被识别出来的概率越大。
-    @inlinable
-    public func createAsrVocab(_ input: CreateAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAsrVocabResponse > {
-        self.client.execute(action: "CreateAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建热词表
-    ///
-    /// 用户通过本接口进行热词表的创建。
-    /// <br>•   默认最多可创建30个热词表。
-    /// <br>•   每个热词表最多可添加128个词，每个词最长10个字，不能超出限制。
-    /// <br>•   热词表可以通过数组或者本地文件形式上传。
-    /// <br>•   本地文件必须为UTF-8编码格式，每行仅添加一个热词且不能包含标点和特殊字符。
-    /// <br>•   热词权重取值范围为[1,10]之间的整数，权重越大代表该词被识别出来的概率越大。
-    @inlinable
-    public func createAsrVocab(_ input: CreateAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAsrVocabResponse {
-        try await self.client.execute(action: "CreateAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAsrVocab请求参数结构体
     public struct CreateAsrVocabRequest: TCRequestModel {
         /// 热词表名称，长度在1-255之间
@@ -56,7 +30,7 @@ extension Asr {
         /// 当用户传此参数（参数长度大于0），即以此参数解析词权重，WordWeights会被忽略
         public let wordWeightStr: String?
         
-        public init (name: String, description: String?, wordWeights: [HotWord]?, wordWeightStr: String?) {
+        public init (name: String, description: String? = nil, wordWeights: [HotWord]? = nil, wordWeightStr: String? = nil) {
             self.name = name
             self.description = description
             self.wordWeights = wordWeights
@@ -83,5 +57,31 @@ extension Asr {
             case vocabId = "VocabId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建热词表
+    ///
+    /// 用户通过本接口进行热词表的创建。
+    /// <br>•   默认最多可创建30个热词表。
+    /// <br>•   每个热词表最多可添加128个词，每个词最长10个字，不能超出限制。
+    /// <br>•   热词表可以通过数组或者本地文件形式上传。
+    /// <br>•   本地文件必须为UTF-8编码格式，每行仅添加一个热词且不能包含标点和特殊字符。
+    /// <br>•   热词权重取值范围为[1,10]之间的整数，权重越大代表该词被识别出来的概率越大。
+    @inlinable
+    public func createAsrVocab(_ input: CreateAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAsrVocabResponse > {
+        self.client.execute(action: "CreateAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建热词表
+    ///
+    /// 用户通过本接口进行热词表的创建。
+    /// <br>•   默认最多可创建30个热词表。
+    /// <br>•   每个热词表最多可添加128个词，每个词最长10个字，不能超出限制。
+    /// <br>•   热词表可以通过数组或者本地文件形式上传。
+    /// <br>•   本地文件必须为UTF-8编码格式，每行仅添加一个热词且不能包含标点和特殊字符。
+    /// <br>•   热词权重取值范围为[1,10]之间的整数，权重越大代表该词被识别出来的概率越大。
+    @inlinable
+    public func createAsrVocab(_ input: CreateAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAsrVocabResponse {
+        try await self.client.execute(action: "CreateAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

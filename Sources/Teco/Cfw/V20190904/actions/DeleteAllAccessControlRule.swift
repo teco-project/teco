@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 全部删除规则
-    @inlinable
-    public func deleteAllAccessControlRule(_ input: DeleteAllAccessControlRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAllAccessControlRuleResponse > {
-        self.client.execute(action: "DeleteAllAccessControlRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 全部删除规则
-    @inlinable
-    public func deleteAllAccessControlRule(_ input: DeleteAllAccessControlRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAllAccessControlRuleResponse {
-        try await self.client.execute(action: "DeleteAllAccessControlRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAllAccessControlRule请求参数结构体
     public struct DeleteAllAccessControlRuleRequest: TCRequestModel {
         /// 方向，0：出站，1：入站  默认值是 0
@@ -38,7 +26,7 @@ extension Cfw {
         /// nat地域 全部删除 EdgeId和Area只填写一个，不填写则不删除nat防火墙开关 默认值为‘’
         public let area: String?
         
-        public init (direction: UInt64?, edgeId: String?, area: String?) {
+        public init (direction: UInt64? = nil, edgeId: String? = nil, area: String? = nil) {
             self.direction = direction
             self.edgeId = edgeId
             self.area = area
@@ -68,5 +56,17 @@ extension Cfw {
             case info = "Info"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 全部删除规则
+    @inlinable
+    public func deleteAllAccessControlRule(_ input: DeleteAllAccessControlRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAllAccessControlRuleResponse > {
+        self.client.execute(action: "DeleteAllAccessControlRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 全部删除规则
+    @inlinable
+    public func deleteAllAccessControlRule(_ input: DeleteAllAccessControlRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAllAccessControlRuleResponse {
+        try await self.client.execute(action: "DeleteAllAccessControlRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

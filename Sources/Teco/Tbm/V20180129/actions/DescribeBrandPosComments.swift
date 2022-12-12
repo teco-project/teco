@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tbm {
-    /// 获取品牌用户好评列表
-    ///
-    /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门好评观点列表。
-    @inlinable
-    public func describeBrandPosComments(_ input: DescribeBrandPosCommentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandPosCommentsResponse > {
-        self.client.execute(action: "DescribeBrandPosComments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取品牌用户好评列表
-    ///
-    /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门好评观点列表。
-    @inlinable
-    public func describeBrandPosComments(_ input: DescribeBrandPosCommentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandPosCommentsResponse {
-        try await self.client.execute(action: "DescribeBrandPosComments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBrandPosComments请求参数结构体
     public struct DescribeBrandPosCommentsRequest: TCRequestModel {
         /// 品牌ID
@@ -52,7 +36,7 @@ extension Tbm {
         /// 查询偏移，从0开始
         public let offset: UInt64?
         
-        public init (brandId: String, startDate: Date, endDate: Date, limit: UInt64?, offset: UInt64?) {
+        public init (brandId: String, startDate: Date, endDate: Date, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.brandId = brandId
             self.startDate = startDate
             self.endDate = endDate
@@ -85,5 +69,21 @@ extension Tbm {
             case totalComments = "TotalComments"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取品牌用户好评列表
+    ///
+    /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门好评观点列表。
+    @inlinable
+    public func describeBrandPosComments(_ input: DescribeBrandPosCommentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandPosCommentsResponse > {
+        self.client.execute(action: "DescribeBrandPosComments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取品牌用户好评列表
+    ///
+    /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门好评观点列表。
+    @inlinable
+    public func describeBrandPosComments(_ input: DescribeBrandPosCommentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandPosCommentsResponse {
+        try await self.client.execute(action: "DescribeBrandPosComments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

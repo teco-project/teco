@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除网络ACL
-    ///
-    /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
-    @inlinable
-    public func deleteNetworkAcl(_ input: DeleteNetworkAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetworkAclResponse > {
-        self.client.execute(action: "DeleteNetworkAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除网络ACL
-    ///
-    /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
-    @inlinable
-    public func deleteNetworkAcl(_ input: DeleteNetworkAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkAclResponse {
-        try await self.client.execute(action: "DeleteNetworkAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteNetworkAcl请求参数结构体
     public struct DeleteNetworkAclRequest: TCRequestModel {
         /// 网络ACL实例ID。例如：acl-12345678。
@@ -53,5 +37,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除网络ACL
+    ///
+    /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
+    @inlinable
+    public func deleteNetworkAcl(_ input: DeleteNetworkAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetworkAclResponse > {
+        self.client.execute(action: "DeleteNetworkAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除网络ACL
+    ///
+    /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
+    @inlinable
+    public func deleteNetworkAcl(_ input: DeleteNetworkAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkAclResponse {
+        try await self.client.execute(action: "DeleteNetworkAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

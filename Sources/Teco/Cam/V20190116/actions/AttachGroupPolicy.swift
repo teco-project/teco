@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 绑定策略到用户组
-    ///
-    /// 本接口（AttachGroupPolicy）可用于绑定策略到用户组。
-    @inlinable
-    public func attachGroupPolicy(_ input: AttachGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachGroupPolicyResponse > {
-        self.client.execute(action: "AttachGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定策略到用户组
-    ///
-    /// 本接口（AttachGroupPolicy）可用于绑定策略到用户组。
-    @inlinable
-    public func attachGroupPolicy(_ input: AttachGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachGroupPolicyResponse {
-        try await self.client.execute(action: "AttachGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AttachGroupPolicy请求参数结构体
     public struct AttachGroupPolicyRequest: TCRequestModel {
         /// 策略 id
@@ -58,5 +42,21 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定策略到用户组
+    ///
+    /// 本接口（AttachGroupPolicy）可用于绑定策略到用户组。
+    @inlinable
+    public func attachGroupPolicy(_ input: AttachGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachGroupPolicyResponse > {
+        self.client.execute(action: "AttachGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定策略到用户组
+    ///
+    /// 本接口（AttachGroupPolicy）可用于绑定策略到用户组。
+    @inlinable
+    public func attachGroupPolicy(_ input: AttachGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachGroupPolicyResponse {
+        try await self.client.execute(action: "AttachGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

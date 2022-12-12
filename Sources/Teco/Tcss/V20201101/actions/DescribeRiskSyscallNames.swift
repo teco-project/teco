@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时高危系统调用系统名称列表
-    ///
-    /// 查询运行时高危系统调用系统名称列表
-    @inlinable
-    public func describeRiskSyscallNames(_ input: DescribeRiskSyscallNamesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskSyscallNamesResponse > {
-        self.client.execute(action: "DescribeRiskSyscallNames", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时高危系统调用系统名称列表
-    ///
-    /// 查询运行时高危系统调用系统名称列表
-    @inlinable
-    public func describeRiskSyscallNames(_ input: DescribeRiskSyscallNamesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallNamesResponse {
-        try await self.client.execute(action: "DescribeRiskSyscallNames", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRiskSyscallNames请求参数结构体
     public struct DescribeRiskSyscallNamesRequest: TCRequestModel {
         public init () {
@@ -53,5 +37,21 @@ extension Tcss {
             case syscallNames = "SyscallNames"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时高危系统调用系统名称列表
+    ///
+    /// 查询运行时高危系统调用系统名称列表
+    @inlinable
+    public func describeRiskSyscallNames(_ input: DescribeRiskSyscallNamesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskSyscallNamesResponse > {
+        self.client.execute(action: "DescribeRiskSyscallNames", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时高危系统调用系统名称列表
+    ///
+    /// 查询运行时高危系统调用系统名称列表
+    @inlinable
+    public func describeRiskSyscallNames(_ input: DescribeRiskSyscallNamesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallNamesResponse {
+        try await self.client.execute(action: "DescribeRiskSyscallNames", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

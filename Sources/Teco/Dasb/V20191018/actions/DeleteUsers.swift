@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dasb {
-    /// 删除用户
-    @inlinable
-    public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUsersResponse > {
-        self.client.execute(action: "DeleteUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除用户
-    @inlinable
-    public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersResponse {
-        try await self.client.execute(action: "DeleteUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteUsers请求参数结构体
     public struct DeleteUsersRequest: TCRequestModel {
         /// 待删除的用户ID集合
@@ -49,5 +37,17 @@ extension Dasb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除用户
+    @inlinable
+    public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUsersResponse > {
+        self.client.execute(action: "DeleteUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除用户
+    @inlinable
+    public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersResponse {
+        try await self.client.execute(action: "DeleteUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

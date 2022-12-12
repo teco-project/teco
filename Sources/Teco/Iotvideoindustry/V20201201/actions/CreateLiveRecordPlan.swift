@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 创建直播录制计划
-    @inlinable
-    public func createLiveRecordPlan(_ input: CreateLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveRecordPlanResponse > {
-        self.client.execute(action: "CreateLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建直播录制计划
-    @inlinable
-    public func createLiveRecordPlan(_ input: CreateLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordPlanResponse {
-        try await self.client.execute(action: "CreateLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLiveRecordPlan请求参数结构体
     public struct CreateLiveRecordPlanRequest: TCRequestModel {
         /// 录制计划名
@@ -44,7 +32,7 @@ extension Iotvideoindustry {
         /// 绑定的直播频道ID列表
         public let liveChannelIds: [String]?
         
-        public init (planName: String, planType: Int64, templateId: String?, recordStorageTime: Int64?, liveChannelIds: [String]?) {
+        public init (planName: String, planType: Int64, templateId: String? = nil, recordStorageTime: Int64? = nil, liveChannelIds: [String]? = nil) {
             self.planName = planName
             self.planType = planType
             self.templateId = templateId
@@ -74,5 +62,17 @@ extension Iotvideoindustry {
             case planId = "PlanId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建直播录制计划
+    @inlinable
+    public func createLiveRecordPlan(_ input: CreateLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveRecordPlanResponse > {
+        self.client.execute(action: "CreateLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建直播录制计划
+    @inlinable
+    public func createLiveRecordPlan(_ input: CreateLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordPlanResponse {
+        try await self.client.execute(action: "CreateLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

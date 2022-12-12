@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 根据歌曲ID查询歌曲信息
-    @inlinable
-    public func describeItemById(_ input: DescribeItemByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeItemByIdResponse > {
-        self.client.execute(action: "DescribeItemById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据歌曲ID查询歌曲信息
-    @inlinable
-    public func describeItemById(_ input: DescribeItemByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeItemByIdResponse {
-        try await self.client.execute(action: "DescribeItemById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeItemById请求参数结构体
     public struct DescribeItemByIdRequest: TCRequestModel {
         /// 歌曲ID，目前暂不支持批量查询
@@ -54,5 +42,17 @@ extension Ame {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据歌曲ID查询歌曲信息
+    @inlinable
+    public func describeItemById(_ input: DescribeItemByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeItemByIdResponse > {
+        self.client.execute(action: "DescribeItemById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据歌曲ID查询歌曲信息
+    @inlinable
+    public func describeItemById(_ input: DescribeItemByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeItemByIdResponse {
+        try await self.client.execute(action: "DescribeItemById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

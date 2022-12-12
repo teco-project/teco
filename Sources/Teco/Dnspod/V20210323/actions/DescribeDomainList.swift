@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 获取域名列表
-    @inlinable
-    public func describeDomainList(_ input: DescribeDomainListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainListResponse > {
-        self.client.execute(action: "DescribeDomainList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取域名列表
-    @inlinable
-    public func describeDomainList(_ input: DescribeDomainListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainListResponse {
-        try await self.client.execute(action: "DescribeDomainList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomainList请求参数结构体
     public struct DescribeDomainListRequest: TCRequestModel {
         /// 域名分组类型，默认为ALL。可取值为ALL，MINE，SHARE，ISMARK，PAUSE，VIP，RECENT，SHARE_OUT。
@@ -44,7 +32,7 @@ extension Dnspod {
         /// 根据关键字搜索域名
         public let keyword: String?
         
-        public init (type: String?, offset: Int64?, limit: Int64?, groupId: Int64?, keyword: String?) {
+        public init (type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupId: Int64? = nil, keyword: String? = nil) {
             self.type = type
             self.offset = offset
             self.limit = limit
@@ -77,5 +65,17 @@ extension Dnspod {
             case domainList = "DomainList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取域名列表
+    @inlinable
+    public func describeDomainList(_ input: DescribeDomainListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainListResponse > {
+        self.client.execute(action: "DescribeDomainList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取域名列表
+    @inlinable
+    public func describeDomainList(_ input: DescribeDomainListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainListResponse {
+        try await self.client.execute(action: "DescribeDomainList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 查自定义码规则列表
-    @inlinable
-    public func describeCustomRules(_ input: DescribeCustomRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomRulesResponse > {
-        self.client.execute(action: "DescribeCustomRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查自定义码规则列表
-    @inlinable
-    public func describeCustomRules(_ input: DescribeCustomRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomRulesResponse {
-        try await self.client.execute(action: "DescribeCustomRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomRules请求参数结构体
     public struct DescribeCustomRulesRequest: TCRequestModel {
         /// 搜索关键字
@@ -47,7 +35,7 @@ extension Trp {
         /// 商户ID
         public let merchantId: String?
         
-        public init (keyword: String?, pageSize: UInt64?, pageNumber: UInt64?, corpId: UInt64?, status: Int64?, merchantId: String?) {
+        public init (keyword: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, corpId: UInt64? = nil, status: Int64? = nil, merchantId: String? = nil) {
             self.keyword = keyword
             self.pageSize = pageSize
             self.pageNumber = pageNumber
@@ -84,5 +72,17 @@ extension Trp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查自定义码规则列表
+    @inlinable
+    public func describeCustomRules(_ input: DescribeCustomRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomRulesResponse > {
+        self.client.execute(action: "DescribeCustomRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查自定义码规则列表
+    @inlinable
+    public func describeCustomRules(_ input: DescribeCustomRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomRulesResponse {
+        try await self.client.execute(action: "DescribeCustomRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

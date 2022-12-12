@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 更新安全日志投递kafka设置
-    @inlinable
-    public func modifySecLogDeliveryKafkaSetting(_ input: ModifySecLogDeliveryKafkaSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogDeliveryKafkaSettingResponse > {
-        self.client.execute(action: "ModifySecLogDeliveryKafkaSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新安全日志投递kafka设置
-    @inlinable
-    public func modifySecLogDeliveryKafkaSetting(_ input: ModifySecLogDeliveryKafkaSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogDeliveryKafkaSettingResponse {
-        try await self.client.execute(action: "ModifySecLogDeliveryKafkaSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySecLogDeliveryKafkaSetting请求参数结构体
     public struct ModifySecLogDeliveryKafkaSettingRequest: TCRequestModel {
         /// 实例ID
@@ -56,7 +44,7 @@ extension Tcss {
         /// 地域ID
         public let regionID: String?
         
-        public init (instanceID: String?, instanceName: String?, domain: String?, user: String?, password: String?, logTypeList: [SecLogDeliveryKafkaSettingInfo]?, accessType: Int64?, kafkaVersion: String?, regionID: String?) {
+        public init (instanceID: String? = nil, instanceName: String? = nil, domain: String? = nil, user: String? = nil, password: String? = nil, logTypeList: [SecLogDeliveryKafkaSettingInfo]? = nil, accessType: Int64? = nil, kafkaVersion: String? = nil, regionID: String? = nil) {
             self.instanceID = instanceID
             self.instanceName = instanceName
             self.domain = domain
@@ -89,5 +77,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新安全日志投递kafka设置
+    @inlinable
+    public func modifySecLogDeliveryKafkaSetting(_ input: ModifySecLogDeliveryKafkaSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogDeliveryKafkaSettingResponse > {
+        self.client.execute(action: "ModifySecLogDeliveryKafkaSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新安全日志投递kafka设置
+    @inlinable
+    public func modifySecLogDeliveryKafkaSetting(_ input: ModifySecLogDeliveryKafkaSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogDeliveryKafkaSettingResponse {
+        try await self.client.execute(action: "ModifySecLogDeliveryKafkaSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

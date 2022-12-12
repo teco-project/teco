@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 更新版本保留规则
-    @inlinable
-    public func modifyTagRetentionRule(_ input: ModifyTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTagRetentionRuleResponse > {
-        self.client.execute(action: "ModifyTagRetentionRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新版本保留规则
-    @inlinable
-    public func modifyTagRetentionRule(_ input: ModifyTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTagRetentionRuleResponse {
-        try await self.client.execute(action: "ModifyTagRetentionRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTagRetentionRule请求参数结构体
     public struct ModifyTagRetentionRuleRequest: TCRequestModel {
         /// 主实例iD
@@ -47,7 +35,7 @@ extension Tcr {
         /// 是否禁用规则
         public let disabled: Bool?
         
-        public init (registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, retentionId: Int64, disabled: Bool?) {
+        public init (registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, retentionId: Int64, disabled: Bool? = nil) {
             self.registryId = registryId
             self.namespaceId = namespaceId
             self.retentionRule = retentionRule
@@ -74,5 +62,17 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新版本保留规则
+    @inlinable
+    public func modifyTagRetentionRule(_ input: ModifyTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTagRetentionRuleResponse > {
+        self.client.execute(action: "ModifyTagRetentionRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新版本保留规则
+    @inlinable
+    public func modifyTagRetentionRule(_ input: ModifyTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTagRetentionRuleResponse {
+        try await self.client.execute(action: "ModifyTagRetentionRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

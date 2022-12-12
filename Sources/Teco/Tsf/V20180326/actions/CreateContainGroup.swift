@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 创建容器部署组
-    @inlinable
-    public func createContainGroup(_ input: CreateContainGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateContainGroupResponse > {
-        self.client.execute(action: "CreateContainGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建容器部署组
-    @inlinable
-    public func createContainGroup(_ input: CreateContainGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContainGroupResponse {
-        try await self.client.execute(action: "CreateContainGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateContainGroup请求参数结构体
     public struct CreateContainGroupRequest: TCRequestModel {
         /// 分组所属应用ID
@@ -101,7 +89,7 @@ extension Tsf {
         /// istioproxy 容器最大的内存 MiB 数，对应 K8S 的 limit
         public let istioMemLimit: String?
         
-        public init (applicationId: String, namespaceId: String, groupName: String, instanceNum: Int64, accessType: Int64, protocolPorts: [ProtocolPort], clusterId: String, cpuLimit: String?, memLimit: String?, groupComment: String?, updateType: Int64?, updateIvl: Int64?, cpuRequest: String?, memRequest: String?, groupResourceType: String?, subnetId: String?, agentCpuRequest: String?, agentCpuLimit: String?, agentMemRequest: String?, agentMemLimit: String?, istioCpuRequest: String?, istioCpuLimit: String?, istioMemRequest: String?, istioMemLimit: String?) {
+        public init (applicationId: String, namespaceId: String, groupName: String, instanceNum: Int64, accessType: Int64, protocolPorts: [ProtocolPort], clusterId: String, cpuLimit: String? = nil, memLimit: String? = nil, groupComment: String? = nil, updateType: Int64? = nil, updateIvl: Int64? = nil, cpuRequest: String? = nil, memRequest: String? = nil, groupResourceType: String? = nil, subnetId: String? = nil, agentCpuRequest: String? = nil, agentCpuLimit: String? = nil, agentMemRequest: String? = nil, agentMemLimit: String? = nil, istioCpuRequest: String? = nil, istioCpuLimit: String? = nil, istioMemRequest: String? = nil, istioMemLimit: String? = nil) {
             self.applicationId = applicationId
             self.namespaceId = namespaceId
             self.groupName = groupName
@@ -168,5 +156,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建容器部署组
+    @inlinable
+    public func createContainGroup(_ input: CreateContainGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateContainGroupResponse > {
+        self.client.execute(action: "CreateContainGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建容器部署组
+    @inlinable
+    public func createContainGroup(_ input: CreateContainGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContainGroupResponse {
+        try await self.client.execute(action: "CreateContainGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

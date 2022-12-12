@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 枚举cmq全量主题
-    @inlinable
-    public func describeCmqTopics(_ input: DescribeCmqTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCmqTopicsResponse > {
-        self.client.execute(action: "DescribeCmqTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 枚举cmq全量主题
-    @inlinable
-    public func describeCmqTopics(_ input: DescribeCmqTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqTopicsResponse {
-        try await self.client.execute(action: "DescribeCmqTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCmqTopics请求参数结构体
     public struct DescribeCmqTopicsRequest: TCRequestModel {
         /// 分页时本页获取队列列表的起始位置。如果填写了该值，必须也要填写 limit 。该值缺省时，后台取默认值 0
@@ -47,7 +35,7 @@ extension Tdmq {
         /// 过滤器。目前支持按标签过滤，标签的Name需要加前缀“tag:”，例如：tag:负责人、tag:环境、tag:业务
         public let filters: [Filter]?
         
-        public init (offset: UInt64?, limit: UInt64?, topicName: String?, topicNameList: [String]?, isTagFilter: Bool?, filters: [Filter]?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, topicName: String? = nil, topicNameList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.topicName = topicName
@@ -83,5 +71,17 @@ extension Tdmq {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 枚举cmq全量主题
+    @inlinable
+    public func describeCmqTopics(_ input: DescribeCmqTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCmqTopicsResponse > {
+        self.client.execute(action: "DescribeCmqTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 枚举cmq全量主题
+    @inlinable
+    public func describeCmqTopics(_ input: DescribeCmqTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqTopicsResponse {
+        try await self.client.execute(action: "DescribeCmqTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

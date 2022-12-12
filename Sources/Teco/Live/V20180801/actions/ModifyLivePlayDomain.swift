@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 修改播放域名信息
-    ///
-    /// 修改播放域名信息。
-    @inlinable
-    public func modifyLivePlayDomain(_ input: ModifyLivePlayDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLivePlayDomainResponse > {
-        self.client.execute(action: "ModifyLivePlayDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改播放域名信息
-    ///
-    /// 修改播放域名信息。
-    @inlinable
-    public func modifyLivePlayDomain(_ input: ModifyLivePlayDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayDomainResponse {
-        try await self.client.execute(action: "ModifyLivePlayDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLivePlayDomain请求参数结构体
     public struct ModifyLivePlayDomainRequest: TCRequestModel {
         /// 播放域名。
@@ -58,5 +42,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改播放域名信息
+    ///
+    /// 修改播放域名信息。
+    @inlinable
+    public func modifyLivePlayDomain(_ input: ModifyLivePlayDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLivePlayDomainResponse > {
+        self.client.execute(action: "ModifyLivePlayDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改播放域名信息
+    ///
+    /// 修改播放域名信息。
+    @inlinable
+    public func modifyLivePlayDomain(_ input: ModifyLivePlayDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayDomainResponse {
+        try await self.client.execute(action: "ModifyLivePlayDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 修改云硬盘续费标识
-    ///
-    /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识。
-    @inlinable
-    public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDisksRenewFlagResponse > {
-        self.client.execute(action: "ModifyDisksRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改云硬盘续费标识
-    ///
-    /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识。
-    @inlinable
-    public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksRenewFlagResponse {
-        try await self.client.execute(action: "ModifyDisksRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDisksRenewFlag请求参数结构体
     public struct ModifyDisksRenewFlagRequest: TCRequestModel {
         /// 云硬盘ID列表。
@@ -58,5 +42,21 @@ extension Lighthouse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改云硬盘续费标识
+    ///
+    /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识。
+    @inlinable
+    public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDisksRenewFlagResponse > {
+        self.client.execute(action: "ModifyDisksRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云硬盘续费标识
+    ///
+    /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识。
+    @inlinable
+    public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksRenewFlagResponse {
+        try await self.client.execute(action: "ModifyDisksRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

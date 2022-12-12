@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Smh {
-    /// 查询官方实例
-    ///
-    /// 查询官方云盘实例
-    @inlinable
-    public func describeOfficialInstances(_ input: DescribeOfficialInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfficialInstancesResponse > {
-        self.client.execute(action: "DescribeOfficialInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询官方实例
-    ///
-    /// 查询官方云盘实例
-    @inlinable
-    public func describeOfficialInstances(_ input: DescribeOfficialInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfficialInstancesResponse {
-        try await self.client.execute(action: "DescribeOfficialInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOfficialInstances请求参数结构体
     public struct DescribeOfficialInstancesRequest: TCRequestModel {
         /// 是否查询实例绑定的超级管理员账号，默认值为 false。
@@ -57,7 +41,7 @@ extension Smh {
         /// 超级管理管理员账号是否绑定了手机号
         public let bindPhone: Bool?
         
-        public init (superAdminAccount: Bool?, instanceIds: [String]?, pageNumber: UInt64?, pageSize: UInt64?, orderBy: String?, orderByType: String?, autoRenew: UInt64?, bindPhone: Bool?) {
+        public init (superAdminAccount: Bool? = nil, instanceIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, autoRenew: UInt64? = nil, bindPhone: Bool? = nil) {
             self.superAdminAccount = superAdminAccount
             self.instanceIds = instanceIds
             self.pageNumber = pageNumber
@@ -96,5 +80,21 @@ extension Smh {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询官方实例
+    ///
+    /// 查询官方云盘实例
+    @inlinable
+    public func describeOfficialInstances(_ input: DescribeOfficialInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfficialInstancesResponse > {
+        self.client.execute(action: "DescribeOfficialInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询官方实例
+    ///
+    /// 查询官方云盘实例
+    @inlinable
+    public func describeOfficialInstances(_ input: DescribeOfficialInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfficialInstancesResponse {
+        try await self.client.execute(action: "DescribeOfficialInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

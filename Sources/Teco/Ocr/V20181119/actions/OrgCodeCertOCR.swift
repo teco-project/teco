@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 组织机构代码证识别
-    ///
-    /// 本接口支持组织机构代码证关键字段的识别，包括代码、有效期、地址、机构名称等。
-    @inlinable
-    public func orgCodeCertOCR(_ input: OrgCodeCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OrgCodeCertOCRResponse > {
-        self.client.execute(action: "OrgCodeCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 组织机构代码证识别
-    ///
-    /// 本接口支持组织机构代码证关键字段的识别，包括代码、有效期、地址、机构名称等。
-    @inlinable
-    public func orgCodeCertOCR(_ input: OrgCodeCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OrgCodeCertOCRResponse {
-        try await self.client.execute(action: "OrgCodeCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OrgCodeCertOCR请求参数结构体
     public struct OrgCodeCertOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -46,7 +30,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -81,5 +65,21 @@ extension Ocr {
             case validDate = "ValidDate"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 组织机构代码证识别
+    ///
+    /// 本接口支持组织机构代码证关键字段的识别，包括代码、有效期、地址、机构名称等。
+    @inlinable
+    public func orgCodeCertOCR(_ input: OrgCodeCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OrgCodeCertOCRResponse > {
+        self.client.execute(action: "OrgCodeCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 组织机构代码证识别
+    ///
+    /// 本接口支持组织机构代码证关键字段的识别，包括代码、有效期、地址、机构名称等。
+    @inlinable
+    public func orgCodeCertOCR(_ input: OrgCodeCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OrgCodeCertOCRResponse {
+        try await self.client.execute(action: "OrgCodeCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

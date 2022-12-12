@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 获取彩信实例列表
-    @inlinable
-    public func describeMmsInstanceList(_ input: DescribeMmsInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMmsInstanceListResponse > {
-        self.client.execute(action: "DescribeMmsInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取彩信实例列表
-    @inlinable
-    public func describeMmsInstanceList(_ input: DescribeMmsInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceListResponse {
-        try await self.client.execute(action: "DescribeMmsInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMmsInstanceList请求参数结构体
     public struct DescribeMmsInstanceListRequest: TCRequestModel {
         /// 商户证书
@@ -44,7 +32,7 @@ extension Zj {
         /// 实例标题
         public let title: String?
         
-        public init (license: String, offset: Int64, limit: Int64, appSubId: String?, title: String?) {
+        public init (license: String, offset: Int64, limit: Int64, appSubId: String? = nil, title: String? = nil) {
             self.license = license
             self.offset = offset
             self.limit = limit
@@ -73,5 +61,17 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取彩信实例列表
+    @inlinable
+    public func describeMmsInstanceList(_ input: DescribeMmsInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMmsInstanceListResponse > {
+        self.client.execute(action: "DescribeMmsInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取彩信实例列表
+    @inlinable
+    public func describeMmsInstanceList(_ input: DescribeMmsInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceListResponse {
+        try await self.client.execute(action: "DescribeMmsInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

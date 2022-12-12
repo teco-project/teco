@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 印章识别
-    ///
-    /// 本接口支持各类印章识别，包括发票章，财务章等，适用于公文，票据等场景。
-    @inlinable
-    public func sealOCR(_ input: SealOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SealOCRResponse > {
-        self.client.execute(action: "SealOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 印章识别
-    ///
-    /// 本接口支持各类印章识别，包括发票章，财务章等，适用于公文，票据等场景。
-    @inlinable
-    public func sealOCR(_ input: SealOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SealOCRResponse {
-        try await self.client.execute(action: "SealOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SealOCR请求参数结构体
     public struct SealOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
@@ -41,7 +25,7 @@ extension Ocr {
         /// 建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -76,5 +60,21 @@ extension Ocr {
             case sealInfos = "SealInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 印章识别
+    ///
+    /// 本接口支持各类印章识别，包括发票章，财务章等，适用于公文，票据等场景。
+    @inlinable
+    public func sealOCR(_ input: SealOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SealOCRResponse > {
+        self.client.execute(action: "SealOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 印章识别
+    ///
+    /// 本接口支持各类印章识别，包括发票章，财务章等，适用于公文，票据等场景。
+    @inlinable
+    public func sealOCR(_ input: SealOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SealOCRResponse {
+        try await self.client.execute(action: "SealOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 查询资源推送任务列表
-    @inlinable
-    public func describeResourceTasks(_ input: DescribeResourceTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceTasksResponse > {
-        self.client.execute(action: "DescribeResourceTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询资源推送任务列表
-    @inlinable
-    public func describeResourceTasks(_ input: DescribeResourceTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTasksResponse {
-        try await self.client.execute(action: "DescribeResourceTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourceTasks请求参数结构体
     public struct DescribeResourceTasksRequest: TCRequestModel {
         /// 产品ID
@@ -44,7 +32,7 @@ extension Iotcloud {
         /// 搜索过滤条件
         public let filters: [SearchKeyword]?
         
-        public init (productID: String, name: String, offset: UInt64, limit: UInt64, filters: [SearchKeyword]?) {
+        public init (productID: String, name: String, offset: UInt64, limit: UInt64, filters: [SearchKeyword]? = nil) {
             self.productID = productID
             self.name = name
             self.offset = offset
@@ -79,5 +67,17 @@ extension Iotcloud {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询资源推送任务列表
+    @inlinable
+    public func describeResourceTasks(_ input: DescribeResourceTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceTasksResponse > {
+        self.client.execute(action: "DescribeResourceTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资源推送任务列表
+    @inlinable
+    public func describeResourceTasks(_ input: DescribeResourceTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTasksResponse {
+        try await self.client.execute(action: "DescribeResourceTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

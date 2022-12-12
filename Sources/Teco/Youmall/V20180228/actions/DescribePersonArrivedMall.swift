@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 查询客户到场信息
-    ///
-    /// 输出开始时间到结束时间段内的进出场数据。不做按天聚合的情况下，每次进出场，产生一条进出场数据。
-    @inlinable
-    public func describePersonArrivedMall(_ input: DescribePersonArrivedMallRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonArrivedMallResponse > {
-        self.client.execute(action: "DescribePersonArrivedMall", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询客户到场信息
-    ///
-    /// 输出开始时间到结束时间段内的进出场数据。不做按天聚合的情况下，每次进出场，产生一条进出场数据。
-    @inlinable
-    public func describePersonArrivedMall(_ input: DescribePersonArrivedMallRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonArrivedMallResponse {
-        try await self.client.execute(action: "DescribePersonArrivedMall", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePersonArrivedMall请求参数结构体
     public struct DescribePersonArrivedMallRequest: TCRequestModel {
         /// 卖场编码
@@ -84,5 +68,21 @@ extension Youmall {
             case arrivedMallSet = "ArrivedMallSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询客户到场信息
+    ///
+    /// 输出开始时间到结束时间段内的进出场数据。不做按天聚合的情况下，每次进出场，产生一条进出场数据。
+    @inlinable
+    public func describePersonArrivedMall(_ input: DescribePersonArrivedMallRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonArrivedMallResponse > {
+        self.client.execute(action: "DescribePersonArrivedMall", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询客户到场信息
+    ///
+    /// 输出开始时间到结束时间段内的进出场数据。不做按天聚合的情况下，每次进出场，产生一条进出场数据。
+    @inlinable
+    public func describePersonArrivedMall(_ input: DescribePersonArrivedMallRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonArrivedMallResponse {
+        try await self.client.execute(action: "DescribePersonArrivedMall", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

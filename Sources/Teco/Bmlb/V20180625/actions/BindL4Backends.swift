@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 绑定黑石服务器到四层监听器
-    ///
-    /// 绑定黑石服务器到四层监听器。服务器包括物理服务器、虚拟机以及半托管机器。
-    @inlinable
-    public func bindL4Backends(_ input: BindL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindL4BackendsResponse > {
-        self.client.execute(action: "BindL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定黑石服务器到四层监听器
-    ///
-    /// 绑定黑石服务器到四层监听器。服务器包括物理服务器、虚拟机以及半托管机器。
-    @inlinable
-    public func bindL4Backends(_ input: BindL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindL4BackendsResponse {
-        try await self.client.execute(action: "BindL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindL4Backends请求参数结构体
     public struct BindL4BackendsRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -72,5 +56,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定黑石服务器到四层监听器
+    ///
+    /// 绑定黑石服务器到四层监听器。服务器包括物理服务器、虚拟机以及半托管机器。
+    @inlinable
+    public func bindL4Backends(_ input: BindL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindL4BackendsResponse > {
+        self.client.execute(action: "BindL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定黑石服务器到四层监听器
+    ///
+    /// 绑定黑石服务器到四层监听器。服务器包括物理服务器、虚拟机以及半托管机器。
+    @inlinable
+    public func bindL4Backends(_ input: BindL4BackendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindL4BackendsResponse {
+        try await self.client.execute(action: "BindL4Backends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

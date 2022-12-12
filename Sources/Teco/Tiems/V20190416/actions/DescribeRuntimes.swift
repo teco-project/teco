@@ -17,6 +17,31 @@
 @_exported import struct Foundation.Date
 
 extension Tiems {
+    /// DescribeRuntimes请求参数结构体
+    public struct DescribeRuntimesRequest: TCRequestModel {
+        public init () {
+        }
+    }
+    
+    /// DescribeRuntimes返回参数结构体
+    public struct DescribeRuntimesResponse: TCResponseModel {
+        /// TIEMS支持的运行环境列表
+        public let runtimes: [Runtime]
+        
+        /// 用户对runtime对权限
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userAccess: UInt64?
+        
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case runtimes = "Runtimes"
+            case userAccess = "UserAccess"
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 描述服务运行环境
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
@@ -33,30 +58,5 @@ extension Tiems {
     @inlinable
     public func describeRuntimes(_ input: DescribeRuntimesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuntimesResponse {
         try await self.client.execute(action: "DescribeRuntimes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// DescribeRuntimes请求参数结构体
-    public struct DescribeRuntimesRequest: TCRequestModel {
-        public init () {
-        }
-    }
-    
-    /// DescribeRuntimes返回参数结构体
-    public struct DescribeRuntimesResponse: TCResponseModel {
-        /// TIEMS支持的运行环境列表
-        public let runtimes: [Date]
-        
-        /// 用户对runtime对权限
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let userAccess: UInt64?
-        
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case runtimes = "Runtimes"
-            case userAccess = "UserAccess"
-            case requestId = "RequestId"
-        }
     }
 }

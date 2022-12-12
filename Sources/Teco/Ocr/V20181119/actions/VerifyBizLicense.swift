@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 营业执照识别及核验（详细版）
-    ///
-    /// 本接口支持营业执照信息的识别与准确性核验，返回的真实工商照面信息比营业执照识别及核验（基础版）接口更详细。
-    /// 您可以输入营业执照注册号或营业执照图片（若两者都输入则只用注册号做查询），接口返回查询到的工商照面信息，并比对要校验的字段与查询结果的一致性。
-    /// 查询到工商信息包括：统一社会信用代码、组织机构代码、经营期限、法人姓名、经营状态、经营业务范围及方式、注册资金、注册币种、登记机关、开业日期、企业（机构）类型、注销日期、吊销日期、许可经营项目、一般经营项目、核准时间、省、地级市、区/县、住所所在行政区划代码、行业门类代码、行业门类名称、国民经济行业代码、国民经济行业名称、经营（业务）范围等。
-    @inlinable
-    public func verifyBizLicense(_ input: VerifyBizLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyBizLicenseResponse > {
-        self.client.execute(action: "VerifyBizLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 营业执照识别及核验（详细版）
-    ///
-    /// 本接口支持营业执照信息的识别与准确性核验，返回的真实工商照面信息比营业执照识别及核验（基础版）接口更详细。
-    /// 您可以输入营业执照注册号或营业执照图片（若两者都输入则只用注册号做查询），接口返回查询到的工商照面信息，并比对要校验的字段与查询结果的一致性。
-    /// 查询到工商信息包括：统一社会信用代码、组织机构代码、经营期限、法人姓名、经营状态、经营业务范围及方式、注册资金、注册币种、登记机关、开业日期、企业（机构）类型、注销日期、吊销日期、许可经营项目、一般经营项目、核准时间、省、地级市、区/县、住所所在行政区划代码、行业门类代码、行业门类名称、国民经济行业代码、国民经济行业名称、经营（业务）范围等。
-    @inlinable
-    public func verifyBizLicense(_ input: VerifyBizLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyBizLicenseResponse {
-        try await self.client.execute(action: "VerifyBizLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifyBizLicense请求参数结构体
     public struct VerifyBizLicenseRequest: TCRequestModel {
         /// 用于入参是营业执照图片的场景，ImageBase64和ImageUrl必须提供一个，如果都提供，只使用 ImageUrl。
@@ -64,7 +44,7 @@ extension Ocr {
         /// 用于入参是文本的场景，Address表示经营地址，填写后会返回Address的校验结果。
         public let address: String?
         
-        public init (imageBase64: String?, imageUrl: String?, imageConfig: String?, regNum: String?, name: String?, address: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, imageConfig: String? = nil, regNum: String? = nil, name: String? = nil, address: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.imageConfig = imageConfig
@@ -227,5 +207,25 @@ extension Ocr {
             case regNumResult = "RegNumResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 营业执照识别及核验（详细版）
+    ///
+    /// 本接口支持营业执照信息的识别与准确性核验，返回的真实工商照面信息比营业执照识别及核验（基础版）接口更详细。
+    /// 您可以输入营业执照注册号或营业执照图片（若两者都输入则只用注册号做查询），接口返回查询到的工商照面信息，并比对要校验的字段与查询结果的一致性。
+    /// 查询到工商信息包括：统一社会信用代码、组织机构代码、经营期限、法人姓名、经营状态、经营业务范围及方式、注册资金、注册币种、登记机关、开业日期、企业（机构）类型、注销日期、吊销日期、许可经营项目、一般经营项目、核准时间、省、地级市、区/县、住所所在行政区划代码、行业门类代码、行业门类名称、国民经济行业代码、国民经济行业名称、经营（业务）范围等。
+    @inlinable
+    public func verifyBizLicense(_ input: VerifyBizLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyBizLicenseResponse > {
+        self.client.execute(action: "VerifyBizLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 营业执照识别及核验（详细版）
+    ///
+    /// 本接口支持营业执照信息的识别与准确性核验，返回的真实工商照面信息比营业执照识别及核验（基础版）接口更详细。
+    /// 您可以输入营业执照注册号或营业执照图片（若两者都输入则只用注册号做查询），接口返回查询到的工商照面信息，并比对要校验的字段与查询结果的一致性。
+    /// 查询到工商信息包括：统一社会信用代码、组织机构代码、经营期限、法人姓名、经营状态、经营业务范围及方式、注册资金、注册币种、登记机关、开业日期、企业（机构）类型、注销日期、吊销日期、许可经营项目、一般经营项目、核准时间、省、地级市、区/县、住所所在行政区划代码、行业门类代码、行业门类名称、国民经济行业代码、国民经济行业名称、经营（业务）范围等。
+    @inlinable
+    public func verifyBizLicense(_ input: VerifyBizLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyBizLicenseResponse {
+        try await self.client.execute(action: "VerifyBizLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

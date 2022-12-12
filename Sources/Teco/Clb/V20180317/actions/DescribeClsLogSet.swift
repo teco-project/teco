@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 获取用户的CLB专有日志集
-    ///
-    /// 获取用户的CLB专有日志集。
-    @inlinable
-    public func describeClsLogSet(_ input: DescribeClsLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClsLogSetResponse > {
-        self.client.execute(action: "DescribeClsLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户的CLB专有日志集
-    ///
-    /// 获取用户的CLB专有日志集。
-    @inlinable
-    public func describeClsLogSet(_ input: DescribeClsLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClsLogSetResponse {
-        try await self.client.execute(action: "DescribeClsLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClsLogSet请求参数结构体
     public struct DescribeClsLogSetRequest: TCRequestModel {
         public init () {
@@ -53,5 +37,21 @@ extension Clb {
             case healthLogsetId = "HealthLogsetId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户的CLB专有日志集
+    ///
+    /// 获取用户的CLB专有日志集。
+    @inlinable
+    public func describeClsLogSet(_ input: DescribeClsLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClsLogSetResponse > {
+        self.client.execute(action: "DescribeClsLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户的CLB专有日志集
+    ///
+    /// 获取用户的CLB专有日志集。
+    @inlinable
+    public func describeClsLogSet(_ input: DescribeClsLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClsLogSetResponse {
+        try await self.client.execute(action: "DescribeClsLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// 获取DDoS攻击占比分析
-    @inlinable
-    public func describeDDoSCount(_ input: DescribeDDoSCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSCountResponse > {
-        self.client.execute(action: "DescribeDDoSCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DDoS攻击占比分析
-    @inlinable
-    public func describeDDoSCount(_ input: DescribeDDoSCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSCountResponse {
-        try await self.client.execute(action: "DescribeDDoSCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSCount请求参数结构体
     public struct DescribeDDoSCountRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -120,5 +108,17 @@ extension Dayu {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DDoS攻击占比分析
+    @inlinable
+    public func describeDDoSCount(_ input: DescribeDDoSCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSCountResponse > {
+        self.client.execute(action: "DescribeDDoSCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS攻击占比分析
+    @inlinable
+    public func describeDDoSCount(_ input: DescribeDDoSCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSCountResponse {
+        try await self.client.execute(action: "DescribeDDoSCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

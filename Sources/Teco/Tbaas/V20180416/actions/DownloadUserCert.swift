@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 下载用户证书
-    @inlinable
-    public func downloadUserCert(_ input: DownloadUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadUserCertResponse > {
-        self.client.execute(action: "DownloadUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下载用户证书
-    @inlinable
-    public func downloadUserCert(_ input: DownloadUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadUserCertResponse {
-        try await self.client.execute(action: "DownloadUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DownloadUserCert请求参数结构体
     public struct DownloadUserCertRequest: TCRequestModel {
         /// 模块名，固定字段：cert_mng
@@ -82,5 +70,17 @@ extension Tbaas {
             case certCtx = "CertCtx"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下载用户证书
+    @inlinable
+    public func downloadUserCert(_ input: DownloadUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadUserCertResponse > {
+        self.client.execute(action: "DownloadUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下载用户证书
+    @inlinable
+    public func downloadUserCert(_ input: DownloadUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadUserCertResponse {
+        try await self.client.execute(action: "DownloadUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询web防护攻击事件
-    @inlinable
-    public func describeWebProtectionAttackEvents(_ input: DescribeWebProtectionAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebProtectionAttackEventsResponse > {
-        self.client.execute(action: "DescribeWebProtectionAttackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询web防护攻击事件
-    @inlinable
-    public func describeWebProtectionAttackEvents(_ input: DescribeWebProtectionAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionAttackEventsResponse {
-        try await self.client.execute(action: "DescribeWebProtectionAttackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWebProtectionAttackEvents请求参数结构体
     public struct DescribeWebProtectionAttackEventsRequest: TCRequestModel {
         /// 开始时间
@@ -51,7 +39,7 @@ extension Teo {
         /// 站点集合
         public let zoneIds: [String]?
         
-        public init (startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, domains: [String]?, zoneIds: [String]?) {
+        public init (startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, domains: [String]? = nil, zoneIds: [String]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.pageSize = pageSize
@@ -90,5 +78,17 @@ extension Teo {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询web防护攻击事件
+    @inlinable
+    public func describeWebProtectionAttackEvents(_ input: DescribeWebProtectionAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebProtectionAttackEventsResponse > {
+        self.client.execute(action: "DescribeWebProtectionAttackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询web防护攻击事件
+    @inlinable
+    public func describeWebProtectionAttackEvents(_ input: DescribeWebProtectionAttackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionAttackEventsResponse {
+        try await self.client.execute(action: "DescribeWebProtectionAttackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 智慧零售-发票红冲V2
-    @inlinable
-    public func createRedInvoiceV2(_ input: CreateRedInvoiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRedInvoiceV2Response > {
-        self.client.execute(action: "CreateRedInvoiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 智慧零售-发票红冲V2
-    @inlinable
-    public func createRedInvoiceV2(_ input: CreateRedInvoiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRedInvoiceV2Response {
-        try await self.client.execute(action: "CreateRedInvoiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRedInvoiceV2请求参数结构体
     public struct CreateRedInvoiceV2Request: TCRequestModel {
         /// 开票平台ID
@@ -43,7 +31,7 @@ extension Cpdp {
         /// 开票渠道。0：线上渠道，1：线下渠道。不填默认为线上渠道
         public let invoiceChannel: Int64?
         
-        public init (invoicePlatformId: Int64, orderId: String, profile: String?, invoiceChannel: Int64?) {
+        public init (invoicePlatformId: Int64, orderId: String, profile: String? = nil, invoiceChannel: Int64? = nil) {
             self.invoicePlatformId = invoicePlatformId
             self.orderId = orderId
             self.profile = profile
@@ -62,7 +50,7 @@ extension Cpdp {
     public struct CreateRedInvoiceV2Response: TCResponseModel {
         /// 红冲结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: CreateRedInvoiceResultV2
+        public let result: CreateRedInvoiceResultV2?
         
         /// 错误码
         public let errCode: String
@@ -79,5 +67,17 @@ extension Cpdp {
             case errMessage = "ErrMessage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 智慧零售-发票红冲V2
+    @inlinable
+    public func createRedInvoiceV2(_ input: CreateRedInvoiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRedInvoiceV2Response > {
+        self.client.execute(action: "CreateRedInvoiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 智慧零售-发票红冲V2
+    @inlinable
+    public func createRedInvoiceV2(_ input: CreateRedInvoiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRedInvoiceV2Response {
+        try await self.client.execute(action: "CreateRedInvoiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

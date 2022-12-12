@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 续跑任务批次
-    ///
-    /// 对执行失败的任务批次执行续跑
-    @inlinable
-    public func continueRunFailedTaskBatch(_ input: ContinueRunFailedTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ContinueRunFailedTaskBatchResponse > {
-        self.client.execute(action: "ContinueRunFailedTaskBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续跑任务批次
-    ///
-    /// 对执行失败的任务批次执行续跑
-    @inlinable
-    public func continueRunFailedTaskBatch(_ input: ContinueRunFailedTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ContinueRunFailedTaskBatchResponse {
-        try await self.client.execute(action: "ContinueRunFailedTaskBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ContinueRunFailedTaskBatch请求参数结构体
     public struct ContinueRunFailedTaskBatchRequest: TCRequestModel {
         /// 批次ID。
@@ -57,5 +41,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续跑任务批次
+    ///
+    /// 对执行失败的任务批次执行续跑
+    @inlinable
+    public func continueRunFailedTaskBatch(_ input: ContinueRunFailedTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ContinueRunFailedTaskBatchResponse > {
+        self.client.execute(action: "ContinueRunFailedTaskBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续跑任务批次
+    ///
+    /// 对执行失败的任务批次执行续跑
+    @inlinable
+    public func continueRunFailedTaskBatch(_ input: ContinueRunFailedTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ContinueRunFailedTaskBatchResponse {
+        try await self.client.execute(action: "ContinueRunFailedTaskBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

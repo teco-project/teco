@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 应急漏洞列表
-    ///
-    /// 获取应急漏洞列表
-    @inlinable
-    public func describeEmergencyVulList(_ input: DescribeEmergencyVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEmergencyVulListResponse > {
-        self.client.execute(action: "DescribeEmergencyVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 应急漏洞列表
-    ///
-    /// 获取应急漏洞列表
-    @inlinable
-    public func describeEmergencyVulList(_ input: DescribeEmergencyVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEmergencyVulListResponse {
-        try await self.client.execute(action: "DescribeEmergencyVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEmergencyVulList请求参数结构体
     public struct DescribeEmergencyVulListRequest: TCRequestModel {
         /// 返回数量，最大值为100。
@@ -53,7 +37,7 @@ extension Cwp {
         /// 排序字段 PublishDate  LastScanTime HostCount
         public let by: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filters]?, order: String?, by: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filters]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -93,5 +77,21 @@ extension Cwp {
             case existsRisk = "ExistsRisk"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 应急漏洞列表
+    ///
+    /// 获取应急漏洞列表
+    @inlinable
+    public func describeEmergencyVulList(_ input: DescribeEmergencyVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEmergencyVulListResponse > {
+        self.client.execute(action: "DescribeEmergencyVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 应急漏洞列表
+    ///
+    /// 获取应急漏洞列表
+    @inlinable
+    public func describeEmergencyVulList(_ input: DescribeEmergencyVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEmergencyVulListResponse {
+        try await self.client.execute(action: "DescribeEmergencyVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

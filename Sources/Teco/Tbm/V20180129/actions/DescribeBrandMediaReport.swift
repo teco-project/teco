@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tbm {
-    /// 获取品牌媒体报道数
-    ///
-    /// 监测品牌关键词出现在媒体网站（新闻媒体、网络门户、政府网站、微信公众号、天天快报等）发布资讯标题和正文中的报道数。按天输出结果。
-    @inlinable
-    public func describeBrandMediaReport(_ input: DescribeBrandMediaReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandMediaReportResponse > {
-        self.client.execute(action: "DescribeBrandMediaReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取品牌媒体报道数
-    ///
-    /// 监测品牌关键词出现在媒体网站（新闻媒体、网络门户、政府网站、微信公众号、天天快报等）发布资讯标题和正文中的报道数。按天输出结果。
-    @inlinable
-    public func describeBrandMediaReport(_ input: DescribeBrandMediaReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandMediaReportResponse {
-        try await self.client.execute(action: "DescribeBrandMediaReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBrandMediaReport请求参数结构体
     public struct DescribeBrandMediaReportRequest: TCRequestModel {
         /// 品牌ID
@@ -75,5 +59,21 @@ extension Tbm {
             case dateCountSet = "DateCountSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取品牌媒体报道数
+    ///
+    /// 监测品牌关键词出现在媒体网站（新闻媒体、网络门户、政府网站、微信公众号、天天快报等）发布资讯标题和正文中的报道数。按天输出结果。
+    @inlinable
+    public func describeBrandMediaReport(_ input: DescribeBrandMediaReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandMediaReportResponse > {
+        self.client.execute(action: "DescribeBrandMediaReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取品牌媒体报道数
+    ///
+    /// 监测品牌关键词出现在媒体网站（新闻媒体、网络门户、政府网站、微信公众号、天天快报等）发布资讯标题和正文中的报道数。按天输出结果。
+    @inlinable
+    public func describeBrandMediaReport(_ input: DescribeBrandMediaReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandMediaReportResponse {
+        try await self.client.execute(action: "DescribeBrandMediaReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

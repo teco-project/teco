@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 开启服务器
-    @inlinable
-    public func startDevices(_ input: StartDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartDevicesResponse > {
-        self.client.execute(action: "StartDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启服务器
-    @inlinable
-    public func startDevices(_ input: StartDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartDevicesResponse {
-        try await self.client.execute(action: "StartDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartDevices请求参数结构体
     public struct StartDevicesRequest: TCRequestModel {
         /// 需要开机的设备ID列表
@@ -53,5 +41,17 @@ extension Bm {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启服务器
+    @inlinable
+    public func startDevices(_ input: StartDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartDevicesResponse > {
+        self.client.execute(action: "StartDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启服务器
+    @inlinable
+    public func startDevices(_ input: StartDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartDevicesResponse {
+        try await self.client.execute(action: "StartDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

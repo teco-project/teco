@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建VPN网关询价
-    ///
-    /// 本接口（InquiryPriceCreateVpnGateway）用于创建VPN网关询价。
-    @inlinable
-    public func inquiryPriceCreateVpnGateway(_ input: InquiryPriceCreateVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateVpnGatewayResponse > {
-        self.client.execute(action: "InquiryPriceCreateVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建VPN网关询价
-    ///
-    /// 本接口（InquiryPriceCreateVpnGateway）用于创建VPN网关询价。
-    @inlinable
-    public func inquiryPriceCreateVpnGateway(_ input: InquiryPriceCreateVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateVpnGatewayResponse {
-        try await self.client.execute(action: "InquiryPriceCreateVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceCreateVpnGateway请求参数结构体
     public struct InquiryPriceCreateVpnGatewayRequest: TCRequestModel {
         /// 公网带宽设置。可选带宽规格：5, 10, 20, 50, 100；单位：Mbps。
@@ -40,7 +24,7 @@ extension Vpc {
         public let instanceChargeType: String?
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// SSL VPN连接数设置，可选规格：5, 10, 20, 50, 100；单位：个。
         public let maxConnection: UInt64?
@@ -48,7 +32,7 @@ extension Vpc {
         /// 查询的VPN类型，支持IPSEC和SSL两种类型，为SSL类型时，MaxConnection参数必传。
         public let type: String?
         
-        public init (internetMaxBandwidthOut: UInt64, instanceChargeType: String?, instanceChargePrepaid: InstanceChargePrepaid, maxConnection: UInt64?, type: String?) {
+        public init (internetMaxBandwidthOut: UInt64, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, maxConnection: UInt64? = nil, type: String? = nil) {
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
             self.instanceChargeType = instanceChargeType
             self.instanceChargePrepaid = instanceChargePrepaid
@@ -77,5 +61,21 @@ extension Vpc {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建VPN网关询价
+    ///
+    /// 本接口（InquiryPriceCreateVpnGateway）用于创建VPN网关询价。
+    @inlinable
+    public func inquiryPriceCreateVpnGateway(_ input: InquiryPriceCreateVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateVpnGatewayResponse > {
+        self.client.execute(action: "InquiryPriceCreateVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建VPN网关询价
+    ///
+    /// 本接口（InquiryPriceCreateVpnGateway）用于创建VPN网关询价。
+    @inlinable
+    public func inquiryPriceCreateVpnGateway(_ input: InquiryPriceCreateVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateVpnGatewayResponse {
+        try await self.client.execute(action: "InquiryPriceCreateVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

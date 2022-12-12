@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取异地登录白名单合并后列表
-    @inlinable
-    public func describeLoginWhiteCombinedList(_ input: DescribeLoginWhiteCombinedListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoginWhiteCombinedListResponse > {
-        self.client.execute(action: "DescribeLoginWhiteCombinedList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取异地登录白名单合并后列表
-    @inlinable
-    public func describeLoginWhiteCombinedList(_ input: DescribeLoginWhiteCombinedListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoginWhiteCombinedListResponse {
-        try await self.client.execute(action: "DescribeLoginWhiteCombinedList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLoginWhiteCombinedList请求参数结构体
     public struct DescribeLoginWhiteCombinedListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -42,7 +30,7 @@ extension Cwp {
         /// <li>ModifyEndTime - String - 是否必填：否 - 按照修改时间段筛选，结束时间</li>
         public let filters: [Filter]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -72,5 +60,17 @@ extension Cwp {
             case loginWhiteCombinedInfos = "LoginWhiteCombinedInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取异地登录白名单合并后列表
+    @inlinable
+    public func describeLoginWhiteCombinedList(_ input: DescribeLoginWhiteCombinedListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoginWhiteCombinedListResponse > {
+        self.client.execute(action: "DescribeLoginWhiteCombinedList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取异地登录白名单合并后列表
+    @inlinable
+    public func describeLoginWhiteCombinedList(_ input: DescribeLoginWhiteCombinedListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoginWhiteCombinedListResponse {
+        try await self.client.execute(action: "DescribeLoginWhiteCombinedList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

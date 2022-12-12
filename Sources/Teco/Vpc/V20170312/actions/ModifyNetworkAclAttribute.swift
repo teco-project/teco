@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改网络ACL属性
-    ///
-    /// 本接口（ModifyNetworkAclAttribute）用于修改网络ACL属性。
-    @inlinable
-    public func modifyNetworkAclAttribute(_ input: ModifyNetworkAclAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkAclAttributeResponse > {
-        self.client.execute(action: "ModifyNetworkAclAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改网络ACL属性
-    ///
-    /// 本接口（ModifyNetworkAclAttribute）用于修改网络ACL属性。
-    @inlinable
-    public func modifyNetworkAclAttribute(_ input: ModifyNetworkAclAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclAttributeResponse {
-        try await self.client.execute(action: "ModifyNetworkAclAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNetworkAclAttribute请求参数结构体
     public struct ModifyNetworkAclAttributeRequest: TCRequestModel {
         /// 网络ACL实例ID。例如：acl-12345678。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改网络ACL属性
+    ///
+    /// 本接口（ModifyNetworkAclAttribute）用于修改网络ACL属性。
+    @inlinable
+    public func modifyNetworkAclAttribute(_ input: ModifyNetworkAclAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkAclAttributeResponse > {
+        self.client.execute(action: "ModifyNetworkAclAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改网络ACL属性
+    ///
+    /// 本接口（ModifyNetworkAclAttribute）用于修改网络ACL属性。
+    @inlinable
+    public func modifyNetworkAclAttribute(_ input: ModifyNetworkAclAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclAttributeResponse {
+        try await self.client.execute(action: "ModifyNetworkAclAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

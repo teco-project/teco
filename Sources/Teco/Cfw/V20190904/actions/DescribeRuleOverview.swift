@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 查询规则列表概况
-    @inlinable
-    public func describeRuleOverview(_ input: DescribeRuleOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleOverviewResponse > {
-        self.client.execute(action: "DescribeRuleOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询规则列表概况
-    @inlinable
-    public func describeRuleOverview(_ input: DescribeRuleOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleOverviewResponse {
-        try await self.client.execute(action: "DescribeRuleOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRuleOverview请求参数结构体
     public struct DescribeRuleOverviewRequest: TCRequestModel {
         /// 方向，0：出站，1：入站
         public let direction: UInt64?
         
-        public init (direction: UInt64?) {
+        public init (direction: UInt64? = nil) {
             self.direction = direction
         }
         
@@ -74,5 +62,17 @@ extension Cfw {
             case remainingNum = "RemainingNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询规则列表概况
+    @inlinable
+    public func describeRuleOverview(_ input: DescribeRuleOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleOverviewResponse > {
+        self.client.execute(action: "DescribeRuleOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询规则列表概况
+    @inlinable
+    public func describeRuleOverview(_ input: DescribeRuleOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleOverviewResponse {
+        try await self.client.execute(action: "DescribeRuleOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -710,7 +710,7 @@ extension Dcdb {
         /// 分片节点数
         public let shardNodeCount: Int64?
         
-        public init (shardInstanceIds: [String], shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64?) {
+        public init (shardInstanceIds: [String], shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64? = nil) {
             self.shardInstanceIds = shardInstanceIds
             self.shardMemory = shardMemory
             self.shardStorage = shardStorage
@@ -757,7 +757,7 @@ extension Dcdb {
         
         /// 约束类型为section时的范围
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let range: ConstraintRange
+        public let range: ConstraintRange?
         
         /// 约束类型为string时的可选值列表
         public let string: String

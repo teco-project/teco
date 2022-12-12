@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 开通专业版(包年包月)
-    ///
-    /// 本接口 (OpenProVersionPrepaid) 用于开通专业版(包年包月)。
-    @inlinable
-    public func openProVersionPrepaid(_ input: OpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenProVersionPrepaidResponse > {
-        self.client.execute(action: "OpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开通专业版(包年包月)
-    ///
-    /// 本接口 (OpenProVersionPrepaid) 用于开通专业版(包年包月)。
-    @inlinable
-    public func openProVersionPrepaid(_ input: OpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionPrepaidResponse {
-        try await self.client.execute(action: "OpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OpenProVersionPrepaid请求参数结构体
     public struct OpenProVersionPrepaidRequest: TCRequestModel {
         /// 购买相关参数。
@@ -62,5 +46,21 @@ extension Yunjing {
             case dealIds = "DealIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开通专业版(包年包月)
+    ///
+    /// 本接口 (OpenProVersionPrepaid) 用于开通专业版(包年包月)。
+    @inlinable
+    public func openProVersionPrepaid(_ input: OpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenProVersionPrepaidResponse > {
+        self.client.execute(action: "OpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开通专业版(包年包月)
+    ///
+    /// 本接口 (OpenProVersionPrepaid) 用于开通专业版(包年包月)。
+    @inlinable
+    public func openProVersionPrepaid(_ input: OpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionPrepaidResponse {
+        try await self.client.execute(action: "OpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

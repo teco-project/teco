@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 更新电子印章
-    ///
-    /// 此接口（ModifySeal）用于修改指定印章ID的印章图片和名称。
-    /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
-    @inlinable
-    public func modifySeal(_ input: ModifySealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySealResponse > {
-        self.client.execute(action: "ModifySeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新电子印章
-    ///
-    /// 此接口（ModifySeal）用于修改指定印章ID的印章图片和名称。
-    /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
-    @inlinable
-    public func modifySeal(_ input: ModifySealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySealResponse {
-        try await self.client.execute(action: "ModifySeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySeal请求参数结构体
     public struct ModifySealRequest: TCRequestModel {
         /// 调用方信息
@@ -56,7 +38,7 @@ extension Essbasic {
         /// 需要更新印章的用户ID
         public let userId: String?
         
-        public init (caller: Caller, sourceIp: String, sealId: String?, sealName: String?, image: String?, fileId: String?, userId: String?) {
+        public init (caller: Caller, sourceIp: String, sealId: String? = nil, sealName: String? = nil, image: String? = nil, fileId: String? = nil, userId: String? = nil) {
             self.caller = caller
             self.sourceIp = sourceIp
             self.sealId = sealId
@@ -85,5 +67,23 @@ extension Essbasic {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新电子印章
+    ///
+    /// 此接口（ModifySeal）用于修改指定印章ID的印章图片和名称。
+    /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
+    @inlinable
+    public func modifySeal(_ input: ModifySealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySealResponse > {
+        self.client.execute(action: "ModifySeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新电子印章
+    ///
+    /// 此接口（ModifySeal）用于修改指定印章ID的印章图片和名称。
+    /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
+    @inlinable
+    public func modifySeal(_ input: ModifySealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySealResponse {
+        try await self.client.execute(action: "ModifySeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tia {
-    /// 列举Job
-    ///
-    /// 列举训练任务
-    @inlinable
-    public func listJobs(_ input: ListJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListJobsResponse > {
-        self.client.execute(action: "ListJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列举Job
-    ///
-    /// 列举训练任务
-    @inlinable
-    public func listJobs(_ input: ListJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListJobsResponse {
-        try await self.client.execute(action: "ListJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListJobs请求参数结构体
     public struct ListJobsRequest: TCRequestModel {
         /// 运行任务的集群
@@ -42,7 +26,7 @@ extension Tia {
         /// 分页参数，起始位置
         public let offset: UInt64?
         
-        public init (cluster: String, limit: UInt64?, offset: UInt64?) {
+        public init (cluster: String, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.cluster = cluster
             self.limit = limit
             self.offset = offset
@@ -67,5 +51,21 @@ extension Tia {
             case jobs = "Jobs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列举Job
+    ///
+    /// 列举训练任务
+    @inlinable
+    public func listJobs(_ input: ListJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListJobsResponse > {
+        self.client.execute(action: "ListJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列举Job
+    ///
+    /// 列举训练任务
+    @inlinable
+    public func listJobs(_ input: ListJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListJobsResponse {
+        try await self.client.execute(action: "ListJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 查询设备分组信息
-    ///
-    /// 本接口(DescribeDeviceGroup)用于根据设备ID查询设备所在分组信息，可批量查询。
-    @inlinable
-    public func describeDeviceGroup(_ input: DescribeDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceGroupResponse > {
-        self.client.execute(action: "DescribeDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备分组信息
-    ///
-    /// 本接口(DescribeDeviceGroup)用于根据设备ID查询设备所在分组信息，可批量查询。
-    @inlinable
-    public func describeDeviceGroup(_ input: DescribeDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceGroupResponse {
-        try await self.client.execute(action: "DescribeDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceGroup请求参数结构体
     public struct DescribeDeviceGroupRequest: TCRequestModel {
         /// 设备唯一标识列表
         public let deviceIds: [String]?
         
-        public init (deviceIds: [String]?) {
+        public init (deviceIds: [String]? = nil) {
             self.deviceIds = deviceIds
         }
         
@@ -58,5 +42,21 @@ extension Iotvideoindustry {
             case devGroups = "DevGroups"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备分组信息
+    ///
+    /// 本接口(DescribeDeviceGroup)用于根据设备ID查询设备所在分组信息，可批量查询。
+    @inlinable
+    public func describeDeviceGroup(_ input: DescribeDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceGroupResponse > {
+        self.client.execute(action: "DescribeDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备分组信息
+    ///
+    /// 本接口(DescribeDeviceGroup)用于根据设备ID查询设备所在分组信息，可批量查询。
+    @inlinable
+    public func describeDeviceGroup(_ input: DescribeDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceGroupResponse {
+        try await self.client.execute(action: "DescribeDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,30 +15,18 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 设置子用户的登录保护和敏感操作校验方式
-    @inlinable
-    public func setMfaFlag(_ input: SetMfaFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetMfaFlagResponse > {
-        self.client.execute(action: "SetMfaFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置子用户的登录保护和敏感操作校验方式
-    @inlinable
-    public func setMfaFlag(_ input: SetMfaFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetMfaFlagResponse {
-        try await self.client.execute(action: "SetMfaFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetMfaFlag请求参数结构体
     public struct SetMfaFlagRequest: TCRequestModel {
         /// 设置用户的uin
         public let opUin: UInt64?
         
         /// 登录保护设置
-        public let loginFlag: LoginActionMfaFlag
+        public let loginFlag: LoginActionMfaFlag?
         
         /// 操作保护设置
-        public let actionFlag: LoginActionMfaFlag
+        public let actionFlag: LoginActionMfaFlag?
         
-        public init (opUin: UInt64?, loginFlag: LoginActionMfaFlag, actionFlag: LoginActionMfaFlag) {
+        public init (opUin: UInt64? = nil, loginFlag: LoginActionMfaFlag? = nil, actionFlag: LoginActionMfaFlag? = nil) {
             self.opUin = opUin
             self.loginFlag = loginFlag
             self.actionFlag = actionFlag
@@ -59,5 +47,17 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置子用户的登录保护和敏感操作校验方式
+    @inlinable
+    public func setMfaFlag(_ input: SetMfaFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetMfaFlagResponse > {
+        self.client.execute(action: "SetMfaFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置子用户的登录保护和敏感操作校验方式
+    @inlinable
+    public func setMfaFlag(_ input: SetMfaFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetMfaFlagResponse {
+        try await self.client.execute(action: "SetMfaFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Sqlserver {
-    /// 查询迁移任务详情
-    ///
-    /// 本接口（DescribeMigrationDetail）用于查询迁移任务的详细情况
-    @inlinable
-    public func describeMigrationDetail(_ input: DescribeMigrationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationDetailResponse > {
-        self.client.execute(action: "DescribeMigrationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询迁移任务详情
-    ///
-    /// 本接口（DescribeMigrationDetail）用于查询迁移任务的详细情况
-    @inlinable
-    public func describeMigrationDetail(_ input: DescribeMigrationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationDetailResponse {
-        try await self.client.execute(action: "DescribeMigrationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMigrationDetail请求参数结构体
     public struct DescribeMigrationDetailRequest: TCRequestModel {
         /// 迁移任务ID
@@ -114,5 +98,21 @@ extension Sqlserver {
             case migrateDBSet = "MigrateDBSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询迁移任务详情
+    ///
+    /// 本接口（DescribeMigrationDetail）用于查询迁移任务的详细情况
+    @inlinable
+    public func describeMigrationDetail(_ input: DescribeMigrationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationDetailResponse > {
+        self.client.execute(action: "DescribeMigrationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询迁移任务详情
+    ///
+    /// 本接口（DescribeMigrationDetail）用于查询迁移任务的详细情况
+    @inlinable
+    public func describeMigrationDetail(_ input: DescribeMigrationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationDetailResponse {
+        try await self.client.execute(action: "DescribeMigrationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

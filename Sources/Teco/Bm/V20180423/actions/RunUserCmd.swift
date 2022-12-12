@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 运行自定义脚本
-    @inlinable
-    public func runUserCmd(_ input: RunUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunUserCmdResponse > {
-        self.client.execute(action: "RunUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行自定义脚本
-    @inlinable
-    public func runUserCmd(_ input: RunUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunUserCmdResponse {
-        try await self.client.execute(action: "RunUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RunUserCmd请求参数结构体
     public struct RunUserCmdRequest: TCRequestModel {
         /// 自定义脚本ID
@@ -44,7 +32,7 @@ extension Bm {
         /// 执行脚本的参数，必须经过base64编码
         public let cmdParam: String?
         
-        public init (cmdId: String, userName: String, password: String, instanceIds: [String], cmdParam: String?) {
+        public init (cmdId: String, userName: String, password: String, instanceIds: [String], cmdParam: String? = nil) {
             self.cmdId = cmdId
             self.userName = userName
             self.password = password
@@ -77,5 +65,17 @@ extension Bm {
             case failedTaskInfoSet = "FailedTaskInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行自定义脚本
+    @inlinable
+    public func runUserCmd(_ input: RunUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunUserCmdResponse > {
+        self.client.execute(action: "RunUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行自定义脚本
+    @inlinable
+    public func runUserCmd(_ input: RunUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunUserCmdResponse {
+        try await self.client.execute(action: "RunUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

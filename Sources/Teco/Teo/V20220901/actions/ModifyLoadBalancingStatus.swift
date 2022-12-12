@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改负载均衡状态
-    @inlinable
-    public func modifyLoadBalancingStatus(_ input: ModifyLoadBalancingStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancingStatusResponse > {
-        self.client.execute(action: "ModifyLoadBalancingStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改负载均衡状态
-    @inlinable
-    public func modifyLoadBalancingStatus(_ input: ModifyLoadBalancingStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancingStatusResponse {
-        try await self.client.execute(action: "ModifyLoadBalancingStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLoadBalancingStatus请求参数结构体
     public struct ModifyLoadBalancingStatusRequest: TCRequestModel {
         /// 站点ID。
@@ -61,5 +49,17 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改负载均衡状态
+    @inlinable
+    public func modifyLoadBalancingStatus(_ input: ModifyLoadBalancingStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancingStatusResponse > {
+        self.client.execute(action: "ModifyLoadBalancingStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改负载均衡状态
+    @inlinable
+    public func modifyLoadBalancingStatus(_ input: ModifyLoadBalancingStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancingStatusResponse {
+        try await self.client.execute(action: "ModifyLoadBalancingStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

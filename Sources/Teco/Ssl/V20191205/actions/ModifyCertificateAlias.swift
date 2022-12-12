@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 修改证书备注
-    ///
-    /// 用户传入证书id和备注来修改证书备注。
-    @inlinable
-    public func modifyCertificateAlias(_ input: ModifyCertificateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificateAliasResponse > {
-        self.client.execute(action: "ModifyCertificateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改证书备注
-    ///
-    /// 用户传入证书id和备注来修改证书备注。
-    @inlinable
-    public func modifyCertificateAlias(_ input: ModifyCertificateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAliasResponse {
-        try await self.client.execute(action: "ModifyCertificateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCertificateAlias请求参数结构体
     public struct ModifyCertificateAliasRequest: TCRequestModel {
         /// 证书 ID。
@@ -39,7 +23,7 @@ extension Ssl {
         /// 备注名称。
         public let alias: String?
         
-        public init (certificateId: String, alias: String?) {
+        public init (certificateId: String, alias: String? = nil) {
             self.certificateId = certificateId
             self.alias = alias
         }
@@ -62,5 +46,21 @@ extension Ssl {
             case certificateId = "CertificateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改证书备注
+    ///
+    /// 用户传入证书id和备注来修改证书备注。
+    @inlinable
+    public func modifyCertificateAlias(_ input: ModifyCertificateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificateAliasResponse > {
+        self.client.execute(action: "ModifyCertificateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改证书备注
+    ///
+    /// 用户传入证书id和备注来修改证书备注。
+    @inlinable
+    public func modifyCertificateAlias(_ input: ModifyCertificateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAliasResponse {
+        try await self.client.execute(action: "ModifyCertificateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 源站组删除
-    @inlinable
-    public func deleteOriginGroup(_ input: DeleteOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOriginGroupResponse > {
-        self.client.execute(action: "DeleteOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 源站组删除
-    @inlinable
-    public func deleteOriginGroup(_ input: DeleteOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOriginGroupResponse {
-        try await self.client.execute(action: "DeleteOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteOriginGroup请求参数结构体
     public struct DeleteOriginGroupRequest: TCRequestModel {
         /// 源站组ID
@@ -58,5 +46,17 @@ extension Teo {
             case originId = "OriginId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 源站组删除
+    @inlinable
+    public func deleteOriginGroup(_ input: DeleteOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOriginGroupResponse > {
+        self.client.execute(action: "DeleteOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 源站组删除
+    @inlinable
+    public func deleteOriginGroup(_ input: DeleteOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOriginGroupResponse {
+        try await self.client.execute(action: "DeleteOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 导出防护目录列表
-    ///
-    /// 导出网页防篡改防护目录列表
-    @inlinable
-    public func exportProtectDirList(_ input: ExportProtectDirListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportProtectDirListResponse > {
-        self.client.execute(action: "ExportProtectDirList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出防护目录列表
-    ///
-    /// 导出网页防篡改防护目录列表
-    @inlinable
-    public func exportProtectDirList(_ input: ExportProtectDirListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportProtectDirListResponse {
-        try await self.client.execute(action: "ExportProtectDirList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportProtectDirList请求参数结构体
     public struct ExportProtectDirListRequest: TCRequestModel {
         /// DirName 网站名称
@@ -43,7 +27,7 @@ extension Cwp {
         /// 排序字段
         public let by: String?
         
-        public init (filters: [AssetFilters]?, order: String?, by: String?) {
+        public init (filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.order = order
             self.by = by
@@ -68,5 +52,21 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出防护目录列表
+    ///
+    /// 导出网页防篡改防护目录列表
+    @inlinable
+    public func exportProtectDirList(_ input: ExportProtectDirListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportProtectDirListResponse > {
+        self.client.execute(action: "ExportProtectDirList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出防护目录列表
+    ///
+    /// 导出网页防篡改防护目录列表
+    @inlinable
+    public func exportProtectDirList(_ input: ExportProtectDirListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportProtectDirListResponse {
+        try await self.client.execute(action: "ExportProtectDirList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

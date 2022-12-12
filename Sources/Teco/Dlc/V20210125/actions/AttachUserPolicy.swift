@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 绑定鉴权策略到用户
-    @inlinable
-    public func attachUserPolicy(_ input: AttachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachUserPolicyResponse > {
-        self.client.execute(action: "AttachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定鉴权策略到用户
-    @inlinable
-    public func attachUserPolicy(_ input: AttachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachUserPolicyResponse {
-        try await self.client.execute(action: "AttachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AttachUserPolicy请求参数结构体
     public struct AttachUserPolicyRequest: TCRequestModel {
         /// 用户Id，和子用户uin相同，需要先使用CreateUser接口创建用户。可以使用DescribeUsers接口查看。
@@ -35,7 +23,7 @@ extension Dlc {
         /// 鉴权策略集合
         public let policySet: [Policy]?
         
-        public init (userId: String, policySet: [Policy]?) {
+        public init (userId: String, policySet: [Policy]? = nil) {
             self.userId = userId
             self.policySet = policySet
         }
@@ -54,5 +42,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定鉴权策略到用户
+    @inlinable
+    public func attachUserPolicy(_ input: AttachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachUserPolicyResponse > {
+        self.client.execute(action: "AttachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定鉴权策略到用户
+    @inlinable
+    public func attachUserPolicy(_ input: AttachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachUserPolicyResponse {
+        try await self.client.execute(action: "AttachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

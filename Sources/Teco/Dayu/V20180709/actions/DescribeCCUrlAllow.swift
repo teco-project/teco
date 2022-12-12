@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取CC的Url白名单
-    @inlinable
-    public func describeCCUrlAllow(_ input: DescribeCCUrlAllowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCUrlAllowResponse > {
-        self.client.execute(action: "DescribeCCUrlAllow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取CC的Url白名单
-    @inlinable
-    public func describeCCUrlAllow(_ input: DescribeCCUrlAllowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCUrlAllowResponse {
-        try await self.client.execute(action: "DescribeCCUrlAllow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCCUrlAllow请求参数结构体
     public struct DescribeCCUrlAllowRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -48,7 +36,7 @@ extension Dayu {
         /// 可选，代表HTTP协议或HTTPS协议的CC防护，取值[http（HTTP协议的CC防护），https（HTTPS协议的CC防护）]；
         public let `protocol`: String?
         
-        public init (business: String, id: String, type: [String], limit: UInt64?, offset: UInt64?, `protocol`: String?) {
+        public init (business: String, id: String, type: [String], limit: UInt64? = nil, offset: UInt64? = nil, `protocol`: String? = nil) {
             self.business = business
             self.id = id
             self.type = type
@@ -91,5 +79,17 @@ extension Dayu {
             case recordList = "RecordList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取CC的Url白名单
+    @inlinable
+    public func describeCCUrlAllow(_ input: DescribeCCUrlAllowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCUrlAllowResponse > {
+        self.client.execute(action: "DescribeCCUrlAllow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC的Url白名单
+    @inlinable
+    public func describeCCUrlAllow(_ input: DescribeCCUrlAllowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCUrlAllowResponse {
+        try await self.client.execute(action: "DescribeCCUrlAllow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

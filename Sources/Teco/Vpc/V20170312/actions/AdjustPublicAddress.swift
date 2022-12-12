@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 更换公网IP
-    ///
-    /// 本接口 (AdjustPublicAddress) 用于更换IP地址，支持更换CVM实例的普通公网IP和包月带宽的EIP。
-    @inlinable
-    public func adjustPublicAddress(_ input: AdjustPublicAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AdjustPublicAddressResponse > {
-        self.client.execute(action: "AdjustPublicAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更换公网IP
-    ///
-    /// 本接口 (AdjustPublicAddress) 用于更换IP地址，支持更换CVM实例的普通公网IP和包月带宽的EIP。
-    @inlinable
-    public func adjustPublicAddress(_ input: AdjustPublicAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AdjustPublicAddressResponse {
-        try await self.client.execute(action: "AdjustPublicAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AdjustPublicAddress请求参数结构体
     public struct AdjustPublicAddressRequest: TCRequestModel {
         /// 标识CVM实例的唯一 ID。CVM 唯一 ID 形如：`ins-11112222`。
@@ -39,7 +23,7 @@ extension Vpc {
         /// 标识EIP实例的唯一 ID。EIP 唯一 ID 形如：`eip-11112222`。
         public let addressId: String?
         
-        public init (instanceId: String?, addressId: String?) {
+        public init (instanceId: String? = nil, addressId: String? = nil) {
             self.instanceId = instanceId
             self.addressId = addressId
         }
@@ -62,5 +46,21 @@ extension Vpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更换公网IP
+    ///
+    /// 本接口 (AdjustPublicAddress) 用于更换IP地址，支持更换CVM实例的普通公网IP和包月带宽的EIP。
+    @inlinable
+    public func adjustPublicAddress(_ input: AdjustPublicAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AdjustPublicAddressResponse > {
+        self.client.execute(action: "AdjustPublicAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更换公网IP
+    ///
+    /// 本接口 (AdjustPublicAddress) 用于更换IP地址，支持更换CVM实例的普通公网IP和包月带宽的EIP。
+    @inlinable
+    public func adjustPublicAddress(_ input: AdjustPublicAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AdjustPublicAddressResponse {
+        try await self.client.execute(action: "AdjustPublicAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

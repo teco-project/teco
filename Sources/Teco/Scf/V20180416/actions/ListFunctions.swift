@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 获取函数列表
-    ///
-    /// 该接口根据传入的查询参数返回相关函数信息。
-    @inlinable
-    public func listFunctions(_ input: ListFunctionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListFunctionsResponse > {
-        self.client.execute(action: "ListFunctions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取函数列表
-    ///
-    /// 该接口根据传入的查询参数返回相关函数信息。
-    @inlinable
-    public func listFunctions(_ input: ListFunctionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFunctionsResponse {
-        try await self.client.execute(action: "ListFunctions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListFunctions请求参数结构体
     public struct ListFunctionsRequest: TCRequestModel {
         /// 以升序还是降序的方式返回结果，可选值 ASC 和 DESC
@@ -59,7 +43,7 @@ extension Scf {
         /// 每次请求的Filters的上限为10，Filter.Values的上限为5。
         public let filters: [Filter]?
         
-        public init (order: String?, orderby: String?, offset: Int64?, limit: Int64?, searchKey: String?, namespace: String?, description: String?, filters: [Filter]?) {
+        public init (order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchKey: String? = nil, namespace: String? = nil, description: String? = nil, filters: [Filter]? = nil) {
             self.order = order
             self.orderby = orderby
             self.offset = offset
@@ -98,5 +82,21 @@ extension Scf {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取函数列表
+    ///
+    /// 该接口根据传入的查询参数返回相关函数信息。
+    @inlinable
+    public func listFunctions(_ input: ListFunctionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListFunctionsResponse > {
+        self.client.execute(action: "ListFunctions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数列表
+    ///
+    /// 该接口根据传入的查询参数返回相关函数信息。
+    @inlinable
+    public func listFunctions(_ input: ListFunctionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFunctionsResponse {
+        try await self.client.execute(action: "ListFunctions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

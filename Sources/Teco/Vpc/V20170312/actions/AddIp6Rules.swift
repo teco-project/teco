@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 添加IPV6转换规则
-    ///
-    /// 1. 该接口用于在转换实例下添加IPV6转换规则。
-    /// 2. 支持在同一个转换实例下批量添加转换规则，一个账户在一个地域最多50个。
-    /// 3. 一个完整的转换规则包括vip6:vport6:protocol:vip:vport，其中vip6:vport6:protocol必须是唯一。
-    @inlinable
-    public func addIp6Rules(_ input: AddIp6RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddIp6RulesResponse > {
-        self.client.execute(action: "AddIp6Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加IPV6转换规则
-    ///
-    /// 1. 该接口用于在转换实例下添加IPV6转换规则。
-    /// 2. 支持在同一个转换实例下批量添加转换规则，一个账户在一个地域最多50个。
-    /// 3. 一个完整的转换规则包括vip6:vport6:protocol:vip:vport，其中vip6:vport6:protocol必须是唯一。
-    @inlinable
-    public func addIp6Rules(_ input: AddIp6RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddIp6RulesResponse {
-        try await self.client.execute(action: "AddIp6Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddIp6Rules请求参数结构体
     public struct AddIp6RulesRequest: TCRequestModel {
         /// IPV6转换实例唯一ID，形如ip6-xxxxxxxx
@@ -46,7 +26,7 @@ extension Vpc {
         /// IPV6转换规则名称
         public let ip6RuleName: String?
         
-        public init (ip6TranslatorId: String, ip6RuleInfos: [Ip6RuleInfo], ip6RuleName: String?) {
+        public init (ip6TranslatorId: String, ip6RuleInfos: [Ip6RuleInfo], ip6RuleName: String? = nil) {
             self.ip6TranslatorId = ip6TranslatorId
             self.ip6RuleInfos = ip6RuleInfos
             self.ip6RuleName = ip6RuleName
@@ -71,5 +51,25 @@ extension Vpc {
             case ip6RuleSet = "Ip6RuleSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加IPV6转换规则
+    ///
+    /// 1. 该接口用于在转换实例下添加IPV6转换规则。
+    /// 2. 支持在同一个转换实例下批量添加转换规则，一个账户在一个地域最多50个。
+    /// 3. 一个完整的转换规则包括vip6:vport6:protocol:vip:vport，其中vip6:vport6:protocol必须是唯一。
+    @inlinable
+    public func addIp6Rules(_ input: AddIp6RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddIp6RulesResponse > {
+        self.client.execute(action: "AddIp6Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加IPV6转换规则
+    ///
+    /// 1. 该接口用于在转换实例下添加IPV6转换规则。
+    /// 2. 支持在同一个转换实例下批量添加转换规则，一个账户在一个地域最多50个。
+    /// 3. 一个完整的转换规则包括vip6:vport6:protocol:vip:vport，其中vip6:vport6:protocol必须是唯一。
+    @inlinable
+    public func addIp6Rules(_ input: AddIp6RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddIp6RulesResponse {
+        try await self.client.execute(action: "AddIp6Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

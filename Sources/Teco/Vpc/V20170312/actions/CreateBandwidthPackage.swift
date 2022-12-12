@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建共享带宽包
-    ///
-    /// 本接口 (CreateBandwidthPackage) 支持创建[设备带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)和[IP带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)。
-    @inlinable
-    public func createBandwidthPackage(_ input: CreateBandwidthPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBandwidthPackageResponse > {
-        self.client.execute(action: "CreateBandwidthPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建共享带宽包
-    ///
-    /// 本接口 (CreateBandwidthPackage) 支持创建[设备带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)和[IP带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)。
-    @inlinable
-    public func createBandwidthPackage(_ input: CreateBandwidthPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBandwidthPackageResponse {
-        try await self.client.execute(action: "CreateBandwidthPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBandwidthPackage请求参数结构体
     public struct CreateBandwidthPackageRequest: TCRequestModel {
         /// 带宽包类型, 默认值: BGP, 可选值:
@@ -59,7 +43,7 @@ extension Vpc {
         /// 带宽包协议类型。当前支持'ipv4'和'ipv6'协议带宽包，默认值是'ipv4'。
         public let `protocol`: String?
         
-        public init (networkType: String?, chargeType: String?, bandwidthPackageName: String?, bandwidthPackageCount: UInt64?, internetMaxBandwidth: Int64?, tags: [Tag]?, `protocol`: String?) {
+        public init (networkType: String? = nil, chargeType: String? = nil, bandwidthPackageName: String? = nil, bandwidthPackageCount: UInt64? = nil, internetMaxBandwidth: Int64? = nil, tags: [Tag]? = nil, `protocol`: String? = nil) {
             self.networkType = networkType
             self.chargeType = chargeType
             self.bandwidthPackageName = bandwidthPackageName
@@ -96,5 +80,21 @@ extension Vpc {
             case bandwidthPackageIds = "BandwidthPackageIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建共享带宽包
+    ///
+    /// 本接口 (CreateBandwidthPackage) 支持创建[设备带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)和[IP带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)。
+    @inlinable
+    public func createBandwidthPackage(_ input: CreateBandwidthPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBandwidthPackageResponse > {
+        self.client.execute(action: "CreateBandwidthPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建共享带宽包
+    ///
+    /// 本接口 (CreateBandwidthPackage) 支持创建[设备带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)和[IP带宽包](https://cloud.tencent.com/document/product/684/15245#bwptype)。
+    @inlinable
+    public func createBandwidthPackage(_ input: CreateBandwidthPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBandwidthPackageResponse {
+        try await self.client.execute(action: "CreateBandwidthPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

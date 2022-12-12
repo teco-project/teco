@@ -15,32 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 人员验证
-    ///
-    /// 给定一张人脸图片和一个 PersonId，判断图片中的人和 PersonId 对应的人是否为同一人。PersonId 请参考[人员库管理相关接口](https://cloud.tencent.com/document/product/867/32794)。
-    /// 本接口会将该人员（Person）下的所有人脸（Face）进行融合特征处理，即若某个Person下有4张 Face，本接口会将4张 Face 的特征进行融合处理，生成对应这个 Person 的特征，使人员验证（确定待识别的人脸图片是某人员）更加准确。
-    ///  和人脸比对相关接口不同的是，人脸验证相关接口用于判断 “此人是否是此人”，“此人”的信息已存于人员库中，“此人”可能存在多张人脸图片；而人脸比对相关接口用于判断两张人脸的相似度。
-    /// >     
-    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
-    @inlinable
-    public func verifyPerson(_ input: VerifyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyPersonResponse > {
-        self.client.execute(action: "VerifyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人员验证
-    ///
-    /// 给定一张人脸图片和一个 PersonId，判断图片中的人和 PersonId 对应的人是否为同一人。PersonId 请参考[人员库管理相关接口](https://cloud.tencent.com/document/product/867/32794)。
-    /// 本接口会将该人员（Person）下的所有人脸（Face）进行融合特征处理，即若某个Person下有4张 Face，本接口会将4张 Face 的特征进行融合处理，生成对应这个 Person 的特征，使人员验证（确定待识别的人脸图片是某人员）更加准确。
-    ///  和人脸比对相关接口不同的是，人脸验证相关接口用于判断 “此人是否是此人”，“此人”的信息已存于人员库中，“此人”可能存在多张人脸图片；而人脸比对相关接口用于判断两张人脸的相似度。
-    /// >     
-    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
-    @inlinable
-    public func verifyPerson(_ input: VerifyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPersonResponse {
-        try await self.client.execute(action: "VerifyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifyPerson请求参数结构体
     public struct VerifyPersonRequest: TCRequestModel {
         /// 待验证的人员ID。人员ID具体信息请参考人员库管理相关接口。
@@ -71,7 +45,7 @@ extension Iai {
         /// 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         public let needRotateDetection: UInt64?
         
-        public init (personId: String, image: String?, url: String?, qualityControl: UInt64?, needRotateDetection: UInt64?) {
+        public init (personId: String, image: String? = nil, url: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil) {
             self.personId = personId
             self.image = image
             self.url = url
@@ -108,5 +82,31 @@ extension Iai {
             case faceModelVersion = "FaceModelVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人员验证
+    ///
+    /// 给定一张人脸图片和一个 PersonId，判断图片中的人和 PersonId 对应的人是否为同一人。PersonId 请参考[人员库管理相关接口](https://cloud.tencent.com/document/product/867/32794)。
+    /// 本接口会将该人员（Person）下的所有人脸（Face）进行融合特征处理，即若某个Person下有4张 Face，本接口会将4张 Face 的特征进行融合处理，生成对应这个 Person 的特征，使人员验证（确定待识别的人脸图片是某人员）更加准确。
+    ///  和人脸比对相关接口不同的是，人脸验证相关接口用于判断 “此人是否是此人”，“此人”的信息已存于人员库中，“此人”可能存在多张人脸图片；而人脸比对相关接口用于判断两张人脸的相似度。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
+    @inlinable
+    public func verifyPerson(_ input: VerifyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyPersonResponse > {
+        self.client.execute(action: "VerifyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人员验证
+    ///
+    /// 给定一张人脸图片和一个 PersonId，判断图片中的人和 PersonId 对应的人是否为同一人。PersonId 请参考[人员库管理相关接口](https://cloud.tencent.com/document/product/867/32794)。
+    /// 本接口会将该人员（Person）下的所有人脸（Face）进行融合特征处理，即若某个Person下有4张 Face，本接口会将4张 Face 的特征进行融合处理，生成对应这个 Person 的特征，使人员验证（确定待识别的人脸图片是某人员）更加准确。
+    ///  和人脸比对相关接口不同的是，人脸验证相关接口用于判断 “此人是否是此人”，“此人”的信息已存于人员库中，“此人”可能存在多张人脸图片；而人脸比对相关接口用于判断两张人脸的相似度。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
+    @inlinable
+    public func verifyPerson(_ input: VerifyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPersonResponse {
+        try await self.client.execute(action: "VerifyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

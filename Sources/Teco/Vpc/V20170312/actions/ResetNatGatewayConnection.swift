@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 调整NAT网关并发连接上限
-    ///
-    /// 本接口（ResetNatGatewayConnection）用来NAT网关并发连接上限。
-    @inlinable
-    public func resetNatGatewayConnection(_ input: ResetNatGatewayConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetNatGatewayConnectionResponse > {
-        self.client.execute(action: "ResetNatGatewayConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调整NAT网关并发连接上限
-    ///
-    /// 本接口（ResetNatGatewayConnection）用来NAT网关并发连接上限。
-    @inlinable
-    public func resetNatGatewayConnection(_ input: ResetNatGatewayConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetNatGatewayConnectionResponse {
-        try await self.client.execute(action: "ResetNatGatewayConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetNatGatewayConnection请求参数结构体
     public struct ResetNatGatewayConnectionRequest: TCRequestModel {
         /// NAT网关ID。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调整NAT网关并发连接上限
+    ///
+    /// 本接口（ResetNatGatewayConnection）用来NAT网关并发连接上限。
+    @inlinable
+    public func resetNatGatewayConnection(_ input: ResetNatGatewayConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetNatGatewayConnectionResponse > {
+        self.client.execute(action: "ResetNatGatewayConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调整NAT网关并发连接上限
+    ///
+    /// 本接口（ResetNatGatewayConnection）用来NAT网关并发连接上限。
+    @inlinable
+    public func resetNatGatewayConnection(_ input: ResetNatGatewayConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetNatGatewayConnectionResponse {
+        try await self.client.execute(action: "ResetNatGatewayConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取高防包流量折线图
-    @inlinable
-    public func describeBgpBizTrend(_ input: DescribeBgpBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBgpBizTrendResponse > {
-        self.client.execute(action: "DescribeBgpBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取高防包流量折线图
-    @inlinable
-    public func describeBgpBizTrend(_ input: DescribeBgpBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBgpBizTrendResponse {
-        try await self.client.execute(action: "DescribeBgpBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBgpBizTrend请求参数结构体
     public struct DescribeBgpBizTrendRequest: TCRequestModel {
         /// 大禹子产品代号（bgp-multip表示高防包）
@@ -90,5 +78,17 @@ extension Antiddos {
             case maxData = "MaxData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取高防包流量折线图
+    @inlinable
+    public func describeBgpBizTrend(_ input: DescribeBgpBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBgpBizTrendResponse > {
+        self.client.execute(action: "DescribeBgpBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取高防包流量折线图
+    @inlinable
+    public func describeBgpBizTrend(_ input: DescribeBgpBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBgpBizTrendResponse {
+        try await self.client.execute(action: "DescribeBgpBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

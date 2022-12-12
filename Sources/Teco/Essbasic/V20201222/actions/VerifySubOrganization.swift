@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 子机构通过实名认证
-    ///
-    /// 此接口（VerifySubOrganization）用于通过子机构的实名认证。
-    /// 注：此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
-    @inlinable
-    public func verifySubOrganization(_ input: VerifySubOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifySubOrganizationResponse > {
-        self.client.execute(action: "VerifySubOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 子机构通过实名认证
-    ///
-    /// 此接口（VerifySubOrganization）用于通过子机构的实名认证。
-    /// 注：此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
-    @inlinable
-    public func verifySubOrganization(_ input: VerifySubOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySubOrganizationResponse {
-        try await self.client.execute(action: "VerifySubOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifySubOrganization请求参数结构体
     public struct VerifySubOrganizationRequest: TCRequestModel {
         /// 调用方信息，该接口SubOrganizationId必填
@@ -41,7 +23,7 @@ extension Essbasic {
         /// 机构在第三方的唯一标识，32位定长字符串，与 Caller 中 SubOrgnizationId 二者至少需要传入一个，全部传入时则使用 SubOrganizationId 信息
         public let openId: String?
         
-        public init (caller: Caller, openId: String?) {
+        public init (caller: Caller, openId: String? = nil) {
             self.caller = caller
             self.openId = openId
         }
@@ -64,5 +46,23 @@ extension Essbasic {
             case subOrganizationId = "SubOrganizationId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 子机构通过实名认证
+    ///
+    /// 此接口（VerifySubOrganization）用于通过子机构的实名认证。
+    /// 注：此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
+    @inlinable
+    public func verifySubOrganization(_ input: VerifySubOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifySubOrganizationResponse > {
+        self.client.execute(action: "VerifySubOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 子机构通过实名认证
+    ///
+    /// 此接口（VerifySubOrganization）用于通过子机构的实名认证。
+    /// 注：此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
+    @inlinable
+    public func verifySubOrganization(_ input: VerifySubOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySubOrganizationResponse {
+        try await self.client.execute(action: "VerifySubOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

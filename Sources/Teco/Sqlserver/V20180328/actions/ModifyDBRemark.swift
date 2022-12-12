@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 修改数据库备注
-    ///
-    /// 本接口（ModifyDBRemark）用于修改数据库备注。
-    @inlinable
-    public func modifyDBRemark(_ input: ModifyDBRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBRemarkResponse > {
-        self.client.execute(action: "ModifyDBRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改数据库备注
-    ///
-    /// 本接口（ModifyDBRemark）用于修改数据库备注。
-    @inlinable
-    public func modifyDBRemark(_ input: ModifyDBRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBRemarkResponse {
-        try await self.client.execute(action: "ModifyDBRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBRemark请求参数结构体
     public struct ModifyDBRemarkRequest: TCRequestModel {
         /// 实例ID，形如mssql-rljoi3bf
@@ -58,5 +42,21 @@ extension Sqlserver {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改数据库备注
+    ///
+    /// 本接口（ModifyDBRemark）用于修改数据库备注。
+    @inlinable
+    public func modifyDBRemark(_ input: ModifyDBRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBRemarkResponse > {
+        self.client.execute(action: "ModifyDBRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改数据库备注
+    ///
+    /// 本接口（ModifyDBRemark）用于修改数据库备注。
+    @inlinable
+    public func modifyDBRemark(_ input: ModifyDBRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBRemarkResponse {
+        try await self.client.execute(action: "ModifyDBRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

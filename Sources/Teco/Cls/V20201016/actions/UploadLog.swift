@@ -15,6 +15,40 @@
 // DO NOT EDIT.
 
 extension Cls {
+    /// UploadLog请求参数结构体
+    public struct UploadLogRequest: TCRequestModel {
+        /// 主题id
+        public let topicId: String
+        
+        /// 根据 hashkey 写入相应范围的主题分区
+        public let hashKey: String?
+        
+        /// 压缩方法
+        public let compressType: String?
+        
+        public init (topicId: String, hashKey: String? = nil, compressType: String? = nil) {
+            self.topicId = topicId
+            self.hashKey = hashKey
+            self.compressType = compressType
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case topicId = "TopicId"
+            case hashKey = "HashKey"
+            case compressType = "CompressType"
+        }
+    }
+    
+    /// UploadLog返回参数结构体
+    public struct UploadLogResponse: TCResponseModel {
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 上传日志
     ///
     /// ## 提示
@@ -241,39 +275,5 @@ extension Cls {
     @inlinable
     public func uploadLog(_ input: UploadLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadLogResponse {
         try await self.client.execute(action: "UploadLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// UploadLog请求参数结构体
-    public struct UploadLogRequest: TCRequestModel {
-        /// 主题id
-        public let topicId: String
-        
-        /// 根据 hashkey 写入相应范围的主题分区
-        public let hashKey: String?
-        
-        /// 压缩方法
-        public let compressType: String?
-        
-        public init (topicId: String, hashKey: String?, compressType: String?) {
-            self.topicId = topicId
-            self.hashKey = hashKey
-            self.compressType = compressType
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case topicId = "TopicId"
-            case hashKey = "HashKey"
-            case compressType = "CompressType"
-        }
-    }
-    
-    /// UploadLog返回参数结构体
-    public struct UploadLogResponse: TCResponseModel {
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case requestId = "RequestId"
-        }
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询个人版所有仓库
-    ///
-    /// 用于在个人版中获取用户全部的镜像仓库列表
-    @inlinable
-    public func describeRepositoryOwnerPersonal(_ input: DescribeRepositoryOwnerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoryOwnerPersonalResponse > {
-        self.client.execute(action: "DescribeRepositoryOwnerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询个人版所有仓库
-    ///
-    /// 用于在个人版中获取用户全部的镜像仓库列表
-    @inlinable
-    public func describeRepositoryOwnerPersonal(_ input: DescribeRepositoryOwnerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryOwnerPersonalResponse {
-        try await self.client.execute(action: "DescribeRepositoryOwnerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRepositoryOwnerPersonal请求参数结构体
     public struct DescribeRepositoryOwnerPersonalRequest: TCRequestModel {
         /// 偏移量，默认为0
@@ -42,7 +26,7 @@ extension Tcr {
         /// 仓库名称
         public let repoName: String?
         
-        public init (offset: Int64?, limit: Int64?, repoName: String?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, repoName: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.repoName = repoName
@@ -67,5 +51,21 @@ extension Tcr {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询个人版所有仓库
+    ///
+    /// 用于在个人版中获取用户全部的镜像仓库列表
+    @inlinable
+    public func describeRepositoryOwnerPersonal(_ input: DescribeRepositoryOwnerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoryOwnerPersonalResponse > {
+        self.client.execute(action: "DescribeRepositoryOwnerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询个人版所有仓库
+    ///
+    /// 用于在个人版中获取用户全部的镜像仓库列表
+    @inlinable
+    public func describeRepositoryOwnerPersonal(_ input: DescribeRepositoryOwnerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryOwnerPersonalResponse {
+        try await self.client.execute(action: "DescribeRepositoryOwnerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

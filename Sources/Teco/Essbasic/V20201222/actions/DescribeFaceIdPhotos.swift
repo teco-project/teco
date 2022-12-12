@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 查询慧眼人脸核身照片
-    ///
-    /// 该接口为第三方平台向电子签平台获取慧眼人脸核身照片
-    @inlinable
-    public func describeFaceIdPhotos(_ input: DescribeFaceIdPhotosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFaceIdPhotosResponse > {
-        self.client.execute(action: "DescribeFaceIdPhotos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询慧眼人脸核身照片
-    ///
-    /// 该接口为第三方平台向电子签平台获取慧眼人脸核身照片
-    @inlinable
-    public func describeFaceIdPhotos(_ input: DescribeFaceIdPhotosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdPhotosResponse {
-        try await self.client.execute(action: "DescribeFaceIdPhotos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFaceIdPhotos请求参数结构体
     public struct DescribeFaceIdPhotosRequest: TCRequestModel {
         /// 调用方信息
@@ -67,5 +51,21 @@ extension Essbasic {
             case photos = "Photos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询慧眼人脸核身照片
+    ///
+    /// 该接口为第三方平台向电子签平台获取慧眼人脸核身照片
+    @inlinable
+    public func describeFaceIdPhotos(_ input: DescribeFaceIdPhotosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFaceIdPhotosResponse > {
+        self.client.execute(action: "DescribeFaceIdPhotos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询慧眼人脸核身照片
+    ///
+    /// 该接口为第三方平台向电子签平台获取慧眼人脸核身照片
+    @inlinable
+    public func describeFaceIdPhotos(_ input: DescribeFaceIdPhotosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdPhotosResponse {
+        try await self.client.execute(action: "DescribeFaceIdPhotos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

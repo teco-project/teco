@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 新建用户
-    ///
-    /// 新建一个用户
-    @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
-        self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建用户
-    ///
-    /// 新建一个用户
-    @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
-        try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUser请求参数结构体
     public struct CreateUserRequest: TCRequestModel {
         /// 用户名，长度限制：64个字符。
@@ -66,7 +50,7 @@ extension Eiam {
         /// 用户所属的次要组织机构ID列表。
         public let secondaryOrgNodeIdList: [String]?
         
-        public init (userName: String, password: String, displayName: String?, description: String?, userGroupIds: [String]?, phone: String?, orgNodeId: String?, expirationTime: String?, email: String?, pwdNeedReset: Bool?, secondaryOrgNodeIdList: [String]?) {
+        public init (userName: String, password: String, displayName: String? = nil, description: String? = nil, userGroupIds: [String]? = nil, phone: String? = nil, orgNodeId: String? = nil, expirationTime: String? = nil, email: String? = nil, pwdNeedReset: Bool? = nil, secondaryOrgNodeIdList: [String]? = nil) {
             self.userName = userName
             self.password = password
             self.displayName = displayName
@@ -108,5 +92,21 @@ extension Eiam {
             case userId = "UserId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建用户
+    ///
+    /// 新建一个用户
+    @inlinable
+    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
+        self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建用户
+    ///
+    /// 新建一个用户
+    @inlinable
+    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
+        try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

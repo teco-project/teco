@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 开始实时录制
-    ///
-    /// 发起一个实时录制任务
-    @inlinable
-    public func startOnlineRecord(_ input: StartOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartOnlineRecordResponse > {
-        self.client.execute(action: "StartOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开始实时录制
-    ///
-    /// 发起一个实时录制任务
-    @inlinable
-    public func startOnlineRecord(_ input: StartOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartOnlineRecordResponse {
-        try await self.client.execute(action: "StartOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartOnlineRecord请求参数结构体
     public struct StartOnlineRecordRequest: TCRequestModel {
         /// 客户的SdkAppId
@@ -50,16 +34,16 @@ extension Tiw {
         public let groupId: String?
         
         /// 录制视频拼接参数
-        public let concat: Concat
+        public let concat: Concat?
         
         /// 录制白板参数，例如白板宽高等
-        public let whiteboard: Whiteboard
+        public let whiteboard: Whiteboard?
         
         /// 录制混流参数
         /// 特别说明：
         /// 1. 混流功能需要根据额外开通， 请联系腾讯云互动白板客服人员
         /// 2. 使用混流功能，必须提供 Extras 参数，且 Extras 参数中必须包含 "MIX_STREAM"
-        public let mixStream: MixStream
+        public let mixStream: MixStream?
         
         /// 使用到的高级功能列表
         /// 可以选值列表：
@@ -70,7 +54,7 @@ extension Tiw {
         public let audioFileNeeded: Bool?
         
         /// 录制控制参数，用于更精细地指定需要录制哪些流，某一路流是否禁用音频，是否只录制小画面等
-        public let recordControl: RecordControl
+        public let recordControl: RecordControl?
         
         /// 录制模式
         /// REALTIME_MODE - 实时录制模式（默认）
@@ -88,7 +72,7 @@ extension Tiw {
         /// 内部参数，可忽略
         public let extraData: String?
         
-        public init (sdkAppId: Int64, roomId: Int64, recordUserId: String, recordUserSig: String, groupId: String?, concat: Concat, whiteboard: Whiteboard, mixStream: MixStream, extras: [String]?, audioFileNeeded: Bool?, recordControl: RecordControl, recordMode: String?, chatGroupId: String?, autoStopTimeout: Int64?, extraData: String?) {
+        public init (sdkAppId: Int64, roomId: Int64, recordUserId: String, recordUserSig: String, groupId: String? = nil, concat: Concat? = nil, whiteboard: Whiteboard? = nil, mixStream: MixStream? = nil, extras: [String]? = nil, audioFileNeeded: Bool? = nil, recordControl: RecordControl? = nil, recordMode: String? = nil, chatGroupId: String? = nil, autoStopTimeout: Int64? = nil, extraData: String? = nil) {
             self.sdkAppId = sdkAppId
             self.roomId = roomId
             self.recordUserId = recordUserId
@@ -137,5 +121,21 @@ extension Tiw {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开始实时录制
+    ///
+    /// 发起一个实时录制任务
+    @inlinable
+    public func startOnlineRecord(_ input: StartOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartOnlineRecordResponse > {
+        self.client.execute(action: "StartOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开始实时录制
+    ///
+    /// 发起一个实时录制任务
+    @inlinable
+    public func startOnlineRecord(_ input: StartOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartOnlineRecordResponse {
+        try await self.client.execute(action: "StartOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

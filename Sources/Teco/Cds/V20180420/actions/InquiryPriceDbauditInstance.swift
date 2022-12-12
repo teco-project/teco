@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cds {
-    /// 数据安全审计产品实例询价
-    ///
-    /// 用于查询数据安全审计产品实例价格
-    @inlinable
-    public func inquiryPriceDbauditInstance(_ input: InquiryPriceDbauditInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceDbauditInstanceResponse > {
-        self.client.execute(action: "InquiryPriceDbauditInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 数据安全审计产品实例询价
-    ///
-    /// 用于查询数据安全审计产品实例价格
-    @inlinable
-    public func inquiryPriceDbauditInstance(_ input: InquiryPriceDbauditInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceDbauditInstanceResponse {
-        try await self.client.execute(action: "InquiryPriceDbauditInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceDbauditInstance请求参数结构体
     public struct InquiryPriceDbauditInstanceRequest: TCRequestModel {
         /// 实例规格，取值范围： cdsaudit，cdsaudit_adv， cdsaudit_ent 分别为合规版，高级版，企业版
@@ -81,5 +65,21 @@ extension Cds {
             case realTotalCost = "RealTotalCost"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 数据安全审计产品实例询价
+    ///
+    /// 用于查询数据安全审计产品实例价格
+    @inlinable
+    public func inquiryPriceDbauditInstance(_ input: InquiryPriceDbauditInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceDbauditInstanceResponse > {
+        self.client.execute(action: "InquiryPriceDbauditInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 数据安全审计产品实例询价
+    ///
+    /// 用于查询数据安全审计产品实例价格
+    @inlinable
+    public func inquiryPriceDbauditInstance(_ input: InquiryPriceDbauditInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceDbauditInstanceResponse {
+        try await self.client.execute(action: "InquiryPriceDbauditInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

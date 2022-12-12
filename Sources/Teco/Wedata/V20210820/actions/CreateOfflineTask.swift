@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 创建离线任务
-    @inlinable
-    public func createOfflineTask(_ input: CreateOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOfflineTaskResponse > {
-        self.client.execute(action: "CreateOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建离线任务
-    @inlinable
-    public func createOfflineTask(_ input: CreateOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOfflineTaskResponse {
-        try await self.client.execute(action: "CreateOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOfflineTask请求参数结构体
     public struct CreateOfflineTaskRequest: TCRequestModel {
         /// 项目/工作
@@ -98,5 +86,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建离线任务
+    @inlinable
+    public func createOfflineTask(_ input: CreateOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOfflineTaskResponse > {
+        self.client.execute(action: "CreateOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建离线任务
+    @inlinable
+    public func createOfflineTask(_ input: CreateOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOfflineTaskResponse {
+        try await self.client.execute(action: "CreateOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

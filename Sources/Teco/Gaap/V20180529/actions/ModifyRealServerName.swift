@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 修改源站名称
-    ///
-    /// 本接口（ModifyRealServerName）用于修改源站的名称
-    @inlinable
-    public func modifyRealServerName(_ input: ModifyRealServerNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRealServerNameResponse > {
-        self.client.execute(action: "ModifyRealServerName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改源站名称
-    ///
-    /// 本接口（ModifyRealServerName）用于修改源站的名称
-    @inlinable
-    public func modifyRealServerName(_ input: ModifyRealServerNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerNameResponse {
-        try await self.client.execute(action: "ModifyRealServerName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRealServerName请求参数结构体
     public struct ModifyRealServerNameRequest: TCRequestModel {
         /// 源站名称
@@ -58,5 +42,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改源站名称
+    ///
+    /// 本接口（ModifyRealServerName）用于修改源站的名称
+    @inlinable
+    public func modifyRealServerName(_ input: ModifyRealServerNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRealServerNameResponse > {
+        self.client.execute(action: "ModifyRealServerName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改源站名称
+    ///
+    /// 本接口（ModifyRealServerName）用于修改源站的名称
+    @inlinable
+    public func modifyRealServerName(_ input: ModifyRealServerNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerNameResponse {
+        try await self.client.execute(action: "ModifyRealServerName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

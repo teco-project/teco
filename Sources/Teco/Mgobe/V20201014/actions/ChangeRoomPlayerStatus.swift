@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Mgobe {
-    /// 修改玩家自定义状态
-    ///
-    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
-    /// 修改玩家自定义状态
-    @inlinable
-    public func changeRoomPlayerStatus(_ input: ChangeRoomPlayerStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeRoomPlayerStatusResponse > {
-        self.client.execute(action: "ChangeRoomPlayerStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改玩家自定义状态
-    ///
-    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
-    /// 修改玩家自定义状态
-    @inlinable
-    public func changeRoomPlayerStatus(_ input: ChangeRoomPlayerStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerStatusResponse {
-        try await self.client.execute(action: "ChangeRoomPlayerStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ChangeRoomPlayerStatus请求参数结构体
     public struct ChangeRoomPlayerStatusRequest: TCRequestModel {
         /// 游戏资源Id。
@@ -69,5 +51,23 @@ extension Mgobe {
             case room = "Room"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改玩家自定义状态
+    ///
+    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    /// 修改玩家自定义状态
+    @inlinable
+    public func changeRoomPlayerStatus(_ input: ChangeRoomPlayerStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeRoomPlayerStatusResponse > {
+        self.client.execute(action: "ChangeRoomPlayerStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改玩家自定义状态
+    ///
+    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    /// 修改玩家自定义状态
+    @inlinable
+    public func changeRoomPlayerStatus(_ input: ChangeRoomPlayerStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerStatusResponse {
+        try await self.client.execute(action: "ChangeRoomPlayerStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

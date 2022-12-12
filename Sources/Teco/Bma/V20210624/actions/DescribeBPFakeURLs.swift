@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 查询仿冒链接
-    @inlinable
-    public func describeBPFakeURLs(_ input: DescribeBPFakeURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBPFakeURLsResponse > {
-        self.client.execute(action: "DescribeBPFakeURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询仿冒链接
-    @inlinable
-    public func describeBPFakeURLs(_ input: DescribeBPFakeURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPFakeURLsResponse {
-        try await self.client.execute(action: "DescribeBPFakeURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBPFakeURLs请求参数结构体
     public struct DescribeBPFakeURLsRequest: TCRequestModel {
         /// 过滤条件
@@ -38,7 +26,7 @@ extension Bma {
         /// 页码
         public let pageNumber: Int64?
         
-        public init (filters: [Filter]?, pageSize: Int64?, pageNumber: Int64?) {
+        public init (filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil) {
             self.filters = filters
             self.pageSize = pageSize
             self.pageNumber = pageNumber
@@ -71,5 +59,17 @@ extension Bma {
             case exportURL = "ExportURL"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询仿冒链接
+    @inlinable
+    public func describeBPFakeURLs(_ input: DescribeBPFakeURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBPFakeURLsResponse > {
+        self.client.execute(action: "DescribeBPFakeURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询仿冒链接
+    @inlinable
+    public func describeBPFakeURLs(_ input: DescribeBPFakeURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPFakeURLsResponse {
+        try await self.client.execute(action: "DescribeBPFakeURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

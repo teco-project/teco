@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mna {
-    /// 新建设备
-    ///
-    /// 新建设备记录
-    @inlinable
-    public func addDevice(_ input: AddDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDeviceResponse > {
-        self.client.execute(action: "AddDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建设备
-    ///
-    /// 新建设备记录
-    @inlinable
-    public func addDevice(_ input: AddDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDeviceResponse {
-        try await self.client.execute(action: "AddDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddDevice请求参数结构体
     public struct AddDeviceRequest: TCRequestModel {
         /// 新建设备的名称
@@ -45,7 +29,7 @@ extension Mna {
         /// 是否设置预置密钥
         public let encrypted: Bool?
         
-        public init (deviceName: String, remark: String?, dataKey: String?, encrypted: Bool?) {
+        public init (deviceName: String, remark: String? = nil, dataKey: String? = nil, encrypted: Bool? = nil) {
             self.deviceName = deviceName
             self.remark = remark
             self.dataKey = dataKey
@@ -81,5 +65,21 @@ extension Mna {
             case signature = "Signature"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建设备
+    ///
+    /// 新建设备记录
+    @inlinable
+    public func addDevice(_ input: AddDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDeviceResponse > {
+        self.client.execute(action: "AddDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建设备
+    ///
+    /// 新建设备记录
+    @inlinable
+    public func addDevice(_ input: AddDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDeviceResponse {
+        try await self.client.execute(action: "AddDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

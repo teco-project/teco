@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 分页查询质量规则
-    @inlinable
-    public func describeRulesByPage(_ input: DescribeRulesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesByPageResponse > {
-        self.client.execute(action: "DescribeRulesByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分页查询质量规则
-    @inlinable
-    public func describeRulesByPage(_ input: DescribeRulesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesByPageResponse {
-        try await self.client.execute(action: "DescribeRulesByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRulesByPage请求参数结构体
     public struct DescribeRulesByPageRequest: TCRequestModel {
         /// 分页序号
@@ -44,7 +32,7 @@ extension Wedata {
         /// 项目ID
         public let projectId: String?
         
-        public init (pageNumber: UInt64?, pageSize: UInt64?, filters: [Filter]?, orderFields: [OrderField]?, projectId: String?) {
+        public init (pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil) {
             self.pageNumber = pageNumber
             self.pageSize = pageSize
             self.filters = filters
@@ -65,7 +53,7 @@ extension Wedata {
     public struct DescribeRulesByPageResponse: TCResponseModel {
         /// 规则质量列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: RulePage
+        public let data: RulePage?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -74,5 +62,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分页查询质量规则
+    @inlinable
+    public func describeRulesByPage(_ input: DescribeRulesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesByPageResponse > {
+        self.client.execute(action: "DescribeRulesByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分页查询质量规则
+    @inlinable
+    public func describeRulesByPage(_ input: DescribeRulesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesByPageResponse {
+        try await self.client.execute(action: "DescribeRulesByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

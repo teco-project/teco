@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 删除CC攻击的session设置
-    @inlinable
-    public func deleteSession(_ input: DeleteSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSessionResponse > {
-        self.client.execute(action: "DeleteSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除CC攻击的session设置
-    @inlinable
-    public func deleteSession(_ input: DeleteSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSessionResponse {
-        try await self.client.execute(action: "DeleteSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSession请求参数结构体
     public struct DeleteSessionRequest: TCRequestModel {
         /// 域名
@@ -35,7 +23,7 @@ extension Waf {
         /// clb-waf 或者 sprta-waf
         public let edition: String?
         
-        public init (domain: String, edition: String?) {
+        public init (domain: String, edition: String? = nil) {
             self.domain = domain
             self.edition = edition
         }
@@ -59,5 +47,17 @@ extension Waf {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除CC攻击的session设置
+    @inlinable
+    public func deleteSession(_ input: DeleteSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSessionResponse > {
+        self.client.execute(action: "DeleteSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除CC攻击的session设置
+    @inlinable
+    public func deleteSession(_ input: DeleteSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSessionResponse {
+        try await self.client.execute(action: "DeleteSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

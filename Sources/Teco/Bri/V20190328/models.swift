@@ -60,7 +60,7 @@ extension Bri {
         /// 微信号的可疑标签
         public let wechatTag: String?
         
-        public init (service: String, qq: String?, qqTag: String?, url: String?, certMd5: String?, packageName: String?, fileMd5: String?, scene: String?, phoneNumber: String?, fileSize: Int64?, ip: String?, imei: String?, wechat: String?, wechatTag: String?) {
+        public init (service: String, qq: String? = nil, qqTag: String? = nil, url: String? = nil, certMd5: String? = nil, packageName: String? = nil, fileMd5: String? = nil, scene: String? = nil, phoneNumber: String? = nil, fileSize: Int64? = nil, ip: String? = nil, imei: String? = nil, wechat: String? = nil, wechatTag: String? = nil) {
             self.service = service
             self.qq = qq
             self.qqTag = qqTag
@@ -123,7 +123,7 @@ extension Bri {
         /// 4) 病毒   说明: APK为包含恶意代码的恶意软件,可能破坏系统或者其他app正常使用
         public let tags: [String]?
         
-        public init (score: Float?, tags: [String]?) {
+        public init (score: Float? = nil, tags: [String]? = nil) {
             self.score = score
             self.tags = tags
         }

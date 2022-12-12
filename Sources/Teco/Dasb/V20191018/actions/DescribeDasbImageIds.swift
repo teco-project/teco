@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dasb {
-    /// 数盾-DASB-获取镜像列表
-    ///
-    /// 获取镜像列表
-    @inlinable
-    public func describeDasbImageIds(_ input: DescribeDasbImageIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDasbImageIdsResponse > {
-        self.client.execute(action: "DescribeDasbImageIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 数盾-DASB-获取镜像列表
-    ///
-    /// 获取镜像列表
-    @inlinable
-    public func describeDasbImageIds(_ input: DescribeDasbImageIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDasbImageIdsResponse {
-        try await self.client.execute(action: "DescribeDasbImageIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDasbImageIds请求参数结构体
     public struct DescribeDasbImageIdsRequest: TCRequestModel {
         public init () {
@@ -53,5 +37,21 @@ extension Dasb {
             case aiImageId = "AiImageId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 数盾-DASB-获取镜像列表
+    ///
+    /// 获取镜像列表
+    @inlinable
+    public func describeDasbImageIds(_ input: DescribeDasbImageIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDasbImageIdsResponse > {
+        self.client.execute(action: "DescribeDasbImageIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 数盾-DASB-获取镜像列表
+    ///
+    /// 获取镜像列表
+    @inlinable
+    public func describeDasbImageIds(_ input: DescribeDasbImageIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDasbImageIdsResponse {
+        try await self.client.execute(action: "DescribeDasbImageIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

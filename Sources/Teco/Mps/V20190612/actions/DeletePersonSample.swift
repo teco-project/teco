@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 删除素材样本
-    ///
-    /// 该接口用于根据素材 ID，删除素材样本。
-    @inlinable
-    public func deletePersonSample(_ input: DeletePersonSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePersonSampleResponse > {
-        self.client.execute(action: "DeletePersonSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除素材样本
-    ///
-    /// 该接口用于根据素材 ID，删除素材样本。
-    @inlinable
-    public func deletePersonSample(_ input: DeletePersonSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonSampleResponse {
-        try await self.client.execute(action: "DeletePersonSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePersonSample请求参数结构体
     public struct DeletePersonSampleRequest: TCRequestModel {
         /// 素材 ID。
@@ -53,5 +37,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除素材样本
+    ///
+    /// 该接口用于根据素材 ID，删除素材样本。
+    @inlinable
+    public func deletePersonSample(_ input: DeletePersonSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePersonSampleResponse > {
+        self.client.execute(action: "DeletePersonSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除素材样本
+    ///
+    /// 该接口用于根据素材 ID，删除素材样本。
+    @inlinable
+    public func deletePersonSample(_ input: DeletePersonSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonSampleResponse {
+        try await self.client.execute(action: "DeletePersonSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

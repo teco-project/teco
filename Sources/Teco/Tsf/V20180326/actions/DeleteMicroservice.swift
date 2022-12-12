@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 删除微服务
-    @inlinable
-    public func deleteMicroservice(_ input: DeleteMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMicroserviceResponse > {
-        self.client.execute(action: "DeleteMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除微服务
-    @inlinable
-    public func deleteMicroservice(_ input: DeleteMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMicroserviceResponse {
-        try await self.client.execute(action: "DeleteMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMicroservice请求参数结构体
     public struct DeleteMicroserviceRequest: TCRequestModel {
         /// 微服务ID
@@ -55,5 +43,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除微服务
+    @inlinable
+    public func deleteMicroservice(_ input: DeleteMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMicroserviceResponse > {
+        self.client.execute(action: "DeleteMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除微服务
+    @inlinable
+    public func deleteMicroservice(_ input: DeleteMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMicroserviceResponse {
+        try await self.client.execute(action: "DeleteMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

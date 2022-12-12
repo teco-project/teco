@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 更新监控状态
-    @inlinable
-    public func modifyMonitorStatus(_ input: ModifyMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMonitorStatusResponse > {
-        self.client.execute(action: "ModifyMonitorStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新监控状态
-    @inlinable
-    public func modifyMonitorStatus(_ input: ModifyMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMonitorStatusResponse {
-        try await self.client.execute(action: "ModifyMonitorStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMonitorStatus请求参数结构体
     public struct ModifyMonitorStatusRequest: TCRequestModel {
         /// 项目Id
@@ -38,7 +26,7 @@ extension Wedata {
         /// 监控开关状态
         public let monitorStatus: Bool?
         
-        public init (projectId: String?, ruleGroupId: UInt64?, monitorStatus: Bool?) {
+        public init (projectId: String? = nil, ruleGroupId: UInt64? = nil, monitorStatus: Bool? = nil) {
             self.projectId = projectId
             self.ruleGroupId = ruleGroupId
             self.monitorStatus = monitorStatus
@@ -64,5 +52,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新监控状态
+    @inlinable
+    public func modifyMonitorStatus(_ input: ModifyMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMonitorStatusResponse > {
+        self.client.execute(action: "ModifyMonitorStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新监控状态
+    @inlinable
+    public func modifyMonitorStatus(_ input: ModifyMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMonitorStatusResponse {
+        try await self.client.execute(action: "ModifyMonitorStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

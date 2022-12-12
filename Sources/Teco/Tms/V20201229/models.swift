@@ -90,7 +90,7 @@ extension Tms {
         /// **iOS设备专用**，该字段表示业务用户对应的**IDFV**(应用开发商标识符),这是由苹果公司提供的用于标注应用开发商的标识符，由一串16进制的32位数字和字母组成，可被用于唯一标识设备。
         public let idfv: String?
         
-        public init (ip: String?, mac: String?, tokenId: String?, deviceId: String?, imei: String?, idfa: String?, idfv: String?) {
+        public init (ip: String? = nil, mac: String? = nil, tokenId: String? = nil, deviceId: String? = nil, imei: String? = nil, idfa: String? = nil, idfv: String? = nil) {
             self.ip = ip
             self.mac = mac
             self.tokenId = tokenId
@@ -191,7 +191,7 @@ extension Tms {
         /// 消息生成时间，精确到毫秒
         public let sendTime: Int64?
         
-        public init (userId: String?, nickname: String?, accountType: Int64?, gender: Int64?, age: Int64?, level: Int64?, phone: String?, headUrl: String?, desc: String?, roomId: String?, receiverId: String?, sendTime: Int64?) {
+        public init (userId: String? = nil, nickname: String? = nil, accountType: Int64? = nil, gender: Int64? = nil, age: Int64? = nil, level: Int64? = nil, phone: String? = nil, headUrl: String? = nil, desc: String? = nil, roomId: String? = nil, receiverId: String? = nil, sendTime: Int64? = nil) {
             self.userId = userId
             self.nickname = nickname
             self.accountType = accountType

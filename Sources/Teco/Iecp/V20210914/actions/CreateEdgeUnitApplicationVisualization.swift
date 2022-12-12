@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 可视化创建应用
-    @inlinable
-    public func createEdgeUnitApplicationVisualization(_ input: CreateEdgeUnitApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeUnitApplicationVisualizationResponse > {
-        self.client.execute(action: "CreateEdgeUnitApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 可视化创建应用
-    @inlinable
-    public func createEdgeUnitApplicationVisualization(_ input: CreateEdgeUnitApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitApplicationVisualizationResponse {
-        try await self.client.execute(action: "CreateEdgeUnitApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEdgeUnitApplicationVisualization请求参数结构体
     public struct CreateEdgeUnitApplicationVisualizationRequest: TCRequestModel {
         /// 基本信息
@@ -42,16 +30,16 @@ extension Iecp {
         public let volumes: [Volume]?
         
         /// 服务配置
-        public let service: Service
+        public let service: Service?
         
         /// 模版ID
         public let templateID: UInt64?
         
         /// Job配置
-        public let job: Job
+        public let job: Job?
         
         /// CronJob配置
-        public let cronJob: CronJob
+        public let cronJob: CronJob?
         
         /// 重新运行策略
         public let restartPolicy: String?
@@ -60,7 +48,7 @@ extension Iecp {
         public let imagePullSecrets: [String]?
         
         /// HPA配置
-        public let horizontalPodAutoscaler: HorizontalPodAutoscaler
+        public let horizontalPodAutoscaler: HorizontalPodAutoscaler?
         
         /// 初始化容器列表
         public let initContainers: [Container]?
@@ -68,7 +56,7 @@ extension Iecp {
         /// 容器列表
         public let containers: [Container]?
         
-        public init (basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, edgeUnitId: UInt64, volumes: [Volume]?, service: Service, templateID: UInt64?, job: Job, cronJob: CronJob, restartPolicy: String?, imagePullSecrets: [String]?, horizontalPodAutoscaler: HorizontalPodAutoscaler, initContainers: [Container]?, containers: [Container]?) {
+        public init (basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, edgeUnitId: UInt64, volumes: [Volume]? = nil, service: Service? = nil, templateID: UInt64? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil) {
             self.basicInfo = basicInfo
             self.basicConfig = basicConfig
             self.edgeUnitId = edgeUnitId
@@ -114,5 +102,17 @@ extension Iecp {
             case applicationId = "ApplicationId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 可视化创建应用
+    @inlinable
+    public func createEdgeUnitApplicationVisualization(_ input: CreateEdgeUnitApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeUnitApplicationVisualizationResponse > {
+        self.client.execute(action: "CreateEdgeUnitApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 可视化创建应用
+    @inlinable
+    public func createEdgeUnitApplicationVisualization(_ input: CreateEdgeUnitApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitApplicationVisualizationResponse {
+        try await self.client.execute(action: "CreateEdgeUnitApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

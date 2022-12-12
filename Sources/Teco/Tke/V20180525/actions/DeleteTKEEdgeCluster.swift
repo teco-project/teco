@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 删除边缘计算集群
-    @inlinable
-    public func deleteTKEEdgeCluster(_ input: DeleteTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTKEEdgeClusterResponse > {
-        self.client.execute(action: "DeleteTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除边缘计算集群
-    @inlinable
-    public func deleteTKEEdgeCluster(_ input: DeleteTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTKEEdgeClusterResponse {
-        try await self.client.execute(action: "DeleteTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTKEEdgeCluster请求参数结构体
     public struct DeleteTKEEdgeClusterRequest: TCRequestModel {
         /// 集群ID
@@ -49,5 +37,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除边缘计算集群
+    @inlinable
+    public func deleteTKEEdgeCluster(_ input: DeleteTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTKEEdgeClusterResponse > {
+        self.client.execute(action: "DeleteTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除边缘计算集群
+    @inlinable
+    public func deleteTKEEdgeCluster(_ input: DeleteTKEEdgeClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTKEEdgeClusterResponse {
+        try await self.client.execute(action: "DeleteTKEEdgeCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

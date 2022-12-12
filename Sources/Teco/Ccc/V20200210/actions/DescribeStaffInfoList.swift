@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 获取坐席信息列表
-    @inlinable
-    public func describeStaffInfoList(_ input: DescribeStaffInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStaffInfoListResponse > {
-        self.client.execute(action: "DescribeStaffInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取坐席信息列表
-    @inlinable
-    public func describeStaffInfoList(_ input: DescribeStaffInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffInfoListResponse {
-        try await self.client.execute(action: "DescribeStaffInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStaffInfoList请求参数结构体
     public struct DescribeStaffInfoListRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -47,7 +35,7 @@ extension Ccc {
         /// 技能组ID
         public let skillGroupId: Int64?
         
-        public init (sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, staffMail: String?, modifiedTime: Int64?, skillGroupId: Int64?) {
+        public init (sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, staffMail: String? = nil, modifiedTime: Int64? = nil, skillGroupId: Int64? = nil) {
             self.sdkAppId = sdkAppId
             self.pageSize = pageSize
             self.pageNumber = pageNumber
@@ -82,5 +70,17 @@ extension Ccc {
             case staffList = "StaffList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取坐席信息列表
+    @inlinable
+    public func describeStaffInfoList(_ input: DescribeStaffInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStaffInfoListResponse > {
+        self.client.execute(action: "DescribeStaffInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取坐席信息列表
+    @inlinable
+    public func describeStaffInfoList(_ input: DescribeStaffInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffInfoListResponse {
+        try await self.client.execute(action: "DescribeStaffInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

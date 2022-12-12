@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Npp {
-    /// 回拨通话状态获取
-    @inlinable
-    public func describeCallBackStatus(_ input: DescribeCallBackStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallBackStatusResponse > {
-        self.client.execute(action: "DescribeCallBackStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 回拨通话状态获取
-    @inlinable
-    public func describeCallBackStatus(_ input: DescribeCallBackStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallBackStatusResponse {
-        try await self.client.execute(action: "DescribeCallBackStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCallBackStatus请求参数结构体
     public struct DescribeCallBackStatusRequest: TCRequestModel {
         /// 业务appid
@@ -44,7 +32,7 @@ extension Npp {
         /// 通话最后状态：0：未知状态 1：主叫响铃中 2：主叫接听 3：被叫响铃中 4：正常通话中 5：通话结束
         public let callStatus: String?
         
-        public init (bizAppId: String, callId: String, src: String?, dst: String?, callStatus: String?) {
+        public init (bizAppId: String, callId: String, src: String? = nil, dst: String? = nil, callStatus: String? = nil) {
             self.bizAppId = bizAppId
             self.callId = callId
             self.src = src
@@ -97,5 +85,17 @@ extension Npp {
             case callStatus = "CallStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 回拨通话状态获取
+    @inlinable
+    public func describeCallBackStatus(_ input: DescribeCallBackStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCallBackStatusResponse > {
+        self.client.execute(action: "DescribeCallBackStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 回拨通话状态获取
+    @inlinable
+    public func describeCallBackStatus(_ input: DescribeCallBackStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallBackStatusResponse {
+        try await self.client.execute(action: "DescribeCallBackStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

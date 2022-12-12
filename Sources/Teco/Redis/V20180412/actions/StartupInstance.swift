@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 实例解隔离
-    @inlinable
-    public func startupInstance(_ input: StartupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartupInstanceResponse > {
-        self.client.execute(action: "StartupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实例解隔离
-    @inlinable
-    public func startupInstance(_ input: StartupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartupInstanceResponse {
-        try await self.client.execute(action: "StartupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartupInstance请求参数结构体
     public struct StartupInstanceRequest: TCRequestModel {
         /// 实例id
@@ -53,5 +41,17 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实例解隔离
+    @inlinable
+    public func startupInstance(_ input: StartupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartupInstanceResponse > {
+        self.client.execute(action: "StartupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实例解隔离
+    @inlinable
+    public func startupInstance(_ input: StartupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartupInstanceResponse {
+        try await self.client.execute(action: "StartupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 修改推流鉴权key
-    ///
-    /// 修改直播推流鉴权key
-    @inlinable
-    public func modifyLivePushAuthKey(_ input: ModifyLivePushAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLivePushAuthKeyResponse > {
-        self.client.execute(action: "ModifyLivePushAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改推流鉴权key
-    ///
-    /// 修改直播推流鉴权key
-    @inlinable
-    public func modifyLivePushAuthKey(_ input: ModifyLivePushAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePushAuthKeyResponse {
-        try await self.client.execute(action: "ModifyLivePushAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLivePushAuthKey请求参数结构体
     public struct ModifyLivePushAuthKeyRequest: TCRequestModel {
         /// 推流域名。
@@ -51,7 +35,7 @@ extension Live {
         /// 有效时间，单位：秒。
         public let authDelta: UInt64?
         
-        public init (domainName: String, enable: Int64?, masterAuthKey: String?, backupAuthKey: String?, authDelta: UInt64?) {
+        public init (domainName: String, enable: Int64? = nil, masterAuthKey: String? = nil, backupAuthKey: String? = nil, authDelta: UInt64? = nil) {
             self.domainName = domainName
             self.enable = enable
             self.masterAuthKey = masterAuthKey
@@ -76,5 +60,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改推流鉴权key
+    ///
+    /// 修改直播推流鉴权key
+    @inlinable
+    public func modifyLivePushAuthKey(_ input: ModifyLivePushAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLivePushAuthKeyResponse > {
+        self.client.execute(action: "ModifyLivePushAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改推流鉴权key
+    ///
+    /// 修改直播推流鉴权key
+    @inlinable
+    public func modifyLivePushAuthKey(_ input: ModifyLivePushAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePushAuthKeyResponse {
+        try await self.client.execute(action: "ModifyLivePushAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

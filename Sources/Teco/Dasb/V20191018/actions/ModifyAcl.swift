@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dasb {
-    /// 修改访问权限
-    @inlinable
-    public func modifyAcl(_ input: ModifyAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAclResponse > {
-        self.client.execute(action: "ModifyAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改访问权限
-    @inlinable
-    public func modifyAcl(_ input: ModifyAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAclResponse {
-        try await self.client.execute(action: "ModifyAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAcl请求参数结构体
     public struct ModifyAclRequest: TCRequestModel {
         /// 访问权限名称，最大32字符，不能包含空白字符
@@ -111,7 +99,7 @@ extension Dasb {
         /// 权限所属部门的ID，如：1.2.3
         public let departmentId: String?
         
-        public init (name: String, allowDiskRedirect: Bool, allowAnyAccount: Bool, id: UInt64, allowClipFileUp: Bool?, allowClipFileDown: Bool?, allowClipTextUp: Bool?, allowClipTextDown: Bool?, allowFileUp: Bool?, maxFileUpSize: UInt64?, allowFileDown: Bool?, maxFileDownSize: UInt64?, userIdSet: [UInt64]?, userGroupIdSet: [UInt64]?, deviceIdSet: [UInt64]?, deviceGroupIdSet: [UInt64]?, accountSet: [String]?, cmdTemplateIdSet: [UInt64]?, allowDiskFileUp: Bool?, allowDiskFileDown: Bool?, allowShellFileUp: Bool?, allowShellFileDown: Bool?, allowFileDel: Bool?, validateFrom: Date?, validateTo: Date?, departmentId: String?) {
+        public init (name: String, allowDiskRedirect: Bool, allowAnyAccount: Bool, id: UInt64, allowClipFileUp: Bool? = nil, allowClipFileDown: Bool? = nil, allowClipTextUp: Bool? = nil, allowClipTextDown: Bool? = nil, allowFileUp: Bool? = nil, maxFileUpSize: UInt64? = nil, allowFileDown: Bool? = nil, maxFileDownSize: UInt64? = nil, userIdSet: [UInt64]? = nil, userGroupIdSet: [UInt64]? = nil, deviceIdSet: [UInt64]? = nil, deviceGroupIdSet: [UInt64]? = nil, accountSet: [String]? = nil, cmdTemplateIdSet: [UInt64]? = nil, allowDiskFileUp: Bool? = nil, allowDiskFileDown: Bool? = nil, allowShellFileUp: Bool? = nil, allowShellFileDown: Bool? = nil, allowFileDel: Bool? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, departmentId: String? = nil) {
             self.name = name
             self.allowDiskRedirect = allowDiskRedirect
             self.allowAnyAccount = allowAnyAccount
@@ -178,5 +166,17 @@ extension Dasb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改访问权限
+    @inlinable
+    public func modifyAcl(_ input: ModifyAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAclResponse > {
+        self.client.execute(action: "ModifyAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改访问权限
+    @inlinable
+    public func modifyAcl(_ input: ModifyAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAclResponse {
+        try await self.client.execute(action: "ModifyAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

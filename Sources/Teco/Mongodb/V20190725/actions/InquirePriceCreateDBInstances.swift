@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 创建实例询价
-    ///
-    /// 本接口（InquirePriceCreateDBInstances）用于创建数据库实例询价。本接口参数中必须传入region参数，否则无法通过校验。本接口仅允许针对购买限制范围内的实例配置进行询价。
-    @inlinable
-    public func inquirePriceCreateDBInstances(_ input: InquirePriceCreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceCreateDBInstancesResponse > {
-        self.client.execute(action: "InquirePriceCreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例询价
-    ///
-    /// 本接口（InquirePriceCreateDBInstances）用于创建数据库实例询价。本接口参数中必须传入region参数，否则无法通过校验。本接口仅允许针对购买限制范围内的实例配置进行询价。
-    @inlinable
-    public func inquirePriceCreateDBInstances(_ input: InquirePriceCreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDBInstancesResponse {
-        try await self.client.execute(action: "InquirePriceCreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquirePriceCreateDBInstances请求参数结构体
     public struct InquirePriceCreateDBInstancesRequest: TCRequestModel {
         /// 实例所属区域及可用区信息。格式：ap-guangzhou-2。
@@ -84,7 +68,7 @@ extension Mongodb {
         /// 分片实例询价必填参数，指 ConfigServer 磁盘大小，取值为 20，单位：GB。
         public let configServerVolume: UInt64?
         
-        public init (zone: String, nodeNum: Int64, memory: Int64, volume: Int64, mongoVersion: String, machineCode: String, goodsNum: Int64, clusterType: String, replicateSetNum: Int64, period: Int64?, instanceChargeType: String?, mongosCpu: UInt64?, mongosMemory: UInt64?, mongosNum: UInt64?, configServerCpu: UInt64?, configServerMemory: UInt64?, configServerVolume: UInt64?) {
+        public init (zone: String, nodeNum: Int64, memory: Int64, volume: Int64, mongoVersion: String, machineCode: String, goodsNum: Int64, clusterType: String, replicateSetNum: Int64, period: Int64? = nil, instanceChargeType: String? = nil, mongosCpu: UInt64? = nil, mongosMemory: UInt64? = nil, mongosNum: UInt64? = nil, configServerCpu: UInt64? = nil, configServerMemory: UInt64? = nil, configServerVolume: UInt64? = nil) {
             self.zone = zone
             self.nodeNum = nodeNum
             self.memory = memory
@@ -137,5 +121,21 @@ extension Mongodb {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例询价
+    ///
+    /// 本接口（InquirePriceCreateDBInstances）用于创建数据库实例询价。本接口参数中必须传入region参数，否则无法通过校验。本接口仅允许针对购买限制范围内的实例配置进行询价。
+    @inlinable
+    public func inquirePriceCreateDBInstances(_ input: InquirePriceCreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceCreateDBInstancesResponse > {
+        self.client.execute(action: "InquirePriceCreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例询价
+    ///
+    /// 本接口（InquirePriceCreateDBInstances）用于创建数据库实例询价。本接口参数中必须传入region参数，否则无法通过校验。本接口仅允许针对购买限制范围内的实例配置进行询价。
+    @inlinable
+    public func inquirePriceCreateDBInstances(_ input: InquirePriceCreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDBInstancesResponse {
+        try await self.client.execute(action: "InquirePriceCreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

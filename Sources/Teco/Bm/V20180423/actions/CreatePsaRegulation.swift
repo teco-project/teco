@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 创建预授权规则
-    @inlinable
-    public func createPsaRegulation(_ input: CreatePsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePsaRegulationResponse > {
-        self.client.execute(action: "CreatePsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建预授权规则
-    @inlinable
-    public func createPsaRegulation(_ input: CreatePsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePsaRegulationResponse {
-        try await self.client.execute(action: "CreatePsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePsaRegulation请求参数结构体
     public struct CreatePsaRegulationRequest: TCRequestModel {
         /// 规则别名
@@ -41,7 +29,7 @@ extension Bm {
         /// 规则备注
         public let psaDescription: String?
         
-        public init (psaName: String, taskTypeIds: [UInt64], repairLimit: UInt64?, psaDescription: String?) {
+        public init (psaName: String, taskTypeIds: [UInt64], repairLimit: UInt64? = nil, psaDescription: String? = nil) {
             self.psaName = psaName
             self.taskTypeIds = taskTypeIds
             self.repairLimit = repairLimit
@@ -68,5 +56,17 @@ extension Bm {
             case psaId = "PsaId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建预授权规则
+    @inlinable
+    public func createPsaRegulation(_ input: CreatePsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePsaRegulationResponse > {
+        self.client.execute(action: "CreatePsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建预授权规则
+    @inlinable
+    public func createPsaRegulation(_ input: CreatePsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePsaRegulationResponse {
+        try await self.client.execute(action: "CreatePsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

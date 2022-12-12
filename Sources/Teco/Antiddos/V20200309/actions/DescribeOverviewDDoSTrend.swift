@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Antiddos {
-    /// 获取防护概览DDoS攻击流量带宽和攻击包速率数据
-    @inlinable
-    public func describeOverviewDDoSTrend(_ input: DescribeOverviewDDoSTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewDDoSTrendResponse > {
-        self.client.execute(action: "DescribeOverviewDDoSTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取防护概览DDoS攻击流量带宽和攻击包速率数据
-    @inlinable
-    public func describeOverviewDDoSTrend(_ input: DescribeOverviewDDoSTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSTrendResponse {
-        try await self.client.execute(action: "DescribeOverviewDDoSTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOverviewDDoSTrend请求参数结构体
     public struct DescribeOverviewDDoSTrendRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp-multip表示高防包；basic表示DDoS基础防护）
@@ -54,7 +42,7 @@ extension Antiddos {
         /// 资源实例ID
         public let id: String?
         
-        public init (business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]?, id: String?) {
+        public init (business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil) {
             self.business = business
             self.period = period
             self.startTime = startTime
@@ -91,5 +79,17 @@ extension Antiddos {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取防护概览DDoS攻击流量带宽和攻击包速率数据
+    @inlinable
+    public func describeOverviewDDoSTrend(_ input: DescribeOverviewDDoSTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewDDoSTrendResponse > {
+        self.client.execute(action: "DescribeOverviewDDoSTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取防护概览DDoS攻击流量带宽和攻击包速率数据
+    @inlinable
+    public func describeOverviewDDoSTrend(_ input: DescribeOverviewDDoSTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSTrendResponse {
+        try await self.client.execute(action: "DescribeOverviewDDoSTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

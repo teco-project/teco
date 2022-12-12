@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// NAT网关解绑子网
-    ///
-    /// NAT网关解绑子网接口，可将子网解绑NAT网关
-    @inlinable
-    public func unbindSubnetsFromNatGateway(_ input: UnbindSubnetsFromNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindSubnetsFromNatGatewayResponse > {
-        self.client.execute(action: "UnbindSubnetsFromNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// NAT网关解绑子网
-    ///
-    /// NAT网关解绑子网接口，可将子网解绑NAT网关
-    @inlinable
-    public func unbindSubnetsFromNatGateway(_ input: UnbindSubnetsFromNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindSubnetsFromNatGatewayResponse {
-        try await self.client.execute(action: "UnbindSubnetsFromNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindSubnetsFromNatGateway请求参数结构体
     public struct UnbindSubnetsFromNatGatewayRequest: TCRequestModel {
         /// NAT网关ID，例如：nat-kdm476mp
@@ -67,5 +51,21 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// NAT网关解绑子网
+    ///
+    /// NAT网关解绑子网接口，可将子网解绑NAT网关
+    @inlinable
+    public func unbindSubnetsFromNatGateway(_ input: UnbindSubnetsFromNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindSubnetsFromNatGatewayResponse > {
+        self.client.execute(action: "UnbindSubnetsFromNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// NAT网关解绑子网
+    ///
+    /// NAT网关解绑子网接口，可将子网解绑NAT网关
+    @inlinable
+    public func unbindSubnetsFromNatGateway(_ input: UnbindSubnetsFromNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindSubnetsFromNatGatewayResponse {
+        try await self.client.execute(action: "UnbindSubnetsFromNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

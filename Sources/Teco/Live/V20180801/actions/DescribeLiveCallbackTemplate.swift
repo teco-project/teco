@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 获取单个回调模板
-    ///
-    /// 获取单个回调模板。
-    @inlinable
-    public func describeLiveCallbackTemplate(_ input: DescribeLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveCallbackTemplateResponse > {
-        self.client.execute(action: "DescribeLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取单个回调模板
-    ///
-    /// 获取单个回调模板。
-    @inlinable
-    public func describeLiveCallbackTemplate(_ input: DescribeLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackTemplateResponse {
-        try await self.client.execute(action: "DescribeLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveCallbackTemplate请求参数结构体
     public struct DescribeLiveCallbackTemplateRequest: TCRequestModel {
         /// 模板 ID。
@@ -59,5 +43,21 @@ extension Live {
             case template = "Template"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取单个回调模板
+    ///
+    /// 获取单个回调模板。
+    @inlinable
+    public func describeLiveCallbackTemplate(_ input: DescribeLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveCallbackTemplateResponse > {
+        self.client.execute(action: "DescribeLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单个回调模板
+    ///
+    /// 获取单个回调模板。
+    @inlinable
+    public func describeLiveCallbackTemplate(_ input: DescribeLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackTemplateResponse {
+        try await self.client.execute(action: "DescribeLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

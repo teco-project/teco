@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 创建个人版命名空间
-    ///
-    /// 创建个人版镜像仓库命名空间，此命名空间全局唯一
-    @inlinable
-    public func createNamespacePersonal(_ input: CreateNamespacePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNamespacePersonalResponse > {
-        self.client.execute(action: "CreateNamespacePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建个人版命名空间
-    ///
-    /// 创建个人版镜像仓库命名空间，此命名空间全局唯一
-    @inlinable
-    public func createNamespacePersonal(_ input: CreateNamespacePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespacePersonalResponse {
-        try await self.client.execute(action: "CreateNamespacePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNamespacePersonal请求参数结构体
     public struct CreateNamespacePersonalRequest: TCRequestModel {
         /// 命名空间名称
@@ -53,5 +37,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建个人版命名空间
+    ///
+    /// 创建个人版镜像仓库命名空间，此命名空间全局唯一
+    @inlinable
+    public func createNamespacePersonal(_ input: CreateNamespacePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNamespacePersonalResponse > {
+        self.client.execute(action: "CreateNamespacePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建个人版命名空间
+    ///
+    /// 创建个人版镜像仓库命名空间，此命名空间全局唯一
+    @inlinable
+    public func createNamespacePersonal(_ input: CreateNamespacePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespacePersonalResponse {
+        try await self.client.execute(action: "CreateNamespacePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

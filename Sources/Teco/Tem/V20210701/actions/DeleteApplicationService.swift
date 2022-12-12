@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 删除一条访问方式
-    @inlinable
-    public func deleteApplicationService(_ input: DeleteApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationServiceResponse > {
-        self.client.execute(action: "DeleteApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除一条访问方式
-    @inlinable
-    public func deleteApplicationService(_ input: DeleteApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationServiceResponse {
-        try await self.client.execute(action: "DeleteApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteApplicationService请求参数结构体
     public struct DeleteApplicationServiceRequest: TCRequestModel {
         /// 服务id
@@ -41,7 +29,7 @@ extension Tem {
         /// 访问方式服务名
         public let serviceName: String?
         
-        public init (applicationId: String?, sourceChannel: Int64?, environmentId: String?, serviceName: String?) {
+        public init (applicationId: String? = nil, sourceChannel: Int64? = nil, environmentId: String? = nil, serviceName: String? = nil) {
             self.applicationId = applicationId
             self.sourceChannel = sourceChannel
             self.environmentId = environmentId
@@ -69,5 +57,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除一条访问方式
+    @inlinable
+    public func deleteApplicationService(_ input: DeleteApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationServiceResponse > {
+        self.client.execute(action: "DeleteApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除一条访问方式
+    @inlinable
+    public func deleteApplicationService(_ input: DeleteApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationServiceResponse {
+        try await self.client.execute(action: "DeleteApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

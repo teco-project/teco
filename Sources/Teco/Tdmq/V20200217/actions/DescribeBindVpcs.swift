@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取租户VPC绑定关系
-    @inlinable
-    public func describeBindVpcs(_ input: DescribeBindVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindVpcsResponse > {
-        self.client.execute(action: "DescribeBindVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取租户VPC绑定关系
-    @inlinable
-    public func describeBindVpcs(_ input: DescribeBindVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindVpcsResponse {
-        try await self.client.execute(action: "DescribeBindVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBindVpcs请求参数结构体
     public struct DescribeBindVpcsRequest: TCRequestModel {
         /// 起始下标，不填默认为0。
@@ -38,7 +26,7 @@ extension Tdmq {
         /// Pulsar 集群的ID
         public let clusterId: String?
         
-        public init (offset: UInt64?, limit: UInt64?, clusterId: String?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.clusterId = clusterId
@@ -67,5 +55,17 @@ extension Tdmq {
             case vpcSets = "VpcSets"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取租户VPC绑定关系
+    @inlinable
+    public func describeBindVpcs(_ input: DescribeBindVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindVpcsResponse > {
+        self.client.execute(action: "DescribeBindVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取租户VPC绑定关系
+    @inlinable
+    public func describeBindVpcs(_ input: DescribeBindVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindVpcsResponse {
+        try await self.client.execute(action: "DescribeBindVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

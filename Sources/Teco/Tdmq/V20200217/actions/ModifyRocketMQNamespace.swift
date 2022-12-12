@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 更新RocketMQ命名空间
-    @inlinable
-    public func modifyRocketMQNamespace(_ input: ModifyRocketMQNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRocketMQNamespaceResponse > {
-        self.client.execute(action: "ModifyRocketMQNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新RocketMQ命名空间
-    @inlinable
-    public func modifyRocketMQNamespace(_ input: ModifyRocketMQNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQNamespaceResponse {
-        try await self.client.execute(action: "ModifyRocketMQNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRocketMQNamespace请求参数结构体
     public struct ModifyRocketMQNamespaceRequest: TCRequestModel {
         /// 集群ID
@@ -44,7 +32,7 @@ extension Tdmq {
         /// 说明，最大128个字符
         public let remark: String?
         
-        public init (clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String?) {
+        public init (clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil) {
             self.clusterId = clusterId
             self.namespaceId = namespaceId
             self.ttl = ttl
@@ -69,5 +57,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新RocketMQ命名空间
+    @inlinable
+    public func modifyRocketMQNamespace(_ input: ModifyRocketMQNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRocketMQNamespaceResponse > {
+        self.client.execute(action: "ModifyRocketMQNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新RocketMQ命名空间
+    @inlinable
+    public func modifyRocketMQNamespace(_ input: ModifyRocketMQNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQNamespaceResponse {
+        try await self.client.execute(action: "ModifyRocketMQNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

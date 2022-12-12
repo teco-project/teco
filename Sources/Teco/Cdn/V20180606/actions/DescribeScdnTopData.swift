@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 获取SCDN的Top数据
-    @inlinable
-    public func describeScdnTopData(_ input: DescribeScdnTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnTopDataResponse > {
-        self.client.execute(action: "DescribeScdnTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取SCDN的Top数据
-    @inlinable
-    public func describeScdnTopData(_ input: DescribeScdnTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnTopDataResponse {
-        try await self.client.execute(action: "DescribeScdnTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScdnTopData请求参数结构体
     public struct DescribeScdnTopDataRequest: TCRequestModel {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
@@ -83,7 +71,7 @@ extension Cdn {
         ///   intercept = '拦截模式'
         public let defenceMode: String?
         
-        public init (startTime: Date, endTime: Date, mode: String, metric: String, filter: String, domain: String?, attackType: String?, defenceMode: String?) {
+        public init (startTime: Date, endTime: Date, mode: String, metric: String, filter: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.mode = mode
@@ -133,5 +121,17 @@ extension Cdn {
             case topUrlData = "TopUrlData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取SCDN的Top数据
+    @inlinable
+    public func describeScdnTopData(_ input: DescribeScdnTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnTopDataResponse > {
+        self.client.execute(action: "DescribeScdnTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取SCDN的Top数据
+    @inlinable
+    public func describeScdnTopData(_ input: DescribeScdnTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnTopDataResponse {
+        try await self.client.execute(action: "DescribeScdnTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

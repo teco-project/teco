@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 拉取账户流水
-    @inlinable
-    public func describeBalanceTransactions(_ input: DescribeBalanceTransactionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBalanceTransactionsResponse > {
-        self.client.execute(action: "DescribeBalanceTransactions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取账户流水
-    @inlinable
-    public func describeBalanceTransactions(_ input: DescribeBalanceTransactionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBalanceTransactionsResponse {
-        try await self.client.execute(action: "DescribeBalanceTransactions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBalanceTransactions请求参数结构体
     public struct DescribeBalanceTransactionsRequest: TCRequestModel {
         /// 账户类型：1-设备接入；2-云存。
@@ -41,7 +29,7 @@ extension Iotvideo {
         /// 流水类型：All-全部类型；Recharge-充值；CreateOrder-新购。默认为All
         public let operation: String?
         
-        public init (accountType: UInt64, offset: UInt64, limit: UInt64, operation: String?) {
+        public init (accountType: UInt64, offset: UInt64, limit: UInt64, operation: String? = nil) {
             self.accountType = accountType
             self.offset = offset
             self.limit = limit
@@ -72,5 +60,17 @@ extension Iotvideo {
             case transactions = "Transactions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取账户流水
+    @inlinable
+    public func describeBalanceTransactions(_ input: DescribeBalanceTransactionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBalanceTransactionsResponse > {
+        self.client.execute(action: "DescribeBalanceTransactions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取账户流水
+    @inlinable
+    public func describeBalanceTransactions(_ input: DescribeBalanceTransactionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBalanceTransactionsResponse {
+        try await self.client.execute(action: "DescribeBalanceTransactions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

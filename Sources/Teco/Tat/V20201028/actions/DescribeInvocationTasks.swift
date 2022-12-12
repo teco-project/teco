@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tat {
-    /// 查询执行任务
-    ///
-    /// 此接口用于查询执行任务详情。
-    @inlinable
-    public func describeInvocationTasks(_ input: DescribeInvocationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvocationTasksResponse > {
-        self.client.execute(action: "DescribeInvocationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询执行任务
-    ///
-    /// 此接口用于查询执行任务详情。
-    @inlinable
-    public func describeInvocationTasks(_ input: DescribeInvocationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationTasksResponse {
-        try await self.client.execute(action: "DescribeInvocationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInvocationTasks请求参数结构体
     public struct DescribeInvocationTasksRequest: TCRequestModel {
         /// 执行任务ID列表，每次请求的上限为100。参数不支持同时指定 `InvocationTaskIds` 和 `Filters`。
@@ -48,7 +32,7 @@ extension Tat {
         /// 是否隐藏输出，取值范围：<br><li>True：隐藏输出 <br><li>False：不隐藏 <br>默认为 True。
         public let hideOutput: Bool?
         
-        public init (invocationTaskIds: [String]?, filters: [Filter]?, limit: UInt64?, offset: UInt64?, hideOutput: Bool?) {
+        public init (invocationTaskIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, hideOutput: Bool? = nil) {
             self.invocationTaskIds = invocationTaskIds
             self.filters = filters
             self.limit = limit
@@ -81,5 +65,21 @@ extension Tat {
             case invocationTaskSet = "InvocationTaskSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询执行任务
+    ///
+    /// 此接口用于查询执行任务详情。
+    @inlinable
+    public func describeInvocationTasks(_ input: DescribeInvocationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvocationTasksResponse > {
+        self.client.execute(action: "DescribeInvocationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询执行任务
+    ///
+    /// 此接口用于查询执行任务详情。
+    @inlinable
+    public func describeInvocationTasks(_ input: DescribeInvocationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationTasksResponse {
+        try await self.client.execute(action: "DescribeInvocationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

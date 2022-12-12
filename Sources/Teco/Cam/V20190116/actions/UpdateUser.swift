@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 更新子用户
-    @inlinable
-    public func updateUser(_ input: UpdateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUserResponse > {
-        self.client.execute(action: "UpdateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新子用户
-    @inlinable
-    public func updateUser(_ input: UpdateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserResponse {
-        try await self.client.execute(action: "UpdateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateUser请求参数结构体
     public struct UpdateUserRequest: TCRequestModel {
         /// 子用户用户名
@@ -53,7 +41,7 @@ extension Cam {
         /// 邮箱
         public let email: String?
         
-        public init (name: String, remark: String?, consoleLogin: UInt64?, password: String?, needResetPassword: UInt64?, phoneNum: String?, countryCode: String?, email: String?) {
+        public init (name: String, remark: String? = nil, consoleLogin: UInt64? = nil, password: String? = nil, needResetPassword: UInt64? = nil, phoneNum: String? = nil, countryCode: String? = nil, email: String? = nil) {
             self.name = name
             self.remark = remark
             self.consoleLogin = consoleLogin
@@ -84,5 +72,17 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新子用户
+    @inlinable
+    public func updateUser(_ input: UpdateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUserResponse > {
+        self.client.execute(action: "UpdateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新子用户
+    @inlinable
+    public func updateUser(_ input: UpdateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserResponse {
+        try await self.client.execute(action: "UpdateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 删除告警通知接收组
-    @inlinable
-    public func deleteAlertChannel(_ input: DeleteAlertChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAlertChannelResponse > {
-        self.client.execute(action: "DeleteAlertChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除告警通知接收组
-    @inlinable
-    public func deleteAlertChannel(_ input: DeleteAlertChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlertChannelResponse {
-        try await self.client.execute(action: "DeleteAlertChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAlertChannel请求参数结构体
     public struct DeleteAlertChannelRequest: TCRequestModel {
         /// 项目 ID
@@ -54,5 +42,17 @@ extension Pts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除告警通知接收组
+    @inlinable
+    public func deleteAlertChannel(_ input: DeleteAlertChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAlertChannelResponse > {
+        self.client.execute(action: "DeleteAlertChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除告警通知接收组
+    @inlinable
+    public func deleteAlertChannel(_ input: DeleteAlertChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlertChannelResponse {
+        try await self.client.execute(action: "DeleteAlertChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

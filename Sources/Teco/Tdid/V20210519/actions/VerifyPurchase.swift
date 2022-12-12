@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 验证购买
-    @inlinable
-    public func verifyPurchase(_ input: VerifyPurchaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyPurchaseResponse > {
-        self.client.execute(action: "VerifyPurchase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 验证购买
-    @inlinable
-    public func verifyPurchase(_ input: VerifyPurchaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPurchaseResponse {
-        try await self.client.execute(action: "VerifyPurchase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifyPurchase请求参数结构体
     public struct VerifyPurchaseRequest: TCRequestModel {
         public init () {
@@ -41,5 +29,17 @@ extension Tdid {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 验证购买
+    @inlinable
+    public func verifyPurchase(_ input: VerifyPurchaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyPurchaseResponse > {
+        self.client.execute(action: "VerifyPurchase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 验证购买
+    @inlinable
+    public func verifyPurchase(_ input: VerifyPurchaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPurchaseResponse {
+        try await self.client.execute(action: "VerifyPurchase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

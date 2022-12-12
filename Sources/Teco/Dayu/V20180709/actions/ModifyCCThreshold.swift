@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 修改CC的防护阈值
-    @inlinable
-    public func modifyCCThreshold(_ input: ModifyCCThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCThresholdResponse > {
-        self.client.execute(action: "ModifyCCThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改CC的防护阈值
-    @inlinable
-    public func modifyCCThreshold(_ input: ModifyCCThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCThresholdResponse {
-        try await self.client.execute(action: "ModifyCCThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCCThreshold请求参数结构体
     public struct ModifyCCThresholdRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示基础防护）
@@ -76,7 +64,7 @@ extension Dayu {
         /// 可选字段，当协议取值HTTPS时，必填
         public let domain: String?
         
-        public init (business: String, threshold: UInt64, id: String?, `protocol`: String?, ruleId: String?, basicIp: String?, basicRegion: String?, basicBizType: String?, basicDeviceType: String?, basicIpInstance: String?, basicIspCode: UInt64?, domain: String?) {
+        public init (business: String, threshold: UInt64, id: String? = nil, `protocol`: String? = nil, ruleId: String? = nil, basicIp: String? = nil, basicRegion: String? = nil, basicBizType: String? = nil, basicDeviceType: String? = nil, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, domain: String? = nil) {
             self.business = business
             self.threshold = threshold
             self.id = id
@@ -119,5 +107,17 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改CC的防护阈值
+    @inlinable
+    public func modifyCCThreshold(_ input: ModifyCCThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCThresholdResponse > {
+        self.client.execute(action: "ModifyCCThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CC的防护阈值
+    @inlinable
+    public func modifyCCThreshold(_ input: ModifyCCThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCThresholdResponse {
+        try await self.client.execute(action: "ModifyCCThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Mgobe {
-    /// 修改房间玩家自定义属性
-    ///
-    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
-    /// 修改房间玩家自定义属性
-    @inlinable
-    public func changeRoomPlayerProfile(_ input: ChangeRoomPlayerProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeRoomPlayerProfileResponse > {
-        self.client.execute(action: "ChangeRoomPlayerProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改房间玩家自定义属性
-    ///
-    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
-    /// 修改房间玩家自定义属性
-    @inlinable
-    public func changeRoomPlayerProfile(_ input: ChangeRoomPlayerProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerProfileResponse {
-        try await self.client.execute(action: "ChangeRoomPlayerProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ChangeRoomPlayerProfile请求参数结构体
     public struct ChangeRoomPlayerProfileRequest: TCRequestModel {
         /// 游戏资源Id。
@@ -69,5 +51,23 @@ extension Mgobe {
             case room = "Room"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改房间玩家自定义属性
+    ///
+    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    /// 修改房间玩家自定义属性
+    @inlinable
+    public func changeRoomPlayerProfile(_ input: ChangeRoomPlayerProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeRoomPlayerProfileResponse > {
+        self.client.execute(action: "ChangeRoomPlayerProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改房间玩家自定义属性
+    ///
+    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    /// 修改房间玩家自定义属性
+    @inlinable
+    public func changeRoomPlayerProfile(_ input: ChangeRoomPlayerProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerProfileResponse {
+        try await self.client.execute(action: "ChangeRoomPlayerProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 解除绑定到用户的策略
-    ///
-    /// 本接口（DetachUserPolicy）可用于解除绑定到用户的策略。
-    @inlinable
-    public func detachUserPolicy(_ input: DetachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachUserPolicyResponse > {
-        self.client.execute(action: "DetachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解除绑定到用户的策略
-    ///
-    /// 本接口（DetachUserPolicy）可用于解除绑定到用户的策略。
-    @inlinable
-    public func detachUserPolicy(_ input: DetachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachUserPolicyResponse {
-        try await self.client.execute(action: "DetachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetachUserPolicy请求参数结构体
     public struct DetachUserPolicyRequest: TCRequestModel {
         /// 策略 id
@@ -58,5 +42,21 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解除绑定到用户的策略
+    ///
+    /// 本接口（DetachUserPolicy）可用于解除绑定到用户的策略。
+    @inlinable
+    public func detachUserPolicy(_ input: DetachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachUserPolicyResponse > {
+        self.client.execute(action: "DetachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解除绑定到用户的策略
+    ///
+    /// 本接口（DetachUserPolicy）可用于解除绑定到用户的策略。
+    @inlinable
+    public func detachUserPolicy(_ input: DetachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachUserPolicyResponse {
+        try await self.client.execute(action: "DetachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

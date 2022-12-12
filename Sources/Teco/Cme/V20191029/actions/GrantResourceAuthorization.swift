@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 发起媒资授权
-    ///
-    /// 资源归属者对个人或团队授予目标资源的相应权限。
-    @inlinable
-    public func grantResourceAuthorization(_ input: GrantResourceAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GrantResourceAuthorizationResponse > {
-        self.client.execute(action: "GrantResourceAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发起媒资授权
-    ///
-    /// 资源归属者对个人或团队授予目标资源的相应权限。
-    @inlinable
-    public func grantResourceAuthorization(_ input: GrantResourceAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantResourceAuthorizationResponse {
-        try await self.client.execute(action: "GrantResourceAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GrantResourceAuthorization请求参数结构体
     public struct GrantResourceAuthorizationRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -55,7 +39,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以授权任意归属者的资源。如果指定操作者，则操作者必须对资源拥有写权限。
         public let `operator`: String?
         
-        public init (platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], `operator`: String?) {
+        public init (platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], `operator`: String? = nil) {
             self.platform = platform
             self.owner = owner
             self.resources = resources
@@ -82,5 +66,21 @@ extension Cme {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发起媒资授权
+    ///
+    /// 资源归属者对个人或团队授予目标资源的相应权限。
+    @inlinable
+    public func grantResourceAuthorization(_ input: GrantResourceAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GrantResourceAuthorizationResponse > {
+        self.client.execute(action: "GrantResourceAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发起媒资授权
+    ///
+    /// 资源归属者对个人或团队授予目标资源的相应权限。
+    @inlinable
+    public func grantResourceAuthorization(_ input: GrantResourceAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantResourceAuthorizationResponse {
+        try await self.client.execute(action: "GrantResourceAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

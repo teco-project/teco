@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 删除运行时异常进程策略
-    ///
-    /// 删除运行异常进程策略
-    @inlinable
-    public func deleteAbnormalProcessRules(_ input: DeleteAbnormalProcessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAbnormalProcessRulesResponse > {
-        self.client.execute(action: "DeleteAbnormalProcessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除运行时异常进程策略
-    ///
-    /// 删除运行异常进程策略
-    @inlinable
-    public func deleteAbnormalProcessRules(_ input: DeleteAbnormalProcessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAbnormalProcessRulesResponse {
-        try await self.client.execute(action: "DeleteAbnormalProcessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAbnormalProcessRules请求参数结构体
     public struct DeleteAbnormalProcessRulesRequest: TCRequestModel {
         /// 策略的ids
@@ -53,5 +37,21 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除运行时异常进程策略
+    ///
+    /// 删除运行异常进程策略
+    @inlinable
+    public func deleteAbnormalProcessRules(_ input: DeleteAbnormalProcessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAbnormalProcessRulesResponse > {
+        self.client.execute(action: "DeleteAbnormalProcessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除运行时异常进程策略
+    ///
+    /// 删除运行异常进程策略
+    @inlinable
+    public func deleteAbnormalProcessRules(_ input: DeleteAbnormalProcessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAbnormalProcessRulesResponse {
+        try await self.client.execute(action: "DeleteAbnormalProcessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

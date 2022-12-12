@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 资产中心资产组信息修改
-    ///
-    /// ModifyResourceGroup-资产中心资产组信息修改
-    @inlinable
-    public func modifyResourceGroup(_ input: ModifyResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourceGroupResponse > {
-        self.client.execute(action: "ModifyResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 资产中心资产组信息修改
-    ///
-    /// ModifyResourceGroup-资产中心资产组信息修改
-    @inlinable
-    public func modifyResourceGroup(_ input: ModifyResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceGroupResponse {
-        try await self.client.execute(action: "ModifyResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyResourceGroup请求参数结构体
     public struct ModifyResourceGroupRequest: TCRequestModel {
         /// 组id
@@ -63,5 +47,21 @@ extension Cfw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 资产中心资产组信息修改
+    ///
+    /// ModifyResourceGroup-资产中心资产组信息修改
+    @inlinable
+    public func modifyResourceGroup(_ input: ModifyResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourceGroupResponse > {
+        self.client.execute(action: "ModifyResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 资产中心资产组信息修改
+    ///
+    /// ModifyResourceGroup-资产中心资产组信息修改
+    @inlinable
+    public func modifyResourceGroup(_ input: ModifyResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceGroupResponse {
+        try await self.client.execute(action: "ModifyResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

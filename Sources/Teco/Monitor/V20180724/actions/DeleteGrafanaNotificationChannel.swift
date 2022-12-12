@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 删除 Grafana 告警通道
-    @inlinable
-    public func deleteGrafanaNotificationChannel(_ input: DeleteGrafanaNotificationChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGrafanaNotificationChannelResponse > {
-        self.client.execute(action: "DeleteGrafanaNotificationChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除 Grafana 告警通道
-    @inlinable
-    public func deleteGrafanaNotificationChannel(_ input: DeleteGrafanaNotificationChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaNotificationChannelResponse {
-        try await self.client.execute(action: "DeleteGrafanaNotificationChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteGrafanaNotificationChannel请求参数结构体
     public struct DeleteGrafanaNotificationChannelRequest: TCRequestModel {
         /// 通道 ID 数组
@@ -54,5 +42,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除 Grafana 告警通道
+    @inlinable
+    public func deleteGrafanaNotificationChannel(_ input: DeleteGrafanaNotificationChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGrafanaNotificationChannelResponse > {
+        self.client.execute(action: "DeleteGrafanaNotificationChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除 Grafana 告警通道
+    @inlinable
+    public func deleteGrafanaNotificationChannel(_ input: DeleteGrafanaNotificationChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaNotificationChannelResponse {
+        try await self.client.execute(action: "DeleteGrafanaNotificationChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

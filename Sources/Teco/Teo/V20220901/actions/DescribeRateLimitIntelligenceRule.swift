@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询速率限制智能客户端过滤规则
-    ///
-    /// 查询速率限制智能客户端过滤学习出来的规则
-    @inlinable
-    public func describeRateLimitIntelligenceRule(_ input: DescribeRateLimitIntelligenceRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRateLimitIntelligenceRuleResponse > {
-        self.client.execute(action: "DescribeRateLimitIntelligenceRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询速率限制智能客户端过滤规则
-    ///
-    /// 查询速率限制智能客户端过滤学习出来的规则
-    @inlinable
-    public func describeRateLimitIntelligenceRule(_ input: DescribeRateLimitIntelligenceRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRateLimitIntelligenceRuleResponse {
-        try await self.client.execute(action: "DescribeRateLimitIntelligenceRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRateLimitIntelligenceRule请求参数结构体
     public struct DescribeRateLimitIntelligenceRuleRequest: TCRequestModel {
         /// 站点Id。
@@ -62,5 +46,21 @@ extension Teo {
             case rateLimitIntelligenceRuleDetails = "RateLimitIntelligenceRuleDetails"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询速率限制智能客户端过滤规则
+    ///
+    /// 查询速率限制智能客户端过滤学习出来的规则
+    @inlinable
+    public func describeRateLimitIntelligenceRule(_ input: DescribeRateLimitIntelligenceRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRateLimitIntelligenceRuleResponse > {
+        self.client.execute(action: "DescribeRateLimitIntelligenceRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询速率限制智能客户端过滤规则
+    ///
+    /// 查询速率限制智能客户端过滤学习出来的规则
+    @inlinable
+    public func describeRateLimitIntelligenceRule(_ input: DescribeRateLimitIntelligenceRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRateLimitIntelligenceRuleResponse {
+        try await self.client.execute(action: "DescribeRateLimitIntelligenceRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

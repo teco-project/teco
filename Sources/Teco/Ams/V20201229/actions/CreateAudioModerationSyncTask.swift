@@ -15,42 +15,6 @@
 // DO NOT EDIT.
 
 extension Ams {
-    /// 短音频审核同步接口
-    ///
-    /// 本接口（CreateAudioModerationSyncTask） 用于提交短音频内容进行智能审核任务，使用前请您使用腾讯云主账号登录控制台 [开通音频内容安全服务](https://console.cloud.tencent.com/cms/audio/package) 并调整好对应的业务配置。
-    /// ### 接口使用说明：
-    /// - 前往“[内容安全控制台-图片内容安全](https://console.cloud.tencent.com/cms/audio/package)”开启使用音频内容安全服务，首次开通服务的用户可免费领用试用套餐包，包含**10小时**免费调用时长，有效期为1个月。
-    /// - 该接口为收费接口，计费方式敬请参见 [腾讯云音频内容安全定价](https://cloud.tencent.com/product/ams/pricing)。
-    /// ### 接口调用说明：
-    /// - 音频文件大小支持：**文件 < 5M**;
-    /// - 音频文件**时长小于60s**，超过60s音频调用则报错；
-    /// - 音频文件支持格式：**wav (PCM编码)** 、**mp3**、**m4a** (采样率：16kHz~48kHz，位深：16bit 小端，声道数：单声道/双声道，建议格式：**16kHz/16bit/单声道**)；
-    /// - 接口仅限音频文件传入，视频文件传入请调用长音频异步接口；
-    /// - 接口**默认QPS为20**，如需自定义配置并发或请求频率，请工单咨询；
-    /// - 接口**默认超时为5s**，请求如超过该时长则接口会报错。
-    @inlinable
-    public func createAudioModerationSyncTask(_ input: CreateAudioModerationSyncTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAudioModerationSyncTaskResponse > {
-        self.client.execute(action: "CreateAudioModerationSyncTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 短音频审核同步接口
-    ///
-    /// 本接口（CreateAudioModerationSyncTask） 用于提交短音频内容进行智能审核任务，使用前请您使用腾讯云主账号登录控制台 [开通音频内容安全服务](https://console.cloud.tencent.com/cms/audio/package) 并调整好对应的业务配置。
-    /// ### 接口使用说明：
-    /// - 前往“[内容安全控制台-图片内容安全](https://console.cloud.tencent.com/cms/audio/package)”开启使用音频内容安全服务，首次开通服务的用户可免费领用试用套餐包，包含**10小时**免费调用时长，有效期为1个月。
-    /// - 该接口为收费接口，计费方式敬请参见 [腾讯云音频内容安全定价](https://cloud.tencent.com/product/ams/pricing)。
-    /// ### 接口调用说明：
-    /// - 音频文件大小支持：**文件 < 5M**;
-    /// - 音频文件**时长小于60s**，超过60s音频调用则报错；
-    /// - 音频文件支持格式：**wav (PCM编码)** 、**mp3**、**m4a** (采样率：16kHz~48kHz，位深：16bit 小端，声道数：单声道/双声道，建议格式：**16kHz/16bit/单声道**)；
-    /// - 接口仅限音频文件传入，视频文件传入请调用长音频异步接口；
-    /// - 接口**默认QPS为20**，如需自定义配置并发或请求频率，请工单咨询；
-    /// - 接口**默认超时为5s**，请求如超过该时长则接口会报错。
-    @inlinable
-    public func createAudioModerationSyncTask(_ input: CreateAudioModerationSyncTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioModerationSyncTaskResponse {
-        try await self.client.execute(action: "CreateAudioModerationSyncTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAudioModerationSyncTask请求参数结构体
     public struct CreateAudioModerationSyncTaskRequest: TCRequestModel {
         /// Biztype为策略的具体的编号，用于接口调度，在内容安全控制台中可配置。不同Biztype关联不同的业务场景与识别能力策略，调用前请确认正确的Biztype。Biztype仅为数字、字母与下划线的组合，长度为3-32个字符；调用时不传入Biztype代表采用默认的识别策略。
@@ -74,7 +38,7 @@ extension Ams {
         /// 支持范围及格式：同FileContent；
         public let fileUrl: String?
         
-        public init (bizType: String, dataId: String, fileFormat: String, name: String?, fileContent: String?, fileUrl: String?) {
+        public init (bizType: String, dataId: String, fileFormat: String, name: String? = nil, fileContent: String? = nil, fileUrl: String? = nil) {
             self.bizType = bizType
             self.dataId = dataId
             self.fileFormat = fileFormat
@@ -164,5 +128,41 @@ extension Ams {
             case recognitionResults = "RecognitionResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 短音频审核同步接口
+    ///
+    /// 本接口（CreateAudioModerationSyncTask） 用于提交短音频内容进行智能审核任务，使用前请您使用腾讯云主账号登录控制台 [开通音频内容安全服务](https://console.cloud.tencent.com/cms/audio/package) 并调整好对应的业务配置。
+    /// ### 接口使用说明：
+    /// - 前往“[内容安全控制台-图片内容安全](https://console.cloud.tencent.com/cms/audio/package)”开启使用音频内容安全服务，首次开通服务的用户可免费领用试用套餐包，包含**10小时**免费调用时长，有效期为1个月。
+    /// - 该接口为收费接口，计费方式敬请参见 [腾讯云音频内容安全定价](https://cloud.tencent.com/product/ams/pricing)。
+    /// ### 接口调用说明：
+    /// - 音频文件大小支持：**文件 < 5M**;
+    /// - 音频文件**时长小于60s**，超过60s音频调用则报错；
+    /// - 音频文件支持格式：**wav (PCM编码)** 、**mp3**、**m4a** (采样率：16kHz~48kHz，位深：16bit 小端，声道数：单声道/双声道，建议格式：**16kHz/16bit/单声道**)；
+    /// - 接口仅限音频文件传入，视频文件传入请调用长音频异步接口；
+    /// - 接口**默认QPS为20**，如需自定义配置并发或请求频率，请工单咨询；
+    /// - 接口**默认超时为5s**，请求如超过该时长则接口会报错。
+    @inlinable
+    public func createAudioModerationSyncTask(_ input: CreateAudioModerationSyncTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAudioModerationSyncTaskResponse > {
+        self.client.execute(action: "CreateAudioModerationSyncTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 短音频审核同步接口
+    ///
+    /// 本接口（CreateAudioModerationSyncTask） 用于提交短音频内容进行智能审核任务，使用前请您使用腾讯云主账号登录控制台 [开通音频内容安全服务](https://console.cloud.tencent.com/cms/audio/package) 并调整好对应的业务配置。
+    /// ### 接口使用说明：
+    /// - 前往“[内容安全控制台-图片内容安全](https://console.cloud.tencent.com/cms/audio/package)”开启使用音频内容安全服务，首次开通服务的用户可免费领用试用套餐包，包含**10小时**免费调用时长，有效期为1个月。
+    /// - 该接口为收费接口，计费方式敬请参见 [腾讯云音频内容安全定价](https://cloud.tencent.com/product/ams/pricing)。
+    /// ### 接口调用说明：
+    /// - 音频文件大小支持：**文件 < 5M**;
+    /// - 音频文件**时长小于60s**，超过60s音频调用则报错；
+    /// - 音频文件支持格式：**wav (PCM编码)** 、**mp3**、**m4a** (采样率：16kHz~48kHz，位深：16bit 小端，声道数：单声道/双声道，建议格式：**16kHz/16bit/单声道**)；
+    /// - 接口仅限音频文件传入，视频文件传入请调用长音频异步接口；
+    /// - 接口**默认QPS为20**，如需自定义配置并发或请求频率，请工单咨询；
+    /// - 接口**默认超时为5s**，请求如超过该时长则接口会报错。
+    @inlinable
+    public func createAudioModerationSyncTask(_ input: CreateAudioModerationSyncTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioModerationSyncTaskResponse {
+        try await self.client.execute(action: "CreateAudioModerationSyncTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

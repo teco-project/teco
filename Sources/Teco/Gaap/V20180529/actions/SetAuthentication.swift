@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 认证高级配置
-    ///
-    /// 本接口（SetAuthentication）用于通道的高级认证配置，包括认证方式选择，以及各种认证方式对应的证书选择。仅支持Version3.0的通道。
-    @inlinable
-    public func setAuthentication(_ input: SetAuthenticationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAuthenticationResponse > {
-        self.client.execute(action: "SetAuthentication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 认证高级配置
-    ///
-    /// 本接口（SetAuthentication）用于通道的高级认证配置，包括认证方式选择，以及各种认证方式对应的证书选择。仅支持Version3.0的通道。
-    @inlinable
-    public func setAuthentication(_ input: SetAuthenticationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAuthenticationResponse {
-        try await self.client.execute(action: "SetAuthentication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetAuthentication请求参数结构体
     public struct SetAuthenticationRequest: TCRequestModel {
         /// 监听器ID。
@@ -72,7 +56,7 @@ extension Gaap {
         /// 多源站CA证书ID，从证书管理页获取。源站认证时，填写该参数或RealServerCertificateId参数
         public let polyRealServerCertificateIds: [String]?
         
-        public init (listenerId: String, domain: String, basicAuth: Int64?, gaapAuth: Int64?, realServerAuth: Int64?, basicAuthConfId: String?, gaapCertificateId: String?, realServerCertificateId: String?, realServerCertificateDomain: String?, polyRealServerCertificateIds: [String]?) {
+        public init (listenerId: String, domain: String, basicAuth: Int64? = nil, gaapAuth: Int64? = nil, realServerAuth: Int64? = nil, basicAuthConfId: String? = nil, gaapCertificateId: String? = nil, realServerCertificateId: String? = nil, realServerCertificateDomain: String? = nil, polyRealServerCertificateIds: [String]? = nil) {
             self.listenerId = listenerId
             self.domain = domain
             self.basicAuth = basicAuth
@@ -107,5 +91,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 认证高级配置
+    ///
+    /// 本接口（SetAuthentication）用于通道的高级认证配置，包括认证方式选择，以及各种认证方式对应的证书选择。仅支持Version3.0的通道。
+    @inlinable
+    public func setAuthentication(_ input: SetAuthenticationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAuthenticationResponse > {
+        self.client.execute(action: "SetAuthentication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 认证高级配置
+    ///
+    /// 本接口（SetAuthentication）用于通道的高级认证配置，包括认证方式选择，以及各种认证方式对应的证书选择。仅支持Version3.0的通道。
+    @inlinable
+    public func setAuthentication(_ input: SetAuthenticationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAuthenticationResponse {
+        try await self.client.execute(action: "SetAuthentication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

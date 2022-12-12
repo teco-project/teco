@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 镜像仓库资产刷新
-    @inlinable
-    public func syncAssetImageRegistryAsset(_ input: SyncAssetImageRegistryAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncAssetImageRegistryAssetResponse > {
-        self.client.execute(action: "SyncAssetImageRegistryAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 镜像仓库资产刷新
-    @inlinable
-    public func syncAssetImageRegistryAsset(_ input: SyncAssetImageRegistryAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncAssetImageRegistryAssetResponse {
-        try await self.client.execute(action: "SyncAssetImageRegistryAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SyncAssetImageRegistryAsset请求参数结构体
     public struct SyncAssetImageRegistryAssetRequest: TCRequestModel {
         public init () {
@@ -41,5 +29,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 镜像仓库资产刷新
+    @inlinable
+    public func syncAssetImageRegistryAsset(_ input: SyncAssetImageRegistryAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncAssetImageRegistryAssetResponse > {
+        self.client.execute(action: "SyncAssetImageRegistryAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库资产刷新
+    @inlinable
+    public func syncAssetImageRegistryAsset(_ input: SyncAssetImageRegistryAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncAssetImageRegistryAssetResponse {
+        try await self.client.execute(action: "SyncAssetImageRegistryAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

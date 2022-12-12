@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 查询子应用列表
-    ///
-    /// 该接口用于获取当前账号的子应用列表，包含主应用。
-    @inlinable
-    public func describeSubAppIds(_ input: DescribeSubAppIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubAppIdsResponse > {
-        self.client.execute(action: "DescribeSubAppIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询子应用列表
-    ///
-    /// 该接口用于获取当前账号的子应用列表，包含主应用。
-    @inlinable
-    public func describeSubAppIds(_ input: DescribeSubAppIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubAppIdsResponse {
-        try await self.client.execute(action: "DescribeSubAppIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSubAppIds请求参数结构体
     public struct DescribeSubAppIdsRequest: TCRequestModel {
         /// 子应用名称。
@@ -45,7 +29,7 @@ extension Vod {
         /// 分页拉取的最大返回结果数。默认值：200；最大值：200。
         public let limit: UInt64?
         
-        public init (name: String?, tags: [ResourceTag]?, offset: UInt64?, limit: UInt64?) {
+        public init (name: String? = nil, tags: [ResourceTag]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.name = name
             self.tags = tags
             self.offset = offset
@@ -76,5 +60,21 @@ extension Vod {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询子应用列表
+    ///
+    /// 该接口用于获取当前账号的子应用列表，包含主应用。
+    @inlinable
+    public func describeSubAppIds(_ input: DescribeSubAppIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubAppIdsResponse > {
+        self.client.execute(action: "DescribeSubAppIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询子应用列表
+    ///
+    /// 该接口用于获取当前账号的子应用列表，包含主应用。
+    @inlinable
+    public func describeSubAppIds(_ input: DescribeSubAppIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubAppIdsResponse {
+        try await self.client.execute(action: "DescribeSubAppIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

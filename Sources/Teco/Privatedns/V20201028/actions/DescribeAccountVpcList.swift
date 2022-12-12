@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 获取私有域解析账号的VPC列表
-    @inlinable
-    public func describeAccountVpcList(_ input: DescribeAccountVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountVpcListResponse > {
-        self.client.execute(action: "DescribeAccountVpcList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取私有域解析账号的VPC列表
-    @inlinable
-    public func describeAccountVpcList(_ input: DescribeAccountVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountVpcListResponse {
-        try await self.client.execute(action: "DescribeAccountVpcList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccountVpcList请求参数结构体
     public struct DescribeAccountVpcListRequest: TCRequestModel {
         /// 关联账号的uin
@@ -41,7 +29,7 @@ extension Privatedns {
         /// 过滤参数
         public let filters: [Filter]?
         
-        public init (accountUin: String, offset: Int64?, limit: Int64?, filters: [Filter]?) {
+        public init (accountUin: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.accountUin = accountUin
             self.offset = offset
             self.limit = limit
@@ -72,5 +60,17 @@ extension Privatedns {
             case vpcSet = "VpcSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取私有域解析账号的VPC列表
+    @inlinable
+    public func describeAccountVpcList(_ input: DescribeAccountVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountVpcListResponse > {
+        self.client.execute(action: "DescribeAccountVpcList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取私有域解析账号的VPC列表
+    @inlinable
+    public func describeAccountVpcList(_ input: DescribeAccountVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountVpcListResponse {
+        try await self.client.execute(action: "DescribeAccountVpcList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

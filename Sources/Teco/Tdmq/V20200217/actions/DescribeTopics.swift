@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 查询主题列表
-    ///
-    /// 获取环境下主题列表
-    @inlinable
-    public func describeTopics(_ input: DescribeTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicsResponse > {
-        self.client.execute(action: "DescribeTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询主题列表
-    ///
-    /// 获取环境下主题列表
-    @inlinable
-    public func describeTopics(_ input: DescribeTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicsResponse {
-        try await self.client.execute(action: "DescribeTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTopics请求参数结构体
     public struct DescribeTopicsRequest: TCRequestModel {
         /// 环境（命名空间）名称。
@@ -66,7 +50,7 @@ extension Tdmq {
         /// 2：系统创建
         public let topicCreator: UInt64?
         
-        public init (environmentId: String, topicName: String?, offset: UInt64?, limit: UInt64?, topicType: UInt64?, clusterId: String?, filters: [Filter]?, topicCreator: UInt64?) {
+        public init (environmentId: String, topicName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, topicType: UInt64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, topicCreator: UInt64? = nil) {
             self.environmentId = environmentId
             self.topicName = topicName
             self.offset = offset
@@ -105,5 +89,21 @@ extension Tdmq {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询主题列表
+    ///
+    /// 获取环境下主题列表
+    @inlinable
+    public func describeTopics(_ input: DescribeTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicsResponse > {
+        self.client.execute(action: "DescribeTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询主题列表
+    ///
+    /// 获取环境下主题列表
+    @inlinable
+    public func describeTopics(_ input: DescribeTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicsResponse {
+        try await self.client.execute(action: "DescribeTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

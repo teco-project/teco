@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 修改片头片尾模板
-    ///
-    /// 修改片头片尾模板。
-    @inlinable
-    public func modifyHeadTailTemplate(_ input: ModifyHeadTailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHeadTailTemplateResponse > {
-        self.client.execute(action: "ModifyHeadTailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改片头片尾模板
-    ///
-    /// 修改片头片尾模板。
-    @inlinable
-    public func modifyHeadTailTemplate(_ input: ModifyHeadTailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHeadTailTemplateResponse {
-        try await self.client.execute(action: "ModifyHeadTailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyHeadTailTemplate请求参数结构体
     public struct ModifyHeadTailTemplateRequest: TCRequestModel {
         /// 片头片尾模板号。
@@ -59,7 +43,7 @@ extension Vod {
         /// 默认值为不修改。
         public let fillType: String?
         
-        public init (definition: Int64, subAppId: UInt64?, name: String?, comment: String?, headCandidateSet: [String]?, tailCandidateSet: [String]?, fillType: String?) {
+        public init (definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headCandidateSet: [String]? = nil, tailCandidateSet: [String]? = nil, fillType: String? = nil) {
             self.definition = definition
             self.subAppId = subAppId
             self.name = name
@@ -88,5 +72,21 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改片头片尾模板
+    ///
+    /// 修改片头片尾模板。
+    @inlinable
+    public func modifyHeadTailTemplate(_ input: ModifyHeadTailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHeadTailTemplateResponse > {
+        self.client.execute(action: "ModifyHeadTailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改片头片尾模板
+    ///
+    /// 修改片头片尾模板。
+    @inlinable
+    public func modifyHeadTailTemplate(_ input: ModifyHeadTailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHeadTailTemplateResponse {
+        try await self.client.execute(action: "ModifyHeadTailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

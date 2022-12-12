@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 查询专用集群内宿主机的统计信息
-    @inlinable
-    public func describeDedicatedClusterHostStatistics(_ input: DescribeDedicatedClusterHostStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterHostStatisticsResponse > {
-        self.client.execute(action: "DescribeDedicatedClusterHostStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询专用集群内宿主机的统计信息
-    @inlinable
-    public func describeDedicatedClusterHostStatistics(_ input: DescribeDedicatedClusterHostStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterHostStatisticsResponse {
-        try await self.client.execute(action: "DescribeDedicatedClusterHostStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDedicatedClusterHostStatistics请求参数结构体
     public struct DescribeDedicatedClusterHostStatisticsRequest: TCRequestModel {
         /// 查询的专用集群id
@@ -53,5 +41,17 @@ extension Cdc {
             case hostStatisticSet = "HostStatisticSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询专用集群内宿主机的统计信息
+    @inlinable
+    public func describeDedicatedClusterHostStatistics(_ input: DescribeDedicatedClusterHostStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterHostStatisticsResponse > {
+        self.client.execute(action: "DescribeDedicatedClusterHostStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专用集群内宿主机的统计信息
+    @inlinable
+    public func describeDedicatedClusterHostStatistics(_ input: DescribeDedicatedClusterHostStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterHostStatisticsResponse {
+        try await self.client.execute(action: "DescribeDedicatedClusterHostStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

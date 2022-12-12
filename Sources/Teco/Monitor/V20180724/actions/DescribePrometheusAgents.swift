@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 列出 Prometheus CVM Agent
-    @inlinable
-    public func describePrometheusAgents(_ input: DescribePrometheusAgentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusAgentsResponse > {
-        self.client.execute(action: "DescribePrometheusAgents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出 Prometheus CVM Agent
-    @inlinable
-    public func describePrometheusAgents(_ input: DescribePrometheusAgentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAgentsResponse {
-        try await self.client.execute(action: "DescribePrometheusAgents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrometheusAgents请求参数结构体
     public struct DescribePrometheusAgentsRequest: TCRequestModel {
         /// 实例 ID
@@ -44,7 +32,7 @@ extension Monitor {
         /// 返回数量，默认为20，最大值为100
         public let limit: Int64?
         
-        public init (instanceId: String, name: String?, agentIds: [String]?, offset: Int64?, limit: Int64?) {
+        public init (instanceId: String, name: String? = nil, agentIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.name = name
             self.agentIds = agentIds
@@ -78,5 +66,17 @@ extension Monitor {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出 Prometheus CVM Agent
+    @inlinable
+    public func describePrometheusAgents(_ input: DescribePrometheusAgentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusAgentsResponse > {
+        self.client.execute(action: "DescribePrometheusAgents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出 Prometheus CVM Agent
+    @inlinable
+    public func describePrometheusAgents(_ input: DescribePrometheusAgentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAgentsResponse {
+        try await self.client.execute(action: "DescribePrometheusAgents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

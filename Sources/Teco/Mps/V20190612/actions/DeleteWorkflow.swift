@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 删除工作流
-    ///
-    /// 删除工作流。对于已启用的工作流，需要禁用后才能删除。
-    @inlinable
-    public func deleteWorkflow(_ input: DeleteWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWorkflowResponse > {
-        self.client.execute(action: "DeleteWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除工作流
-    ///
-    /// 删除工作流。对于已启用的工作流，需要禁用后才能删除。
-    @inlinable
-    public func deleteWorkflow(_ input: DeleteWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkflowResponse {
-        try await self.client.execute(action: "DeleteWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteWorkflow请求参数结构体
     public struct DeleteWorkflowRequest: TCRequestModel {
         /// 工作流 ID。
@@ -53,5 +37,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除工作流
+    ///
+    /// 删除工作流。对于已启用的工作流，需要禁用后才能删除。
+    @inlinable
+    public func deleteWorkflow(_ input: DeleteWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWorkflowResponse > {
+        self.client.execute(action: "DeleteWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除工作流
+    ///
+    /// 删除工作流。对于已启用的工作流，需要禁用后才能删除。
+    @inlinable
+    public func deleteWorkflow(_ input: DeleteWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkflowResponse {
+        try await self.client.execute(action: "DeleteWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

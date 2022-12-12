@@ -45,7 +45,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ampConsumerId: String?
         
-        public init (noticeId: String?, ampConsumerId: String?) {
+        public init (noticeId: String? = nil, ampConsumerId: String? = nil) {
             self.noticeId = noticeId
             self.ampConsumerId = ampConsumerId
         }
@@ -94,7 +94,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAccountUin: String?
         
-        public init (noticeId: String?, ampConsumerId: String?, projectId: String?, status: UInt64?, createdAt: String?, updatedAt: String?, appId: Int64?, uin: String?, subAccountUin: String?) {
+        public init (noticeId: String? = nil, ampConsumerId: String? = nil, projectId: String? = nil, status: UInt64? = nil, createdAt: String? = nil, updatedAt: String? = nil, appId: Int64? = nil, uin: String? = nil, subAccountUin: String? = nil) {
             self.noticeId = noticeId
             self.ampConsumerId = ampConsumerId
             self.projectId = projectId
@@ -135,7 +135,7 @@ extension Pts {
         
         /// 状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let status: AlertRecordStatus
+        public let status: AlertRecordStatus?
         
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -177,7 +177,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobSLADescription: String?
         
-        public init (alertRecordId: String?, projectId: String?, scenarioId: String?, status: AlertRecordStatus, createdAt: String?, updatedAt: String?, jobId: String?, appId: Int64?, uin: String?, subAccountUin: String?, scenarioName: String?, target: String?, jobSLAId: String?, jobSLADescription: String?) {
+        public init (alertRecordId: String? = nil, projectId: String? = nil, scenarioId: String? = nil, status: AlertRecordStatus? = nil, createdAt: String? = nil, updatedAt: String? = nil, jobId: String? = nil, appId: Int64? = nil, uin: String? = nil, subAccountUin: String? = nil, scenarioName: String? = nil, target: String? = nil, jobSLAId: String? = nil, jobSLADescription: String? = nil) {
             self.alertRecordId = alertRecordId
             self.projectId = projectId
             self.scenarioId = scenarioId
@@ -222,7 +222,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sendNotice: UInt64?
         
-        public init (abortJob: UInt64?, sendNotice: UInt64?) {
+        public init (abortJob: UInt64? = nil, sendNotice: UInt64? = nil) {
             self.abortJob = abortJob
             self.sendNotice = sendNotice
         }
@@ -308,7 +308,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gracefulStopSeconds: Int64?
         
-        public init (stages: [Stage]?, iterationCount: Int64?, maxRequestsPerSecond: Int64?, gracefulStopSeconds: Int64?) {
+        public init (stages: [Stage]? = nil, iterationCount: Int64? = nil, maxRequestsPerSecond: Int64? = nil, gracefulStopSeconds: Int64? = nil) {
             self.stages = stages
             self.iterationCount = iterationCount
             self.maxRequestsPerSecond = maxRequestsPerSecond
@@ -504,7 +504,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nameservers: [String]?
         
-        public init (nameservers: [String]?) {
+        public init (nameservers: [String]? = nil) {
             self.nameservers = nameservers
         }
         
@@ -521,9 +521,9 @@ extension Pts {
         
         /// DNS 配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dnsConfig: DNSConfig
+        public let dnsConfig: DNSConfig?
         
-        public init (hostAliases: [HostAlias]?, dnsConfig: DNSConfig) {
+        public init (hostAliases: [HostAlias]? = nil, dnsConfig: DNSConfig? = nil) {
             self.hostAliases = hostAliases
             self.dnsConfig = dnsConfig
         }
@@ -657,7 +657,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileId: String?
         
-        public init (name: String?, size: Int64?, type: String?, updatedAt: Date?, fileId: String?) {
+        public init (name: String? = nil, size: Int64? = nil, type: String? = nil, updatedAt: Date? = nil, fileId: String? = nil) {
             self.name = name
             self.size = size
             self.type = type
@@ -709,7 +709,7 @@ extension Pts {
         /// 百分比
         public let percentage: Int64?
         
-        public init (regionId: Int64, region: String?, percentage: Int64?) {
+        public init (regionId: Int64, region: String? = nil, percentage: Int64? = nil) {
             self.regionId = regionId
             self.region = region
             self.percentage = percentage
@@ -732,7 +732,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ip: String?
         
-        public init (hostNames: [String]?, ip: String?) {
+        public init (hostNames: [String]? = nil, ip: String? = nil) {
             self.hostNames = hostNames
             self.ip = ip
         }
@@ -760,7 +760,7 @@ extension Pts {
         /// 指标分组
         public let groupBy: [String]?
         
-        public init (metric: String, aggregation: String, labels: [Label]?, filters: [Filter]?, groupBy: [String]?) {
+        public init (metric: String, aggregation: String, labels: [Label]? = nil, filters: [Filter]? = nil, groupBy: [String]? = nil) {
             self.metric = metric
             self.aggregation = aggregation
             self.labels = labels
@@ -789,7 +789,7 @@ extension Pts {
         
         /// 任务的施压配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let load: Load
+        public let load: Load?
         
         /// 此字段不再使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -835,7 +835,7 @@ extension Pts {
         
         /// 此字段不再使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let loadSources: LoadSource
+        public let loadSources: LoadSource?
         
         /// 任务时长
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -911,7 +911,7 @@ extension Pts {
         
         /// 域名绑定配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let domainNameConfig: DomainNameConfig
+        public let domainNameConfig: DomainNameConfig?
         
         /// false
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -945,7 +945,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
         
-        public init (jobId: String?, scenarioId: String?, load: Load, configs: [String]?, datasets: [TestData]?, extensions: [String]?, status: Int64?, startTime: Date?, endTime: Date?, maxVirtualUserCount: Int64?, note: String?, errorRate: Float?, jobOwner: String?, loadSources: LoadSource, duration: Int64?, maxRequestsPerSecond: Int64?, requestTotal: Float?, requestsPerSecond: Float?, responseTimeAverage: Float?, responseTimeP99: Float?, responseTimeP95: Float?, responseTimeP90: Float?, scripts: [String]?, responseTimeMax: Float?, responseTimeMin: Float?, loadSourceInfos: [LoadSource]?, testScripts: [ScriptInfo]?, protocols: [ProtocolInfo]?, requestFiles: [FileInfo]?, plugins: [FileInfo]?, cronId: String?, type: String?, domainNameConfig: DomainNameConfig, debug: Bool?, abortReason: Int64?, createdAt: Date?, projectId: String?, notificationHooks: [NotificationHook]?, networkReceiveRate: Float?, networkSendRate: Float?, message: String?) {
+        public init (jobId: String? = nil, scenarioId: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, status: Int64? = nil, startTime: Date? = nil, endTime: Date? = nil, maxVirtualUserCount: Int64? = nil, note: String? = nil, errorRate: Float? = nil, jobOwner: String? = nil, loadSources: LoadSource? = nil, duration: Int64? = nil, maxRequestsPerSecond: Int64? = nil, requestTotal: Float? = nil, requestsPerSecond: Float? = nil, responseTimeAverage: Float? = nil, responseTimeP99: Float? = nil, responseTimeP95: Float? = nil, responseTimeP90: Float? = nil, scripts: [String]? = nil, responseTimeMax: Float? = nil, responseTimeMin: Float? = nil, loadSourceInfos: [LoadSource]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, plugins: [FileInfo]? = nil, cronId: String? = nil, type: String? = nil, domainNameConfig: DomainNameConfig? = nil, debug: Bool? = nil, abortReason: Int64? = nil, createdAt: Date? = nil, projectId: String? = nil, notificationHooks: [NotificationHook]? = nil, networkReceiveRate: Float? = nil, networkSendRate: Float? = nil, message: String? = nil) {
             self.jobId = jobId
             self.scenarioId = scenarioId
             self.load = load
@@ -1066,17 +1066,17 @@ extension Pts {
     public struct Load: TCInputModel, TCOutputModel {
         /// 施压配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let loadSpec: LoadSpec
+        public let loadSpec: LoadSpec?
         
         /// 压力来源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let vpcLoadDistribution: VpcLoadDistribution
+        public let vpcLoadDistribution: VpcLoadDistribution?
         
         /// 压力分布
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let geoRegionsLoadDistribution: [GeoRegionsLoadItem]?
         
-        public init (loadSpec: LoadSpec, vpcLoadDistribution: VpcLoadDistribution, geoRegionsLoadDistribution: [GeoRegionsLoadItem]?) {
+        public init (loadSpec: LoadSpec? = nil, vpcLoadDistribution: VpcLoadDistribution? = nil, geoRegionsLoadDistribution: [GeoRegionsLoadItem]? = nil) {
             self.loadSpec = loadSpec
             self.vpcLoadDistribution = vpcLoadDistribution
             self.geoRegionsLoadDistribution = geoRegionsLoadDistribution
@@ -1103,7 +1103,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
         
-        public init (ip: String?, podName: String?, region: String?) {
+        public init (ip: String? = nil, podName: String? = nil, region: String? = nil) {
             self.ip = ip
             self.podName = podName
             self.region = region
@@ -1120,17 +1120,17 @@ extension Pts {
     public struct LoadSpec: TCInputModel, TCOutputModel {
         /// 并发施压模式的配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let concurrency: Concurrency
+        public let concurrency: Concurrency?
         
         /// RPS施压模式的配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let requestsPerSecond: RequestsPerSecond
+        public let requestsPerSecond: RequestsPerSecond?
         
         /// 脚本内置压力模式
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let scriptOrigin: ScriptOrigin
+        public let scriptOrigin: ScriptOrigin?
         
-        public init (concurrency: Concurrency, requestsPerSecond: RequestsPerSecond, scriptOrigin: ScriptOrigin) {
+        public init (concurrency: Concurrency? = nil, requestsPerSecond: RequestsPerSecond? = nil, scriptOrigin: ScriptOrigin? = nil) {
             self.concurrency = concurrency
             self.requestsPerSecond = requestsPerSecond
             self.scriptOrigin = scriptOrigin
@@ -1221,7 +1221,7 @@ extension Pts {
         /// webhook的网址
         public let url: String?
         
-        public init (events: [String]?, url: String?) {
+        public init (events: [String]? = nil, url: String? = nil) {
             self.events = events
             self.url = url
         }
@@ -1242,7 +1242,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String?
         
-        public init (events: [String]?, url: String?) {
+        public init (events: [String]? = nil, url: String? = nil) {
             self.events = events
             self.url = url
         }
@@ -1323,7 +1323,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileId: String?
         
-        public init (name: String?, size: Int64?, type: String?, updatedAt: Date?, fileId: String?) {
+        public init (name: String? = nil, size: Int64? = nil, type: String? = nil, updatedAt: Date? = nil, fileId: String? = nil) {
             self.name = name
             self.size = size
             self.type = type
@@ -1348,7 +1348,7 @@ extension Pts {
         /// 最大响应时间，单位ms
         public let max: String?
         
-        public init (min: String?, max: String?) {
+        public init (min: String? = nil, max: String? = nil) {
             self.min = min
             self.max = max
         }
@@ -1385,7 +1385,7 @@ extension Pts {
         /// 更新时间
         public let updatedAt: Date?
         
-        public init (region: String, regionId: Int64, area: String?, regionName: String?, regionState: Int64?, regionShortName: String?, createdAt: Date?, updatedAt: Date?) {
+        public init (region: String, regionId: Int64, area: String? = nil, regionName: String? = nil, regionState: Int64? = nil, regionShortName: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
             self.region = region
             self.regionId = regionId
             self.area = area
@@ -1492,7 +1492,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gracefulStopSeconds: Int64?
         
-        public init (maxRequestsPerSecond: Int64?, durationSeconds: Int64?, targetVirtualUsers: Int64?, resources: Int64?, startRequestsPerSecond: Int64?, targetRequestsPerSecond: Int64?, gracefulStopSeconds: Int64?) {
+        public init (maxRequestsPerSecond: Int64? = nil, durationSeconds: Int64? = nil, targetVirtualUsers: Int64? = nil, resources: Int64? = nil, startRequestsPerSecond: Int64? = nil, targetRequestsPerSecond: Int64? = nil, gracefulStopSeconds: Int64? = nil) {
             self.maxRequestsPerSecond = maxRequestsPerSecond
             self.durationSeconds = durationSeconds
             self.targetVirtualUsers = targetVirtualUsers
@@ -1523,7 +1523,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labelValue: String?
         
-        public init (labelName: String?, labelValue: String?) {
+        public init (labelName: String? = nil, labelValue: String? = nil) {
             self.labelName = labelName
             self.labelValue = labelValue
         }
@@ -1542,9 +1542,9 @@ extension Pts {
         
         /// 告警通知渠道
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let alertChannel: AlertChannel
+        public let alertChannel: AlertChannel?
         
-        public init (slaRules: [SLARule]?, alertChannel: AlertChannel) {
+        public init (slaRules: [SLARule]? = nil, alertChannel: AlertChannel? = nil) {
             self.slaRules = slaRules
             self.alertChannel = alertChannel
         }
@@ -1585,7 +1585,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `for`: String?
         
-        public init (metric: String?, aggregation: String?, condition: String?, value: Float?, labelFilter: [SLALabel]?, abortFlag: Bool?, `for`: String?) {
+        public init (metric: String? = nil, aggregation: String? = nil, condition: String? = nil, value: Float? = nil, labelFilter: [SLALabel]? = nil, abortFlag: Bool? = nil, `for`: String? = nil) {
             self.metric = metric
             self.aggregation = aggregation
             self.condition = condition
@@ -1614,7 +1614,7 @@ extension Pts {
         
         /// 采样日志属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let attributes: Attributes
+        public let attributes: Attributes?
         
         /// har格式的采样请求
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1683,7 +1683,7 @@ extension Pts {
         
         /// 施压配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let load: Load
+        public let load: Load?
         
         /// deprecated
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1745,7 +1745,7 @@ extension Pts {
         
         /// SLA 策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let slaPolicy: SLAPolicy
+        public let slaPolicy: SLAPolicy?
         
         /// 扩展包信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1753,7 +1753,7 @@ extension Pts {
         
         /// 域名解析配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let domainNameConfig: DomainNameConfig
+        public let domainNameConfig: DomainNameConfig?
         
         /// 通知事件回调
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1802,7 +1802,7 @@ extension Pts {
         /// 是否升序
         public let ascend: Bool?
         
-        public init (offset: Int64?, limit: Int64?, orderBy: String?, ascend: Bool?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil) {
             self.offset = offset
             self.limit = limit
             self.orderBy = orderBy
@@ -1821,7 +1821,7 @@ extension Pts {
     public struct ScenarioWithJobs: TCOutputModel {
         /// scecario结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let scenario: Scenario
+        public let scenario: Scenario?
         
         /// job结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1867,7 +1867,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileId: String?
         
-        public init (name: String?, size: Int64?, type: String?, updatedAt: Date?, encodedContent: String?, encodedHttpArchive: String?, loadWeight: Int64?, fileId: String?) {
+        public init (name: String? = nil, size: Int64? = nil, type: String? = nil, updatedAt: Date? = nil, encodedContent: String? = nil, encodedHttpArchive: String? = nil, loadWeight: Int64? = nil, fileId: String? = nil) {
             self.name = name
             self.size = size
             self.type = type
@@ -1924,7 +1924,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetVirtualUsers: Int64?
         
-        public init (durationSeconds: Int64?, targetVirtualUsers: Int64?) {
+        public init (durationSeconds: Int64? = nil, targetVirtualUsers: Int64? = nil) {
             self.durationSeconds = durationSeconds
             self.targetVirtualUsers = targetVirtualUsers
         }
@@ -1945,7 +1945,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagValue: String?
         
-        public init (tagKey: String?, tagValue: String?) {
+        public init (tagKey: String? = nil, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
@@ -1960,15 +1960,15 @@ extension Pts {
     public struct TestData: TCInputModel, TCOutputModel {
         /// 测试数据集所在的文件名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let name: String
+        public let name: String?
         
         /// 测试数据集是否分片
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let split: Bool
+        public let split: Bool?
         
         /// 首行是否为参数名
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let headerInFile: Bool
+        public let headerInFile: Bool?
         
         /// 参数名数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2002,7 +2002,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileId: String?
         
-        public init (name: String, split: Bool, headerInFile: Bool, headerColumns: [String]?, lineCount: Int64?, updatedAt: Date?, size: Int64?, headLines: [String]?, tailLines: [String]?, type: String?, fileId: String?) {
+        public init (name: String, split: Bool, headerInFile: Bool, headerColumns: [String]? = nil, lineCount: Int64? = nil, updatedAt: Date? = nil, size: Int64? = nil, headLines: [String]? = nil, tailLines: [String]? = nil, type: String? = nil, fileId: String? = nil) {
             self.name = name
             self.split = split
             self.headerInFile = headerInFile
@@ -2047,7 +2047,7 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetIds: [String]?
         
-        public init (regionId: Int64, region: String?, vpcId: String?, subnetIds: [String]?) {
+        public init (regionId: Int64, region: String? = nil, vpcId: String? = nil, subnetIds: [String]? = nil) {
             self.regionId = regionId
             self.region = region
             self.vpcId = vpcId

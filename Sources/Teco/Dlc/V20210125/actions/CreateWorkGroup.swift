@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 创建工作组
-    @inlinable
-    public func createWorkGroup(_ input: CreateWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkGroupResponse > {
-        self.client.execute(action: "CreateWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建工作组
-    @inlinable
-    public func createWorkGroup(_ input: CreateWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkGroupResponse {
-        try await self.client.execute(action: "CreateWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateWorkGroup请求参数结构体
     public struct CreateWorkGroupRequest: TCRequestModel {
         /// 工作组名称
@@ -41,7 +29,7 @@ extension Dlc {
         /// 需要绑定到工作组的用户Id集合
         public let userIds: [String]?
         
-        public init (workGroupName: String, workGroupDescription: String?, policySet: [Policy]?, userIds: [String]?) {
+        public init (workGroupName: String, workGroupDescription: String? = nil, policySet: [Policy]? = nil, userIds: [String]? = nil) {
             self.workGroupName = workGroupName
             self.workGroupDescription = workGroupDescription
             self.policySet = policySet
@@ -68,5 +56,17 @@ extension Dlc {
             case workGroupId = "WorkGroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建工作组
+    @inlinable
+    public func createWorkGroup(_ input: CreateWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWorkGroupResponse > {
+        self.client.execute(action: "CreateWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建工作组
+    @inlinable
+    public func createWorkGroup(_ input: CreateWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkGroupResponse {
+        try await self.client.execute(action: "CreateWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

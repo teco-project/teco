@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssa {
-    /// 漏洞列表-漏洞详情
-    ///
-    /// 漏洞列表页，获取漏洞详情信息
-    @inlinable
-    public func describeVulDetail(_ input: DescribeVulDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDetailResponse > {
-        self.client.execute(action: "DescribeVulDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 漏洞列表-漏洞详情
-    ///
-    /// 漏洞列表页，获取漏洞详情信息
-    @inlinable
-    public func describeVulDetail(_ input: DescribeVulDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDetailResponse {
-        try await self.client.execute(action: "DescribeVulDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulDetail请求参数结构体
     public struct DescribeVulDetailRequest: TCRequestModel {
         /// 漏洞唯一标识符
@@ -39,7 +23,7 @@ extension Ssa {
         /// 查看详情来源
         public let source: String?
         
-        public init (uniqId: String, source: String?) {
+        public init (uniqId: String, source: String? = nil) {
             self.uniqId = uniqId
             self.source = source
         }
@@ -168,5 +152,21 @@ extension Ssa {
             case vulPath = "VulPath"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 漏洞列表-漏洞详情
+    ///
+    /// 漏洞列表页，获取漏洞详情信息
+    @inlinable
+    public func describeVulDetail(_ input: DescribeVulDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDetailResponse > {
+        self.client.execute(action: "DescribeVulDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 漏洞列表-漏洞详情
+    ///
+    /// 漏洞列表页，获取漏洞详情信息
+    @inlinable
+    public func describeVulDetail(_ input: DescribeVulDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDetailResponse {
+        try await self.client.execute(action: "DescribeVulDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

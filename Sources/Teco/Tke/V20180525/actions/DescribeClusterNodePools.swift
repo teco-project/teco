@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询节点池列表
-    @inlinable
-    public func describeClusterNodePools(_ input: DescribeClusterNodePoolsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterNodePoolsResponse > {
-        self.client.execute(action: "DescribeClusterNodePools", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询节点池列表
-    @inlinable
-    public func describeClusterNodePools(_ input: DescribeClusterNodePoolsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNodePoolsResponse {
-        try await self.client.execute(action: "DescribeClusterNodePools", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterNodePools请求参数结构体
     public struct DescribeClusterNodePoolsRequest: TCRequestModel {
         /// ClusterId（集群id）
@@ -50,7 +38,7 @@ extension Tke {
         ///     必选：否
         public let filters: [Filter]?
         
-        public init (clusterId: String, filters: [Filter]?) {
+        public init (clusterId: String, filters: [Filter]? = nil) {
             self.clusterId = clusterId
             self.filters = filters
         }
@@ -78,5 +66,17 @@ extension Tke {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询节点池列表
+    @inlinable
+    public func describeClusterNodePools(_ input: DescribeClusterNodePoolsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterNodePoolsResponse > {
+        self.client.execute(action: "DescribeClusterNodePools", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询节点池列表
+    @inlinable
+    public func describeClusterNodePools(_ input: DescribeClusterNodePoolsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNodePoolsResponse {
+        try await self.client.execute(action: "DescribeClusterNodePools", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

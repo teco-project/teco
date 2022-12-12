@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 通信行程卡识别
-    ///
-    /// 本接口支持通信大数据行程卡识别，包括行程卡颜色、更新时间、途经地、存在中高风险地区的城市、电话号码，五个字段的识别结果输出。
-    /// 默认接口请求频率限制：20次/秒。
-    @inlinable
-    public func recognizeTravelCardOCR(_ input: RecognizeTravelCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeTravelCardOCRResponse > {
-        self.client.execute(action: "RecognizeTravelCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通信行程卡识别
-    ///
-    /// 本接口支持通信大数据行程卡识别，包括行程卡颜色、更新时间、途经地、存在中高风险地区的城市、电话号码，五个字段的识别结果输出。
-    /// 默认接口请求频率限制：20次/秒。
-    @inlinable
-    public func recognizeTravelCardOCR(_ input: RecognizeTravelCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeTravelCardOCRResponse {
-        try await self.client.execute(action: "RecognizeTravelCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecognizeTravelCardOCR请求参数结构体
     public struct RecognizeTravelCardOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -48,7 +30,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -87,5 +69,23 @@ extension Ocr {
             case telephone = "Telephone"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通信行程卡识别
+    ///
+    /// 本接口支持通信大数据行程卡识别，包括行程卡颜色、更新时间、途经地、存在中高风险地区的城市、电话号码，五个字段的识别结果输出。
+    /// 默认接口请求频率限制：20次/秒。
+    @inlinable
+    public func recognizeTravelCardOCR(_ input: RecognizeTravelCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeTravelCardOCRResponse > {
+        self.client.execute(action: "RecognizeTravelCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通信行程卡识别
+    ///
+    /// 本接口支持通信大数据行程卡识别，包括行程卡颜色、更新时间、途经地、存在中高风险地区的城市、电话号码，五个字段的识别结果输出。
+    /// 默认接口请求频率限制：20次/秒。
+    @inlinable
+    public func recognizeTravelCardOCR(_ input: RecognizeTravelCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeTravelCardOCRResponse {
+        try await self.client.execute(action: "RecognizeTravelCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

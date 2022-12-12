@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 获取用户列表信息
-    @inlinable
-    public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsersResponse > {
-        self.client.execute(action: "DescribeUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户列表信息
-    @inlinable
-    public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
-        try await self.client.execute(action: "DescribeUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUsers请求参数结构体
     public struct DescribeUsersRequest: TCRequestModel {
         /// 指定查询的子用户uin，用户需要通过CreateUser接口创建。
@@ -47,7 +35,7 @@ extension Dlc {
         /// 过滤条件，支持如下字段类型，user-type：根据用户类型过滤。user-keyword：根据用户名称过滤
         public let filters: [Filter]?
         
-        public init (userId: String?, offset: Int64?, limit: Int64?, sortBy: String?, sorting: String?, filters: [Filter]?) {
+        public init (userId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil) {
             self.userId = userId
             self.offset = offset
             self.limit = limit
@@ -82,5 +70,17 @@ extension Dlc {
             case userSet = "UserSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户列表信息
+    @inlinable
+    public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsersResponse > {
+        self.client.execute(action: "DescribeUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户列表信息
+    @inlinable
+    public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
+        try await self.client.execute(action: "DescribeUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

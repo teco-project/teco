@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Ump {
-    /// 获取摄像头配置信息
-    ///
-    /// 获取摄像头配置信息
-    /// mac不为空返回指定相机配置
-    /// mac为空返回对应GroupCode和MallId全量配置
-    @inlinable
-    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigResponse > {
-        self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取摄像头配置信息
-    ///
-    /// 获取摄像头配置信息
-    /// mac不为空返回指定相机配置
-    /// mac为空返回对应GroupCode和MallId全量配置
-    @inlinable
-    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
-        try await self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeConfig请求参数结构体
     public struct DescribeConfigRequest: TCRequestModel {
         /// 会话ID
@@ -58,7 +38,7 @@ extension Ump {
         /// 广场ID
         public let mallId: UInt64?
         
-        public init (sessionId: String, cameraSign: String, cameraAppId: String, cameraTimestamp: Int64, serverMac: String?, groupCode: String?, mallId: UInt64?) {
+        public init (sessionId: String, cameraSign: String, cameraAppId: String, cameraTimestamp: Int64, serverMac: String? = nil, groupCode: String? = nil, mallId: UInt64? = nil) {
             self.sessionId = sessionId
             self.cameraSign = cameraSign
             self.cameraAppId = cameraAppId
@@ -99,5 +79,25 @@ extension Ump {
             case cameras = "Cameras"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取摄像头配置信息
+    ///
+    /// 获取摄像头配置信息
+    /// mac不为空返回指定相机配置
+    /// mac为空返回对应GroupCode和MallId全量配置
+    @inlinable
+    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigResponse > {
+        self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取摄像头配置信息
+    ///
+    /// 获取摄像头配置信息
+    /// mac不为空返回指定相机配置
+    /// mac为空返回对应GroupCode和MallId全量配置
+    @inlinable
+    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
+        try await self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

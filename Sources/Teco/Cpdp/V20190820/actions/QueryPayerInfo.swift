@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 跨境-付款人查询
-    @inlinable
-    public func queryPayerInfo(_ input: QueryPayerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryPayerInfoResponse > {
-        self.client.execute(action: "QueryPayerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 跨境-付款人查询
-    @inlinable
-    public func queryPayerInfo(_ input: QueryPayerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryPayerInfoResponse {
-        try await self.client.execute(action: "QueryPayerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryPayerInfo请求参数结构体
     public struct QueryPayerInfoRequest: TCRequestModel {
         /// 付款人ID
@@ -35,7 +23,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
         
-        public init (payerId: String, profile: String?) {
+        public init (payerId: String, profile: String? = nil) {
             self.payerId = payerId
             self.profile = profile
         }
@@ -58,5 +46,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 跨境-付款人查询
+    @inlinable
+    public func queryPayerInfo(_ input: QueryPayerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryPayerInfoResponse > {
+        self.client.execute(action: "QueryPayerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 跨境-付款人查询
+    @inlinable
+    public func queryPayerInfo(_ input: QueryPayerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryPayerInfoResponse {
+        try await self.client.execute(action: "QueryPayerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

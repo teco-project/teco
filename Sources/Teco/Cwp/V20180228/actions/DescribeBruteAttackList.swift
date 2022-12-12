@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取密码破解列表
-    @inlinable
-    public func describeBruteAttackList(_ input: DescribeBruteAttackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBruteAttackListResponse > {
-        self.client.execute(action: "DescribeBruteAttackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取密码破解列表
-    @inlinable
-    public func describeBruteAttackList(_ input: DescribeBruteAttackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBruteAttackListResponse {
-        try await self.client.execute(action: "DescribeBruteAttackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBruteAttackList请求参数结构体
     public struct DescribeBruteAttackListRequest: TCRequestModel {
         /// 需要返回的数量，最大值为100
@@ -55,7 +43,7 @@ extension Cwp {
         /// 排序字段：CreateTime-首次攻击时间
         public let by: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?, order: String?, by: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -90,5 +78,17 @@ extension Cwp {
             case bruteAttackList = "BruteAttackList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取密码破解列表
+    @inlinable
+    public func describeBruteAttackList(_ input: DescribeBruteAttackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBruteAttackListResponse > {
+        self.client.execute(action: "DescribeBruteAttackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取密码破解列表
+    @inlinable
+    public func describeBruteAttackList(_ input: DescribeBruteAttackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBruteAttackListResponse {
+        try await self.client.execute(action: "DescribeBruteAttackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

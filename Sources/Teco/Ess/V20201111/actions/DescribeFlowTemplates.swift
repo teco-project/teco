@@ -15,32 +15,16 @@
 // DO NOT EDIT.
 
 extension Ess {
-    /// 查询模板
-    ///
-    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
-    @inlinable
-    public func describeFlowTemplates(_ input: DescribeFlowTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowTemplatesResponse > {
-        self.client.execute(action: "DescribeFlowTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询模板
-    ///
-    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
-    @inlinable
-    public func describeFlowTemplates(_ input: DescribeFlowTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowTemplatesResponse {
-        try await self.client.execute(action: "DescribeFlowTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlowTemplates请求参数结构体
     public struct DescribeFlowTemplatesRequest: TCRequestModel {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
         
         /// 企业组织相关信息
-        public let organization: OrganizationInfo
+        public let organization: OrganizationInfo?
         
         /// 应用相关信息
-        public let agent: Agent
+        public let agent: Agent?
         
         /// 查询偏移位置，默认0
         public let offset: UInt64?
@@ -67,7 +51,7 @@ extension Ess {
         /// 查询内容：0-模板列表及详情（默认），1-仅模板列表
         public let contentType: Int64?
         
-        public init (`operator`: UserInfo, organization: OrganizationInfo, agent: Agent, offset: UInt64?, limit: UInt64?, filters: [Filter]?, applicationId: String?, isChannel: Bool?, generateSource: UInt64?, contentType: Int64?) {
+        public init (`operator`: UserInfo, organization: OrganizationInfo? = nil, agent: Agent? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, applicationId: String? = nil, isChannel: Bool? = nil, generateSource: UInt64? = nil, contentType: Int64? = nil) {
             self.`operator` = `operator`
             self.organization = organization
             self.agent = agent
@@ -110,5 +94,21 @@ extension Ess {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询模板
+    ///
+    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
+    @inlinable
+    public func describeFlowTemplates(_ input: DescribeFlowTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowTemplatesResponse > {
+        self.client.execute(action: "DescribeFlowTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询模板
+    ///
+    /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
+    @inlinable
+    public func describeFlowTemplates(_ input: DescribeFlowTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowTemplatesResponse {
+        try await self.client.execute(action: "DescribeFlowTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

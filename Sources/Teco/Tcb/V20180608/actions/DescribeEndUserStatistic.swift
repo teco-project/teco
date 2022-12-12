@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 获取终端用户分布
-    ///
-    /// 获取终端用户总量与平台分布情况
-    @inlinable
-    public func describeEndUserStatistic(_ input: DescribeEndUserStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEndUserStatisticResponse > {
-        self.client.execute(action: "DescribeEndUserStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取终端用户分布
-    ///
-    /// 获取终端用户总量与平台分布情况
-    @inlinable
-    public func describeEndUserStatistic(_ input: DescribeEndUserStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEndUserStatisticResponse {
-        try await self.client.execute(action: "DescribeEndUserStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEndUserStatistic请求参数结构体
     public struct DescribeEndUserStatisticRequest: TCRequestModel {
         /// 环境id
@@ -62,5 +46,21 @@ extension Tcb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取终端用户分布
+    ///
+    /// 获取终端用户总量与平台分布情况
+    @inlinable
+    public func describeEndUserStatistic(_ input: DescribeEndUserStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEndUserStatisticResponse > {
+        self.client.execute(action: "DescribeEndUserStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取终端用户分布
+    ///
+    /// 获取终端用户总量与平台分布情况
+    @inlinable
+    public func describeEndUserStatistic(_ input: DescribeEndUserStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEndUserStatisticResponse {
+        try await self.client.execute(action: "DescribeEndUserStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

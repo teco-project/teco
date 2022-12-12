@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 删除DDoS防护的特征过滤规则
-    @inlinable
-    public func deletePacketFilterConfig(_ input: DeletePacketFilterConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePacketFilterConfigResponse > {
-        self.client.execute(action: "DeletePacketFilterConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除DDoS防护的特征过滤规则
-    @inlinable
-    public func deletePacketFilterConfig(_ input: DeletePacketFilterConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePacketFilterConfigResponse {
-        try await self.client.execute(action: "DeletePacketFilterConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePacketFilterConfig请求参数结构体
     public struct DeletePacketFilterConfigRequest: TCRequestModel {
         /// 资源实例ID
@@ -54,5 +42,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除DDoS防护的特征过滤规则
+    @inlinable
+    public func deletePacketFilterConfig(_ input: DeletePacketFilterConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePacketFilterConfigResponse > {
+        self.client.execute(action: "DeletePacketFilterConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除DDoS防护的特征过滤规则
+    @inlinable
+    public func deletePacketFilterConfig(_ input: DeletePacketFilterConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePacketFilterConfigResponse {
+        try await self.client.execute(action: "DeletePacketFilterConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

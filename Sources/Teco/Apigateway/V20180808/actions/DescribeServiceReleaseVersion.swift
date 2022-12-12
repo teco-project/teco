@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询服务已发布的版本
-    ///
-    /// 本接口（DescribeServiceReleaseVersion）查询一个服务下面所有已经发布的版本列表。
-    /// 用户在发布服务时，常有多个版本发布，可使用本接口查询已发布的版本。
-    @inlinable
-    public func describeServiceReleaseVersion(_ input: DescribeServiceReleaseVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceReleaseVersionResponse > {
-        self.client.execute(action: "DescribeServiceReleaseVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询服务已发布的版本
-    ///
-    /// 本接口（DescribeServiceReleaseVersion）查询一个服务下面所有已经发布的版本列表。
-    /// 用户在发布服务时，常有多个版本发布，可使用本接口查询已发布的版本。
-    @inlinable
-    public func describeServiceReleaseVersion(_ input: DescribeServiceReleaseVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceReleaseVersionResponse {
-        try await self.client.execute(action: "DescribeServiceReleaseVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeServiceReleaseVersion请求参数结构体
     public struct DescribeServiceReleaseVersionRequest: TCRequestModel {
         /// 待查询的服务唯一 ID。
@@ -44,7 +26,7 @@ extension Apigateway {
         /// 偏移量，默认为0。
         public let offset: UInt64?
         
-        public init (serviceId: String, limit: UInt64?, offset: UInt64?) {
+        public init (serviceId: String, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.serviceId = serviceId
             self.limit = limit
             self.offset = offset
@@ -61,7 +43,7 @@ extension Apigateway {
     public struct DescribeServiceReleaseVersionResponse: TCResponseModel {
         /// 服务发布版本列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: ServiceReleaseVersion
+        public let result: ServiceReleaseVersion?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -70,5 +52,23 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询服务已发布的版本
+    ///
+    /// 本接口（DescribeServiceReleaseVersion）查询一个服务下面所有已经发布的版本列表。
+    /// 用户在发布服务时，常有多个版本发布，可使用本接口查询已发布的版本。
+    @inlinable
+    public func describeServiceReleaseVersion(_ input: DescribeServiceReleaseVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceReleaseVersionResponse > {
+        self.client.execute(action: "DescribeServiceReleaseVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务已发布的版本
+    ///
+    /// 本接口（DescribeServiceReleaseVersion）查询一个服务下面所有已经发布的版本列表。
+    /// 用户在发布服务时，常有多个版本发布，可使用本接口查询已发布的版本。
+    @inlinable
+    public func describeServiceReleaseVersion(_ input: DescribeServiceReleaseVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceReleaseVersionResponse {
+        try await self.client.execute(action: "DescribeServiceReleaseVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

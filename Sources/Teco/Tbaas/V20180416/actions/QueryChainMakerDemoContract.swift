@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 调用长安链体验网络合约查询
-    @inlinable
-    public func queryChainMakerDemoContract(_ input: QueryChainMakerDemoContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryChainMakerDemoContractResponse > {
-        self.client.execute(action: "QueryChainMakerDemoContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调用长安链体验网络合约查询
-    @inlinable
-    public func queryChainMakerDemoContract(_ input: QueryChainMakerDemoContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerDemoContractResponse {
-        try await self.client.execute(action: "QueryChainMakerDemoContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryChainMakerDemoContract请求参数结构体
     public struct QueryChainMakerDemoContractRequest: TCRequestModel {
         /// 网络ID，可在区块链网络详情或列表中获取
@@ -44,7 +32,7 @@ extension Tbaas {
         /// 合约方法入参，json格式字符串，key/value都是string类型的map
         public let funcParam: String?
         
-        public init (clusterId: String, chainId: String, contractName: String, funcName: String, funcParam: String?) {
+        public init (clusterId: String, chainId: String, contractName: String, funcName: String, funcParam: String? = nil) {
             self.clusterId = clusterId
             self.chainId = chainId
             self.contractName = contractName
@@ -65,7 +53,7 @@ extension Tbaas {
     public struct QueryChainMakerDemoContractResponse: TCResponseModel {
         /// 交易结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: ChainMakerContractResult
+        public let result: ChainMakerContractResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -74,5 +62,17 @@ extension Tbaas {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调用长安链体验网络合约查询
+    @inlinable
+    public func queryChainMakerDemoContract(_ input: QueryChainMakerDemoContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryChainMakerDemoContractResponse > {
+        self.client.execute(action: "QueryChainMakerDemoContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调用长安链体验网络合约查询
+    @inlinable
+    public func queryChainMakerDemoContract(_ input: QueryChainMakerDemoContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerDemoContractResponse {
+        try await self.client.execute(action: "QueryChainMakerDemoContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

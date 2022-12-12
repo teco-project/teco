@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 删除用户列表（用户管理）
-    @inlinable
-    public func deleteUserManagerUserList(_ input: DeleteUserManagerUserListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserManagerUserListResponse > {
-        self.client.execute(action: "DeleteUserManagerUserList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除用户列表（用户管理）
-    @inlinable
-    public func deleteUserManagerUserList(_ input: DeleteUserManagerUserListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserManagerUserListResponse {
-        try await self.client.execute(action: "DeleteUserManagerUserList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteUserManagerUserList请求参数结构体
     public struct DeleteUserManagerUserListRequest: TCRequestModel {
         /// 集群实例ID
@@ -54,5 +42,17 @@ extension Emr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除用户列表（用户管理）
+    @inlinable
+    public func deleteUserManagerUserList(_ input: DeleteUserManagerUserListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserManagerUserListResponse > {
+        self.client.execute(action: "DeleteUserManagerUserList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除用户列表（用户管理）
+    @inlinable
+    public func deleteUserManagerUserList(_ input: DeleteUserManagerUserListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserManagerUserListResponse {
+        try await self.client.execute(action: "DeleteUserManagerUserList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

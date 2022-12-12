@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Solar {
-    /// 子项目详情
-    @inlinable
-    public func describeSubProject(_ input: DescribeSubProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubProjectResponse > {
-        self.client.execute(action: "DescribeSubProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 子项目详情
-    @inlinable
-    public func describeSubProject(_ input: DescribeSubProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubProjectResponse {
-        try await self.client.execute(action: "DescribeSubProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSubProject请求参数结构体
     public struct DescribeSubProjectRequest: TCRequestModel {
         /// 子项目id
@@ -45,11 +33,11 @@ extension Solar {
     public struct DescribeSubProjectResponse: TCResponseModel {
         /// 作品信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let productInfo: ProductInfo
+        public let productInfo: ProductInfo?
         
         /// 活动信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let activityInfo: ActivityInfo
+        public let activityInfo: ActivityInfo?
         
         /// 分享标题
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -94,5 +82,17 @@ extension Solar {
             case shareWsId = "ShareWsId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 子项目详情
+    @inlinable
+    public func describeSubProject(_ input: DescribeSubProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubProjectResponse > {
+        self.client.execute(action: "DescribeSubProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 子项目详情
+    @inlinable
+    public func describeSubProject(_ input: DescribeSubProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubProjectResponse {
+        try await self.client.execute(action: "DescribeSubProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

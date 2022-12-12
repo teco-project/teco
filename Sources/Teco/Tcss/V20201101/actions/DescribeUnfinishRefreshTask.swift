@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询未完成的刷新资产任务信息
-    @inlinable
-    public func describeUnfinishRefreshTask(_ input: DescribeUnfinishRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnfinishRefreshTaskResponse > {
-        self.client.execute(action: "DescribeUnfinishRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询未完成的刷新资产任务信息
-    @inlinable
-    public func describeUnfinishRefreshTask(_ input: DescribeUnfinishRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnfinishRefreshTaskResponse {
-        try await self.client.execute(action: "DescribeUnfinishRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUnfinishRefreshTask请求参数结构体
     public struct DescribeUnfinishRefreshTaskRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Tcss {
             case taskStatus = "TaskStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询未完成的刷新资产任务信息
+    @inlinable
+    public func describeUnfinishRefreshTask(_ input: DescribeUnfinishRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnfinishRefreshTaskResponse > {
+        self.client.execute(action: "DescribeUnfinishRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询未完成的刷新资产任务信息
+    @inlinable
+    public func describeUnfinishRefreshTask(_ input: DescribeUnfinishRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnfinishRefreshTaskResponse {
+        try await self.client.execute(action: "DescribeUnfinishRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

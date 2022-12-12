@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取漏洞受影响机器列表
-    ///
-    /// 本接口 (DescribeImpactedHosts) 用于获取漏洞受影响机器列表。
-    @inlinable
-    public func describeImpactedHosts(_ input: DescribeImpactedHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImpactedHostsResponse > {
-        self.client.execute(action: "DescribeImpactedHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取漏洞受影响机器列表
-    ///
-    /// 本接口 (DescribeImpactedHosts) 用于获取漏洞受影响机器列表。
-    @inlinable
-    public func describeImpactedHosts(_ input: DescribeImpactedHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImpactedHostsResponse {
-        try await self.client.execute(action: "DescribeImpactedHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImpactedHosts请求参数结构体
     public struct DescribeImpactedHostsRequest: TCRequestModel {
         /// 漏洞种类ID。
@@ -46,7 +30,7 @@ extension Yunjing {
         /// <li>Status - String - 是否必填：否 - 状态筛选（UN_OPERATED：待处理 | FIXED：已修复）</li>
         public let filters: [Filter]?
         
-        public init (vulId: UInt64, limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (vulId: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.vulId = vulId
             self.limit = limit
             self.offset = offset
@@ -77,5 +61,21 @@ extension Yunjing {
             case impactedHosts = "ImpactedHosts"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取漏洞受影响机器列表
+    ///
+    /// 本接口 (DescribeImpactedHosts) 用于获取漏洞受影响机器列表。
+    @inlinable
+    public func describeImpactedHosts(_ input: DescribeImpactedHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImpactedHostsResponse > {
+        self.client.execute(action: "DescribeImpactedHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取漏洞受影响机器列表
+    ///
+    /// 本接口 (DescribeImpactedHosts) 用于获取漏洞受影响机器列表。
+    @inlinable
+    public func describeImpactedHosts(_ input: DescribeImpactedHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImpactedHostsResponse {
+        try await self.client.execute(action: "DescribeImpactedHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

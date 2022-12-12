@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 切换设备可用状态
-    ///
-    /// 启用或者禁用设备 
-    @inlinable
-    public func updateDeviceAvailableState(_ input: UpdateDeviceAvailableStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDeviceAvailableStateResponse > {
-        self.client.execute(action: "UpdateDeviceAvailableState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 切换设备可用状态
-    ///
-    /// 启用或者禁用设备 
-    @inlinable
-    public func updateDeviceAvailableState(_ input: UpdateDeviceAvailableStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceAvailableStateResponse {
-        try await self.client.execute(action: "UpdateDeviceAvailableState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateDeviceAvailableState请求参数结构体
     public struct UpdateDeviceAvailableStateRequest: TCRequestModel {
         /// 设备所属产品id
@@ -63,5 +47,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 切换设备可用状态
+    ///
+    /// 启用或者禁用设备 
+    @inlinable
+    public func updateDeviceAvailableState(_ input: UpdateDeviceAvailableStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDeviceAvailableStateResponse > {
+        self.client.execute(action: "UpdateDeviceAvailableState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 切换设备可用状态
+    ///
+    /// 启用或者禁用设备 
+    @inlinable
+    public func updateDeviceAvailableState(_ input: UpdateDeviceAvailableStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceAvailableStateResponse {
+        try await self.client.execute(action: "UpdateDeviceAvailableState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

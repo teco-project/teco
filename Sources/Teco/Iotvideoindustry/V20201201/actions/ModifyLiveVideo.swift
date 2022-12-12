@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 直播录像编辑
-    @inlinable
-    public func modifyLiveVideo(_ input: ModifyLiveVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveVideoResponse > {
-        self.client.execute(action: "ModifyLiveVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播录像编辑
-    @inlinable
-    public func modifyLiveVideo(_ input: ModifyLiveVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveVideoResponse {
-        try await self.client.execute(action: "ModifyLiveVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLiveVideo请求参数结构体
     public struct ModifyLiveVideoRequest: TCRequestModel {
         /// 视频ID 列表, 大小限制(100)
@@ -54,5 +42,17 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播录像编辑
+    @inlinable
+    public func modifyLiveVideo(_ input: ModifyLiveVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLiveVideoResponse > {
+        self.client.execute(action: "ModifyLiveVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播录像编辑
+    @inlinable
+    public func modifyLiveVideo(_ input: ModifyLiveVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveVideoResponse {
+        try await self.client.execute(action: "ModifyLiveVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

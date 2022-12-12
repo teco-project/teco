@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 批量配置L7转发规则的证书
-    ///
-    /// 批量配置L7转发规则的证书供SSL测调用
-    @inlinable
-    public func createL7RuleCerts(_ input: CreateL7RuleCertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL7RuleCertsResponse > {
-        self.client.execute(action: "CreateL7RuleCerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量配置L7转发规则的证书
-    ///
-    /// 批量配置L7转发规则的证书供SSL测调用
-    @inlinable
-    public func createL7RuleCerts(_ input: CreateL7RuleCertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RuleCertsResponse {
-        try await self.client.execute(action: "CreateL7RuleCerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateL7RuleCerts请求参数结构体
     public struct CreateL7RuleCertsRequest: TCRequestModel {
         /// SSL证书ID
@@ -62,5 +46,21 @@ extension Antiddos {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量配置L7转发规则的证书
+    ///
+    /// 批量配置L7转发规则的证书供SSL测调用
+    @inlinable
+    public func createL7RuleCerts(_ input: CreateL7RuleCertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL7RuleCertsResponse > {
+        self.client.execute(action: "CreateL7RuleCerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量配置L7转发规则的证书
+    ///
+    /// 批量配置L7转发规则的证书供SSL测调用
+    @inlinable
+    public func createL7RuleCerts(_ input: CreateL7RuleCertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RuleCertsResponse {
+        try await self.client.execute(action: "CreateL7RuleCerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取基础防护CC防护阈值
-    @inlinable
-    public func describeBasicCCThreshold(_ input: DescribeBasicCCThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicCCThresholdResponse > {
-        self.client.execute(action: "DescribeBasicCCThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取基础防护CC防护阈值
-    @inlinable
-    public func describeBasicCCThreshold(_ input: DescribeBasicCCThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicCCThresholdResponse {
-        try await self.client.execute(action: "DescribeBasicCCThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBasicCCThreshold请求参数结构体
     public struct DescribeBasicCCThresholdRequest: TCRequestModel {
         /// 查询的IP地址，取值如：1.1.1.1
@@ -47,7 +35,7 @@ extension Dayu {
         /// 可选，运营商线路（如果查询的设备类型是NAT服务器，需要传此参数为5）
         public let basicIspCode: UInt64?
         
-        public init (basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicIpInstance: String?, basicIspCode: UInt64?) {
+        public init (basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil) {
             self.basicIp = basicIp
             self.basicRegion = basicRegion
             self.basicBizType = basicBizType
@@ -82,5 +70,17 @@ extension Dayu {
             case ccThreshold = "CCThreshold"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取基础防护CC防护阈值
+    @inlinable
+    public func describeBasicCCThreshold(_ input: DescribeBasicCCThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicCCThresholdResponse > {
+        self.client.execute(action: "DescribeBasicCCThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取基础防护CC防护阈值
+    @inlinable
+    public func describeBasicCCThreshold(_ input: DescribeBasicCCThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicCCThresholdResponse {
+        try await self.client.execute(action: "DescribeBasicCCThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

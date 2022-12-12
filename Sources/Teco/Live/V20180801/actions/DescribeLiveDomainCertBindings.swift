@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询绑定证书的域名列表
-    ///
-    /// 查询绑定证书的域名列表。
-    @inlinable
-    public func describeLiveDomainCertBindings(_ input: DescribeLiveDomainCertBindingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveDomainCertBindingsResponse > {
-        self.client.execute(action: "DescribeLiveDomainCertBindings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询绑定证书的域名列表
-    ///
-    /// 查询绑定证书的域名列表。
-    @inlinable
-    public func describeLiveDomainCertBindings(_ input: DescribeLiveDomainCertBindingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainCertBindingsResponse {
-        try await self.client.execute(action: "DescribeLiveDomainCertBindings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveDomainCertBindings请求参数结构体
     public struct DescribeLiveDomainCertBindingsRequest: TCRequestModel {
         /// 要搜索的域名字符串。
@@ -51,7 +35,7 @@ extension Live {
         /// ExpireTimeDesc：证书过期时间降序。
         public let orderBy: String?
         
-        public init (domainSearch: String?, offset: Int64?, length: Int64?, domainName: String?, orderBy: String?) {
+        public init (domainSearch: String? = nil, offset: Int64? = nil, length: Int64? = nil, domainName: String? = nil, orderBy: String? = nil) {
             self.domainSearch = domainSearch
             self.offset = offset
             self.length = length
@@ -84,5 +68,21 @@ extension Live {
             case totalNum = "TotalNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询绑定证书的域名列表
+    ///
+    /// 查询绑定证书的域名列表。
+    @inlinable
+    public func describeLiveDomainCertBindings(_ input: DescribeLiveDomainCertBindingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveDomainCertBindingsResponse > {
+        self.client.execute(action: "DescribeLiveDomainCertBindings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询绑定证书的域名列表
+    ///
+    /// 查询绑定证书的域名列表。
+    @inlinable
+    public func describeLiveDomainCertBindings(_ input: DescribeLiveDomainCertBindingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainCertBindingsResponse {
+        try await self.client.execute(action: "DescribeLiveDomainCertBindings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

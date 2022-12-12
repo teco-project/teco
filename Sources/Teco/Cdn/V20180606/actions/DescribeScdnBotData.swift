@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 获取BOT统计数据列表
-    @inlinable
-    public func describeScdnBotData(_ input: DescribeScdnBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnBotDataResponse > {
-        self.client.execute(action: "DescribeScdnBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取BOT统计数据列表
-    @inlinable
-    public func describeScdnBotData(_ input: DescribeScdnBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotDataResponse {
-        try await self.client.execute(action: "DescribeScdnBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScdnBotData请求参数结构体
     public struct DescribeScdnBotDataRequest: TCRequestModel {
         /// 开始时间
@@ -48,7 +36,7 @@ extension Cdn {
         /// 域名数组，多选域名时，使用此参数,不填写表示查询所有域名的数据（AppID维度数据）
         public let domains: [String]?
         
-        public init (startTime: Date, endTime: Date, area: String, interval: String?, domains: [String]?) {
+        public init (startTime: Date, endTime: Date, area: String, interval: String? = nil, domains: [String]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.area = area
@@ -81,5 +69,17 @@ extension Cdn {
             case interval = "Interval"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取BOT统计数据列表
+    @inlinable
+    public func describeScdnBotData(_ input: DescribeScdnBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnBotDataResponse > {
+        self.client.execute(action: "DescribeScdnBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取BOT统计数据列表
+    @inlinable
+    public func describeScdnBotData(_ input: DescribeScdnBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotDataResponse {
+        try await self.client.execute(action: "DescribeScdnBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

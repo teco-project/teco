@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 批量添加 ACL 策略
-    ///
-    /// 批量添加ACL策略
-    @inlinable
-    public func batchCreateAcl(_ input: BatchCreateAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchCreateAclResponse > {
-        self.client.execute(action: "BatchCreateAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量添加 ACL 策略
-    ///
-    /// 批量添加ACL策略
-    @inlinable
-    public func batchCreateAcl(_ input: BatchCreateAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchCreateAclResponse {
-        try await self.client.execute(action: "BatchCreateAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchCreateAcl请求参数结构体
     public struct BatchCreateAclRequest: TCRequestModel {
         /// 实例ID
@@ -72,5 +56,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量添加 ACL 策略
+    ///
+    /// 批量添加ACL策略
+    @inlinable
+    public func batchCreateAcl(_ input: BatchCreateAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchCreateAclResponse > {
+        self.client.execute(action: "BatchCreateAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量添加 ACL 策略
+    ///
+    /// 批量添加ACL策略
+    @inlinable
+    public func batchCreateAcl(_ input: BatchCreateAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchCreateAclResponse {
+        try await self.client.execute(action: "BatchCreateAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

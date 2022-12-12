@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 搜索CLS日志
-    ///
-    /// SearchClsLog 用于 CLS 日志检索。支持检索今天，24小时（可选近7中的某一天），近7天的日志数据。
-    @inlinable
-    public func searchClsLog(_ input: SearchClsLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchClsLogResponse > {
-        self.client.execute(action: "SearchClsLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 搜索CLS日志
-    ///
-    /// SearchClsLog 用于 CLS 日志检索。支持检索今天，24小时（可选近7中的某一天），近7天的日志数据。
-    @inlinable
-    public func searchClsLog(_ input: SearchClsLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClsLogResponse {
-        try await self.client.execute(action: "SearchClsLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SearchClsLog请求参数结构体
     public struct SearchClsLogRequest: TCRequestModel {
         /// 需要查询的日志集ID
@@ -64,7 +48,7 @@ extension Cdn {
         /// 按日志时间排序， asc（升序）或者 desc（降序），默认为 desc
         public let sort: String?
         
-        public init (logsetId: String, topicIds: String, startTime: Date, endTime: Date, limit: Int64, channel: String?, query: String?, context: String?, sort: String?) {
+        public init (logsetId: String, topicIds: String, startTime: Date, endTime: Date, limit: Int64, channel: String? = nil, query: String? = nil, context: String? = nil, sort: String? = nil) {
             self.logsetId = logsetId
             self.topicIds = topicIds
             self.startTime = startTime
@@ -101,5 +85,21 @@ extension Cdn {
             case logs = "Logs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 搜索CLS日志
+    ///
+    /// SearchClsLog 用于 CLS 日志检索。支持检索今天，24小时（可选近7中的某一天），近7天的日志数据。
+    @inlinable
+    public func searchClsLog(_ input: SearchClsLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchClsLogResponse > {
+        self.client.execute(action: "SearchClsLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 搜索CLS日志
+    ///
+    /// SearchClsLog 用于 CLS 日志检索。支持检索今天，24小时（可选近7中的某一天），近7天的日志数据。
+    @inlinable
+    public func searchClsLog(_ input: SearchClsLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClsLogResponse {
+        try await self.client.execute(action: "SearchClsLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

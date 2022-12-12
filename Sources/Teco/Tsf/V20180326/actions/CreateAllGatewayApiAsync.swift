@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 一键导入API分组
-    @inlinable
-    public func createAllGatewayApiAsync(_ input: CreateAllGatewayApiAsyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAllGatewayApiAsyncResponse > {
-        self.client.execute(action: "CreateAllGatewayApiAsync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 一键导入API分组
-    @inlinable
-    public func createAllGatewayApiAsync(_ input: CreateAllGatewayApiAsyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAllGatewayApiAsyncResponse {
-        try await self.client.execute(action: "CreateAllGatewayApiAsync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAllGatewayApiAsync请求参数结构体
     public struct CreateAllGatewayApiAsyncRequest: TCRequestModel {
         /// API分组ID
@@ -58,5 +46,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 一键导入API分组
+    @inlinable
+    public func createAllGatewayApiAsync(_ input: CreateAllGatewayApiAsyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAllGatewayApiAsyncResponse > {
+        self.client.execute(action: "CreateAllGatewayApiAsync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 一键导入API分组
+    @inlinable
+    public func createAllGatewayApiAsync(_ input: CreateAllGatewayApiAsyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAllGatewayApiAsyncResponse {
+        try await self.client.execute(action: "CreateAllGatewayApiAsync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

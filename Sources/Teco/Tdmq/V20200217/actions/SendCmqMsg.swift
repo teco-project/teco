@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 发送cmq消息
-    @inlinable
-    public func sendCmqMsg(_ input: SendCmqMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendCmqMsgResponse > {
-        self.client.execute(action: "SendCmqMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送cmq消息
-    @inlinable
-    public func sendCmqMsg(_ input: SendCmqMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendCmqMsgResponse {
-        try await self.client.execute(action: "SendCmqMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendCmqMsg请求参数结构体
     public struct SendCmqMsgRequest: TCRequestModel {
         /// 队列名
@@ -67,5 +55,17 @@ extension Tdmq {
             case msgId = "MsgId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送cmq消息
+    @inlinable
+    public func sendCmqMsg(_ input: SendCmqMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendCmqMsgResponse > {
+        self.client.execute(action: "SendCmqMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送cmq消息
+    @inlinable
+    public func sendCmqMsg(_ input: SendCmqMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendCmqMsgResponse {
+        try await self.client.execute(action: "SendCmqMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

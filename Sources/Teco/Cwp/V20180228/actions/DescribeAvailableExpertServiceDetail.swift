@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 可用订单详情
-    ///
-    /// 专家服务-可用订单详情
-    @inlinable
-    public func describeAvailableExpertServiceDetail(_ input: DescribeAvailableExpertServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableExpertServiceDetailResponse > {
-        self.client.execute(action: "DescribeAvailableExpertServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 可用订单详情
-    ///
-    /// 专家服务-可用订单详情
-    @inlinable
-    public func describeAvailableExpertServiceDetail(_ input: DescribeAvailableExpertServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableExpertServiceDetailResponse {
-        try await self.client.execute(action: "DescribeAvailableExpertServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAvailableExpertServiceDetail请求参数结构体
     public struct DescribeAvailableExpertServiceDetailRequest: TCRequestModel {
         public init () {
@@ -69,5 +53,21 @@ extension Cwp {
             case protectNetBuy = "ProtectNetBuy"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 可用订单详情
+    ///
+    /// 专家服务-可用订单详情
+    @inlinable
+    public func describeAvailableExpertServiceDetail(_ input: DescribeAvailableExpertServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableExpertServiceDetailResponse > {
+        self.client.execute(action: "DescribeAvailableExpertServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 可用订单详情
+    ///
+    /// 专家服务-可用订单详情
+    @inlinable
+    public func describeAvailableExpertServiceDetail(_ input: DescribeAvailableExpertServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableExpertServiceDetailResponse {
+        try await self.client.execute(action: "DescribeAvailableExpertServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

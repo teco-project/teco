@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 创建克隆实例
-    ///
-    /// 本接口(CreateCloneInstance) 用于从目标源实例创建一个克隆实例，可以指定克隆实例回档到源实例的指定物理备份文件或者指定的回档时间点。
-    @inlinable
-    public func createCloneInstance(_ input: CreateCloneInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloneInstanceResponse > {
-        self.client.execute(action: "CreateCloneInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建克隆实例
-    ///
-    /// 本接口(CreateCloneInstance) 用于从目标源实例创建一个克隆实例，可以指定克隆实例回档到源实例的指定物理备份文件或者指定的回档时间点。
-    @inlinable
-    public func createCloneInstance(_ input: CreateCloneInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloneInstanceResponse {
-        try await self.client.execute(action: "CreateCloneInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCloneInstance请求参数结构体
     public struct CreateCloneInstanceRequest: TCRequestModel {
         /// 克隆源实例Id。
@@ -96,7 +80,7 @@ extension Cdb {
         /// 项目ID，默认项目ID0
         public let projectId: UInt64?
         
-        public init (instanceId: String, specifiedRollbackTime: String?, specifiedBackupId: Int64?, uniqVpcId: String?, uniqSubnetId: String?, memory: Int64?, volume: Int64?, instanceName: String?, securityGroup: [String]?, resourceTags: [TagInfo]?, cpu: Int64?, protectMode: Int64?, deployMode: Int64?, slaveZone: String?, backupZone: String?, deviceType: String?, instanceNodes: Int64?, deployGroupId: String?, dryRun: Bool?, cageId: String?, projectId: UInt64?) {
+        public init (instanceId: String, specifiedRollbackTime: String? = nil, specifiedBackupId: Int64? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, memory: Int64? = nil, volume: Int64? = nil, instanceName: String? = nil, securityGroup: [String]? = nil, resourceTags: [TagInfo]? = nil, cpu: Int64? = nil, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, backupZone: String? = nil, deviceType: String? = nil, instanceNodes: Int64? = nil, deployGroupId: String? = nil, dryRun: Bool? = nil, cageId: String? = nil, projectId: UInt64? = nil) {
             self.instanceId = instanceId
             self.specifiedRollbackTime = specifiedRollbackTime
             self.specifiedBackupId = specifiedBackupId
@@ -157,5 +141,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建克隆实例
+    ///
+    /// 本接口(CreateCloneInstance) 用于从目标源实例创建一个克隆实例，可以指定克隆实例回档到源实例的指定物理备份文件或者指定的回档时间点。
+    @inlinable
+    public func createCloneInstance(_ input: CreateCloneInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloneInstanceResponse > {
+        self.client.execute(action: "CreateCloneInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建克隆实例
+    ///
+    /// 本接口(CreateCloneInstance) 用于从目标源实例创建一个克隆实例，可以指定克隆实例回档到源实例的指定物理备份文件或者指定的回档时间点。
+    @inlinable
+    public func createCloneInstance(_ input: CreateCloneInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloneInstanceResponse {
+        try await self.client.execute(action: "CreateCloneInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

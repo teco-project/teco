@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcex {
-    /// 调用服务
-    ///
-    /// 产品控制台已经下线
-    /// 通过传入文档url，测试服务算法。此接口需要和DescribeInvocationResult接口配置使用，该接口使用InvokeService返回的RequestId作为InvokeId参数，用于查询调用结果。
-    @inlinable
-    public func invokeService(_ input: InvokeServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeServiceResponse > {
-        self.client.execute(action: "InvokeService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调用服务
-    ///
-    /// 产品控制台已经下线
-    /// 通过传入文档url，测试服务算法。此接口需要和DescribeInvocationResult接口配置使用，该接口使用InvokeService返回的RequestId作为InvokeId参数，用于查询调用结果。
-    @inlinable
-    public func invokeService(_ input: InvokeServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeServiceResponse {
-        try await self.client.execute(action: "InvokeService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InvokeService请求参数结构体
     public struct InvokeServiceRequest: TCRequestModel {
         /// 待调用的服务ID。
@@ -47,7 +29,7 @@ extension Tcex {
         /// 用于测试的文本，当此值不为空时，调用内容以此参数的值为准。
         public let input: String?
         
-        public init (serviceId: String, serviceStatus: Int64, fileUrl: String?, input: String?) {
+        public init (serviceId: String, serviceStatus: Int64, fileUrl: String? = nil, input: String? = nil) {
             self.serviceId = serviceId
             self.serviceStatus = serviceStatus
             self.fileUrl = fileUrl
@@ -70,5 +52,23 @@ extension Tcex {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调用服务
+    ///
+    /// 产品控制台已经下线
+    /// 通过传入文档url，测试服务算法。此接口需要和DescribeInvocationResult接口配置使用，该接口使用InvokeService返回的RequestId作为InvokeId参数，用于查询调用结果。
+    @inlinable
+    public func invokeService(_ input: InvokeServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeServiceResponse > {
+        self.client.execute(action: "InvokeService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调用服务
+    ///
+    /// 产品控制台已经下线
+    /// 通过传入文档url，测试服务算法。此接口需要和DescribeInvocationResult接口配置使用，该接口使用InvokeService返回的RequestId作为InvokeId参数，用于查询调用结果。
+    @inlinable
+    public func invokeService(_ input: InvokeServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeServiceResponse {
+        try await self.client.execute(action: "InvokeService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

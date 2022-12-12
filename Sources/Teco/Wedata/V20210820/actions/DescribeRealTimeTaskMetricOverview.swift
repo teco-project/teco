@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 实时任务运行指标概览
-    @inlinable
-    public func describeRealTimeTaskMetricOverview(_ input: DescribeRealTimeTaskMetricOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealTimeTaskMetricOverviewResponse > {
-        self.client.execute(action: "DescribeRealTimeTaskMetricOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实时任务运行指标概览
-    @inlinable
-    public func describeRealTimeTaskMetricOverview(_ input: DescribeRealTimeTaskMetricOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskMetricOverviewResponse {
-        try await self.client.execute(action: "DescribeRealTimeTaskMetricOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRealTimeTaskMetricOverview请求参数结构体
     public struct DescribeRealTimeTaskMetricOverviewRequest: TCRequestModel {
         /// 无
@@ -90,5 +78,17 @@ extension Wedata {
             case endRunTime = "EndRunTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实时任务运行指标概览
+    @inlinable
+    public func describeRealTimeTaskMetricOverview(_ input: DescribeRealTimeTaskMetricOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealTimeTaskMetricOverviewResponse > {
+        self.client.execute(action: "DescribeRealTimeTaskMetricOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实时任务运行指标概览
+    @inlinable
+    public func describeRealTimeTaskMetricOverview(_ input: DescribeRealTimeTaskMetricOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskMetricOverviewResponse {
+        try await self.client.execute(action: "DescribeRealTimeTaskMetricOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

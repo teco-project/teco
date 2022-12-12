@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cat {
-    /// 获取拨测节点
-    @inlinable
-    public func describeNodes(_ input: DescribeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodesResponse > {
-        self.client.execute(action: "DescribeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取拨测节点
-    @inlinable
-    public func describeNodes(_ input: DescribeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodesResponse {
-        try await self.client.execute(action: "DescribeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNodes请求参数结构体
     public struct DescribeNodesRequest: TCRequestModel {
         /// 节点类型
@@ -61,7 +49,7 @@ extension Cat {
         /// <li>6 = 音视频体验</li>
         public let taskType: Int64?
         
-        public init (nodeType: Int64?, location: Int64?, isIPv6: Bool?, nodeName: String?, payMode: Int64?, taskType: Int64?) {
+        public init (nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil, taskType: Int64? = nil) {
             self.nodeType = nodeType
             self.location = location
             self.isIPv6 = isIPv6
@@ -93,5 +81,17 @@ extension Cat {
             case nodeSet = "NodeSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取拨测节点
+    @inlinable
+    public func describeNodes(_ input: DescribeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodesResponse > {
+        self.client.execute(action: "DescribeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取拨测节点
+    @inlinable
+    public func describeNodes(_ input: DescribeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodesResponse {
+        try await self.client.execute(action: "DescribeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

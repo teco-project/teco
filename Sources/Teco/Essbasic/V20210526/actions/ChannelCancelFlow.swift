@@ -15,39 +15,19 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 渠道版撤销签署流程
-    ///
-    /// 渠道版撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
-    /// 注意:
-    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
-    @inlinable
-    public func channelCancelFlow(_ input: ChannelCancelFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCancelFlowResponse > {
-        self.client.execute(action: "ChannelCancelFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 渠道版撤销签署流程
-    ///
-    /// 渠道版撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
-    /// 注意:
-    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
-    @inlinable
-    public func channelCancelFlow(_ input: ChannelCancelFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCancelFlowResponse {
-        try await self.client.execute(action: "ChannelCancelFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ChannelCancelFlow请求参数结构体
     public struct ChannelCancelFlowRequest: TCRequestModel {
         /// 签署流程编号
         public let flowId: String
         
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
-        public let agent: Agent
+        public let agent: Agent?
         
         /// 撤回原因，最大不超过200字符
         public let cancelMessage: String?
         
         /// 操作者的信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
         /// 撤销理由自定义格式；选项：
         /// 0 默认格式
@@ -56,7 +36,7 @@ extension Essbasic {
         /// 3 保留身份信息+企业名称+经办人名称：展示为【发起方xxxx公司-经办人姓名】
         public let cancelMessageFormat: Int64?
         
-        public init (flowId: String, agent: Agent, cancelMessage: String?, `operator`: UserInfo, cancelMessageFormat: Int64?) {
+        public init (flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, `operator`: UserInfo? = nil, cancelMessageFormat: Int64? = nil) {
             self.flowId = flowId
             self.agent = agent
             self.cancelMessage = cancelMessage
@@ -81,5 +61,25 @@ extension Essbasic {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 渠道版撤销签署流程
+    ///
+    /// 渠道版撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
+    /// 注意:
+    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    @inlinable
+    public func channelCancelFlow(_ input: ChannelCancelFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCancelFlowResponse > {
+        self.client.execute(action: "ChannelCancelFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 渠道版撤销签署流程
+    ///
+    /// 渠道版撤销签署流程接口，可以撤回：未全部签署完成；不可以撤回（终态）：已全部签署完成、已拒签、已过期、已撤回。
+    /// 注意:
+    /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
+    @inlinable
+    public func channelCancelFlow(_ input: ChannelCancelFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCancelFlowResponse {
+        try await self.client.execute(action: "ChannelCancelFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

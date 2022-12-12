@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 银行卡四要素核验
-    ///
-    /// 本接口用于输入银行卡号、姓名、开户证件号、开户手机号，校验信息的真实性和一致性。
-    @inlinable
-    public func bankCard4EVerification(_ input: BankCard4EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BankCard4EVerificationResponse > {
-        self.client.execute(action: "BankCard4EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 银行卡四要素核验
-    ///
-    /// 本接口用于输入银行卡号、姓名、开户证件号、开户手机号，校验信息的真实性和一致性。
-    @inlinable
-    public func bankCard4EVerification(_ input: BankCard4EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCard4EVerificationResponse {
-        try await self.client.execute(action: "BankCard4EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BankCard4EVerification请求参数结构体
     public struct BankCard4EVerificationRequest: TCRequestModel {
         /// 姓名
@@ -50,9 +34,9 @@ extension Faceid {
         public let certType: Int64?
         
         /// 敏感数据加密信息。对传入信息（姓名、身份证号、手机号、银行卡号）有加密需求的用户可使用此参数，详情请点击左侧链接。
-        public let encryption: Encryption
+        public let encryption: Encryption?
         
-        public init (name: String, bankCard: String, phone: String, idCard: String, certType: Int64?, encryption: Encryption) {
+        public init (name: String, bankCard: String, phone: String, idCard: String, certType: Int64? = nil, encryption: Encryption? = nil) {
             self.name = name
             self.bankCard = bankCard
             self.phone = phone
@@ -108,5 +92,21 @@ extension Faceid {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 银行卡四要素核验
+    ///
+    /// 本接口用于输入银行卡号、姓名、开户证件号、开户手机号，校验信息的真实性和一致性。
+    @inlinable
+    public func bankCard4EVerification(_ input: BankCard4EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BankCard4EVerificationResponse > {
+        self.client.execute(action: "BankCard4EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 银行卡四要素核验
+    ///
+    /// 本接口用于输入银行卡号、姓名、开户证件号、开户手机号，校验信息的真实性和一致性。
+    @inlinable
+    public func bankCard4EVerification(_ input: BankCard4EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCard4EVerificationResponse {
+        try await self.client.execute(action: "BankCard4EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

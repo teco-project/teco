@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ses {
-    /// 获取域名配置详情
-    ///
-    /// 获取某个发信域名的配置详情
-    @inlinable
-    public func getEmailIdentity(_ input: GetEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetEmailIdentityResponse > {
-        self.client.execute(action: "GetEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取域名配置详情
-    ///
-    /// 获取某个发信域名的配置详情
-    @inlinable
-    public func getEmailIdentity(_ input: GetEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEmailIdentityResponse {
-        try await self.client.execute(action: "GetEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetEmailIdentity请求参数结构体
     public struct GetEmailIdentityRequest: TCRequestModel {
         /// 发信域名
@@ -65,5 +49,21 @@ extension Ses {
             case attributes = "Attributes"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取域名配置详情
+    ///
+    /// 获取某个发信域名的配置详情
+    @inlinable
+    public func getEmailIdentity(_ input: GetEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetEmailIdentityResponse > {
+        self.client.execute(action: "GetEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取域名配置详情
+    ///
+    /// 获取某个发信域名的配置详情
+    @inlinable
+    public func getEmailIdentity(_ input: GetEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEmailIdentityResponse {
+        try await self.client.execute(action: "GetEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 设置实例保护
-    ///
-    /// 本接口（SetInstancesProtection）用于设置实例保护。
-    /// 实例设置保护之后，当发生不健康替换、报警策略、期望值变更等触发缩容时，将不对此实例缩容操作。
-    @inlinable
-    public func setInstancesProtection(_ input: SetInstancesProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetInstancesProtectionResponse > {
-        self.client.execute(action: "SetInstancesProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置实例保护
-    ///
-    /// 本接口（SetInstancesProtection）用于设置实例保护。
-    /// 实例设置保护之后，当发生不健康替换、报警策略、期望值变更等触发缩容时，将不对此实例缩容操作。
-    @inlinable
-    public func setInstancesProtection(_ input: SetInstancesProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetInstancesProtectionResponse {
-        try await self.client.execute(action: "SetInstancesProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetInstancesProtection请求参数结构体
     public struct SetInstancesProtectionRequest: TCRequestModel {
         /// 伸缩组ID。
@@ -65,5 +47,23 @@ extension As {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置实例保护
+    ///
+    /// 本接口（SetInstancesProtection）用于设置实例保护。
+    /// 实例设置保护之后，当发生不健康替换、报警策略、期望值变更等触发缩容时，将不对此实例缩容操作。
+    @inlinable
+    public func setInstancesProtection(_ input: SetInstancesProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetInstancesProtectionResponse > {
+        self.client.execute(action: "SetInstancesProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置实例保护
+    ///
+    /// 本接口（SetInstancesProtection）用于设置实例保护。
+    /// 实例设置保护之后，当发生不健康替换、报警策略、期望值变更等触发缩容时，将不对此实例缩容操作。
+    @inlinable
+    public func setInstancesProtection(_ input: SetInstancesProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetInstancesProtectionResponse {
+        try await self.client.execute(action: "SetInstancesProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

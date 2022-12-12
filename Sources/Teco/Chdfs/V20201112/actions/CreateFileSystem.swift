@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 创建文件系统
-    ///
-    /// 创建文件系统（异步）。
-    @inlinable
-    public func createFileSystem(_ input: CreateFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileSystemResponse > {
-        self.client.execute(action: "CreateFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建文件系统
-    ///
-    /// 创建文件系统（异步）。
-    @inlinable
-    public func createFileSystem(_ input: CreateFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSystemResponse {
-        try await self.client.execute(action: "CreateFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFileSystem请求参数结构体
     public struct CreateFileSystemRequest: TCRequestModel {
         /// 文件系统名称
@@ -63,7 +47,7 @@ extension Chdfs {
         /// 多个资源标签，可以为空数组
         public let tags: [Tag]?
         
-        public init (fileSystemName: String, capacityQuota: UInt64, posixAcl: Bool, description: String?, superUsers: [String]?, rootInodeUser: String?, rootInodeGroup: String?, enableRanger: Bool?, rangerServiceAddresses: [String]?, tags: [Tag]?) {
+        public init (fileSystemName: String, capacityQuota: UInt64, posixAcl: Bool, description: String? = nil, superUsers: [String]? = nil, rootInodeUser: String? = nil, rootInodeGroup: String? = nil, enableRanger: Bool? = nil, rangerServiceAddresses: [String]? = nil, tags: [Tag]? = nil) {
             self.fileSystemName = fileSystemName
             self.capacityQuota = capacityQuota
             self.posixAcl = posixAcl
@@ -102,5 +86,21 @@ extension Chdfs {
             case fileSystem = "FileSystem"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建文件系统
+    ///
+    /// 创建文件系统（异步）。
+    @inlinable
+    public func createFileSystem(_ input: CreateFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileSystemResponse > {
+        self.client.execute(action: "CreateFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文件系统
+    ///
+    /// 创建文件系统（异步）。
+    @inlinable
+    public func createFileSystem(_ input: CreateFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSystemResponse {
+        try await self.client.execute(action: "CreateFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

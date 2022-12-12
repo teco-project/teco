@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 通过后端主机反向查找其绑定的传统型负载均衡
-    ///
-    /// DescribeClassicalLBByInstanceId用于通过后端实例ID获取传统型负载均衡ID列表。
-    @inlinable
-    public func describeClassicalLBByInstanceId(_ input: DescribeClassicalLBByInstanceIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClassicalLBByInstanceIdResponse > {
-        self.client.execute(action: "DescribeClassicalLBByInstanceId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通过后端主机反向查找其绑定的传统型负载均衡
-    ///
-    /// DescribeClassicalLBByInstanceId用于通过后端实例ID获取传统型负载均衡ID列表。
-    @inlinable
-    public func describeClassicalLBByInstanceId(_ input: DescribeClassicalLBByInstanceIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBByInstanceIdResponse {
-        try await self.client.execute(action: "DescribeClassicalLBByInstanceId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClassicalLBByInstanceId请求参数结构体
     public struct DescribeClassicalLBByInstanceIdRequest: TCRequestModel {
         /// 后端实例ID列表。
@@ -57,5 +41,21 @@ extension Clb {
             case loadBalancerInfoList = "LoadBalancerInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通过后端主机反向查找其绑定的传统型负载均衡
+    ///
+    /// DescribeClassicalLBByInstanceId用于通过后端实例ID获取传统型负载均衡ID列表。
+    @inlinable
+    public func describeClassicalLBByInstanceId(_ input: DescribeClassicalLBByInstanceIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClassicalLBByInstanceIdResponse > {
+        self.client.execute(action: "DescribeClassicalLBByInstanceId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通过后端主机反向查找其绑定的传统型负载均衡
+    ///
+    /// DescribeClassicalLBByInstanceId用于通过后端实例ID获取传统型负载均衡ID列表。
+    @inlinable
+    public func describeClassicalLBByInstanceId(_ input: DescribeClassicalLBByInstanceIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBByInstanceIdResponse {
+        try await self.client.execute(action: "DescribeClassicalLBByInstanceId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

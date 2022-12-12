@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 获取录制模板列表
-    ///
-    /// 获取录制模板列表。
-    @inlinable
-    public func describeLiveRecordTemplates(_ input: DescribeLiveRecordTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordTemplatesResponse > {
-        self.client.execute(action: "DescribeLiveRecordTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取录制模板列表
-    ///
-    /// 获取录制模板列表。
-    @inlinable
-    public func describeLiveRecordTemplates(_ input: DescribeLiveRecordTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordTemplatesResponse {
-        try await self.client.execute(action: "DescribeLiveRecordTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveRecordTemplates请求参数结构体
     public struct DescribeLiveRecordTemplatesRequest: TCRequestModel {
         /// 是否属于慢直播模板，默认：0。
@@ -38,7 +22,7 @@ extension Live {
         /// 1：慢直播。
         public let isDelayLive: Int64?
         
-        public init (isDelayLive: Int64?) {
+        public init (isDelayLive: Int64? = nil) {
             self.isDelayLive = isDelayLive
         }
         
@@ -59,5 +43,21 @@ extension Live {
             case templates = "Templates"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取录制模板列表
+    ///
+    /// 获取录制模板列表。
+    @inlinable
+    public func describeLiveRecordTemplates(_ input: DescribeLiveRecordTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordTemplatesResponse > {
+        self.client.execute(action: "DescribeLiveRecordTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取录制模板列表
+    ///
+    /// 获取录制模板列表。
+    @inlinable
+    public func describeLiveRecordTemplates(_ input: DescribeLiveRecordTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordTemplatesResponse {
+        try await self.client.execute(action: "DescribeLiveRecordTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

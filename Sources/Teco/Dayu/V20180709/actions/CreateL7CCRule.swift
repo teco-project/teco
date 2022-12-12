@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 创建7层CC自定义规则
-    ///
-    /// 此接口是7层CC的访问频控自定义规则（IP+Host维度，不支持具体的URI），此接口已弃用，请调用新接口CreateCCFrequencyRules，新接口同时支持IP+Host维度以及具体的URI；
-    @inlinable
-    public func createL7CCRule(_ input: CreateL7CCRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL7CCRuleResponse > {
-        self.client.execute(action: "CreateL7CCRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建7层CC自定义规则
-    ///
-    /// 此接口是7层CC的访问频控自定义规则（IP+Host维度，不支持具体的URI），此接口已弃用，请调用新接口CreateCCFrequencyRules，新接口同时支持IP+Host维度以及具体的URI；
-    @inlinable
-    public func createL7CCRule(_ input: CreateL7CCRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7CCRuleResponse {
-        try await self.client.execute(action: "CreateL7CCRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateL7CCRule请求参数结构体
     public struct CreateL7CCRuleRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -48,7 +32,7 @@ extension Dayu {
         /// 7层CC自定义规则参数，当操作码为query时，可以不用填写；当操作码为add或del时，必须填写，且数组长度只能为1；
         public let ruleConfig: [CCRuleConfig]?
         
-        public init (business: String, id: String, method: String, ruleId: String, ruleConfig: [CCRuleConfig]?) {
+        public init (business: String, id: String, method: String, ruleId: String, ruleConfig: [CCRuleConfig]? = nil) {
             self.business = business
             self.id = id
             self.method = method
@@ -77,5 +61,21 @@ extension Dayu {
             case ruleConfig = "RuleConfig"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建7层CC自定义规则
+    ///
+    /// 此接口是7层CC的访问频控自定义规则（IP+Host维度，不支持具体的URI），此接口已弃用，请调用新接口CreateCCFrequencyRules，新接口同时支持IP+Host维度以及具体的URI；
+    @inlinable
+    public func createL7CCRule(_ input: CreateL7CCRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL7CCRuleResponse > {
+        self.client.execute(action: "CreateL7CCRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建7层CC自定义规则
+    ///
+    /// 此接口是7层CC的访问频控自定义规则（IP+Host维度，不支持具体的URI），此接口已弃用，请调用新接口CreateCCFrequencyRules，新接口同时支持IP+Host维度以及具体的URI；
+    @inlinable
+    public func createL7CCRule(_ input: CreateL7CCRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7CCRuleResponse {
+        try await self.client.execute(action: "CreateL7CCRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

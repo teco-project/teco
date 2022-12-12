@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 删除用户
-    @inlinable
-    public func deleteUser(_ input: DeleteUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserResponse > {
-        self.client.execute(action: "DeleteUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除用户
-    @inlinable
-    public func deleteUser(_ input: DeleteUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserResponse {
-        try await self.client.execute(action: "DeleteUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteUser请求参数结构体
     public struct DeleteUserRequest: TCRequestModel {
         /// 需要删除的用户的Id
@@ -49,5 +37,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除用户
+    @inlinable
+    public func deleteUser(_ input: DeleteUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserResponse > {
+        self.client.execute(action: "DeleteUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除用户
+    @inlinable
+    public func deleteUser(_ input: DeleteUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserResponse {
+        try await self.client.execute(action: "DeleteUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

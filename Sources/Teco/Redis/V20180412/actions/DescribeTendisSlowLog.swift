@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询Tendis慢查询
-    @inlinable
-    public func describeTendisSlowLog(_ input: DescribeTendisSlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTendisSlowLogResponse > {
-        self.client.execute(action: "DescribeTendisSlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Tendis慢查询
-    @inlinable
-    public func describeTendisSlowLog(_ input: DescribeTendisSlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTendisSlowLogResponse {
-        try await self.client.execute(action: "DescribeTendisSlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTendisSlowLog请求参数结构体
     public struct DescribeTendisSlowLogRequest: TCRequestModel {
         /// 实例Id：crs-ngvou0i1
@@ -47,7 +35,7 @@ extension Redis {
         /// 偏移量，取Limit整数倍
         public let offset: Int64?
         
-        public init (instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64?, limit: Int64?, offset: Int64?) {
+        public init (instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.instanceId = instanceId
             self.beginTime = beginTime
             self.endTime = endTime
@@ -82,5 +70,17 @@ extension Redis {
             case tendisSlowLogDetail = "TendisSlowLogDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Tendis慢查询
+    @inlinable
+    public func describeTendisSlowLog(_ input: DescribeTendisSlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTendisSlowLogResponse > {
+        self.client.execute(action: "DescribeTendisSlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Tendis慢查询
+    @inlinable
+    public func describeTendisSlowLog(_ input: DescribeTendisSlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTendisSlowLogResponse {
+        try await self.client.execute(action: "DescribeTendisSlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

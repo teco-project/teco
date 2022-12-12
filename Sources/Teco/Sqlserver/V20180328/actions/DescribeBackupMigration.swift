@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询备份导入任务
-    ///
-    /// 本接口（DescribeBackupMigration）用于创建增量备份导入任务。
-    @inlinable
-    public func describeBackupMigration(_ input: DescribeBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupMigrationResponse > {
-        self.client.execute(action: "DescribeBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询备份导入任务
-    ///
-    /// 本接口（DescribeBackupMigration）用于创建增量备份导入任务。
-    @inlinable
-    public func describeBackupMigration(_ input: DescribeBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupMigrationResponse {
-        try await self.client.execute(action: "DescribeBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBackupMigration请求参数结构体
     public struct DescribeBackupMigrationRequest: TCRequestModel {
         /// 导入目标实例ID
@@ -66,7 +50,7 @@ extension Sqlserver {
         /// 排序方式，desc-递减排序，asc-递增排序。默认按照asc排序，且在OrderBy为有效值时，本参数有效
         public let orderByType: String?
         
-        public init (instanceId: String, backupMigrationId: String?, migrationName: String?, backupFileName: String?, statusSet: [Int64]?, recoveryType: String?, uploadType: String?, limit: Int64?, offset: Int64?, orderBy: String?, orderByType: String?) {
+        public init (instanceId: String, backupMigrationId: String? = nil, migrationName: String? = nil, backupFileName: String? = nil, statusSet: [Int64]? = nil, recoveryType: String? = nil, uploadType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.instanceId = instanceId
             self.backupMigrationId = backupMigrationId
             self.migrationName = migrationName
@@ -111,5 +95,21 @@ extension Sqlserver {
             case backupMigrationSet = "BackupMigrationSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询备份导入任务
+    ///
+    /// 本接口（DescribeBackupMigration）用于创建增量备份导入任务。
+    @inlinable
+    public func describeBackupMigration(_ input: DescribeBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupMigrationResponse > {
+        self.client.execute(action: "DescribeBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份导入任务
+    ///
+    /// 本接口（DescribeBackupMigration）用于创建增量备份导入任务。
+    @inlinable
+    public func describeBackupMigration(_ input: DescribeBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupMigrationResponse {
+        try await self.client.execute(action: "DescribeBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

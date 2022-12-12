@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询任务详情
-    @inlinable
-    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
-        self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询任务详情
-    @inlinable
-    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
-        try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskDetail请求参数结构体
     public struct DescribeTaskDetailRequest: TCRequestModel {
         /// 任务ID
@@ -35,7 +23,7 @@ extension Tsf {
         /// 任务历史ID
         public let taskLogId: String?
         
-        public init (taskId: String, taskLogId: String?) {
+        public init (taskId: String, taskLogId: String? = nil) {
             self.taskId = taskId
             self.taskLogId = taskLogId
         }
@@ -58,5 +46,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询任务详情
+    @inlinable
+    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
+        self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务详情
+    @inlinable
+    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
+        try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

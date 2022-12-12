@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 检查单个镜像仓库名是否重复
-    @inlinable
-    public func checkRepeatAssetImageRegistry(_ input: CheckRepeatAssetImageRegistryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckRepeatAssetImageRegistryResponse > {
-        self.client.execute(action: "CheckRepeatAssetImageRegistry", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检查单个镜像仓库名是否重复
-    @inlinable
-    public func checkRepeatAssetImageRegistry(_ input: CheckRepeatAssetImageRegistryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRepeatAssetImageRegistryResponse {
-        try await self.client.execute(action: "CheckRepeatAssetImageRegistry", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckRepeatAssetImageRegistry请求参数结构体
     public struct CheckRepeatAssetImageRegistryRequest: TCRequestModel {
         /// 仓库名
@@ -54,5 +42,17 @@ extension Tcss {
             case isRepeat = "IsRepeat"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检查单个镜像仓库名是否重复
+    @inlinable
+    public func checkRepeatAssetImageRegistry(_ input: CheckRepeatAssetImageRegistryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckRepeatAssetImageRegistryResponse > {
+        self.client.execute(action: "CheckRepeatAssetImageRegistry", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检查单个镜像仓库名是否重复
+    @inlinable
+    public func checkRepeatAssetImageRegistry(_ input: CheckRepeatAssetImageRegistryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRepeatAssetImageRegistryResponse {
+        try await self.client.execute(action: "CheckRepeatAssetImageRegistry", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

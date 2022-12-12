@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 删除本地提权规则
-    @inlinable
-    public func deletePrivilegeRules(_ input: DeletePrivilegeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivilegeRulesResponse > {
-        self.client.execute(action: "DeletePrivilegeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除本地提权规则
-    @inlinable
-    public func deletePrivilegeRules(_ input: DeletePrivilegeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeRulesResponse {
-        try await self.client.execute(action: "DeletePrivilegeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePrivilegeRules请求参数结构体
     public struct DeletePrivilegeRulesRequest: TCRequestModel {
         /// ID数组，最大100条。
@@ -49,5 +37,17 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除本地提权规则
+    @inlinable
+    public func deletePrivilegeRules(_ input: DeletePrivilegeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivilegeRulesResponse > {
+        self.client.execute(action: "DeletePrivilegeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除本地提权规则
+    @inlinable
+    public func deletePrivilegeRules(_ input: DeletePrivilegeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeRulesResponse {
+        try await self.client.execute(action: "DeletePrivilegeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

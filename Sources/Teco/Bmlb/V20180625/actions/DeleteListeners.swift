@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 删除黑石负载均衡监听器
-    ///
-    /// 删除黑石负载均衡监听器。
-    @inlinable
-    public func deleteListeners(_ input: DeleteListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteListenersResponse > {
-        self.client.execute(action: "DeleteListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除黑石负载均衡监听器
-    ///
-    /// 删除黑石负载均衡监听器。
-    @inlinable
-    public func deleteListeners(_ input: DeleteListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenersResponse {
-        try await self.client.execute(action: "DeleteListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteListeners请求参数结构体
     public struct DeleteListenersRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -62,5 +46,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除黑石负载均衡监听器
+    ///
+    /// 删除黑石负载均衡监听器。
+    @inlinable
+    public func deleteListeners(_ input: DeleteListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteListenersResponse > {
+        self.client.execute(action: "DeleteListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除黑石负载均衡监听器
+    ///
+    /// 删除黑石负载均衡监听器。
+    @inlinable
+    public func deleteListeners(_ input: DeleteListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenersResponse {
+        try await self.client.execute(action: "DeleteListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

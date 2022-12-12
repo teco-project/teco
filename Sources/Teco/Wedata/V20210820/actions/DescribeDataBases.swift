@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询数据来源列表
-    @inlinable
-    public func describeDataBases(_ input: DescribeDataBasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataBasesResponse > {
-        self.client.execute(action: "DescribeDataBases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据来源列表
-    @inlinable
-    public func describeDataBases(_ input: DescribeDataBasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBasesResponse {
-        try await self.client.execute(action: "DescribeDataBases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDataBases请求参数结构体
     public struct DescribeDataBasesRequest: TCRequestModel {
         /// 项目Id
@@ -38,7 +26,7 @@ extension Wedata {
         /// 数据源类型
         public let dsTypes: [UInt64]?
         
-        public init (projectId: String?, datasourceId: String?, dsTypes: [UInt64]?) {
+        public init (projectId: String? = nil, datasourceId: String? = nil, dsTypes: [UInt64]? = nil) {
             self.projectId = projectId
             self.datasourceId = datasourceId
             self.dsTypes = dsTypes
@@ -64,5 +52,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据来源列表
+    @inlinable
+    public func describeDataBases(_ input: DescribeDataBasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataBasesResponse > {
+        self.client.execute(action: "DescribeDataBases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据来源列表
+    @inlinable
+    public func describeDataBases(_ input: DescribeDataBasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBasesResponse {
+        try await self.client.execute(action: "DescribeDataBases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

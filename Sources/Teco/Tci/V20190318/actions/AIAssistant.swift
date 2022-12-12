@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// AI 助教标准接口
-    ///
-    /// 提供 AI 助教基础版本功能接口
-    @inlinable
-    public func aiAssistant(_ input: AIAssistantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AIAssistantResponse > {
-        self.client.execute(action: "AIAssistant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// AI 助教标准接口
-    ///
-    /// 提供 AI 助教基础版本功能接口
-    @inlinable
-    public func aiAssistant(_ input: AIAssistantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AIAssistantResponse {
-        try await self.client.execute(action: "AIAssistant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AIAssistant请求参数结构体
     public struct AIAssistantRequest: TCRequestModel {
         /// 输入分析对象内容，输入数据格式参考FileType参数释义
@@ -60,7 +44,7 @@ extension Tci {
         /// 语音文件类型 1:raw, 2:wav, 3:mp3，10:视频（三种音频格式目前仅支持16k采样率16bit）
         public let voiceFileType: Int64?
         
-        public init (fileContent: String, fileType: String, lang: Int64?, librarySet: [String]?, maxVideoDuration: Int64?, template: Int64?, vocabLibNameList: [String]?, voiceEncodeType: Int64?, voiceFileType: Int64?) {
+        public init (fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, template: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil) {
             self.fileContent = fileContent
             self.fileType = fileType
             self.lang = lang
@@ -101,5 +85,21 @@ extension Tci {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// AI 助教标准接口
+    ///
+    /// 提供 AI 助教基础版本功能接口
+    @inlinable
+    public func aiAssistant(_ input: AIAssistantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AIAssistantResponse > {
+        self.client.execute(action: "AIAssistant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// AI 助教标准接口
+    ///
+    /// 提供 AI 助教基础版本功能接口
+    @inlinable
+    public func aiAssistant(_ input: AIAssistantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AIAssistantResponse {
+        try await self.client.execute(action: "AIAssistant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

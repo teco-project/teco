@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Advisor {
-    /// 查询评估项信息
-    ///
-    /// 用于查询评估项的信息
-    @inlinable
-    public func describeStrategies(_ input: DescribeStrategiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStrategiesResponse > {
-        self.client.execute(action: "DescribeStrategies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询评估项信息
-    ///
-    /// 用于查询评估项的信息
-    @inlinable
-    public func describeStrategies(_ input: DescribeStrategiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStrategiesResponse {
-        try await self.client.execute(action: "DescribeStrategies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStrategies请求参数结构体
     public struct DescribeStrategiesRequest: TCRequestModel {
         public init () {
@@ -50,5 +34,21 @@ extension Advisor {
             case strategies = "Strategies"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询评估项信息
+    ///
+    /// 用于查询评估项的信息
+    @inlinable
+    public func describeStrategies(_ input: DescribeStrategiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStrategiesResponse > {
+        self.client.execute(action: "DescribeStrategies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询评估项信息
+    ///
+    /// 用于查询评估项的信息
+    @inlinable
+    public func describeStrategies(_ input: DescribeStrategiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStrategiesResponse {
+        try await self.client.execute(action: "DescribeStrategies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

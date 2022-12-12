@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 设置DDoS防护的协议封禁配置
-    @inlinable
-    public func createProtocolBlockConfig(_ input: CreateProtocolBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProtocolBlockConfigResponse > {
-        self.client.execute(action: "CreateProtocolBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置DDoS防护的协议封禁配置
-    @inlinable
-    public func createProtocolBlockConfig(_ input: CreateProtocolBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtocolBlockConfigResponse {
-        try await self.client.execute(action: "CreateProtocolBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProtocolBlockConfig请求参数结构体
     public struct CreateProtocolBlockConfigRequest: TCRequestModel {
         /// 资源实例ID
@@ -54,5 +42,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置DDoS防护的协议封禁配置
+    @inlinable
+    public func createProtocolBlockConfig(_ input: CreateProtocolBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProtocolBlockConfigResponse > {
+        self.client.execute(action: "CreateProtocolBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置DDoS防护的协议封禁配置
+    @inlinable
+    public func createProtocolBlockConfig(_ input: CreateProtocolBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtocolBlockConfigResponse {
+        try await self.client.execute(action: "CreateProtocolBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

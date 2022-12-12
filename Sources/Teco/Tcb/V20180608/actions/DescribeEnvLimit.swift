@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询环境个数上限接口
-    ///
-    /// 查询环境个数上限
-    @inlinable
-    public func describeEnvLimit(_ input: DescribeEnvLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvLimitResponse > {
-        self.client.execute(action: "DescribeEnvLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询环境个数上限接口
-    ///
-    /// 查询环境个数上限
-    @inlinable
-    public func describeEnvLimit(_ input: DescribeEnvLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvLimitResponse {
-        try await self.client.execute(action: "DescribeEnvLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEnvLimit请求参数结构体
     public struct DescribeEnvLimitRequest: TCRequestModel {
         public init () {
@@ -101,5 +85,21 @@ extension Tcb {
             case currentChangePayMonthly = "CurrentChangePayMonthly"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询环境个数上限接口
+    ///
+    /// 查询环境个数上限
+    @inlinable
+    public func describeEnvLimit(_ input: DescribeEnvLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvLimitResponse > {
+        self.client.execute(action: "DescribeEnvLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询环境个数上限接口
+    ///
+    /// 查询环境个数上限
+    @inlinable
+    public func describeEnvLimit(_ input: DescribeEnvLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvLimitResponse {
+        try await self.client.execute(action: "DescribeEnvLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

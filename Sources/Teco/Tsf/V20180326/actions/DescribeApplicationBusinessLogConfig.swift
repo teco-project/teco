@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询应用关联日志配置项信息
-    @inlinable
-    public func describeApplicationBusinessLogConfig(_ input: DescribeApplicationBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationBusinessLogConfigResponse > {
-        self.client.execute(action: "DescribeApplicationBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询应用关联日志配置项信息
-    @inlinable
-    public func describeApplicationBusinessLogConfig(_ input: DescribeApplicationBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationBusinessLogConfigResponse {
-        try await self.client.execute(action: "DescribeApplicationBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplicationBusinessLogConfig请求参数结构体
     public struct DescribeApplicationBusinessLogConfigRequest: TCRequestModel {
         /// TSF应用ID
@@ -49,5 +37,17 @@ extension Tsf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询应用关联日志配置项信息
+    @inlinable
+    public func describeApplicationBusinessLogConfig(_ input: DescribeApplicationBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationBusinessLogConfigResponse > {
+        self.client.execute(action: "DescribeApplicationBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询应用关联日志配置项信息
+    @inlinable
+    public func describeApplicationBusinessLogConfig(_ input: DescribeApplicationBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationBusinessLogConfigResponse {
+        try await self.client.execute(action: "DescribeApplicationBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

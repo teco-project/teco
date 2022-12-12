@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询某个站点的详细信息
-    ///
-    /// 根据站点 ID 查询站点的详细信息
-    @inlinable
-    public func describeZoneDetails(_ input: DescribeZoneDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneDetailsResponse > {
-        self.client.execute(action: "DescribeZoneDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询某个站点的详细信息
-    ///
-    /// 根据站点 ID 查询站点的详细信息
-    @inlinable
-    public func describeZoneDetails(_ input: DescribeZoneDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneDetailsResponse {
-        try await self.client.execute(action: "DescribeZoneDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeZoneDetails请求参数结构体
     public struct DescribeZoneDetailsRequest: TCRequestModel {
         /// 站点 ID
@@ -110,7 +94,7 @@ extension Teo {
         
         /// 用户自定义 NS 信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let vanityNameServers: VanityNameServers
+        public let vanityNameServers: VanityNameServers?
         
         /// 用户自定义 NS IP 信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -138,5 +122,21 @@ extension Teo {
             case vanityNameServersIps = "VanityNameServersIps"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询某个站点的详细信息
+    ///
+    /// 根据站点 ID 查询站点的详细信息
+    @inlinable
+    public func describeZoneDetails(_ input: DescribeZoneDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneDetailsResponse > {
+        self.client.execute(action: "DescribeZoneDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询某个站点的详细信息
+    ///
+    /// 根据站点 ID 查询站点的详细信息
+    @inlinable
+    public func describeZoneDetails(_ input: DescribeZoneDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneDetailsResponse {
+        try await self.client.execute(action: "DescribeZoneDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

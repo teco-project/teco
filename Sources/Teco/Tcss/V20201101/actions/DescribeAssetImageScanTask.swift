@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询正在一键扫描的镜像扫描taskid
-    @inlinable
-    public func describeAssetImageScanTask(_ input: DescribeAssetImageScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageScanTaskResponse > {
-        self.client.execute(action: "DescribeAssetImageScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询正在一键扫描的镜像扫描taskid
-    @inlinable
-    public func describeAssetImageScanTask(_ input: DescribeAssetImageScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanTaskResponse {
-        try await self.client.execute(action: "DescribeAssetImageScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageScanTask请求参数结构体
     public struct DescribeAssetImageScanTaskRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Tcss {
             case taskID = "TaskID"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询正在一键扫描的镜像扫描taskid
+    @inlinable
+    public func describeAssetImageScanTask(_ input: DescribeAssetImageScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageScanTaskResponse > {
+        self.client.execute(action: "DescribeAssetImageScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询正在一键扫描的镜像扫描taskid
+    @inlinable
+    public func describeAssetImageScanTask(_ input: DescribeAssetImageScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanTaskResponse {
+        try await self.client.execute(action: "DescribeAssetImageScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

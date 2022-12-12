@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tat {
-    /// 命令预览
-    ///
-    /// 此接口用于预览自定义参数替换后的命令内容。不会触发真实执行。
-    @inlinable
-    public func previewReplacedCommandContent(_ input: PreviewReplacedCommandContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PreviewReplacedCommandContentResponse > {
-        self.client.execute(action: "PreviewReplacedCommandContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 命令预览
-    ///
-    /// 此接口用于预览自定义参数替换后的命令内容。不会触发真实执行。
-    @inlinable
-    public func previewReplacedCommandContent(_ input: PreviewReplacedCommandContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PreviewReplacedCommandContentResponse {
-        try await self.client.execute(action: "PreviewReplacedCommandContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PreviewReplacedCommandContent请求参数结构体
     public struct PreviewReplacedCommandContentRequest: TCRequestModel {
         /// 本次预览采用的自定义参数。字段类型为 json encoded string，如：{\"varA\": \"222\"}。
@@ -48,7 +32,7 @@ extension Tat {
         /// CommandId 与 Content，必须且只能提供一个。
         public let content: String?
         
-        public init (parameters: String?, commandId: String?, content: String?) {
+        public init (parameters: String? = nil, commandId: String? = nil, content: String? = nil) {
             self.parameters = parameters
             self.commandId = commandId
             self.content = content
@@ -73,5 +57,21 @@ extension Tat {
             case replacedContent = "ReplacedContent"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 命令预览
+    ///
+    /// 此接口用于预览自定义参数替换后的命令内容。不会触发真实执行。
+    @inlinable
+    public func previewReplacedCommandContent(_ input: PreviewReplacedCommandContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PreviewReplacedCommandContentResponse > {
+        self.client.execute(action: "PreviewReplacedCommandContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 命令预览
+    ///
+    /// 此接口用于预览自定义参数替换后的命令内容。不会触发真实执行。
+    @inlinable
+    public func previewReplacedCommandContent(_ input: PreviewReplacedCommandContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PreviewReplacedCommandContentResponse {
+        try await self.client.execute(action: "PreviewReplacedCommandContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

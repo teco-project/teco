@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 检查转换器
-    ///
-    /// 用于在ETL配置页面, 测试规则和数据.
-    @inlinable
-    public func checkTransformation(_ input: CheckTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckTransformationResponse > {
-        self.client.execute(action: "CheckTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检查转换器
-    ///
-    /// 用于在ETL配置页面, 测试规则和数据.
-    @inlinable
-    public func checkTransformation(_ input: CheckTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTransformationResponse {
-        try await self.client.execute(action: "CheckTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckTransformation请求参数结构体
     public struct CheckTransformationRequest: TCRequestModel {
         /// 待处理的json字符串
@@ -62,5 +46,21 @@ extension Eb {
             case output = "Output"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检查转换器
+    ///
+    /// 用于在ETL配置页面, 测试规则和数据.
+    @inlinable
+    public func checkTransformation(_ input: CheckTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckTransformationResponse > {
+        self.client.execute(action: "CheckTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检查转换器
+    ///
+    /// 用于在ETL配置页面, 测试规则和数据.
+    @inlinable
+    public func checkTransformation(_ input: CheckTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTransformationResponse {
+        try await self.client.execute(action: "CheckTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

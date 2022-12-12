@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ses {
-    /// 批量发送邮件
-    ///
-    /// 您可以通过此API批量发送TEXT或者HTML邮件，适用于营销类、通知类邮件。默认仅支持使用模板发送邮件。批量发送之前，需先创建收件人列表，和收件人地址，并通过收件人列表id来进行发送。批量发送任务支持定时发送和周期重复发送，定时发送需传TimedParam，周期重复发送需传CycleParam
-    @inlinable
-    public func batchSendEmail(_ input: BatchSendEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchSendEmailResponse > {
-        self.client.execute(action: "BatchSendEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量发送邮件
-    ///
-    /// 您可以通过此API批量发送TEXT或者HTML邮件，适用于营销类、通知类邮件。默认仅支持使用模板发送邮件。批量发送之前，需先创建收件人列表，和收件人地址，并通过收件人列表id来进行发送。批量发送任务支持定时发送和周期重复发送，定时发送需传TimedParam，周期重复发送需传CycleParam
-    @inlinable
-    public func batchSendEmail(_ input: BatchSendEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchSendEmailResponse {
-        try await self.client.execute(action: "BatchSendEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchSendEmail请求参数结构体
     public struct BatchSendEmailRequest: TCRequestModel {
         /// 发信邮件地址。请填写发件人邮箱地址，例如：noreply@mail.qcloud.com。如需填写发件人说明，请按照
@@ -51,19 +35,19 @@ extension Ses {
         public let replyToAddresses: String?
         
         /// 使用模板发送时，填写的模板相关参数
-        public let template: Template
+        public let template: Template?
         
         /// 已废弃
-        public let simple: Simple
+        public let simple: Simple?
         
         /// 需要发送附件时，填写附件相关参数（暂未支持）
         public let attachments: [Attachment]?
         
         /// 周期发送任务的必要参数
-        public let cycleParam: CycleEmailParam
+        public let cycleParam: CycleEmailParam?
         
         /// 定时发送任务的必要参数
-        public let timedParam: TimedEmailParam
+        public let timedParam: TimedEmailParam?
         
         /// 退订选项 1: 加入退订链接 0: 不加入退订链接
         public let unsubscribe: String?
@@ -71,7 +55,7 @@ extension Ses {
         /// 是否添加广告标识 0:不添加 1:添加到subject前面，2:添加到subject后面
         public let adLocation: UInt64?
         
-        public init (fromEmailAddress: String, receiverId: UInt64, subject: String, taskType: UInt64, replyToAddresses: String?, template: Template, simple: Simple, attachments: [Attachment]?, cycleParam: CycleEmailParam, timedParam: TimedEmailParam, unsubscribe: String?, adLocation: UInt64?) {
+        public init (fromEmailAddress: String, receiverId: UInt64, subject: String, taskType: UInt64, replyToAddresses: String? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, cycleParam: CycleEmailParam? = nil, timedParam: TimedEmailParam? = nil, unsubscribe: String? = nil, adLocation: UInt64? = nil) {
             self.fromEmailAddress = fromEmailAddress
             self.receiverId = receiverId
             self.subject = subject
@@ -114,5 +98,21 @@ extension Ses {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量发送邮件
+    ///
+    /// 您可以通过此API批量发送TEXT或者HTML邮件，适用于营销类、通知类邮件。默认仅支持使用模板发送邮件。批量发送之前，需先创建收件人列表，和收件人地址，并通过收件人列表id来进行发送。批量发送任务支持定时发送和周期重复发送，定时发送需传TimedParam，周期重复发送需传CycleParam
+    @inlinable
+    public func batchSendEmail(_ input: BatchSendEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchSendEmailResponse > {
+        self.client.execute(action: "BatchSendEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量发送邮件
+    ///
+    /// 您可以通过此API批量发送TEXT或者HTML邮件，适用于营销类、通知类邮件。默认仅支持使用模板发送邮件。批量发送之前，需先创建收件人列表，和收件人地址，并通过收件人列表id来进行发送。批量发送任务支持定时发送和周期重复发送，定时发送需传TimedParam，周期重复发送需传CycleParam
+    @inlinable
+    public func batchSendEmail(_ input: BatchSendEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchSendEmailResponse {
+        try await self.client.execute(action: "BatchSendEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

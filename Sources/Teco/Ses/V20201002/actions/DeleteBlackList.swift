@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ses {
-    /// 删除收件人黑名单
-    ///
-    /// 邮箱被拉黑之后，用户如果确认收件邮箱有效或者已经处于激活状态，可以从腾讯云地址库中删除该黑名单之后继续投递。
-    @inlinable
-    public func deleteBlackList(_ input: DeleteBlackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBlackListResponse > {
-        self.client.execute(action: "DeleteBlackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除收件人黑名单
-    ///
-    /// 邮箱被拉黑之后，用户如果确认收件邮箱有效或者已经处于激活状态，可以从腾讯云地址库中删除该黑名单之后继续投递。
-    @inlinable
-    public func deleteBlackList(_ input: DeleteBlackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBlackListResponse {
-        try await self.client.execute(action: "DeleteBlackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteBlackList请求参数结构体
     public struct DeleteBlackListRequest: TCRequestModel {
         /// 需要清除的黑名单邮箱列表，数组长度至少为1
@@ -53,5 +37,21 @@ extension Ses {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除收件人黑名单
+    ///
+    /// 邮箱被拉黑之后，用户如果确认收件邮箱有效或者已经处于激活状态，可以从腾讯云地址库中删除该黑名单之后继续投递。
+    @inlinable
+    public func deleteBlackList(_ input: DeleteBlackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBlackListResponse > {
+        self.client.execute(action: "DeleteBlackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除收件人黑名单
+    ///
+    /// 邮箱被拉黑之后，用户如果确认收件邮箱有效或者已经处于激活状态，可以从腾讯云地址库中删除该黑名单之后继续投递。
+    @inlinable
+    public func deleteBlackList(_ input: DeleteBlackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBlackListResponse {
+        try await self.client.execute(action: "DeleteBlackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

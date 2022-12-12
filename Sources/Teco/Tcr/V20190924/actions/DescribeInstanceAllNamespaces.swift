@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询所有实例命名空间
-    ///
-    /// 查询所有实例命名空间列表
-    @inlinable
-    public func describeInstanceAllNamespaces(_ input: DescribeInstanceAllNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceAllNamespacesResponse > {
-        self.client.execute(action: "DescribeInstanceAllNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询所有实例命名空间
-    ///
-    /// 查询所有实例命名空间列表
-    @inlinable
-    public func describeInstanceAllNamespaces(_ input: DescribeInstanceAllNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAllNamespacesResponse {
-        try await self.client.execute(action: "DescribeInstanceAllNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceAllNamespaces请求参数结构体
     public struct DescribeInstanceAllNamespacesRequest: TCRequestModel {
         /// 每页个数
@@ -39,7 +23,7 @@ extension Tcr {
         /// 起始偏移位置
         public let offset: Int64?
         
-        public init (limit: Int64?, offset: Int64?) {
+        public init (limit: Int64? = nil, offset: Int64? = nil) {
             self.limit = limit
             self.offset = offset
         }
@@ -58,5 +42,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询所有实例命名空间
+    ///
+    /// 查询所有实例命名空间列表
+    @inlinable
+    public func describeInstanceAllNamespaces(_ input: DescribeInstanceAllNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceAllNamespacesResponse > {
+        self.client.execute(action: "DescribeInstanceAllNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询所有实例命名空间
+    ///
+    /// 查询所有实例命名空间列表
+    @inlinable
+    public func describeInstanceAllNamespaces(_ input: DescribeInstanceAllNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAllNamespacesResponse {
+        try await self.client.execute(action: "DescribeInstanceAllNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

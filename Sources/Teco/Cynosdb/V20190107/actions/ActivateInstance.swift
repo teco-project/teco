@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 恢复实例访问
-    ///
-    /// 本接口(ActivateInstance)用于恢复已隔离的实例访问。
-    @inlinable
-    public func activateInstance(_ input: ActivateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActivateInstanceResponse > {
-        self.client.execute(action: "ActivateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 恢复实例访问
-    ///
-    /// 本接口(ActivateInstance)用于恢复已隔离的实例访问。
-    @inlinable
-    public func activateInstance(_ input: ActivateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateInstanceResponse {
-        try await self.client.execute(action: "ActivateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ActivateInstance请求参数结构体
     public struct ActivateInstanceRequest: TCRequestModel {
         /// 集群ID
@@ -62,5 +46,21 @@ extension Cynosdb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 恢复实例访问
+    ///
+    /// 本接口(ActivateInstance)用于恢复已隔离的实例访问。
+    @inlinable
+    public func activateInstance(_ input: ActivateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActivateInstanceResponse > {
+        self.client.execute(action: "ActivateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复实例访问
+    ///
+    /// 本接口(ActivateInstance)用于恢复已隔离的实例访问。
+    @inlinable
+    public func activateInstance(_ input: ActivateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateInstanceResponse {
+        try await self.client.execute(action: "ActivateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

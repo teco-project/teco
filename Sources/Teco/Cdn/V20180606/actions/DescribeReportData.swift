@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 查询报表数据
-    ///
-    /// DescribeReportData 用于查询域名/项目维度的日/周/月报表数据。
-    @inlinable
-    public func describeReportData(_ input: DescribeReportDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReportDataResponse > {
-        self.client.execute(action: "DescribeReportData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询报表数据
-    ///
-    /// DescribeReportData 用于查询域名/项目维度的日/周/月报表数据。
-    @inlinable
-    public func describeReportData(_ input: DescribeReportDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReportDataResponse {
-        try await self.client.execute(action: "DescribeReportData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReportData请求参数结构体
     public struct DescribeReportDataRequest: TCRequestModel {
         /// 查询起始时间：yyyy-MM-dd
@@ -69,7 +53,7 @@ extension Cdn {
         /// 按项目ID筛选
         public let project: Int64?
         
-        public init (startTime: Date, endTime: Date, reportType: String, area: String, offset: Int64?, limit: Int64?, project: Int64?) {
+        public init (startTime: Date, endTime: Date, reportType: String, area: String, offset: Int64? = nil, limit: Int64? = nil, project: Int64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.reportType = reportType
@@ -106,5 +90,21 @@ extension Cdn {
             case projectReport = "ProjectReport"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询报表数据
+    ///
+    /// DescribeReportData 用于查询域名/项目维度的日/周/月报表数据。
+    @inlinable
+    public func describeReportData(_ input: DescribeReportDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReportDataResponse > {
+        self.client.execute(action: "DescribeReportData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询报表数据
+    ///
+    /// DescribeReportData 用于查询域名/项目维度的日/周/月报表数据。
+    @inlinable
+    public func describeReportData(_ input: DescribeReportDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReportDataResponse {
+        try await self.client.execute(action: "DescribeReportData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

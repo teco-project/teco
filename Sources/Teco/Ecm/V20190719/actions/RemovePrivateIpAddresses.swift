@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 弹性网卡退还内网 IP
-    ///
-    /// 弹性网卡退还内网 IP。
-    /// 退还弹性网卡上的辅助内网IP，接口自动解关联弹性公网 IP。不能退还弹性网卡的主内网IP。
-    @inlinable
-    public func removePrivateIpAddresses(_ input: RemovePrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemovePrivateIpAddressesResponse > {
-        self.client.execute(action: "RemovePrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 弹性网卡退还内网 IP
-    ///
-    /// 弹性网卡退还内网 IP。
-    /// 退还弹性网卡上的辅助内网IP，接口自动解关联弹性公网 IP。不能退还弹性网卡的主内网IP。
-    @inlinable
-    public func removePrivateIpAddresses(_ input: RemovePrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemovePrivateIpAddressesResponse {
-        try await self.client.execute(action: "RemovePrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemovePrivateIpAddresses请求参数结构体
     public struct RemovePrivateIpAddressesRequest: TCRequestModel {
         /// ECM 地域，形如ap-xian-ecm。
@@ -65,5 +47,23 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 弹性网卡退还内网 IP
+    ///
+    /// 弹性网卡退还内网 IP。
+    /// 退还弹性网卡上的辅助内网IP，接口自动解关联弹性公网 IP。不能退还弹性网卡的主内网IP。
+    @inlinable
+    public func removePrivateIpAddresses(_ input: RemovePrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemovePrivateIpAddressesResponse > {
+        self.client.execute(action: "RemovePrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 弹性网卡退还内网 IP
+    ///
+    /// 弹性网卡退还内网 IP。
+    /// 退还弹性网卡上的辅助内网IP，接口自动解关联弹性公网 IP。不能退还弹性网卡的主内网IP。
+    @inlinable
+    public func removePrivateIpAddresses(_ input: RemovePrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemovePrivateIpAddressesResponse {
+        try await self.client.execute(action: "RemovePrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

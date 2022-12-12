@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 查询新企业安全组规则
-    @inlinable
-    public func describeEnterpriseSecurityGroupRule(_ input: DescribeEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnterpriseSecurityGroupRuleResponse > {
-        self.client.execute(action: "DescribeEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询新企业安全组规则
-    @inlinable
-    public func describeEnterpriseSecurityGroupRule(_ input: DescribeEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnterpriseSecurityGroupRuleResponse {
-        try await self.client.execute(action: "DescribeEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEnterpriseSecurityGroupRule请求参数结构体
     public struct DescribeEnterpriseSecurityGroupRuleRequest: TCRequestModel {
         /// 分页查询时，显示的当前页的页码。
@@ -80,7 +68,7 @@ extension Cfw {
         /// 端口协议类型参数模板id；协议端口模板id；与Protocol,Port互斥
         public let serviceTemplateId: String?
         
-        public init (pageNo: String, pageSize: String, sourceContent: String?, destContent: String?, description: String?, ruleAction: String?, enable: String?, port: String?, `protocol`: String?, serviceTemplateId: String?) {
+        public init (pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, `protocol`: String? = nil, serviceTemplateId: String? = nil) {
             self.pageNo = pageNo
             self.pageSize = pageSize
             self.sourceContent = sourceContent
@@ -131,5 +119,17 @@ extension Cfw {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询新企业安全组规则
+    @inlinable
+    public func describeEnterpriseSecurityGroupRule(_ input: DescribeEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnterpriseSecurityGroupRuleResponse > {
+        self.client.execute(action: "DescribeEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询新企业安全组规则
+    @inlinable
+    public func describeEnterpriseSecurityGroupRule(_ input: DescribeEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnterpriseSecurityGroupRuleResponse {
+        try await self.client.execute(action: "DescribeEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

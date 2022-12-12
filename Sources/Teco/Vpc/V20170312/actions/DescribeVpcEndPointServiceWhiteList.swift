@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询终端节点服务的服务白名单列表
-    ///
-    /// 查询终端节点服务的服务白名单列表。
-    @inlinable
-    public func describeVpcEndPointServiceWhiteList(_ input: DescribeVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcEndPointServiceWhiteListResponse > {
-        self.client.execute(action: "DescribeVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询终端节点服务的服务白名单列表
-    ///
-    /// 查询终端节点服务的服务白名单列表。
-    @inlinable
-    public func describeVpcEndPointServiceWhiteList(_ input: DescribeVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointServiceWhiteListResponse {
-        try await self.client.execute(action: "DescribeVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpcEndPointServiceWhiteList请求参数结构体
     public struct DescribeVpcEndPointServiceWhiteListRequest: TCRequestModel {
         /// 偏移量，默认为0。
@@ -44,7 +28,7 @@ extension Vpc {
         /// <li> end-point-service-id String - （过滤条件）终端节点服务ID。</li>
         public let filters: [Filter]?
         
-        public init (offset: UInt64?, limit: UInt64?, filters: [Filter]?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -73,5 +57,21 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询终端节点服务的服务白名单列表
+    ///
+    /// 查询终端节点服务的服务白名单列表。
+    @inlinable
+    public func describeVpcEndPointServiceWhiteList(_ input: DescribeVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcEndPointServiceWhiteListResponse > {
+        self.client.execute(action: "DescribeVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询终端节点服务的服务白名单列表
+    ///
+    /// 查询终端节点服务的服务白名单列表。
+    @inlinable
+    public func describeVpcEndPointServiceWhiteList(_ input: DescribeVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointServiceWhiteListResponse {
+        try await self.client.execute(action: "DescribeVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

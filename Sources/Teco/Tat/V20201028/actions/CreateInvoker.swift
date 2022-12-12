@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tat {
-    /// 创建执行器
-    ///
-    /// 此接口用于创建执行器。
-    @inlinable
-    public func createInvoker(_ input: CreateInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInvokerResponse > {
-        self.client.execute(action: "CreateInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建执行器
-    ///
-    /// 此接口用于创建执行器。
-    @inlinable
-    public func createInvoker(_ input: CreateInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInvokerResponse {
-        try await self.client.execute(action: "CreateInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateInvoker请求参数结构体
     public struct CreateInvokerRequest: TCRequestModel {
         /// 执行器名称。
@@ -52,9 +36,9 @@ extension Tat {
         public let parameters: String?
         
         /// 周期执行器设置，当创建周期执行器时，必须指定此参数。
-        public let scheduleSettings: ScheduleSettings
+        public let scheduleSettings: ScheduleSettings?
         
-        public init (name: String, type: String, commandId: String, instanceIds: [String], username: String?, parameters: String?, scheduleSettings: ScheduleSettings) {
+        public init (name: String, type: String, commandId: String, instanceIds: [String], username: String? = nil, parameters: String? = nil, scheduleSettings: ScheduleSettings? = nil) {
             self.name = name
             self.type = type
             self.commandId = commandId
@@ -87,5 +71,21 @@ extension Tat {
             case invokerId = "InvokerId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建执行器
+    ///
+    /// 此接口用于创建执行器。
+    @inlinable
+    public func createInvoker(_ input: CreateInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInvokerResponse > {
+        self.client.execute(action: "CreateInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建执行器
+    ///
+    /// 此接口用于创建执行器。
+    @inlinable
+    public func createInvoker(_ input: CreateInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInvokerResponse {
+        try await self.client.execute(action: "CreateInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

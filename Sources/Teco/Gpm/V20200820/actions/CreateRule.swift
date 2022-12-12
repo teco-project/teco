@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gpm {
-    /// 创建规则
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 创建规则
-    @inlinable
-    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRuleResponse > {
-        self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建规则
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 创建规则
-    @inlinable
-    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
-        try await self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRule请求参数结构体
     public struct CreateRuleRequest: TCRequestModel {
         /// 规则名称，[a-zA-Z0-9-\.]* 长度128
@@ -47,7 +29,7 @@ extension Gpm {
         /// 标签，key-value结构的数组，最多关联50组标签
         public let tags: [StringKV]?
         
-        public init (ruleName: String, ruleScript: String, ruleDesc: String?, tags: [StringKV]?) {
+        public init (ruleName: String, ruleScript: String, ruleDesc: String? = nil, tags: [StringKV]? = nil) {
             self.ruleName = ruleName
             self.ruleScript = ruleScript
             self.ruleDesc = ruleDesc
@@ -74,5 +56,23 @@ extension Gpm {
             case ruleInfo = "RuleInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建规则
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 创建规则
+    @inlinable
+    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRuleResponse > {
+        self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建规则
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 创建规则
+    @inlinable
+    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
+        try await self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

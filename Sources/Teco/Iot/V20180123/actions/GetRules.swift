@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 获取转发规则列表
-    @inlinable
-    public func getRules(_ input: GetRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRulesResponse > {
-        self.client.execute(action: "GetRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取转发规则列表
-    @inlinable
-    public func getRules(_ input: GetRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRulesResponse {
-        try await self.client.execute(action: "GetRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetRules请求参数结构体
     public struct GetRulesRequest: TCRequestModel {
         /// 偏移
@@ -35,7 +23,7 @@ extension Iot {
         /// 长度
         public let length: UInt64?
         
-        public init (offset: UInt64?, length: UInt64?) {
+        public init (offset: UInt64? = nil, length: UInt64? = nil) {
             self.offset = offset
             self.length = length
         }
@@ -62,5 +50,17 @@ extension Iot {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取转发规则列表
+    @inlinable
+    public func getRules(_ input: GetRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRulesResponse > {
+        self.client.execute(action: "GetRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取转发规则列表
+    @inlinable
+    public func getRules(_ input: GetRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRulesResponse {
+        try await self.client.execute(action: "GetRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

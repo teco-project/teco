@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 删除域名别名
-    @inlinable
-    public func deleteDomainAlias(_ input: DeleteDomainAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDomainAliasResponse > {
-        self.client.execute(action: "DeleteDomainAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除域名别名
-    @inlinable
-    public func deleteDomainAlias(_ input: DeleteDomainAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainAliasResponse {
-        try await self.client.execute(action: "DeleteDomainAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDomainAlias请求参数结构体
     public struct DeleteDomainAliasRequest: TCRequestModel {
         /// 域名别名ID。可以通过接口DescribeDomainAliasList查到所有的域名别名列表以及对应的ID
@@ -38,7 +26,7 @@ extension Dnspod {
         /// 域名ID，参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         public let domainId: Int64?
         
-        public init (domainAliasId: Int64, domain: String, domainId: Int64?) {
+        public init (domainAliasId: Int64, domain: String, domainId: Int64? = nil) {
             self.domainAliasId = domainAliasId
             self.domain = domain
             self.domainId = domainId
@@ -59,5 +47,17 @@ extension Dnspod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除域名别名
+    @inlinable
+    public func deleteDomainAlias(_ input: DeleteDomainAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDomainAliasResponse > {
+        self.client.execute(action: "DeleteDomainAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除域名别名
+    @inlinable
+    public func deleteDomainAlias(_ input: DeleteDomainAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainAliasResponse {
+        try await self.client.execute(action: "DeleteDomainAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

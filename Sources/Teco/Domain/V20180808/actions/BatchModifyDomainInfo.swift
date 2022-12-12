@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 批量域名信息修改
-    ///
-    /// 本接口 ( BatchModifyDomainInfo ) 用于批量域名信息修改 。
-    @inlinable
-    public func batchModifyDomainInfo(_ input: BatchModifyDomainInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyDomainInfoResponse > {
-        self.client.execute(action: "BatchModifyDomainInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量域名信息修改
-    ///
-    /// 本接口 ( BatchModifyDomainInfo ) 用于批量域名信息修改 。
-    @inlinable
-    public func batchModifyDomainInfo(_ input: BatchModifyDomainInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyDomainInfoResponse {
-        try await self.client.execute(action: "BatchModifyDomainInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchModifyDomainInfo请求参数结构体
     public struct BatchModifyDomainInfoRequest: TCRequestModel {
         /// 批量修改的域名。
@@ -44,7 +28,7 @@ extension Domain {
         /// 默认 true
         public let lockTransfer: Bool?
         
-        public init (domains: [String], templateId: String, lockTransfer: Bool?) {
+        public init (domains: [String], templateId: String, lockTransfer: Bool? = nil) {
             self.domains = domains
             self.templateId = templateId
             self.lockTransfer = lockTransfer
@@ -69,5 +53,21 @@ extension Domain {
             case logId = "LogId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量域名信息修改
+    ///
+    /// 本接口 ( BatchModifyDomainInfo ) 用于批量域名信息修改 。
+    @inlinable
+    public func batchModifyDomainInfo(_ input: BatchModifyDomainInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyDomainInfoResponse > {
+        self.client.execute(action: "BatchModifyDomainInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量域名信息修改
+    ///
+    /// 本接口 ( BatchModifyDomainInfo ) 用于批量域名信息修改 。
+    @inlinable
+    public func batchModifyDomainInfo(_ input: BatchModifyDomainInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyDomainInfoResponse {
+        try await self.client.execute(action: "BatchModifyDomainInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

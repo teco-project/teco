@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// cos设置全球加速
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（UpdateBucketAccelerateOpt）用于开启cos全球加速。
-    @inlinable
-    public func updateBucketAccelerateOpt(_ input: UpdateBucketAccelerateOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateBucketAccelerateOptResponse > {
-        self.client.execute(action: "UpdateBucketAccelerateOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// cos设置全球加速
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（UpdateBucketAccelerateOpt）用于开启cos全球加速。
-    @inlinable
-    public func updateBucketAccelerateOpt(_ input: UpdateBucketAccelerateOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBucketAccelerateOptResponse {
-        try await self.client.execute(action: "UpdateBucketAccelerateOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateBucketAccelerateOpt请求参数结构体
     public struct UpdateBucketAccelerateOptRequest: TCRequestModel {
         /// true为开启全球加速，false为关闭
@@ -55,5 +37,23 @@ extension Gse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// cos设置全球加速
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（UpdateBucketAccelerateOpt）用于开启cos全球加速。
+    @inlinable
+    public func updateBucketAccelerateOpt(_ input: UpdateBucketAccelerateOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateBucketAccelerateOptResponse > {
+        self.client.execute(action: "UpdateBucketAccelerateOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// cos设置全球加速
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（UpdateBucketAccelerateOpt）用于开启cos全球加速。
+    @inlinable
+    public func updateBucketAccelerateOpt(_ input: UpdateBucketAccelerateOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBucketAccelerateOptResponse {
+        try await self.client.execute(action: "UpdateBucketAccelerateOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

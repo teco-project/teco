@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 删除手机邮箱
-    ///
-    /// 此接口用于删除已验证的手机邮箱
-    @inlinable
-    public func deletePhoneEmail(_ input: DeletePhoneEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePhoneEmailResponse > {
-        self.client.execute(action: "DeletePhoneEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除手机邮箱
-    ///
-    /// 此接口用于删除已验证的手机邮箱
-    @inlinable
-    public func deletePhoneEmail(_ input: DeletePhoneEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePhoneEmailResponse {
-        try await self.client.execute(action: "DeletePhoneEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePhoneEmail请求参数结构体
     public struct DeletePhoneEmailRequest: TCRequestModel {
         /// 手机或者邮箱
@@ -58,5 +42,21 @@ extension Domain {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除手机邮箱
+    ///
+    /// 此接口用于删除已验证的手机邮箱
+    @inlinable
+    public func deletePhoneEmail(_ input: DeletePhoneEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePhoneEmailResponse > {
+        self.client.execute(action: "DeletePhoneEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除手机邮箱
+    ///
+    /// 此接口用于删除已验证的手机邮箱
+    @inlinable
+    public func deletePhoneEmail(_ input: DeletePhoneEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePhoneEmailResponse {
+        try await self.client.execute(action: "DeletePhoneEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

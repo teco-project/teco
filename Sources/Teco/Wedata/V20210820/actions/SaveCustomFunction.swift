@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 保存用户自定义函数
-    @inlinable
-    public func saveCustomFunction(_ input: SaveCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SaveCustomFunctionResponse > {
-        self.client.execute(action: "SaveCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 保存用户自定义函数
-    @inlinable
-    public func saveCustomFunction(_ input: SaveCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveCustomFunctionResponse {
-        try await self.client.execute(action: "SaveCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SaveCustomFunction请求参数结构体
     public struct SaveCustomFunctionRequest: TCRequestModel {
         /// 函数唯一标识
@@ -104,5 +92,17 @@ extension Wedata {
             case errorMessage = "ErrorMessage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 保存用户自定义函数
+    @inlinable
+    public func saveCustomFunction(_ input: SaveCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SaveCustomFunctionResponse > {
+        self.client.execute(action: "SaveCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 保存用户自定义函数
+    @inlinable
+    public func saveCustomFunction(_ input: SaveCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveCustomFunctionResponse {
+        try await self.client.execute(action: "SaveCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

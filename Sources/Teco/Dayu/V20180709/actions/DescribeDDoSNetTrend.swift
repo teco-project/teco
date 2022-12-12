@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// 获取高防IP专业版资源的DDoS攻击指标数据
-    @inlinable
-    public func describeDDoSNetTrend(_ input: DescribeDDoSNetTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSNetTrendResponse > {
-        self.client.execute(action: "DescribeDDoSNetTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取高防IP专业版资源的DDoS攻击指标数据
-    @inlinable
-    public func describeDDoSNetTrend(_ input: DescribeDDoSNetTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetTrendResponse {
-        try await self.client.execute(action: "DescribeDDoSNetTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSNetTrend请求参数结构体
     public struct DescribeDDoSNetTrendRequest: TCRequestModel {
         /// 大禹子产品代号（net表示高防IP专业版）
@@ -112,5 +100,17 @@ extension Dayu {
             case count = "Count"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取高防IP专业版资源的DDoS攻击指标数据
+    @inlinable
+    public func describeDDoSNetTrend(_ input: DescribeDDoSNetTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSNetTrendResponse > {
+        self.client.execute(action: "DescribeDDoSNetTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取高防IP专业版资源的DDoS攻击指标数据
+    @inlinable
+    public func describeDDoSNetTrend(_ input: DescribeDDoSNetTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetTrendResponse {
+        try await self.client.execute(action: "DescribeDDoSNetTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

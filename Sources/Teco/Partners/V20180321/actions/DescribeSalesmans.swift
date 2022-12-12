@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Partners {
-    /// 代理商业务员查询接口
-    ///
-    /// 代理商查询名下业务员列表信息
-    @inlinable
-    public func describeSalesmans(_ input: DescribeSalesmansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSalesmansResponse > {
-        self.client.execute(action: "DescribeSalesmans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 代理商业务员查询接口
-    ///
-    /// 代理商查询名下业务员列表信息
-    @inlinable
-    public func describeSalesmans(_ input: DescribeSalesmansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSalesmansResponse {
-        try await self.client.execute(action: "DescribeSalesmans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSalesmans请求参数结构体
     public struct DescribeSalesmansRequest: TCRequestModel {
         /// 偏移量
@@ -48,7 +32,7 @@ extension Partners {
         /// ASC/DESC， 不区分大小写，按创建通过时间排序
         public let orderDirection: String?
         
-        public init (offset: UInt64, limit: UInt64, salesName: String?, salesUin: String?, orderDirection: String?) {
+        public init (offset: UInt64, limit: UInt64, salesName: String? = nil, salesUin: String? = nil, orderDirection: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.salesName = salesName
@@ -81,5 +65,21 @@ extension Partners {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 代理商业务员查询接口
+    ///
+    /// 代理商查询名下业务员列表信息
+    @inlinable
+    public func describeSalesmans(_ input: DescribeSalesmansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSalesmansResponse > {
+        self.client.execute(action: "DescribeSalesmans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 代理商业务员查询接口
+    ///
+    /// 代理商查询名下业务员列表信息
+    @inlinable
+    public func describeSalesmans(_ input: DescribeSalesmansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSalesmansResponse {
+        try await self.client.execute(action: "DescribeSalesmans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

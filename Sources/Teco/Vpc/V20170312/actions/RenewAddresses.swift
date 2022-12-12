@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 续费包月带宽弹性公网IP
-    ///
-    /// 该接口用于续费包月带宽计费模式的弹性公网IP
-    @inlinable
-    public func renewAddresses(_ input: RenewAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewAddressesResponse > {
-        self.client.execute(action: "RenewAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费包月带宽弹性公网IP
-    ///
-    /// 该接口用于续费包月带宽计费模式的弹性公网IP
-    @inlinable
-    public func renewAddresses(_ input: RenewAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewAddressesResponse {
-        try await self.client.execute(action: "RenewAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RenewAddresses请求参数结构体
     public struct RenewAddressesRequest: TCRequestModel {
         /// EIP唯一标识ID列表，形如'eip-xxxx'
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费包月带宽弹性公网IP
+    ///
+    /// 该接口用于续费包月带宽计费模式的弹性公网IP
+    @inlinable
+    public func renewAddresses(_ input: RenewAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewAddressesResponse > {
+        self.client.execute(action: "RenewAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费包月带宽弹性公网IP
+    ///
+    /// 该接口用于续费包月带宽计费模式的弹性公网IP
+    @inlinable
+    public func renewAddresses(_ input: RenewAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewAddressesResponse {
+        try await self.client.execute(action: "RenewAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

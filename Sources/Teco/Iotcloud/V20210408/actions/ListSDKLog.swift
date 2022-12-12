@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取设备sdk日志
-    ///
-    /// 获取设备上报的日志
-    @inlinable
-    public func listSDKLog(_ input: ListSDKLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListSDKLogResponse > {
-        self.client.execute(action: "ListSDKLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备sdk日志
-    ///
-    /// 获取设备上报的日志
-    @inlinable
-    public func listSDKLog(_ input: ListSDKLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSDKLogResponse {
-        try await self.client.execute(action: "ListSDKLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListSDKLog请求参数结构体
     public struct ListSDKLogRequest: TCRequestModel {
         /// 日志开始时间
@@ -52,7 +36,7 @@ extension Iotcloud {
         /// 查询条数
         public let maxNum: UInt64?
         
-        public init (minTime: UInt64, maxTime: UInt64, keywords: String, context: String?, maxNum: UInt64?) {
+        public init (minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: UInt64? = nil) {
             self.minTime = minTime
             self.maxTime = maxTime
             self.keywords = keywords
@@ -89,5 +73,21 @@ extension Iotcloud {
             case results = "Results"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备sdk日志
+    ///
+    /// 获取设备上报的日志
+    @inlinable
+    public func listSDKLog(_ input: ListSDKLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListSDKLogResponse > {
+        self.client.execute(action: "ListSDKLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备sdk日志
+    ///
+    /// 获取设备上报的日志
+    @inlinable
+    public func listSDKLog(_ input: ListSDKLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSDKLogResponse {
+        try await self.client.execute(action: "ListSDKLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

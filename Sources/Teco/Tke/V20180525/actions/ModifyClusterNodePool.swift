@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 编辑节点池
-    @inlinable
-    public func modifyClusterNodePool(_ input: ModifyClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterNodePoolResponse > {
-        self.client.execute(action: "ModifyClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑节点池
-    @inlinable
-    public func modifyClusterNodePool(_ input: ModifyClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterNodePoolResponse {
-        try await self.client.execute(action: "ModifyClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClusterNodePool请求参数结构体
     public struct ModifyClusterNodePoolRequest: TCRequestModel {
         /// 集群ID
@@ -60,7 +48,7 @@ extension Tke {
         public let osCustomizeType: String?
         
         /// GPU驱动版本，CUDA版本，cuDNN版本以及是否启用MIG特性
-        public let gpuArgs: GPUArgs
+        public let gpuArgs: GPUArgs?
         
         /// base64编码后的自定义脚本
         public let userScript: String?
@@ -69,7 +57,7 @@ extension Tke {
         public let ignoreExistedNode: Bool?
         
         /// 节点自定义参数
-        public let extraArgs: InstanceExtraArgs
+        public let extraArgs: InstanceExtraArgs?
         
         /// 资源标签
         public let tags: [Tag]?
@@ -83,7 +71,7 @@ extension Tke {
         /// dockerd --graph 指定值, 默认为 /var/lib/docker
         public let dockerGraphPath: String?
         
-        public init (clusterId: String, nodePoolId: String, name: String?, maxNodesNum: Int64?, minNodesNum: Int64?, labels: [Label]?, taints: [Taint]?, enableAutoscale: Bool?, osName: String?, osCustomizeType: String?, gpuArgs: GPUArgs, userScript: String?, ignoreExistedNode: Bool?, extraArgs: InstanceExtraArgs, tags: [Tag]?, unschedulable: Int64?, deletionProtection: Bool?, dockerGraphPath: String?) {
+        public init (clusterId: String, nodePoolId: String, name: String? = nil, maxNodesNum: Int64? = nil, minNodesNum: Int64? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, enableAutoscale: Bool? = nil, osName: String? = nil, osCustomizeType: String? = nil, gpuArgs: GPUArgs? = nil, userScript: String? = nil, ignoreExistedNode: Bool? = nil, extraArgs: InstanceExtraArgs? = nil, tags: [Tag]? = nil, unschedulable: Int64? = nil, deletionProtection: Bool? = nil, dockerGraphPath: String? = nil) {
             self.clusterId = clusterId
             self.nodePoolId = nodePoolId
             self.name = name
@@ -134,5 +122,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑节点池
+    @inlinable
+    public func modifyClusterNodePool(_ input: ModifyClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterNodePoolResponse > {
+        self.client.execute(action: "ModifyClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑节点池
+    @inlinable
+    public func modifyClusterNodePool(_ input: ModifyClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterNodePoolResponse {
+        try await self.client.execute(action: "ModifyClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

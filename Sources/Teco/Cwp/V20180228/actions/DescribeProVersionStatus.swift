@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取专业版状态
-    ///
-    /// 用于获取单台主机或所有主机是否开通专业版状态。
-    @inlinable
-    public func describeProVersionStatus(_ input: DescribeProVersionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProVersionStatusResponse > {
-        self.client.execute(action: "DescribeProVersionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取专业版状态
-    ///
-    /// 用于获取单台主机或所有主机是否开通专业版状态。
-    @inlinable
-    public func describeProVersionStatus(_ input: DescribeProVersionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionStatusResponse {
-        try await self.client.execute(action: "DescribeProVersionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProVersionStatus请求参数结构体
     public struct DescribeProVersionStatusRequest: TCRequestModel {
         /// 云镜客户端UUID、填写"all"表示所有主机。
@@ -53,5 +37,21 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取专业版状态
+    ///
+    /// 用于获取单台主机或所有主机是否开通专业版状态。
+    @inlinable
+    public func describeProVersionStatus(_ input: DescribeProVersionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProVersionStatusResponse > {
+        self.client.execute(action: "DescribeProVersionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取专业版状态
+    ///
+    /// 用于获取单台主机或所有主机是否开通专业版状态。
+    @inlinable
+    public func describeProVersionStatus(_ input: DescribeProVersionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionStatusResponse {
+        try await self.client.execute(action: "DescribeProVersionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

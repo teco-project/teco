@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改弹性网卡服务质量
-    ///
-    /// 修改弹性网卡服务质量。
-    @inlinable
-    public func modifyNetworkInterfaceQos(_ input: ModifyNetworkInterfaceQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkInterfaceQosResponse > {
-        self.client.execute(action: "ModifyNetworkInterfaceQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改弹性网卡服务质量
-    ///
-    /// 修改弹性网卡服务质量。
-    @inlinable
-    public func modifyNetworkInterfaceQos(_ input: ModifyNetworkInterfaceQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkInterfaceQosResponse {
-        try await self.client.execute(action: "ModifyNetworkInterfaceQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNetworkInterfaceQos请求参数结构体
     public struct ModifyNetworkInterfaceQosRequest: TCRequestModel {
         /// 弹性网卡ID，支持批量修改。
@@ -42,7 +26,7 @@ extension Vpc {
         /// DirectSend端口范围最大值。
         public let directSendMaxPort: UInt64?
         
-        public init (networkInterfaceIds: [String], qosLevel: String, directSendMaxPort: UInt64?) {
+        public init (networkInterfaceIds: [String], qosLevel: String, directSendMaxPort: UInt64? = nil) {
             self.networkInterfaceIds = networkInterfaceIds
             self.qosLevel = qosLevel
             self.directSendMaxPort = directSendMaxPort
@@ -63,5 +47,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改弹性网卡服务质量
+    ///
+    /// 修改弹性网卡服务质量。
+    @inlinable
+    public func modifyNetworkInterfaceQos(_ input: ModifyNetworkInterfaceQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkInterfaceQosResponse > {
+        self.client.execute(action: "ModifyNetworkInterfaceQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改弹性网卡服务质量
+    ///
+    /// 修改弹性网卡服务质量。
+    @inlinable
+    public func modifyNetworkInterfaceQos(_ input: ModifyNetworkInterfaceQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkInterfaceQosResponse {
+        try await self.client.execute(action: "ModifyNetworkInterfaceQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

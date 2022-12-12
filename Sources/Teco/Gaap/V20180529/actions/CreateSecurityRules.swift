@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 添加安全策略规则
-    @inlinable
-    public func createSecurityRules(_ input: CreateSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityRulesResponse > {
-        self.client.execute(action: "CreateSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加安全策略规则
-    @inlinable
-    public func createSecurityRules(_ input: CreateSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityRulesResponse {
-        try await self.client.execute(action: "CreateSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSecurityRules请求参数结构体
     public struct CreateSecurityRulesRequest: TCRequestModel {
         /// 安全策略ID
@@ -58,5 +46,17 @@ extension Gaap {
             case ruleIdList = "RuleIdList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加安全策略规则
+    @inlinable
+    public func createSecurityRules(_ input: CreateSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityRulesResponse > {
+        self.client.execute(action: "CreateSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加安全策略规则
+    @inlinable
+    public func createSecurityRules(_ input: CreateSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityRulesResponse {
+        try await self.client.execute(action: "CreateSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

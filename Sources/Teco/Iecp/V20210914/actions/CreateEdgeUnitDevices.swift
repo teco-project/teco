@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 批量绑定设备到单元
-    @inlinable
-    public func createEdgeUnitDevices(_ input: CreateEdgeUnitDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeUnitDevicesResponse > {
-        self.client.execute(action: "CreateEdgeUnitDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量绑定设备到单元
-    @inlinable
-    public func createEdgeUnitDevices(_ input: CreateEdgeUnitDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitDevicesResponse {
-        try await self.client.execute(action: "CreateEdgeUnitDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEdgeUnitDevices请求参数结构体
     public struct CreateEdgeUnitDevicesRequest: TCRequestModel {
         /// 无
@@ -59,5 +47,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量绑定设备到单元
+    @inlinable
+    public func createEdgeUnitDevices(_ input: CreateEdgeUnitDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeUnitDevicesResponse > {
+        self.client.execute(action: "CreateEdgeUnitDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量绑定设备到单元
+    @inlinable
+    public func createEdgeUnitDevices(_ input: CreateEdgeUnitDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitDevicesResponse {
+        try await self.client.execute(action: "CreateEdgeUnitDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

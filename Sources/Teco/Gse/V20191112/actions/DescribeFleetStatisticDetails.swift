@@ -17,24 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Gse {
-    /// 查询服务部署统计详情
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeFleetStatisticDetails）用于查询服务部署统计详情。
-    @inlinable
-    public func describeFleetStatisticDetails(_ input: DescribeFleetStatisticDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFleetStatisticDetailsResponse > {
-        self.client.execute(action: "DescribeFleetStatisticDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询服务部署统计详情
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeFleetStatisticDetails）用于查询服务部署统计详情。
-    @inlinable
-    public func describeFleetStatisticDetails(_ input: DescribeFleetStatisticDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetStatisticDetailsResponse {
-        try await self.client.execute(action: "DescribeFleetStatisticDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFleetStatisticDetails请求参数结构体
     public struct DescribeFleetStatisticDetailsRequest: TCRequestModel {
         /// 服务器舰队ID
@@ -52,7 +34,7 @@ extension Gse {
         /// 返回结果偏移，最小值0
         public let offset: UInt64?
         
-        public init (fleetId: String?, beginTime: Date?, endTime: Date?, limit: UInt64?, offset: UInt64?) {
+        public init (fleetId: String? = nil, beginTime: Date? = nil, endTime: Date? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.fleetId = fleetId
             self.beginTime = beginTime
             self.endTime = endTime
@@ -92,5 +74,23 @@ extension Gse {
             case timeType = "TimeType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询服务部署统计详情
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeFleetStatisticDetails）用于查询服务部署统计详情。
+    @inlinable
+    public func describeFleetStatisticDetails(_ input: DescribeFleetStatisticDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFleetStatisticDetailsResponse > {
+        self.client.execute(action: "DescribeFleetStatisticDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务部署统计详情
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeFleetStatisticDetails）用于查询服务部署统计详情。
+    @inlinable
+    public func describeFleetStatisticDetails(_ input: DescribeFleetStatisticDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetStatisticDetailsResponse {
+        try await self.client.execute(action: "DescribeFleetStatisticDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

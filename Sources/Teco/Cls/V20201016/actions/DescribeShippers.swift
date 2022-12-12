@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 获取投递规则
-    ///
-    /// 获取投递规则信息列表
-    @inlinable
-    public func describeShippers(_ input: DescribeShippersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShippersResponse > {
-        self.client.execute(action: "DescribeShippers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取投递规则
-    ///
-    /// 获取投递规则信息列表
-    @inlinable
-    public func describeShippers(_ input: DescribeShippersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShippersResponse {
-        try await self.client.execute(action: "DescribeShippers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeShippers请求参数结构体
     public struct DescribeShippersRequest: TCRequestModel {
         /// <br><li> shipperName
@@ -54,7 +38,7 @@ extension Cls {
         /// 分页单页的限制数目，默认值为20，最大值100
         public let limit: UInt64?
         
-        public init (filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -84,5 +68,21 @@ extension Cls {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取投递规则
+    ///
+    /// 获取投递规则信息列表
+    @inlinable
+    public func describeShippers(_ input: DescribeShippersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShippersResponse > {
+        self.client.execute(action: "DescribeShippers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取投递规则
+    ///
+    /// 获取投递规则信息列表
+    @inlinable
+    public func describeShippers(_ input: DescribeShippersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShippersResponse {
+        try await self.client.execute(action: "DescribeShippers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

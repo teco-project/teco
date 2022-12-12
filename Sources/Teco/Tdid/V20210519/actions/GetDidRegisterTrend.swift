@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// DID注册趋势
-    @inlinable
-    public func getDidRegisterTrend(_ input: GetDidRegisterTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidRegisterTrendResponse > {
-        self.client.execute(action: "GetDidRegisterTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DID注册趋势
-    @inlinable
-    public func getDidRegisterTrend(_ input: GetDidRegisterTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidRegisterTrendResponse {
-        try await self.client.execute(action: "GetDidRegisterTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDidRegisterTrend请求参数结构体
     public struct GetDidRegisterTrendRequest: TCRequestModel {
         /// 开始时间（支持到天 2021-4-23）
@@ -38,7 +26,7 @@ extension Tdid {
         /// 网络ID
         public let clusterId: String?
         
-        public init (startTime: String, endTime: String, clusterId: String?) {
+        public init (startTime: String, endTime: String, clusterId: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.clusterId = clusterId
@@ -63,5 +51,17 @@ extension Tdid {
             case trend = "Trend"
             case requestId = "RequestId"
         }
+    }
+    
+    /// DID注册趋势
+    @inlinable
+    public func getDidRegisterTrend(_ input: GetDidRegisterTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidRegisterTrendResponse > {
+        self.client.execute(action: "GetDidRegisterTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DID注册趋势
+    @inlinable
+    public func getDidRegisterTrend(_ input: GetDidRegisterTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidRegisterTrendResponse {
+        try await self.client.execute(action: "GetDidRegisterTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

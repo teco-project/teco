@@ -15,29 +15,13 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 更新实例Ro组的信息
-    ///
-    /// 本接口（ModifyRoGroupInfo）用于更新云数据库只读组的信息。包括设置实例延迟超限剔除策略，设置只读实例读权重，设置复制延迟时间等。
-    @inlinable
-    public func modifyRoGroupInfo(_ input: ModifyRoGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRoGroupInfoResponse > {
-        self.client.execute(action: "ModifyRoGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新实例Ro组的信息
-    ///
-    /// 本接口（ModifyRoGroupInfo）用于更新云数据库只读组的信息。包括设置实例延迟超限剔除策略，设置只读实例读权重，设置复制延迟时间等。
-    @inlinable
-    public func modifyRoGroupInfo(_ input: ModifyRoGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoGroupInfoResponse {
-        try await self.client.execute(action: "ModifyRoGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRoGroupInfo请求参数结构体
     public struct ModifyRoGroupInfoRequest: TCRequestModel {
         /// RO 组的 ID。
         public let roGroupId: String
         
         /// RO 组的详细信息。
-        public let roGroupInfo: RoGroupAttr
+        public let roGroupInfo: RoGroupAttr?
         
         /// RO 组内实例的权重。若修改 RO 组的权重模式为用户自定义模式（custom），则必须设置该参数，且需要设置每个 RO 实例的权重值。
         public let roWeightValues: [RoWeightValue]?
@@ -48,7 +32,7 @@ extension Cdb {
         /// 废弃参数，无意义。
         public let replicationDelayTime: Int64?
         
-        public init (roGroupId: String, roGroupInfo: RoGroupAttr, roWeightValues: [RoWeightValue]?, isBalanceRoLoad: Int64?, replicationDelayTime: Int64?) {
+        public init (roGroupId: String, roGroupInfo: RoGroupAttr? = nil, roWeightValues: [RoWeightValue]? = nil, isBalanceRoLoad: Int64? = nil, replicationDelayTime: Int64? = nil) {
             self.roGroupId = roGroupId
             self.roGroupInfo = roGroupInfo
             self.roWeightValues = roWeightValues
@@ -78,5 +62,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新实例Ro组的信息
+    ///
+    /// 本接口（ModifyRoGroupInfo）用于更新云数据库只读组的信息。包括设置实例延迟超限剔除策略，设置只读实例读权重，设置复制延迟时间等。
+    @inlinable
+    public func modifyRoGroupInfo(_ input: ModifyRoGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRoGroupInfoResponse > {
+        self.client.execute(action: "ModifyRoGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新实例Ro组的信息
+    ///
+    /// 本接口（ModifyRoGroupInfo）用于更新云数据库只读组的信息。包括设置实例延迟超限剔除策略，设置只读实例读权重，设置复制延迟时间等。
+    @inlinable
+    public func modifyRoGroupInfo(_ input: ModifyRoGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoGroupInfoResponse {
+        try await self.client.execute(action: "ModifyRoGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

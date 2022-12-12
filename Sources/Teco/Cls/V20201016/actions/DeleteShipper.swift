@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 删除投递规则
-    @inlinable
-    public func deleteShipper(_ input: DeleteShipperRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteShipperResponse > {
-        self.client.execute(action: "DeleteShipper", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除投递规则
-    @inlinable
-    public func deleteShipper(_ input: DeleteShipperRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShipperResponse {
-        try await self.client.execute(action: "DeleteShipper", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteShipper请求参数结构体
     public struct DeleteShipperRequest: TCRequestModel {
         /// 投递规则ID
@@ -49,5 +37,17 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除投递规则
+    @inlinable
+    public func deleteShipper(_ input: DeleteShipperRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteShipperResponse > {
+        self.client.execute(action: "DeleteShipper", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除投递规则
+    @inlinable
+    public func deleteShipper(_ input: DeleteShipperRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShipperResponse {
+        try await self.client.execute(action: "DeleteShipper", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

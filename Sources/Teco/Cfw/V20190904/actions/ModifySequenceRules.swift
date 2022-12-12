@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 修改规则执行顺序
-    @inlinable
-    public func modifySequenceRules(_ input: ModifySequenceRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySequenceRulesResponse > {
-        self.client.execute(action: "ModifySequenceRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改规则执行顺序
-    @inlinable
-    public func modifySequenceRules(_ input: ModifySequenceRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySequenceRulesResponse {
-        try await self.client.execute(action: "ModifySequenceRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySequenceRules请求参数结构体
     public struct ModifySequenceRulesRequest: TCRequestModel {
         /// 边Id值
@@ -41,7 +29,7 @@ extension Cfw {
         /// 方向，0：出向，1：入向
         public let direction: UInt64?
         
-        public init (edgeId: String?, data: [SequenceData]?, area: String?, direction: UInt64?) {
+        public init (edgeId: String? = nil, data: [SequenceData]? = nil, area: String? = nil, direction: UInt64? = nil) {
             self.edgeId = edgeId
             self.data = data
             self.area = area
@@ -69,5 +57,17 @@ extension Cfw {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改规则执行顺序
+    @inlinable
+    public func modifySequenceRules(_ input: ModifySequenceRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySequenceRulesResponse > {
+        self.client.execute(action: "ModifySequenceRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改规则执行顺序
+    @inlinable
+    public func modifySequenceRules(_ input: ModifySequenceRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySequenceRulesResponse {
+        try await self.client.execute(action: "ModifySequenceRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

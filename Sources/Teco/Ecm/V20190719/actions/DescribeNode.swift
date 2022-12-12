@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 获取节点列表
-    @inlinable
-    public func describeNode(_ input: DescribeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodeResponse > {
-        self.client.execute(action: "DescribeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取节点列表
-    @inlinable
-    public func describeNode(_ input: DescribeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeResponse {
-        try await self.client.execute(action: "DescribeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNode请求参数结构体
     public struct DescribeNodeRequest: TCRequestModel {
         /// 过滤条件，name取值为： InstanceFamily-实例系列
         public let filters: [Filter]?
         
-        public init (filters: [Filter]?) {
+        public init (filters: [Filter]? = nil) {
             self.filters = filters
         }
         
@@ -58,5 +46,17 @@ extension Ecm {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取节点列表
+    @inlinable
+    public func describeNode(_ input: DescribeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodeResponse > {
+        self.client.execute(action: "DescribeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取节点列表
+    @inlinable
+    public func describeNode(_ input: DescribeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeResponse {
+        try await self.client.execute(action: "DescribeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sslpod {
-    /// 搜索域名
-    ///
-    /// 通过searchType搜索已经添加的域名
-    @inlinable
-    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainsResponse > {
-        self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 搜索域名
-    ///
-    /// 通过searchType搜索已经添加的域名
-    @inlinable
-    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsResponse {
-        try await self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomains请求参数结构体
     public struct DescribeDomainsRequest: TCRequestModel {
         /// 偏移量
@@ -73,7 +57,7 @@ extension Sslpod {
         /// 搜索域名
         public let domain: String?
         
-        public init (offset: Int64, limit: Int64, searchType: String, tag: String?, grade: String?, brand: String?, code: String?, hash: String?, item: String?, status: String?, domain: String?) {
+        public init (offset: Int64, limit: Int64, searchType: String, tag: String? = nil, grade: String? = nil, brand: String? = nil, code: String? = nil, hash: String? = nil, item: String? = nil, status: String? = nil, domain: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.searchType = searchType
@@ -114,5 +98,21 @@ extension Sslpod {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 搜索域名
+    ///
+    /// 通过searchType搜索已经添加的域名
+    @inlinable
+    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainsResponse > {
+        self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 搜索域名
+    ///
+    /// 通过searchType搜索已经添加的域名
+    @inlinable
+    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsResponse {
+        try await self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

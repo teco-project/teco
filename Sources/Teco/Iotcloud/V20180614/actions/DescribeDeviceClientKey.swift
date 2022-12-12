@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取设备私钥
-    ///
-    /// 获取证书认证类型设备的私钥，刚生成或者重置设备后仅可调用一次 
-    @inlinable
-    public func describeDeviceClientKey(_ input: DescribeDeviceClientKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceClientKeyResponse > {
-        self.client.execute(action: "DescribeDeviceClientKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备私钥
-    ///
-    /// 获取证书认证类型设备的私钥，刚生成或者重置设备后仅可调用一次 
-    @inlinable
-    public func describeDeviceClientKey(_ input: DescribeDeviceClientKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClientKeyResponse {
-        try await self.client.execute(action: "DescribeDeviceClientKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceClientKey请求参数结构体
     public struct DescribeDeviceClientKeyRequest: TCRequestModel {
         /// 所属产品的Id
@@ -62,5 +46,21 @@ extension Iotcloud {
             case clientKey = "ClientKey"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备私钥
+    ///
+    /// 获取证书认证类型设备的私钥，刚生成或者重置设备后仅可调用一次 
+    @inlinable
+    public func describeDeviceClientKey(_ input: DescribeDeviceClientKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceClientKeyResponse > {
+        self.client.execute(action: "DescribeDeviceClientKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备私钥
+    ///
+    /// 获取证书认证类型设备的私钥，刚生成或者重置设备后仅可调用一次 
+    @inlinable
+    public func describeDeviceClientKey(_ input: DescribeDeviceClientKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClientKeyResponse {
+        try await self.client.execute(action: "DescribeDeviceClientKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

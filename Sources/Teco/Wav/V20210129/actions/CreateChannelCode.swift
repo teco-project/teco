@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wav {
-    /// 新增渠道活码接口
-    @inlinable
-    public func createChannelCode(_ input: CreateChannelCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateChannelCodeResponse > {
-        self.client.execute(action: "CreateChannelCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增渠道活码接口
-    @inlinable
-    public func createChannelCode(_ input: CreateChannelCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelCodeResponse {
-        try await self.client.execute(action: "CreateChannelCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateChannelCode请求参数结构体
     public struct CreateChannelCodeRequest: TCRequestModel {
         /// 欢迎语类型:0普通欢迎语,1渠道欢迎语
@@ -65,7 +53,7 @@ extension Wav {
         /// 渠道类型 0 未知 1 公域 2私域
         public let sourceType: Int64?
         
-        public init (type: Int64, useUserId: [Int64], useUserOpenId: [String], appIds: String, source: String?, sourceName: String?, name: String?, tag: [WeComTagDetail]?, skipVerify: Int64?, msgId: Int64?, remark: String?, sourceType: Int64?) {
+        public init (type: Int64, useUserId: [Int64], useUserOpenId: [String], appIds: String, source: String? = nil, sourceName: String? = nil, name: String? = nil, tag: [WeComTagDetail]? = nil, skipVerify: Int64? = nil, msgId: Int64? = nil, remark: String? = nil, sourceType: Int64? = nil) {
             self.type = type
             self.useUserId = useUserId
             self.useUserOpenId = useUserOpenId
@@ -104,5 +92,17 @@ extension Wav {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增渠道活码接口
+    @inlinable
+    public func createChannelCode(_ input: CreateChannelCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateChannelCodeResponse > {
+        self.client.execute(action: "CreateChannelCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增渠道活码接口
+    @inlinable
+    public func createChannelCode(_ input: CreateChannelCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelCodeResponse {
+        try await self.client.execute(action: "CreateChannelCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

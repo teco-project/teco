@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 跨境-对接方账户余额查询
-    @inlinable
-    public func queryMerchantBalance(_ input: QueryMerchantBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMerchantBalanceResponse > {
-        self.client.execute(action: "QueryMerchantBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 跨境-对接方账户余额查询
-    @inlinable
-    public func queryMerchantBalance(_ input: QueryMerchantBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantBalanceResponse {
-        try await self.client.execute(action: "QueryMerchantBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryMerchantBalance请求参数结构体
     public struct QueryMerchantBalanceRequest: TCRequestModel {
         /// 余额币种
@@ -35,7 +23,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
         
-        public init (currency: String, profile: String?) {
+        public init (currency: String, profile: String? = nil) {
             self.currency = currency
             self.profile = profile
         }
@@ -58,5 +46,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 跨境-对接方账户余额查询
+    @inlinable
+    public func queryMerchantBalance(_ input: QueryMerchantBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMerchantBalanceResponse > {
+        self.client.execute(action: "QueryMerchantBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 跨境-对接方账户余额查询
+    @inlinable
+    public func queryMerchantBalance(_ input: QueryMerchantBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantBalanceResponse {
+        try await self.client.execute(action: "QueryMerchantBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

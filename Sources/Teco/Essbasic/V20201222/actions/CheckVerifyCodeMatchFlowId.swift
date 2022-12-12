@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 确认验证码
-    ///
-    /// 此接口用于确认验证码是否正确
-    @inlinable
-    public func checkVerifyCodeMatchFlowId(_ input: CheckVerifyCodeMatchFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckVerifyCodeMatchFlowIdResponse > {
-        self.client.execute(action: "CheckVerifyCodeMatchFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 确认验证码
-    ///
-    /// 此接口用于确认验证码是否正确
-    @inlinable
-    public func checkVerifyCodeMatchFlowId(_ input: CheckVerifyCodeMatchFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckVerifyCodeMatchFlowIdResponse {
-        try await self.client.execute(action: "CheckVerifyCodeMatchFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckVerifyCodeMatchFlowId请求参数结构体
     public struct CheckVerifyCodeMatchFlowIdRequest: TCRequestModel {
         /// 调用方信息
@@ -81,5 +65,21 @@ extension Essbasic {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 确认验证码
+    ///
+    /// 此接口用于确认验证码是否正确
+    @inlinable
+    public func checkVerifyCodeMatchFlowId(_ input: CheckVerifyCodeMatchFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckVerifyCodeMatchFlowIdResponse > {
+        self.client.execute(action: "CheckVerifyCodeMatchFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 确认验证码
+    ///
+    /// 此接口用于确认验证码是否正确
+    @inlinable
+    public func checkVerifyCodeMatchFlowId(_ input: CheckVerifyCodeMatchFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckVerifyCodeMatchFlowIdResponse {
+        try await self.client.execute(action: "CheckVerifyCodeMatchFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

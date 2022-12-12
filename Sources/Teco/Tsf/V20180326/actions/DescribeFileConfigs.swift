@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询文件配置项列表
-    @inlinable
-    public func describeFileConfigs(_ input: DescribeFileConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileConfigsResponse > {
-        self.client.execute(action: "DescribeFileConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询文件配置项列表
-    @inlinable
-    public func describeFileConfigs(_ input: DescribeFileConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileConfigsResponse {
-        try await self.client.execute(action: "DescribeFileConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFileConfigs请求参数结构体
     public struct DescribeFileConfigsRequest: TCRequestModel {
         /// 配置项ID
@@ -50,7 +38,7 @@ extension Tsf {
         /// 配置项版本
         public let configVersion: String?
         
-        public init (configId: String?, configIdList: [String]?, configName: String?, applicationId: String?, offset: Int64?, limit: Int64?, configVersion: String?) {
+        public init (configId: String? = nil, configIdList: [String]? = nil, configName: String? = nil, applicationId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configVersion: String? = nil) {
             self.configId = configId
             self.configIdList = configIdList
             self.configName = configName
@@ -75,7 +63,7 @@ extension Tsf {
     public struct DescribeFileConfigsResponse: TCResponseModel {
         /// 文件配置项列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TsfPageFileConfig
+        public let result: TsfPageFileConfig?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -84,5 +72,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询文件配置项列表
+    @inlinable
+    public func describeFileConfigs(_ input: DescribeFileConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileConfigsResponse > {
+        self.client.execute(action: "DescribeFileConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文件配置项列表
+    @inlinable
+    public func describeFileConfigs(_ input: DescribeFileConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileConfigsResponse {
+        try await self.client.execute(action: "DescribeFileConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

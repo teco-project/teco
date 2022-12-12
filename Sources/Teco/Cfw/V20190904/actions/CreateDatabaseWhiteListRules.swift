@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 创建暴露数据库白名单规则
-    @inlinable
-    public func createDatabaseWhiteListRules(_ input: CreateDatabaseWhiteListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDatabaseWhiteListRulesResponse > {
-        self.client.execute(action: "CreateDatabaseWhiteListRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建暴露数据库白名单规则
-    @inlinable
-    public func createDatabaseWhiteListRules(_ input: CreateDatabaseWhiteListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatabaseWhiteListRulesResponse {
-        try await self.client.execute(action: "CreateDatabaseWhiteListRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDatabaseWhiteListRules请求参数结构体
     public struct CreateDatabaseWhiteListRulesRequest: TCRequestModel {
         /// 创建白名单数据
@@ -53,5 +41,17 @@ extension Cfw {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建暴露数据库白名单规则
+    @inlinable
+    public func createDatabaseWhiteListRules(_ input: CreateDatabaseWhiteListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDatabaseWhiteListRulesResponse > {
+        self.client.execute(action: "CreateDatabaseWhiteListRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建暴露数据库白名单规则
+    @inlinable
+    public func createDatabaseWhiteListRules(_ input: CreateDatabaseWhiteListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatabaseWhiteListRulesResponse {
+        try await self.client.execute(action: "CreateDatabaseWhiteListRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

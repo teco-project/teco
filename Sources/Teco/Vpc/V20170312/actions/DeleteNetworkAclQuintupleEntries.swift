@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除网络ACL五元组指定的部分条目接口。
-    ///
-    /// 本接口（DeleteNetworkAclQuintupleEntries）用于删除网络ACL五元组指定的入站规则和出站规则（但不是全量删除该ACL下的所有条目）。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
-    @inlinable
-    public func deleteNetworkAclQuintupleEntries(_ input: DeleteNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetworkAclQuintupleEntriesResponse > {
-        self.client.execute(action: "DeleteNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除网络ACL五元组指定的部分条目接口。
-    ///
-    /// 本接口（DeleteNetworkAclQuintupleEntries）用于删除网络ACL五元组指定的入站规则和出站规则（但不是全量删除该ACL下的所有条目）。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
-    @inlinable
-    public func deleteNetworkAclQuintupleEntries(_ input: DeleteNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkAclQuintupleEntriesResponse {
-        try await self.client.execute(action: "DeleteNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteNetworkAclQuintupleEntries请求参数结构体
     public struct DeleteNetworkAclQuintupleEntriesRequest: TCRequestModel {
         /// 网络ACL实例ID。例如：acl-12345678。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除网络ACL五元组指定的部分条目接口。
+    ///
+    /// 本接口（DeleteNetworkAclQuintupleEntries）用于删除网络ACL五元组指定的入站规则和出站规则（但不是全量删除该ACL下的所有条目）。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
+    @inlinable
+    public func deleteNetworkAclQuintupleEntries(_ input: DeleteNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetworkAclQuintupleEntriesResponse > {
+        self.client.execute(action: "DeleteNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除网络ACL五元组指定的部分条目接口。
+    ///
+    /// 本接口（DeleteNetworkAclQuintupleEntries）用于删除网络ACL五元组指定的入站规则和出站规则（但不是全量删除该ACL下的所有条目）。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
+    @inlinable
+    public func deleteNetworkAclQuintupleEntries(_ input: DeleteNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkAclQuintupleEntriesResponse {
+        try await self.client.execute(action: "DeleteNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

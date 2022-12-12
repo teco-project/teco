@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 获取异步任务的输出地址
-    @inlinable
-    public func describeJobFileUrl(_ input: DescribeJobFileUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobFileUrlResponse > {
-        self.client.execute(action: "DescribeJobFileUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取异步任务的输出地址
-    @inlinable
-    public func describeJobFileUrl(_ input: DescribeJobFileUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobFileUrlResponse {
-        try await self.client.execute(action: "DescribeJobFileUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeJobFileUrl请求参数结构体
     public struct DescribeJobFileUrlRequest: TCRequestModel {
         /// 调度ID
@@ -35,7 +23,7 @@ extension Trp {
         /// 企业ID
         public let corpId: UInt64?
         
-        public init (jobId: UInt64, corpId: UInt64?) {
+        public init (jobId: UInt64, corpId: UInt64? = nil) {
             self.jobId = jobId
             self.corpId = corpId
         }
@@ -59,5 +47,17 @@ extension Trp {
             case url = "Url"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取异步任务的输出地址
+    @inlinable
+    public func describeJobFileUrl(_ input: DescribeJobFileUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobFileUrlResponse > {
+        self.client.execute(action: "DescribeJobFileUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取异步任务的输出地址
+    @inlinable
+    public func describeJobFileUrl(_ input: DescribeJobFileUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobFileUrlResponse {
+        try await self.client.execute(action: "DescribeJobFileUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

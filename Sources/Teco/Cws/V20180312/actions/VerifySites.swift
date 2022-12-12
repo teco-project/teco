@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cws {
-    /// 验证站点
-    ///
-    /// 本接口 (VerifySites) 用于验证一个或多个待验证站点。
-    @inlinable
-    public func verifySites(_ input: VerifySitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifySitesResponse > {
-        self.client.execute(action: "VerifySites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 验证站点
-    ///
-    /// 本接口 (VerifySites) 用于验证一个或多个待验证站点。
-    @inlinable
-    public func verifySites(_ input: VerifySitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySitesResponse {
-        try await self.client.execute(action: "VerifySites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifySites请求参数结构体
     public struct VerifySitesRequest: TCRequestModel {
         /// 站点的url列表
@@ -61,5 +45,21 @@ extension Cws {
             case failNumber = "FailNumber"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 验证站点
+    ///
+    /// 本接口 (VerifySites) 用于验证一个或多个待验证站点。
+    @inlinable
+    public func verifySites(_ input: VerifySitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifySitesResponse > {
+        self.client.execute(action: "VerifySites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 验证站点
+    ///
+    /// 本接口 (VerifySites) 用于验证一个或多个待验证站点。
+    @inlinable
+    public func verifySites(_ input: VerifySitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySitesResponse {
+        try await self.client.execute(action: "VerifySites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

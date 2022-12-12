@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 删除文件系统
-    ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    /// 删除文件系统，不允许删除非空文件系统。
-    @inlinable
-    public func deleteFileSystem(_ input: DeleteFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFileSystemResponse > {
-        self.client.execute(action: "DeleteFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除文件系统
-    ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    /// 删除文件系统，不允许删除非空文件系统。
-    @inlinable
-    public func deleteFileSystem(_ input: DeleteFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFileSystemResponse {
-        try await self.client.execute(action: "DeleteFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteFileSystem请求参数结构体
     public struct DeleteFileSystemRequest: TCRequestModel {
         /// 文件系统ID
@@ -55,5 +37,23 @@ extension Chdfs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除文件系统
+    ///
+    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    /// 删除文件系统，不允许删除非空文件系统。
+    @inlinable
+    public func deleteFileSystem(_ input: DeleteFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFileSystemResponse > {
+        self.client.execute(action: "DeleteFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除文件系统
+    ///
+    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    /// 删除文件系统，不允许删除非空文件系统。
+    @inlinable
+    public func deleteFileSystem(_ input: DeleteFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFileSystemResponse {
+        try await self.client.execute(action: "DeleteFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

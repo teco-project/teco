@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 删除负载均衡多个监听器
-    ///
-    /// 该接口支持删除负载均衡的多个监听器。
-    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
-    public func deleteLoadBalancerListeners(_ input: DeleteLoadBalancerListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoadBalancerListenersResponse > {
-        self.client.execute(action: "DeleteLoadBalancerListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除负载均衡多个监听器
-    ///
-    /// 该接口支持删除负载均衡的多个监听器。
-    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
-    public func deleteLoadBalancerListeners(_ input: DeleteLoadBalancerListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerListenersResponse {
-        try await self.client.execute(action: "DeleteLoadBalancerListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLoadBalancerListeners请求参数结构体
     public struct DeleteLoadBalancerListenersRequest: TCRequestModel {
         /// 负载均衡实例ID。
@@ -41,7 +23,7 @@ extension Clb {
         /// 指定删除的监听器ID数组，最大为20个。若不填则删除负载均衡的所有监听器。
         public let listenerIds: [String]?
         
-        public init (loadBalancerId: String, listenerIds: [String]?) {
+        public init (loadBalancerId: String, listenerIds: [String]? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerIds = listenerIds
         }
@@ -60,5 +42,23 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除负载均衡多个监听器
+    ///
+    /// 该接口支持删除负载均衡的多个监听器。
+    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func deleteLoadBalancerListeners(_ input: DeleteLoadBalancerListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoadBalancerListenersResponse > {
+        self.client.execute(action: "DeleteLoadBalancerListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除负载均衡多个监听器
+    ///
+    /// 该接口支持删除负载均衡的多个监听器。
+    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func deleteLoadBalancerListeners(_ input: DeleteLoadBalancerListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerListenersResponse {
+        try await self.client.execute(action: "DeleteLoadBalancerListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -85,7 +85,7 @@ extension Wss {
         
         /// 项目信息，ProjectId：项目ID，OwnerUin：项目所属的 uin（默认项目为0），Name：项目名称，CreatorUin：创建项目的 uin，CreateTime：项目创建时间，Info：项目说明
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let projectInfo: SSLProjectInfo
+        public let projectInfo: SSLProjectInfo?
         
         /// 证书ID
         /// 注意：此字段可能返回 null，表示取不到有效值。

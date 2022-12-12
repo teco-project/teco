@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 获取指定流量镜像实例的接收机信息
-    ///
-    /// 获取指定流量镜像实例的接收机信息。
-    @inlinable
-    public func describeTrafficMirrorReceivers(_ input: DescribeTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorReceiversResponse > {
-        self.client.execute(action: "DescribeTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取指定流量镜像实例的接收机信息
-    ///
-    /// 获取指定流量镜像实例的接收机信息。
-    @inlinable
-    public func describeTrafficMirrorReceivers(_ input: DescribeTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorReceiversResponse {
-        try await self.client.execute(action: "DescribeTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrafficMirrorReceivers请求参数结构体
     public struct DescribeTrafficMirrorReceiversRequest: TCRequestModel {
         /// 流量镜像实例ID。
@@ -57,7 +41,7 @@ extension Bmlb {
         /// 搜索IP
         public let vagueIp: String?
         
-        public init (trafficMirrorId: String, instanceIds: [String]?, ports: [Int64]?, weights: [Int64]?, offset: Int64?, limit: Int64?, vagueStr: String?, vagueIp: String?) {
+        public init (trafficMirrorId: String, instanceIds: [String]? = nil, ports: [Int64]? = nil, weights: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, vagueStr: String? = nil, vagueIp: String? = nil) {
             self.trafficMirrorId = trafficMirrorId
             self.instanceIds = instanceIds
             self.ports = ports
@@ -96,5 +80,21 @@ extension Bmlb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取指定流量镜像实例的接收机信息
+    ///
+    /// 获取指定流量镜像实例的接收机信息。
+    @inlinable
+    public func describeTrafficMirrorReceivers(_ input: DescribeTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorReceiversResponse > {
+        self.client.execute(action: "DescribeTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定流量镜像实例的接收机信息
+    ///
+    /// 获取指定流量镜像实例的接收机信息。
+    @inlinable
+    public func describeTrafficMirrorReceivers(_ input: DescribeTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorReceiversResponse {
+        try await self.client.execute(action: "DescribeTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

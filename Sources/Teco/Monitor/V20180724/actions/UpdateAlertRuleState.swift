@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 更新报警策略状态
-    ///
-    /// 更新 Prometheus 报警策略状态
-    @inlinable
-    public func updateAlertRuleState(_ input: UpdateAlertRuleStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAlertRuleStateResponse > {
-        self.client.execute(action: "UpdateAlertRuleState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新报警策略状态
-    ///
-    /// 更新 Prometheus 报警策略状态
-    @inlinable
-    public func updateAlertRuleState(_ input: UpdateAlertRuleStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAlertRuleStateResponse {
-        try await self.client.execute(action: "UpdateAlertRuleState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateAlertRuleState请求参数结构体
     public struct UpdateAlertRuleStateRequest: TCRequestModel {
         /// 规则 ID 列表
@@ -66,5 +50,21 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新报警策略状态
+    ///
+    /// 更新 Prometheus 报警策略状态
+    @inlinable
+    public func updateAlertRuleState(_ input: UpdateAlertRuleStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAlertRuleStateResponse > {
+        self.client.execute(action: "UpdateAlertRuleState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新报警策略状态
+    ///
+    /// 更新 Prometheus 报警策略状态
+    @inlinable
+    public func updateAlertRuleState(_ input: UpdateAlertRuleStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAlertRuleStateResponse {
+        try await self.client.execute(action: "UpdateAlertRuleState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

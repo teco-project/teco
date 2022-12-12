@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 获取主题属性
-    @inlinable
-    public func describeTopicAttributes(_ input: DescribeTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicAttributesResponse > {
-        self.client.execute(action: "DescribeTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取主题属性
-    @inlinable
-    public func describeTopicAttributes(_ input: DescribeTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicAttributesResponse {
-        try await self.client.execute(action: "DescribeTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTopicAttributes请求参数结构体
     public struct DescribeTopicAttributesRequest: TCRequestModel {
         /// 实例 ID
@@ -58,5 +46,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取主题属性
+    @inlinable
+    public func describeTopicAttributes(_ input: DescribeTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicAttributesResponse > {
+        self.client.execute(action: "DescribeTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取主题属性
+    @inlinable
+    public func describeTopicAttributes(_ input: DescribeTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicAttributesResponse {
+        try await self.client.execute(action: "DescribeTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

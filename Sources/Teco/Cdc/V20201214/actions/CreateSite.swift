@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 创建站点
-    @inlinable
-    public func createSite(_ input: CreateSiteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSiteResponse > {
-        self.client.execute(action: "CreateSite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建站点
-    @inlinable
-    public func createSite(_ input: CreateSiteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSiteResponse {
-        try await self.client.execute(action: "CreateSite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSite请求参数结构体
     public struct CreateSiteRequest: TCRequestModel {
         /// 站点名称
@@ -106,7 +94,7 @@ extension Cdc {
         /// 上游断路器是否具备
         public let breakerRequirement: Bool?
         
-        public init (name: String, country: String, province: String, city: String, addressLine: String, description: String?, note: String?, fiberType: String?, opticalStandard: String?, powerConnectors: String?, powerFeedDrop: String?, maxWeight: Int64?, powerDrawKva: Int64?, uplinkSpeedGbps: Int64?, uplinkCount: Int64?, conditionRequirement: Bool?, dimensionRequirement: Bool?, redundantNetworking: Bool?, postalCode: Int64?, optionalAddressLine: String?, needHelp: Bool?, redundantPower: Bool?, breakerRequirement: Bool?) {
+        public init (name: String, country: String, province: String, city: String, addressLine: String, description: String? = nil, note: String? = nil, fiberType: String? = nil, opticalStandard: String? = nil, powerConnectors: String? = nil, powerFeedDrop: String? = nil, maxWeight: Int64? = nil, powerDrawKva: Int64? = nil, uplinkSpeedGbps: Int64? = nil, uplinkCount: Int64? = nil, conditionRequirement: Bool? = nil, dimensionRequirement: Bool? = nil, redundantNetworking: Bool? = nil, postalCode: Int64? = nil, optionalAddressLine: String? = nil, needHelp: Bool? = nil, redundantPower: Bool? = nil, breakerRequirement: Bool? = nil) {
             self.name = name
             self.country = country
             self.province = province
@@ -171,5 +159,17 @@ extension Cdc {
             case siteId = "SiteId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建站点
+    @inlinable
+    public func createSite(_ input: CreateSiteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSiteResponse > {
+        self.client.execute(action: "CreateSite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建站点
+    @inlinable
+    public func createSite(_ input: CreateSiteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSiteResponse {
+        try await self.client.execute(action: "CreateSite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

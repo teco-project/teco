@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 启动Logstash管道
-    ///
-    /// 用于启动Logstash管道
-    @inlinable
-    public func startLogstashPipelines(_ input: StartLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartLogstashPipelinesResponse > {
-        self.client.execute(action: "StartLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启动Logstash管道
-    ///
-    /// 用于启动Logstash管道
-    @inlinable
-    public func startLogstashPipelines(_ input: StartLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartLogstashPipelinesResponse {
-        try await self.client.execute(action: "StartLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartLogstashPipelines请求参数结构体
     public struct StartLogstashPipelinesRequest: TCRequestModel {
         /// 实例ID
@@ -58,5 +42,21 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启动Logstash管道
+    ///
+    /// 用于启动Logstash管道
+    @inlinable
+    public func startLogstashPipelines(_ input: StartLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartLogstashPipelinesResponse > {
+        self.client.execute(action: "StartLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启动Logstash管道
+    ///
+    /// 用于启动Logstash管道
+    @inlinable
+    public func startLogstashPipelines(_ input: StartLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartLogstashPipelinesResponse {
+        try await self.client.execute(action: "StartLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

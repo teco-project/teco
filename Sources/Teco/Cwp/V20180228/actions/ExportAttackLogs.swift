@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 导出网络攻击日志
-    @inlinable
-    public func exportAttackLogs(_ input: ExportAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportAttackLogsResponse > {
-        self.client.execute(action: "ExportAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出网络攻击日志
-    @inlinable
-    public func exportAttackLogs(_ input: ExportAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAttackLogsResponse {
-        try await self.client.execute(action: "ExportAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportAttackLogs请求参数结构体
     public struct ExportAttackLogsRequest: TCRequestModel {
         /// 过滤条件。
@@ -45,7 +33,7 @@ extension Cwp {
         /// 云主机机器ID
         public let quuid: String?
         
-        public init (filters: [Filters]?, uuid: String?, quuid: String?) {
+        public init (filters: [Filters]? = nil, uuid: String? = nil, quuid: String? = nil) {
             self.filters = filters
             self.uuid = uuid
             self.quuid = quuid
@@ -74,5 +62,17 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出网络攻击日志
+    @inlinable
+    public func exportAttackLogs(_ input: ExportAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportAttackLogsResponse > {
+        self.client.execute(action: "ExportAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出网络攻击日志
+    @inlinable
+    public func exportAttackLogs(_ input: ExportAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAttackLogsResponse {
+        try await self.client.execute(action: "ExportAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

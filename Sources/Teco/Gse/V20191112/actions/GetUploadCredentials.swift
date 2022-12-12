@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 获取上传文件授权信息
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（GetUploadCredentials）获取上传文件授权信息。
-    /// 通过 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) 接口获取临时授权信息后，调用 COS API将数据上传，根据上传的 BucketKey 信息进行生成包 [CreateAsset](https://cloud.tencent.com/document/product/1165/48731) 的创建。参考下面的示例部分。
-    @inlinable
-    public func getUploadCredentials(_ input: GetUploadCredentialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUploadCredentialsResponse > {
-        self.client.execute(action: "GetUploadCredentials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取上传文件授权信息
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（GetUploadCredentials）获取上传文件授权信息。
-    /// 通过 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) 接口获取临时授权信息后，调用 COS API将数据上传，根据上传的 BucketKey 信息进行生成包 [CreateAsset](https://cloud.tencent.com/document/product/1165/48731) 的创建。参考下面的示例部分。
-    @inlinable
-    public func getUploadCredentials(_ input: GetUploadCredentialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUploadCredentialsResponse {
-        try await self.client.execute(action: "GetUploadCredentials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetUploadCredentials请求参数结构体
     public struct GetUploadCredentialsRequest: TCRequestModel {
         /// 生成包所在地域，详见产品支持的 [地域列表](https://cloud.tencent.com/document/api/1165/42053#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)
@@ -74,5 +54,25 @@ extension Gse {
             case assetRegion = "AssetRegion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取上传文件授权信息
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（GetUploadCredentials）获取上传文件授权信息。
+    /// 通过 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) 接口获取临时授权信息后，调用 COS API将数据上传，根据上传的 BucketKey 信息进行生成包 [CreateAsset](https://cloud.tencent.com/document/product/1165/48731) 的创建。参考下面的示例部分。
+    @inlinable
+    public func getUploadCredentials(_ input: GetUploadCredentialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUploadCredentialsResponse > {
+        self.client.execute(action: "GetUploadCredentials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取上传文件授权信息
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（GetUploadCredentials）获取上传文件授权信息。
+    /// 通过 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) 接口获取临时授权信息后，调用 COS API将数据上传，根据上传的 BucketKey 信息进行生成包 [CreateAsset](https://cloud.tencent.com/document/product/1165/48731) 的创建。参考下面的示例部分。
+    @inlinable
+    public func getUploadCredentials(_ input: GetUploadCredentialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUploadCredentialsResponse {
+        try await self.client.execute(action: "GetUploadCredentials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

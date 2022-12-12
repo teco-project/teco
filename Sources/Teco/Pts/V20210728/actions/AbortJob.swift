@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 停止任务
-    @inlinable
-    public func abortJob(_ input: AbortJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AbortJobResponse > {
-        self.client.execute(action: "AbortJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止任务
-    @inlinable
-    public func abortJob(_ input: AbortJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortJobResponse {
-        try await self.client.execute(action: "AbortJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AbortJob请求参数结构体
     public struct AbortJobRequest: TCRequestModel {
         /// 任务ID
@@ -41,7 +29,7 @@ extension Pts {
         /// 中断原因
         public let abortReason: Int64?
         
-        public init (jobId: String, projectId: String, scenarioId: String, abortReason: Int64?) {
+        public init (jobId: String, projectId: String, scenarioId: String, abortReason: Int64? = nil) {
             self.jobId = jobId
             self.projectId = projectId
             self.scenarioId = scenarioId
@@ -64,5 +52,17 @@ extension Pts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止任务
+    @inlinable
+    public func abortJob(_ input: AbortJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AbortJobResponse > {
+        self.client.execute(action: "AbortJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止任务
+    @inlinable
+    public func abortJob(_ input: AbortJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortJobResponse {
+        try await self.client.execute(action: "AbortJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

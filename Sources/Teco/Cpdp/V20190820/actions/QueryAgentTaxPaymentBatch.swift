@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 直播平台-查询批次信息
-    @inlinable
-    public func queryAgentTaxPaymentBatch(_ input: QueryAgentTaxPaymentBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAgentTaxPaymentBatchResponse > {
-        self.client.execute(action: "QueryAgentTaxPaymentBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播平台-查询批次信息
-    @inlinable
-    public func queryAgentTaxPaymentBatch(_ input: QueryAgentTaxPaymentBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAgentTaxPaymentBatchResponse {
-        try await self.client.execute(action: "QueryAgentTaxPaymentBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryAgentTaxPaymentBatch请求参数结构体
     public struct QueryAgentTaxPaymentBatchRequest: TCRequestModel {
         /// 批次号
@@ -35,7 +23,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
         
-        public init (batchNum: Int64, profile: String?) {
+        public init (batchNum: Int64, profile: String? = nil) {
             self.batchNum = batchNum
             self.profile = profile
         }
@@ -58,5 +46,17 @@ extension Cpdp {
             case agentTaxPaymentBatch = "AgentTaxPaymentBatch"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播平台-查询批次信息
+    @inlinable
+    public func queryAgentTaxPaymentBatch(_ input: QueryAgentTaxPaymentBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAgentTaxPaymentBatchResponse > {
+        self.client.execute(action: "QueryAgentTaxPaymentBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-查询批次信息
+    @inlinable
+    public func queryAgentTaxPaymentBatch(_ input: QueryAgentTaxPaymentBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAgentTaxPaymentBatchResponse {
+        try await self.client.execute(action: "QueryAgentTaxPaymentBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

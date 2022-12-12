@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cr {
-    /// 查询机器人任务状态列表
-    @inlinable
-    public func queryBotList(_ input: QueryBotListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBotListResponse > {
-        self.client.execute(action: "QueryBotList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询机器人任务状态列表
-    @inlinable
-    public func queryBotList(_ input: QueryBotListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBotListResponse {
-        try await self.client.execute(action: "QueryBotList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryBotList请求参数结构体
     public struct QueryBotListRequest: TCRequestModel {
         /// 模块名：AiApi
@@ -58,5 +46,17 @@ extension Cr {
             case botList = "BotList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询机器人任务状态列表
+    @inlinable
+    public func queryBotList(_ input: QueryBotListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBotListResponse > {
+        self.client.execute(action: "QueryBotList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询机器人任务状态列表
+    @inlinable
+    public func queryBotList(_ input: QueryBotListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBotListResponse {
+        try await self.client.execute(action: "QueryBotList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

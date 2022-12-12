@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 手机号三要素核验（电信）
-    ///
-    /// 本接口用于校验中国电信手机号、姓名和身份证号的真实性和一致性。中国电信支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
-    @inlinable
-    public func phoneVerificationCTCC(_ input: PhoneVerificationCTCCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PhoneVerificationCTCCResponse > {
-        self.client.execute(action: "PhoneVerificationCTCC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 手机号三要素核验（电信）
-    ///
-    /// 本接口用于校验中国电信手机号、姓名和身份证号的真实性和一致性。中国电信支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
-    @inlinable
-    public func phoneVerificationCTCC(_ input: PhoneVerificationCTCCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationCTCCResponse {
-        try await self.client.execute(action: "PhoneVerificationCTCC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PhoneVerificationCTCC请求参数结构体
     public struct PhoneVerificationCTCCRequest: TCRequestModel {
         /// 身份证号
@@ -43,9 +27,9 @@ extension Faceid {
         public let phone: String
         
         /// 敏感数据加密信息。对传入信息（姓名、身份证号、手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
-        public let encryption: Encryption
+        public let encryption: Encryption?
         
-        public init (idCard: String, name: String, phone: String, encryption: Encryption) {
+        public init (idCard: String, name: String, phone: String, encryption: Encryption? = nil) {
             self.idCard = idCard
             self.name = name
             self.phone = phone
@@ -91,5 +75,21 @@ extension Faceid {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 手机号三要素核验（电信）
+    ///
+    /// 本接口用于校验中国电信手机号、姓名和身份证号的真实性和一致性。中国电信支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
+    @inlinable
+    public func phoneVerificationCTCC(_ input: PhoneVerificationCTCCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PhoneVerificationCTCCResponse > {
+        self.client.execute(action: "PhoneVerificationCTCC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 手机号三要素核验（电信）
+    ///
+    /// 本接口用于校验中国电信手机号、姓名和身份证号的真实性和一致性。中国电信支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
+    @inlinable
+    public func phoneVerificationCTCC(_ input: PhoneVerificationCTCCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationCTCCResponse {
+        try await self.client.execute(action: "PhoneVerificationCTCC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

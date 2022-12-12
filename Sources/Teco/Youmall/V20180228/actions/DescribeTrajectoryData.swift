@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 获取动线轨迹信息
-    @inlinable
-    public func describeTrajectoryData(_ input: DescribeTrajectoryDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrajectoryDataResponse > {
-        self.client.execute(action: "DescribeTrajectoryData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取动线轨迹信息
-    @inlinable
-    public func describeTrajectoryData(_ input: DescribeTrajectoryDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrajectoryDataResponse {
-        try await self.client.execute(action: "DescribeTrajectoryData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrajectoryData请求参数结构体
     public struct DescribeTrajectoryDataRequest: TCRequestModel {
         /// 集团ID
@@ -102,5 +90,17 @@ extension Youmall {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取动线轨迹信息
+    @inlinable
+    public func describeTrajectoryData(_ input: DescribeTrajectoryDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrajectoryDataResponse > {
+        self.client.execute(action: "DescribeTrajectoryData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取动线轨迹信息
+    @inlinable
+    public func describeTrajectoryData(_ input: DescribeTrajectoryDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrajectoryDataResponse {
+        try await self.client.execute(action: "DescribeTrajectoryData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

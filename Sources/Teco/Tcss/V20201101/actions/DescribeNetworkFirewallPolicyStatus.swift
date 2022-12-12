@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 容器网络查询网络策略策略执行状态
-    @inlinable
-    public func describeNetworkFirewallPolicyStatus(_ input: DescribeNetworkFirewallPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallPolicyStatusResponse > {
-        self.client.execute(action: "DescribeNetworkFirewallPolicyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 容器网络查询网络策略策略执行状态
-    @inlinable
-    public func describeNetworkFirewallPolicyStatus(_ input: DescribeNetworkFirewallPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyStatusResponse {
-        try await self.client.execute(action: "DescribeNetworkFirewallPolicyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNetworkFirewallPolicyStatus请求参数结构体
     public struct DescribeNetworkFirewallPolicyStatusRequest: TCRequestModel {
         /// 任务ID
@@ -58,5 +46,17 @@ extension Tcss {
             case taskResult = "TaskResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 容器网络查询网络策略策略执行状态
+    @inlinable
+    public func describeNetworkFirewallPolicyStatus(_ input: DescribeNetworkFirewallPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallPolicyStatusResponse > {
+        self.client.execute(action: "DescribeNetworkFirewallPolicyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络查询网络策略策略执行状态
+    @inlinable
+    public func describeNetworkFirewallPolicyStatus(_ input: DescribeNetworkFirewallPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyStatusResponse {
+        try await self.client.execute(action: "DescribeNetworkFirewallPolicyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

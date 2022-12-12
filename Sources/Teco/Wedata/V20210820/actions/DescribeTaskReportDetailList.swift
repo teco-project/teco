@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Wedata {
-    /// 离线任务周期统计明细
-    @inlinable
-    public func describeTaskReportDetailList(_ input: DescribeTaskReportDetailListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskReportDetailListResponse > {
-        self.client.execute(action: "DescribeTaskReportDetailList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 离线任务周期统计明细
-    @inlinable
-    public func describeTaskReportDetailList(_ input: DescribeTaskReportDetailListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskReportDetailListResponse {
-        try await self.client.execute(action: "DescribeTaskReportDetailList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskReportDetailList请求参数结构体
     public struct DescribeTaskReportDetailListRequest: TCRequestModel {
         /// WeData项目id
@@ -60,7 +48,7 @@ extension Wedata {
         /// 每页的记录条数，默认10条
         public let pageSize: UInt64?
         
-        public init (projectId: String, taskId: String, beginDate: Date, endDate: Date, stateList: String?, sortItem: String?, sortType: String?, pageIndex: UInt64?, pageSize: UInt64?) {
+        public init (projectId: String, taskId: String, beginDate: Date, endDate: Date, stateList: String? = nil, sortItem: String? = nil, sortType: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil) {
             self.projectId = projectId
             self.taskId = taskId
             self.beginDate = beginDate
@@ -113,5 +101,17 @@ extension Wedata {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 离线任务周期统计明细
+    @inlinable
+    public func describeTaskReportDetailList(_ input: DescribeTaskReportDetailListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskReportDetailListResponse > {
+        self.client.execute(action: "DescribeTaskReportDetailList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 离线任务周期统计明细
+    @inlinable
+    public func describeTaskReportDetailList(_ input: DescribeTaskReportDetailListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskReportDetailListResponse {
+        try await self.client.execute(action: "DescribeTaskReportDetailList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

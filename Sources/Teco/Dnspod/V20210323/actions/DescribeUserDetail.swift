@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 获取帐户信息
-    @inlinable
-    public func describeUserDetail(_ input: DescribeUserDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserDetailResponse > {
-        self.client.execute(action: "DescribeUserDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取帐户信息
-    @inlinable
-    public func describeUserDetail(_ input: DescribeUserDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserDetailResponse {
-        try await self.client.execute(action: "DescribeUserDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserDetail请求参数结构体
     public struct DescribeUserDetailRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Dnspod {
             case userInfo = "UserInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取帐户信息
+    @inlinable
+    public func describeUserDetail(_ input: DescribeUserDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserDetailResponse > {
+        self.client.execute(action: "DescribeUserDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取帐户信息
+    @inlinable
+    public func describeUserDetail(_ input: DescribeUserDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserDetailResponse {
+        try await self.client.execute(action: "DescribeUserDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

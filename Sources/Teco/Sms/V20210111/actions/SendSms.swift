@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Sms {
-    /// 发送短信
-    ///
-    /// 短信发送接口，用于给用户发短信验证码、通知类短信或营销短信。
-    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
-    /// >- 注：您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
-    /// >- 注：当前接口属于 2021-01-11 版本，如果您仍在使用 [2019-07-11 版本](https://cloud.tencent.com/document/product/382/38778)，建议您使用当前最新版本的接口，版本差异可参考[版本描述](https://cloud.tencent.com/document/product/382/63195#.E7.89.88.E6.9C.AC.E6.8F.8F.E8.BF.B0)。
-    @inlinable
-    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendSmsResponse > {
-        self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送短信
-    ///
-    /// 短信发送接口，用于给用户发短信验证码、通知类短信或营销短信。
-    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
-    /// >- 注：您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
-    /// >- 注：当前接口属于 2021-01-11 版本，如果您仍在使用 [2019-07-11 版本](https://cloud.tencent.com/document/product/382/38778)，建议您使用当前最新版本的接口，版本差异可参考[版本描述](https://cloud.tencent.com/document/product/382/63195#.E7.89.88.E6.9C.AC.E6.8F.8F.E8.BF.B0)。
-    @inlinable
-    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
-        try await self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendSms请求参数结构体
     public struct SendSmsRequest: TCRequestModel {
         /// 下发手机号码，采用 E.164 标准，格式为+[国家或地区码][手机号]，单次请求最多支持200个手机号且要求全为境内手机号或全为境外手机号。
@@ -68,7 +46,7 @@ extension Sms {
         /// 注：月度使用量达到指定量级可申请独立 SenderId 使用，详情请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public let senderId: String?
         
-        public init (phoneNumberSet: [String], smsSdkAppId: String, templateId: String, signName: String?, templateParamSet: [String]?, extendCode: String?, sessionContext: String?, senderId: String?) {
+        public init (phoneNumberSet: [String], smsSdkAppId: String, templateId: String, signName: String? = nil, templateParamSet: [String]? = nil, extendCode: String? = nil, sessionContext: String? = nil, senderId: String? = nil) {
             self.phoneNumberSet = phoneNumberSet
             self.smsSdkAppId = smsSdkAppId
             self.templateId = templateId
@@ -103,5 +81,27 @@ extension Sms {
             case sendStatusSet = "SendStatusSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送短信
+    ///
+    /// 短信发送接口，用于给用户发短信验证码、通知类短信或营销短信。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
+    /// >- 注：您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    /// >- 注：当前接口属于 2021-01-11 版本，如果您仍在使用 [2019-07-11 版本](https://cloud.tencent.com/document/product/382/38778)，建议您使用当前最新版本的接口，版本差异可参考[版本描述](https://cloud.tencent.com/document/product/382/63195#.E7.89.88.E6.9C.AC.E6.8F.8F.E8.BF.B0)。
+    @inlinable
+    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendSmsResponse > {
+        self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送短信
+    ///
+    /// 短信发送接口，用于给用户发短信验证码、通知类短信或营销短信。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
+    /// >- 注：您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    /// >- 注：当前接口属于 2021-01-11 版本，如果您仍在使用 [2019-07-11 版本](https://cloud.tencent.com/document/product/382/38778)，建议您使用当前最新版本的接口，版本差异可参考[版本描述](https://cloud.tencent.com/document/product/382/63195#.E7.89.88.E6.9C.AC.E6.8F.8F.E8.BF.B0)。
+    @inlinable
+    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
+        try await self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

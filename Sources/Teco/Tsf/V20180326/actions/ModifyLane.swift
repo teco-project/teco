@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 更新泳道信息
-    @inlinable
-    public func modifyLane(_ input: ModifyLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLaneResponse > {
-        self.client.execute(action: "ModifyLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新泳道信息
-    @inlinable
-    public func modifyLane(_ input: ModifyLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaneResponse {
-        try await self.client.execute(action: "ModifyLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLane请求参数结构体
     public struct ModifyLaneRequest: TCRequestModel {
         /// 泳道ID
@@ -63,5 +51,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新泳道信息
+    @inlinable
+    public func modifyLane(_ input: ModifyLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLaneResponse > {
+        self.client.execute(action: "ModifyLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新泳道信息
+    @inlinable
+    public func modifyLane(_ input: ModifyLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaneResponse {
+        try await self.client.execute(action: "ModifyLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

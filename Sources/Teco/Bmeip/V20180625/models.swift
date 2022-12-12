@@ -38,7 +38,7 @@ extension Bmeip {
         /// 入站规则
         public let inRules: [EipAclRule]?
         
-        public init (aclId: String, aclName: String, status: String, createdAt: String, eipNum: Int64, outRules: [EipAclRule], inRules: [EipAclRule]?) {
+        public init (aclId: String, aclName: String, status: String, createdAt: String, eipNum: Int64, outRules: [EipAclRule], inRules: [EipAclRule]? = nil) {
             self.aclId = aclId
             self.aclName = aclName
             self.status = status

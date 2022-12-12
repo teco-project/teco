@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 查询HAVIP列表
-    ///
-    /// 用于查询高可用虚拟IP（HAVIP）列表。
-    @inlinable
-    public func describeHaVips(_ input: DescribeHaVipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHaVipsResponse > {
-        self.client.execute(action: "DescribeHaVips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询HAVIP列表
-    ///
-    /// 用于查询高可用虚拟IP（HAVIP）列表。
-    @inlinable
-    public func describeHaVips(_ input: DescribeHaVipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHaVipsResponse {
-        try await self.client.execute(action: "DescribeHaVips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHaVips请求参数结构体
     public struct DescribeHaVipsRequest: TCRequestModel {
         /// HAVIP数组，HAVIP唯一ID，形如：havip-9o233uri。
@@ -52,7 +36,7 @@ extension Ecm {
         /// Ecm 区域，不填代表全部区域。
         public let ecmRegion: String?
         
-        public init (haVipIds: [String]?, filters: [Filter]?, offset: Int64?, limit: Int64?, ecmRegion: String?) {
+        public init (haVipIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, ecmRegion: String? = nil) {
             self.haVipIds = haVipIds
             self.filters = filters
             self.offset = offset
@@ -86,5 +70,21 @@ extension Ecm {
             case haVipSet = "HaVipSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询HAVIP列表
+    ///
+    /// 用于查询高可用虚拟IP（HAVIP）列表。
+    @inlinable
+    public func describeHaVips(_ input: DescribeHaVipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHaVipsResponse > {
+        self.client.execute(action: "DescribeHaVips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询HAVIP列表
+    ///
+    /// 用于查询高可用虚拟IP（HAVIP）列表。
+    @inlinable
+    public func describeHaVips(_ input: DescribeHaVipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHaVipsResponse {
+        try await self.client.execute(action: "DescribeHaVips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

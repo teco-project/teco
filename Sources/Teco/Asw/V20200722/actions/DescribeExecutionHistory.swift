@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Asw {
-    /// 查询执行的事件历史
-    ///
-    /// 一次执行会有很多步骤，经过很多节点，这个接口描述某一次执行的事件的历史
-    @inlinable
-    public func describeExecutionHistory(_ input: DescribeExecutionHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExecutionHistoryResponse > {
-        self.client.execute(action: "DescribeExecutionHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询执行的事件历史
-    ///
-    /// 一次执行会有很多步骤，经过很多节点，这个接口描述某一次执行的事件的历史
-    @inlinable
-    public func describeExecutionHistory(_ input: DescribeExecutionHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionHistoryResponse {
-        try await self.client.execute(action: "DescribeExecutionHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExecutionHistory请求参数结构体
     public struct DescribeExecutionHistoryRequest: TCRequestModel {
         /// 执行资源名
@@ -57,5 +41,21 @@ extension Asw {
             case events = "Events"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询执行的事件历史
+    ///
+    /// 一次执行会有很多步骤，经过很多节点，这个接口描述某一次执行的事件的历史
+    @inlinable
+    public func describeExecutionHistory(_ input: DescribeExecutionHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExecutionHistoryResponse > {
+        self.client.execute(action: "DescribeExecutionHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询执行的事件历史
+    ///
+    /// 一次执行会有很多步骤，经过很多节点，这个接口描述某一次执行的事件的历史
+    @inlinable
+    public func describeExecutionHistory(_ input: DescribeExecutionHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionHistoryResponse {
+        try await self.client.execute(action: "DescribeExecutionHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

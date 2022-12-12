@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ba {
-    /// 创建渠道备案小程序二维码
-    @inlinable
-    public func createWeappQRUrl(_ input: CreateWeappQRUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWeappQRUrlResponse > {
-        self.client.execute(action: "CreateWeappQRUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建渠道备案小程序二维码
-    @inlinable
-    public func createWeappQRUrl(_ input: CreateWeappQRUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWeappQRUrlResponse {
-        try await self.client.execute(action: "CreateWeappQRUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateWeappQRUrl请求参数结构体
     public struct CreateWeappQRUrlRequest: TCRequestModel {
         /// 代理角色临时密钥的Token
@@ -53,5 +41,17 @@ extension Ba {
             case url = "Url"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建渠道备案小程序二维码
+    @inlinable
+    public func createWeappQRUrl(_ input: CreateWeappQRUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWeappQRUrlResponse > {
+        self.client.execute(action: "CreateWeappQRUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建渠道备案小程序二维码
+    @inlinable
+    public func createWeappQRUrl(_ input: CreateWeappQRUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWeappQRUrlResponse {
+        try await self.client.execute(action: "CreateWeappQRUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

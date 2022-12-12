@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 创建导出受漏洞影响的镜像任务
-    ///
-    /// 创建受漏洞影响的镜像导出任务
-    @inlinable
-    public func createVulImageExportJob(_ input: CreateVulImageExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVulImageExportJobResponse > {
-        self.client.execute(action: "CreateVulImageExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建导出受漏洞影响的镜像任务
-    ///
-    /// 创建受漏洞影响的镜像导出任务
-    @inlinable
-    public func createVulImageExportJob(_ input: CreateVulImageExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulImageExportJobResponse {
-        try await self.client.execute(action: "CreateVulImageExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVulImageExportJob请求参数结构体
     public struct CreateVulImageExportJobRequest: TCRequestModel {
         /// 漏洞PocID
@@ -59,7 +43,7 @@ extension Tcss {
         /// 排序字段
         public let by: String?
         
-        public init (pocID: String, limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, order: String?, by: String?) {
+        public init (pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.pocID = pocID
             self.limit = limit
             self.offset = offset
@@ -90,5 +74,21 @@ extension Tcss {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建导出受漏洞影响的镜像任务
+    ///
+    /// 创建受漏洞影响的镜像导出任务
+    @inlinable
+    public func createVulImageExportJob(_ input: CreateVulImageExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVulImageExportJobResponse > {
+        self.client.execute(action: "CreateVulImageExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建导出受漏洞影响的镜像任务
+    ///
+    /// 创建受漏洞影响的镜像导出任务
+    @inlinable
+    public func createVulImageExportJob(_ input: CreateVulImageExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulImageExportJobResponse {
+        try await self.client.execute(action: "CreateVulImageExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

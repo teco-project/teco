@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Smh {
-    /// 查询流量包
-    ///
-    /// 查询流量资源包
-    @inlinable
-    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficPackagesResponse > {
-        self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询流量包
-    ///
-    /// 查询流量资源包
-    @inlinable
-    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
-        try await self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrafficPackages请求参数结构体
     public struct DescribeTrafficPackagesRequest: TCRequestModel {
         /// 按照一个或者多个资源 ID 查询，每次请求的上限为 100 个。
@@ -51,7 +35,7 @@ extension Smh {
         /// 来源类型筛选
         public let type: UInt64?
         
-        public init (resourceIds: [String]?, pageNumber: UInt64?, pageSize: UInt64?, orderBy: String?, orderByType: String?, type: UInt64?) {
+        public init (resourceIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, type: UInt64? = nil) {
             self.resourceIds = resourceIds
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -86,5 +70,21 @@ extension Smh {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询流量包
+    ///
+    /// 查询流量资源包
+    @inlinable
+    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficPackagesResponse > {
+        self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流量包
+    ///
+    /// 查询流量资源包
+    @inlinable
+    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
+        try await self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

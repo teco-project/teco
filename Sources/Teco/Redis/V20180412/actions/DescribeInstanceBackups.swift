@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询Redis实例备份列表
-    ///
-    /// 查询 CRS 实例备份列表
-    @inlinable
-    public func describeInstanceBackups(_ input: DescribeInstanceBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceBackupsResponse > {
-        self.client.execute(action: "DescribeInstanceBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Redis实例备份列表
-    ///
-    /// 查询 CRS 实例备份列表
-    @inlinable
-    public func describeInstanceBackups(_ input: DescribeInstanceBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceBackupsResponse {
-        try await self.client.execute(action: "DescribeInstanceBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceBackups请求参数结构体
     public struct DescribeInstanceBackupsRequest: TCRequestModel {
         /// 待操作的实例ID，可通过 DescribeInstance 接口返回值中的 InstanceId 获取。
@@ -51,7 +35,7 @@ extension Redis {
         /// 1：备份在流程中，2：备份正常，3：备份转RDB文件处理中，4：已完成RDB转换，-1：备份已过期，-2：备份已删除。
         public let status: [Int64]?
         
-        public init (instanceId: String, limit: Int64?, offset: Int64?, beginTime: String?, endTime: String?, status: [Int64]?) {
+        public init (instanceId: String, limit: Int64? = nil, offset: Int64? = nil, beginTime: String? = nil, endTime: String? = nil, status: [Int64]? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset
@@ -86,5 +70,21 @@ extension Redis {
             case backupSet = "BackupSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Redis实例备份列表
+    ///
+    /// 查询 CRS 实例备份列表
+    @inlinable
+    public func describeInstanceBackups(_ input: DescribeInstanceBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceBackupsResponse > {
+        self.client.execute(action: "DescribeInstanceBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Redis实例备份列表
+    ///
+    /// 查询 CRS 实例备份列表
+    @inlinable
+    public func describeInstanceBackups(_ input: DescribeInstanceBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceBackupsResponse {
+        try await self.client.execute(action: "DescribeInstanceBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

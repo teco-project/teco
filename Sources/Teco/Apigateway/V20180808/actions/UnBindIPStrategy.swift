@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 服务解绑IP策略
-    ///
-    /// 本接口（UnBindIPStrategy）用于服务解绑IP策略。
-    @inlinable
-    public func unBindIPStrategy(_ input: UnBindIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindIPStrategyResponse > {
-        self.client.execute(action: "UnBindIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 服务解绑IP策略
-    ///
-    /// 本接口（UnBindIPStrategy）用于服务解绑IP策略。
-    @inlinable
-    public func unBindIPStrategy(_ input: UnBindIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindIPStrategyResponse {
-        try await self.client.execute(action: "UnBindIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnBindIPStrategy请求参数结构体
     public struct UnBindIPStrategyRequest: TCRequestModel {
         /// 待解绑的服务唯一ID。
@@ -73,5 +57,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 服务解绑IP策略
+    ///
+    /// 本接口（UnBindIPStrategy）用于服务解绑IP策略。
+    @inlinable
+    public func unBindIPStrategy(_ input: UnBindIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindIPStrategyResponse > {
+        self.client.execute(action: "UnBindIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 服务解绑IP策略
+    ///
+    /// 本接口（UnBindIPStrategy）用于服务解绑IP策略。
+    @inlinable
+    public func unBindIPStrategy(_ input: UnBindIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindIPStrategyResponse {
+        try await self.client.execute(action: "UnBindIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

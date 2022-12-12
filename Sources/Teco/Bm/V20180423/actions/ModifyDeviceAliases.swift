@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 修改服务器名称
-    @inlinable
-    public func modifyDeviceAliases(_ input: ModifyDeviceAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceAliasesResponse > {
-        self.client.execute(action: "ModifyDeviceAliases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改服务器名称
-    @inlinable
-    public func modifyDeviceAliases(_ input: ModifyDeviceAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAliasesResponse {
-        try await self.client.execute(action: "ModifyDeviceAliases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDeviceAliases请求参数结构体
     public struct ModifyDeviceAliasesRequest: TCRequestModel {
         /// 需要改名的设备与别名列表
@@ -49,5 +37,17 @@ extension Bm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改服务器名称
+    @inlinable
+    public func modifyDeviceAliases(_ input: ModifyDeviceAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceAliasesResponse > {
+        self.client.execute(action: "ModifyDeviceAliases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改服务器名称
+    @inlinable
+    public func modifyDeviceAliases(_ input: ModifyDeviceAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAliasesResponse {
+        try await self.client.execute(action: "ModifyDeviceAliases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

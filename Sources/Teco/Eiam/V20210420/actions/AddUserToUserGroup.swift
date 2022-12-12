@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 加入用户到用户组
-    @inlinable
-    public func addUserToUserGroup(_ input: AddUserToUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserToUserGroupResponse > {
-        self.client.execute(action: "AddUserToUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 加入用户到用户组
-    @inlinable
-    public func addUserToUserGroup(_ input: AddUserToUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserToUserGroupResponse {
-        try await self.client.execute(action: "AddUserToUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddUserToUserGroup请求参数结构体
     public struct AddUserToUserGroupRequest: TCRequestModel {
         /// 加入用户组的用户ID列表。
@@ -59,5 +47,17 @@ extension Eiam {
             case failedItems = "FailedItems"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 加入用户到用户组
+    @inlinable
+    public func addUserToUserGroup(_ input: AddUserToUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserToUserGroupResponse > {
+        self.client.execute(action: "AddUserToUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 加入用户到用户组
+    @inlinable
+    public func addUserToUserGroup(_ input: AddUserToUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserToUserGroupResponse {
+        try await self.client.execute(action: "AddUserToUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

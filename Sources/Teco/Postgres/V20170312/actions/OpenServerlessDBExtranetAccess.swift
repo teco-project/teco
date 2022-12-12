@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 开通serverlessDB实例外网
-    @inlinable
-    public func openServerlessDBExtranetAccess(_ input: OpenServerlessDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenServerlessDBExtranetAccessResponse > {
-        self.client.execute(action: "OpenServerlessDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开通serverlessDB实例外网
-    @inlinable
-    public func openServerlessDBExtranetAccess(_ input: OpenServerlessDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenServerlessDBExtranetAccessResponse {
-        try await self.client.execute(action: "OpenServerlessDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OpenServerlessDBExtranetAccess请求参数结构体
     public struct OpenServerlessDBExtranetAccessRequest: TCRequestModel {
         /// 实例的唯一标识符
@@ -35,7 +23,7 @@ extension Postgres {
         /// 实例名称
         public let dbInstanceName: String?
         
-        public init (dbInstanceId: String?, dbInstanceName: String?) {
+        public init (dbInstanceId: String? = nil, dbInstanceName: String? = nil) {
             self.dbInstanceId = dbInstanceId
             self.dbInstanceName = dbInstanceName
         }
@@ -54,5 +42,17 @@ extension Postgres {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开通serverlessDB实例外网
+    @inlinable
+    public func openServerlessDBExtranetAccess(_ input: OpenServerlessDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenServerlessDBExtranetAccessResponse > {
+        self.client.execute(action: "OpenServerlessDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开通serverlessDB实例外网
+    @inlinable
+    public func openServerlessDBExtranetAccess(_ input: OpenServerlessDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenServerlessDBExtranetAccessResponse {
+        try await self.client.execute(action: "OpenServerlessDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

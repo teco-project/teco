@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 更新事件规则
-    @inlinable
-    public func updateRule(_ input: UpdateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRuleResponse > {
-        self.client.execute(action: "UpdateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新事件规则
-    @inlinable
-    public func updateRule(_ input: UpdateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRuleResponse {
-        try await self.client.execute(action: "UpdateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateRule请求参数结构体
     public struct UpdateRuleRequest: TCRequestModel {
         /// 事件规则ID
@@ -47,7 +35,7 @@ extension Eb {
         /// 事件规则名称，只能包含字母、数字、下划线、连字符，以字母开头，以数字或字母结尾，2~60个字符
         public let ruleName: String?
         
-        public init (ruleId: String, eventBusId: String, enable: Bool?, description: String?, eventPattern: String?, ruleName: String?) {
+        public init (ruleId: String, eventBusId: String, enable: Bool? = nil, description: String? = nil, eventPattern: String? = nil, ruleName: String? = nil) {
             self.ruleId = ruleId
             self.eventBusId = eventBusId
             self.enable = enable
@@ -74,5 +62,17 @@ extension Eb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新事件规则
+    @inlinable
+    public func updateRule(_ input: UpdateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRuleResponse > {
+        self.client.execute(action: "UpdateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新事件规则
+    @inlinable
+    public func updateRule(_ input: UpdateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRuleResponse {
+        try await self.client.execute(action: "UpdateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

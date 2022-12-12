@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 创建白名单
-    @inlinable
-    public func createWhitelist(_ input: CreateWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWhitelistResponse > {
-        self.client.execute(action: "CreateWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建白名单
-    @inlinable
-    public func createWhitelist(_ input: CreateWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWhitelistResponse {
-        try await self.client.execute(action: "CreateWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateWhitelist请求参数结构体
     public struct CreateWhitelistRequest: TCRequestModel {
         /// 实例ID：taw-123
@@ -41,7 +29,7 @@ extension Rum {
         /// 业务方标识
         public let aid: String?
         
-        public init (instanceID: String, remark: String, whitelistUin: String, aid: String?) {
+        public init (instanceID: String, remark: String, whitelistUin: String, aid: String? = nil) {
             self.instanceID = instanceID
             self.remark = remark
             self.whitelistUin = whitelistUin
@@ -72,5 +60,17 @@ extension Rum {
             case id = "ID"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建白名单
+    @inlinable
+    public func createWhitelist(_ input: CreateWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWhitelistResponse > {
+        self.client.execute(action: "CreateWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建白名单
+    @inlinable
+    public func createWhitelist(_ input: CreateWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWhitelistResponse {
+        try await self.client.execute(action: "CreateWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

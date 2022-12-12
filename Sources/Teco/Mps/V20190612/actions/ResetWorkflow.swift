@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 重设工作流
-    ///
-    /// 重新设置一个已经存在且处于禁用状态的工作流。
-    @inlinable
-    public func resetWorkflow(_ input: ResetWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetWorkflowResponse > {
-        self.client.execute(action: "ResetWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重设工作流
-    ///
-    /// 重新设置一个已经存在且处于禁用状态的工作流。
-    @inlinable
-    public func resetWorkflow(_ input: ResetWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetWorkflowResponse {
-        try await self.client.execute(action: "ResetWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetWorkflow请求参数结构体
     public struct ResetWorkflowRequest: TCRequestModel {
         /// 工作流 ID。
@@ -43,30 +27,30 @@ extension Mps {
         public let trigger: WorkflowTrigger
         
         /// 视频处理的文件输出配置。不填则继承 Trigger 中的存储位置。
-        public let outputStorage: TaskOutputStorage
+        public let outputStorage: TaskOutputStorage?
         
         /// 视频处理生成的文件输出的目标目录，如`/movie/201907/`。如果不填，表示与触发文件所在的目录一致，即`{inputDir}`。
         public let outputDir: String?
         
         /// 视频处理类型任务参数。
-        public let mediaProcessTask: MediaProcessTaskInput
+        public let mediaProcessTask: MediaProcessTaskInput?
         
         /// 视频内容审核类型任务参数。
-        public let aiContentReviewTask: AiContentReviewTaskInput
+        public let aiContentReviewTask: AiContentReviewTaskInput?
         
         /// 视频内容分析类型任务参数。
-        public let aiAnalysisTask: AiAnalysisTaskInput
+        public let aiAnalysisTask: AiAnalysisTaskInput?
         
         /// 视频内容识别类型任务参数。
-        public let aiRecognitionTask: AiRecognitionTaskInput
+        public let aiRecognitionTask: AiRecognitionTaskInput?
         
         /// 工作流的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
         public let taskPriority: Int64?
         
         /// 任务的事件通知信息，不填代表不获取事件通知。
-        public let taskNotifyConfig: TaskNotifyConfig
+        public let taskNotifyConfig: TaskNotifyConfig?
         
-        public init (workflowId: Int64, workflowName: String, trigger: WorkflowTrigger, outputStorage: TaskOutputStorage, outputDir: String?, mediaProcessTask: MediaProcessTaskInput, aiContentReviewTask: AiContentReviewTaskInput, aiAnalysisTask: AiAnalysisTaskInput, aiRecognitionTask: AiRecognitionTaskInput, taskPriority: Int64?, taskNotifyConfig: TaskNotifyConfig) {
+        public init (workflowId: Int64, workflowName: String, trigger: WorkflowTrigger, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskPriority: Int64? = nil, taskNotifyConfig: TaskNotifyConfig? = nil) {
             self.workflowId = workflowId
             self.workflowName = workflowName
             self.trigger = trigger
@@ -103,5 +87,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重设工作流
+    ///
+    /// 重新设置一个已经存在且处于禁用状态的工作流。
+    @inlinable
+    public func resetWorkflow(_ input: ResetWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetWorkflowResponse > {
+        self.client.execute(action: "ResetWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重设工作流
+    ///
+    /// 重新设置一个已经存在且处于禁用状态的工作流。
+    @inlinable
+    public func resetWorkflow(_ input: ResetWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetWorkflowResponse {
+        try await self.client.execute(action: "ResetWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

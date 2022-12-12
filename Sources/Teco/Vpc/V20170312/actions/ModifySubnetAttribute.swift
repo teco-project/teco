@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改子网属性
-    ///
-    /// 本接口（ModifySubnetAttribute）用于修改子网属性。
-    @inlinable
-    public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubnetAttributeResponse > {
-        self.client.execute(action: "ModifySubnetAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改子网属性
-    ///
-    /// 本接口（ModifySubnetAttribute）用于修改子网属性。
-    @inlinable
-    public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetAttributeResponse {
-        try await self.client.execute(action: "ModifySubnetAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySubnetAttribute请求参数结构体
     public struct ModifySubnetAttributeRequest: TCRequestModel {
         /// 子网实例ID。形如：subnet-pxir56ns。
@@ -42,7 +26,7 @@ extension Vpc {
         /// 子网是否开启广播。
         public let enableBroadcast: String?
         
-        public init (subnetId: String, subnetName: String?, enableBroadcast: String?) {
+        public init (subnetId: String, subnetName: String? = nil, enableBroadcast: String? = nil) {
             self.subnetId = subnetId
             self.subnetName = subnetName
             self.enableBroadcast = enableBroadcast
@@ -63,5 +47,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改子网属性
+    ///
+    /// 本接口（ModifySubnetAttribute）用于修改子网属性。
+    @inlinable
+    public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubnetAttributeResponse > {
+        self.client.execute(action: "ModifySubnetAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改子网属性
+    ///
+    /// 本接口（ModifySubnetAttribute）用于修改子网属性。
+    @inlinable
+    public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetAttributeResponse {
+        try await self.client.execute(action: "ModifySubnetAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

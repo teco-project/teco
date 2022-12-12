@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 查询实例SQL限流任务列表
-    ///
-    /// 查询实例SQL限流任务列表。
-    @inlinable
-    public func describeSqlFilters(_ input: DescribeSqlFiltersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSqlFiltersResponse > {
-        self.client.execute(action: "DescribeSqlFilters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例SQL限流任务列表
-    ///
-    /// 查询实例SQL限流任务列表。
-    @inlinable
-    public func describeSqlFilters(_ input: DescribeSqlFiltersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlFiltersResponse {
-        try await self.client.execute(action: "DescribeSqlFilters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSqlFilters请求参数结构体
     public struct DescribeSqlFiltersRequest: TCRequestModel {
         /// 实例ID。
@@ -48,7 +32,7 @@ extension Dbbrain {
         /// 返回数量，默认为20，最大值为100。
         public let limit: Int64?
         
-        public init (instanceId: String, filterIds: [Int64]?, statuses: [String]?, offset: Int64?, limit: Int64?) {
+        public init (instanceId: String, filterIds: [Int64]? = nil, statuses: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.filterIds = filterIds
             self.statuses = statuses
@@ -81,5 +65,21 @@ extension Dbbrain {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例SQL限流任务列表
+    ///
+    /// 查询实例SQL限流任务列表。
+    @inlinable
+    public func describeSqlFilters(_ input: DescribeSqlFiltersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSqlFiltersResponse > {
+        self.client.execute(action: "DescribeSqlFilters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例SQL限流任务列表
+    ///
+    /// 查询实例SQL限流任务列表。
+    @inlinable
+    public func describeSqlFilters(_ input: DescribeSqlFiltersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlFiltersResponse {
+        try await self.client.execute(action: "DescribeSqlFilters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

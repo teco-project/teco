@@ -70,7 +70,7 @@ extension Iotvideo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `default`: String?
         
-        public init (en: String?, cn: String?, tc: String?, `default`: String?) {
+        public init (en: String? = nil, cn: String? = nil, tc: String? = nil, `default`: String? = nil) {
             self.en = en
             self.cn = cn
             self.tc = tc
@@ -705,7 +705,7 @@ extension Iotvideo {
         
         /// 版本发布的描述信息，需要国际化，可以为空
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let contents: Contents
+        public let contents: Contents?
         
         /// 月活设备数，当月第一天开始有上线的设备数量。
         /// 注意：此字段可能返回 null，表示取不到有效值。

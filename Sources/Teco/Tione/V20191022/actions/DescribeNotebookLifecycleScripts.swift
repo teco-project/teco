@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查看notebook生命周期脚本列表
-    @inlinable
-    public func describeNotebookLifecycleScripts(_ input: DescribeNotebookLifecycleScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNotebookLifecycleScriptsResponse > {
-        self.client.execute(action: "DescribeNotebookLifecycleScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看notebook生命周期脚本列表
-    @inlinable
-    public func describeNotebookLifecycleScripts(_ input: DescribeNotebookLifecycleScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookLifecycleScriptsResponse {
-        try await self.client.execute(action: "DescribeNotebookLifecycleScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNotebookLifecycleScripts请求参数结构体
     public struct DescribeNotebookLifecycleScriptsRequest: TCRequestModel {
         /// 偏移量，默认为0
@@ -45,7 +33,7 @@ extension Tione {
         /// Ascending 按更新时间升序
         public let sortOrder: String?
         
-        public init (offset: UInt64?, limit: UInt64?, filters: [Filter]?, sortOrder: String?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -76,5 +64,17 @@ extension Tione {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看notebook生命周期脚本列表
+    @inlinable
+    public func describeNotebookLifecycleScripts(_ input: DescribeNotebookLifecycleScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNotebookLifecycleScriptsResponse > {
+        self.client.execute(action: "DescribeNotebookLifecycleScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看notebook生命周期脚本列表
+    @inlinable
+    public func describeNotebookLifecycleScripts(_ input: DescribeNotebookLifecycleScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookLifecycleScriptsResponse {
+        try await self.client.execute(action: "DescribeNotebookLifecycleScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,6 +15,22 @@
 // DO NOT EDIT.
 
 extension Vpc {
+    /// UnlockCcns请求参数结构体
+    public struct UnlockCcnsRequest: TCRequestModel {
+        public init () {
+        }
+    }
+    
+    /// UnlockCcns返回参数结构体
+    public struct UnlockCcnsResponse: TCResponseModel {
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 安全解锁云联网实例
     ///
     /// 本接口（UnlockCcns）用于解锁云联网实例
@@ -33,21 +49,5 @@ extension Vpc {
     @inlinable
     public func unlockCcns(_ input: UnlockCcnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockCcnsResponse {
         try await self.client.execute(action: "UnlockCcns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// UnlockCcns请求参数结构体
-    public struct UnlockCcnsRequest: TCRequestModel {
-        public init () {
-        }
-    }
-    
-    /// UnlockCcns返回参数结构体
-    public struct UnlockCcnsResponse: TCResponseModel {
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case requestId = "RequestId"
-        }
     }
 }

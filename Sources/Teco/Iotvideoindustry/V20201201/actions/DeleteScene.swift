@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 删除场景
-    @inlinable
-    public func deleteScene(_ input: DeleteSceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSceneResponse > {
-        self.client.execute(action: "DeleteScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除场景
-    @inlinable
-    public func deleteScene(_ input: DeleteSceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSceneResponse {
-        try await self.client.execute(action: "DeleteScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteScene请求参数结构体
     public struct DeleteSceneRequest: TCRequestModel {
         /// 场景ID
@@ -49,5 +37,17 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除场景
+    @inlinable
+    public func deleteScene(_ input: DeleteSceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSceneResponse > {
+        self.client.execute(action: "DeleteScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除场景
+    @inlinable
+    public func deleteScene(_ input: DeleteSceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSceneResponse {
+        try await self.client.execute(action: "DeleteScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

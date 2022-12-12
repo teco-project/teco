@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 获取Topic信息
-    @inlinable
-    public func getTopic(_ input: GetTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTopicResponse > {
-        self.client.execute(action: "GetTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Topic信息
-    @inlinable
-    public func getTopic(_ input: GetTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTopicResponse {
-        try await self.client.execute(action: "GetTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetTopic请求参数结构体
     public struct GetTopicRequest: TCRequestModel {
         /// TopicId
@@ -58,5 +46,17 @@ extension Iot {
             case topic = "Topic"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Topic信息
+    @inlinable
+    public func getTopic(_ input: GetTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTopicResponse > {
+        self.client.execute(action: "GetTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Topic信息
+    @inlinable
+    public func getTopic(_ input: GetTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTopicResponse {
+        try await self.client.execute(action: "GetTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

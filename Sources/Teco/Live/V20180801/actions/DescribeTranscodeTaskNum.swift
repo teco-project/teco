@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询转码任务数。
-    @inlinable
-    public func describeTranscodeTaskNum(_ input: DescribeTranscodeTaskNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTranscodeTaskNumResponse > {
-        self.client.execute(action: "DescribeTranscodeTaskNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询转码任务数。
-    @inlinable
-    public func describeTranscodeTaskNum(_ input: DescribeTranscodeTaskNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeTaskNumResponse {
-        try await self.client.execute(action: "DescribeTranscodeTaskNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTranscodeTaskNum请求参数结构体
     public struct DescribeTranscodeTaskNumRequest: TCRequestModel {
         /// 起始时间，格式：yyyy-mm-dd HH:MM:SS。
@@ -38,7 +26,7 @@ extension Live {
         /// 推流域名列表，不填表示总体数据。
         public let pushDomains: [String]?
         
-        public init (startTime: String, endTime: String, pushDomains: [String]?) {
+        public init (startTime: String, endTime: String, pushDomains: [String]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.pushDomains = pushDomains
@@ -63,5 +51,17 @@ extension Live {
             case dataInfoList = "DataInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询转码任务数。
+    @inlinable
+    public func describeTranscodeTaskNum(_ input: DescribeTranscodeTaskNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTranscodeTaskNumResponse > {
+        self.client.execute(action: "DescribeTranscodeTaskNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询转码任务数。
+    @inlinable
+    public func describeTranscodeTaskNum(_ input: DescribeTranscodeTaskNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeTaskNumResponse {
+        try await self.client.execute(action: "DescribeTranscodeTaskNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

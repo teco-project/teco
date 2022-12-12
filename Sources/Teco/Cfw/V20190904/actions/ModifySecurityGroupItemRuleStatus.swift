@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 启用停用单条企业安全组规则
-    @inlinable
-    public func modifySecurityGroupItemRuleStatus(_ input: ModifySecurityGroupItemRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupItemRuleStatusResponse > {
-        self.client.execute(action: "ModifySecurityGroupItemRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启用停用单条企业安全组规则
-    @inlinable
-    public func modifySecurityGroupItemRuleStatus(_ input: ModifySecurityGroupItemRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupItemRuleStatusResponse {
-        try await self.client.execute(action: "ModifySecurityGroupItemRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySecurityGroupItemRuleStatus请求参数结构体
     public struct ModifySecurityGroupItemRuleStatusRequest: TCRequestModel {
         /// 方向，0：出站，1：入站，默认1
@@ -63,5 +51,17 @@ extension Cfw {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启用停用单条企业安全组规则
+    @inlinable
+    public func modifySecurityGroupItemRuleStatus(_ input: ModifySecurityGroupItemRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupItemRuleStatusResponse > {
+        self.client.execute(action: "ModifySecurityGroupItemRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启用停用单条企业安全组规则
+    @inlinable
+    public func modifySecurityGroupItemRuleStatus(_ input: ModifySecurityGroupItemRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupItemRuleStatusResponse {
+        try await self.client.execute(action: "ModifySecurityGroupItemRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

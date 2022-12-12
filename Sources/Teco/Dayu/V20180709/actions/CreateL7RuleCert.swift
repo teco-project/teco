@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 配置L7转发规则的证书
-    ///
-    /// 配置7层转发规则的证书
-    @inlinable
-    public func createL7RuleCert(_ input: CreateL7RuleCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL7RuleCertResponse > {
-        self.client.execute(action: "CreateL7RuleCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 配置L7转发规则的证书
-    ///
-    /// 配置7层转发规则的证书
-    @inlinable
-    public func createL7RuleCert(_ input: CreateL7RuleCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RuleCertResponse {
-        try await self.client.execute(action: "CreateL7RuleCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateL7RuleCert请求参数结构体
     public struct CreateL7RuleCertRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -54,7 +38,7 @@ extension Dayu {
         /// 当证书来源为自有证书时，此字段必须填写证书密钥；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
         public let privateKey: String?
         
-        public init (business: String, id: String, ruleId: String, certType: UInt64, sslId: String?, cert: String?, privateKey: String?) {
+        public init (business: String, id: String, ruleId: String, certType: UInt64, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil) {
             self.business = business
             self.id = id
             self.ruleId = ruleId
@@ -87,5 +71,21 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 配置L7转发规则的证书
+    ///
+    /// 配置7层转发规则的证书
+    @inlinable
+    public func createL7RuleCert(_ input: CreateL7RuleCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL7RuleCertResponse > {
+        self.client.execute(action: "CreateL7RuleCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 配置L7转发规则的证书
+    ///
+    /// 配置7层转发规则的证书
+    @inlinable
+    public func createL7RuleCert(_ input: CreateL7RuleCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RuleCertResponse {
+        try await self.client.execute(action: "CreateL7RuleCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

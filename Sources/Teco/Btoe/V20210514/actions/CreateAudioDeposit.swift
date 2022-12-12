@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Btoe {
-    /// 音频文件存证
-    ///
-    /// 用户通过本接口向BTOE写入待存证的音频原文件或下载URL，BTOE对音频原文件存储后，将其Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。音频类型支持格式：mp3、wav、wma、midi、flac；原文件上传大小不超过5 MB，下载URL文件大小不超过25 MB。
-    @inlinable
-    public func createAudioDeposit(_ input: CreateAudioDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAudioDepositResponse > {
-        self.client.execute(action: "CreateAudioDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 音频文件存证
-    ///
-    /// 用户通过本接口向BTOE写入待存证的音频原文件或下载URL，BTOE对音频原文件存储后，将其Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。音频类型支持格式：mp3、wav、wma、midi、flac；原文件上传大小不超过5 MB，下载URL文件大小不超过25 MB。
-    @inlinable
-    public func createAudioDeposit(_ input: CreateAudioDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioDepositResponse {
-        try await self.client.execute(action: "CreateAudioDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAudioDeposit请求参数结构体
     public struct CreateAudioDepositRequest: TCRequestModel {
         /// 存证名称(长度最大30)
@@ -54,7 +38,7 @@ extension Btoe {
         /// 存证描述
         public let evidenceDescription: String?
         
-        public init (evidenceName: String, fileContent: String, fileName: String, evidenceHash: String, businessId: String?, hashType: UInt64?, evidenceDescription: String?) {
+        public init (evidenceName: String, fileContent: String, fileName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil) {
             self.evidenceName = evidenceName
             self.fileContent = fileContent
             self.fileName = fileName
@@ -92,5 +76,21 @@ extension Btoe {
             case evidenceId = "EvidenceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 音频文件存证
+    ///
+    /// 用户通过本接口向BTOE写入待存证的音频原文件或下载URL，BTOE对音频原文件存储后，将其Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。音频类型支持格式：mp3、wav、wma、midi、flac；原文件上传大小不超过5 MB，下载URL文件大小不超过25 MB。
+    @inlinable
+    public func createAudioDeposit(_ input: CreateAudioDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAudioDepositResponse > {
+        self.client.execute(action: "CreateAudioDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 音频文件存证
+    ///
+    /// 用户通过本接口向BTOE写入待存证的音频原文件或下载URL，BTOE对音频原文件存储后，将其Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。音频类型支持格式：mp3、wav、wma、midi、flac；原文件上传大小不超过5 MB，下载URL文件大小不超过25 MB。
+    @inlinable
+    public func createAudioDeposit(_ input: CreateAudioDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioDepositResponse {
+        try await self.client.execute(action: "CreateAudioDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

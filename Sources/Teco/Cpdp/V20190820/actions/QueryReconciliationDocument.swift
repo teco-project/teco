@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-查询对账文件信息
-    ///
-    /// 查询对账文件信息。平台调用该接口获取需下载对账文件的文件名称以及密钥。 平台获取到信息后， 可以再调用OPENAPI的文件下载功能。
-    @inlinable
-    public func queryReconciliationDocument(_ input: QueryReconciliationDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryReconciliationDocumentResponse > {
-        self.client.execute(action: "QueryReconciliationDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-查询对账文件信息
-    ///
-    /// 查询对账文件信息。平台调用该接口获取需下载对账文件的文件名称以及密钥。 平台获取到信息后， 可以再调用OPENAPI的文件下载功能。
-    @inlinable
-    public func queryReconciliationDocument(_ input: QueryReconciliationDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryReconciliationDocumentResponse {
-        try await self.client.execute(action: "QueryReconciliationDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryReconciliationDocument请求参数结构体
     public struct QueryReconciliationDocumentRequest: TCRequestModel {
         /// String(22)，商户号
@@ -48,7 +32,7 @@ extension Cpdp {
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
         
-        public init (mrchCode: String, fileType: String, fileDate: String, reservedMsg: String?, profile: String?) {
+        public init (mrchCode: String, fileType: String, fileDate: String, reservedMsg: String? = nil, profile: String? = nil) {
             self.mrchCode = mrchCode
             self.fileType = fileType
             self.fileDate = fileDate
@@ -100,5 +84,21 @@ extension Cpdp {
             case reservedMsg = "ReservedMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-查询对账文件信息
+    ///
+    /// 查询对账文件信息。平台调用该接口获取需下载对账文件的文件名称以及密钥。 平台获取到信息后， 可以再调用OPENAPI的文件下载功能。
+    @inlinable
+    public func queryReconciliationDocument(_ input: QueryReconciliationDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryReconciliationDocumentResponse > {
+        self.client.execute(action: "QueryReconciliationDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-查询对账文件信息
+    ///
+    /// 查询对账文件信息。平台调用该接口获取需下载对账文件的文件名称以及密钥。 平台获取到信息后， 可以再调用OPENAPI的文件下载功能。
+    @inlinable
+    public func queryReconciliationDocument(_ input: QueryReconciliationDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryReconciliationDocumentResponse {
+        try await self.client.execute(action: "QueryReconciliationDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

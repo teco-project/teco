@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cr {
-    /// 上传数据文件
-    ///
-    /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
-    @inlinable
-    public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFileResponse > {
-        self.client.execute(action: "UploadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上传数据文件
-    ///
-    /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
-    @inlinable
-    public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
-        try await self.client.execute(action: "UploadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadFile请求参数结构体
     public struct UploadFileRequest: TCRequestModel {
         /// 模块名
@@ -51,7 +35,7 @@ extension Cr {
         // FIXME: Codable support not implemented for date yet.
         public let fileDate: Date
         
-        public init (module: String, operation: String, fileUrl: String, fileName: String, fileDate: Date) {
+        public init (module: String = "Data", operation: String = "UploadFile", fileUrl: String, fileName: String, fileDate: Date) {
             self.module = module
             self.operation = operation
             self.fileUrl = fileUrl
@@ -80,5 +64,21 @@ extension Cr {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上传数据文件
+    ///
+    /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
+    @inlinable
+    public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFileResponse > {
+        self.client.execute(action: "UploadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上传数据文件
+    ///
+    /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
+    @inlinable
+    public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
+        try await self.client.execute(action: "UploadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

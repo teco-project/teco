@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 删除集群路由表
-    @inlinable
-    public func deleteClusterRouteTable(_ input: DeleteClusterRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterRouteTableResponse > {
-        self.client.execute(action: "DeleteClusterRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除集群路由表
-    @inlinable
-    public func deleteClusterRouteTable(_ input: DeleteClusterRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterRouteTableResponse {
-        try await self.client.execute(action: "DeleteClusterRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteClusterRouteTable请求参数结构体
     public struct DeleteClusterRouteTableRequest: TCRequestModel {
         /// 路由表名称
@@ -49,5 +37,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除集群路由表
+    @inlinable
+    public func deleteClusterRouteTable(_ input: DeleteClusterRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterRouteTableResponse > {
+        self.client.execute(action: "DeleteClusterRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除集群路由表
+    @inlinable
+    public func deleteClusterRouteTable(_ input: DeleteClusterRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterRouteTableResponse {
+        try await self.client.execute(action: "DeleteClusterRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

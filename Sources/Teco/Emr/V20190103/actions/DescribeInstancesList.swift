@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 查询集群列表
-    @inlinable
-    public func describeInstancesList(_ input: DescribeInstancesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesListResponse > {
-        self.client.execute(action: "DescribeInstancesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群列表
-    @inlinable
-    public func describeInstancesList(_ input: DescribeInstancesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesListResponse {
-        try await self.client.execute(action: "DescribeInstancesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstancesList请求参数结构体
     public struct DescribeInstancesListRequest: TCRequestModel {
         /// 集群筛选策略。取值范围：<li>clusterList：表示查询除了已销毁集群之外的集群列表。</li><li>monitorManage：表示查询除了已销毁、创建中以及创建失败的集群之外的集群列表。</li><li>cloudHardwareManage/componentManage：目前这两个取值为预留取值，暂时和monitorManage表示同样的含义。</li>
@@ -47,7 +35,7 @@ extension Emr {
         /// 自定义查询
         public let filters: [Filters]?
         
-        public init (displayStrategy: String, offset: UInt64?, limit: UInt64?, orderField: String?, asc: Int64?, filters: [Filters]?) {
+        public init (displayStrategy: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, asc: Int64? = nil, filters: [Filters]? = nil) {
             self.displayStrategy = displayStrategy
             self.offset = offset
             self.limit = limit
@@ -82,5 +70,17 @@ extension Emr {
             case instancesList = "InstancesList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群列表
+    @inlinable
+    public func describeInstancesList(_ input: DescribeInstancesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesListResponse > {
+        self.client.execute(action: "DescribeInstancesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群列表
+    @inlinable
+    public func describeInstancesList(_ input: DescribeInstancesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesListResponse {
+        try await self.client.execute(action: "DescribeInstancesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

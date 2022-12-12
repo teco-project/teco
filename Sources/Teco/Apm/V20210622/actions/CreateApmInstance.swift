@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apm {
-    /// 创建Apm实例
-    ///
-    /// 业务购买APM实例，调用该接口创建
-    @inlinable
-    public func createApmInstance(_ input: CreateApmInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApmInstanceResponse > {
-        self.client.execute(action: "CreateApmInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建Apm实例
-    ///
-    /// 业务购买APM实例，调用该接口创建
-    @inlinable
-    public func createApmInstance(_ input: CreateApmInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApmInstanceResponse {
-        try await self.client.execute(action: "CreateApmInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateApmInstance请求参数结构体
     public struct CreateApmInstanceRequest: TCRequestModel {
         /// 实例名
@@ -48,7 +32,7 @@ extension Apm {
         /// 实例上报额度值
         public let spanDailyCounters: UInt64?
         
-        public init (name: String, description: String?, traceDuration: Int64?, tags: [ApmTag]?, spanDailyCounters: UInt64?) {
+        public init (name: String, description: String? = nil, traceDuration: Int64? = nil, tags: [ApmTag]? = nil, spanDailyCounters: UInt64? = nil) {
             self.name = name
             self.description = description
             self.traceDuration = traceDuration
@@ -78,5 +62,21 @@ extension Apm {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建Apm实例
+    ///
+    /// 业务购买APM实例，调用该接口创建
+    @inlinable
+    public func createApmInstance(_ input: CreateApmInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApmInstanceResponse > {
+        self.client.execute(action: "CreateApmInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建Apm实例
+    ///
+    /// 业务购买APM实例，调用该接口创建
+    @inlinable
+    public func createApmInstance(_ input: CreateApmInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApmInstanceResponse {
+        try await self.client.execute(action: "CreateApmInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

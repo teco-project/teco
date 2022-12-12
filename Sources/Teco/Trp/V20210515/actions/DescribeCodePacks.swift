@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 查询码包列表
-    @inlinable
-    public func describeCodePacks(_ input: DescribeCodePacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodePacksResponse > {
-        self.client.execute(action: "DescribeCodePacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询码包列表
-    @inlinable
-    public func describeCodePacks(_ input: DescribeCodePacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodePacksResponse {
-        try await self.client.execute(action: "DescribeCodePacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCodePacks请求参数结构体
     public struct DescribeCodePacksRequest: TCRequestModel {
         /// 每页数量
@@ -41,7 +29,7 @@ extension Trp {
         /// 企业ID
         public let corpId: UInt64?
         
-        public init (pageSize: UInt64?, pageNumber: UInt64?, keyword: String?, corpId: UInt64?) {
+        public init (pageSize: UInt64? = nil, pageNumber: UInt64? = nil, keyword: String? = nil, corpId: UInt64? = nil) {
             self.pageSize = pageSize
             self.pageNumber = pageNumber
             self.keyword = keyword
@@ -74,5 +62,17 @@ extension Trp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询码包列表
+    @inlinable
+    public func describeCodePacks(_ input: DescribeCodePacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodePacksResponse > {
+        self.client.execute(action: "DescribeCodePacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询码包列表
+    @inlinable
+    public func describeCodePacks(_ input: DescribeCodePacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodePacksResponse {
+        try await self.client.execute(action: "DescribeCodePacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

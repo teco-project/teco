@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询任务实例列表
-    @inlinable
-    public func describeTaskInstances(_ input: DescribeTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInstancesResponse > {
-        self.client.execute(action: "DescribeTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询任务实例列表
-    @inlinable
-    public func describeTaskInstances(_ input: DescribeTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstancesResponse {
-        try await self.client.execute(action: "DescribeTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskInstances请求参数结构体
     public struct DescribeTaskInstancesRequest: TCRequestModel {
         /// 项目id
@@ -74,7 +62,7 @@ extension Wedata {
         /// 排序字段信息列表，ScheduleDateTime / CostTime / StartTime / EndTime
         public let orderFields: [OrderField]?
         
-        public init (projectId: String, pageNumber: Int64?, pageSize: Int64?, workflowIdList: [String]?, workflowNameList: [String]?, dateFrom: String?, dateTo: String?, taskIdList: [String]?, taskNameList: [String]?, inChargeList: [String]?, taskTypeIdList: [Int64]?, stateList: [String]?, taskCycleUnitList: [String]?, instanceType: Int64?, orderFields: [OrderField]?) {
+        public init (projectId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, workflowIdList: [String]? = nil, workflowNameList: [String]? = nil, dateFrom: String? = nil, dateTo: String? = nil, taskIdList: [String]? = nil, taskNameList: [String]? = nil, inChargeList: [String]? = nil, taskTypeIdList: [Int64]? = nil, stateList: [String]? = nil, taskCycleUnitList: [String]? = nil, instanceType: Int64? = nil, orderFields: [OrderField]? = nil) {
             self.projectId = projectId
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -123,5 +111,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询任务实例列表
+    @inlinable
+    public func describeTaskInstances(_ input: DescribeTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInstancesResponse > {
+        self.client.execute(action: "DescribeTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务实例列表
+    @inlinable
+    public func describeTaskInstances(_ input: DescribeTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstancesResponse {
+        try await self.client.execute(action: "DescribeTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

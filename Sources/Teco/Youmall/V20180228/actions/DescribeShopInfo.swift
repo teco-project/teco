@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 获取客户所属门店列表
-    ///
-    /// 根据客户身份标识获取客户下所有的门店信息列表
-    @inlinable
-    public func describeShopInfo(_ input: DescribeShopInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShopInfoResponse > {
-        self.client.execute(action: "DescribeShopInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取客户所属门店列表
-    ///
-    /// 根据客户身份标识获取客户下所有的门店信息列表
-    @inlinable
-    public func describeShopInfo(_ input: DescribeShopInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopInfoResponse {
-        try await self.client.execute(action: "DescribeShopInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeShopInfo请求参数结构体
     public struct DescribeShopInfoRequest: TCRequestModel {
         /// 偏移量：分页控制参数，第一页传0，第n页Offset=(n-1)*Limit
@@ -66,5 +50,21 @@ extension Youmall {
             case shopInfoSet = "ShopInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取客户所属门店列表
+    ///
+    /// 根据客户身份标识获取客户下所有的门店信息列表
+    @inlinable
+    public func describeShopInfo(_ input: DescribeShopInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShopInfoResponse > {
+        self.client.execute(action: "DescribeShopInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取客户所属门店列表
+    ///
+    /// 根据客户身份标识获取客户下所有的门店信息列表
+    @inlinable
+    public func describeShopInfo(_ input: DescribeShopInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopInfoResponse {
+        try await self.client.execute(action: "DescribeShopInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

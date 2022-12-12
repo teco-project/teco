@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 配置同步任务
-    ///
-    /// 配置一个同步任务
-    @inlinable
-    public func configureSyncJob(_ input: ConfigureSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ConfigureSyncJobResponse > {
-        self.client.execute(action: "ConfigureSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 配置同步任务
-    ///
-    /// 配置一个同步任务
-    @inlinable
-    public func configureSyncJob(_ input: ConfigureSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureSyncJobResponse {
-        try await self.client.execute(action: "ConfigureSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ConfigureSyncJob请求参数结构体
     public struct ConfigureSyncJobRequest: TCRequestModel {
         /// 同步实例id（即标识一个同步作业），形如sync-werwfs23
@@ -63,7 +47,7 @@ extension Dts {
         /// 期待启动时间，当RunMode取值为Timed时，此值必填，形如："2006-01-02 15:04:05"
         public let expectRunTime: String?
         
-        public init (jobId: String, srcAccessType: String, srcInfo: Endpoint, dstAccessType: String, dstInfo: Endpoint, options: Options, objects: Objects, jobName: String?, runMode: String?, expectRunTime: String?) {
+        public init (jobId: String, srcAccessType: String, srcInfo: Endpoint, dstAccessType: String, dstInfo: Endpoint, options: Options, objects: Objects, jobName: String? = nil, runMode: String? = nil, expectRunTime: String? = nil) {
             self.jobId = jobId
             self.srcAccessType = srcAccessType
             self.srcInfo = srcInfo
@@ -98,5 +82,21 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 配置同步任务
+    ///
+    /// 配置一个同步任务
+    @inlinable
+    public func configureSyncJob(_ input: ConfigureSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ConfigureSyncJobResponse > {
+        self.client.execute(action: "ConfigureSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 配置同步任务
+    ///
+    /// 配置一个同步任务
+    @inlinable
+    public func configureSyncJob(_ input: ConfigureSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureSyncJobResponse {
+        try await self.client.execute(action: "ConfigureSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

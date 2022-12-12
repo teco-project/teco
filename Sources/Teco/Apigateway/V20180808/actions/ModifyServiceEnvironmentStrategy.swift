@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 修改服务限流策略
-    ///
-    /// 本接口（ModifyServiceEnvironmentStrategy）用于修改服务限流策略
-    @inlinable
-    public func modifyServiceEnvironmentStrategy(_ input: ModifyServiceEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyServiceEnvironmentStrategyResponse > {
-        self.client.execute(action: "ModifyServiceEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改服务限流策略
-    ///
-    /// 本接口（ModifyServiceEnvironmentStrategy）用于修改服务限流策略
-    @inlinable
-    public func modifyServiceEnvironmentStrategy(_ input: ModifyServiceEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceEnvironmentStrategyResponse {
-        try await self.client.execute(action: "ModifyServiceEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyServiceEnvironmentStrategy请求参数结构体
     public struct ModifyServiceEnvironmentStrategyRequest: TCRequestModel {
         /// 服务的唯一ID。
@@ -68,5 +52,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改服务限流策略
+    ///
+    /// 本接口（ModifyServiceEnvironmentStrategy）用于修改服务限流策略
+    @inlinable
+    public func modifyServiceEnvironmentStrategy(_ input: ModifyServiceEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyServiceEnvironmentStrategyResponse > {
+        self.client.execute(action: "ModifyServiceEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改服务限流策略
+    ///
+    /// 本接口（ModifyServiceEnvironmentStrategy）用于修改服务限流策略
+    @inlinable
+    public func modifyServiceEnvironmentStrategy(_ input: ModifyServiceEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceEnvironmentStrategyResponse {
+        try await self.client.execute(action: "ModifyServiceEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

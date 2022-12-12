@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 统计漏洞扫描页已授权和未扫描镜像数
-    @inlinable
-    public func describeVulScanAuthorizedImageSummary(_ input: DescribeVulScanAuthorizedImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulScanAuthorizedImageSummaryResponse > {
-        self.client.execute(action: "DescribeVulScanAuthorizedImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 统计漏洞扫描页已授权和未扫描镜像数
-    @inlinable
-    public func describeVulScanAuthorizedImageSummary(_ input: DescribeVulScanAuthorizedImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanAuthorizedImageSummaryResponse {
-        try await self.client.execute(action: "DescribeVulScanAuthorizedImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulScanAuthorizedImageSummary请求参数结构体
     public struct DescribeVulScanAuthorizedImageSummaryRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Tcss {
             case unScanAuthorizedImageCount = "UnScanAuthorizedImageCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 统计漏洞扫描页已授权和未扫描镜像数
+    @inlinable
+    public func describeVulScanAuthorizedImageSummary(_ input: DescribeVulScanAuthorizedImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulScanAuthorizedImageSummaryResponse > {
+        self.client.execute(action: "DescribeVulScanAuthorizedImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 统计漏洞扫描页已授权和未扫描镜像数
+    @inlinable
+    public func describeVulScanAuthorizedImageSummary(_ input: DescribeVulScanAuthorizedImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanAuthorizedImageSummaryResponse {
+        try await self.client.execute(action: "DescribeVulScanAuthorizedImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

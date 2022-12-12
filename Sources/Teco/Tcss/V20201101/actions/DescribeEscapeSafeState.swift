@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询容器逃逸安全状态
-    ///
-    /// DescribeEscapeSafeState 查询容器逃逸安全状态
-    @inlinable
-    public func describeEscapeSafeState(_ input: DescribeEscapeSafeStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeSafeStateResponse > {
-        self.client.execute(action: "DescribeEscapeSafeState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器逃逸安全状态
-    ///
-    /// DescribeEscapeSafeState 查询容器逃逸安全状态
-    @inlinable
-    public func describeEscapeSafeState(_ input: DescribeEscapeSafeStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeSafeStateResponse {
-        try await self.client.execute(action: "DescribeEscapeSafeState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEscapeSafeState请求参数结构体
     public struct DescribeEscapeSafeStateRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Tcss {
             case isSafe = "IsSafe"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器逃逸安全状态
+    ///
+    /// DescribeEscapeSafeState 查询容器逃逸安全状态
+    @inlinable
+    public func describeEscapeSafeState(_ input: DescribeEscapeSafeStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeSafeStateResponse > {
+        self.client.execute(action: "DescribeEscapeSafeState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器逃逸安全状态
+    ///
+    /// DescribeEscapeSafeState 查询容器逃逸安全状态
+    @inlinable
+    public func describeEscapeSafeState(_ input: DescribeEscapeSafeStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeSafeStateResponse {
+        try await self.client.execute(action: "DescribeEscapeSafeState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

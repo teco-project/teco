@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 绑定弹性公网IP ACL
-    ///
-    /// 此接口用于为某个 EIP 关联 ACL。
-    @inlinable
-    public func bindEipAcls(_ input: BindEipAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindEipAclsResponse > {
-        self.client.execute(action: "BindEipAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定弹性公网IP ACL
-    ///
-    /// 此接口用于为某个 EIP 关联 ACL。
-    @inlinable
-    public func bindEipAcls(_ input: BindEipAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEipAclsResponse {
-        try await self.client.execute(action: "BindEipAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindEipAcls请求参数结构体
     public struct BindEipAclsRequest: TCRequestModel {
         /// 待关联的 EIP 与 ACL关系列表
@@ -53,5 +37,21 @@ extension Bmeip {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定弹性公网IP ACL
+    ///
+    /// 此接口用于为某个 EIP 关联 ACL。
+    @inlinable
+    public func bindEipAcls(_ input: BindEipAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindEipAclsResponse > {
+        self.client.execute(action: "BindEipAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定弹性公网IP ACL
+    ///
+    /// 此接口用于为某个 EIP 关联 ACL。
+    @inlinable
+    public func bindEipAcls(_ input: BindEipAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEipAclsResponse {
+        try await self.client.execute(action: "BindEipAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

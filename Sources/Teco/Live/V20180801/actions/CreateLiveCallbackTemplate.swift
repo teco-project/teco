@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 创建回调模板
-    ///
-    /// 创建回调模板，成功返回模板id后，需要调用[CreateLiveCallbackRule](/document/product/267/32638)接口将模板 ID 绑定到域名/路径使用。
-    /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
-    /// 注意：至少填写一个回调 URL。
-    @inlinable
-    public func createLiveCallbackTemplate(_ input: CreateLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveCallbackTemplateResponse > {
-        self.client.execute(action: "CreateLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建回调模板
-    ///
-    /// 创建回调模板，成功返回模板id后，需要调用[CreateLiveCallbackRule](/document/product/267/32638)接口将模板 ID 绑定到域名/路径使用。
-    /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
-    /// 注意：至少填写一个回调 URL。
-    @inlinable
-    public func createLiveCallbackTemplate(_ input: CreateLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveCallbackTemplateResponse {
-        try await self.client.execute(action: "CreateLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLiveCallbackTemplate请求参数结构体
     public struct CreateLiveCallbackTemplateRequest: TCRequestModel {
         /// 模板名称。
@@ -74,7 +54,7 @@ extension Live {
         /// 参数已弃用。
         public let streamMixNotifyUrl: String?
         
-        public init (templateName: String, description: String?, streamBeginNotifyUrl: String?, streamEndNotifyUrl: String?, recordNotifyUrl: String?, snapshotNotifyUrl: String?, pornCensorshipNotifyUrl: String?, callbackKey: String?, streamMixNotifyUrl: String?) {
+        public init (templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil) {
             self.templateName = templateName
             self.description = description
             self.streamBeginNotifyUrl = streamBeginNotifyUrl
@@ -111,5 +91,25 @@ extension Live {
             case templateId = "TemplateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建回调模板
+    ///
+    /// 创建回调模板，成功返回模板id后，需要调用[CreateLiveCallbackRule](/document/product/267/32638)接口将模板 ID 绑定到域名/路径使用。
+    /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
+    /// 注意：至少填写一个回调 URL。
+    @inlinable
+    public func createLiveCallbackTemplate(_ input: CreateLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveCallbackTemplateResponse > {
+        self.client.execute(action: "CreateLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建回调模板
+    ///
+    /// 创建回调模板，成功返回模板id后，需要调用[CreateLiveCallbackRule](/document/product/267/32638)接口将模板 ID 绑定到域名/路径使用。
+    /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
+    /// 注意：至少填写一个回调 URL。
+    @inlinable
+    public func createLiveCallbackTemplate(_ input: CreateLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveCallbackTemplateResponse {
+        try await self.client.execute(action: "CreateLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 修改场景
-    @inlinable
-    public func modifyScene(_ input: ModifySceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySceneResponse > {
-        self.client.execute(action: "ModifyScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改场景
-    @inlinable
-    public func modifyScene(_ input: ModifySceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySceneResponse {
-        try await self.client.execute(action: "ModifyScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyScene请求参数结构体
     public struct ModifySceneRequest: TCRequestModel {
         /// 场景ID
@@ -41,7 +29,7 @@ extension Iotvideoindustry {
         /// 录制时长(秒)
         public let recordDuration: Int64?
         
-        public init (intId: Int64, sceneName: String?, sceneTrigger: String?, recordDuration: Int64?) {
+        public init (intId: Int64, sceneName: String? = nil, sceneTrigger: String? = nil, recordDuration: Int64? = nil) {
             self.intId = intId
             self.sceneName = sceneName
             self.sceneTrigger = sceneTrigger
@@ -64,5 +52,17 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改场景
+    @inlinable
+    public func modifyScene(_ input: ModifySceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySceneResponse > {
+        self.client.execute(action: "ModifyScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改场景
+    @inlinable
+    public func modifyScene(_ input: ModifySceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySceneResponse {
+        try await self.client.execute(action: "ModifyScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

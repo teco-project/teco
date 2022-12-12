@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 修改期望实例数
-    ///
-    /// 本接口（ModifyDesiredCapacity）用于修改指定伸缩组的期望实例数
-    @inlinable
-    public func modifyDesiredCapacity(_ input: ModifyDesiredCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDesiredCapacityResponse > {
-        self.client.execute(action: "ModifyDesiredCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改期望实例数
-    ///
-    /// 本接口（ModifyDesiredCapacity）用于修改指定伸缩组的期望实例数
-    @inlinable
-    public func modifyDesiredCapacity(_ input: ModifyDesiredCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDesiredCapacityResponse {
-        try await self.client.execute(action: "ModifyDesiredCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDesiredCapacity请求参数结构体
     public struct ModifyDesiredCapacityRequest: TCRequestModel {
         /// 伸缩组ID
@@ -45,7 +29,7 @@ extension As {
         /// 最大实例数，取值范围为0-2000。
         public let maxSize: UInt64?
         
-        public init (autoScalingGroupId: String, desiredCapacity: UInt64, minSize: UInt64?, maxSize: UInt64?) {
+        public init (autoScalingGroupId: String, desiredCapacity: UInt64, minSize: UInt64? = nil, maxSize: UInt64? = nil) {
             self.autoScalingGroupId = autoScalingGroupId
             self.desiredCapacity = desiredCapacity
             self.minSize = minSize
@@ -68,5 +52,21 @@ extension As {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改期望实例数
+    ///
+    /// 本接口（ModifyDesiredCapacity）用于修改指定伸缩组的期望实例数
+    @inlinable
+    public func modifyDesiredCapacity(_ input: ModifyDesiredCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDesiredCapacityResponse > {
+        self.client.execute(action: "ModifyDesiredCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改期望实例数
+    ///
+    /// 本接口（ModifyDesiredCapacity）用于修改指定伸缩组的期望实例数
+    @inlinable
+    public func modifyDesiredCapacity(_ input: ModifyDesiredCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDesiredCapacityResponse {
+        try await self.client.execute(action: "ModifyDesiredCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

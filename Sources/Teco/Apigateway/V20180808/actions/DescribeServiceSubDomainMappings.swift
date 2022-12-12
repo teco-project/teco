@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询自定义域名的路径映射
-    ///
-    /// 本接口（DescribeServiceSubDomainMappings）用于查询自定义域名的路径映射。
-    /// API 网关可绑定自定义域名到服务，并且可以对自定义域名的路径进行映射，可自定义不同的路径映射到服务中的三个环境，本接口用于查询绑定服务的自定义域名的路径映射列表。
-    @inlinable
-    public func describeServiceSubDomainMappings(_ input: DescribeServiceSubDomainMappingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceSubDomainMappingsResponse > {
-        self.client.execute(action: "DescribeServiceSubDomainMappings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询自定义域名的路径映射
-    ///
-    /// 本接口（DescribeServiceSubDomainMappings）用于查询自定义域名的路径映射。
-    /// API 网关可绑定自定义域名到服务，并且可以对自定义域名的路径进行映射，可自定义不同的路径映射到服务中的三个环境，本接口用于查询绑定服务的自定义域名的路径映射列表。
-    @inlinable
-    public func describeServiceSubDomainMappings(_ input: DescribeServiceSubDomainMappingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceSubDomainMappingsResponse {
-        try await self.client.execute(action: "DescribeServiceSubDomainMappings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeServiceSubDomainMappings请求参数结构体
     public struct DescribeServiceSubDomainMappingsRequest: TCRequestModel {
         /// 服务唯一 ID。
@@ -64,5 +46,23 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询自定义域名的路径映射
+    ///
+    /// 本接口（DescribeServiceSubDomainMappings）用于查询自定义域名的路径映射。
+    /// API 网关可绑定自定义域名到服务，并且可以对自定义域名的路径进行映射，可自定义不同的路径映射到服务中的三个环境，本接口用于查询绑定服务的自定义域名的路径映射列表。
+    @inlinable
+    public func describeServiceSubDomainMappings(_ input: DescribeServiceSubDomainMappingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceSubDomainMappingsResponse > {
+        self.client.execute(action: "DescribeServiceSubDomainMappings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询自定义域名的路径映射
+    ///
+    /// 本接口（DescribeServiceSubDomainMappings）用于查询自定义域名的路径映射。
+    /// API 网关可绑定自定义域名到服务，并且可以对自定义域名的路径进行映射，可自定义不同的路径映射到服务中的三个环境，本接口用于查询绑定服务的自定义域名的路径映射列表。
+    @inlinable
+    public func describeServiceSubDomainMappings(_ input: DescribeServiceSubDomainMappingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceSubDomainMappingsResponse {
+        try await self.client.execute(action: "DescribeServiceSubDomainMappings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 保存并部署管道
-    ///
-    /// 用于下发并且部署管道
-    @inlinable
-    public func saveAndDeployLogstashPipeline(_ input: SaveAndDeployLogstashPipelineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SaveAndDeployLogstashPipelineResponse > {
-        self.client.execute(action: "SaveAndDeployLogstashPipeline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 保存并部署管道
-    ///
-    /// 用于下发并且部署管道
-    @inlinable
-    public func saveAndDeployLogstashPipeline(_ input: SaveAndDeployLogstashPipelineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveAndDeployLogstashPipelineResponse {
-        try await self.client.execute(action: "SaveAndDeployLogstashPipeline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SaveAndDeployLogstashPipeline请求参数结构体
     public struct SaveAndDeployLogstashPipelineRequest: TCRequestModel {
         /// 实例ID
@@ -42,7 +26,7 @@ extension Es {
         /// 操作类型<li>1：只保存</li><li>2：保存并部署</li>
         public let opType: UInt64?
         
-        public init (instanceId: String, pipeline: LogstashPipeline, opType: UInt64?) {
+        public init (instanceId: String, pipeline: LogstashPipeline, opType: UInt64? = nil) {
             self.instanceId = instanceId
             self.pipeline = pipeline
             self.opType = opType
@@ -63,5 +47,21 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 保存并部署管道
+    ///
+    /// 用于下发并且部署管道
+    @inlinable
+    public func saveAndDeployLogstashPipeline(_ input: SaveAndDeployLogstashPipelineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SaveAndDeployLogstashPipelineResponse > {
+        self.client.execute(action: "SaveAndDeployLogstashPipeline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 保存并部署管道
+    ///
+    /// 用于下发并且部署管道
+    @inlinable
+    public func saveAndDeployLogstashPipeline(_ input: SaveAndDeployLogstashPipelineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveAndDeployLogstashPipelineResponse {
+        try await self.client.execute(action: "SaveAndDeployLogstashPipeline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

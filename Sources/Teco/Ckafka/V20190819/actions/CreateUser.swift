@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 添加用户
-    @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
-        self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加用户
-    @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
-        try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUser请求参数结构体
     public struct CreateUserRequest: TCRequestModel {
         /// 实例Id
@@ -63,5 +51,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加用户
+    @inlinable
+    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
+        self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加用户
+    @inlinable
+    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
+        try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

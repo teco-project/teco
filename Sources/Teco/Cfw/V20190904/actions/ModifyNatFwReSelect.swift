@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 防火墙实例重新选择vpc或nat
-    @inlinable
-    public func modifyNatFwReSelect(_ input: ModifyNatFwReSelectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNatFwReSelectResponse > {
-        self.client.execute(action: "ModifyNatFwReSelect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 防火墙实例重新选择vpc或nat
-    @inlinable
-    public func modifyNatFwReSelect(_ input: ModifyNatFwReSelectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatFwReSelectResponse {
-        try await self.client.execute(action: "ModifyNatFwReSelect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNatFwReSelect请求参数结构体
     public struct ModifyNatFwReSelectRequest: TCRequestModel {
         /// 模式 1：接入模式；0：新增模式
@@ -41,7 +29,7 @@ extension Cfw {
         /// 新增模式重新接入的vpc列表，其中NatGwList和NatgwList只能传递一个。
         public let vpcList: [String]?
         
-        public init (mode: Int64, cfwInstance: String, natGwList: [String]?, vpcList: [String]?) {
+        public init (mode: Int64, cfwInstance: String, natGwList: [String]? = nil, vpcList: [String]? = nil) {
             self.mode = mode
             self.cfwInstance = cfwInstance
             self.natGwList = natGwList
@@ -64,5 +52,17 @@ extension Cfw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 防火墙实例重新选择vpc或nat
+    @inlinable
+    public func modifyNatFwReSelect(_ input: ModifyNatFwReSelectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNatFwReSelectResponse > {
+        self.client.execute(action: "ModifyNatFwReSelect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 防火墙实例重新选择vpc或nat
+    @inlinable
+    public func modifyNatFwReSelect(_ input: ModifyNatFwReSelectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatFwReSelectResponse {
+        try await self.client.execute(action: "ModifyNatFwReSelect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

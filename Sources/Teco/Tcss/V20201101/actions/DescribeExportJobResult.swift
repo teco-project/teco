@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询导出任务的结果
-    @inlinable
-    public func describeExportJobResult(_ input: DescribeExportJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExportJobResultResponse > {
-        self.client.execute(action: "DescribeExportJobResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询导出任务的结果
-    @inlinable
-    public func describeExportJobResult(_ input: DescribeExportJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobResultResponse {
-        try await self.client.execute(action: "DescribeExportJobResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExportJobResult请求参数结构体
     public struct DescribeExportJobResultRequest: TCRequestModel {
         /// CreateExportComplianceStatusListJob返回的JobId字段的值
@@ -68,5 +56,17 @@ extension Tcss {
             case failureMsg = "FailureMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询导出任务的结果
+    @inlinable
+    public func describeExportJobResult(_ input: DescribeExportJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExportJobResultResponse > {
+        self.client.execute(action: "DescribeExportJobResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询导出任务的结果
+    @inlinable
+    public func describeExportJobResult(_ input: DescribeExportJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobResultResponse {
+        try await self.client.execute(action: "DescribeExportJobResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

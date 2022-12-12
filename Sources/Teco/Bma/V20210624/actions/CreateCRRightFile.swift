@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 权属文件添加
-    @inlinable
-    public func createCRRightFile(_ input: CreateCRRightFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRRightFileResponse > {
-        self.client.execute(action: "CreateCRRightFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 权属文件添加
-    @inlinable
-    public func createCRRightFile(_ input: CreateCRRightFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRRightFileResponse {
-        try await self.client.execute(action: "CreateCRRightFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCRRightFile请求参数结构体
     public struct CreateCRRightFileRequest: TCRequestModel {
         /// 作品ID
@@ -58,5 +46,17 @@ extension Bma {
             case fileIds = "FileIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 权属文件添加
+    @inlinable
+    public func createCRRightFile(_ input: CreateCRRightFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRRightFileResponse > {
+        self.client.execute(action: "CreateCRRightFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 权属文件添加
+    @inlinable
+    public func createCRRightFile(_ input: CreateCRRightFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRRightFileResponse {
+        try await self.client.execute(action: "CreateCRRightFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

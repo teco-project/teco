@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tcaplusdb {
-    /// 表格数据回档
-    @inlinable
-    public func rollbackTables(_ input: RollbackTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollbackTablesResponse > {
-        self.client.execute(action: "RollbackTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 表格数据回档
-    @inlinable
-    public func rollbackTables(_ input: RollbackTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackTablesResponse {
-        try await self.client.execute(action: "RollbackTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RollbackTables请求参数结构体
     public struct RollbackTablesRequest: TCRequestModel {
         /// 待回档表格所在集群ID
@@ -44,7 +32,7 @@ extension Tcaplusdb {
         /// 回档模式，支持：`KEYS`
         public let mode: String?
         
-        public init (clusterId: String, selectedTables: [SelectedTableInfoNew], rollbackTime: Date, mode: String?) {
+        public init (clusterId: String, selectedTables: [SelectedTableInfoNew], rollbackTime: Date, mode: String? = nil) {
             self.clusterId = clusterId
             self.selectedTables = selectedTables
             self.rollbackTime = rollbackTime
@@ -75,5 +63,17 @@ extension Tcaplusdb {
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 表格数据回档
+    @inlinable
+    public func rollbackTables(_ input: RollbackTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RollbackTablesResponse > {
+        self.client.execute(action: "RollbackTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 表格数据回档
+    @inlinable
+    public func rollbackTables(_ input: RollbackTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackTablesResponse {
+        try await self.client.execute(action: "RollbackTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

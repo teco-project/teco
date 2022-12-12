@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ds {
-    /// 下载合同
-    ///
-    /// 下载合同接口。调用该接口可以下载签署中和签署完成的合同。接口返回任务号，可调用DescribeTaskStatus接口查看任务执行结果。
-    @inlinable
-    public func downloadContract(_ input: DownloadContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadContractResponse > {
-        self.client.execute(action: "DownloadContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下载合同
-    ///
-    /// 下载合同接口。调用该接口可以下载签署中和签署完成的合同。接口返回任务号，可调用DescribeTaskStatus接口查看任务执行结果。
-    @inlinable
-    public func downloadContract(_ input: DownloadContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadContractResponse {
-        try await self.client.execute(action: "DownloadContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DownloadContract请求参数结构体
     public struct DownloadContractRequest: TCRequestModel {
         /// 模块名ContractMng
@@ -67,5 +51,21 @@ extension Ds {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下载合同
+    ///
+    /// 下载合同接口。调用该接口可以下载签署中和签署完成的合同。接口返回任务号，可调用DescribeTaskStatus接口查看任务执行结果。
+    @inlinable
+    public func downloadContract(_ input: DownloadContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadContractResponse > {
+        self.client.execute(action: "DownloadContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下载合同
+    ///
+    /// 下载合同接口。调用该接口可以下载签署中和签署完成的合同。接口返回任务号，可调用DescribeTaskStatus接口查看任务执行结果。
+    @inlinable
+    public func downloadContract(_ input: DownloadContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadContractResponse {
+        try await self.client.execute(action: "DownloadContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

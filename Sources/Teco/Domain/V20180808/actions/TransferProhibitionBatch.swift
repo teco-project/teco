@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 批量禁止转移锁
-    ///
-    /// 本接口 ( TransferProhibitionBatch ) 用于批量禁止域名转移 。
-    @inlinable
-    public func transferProhibitionBatch(_ input: TransferProhibitionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransferProhibitionBatchResponse > {
-        self.client.execute(action: "TransferProhibitionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量禁止转移锁
-    ///
-    /// 本接口 ( TransferProhibitionBatch ) 用于批量禁止域名转移 。
-    @inlinable
-    public func transferProhibitionBatch(_ input: TransferProhibitionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferProhibitionBatchResponse {
-        try await self.client.execute(action: "TransferProhibitionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TransferProhibitionBatch请求参数结构体
     public struct TransferProhibitionBatchRequest: TCRequestModel {
         /// 批量操作的域名。
@@ -64,5 +48,21 @@ extension Domain {
             case logId = "LogId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量禁止转移锁
+    ///
+    /// 本接口 ( TransferProhibitionBatch ) 用于批量禁止域名转移 。
+    @inlinable
+    public func transferProhibitionBatch(_ input: TransferProhibitionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransferProhibitionBatchResponse > {
+        self.client.execute(action: "TransferProhibitionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量禁止转移锁
+    ///
+    /// 本接口 ( TransferProhibitionBatch ) 用于批量禁止域名转移 。
+    @inlinable
+    public func transferProhibitionBatch(_ input: TransferProhibitionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferProhibitionBatchResponse {
+        try await self.client.execute(action: "TransferProhibitionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

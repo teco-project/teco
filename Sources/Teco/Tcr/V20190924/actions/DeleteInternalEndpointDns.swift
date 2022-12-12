@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 删除私有域名解析
-    ///
-    /// 删除tcr内网私有域名解析
-    @inlinable
-    public func deleteInternalEndpointDns(_ input: DeleteInternalEndpointDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInternalEndpointDnsResponse > {
-        self.client.execute(action: "DeleteInternalEndpointDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除私有域名解析
-    ///
-    /// 删除tcr内网私有域名解析
-    @inlinable
-    public func deleteInternalEndpointDns(_ input: DeleteInternalEndpointDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInternalEndpointDnsResponse {
-        try await self.client.execute(action: "DeleteInternalEndpointDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteInternalEndpointDns请求参数结构体
     public struct DeleteInternalEndpointDnsRequest: TCRequestModel {
         /// tcr实例id
@@ -49,7 +33,7 @@ extension Tcr {
         /// 解析地域，需要保证和vpc处于同一地域，如果不填则默认为主实例地域
         public let regionName: String?
         
-        public init (instanceId: String, vpcId: String, eniLBIp: String, usePublicDomain: Bool?, regionName: String?) {
+        public init (instanceId: String, vpcId: String, eniLBIp: String, usePublicDomain: Bool? = nil, regionName: String? = nil) {
             self.instanceId = instanceId
             self.vpcId = vpcId
             self.eniLBIp = eniLBIp
@@ -74,5 +58,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除私有域名解析
+    ///
+    /// 删除tcr内网私有域名解析
+    @inlinable
+    public func deleteInternalEndpointDns(_ input: DeleteInternalEndpointDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInternalEndpointDnsResponse > {
+        self.client.execute(action: "DeleteInternalEndpointDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除私有域名解析
+    ///
+    /// 删除tcr内网私有域名解析
+    @inlinable
+    public func deleteInternalEndpointDns(_ input: DeleteInternalEndpointDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInternalEndpointDnsResponse {
+        try await self.client.execute(action: "DeleteInternalEndpointDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

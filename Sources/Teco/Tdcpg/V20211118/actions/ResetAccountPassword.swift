@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdcpg {
-    /// 重置数据库账号密码
-    @inlinable
-    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAccountPasswordResponse > {
-        self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置数据库账号密码
-    @inlinable
-    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
-        try await self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetAccountPassword请求参数结构体
     public struct ResetAccountPasswordRequest: TCRequestModel {
         /// 集群ID
@@ -59,5 +47,17 @@ extension Tdcpg {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置数据库账号密码
+    @inlinable
+    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAccountPasswordResponse > {
+        self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置数据库账号密码
+    @inlinable
+    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
+        try await self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

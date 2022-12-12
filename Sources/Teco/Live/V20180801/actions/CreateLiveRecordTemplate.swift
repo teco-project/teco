@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 直播创建录制模板
-    ///
-    /// 创建录制模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveRecordRule](/document/product/267/32615)接口，将模板id绑定到流进行使用。
-    /// <br>录制相关文档：[直播录制](/document/product/267/32739)。
-    @inlinable
-    public func createLiveRecordTemplate(_ input: CreateLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveRecordTemplateResponse > {
-        self.client.execute(action: "CreateLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播创建录制模板
-    ///
-    /// 创建录制模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveRecordRule](/document/product/267/32615)接口，将模板id绑定到流进行使用。
-    /// <br>录制相关文档：[直播录制](/document/product/267/32739)。
-    @inlinable
-    public func createLiveRecordTemplate(_ input: CreateLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordTemplateResponse {
-        try await self.client.execute(action: "CreateLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLiveRecordTemplate请求参数结构体
     public struct CreateLiveRecordTemplateRequest: TCRequestModel {
         /// 模板名。仅支持中文、英文、数字、_、-。
@@ -42,16 +24,16 @@ extension Live {
         public let description: String?
         
         /// Flv录制参数，开启Flv录制时设置。
-        public let flvParam: RecordParam
+        public let flvParam: RecordParam?
         
         /// Hls录制参数，开启hls录制时设置。
-        public let hlsParam: RecordParam
+        public let hlsParam: RecordParam?
         
         /// Mp4录制参数，开启Mp4录制时设置。
-        public let mp4Param: RecordParam
+        public let mp4Param: RecordParam?
         
         /// Aac录制参数，开启Aac录制时设置。
-        public let aacParam: RecordParam
+        public let aacParam: RecordParam?
         
         /// 直播类型，默认 0。
         /// 0：普通直播，
@@ -59,18 +41,18 @@ extension Live {
         public let isDelayLive: Int64?
         
         /// HLS专属录制参数。
-        public let hlsSpecialParam: HlsSpecialParam
+        public let hlsSpecialParam: HlsSpecialParam?
         
         /// Mp3录制参数，开启Mp3录制时设置。
-        public let mp3Param: RecordParam
+        public let mp3Param: RecordParam?
         
         /// 是否去除水印，类型为慢直播时此参数无效。
         public let removeWatermark: Bool?
         
         /// FLV 录制特殊参数。
-        public let flvSpecialParam: FlvSpecialParam
+        public let flvSpecialParam: FlvSpecialParam?
         
-        public init (templateName: String, description: String?, flvParam: RecordParam, hlsParam: RecordParam, mp4Param: RecordParam, aacParam: RecordParam, isDelayLive: Int64?, hlsSpecialParam: HlsSpecialParam, mp3Param: RecordParam, removeWatermark: Bool?, flvSpecialParam: FlvSpecialParam) {
+        public init (templateName: String, description: String? = nil, flvParam: RecordParam? = nil, hlsParam: RecordParam? = nil, mp4Param: RecordParam? = nil, aacParam: RecordParam? = nil, isDelayLive: Int64? = nil, hlsSpecialParam: HlsSpecialParam? = nil, mp3Param: RecordParam? = nil, removeWatermark: Bool? = nil, flvSpecialParam: FlvSpecialParam? = nil) {
             self.templateName = templateName
             self.description = description
             self.flvParam = flvParam
@@ -111,5 +93,23 @@ extension Live {
             case templateId = "TemplateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播创建录制模板
+    ///
+    /// 创建录制模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveRecordRule](/document/product/267/32615)接口，将模板id绑定到流进行使用。
+    /// <br>录制相关文档：[直播录制](/document/product/267/32739)。
+    @inlinable
+    public func createLiveRecordTemplate(_ input: CreateLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveRecordTemplateResponse > {
+        self.client.execute(action: "CreateLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播创建录制模板
+    ///
+    /// 创建录制模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveRecordRule](/document/product/267/32615)接口，将模板id绑定到流进行使用。
+    /// <br>录制相关文档：[直播录制](/document/product/267/32739)。
+    @inlinable
+    public func createLiveRecordTemplate(_ input: CreateLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordTemplateResponse {
+        try await self.client.execute(action: "CreateLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

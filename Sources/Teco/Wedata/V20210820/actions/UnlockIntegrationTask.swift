@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 解锁集成任务
-    @inlinable
-    public func unlockIntegrationTask(_ input: UnlockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnlockIntegrationTaskResponse > {
-        self.client.execute(action: "UnlockIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解锁集成任务
-    @inlinable
-    public func unlockIntegrationTask(_ input: UnlockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockIntegrationTaskResponse {
-        try await self.client.execute(action: "UnlockIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnlockIntegrationTask请求参数结构体
     public struct UnlockIntegrationTaskRequest: TCRequestModel {
         /// 任务id
@@ -58,5 +46,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解锁集成任务
+    @inlinable
+    public func unlockIntegrationTask(_ input: UnlockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnlockIntegrationTaskResponse > {
+        self.client.execute(action: "UnlockIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解锁集成任务
+    @inlinable
+    public func unlockIntegrationTask(_ input: UnlockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockIntegrationTaskResponse {
+        try await self.client.execute(action: "UnlockIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

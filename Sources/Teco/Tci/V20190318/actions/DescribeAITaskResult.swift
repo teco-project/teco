@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 获取标准化接口任务结果
-    @inlinable
-    public func describeAITaskResult(_ input: DescribeAITaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAITaskResultResponse > {
-        self.client.execute(action: "DescribeAITaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取标准化接口任务结果
-    @inlinable
-    public func describeAITaskResult(_ input: DescribeAITaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAITaskResultResponse {
-        try await self.client.execute(action: "DescribeAITaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAITaskResult请求参数结构体
     public struct DescribeAITaskResultRequest: TCRequestModel {
         /// 任务唯一标识符。在URL方式时提交请求后会返回一个任务标识符，后续查询该url的结果时使用这个标识符进行查询。
@@ -38,7 +26,7 @@ extension Tci {
         /// 偏移量
         public let offset: Int64?
         
-        public init (taskId: Int64, limit: Int64?, offset: Int64?) {
+        public init (taskId: Int64, limit: Int64? = nil, offset: Int64? = nil) {
             self.taskId = taskId
             self.limit = limit
             self.offset = offset
@@ -79,5 +67,17 @@ extension Tci {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取标准化接口任务结果
+    @inlinable
+    public func describeAITaskResult(_ input: DescribeAITaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAITaskResultResponse > {
+        self.client.execute(action: "DescribeAITaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取标准化接口任务结果
+    @inlinable
+    public func describeAITaskResult(_ input: DescribeAITaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAITaskResultResponse {
+        try await self.client.execute(action: "DescribeAITaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

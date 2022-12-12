@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取用户信息
-    ///
-    /// 获取video消费版用户信息
-    @inlinable
-    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserResponse > {
-        self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户信息
-    ///
-    /// 获取video消费版用户信息
-    @inlinable
-    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
-        try await self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUser请求参数结构体
     public struct DescribeUserRequest: TCRequestModel {
         public init () {
@@ -45,5 +29,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户信息
+    ///
+    /// 获取video消费版用户信息
+    @inlinable
+    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserResponse > {
+        self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户信息
+    ///
+    /// 获取video消费版用户信息
+    @inlinable
+    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
+        try await self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

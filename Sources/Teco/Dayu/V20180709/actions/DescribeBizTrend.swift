@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// 获取业务流量曲线
-    @inlinable
-    public func describeBizTrend(_ input: DescribeBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBizTrendResponse > {
-        self.client.execute(action: "DescribeBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取业务流量曲线
-    @inlinable
-    public func describeBizTrend(_ input: DescribeBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizTrendResponse {
-        try await self.client.execute(action: "DescribeBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBizTrend请求参数结构体
     public struct DescribeBizTrendRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP）
@@ -60,7 +48,7 @@ extension Dayu {
         /// 统计纬度为qps时，可选特定域名查询
         public let domain: String?
         
-        public init (business: String, id: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, metricName: String, protoInfo: [ProtocolPort]?, domain: String?) {
+        public init (business: String, id: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, metricName: String, protoInfo: [ProtocolPort]? = nil, domain: String? = nil) {
             self.business = business
             self.id = id
             self.period = period
@@ -101,5 +89,17 @@ extension Dayu {
             case metricName = "MetricName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取业务流量曲线
+    @inlinable
+    public func describeBizTrend(_ input: DescribeBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBizTrendResponse > {
+        self.client.execute(action: "DescribeBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取业务流量曲线
+    @inlinable
+    public func describeBizTrend(_ input: DescribeBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizTrendResponse {
+        try await self.client.execute(action: "DescribeBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

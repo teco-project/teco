@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 批量删除生命周期规则
-    ///
-    /// 批量删除生命周期规则。
-    @inlinable
-    public func deleteLifeCycleRules(_ input: DeleteLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLifeCycleRulesResponse > {
-        self.client.execute(action: "DeleteLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量删除生命周期规则
-    ///
-    /// 批量删除生命周期规则。
-    @inlinable
-    public func deleteLifeCycleRules(_ input: DeleteLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLifeCycleRulesResponse {
-        try await self.client.execute(action: "DeleteLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLifeCycleRules请求参数结构体
     public struct DeleteLifeCycleRulesRequest: TCRequestModel {
         /// 多个生命周期规则ID，上限为10
@@ -53,5 +37,21 @@ extension Chdfs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量删除生命周期规则
+    ///
+    /// 批量删除生命周期规则。
+    @inlinable
+    public func deleteLifeCycleRules(_ input: DeleteLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLifeCycleRulesResponse > {
+        self.client.execute(action: "DeleteLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除生命周期规则
+    ///
+    /// 批量删除生命周期规则。
+    @inlinable
+    public func deleteLifeCycleRules(_ input: DeleteLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLifeCycleRulesResponse {
+        try await self.client.execute(action: "DeleteLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

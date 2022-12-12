@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询协议端口模板
-    ///
-    /// 本接口（DescribeServiceTemplates）用于查询协议端口模板
-    @inlinable
-    public func describeServiceTemplates(_ input: DescribeServiceTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceTemplatesResponse > {
-        self.client.execute(action: "DescribeServiceTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询协议端口模板
-    ///
-    /// 本接口（DescribeServiceTemplates）用于查询协议端口模板
-    @inlinable
-    public func describeServiceTemplates(_ input: DescribeServiceTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceTemplatesResponse {
-        try await self.client.execute(action: "DescribeServiceTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeServiceTemplates请求参数结构体
     public struct DescribeServiceTemplatesRequest: TCRequestModel {
         /// 过滤条件。
@@ -45,7 +29,7 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。
         public let limit: String?
         
-        public init (filters: [Filter]?, offset: String?, limit: String?) {
+        public init (filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -74,5 +58,21 @@ extension Vpc {
             case serviceTemplateSet = "ServiceTemplateSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询协议端口模板
+    ///
+    /// 本接口（DescribeServiceTemplates）用于查询协议端口模板
+    @inlinable
+    public func describeServiceTemplates(_ input: DescribeServiceTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceTemplatesResponse > {
+        self.client.execute(action: "DescribeServiceTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询协议端口模板
+    ///
+    /// 本接口（DescribeServiceTemplates）用于查询协议端口模板
+    @inlinable
+    public func describeServiceTemplates(_ input: DescribeServiceTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceTemplatesResponse {
+        try await self.client.execute(action: "DescribeServiceTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

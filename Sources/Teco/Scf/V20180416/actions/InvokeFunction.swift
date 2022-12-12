@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 同步Invoke调用接口
-    ///
-    ///  SCF同步调用函数接口
-    @inlinable
-    public func invokeFunction(_ input: InvokeFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeFunctionResponse > {
-        self.client.execute(action: "InvokeFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 同步Invoke调用接口
-    ///
-    ///  SCF同步调用函数接口
-    @inlinable
-    public func invokeFunction(_ input: InvokeFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeFunctionResponse {
-        try await self.client.execute(action: "InvokeFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InvokeFunction请求参数结构体
     public struct InvokeFunctionRequest: TCRequestModel {
         /// 函数名称
@@ -51,7 +35,7 @@ extension Scf {
         /// 函数灰度流量控制调用，以json格式传入，例如{"k":"v"}，注意kv都需要是字符串类型，最大支持的参数长度是1024字节
         public let routingKey: String?
         
-        public init (functionName: String, qualifier: String?, event: String?, logType: String?, namespace: String?, routingKey: String?) {
+        public init (functionName: String, qualifier: String? = nil, event: String? = nil, logType: String? = nil, namespace: String? = nil, routingKey: String? = nil) {
             self.functionName = functionName
             self.qualifier = qualifier
             self.event = event
@@ -82,5 +66,21 @@ extension Scf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 同步Invoke调用接口
+    ///
+    ///  SCF同步调用函数接口
+    @inlinable
+    public func invokeFunction(_ input: InvokeFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeFunctionResponse > {
+        self.client.execute(action: "InvokeFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 同步Invoke调用接口
+    ///
+    ///  SCF同步调用函数接口
+    @inlinable
+    public func invokeFunction(_ input: InvokeFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeFunctionResponse {
+        try await self.client.execute(action: "InvokeFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

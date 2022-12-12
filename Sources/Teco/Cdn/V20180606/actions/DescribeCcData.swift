@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// CC统计数据查询
-    @inlinable
-    public func describeCcData(_ input: DescribeCcDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCcDataResponse > {
-        self.client.execute(action: "DescribeCcData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// CC统计数据查询
-    @inlinable
-    public func describeCcData(_ input: DescribeCcDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcDataResponse {
-        try await self.client.execute(action: "DescribeCcData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCcData请求参数结构体
     public struct DescribeCcDataRequest: TCRequestModel {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
@@ -60,7 +48,7 @@ extension Cdn {
         /// 地域：mainland或overseas，表示国内或海外，不填写默认表示国内
         public let area: String?
         
-        public init (startTime: String, endTime: String, interval: String?, domain: String?, actionName: String?, domains: [String]?, source: String?, area: String?) {
+        public init (startTime: String, endTime: String, interval: String? = nil, domain: String? = nil, actionName: String? = nil, domains: [String]? = nil, source: String? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.interval = interval
@@ -114,5 +102,17 @@ extension Cdn {
             case observeQpsData = "ObserveQpsData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// CC统计数据查询
+    @inlinable
+    public func describeCcData(_ input: DescribeCcDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCcDataResponse > {
+        self.client.execute(action: "DescribeCcData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// CC统计数据查询
+    @inlinable
+    public func describeCcData(_ input: DescribeCcDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcDataResponse {
+        try await self.client.execute(action: "DescribeCcData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

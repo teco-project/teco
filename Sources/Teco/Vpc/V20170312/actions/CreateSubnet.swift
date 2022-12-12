@@ -15,34 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建子网
-    ///
-    /// 本接口(CreateSubnet)用于创建子网。
-    /// * 创建子网前必须创建好 VPC。
-    /// * 子网创建成功后，子网网段不能修改。子网网段必须在VPC网段内，可以和VPC网段相同（VPC有且只有一个子网时），建议子网网段在VPC网段内，预留网段给其他子网使用。
-    /// * 您可以创建的最小网段子网掩码为28（有16个IP地址），最大网段子网掩码为16（65,536个IP地址）。
-    /// * 同一个VPC内，多个子网的网段不能重叠。
-    /// * 子网创建后会自动关联到默认路由表。
-    /// * 创建子网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
-    @inlinable
-    public func createSubnet(_ input: CreateSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubnetResponse > {
-        self.client.execute(action: "CreateSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建子网
-    ///
-    /// 本接口(CreateSubnet)用于创建子网。
-    /// * 创建子网前必须创建好 VPC。
-    /// * 子网创建成功后，子网网段不能修改。子网网段必须在VPC网段内，可以和VPC网段相同（VPC有且只有一个子网时），建议子网网段在VPC网段内，预留网段给其他子网使用。
-    /// * 您可以创建的最小网段子网掩码为28（有16个IP地址），最大网段子网掩码为16（65,536个IP地址）。
-    /// * 同一个VPC内，多个子网的网段不能重叠。
-    /// * 子网创建后会自动关联到默认路由表。
-    /// * 创建子网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
-    @inlinable
-    public func createSubnet(_ input: CreateSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
-        try await self.client.execute(action: "CreateSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSubnet请求参数结构体
     public struct CreateSubnetRequest: TCRequestModel {
         /// 待操作的VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
@@ -63,7 +35,7 @@ extension Vpc {
         /// CDC实例ID。
         public let cdcId: String?
         
-        public init (vpcId: String, subnetName: String, cidrBlock: String, zone: String, tags: [Tag]?, cdcId: String?) {
+        public init (vpcId: String, subnetName: String, cidrBlock: String, zone: String, tags: [Tag]? = nil, cdcId: String? = nil) {
             self.vpcId = vpcId
             self.subnetName = subnetName
             self.cidrBlock = cidrBlock
@@ -94,5 +66,33 @@ extension Vpc {
             case subnet = "Subnet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建子网
+    ///
+    /// 本接口(CreateSubnet)用于创建子网。
+    /// * 创建子网前必须创建好 VPC。
+    /// * 子网创建成功后，子网网段不能修改。子网网段必须在VPC网段内，可以和VPC网段相同（VPC有且只有一个子网时），建议子网网段在VPC网段内，预留网段给其他子网使用。
+    /// * 您可以创建的最小网段子网掩码为28（有16个IP地址），最大网段子网掩码为16（65,536个IP地址）。
+    /// * 同一个VPC内，多个子网的网段不能重叠。
+    /// * 子网创建后会自动关联到默认路由表。
+    /// * 创建子网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
+    @inlinable
+    public func createSubnet(_ input: CreateSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubnetResponse > {
+        self.client.execute(action: "CreateSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建子网
+    ///
+    /// 本接口(CreateSubnet)用于创建子网。
+    /// * 创建子网前必须创建好 VPC。
+    /// * 子网创建成功后，子网网段不能修改。子网网段必须在VPC网段内，可以和VPC网段相同（VPC有且只有一个子网时），建议子网网段在VPC网段内，预留网段给其他子网使用。
+    /// * 您可以创建的最小网段子网掩码为28（有16个IP地址），最大网段子网掩码为16（65,536个IP地址）。
+    /// * 同一个VPC内，多个子网的网段不能重叠。
+    /// * 子网创建后会自动关联到默认路由表。
+    /// * 创建子网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
+    @inlinable
+    public func createSubnet(_ input: CreateSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
+        try await self.client.execute(action: "CreateSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 日志列表
-    ///
-    /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
-    @inlinable
-    public func listTaskJobLogDetail(_ input: ListTaskJobLogDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTaskJobLogDetailResponse > {
-        self.client.execute(action: "ListTaskJobLogDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 日志列表
-    ///
-    /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
-    @inlinable
-    public func listTaskJobLogDetail(_ input: ListTaskJobLogDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTaskJobLogDetailResponse {
-        try await self.client.execute(action: "ListTaskJobLogDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListTaskJobLogDetail请求参数结构体
     public struct ListTaskJobLogDetailRequest: TCRequestModel {
         /// 列表返回的Id
@@ -54,7 +38,7 @@ extension Dlc {
         /// 预览日志的通用过滤条件
         public let filters: [Filter]?
         
-        public init (taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool?, filters: [Filter]?) {
+        public init (taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil) {
             self.taskId = taskId
             self.startTime = startTime
             self.endTime = endTime
@@ -98,5 +82,21 @@ extension Dlc {
             case results = "Results"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 日志列表
+    ///
+    /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
+    @inlinable
+    public func listTaskJobLogDetail(_ input: ListTaskJobLogDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTaskJobLogDetailResponse > {
+        self.client.execute(action: "ListTaskJobLogDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 日志列表
+    ///
+    /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
+    @inlinable
+    public func listTaskJobLogDetail(_ input: ListTaskJobLogDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTaskJobLogDetailResponse {
+        try await self.client.execute(action: "ListTaskJobLogDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

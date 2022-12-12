@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 回收站实例立即下线
-    @inlinable
-    public func cleanUpInstance(_ input: CleanUpInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CleanUpInstanceResponse > {
-        self.client.execute(action: "CleanUpInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 回收站实例立即下线
-    @inlinable
-    public func cleanUpInstance(_ input: CleanUpInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CleanUpInstanceResponse {
-        try await self.client.execute(action: "CleanUpInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CleanUpInstance请求参数结构体
     public struct CleanUpInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -53,5 +41,17 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 回收站实例立即下线
+    @inlinable
+    public func cleanUpInstance(_ input: CleanUpInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CleanUpInstanceResponse > {
+        self.client.execute(action: "CleanUpInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 回收站实例立即下线
+    @inlinable
+    public func cleanUpInstance(_ input: CleanUpInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CleanUpInstanceResponse {
+        try await self.client.execute(action: "CleanUpInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

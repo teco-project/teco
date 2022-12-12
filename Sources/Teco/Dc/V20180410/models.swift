@@ -43,7 +43,7 @@ extension Dc {
         
         /// 接入点经纬度
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let coordinate: Coordinate
+        public let coordinate: Coordinate?
         
         /// 接入点所在城市
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -80,7 +80,7 @@ extension Dc {
         /// 健康检查间隔
         public let interval: Int64?
         
-        public init (probeFailedTimes: Int64?, interval: Int64?) {
+        public init (probeFailedTimes: Int64? = nil, interval: Int64? = nil) {
             self.probeFailedTimes = probeFailedTimes
             self.interval = interval
         }
@@ -113,7 +113,7 @@ extension Dc {
         /// 用户侧BGP密钥
         public let authKey: String?
         
-        public init (asn: Int64?, authKey: String?) {
+        public init (asn: Int64? = nil, authKey: String? = nil) {
             self.asn = asn
             self.authKey = authKey
         }
@@ -576,7 +576,7 @@ extension Dc {
         
         /// BGPv6状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let bgpIPv6Status: BGPStatus
+        public let bgpIPv6Status: BGPStatus?
         
         /// 用户侧互联IPv6地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -780,7 +780,7 @@ extension Dc {
         /// 健康检查地址
         public let destinationIp: String?
         
-        public init (probeFailedTimes: Int64?, interval: Int64?, destinationIp: String?) {
+        public init (probeFailedTimes: Int64? = nil, interval: Int64? = nil, destinationIp: String? = nil) {
             self.probeFailedTimes = probeFailedTimes
             self.interval = interval
             self.destinationIp = destinationIp
@@ -798,7 +798,7 @@ extension Dc {
         /// 用户侧网段地址
         public let cidr: String?
         
-        public init (cidr: String?) {
+        public init (cidr: String? = nil) {
             self.cidr = cidr
         }
         

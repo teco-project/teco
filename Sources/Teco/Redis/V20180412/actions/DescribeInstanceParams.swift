@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询实例的参数列表
-    ///
-    /// 查询实例参数列表
-    @inlinable
-    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceParamsResponse > {
-        self.client.execute(action: "DescribeInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例的参数列表
-    ///
-    /// 查询实例参数列表
-    @inlinable
-    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
-        try await self.client.execute(action: "DescribeInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceParams请求参数结构体
     public struct DescribeInstanceParamsRequest: TCRequestModel {
         /// 实例Id
@@ -73,5 +57,21 @@ extension Redis {
             case instanceMultiParam = "InstanceMultiParam"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例的参数列表
+    ///
+    /// 查询实例参数列表
+    @inlinable
+    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceParamsResponse > {
+        self.client.execute(action: "DescribeInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例的参数列表
+    ///
+    /// 查询实例参数列表
+    @inlinable
+    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
+        try await self.client.execute(action: "DescribeInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

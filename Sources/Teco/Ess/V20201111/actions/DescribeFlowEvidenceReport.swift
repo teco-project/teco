@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ess {
-    /// 查询出证报告
-    ///
-    /// 查询出证报告，返回报告 URL。
-    @inlinable
-    public func describeFlowEvidenceReport(_ input: DescribeFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowEvidenceReportResponse > {
-        self.client.execute(action: "DescribeFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询出证报告
-    ///
-    /// 查询出证报告，返回报告 URL。
-    @inlinable
-    public func describeFlowEvidenceReport(_ input: DescribeFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowEvidenceReportResponse {
-        try await self.client.execute(action: "DescribeFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlowEvidenceReport请求参数结构体
     public struct DescribeFlowEvidenceReportRequest: TCRequestModel {
         /// 调用方用户信息，userId 必填
@@ -69,5 +53,21 @@ extension Ess {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询出证报告
+    ///
+    /// 查询出证报告，返回报告 URL。
+    @inlinable
+    public func describeFlowEvidenceReport(_ input: DescribeFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowEvidenceReportResponse > {
+        self.client.execute(action: "DescribeFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询出证报告
+    ///
+    /// 查询出证报告，返回报告 URL。
+    @inlinable
+    public func describeFlowEvidenceReport(_ input: DescribeFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowEvidenceReportResponse {
+        try await self.client.execute(action: "DescribeFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 获取配置限制信息
-    ///
-    /// 获取带宽硬盘等数据的限制
-    @inlinable
-    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigResponse > {
-        self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取配置限制信息
-    ///
-    /// 获取带宽硬盘等数据的限制
-    @inlinable
-    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
-        try await self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeConfig请求参数结构体
     public struct DescribeConfigRequest: TCRequestModel {
         public init () {
@@ -52,7 +36,7 @@ extension Ecm {
         
         /// 镜像限额信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imageLimits: ImageLimitConfig
+        public let imageLimits: ImageLimitConfig?
         
         /// 默认是否IP直通，用于模块创建，虚机购买等具有直通参数场景时的默认参数。
         public let defaultIPDirect: Bool
@@ -68,5 +52,21 @@ extension Ecm {
             case defaultIPDirect = "DefaultIPDirect"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取配置限制信息
+    ///
+    /// 获取带宽硬盘等数据的限制
+    @inlinable
+    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigResponse > {
+        self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取配置限制信息
+    ///
+    /// 获取带宽硬盘等数据的限制
+    @inlinable
+    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
+        try await self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

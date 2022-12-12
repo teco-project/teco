@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 关联投递配置到部署组
-    @inlinable
-    public func associateConfigWithGroup(_ input: AssociateConfigWithGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateConfigWithGroupResponse > {
-        self.client.execute(action: "AssociateConfigWithGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关联投递配置到部署组
-    @inlinable
-    public func associateConfigWithGroup(_ input: AssociateConfigWithGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateConfigWithGroupResponse {
-        try await self.client.execute(action: "AssociateConfigWithGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssociateConfigWithGroup请求参数结构体
     public struct AssociateConfigWithGroupRequest: TCRequestModel {
         /// 配置项id
@@ -47,7 +35,7 @@ extension Tsf {
         /// 模糊搜索关键词
         public let searchWord: String?
         
-        public init (configId: String, groups: [GroupInfo]?, selectAll: Int64?, namespaceId: String?, clusterId: String?, searchWord: String?) {
+        public init (configId: String, groups: [GroupInfo]? = nil, selectAll: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, searchWord: String? = nil) {
             self.configId = configId
             self.groups = groups
             self.selectAll = selectAll
@@ -79,5 +67,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关联投递配置到部署组
+    @inlinable
+    public func associateConfigWithGroup(_ input: AssociateConfigWithGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateConfigWithGroupResponse > {
+        self.client.execute(action: "AssociateConfigWithGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关联投递配置到部署组
+    @inlinable
+    public func associateConfigWithGroup(_ input: AssociateConfigWithGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateConfigWithGroupResponse {
+        try await self.client.execute(action: "AssociateConfigWithGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

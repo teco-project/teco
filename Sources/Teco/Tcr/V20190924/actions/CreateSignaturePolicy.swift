@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 创建签名策略
-    ///
-    /// 创建镜像签名策略
-    @inlinable
-    public func createSignaturePolicy(_ input: CreateSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSignaturePolicyResponse > {
-        self.client.execute(action: "CreateSignaturePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建签名策略
-    ///
-    /// 创建镜像签名策略
-    @inlinable
-    public func createSignaturePolicy(_ input: CreateSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignaturePolicyResponse {
-        try await self.client.execute(action: "CreateSignaturePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSignaturePolicy请求参数结构体
     public struct CreateSignaturePolicyRequest: TCRequestModel {
         /// 实例 Id
@@ -54,7 +38,7 @@ extension Tcr {
         /// 禁用加签策略，默认为 false
         public let disabled: Bool?
         
-        public init (registryId: String, name: String, namespaceName: String, kmsId: String, kmsRegion: String, domain: String?, disabled: Bool?) {
+        public init (registryId: String, name: String, namespaceName: String, kmsId: String, kmsRegion: String, domain: String? = nil, disabled: Bool? = nil) {
             self.registryId = registryId
             self.name = name
             self.namespaceName = namespaceName
@@ -83,5 +67,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建签名策略
+    ///
+    /// 创建镜像签名策略
+    @inlinable
+    public func createSignaturePolicy(_ input: CreateSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSignaturePolicyResponse > {
+        self.client.execute(action: "CreateSignaturePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建签名策略
+    ///
+    /// 创建镜像签名策略
+    @inlinable
+    public func createSignaturePolicy(_ input: CreateSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignaturePolicyResponse {
+        try await self.client.execute(action: "CreateSignaturePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

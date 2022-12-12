@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取物模型操作结果
-    ///
-    /// 本接口（DescribeModelDataRet）用于根据TaskId获取对设备物模型操作最终响应的结果。
-    @inlinable
-    public func describeModelDataRet(_ input: DescribeModelDataRetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelDataRetResponse > {
-        self.client.execute(action: "DescribeModelDataRet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取物模型操作结果
-    ///
-    /// 本接口（DescribeModelDataRet）用于根据TaskId获取对设备物模型操作最终响应的结果。
-    @inlinable
-    public func describeModelDataRet(_ input: DescribeModelDataRetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelDataRetResponse {
-        try await self.client.execute(action: "DescribeModelDataRet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeModelDataRet请求参数结构体
     public struct DescribeModelDataRetRequest: TCRequestModel {
         /// 任务ID
@@ -58,5 +42,21 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取物模型操作结果
+    ///
+    /// 本接口（DescribeModelDataRet）用于根据TaskId获取对设备物模型操作最终响应的结果。
+    @inlinable
+    public func describeModelDataRet(_ input: DescribeModelDataRetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelDataRetResponse > {
+        self.client.execute(action: "DescribeModelDataRet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取物模型操作结果
+    ///
+    /// 本接口（DescribeModelDataRet）用于根据TaskId获取对设备物模型操作最终响应的结果。
+    @inlinable
+    public func describeModelDataRet(_ input: DescribeModelDataRetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelDataRetResponse {
+        try await self.client.execute(action: "DescribeModelDataRet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

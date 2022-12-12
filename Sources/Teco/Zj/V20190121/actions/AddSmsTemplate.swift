@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 短信模板创建接口
-    ///
-    /// 根据短信标题、模板内容等创建短信模板
-    @inlinable
-    public func addSmsTemplate(_ input: AddSmsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddSmsTemplateResponse > {
-        self.client.execute(action: "AddSmsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 短信模板创建接口
-    ///
-    /// 根据短信标题、模板内容等创建短信模板
-    @inlinable
-    public func addSmsTemplate(_ input: AddSmsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSmsTemplateResponse {
-        try await self.client.execute(action: "AddSmsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddSmsTemplate请求参数结构体
     public struct AddSmsTemplateRequest: TCRequestModel {
         /// 商户证书
@@ -65,7 +49,7 @@ extension Zj {
         /// 发送短信活动时用于展示短连接模板占位符序号,仅用作短信活动
         public let urlParams: [Int64]?
         
-        public init (license: String, signID: UInt64, templateName: String, templateContent: String, smsType: UInt64, international: UInt64, remark: String, urls: [String]?, commonParams: [Int64]?, urlParams: [Int64]?) {
+        public init (license: String, signID: UInt64, templateName: String, templateContent: String, smsType: UInt64, international: UInt64, remark: String, urls: [String]? = nil, commonParams: [Int64]? = nil, urlParams: [Int64]? = nil) {
             self.license = license
             self.signID = signID
             self.templateName = templateName
@@ -104,5 +88,21 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 短信模板创建接口
+    ///
+    /// 根据短信标题、模板内容等创建短信模板
+    @inlinable
+    public func addSmsTemplate(_ input: AddSmsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddSmsTemplateResponse > {
+        self.client.execute(action: "AddSmsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 短信模板创建接口
+    ///
+    /// 根据短信标题、模板内容等创建短信模板
+    @inlinable
+    public func addSmsTemplate(_ input: AddSmsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSmsTemplateResponse {
+        try await self.client.execute(action: "AddSmsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

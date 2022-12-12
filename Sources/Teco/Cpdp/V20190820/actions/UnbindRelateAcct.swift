@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-会员解绑提现账户
-    ///
-    /// 会员解绑提现账户。此接口可以支持会员解除名下的绑定账户关系。
-    @inlinable
-    public func unbindRelateAcct(_ input: UnbindRelateAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindRelateAcctResponse > {
-        self.client.execute(action: "UnbindRelateAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-会员解绑提现账户
-    ///
-    /// 会员解绑提现账户。此接口可以支持会员解除名下的绑定账户关系。
-    @inlinable
-    public func unbindRelateAcct(_ input: UnbindRelateAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRelateAcctResponse {
-        try await self.client.execute(action: "UnbindRelateAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindRelateAcct请求参数结构体
     public struct UnbindRelateAcctRequest: TCRequestModel {
         /// String(22)，商户号（签约客户号）
@@ -51,7 +35,7 @@ extension Cpdp {
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
         
-        public init (mrchCode: String, functionFlag: String, tranNetMemberCode: String, memberAcctNo: String, reservedMsg: String?, profile: String?) {
+        public init (mrchCode: String, functionFlag: String, tranNetMemberCode: String, memberAcctNo: String, reservedMsg: String? = nil, profile: String? = nil) {
             self.mrchCode = mrchCode
             self.functionFlag = functionFlag
             self.tranNetMemberCode = tranNetMemberCode
@@ -100,5 +84,21 @@ extension Cpdp {
             case reservedMsg = "ReservedMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-会员解绑提现账户
+    ///
+    /// 会员解绑提现账户。此接口可以支持会员解除名下的绑定账户关系。
+    @inlinable
+    public func unbindRelateAcct(_ input: UnbindRelateAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindRelateAcctResponse > {
+        self.client.execute(action: "UnbindRelateAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-会员解绑提现账户
+    ///
+    /// 会员解绑提现账户。此接口可以支持会员解除名下的绑定账户关系。
+    @inlinable
+    public func unbindRelateAcct(_ input: UnbindRelateAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRelateAcctResponse {
+        try await self.client.execute(action: "UnbindRelateAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 获取密钥最近使用情况
-    @inlinable
-    public func getSecurityLastUsed(_ input: GetSecurityLastUsedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSecurityLastUsedResponse > {
-        self.client.execute(action: "GetSecurityLastUsed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取密钥最近使用情况
-    @inlinable
-    public func getSecurityLastUsed(_ input: GetSecurityLastUsedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSecurityLastUsedResponse {
-        try await self.client.execute(action: "GetSecurityLastUsed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetSecurityLastUsed请求参数结构体
     public struct GetSecurityLastUsedRequest: TCRequestModel {
         /// 查询密钥ID列表。最多支持10个。
@@ -53,5 +41,17 @@ extension Cam {
             case secretIdLastUsedRows = "SecretIdLastUsedRows"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取密钥最近使用情况
+    @inlinable
+    public func getSecurityLastUsed(_ input: GetSecurityLastUsedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSecurityLastUsedResponse > {
+        self.client.execute(action: "GetSecurityLastUsed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取密钥最近使用情况
+    @inlinable
+    public func getSecurityLastUsed(_ input: GetSecurityLastUsedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSecurityLastUsedResponse {
+        try await self.client.execute(action: "GetSecurityLastUsed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 绑定安全组
-    @inlinable
-    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateSecurityGroupsResponse > {
-        self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定安全组
-    @inlinable
-    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
-        try await self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssociateSecurityGroups请求参数结构体
     public struct AssociateSecurityGroupsRequest: TCRequestModel {
         /// 要绑定的安全组ID，类似esg-efil73jd，只支持绑定单个安全组。
@@ -54,5 +42,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定安全组
+    @inlinable
+    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateSecurityGroupsResponse > {
+        self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定安全组
+    @inlinable
+    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
+        try await self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

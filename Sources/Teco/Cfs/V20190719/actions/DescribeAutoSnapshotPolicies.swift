@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 查询文件系统快照策略列表信息
-    ///
-    /// 查询文件系统快照定期策略列表信息
-    @inlinable
-    public func describeAutoSnapshotPolicies(_ input: DescribeAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoSnapshotPoliciesResponse > {
-        self.client.execute(action: "DescribeAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询文件系统快照策略列表信息
-    ///
-    /// 查询文件系统快照定期策略列表信息
-    @inlinable
-    public func describeAutoSnapshotPolicies(_ input: DescribeAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoSnapshotPoliciesResponse {
-        try await self.client.execute(action: "DescribeAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAutoSnapshotPolicies请求参数结构体
     public struct DescribeAutoSnapshotPoliciesRequest: TCRequestModel {
         /// 快照策略ID
@@ -51,7 +35,7 @@ extension Cfs {
         /// 排序字段
         public let orderField: String?
         
-        public init (autoSnapshotPolicyId: String?, offset: UInt64?, limit: UInt64?, filters: [Filter]?, order: String?, orderField: String?) {
+        public init (autoSnapshotPolicyId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, orderField: String? = nil) {
             self.autoSnapshotPolicyId = autoSnapshotPolicyId
             self.offset = offset
             self.limit = limit
@@ -86,5 +70,21 @@ extension Cfs {
             case autoSnapshotPolicies = "AutoSnapshotPolicies"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询文件系统快照策略列表信息
+    ///
+    /// 查询文件系统快照定期策略列表信息
+    @inlinable
+    public func describeAutoSnapshotPolicies(_ input: DescribeAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoSnapshotPoliciesResponse > {
+        self.client.execute(action: "DescribeAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文件系统快照策略列表信息
+    ///
+    /// 查询文件系统快照定期策略列表信息
+    @inlinable
+    public func describeAutoSnapshotPolicies(_ input: DescribeAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoSnapshotPoliciesResponse {
+        try await self.client.execute(action: "DescribeAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

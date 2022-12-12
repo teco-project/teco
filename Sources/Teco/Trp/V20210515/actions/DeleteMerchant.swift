@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 删除商户
-    @inlinable
-    public func deleteMerchant(_ input: DeleteMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMerchantResponse > {
-        self.client.execute(action: "DeleteMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除商户
-    @inlinable
-    public func deleteMerchant(_ input: DeleteMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMerchantResponse {
-        try await self.client.execute(action: "DeleteMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMerchant请求参数结构体
     public struct DeleteMerchantRequest: TCRequestModel {
         /// 商户标识码
@@ -35,7 +23,7 @@ extension Trp {
         /// 企业ID
         public let corpId: UInt64?
         
-        public init (merchantId: String, corpId: UInt64?) {
+        public init (merchantId: String, corpId: UInt64? = nil) {
             self.merchantId = merchantId
             self.corpId = corpId
         }
@@ -59,5 +47,17 @@ extension Trp {
             case merchantId = "MerchantId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除商户
+    @inlinable
+    public func deleteMerchant(_ input: DeleteMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMerchantResponse > {
+        self.client.execute(action: "DeleteMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除商户
+    @inlinable
+    public func deleteMerchant(_ input: DeleteMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMerchantResponse {
+        try await self.client.execute(action: "DeleteMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

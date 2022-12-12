@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcbr {
-    /// 查询环境基础信息
-    @inlinable
-    public func describeEnvBaseInfo(_ input: DescribeEnvBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvBaseInfoResponse > {
-        self.client.execute(action: "DescribeEnvBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询环境基础信息
-    @inlinable
-    public func describeEnvBaseInfo(_ input: DescribeEnvBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvBaseInfoResponse {
-        try await self.client.execute(action: "DescribeEnvBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEnvBaseInfo请求参数结构体
     public struct DescribeEnvBaseInfoRequest: TCRequestModel {
         /// 环境 Id
@@ -53,5 +41,17 @@ extension Tcbr {
             case envBaseInfo = "EnvBaseInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询环境基础信息
+    @inlinable
+    public func describeEnvBaseInfo(_ input: DescribeEnvBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvBaseInfoResponse > {
+        self.client.execute(action: "DescribeEnvBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询环境基础信息
+    @inlinable
+    public func describeEnvBaseInfo(_ input: DescribeEnvBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvBaseInfoResponse {
+        try await self.client.execute(action: "DescribeEnvBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

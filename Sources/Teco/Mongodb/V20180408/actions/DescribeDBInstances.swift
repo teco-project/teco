@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 查询实例列表
-    ///
-    /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目ID、实例ID、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
-    @inlinable
-    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstancesResponse > {
-        self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例列表
-    ///
-    /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目ID、实例ID、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
-    @inlinable
-    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
-        try await self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBInstances请求参数结构体
     public struct DescribeDBInstancesRequest: TCRequestModel {
         /// 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -66,7 +50,7 @@ extension Mongodb {
         /// 返回结果集排序方式，目前支持："ASC"或者"DESC"
         public let orderByType: String?
         
-        public init (instanceIds: [String]?, instanceType: Int64?, clusterType: Int64?, status: [Int64]?, vpcId: String?, subnetId: String?, payMode: Int64?, limit: UInt64?, offset: UInt64?, orderBy: String?, orderByType: String?) {
+        public init (instanceIds: [String]? = nil, instanceType: Int64? = nil, clusterType: Int64? = nil, status: [Int64]? = nil, vpcId: String? = nil, subnetId: String? = nil, payMode: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.instanceIds = instanceIds
             self.instanceType = instanceType
             self.clusterType = clusterType
@@ -111,5 +95,21 @@ extension Mongodb {
             case instanceDetails = "InstanceDetails"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例列表
+    ///
+    /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目ID、实例ID、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
+    @inlinable
+    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstancesResponse > {
+        self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例列表
+    ///
+    /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目ID、实例ID、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
+    @inlinable
+    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
+        try await self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

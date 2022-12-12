@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// EMR同步POD状态
-    ///
-    /// EMR同步TKE中POD状态
-    @inlinable
-    public func syncPodState(_ input: SyncPodStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncPodStateResponse > {
-        self.client.execute(action: "SyncPodState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// EMR同步POD状态
-    ///
-    /// EMR同步TKE中POD状态
-    @inlinable
-    public func syncPodState(_ input: SyncPodStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPodStateResponse {
-        try await self.client.execute(action: "SyncPodState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SyncPodState请求参数结构体
     public struct SyncPodStateRequest: TCRequestModel {
         /// EmrService中pod状态信息
@@ -53,5 +37,21 @@ extension Emr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// EMR同步POD状态
+    ///
+    /// EMR同步TKE中POD状态
+    @inlinable
+    public func syncPodState(_ input: SyncPodStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncPodStateResponse > {
+        self.client.execute(action: "SyncPodState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// EMR同步POD状态
+    ///
+    /// EMR同步TKE中POD状态
+    @inlinable
+    public func syncPodState(_ input: SyncPodStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPodStateResponse {
+        try await self.client.execute(action: "SyncPodState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

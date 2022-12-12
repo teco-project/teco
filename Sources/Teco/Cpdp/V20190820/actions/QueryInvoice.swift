@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 智慧零售-发票查询
-    @inlinable
-    public func queryInvoice(_ input: QueryInvoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryInvoiceResponse > {
-        self.client.execute(action: "QueryInvoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 智慧零售-发票查询
-    @inlinable
-    public func queryInvoice(_ input: QueryInvoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInvoiceResponse {
-        try await self.client.execute(action: "QueryInvoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryInvoice请求参数结构体
     public struct QueryInvoiceRequest: TCRequestModel {
         /// 开票平台ID
@@ -54,7 +42,7 @@ extension Cpdp {
         /// 当渠道为线下渠道时，必填
         public let sellerTaxpayerNum: String?
         
-        public init (invoicePlatformId: Int64, orderId: String, orderSn: String?, isRed: Int64?, profile: String?, invoiceChannel: Int64?, sellerTaxpayerNum: String?) {
+        public init (invoicePlatformId: Int64, orderId: String, orderSn: String? = nil, isRed: Int64? = nil, profile: String? = nil, invoiceChannel: Int64? = nil, sellerTaxpayerNum: String? = nil) {
             self.invoicePlatformId = invoicePlatformId
             self.orderId = orderId
             self.orderSn = orderSn
@@ -87,5 +75,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 智慧零售-发票查询
+    @inlinable
+    public func queryInvoice(_ input: QueryInvoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryInvoiceResponse > {
+        self.client.execute(action: "QueryInvoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 智慧零售-发票查询
+    @inlinable
+    public func queryInvoice(_ input: QueryInvoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInvoiceResponse {
+        try await self.client.execute(action: "QueryInvoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

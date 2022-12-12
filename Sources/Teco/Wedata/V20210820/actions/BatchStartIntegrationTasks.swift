@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 批量运行集成任务
-    @inlinable
-    public func batchStartIntegrationTasks(_ input: BatchStartIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchStartIntegrationTasksResponse > {
-        self.client.execute(action: "BatchStartIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量运行集成任务
-    @inlinable
-    public func batchStartIntegrationTasks(_ input: BatchStartIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStartIntegrationTasksResponse {
-        try await self.client.execute(action: "BatchStartIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchStartIntegrationTasks请求参数结构体
     public struct BatchStartIntegrationTasksRequest: TCRequestModel {
         /// 任务id
@@ -71,5 +59,17 @@ extension Wedata {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量运行集成任务
+    @inlinable
+    public func batchStartIntegrationTasks(_ input: BatchStartIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchStartIntegrationTasksResponse > {
+        self.client.execute(action: "BatchStartIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量运行集成任务
+    @inlinable
+    public func batchStartIntegrationTasks(_ input: BatchStartIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStartIntegrationTasksResponse {
+        try await self.client.execute(action: "BatchStartIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

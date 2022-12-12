@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Ssa {
-    /// 云配置检查项总览页检查项列表
-    @inlinable
-    public func describeConfigList(_ input: DescribeConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigListResponse > {
-        self.client.execute(action: "DescribeConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云配置检查项总览页检查项列表
-    @inlinable
-    public func describeConfigList(_ input: DescribeConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigListResponse {
-        try await self.client.execute(action: "DescribeConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeConfigList请求参数结构体
     public struct DescribeConfigListRequest: TCRequestModel {
         /// 搜索过滤条件
         public let filter: String?
         
-        public init (filter: String?) {
+        public init (filter: String? = nil) {
             self.filter = filter
         }
         
@@ -53,5 +41,17 @@ extension Ssa {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云配置检查项总览页检查项列表
+    @inlinable
+    public func describeConfigList(_ input: DescribeConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigListResponse > {
+        self.client.execute(action: "DescribeConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云配置检查项总览页检查项列表
+    @inlinable
+    public func describeConfigList(_ input: DescribeConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigListResponse {
+        try await self.client.execute(action: "DescribeConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

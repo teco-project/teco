@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 更新事件连接器
-    @inlinable
-    public func updateConnection(_ input: UpdateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateConnectionResponse > {
-        self.client.execute(action: "UpdateConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新事件连接器
-    @inlinable
-    public func updateConnection(_ input: UpdateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateConnectionResponse {
-        try await self.client.execute(action: "UpdateConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateConnection请求参数结构体
     public struct UpdateConnectionRequest: TCRequestModel {
         /// 连接器ID
@@ -44,7 +32,7 @@ extension Eb {
         /// 连接器名称
         public let connectionName: String?
         
-        public init (connectionId: String, eventBusId: String, enable: Bool?, description: String?, connectionName: String?) {
+        public init (connectionId: String, eventBusId: String, enable: Bool? = nil, description: String? = nil, connectionName: String? = nil) {
             self.connectionId = connectionId
             self.eventBusId = eventBusId
             self.enable = enable
@@ -69,5 +57,17 @@ extension Eb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新事件连接器
+    @inlinable
+    public func updateConnection(_ input: UpdateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateConnectionResponse > {
+        self.client.execute(action: "UpdateConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新事件连接器
+    @inlinable
+    public func updateConnection(_ input: UpdateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateConnectionResponse {
+        try await self.client.execute(action: "UpdateConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取位置空间中围栏告警事件列表
-    @inlinable
-    public func describeSpaceFenceEventList(_ input: DescribeSpaceFenceEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpaceFenceEventListResponse > {
-        self.client.execute(action: "DescribeSpaceFenceEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取位置空间中围栏告警事件列表
-    @inlinable
-    public func describeSpaceFenceEventList(_ input: DescribeSpaceFenceEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpaceFenceEventListResponse {
-        try await self.client.execute(action: "DescribeSpaceFenceEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSpaceFenceEventList请求参数结构体
     public struct DescribeSpaceFenceEventListRequest: TCRequestModel {
         /// 位置空间Id
@@ -44,7 +32,7 @@ extension Iotexplorer {
         /// 最大返回结果数
         public let limit: Int64?
         
-        public init (spaceId: String, startTime: Int64, endTime: Int64, offset: Int64?, limit: Int64?) {
+        public init (spaceId: String, startTime: Int64, endTime: Int64, offset: Int64? = nil, limit: Int64? = nil) {
             self.spaceId = spaceId
             self.startTime = startTime
             self.endTime = endTime
@@ -78,5 +66,17 @@ extension Iotexplorer {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取位置空间中围栏告警事件列表
+    @inlinable
+    public func describeSpaceFenceEventList(_ input: DescribeSpaceFenceEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpaceFenceEventListResponse > {
+        self.client.execute(action: "DescribeSpaceFenceEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取位置空间中围栏告警事件列表
+    @inlinable
+    public func describeSpaceFenceEventList(_ input: DescribeSpaceFenceEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpaceFenceEventListResponse {
+        try await self.client.execute(action: "DescribeSpaceFenceEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

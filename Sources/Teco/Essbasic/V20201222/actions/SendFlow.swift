@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 发送流程
-    ///
-    /// 此接口（SendFlow）用于指定签署者及签署内容，后续可通过生成签署接口（CreateSignUrl）获取签署url。
-    @inlinable
-    public func sendFlow(_ input: SendFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendFlowResponse > {
-        self.client.execute(action: "SendFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送流程
-    ///
-    /// 此接口（SendFlow）用于指定签署者及签署内容，后续可通过生成签署接口（CreateSignUrl）获取签署url。
-    @inlinable
-    public func sendFlow(_ input: SendFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendFlowResponse {
-        try await self.client.execute(action: "SendFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendFlow请求参数结构体
     public struct SendFlowRequest: TCRequestModel {
         /// 调用方信息
@@ -69,7 +53,7 @@ extension Essbasic {
         public let jumpUrl: String?
         
         /// 短信模板。默认使用腾讯电子签官方短信模板，如有自定义需求，请通过客户经理或邮件至e-contract@tencent.com与我们联系。
-        public let smsTemplate: SmsTemplate
+        public let smsTemplate: SmsTemplate?
         
         /// 签署前置条件：是否要全文阅读，默认否
         public let isFullText: Bool?
@@ -83,7 +67,7 @@ extension Essbasic {
         /// 签署任务的回调地址
         public let callbackUrl: String?
         
-        public init (caller: Caller, flowId: String, userId: String, signComponents: [Component], mobile: String?, subOrganizationId: String?, verifyChannel: [String]?, deadline: Int64?, isLastApprover: Bool?, jumpUrl: String?, smsTemplate: SmsTemplate, isFullText: Bool?, preReadTime: Int64?, canOffLine: Bool?, callbackUrl: String?) {
+        public init (caller: Caller, flowId: String, userId: String, signComponents: [Component], mobile: String? = nil, subOrganizationId: String? = nil, verifyChannel: [String]? = nil, deadline: Int64? = nil, isLastApprover: Bool? = nil, jumpUrl: String? = nil, smsTemplate: SmsTemplate? = nil, isFullText: Bool? = nil, preReadTime: Int64? = nil, canOffLine: Bool? = nil, callbackUrl: String? = nil) {
             self.caller = caller
             self.flowId = flowId
             self.userId = userId
@@ -132,5 +116,21 @@ extension Essbasic {
             case signId = "SignId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送流程
+    ///
+    /// 此接口（SendFlow）用于指定签署者及签署内容，后续可通过生成签署接口（CreateSignUrl）获取签署url。
+    @inlinable
+    public func sendFlow(_ input: SendFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendFlowResponse > {
+        self.client.execute(action: "SendFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送流程
+    ///
+    /// 此接口（SendFlow）用于指定签署者及签署内容，后续可通过生成签署接口（CreateSignUrl）获取签署url。
+    @inlinable
+    public func sendFlow(_ input: SendFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendFlowResponse {
+        try await self.client.execute(action: "SendFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

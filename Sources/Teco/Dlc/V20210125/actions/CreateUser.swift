@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 创建用户
-    @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
-        self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建用户
-    @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
-        try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUser请求参数结构体
     public struct CreateUserRequest: TCRequestModel {
         /// 需要授权的子用户uin，可以通过腾讯云控制台右上角 → “账号信息” → “账号ID进行查看”。
@@ -47,7 +35,7 @@ extension Dlc {
         /// 用户别名，字符长度小50
         public let userAlias: String?
         
-        public init (userId: String, userDescription: String?, policySet: [Policy]?, userType: String?, workGroupIds: [Int64]?, userAlias: String?) {
+        public init (userId: String, userDescription: String? = nil, policySet: [Policy]? = nil, userType: String? = nil, workGroupIds: [Int64]? = nil, userAlias: String? = nil) {
             self.userId = userId
             self.userDescription = userDescription
             self.policySet = policySet
@@ -74,5 +62,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建用户
+    @inlinable
+    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
+        self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建用户
+    @inlinable
+    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
+        try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

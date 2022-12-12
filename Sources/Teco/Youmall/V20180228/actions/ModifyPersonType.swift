@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 修改顾客身份类型接口
-    @inlinable
-    public func modifyPersonType(_ input: ModifyPersonTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonTypeResponse > {
-        self.client.execute(action: "ModifyPersonType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改顾客身份类型接口
-    @inlinable
-    public func modifyPersonType(_ input: ModifyPersonTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTypeResponse {
-        try await self.client.execute(action: "ModifyPersonType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPersonType请求参数结构体
     public struct ModifyPersonTypeRequest: TCRequestModel {
         /// 集团ID
@@ -72,5 +60,17 @@ extension Youmall {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改顾客身份类型接口
+    @inlinable
+    public func modifyPersonType(_ input: ModifyPersonTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonTypeResponse > {
+        self.client.execute(action: "ModifyPersonType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改顾客身份类型接口
+    @inlinable
+    public func modifyPersonType(_ input: ModifyPersonTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTypeResponse {
+        try await self.client.execute(action: "ModifyPersonType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

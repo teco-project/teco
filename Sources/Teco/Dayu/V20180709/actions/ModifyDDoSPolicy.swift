@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 修改DDoS高级策略
-    @inlinable
-    public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyResponse > {
-        self.client.execute(action: "ModifyDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改DDoS高级策略
-    @inlinable
-    public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {
-        try await self.client.execute(action: "ModifyDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDDoSPolicy请求参数结构体
     public struct ModifyDDoSPolicyRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -50,7 +38,7 @@ extension Dayu {
         /// 水印策略参数，当没有启用水印功能时填空数组，最多只能传一条水印策略（即数组大小不超过1）
         public let waterPrint: [WaterPrintPolicy]?
         
-        public init (business: String, policyId: String, dropOptions: [DDoSPolicyDropOption], portLimits: [DDoSPolicyPortLimit]?, ipAllowDenys: [IpBlackWhite]?, packetFilters: [DDoSPolicyPacketFilter]?, waterPrint: [WaterPrintPolicy]?) {
+        public init (business: String, policyId: String, dropOptions: [DDoSPolicyDropOption], portLimits: [DDoSPolicyPortLimit]? = nil, ipAllowDenys: [IpBlackWhite]? = nil, packetFilters: [DDoSPolicyPacketFilter]? = nil, waterPrint: [WaterPrintPolicy]? = nil) {
             self.business = business
             self.policyId = policyId
             self.dropOptions = dropOptions
@@ -83,5 +71,17 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改DDoS高级策略
+    @inlinable
+    public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSPolicyResponse > {
+        self.client.execute(action: "ModifyDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改DDoS高级策略
+    @inlinable
+    public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {
+        try await self.client.execute(action: "ModifyDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

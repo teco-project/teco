@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 删除星标项目
-    ///
-    /// 删除用户名下的星标项目
-    @inlinable
-    public func deleteStarProject(_ input: DeleteStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStarProjectResponse > {
-        self.client.execute(action: "DeleteStarProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除星标项目
-    ///
-    /// 删除用户名下的星标项目
-    @inlinable
-    public func deleteStarProject(_ input: DeleteStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStarProjectResponse {
-        try await self.client.execute(action: "DeleteStarProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteStarProject请求参数结构体
     public struct DeleteStarProjectRequest: TCRequestModel {
         /// 实例ID：taw-123
@@ -63,5 +47,21 @@ extension Rum {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除星标项目
+    ///
+    /// 删除用户名下的星标项目
+    @inlinable
+    public func deleteStarProject(_ input: DeleteStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStarProjectResponse > {
+        self.client.execute(action: "DeleteStarProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除星标项目
+    ///
+    /// 删除用户名下的星标项目
+    @inlinable
+    public func deleteStarProject(_ input: DeleteStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStarProjectResponse {
+        try await self.client.execute(action: "DeleteStarProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

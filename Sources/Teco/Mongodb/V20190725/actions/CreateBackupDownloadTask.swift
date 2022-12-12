@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 创建备份下载任务
-    ///
-    /// 本接口用来创建某个备份文件的下载任务
-    @inlinable
-    public func createBackupDownloadTask(_ input: CreateBackupDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackupDownloadTaskResponse > {
-        self.client.execute(action: "CreateBackupDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建备份下载任务
-    ///
-    /// 本接口用来创建某个备份文件的下载任务
-    @inlinable
-    public func createBackupDownloadTask(_ input: CreateBackupDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupDownloadTaskResponse {
-        try await self.client.execute(action: "CreateBackupDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBackupDownloadTask请求参数结构体
     public struct CreateBackupDownloadTaskRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同。
@@ -69,5 +53,21 @@ extension Mongodb {
             case tasks = "Tasks"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建备份下载任务
+    ///
+    /// 本接口用来创建某个备份文件的下载任务
+    @inlinable
+    public func createBackupDownloadTask(_ input: CreateBackupDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackupDownloadTaskResponse > {
+        self.client.execute(action: "CreateBackupDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建备份下载任务
+    ///
+    /// 本接口用来创建某个备份文件的下载任务
+    @inlinable
+    public func createBackupDownloadTask(_ input: CreateBackupDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupDownloadTaskResponse {
+        try await self.client.execute(action: "CreateBackupDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

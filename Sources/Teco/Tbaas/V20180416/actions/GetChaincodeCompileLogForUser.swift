@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 获取合约编译日志
-    @inlinable
-    public func getChaincodeCompileLogForUser(_ input: GetChaincodeCompileLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetChaincodeCompileLogForUserResponse > {
-        self.client.execute(action: "GetChaincodeCompileLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取合约编译日志
-    @inlinable
-    public func getChaincodeCompileLogForUser(_ input: GetChaincodeCompileLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChaincodeCompileLogForUserResponse {
-        try await self.client.execute(action: "GetChaincodeCompileLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetChaincodeCompileLogForUser请求参数结构体
     public struct GetChaincodeCompileLogForUserRequest: TCRequestModel {
         /// 模块名，本接口取值：chaincode_mng
@@ -56,7 +44,7 @@ extension Tbaas {
         /// 返回数据起始偏移，本接口默认取值：0
         public let offset: UInt64?
         
-        public init (module: String, operation: String, clusterId: String, groupName: String, chaincodeName: String, chaincodeVersion: String, peerName: String, limit: UInt64?, offset: UInt64?) {
+        public init (module: String, operation: String, clusterId: String, groupName: String, chaincodeName: String, chaincodeVersion: String, peerName: String, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.module = module
             self.operation = operation
             self.clusterId = clusterId
@@ -97,5 +85,17 @@ extension Tbaas {
             case compileLogList = "CompileLogList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取合约编译日志
+    @inlinable
+    public func getChaincodeCompileLogForUser(_ input: GetChaincodeCompileLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetChaincodeCompileLogForUserResponse > {
+        self.client.execute(action: "GetChaincodeCompileLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取合约编译日志
+    @inlinable
+    public func getChaincodeCompileLogForUser(_ input: GetChaincodeCompileLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChaincodeCompileLogForUserResponse {
+        try await self.client.execute(action: "GetChaincodeCompileLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

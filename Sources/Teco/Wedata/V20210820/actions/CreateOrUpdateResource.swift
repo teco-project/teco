@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 资源管理将cos资源绑定到wedata
-    ///
-    /// 资源管理需要先将资源上传到cos中，然后调用该接口，将cos资源绑定到wedata
-    @inlinable
-    public func createOrUpdateResource(_ input: CreateOrUpdateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrUpdateResourceResponse > {
-        self.client.execute(action: "CreateOrUpdateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 资源管理将cos资源绑定到wedata
-    ///
-    /// 资源管理需要先将资源上传到cos中，然后调用该接口，将cos资源绑定到wedata
-    @inlinable
-    public func createOrUpdateResource(_ input: CreateOrUpdateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrUpdateResourceResponse {
-        try await self.client.execute(action: "CreateOrUpdateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOrUpdateResource请求参数结构体
     public struct CreateOrUpdateResourceRequest: TCRequestModel {
         /// 项目ID
@@ -54,7 +38,7 @@ extension Wedata {
         /// 文件大小
         public let filesSize: [String]?
         
-        public init (projectId: String?, files: [String]?, filePath: String?, cosBucketName: String?, cosRegion: String?, newFile: Bool?, filesSize: [String]?) {
+        public init (projectId: String? = nil, files: [String]? = nil, filePath: String? = nil, cosBucketName: String? = nil, cosRegion: String? = nil, newFile: Bool? = nil, filesSize: [String]? = nil) {
             self.projectId = projectId
             self.files = files
             self.filePath = filePath
@@ -88,5 +72,21 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 资源管理将cos资源绑定到wedata
+    ///
+    /// 资源管理需要先将资源上传到cos中，然后调用该接口，将cos资源绑定到wedata
+    @inlinable
+    public func createOrUpdateResource(_ input: CreateOrUpdateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrUpdateResourceResponse > {
+        self.client.execute(action: "CreateOrUpdateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 资源管理将cos资源绑定到wedata
+    ///
+    /// 资源管理需要先将资源上传到cos中，然后调用该接口，将cos资源绑定到wedata
+    @inlinable
+    public func createOrUpdateResource(_ input: CreateOrUpdateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrUpdateResourceResponse {
+        try await self.client.execute(action: "CreateOrUpdateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

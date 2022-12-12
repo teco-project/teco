@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 销毁防火墙实例
-    @inlinable
-    public func deleteNatFwInstance(_ input: DeleteNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNatFwInstanceResponse > {
-        self.client.execute(action: "DeleteNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 销毁防火墙实例
-    @inlinable
-    public func deleteNatFwInstance(_ input: DeleteNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatFwInstanceResponse {
-        try await self.client.execute(action: "DeleteNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteNatFwInstance请求参数结构体
     public struct DeleteNatFwInstanceRequest: TCRequestModel {
         /// 防火墙实例id
@@ -49,5 +37,17 @@ extension Cfw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 销毁防火墙实例
+    @inlinable
+    public func deleteNatFwInstance(_ input: DeleteNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNatFwInstanceResponse > {
+        self.client.execute(action: "DeleteNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁防火墙实例
+    @inlinable
+    public func deleteNatFwInstance(_ input: DeleteNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatFwInstanceResponse {
+        try await self.client.execute(action: "DeleteNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

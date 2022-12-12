@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查看实例子账号信息
-    @inlinable
-    public func describeInstanceAccount(_ input: DescribeInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceAccountResponse > {
-        self.client.execute(action: "DescribeInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看实例子账号信息
-    @inlinable
-    public func describeInstanceAccount(_ input: DescribeInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAccountResponse {
-        try await self.client.execute(action: "DescribeInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceAccount请求参数结构体
     public struct DescribeInstanceAccountRequest: TCRequestModel {
         /// 实例ID
@@ -69,5 +57,17 @@ extension Redis {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看实例子账号信息
+    @inlinable
+    public func describeInstanceAccount(_ input: DescribeInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceAccountResponse > {
+        self.client.execute(action: "DescribeInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看实例子账号信息
+    @inlinable
+    public func describeInstanceAccount(_ input: DescribeInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAccountResponse {
+        try await self.client.execute(action: "DescribeInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询资源组详情
-    @inlinable
-    public func describeBillingResourceGroups(_ input: DescribeBillingResourceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillingResourceGroupsResponse > {
-        self.client.execute(action: "DescribeBillingResourceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询资源组详情
-    @inlinable
-    public func describeBillingResourceGroups(_ input: DescribeBillingResourceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingResourceGroupsResponse {
-        try await self.client.execute(action: "DescribeBillingResourceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBillingResourceGroups请求参数结构体
     public struct DescribeBillingResourceGroupsRequest: TCRequestModel {
         /// 资源组类型; 枚举值 TRAIN:训练 INFERENCE:推理
@@ -56,7 +44,7 @@ extension Tione {
         /// 默认为false
         public let dontShowInstanceSet: Bool?
         
-        public init (type: String, filters: [Filter]?, tagFilters: [TagFilter]?, offset: Int64?, limit: Int64?, searchWord: String?, dontShowInstanceSet: Bool?) {
+        public init (type: String, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, dontShowInstanceSet: Bool? = nil) {
             self.type = type
             self.filters = filters
             self.tagFilters = tagFilters
@@ -94,5 +82,17 @@ extension Tione {
             case resourceGroupSet = "ResourceGroupSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询资源组详情
+    @inlinable
+    public func describeBillingResourceGroups(_ input: DescribeBillingResourceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillingResourceGroupsResponse > {
+        self.client.execute(action: "DescribeBillingResourceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资源组详情
+    @inlinable
+    public func describeBillingResourceGroups(_ input: DescribeBillingResourceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingResourceGroupsResponse {
+        try await self.client.execute(action: "DescribeBillingResourceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

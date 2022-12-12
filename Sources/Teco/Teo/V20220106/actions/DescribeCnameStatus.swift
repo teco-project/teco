@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询域名 CNAME 状态
-    @inlinable
-    public func describeCnameStatus(_ input: DescribeCnameStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCnameStatusResponse > {
-        self.client.execute(action: "DescribeCnameStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询域名 CNAME 状态
-    @inlinable
-    public func describeCnameStatus(_ input: DescribeCnameStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCnameStatusResponse {
-        try await self.client.execute(action: "DescribeCnameStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCnameStatus请求参数结构体
     public struct DescribeCnameStatusRequest: TCRequestModel {
         /// 站点 ID
@@ -58,5 +46,17 @@ extension Teo {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询域名 CNAME 状态
+    @inlinable
+    public func describeCnameStatus(_ input: DescribeCnameStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCnameStatusResponse > {
+        self.client.execute(action: "DescribeCnameStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询域名 CNAME 状态
+    @inlinable
+    public func describeCnameStatus(_ input: DescribeCnameStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCnameStatusResponse {
+        try await self.client.execute(action: "DescribeCnameStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 获取NAT关联的子网信息
-    ///
-    /// 可获取NAT网关绑定的子网信息
-    @inlinable
-    public func describeNatSubnets(_ input: DescribeNatSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatSubnetsResponse > {
-        self.client.execute(action: "DescribeNatSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取NAT关联的子网信息
-    ///
-    /// 可获取NAT网关绑定的子网信息
-    @inlinable
-    public func describeNatSubnets(_ input: DescribeNatSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatSubnetsResponse {
-        try await self.client.execute(action: "DescribeNatSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNatSubnets请求参数结构体
     public struct DescribeNatSubnetsRequest: TCRequestModel {
         /// NAT网关ID，例如：nat-kdm476mp
@@ -62,5 +46,21 @@ extension Bmvpc {
             case natSubnetInfoSet = "NatSubnetInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取NAT关联的子网信息
+    ///
+    /// 可获取NAT网关绑定的子网信息
+    @inlinable
+    public func describeNatSubnets(_ input: DescribeNatSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatSubnetsResponse > {
+        self.client.execute(action: "DescribeNatSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取NAT关联的子网信息
+    ///
+    /// 可获取NAT网关绑定的子网信息
+    @inlinable
+    public func describeNatSubnets(_ input: DescribeNatSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatSubnetsResponse {
+        try await self.client.execute(action: "DescribeNatSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

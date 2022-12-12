@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 打开实例的互通
-    ///
-    /// 本接口（OpenInterCommunication）用于打开实例的互通，实例互通可以实现商业智能服务相互联通。
-    @inlinable
-    public func openInterCommunication(_ input: OpenInterCommunicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenInterCommunicationResponse > {
-        self.client.execute(action: "OpenInterCommunication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 打开实例的互通
-    ///
-    /// 本接口（OpenInterCommunication）用于打开实例的互通，实例互通可以实现商业智能服务相互联通。
-    @inlinable
-    public func openInterCommunication(_ input: OpenInterCommunicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenInterCommunicationResponse {
-        try await self.client.execute(action: "OpenInterCommunication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OpenInterCommunication请求参数结构体
     public struct OpenInterCommunicationRequest: TCRequestModel {
         /// 打开互通组的实例ID集合
@@ -57,5 +41,21 @@ extension Sqlserver {
             case interInstanceFlowSet = "InterInstanceFlowSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 打开实例的互通
+    ///
+    /// 本接口（OpenInterCommunication）用于打开实例的互通，实例互通可以实现商业智能服务相互联通。
+    @inlinable
+    public func openInterCommunication(_ input: OpenInterCommunicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenInterCommunicationResponse > {
+        self.client.execute(action: "OpenInterCommunication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 打开实例的互通
+    ///
+    /// 本接口（OpenInterCommunication）用于打开实例的互通，实例互通可以实现商业智能服务相互联通。
+    @inlinable
+    public func openInterCommunication(_ input: OpenInterCommunicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenInterCommunicationResponse {
+        try await self.client.execute(action: "OpenInterCommunication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

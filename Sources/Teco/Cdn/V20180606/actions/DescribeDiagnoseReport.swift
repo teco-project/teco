@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 获取诊断报告
-    ///
-    /// DescribeDiagnoseReport 用于获取指定报告id的内容
-    @inlinable
-    public func describeDiagnoseReport(_ input: DescribeDiagnoseReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiagnoseReportResponse > {
-        self.client.execute(action: "DescribeDiagnoseReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取诊断报告
-    ///
-    /// DescribeDiagnoseReport 用于获取指定报告id的内容
-    @inlinable
-    public func describeDiagnoseReport(_ input: DescribeDiagnoseReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagnoseReportResponse {
-        try await self.client.execute(action: "DescribeDiagnoseReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDiagnoseReport请求参数结构体
     public struct DescribeDiagnoseReportRequest: TCRequestModel {
         /// 报告ID
@@ -73,7 +57,7 @@ extension Cdn {
         
         /// 刷新检测信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let purgeInfo: DiagnoseData
+        public let purgeInfo: DiagnoseData?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -90,5 +74,21 @@ extension Cdn {
             case purgeInfo = "PurgeInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取诊断报告
+    ///
+    /// DescribeDiagnoseReport 用于获取指定报告id的内容
+    @inlinable
+    public func describeDiagnoseReport(_ input: DescribeDiagnoseReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiagnoseReportResponse > {
+        self.client.execute(action: "DescribeDiagnoseReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取诊断报告
+    ///
+    /// DescribeDiagnoseReport 用于获取指定报告id的内容
+    @inlinable
+    public func describeDiagnoseReport(_ input: DescribeDiagnoseReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagnoseReportResponse {
+        try await self.client.execute(action: "DescribeDiagnoseReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

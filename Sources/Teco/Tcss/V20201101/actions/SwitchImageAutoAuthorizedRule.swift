@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 编辑本地镜像自动授权开关
-    @inlinable
-    public func switchImageAutoAuthorizedRule(_ input: SwitchImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchImageAutoAuthorizedRuleResponse > {
-        self.client.execute(action: "SwitchImageAutoAuthorizedRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑本地镜像自动授权开关
-    @inlinable
-    public func switchImageAutoAuthorizedRule(_ input: SwitchImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchImageAutoAuthorizedRuleResponse {
-        try await self.client.execute(action: "SwitchImageAutoAuthorizedRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SwitchImageAutoAuthorizedRule请求参数结构体
     public struct SwitchImageAutoAuthorizedRuleRequest: TCRequestModel {
         /// 规则是否生效，0:不生效，1:已生效
@@ -54,5 +42,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑本地镜像自动授权开关
+    @inlinable
+    public func switchImageAutoAuthorizedRule(_ input: SwitchImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchImageAutoAuthorizedRuleResponse > {
+        self.client.execute(action: "SwitchImageAutoAuthorizedRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑本地镜像自动授权开关
+    @inlinable
+    public func switchImageAutoAuthorizedRule(_ input: SwitchImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchImageAutoAuthorizedRuleResponse {
+        try await self.client.execute(action: "SwitchImageAutoAuthorizedRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

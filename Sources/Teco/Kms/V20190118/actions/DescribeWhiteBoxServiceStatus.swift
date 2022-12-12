@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 获取白盒密钥服务状态
-    @inlinable
-    public func describeWhiteBoxServiceStatus(_ input: DescribeWhiteBoxServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxServiceStatusResponse > {
-        self.client.execute(action: "DescribeWhiteBoxServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取白盒密钥服务状态
-    @inlinable
-    public func describeWhiteBoxServiceStatus(_ input: DescribeWhiteBoxServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxServiceStatusResponse {
-        try await self.client.execute(action: "DescribeWhiteBoxServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWhiteBoxServiceStatus请求参数结构体
     public struct DescribeWhiteBoxServiceStatusRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Kms {
             case serviceEnabled = "ServiceEnabled"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取白盒密钥服务状态
+    @inlinable
+    public func describeWhiteBoxServiceStatus(_ input: DescribeWhiteBoxServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxServiceStatusResponse > {
+        self.client.execute(action: "DescribeWhiteBoxServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取白盒密钥服务状态
+    @inlinable
+    public func describeWhiteBoxServiceStatus(_ input: DescribeWhiteBoxServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxServiceStatusResponse {
+        try await self.client.execute(action: "DescribeWhiteBoxServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

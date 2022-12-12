@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 删除发布订阅
-    ///
-    /// 本接口（DeletePublishSubscribe）用于删除两个数据库间的发布订阅关系。
-    @inlinable
-    public func deletePublishSubscribe(_ input: DeletePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePublishSubscribeResponse > {
-        self.client.execute(action: "DeletePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除发布订阅
-    ///
-    /// 本接口（DeletePublishSubscribe）用于删除两个数据库间的发布订阅关系。
-    @inlinable
-    public func deletePublishSubscribe(_ input: DeletePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublishSubscribeResponse {
-        try await self.client.execute(action: "DeletePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePublishSubscribe请求参数结构体
     public struct DeletePublishSubscribeRequest: TCRequestModel {
         /// 发布订阅ID，可通过DescribePublishSubscribe接口获得
@@ -58,5 +42,21 @@ extension Sqlserver {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除发布订阅
+    ///
+    /// 本接口（DeletePublishSubscribe）用于删除两个数据库间的发布订阅关系。
+    @inlinable
+    public func deletePublishSubscribe(_ input: DeletePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePublishSubscribeResponse > {
+        self.client.execute(action: "DeletePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除发布订阅
+    ///
+    /// 本接口（DeletePublishSubscribe）用于删除两个数据库间的发布订阅关系。
+    @inlinable
+    public func deletePublishSubscribe(_ input: DeletePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublishSubscribeResponse {
+        try await self.client.execute(action: "DeletePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

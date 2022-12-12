@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询木马自动隔离样本列表
-    @inlinable
-    public func describeVirusAutoIsolateSampleList(_ input: DescribeVirusAutoIsolateSampleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusAutoIsolateSampleListResponse > {
-        self.client.execute(action: "DescribeVirusAutoIsolateSampleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询木马自动隔离样本列表
-    @inlinable
-    public func describeVirusAutoIsolateSampleList(_ input: DescribeVirusAutoIsolateSampleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSampleListResponse {
-        try await self.client.execute(action: "DescribeVirusAutoIsolateSampleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVirusAutoIsolateSampleList请求参数结构体
     public struct DescribeVirusAutoIsolateSampleListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -47,7 +35,7 @@ extension Tcss {
         /// 排序方式
         public let order: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, by: String?, order: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -80,5 +68,17 @@ extension Tcss {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询木马自动隔离样本列表
+    @inlinable
+    public func describeVirusAutoIsolateSampleList(_ input: DescribeVirusAutoIsolateSampleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusAutoIsolateSampleListResponse > {
+        self.client.execute(action: "DescribeVirusAutoIsolateSampleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询木马自动隔离样本列表
+    @inlinable
+    public func describeVirusAutoIsolateSampleList(_ input: DescribeVirusAutoIsolateSampleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSampleListResponse {
+        try await self.client.execute(action: "DescribeVirusAutoIsolateSampleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

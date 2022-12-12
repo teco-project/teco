@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ticm {
-    /// 查询视频内容审核的结果
-    ///
-    /// 提交完视频审核任务后，可以通过本接口来获取当前处理的进度和结果
-    @inlinable
-    public func describeVideoTask(_ input: DescribeVideoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoTaskResponse > {
-        self.client.execute(action: "DescribeVideoTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询视频内容审核的结果
-    ///
-    /// 提交完视频审核任务后，可以通过本接口来获取当前处理的进度和结果
-    @inlinable
-    public func describeVideoTask(_ input: DescribeVideoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoTaskResponse {
-        try await self.client.execute(action: "DescribeVideoTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVideoTask请求参数结构体
     public struct DescribeVideoTaskRequest: TCRequestModel {
         /// 需要查询的视频审核的任务ID
@@ -100,5 +84,21 @@ extension Ticm {
             case metaData = "MetaData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询视频内容审核的结果
+    ///
+    /// 提交完视频审核任务后，可以通过本接口来获取当前处理的进度和结果
+    @inlinable
+    public func describeVideoTask(_ input: DescribeVideoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoTaskResponse > {
+        self.client.execute(action: "DescribeVideoTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询视频内容审核的结果
+    ///
+    /// 提交完视频审核任务后，可以通过本接口来获取当前处理的进度和结果
+    @inlinable
+    public func describeVideoTask(_ input: DescribeVideoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoTaskResponse {
+        try await self.client.execute(action: "DescribeVideoTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

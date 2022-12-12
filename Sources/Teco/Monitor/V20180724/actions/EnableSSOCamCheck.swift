@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 设置SSO登录是否鉴权
-    ///
-    /// SSO单点登录时，设置是否cam鉴权
-    @inlinable
-    public func enableSSOCamCheck(_ input: EnableSSOCamCheckRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableSSOCamCheckResponse > {
-        self.client.execute(action: "EnableSSOCamCheck", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置SSO登录是否鉴权
-    ///
-    /// SSO单点登录时，设置是否cam鉴权
-    @inlinable
-    public func enableSSOCamCheck(_ input: EnableSSOCamCheckRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableSSOCamCheckResponse {
-        try await self.client.execute(action: "EnableSSOCamCheck", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableSSOCamCheck请求参数结构体
     public struct EnableSSOCamCheckRequest: TCRequestModel {
         /// Grafana 实例 ID，例如：grafana-abcdefgh
@@ -58,5 +42,21 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置SSO登录是否鉴权
+    ///
+    /// SSO单点登录时，设置是否cam鉴权
+    @inlinable
+    public func enableSSOCamCheck(_ input: EnableSSOCamCheckRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableSSOCamCheckResponse > {
+        self.client.execute(action: "EnableSSOCamCheck", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置SSO登录是否鉴权
+    ///
+    /// SSO单点登录时，设置是否cam鉴权
+    @inlinable
+    public func enableSSOCamCheck(_ input: EnableSSOCamCheckRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableSSOCamCheckResponse {
+        try await self.client.execute(action: "EnableSSOCamCheck", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

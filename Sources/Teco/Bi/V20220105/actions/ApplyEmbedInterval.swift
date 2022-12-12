@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bi {
-    /// 申请延长Token可用时间接口
-    ///
-    /// 申请延长Token可用时间接口-强鉴权
-    @inlinable
-    public func applyEmbedInterval(_ input: ApplyEmbedIntervalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyEmbedIntervalResponse > {
-        self.client.execute(action: "ApplyEmbedInterval", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 申请延长Token可用时间接口
-    ///
-    /// 申请延长Token可用时间接口-强鉴权
-    @inlinable
-    public func applyEmbedInterval(_ input: ApplyEmbedIntervalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyEmbedIntervalResponse {
-        try await self.client.execute(action: "ApplyEmbedInterval", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyEmbedInterval请求参数结构体
     public struct ApplyEmbedIntervalRequest: TCRequestModel {
         /// 分享项目id，必选
@@ -48,7 +32,7 @@ extension Bi {
         /// panel,看板；page，页面
         public let scope: String?
         
-        public init (projectId: UInt64?, pageId: UInt64?, biToken: String?, extraParam: String?, scope: String?) {
+        public init (projectId: UInt64? = nil, pageId: UInt64? = nil, biToken: String? = nil, extraParam: String? = nil, scope: String? = nil) {
             self.projectId = projectId
             self.pageId = pageId
             self.biToken = biToken
@@ -73,7 +57,7 @@ extension Bi {
         
         /// 结果数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: ApplyEmbedTokenInfo
+        public let data: ApplyEmbedTokenInfo?
         
         /// 结果描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -88,5 +72,21 @@ extension Bi {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 申请延长Token可用时间接口
+    ///
+    /// 申请延长Token可用时间接口-强鉴权
+    @inlinable
+    public func applyEmbedInterval(_ input: ApplyEmbedIntervalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyEmbedIntervalResponse > {
+        self.client.execute(action: "ApplyEmbedInterval", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 申请延长Token可用时间接口
+    ///
+    /// 申请延长Token可用时间接口-强鉴权
+    @inlinable
+    public func applyEmbedInterval(_ input: ApplyEmbedIntervalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyEmbedIntervalResponse {
+        try await self.client.execute(action: "ApplyEmbedInterval", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

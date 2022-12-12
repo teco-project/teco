@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 删除实例子账号
-    @inlinable
-    public func deleteInstanceAccount(_ input: DeleteInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstanceAccountResponse > {
-        self.client.execute(action: "DeleteInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除实例子账号
-    @inlinable
-    public func deleteInstanceAccount(_ input: DeleteInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceAccountResponse {
-        try await self.client.execute(action: "DeleteInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteInstanceAccount请求参数结构体
     public struct DeleteInstanceAccountRequest: TCRequestModel {
         /// 实例ID
@@ -58,5 +46,17 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除实例子账号
+    @inlinable
+    public func deleteInstanceAccount(_ input: DeleteInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstanceAccountResponse > {
+        self.client.execute(action: "DeleteInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例子账号
+    @inlinable
+    public func deleteInstanceAccount(_ input: DeleteInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceAccountResponse {
+        try await self.client.execute(action: "DeleteInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 杀死指定会话
-    ///
-    /// 本接口（KillSession）用于杀死指定会话。
-    @inlinable
-    public func killSession(_ input: KillSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < KillSessionResponse > {
-        self.client.execute(action: "KillSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 杀死指定会话
-    ///
-    /// 本接口（KillSession）用于杀死指定会话。
-    @inlinable
-    public func killSession(_ input: KillSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillSessionResponse {
-        try await self.client.execute(action: "KillSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// KillSession请求参数结构体
     public struct KillSessionRequest: TCRequestModel {
         /// 实例ID
@@ -62,5 +46,21 @@ extension Mariadb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 杀死指定会话
+    ///
+    /// 本接口（KillSession）用于杀死指定会话。
+    @inlinable
+    public func killSession(_ input: KillSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < KillSessionResponse > {
+        self.client.execute(action: "KillSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 杀死指定会话
+    ///
+    /// 本接口（KillSession）用于杀死指定会话。
+    @inlinable
+    public func killSession(_ input: KillSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillSessionResponse {
+        try await self.client.execute(action: "KillSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

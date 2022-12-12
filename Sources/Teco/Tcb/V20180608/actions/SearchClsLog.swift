@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 搜索CLS日志
-    ///
-    /// 搜索CLS日志，TCB角色秘钥访问
-    @inlinable
-    public func searchClsLog(_ input: SearchClsLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchClsLogResponse > {
-        self.client.execute(action: "SearchClsLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 搜索CLS日志
-    ///
-    /// 搜索CLS日志，TCB角色秘钥访问
-    @inlinable
-    public func searchClsLog(_ input: SearchClsLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClsLogResponse {
-        try await self.client.execute(action: "SearchClsLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SearchClsLog请求参数结构体
     public struct SearchClsLogRequest: TCRequestModel {
         /// 环境唯一ID
@@ -57,7 +41,7 @@ extension Tcb {
         /// 是否使用Lucene语法，默认为false
         public let useLucene: Bool?
         
-        public init (envId: String, startTime: String, endTime: String, queryString: String, limit: UInt64, context: String?, sort: String?, useLucene: Bool?) {
+        public init (envId: String, startTime: String, endTime: String, queryString: String, limit: UInt64, context: String? = nil, sort: String? = nil, useLucene: Bool? = nil) {
             self.envId = envId
             self.startTime = startTime
             self.endTime = endTime
@@ -92,5 +76,21 @@ extension Tcb {
             case logResults = "LogResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 搜索CLS日志
+    ///
+    /// 搜索CLS日志，TCB角色秘钥访问
+    @inlinable
+    public func searchClsLog(_ input: SearchClsLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchClsLogResponse > {
+        self.client.execute(action: "SearchClsLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 搜索CLS日志
+    ///
+    /// 搜索CLS日志，TCB角色秘钥访问
+    @inlinable
+    public func searchClsLog(_ input: SearchClsLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClsLogResponse {
+        try await self.client.execute(action: "SearchClsLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

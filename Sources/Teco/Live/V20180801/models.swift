@@ -317,7 +317,7 @@ extension Live {
         /// 填1时，透传原始流的sei
         public let passInputSei: Int64?
         
-        public init (useMixCropCenter: Int64?, allowCopy: Int64?, passInputSei: Int64?) {
+        public init (useMixCropCenter: Int64? = nil, allowCopy: Int64? = nil, passInputSei: Int64? = nil) {
             self.useMixCropCenter = useMixCropCenter
             self.allowCopy = allowCopy
             self.passInputSei = passInputSei
@@ -344,7 +344,7 @@ extension Live {
         /// 裁剪的起始Y坐标。取值范围[0，2000]。
         public let cropStartLocationY: Float?
         
-        public init (cropWidth: Float?, cropHeight: Float?, cropStartLocationX: Float?, cropStartLocationY: Float?) {
+        public init (cropWidth: Float? = nil, cropHeight: Float? = nil, cropStartLocationX: Float? = nil, cropStartLocationY: Float? = nil) {
             self.cropWidth = cropWidth
             self.cropHeight = cropHeight
             self.cropStartLocationX = cropStartLocationX
@@ -370,9 +370,9 @@ extension Live {
         public let layoutParams: CommonMixLayoutParams
         
         /// 输入流裁剪参数。
-        public let cropParams: CommonMixCropParams
+        public let cropParams: CommonMixCropParams?
         
-        public init (inputStreamName: String, layoutParams: CommonMixLayoutParams, cropParams: CommonMixCropParams) {
+        public init (inputStreamName: String, layoutParams: CommonMixLayoutParams, cropParams: CommonMixCropParams? = nil) {
             self.inputStreamName = inputStreamName
             self.layoutParams = layoutParams
             self.cropParams = cropParams
@@ -446,7 +446,7 @@ extension Live {
         /// 当InputType为2(图片)时，该值是水印ID。
         public let watermarkId: Int64?
         
-        public init (imageLayer: Int64, inputType: Int64?, imageHeight: Float?, imageWidth: Float?, locationX: Float?, locationY: Float?, color: String?, watermarkId: Int64?) {
+        public init (imageLayer: Int64, inputType: Int64? = nil, imageHeight: Float? = nil, imageWidth: Float? = nil, locationX: Float? = nil, locationY: Float? = nil, color: String? = nil, watermarkId: Int64? = nil) {
             self.imageLayer = imageLayer
             self.inputType = inputType
             self.imageHeight = imageHeight
@@ -508,7 +508,7 @@ extension Live {
         /// 输出流中的sei信息。如果无特殊需要，不填。
         public let mixSei: String?
         
-        public init (outputStreamName: String, outputStreamType: Int64?, outputStreamBitRate: Int64?, outputStreamGop: Int64?, outputStreamFrameRate: Int64?, outputAudioBitRate: Int64?, outputAudioSampleRate: Int64?, outputAudioChannels: Int64?, mixSei: String?) {
+        public init (outputStreamName: String, outputStreamType: Int64? = nil, outputStreamBitRate: Int64? = nil, outputStreamGop: Int64? = nil, outputStreamFrameRate: Int64? = nil, outputAudioBitRate: Int64? = nil, outputAudioSampleRate: Int64? = nil, outputAudioChannels: Int64? = nil, mixSei: String? = nil) {
             self.outputStreamName = outputStreamName
             self.outputStreamType = outputStreamType
             self.outputStreamBitRate = outputStreamBitRate
@@ -783,7 +783,7 @@ extension Live {
         /// 是否开启边录边传，仅flv格式有效。
         public let uploadInRecording: Bool?
         
-        public init (uploadInRecording: Bool?) {
+        public init (uploadInRecording: Bool? = nil) {
             self.uploadInRecording = uploadInRecording
         }
         
@@ -844,7 +844,7 @@ extension Live {
         /// 取值范围[0，1800]。
         public let flowContinueDuration: UInt64?
         
-        public init (flowContinueDuration: UInt64?) {
+        public init (flowContinueDuration: UInt64? = nil) {
             self.flowContinueDuration = flowContinueDuration
         }
         
@@ -1802,7 +1802,7 @@ extension Live {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let classId: Int64?
         
-        public init (recordInterval: Int64?, storageTime: Int64?, enable: Int64?, vodSubAppId: Int64?, vodFileName: String?, procedure: String?, storageMode: String?, classId: Int64?) {
+        public init (recordInterval: Int64? = nil, storageTime: Int64? = nil, enable: Int64? = nil, vodSubAppId: Int64? = nil, vodFileName: String? = nil, procedure: String? = nil, storageMode: String? = nil, classId: Int64? = nil) {
             self.recordInterval = recordInterval
             self.storageTime = storageTime
             self.enable = enable
@@ -1902,7 +1902,7 @@ extension Live {
         
         /// FLV 录制定制参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let flvSpecialParam: FlvSpecialParam
+        public let flvSpecialParam: FlvSpecialParam?
         
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"

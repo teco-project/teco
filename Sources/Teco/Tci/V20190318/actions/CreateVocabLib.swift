@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 建立词汇库
-    @inlinable
-    public func createVocabLib(_ input: CreateVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVocabLibResponse > {
-        self.client.execute(action: "CreateVocabLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 建立词汇库
-    @inlinable
-    public func createVocabLib(_ input: CreateVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVocabLibResponse {
-        try await self.client.execute(action: "CreateVocabLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVocabLib请求参数结构体
     public struct CreateVocabLibRequest: TCRequestModel {
         /// 词汇库名称
@@ -49,5 +37,17 @@ extension Tci {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 建立词汇库
+    @inlinable
+    public func createVocabLib(_ input: CreateVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVocabLibResponse > {
+        self.client.execute(action: "CreateVocabLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 建立词汇库
+    @inlinable
+    public func createVocabLib(_ input: CreateVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVocabLibResponse {
+        try await self.client.execute(action: "CreateVocabLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

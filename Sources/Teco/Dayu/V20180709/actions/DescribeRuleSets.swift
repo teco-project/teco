@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取资源的规则数
-    @inlinable
-    public func describeRuleSets(_ input: DescribeRuleSetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleSetsResponse > {
-        self.client.execute(action: "DescribeRuleSets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取资源的规则数
-    @inlinable
-    public func describeRuleSets(_ input: DescribeRuleSetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleSetsResponse {
-        try await self.client.execute(action: "DescribeRuleSets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRuleSets请求参数结构体
     public struct DescribeRuleSetsRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -70,5 +58,17 @@ extension Dayu {
             case l7RuleSets = "L7RuleSets"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取资源的规则数
+    @inlinable
+    public func describeRuleSets(_ input: DescribeRuleSetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleSetsResponse > {
+        self.client.execute(action: "DescribeRuleSets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资源的规则数
+    @inlinable
+    public func describeRuleSets(_ input: DescribeRuleSetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleSetsResponse {
+        try await self.client.execute(action: "DescribeRuleSets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

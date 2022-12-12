@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 删除一致性校验任务
-    ///
-    /// 删除一致性校验任务。当一致性校验任务状态为success、failed、canceled 时可以执行此操作。
-    @inlinable
-    public func deleteCompareTask(_ input: DeleteCompareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCompareTaskResponse > {
-        self.client.execute(action: "DeleteCompareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除一致性校验任务
-    ///
-    /// 删除一致性校验任务。当一致性校验任务状态为success、failed、canceled 时可以执行此操作。
-    @inlinable
-    public func deleteCompareTask(_ input: DeleteCompareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompareTaskResponse {
-        try await self.client.execute(action: "DeleteCompareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCompareTask请求参数结构体
     public struct DeleteCompareTaskRequest: TCRequestModel {
         /// 迁移任务 Id
@@ -58,5 +42,21 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除一致性校验任务
+    ///
+    /// 删除一致性校验任务。当一致性校验任务状态为success、failed、canceled 时可以执行此操作。
+    @inlinable
+    public func deleteCompareTask(_ input: DeleteCompareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCompareTaskResponse > {
+        self.client.execute(action: "DeleteCompareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除一致性校验任务
+    ///
+    /// 删除一致性校验任务。当一致性校验任务状态为success、failed、canceled 时可以执行此操作。
+    @inlinable
+    public func deleteCompareTask(_ input: DeleteCompareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompareTaskResponse {
+        try await self.client.execute(action: "DeleteCompareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

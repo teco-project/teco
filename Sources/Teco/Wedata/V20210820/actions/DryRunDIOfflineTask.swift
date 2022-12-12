@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 调试运行集成任务
-    @inlinable
-    public func dryRunDIOfflineTask(_ input: DryRunDIOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DryRunDIOfflineTaskResponse > {
-        self.client.execute(action: "DryRunDIOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调试运行集成任务
-    @inlinable
-    public func dryRunDIOfflineTask(_ input: DryRunDIOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DryRunDIOfflineTaskResponse {
-        try await self.client.execute(action: "DryRunDIOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DryRunDIOfflineTask请求参数结构体
     public struct DryRunDIOfflineTaskRequest: TCRequestModel {
         /// 任务Id
@@ -41,7 +29,7 @@ extension Wedata {
         /// 默认 27
         public let taskTypeId: UInt64?
         
-        public init (taskId: String, projectId: String, resourceGroup: String?, taskTypeId: UInt64?) {
+        public init (taskId: String, projectId: String, resourceGroup: String? = nil, taskTypeId: UInt64? = nil) {
             self.taskId = taskId
             self.projectId = projectId
             self.resourceGroup = resourceGroup
@@ -84,5 +72,17 @@ extension Wedata {
             case taskInstanceKey = "TaskInstanceKey"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调试运行集成任务
+    @inlinable
+    public func dryRunDIOfflineTask(_ input: DryRunDIOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DryRunDIOfflineTaskResponse > {
+        self.client.execute(action: "DryRunDIOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调试运行集成任务
+    @inlinable
+    public func dryRunDIOfflineTask(_ input: DryRunDIOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DryRunDIOfflineTaskResponse {
+        try await self.client.execute(action: "DryRunDIOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

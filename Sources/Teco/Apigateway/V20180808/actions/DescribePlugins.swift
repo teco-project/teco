@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询插件列表和详情
-    ///
-    /// 展示插件列表和详情，支持分页，支持按照插件类型查询，支持按照插件ID批量查询，支持按照插件名称查询。
-    @inlinable
-    public func describePlugins(_ input: DescribePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePluginsResponse > {
-        self.client.execute(action: "DescribePlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询插件列表和详情
-    ///
-    /// 展示插件列表和详情，支持分页，支持按照插件类型查询，支持按照插件ID批量查询，支持按照插件名称查询。
-    @inlinable
-    public func describePlugins(_ input: DescribePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginsResponse {
-        try await self.client.execute(action: "DescribePlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePlugins请求参数结构体
     public struct DescribePluginsRequest: TCRequestModel {
         /// 要查询的插件列表。
@@ -51,7 +35,7 @@ extension Apigateway {
         /// 过滤条件。预留字段，目前不支持过滤。
         public let filters: [Filter]?
         
-        public init (pluginIds: [String]?, pluginName: String?, pluginType: String?, limit: Int64?, offset: Int64?, filters: [Filter]?) {
+        public init (pluginIds: [String]? = nil, pluginName: String? = nil, pluginType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil) {
             self.pluginIds = pluginIds
             self.pluginName = pluginName
             self.pluginType = pluginType
@@ -82,5 +66,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询插件列表和详情
+    ///
+    /// 展示插件列表和详情，支持分页，支持按照插件类型查询，支持按照插件ID批量查询，支持按照插件名称查询。
+    @inlinable
+    public func describePlugins(_ input: DescribePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePluginsResponse > {
+        self.client.execute(action: "DescribePlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询插件列表和详情
+    ///
+    /// 展示插件列表和详情，支持分页，支持按照插件类型查询，支持按照插件ID批量查询，支持按照插件名称查询。
+    @inlinable
+    public func describePlugins(_ input: DescribePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginsResponse {
+        try await self.client.execute(action: "DescribePlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

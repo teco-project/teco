@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 续费实例询价
-    ///
-    /// 本接口（DescribeRenewalPrice）用于在续费云数据库实例时，查询续费的价格。
-    @inlinable
-    public func describeRenewalPrice(_ input: DescribeRenewalPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRenewalPriceResponse > {
-        self.client.execute(action: "DescribeRenewalPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费实例询价
-    ///
-    /// 本接口（DescribeRenewalPrice）用于在续费云数据库实例时，查询续费的价格。
-    @inlinable
-    public func describeRenewalPrice(_ input: DescribeRenewalPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRenewalPriceResponse {
-        try await self.client.execute(action: "DescribeRenewalPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRenewalPrice请求参数结构体
     public struct DescribeRenewalPriceRequest: TCRequestModel {
         /// 待续费的实例ID。形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
@@ -44,7 +28,7 @@ extension Mariadb {
         /// * microPent：微分
         public let amountUnit: String?
         
-        public init (instanceId: String, period: Int64?, amountUnit: String?) {
+        public init (instanceId: String, period: Int64? = nil, amountUnit: String? = nil) {
             self.instanceId = instanceId
             self.period = period
             self.amountUnit = amountUnit
@@ -77,5 +61,21 @@ extension Mariadb {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费实例询价
+    ///
+    /// 本接口（DescribeRenewalPrice）用于在续费云数据库实例时，查询续费的价格。
+    @inlinable
+    public func describeRenewalPrice(_ input: DescribeRenewalPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRenewalPriceResponse > {
+        self.client.execute(action: "DescribeRenewalPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费实例询价
+    ///
+    /// 本接口（DescribeRenewalPrice）用于在续费云数据库实例时，查询续费的价格。
+    @inlinable
+    public func describeRenewalPrice(_ input: DescribeRenewalPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRenewalPriceResponse {
+        try await self.client.execute(action: "DescribeRenewalPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

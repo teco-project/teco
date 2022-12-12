@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Fmu {
-    /// 人脸美颜
-    ///
-    /// 用户上传一张人脸图片，精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
-    @inlinable
-    public func beautifyPic(_ input: BeautifyPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BeautifyPicResponse > {
-        self.client.execute(action: "BeautifyPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人脸美颜
-    ///
-    /// 用户上传一张人脸图片，精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
-    @inlinable
-    public func beautifyPic(_ input: BeautifyPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyPicResponse {
-        try await self.client.execute(action: "BeautifyPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BeautifyPic请求参数结构体
     public struct BeautifyPicRequest: TCRequestModel {
         /// 图片 base64 数据，base64 编码后大小不可超过5M。 
@@ -59,7 +43,7 @@ extension Fmu {
         /// 返回图像方式（base64 或 url ) ，二选一。url有效期为1天。
         public let rspImgType: String?
         
-        public init (image: String?, url: String?, whitening: UInt64?, smoothing: UInt64?, faceLifting: UInt64?, eyeEnlarging: UInt64?, rspImgType: String?) {
+        public init (image: String? = nil, url: String? = nil, whitening: UInt64? = nil, smoothing: UInt64? = nil, faceLifting: UInt64? = nil, eyeEnlarging: UInt64? = nil, rspImgType: String? = nil) {
             self.image = image
             self.url = url
             self.whitening = whitening
@@ -96,5 +80,21 @@ extension Fmu {
             case resultUrl = "ResultUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人脸美颜
+    ///
+    /// 用户上传一张人脸图片，精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
+    @inlinable
+    public func beautifyPic(_ input: BeautifyPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BeautifyPicResponse > {
+        self.client.execute(action: "BeautifyPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人脸美颜
+    ///
+    /// 用户上传一张人脸图片，精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
+    @inlinable
+    public func beautifyPic(_ input: BeautifyPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyPicResponse {
+        try await self.client.execute(action: "BeautifyPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

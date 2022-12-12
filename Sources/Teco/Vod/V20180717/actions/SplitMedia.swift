@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 视频拆条
-    ///
-    /// 对点播视频进行拆条，生成多个新的点播视频。
-    @inlinable
-    public func splitMedia(_ input: SplitMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SplitMediaResponse > {
-        self.client.execute(action: "SplitMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 视频拆条
-    ///
-    /// 对点播视频进行拆条，生成多个新的点播视频。
-    @inlinable
-    public func splitMedia(_ input: SplitMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitMediaResponse {
-        try await self.client.execute(action: "SplitMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SplitMedia请求参数结构体
     public struct SplitMediaRequest: TCRequestModel {
         /// 视频的 ID。
@@ -51,7 +35,7 @@ extension Vod {
         /// 任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
         public let tasksPriority: Int64?
         
-        public init (fileId: String, segments: [SplitMediaTaskConfig], subAppId: UInt64?, sessionContext: String?, sessionId: String?, tasksPriority: Int64?) {
+        public init (fileId: String, segments: [SplitMediaTaskConfig], subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil) {
             self.fileId = fileId
             self.segments = segments
             self.subAppId = subAppId
@@ -82,5 +66,21 @@ extension Vod {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 视频拆条
+    ///
+    /// 对点播视频进行拆条，生成多个新的点播视频。
+    @inlinable
+    public func splitMedia(_ input: SplitMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SplitMediaResponse > {
+        self.client.execute(action: "SplitMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 视频拆条
+    ///
+    /// 对点播视频进行拆条，生成多个新的点播视频。
+    @inlinable
+    public func splitMedia(_ input: SplitMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitMediaResponse {
+        try await self.client.execute(action: "SplitMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 添加域名
-    @inlinable
-    public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainResponse > {
-        self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加域名
-    @inlinable
-    public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
-        try await self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDomain请求参数结构体
     public struct CreateDomainRequest: TCRequestModel {
         /// 域名
@@ -38,7 +26,7 @@ extension Dnspod {
         /// 是否星标域名，”yes”、”no” 分别代表是和否。
         public let isMark: String?
         
-        public init (domain: String, groupId: UInt64?, isMark: String?) {
+        public init (domain: String, groupId: UInt64? = nil, isMark: String? = nil) {
             self.domain = domain
             self.groupId = groupId
             self.isMark = isMark
@@ -63,5 +51,17 @@ extension Dnspod {
             case domainInfo = "DomainInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加域名
+    @inlinable
+    public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainResponse > {
+        self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加域名
+    @inlinable
+    public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
+        try await self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

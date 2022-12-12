@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 释放IPv6地址
-    ///
-    /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。<br />
-    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
-    @inlinable
-    public func unassignIpv6Addresses(_ input: UnassignIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnassignIpv6AddressesResponse > {
-        self.client.execute(action: "UnassignIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 释放IPv6地址
-    ///
-    /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。<br />
-    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
-    @inlinable
-    public func unassignIpv6Addresses(_ input: UnassignIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6AddressesResponse {
-        try await self.client.execute(action: "UnassignIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnassignIpv6Addresses请求参数结构体
     public struct UnassignIpv6AddressesRequest: TCRequestModel {
         /// 弹性网卡实例`ID`，形如：`eni-m6dyj72l`。
@@ -60,5 +42,23 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 释放IPv6地址
+    ///
+    /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。<br />
+    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
+    @inlinable
+    public func unassignIpv6Addresses(_ input: UnassignIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnassignIpv6AddressesResponse > {
+        self.client.execute(action: "UnassignIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 释放IPv6地址
+    ///
+    /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。<br />
+    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
+    @inlinable
+    public func unassignIpv6Addresses(_ input: UnassignIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6AddressesResponse {
+        try await self.client.execute(action: "UnassignIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

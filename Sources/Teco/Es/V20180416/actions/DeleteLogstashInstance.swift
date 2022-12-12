@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 删除Logstash实例
-    ///
-    /// 用于删除Logstash实例
-    @inlinable
-    public func deleteLogstashInstance(_ input: DeleteLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogstashInstanceResponse > {
-        self.client.execute(action: "DeleteLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除Logstash实例
-    ///
-    /// 用于删除Logstash实例
-    @inlinable
-    public func deleteLogstashInstance(_ input: DeleteLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashInstanceResponse {
-        try await self.client.execute(action: "DeleteLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLogstashInstance请求参数结构体
     public struct DeleteLogstashInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -53,5 +37,21 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除Logstash实例
+    ///
+    /// 用于删除Logstash实例
+    @inlinable
+    public func deleteLogstashInstance(_ input: DeleteLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogstashInstanceResponse > {
+        self.client.execute(action: "DeleteLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Logstash实例
+    ///
+    /// 用于删除Logstash实例
+    @inlinable
+    public func deleteLogstashInstance(_ input: DeleteLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashInstanceResponse {
+        try await self.client.execute(action: "DeleteLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

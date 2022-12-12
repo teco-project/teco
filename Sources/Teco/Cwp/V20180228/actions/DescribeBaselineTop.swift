@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 基线检测项TOP
-    ///
-    /// 根据策略id查询基线检测项TOP
-    @inlinable
-    public func describeBaselineTop(_ input: DescribeBaselineTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineTopResponse > {
-        self.client.execute(action: "DescribeBaselineTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 基线检测项TOP
-    ///
-    /// 根据策略id查询基线检测项TOP
-    @inlinable
-    public func describeBaselineTop(_ input: DescribeBaselineTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineTopResponse {
-        try await self.client.execute(action: "DescribeBaselineTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBaselineTop请求参数结构体
     public struct DescribeBaselineTopRequest: TCRequestModel {
         /// 动态top值
@@ -63,5 +47,21 @@ extension Cwp {
             case ruleTopList = "RuleTopList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 基线检测项TOP
+    ///
+    /// 根据策略id查询基线检测项TOP
+    @inlinable
+    public func describeBaselineTop(_ input: DescribeBaselineTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineTopResponse > {
+        self.client.execute(action: "DescribeBaselineTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 基线检测项TOP
+    ///
+    /// 根据策略id查询基线检测项TOP
+    @inlinable
+    public func describeBaselineTop(_ input: DescribeBaselineTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineTopResponse {
+        try await self.client.execute(action: "DescribeBaselineTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

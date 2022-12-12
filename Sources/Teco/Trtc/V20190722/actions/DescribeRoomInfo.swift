@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Trtc {
-    /// 查询历史房间列表
-    ///
-    /// 查询SdkAppId下的房间列表。默认返回10条通话，一次最多返回100条通话。可查询14天内的数据。（同老接口DescribeRoomInformation）
-    /// **注意**：
-    /// 1.该接口只用于历史数据统计或核对数据使用，实时类关键业务逻辑不能使用。
-    /// 2.该接口目前免费提供中，监控仪表盘商业化计费后该接口需要订阅付费版后方可调用，仪表盘商业化说明请见：https://cloud.tencent.com/document/product/647/77735
-    @inlinable
-    public func describeRoomInfo(_ input: DescribeRoomInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoomInfoResponse > {
-        self.client.execute(action: "DescribeRoomInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询历史房间列表
-    ///
-    /// 查询SdkAppId下的房间列表。默认返回10条通话，一次最多返回100条通话。可查询14天内的数据。（同老接口DescribeRoomInformation）
-    /// **注意**：
-    /// 1.该接口只用于历史数据统计或核对数据使用，实时类关键业务逻辑不能使用。
-    /// 2.该接口目前免费提供中，监控仪表盘商业化计费后该接口需要订阅付费版后方可调用，仪表盘商业化说明请见：https://cloud.tencent.com/document/product/647/77735
-    @inlinable
-    public func describeRoomInfo(_ input: DescribeRoomInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomInfoResponse {
-        try await self.client.execute(action: "DescribeRoomInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRoomInfo请求参数结构体
     public struct DescribeRoomInfoRequest: TCRequestModel {
         /// 用户SdkAppId（如：1400xxxxxx）
@@ -61,7 +39,7 @@ extension Trtc {
         /// 范围：[1，100]
         public let pageSize: UInt64?
         
-        public init (sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, roomId: String?, pageNumber: UInt64?, pageSize: UInt64?) {
+        public init (sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, roomId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil) {
             self.sdkAppId = sdkAppId
             self.startTime = startTime
             self.endTime = endTime
@@ -96,5 +74,27 @@ extension Trtc {
             case roomList = "RoomList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询历史房间列表
+    ///
+    /// 查询SdkAppId下的房间列表。默认返回10条通话，一次最多返回100条通话。可查询14天内的数据。（同老接口DescribeRoomInformation）
+    /// **注意**：
+    /// 1.该接口只用于历史数据统计或核对数据使用，实时类关键业务逻辑不能使用。
+    /// 2.该接口目前免费提供中，监控仪表盘商业化计费后该接口需要订阅付费版后方可调用，仪表盘商业化说明请见：https://cloud.tencent.com/document/product/647/77735
+    @inlinable
+    public func describeRoomInfo(_ input: DescribeRoomInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoomInfoResponse > {
+        self.client.execute(action: "DescribeRoomInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询历史房间列表
+    ///
+    /// 查询SdkAppId下的房间列表。默认返回10条通话，一次最多返回100条通话。可查询14天内的数据。（同老接口DescribeRoomInformation）
+    /// **注意**：
+    /// 1.该接口只用于历史数据统计或核对数据使用，实时类关键业务逻辑不能使用。
+    /// 2.该接口目前免费提供中，监控仪表盘商业化计费后该接口需要订阅付费版后方可调用，仪表盘商业化说明请见：https://cloud.tencent.com/document/product/647/77735
+    @inlinable
+    public func describeRoomInfo(_ input: DescribeRoomInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomInfoResponse {
+        try await self.client.execute(action: "DescribeRoomInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

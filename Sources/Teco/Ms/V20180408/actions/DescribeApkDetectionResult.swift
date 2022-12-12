@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ms {
-    /// 环境安全检测-apk检测
-    ///
-    /// 该接口采用同步模式请求腾讯APK云检测服务，即时返回检测数据，需要用户用轮询的方式调用本接口来进行样本送检并获取检测结果(每隔60s发送一次请求，传相同的参数，重试30次)，一般情况下0.5h内会出检测结果，最长时间是3h。当Result为ok并且ResultList数组非空有值时，代表检测完毕，若长时间获取不到检测结果，请联系客服。
-    @inlinable
-    public func describeApkDetectionResult(_ input: DescribeApkDetectionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApkDetectionResultResponse > {
-        self.client.execute(action: "DescribeApkDetectionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 环境安全检测-apk检测
-    ///
-    /// 该接口采用同步模式请求腾讯APK云检测服务，即时返回检测数据，需要用户用轮询的方式调用本接口来进行样本送检并获取检测结果(每隔60s发送一次请求，传相同的参数，重试30次)，一般情况下0.5h内会出检测结果，最长时间是3h。当Result为ok并且ResultList数组非空有值时，代表检测完毕，若长时间获取不到检测结果，请联系客服。
-    @inlinable
-    public func describeApkDetectionResult(_ input: DescribeApkDetectionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApkDetectionResultResponse {
-        try await self.client.execute(action: "DescribeApkDetectionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApkDetectionResult请求参数结构体
     public struct DescribeApkDetectionResultRequest: TCRequestModel {
         /// 软件包的下载链接
@@ -70,5 +54,21 @@ extension Ms {
             case resultList = "ResultList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 环境安全检测-apk检测
+    ///
+    /// 该接口采用同步模式请求腾讯APK云检测服务，即时返回检测数据，需要用户用轮询的方式调用本接口来进行样本送检并获取检测结果(每隔60s发送一次请求，传相同的参数，重试30次)，一般情况下0.5h内会出检测结果，最长时间是3h。当Result为ok并且ResultList数组非空有值时，代表检测完毕，若长时间获取不到检测结果，请联系客服。
+    @inlinable
+    public func describeApkDetectionResult(_ input: DescribeApkDetectionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApkDetectionResultResponse > {
+        self.client.execute(action: "DescribeApkDetectionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 环境安全检测-apk检测
+    ///
+    /// 该接口采用同步模式请求腾讯APK云检测服务，即时返回检测数据，需要用户用轮询的方式调用本接口来进行样本送检并获取检测结果(每隔60s发送一次请求，传相同的参数，重试30次)，一般情况下0.5h内会出检测结果，最长时间是3h。当Result为ok并且ResultList数组非空有值时，代表检测完毕，若长时间获取不到检测结果，请联系客服。
+    @inlinable
+    public func describeApkDetectionResult(_ input: DescribeApkDetectionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApkDetectionResultResponse {
+        try await self.client.execute(action: "DescribeApkDetectionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

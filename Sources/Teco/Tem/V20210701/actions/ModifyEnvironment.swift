@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 编辑环境
-    @inlinable
-    public func modifyEnvironment(_ input: ModifyEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEnvironmentResponse > {
-        self.client.execute(action: "ModifyEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑环境
-    @inlinable
-    public func modifyEnvironment(_ input: ModifyEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentResponse {
-        try await self.client.execute(action: "ModifyEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyEnvironment请求参数结构体
     public struct ModifyEnvironmentRequest: TCRequestModel {
         /// 环境id
@@ -50,7 +38,7 @@ extension Tem {
         /// 环境类型：test、pre、prod
         public let envType: String?
         
-        public init (environmentId: String, environmentName: String?, description: String?, vpc: String?, subnetIds: [String]?, sourceChannel: Int64?, envType: String?) {
+        public init (environmentId: String, environmentName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, envType: String? = nil) {
             self.environmentId = environmentId
             self.environmentName = environmentName
             self.description = description
@@ -84,5 +72,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑环境
+    @inlinable
+    public func modifyEnvironment(_ input: ModifyEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEnvironmentResponse > {
+        self.client.execute(action: "ModifyEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑环境
+    @inlinable
+    public func modifyEnvironment(_ input: ModifyEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentResponse {
+        try await self.client.execute(action: "ModifyEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

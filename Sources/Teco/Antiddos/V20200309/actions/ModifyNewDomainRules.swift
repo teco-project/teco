@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 修改7层转发规则
-    @inlinable
-    public func modifyNewDomainRules(_ input: ModifyNewDomainRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNewDomainRulesResponse > {
-        self.client.execute(action: "ModifyNewDomainRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改7层转发规则
-    @inlinable
-    public func modifyNewDomainRules(_ input: ModifyNewDomainRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNewDomainRulesResponse {
-        try await self.client.execute(action: "ModifyNewDomainRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNewDomainRules请求参数结构体
     public struct ModifyNewDomainRulesRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP）
@@ -63,5 +51,17 @@ extension Antiddos {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改7层转发规则
+    @inlinable
+    public func modifyNewDomainRules(_ input: ModifyNewDomainRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNewDomainRulesResponse > {
+        self.client.execute(action: "ModifyNewDomainRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改7层转发规则
+    @inlinable
+    public func modifyNewDomainRules(_ input: ModifyNewDomainRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNewDomainRulesResponse {
+        try await self.client.execute(action: "ModifyNewDomainRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

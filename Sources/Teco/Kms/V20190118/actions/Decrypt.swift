@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 解密
-    ///
-    /// 本接口用于解密密文，得到明文数据。
-    @inlinable
-    public func decrypt(_ input: DecryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DecryptResponse > {
-        self.client.execute(action: "Decrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解密
-    ///
-    /// 本接口用于解密密文，得到明文数据。
-    @inlinable
-    public func decrypt(_ input: DecryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DecryptResponse {
-        try await self.client.execute(action: "Decrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// Decrypt请求参数结构体
     public struct DecryptRequest: TCRequestModel {
         /// 待解密的密文数据
@@ -45,7 +29,7 @@ extension Kms {
         /// 非对称加密算法，配合 EncryptionPublicKey 对返回数据进行加密。目前支持：SM2（以 C1C3C2 格式返回密文），SM2_C1C3C2_ASN1 （以 C1C3C2 ASN1 格式返回密文），RSAES_PKCS1_V1_5，RSAES_OAEP_SHA_1，RSAES_OAEP_SHA_256。若为空，则默认为 SM2。
         public let encryptionAlgorithm: String?
         
-        public init (ciphertextBlob: String, encryptionContext: String?, encryptionPublicKey: String?, encryptionAlgorithm: String?) {
+        public init (ciphertextBlob: String, encryptionContext: String? = nil, encryptionPublicKey: String? = nil, encryptionAlgorithm: String? = nil) {
             self.ciphertextBlob = ciphertextBlob
             self.encryptionContext = encryptionContext
             self.encryptionPublicKey = encryptionPublicKey
@@ -77,5 +61,21 @@ extension Kms {
             case plaintext = "Plaintext"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解密
+    ///
+    /// 本接口用于解密密文，得到明文数据。
+    @inlinable
+    public func decrypt(_ input: DecryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DecryptResponse > {
+        self.client.execute(action: "Decrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解密
+    ///
+    /// 本接口用于解密密文，得到明文数据。
+    @inlinable
+    public func decrypt(_ input: DecryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DecryptResponse {
+        try await self.client.execute(action: "Decrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

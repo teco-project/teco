@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取DDoS告警通知阈值
-    ///
-    /// 获取高防包、高防IP、高防IP专业版、棋牌盾产品设置DDoS攻击的告警通知阈值
-    @inlinable
-    public func describeDDoSAlarmThreshold(_ input: DescribeDDoSAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAlarmThresholdResponse > {
-        self.client.execute(action: "DescribeDDoSAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DDoS告警通知阈值
-    ///
-    /// 获取高防包、高防IP、高防IP专业版、棋牌盾产品设置DDoS攻击的告警通知阈值
-    @inlinable
-    public func describeDDoSAlarmThreshold(_ input: DescribeDDoSAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAlarmThresholdResponse {
-        try await self.client.execute(action: "DescribeDDoSAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSAlarmThreshold请求参数结构体
     public struct DescribeDDoSAlarmThresholdRequest: TCRequestModel {
         /// 大禹子产品代号（shield表示棋牌；bgpip表示高防IP；bgp表示高防包；bgp-multip表示多ip高防包；net表示高防IP专业版）
@@ -62,5 +46,21 @@ extension Dayu {
             case dDoSAlarmThreshold = "DDoSAlarmThreshold"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DDoS告警通知阈值
+    ///
+    /// 获取高防包、高防IP、高防IP专业版、棋牌盾产品设置DDoS攻击的告警通知阈值
+    @inlinable
+    public func describeDDoSAlarmThreshold(_ input: DescribeDDoSAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAlarmThresholdResponse > {
+        self.client.execute(action: "DescribeDDoSAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS告警通知阈值
+    ///
+    /// 获取高防包、高防IP、高防IP专业版、棋牌盾产品设置DDoS攻击的告警通知阈值
+    @inlinable
+    public func describeDDoSAlarmThreshold(_ input: DescribeDDoSAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAlarmThresholdResponse {
+        try await self.client.execute(action: "DescribeDDoSAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-维护会员绑定提现账户联行号
-    ///
-    /// 维护会员绑定提现账户联行号。此接口可以支持市场修改会员的提现账户的开户行信息，具体包括开户行行名、开户行的银行联行号（大小额联行号）和超级网银行号。
-    @inlinable
-    public func modifyMntMbrBindRelateAcctBankCode(_ input: ModifyMntMbrBindRelateAcctBankCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMntMbrBindRelateAcctBankCodeResponse > {
-        self.client.execute(action: "ModifyMntMbrBindRelateAcctBankCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-维护会员绑定提现账户联行号
-    ///
-    /// 维护会员绑定提现账户联行号。此接口可以支持市场修改会员的提现账户的开户行信息，具体包括开户行行名、开户行的银行联行号（大小额联行号）和超级网银行号。
-    @inlinable
-    public func modifyMntMbrBindRelateAcctBankCode(_ input: ModifyMntMbrBindRelateAcctBankCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMntMbrBindRelateAcctBankCodeResponse {
-        try await self.client.execute(action: "ModifyMntMbrBindRelateAcctBankCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMntMbrBindRelateAcctBankCode请求参数结构体
     public struct ModifyMntMbrBindRelateAcctBankCodeRequest: TCRequestModel {
         /// String(22)，商户号（签约客户号）
@@ -57,7 +41,7 @@ extension Cpdp {
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
         
-        public init (mrchCode: String, subAcctNo: String, memberBindAcctNo: String, acctOpenBranchName: String, cnapsBranchId: String?, eiconBankBranchId: String?, reservedMsg: String?, profile: String?) {
+        public init (mrchCode: String, subAcctNo: String, memberBindAcctNo: String, acctOpenBranchName: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil) {
             self.mrchCode = mrchCode
             self.subAcctNo = subAcctNo
             self.memberBindAcctNo = memberBindAcctNo
@@ -105,5 +89,21 @@ extension Cpdp {
             case reservedMsg = "ReservedMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-维护会员绑定提现账户联行号
+    ///
+    /// 维护会员绑定提现账户联行号。此接口可以支持市场修改会员的提现账户的开户行信息，具体包括开户行行名、开户行的银行联行号（大小额联行号）和超级网银行号。
+    @inlinable
+    public func modifyMntMbrBindRelateAcctBankCode(_ input: ModifyMntMbrBindRelateAcctBankCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMntMbrBindRelateAcctBankCodeResponse > {
+        self.client.execute(action: "ModifyMntMbrBindRelateAcctBankCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-维护会员绑定提现账户联行号
+    ///
+    /// 维护会员绑定提现账户联行号。此接口可以支持市场修改会员的提现账户的开户行信息，具体包括开户行行名、开户行的银行联行号（大小额联行号）和超级网银行号。
+    @inlinable
+    public func modifyMntMbrBindRelateAcctBankCode(_ input: ModifyMntMbrBindRelateAcctBankCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMntMbrBindRelateAcctBankCodeResponse {
+        try await self.client.execute(action: "ModifyMntMbrBindRelateAcctBankCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 更新访问密钥
-    ///
-    /// 为CAM用户更新访问密钥
-    @inlinable
-    public func updateAccessKey(_ input: UpdateAccessKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAccessKeyResponse > {
-        self.client.execute(action: "UpdateAccessKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新访问密钥
-    ///
-    /// 为CAM用户更新访问密钥
-    @inlinable
-    public func updateAccessKey(_ input: UpdateAccessKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAccessKeyResponse {
-        try await self.client.execute(action: "UpdateAccessKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateAccessKey请求参数结构体
     public struct UpdateAccessKeyRequest: TCRequestModel {
         /// 指定需要更新的AccessKeyId
@@ -42,7 +26,7 @@ extension Cam {
         /// 指定用户Uin，不填默认为当前用户更新访问密钥
         public let targetUin: UInt64?
         
-        public init (accessKeyId: String, status: String, targetUin: UInt64?) {
+        public init (accessKeyId: String, status: String, targetUin: UInt64? = nil) {
             self.accessKeyId = accessKeyId
             self.status = status
             self.targetUin = targetUin
@@ -63,5 +47,21 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新访问密钥
+    ///
+    /// 为CAM用户更新访问密钥
+    @inlinable
+    public func updateAccessKey(_ input: UpdateAccessKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAccessKeyResponse > {
+        self.client.execute(action: "UpdateAccessKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新访问密钥
+    ///
+    /// 为CAM用户更新访问密钥
+    @inlinable
+    public func updateAccessKey(_ input: UpdateAccessKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAccessKeyResponse {
+        try await self.client.execute(action: "UpdateAccessKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 容器网络更新Yaml网络策略并发布任务
-    @inlinable
-    public func updateAndPublishNetworkFirewallPolicyYamlDetail(_ input: UpdateAndPublishNetworkFirewallPolicyYamlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAndPublishNetworkFirewallPolicyYamlDetailResponse > {
-        self.client.execute(action: "UpdateAndPublishNetworkFirewallPolicyYamlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 容器网络更新Yaml网络策略并发布任务
-    @inlinable
-    public func updateAndPublishNetworkFirewallPolicyYamlDetail(_ input: UpdateAndPublishNetworkFirewallPolicyYamlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAndPublishNetworkFirewallPolicyYamlDetailResponse {
-        try await self.client.execute(action: "UpdateAndPublishNetworkFirewallPolicyYamlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateAndPublishNetworkFirewallPolicyYamlDetail请求参数结构体
     public struct UpdateAndPublishNetworkFirewallPolicyYamlDetailRequest: TCRequestModel {
         /// 集群Id
@@ -41,7 +29,7 @@ extension Tcss {
         /// 策略描述
         public let description: String?
         
-        public init (clusterId: String, id: UInt64, yaml: String?, description: String?) {
+        public init (clusterId: String, id: UInt64, yaml: String? = nil, description: String? = nil) {
             self.clusterId = clusterId
             self.id = id
             self.yaml = yaml
@@ -72,5 +60,17 @@ extension Tcss {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 容器网络更新Yaml网络策略并发布任务
+    @inlinable
+    public func updateAndPublishNetworkFirewallPolicyYamlDetail(_ input: UpdateAndPublishNetworkFirewallPolicyYamlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAndPublishNetworkFirewallPolicyYamlDetailResponse > {
+        self.client.execute(action: "UpdateAndPublishNetworkFirewallPolicyYamlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络更新Yaml网络策略并发布任务
+    @inlinable
+    public func updateAndPublishNetworkFirewallPolicyYamlDetail(_ input: UpdateAndPublishNetworkFirewallPolicyYamlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAndPublishNetworkFirewallPolicyYamlDetailResponse {
+        try await self.client.execute(action: "UpdateAndPublishNetworkFirewallPolicyYamlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

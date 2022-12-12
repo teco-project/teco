@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取创建多设备结果
-    ///
-    /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
-    @inlinable
-    public func describeMultiDevices(_ input: DescribeMultiDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMultiDevicesResponse > {
-        self.client.execute(action: "DescribeMultiDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取创建多设备结果
-    ///
-    /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
-    @inlinable
-    public func describeMultiDevices(_ input: DescribeMultiDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiDevicesResponse {
-        try await self.client.execute(action: "DescribeMultiDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMultiDevices请求参数结构体
     public struct DescribeMultiDevicesRequest: TCRequestModel {
         /// 产品 ID，创建产品时腾讯云为用户分配全局唯一的 ID
@@ -80,5 +64,21 @@ extension Iotcloud {
             case totalDevNum = "TotalDevNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取创建多设备结果
+    ///
+    /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
+    @inlinable
+    public func describeMultiDevices(_ input: DescribeMultiDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMultiDevicesResponse > {
+        self.client.execute(action: "DescribeMultiDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取创建多设备结果
+    ///
+    /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
+    @inlinable
+    public func describeMultiDevices(_ input: DescribeMultiDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiDevicesResponse {
+        try await self.client.execute(action: "DescribeMultiDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 获取人员列表长度
-    ///
-    /// 获取指定人员库中人员数量。
-    @inlinable
-    public func getPersonListNum(_ input: GetPersonListNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPersonListNumResponse > {
-        self.client.execute(action: "GetPersonListNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取人员列表长度
-    ///
-    /// 获取指定人员库中人员数量。
-    @inlinable
-    public func getPersonListNum(_ input: GetPersonListNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonListNumResponse {
-        try await self.client.execute(action: "GetPersonListNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetPersonListNum请求参数结构体
     public struct GetPersonListNumRequest: TCRequestModel {
         /// 人员库ID，取值为创建人员库接口中的GroupId
@@ -61,5 +45,21 @@ extension Iai {
             case faceNum = "FaceNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取人员列表长度
+    ///
+    /// 获取指定人员库中人员数量。
+    @inlinable
+    public func getPersonListNum(_ input: GetPersonListNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPersonListNumResponse > {
+        self.client.execute(action: "GetPersonListNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人员列表长度
+    ///
+    /// 获取指定人员库中人员数量。
+    @inlinable
+    public func getPersonListNum(_ input: GetPersonListNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonListNumResponse {
+        try await self.client.execute(action: "GetPersonListNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

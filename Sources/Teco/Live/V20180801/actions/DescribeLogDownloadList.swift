@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 批量获取日志URL
-    ///
-    /// 批量获取日志URL。
-    @inlinable
-    public func describeLogDownloadList(_ input: DescribeLogDownloadListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogDownloadListResponse > {
-        self.client.execute(action: "DescribeLogDownloadList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量获取日志URL
-    ///
-    /// 批量获取日志URL。
-    @inlinable
-    public func describeLogDownloadList(_ input: DescribeLogDownloadListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogDownloadListResponse {
-        try await self.client.execute(action: "DescribeLogDownloadList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLogDownloadList请求参数结构体
     public struct DescribeLogDownloadListRequest: TCRequestModel {
         /// 开始时间，北京时间。
@@ -74,5 +58,21 @@ extension Live {
             case totalNum = "TotalNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量获取日志URL
+    ///
+    /// 批量获取日志URL。
+    @inlinable
+    public func describeLogDownloadList(_ input: DescribeLogDownloadListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogDownloadListResponse > {
+        self.client.execute(action: "DescribeLogDownloadList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量获取日志URL
+    ///
+    /// 批量获取日志URL。
+    @inlinable
+    public func describeLogDownloadList(_ input: DescribeLogDownloadListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogDownloadListResponse {
+        try await self.client.execute(action: "DescribeLogDownloadList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

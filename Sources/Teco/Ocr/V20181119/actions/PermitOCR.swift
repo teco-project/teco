@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 港澳台通行证识别
-    ///
-    /// 本接口支持对卡式港澳台通行证的识别，包括签发地点、签发机关、有效期限、性别、出生日期、英文姓名、姓名、证件号等字段。
-    @inlinable
-    public func permitOCR(_ input: PermitOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PermitOCRResponse > {
-        self.client.execute(action: "PermitOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 港澳台通行证识别
-    ///
-    /// 本接口支持对卡式港澳台通行证的识别，包括签发地点、签发机关、有效期限、性别、出生日期、英文姓名、姓名、证件号等字段。
-    @inlinable
-    public func permitOCR(_ input: PermitOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PermitOCRResponse {
-        try await self.client.execute(action: "PermitOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PermitOCR请求参数结构体
     public struct PermitOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -46,7 +30,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -97,5 +81,21 @@ extension Ocr {
             case birthday = "Birthday"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 港澳台通行证识别
+    ///
+    /// 本接口支持对卡式港澳台通行证的识别，包括签发地点、签发机关、有效期限、性别、出生日期、英文姓名、姓名、证件号等字段。
+    @inlinable
+    public func permitOCR(_ input: PermitOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PermitOCRResponse > {
+        self.client.execute(action: "PermitOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 港澳台通行证识别
+    ///
+    /// 本接口支持对卡式港澳台通行证的识别，包括签发地点、签发机关、有效期限、性别、出生日期、英文姓名、姓名、证件号等字段。
+    @inlinable
+    public func permitOCR(_ input: PermitOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PermitOCRResponse {
+        try await self.client.execute(action: "PermitOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

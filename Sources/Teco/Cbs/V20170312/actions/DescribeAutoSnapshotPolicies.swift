@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 查询定期快照策略
-    ///
-    /// 本接口（DescribeAutoSnapshotPolicies）用于查询定期快照策略。
-    /// * 可以根据定期快照策略ID、名称或者状态等信息来查询定期快照策略的详细信息，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
-    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的定期快照策略表。
-    @inlinable
-    public func describeAutoSnapshotPolicies(_ input: DescribeAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoSnapshotPoliciesResponse > {
-        self.client.execute(action: "DescribeAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询定期快照策略
-    ///
-    /// 本接口（DescribeAutoSnapshotPolicies）用于查询定期快照策略。
-    /// * 可以根据定期快照策略ID、名称或者状态等信息来查询定期快照策略的详细信息，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
-    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的定期快照策略表。
-    @inlinable
-    public func describeAutoSnapshotPolicies(_ input: DescribeAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoSnapshotPoliciesResponse {
-        try await self.client.execute(action: "DescribeAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAutoSnapshotPolicies请求参数结构体
     public struct DescribeAutoSnapshotPoliciesRequest: TCRequestModel {
         /// 要查询的定期快照策略ID列表。参数不支持同时指定`AutoSnapshotPolicyIds`和`Filters`。
@@ -55,7 +35,7 @@ extension Cbs {
         /// 定期快照列表排序的依据字段。取值范围：<br><li>CREATETIME：依据定期快照的创建时间排序<br>默认按创建时间排序。
         public let orderField: String?
         
-        public init (autoSnapshotPolicyIds: [String]?, filters: [Filter]?, limit: UInt64?, offset: UInt64?, order: String?, orderField: String?) {
+        public init (autoSnapshotPolicyIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, orderField: String? = nil) {
             self.autoSnapshotPolicyIds = autoSnapshotPolicyIds
             self.filters = filters
             self.limit = limit
@@ -90,5 +70,25 @@ extension Cbs {
             case autoSnapshotPolicySet = "AutoSnapshotPolicySet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询定期快照策略
+    ///
+    /// 本接口（DescribeAutoSnapshotPolicies）用于查询定期快照策略。
+    /// * 可以根据定期快照策略ID、名称或者状态等信息来查询定期快照策略的详细信息，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的定期快照策略表。
+    @inlinable
+    public func describeAutoSnapshotPolicies(_ input: DescribeAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoSnapshotPoliciesResponse > {
+        self.client.execute(action: "DescribeAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询定期快照策略
+    ///
+    /// 本接口（DescribeAutoSnapshotPolicies）用于查询定期快照策略。
+    /// * 可以根据定期快照策略ID、名称或者状态等信息来查询定期快照策略的详细信息，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的定期快照策略表。
+    @inlinable
+    public func describeAutoSnapshotPolicies(_ input: DescribeAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoSnapshotPoliciesResponse {
+        try await self.client.execute(action: "DescribeAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

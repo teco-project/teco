@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 删除任务
-    @inlinable
-    public func deleteJobs(_ input: DeleteJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteJobsResponse > {
-        self.client.execute(action: "DeleteJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除任务
-    @inlinable
-    public func deleteJobs(_ input: DeleteJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobsResponse {
-        try await self.client.execute(action: "DeleteJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteJobs请求参数结构体
     public struct DeleteJobsRequest: TCRequestModel {
         /// 任务ID数组
@@ -59,5 +47,17 @@ extension Pts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除任务
+    @inlinable
+    public func deleteJobs(_ input: DeleteJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteJobsResponse > {
+        self.client.execute(action: "DeleteJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除任务
+    @inlinable
+    public func deleteJobs(_ input: DeleteJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobsResponse {
+        try await self.client.execute(action: "DeleteJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

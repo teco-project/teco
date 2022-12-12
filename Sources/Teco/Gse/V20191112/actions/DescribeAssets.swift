@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 拉取生成包列表
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeAssets）用于获取生成包列表。
-    @inlinable
-    public func describeAssets(_ input: DescribeAssetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetsResponse > {
-        self.client.execute(action: "DescribeAssets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取生成包列表
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeAssets）用于获取生成包列表。
-    @inlinable
-    public func describeAssets(_ input: DescribeAssetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsResponse {
-        try await self.client.execute(action: "DescribeAssets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssets请求参数结构体
     public struct DescribeAssetsRequest: TCRequestModel {
         /// 生成包支持的可部署 [地域列表](https://cloud.tencent.com/document/api/1165/42053#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)
@@ -50,7 +32,7 @@ extension Gse {
         /// 资源过滤字段，可以按照资源名称、资源ID和标签进行过滤- 资源名称过滤    - Key: 固定字符串 "resource:name"    - Values: 资源名称数组（生成包当前仅支持单个名称的过滤）- 资源ID过滤    - Key: 固定字符串 "resource:resourceId"    - Values: 生成包ID数组（生成包当前仅支持单个生成包ID的过滤）- 标签过滤    - 通过标签键过滤        - Key: 固定字符串 "tag:key"        - Values 不传    - 通过标签键值过滤        - Key: 固定字符串 "tag:key-value"        - Values: 标签键值对数组，例如 ["key1:value1", "key1:value2", "key2:value2"]
         public let filters: [Filter]?
         
-        public init (assetRegion: String, offset: Int64, limit: Int64, filter: String?, filters: [Filter]?) {
+        public init (assetRegion: String, offset: Int64, limit: Int64, filter: String? = nil, filters: [Filter]? = nil) {
             self.assetRegion = assetRegion
             self.offset = offset
             self.limit = limit
@@ -83,5 +65,23 @@ extension Gse {
             case assets = "Assets"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取生成包列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeAssets）用于获取生成包列表。
+    @inlinable
+    public func describeAssets(_ input: DescribeAssetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetsResponse > {
+        self.client.execute(action: "DescribeAssets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取生成包列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeAssets）用于获取生成包列表。
+    @inlinable
+    public func describeAssets(_ input: DescribeAssetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsResponse {
+        try await self.client.execute(action: "DescribeAssets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

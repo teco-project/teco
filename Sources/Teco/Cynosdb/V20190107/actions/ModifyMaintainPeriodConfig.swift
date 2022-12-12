@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 修改维护时间配置
-    @inlinable
-    public func modifyMaintainPeriodConfig(_ input: ModifyMaintainPeriodConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMaintainPeriodConfigResponse > {
-        self.client.execute(action: "ModifyMaintainPeriodConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改维护时间配置
-    @inlinable
-    public func modifyMaintainPeriodConfig(_ input: ModifyMaintainPeriodConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaintainPeriodConfigResponse {
-        try await self.client.execute(action: "ModifyMaintainPeriodConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMaintainPeriodConfig请求参数结构体
     public struct ModifyMaintainPeriodConfigRequest: TCRequestModel {
         /// 实例ID
@@ -64,5 +52,17 @@ extension Cynosdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改维护时间配置
+    @inlinable
+    public func modifyMaintainPeriodConfig(_ input: ModifyMaintainPeriodConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMaintainPeriodConfigResponse > {
+        self.client.execute(action: "ModifyMaintainPeriodConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改维护时间配置
+    @inlinable
+    public func modifyMaintainPeriodConfig(_ input: ModifyMaintainPeriodConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaintainPeriodConfigResponse {
+        try await self.client.execute(action: "ModifyMaintainPeriodConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Apcas {
-    /// 查询画像洞察任务详情
-    @inlinable
-    public func getTaskDetail(_ input: GetTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTaskDetailResponse > {
-        self.client.execute(action: "GetTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询画像洞察任务详情
-    @inlinable
-    public func getTaskDetail(_ input: GetTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskDetailResponse {
-        try await self.client.execute(action: "GetTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetTaskDetail请求参数结构体
     public struct GetTaskDetailRequest: TCRequestModel {
         /// 任务ID
@@ -53,5 +41,17 @@ extension Apcas {
             case taskDetailDataList = "TaskDetailDataList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询画像洞察任务详情
+    @inlinable
+    public func getTaskDetail(_ input: GetTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTaskDetailResponse > {
+        self.client.execute(action: "GetTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询画像洞察任务详情
+    @inlinable
+    public func getTaskDetail(_ input: GetTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskDetailResponse {
+        try await self.client.execute(action: "GetTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

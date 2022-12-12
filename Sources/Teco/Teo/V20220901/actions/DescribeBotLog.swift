@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询Bot攻击日志
-    ///
-    /// 本接口（DescribeBotLog）用于查询Bot攻击日志。
-    @inlinable
-    public func describeBotLog(_ input: DescribeBotLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotLogResponse > {
-        self.client.execute(action: "DescribeBotLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Bot攻击日志
-    ///
-    /// 本接口（DescribeBotLog）用于查询Bot攻击日志。
-    @inlinable
-    public func describeBotLog(_ input: DescribeBotLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotLogResponse {
-        try await self.client.execute(action: "DescribeBotLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBotLog请求参数结构体
     public struct DescribeBotLogRequest: TCRequestModel {
         /// 开始时间
@@ -71,7 +55,7 @@ extension Teo {
         /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
         public let area: String?
         
-        public init (startTime: Date, endTime: Date, zoneIds: [String]?, domains: [String]?, limit: Int64?, offset: Int64?, queryCondition: [QueryCondition]?, area: String?) {
+        public init (startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.zoneIds = zoneIds
@@ -111,5 +95,21 @@ extension Teo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Bot攻击日志
+    ///
+    /// 本接口（DescribeBotLog）用于查询Bot攻击日志。
+    @inlinable
+    public func describeBotLog(_ input: DescribeBotLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBotLogResponse > {
+        self.client.execute(action: "DescribeBotLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Bot攻击日志
+    ///
+    /// 本接口（DescribeBotLog）用于查询Bot攻击日志。
+    @inlinable
+    public func describeBotLog(_ input: DescribeBotLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotLogResponse {
+        try await self.client.execute(action: "DescribeBotLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

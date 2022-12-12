@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 查询单个通知模板的详情
-    @inlinable
-    public func describeAlarmNotice(_ input: DescribeAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmNoticeResponse > {
-        self.client.execute(action: "DescribeAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询单个通知模板的详情
-    @inlinable
-    public func describeAlarmNotice(_ input: DescribeAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticeResponse {
-        try await self.client.execute(action: "DescribeAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAlarmNotice请求参数结构体
     public struct DescribeAlarmNoticeRequest: TCRequestModel {
         /// 模块名，这里填“monitor”
@@ -58,5 +46,17 @@ extension Monitor {
             case notice = "Notice"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询单个通知模板的详情
+    @inlinable
+    public func describeAlarmNotice(_ input: DescribeAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmNoticeResponse > {
+        self.client.execute(action: "DescribeAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询单个通知模板的详情
+    @inlinable
+    public func describeAlarmNotice(_ input: DescribeAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticeResponse {
+        try await self.client.execute(action: "DescribeAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

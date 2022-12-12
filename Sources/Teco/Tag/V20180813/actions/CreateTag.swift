@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 创建标签
-    ///
-    /// 本接口用于创建一对标签键和标签值
-    @inlinable
-    public func createTag(_ input: CreateTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTagResponse > {
-        self.client.execute(action: "CreateTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建标签
-    ///
-    /// 本接口用于创建一对标签键和标签值
-    @inlinable
-    public func createTag(_ input: CreateTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagResponse {
-        try await self.client.execute(action: "CreateTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTag请求参数结构体
     public struct CreateTagRequest: TCRequestModel {
         /// 标签键
@@ -58,5 +42,21 @@ extension Tag {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建标签
+    ///
+    /// 本接口用于创建一对标签键和标签值
+    @inlinable
+    public func createTag(_ input: CreateTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTagResponse > {
+        self.client.execute(action: "CreateTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建标签
+    ///
+    /// 本接口用于创建一对标签键和标签值
+    @inlinable
+    public func createTag(_ input: CreateTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagResponse {
+        try await self.client.execute(action: "CreateTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

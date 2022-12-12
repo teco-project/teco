@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询节点类型的影响范围
-    ///
-    /// 查询节点类型的影响范围，返回节点列表
-    @inlinable
-    public func describeAffectedNodeList(_ input: DescribeAffectedNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAffectedNodeListResponse > {
-        self.client.execute(action: "DescribeAffectedNodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询节点类型的影响范围
-    ///
-    /// 查询节点类型的影响范围，返回节点列表
-    @inlinable
-    public func describeAffectedNodeList(_ input: DescribeAffectedNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedNodeListResponse {
-        try await self.client.execute(action: "DescribeAffectedNodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAffectedNodeList请求参数结构体
     public struct DescribeAffectedNodeListRequest: TCRequestModel {
         /// 唯一的检测项的ID
@@ -52,7 +36,7 @@ extension Tcss {
         /// 排序方式 asc,desc
         public let order: String?
         
-        public init (checkItemId: Int64, offset: UInt64?, limit: UInt64?, filters: [ComplianceFilters]?, by: String?, order: String?) {
+        public init (checkItemId: Int64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.checkItemId = checkItemId
             self.offset = offset
             self.limit = limit
@@ -87,5 +71,21 @@ extension Tcss {
             case affectedNodeList = "AffectedNodeList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询节点类型的影响范围
+    ///
+    /// 查询节点类型的影响范围，返回节点列表
+    @inlinable
+    public func describeAffectedNodeList(_ input: DescribeAffectedNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAffectedNodeListResponse > {
+        self.client.execute(action: "DescribeAffectedNodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询节点类型的影响范围
+    ///
+    /// 查询节点类型的影响范围，返回节点列表
+    @inlinable
+    public func describeAffectedNodeList(_ input: DescribeAffectedNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedNodeListResponse {
+        try await self.client.execute(action: "DescribeAffectedNodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

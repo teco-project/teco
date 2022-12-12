@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 获取别名当前指向的fleetId
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（ResolveAlias）用于获取别名当前指向的fleetId。
-    @inlinable
-    public func resolveAlias(_ input: ResolveAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResolveAliasResponse > {
-        self.client.execute(action: "ResolveAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取别名当前指向的fleetId
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（ResolveAlias）用于获取别名当前指向的fleetId。
-    @inlinable
-    public func resolveAlias(_ input: ResolveAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResolveAliasResponse {
-        try await self.client.execute(action: "ResolveAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResolveAlias请求参数结构体
     public struct ResolveAliasRequest: TCRequestModel {
         /// 要获取fleetId的别名ID
@@ -60,5 +42,23 @@ extension Gse {
             case fleetId = "FleetId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取别名当前指向的fleetId
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（ResolveAlias）用于获取别名当前指向的fleetId。
+    @inlinable
+    public func resolveAlias(_ input: ResolveAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResolveAliasResponse > {
+        self.client.execute(action: "ResolveAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取别名当前指向的fleetId
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（ResolveAlias）用于获取别名当前指向的fleetId。
+    @inlinable
+    public func resolveAlias(_ input: ResolveAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResolveAliasResponse {
+        try await self.client.execute(action: "ResolveAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

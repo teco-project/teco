@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 查询订单信息
-    ///
-    /// 本接口（DescribeOrders）用于查询分布式数据库订单信息。传入订单ID来查询订单关联的分布式数据库实例，和对应的任务流程ID。
-    @inlinable
-    public func describeOrders(_ input: DescribeOrdersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrdersResponse > {
-        self.client.execute(action: "DescribeOrders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询订单信息
-    ///
-    /// 本接口（DescribeOrders）用于查询分布式数据库订单信息。传入订单ID来查询订单关联的分布式数据库实例，和对应的任务流程ID。
-    @inlinable
-    public func describeOrders(_ input: DescribeOrdersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrdersResponse {
-        try await self.client.execute(action: "DescribeOrders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOrders请求参数结构体
     public struct DescribeOrdersRequest: TCRequestModel {
         /// 待查询的长订单号列表，创建实例、续费实例、扩容实例接口返回。
@@ -61,5 +45,21 @@ extension Dcdb {
             case deals = "Deals"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询订单信息
+    ///
+    /// 本接口（DescribeOrders）用于查询分布式数据库订单信息。传入订单ID来查询订单关联的分布式数据库实例，和对应的任务流程ID。
+    @inlinable
+    public func describeOrders(_ input: DescribeOrdersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrdersResponse > {
+        self.client.execute(action: "DescribeOrders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询订单信息
+    ///
+    /// 本接口（DescribeOrders）用于查询分布式数据库订单信息。传入订单ID来查询订单关联的分布式数据库实例，和对应的任务流程ID。
+    @inlinable
+    public func describeOrders(_ input: DescribeOrdersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrdersResponse {
+        try await self.client.execute(action: "DescribeOrders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 查询批量计算黑石操作系统信息
-    ///
-    /// 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息
-    @inlinable
-    public func describeCpmOsInfo(_ input: DescribeCpmOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCpmOsInfoResponse > {
-        self.client.execute(action: "DescribeCpmOsInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询批量计算黑石操作系统信息
-    ///
-    /// 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息
-    @inlinable
-    public func describeCpmOsInfo(_ input: DescribeCpmOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCpmOsInfoResponse {
-        try await self.client.execute(action: "DescribeCpmOsInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCpmOsInfo请求参数结构体
     public struct DescribeCpmOsInfoRequest: TCRequestModel {
         /// 黑石设备类型代号。 可以从[DescribeDeviceClass](https://cloud.tencent.com/document/api/386/32911)查询设备类型列表。
         public let deviceClassCode: String?
         
-        public init (deviceClassCode: String?) {
+        public init (deviceClassCode: String? = nil) {
             self.deviceClassCode = deviceClassCode
         }
         
@@ -57,5 +41,21 @@ extension Batch {
             case osInfoSet = "OsInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询批量计算黑石操作系统信息
+    ///
+    /// 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息
+    @inlinable
+    public func describeCpmOsInfo(_ input: DescribeCpmOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCpmOsInfoResponse > {
+        self.client.execute(action: "DescribeCpmOsInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询批量计算黑石操作系统信息
+    ///
+    /// 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息
+    @inlinable
+    public func describeCpmOsInfo(_ input: DescribeCpmOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCpmOsInfoResponse {
+        try await self.client.execute(action: "DescribeCpmOsInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

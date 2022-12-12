@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 创建从实例
-    @inlinable
-    public func createReplicationInstance(_ input: CreateReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReplicationInstanceResponse > {
-        self.client.execute(action: "CreateReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建从实例
-    @inlinable
-    public func createReplicationInstance(_ input: CreateReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationInstanceResponse {
-        try await self.client.execute(action: "CreateReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateReplicationInstance请求参数结构体
     public struct CreateReplicationInstanceRequest: TCRequestModel {
         /// 主实例iD
@@ -41,7 +29,7 @@ extension Tcr {
         /// 是否同步TCR云标签至生成的COS Bucket
         public let syncTag: Bool?
         
-        public init (registryId: String, replicationRegionId: UInt64?, replicationRegionName: String?, syncTag: Bool?) {
+        public init (registryId: String, replicationRegionId: UInt64? = nil, replicationRegionName: String? = nil, syncTag: Bool? = nil) {
             self.registryId = registryId
             self.replicationRegionId = replicationRegionId
             self.replicationRegionName = replicationRegionName
@@ -68,5 +56,17 @@ extension Tcr {
             case replicationRegistryId = "ReplicationRegistryId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建从实例
+    @inlinable
+    public func createReplicationInstance(_ input: CreateReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReplicationInstanceResponse > {
+        self.client.execute(action: "CreateReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建从实例
+    @inlinable
+    public func createReplicationInstance(_ input: CreateReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationInstanceResponse {
+        try await self.client.execute(action: "CreateReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

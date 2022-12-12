@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// DMS元数据获取表列表
-    @inlinable
-    public func describeDMSTables(_ input: DescribeDMSTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDMSTablesResponse > {
-        self.client.execute(action: "DescribeDMSTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DMS元数据获取表列表
-    @inlinable
-    public func describeDMSTables(_ input: DescribeDMSTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSTablesResponse {
-        try await self.client.execute(action: "DescribeDMSTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDMSTables请求参数结构体
     public struct DescribeDMSTablesRequest: TCRequestModel {
         /// 数据库名称
@@ -68,7 +56,7 @@ extension Dlc {
         /// 排序字段：true：升序（默认），false：降序
         public let asc: Bool?
         
-        public init (dbName: String?, schemaName: String?, name: String?, catalog: String?, keyword: String?, pattern: String?, type: String?, startTime: String?, endTime: String?, limit: Int64?, offset: Int64?, sort: String?, asc: Bool?) {
+        public init (dbName: String? = nil, schemaName: String? = nil, name: String? = nil, catalog: String? = nil, keyword: String? = nil, pattern: String? = nil, type: String? = nil, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, sort: String? = nil, asc: Bool? = nil) {
             self.dbName = dbName
             self.schemaName = schemaName
             self.name = name
@@ -119,5 +107,17 @@ extension Dlc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// DMS元数据获取表列表
+    @inlinable
+    public func describeDMSTables(_ input: DescribeDMSTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDMSTablesResponse > {
+        self.client.execute(action: "DescribeDMSTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据获取表列表
+    @inlinable
+    public func describeDMSTables(_ input: DescribeDMSTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSTablesResponse {
+        try await self.client.execute(action: "DescribeDMSTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

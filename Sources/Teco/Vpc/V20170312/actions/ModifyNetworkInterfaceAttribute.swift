@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改弹性网卡
-    ///
-    /// 本接口（ModifyNetworkInterfaceAttribute）用于修改弹性网卡属性。
-    @inlinable
-    public func modifyNetworkInterfaceAttribute(_ input: ModifyNetworkInterfaceAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkInterfaceAttributeResponse > {
-        self.client.execute(action: "ModifyNetworkInterfaceAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改弹性网卡
-    ///
-    /// 本接口（ModifyNetworkInterfaceAttribute）用于修改弹性网卡属性。
-    @inlinable
-    public func modifyNetworkInterfaceAttribute(_ input: ModifyNetworkInterfaceAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkInterfaceAttributeResponse {
-        try await self.client.execute(action: "ModifyNetworkInterfaceAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNetworkInterfaceAttribute请求参数结构体
     public struct ModifyNetworkInterfaceAttributeRequest: TCRequestModel {
         /// 弹性网卡实例ID，例如：eni-pxir56ns。
@@ -48,7 +32,7 @@ extension Vpc {
         /// 网卡trunking模式设置，Enable-开启，Disable--关闭，默认关闭。
         public let trunkingFlag: String?
         
-        public init (networkInterfaceId: String, networkInterfaceName: String?, networkInterfaceDescription: String?, securityGroupIds: [String]?, trunkingFlag: String?) {
+        public init (networkInterfaceId: String, networkInterfaceName: String? = nil, networkInterfaceDescription: String? = nil, securityGroupIds: [String]? = nil, trunkingFlag: String? = nil) {
             self.networkInterfaceId = networkInterfaceId
             self.networkInterfaceName = networkInterfaceName
             self.networkInterfaceDescription = networkInterfaceDescription
@@ -73,5 +57,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改弹性网卡
+    ///
+    /// 本接口（ModifyNetworkInterfaceAttribute）用于修改弹性网卡属性。
+    @inlinable
+    public func modifyNetworkInterfaceAttribute(_ input: ModifyNetworkInterfaceAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetworkInterfaceAttributeResponse > {
+        self.client.execute(action: "ModifyNetworkInterfaceAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改弹性网卡
+    ///
+    /// 本接口（ModifyNetworkInterfaceAttribute）用于修改弹性网卡属性。
+    @inlinable
+    public func modifyNetworkInterfaceAttribute(_ input: ModifyNetworkInterfaceAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkInterfaceAttributeResponse {
+        try await self.client.execute(action: "ModifyNetworkInterfaceAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

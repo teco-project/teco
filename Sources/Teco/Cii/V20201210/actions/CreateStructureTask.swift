@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cii {
-    /// 新建结构化任务
-    ///
-    /// 基于提供的客户及保单信息，启动结构化识别任务。
-    @inlinable
-    public func createStructureTask(_ input: CreateStructureTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStructureTaskResponse > {
-        self.client.execute(action: "CreateStructureTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建结构化任务
-    ///
-    /// 基于提供的客户及保单信息，启动结构化识别任务。
-    @inlinable
-    public func createStructureTask(_ input: CreateStructureTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStructureTaskResponse {
-        try await self.client.execute(action: "CreateStructureTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateStructureTask请求参数结构体
     public struct CreateStructureTaskRequest: TCRequestModel {
         /// 保单号
@@ -60,7 +44,7 @@ extension Cii {
         /// 报告上传的图片内容数组，图片内容采用base64编码，需按顺序排列
         public let imageList: [String]?
         
-        public init (policyId: String, customerId: String, customerName: String, taskType: String, year: String, fileList: [String], insuranceTypes: [String]?, imageList: [String]?) {
+        public init (policyId: String, customerId: String, customerName: String, taskType: String, year: String, fileList: [String], insuranceTypes: [String]? = nil, imageList: [String]? = nil) {
             self.policyId = policyId
             self.customerId = customerId
             self.customerName = customerName
@@ -95,5 +79,21 @@ extension Cii {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建结构化任务
+    ///
+    /// 基于提供的客户及保单信息，启动结构化识别任务。
+    @inlinable
+    public func createStructureTask(_ input: CreateStructureTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStructureTaskResponse > {
+        self.client.execute(action: "CreateStructureTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建结构化任务
+    ///
+    /// 基于提供的客户及保单信息，启动结构化识别任务。
+    @inlinable
+    public func createStructureTask(_ input: CreateStructureTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStructureTaskResponse {
+        try await self.client.execute(action: "CreateStructureTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

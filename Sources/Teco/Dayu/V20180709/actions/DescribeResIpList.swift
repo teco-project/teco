@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取资源的IP列表
-    @inlinable
-    public func describeResIpList(_ input: DescribeResIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResIpListResponse > {
-        self.client.execute(action: "DescribeResIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取资源的IP列表
-    @inlinable
-    public func describeResIpList(_ input: DescribeResIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResIpListResponse {
-        try await self.client.execute(action: "DescribeResIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResIpList请求参数结构体
     public struct DescribeResIpListRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -35,7 +23,7 @@ extension Dayu {
         /// 资源ID, 如果不填，则获取用户所有资源的IP
         public let idList: [String]?
         
-        public init (business: String, idList: [String]?) {
+        public init (business: String, idList: [String]? = nil) {
             self.business = business
             self.idList = idList
         }
@@ -58,5 +46,17 @@ extension Dayu {
             case resource = "Resource"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取资源的IP列表
+    @inlinable
+    public func describeResIpList(_ input: DescribeResIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResIpListResponse > {
+        self.client.execute(action: "DescribeResIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资源的IP列表
+    @inlinable
+    public func describeResIpList(_ input: DescribeResIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResIpListResponse {
+        try await self.client.execute(action: "DescribeResIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

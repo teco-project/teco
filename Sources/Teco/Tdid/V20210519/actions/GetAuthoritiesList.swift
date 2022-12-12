@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 权威机构列表
-    @inlinable
-    public func getAuthoritiesList(_ input: GetAuthoritiesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAuthoritiesListResponse > {
-        self.client.execute(action: "GetAuthoritiesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 权威机构列表
-    @inlinable
-    public func getAuthoritiesList(_ input: GetAuthoritiesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthoritiesListResponse {
-        try await self.client.execute(action: "GetAuthoritiesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetAuthoritiesList请求参数结构体
     public struct GetAuthoritiesListRequest: TCRequestModel {
         /// 页码，从1开始
@@ -41,7 +29,7 @@ extension Tdid {
         /// 权威认证 1:已认证，2:未认证
         public let status: Int64?
         
-        public init (pageNumber: Int64, pageSize: Int64, did: String?, status: Int64?) {
+        public init (pageNumber: Int64, pageSize: Int64, did: String? = nil, status: Int64? = nil) {
             self.pageNumber = pageNumber
             self.pageSize = pageSize
             self.did = did
@@ -72,5 +60,17 @@ extension Tdid {
             case allCount = "AllCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 权威机构列表
+    @inlinable
+    public func getAuthoritiesList(_ input: GetAuthoritiesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAuthoritiesListResponse > {
+        self.client.execute(action: "GetAuthoritiesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 权威机构列表
+    @inlinable
+    public func getAuthoritiesList(_ input: GetAuthoritiesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthoritiesListResponse {
+        try await self.client.execute(action: "GetAuthoritiesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

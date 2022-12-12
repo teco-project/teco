@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 续费实例
-    ///
-    /// 本接口（RenewDBInstance）用于续费实例。当被续费实例是按量计费实例时，则按量计费实例转为包年包月计费方式。
-    /// 按量计费实例转包年包月询价可通过(InquiryPriceRenewDBInstance)接口获得。
-    @inlinable
-    public func renewDBInstance(_ input: RenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewDBInstanceResponse > {
-        self.client.execute(action: "RenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费实例
-    ///
-    /// 本接口（RenewDBInstance）用于续费实例。当被续费实例是按量计费实例时，则按量计费实例转为包年包月计费方式。
-    /// 按量计费实例转包年包月询价可通过(InquiryPriceRenewDBInstance)接口获得。
-    @inlinable
-    public func renewDBInstance(_ input: RenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstanceResponse {
-        try await self.client.execute(action: "RenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RenewDBInstance请求参数结构体
     public struct RenewDBInstanceRequest: TCRequestModel {
         /// 实例ID，形如mssql-j8kv137v
@@ -50,7 +32,7 @@ extension Sqlserver {
         /// 续费标记 0:正常续费 1:自动续费：只用于按量计费转包年包月时有效。
         public let autoRenewFlag: Int64?
         
-        public init (instanceId: String, period: UInt64?, autoVoucher: Int64?, voucherIds: [String]?, autoRenewFlag: Int64?) {
+        public init (instanceId: String, period: UInt64? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil) {
             self.instanceId = instanceId
             self.period = period
             self.autoVoucher = autoVoucher
@@ -79,5 +61,23 @@ extension Sqlserver {
             case dealName = "DealName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费实例
+    ///
+    /// 本接口（RenewDBInstance）用于续费实例。当被续费实例是按量计费实例时，则按量计费实例转为包年包月计费方式。
+    /// 按量计费实例转包年包月询价可通过(InquiryPriceRenewDBInstance)接口获得。
+    @inlinable
+    public func renewDBInstance(_ input: RenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewDBInstanceResponse > {
+        self.client.execute(action: "RenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费实例
+    ///
+    /// 本接口（RenewDBInstance）用于续费实例。当被续费实例是按量计费实例时，则按量计费实例转为包年包月计费方式。
+    /// 按量计费实例转包年包月询价可通过(InquiryPriceRenewDBInstance)接口获得。
+    @inlinable
+    public func renewDBInstance(_ input: RenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstanceResponse {
+        try await self.client.execute(action: "RenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

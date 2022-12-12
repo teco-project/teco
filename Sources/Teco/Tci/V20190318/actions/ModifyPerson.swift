@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 修改人员信息
-    @inlinable
-    public func modifyPerson(_ input: ModifyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonResponse > {
-        self.client.execute(action: "ModifyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改人员信息
-    @inlinable
-    public func modifyPerson(_ input: ModifyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonResponse {
-        try await self.client.execute(action: "ModifyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPerson请求参数结构体
     public struct ModifyPersonRequest: TCRequestModel {
         /// 人员库唯一标识符
@@ -53,7 +41,7 @@ extension Tci {
         /// 人员学生号码
         public let studentNumber: String?
         
-        public init (libraryId: String, personId: String, jobNumber: String?, mail: String?, male: Int64?, personName: String?, phoneNumber: String?, studentNumber: String?) {
+        public init (libraryId: String, personId: String, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, personName: String? = nil, phoneNumber: String? = nil, studentNumber: String? = nil) {
             self.libraryId = libraryId
             self.personId = personId
             self.jobNumber = jobNumber
@@ -100,5 +88,17 @@ extension Tci {
             case personName = "PersonName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改人员信息
+    @inlinable
+    public func modifyPerson(_ input: ModifyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonResponse > {
+        self.client.execute(action: "ModifyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改人员信息
+    @inlinable
+    public func modifyPerson(_ input: ModifyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonResponse {
+        try await self.client.execute(action: "ModifyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

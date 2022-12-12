@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 数据质量概览页面趋势接口
-    ///
-    /// 数据质量概览页面趋势变化接口
-    @inlinable
-    public func describeTrendStat(_ input: DescribeTrendStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrendStatResponse > {
-        self.client.execute(action: "DescribeTrendStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 数据质量概览页面趋势接口
-    ///
-    /// 数据质量概览页面趋势变化接口
-    @inlinable
-    public func describeTrendStat(_ input: DescribeTrendStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrendStatResponse {
-        try await self.client.execute(action: "DescribeTrendStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrendStat请求参数结构体
     public struct DescribeTrendStatRequest: TCRequestModel {
         /// Project id
@@ -67,5 +51,21 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 数据质量概览页面趋势接口
+    ///
+    /// 数据质量概览页面趋势变化接口
+    @inlinable
+    public func describeTrendStat(_ input: DescribeTrendStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrendStatResponse > {
+        self.client.execute(action: "DescribeTrendStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 数据质量概览页面趋势接口
+    ///
+    /// 数据质量概览页面趋势变化接口
+    @inlinable
+    public func describeTrendStat(_ input: DescribeTrendStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrendStatResponse {
+        try await self.client.execute(action: "DescribeTrendStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

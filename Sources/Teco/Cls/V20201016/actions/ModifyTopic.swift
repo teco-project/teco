@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 修改日志主题
-    ///
-    /// 本接口用于修改日志主题。
-    @inlinable
-    public func modifyTopic(_ input: ModifyTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTopicResponse > {
-        self.client.execute(action: "ModifyTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改日志主题
-    ///
-    /// 本接口用于修改日志主题。
-    @inlinable
-    public func modifyTopic(_ input: ModifyTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
-        try await self.client.execute(action: "ModifyTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTopic请求参数结构体
     public struct ModifyTopicRequest: TCRequestModel {
         /// 日志主题ID
@@ -54,7 +38,7 @@ extension Cls {
         /// 生命周期，单位天，标准存储取值范围1\~3600，低频存储取值范围7\~3600。取值为3640时代表永久保存
         public let period: Int64?
         
-        public init (topicId: String, topicName: String?, tags: [Tag]?, status: Bool?, autoSplit: Bool?, maxSplitPartitions: Int64?, period: Int64?) {
+        public init (topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil) {
             self.topicId = topicId
             self.topicName = topicName
             self.tags = tags
@@ -83,5 +67,21 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改日志主题
+    ///
+    /// 本接口用于修改日志主题。
+    @inlinable
+    public func modifyTopic(_ input: ModifyTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTopicResponse > {
+        self.client.execute(action: "ModifyTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改日志主题
+    ///
+    /// 本接口用于修改日志主题。
+    @inlinable
+    public func modifyTopic(_ input: ModifyTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
+        try await self.client.execute(action: "ModifyTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

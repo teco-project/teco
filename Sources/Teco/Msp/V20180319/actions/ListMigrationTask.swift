@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Msp {
-    /// 获取迁移任务列表
-    @inlinable
-    public func listMigrationTask(_ input: ListMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListMigrationTaskResponse > {
-        self.client.execute(action: "ListMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取迁移任务列表
-    @inlinable
-    public func listMigrationTask(_ input: ListMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListMigrationTaskResponse {
-        try await self.client.execute(action: "ListMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListMigrationTask请求参数结构体
     public struct ListMigrationTaskRequest: TCRequestModel {
         /// 记录起始数，默认值为0
@@ -38,7 +26,7 @@ extension Msp {
         /// 项目ID，默认值为空
         public let projectId: UInt64?
         
-        public init (offset: UInt64?, limit: UInt64?, projectId: UInt64?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, projectId: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
             self.projectId = projectId
@@ -67,5 +55,17 @@ extension Msp {
             case tasks = "Tasks"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取迁移任务列表
+    @inlinable
+    public func listMigrationTask(_ input: ListMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListMigrationTaskResponse > {
+        self.client.execute(action: "ListMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取迁移任务列表
+    @inlinable
+    public func listMigrationTask(_ input: ListMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListMigrationTaskResponse {
+        try await self.client.execute(action: "ListMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

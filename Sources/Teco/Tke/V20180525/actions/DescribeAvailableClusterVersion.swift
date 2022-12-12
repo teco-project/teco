@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取集群可以升级的所有版本
-    @inlinable
-    public func describeAvailableClusterVersion(_ input: DescribeAvailableClusterVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableClusterVersionResponse > {
-        self.client.execute(action: "DescribeAvailableClusterVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取集群可以升级的所有版本
-    @inlinable
-    public func describeAvailableClusterVersion(_ input: DescribeAvailableClusterVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableClusterVersionResponse {
-        try await self.client.execute(action: "DescribeAvailableClusterVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAvailableClusterVersion请求参数结构体
     public struct DescribeAvailableClusterVersionRequest: TCRequestModel {
         /// 集群 Id
@@ -35,7 +23,7 @@ extension Tke {
         /// 集群 Id 列表
         public let clusterIds: [String]?
         
-        public init (clusterId: String?, clusterIds: [String]?) {
+        public init (clusterId: String? = nil, clusterIds: [String]? = nil) {
             self.clusterId = clusterId
             self.clusterIds = clusterIds
         }
@@ -64,5 +52,17 @@ extension Tke {
             case clusters = "Clusters"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取集群可以升级的所有版本
+    @inlinable
+    public func describeAvailableClusterVersion(_ input: DescribeAvailableClusterVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableClusterVersionResponse > {
+        self.client.execute(action: "DescribeAvailableClusterVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群可以升级的所有版本
+    @inlinable
+    public func describeAvailableClusterVersion(_ input: DescribeAvailableClusterVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableClusterVersionResponse {
+        try await self.client.execute(action: "DescribeAvailableClusterVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

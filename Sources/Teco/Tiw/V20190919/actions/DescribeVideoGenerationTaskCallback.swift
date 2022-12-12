@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 查询录制视频生成回调地址
-    @inlinable
-    public func describeVideoGenerationTaskCallback(_ input: DescribeVideoGenerationTaskCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoGenerationTaskCallbackResponse > {
-        self.client.execute(action: "DescribeVideoGenerationTaskCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询录制视频生成回调地址
-    @inlinable
-    public func describeVideoGenerationTaskCallback(_ input: DescribeVideoGenerationTaskCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoGenerationTaskCallbackResponse {
-        try await self.client.execute(action: "DescribeVideoGenerationTaskCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVideoGenerationTaskCallback请求参数结构体
     public struct DescribeVideoGenerationTaskCallbackRequest: TCRequestModel {
         /// 应用的SdkAppId
@@ -57,5 +45,17 @@ extension Tiw {
             case callbackKey = "CallbackKey"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询录制视频生成回调地址
+    @inlinable
+    public func describeVideoGenerationTaskCallback(_ input: DescribeVideoGenerationTaskCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoGenerationTaskCallbackResponse > {
+        self.client.execute(action: "DescribeVideoGenerationTaskCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询录制视频生成回调地址
+    @inlinable
+    public func describeVideoGenerationTaskCallback(_ input: DescribeVideoGenerationTaskCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoGenerationTaskCallbackResponse {
+        try await self.client.execute(action: "DescribeVideoGenerationTaskCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

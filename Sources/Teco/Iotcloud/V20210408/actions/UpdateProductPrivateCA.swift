@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 更新产品的私有CA
-    @inlinable
-    public func updateProductPrivateCA(_ input: UpdateProductPrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProductPrivateCAResponse > {
-        self.client.execute(action: "UpdateProductPrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新产品的私有CA
-    @inlinable
-    public func updateProductPrivateCA(_ input: UpdateProductPrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductPrivateCAResponse {
-        try await self.client.execute(action: "UpdateProductPrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateProductPrivateCA请求参数结构体
     public struct UpdateProductPrivateCARequest: TCRequestModel {
         /// 产品ID
@@ -54,5 +42,17 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新产品的私有CA
+    @inlinable
+    public func updateProductPrivateCA(_ input: UpdateProductPrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProductPrivateCAResponse > {
+        self.client.execute(action: "UpdateProductPrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新产品的私有CA
+    @inlinable
+    public func updateProductPrivateCA(_ input: UpdateProductPrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductPrivateCAResponse {
+        try await self.client.execute(action: "UpdateProductPrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,33 +15,21 @@
 // DO NOT EDIT.
 
 extension Ess {
-    /// 查询转换任务状态
-    @inlinable
-    public func getTaskResultApi(_ input: GetTaskResultApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTaskResultApiResponse > {
-        self.client.execute(action: "GetTaskResultApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询转换任务状态
-    @inlinable
-    public func getTaskResultApi(_ input: GetTaskResultApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskResultApiResponse {
-        try await self.client.execute(action: "GetTaskResultApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetTaskResultApi请求参数结构体
     public struct GetTaskResultApiRequest: TCRequestModel {
         /// 任务Id，通过CreateConvertTaskApi得到
         public let taskId: String
         
         /// 操作人信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
         /// 应用号信息
-        public let agent: Agent
+        public let agent: Agent?
         
         /// 暂未开放
-        public let organization: OrganizationInfo
+        public let organization: OrganizationInfo?
         
-        public init (taskId: String, `operator`: UserInfo, agent: Agent, organization: OrganizationInfo) {
+        public init (taskId: String, `operator`: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil) {
             self.taskId = taskId
             self.`operator` = `operator`
             self.agent = agent
@@ -92,5 +80,17 @@ extension Ess {
             case resourceId = "ResourceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询转换任务状态
+    @inlinable
+    public func getTaskResultApi(_ input: GetTaskResultApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTaskResultApiResponse > {
+        self.client.execute(action: "GetTaskResultApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询转换任务状态
+    @inlinable
+    public func getTaskResultApi(_ input: GetTaskResultApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskResultApiResponse {
+        try await self.client.execute(action: "GetTaskResultApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

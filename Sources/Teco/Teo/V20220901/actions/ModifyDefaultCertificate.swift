@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改默认证书状态
-    @inlinable
-    public func modifyDefaultCertificate(_ input: ModifyDefaultCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDefaultCertificateResponse > {
-        self.client.execute(action: "ModifyDefaultCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改默认证书状态
-    @inlinable
-    public func modifyDefaultCertificate(_ input: ModifyDefaultCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDefaultCertificateResponse {
-        try await self.client.execute(action: "ModifyDefaultCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDefaultCertificate请求参数结构体
     public struct ModifyDefaultCertificateRequest: TCRequestModel {
         /// 站点ID。
@@ -40,7 +28,7 @@ extension Teo {
         /// <li>disabled ：禁用证书。</li>失败状态下重新deployed即可重试。
         public let status: String?
         
-        public init (zoneId: String, certId: String?, status: String?) {
+        public init (zoneId: String, certId: String? = nil, status: String? = nil) {
             self.zoneId = zoneId
             self.certId = certId
             self.status = status
@@ -61,5 +49,17 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改默认证书状态
+    @inlinable
+    public func modifyDefaultCertificate(_ input: ModifyDefaultCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDefaultCertificateResponse > {
+        self.client.execute(action: "ModifyDefaultCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改默认证书状态
+    @inlinable
+    public func modifyDefaultCertificate(_ input: ModifyDefaultCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDefaultCertificateResponse {
+        try await self.client.execute(action: "ModifyDefaultCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

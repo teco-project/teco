@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询主机列表
-    ///
-    /// 容器安全搜索查询主机列表
-    @inlinable
-    public func describeAssetHostList(_ input: DescribeAssetHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetHostListResponse > {
-        self.client.execute(action: "DescribeAssetHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询主机列表
-    ///
-    /// 容器安全搜索查询主机列表
-    @inlinable
-    public func describeAssetHostList(_ input: DescribeAssetHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostListResponse {
-        try await self.client.execute(action: "DescribeAssetHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetHostList请求参数结构体
     public struct DescribeAssetHostListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -58,7 +42,7 @@ extension Tcss {
         /// 排序方式 asc,desc
         public let order: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [AssetFilters]?, by: String?, order: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -91,5 +75,21 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询主机列表
+    ///
+    /// 容器安全搜索查询主机列表
+    @inlinable
+    public func describeAssetHostList(_ input: DescribeAssetHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetHostListResponse > {
+        self.client.execute(action: "DescribeAssetHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询主机列表
+    ///
+    /// 容器安全搜索查询主机列表
+    @inlinable
+    public func describeAssetHostList(_ input: DescribeAssetHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostListResponse {
+        try await self.client.execute(action: "DescribeAssetHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

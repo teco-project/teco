@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 修改生成包信息
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（UpdateAsset）用于修改生成包信息。
-    @inlinable
-    public func updateAsset(_ input: UpdateAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAssetResponse > {
-        self.client.execute(action: "UpdateAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改生成包信息
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（UpdateAsset）用于修改生成包信息。
-    @inlinable
-    public func updateAsset(_ input: UpdateAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssetResponse {
-        try await self.client.execute(action: "UpdateAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateAsset请求参数结构体
     public struct UpdateAssetRequest: TCRequestModel {
         /// 生成包ID
@@ -65,5 +47,23 @@ extension Gse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改生成包信息
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（UpdateAsset）用于修改生成包信息。
+    @inlinable
+    public func updateAsset(_ input: UpdateAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAssetResponse > {
+        self.client.execute(action: "UpdateAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改生成包信息
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（UpdateAsset）用于修改生成包信息。
+    @inlinable
+    public func updateAsset(_ input: UpdateAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssetResponse {
+        try await self.client.execute(action: "UpdateAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

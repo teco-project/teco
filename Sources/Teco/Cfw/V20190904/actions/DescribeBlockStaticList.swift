@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 告警中心柱形图
-    ///
-    /// DescribeBlockStaticList 告警中心柱形图
-    @inlinable
-    public func describeBlockStaticList(_ input: DescribeBlockStaticListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlockStaticListResponse > {
-        self.client.execute(action: "DescribeBlockStaticList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 告警中心柱形图
-    ///
-    /// DescribeBlockStaticList 告警中心柱形图
-    @inlinable
-    public func describeBlockStaticList(_ input: DescribeBlockStaticListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockStaticListResponse {
-        try await self.client.execute(action: "DescribeBlockStaticList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBlockStaticList请求参数结构体
     public struct DescribeBlockStaticListRequest: TCRequestModel {
         /// 开始时间
@@ -48,7 +32,7 @@ extension Cfw {
         /// 查询条件
         public let searchValue: String?
         
-        public init (startTime: String, endTime: String, queryType: String, top: Int64, searchValue: String?) {
+        public init (startTime: String, endTime: String, queryType: String, top: Int64, searchValue: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.queryType = queryType
@@ -77,5 +61,21 @@ extension Cfw {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 告警中心柱形图
+    ///
+    /// DescribeBlockStaticList 告警中心柱形图
+    @inlinable
+    public func describeBlockStaticList(_ input: DescribeBlockStaticListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlockStaticListResponse > {
+        self.client.execute(action: "DescribeBlockStaticList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 告警中心柱形图
+    ///
+    /// DescribeBlockStaticList 告警中心柱形图
+    @inlinable
+    public func describeBlockStaticList(_ input: DescribeBlockStaticListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockStaticListResponse {
+        try await self.client.execute(action: "DescribeBlockStaticList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

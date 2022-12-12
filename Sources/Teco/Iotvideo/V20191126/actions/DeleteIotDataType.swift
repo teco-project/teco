@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 删除自定义物模型数据类型
-    ///
-    /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
-    @inlinable
-    public func deleteIotDataType(_ input: DeleteIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIotDataTypeResponse > {
-        self.client.execute(action: "DeleteIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除自定义物模型数据类型
-    ///
-    /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
-    @inlinable
-    public func deleteIotDataType(_ input: DeleteIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDataTypeResponse {
-        try await self.client.execute(action: "DeleteIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteIotDataType请求参数结构体
     public struct DeleteIotDataTypeRequest: TCRequestModel {
         /// 自定义数据类型的标识符
@@ -53,5 +37,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除自定义物模型数据类型
+    ///
+    /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
+    @inlinable
+    public func deleteIotDataType(_ input: DeleteIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIotDataTypeResponse > {
+        self.client.execute(action: "DeleteIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除自定义物模型数据类型
+    ///
+    /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
+    @inlinable
+    public func deleteIotDataType(_ input: DeleteIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDataTypeResponse {
+        try await self.client.execute(action: "DeleteIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 获取Top表的空间统计信息
-    ///
-    /// 获取实例Top表的实时空间统计信息，默认返回按大小排序。
-    @inlinable
-    public func describeTopSpaceTables(_ input: DescribeTopSpaceTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopSpaceTablesResponse > {
-        self.client.execute(action: "DescribeTopSpaceTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Top表的空间统计信息
-    ///
-    /// 获取实例Top表的实时空间统计信息，默认返回按大小排序。
-    @inlinable
-    public func describeTopSpaceTables(_ input: DescribeTopSpaceTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceTablesResponse {
-        try await self.client.execute(action: "DescribeTopSpaceTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTopSpaceTables请求参数结构体
     public struct DescribeTopSpaceTablesRequest: TCRequestModel {
         /// 实例 ID 。
@@ -45,7 +29,7 @@ extension Dbbrain {
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
         public let product: String?
         
-        public init (instanceId: String, limit: Int64?, sortBy: String?, product: String?) {
+        public init (instanceId: String, limit: Int64? = nil, sortBy: String? = nil, product: String? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.sortBy = sortBy
@@ -76,5 +60,21 @@ extension Dbbrain {
             case timestamp = "Timestamp"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Top表的空间统计信息
+    ///
+    /// 获取实例Top表的实时空间统计信息，默认返回按大小排序。
+    @inlinable
+    public func describeTopSpaceTables(_ input: DescribeTopSpaceTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopSpaceTablesResponse > {
+        self.client.execute(action: "DescribeTopSpaceTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Top表的空间统计信息
+    ///
+    /// 获取实例Top表的实时空间统计信息，默认返回按大小排序。
+    @inlinable
+    public func describeTopSpaceTables(_ input: DescribeTopSpaceTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceTablesResponse {
+        try await self.client.execute(action: "DescribeTopSpaceTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 查询录制视频生成任务
-    ///
-    /// 查询录制视频生成任务状态与结果
-    @inlinable
-    public func describeVideoGenerationTask(_ input: DescribeVideoGenerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoGenerationTaskResponse > {
-        self.client.execute(action: "DescribeVideoGenerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询录制视频生成任务
-    ///
-    /// 查询录制视频生成任务状态与结果
-    @inlinable
-    public func describeVideoGenerationTask(_ input: DescribeVideoGenerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoGenerationTaskResponse {
-        try await self.client.execute(action: "DescribeVideoGenerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVideoGenerationTask请求参数结构体
     public struct DescribeVideoGenerationTaskRequest: TCRequestModel {
         /// 客户的SdkAppId
@@ -93,5 +77,21 @@ extension Tiw {
             case videoInfoList = "VideoInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询录制视频生成任务
+    ///
+    /// 查询录制视频生成任务状态与结果
+    @inlinable
+    public func describeVideoGenerationTask(_ input: DescribeVideoGenerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoGenerationTaskResponse > {
+        self.client.execute(action: "DescribeVideoGenerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询录制视频生成任务
+    ///
+    /// 查询录制视频生成任务状态与结果
+    @inlinable
+    public func describeVideoGenerationTask(_ input: DescribeVideoGenerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoGenerationTaskResponse {
+        try await self.client.execute(action: "DescribeVideoGenerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

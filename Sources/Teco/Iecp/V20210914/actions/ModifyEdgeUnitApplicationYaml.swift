@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// Yaml方式修改应用配置
-    @inlinable
-    public func modifyEdgeUnitApplicationYaml(_ input: ModifyEdgeUnitApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitApplicationYamlResponse > {
-        self.client.execute(action: "ModifyEdgeUnitApplicationYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// Yaml方式修改应用配置
-    @inlinable
-    public func modifyEdgeUnitApplicationYaml(_ input: ModifyEdgeUnitApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationYamlResponse {
-        try await self.client.execute(action: "ModifyEdgeUnitApplicationYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyEdgeUnitApplicationYaml请求参数结构体
     public struct ModifyEdgeUnitApplicationYamlRequest: TCRequestModel {
         /// 单元ID
@@ -59,5 +47,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// Yaml方式修改应用配置
+    @inlinable
+    public func modifyEdgeUnitApplicationYaml(_ input: ModifyEdgeUnitApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitApplicationYamlResponse > {
+        self.client.execute(action: "ModifyEdgeUnitApplicationYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// Yaml方式修改应用配置
+    @inlinable
+    public func modifyEdgeUnitApplicationYaml(_ input: ModifyEdgeUnitApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationYamlResponse {
+        try await self.client.execute(action: "ModifyEdgeUnitApplicationYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

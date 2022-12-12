@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 查询快照列表
-    ///
-    /// 查询文件系统快照列表
-    @inlinable
-    public func describeCfsSnapshots(_ input: DescribeCfsSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfsSnapshotsResponse > {
-        self.client.execute(action: "DescribeCfsSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询快照列表
-    ///
-    /// 查询文件系统快照列表
-    @inlinable
-    public func describeCfsSnapshots(_ input: DescribeCfsSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsSnapshotsResponse {
-        try await self.client.execute(action: "DescribeCfsSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCfsSnapshots请求参数结构体
     public struct DescribeCfsSnapshotsRequest: TCRequestModel {
         /// 文件系统ID
@@ -54,7 +38,7 @@ extension Cfs {
         /// 排序 升序或者降序
         public let order: String?
         
-        public init (fileSystemId: String?, snapshotId: String?, offset: UInt64?, limit: UInt64?, filters: [Filter]?, orderField: String?, order: String?) {
+        public init (fileSystemId: String? = nil, snapshotId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil) {
             self.fileSystemId = fileSystemId
             self.snapshotId = snapshotId
             self.offset = offset
@@ -95,5 +79,21 @@ extension Cfs {
             case totalSize = "TotalSize"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询快照列表
+    ///
+    /// 查询文件系统快照列表
+    @inlinable
+    public func describeCfsSnapshots(_ input: DescribeCfsSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfsSnapshotsResponse > {
+        self.client.execute(action: "DescribeCfsSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询快照列表
+    ///
+    /// 查询文件系统快照列表
+    @inlinable
+    public func describeCfsSnapshots(_ input: DescribeCfsSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsSnapshotsResponse {
+        try await self.client.execute(action: "DescribeCfsSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

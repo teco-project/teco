@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取ES字段聚合结果
-    @inlinable
-    public func describeESAggregations(_ input: DescribeESAggregationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeESAggregationsResponse > {
-        self.client.execute(action: "DescribeESAggregations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取ES字段聚合结果
-    @inlinable
-    public func describeESAggregations(_ input: DescribeESAggregationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeESAggregationsResponse {
-        try await self.client.execute(action: "DescribeESAggregations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeESAggregations请求参数结构体
     public struct DescribeESAggregationsRequest: TCRequestModel {
         /// ES聚合条件JSON
@@ -53,5 +41,17 @@ extension Cwp {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取ES字段聚合结果
+    @inlinable
+    public func describeESAggregations(_ input: DescribeESAggregationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeESAggregationsResponse > {
+        self.client.execute(action: "DescribeESAggregations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取ES字段聚合结果
+    @inlinable
+    public func describeESAggregations(_ input: DescribeESAggregationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeESAggregationsResponse {
+        try await self.client.execute(action: "DescribeESAggregations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

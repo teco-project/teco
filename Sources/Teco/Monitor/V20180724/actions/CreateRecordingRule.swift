@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 创建预聚合规则
-    ///
-    /// 创建 Prometheus 的预聚合规则
-    @inlinable
-    public func createRecordingRule(_ input: CreateRecordingRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRecordingRuleResponse > {
-        self.client.execute(action: "CreateRecordingRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建预聚合规则
-    ///
-    /// 创建 Prometheus 的预聚合规则
-    @inlinable
-    public func createRecordingRule(_ input: CreateRecordingRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordingRuleResponse {
-        try await self.client.execute(action: "CreateRecordingRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRecordingRule请求参数结构体
     public struct CreateRecordingRuleRequest: TCRequestModel {
         /// 聚合规则名称
@@ -49,7 +33,7 @@ extension Monitor {
         /// 默认状态码为 2 启用。
         public let ruleState: Int64?
         
-        public init (name: String, group: String, instanceId: String, ruleState: Int64?) {
+        public init (name: String, group: String, instanceId: String, ruleState: Int64? = nil) {
             self.name = name
             self.group = group
             self.instanceId = instanceId
@@ -77,5 +61,21 @@ extension Monitor {
             case ruleId = "RuleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建预聚合规则
+    ///
+    /// 创建 Prometheus 的预聚合规则
+    @inlinable
+    public func createRecordingRule(_ input: CreateRecordingRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRecordingRuleResponse > {
+        self.client.execute(action: "CreateRecordingRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建预聚合规则
+    ///
+    /// 创建 Prometheus 的预聚合规则
+    @inlinable
+    public func createRecordingRule(_ input: CreateRecordingRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordingRuleResponse {
+        try await self.client.execute(action: "CreateRecordingRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

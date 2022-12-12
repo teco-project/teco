@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 删除触发器
-    @inlinable
-    public func deleteWebhookTrigger(_ input: DeleteWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWebhookTriggerResponse > {
-        self.client.execute(action: "DeleteWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除触发器
-    @inlinable
-    public func deleteWebhookTrigger(_ input: DeleteWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebhookTriggerResponse {
-        try await self.client.execute(action: "DeleteWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteWebhookTrigger请求参数结构体
     public struct DeleteWebhookTriggerRequest: TCRequestModel {
         /// 实例Id
@@ -59,5 +47,17 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除触发器
+    @inlinable
+    public func deleteWebhookTrigger(_ input: DeleteWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWebhookTriggerResponse > {
+        self.client.execute(action: "DeleteWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除触发器
+    @inlinable
+    public func deleteWebhookTrigger(_ input: DeleteWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebhookTriggerResponse {
+        try await self.client.execute(action: "DeleteWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

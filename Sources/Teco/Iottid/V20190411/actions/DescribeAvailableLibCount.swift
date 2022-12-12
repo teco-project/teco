@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iottid {
-    /// 查询可空发的白盒密钥数量
-    ///
-    /// 查询指定订单的可空发的白盒密钥数量
-    @inlinable
-    public func describeAvailableLibCount(_ input: DescribeAvailableLibCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableLibCountResponse > {
-        self.client.execute(action: "DescribeAvailableLibCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询可空发的白盒密钥数量
-    ///
-    /// 查询指定订单的可空发的白盒密钥数量
-    @inlinable
-    public func describeAvailableLibCount(_ input: DescribeAvailableLibCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableLibCountResponse {
-        try await self.client.execute(action: "DescribeAvailableLibCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAvailableLibCount请求参数结构体
     public struct DescribeAvailableLibCountRequest: TCRequestModel {
         /// 订单编号
@@ -57,5 +41,21 @@ extension Iottid {
             case quantity = "Quantity"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询可空发的白盒密钥数量
+    ///
+    /// 查询指定订单的可空发的白盒密钥数量
+    @inlinable
+    public func describeAvailableLibCount(_ input: DescribeAvailableLibCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableLibCountResponse > {
+        self.client.execute(action: "DescribeAvailableLibCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询可空发的白盒密钥数量
+    ///
+    /// 查询指定订单的可空发的白盒密钥数量
+    @inlinable
+    public func describeAvailableLibCount(_ input: DescribeAvailableLibCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableLibCountResponse {
+        try await self.client.execute(action: "DescribeAvailableLibCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ft {
-    /// 人脸年龄变化
-    ///
-    /// 用户上传一张人脸图片，基于人脸编辑与生成算法，输出一张人脸变老或变年轻的图片，支持实现人脸不同年龄的变化。
-    @inlinable
-    public func changeAgePic(_ input: ChangeAgePicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeAgePicResponse > {
-        self.client.execute(action: "ChangeAgePic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人脸年龄变化
-    ///
-    /// 用户上传一张人脸图片，基于人脸编辑与生成算法，输出一张人脸变老或变年轻的图片，支持实现人脸不同年龄的变化。
-    @inlinable
-    public func changeAgePic(_ input: ChangeAgePicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeAgePicResponse {
-        try await self.client.execute(action: "ChangeAgePic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ChangeAgePic请求参数结构体
     public struct ChangeAgePicRequest: TCRequestModel {
         /// 人脸变老变年轻信息。 
@@ -51,7 +35,7 @@ extension Ft {
         /// 返回图像方式（base64 或 url ) ，二选一。url有效期为1天。
         public let rspImgType: String?
         
-        public init (ageInfos: [AgeInfo], image: String?, url: String?, rspImgType: String?) {
+        public init (ageInfos: [AgeInfo], image: String? = nil, url: String? = nil, rspImgType: String? = nil) {
             self.ageInfos = ageInfos
             self.image = image
             self.url = url
@@ -82,5 +66,21 @@ extension Ft {
             case resultUrl = "ResultUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人脸年龄变化
+    ///
+    /// 用户上传一张人脸图片，基于人脸编辑与生成算法，输出一张人脸变老或变年轻的图片，支持实现人脸不同年龄的变化。
+    @inlinable
+    public func changeAgePic(_ input: ChangeAgePicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeAgePicResponse > {
+        self.client.execute(action: "ChangeAgePic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人脸年龄变化
+    ///
+    /// 用户上传一张人脸图片，基于人脸编辑与生成算法，输出一张人脸变老或变年轻的图片，支持实现人脸不同年龄的变化。
+    @inlinable
+    public func changeAgePic(_ input: ChangeAgePicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeAgePicResponse {
+        try await self.client.execute(action: "ChangeAgePic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

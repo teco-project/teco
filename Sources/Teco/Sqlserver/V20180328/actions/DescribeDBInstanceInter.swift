@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询互通实例的信息
-    ///
-    /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
-    @inlinable
-    public func describeDBInstanceInter(_ input: DescribeDBInstanceInterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceInterResponse > {
-        self.client.execute(action: "DescribeDBInstanceInter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询互通实例的信息
-    ///
-    /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
-    @inlinable
-    public func describeDBInstanceInter(_ input: DescribeDBInstanceInterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceInterResponse {
-        try await self.client.execute(action: "DescribeDBInstanceInter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBInstanceInter请求参数结构体
     public struct DescribeDBInstanceInterRequest: TCRequestModel {
         /// 分页，页大小，范围是1-100
@@ -51,7 +35,7 @@ extension Sqlserver {
         /// 分页，页数，默认是0
         public let offset: Int64?
         
-        public init (limit: Int64, instanceId: String?, status: Int64?, versionSet: [String]?, zone: String?, offset: Int64?) {
+        public init (limit: Int64, instanceId: String? = nil, status: Int64? = nil, versionSet: [String]? = nil, zone: String? = nil, offset: Int64? = nil) {
             self.limit = limit
             self.instanceId = instanceId
             self.status = status
@@ -86,5 +70,21 @@ extension Sqlserver {
             case interInstanceSet = "InterInstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询互通实例的信息
+    ///
+    /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
+    @inlinable
+    public func describeDBInstanceInter(_ input: DescribeDBInstanceInterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceInterResponse > {
+        self.client.execute(action: "DescribeDBInstanceInter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询互通实例的信息
+    ///
+    /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
+    @inlinable
+    public func describeDBInstanceInter(_ input: DescribeDBInstanceInterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceInterResponse {
+        try await self.client.execute(action: "DescribeDBInstanceInter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

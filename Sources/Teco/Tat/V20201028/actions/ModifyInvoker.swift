@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tat {
-    /// 修改执行器
-    ///
-    /// 此接口用于修改执行器。
-    @inlinable
-    public func modifyInvoker(_ input: ModifyInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInvokerResponse > {
-        self.client.execute(action: "ModifyInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改执行器
-    ///
-    /// 此接口用于修改执行器。
-    @inlinable
-    public func modifyInvoker(_ input: ModifyInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInvokerResponse {
-        try await self.client.execute(action: "ModifyInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInvoker请求参数结构体
     public struct ModifyInvokerRequest: TCRequestModel {
         /// 待修改的执行器ID。
@@ -55,9 +39,9 @@ extension Tat {
         public let instanceIds: [String]?
         
         /// 待修改的周期执行器设置。
-        public let scheduleSettings: ScheduleSettings
+        public let scheduleSettings: ScheduleSettings?
         
-        public init (invokerId: String, name: String?, type: String?, commandId: String?, username: String?, parameters: String?, instanceIds: [String]?, scheduleSettings: ScheduleSettings) {
+        public init (invokerId: String, name: String? = nil, type: String? = nil, commandId: String? = nil, username: String? = nil, parameters: String? = nil, instanceIds: [String]? = nil, scheduleSettings: ScheduleSettings? = nil) {
             self.invokerId = invokerId
             self.name = name
             self.type = type
@@ -88,5 +72,21 @@ extension Tat {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改执行器
+    ///
+    /// 此接口用于修改执行器。
+    @inlinable
+    public func modifyInvoker(_ input: ModifyInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInvokerResponse > {
+        self.client.execute(action: "ModifyInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改执行器
+    ///
+    /// 此接口用于修改执行器。
+    @inlinable
+    public func modifyInvoker(_ input: ModifyInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInvokerResponse {
+        try await self.client.execute(action: "ModifyInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

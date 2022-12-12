@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 修改备份时间
-    ///
-    /// 本接口（ModifyBackupTime）用于设置云数据库实例的备份时间。后台系统将根据此配置定期进行实例备份。
-    @inlinable
-    public func modifyBackupTime(_ input: ModifyBackupTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupTimeResponse > {
-        self.client.execute(action: "ModifyBackupTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改备份时间
-    ///
-    /// 本接口（ModifyBackupTime）用于设置云数据库实例的备份时间。后台系统将根据此配置定期进行实例备份。
-    @inlinable
-    public func modifyBackupTime(_ input: ModifyBackupTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupTimeResponse {
-        try await self.client.execute(action: "ModifyBackupTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyBackupTime请求参数结构体
     public struct ModifyBackupTimeRequest: TCRequestModel {
         /// 实例ID，形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
@@ -67,5 +51,21 @@ extension Mariadb {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改备份时间
+    ///
+    /// 本接口（ModifyBackupTime）用于设置云数据库实例的备份时间。后台系统将根据此配置定期进行实例备份。
+    @inlinable
+    public func modifyBackupTime(_ input: ModifyBackupTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupTimeResponse > {
+        self.client.execute(action: "ModifyBackupTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改备份时间
+    ///
+    /// 本接口（ModifyBackupTime）用于设置云数据库实例的备份时间。后台系统将根据此配置定期进行实例备份。
+    @inlinable
+    public func modifyBackupTime(_ input: ModifyBackupTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupTimeResponse {
+        try await self.client.execute(action: "ModifyBackupTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

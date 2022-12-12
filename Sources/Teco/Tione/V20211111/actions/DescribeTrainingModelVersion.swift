@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询模型版本
-    @inlinable
-    public func describeTrainingModelVersion(_ input: DescribeTrainingModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingModelVersionResponse > {
-        self.client.execute(action: "DescribeTrainingModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询模型版本
-    @inlinable
-    public func describeTrainingModelVersion(_ input: DescribeTrainingModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelVersionResponse {
-        try await self.client.execute(action: "DescribeTrainingModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrainingModelVersion请求参数结构体
     public struct DescribeTrainingModelVersionRequest: TCRequestModel {
         /// 模型版本ID
@@ -53,5 +41,17 @@ extension Tione {
             case trainingModelVersion = "TrainingModelVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询模型版本
+    @inlinable
+    public func describeTrainingModelVersion(_ input: DescribeTrainingModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingModelVersionResponse > {
+        self.client.execute(action: "DescribeTrainingModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询模型版本
+    @inlinable
+    public func describeTrainingModelVersion(_ input: DescribeTrainingModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelVersionResponse {
+        try await self.client.execute(action: "DescribeTrainingModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

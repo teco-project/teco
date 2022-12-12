@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cmq {
-    /// 创建队列接口
-    @inlinable
-    public func createQueue(_ input: CreateQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateQueueResponse > {
-        self.client.execute(action: "CreateQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建队列接口
-    @inlinable
-    public func createQueue(_ input: CreateQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateQueueResponse {
-        try await self.client.execute(action: "CreateQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateQueue请求参数结构体
     public struct CreateQueueRequest: TCRequestModel {
         /// 队列名字，在单个地域同一帐号下唯一。队列名称是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
@@ -74,7 +62,7 @@ extension Cmq {
         /// 是否开启消息轨迹追踪，当不设置字段时，默认为不开启，该字段为true表示开启，为false表示不开启
         public let trace: Bool?
         
-        public init (queueName: String, maxMsgHeapNum: UInt64?, pollingWaitSeconds: UInt64?, visibilityTimeout: UInt64?, maxMsgSize: UInt64?, msgRetentionSeconds: UInt64?, rewindSeconds: UInt64?, transaction: UInt64?, firstQueryInterval: UInt64?, maxQueryCount: UInt64?, deadLetterQueueName: String?, policy: UInt64?, maxReceiveCount: UInt64?, maxTimeToLive: UInt64?, trace: Bool?) {
+        public init (queueName: String, maxMsgHeapNum: UInt64? = nil, pollingWaitSeconds: UInt64? = nil, visibilityTimeout: UInt64? = nil, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, rewindSeconds: UInt64? = nil, transaction: UInt64? = nil, firstQueryInterval: UInt64? = nil, maxQueryCount: UInt64? = nil, deadLetterQueueName: String? = nil, policy: UInt64? = nil, maxReceiveCount: UInt64? = nil, maxTimeToLive: UInt64? = nil, trace: Bool? = nil) {
             self.queueName = queueName
             self.maxMsgHeapNum = maxMsgHeapNum
             self.pollingWaitSeconds = pollingWaitSeconds
@@ -123,5 +111,17 @@ extension Cmq {
             case queueId = "QueueId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建队列接口
+    @inlinable
+    public func createQueue(_ input: CreateQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateQueueResponse > {
+        self.client.execute(action: "CreateQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建队列接口
+    @inlinable
+    public func createQueue(_ input: CreateQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateQueueResponse {
+        try await self.client.execute(action: "CreateQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

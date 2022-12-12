@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询最近上报的训练自定义指标
-    @inlinable
-    public func describeLatestTrainingMetrics(_ input: DescribeLatestTrainingMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLatestTrainingMetricsResponse > {
-        self.client.execute(action: "DescribeLatestTrainingMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询最近上报的训练自定义指标
-    @inlinable
-    public func describeLatestTrainingMetrics(_ input: DescribeLatestTrainingMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLatestTrainingMetricsResponse {
-        try await self.client.execute(action: "DescribeLatestTrainingMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLatestTrainingMetrics请求参数结构体
     public struct DescribeLatestTrainingMetricsRequest: TCRequestModel {
         /// 任务ID
@@ -59,5 +47,17 @@ extension Tione {
             case metrics = "Metrics"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询最近上报的训练自定义指标
+    @inlinable
+    public func describeLatestTrainingMetrics(_ input: DescribeLatestTrainingMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLatestTrainingMetricsResponse > {
+        self.client.execute(action: "DescribeLatestTrainingMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询最近上报的训练自定义指标
+    @inlinable
+    public func describeLatestTrainingMetrics(_ input: DescribeLatestTrainingMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLatestTrainingMetricsResponse {
+        try await self.client.execute(action: "DescribeLatestTrainingMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

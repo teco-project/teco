@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询集群网络策略列表
-    @inlinable
-    public func describeNetworkFirewallPolicyList(_ input: DescribeNetworkFirewallPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallPolicyListResponse > {
-        self.client.execute(action: "DescribeNetworkFirewallPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群网络策略列表
-    @inlinable
-    public func describeNetworkFirewallPolicyList(_ input: DescribeNetworkFirewallPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyListResponse {
-        try await self.client.execute(action: "DescribeNetworkFirewallPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNetworkFirewallPolicyList请求参数结构体
     public struct DescribeNetworkFirewallPolicyListRequest: TCRequestModel {
         /// 集群id
@@ -48,7 +36,7 @@ extension Tcss {
         /// 排序方式 asc,desc
         public let order: String?
         
-        public init (clusterId: String, offset: UInt64?, limit: UInt64?, filters: [ComplianceFilters]?, by: String?, order: String?) {
+        public init (clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.clusterId = clusterId
             self.offset = offset
             self.limit = limit
@@ -83,5 +71,17 @@ extension Tcss {
             case netPolicy = "NetPolicy"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群网络策略列表
+    @inlinable
+    public func describeNetworkFirewallPolicyList(_ input: DescribeNetworkFirewallPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallPolicyListResponse > {
+        self.client.execute(action: "DescribeNetworkFirewallPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群网络策略列表
+    @inlinable
+    public func describeNetworkFirewallPolicyList(_ input: DescribeNetworkFirewallPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyListResponse {
+        try await self.client.execute(action: "DescribeNetworkFirewallPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

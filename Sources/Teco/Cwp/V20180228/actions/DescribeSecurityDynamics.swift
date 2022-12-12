@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取安全事件动态消息
-    ///
-    /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件动态消息数据。
-    @inlinable
-    public func describeSecurityDynamics(_ input: DescribeSecurityDynamicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityDynamicsResponse > {
-        self.client.execute(action: "DescribeSecurityDynamics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取安全事件动态消息
-    ///
-    /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件动态消息数据。
-    @inlinable
-    public func describeSecurityDynamics(_ input: DescribeSecurityDynamicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityDynamicsResponse {
-        try await self.client.execute(action: "DescribeSecurityDynamics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityDynamics请求参数结构体
     public struct DescribeSecurityDynamicsRequest: TCRequestModel {
         /// 返回数量，最大值为100。
@@ -39,7 +23,7 @@ extension Cwp {
         /// 偏移量，默认为0。
         public let offset: UInt64?
         
-        public init (limit: UInt64?, offset: UInt64?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil) {
             self.limit = limit
             self.offset = offset
         }
@@ -66,5 +50,21 @@ extension Cwp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取安全事件动态消息
+    ///
+    /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件动态消息数据。
+    @inlinable
+    public func describeSecurityDynamics(_ input: DescribeSecurityDynamicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityDynamicsResponse > {
+        self.client.execute(action: "DescribeSecurityDynamics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全事件动态消息
+    ///
+    /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件动态消息数据。
+    @inlinable
+    public func describeSecurityDynamics(_ input: DescribeSecurityDynamicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityDynamicsResponse {
+        try await self.client.execute(action: "DescribeSecurityDynamics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

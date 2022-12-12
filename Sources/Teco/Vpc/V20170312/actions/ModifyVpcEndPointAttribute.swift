@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改终端节点属性
-    ///
-    /// 修改终端节点属性。
-    @inlinable
-    public func modifyVpcEndPointAttribute(_ input: ModifyVpcEndPointAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpcEndPointAttributeResponse > {
-        self.client.execute(action: "ModifyVpcEndPointAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改终端节点属性
-    ///
-    /// 修改终端节点属性。
-    @inlinable
-    public func modifyVpcEndPointAttribute(_ input: ModifyVpcEndPointAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcEndPointAttributeResponse {
-        try await self.client.execute(action: "ModifyVpcEndPointAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVpcEndPointAttribute请求参数结构体
     public struct ModifyVpcEndPointAttributeRequest: TCRequestModel {
         /// 终端节点ID。
@@ -42,7 +26,7 @@ extension Vpc {
         /// 安全组ID列表。
         public let securityGroupIds: [String]?
         
-        public init (endPointId: String, endPointName: String?, securityGroupIds: [String]?) {
+        public init (endPointId: String, endPointName: String? = nil, securityGroupIds: [String]? = nil) {
             self.endPointId = endPointId
             self.endPointName = endPointName
             self.securityGroupIds = securityGroupIds
@@ -63,5 +47,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改终端节点属性
+    ///
+    /// 修改终端节点属性。
+    @inlinable
+    public func modifyVpcEndPointAttribute(_ input: ModifyVpcEndPointAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpcEndPointAttributeResponse > {
+        self.client.execute(action: "ModifyVpcEndPointAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改终端节点属性
+    ///
+    /// 修改终端节点属性。
+    @inlinable
+    public func modifyVpcEndPointAttribute(_ input: ModifyVpcEndPointAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcEndPointAttributeResponse {
+        try await self.client.execute(action: "ModifyVpcEndPointAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

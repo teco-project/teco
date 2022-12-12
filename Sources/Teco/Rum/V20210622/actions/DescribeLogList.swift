@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取日志列表
-    ///
-    /// 获取项目下的日志列表（实例创建的项目下的日志列表）
-    @inlinable
-    public func describeLogList(_ input: DescribeLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogListResponse > {
-        self.client.execute(action: "DescribeLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取日志列表
-    ///
-    /// 获取项目下的日志列表（实例创建的项目下的日志列表）
-    @inlinable
-    public func describeLogList(_ input: DescribeLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogListResponse {
-        try await self.client.execute(action: "DescribeLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLogList请求参数结构体
     public struct DescribeLogListRequest: TCRequestModel {
         /// 排序方式  desc  asc（必填）
@@ -57,7 +41,7 @@ extension Rum {
         /// 结束时间（必填）
         public let endTime: String?
         
-        public init (sort: String, actionType: String, id: Int64, startTime: String?, limit: Int64?, context: String?, query: String?, endTime: String?) {
+        public init (sort: String, actionType: String, id: Int64, startTime: String? = nil, limit: Int64? = nil, context: String? = nil, query: String? = nil, endTime: String? = nil) {
             self.sort = sort
             self.actionType = actionType
             self.id = id
@@ -92,5 +76,21 @@ extension Rum {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取日志列表
+    ///
+    /// 获取项目下的日志列表（实例创建的项目下的日志列表）
+    @inlinable
+    public func describeLogList(_ input: DescribeLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogListResponse > {
+        self.client.execute(action: "DescribeLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志列表
+    ///
+    /// 获取项目下的日志列表（实例创建的项目下的日志列表）
+    @inlinable
+    public func describeLogList(_ input: DescribeLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogListResponse {
+        try await self.client.execute(action: "DescribeLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

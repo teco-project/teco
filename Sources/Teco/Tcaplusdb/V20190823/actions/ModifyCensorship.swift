@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 修改集群审批状态
-    @inlinable
-    public func modifyCensorship(_ input: ModifyCensorshipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCensorshipResponse > {
-        self.client.execute(action: "ModifyCensorship", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改集群审批状态
-    @inlinable
-    public func modifyCensorship(_ input: ModifyCensorshipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCensorshipResponse {
-        try await self.client.execute(action: "ModifyCensorship", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCensorship请求参数结构体
     public struct ModifyCensorshipRequest: TCRequestModel {
         /// 集群id
@@ -38,7 +26,7 @@ extension Tcaplusdb {
         /// 审批人uin列表
         public let uins: [String]?
         
-        public init (clusterId: String, censorship: Int64, uins: [String]?) {
+        public init (clusterId: String, censorship: Int64, uins: [String]? = nil) {
             self.clusterId = clusterId
             self.censorship = censorship
             self.uins = uins
@@ -72,5 +60,17 @@ extension Tcaplusdb {
             case censorship = "Censorship"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改集群审批状态
+    @inlinable
+    public func modifyCensorship(_ input: ModifyCensorshipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCensorshipResponse > {
+        self.client.execute(action: "ModifyCensorship", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改集群审批状态
+    @inlinable
+    public func modifyCensorship(_ input: ModifyCensorshipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCensorshipResponse {
+        try await self.client.execute(action: "ModifyCensorship", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

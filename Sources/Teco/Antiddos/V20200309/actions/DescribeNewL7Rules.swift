@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 高防IP获取7层规则
-    @inlinable
-    public func describeNewL7Rules(_ input: DescribeNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewL7RulesResponse > {
-        self.client.execute(action: "DescribeNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 高防IP获取7层规则
-    @inlinable
-    public func describeNewL7Rules(_ input: DescribeNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL7RulesResponse {
-        try await self.client.execute(action: "DescribeNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNewL7Rules请求参数结构体
     public struct DescribeNewL7RulesRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP）
@@ -53,7 +41,7 @@ extension Antiddos {
         /// 高防IP实例的Cname
         public let cname: String?
         
-        public init (business: String, statusList: [UInt64]?, domain: String?, ip: String?, limit: UInt64?, offset: UInt64?, protocolList: [String]?, cname: String?) {
+        public init (business: String, statusList: [UInt64]? = nil, domain: String? = nil, ip: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, protocolList: [String]? = nil, cname: String? = nil) {
             self.business = business
             self.statusList = statusList
             self.domain = domain
@@ -96,5 +84,17 @@ extension Antiddos {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 高防IP获取7层规则
+    @inlinable
+    public func describeNewL7Rules(_ input: DescribeNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewL7RulesResponse > {
+        self.client.execute(action: "DescribeNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 高防IP获取7层规则
+    @inlinable
+    public func describeNewL7Rules(_ input: DescribeNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL7RulesResponse {
+        try await self.client.execute(action: "DescribeNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

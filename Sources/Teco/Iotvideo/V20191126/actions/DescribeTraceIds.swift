@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 查询设备日志跟踪白名单
-    ///
-    /// 本接口（DescribeTraceIds）用于查询设备日志跟踪白名单。
-    @inlinable
-    public func describeTraceIds(_ input: DescribeTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTraceIdsResponse > {
-        self.client.execute(action: "DescribeTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备日志跟踪白名单
-    ///
-    /// 本接口（DescribeTraceIds）用于查询设备日志跟踪白名单。
-    @inlinable
-    public func describeTraceIds(_ input: DescribeTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceIdsResponse {
-        try await self.client.execute(action: "DescribeTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTraceIds请求参数结构体
     public struct DescribeTraceIdsRequest: TCRequestModel {
         public init () {
@@ -50,5 +34,21 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备日志跟踪白名单
+    ///
+    /// 本接口（DescribeTraceIds）用于查询设备日志跟踪白名单。
+    @inlinable
+    public func describeTraceIds(_ input: DescribeTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTraceIdsResponse > {
+        self.client.execute(action: "DescribeTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备日志跟踪白名单
+    ///
+    /// 本接口（DescribeTraceIds）用于查询设备日志跟踪白名单。
+    @inlinable
+    public func describeTraceIds(_ input: DescribeTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceIdsResponse {
+        try await self.client.execute(action: "DescribeTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

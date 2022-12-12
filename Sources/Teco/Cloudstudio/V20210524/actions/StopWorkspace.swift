@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudstudio {
-    /// 停止运行空间
-    @inlinable
-    public func stopWorkspace(_ input: StopWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopWorkspaceResponse > {
-        self.client.execute(action: "StopWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止运行空间
-    @inlinable
-    public func stopWorkspace(_ input: StopWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopWorkspaceResponse {
-        try await self.client.execute(action: "StopWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopWorkspace请求参数结构体
     public struct StopWorkspaceRequest: TCRequestModel {
         /// 空间标识
@@ -38,7 +26,7 @@ extension Cloudstudio {
         /// 是否强制终止，true或者false
         public let force: String?
         
-        public init (spaceKey: String, cloudStudioSessionTeam: String, force: String?) {
+        public init (spaceKey: String, cloudStudioSessionTeam: String, force: String? = nil) {
             self.spaceKey = spaceKey
             self.cloudStudioSessionTeam = cloudStudioSessionTeam
             self.force = force
@@ -59,5 +47,17 @@ extension Cloudstudio {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止运行空间
+    @inlinable
+    public func stopWorkspace(_ input: StopWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopWorkspaceResponse > {
+        self.client.execute(action: "StopWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止运行空间
+    @inlinable
+    public func stopWorkspace(_ input: StopWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopWorkspaceResponse {
+        try await self.client.execute(action: "StopWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ivld {
-    /// 描述任务与任务结果
-    ///
-    /// 描述任务信息，如果任务成功完成，还将返回任务结果
-    @inlinable
-    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
-        self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 描述任务与任务结果
-    ///
-    /// 描述任务信息，如果任务成功完成，还将返回任务结果
-    @inlinable
-    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
-        try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskDetail请求参数结构体
     public struct DescribeTaskDetailRequest: TCRequestModel {
         /// 创建任务返回的TaskId
@@ -49,23 +33,23 @@ extension Ivld {
     public struct DescribeTaskDetailResponse: TCResponseModel {
         /// 任务信息，不包含任务结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskInfo: TaskInfo
+        public let taskInfo: TaskInfo?
         
         /// 视频任务结果数据，只在视频任务结束时返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskData: Data
+        public let taskData: Data?
         
         /// 图片任务结果数据，只在图片任务结束时返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let imageTaskData: ImageData
+        public let imageTaskData: ImageData?
         
         /// 音频任务结果数据，只在音频任务结束时返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let audioTaskData: AudioData
+        public let audioTaskData: AudioData?
         
         /// 文本任务结果数据，只在文本任务结束时返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let textTaskData: TextData
+        public let textTaskData: TextData?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -78,5 +62,21 @@ extension Ivld {
             case textTaskData = "TextTaskData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 描述任务与任务结果
+    ///
+    /// 描述任务信息，如果任务成功完成，还将返回任务结果
+    @inlinable
+    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
+        self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 描述任务与任务结果
+    ///
+    /// 描述任务信息，如果任务成功完成，还将返回任务结果
+    @inlinable
+    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
+        try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

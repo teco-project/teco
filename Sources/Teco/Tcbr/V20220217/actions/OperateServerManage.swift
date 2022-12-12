@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcbr {
-    /// 操作发布单
-    @inlinable
-    public func operateServerManage(_ input: OperateServerManageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OperateServerManageResponse > {
-        self.client.execute(action: "OperateServerManage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 操作发布单
-    @inlinable
-    public func operateServerManage(_ input: OperateServerManageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateServerManageResponse {
-        try await self.client.execute(action: "OperateServerManage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OperateServerManage请求参数结构体
     public struct OperateServerManageRequest: TCRequestModel {
         /// 环境Id
@@ -44,7 +32,7 @@ extension Tcbr {
         /// 操作标识
         public let operatorRemark: String?
         
-        public init (envId: String, serverName: String, taskId: Int64, operateType: String, operatorRemark: String?) {
+        public init (envId: String, serverName: String, taskId: Int64, operateType: String, operatorRemark: String? = nil) {
             self.envId = envId
             self.serverName = serverName
             self.taskId = taskId
@@ -69,5 +57,17 @@ extension Tcbr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 操作发布单
+    @inlinable
+    public func operateServerManage(_ input: OperateServerManageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OperateServerManageResponse > {
+        self.client.execute(action: "OperateServerManage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 操作发布单
+    @inlinable
+    public func operateServerManage(_ input: OperateServerManageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateServerManageResponse {
+        try await self.client.execute(action: "OperateServerManage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

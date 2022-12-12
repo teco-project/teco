@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bda {
-    /// 人体关键点分析
-    ///
-    /// 检测图片中人体的14个关键点。建议用于人体图像清晰、无遮挡的场景。支持一张图片中存在多个人体的识别。
-    @inlinable
-    public func detectBodyJoints(_ input: DetectBodyJointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectBodyJointsResponse > {
-        self.client.execute(action: "DetectBodyJoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人体关键点分析
-    ///
-    /// 检测图片中人体的14个关键点。建议用于人体图像清晰、无遮挡的场景。支持一张图片中存在多个人体的识别。
-    @inlinable
-    public func detectBodyJoints(_ input: DetectBodyJointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectBodyJointsResponse {
-        try await self.client.execute(action: "DetectBodyJoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetectBodyJoints请求参数结构体
     public struct DetectBodyJointsRequest: TCRequestModel {
         /// 图片 base64 数据，base64 编码后大小不可超过5M。  
@@ -48,7 +32,7 @@ extension Bda {
         /// 注意：若开启人体局部图片关键点识别，则BoundBox、Confidence返回为空。
         public let localBodySwitch: Bool?
         
-        public init (image: String?, url: String?, localBodySwitch: Bool?) {
+        public init (image: String? = nil, url: String? = nil, localBodySwitch: Bool? = nil) {
             self.image = image
             self.url = url
             self.localBodySwitch = localBodySwitch
@@ -73,5 +57,21 @@ extension Bda {
             case bodyJointsResults = "BodyJointsResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人体关键点分析
+    ///
+    /// 检测图片中人体的14个关键点。建议用于人体图像清晰、无遮挡的场景。支持一张图片中存在多个人体的识别。
+    @inlinable
+    public func detectBodyJoints(_ input: DetectBodyJointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectBodyJointsResponse > {
+        self.client.execute(action: "DetectBodyJoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人体关键点分析
+    ///
+    /// 检测图片中人体的14个关键点。建议用于人体图像清晰、无遮挡的场景。支持一张图片中存在多个人体的识别。
+    @inlinable
+    public func detectBodyJoints(_ input: DetectBodyJointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectBodyJointsResponse {
+        try await self.client.execute(action: "DetectBodyJoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

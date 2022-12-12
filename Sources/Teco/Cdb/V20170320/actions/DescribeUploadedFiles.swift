@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询导入SQL文件列表 （已废弃）
-    ///
-    /// 本接口(DescribeUploadedFiles)用于查询用户导入的SQL文件列表，全地域公共参数Region均为ap-shanghai。
-    @inlinable
-    public func describeUploadedFiles(_ input: DescribeUploadedFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUploadedFilesResponse > {
-        self.client.execute(action: "DescribeUploadedFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询导入SQL文件列表 （已废弃）
-    ///
-    /// 本接口(DescribeUploadedFiles)用于查询用户导入的SQL文件列表，全地域公共参数Region均为ap-shanghai。
-    @inlinable
-    public func describeUploadedFiles(_ input: DescribeUploadedFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadedFilesResponse {
-        try await self.client.execute(action: "DescribeUploadedFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUploadedFiles请求参数结构体
     public struct DescribeUploadedFilesRequest: TCRequestModel {
         /// 文件路径。该字段应填用户主账号的OwnerUin信息。
@@ -42,7 +26,7 @@ extension Cdb {
         /// 单次请求返回的数量，默认值为20。
         public let limit: Int64?
         
-        public init (path: String, offset: Int64?, limit: Int64?) {
+        public init (path: String, offset: Int64? = nil, limit: Int64? = nil) {
             self.path = path
             self.offset = offset
             self.limit = limit
@@ -71,5 +55,21 @@ extension Cdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询导入SQL文件列表 （已废弃）
+    ///
+    /// 本接口(DescribeUploadedFiles)用于查询用户导入的SQL文件列表，全地域公共参数Region均为ap-shanghai。
+    @inlinable
+    public func describeUploadedFiles(_ input: DescribeUploadedFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUploadedFilesResponse > {
+        self.client.execute(action: "DescribeUploadedFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询导入SQL文件列表 （已废弃）
+    ///
+    /// 本接口(DescribeUploadedFiles)用于查询用户导入的SQL文件列表，全地域公共参数Region均为ap-shanghai。
+    @inlinable
+    public func describeUploadedFiles(_ input: DescribeUploadedFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadedFilesResponse {
+        try await self.client.execute(action: "DescribeUploadedFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

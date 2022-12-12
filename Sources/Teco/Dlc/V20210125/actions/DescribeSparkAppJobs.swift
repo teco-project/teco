@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 获取spark应用列表
-    @inlinable
-    public func describeSparkAppJobs(_ input: DescribeSparkAppJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSparkAppJobsResponse > {
-        self.client.execute(action: "DescribeSparkAppJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取spark应用列表
-    @inlinable
-    public func describeSparkAppJobs(_ input: DescribeSparkAppJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobsResponse {
-        try await self.client.execute(action: "DescribeSparkAppJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSparkAppJobs请求参数结构体
     public struct DescribeSparkAppJobsRequest: TCRequestModel {
         /// 返回结果按照该字段排序
@@ -50,7 +38,7 @@ extension Dlc {
         /// 查询列表限制数量
         public let limit: Int64?
         
-        public init (sortBy: String?, sorting: String?, filters: [Filter]?, startTime: String?, endTime: String?, offset: Int64?, limit: Int64?) {
+        public init (sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.sortBy = sortBy
             self.sorting = sorting
             self.filters = filters
@@ -87,5 +75,17 @@ extension Dlc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取spark应用列表
+    @inlinable
+    public func describeSparkAppJobs(_ input: DescribeSparkAppJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSparkAppJobsResponse > {
+        self.client.execute(action: "DescribeSparkAppJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取spark应用列表
+    @inlinable
+    public func describeSparkAppJobs(_ input: DescribeSparkAppJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobsResponse {
+        try await self.client.execute(action: "DescribeSparkAppJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

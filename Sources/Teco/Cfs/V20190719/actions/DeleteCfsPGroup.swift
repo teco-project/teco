@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 删除权限组
-    ///
-    /// 本接口（DeleteCfsPGroup）用于删除权限组。
-    @inlinable
-    public func deleteCfsPGroup(_ input: DeleteCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCfsPGroupResponse > {
-        self.client.execute(action: "DeleteCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除权限组
-    ///
-    /// 本接口（DeleteCfsPGroup）用于删除权限组。
-    @inlinable
-    public func deleteCfsPGroup(_ input: DeleteCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsPGroupResponse {
-        try await self.client.execute(action: "DeleteCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCfsPGroup请求参数结构体
     public struct DeleteCfsPGroupRequest: TCRequestModel {
         /// 权限组 ID
@@ -61,5 +45,21 @@ extension Cfs {
             case appId = "AppId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除权限组
+    ///
+    /// 本接口（DeleteCfsPGroup）用于删除权限组。
+    @inlinable
+    public func deleteCfsPGroup(_ input: DeleteCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCfsPGroupResponse > {
+        self.client.execute(action: "DeleteCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除权限组
+    ///
+    /// 本接口（DeleteCfsPGroup）用于删除权限组。
+    @inlinable
+    public func deleteCfsPGroup(_ input: DeleteCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsPGroupResponse {
+        try await self.client.execute(action: "DeleteCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

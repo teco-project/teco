@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询数据库可用区及售卖规格
-    ///
-    /// 本接口(DescribeCdbZoneConfig)用于查询云数据库各地域可售卖的规格配置。
-    @inlinable
-    public func describeCdbZoneConfig(_ input: DescribeCdbZoneConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCdbZoneConfigResponse > {
-        self.client.execute(action: "DescribeCdbZoneConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据库可用区及售卖规格
-    ///
-    /// 本接口(DescribeCdbZoneConfig)用于查询云数据库各地域可售卖的规格配置。
-    @inlinable
-    public func describeCdbZoneConfig(_ input: DescribeCdbZoneConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdbZoneConfigResponse {
-        try await self.client.execute(action: "DescribeCdbZoneConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCdbZoneConfig请求参数结构体
     public struct DescribeCdbZoneConfigRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Cdb {
             case dataResult = "DataResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据库可用区及售卖规格
+    ///
+    /// 本接口(DescribeCdbZoneConfig)用于查询云数据库各地域可售卖的规格配置。
+    @inlinable
+    public func describeCdbZoneConfig(_ input: DescribeCdbZoneConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCdbZoneConfigResponse > {
+        self.client.execute(action: "DescribeCdbZoneConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库可用区及售卖规格
+    ///
+    /// 本接口(DescribeCdbZoneConfig)用于查询云数据库各地域可售卖的规格配置。
+    @inlinable
+    public func describeCdbZoneConfig(_ input: DescribeCdbZoneConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdbZoneConfigResponse {
+        try await self.client.execute(action: "DescribeCdbZoneConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

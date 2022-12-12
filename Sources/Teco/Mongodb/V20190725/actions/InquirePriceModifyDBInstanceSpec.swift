@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 变更配置询价
-    ///
-    /// 本接口 (InquirePriceModifyDBInstanceSpec) 用于调整实例的配置询价。
-    @inlinable
-    public func inquirePriceModifyDBInstanceSpec(_ input: InquirePriceModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceModifyDBInstanceSpecResponse > {
-        self.client.execute(action: "InquirePriceModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 变更配置询价
-    ///
-    /// 本接口 (InquirePriceModifyDBInstanceSpec) 用于调整实例的配置询价。
-    @inlinable
-    public func inquirePriceModifyDBInstanceSpec(_ input: InquirePriceModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceModifyDBInstanceSpecResponse {
-        try await self.client.execute(action: "InquirePriceModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquirePriceModifyDBInstanceSpec请求参数结构体
     public struct InquirePriceModifyDBInstanceSpecRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同。
@@ -48,7 +32,7 @@ extension Mongodb {
         /// 实例变更后的分片数，取值范围具体参照查询云数据库的售卖规格返回参数。只能增加不能减少，默认为不变更分片数
         public let replicateSetNum: Int64?
         
-        public init (instanceId: String, memory: Int64, volume: Int64, nodeNum: Int64?, replicateSetNum: Int64?) {
+        public init (instanceId: String, memory: Int64, volume: Int64, nodeNum: Int64? = nil, replicateSetNum: Int64? = nil) {
             self.instanceId = instanceId
             self.memory = memory
             self.volume = volume
@@ -77,5 +61,21 @@ extension Mongodb {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 变更配置询价
+    ///
+    /// 本接口 (InquirePriceModifyDBInstanceSpec) 用于调整实例的配置询价。
+    @inlinable
+    public func inquirePriceModifyDBInstanceSpec(_ input: InquirePriceModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceModifyDBInstanceSpecResponse > {
+        self.client.execute(action: "InquirePriceModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 变更配置询价
+    ///
+    /// 本接口 (InquirePriceModifyDBInstanceSpec) 用于调整实例的配置询价。
+    @inlinable
+    public func inquirePriceModifyDBInstanceSpec(_ input: InquirePriceModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceModifyDBInstanceSpecResponse {
+        try await self.client.execute(action: "InquirePriceModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

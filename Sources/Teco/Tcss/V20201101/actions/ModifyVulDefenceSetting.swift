@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 编辑漏洞防御设置
-    @inlinable
-    public func modifyVulDefenceSetting(_ input: ModifyVulDefenceSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVulDefenceSettingResponse > {
-        self.client.execute(action: "ModifyVulDefenceSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑漏洞防御设置
-    @inlinable
-    public func modifyVulDefenceSetting(_ input: ModifyVulDefenceSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVulDefenceSettingResponse {
-        try await self.client.execute(action: "ModifyVulDefenceSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVulDefenceSetting请求参数结构体
     public struct ModifyVulDefenceSettingRequest: TCRequestModel {
         /// 是否开启:0: 关闭 1:开启
@@ -38,7 +26,7 @@ extension Tcss {
         /// 自选漏洞防御主机,Scope为0时必填
         public let hostIDs: [String]?
         
-        public init (isEnabled: Int64, scope: Int64?, hostIDs: [String]?) {
+        public init (isEnabled: Int64, scope: Int64? = nil, hostIDs: [String]? = nil) {
             self.isEnabled = isEnabled
             self.scope = scope
             self.hostIDs = hostIDs
@@ -59,5 +47,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑漏洞防御设置
+    @inlinable
+    public func modifyVulDefenceSetting(_ input: ModifyVulDefenceSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVulDefenceSettingResponse > {
+        self.client.execute(action: "ModifyVulDefenceSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑漏洞防御设置
+    @inlinable
+    public func modifyVulDefenceSetting(_ input: ModifyVulDefenceSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVulDefenceSettingResponse {
+        try await self.client.execute(action: "ModifyVulDefenceSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

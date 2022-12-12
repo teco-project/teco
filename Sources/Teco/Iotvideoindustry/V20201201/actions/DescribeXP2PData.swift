@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取X-P2P的统计数据
-    @inlinable
-    public func describeXP2PData(_ input: DescribeXP2PDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeXP2PDataResponse > {
-        self.client.execute(action: "DescribeXP2PData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取X-P2P的统计数据
-    @inlinable
-    public func describeXP2PData(_ input: DescribeXP2PDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeXP2PDataResponse {
-        try await self.client.execute(action: "DescribeXP2PData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeXP2PData请求参数结构体
     public struct DescribeXP2PDataRequest: TCRequestModel {
         /// P2P应用ID
@@ -41,7 +29,7 @@ extension Iotvideoindustry {
         /// P2P通路ID
         public let p2pChannelId: String?
         
-        public init (p2pAppId: String, from: Int64, to: Int64, p2pChannelId: String?) {
+        public init (p2pAppId: String, from: Int64, to: Int64, p2pChannelId: String? = nil) {
             self.p2pAppId = p2pAppId
             self.from = from
             self.to = to
@@ -71,5 +59,17 @@ extension Iotvideoindustry {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取X-P2P的统计数据
+    @inlinable
+    public func describeXP2PData(_ input: DescribeXP2PDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeXP2PDataResponse > {
+        self.client.execute(action: "DescribeXP2PData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取X-P2P的统计数据
+    @inlinable
+    public func describeXP2PData(_ input: DescribeXP2PDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeXP2PDataResponse {
+        try await self.client.execute(action: "DescribeXP2PData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

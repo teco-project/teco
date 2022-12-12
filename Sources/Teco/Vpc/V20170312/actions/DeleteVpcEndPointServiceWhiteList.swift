@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除终端节点服务白名单
-    ///
-    /// 删除终端节点服务白名单。
-    @inlinable
-    public func deleteVpcEndPointServiceWhiteList(_ input: DeleteVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcEndPointServiceWhiteListResponse > {
-        self.client.execute(action: "DeleteVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除终端节点服务白名单
-    ///
-    /// 删除终端节点服务白名单。
-    @inlinable
-    public func deleteVpcEndPointServiceWhiteList(_ input: DeleteVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcEndPointServiceWhiteListResponse {
-        try await self.client.execute(action: "DeleteVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteVpcEndPointServiceWhiteList请求参数结构体
     public struct DeleteVpcEndPointServiceWhiteListRequest: TCRequestModel {
         /// 用户UIN数组。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除终端节点服务白名单
+    ///
+    /// 删除终端节点服务白名单。
+    @inlinable
+    public func deleteVpcEndPointServiceWhiteList(_ input: DeleteVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcEndPointServiceWhiteListResponse > {
+        self.client.execute(action: "DeleteVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除终端节点服务白名单
+    ///
+    /// 删除终端节点服务白名单。
+    @inlinable
+    public func deleteVpcEndPointServiceWhiteList(_ input: DeleteVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcEndPointServiceWhiteListResponse {
+        try await self.client.execute(action: "DeleteVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

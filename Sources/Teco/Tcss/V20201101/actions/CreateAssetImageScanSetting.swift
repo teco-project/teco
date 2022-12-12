@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 添加容器安全镜像扫描设置
-    @inlinable
-    public func createAssetImageScanSetting(_ input: CreateAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssetImageScanSettingResponse > {
-        self.client.execute(action: "CreateAssetImageScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加容器安全镜像扫描设置
-    @inlinable
-    public func createAssetImageScanSetting(_ input: CreateAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageScanSettingResponse {
-        try await self.client.execute(action: "CreateAssetImageScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAssetImageScanSetting请求参数结构体
     public struct CreateAssetImageScanSettingRequest: TCRequestModel {
         /// 开关
@@ -53,7 +41,7 @@ extension Tcss {
         /// 自定义镜像
         public let images: [String]?
         
-        public init (enable: Bool, scanTime: String, scanPeriod: UInt64, scanVirus: Bool, scanRisk: Bool, scanVul: Bool, all: Bool, images: [String]?) {
+        public init (enable: Bool, scanTime: String, scanPeriod: UInt64, scanVirus: Bool, scanRisk: Bool, scanVul: Bool, all: Bool, images: [String]? = nil) {
             self.enable = enable
             self.scanTime = scanTime
             self.scanPeriod = scanPeriod
@@ -84,5 +72,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加容器安全镜像扫描设置
+    @inlinable
+    public func createAssetImageScanSetting(_ input: CreateAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssetImageScanSettingResponse > {
+        self.client.execute(action: "CreateAssetImageScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加容器安全镜像扫描设置
+    @inlinable
+    public func createAssetImageScanSetting(_ input: CreateAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageScanSettingResponse {
+        try await self.client.execute(action: "CreateAssetImageScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

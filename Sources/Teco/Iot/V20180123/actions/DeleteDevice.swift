@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 删除设备
-    ///
-    /// 提供在指定的产品Id下删除一个设备的能力。
-    @inlinable
-    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceResponse > {
-        self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除设备
-    ///
-    /// 提供在指定的产品Id下删除一个设备的能力。
-    @inlinable
-    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
-        try await self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDevice请求参数结构体
     public struct DeleteDeviceRequest: TCRequestModel {
         /// 产品Id
@@ -58,5 +42,21 @@ extension Iot {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除设备
+    ///
+    /// 提供在指定的产品Id下删除一个设备的能力。
+    @inlinable
+    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceResponse > {
+        self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除设备
+    ///
+    /// 提供在指定的产品Id下删除一个设备的能力。
+    @inlinable
+    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
+        try await self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

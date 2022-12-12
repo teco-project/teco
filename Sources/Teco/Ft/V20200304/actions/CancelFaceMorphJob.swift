@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ft {
-    /// 撤销人像渐变任务
-    ///
-    /// 撤销人像渐变任务请求
-    @inlinable
-    public func cancelFaceMorphJob(_ input: CancelFaceMorphJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelFaceMorphJobResponse > {
-        self.client.execute(action: "CancelFaceMorphJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 撤销人像渐变任务
-    ///
-    /// 撤销人像渐变任务请求
-    @inlinable
-    public func cancelFaceMorphJob(_ input: CancelFaceMorphJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFaceMorphJobResponse {
-        try await self.client.execute(action: "CancelFaceMorphJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelFaceMorphJob请求参数结构体
     public struct CancelFaceMorphJobRequest: TCRequestModel {
         /// 人像渐变任务Job id
@@ -53,5 +37,21 @@ extension Ft {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 撤销人像渐变任务
+    ///
+    /// 撤销人像渐变任务请求
+    @inlinable
+    public func cancelFaceMorphJob(_ input: CancelFaceMorphJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelFaceMorphJobResponse > {
+        self.client.execute(action: "CancelFaceMorphJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 撤销人像渐变任务
+    ///
+    /// 撤销人像渐变任务请求
+    @inlinable
+    public func cancelFaceMorphJob(_ input: CancelFaceMorphJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFaceMorphJobResponse {
+        try await self.client.execute(action: "CancelFaceMorphJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

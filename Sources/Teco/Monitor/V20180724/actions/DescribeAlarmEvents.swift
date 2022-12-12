@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 查询告警事件列表
-    @inlinable
-    public func describeAlarmEvents(_ input: DescribeAlarmEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmEventsResponse > {
-        self.client.execute(action: "DescribeAlarmEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询告警事件列表
-    @inlinable
-    public func describeAlarmEvents(_ input: DescribeAlarmEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmEventsResponse {
-        try await self.client.execute(action: "DescribeAlarmEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAlarmEvents请求参数结构体
     public struct DescribeAlarmEventsRequest: TCRequestModel {
         /// 模块名，固定值 monitor
@@ -38,7 +26,7 @@ extension Monitor {
         /// 监控类型，如 MT_QCE。如果不填默认为 MT_QCE。
         public let monitorType: String?
         
-        public init (module: String, namespace: String, monitorType: String?) {
+        public init (module: String, namespace: String, monitorType: String? = nil) {
             self.module = module
             self.namespace = namespace
             self.monitorType = monitorType
@@ -63,5 +51,17 @@ extension Monitor {
             case events = "Events"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询告警事件列表
+    @inlinable
+    public func describeAlarmEvents(_ input: DescribeAlarmEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmEventsResponse > {
+        self.client.execute(action: "DescribeAlarmEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询告警事件列表
+    @inlinable
+    public func describeAlarmEvents(_ input: DescribeAlarmEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmEventsResponse {
+        try await self.client.execute(action: "DescribeAlarmEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询一键部署任务
-    ///
-    /// 查询一键部署任务 （特定接口：外部查询使用）
-    @inlinable
-    public func describeCloudBaseRunOneClickTaskExternal(_ input: DescribeCloudBaseRunOneClickTaskExternalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunOneClickTaskExternalResponse > {
-        self.client.execute(action: "DescribeCloudBaseRunOneClickTaskExternal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询一键部署任务
-    ///
-    /// 查询一键部署任务 （特定接口：外部查询使用）
-    @inlinable
-    public func describeCloudBaseRunOneClickTaskExternal(_ input: DescribeCloudBaseRunOneClickTaskExternalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunOneClickTaskExternalResponse {
-        try await self.client.execute(action: "DescribeCloudBaseRunOneClickTaskExternal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudBaseRunOneClickTaskExternal请求参数结构体
     public struct DescribeCloudBaseRunOneClickTaskExternalRequest: TCRequestModel {
         /// 外部任务Id 最长64字节
@@ -108,5 +92,21 @@ extension Tcb {
             case steps = "Steps"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询一键部署任务
+    ///
+    /// 查询一键部署任务 （特定接口：外部查询使用）
+    @inlinable
+    public func describeCloudBaseRunOneClickTaskExternal(_ input: DescribeCloudBaseRunOneClickTaskExternalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunOneClickTaskExternalResponse > {
+        self.client.execute(action: "DescribeCloudBaseRunOneClickTaskExternal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询一键部署任务
+    ///
+    /// 查询一键部署任务 （特定接口：外部查询使用）
+    @inlinable
+    public func describeCloudBaseRunOneClickTaskExternal(_ input: DescribeCloudBaseRunOneClickTaskExternalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunOneClickTaskExternalResponse {
+        try await self.client.execute(action: "DescribeCloudBaseRunOneClickTaskExternal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

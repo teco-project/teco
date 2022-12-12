@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 数据集成大屏任务状态统计趋势
-    @inlinable
-    public func describeIntegrationStatisticsTaskStatusTrend(_ input: DescribeIntegrationStatisticsTaskStatusTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationStatisticsTaskStatusTrendResponse > {
-        self.client.execute(action: "DescribeIntegrationStatisticsTaskStatusTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 数据集成大屏任务状态统计趋势
-    @inlinable
-    public func describeIntegrationStatisticsTaskStatusTrend(_ input: DescribeIntegrationStatisticsTaskStatusTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsTaskStatusTrendResponse {
-        try await self.client.execute(action: "DescribeIntegrationStatisticsTaskStatusTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIntegrationStatisticsTaskStatusTrend请求参数结构体
     public struct DescribeIntegrationStatisticsTaskStatusTrendRequest: TCRequestModel {
         /// 任务类型（实时：201，离线：202）
@@ -41,7 +29,7 @@ extension Wedata {
         /// 资源组id
         public let executorGroupId: String?
         
-        public init (taskType: Int64, projectId: String, queryDate: String?, executorGroupId: String?) {
+        public init (taskType: Int64, projectId: String, queryDate: String? = nil, executorGroupId: String? = nil) {
             self.taskType = taskType
             self.projectId = projectId
             self.queryDate = queryDate
@@ -69,5 +57,17 @@ extension Wedata {
             case trendsData = "TrendsData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 数据集成大屏任务状态统计趋势
+    @inlinable
+    public func describeIntegrationStatisticsTaskStatusTrend(_ input: DescribeIntegrationStatisticsTaskStatusTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationStatisticsTaskStatusTrendResponse > {
+        self.client.execute(action: "DescribeIntegrationStatisticsTaskStatusTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 数据集成大屏任务状态统计趋势
+    @inlinable
+    public func describeIntegrationStatisticsTaskStatusTrend(_ input: DescribeIntegrationStatisticsTaskStatusTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsTaskStatusTrendResponse {
+        try await self.client.execute(action: "DescribeIntegrationStatisticsTaskStatusTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

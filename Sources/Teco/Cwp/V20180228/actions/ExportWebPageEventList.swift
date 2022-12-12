@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 导出篡改事件列表
-    @inlinable
-    public func exportWebPageEventList(_ input: ExportWebPageEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportWebPageEventListResponse > {
-        self.client.execute(action: "ExportWebPageEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出篡改事件列表
-    @inlinable
-    public func exportWebPageEventList(_ input: ExportWebPageEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportWebPageEventListResponse {
-        try await self.client.execute(action: "ExportWebPageEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportWebPageEventList请求参数结构体
     public struct ExportWebPageEventListRequest: TCRequestModel {
         /// 过滤条件
@@ -41,7 +29,7 @@ extension Cwp {
         /// 排序方式，0降序，1升序，默认为0
         public let order: UInt64?
         
-        public init (filters: [AssetFilters]?, by: String?, order: UInt64?) {
+        public init (filters: [AssetFilters]? = nil, by: String? = nil, order: UInt64? = nil) {
             self.filters = filters
             self.by = by
             self.order = order
@@ -66,5 +54,17 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出篡改事件列表
+    @inlinable
+    public func exportWebPageEventList(_ input: ExportWebPageEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportWebPageEventListResponse > {
+        self.client.execute(action: "ExportWebPageEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出篡改事件列表
+    @inlinable
+    public func exportWebPageEventList(_ input: ExportWebPageEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportWebPageEventListResponse {
+        try await self.client.execute(action: "ExportWebPageEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

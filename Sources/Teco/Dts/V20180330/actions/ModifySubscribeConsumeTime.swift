@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 修改数据订阅实例通道的消费时间点
-    ///
-    /// 本接口(ModifySubscribeConsumeTime)用于修改数据订阅通道的消费时间点
-    @inlinable
-    public func modifySubscribeConsumeTime(_ input: ModifySubscribeConsumeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscribeConsumeTimeResponse > {
-        self.client.execute(action: "ModifySubscribeConsumeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改数据订阅实例通道的消费时间点
-    ///
-    /// 本接口(ModifySubscribeConsumeTime)用于修改数据订阅通道的消费时间点
-    @inlinable
-    public func modifySubscribeConsumeTime(_ input: ModifySubscribeConsumeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeConsumeTimeResponse {
-        try await self.client.execute(action: "ModifySubscribeConsumeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySubscribeConsumeTime请求参数结构体
     public struct ModifySubscribeConsumeTimeRequest: TCRequestModel {
         /// 数据订阅实例的ID
@@ -58,5 +42,21 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改数据订阅实例通道的消费时间点
+    ///
+    /// 本接口(ModifySubscribeConsumeTime)用于修改数据订阅通道的消费时间点
+    @inlinable
+    public func modifySubscribeConsumeTime(_ input: ModifySubscribeConsumeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscribeConsumeTimeResponse > {
+        self.client.execute(action: "ModifySubscribeConsumeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改数据订阅实例通道的消费时间点
+    ///
+    /// 本接口(ModifySubscribeConsumeTime)用于修改数据订阅通道的消费时间点
+    @inlinable
+    public func modifySubscribeConsumeTime(_ input: ModifySubscribeConsumeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeConsumeTimeResponse {
+        try await self.client.execute(action: "ModifySubscribeConsumeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 查询 exporter 集成列表
-    @inlinable
-    public func describeExporterIntegrations(_ input: DescribeExporterIntegrationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExporterIntegrationsResponse > {
-        self.client.execute(action: "DescribeExporterIntegrations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询 exporter 集成列表
-    @inlinable
-    public func describeExporterIntegrations(_ input: DescribeExporterIntegrationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExporterIntegrationsResponse {
-        try await self.client.execute(action: "DescribeExporterIntegrations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExporterIntegrations请求参数结构体
     public struct DescribeExporterIntegrationsRequest: TCRequestModel {
         /// 实例 ID
@@ -47,7 +35,7 @@ extension Monitor {
         /// 名字
         public let name: String?
         
-        public init (instanceId: String, kubeType: Int64?, clusterId: String?, kind: String?, name: String?) {
+        public init (instanceId: String, kubeType: Int64? = nil, clusterId: String? = nil, kind: String? = nil, name: String? = nil) {
             self.instanceId = instanceId
             self.kubeType = kubeType
             self.clusterId = clusterId
@@ -76,5 +64,17 @@ extension Monitor {
             case integrationSet = "IntegrationSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询 exporter 集成列表
+    @inlinable
+    public func describeExporterIntegrations(_ input: DescribeExporterIntegrationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExporterIntegrationsResponse > {
+        self.client.execute(action: "DescribeExporterIntegrations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询 exporter 集成列表
+    @inlinable
+    public func describeExporterIntegrations(_ input: DescribeExporterIntegrationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExporterIntegrationsResponse {
+        try await self.client.execute(action: "DescribeExporterIntegrations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

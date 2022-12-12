@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 生成包预签名下载链接
-    @inlinable
-    public func generateDownloadUrl(_ input: GenerateDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateDownloadUrlResponse > {
-        self.client.execute(action: "GenerateDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 生成包预签名下载链接
-    @inlinable
-    public func generateDownloadUrl(_ input: GenerateDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateDownloadUrlResponse {
-        try await self.client.execute(action: "GenerateDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GenerateDownloadUrl请求参数结构体
     public struct GenerateDownloadUrlRequest: TCRequestModel {
         /// 服务ID
@@ -41,7 +29,7 @@ extension Tem {
         /// 来源 channel
         public let sourceChannel: Int64?
         
-        public init (serviceId: String, pkgName: String, deployVersion: String, sourceChannel: Int64?) {
+        public init (serviceId: String, pkgName: String, deployVersion: String, sourceChannel: Int64? = nil) {
             self.serviceId = serviceId
             self.pkgName = pkgName
             self.deployVersion = deployVersion
@@ -69,5 +57,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 生成包预签名下载链接
+    @inlinable
+    public func generateDownloadUrl(_ input: GenerateDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateDownloadUrlResponse > {
+        self.client.execute(action: "GenerateDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 生成包预签名下载链接
+    @inlinable
+    public func generateDownloadUrl(_ input: GenerateDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateDownloadUrlResponse {
+        try await self.client.execute(action: "GenerateDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

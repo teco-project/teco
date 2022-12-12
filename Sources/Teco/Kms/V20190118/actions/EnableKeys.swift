@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 批量启动主密钥
-    ///
-    /// 该接口用于批量启用CMK。
-    @inlinable
-    public func enableKeys(_ input: EnableKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableKeysResponse > {
-        self.client.execute(action: "EnableKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量启动主密钥
-    ///
-    /// 该接口用于批量启用CMK。
-    @inlinable
-    public func enableKeys(_ input: EnableKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeysResponse {
-        try await self.client.execute(action: "EnableKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableKeys请求参数结构体
     public struct EnableKeysRequest: TCRequestModel {
         /// 需要批量启用的CMK Id 列表， CMK数量最大支持100
@@ -53,5 +37,21 @@ extension Kms {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量启动主密钥
+    ///
+    /// 该接口用于批量启用CMK。
+    @inlinable
+    public func enableKeys(_ input: EnableKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableKeysResponse > {
+        self.client.execute(action: "EnableKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量启动主密钥
+    ///
+    /// 该接口用于批量启用CMK。
+    @inlinable
+    public func enableKeys(_ input: EnableKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeysResponse {
+        try await self.client.execute(action: "EnableKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

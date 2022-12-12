@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 修改资源标签列表
-    ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    /// 修改资源标签列表，全量覆盖。
-    @inlinable
-    public func modifyResourceTags(_ input: ModifyResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourceTagsResponse > {
-        self.client.execute(action: "ModifyResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改资源标签列表
-    ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    /// 修改资源标签列表，全量覆盖。
-    @inlinable
-    public func modifyResourceTags(_ input: ModifyResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceTagsResponse {
-        try await self.client.execute(action: "ModifyResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyResourceTags请求参数结构体
     public struct ModifyResourceTagsRequest: TCRequestModel {
         /// 文件系统ID
@@ -41,7 +23,7 @@ extension Chdfs {
         /// 多个资源标签，可以为空数组
         public let tags: [Tag]?
         
-        public init (fileSystemId: String, tags: [Tag]?) {
+        public init (fileSystemId: String, tags: [Tag]? = nil) {
             self.fileSystemId = fileSystemId
             self.tags = tags
         }
@@ -60,5 +42,23 @@ extension Chdfs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改资源标签列表
+    ///
+    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    /// 修改资源标签列表，全量覆盖。
+    @inlinable
+    public func modifyResourceTags(_ input: ModifyResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourceTagsResponse > {
+        self.client.execute(action: "ModifyResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改资源标签列表
+    ///
+    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    /// 修改资源标签列表，全量覆盖。
+    @inlinable
+    public func modifyResourceTags(_ input: ModifyResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceTagsResponse {
+        try await self.client.execute(action: "ModifyResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

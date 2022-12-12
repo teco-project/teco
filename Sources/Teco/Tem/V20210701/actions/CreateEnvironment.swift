@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 创建环境
-    @inlinable
-    public func createEnvironment(_ input: CreateEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEnvironmentResponse > {
-        self.client.execute(action: "CreateEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建环境
-    @inlinable
-    public func createEnvironment(_ input: CreateEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentResponse {
-        try await self.client.execute(action: "CreateEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEnvironment请求参数结构体
     public struct CreateEnvironmentRequest: TCRequestModel {
         /// 环境名称
@@ -59,7 +47,7 @@ extension Tem {
         /// 创建环境的region
         public let createRegion: String?
         
-        public init (environmentName: String, vpc: String, subnetIds: [String], description: String?, k8sVersion: String?, sourceChannel: Int64?, enableTswTraceService: Bool?, tags: [Tag]?, envType: String?, createRegion: String?) {
+        public init (environmentName: String, vpc: String, subnetIds: [String], description: String? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil, tags: [Tag]? = nil, envType: String? = nil, createRegion: String? = nil) {
             self.environmentName = environmentName
             self.vpc = vpc
             self.subnetIds = subnetIds
@@ -99,5 +87,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建环境
+    @inlinable
+    public func createEnvironment(_ input: CreateEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEnvironmentResponse > {
+        self.client.execute(action: "CreateEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建环境
+    @inlinable
+    public func createEnvironment(_ input: CreateEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentResponse {
+        try await self.client.execute(action: "CreateEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

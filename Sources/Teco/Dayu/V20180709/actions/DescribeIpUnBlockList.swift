@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// 获取IP解封记录
-    @inlinable
-    public func describeIpUnBlockList(_ input: DescribeIpUnBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpUnBlockListResponse > {
-        self.client.execute(action: "DescribeIpUnBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取IP解封记录
-    @inlinable
-    public func describeIpUnBlockList(_ input: DescribeIpUnBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpUnBlockListResponse {
-        try await self.client.execute(action: "DescribeIpUnBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIpUnBlockList请求参数结构体
     public struct DescribeIpUnBlockListRequest: TCRequestModel {
         /// 开始时间
@@ -43,7 +31,7 @@ extension Dayu {
         public let ip: String?
         
         /// 分页参数（不为空时，进行分页查询），此字段后面会弃用，请用Limit和Offset字段代替；
-        public let paging: Paging
+        public let paging: Paging?
         
         /// 一页条数，填0表示不分页
         public let limit: UInt64?
@@ -51,7 +39,7 @@ extension Dayu {
         /// 页起始偏移，取值为(页码-1)*一页条数
         public let offset: UInt64?
         
-        public init (beginTime: Date, endTime: Date, ip: String?, paging: Paging, limit: UInt64?, offset: UInt64?) {
+        public init (beginTime: Date, endTime: Date, ip: String? = nil, paging: Paging? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.beginTime = beginTime
             self.endTime = endTime
             self.ip = ip
@@ -94,5 +82,17 @@ extension Dayu {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取IP解封记录
+    @inlinable
+    public func describeIpUnBlockList(_ input: DescribeIpUnBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpUnBlockListResponse > {
+        self.client.execute(action: "DescribeIpUnBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取IP解封记录
+    @inlinable
+    public func describeIpUnBlockList(_ input: DescribeIpUnBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpUnBlockListResponse {
+        try await self.client.execute(action: "DescribeIpUnBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

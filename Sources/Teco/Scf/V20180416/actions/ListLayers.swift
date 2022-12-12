@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 返回层列表
-    ///
-    /// 返回全部层的列表，其中包含了每个层最新版本的信息，可以通过适配运行时进行过滤。
-    @inlinable
-    public func listLayers(_ input: ListLayersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListLayersResponse > {
-        self.client.execute(action: "ListLayers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 返回层列表
-    ///
-    /// 返回全部层的列表，其中包含了每个层最新版本的信息，可以通过适配运行时进行过滤。
-    @inlinable
-    public func listLayers(_ input: ListLayersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLayersResponse {
-        try await self.client.execute(action: "ListLayers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListLayers请求参数结构体
     public struct ListLayersRequest: TCRequestModel {
         /// 适配的运行时
@@ -45,7 +29,7 @@ extension Scf {
         /// 查询key，模糊匹配名称
         public let searchKey: String?
         
-        public init (compatibleRuntime: String?, offset: Int64?, limit: Int64?, searchKey: String?) {
+        public init (compatibleRuntime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchKey: String? = nil) {
             self.compatibleRuntime = compatibleRuntime
             self.offset = offset
             self.limit = limit
@@ -76,5 +60,21 @@ extension Scf {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 返回层列表
+    ///
+    /// 返回全部层的列表，其中包含了每个层最新版本的信息，可以通过适配运行时进行过滤。
+    @inlinable
+    public func listLayers(_ input: ListLayersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListLayersResponse > {
+        self.client.execute(action: "ListLayers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 返回层列表
+    ///
+    /// 返回全部层的列表，其中包含了每个层最新版本的信息，可以通过适配运行时进行过滤。
+    @inlinable
+    public func listLayers(_ input: ListLayersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLayersResponse {
+        try await self.client.execute(action: "ListLayers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

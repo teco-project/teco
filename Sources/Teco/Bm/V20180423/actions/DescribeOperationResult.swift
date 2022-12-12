@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 查询异步任务状态
-    ///
-    /// 获取异步操作状态的完成状态
-    @inlinable
-    public func describeOperationResult(_ input: DescribeOperationResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOperationResultResponse > {
-        self.client.execute(action: "DescribeOperationResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询异步任务状态
-    ///
-    /// 获取异步操作状态的完成状态
-    @inlinable
-    public func describeOperationResult(_ input: DescribeOperationResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOperationResultResponse {
-        try await self.client.execute(action: "DescribeOperationResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOperationResult请求参数结构体
     public struct DescribeOperationResultRequest: TCRequestModel {
         /// 异步任务ID
@@ -68,5 +52,21 @@ extension Bm {
             case subtaskStatusSet = "SubtaskStatusSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询异步任务状态
+    ///
+    /// 获取异步操作状态的完成状态
+    @inlinable
+    public func describeOperationResult(_ input: DescribeOperationResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOperationResultResponse > {
+        self.client.execute(action: "DescribeOperationResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询异步任务状态
+    ///
+    /// 获取异步操作状态的完成状态
+    @inlinable
+    public func describeOperationResult(_ input: DescribeOperationResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOperationResultResponse {
+        try await self.client.execute(action: "DescribeOperationResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

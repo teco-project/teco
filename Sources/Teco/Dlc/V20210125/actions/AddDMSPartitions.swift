@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// DMS元数据新增分区
-    @inlinable
-    public func addDMSPartitions(_ input: AddDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDMSPartitionsResponse > {
-        self.client.execute(action: "AddDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DMS元数据新增分区
-    @inlinable
-    public func addDMSPartitions(_ input: AddDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDMSPartitionsResponse {
-        try await self.client.execute(action: "AddDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddDMSPartitions请求参数结构体
     public struct AddDMSPartitionsRequest: TCRequestModel {
         /// 分区
         public let partitions: [DMSPartition]?
         
-        public init (partitions: [DMSPartition]?) {
+        public init (partitions: [DMSPartition]? = nil) {
             self.partitions = partitions
         }
         
@@ -57,5 +45,17 @@ extension Dlc {
             case partitions = "Partitions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// DMS元数据新增分区
+    @inlinable
+    public func addDMSPartitions(_ input: AddDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddDMSPartitionsResponse > {
+        self.client.execute(action: "AddDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据新增分区
+    @inlinable
+    public func addDMSPartitions(_ input: AddDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDMSPartitionsResponse {
+        try await self.client.execute(action: "AddDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

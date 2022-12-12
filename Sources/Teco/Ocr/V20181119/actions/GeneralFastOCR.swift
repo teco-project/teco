@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 通用印刷体识别（高速版）
-    ///
-    /// 本接口支持图片中整体文字的检测和识别，返回文字框位置与文字内容。相比通用印刷体识别接口，识别速度更快。
-    /// 默认接口请求频率限制：10次/秒。
-    @inlinable
-    public func generalFastOCR(_ input: GeneralFastOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GeneralFastOCRResponse > {
-        self.client.execute(action: "GeneralFastOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通用印刷体识别（高速版）
-    ///
-    /// 本接口支持图片中整体文字的检测和识别，返回文字框位置与文字内容。相比通用印刷体识别接口，识别速度更快。
-    /// 默认接口请求频率限制：10次/秒。
-    @inlinable
-    public func generalFastOCR(_ input: GeneralFastOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralFastOCRResponse {
-        try await self.client.execute(action: "GeneralFastOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GeneralFastOCR请求参数结构体
     public struct GeneralFastOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -54,7 +36,7 @@ extension Ocr {
         /// 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         public let pdfPageNumber: UInt64?
         
-        public init (imageBase64: String?, imageUrl: String?, isPdf: Bool?, pdfPageNumber: UInt64?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.isPdf = isPdf
@@ -94,5 +76,23 @@ extension Ocr {
             case pdfPageSize = "PdfPageSize"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通用印刷体识别（高速版）
+    ///
+    /// 本接口支持图片中整体文字的检测和识别，返回文字框位置与文字内容。相比通用印刷体识别接口，识别速度更快。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func generalFastOCR(_ input: GeneralFastOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GeneralFastOCRResponse > {
+        self.client.execute(action: "GeneralFastOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通用印刷体识别（高速版）
+    ///
+    /// 本接口支持图片中整体文字的检测和识别，返回文字框位置与文字内容。相比通用印刷体识别接口，识别速度更快。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func generalFastOCR(_ input: GeneralFastOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralFastOCRResponse {
+        try await self.client.execute(action: "GeneralFastOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

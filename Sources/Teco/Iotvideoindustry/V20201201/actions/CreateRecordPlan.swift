@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 创建录制计划（旧）
-    ///
-    /// 本接口(CreateRecordPlan) 用于创建录制计划，使设备与时间模板绑定，以便及时启动录制
-    /// 请使用CreateRecordingPlan代替
-    @inlinable
-    public func createRecordPlan(_ input: CreateRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRecordPlanResponse > {
-        self.client.execute(action: "CreateRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建录制计划（旧）
-    ///
-    /// 本接口(CreateRecordPlan) 用于创建录制计划，使设备与时间模板绑定，以便及时启动录制
-    /// 请使用CreateRecordingPlan代替
-    @inlinable
-    public func createRecordPlan(_ input: CreateRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordPlanResponse {
-        try await self.client.execute(action: "CreateRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRecordPlan请求参数结构体
     public struct CreateRecordPlanRequest: TCRequestModel {
         /// 计划名称
@@ -50,7 +32,7 @@ extension Iotvideoindustry {
         /// 存储周期
         public let recordStorageTime: Int64?
         
-        public init (name: String, timeTemplateId: String, eventId: Int64, devices: [DeviceItem]?, recordStorageTime: Int64?) {
+        public init (name: String, timeTemplateId: String, eventId: Int64, devices: [DeviceItem]? = nil, recordStorageTime: Int64? = nil) {
             self.name = name
             self.timeTemplateId = timeTemplateId
             self.eventId = eventId
@@ -79,5 +61,23 @@ extension Iotvideoindustry {
             case planId = "PlanId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建录制计划（旧）
+    ///
+    /// 本接口(CreateRecordPlan) 用于创建录制计划，使设备与时间模板绑定，以便及时启动录制
+    /// 请使用CreateRecordingPlan代替
+    @inlinable
+    public func createRecordPlan(_ input: CreateRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRecordPlanResponse > {
+        self.client.execute(action: "CreateRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建录制计划（旧）
+    ///
+    /// 本接口(CreateRecordPlan) 用于创建录制计划，使设备与时间模板绑定，以便及时启动录制
+    /// 请使用CreateRecordingPlan代替
+    @inlinable
+    public func createRecordPlan(_ input: CreateRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordPlanResponse {
+        try await self.client.execute(action: "CreateRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

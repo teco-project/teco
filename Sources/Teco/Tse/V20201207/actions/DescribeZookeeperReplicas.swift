@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tse {
-    /// 查询Zookeeper类型注册引擎实例副本信息
-    @inlinable
-    public func describeZookeeperReplicas(_ input: DescribeZookeeperReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZookeeperReplicasResponse > {
-        self.client.execute(action: "DescribeZookeeperReplicas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Zookeeper类型注册引擎实例副本信息
-    @inlinable
-    public func describeZookeeperReplicas(_ input: DescribeZookeeperReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZookeeperReplicasResponse {
-        try await self.client.execute(action: "DescribeZookeeperReplicas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeZookeeperReplicas请求参数结构体
     public struct DescribeZookeeperReplicasRequest: TCRequestModel {
         /// 注册引擎实例ID
@@ -38,7 +26,7 @@ extension Tse {
         /// 副本列表Offset
         public let offset: UInt64?
         
-        public init (instanceId: String, limit: UInt64?, offset: UInt64?) {
+        public init (instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset
@@ -68,5 +56,17 @@ extension Tse {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Zookeeper类型注册引擎实例副本信息
+    @inlinable
+    public func describeZookeeperReplicas(_ input: DescribeZookeeperReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZookeeperReplicasResponse > {
+        self.client.execute(action: "DescribeZookeeperReplicas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Zookeeper类型注册引擎实例副本信息
+    @inlinable
+    public func describeZookeeperReplicas(_ input: DescribeZookeeperReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZookeeperReplicasResponse {
+        try await self.client.execute(action: "DescribeZookeeperReplicas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

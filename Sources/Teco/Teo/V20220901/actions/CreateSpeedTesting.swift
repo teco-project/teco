@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 创建站点拨测任务
-    ///
-    /// 对用户指定的域名进行一次站点拨测
-    @inlinable
-    public func createSpeedTesting(_ input: CreateSpeedTestingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSpeedTestingResponse > {
-        self.client.execute(action: "CreateSpeedTesting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建站点拨测任务
-    ///
-    /// 对用户指定的域名进行一次站点拨测
-    @inlinable
-    public func createSpeedTesting(_ input: CreateSpeedTestingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSpeedTestingResponse {
-        try await self.client.execute(action: "CreateSpeedTesting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSpeedTesting请求参数结构体
     public struct CreateSpeedTestingRequest: TCRequestModel {
         /// 站点 ID。
@@ -39,7 +23,7 @@ extension Teo {
         /// 拨测子域名。
         public let host: String?
         
-        public init (zoneId: String, host: String?) {
+        public init (zoneId: String, host: String? = nil) {
             self.zoneId = zoneId
             self.host = host
         }
@@ -58,5 +42,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建站点拨测任务
+    ///
+    /// 对用户指定的域名进行一次站点拨测
+    @inlinable
+    public func createSpeedTesting(_ input: CreateSpeedTestingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSpeedTestingResponse > {
+        self.client.execute(action: "CreateSpeedTesting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建站点拨测任务
+    ///
+    /// 对用户指定的域名进行一次站点拨测
+    @inlinable
+    public func createSpeedTesting(_ input: CreateSpeedTestingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSpeedTestingResponse {
+        try await self.client.execute(action: "CreateSpeedTesting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

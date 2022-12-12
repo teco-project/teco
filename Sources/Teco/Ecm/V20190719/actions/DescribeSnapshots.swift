@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 查询快照列表
-    ///
-    /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
-    /// * 根据快照ID、创建快照的云硬盘ID、创建快照的云硬盘类型等对结果进行过滤，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
-    /// *  如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的快照列表。
-    @inlinable
-    public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotsResponse > {
-        self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询快照列表
-    ///
-    /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
-    /// * 根据快照ID、创建快照的云硬盘ID、创建快照的云硬盘类型等对结果进行过滤，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
-    /// *  如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的快照列表。
-    @inlinable
-    public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
-        try await self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSnapshots请求参数结构体
     public struct DescribeSnapshotsRequest: TCRequestModel {
         /// 要查询快照的ID列表。参数不支持同时指定`SnapshotIds`和`Filters`。
@@ -57,7 +37,7 @@ extension Ecm {
         /// 输出云盘列表的排列顺序。取值范围：<br><li>ASC：升序排列<br><li>DESC：降序排列。
         public let order: String?
         
-        public init (snapshotIds: [String]?, filters: [Filter]?, limit: UInt64?, orderField: String?, offset: UInt64?, order: String?) {
+        public init (snapshotIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, orderField: String? = nil, offset: UInt64? = nil, order: String? = nil) {
             self.snapshotIds = snapshotIds
             self.filters = filters
             self.limit = limit
@@ -92,5 +72,25 @@ extension Ecm {
             case snapshotSet = "SnapshotSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询快照列表
+    ///
+    /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
+    /// * 根据快照ID、创建快照的云硬盘ID、创建快照的云硬盘类型等对结果进行过滤，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
+    /// *  如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的快照列表。
+    @inlinable
+    public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotsResponse > {
+        self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询快照列表
+    ///
+    /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
+    /// * 根据快照ID、创建快照的云硬盘ID、创建快照的云硬盘类型等对结果进行过滤，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
+    /// *  如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的快照列表。
+    @inlinable
+    public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
+        try await self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

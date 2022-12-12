@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取实例列表
-    @inlinable
-    public func describeInstanceList(_ input: DescribeInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceListResponse > {
-        self.client.execute(action: "DescribeInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实例列表
-    @inlinable
-    public func describeInstanceList(_ input: DescribeInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceListResponse {
-        try await self.client.execute(action: "DescribeInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceList请求参数结构体
     public struct DescribeInstanceListRequest: TCRequestModel {
         /// 项目/工作空间id
@@ -62,7 +50,7 @@ extension Wedata {
         /// 任务名称
         public let keyword: String?
         
-        public init (projectId: String, pageIndex: Int64, pageSize: Int64, cycleList: [String], ownerList: [String], instanceType: String, sort: String, sortCol: String, taskTypeList: [Int64], stateList: [Int64], keyword: String?) {
+        public init (projectId: String, pageIndex: Int64, pageSize: Int64, cycleList: [String], ownerList: [String], instanceType: String, sort: String, sortCol: String, taskTypeList: [Int64], stateList: [Int64], keyword: String? = nil) {
             self.projectId = projectId
             self.pageIndex = pageIndex
             self.pageSize = pageSize
@@ -103,5 +91,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实例列表
+    @inlinable
+    public func describeInstanceList(_ input: DescribeInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceListResponse > {
+        self.client.execute(action: "DescribeInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例列表
+    @inlinable
+    public func describeInstanceList(_ input: DescribeInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceListResponse {
+        try await self.client.execute(action: "DescribeInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

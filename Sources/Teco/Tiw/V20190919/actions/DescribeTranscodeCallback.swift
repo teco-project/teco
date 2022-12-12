@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 查询文档转码回调地址
-    @inlinable
-    public func describeTranscodeCallback(_ input: DescribeTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTranscodeCallbackResponse > {
-        self.client.execute(action: "DescribeTranscodeCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询文档转码回调地址
-    @inlinable
-    public func describeTranscodeCallback(_ input: DescribeTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeCallbackResponse {
-        try await self.client.execute(action: "DescribeTranscodeCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTranscodeCallback请求参数结构体
     public struct DescribeTranscodeCallbackRequest: TCRequestModel {
         /// 应用的SdkAppId
@@ -57,5 +45,17 @@ extension Tiw {
             case callbackKey = "CallbackKey"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询文档转码回调地址
+    @inlinable
+    public func describeTranscodeCallback(_ input: DescribeTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTranscodeCallbackResponse > {
+        self.client.execute(action: "DescribeTranscodeCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文档转码回调地址
+    @inlinable
+    public func describeTranscodeCallback(_ input: DescribeTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeCallbackResponse {
+        try await self.client.execute(action: "DescribeTranscodeCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

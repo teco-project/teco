@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Smh {
-    /// 创建媒体库
-    ///
-    /// 创建 PaaS 服务媒体库
-    @inlinable
-    public func createLibrary(_ input: CreateLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLibraryResponse > {
-        self.client.execute(action: "CreateLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建媒体库
-    ///
-    /// 创建 PaaS 服务媒体库
-    @inlinable
-    public func createLibrary(_ input: CreateLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLibraryResponse {
-        try await self.client.execute(action: "CreateLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLibrary请求参数结构体
     public struct CreateLibraryRequest: TCRequestModel {
         /// 媒体库名称，最多 50 个字符
@@ -48,7 +32,7 @@ extension Smh {
         /// 备注，最多 250 个字符
         public let remark: String?
         
-        public init (name: String, bucketName: String, bucketRegion: String, libraryExtension: LibraryExtension, remark: String?) {
+        public init (name: String, bucketName: String, bucketRegion: String, libraryExtension: LibraryExtension, remark: String? = nil) {
             self.name = name
             self.bucketName = bucketName
             self.bucketRegion = bucketRegion
@@ -77,5 +61,21 @@ extension Smh {
             case libraryId = "LibraryId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建媒体库
+    ///
+    /// 创建 PaaS 服务媒体库
+    @inlinable
+    public func createLibrary(_ input: CreateLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLibraryResponse > {
+        self.client.execute(action: "CreateLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建媒体库
+    ///
+    /// 创建 PaaS 服务媒体库
+    @inlinable
+    public func createLibrary(_ input: CreateLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLibraryResponse {
+        try await self.client.execute(action: "CreateLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

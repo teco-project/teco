@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Billing {
-    /// 获取按项目汇总费用分布
-    @inlinable
-    public func describeBillSummaryByProject(_ input: DescribeBillSummaryByProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillSummaryByProjectResponse > {
-        self.client.execute(action: "DescribeBillSummaryByProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取按项目汇总费用分布
-    @inlinable
-    public func describeBillSummaryByProject(_ input: DescribeBillSummaryByProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByProjectResponse {
-        try await self.client.execute(action: "DescribeBillSummaryByProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBillSummaryByProject请求参数结构体
     public struct DescribeBillSummaryByProjectRequest: TCRequestModel {
         /// 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
@@ -38,7 +26,7 @@ extension Billing {
         /// 查询账单数据的用户UIN
         public let payerUin: String?
         
-        public init (beginTime: String, endTime: String, payerUin: String?) {
+        public init (beginTime: String, endTime: String, payerUin: String? = nil) {
             self.beginTime = beginTime
             self.endTime = endTime
             self.payerUin = payerUin
@@ -68,5 +56,17 @@ extension Billing {
             case summaryOverview = "SummaryOverview"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取按项目汇总费用分布
+    @inlinable
+    public func describeBillSummaryByProject(_ input: DescribeBillSummaryByProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillSummaryByProjectResponse > {
+        self.client.execute(action: "DescribeBillSummaryByProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取按项目汇总费用分布
+    @inlinable
+    public func describeBillSummaryByProject(_ input: DescribeBillSummaryByProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByProjectResponse {
+        try await self.client.execute(action: "DescribeBillSummaryByProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 将已购买的云存服务转移到另一设备
-    @inlinable
-    public func deliverStorageService(_ input: DeliverStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeliverStorageServiceResponse > {
-        self.client.execute(action: "DeliverStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 将已购买的云存服务转移到另一设备
-    @inlinable
-    public func deliverStorageService(_ input: DeliverStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverStorageServiceResponse {
-        try await self.client.execute(action: "DeliverStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeliverStorageService请求参数结构体
     public struct DeliverStorageServiceRequest: TCRequestModel {
         /// 待转移的源云存服务ID
@@ -41,7 +29,7 @@ extension Iotvideo {
         /// 设备主人用户在IoT Video平台的注册ID。该参数用于验证Paas/Saas平台的设备/用户关系链是否一致
         public let accessId: String?
         
-        public init (srcServiceId: String, tid: String, chnNum: Int64?, accessId: String?) {
+        public init (srcServiceId: String, tid: String, chnNum: Int64? = nil, accessId: String? = nil) {
             self.srcServiceId = srcServiceId
             self.tid = tid
             self.chnNum = chnNum
@@ -108,5 +96,17 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 将已购买的云存服务转移到另一设备
+    @inlinable
+    public func deliverStorageService(_ input: DeliverStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeliverStorageServiceResponse > {
+        self.client.execute(action: "DeliverStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 将已购买的云存服务转移到另一设备
+    @inlinable
+    public func deliverStorageService(_ input: DeliverStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverStorageServiceResponse {
+        try await self.client.execute(action: "DeliverStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

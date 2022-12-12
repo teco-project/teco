@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询带宽包资源
-    ///
-    /// 接口用于查询带宽包详细信息，包括带宽包唯一标识ID，类型，计费模式，名称，资源信息等
-    @inlinable
-    public func describeBandwidthPackages(_ input: DescribeBandwidthPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBandwidthPackagesResponse > {
-        self.client.execute(action: "DescribeBandwidthPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询带宽包资源
-    ///
-    /// 接口用于查询带宽包详细信息，包括带宽包唯一标识ID，类型，计费模式，名称，资源信息等
-    @inlinable
-    public func describeBandwidthPackages(_ input: DescribeBandwidthPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackagesResponse {
-        try await self.client.execute(action: "DescribeBandwidthPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBandwidthPackages请求参数结构体
     public struct DescribeBandwidthPackagesRequest: TCRequestModel {
         /// 带宽包唯一ID列表
@@ -55,7 +39,7 @@ extension Vpc {
         /// 查询带宽包数量限制
         public let limit: UInt64?
         
-        public init (bandwidthPackageIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (bandwidthPackageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.bandwidthPackageIds = bandwidthPackageIds
             self.filters = filters
             self.offset = offset
@@ -86,5 +70,21 @@ extension Vpc {
             case bandwidthPackageSet = "BandwidthPackageSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询带宽包资源
+    ///
+    /// 接口用于查询带宽包详细信息，包括带宽包唯一标识ID，类型，计费模式，名称，资源信息等
+    @inlinable
+    public func describeBandwidthPackages(_ input: DescribeBandwidthPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBandwidthPackagesResponse > {
+        self.client.execute(action: "DescribeBandwidthPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询带宽包资源
+    ///
+    /// 接口用于查询带宽包详细信息，包括带宽包唯一标识ID，类型，计费模式，名称，资源信息等
+    @inlinable
+    public func describeBandwidthPackages(_ input: DescribeBandwidthPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackagesResponse {
+        try await self.client.execute(action: "DescribeBandwidthPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

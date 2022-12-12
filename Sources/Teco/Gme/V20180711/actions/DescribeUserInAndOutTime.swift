@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gme {
-    /// 拉取用户在房间得进出时间
-    @inlinable
-    public func describeUserInAndOutTime(_ input: DescribeUserInAndOutTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserInAndOutTimeResponse > {
-        self.client.execute(action: "DescribeUserInAndOutTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取用户在房间得进出时间
-    @inlinable
-    public func describeUserInAndOutTime(_ input: DescribeUserInAndOutTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserInAndOutTimeResponse {
-        try await self.client.execute(action: "DescribeUserInAndOutTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserInAndOutTime请求参数结构体
     public struct DescribeUserInAndOutTimeRequest: TCRequestModel {
         /// 应用ID
@@ -44,7 +32,7 @@ extension Gme {
         /// 字符串类型房间ID
         public let roomIdStr: String?
         
-        public init (bizId: Int64, roomId: Int64, userId: Int64, userIdStr: String?, roomIdStr: String?) {
+        public init (bizId: Int64, roomId: Int64, userId: Int64, userIdStr: String? = nil, roomIdStr: String? = nil) {
             self.bizId = bizId
             self.roomId = roomId
             self.userId = userId
@@ -77,5 +65,17 @@ extension Gme {
             case duration = "Duration"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取用户在房间得进出时间
+    @inlinable
+    public func describeUserInAndOutTime(_ input: DescribeUserInAndOutTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserInAndOutTimeResponse > {
+        self.client.execute(action: "DescribeUserInAndOutTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取用户在房间得进出时间
+    @inlinable
+    public func describeUserInAndOutTime(_ input: DescribeUserInAndOutTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserInAndOutTimeResponse {
+        try await self.client.execute(action: "DescribeUserInAndOutTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

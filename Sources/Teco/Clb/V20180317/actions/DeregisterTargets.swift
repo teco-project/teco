@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 从负载均衡监听器上解绑后端服务
-    ///
-    /// DeregisterTargets 接口用来将一台或多台后端服务从负载均衡的监听器或转发规则上解绑，对于四层监听器，只需指定监听器ID即可，对于七层监听器，还需通过LocationId或Domain+Url指定转发规则。
-    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
-    public func deregisterTargets(_ input: DeregisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeregisterTargetsResponse > {
-        self.client.execute(action: "DeregisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 从负载均衡监听器上解绑后端服务
-    ///
-    /// DeregisterTargets 接口用来将一台或多台后端服务从负载均衡的监听器或转发规则上解绑，对于四层监听器，只需指定监听器ID即可，对于七层监听器，还需通过LocationId或Domain+Url指定转发规则。
-    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
-    public func deregisterTargets(_ input: DeregisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterTargetsResponse {
-        try await self.client.execute(action: "DeregisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeregisterTargets请求参数结构体
     public struct DeregisterTargetsRequest: TCRequestModel {
         /// 负载均衡实例 ID，格式如 lb-12345678。
@@ -53,7 +35,7 @@ extension Clb {
         /// 目标规则的URL，提供LocationId参数时本参数不生效。
         public let url: String?
         
-        public init (loadBalancerId: String, listenerId: String, targets: [Target], locationId: String?, domain: String?, url: String?) {
+        public init (loadBalancerId: String, listenerId: String, targets: [Target], locationId: String? = nil, domain: String? = nil, url: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.targets = targets
@@ -80,5 +62,23 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 从负载均衡监听器上解绑后端服务
+    ///
+    /// DeregisterTargets 接口用来将一台或多台后端服务从负载均衡的监听器或转发规则上解绑，对于四层监听器，只需指定监听器ID即可，对于七层监听器，还需通过LocationId或Domain+Url指定转发规则。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func deregisterTargets(_ input: DeregisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeregisterTargetsResponse > {
+        self.client.execute(action: "DeregisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 从负载均衡监听器上解绑后端服务
+    ///
+    /// DeregisterTargets 接口用来将一台或多台后端服务从负载均衡的监听器或转发规则上解绑，对于四层监听器，只需指定监听器ID即可，对于七层监听器，还需通过LocationId或Domain+Url指定转发规则。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func deregisterTargets(_ input: DeregisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterTargetsResponse {
+        try await self.client.execute(action: "DeregisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

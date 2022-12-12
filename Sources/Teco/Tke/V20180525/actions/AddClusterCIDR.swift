@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 给集群增加ClusterCIDR
-    ///
-    /// 给GR集群增加可用的ClusterCIDR
-    @inlinable
-    public func addClusterCIDR(_ input: AddClusterCIDRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddClusterCIDRResponse > {
-        self.client.execute(action: "AddClusterCIDR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 给集群增加ClusterCIDR
-    ///
-    /// 给GR集群增加可用的ClusterCIDR
-    @inlinable
-    public func addClusterCIDR(_ input: AddClusterCIDRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterCIDRResponse {
-        try await self.client.execute(action: "AddClusterCIDR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddClusterCIDR请求参数结构体
     public struct AddClusterCIDRRequest: TCRequestModel {
         /// 集群ID
@@ -42,7 +26,7 @@ extension Tke {
         /// 是否忽略ClusterCIDR与VPC路由表的冲突
         public let ignoreClusterCIDRConflict: Bool?
         
-        public init (clusterId: String, clusterCIDRs: [String], ignoreClusterCIDRConflict: Bool?) {
+        public init (clusterId: String, clusterCIDRs: [String], ignoreClusterCIDRConflict: Bool? = nil) {
             self.clusterId = clusterId
             self.clusterCIDRs = clusterCIDRs
             self.ignoreClusterCIDRConflict = ignoreClusterCIDRConflict
@@ -63,5 +47,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 给集群增加ClusterCIDR
+    ///
+    /// 给GR集群增加可用的ClusterCIDR
+    @inlinable
+    public func addClusterCIDR(_ input: AddClusterCIDRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddClusterCIDRResponse > {
+        self.client.execute(action: "AddClusterCIDR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 给集群增加ClusterCIDR
+    ///
+    /// 给GR集群增加可用的ClusterCIDR
+    @inlinable
+    public func addClusterCIDR(_ input: AddClusterCIDRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterCIDRResponse {
+        try await self.client.execute(action: "AddClusterCIDR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

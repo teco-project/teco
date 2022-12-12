@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 新增或修改高危命令规则
-    @inlinable
-    public func editBashRule(_ input: EditBashRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditBashRuleResponse > {
-        self.client.execute(action: "EditBashRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增或修改高危命令规则
-    @inlinable
-    public func editBashRule(_ input: EditBashRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRuleResponse {
-        try await self.client.execute(action: "EditBashRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EditBashRule请求参数结构体
     public struct EditBashRuleRequest: TCRequestModel {
         /// 规则名称
@@ -50,7 +38,7 @@ extension Yunjing {
         /// 是否全局规则(默认否)
         public let isGlobal: UInt64?
         
-        public init (name: String, level: UInt64, rule: String, id: UInt64?, uuid: String?, hostip: String?, isGlobal: UInt64?) {
+        public init (name: String, level: UInt64, rule: String, id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, isGlobal: UInt64? = nil) {
             self.name = name
             self.level = level
             self.rule = rule
@@ -79,5 +67,17 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增或修改高危命令规则
+    @inlinable
+    public func editBashRule(_ input: EditBashRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditBashRuleResponse > {
+        self.client.execute(action: "EditBashRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增或修改高危命令规则
+    @inlinable
+    public func editBashRule(_ input: EditBashRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRuleResponse {
+        try await self.client.execute(action: "EditBashRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

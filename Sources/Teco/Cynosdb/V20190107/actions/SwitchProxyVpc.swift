@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 更换数据库代理vpc
-    ///
-    /// 本接口(SwitchProxyVpc)更换数据库代理vpc
-    @inlinable
-    public func switchProxyVpc(_ input: SwitchProxyVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchProxyVpcResponse > {
-        self.client.execute(action: "SwitchProxyVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更换数据库代理vpc
-    ///
-    /// 本接口(SwitchProxyVpc)更换数据库代理vpc
-    @inlinable
-    public func switchProxyVpc(_ input: SwitchProxyVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyVpcResponse {
-        try await self.client.execute(action: "SwitchProxyVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SwitchProxyVpc请求参数结构体
     public struct SwitchProxyVpcRequest: TCRequestModel {
         /// 集群ID
@@ -48,7 +32,7 @@ extension Cynosdb {
         /// 数据库代理组Id（该参数为必填项，可以通过DescribeProxies接口获得）
         public let proxyGroupId: String?
         
-        public init (clusterId: String, uniqVpcId: String, uniqSubnetId: String, oldIpReserveHours: Int64, proxyGroupId: String?) {
+        public init (clusterId: String, uniqVpcId: String, uniqSubnetId: String, oldIpReserveHours: Int64, proxyGroupId: String? = nil) {
             self.clusterId = clusterId
             self.uniqVpcId = uniqVpcId
             self.uniqSubnetId = uniqSubnetId
@@ -77,5 +61,21 @@ extension Cynosdb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更换数据库代理vpc
+    ///
+    /// 本接口(SwitchProxyVpc)更换数据库代理vpc
+    @inlinable
+    public func switchProxyVpc(_ input: SwitchProxyVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchProxyVpcResponse > {
+        self.client.execute(action: "SwitchProxyVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更换数据库代理vpc
+    ///
+    /// 本接口(SwitchProxyVpc)更换数据库代理vpc
+    @inlinable
+    public func switchProxyVpc(_ input: SwitchProxyVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyVpcResponse {
+        try await self.client.execute(action: "SwitchProxyVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

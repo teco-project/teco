@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改安全组属性
-    @inlinable
-    public func modifySecurityGroupAttribute(_ input: ModifySecurityGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupAttributeResponse > {
-        self.client.execute(action: "ModifySecurityGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改安全组属性
-    @inlinable
-    public func modifySecurityGroupAttribute(_ input: ModifySecurityGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupAttributeResponse {
-        try await self.client.execute(action: "ModifySecurityGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySecurityGroupAttribute请求参数结构体
     public struct ModifySecurityGroupAttributeRequest: TCRequestModel {
         /// 安全组实例ID，例如esg-33ocnj9n，可通过DescribeSecurityGroups获取。
@@ -38,7 +26,7 @@ extension Ecm {
         /// 安全组备注，最多100个字符。
         public let groupDescription: String?
         
-        public init (securityGroupId: String, groupName: String?, groupDescription: String?) {
+        public init (securityGroupId: String, groupName: String? = nil, groupDescription: String? = nil) {
             self.securityGroupId = securityGroupId
             self.groupName = groupName
             self.groupDescription = groupDescription
@@ -59,5 +47,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改安全组属性
+    @inlinable
+    public func modifySecurityGroupAttribute(_ input: ModifySecurityGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupAttributeResponse > {
+        self.client.execute(action: "ModifySecurityGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改安全组属性
+    @inlinable
+    public func modifySecurityGroupAttribute(_ input: ModifySecurityGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupAttributeResponse {
+        try await self.client.execute(action: "ModifySecurityGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

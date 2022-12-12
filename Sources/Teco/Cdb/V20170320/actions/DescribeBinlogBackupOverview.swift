@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询日志备份概览
-    ///
-    /// 本接口(DescribeBinlogBackupOverview)用于查询用户在当前地域总的日志备份概览。
-    @inlinable
-    public func describeBinlogBackupOverview(_ input: DescribeBinlogBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBinlogBackupOverviewResponse > {
-        self.client.execute(action: "DescribeBinlogBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询日志备份概览
-    ///
-    /// 本接口(DescribeBinlogBackupOverview)用于查询用户在当前地域总的日志备份概览。
-    @inlinable
-    public func describeBinlogBackupOverview(_ input: DescribeBinlogBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogBackupOverviewResponse {
-        try await self.client.execute(action: "DescribeBinlogBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBinlogBackupOverview请求参数结构体
     public struct DescribeBinlogBackupOverviewRequest: TCRequestModel {
         /// 需要查询的云数据库产品类型，目前仅支持 "mysql"。
@@ -77,5 +61,21 @@ extension Cdb {
             case binlogArchiveCount = "BinlogArchiveCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询日志备份概览
+    ///
+    /// 本接口(DescribeBinlogBackupOverview)用于查询用户在当前地域总的日志备份概览。
+    @inlinable
+    public func describeBinlogBackupOverview(_ input: DescribeBinlogBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBinlogBackupOverviewResponse > {
+        self.client.execute(action: "DescribeBinlogBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询日志备份概览
+    ///
+    /// 本接口(DescribeBinlogBackupOverview)用于查询用户在当前地域总的日志备份概览。
+    @inlinable
+    public func describeBinlogBackupOverview(_ input: DescribeBinlogBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogBackupOverviewResponse {
+        try await self.client.execute(action: "DescribeBinlogBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

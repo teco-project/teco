@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gpm {
-    /// 发起匹配
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 支持传入一个玩家或多个玩家发起匹配，在同一个请求内的玩家将被分到同一个对局。
-    @inlinable
-    public func startMatching(_ input: StartMatchingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartMatchingResponse > {
-        self.client.execute(action: "StartMatching", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发起匹配
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 支持传入一个玩家或多个玩家发起匹配，在同一个请求内的玩家将被分到同一个对局。
-    @inlinable
-    public func startMatching(_ input: StartMatchingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingResponse {
-        try await self.client.execute(action: "StartMatching", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartMatching请求参数结构体
     public struct StartMatchingRequest: TCRequestModel {
         /// 匹配 Code。
@@ -44,7 +26,7 @@ extension Gpm {
         /// 匹配票据 ID 默认空字符串，为空则由 GPM 自动生成 长度 128，只能包含数字、字母、. 和 -
         public let matchTicketId: String?
         
-        public init (matchCode: String, players: [Player], matchTicketId: String?) {
+        public init (matchCode: String, players: [Player], matchTicketId: String? = nil) {
             self.matchCode = matchCode
             self.players = players
             self.matchTicketId = matchTicketId
@@ -73,5 +55,23 @@ extension Gpm {
             case matchTicketId = "MatchTicketId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发起匹配
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 支持传入一个玩家或多个玩家发起匹配，在同一个请求内的玩家将被分到同一个对局。
+    @inlinable
+    public func startMatching(_ input: StartMatchingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartMatchingResponse > {
+        self.client.execute(action: "StartMatching", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发起匹配
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 支持传入一个玩家或多个玩家发起匹配，在同一个请求内的玩家将被分到同一个对局。
+    @inlinable
+    public func startMatching(_ input: StartMatchingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingResponse {
+        try await self.client.execute(action: "StartMatching", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

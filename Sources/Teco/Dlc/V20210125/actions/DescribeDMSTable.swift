@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dlc {
-    /// DMS元数据获取表
-    @inlinable
-    public func describeDMSTable(_ input: DescribeDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDMSTableResponse > {
-        self.client.execute(action: "DescribeDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DMS元数据获取表
-    @inlinable
-    public func describeDMSTable(_ input: DescribeDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSTableResponse {
-        try await self.client.execute(action: "DescribeDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDMSTable请求参数结构体
     public struct DescribeDMSTableRequest: TCRequestModel {
         /// 数据库名称
@@ -52,7 +40,7 @@ extension Dlc {
         /// 表类型
         public let type: String?
         
-        public init (dbName: String?, schemaName: String?, name: String?, catalog: String?, keyword: String?, pattern: String?, type: String?) {
+        public init (dbName: String? = nil, schemaName: String? = nil, name: String? = nil, catalog: String? = nil, keyword: String? = nil, pattern: String? = nil, type: String? = nil) {
             self.dbName = dbName
             self.schemaName = schemaName
             self.name = name
@@ -77,7 +65,7 @@ extension Dlc {
     public struct DescribeDMSTableResponse: TCResponseModel {
         /// 基础对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let asset: Asset
+        public let asset: Asset?
         
         /// 视图文本
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -93,7 +81,7 @@ extension Dlc {
         
         /// 存储对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sds: DMSSds
+        public let sds: DMSSds?
         
         /// 分区列
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -171,5 +159,17 @@ extension Dlc {
             case name = "Name"
             case requestId = "RequestId"
         }
+    }
+    
+    /// DMS元数据获取表
+    @inlinable
+    public func describeDMSTable(_ input: DescribeDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDMSTableResponse > {
+        self.client.execute(action: "DescribeDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据获取表
+    @inlinable
+    public func describeDMSTable(_ input: DescribeDMSTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSTableResponse {
+        try await self.client.execute(action: "DescribeDMSTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

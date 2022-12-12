@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 查询黑石私有网络关联资源
-    @inlinable
-    public func describeVpcResource(_ input: DescribeVpcResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcResourceResponse > {
-        self.client.execute(action: "DescribeVpcResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询黑石私有网络关联资源
-    @inlinable
-    public func describeVpcResource(_ input: DescribeVpcResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResourceResponse {
-        try await self.client.execute(action: "DescribeVpcResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpcResource请求参数结构体
     public struct DescribeVpcResourceRequest: TCRequestModel {
         /// 私有网络实例ID
@@ -51,7 +39,7 @@ extension Bmvpc {
         /// 排序方向, “asc”、“desc”
         public let orderDirection: String?
         
-        public init (vpcIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?, orderField: String?, orderDirection: String?) {
+        public init (vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil) {
             self.vpcIds = vpcIds
             self.filters = filters
             self.offset = offset
@@ -86,5 +74,17 @@ extension Bmvpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询黑石私有网络关联资源
+    @inlinable
+    public func describeVpcResource(_ input: DescribeVpcResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcResourceResponse > {
+        self.client.execute(action: "DescribeVpcResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询黑石私有网络关联资源
+    @inlinable
+    public func describeVpcResource(_ input: DescribeVpcResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResourceResponse {
+        try await self.client.execute(action: "DescribeVpcResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

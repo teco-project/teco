@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tse {
-    /// 查询zookeeper服务接口列表
-    @inlinable
-    public func describeZookeeperServerInterfaces(_ input: DescribeZookeeperServerInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZookeeperServerInterfacesResponse > {
-        self.client.execute(action: "DescribeZookeeperServerInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询zookeeper服务接口列表
-    @inlinable
-    public func describeZookeeperServerInterfaces(_ input: DescribeZookeeperServerInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZookeeperServerInterfacesResponse {
-        try await self.client.execute(action: "DescribeZookeeperServerInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeZookeeperServerInterfaces请求参数结构体
     public struct DescribeZookeeperServerInterfacesRequest: TCRequestModel {
         /// 实例id
@@ -38,7 +26,7 @@ extension Tse {
         /// 返回的列表起始偏移量
         public let offset: UInt64?
         
-        public init (instanceId: String?, limit: UInt64?, offset: UInt64?) {
+        public init (instanceId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset
@@ -67,5 +55,17 @@ extension Tse {
             case content = "Content"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询zookeeper服务接口列表
+    @inlinable
+    public func describeZookeeperServerInterfaces(_ input: DescribeZookeeperServerInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZookeeperServerInterfacesResponse > {
+        self.client.execute(action: "DescribeZookeeperServerInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询zookeeper服务接口列表
+    @inlinable
+    public func describeZookeeperServerInterfaces(_ input: DescribeZookeeperServerInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZookeeperServerInterfacesResponse {
+        try await self.client.execute(action: "DescribeZookeeperServerInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 删除信息模板
-    ///
-    /// 本接口 ( DeleteTemplate ) 用于删除信息模板。
-    @inlinable
-    public func deleteTemplate(_ input: DeleteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTemplateResponse > {
-        self.client.execute(action: "DeleteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除信息模板
-    ///
-    /// 本接口 ( DeleteTemplate ) 用于删除信息模板。
-    @inlinable
-    public func deleteTemplate(_ input: DeleteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateResponse {
-        try await self.client.execute(action: "DeleteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTemplate请求参数结构体
     public struct DeleteTemplateRequest: TCRequestModel {
         /// 模板ID
@@ -53,5 +37,21 @@ extension Domain {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除信息模板
+    ///
+    /// 本接口 ( DeleteTemplate ) 用于删除信息模板。
+    @inlinable
+    public func deleteTemplate(_ input: DeleteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTemplateResponse > {
+        self.client.execute(action: "DeleteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除信息模板
+    ///
+    /// 本接口 ( DeleteTemplate ) 用于删除信息模板。
+    @inlinable
+    public func deleteTemplate(_ input: DeleteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateResponse {
+        try await self.client.execute(action: "DeleteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

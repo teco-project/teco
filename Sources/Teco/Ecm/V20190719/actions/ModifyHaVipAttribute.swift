@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改HAVIP属性
-    ///
-    /// 用于修改高可用虚拟IP（HAVIP）属性
-    @inlinable
-    public func modifyHaVipAttribute(_ input: ModifyHaVipAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHaVipAttributeResponse > {
-        self.client.execute(action: "ModifyHaVipAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改HAVIP属性
-    ///
-    /// 用于修改高可用虚拟IP（HAVIP）属性
-    @inlinable
-    public func modifyHaVipAttribute(_ input: ModifyHaVipAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHaVipAttributeResponse {
-        try await self.client.execute(action: "ModifyHaVipAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyHaVipAttribute请求参数结构体
     public struct ModifyHaVipAttributeRequest: TCRequestModel {
         /// HAVIP唯一ID，形如：havip-9o233uri。
@@ -58,5 +42,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改HAVIP属性
+    ///
+    /// 用于修改高可用虚拟IP（HAVIP）属性
+    @inlinable
+    public func modifyHaVipAttribute(_ input: ModifyHaVipAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHaVipAttributeResponse > {
+        self.client.execute(action: "ModifyHaVipAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改HAVIP属性
+    ///
+    /// 用于修改高可用虚拟IP（HAVIP）属性
+    @inlinable
+    public func modifyHaVipAttribute(_ input: ModifyHaVipAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHaVipAttributeResponse {
+        try await self.client.execute(action: "ModifyHaVipAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

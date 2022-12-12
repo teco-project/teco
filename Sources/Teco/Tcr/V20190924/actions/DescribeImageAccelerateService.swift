@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询镜像加速服务状态
-    @inlinable
-    public func describeImageAccelerateService(_ input: DescribeImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageAccelerateServiceResponse > {
-        self.client.execute(action: "DescribeImageAccelerateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询镜像加速服务状态
-    @inlinable
-    public func describeImageAccelerateService(_ input: DescribeImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAccelerateServiceResponse {
-        try await self.client.execute(action: "DescribeImageAccelerateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageAccelerateService请求参数结构体
     public struct DescribeImageAccelerateServiceRequest: TCRequestModel {
         /// 实例Id
@@ -61,5 +49,17 @@ extension Tcr {
             case isEnable = "IsEnable"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询镜像加速服务状态
+    @inlinable
+    public func describeImageAccelerateService(_ input: DescribeImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageAccelerateServiceResponse > {
+        self.client.execute(action: "DescribeImageAccelerateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像加速服务状态
+    @inlinable
+    public func describeImageAccelerateService(_ input: DescribeImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAccelerateServiceResponse {
+        try await self.client.execute(action: "DescribeImageAccelerateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

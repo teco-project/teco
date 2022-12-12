@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 获取DNS请求数统计曲线
-    @inlinable
-    public func describeDnsData(_ input: DescribeDnsDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDnsDataResponse > {
-        self.client.execute(action: "DescribeDnsData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DNS请求数统计曲线
-    @inlinable
-    public func describeDnsData(_ input: DescribeDnsDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnsDataResponse {
-        try await self.client.execute(action: "DescribeDnsData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDnsData请求参数结构体
     public struct DescribeDnsDataRequest: TCRequestModel {
         /// 起始时间。
@@ -54,7 +42,7 @@ extension Teo {
         /// <li>day：天粒度。</li>不填写，默认值为：min。
         public let interval: String?
         
-        public init (startTime: Date, endTime: Date, filters: [Filter]?, interval: String?) {
+        public init (startTime: Date, endTime: Date, filters: [Filter]? = nil, interval: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.filters = filters
@@ -81,5 +69,17 @@ extension Teo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DNS请求数统计曲线
+    @inlinable
+    public func describeDnsData(_ input: DescribeDnsDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDnsDataResponse > {
+        self.client.execute(action: "DescribeDnsData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DNS请求数统计曲线
+    @inlinable
+    public func describeDnsData(_ input: DescribeDnsDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnsDataResponse {
+        try await self.client.execute(action: "DescribeDnsData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

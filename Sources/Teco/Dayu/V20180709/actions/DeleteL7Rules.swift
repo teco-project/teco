@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 删除L7转发规则
-    ///
-    /// 删除七层转发规则
-    @inlinable
-    public func deleteL7Rules(_ input: DeleteL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteL7RulesResponse > {
-        self.client.execute(action: "DeleteL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除L7转发规则
-    ///
-    /// 删除七层转发规则
-    @inlinable
-    public func deleteL7Rules(_ input: DeleteL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteL7RulesResponse {
-        try await self.client.execute(action: "DeleteL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteL7Rules请求参数结构体
     public struct DeleteL7RulesRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -67,5 +51,21 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除L7转发规则
+    ///
+    /// 删除七层转发规则
+    @inlinable
+    public func deleteL7Rules(_ input: DeleteL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteL7RulesResponse > {
+        self.client.execute(action: "DeleteL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除L7转发规则
+    ///
+    /// 删除七层转发规则
+    @inlinable
+    public func deleteL7Rules(_ input: DeleteL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteL7RulesResponse {
+        try await self.client.execute(action: "DeleteL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

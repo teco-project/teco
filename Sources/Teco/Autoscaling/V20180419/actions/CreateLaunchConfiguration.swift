@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 创建启动配置
-    ///
-    /// 本接口（CreateLaunchConfiguration）用于创建新的启动配置。
-    /// * 启动配置，可以通过 `ModifyLaunchConfigurationAttributes` 修改少量字段。如需使用新的启动配置，建议重新创建启动配置。
-    /// * 每个项目最多只能创建20个启动配置，详见[使用限制](https://cloud.tencent.com/document/product/377/3120)。
-    @inlinable
-    public func createLaunchConfiguration(_ input: CreateLaunchConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLaunchConfigurationResponse > {
-        self.client.execute(action: "CreateLaunchConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建启动配置
-    ///
-    /// 本接口（CreateLaunchConfiguration）用于创建新的启动配置。
-    /// * 启动配置，可以通过 `ModifyLaunchConfigurationAttributes` 修改少量字段。如需使用新的启动配置，建议重新创建启动配置。
-    /// * 每个项目最多只能创建20个启动配置，详见[使用限制](https://cloud.tencent.com/document/product/377/3120)。
-    @inlinable
-    public func createLaunchConfiguration(_ input: CreateLaunchConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaunchConfigurationResponse {
-        try await self.client.execute(action: "CreateLaunchConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLaunchConfiguration请求参数结构体
     public struct CreateLaunchConfigurationRequest: TCRequestModel {
         /// 启动配置显示名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。
@@ -52,22 +32,22 @@ extension As {
         public let instanceType: String?
         
         /// 实例系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
-        public let systemDisk: SystemDisk
+        public let systemDisk: SystemDisk?
         
         /// 实例数据盘配置信息。若不指定该参数，则默认不购买数据盘，最多支持指定11块数据盘。
         public let dataDisks: [DataDisk]?
         
         /// 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
-        public let internetAccessible: InternetAccessible
+        public let internetAccessible: InternetAccessible?
         
         /// 实例登录设置。通过该参数可以设置实例的登录方式密码、密钥或保持镜像的原始登录设置。默认情况下会随机生成密码，并以站内信方式知会到用户。
-        public let loginSettings: LoginSettings
+        public let loginSettings: LoginSettings?
         
         /// 实例所属安全组。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的`SecurityGroupId`字段来获取。若不指定该参数，则默认不绑定安全组。
         public let securityGroupIds: [String]?
         
         /// 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
-        public let enhancedService: EnhancedService
+        public let enhancedService: EnhancedService?
         
         /// 经过 Base64 编码后的自定义数据，最大长度不超过16KB。
         public let userData: String?
@@ -79,7 +59,7 @@ extension As {
         public let instanceChargeType: String?
         
         /// 实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。
-        public let instanceMarketOptions: InstanceMarketOptionsRequest
+        public let instanceMarketOptions: InstanceMarketOptionsRequest?
         
         /// 实例机型列表，不同实例机型指定了不同的资源规格，最多支持10种实例机型。
         /// `InstanceType`和`InstanceTypes`参数互斥，二者必填一个且只能填写一个。
@@ -102,14 +82,14 @@ extension As {
         public let tags: [Tag]?
         
         /// 云服务器主机名（HostName）的相关设置。
-        public let hostNameSettings: HostNameSettings
+        public let hostNameSettings: HostNameSettings?
         
         /// 云服务器实例名（InstanceName）的相关设置。
         /// 如果用户在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 参照此字段进行设置，并传递给 CVM；如果用户未在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 按照“as-{{ 伸缩组AutoScalingGroupName }}”进行设置，并传递给 CVM。
-        public let instanceNameSettings: InstanceNameSettings
+        public let instanceNameSettings: InstanceNameSettings?
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 云盘类型选择策略，默认取值 ORIGINAL，取值范围：
         /// <br><li>ORIGINAL：使用设置的云盘类型
@@ -121,9 +101,9 @@ extension As {
         public let hpcClusterId: String?
         
         /// IPv6公网带宽相关信息设置。若新建实例包含IPv6地址，该参数可为新建实例的IPv6地址分配公网带宽。关联启动配置的伸缩组Ipv6AddressCount参数为0时，该参数不会生效。
-        public let iPv6InternetAccessible: IPv6InternetAccessible
+        public let iPv6InternetAccessible: IPv6InternetAccessible?
         
-        public init (launchConfigurationName: String, imageId: String, projectId: UInt64?, instanceType: String?, systemDisk: SystemDisk, dataDisks: [DataDisk]?, internetAccessible: InternetAccessible, loginSettings: LoginSettings, securityGroupIds: [String]?, enhancedService: EnhancedService, userData: String?, instanceChargeType: String?, instanceMarketOptions: InstanceMarketOptionsRequest, instanceTypes: [String]?, camRoleName: String?, instanceTypesCheckPolicy: String?, instanceTags: [InstanceTag]?, tags: [Tag]?, hostNameSettings: HostNameSettings, instanceNameSettings: InstanceNameSettings, instanceChargePrepaid: InstanceChargePrepaid, diskTypePolicy: String?, hpcClusterId: String?, iPv6InternetAccessible: IPv6InternetAccessible) {
+        public init (launchConfigurationName: String, imageId: String, projectId: UInt64? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, enhancedService: EnhancedService? = nil, userData: String? = nil, instanceChargeType: String? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, instanceTypes: [String]? = nil, camRoleName: String? = nil, instanceTypesCheckPolicy: String? = nil, instanceTags: [InstanceTag]? = nil, tags: [Tag]? = nil, hostNameSettings: HostNameSettings? = nil, instanceNameSettings: InstanceNameSettings? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, diskTypePolicy: String? = nil, hpcClusterId: String? = nil, iPv6InternetAccessible: IPv6InternetAccessible? = nil) {
             self.launchConfigurationName = launchConfigurationName
             self.imageId = imageId
             self.projectId = projectId
@@ -190,5 +170,25 @@ extension As {
             case launchConfigurationId = "LaunchConfigurationId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建启动配置
+    ///
+    /// 本接口（CreateLaunchConfiguration）用于创建新的启动配置。
+    /// * 启动配置，可以通过 `ModifyLaunchConfigurationAttributes` 修改少量字段。如需使用新的启动配置，建议重新创建启动配置。
+    /// * 每个项目最多只能创建20个启动配置，详见[使用限制](https://cloud.tencent.com/document/product/377/3120)。
+    @inlinable
+    public func createLaunchConfiguration(_ input: CreateLaunchConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLaunchConfigurationResponse > {
+        self.client.execute(action: "CreateLaunchConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建启动配置
+    ///
+    /// 本接口（CreateLaunchConfiguration）用于创建新的启动配置。
+    /// * 启动配置，可以通过 `ModifyLaunchConfigurationAttributes` 修改少量字段。如需使用新的启动配置，建议重新创建启动配置。
+    /// * 每个项目最多只能创建20个启动配置，详见[使用限制](https://cloud.tencent.com/document/product/377/3120)。
+    @inlinable
+    public func createLaunchConfiguration(_ input: CreateLaunchConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaunchConfigurationResponse {
+        try await self.client.execute(action: "CreateLaunchConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

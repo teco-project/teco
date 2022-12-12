@@ -111,7 +111,7 @@ extension Ape {
         /// <li>DistinguishedEnterpriseMember: 企业尊享会员下载</li>
         public let downloadType: String?
         
-        public init (imageId: Int64, licenseScopeId: Int64?, dimensionsNameId: Int64?, userId: String?, downloadPrice: UInt64?, downloadType: String?) {
+        public init (imageId: Int64, licenseScopeId: Int64? = nil, dimensionsNameId: Int64? = nil, userId: String? = nil, downloadPrice: UInt64? = nil, downloadType: String? = nil) {
             self.imageId = imageId
             self.licenseScopeId = licenseScopeId
             self.dimensionsNameId = dimensionsNameId

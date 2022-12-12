@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查看容器托管的资源状态
-    ///
-    /// 查看容器托管的集群状态
-    @inlinable
-    public func describeCloudBaseRunResource(_ input: DescribeCloudBaseRunResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunResourceResponse > {
-        self.client.execute(action: "DescribeCloudBaseRunResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看容器托管的资源状态
-    ///
-    /// 查看容器托管的集群状态
-    @inlinable
-    public func describeCloudBaseRunResource(_ input: DescribeCloudBaseRunResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunResourceResponse {
-        try await self.client.execute(action: "DescribeCloudBaseRunResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudBaseRunResource请求参数结构体
     public struct DescribeCloudBaseRunResourceRequest: TCRequestModel {
         /// 环境ID
@@ -78,5 +62,21 @@ extension Tcb {
             case subnetIds = "SubnetIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看容器托管的资源状态
+    ///
+    /// 查看容器托管的集群状态
+    @inlinable
+    public func describeCloudBaseRunResource(_ input: DescribeCloudBaseRunResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunResourceResponse > {
+        self.client.execute(action: "DescribeCloudBaseRunResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看容器托管的资源状态
+    ///
+    /// 查看容器托管的集群状态
+    @inlinable
+    public func describeCloudBaseRunResource(_ input: DescribeCloudBaseRunResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunResourceResponse {
+        try await self.client.execute(action: "DescribeCloudBaseRunResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

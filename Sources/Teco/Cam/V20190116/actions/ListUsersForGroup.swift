@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 查询用户组关联的用户列表
-    @inlinable
-    public func listUsersForGroup(_ input: ListUsersForGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUsersForGroupResponse > {
-        self.client.execute(action: "ListUsersForGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户组关联的用户列表
-    @inlinable
-    public func listUsersForGroup(_ input: ListUsersForGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersForGroupResponse {
-        try await self.client.execute(action: "ListUsersForGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListUsersForGroup请求参数结构体
     public struct ListUsersForGroupRequest: TCRequestModel {
         /// 用户组 ID。
@@ -38,7 +26,7 @@ extension Cam {
         /// 每页数量。默认为20。
         public let rp: UInt64?
         
-        public init (groupId: UInt64, page: UInt64?, rp: UInt64?) {
+        public init (groupId: UInt64, page: UInt64? = nil, rp: UInt64? = nil) {
             self.groupId = groupId
             self.page = page
             self.rp = rp
@@ -67,5 +55,17 @@ extension Cam {
             case userInfo = "UserInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户组关联的用户列表
+    @inlinable
+    public func listUsersForGroup(_ input: ListUsersForGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUsersForGroupResponse > {
+        self.client.execute(action: "ListUsersForGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户组关联的用户列表
+    @inlinable
+    public func listUsersForGroup(_ input: ListUsersForGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersForGroupResponse {
+        try await self.client.execute(action: "ListUsersForGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

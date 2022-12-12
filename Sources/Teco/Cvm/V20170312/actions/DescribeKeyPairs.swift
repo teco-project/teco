@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查询密钥对列表
-    ///
-    /// 本接口 (DescribeKeyPairs) 用于查询密钥对信息。
-    /// * 密钥对是通过一种算法生成的一对密钥，在生成的密钥对中，一个向外界公开，称为公钥；另一个用户自己保留，称为私钥。密钥对的公钥内容可以通过这个接口查询，但私钥内容系统不保留。
-    @inlinable
-    public func describeKeyPairs(_ input: DescribeKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeyPairsResponse > {
-        self.client.execute(action: "DescribeKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询密钥对列表
-    ///
-    /// 本接口 (DescribeKeyPairs) 用于查询密钥对信息。
-    /// * 密钥对是通过一种算法生成的一对密钥，在生成的密钥对中，一个向外界公开，称为公钥；另一个用户自己保留，称为私钥。密钥对的公钥内容可以通过这个接口查询，但私钥内容系统不保留。
-    @inlinable
-    public func describeKeyPairs(_ input: DescribeKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyPairsResponse {
-        try await self.client.execute(action: "DescribeKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKeyPairs请求参数结构体
     public struct DescribeKeyPairsRequest: TCRequestModel {
         /// 密钥对ID，密钥对ID形如：`skey-11112222`（此接口支持同时传入多个ID进行过滤。此参数的具体格式可参考 API [简介](https://cloud.tencent.com/document/api/213/15688)的 `id.N` 一节）。参数不支持同时指定 `KeyIds` 和 `Filters`。密钥对ID可以通过登录[控制台](https://console.cloud.tencent.com/cvm/index)查询。
@@ -53,7 +35,7 @@ extension Cvm {
         /// 返回数量，默认为20，最大值为100。关于 `Limit` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: Int64?
         
-        public init (keyIds: [String]?, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (keyIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.keyIds = keyIds
             self.filters = filters
             self.offset = offset
@@ -84,5 +66,23 @@ extension Cvm {
             case keyPairSet = "KeyPairSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询密钥对列表
+    ///
+    /// 本接口 (DescribeKeyPairs) 用于查询密钥对信息。
+    /// * 密钥对是通过一种算法生成的一对密钥，在生成的密钥对中，一个向外界公开，称为公钥；另一个用户自己保留，称为私钥。密钥对的公钥内容可以通过这个接口查询，但私钥内容系统不保留。
+    @inlinable
+    public func describeKeyPairs(_ input: DescribeKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKeyPairsResponse > {
+        self.client.execute(action: "DescribeKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询密钥对列表
+    ///
+    /// 本接口 (DescribeKeyPairs) 用于查询密钥对信息。
+    /// * 密钥对是通过一种算法生成的一对密钥，在生成的密钥对中，一个向外界公开，称为公钥；另一个用户自己保留，称为私钥。密钥对的公钥内容可以通过这个接口查询，但私钥内容系统不保留。
+    @inlinable
+    public func describeKeyPairs(_ input: DescribeKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyPairsResponse {
+        try await self.client.execute(action: "DescribeKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

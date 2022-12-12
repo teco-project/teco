@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 护照识别（港澳台地区及境外护照）
-    ///
-    /// 本接口支持中国港澳台地区以及其他国家、地区的护照识别。识别字段包括护照ID、姓名、出生日期、性别、有效期、发行国、国籍，具备护照人像照片的裁剪功能和翻拍、复印件告警功能。
-    /// 默认接口请求频率限制：5次/秒。
-    @inlinable
-    public func mlidPassportOCR(_ input: MLIDPassportOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MLIDPassportOCRResponse > {
-        self.client.execute(action: "MLIDPassportOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 护照识别（港澳台地区及境外护照）
-    ///
-    /// 本接口支持中国港澳台地区以及其他国家、地区的护照识别。识别字段包括护照ID、姓名、出生日期、性别、有效期、发行国、国籍，具备护照人像照片的裁剪功能和翻拍、复印件告警功能。
-    /// 默认接口请求频率限制：5次/秒。
-    @inlinable
-    public func mlidPassportOCR(_ input: MLIDPassportOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MLIDPassportOCRResponse {
-        try await self.client.execute(action: "MLIDPassportOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// MLIDPassportOCR请求参数结构体
     public struct MLIDPassportOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
@@ -41,7 +23,7 @@ extension Ocr {
         /// 是否返回图片，默认false
         public let retImage: Bool?
         
-        public init (imageBase64: String, retImage: Bool?) {
+        public init (imageBase64: String, retImage: Bool? = nil) {
             self.imageBase64 = imageBase64
             self.retImage = retImage
         }
@@ -119,5 +101,23 @@ extension Ocr {
             case codeCrc = "CodeCrc"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 护照识别（港澳台地区及境外护照）
+    ///
+    /// 本接口支持中国港澳台地区以及其他国家、地区的护照识别。识别字段包括护照ID、姓名、出生日期、性别、有效期、发行国、国籍，具备护照人像照片的裁剪功能和翻拍、复印件告警功能。
+    /// 默认接口请求频率限制：5次/秒。
+    @inlinable
+    public func mlidPassportOCR(_ input: MLIDPassportOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MLIDPassportOCRResponse > {
+        self.client.execute(action: "MLIDPassportOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 护照识别（港澳台地区及境外护照）
+    ///
+    /// 本接口支持中国港澳台地区以及其他国家、地区的护照识别。识别字段包括护照ID、姓名、出生日期、性别、有效期、发行国、国籍，具备护照人像照片的裁剪功能和翻拍、复印件告警功能。
+    /// 默认接口请求频率限制：5次/秒。
+    @inlinable
+    public func mlidPassportOCR(_ input: MLIDPassportOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MLIDPassportOCRResponse {
+        try await self.client.execute(action: "MLIDPassportOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

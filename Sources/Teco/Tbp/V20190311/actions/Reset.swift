@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbp {
-    /// 复位
-    ///
-    /// 对当前机器人的会话状态进行复位
-    @inlinable
-    public func reset(_ input: ResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetResponse > {
-        self.client.execute(action: "Reset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 复位
-    ///
-    /// 对当前机器人的会话状态进行复位
-    @inlinable
-    public func reset(_ input: ResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetResponse {
-        try await self.client.execute(action: "Reset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// Reset请求参数结构体
     public struct ResetRequest: TCRequestModel {
         /// 机器人标识
@@ -45,7 +29,7 @@ extension Tbp {
         /// 机器人环境{dev:测试;release:线上}。BotVersion/BotEnv二选一：二者均填，仅BotVersion有效；二者均不填，默认BotEnv=dev
         public let botEnv: String?
         
-        public init (botId: String, userId: String, botVersion: String?, botEnv: String?) {
+        public init (botId: String, userId: String, botVersion: String? = nil, botEnv: String? = nil) {
             self.botId = botId
             self.userId = userId
             self.botVersion = botVersion
@@ -112,5 +96,21 @@ extension Tbp {
             case waveData = "WaveData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 复位
+    ///
+    /// 对当前机器人的会话状态进行复位
+    @inlinable
+    public func reset(_ input: ResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetResponse > {
+        self.client.execute(action: "Reset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 复位
+    ///
+    /// 对当前机器人的会话状态进行复位
+    @inlinable
+    public func reset(_ input: ResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetResponse {
+        try await self.client.execute(action: "Reset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

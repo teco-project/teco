@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云支付-添加合同接口
-    @inlinable
-    public func addContract(_ input: AddContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddContractResponse > {
-        self.client.execute(action: "AddContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云支付-添加合同接口
-    @inlinable
-    public func addContract(_ input: AddContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddContractResponse {
-        try await self.client.execute(action: "AddContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddContract请求参数结构体
     public struct AddContractRequest: TCRequestModel {
         /// 收单系统分配的开放ID
@@ -122,7 +110,7 @@ extension Cpdp {
         /// 合同选项7（不同支付方式规则不一样，请以支付方式规定的格式传值）
         public let paymentOptionNine: String?
         
-        public init (openId: String, openKey: String, outContractId: String, code: String, paymentId: String, paymentClassificationId: String, paymentClassificationLimit: String, merchantNo: String, fee: String, startDate: String, endDate: String, signMan: String, signName: String, signDate: String, autoSign: String, contact: String, contactTelephone: String, pictureOne: String, pictureTwo: String?, channelExtJson: String?, profile: String?, paymentOptionOne: String?, paymentOptionTwo: String?, paymentOptionThree: String?, paymentOptionFour: String?, paymentOptionFive: String?, paymentOptionSix: String?, paymentOptionSeven: String?, paymentOptionOther: String?, paymentOptionTen: String?, paymentOptionNine: String?) {
+        public init (openId: String, openKey: String, outContractId: String, code: String, paymentId: String, paymentClassificationId: String, paymentClassificationLimit: String, merchantNo: String, fee: String, startDate: String, endDate: String, signMan: String, signName: String, signDate: String, autoSign: String, contact: String, contactTelephone: String, pictureOne: String, pictureTwo: String? = nil, channelExtJson: String? = nil, profile: String? = nil, paymentOptionOne: String? = nil, paymentOptionTwo: String? = nil, paymentOptionThree: String? = nil, paymentOptionFour: String? = nil, paymentOptionFive: String? = nil, paymentOptionSix: String? = nil, paymentOptionSeven: String? = nil, paymentOptionOther: String? = nil, paymentOptionTen: String? = nil, paymentOptionNine: String? = nil) {
             self.openId = openId
             self.openKey = openKey
             self.outContractId = outContractId
@@ -202,7 +190,7 @@ extension Cpdp {
         
         /// 添加合同响应对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: AddContractResult
+        public let result: AddContractResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -213,5 +201,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云支付-添加合同接口
+    @inlinable
+    public func addContract(_ input: AddContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddContractResponse > {
+        self.client.execute(action: "AddContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-添加合同接口
+    @inlinable
+    public func addContract(_ input: AddContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddContractResponse {
+        try await self.client.execute(action: "AddContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

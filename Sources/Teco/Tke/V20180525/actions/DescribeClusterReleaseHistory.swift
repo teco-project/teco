@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询集群已安装应用版本历史
-    ///
-    /// 查询集群在应用市场中某个已安装应用的版本历史
-    @inlinable
-    public func describeClusterReleaseHistory(_ input: DescribeClusterReleaseHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterReleaseHistoryResponse > {
-        self.client.execute(action: "DescribeClusterReleaseHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群已安装应用版本历史
-    ///
-    /// 查询集群在应用市场中某个已安装应用的版本历史
-    @inlinable
-    public func describeClusterReleaseHistory(_ input: DescribeClusterReleaseHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleaseHistoryResponse {
-        try await self.client.execute(action: "DescribeClusterReleaseHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterReleaseHistory请求参数结构体
     public struct DescribeClusterReleaseHistoryRequest: TCRequestModel {
         /// 集群ID
@@ -45,7 +29,7 @@ extension Tke {
         /// 集群类型
         public let clusterType: String?
         
-        public init (clusterId: String, name: String, namespace: String, clusterType: String?) {
+        public init (clusterId: String, name: String, namespace: String, clusterType: String? = nil) {
             self.clusterId = clusterId
             self.name = name
             self.namespace = namespace
@@ -78,5 +62,21 @@ extension Tke {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群已安装应用版本历史
+    ///
+    /// 查询集群在应用市场中某个已安装应用的版本历史
+    @inlinable
+    public func describeClusterReleaseHistory(_ input: DescribeClusterReleaseHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterReleaseHistoryResponse > {
+        self.client.execute(action: "DescribeClusterReleaseHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群已安装应用版本历史
+    ///
+    /// 查询集群在应用市场中某个已安装应用的版本历史
+    @inlinable
+    public func describeClusterReleaseHistory(_ input: DescribeClusterReleaseHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleaseHistoryResponse {
+        try await self.client.execute(action: "DescribeClusterReleaseHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

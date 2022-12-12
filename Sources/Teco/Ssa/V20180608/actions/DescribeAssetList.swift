@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssa {
-    /// 资产安全资产列表
-    @inlinable
-    public func describeAssetList(_ input: DescribeAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetListResponse > {
-        self.client.execute(action: "DescribeAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 资产安全资产列表
-    @inlinable
-    public func describeAssetList(_ input: DescribeAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetListResponse {
-        try await self.client.execute(action: "DescribeAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetList请求参数结构体
     public struct DescribeAssetListRequest: TCRequestModel {
         /// 查询过滤参数
@@ -61,5 +49,17 @@ extension Ssa {
             case namespaceData = "NamespaceData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 资产安全资产列表
+    @inlinable
+    public func describeAssetList(_ input: DescribeAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetListResponse > {
+        self.client.execute(action: "DescribeAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 资产安全资产列表
+    @inlinable
+    public func describeAssetList(_ input: DescribeAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetListResponse {
+        try await self.client.execute(action: "DescribeAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

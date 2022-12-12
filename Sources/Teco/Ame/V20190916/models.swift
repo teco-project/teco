@@ -44,7 +44,7 @@ extension Ame {
         /// PC标识名
         public let pcIdentifier: String?
         
-        public init (appName: String, androidPackageName: String?, iosBundleId: String?, pcIdentifier: String?) {
+        public init (appName: String, androidPackageName: String? = nil, iosBundleId: String? = nil, pcIdentifier: String? = nil) {
             self.appName = appName
             self.androidPackageName = androidPackageName
             self.iosBundleId = iosBundleId
@@ -176,11 +176,11 @@ extension Ame {
         
         /// Song info
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dataInfo: DataInfo
+        public let dataInfo: DataInfo?
         
         /// 专辑信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let album: Album
+        public let album: Album?
         
         /// 多个歌手集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -202,9 +202,9 @@ extension Ame {
     /// 直播进房输入参数
     public struct JoinRoomInput: TCInputModel, TCOutputModel {
         /// TRTC进房参数
-        public let trtcJoinRoomInput: TRTCJoinRoomInput
+        public let trtcJoinRoomInput: TRTCJoinRoomInput?
         
-        public init (trtcJoinRoomInput: TRTCJoinRoomInput) {
+        public init (trtcJoinRoomInput: TRTCJoinRoomInput? = nil) {
             self.trtcJoinRoomInput = trtcJoinRoomInput
         }
         
@@ -605,7 +605,7 @@ extension Ame {
         /// 传播渠道
         public let channel: String?
         
-        public init (musicId: String, ameId: String, tags: [String]?, hitWords: [String]?, bpm: Int64?, score: Float?, scene: [String]?, region: [String]?, authPeriod: String?, commercialization: String?, platform: String?, channel: String?) {
+        public init (musicId: String, ameId: String, tags: [String]? = nil, hitWords: [String]? = nil, bpm: Int64? = nil, score: Float? = nil, scene: [String]? = nil, region: [String]? = nil, authPeriod: String? = nil, commercialization: String? = nil, platform: String? = nil, channel: String? = nil) {
             self.musicId = musicId
             self.ameId = ameId
             self.tags = tags
@@ -852,7 +852,7 @@ extension Ame {
         /// 消息重复次数，默认为 1。
         public let `repeat`: UInt64?
         
-        public init (message: String, `repeat`: UInt64?) {
+        public init (message: String, `repeat`: UInt64? = nil) {
             self.message = message
             self.`repeat` = `repeat`
         }
@@ -876,7 +876,7 @@ extension Ame {
         /// <li>Accompaniment：伴奏</li>
         public let type: String?
         
-        public init (definition: String?, type: String?) {
+        public init (definition: String? = nil, type: String? = nil) {
             self.definition = definition
             self.type = type
         }
@@ -898,7 +898,7 @@ extension Ame {
         /// 过期销毁时间，单位：秒，当DestroyMode取Expire时必填。
         public let destroyExpireTime: Int64?
         
-        public init (destroyMode: String, destroyExpireTime: Int64?) {
+        public init (destroyMode: String, destroyExpireTime: Int64? = nil) {
             self.destroyMode = destroyMode
             self.destroyExpireTime = destroyExpireTime
         }
@@ -948,7 +948,7 @@ extension Ame {
         /// 歌曲 ID 列表，当 Type 取 Add 时，必填。
         public let musicIds: [String]?
         
-        public init (type: String, index: Int64?, changedIndex: Int64?, musicIds: [String]?) {
+        public init (type: String, index: Int64? = nil, changedIndex: Int64? = nil, musicIds: [String]? = nil) {
             self.type = type
             self.index = index
             self.changedIndex = changedIndex
@@ -1043,30 +1043,30 @@ extension Ame {
         public let command: String
         
         /// 播放参数。
-        public let playCommandInput: PlayCommandInput
+        public let playCommandInput: PlayCommandInput?
         
         /// 播放列表变更信息，当Command取SetPlaylist时，必填。
-        public let setPlaylistCommandInput: SetPlaylistCommandInput
+        public let setPlaylistCommandInput: SetPlaylistCommandInput?
         
         /// 播放进度，当Command取Seek时，必填。
-        public let seekCommandInput: SeekCommandInput
+        public let seekCommandInput: SeekCommandInput?
         
         /// 音频参数，当Command取SetAudioParam时，必填。
-        public let setAudioParamCommandInput: SetAudioParamCommandInput
+        public let setAudioParamCommandInput: SetAudioParamCommandInput?
         
         /// 自定义消息，当Command取SendMessage时，必填。
-        public let sendMessageCommandInput: SendMessageCommandInput
+        public let sendMessageCommandInput: SendMessageCommandInput?
         
         /// 播放模式，当Command取SetPlayMode时，必填。
-        public let setPlayModeCommandInput: SetPlayModeCommandInput
+        public let setPlayModeCommandInput: SetPlayModeCommandInput?
         
         /// 销毁模式，当Command取SetDestroyMode时，必填。
-        public let setDestroyModeCommandInput: SetDestroyModeCommandInput
+        public let setDestroyModeCommandInput: SetDestroyModeCommandInput?
         
         /// 音量，当Command取SetVolume时，必填。
-        public let setVolumeCommandInput: SetVolumeCommandInput
+        public let setVolumeCommandInput: SetVolumeCommandInput?
         
-        public init (command: String, playCommandInput: PlayCommandInput, setPlaylistCommandInput: SetPlaylistCommandInput, seekCommandInput: SeekCommandInput, setAudioParamCommandInput: SetAudioParamCommandInput, sendMessageCommandInput: SendMessageCommandInput, setPlayModeCommandInput: SetPlayModeCommandInput, setDestroyModeCommandInput: SetDestroyModeCommandInput, setVolumeCommandInput: SetVolumeCommandInput) {
+        public init (command: String, playCommandInput: PlayCommandInput? = nil, setPlaylistCommandInput: SetPlaylistCommandInput? = nil, seekCommandInput: SeekCommandInput? = nil, setAudioParamCommandInput: SetAudioParamCommandInput? = nil, sendMessageCommandInput: SendMessageCommandInput? = nil, setPlayModeCommandInput: SetPlayModeCommandInput? = nil, setDestroyModeCommandInput: SetDestroyModeCommandInput? = nil, setVolumeCommandInput: SetVolumeCommandInput? = nil) {
             self.command = command
             self.playCommandInput = playCommandInput
             self.setPlaylistCommandInput = setPlaylistCommandInput
@@ -1150,7 +1150,7 @@ extension Ame {
         /// <li>格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I" target="_blank">ISO 日期格式说明</a>。</li>
         public let after: String?
         
-        public init (before: String?, after: String?) {
+        public init (before: String? = nil, after: String? = nil) {
             self.before = before
             self.after = after
         }

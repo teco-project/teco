@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取恶意请求列表
-    ///
-    /// 入侵检测，获取恶意请求列表
-    @inlinable
-    public func describeRiskDnsList(_ input: DescribeRiskDnsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskDnsListResponse > {
-        self.client.execute(action: "DescribeRiskDnsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取恶意请求列表
-    ///
-    /// 入侵检测，获取恶意请求列表
-    @inlinable
-    public func describeRiskDnsList(_ input: DescribeRiskDnsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskDnsListResponse {
-        try await self.client.execute(action: "DescribeRiskDnsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRiskDnsList请求参数结构体
     public struct DescribeRiskDnsListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -53,7 +37,7 @@ extension Cwp {
         /// 排序字段：AccessCount-请求次数。MergeTime-最近请求时间
         public let by: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?, order: String?, by: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -87,5 +71,21 @@ extension Cwp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取恶意请求列表
+    ///
+    /// 入侵检测，获取恶意请求列表
+    @inlinable
+    public func describeRiskDnsList(_ input: DescribeRiskDnsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskDnsListResponse > {
+        self.client.execute(action: "DescribeRiskDnsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取恶意请求列表
+    ///
+    /// 入侵检测，获取恶意请求列表
+    @inlinable
+    public func describeRiskDnsList(_ input: DescribeRiskDnsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskDnsListResponse {
+        try await self.client.execute(action: "DescribeRiskDnsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

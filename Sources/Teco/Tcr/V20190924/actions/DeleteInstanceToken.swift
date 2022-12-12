@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 删除长期访问凭证
-    @inlinable
-    public func deleteInstanceToken(_ input: DeleteInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstanceTokenResponse > {
-        self.client.execute(action: "DeleteInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除长期访问凭证
-    @inlinable
-    public func deleteInstanceToken(_ input: DeleteInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceTokenResponse {
-        try await self.client.execute(action: "DeleteInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteInstanceToken请求参数结构体
     public struct DeleteInstanceTokenRequest: TCRequestModel {
         /// 实例 ID
@@ -54,5 +42,17 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除长期访问凭证
+    @inlinable
+    public func deleteInstanceToken(_ input: DeleteInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstanceTokenResponse > {
+        self.client.execute(action: "DeleteInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除长期访问凭证
+    @inlinable
+    public func deleteInstanceToken(_ input: DeleteInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceTokenResponse {
+        try await self.client.execute(action: "DeleteInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

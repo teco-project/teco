@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 删除主题IP白名单
-    @inlinable
-    public func deleteTopicIpWhiteList(_ input: DeleteTopicIpWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTopicIpWhiteListResponse > {
-        self.client.execute(action: "DeleteTopicIpWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除主题IP白名单
-    @inlinable
-    public func deleteTopicIpWhiteList(_ input: DeleteTopicIpWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicIpWhiteListResponse {
-        try await self.client.execute(action: "DeleteTopicIpWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTopicIpWhiteList请求参数结构体
     public struct DeleteTopicIpWhiteListRequest: TCRequestModel {
         /// 实例ID
@@ -63,5 +51,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除主题IP白名单
+    @inlinable
+    public func deleteTopicIpWhiteList(_ input: DeleteTopicIpWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTopicIpWhiteListResponse > {
+        self.client.execute(action: "DeleteTopicIpWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除主题IP白名单
+    @inlinable
+    public func deleteTopicIpWhiteList(_ input: DeleteTopicIpWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicIpWhiteListResponse {
+        try await self.client.execute(action: "DeleteTopicIpWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

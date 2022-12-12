@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 删除规则
-    ///
-    /// 本接口（DeleteTopicRule）用于删除规则
-    @inlinable
-    public func deleteTopicRule(_ input: DeleteTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTopicRuleResponse > {
-        self.client.execute(action: "DeleteTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除规则
-    ///
-    /// 本接口（DeleteTopicRule）用于删除规则
-    @inlinable
-    public func deleteTopicRule(_ input: DeleteTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicRuleResponse {
-        try await self.client.execute(action: "DeleteTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTopicRule请求参数结构体
     public struct DeleteTopicRuleRequest: TCRequestModel {
         /// 规则名
@@ -53,5 +37,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除规则
+    ///
+    /// 本接口（DeleteTopicRule）用于删除规则
+    @inlinable
+    public func deleteTopicRule(_ input: DeleteTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTopicRuleResponse > {
+        self.client.execute(action: "DeleteTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除规则
+    ///
+    /// 本接口（DeleteTopicRule）用于删除规则
+    @inlinable
+    public func deleteTopicRule(_ input: DeleteTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicRuleResponse {
+        try await self.client.execute(action: "DeleteTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

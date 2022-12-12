@@ -24,14 +24,14 @@ extension Cr {
         
         /// 操作类型，A为新增，D为删除。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let operType: String
+        public let operType: String?
         
         /// 黑名单值，BlackType为01时，填写11位手机号码。
         public let blackValue: String
         
         /// 备注。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let blackDescription: String
+        public let blackDescription: String?
         
         /// 黑名单生效截止日期，格式为YYYY-MM-DD，不填默认为永久。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -44,7 +44,7 @@ extension Cr {
         /// 0-生效 1-失效
         public let blackStatus: String?
         
-        public init (blackType: String, operType: String, blackValue: String, blackDescription: String, blackValidDate: Date?, blackAddDate: Date?, blackStatus: String?) {
+        public init (blackType: String, operType: String, blackValue: String, blackDescription: String, blackValidDate: Date? = nil, blackAddDate: Date? = nil, blackStatus: String? = nil) {
             self.blackType = blackType
             self.operType = operType
             self.blackValue = blackValue
@@ -150,27 +150,27 @@ extension Cr {
     /// 产品拨打时间集合
     public struct CallTimeDict: TCInputModel {
         /// 周一
-        public let monday: CallTimeInfo
+        public let monday: CallTimeInfo?
         
         /// 周二
-        public let tuesday: CallTimeInfo
+        public let tuesday: CallTimeInfo?
         
         /// 周三
-        public let wednesday: CallTimeInfo
+        public let wednesday: CallTimeInfo?
         
         /// 周四
-        public let thursday: CallTimeInfo
+        public let thursday: CallTimeInfo?
         
         /// 周五
-        public let friday: CallTimeInfo
+        public let friday: CallTimeInfo?
         
         /// 周六
-        public let saturday: CallTimeInfo
+        public let saturday: CallTimeInfo?
         
         /// 周日
-        public let sunday: CallTimeInfo
+        public let sunday: CallTimeInfo?
         
-        public init (monday: CallTimeInfo, tuesday: CallTimeInfo, wednesday: CallTimeInfo, thursday: CallTimeInfo, friday: CallTimeInfo, saturday: CallTimeInfo, sunday: CallTimeInfo) {
+        public init (monday: CallTimeInfo? = nil, tuesday: CallTimeInfo? = nil, wednesday: CallTimeInfo? = nil, thursday: CallTimeInfo? = nil, friday: CallTimeInfo? = nil, saturday: CallTimeInfo? = nil, sunday: CallTimeInfo? = nil) {
             self.monday = monday
             self.tuesday = tuesday
             self.wednesday = wednesday
@@ -199,7 +199,7 @@ extension Cr {
         /// 产品结束拨打时间，HHmmss格式.默认200000
         public let endTime: String?
         
-        public init (startTime: String?, endTime: String?) {
+        public init (startTime: String? = nil, endTime: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
         }
@@ -314,7 +314,7 @@ extension Cr {
         /// 黑名单生效截止日期，格式为YYYY-MM-DD，不填默认为永久。
         public let blackValidDate: Date?
         
-        public init (blackType: String, operationType: String, blackValue: String, blackDescription: String, blackValidDate: Date?) {
+        public init (blackType: String, operationType: String, blackValue: String, blackDescription: String, blackValidDate: Date? = nil) {
             self.blackType = blackType
             self.operationType = operationType
             self.blackValue = blackValue

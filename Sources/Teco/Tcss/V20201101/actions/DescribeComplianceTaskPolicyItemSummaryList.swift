@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 安全合规查询上次任务的检测项的汇总信息列表
-    ///
-    /// 查询最近一次任务发现的检测项的汇总信息列表，按照 检测项 → 资产 的两级层次展开。
-    @inlinable
-    public func describeComplianceTaskPolicyItemSummaryList(_ input: DescribeComplianceTaskPolicyItemSummaryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceTaskPolicyItemSummaryListResponse > {
-        self.client.execute(action: "DescribeComplianceTaskPolicyItemSummaryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全合规查询上次任务的检测项的汇总信息列表
-    ///
-    /// 查询最近一次任务发现的检测项的汇总信息列表，按照 检测项 → 资产 的两级层次展开。
-    @inlinable
-    public func describeComplianceTaskPolicyItemSummaryList(_ input: DescribeComplianceTaskPolicyItemSummaryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceTaskPolicyItemSummaryListResponse {
-        try await self.client.execute(action: "DescribeComplianceTaskPolicyItemSummaryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeComplianceTaskPolicyItemSummaryList请求参数结构体
     public struct DescribeComplianceTaskPolicyItemSummaryListRequest: TCRequestModel {
         /// 资产类型。仅查询与指定资产类型相关的检测项。
@@ -52,7 +36,7 @@ extension Tcss {
         /// 当为K8S资产时，还可取ClusterName。
         public let filters: [ComplianceFilters]?
         
-        public init (assetType: String?, offset: UInt64?, limit: UInt64?, filters: [ComplianceFilters]?) {
+        public init (assetType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil) {
             self.assetType = assetType
             self.offset = offset
             self.limit = limit
@@ -88,5 +72,21 @@ extension Tcss {
             case policyItemSummaryList = "PolicyItemSummaryList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全合规查询上次任务的检测项的汇总信息列表
+    ///
+    /// 查询最近一次任务发现的检测项的汇总信息列表，按照 检测项 → 资产 的两级层次展开。
+    @inlinable
+    public func describeComplianceTaskPolicyItemSummaryList(_ input: DescribeComplianceTaskPolicyItemSummaryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceTaskPolicyItemSummaryListResponse > {
+        self.client.execute(action: "DescribeComplianceTaskPolicyItemSummaryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规查询上次任务的检测项的汇总信息列表
+    ///
+    /// 查询最近一次任务发现的检测项的汇总信息列表，按照 检测项 → 资产 的两级层次展开。
+    @inlinable
+    public func describeComplianceTaskPolicyItemSummaryList(_ input: DescribeComplianceTaskPolicyItemSummaryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceTaskPolicyItemSummaryListResponse {
+        try await self.client.execute(action: "DescribeComplianceTaskPolicyItemSummaryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

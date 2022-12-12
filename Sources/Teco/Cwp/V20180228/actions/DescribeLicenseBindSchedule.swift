@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询授权绑定进度
-    ///
-    /// 查询授权绑定任务的进度
-    @inlinable
-    public func describeLicenseBindSchedule(_ input: DescribeLicenseBindScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLicenseBindScheduleResponse > {
-        self.client.execute(action: "DescribeLicenseBindSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询授权绑定进度
-    ///
-    /// 查询授权绑定任务的进度
-    @inlinable
-    public func describeLicenseBindSchedule(_ input: DescribeLicenseBindScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseBindScheduleResponse {
-        try await self.client.execute(action: "DescribeLicenseBindSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLicenseBindSchedule请求参数结构体
     public struct DescribeLicenseBindScheduleRequest: TCRequestModel {
         /// 任务ID
@@ -46,7 +30,7 @@ extension Cwp {
         /// Status 绑定进度状态 0 进行中 1 已完成 2 失败
         public let filters: [Filter]?
         
-        public init (taskId: UInt64, limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (taskId: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.taskId = taskId
             self.limit = limit
             self.offset = offset
@@ -81,5 +65,21 @@ extension Cwp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询授权绑定进度
+    ///
+    /// 查询授权绑定任务的进度
+    @inlinable
+    public func describeLicenseBindSchedule(_ input: DescribeLicenseBindScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLicenseBindScheduleResponse > {
+        self.client.execute(action: "DescribeLicenseBindSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询授权绑定进度
+    ///
+    /// 查询授权绑定任务的进度
+    @inlinable
+    public func describeLicenseBindSchedule(_ input: DescribeLicenseBindScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseBindScheduleResponse {
+        try await self.client.execute(action: "DescribeLicenseBindSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

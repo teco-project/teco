@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询边缘计算集群状态
-    ///
-    /// 获取边缘计算集群的当前状态以及过程信息
-    @inlinable
-    public func describeTKEEdgeClusterStatus(_ input: DescribeTKEEdgeClusterStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTKEEdgeClusterStatusResponse > {
-        self.client.execute(action: "DescribeTKEEdgeClusterStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询边缘计算集群状态
-    ///
-    /// 获取边缘计算集群的当前状态以及过程信息
-    @inlinable
-    public func describeTKEEdgeClusterStatus(_ input: DescribeTKEEdgeClusterStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeClusterStatusResponse {
-        try await self.client.execute(action: "DescribeTKEEdgeClusterStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTKEEdgeClusterStatus请求参数结构体
     public struct DescribeTKEEdgeClusterStatusRequest: TCRequestModel {
         /// 边缘计算容器集群Id
@@ -61,5 +45,21 @@ extension Tke {
             case conditions = "Conditions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询边缘计算集群状态
+    ///
+    /// 获取边缘计算集群的当前状态以及过程信息
+    @inlinable
+    public func describeTKEEdgeClusterStatus(_ input: DescribeTKEEdgeClusterStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTKEEdgeClusterStatusResponse > {
+        self.client.execute(action: "DescribeTKEEdgeClusterStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘计算集群状态
+    ///
+    /// 获取边缘计算集群的当前状态以及过程信息
+    @inlinable
+    public func describeTKEEdgeClusterStatus(_ input: DescribeTKEEdgeClusterStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeClusterStatusResponse {
+        try await self.client.execute(action: "DescribeTKEEdgeClusterStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

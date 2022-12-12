@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 删除用户权限边界
-    @inlinable
-    public func deleteUserPermissionsBoundary(_ input: DeleteUserPermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserPermissionsBoundaryResponse > {
-        self.client.execute(action: "DeleteUserPermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除用户权限边界
-    @inlinable
-    public func deleteUserPermissionsBoundary(_ input: DeleteUserPermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserPermissionsBoundaryResponse {
-        try await self.client.execute(action: "DeleteUserPermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteUserPermissionsBoundary请求参数结构体
     public struct DeleteUserPermissionsBoundaryRequest: TCRequestModel {
         /// 子账号Uin
@@ -49,5 +37,17 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除用户权限边界
+    @inlinable
+    public func deleteUserPermissionsBoundary(_ input: DeleteUserPermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserPermissionsBoundaryResponse > {
+        self.client.execute(action: "DeleteUserPermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除用户权限边界
+    @inlinable
+    public func deleteUserPermissionsBoundary(_ input: DeleteUserPermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserPermissionsBoundaryResponse {
+        try await self.client.execute(action: "DeleteUserPermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

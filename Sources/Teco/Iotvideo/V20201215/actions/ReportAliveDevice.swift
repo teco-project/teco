@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 上报活跃设备
-    @inlinable
-    public func reportAliveDevice(_ input: ReportAliveDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportAliveDeviceResponse > {
-        self.client.execute(action: "ReportAliveDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上报活跃设备
-    @inlinable
-    public func reportAliveDevice(_ input: ReportAliveDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportAliveDeviceResponse {
-        try await self.client.execute(action: "ReportAliveDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReportAliveDevice请求参数结构体
     public struct ReportAliveDeviceRequest: TCRequestModel {
         /// 产品ID
@@ -54,5 +42,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上报活跃设备
+    @inlinable
+    public func reportAliveDevice(_ input: ReportAliveDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportAliveDeviceResponse > {
+        self.client.execute(action: "ReportAliveDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上报活跃设备
+    @inlinable
+    public func reportAliveDevice(_ input: ReportAliveDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportAliveDeviceResponse {
+        try await self.client.execute(action: "ReportAliveDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsw {
-    /// 获取服务接入信息
-    @inlinable
-    public func describeAgentShell(_ input: DescribeAgentShellRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentShellResponse > {
-        self.client.execute(action: "DescribeAgentShell", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取服务接入信息
-    @inlinable
-    public func describeAgentShell(_ input: DescribeAgentShellRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentShellResponse {
-        try await self.client.execute(action: "DescribeAgentShell", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAgentShell请求参数结构体
     public struct DescribeAgentShellRequest: TCRequestModel {
         public init () {
@@ -37,7 +25,7 @@ extension Tsw {
     public struct DescribeAgentShellResponse: TCResponseModel {
         /// 接入信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: AgentShell
+        public let result: AgentShell?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -46,5 +34,17 @@ extension Tsw {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取服务接入信息
+    @inlinable
+    public func describeAgentShell(_ input: DescribeAgentShellRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentShellResponse > {
+        self.client.execute(action: "DescribeAgentShell", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取服务接入信息
+    @inlinable
+    public func describeAgentShell(_ input: DescribeAgentShellRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentShellResponse {
+        try await self.client.execute(action: "DescribeAgentShell", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

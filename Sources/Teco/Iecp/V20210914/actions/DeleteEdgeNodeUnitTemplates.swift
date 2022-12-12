@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 删除边缘单元NodeUnit模板
-    @inlinable
-    public func deleteEdgeNodeUnitTemplates(_ input: DeleteEdgeNodeUnitTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeNodeUnitTemplatesResponse > {
-        self.client.execute(action: "DeleteEdgeNodeUnitTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除边缘单元NodeUnit模板
-    @inlinable
-    public func deleteEdgeNodeUnitTemplates(_ input: DeleteEdgeNodeUnitTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodeUnitTemplatesResponse {
-        try await self.client.execute(action: "DeleteEdgeNodeUnitTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteEdgeNodeUnitTemplates请求参数结构体
     public struct DeleteEdgeNodeUnitTemplatesRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -54,5 +42,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除边缘单元NodeUnit模板
+    @inlinable
+    public func deleteEdgeNodeUnitTemplates(_ input: DeleteEdgeNodeUnitTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeNodeUnitTemplatesResponse > {
+        self.client.execute(action: "DeleteEdgeNodeUnitTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除边缘单元NodeUnit模板
+    @inlinable
+    public func deleteEdgeNodeUnitTemplates(_ input: DeleteEdgeNodeUnitTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodeUnitTemplatesResponse {
+        try await self.client.execute(action: "DeleteEdgeNodeUnitTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

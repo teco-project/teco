@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ciam {
-    /// 根据属性查询用户列表
-    @inlinable
-    public func listUserByProperty(_ input: ListUserByPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUserByPropertyResponse > {
-        self.client.execute(action: "ListUserByProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据属性查询用户列表
-    @inlinable
-    public func listUserByProperty(_ input: ListUserByPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserByPropertyResponse {
-        try await self.client.execute(action: "ListUserByProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListUserByProperty请求参数结构体
     public struct ListUserByPropertyRequest: TCRequestModel {
         /// 用户目录ID
@@ -43,7 +31,7 @@ extension Ciam {
         /// 返回信息是否为原文
         public let original: Bool?
         
-        public init (userStoreId: String, propertyCode: String, propertyValue: String, original: Bool?) {
+        public init (userStoreId: String, propertyCode: String, propertyValue: String, original: Bool? = nil) {
             self.userStoreId = userStoreId
             self.propertyCode = propertyCode
             self.propertyValue = propertyValue
@@ -71,5 +59,17 @@ extension Ciam {
             case users = "Users"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据属性查询用户列表
+    @inlinable
+    public func listUserByProperty(_ input: ListUserByPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUserByPropertyResponse > {
+        self.client.execute(action: "ListUserByProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据属性查询用户列表
+    @inlinable
+    public func listUserByProperty(_ input: ListUserByPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserByPropertyResponse {
+        try await self.client.execute(action: "ListUserByProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

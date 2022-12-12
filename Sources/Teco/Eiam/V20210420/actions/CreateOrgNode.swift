@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 新建机构节点
-    ///
-    /// 新建一个机构节点
-    @inlinable
-    public func createOrgNode(_ input: CreateOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrgNodeResponse > {
-        self.client.execute(action: "CreateOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建机构节点
-    ///
-    /// 新建一个机构节点
-    @inlinable
-    public func createOrgNode(_ input: CreateOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrgNodeResponse {
-        try await self.client.execute(action: "CreateOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOrgNode请求参数结构体
     public struct CreateOrgNodeRequest: TCRequestModel {
         /// 机构节点名称，长度限制：64个字符。
@@ -45,7 +29,7 @@ extension Eiam {
         /// 机构代码。如果为空，则默认生成机构代码。如果为非空，则校验机构代码的唯一性。
         public let customizedOrgNodeId: String?
         
-        public init (displayName: String, parentOrgNodeId: String?, description: String?, customizedOrgNodeId: String?) {
+        public init (displayName: String, parentOrgNodeId: String? = nil, description: String? = nil, customizedOrgNodeId: String? = nil) {
             self.displayName = displayName
             self.parentOrgNodeId = parentOrgNodeId
             self.description = description
@@ -73,5 +57,21 @@ extension Eiam {
             case orgNodeId = "OrgNodeId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建机构节点
+    ///
+    /// 新建一个机构节点
+    @inlinable
+    public func createOrgNode(_ input: CreateOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrgNodeResponse > {
+        self.client.execute(action: "CreateOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建机构节点
+    ///
+    /// 新建一个机构节点
+    @inlinable
+    public func createOrgNode(_ input: CreateOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrgNodeResponse {
+        try await self.client.execute(action: "CreateOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

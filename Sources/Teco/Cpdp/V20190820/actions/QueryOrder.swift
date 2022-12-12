@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫-查询订单接口
-    ///
-    /// 根据订单号，或者用户Id，查询支付订单状态 
-    @inlinable
-    public func queryOrder(_ input: QueryOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOrderResponse > {
-        self.client.execute(action: "QueryOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫-查询订单接口
-    ///
-    /// 根据订单号，或者用户Id，查询支付订单状态 
-    @inlinable
-    public func queryOrder(_ input: QueryOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOrderResponse {
-        try await self.client.execute(action: "QueryOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryOrder请求参数结构体
     public struct QueryOrderRequest: TCRequestModel {
         /// 聚鑫分配的支付主 MidasAppId
@@ -74,7 +58,7 @@ extension Cpdp {
         /// 缺省: release
         public let midasEnvironment: String?
         
-        public init (midasAppId: String, userId: String, type: String, midasSecretId: String, midasSignature: String, count: Int64?, offset: Int64?, startTime: String?, endTime: String?, outTradeNo: String?, transactionId: String?, midasEnvironment: String?) {
+        public init (midasAppId: String, userId: String, type: String, midasSecretId: String, midasSignature: String, count: Int64? = nil, offset: Int64? = nil, startTime: String? = nil, endTime: String? = nil, outTradeNo: String? = nil, transactionId: String? = nil, midasEnvironment: String? = nil) {
             self.midasAppId = midasAppId
             self.userId = userId
             self.type = type
@@ -121,5 +105,21 @@ extension Cpdp {
             case orderList = "OrderList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫-查询订单接口
+    ///
+    /// 根据订单号，或者用户Id，查询支付订单状态 
+    @inlinable
+    public func queryOrder(_ input: QueryOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOrderResponse > {
+        self.client.execute(action: "QueryOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-查询订单接口
+    ///
+    /// 根据订单号，或者用户Id，查询支付订单状态 
+    @inlinable
+    public func queryOrder(_ input: QueryOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOrderResponse {
+        try await self.client.execute(action: "QueryOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

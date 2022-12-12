@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 批量授权账号权限
-    @inlinable
-    public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GrantAccountPrivilegesResponse > {
-        self.client.execute(action: "GrantAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量授权账号权限
-    @inlinable
-    public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantAccountPrivilegesResponse {
-        try await self.client.execute(action: "GrantAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GrantAccountPrivileges请求参数结构体
     public struct GrantAccountPrivilegesRequest: TCRequestModel {
         /// 集群id
@@ -64,5 +52,17 @@ extension Cynosdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量授权账号权限
+    @inlinable
+    public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GrantAccountPrivilegesResponse > {
+        self.client.execute(action: "GrantAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量授权账号权限
+    @inlinable
+    public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantAccountPrivilegesResponse {
+        try await self.client.execute(action: "GrantAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

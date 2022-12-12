@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// DNSPod商品余额支付
-    @inlinable
-    public func payOrderWithBalance(_ input: PayOrderWithBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PayOrderWithBalanceResponse > {
-        self.client.execute(action: "PayOrderWithBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DNSPod商品余额支付
-    @inlinable
-    public func payOrderWithBalance(_ input: PayOrderWithBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayOrderWithBalanceResponse {
-        try await self.client.execute(action: "PayOrderWithBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PayOrderWithBalance请求参数结构体
     public struct PayOrderWithBalanceRequest: TCRequestModel {
         /// 需要支付的大订单号数组
@@ -35,7 +23,7 @@ extension Dnspod {
         /// 代金券ID数组。可以从控制台查到拥有的代金券
         public let voucherIdList: [String]?
         
-        public init (bigDealIdList: [String], voucherIdList: [String]?) {
+        public init (bigDealIdList: [String], voucherIdList: [String]? = nil) {
             self.bigDealIdList = bigDealIdList
             self.voucherIdList = voucherIdList
         }
@@ -66,5 +54,17 @@ extension Dnspod {
             case dealNameList = "DealNameList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// DNSPod商品余额支付
+    @inlinable
+    public func payOrderWithBalance(_ input: PayOrderWithBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PayOrderWithBalanceResponse > {
+        self.client.execute(action: "PayOrderWithBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DNSPod商品余额支付
+    @inlinable
+    public func payOrderWithBalance(_ input: PayOrderWithBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayOrderWithBalanceResponse {
+        try await self.client.execute(action: "PayOrderWithBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

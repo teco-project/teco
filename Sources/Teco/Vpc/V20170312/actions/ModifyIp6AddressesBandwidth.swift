@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改IPV6访问internet的带宽
-    ///
-    /// 该接口用于修改IPV6地址访问internet的带宽
-    @inlinable
-    public func modifyIp6AddressesBandwidth(_ input: ModifyIp6AddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIp6AddressesBandwidthResponse > {
-        self.client.execute(action: "ModifyIp6AddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改IPV6访问internet的带宽
-    ///
-    /// 该接口用于修改IPV6地址访问internet的带宽
-    @inlinable
-    public func modifyIp6AddressesBandwidth(_ input: ModifyIp6AddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIp6AddressesBandwidthResponse {
-        try await self.client.execute(action: "ModifyIp6AddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyIp6AddressesBandwidth请求参数结构体
     public struct ModifyIp6AddressesBandwidthRequest: TCRequestModel {
         /// 修改的目标带宽，单位Mbps
@@ -42,7 +26,7 @@ extension Vpc {
         /// IPV6地址对应的唯一ID，形如eip-xxxxxxxx。Ip6Addresses和Ip6AddressId必须且只能传一个
         public let ip6AddressIds: [String]?
         
-        public init (internetMaxBandwidthOut: Int64, ip6Addresses: [String]?, ip6AddressIds: [String]?) {
+        public init (internetMaxBandwidthOut: Int64, ip6Addresses: [String]? = nil, ip6AddressIds: [String]? = nil) {
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
             self.ip6Addresses = ip6Addresses
             self.ip6AddressIds = ip6AddressIds
@@ -67,5 +51,21 @@ extension Vpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改IPV6访问internet的带宽
+    ///
+    /// 该接口用于修改IPV6地址访问internet的带宽
+    @inlinable
+    public func modifyIp6AddressesBandwidth(_ input: ModifyIp6AddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIp6AddressesBandwidthResponse > {
+        self.client.execute(action: "ModifyIp6AddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改IPV6访问internet的带宽
+    ///
+    /// 该接口用于修改IPV6地址访问internet的带宽
+    @inlinable
+    public func modifyIp6AddressesBandwidth(_ input: ModifyIp6AddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIp6AddressesBandwidthResponse {
+        try await self.client.execute(action: "ModifyIp6AddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询用户安全组配额
-    ///
-    /// 本接口(DescribeSecurityGroupLimits)用于查询用户安全组配额。
-    @inlinable
-    public func describeSecurityGroupLimits(_ input: DescribeSecurityGroupLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupLimitsResponse > {
-        self.client.execute(action: "DescribeSecurityGroupLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户安全组配额
-    ///
-    /// 本接口(DescribeSecurityGroupLimits)用于查询用户安全组配额。
-    @inlinable
-    public func describeSecurityGroupLimits(_ input: DescribeSecurityGroupLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupLimitsResponse {
-        try await self.client.execute(action: "DescribeSecurityGroupLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityGroupLimits请求参数结构体
     public struct DescribeSecurityGroupLimitsRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Vpc {
             case securityGroupLimitSet = "SecurityGroupLimitSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户安全组配额
+    ///
+    /// 本接口(DescribeSecurityGroupLimits)用于查询用户安全组配额。
+    @inlinable
+    public func describeSecurityGroupLimits(_ input: DescribeSecurityGroupLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupLimitsResponse > {
+        self.client.execute(action: "DescribeSecurityGroupLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户安全组配额
+    ///
+    /// 本接口(DescribeSecurityGroupLimits)用于查询用户安全组配额。
+    @inlinable
+    public func describeSecurityGroupLimits(_ input: DescribeSecurityGroupLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupLimitsResponse {
+        try await self.client.execute(action: "DescribeSecurityGroupLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

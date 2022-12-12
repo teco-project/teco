@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询容器实例支持的地域
-    @inlinable
-    public func describeEKSContainerInstanceRegions(_ input: DescribeEKSContainerInstanceRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSContainerInstanceRegionsResponse > {
-        self.client.execute(action: "DescribeEKSContainerInstanceRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器实例支持的地域
-    @inlinable
-    public func describeEKSContainerInstanceRegions(_ input: DescribeEKSContainerInstanceRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSContainerInstanceRegionsResponse {
-        try await self.client.execute(action: "DescribeEKSContainerInstanceRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEKSContainerInstanceRegions请求参数结构体
     public struct DescribeEKSContainerInstanceRegionsRequest: TCRequestModel {
         public init () {
@@ -50,5 +38,17 @@ extension Tke {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器实例支持的地域
+    @inlinable
+    public func describeEKSContainerInstanceRegions(_ input: DescribeEKSContainerInstanceRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSContainerInstanceRegionsResponse > {
+        self.client.execute(action: "DescribeEKSContainerInstanceRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器实例支持的地域
+    @inlinable
+    public func describeEKSContainerInstanceRegions(_ input: DescribeEKSContainerInstanceRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSContainerInstanceRegionsResponse {
+        try await self.client.execute(action: "DescribeEKSContainerInstanceRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

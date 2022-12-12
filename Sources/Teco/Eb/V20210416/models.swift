@@ -148,13 +148,13 @@ extension Eb {
         
         /// apigw参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let apigwParams: APIGWParams
+        public let apigwParams: APIGWParams?
         
         /// ckafka参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ckafkaParams: CkafkaParams
+        public let ckafkaParams: CkafkaParams?
         
-        public init (resourceDescription: String, apigwParams: APIGWParams, ckafkaParams: CkafkaParams) {
+        public init (resourceDescription: String, apigwParams: APIGWParams? = nil, ckafkaParams: CkafkaParams? = nil) {
             self.resourceDescription = resourceDescription
             self.apigwParams = apigwParams
             self.ckafkaParams = ckafkaParams
@@ -174,9 +174,9 @@ extension Eb {
         
         /// 设置了DLQ方式后,此选项必填. 错误消息会被投递到对应的kafka topic中
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ckafkaDeliveryParams: CkafkaDeliveryParams
+        public let ckafkaDeliveryParams: CkafkaDeliveryParams?
         
-        public init (disposeMethod: String, ckafkaDeliveryParams: CkafkaDeliveryParams) {
+        public init (disposeMethod: String, ckafkaDeliveryParams: CkafkaDeliveryParams? = nil) {
             self.disposeMethod = disposeMethod
             self.ckafkaDeliveryParams = ckafkaDeliveryParams
         }
@@ -207,7 +207,7 @@ extension Eb {
         /// es模版类型
         public let indexTemplateType: String?
         
-        public init (netMode: String, indexPrefix: String, rotationInterval: String, outputMode: String, indexSuffixMode: String, indexTemplateType: String?) {
+        public init (netMode: String, indexPrefix: String, rotationInterval: String, outputMode: String, indexSuffixMode: String, indexTemplateType: String? = nil) {
             self.netMode = netMode
             self.indexPrefix = indexPrefix
             self.rotationInterval = rotationInterval
@@ -258,7 +258,7 @@ extension Eb {
         /// time.Now().UnixNano()/1e6
         public let time: Int64?
         
-        public init (source: String, data: String, type: String, subject: String, time: Int64?) {
+        public init (source: String, data: String, type: String, subject: String, time: Int64? = nil) {
             self.source = source
             self.data = data
             self.type = type
@@ -317,9 +317,9 @@ extension Eb {
         
         /// 仅在Text需要传递
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let textParams: TextParams
+        public let textParams: TextParams?
         
-        public init (extractionInputPath: String, format: String, textParams: TextParams) {
+        public init (extractionInputPath: String, format: String, textParams: TextParams? = nil) {
             self.extractionInputPath = extractionInputPath
             self.format = format
             self.textParams = textParams
@@ -430,7 +430,7 @@ extension Eb {
         
         /// rule设置的dlq规则. 可能为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let deadLetterConfig: DeadLetterConfig
+        public let deadLetterConfig: DeadLetterConfig?
         
         enum CodingKeys: String, CodingKey {
             case status = "Status"
@@ -457,7 +457,7 @@ extension Eb {
         /// 开启批量投递使能
         public let enableBatchDelivery: Bool?
         
-        public init (batchTimeout: Int64?, batchEventCount: Int64?, enableBatchDelivery: Bool?) {
+        public init (batchTimeout: Int64? = nil, batchEventCount: Int64? = nil, enableBatchDelivery: Bool? = nil) {
             self.batchTimeout = batchTimeout
             self.batchEventCount = batchEventCount
             self.enableBatchDelivery = enableBatchDelivery
@@ -531,15 +531,15 @@ extension Eb {
         public let resourceDescription: String
         
         /// 云函数参数
-        public let scfParams: SCFParams
+        public let scfParams: SCFParams?
         
         /// Ckafka参数
-        public let ckafkaTargetParams: CkafkaTargetParams
+        public let ckafkaTargetParams: CkafkaTargetParams?
         
         /// ElasticSearch参数
-        public let esTargetParams: ESTargetParams
+        public let esTargetParams: ESTargetParams?
         
-        public init (resourceDescription: String, scfParams: SCFParams, ckafkaTargetParams: CkafkaTargetParams, esTargetParams: ESTargetParams) {
+        public init (resourceDescription: String, scfParams: SCFParams? = nil, ckafkaTargetParams: CkafkaTargetParams? = nil, esTargetParams: ESTargetParams? = nil) {
             self.resourceDescription = resourceDescription
             self.scfParams = scfParams
             self.ckafkaTargetParams = ckafkaTargetParams
@@ -564,7 +564,7 @@ extension Eb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regex: String?
         
-        public init (separator: String?, regex: String?) {
+        public init (separator: String? = nil, regex: String? = nil) {
             self.separator = separator
             self.regex = regex
         }
@@ -593,17 +593,17 @@ extension Eb {
     public struct Transformation: TCInputModel, TCOutputModel {
         /// 描述如何提取数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let extraction: Extraction
+        public let extraction: Extraction?
         
         /// 描述如何过滤数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let etlFilter: EtlFilter
+        public let etlFilter: EtlFilter?
         
         /// 描述如何数据转换
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let transform: Transform
+        public let transform: Transform?
         
-        public init (extraction: Extraction, etlFilter: EtlFilter, transform: Transform) {
+        public init (extraction: Extraction? = nil, etlFilter: EtlFilter? = nil, transform: Transform? = nil) {
             self.extraction = extraction
             self.etlFilter = etlFilter
             self.transform = transform

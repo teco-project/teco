@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Trtc {
-    /// 解散房间
-    ///
-    /// 接口说明：把房间所有用户从房间移出，解散房间。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
-    @inlinable
-    public func dismissRoom(_ input: DismissRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DismissRoomResponse > {
-        self.client.execute(action: "DismissRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解散房间
-    ///
-    /// 接口说明：把房间所有用户从房间移出，解散房间。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
-    @inlinable
-    public func dismissRoom(_ input: DismissRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomResponse {
-        try await self.client.execute(action: "DismissRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DismissRoom请求参数结构体
     public struct DismissRoomRequest: TCRequestModel {
         /// TRTC的SDKAppId。
@@ -58,5 +42,21 @@ extension Trtc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解散房间
+    ///
+    /// 接口说明：把房间所有用户从房间移出，解散房间。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
+    @inlinable
+    public func dismissRoom(_ input: DismissRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DismissRoomResponse > {
+        self.client.execute(action: "DismissRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解散房间
+    ///
+    /// 接口说明：把房间所有用户从房间移出，解散房间。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
+    @inlinable
+    public func dismissRoom(_ input: DismissRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomResponse {
+        try await self.client.execute(action: "DismissRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

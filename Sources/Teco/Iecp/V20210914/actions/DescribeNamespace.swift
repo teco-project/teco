@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取命名空间
-    @inlinable
-    public func describeNamespace(_ input: DescribeNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespaceResponse > {
-        self.client.execute(action: "DescribeNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取命名空间
-    @inlinable
-    public func describeNamespace(_ input: DescribeNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceResponse {
-        try await self.client.execute(action: "DescribeNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNamespace请求参数结构体
     public struct DescribeNamespaceRequest: TCRequestModel {
         /// 单元ID
@@ -84,5 +72,17 @@ extension Iecp {
             case yaml = "Yaml"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取命名空间
+    @inlinable
+    public func describeNamespace(_ input: DescribeNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespaceResponse > {
+        self.client.execute(action: "DescribeNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取命名空间
+    @inlinable
+    public func describeNamespace(_ input: DescribeNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceResponse {
+        try await self.client.execute(action: "DescribeNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

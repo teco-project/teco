@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 安全合规查询检测项影响的资产列表
-    ///
-    /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
-    @inlinable
-    public func describeCompliancePolicyItemAffectedAssetList(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCompliancePolicyItemAffectedAssetListResponse > {
-        self.client.execute(action: "DescribeCompliancePolicyItemAffectedAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全合规查询检测项影响的资产列表
-    ///
-    /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
-    @inlinable
-    public func describeCompliancePolicyItemAffectedAssetList(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePolicyItemAffectedAssetListResponse {
-        try await self.client.execute(action: "DescribeCompliancePolicyItemAffectedAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCompliancePolicyItemAffectedAssetList请求参数结构体
     public struct DescribeCompliancePolicyItemAffectedAssetListRequest: TCRequestModel {
         /// DescribeComplianceTaskPolicyItemSummaryList返回的CustomerPolicyItemId，表示检测项的ID。
@@ -47,7 +31,7 @@ extension Tcss {
         /// Name 可取值：NodeName, CheckResult
         public let filters: [ComplianceFilters]?
         
-        public init (customerPolicyItemId: UInt64, offset: UInt64?, limit: UInt64?, filters: [ComplianceFilters]?) {
+        public init (customerPolicyItemId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil) {
             self.customerPolicyItemId = customerPolicyItemId
             self.offset = offset
             self.limit = limit
@@ -78,5 +62,21 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全合规查询检测项影响的资产列表
+    ///
+    /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
+    @inlinable
+    public func describeCompliancePolicyItemAffectedAssetList(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCompliancePolicyItemAffectedAssetListResponse > {
+        self.client.execute(action: "DescribeCompliancePolicyItemAffectedAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规查询检测项影响的资产列表
+    ///
+    /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
+    @inlinable
+    public func describeCompliancePolicyItemAffectedAssetList(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePolicyItemAffectedAssetListResponse {
+        try await self.client.execute(action: "DescribeCompliancePolicyItemAffectedAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

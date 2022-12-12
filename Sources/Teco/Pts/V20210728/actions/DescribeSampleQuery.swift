@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 查询指标
-    ///
-    /// 查询指标，返回固定时间点指标内容
-    @inlinable
-    public func describeSampleQuery(_ input: DescribeSampleQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSampleQueryResponse > {
-        self.client.execute(action: "DescribeSampleQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询指标
-    ///
-    /// 查询指标，返回固定时间点指标内容
-    @inlinable
-    public func describeSampleQuery(_ input: DescribeSampleQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleQueryResponse {
-        try await self.client.execute(action: "DescribeSampleQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSampleQuery请求参数结构体
     public struct DescribeSampleQueryRequest: TCRequestModel {
         /// job id
@@ -51,7 +35,7 @@ extension Pts {
         /// 过滤条件
         public let labels: [Label]?
         
-        public init (jobId: String, scenarioId: String, metric: String, aggregation: String, projectId: String, labels: [Label]?) {
+        public init (jobId: String, scenarioId: String, metric: String, aggregation: String, projectId: String, labels: [Label]? = nil) {
             self.jobId = jobId
             self.scenarioId = scenarioId
             self.metric = metric
@@ -74,7 +58,7 @@ extension Pts {
     public struct DescribeSampleQueryResponse: TCResponseModel {
         /// 返回指标内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let metricSample: CustomSample
+        public let metricSample: CustomSample?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -83,5 +67,21 @@ extension Pts {
             case metricSample = "MetricSample"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询指标
+    ///
+    /// 查询指标，返回固定时间点指标内容
+    @inlinable
+    public func describeSampleQuery(_ input: DescribeSampleQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSampleQueryResponse > {
+        self.client.execute(action: "DescribeSampleQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指标
+    ///
+    /// 查询指标，返回固定时间点指标内容
+    @inlinable
+    public func describeSampleQuery(_ input: DescribeSampleQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleQueryResponse {
+        try await self.client.execute(action: "DescribeSampleQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

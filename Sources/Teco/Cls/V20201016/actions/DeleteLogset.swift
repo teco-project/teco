@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 删除日志集
-    ///
-    /// 本接口用于删除日志集。
-    @inlinable
-    public func deleteLogset(_ input: DeleteLogsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogsetResponse > {
-        self.client.execute(action: "DeleteLogset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除日志集
-    ///
-    /// 本接口用于删除日志集。
-    @inlinable
-    public func deleteLogset(_ input: DeleteLogsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogsetResponse {
-        try await self.client.execute(action: "DeleteLogset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLogset请求参数结构体
     public struct DeleteLogsetRequest: TCRequestModel {
         /// 日志集ID
@@ -53,5 +37,21 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除日志集
+    ///
+    /// 本接口用于删除日志集。
+    @inlinable
+    public func deleteLogset(_ input: DeleteLogsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogsetResponse > {
+        self.client.execute(action: "DeleteLogset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除日志集
+    ///
+    /// 本接口用于删除日志集。
+    @inlinable
+    public func deleteLogset(_ input: DeleteLogsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogsetResponse {
+        try await self.client.execute(action: "DeleteLogset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

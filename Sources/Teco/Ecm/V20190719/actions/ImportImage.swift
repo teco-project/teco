@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 导入镜像
-    ///
-    /// 从CVM产品导入镜像到ECM
-    @inlinable
-    public func importImage(_ input: ImportImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportImageResponse > {
-        self.client.execute(action: "ImportImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导入镜像
-    ///
-    /// 从CVM产品导入镜像到ECM
-    @inlinable
-    public func importImage(_ input: ImportImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportImageResponse {
-        try await self.client.execute(action: "ImportImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ImportImage请求参数结构体
     public struct ImportImageRequest: TCRequestModel {
         /// 镜像的Id。
@@ -63,5 +47,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导入镜像
+    ///
+    /// 从CVM产品导入镜像到ECM
+    @inlinable
+    public func importImage(_ input: ImportImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportImageResponse > {
+        self.client.execute(action: "ImportImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导入镜像
+    ///
+    /// 从CVM产品导入镜像到ECM
+    @inlinable
+    public func importImage(_ input: ImportImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportImageResponse {
+        try await self.client.execute(action: "ImportImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

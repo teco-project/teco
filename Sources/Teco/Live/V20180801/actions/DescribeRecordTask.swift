@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询录制任务列表（新）
-    ///
-    /// 查询指定时间段范围内启动和结束的录制任务列表。
-    /// - 使用前提
-    /// 1. 仅用于查询由 CreateRecordTask 接口创建的录制任务。
-    /// 2. 不能查询被 DeleteRecordTask 接口删除以及已过期（平台侧保留3个月）的录制任务。
-    @inlinable
-    public func describeRecordTask(_ input: DescribeRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordTaskResponse > {
-        self.client.execute(action: "DescribeRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询录制任务列表（新）
-    ///
-    /// 查询指定时间段范围内启动和结束的录制任务列表。
-    /// - 使用前提
-    /// 1. 仅用于查询由 CreateRecordTask 接口创建的录制任务。
-    /// 2. 不能查询被 DeleteRecordTask 接口删除以及已过期（平台侧保留3个月）的录制任务。
-    @inlinable
-    public func describeRecordTask(_ input: DescribeRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordTaskResponse {
-        try await self.client.execute(action: "DescribeRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRecordTask请求参数结构体
     public struct DescribeRecordTaskRequest: TCRequestModel {
         /// 查询任务开始时间，Unix 时间戳。设置时间不早于当前时间之前90天的时间，且查询时间跨度不超过一周。
@@ -57,7 +35,7 @@ extension Live {
         /// 翻页标识，分批拉取时使用：当单次请求无法拉取所有数据，接口将会返回 ScrollToken，下一次请求携带该 Token，将会从下一条记录开始获取。
         public let scrollToken: String?
         
-        public init (startTime: UInt64, endTime: UInt64, streamName: String?, domainName: String?, appName: String?, scrollToken: String?) {
+        public init (startTime: UInt64, endTime: UInt64, streamName: String? = nil, domainName: String? = nil, appName: String? = nil, scrollToken: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.streamName = streamName
@@ -92,5 +70,27 @@ extension Live {
             case taskList = "TaskList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询录制任务列表（新）
+    ///
+    /// 查询指定时间段范围内启动和结束的录制任务列表。
+    /// - 使用前提
+    /// 1. 仅用于查询由 CreateRecordTask 接口创建的录制任务。
+    /// 2. 不能查询被 DeleteRecordTask 接口删除以及已过期（平台侧保留3个月）的录制任务。
+    @inlinable
+    public func describeRecordTask(_ input: DescribeRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordTaskResponse > {
+        self.client.execute(action: "DescribeRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询录制任务列表（新）
+    ///
+    /// 查询指定时间段范围内启动和结束的录制任务列表。
+    /// - 使用前提
+    /// 1. 仅用于查询由 CreateRecordTask 接口创建的录制任务。
+    /// 2. 不能查询被 DeleteRecordTask 接口删除以及已过期（平台侧保留3个月）的录制任务。
+    @inlinable
+    public func describeRecordTask(_ input: DescribeRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordTaskResponse {
+        try await self.client.execute(action: "DescribeRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 重新申请关联实例
-    ///
-    /// 本接口（ResetAttachCcnInstances）用于跨账号关联实例申请过期时，重新申请关联操作。
-    @inlinable
-    public func resetAttachCcnInstances(_ input: ResetAttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAttachCcnInstancesResponse > {
-        self.client.execute(action: "ResetAttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重新申请关联实例
-    ///
-    /// 本接口（ResetAttachCcnInstances）用于跨账号关联实例申请过期时，重新申请关联操作。
-    @inlinable
-    public func resetAttachCcnInstances(_ input: ResetAttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAttachCcnInstancesResponse {
-        try await self.client.execute(action: "ResetAttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetAttachCcnInstances请求参数结构体
     public struct ResetAttachCcnInstancesRequest: TCRequestModel {
         /// CCN实例ID。形如：ccn-f49l6u0z。
@@ -63,5 +47,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重新申请关联实例
+    ///
+    /// 本接口（ResetAttachCcnInstances）用于跨账号关联实例申请过期时，重新申请关联操作。
+    @inlinable
+    public func resetAttachCcnInstances(_ input: ResetAttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAttachCcnInstancesResponse > {
+        self.client.execute(action: "ResetAttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重新申请关联实例
+    ///
+    /// 本接口（ResetAttachCcnInstances）用于跨账号关联实例申请过期时，重新申请关联操作。
+    @inlinable
+    public func resetAttachCcnInstances(_ input: ResetAttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAttachCcnInstancesResponse {
+        try await self.client.execute(action: "ResetAttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

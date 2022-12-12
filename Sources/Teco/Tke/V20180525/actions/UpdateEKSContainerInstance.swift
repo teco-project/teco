@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 更新容器实例
-    @inlinable
-    public func updateEKSContainerInstance(_ input: UpdateEKSContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEKSContainerInstanceResponse > {
-        self.client.execute(action: "UpdateEKSContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新容器实例
-    @inlinable
-    public func updateEKSContainerInstance(_ input: UpdateEKSContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEKSContainerInstanceResponse {
-        try await self.client.execute(action: "UpdateEKSContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateEKSContainerInstance请求参数结构体
     public struct UpdateEKSContainerInstanceRequest: TCRequestModel {
         /// 容器实例 ID
@@ -36,7 +24,7 @@ extension Tke {
         public let restartPolicy: String?
         
         /// 数据卷，包含NfsVolume数组和CbsVolume数组
-        public let eksCiVolume: EksCiVolume
+        public let eksCiVolume: EksCiVolume?
         
         /// 容器组
         public let containers: [Container]?
@@ -50,7 +38,7 @@ extension Tke {
         /// 镜像仓库凭证数组
         public let imageRegistryCredentials: [ImageRegistryCredential]?
         
-        public init (eksCiId: String, restartPolicy: String?, eksCiVolume: EksCiVolume, containers: [Container]?, initContainers: [Container]?, name: String?, imageRegistryCredentials: [ImageRegistryCredential]?) {
+        public init (eksCiId: String, restartPolicy: String? = nil, eksCiVolume: EksCiVolume? = nil, containers: [Container]? = nil, initContainers: [Container]? = nil, name: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil) {
             self.eksCiId = eksCiId
             self.restartPolicy = restartPolicy
             self.eksCiVolume = eksCiVolume
@@ -84,5 +72,17 @@ extension Tke {
             case eksCiId = "EksCiId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新容器实例
+    @inlinable
+    public func updateEKSContainerInstance(_ input: UpdateEKSContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEKSContainerInstanceResponse > {
+        self.client.execute(action: "UpdateEKSContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新容器实例
+    @inlinable
+    public func updateEKSContainerInstance(_ input: UpdateEKSContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEKSContainerInstanceResponse {
+        try await self.client.execute(action: "UpdateEKSContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

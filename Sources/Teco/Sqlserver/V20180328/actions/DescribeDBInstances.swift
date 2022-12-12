@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询实例列表
-    ///
-    /// 本接口(DescribeDBInstances)用于查询实例列表。
-    @inlinable
-    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstancesResponse > {
-        self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例列表
-    ///
-    /// 本接口(DescribeDBInstances)用于查询实例列表。
-    @inlinable
-    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
-        try await self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBInstances请求参数结构体
     public struct DescribeDBInstancesRequest: TCRequestModel {
         /// 项目ID
@@ -93,7 +77,7 @@ extension Sqlserver {
         /// 实例类型 HA-高可用 RO-只读实例 SI-基础版 BI-商业智能服务
         public let instanceType: String?
         
-        public init (projectId: UInt64?, status: Int64?, offset: Int64?, limit: Int64?, instanceIdSet: [String]?, payMode: Int64?, vpcId: String?, subnetId: String?, vipSet: [String]?, instanceNameSet: [String]?, versionSet: [String]?, zone: String?, tagKeys: [String]?, searchKey: String?, uidSet: [String]?, instanceType: String?) {
+        public init (projectId: UInt64? = nil, status: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, instanceIdSet: [String]? = nil, payMode: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, vipSet: [String]? = nil, instanceNameSet: [String]? = nil, versionSet: [String]? = nil, zone: String? = nil, tagKeys: [String]? = nil, searchKey: String? = nil, uidSet: [String]? = nil, instanceType: String? = nil) {
             self.projectId = projectId
             self.status = status
             self.offset = offset
@@ -148,5 +132,21 @@ extension Sqlserver {
             case dbInstances = "DBInstances"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例列表
+    ///
+    /// 本接口(DescribeDBInstances)用于查询实例列表。
+    @inlinable
+    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstancesResponse > {
+        self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例列表
+    ///
+    /// 本接口(DescribeDBInstances)用于查询实例列表。
+    @inlinable
+    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
+        try await self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

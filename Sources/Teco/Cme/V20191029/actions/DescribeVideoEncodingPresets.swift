@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 查询视频编码配置
-    ///
-    /// 查询视频编码配置信息。
-    @inlinable
-    public func describeVideoEncodingPresets(_ input: DescribeVideoEncodingPresetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoEncodingPresetsResponse > {
-        self.client.execute(action: "DescribeVideoEncodingPresets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询视频编码配置
-    ///
-    /// 查询视频编码配置信息。
-    @inlinable
-    public func describeVideoEncodingPresets(_ input: DescribeVideoEncodingPresetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoEncodingPresetsResponse {
-        try await self.client.execute(action: "DescribeVideoEncodingPresets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVideoEncodingPresets请求参数结构体
     public struct DescribeVideoEncodingPresetsRequest: TCRequestModel {
         /// 平台名称，指定访问的平台。
@@ -45,7 +29,7 @@ extension Cme {
         /// 分页起始，默认0。
         public let offset: UInt64?
         
-        public init (platform: String, ids: [UInt64]?, limit: UInt64?, offset: UInt64?) {
+        public init (platform: String, ids: [UInt64]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.platform = platform
             self.ids = ids
             self.limit = limit
@@ -76,5 +60,21 @@ extension Cme {
             case videoEncodingPresetSet = "VideoEncodingPresetSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询视频编码配置
+    ///
+    /// 查询视频编码配置信息。
+    @inlinable
+    public func describeVideoEncodingPresets(_ input: DescribeVideoEncodingPresetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoEncodingPresetsResponse > {
+        self.client.execute(action: "DescribeVideoEncodingPresets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询视频编码配置
+    ///
+    /// 查询视频编码配置信息。
+    @inlinable
+    public func describeVideoEncodingPresets(_ input: DescribeVideoEncodingPresetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoEncodingPresetsResponse {
+        try await self.client.execute(action: "DescribeVideoEncodingPresets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

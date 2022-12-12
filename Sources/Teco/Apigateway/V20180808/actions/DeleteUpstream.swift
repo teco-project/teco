@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 删除后端通道
-    ///
-    /// 删除后端通道，需要注意有API绑定时，不允许删除
-    @inlinable
-    public func deleteUpstream(_ input: DeleteUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUpstreamResponse > {
-        self.client.execute(action: "DeleteUpstream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除后端通道
-    ///
-    /// 删除后端通道，需要注意有API绑定时，不允许删除
-    @inlinable
-    public func deleteUpstream(_ input: DeleteUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUpstreamResponse {
-        try await self.client.execute(action: "DeleteUpstream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteUpstream请求参数结构体
     public struct DeleteUpstreamRequest: TCRequestModel {
         /// 待删除的后端通道ID
@@ -58,5 +42,21 @@ extension Apigateway {
             case upstreamId = "UpstreamId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除后端通道
+    ///
+    /// 删除后端通道，需要注意有API绑定时，不允许删除
+    @inlinable
+    public func deleteUpstream(_ input: DeleteUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUpstreamResponse > {
+        self.client.execute(action: "DeleteUpstream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除后端通道
+    ///
+    /// 删除后端通道，需要注意有API绑定时，不允许删除
+    @inlinable
+    public func deleteUpstream(_ input: DeleteUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUpstreamResponse {
+        try await self.client.execute(action: "DeleteUpstream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

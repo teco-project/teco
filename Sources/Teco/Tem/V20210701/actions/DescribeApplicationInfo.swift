@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 服务基本信息查看
-    @inlinable
-    public func describeApplicationInfo(_ input: DescribeApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationInfoResponse > {
-        self.client.execute(action: "DescribeApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 服务基本信息查看
-    @inlinable
-    public func describeApplicationInfo(_ input: DescribeApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationInfoResponse {
-        try await self.client.execute(action: "DescribeApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplicationInfo请求参数结构体
     public struct DescribeApplicationInfoRequest: TCRequestModel {
         /// 服务版本ID
@@ -38,7 +26,7 @@ extension Tem {
         /// 环境ID
         public let environmentId: String?
         
-        public init (applicationId: String, sourceChannel: Int64?, environmentId: String?) {
+        public init (applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil) {
             self.applicationId = applicationId
             self.sourceChannel = sourceChannel
             self.environmentId = environmentId
@@ -63,5 +51,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 服务基本信息查看
+    @inlinable
+    public func describeApplicationInfo(_ input: DescribeApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationInfoResponse > {
+        self.client.execute(action: "DescribeApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 服务基本信息查看
+    @inlinable
+    public func describeApplicationInfo(_ input: DescribeApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationInfoResponse {
+        try await self.client.execute(action: "DescribeApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

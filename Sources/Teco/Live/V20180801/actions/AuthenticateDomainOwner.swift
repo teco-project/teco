@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 验证直播域名所有权
-    ///
-    /// 验证用户是否拥有特定直播域名。
-    @inlinable
-    public func authenticateDomainOwner(_ input: AuthenticateDomainOwnerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AuthenticateDomainOwnerResponse > {
-        self.client.execute(action: "AuthenticateDomainOwner", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 验证直播域名所有权
-    ///
-    /// 验证用户是否拥有特定直播域名。
-    @inlinable
-    public func authenticateDomainOwner(_ input: AuthenticateDomainOwnerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthenticateDomainOwnerResponse {
-        try await self.client.execute(action: "AuthenticateDomainOwner", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AuthenticateDomainOwner请求参数结构体
     public struct AuthenticateDomainOwnerRequest: TCRequestModel {
         /// 要验证的域名。
@@ -78,5 +62,21 @@ extension Live {
             case mainDomain = "MainDomain"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 验证直播域名所有权
+    ///
+    /// 验证用户是否拥有特定直播域名。
+    @inlinable
+    public func authenticateDomainOwner(_ input: AuthenticateDomainOwnerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AuthenticateDomainOwnerResponse > {
+        self.client.execute(action: "AuthenticateDomainOwner", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 验证直播域名所有权
+    ///
+    /// 验证用户是否拥有特定直播域名。
+    @inlinable
+    public func authenticateDomainOwner(_ input: AuthenticateDomainOwnerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthenticateDomainOwnerResponse {
+        try await self.client.execute(action: "AuthenticateDomainOwner", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

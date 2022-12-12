@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 查询实例列表
-    ///
-    /// 本接口 (DescribeDBInstances) 用于查询一个或多个实例的详细信息。
-    @inlinable
-    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstancesResponse > {
-        self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例列表
-    ///
-    /// 本接口 (DescribeDBInstances) 用于查询一个或多个实例的详细信息。
-    @inlinable
-    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
-        try await self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBInstances请求参数结构体
     public struct DescribeDBInstancesRequest: TCRequestModel {
         /// 按照一个或者多个过滤条件进行查询，目前支持的过滤条件有：
@@ -53,7 +37,7 @@ extension Postgres {
         /// 排序方式，包括升序：asc、降序：desc。
         public let orderByType: String?
         
-        public init (filters: [Filter]?, limit: UInt64?, offset: UInt64?, orderBy: String?, orderByType: String?) {
+        public init (filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -86,5 +70,21 @@ extension Postgres {
             case dbInstanceSet = "DBInstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例列表
+    ///
+    /// 本接口 (DescribeDBInstances) 用于查询一个或多个实例的详细信息。
+    @inlinable
+    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstancesResponse > {
+        self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例列表
+    ///
+    /// 本接口 (DescribeDBInstances) 用于查询一个或多个实例的详细信息。
+    @inlinable
+    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
+        try await self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

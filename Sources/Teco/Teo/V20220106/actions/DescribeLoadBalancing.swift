@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 获取负载均衡列表
-    @inlinable
-    public func describeLoadBalancing(_ input: DescribeLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancingResponse > {
-        self.client.execute(action: "DescribeLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取负载均衡列表
-    @inlinable
-    public func describeLoadBalancing(_ input: DescribeLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancingResponse {
-        try await self.client.execute(action: "DescribeLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLoadBalancing请求参数结构体
     public struct DescribeLoadBalancingRequest: TCRequestModel {
         /// 站点ID
@@ -44,7 +32,7 @@ extension Teo {
         /// 过滤参数Host是否支持模糊匹配
         public let fuzzy: Bool?
         
-        public init (zoneId: String, offset: UInt64, limit: UInt64, host: String?, fuzzy: Bool?) {
+        public init (zoneId: String, offset: UInt64, limit: UInt64, host: String? = nil, fuzzy: Bool? = nil) {
             self.zoneId = zoneId
             self.offset = offset
             self.limit = limit
@@ -77,5 +65,17 @@ extension Teo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取负载均衡列表
+    @inlinable
+    public func describeLoadBalancing(_ input: DescribeLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancingResponse > {
+        self.client.execute(action: "DescribeLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取负载均衡列表
+    @inlinable
+    public func describeLoadBalancing(_ input: DescribeLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancingResponse {
+        try await self.client.execute(action: "DescribeLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 编辑商户
-    @inlinable
-    public func modifyMerchant(_ input: ModifyMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMerchantResponse > {
-        self.client.execute(action: "ModifyMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑商户
-    @inlinable
-    public func modifyMerchant(_ input: ModifyMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
-        try await self.client.execute(action: "ModifyMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMerchant请求参数结构体
     public struct ModifyMerchantRequest: TCRequestModel {
         /// 商户名称
@@ -47,7 +35,7 @@ extension Trp {
         /// 码包前缀地址 第三方码包时必填
         public let codeUrl: String?
         
-        public init (name: String, merchantId: String, remark: String?, corpId: UInt64?, codeType: Int64?, codeUrl: String?) {
+        public init (name: String, merchantId: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil) {
             self.name = name
             self.merchantId = merchantId
             self.remark = remark
@@ -79,5 +67,17 @@ extension Trp {
             case merchantId = "MerchantId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑商户
+    @inlinable
+    public func modifyMerchant(_ input: ModifyMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMerchantResponse > {
+        self.client.execute(action: "ModifyMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑商户
+    @inlinable
+    public func modifyMerchant(_ input: ModifyMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
+        try await self.client.execute(action: "ModifyMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

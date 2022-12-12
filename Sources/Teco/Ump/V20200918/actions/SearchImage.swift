@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ump {
-    /// 以图搜图
-    @inlinable
-    public func searchImage(_ input: SearchImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchImageResponse > {
-        self.client.execute(action: "SearchImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 以图搜图
-    @inlinable
-    public func searchImage(_ input: SearchImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchImageResponse {
-        try await self.client.execute(action: "SearchImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SearchImage请求参数结构体
     public struct SearchImageRequest: TCRequestModel {
         /// 集团编码
@@ -72,5 +60,17 @@ extension Ump {
             case results = "Results"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 以图搜图
+    @inlinable
+    public func searchImage(_ input: SearchImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchImageResponse > {
+        self.client.execute(action: "SearchImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 以图搜图
+    @inlinable
+    public func searchImage(_ input: SearchImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchImageResponse {
+        try await self.client.execute(action: "SearchImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

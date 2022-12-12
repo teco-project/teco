@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 查询作品基本信息
-    @inlinable
-    public func describeCRWorkInfo(_ input: DescribeCRWorkInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCRWorkInfoResponse > {
-        self.client.execute(action: "DescribeCRWorkInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询作品基本信息
-    @inlinable
-    public func describeCRWorkInfo(_ input: DescribeCRWorkInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRWorkInfoResponse {
-        try await self.client.execute(action: "DescribeCRWorkInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCRWorkInfo请求参数结构体
     public struct DescribeCRWorkInfoRequest: TCRequestModel {
         /// 作品ID
@@ -137,5 +125,17 @@ extension Bma {
             case evidenceEndTime = "EvidenceEndTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询作品基本信息
+    @inlinable
+    public func describeCRWorkInfo(_ input: DescribeCRWorkInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCRWorkInfoResponse > {
+        self.client.execute(action: "DescribeCRWorkInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询作品基本信息
+    @inlinable
+    public func describeCRWorkInfo(_ input: DescribeCRWorkInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRWorkInfoResponse {
+        try await self.client.execute(action: "DescribeCRWorkInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

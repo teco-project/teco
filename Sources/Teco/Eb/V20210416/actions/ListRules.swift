@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 获取事件规则列表
-    @inlinable
-    public func listRules(_ input: ListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListRulesResponse > {
-        self.client.execute(action: "ListRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取事件规则列表
-    @inlinable
-    public func listRules(_ input: ListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRulesResponse {
-        try await self.client.execute(action: "ListRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListRules请求参数结构体
     public struct ListRulesRequest: TCRequestModel {
         /// 事件集ID
@@ -44,7 +32,7 @@ extension Eb {
         /// 以升序还是降序的方式返回结果，可选值 ASC（升序） 和 DESC（降序）
         public let order: String?
         
-        public init (eventBusId: String, orderBy: String?, limit: Int64?, offset: Int64?, order: String?) {
+        public init (eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil) {
             self.eventBusId = eventBusId
             self.orderBy = orderBy
             self.limit = limit
@@ -77,5 +65,17 @@ extension Eb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取事件规则列表
+    @inlinable
+    public func listRules(_ input: ListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListRulesResponse > {
+        self.client.execute(action: "ListRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取事件规则列表
+    @inlinable
+    public func listRules(_ input: ListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRulesResponse {
+        try await self.client.execute(action: "ListRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

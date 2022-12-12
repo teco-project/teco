@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 删除授权用户
-    ///
-    /// Grafana可视化服务 删除授权用户
-    @inlinable
-    public func deleteSSOAccount(_ input: DeleteSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSSOAccountResponse > {
-        self.client.execute(action: "DeleteSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除授权用户
-    ///
-    /// Grafana可视化服务 删除授权用户
-    @inlinable
-    public func deleteSSOAccount(_ input: DeleteSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSSOAccountResponse {
-        try await self.client.execute(action: "DeleteSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSSOAccount请求参数结构体
     public struct DeleteSSOAccountRequest: TCRequestModel {
         /// 实例ID
@@ -58,5 +42,21 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除授权用户
+    ///
+    /// Grafana可视化服务 删除授权用户
+    @inlinable
+    public func deleteSSOAccount(_ input: DeleteSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSSOAccountResponse > {
+        self.client.execute(action: "DeleteSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除授权用户
+    ///
+    /// Grafana可视化服务 删除授权用户
+    @inlinable
+    public func deleteSSOAccount(_ input: DeleteSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSSOAccountResponse {
+        try await self.client.execute(action: "DeleteSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

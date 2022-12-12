@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云支付-上传机构文件接口
-    @inlinable
-    public func uploadOrgFile(_ input: UploadOrgFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadOrgFileResponse > {
-        self.client.execute(action: "UploadOrgFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云支付-上传机构文件接口
-    @inlinable
-    public func uploadOrgFile(_ input: UploadOrgFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOrgFileResponse {
-        try await self.client.execute(action: "UploadOrgFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadOrgFile请求参数结构体
     public struct UploadOrgFileRequest: TCRequestModel {
         /// 收单系统分配的开放ID
@@ -50,7 +38,7 @@ extension Cpdp {
         /// 沙箱环境填sandbox，正式环境不填
         public let profile: String?
         
-        public init (openId: String, openKey: String, storage: String, fileMd5: String, fileContent: String, fileExtension: String, profile: String?) {
+        public init (openId: String, openKey: String, storage: String, fileMd5: String, fileContent: String, fileExtension: String, profile: String? = nil) {
             self.openId = openId
             self.openKey = openKey
             self.storage = storage
@@ -82,7 +70,7 @@ extension Cpdp {
         
         /// 上传机构文件响应对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: UploadFileResult
+        public let result: UploadFileResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -93,5 +81,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云支付-上传机构文件接口
+    @inlinable
+    public func uploadOrgFile(_ input: UploadOrgFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadOrgFileResponse > {
+        self.client.execute(action: "UploadOrgFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-上传机构文件接口
+    @inlinable
+    public func uploadOrgFile(_ input: UploadOrgFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOrgFileResponse {
+        try await self.client.execute(action: "UploadOrgFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

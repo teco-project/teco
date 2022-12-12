@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 切换到从可用区
-    @inlinable
-    public func switchClusterZone(_ input: SwitchClusterZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchClusterZoneResponse > {
-        self.client.execute(action: "SwitchClusterZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 切换到从可用区
-    @inlinable
-    public func switchClusterZone(_ input: SwitchClusterZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchClusterZoneResponse {
-        try await self.client.execute(action: "SwitchClusterZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SwitchClusterZone请求参数结构体
     public struct SwitchClusterZoneRequest: TCRequestModel {
         /// 集群Id
@@ -41,7 +29,7 @@ extension Cynosdb {
         /// 维护期间执行-yes,立即执行-no
         public let isInMaintainPeriod: String?
         
-        public init (clusterId: String, oldZone: String, newZone: String, isInMaintainPeriod: String?) {
+        public init (clusterId: String, oldZone: String, newZone: String, isInMaintainPeriod: String? = nil) {
             self.clusterId = clusterId
             self.oldZone = oldZone
             self.newZone = newZone
@@ -68,5 +56,17 @@ extension Cynosdb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 切换到从可用区
+    @inlinable
+    public func switchClusterZone(_ input: SwitchClusterZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchClusterZoneResponse > {
+        self.client.execute(action: "SwitchClusterZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 切换到从可用区
+    @inlinable
+    public func switchClusterZone(_ input: SwitchClusterZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchClusterZoneResponse {
+        try await self.client.execute(action: "SwitchClusterZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

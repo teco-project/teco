@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 运营商三要素核验（加密）
-    ///
-    /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性，入参支持明文、MD5和SHA256加密传输。
-    @inlinable
-    public func encryptedPhoneVerification(_ input: EncryptedPhoneVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EncryptedPhoneVerificationResponse > {
-        self.client.execute(action: "EncryptedPhoneVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运营商三要素核验（加密）
-    ///
-    /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性，入参支持明文、MD5和SHA256加密传输。
-    @inlinable
-    public func encryptedPhoneVerification(_ input: EncryptedPhoneVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EncryptedPhoneVerificationResponse {
-        try await self.client.execute(action: "EncryptedPhoneVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EncryptedPhoneVerification请求参数结构体
     public struct EncryptedPhoneVerificationRequest: TCRequestModel {
         /// 身份证号，加密方式以EncryptionMode为准
@@ -92,5 +76,21 @@ extension Faceid {
             case isp = "ISP"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运营商三要素核验（加密）
+    ///
+    /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性，入参支持明文、MD5和SHA256加密传输。
+    @inlinable
+    public func encryptedPhoneVerification(_ input: EncryptedPhoneVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EncryptedPhoneVerificationResponse > {
+        self.client.execute(action: "EncryptedPhoneVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运营商三要素核验（加密）
+    ///
+    /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性，入参支持明文、MD5和SHA256加密传输。
+    @inlinable
+    public func encryptedPhoneVerification(_ input: EncryptedPhoneVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EncryptedPhoneVerificationResponse {
+        try await self.client.execute(action: "EncryptedPhoneVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

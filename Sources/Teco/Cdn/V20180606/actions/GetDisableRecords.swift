@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 禁用历史查询
-    ///
-    /// GetDisableRecords 用于查询资源禁用历史，及 URL 当前状态。（接口尚在内测中，暂未全量开放使用）
-    @inlinable
-    public func getDisableRecords(_ input: GetDisableRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDisableRecordsResponse > {
-        self.client.execute(action: "GetDisableRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 禁用历史查询
-    ///
-    /// GetDisableRecords 用于查询资源禁用历史，及 URL 当前状态。（接口尚在内测中，暂未全量开放使用）
-    @inlinable
-    public func getDisableRecords(_ input: GetDisableRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDisableRecordsResponse {
-        try await self.client.execute(action: "GetDisableRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDisableRecords请求参数结构体
     public struct GetDisableRecordsRequest: TCRequestModel {
         /// 指定 URL 查询
@@ -58,7 +42,7 @@ extension Cdn {
         /// 任务ID，任务ID和起始时间需要至少填写一项。
         public let taskId: String?
         
-        public init (url: String?, startTime: Date?, endTime: Date?, status: String?, offset: Int64?, limit: Int64?, taskId: String?) {
+        public init (url: String? = nil, startTime: Date? = nil, endTime: Date? = nil, status: String? = nil, offset: Int64? = nil, limit: Int64? = nil, taskId: String? = nil) {
             self.url = url
             self.startTime = startTime
             self.endTime = endTime
@@ -97,5 +81,21 @@ extension Cdn {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 禁用历史查询
+    ///
+    /// GetDisableRecords 用于查询资源禁用历史，及 URL 当前状态。（接口尚在内测中，暂未全量开放使用）
+    @inlinable
+    public func getDisableRecords(_ input: GetDisableRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDisableRecordsResponse > {
+        self.client.execute(action: "GetDisableRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用历史查询
+    ///
+    /// GetDisableRecords 用于查询资源禁用历史，及 URL 当前状态。（接口尚在内测中，暂未全量开放使用）
+    @inlinable
+    public func getDisableRecords(_ input: GetDisableRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDisableRecordsResponse {
+        try await self.client.execute(action: "GetDisableRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

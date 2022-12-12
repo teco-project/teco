@@ -784,7 +784,7 @@ extension Cpdp {
         /// 营业证件失效日期，yyyy-MM-dd
         public let businessLicenseExpireDate: String?
         
-        public init (businessLicenseType: String, businessLicenseNumber: String, businessLicenseValidityType: String, businessLicenseEffectiveDate: String, businessLicenseExpireDate: String?) {
+        public init (businessLicenseType: String, businessLicenseNumber: String, businessLicenseValidityType: String, businessLicenseEffectiveDate: String, businessLicenseExpireDate: String? = nil) {
             self.businessLicenseType = businessLicenseType
             self.businessLicenseNumber = businessLicenseNumber
             self.businessLicenseValidityType = businessLicenseValidityType
@@ -994,7 +994,7 @@ extension Cpdp {
         /// Android平台PackageName
         public let packageName: String?
         
-        public init (clientType: String?, appName: String?, appUrl: String?, bundleId: String?, packageName: String?) {
+        public init (clientType: String? = nil, appName: String? = nil, appUrl: String? = nil, bundleId: String? = nil, packageName: String? = nil) {
             self.clientType = clientType
             self.appName = appName
             self.appUrl = appUrl
@@ -1083,7 +1083,7 @@ extension Cpdp {
         /// 优惠商品名称。
         public let externalPromptName: String?
         
-        public init (externalPromptType: String, externalPromptValue: String, externalPromptName: String?) {
+        public init (externalPromptType: String, externalPromptValue: String, externalPromptName: String? = nil) {
             self.externalPromptType = externalPromptType
             self.externalPromptValue = externalPromptValue
             self.externalPromptName = externalPromptName
@@ -1104,7 +1104,7 @@ extension Cpdp {
         /// 渠道方用户ID
         public let externalUserId: String?
         
-        public init (externalUserType: String?, externalUserId: String?) {
+        public init (externalUserType: String? = nil, externalUserId: String? = nil) {
             self.externalUserType = externalUserType
             self.externalUserId = externalUserId
         }
@@ -1129,7 +1129,7 @@ extension Cpdp {
         /// 不指定时默认为28800，表示北京时间（东八区）。
         public let timeOffset: Int64?
         
-        public init (startTimestamp: Int64?, expireTimestamp: Int64?, timeOffset: Int64?) {
+        public init (startTimestamp: Int64? = nil, expireTimestamp: Int64? = nil, timeOffset: Int64? = nil) {
             self.startTimestamp = startTimestamp
             self.expireTimestamp = expireTimestamp
             self.timeOffset = timeOffset
@@ -1215,7 +1215,7 @@ extension Cpdp {
         
         /// 结算信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let settleInfo: CloudSettleInfo
+        public let settleInfo: CloudSettleInfo?
         
         /// 附加项信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1302,7 +1302,7 @@ extension Cpdp {
         /// 1: 指定分账
         public let profitSharing: Int64?
         
-        public init (needToBeConfirmed: Int64?, profitSharing: Int64?) {
+        public init (needToBeConfirmed: Int64? = nil, profitSharing: Int64? = nil) {
             self.needToBeConfirmed = needToBeConfirmed
             self.profitSharing = profitSharing
         }
@@ -1331,7 +1331,7 @@ extension Cpdp {
         /// wechat_ecommerce渠道 - h5支付方式，此字段必填。
         public let storeDeviceId: String?
         
-        public init (storeId: String?, storeName: String?, storeAddress: String?, storeAreaCode: String?, storeDeviceId: String?) {
+        public init (storeId: String? = nil, storeName: String? = nil, storeAddress: String? = nil, storeAreaCode: String? = nil, storeDeviceId: String? = nil) {
             self.storeId = storeId
             self.storeName = storeName
             self.storeAddress = storeAddress
@@ -1391,7 +1391,7 @@ extension Cpdp {
         
         /// 结算信息。
         /// 例如是否需要分账、是否需要支付确认等。
-        public let settleInfo: CloudSettleInfo
+        public let settleInfo: CloudSettleInfo?
         
         /// 附加项信息列表。
         /// 例如溢价信息、抵扣信息、积分信息、补贴信息
@@ -1401,7 +1401,7 @@ extension Cpdp {
         /// 渠道透传数据列表。
         public let externalAttachmentDataList: [CloudExternalAttachmentData]?
         
-        public init (subOutTradeNo: String, subAppId: String, productName: String, productDetail: String, platformIncome: Int64, subMchIncome: Int64, metadata: String, amt: Int64, originalAmt: Int64, wxSubMchId: String?, settleInfo: CloudSettleInfo, attachmentInfoList: [CloudAttachmentInfo]?, externalAttachmentDataList: [CloudExternalAttachmentData]?) {
+        public init (subOutTradeNo: String, subAppId: String, productName: String, productDetail: String, platformIncome: Int64, subMchIncome: Int64, metadata: String, amt: Int64, originalAmt: Int64, wxSubMchId: String? = nil, settleInfo: CloudSettleInfo? = nil, attachmentInfoList: [CloudAttachmentInfo]? = nil, externalAttachmentDataList: [CloudExternalAttachmentData]? = nil) {
             self.subOutTradeNo = subOutTradeNo
             self.subAppId = subAppId
             self.productName = productName
@@ -1499,14 +1499,14 @@ extension Cpdp {
         
         /// 结算信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let settleInfo: CloudSettleInfo
+        public let settleInfo: CloudSettleInfo?
         
         /// 透传字段，由开发者在调用米大师下单接口的时候下发
         public let metadata: String
         
         /// 附加项信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let attachmentInfoList: CloudAttachmentInfo
+        public let attachmentInfoList: CloudAttachmentInfo?
         
         /// 渠道方应答的订单号，透传处理
         public let channelExternalSubOrderId: String
@@ -1704,7 +1704,7 @@ extension Cpdp {
         /// 发货标识，由业务在调用聚鑫下单接口的 时候下发
         public let metadata: String?
         
-        public init (subMchIncome: Int64, platformIncome: Int64, productDetail: String, productName: String, subAppId: String, subOutTradeNo: String, amt: Int64, originalAmt: Int64, metadata: String?) {
+        public init (subMchIncome: Int64, platformIncome: Int64, productDetail: String, productName: String, subAppId: String, subOutTradeNo: String, amt: Int64, originalAmt: Int64, metadata: String? = nil) {
             self.subMchIncome = subMchIncome
             self.platformIncome = platformIncome
             self.productDetail = productDetail
@@ -1837,7 +1837,7 @@ extension Cpdp {
         /// 调用方从第三方渠道查询到的签约数据，由各个渠道定义
         public let externalReturnContractData: String?
         
-        public init (externalReturnContractInfo: ExternalReturnContractInfo, externalContractUserInfo: [ExternalContractUserInfo], contractMethod: String?, contractSceneId: String?, externalReturnContractData: String?) {
+        public init (externalReturnContractInfo: ExternalReturnContractInfo, externalContractUserInfo: [ExternalContractUserInfo], contractMethod: String? = nil, contractSceneId: String? = nil, externalReturnContractData: String? = nil) {
             self.externalReturnContractInfo = externalReturnContractInfo
             self.externalContractUserInfo = externalContractUserInfo
             self.contractMethod = contractMethod
@@ -1953,7 +1953,7 @@ extension Cpdp {
         /// 子单请求预留字段
         public let reqReserved: String?
         
-        public init (transferAmount: Int64, orderId: String, anchorId: String?, uid: String?, anchorName: String?, remark: String?, reqReserved: String?) {
+        public init (transferAmount: Int64, orderId: String, anchorId: String? = nil, uid: String? = nil, anchorName: String? = nil, remark: String? = nil, reqReserved: String? = nil) {
             self.transferAmount = transferAmount
             self.orderId = orderId
             self.anchorId = anchorId
@@ -2071,7 +2071,7 @@ extension Cpdp {
         /// 增值税特殊管理。PreferentialPolicyFlag字段为1时，必填。目前仅支持5%(3%，2%，1.5%)简易征税、免税、不征税。
         public let vatSpecialManagement: String?
         
-        public init (name: String, taxCode: String, totalPrice: Int64, taxRate: Int64, taxAmount: Int64, taxType: String?, models: String?, unit: String?, total: String?, price: String?, discount: Int64?, preferentialPolicyFlag: String?, zeroTaxFlag: String?, vatSpecialManagement: String?) {
+        public init (name: String, taxCode: String, totalPrice: Int64, taxRate: Int64, taxAmount: Int64, taxType: String? = nil, models: String? = nil, unit: String? = nil, total: String? = nil, price: String? = nil, discount: Int64? = nil, preferentialPolicyFlag: String? = nil, zeroTaxFlag: String? = nil, vatSpecialManagement: String? = nil) {
             self.name = name
             self.taxCode = taxCode
             self.totalPrice = totalPrice
@@ -2116,7 +2116,7 @@ extension Cpdp {
         
         /// 数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: CreateInvoiceResultData
+        public let data: CreateInvoiceResultData?
         
         enum CodingKeys: String, CodingKey {
             case message = "Message"
@@ -2163,7 +2163,7 @@ extension Cpdp {
         
         /// 创建商户结果数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: CreateMerchantResultData
+        public let data: CreateMerchantResultData?
         
         enum CodingKeys: String, CodingKey {
             case code = "Code"
@@ -2271,7 +2271,7 @@ extension Cpdp {
         /// 跳转参数
         /// 渠道为TENPAY，付款方式为EBANK_PAYMENT时必选。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let redirectInfo: OpenBankRedirectInfo
+        public let redirectInfo: OpenBankRedirectInfo?
         
         /// 外部商户订单号，只能是数字、大小写字母，且在同一个接入平台下唯一。
         public let outOrderId: String
@@ -2305,7 +2305,7 @@ extension Cpdp {
         
         /// 跳转参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let redirectInfo: OpenBankRechargeRedirectInfo
+        public let redirectInfo: OpenBankRechargeRedirectInfo?
         
         /// 外部商户订单号，只能是数字、大小写字母，且在同一个接入平台下唯一。
         public let outOrderId: String
@@ -2368,7 +2368,7 @@ extension Cpdp {
         /// 跳转参数
         /// 渠道为TENPAY，付款方式为EBANK_PAYMENT时必选。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let redirectInfo: OpenBankOrderRedirectInfo
+        public let redirectInfo: OpenBankOrderRedirectInfo?
         
         /// 外部商户订单号，只能是数字、大小写字母，且在同一个接入平台下唯一。
         public let outOrderId: String
@@ -2439,7 +2439,7 @@ extension Cpdp {
         /// 门店编号
         public let storeNo: String?
         
-        public init (orderId: String, callbackUrl: String?, orderSn: String?, redSerialNo: String?, storeNo: String?) {
+        public init (orderId: String, callbackUrl: String? = nil, orderSn: String? = nil, redSerialNo: String? = nil, storeNo: String? = nil) {
             self.orderId = orderId
             self.callbackUrl = callbackUrl
             self.orderSn = orderSn
@@ -2682,15 +2682,15 @@ extension Cpdp {
     public struct ExternalReturnContractInfo: TCInputModel, TCOutputModel {
         /// 第三方渠道协议id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let externalReturnAgreementId: String
+        public let externalReturnAgreementId: String?
         
         /// 第三方渠道协议生效时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let externalReturnContractEffectiveTimestamp: String
+        public let externalReturnContractEffectiveTimestamp: String?
         
         /// 第三方渠道协议解约时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let externalReturnContractTerminationTimestamp: String
+        public let externalReturnContractTerminationTimestamp: String?
         
         /// 平台合约状态
         /// 协议状态，枚举值：
@@ -2698,23 +2698,23 @@ extension Cpdp {
         /// CONTRACT_STATUS_TERMINATED：未签约
         /// CONTRACT_STATUS_PENDING：签约进行中
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let externalReturnContractStatus: String
+        public let externalReturnContractStatus: String?
         
         /// 第三方渠道请求序列号
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let externalReturnRequestId: String
+        public let externalReturnRequestId: String?
         
         /// 第三方渠道协议签署时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let externalReturnContractSignedTimestamp: String
+        public let externalReturnContractSignedTimestamp: String?
         
         /// 第三方渠道协议到期时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let externalReturnContractExpiredTimestamp: String
+        public let externalReturnContractExpiredTimestamp: String?
         
         /// 第三方渠道返回的合约数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let externalReturnContractData: String
+        public let externalReturnContractData: String?
         
         /// 第三方渠道解约备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2724,7 +2724,7 @@ extension Cpdp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalReturnContractTerminationMode: String?
         
-        public init (externalReturnAgreementId: String, externalReturnContractEffectiveTimestamp: String, externalReturnContractTerminationTimestamp: String, externalReturnContractStatus: String, externalReturnRequestId: String, externalReturnContractSignedTimestamp: String, externalReturnContractExpiredTimestamp: String, externalReturnContractData: String, externalReturnContractTerminationRemark: String?, externalReturnContractTerminationMode: String?) {
+        public init (externalReturnAgreementId: String, externalReturnContractEffectiveTimestamp: String, externalReturnContractTerminationTimestamp: String, externalReturnContractStatus: String, externalReturnRequestId: String, externalReturnContractSignedTimestamp: String, externalReturnContractExpiredTimestamp: String, externalReturnContractData: String, externalReturnContractTerminationRemark: String? = nil, externalReturnContractTerminationMode: String? = nil) {
             self.externalReturnAgreementId = externalReturnAgreementId
             self.externalReturnContractEffectiveTimestamp = externalReturnContractEffectiveTimestamp
             self.externalReturnContractTerminationTimestamp = externalReturnContractTerminationTimestamp
@@ -2778,7 +2778,7 @@ extension Cpdp {
         /// 最高收费金额，单位（分）
         public let maxFee: UInt64?
         
-        public init (cardType: String, rangeStartValue: UInt64, rangeEndValue: UInt64, rangeFeeMode: String, feeValue: UInt64, minFee: UInt64?, maxFee: UInt64?) {
+        public init (cardType: String, rangeStartValue: UInt64, rangeEndValue: UInt64, rangeFeeMode: String, feeValue: UInt64, minFee: UInt64? = nil, maxFee: UInt64? = nil) {
             self.cardType = cardType
             self.rangeStartValue = rangeStartValue
             self.rangeEndValue = rangeEndValue
@@ -2853,7 +2853,7 @@ extension Cpdp {
         /// 资金账户名称
         public let fundingAccountName: String?
         
-        public init (fundingAccountNo: String?, fundingAccountType: String?, fundingAccountBindSerialNo: String?, fundingAccountName: String?) {
+        public init (fundingAccountNo: String? = nil, fundingAccountType: String? = nil, fundingAccountBindSerialNo: String? = nil, fundingAccountName: String? = nil) {
             self.fundingAccountNo = fundingAccountNo
             self.fundingAccountType = fundingAccountType
             self.fundingAccountBindSerialNo = fundingAccountBindSerialNo
@@ -3060,7 +3060,7 @@ extension Cpdp {
         /// 邮箱地址
         public let emailAddress: String?
         
-        public init (idType: String, idNumber: String, personName: String, idValidityType: String, idEffectiveDate: String, contactPhone: String, idExpireDate: String?, contactAddress: String?, emailAddress: String?) {
+        public init (idType: String, idNumber: String, personName: String, idValidityType: String, idEffectiveDate: String, contactPhone: String, idExpireDate: String? = nil, contactAddress: String? = nil, emailAddress: String? = nil) {
             self.idType = idType
             self.idNumber = idNumber
             self.personName = personName
@@ -3164,7 +3164,7 @@ extension Cpdp {
         /// 父级编号（0为一级编号，大于0为父级分类编号）
         public let parent: String?
         
-        public init (code: String?, name: String?, parent: String?) {
+        public init (code: String? = nil, name: String? = nil, parent: String? = nil) {
             self.code = code
             self.name = name
             self.parent = parent
@@ -3291,7 +3291,7 @@ extension Cpdp {
         /// 备注
         public let remark: String?
         
-        public init (merchantNo: String, amount: String, remark: String?) {
+        public init (merchantNo: String, amount: String, remark: String? = nil) {
             self.merchantNo = merchantNo
             self.amount = amount
             self.remark = remark
@@ -3389,7 +3389,7 @@ extension Cpdp {
         /// 邮箱地址
         public let emailAddress: String?
         
-        public init (personType: String, idType: String, idNumber: String, personName: String, idValidityType: String, idEffectiveDate: String, idExpireDate: String, contactPhone: String?, contactAddress: String?, emailAddress: String?) {
+        public init (personType: String, idType: String, idNumber: String, personName: String, idValidityType: String, idEffectiveDate: String, idExpireDate: String, contactPhone: String? = nil, contactAddress: String? = nil, emailAddress: String? = nil) {
             self.personType = personType
             self.idType = idType
             self.idNumber = idNumber
@@ -3533,7 +3533,7 @@ extension Cpdp {
         /// 账单人手机号
         public let phone: String?
         
-        public init (firstName: String?, lastName: String?, addressOne: String?, addressTwo: String?, city: String?, state: String?, country: String?, zipCode: String?, phone: String?) {
+        public init (firstName: String? = nil, lastName: String? = nil, addressOne: String? = nil, addressTwo: String? = nil, city: String? = nil, state: String? = nil, country: String? = nil, zipCode: String? = nil, phone: String? = nil) {
             self.firstName = firstName
             self.lastName = lastName
             self.addressOne = addressOne
@@ -3603,7 +3603,7 @@ extension Cpdp {
         /// 商品链接url
         public let productUrl: String?
         
-        public init (goodsName: String?, goodsDetail: String?, goodsDescription: String?, goodsBizType: String?, sku: String?, price: String?, quantity: String?, productImage: String?, productUrl: String?) {
+        public init (goodsName: String? = nil, goodsDetail: String? = nil, goodsDescription: String? = nil, goodsBizType: String? = nil, sku: String? = nil, price: String? = nil, quantity: String? = nil, productImage: String? = nil, productUrl: String? = nil) {
             self.goodsName = goodsName
             self.goodsDetail = goodsDetail
             self.goodsDescription = goodsDescription
@@ -3660,7 +3660,7 @@ extension Cpdp {
         
         /// 网银支付提交页面信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let formInfo: OpenBankFormInfo
+        public let formInfo: OpenBankFormInfo?
         
         enum CodingKeys: String, CodingKey {
             case qrCodeUrl = "QRCodeUrl"
@@ -3729,7 +3729,7 @@ extension Cpdp {
         /// 付款方式为SAFT_ISV时，必填。
         public let accountType: String?
         
-        public init (payeeId: String?, bankBranchName: String?, bankAccountNumber: String?, payeeName: String?, bankBranchId: String?, bindSerialNo: String?, accountType: String?) {
+        public init (payeeId: String? = nil, bankBranchName: String? = nil, bankAccountNumber: String? = nil, payeeName: String? = nil, bankBranchId: String? = nil, bindSerialNo: String? = nil, accountType: String? = nil) {
             self.payeeId = payeeId
             self.bankBranchName = bankBranchName
             self.bankAccountNumber = bankAccountNumber
@@ -3774,7 +3774,7 @@ extension Cpdp {
         /// CREDIT_CARD：信用卡
         public let bankCardType: String?
         
-        public init (payerId: String?, payerName: String?, bindSerialNo: String?, accountType: String?, bankCardType: String?) {
+        public init (payerId: String? = nil, payerName: String? = nil, bindSerialNo: String? = nil, accountType: String? = nil, bankCardType: String? = nil) {
             self.payerId = payerId
             self.payerName = payerName
             self.bindSerialNo = bindSerialNo
@@ -3799,7 +3799,7 @@ extension Cpdp {
         /// 分润金额，单位分
         public let profitShareFee: Int64?
         
-        public init (recvId: String?, profitShareFee: Int64?) {
+        public init (recvId: String? = nil, profitShareFee: Int64? = nil) {
             self.recvId = recvId
             self.profitShareFee = profitShareFee
         }
@@ -3892,7 +3892,7 @@ extension Cpdp {
         /// 关联附件。上传的文件ID
         public let fid: String?
         
-        public init (accountName: String, bankName: String, currency: String, nature: String, country: String, depositCountry: String, expireDate: String, flag: String, bankAddress: String?, address: String?, isOSA: String?, province: String?, city: String?, legalIdNo: String?, telephone: String?, bicCode: String?, swiftCode: String?, cnaps: String?, transferBankNo: String?, fid: String?) {
+        public init (accountName: String, bankName: String, currency: String, nature: String, country: String, depositCountry: String, expireDate: String, flag: String, bankAddress: String? = nil, address: String? = nil, isOSA: String? = nil, province: String? = nil, city: String? = nil, legalIdNo: String? = nil, telephone: String? = nil, bicCode: String? = nil, swiftCode: String? = nil, cnaps: String? = nil, transferBankNo: String? = nil, fid: String? = nil) {
             self.accountName = accountName
             self.bankName = bankName
             self.currency = currency
@@ -4048,7 +4048,7 @@ extension Cpdp {
         /// 收款方名称
         public let payeeName: String?
         
-        public init (payeeId: String, payeeIdType: String, payeeName: String?) {
+        public init (payeeId: String, payeeIdType: String, payeeName: String? = nil) {
             self.payeeId = payeeId
             self.payeeIdType = payeeIdType
             self.payeeName = payeeName
@@ -4098,7 +4098,7 @@ extension Cpdp {
         
         /// 网银支付提交页面信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let formInfo: OpenBankFormInfo
+        public let formInfo: OpenBankFormInfo?
         
         enum CodingKeys: String, CodingKey {
             case qrCodeUrl = "QRCodeUrl"
@@ -4176,7 +4176,7 @@ extension Cpdp {
         /// 汇付渠道必填。
         public let deviceType: String?
         
-        public init (payerClientIp: String?, payerUa: String?, orderTime: String?, deviceId: String?, deviceType: String?) {
+        public init (payerClientIp: String? = nil, payerUa: String? = nil, orderTime: String? = nil, deviceId: String? = nil, deviceType: String? = nil) {
             self.payerClientIp = payerClientIp
             self.payerUa = payerUa
             self.orderTime = orderTime
@@ -4205,7 +4205,7 @@ extension Cpdp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refundRule: String?
         
-        public init (unfreezeRule: String?, refundRule: String?) {
+        public init (unfreezeRule: String? = nil, refundRule: String? = nil) {
             self.unfreezeRule = unfreezeRule
             self.refundRule = refundRule
         }
@@ -4246,7 +4246,7 @@ extension Cpdp {
         /// 收货联系电话
         public let phone: String?
         
-        public init (firstName: String?, lastName: String?, addressOne: String?, addressTwo: String?, city: String?, state: String?, country: String?, zipCode: String?, phone: String?) {
+        public init (firstName: String? = nil, lastName: String? = nil, addressOne: String? = nil, addressTwo: String? = nil, city: String? = nil, state: String? = nil, country: String? = nil, zipCode: String? = nil, phone: String? = nil) {
             self.firstName = firstName
             self.lastName = lastName
             self.addressOne = addressOne
@@ -4285,7 +4285,7 @@ extension Cpdp {
         /// 门店编号
         public let id: String?
         
-        public init (name: String, areaCode: String, address: String, id: String?) {
+        public init (name: String, areaCode: String, address: String, id: String? = nil) {
             self.name = name
             self.areaCode = areaCode
             self.address = address
@@ -4481,7 +4481,7 @@ extension Cpdp {
         /// <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         public let legalPersonIdCode: String?
         
-        public init (organizationName: String?, organizationType: String?, organizationCode: String?, legalPersonName: String?, legalPersonIdType: String?, legalPersonIdCode: String?) {
+        public init (organizationName: String? = nil, organizationType: String? = nil, organizationCode: String? = nil, legalPersonName: String? = nil, legalPersonIdType: String? = nil, legalPersonIdCode: String? = nil) {
             self.organizationName = organizationName
             self.organizationType = organizationType
             self.organizationCode = organizationCode
@@ -4525,7 +4525,7 @@ extension Cpdp {
         /// 邮箱地址
         public let emailAddress: String?
         
-        public init (regionCode: String?, registerAddress: String?, mailingAddress: String?, businessAddress: String?, servicePhone: String?, webSiteUrl: String?, emailAddress: String?) {
+        public init (regionCode: String? = nil, registerAddress: String? = nil, mailingAddress: String? = nil, businessAddress: String? = nil, servicePhone: String? = nil, webSiteUrl: String? = nil, emailAddress: String? = nil) {
             self.regionCode = regionCode
             self.registerAddress = registerAddress
             self.mailingAddress = mailingAddress
@@ -4912,11 +4912,11 @@ extension Cpdp {
         
         /// 用户信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let userInfo: PayeeAccountUserInfo
+        public let userInfo: PayeeAccountUserInfo?
         
         /// 属性信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let propertyInfo: PayeeAccountPropertyInfo
+        public let propertyInfo: PayeeAccountPropertyInfo?
         
         enum CodingKeys: String, CodingKey {
             case accountId = "AccountId"
@@ -4958,7 +4958,7 @@ extension Cpdp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let paymentRightStatus: String?
         
-        public init (settleRightStatus: String?, paymentRightStatus: String?) {
+        public init (settleRightStatus: String? = nil, paymentRightStatus: String? = nil) {
             self.settleRightStatus = settleRightStatus
             self.paymentRightStatus = paymentRightStatus
         }
@@ -5398,7 +5398,7 @@ extension Cpdp {
     public struct QueryContractPayFeeResult: TCOutputModel {
         /// pay支付方式json数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pay: PayDataResult
+        public let pay: PayDataResult?
         
         /// 合同扩展自定义字段
         public let extraInput: [String]?
@@ -5698,11 +5698,11 @@ extension Cpdp {
         
         /// 查询发票数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: QueryInvoiceResultData
+        public let data: QueryInvoiceResultData?
         
         /// 订单数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let order: Order
+        public let order: Order?
         
         enum CodingKeys: String, CodingKey {
             case message = "Message"
@@ -6297,7 +6297,7 @@ extension Cpdp {
         /// 重定向参数，用于客户端跳转，订单未支付时返回该参数
         /// 渠道为TENPAY，付款方式为EBANK_PAYMENT时返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let redirectInfo: OpenBankRedirectInfo
+        public let redirectInfo: OpenBankRedirectInfo?
         
         /// 第三方渠道返回信息，见渠道特殊说明,详情见附录-复杂类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -6305,7 +6305,7 @@ extension Cpdp {
         
         /// 银行复核指引。当TENPAY下OPENBANT_PAYMENT时，下单受理成功是返回。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let bankApprovalGuideInfo: OpenBankApprovalGuideInfo
+        public let bankApprovalGuideInfo: OpenBankApprovalGuideInfo?
         
         /// 手续费金额
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -7514,7 +7514,7 @@ extension Cpdp {
         
         /// 返回的合约信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let returnContractInfo: ReturnContractInfo
+        public let returnContractInfo: ReturnContractInfo?
         
         /// 签约通知地址
         public let notifyUrl: String
@@ -7629,7 +7629,7 @@ extension Cpdp {
         /// HELIPAY渠道必传
         public let settlePeriod: String?
         
-        public init (settleAccountType: String?, settleAccountNumber: String?, settleAccountName: String?, bankBranchId: String?, bankBranchName: String?, settleMode: String?, settlePeriod: String?) {
+        public init (settleAccountType: String? = nil, settleAccountNumber: String? = nil, settleAccountName: String? = nil, bankBranchId: String? = nil, bankBranchName: String? = nil, settleMode: String? = nil, settlePeriod: String? = nil) {
             self.settleAccountType = settleAccountType
             self.settleAccountNumber = settleAccountNumber
             self.settleAccountName = settleAccountName
@@ -9011,7 +9011,7 @@ extension Cpdp {
         /// 扩展字段
         public let extendFieldData: String?
         
-        public init (withdrawOrderId: String, date: Date, payAmt: String, inSubAppId: String, outSubAppId: String, currencyType: String, metaData: String?, extendFieldData: String?) {
+        public init (withdrawOrderId: String, date: Date, payAmt: String, inSubAppId: String, outSubAppId: String, currencyType: String, metaData: String? = nil, extendFieldData: String? = nil) {
             self.withdrawOrderId = withdrawOrderId
             self.date = date
             self.payAmt = payAmt

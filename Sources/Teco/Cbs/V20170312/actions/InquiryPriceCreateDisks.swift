@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 创建云硬盘询价
-    ///
-    /// 本接口（InquiryPriceCreateDisks）用于创建云硬盘询价。
-    /// * 支持查询创建多块云硬盘的价格，此时返回结果为总价格。
-    @inlinable
-    public func inquiryPriceCreateDisks(_ input: InquiryPriceCreateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateDisksResponse > {
-        self.client.execute(action: "InquiryPriceCreateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建云硬盘询价
-    ///
-    /// 本接口（InquiryPriceCreateDisks）用于创建云硬盘询价。
-    /// * 支持查询创建多块云硬盘的价格，此时返回结果为总价格。
-    @inlinable
-    public func inquiryPriceCreateDisks(_ input: InquiryPriceCreateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDisksResponse {
-        try await self.client.execute(action: "InquiryPriceCreateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceCreateDisks请求参数结构体
     public struct InquiryPriceCreateDisksRequest: TCRequestModel {
         /// 云硬盘计费类型。<br><li>PREPAID：预付费，即包年包月<br><li>POSTPAID_BY_HOUR：按小时后付费
@@ -54,12 +36,12 @@ extension Cbs {
         public let throughputPerformance: UInt64?
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数指定包年包月云盘的购买时长、是否设置自动续费等属性。<br>创建预付费云盘该参数必传，创建按小时后付费云盘无需传该参数。
-        public let diskChargePrepaid: DiskChargePrepaid
+        public let diskChargePrepaid: DiskChargePrepaid?
         
         /// 指定云硬盘备份点配额。
         public let diskBackupQuota: UInt64?
         
-        public init (diskChargeType: String, diskType: String, diskSize: UInt64, projectId: UInt64?, diskCount: UInt64?, throughputPerformance: UInt64?, diskChargePrepaid: DiskChargePrepaid, diskBackupQuota: UInt64?) {
+        public init (diskChargeType: String, diskType: String, diskSize: UInt64, projectId: UInt64? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, diskBackupQuota: UInt64? = nil) {
             self.diskChargeType = diskChargeType
             self.diskType = diskType
             self.diskSize = diskSize
@@ -94,5 +76,23 @@ extension Cbs {
             case diskPrice = "DiskPrice"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建云硬盘询价
+    ///
+    /// 本接口（InquiryPriceCreateDisks）用于创建云硬盘询价。
+    /// * 支持查询创建多块云硬盘的价格，此时返回结果为总价格。
+    @inlinable
+    public func inquiryPriceCreateDisks(_ input: InquiryPriceCreateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateDisksResponse > {
+        self.client.execute(action: "InquiryPriceCreateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云硬盘询价
+    ///
+    /// 本接口（InquiryPriceCreateDisks）用于创建云硬盘询价。
+    /// * 支持查询创建多块云硬盘的价格，此时返回结果为总价格。
+    @inlinable
+    public func inquiryPriceCreateDisks(_ input: InquiryPriceCreateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDisksResponse {
+        try await self.client.execute(action: "InquiryPriceCreateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

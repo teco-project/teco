@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 删除 Ingress 规则
-    @inlinable
-    public func deleteIngress(_ input: DeleteIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIngressResponse > {
-        self.client.execute(action: "DeleteIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除 Ingress 规则
-    @inlinable
-    public func deleteIngress(_ input: DeleteIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIngressResponse {
-        try await self.client.execute(action: "DeleteIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteIngress请求参数结构体
     public struct DeleteIngressRequest: TCRequestModel {
         /// tem NamespaceId
@@ -41,7 +29,7 @@ extension Tem {
         /// 来源渠道
         public let sourceChannel: Int64?
         
-        public init (namespaceId: String, eksNamespace: String, name: String, sourceChannel: Int64?) {
+        public init (namespaceId: String, eksNamespace: String, name: String, sourceChannel: Int64? = nil) {
             self.namespaceId = namespaceId
             self.eksNamespace = eksNamespace
             self.name = name
@@ -68,5 +56,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除 Ingress 规则
+    @inlinable
+    public func deleteIngress(_ input: DeleteIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIngressResponse > {
+        self.client.execute(action: "DeleteIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除 Ingress 规则
+    @inlinable
+    public func deleteIngress(_ input: DeleteIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIngressResponse {
+        try await self.client.execute(action: "DeleteIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

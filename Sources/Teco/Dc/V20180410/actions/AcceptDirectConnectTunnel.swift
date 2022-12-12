@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 接受专用通道申请
-    @inlinable
-    public func acceptDirectConnectTunnel(_ input: AcceptDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcceptDirectConnectTunnelResponse > {
-        self.client.execute(action: "AcceptDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 接受专用通道申请
-    @inlinable
-    public func acceptDirectConnectTunnel(_ input: AcceptDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptDirectConnectTunnelResponse {
-        try await self.client.execute(action: "AcceptDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AcceptDirectConnectTunnel请求参数结构体
     public struct AcceptDirectConnectTunnelRequest: TCRequestModel {
         /// 物理专线拥有者接受共享专用通道申请
@@ -49,5 +37,17 @@ extension Dc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 接受专用通道申请
+    @inlinable
+    public func acceptDirectConnectTunnel(_ input: AcceptDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AcceptDirectConnectTunnelResponse > {
+        self.client.execute(action: "AcceptDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 接受专用通道申请
+    @inlinable
+    public func acceptDirectConnectTunnel(_ input: AcceptDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptDirectConnectTunnelResponse {
+        try await self.client.execute(action: "AcceptDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

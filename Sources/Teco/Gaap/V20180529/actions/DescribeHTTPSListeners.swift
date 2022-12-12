@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 查询HTTPS监听器信息
-    ///
-    /// 本接口（DescribeHTTPSListeners）用来查询HTTPS监听器信息。
-    @inlinable
-    public func describeHTTPSListeners(_ input: DescribeHTTPSListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHTTPSListenersResponse > {
-        self.client.execute(action: "DescribeHTTPSListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询HTTPS监听器信息
-    ///
-    /// 本接口（DescribeHTTPSListeners）用来查询HTTPS监听器信息。
-    @inlinable
-    public func describeHTTPSListeners(_ input: DescribeHTTPSListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHTTPSListenersResponse {
-        try await self.client.execute(action: "DescribeHTTPSListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHTTPSListeners请求参数结构体
     public struct DescribeHTTPSListenersRequest: TCRequestModel {
         /// 过滤条件，通道ID
@@ -64,7 +48,7 @@ extension Gaap {
         /// 该功能的启停无法在监听器创建完毕后再修改。
         public let http3Supported: Int64?
         
-        public init (proxyId: String?, listenerId: String?, listenerName: String?, port: UInt64?, offset: UInt64?, limit: UInt64?, searchValue: String?, groupId: String?, http3Supported: Int64?) {
+        public init (proxyId: String? = nil, listenerId: String? = nil, listenerName: String? = nil, port: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchValue: String? = nil, groupId: String? = nil, http3Supported: Int64? = nil) {
             self.proxyId = proxyId
             self.listenerId = listenerId
             self.listenerName = listenerName
@@ -105,5 +89,21 @@ extension Gaap {
             case listenerSet = "ListenerSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询HTTPS监听器信息
+    ///
+    /// 本接口（DescribeHTTPSListeners）用来查询HTTPS监听器信息。
+    @inlinable
+    public func describeHTTPSListeners(_ input: DescribeHTTPSListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHTTPSListenersResponse > {
+        self.client.execute(action: "DescribeHTTPSListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询HTTPS监听器信息
+    ///
+    /// 本接口（DescribeHTTPSListeners）用来查询HTTPS监听器信息。
+    @inlinable
+    public func describeHTTPSListeners(_ input: DescribeHTTPSListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHTTPSListenersResponse {
+        try await self.client.execute(action: "DescribeHTTPSListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

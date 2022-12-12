@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取设备列表
-    ///
-    /// 本接口(DescribeDevicesList) 用于获取设备列表，支持模糊搜索
-    @inlinable
-    public func describeDeviceList(_ input: DescribeDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceListResponse > {
-        self.client.execute(action: "DescribeDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备列表
-    ///
-    /// 本接口(DescribeDevicesList) 用于获取设备列表，支持模糊搜索
-    @inlinable
-    public func describeDeviceList(_ input: DescribeDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceListResponse {
-        try await self.client.execute(action: "DescribeDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceList请求参数结构体
     public struct DescribeDeviceListRequest: TCRequestModel {
         /// 偏移量，默认0
@@ -45,7 +29,7 @@ extension Iotvideoindustry {
         /// 设备类型，1：国标VMS设备(公有云不支持此类型)，2：国标IPC设备，3：国标NVR设备，9：智能告警设备(公有云不支持此类型)
         public let deviceTypes: [Int64]?
         
-        public init (offset: Int64?, limit: Int64?, nickName: String?, deviceTypes: [Int64]?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, nickName: String? = nil, deviceTypes: [Int64]? = nil) {
             self.offset = offset
             self.limit = limit
             self.nickName = nickName
@@ -78,5 +62,21 @@ extension Iotvideoindustry {
             case devices = "Devices"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备列表
+    ///
+    /// 本接口(DescribeDevicesList) 用于获取设备列表，支持模糊搜索
+    @inlinable
+    public func describeDeviceList(_ input: DescribeDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceListResponse > {
+        self.client.execute(action: "DescribeDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备列表
+    ///
+    /// 本接口(DescribeDevicesList) 用于获取设备列表，支持模糊搜索
+    @inlinable
+    public func describeDeviceList(_ input: DescribeDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceListResponse {
+        try await self.client.execute(action: "DescribeDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

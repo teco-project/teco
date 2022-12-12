@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 获取短信超短活动统计数据
-    @inlinable
-    public func describeSmsCampaignStatistics(_ input: DescribeSmsCampaignStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmsCampaignStatisticsResponse > {
-        self.client.execute(action: "DescribeSmsCampaignStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取短信超短活动统计数据
-    @inlinable
-    public func describeSmsCampaignStatistics(_ input: DescribeSmsCampaignStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsCampaignStatisticsResponse {
-        try await self.client.execute(action: "DescribeSmsCampaignStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSmsCampaignStatistics请求参数结构体
     public struct DescribeSmsCampaignStatisticsRequest: TCRequestModel {
         /// 活动id
@@ -58,5 +46,17 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取短信超短活动统计数据
+    @inlinable
+    public func describeSmsCampaignStatistics(_ input: DescribeSmsCampaignStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmsCampaignStatisticsResponse > {
+        self.client.execute(action: "DescribeSmsCampaignStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取短信超短活动统计数据
+    @inlinable
+    public func describeSmsCampaignStatistics(_ input: DescribeSmsCampaignStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsCampaignStatisticsResponse {
+        try await self.client.execute(action: "DescribeSmsCampaignStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

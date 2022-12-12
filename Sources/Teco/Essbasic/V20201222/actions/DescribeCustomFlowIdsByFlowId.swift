@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 根据流程id反查自定义流程id
-    ///
-    /// 此接口（DescribeCustomFlowIdsByFlowId）用于根据流程id反查自定义流程id
-    @inlinable
-    public func describeCustomFlowIdsByFlowId(_ input: DescribeCustomFlowIdsByFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomFlowIdsByFlowIdResponse > {
-        self.client.execute(action: "DescribeCustomFlowIdsByFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据流程id反查自定义流程id
-    ///
-    /// 此接口（DescribeCustomFlowIdsByFlowId）用于根据流程id反查自定义流程id
-    @inlinable
-    public func describeCustomFlowIdsByFlowId(_ input: DescribeCustomFlowIdsByFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomFlowIdsByFlowIdResponse {
-        try await self.client.execute(action: "DescribeCustomFlowIdsByFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomFlowIdsByFlowId请求参数结构体
     public struct DescribeCustomFlowIdsByFlowIdRequest: TCRequestModel {
         /// 调用方信息
@@ -62,5 +46,21 @@ extension Essbasic {
             case customIdList = "CustomIdList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据流程id反查自定义流程id
+    ///
+    /// 此接口（DescribeCustomFlowIdsByFlowId）用于根据流程id反查自定义流程id
+    @inlinable
+    public func describeCustomFlowIdsByFlowId(_ input: DescribeCustomFlowIdsByFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomFlowIdsByFlowIdResponse > {
+        self.client.execute(action: "DescribeCustomFlowIdsByFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据流程id反查自定义流程id
+    ///
+    /// 此接口（DescribeCustomFlowIdsByFlowId）用于根据流程id反查自定义流程id
+    @inlinable
+    public func describeCustomFlowIdsByFlowId(_ input: DescribeCustomFlowIdsByFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomFlowIdsByFlowIdResponse {
+        try await self.client.execute(action: "DescribeCustomFlowIdsByFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

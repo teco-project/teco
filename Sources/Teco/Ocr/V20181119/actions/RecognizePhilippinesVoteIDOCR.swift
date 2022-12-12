@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 菲律宾VoteID识别
-    @inlinable
-    public func recognizePhilippinesVoteIDOCR(_ input: RecognizePhilippinesVoteIDOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizePhilippinesVoteIDOCRResponse > {
-        self.client.execute(action: "RecognizePhilippinesVoteIDOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 菲律宾VoteID识别
-    @inlinable
-    public func recognizePhilippinesVoteIDOCR(_ input: RecognizePhilippinesVoteIDOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesVoteIDOCRResponse {
-        try await self.client.execute(action: "RecognizePhilippinesVoteIDOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecognizePhilippinesVoteIDOCR请求参数结构体
     public struct RecognizePhilippinesVoteIDOCRRequest: TCRequestModel {
         /// 是否返回人像照片。
@@ -45,7 +33,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (returnHeadImage: Bool, imageBase64: String?, imageUrl: String?) {
+        public init (returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil) {
             self.returnHeadImage = returnHeadImage
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
@@ -102,5 +90,17 @@ extension Ocr {
             case precinctNo = "PrecinctNo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 菲律宾VoteID识别
+    @inlinable
+    public func recognizePhilippinesVoteIDOCR(_ input: RecognizePhilippinesVoteIDOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizePhilippinesVoteIDOCRResponse > {
+        self.client.execute(action: "RecognizePhilippinesVoteIDOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 菲律宾VoteID识别
+    @inlinable
+    public func recognizePhilippinesVoteIDOCR(_ input: RecognizePhilippinesVoteIDOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesVoteIDOCRResponse {
+        try await self.client.execute(action: "RecognizePhilippinesVoteIDOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

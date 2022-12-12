@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 设置录制视频生成回调地址
-    @inlinable
-    public func setVideoGenerationTaskCallback(_ input: SetVideoGenerationTaskCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetVideoGenerationTaskCallbackResponse > {
-        self.client.execute(action: "SetVideoGenerationTaskCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置录制视频生成回调地址
-    @inlinable
-    public func setVideoGenerationTaskCallback(_ input: SetVideoGenerationTaskCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVideoGenerationTaskCallbackResponse {
-        try await self.client.execute(action: "SetVideoGenerationTaskCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetVideoGenerationTaskCallback请求参数结构体
     public struct SetVideoGenerationTaskCallbackRequest: TCRequestModel {
         /// 客户的SdkAppId
@@ -54,5 +42,17 @@ extension Tiw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置录制视频生成回调地址
+    @inlinable
+    public func setVideoGenerationTaskCallback(_ input: SetVideoGenerationTaskCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetVideoGenerationTaskCallbackResponse > {
+        self.client.execute(action: "SetVideoGenerationTaskCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置录制视频生成回调地址
+    @inlinable
+    public func setVideoGenerationTaskCallback(_ input: SetVideoGenerationTaskCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVideoGenerationTaskCallbackResponse {
+        try await self.client.execute(action: "SetVideoGenerationTaskCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 应用采集配置到指定机器组
-    @inlinable
-    public func applyConfigToMachineGroup(_ input: ApplyConfigToMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyConfigToMachineGroupResponse > {
-        self.client.execute(action: "ApplyConfigToMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 应用采集配置到指定机器组
-    @inlinable
-    public func applyConfigToMachineGroup(_ input: ApplyConfigToMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConfigToMachineGroupResponse {
-        try await self.client.execute(action: "ApplyConfigToMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyConfigToMachineGroup请求参数结构体
     public struct ApplyConfigToMachineGroupRequest: TCRequestModel {
         /// 采集配置ID
@@ -54,5 +42,17 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 应用采集配置到指定机器组
+    @inlinable
+    public func applyConfigToMachineGroup(_ input: ApplyConfigToMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyConfigToMachineGroupResponse > {
+        self.client.execute(action: "ApplyConfigToMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 应用采集配置到指定机器组
+    @inlinable
+    public func applyConfigToMachineGroup(_ input: ApplyConfigToMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConfigToMachineGroupResponse {
+        try await self.client.execute(action: "ApplyConfigToMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 更新镜像缓存
-    ///
-    /// 更新镜像缓存接口
-    @inlinable
-    public func updateImageCache(_ input: UpdateImageCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateImageCacheResponse > {
-        self.client.execute(action: "UpdateImageCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新镜像缓存
-    ///
-    /// 更新镜像缓存接口
-    @inlinable
-    public func updateImageCache(_ input: UpdateImageCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageCacheResponse {
-        try await self.client.execute(action: "UpdateImageCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateImageCache请求参数结构体
     public struct UpdateImageCacheRequest: TCRequestModel {
         /// 镜像缓存Id
@@ -54,7 +38,7 @@ extension Tke {
         /// 安全组Id
         public let securityGroupIds: [String]?
         
-        public init (imageCacheId: String, imageCacheName: String?, imageRegistryCredentials: [ImageRegistryCredential]?, images: [String]?, imageCacheSize: UInt64?, retentionDays: UInt64?, securityGroupIds: [String]?) {
+        public init (imageCacheId: String, imageCacheName: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, images: [String]? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, securityGroupIds: [String]? = nil) {
             self.imageCacheId = imageCacheId
             self.imageCacheName = imageCacheName
             self.imageRegistryCredentials = imageRegistryCredentials
@@ -83,5 +67,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新镜像缓存
+    ///
+    /// 更新镜像缓存接口
+    @inlinable
+    public func updateImageCache(_ input: UpdateImageCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateImageCacheResponse > {
+        self.client.execute(action: "UpdateImageCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新镜像缓存
+    ///
+    /// 更新镜像缓存接口
+    @inlinable
+    public func updateImageCache(_ input: UpdateImageCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageCacheResponse {
+        try await self.client.execute(action: "UpdateImageCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

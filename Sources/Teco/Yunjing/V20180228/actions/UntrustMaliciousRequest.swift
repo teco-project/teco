@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 取消信任恶意请求
-    ///
-    /// 本接口 (UntrustMaliciousRequest) 用于取消信任恶意请求。
-    @inlinable
-    public func untrustMaliciousRequest(_ input: UntrustMaliciousRequestRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UntrustMaliciousRequestResponse > {
-        self.client.execute(action: "UntrustMaliciousRequest", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消信任恶意请求
-    ///
-    /// 本接口 (UntrustMaliciousRequest) 用于取消信任恶意请求。
-    @inlinable
-    public func untrustMaliciousRequest(_ input: UntrustMaliciousRequestRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UntrustMaliciousRequestResponse {
-        try await self.client.execute(action: "UntrustMaliciousRequest", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UntrustMaliciousRequest请求参数结构体
     public struct UntrustMaliciousRequestRequest: TCRequestModel {
         /// 受信任记录ID。
@@ -53,5 +37,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消信任恶意请求
+    ///
+    /// 本接口 (UntrustMaliciousRequest) 用于取消信任恶意请求。
+    @inlinable
+    public func untrustMaliciousRequest(_ input: UntrustMaliciousRequestRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UntrustMaliciousRequestResponse > {
+        self.client.execute(action: "UntrustMaliciousRequest", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消信任恶意请求
+    ///
+    /// 本接口 (UntrustMaliciousRequest) 用于取消信任恶意请求。
+    @inlinable
+    public func untrustMaliciousRequest(_ input: UntrustMaliciousRequestRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UntrustMaliciousRequestResponse {
+        try await self.client.execute(action: "UntrustMaliciousRequest", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

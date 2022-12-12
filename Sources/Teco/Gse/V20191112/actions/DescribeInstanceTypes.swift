@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 获取服务器实例类型列表
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeInstanceTypes）用于获取服务器实例类型列表。
-    @inlinable
-    public func describeInstanceTypes(_ input: DescribeInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceTypesResponse > {
-        self.client.execute(action: "DescribeInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取服务器实例类型列表
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeInstanceTypes）用于获取服务器实例类型列表。
-    @inlinable
-    public func describeInstanceTypes(_ input: DescribeInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypesResponse {
-        try await self.client.execute(action: "DescribeInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceTypes请求参数结构体
     public struct DescribeInstanceTypesRequest: TCRequestModel {
         public init () {
@@ -51,5 +33,23 @@ extension Gse {
             case instanceTypeList = "InstanceTypeList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取服务器实例类型列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeInstanceTypes）用于获取服务器实例类型列表。
+    @inlinable
+    public func describeInstanceTypes(_ input: DescribeInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceTypesResponse > {
+        self.client.execute(action: "DescribeInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取服务器实例类型列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeInstanceTypes）用于获取服务器实例类型列表。
+    @inlinable
+    public func describeInstanceTypes(_ input: DescribeInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypesResponse {
+        try await self.client.execute(action: "DescribeInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

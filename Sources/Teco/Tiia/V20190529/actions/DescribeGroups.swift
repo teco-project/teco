@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiia {
-    /// 查询图片库
-    ///
-    /// 查询所有的图库信息。
-    @inlinable
-    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupsResponse > {
-        self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询图片库
-    ///
-    /// 查询所有的图库信息。
-    @inlinable
-    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
-        try await self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGroups请求参数结构体
     public struct DescribeGroupsRequest: TCRequestModel {
         /// 起始序号，默认值为0。
@@ -42,7 +26,7 @@ extension Tiia {
         /// 图库ID，如果不为空，则返回指定库信息。
         public let groupId: String?
         
-        public init (offset: Int64?, limit: Int64?, groupId: String?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.groupId = groupId
@@ -68,5 +52,21 @@ extension Tiia {
             case groups = "Groups"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询图片库
+    ///
+    /// 查询所有的图库信息。
+    @inlinable
+    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupsResponse > {
+        self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询图片库
+    ///
+    /// 查询所有的图库信息。
+    @inlinable
+    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
+        try await self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

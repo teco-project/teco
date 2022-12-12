@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取直播互动曲库标签信息
-    ///
-    /// 获取直播互动曲库标签分组信息和标签信息
-    @inlinable
-    public func describeKTVMusicTags(_ input: DescribeKTVMusicTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVMusicTagsResponse > {
-        self.client.execute(action: "DescribeKTVMusicTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取直播互动曲库标签信息
-    ///
-    /// 获取直播互动曲库标签分组信息和标签信息
-    @inlinable
-    public func describeKTVMusicTags(_ input: DescribeKTVMusicTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMusicTagsResponse {
-        try await self.client.execute(action: "DescribeKTVMusicTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKTVMusicTags请求参数结构体
     public struct DescribeKTVMusicTagsRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Ame {
             case tagGroupSet = "TagGroupSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取直播互动曲库标签信息
+    ///
+    /// 获取直播互动曲库标签分组信息和标签信息
+    @inlinable
+    public func describeKTVMusicTags(_ input: DescribeKTVMusicTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVMusicTagsResponse > {
+        self.client.execute(action: "DescribeKTVMusicTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播互动曲库标签信息
+    ///
+    /// 获取直播互动曲库标签分组信息和标签信息
+    @inlinable
+    public func describeKTVMusicTags(_ input: DescribeKTVMusicTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMusicTagsResponse {
+        try await self.client.execute(action: "DescribeKTVMusicTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

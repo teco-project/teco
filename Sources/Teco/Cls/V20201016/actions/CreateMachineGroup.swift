@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 创建机器组
-    @inlinable
-    public func createMachineGroup(_ input: CreateMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMachineGroupResponse > {
-        self.client.execute(action: "CreateMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建机器组
-    @inlinable
-    public func createMachineGroup(_ input: CreateMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMachineGroupResponse {
-        try await self.client.execute(action: "CreateMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMachineGroup请求参数结构体
     public struct CreateMachineGroupRequest: TCRequestModel {
         /// 机器组名字，不能重复
@@ -50,7 +38,7 @@ extension Cls {
         /// 是否开启服务日志，用于记录因Loglistener 服务自身产生的log，开启后，会创建内部日志集cls_service_logging和日志主题loglistener_status,loglistener_alarm,loglistener_business，不产生计费
         public let serviceLogging: Bool?
         
-        public init (groupName: String, machineGroupType: MachineGroupTypeInfo, tags: [Tag]?, autoUpdate: Bool?, updateStartTime: String?, updateEndTime: String?, serviceLogging: Bool?) {
+        public init (groupName: String, machineGroupType: MachineGroupTypeInfo, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil) {
             self.groupName = groupName
             self.machineGroupType = machineGroupType
             self.tags = tags
@@ -83,5 +71,17 @@ extension Cls {
             case groupId = "GroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建机器组
+    @inlinable
+    public func createMachineGroup(_ input: CreateMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMachineGroupResponse > {
+        self.client.execute(action: "CreateMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建机器组
+    @inlinable
+    public func createMachineGroup(_ input: CreateMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMachineGroupResponse {
+        try await self.client.execute(action: "CreateMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

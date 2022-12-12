@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 通过多文件创建合同组签署流程
-    ///
-    /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
-    @inlinable
-    public func channelCreateFlowGroupByFiles(_ input: ChannelCreateFlowGroupByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateFlowGroupByFilesResponse > {
-        self.client.execute(action: "ChannelCreateFlowGroupByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通过多文件创建合同组签署流程
-    ///
-    /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
-    @inlinable
-    public func channelCreateFlowGroupByFiles(_ input: ChannelCreateFlowGroupByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowGroupByFilesResponse {
-        try await self.client.execute(action: "ChannelCreateFlowGroupByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ChannelCreateFlowGroupByFiles请求参数结构体
     public struct ChannelCreateFlowGroupByFilesRequest: TCRequestModel {
         /// 每个子合同的发起所需的信息，数量限制2-100
@@ -40,12 +24,12 @@ extension Essbasic {
         public let flowGroupName: String
         
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
-        public let agent: Agent
+        public let agent: Agent?
         
         /// 操作者的信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
-        public init (flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent, `operator`: UserInfo) {
+        public init (flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, `operator`: UserInfo? = nil) {
             self.flowFileInfos = flowFileInfos
             self.flowGroupName = flowGroupName
             self.agent = agent
@@ -78,5 +62,21 @@ extension Essbasic {
             case flowIds = "FlowIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通过多文件创建合同组签署流程
+    ///
+    /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
+    @inlinable
+    public func channelCreateFlowGroupByFiles(_ input: ChannelCreateFlowGroupByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelCreateFlowGroupByFilesResponse > {
+        self.client.execute(action: "ChannelCreateFlowGroupByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通过多文件创建合同组签署流程
+    ///
+    /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
+    @inlinable
+    public func channelCreateFlowGroupByFiles(_ input: ChannelCreateFlowGroupByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowGroupByFilesResponse {
+        try await self.client.execute(action: "ChannelCreateFlowGroupByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 删除Amqp交换机
-    @inlinable
-    public func deleteAMQPExchange(_ input: DeleteAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAMQPExchangeResponse > {
-        self.client.execute(action: "DeleteAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除Amqp交换机
-    @inlinable
-    public func deleteAMQPExchange(_ input: DeleteAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPExchangeResponse {
-        try await self.client.execute(action: "DeleteAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAMQPExchange请求参数结构体
     public struct DeleteAMQPExchangeRequest: TCRequestModel {
         /// 集群ID
@@ -59,5 +47,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除Amqp交换机
+    @inlinable
+    public func deleteAMQPExchange(_ input: DeleteAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAMQPExchangeResponse > {
+        self.client.execute(action: "DeleteAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Amqp交换机
+    @inlinable
+    public func deleteAMQPExchange(_ input: DeleteAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPExchangeResponse {
+        try await self.client.execute(action: "DeleteAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

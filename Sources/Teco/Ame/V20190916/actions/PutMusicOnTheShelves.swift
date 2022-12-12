@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 上架歌曲
-    ///
-    /// 根据资源方所传歌曲信息，进行歌曲上架，多个歌曲同时请求时，需构造复合结构进行请求
-    @inlinable
-    public func putMusicOnTheShelves(_ input: PutMusicOnTheShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutMusicOnTheShelvesResponse > {
-        self.client.execute(action: "PutMusicOnTheShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上架歌曲
-    ///
-    /// 根据资源方所传歌曲信息，进行歌曲上架，多个歌曲同时请求时，需构造复合结构进行请求
-    @inlinable
-    public func putMusicOnTheShelves(_ input: PutMusicOnTheShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMusicOnTheShelvesResponse {
-        try await self.client.execute(action: "PutMusicOnTheShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PutMusicOnTheShelves请求参数结构体
     public struct PutMusicOnTheShelvesRequest: TCRequestModel {
         /// 资源方歌曲Id
@@ -66,5 +50,21 @@ extension Ame {
             case failedMusicIds = "FailedMusicIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上架歌曲
+    ///
+    /// 根据资源方所传歌曲信息，进行歌曲上架，多个歌曲同时请求时，需构造复合结构进行请求
+    @inlinable
+    public func putMusicOnTheShelves(_ input: PutMusicOnTheShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutMusicOnTheShelvesResponse > {
+        self.client.execute(action: "PutMusicOnTheShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上架歌曲
+    ///
+    /// 根据资源方所传歌曲信息，进行歌曲上架，多个歌曲同时请求时，需构造复合结构进行请求
+    @inlinable
+    public func putMusicOnTheShelves(_ input: PutMusicOnTheShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMusicOnTheShelvesResponse {
+        try await self.client.execute(action: "PutMusicOnTheShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

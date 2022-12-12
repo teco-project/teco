@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 查询专用集群内cos的容量信息
-    @inlinable
-    public func describeDedicatedClusterCosCapacity(_ input: DescribeDedicatedClusterCosCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterCosCapacityResponse > {
-        self.client.execute(action: "DescribeDedicatedClusterCosCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询专用集群内cos的容量信息
-    @inlinable
-    public func describeDedicatedClusterCosCapacity(_ input: DescribeDedicatedClusterCosCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterCosCapacityResponse {
-        try await self.client.execute(action: "DescribeDedicatedClusterCosCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDedicatedClusterCosCapacity请求参数结构体
     public struct DescribeDedicatedClusterCosCapacityRequest: TCRequestModel {
         /// 查询的专用集群id
@@ -53,5 +41,17 @@ extension Cdc {
             case cosCapacity = "CosCapacity"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询专用集群内cos的容量信息
+    @inlinable
+    public func describeDedicatedClusterCosCapacity(_ input: DescribeDedicatedClusterCosCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterCosCapacityResponse > {
+        self.client.execute(action: "DescribeDedicatedClusterCosCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专用集群内cos的容量信息
+    @inlinable
+    public func describeDedicatedClusterCosCapacity(_ input: DescribeDedicatedClusterCosCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterCosCapacityResponse {
+        try await self.client.execute(action: "DescribeDedicatedClusterCosCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

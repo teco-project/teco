@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取调度域名列表
-    @inlinable
-    public func describeSchedulingDomainList(_ input: DescribeSchedulingDomainListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSchedulingDomainListResponse > {
-        self.client.execute(action: "DescribeSchedulingDomainList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取调度域名列表
-    @inlinable
-    public func describeSchedulingDomainList(_ input: DescribeSchedulingDomainListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSchedulingDomainListResponse {
-        try await self.client.execute(action: "DescribeSchedulingDomainList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSchedulingDomainList请求参数结构体
     public struct DescribeSchedulingDomainListRequest: TCRequestModel {
         /// 一页条数，填0表示不分页
@@ -38,7 +26,7 @@ extension Dayu {
         /// 可选，筛选特定的域名
         public let domain: String?
         
-        public init (limit: UInt64, offset: UInt64, domain: String?) {
+        public init (limit: UInt64, offset: UInt64, domain: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.domain = domain
@@ -67,5 +55,17 @@ extension Dayu {
             case domainList = "DomainList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取调度域名列表
+    @inlinable
+    public func describeSchedulingDomainList(_ input: DescribeSchedulingDomainListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSchedulingDomainListResponse > {
+        self.client.execute(action: "DescribeSchedulingDomainList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取调度域名列表
+    @inlinable
+    public func describeSchedulingDomainList(_ input: DescribeSchedulingDomainListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSchedulingDomainListResponse {
+        try await self.client.execute(action: "DescribeSchedulingDomainList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

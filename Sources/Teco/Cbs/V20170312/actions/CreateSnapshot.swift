@@ -17,28 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cbs {
-    /// 创建快照
-    ///
-    /// 本接口（CreateSnapshot）用于对指定云盘创建快照。
-    /// * 只有具有快照能力的云硬盘才能创建快照。云硬盘是否具有快照能力可由[DescribeDisks](/document/product/362/16315)接口查询，见SnapshotAbility字段。
-    /// * 可创建快照数量限制见[产品使用限制](https://cloud.tencent.com/doc/product/362/5145)。
-    /// * 当前支持将备份点转化为普通快照，转化之后可能会收取快照使用费用，备份点不保留，其占用的备份点配额也将被释放。
-    @inlinable
-    public func createSnapshot(_ input: CreateSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSnapshotResponse > {
-        self.client.execute(action: "CreateSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建快照
-    ///
-    /// 本接口（CreateSnapshot）用于对指定云盘创建快照。
-    /// * 只有具有快照能力的云硬盘才能创建快照。云硬盘是否具有快照能力可由[DescribeDisks](/document/product/362/16315)接口查询，见SnapshotAbility字段。
-    /// * 可创建快照数量限制见[产品使用限制](https://cloud.tencent.com/doc/product/362/5145)。
-    /// * 当前支持将备份点转化为普通快照，转化之后可能会收取快照使用费用，备份点不保留，其占用的备份点配额也将被释放。
-    @inlinable
-    public func createSnapshot(_ input: CreateSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotResponse {
-        try await self.client.execute(action: "CreateSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSnapshot请求参数结构体
     public struct CreateSnapshotRequest: TCRequestModel {
         /// 需要创建快照的云硬盘ID，可通过[DescribeDisks](/document/product/362/16315)接口查询。
@@ -56,7 +34,7 @@ extension Cbs {
         /// 快照绑定的标签。
         public let tags: [Tag]?
         
-        public init (diskId: String, snapshotName: String?, deadline: Date?, diskBackupId: String?, tags: [Tag]?) {
+        public init (diskId: String, snapshotName: String? = nil, deadline: Date? = nil, diskBackupId: String? = nil, tags: [Tag]? = nil) {
             self.diskId = diskId
             self.snapshotName = snapshotName
             self.deadline = deadline
@@ -85,5 +63,27 @@ extension Cbs {
             case snapshotId = "SnapshotId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建快照
+    ///
+    /// 本接口（CreateSnapshot）用于对指定云盘创建快照。
+    /// * 只有具有快照能力的云硬盘才能创建快照。云硬盘是否具有快照能力可由[DescribeDisks](/document/product/362/16315)接口查询，见SnapshotAbility字段。
+    /// * 可创建快照数量限制见[产品使用限制](https://cloud.tencent.com/doc/product/362/5145)。
+    /// * 当前支持将备份点转化为普通快照，转化之后可能会收取快照使用费用，备份点不保留，其占用的备份点配额也将被释放。
+    @inlinable
+    public func createSnapshot(_ input: CreateSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSnapshotResponse > {
+        self.client.execute(action: "CreateSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建快照
+    ///
+    /// 本接口（CreateSnapshot）用于对指定云盘创建快照。
+    /// * 只有具有快照能力的云硬盘才能创建快照。云硬盘是否具有快照能力可由[DescribeDisks](/document/product/362/16315)接口查询，见SnapshotAbility字段。
+    /// * 可创建快照数量限制见[产品使用限制](https://cloud.tencent.com/doc/product/362/5145)。
+    /// * 当前支持将备份点转化为普通快照，转化之后可能会收取快照使用费用，备份点不保留，其占用的备份点配额也将被释放。
+    @inlinable
+    public func createSnapshot(_ input: CreateSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotResponse {
+        try await self.client.execute(action: "CreateSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

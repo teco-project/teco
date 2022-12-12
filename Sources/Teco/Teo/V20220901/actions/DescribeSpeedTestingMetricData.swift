@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询站点拨测结果
-    @inlinable
-    public func describeSpeedTestingMetricData(_ input: DescribeSpeedTestingMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpeedTestingMetricDataResponse > {
-        self.client.execute(action: "DescribeSpeedTestingMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询站点拨测结果
-    @inlinable
-    public func describeSpeedTestingMetricData(_ input: DescribeSpeedTestingMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingMetricDataResponse {
-        try await self.client.execute(action: "DescribeSpeedTestingMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSpeedTestingMetricData请求参数结构体
     public struct DescribeSpeedTestingMetricDataRequest: TCRequestModel {
         /// 站点ID。
@@ -53,5 +41,17 @@ extension Teo {
             case speedTestingMetricData = "SpeedTestingMetricData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询站点拨测结果
+    @inlinable
+    public func describeSpeedTestingMetricData(_ input: DescribeSpeedTestingMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpeedTestingMetricDataResponse > {
+        self.client.execute(action: "DescribeSpeedTestingMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询站点拨测结果
+    @inlinable
+    public func describeSpeedTestingMetricData(_ input: DescribeSpeedTestingMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingMetricDataResponse {
+        try await self.client.execute(action: "DescribeSpeedTestingMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

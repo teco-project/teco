@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 固件版本测试发布
-    ///
-    /// 本接口（RunTestOtaVersion）用于固件版本测试发布。
-    @inlinable
-    public func runTestOtaVersion(_ input: RunTestOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunTestOtaVersionResponse > {
-        self.client.execute(action: "RunTestOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 固件版本测试发布
-    ///
-    /// 本接口（RunTestOtaVersion）用于固件版本测试发布。
-    @inlinable
-    public func runTestOtaVersion(_ input: RunTestOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTestOtaVersionResponse {
-        try await self.client.execute(action: "RunTestOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RunTestOtaVersion请求参数结构体
     public struct RunTestOtaVersionRequest: TCRequestModel {
         /// 产品ID
@@ -48,7 +32,7 @@ extension Iotvideo {
         /// 备注信息
         public let remark: String?
         
-        public init (productId: String, otaVersion: String, tids: [String], `operator`: String?, remark: String?) {
+        public init (productId: String, otaVersion: String, tids: [String], `operator`: String? = nil, remark: String? = nil) {
             self.productId = productId
             self.otaVersion = otaVersion
             self.tids = tids
@@ -73,5 +57,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 固件版本测试发布
+    ///
+    /// 本接口（RunTestOtaVersion）用于固件版本测试发布。
+    @inlinable
+    public func runTestOtaVersion(_ input: RunTestOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunTestOtaVersionResponse > {
+        self.client.execute(action: "RunTestOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 固件版本测试发布
+    ///
+    /// 本接口（RunTestOtaVersion）用于固件版本测试发布。
+    @inlinable
+    public func runTestOtaVersion(_ input: RunTestOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTestOtaVersionResponse {
+        try await self.client.execute(action: "RunTestOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

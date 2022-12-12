@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 修改云数据库实例账号的主机
-    ///
-    /// 本接口(ModifyAccountHost)用于修改云数据库账户的主机。
-    @inlinable
-    public func modifyAccountHost(_ input: ModifyAccountHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountHostResponse > {
-        self.client.execute(action: "ModifyAccountHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改云数据库实例账号的主机
-    ///
-    /// 本接口(ModifyAccountHost)用于修改云数据库账户的主机。
-    @inlinable
-    public func modifyAccountHost(_ input: ModifyAccountHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountHostResponse {
-        try await self.client.execute(action: "ModifyAccountHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAccountHost请求参数结构体
     public struct ModifyAccountHostRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -72,5 +56,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改云数据库实例账号的主机
+    ///
+    /// 本接口(ModifyAccountHost)用于修改云数据库账户的主机。
+    @inlinable
+    public func modifyAccountHost(_ input: ModifyAccountHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountHostResponse > {
+        self.client.execute(action: "ModifyAccountHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库实例账号的主机
+    ///
+    /// 本接口(ModifyAccountHost)用于修改云数据库账户的主机。
+    @inlinable
+    public func modifyAccountHost(_ input: ModifyAccountHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountHostResponse {
+        try await self.client.execute(action: "ModifyAccountHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

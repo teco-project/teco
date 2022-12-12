@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 修改迁移名称
-    ///
-    /// 修改迁移任务名
-    @inlinable
-    public func modifyMigrateName(_ input: ModifyMigrateNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrateNameResponse > {
-        self.client.execute(action: "ModifyMigrateName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改迁移名称
-    ///
-    /// 修改迁移任务名
-    @inlinable
-    public func modifyMigrateName(_ input: ModifyMigrateNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateNameResponse {
-        try await self.client.execute(action: "ModifyMigrateName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMigrateName请求参数结构体
     public struct ModifyMigrateNameRequest: TCRequestModel {
         /// 迁移任务id
@@ -58,5 +42,21 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改迁移名称
+    ///
+    /// 修改迁移任务名
+    @inlinable
+    public func modifyMigrateName(_ input: ModifyMigrateNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrateNameResponse > {
+        self.client.execute(action: "ModifyMigrateName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改迁移名称
+    ///
+    /// 修改迁移任务名
+    @inlinable
+    public func modifyMigrateName(_ input: ModifyMigrateNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateNameResponse {
+        try await self.client.execute(action: "ModifyMigrateName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

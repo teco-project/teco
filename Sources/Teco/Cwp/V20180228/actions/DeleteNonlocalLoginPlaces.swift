@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 删除异地登录记录
-    ///
-    /// 本接口 (DeleteNonlocalLoginPlaces) 用于删除异地登录记录。
-    @inlinable
-    public func deleteNonlocalLoginPlaces(_ input: DeleteNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNonlocalLoginPlacesResponse > {
-        self.client.execute(action: "DeleteNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除异地登录记录
-    ///
-    /// 本接口 (DeleteNonlocalLoginPlaces) 用于删除异地登录记录。
-    @inlinable
-    public func deleteNonlocalLoginPlaces(_ input: DeleteNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNonlocalLoginPlacesResponse {
-        try await self.client.execute(action: "DeleteNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteNonlocalLoginPlaces请求参数结构体
     public struct DeleteNonlocalLoginPlacesRequest: TCRequestModel {
         /// 删除异地登录事件的方式，可选值："Ids"、"Ip"、"All"，默认为Ids
@@ -45,7 +29,7 @@ extension Cwp {
         /// 主机Uuid
         public let uuid: String?
         
-        public init (delType: String?, ids: [UInt64]?, ip: [String]?, uuid: String?) {
+        public init (delType: String? = nil, ids: [UInt64]? = nil, ip: [String]? = nil, uuid: String? = nil) {
             self.delType = delType
             self.ids = ids
             self.ip = ip
@@ -68,5 +52,21 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除异地登录记录
+    ///
+    /// 本接口 (DeleteNonlocalLoginPlaces) 用于删除异地登录记录。
+    @inlinable
+    public func deleteNonlocalLoginPlaces(_ input: DeleteNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNonlocalLoginPlacesResponse > {
+        self.client.execute(action: "DeleteNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除异地登录记录
+    ///
+    /// 本接口 (DeleteNonlocalLoginPlaces) 用于删除异地登录记录。
+    @inlinable
+    public func deleteNonlocalLoginPlaces(_ input: DeleteNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNonlocalLoginPlacesResponse {
+        try await self.client.execute(action: "DeleteNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 强制销毁 Grafana 实例
-    @inlinable
-    public func cleanGrafanaInstance(_ input: CleanGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CleanGrafanaInstanceResponse > {
-        self.client.execute(action: "CleanGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 强制销毁 Grafana 实例
-    @inlinable
-    public func cleanGrafanaInstance(_ input: CleanGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CleanGrafanaInstanceResponse {
-        try await self.client.execute(action: "CleanGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CleanGrafanaInstance请求参数结构体
     public struct CleanGrafanaInstanceRequest: TCRequestModel {
         /// 实例 ID
@@ -49,5 +37,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 强制销毁 Grafana 实例
+    @inlinable
+    public func cleanGrafanaInstance(_ input: CleanGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CleanGrafanaInstanceResponse > {
+        self.client.execute(action: "CleanGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 强制销毁 Grafana 实例
+    @inlinable
+    public func cleanGrafanaInstance(_ input: CleanGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CleanGrafanaInstanceResponse {
+        try await self.client.execute(action: "CleanGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

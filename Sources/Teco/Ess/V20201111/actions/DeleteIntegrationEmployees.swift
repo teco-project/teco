@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ess {
-    /// 移除员工
-    @inlinable
-    public func deleteIntegrationEmployees(_ input: DeleteIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIntegrationEmployeesResponse > {
-        self.client.execute(action: "DeleteIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 移除员工
-    @inlinable
-    public func deleteIntegrationEmployees(_ input: DeleteIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationEmployeesResponse {
-        try await self.client.execute(action: "DeleteIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteIntegrationEmployees请求参数结构体
     public struct DeleteIntegrationEmployeesRequest: TCRequestModel {
         /// 操作人信息，userId必填
@@ -58,5 +46,17 @@ extension Ess {
             case deleteEmployeeResult = "DeleteEmployeeResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 移除员工
+    @inlinable
+    public func deleteIntegrationEmployees(_ input: DeleteIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIntegrationEmployeesResponse > {
+        self.client.execute(action: "DeleteIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 移除员工
+    @inlinable
+    public func deleteIntegrationEmployees(_ input: DeleteIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationEmployeesResponse {
+        try await self.client.execute(action: "DeleteIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

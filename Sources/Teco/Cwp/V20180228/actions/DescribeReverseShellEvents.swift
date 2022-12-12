@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取反弹Shell列表
-    @inlinable
-    public func describeReverseShellEvents(_ input: DescribeReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReverseShellEventsResponse > {
-        self.client.execute(action: "DescribeReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取反弹Shell列表
-    @inlinable
-    public func describeReverseShellEvents(_ input: DescribeReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellEventsResponse {
-        try await self.client.execute(action: "DescribeReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReverseShellEvents请求参数结构体
     public struct DescribeReverseShellEventsRequest: TCRequestModel {
         /// 返回数量，最大值为100。
@@ -45,7 +33,7 @@ extension Cwp {
         /// 排序字段：CreateTime-发生时间
         public let by: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?, order: String?, by: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -78,5 +66,17 @@ extension Cwp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取反弹Shell列表
+    @inlinable
+    public func describeReverseShellEvents(_ input: DescribeReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReverseShellEventsResponse > {
+        self.client.execute(action: "DescribeReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取反弹Shell列表
+    @inlinable
+    public func describeReverseShellEvents(_ input: DescribeReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellEventsResponse {
+        try await self.client.execute(action: "DescribeReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

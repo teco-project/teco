@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 配置WAF威胁情报封禁模块详情
-    @inlinable
-    public func modifyWafThreatenIntelligence(_ input: ModifyWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWafThreatenIntelligenceResponse > {
-        self.client.execute(action: "ModifyWafThreatenIntelligence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 配置WAF威胁情报封禁模块详情
-    @inlinable
-    public func modifyWafThreatenIntelligence(_ input: ModifyWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafThreatenIntelligenceResponse {
-        try await self.client.execute(action: "ModifyWafThreatenIntelligence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyWafThreatenIntelligence请求参数结构体
     public struct ModifyWafThreatenIntelligenceRequest: TCRequestModel {
         /// 配置WAF威胁情报封禁模块详情
@@ -53,5 +41,17 @@ extension Waf {
             case wafThreatenIntelligenceDetails = "WafThreatenIntelligenceDetails"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 配置WAF威胁情报封禁模块详情
+    @inlinable
+    public func modifyWafThreatenIntelligence(_ input: ModifyWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWafThreatenIntelligenceResponse > {
+        self.client.execute(action: "ModifyWafThreatenIntelligence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 配置WAF威胁情报封禁模块详情
+    @inlinable
+    public func modifyWafThreatenIntelligence(_ input: ModifyWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafThreatenIntelligenceResponse {
+        try await self.client.execute(action: "ModifyWafThreatenIntelligence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

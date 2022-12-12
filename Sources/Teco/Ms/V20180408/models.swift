@@ -105,7 +105,7 @@ extension Ms {
         /// app的名称
         public let appName: String?
         
-        public init (appUrl: String, appMd5: String, appSize: UInt64?, fileName: String?, appPkgName: String?, appVersion: String?, appIconUrl: String?, appName: String?) {
+        public init (appUrl: String, appMd5: String, appSize: UInt64? = nil, fileName: String? = nil, appPkgName: String? = nil, appVersion: String? = nil, appIconUrl: String? = nil, appName: String? = nil) {
             self.appUrl = appUrl
             self.appMd5 = appMd5
             self.appSize = appSize
@@ -278,7 +278,7 @@ extension Ms {
         /// 需要过滤字段的值
         public let value: String?
         
-        public init (name: String, value: String?) {
+        public init (name: String, value: String? = nil) {
             self.name = name
             self.value = value
         }
@@ -707,7 +707,7 @@ extension Ms {
         /// 加固策略编号，如果不传则使用系统默认加固策略。如果指定的plan不存在会返回错误。
         public let planId: UInt64?
         
-        public init (serviceEdition: String, callbackUrl: String, submitSource: String, planId: UInt64?) {
+        public init (serviceEdition: String, callbackUrl: String, submitSource: String, planId: UInt64? = nil) {
             self.serviceEdition = serviceEdition
             self.callbackUrl = callbackUrl
             self.submitSource = submitSource

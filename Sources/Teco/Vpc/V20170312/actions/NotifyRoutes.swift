@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 发布路由至云联网
-    ///
-    /// 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。
-    @inlinable
-    public func notifyRoutes(_ input: NotifyRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < NotifyRoutesResponse > {
-        self.client.execute(action: "NotifyRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发布路由至云联网
-    ///
-    /// 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。
-    @inlinable
-    public func notifyRoutes(_ input: NotifyRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> NotifyRoutesResponse {
-        try await self.client.execute(action: "NotifyRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// NotifyRoutes请求参数结构体
     public struct NotifyRoutesRequest: TCRequestModel {
         /// 路由表唯一ID。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发布路由至云联网
+    ///
+    /// 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。
+    @inlinable
+    public func notifyRoutes(_ input: NotifyRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < NotifyRoutesResponse > {
+        self.client.execute(action: "NotifyRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发布路由至云联网
+    ///
+    /// 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。
+    @inlinable
+    public func notifyRoutes(_ input: NotifyRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> NotifyRoutesResponse {
+        try await self.client.execute(action: "NotifyRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

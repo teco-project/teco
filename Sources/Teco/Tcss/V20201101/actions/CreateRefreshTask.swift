@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 下发刷新任务
-    ///
-    /// 下发刷新任务，会刷新资产信息
-    @inlinable
-    public func createRefreshTask(_ input: CreateRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRefreshTaskResponse > {
-        self.client.execute(action: "CreateRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下发刷新任务
-    ///
-    /// 下发刷新任务，会刷新资产信息
-    @inlinable
-    public func createRefreshTask(_ input: CreateRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRefreshTaskResponse {
-        try await self.client.execute(action: "CreateRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRefreshTask请求参数结构体
     public struct CreateRefreshTaskRequest: TCRequestModel {
         public init () {
@@ -53,5 +37,21 @@ extension Tcss {
             case createResult = "CreateResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下发刷新任务
+    ///
+    /// 下发刷新任务，会刷新资产信息
+    @inlinable
+    public func createRefreshTask(_ input: CreateRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRefreshTaskResponse > {
+        self.client.execute(action: "CreateRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下发刷新任务
+    ///
+    /// 下发刷新任务，会刷新资产信息
+    @inlinable
+    public func createRefreshTask(_ input: CreateRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRefreshTaskResponse {
+        try await self.client.execute(action: "CreateRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

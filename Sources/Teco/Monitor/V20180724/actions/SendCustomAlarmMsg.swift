@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 发送自定义消息告警
-    @inlinable
-    public func sendCustomAlarmMsg(_ input: SendCustomAlarmMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendCustomAlarmMsgResponse > {
-        self.client.execute(action: "SendCustomAlarmMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送自定义消息告警
-    @inlinable
-    public func sendCustomAlarmMsg(_ input: SendCustomAlarmMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendCustomAlarmMsgResponse {
-        try await self.client.execute(action: "SendCustomAlarmMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendCustomAlarmMsg请求参数结构体
     public struct SendCustomAlarmMsgRequest: TCRequestModel {
         /// 接口模块名，当前取值monitor
@@ -59,5 +47,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送自定义消息告警
+    @inlinable
+    public func sendCustomAlarmMsg(_ input: SendCustomAlarmMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendCustomAlarmMsgResponse > {
+        self.client.execute(action: "SendCustomAlarmMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送自定义消息告警
+    @inlinable
+    public func sendCustomAlarmMsg(_ input: SendCustomAlarmMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendCustomAlarmMsgResponse {
+        try await self.client.execute(action: "SendCustomAlarmMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

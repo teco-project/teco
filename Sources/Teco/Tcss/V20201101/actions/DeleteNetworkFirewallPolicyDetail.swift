@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 容器网络创建网络策略删除任务
-    @inlinable
-    public func deleteNetworkFirewallPolicyDetail(_ input: DeleteNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetworkFirewallPolicyDetailResponse > {
-        self.client.execute(action: "DeleteNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 容器网络创建网络策略删除任务
-    @inlinable
-    public func deleteNetworkFirewallPolicyDetail(_ input: DeleteNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkFirewallPolicyDetailResponse {
-        try await self.client.execute(action: "DeleteNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteNetworkFirewallPolicyDetail请求参数结构体
     public struct DeleteNetworkFirewallPolicyDetailRequest: TCRequestModel {
         /// 集群Id
@@ -62,5 +50,17 @@ extension Tcss {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 容器网络创建网络策略删除任务
+    @inlinable
+    public func deleteNetworkFirewallPolicyDetail(_ input: DeleteNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetworkFirewallPolicyDetailResponse > {
+        self.client.execute(action: "DeleteNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络创建网络策略删除任务
+    @inlinable
+    public func deleteNetworkFirewallPolicyDetail(_ input: DeleteNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkFirewallPolicyDetailResponse {
+        try await self.client.execute(action: "DeleteNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecdn {
-    /// 查询域名基本信息
-    ///
-    /// 本接口（DescribeDomains）用于查询CDN域名基本信息，包括项目id，状态，业务类型，创建时间，更新时间等。
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
-    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainsResponse > {
-        self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询域名基本信息
-    ///
-    /// 本接口（DescribeDomains）用于查询CDN域名基本信息，包括项目id，状态，业务类型，创建时间，更新时间等。
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
-    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsResponse {
-        try await self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomains请求参数结构体
     public struct DescribeDomainsRequest: TCRequestModel {
         /// 分页查询的偏移地址，默认0。
@@ -44,7 +26,7 @@ extension Ecdn {
         /// 查询条件过滤器。
         public let filters: [DomainFilter]?
         
-        public init (offset: Int64?, limit: Int64?, filters: [DomainFilter]?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, filters: [DomainFilter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -73,5 +55,23 @@ extension Ecdn {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询域名基本信息
+    ///
+    /// 本接口（DescribeDomains）用于查询CDN域名基本信息，包括项目id，状态，业务类型，创建时间，更新时间等。
+    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @inlinable
+    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainsResponse > {
+        self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询域名基本信息
+    ///
+    /// 本接口（DescribeDomains）用于查询CDN域名基本信息，包括项目id，状态，业务类型，创建时间，更新时间等。
+    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @inlinable
+    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsResponse {
+        try await self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

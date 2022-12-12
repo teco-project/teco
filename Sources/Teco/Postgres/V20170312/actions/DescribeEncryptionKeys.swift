@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 实例密钥信息列表
-    ///
-    /// 获取实例的密钥信息列表。
-    @inlinable
-    public func describeEncryptionKeys(_ input: DescribeEncryptionKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEncryptionKeysResponse > {
-        self.client.execute(action: "DescribeEncryptionKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实例密钥信息列表
-    ///
-    /// 获取实例的密钥信息列表。
-    @inlinable
-    public func describeEncryptionKeys(_ input: DescribeEncryptionKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEncryptionKeysResponse {
-        try await self.client.execute(action: "DescribeEncryptionKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEncryptionKeys请求参数结构体
     public struct DescribeEncryptionKeysRequest: TCRequestModel {
         /// 实例ID。
@@ -58,5 +42,21 @@ extension Postgres {
             case encryptionKeys = "EncryptionKeys"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实例密钥信息列表
+    ///
+    /// 获取实例的密钥信息列表。
+    @inlinable
+    public func describeEncryptionKeys(_ input: DescribeEncryptionKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEncryptionKeysResponse > {
+        self.client.execute(action: "DescribeEncryptionKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实例密钥信息列表
+    ///
+    /// 获取实例的密钥信息列表。
+    @inlinable
+    public func describeEncryptionKeys(_ input: DescribeEncryptionKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEncryptionKeysResponse {
+        try await self.client.execute(action: "DescribeEncryptionKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

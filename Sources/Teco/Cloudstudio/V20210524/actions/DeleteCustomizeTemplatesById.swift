@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudstudio {
-    /// 删除自定义模板
-    @inlinable
-    public func deleteCustomizeTemplatesById(_ input: DeleteCustomizeTemplatesByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomizeTemplatesByIdResponse > {
-        self.client.execute(action: "DeleteCustomizeTemplatesById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除自定义模板
-    @inlinable
-    public func deleteCustomizeTemplatesById(_ input: DeleteCustomizeTemplatesByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizeTemplatesByIdResponse {
-        try await self.client.execute(action: "DeleteCustomizeTemplatesById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCustomizeTemplatesById请求参数结构体
     public struct DeleteCustomizeTemplatesByIdRequest: TCRequestModel {
         /// 用户所属组
@@ -54,5 +42,17 @@ extension Cloudstudio {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除自定义模板
+    @inlinable
+    public func deleteCustomizeTemplatesById(_ input: DeleteCustomizeTemplatesByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomizeTemplatesByIdResponse > {
+        self.client.execute(action: "DeleteCustomizeTemplatesById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除自定义模板
+    @inlinable
+    public func deleteCustomizeTemplatesById(_ input: DeleteCustomizeTemplatesByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizeTemplatesByIdResponse {
+        try await self.client.execute(action: "DeleteCustomizeTemplatesById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

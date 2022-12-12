@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 删除Prometheus配置
-    ///
-    /// 删除Prometheus配置，如果目标不存在，将返回成功
-    @inlinable
-    public func deletePrometheusConfig(_ input: DeletePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusConfigResponse > {
-        self.client.execute(action: "DeletePrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除Prometheus配置
-    ///
-    /// 删除Prometheus配置，如果目标不存在，将返回成功
-    @inlinable
-    public func deletePrometheusConfig(_ input: DeletePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusConfigResponse {
-        try await self.client.execute(action: "DeletePrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePrometheusConfig请求参数结构体
     public struct DeletePrometheusConfigRequest: TCRequestModel {
         /// 实例id
@@ -51,7 +35,7 @@ extension Tke {
         /// 要删除的RawJobs名字列表
         public let rawJobs: [String]?
         
-        public init (instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [String]?, podMonitors: [String]?, rawJobs: [String]?) {
+        public init (instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [String]? = nil, podMonitors: [String]? = nil, rawJobs: [String]? = nil) {
             self.instanceId = instanceId
             self.clusterType = clusterType
             self.clusterId = clusterId
@@ -78,5 +62,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除Prometheus配置
+    ///
+    /// 删除Prometheus配置，如果目标不存在，将返回成功
+    @inlinable
+    public func deletePrometheusConfig(_ input: DeletePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusConfigResponse > {
+        self.client.execute(action: "DeletePrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Prometheus配置
+    ///
+    /// 删除Prometheus配置，如果目标不存在，将返回成功
+    @inlinable
+    public func deletePrometheusConfig(_ input: DeletePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusConfigResponse {
+        try await self.client.execute(action: "DeletePrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

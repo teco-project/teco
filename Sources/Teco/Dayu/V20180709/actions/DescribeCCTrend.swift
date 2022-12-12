@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// 获取CC攻击指标数据
-    ///
-    /// 获取CC攻击指标数据，包括总请求峰值(QPS)和攻击请求(QPS)
-    @inlinable
-    public func describeCCTrend(_ input: DescribeCCTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCTrendResponse > {
-        self.client.execute(action: "DescribeCCTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取CC攻击指标数据
-    ///
-    /// 获取CC攻击指标数据，包括总请求峰值(QPS)和攻击请求(QPS)
-    @inlinable
-    public func describeCCTrend(_ input: DescribeCCTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCTrendResponse {
-        try await self.client.execute(action: "DescribeCCTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCCTrend请求参数结构体
     public struct DescribeCCTrendRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
@@ -61,7 +45,7 @@ extension Dayu {
         /// 域名，可选
         public let domain: String?
         
-        public init (business: String, ip: String, metricName: String, period: Int64, startTime: Date, endTime: Date, id: String?, domain: String?) {
+        public init (business: String, ip: String, metricName: String, period: Int64, startTime: Date, endTime: Date, id: String? = nil, domain: String? = nil) {
             self.business = business
             self.ip = ip
             self.metricName = metricName
@@ -131,5 +115,21 @@ extension Dayu {
             case count = "Count"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取CC攻击指标数据
+    ///
+    /// 获取CC攻击指标数据，包括总请求峰值(QPS)和攻击请求(QPS)
+    @inlinable
+    public func describeCCTrend(_ input: DescribeCCTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCTrendResponse > {
+        self.client.execute(action: "DescribeCCTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC攻击指标数据
+    ///
+    /// 获取CC攻击指标数据，包括总请求峰值(QPS)和攻击请求(QPS)
+    @inlinable
+    public func describeCCTrend(_ input: DescribeCCTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCTrendResponse {
+        try await self.client.execute(action: "DescribeCCTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

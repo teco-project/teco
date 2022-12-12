@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 查询告警历史
-    ///
-    /// 查询告警历史
-    /// 请注意，**如果使用子用户进行告警历史的查询，只能查询到被授权项目下的告警历史**，或不区分项目的产品的告警历史。如何对子账户授予项目的权限，请参考 [访问管理-项目与标签](https://cloud.tencent.com/document/product/598/32738)。
-    @inlinable
-    public func describeAlarmHistories(_ input: DescribeAlarmHistoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmHistoriesResponse > {
-        self.client.execute(action: "DescribeAlarmHistories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询告警历史
-    ///
-    /// 查询告警历史
-    /// 请注意，**如果使用子用户进行告警历史的查询，只能查询到被授权项目下的告警历史**，或不区分项目的产品的告警历史。如何对子账户授予项目的权限，请参考 [访问管理-项目与标签](https://cloud.tencent.com/document/product/598/32738)。
-    @inlinable
-    public func describeAlarmHistories(_ input: DescribeAlarmHistoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmHistoriesResponse {
-        try await self.client.execute(action: "DescribeAlarmHistories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAlarmHistories请求参数结构体
     public struct DescribeAlarmHistoriesRequest: TCRequestModel {
         /// 固定值，为"monitor"
@@ -91,7 +73,7 @@ extension Monitor {
         /// 根据告警策略 Id 列表搜索
         public let policyIds: [String]?
         
-        public init (module: String, pageNumber: Int64?, pageSize: Int64?, order: String?, startTime: Int64?, endTime: Int64?, monitorTypes: [String]?, alarmObject: String?, alarmStatus: [String]?, projectIds: [Int64]?, instanceGroupIds: [Int64]?, namespaces: [MonitorTypeNamespace]?, metricNames: [String]?, policyName: String?, content: String?, receiverUids: [Int64]?, receiverGroups: [Int64]?, policyIds: [String]?) {
+        public init (module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, order: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, monitorTypes: [String]? = nil, alarmObject: String? = nil, alarmStatus: [String]? = nil, projectIds: [Int64]? = nil, instanceGroupIds: [Int64]? = nil, namespaces: [MonitorTypeNamespace]? = nil, metricNames: [String]? = nil, policyName: String? = nil, content: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyIds: [String]? = nil) {
             self.module = module
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -150,5 +132,23 @@ extension Monitor {
             case histories = "Histories"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询告警历史
+    ///
+    /// 查询告警历史
+    /// 请注意，**如果使用子用户进行告警历史的查询，只能查询到被授权项目下的告警历史**，或不区分项目的产品的告警历史。如何对子账户授予项目的权限，请参考 [访问管理-项目与标签](https://cloud.tencent.com/document/product/598/32738)。
+    @inlinable
+    public func describeAlarmHistories(_ input: DescribeAlarmHistoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmHistoriesResponse > {
+        self.client.execute(action: "DescribeAlarmHistories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询告警历史
+    ///
+    /// 查询告警历史
+    /// 请注意，**如果使用子用户进行告警历史的查询，只能查询到被授权项目下的告警历史**，或不区分项目的产品的告警历史。如何对子账户授予项目的权限，请参考 [访问管理-项目与标签](https://cloud.tencent.com/document/product/598/32738)。
+    @inlinable
+    public func describeAlarmHistories(_ input: DescribeAlarmHistoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmHistoriesResponse {
+        try await self.client.execute(action: "DescribeAlarmHistories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

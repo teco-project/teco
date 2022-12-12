@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询木马自动隔离样本下载链接
-    @inlinable
-    public func describeVirusAutoIsolateSampleDownloadURL(_ input: DescribeVirusAutoIsolateSampleDownloadURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusAutoIsolateSampleDownloadURLResponse > {
-        self.client.execute(action: "DescribeVirusAutoIsolateSampleDownloadURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询木马自动隔离样本下载链接
-    @inlinable
-    public func describeVirusAutoIsolateSampleDownloadURL(_ input: DescribeVirusAutoIsolateSampleDownloadURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSampleDownloadURLResponse {
-        try await self.client.execute(action: "DescribeVirusAutoIsolateSampleDownloadURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVirusAutoIsolateSampleDownloadURL请求参数结构体
     public struct DescribeVirusAutoIsolateSampleDownloadURLRequest: TCRequestModel {
         /// 样本Md5值
@@ -53,5 +41,17 @@ extension Tcss {
             case fileUrl = "FileUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询木马自动隔离样本下载链接
+    @inlinable
+    public func describeVirusAutoIsolateSampleDownloadURL(_ input: DescribeVirusAutoIsolateSampleDownloadURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusAutoIsolateSampleDownloadURLResponse > {
+        self.client.execute(action: "DescribeVirusAutoIsolateSampleDownloadURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询木马自动隔离样本下载链接
+    @inlinable
+    public func describeVirusAutoIsolateSampleDownloadURL(_ input: DescribeVirusAutoIsolateSampleDownloadURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSampleDownloadURLResponse {
+        try await self.client.execute(action: "DescribeVirusAutoIsolateSampleDownloadURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 设置记录状态
-    ///
-    /// 修改解析记录的状态
-    @inlinable
-    public func modifyRecordStatus(_ input: ModifyRecordStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordStatusResponse > {
-        self.client.execute(action: "ModifyRecordStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置记录状态
-    ///
-    /// 修改解析记录的状态
-    @inlinable
-    public func modifyRecordStatus(_ input: ModifyRecordStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordStatusResponse {
-        try await self.client.execute(action: "ModifyRecordStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRecordStatus请求参数结构体
     public struct ModifyRecordStatusRequest: TCRequestModel {
         /// 域名
@@ -45,7 +29,7 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         public let domainId: UInt64?
         
-        public init (domain: String, recordId: UInt64, status: String, domainId: UInt64?) {
+        public init (domain: String, recordId: UInt64, status: String, domainId: UInt64? = nil) {
             self.domain = domain
             self.recordId = recordId
             self.status = status
@@ -72,5 +56,21 @@ extension Dnspod {
             case recordId = "RecordId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置记录状态
+    ///
+    /// 修改解析记录的状态
+    @inlinable
+    public func modifyRecordStatus(_ input: ModifyRecordStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordStatusResponse > {
+        self.client.execute(action: "ModifyRecordStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置记录状态
+    ///
+    /// 修改解析记录的状态
+    @inlinable
+    public func modifyRecordStatus(_ input: ModifyRecordStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordStatusResponse {
+        try await self.client.execute(action: "ModifyRecordStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 应急漏洞扫描
-    ///
-    /// 创建应急漏洞扫描任务
-    @inlinable
-    public func createEmergencyVulScan(_ input: CreateEmergencyVulScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEmergencyVulScanResponse > {
-        self.client.execute(action: "CreateEmergencyVulScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 应急漏洞扫描
-    ///
-    /// 创建应急漏洞扫描任务
-    @inlinable
-    public func createEmergencyVulScan(_ input: CreateEmergencyVulScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmergencyVulScanResponse {
-        try await self.client.execute(action: "CreateEmergencyVulScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEmergencyVulScan请求参数结构体
     public struct CreateEmergencyVulScanRequest: TCRequestModel {
         /// 漏洞id
@@ -39,7 +23,7 @@ extension Cwp {
         /// 自选服务器时生效，主机uuid的string数组
         public let uuids: [String]?
         
-        public init (vulId: UInt64, uuids: [String]?) {
+        public init (vulId: UInt64, uuids: [String]? = nil) {
             self.vulId = vulId
             self.uuids = uuids
         }
@@ -58,5 +42,21 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 应急漏洞扫描
+    ///
+    /// 创建应急漏洞扫描任务
+    @inlinable
+    public func createEmergencyVulScan(_ input: CreateEmergencyVulScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEmergencyVulScanResponse > {
+        self.client.execute(action: "CreateEmergencyVulScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 应急漏洞扫描
+    ///
+    /// 创建应急漏洞扫描任务
+    @inlinable
+    public func createEmergencyVulScan(_ input: CreateEmergencyVulScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmergencyVulScanResponse {
+        try await self.client.execute(action: "CreateEmergencyVulScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

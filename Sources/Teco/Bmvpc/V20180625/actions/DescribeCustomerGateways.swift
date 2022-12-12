@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 查询对端网关
-    ///
-    /// 本接口（DescribeCustomerGateways）用于查询对端网关列表。
-    @inlinable
-    public func describeCustomerGateways(_ input: DescribeCustomerGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomerGatewaysResponse > {
-        self.client.execute(action: "DescribeCustomerGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询对端网关
-    ///
-    /// 本接口（DescribeCustomerGateways）用于查询对端网关列表。
-    @inlinable
-    public func describeCustomerGateways(_ input: DescribeCustomerGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomerGatewaysResponse {
-        try await self.client.execute(action: "DescribeCustomerGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomerGateways请求参数结构体
     public struct DescribeCustomerGatewaysRequest: TCRequestModel {
         /// 对端网关ID，例如：bmcgw-2wqq41m9。每次请求的实例的上限为100。参数不支持同时指定CustomerGatewayIds和Filters。
@@ -55,7 +39,7 @@ extension Bmvpc {
         /// 排序方向, “asc”、“desc”
         public let orderDirection: String?
         
-        public init (customerGatewayIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?, orderField: String?, orderDirection: String?) {
+        public init (customerGatewayIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil) {
             self.customerGatewayIds = customerGatewayIds
             self.filters = filters
             self.offset = offset
@@ -90,5 +74,21 @@ extension Bmvpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询对端网关
+    ///
+    /// 本接口（DescribeCustomerGateways）用于查询对端网关列表。
+    @inlinable
+    public func describeCustomerGateways(_ input: DescribeCustomerGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomerGatewaysResponse > {
+        self.client.execute(action: "DescribeCustomerGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询对端网关
+    ///
+    /// 本接口（DescribeCustomerGateways）用于查询对端网关列表。
+    @inlinable
+    public func describeCustomerGateways(_ input: DescribeCustomerGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomerGatewaysResponse {
+        try await self.client.execute(action: "DescribeCustomerGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

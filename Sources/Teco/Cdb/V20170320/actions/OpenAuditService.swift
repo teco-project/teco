@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 开通审计服务
-    ///
-    /// CDB实例开通审计服务
-    @inlinable
-    public func openAuditService(_ input: OpenAuditServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenAuditServiceResponse > {
-        self.client.execute(action: "OpenAuditService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开通审计服务
-    ///
-    /// CDB实例开通审计服务
-    @inlinable
-    public func openAuditService(_ input: OpenAuditServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenAuditServiceResponse {
-        try await self.client.execute(action: "OpenAuditService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OpenAuditService请求参数结构体
     public struct OpenAuditServiceRequest: TCRequestModel {
         /// CDB实例ID
@@ -54,7 +38,7 @@ extension Cdb {
         /// 1825 - 五年；
         public let highLogExpireDay: UInt64?
         
-        public init (instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64?) {
+        public init (instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil) {
             self.instanceId = instanceId
             self.logExpireDay = logExpireDay
             self.highLogExpireDay = highLogExpireDay
@@ -75,5 +59,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开通审计服务
+    ///
+    /// CDB实例开通审计服务
+    @inlinable
+    public func openAuditService(_ input: OpenAuditServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenAuditServiceResponse > {
+        self.client.execute(action: "OpenAuditService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开通审计服务
+    ///
+    /// CDB实例开通审计服务
+    @inlinable
+    public func openAuditService(_ input: OpenAuditServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenAuditServiceResponse {
+        try await self.client.execute(action: "OpenAuditService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

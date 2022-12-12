@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 将只读实例从只读组中移除
-    ///
-    /// 本接口（RemoveDBInstanceFromReadOnlyGroup）用户将只读实例从只读组中移除
-    @inlinable
-    public func removeDBInstanceFromReadOnlyGroup(_ input: RemoveDBInstanceFromReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveDBInstanceFromReadOnlyGroupResponse > {
-        self.client.execute(action: "RemoveDBInstanceFromReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 将只读实例从只读组中移除
-    ///
-    /// 本接口（RemoveDBInstanceFromReadOnlyGroup）用户将只读实例从只读组中移除
-    @inlinable
-    public func removeDBInstanceFromReadOnlyGroup(_ input: RemoveDBInstanceFromReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveDBInstanceFromReadOnlyGroupResponse {
-        try await self.client.execute(action: "RemoveDBInstanceFromReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemoveDBInstanceFromReadOnlyGroup请求参数结构体
     public struct RemoveDBInstanceFromReadOnlyGroupRequest: TCRequestModel {
         /// 实例ID
@@ -62,5 +46,21 @@ extension Postgres {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 将只读实例从只读组中移除
+    ///
+    /// 本接口（RemoveDBInstanceFromReadOnlyGroup）用户将只读实例从只读组中移除
+    @inlinable
+    public func removeDBInstanceFromReadOnlyGroup(_ input: RemoveDBInstanceFromReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveDBInstanceFromReadOnlyGroupResponse > {
+        self.client.execute(action: "RemoveDBInstanceFromReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 将只读实例从只读组中移除
+    ///
+    /// 本接口（RemoveDBInstanceFromReadOnlyGroup）用户将只读实例从只读组中移除
+    @inlinable
+    public func removeDBInstanceFromReadOnlyGroup(_ input: RemoveDBInstanceFromReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveDBInstanceFromReadOnlyGroupResponse {
+        try await self.client.execute(action: "RemoveDBInstanceFromReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

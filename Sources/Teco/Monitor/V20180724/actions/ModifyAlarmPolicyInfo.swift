@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 修改告警策略基本信息
-    ///
-    /// 告警2.0编辑告警策略基本信息，包括策略名、备注
-    @inlinable
-    public func modifyAlarmPolicyInfo(_ input: ModifyAlarmPolicyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmPolicyInfoResponse > {
-        self.client.execute(action: "ModifyAlarmPolicyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改告警策略基本信息
-    ///
-    /// 告警2.0编辑告警策略基本信息，包括策略名、备注
-    @inlinable
-    public func modifyAlarmPolicyInfo(_ input: ModifyAlarmPolicyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyInfoResponse {
-        try await self.client.execute(action: "ModifyAlarmPolicyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAlarmPolicyInfo请求参数结构体
     public struct ModifyAlarmPolicyInfoRequest: TCRequestModel {
         /// 模块名，这里填“monitor”
@@ -68,5 +52,21 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改告警策略基本信息
+    ///
+    /// 告警2.0编辑告警策略基本信息，包括策略名、备注
+    @inlinable
+    public func modifyAlarmPolicyInfo(_ input: ModifyAlarmPolicyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmPolicyInfoResponse > {
+        self.client.execute(action: "ModifyAlarmPolicyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改告警策略基本信息
+    ///
+    /// 告警2.0编辑告警策略基本信息，包括策略名、备注
+    @inlinable
+    public func modifyAlarmPolicyInfo(_ input: ModifyAlarmPolicyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyInfoResponse {
+        try await self.client.execute(action: "ModifyAlarmPolicyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

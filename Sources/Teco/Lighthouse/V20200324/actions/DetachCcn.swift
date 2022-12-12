@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 解关联云联网
-    ///
-    /// 本接口 (AttachCcn) 用于解除与云联网的关联。
-    @inlinable
-    public func detachCcn(_ input: DetachCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachCcnResponse > {
-        self.client.execute(action: "DetachCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解关联云联网
-    ///
-    /// 本接口 (AttachCcn) 用于解除与云联网的关联。
-    @inlinable
-    public func detachCcn(_ input: DetachCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnResponse {
-        try await self.client.execute(action: "DetachCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetachCcn请求参数结构体
     public struct DetachCcnRequest: TCRequestModel {
         /// 云联网实例ID。
@@ -53,5 +37,21 @@ extension Lighthouse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解关联云联网
+    ///
+    /// 本接口 (AttachCcn) 用于解除与云联网的关联。
+    @inlinable
+    public func detachCcn(_ input: DetachCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachCcnResponse > {
+        self.client.execute(action: "DetachCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解关联云联网
+    ///
+    /// 本接口 (AttachCcn) 用于解除与云联网的关联。
+    @inlinable
+    public func detachCcn(_ input: DetachCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnResponse {
+        try await self.client.execute(action: "DetachCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

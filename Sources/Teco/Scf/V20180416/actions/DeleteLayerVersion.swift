@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 删除层版本
-    ///
-    /// 删除指定层的指定版本，被删除的版本无法再关联到函数上，但不会影响正在引用这个层的函数。
-    @inlinable
-    public func deleteLayerVersion(_ input: DeleteLayerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLayerVersionResponse > {
-        self.client.execute(action: "DeleteLayerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除层版本
-    ///
-    /// 删除指定层的指定版本，被删除的版本无法再关联到函数上，但不会影响正在引用这个层的函数。
-    @inlinable
-    public func deleteLayerVersion(_ input: DeleteLayerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLayerVersionResponse {
-        try await self.client.execute(action: "DeleteLayerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLayerVersion请求参数结构体
     public struct DeleteLayerVersionRequest: TCRequestModel {
         /// 层名称
@@ -58,5 +42,21 @@ extension Scf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除层版本
+    ///
+    /// 删除指定层的指定版本，被删除的版本无法再关联到函数上，但不会影响正在引用这个层的函数。
+    @inlinable
+    public func deleteLayerVersion(_ input: DeleteLayerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLayerVersionResponse > {
+        self.client.execute(action: "DeleteLayerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除层版本
+    ///
+    /// 删除指定层的指定版本，被删除的版本无法再关联到函数上，但不会影响正在引用这个层的函数。
+    @inlinable
+    public func deleteLayerVersion(_ input: DeleteLayerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLayerVersionResponse {
+        try await self.client.execute(action: "DeleteLayerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

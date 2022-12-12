@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dasb {
-    /// 查询用户列表
-    @inlinable
-    public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsersResponse > {
-        self.client.execute(action: "DescribeUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户列表
-    @inlinable
-    public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
-        try await self.client.execute(action: "DescribeUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUsers请求参数结构体
     public struct DescribeUsersRequest: TCRequestModel {
         /// 如果IdSet不为空，则忽略其他参数
@@ -57,7 +45,7 @@ extension Dasb {
         /// 部门ID，用于过滤属于某个部门的用户
         public let departmentId: String?
         
-        public init (idSet: [UInt64]?, name: String?, offset: UInt64?, limit: UInt64?, userName: String?, phone: String?, authorizedDeviceIdSet: [UInt64]?, authTypeSet: [UInt64]?, departmentId: String?) {
+        public init (idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, userName: String? = nil, phone: String? = nil, authorizedDeviceIdSet: [UInt64]? = nil, authTypeSet: [UInt64]? = nil, departmentId: String? = nil) {
             self.idSet = idSet
             self.name = name
             self.offset = offset
@@ -98,5 +86,17 @@ extension Dasb {
             case userSet = "UserSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户列表
+    @inlinable
+    public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsersResponse > {
+        self.client.execute(action: "DescribeUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户列表
+    @inlinable
+    public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
+        try await self.client.execute(action: "DescribeUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

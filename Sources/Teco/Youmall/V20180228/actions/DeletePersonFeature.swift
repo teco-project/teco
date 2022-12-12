@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 删除顾客特征
-    ///
-    /// 删除顾客特征，仅支持删除黑名单或者白名单用户特征。
-    @inlinable
-    public func deletePersonFeature(_ input: DeletePersonFeatureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePersonFeatureResponse > {
-        self.client.execute(action: "DeletePersonFeature", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除顾客特征
-    ///
-    /// 删除顾客特征，仅支持删除黑名单或者白名单用户特征。
-    @inlinable
-    public func deletePersonFeature(_ input: DeletePersonFeatureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonFeatureResponse {
-        try await self.client.execute(action: "DeletePersonFeature", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePersonFeature请求参数结构体
     public struct DeletePersonFeatureRequest: TCRequestModel {
         /// 公司ID
@@ -63,5 +47,21 @@ extension Youmall {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除顾客特征
+    ///
+    /// 删除顾客特征，仅支持删除黑名单或者白名单用户特征。
+    @inlinable
+    public func deletePersonFeature(_ input: DeletePersonFeatureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePersonFeatureResponse > {
+        self.client.execute(action: "DeletePersonFeature", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除顾客特征
+    ///
+    /// 删除顾客特征，仅支持删除黑名单或者白名单用户特征。
+    @inlinable
+    public func deletePersonFeature(_ input: DeletePersonFeatureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonFeatureResponse {
+        try await self.client.execute(action: "DeletePersonFeature", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

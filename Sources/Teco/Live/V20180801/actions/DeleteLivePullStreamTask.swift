@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 删除直播拉流任务
-    ///
-    /// 删除接口 CreateLivePullStreamTask 创建的拉流任务。
-    /// 注意：
-    /// 1. 入参中的 TaskId 为 CreateLivePullStreamTask 接口创建时返回的TaskId。
-    /// 2. 也可通过 DescribeLivePullStreamTasks 进行查询创建的任务。
-    @inlinable
-    public func deleteLivePullStreamTask(_ input: DeleteLivePullStreamTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLivePullStreamTaskResponse > {
-        self.client.execute(action: "DeleteLivePullStreamTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除直播拉流任务
-    ///
-    /// 删除接口 CreateLivePullStreamTask 创建的拉流任务。
-    /// 注意：
-    /// 1. 入参中的 TaskId 为 CreateLivePullStreamTask 接口创建时返回的TaskId。
-    /// 2. 也可通过 DescribeLivePullStreamTasks 进行查询创建的任务。
-    @inlinable
-    public func deleteLivePullStreamTask(_ input: DeleteLivePullStreamTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLivePullStreamTaskResponse {
-        try await self.client.execute(action: "DeleteLivePullStreamTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLivePullStreamTask请求参数结构体
     public struct DeleteLivePullStreamTaskRequest: TCRequestModel {
         /// 任务 Id。
@@ -64,5 +42,27 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除直播拉流任务
+    ///
+    /// 删除接口 CreateLivePullStreamTask 创建的拉流任务。
+    /// 注意：
+    /// 1. 入参中的 TaskId 为 CreateLivePullStreamTask 接口创建时返回的TaskId。
+    /// 2. 也可通过 DescribeLivePullStreamTasks 进行查询创建的任务。
+    @inlinable
+    public func deleteLivePullStreamTask(_ input: DeleteLivePullStreamTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLivePullStreamTaskResponse > {
+        self.client.execute(action: "DeleteLivePullStreamTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除直播拉流任务
+    ///
+    /// 删除接口 CreateLivePullStreamTask 创建的拉流任务。
+    /// 注意：
+    /// 1. 入参中的 TaskId 为 CreateLivePullStreamTask 接口创建时返回的TaskId。
+    /// 2. 也可通过 DescribeLivePullStreamTasks 进行查询创建的任务。
+    @inlinable
+    public func deleteLivePullStreamTask(_ input: DeleteLivePullStreamTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLivePullStreamTaskResponse {
+        try await self.client.execute(action: "DeleteLivePullStreamTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

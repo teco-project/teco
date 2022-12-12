@@ -15,30 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 使用任务流模板进行视频处理
-    ///
-    /// 使用任务流模板，对点播中的视频发起处理任务。
-    /// 有两种方式创建任务流模板：
-    /// 1. 在控制台上创建和修改任务流模板；
-    /// 2. 通过任务流模板接口创建任务流模板。
-    /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
-    @inlinable
-    public func processMediaByProcedure(_ input: ProcessMediaByProcedureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ProcessMediaByProcedureResponse > {
-        self.client.execute(action: "ProcessMediaByProcedure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 使用任务流模板进行视频处理
-    ///
-    /// 使用任务流模板，对点播中的视频发起处理任务。
-    /// 有两种方式创建任务流模板：
-    /// 1. 在控制台上创建和修改任务流模板；
-    /// 2. 通过任务流模板接口创建任务流模板。
-    /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
-    @inlinable
-    public func processMediaByProcedure(_ input: ProcessMediaByProcedureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaByProcedureResponse {
-        try await self.client.execute(action: "ProcessMediaByProcedure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ProcessMediaByProcedure请求参数结构体
     public struct ProcessMediaByProcedureRequest: TCRequestModel {
         /// 媒体文件 ID。
@@ -65,7 +41,7 @@ extension Vod {
         /// 保留字段，特殊用途时使用。
         public let extInfo: String?
         
-        public init (fileId: String, procedureName: String, subAppId: UInt64?, tasksPriority: Int64?, tasksNotifyMode: String?, sessionContext: String?, sessionId: String?, extInfo: String?) {
+        public init (fileId: String, procedureName: String, subAppId: UInt64? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil) {
             self.fileId = fileId
             self.procedureName = procedureName
             self.subAppId = subAppId
@@ -100,5 +76,29 @@ extension Vod {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 使用任务流模板进行视频处理
+    ///
+    /// 使用任务流模板，对点播中的视频发起处理任务。
+    /// 有两种方式创建任务流模板：
+    /// 1. 在控制台上创建和修改任务流模板；
+    /// 2. 通过任务流模板接口创建任务流模板。
+    /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
+    @inlinable
+    public func processMediaByProcedure(_ input: ProcessMediaByProcedureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ProcessMediaByProcedureResponse > {
+        self.client.execute(action: "ProcessMediaByProcedure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 使用任务流模板进行视频处理
+    ///
+    /// 使用任务流模板，对点播中的视频发起处理任务。
+    /// 有两种方式创建任务流模板：
+    /// 1. 在控制台上创建和修改任务流模板；
+    /// 2. 通过任务流模板接口创建任务流模板。
+    /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
+    @inlinable
+    public func processMediaByProcedure(_ input: ProcessMediaByProcedureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaByProcedureResponse {
+        try await self.client.execute(action: "ProcessMediaByProcedure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

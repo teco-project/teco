@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 创建集团门店管理员账号
-    @inlinable
-    public func createAccount(_ input: CreateAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccountResponse > {
-        self.client.execute(action: "CreateAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建集团门店管理员账号
-    @inlinable
-    public func createAccount(_ input: CreateAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountResponse {
-        try await self.client.execute(action: "CreateAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAccount请求参数结构体
     public struct CreateAccountRequest: TCRequestModel {
         /// 集团ID
@@ -44,7 +32,7 @@ extension Youmall {
         /// 备注说明; 30个字符以内
         public let remark: String?
         
-        public init (companyId: String, name: String, password: String, shopCode: String, remark: String?) {
+        public init (companyId: String, name: String, password: String, shopCode: String, remark: String? = nil) {
             self.companyId = companyId
             self.name = name
             self.password = password
@@ -69,5 +57,17 @@ extension Youmall {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建集团门店管理员账号
+    @inlinable
+    public func createAccount(_ input: CreateAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccountResponse > {
+        self.client.execute(action: "CreateAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集团门店管理员账号
+    @inlinable
+    public func createAccount(_ input: CreateAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountResponse {
+        try await self.client.execute(action: "CreateAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

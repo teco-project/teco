@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Partners {
-    /// 查询客户余额
-    ///
-    /// 【该接口将逐步下线，请切换使用升级版本DescribeClientBalanceNew】为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额.
-    @inlinable
-    public func describeClientBalance(_ input: DescribeClientBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientBalanceResponse > {
-        self.client.execute(action: "DescribeClientBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询客户余额
-    ///
-    /// 【该接口将逐步下线，请切换使用升级版本DescribeClientBalanceNew】为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额.
-    @inlinable
-    public func describeClientBalance(_ input: DescribeClientBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientBalanceResponse {
-        try await self.client.execute(action: "DescribeClientBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClientBalance请求参数结构体
     public struct DescribeClientBalanceRequest: TCRequestModel {
         /// 客户(代客)账号ID
@@ -61,5 +45,21 @@ extension Partners {
             case cash = "Cash"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询客户余额
+    ///
+    /// 【该接口将逐步下线，请切换使用升级版本DescribeClientBalanceNew】为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额.
+    @inlinable
+    public func describeClientBalance(_ input: DescribeClientBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientBalanceResponse > {
+        self.client.execute(action: "DescribeClientBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询客户余额
+    ///
+    /// 【该接口将逐步下线，请切换使用升级版本DescribeClientBalanceNew】为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额.
+    @inlinable
+    public func describeClientBalance(_ input: DescribeClientBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientBalanceResponse {
+        try await self.client.execute(action: "DescribeClientBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

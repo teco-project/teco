@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Fmu {
-    /// 删除唇色素材
-    ///
-    /// 删除已注册的唇色素材。
-    @inlinable
-    public func deleteModel(_ input: DeleteModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModelResponse > {
-        self.client.execute(action: "DeleteModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除唇色素材
-    ///
-    /// 删除已注册的唇色素材。
-    @inlinable
-    public func deleteModel(_ input: DeleteModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelResponse {
-        try await self.client.execute(action: "DeleteModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteModel请求参数结构体
     public struct DeleteModelRequest: TCRequestModel {
         /// 素材ID。
@@ -53,5 +37,21 @@ extension Fmu {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除唇色素材
+    ///
+    /// 删除已注册的唇色素材。
+    @inlinable
+    public func deleteModel(_ input: DeleteModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModelResponse > {
+        self.client.execute(action: "DeleteModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除唇色素材
+    ///
+    /// 删除已注册的唇色素材。
+    @inlinable
+    public func deleteModel(_ input: DeleteModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelResponse {
+        try await self.client.execute(action: "DeleteModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

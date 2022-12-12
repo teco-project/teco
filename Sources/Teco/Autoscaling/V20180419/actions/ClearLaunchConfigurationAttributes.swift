@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 清除启动配置属性
-    ///
-    /// 本接口（ClearLaunchConfigurationAttributes）用于将启动配置内的特定属性完全清空。
-    @inlinable
-    public func clearLaunchConfigurationAttributes(_ input: ClearLaunchConfigurationAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClearLaunchConfigurationAttributesResponse > {
-        self.client.execute(action: "ClearLaunchConfigurationAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 清除启动配置属性
-    ///
-    /// 本接口（ClearLaunchConfigurationAttributes）用于将启动配置内的特定属性完全清空。
-    @inlinable
-    public func clearLaunchConfigurationAttributes(_ input: ClearLaunchConfigurationAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearLaunchConfigurationAttributesResponse {
-        try await self.client.execute(action: "ClearLaunchConfigurationAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ClearLaunchConfigurationAttributes请求参数结构体
     public struct ClearLaunchConfigurationAttributesRequest: TCRequestModel {
         /// 启动配置ID。
@@ -48,7 +32,7 @@ extension As {
         /// 填 true 代表清空主机名设置信息，清空后基于此新创建的云主机将按照“as-{{ 伸缩组AutoScalingGroupName }}”进行设置。
         public let clearInstanceNameSettings: Bool?
         
-        public init (launchConfigurationId: String, clearDataDisks: Bool?, clearHostNameSettings: Bool?, clearInstanceNameSettings: Bool?) {
+        public init (launchConfigurationId: String, clearDataDisks: Bool? = nil, clearHostNameSettings: Bool? = nil, clearInstanceNameSettings: Bool? = nil) {
             self.launchConfigurationId = launchConfigurationId
             self.clearDataDisks = clearDataDisks
             self.clearHostNameSettings = clearHostNameSettings
@@ -71,5 +55,21 @@ extension As {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 清除启动配置属性
+    ///
+    /// 本接口（ClearLaunchConfigurationAttributes）用于将启动配置内的特定属性完全清空。
+    @inlinable
+    public func clearLaunchConfigurationAttributes(_ input: ClearLaunchConfigurationAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClearLaunchConfigurationAttributesResponse > {
+        self.client.execute(action: "ClearLaunchConfigurationAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 清除启动配置属性
+    ///
+    /// 本接口（ClearLaunchConfigurationAttributes）用于将启动配置内的特定属性完全清空。
+    @inlinable
+    public func clearLaunchConfigurationAttributes(_ input: ClearLaunchConfigurationAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearLaunchConfigurationAttributesResponse {
+        try await self.client.execute(action: "ClearLaunchConfigurationAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

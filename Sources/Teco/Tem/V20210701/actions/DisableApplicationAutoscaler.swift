@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 关闭应用弹性策略组合
-    @inlinable
-    public func disableApplicationAutoscaler(_ input: DisableApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableApplicationAutoscalerResponse > {
-        self.client.execute(action: "DisableApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关闭应用弹性策略组合
-    @inlinable
-    public func disableApplicationAutoscaler(_ input: DisableApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableApplicationAutoscalerResponse {
-        try await self.client.execute(action: "DisableApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableApplicationAutoscaler请求参数结构体
     public struct DisableApplicationAutoscalerRequest: TCRequestModel {
         /// 服务id
@@ -41,7 +29,7 @@ extension Tem {
         /// 弹性伸缩策略ID
         public let autoscalerId: String?
         
-        public init (applicationId: String, environmentId: String, sourceChannel: Int64?, autoscalerId: String?) {
+        public init (applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil) {
             self.applicationId = applicationId
             self.environmentId = environmentId
             self.sourceChannel = sourceChannel
@@ -69,5 +57,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关闭应用弹性策略组合
+    @inlinable
+    public func disableApplicationAutoscaler(_ input: DisableApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableApplicationAutoscalerResponse > {
+        self.client.execute(action: "DisableApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭应用弹性策略组合
+    @inlinable
+    public func disableApplicationAutoscaler(_ input: DisableApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableApplicationAutoscalerResponse {
+        try await self.client.execute(action: "DisableApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 主群组配置列表
-    @inlinable
-    public func getGroupList(_ input: GetGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGroupListResponse > {
-        self.client.execute(action: "GetGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 主群组配置列表
-    @inlinable
-    public func getGroupList(_ input: GetGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupListResponse {
-        try await self.client.execute(action: "GetGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetGroupList请求参数结构体
     public struct GetGroupListRequest: TCRequestModel {
         /// 0为未部署DID服务的群组，1为已部署DID服务的群组
@@ -58,5 +46,17 @@ extension Tdid {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 主群组配置列表
+    @inlinable
+    public func getGroupList(_ input: GetGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGroupListResponse > {
+        self.client.execute(action: "GetGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 主群组配置列表
+    @inlinable
+    public func getGroupList(_ input: GetGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupListResponse {
+        try await self.client.execute(action: "GetGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

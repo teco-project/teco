@@ -395,7 +395,7 @@ extension Faceid {
         /// SM4-GCM算法生成的消息摘要（校验消息完整性时使用）
         public let tagList: [String]?
         
-        public init (encryptList: [String], ciphertextBlob: String, iv: String, algorithm: String?, tagList: [String]?) {
+        public init (encryptList: [String], ciphertextBlob: String, iv: String, algorithm: String? = nil, tagList: [String]? = nil) {
             self.encryptList = encryptList
             self.ciphertextBlob = ciphertextBlob
             self.iv = iv
@@ -438,7 +438,7 @@ extension Faceid {
         /// 意愿核身过程中识别用户的回答意图，开启后除了IntentionQuestions的Answers列表中的标准回答会通过，近似意图的回答也会通过，默认不开启。
         public let intentionRecognition: Bool?
         
-        public init (inputType: String?, useIntentionVerify: Bool?, intentionMode: String?, intentionVerifyText: String?, intentionQuestions: [IntentionQuestion]?, intentionRecognition: Bool?) {
+        public init (inputType: String? = nil, useIntentionVerify: Bool? = nil, intentionMode: String? = nil, intentionVerifyText: String? = nil, intentionQuestions: [IntentionQuestion]? = nil, intentionRecognition: Bool? = nil) {
             self.inputType = inputType
             self.useIntentionVerify = useIntentionVerify
             self.intentionMode = intentionMode
@@ -555,7 +555,7 @@ extension Faceid {
         /// 意愿核身过程中识别用户的回答意图，开启后除了IntentionQuestions的Answers列表中的标准回答会通过，近似意图的回答也会通过，默认不开启。
         public let intentionRecognition: Bool?
         
-        public init (intentionRecognition: Bool?) {
+        public init (intentionRecognition: Bool? = nil) {
             self.intentionRecognition = intentionRecognition
         }
         

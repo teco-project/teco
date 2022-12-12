@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssa {
-    /// 云安全配置检查项列表
-    @inlinable
-    public func describeSocCheckItemList(_ input: DescribeSocCheckItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSocCheckItemListResponse > {
-        self.client.execute(action: "DescribeSocCheckItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云安全配置检查项列表
-    @inlinable
-    public func describeSocCheckItemList(_ input: DescribeSocCheckItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCheckItemListResponse {
-        try await self.client.execute(action: "DescribeSocCheckItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSocCheckItemList请求参数结构体
     public struct DescribeSocCheckItemListRequest: TCRequestModel {
         /// 查询参数,可支持的排序字段:Name,Type,AssetType,Level,Standard,IsFree
@@ -41,7 +29,7 @@ extension Ssa {
         /// 当前页面索引，默认值为0
         public let pageIndex: Int64?
         
-        public init (filter: [QueryFilter]?, sorter: [QuerySort]?, pageSize: Int64?, pageIndex: Int64?) {
+        public init (filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, pageSize: Int64? = nil, pageIndex: Int64? = nil) {
             self.filter = filter
             self.sorter = sorter
             self.pageSize = pageSize
@@ -60,7 +48,7 @@ extension Ssa {
     public struct DescribeSocCheckItemListResponse: TCResponseModel {
         /// 检查项列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: DescribeSocCheckItemListRspRsp
+        public let data: DescribeSocCheckItemListRspRsp?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -69,5 +57,17 @@ extension Ssa {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云安全配置检查项列表
+    @inlinable
+    public func describeSocCheckItemList(_ input: DescribeSocCheckItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSocCheckItemListResponse > {
+        self.client.execute(action: "DescribeSocCheckItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云安全配置检查项列表
+    @inlinable
+    public func describeSocCheckItemList(_ input: DescribeSocCheckItemListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCheckItemListResponse {
+        try await self.client.execute(action: "DescribeSocCheckItemList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

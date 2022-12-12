@@ -26,7 +26,7 @@ extension Essbasic {
         public let proxyOrganizationOpenId: String?
         
         /// 渠道子客企业中的员工/经办人，通过渠道平台进入电子签完成实名、且被赋予相关权限后，可以参与到企业资源的管理或签署流程中。
-        public let proxyOperator: UserInfo
+        public let proxyOperator: UserInfo?
         
         /// 在子客企业开通电子签后，会生成唯一的子客应用Id（ProxyAppId）用于代理调用时的鉴权，在子客开通的回调中获取。
         public let proxyAppId: String?
@@ -34,7 +34,7 @@ extension Essbasic {
         /// 内部参数，暂未开放使用
         public let proxyOrganizationId: String?
         
-        public init (appId: String, proxyOrganizationOpenId: String?, proxyOperator: UserInfo, proxyAppId: String?, proxyOrganizationId: String?) {
+        public init (appId: String, proxyOrganizationOpenId: String? = nil, proxyOperator: UserInfo? = nil, proxyAppId: String? = nil, proxyOrganizationId: String? = nil) {
             self.appId = appId
             self.proxyOrganizationOpenId = proxyOrganizationOpenId
             self.proxyOperator = proxyOperator
@@ -56,7 +56,7 @@ extension Essbasic {
         /// 是否隐藏一键签署 false-不隐藏,默认 true-隐藏
         public let hideOneKeySign: Bool?
         
-        public init (hideOneKeySign: Bool?) {
+        public init (hideOneKeySign: Bool? = nil) {
             self.hideOneKeySign = hideOneKeySign
         }
         
@@ -79,7 +79,7 @@ extension Essbasic {
         /// 指定签署人证件号码
         public let idCardNumber: String?
         
-        public init (name: String?, mobile: String?, idCardType: String?, idCardNumber: String?) {
+        public init (name: String? = nil, mobile: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil) {
             self.name = name
             self.mobile = mobile
             self.idCardType = idCardType
@@ -123,7 +123,7 @@ extension Essbasic {
         /// 被抄送人手机号，大陆11位手机号
         public let mobile: String?
         
-        public init (mobile: String?) {
+        public init (mobile: String? = nil) {
             self.mobile = mobile
         }
         
@@ -267,7 +267,7 @@ extension Essbasic {
         /// 关键字索引，可选参数，如果一个关键字在PDF文件中存在多个，可以通过关键字索引指定使用第几个关键字作为最后的结果，可指定多个索引。示例[0,2]，说明使用PDF文件内第1个和第3个关键字位置。
         public let keywordIndexes: [Int64]?
         
-        public init (componentId: String?, componentType: String?, componentName: String?, componentRequired: Bool?, componentRecipientId: String?, fileIndex: Int64?, generateMode: String?, componentWidth: Float?, componentHeight: Float?, componentPage: Int64?, componentPosX: Float?, componentPosY: Float?, componentExtra: String?, componentValue: String?, componentDateFontSize: Int64?, documentId: String?, componentDescription: String?, offsetX: Float?, offsetY: Float?, channelComponentId: String?, keywordPage: Int64?, relativeLocation: String?, keywordIndexes: [Int64]?) {
+        public init (componentId: String? = nil, componentType: String? = nil, componentName: String? = nil, componentRequired: Bool? = nil, componentRecipientId: String? = nil, fileIndex: Int64? = nil, generateMode: String? = nil, componentWidth: Float? = nil, componentHeight: Float? = nil, componentPage: Int64? = nil, componentPosX: Float? = nil, componentPosY: Float? = nil, componentExtra: String? = nil, componentValue: String? = nil, componentDateFontSize: Int64? = nil, documentId: String? = nil, componentDescription: String? = nil, offsetX: Float? = nil, offsetY: Float? = nil, channelComponentId: String? = nil, keywordPage: Int64? = nil, relativeLocation: String? = nil, keywordIndexes: [Int64]? = nil) {
             self.componentId = componentId
             self.componentType = componentType
             self.componentName = componentName
@@ -497,12 +497,12 @@ extension Essbasic {
         public let jumpUrl: String?
         
         /// 签署人个性化能力值
-        public let approverOption: ApproverOption
+        public let approverOption: ApproverOption?
         
         /// 当前签署方进行签署操作是否需要企业内部审批，true 则为需要
         public let approverNeedSignReview: Bool?
         
-        public init (name: String?, idCardType: String?, idCardNumber: String?, mobile: String?, organizationName: String?, notChannelOrganization: Bool?, openId: String?, organizationOpenId: String?, approverType: String?, recipientId: String?, deadline: Int64?, callbackUrl: String?, signComponents: [Component]?, componentLimitType: [String]?, preReadTime: Int64?, jumpUrl: String?, approverOption: ApproverOption, approverNeedSignReview: Bool?) {
+        public init (name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, mobile: String? = nil, organizationName: String? = nil, notChannelOrganization: Bool? = nil, openId: String? = nil, organizationOpenId: String? = nil, approverType: String? = nil, recipientId: String? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, signComponents: [Component]? = nil, componentLimitType: [String]? = nil, preReadTime: Int64? = nil, jumpUrl: String? = nil, approverOption: ApproverOption? = nil, approverNeedSignReview: Bool? = nil) {
             self.name = name
             self.idCardType = idCardType
             self.idCardNumber = idCardNumber
@@ -622,7 +622,7 @@ extension Essbasic {
         /// 本企业(发起方企业)是否需要签署审批
         public let needSignReview: Bool?
         
-        public init (fileIds: [String], flowName: String, flowApprovers: [FlowApproverInfo], deadline: Int64?, flowDescription: String?, flowType: String?, callbackUrl: String?, customerData: String?, unordered: Bool?, customShowMap: String?, needSignReview: Bool?) {
+        public init (fileIds: [String], flowName: String, flowApprovers: [FlowApproverInfo], deadline: Int64? = nil, flowDescription: String? = nil, flowType: String? = nil, callbackUrl: String? = nil, customerData: String? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil) {
             self.fileIds = fileIds
             self.flowName = flowName
             self.flowApprovers = flowApprovers
@@ -795,7 +795,7 @@ extension Essbasic {
         /// 注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
         public let needSignReview: Bool?
         
-        public init (flowName: String, deadline: Int64, templateId: String?, flowApprovers: [FlowApproverInfo]?, formFields: [FormField]?, callbackUrl: String?, flowType: String?, flowDescription: String?, customerData: String?, customShowMap: String?, ccInfos: [CcInfo]?, needSignReview: Bool?) {
+        public init (flowName: String, deadline: Int64, templateId: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, formFields: [FormField]? = nil, callbackUrl: String? = nil, flowType: String? = nil, flowDescription: String? = nil, customerData: String? = nil, customShowMap: String? = nil, ccInfos: [CcInfo]? = nil, needSignReview: Bool? = nil) {
             self.flowName = flowName
             self.deadline = deadline
             self.templateId = templateId
@@ -862,7 +862,7 @@ extension Essbasic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let componentName: String?
         
-        public init (componentValue: String, componentId: String?, componentName: String?) {
+        public init (componentValue: String, componentId: String? = nil, componentName: String? = nil) {
             self.componentValue = componentValue
             self.componentId = componentId
             self.componentName = componentName
@@ -943,7 +943,7 @@ extension Essbasic {
         /// 用户渠道
         public let channel: String?
         
-        public init (organizationOpenId: String, clientIp: String, proxyIp: String, organizationId: String?, channel: String?) {
+        public init (organizationOpenId: String, clientIp: String, proxyIp: String, organizationId: String? = nil, channel: String? = nil) {
             self.organizationOpenId = organizationOpenId
             self.clientIp = clientIp
             self.proxyIp = proxyIp
@@ -1042,7 +1042,7 @@ extension Essbasic {
         /// 经办人手机号，大陆手机号输入11位，暂不支持海外手机号。
         public let mobile: String?
         
-        public init (id: String, name: String?, idCardType: String?, idCardNumber: String?, mobile: String?) {
+        public init (id: String, name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, mobile: String? = nil) {
             self.id = id
             self.name = name
             self.idCardType = idCardType
@@ -1088,7 +1088,7 @@ extension Essbasic {
         /// 是否是发起方
         public let isPromoter: Bool?
         
-        public init (recipientId: String?, recipientType: String?, description: String?, roleName: String?, requireValidation: Bool?, requireSign: Bool?, signType: Int64?, routingOrder: Int64?, isPromoter: Bool?) {
+        public init (recipientId: String? = nil, recipientType: String? = nil, description: String? = nil, roleName: String? = nil, requireValidation: Bool? = nil, requireSign: Bool? = nil, signType: Int64? = nil, routingOrder: Int64? = nil, isPromoter: Bool? = nil) {
             self.recipientId = recipientId
             self.recipientType = recipientType
             self.description = description
@@ -1153,7 +1153,7 @@ extension Essbasic {
         /// 当签署方为同一渠道下的员工时，该字必传
         public let openId: String?
         
-        public init (organizationName: String, approverNumber: UInt64, approverType: String, name: String?, idCardType: String?, idCardNumber: String?, mobile: String?, organizationOpenId: String?, openId: String?) {
+        public init (organizationName: String, approverNumber: UInt64, approverType: String, name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, mobile: String? = nil, organizationOpenId: String? = nil, openId: String? = nil) {
             self.organizationName = organizationName
             self.approverNumber = approverNumber
             self.approverType = approverType
@@ -1195,7 +1195,7 @@ extension Essbasic {
         /// 其他约定，最大支持200个字
         public let otherDeals: String?
         
-        public init (reason: String, remainInForceItem: String?, originalExpenseSettlement: String?, originalOtherSettlement: String?, otherDeals: String?) {
+        public init (reason: String, remainInForceItem: String? = nil, originalExpenseSettlement: String? = nil, originalOtherSettlement: String? = nil, otherDeals: String? = nil) {
             self.reason = reason
             self.remainInForceItem = remainInForceItem
             self.originalExpenseSettlement = originalExpenseSettlement
@@ -1367,7 +1367,7 @@ extension Essbasic {
         
         /// 员工部门
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let department: Department
+        public let department: Department?
         
         /// 员工是否实名
         public let verified: Bool
@@ -1512,7 +1512,7 @@ extension Essbasic {
         /// 文件名
         public let fileName: String?
         
-        public init (fileBody: String, fileName: String?) {
+        public init (fileBody: String, fileName: String? = nil) {
             self.fileBody = fileBody
             self.fileName = fileName
         }
@@ -1574,7 +1574,7 @@ extension Essbasic {
         /// 内部参数，暂未开放使用
         public let proxyIp: String?
         
-        public init (openId: String?, channel: String?, customUserId: String?, clientIp: String?, proxyIp: String?) {
+        public init (openId: String? = nil, channel: String? = nil, customUserId: String? = nil, clientIp: String? = nil, proxyIp: String? = nil) {
             self.openId = openId
             self.channel = channel
             self.customUserId = customUserId

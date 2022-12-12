@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 专家服务订单列表
-    ///
-    /// 专家服务-专家服务订单列表
-    @inlinable
-    public func describeExpertServiceOrderList(_ input: DescribeExpertServiceOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExpertServiceOrderListResponse > {
-        self.client.execute(action: "DescribeExpertServiceOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 专家服务订单列表
-    ///
-    /// 专家服务-专家服务订单列表
-    @inlinable
-    public func describeExpertServiceOrderList(_ input: DescribeExpertServiceOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExpertServiceOrderListResponse {
-        try await self.client.execute(action: "DescribeExpertServiceOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExpertServiceOrderList请求参数结构体
     public struct DescribeExpertServiceOrderListRequest: TCRequestModel {
         /// <li>InquireType- String - 是否必填：否 - 订单类型过滤，</li>
@@ -42,7 +26,7 @@ extension Cwp {
         /// 分页步长
         public let offset: UInt64?
         
-        public init (filters: [Filters]?, limit: UInt64?, offset: UInt64?) {
+        public init (filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -71,5 +55,21 @@ extension Cwp {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 专家服务订单列表
+    ///
+    /// 专家服务-专家服务订单列表
+    @inlinable
+    public func describeExpertServiceOrderList(_ input: DescribeExpertServiceOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExpertServiceOrderListResponse > {
+        self.client.execute(action: "DescribeExpertServiceOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 专家服务订单列表
+    ///
+    /// 专家服务-专家服务订单列表
+    @inlinable
+    public func describeExpertServiceOrderList(_ input: DescribeExpertServiceOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExpertServiceOrderListResponse {
+        try await self.client.execute(action: "DescribeExpertServiceOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

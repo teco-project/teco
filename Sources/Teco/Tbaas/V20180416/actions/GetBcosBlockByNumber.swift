@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 使用块高查询区块信息
-    ///
-    /// 使用块高查询Bcos区块信息
-    @inlinable
-    public func getBcosBlockByNumber(_ input: GetBcosBlockByNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBcosBlockByNumberResponse > {
-        self.client.execute(action: "GetBcosBlockByNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 使用块高查询区块信息
-    ///
-    /// 使用块高查询Bcos区块信息
-    @inlinable
-    public func getBcosBlockByNumber(_ input: GetBcosBlockByNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosBlockByNumberResponse {
-        try await self.client.execute(action: "GetBcosBlockByNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetBcosBlockByNumber请求参数结构体
     public struct GetBcosBlockByNumberRequest: TCRequestModel {
         /// 网络ID，可在区块链网络详情或列表中获取
@@ -67,5 +51,21 @@ extension Tbaas {
             case blockJson = "BlockJson"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 使用块高查询区块信息
+    ///
+    /// 使用块高查询Bcos区块信息
+    @inlinable
+    public func getBcosBlockByNumber(_ input: GetBcosBlockByNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBcosBlockByNumberResponse > {
+        self.client.execute(action: "GetBcosBlockByNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 使用块高查询区块信息
+    ///
+    /// 使用块高查询Bcos区块信息
+    @inlinable
+    public func getBcosBlockByNumber(_ input: GetBcosBlockByNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosBlockByNumberResponse {
+        try await self.client.execute(action: "GetBcosBlockByNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

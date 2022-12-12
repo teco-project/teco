@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 创建流量镜像实例
-    ///
-    /// 创建流量镜像实例。
-    @inlinable
-    public func createTrafficMirror(_ input: CreateTrafficMirrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTrafficMirrorResponse > {
-        self.client.execute(action: "CreateTrafficMirror", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建流量镜像实例
-    ///
-    /// 创建流量镜像实例。
-    @inlinable
-    public func createTrafficMirror(_ input: CreateTrafficMirrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrafficMirrorResponse {
-        try await self.client.execute(action: "CreateTrafficMirror", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTrafficMirror请求参数结构体
     public struct CreateTrafficMirrorRequest: TCRequestModel {
         /// 流量镜像实例别名。
@@ -62,5 +46,21 @@ extension Bmlb {
             case trafficMirrorId = "TrafficMirrorId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建流量镜像实例
+    ///
+    /// 创建流量镜像实例。
+    @inlinable
+    public func createTrafficMirror(_ input: CreateTrafficMirrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTrafficMirrorResponse > {
+        self.client.execute(action: "CreateTrafficMirror", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建流量镜像实例
+    ///
+    /// 创建流量镜像实例。
+    @inlinable
+    public func createTrafficMirror(_ input: CreateTrafficMirrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrafficMirrorResponse {
+        try await self.client.execute(action: "CreateTrafficMirror", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

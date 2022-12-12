@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 报警规则查询
-    ///
-    /// Prometheus 报警规则查询接口
-    @inlinable
-    public func describeAlertRules(_ input: DescribeAlertRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlertRulesResponse > {
-        self.client.execute(action: "DescribeAlertRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 报警规则查询
-    ///
-    /// Prometheus 报警规则查询接口
-    @inlinable
-    public func describeAlertRules(_ input: DescribeAlertRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRulesResponse {
-        try await self.client.execute(action: "DescribeAlertRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAlertRules请求参数结构体
     public struct DescribeAlertRulesRequest: TCRequestModel {
         /// Prometheus 实例 ID
@@ -56,7 +40,7 @@ extension Monitor {
         /// 报警策略模板分类
         public let type: String?
         
-        public init (instanceId: String, limit: Int64?, offset: Int64?, ruleId: String?, ruleState: Int64?, ruleName: String?, type: String?) {
+        public init (instanceId: String, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, ruleState: Int64? = nil, ruleName: String? = nil, type: String? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset
@@ -94,5 +78,21 @@ extension Monitor {
             case alertRuleSet = "AlertRuleSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 报警规则查询
+    ///
+    /// Prometheus 报警规则查询接口
+    @inlinable
+    public func describeAlertRules(_ input: DescribeAlertRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlertRulesResponse > {
+        self.client.execute(action: "DescribeAlertRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 报警规则查询
+    ///
+    /// Prometheus 报警规则查询接口
+    @inlinable
+    public func describeAlertRules(_ input: DescribeAlertRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRulesResponse {
+        try await self.client.execute(action: "DescribeAlertRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

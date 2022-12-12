@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tia {
-    /// 描述Model
-    ///
-    /// 描述已经部署的某个模型。而模型部署有两种模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。
-    @inlinable
-    public func describeModel(_ input: DescribeModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelResponse > {
-        self.client.execute(action: "DescribeModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 描述Model
-    ///
-    /// 描述已经部署的某个模型。而模型部署有两种模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。
-    @inlinable
-    public func describeModel(_ input: DescribeModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelResponse {
-        try await self.client.execute(action: "DescribeModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeModel请求参数结构体
     public struct DescribeModelRequest: TCRequestModel {
         /// 模型名称
@@ -42,7 +26,7 @@ extension Tia {
         /// 模型类型，取值 `serverless` 即为 `无服务器模式`，否则为 `集群模式`
         public let servType: String?
         
-        public init (name: String, cluster: String?, servType: String?) {
+        public init (name: String, cluster: String? = nil, servType: String? = nil) {
             self.name = name
             self.cluster = cluster
             self.servType = servType
@@ -67,5 +51,21 @@ extension Tia {
             case model = "Model"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 描述Model
+    ///
+    /// 描述已经部署的某个模型。而模型部署有两种模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。
+    @inlinable
+    public func describeModel(_ input: DescribeModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelResponse > {
+        self.client.execute(action: "DescribeModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 描述Model
+    ///
+    /// 描述已经部署的某个模型。而模型部署有两种模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。
+    @inlinable
+    public func describeModel(_ input: DescribeModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelResponse {
+        try await self.client.execute(action: "DescribeModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

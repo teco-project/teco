@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询镜像授权信息
-    ///
-    /// DescribeImageAuthorizedInfo  查询镜像授权信息
-    @inlinable
-    public func describeImageAuthorizedInfo(_ input: DescribeImageAuthorizedInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageAuthorizedInfoResponse > {
-        self.client.execute(action: "DescribeImageAuthorizedInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询镜像授权信息
-    ///
-    /// DescribeImageAuthorizedInfo  查询镜像授权信息
-    @inlinable
-    public func describeImageAuthorizedInfo(_ input: DescribeImageAuthorizedInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAuthorizedInfoResponse {
-        try await self.client.execute(action: "DescribeImageAuthorizedInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageAuthorizedInfo请求参数结构体
     public struct DescribeImageAuthorizedInfoRequest: TCRequestModel {
         public init () {
@@ -65,5 +49,21 @@ extension Tcss {
             case notScannedLocalImageCnt = "NotScannedLocalImageCnt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询镜像授权信息
+    ///
+    /// DescribeImageAuthorizedInfo  查询镜像授权信息
+    @inlinable
+    public func describeImageAuthorizedInfo(_ input: DescribeImageAuthorizedInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageAuthorizedInfoResponse > {
+        self.client.execute(action: "DescribeImageAuthorizedInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像授权信息
+    ///
+    /// DescribeImageAuthorizedInfo  查询镜像授权信息
+    @inlinable
+    public func describeImageAuthorizedInfo(_ input: DescribeImageAuthorizedInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAuthorizedInfoResponse {
+        try await self.client.execute(action: "DescribeImageAuthorizedInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

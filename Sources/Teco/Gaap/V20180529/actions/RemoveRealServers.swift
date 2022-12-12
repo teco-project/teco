@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 删除源站
-    ///
-    /// 删除已添加的源站(服务器)IP或域名
-    @inlinable
-    public func removeRealServers(_ input: RemoveRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveRealServersResponse > {
-        self.client.execute(action: "RemoveRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除源站
-    ///
-    /// 删除已添加的源站(服务器)IP或域名
-    @inlinable
-    public func removeRealServers(_ input: RemoveRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveRealServersResponse {
-        try await self.client.execute(action: "RemoveRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemoveRealServers请求参数结构体
     public struct RemoveRealServersRequest: TCRequestModel {
         /// 源站Id列表
@@ -53,5 +37,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除源站
+    ///
+    /// 删除已添加的源站(服务器)IP或域名
+    @inlinable
+    public func removeRealServers(_ input: RemoveRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveRealServersResponse > {
+        self.client.execute(action: "RemoveRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除源站
+    ///
+    /// 删除已添加的源站(服务器)IP或域名
+    @inlinable
+    public func removeRealServers(_ input: RemoveRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveRealServersResponse {
+        try await self.client.execute(action: "RemoveRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

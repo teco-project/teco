@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 创建Notebook实例
-    @inlinable
-    public func createNotebookInstance(_ input: CreateNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNotebookInstanceResponse > {
-        self.client.execute(action: "CreateNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建Notebook实例
-    @inlinable
-    public func createNotebookInstance(_ input: CreateNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookInstanceResponse {
-        try await self.client.execute(action: "CreateNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNotebookInstance请求参数结构体
     public struct CreateNotebookInstanceRequest: TCRequestModel {
         /// Notebook实例名称，不能超过63个字符
@@ -74,7 +62,7 @@ extension Tione {
         
         /// 自动停止配置
         /// 选择定时停止Notebook实例
-        public let stoppingCondition: StoppingCondition
+        public let stoppingCondition: StoppingCondition?
         
         /// 自动停止，可取值Enabled/Disabled
         /// 取值为Disabled的时候StoppingCondition将被忽略
@@ -82,9 +70,9 @@ extension Tione {
         public let autoStopping: String?
         
         /// 接入日志的配置，默认接入免费日志
-        public let clsConfig: ClsConfig
+        public let clsConfig: ClsConfig?
         
-        public init (notebookInstanceName: String, instanceType: String, volumeSizeInGB: UInt64, directInternetAccess: String?, rootAccess: String?, subnetId: String?, lifecycleScriptsName: String?, defaultCodeRepository: String?, additionalCodeRepositories: [String]?, clsAccess: String?, stoppingCondition: StoppingCondition, autoStopping: String?, clsConfig: ClsConfig) {
+        public init (notebookInstanceName: String, instanceType: String, volumeSizeInGB: UInt64, directInternetAccess: String? = nil, rootAccess: String? = nil, subnetId: String? = nil, lifecycleScriptsName: String? = nil, defaultCodeRepository: String? = nil, additionalCodeRepositories: [String]? = nil, clsAccess: String? = nil, stoppingCondition: StoppingCondition? = nil, autoStopping: String? = nil, clsConfig: ClsConfig? = nil) {
             self.notebookInstanceName = notebookInstanceName
             self.instanceType = instanceType
             self.volumeSizeInGB = volumeSizeInGB
@@ -129,5 +117,17 @@ extension Tione {
             case notebookInstanceName = "NotebookInstanceName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建Notebook实例
+    @inlinable
+    public func createNotebookInstance(_ input: CreateNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNotebookInstanceResponse > {
+        self.client.execute(action: "CreateNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建Notebook实例
+    @inlinable
+    public func createNotebookInstance(_ input: CreateNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookInstanceResponse {
+        try await self.client.execute(action: "CreateNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

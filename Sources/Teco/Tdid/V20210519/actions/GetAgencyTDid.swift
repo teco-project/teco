@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 本机构DID详情
-    @inlinable
-    public func getAgencyTDid(_ input: GetAgencyTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAgencyTDidResponse > {
-        self.client.execute(action: "GetAgencyTDid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 本机构DID详情
-    @inlinable
-    public func getAgencyTDid(_ input: GetAgencyTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAgencyTDidResponse {
-        try await self.client.execute(action: "GetAgencyTDid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetAgencyTDid请求参数结构体
     public struct GetAgencyTDidRequest: TCRequestModel {
         /// 网络ID
@@ -57,5 +45,17 @@ extension Tdid {
             case identity = "Identity"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 本机构DID详情
+    @inlinable
+    public func getAgencyTDid(_ input: GetAgencyTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAgencyTDidResponse > {
+        self.client.execute(action: "GetAgencyTDid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 本机构DID详情
+    @inlinable
+    public func getAgencyTDid(_ input: GetAgencyTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAgencyTDidResponse {
+        try await self.client.execute(action: "GetAgencyTDid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取RocketMQ集群列表
-    @inlinable
-    public func describeRocketMQClusters(_ input: DescribeRocketMQClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRocketMQClustersResponse > {
-        self.client.execute(action: "DescribeRocketMQClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取RocketMQ集群列表
-    @inlinable
-    public func describeRocketMQClusters(_ input: DescribeRocketMQClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQClustersResponse {
-        try await self.client.execute(action: "DescribeRocketMQClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRocketMQClusters请求参数结构体
     public struct DescribeRocketMQClustersRequest: TCRequestModel {
         /// 偏移量
@@ -50,7 +38,7 @@ extension Tdmq {
         /// 过滤器。目前支持标签过滤。
         public let filters: [Filter]?
         
-        public init (offset: UInt64, limit: UInt64, idKeyword: String?, nameKeyword: String?, clusterIdList: [String]?, isTagFilter: Bool?, filters: [Filter]?) {
+        public init (offset: UInt64, limit: UInt64, idKeyword: String? = nil, nameKeyword: String? = nil, clusterIdList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.idKeyword = idKeyword
@@ -88,5 +76,17 @@ extension Tdmq {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取RocketMQ集群列表
+    @inlinable
+    public func describeRocketMQClusters(_ input: DescribeRocketMQClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRocketMQClustersResponse > {
+        self.client.execute(action: "DescribeRocketMQClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取RocketMQ集群列表
+    @inlinable
+    public func describeRocketMQClusters(_ input: DescribeRocketMQClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQClustersResponse {
+        try await self.client.execute(action: "DescribeRocketMQClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

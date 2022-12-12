@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 删除ECM实例
-    @inlinable
-    public func deleteECMInstances(_ input: DeleteECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteECMInstancesResponse > {
-        self.client.execute(action: "DeleteECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除ECM实例
-    @inlinable
-    public func deleteECMInstances(_ input: DeleteECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteECMInstancesResponse {
-        try await self.client.execute(action: "DeleteECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteECMInstances请求参数结构体
     public struct DeleteECMInstancesRequest: TCRequestModel {
         /// 集群ID
@@ -54,5 +42,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除ECM实例
+    @inlinable
+    public func deleteECMInstances(_ input: DeleteECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteECMInstancesResponse > {
+        self.client.execute(action: "DeleteECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除ECM实例
+    @inlinable
+    public func deleteECMInstances(_ input: DeleteECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteECMInstancesResponse {
+        try await self.client.execute(action: "DeleteECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

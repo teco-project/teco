@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 获取媒体元信息
-    ///
-    /// 获取媒体的元信息，包括视频画面宽、高、编码格式、时长、帧率等。
-    @inlinable
-    public func describeMediaMetaData(_ input: DescribeMediaMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMediaMetaDataResponse > {
-        self.client.execute(action: "DescribeMediaMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取媒体元信息
-    ///
-    /// 获取媒体的元信息，包括视频画面宽、高、编码格式、时长、帧率等。
-    @inlinable
-    public func describeMediaMetaData(_ input: DescribeMediaMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaMetaDataResponse {
-        try await self.client.execute(action: "DescribeMediaMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMediaMetaData请求参数结构体
     public struct DescribeMediaMetaDataRequest: TCRequestModel {
         /// 需要获取元信息的文件输入信息。
@@ -57,5 +41,21 @@ extension Mps {
             case metaData = "MetaData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取媒体元信息
+    ///
+    /// 获取媒体的元信息，包括视频画面宽、高、编码格式、时长、帧率等。
+    @inlinable
+    public func describeMediaMetaData(_ input: DescribeMediaMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMediaMetaDataResponse > {
+        self.client.execute(action: "DescribeMediaMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取媒体元信息
+    ///
+    /// 获取媒体的元信息，包括视频画面宽、高、编码格式、时长、帧率等。
+    @inlinable
+    public func describeMediaMetaData(_ input: DescribeMediaMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaMetaDataResponse {
+        try await self.client.execute(action: "DescribeMediaMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 解绑安全组
-    @inlinable
-    public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateSecurityGroupsResponse > {
-        self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑安全组
-    @inlinable
-    public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
-        try await self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisassociateSecurityGroups请求参数结构体
     public struct DisassociateSecurityGroupsRequest: TCRequestModel {
         /// 要解绑的安全组ID，类似esg-efil73jd，只支持解绑单个安全组。
@@ -54,5 +42,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑安全组
+    @inlinable
+    public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateSecurityGroupsResponse > {
+        self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑安全组
+    @inlinable
+    public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
+        try await self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

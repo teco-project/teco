@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 创建话机账号
-    @inlinable
-    public func createExtension(_ input: CreateExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExtensionResponse > {
-        self.client.execute(action: "CreateExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建话机账号
-    @inlinable
-    public func createExtension(_ input: CreateExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExtensionResponse {
-        try await self.client.execute(action: "CreateExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateExtension请求参数结构体
     public struct CreateExtensionRequest: TCRequestModel {
         /// TCCC 实例应用 ID
@@ -59,5 +47,17 @@ extension Ccc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建话机账号
+    @inlinable
+    public func createExtension(_ input: CreateExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExtensionResponse > {
+        self.client.execute(action: "CreateExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建话机账号
+    @inlinable
+    public func createExtension(_ input: CreateExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExtensionResponse {
+        try await self.client.execute(action: "CreateExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

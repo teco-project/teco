@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询CC防护Top数据
-    ///
-    /// 本接口（DescribeWebProtectionTopData）用于查询CC防护的Top数据。
-    @inlinable
-    public func describeWebProtectionTopData(_ input: DescribeWebProtectionTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebProtectionTopDataResponse > {
-        self.client.execute(action: "DescribeWebProtectionTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询CC防护Top数据
-    ///
-    /// 本接口（DescribeWebProtectionTopData）用于查询CC防护的Top数据。
-    @inlinable
-    public func describeWebProtectionTopData(_ input: DescribeWebProtectionTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionTopDataResponse {
-        try await self.client.execute(action: "DescribeWebProtectionTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWebProtectionTopData请求参数结构体
     public struct DescribeWebProtectionTopDataRequest: TCRequestModel {
         /// 开始时间。
@@ -76,7 +60,7 @@ extension Teo {
         /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
         public let area: String?
         
-        public init (startTime: Date, endTime: Date, metricName: String, interval: String?, zoneIds: [String]?, domains: [String]?, limit: Int64?, queryCondition: [QueryCondition]?, area: String?) {
+        public init (startTime: Date, endTime: Date, metricName: String, interval: String? = nil, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metricName = metricName
@@ -118,5 +102,21 @@ extension Teo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询CC防护Top数据
+    ///
+    /// 本接口（DescribeWebProtectionTopData）用于查询CC防护的Top数据。
+    @inlinable
+    public func describeWebProtectionTopData(_ input: DescribeWebProtectionTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebProtectionTopDataResponse > {
+        self.client.execute(action: "DescribeWebProtectionTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询CC防护Top数据
+    ///
+    /// 本接口（DescribeWebProtectionTopData）用于查询CC防护的Top数据。
+    @inlinable
+    public func describeWebProtectionTopData(_ input: DescribeWebProtectionTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionTopDataResponse {
+        try await self.client.execute(action: "DescribeWebProtectionTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

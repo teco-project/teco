@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改模块配置
-    ///
-    /// 修改模块配置，已关联实例的模块不支持调整配置。
-    @inlinable
-    public func modifyModuleConfig(_ input: ModifyModuleConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleConfigResponse > {
-        self.client.execute(action: "ModifyModuleConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改模块配置
-    ///
-    /// 修改模块配置，已关联实例的模块不支持调整配置。
-    @inlinable
-    public func modifyModuleConfig(_ input: ModifyModuleConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleConfigResponse {
-        try await self.client.execute(action: "ModifyModuleConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyModuleConfig请求参数结构体
     public struct ModifyModuleConfigRequest: TCRequestModel {
         /// 模块ID。
@@ -46,12 +30,12 @@ extension Ecm {
         public let defaultSystemDiskSize: Int64?
         
         /// 系统盘
-        public let systemDisk: SystemDisk
+        public let systemDisk: SystemDisk?
         
         /// 数据盘
         public let dataDisks: [DataDisk]?
         
-        public init (moduleId: String, instanceType: String, defaultDataDiskSize: Int64, defaultSystemDiskSize: Int64?, systemDisk: SystemDisk, dataDisks: [DataDisk]?) {
+        public init (moduleId: String, instanceType: String, defaultDataDiskSize: Int64, defaultSystemDiskSize: Int64? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil) {
             self.moduleId = moduleId
             self.instanceType = instanceType
             self.defaultDataDiskSize = defaultDataDiskSize
@@ -78,5 +62,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改模块配置
+    ///
+    /// 修改模块配置，已关联实例的模块不支持调整配置。
+    @inlinable
+    public func modifyModuleConfig(_ input: ModifyModuleConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleConfigResponse > {
+        self.client.execute(action: "ModifyModuleConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改模块配置
+    ///
+    /// 修改模块配置，已关联实例的模块不支持调整配置。
+    @inlinable
+    public func modifyModuleConfig(_ input: ModifyModuleConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleConfigResponse {
+        try await self.client.execute(action: "ModifyModuleConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

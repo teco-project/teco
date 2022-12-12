@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 关闭服务器
-    @inlinable
-    public func shutdownDevices(_ input: ShutdownDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ShutdownDevicesResponse > {
-        self.client.execute(action: "ShutdownDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关闭服务器
-    @inlinable
-    public func shutdownDevices(_ input: ShutdownDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShutdownDevicesResponse {
-        try await self.client.execute(action: "ShutdownDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ShutdownDevices请求参数结构体
     public struct ShutdownDevicesRequest: TCRequestModel {
         /// 需要关闭的设备ID列表
@@ -53,5 +41,17 @@ extension Bm {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关闭服务器
+    @inlinable
+    public func shutdownDevices(_ input: ShutdownDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ShutdownDevicesResponse > {
+        self.client.execute(action: "ShutdownDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭服务器
+    @inlinable
+    public func shutdownDevices(_ input: ShutdownDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShutdownDevicesResponse {
+        try await self.client.execute(action: "ShutdownDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

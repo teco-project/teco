@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 批量冻结任务【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 批量冻结任务
-    @inlinable
-    public func freezeTasks(_ input: FreezeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FreezeTasksResponse > {
-        self.client.execute(action: "FreezeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量冻结任务【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 批量冻结任务
-    @inlinable
-    public func freezeTasks(_ input: FreezeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeTasksResponse {
-        try await self.client.execute(action: "FreezeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// FreezeTasks请求参数结构体
     public struct FreezeTasksRequest: TCRequestModel {
         /// 任务列表
@@ -64,5 +46,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量冻结任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 批量冻结任务
+    @inlinable
+    public func freezeTasks(_ input: FreezeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FreezeTasksResponse > {
+        self.client.execute(action: "FreezeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量冻结任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 批量冻结任务
+    @inlinable
+    public func freezeTasks(_ input: FreezeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeTasksResponse {
+        try await self.client.execute(action: "FreezeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 开启或关闭CC域名防护
-    @inlinable
-    public func modifyCCHostProtection(_ input: ModifyCCHostProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCHostProtectionResponse > {
-        self.client.execute(action: "ModifyCCHostProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启或关闭CC域名防护
-    @inlinable
-    public func modifyCCHostProtection(_ input: ModifyCCHostProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCHostProtectionResponse {
-        try await self.client.execute(action: "ModifyCCHostProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCCHostProtection请求参数结构体
     public struct ModifyCCHostProtectionRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -68,5 +56,17 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启或关闭CC域名防护
+    @inlinable
+    public func modifyCCHostProtection(_ input: ModifyCCHostProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCHostProtectionResponse > {
+        self.client.execute(action: "ModifyCCHostProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启或关闭CC域名防护
+    @inlinable
+    public func modifyCCHostProtection(_ input: ModifyCCHostProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCHostProtectionResponse {
+        try await self.client.execute(action: "ModifyCCHostProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

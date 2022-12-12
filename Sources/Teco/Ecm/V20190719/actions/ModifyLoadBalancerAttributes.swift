@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改负载均衡实例的属性
-    ///
-    /// 修改负载均衡实例的属性。
-    @inlinable
-    public func modifyLoadBalancerAttributes(_ input: ModifyLoadBalancerAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancerAttributesResponse > {
-        self.client.execute(action: "ModifyLoadBalancerAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改负载均衡实例的属性
-    ///
-    /// 修改负载均衡实例的属性。
-    @inlinable
-    public func modifyLoadBalancerAttributes(_ input: ModifyLoadBalancerAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerAttributesResponse {
-        try await self.client.execute(action: "ModifyLoadBalancerAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLoadBalancerAttributes请求参数结构体
     public struct ModifyLoadBalancerAttributesRequest: TCRequestModel {
         /// 负载均衡的唯一ID
@@ -40,12 +24,12 @@ extension Ecm {
         public let loadBalancerName: String?
         
         /// 网络计费及带宽相关参数
-        public let internetChargeInfo: LoadBalancerInternetAccessible
+        public let internetChargeInfo: LoadBalancerInternetAccessible?
         
         /// Target是否放通来自ELB的流量。开启放通（true）：只验证ELB上的安全组；不开启放通（false）：需同时验证ELB和后端实例上的安全组。
         public let loadBalancerPassToTarget: Bool?
         
-        public init (loadBalancerId: String, loadBalancerName: String?, internetChargeInfo: LoadBalancerInternetAccessible, loadBalancerPassToTarget: Bool?) {
+        public init (loadBalancerId: String, loadBalancerName: String? = nil, internetChargeInfo: LoadBalancerInternetAccessible? = nil, loadBalancerPassToTarget: Bool? = nil) {
             self.loadBalancerId = loadBalancerId
             self.loadBalancerName = loadBalancerName
             self.internetChargeInfo = internetChargeInfo
@@ -68,5 +52,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改负载均衡实例的属性
+    ///
+    /// 修改负载均衡实例的属性。
+    @inlinable
+    public func modifyLoadBalancerAttributes(_ input: ModifyLoadBalancerAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancerAttributesResponse > {
+        self.client.execute(action: "ModifyLoadBalancerAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改负载均衡实例的属性
+    ///
+    /// 修改负载均衡实例的属性。
+    @inlinable
+    public func modifyLoadBalancerAttributes(_ input: ModifyLoadBalancerAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerAttributesResponse {
+        try await self.client.execute(action: "ModifyLoadBalancerAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

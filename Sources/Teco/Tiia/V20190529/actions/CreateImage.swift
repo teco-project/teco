@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiia {
-    /// 创建图片
-    ///
-    /// 创建图片，并添加对应图片的自定义信息。模型将在创建图片时自动提取图像特征并存储到指定的图片库中。
-    @inlinable
-    public func createImage(_ input: CreateImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageResponse > {
-        self.client.execute(action: "CreateImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建图片
-    ///
-    /// 创建图片，并添加对应图片的自定义信息。模型将在创建图片时自动提取图像特征并存储到指定的图片库中。
-    @inlinable
-    public func createImage(_ input: CreateImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {
-        try await self.client.execute(action: "CreateImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateImage请求参数结构体
     public struct CreateImageRequest: TCRequestModel {
         /// 图库ID。
@@ -87,9 +71,9 @@ extension Tiia {
         
         /// 图像主体区域。
         /// 若设置主体区域，提取指定的区域创建图片。
-        public let imageRect: Rect
+        public let imageRect: Rect?
         
-        public init (groupId: String, entityId: String, picName: String, imageUrl: String?, customContent: String?, imageBase64: String?, tags: String?, enableDetect: Bool?, categoryId: Int64?, imageRect: Rect) {
+        public init (groupId: String, entityId: String, picName: String, imageUrl: String? = nil, customContent: String? = nil, imageBase64: String? = nil, tags: String? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, imageRect: Rect? = nil) {
             self.groupId = groupId
             self.entityId = entityId
             self.picName = picName
@@ -122,7 +106,7 @@ extension Tiia {
         /// 若启用主体识别且在请求中指定了类目ID或主体区域，以指定的主体为准。若启用主体识别且没有指定，以最大面积主体为准。
         /// **<font color=#1E90FF>注意：仅服务类型为商品图像搜索时才生效。</font>**
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let object: ObjectInfo
+        public let object: ObjectInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -131,5 +115,21 @@ extension Tiia {
             case object = "Object"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建图片
+    ///
+    /// 创建图片，并添加对应图片的自定义信息。模型将在创建图片时自动提取图像特征并存储到指定的图片库中。
+    @inlinable
+    public func createImage(_ input: CreateImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageResponse > {
+        self.client.execute(action: "CreateImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建图片
+    ///
+    /// 创建图片，并添加对应图片的自定义信息。模型将在创建图片时自动提取图像特征并存储到指定的图片库中。
+    @inlinable
+    public func createImage(_ input: CreateImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {
+        try await self.client.execute(action: "CreateImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

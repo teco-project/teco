@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 删除镜像
-    @inlinable
-    public func deleteImage(_ input: DeleteImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageResponse > {
-        self.client.execute(action: "DeleteImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除镜像
-    @inlinable
-    public func deleteImage(_ input: DeleteImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageResponse {
-        try await self.client.execute(action: "DeleteImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteImage请求参数结构体
     public struct DeleteImageRequest: TCRequestModel {
         /// 镜像ID列表。
@@ -49,5 +37,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除镜像
+    @inlinable
+    public func deleteImage(_ input: DeleteImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageResponse > {
+        self.client.execute(action: "DeleteImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除镜像
+    @inlinable
+    public func deleteImage(_ input: DeleteImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageResponse {
+        try await self.client.execute(action: "DeleteImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

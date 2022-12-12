@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 列出 Grafana 的设置
-    ///
-    /// 列出 Grafana 的设置，即 grafana.ini 文件内容
-    @inlinable
-    public func describeGrafanaConfig(_ input: DescribeGrafanaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaConfigResponse > {
-        self.client.execute(action: "DescribeGrafanaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出 Grafana 的设置
-    ///
-    /// 列出 Grafana 的设置，即 grafana.ini 文件内容
-    @inlinable
-    public func describeGrafanaConfig(_ input: DescribeGrafanaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaConfigResponse {
-        try await self.client.execute(action: "DescribeGrafanaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGrafanaConfig请求参数结构体
     public struct DescribeGrafanaConfigRequest: TCRequestModel {
         /// Grafana 实例 ID，例如：grafana-12345678
@@ -57,5 +41,21 @@ extension Monitor {
             case config = "Config"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出 Grafana 的设置
+    ///
+    /// 列出 Grafana 的设置，即 grafana.ini 文件内容
+    @inlinable
+    public func describeGrafanaConfig(_ input: DescribeGrafanaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGrafanaConfigResponse > {
+        self.client.execute(action: "DescribeGrafanaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出 Grafana 的设置
+    ///
+    /// 列出 Grafana 的设置，即 grafana.ini 文件内容
+    @inlinable
+    public func describeGrafanaConfig(_ input: DescribeGrafanaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaConfigResponse {
+        try await self.client.execute(action: "DescribeGrafanaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

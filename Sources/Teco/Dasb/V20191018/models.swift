@@ -103,7 +103,7 @@ extension Dasb {
         
         /// 所属部门的信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let department: Department
+        public let department: Department?
         
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -216,11 +216,11 @@ extension Dasb {
         
         /// 堡垒机服务信息，注意没有绑定服务时为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let resource: Resource
+        public let resource: Resource?
         
         /// 资产所属部门
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let department: Department
+        public let department: Department?
         
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -251,7 +251,7 @@ extension Dasb {
         
         /// 所属部门信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let department: Department
+        public let department: Department?
         
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -388,7 +388,7 @@ extension Dasb {
         /// 标签值
         public let tagValue: [String]?
         
-        public init (tagKey: String, tagValue: [String]?) {
+        public init (tagKey: String, tagValue: [String]? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
@@ -435,13 +435,13 @@ extension Dasb {
         
         /// 用户所属部门（用于出参）
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let department: Department
+        public let department: Department?
         
         /// 用户所属部门（用于入参）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let departmentId: String?
         
-        public init (userName: String, realName: String, phone: String, id: UInt64?, email: String?, validateFrom: Date?, validateTo: Date?, groupSet: [Group]?, authType: UInt64?, validateTime: String?, department: Department, departmentId: String?) {
+        public init (userName: String, realName: String, phone: String, id: UInt64? = nil, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupSet: [Group]? = nil, authType: UInt64? = nil, validateTime: String? = nil, department: Department? = nil, departmentId: String? = nil) {
             self.userName = userName
             self.realName = realName
             self.phone = phone

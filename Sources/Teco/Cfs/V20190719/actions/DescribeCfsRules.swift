@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 查询权限组规则
-    ///
-    /// 本接口（DescribeCfsRules）用于查询权限组规则列表。
-    @inlinable
-    public func describeCfsRules(_ input: DescribeCfsRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfsRulesResponse > {
-        self.client.execute(action: "DescribeCfsRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询权限组规则
-    ///
-    /// 本接口（DescribeCfsRules）用于查询权限组规则列表。
-    @inlinable
-    public func describeCfsRules(_ input: DescribeCfsRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsRulesResponse {
-        try await self.client.execute(action: "DescribeCfsRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCfsRules请求参数结构体
     public struct DescribeCfsRulesRequest: TCRequestModel {
         /// 权限组 ID
@@ -57,5 +41,21 @@ extension Cfs {
             case ruleList = "RuleList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询权限组规则
+    ///
+    /// 本接口（DescribeCfsRules）用于查询权限组规则列表。
+    @inlinable
+    public func describeCfsRules(_ input: DescribeCfsRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfsRulesResponse > {
+        self.client.execute(action: "DescribeCfsRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询权限组规则
+    ///
+    /// 本接口（DescribeCfsRules）用于查询权限组规则列表。
+    @inlinable
+    public func describeCfsRules(_ input: DescribeCfsRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsRulesResponse {
+        try await self.client.execute(action: "DescribeCfsRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

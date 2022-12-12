@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 查询异步任务执行结果
-    ///
-    /// 查询EIP异步任务执行结果
-    @inlinable
-    public func describeTaskResult(_ input: DescribeTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResultResponse > {
-        self.client.execute(action: "DescribeTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询异步任务执行结果
-    ///
-    /// 查询EIP异步任务执行结果
-    @inlinable
-    public func describeTaskResult(_ input: DescribeTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultResponse {
-        try await self.client.execute(action: "DescribeTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskResult请求参数结构体
     public struct DescribeTaskResultRequest: TCRequestModel {
         /// ECM 地域
@@ -66,5 +50,21 @@ extension Ecm {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询异步任务执行结果
+    ///
+    /// 查询EIP异步任务执行结果
+    @inlinable
+    public func describeTaskResult(_ input: DescribeTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResultResponse > {
+        self.client.execute(action: "DescribeTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询异步任务执行结果
+    ///
+    /// 查询EIP异步任务执行结果
+    @inlinable
+    public func describeTaskResult(_ input: DescribeTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultResponse {
+        try await self.client.execute(action: "DescribeTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

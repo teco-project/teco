@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gs {
-    /// 保存游戏存档
-    @inlinable
-    public func saveGameArchive(_ input: SaveGameArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SaveGameArchiveResponse > {
-        self.client.execute(action: "SaveGameArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 保存游戏存档
-    @inlinable
-    public func saveGameArchive(_ input: SaveGameArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveGameArchiveResponse {
-        try await self.client.execute(action: "SaveGameArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SaveGameArchive请求参数结构体
     public struct SaveGameArchiveRequest: TCRequestModel {
         /// 游戏用户ID
@@ -54,5 +42,17 @@ extension Gs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 保存游戏存档
+    @inlinable
+    public func saveGameArchive(_ input: SaveGameArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SaveGameArchiveResponse > {
+        self.client.execute(action: "SaveGameArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 保存游戏存档
+    @inlinable
+    public func saveGameArchive(_ input: SaveGameArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveGameArchiveResponse {
+        try await self.client.execute(action: "SaveGameArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

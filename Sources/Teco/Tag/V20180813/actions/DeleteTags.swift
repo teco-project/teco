@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 批量删除标签
-    ///
-    /// 本接口用于批量删除标签键和标签值。
-    @inlinable
-    public func deleteTags(_ input: DeleteTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTagsResponse > {
-        self.client.execute(action: "DeleteTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量删除标签
-    ///
-    /// 本接口用于批量删除标签键和标签值。
-    @inlinable
-    public func deleteTags(_ input: DeleteTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagsResponse {
-        try await self.client.execute(action: "DeleteTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTags请求参数结构体
     public struct DeleteTagsRequest: TCRequestModel {
         /// 标签列表。
@@ -54,5 +38,21 @@ extension Tag {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量删除标签
+    ///
+    /// 本接口用于批量删除标签键和标签值。
+    @inlinable
+    public func deleteTags(_ input: DeleteTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTagsResponse > {
+        self.client.execute(action: "DeleteTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除标签
+    ///
+    /// 本接口用于批量删除标签键和标签值。
+    @inlinable
+    public func deleteTags(_ input: DeleteTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagsResponse {
+        try await self.client.execute(action: "DeleteTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

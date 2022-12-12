@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Lcic {
-    /// 注册用户
-    @inlinable
-    public func registerUser(_ input: RegisterUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterUserResponse > {
-        self.client.execute(action: "RegisterUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 注册用户
-    @inlinable
-    public func registerUser(_ input: RegisterUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterUserResponse {
-        try await self.client.execute(action: "RegisterUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RegisterUser请求参数结构体
     public struct RegisterUserRequest: TCRequestModel {
         /// 低代码互动课堂的SdkAppId。
@@ -41,7 +29,7 @@ extension Lcic {
         /// 用户头像。
         public let avatar: String?
         
-        public init (sdkAppId: UInt64, name: String?, originId: String?, avatar: String?) {
+        public init (sdkAppId: UInt64, name: String? = nil, originId: String? = nil, avatar: String? = nil) {
             self.sdkAppId = sdkAppId
             self.name = name
             self.originId = originId
@@ -72,5 +60,17 @@ extension Lcic {
             case token = "Token"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 注册用户
+    @inlinable
+    public func registerUser(_ input: RegisterUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterUserResponse > {
+        self.client.execute(action: "RegisterUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 注册用户
+    @inlinable
+    public func registerUser(_ input: RegisterUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterUserResponse {
+        try await self.client.execute(action: "RegisterUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

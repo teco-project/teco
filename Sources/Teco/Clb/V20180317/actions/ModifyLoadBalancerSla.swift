@@ -17,28 +17,12 @@
 @_exported import struct Foundation.Date
 
 extension Clb {
-    /// 性能容量型变配
-    ///
-    /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
-    @inlinable
-    public func modifyLoadBalancerSla(_ input: ModifyLoadBalancerSlaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancerSlaResponse > {
-        self.client.execute(action: "ModifyLoadBalancerSla", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 性能容量型变配
-    ///
-    /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
-    @inlinable
-    public func modifyLoadBalancerSla(_ input: ModifyLoadBalancerSlaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerSlaResponse {
-        try await self.client.execute(action: "ModifyLoadBalancerSla", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLoadBalancerSla请求参数结构体
     public struct ModifyLoadBalancerSlaRequest: TCRequestModel {
         /// 负载均衡实例信息
-        public let loadBalancerSla: [Date]
+        public let loadBalancerSla: [SlaUpdateParam]
         
-        public init (loadBalancerSla: [Date]) {
+        public init (loadBalancerSla: [SlaUpdateParam]) {
             self.loadBalancerSla = loadBalancerSla
         }
         
@@ -55,5 +39,21 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 性能容量型变配
+    ///
+    /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
+    @inlinable
+    public func modifyLoadBalancerSla(_ input: ModifyLoadBalancerSlaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancerSlaResponse > {
+        self.client.execute(action: "ModifyLoadBalancerSla", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 性能容量型变配
+    ///
+    /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
+    @inlinable
+    public func modifyLoadBalancerSla(_ input: ModifyLoadBalancerSlaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerSlaResponse {
+        try await self.client.execute(action: "ModifyLoadBalancerSla", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

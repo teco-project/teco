@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 添加 CVM 实例到伸缩组
-    ///
-    /// 本接口（AttachInstances）用于将 CVM 实例添加到伸缩组。
-    /// * 仅支持添加处于`RUNNING`（运行中）或`STOPPED`（已关机）状态的 CVM 实例
-    /// * 添加的 CVM 实例需要和伸缩组 VPC 网络一致
-    @inlinable
-    public func attachInstances(_ input: AttachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachInstancesResponse > {
-        self.client.execute(action: "AttachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加 CVM 实例到伸缩组
-    ///
-    /// 本接口（AttachInstances）用于将 CVM 实例添加到伸缩组。
-    /// * 仅支持添加处于`RUNNING`（运行中）或`STOPPED`（已关机）状态的 CVM 实例
-    /// * 添加的 CVM 实例需要和伸缩组 VPC 网络一致
-    @inlinable
-    public func attachInstances(_ input: AttachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
-        try await self.client.execute(action: "AttachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AttachInstances请求参数结构体
     public struct AttachInstancesRequest: TCRequestModel {
         /// 伸缩组ID
@@ -66,5 +46,25 @@ extension As {
             case activityId = "ActivityId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加 CVM 实例到伸缩组
+    ///
+    /// 本接口（AttachInstances）用于将 CVM 实例添加到伸缩组。
+    /// * 仅支持添加处于`RUNNING`（运行中）或`STOPPED`（已关机）状态的 CVM 实例
+    /// * 添加的 CVM 实例需要和伸缩组 VPC 网络一致
+    @inlinable
+    public func attachInstances(_ input: AttachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachInstancesResponse > {
+        self.client.execute(action: "AttachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加 CVM 实例到伸缩组
+    ///
+    /// 本接口（AttachInstances）用于将 CVM 实例添加到伸缩组。
+    /// * 仅支持添加处于`RUNNING`（运行中）或`STOPPED`（已关机）状态的 CVM 实例
+    /// * 添加的 CVM 实例需要和伸缩组 VPC 网络一致
+    @inlinable
+    public func attachInstances(_ input: AttachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
+        try await self.client.execute(action: "AttachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

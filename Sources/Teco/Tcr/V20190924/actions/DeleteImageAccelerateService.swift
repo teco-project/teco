@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 删除镜像加速服务
-    @inlinable
-    public func deleteImageAccelerateService(_ input: DeleteImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageAccelerateServiceResponse > {
-        self.client.execute(action: "DeleteImageAccelerateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除镜像加速服务
-    @inlinable
-    public func deleteImageAccelerateService(_ input: DeleteImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageAccelerateServiceResponse {
-        try await self.client.execute(action: "DeleteImageAccelerateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteImageAccelerateService请求参数结构体
     public struct DeleteImageAccelerateServiceRequest: TCRequestModel {
         /// 实例Id
@@ -49,5 +37,17 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除镜像加速服务
+    @inlinable
+    public func deleteImageAccelerateService(_ input: DeleteImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageAccelerateServiceResponse > {
+        self.client.execute(action: "DeleteImageAccelerateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除镜像加速服务
+    @inlinable
+    public func deleteImageAccelerateService(_ input: DeleteImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageAccelerateServiceResponse {
+        try await self.client.execute(action: "DeleteImageAccelerateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

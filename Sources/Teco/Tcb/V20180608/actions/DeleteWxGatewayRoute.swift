@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 删除安全网关路由
-    @inlinable
-    public func deleteWxGatewayRoute(_ input: DeleteWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWxGatewayRouteResponse > {
-        self.client.execute(action: "DeleteWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除安全网关路由
-    @inlinable
-    public func deleteWxGatewayRoute(_ input: DeleteWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWxGatewayRouteResponse {
-        try await self.client.execute(action: "DeleteWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteWxGatewayRoute请求参数结构体
     public struct DeleteWxGatewayRouteRequest: TCRequestModel {
         /// 环境id
@@ -54,5 +42,17 @@ extension Tcb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除安全网关路由
+    @inlinable
+    public func deleteWxGatewayRoute(_ input: DeleteWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWxGatewayRouteResponse > {
+        self.client.execute(action: "DeleteWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除安全网关路由
+    @inlinable
+    public func deleteWxGatewayRoute(_ input: DeleteWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWxGatewayRouteResponse {
+        try await self.client.execute(action: "DeleteWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

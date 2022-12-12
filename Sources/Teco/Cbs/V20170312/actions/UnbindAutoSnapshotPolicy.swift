@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 解绑定期快照策略
-    ///
-    /// 本接口（UnbindAutoSnapshotPolicy）用于解除云硬盘绑定的定期快照策略。
-    /// * 支持批量操作，可一次解除多个云盘与同一定期快照策略的绑定。 
-    /// * 如果传入的云盘未绑定到当前定期快照策略，接口将自动跳过，仅解绑与当前定期快照策略绑定的云盘。
-    @inlinable
-    public func unbindAutoSnapshotPolicy(_ input: UnbindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindAutoSnapshotPolicyResponse > {
-        self.client.execute(action: "UnbindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑定期快照策略
-    ///
-    /// 本接口（UnbindAutoSnapshotPolicy）用于解除云硬盘绑定的定期快照策略。
-    /// * 支持批量操作，可一次解除多个云盘与同一定期快照策略的绑定。 
-    /// * 如果传入的云盘未绑定到当前定期快照策略，接口将自动跳过，仅解绑与当前定期快照策略绑定的云盘。
-    @inlinable
-    public func unbindAutoSnapshotPolicy(_ input: UnbindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindAutoSnapshotPolicyResponse {
-        try await self.client.execute(action: "UnbindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindAutoSnapshotPolicy请求参数结构体
     public struct UnbindAutoSnapshotPolicyRequest: TCRequestModel {
         /// 要解绑的定期快照策略ID。
@@ -43,7 +23,7 @@ extension Cbs {
         /// 要解绑定期快照策略的云盘ID列表。
         public let diskIds: [String]?
         
-        public init (autoSnapshotPolicyId: String, diskIds: [String]?) {
+        public init (autoSnapshotPolicyId: String, diskIds: [String]? = nil) {
             self.autoSnapshotPolicyId = autoSnapshotPolicyId
             self.diskIds = diskIds
         }
@@ -62,5 +42,25 @@ extension Cbs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑定期快照策略
+    ///
+    /// 本接口（UnbindAutoSnapshotPolicy）用于解除云硬盘绑定的定期快照策略。
+    /// * 支持批量操作，可一次解除多个云盘与同一定期快照策略的绑定。 
+    /// * 如果传入的云盘未绑定到当前定期快照策略，接口将自动跳过，仅解绑与当前定期快照策略绑定的云盘。
+    @inlinable
+    public func unbindAutoSnapshotPolicy(_ input: UnbindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindAutoSnapshotPolicyResponse > {
+        self.client.execute(action: "UnbindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑定期快照策略
+    ///
+    /// 本接口（UnbindAutoSnapshotPolicy）用于解除云硬盘绑定的定期快照策略。
+    /// * 支持批量操作，可一次解除多个云盘与同一定期快照策略的绑定。 
+    /// * 如果传入的云盘未绑定到当前定期快照策略，接口将自动跳过，仅解绑与当前定期快照策略绑定的云盘。
+    @inlinable
+    public func unbindAutoSnapshotPolicy(_ input: UnbindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindAutoSnapshotPolicyResponse {
+        try await self.client.execute(action: "UnbindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

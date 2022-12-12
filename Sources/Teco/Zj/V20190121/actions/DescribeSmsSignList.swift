@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 短信签名查询接口
-    ///
-    /// 获取普通短信签名信息
-    @inlinable
-    public func describeSmsSignList(_ input: DescribeSmsSignListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmsSignListResponse > {
-        self.client.execute(action: "DescribeSmsSignList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 短信签名查询接口
-    ///
-    /// 获取普通短信签名信息
-    @inlinable
-    public func describeSmsSignList(_ input: DescribeSmsSignListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsSignListResponse {
-        try await self.client.execute(action: "DescribeSmsSignList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSmsSignList请求参数结构体
     public struct DescribeSmsSignListRequest: TCRequestModel {
         /// 商户证书
@@ -69,5 +53,21 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 短信签名查询接口
+    ///
+    /// 获取普通短信签名信息
+    @inlinable
+    public func describeSmsSignList(_ input: DescribeSmsSignListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmsSignListResponse > {
+        self.client.execute(action: "DescribeSmsSignList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 短信签名查询接口
+    ///
+    /// 获取普通短信签名信息
+    @inlinable
+    public func describeSmsSignList(_ input: DescribeSmsSignListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsSignListResponse {
+        try await self.client.execute(action: "DescribeSmsSignList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

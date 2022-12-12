@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 编辑视频
-    ///
-    /// 对视频进行编辑（剪辑、拼接等），生成一个新的点播视频。编辑的功能包括：
-    /// 1. 对一个文件进行剪辑，生成一个新的视频；
-    /// 2. 对多个文件进行拼接，生成一个新的视频；
-    /// 3. 对多个文件进行剪辑，然后再拼接，生成一个新的视频。
-    @inlinable
-    public func editMedia(_ input: EditMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditMediaResponse > {
-        self.client.execute(action: "EditMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑视频
-    ///
-    /// 对视频进行编辑（剪辑、拼接等），生成一个新的点播视频。编辑的功能包括：
-    /// 1. 对一个文件进行剪辑，生成一个新的视频；
-    /// 2. 对多个文件进行拼接，生成一个新的视频；
-    /// 3. 对多个文件进行剪辑，然后再拼接，生成一个新的视频。
-    @inlinable
-    public func editMedia(_ input: EditMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditMediaResponse {
-        try await self.client.execute(action: "EditMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EditMedia请求参数结构体
     public struct EditMediaRequest: TCRequestModel {
         /// 输入的视频文件信息。
@@ -49,10 +27,10 @@ extension Mps {
         public let outputObjectPath: String
         
         /// 编辑后生成的文件配置。
-        public let outputConfig: EditMediaOutputConfig
+        public let outputConfig: EditMediaOutputConfig?
         
         /// 任务的事件通知信息，不填代表不获取事件通知。
-        public let taskNotifyConfig: TaskNotifyConfig
+        public let taskNotifyConfig: TaskNotifyConfig?
         
         /// 任务优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。
         public let tasksPriority: Int64?
@@ -63,7 +41,7 @@ extension Mps {
         /// 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         public let sessionContext: String?
         
-        public init (fileInfos: [EditMediaFileInfo], outputStorage: TaskOutputStorage, outputObjectPath: String, outputConfig: EditMediaOutputConfig, taskNotifyConfig: TaskNotifyConfig, tasksPriority: Int64?, sessionId: String?, sessionContext: String?) {
+        public init (fileInfos: [EditMediaFileInfo], outputStorage: TaskOutputStorage, outputObjectPath: String, outputConfig: EditMediaOutputConfig? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil) {
             self.fileInfos = fileInfos
             self.outputStorage = outputStorage
             self.outputObjectPath = outputObjectPath
@@ -98,5 +76,27 @@ extension Mps {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑视频
+    ///
+    /// 对视频进行编辑（剪辑、拼接等），生成一个新的点播视频。编辑的功能包括：
+    /// 1. 对一个文件进行剪辑，生成一个新的视频；
+    /// 2. 对多个文件进行拼接，生成一个新的视频；
+    /// 3. 对多个文件进行剪辑，然后再拼接，生成一个新的视频。
+    @inlinable
+    public func editMedia(_ input: EditMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EditMediaResponse > {
+        self.client.execute(action: "EditMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑视频
+    ///
+    /// 对视频进行编辑（剪辑、拼接等），生成一个新的点播视频。编辑的功能包括：
+    /// 1. 对一个文件进行剪辑，生成一个新的视频；
+    /// 2. 对多个文件进行拼接，生成一个新的视频；
+    /// 3. 对多个文件进行剪辑，然后再拼接，生成一个新的视频。
+    @inlinable
+    public func editMedia(_ input: EditMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditMediaResponse {
+        try await self.client.execute(action: "EditMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

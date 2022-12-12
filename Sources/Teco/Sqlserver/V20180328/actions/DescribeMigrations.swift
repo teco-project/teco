@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询迁移任务列表
-    ///
-    /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表
-    @inlinable
-    public func describeMigrations(_ input: DescribeMigrationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationsResponse > {
-        self.client.execute(action: "DescribeMigrations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询迁移任务列表
-    ///
-    /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表
-    @inlinable
-    public func describeMigrations(_ input: DescribeMigrationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationsResponse {
-        try await self.client.execute(action: "DescribeMigrations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMigrations请求参数结构体
     public struct DescribeMigrationsRequest: TCRequestModel {
         /// 状态集合。只要符合集合中某一状态的迁移任务，就会查出来
@@ -51,7 +35,7 @@ extension Sqlserver {
         /// 排序方式，可选值为desc、asc
         public let orderByType: String?
         
-        public init (statusSet: [Int64]?, migrateName: String?, limit: Int64?, offset: Int64?, orderBy: String?, orderByType: String?) {
+        public init (statusSet: [Int64]? = nil, migrateName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.statusSet = statusSet
             self.migrateName = migrateName
             self.limit = limit
@@ -86,5 +70,21 @@ extension Sqlserver {
             case migrateTaskSet = "MigrateTaskSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询迁移任务列表
+    ///
+    /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表
+    @inlinable
+    public func describeMigrations(_ input: DescribeMigrationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrationsResponse > {
+        self.client.execute(action: "DescribeMigrations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询迁移任务列表
+    ///
+    /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表
+    @inlinable
+    public func describeMigrations(_ input: DescribeMigrationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationsResponse {
+        try await self.client.execute(action: "DescribeMigrations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

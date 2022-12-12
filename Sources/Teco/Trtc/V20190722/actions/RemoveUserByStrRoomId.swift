@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Trtc {
-    /// 移出用户（字符串房间号）
-    ///
-    /// 接口说明：将用户从房间移出，适用于主播/房主/管理员踢人等场景。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
-    @inlinable
-    public func removeUserByStrRoomId(_ input: RemoveUserByStrRoomIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveUserByStrRoomIdResponse > {
-        self.client.execute(action: "RemoveUserByStrRoomId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 移出用户（字符串房间号）
-    ///
-    /// 接口说明：将用户从房间移出，适用于主播/房主/管理员踢人等场景。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
-    @inlinable
-    public func removeUserByStrRoomId(_ input: RemoveUserByStrRoomIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserByStrRoomIdResponse {
-        try await self.client.execute(action: "RemoveUserByStrRoomId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemoveUserByStrRoomId请求参数结构体
     public struct RemoveUserByStrRoomIdRequest: TCRequestModel {
         /// TRTC的SDKAppId。
@@ -63,5 +47,21 @@ extension Trtc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 移出用户（字符串房间号）
+    ///
+    /// 接口说明：将用户从房间移出，适用于主播/房主/管理员踢人等场景。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
+    @inlinable
+    public func removeUserByStrRoomId(_ input: RemoveUserByStrRoomIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveUserByStrRoomIdResponse > {
+        self.client.execute(action: "RemoveUserByStrRoomId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 移出用户（字符串房间号）
+    ///
+    /// 接口说明：将用户从房间移出，适用于主播/房主/管理员踢人等场景。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
+    @inlinable
+    public func removeUserByStrRoomId(_ input: RemoveUserByStrRoomIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserByStrRoomIdResponse {
+        try await self.client.execute(action: "RemoveUserByStrRoomId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

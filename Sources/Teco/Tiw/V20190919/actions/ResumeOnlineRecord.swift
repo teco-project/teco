@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 恢复实时录制
-    @inlinable
-    public func resumeOnlineRecord(_ input: ResumeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeOnlineRecordResponse > {
-        self.client.execute(action: "ResumeOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 恢复实时录制
-    @inlinable
-    public func resumeOnlineRecord(_ input: ResumeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeOnlineRecordResponse {
-        try await self.client.execute(action: "ResumeOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResumeOnlineRecord请求参数结构体
     public struct ResumeOnlineRecordRequest: TCRequestModel {
         /// 客户的SdkAppId
@@ -54,5 +42,17 @@ extension Tiw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 恢复实时录制
+    @inlinable
+    public func resumeOnlineRecord(_ input: ResumeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeOnlineRecordResponse > {
+        self.client.execute(action: "ResumeOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复实时录制
+    @inlinable
+    public func resumeOnlineRecord(_ input: ResumeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeOnlineRecordResponse {
+        try await self.client.execute(action: "ResumeOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

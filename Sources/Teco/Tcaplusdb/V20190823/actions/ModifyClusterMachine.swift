@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 修改独占集群机器
-    @inlinable
-    public func modifyClusterMachine(_ input: ModifyClusterMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterMachineResponse > {
-        self.client.execute(action: "ModifyClusterMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改独占集群机器
-    @inlinable
-    public func modifyClusterMachine(_ input: ModifyClusterMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterMachineResponse {
-        try await self.client.execute(action: "ModifyClusterMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClusterMachine请求参数结构体
     public struct ModifyClusterMachineRequest: TCRequestModel {
         /// 集群id
@@ -68,5 +56,17 @@ extension Tcaplusdb {
             case clusterId = "ClusterId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改独占集群机器
+    @inlinable
+    public func modifyClusterMachine(_ input: ModifyClusterMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterMachineResponse > {
+        self.client.execute(action: "ModifyClusterMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改独占集群机器
+    @inlinable
+    public func modifyClusterMachine(_ input: ModifyClusterMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterMachineResponse {
+        try await self.client.execute(action: "ModifyClusterMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

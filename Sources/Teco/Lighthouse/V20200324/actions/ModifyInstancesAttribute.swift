@@ -15,6 +15,35 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
+    /// ModifyInstancesAttribute请求参数结构体
+    public struct ModifyInstancesAttributeRequest: TCRequestModel {
+        /// 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
+        public let instanceIds: [String]
+        
+        /// 实例名称。可任意命名，但不得超过 60 个字符。
+        public let instanceName: String?
+        
+        public init (instanceIds: [String], instanceName: String? = nil) {
+            self.instanceIds = instanceIds
+            self.instanceName = instanceName
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case instanceIds = "InstanceIds"
+            case instanceName = "InstanceName"
+        }
+    }
+    
+    /// ModifyInstancesAttribute返回参数结构体
+    public struct ModifyInstancesAttributeResponse: TCResponseModel {
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 修改实例的属性
     ///
     /// 本接口（ModifyInstancesAttribute）用于修改实例的属性。
@@ -35,34 +64,5 @@ extension Lighthouse {
     @inlinable
     public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
         try await self.client.execute(action: "ModifyInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// ModifyInstancesAttribute请求参数结构体
-    public struct ModifyInstancesAttributeRequest: TCRequestModel {
-        /// 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
-        public let instanceIds: [String]
-        
-        /// 实例名称。可任意命名，但不得超过 60 个字符。
-        public let instanceName: String?
-        
-        public init (instanceIds: [String], instanceName: String?) {
-            self.instanceIds = instanceIds
-            self.instanceName = instanceName
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case instanceIds = "InstanceIds"
-            case instanceName = "InstanceName"
-        }
-    }
-    
-    /// ModifyInstancesAttribute返回参数结构体
-    public struct ModifyInstancesAttributeResponse: TCResponseModel {
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case requestId = "RequestId"
-        }
     }
 }

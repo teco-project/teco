@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 继承云存用户
-    @inlinable
-    public func inheritCloudStorageUser(_ input: InheritCloudStorageUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InheritCloudStorageUserResponse > {
-        self.client.execute(action: "InheritCloudStorageUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 继承云存用户
-    @inlinable
-    public func inheritCloudStorageUser(_ input: InheritCloudStorageUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InheritCloudStorageUserResponse {
-        try await self.client.execute(action: "InheritCloudStorageUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InheritCloudStorageUser请求参数结构体
     public struct InheritCloudStorageUserRequest: TCRequestModel {
         /// 产品ID
@@ -64,5 +52,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 继承云存用户
+    @inlinable
+    public func inheritCloudStorageUser(_ input: InheritCloudStorageUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InheritCloudStorageUserResponse > {
+        self.client.execute(action: "InheritCloudStorageUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 继承云存用户
+    @inlinable
+    public func inheritCloudStorageUser(_ input: InheritCloudStorageUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InheritCloudStorageUserResponse {
+        try await self.client.execute(action: "InheritCloudStorageUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

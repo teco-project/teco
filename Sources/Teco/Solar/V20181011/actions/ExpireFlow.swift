@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Solar {
-    /// 工单失效接口
-    ///
-    /// 把审批中的工单置为已失效
-    @inlinable
-    public func expireFlow(_ input: ExpireFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExpireFlowResponse > {
-        self.client.execute(action: "ExpireFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 工单失效接口
-    ///
-    /// 把审批中的工单置为已失效
-    @inlinable
-    public func expireFlow(_ input: ExpireFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpireFlowResponse {
-        try await self.client.execute(action: "ExpireFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExpireFlow请求参数结构体
     public struct ExpireFlowRequest: TCRequestModel {
         /// 工单ID
@@ -53,5 +37,21 @@ extension Solar {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 工单失效接口
+    ///
+    /// 把审批中的工单置为已失效
+    @inlinable
+    public func expireFlow(_ input: ExpireFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExpireFlowResponse > {
+        self.client.execute(action: "ExpireFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 工单失效接口
+    ///
+    /// 把审批中的工单置为已失效
+    @inlinable
+    public func expireFlow(_ input: ExpireFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpireFlowResponse {
+        try await self.client.execute(action: "ExpireFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

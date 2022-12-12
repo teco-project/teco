@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 修改集群名称
-    ///
-    /// 修改指定的集群名称
-    @inlinable
-    public func modifyClusterName(_ input: ModifyClusterNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterNameResponse > {
-        self.client.execute(action: "ModifyClusterName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改集群名称
-    ///
-    /// 修改指定的集群名称
-    @inlinable
-    public func modifyClusterName(_ input: ModifyClusterNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterNameResponse {
-        try await self.client.execute(action: "ModifyClusterName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClusterName请求参数结构体
     public struct ModifyClusterNameRequest: TCRequestModel {
         /// 需要修改名称的集群ID
@@ -58,5 +42,21 @@ extension Tcaplusdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改集群名称
+    ///
+    /// 修改指定的集群名称
+    @inlinable
+    public func modifyClusterName(_ input: ModifyClusterNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterNameResponse > {
+        self.client.execute(action: "ModifyClusterName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改集群名称
+    ///
+    /// 修改指定的集群名称
+    @inlinable
+    public func modifyClusterName(_ input: ModifyClusterNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterNameResponse {
+        try await self.client.execute(action: "ModifyClusterName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

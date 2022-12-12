@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询 DNSSEC 信息
-    ///
-    /// 用于查询 DNSSEC 相关信息
-    @inlinable
-    public func describeDnssec(_ input: DescribeDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDnssecResponse > {
-        self.client.execute(action: "DescribeDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询 DNSSEC 信息
-    ///
-    /// 用于查询 DNSSEC 相关信息
-    @inlinable
-    public func describeDnssec(_ input: DescribeDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnssecResponse {
-        try await self.client.execute(action: "DescribeDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDnssec请求参数结构体
     public struct DescribeDnssecRequest: TCRequestModel {
         /// 站点 ID
@@ -62,7 +46,7 @@ extension Teo {
         
         /// DNSSEC 相关信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dnssec: DnssecInfo
+        public let dnssec: DnssecInfo?
         
         /// 修改时间
         // FIXME: Codable support not implemented for datetime_iso yet.
@@ -79,5 +63,21 @@ extension Teo {
             case modifiedOn = "ModifiedOn"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询 DNSSEC 信息
+    ///
+    /// 用于查询 DNSSEC 相关信息
+    @inlinable
+    public func describeDnssec(_ input: DescribeDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDnssecResponse > {
+        self.client.execute(action: "DescribeDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询 DNSSEC 信息
+    ///
+    /// 用于查询 DNSSEC 相关信息
+    @inlinable
+    public func describeDnssec(_ input: DescribeDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnssecResponse {
+        try await self.client.execute(action: "DescribeDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 提取溯源水印
-    ///
-    /// 用于提取溯源水印。
-    @inlinable
-    public func extractTraceWatermark(_ input: ExtractTraceWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExtractTraceWatermarkResponse > {
-        self.client.execute(action: "ExtractTraceWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提取溯源水印
-    ///
-    /// 用于提取溯源水印。
-    @inlinable
-    public func extractTraceWatermark(_ input: ExtractTraceWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExtractTraceWatermarkResponse {
-        try await self.client.execute(action: "ExtractTraceWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExtractTraceWatermark请求参数结构体
     public struct ExtractTraceWatermarkRequest: TCRequestModel {
         /// 需要提取水印的媒体 URL。
@@ -51,7 +35,7 @@ extension Vod {
         /// 保留字段，特殊用途时使用。
         public let extInfo: String?
         
-        public init (url: String, subAppId: UInt64?, sessionContext: String?, sessionId: String?, tasksPriority: Int64?, extInfo: String?) {
+        public init (url: String, subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil) {
             self.url = url
             self.subAppId = subAppId
             self.sessionContext = sessionContext
@@ -82,5 +66,21 @@ extension Vod {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提取溯源水印
+    ///
+    /// 用于提取溯源水印。
+    @inlinable
+    public func extractTraceWatermark(_ input: ExtractTraceWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExtractTraceWatermarkResponse > {
+        self.client.execute(action: "ExtractTraceWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提取溯源水印
+    ///
+    /// 用于提取溯源水印。
+    @inlinable
+    public func extractTraceWatermark(_ input: ExtractTraceWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExtractTraceWatermarkResponse {
+        try await self.client.execute(action: "ExtractTraceWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

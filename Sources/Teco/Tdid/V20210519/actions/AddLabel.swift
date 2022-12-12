@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// DID添加标签
-    @inlinable
-    public func addLabel(_ input: AddLabelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddLabelResponse > {
-        self.client.execute(action: "AddLabel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DID添加标签
-    @inlinable
-    public func addLabel(_ input: AddLabelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLabelResponse {
-        try await self.client.execute(action: "AddLabel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddLabel请求参数结构体
     public struct AddLabelRequest: TCRequestModel {
         /// 标签ID
@@ -54,5 +42,17 @@ extension Tdid {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// DID添加标签
+    @inlinable
+    public func addLabel(_ input: AddLabelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddLabelResponse > {
+        self.client.execute(action: "AddLabel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DID添加标签
+    @inlinable
+    public func addLabel(_ input: AddLabelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLabelResponse {
+        try await self.client.execute(action: "AddLabel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

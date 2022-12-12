@@ -558,11 +558,11 @@ extension Mariadb {
         
         /// DCN复制的配置信息；对于主实例，此字段为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let replicaConfig: DCNReplicaConfig
+        public let replicaConfig: DCNReplicaConfig?
         
         /// DCN复制的状态；对于主实例，此字段为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let replicaStatus: DCNReplicaStatus
+        public let replicaStatus: DCNReplicaStatus?
         
         /// 是否开启了 kms
         public let encryptStatus: Int64
@@ -712,7 +712,7 @@ extension Mariadb {
         
         /// 约束类型为section时的范围
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let range: ConstraintRange
+        public let range: ConstraintRange?
         
         /// 约束类型为string时的可选值列表
         public let string: String

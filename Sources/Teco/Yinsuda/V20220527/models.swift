@@ -82,9 +82,9 @@ extension Yinsuda {
         
         /// 歌曲匹配信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let musicInfo: KTVMatchRuleMusicInfo
+        public let musicInfo: KTVMatchRuleMusicInfo?
         
-        public init (ameMusicId: String?, musicInfo: KTVMatchRuleMusicInfo) {
+        public init (ameMusicId: String? = nil, musicInfo: KTVMatchRuleMusicInfo? = nil) {
             self.ameMusicId = ameMusicId
             self.musicInfo = musicInfo
         }
@@ -133,7 +133,7 @@ extension Yinsuda {
         
         /// 专辑信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let albumInfo: MusicAlbumInfo
+        public let albumInfo: MusicAlbumInfo?
         
         /// 权益列表，取值有：
         /// <li>Play：可播；</li>
@@ -182,7 +182,7 @@ extension Yinsuda {
         
         /// 节拍信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let bpmInfo: KTVBPMInfo
+        public let bpmInfo: KTVBPMInfo?
         
         enum CodingKeys: String, CodingKey {
             case ktvMusicBaseInfo = "KTVMusicBaseInfo"
@@ -369,7 +369,7 @@ extension Yinsuda {
         /// 消息重复次数，默认为 1。
         public let `repeat`: UInt64?
         
-        public init (message: String, `repeat`: UInt64?) {
+        public init (message: String, `repeat`: UInt64? = nil) {
             self.message = message
             self.`repeat` = `repeat`
         }
@@ -387,7 +387,7 @@ extension Yinsuda {
         /// <li>Accompaniment：伴奏</li>
         public let type: String?
         
-        public init (type: String?) {
+        public init (type: String? = nil) {
             self.type = type
         }
         
@@ -407,7 +407,7 @@ extension Yinsuda {
         /// 过期销毁时间，单位：秒，当DestroyMode取Expire时必填。
         public let destroyExpireTime: Int64?
         
-        public init (destroyMode: String, destroyExpireTime: Int64?) {
+        public init (destroyMode: String, destroyExpireTime: Int64? = nil) {
             self.destroyMode = destroyMode
             self.destroyExpireTime = destroyExpireTime
         }
@@ -457,7 +457,7 @@ extension Yinsuda {
         /// 歌曲 ID 列表，当 Type 取 Add 时，必填。
         public let musicIds: [String]?
         
-        public init (type: String, index: Int64?, changedIndex: Int64?, musicIds: [String]?) {
+        public init (type: String, index: Int64? = nil, changedIndex: Int64? = nil, musicIds: [String]? = nil) {
             self.type = type
             self.index = index
             self.changedIndex = changedIndex
@@ -488,27 +488,27 @@ extension Yinsuda {
         public let command: String
         
         /// 播放参数。
-        public let playCommandInput: PlayCommandInput
+        public let playCommandInput: PlayCommandInput?
         
         /// 播放列表变更信息，当Command取SetPlaylist时，必填。
-        public let setPlaylistCommandInput: SetPlaylistCommandInput
+        public let setPlaylistCommandInput: SetPlaylistCommandInput?
         
         /// 播放进度，当Command取Seek时，必填。
-        public let seekCommandInput: SeekCommandInput
+        public let seekCommandInput: SeekCommandInput?
         
         /// 音频参数，当Command取SetAudioParam时，必填。
-        public let setAudioParamCommandInput: SetAudioParamCommandInput
+        public let setAudioParamCommandInput: SetAudioParamCommandInput?
         
         /// 自定义消息，当Command取SendMessage时，必填。
-        public let sendMessageCommandInput: SendMessageCommandInput
+        public let sendMessageCommandInput: SendMessageCommandInput?
         
         /// 播放模式，当Command取SetPlayMode时，必填。
-        public let setPlayModeCommandInput: SetPlayModeCommandInput
+        public let setPlayModeCommandInput: SetPlayModeCommandInput?
         
         /// 销毁模式，当Command取SetDestroyMode时，必填。
-        public let setDestroyModeCommandInput: SetDestroyModeCommandInput
+        public let setDestroyModeCommandInput: SetDestroyModeCommandInput?
         
-        public init (command: String, playCommandInput: PlayCommandInput, setPlaylistCommandInput: SetPlaylistCommandInput, seekCommandInput: SeekCommandInput, setAudioParamCommandInput: SetAudioParamCommandInput, sendMessageCommandInput: SendMessageCommandInput, setPlayModeCommandInput: SetPlayModeCommandInput, setDestroyModeCommandInput: SetDestroyModeCommandInput) {
+        public init (command: String, playCommandInput: PlayCommandInput? = nil, setPlaylistCommandInput: SetPlaylistCommandInput? = nil, seekCommandInput: SeekCommandInput? = nil, setAudioParamCommandInput: SetAudioParamCommandInput? = nil, sendMessageCommandInput: SendMessageCommandInput? = nil, setPlayModeCommandInput: SetPlayModeCommandInput? = nil, setDestroyModeCommandInput: SetDestroyModeCommandInput? = nil) {
             self.command = command
             self.playCommandInput = playCommandInput
             self.setPlaylistCommandInput = setPlaylistCommandInput
@@ -570,7 +570,7 @@ extension Yinsuda {
         /// <li>格式按照 ISO 8601标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I" target="_blank">ISO 日期格式说明</a>。</li>
         public let after: String?
         
-        public init (before: String?, after: String?) {
+        public init (before: String? = nil, after: String? = nil) {
             self.before = before
             self.after = after
         }

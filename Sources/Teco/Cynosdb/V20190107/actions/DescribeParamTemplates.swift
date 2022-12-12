@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 查询参数模板信息
-    ///
-    /// 查询用户指定产品下的所有参数模板信息
-    @inlinable
-    public func describeParamTemplates(_ input: DescribeParamTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeParamTemplatesResponse > {
-        self.client.execute(action: "DescribeParamTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询参数模板信息
-    ///
-    /// 查询用户指定产品下的所有参数模板信息
-    @inlinable
-    public func describeParamTemplates(_ input: DescribeParamTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplatesResponse {
-        try await self.client.execute(action: "DescribeParamTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeParamTemplates请求参数结构体
     public struct DescribeParamTemplatesRequest: TCRequestModel {
         /// 数据库引擎版本号
@@ -66,7 +50,7 @@ extension Cynosdb {
         /// 排序方式（asc、desc）
         public let orderDirection: String?
         
-        public init (engineVersions: [String]?, templateNames: [String]?, templateIds: [Int64]?, dbModes: [String]?, offset: Int64?, limit: Int64?, products: [String]?, templateTypes: [String]?, engineTypes: [String]?, orderBy: String?, orderDirection: String?) {
+        public init (engineVersions: [String]? = nil, templateNames: [String]? = nil, templateIds: [Int64]? = nil, dbModes: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, products: [String]? = nil, templateTypes: [String]? = nil, engineTypes: [String]? = nil, orderBy: String? = nil, orderDirection: String? = nil) {
             self.engineVersions = engineVersions
             self.templateNames = templateNames
             self.templateIds = templateIds
@@ -111,5 +95,21 @@ extension Cynosdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询参数模板信息
+    ///
+    /// 查询用户指定产品下的所有参数模板信息
+    @inlinable
+    public func describeParamTemplates(_ input: DescribeParamTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeParamTemplatesResponse > {
+        self.client.execute(action: "DescribeParamTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询参数模板信息
+    ///
+    /// 查询用户指定产品下的所有参数模板信息
+    @inlinable
+    public func describeParamTemplates(_ input: DescribeParamTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplatesResponse {
+        try await self.client.execute(action: "DescribeParamTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

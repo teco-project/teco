@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcm {
-    /// 获取AccessLog配置
-    @inlinable
-    public func describeAccessLogConfig(_ input: DescribeAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessLogConfigResponse > {
-        self.client.execute(action: "DescribeAccessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取AccessLog配置
-    @inlinable
-    public func describeAccessLogConfig(_ input: DescribeAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessLogConfigResponse {
-        try await self.client.execute(action: "DescribeAccessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccessLogConfig请求参数结构体
     public struct DescribeAccessLogConfigRequest: TCRequestModel {
         /// mesh名字
@@ -54,7 +42,7 @@ extension Tcm {
         
         /// 选中的范围
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let selectedRange: SelectedRange
+        public let selectedRange: SelectedRange?
         
         /// 采用的模板，可取值为"istio" 或 "trace"，默认为"istio"
         public let template: String
@@ -91,5 +79,17 @@ extension Tcm {
             case enable = "Enable"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取AccessLog配置
+    @inlinable
+    public func describeAccessLogConfig(_ input: DescribeAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessLogConfigResponse > {
+        self.client.execute(action: "DescribeAccessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取AccessLog配置
+    @inlinable
+    public func describeAccessLogConfig(_ input: DescribeAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessLogConfigResponse {
+        try await self.client.execute(action: "DescribeAccessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

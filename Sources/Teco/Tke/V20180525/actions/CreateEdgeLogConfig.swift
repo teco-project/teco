@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 创建边缘集群日志采集配置
-    @inlinable
-    public func createEdgeLogConfig(_ input: CreateEdgeLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeLogConfigResponse > {
-        self.client.execute(action: "CreateEdgeLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建边缘集群日志采集配置
-    @inlinable
-    public func createEdgeLogConfig(_ input: CreateEdgeLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeLogConfigResponse {
-        try await self.client.execute(action: "CreateEdgeLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEdgeLogConfig请求参数结构体
     public struct CreateEdgeLogConfigRequest: TCRequestModel {
         /// 集群ID
@@ -38,7 +26,7 @@ extension Tke {
         /// CLS日志集ID
         public let logsetId: String?
         
-        public init (clusterId: String, logConfig: String, logsetId: String?) {
+        public init (clusterId: String, logConfig: String, logsetId: String? = nil) {
             self.clusterId = clusterId
             self.logConfig = logConfig
             self.logsetId = logsetId
@@ -59,5 +47,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建边缘集群日志采集配置
+    @inlinable
+    public func createEdgeLogConfig(_ input: CreateEdgeLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeLogConfigResponse > {
+        self.client.execute(action: "CreateEdgeLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建边缘集群日志采集配置
+    @inlinable
+    public func createEdgeLogConfig(_ input: CreateEdgeLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeLogConfigResponse {
+        try await self.client.execute(action: "CreateEdgeLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

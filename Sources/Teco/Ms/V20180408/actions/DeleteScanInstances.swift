@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ms {
-    /// 批量删除提交过的app扫描信息
-    ///
-    /// 删除一个或者多个app扫描信息
-    @inlinable
-    public func deleteScanInstances(_ input: DeleteScanInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScanInstancesResponse > {
-        self.client.execute(action: "DeleteScanInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量删除提交过的app扫描信息
-    ///
-    /// 删除一个或者多个app扫描信息
-    @inlinable
-    public func deleteScanInstances(_ input: DeleteScanInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanInstancesResponse {
-        try await self.client.execute(action: "DeleteScanInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteScanInstances请求参数结构体
     public struct DeleteScanInstancesRequest: TCRequestModel {
         /// 删除一个或多个扫描的app，最大支持20个
@@ -57,5 +41,21 @@ extension Ms {
             case progress = "Progress"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量删除提交过的app扫描信息
+    ///
+    /// 删除一个或者多个app扫描信息
+    @inlinable
+    public func deleteScanInstances(_ input: DeleteScanInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScanInstancesResponse > {
+        self.client.execute(action: "DeleteScanInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除提交过的app扫描信息
+    ///
+    /// 删除一个或者多个app扫描信息
+    @inlinable
+    public func deleteScanInstances(_ input: DeleteScanInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanInstancesResponse {
+        try await self.client.execute(action: "DeleteScanInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

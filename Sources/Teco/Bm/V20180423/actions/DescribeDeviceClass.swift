@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 查询设备型号
-    ///
-    /// 获取设备类型
-    @inlinable
-    public func describeDeviceClass(_ input: DescribeDeviceClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceClassResponse > {
-        self.client.execute(action: "DescribeDeviceClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备型号
-    ///
-    /// 获取设备类型
-    @inlinable
-    public func describeDeviceClass(_ input: DescribeDeviceClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClassResponse {
-        try await self.client.execute(action: "DescribeDeviceClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceClass请求参数结构体
     public struct DescribeDeviceClassRequest: TCRequestModel {
         /// 是否仅查询在售标准机型配置信息。取值0：查询所有机型；1：查询在售机型。默认为1
@@ -39,7 +23,7 @@ extension Bm {
         /// 是否返回价格信息。取值0：不返回价格信息，接口返回速度更快；1：返回价格信息。默认为1
         public let needPriceInfo: UInt64?
         
-        public init (onSale: UInt64?, needPriceInfo: UInt64?) {
+        public init (onSale: UInt64? = nil, needPriceInfo: UInt64? = nil) {
             self.onSale = onSale
             self.needPriceInfo = needPriceInfo
         }
@@ -62,5 +46,21 @@ extension Bm {
             case deviceClassSet = "DeviceClassSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备型号
+    ///
+    /// 获取设备类型
+    @inlinable
+    public func describeDeviceClass(_ input: DescribeDeviceClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceClassResponse > {
+        self.client.execute(action: "DescribeDeviceClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备型号
+    ///
+    /// 获取设备类型
+    @inlinable
+    public func describeDeviceClass(_ input: DescribeDeviceClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClassResponse {
+        try await self.client.execute(action: "DescribeDeviceClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

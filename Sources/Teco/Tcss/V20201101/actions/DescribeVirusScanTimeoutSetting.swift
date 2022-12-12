@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时文件扫描超时设置查询
-    @inlinable
-    public func describeVirusScanTimeoutSetting(_ input: DescribeVirusScanTimeoutSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusScanTimeoutSettingResponse > {
-        self.client.execute(action: "DescribeVirusScanTimeoutSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时文件扫描超时设置查询
-    @inlinable
-    public func describeVirusScanTimeoutSetting(_ input: DescribeVirusScanTimeoutSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusScanTimeoutSettingResponse {
-        try await self.client.execute(action: "DescribeVirusScanTimeoutSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVirusScanTimeoutSetting请求参数结构体
     public struct DescribeVirusScanTimeoutSettingRequest: TCRequestModel {
         /// 设置类型0一键检测，1定时检测
@@ -54,5 +42,17 @@ extension Tcss {
             case timeout = "Timeout"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时文件扫描超时设置查询
+    @inlinable
+    public func describeVirusScanTimeoutSetting(_ input: DescribeVirusScanTimeoutSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusScanTimeoutSettingResponse > {
+        self.client.execute(action: "DescribeVirusScanTimeoutSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时文件扫描超时设置查询
+    @inlinable
+    public func describeVirusScanTimeoutSetting(_ input: DescribeVirusScanTimeoutSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusScanTimeoutSettingResponse {
+        try await self.client.execute(action: "DescribeVirusScanTimeoutSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

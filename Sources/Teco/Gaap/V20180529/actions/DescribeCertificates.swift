@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 查询服务器证书列表
-    ///
-    /// 本接口（DescribeCertificates）用来查询可以使用的证书列表。
-    @inlinable
-    public func describeCertificates(_ input: DescribeCertificatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertificatesResponse > {
-        self.client.execute(action: "DescribeCertificates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询服务器证书列表
-    ///
-    /// 本接口（DescribeCertificates）用来查询可以使用的证书列表。
-    @inlinable
-    public func describeCertificates(_ input: DescribeCertificatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificatesResponse {
-        try await self.client.execute(action: "DescribeCertificates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCertificates请求参数结构体
     public struct DescribeCertificatesRequest: TCRequestModel {
         /// 证书类型。其中：
@@ -49,7 +33,7 @@ extension Gaap {
         /// 限制数量，默认为20。
         public let limit: UInt64?
         
-        public init (certificateType: Int64?, offset: UInt64?, limit: UInt64?) {
+        public init (certificateType: Int64? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.certificateType = certificateType
             self.offset = offset
             self.limit = limit
@@ -78,5 +62,21 @@ extension Gaap {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询服务器证书列表
+    ///
+    /// 本接口（DescribeCertificates）用来查询可以使用的证书列表。
+    @inlinable
+    public func describeCertificates(_ input: DescribeCertificatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertificatesResponse > {
+        self.client.execute(action: "DescribeCertificates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务器证书列表
+    ///
+    /// 本接口（DescribeCertificates）用来查询可以使用的证书列表。
+    @inlinable
+    public func describeCertificates(_ input: DescribeCertificatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificatesResponse {
+        try await self.client.execute(action: "DescribeCertificates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

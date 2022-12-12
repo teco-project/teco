@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 创建插件
-    ///
-    /// 创建API网关插件。
-    @inlinable
-    public func createPlugin(_ input: CreatePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePluginResponse > {
-        self.client.execute(action: "CreatePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建插件
-    ///
-    /// 创建API网关插件。
-    @inlinable
-    public func createPlugin(_ input: CreatePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePluginResponse {
-        try await self.client.execute(action: "CreatePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePlugin请求参数结构体
     public struct CreatePluginRequest: TCRequestModel {
         /// 用户自定义的插件名称。最长50个字符，最短2个字符，支持 a-z,A-Z,0-9,_, 必须字母开头，字母或者数字结尾。
@@ -48,7 +32,7 @@ extension Apigateway {
         /// 标签
         public let tags: [Tag]?
         
-        public init (pluginName: String, pluginType: String, pluginData: String, description: String?, tags: [Tag]?) {
+        public init (pluginName: String, pluginType: String, pluginData: String, description: String? = nil, tags: [Tag]? = nil) {
             self.pluginName = pluginName
             self.pluginType = pluginType
             self.pluginData = pluginData
@@ -77,5 +61,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建插件
+    ///
+    /// 创建API网关插件。
+    @inlinable
+    public func createPlugin(_ input: CreatePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePluginResponse > {
+        self.client.execute(action: "CreatePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建插件
+    ///
+    /// 创建API网关插件。
+    @inlinable
+    public func createPlugin(_ input: CreatePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePluginResponse {
+        try await self.client.execute(action: "CreatePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

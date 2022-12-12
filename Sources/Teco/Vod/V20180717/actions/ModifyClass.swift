@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 修改分类
-    ///
-    /// 修改媒体分类属性。
-    @inlinable
-    public func modifyClass(_ input: ModifyClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClassResponse > {
-        self.client.execute(action: "ModifyClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改分类
-    ///
-    /// 修改媒体分类属性。
-    @inlinable
-    public func modifyClass(_ input: ModifyClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClassResponse {
-        try await self.client.execute(action: "ModifyClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClass请求参数结构体
     public struct ModifyClassRequest: TCRequestModel {
         /// 分类 ID
@@ -42,7 +26,7 @@ extension Vod {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
         
-        public init (classId: UInt64, className: String, subAppId: UInt64?) {
+        public init (classId: UInt64, className: String, subAppId: UInt64? = nil) {
             self.classId = classId
             self.className = className
             self.subAppId = subAppId
@@ -63,5 +47,21 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改分类
+    ///
+    /// 修改媒体分类属性。
+    @inlinable
+    public func modifyClass(_ input: ModifyClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClassResponse > {
+        self.client.execute(action: "ModifyClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改分类
+    ///
+    /// 修改媒体分类属性。
+    @inlinable
+    public func modifyClass(_ input: ModifyClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClassResponse {
+        try await self.client.execute(action: "ModifyClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

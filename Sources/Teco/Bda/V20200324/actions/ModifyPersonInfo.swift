@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bda {
-    /// 修改人员信息
-    ///
-    /// 修改人员信息。
-    @inlinable
-    public func modifyPersonInfo(_ input: ModifyPersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonInfoResponse > {
-        self.client.execute(action: "ModifyPersonInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改人员信息
-    ///
-    /// 修改人员信息。
-    @inlinable
-    public func modifyPersonInfo(_ input: ModifyPersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonInfoResponse {
-        try await self.client.execute(action: "ModifyPersonInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPersonInfo请求参数结构体
     public struct ModifyPersonInfoRequest: TCRequestModel {
         /// 人员ID。
@@ -39,7 +23,7 @@ extension Bda {
         /// 人员名称。
         public let personName: String?
         
-        public init (personId: String, personName: String?) {
+        public init (personId: String, personName: String? = nil) {
             self.personId = personId
             self.personName = personName
         }
@@ -58,5 +42,21 @@ extension Bda {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改人员信息
+    ///
+    /// 修改人员信息。
+    @inlinable
+    public func modifyPersonInfo(_ input: ModifyPersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonInfoResponse > {
+        self.client.execute(action: "ModifyPersonInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改人员信息
+    ///
+    /// 修改人员信息。
+    @inlinable
+    public func modifyPersonInfo(_ input: ModifyPersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonInfoResponse {
+        try await self.client.execute(action: "ModifyPersonInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

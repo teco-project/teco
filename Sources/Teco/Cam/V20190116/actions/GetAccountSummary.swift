@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 查询账户摘要
-    ///
-    /// 查询账户摘要 
-    @inlinable
-    public func getAccountSummary(_ input: GetAccountSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAccountSummaryResponse > {
-        self.client.execute(action: "GetAccountSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询账户摘要
-    ///
-    /// 查询账户摘要 
-    @inlinable
-    public func getAccountSummary(_ input: GetAccountSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAccountSummaryResponse {
-        try await self.client.execute(action: "GetAccountSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetAccountSummary请求参数结构体
     public struct GetAccountSummaryRequest: TCRequestModel {
         public init () {
@@ -69,5 +53,21 @@ extension Cam {
             case member = "Member"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询账户摘要
+    ///
+    /// 查询账户摘要 
+    @inlinable
+    public func getAccountSummary(_ input: GetAccountSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAccountSummaryResponse > {
+        self.client.execute(action: "GetAccountSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账户摘要
+    ///
+    /// 查询账户摘要 
+    @inlinable
+    public func getAccountSummary(_ input: GetAccountSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAccountSummaryResponse {
+        try await self.client.execute(action: "GetAccountSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

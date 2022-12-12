@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 创建临时实例
-    ///
-    /// 本接口（CreateTmpInstances）用于创建临时实例。
-    @inlinable
-    public func createTmpInstances(_ input: CreateTmpInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTmpInstancesResponse > {
-        self.client.execute(action: "CreateTmpInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建临时实例
-    ///
-    /// 本接口（CreateTmpInstances）用于创建临时实例。
-    @inlinable
-    public func createTmpInstances(_ input: CreateTmpInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTmpInstancesResponse {
-        try await self.client.execute(action: "CreateTmpInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTmpInstances请求参数结构体
     public struct CreateTmpInstancesRequest: TCRequestModel {
         /// 回档实例的ID列表，形如：tdsql-ow728lmc。
@@ -62,5 +46,21 @@ extension Mariadb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建临时实例
+    ///
+    /// 本接口（CreateTmpInstances）用于创建临时实例。
+    @inlinable
+    public func createTmpInstances(_ input: CreateTmpInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTmpInstancesResponse > {
+        self.client.execute(action: "CreateTmpInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建临时实例
+    ///
+    /// 本接口（CreateTmpInstances）用于创建临时实例。
+    @inlinable
+    public func createTmpInstances(_ input: CreateTmpInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTmpInstancesResponse {
+        try await self.client.execute(action: "CreateTmpInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

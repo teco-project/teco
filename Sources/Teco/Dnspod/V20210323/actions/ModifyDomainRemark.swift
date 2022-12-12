@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 设置域名备注
-    @inlinable
-    public func modifyDomainRemark(_ input: ModifyDomainRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainRemarkResponse > {
-        self.client.execute(action: "ModifyDomainRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置域名备注
-    @inlinable
-    public func modifyDomainRemark(_ input: ModifyDomainRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainRemarkResponse {
-        try await self.client.execute(action: "ModifyDomainRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDomainRemark请求参数结构体
     public struct ModifyDomainRemarkRequest: TCRequestModel {
         /// 域名
@@ -38,7 +26,7 @@ extension Dnspod {
         /// 域名备注，删除备注请提交空内容。
         public let remark: String?
         
-        public init (domain: String, domainId: UInt64?, remark: String?) {
+        public init (domain: String, domainId: UInt64? = nil, remark: String? = nil) {
             self.domain = domain
             self.domainId = domainId
             self.remark = remark
@@ -59,5 +47,17 @@ extension Dnspod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置域名备注
+    @inlinable
+    public func modifyDomainRemark(_ input: ModifyDomainRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainRemarkResponse > {
+        self.client.execute(action: "ModifyDomainRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置域名备注
+    @inlinable
+    public func modifyDomainRemark(_ input: ModifyDomainRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainRemarkResponse {
+        try await self.client.execute(action: "ModifyDomainRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

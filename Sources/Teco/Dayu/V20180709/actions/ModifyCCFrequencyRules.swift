@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 修改CC防护的访问频率控制规则
-    @inlinable
-    public func modifyCCFrequencyRules(_ input: ModifyCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCFrequencyRulesResponse > {
-        self.client.execute(action: "ModifyCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改CC防护的访问频率控制规则
-    @inlinable
-    public func modifyCCFrequencyRules(_ input: ModifyCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCFrequencyRulesResponse {
-        try await self.client.execute(action: "ModifyCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCCFrequencyRules请求参数结构体
     public struct ModifyCCFrequencyRulesRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -59,7 +47,7 @@ extension Dayu {
         /// Cookie字符串，长度不超过40
         public let cookie: String?
         
-        public init (business: String, ccFrequencyRuleId: String, mode: String, period: UInt64, reqNumber: UInt64, act: String, exeDuration: UInt64, uri: String?, userAgent: String?, cookie: String?) {
+        public init (business: String, ccFrequencyRuleId: String, mode: String, period: UInt64, reqNumber: UInt64, act: String, exeDuration: UInt64, uri: String? = nil, userAgent: String? = nil, cookie: String? = nil) {
             self.business = business
             self.ccFrequencyRuleId = ccFrequencyRuleId
             self.mode = mode
@@ -98,5 +86,17 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改CC防护的访问频率控制规则
+    @inlinable
+    public func modifyCCFrequencyRules(_ input: ModifyCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCFrequencyRulesResponse > {
+        self.client.execute(action: "ModifyCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CC防护的访问频率控制规则
+    @inlinable
+    public func modifyCCFrequencyRules(_ input: ModifyCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCFrequencyRulesResponse {
+        try await self.client.execute(action: "ModifyCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

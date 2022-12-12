@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 暂停集成任务
-    @inlinable
-    public func suspendIntegrationTask(_ input: SuspendIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SuspendIntegrationTaskResponse > {
-        self.client.execute(action: "SuspendIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 暂停集成任务
-    @inlinable
-    public func suspendIntegrationTask(_ input: SuspendIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SuspendIntegrationTaskResponse {
-        try await self.client.execute(action: "SuspendIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SuspendIntegrationTask请求参数结构体
     public struct SuspendIntegrationTaskRequest: TCRequestModel {
         /// 任务id
@@ -58,5 +46,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 暂停集成任务
+    @inlinable
+    public func suspendIntegrationTask(_ input: SuspendIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SuspendIntegrationTaskResponse > {
+        self.client.execute(action: "SuspendIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 暂停集成任务
+    @inlinable
+    public func suspendIntegrationTask(_ input: SuspendIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SuspendIntegrationTaskResponse {
+        try await self.client.execute(action: "SuspendIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

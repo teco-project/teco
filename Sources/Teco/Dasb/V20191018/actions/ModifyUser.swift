@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dasb {
-    /// 修改用户信息
-    @inlinable
-    public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserResponse > {
-        self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改用户信息
-    @inlinable
-    public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
-        try await self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyUser请求参数结构体
     public struct ModifyUserRequest: TCRequestModel {
         /// 用户ID
@@ -63,7 +51,7 @@ extension Dasb {
         /// 用户所属部门的ID，如1.2.3
         public let departmentId: String?
         
-        public init (id: UInt64, realName: String, phone: String, email: String, validateFrom: Date?, validateTo: Date?, groupIdSet: [UInt64]?, authType: UInt64?, validateTime: String?, departmentId: String?) {
+        public init (id: UInt64, realName: String, phone: String, email: String, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil) {
             self.id = id
             self.realName = realName
             self.phone = phone
@@ -98,5 +86,17 @@ extension Dasb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改用户信息
+    @inlinable
+    public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserResponse > {
+        self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改用户信息
+    @inlinable
+    public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
+        try await self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

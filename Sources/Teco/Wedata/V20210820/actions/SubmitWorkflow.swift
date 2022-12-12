@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 提交工作流【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 提交工作流
-    @inlinable
-    public func submitWorkflow(_ input: SubmitWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitWorkflowResponse > {
-        self.client.execute(action: "SubmitWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交工作流【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 提交工作流
-    @inlinable
-    public func submitWorkflow(_ input: SubmitWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitWorkflowResponse {
-        try await self.client.execute(action: "SubmitWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SubmitWorkflow请求参数结构体
     public struct SubmitWorkflowRequest: TCRequestModel {
         /// 项目Id
@@ -74,5 +56,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 提交工作流
+    @inlinable
+    public func submitWorkflow(_ input: SubmitWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitWorkflowResponse > {
+        self.client.execute(action: "SubmitWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 提交工作流
+    @inlinable
+    public func submitWorkflow(_ input: SubmitWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitWorkflowResponse {
+        try await self.client.execute(action: "SubmitWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

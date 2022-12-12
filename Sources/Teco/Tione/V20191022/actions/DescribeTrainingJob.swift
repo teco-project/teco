@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tione {
-    /// 查询训练任务
-    @inlinable
-    public func describeTrainingJob(_ input: DescribeTrainingJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingJobResponse > {
-        self.client.execute(action: "DescribeTrainingJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询训练任务
-    @inlinable
-    public func describeTrainingJob(_ input: DescribeTrainingJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingJobResponse {
-        try await self.client.execute(action: "DescribeTrainingJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrainingJob请求参数结构体
     public struct DescribeTrainingJobRequest: TCRequestModel {
         /// 训练任务名称
@@ -63,14 +51,14 @@ extension Tione {
         
         /// 中止条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let stoppingCondition: StoppingCondition
+        public let stoppingCondition: StoppingCondition?
         
         /// 计算实例配置
         public let resourceConfig: ResourceConfig
         
         /// 私有网络配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let vpcConfig: VpcConfig
+        public let vpcConfig: VpcConfig?
         
         /// 失败原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -90,7 +78,7 @@ extension Tione {
         
         /// 模型输出配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let modelArtifacts: ModelArtifacts
+        public let modelArtifacts: ModelArtifacts?
         
         /// 详细状态，取值范围
         /// Starting：启动中
@@ -152,5 +140,17 @@ extension Tione {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询训练任务
+    @inlinable
+    public func describeTrainingJob(_ input: DescribeTrainingJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingJobResponse > {
+        self.client.execute(action: "DescribeTrainingJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询训练任务
+    @inlinable
+    public func describeTrainingJob(_ input: DescribeTrainingJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingJobResponse {
+        try await self.client.execute(action: "DescribeTrainingJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

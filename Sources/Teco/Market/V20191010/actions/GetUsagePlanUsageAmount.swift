@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Market {
-    /// 查询使用计划使用量
-    ///
-    /// 该接口可以根据InstanceId查询实例的api的使用情况。
-    @inlinable
-    public func getUsagePlanUsageAmount(_ input: GetUsagePlanUsageAmountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUsagePlanUsageAmountResponse > {
-        self.client.execute(action: "GetUsagePlanUsageAmount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询使用计划使用量
-    ///
-    /// 该接口可以根据InstanceId查询实例的api的使用情况。
-    @inlinable
-    public func getUsagePlanUsageAmount(_ input: GetUsagePlanUsageAmountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUsagePlanUsageAmountResponse {
-        try await self.client.execute(action: "GetUsagePlanUsageAmount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetUsagePlanUsageAmount请求参数结构体
     public struct GetUsagePlanUsageAmountRequest: TCRequestModel {
         /// 用于查询实例的Id
@@ -65,5 +49,21 @@ extension Market {
             case remainingRequestNum = "RemainingRequestNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询使用计划使用量
+    ///
+    /// 该接口可以根据InstanceId查询实例的api的使用情况。
+    @inlinable
+    public func getUsagePlanUsageAmount(_ input: GetUsagePlanUsageAmountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUsagePlanUsageAmountResponse > {
+        self.client.execute(action: "GetUsagePlanUsageAmount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询使用计划使用量
+    ///
+    /// 该接口可以根据InstanceId查询实例的api的使用情况。
+    @inlinable
+    public func getUsagePlanUsageAmount(_ input: GetUsagePlanUsageAmountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUsagePlanUsageAmountResponse {
+        try await self.client.execute(action: "GetUsagePlanUsageAmount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

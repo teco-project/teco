@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除SSL-VPN-CLIENT
-    @inlinable
-    public func deleteVpnGatewaySslClient(_ input: DeleteVpnGatewaySslClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnGatewaySslClientResponse > {
-        self.client.execute(action: "DeleteVpnGatewaySslClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除SSL-VPN-CLIENT
-    @inlinable
-    public func deleteVpnGatewaySslClient(_ input: DeleteVpnGatewaySslClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewaySslClientResponse {
-        try await self.client.execute(action: "DeleteVpnGatewaySslClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteVpnGatewaySslClient请求参数结构体
     public struct DeleteVpnGatewaySslClientRequest: TCRequestModel {
         /// SSL-VPN-CLIENT 实例ID。
@@ -53,5 +41,17 @@ extension Vpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除SSL-VPN-CLIENT
+    @inlinable
+    public func deleteVpnGatewaySslClient(_ input: DeleteVpnGatewaySslClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnGatewaySslClientResponse > {
+        self.client.execute(action: "DeleteVpnGatewaySslClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除SSL-VPN-CLIENT
+    @inlinable
+    public func deleteVpnGatewaySslClient(_ input: DeleteVpnGatewaySslClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewaySslClientResponse {
+        try await self.client.execute(action: "DeleteVpnGatewaySslClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

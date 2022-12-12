@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 修改告警设置
-    @inlinable
-    public func modifyWarningSetting(_ input: ModifyWarningSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWarningSettingResponse > {
-        self.client.execute(action: "ModifyWarningSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改告警设置
-    @inlinable
-    public func modifyWarningSetting(_ input: ModifyWarningSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWarningSettingResponse {
-        try await self.client.execute(action: "ModifyWarningSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyWarningSetting请求参数结构体
     public struct ModifyWarningSettingRequest: TCRequestModel {
         /// 告警设置的修改内容
@@ -49,5 +37,17 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改告警设置
+    @inlinable
+    public func modifyWarningSetting(_ input: ModifyWarningSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWarningSettingResponse > {
+        self.client.execute(action: "ModifyWarningSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改告警设置
+    @inlinable
+    public func modifyWarningSetting(_ input: ModifyWarningSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWarningSettingResponse {
+        try await self.client.execute(action: "ModifyWarningSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

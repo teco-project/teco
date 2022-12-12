@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 删除应用
-    @inlinable
-    public func deleteApplication(_ input: DeleteApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationResponse > {
-        self.client.execute(action: "DeleteApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除应用
-    @inlinable
-    public func deleteApplication(_ input: DeleteApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationResponse {
-        try await self.client.execute(action: "DeleteApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteApplication请求参数结构体
     public struct DeleteApplicationRequest: TCRequestModel {
         /// 应用ID
@@ -56,5 +44,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除应用
+    @inlinable
+    public func deleteApplication(_ input: DeleteApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationResponse > {
+        self.client.execute(action: "DeleteApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除应用
+    @inlinable
+    public func deleteApplication(_ input: DeleteApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationResponse {
+        try await self.client.execute(action: "DeleteApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

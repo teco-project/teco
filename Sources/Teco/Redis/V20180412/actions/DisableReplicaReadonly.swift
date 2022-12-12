@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 禁用读写分离
-    @inlinable
-    public func disableReplicaReadonly(_ input: DisableReplicaReadonlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableReplicaReadonlyResponse > {
-        self.client.execute(action: "DisableReplicaReadonly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 禁用读写分离
-    @inlinable
-    public func disableReplicaReadonly(_ input: DisableReplicaReadonlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableReplicaReadonlyResponse {
-        try await self.client.execute(action: "DisableReplicaReadonly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableReplicaReadonly请求参数结构体
     public struct DisableReplicaReadonlyRequest: TCRequestModel {
         /// 实例序号ID
@@ -54,5 +42,17 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 禁用读写分离
+    @inlinable
+    public func disableReplicaReadonly(_ input: DisableReplicaReadonlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableReplicaReadonlyResponse > {
+        self.client.execute(action: "DisableReplicaReadonly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用读写分离
+    @inlinable
+    public func disableReplicaReadonly(_ input: DisableReplicaReadonlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableReplicaReadonlyResponse {
+        try await self.client.execute(action: "DisableReplicaReadonly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

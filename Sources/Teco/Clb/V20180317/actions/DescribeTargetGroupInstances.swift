@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 获取目标组绑定的服务器
-    ///
-    /// 获取目标组绑定的服务器信息
-    @inlinable
-    public func describeTargetGroupInstances(_ input: DescribeTargetGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTargetGroupInstancesResponse > {
-        self.client.execute(action: "DescribeTargetGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取目标组绑定的服务器
-    ///
-    /// 获取目标组绑定的服务器信息
-    @inlinable
-    public func describeTargetGroupInstances(_ input: DescribeTargetGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetGroupInstancesResponse {
-        try await self.client.execute(action: "DescribeTargetGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTargetGroupInstances请求参数结构体
     public struct DescribeTargetGroupInstancesRequest: TCRequestModel {
         /// 过滤条件，当前仅支持TargetGroupId，BindIP，InstanceId过滤。
@@ -42,7 +26,7 @@ extension Clb {
         /// 显示的偏移量，默认为0。
         public let offset: UInt64?
         
-        public init (filters: [Filter], limit: UInt64?, offset: UInt64?) {
+        public init (filters: [Filter], limit: UInt64? = nil, offset: UInt64? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -75,5 +59,21 @@ extension Clb {
             case realCount = "RealCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取目标组绑定的服务器
+    ///
+    /// 获取目标组绑定的服务器信息
+    @inlinable
+    public func describeTargetGroupInstances(_ input: DescribeTargetGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTargetGroupInstancesResponse > {
+        self.client.execute(action: "DescribeTargetGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取目标组绑定的服务器
+    ///
+    /// 获取目标组绑定的服务器信息
+    @inlinable
+    public func describeTargetGroupInstances(_ input: DescribeTargetGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetGroupInstancesResponse {
+        try await self.client.execute(action: "DescribeTargetGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

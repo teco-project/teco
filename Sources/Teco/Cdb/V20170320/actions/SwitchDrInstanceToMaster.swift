@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 云数据库灾备实例切换为主实例
-    ///
-    /// 本接口(SwitchDrInstanceToMaster)用于将云数据库灾备实例切换为主实例，注意请求必须发到灾备实例所在的地域。
-    @inlinable
-    public func switchDrInstanceToMaster(_ input: SwitchDrInstanceToMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchDrInstanceToMasterResponse > {
-        self.client.execute(action: "SwitchDrInstanceToMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云数据库灾备实例切换为主实例
-    ///
-    /// 本接口(SwitchDrInstanceToMaster)用于将云数据库灾备实例切换为主实例，注意请求必须发到灾备实例所在的地域。
-    @inlinable
-    public func switchDrInstanceToMaster(_ input: SwitchDrInstanceToMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDrInstanceToMasterResponse {
-        try await self.client.execute(action: "SwitchDrInstanceToMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SwitchDrInstanceToMaster请求参数结构体
     public struct SwitchDrInstanceToMasterRequest: TCRequestModel {
         /// 灾备实例ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同。
@@ -57,5 +41,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云数据库灾备实例切换为主实例
+    ///
+    /// 本接口(SwitchDrInstanceToMaster)用于将云数据库灾备实例切换为主实例，注意请求必须发到灾备实例所在的地域。
+    @inlinable
+    public func switchDrInstanceToMaster(_ input: SwitchDrInstanceToMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchDrInstanceToMasterResponse > {
+        self.client.execute(action: "SwitchDrInstanceToMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云数据库灾备实例切换为主实例
+    ///
+    /// 本接口(SwitchDrInstanceToMaster)用于将云数据库灾备实例切换为主实例，注意请求必须发到灾备实例所在的地域。
+    @inlinable
+    public func switchDrInstanceToMaster(_ input: SwitchDrInstanceToMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDrInstanceToMasterResponse {
+        try await self.client.execute(action: "SwitchDrInstanceToMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

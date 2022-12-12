@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 从伸缩组移出 CVM 实例
-    ///
-    /// 本接口（DetachInstances）用于从伸缩组移出 CVM 实例，本接口不会销毁实例。
-    /// * 如果移出指定实例后，伸缩组内处于`IN_SERVICE`状态的实例数量小于伸缩组最小值，接口将报错
-    /// * 如果伸缩组处于`DISABLED`状态，移出操作不校验`IN_SERVICE`实例数量和最小值的关系
-    /// * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
-    @inlinable
-    public func detachInstances(_ input: DetachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachInstancesResponse > {
-        self.client.execute(action: "DetachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 从伸缩组移出 CVM 实例
-    ///
-    /// 本接口（DetachInstances）用于从伸缩组移出 CVM 实例，本接口不会销毁实例。
-    /// * 如果移出指定实例后，伸缩组内处于`IN_SERVICE`状态的实例数量小于伸缩组最小值，接口将报错
-    /// * 如果伸缩组处于`DISABLED`状态，移出操作不校验`IN_SERVICE`实例数量和最小值的关系
-    /// * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
-    @inlinable
-    public func detachInstances(_ input: DetachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachInstancesResponse {
-        try await self.client.execute(action: "DetachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetachInstances请求参数结构体
     public struct DetachInstancesRequest: TCRequestModel {
         /// 伸缩组ID
@@ -68,5 +46,27 @@ extension As {
             case activityId = "ActivityId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 从伸缩组移出 CVM 实例
+    ///
+    /// 本接口（DetachInstances）用于从伸缩组移出 CVM 实例，本接口不会销毁实例。
+    /// * 如果移出指定实例后，伸缩组内处于`IN_SERVICE`状态的实例数量小于伸缩组最小值，接口将报错
+    /// * 如果伸缩组处于`DISABLED`状态，移出操作不校验`IN_SERVICE`实例数量和最小值的关系
+    /// * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
+    @inlinable
+    public func detachInstances(_ input: DetachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachInstancesResponse > {
+        self.client.execute(action: "DetachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 从伸缩组移出 CVM 实例
+    ///
+    /// 本接口（DetachInstances）用于从伸缩组移出 CVM 实例，本接口不会销毁实例。
+    /// * 如果移出指定实例后，伸缩组内处于`IN_SERVICE`状态的实例数量小于伸缩组最小值，接口将报错
+    /// * 如果伸缩组处于`DISABLED`状态，移出操作不校验`IN_SERVICE`实例数量和最小值的关系
+    /// * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
+    @inlinable
+    public func detachInstances(_ input: DetachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachInstancesResponse {
+        try await self.client.execute(action: "DetachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

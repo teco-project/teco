@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 获取集群版实例分片信息
-    @inlinable
-    public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceShardsResponse > {
-        self.client.execute(action: "DescribeInstanceShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取集群版实例分片信息
-    @inlinable
-    public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {
-        try await self.client.execute(action: "DescribeInstanceShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceShards请求参数结构体
     public struct DescribeInstanceShardsRequest: TCRequestModel {
         /// 实例ID
@@ -35,7 +23,7 @@ extension Redis {
         /// 是否过滤掉从节信息
         public let filterSlave: Bool?
         
-        public init (instanceId: String, filterSlave: Bool?) {
+        public init (instanceId: String, filterSlave: Bool? = nil) {
             self.instanceId = instanceId
             self.filterSlave = filterSlave
         }
@@ -62,5 +50,17 @@ extension Redis {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取集群版实例分片信息
+    @inlinable
+    public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceShardsResponse > {
+        self.client.execute(action: "DescribeInstanceShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群版实例分片信息
+    @inlinable
+    public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {
+        try await self.client.execute(action: "DescribeInstanceShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

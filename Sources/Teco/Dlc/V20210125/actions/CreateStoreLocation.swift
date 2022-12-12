@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 修改结果存储位置
-    ///
-    /// 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
-    @inlinable
-    public func createStoreLocation(_ input: CreateStoreLocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStoreLocationResponse > {
-        self.client.execute(action: "CreateStoreLocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改结果存储位置
-    ///
-    /// 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
-    @inlinable
-    public func createStoreLocation(_ input: CreateStoreLocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStoreLocationResponse {
-        try await self.client.execute(action: "CreateStoreLocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateStoreLocation请求参数结构体
     public struct CreateStoreLocationRequest: TCRequestModel {
         /// 计算结果存储cos路径，如：cosn://bucketname/
@@ -53,5 +37,21 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改结果存储位置
+    ///
+    /// 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
+    @inlinable
+    public func createStoreLocation(_ input: CreateStoreLocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStoreLocationResponse > {
+        self.client.execute(action: "CreateStoreLocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改结果存储位置
+    ///
+    /// 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
+    @inlinable
+    public func createStoreLocation(_ input: CreateStoreLocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStoreLocationResponse {
+        try await self.client.execute(action: "CreateStoreLocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 修改实例所属网络
-    ///
-    /// 本接口（ModifyInstanceNetwork）用于修改实例所属网络。
-    @inlinable
-    public func modifyInstanceNetwork(_ input: ModifyInstanceNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceNetworkResponse > {
-        self.client.execute(action: "ModifyInstanceNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例所属网络
-    ///
-    /// 本接口（ModifyInstanceNetwork）用于修改实例所属网络。
-    @inlinable
-    public func modifyInstanceNetwork(_ input: ModifyInstanceNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceNetworkResponse {
-        try await self.client.execute(action: "ModifyInstanceNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstanceNetwork请求参数结构体
     public struct ModifyInstanceNetworkRequest: TCRequestModel {
         /// 实例ID
@@ -51,7 +35,7 @@ extension Dcdb {
         /// VIP保留时长，单位小时，取值范围（0~168），0表示立即释放，有一分钟释放延迟。不传此参数，默认24小时释放VIP。
         public let vipReleaseDelay: UInt64?
         
-        public init (instanceId: String, vpcId: String, subnetId: String, vip: String?, vipv6: String?, vipReleaseDelay: UInt64?) {
+        public init (instanceId: String, vpcId: String, subnetId: String, vip: String? = nil, vipv6: String? = nil, vipReleaseDelay: UInt64? = nil) {
             self.instanceId = instanceId
             self.vpcId = vpcId
             self.subnetId = subnetId
@@ -82,5 +66,21 @@ extension Dcdb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例所属网络
+    ///
+    /// 本接口（ModifyInstanceNetwork）用于修改实例所属网络。
+    @inlinable
+    public func modifyInstanceNetwork(_ input: ModifyInstanceNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceNetworkResponse > {
+        self.client.execute(action: "ModifyInstanceNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例所属网络
+    ///
+    /// 本接口（ModifyInstanceNetwork）用于修改实例所属网络。
+    @inlinable
+    public func modifyInstanceNetwork(_ input: ModifyInstanceNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceNetworkResponse {
+        try await self.client.execute(action: "ModifyInstanceNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiia {
-    /// 图像质量评估
-    ///
-    /// 评估输入图片在视觉上的质量，从多个方面评估，并同时给出综合的、客观的清晰度评分，和主观的美观度评分。
-    /// >   
-    /// - 可前往 [图像处理](https://cloud.tencent.com/document/product/1590) 产品文档中查看更多产品信息。
-    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func assessQuality(_ input: AssessQualityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssessQualityResponse > {
-        self.client.execute(action: "AssessQuality", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 图像质量评估
-    ///
-    /// 评估输入图片在视觉上的质量，从多个方面评估，并同时给出综合的、客观的清晰度评分，和主观的美观度评分。
-    /// >   
-    /// - 可前往 [图像处理](https://cloud.tencent.com/document/product/1590) 产品文档中查看更多产品信息。
-    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func assessQuality(_ input: AssessQualityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssessQualityResponse {
-        try await self.client.execute(action: "AssessQuality", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssessQuality请求参数结构体
     public struct AssessQualityRequest: TCRequestModel {
         /// 图片URL地址。 
@@ -53,7 +31,7 @@ extension Tiia {
         /// **注意：图片需要Base64编码，并且要去掉编码头部。**
         public let imageBase64: String?
         
-        public init (imageUrl: String?, imageBase64: String?) {
+        public init (imageUrl: String? = nil, imageBase64: String? = nil) {
             self.imageUrl = imageUrl
             self.imageBase64 = imageBase64
         }
@@ -100,5 +78,27 @@ extension Tiia {
             case aestheticScore = "AestheticScore"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 图像质量评估
+    ///
+    /// 评估输入图片在视觉上的质量，从多个方面评估，并同时给出综合的、客观的清晰度评分，和主观的美观度评分。
+    /// >   
+    /// - 可前往 [图像处理](https://cloud.tencent.com/document/product/1590) 产品文档中查看更多产品信息。
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func assessQuality(_ input: AssessQualityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssessQualityResponse > {
+        self.client.execute(action: "AssessQuality", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 图像质量评估
+    ///
+    /// 评估输入图片在视觉上的质量，从多个方面评估，并同时给出综合的、客观的清晰度评分，和主观的美观度评分。
+    /// >   
+    /// - 可前往 [图像处理](https://cloud.tencent.com/document/product/1590) 产品文档中查看更多产品信息。
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func assessQuality(_ input: AssessQualityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssessQualityResponse {
+        try await self.client.execute(action: "AssessQuality", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

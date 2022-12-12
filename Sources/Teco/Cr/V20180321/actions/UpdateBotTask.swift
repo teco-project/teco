@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cr {
-    /// 更新机器人任务
-    @inlinable
-    public func updateBotTask(_ input: UpdateBotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateBotTaskResponse > {
-        self.client.execute(action: "UpdateBotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新机器人任务
-    @inlinable
-    public func updateBotTask(_ input: UpdateBotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBotTaskResponse {
-        try await self.client.execute(action: "UpdateBotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateBotTask请求参数结构体
     public struct UpdateBotTaskRequest: TCRequestModel {
         /// 模块名。默认值（固定）：AiApi
@@ -42,7 +30,7 @@ extension Cr {
         public let botId: String?
         
         /// 产品拨打时间集合
-        public let callTimeCollection: CallTimeDict
+        public let callTimeCollection: CallTimeDict?
         
         /// 是否禁止拨打，默认Y
         public let banCall: String?
@@ -74,7 +62,7 @@ extension Cr {
         /// 未接通引用短信模板ID
         public let smsTemplateId: String?
         
-        public init (module: String, operation: String, botName: String?, botId: String?, callTimeCollection: CallTimeDict, banCall: String?, startTimeBan: String?, endTimeBan: String?, phoneCollection: String?, codeType: String?, codeCollection: String?, callCount: Int64?, callInterval: Int64?, smsSignId: String?, smsTemplateId: String?) {
+        public init (module: String, operation: String, botName: String? = nil, botId: String? = nil, callTimeCollection: CallTimeDict? = nil, banCall: String? = nil, startTimeBan: String? = nil, endTimeBan: String? = nil, phoneCollection: String? = nil, codeType: String? = nil, codeCollection: String? = nil, callCount: Int64? = nil, callInterval: Int64? = nil, smsSignId: String? = nil, smsTemplateId: String? = nil) {
             self.module = module
             self.operation = operation
             self.botName = botName
@@ -119,5 +107,17 @@ extension Cr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新机器人任务
+    @inlinable
+    public func updateBotTask(_ input: UpdateBotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateBotTaskResponse > {
+        self.client.execute(action: "UpdateBotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新机器人任务
+    @inlinable
+    public func updateBotTask(_ input: UpdateBotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBotTaskResponse {
+        try await self.client.execute(action: "UpdateBotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

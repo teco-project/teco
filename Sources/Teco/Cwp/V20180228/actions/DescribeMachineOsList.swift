@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询机器操作系统列表
-    ///
-    /// 查询可筛选操作系统列表.
-    @inlinable
-    public func describeMachineOsList(_ input: DescribeMachineOsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineOsListResponse > {
-        self.client.execute(action: "DescribeMachineOsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询机器操作系统列表
-    ///
-    /// 查询可筛选操作系统列表.
-    @inlinable
-    public func describeMachineOsList(_ input: DescribeMachineOsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineOsListResponse {
-        try await self.client.execute(action: "DescribeMachineOsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMachineOsList请求参数结构体
     public struct DescribeMachineOsListRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Cwp {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询机器操作系统列表
+    ///
+    /// 查询可筛选操作系统列表.
+    @inlinable
+    public func describeMachineOsList(_ input: DescribeMachineOsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineOsListResponse > {
+        self.client.execute(action: "DescribeMachineOsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询机器操作系统列表
+    ///
+    /// 查询可筛选操作系统列表.
+    @inlinable
+    public func describeMachineOsList(_ input: DescribeMachineOsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineOsListResponse {
+        try await self.client.execute(action: "DescribeMachineOsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

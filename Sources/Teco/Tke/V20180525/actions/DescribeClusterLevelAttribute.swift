@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取集群规模
-    @inlinable
-    public func describeClusterLevelAttribute(_ input: DescribeClusterLevelAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterLevelAttributeResponse > {
-        self.client.execute(action: "DescribeClusterLevelAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取集群规模
-    @inlinable
-    public func describeClusterLevelAttribute(_ input: DescribeClusterLevelAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterLevelAttributeResponse {
-        try await self.client.execute(action: "DescribeClusterLevelAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterLevelAttribute请求参数结构体
     public struct DescribeClusterLevelAttributeRequest: TCRequestModel {
         /// 集群ID，变配时使用
         public let clusterID: String?
         
-        public init (clusterID: String?) {
+        public init (clusterID: String? = nil) {
             self.clusterID = clusterID
         }
         
@@ -57,5 +45,17 @@ extension Tke {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取集群规模
+    @inlinable
+    public func describeClusterLevelAttribute(_ input: DescribeClusterLevelAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterLevelAttributeResponse > {
+        self.client.execute(action: "DescribeClusterLevelAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群规模
+    @inlinable
+    public func describeClusterLevelAttribute(_ input: DescribeClusterLevelAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterLevelAttributeResponse {
+        try await self.client.execute(action: "DescribeClusterLevelAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

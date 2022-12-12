@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mrs {
-    /// 图片结构化接口
-    ///
-    /// 图片转结构化对象
-    @inlinable
-    public func imageToObject(_ input: ImageToObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImageToObjectResponse > {
-        self.client.execute(action: "ImageToObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 图片结构化接口
-    ///
-    /// 图片转结构化对象
-    @inlinable
-    public func imageToObject(_ input: ImageToObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToObjectResponse {
-        try await self.client.execute(action: "ImageToObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ImageToObject请求参数结构体
     public struct ImageToObjectRequest: TCRequestModel {
         /// 图片列表，允许传入多张图片，目前只支持传入图片base64编码，图片url暂不支持
@@ -49,7 +33,7 @@ extension Mrs {
         /// 用户类型，新客户传1，老客户可不传
         public let userType: Int64?
         
-        public init (imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, isUsedClassify: Bool, userType: Int64?) {
+        public init (imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, isUsedClassify: Bool, userType: Int64? = nil) {
             self.imageInfoList = imageInfoList
             self.handleParam = handleParam
             self.type = type
@@ -70,7 +54,7 @@ extension Mrs {
     public struct ImageToObjectResponse: TCResponseModel {
         /// 报告结构化结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let template: Template
+        public let template: Template?
         
         /// 多级分类结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -84,5 +68,21 @@ extension Mrs {
             case textTypeList = "TextTypeList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 图片结构化接口
+    ///
+    /// 图片转结构化对象
+    @inlinable
+    public func imageToObject(_ input: ImageToObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImageToObjectResponse > {
+        self.client.execute(action: "ImageToObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 图片结构化接口
+    ///
+    /// 图片转结构化对象
+    @inlinable
+    public func imageToObject(_ input: ImageToObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToObjectResponse {
+        try await self.client.execute(action: "ImageToObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

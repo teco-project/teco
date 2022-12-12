@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 提交自定义函数
-    @inlinable
-    public func submitCustomFunction(_ input: SubmitCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitCustomFunctionResponse > {
-        self.client.execute(action: "SubmitCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交自定义函数
-    @inlinable
-    public func submitCustomFunction(_ input: SubmitCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCustomFunctionResponse {
-        try await self.client.execute(action: "SubmitCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SubmitCustomFunction请求参数结构体
     public struct SubmitCustomFunctionRequest: TCRequestModel {
         /// 函数唯一标识
@@ -41,7 +29,7 @@ extension Wedata {
         /// 项目ID
         public let projectId: String?
         
-        public init (functionId: String, clusterIdentifier: String, comment: String, projectId: String?) {
+        public init (functionId: String, clusterIdentifier: String, comment: String, projectId: String? = nil) {
             self.functionId = functionId
             self.clusterIdentifier = clusterIdentifier
             self.comment = comment
@@ -74,5 +62,17 @@ extension Wedata {
             case errorMessage = "ErrorMessage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交自定义函数
+    @inlinable
+    public func submitCustomFunction(_ input: SubmitCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitCustomFunctionResponse > {
+        self.client.execute(action: "SubmitCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交自定义函数
+    @inlinable
+    public func submitCustomFunction(_ input: SubmitCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCustomFunctionResponse {
+        try await self.client.execute(action: "SubmitCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

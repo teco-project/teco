@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询基线基础信息
-    ///
-    /// 查询基线基础信息列表
-    @inlinable
-    public func describeBaselineBasicInfo(_ input: DescribeBaselineBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineBasicInfoResponse > {
-        self.client.execute(action: "DescribeBaselineBasicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询基线基础信息
-    ///
-    /// 查询基线基础信息列表
-    @inlinable
-    public func describeBaselineBasicInfo(_ input: DescribeBaselineBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineBasicInfoResponse {
-        try await self.client.execute(action: "DescribeBaselineBasicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBaselineBasicInfo请求参数结构体
     public struct DescribeBaselineBasicInfoRequest: TCRequestModel {
         /// 基线名称
         public let baselineName: String?
         
-        public init (baselineName: String?) {
+        public init (baselineName: String? = nil) {
             self.baselineName = baselineName
         }
         
@@ -58,5 +42,21 @@ extension Cwp {
             case baselineBasicInfoList = "BaselineBasicInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询基线基础信息
+    ///
+    /// 查询基线基础信息列表
+    @inlinable
+    public func describeBaselineBasicInfo(_ input: DescribeBaselineBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineBasicInfoResponse > {
+        self.client.execute(action: "DescribeBaselineBasicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询基线基础信息
+    ///
+    /// 查询基线基础信息列表
+    @inlinable
+    public func describeBaselineBasicInfo(_ input: DescribeBaselineBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineBasicInfoResponse {
+        try await self.client.execute(action: "DescribeBaselineBasicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

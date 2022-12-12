@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 创建域名分组
-    @inlinable
-    public func createDomainGroup(_ input: CreateDomainGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainGroupResponse > {
-        self.client.execute(action: "CreateDomainGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建域名分组
-    @inlinable
-    public func createDomainGroup(_ input: CreateDomainGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainGroupResponse {
-        try await self.client.execute(action: "CreateDomainGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDomainGroup请求参数结构体
     public struct CreateDomainGroupRequest: TCRequestModel {
         /// 域名分组
@@ -53,5 +41,17 @@ extension Dnspod {
             case groupId = "GroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建域名分组
+    @inlinable
+    public func createDomainGroup(_ input: CreateDomainGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainGroupResponse > {
+        self.client.execute(action: "CreateDomainGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建域名分组
+    @inlinable
+    public func createDomainGroup(_ input: CreateDomainGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainGroupResponse {
+        try await self.client.execute(action: "CreateDomainGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

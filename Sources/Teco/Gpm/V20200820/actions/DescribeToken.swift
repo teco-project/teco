@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gpm {
-    /// 查询匹配Token
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 查询匹配Token，Token用于push消息验证。
-    @inlinable
-    public func describeToken(_ input: DescribeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTokenResponse > {
-        self.client.execute(action: "DescribeToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询匹配Token
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 查询匹配Token，Token用于push消息验证。
-    @inlinable
-    public func describeToken(_ input: DescribeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTokenResponse {
-        try await self.client.execute(action: "DescribeToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeToken请求参数结构体
     public struct DescribeTokenRequest: TCRequestModel {
         /// 匹配code
@@ -65,5 +47,23 @@ extension Gpm {
             case compatibleSpan = "CompatibleSpan"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询匹配Token
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 查询匹配Token，Token用于push消息验证。
+    @inlinable
+    public func describeToken(_ input: DescribeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTokenResponse > {
+        self.client.execute(action: "DescribeToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询匹配Token
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 查询匹配Token，Token用于push消息验证。
+    @inlinable
+    public func describeToken(_ input: DescribeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTokenResponse {
+        try await self.client.execute(action: "DescribeToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

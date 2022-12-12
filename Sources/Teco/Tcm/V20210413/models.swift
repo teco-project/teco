@@ -30,7 +30,7 @@ extension Tcm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
         
-        public init (enable: Bool, region: String?, instanceId: String?) {
+        public init (enable: Bool, region: String? = nil, instanceId: String? = nil) {
             self.enable = enable
             self.region = region
             self.instanceId = instanceId
@@ -52,10 +52,10 @@ extension Tcm {
         public let template: String?
         
         /// 选中的范围
-        public let selectedRange: SelectedRange
+        public let selectedRange: SelectedRange?
         
         /// 腾讯云日志服务相关参数
-        public let cls: CLS
+        public let cls: CLS?
         
         /// 编码格式，可选值：TEXT、JSON
         public let encoding: String?
@@ -72,7 +72,7 @@ extension Tcm {
         /// 是否启用标准输出
         public let enableStdout: Bool?
         
-        public init (enable: Bool?, template: String?, selectedRange: SelectedRange, cls: CLS, encoding: String?, format: String?, address: String?, enableServer: Bool?, enableStdout: Bool?) {
+        public init (enable: Bool? = nil, template: String? = nil, selectedRange: SelectedRange? = nil, cls: CLS? = nil, encoding: String? = nil, format: String? = nil, address: String? = nil, enableServer: Bool? = nil, enableStdout: Bool? = nil) {
             self.enable = enable
             self.template = template
             self.selectedRange = selectedRange
@@ -124,7 +124,7 @@ extension Tcm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let state: String?
         
-        public init (namespace: String, state: String?) {
+        public init (namespace: String, state: String? = nil) {
             self.namespace = namespace
             self.state = state
         }
@@ -149,7 +149,7 @@ extension Tcm {
         /// 是否删除
         public let needDelete: Bool?
         
-        public init (enable: Bool, logSet: String?, topic: String?, needDelete: Bool?) {
+        public init (enable: Bool, logSet: String? = nil, topic: String? = nil, needDelete: Bool? = nil) {
             self.enable = enable
             self.logSet = logSet
             self.topic = topic
@@ -193,10 +193,10 @@ extension Tcm {
         public let linkedTime: Date?
         
         /// 集群配置
-        public let config: ClusterConfig
+        public let config: ClusterConfig?
         
         /// 详细状态，只读
-        public let status: ClusterStatus
+        public let status: ClusterStatus?
         
         /// 类型，取值范围：
         /// - TKE
@@ -206,7 +206,7 @@ extension Tcm {
         /// 集群关联的 Namespace 列表
         public let hostedNamespaces: [String]?
         
-        public init (clusterId: String, region: String, role: String, vpcId: String, subnetId: String, displayName: String?, state: String?, linkedTime: Date?, config: ClusterConfig, status: ClusterStatus, type: String?, hostedNamespaces: [String]?) {
+        public init (clusterId: String, region: String, role: String, vpcId: String, subnetId: String, displayName: String? = nil, state: String? = nil, linkedTime: Date? = nil, config: ClusterConfig? = nil, status: ClusterStatus? = nil, type: String? = nil, hostedNamespaces: [String]? = nil) {
             self.clusterId = clusterId
             self.region = region
             self.role = role
@@ -250,15 +250,15 @@ extension Tcm {
         
         /// Istiod配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let istiod: IstiodConfig
+        public let istiod: IstiodConfig?
         
         /// 部署配置
-        public let deployConfig: DeployConfig
+        public let deployConfig: DeployConfig?
         
         /// 自动注入命名空间状态列表
         public let autoInjectionNamespaceStateList: [AutoInjectionNamespaceState]?
         
-        public init (autoInjectionNamespaceList: [String], ingressGatewayList: [IngressGateway]?, egressGatewayList: [EgressGateway]?, istiod: IstiodConfig, deployConfig: DeployConfig, autoInjectionNamespaceStateList: [AutoInjectionNamespaceState]?) {
+        public init (autoInjectionNamespaceList: [String], ingressGatewayList: [IngressGateway]? = nil, egressGatewayList: [EgressGateway]? = nil, istiod: IstiodConfig? = nil, deployConfig: DeployConfig? = nil, autoInjectionNamespaceStateList: [AutoInjectionNamespaceState]? = nil) {
             self.autoInjectionNamespaceList = autoInjectionNamespaceList
             self.ingressGatewayList = ingressGatewayList
             self.egressGatewayList = egressGatewayList
@@ -323,7 +323,7 @@ extension Tcm {
         /// Prometheus 密码（用于 basic 认证方式）
         public let password: String?
         
-        public init (url: String, authType: String, isPublicAddr: Bool?, vpcId: String?, username: String?, password: String?) {
+        public init (url: String, authType: String, isPublicAddr: Bool? = nil, vpcId: String? = nil, username: String? = nil, password: String? = nil) {
             self.url = url
             self.authType = authType
             self.isPublicAddr = isPublicAddr
@@ -352,7 +352,7 @@ extension Tcm {
         /// 指定的节点
         public let nodes: [String]?
         
-        public init (nodeSelectType: String?, nodes: [String]?) {
+        public init (nodeSelectType: String? = nil, nodes: [String]? = nil) {
             self.nodeSelectType = nodeSelectType
             self.nodes = nodes
         }
@@ -372,12 +372,12 @@ extension Tcm {
         public let namespace: String
         
         /// 工作负载配置
-        public let workload: WorkloadConfig
+        public let workload: WorkloadConfig?
         
         /// 工作负载的状态
-        public let status: EgressGatewayStatus
+        public let status: EgressGatewayStatus?
         
-        public init (name: String, namespace: String, workload: WorkloadConfig, status: EgressGatewayStatus) {
+        public init (name: String, namespace: String, workload: WorkloadConfig? = nil, status: EgressGatewayStatus? = nil) {
             self.name = name
             self.namespace = namespace
             self.workload = workload
@@ -420,7 +420,7 @@ extension Tcm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zone: String?
         
-        public init (clusterId: String?, zone: String?) {
+        public init (clusterId: String? = nil, zone: String? = nil) {
             self.clusterId = clusterId
             self.zone = zone
         }
@@ -441,7 +441,7 @@ extension Tcm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let l7Clusters: [ExtensiveCluster]?
         
-        public init (l4Clusters: [ExtensiveCluster]?, l7Clusters: [ExtensiveCluster]?) {
+        public init (l4Clusters: [ExtensiveCluster]? = nil, l7Clusters: [ExtensiveCluster]? = nil) {
             self.l4Clusters = l4Clusters
             self.l7Clusters = l7Clusters
         }
@@ -543,15 +543,15 @@ extension Tcm {
         
         /// 负载均衡配置，自动创建 CLB 时返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let loadBalancer: LoadBalancer
+        public let loadBalancer: LoadBalancer?
         
         /// IngressGateway 状态信息，只读
-        public let status: IngressGatewayStatus
+        public let status: IngressGatewayStatus?
         
         /// 负载均衡实例ID，使用已有 CLB 时返回
         public let loadBalancerId: String?
         
-        public init (name: String, namespace: String, clusterId: String, service: Service, workload: WorkloadConfig, loadBalancer: LoadBalancer, status: IngressGatewayStatus, loadBalancerId: String?) {
+        public init (name: String, namespace: String, clusterId: String, service: Service, workload: WorkloadConfig, loadBalancer: LoadBalancer? = nil, status: IngressGatewayStatus? = nil, loadBalancerId: String? = nil) {
             self.name = name
             self.namespace = namespace
             self.clusterId = clusterId
@@ -610,7 +610,7 @@ extension Tcm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let holdProxyUntilApplicationEnds: Bool?
         
-        public init (excludeIPRanges: [String]?, holdApplicationUntilProxyStarts: Bool?, holdProxyUntilApplicationEnds: Bool?) {
+        public init (excludeIPRanges: [String]? = nil, holdApplicationUntilProxyStarts: Bool? = nil, holdProxyUntilApplicationEnds: Bool? = nil) {
             self.excludeIPRanges = excludeIPRanges
             self.holdApplicationUntilProxyStarts = holdApplicationUntilProxyStarts
             self.holdProxyUntilApplicationEnds = holdProxyUntilApplicationEnds
@@ -629,7 +629,7 @@ extension Tcm {
         public let outboundTrafficPolicy: String
         
         /// 调用链配置（Deprecated，请使用 MeshConfig.Tracing 进行配置）
-        public let tracing: TracingConfig
+        public let tracing: TracingConfig?
         
         /// 禁用策略检查功能
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -645,9 +645,9 @@ extension Tcm {
         
         /// SmartDNS策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let smartDNS: SmartDNSConfig
+        public let smartDNS: SmartDNSConfig?
         
-        public init (outboundTrafficPolicy: String, tracing: TracingConfig, disablePolicyChecks: Bool?, enablePilotHTTP: Bool?, disableHTTPRetry: Bool?, smartDNS: SmartDNSConfig) {
+        public init (outboundTrafficPolicy: String, tracing: TracingConfig? = nil, disablePolicyChecks: Bool? = nil, enablePilotHTTP: Bool? = nil, disableHTTPRetry: Bool? = nil, smartDNS: SmartDNSConfig? = nil) {
             self.outboundTrafficPolicy = outboundTrafficPolicy
             self.tracing = tracing
             self.disablePolicyChecks = disablePolicyChecks
@@ -669,9 +669,9 @@ extension Tcm {
     /// Istiod配置
     public struct IstiodConfig: TCInputModel, TCOutputModel {
         /// 工作负载配置
-        public let workload: WorkloadConfig
+        public let workload: WorkloadConfig?
         
-        public init (workload: WorkloadConfig) {
+        public init (workload: WorkloadConfig? = nil) {
             self.workload = workload
         }
         
@@ -718,13 +718,13 @@ extension Tcm {
         
         /// 内网独占集群配置列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let extensiveClusters: ExtensiveClusters
+        public let extensiveClusters: ExtensiveClusters?
         
         /// 负载均衡跨地域配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let crossRegionConfig: CrossRegionConfig
+        public let crossRegionConfig: CrossRegionConfig?
         
-        public init (loadBalancerType: String?, subnetId: String?, internetChargeType: String?, internetMaxBandwidthOut: Int64?, zoneID: String?, vipIsp: String?, tgwGroupName: String?, addressIPVersion: String?, tags: [Tag]?, extensiveClusters: ExtensiveClusters, crossRegionConfig: CrossRegionConfig) {
+        public init (loadBalancerType: String? = nil, subnetId: String? = nil, internetChargeType: String? = nil, internetMaxBandwidthOut: Int64? = nil, zoneID: String? = nil, vipIsp: String? = nil, tgwGroupName: String? = nil, addressIPVersion: String? = nil, tags: [Tag]? = nil, extensiveClusters: ExtensiveClusters? = nil, crossRegionConfig: CrossRegionConfig? = nil) {
             self.loadBalancerType = loadBalancerType
             self.subnetId = subnetId
             self.internetChargeType = internetChargeType
@@ -844,27 +844,27 @@ extension Tcm {
     /// 网格配置项
     public struct MeshConfig: TCInputModel, TCOutputModel {
         /// Istio配置
-        public let istio: IstioConfig
+        public let istio: IstioConfig?
         
         /// AccessLog配置
-        public let accessLog: AccessLogConfig
+        public let accessLog: AccessLogConfig?
         
         /// Prometheus配置
-        public let prometheus: PrometheusConfig
+        public let prometheus: PrometheusConfig?
         
         /// 自动注入配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let inject: InjectConfig
+        public let inject: InjectConfig?
         
         /// 调用跟踪配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tracing: TracingConfig
+        public let tracing: TracingConfig?
         
         /// Sidecar自定义资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sidecarResources: ResourceRequirements
+        public let sidecarResources: ResourceRequirements?
         
-        public init (istio: IstioConfig, accessLog: AccessLogConfig, prometheus: PrometheusConfig, inject: InjectConfig, tracing: TracingConfig, sidecarResources: ResourceRequirements) {
+        public init (istio: IstioConfig? = nil, accessLog: AccessLogConfig? = nil, prometheus: PrometheusConfig? = nil, inject: InjectConfig? = nil, tracing: TracingConfig? = nil, sidecarResources: ResourceRequirements? = nil) {
             self.istio = istio
             self.accessLog = accessLog
             self.prometheus = prometheus
@@ -906,7 +906,7 @@ extension Tcm {
         
         /// 获取TPS信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tps: PrometheusStatus
+        public let tps: PrometheusStatus?
         
         enum CodingKeys: String, CodingKey {
             case serviceCount = "ServiceCount"
@@ -924,12 +924,12 @@ extension Tcm {
         public let type: String
         
         /// 使用自定义指标扩进行自动扩缩容
-        public let pods: PodsMetricSource
+        public let pods: PodsMetricSource?
         
         /// 使用资源指标扩进行自动扩缩容
-        public let resource: ResourceMetricSource
+        public let resource: ResourceMetricSource?
         
-        public init (type: String, pods: PodsMetricSource, resource: ResourceMetricSource) {
+        public init (type: String, pods: PodsMetricSource? = nil, resource: ResourceMetricSource? = nil) {
             self.type = type
             self.pods = pods
             self.resource = resource
@@ -977,9 +977,9 @@ extension Tcm {
         
         /// 第三方 Prometheus
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let customProm: CustomPromConfig
+        public let customProm: CustomPromConfig?
         
-        public init (vpcId: String?, subnetId: String?, region: String?, instanceId: String?, customProm: CustomPromConfig) {
+        public init (vpcId: String? = nil, subnetId: String? = nil, region: String? = nil, instanceId: String? = nil, customProm: CustomPromConfig? = nil) {
             self.vpcId = vpcId
             self.subnetId = subnetId
             self.region = region
@@ -1018,7 +1018,7 @@ extension Tcm {
         
         /// Grafana信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let grafana: GrafanaInfo
+        public let grafana: GrafanaInfo?
         
         /// Prometheus 类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1044,7 +1044,7 @@ extension Tcm {
         /// 资源数量
         public let quantity: String?
         
-        public init (name: String?, quantity: String?) {
+        public init (name: String? = nil, quantity: String? = nil) {
             self.name = name
             self.quantity = quantity
         }
@@ -1087,7 +1087,7 @@ extension Tcm {
         /// Requests 描述所需的最小计算资源量。
         public let requests: [Resource]?
         
-        public init (limits: [Resource]?, requests: [Resource]?) {
+        public init (limits: [Resource]? = nil, requests: [Resource]? = nil) {
             self.limits = limits
             self.requests = requests
         }
@@ -1112,7 +1112,7 @@ extension Tcm {
         /// ingress gw的名称列表
         public let gateways: [String]?
         
-        public init (namespace: String?, clusterName: String?, itemName: String?, gateways: [String]?) {
+        public init (namespace: String? = nil, clusterName: String? = nil, itemName: String? = nil, gateways: [String]? = nil) {
             self.namespace = namespace
             self.clusterName = clusterName
             self.itemName = itemName
@@ -1135,7 +1135,7 @@ extension Tcm {
         /// 是否全选
         public let all: Bool?
         
-        public init (items: [SelectedItems]?, all: Bool?) {
+        public init (items: [SelectedItems]? = nil, all: Bool? = nil) {
             self.items = items
             self.all = all
         }
@@ -1157,7 +1157,7 @@ extension Tcm {
         /// 服务是否希望将外部流量路由到节点本地或集群范围的端点。 有两个可用选项：Cluster（默认）和 Local。Cluster 隐藏了客户端源 IP，可能导致第二跳到另一个节点；Local 保留客户端源 IP 并避免 LoadBalancer 和 NodePort 类型服务的第二跳。
         public let externalTrafficPolicy: String?
         
-        public init (type: String?, clbDirectAccess: Bool?, externalTrafficPolicy: String?) {
+        public init (type: String? = nil, clbDirectAccess: Bool? = nil, externalTrafficPolicy: String? = nil) {
             self.type = type
             self.clbDirectAccess = clbDirectAccess
             self.externalTrafficPolicy = externalTrafficPolicy
@@ -1180,7 +1180,7 @@ extension Tcm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let istioMetaDNSAutoAllocate: Bool?
         
-        public init (istioMetaDNSCapture: Bool?, istioMetaDNSAutoAllocate: Bool?) {
+        public init (istioMetaDNSCapture: Bool? = nil, istioMetaDNSAutoAllocate: Bool? = nil) {
             self.istioMetaDNSCapture = istioMetaDNSCapture
             self.istioMetaDNSAutoAllocate = istioMetaDNSAutoAllocate
         }
@@ -1202,7 +1202,7 @@ extension Tcm {
         /// 是否透传给其他关联产品
         public let passthrough: Bool?
         
-        public init (key: String, value: String, passthrough: Bool?) {
+        public init (key: String, value: String, passthrough: Bool? = nil) {
             self.key = key
             self.value = value
             self.passthrough = passthrough
@@ -1224,12 +1224,12 @@ extension Tcm {
         public let enable: Bool?
         
         /// 腾讯云 APM 服务相关参数
-        public let apm: APM
+        public let apm: APM?
         
         /// 启动第三方服务器的地址
-        public let zipkin: TracingZipkin
+        public let zipkin: TracingZipkin?
         
-        public init (sampling: Float?, enable: Bool?, apm: APM, zipkin: TracingZipkin) {
+        public init (sampling: Float? = nil, enable: Bool? = nil, apm: APM? = nil, zipkin: TracingZipkin? = nil) {
             self.sampling = sampling
             self.enable = enable
             self.apm = apm
@@ -1264,10 +1264,10 @@ extension Tcm {
         public let replicas: Int64?
         
         /// 资源配置
-        public let resources: ResourceRequirements
+        public let resources: ResourceRequirements?
         
         /// HPA策略
-        public let horizontalPodAutoscaler: HorizontalPodAutoscalerSpec
+        public let horizontalPodAutoscaler: HorizontalPodAutoscalerSpec?
         
         /// 部署到指定节点
         public let selectedNodeList: [String]?
@@ -1279,7 +1279,7 @@ extension Tcm {
         /// IN_EXCLUSIVE_NODE_POOL：独占节点池
         public let deployMode: String?
         
-        public init (replicas: Int64?, resources: ResourceRequirements, horizontalPodAutoscaler: HorizontalPodAutoscalerSpec, selectedNodeList: [String]?, deployMode: String?) {
+        public init (replicas: Int64? = nil, resources: ResourceRequirements? = nil, horizontalPodAutoscaler: HorizontalPodAutoscalerSpec? = nil, selectedNodeList: [String]? = nil, deployMode: String? = nil) {
             self.replicas = replicas
             self.resources = resources
             self.horizontalPodAutoscaler = horizontalPodAutoscaler

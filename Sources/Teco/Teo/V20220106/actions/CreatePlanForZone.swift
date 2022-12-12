@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 为未购买套餐的站点购买套餐
-    @inlinable
-    public func createPlanForZone(_ input: CreatePlanForZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePlanForZoneResponse > {
-        self.client.execute(action: "CreatePlanForZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 为未购买套餐的站点购买套餐
-    @inlinable
-    public func createPlanForZone(_ input: CreatePlanForZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePlanForZoneResponse {
-        try await self.client.execute(action: "CreatePlanForZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePlanForZone请求参数结构体
     public struct CreatePlanForZoneRequest: TCRequestModel {
         /// 站点ID。
@@ -70,5 +58,17 @@ extension Teo {
             case dealNames = "DealNames"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 为未购买套餐的站点购买套餐
+    @inlinable
+    public func createPlanForZone(_ input: CreatePlanForZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePlanForZoneResponse > {
+        self.client.execute(action: "CreatePlanForZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 为未购买套餐的站点购买套餐
+    @inlinable
+    public func createPlanForZone(_ input: CreatePlanForZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePlanForZoneResponse {
+        try await self.client.execute(action: "CreatePlanForZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

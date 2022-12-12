@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tcss {
-    /// 查询漏洞防御攻击事件趋势
-    @inlinable
-    public func describeVulDefenceEventTendency(_ input: DescribeVulDefenceEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefenceEventTendencyResponse > {
-        self.client.execute(action: "DescribeVulDefenceEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询漏洞防御攻击事件趋势
-    @inlinable
-    public func describeVulDefenceEventTendency(_ input: DescribeVulDefenceEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceEventTendencyResponse {
-        try await self.client.execute(action: "DescribeVulDefenceEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulDefenceEventTendency请求参数结构体
     public struct DescribeVulDefenceEventTendencyRequest: TCRequestModel {
         /// 开始时间
@@ -66,5 +54,17 @@ extension Tcss {
             case attackList = "AttackList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询漏洞防御攻击事件趋势
+    @inlinable
+    public func describeVulDefenceEventTendency(_ input: DescribeVulDefenceEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefenceEventTendencyResponse > {
+        self.client.execute(action: "DescribeVulDefenceEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞防御攻击事件趋势
+    @inlinable
+    public func describeVulDefenceEventTendency(_ input: DescribeVulDefenceEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceEventTendencyResponse {
+        try await self.client.execute(action: "DescribeVulDefenceEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

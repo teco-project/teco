@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 资产中心资产树信息查询new
-    ///
-    /// DescribeResourceGroupNew资产中心资产树信息
-    @inlinable
-    public func describeResourceGroupNew(_ input: DescribeResourceGroupNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceGroupNewResponse > {
-        self.client.execute(action: "DescribeResourceGroupNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 资产中心资产树信息查询new
-    ///
-    /// DescribeResourceGroupNew资产中心资产树信息
-    @inlinable
-    public func describeResourceGroupNew(_ input: DescribeResourceGroupNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupNewResponse {
-        try await self.client.execute(action: "DescribeResourceGroupNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourceGroupNew请求参数结构体
     public struct DescribeResourceGroupNewRequest: TCRequestModel {
         /// 查询类型 网络结构-vpc，业务识别-resource ，资源标签-tag
@@ -42,7 +26,7 @@ extension Cfw {
         /// all  包含子组 own自己
         public let showType: String?
         
-        public init (queryType: String, groupId: String?, showType: String?) {
+        public init (queryType: String, groupId: String? = nil, showType: String? = nil) {
             self.queryType = queryType
             self.groupId = groupId
             self.showType = showType
@@ -79,5 +63,21 @@ extension Cfw {
             case returnCode = "ReturnCode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 资产中心资产树信息查询new
+    ///
+    /// DescribeResourceGroupNew资产中心资产树信息
+    @inlinable
+    public func describeResourceGroupNew(_ input: DescribeResourceGroupNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceGroupNewResponse > {
+        self.client.execute(action: "DescribeResourceGroupNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 资产中心资产树信息查询new
+    ///
+    /// DescribeResourceGroupNew资产中心资产树信息
+    @inlinable
+    public func describeResourceGroupNew(_ input: DescribeResourceGroupNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupNewResponse {
+        try await self.client.execute(action: "DescribeResourceGroupNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

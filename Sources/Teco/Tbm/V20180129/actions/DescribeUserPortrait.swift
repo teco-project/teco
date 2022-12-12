@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbm {
-    /// 获取品牌画像结果
-    ///
-    /// 通过分析洞察参与过品牌媒体互动的用户，比如公开发表品牌的新闻评论、在公开社交渠道发表过对品牌的评价观点等用户，返回用户的画像属性分布，例如性别、年龄、地域、喜爱的明星、喜爱的影视。
-    @inlinable
-    public func describeUserPortrait(_ input: DescribeUserPortraitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserPortraitResponse > {
-        self.client.execute(action: "DescribeUserPortrait", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取品牌画像结果
-    ///
-    /// 通过分析洞察参与过品牌媒体互动的用户，比如公开发表品牌的新闻评论、在公开社交渠道发表过对品牌的评价观点等用户，返回用户的画像属性分布，例如性别、年龄、地域、喜爱的明星、喜爱的影视。
-    @inlinable
-    public func describeUserPortrait(_ input: DescribeUserPortraitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserPortraitResponse {
-        try await self.client.execute(action: "DescribeUserPortrait", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserPortrait请求参数结构体
     public struct DescribeUserPortraitRequest: TCRequestModel {
         /// 品牌ID
@@ -73,5 +57,21 @@ extension Tbm {
             case star = "Star"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取品牌画像结果
+    ///
+    /// 通过分析洞察参与过品牌媒体互动的用户，比如公开发表品牌的新闻评论、在公开社交渠道发表过对品牌的评价观点等用户，返回用户的画像属性分布，例如性别、年龄、地域、喜爱的明星、喜爱的影视。
+    @inlinable
+    public func describeUserPortrait(_ input: DescribeUserPortraitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserPortraitResponse > {
+        self.client.execute(action: "DescribeUserPortrait", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取品牌画像结果
+    ///
+    /// 通过分析洞察参与过品牌媒体互动的用户，比如公开发表品牌的新闻评论、在公开社交渠道发表过对品牌的评价观点等用户，返回用户的画像属性分布，例如性别、年龄、地域、喜爱的明星、喜爱的影视。
+    @inlinable
+    public func describeUserPortrait(_ input: DescribeUserPortraitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserPortraitResponse {
+        try await self.client.execute(action: "DescribeUserPortrait", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

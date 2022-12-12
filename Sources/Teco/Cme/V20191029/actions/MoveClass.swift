@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 移动分类
-    ///
-    /// 移动某一个分类到另外一个分类下，也可用于分类重命名。
-    /// 如果 SourceClassPath = /素材/视频/NBA，DestinationClassPath = /素材/视频/篮球
-    /// <li>当 DestinationClassPath 不存在时候，操作结果为重命名 ClassPath；</li>
-    /// <li>当 DestinationClassPath 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
-    @inlinable
-    public func moveClass(_ input: MoveClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MoveClassResponse > {
-        self.client.execute(action: "MoveClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 移动分类
-    ///
-    /// 移动某一个分类到另外一个分类下，也可用于分类重命名。
-    /// 如果 SourceClassPath = /素材/视频/NBA，DestinationClassPath = /素材/视频/篮球
-    /// <li>当 DestinationClassPath 不存在时候，操作结果为重命名 ClassPath；</li>
-    /// <li>当 DestinationClassPath 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
-    @inlinable
-    public func moveClass(_ input: MoveClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveClassResponse {
-        try await self.client.execute(action: "MoveClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// MoveClass请求参数结构体
     public struct MoveClassRequest: TCRequestModel {
         /// 平台名称，指定访问的平台。
@@ -54,7 +32,7 @@ extension Cme {
         /// 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
         public let `operator`: String?
         
-        public init (platform: String, owner: Entity, sourceClassPath: String, destinationClassPath: String, `operator`: String?) {
+        public init (platform: String, owner: Entity, sourceClassPath: String, destinationClassPath: String, `operator`: String? = nil) {
             self.platform = platform
             self.owner = owner
             self.sourceClassPath = sourceClassPath
@@ -79,5 +57,27 @@ extension Cme {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 移动分类
+    ///
+    /// 移动某一个分类到另外一个分类下，也可用于分类重命名。
+    /// 如果 SourceClassPath = /素材/视频/NBA，DestinationClassPath = /素材/视频/篮球
+    /// <li>当 DestinationClassPath 不存在时候，操作结果为重命名 ClassPath；</li>
+    /// <li>当 DestinationClassPath 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
+    @inlinable
+    public func moveClass(_ input: MoveClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MoveClassResponse > {
+        self.client.execute(action: "MoveClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 移动分类
+    ///
+    /// 移动某一个分类到另外一个分类下，也可用于分类重命名。
+    /// 如果 SourceClassPath = /素材/视频/NBA，DestinationClassPath = /素材/视频/篮球
+    /// <li>当 DestinationClassPath 不存在时候，操作结果为重命名 ClassPath；</li>
+    /// <li>当 DestinationClassPath 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
+    @inlinable
+    public func moveClass(_ input: MoveClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveClassResponse {
+        try await self.client.execute(action: "MoveClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

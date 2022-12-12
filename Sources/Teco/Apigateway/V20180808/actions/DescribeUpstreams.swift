@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询后端通道列表详情
-    @inlinable
-    public func describeUpstreams(_ input: DescribeUpstreamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUpstreamsResponse > {
-        self.client.execute(action: "DescribeUpstreams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询后端通道列表详情
-    @inlinable
-    public func describeUpstreams(_ input: DescribeUpstreamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpstreamsResponse {
-        try await self.client.execute(action: "DescribeUpstreams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUpstreams请求参数结构体
     public struct DescribeUpstreamsRequest: TCRequestModel {
         /// 分页大小
@@ -38,7 +26,7 @@ extension Apigateway {
         /// 过滤条件，支持后端通道ID（UpstreamId）、后端通道名字（UpstreamName）过滤查询
         public let filters: [Filter]?
         
-        public init (limit: UInt64, offset: UInt64, filters: [Filter]?) {
+        public init (limit: UInt64, offset: UInt64, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -63,5 +51,17 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询后端通道列表详情
+    @inlinable
+    public func describeUpstreams(_ input: DescribeUpstreamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUpstreamsResponse > {
+        self.client.execute(action: "DescribeUpstreams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询后端通道列表详情
+    @inlinable
+    public func describeUpstreams(_ input: DescribeUpstreamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpstreamsResponse {
+        try await self.client.execute(action: "DescribeUpstreams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

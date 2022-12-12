@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询触发器
-    @inlinable
-    public func describeWebhookTrigger(_ input: DescribeWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebhookTriggerResponse > {
-        self.client.execute(action: "DescribeWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询触发器
-    @inlinable
-    public func describeWebhookTrigger(_ input: DescribeWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebhookTriggerResponse {
-        try await self.client.execute(action: "DescribeWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWebhookTrigger请求参数结构体
     public struct DescribeWebhookTriggerRequest: TCRequestModel {
         /// 实例Id
@@ -41,7 +29,7 @@ extension Tcr {
         /// 命名空间
         public let namespace: String?
         
-        public init (registryId: String, limit: Int64?, offset: Int64?, namespace: String?) {
+        public init (registryId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil) {
             self.registryId = registryId
             self.limit = limit
             self.offset = offset
@@ -72,5 +60,17 @@ extension Tcr {
             case triggers = "Triggers"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询触发器
+    @inlinable
+    public func describeWebhookTrigger(_ input: DescribeWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebhookTriggerResponse > {
+        self.client.execute(action: "DescribeWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询触发器
+    @inlinable
+    public func describeWebhookTrigger(_ input: DescribeWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebhookTriggerResponse {
+        try await self.client.execute(action: "DescribeWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

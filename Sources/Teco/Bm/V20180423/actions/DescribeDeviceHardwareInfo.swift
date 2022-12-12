@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 查询设备硬件配置信息
-    ///
-    /// 查询设备硬件配置信息，如 CPU 型号，内存大小，磁盘大小和数量
-    @inlinable
-    public func describeDeviceHardwareInfo(_ input: DescribeDeviceHardwareInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceHardwareInfoResponse > {
-        self.client.execute(action: "DescribeDeviceHardwareInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备硬件配置信息
-    ///
-    /// 查询设备硬件配置信息，如 CPU 型号，内存大小，磁盘大小和数量
-    @inlinable
-    public func describeDeviceHardwareInfo(_ input: DescribeDeviceHardwareInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceHardwareInfoResponse {
-        try await self.client.execute(action: "DescribeDeviceHardwareInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceHardwareInfo请求参数结构体
     public struct DescribeDeviceHardwareInfoRequest: TCRequestModel {
         /// 设备 ID 列表
@@ -57,5 +41,21 @@ extension Bm {
             case deviceHardwareInfoSet = "DeviceHardwareInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备硬件配置信息
+    ///
+    /// 查询设备硬件配置信息，如 CPU 型号，内存大小，磁盘大小和数量
+    @inlinable
+    public func describeDeviceHardwareInfo(_ input: DescribeDeviceHardwareInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceHardwareInfoResponse > {
+        self.client.execute(action: "DescribeDeviceHardwareInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备硬件配置信息
+    ///
+    /// 查询设备硬件配置信息，如 CPU 型号，内存大小，磁盘大小和数量
+    @inlinable
+    public func describeDeviceHardwareInfo(_ input: DescribeDeviceHardwareInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceHardwareInfoResponse {
+        try await self.client.execute(action: "DescribeDeviceHardwareInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

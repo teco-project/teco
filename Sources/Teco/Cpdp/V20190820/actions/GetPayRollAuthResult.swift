@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 务工卡-获取核身结果
-    @inlinable
-    public func getPayRollAuthResult(_ input: GetPayRollAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPayRollAuthResultResponse > {
-        self.client.execute(action: "GetPayRollAuthResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 务工卡-获取核身结果
-    @inlinable
-    public func getPayRollAuthResult(_ input: GetPayRollAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthResultResponse {
-        try await self.client.execute(action: "GetPayRollAuthResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetPayRollAuthResult请求参数结构体
     public struct GetPayRollAuthResultRequest: TCRequestModel {
         /// 商户系统内部的商家核身单号，要求此参数只能由数字、大小写字母组成，在服务商内部唯一
@@ -58,5 +46,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 务工卡-获取核身结果
+    @inlinable
+    public func getPayRollAuthResult(_ input: GetPayRollAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPayRollAuthResultResponse > {
+        self.client.execute(action: "GetPayRollAuthResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 务工卡-获取核身结果
+    @inlinable
+    public func getPayRollAuthResult(_ input: GetPayRollAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthResultResponse {
+        try await self.client.execute(action: "GetPayRollAuthResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

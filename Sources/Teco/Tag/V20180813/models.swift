@@ -149,7 +149,7 @@ extension Tag {
         /// 标签值数组 多个值的话是或的关系
         public let tagValue: [String]?
         
-        public init (tagKey: String, tagValue: [String]?) {
+        public init (tagKey: String, tagValue: [String]? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }

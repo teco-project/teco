@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询共享带宽包内的资源
-    ///
-    /// 本接口 (DescribeBandwidthPackageResources) 用于根据共享带宽包唯一ID查询共享带宽包内的资源列表，支持按条件过滤查询结果和分页查询。
-    @inlinable
-    public func describeBandwidthPackageResources(_ input: DescribeBandwidthPackageResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBandwidthPackageResourcesResponse > {
-        self.client.execute(action: "DescribeBandwidthPackageResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询共享带宽包内的资源
-    ///
-    /// 本接口 (DescribeBandwidthPackageResources) 用于根据共享带宽包唯一ID查询共享带宽包内的资源列表，支持按条件过滤查询结果和分页查询。
-    @inlinable
-    public func describeBandwidthPackageResources(_ input: DescribeBandwidthPackageResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackageResourcesResponse {
-        try await self.client.execute(action: "DescribeBandwidthPackageResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBandwidthPackageResources请求参数结构体
     public struct DescribeBandwidthPackageResourcesRequest: TCRequestModel {
         /// 标识 共享带宽包 的唯一 ID 列表。共享带宽包 唯一 ID 形如：`bwp-11112222`。
@@ -47,7 +31,7 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
         public let limit: Int64?
         
-        public init (bandwidthPackageId: String, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (bandwidthPackageId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.bandwidthPackageId = bandwidthPackageId
             self.filters = filters
             self.offset = offset
@@ -78,5 +62,21 @@ extension Vpc {
             case resourceSet = "ResourceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询共享带宽包内的资源
+    ///
+    /// 本接口 (DescribeBandwidthPackageResources) 用于根据共享带宽包唯一ID查询共享带宽包内的资源列表，支持按条件过滤查询结果和分页查询。
+    @inlinable
+    public func describeBandwidthPackageResources(_ input: DescribeBandwidthPackageResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBandwidthPackageResourcesResponse > {
+        self.client.execute(action: "DescribeBandwidthPackageResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询共享带宽包内的资源
+    ///
+    /// 本接口 (DescribeBandwidthPackageResources) 用于根据共享带宽包唯一ID查询共享带宽包内的资源列表，支持按条件过滤查询结果和分页查询。
+    @inlinable
+    public func describeBandwidthPackageResources(_ input: DescribeBandwidthPackageResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackageResourcesResponse {
+        try await self.client.execute(action: "DescribeBandwidthPackageResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

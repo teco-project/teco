@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 删除负载均衡监听器
-    ///
-    /// 删除负载均衡监听器。
-    @inlinable
-    public func deleteListener(_ input: DeleteListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteListenerResponse > {
-        self.client.execute(action: "DeleteListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除负载均衡监听器
-    ///
-    /// 删除负载均衡监听器。
-    @inlinable
-    public func deleteListener(_ input: DeleteListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenerResponse {
-        try await self.client.execute(action: "DeleteListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteListener请求参数结构体
     public struct DeleteListenerRequest: TCRequestModel {
         /// 负载均衡实例 ID
@@ -58,5 +42,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除负载均衡监听器
+    ///
+    /// 删除负载均衡监听器。
+    @inlinable
+    public func deleteListener(_ input: DeleteListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteListenerResponse > {
+        self.client.execute(action: "DeleteListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除负载均衡监听器
+    ///
+    /// 删除负载均衡监听器。
+    @inlinable
+    public func deleteListener(_ input: DeleteListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenerResponse {
+        try await self.client.execute(action: "DeleteListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

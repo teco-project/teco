@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 移动成员到指定企业组织节点
-    @inlinable
-    public func moveOrganizationNodeMembers(_ input: MoveOrganizationNodeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MoveOrganizationNodeMembersResponse > {
-        self.client.execute(action: "MoveOrganizationNodeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 移动成员到指定企业组织节点
-    @inlinable
-    public func moveOrganizationNodeMembers(_ input: MoveOrganizationNodeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveOrganizationNodeMembersResponse {
-        try await self.client.execute(action: "MoveOrganizationNodeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// MoveOrganizationNodeMembers请求参数结构体
     public struct MoveOrganizationNodeMembersRequest: TCRequestModel {
         /// 组织节点ID。
@@ -54,5 +42,17 @@ extension Organization {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 移动成员到指定企业组织节点
+    @inlinable
+    public func moveOrganizationNodeMembers(_ input: MoveOrganizationNodeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MoveOrganizationNodeMembersResponse > {
+        self.client.execute(action: "MoveOrganizationNodeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 移动成员到指定企业组织节点
+    @inlinable
+    public func moveOrganizationNodeMembers(_ input: MoveOrganizationNodeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveOrganizationNodeMembersResponse {
+        try await self.client.execute(action: "MoveOrganizationNodeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 创建专用集群订单
-    @inlinable
-    public func createDedicatedClusterOrder(_ input: CreateDedicatedClusterOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDedicatedClusterOrderResponse > {
-        self.client.execute(action: "CreateDedicatedClusterOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建专用集群订单
-    @inlinable
-    public func createDedicatedClusterOrder(_ input: CreateDedicatedClusterOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterOrderResponse {
-        try await self.client.execute(action: "CreateDedicatedClusterOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDedicatedClusterOrder请求参数结构体
     public struct CreateDedicatedClusterOrderRequest: TCRequestModel {
         /// 专用集群id
@@ -36,10 +24,10 @@ extension Cdc {
         public let dedicatedClusterTypes: [DedicatedClusterTypeInfo]?
         
         /// order关联的cos存储信息
-        public let cosInfo: CosInfo
+        public let cosInfo: CosInfo?
         
         /// order关联的cbs存储信息
-        public let cbsInfo: CbsInfo
+        public let cbsInfo: CbsInfo?
         
         /// 购买来源，默认为cloudApi
         public let purchaseSource: String?
@@ -47,7 +35,7 @@ extension Cdc {
         /// 当调用API接口提交订单时，需要提交DedicatedClusterOrderId
         public let dedicatedClusterOrderId: String?
         
-        public init (dedicatedClusterId: String, dedicatedClusterTypes: [DedicatedClusterTypeInfo]?, cosInfo: CosInfo, cbsInfo: CbsInfo, purchaseSource: String?, dedicatedClusterOrderId: String?) {
+        public init (dedicatedClusterId: String, dedicatedClusterTypes: [DedicatedClusterTypeInfo]? = nil, cosInfo: CosInfo? = nil, cbsInfo: CbsInfo? = nil, purchaseSource: String? = nil, dedicatedClusterOrderId: String? = nil) {
             self.dedicatedClusterId = dedicatedClusterId
             self.dedicatedClusterTypes = dedicatedClusterTypes
             self.cosInfo = cosInfo
@@ -79,5 +67,17 @@ extension Cdc {
             case dedicatedClusterOrderId = "DedicatedClusterOrderId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建专用集群订单
+    @inlinable
+    public func createDedicatedClusterOrder(_ input: CreateDedicatedClusterOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDedicatedClusterOrderResponse > {
+        self.client.execute(action: "CreateDedicatedClusterOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建专用集群订单
+    @inlinable
+    public func createDedicatedClusterOrder(_ input: CreateDedicatedClusterOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterOrderResponse {
+        try await self.client.execute(action: "CreateDedicatedClusterOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

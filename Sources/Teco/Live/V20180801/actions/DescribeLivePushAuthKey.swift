@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询推流鉴权key
-    ///
-    /// 查询直播推流鉴权key
-    @inlinable
-    public func describeLivePushAuthKey(_ input: DescribeLivePushAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLivePushAuthKeyResponse > {
-        self.client.execute(action: "DescribeLivePushAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询推流鉴权key
-    ///
-    /// 查询直播推流鉴权key
-    @inlinable
-    public func describeLivePushAuthKey(_ input: DescribeLivePushAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePushAuthKeyResponse {
-        try await self.client.execute(action: "DescribeLivePushAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLivePushAuthKey请求参数结构体
     public struct DescribeLivePushAuthKeyRequest: TCRequestModel {
         /// 推流域名。
@@ -57,5 +41,21 @@ extension Live {
             case pushAuthKeyInfo = "PushAuthKeyInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询推流鉴权key
+    ///
+    /// 查询直播推流鉴权key
+    @inlinable
+    public func describeLivePushAuthKey(_ input: DescribeLivePushAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLivePushAuthKeyResponse > {
+        self.client.execute(action: "DescribeLivePushAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询推流鉴权key
+    ///
+    /// 查询直播推流鉴权key
+    @inlinable
+    public func describeLivePushAuthKey(_ input: DescribeLivePushAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePushAuthKeyResponse {
+        try await self.client.execute(action: "DescribeLivePushAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

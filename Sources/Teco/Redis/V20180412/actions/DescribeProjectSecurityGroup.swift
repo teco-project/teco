@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询项目安全组信息
-    @inlinable
-    public func describeProjectSecurityGroup(_ input: DescribeProjectSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectSecurityGroupResponse > {
-        self.client.execute(action: "DescribeProjectSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询项目安全组信息
-    @inlinable
-    public func describeProjectSecurityGroup(_ input: DescribeProjectSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupResponse {
-        try await self.client.execute(action: "DescribeProjectSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProjectSecurityGroup请求参数结构体
     public struct DescribeProjectSecurityGroupRequest: TCRequestModel {
         /// 0:默认项目；-1 所有项目; >0: 特定项目
@@ -35,7 +23,7 @@ extension Redis {
         /// 安全组Id
         public let securityGroupId: String?
         
-        public init (projectId: Int64?, securityGroupId: String?) {
+        public init (projectId: Int64? = nil, securityGroupId: String? = nil) {
             self.projectId = projectId
             self.securityGroupId = securityGroupId
         }
@@ -58,5 +46,17 @@ extension Redis {
             case securityGroupDetails = "SecurityGroupDetails"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询项目安全组信息
+    @inlinable
+    public func describeProjectSecurityGroup(_ input: DescribeProjectSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectSecurityGroupResponse > {
+        self.client.execute(action: "DescribeProjectSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询项目安全组信息
+    @inlinable
+    public func describeProjectSecurityGroup(_ input: DescribeProjectSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupResponse {
+        try await self.client.execute(action: "DescribeProjectSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

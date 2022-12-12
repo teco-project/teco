@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 修改YARN资源调度的资源配置
-    @inlinable
-    public func modifyResourceScheduleConfig(_ input: ModifyResourceScheduleConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourceScheduleConfigResponse > {
-        self.client.execute(action: "ModifyResourceScheduleConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改YARN资源调度的资源配置
-    @inlinable
-    public func modifyResourceScheduleConfig(_ input: ModifyResourceScheduleConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceScheduleConfigResponse {
-        try await self.client.execute(action: "ModifyResourceScheduleConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyResourceScheduleConfig请求参数结构体
     public struct ModifyResourceScheduleConfigRequest: TCRequestModel {
         /// emr集群的英文id
@@ -73,5 +61,17 @@ extension Emr {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改YARN资源调度的资源配置
+    @inlinable
+    public func modifyResourceScheduleConfig(_ input: ModifyResourceScheduleConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourceScheduleConfigResponse > {
+        self.client.execute(action: "ModifyResourceScheduleConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改YARN资源调度的资源配置
+    @inlinable
+    public func modifyResourceScheduleConfig(_ input: ModifyResourceScheduleConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceScheduleConfigResponse {
+        try await self.client.execute(action: "ModifyResourceScheduleConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

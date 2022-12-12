@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询可用区列表
-    ///
-    /// 查询地域下可用区
-    @inlinable
-    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
-        self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询可用区列表
-    ///
-    /// 查询地域下可用区
-    @inlinable
-    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
-        try await self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeZones请求参数结构体
     public struct DescribeZonesRequest: TCRequestModel {
         /// 可用区列表排序的依据字段。取值范围：
@@ -45,7 +29,7 @@ extension Lighthouse {
         /// 默认按升序排列。
         public let order: String?
         
-        public init (orderField: String?, order: String?) {
+        public init (orderField: String? = nil, order: String? = nil) {
             self.orderField = orderField
             self.order = order
         }
@@ -72,5 +56,21 @@ extension Lighthouse {
             case zoneInfoSet = "ZoneInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询可用区列表
+    ///
+    /// 查询地域下可用区
+    @inlinable
+    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZonesResponse > {
+        self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询可用区列表
+    ///
+    /// 查询地域下可用区
+    @inlinable
+    public func describeZones(_ input: DescribeZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
+        try await self.client.execute(action: "DescribeZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

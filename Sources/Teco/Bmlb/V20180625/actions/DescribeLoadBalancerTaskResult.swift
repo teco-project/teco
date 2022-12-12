@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 查询负载均衡实例异步任务的执行情况
-    ///
-    /// 查询负载均衡实例异步任务的执行情况。
-    @inlinable
-    public func describeLoadBalancerTaskResult(_ input: DescribeLoadBalancerTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancerTaskResultResponse > {
-        self.client.execute(action: "DescribeLoadBalancerTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询负载均衡实例异步任务的执行情况
-    ///
-    /// 查询负载均衡实例异步任务的执行情况。
-    @inlinable
-    public func describeLoadBalancerTaskResult(_ input: DescribeLoadBalancerTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerTaskResultResponse {
-        try await self.client.execute(action: "DescribeLoadBalancerTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLoadBalancerTaskResult请求参数结构体
     public struct DescribeLoadBalancerTaskResultRequest: TCRequestModel {
         /// 任务ID。由具体的异步操作接口提供。
@@ -57,5 +41,21 @@ extension Bmlb {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询负载均衡实例异步任务的执行情况
+    ///
+    /// 查询负载均衡实例异步任务的执行情况。
+    @inlinable
+    public func describeLoadBalancerTaskResult(_ input: DescribeLoadBalancerTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancerTaskResultResponse > {
+        self.client.execute(action: "DescribeLoadBalancerTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询负载均衡实例异步任务的执行情况
+    ///
+    /// 查询负载均衡实例异步任务的执行情况。
+    @inlinable
+    public func describeLoadBalancerTaskResult(_ input: DescribeLoadBalancerTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerTaskResultResponse {
+        try await self.client.execute(action: "DescribeLoadBalancerTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

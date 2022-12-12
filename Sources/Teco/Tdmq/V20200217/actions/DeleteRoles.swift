@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 删除角色
-    ///
-    /// 删除角色，支持批量。
-    @inlinable
-    public func deleteRoles(_ input: DeleteRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRolesResponse > {
-        self.client.execute(action: "DeleteRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除角色
-    ///
-    /// 删除角色，支持批量。
-    @inlinable
-    public func deleteRoles(_ input: DeleteRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRolesResponse {
-        try await self.client.execute(action: "DeleteRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRoles请求参数结构体
     public struct DeleteRolesRequest: TCRequestModel {
         /// 角色名称数组。
@@ -39,7 +23,7 @@ extension Tdmq {
         /// 必填字段，集群Id
         public let clusterId: String?
         
-        public init (roleNames: [String], clusterId: String?) {
+        public init (roleNames: [String], clusterId: String? = nil) {
             self.roleNames = roleNames
             self.clusterId = clusterId
         }
@@ -62,5 +46,21 @@ extension Tdmq {
             case roleNames = "RoleNames"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除角色
+    ///
+    /// 删除角色，支持批量。
+    @inlinable
+    public func deleteRoles(_ input: DeleteRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRolesResponse > {
+        self.client.execute(action: "DeleteRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除角色
+    ///
+    /// 删除角色，支持批量。
+    @inlinable
+    public func deleteRoles(_ input: DeleteRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRolesResponse {
+        try await self.client.execute(action: "DeleteRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

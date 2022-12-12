@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 查询路由表对象列表
-    @inlinable
-    public func describeRouteTables(_ input: DescribeRouteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteTablesResponse > {
-        self.client.execute(action: "DescribeRouteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询路由表对象列表
-    @inlinable
-    public func describeRouteTables(_ input: DescribeRouteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteTablesResponse {
-        try await self.client.execute(action: "DescribeRouteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRouteTables请求参数结构体
     public struct DescribeRouteTablesRequest: TCRequestModel {
         /// 路由表实例ID，例如：rtb-azd4dt1c。
@@ -48,7 +36,7 @@ extension Ecm {
         /// ECM 地域，传空或不传表示所有区域
         public let ecmRegion: String?
         
-        public init (routeTableIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?, ecmRegion: String?) {
+        public init (routeTableIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, ecmRegion: String? = nil) {
             self.routeTableIds = routeTableIds
             self.filters = filters
             self.offset = offset
@@ -82,5 +70,17 @@ extension Ecm {
             case routeTableSet = "RouteTableSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询路由表对象列表
+    @inlinable
+    public func describeRouteTables(_ input: DescribeRouteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteTablesResponse > {
+        self.client.execute(action: "DescribeRouteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询路由表对象列表
+    @inlinable
+    public func describeRouteTables(_ input: DescribeRouteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteTablesResponse {
+        try await self.client.execute(action: "DescribeRouteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

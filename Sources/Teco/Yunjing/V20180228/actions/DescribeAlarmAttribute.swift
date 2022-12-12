@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取告警设置
-    ///
-    /// 本接口 (DescribeAlarmAttribute) 用于获取告警设置。
-    @inlinable
-    public func describeAlarmAttribute(_ input: DescribeAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmAttributeResponse > {
-        self.client.execute(action: "DescribeAlarmAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取告警设置
-    ///
-    /// 本接口 (DescribeAlarmAttribute) 用于获取告警设置。
-    @inlinable
-    public func describeAlarmAttribute(_ input: DescribeAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmAttributeResponse {
-        try await self.client.execute(action: "DescribeAlarmAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAlarmAttribute请求参数结构体
     public struct DescribeAlarmAttributeRequest: TCRequestModel {
         public init () {
@@ -69,5 +53,21 @@ extension Yunjing {
             case crackSuccess = "CrackSuccess"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取告警设置
+    ///
+    /// 本接口 (DescribeAlarmAttribute) 用于获取告警设置。
+    @inlinable
+    public func describeAlarmAttribute(_ input: DescribeAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmAttributeResponse > {
+        self.client.execute(action: "DescribeAlarmAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取告警设置
+    ///
+    /// 本接口 (DescribeAlarmAttribute) 用于获取告警设置。
+    @inlinable
+    public func describeAlarmAttribute(_ input: DescribeAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmAttributeResponse {
+        try await self.client.execute(action: "DescribeAlarmAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

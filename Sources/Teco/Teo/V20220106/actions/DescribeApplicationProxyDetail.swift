@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 获取应用代理详细信息
-    @inlinable
-    public func describeApplicationProxyDetail(_ input: DescribeApplicationProxyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationProxyDetailResponse > {
-        self.client.execute(action: "DescribeApplicationProxyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取应用代理详细信息
-    @inlinable
-    public func describeApplicationProxyDetail(_ input: DescribeApplicationProxyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxyDetailResponse {
-        try await self.client.execute(action: "DescribeApplicationProxyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplicationProxyDetail请求参数结构体
     public struct DescribeApplicationProxyDetailRequest: TCRequestModel {
         /// 站点ID。
@@ -144,5 +132,17 @@ extension Teo {
             case area = "Area"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取应用代理详细信息
+    @inlinable
+    public func describeApplicationProxyDetail(_ input: DescribeApplicationProxyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationProxyDetailResponse > {
+        self.client.execute(action: "DescribeApplicationProxyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用代理详细信息
+    @inlinable
+    public func describeApplicationProxyDetail(_ input: DescribeApplicationProxyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxyDetailResponse {
+        try await self.client.execute(action: "DescribeApplicationProxyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

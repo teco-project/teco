@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询数据库表
-    ///
-    /// 本接口(DescribeTables)用于查询云数据库实例的数据库表信息，仅支持主实例和灾备实例，不支持只读实例。
-    @inlinable
-    public func describeTables(_ input: DescribeTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTablesResponse > {
-        self.client.execute(action: "DescribeTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据库表
-    ///
-    /// 本接口(DescribeTables)用于查询云数据库实例的数据库表信息，仅支持主实例和灾备实例，不支持只读实例。
-    @inlinable
-    public func describeTables(_ input: DescribeTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTablesResponse {
-        try await self.client.execute(action: "DescribeTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTables请求参数结构体
     public struct DescribeTablesRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -48,7 +32,7 @@ extension Cdb {
         /// 匹配数据库表名的正则表达式，规则同 MySQL 官网
         public let tableRegexp: String?
         
-        public init (instanceId: String, database: String, offset: Int64?, limit: Int64?, tableRegexp: String?) {
+        public init (instanceId: String, database: String, offset: Int64? = nil, limit: Int64? = nil, tableRegexp: String? = nil) {
             self.instanceId = instanceId
             self.database = database
             self.offset = offset
@@ -81,5 +65,21 @@ extension Cdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据库表
+    ///
+    /// 本接口(DescribeTables)用于查询云数据库实例的数据库表信息，仅支持主实例和灾备实例，不支持只读实例。
+    @inlinable
+    public func describeTables(_ input: DescribeTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTablesResponse > {
+        self.client.execute(action: "DescribeTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库表
+    ///
+    /// 本接口(DescribeTables)用于查询云数据库实例的数据库表信息，仅支持主实例和灾备实例，不支持只读实例。
+    @inlinable
+    public func describeTables(_ input: DescribeTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTablesResponse {
+        try await self.client.execute(action: "DescribeTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

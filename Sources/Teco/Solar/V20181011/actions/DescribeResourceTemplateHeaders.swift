@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Solar {
-    /// 素材查询服务号模板标题的列表
-    ///
-    /// 素材查询服务号模板的列表（样例）
-    @inlinable
-    public func describeResourceTemplateHeaders(_ input: DescribeResourceTemplateHeadersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceTemplateHeadersResponse > {
-        self.client.execute(action: "DescribeResourceTemplateHeaders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 素材查询服务号模板标题的列表
-    ///
-    /// 素材查询服务号模板的列表（样例）
-    @inlinable
-    public func describeResourceTemplateHeaders(_ input: DescribeResourceTemplateHeadersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTemplateHeadersResponse {
-        try await self.client.execute(action: "DescribeResourceTemplateHeaders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourceTemplateHeaders请求参数结构体
     public struct DescribeResourceTemplateHeadersRequest: TCRequestModel {
         /// 微信公众号appId
         public let wxAppId: String?
         
-        public init (wxAppId: String?) {
+        public init (wxAppId: String? = nil) {
             self.wxAppId = wxAppId
         }
         
@@ -62,5 +46,21 @@ extension Solar {
             case tmplList = "TmplList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 素材查询服务号模板标题的列表
+    ///
+    /// 素材查询服务号模板的列表（样例）
+    @inlinable
+    public func describeResourceTemplateHeaders(_ input: DescribeResourceTemplateHeadersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceTemplateHeadersResponse > {
+        self.client.execute(action: "DescribeResourceTemplateHeaders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 素材查询服务号模板标题的列表
+    ///
+    /// 素材查询服务号模板的列表（样例）
+    @inlinable
+    public func describeResourceTemplateHeaders(_ input: DescribeResourceTemplateHeadersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTemplateHeadersResponse {
+        try await self.client.execute(action: "DescribeResourceTemplateHeaders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

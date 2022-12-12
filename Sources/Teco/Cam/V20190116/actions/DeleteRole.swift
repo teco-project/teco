@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 删除角色
-    ///
-    /// 本接口（DeleteRole）用于删除指定角色。
-    @inlinable
-    public func deleteRole(_ input: DeleteRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRoleResponse > {
-        self.client.execute(action: "DeleteRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除角色
-    ///
-    /// 本接口（DeleteRole）用于删除指定角色。
-    @inlinable
-    public func deleteRole(_ input: DeleteRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoleResponse {
-        try await self.client.execute(action: "DeleteRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRole请求参数结构体
     public struct DeleteRoleRequest: TCRequestModel {
         /// 角色ID，用于指定角色，入参 RoleId 与 RoleName 二选一
@@ -39,7 +23,7 @@ extension Cam {
         /// 角色名称，用于指定角色，入参 RoleId 与 RoleName 二选一
         public let roleName: String?
         
-        public init (roleId: String?, roleName: String?) {
+        public init (roleId: String? = nil, roleName: String? = nil) {
             self.roleId = roleId
             self.roleName = roleName
         }
@@ -58,5 +42,21 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除角色
+    ///
+    /// 本接口（DeleteRole）用于删除指定角色。
+    @inlinable
+    public func deleteRole(_ input: DeleteRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRoleResponse > {
+        self.client.execute(action: "DeleteRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除角色
+    ///
+    /// 本接口（DeleteRole）用于删除指定角色。
+    @inlinable
+    public func deleteRole(_ input: DeleteRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoleResponse {
+        try await self.client.execute(action: "DeleteRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

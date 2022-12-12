@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 创建数据集
-    @inlinable
-    public func createDataset(_ input: CreateDatasetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDatasetResponse > {
-        self.client.execute(action: "CreateDataset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建数据集
-    @inlinable
-    public func createDataset(_ input: CreateDatasetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatasetResponse {
-        try await self.client.execute(action: "CreateDataset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDataset请求参数结构体
     public struct CreateDatasetRequest: TCRequestModel {
         /// 数据集名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
@@ -76,7 +64,7 @@ extension Tione {
         /// 导入文件粒度，按行或者按文件
         public let contentType: String?
         
-        public init (datasetName: String, datasetType: String, storageDataPath: CosPathInfo, storageLabelPath: CosPathInfo, datasetTags: [Tag]?, annotationStatus: String?, annotationType: String?, annotationFormat: String?, schemaInfos: [SchemaInfo]?, isSchemaExisted: Bool?, contentType: String?) {
+        public init (datasetName: String, datasetType: String, storageDataPath: CosPathInfo, storageLabelPath: CosPathInfo, datasetTags: [Tag]? = nil, annotationStatus: String? = nil, annotationType: String? = nil, annotationFormat: String? = nil, schemaInfos: [SchemaInfo]? = nil, isSchemaExisted: Bool? = nil, contentType: String? = nil) {
             self.datasetName = datasetName
             self.datasetType = datasetType
             self.storageDataPath = storageDataPath
@@ -118,5 +106,17 @@ extension Tione {
             case datasetId = "DatasetId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建数据集
+    @inlinable
+    public func createDataset(_ input: CreateDatasetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDatasetResponse > {
+        self.client.execute(action: "CreateDataset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建数据集
+    @inlinable
+    public func createDataset(_ input: CreateDatasetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatasetResponse {
+        try await self.client.execute(action: "CreateDataset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

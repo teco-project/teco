@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 重启定时任务
-    ///
-    /// 重启状态为已中止的定时任务
-    @inlinable
-    public func restartCronJobs(_ input: RestartCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartCronJobsResponse > {
-        self.client.execute(action: "RestartCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重启定时任务
-    ///
-    /// 重启状态为已中止的定时任务
-    @inlinable
-    public func restartCronJobs(_ input: RestartCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartCronJobsResponse {
-        try await self.client.execute(action: "RestartCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestartCronJobs请求参数结构体
     public struct RestartCronJobsRequest: TCRequestModel {
         /// 项目ID
@@ -58,5 +42,21 @@ extension Pts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重启定时任务
+    ///
+    /// 重启状态为已中止的定时任务
+    @inlinable
+    public func restartCronJobs(_ input: RestartCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartCronJobsResponse > {
+        self.client.execute(action: "RestartCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重启定时任务
+    ///
+    /// 重启状态为已中止的定时任务
+    @inlinable
+    public func restartCronJobs(_ input: RestartCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartCronJobsResponse {
+        try await self.client.execute(action: "RestartCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

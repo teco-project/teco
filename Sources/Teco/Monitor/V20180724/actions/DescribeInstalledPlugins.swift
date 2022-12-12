@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 列出实例已安装的插件
-    @inlinable
-    public func describeInstalledPlugins(_ input: DescribeInstalledPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstalledPluginsResponse > {
-        self.client.execute(action: "DescribeInstalledPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出实例已安装的插件
-    @inlinable
-    public func describeInstalledPlugins(_ input: DescribeInstalledPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstalledPluginsResponse {
-        try await self.client.execute(action: "DescribeInstalledPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstalledPlugins请求参数结构体
     public struct DescribeInstalledPluginsRequest: TCRequestModel {
         /// Grafana 实例 ID，例如：grafana-kleu3gt0
@@ -35,7 +23,7 @@ extension Monitor {
         /// 按插件 ID 过滤，例如：grafana-piechart-panel，可通过接口 DescribeInstalledPlugins 查看已安装的插件 ID
         public let pluginId: String?
         
-        public init (instanceId: String, pluginId: String?) {
+        public init (instanceId: String, pluginId: String? = nil) {
             self.instanceId = instanceId
             self.pluginId = pluginId
         }
@@ -58,5 +46,17 @@ extension Monitor {
             case pluginSet = "PluginSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出实例已安装的插件
+    @inlinable
+    public func describeInstalledPlugins(_ input: DescribeInstalledPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstalledPluginsResponse > {
+        self.client.execute(action: "DescribeInstalledPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出实例已安装的插件
+    @inlinable
+    public func describeInstalledPlugins(_ input: DescribeInstalledPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstalledPluginsResponse {
+        try await self.client.execute(action: "DescribeInstalledPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

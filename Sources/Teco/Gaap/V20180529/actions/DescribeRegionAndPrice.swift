@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 获取源站区域和带宽梯度价格
-    ///
-    /// 该接口（DescribeRegionAndPrice）用于获取源站区域和带宽梯度价格
-    @inlinable
-    public func describeRegionAndPrice(_ input: DescribeRegionAndPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionAndPriceResponse > {
-        self.client.execute(action: "DescribeRegionAndPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取源站区域和带宽梯度价格
-    ///
-    /// 该接口（DescribeRegionAndPrice）用于获取源站区域和带宽梯度价格
-    @inlinable
-    public func describeRegionAndPrice(_ input: DescribeRegionAndPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionAndPriceResponse {
-        try await self.client.execute(action: "DescribeRegionAndPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRegionAndPrice请求参数结构体
     public struct DescribeRegionAndPriceRequest: TCRequestModel {
         /// IP版本，可取值：IPv4、IPv6，默认值IPv4
@@ -39,7 +23,7 @@ extension Gaap {
         /// 通道套餐类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
         public let packageType: String?
         
-        public init (ipAddressVersion: String?, packageType: String?) {
+        public init (ipAddressVersion: String? = nil, packageType: String? = nil) {
             self.ipAddressVersion = ipAddressVersion
             self.packageType = packageType
         }
@@ -76,5 +60,21 @@ extension Gaap {
             case currency = "Currency"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取源站区域和带宽梯度价格
+    ///
+    /// 该接口（DescribeRegionAndPrice）用于获取源站区域和带宽梯度价格
+    @inlinable
+    public func describeRegionAndPrice(_ input: DescribeRegionAndPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionAndPriceResponse > {
+        self.client.execute(action: "DescribeRegionAndPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取源站区域和带宽梯度价格
+    ///
+    /// 该接口（DescribeRegionAndPrice）用于获取源站区域和带宽梯度价格
+    @inlinable
+    public func describeRegionAndPrice(_ input: DescribeRegionAndPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionAndPriceResponse {
+        try await self.client.execute(action: "DescribeRegionAndPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

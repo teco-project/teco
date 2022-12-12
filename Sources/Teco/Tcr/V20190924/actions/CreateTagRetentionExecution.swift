@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 手动执行版本保留
-    @inlinable
-    public func createTagRetentionExecution(_ input: CreateTagRetentionExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTagRetentionExecutionResponse > {
-        self.client.execute(action: "CreateTagRetentionExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 手动执行版本保留
-    @inlinable
-    public func createTagRetentionExecution(_ input: CreateTagRetentionExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagRetentionExecutionResponse {
-        try await self.client.execute(action: "CreateTagRetentionExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTagRetentionExecution请求参数结构体
     public struct CreateTagRetentionExecutionRequest: TCRequestModel {
         /// 主实例iD
@@ -38,7 +26,7 @@ extension Tcr {
         /// 是否模拟执行，默认值为false，即非模拟执行
         public let dryRun: Bool?
         
-        public init (registryId: String, retentionId: Int64, dryRun: Bool?) {
+        public init (registryId: String, retentionId: Int64, dryRun: Bool? = nil) {
             self.registryId = registryId
             self.retentionId = retentionId
             self.dryRun = dryRun
@@ -59,5 +47,17 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 手动执行版本保留
+    @inlinable
+    public func createTagRetentionExecution(_ input: CreateTagRetentionExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTagRetentionExecutionResponse > {
+        self.client.execute(action: "CreateTagRetentionExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 手动执行版本保留
+    @inlinable
+    public func createTagRetentionExecution(_ input: CreateTagRetentionExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagRetentionExecutionResponse {
+        try await self.client.execute(action: "CreateTagRetentionExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

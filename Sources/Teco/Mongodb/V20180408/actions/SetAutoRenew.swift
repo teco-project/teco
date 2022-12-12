@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 设置云数据库实例的续费选项
-    ///
-    /// 本接口(SetAutoRenew)用于设置包年包月云数据库实例的续费选项。
-    @inlinable
-    public func setAutoRenew(_ input: SetAutoRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAutoRenewResponse > {
-        self.client.execute(action: "SetAutoRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置云数据库实例的续费选项
-    ///
-    /// 本接口(SetAutoRenew)用于设置包年包月云数据库实例的续费选项。
-    @inlinable
-    public func setAutoRenew(_ input: SetAutoRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAutoRenewResponse {
-        try await self.client.execute(action: "SetAutoRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetAutoRenew请求参数结构体
     public struct SetAutoRenewRequest: TCRequestModel {
         /// 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -58,5 +42,21 @@ extension Mongodb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置云数据库实例的续费选项
+    ///
+    /// 本接口(SetAutoRenew)用于设置包年包月云数据库实例的续费选项。
+    @inlinable
+    public func setAutoRenew(_ input: SetAutoRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAutoRenewResponse > {
+        self.client.execute(action: "SetAutoRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置云数据库实例的续费选项
+    ///
+    /// 本接口(SetAutoRenew)用于设置包年包月云数据库实例的续费选项。
+    @inlinable
+    public func setAutoRenew(_ input: SetAutoRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAutoRenewResponse {
+        try await self.client.execute(action: "SetAutoRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

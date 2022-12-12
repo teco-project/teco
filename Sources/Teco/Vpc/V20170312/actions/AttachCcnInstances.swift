@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 云联网关联实例
-    ///
-    /// 本接口（AttachCcnInstances）用于将网络实例加载到云联网实例中，网络实例包括VPC和专线网关。<br />
-    /// 每个云联网能够关联的网络实例个数是有限的，详请参考产品文档。如果需要扩充请联系在线客服。
-    @inlinable
-    public func attachCcnInstances(_ input: AttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachCcnInstancesResponse > {
-        self.client.execute(action: "AttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云联网关联实例
-    ///
-    /// 本接口（AttachCcnInstances）用于将网络实例加载到云联网实例中，网络实例包括VPC和专线网关。<br />
-    /// 每个云联网能够关联的网络实例个数是有限的，详请参考产品文档。如果需要扩充请联系在线客服。
-    @inlinable
-    public func attachCcnInstances(_ input: AttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCcnInstancesResponse {
-        try await self.client.execute(action: "AttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AttachCcnInstances请求参数结构体
     public struct AttachCcnInstancesRequest: TCRequestModel {
         /// CCN实例ID。形如：ccn-f49l6u0z。
@@ -44,7 +26,7 @@ extension Vpc {
         /// CCN所属UIN（根账号），默认当前账号所属UIN
         public let ccnUin: String?
         
-        public init (ccnId: String, instances: [CcnInstance], ccnUin: String?) {
+        public init (ccnId: String, instances: [CcnInstance], ccnUin: String? = nil) {
             self.ccnId = ccnId
             self.instances = instances
             self.ccnUin = ccnUin
@@ -65,5 +47,23 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云联网关联实例
+    ///
+    /// 本接口（AttachCcnInstances）用于将网络实例加载到云联网实例中，网络实例包括VPC和专线网关。<br />
+    /// 每个云联网能够关联的网络实例个数是有限的，详请参考产品文档。如果需要扩充请联系在线客服。
+    @inlinable
+    public func attachCcnInstances(_ input: AttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachCcnInstancesResponse > {
+        self.client.execute(action: "AttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云联网关联实例
+    ///
+    /// 本接口（AttachCcnInstances）用于将网络实例加载到云联网实例中，网络实例包括VPC和专线网关。<br />
+    /// 每个云联网能够关联的网络实例个数是有限的，详请参考产品文档。如果需要扩充请联系在线客服。
+    @inlinable
+    public func attachCcnInstances(_ input: AttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCcnInstancesResponse {
+        try await self.client.execute(action: "AttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

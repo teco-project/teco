@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Captcha {
-    /// 安全验证码小程序插件用户操作数据查询
-    @inlinable
-    public func describeCaptchaMiniOperData(_ input: DescribeCaptchaMiniOperDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaMiniOperDataResponse > {
-        self.client.execute(action: "DescribeCaptchaMiniOperData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全验证码小程序插件用户操作数据查询
-    @inlinable
-    public func describeCaptchaMiniOperData(_ input: DescribeCaptchaMiniOperDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniOperDataResponse {
-        try await self.client.execute(action: "DescribeCaptchaMiniOperData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCaptchaMiniOperData请求参数结构体
     public struct DescribeCaptchaMiniOperDataRequest: TCRequestModel {
         /// 验证码应用ID
@@ -41,7 +29,7 @@ extension Captcha {
         /// 查询结束时间
         public let end: UInt64?
         
-        public init (captchaAppId: UInt64, start: UInt64, type: UInt64, end: UInt64?) {
+        public init (captchaAppId: UInt64, start: UInt64, type: UInt64, end: UInt64? = nil) {
             self.captchaAppId = captchaAppId
             self.start = start
             self.type = type
@@ -67,7 +55,7 @@ extension Captcha {
         
         /// 用户操作数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: CaptchaOperDataRes
+        public let data: CaptchaOperDataRes?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -78,5 +66,17 @@ extension Captcha {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全验证码小程序插件用户操作数据查询
+    @inlinable
+    public func describeCaptchaMiniOperData(_ input: DescribeCaptchaMiniOperDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaMiniOperDataResponse > {
+        self.client.execute(action: "DescribeCaptchaMiniOperData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全验证码小程序插件用户操作数据查询
+    @inlinable
+    public func describeCaptchaMiniOperData(_ input: DescribeCaptchaMiniOperDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniOperDataResponse {
+        try await self.client.execute(action: "DescribeCaptchaMiniOperData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

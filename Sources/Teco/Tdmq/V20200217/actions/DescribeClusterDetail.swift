@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取集群详情
-    ///
-    /// 获取集群的详细信息
-    @inlinable
-    public func describeClusterDetail(_ input: DescribeClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterDetailResponse > {
-        self.client.execute(action: "DescribeClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取集群详情
-    ///
-    /// 获取集群的详细信息
-    @inlinable
-    public func describeClusterDetail(_ input: DescribeClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterDetailResponse {
-        try await self.client.execute(action: "DescribeClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterDetail请求参数结构体
     public struct DescribeClusterDetailRequest: TCRequestModel {
         /// 集群的ID
@@ -57,5 +41,21 @@ extension Tdmq {
             case clusterSet = "ClusterSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取集群详情
+    ///
+    /// 获取集群的详细信息
+    @inlinable
+    public func describeClusterDetail(_ input: DescribeClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterDetailResponse > {
+        self.client.execute(action: "DescribeClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群详情
+    ///
+    /// 获取集群的详细信息
+    @inlinable
+    public func describeClusterDetail(_ input: DescribeClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterDetailResponse {
+        try await self.client.execute(action: "DescribeClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

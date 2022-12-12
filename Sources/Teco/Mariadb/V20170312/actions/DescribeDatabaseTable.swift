@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 查询数据库表信息
-    ///
-    /// 本接口（DescribeDatabaseTable）用于查询云数据库实例的表信息。
-    @inlinable
-    public func describeDatabaseTable(_ input: DescribeDatabaseTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabaseTableResponse > {
-        self.client.execute(action: "DescribeDatabaseTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据库表信息
-    ///
-    /// 本接口（DescribeDatabaseTable）用于查询云数据库实例的表信息。
-    @inlinable
-    public func describeDatabaseTable(_ input: DescribeDatabaseTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseTableResponse {
-        try await self.client.execute(action: "DescribeDatabaseTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDatabaseTable请求参数结构体
     public struct DescribeDatabaseTableRequest: TCRequestModel {
         /// 实例 ID，形如：dcdbt-ow7t8lmc。
@@ -79,5 +63,21 @@ extension Mariadb {
             case cols = "Cols"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据库表信息
+    ///
+    /// 本接口（DescribeDatabaseTable）用于查询云数据库实例的表信息。
+    @inlinable
+    public func describeDatabaseTable(_ input: DescribeDatabaseTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabaseTableResponse > {
+        self.client.execute(action: "DescribeDatabaseTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库表信息
+    ///
+    /// 本接口（DescribeDatabaseTable）用于查询云数据库实例的表信息。
+    @inlinable
+    public func describeDatabaseTable(_ input: DescribeDatabaseTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseTableResponse {
+        try await self.client.execute(action: "DescribeDatabaseTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

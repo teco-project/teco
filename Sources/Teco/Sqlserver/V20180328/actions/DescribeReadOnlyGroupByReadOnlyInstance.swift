@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 通过只读实例查询只读组
-    ///
-    /// 本接口（DescribeReadOnlyGroupByReadOnlyInstance）用于通过只读副本实例ID查询其所在的只读组。
-    @inlinable
-    public func describeReadOnlyGroupByReadOnlyInstance(_ input: DescribeReadOnlyGroupByReadOnlyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReadOnlyGroupByReadOnlyInstanceResponse > {
-        self.client.execute(action: "DescribeReadOnlyGroupByReadOnlyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通过只读实例查询只读组
-    ///
-    /// 本接口（DescribeReadOnlyGroupByReadOnlyInstance）用于通过只读副本实例ID查询其所在的只读组。
-    @inlinable
-    public func describeReadOnlyGroupByReadOnlyInstance(_ input: DescribeReadOnlyGroupByReadOnlyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupByReadOnlyInstanceResponse {
-        try await self.client.execute(action: "DescribeReadOnlyGroupByReadOnlyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReadOnlyGroupByReadOnlyInstance请求参数结构体
     public struct DescribeReadOnlyGroupByReadOnlyInstanceRequest: TCRequestModel {
         /// 实例ID，格式如：mssqlro-3l3fgqn7
@@ -105,5 +89,21 @@ extension Sqlserver {
             case masterRegionId = "MasterRegionId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通过只读实例查询只读组
+    ///
+    /// 本接口（DescribeReadOnlyGroupByReadOnlyInstance）用于通过只读副本实例ID查询其所在的只读组。
+    @inlinable
+    public func describeReadOnlyGroupByReadOnlyInstance(_ input: DescribeReadOnlyGroupByReadOnlyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReadOnlyGroupByReadOnlyInstanceResponse > {
+        self.client.execute(action: "DescribeReadOnlyGroupByReadOnlyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通过只读实例查询只读组
+    ///
+    /// 本接口（DescribeReadOnlyGroupByReadOnlyInstance）用于通过只读副本实例ID查询其所在的只读组。
+    @inlinable
+    public func describeReadOnlyGroupByReadOnlyInstance(_ input: DescribeReadOnlyGroupByReadOnlyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupByReadOnlyInstanceResponse {
+        try await self.client.execute(action: "DescribeReadOnlyGroupByReadOnlyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

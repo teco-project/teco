@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 取证申请
-    @inlinable
-    public func modifyCRObtainStatus(_ input: ModifyCRObtainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRObtainStatusResponse > {
-        self.client.execute(action: "ModifyCRObtainStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取证申请
-    @inlinable
-    public func modifyCRObtainStatus(_ input: ModifyCRObtainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRObtainStatusResponse {
-        try await self.client.execute(action: "ModifyCRObtainStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCRObtainStatus请求参数结构体
     public struct ModifyCRObtainStatusRequest: TCRequestModel {
         /// 侵权ID
@@ -41,7 +29,7 @@ extension Bma {
         /// 取证结果回调地址
         public let obtainUrl: String?
         
-        public init (tortId: Int64, obtainType: Int64, obtainDuration: Int64, obtainUrl: String?) {
+        public init (tortId: Int64, obtainType: Int64, obtainDuration: Int64, obtainUrl: String? = nil) {
             self.tortId = tortId
             self.obtainType = obtainType
             self.obtainDuration = obtainDuration
@@ -64,5 +52,17 @@ extension Bma {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取证申请
+    @inlinable
+    public func modifyCRObtainStatus(_ input: ModifyCRObtainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCRObtainStatusResponse > {
+        self.client.execute(action: "ModifyCRObtainStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取证申请
+    @inlinable
+    public func modifyCRObtainStatus(_ input: ModifyCRObtainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRObtainStatusResponse {
+        try await self.client.execute(action: "ModifyCRObtainStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

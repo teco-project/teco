@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询流日志集合
-    ///
-    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
-    @inlinable
-    public func describeFlowLogs(_ input: DescribeFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowLogsResponse > {
-        self.client.execute(action: "DescribeFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询流日志集合
-    ///
-    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
-    @inlinable
-    public func describeFlowLogs(_ input: DescribeFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLogsResponse {
-        try await self.client.execute(action: "DescribeFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlowLogs请求参数结构体
     public struct DescribeFlowLogsRequest: TCRequestModel {
         /// 私用网络ID或者统一ID，建议使用统一ID
@@ -72,12 +56,12 @@ extension Vpc {
         /// 过滤条件，参数不支持同时指定FlowLogIds和Filters。
         /// <li>tag-key - String -是否必填：否- （过滤条件）按照标签键进行过滤。</li>
         /// <li>tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。</li>
-        public let filters: Filter
+        public let filters: Filter?
         
         /// 流日志存储ID对应的地域信息
         public let cloudLogRegion: String?
         
-        public init (vpcId: String?, flowLogId: String?, flowLogName: String?, resourceType: String?, resourceId: String?, trafficType: String?, cloudLogId: String?, cloudLogState: String?, orderField: String?, orderDirection: String?, offset: UInt64?, limit: UInt64?, filters: Filter, cloudLogRegion: String?) {
+        public init (vpcId: String? = nil, flowLogId: String? = nil, flowLogName: String? = nil, resourceType: String? = nil, resourceId: String? = nil, trafficType: String? = nil, cloudLogId: String? = nil, cloudLogState: String? = nil, orderField: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: Filter? = nil, cloudLogRegion: String? = nil) {
             self.vpcId = vpcId
             self.flowLogId = flowLogId
             self.flowLogName = flowLogName
@@ -128,5 +112,21 @@ extension Vpc {
             case totalNum = "TotalNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询流日志集合
+    ///
+    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
+    @inlinable
+    public func describeFlowLogs(_ input: DescribeFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowLogsResponse > {
+        self.client.execute(action: "DescribeFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流日志集合
+    ///
+    /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
+    @inlinable
+    public func describeFlowLogs(_ input: DescribeFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLogsResponse {
+        try await self.client.execute(action: "DescribeFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

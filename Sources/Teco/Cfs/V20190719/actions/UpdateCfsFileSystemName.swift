@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 更新文件系统名
-    ///
-    /// 本接口（UpdateCfsFileSystemName）用于更新文件系统名
-    @inlinable
-    public func updateCfsFileSystemName(_ input: UpdateCfsFileSystemNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCfsFileSystemNameResponse > {
-        self.client.execute(action: "UpdateCfsFileSystemName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新文件系统名
-    ///
-    /// 本接口（UpdateCfsFileSystemName）用于更新文件系统名
-    @inlinable
-    public func updateCfsFileSystemName(_ input: UpdateCfsFileSystemNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsFileSystemNameResponse {
-        try await self.client.execute(action: "UpdateCfsFileSystemName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateCfsFileSystemName请求参数结构体
     public struct UpdateCfsFileSystemNameRequest: TCRequestModel {
         /// 文件系统 ID
@@ -39,7 +23,7 @@ extension Cfs {
         /// 用户自定义文件系统名称
         public let fsName: String?
         
-        public init (fileSystemId: String, fsName: String?) {
+        public init (fileSystemId: String, fsName: String? = nil) {
             self.fileSystemId = fileSystemId
             self.fsName = fsName
         }
@@ -70,5 +54,21 @@ extension Cfs {
             case fsName = "FsName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新文件系统名
+    ///
+    /// 本接口（UpdateCfsFileSystemName）用于更新文件系统名
+    @inlinable
+    public func updateCfsFileSystemName(_ input: UpdateCfsFileSystemNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCfsFileSystemNameResponse > {
+        self.client.execute(action: "UpdateCfsFileSystemName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新文件系统名
+    ///
+    /// 本接口（UpdateCfsFileSystemName）用于更新文件系统名
+    @inlinable
+    public func updateCfsFileSystemName(_ input: UpdateCfsFileSystemNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsFileSystemNameResponse {
+        try await self.client.execute(action: "UpdateCfsFileSystemName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

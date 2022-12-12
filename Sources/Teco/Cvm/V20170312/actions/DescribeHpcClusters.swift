@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查询高性能集群信息
-    @inlinable
-    public func describeHpcClusters(_ input: DescribeHpcClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHpcClustersResponse > {
-        self.client.execute(action: "DescribeHpcClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询高性能集群信息
-    @inlinable
-    public func describeHpcClusters(_ input: DescribeHpcClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHpcClustersResponse {
-        try await self.client.execute(action: "DescribeHpcClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHpcClusters请求参数结构体
     public struct DescribeHpcClustersRequest: TCRequestModel {
         /// 高性能计算集群ID数组。
@@ -44,7 +32,7 @@ extension Cvm {
         /// 本次请求量, 默认值20。
         public let limit: UInt64?
         
-        public init (hpcClusterIds: [String]?, name: String?, zone: String?, offset: UInt64?, limit: UInt64?) {
+        public init (hpcClusterIds: [String]? = nil, name: String? = nil, zone: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.hpcClusterIds = hpcClusterIds
             self.name = name
             self.zone = zone
@@ -77,5 +65,17 @@ extension Cvm {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询高性能集群信息
+    @inlinable
+    public func describeHpcClusters(_ input: DescribeHpcClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHpcClustersResponse > {
+        self.client.execute(action: "DescribeHpcClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询高性能集群信息
+    @inlinable
+    public func describeHpcClusters(_ input: DescribeHpcClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHpcClustersResponse {
+        try await self.client.execute(action: "DescribeHpcClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 创建web漏洞导出任务
-    @inlinable
-    public func createWebVulExportJob(_ input: CreateWebVulExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWebVulExportJobResponse > {
-        self.client.execute(action: "CreateWebVulExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建web漏洞导出任务
-    @inlinable
-    public func createWebVulExportJob(_ input: CreateWebVulExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebVulExportJobResponse {
-        try await self.client.execute(action: "CreateWebVulExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateWebVulExportJob请求参数结构体
     public struct CreateWebVulExportJobRequest: TCRequestModel {
         /// 需要返回的数量，默认为50000，最大值为50000
@@ -59,7 +47,7 @@ extension Tcss {
         /// 排序字段
         public let by: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, order: String?, by: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -88,5 +76,17 @@ extension Tcss {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建web漏洞导出任务
+    @inlinable
+    public func createWebVulExportJob(_ input: CreateWebVulExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWebVulExportJobResponse > {
+        self.client.execute(action: "CreateWebVulExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建web漏洞导出任务
+    @inlinable
+    public func createWebVulExportJob(_ input: CreateWebVulExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebVulExportJobResponse {
+        try await self.client.execute(action: "CreateWebVulExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

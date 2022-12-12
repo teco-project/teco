@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 描述扩展上传文件信息
-    @inlinable
-    public func describeExtensionUploadInfo(_ input: DescribeExtensionUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtensionUploadInfoResponse > {
-        self.client.execute(action: "DescribeExtensionUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 描述扩展上传文件信息
-    @inlinable
-    public func describeExtensionUploadInfo(_ input: DescribeExtensionUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionUploadInfoResponse {
-        try await self.client.execute(action: "DescribeExtensionUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExtensionUploadInfo请求参数结构体
     public struct DescribeExtensionUploadInfoRequest: TCRequestModel {
         /// 待上传的文件
@@ -53,5 +41,17 @@ extension Tcb {
             case filesData = "FilesData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 描述扩展上传文件信息
+    @inlinable
+    public func describeExtensionUploadInfo(_ input: DescribeExtensionUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExtensionUploadInfoResponse > {
+        self.client.execute(action: "DescribeExtensionUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 描述扩展上传文件信息
+    @inlinable
+    public func describeExtensionUploadInfo(_ input: DescribeExtensionUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionUploadInfoResponse {
+        try await self.client.execute(action: "DescribeExtensionUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

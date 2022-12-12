@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询工作流最近一个批次的执行状态
-    ///
-    /// 查询工作流最新一个批次的状态信息
-    @inlinable
-    public func describeFlowLastBatchState(_ input: DescribeFlowLastBatchStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowLastBatchStateResponse > {
-        self.client.execute(action: "DescribeFlowLastBatchState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询工作流最近一个批次的执行状态
-    ///
-    /// 查询工作流最新一个批次的状态信息
-    @inlinable
-    public func describeFlowLastBatchState(_ input: DescribeFlowLastBatchStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLastBatchStateResponse {
-        try await self.client.execute(action: "DescribeFlowLastBatchState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlowLastBatchState请求参数结构体
     public struct DescribeFlowLastBatchStateRequest: TCRequestModel {
         /// 工作流 ID
@@ -57,5 +41,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询工作流最近一个批次的执行状态
+    ///
+    /// 查询工作流最新一个批次的状态信息
+    @inlinable
+    public func describeFlowLastBatchState(_ input: DescribeFlowLastBatchStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowLastBatchStateResponse > {
+        self.client.execute(action: "DescribeFlowLastBatchState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询工作流最近一个批次的执行状态
+    ///
+    /// 查询工作流最新一个批次的状态信息
+    @inlinable
+    public func describeFlowLastBatchState(_ input: DescribeFlowLastBatchStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLastBatchStateResponse {
+        try await self.client.execute(action: "DescribeFlowLastBatchState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

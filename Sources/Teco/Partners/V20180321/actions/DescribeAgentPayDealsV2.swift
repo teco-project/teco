@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Partners {
-    /// 代理商代付订单查询接口（预付费）
-    ///
-    /// 可以查询代理商代付的预付费订单
-    @inlinable
-    public func describeAgentPayDealsV2(_ input: DescribeAgentPayDealsV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentPayDealsV2Response > {
-        self.client.execute(action: "DescribeAgentPayDealsV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 代理商代付订单查询接口（预付费）
-    ///
-    /// 可以查询代理商代付的预付费订单
-    @inlinable
-    public func describeAgentPayDealsV2(_ input: DescribeAgentPayDealsV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentPayDealsV2Response {
-        try await self.client.execute(action: "DescribeAgentPayDealsV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAgentPayDealsV2请求参数结构体
     public struct DescribeAgentPayDealsV2Request: TCRequestModel {
         /// 偏移量
@@ -62,7 +46,7 @@ extension Partners {
         /// 大订单号列表
         public let bigDealIds: [String]?
         
-        public init (offset: UInt64, limit: UInt64, creatTimeRangeStart: Date?, creatTimeRangeEnd: Date?, order: UInt64?, status: UInt64?, ownerUins: [String]?, dealNames: [String]?, bigDealIds: [String]?) {
+        public init (offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, ownerUins: [String]? = nil, dealNames: [String]? = nil, bigDealIds: [String]? = nil) {
             self.offset = offset
             self.limit = limit
             self.creatTimeRangeStart = creatTimeRangeStart
@@ -103,5 +87,21 @@ extension Partners {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 代理商代付订单查询接口（预付费）
+    ///
+    /// 可以查询代理商代付的预付费订单
+    @inlinable
+    public func describeAgentPayDealsV2(_ input: DescribeAgentPayDealsV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentPayDealsV2Response > {
+        self.client.execute(action: "DescribeAgentPayDealsV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 代理商代付订单查询接口（预付费）
+    ///
+    /// 可以查询代理商代付的预付费订单
+    @inlinable
+    public func describeAgentPayDealsV2(_ input: DescribeAgentPayDealsV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentPayDealsV2Response {
+        try await self.client.execute(action: "DescribeAgentPayDealsV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

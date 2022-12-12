@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 漏洞重新检测
-    ///
-    /// 本接口 (RescanImpactedHost) 用于漏洞重新检测。
-    @inlinable
-    public func rescanImpactedHost(_ input: RescanImpactedHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RescanImpactedHostResponse > {
-        self.client.execute(action: "RescanImpactedHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 漏洞重新检测
-    ///
-    /// 本接口 (RescanImpactedHost) 用于漏洞重新检测。
-    @inlinable
-    public func rescanImpactedHost(_ input: RescanImpactedHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RescanImpactedHostResponse {
-        try await self.client.execute(action: "RescanImpactedHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RescanImpactedHost请求参数结构体
     public struct RescanImpactedHostRequest: TCRequestModel {
         /// 漏洞ID。
@@ -53,5 +37,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 漏洞重新检测
+    ///
+    /// 本接口 (RescanImpactedHost) 用于漏洞重新检测。
+    @inlinable
+    public func rescanImpactedHost(_ input: RescanImpactedHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RescanImpactedHostResponse > {
+        self.client.execute(action: "RescanImpactedHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 漏洞重新检测
+    ///
+    /// 本接口 (RescanImpactedHost) 用于漏洞重新检测。
+    @inlinable
+    public func rescanImpactedHost(_ input: RescanImpactedHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RescanImpactedHostResponse {
+        try await self.client.execute(action: "RescanImpactedHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

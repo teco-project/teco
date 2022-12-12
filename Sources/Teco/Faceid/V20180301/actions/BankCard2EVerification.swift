@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 银行卡二要素核验
-    ///
-    /// 本接口用于校验姓名和银行卡号的真实性和一致性。
-    @inlinable
-    public func bankCard2EVerification(_ input: BankCard2EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BankCard2EVerificationResponse > {
-        self.client.execute(action: "BankCard2EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 银行卡二要素核验
-    ///
-    /// 本接口用于校验姓名和银行卡号的真实性和一致性。
-    @inlinable
-    public func bankCard2EVerification(_ input: BankCard2EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCard2EVerificationResponse {
-        try await self.client.execute(action: "BankCard2EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BankCard2EVerification请求参数结构体
     public struct BankCard2EVerificationRequest: TCRequestModel {
         /// 姓名
@@ -40,9 +24,9 @@ extension Faceid {
         public let bankCard: String
         
         /// 敏感数据加密信息。对传入信息（姓名、银行卡号）有加密需求的用户可使用此参数，详情请点击左侧链接。
-        public let encryption: Encryption
+        public let encryption: Encryption?
         
-        public init (name: String, bankCard: String, encryption: Encryption) {
+        public init (name: String, bankCard: String, encryption: Encryption? = nil) {
             self.name = name
             self.bankCard = bankCard
             self.encryption = encryption
@@ -90,5 +74,21 @@ extension Faceid {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 银行卡二要素核验
+    ///
+    /// 本接口用于校验姓名和银行卡号的真实性和一致性。
+    @inlinable
+    public func bankCard2EVerification(_ input: BankCard2EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BankCard2EVerificationResponse > {
+        self.client.execute(action: "BankCard2EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 银行卡二要素核验
+    ///
+    /// 本接口用于校验姓名和银行卡号的真实性和一致性。
+    @inlinable
+    public func bankCard2EVerification(_ input: BankCard2EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCard2EVerificationResponse {
+        try await self.client.execute(action: "BankCard2EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询扫描状态
-    ///
-    /// DescribeScanState 该接口能查询对应模块正在进行的扫描任务状态
-    @inlinable
-    public func describeScanState(_ input: DescribeScanStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanStateResponse > {
-        self.client.execute(action: "DescribeScanState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询扫描状态
-    ///
-    /// DescribeScanState 该接口能查询对应模块正在进行的扫描任务状态
-    @inlinable
-    public func describeScanState(_ input: DescribeScanStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanStateResponse {
-        try await self.client.execute(action: "DescribeScanState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScanState请求参数结构体
     public struct DescribeScanStateRequest: TCRequestModel {
         /// 模块类型 当前提供 Malware 木马 , Vul 漏洞 , Baseline 基线
@@ -40,7 +24,7 @@ extension Cwp {
         /// <li>StrategyId 基线策略ID ,仅ModuleType 为 Baseline 时需要<li/>
         public let filters: [Filters]?
         
-        public init (moduleType: String, filters: [Filters]?) {
+        public init (moduleType: String, filters: [Filters]? = nil) {
             self.moduleType = moduleType
             self.filters = filters
         }
@@ -94,5 +78,21 @@ extension Cwp {
             case scanEndTime = "ScanEndTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询扫描状态
+    ///
+    /// DescribeScanState 该接口能查询对应模块正在进行的扫描任务状态
+    @inlinable
+    public func describeScanState(_ input: DescribeScanStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanStateResponse > {
+        self.client.execute(action: "DescribeScanState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询扫描状态
+    ///
+    /// DescribeScanState 该接口能查询对应模块正在进行的扫描任务状态
+    @inlinable
+    public func describeScanState(_ input: DescribeScanStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanStateResponse {
+        try await self.client.execute(action: "DescribeScanState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

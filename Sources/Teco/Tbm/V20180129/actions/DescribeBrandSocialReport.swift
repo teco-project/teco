@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tbm {
-    /// 获取品牌社交渠道提及数
-    ///
-    /// 监测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的条数。按天输出数据结果。
-    @inlinable
-    public func describeBrandSocialReport(_ input: DescribeBrandSocialReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandSocialReportResponse > {
-        self.client.execute(action: "DescribeBrandSocialReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取品牌社交渠道提及数
-    ///
-    /// 监测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的条数。按天输出数据结果。
-    @inlinable
-    public func describeBrandSocialReport(_ input: DescribeBrandSocialReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandSocialReportResponse {
-        try await self.client.execute(action: "DescribeBrandSocialReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBrandSocialReport请求参数结构体
     public struct DescribeBrandSocialReportRequest: TCRequestModel {
         /// 品牌ID
@@ -75,5 +59,21 @@ extension Tbm {
             case dateCountSet = "DateCountSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取品牌社交渠道提及数
+    ///
+    /// 监测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的条数。按天输出数据结果。
+    @inlinable
+    public func describeBrandSocialReport(_ input: DescribeBrandSocialReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandSocialReportResponse > {
+        self.client.execute(action: "DescribeBrandSocialReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取品牌社交渠道提及数
+    ///
+    /// 监测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的条数。按天输出数据结果。
+    @inlinable
+    public func describeBrandSocialReport(_ input: DescribeBrandSocialReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandSocialReportResponse {
+        try await self.client.execute(action: "DescribeBrandSocialReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

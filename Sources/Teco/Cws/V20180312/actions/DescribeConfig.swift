@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cws {
-    /// 查看用户配置列表
-    ///
-    /// 本接口 (DescribeConfig) 用于查询用户配置的详细信息。
-    @inlinable
-    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigResponse > {
-        self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看用户配置列表
-    ///
-    /// 本接口 (DescribeConfig) 用于查询用户配置的详细信息。
-    @inlinable
-    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
-        try await self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeConfig请求参数结构体
     public struct DescribeConfigRequest: TCRequestModel {
         public init () {
@@ -73,5 +57,21 @@ extension Cws {
             case contentLevel = "ContentLevel"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看用户配置列表
+    ///
+    /// 本接口 (DescribeConfig) 用于查询用户配置的详细信息。
+    @inlinable
+    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigResponse > {
+        self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看用户配置列表
+    ///
+    /// 本接口 (DescribeConfig) 用于查询用户配置的详细信息。
+    @inlinable
+    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
+        try await self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

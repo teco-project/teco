@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 删除转码规则
-    ///
-    /// 删除转码规则。
-    /// DomainName+AppName+StreamName+TemplateId唯一标识单个转码规则，如需删除需要强匹配。其中TemplateId必填，其余参数为空时也需要传空字符串进行强匹配。
-    @inlinable
-    public func deleteLiveTranscodeRule(_ input: DeleteLiveTranscodeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveTranscodeRuleResponse > {
-        self.client.execute(action: "DeleteLiveTranscodeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除转码规则
-    ///
-    /// 删除转码规则。
-    /// DomainName+AppName+StreamName+TemplateId唯一标识单个转码规则，如需删除需要强匹配。其中TemplateId必填，其余参数为空时也需要传空字符串进行强匹配。
-    @inlinable
-    public func deleteLiveTranscodeRule(_ input: DeleteLiveTranscodeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveTranscodeRuleResponse {
-        try await self.client.execute(action: "DeleteLiveTranscodeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLiveTranscodeRule请求参数结构体
     public struct DeleteLiveTranscodeRuleRequest: TCRequestModel {
         /// 播放域名。
@@ -70,5 +52,23 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除转码规则
+    ///
+    /// 删除转码规则。
+    /// DomainName+AppName+StreamName+TemplateId唯一标识单个转码规则，如需删除需要强匹配。其中TemplateId必填，其余参数为空时也需要传空字符串进行强匹配。
+    @inlinable
+    public func deleteLiveTranscodeRule(_ input: DeleteLiveTranscodeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveTranscodeRuleResponse > {
+        self.client.execute(action: "DeleteLiveTranscodeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除转码规则
+    ///
+    /// 删除转码规则。
+    /// DomainName+AppName+StreamName+TemplateId唯一标识单个转码规则，如需删除需要强匹配。其中TemplateId必填，其余参数为空时也需要传空字符串进行强匹配。
+    @inlinable
+    public func deleteLiveTranscodeRule(_ input: DeleteLiveTranscodeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveTranscodeRuleResponse {
+        try await self.client.execute(action: "DeleteLiveTranscodeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

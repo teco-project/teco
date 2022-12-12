@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询容器列表
-    ///
-    /// 搜索查询容器列表
-    @inlinable
-    public func describeAssetContainerList(_ input: DescribeAssetContainerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetContainerListResponse > {
-        self.client.execute(action: "DescribeAssetContainerList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器列表
-    ///
-    /// 搜索查询容器列表
-    @inlinable
-    public func describeAssetContainerList(_ input: DescribeAssetContainerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetContainerListResponse {
-        try await self.client.execute(action: "DescribeAssetContainerList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetContainerList请求参数结构体
     public struct DescribeAssetContainerListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -55,7 +39,7 @@ extension Tcss {
         /// 排序方式 asc,desc
         public let order: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [AssetFilters]?, by: String?, order: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -88,5 +72,21 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器列表
+    ///
+    /// 搜索查询容器列表
+    @inlinable
+    public func describeAssetContainerList(_ input: DescribeAssetContainerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetContainerListResponse > {
+        self.client.execute(action: "DescribeAssetContainerList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器列表
+    ///
+    /// 搜索查询容器列表
+    @inlinable
+    public func describeAssetContainerList(_ input: DescribeAssetContainerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetContainerListResponse {
+        try await self.client.execute(action: "DescribeAssetContainerList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

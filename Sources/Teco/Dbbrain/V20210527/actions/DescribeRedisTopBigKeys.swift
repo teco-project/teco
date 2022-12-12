@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dbbrain {
-    /// 查询redis实例大key列表
-    ///
-    /// 查询redis实例大key列表。
-    @inlinable
-    public func describeRedisTopBigKeys(_ input: DescribeRedisTopBigKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRedisTopBigKeysResponse > {
-        self.client.execute(action: "DescribeRedisTopBigKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询redis实例大key列表
-    ///
-    /// 查询redis实例大key列表。
-    @inlinable
-    public func describeRedisTopBigKeys(_ input: DescribeRedisTopBigKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopBigKeysResponse {
-        try await self.client.execute(action: "DescribeRedisTopBigKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRedisTopBigKeys请求参数结构体
     public struct DescribeRedisTopBigKeysRequest: TCRequestModel {
         /// 实例ID。
@@ -54,7 +38,7 @@ extension Dbbrain {
         /// 查询数目，默认为20，最大值为100。
         public let limit: Int64?
         
-        public init (instanceId: String, date: Date, product: String, sortBy: String?, keyType: String?, limit: Int64?) {
+        public init (instanceId: String, date: Date, product: String, sortBy: String? = nil, keyType: String? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.date = date
             self.product = product
@@ -89,5 +73,21 @@ extension Dbbrain {
             case timestamp = "Timestamp"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询redis实例大key列表
+    ///
+    /// 查询redis实例大key列表。
+    @inlinable
+    public func describeRedisTopBigKeys(_ input: DescribeRedisTopBigKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRedisTopBigKeysResponse > {
+        self.client.execute(action: "DescribeRedisTopBigKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询redis实例大key列表
+    ///
+    /// 查询redis实例大key列表。
+    @inlinable
+    public func describeRedisTopBigKeys(_ input: DescribeRedisTopBigKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopBigKeysResponse {
+        try await self.client.execute(action: "DescribeRedisTopBigKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

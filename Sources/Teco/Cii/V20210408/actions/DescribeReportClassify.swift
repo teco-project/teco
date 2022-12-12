@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cii {
-    /// 报告自动分类
-    ///
-    /// 辅助用户对批量报告自动分类
-    @inlinable
-    public func describeReportClassify(_ input: DescribeReportClassifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReportClassifyResponse > {
-        self.client.execute(action: "DescribeReportClassify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 报告自动分类
-    ///
-    /// 辅助用户对批量报告自动分类
-    @inlinable
-    public func describeReportClassify(_ input: DescribeReportClassifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReportClassifyResponse {
-        try await self.client.execute(action: "DescribeReportClassify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReportClassify请求参数结构体
     public struct DescribeReportClassifyRequest: TCRequestModel {
         /// 服务类型
@@ -64,5 +48,21 @@ extension Cii {
             case reports = "Reports"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 报告自动分类
+    ///
+    /// 辅助用户对批量报告自动分类
+    @inlinable
+    public func describeReportClassify(_ input: DescribeReportClassifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReportClassifyResponse > {
+        self.client.execute(action: "DescribeReportClassify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 报告自动分类
+    ///
+    /// 辅助用户对批量报告自动分类
+    @inlinable
+    public func describeReportClassify(_ input: DescribeReportClassifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReportClassifyResponse {
+        try await self.client.execute(action: "DescribeReportClassify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 修改微服务详情
-    @inlinable
-    public func modifyMicroservice(_ input: ModifyMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMicroserviceResponse > {
-        self.client.execute(action: "ModifyMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改微服务详情
-    @inlinable
-    public func modifyMicroservice(_ input: ModifyMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMicroserviceResponse {
-        try await self.client.execute(action: "ModifyMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMicroservice请求参数结构体
     public struct ModifyMicroserviceRequest: TCRequestModel {
         /// 微服务 ID
@@ -60,5 +48,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改微服务详情
+    @inlinable
+    public func modifyMicroservice(_ input: ModifyMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMicroserviceResponse > {
+        self.client.execute(action: "ModifyMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改微服务详情
+    @inlinable
+    public func modifyMicroservice(_ input: ModifyMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMicroserviceResponse {
+        try await self.client.execute(action: "ModifyMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

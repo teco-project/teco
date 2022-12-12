@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 创建逃逸事件导出异步任务
-    @inlinable
-    public func createEscapeEventsExportJob(_ input: CreateEscapeEventsExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEscapeEventsExportJobResponse > {
-        self.client.execute(action: "CreateEscapeEventsExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建逃逸事件导出异步任务
-    @inlinable
-    public func createEscapeEventsExportJob(_ input: CreateEscapeEventsExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEscapeEventsExportJobResponse {
-        try await self.client.execute(action: "CreateEscapeEventsExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEscapeEventsExportJob请求参数结构体
     public struct CreateEscapeEventsExportJobRequest: TCRequestModel {
         /// 需要返回的数量，最大值为10000
@@ -47,7 +35,7 @@ extension Tcss {
         /// 导出字段
         public let exportField: [String]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, order: String?, by: String?, exportField: [String]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -78,5 +66,17 @@ extension Tcss {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建逃逸事件导出异步任务
+    @inlinable
+    public func createEscapeEventsExportJob(_ input: CreateEscapeEventsExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEscapeEventsExportJobResponse > {
+        self.client.execute(action: "CreateEscapeEventsExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建逃逸事件导出异步任务
+    @inlinable
+    public func createEscapeEventsExportJob(_ input: CreateEscapeEventsExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEscapeEventsExportJobResponse {
+        try await self.client.execute(action: "CreateEscapeEventsExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

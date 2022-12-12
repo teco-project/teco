@@ -15,30 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 文件上传
-    ///
-    /// 此接口（UploadFiles）用于文件上传。
-    /// 调用时需要设置Domain, 正式环境为 file.ess.tencent.cn。
-    /// 代码示例：
-    /// HttpProfile httpProfile = new HttpProfile();
-    /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
-    @inlinable
-    public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFilesResponse > {
-        self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 文件上传
-    ///
-    /// 此接口（UploadFiles）用于文件上传。
-    /// 调用时需要设置Domain, 正式环境为 file.ess.tencent.cn。
-    /// 代码示例：
-    /// HttpProfile httpProfile = new HttpProfile();
-    /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
-    @inlinable
-    public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
-        try await self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadFiles请求参数结构体
     public struct UploadFilesRequest: TCRequestModel {
         /// 应用相关信息，若是渠道版调用 appid 和proxyappid 必填
@@ -53,9 +29,9 @@ extension Essbasic {
         public let fileInfos: [UploadFile]?
         
         /// 操作者的信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
-        public init (agent: Agent, businessType: String, fileInfos: [UploadFile]?, `operator`: UserInfo) {
+        public init (agent: Agent, businessType: String, fileInfos: [UploadFile]? = nil, `operator`: UserInfo? = nil) {
             self.agent = agent
             self.businessType = businessType
             self.fileInfos = fileInfos
@@ -90,5 +66,29 @@ extension Essbasic {
             case fileUrls = "FileUrls"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 文件上传
+    ///
+    /// 此接口（UploadFiles）用于文件上传。
+    /// 调用时需要设置Domain, 正式环境为 file.ess.tencent.cn。
+    /// 代码示例：
+    /// HttpProfile httpProfile = new HttpProfile();
+    /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
+    @inlinable
+    public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFilesResponse > {
+        self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 文件上传
+    ///
+    /// 此接口（UploadFiles）用于文件上传。
+    /// 调用时需要设置Domain, 正式环境为 file.ess.tencent.cn。
+    /// 代码示例：
+    /// HttpProfile httpProfile = new HttpProfile();
+    /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
+    @inlinable
+    public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
+        try await self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

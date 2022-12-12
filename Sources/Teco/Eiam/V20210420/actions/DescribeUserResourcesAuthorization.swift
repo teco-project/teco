@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 查询指定用户下的资源授权列表
-    @inlinable
-    public func describeUserResourcesAuthorization(_ input: DescribeUserResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserResourcesAuthorizationResponse > {
-        self.client.execute(action: "DescribeUserResourcesAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询指定用户下的资源授权列表
-    @inlinable
-    public func describeUserResourcesAuthorization(_ input: DescribeUserResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResourcesAuthorizationResponse {
-        try await self.client.execute(action: "DescribeUserResourcesAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserResourcesAuthorization请求参数结构体
     public struct DescribeUserResourcesAuthorizationRequest: TCRequestModel {
         /// 应用ID。
@@ -41,7 +29,7 @@ extension Eiam {
         /// 查询范围是否包括用户关联的用户组、组织机构的应用访问权限。默认为不查询 ，传false表示不查询该范围，传true查询该范围。
         public let includeInheritedAuthorizations: Bool?
         
-        public init (applicationId: String, userId: String?, userName: String?, includeInheritedAuthorizations: Bool?) {
+        public init (applicationId: String, userId: String? = nil, userName: String? = nil, includeInheritedAuthorizations: Bool? = nil) {
             self.applicationId = applicationId
             self.userId = userId
             self.userName = userName
@@ -88,5 +76,17 @@ extension Eiam {
             case authorizationUserResourceList = "AuthorizationUserResourceList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询指定用户下的资源授权列表
+    @inlinable
+    public func describeUserResourcesAuthorization(_ input: DescribeUserResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserResourcesAuthorizationResponse > {
+        self.client.execute(action: "DescribeUserResourcesAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指定用户下的资源授权列表
+    @inlinable
+    public func describeUserResourcesAuthorization(_ input: DescribeUserResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResourcesAuthorizationResponse {
+        try await self.client.execute(action: "DescribeUserResourcesAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

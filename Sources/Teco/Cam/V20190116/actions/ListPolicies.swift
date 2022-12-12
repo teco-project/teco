@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 查询策略列表
-    ///
-    /// 本接口（ListPolicies）可用于查询策略列表。
-    @inlinable
-    public func listPolicies(_ input: ListPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListPoliciesResponse > {
-        self.client.execute(action: "ListPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询策略列表
-    ///
-    /// 本接口（ListPolicies）可用于查询策略列表。
-    @inlinable
-    public func listPolicies(_ input: ListPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPoliciesResponse {
-        try await self.client.execute(action: "ListPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListPolicies请求参数结构体
     public struct ListPoliciesRequest: TCRequestModel {
         /// 每页数量，默认值是 20，必须大于 0 且小于或等于 200
@@ -45,7 +29,7 @@ extension Cam {
         /// 按策略名匹配
         public let keyword: String?
         
-        public init (rp: UInt64?, page: UInt64?, scope: String?, keyword: String?) {
+        public init (rp: UInt64? = nil, page: UInt64? = nil, scope: String? = nil, keyword: String? = nil) {
             self.rp = rp
             self.page = page
             self.scope = scope
@@ -90,5 +74,21 @@ extension Cam {
             case serviceTypeList = "ServiceTypeList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询策略列表
+    ///
+    /// 本接口（ListPolicies）可用于查询策略列表。
+    @inlinable
+    public func listPolicies(_ input: ListPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListPoliciesResponse > {
+        self.client.execute(action: "ListPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询策略列表
+    ///
+    /// 本接口（ListPolicies）可用于查询策略列表。
+    @inlinable
+    public func listPolicies(_ input: ListPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPoliciesResponse {
+        try await self.client.execute(action: "ListPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 批量解绑子设备
-    @inlinable
-    public func unbindDevices(_ input: UnbindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindDevicesResponse > {
-        self.client.execute(action: "UnbindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量解绑子设备
-    @inlinable
-    public func unbindDevices(_ input: UnbindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDevicesResponse {
-        try await self.client.execute(action: "UnbindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindDevices请求参数结构体
     public struct UnbindDevicesRequest: TCRequestModel {
         /// 网关设备的产品ID
@@ -64,5 +52,17 @@ extension Iotexplorer {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量解绑子设备
+    @inlinable
+    public func unbindDevices(_ input: UnbindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindDevicesResponse > {
+        self.client.execute(action: "UnbindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量解绑子设备
+    @inlinable
+    public func unbindDevices(_ input: UnbindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDevicesResponse {
+        try await self.client.execute(action: "UnbindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

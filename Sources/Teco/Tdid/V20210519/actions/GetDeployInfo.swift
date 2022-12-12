@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 合约部署详情
-    @inlinable
-    public func getDeployInfo(_ input: GetDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeployInfoResponse > {
-        self.client.execute(action: "GetDeployInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 合约部署详情
-    @inlinable
-    public func getDeployInfo(_ input: GetDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployInfoResponse {
-        try await self.client.execute(action: "GetDeployInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDeployInfo请求参数结构体
     public struct GetDeployInfoRequest: TCRequestModel {
         /// 合约CNS地址
@@ -101,5 +89,17 @@ extension Tdid {
             case chainId = "ChainId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 合约部署详情
+    @inlinable
+    public func getDeployInfo(_ input: GetDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeployInfoResponse > {
+        self.client.execute(action: "GetDeployInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 合约部署详情
+    @inlinable
+    public func getDeployInfo(_ input: GetDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployInfoResponse {
+        try await self.client.execute(action: "GetDeployInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

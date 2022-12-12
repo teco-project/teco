@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建SSL-VPN Server端
-    ///
-    /// 创建 Server端
-    @inlinable
-    public func createVpnGatewaySslServer(_ input: CreateVpnGatewaySslServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpnGatewaySslServerResponse > {
-        self.client.execute(action: "CreateVpnGatewaySslServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建SSL-VPN Server端
-    ///
-    /// 创建 Server端
-    @inlinable
-    public func createVpnGatewaySslServer(_ input: CreateVpnGatewaySslServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewaySslServerResponse {
-        try await self.client.execute(action: "CreateVpnGatewaySslServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVpnGatewaySslServer请求参数结构体
     public struct CreateVpnGatewaySslServerRequest: TCRequestModel {
         /// VPN实例ID
@@ -69,7 +53,7 @@ extension Vpc {
         /// SAML-DATA
         public let samlData: String?
         
-        public init (vpnGatewayId: String, sslVpnServerName: String, localAddress: [String], remoteAddress: String, sslVpnProtocol: String?, sslVpnPort: Int64?, integrityAlgorithm: String?, encryptAlgorithm: String?, compress: Bool?, ssoEnabled: Bool?, accessPolicyEnabled: Bool?, samlData: String?) {
+        public init (vpnGatewayId: String, sslVpnServerName: String, localAddress: [String], remoteAddress: String, sslVpnProtocol: String? = nil, sslVpnPort: Int64? = nil, integrityAlgorithm: String? = nil, encryptAlgorithm: String? = nil, compress: Bool? = nil, ssoEnabled: Bool? = nil, accessPolicyEnabled: Bool? = nil, samlData: String? = nil) {
             self.vpnGatewayId = vpnGatewayId
             self.sslVpnServerName = sslVpnServerName
             self.localAddress = localAddress
@@ -116,5 +100,21 @@ extension Vpc {
             case sslVpnServerId = "SslVpnServerId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建SSL-VPN Server端
+    ///
+    /// 创建 Server端
+    @inlinable
+    public func createVpnGatewaySslServer(_ input: CreateVpnGatewaySslServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpnGatewaySslServerResponse > {
+        self.client.execute(action: "CreateVpnGatewaySslServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建SSL-VPN Server端
+    ///
+    /// 创建 Server端
+    @inlinable
+    public func createVpnGatewaySslServer(_ input: CreateVpnGatewaySslServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewaySslServerResponse {
+        try await self.client.execute(action: "CreateVpnGatewaySslServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

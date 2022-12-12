@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 更新工作流调度【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 更新工作流调度
-    @inlinable
-    public func modifyWorkflowSchedule(_ input: ModifyWorkflowScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWorkflowScheduleResponse > {
-        self.client.execute(action: "ModifyWorkflowSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新工作流调度【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 更新工作流调度
-    @inlinable
-    public func modifyWorkflowSchedule(_ input: ModifyWorkflowScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowScheduleResponse {
-        try await self.client.execute(action: "ModifyWorkflowSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyWorkflowSchedule请求参数结构体
     public struct ModifyWorkflowScheduleRequest: TCRequestModel {
         /// 项目Id
@@ -77,7 +59,7 @@ extension Wedata {
         /// 工作流依赖 ,yes 或者no
         public let dependencyWorkflow: String?
         
-        public init (projectId: String, workflowId: String, delayTime: Int64, startupTime: Int64, selfDepend: Int64, cycleType: Int64, cycleStep: Int64, startTime: String?, endTime: String?, taskAction: String?, crontabExpression: String?, executionStartTime: String?, executionEndTime: String?, dependencyWorkflow: String?) {
+        public init (projectId: String, workflowId: String, delayTime: Int64, startupTime: Int64, selfDepend: Int64, cycleType: Int64, cycleStep: Int64, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, dependencyWorkflow: String? = nil) {
             self.projectId = projectId
             self.workflowId = workflowId
             self.delayTime = delayTime
@@ -124,5 +106,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新工作流调度【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 更新工作流调度
+    @inlinable
+    public func modifyWorkflowSchedule(_ input: ModifyWorkflowScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWorkflowScheduleResponse > {
+        self.client.execute(action: "ModifyWorkflowSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新工作流调度【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 更新工作流调度
+    @inlinable
+    public func modifyWorkflowSchedule(_ input: ModifyWorkflowScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowScheduleResponse {
+        try await self.client.execute(action: "ModifyWorkflowSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

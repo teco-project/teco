@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 创建直播频道
-    @inlinable
-    public func createLiveChannel(_ input: CreateLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveChannelResponse > {
-        self.client.execute(action: "CreateLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建直播频道
-    @inlinable
-    public func createLiveChannel(_ input: CreateLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveChannelResponse {
-        try await self.client.execute(action: "CreateLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLiveChannel请求参数结构体
     public struct CreateLiveChannelRequest: TCRequestModel {
         /// 直播频道名称
@@ -64,5 +52,17 @@ extension Iotvideoindustry {
             case pushStreamAddress = "PushStreamAddress"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建直播频道
+    @inlinable
+    public func createLiveChannel(_ input: CreateLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveChannelResponse > {
+        self.client.execute(action: "CreateLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建直播频道
+    @inlinable
+    public func createLiveChannel(_ input: CreateLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveChannelResponse {
+        try await self.client.execute(action: "CreateLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

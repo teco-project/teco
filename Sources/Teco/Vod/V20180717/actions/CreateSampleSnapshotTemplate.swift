@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 创建采样截图模板
-    ///
-    /// 创建用户自定义采样截图模板，数量上限：16。
-    @inlinable
-    public func createSampleSnapshotTemplate(_ input: CreateSampleSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSampleSnapshotTemplateResponse > {
-        self.client.execute(action: "CreateSampleSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建采样截图模板
-    ///
-    /// 创建用户自定义采样截图模板，数量上限：16。
-    @inlinable
-    public func createSampleSnapshotTemplate(_ input: CreateSampleSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSampleSnapshotTemplateResponse {
-        try await self.client.execute(action: "CreateSampleSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSampleSnapshotTemplate请求参数结构体
     public struct CreateSampleSnapshotTemplateRequest: TCRequestModel {
         /// 采样截图类型，取值：
@@ -85,7 +69,7 @@ extension Vod {
         /// 默认值：black 。
         public let fillType: String?
         
-        public init (sampleType: String, sampleInterval: UInt64, subAppId: UInt64?, name: String?, width: UInt64?, height: UInt64?, resolutionAdaptive: String?, format: String?, comment: String?, fillType: String?) {
+        public init (sampleType: String, sampleInterval: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil) {
             self.sampleType = sampleType
             self.sampleInterval = sampleInterval
             self.subAppId = subAppId
@@ -124,5 +108,21 @@ extension Vod {
             case definition = "Definition"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建采样截图模板
+    ///
+    /// 创建用户自定义采样截图模板，数量上限：16。
+    @inlinable
+    public func createSampleSnapshotTemplate(_ input: CreateSampleSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSampleSnapshotTemplateResponse > {
+        self.client.execute(action: "CreateSampleSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建采样截图模板
+    ///
+    /// 创建用户自定义采样截图模板，数量上限：16。
+    @inlinable
+    public func createSampleSnapshotTemplate(_ input: CreateSampleSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSampleSnapshotTemplateResponse {
+        try await self.client.execute(action: "CreateSampleSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

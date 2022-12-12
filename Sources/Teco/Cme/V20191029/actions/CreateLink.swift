@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 创建链接
-    ///
-    ///  创建媒体链接或分类路径链接，将源资源信息链接到目标。
-    @inlinable
-    public func createLink(_ input: CreateLinkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLinkResponse > {
-        self.client.execute(action: "CreateLink", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建链接
-    ///
-    ///  创建媒体链接或分类路径链接，将源资源信息链接到目标。
-    @inlinable
-    public func createLink(_ input: CreateLinkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLinkResponse {
-        try await self.client.execute(action: "CreateLink", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLink请求参数结构体
     public struct CreateLinkRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -61,7 +45,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以创建任意源及目标资源的链接。如果指定操作者，则操作者必须对源资源有读权限，对目标媒体有写权限。
         public let `operator`: String?
         
-        public init (platform: String, type: String, name: String, owner: Entity, destinationId: String, destinationOwner: Entity, classPath: String?, `operator`: String?) {
+        public init (platform: String, type: String, name: String, owner: Entity, destinationId: String, destinationOwner: Entity, classPath: String? = nil, `operator`: String? = nil) {
             self.platform = platform
             self.type = type
             self.name = name
@@ -96,5 +80,21 @@ extension Cme {
             case materialId = "MaterialId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建链接
+    ///
+    ///  创建媒体链接或分类路径链接，将源资源信息链接到目标。
+    @inlinable
+    public func createLink(_ input: CreateLinkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLinkResponse > {
+        self.client.execute(action: "CreateLink", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建链接
+    ///
+    ///  创建媒体链接或分类路径链接，将源资源信息链接到目标。
+    @inlinable
+    public func createLink(_ input: CreateLinkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLinkResponse {
+        try await self.client.execute(action: "CreateLink", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

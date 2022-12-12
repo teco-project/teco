@@ -15,25 +15,13 @@
 // DO NOT EDIT.
 
 extension Tcm {
-    /// 修改访问日志配置
-    @inlinable
-    public func modifyAccessLogConfig(_ input: ModifyAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccessLogConfigResponse > {
-        self.client.execute(action: "ModifyAccessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改访问日志配置
-    @inlinable
-    public func modifyAccessLogConfig(_ input: ModifyAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessLogConfigResponse {
-        try await self.client.execute(action: "ModifyAccessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAccessLogConfig请求参数结构体
     public struct ModifyAccessLogConfigRequest: TCRequestModel {
         /// mesh ID
         public let meshId: String
         
         /// 选中的范围
-        public let selectedRange: SelectedRange
+        public let selectedRange: SelectedRange?
         
         /// 采用的模板，可选值：istio（默认）、trace、custom
         public let template: String?
@@ -42,7 +30,7 @@ extension Tcm {
         public let enable: Bool?
         
         /// 腾讯云日志服务相关参数
-        public let cls: CLS
+        public let cls: CLS?
         
         /// 编码格式，可选值：TEXT、JSON
         public let encoding: String?
@@ -59,7 +47,7 @@ extension Tcm {
         /// GRPC第三方服务器地址
         public let address: String?
         
-        public init (meshId: String, selectedRange: SelectedRange, template: String?, enable: Bool?, cls: CLS, encoding: String?, format: String?, enableStdout: Bool?, enableServer: Bool?, address: String?) {
+        public init (meshId: String, selectedRange: SelectedRange? = nil, template: String? = nil, enable: Bool? = nil, cls: CLS? = nil, encoding: String? = nil, format: String? = nil, enableStdout: Bool? = nil, enableServer: Bool? = nil, address: String? = nil) {
             self.meshId = meshId
             self.selectedRange = selectedRange
             self.template = template
@@ -94,5 +82,17 @@ extension Tcm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改访问日志配置
+    @inlinable
+    public func modifyAccessLogConfig(_ input: ModifyAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccessLogConfigResponse > {
+        self.client.execute(action: "ModifyAccessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改访问日志配置
+    @inlinable
+    public func modifyAccessLogConfig(_ input: ModifyAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessLogConfigResponse {
+        try await self.client.execute(action: "ModifyAccessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

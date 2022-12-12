@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取量产详情
-    ///
-    /// 获取量产详情信息。
-    @inlinable
-    public func describeBatchProduction(_ input: DescribeBatchProductionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchProductionResponse > {
-        self.client.execute(action: "DescribeBatchProduction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取量产详情
-    ///
-    /// 获取量产详情信息。
-    @inlinable
-    public func describeBatchProduction(_ input: DescribeBatchProductionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchProductionResponse {
-        try await self.client.execute(action: "DescribeBatchProduction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBatchProduction请求参数结构体
     public struct DescribeBatchProductionRequest: TCRequestModel {
         /// 产品ID
@@ -82,5 +66,21 @@ extension Iotexplorer {
             case uploadUrl = "UploadUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取量产详情
+    ///
+    /// 获取量产详情信息。
+    @inlinable
+    public func describeBatchProduction(_ input: DescribeBatchProductionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchProductionResponse > {
+        self.client.execute(action: "DescribeBatchProduction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取量产详情
+    ///
+    /// 获取量产详情信息。
+    @inlinable
+    public func describeBatchProduction(_ input: DescribeBatchProductionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchProductionResponse {
+        try await self.client.execute(action: "DescribeBatchProduction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

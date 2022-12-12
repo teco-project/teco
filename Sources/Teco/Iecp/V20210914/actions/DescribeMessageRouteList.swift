@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取消息路由列表
-    @inlinable
-    public func describeMessageRouteList(_ input: DescribeMessageRouteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMessageRouteListResponse > {
-        self.client.execute(action: "DescribeMessageRouteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取消息路由列表
-    @inlinable
-    public func describeMessageRouteList(_ input: DescribeMessageRouteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageRouteListResponse {
-        try await self.client.execute(action: "DescribeMessageRouteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMessageRouteList请求参数结构体
     public struct DescribeMessageRouteListRequest: TCRequestModel {
         /// 无
@@ -47,7 +35,7 @@ extension Iecp {
         /// 无
         public let order: String?
         
-        public init (limit: Int64, offset: Int64, filter: String?, startTime: String?, endTime: String?, order: String?) {
+        public init (limit: Int64, offset: Int64, filter: String? = nil, startTime: String? = nil, endTime: String? = nil, order: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filter = filter
@@ -82,5 +70,17 @@ extension Iecp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取消息路由列表
+    @inlinable
+    public func describeMessageRouteList(_ input: DescribeMessageRouteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMessageRouteListResponse > {
+        self.client.execute(action: "DescribeMessageRouteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取消息路由列表
+    @inlinable
+    public func describeMessageRouteList(_ input: DescribeMessageRouteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageRouteListResponse {
+        try await self.client.execute(action: "DescribeMessageRouteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

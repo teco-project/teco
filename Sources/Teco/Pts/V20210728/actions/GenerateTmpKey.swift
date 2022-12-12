@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 生成临时COS凭证
-    @inlinable
-    public func generateTmpKey(_ input: GenerateTmpKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateTmpKeyResponse > {
-        self.client.execute(action: "GenerateTmpKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 生成临时COS凭证
-    @inlinable
-    public func generateTmpKey(_ input: GenerateTmpKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateTmpKeyResponse {
-        try await self.client.execute(action: "GenerateTmpKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GenerateTmpKey请求参数结构体
     public struct GenerateTmpKeyRequest: TCRequestModel {
         /// 项目ID
@@ -35,7 +23,7 @@ extension Pts {
         /// 场景ID
         public let scenarioId: String?
         
-        public init (projectId: String, scenarioId: String?) {
+        public init (projectId: String, scenarioId: String? = nil) {
             self.projectId = projectId
             self.scenarioId = scenarioId
         }
@@ -66,5 +54,17 @@ extension Pts {
             case credentials = "Credentials"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 生成临时COS凭证
+    @inlinable
+    public func generateTmpKey(_ input: GenerateTmpKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateTmpKeyResponse > {
+        self.client.execute(action: "GenerateTmpKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 生成临时COS凭证
+    @inlinable
+    public func generateTmpKey(_ input: GenerateTmpKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateTmpKeyResponse {
+        try await self.client.execute(action: "GenerateTmpKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

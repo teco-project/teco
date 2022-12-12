@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询后付费共享带宽包当前的用量
-    ///
-    /// 本接口 (DescribeBandwidthPackageBillUsage) 用于查询后付费共享带宽包当前的计费用量.
-    @inlinable
-    public func describeBandwidthPackageBillUsage(_ input: DescribeBandwidthPackageBillUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBandwidthPackageBillUsageResponse > {
-        self.client.execute(action: "DescribeBandwidthPackageBillUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询后付费共享带宽包当前的用量
-    ///
-    /// 本接口 (DescribeBandwidthPackageBillUsage) 用于查询后付费共享带宽包当前的计费用量.
-    @inlinable
-    public func describeBandwidthPackageBillUsage(_ input: DescribeBandwidthPackageBillUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackageBillUsageResponse {
-        try await self.client.execute(action: "DescribeBandwidthPackageBillUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBandwidthPackageBillUsage请求参数结构体
     public struct DescribeBandwidthPackageBillUsageRequest: TCRequestModel {
         /// 后付费共享带宽包的唯一ID
@@ -57,5 +41,21 @@ extension Vpc {
             case bandwidthPackageBillBandwidthSet = "BandwidthPackageBillBandwidthSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询后付费共享带宽包当前的用量
+    ///
+    /// 本接口 (DescribeBandwidthPackageBillUsage) 用于查询后付费共享带宽包当前的计费用量.
+    @inlinable
+    public func describeBandwidthPackageBillUsage(_ input: DescribeBandwidthPackageBillUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBandwidthPackageBillUsageResponse > {
+        self.client.execute(action: "DescribeBandwidthPackageBillUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询后付费共享带宽包当前的用量
+    ///
+    /// 本接口 (DescribeBandwidthPackageBillUsage) 用于查询后付费共享带宽包当前的计费用量.
+    @inlinable
+    public func describeBandwidthPackageBillUsage(_ input: DescribeBandwidthPackageBillUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackageBillUsageResponse {
+        try await self.client.execute(action: "DescribeBandwidthPackageBillUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

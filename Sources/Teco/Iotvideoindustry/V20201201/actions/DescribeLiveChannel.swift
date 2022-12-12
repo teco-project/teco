@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 直播详情接口
-    @inlinable
-    public func describeLiveChannel(_ input: DescribeLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveChannelResponse > {
-        self.client.execute(action: "DescribeLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播详情接口
-    @inlinable
-    public func describeLiveChannel(_ input: DescribeLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelResponse {
-        try await self.client.execute(action: "DescribeLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveChannel请求参数结构体
     public struct DescribeLiveChannelRequest: TCRequestModel {
         /// 频道ID
@@ -84,5 +72,17 @@ extension Iotvideoindustry {
             case updateTime = "UpdateTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播详情接口
+    @inlinable
+    public func describeLiveChannel(_ input: DescribeLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveChannelResponse > {
+        self.client.execute(action: "DescribeLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播详情接口
+    @inlinable
+    public func describeLiveChannel(_ input: DescribeLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelResponse {
+        try await self.client.execute(action: "DescribeLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

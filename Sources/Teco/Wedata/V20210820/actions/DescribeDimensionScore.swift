@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询维度评分
-    ///
-    /// 质量报告-查询质量评分
-    @inlinable
-    public func describeDimensionScore(_ input: DescribeDimensionScoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDimensionScoreResponse > {
-        self.client.execute(action: "DescribeDimensionScore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询维度评分
-    ///
-    /// 质量报告-查询质量评分
-    @inlinable
-    public func describeDimensionScore(_ input: DescribeDimensionScoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDimensionScoreResponse {
-        try await self.client.execute(action: "DescribeDimensionScore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDimensionScore请求参数结构体
     public struct DescribeDimensionScoreRequest: TCRequestModel {
         /// 统计日期 时间戳
@@ -42,7 +26,7 @@ extension Wedata {
         /// 数据来源id
         public let datasourceId: String?
         
-        public init (statisticsDate: Int64, projectId: String, datasourceId: String?) {
+        public init (statisticsDate: Int64, projectId: String, datasourceId: String? = nil) {
             self.statisticsDate = statisticsDate
             self.projectId = projectId
             self.datasourceId = datasourceId
@@ -59,7 +43,7 @@ extension Wedata {
     public struct DescribeDimensionScoreResponse: TCResponseModel {
         /// 维度评分
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: DimensionScore
+        public let data: DimensionScore?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -68,5 +52,21 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询维度评分
+    ///
+    /// 质量报告-查询质量评分
+    @inlinable
+    public func describeDimensionScore(_ input: DescribeDimensionScoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDimensionScoreResponse > {
+        self.client.execute(action: "DescribeDimensionScore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询维度评分
+    ///
+    /// 质量报告-查询质量评分
+    @inlinable
+    public func describeDimensionScore(_ input: DescribeDimensionScoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDimensionScoreResponse {
+        try await self.client.execute(action: "DescribeDimensionScore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

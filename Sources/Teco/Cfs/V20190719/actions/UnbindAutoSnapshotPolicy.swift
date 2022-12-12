@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 解绑快照策略
-    ///
-    /// 解除文件系统绑定的快照策略
-    @inlinable
-    public func unbindAutoSnapshotPolicy(_ input: UnbindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindAutoSnapshotPolicyResponse > {
-        self.client.execute(action: "UnbindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑快照策略
-    ///
-    /// 解除文件系统绑定的快照策略
-    @inlinable
-    public func unbindAutoSnapshotPolicy(_ input: UnbindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindAutoSnapshotPolicyResponse {
-        try await self.client.execute(action: "UnbindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindAutoSnapshotPolicy请求参数结构体
     public struct UnbindAutoSnapshotPolicyRequest: TCRequestModel {
         /// 需要解绑的文件系统ID列表，用"," 分割
@@ -62,5 +46,21 @@ extension Cfs {
             case autoSnapshotPolicyId = "AutoSnapshotPolicyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑快照策略
+    ///
+    /// 解除文件系统绑定的快照策略
+    @inlinable
+    public func unbindAutoSnapshotPolicy(_ input: UnbindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindAutoSnapshotPolicyResponse > {
+        self.client.execute(action: "UnbindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑快照策略
+    ///
+    /// 解除文件系统绑定的快照策略
+    @inlinable
+    public func unbindAutoSnapshotPolicy(_ input: UnbindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindAutoSnapshotPolicyResponse {
+        try await self.client.execute(action: "UnbindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

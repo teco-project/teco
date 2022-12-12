@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 漏洞列表
-    ///
-    /// 获取漏洞列表数据
-    @inlinable
-    public func describeVulList(_ input: DescribeVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulListResponse > {
-        self.client.execute(action: "DescribeVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 漏洞列表
-    ///
-    /// 获取漏洞列表数据
-    @inlinable
-    public func describeVulList(_ input: DescribeVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulListResponse {
-        try await self.client.execute(action: "DescribeVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulList请求参数结构体
     public struct DescribeVulListRequest: TCRequestModel {
         /// 返回数量，最大值为100。
@@ -55,7 +39,7 @@ extension Cwp {
         /// 排序顺序：desc  默认asc
         public let order: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filters]?, by: String?, order: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filters]? = nil, by: String? = nil, order: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -95,5 +79,21 @@ extension Cwp {
             case followVulCount = "FollowVulCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 漏洞列表
+    ///
+    /// 获取漏洞列表数据
+    @inlinable
+    public func describeVulList(_ input: DescribeVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulListResponse > {
+        self.client.execute(action: "DescribeVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 漏洞列表
+    ///
+    /// 获取漏洞列表数据
+    @inlinable
+    public func describeVulList(_ input: DescribeVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulListResponse {
+        try await self.client.execute(action: "DescribeVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

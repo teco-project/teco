@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 创建本地镜像木马列表导出任务
-    @inlinable
-    public func createAssetImageVirusExportJob(_ input: CreateAssetImageVirusExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssetImageVirusExportJobResponse > {
-        self.client.execute(action: "CreateAssetImageVirusExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建本地镜像木马列表导出任务
-    @inlinable
-    public func createAssetImageVirusExportJob(_ input: CreateAssetImageVirusExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageVirusExportJobResponse {
-        try await self.client.execute(action: "CreateAssetImageVirusExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAssetImageVirusExportJob请求参数结构体
     public struct CreateAssetImageVirusExportJobRequest: TCRequestModel {
         /// 导出字段
@@ -50,7 +38,7 @@ extension Tcss {
         /// 升序降序,asc desc
         public let order: String?
         
-        public init (exportField: [String], imageID: String, filters: [AssetFilters]?, limit: UInt64?, offset: UInt64?, by: String?, order: String?) {
+        public init (exportField: [String], imageID: String, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil) {
             self.exportField = exportField
             self.imageID = imageID
             self.filters = filters
@@ -83,5 +71,17 @@ extension Tcss {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建本地镜像木马列表导出任务
+    @inlinable
+    public func createAssetImageVirusExportJob(_ input: CreateAssetImageVirusExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAssetImageVirusExportJobResponse > {
+        self.client.execute(action: "CreateAssetImageVirusExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建本地镜像木马列表导出任务
+    @inlinable
+    public func createAssetImageVirusExportJob(_ input: CreateAssetImageVirusExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageVirusExportJobResponse {
+        try await self.client.execute(action: "CreateAssetImageVirusExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

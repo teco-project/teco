@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 启用子网路由
-    ///
-    /// 本接口（EnableRoutes）用于启用已禁用的子网路由。<br />
-    /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
-    @inlinable
-    public func enableRoutes(_ input: EnableRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableRoutesResponse > {
-        self.client.execute(action: "EnableRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启用子网路由
-    ///
-    /// 本接口（EnableRoutes）用于启用已禁用的子网路由。<br />
-    /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
-    @inlinable
-    public func enableRoutes(_ input: EnableRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableRoutesResponse {
-        try await self.client.execute(action: "EnableRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableRoutes请求参数结构体
     public struct EnableRoutesRequest: TCRequestModel {
         /// 路由表唯一ID。
@@ -44,7 +26,7 @@ extension Vpc {
         /// 路由策略唯一ID。不能和RouteIds同时使用，但至少输入一个。该参数取值可通过查询路由列表（[DescribeRouteTables](https://cloud.tencent.com/document/product/215/15763)）获取。
         public let routeItemIds: [String]?
         
-        public init (routeTableId: String, routeIds: [UInt64]?, routeItemIds: [String]?) {
+        public init (routeTableId: String, routeIds: [UInt64]? = nil, routeItemIds: [String]? = nil) {
             self.routeTableId = routeTableId
             self.routeIds = routeIds
             self.routeItemIds = routeItemIds
@@ -65,5 +47,23 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启用子网路由
+    ///
+    /// 本接口（EnableRoutes）用于启用已禁用的子网路由。<br />
+    /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
+    @inlinable
+    public func enableRoutes(_ input: EnableRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableRoutesResponse > {
+        self.client.execute(action: "EnableRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启用子网路由
+    ///
+    /// 本接口（EnableRoutes）用于启用已禁用的子网路由。<br />
+    /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
+    @inlinable
+    public func enableRoutes(_ input: EnableRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableRoutesResponse {
+        try await self.client.execute(action: "EnableRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

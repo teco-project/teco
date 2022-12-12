@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 查询云监控产品列表
-    ///
-    /// 查询云监控产品列表，支持云服务器CVM、云数据库、云消息队列、负载均衡、容器服务、专线等云产品。
-    @inlinable
-    public func describeProductList(_ input: DescribeProductListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductListResponse > {
-        self.client.execute(action: "DescribeProductList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云监控产品列表
-    ///
-    /// 查询云监控产品列表，支持云服务器CVM、云数据库、云消息队列、负载均衡、容器服务、专线等云产品。
-    @inlinable
-    public func describeProductList(_ input: DescribeProductListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductListResponse {
-        try await self.client.execute(action: "DescribeProductList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProductList请求参数结构体
     public struct DescribeProductListRequest: TCRequestModel {
         /// 固定传值monitor
@@ -45,7 +29,7 @@ extension Monitor {
         /// 分页查询的每页数据量，默认值20
         public let limit: UInt64?
         
-        public init (module: String, order: String?, offset: UInt64?, limit: UInt64?) {
+        public init (module: String, order: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.module = module
             self.order = order
             self.offset = offset
@@ -78,5 +62,21 @@ extension Monitor {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云监控产品列表
+    ///
+    /// 查询云监控产品列表，支持云服务器CVM、云数据库、云消息队列、负载均衡、容器服务、专线等云产品。
+    @inlinable
+    public func describeProductList(_ input: DescribeProductListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductListResponse > {
+        self.client.execute(action: "DescribeProductList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云监控产品列表
+    ///
+    /// 查询云监控产品列表，支持云服务器CVM、云数据库、云消息队列、负载均衡、容器服务、专线等云产品。
+    @inlinable
+    public func describeProductList(_ input: DescribeProductListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductListResponse {
+        try await self.client.execute(action: "DescribeProductList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

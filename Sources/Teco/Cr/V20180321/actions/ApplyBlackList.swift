@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cr {
-    /// 提交黑名单申请
-    ///
-    /// 提交黑名单后，黑名单中有效期内的号码将停止拨打，适用于到期/逾期提醒、回访场景。
-    @inlinable
-    public func applyBlackList(_ input: ApplyBlackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyBlackListResponse > {
-        self.client.execute(action: "ApplyBlackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交黑名单申请
-    ///
-    /// 提交黑名单后，黑名单中有效期内的号码将停止拨打，适用于到期/逾期提醒、回访场景。
-    @inlinable
-    public func applyBlackList(_ input: ApplyBlackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyBlackListResponse {
-        try await self.client.execute(action: "ApplyBlackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyBlackList请求参数结构体
     public struct ApplyBlackListRequest: TCRequestModel {
         /// 模块名，本接口取值：account
@@ -45,7 +29,7 @@ extension Cr {
         /// 实例ID，不传默认为系统分配的初始实例
         public let instId: String?
         
-        public init (module: String, operation: String, blackList: [SingleBlackApply], instId: String?) {
+        public init (module: String, operation: String, blackList: [SingleBlackApply], instId: String? = nil) {
             self.module = module
             self.operation = operation
             self.blackList = blackList
@@ -68,5 +52,21 @@ extension Cr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交黑名单申请
+    ///
+    /// 提交黑名单后，黑名单中有效期内的号码将停止拨打，适用于到期/逾期提醒、回访场景。
+    @inlinable
+    public func applyBlackList(_ input: ApplyBlackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyBlackListResponse > {
+        self.client.execute(action: "ApplyBlackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交黑名单申请
+    ///
+    /// 提交黑名单后，黑名单中有效期内的号码将停止拨打，适用于到期/逾期提醒、回访场景。
+    @inlinable
+    public func applyBlackList(_ input: ApplyBlackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyBlackListResponse {
+        try await self.client.execute(action: "ApplyBlackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

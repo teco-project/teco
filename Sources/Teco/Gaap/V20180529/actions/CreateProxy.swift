@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 创建通道
-    ///
-    /// 本接口（CreateProxy）用于创建/复制一个指定配置的加速通道。当复制通道时，需要设置新通道的基本配置参数，并设置ClonedProxyId来指定被复制的通道。
-    @inlinable
-    public func createProxy(_ input: CreateProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProxyResponse > {
-        self.client.execute(action: "CreateProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建通道
-    ///
-    /// 本接口（CreateProxy）用于创建/复制一个指定配置的加速通道。当复制通道时，需要设置新通道的基本配置参数，并设置ClonedProxyId来指定被复制的通道。
-    @inlinable
-    public func createProxy(_ input: CreateProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyResponse {
-        try await self.client.execute(action: "CreateProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProxy请求参数结构体
     public struct CreateProxyRequest: TCRequestModel {
         /// 通道的项目ID。
@@ -80,7 +64,7 @@ extension Gaap {
         /// 该字段已废弃，当IPAddressVersion为IPv4时，所创建的通道默认支持Http3.0；当为IPv6，默认不支持Http3.0。
         public let http3Supported: Int64?
         
-        public init (projectId: Int64, proxyName: String, accessRegion: String, bandwidth: UInt64, concurrent: UInt64, realServerRegion: String?, clientToken: String?, groupId: String?, tagSet: [TagPair]?, clonedProxyId: String?, billingType: Int64?, ipAddressVersion: String?, networkType: String?, packageType: String?, http3Supported: Int64?) {
+        public init (projectId: Int64, proxyName: String, accessRegion: String, bandwidth: UInt64, concurrent: UInt64, realServerRegion: String? = nil, clientToken: String? = nil, groupId: String? = nil, tagSet: [TagPair]? = nil, clonedProxyId: String? = nil, billingType: Int64? = nil, ipAddressVersion: String? = nil, networkType: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil) {
             self.projectId = projectId
             self.proxyName = proxyName
             self.accessRegion = accessRegion
@@ -129,5 +113,21 @@ extension Gaap {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建通道
+    ///
+    /// 本接口（CreateProxy）用于创建/复制一个指定配置的加速通道。当复制通道时，需要设置新通道的基本配置参数，并设置ClonedProxyId来指定被复制的通道。
+    @inlinable
+    public func createProxy(_ input: CreateProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProxyResponse > {
+        self.client.execute(action: "CreateProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建通道
+    ///
+    /// 本接口（CreateProxy）用于创建/复制一个指定配置的加速通道。当复制通道时，需要设置新通道的基本配置参数，并设置ClonedProxyId来指定被复制的通道。
+    @inlinable
+    public func createProxy(_ input: CreateProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyResponse {
+        try await self.client.execute(action: "CreateProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

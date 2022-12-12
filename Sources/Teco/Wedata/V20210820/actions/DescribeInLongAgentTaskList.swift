@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询采集器关联的任务列表
-    @inlinable
-    public func describeInLongAgentTaskList(_ input: DescribeInLongAgentTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInLongAgentTaskListResponse > {
-        self.client.execute(action: "DescribeInLongAgentTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询采集器关联的任务列表
-    @inlinable
-    public func describeInLongAgentTaskList(_ input: DescribeInLongAgentTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentTaskListResponse {
-        try await self.client.execute(action: "DescribeInLongAgentTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInLongAgentTaskList请求参数结构体
     public struct DescribeInLongAgentTaskListRequest: TCRequestModel {
         /// 采集器ID
@@ -58,5 +46,17 @@ extension Wedata {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询采集器关联的任务列表
+    @inlinable
+    public func describeInLongAgentTaskList(_ input: DescribeInLongAgentTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInLongAgentTaskListResponse > {
+        self.client.execute(action: "DescribeInLongAgentTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询采集器关联的任务列表
+    @inlinable
+    public func describeInLongAgentTaskList(_ input: DescribeInLongAgentTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentTaskListResponse {
+        try await self.client.execute(action: "DescribeInLongAgentTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 开通容器托管的资源
-    ///
-    /// 开通容器托管的资源，包括集群创建，VPC配置，异步任务创建，镜像托管，Coding等，查看创建结果需要根据DescribeCloudBaseRunResource接口来查看
-    @inlinable
-    public func createCloudBaseRunResource(_ input: CreateCloudBaseRunResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudBaseRunResourceResponse > {
-        self.client.execute(action: "CreateCloudBaseRunResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开通容器托管的资源
-    ///
-    /// 开通容器托管的资源，包括集群创建，VPC配置，异步任务创建，镜像托管，Coding等，查看创建结果需要根据DescribeCloudBaseRunResource接口来查看
-    @inlinable
-    public func createCloudBaseRunResource(_ input: CreateCloudBaseRunResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudBaseRunResourceResponse {
-        try await self.client.execute(action: "CreateCloudBaseRunResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCloudBaseRunResource请求参数结构体
     public struct CreateCloudBaseRunResourceRequest: TCRequestModel {
         /// 环境ID
@@ -42,7 +26,7 @@ extension Tcb {
         /// 子网ID列表，当VpcId不为空，SubnetIds也不能为空
         public let subnetIds: [String]?
         
-        public init (envId: String, vpcId: String?, subnetIds: [String]?) {
+        public init (envId: String, vpcId: String? = nil, subnetIds: [String]? = nil) {
             self.envId = envId
             self.vpcId = vpcId
             self.subnetIds = subnetIds
@@ -68,5 +52,21 @@ extension Tcb {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开通容器托管的资源
+    ///
+    /// 开通容器托管的资源，包括集群创建，VPC配置，异步任务创建，镜像托管，Coding等，查看创建结果需要根据DescribeCloudBaseRunResource接口来查看
+    @inlinable
+    public func createCloudBaseRunResource(_ input: CreateCloudBaseRunResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudBaseRunResourceResponse > {
+        self.client.execute(action: "CreateCloudBaseRunResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开通容器托管的资源
+    ///
+    /// 开通容器托管的资源，包括集群创建，VPC配置，异步任务创建，镜像托管，Coding等，查看创建结果需要根据DescribeCloudBaseRunResource接口来查看
+    @inlinable
+    public func createCloudBaseRunResource(_ input: CreateCloudBaseRunResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudBaseRunResourceResponse {
+        try await self.client.execute(action: "CreateCloudBaseRunResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 创建监听器转发规则
-    ///
-    /// 该接口（CreateRule）用于创建HTTP/HTTPS监听器转发规则。
-    @inlinable
-    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRuleResponse > {
-        self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建监听器转发规则
-    ///
-    /// 该接口（CreateRule）用于创建HTTP/HTTPS监听器转发规则。
-    @inlinable
-    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
-        try await self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRule请求参数结构体
     public struct CreateRuleRequest: TCRequestModel {
         /// 7层监听器ID
@@ -52,7 +36,7 @@ extension Gaap {
         public let healthCheck: UInt64
         
         /// 源站健康检查相关参数
-        public let checkParams: RuleCheckParams
+        public let checkParams: RuleCheckParams?
         
         /// 加速通道转发到源站的协议类型：支持HTTP或HTTPS。
         /// 不传递该字段时表示使用对应监听器的ForwardProtocol。
@@ -70,7 +54,7 @@ extension Gaap {
         /// HTTP强制跳转HTTPS。输入当前规则对应的域名与地址。
         public let forcedRedirect: String?
         
-        public init (listenerId: String, domain: String, path: String, realServerType: String, scheduler: String, healthCheck: UInt64, checkParams: RuleCheckParams, forwardProtocol: String?, forwardHost: String?, serverNameIndicationSwitch: String?, serverNameIndication: String?, forcedRedirect: String?) {
+        public init (listenerId: String, domain: String, path: String, realServerType: String, scheduler: String, healthCheck: UInt64, checkParams: RuleCheckParams? = nil, forwardProtocol: String? = nil, forwardHost: String? = nil, serverNameIndicationSwitch: String? = nil, serverNameIndication: String? = nil, forcedRedirect: String? = nil) {
             self.listenerId = listenerId
             self.domain = domain
             self.path = path
@@ -113,5 +97,21 @@ extension Gaap {
             case ruleId = "RuleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建监听器转发规则
+    ///
+    /// 该接口（CreateRule）用于创建HTTP/HTTPS监听器转发规则。
+    @inlinable
+    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRuleResponse > {
+        self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建监听器转发规则
+    ///
+    /// 该接口（CreateRule）用于创建HTTP/HTTPS监听器转发规则。
+    @inlinable
+    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
+        try await self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

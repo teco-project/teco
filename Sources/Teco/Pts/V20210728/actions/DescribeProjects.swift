@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 查询项目列表
-    @inlinable
-    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
-        self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询项目列表
-    @inlinable
-    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
-        try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProjects请求参数结构体
     public struct DescribeProjectsRequest: TCRequestModel {
         /// 分页offset
@@ -50,7 +38,7 @@ extension Pts {
         /// 标签数组
         public let tagFilters: [TagSpec]?
         
-        public init (offset: Int64?, limit: Int64?, projectIds: [String]?, projectName: String?, orderBy: String?, ascend: Bool?, tagFilters: [TagSpec]?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, projectIds: [String]? = nil, projectName: String? = nil, orderBy: String? = nil, ascend: Bool? = nil, tagFilters: [TagSpec]? = nil) {
             self.offset = offset
             self.limit = limit
             self.projectIds = projectIds
@@ -88,5 +76,17 @@ extension Pts {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询项目列表
+    @inlinable
+    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
+        self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询项目列表
+    @inlinable
+    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
+        try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

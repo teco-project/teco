@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改VPC属性
-    ///
-    /// 本接口（ModifyVpcAttribute）用于修改私有网络（VPC）的相关属性。
-    @inlinable
-    public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpcAttributeResponse > {
-        self.client.execute(action: "ModifyVpcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改VPC属性
-    ///
-    /// 本接口（ModifyVpcAttribute）用于修改私有网络（VPC）的相关属性。
-    @inlinable
-    public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
-        try await self.client.execute(action: "ModifyVpcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVpcAttribute请求参数结构体
     public struct ModifyVpcAttributeRequest: TCRequestModel {
         /// VPC实例ID。形如：vpc-f49l6u0z。每次请求的实例的上限为100。参数不支持同时指定VpcIds和Filters。
@@ -48,7 +32,7 @@ extension Vpc {
         /// 域名
         public let domainName: String?
         
-        public init (vpcId: String, vpcName: String?, enableMulticast: String?, dnsServers: [String]?, domainName: String?) {
+        public init (vpcId: String, vpcName: String? = nil, enableMulticast: String? = nil, dnsServers: [String]? = nil, domainName: String? = nil) {
             self.vpcId = vpcId
             self.vpcName = vpcName
             self.enableMulticast = enableMulticast
@@ -73,5 +57,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改VPC属性
+    ///
+    /// 本接口（ModifyVpcAttribute）用于修改私有网络（VPC）的相关属性。
+    @inlinable
+    public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpcAttributeResponse > {
+        self.client.execute(action: "ModifyVpcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改VPC属性
+    ///
+    /// 本接口（ModifyVpcAttribute）用于修改私有网络（VPC）的相关属性。
+    @inlinable
+    public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
+        try await self.client.execute(action: "ModifyVpcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

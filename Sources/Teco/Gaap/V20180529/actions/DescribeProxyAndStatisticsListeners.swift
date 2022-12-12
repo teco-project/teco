@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 查询统计通道和监听器信息
-    ///
-    /// 该接口为内部接口，用于查询可以获取统计数据的通道和监听器信息
-    @inlinable
-    public func describeProxyAndStatisticsListeners(_ input: DescribeProxyAndStatisticsListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyAndStatisticsListenersResponse > {
-        self.client.execute(action: "DescribeProxyAndStatisticsListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询统计通道和监听器信息
-    ///
-    /// 该接口为内部接口，用于查询可以获取统计数据的通道和监听器信息
-    @inlinable
-    public func describeProxyAndStatisticsListeners(_ input: DescribeProxyAndStatisticsListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyAndStatisticsListenersResponse {
-        try await self.client.execute(action: "DescribeProxyAndStatisticsListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProxyAndStatisticsListeners请求参数结构体
     public struct DescribeProxyAndStatisticsListenersRequest: TCRequestModel {
         /// 项目ID
@@ -61,5 +45,21 @@ extension Gaap {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询统计通道和监听器信息
+    ///
+    /// 该接口为内部接口，用于查询可以获取统计数据的通道和监听器信息
+    @inlinable
+    public func describeProxyAndStatisticsListeners(_ input: DescribeProxyAndStatisticsListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyAndStatisticsListenersResponse > {
+        self.client.execute(action: "DescribeProxyAndStatisticsListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询统计通道和监听器信息
+    ///
+    /// 该接口为内部接口，用于查询可以获取统计数据的通道和监听器信息
+    @inlinable
+    public func describeProxyAndStatisticsListeners(_ input: DescribeProxyAndStatisticsListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyAndStatisticsListenersResponse {
+        try await self.client.execute(action: "DescribeProxyAndStatisticsListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

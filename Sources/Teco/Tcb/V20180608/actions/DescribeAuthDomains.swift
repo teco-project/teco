@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 获取安全域名列表
-    @inlinable
-    public func describeAuthDomains(_ input: DescribeAuthDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuthDomainsResponse > {
-        self.client.execute(action: "DescribeAuthDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取安全域名列表
-    @inlinable
-    public func describeAuthDomains(_ input: DescribeAuthDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthDomainsResponse {
-        try await self.client.execute(action: "DescribeAuthDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAuthDomains请求参数结构体
     public struct DescribeAuthDomainsRequest: TCRequestModel {
         /// 环境ID
@@ -53,5 +41,17 @@ extension Tcb {
             case domains = "Domains"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取安全域名列表
+    @inlinable
+    public func describeAuthDomains(_ input: DescribeAuthDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuthDomainsResponse > {
+        self.client.execute(action: "DescribeAuthDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全域名列表
+    @inlinable
+    public func describeAuthDomains(_ input: DescribeAuthDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthDomainsResponse {
+        try await self.client.execute(action: "DescribeAuthDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

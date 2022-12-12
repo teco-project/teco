@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 删除命名空间
-    ///
-    /// 批量删除租户下的命名空间
-    @inlinable
-    public func deleteEnvironments(_ input: DeleteEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEnvironmentsResponse > {
-        self.client.execute(action: "DeleteEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除命名空间
-    ///
-    /// 批量删除租户下的命名空间
-    @inlinable
-    public func deleteEnvironments(_ input: DeleteEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEnvironmentsResponse {
-        try await self.client.execute(action: "DeleteEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteEnvironments请求参数结构体
     public struct DeleteEnvironmentsRequest: TCRequestModel {
         /// 环境（命名空间）数组，每次最多删除20个。
@@ -39,7 +23,7 @@ extension Tdmq {
         /// Pulsar 集群的ID
         public let clusterId: String?
         
-        public init (environmentIds: [String], clusterId: String?) {
+        public init (environmentIds: [String], clusterId: String? = nil) {
             self.environmentIds = environmentIds
             self.clusterId = clusterId
         }
@@ -62,5 +46,21 @@ extension Tdmq {
             case environmentIds = "EnvironmentIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除命名空间
+    ///
+    /// 批量删除租户下的命名空间
+    @inlinable
+    public func deleteEnvironments(_ input: DeleteEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEnvironmentsResponse > {
+        self.client.execute(action: "DeleteEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除命名空间
+    ///
+    /// 批量删除租户下的命名空间
+    @inlinable
+    public func deleteEnvironments(_ input: DeleteEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEnvironmentsResponse {
+        try await self.client.execute(action: "DeleteEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

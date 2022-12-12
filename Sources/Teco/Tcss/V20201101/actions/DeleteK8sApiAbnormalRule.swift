@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 删除k8sapi异常事件规则
-    @inlinable
-    public func deleteK8sApiAbnormalRule(_ input: DeleteK8sApiAbnormalRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteK8sApiAbnormalRuleResponse > {
-        self.client.execute(action: "DeleteK8sApiAbnormalRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除k8sapi异常事件规则
-    @inlinable
-    public func deleteK8sApiAbnormalRule(_ input: DeleteK8sApiAbnormalRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteK8sApiAbnormalRuleResponse {
-        try await self.client.execute(action: "DeleteK8sApiAbnormalRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteK8sApiAbnormalRule请求参数结构体
     public struct DeleteK8sApiAbnormalRuleRequest: TCRequestModel {
         /// 规则ID集合
@@ -49,5 +37,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除k8sapi异常事件规则
+    @inlinable
+    public func deleteK8sApiAbnormalRule(_ input: DeleteK8sApiAbnormalRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteK8sApiAbnormalRuleResponse > {
+        self.client.execute(action: "DeleteK8sApiAbnormalRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除k8sapi异常事件规则
+    @inlinable
+    public func deleteK8sApiAbnormalRule(_ input: DeleteK8sApiAbnormalRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteK8sApiAbnormalRuleResponse {
+        try await self.client.execute(action: "DeleteK8sApiAbnormalRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

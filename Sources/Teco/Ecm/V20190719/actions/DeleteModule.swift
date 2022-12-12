@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 删除业务模块
-    @inlinable
-    public func deleteModule(_ input: DeleteModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModuleResponse > {
-        self.client.execute(action: "DeleteModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除业务模块
-    @inlinable
-    public func deleteModule(_ input: DeleteModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModuleResponse {
-        try await self.client.execute(action: "DeleteModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteModule请求参数结构体
     public struct DeleteModuleRequest: TCRequestModel {
         /// 模块ID。如：em-qn46snq8
@@ -49,5 +37,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除业务模块
+    @inlinable
+    public func deleteModule(_ input: DeleteModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModuleResponse > {
+        self.client.execute(action: "DeleteModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除业务模块
+    @inlinable
+    public func deleteModule(_ input: DeleteModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModuleResponse {
+        try await self.client.execute(action: "DeleteModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

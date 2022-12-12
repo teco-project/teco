@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 修改2.0实例告警策略
-    @inlinable
-    public func modifyPrometheusAlertPolicy(_ input: ModifyPrometheusAlertPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusAlertPolicyResponse > {
-        self.client.execute(action: "ModifyPrometheusAlertPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改2.0实例告警策略
-    @inlinable
-    public func modifyPrometheusAlertPolicy(_ input: ModifyPrometheusAlertPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAlertPolicyResponse {
-        try await self.client.execute(action: "ModifyPrometheusAlertPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPrometheusAlertPolicy请求参数结构体
     public struct ModifyPrometheusAlertPolicyRequest: TCRequestModel {
         /// 实例id
@@ -54,5 +42,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改2.0实例告警策略
+    @inlinable
+    public func modifyPrometheusAlertPolicy(_ input: ModifyPrometheusAlertPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusAlertPolicyResponse > {
+        self.client.execute(action: "ModifyPrometheusAlertPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改2.0实例告警策略
+    @inlinable
+    public func modifyPrometheusAlertPolicy(_ input: ModifyPrometheusAlertPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAlertPolicyResponse {
+        try await self.client.execute(action: "ModifyPrometheusAlertPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

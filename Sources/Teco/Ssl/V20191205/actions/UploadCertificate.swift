@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 上传证书
-    ///
-    /// 本接口（UploadCertificate）用于上传证书。
-    @inlinable
-    public func uploadCertificate(_ input: UploadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadCertificateResponse > {
-        self.client.execute(action: "UploadCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上传证书
-    ///
-    /// 本接口（UploadCertificate）用于上传证书。
-    @inlinable
-    public func uploadCertificate(_ input: UploadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertificateResponse {
-        try await self.client.execute(action: "UploadCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadCertificate请求参数结构体
     public struct UploadCertificateRequest: TCRequestModel {
         /// 证书内容。
@@ -51,7 +35,7 @@ extension Ssl {
         /// 证书用途/证书来源。“CLB，CDN，WAF，LIVE，DDOS”
         public let certificateUse: String?
         
-        public init (certificatePublicKey: String, certificatePrivateKey: String?, certificateType: String?, alias: String?, projectId: UInt64?, certificateUse: String?) {
+        public init (certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil) {
             self.certificatePublicKey = certificatePublicKey
             self.certificatePrivateKey = certificatePrivateKey
             self.certificateType = certificateType
@@ -82,5 +66,21 @@ extension Ssl {
             case certificateId = "CertificateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上传证书
+    ///
+    /// 本接口（UploadCertificate）用于上传证书。
+    @inlinable
+    public func uploadCertificate(_ input: UploadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadCertificateResponse > {
+        self.client.execute(action: "UploadCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上传证书
+    ///
+    /// 本接口（UploadCertificate）用于上传证书。
+    @inlinable
+    public func uploadCertificate(_ input: UploadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertificateResponse {
+        try await self.client.execute(action: "UploadCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

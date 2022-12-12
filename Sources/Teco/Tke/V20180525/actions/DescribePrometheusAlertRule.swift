@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取告警规则列表
-    @inlinable
-    public func describePrometheusAlertRule(_ input: DescribePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusAlertRuleResponse > {
-        self.client.execute(action: "DescribePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取告警规则列表
-    @inlinable
-    public func describePrometheusAlertRule(_ input: DescribePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAlertRuleResponse {
-        try await self.client.execute(action: "DescribePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrometheusAlertRule请求参数结构体
     public struct DescribePrometheusAlertRuleRequest: TCRequestModel {
         /// 实例id
@@ -42,7 +30,7 @@ extension Tke {
         /// 支持ID，Name
         public let filters: [Filter]?
         
-        public init (instanceId: String, offset: UInt64?, limit: UInt64?, filters: [Filter]?) {
+        public init (instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
@@ -73,5 +61,17 @@ extension Tke {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取告警规则列表
+    @inlinable
+    public func describePrometheusAlertRule(_ input: DescribePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusAlertRuleResponse > {
+        self.client.execute(action: "DescribePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取告警规则列表
+    @inlinable
+    public func describePrometheusAlertRule(_ input: DescribePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAlertRuleResponse {
+        try await self.client.execute(action: "DescribePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

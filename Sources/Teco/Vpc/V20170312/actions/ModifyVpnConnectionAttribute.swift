@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改VPN通道
-    ///
-    /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
-    @inlinable
-    public func modifyVpnConnectionAttribute(_ input: ModifyVpnConnectionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpnConnectionAttributeResponse > {
-        self.client.execute(action: "ModifyVpnConnectionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改VPN通道
-    ///
-    /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
-    @inlinable
-    public func modifyVpnConnectionAttribute(_ input: ModifyVpnConnectionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnConnectionAttributeResponse {
-        try await self.client.execute(action: "ModifyVpnConnectionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVpnConnectionAttribute请求参数结构体
     public struct ModifyVpnConnectionAttributeRequest: TCRequestModel {
         /// VPN通道实例ID。形如：vpnx-f49l6u0z。
@@ -46,10 +30,10 @@ extension Vpc {
         public let securityPolicyDatabases: [SecurityPolicyDatabase]?
         
         /// IKE配置（Internet Key Exchange，因特网密钥交换），IKE具有一套自我保护机制，用户配置网络安全协议。
-        public let ikeOptionsSpecification: IKEOptionsSpecification
+        public let ikeOptionsSpecification: IKEOptionsSpecification?
         
         /// IPSec配置，腾讯云提供IPSec安全会话设置。
-        public let ipsecOptionsSpecification: IPSECOptionsSpecification
+        public let ipsecOptionsSpecification: IPSECOptionsSpecification?
         
         /// 是否启用通道健康检查
         public let enableHealthCheck: Bool?
@@ -72,7 +56,7 @@ extension Vpc {
         /// DPD超时后的动作。默认为clear。dpdEnable为1（开启）时有效。可取值为clear（断开）和restart（重试）
         public let dpdAction: String?
         
-        public init (vpnConnectionId: String, vpnConnectionName: String?, preShareKey: String?, securityPolicyDatabases: [SecurityPolicyDatabase]?, ikeOptionsSpecification: IKEOptionsSpecification, ipsecOptionsSpecification: IPSECOptionsSpecification, enableHealthCheck: Bool?, healthCheckLocalIp: String?, healthCheckRemoteIp: String?, negotiationType: String?, dpdEnable: Int64?, dpdTimeout: String?, dpdAction: String?) {
+        public init (vpnConnectionId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, enableHealthCheck: Bool? = nil, healthCheckLocalIp: String? = nil, healthCheckRemoteIp: String? = nil, negotiationType: String? = nil, dpdEnable: Int64? = nil, dpdTimeout: String? = nil, dpdAction: String? = nil) {
             self.vpnConnectionId = vpnConnectionId
             self.vpnConnectionName = vpnConnectionName
             self.preShareKey = preShareKey
@@ -113,5 +97,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改VPN通道
+    ///
+    /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
+    @inlinable
+    public func modifyVpnConnectionAttribute(_ input: ModifyVpnConnectionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpnConnectionAttributeResponse > {
+        self.client.execute(action: "ModifyVpnConnectionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改VPN通道
+    ///
+    /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
+    @inlinable
+    public func modifyVpnConnectionAttribute(_ input: ModifyVpnConnectionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnConnectionAttributeResponse {
+        try await self.client.execute(action: "ModifyVpnConnectionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

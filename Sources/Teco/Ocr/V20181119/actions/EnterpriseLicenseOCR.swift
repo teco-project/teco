@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 企业证照识别
-    ///
-    /// 本接口支持智能化识别各类企业登记证书、许可证书、企业执照、三证合一类证书，结构化输出统一社会信用代码、公司名称、法定代表人、公司地址、注册资金、企业类型、经营范围等关键字段。
-    @inlinable
-    public func enterpriseLicenseOCR(_ input: EnterpriseLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnterpriseLicenseOCRResponse > {
-        self.client.execute(action: "EnterpriseLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 企业证照识别
-    ///
-    /// 本接口支持智能化识别各类企业登记证书、许可证书、企业执照、三证合一类证书，结构化输出统一社会信用代码、公司名称、法定代表人、公司地址、注册资金、企业类型、经营范围等关键字段。
-    @inlinable
-    public func enterpriseLicenseOCR(_ input: EnterpriseLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnterpriseLicenseOCRResponse {
-        try await self.client.execute(action: "EnterpriseLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnterpriseLicenseOCR请求参数结构体
     public struct EnterpriseLicenseOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -46,7 +30,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -73,5 +57,21 @@ extension Ocr {
             case angle = "Angle"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 企业证照识别
+    ///
+    /// 本接口支持智能化识别各类企业登记证书、许可证书、企业执照、三证合一类证书，结构化输出统一社会信用代码、公司名称、法定代表人、公司地址、注册资金、企业类型、经营范围等关键字段。
+    @inlinable
+    public func enterpriseLicenseOCR(_ input: EnterpriseLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnterpriseLicenseOCRResponse > {
+        self.client.execute(action: "EnterpriseLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 企业证照识别
+    ///
+    /// 本接口支持智能化识别各类企业登记证书、许可证书、企业执照、三证合一类证书，结构化输出统一社会信用代码、公司名称、法定代表人、公司地址、注册资金、企业类型、经营范围等关键字段。
+    @inlinable
+    public func enterpriseLicenseOCR(_ input: EnterpriseLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnterpriseLicenseOCRResponse {
+        try await self.client.execute(action: "EnterpriseLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

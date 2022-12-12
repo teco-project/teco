@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dasb {
-    /// 删除资产组
-    @inlinable
-    public func deleteDeviceGroups(_ input: DeleteDeviceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceGroupsResponse > {
-        self.client.execute(action: "DeleteDeviceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除资产组
-    @inlinable
-    public func deleteDeviceGroups(_ input: DeleteDeviceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupsResponse {
-        try await self.client.execute(action: "DeleteDeviceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDeviceGroups请求参数结构体
     public struct DeleteDeviceGroupsRequest: TCRequestModel {
         /// 待删除的资产组ID集合
@@ -49,5 +37,17 @@ extension Dasb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除资产组
+    @inlinable
+    public func deleteDeviceGroups(_ input: DeleteDeviceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceGroupsResponse > {
+        self.client.execute(action: "DeleteDeviceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除资产组
+    @inlinable
+    public func deleteDeviceGroups(_ input: DeleteDeviceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupsResponse {
+        try await self.client.execute(action: "DeleteDeviceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

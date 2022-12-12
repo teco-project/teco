@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 锁定域名
-    @inlinable
-    public func modifyDomainLock(_ input: ModifyDomainLockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainLockResponse > {
-        self.client.execute(action: "ModifyDomainLock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 锁定域名
-    @inlinable
-    public func modifyDomainLock(_ input: ModifyDomainLockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainLockResponse {
-        try await self.client.execute(action: "ModifyDomainLock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDomainLock请求参数结构体
     public struct ModifyDomainLockRequest: TCRequestModel {
         /// 域名
@@ -38,7 +26,7 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         public let domainId: UInt64?
         
-        public init (domain: String, lockDays: UInt64, domainId: UInt64?) {
+        public init (domain: String, lockDays: UInt64, domainId: UInt64? = nil) {
             self.domain = domain
             self.lockDays = lockDays
             self.domainId = domainId
@@ -63,5 +51,17 @@ extension Dnspod {
             case lockInfo = "LockInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 锁定域名
+    @inlinable
+    public func modifyDomainLock(_ input: ModifyDomainLockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainLockResponse > {
+        self.client.execute(action: "ModifyDomainLock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 锁定域名
+    @inlinable
+    public func modifyDomainLock(_ input: ModifyDomainLockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainLockResponse {
+        try await self.client.execute(action: "ModifyDomainLock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

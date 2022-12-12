@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mmps {
-    /// 查询安全资源使用情况
-    ///
-    /// 查询翼扬安全资源使用情况
-    @inlinable
-    public func describeResourceUsageInfo(_ input: DescribeResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceUsageInfoResponse > {
-        self.client.execute(action: "DescribeResourceUsageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全资源使用情况
-    ///
-    /// 查询翼扬安全资源使用情况
-    @inlinable
-    public func describeResourceUsageInfo(_ input: DescribeResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUsageInfoResponse {
-        try await self.client.execute(action: "DescribeResourceUsageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourceUsageInfo请求参数结构体
     public struct DescribeResourceUsageInfoRequest: TCRequestModel {
         public init () {
@@ -57,5 +41,21 @@ extension Mmps {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全资源使用情况
+    ///
+    /// 查询翼扬安全资源使用情况
+    @inlinable
+    public func describeResourceUsageInfo(_ input: DescribeResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceUsageInfoResponse > {
+        self.client.execute(action: "DescribeResourceUsageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全资源使用情况
+    ///
+    /// 查询翼扬安全资源使用情况
+    @inlinable
+    public func describeResourceUsageInfo(_ input: DescribeResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUsageInfoResponse {
+        try await self.client.execute(action: "DescribeResourceUsageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

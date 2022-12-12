@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询节点池详情
-    @inlinable
-    public func describeClusterNodePoolDetail(_ input: DescribeClusterNodePoolDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterNodePoolDetailResponse > {
-        self.client.execute(action: "DescribeClusterNodePoolDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询节点池详情
-    @inlinable
-    public func describeClusterNodePoolDetail(_ input: DescribeClusterNodePoolDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNodePoolDetailResponse {
-        try await self.client.execute(action: "DescribeClusterNodePoolDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterNodePoolDetail请求参数结构体
     public struct DescribeClusterNodePoolDetailRequest: TCRequestModel {
         /// 集群id
@@ -58,5 +46,17 @@ extension Tke {
             case nodePool = "NodePool"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询节点池详情
+    @inlinable
+    public func describeClusterNodePoolDetail(_ input: DescribeClusterNodePoolDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterNodePoolDetailResponse > {
+        self.client.execute(action: "DescribeClusterNodePoolDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询节点池详情
+    @inlinable
+    public func describeClusterNodePoolDetail(_ input: DescribeClusterNodePoolDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNodePoolDetailResponse {
+        try await self.client.execute(action: "DescribeClusterNodePoolDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

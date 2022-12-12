@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取命名空间列表信息
-    @inlinable
-    public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespacesResponse > {
-        self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取命名空间列表信息
-    @inlinable
-    public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacesResponse {
-        try await self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNamespaces请求参数结构体
     public struct DescribeNamespacesRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -35,7 +23,7 @@ extension Iecp {
         /// 边缘节点名称模糊搜索串
         public let namePattern: String?
         
-        public init (edgeUnitID: UInt64, namePattern: String?) {
+        public init (edgeUnitID: UInt64, namePattern: String? = nil) {
             self.edgeUnitID = edgeUnitID
             self.namePattern = namePattern
         }
@@ -58,5 +46,17 @@ extension Iecp {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取命名空间列表信息
+    @inlinable
+    public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespacesResponse > {
+        self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取命名空间列表信息
+    @inlinable
+    public func describeNamespaces(_ input: DescribeNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacesResponse {
+        try await self.client.execute(action: "DescribeNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

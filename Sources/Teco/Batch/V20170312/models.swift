@@ -93,15 +93,15 @@ extension Batch {
         public let envType: String?
         
         /// 计算环境具体参数
-        public let envData: EnvData
+        public let envData: EnvData?
         
         /// 数据盘挂载选项
         public let mountDataDisks: [MountDataDisk]?
         
         /// agent运行模式，适用于Windows系统
-        public let agentRunningMode: AgentRunningMode
+        public let agentRunningMode: AgentRunningMode?
         
-        public init (envType: String?, envData: EnvData, mountDataDisks: [MountDataDisk]?, agentRunningMode: AgentRunningMode) {
+        public init (envType: String? = nil, envData: EnvData? = nil, mountDataDisks: [MountDataDisk]? = nil, agentRunningMode: AgentRunningMode? = nil) {
             self.envType = envType
             self.envData = envData
             self.mountDataDisks = mountDataDisks
@@ -128,9 +128,9 @@ extension Batch {
         public let packagePath: String?
         
         /// 应用使用Docker的相关配置。在使用Docker配置的情况下，DeliveryForm 为 LOCAL 表示直接使用Docker镜像内部的应用软件，通过Docker方式运行；DeliveryForm 为 PACKAGE，表示将远程应用包注入到Docker镜像后，通过Docker方式运行。为避免Docker不同版本的兼容性问题，Docker安装包及相关依赖由Batch统一负责，对于已安装Docker的自定义镜像，请卸载后再使用Docker特性。
-        public let docker: Docker
+        public let docker: Docker?
         
-        public init (command: String, deliveryForm: String, packagePath: String?, docker: Docker) {
+        public init (command: String, deliveryForm: String, packagePath: String? = nil, docker: Docker? = nil) {
             self.command = command
             self.deliveryForm = deliveryForm
             self.packagePath = packagePath
@@ -444,7 +444,7 @@ extension Batch {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cdcId: String?
         
-        public init (diskSize: Int64, diskType: String?, diskId: String?, deleteWithInstance: Bool?, snapshotId: String?, encrypt: Bool?, kmsKeyId: String?, throughputPerformance: Int64?, cdcId: String?) {
+        public init (diskSize: Int64, diskType: String? = nil, diskId: String? = nil, deleteWithInstance: Bool? = nil, snapshotId: String? = nil, encrypt: Bool? = nil, kmsKeyId: String? = nil, throughputPerformance: Int64? = nil, cdcId: String? = nil) {
             self.diskSize = diskSize
             self.diskType = diskType
             self.diskId = diskId
@@ -512,7 +512,7 @@ extension Batch {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dockerRunOption: String?
         
-        public init (user: String, password: String, image: String, server: String?, maxRetryCount: UInt64?, delayOnRetry: UInt64?, dockerRunOption: String?) {
+        public init (user: String, password: String, image: String, server: String? = nil, maxRetryCount: UInt64? = nil, delayOnRetry: UInt64? = nil, dockerRunOption: String? = nil) {
             self.user = user
             self.password = password
             self.image = image
@@ -536,15 +536,15 @@ extension Batch {
     /// 描述了实例的增强服务启用情况与其设置，如云安全，云监控等实例 Agent
     public struct EnhancedService: TCInputModel, TCOutputModel {
         /// 开启云安全服务。若不指定该参数，则默认开启云安全服务。
-        public let securityService: RunSecurityServiceEnabled
+        public let securityService: RunSecurityServiceEnabled?
         
         /// 开启云监控服务。若不指定该参数，则默认开启云监控服务。
-        public let monitorService: RunMonitorServiceEnabled
+        public let monitorService: RunMonitorServiceEnabled?
         
         /// 开启云自动化助手服务（TencentCloud Automation Tools，TAT）。若不指定该参数，则公共镜像默认开启云自动化助手服务，其他镜像默认不开启云自动化助手服务。
-        public let automationService: RunAutomationServiceEnabled
+        public let automationService: RunAutomationServiceEnabled?
         
-        public init (securityService: RunSecurityServiceEnabled, monitorService: RunMonitorServiceEnabled, automationService: RunAutomationServiceEnabled) {
+        public init (securityService: RunSecurityServiceEnabled? = nil, monitorService: RunMonitorServiceEnabled? = nil, automationService: RunAutomationServiceEnabled? = nil) {
             self.securityService = securityService
             self.monitorService = monitorService
             self.automationService = automationService
@@ -566,40 +566,40 @@ extension Batch {
         public let imageId: String?
         
         /// 实例系统盘配置信息
-        public let systemDisk: SystemDisk
+        public let systemDisk: SystemDisk?
         
         /// 实例数据盘配置信息
         public let dataDisks: [DataDisk]?
         
         /// 私有网络相关信息配置，与Zones和VirtualPrivateClouds不能同时指定。
-        public let virtualPrivateCloud: VirtualPrivateCloud
+        public let virtualPrivateCloud: VirtualPrivateCloud?
         
         /// 公网带宽相关信息设置
-        public let internetAccessible: InternetAccessible
+        public let internetAccessible: InternetAccessible?
         
         /// CVM实例显示名称
         public let instanceName: String?
         
         /// 实例登录设置
-        public let loginSettings: LoginSettings
+        public let loginSettings: LoginSettings?
         
         /// 实例所属安全组
         public let securityGroupIds: [String]?
         
         /// 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
-        public let enhancedService: EnhancedService
+        public let enhancedService: EnhancedService?
         
         /// CVM实例计费类型<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
         public let instanceChargeType: String?
         
         /// 实例的市场相关选项，如竞价实例相关参数
-        public let instanceMarketOptions: InstanceMarketOptionsRequest
+        public let instanceMarketOptions: InstanceMarketOptionsRequest?
         
         /// CVM实例类型列表，不能与InstanceType和InstanceTypeOptions同时出现。指定该字段后，计算节点按照机型先后顺序依次尝试创建，直到实例创建成功，结束遍历过程。最多支持10个机型。
         public let instanceTypes: [String]?
         
         /// CVM实例机型配置。不能与InstanceType和InstanceTypes同时出现。
-        public let instanceTypeOptions: InstanceTypeOptions
+        public let instanceTypeOptions: InstanceTypeOptions?
         
         /// 可用区列表，支持跨可用区创建CVM实例。与VirtualPrivateCloud和VirtualPrivateClouds不能同时指定。
         public let zones: [String]?
@@ -607,7 +607,7 @@ extension Batch {
         /// 私有网络列表，支持跨私有网络创建CVM实例。与VirtualPrivateCloud和Zones不能同时指定。
         public let virtualPrivateClouds: [VirtualPrivateCloud]?
         
-        public init (instanceType: String?, imageId: String?, systemDisk: SystemDisk, dataDisks: [DataDisk]?, virtualPrivateCloud: VirtualPrivateCloud, internetAccessible: InternetAccessible, instanceName: String?, loginSettings: LoginSettings, securityGroupIds: [String]?, enhancedService: EnhancedService, instanceChargeType: String?, instanceMarketOptions: InstanceMarketOptionsRequest, instanceTypes: [String]?, instanceTypeOptions: InstanceTypeOptions, zones: [String]?, virtualPrivateClouds: [VirtualPrivateCloud]?) {
+        public init (instanceType: String? = nil, imageId: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, enhancedService: EnhancedService? = nil, instanceChargeType: String? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, instanceTypes: [String]? = nil, instanceTypeOptions: InstanceTypeOptions? = nil, zones: [String]? = nil, virtualPrivateClouds: [VirtualPrivateCloud]? = nil) {
             self.instanceType = instanceType
             self.imageId = imageId
             self.systemDisk = systemDisk
@@ -711,7 +711,7 @@ extension Batch {
         /// 指定的内网IP列表，不指定时自动分配。
         public let lanIps: [String]?
         
-        public init (zones: [String], instanceTypes: [String], timeUnit: String, timeSpan: UInt64, raidId: Int64, osTypeId: Int64, virtualPrivateClouds: [CpmVirtualPrivateCloud], needSecurityAgent: Int64?, needMonitorAgent: Int64?, autoRenewFlag: Int64?, isZoning: Int64?, fileSystem: String?, password: String?, applyEip: Int64?, eipPayMode: String?, eipBandwidth: Int64?, imageId: String?, sysRootSpace: Int64?, sysDataSpace: Int64?, hyperThreading: Int64?, lanIps: [String]?) {
+        public init (zones: [String], instanceTypes: [String], timeUnit: String, timeSpan: UInt64, raidId: Int64, osTypeId: Int64, virtualPrivateClouds: [CpmVirtualPrivateCloud], needSecurityAgent: Int64? = nil, needMonitorAgent: Int64? = nil, autoRenewFlag: Int64? = nil, isZoning: Int64? = nil, fileSystem: String? = nil, password: String? = nil, applyEip: Int64? = nil, eipPayMode: String? = nil, eipBandwidth: Int64? = nil, imageId: String? = nil, sysRootSpace: Int64? = nil, sysDataSpace: Int64? = nil, hyperThreading: Int64? = nil, lanIps: [String]? = nil) {
             self.zones = zones
             self.instanceTypes = instanceTypes
             self.timeUnit = timeUnit
@@ -829,9 +829,9 @@ extension Batch {
         
         /// HDD本地存储属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let storageBlockAttr: StorageBlock
+        public let storageBlockAttr: StorageBlock?
         
-        public init (releaseAddress: Bool?, unsupportNetworks: [String]?, storageBlockAttr: StorageBlock) {
+        public init (releaseAddress: Bool? = nil, unsupportNetworks: [String]? = nil, storageBlockAttr: StorageBlock? = nil) {
             self.releaseAddress = releaseAddress
             self.unsupportNetworks = unsupportNetworks
             self.storageBlockAttr = storageBlockAttr
@@ -885,7 +885,7 @@ extension Batch {
         /// 挂载配置项参数
         public let mountOptionParameter: String?
         
-        public init (sourcePath: String, destinationPath: String, mountOptionParameter: String?) {
+        public init (sourcePath: String, destinationPath: String, mountOptionParameter: String? = nil) {
             self.sourcePath = sourcePath
             self.destinationPath = destinationPath
             self.mountOptionParameter = mountOptionParameter
@@ -907,9 +907,9 @@ extension Batch {
         public let imageId: String?
         
         /// 实例登录设置。
-        public let loginSettings: LoginSettings
+        public let loginSettings: LoginSettings?
         
-        public init (instanceId: String, imageId: String?, loginSettings: LoginSettings) {
+        public init (instanceId: String, imageId: String? = nil, loginSettings: LoginSettings? = nil) {
             self.instanceId = instanceId
             self.imageId = imageId
             self.loginSettings = loginSettings
@@ -944,7 +944,7 @@ extension Batch {
         /// 市场选项类型，当前只支持取值：spot
         public let marketType: String?
         
-        public init (spotOptions: SpotMarketOptions, marketType: String?) {
+        public init (spotOptions: SpotMarketOptions, marketType: String? = nil) {
             self.spotOptions = spotOptions
             self.marketType = marketType
         }
@@ -992,7 +992,7 @@ extension Batch {
         /// 实例机型类别，可选参数：“ALL”、“GENERAL”、“GENERAL_2”、“GENERAL_3”、“COMPUTE”、“COMPUTE_2”和“COMPUTE_3”。默认值“ALL”。
         public let instanceCategories: [String]?
         
-        public init (cpu: UInt64, memory: UInt64, instanceCategories: [String]?) {
+        public init (cpu: UInt64, memory: UInt64, instanceCategories: [String]? = nil) {
             self.cpu = cpu
             self.memory = memory
             self.instanceCategories = instanceCategories
@@ -1021,7 +1021,7 @@ extension Batch {
         
         /// 扩展属性。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let externals: Externals
+        public let externals: Externals?
         
         /// 实例的CPU核数，单位：核。
         public let cpu: Int64
@@ -1115,7 +1115,7 @@ extension Batch {
         /// 带宽包ID。可通过[`DescribeBandwidthPackages`](https://cloud.tencent.com/document/api/215/19209)接口返回值中的`BandwidthPackageId`获取。该参数仅在RunInstances接口中作为入参使用。
         public let bandwidthPackageId: String?
         
-        public init (internetChargeType: String?, internetMaxBandwidthOut: Int64?, publicIpAssigned: Bool?, bandwidthPackageId: String?) {
+        public init (internetChargeType: String? = nil, internetMaxBandwidthOut: Int64? = nil, publicIpAssigned: Bool? = nil, bandwidthPackageId: String? = nil) {
             self.internetChargeType = internetChargeType
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
             self.publicIpAssigned = publicIpAssigned
@@ -1275,7 +1275,7 @@ extension Batch {
         /// TDMQ_CMQ：表示向腾讯云TDMQ_CMQ发送消息。<br/>默认值为CMQ。<br/>注：腾讯云计划于2022年6月前正式下线消息队列 CMQ，建议使用TDMQ_CMQ。参考文档：[CMQ迁移到TDMQ_CMQ](https://cloud.tencent.com/document/product/406/60860)
         public let notificationTarget: String?
         
-        public init (tasks: [Task], jobName: String?, jobDescription: String?, priority: UInt64?, dependences: [Dependence]?, notifications: [Notification]?, taskExecutionDependOn: String?, stateIfCreateCvmFailed: String?, tags: [Tag]?, notificationTarget: String?) {
+        public init (tasks: [Task], jobName: String? = nil, jobDescription: String? = nil, priority: UInt64? = nil, dependences: [Dependence]? = nil, notifications: [Notification]? = nil, taskExecutionDependOn: String? = nil, stateIfCreateCvmFailed: String? = nil, tags: [Tag]? = nil, notificationTarget: String? = nil) {
             self.tasks = tasks
             self.jobName = jobName
             self.jobDescription = jobDescription
@@ -1318,7 +1318,7 @@ extension Batch {
         
         /// 位置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let placement: Placement
+        public let placement: Placement?
         
         /// 创建时间
         public let createTime: String
@@ -1384,7 +1384,7 @@ extension Batch {
         /// 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：<br><li>TRUE：表示保持镜像的登录设置<br><li>FALSE：表示不保持镜像的登录设置<br><br>默认取值：FALSE。
         public let keepImageLogin: String?
         
-        public init (password: String?, keyIds: [String]?, keepImageLogin: String?) {
+        public init (password: String? = nil, keyIds: [String]? = nil, keepImageLogin: String? = nil) {
             self.password = password
             self.keyIds = keyIds
             self.keepImageLogin = keepImageLogin
@@ -1405,7 +1405,7 @@ extension Batch {
         /// 文件系统类型，Linux系统下支持"EXT3"和"EXT4"两种，默认"EXT3"；Windows系统下仅支持"NTFS"
         public let fileSystemType: String?
         
-        public init (localPath: String, fileSystemType: String?) {
+        public init (localPath: String, fileSystemType: String? = nil) {
             self.localPath = localPath
             self.fileSystemType = fileSystemType
         }
@@ -1431,7 +1431,7 @@ extension Batch {
         public let envType: String?
         
         /// 计算环境具体参数
-        public let envData: EnvData
+        public let envData: EnvData?
         
         /// 数据盘挂载选项
         public let mountDataDisks: [MountDataDisk]?
@@ -1443,7 +1443,7 @@ extension Batch {
         public let inputMappings: [InputMapping]?
         
         /// agent运行模式，适用于Windows系统
-        public let agentRunningMode: AgentRunningMode
+        public let agentRunningMode: AgentRunningMode?
         
         /// 通知信息
         public let notifications: [Notification]?
@@ -1463,7 +1463,7 @@ extension Batch {
         /// TDMQ_CMQ：表示向腾讯云TDMQ_CMQ发送消息。<br/>默认值为CMQ。<br/>注：腾讯云计划于2022年6月前正式下线消息队列 CMQ，建议使用TDMQ_CMQ。参考文档：[CMQ迁移到TDMQ_CMQ](https://cloud.tencent.com/document/product/406/60860)
         public let notificationTarget: String?
         
-        public init (envName: String, desiredComputeNodeCount: Int64, envDescription: String?, envType: String?, envData: EnvData, mountDataDisks: [MountDataDisk]?, authentications: [Authentication]?, inputMappings: [InputMapping]?, agentRunningMode: AgentRunningMode, notifications: [Notification]?, actionIfComputeNodeInactive: String?, resourceMaxRetryCount: Int64?, tags: [Tag]?, notificationTarget: String?) {
+        public init (envName: String, desiredComputeNodeCount: Int64, envDescription: String? = nil, envType: String? = nil, envData: EnvData? = nil, mountDataDisks: [MountDataDisk]? = nil, authentications: [Authentication]? = nil, inputMappings: [InputMapping]? = nil, agentRunningMode: AgentRunningMode? = nil, notifications: [Notification]? = nil, actionIfComputeNodeInactive: String? = nil, resourceMaxRetryCount: Int64? = nil, tags: [Tag]? = nil, notificationTarget: String? = nil) {
             self.envName = envName
             self.desiredComputeNodeCount = desiredComputeNodeCount
             self.envDescription = envDescription
@@ -1522,7 +1522,7 @@ extension Batch {
         public let inputMappings: [InputMapping]?
         
         /// 通知信息
-        public let notifications: Notification
+        public let notifications: Notification?
         
         /// 非活跃节点处理策略，默认“RECREATE”，即对于实例创建失败或异常退还的计算节点，定期重新创建实例资源。
         public let actionIfComputeNodeInactive: String?
@@ -1539,7 +1539,7 @@ extension Batch {
         /// TDMQ_CMQ：表示向腾讯云TDMQ_CMQ发送消息。<br/>默认值为CMQ。<br/>注：腾讯云计划于2022年6月前正式下线消息队列 CMQ，建议使用TDMQ_CMQ。参考文档：[CMQ迁移到TDMQ_CMQ](https://cloud.tencent.com/document/product/406/60860)
         public let notificationTarget: String?
         
-        public init (envName: String, envData: EnvDataCpm, desiredComputeNodeCount: Int64, envDescription: String?, envType: String?, authentications: [Authentication]?, inputMappings: [InputMapping]?, notifications: Notification, actionIfComputeNodeInactive: String?, resourceMaxRetryCount: Int64?, tags: [Tag]?, notificationTarget: String?) {
+        public init (envName: String, envData: EnvDataCpm, desiredComputeNodeCount: Int64, envDescription: String? = nil, envType: String? = nil, authentications: [Authentication]? = nil, inputMappings: [InputMapping]? = nil, notifications: Notification? = nil, actionIfComputeNodeInactive: String? = nil, resourceMaxRetryCount: Int64? = nil, tags: [Tag]? = nil, notificationTarget: String? = nil) {
             self.envName = envName
             self.envData = envData
             self.desiredComputeNodeCount = desiredComputeNodeCount
@@ -1633,9 +1633,9 @@ extension Batch {
         
         /// 输出映射选项
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let outputMappingOption: OutputMappingOption
+        public let outputMappingOption: OutputMappingOption?
         
-        public init (sourcePath: String, destinationPath: String, outputMappingOption: OutputMappingOption) {
+        public init (sourcePath: String, destinationPath: String, outputMappingOption: OutputMappingOption? = nil) {
             self.sourcePath = sourcePath
             self.destinationPath = destinationPath
             self.outputMappingOption = outputMappingOption
@@ -1680,7 +1680,7 @@ extension Batch {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workspace: String?
         
-        public init (workspace: String?) {
+        public init (workspace: String? = nil) {
             self.workspace = workspace
         }
         
@@ -1706,7 +1706,7 @@ extension Batch {
         /// 实例所属的专用宿主机ID，仅用于出参。
         public let hostId: String?
         
-        public init (zone: String, projectId: Int64?, hostIds: [String]?, hostIps: [String]?, hostId: String?) {
+        public init (zone: String, projectId: Int64? = nil, hostIds: [String]? = nil, hostIps: [String]? = nil, hostId: String? = nil) {
             self.zone = zone
             self.projectId = projectId
             self.hostIds = hostIds
@@ -1737,7 +1737,7 @@ extension Batch {
         /// 标准错误重定向文件名，支持三个占位符${BATCH_JOB_ID}、${BATCH_TASK_NAME}、${BATCH_TASK_INSTANCE_INDEX}
         public let stderrRedirectFileName: String?
         
-        public init (stdoutRedirectPath: String?, stderrRedirectPath: String?, stdoutRedirectFileName: String?, stderrRedirectFileName: String?) {
+        public init (stdoutRedirectPath: String? = nil, stderrRedirectPath: String? = nil, stdoutRedirectFileName: String? = nil, stderrRedirectFileName: String? = nil) {
             self.stdoutRedirectPath = stdoutRedirectPath
             self.stderrRedirectPath = stderrRedirectPath
             self.stdoutRedirectFileName = stdoutRedirectFileName
@@ -1766,7 +1766,7 @@ extension Batch {
         /// 标准错误重定向本地文件名，支持三个占位符${BATCH_JOB_ID}、${BATCH_TASK_NAME}、${BATCH_TASK_INSTANCE_INDEX}
         public let stderrLocalFileName: String?
         
-        public init (stdoutLocalPath: String?, stderrLocalPath: String?, stdoutLocalFileName: String?, stderrLocalFileName: String?) {
+        public init (stdoutLocalPath: String? = nil, stderrLocalPath: String? = nil, stdoutLocalFileName: String? = nil, stderrLocalFileName: String? = nil) {
             self.stdoutLocalPath = stdoutLocalPath
             self.stderrLocalPath = stderrLocalPath
             self.stdoutLocalFileName = stdoutLocalFileName
@@ -1786,7 +1786,7 @@ extension Batch {
         /// 是否开启云自动化助手。取值范围：<br><li>TRUE：表示开启云自动化助手服务<br><li>FALSE：表示不开启云自动化助手服务<br><br>默认取值：FALSE。
         public let enabled: Bool?
         
-        public init (enabled: Bool?) {
+        public init (enabled: Bool? = nil) {
             self.enabled = enabled
         }
         
@@ -1800,7 +1800,7 @@ extension Batch {
         /// 是否开启[云监控](/document/product/248)服务。取值范围：<br><li>TRUE：表示开启云监控服务<br><li>FALSE：表示不开启云监控服务<br><br>默认取值：TRUE。
         public let enabled: Bool?
         
-        public init (enabled: Bool?) {
+        public init (enabled: Bool? = nil) {
             self.enabled = enabled
         }
         
@@ -1814,7 +1814,7 @@ extension Batch {
         /// 是否开启[云安全](/document/product/296)服务。取值范围：<br><li>TRUE：表示开启云安全服务<br><li>FALSE：表示不开启云安全服务<br><br>默认取值：TRUE。
         public let enabled: Bool?
         
-        public init (enabled: Bool?) {
+        public init (enabled: Bool? = nil) {
             self.enabled = enabled
         }
         
@@ -1831,7 +1831,7 @@ extension Batch {
         /// 竞价请求类型，当前仅支持类型：one-time
         public let spotInstanceType: String?
         
-        public init (maxPrice: String, spotInstanceType: String?) {
+        public init (maxPrice: String = "one-time", spotInstanceType: String? = nil) {
             self.maxPrice = maxPrice
             self.spotInstanceType = spotInstanceType
         }
@@ -1878,7 +1878,7 @@ extension Batch {
         /// 所属的独享集群ID。
         public let cdcId: String?
         
-        public init (diskType: String?, diskId: String?, diskSize: Int64?, cdcId: String?) {
+        public init (diskType: String? = nil, diskId: String? = nil, diskSize: Int64? = nil, cdcId: String? = nil) {
             self.diskType = diskType
             self.diskId = diskId
             self.diskSize = diskSize
@@ -1897,11 +1897,11 @@ extension Batch {
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let key: String
+        public let key: String?
         
         /// 标签值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let value: String
+        public let value: String?
         
         public init (key: String, value: String) {
             self.key = key
@@ -1926,16 +1926,16 @@ extension Batch {
         public let taskInstanceNum: UInt64?
         
         /// 运行环境信息，ComputeEnv 和 EnvId 必须指定一个（且只有一个）参数。
-        public let computeEnv: AnonymousComputeEnv
+        public let computeEnv: AnonymousComputeEnv?
         
         /// 计算环境ID，ComputeEnv 和 EnvId 必须指定一个（且只有一个）参数。
         public let envId: String?
         
         /// 重定向信息
-        public let redirectInfo: RedirectInfo
+        public let redirectInfo: RedirectInfo?
         
         /// 重定向本地信息
-        public let redirectLocalInfo: RedirectLocalInfo
+        public let redirectLocalInfo: RedirectLocalInfo?
         
         /// 输入映射
         public let inputMappings: [InputMapping]?
@@ -1970,7 +1970,7 @@ extension Batch {
         /// 启动任务过程中，创建计算资源如CVM失败后的最大重试次数，默认为0。最大值100。
         public let resourceMaxRetryCount: UInt64?
         
-        public init (application: Application, taskName: String?, taskInstanceNum: UInt64?, computeEnv: AnonymousComputeEnv, envId: String?, redirectInfo: RedirectInfo, redirectLocalInfo: RedirectLocalInfo, inputMappings: [InputMapping]?, outputMappings: [OutputMapping]?, outputMappingConfigs: [OutputMappingConfig]?, envVars: [EnvVar]?, authentications: [Authentication]?, failedAction: String?, maxRetryCount: UInt64?, timeout: UInt64?, maxConcurrentNum: UInt64?, restartComputeNode: Bool?, resourceMaxRetryCount: UInt64?) {
+        public init (application: Application, taskName: String? = nil, taskInstanceNum: UInt64? = nil, computeEnv: AnonymousComputeEnv? = nil, envId: String? = nil, redirectInfo: RedirectInfo? = nil, redirectLocalInfo: RedirectLocalInfo? = nil, inputMappings: [InputMapping]? = nil, outputMappings: [OutputMapping]? = nil, outputMappingConfigs: [OutputMappingConfig]? = nil, envVars: [EnvVar]? = nil, authentications: [Authentication]? = nil, failedAction: String? = nil, maxRetryCount: UInt64? = nil, timeout: UInt64? = nil, maxConcurrentNum: UInt64? = nil, restartComputeNode: Bool? = nil, resourceMaxRetryCount: UInt64? = nil) {
             self.application = application
             self.taskName = taskName
             self.taskInstanceNum = taskInstanceNum
@@ -2255,7 +2255,7 @@ extension Batch {
         /// 为弹性网卡指定随机生成的 IPv6 地址数量。
         public let ipv6AddressCount: UInt64?
         
-        public init (vpcId: String, subnetId: String, asVpcGateway: Bool?, privateIpAddresses: [String]?, ipv6AddressCount: UInt64?) {
+        public init (vpcId: String, subnetId: String, asVpcGateway: Bool? = nil, privateIpAddresses: [String]? = nil, ipv6AddressCount: UInt64? = nil) {
             self.vpcId = vpcId
             self.subnetId = subnetId
             self.asVpcGateway = asVpcGateway

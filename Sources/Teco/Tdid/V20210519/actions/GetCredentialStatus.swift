@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 获取凭证链上状态
-    ///
-    /// 获取凭证链上状态信息
-    @inlinable
-    public func getCredentialStatus(_ input: GetCredentialStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCredentialStatusResponse > {
-        self.client.execute(action: "GetCredentialStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取凭证链上状态
-    ///
-    /// 获取凭证链上状态信息
-    @inlinable
-    public func getCredentialStatus(_ input: GetCredentialStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialStatusResponse {
-        try await self.client.execute(action: "GetCredentialStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetCredentialStatus请求参数结构体
     public struct GetCredentialStatusRequest: TCRequestModel {
         /// 凭证id
@@ -57,5 +41,21 @@ extension Tdid {
             case credentialStatus = "CredentialStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取凭证链上状态
+    ///
+    /// 获取凭证链上状态信息
+    @inlinable
+    public func getCredentialStatus(_ input: GetCredentialStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCredentialStatusResponse > {
+        self.client.execute(action: "GetCredentialStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取凭证链上状态
+    ///
+    /// 获取凭证链上状态信息
+    @inlinable
+    public func getCredentialStatus(_ input: GetCredentialStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialStatusResponse {
+        try await self.client.execute(action: "GetCredentialStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

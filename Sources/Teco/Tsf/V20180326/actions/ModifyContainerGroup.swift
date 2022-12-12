@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 修改容器部署组
-    @inlinable
-    public func modifyContainerGroup(_ input: ModifyContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyContainerGroupResponse > {
-        self.client.execute(action: "ModifyContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改容器部署组
-    @inlinable
-    public func modifyContainerGroup(_ input: ModifyContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerGroupResponse {
-        try await self.client.execute(action: "ModifyContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyContainerGroup请求参数结构体
     public struct ModifyContainerGroupRequest: TCRequestModel {
         /// 部署组ID
@@ -50,7 +38,7 @@ extension Tsf {
         /// 部署组备注
         public let alias: String?
         
-        public init (groupId: String?, accessType: Int64?, protocolPorts: [ProtocolPort]?, updateType: Int64?, updateIvl: Int64?, subnetId: String?, alias: String?) {
+        public init (groupId: String? = nil, accessType: Int64? = nil, protocolPorts: [ProtocolPort]? = nil, updateType: Int64? = nil, updateIvl: Int64? = nil, subnetId: String? = nil, alias: String? = nil) {
             self.groupId = groupId
             self.accessType = accessType
             self.protocolPorts = protocolPorts
@@ -86,5 +74,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改容器部署组
+    @inlinable
+    public func modifyContainerGroup(_ input: ModifyContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyContainerGroupResponse > {
+        self.client.execute(action: "ModifyContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改容器部署组
+    @inlinable
+    public func modifyContainerGroup(_ input: ModifyContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerGroupResponse {
+        try await self.client.execute(action: "ModifyContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

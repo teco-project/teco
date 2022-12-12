@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ump {
-    /// 相机状态上报接口
-    ///
-    /// 上报当前场内所有相机的当前状态
-    @inlinable
-    public func createCameraState(_ input: CreateCameraStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCameraStateResponse > {
-        self.client.execute(action: "CreateCameraState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 相机状态上报接口
-    ///
-    /// 上报当前场内所有相机的当前状态
-    @inlinable
-    public func createCameraState(_ input: CreateCameraStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraStateResponse {
-        try await self.client.execute(action: "CreateCameraState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCameraState请求参数结构体
     public struct CreateCameraStateRequest: TCRequestModel {
         /// 集团编码
@@ -63,5 +47,21 @@ extension Ump {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 相机状态上报接口
+    ///
+    /// 上报当前场内所有相机的当前状态
+    @inlinable
+    public func createCameraState(_ input: CreateCameraStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCameraStateResponse > {
+        self.client.execute(action: "CreateCameraState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 相机状态上报接口
+    ///
+    /// 上报当前场内所有相机的当前状态
+    @inlinable
+    public func createCameraState(_ input: CreateCameraStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraStateResponse {
+        try await self.client.execute(action: "CreateCameraState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 获取企业组织成员列表
-    @inlinable
-    public func listOrganizationMembers(_ input: ListOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListOrganizationMembersResponse > {
-        self.client.execute(action: "ListOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取企业组织成员列表
-    @inlinable
-    public func listOrganizationMembers(_ input: ListOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationMembersResponse {
-        try await self.client.execute(action: "ListOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListOrganizationMembers请求参数结构体
     public struct ListOrganizationMembersRequest: TCRequestModel {
         /// 偏移量
@@ -35,7 +23,7 @@ extension Organization {
         /// 限制数目
         public let limit: UInt64?
         
-        public init (offset: UInt64?, limit: UInt64?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
         }
@@ -62,5 +50,17 @@ extension Organization {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取企业组织成员列表
+    @inlinable
+    public func listOrganizationMembers(_ input: ListOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListOrganizationMembersResponse > {
+        self.client.execute(action: "ListOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取企业组织成员列表
+    @inlinable
+    public func listOrganizationMembers(_ input: ListOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationMembersResponse {
+        try await self.client.execute(action: "ListOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ticm {
-    /// 图像内容审核
-    ///
-    /// 本接口提供多种维度的图像审核能力，支持色情和性感内容识别，政治人物和涉政敏感场景识别，以及暴恐人物、场景、旗帜标识等违禁内容的识别。
-    @inlinable
-    public func imageModeration(_ input: ImageModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImageModerationResponse > {
-        self.client.execute(action: "ImageModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 图像内容审核
-    ///
-    /// 本接口提供多种维度的图像审核能力，支持色情和性感内容识别，政治人物和涉政敏感场景识别，以及暴恐人物、场景、旗帜标识等违禁内容的识别。
-    @inlinable
-    public func imageModeration(_ input: ImageModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageModerationResponse {
-        try await self.client.execute(action: "ImageModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ImageModeration请求参数结构体
     public struct ImageModerationRequest: TCRequestModel {
         /// 本次调用支持的识别场景，可选值如下：
@@ -58,7 +42,7 @@ extension Ticm {
         /// 图片经过base64编码的内容。最大不超过4M。与ImageUrl同时存在时优先使用ImageUrl字段。
         public let imageBase64: String?
         
-        public init (scenes: [String], imageUrl: String?, config: String?, extra: String?, imageBase64: String?) {
+        public init (scenes: [String], imageUrl: String? = nil, config: String? = nil, extra: String? = nil, imageBase64: String? = nil) {
             self.scenes = scenes
             self.imageUrl = imageUrl
             self.config = config
@@ -85,22 +69,22 @@ extension Ticm {
         
         /// 色情识别结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pornResult: PornResult
+        public let pornResult: PornResult?
         
         /// 暴恐识别结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let terrorismResult: TerrorismResult
+        public let terrorismResult: TerrorismResult?
         
         /// 政治敏感识别结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let politicsResult: PoliticsResult
+        public let politicsResult: PoliticsResult?
         
         /// 透传字段，透传简单信息。
         public let extra: String
         
         /// 恶心内容识别结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let disgustResult: DisgustResult
+        public let disgustResult: DisgustResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -114,5 +98,21 @@ extension Ticm {
             case disgustResult = "DisgustResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 图像内容审核
+    ///
+    /// 本接口提供多种维度的图像审核能力，支持色情和性感内容识别，政治人物和涉政敏感场景识别，以及暴恐人物、场景、旗帜标识等违禁内容的识别。
+    @inlinable
+    public func imageModeration(_ input: ImageModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImageModerationResponse > {
+        self.client.execute(action: "ImageModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 图像内容审核
+    ///
+    /// 本接口提供多种维度的图像审核能力，支持色情和性感内容识别，政治人物和涉政敏感场景识别，以及暴恐人物、场景、旗帜标识等违禁内容的识别。
+    @inlinable
+    public func imageModeration(_ input: ImageModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageModerationResponse {
+        try await self.client.execute(action: "ImageModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

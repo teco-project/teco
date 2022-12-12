@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取任务详情
-    ///
-    /// 本接口（DescribeTask）用于查询一个已创建任务的详情，任务保留一个月 
-    @inlinable
-    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResponse > {
-        self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取任务详情
-    ///
-    /// 本接口（DescribeTask）用于查询一个已创建任务的详情，任务保留一个月 
-    @inlinable
-    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResponse {
-        try await self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTask请求参数结构体
     public struct DescribeTaskRequest: TCRequestModel {
         /// 任务ID
@@ -105,5 +89,21 @@ extension Iotcloud {
             case doneDeviceCnt = "DoneDeviceCnt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取任务详情
+    ///
+    /// 本接口（DescribeTask）用于查询一个已创建任务的详情，任务保留一个月 
+    @inlinable
+    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResponse > {
+        self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务详情
+    ///
+    /// 本接口（DescribeTask）用于查询一个已创建任务的详情，任务保留一个月 
+    @inlinable
+    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResponse {
+        try await self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

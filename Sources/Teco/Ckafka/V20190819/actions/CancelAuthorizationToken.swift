@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 取消授权token
-    @inlinable
-    public func cancelAuthorizationToken(_ input: CancelAuthorizationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelAuthorizationTokenResponse > {
-        self.client.execute(action: "CancelAuthorizationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消授权token
-    @inlinable
-    public func cancelAuthorizationToken(_ input: CancelAuthorizationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorizationTokenResponse {
-        try await self.client.execute(action: "CancelAuthorizationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelAuthorizationToken请求参数结构体
     public struct CancelAuthorizationTokenRequest: TCRequestModel {
         /// 实例ID
@@ -64,5 +52,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消授权token
+    @inlinable
+    public func cancelAuthorizationToken(_ input: CancelAuthorizationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelAuthorizationTokenResponse > {
+        self.client.execute(action: "CancelAuthorizationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消授权token
+    @inlinable
+    public func cancelAuthorizationToken(_ input: CancelAuthorizationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorizationTokenResponse {
+        try await self.client.execute(action: "CancelAuthorizationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

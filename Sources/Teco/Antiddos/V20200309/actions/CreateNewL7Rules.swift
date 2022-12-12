@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 添加7层转发规则
-    @inlinable
-    public func createNewL7Rules(_ input: CreateNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNewL7RulesResponse > {
-        self.client.execute(action: "CreateNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加7层转发规则
-    @inlinable
-    public func createNewL7Rules(_ input: CreateNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNewL7RulesResponse {
-        try await self.client.execute(action: "CreateNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNewL7Rules请求参数结构体
     public struct CreateNewL7RulesRequest: TCRequestModel {
         /// 规则列表
@@ -68,5 +56,17 @@ extension Antiddos {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加7层转发规则
+    @inlinable
+    public func createNewL7Rules(_ input: CreateNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNewL7RulesResponse > {
+        self.client.execute(action: "CreateNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加7层转发规则
+    @inlinable
+    public func createNewL7Rules(_ input: CreateNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNewL7RulesResponse {
+        try await self.client.execute(action: "CreateNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

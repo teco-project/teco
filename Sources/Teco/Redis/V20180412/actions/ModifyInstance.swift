@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 修改实例相关信息
-    @inlinable
-    public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceResponse > {
-        self.client.execute(action: "ModifyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例相关信息
-    @inlinable
-    public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
-        try await self.client.execute(action: "ModifyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstance请求参数结构体
     public struct ModifyInstanceRequest: TCRequestModel {
         /// 修改实例操作，如填写：rename-表示实例重命名；modifyProject-修改实例所属项目；modifyAutoRenew-修改实例续费标记
@@ -53,7 +41,7 @@ extension Redis {
         /// 已经废弃
         public let autoRenew: Int64?
         
-        public init (operation: String, instanceIds: [String]?, instanceNames: [String]?, projectId: Int64?, autoRenews: [Int64]?, instanceId: String?, instanceName: String?, autoRenew: Int64?) {
+        public init (operation: String, instanceIds: [String]? = nil, instanceNames: [String]? = nil, projectId: Int64? = nil, autoRenews: [Int64]? = nil, instanceId: String? = nil, instanceName: String? = nil, autoRenew: Int64? = nil) {
             self.operation = operation
             self.instanceIds = instanceIds
             self.instanceNames = instanceNames
@@ -84,5 +72,17 @@ extension Redis {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例相关信息
+    @inlinable
+    public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceResponse > {
+        self.client.execute(action: "ModifyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例相关信息
+    @inlinable
+    public func modifyInstance(_ input: ModifyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
+        try await self.client.execute(action: "ModifyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 虚拟机部署组下线实例
-    @inlinable
-    public func shrinkInstances(_ input: ShrinkInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ShrinkInstancesResponse > {
-        self.client.execute(action: "ShrinkInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 虚拟机部署组下线实例
-    @inlinable
-    public func shrinkInstances(_ input: ShrinkInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShrinkInstancesResponse {
-        try await self.client.execute(action: "ShrinkInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ShrinkInstances请求参数结构体
     public struct ShrinkInstancesRequest: TCRequestModel {
         /// 部署组ID
@@ -58,5 +46,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 虚拟机部署组下线实例
+    @inlinable
+    public func shrinkInstances(_ input: ShrinkInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ShrinkInstancesResponse > {
+        self.client.execute(action: "ShrinkInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 虚拟机部署组下线实例
+    @inlinable
+    public func shrinkInstances(_ input: ShrinkInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShrinkInstancesResponse {
+        try await self.client.execute(action: "ShrinkInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

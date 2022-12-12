@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 混贴票据识别
-    ///
-    /// 本接口支持 单张、多张、多类型 票据的混合识别，同时支持自选需要识别的票据类型，已支持票种包括：增值税发票（专票、普票、卷票）、全电发票、非税发票、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票共14种标准报销发票，并支持其他类发票的识别。
-    /// 默认接口请求频率限制：5次/秒。
-    @inlinable
-    public func mixedInvoiceOCR(_ input: MixedInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MixedInvoiceOCRResponse > {
-        self.client.execute(action: "MixedInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 混贴票据识别
-    ///
-    /// 本接口支持 单张、多张、多类型 票据的混合识别，同时支持自选需要识别的票据类型，已支持票种包括：增值税发票（专票、普票、卷票）、全电发票、非税发票、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票共14种标准报销发票，并支持其他类发票的识别。
-    /// 默认接口请求频率限制：5次/秒。
-    @inlinable
-    public func mixedInvoiceOCR(_ input: MixedInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MixedInvoiceOCRResponse {
-        try await self.client.execute(action: "MixedInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// MixedInvoiceOCR请求参数结构体
     public struct MixedInvoiceOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -77,7 +59,7 @@ extension Ocr {
         /// 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         public let pdfPageNumber: Int64?
         
-        public init (imageBase64: String?, imageUrl: String?, types: [Int64]?, returnOther: String?, isPdf: Bool?, pdfPageNumber: Int64?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, returnOther: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.types = types
@@ -108,5 +90,23 @@ extension Ocr {
             case mixedInvoiceItems = "MixedInvoiceItems"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 混贴票据识别
+    ///
+    /// 本接口支持 单张、多张、多类型 票据的混合识别，同时支持自选需要识别的票据类型，已支持票种包括：增值税发票（专票、普票、卷票）、全电发票、非税发票、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票共14种标准报销发票，并支持其他类发票的识别。
+    /// 默认接口请求频率限制：5次/秒。
+    @inlinable
+    public func mixedInvoiceOCR(_ input: MixedInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MixedInvoiceOCRResponse > {
+        self.client.execute(action: "MixedInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 混贴票据识别
+    ///
+    /// 本接口支持 单张、多张、多类型 票据的混合识别，同时支持自选需要识别的票据类型，已支持票种包括：增值税发票（专票、普票、卷票）、全电发票、非税发票、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票共14种标准报销发票，并支持其他类发票的识别。
+    /// 默认接口请求频率限制：5次/秒。
+    @inlinable
+    public func mixedInvoiceOCR(_ input: MixedInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MixedInvoiceOCRResponse {
+        try await self.client.execute(action: "MixedInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

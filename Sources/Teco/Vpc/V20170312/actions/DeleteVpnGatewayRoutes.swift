@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除VPN网关路由
-    ///
-    /// 本接口（DeleteVpnGatewayCcnRoutes）用于删除VPN网关路由
-    @inlinable
-    public func deleteVpnGatewayRoutes(_ input: DeleteVpnGatewayRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnGatewayRoutesResponse > {
-        self.client.execute(action: "DeleteVpnGatewayRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除VPN网关路由
-    ///
-    /// 本接口（DeleteVpnGatewayCcnRoutes）用于删除VPN网关路由
-    @inlinable
-    public func deleteVpnGatewayRoutes(_ input: DeleteVpnGatewayRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewayRoutesResponse {
-        try await self.client.execute(action: "DeleteVpnGatewayRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteVpnGatewayRoutes请求参数结构体
     public struct DeleteVpnGatewayRoutesRequest: TCRequestModel {
         /// VPN网关实例ID
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除VPN网关路由
+    ///
+    /// 本接口（DeleteVpnGatewayCcnRoutes）用于删除VPN网关路由
+    @inlinable
+    public func deleteVpnGatewayRoutes(_ input: DeleteVpnGatewayRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnGatewayRoutesResponse > {
+        self.client.execute(action: "DeleteVpnGatewayRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除VPN网关路由
+    ///
+    /// 本接口（DeleteVpnGatewayCcnRoutes）用于删除VPN网关路由
+    @inlinable
+    public func deleteVpnGatewayRoutes(_ input: DeleteVpnGatewayRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewayRoutesResponse {
+        try await self.client.execute(action: "DeleteVpnGatewayRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

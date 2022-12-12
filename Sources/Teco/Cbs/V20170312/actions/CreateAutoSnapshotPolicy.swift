@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 创建定期快照策略
-    ///
-    /// 本接口（CreateAutoSnapshotPolicy）用于创建定期快照策略。
-    /// * 每个地域可创建的定期快照策略数量限制请参考文档[定期快照](/document/product/362/8191)。
-    /// * 每个地域可创建的快照有数量和容量的限制，具体请见腾讯云控制台快照页面提示，如果快照超配额，定期快照创建会失败。
-    @inlinable
-    public func createAutoSnapshotPolicy(_ input: CreateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAutoSnapshotPolicyResponse > {
-        self.client.execute(action: "CreateAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建定期快照策略
-    ///
-    /// 本接口（CreateAutoSnapshotPolicy）用于创建定期快照策略。
-    /// * 每个地域可创建的定期快照策略数量限制请参考文档[定期快照](/document/product/362/8191)。
-    /// * 每个地域可创建的快照有数量和容量的限制，具体请见腾讯云控制台快照页面提示，如果快照超配额，定期快照创建会失败。
-    @inlinable
-    public func createAutoSnapshotPolicy(_ input: CreateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoSnapshotPolicyResponse {
-        try await self.client.execute(action: "CreateAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAutoSnapshotPolicy请求参数结构体
     public struct CreateAutoSnapshotPolicyRequest: TCRequestModel {
         /// 定期快照的执行策略。
@@ -55,7 +35,7 @@ extension Cbs {
         /// 通过该定期快照策略创建的快照保留天数，默认保留7天。如果指定本参数，则IsPermanent入参不可指定为TRUE，否则会产生冲突。
         public let retentionDays: UInt64?
         
-        public init (policy: [Policy], dryRun: Bool?, isActivated: Bool?, autoSnapshotPolicyName: String?, isPermanent: Bool?, retentionDays: UInt64?) {
+        public init (policy: [Policy], dryRun: Bool? = nil, isActivated: Bool? = nil, autoSnapshotPolicyName: String? = nil, isPermanent: Bool? = nil, retentionDays: UInt64? = nil) {
             self.policy = policy
             self.dryRun = dryRun
             self.isActivated = isActivated
@@ -90,5 +70,25 @@ extension Cbs {
             case nextTriggerTime = "NextTriggerTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建定期快照策略
+    ///
+    /// 本接口（CreateAutoSnapshotPolicy）用于创建定期快照策略。
+    /// * 每个地域可创建的定期快照策略数量限制请参考文档[定期快照](/document/product/362/8191)。
+    /// * 每个地域可创建的快照有数量和容量的限制，具体请见腾讯云控制台快照页面提示，如果快照超配额，定期快照创建会失败。
+    @inlinable
+    public func createAutoSnapshotPolicy(_ input: CreateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAutoSnapshotPolicyResponse > {
+        self.client.execute(action: "CreateAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建定期快照策略
+    ///
+    /// 本接口（CreateAutoSnapshotPolicy）用于创建定期快照策略。
+    /// * 每个地域可创建的定期快照策略数量限制请参考文档[定期快照](/document/product/362/8191)。
+    /// * 每个地域可创建的快照有数量和容量的限制，具体请见腾讯云控制台快照页面提示，如果快照超配额，定期快照创建会失败。
+    @inlinable
+    public func createAutoSnapshotPolicy(_ input: CreateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoSnapshotPolicyResponse {
+        try await self.client.execute(action: "CreateAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

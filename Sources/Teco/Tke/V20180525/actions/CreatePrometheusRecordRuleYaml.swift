@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 以Yaml的方式创建聚合规则
-    @inlinable
-    public func createPrometheusRecordRuleYaml(_ input: CreatePrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusRecordRuleYamlResponse > {
-        self.client.execute(action: "CreatePrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 以Yaml的方式创建聚合规则
-    @inlinable
-    public func createPrometheusRecordRuleYaml(_ input: CreatePrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusRecordRuleYamlResponse {
-        try await self.client.execute(action: "CreatePrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePrometheusRecordRuleYaml请求参数结构体
     public struct CreatePrometheusRecordRuleYamlRequest: TCRequestModel {
         /// 实例id
@@ -54,5 +42,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 以Yaml的方式创建聚合规则
+    @inlinable
+    public func createPrometheusRecordRuleYaml(_ input: CreatePrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusRecordRuleYamlResponse > {
+        self.client.execute(action: "CreatePrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 以Yaml的方式创建聚合规则
+    @inlinable
+    public func createPrometheusRecordRuleYaml(_ input: CreatePrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusRecordRuleYamlResponse {
+        try await self.client.execute(action: "CreatePrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

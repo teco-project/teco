@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 修改黑石负载均衡七层转发路径
-    ///
-    /// 修改黑石负载均衡七层转发路径。
-    @inlinable
-    public func modifyL7Locations(_ input: ModifyL7LocationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL7LocationsResponse > {
-        self.client.execute(action: "ModifyL7Locations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改黑石负载均衡七层转发路径
-    ///
-    /// 修改黑石负载均衡七层转发路径。
-    @inlinable
-    public func modifyL7Locations(_ input: ModifyL7LocationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7LocationsResponse {
-        try await self.client.execute(action: "ModifyL7Locations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyL7Locations请求参数结构体
     public struct ModifyL7LocationsRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -67,5 +51,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改黑石负载均衡七层转发路径
+    ///
+    /// 修改黑石负载均衡七层转发路径。
+    @inlinable
+    public func modifyL7Locations(_ input: ModifyL7LocationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL7LocationsResponse > {
+        self.client.execute(action: "ModifyL7Locations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改黑石负载均衡七层转发路径
+    ///
+    /// 修改黑石负载均衡七层转发路径。
+    @inlinable
+    public func modifyL7Locations(_ input: ModifyL7LocationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7LocationsResponse {
+        try await self.client.execute(action: "ModifyL7Locations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

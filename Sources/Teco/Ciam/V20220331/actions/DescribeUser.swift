@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ciam {
-    /// 查询用户信息
-    ///
-    /// 多条件查询用户信息
-    @inlinable
-    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserResponse > {
-        self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户信息
-    ///
-    /// 多条件查询用户信息
-    @inlinable
-    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
-        try await self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUser请求参数结构体
     public struct DescribeUserRequest: TCRequestModel {
         /// 用户目录ID
@@ -46,9 +30,9 @@ extension Ciam {
         public let original: Bool?
         
         /// 排序设置
-        public let sort: Sort
+        public let sort: Sort?
         
-        public init (userStoreId: String, pageable: Pageable, filters: [QueryUserFilter]?, original: Bool?, sort: Sort) {
+        public init (userStoreId: String, pageable: Pageable, filters: [QueryUserFilter]? = nil, original: Bool? = nil, sort: Sort? = nil) {
             self.userStoreId = userStoreId
             self.pageable = pageable
             self.filters = filters
@@ -73,7 +57,7 @@ extension Ciam {
         
         /// 分页对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pageable: Pageable
+        public let pageable: Pageable?
         
         /// 用户列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -88,5 +72,21 @@ extension Ciam {
             case content = "Content"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户信息
+    ///
+    /// 多条件查询用户信息
+    @inlinable
+    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserResponse > {
+        self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户信息
+    ///
+    /// 多条件查询用户信息
+    @inlinable
+    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
+        try await self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

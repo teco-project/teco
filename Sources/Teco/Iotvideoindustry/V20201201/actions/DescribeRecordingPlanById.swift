@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取录制计划
-    ///
-    /// 本接口(DescribeRecordingPlanById)用于根据录制计划ID获取录制计划。
-    @inlinable
-    public func describeRecordingPlanById(_ input: DescribeRecordingPlanByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordingPlanByIdResponse > {
-        self.client.execute(action: "DescribeRecordingPlanById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取录制计划
-    ///
-    /// 本接口(DescribeRecordingPlanById)用于根据录制计划ID获取录制计划。
-    @inlinable
-    public func describeRecordingPlanById(_ input: DescribeRecordingPlanByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingPlanByIdResponse {
-        try await self.client.execute(action: "DescribeRecordingPlanById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRecordingPlanById请求参数结构体
     public struct DescribeRecordingPlanByIdRequest: TCRequestModel {
         /// 录制计划ID
@@ -49,7 +33,7 @@ extension Iotvideoindustry {
     public struct DescribeRecordingPlanByIdResponse: TCResponseModel {
         /// 录制计划详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let plan: RecordPlanDetail
+        public let plan: RecordPlanDetail?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -58,5 +42,21 @@ extension Iotvideoindustry {
             case plan = "Plan"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取录制计划
+    ///
+    /// 本接口(DescribeRecordingPlanById)用于根据录制计划ID获取录制计划。
+    @inlinable
+    public func describeRecordingPlanById(_ input: DescribeRecordingPlanByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordingPlanByIdResponse > {
+        self.client.execute(action: "DescribeRecordingPlanById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取录制计划
+    ///
+    /// 本接口(DescribeRecordingPlanById)用于根据录制计划ID获取录制计划。
+    @inlinable
+    public func describeRecordingPlanById(_ input: DescribeRecordingPlanByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingPlanByIdResponse {
+        try await self.client.execute(action: "DescribeRecordingPlanById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

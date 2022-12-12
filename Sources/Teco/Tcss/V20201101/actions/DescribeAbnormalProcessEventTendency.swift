@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tcss {
-    /// 查询待处理异常进程事件趋势
-    @inlinable
-    public func describeAbnormalProcessEventTendency(_ input: DescribeAbnormalProcessEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalProcessEventTendencyResponse > {
-        self.client.execute(action: "DescribeAbnormalProcessEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询待处理异常进程事件趋势
-    @inlinable
-    public func describeAbnormalProcessEventTendency(_ input: DescribeAbnormalProcessEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessEventTendencyResponse {
-        try await self.client.execute(action: "DescribeAbnormalProcessEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAbnormalProcessEventTendency请求参数结构体
     public struct DescribeAbnormalProcessEventTendencyRequest: TCRequestModel {
         /// 开始时间
@@ -62,5 +50,17 @@ extension Tcss {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询待处理异常进程事件趋势
+    @inlinable
+    public func describeAbnormalProcessEventTendency(_ input: DescribeAbnormalProcessEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalProcessEventTendencyResponse > {
+        self.client.execute(action: "DescribeAbnormalProcessEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询待处理异常进程事件趋势
+    @inlinable
+    public func describeAbnormalProcessEventTendency(_ input: DescribeAbnormalProcessEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessEventTendencyResponse {
+        try await self.client.execute(action: "DescribeAbnormalProcessEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

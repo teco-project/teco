@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Eis {
-    /// 获取运行时详情
-    @inlinable
-    public func getRuntimeMC(_ input: GetRuntimeMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRuntimeMCResponse > {
-        self.client.execute(action: "GetRuntimeMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取运行时详情
-    @inlinable
-    public func getRuntimeMC(_ input: GetRuntimeMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuntimeMCResponse {
-        try await self.client.execute(action: "GetRuntimeMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetRuntimeMC请求参数结构体
     public struct GetRuntimeMCRequest: TCRequestModel {
         /// 环境id
@@ -40,7 +28,7 @@ extension Eis {
         /// 环境运行类型：0:运行时类型、1:api类型
         public let runtimeClass: Int64?
         
-        public init (runtimeId: Int64, zone: String, runtimeClass: Int64?) {
+        public init (runtimeId: Int64, zone: String, runtimeClass: Int64? = nil) {
             self.runtimeId = runtimeId
             self.zone = zone
             self.runtimeClass = runtimeClass
@@ -65,5 +53,17 @@ extension Eis {
             case runtime = "Runtime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取运行时详情
+    @inlinable
+    public func getRuntimeMC(_ input: GetRuntimeMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRuntimeMCResponse > {
+        self.client.execute(action: "GetRuntimeMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取运行时详情
+    @inlinable
+    public func getRuntimeMC(_ input: GetRuntimeMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuntimeMCResponse {
+        try await self.client.execute(action: "GetRuntimeMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

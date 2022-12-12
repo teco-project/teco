@@ -221,7 +221,7 @@ extension Cynosdb {
         /// 线程ID。
         public let threadId: [String]?
         
-        public init (host: [String]?, user: [String]?, dbName: [String]?, tableName: [String]?, policyName: [String]?, sql: String?, sqlType: String?, execTime: Int64?, affectRows: Int64?, sqlTypes: [String]?, sqls: [String]?, sentRows: UInt64?, threadId: [String]?) {
+        public init (host: [String]? = nil, user: [String]? = nil, dbName: [String]? = nil, tableName: [String]? = nil, policyName: [String]? = nil, sql: String? = nil, sqlType: String? = nil, execTime: Int64? = nil, affectRows: Int64? = nil, sqlTypes: [String]? = nil, sqls: [String]? = nil, sentRows: UInt64? = nil, threadId: [String]? = nil) {
             self.host = host
             self.user = user
             self.dbName = dbName
@@ -548,7 +548,7 @@ extension Cynosdb {
         /// 集群网络信息
         public let netAddrs: [NetAddr]?
         
-        public init (status: String, updateTime: String, zone: String, clusterName: String, region: String, dbVersion: String, clusterId: String, instanceNum: Int64, uin: String, dbType: String, appId: Int64, statusDesc: String, createTime: String, payMode: Int64, periodEndTime: String, vip: String, vport: Int64, projectID: Int64, vpcId: String?, subnetId: String?, cynosVersion: String?, storageLimit: Int64?, renewFlag: Int64?, processingTask: String?, tasks: [ObjectTask]?, resourceTags: [Tag]?, dbMode: String?, serverlessStatus: String?, storage: Int64?, storageId: String?, storagePayMode: Int64?, minStorageSize: Int64?, maxStorageSize: Int64?, netAddrs: [NetAddr]?) {
+        public init (status: String, updateTime: String, zone: String, clusterName: String, region: String, dbVersion: String, clusterId: String, instanceNum: Int64, uin: String, dbType: String, appId: Int64, statusDesc: String, createTime: String, payMode: Int64, periodEndTime: String, vip: String, vport: Int64, projectID: Int64, vpcId: String? = nil, subnetId: String? = nil, cynosVersion: String? = nil, storageLimit: Int64? = nil, renewFlag: Int64? = nil, processingTask: String? = nil, tasks: [ObjectTask]? = nil, resourceTags: [Tag]? = nil, dbMode: String? = nil, serverlessStatus: String? = nil, storage: Int64? = nil, storageId: String? = nil, storagePayMode: Int64? = nil, minStorageSize: Int64? = nil, maxStorageSize: Int64? = nil, netAddrs: [NetAddr]? = nil) {
             self.status = status
             self.updateTime = updateTime
             self.zone = zone
@@ -1179,7 +1179,7 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tables: [String]?
         
-        public init (database: String?, tables: [String]?) {
+        public init (database: String? = nil, tables: [String]? = nil) {
             self.database = database
             self.tables = tables
         }
@@ -1198,7 +1198,7 @@ extension Cynosdb {
         /// 数据库表名称
         public let tableName: String?
         
-        public init (db: String, tableName: String?) {
+        public init (db: String, tableName: String? = nil) {
             self.db = db
             self.tableName = tableName
         }
@@ -1217,7 +1217,7 @@ extension Cynosdb {
         /// 主机，默认‘%’
         public let host: String?
         
-        public init (accountName: String, host: String?) {
+        public init (accountName: String, host: String? = nil) {
             self.accountName = accountName
             self.host = host
         }
@@ -1335,7 +1335,7 @@ extension Cynosdb {
         /// 描述
         public let description: String?
         
-        public init (accountName: String, accountPassword: String, host: String, description: String?) {
+        public init (accountName: String, accountPassword: String, host: String, description: String? = nil) {
             self.accountName = accountName
             self.accountPassword = accountPassword
             self.host = host
@@ -1372,7 +1372,7 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let objectType: String?
         
-        public init (taskId: Int64?, taskType: String?, taskStatus: String?, objectId: String?, objectType: String?) {
+        public init (taskId: Int64? = nil, taskType: String? = nil, taskStatus: String? = nil, objectId: String? = nil, objectType: String? = nil) {
             self.taskId = taskId
             self.taskType = taskType
             self.taskStatus = taskStatus
@@ -1431,7 +1431,7 @@ extension Cynosdb {
         
         /// 参数是否可修改
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let modifiableInfo: ModifiableInfo
+        public let modifiableInfo: ModifiableInfo?
         
         /// 是否为函数
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1570,7 +1570,7 @@ extension Cynosdb {
         /// 操作符
         public let `operator`: String?
         
-        public init (names: [String], values: [String], exactMatch: Bool?, name: String?, `operator`: String?) {
+        public init (names: [String], values: [String], exactMatch: Bool? = nil, name: String? = nil, `operator`: String? = nil) {
             self.names = names
             self.values = values
             self.exactMatch = exactMatch

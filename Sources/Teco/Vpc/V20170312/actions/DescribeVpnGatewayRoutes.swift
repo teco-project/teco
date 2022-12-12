@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询VPN网关路由
-    ///
-    /// 查询路由型VPN网关的目的路由
-    @inlinable
-    public func describeVpnGatewayRoutes(_ input: DescribeVpnGatewayRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpnGatewayRoutesResponse > {
-        self.client.execute(action: "DescribeVpnGatewayRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询VPN网关路由
-    ///
-    /// 查询路由型VPN网关的目的路由
-    @inlinable
-    public func describeVpnGatewayRoutes(_ input: DescribeVpnGatewayRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewayRoutesResponse {
-        try await self.client.execute(action: "DescribeVpnGatewayRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpnGatewayRoutes请求参数结构体
     public struct DescribeVpnGatewayRoutesRequest: TCRequestModel {
         /// VPN网关的ID
@@ -45,7 +29,7 @@ extension Vpc {
         /// 单页个数, 默认20, 最大值100
         public let limit: Int64?
         
-        public init (vpnGatewayId: String, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (vpnGatewayId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.vpnGatewayId = vpnGatewayId
             self.filters = filters
             self.offset = offset
@@ -72,5 +56,21 @@ extension Vpc {
             case routes = "Routes"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询VPN网关路由
+    ///
+    /// 查询路由型VPN网关的目的路由
+    @inlinable
+    public func describeVpnGatewayRoutes(_ input: DescribeVpnGatewayRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpnGatewayRoutesResponse > {
+        self.client.execute(action: "DescribeVpnGatewayRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询VPN网关路由
+    ///
+    /// 查询路由型VPN网关的目的路由
+    @inlinable
+    public func describeVpnGatewayRoutes(_ input: DescribeVpnGatewayRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewayRoutesResponse {
+        try await self.client.execute(action: "DescribeVpnGatewayRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Smh {
-    /// 发送短信验证码
-    ///
-    /// 发送用于换绑官方云盘实例的超级管理员账号的短信验证码
-    @inlinable
-    public func sendSmsCode(_ input: SendSmsCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendSmsCodeResponse > {
-        self.client.execute(action: "SendSmsCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送短信验证码
-    ///
-    /// 发送用于换绑官方云盘实例的超级管理员账号的短信验证码
-    @inlinable
-    public func sendSmsCode(_ input: SendSmsCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsCodeResponse {
-        try await self.client.execute(action: "SendSmsCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendSmsCode请求参数结构体
     public struct SendSmsCodeRequest: TCRequestModel {
         /// 验证码目的，当前支持换绑超级管理员账号， BindSuperAdmin；体验版企业升级，ChannelUpdateVerify等
@@ -45,7 +29,7 @@ extension Smh {
         /// 将作为超级管理员账号的手机号码的国家代码。默认为 +86。
         public let countryCode: String?
         
-        public init (purpose: String, phoneNumber: String, instanceId: String?, countryCode: String?) {
+        public init (purpose: String, phoneNumber: String, instanceId: String? = nil, countryCode: String? = nil) {
             self.purpose = purpose
             self.phoneNumber = phoneNumber
             self.instanceId = instanceId
@@ -68,5 +52,21 @@ extension Smh {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送短信验证码
+    ///
+    /// 发送用于换绑官方云盘实例的超级管理员账号的短信验证码
+    @inlinable
+    public func sendSmsCode(_ input: SendSmsCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendSmsCodeResponse > {
+        self.client.execute(action: "SendSmsCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送短信验证码
+    ///
+    /// 发送用于换绑官方云盘实例的超级管理员账号的短信验证码
+    @inlinable
+    public func sendSmsCode(_ input: SendSmsCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsCodeResponse {
+        try await self.client.execute(action: "SendSmsCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

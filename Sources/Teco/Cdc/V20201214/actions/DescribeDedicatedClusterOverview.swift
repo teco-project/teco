@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 专用集群概览信息
-    @inlinable
-    public func describeDedicatedClusterOverview(_ input: DescribeDedicatedClusterOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterOverviewResponse > {
-        self.client.execute(action: "DescribeDedicatedClusterOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 专用集群概览信息
-    @inlinable
-    public func describeDedicatedClusterOverview(_ input: DescribeDedicatedClusterOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterOverviewResponse {
-        try await self.client.execute(action: "DescribeDedicatedClusterOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDedicatedClusterOverview请求参数结构体
     public struct DescribeDedicatedClusterOverviewRequest: TCRequestModel {
         /// 集群id
@@ -57,5 +45,17 @@ extension Cdc {
             case hostCount = "HostCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 专用集群概览信息
+    @inlinable
+    public func describeDedicatedClusterOverview(_ input: DescribeDedicatedClusterOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterOverviewResponse > {
+        self.client.execute(action: "DescribeDedicatedClusterOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 专用集群概览信息
+    @inlinable
+    public func describeDedicatedClusterOverview(_ input: DescribeDedicatedClusterOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterOverviewResponse {
+        try await self.client.execute(action: "DescribeDedicatedClusterOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

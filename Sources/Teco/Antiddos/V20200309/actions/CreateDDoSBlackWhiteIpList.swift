@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 添加DDoS防护的IP网段黑白名单
-    @inlinable
-    public func createDDoSBlackWhiteIpList(_ input: CreateDDoSBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSBlackWhiteIpListResponse > {
-        self.client.execute(action: "CreateDDoSBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加DDoS防护的IP网段黑白名单
-    @inlinable
-    public func createDDoSBlackWhiteIpList(_ input: CreateDDoSBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSBlackWhiteIpListResponse {
-        try await self.client.execute(action: "CreateDDoSBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDDoSBlackWhiteIpList请求参数结构体
     public struct CreateDDoSBlackWhiteIpListRequest: TCRequestModel {
         /// 资源实例ID
@@ -59,5 +47,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加DDoS防护的IP网段黑白名单
+    @inlinable
+    public func createDDoSBlackWhiteIpList(_ input: CreateDDoSBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDDoSBlackWhiteIpListResponse > {
+        self.client.execute(action: "CreateDDoSBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加DDoS防护的IP网段黑白名单
+    @inlinable
+    public func createDDoSBlackWhiteIpList(_ input: CreateDDoSBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSBlackWhiteIpListResponse {
+        try await self.client.execute(action: "CreateDDoSBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

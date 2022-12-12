@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取集群访问地址
-    ///
-    /// 获取集群的访问地址，包括内网地址，外网地址，外网域名，外网访问安全策略
-    @inlinable
-    public func describeClusterEndpoints(_ input: DescribeClusterEndpointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterEndpointsResponse > {
-        self.client.execute(action: "DescribeClusterEndpoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取集群访问地址
-    ///
-    /// 获取集群的访问地址，包括内网地址，外网地址，外网域名，外网访问安全策略
-    @inlinable
-    public func describeClusterEndpoints(_ input: DescribeClusterEndpointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterEndpointsResponse {
-        try await self.client.execute(action: "DescribeClusterEndpoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterEndpoints请求参数结构体
     public struct DescribeClusterEndpointsRequest: TCRequestModel {
         /// 集群ID
@@ -90,5 +74,21 @@ extension Tke {
             case securityGroup = "SecurityGroup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取集群访问地址
+    ///
+    /// 获取集群的访问地址，包括内网地址，外网地址，外网域名，外网访问安全策略
+    @inlinable
+    public func describeClusterEndpoints(_ input: DescribeClusterEndpointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterEndpointsResponse > {
+        self.client.execute(action: "DescribeClusterEndpoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群访问地址
+    ///
+    /// 获取集群的访问地址，包括内网地址，外网地址，外网域名，外网访问安全策略
+    @inlinable
+    public func describeClusterEndpoints(_ input: DescribeClusterEndpointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterEndpointsResponse {
+        try await self.client.execute(action: "DescribeClusterEndpoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

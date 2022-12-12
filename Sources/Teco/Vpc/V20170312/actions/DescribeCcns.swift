@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询CCN列表
-    ///
-    /// 本接口（DescribeCcns）用于查询云联网（CCN）列表。
-    @inlinable
-    public func describeCcns(_ input: DescribeCcnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCcnsResponse > {
-        self.client.execute(action: "DescribeCcns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询CCN列表
-    ///
-    /// 本接口（DescribeCcns）用于查询云联网（CCN）列表。
-    @inlinable
-    public func describeCcns(_ input: DescribeCcnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnsResponse {
-        try await self.client.execute(action: "DescribeCcns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCcns请求参数结构体
     public struct DescribeCcnsRequest: TCRequestModel {
         /// CCN实例ID。形如：ccn-f49l6u0z。每次请求的实例的上限为100。参数不支持同时指定CcnIds和Filters。
@@ -57,7 +41,7 @@ extension Vpc {
         /// 排序方法。升序：`ASC`，倒序：`DESC`。
         public let orderDirection: String?
         
-        public init (ccnIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?, orderField: String?, orderDirection: String?) {
+        public init (ccnIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil) {
             self.ccnIds = ccnIds
             self.filters = filters
             self.offset = offset
@@ -92,5 +76,21 @@ extension Vpc {
             case ccnSet = "CcnSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询CCN列表
+    ///
+    /// 本接口（DescribeCcns）用于查询云联网（CCN）列表。
+    @inlinable
+    public func describeCcns(_ input: DescribeCcnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCcnsResponse > {
+        self.client.execute(action: "DescribeCcns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询CCN列表
+    ///
+    /// 本接口（DescribeCcns）用于查询云联网（CCN）列表。
+    @inlinable
+    public func describeCcns(_ input: DescribeCcnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnsResponse {
+        try await self.client.execute(action: "DescribeCcns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

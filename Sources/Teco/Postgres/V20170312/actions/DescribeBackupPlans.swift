@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 查询备份计划
-    ///
-    /// 本接口 (DescribeBackupPlans) 用于实例所有的备份计划查询
-    @inlinable
-    public func describeBackupPlans(_ input: DescribeBackupPlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupPlansResponse > {
-        self.client.execute(action: "DescribeBackupPlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询备份计划
-    ///
-    /// 本接口 (DescribeBackupPlans) 用于实例所有的备份计划查询
-    @inlinable
-    public func describeBackupPlans(_ input: DescribeBackupPlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupPlansResponse {
-        try await self.client.execute(action: "DescribeBackupPlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBackupPlans请求参数结构体
     public struct DescribeBackupPlansRequest: TCRequestModel {
         /// 实例ID
@@ -57,5 +41,21 @@ extension Postgres {
             case plans = "Plans"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询备份计划
+    ///
+    /// 本接口 (DescribeBackupPlans) 用于实例所有的备份计划查询
+    @inlinable
+    public func describeBackupPlans(_ input: DescribeBackupPlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupPlansResponse > {
+        self.client.execute(action: "DescribeBackupPlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份计划
+    ///
+    /// 本接口 (DescribeBackupPlans) 用于实例所有的备份计划查询
+    @inlinable
+    public func describeBackupPlans(_ input: DescribeBackupPlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupPlansResponse {
+        try await self.client.execute(action: "DescribeBackupPlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

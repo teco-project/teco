@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 重新提交审核管理人
-    @inlinable
-    public func submitAuditManager(_ input: SubmitAuditManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitAuditManagerResponse > {
-        self.client.execute(action: "SubmitAuditManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重新提交审核管理人
-    @inlinable
-    public func submitAuditManager(_ input: SubmitAuditManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitAuditManagerResponse {
-        try await self.client.execute(action: "SubmitAuditManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SubmitAuditManager请求参数结构体
     public struct SubmitAuditManagerRequest: TCRequestModel {
         /// 管理人ID
@@ -53,5 +41,17 @@ extension Ssl {
             case managerId = "ManagerId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重新提交审核管理人
+    @inlinable
+    public func submitAuditManager(_ input: SubmitAuditManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitAuditManagerResponse > {
+        self.client.execute(action: "SubmitAuditManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重新提交审核管理人
+    @inlinable
+    public func submitAuditManager(_ input: SubmitAuditManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitAuditManagerResponse {
+        try await self.client.execute(action: "SubmitAuditManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

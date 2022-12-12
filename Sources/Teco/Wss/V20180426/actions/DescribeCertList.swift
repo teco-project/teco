@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wss {
-    /// 获取证书列表
-    ///
-    /// 本接口(DescribeCertList)用于获取证书列表。
-    @inlinable
-    public func describeCertList(_ input: DescribeCertListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertListResponse > {
-        self.client.execute(action: "DescribeCertList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取证书列表
-    ///
-    /// 本接口(DescribeCertList)用于获取证书列表。
-    @inlinable
-    public func describeCertList(_ input: DescribeCertListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertListResponse {
-        try await self.client.execute(action: "DescribeCertList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCertList请求参数结构体
     public struct DescribeCertListRequest: TCRequestModel {
         /// 模块名称，应填 ssl。
@@ -57,7 +41,7 @@ extension Wss {
         /// 如传，则只返回可以给该域名使用的证书。
         public let altDomain: String?
         
-        public init (moduleType: String, offset: UInt64?, limit: UInt64?, searchKey: String?, certType: String?, id: String?, withCert: String?, altDomain: String?) {
+        public init (moduleType: String, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, certType: String? = nil, id: String? = nil, withCert: String? = nil, altDomain: String? = nil) {
             self.moduleType = moduleType
             self.offset = offset
             self.limit = limit
@@ -96,5 +80,21 @@ extension Wss {
             case certificateSet = "CertificateSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取证书列表
+    ///
+    /// 本接口(DescribeCertList)用于获取证书列表。
+    @inlinable
+    public func describeCertList(_ input: DescribeCertListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertListResponse > {
+        self.client.execute(action: "DescribeCertList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取证书列表
+    ///
+    /// 本接口(DescribeCertList)用于获取证书列表。
+    @inlinable
+    public func describeCertList(_ input: DescribeCertListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertListResponse {
+        try await self.client.execute(action: "DescribeCertList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

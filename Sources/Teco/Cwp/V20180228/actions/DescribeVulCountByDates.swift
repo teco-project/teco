@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取近日指定类型的漏洞数量和主机数量
-    ///
-    /// 漏洞管理模块，获取近日指定类型的漏洞数量和主机数量
-    @inlinable
-    public func describeVulCountByDates(_ input: DescribeVulCountByDatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulCountByDatesResponse > {
-        self.client.execute(action: "DescribeVulCountByDates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取近日指定类型的漏洞数量和主机数量
-    ///
-    /// 漏洞管理模块，获取近日指定类型的漏洞数量和主机数量
-    @inlinable
-    public func describeVulCountByDates(_ input: DescribeVulCountByDatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulCountByDatesResponse {
-        try await self.client.execute(action: "DescribeVulCountByDates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulCountByDates请求参数结构体
     public struct DescribeVulCountByDatesRequest: TCRequestModel {
         /// 需要查询最近几天的数据，需要都 -1后传入
@@ -42,7 +26,7 @@ extension Cwp {
         /// 是否为应急漏洞筛选  是: yes
         public let ifEmergency: String?
         
-        public init (lastDays: [UInt64]?, vulCategory: UInt64?, ifEmergency: String?) {
+        public init (lastDays: [UInt64]? = nil, vulCategory: UInt64? = nil, ifEmergency: String? = nil) {
             self.lastDays = lastDays
             self.vulCategory = vulCategory
             self.ifEmergency = ifEmergency
@@ -72,5 +56,21 @@ extension Cwp {
             case hostCount = "HostCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取近日指定类型的漏洞数量和主机数量
+    ///
+    /// 漏洞管理模块，获取近日指定类型的漏洞数量和主机数量
+    @inlinable
+    public func describeVulCountByDates(_ input: DescribeVulCountByDatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulCountByDatesResponse > {
+        self.client.execute(action: "DescribeVulCountByDates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取近日指定类型的漏洞数量和主机数量
+    ///
+    /// 漏洞管理模块，获取近日指定类型的漏洞数量和主机数量
+    @inlinable
+    public func describeVulCountByDates(_ input: DescribeVulCountByDatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulCountByDatesResponse {
+        try await self.client.execute(action: "DescribeVulCountByDates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

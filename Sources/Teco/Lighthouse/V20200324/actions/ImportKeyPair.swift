@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 导入密钥对
-    ///
-    /// 本接口（ImportKeyPair）用于导入用户指定密钥对。
-    @inlinable
-    public func importKeyPair(_ input: ImportKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportKeyPairResponse > {
-        self.client.execute(action: "ImportKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导入密钥对
-    ///
-    /// 本接口（ImportKeyPair）用于导入用户指定密钥对。
-    @inlinable
-    public func importKeyPair(_ input: ImportKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyPairResponse {
-        try await self.client.execute(action: "ImportKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ImportKeyPair请求参数结构体
     public struct ImportKeyPairRequest: TCRequestModel {
         /// 密钥对名称，可由数字，字母和下划线组成，长度不超过 25 个字符。
@@ -62,5 +46,21 @@ extension Lighthouse {
             case keyId = "KeyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导入密钥对
+    ///
+    /// 本接口（ImportKeyPair）用于导入用户指定密钥对。
+    @inlinable
+    public func importKeyPair(_ input: ImportKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportKeyPairResponse > {
+        self.client.execute(action: "ImportKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导入密钥对
+    ///
+    /// 本接口（ImportKeyPair）用于导入用户指定密钥对。
+    @inlinable
+    public func importKeyPair(_ input: ImportKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyPairResponse {
+        try await self.client.execute(action: "ImportKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

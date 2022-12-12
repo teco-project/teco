@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 取消任务执行
-    ///
-    /// 本接口（CancelTask），用于取消任务执行
-    @inlinable
-    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelTaskResponse > {
-        self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消任务执行
-    ///
-    /// 本接口（CancelTask），用于取消任务执行
-    @inlinable
-    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
-        try await self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelTask请求参数结构体
     public struct CancelTaskRequest: TCRequestModel {
         /// 任务Id，全局唯一
@@ -53,5 +37,21 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消任务执行
+    ///
+    /// 本接口（CancelTask），用于取消任务执行
+    @inlinable
+    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelTaskResponse > {
+        self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消任务执行
+    ///
+    /// 本接口（CancelTask），用于取消任务执行
+    @inlinable
+    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
+        try await self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

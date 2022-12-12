@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Gaap {
-    /// 查询通道组统计数据
-    ///
-    /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
-    @inlinable
-    public func describeProxyGroupStatistics(_ input: DescribeProxyGroupStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyGroupStatisticsResponse > {
-        self.client.execute(action: "DescribeProxyGroupStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询通道组统计数据
-    ///
-    /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
-    @inlinable
-    public func describeProxyGroupStatistics(_ input: DescribeProxyGroupStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupStatisticsResponse {
-        try await self.client.execute(action: "DescribeProxyGroupStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProxyGroupStatistics请求参数结构体
     public struct DescribeProxyGroupStatisticsRequest: TCRequestModel {
         /// 通道组ID
@@ -84,5 +68,21 @@ extension Gaap {
             case statisticsData = "StatisticsData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询通道组统计数据
+    ///
+    /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
+    @inlinable
+    public func describeProxyGroupStatistics(_ input: DescribeProxyGroupStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyGroupStatisticsResponse > {
+        self.client.execute(action: "DescribeProxyGroupStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询通道组统计数据
+    ///
+    /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
+    @inlinable
+    public func describeProxyGroupStatistics(_ input: DescribeProxyGroupStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupStatisticsResponse {
+        try await self.client.execute(action: "DescribeProxyGroupStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 修改实例VPORT
-    ///
-    /// 本接口（ModifyInstanceVport）用于修改实例VPORT
-    @inlinable
-    public func modifyInstanceVport(_ input: ModifyInstanceVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceVportResponse > {
-        self.client.execute(action: "ModifyInstanceVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例VPORT
-    ///
-    /// 本接口（ModifyInstanceVport）用于修改实例VPORT
-    @inlinable
-    public func modifyInstanceVport(_ input: ModifyInstanceVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVportResponse {
-        try await self.client.execute(action: "ModifyInstanceVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstanceVport请求参数结构体
     public struct ModifyInstanceVportRequest: TCRequestModel {
         /// 实例ID
@@ -58,5 +42,21 @@ extension Dcdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例VPORT
+    ///
+    /// 本接口（ModifyInstanceVport）用于修改实例VPORT
+    @inlinable
+    public func modifyInstanceVport(_ input: ModifyInstanceVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceVportResponse > {
+        self.client.execute(action: "ModifyInstanceVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例VPORT
+    ///
+    /// 本接口（ModifyInstanceVport）用于修改实例VPORT
+    @inlinable
+    public func modifyInstanceVport(_ input: ModifyInstanceVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVportResponse {
+        try await self.client.execute(action: "ModifyInstanceVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

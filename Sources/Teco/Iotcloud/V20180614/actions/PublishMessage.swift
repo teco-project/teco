@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 发布消息
-    ///
-    /// 本接口（PublishMessage）用于向某个主题发消息。 
-    @inlinable
-    public func publishMessage(_ input: PublishMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishMessageResponse > {
-        self.client.execute(action: "PublishMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发布消息
-    ///
-    /// 本接口（PublishMessage）用于向某个主题发消息。 
-    @inlinable
-    public func publishMessage(_ input: PublishMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMessageResponse {
-        try await self.client.execute(action: "PublishMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PublishMessage请求参数结构体
     public struct PublishMessageRequest: TCRequestModel {
         /// 消息发往的主题。命名规则：${ProductId}/${DeviceName}/[a-zA-Z0-9:_-]{1,128}
@@ -51,7 +35,7 @@ extension Iotcloud {
         /// Payload内容的编码格式，取值为base64或空。base64表示云端将收到的请求数据进行base64解码后下发到设备，空则直接将原始内容下发到设备
         public let payloadEncoding: String?
         
-        public init (topic: String, payload: String, productId: String, deviceName: String, qos: UInt64?, payloadEncoding: String?) {
+        public init (topic: String, payload: String, productId: String, deviceName: String, qos: UInt64? = nil, payloadEncoding: String? = nil) {
             self.topic = topic
             self.payload = payload
             self.productId = productId
@@ -78,5 +62,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发布消息
+    ///
+    /// 本接口（PublishMessage）用于向某个主题发消息。 
+    @inlinable
+    public func publishMessage(_ input: PublishMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishMessageResponse > {
+        self.client.execute(action: "PublishMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发布消息
+    ///
+    /// 本接口（PublishMessage）用于向某个主题发消息。 
+    @inlinable
+    public func publishMessage(_ input: PublishMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMessageResponse {
+        try await self.client.execute(action: "PublishMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

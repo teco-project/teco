@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询网关来访IP流控带宽
-    ///
-    /// 本接口（DescribeGatewayFlowQos）用于查询网关来访IP流控带宽。
-    @inlinable
-    public func describeGatewayFlowQos(_ input: DescribeGatewayFlowQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewayFlowQosResponse > {
-        self.client.execute(action: "DescribeGatewayFlowQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询网关来访IP流控带宽
-    ///
-    /// 本接口（DescribeGatewayFlowQos）用于查询网关来访IP流控带宽。
-    @inlinable
-    public func describeGatewayFlowQos(_ input: DescribeGatewayFlowQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayFlowQosResponse {
-        try await self.client.execute(action: "DescribeGatewayFlowQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGatewayFlowQos请求参数结构体
     public struct DescribeGatewayFlowQosRequest: TCRequestModel {
         /// 网关实例ID，目前我们支持的网关实例类型有，
@@ -48,7 +32,7 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。
         public let limit: UInt64?
         
-        public init (gatewayId: String, ipAddresses: [String]?, offset: UInt64?, limit: UInt64?) {
+        public init (gatewayId: String, ipAddresses: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.gatewayId = gatewayId
             self.ipAddresses = ipAddresses
             self.offset = offset
@@ -79,5 +63,21 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询网关来访IP流控带宽
+    ///
+    /// 本接口（DescribeGatewayFlowQos）用于查询网关来访IP流控带宽。
+    @inlinable
+    public func describeGatewayFlowQos(_ input: DescribeGatewayFlowQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewayFlowQosResponse > {
+        self.client.execute(action: "DescribeGatewayFlowQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网关来访IP流控带宽
+    ///
+    /// 本接口（DescribeGatewayFlowQos）用于查询网关来访IP流控带宽。
+    @inlinable
+    public func describeGatewayFlowQos(_ input: DescribeGatewayFlowQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayFlowQosResponse {
+        try await self.client.execute(action: "DescribeGatewayFlowQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

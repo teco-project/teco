@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 解除实例绑定的 Grafana 可视化实例
-    @inlinable
-    public func unbindPrometheusManagedGrafana(_ input: UnbindPrometheusManagedGrafanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindPrometheusManagedGrafanaResponse > {
-        self.client.execute(action: "UnbindPrometheusManagedGrafana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解除实例绑定的 Grafana 可视化实例
-    @inlinable
-    public func unbindPrometheusManagedGrafana(_ input: UnbindPrometheusManagedGrafanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPrometheusManagedGrafanaResponse {
-        try await self.client.execute(action: "UnbindPrometheusManagedGrafana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindPrometheusManagedGrafana请求参数结构体
     public struct UnbindPrometheusManagedGrafanaRequest: TCRequestModel {
         /// Prometheus 实例 ID
@@ -54,5 +42,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解除实例绑定的 Grafana 可视化实例
+    @inlinable
+    public func unbindPrometheusManagedGrafana(_ input: UnbindPrometheusManagedGrafanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindPrometheusManagedGrafanaResponse > {
+        self.client.execute(action: "UnbindPrometheusManagedGrafana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解除实例绑定的 Grafana 可视化实例
+    @inlinable
+    public func unbindPrometheusManagedGrafana(_ input: UnbindPrometheusManagedGrafanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPrometheusManagedGrafanaResponse {
+        try await self.client.execute(action: "UnbindPrometheusManagedGrafana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

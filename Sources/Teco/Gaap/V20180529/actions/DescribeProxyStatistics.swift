@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Gaap {
-    /// 查询通道统计数据
-    ///
-    /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发，丢包和时延数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
-    @inlinable
-    public func describeProxyStatistics(_ input: DescribeProxyStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyStatisticsResponse > {
-        self.client.execute(action: "DescribeProxyStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询通道统计数据
-    ///
-    /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发，丢包和时延数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
-    @inlinable
-    public func describeProxyStatistics(_ input: DescribeProxyStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyStatisticsResponse {
-        try await self.client.execute(action: "DescribeProxyStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProxyStatistics请求参数结构体
     public struct DescribeProxyStatisticsRequest: TCRequestModel {
         /// 通道ID
@@ -58,7 +42,7 @@ extension Gaap {
         /// 运营商（通道为三网通道时有效），支持CMCC，CUCC，CTCC，传空值或不传则合并三个运营商数据
         public let isp: String?
         
-        public init (proxyId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64, isp: String?) {
+        public init (proxyId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64, isp: String? = nil) {
             self.proxyId = proxyId
             self.startTime = startTime
             self.endTime = endTime
@@ -89,5 +73,21 @@ extension Gaap {
             case statisticsData = "StatisticsData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询通道统计数据
+    ///
+    /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发，丢包和时延数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
+    @inlinable
+    public func describeProxyStatistics(_ input: DescribeProxyStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyStatisticsResponse > {
+        self.client.execute(action: "DescribeProxyStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询通道统计数据
+    ///
+    /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发，丢包和时延数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
+    @inlinable
+    public func describeProxyStatistics(_ input: DescribeProxyStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyStatisticsResponse {
+        try await self.client.execute(action: "DescribeProxyStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

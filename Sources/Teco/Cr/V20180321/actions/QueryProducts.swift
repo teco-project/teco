@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cr {
-    /// 查询产品列表
-    @inlinable
-    public func queryProducts(_ input: QueryProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryProductsResponse > {
-        self.client.execute(action: "QueryProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询产品列表
-    @inlinable
-    public func queryProducts(_ input: QueryProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryProductsResponse {
-        try await self.client.execute(action: "QueryProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryProducts请求参数结构体
     public struct QueryProductsRequest: TCRequestModel {
         /// 模块名。默认值（固定）：Product
@@ -63,5 +51,17 @@ extension Cr {
             case productList = "ProductList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询产品列表
+    @inlinable
+    public func queryProducts(_ input: QueryProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryProductsResponse > {
+        self.client.execute(action: "QueryProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询产品列表
+    @inlinable
+    public func queryProducts(_ input: QueryProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryProductsResponse {
+        try await self.client.execute(action: "QueryProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

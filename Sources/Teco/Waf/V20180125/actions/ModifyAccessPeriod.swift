@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 修改访问日志保存期限
-    ///
-    /// 本接口用于修改访问日志保存期限
-    @inlinable
-    public func modifyAccessPeriod(_ input: ModifyAccessPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccessPeriodResponse > {
-        self.client.execute(action: "ModifyAccessPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改访问日志保存期限
-    ///
-    /// 本接口用于修改访问日志保存期限
-    @inlinable
-    public func modifyAccessPeriod(_ input: ModifyAccessPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessPeriodResponse {
-        try await self.client.execute(action: "ModifyAccessPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAccessPeriod请求参数结构体
     public struct ModifyAccessPeriodRequest: TCRequestModel {
         /// 访问日志保存期限，范围为[1, 30]
@@ -58,5 +42,21 @@ extension Waf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改访问日志保存期限
+    ///
+    /// 本接口用于修改访问日志保存期限
+    @inlinable
+    public func modifyAccessPeriod(_ input: ModifyAccessPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccessPeriodResponse > {
+        self.client.execute(action: "ModifyAccessPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改访问日志保存期限
+    ///
+    /// 本接口用于修改访问日志保存期限
+    @inlinable
+    public func modifyAccessPeriod(_ input: ModifyAccessPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessPeriodResponse {
+        try await self.client.execute(action: "ModifyAccessPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

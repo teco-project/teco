@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 添加Spart防护域名
-    @inlinable
-    public func addSpartaProtection(_ input: AddSpartaProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddSpartaProtectionResponse > {
-        self.client.execute(action: "AddSpartaProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加Spart防护域名
-    @inlinable
-    public func addSpartaProtection(_ input: AddSpartaProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSpartaProtectionResponse {
-        try await self.client.execute(action: "AddSpartaProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddSpartaProtection请求参数结构体
     public struct AddSpartaProtectionRequest: TCRequestModel {
         /// 需要防御的域名
@@ -119,7 +107,7 @@ extension Waf {
         /// 300s
         public let proxySendTimeout: Int64?
         
-        public init (domain: String, certType: Int64, isCdn: Int64, upstreamType: Int64, isWebsocket: Int64, loadBalance: String, cert: String?, privateKey: String?, sslId: String?, resourceId: String?, upstreamScheme: String?, httpsUpstreamPort: String?, isGray: Int64?, grayAreas: [String]?, upstreamDomain: String?, srcList: [String]?, isHttp2: Int64?, httpsRewrite: Int64?, ports: [PortItem]?, edition: String?, isKeepAlive: String?, instanceID: String?, anycast: Int64?, weights: [Int64]?, activeCheck: Int64?, tlsVersion: Int64?, ciphers: [Int64]?, cipherTemplate: Int64?, proxyReadTimeout: Int64?, proxySendTimeout: Int64?) {
+        public init (domain: String, certType: Int64, isCdn: Int64, upstreamType: Int64, isWebsocket: Int64, loadBalance: String, cert: String? = nil, privateKey: String? = nil, sslId: String? = nil, resourceId: String? = nil, upstreamScheme: String? = nil, httpsUpstreamPort: String? = nil, isGray: Int64? = nil, grayAreas: [String]? = nil, upstreamDomain: String? = nil, srcList: [String]? = nil, isHttp2: Int64? = nil, httpsRewrite: Int64? = nil, ports: [PortItem]? = nil, edition: String? = nil, isKeepAlive: String? = nil, instanceID: String? = nil, anycast: Int64? = nil, weights: [Int64]? = nil, activeCheck: Int64? = nil, tlsVersion: Int64? = nil, ciphers: [Int64]? = nil, cipherTemplate: Int64? = nil, proxyReadTimeout: Int64? = nil, proxySendTimeout: Int64? = nil) {
             self.domain = domain
             self.certType = certType
             self.isCdn = isCdn
@@ -194,5 +182,17 @@ extension Waf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加Spart防护域名
+    @inlinable
+    public func addSpartaProtection(_ input: AddSpartaProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddSpartaProtectionResponse > {
+        self.client.execute(action: "AddSpartaProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加Spart防护域名
+    @inlinable
+    public func addSpartaProtection(_ input: AddSpartaProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSpartaProtectionResponse {
+        try await self.client.execute(action: "AddSpartaProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

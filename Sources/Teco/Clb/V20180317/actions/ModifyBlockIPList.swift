@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 修改负载均衡的IP封禁黑名单列表
-    ///
-    /// 修改负载均衡的IP（client IP）封禁黑名单列表，一个转发规则最多支持封禁 2000000 个IP，及黑名单容量为 2000000。
-    /// （接口灰度中，如需使用请提工单）
-    @inlinable
-    public func modifyBlockIPList(_ input: ModifyBlockIPListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBlockIPListResponse > {
-        self.client.execute(action: "ModifyBlockIPList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改负载均衡的IP封禁黑名单列表
-    ///
-    /// 修改负载均衡的IP（client IP）封禁黑名单列表，一个转发规则最多支持封禁 2000000 个IP，及黑名单容量为 2000000。
-    /// （接口灰度中，如需使用请提工单）
-    @inlinable
-    public func modifyBlockIPList(_ input: ModifyBlockIPListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockIPListResponse {
-        try await self.client.execute(action: "ModifyBlockIPList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyBlockIPList请求参数结构体
     public struct ModifyBlockIPListRequest: TCRequestModel {
         /// 负载均衡实例ID
@@ -59,7 +41,7 @@ extension Clb {
         /// 添加IP的策略，可取：fifo（如果黑名单容量已满，新加入黑名单的IP采用先进先出策略）
         public let addStrategy: String?
         
-        public init (loadBalancerIds: [String], type: String, clientIPField: String, blockIPList: [String]?, expireTime: UInt64?, addStrategy: String?) {
+        public init (loadBalancerIds: [String], type: String, clientIPField: String, blockIPList: [String]? = nil, expireTime: UInt64? = nil, addStrategy: String? = nil) {
             self.loadBalancerIds = loadBalancerIds
             self.type = type
             self.clientIPField = clientIPField
@@ -90,5 +72,23 @@ extension Clb {
             case jodId = "JodId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改负载均衡的IP封禁黑名单列表
+    ///
+    /// 修改负载均衡的IP（client IP）封禁黑名单列表，一个转发规则最多支持封禁 2000000 个IP，及黑名单容量为 2000000。
+    /// （接口灰度中，如需使用请提工单）
+    @inlinable
+    public func modifyBlockIPList(_ input: ModifyBlockIPListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBlockIPListResponse > {
+        self.client.execute(action: "ModifyBlockIPList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改负载均衡的IP封禁黑名单列表
+    ///
+    /// 修改负载均衡的IP（client IP）封禁黑名单列表，一个转发规则最多支持封禁 2000000 个IP，及黑名单容量为 2000000。
+    /// （接口灰度中，如需使用请提工单）
+    @inlinable
+    public func modifyBlockIPList(_ input: ModifyBlockIPListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockIPListResponse {
+        try await self.client.execute(action: "ModifyBlockIPList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

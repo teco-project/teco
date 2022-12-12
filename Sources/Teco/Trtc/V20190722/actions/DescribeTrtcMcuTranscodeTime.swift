@@ -17,30 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Trtc {
-    /// 查询旁路转码计费时长(旧)
-    ///
-    /// 查询旁路转码计费时长。
-    /// - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
-    /// - 单次查询统计区间最多不能超过31天。
-    /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
-    /// - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
-    @inlinable
-    public func describeTrtcMcuTranscodeTime(_ input: DescribeTrtcMcuTranscodeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrtcMcuTranscodeTimeResponse > {
-        self.client.execute(action: "DescribeTrtcMcuTranscodeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询旁路转码计费时长(旧)
-    ///
-    /// 查询旁路转码计费时长。
-    /// - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
-    /// - 单次查询统计区间最多不能超过31天。
-    /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
-    /// - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
-    @inlinable
-    public func describeTrtcMcuTranscodeTime(_ input: DescribeTrtcMcuTranscodeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrtcMcuTranscodeTimeResponse {
-        try await self.client.execute(action: "DescribeTrtcMcuTranscodeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrtcMcuTranscodeTime请求参数结构体
     public struct DescribeTrtcMcuTranscodeTimeRequest: TCRequestModel {
         /// 查询开始时间，格式为YYYY-MM-DD。
@@ -55,7 +31,7 @@ extension Trtc {
         /// 应用ID，可不传。传应用ID时返回的是该应用的用量，不传时返回多个应用的合计值。
         public let sdkAppId: UInt64?
         
-        public init (startTime: Date, endTime: Date, sdkAppId: UInt64?) {
+        public init (startTime: Date, endTime: Date, sdkAppId: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.sdkAppId = sdkAppId
@@ -80,5 +56,29 @@ extension Trtc {
             case usages = "Usages"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询旁路转码计费时长(旧)
+    ///
+    /// 查询旁路转码计费时长。
+    /// - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+    /// - 单次查询统计区间最多不能超过31天。
+    /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
+    /// - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
+    @inlinable
+    public func describeTrtcMcuTranscodeTime(_ input: DescribeTrtcMcuTranscodeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrtcMcuTranscodeTimeResponse > {
+        self.client.execute(action: "DescribeTrtcMcuTranscodeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询旁路转码计费时长(旧)
+    ///
+    /// 查询旁路转码计费时长。
+    /// - 查询时间小于等于1天时，返回每5分钟粒度的数据；查询时间大于1天时，返回按天汇总的数据。
+    /// - 单次查询统计区间最多不能超过31天。
+    /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
+    /// - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
+    @inlinable
+    public func describeTrtcMcuTranscodeTime(_ input: DescribeTrtcMcuTranscodeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrtcMcuTranscodeTimeResponse {
+        try await self.client.execute(action: "DescribeTrtcMcuTranscodeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 提交证书订单
-    ///
-    /// 提交证书订单。
-    @inlinable
-    public func commitCertificateInformation(_ input: CommitCertificateInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitCertificateInformationResponse > {
-        self.client.execute(action: "CommitCertificateInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交证书订单
-    ///
-    /// 提交证书订单。
-    @inlinable
-    public func commitCertificateInformation(_ input: CommitCertificateInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitCertificateInformationResponse {
-        try await self.client.execute(action: "CommitCertificateInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CommitCertificateInformation请求参数结构体
     public struct CommitCertificateInformationRequest: TCRequestModel {
         /// 证书 ID。
@@ -61,5 +45,21 @@ extension Ssl {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交证书订单
+    ///
+    /// 提交证书订单。
+    @inlinable
+    public func commitCertificateInformation(_ input: CommitCertificateInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitCertificateInformationResponse > {
+        self.client.execute(action: "CommitCertificateInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交证书订单
+    ///
+    /// 提交证书订单。
+    @inlinable
+    public func commitCertificateInformation(_ input: CommitCertificateInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitCertificateInformationResponse {
+        try await self.client.execute(action: "CommitCertificateInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 查询任务详情
-    ///
-    /// 用于查询指定任务的详细信息，包括任务内部的任务实例信息。
-    @inlinable
-    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResponse > {
-        self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询任务详情
-    ///
-    /// 用于查询指定任务的详细信息，包括任务内部的任务实例信息。
-    @inlinable
-    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResponse {
-        try await self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTask请求参数结构体
     public struct DescribeTaskRequest: TCRequestModel {
         /// 作业ID
@@ -49,7 +33,7 @@ extension Batch {
         /// <li> task-instance-type - String - 是否必填： 否 - 按照任务实例状态进行过滤（SUBMITTED：已提交；PENDING：等待中；RUNNABLE：可运行；STARTING：启动中；RUNNING：运行中；SUCCEED：成功；FAILED：失败；FAILED_INTERRUPTED：失败后保留实例）。</li>
         public let filters: [Filter]?
         
-        public init (jobId: String, taskName: String, offset: UInt64?, limit: UInt64?, filters: [Filter]?) {
+        public init (jobId: String, taskName: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
             self.jobId = jobId
             self.taskName = taskName
             self.offset = offset
@@ -106,5 +90,21 @@ extension Batch {
             case taskInstanceMetrics = "TaskInstanceMetrics"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询任务详情
+    ///
+    /// 用于查询指定任务的详细信息，包括任务内部的任务实例信息。
+    @inlinable
+    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResponse > {
+        self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务详情
+    ///
+    /// 用于查询指定任务的详细信息，包括任务内部的任务实例信息。
+    @inlinable
+    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResponse {
+        try await self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,30 +15,18 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 修改集群认证配置
-    @inlinable
-    public func modifyClusterAuthenticationOptions(_ input: ModifyClusterAuthenticationOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterAuthenticationOptionsResponse > {
-        self.client.execute(action: "ModifyClusterAuthenticationOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改集群认证配置
-    @inlinable
-    public func modifyClusterAuthenticationOptions(_ input: ModifyClusterAuthenticationOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAuthenticationOptionsResponse {
-        try await self.client.execute(action: "ModifyClusterAuthenticationOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClusterAuthenticationOptions请求参数结构体
     public struct ModifyClusterAuthenticationOptionsRequest: TCRequestModel {
         /// 集群ID
         public let clusterId: String
         
         /// ServiceAccount认证配置
-        public let serviceAccounts: ServiceAccountAuthenticationOptions
+        public let serviceAccounts: ServiceAccountAuthenticationOptions?
         
         /// OIDC认证配置
-        public let oidcConfig: OIDCConfigAuthenticationOptions
+        public let oidcConfig: OIDCConfigAuthenticationOptions?
         
-        public init (clusterId: String, serviceAccounts: ServiceAccountAuthenticationOptions, oidcConfig: OIDCConfigAuthenticationOptions) {
+        public init (clusterId: String, serviceAccounts: ServiceAccountAuthenticationOptions? = nil, oidcConfig: OIDCConfigAuthenticationOptions? = nil) {
             self.clusterId = clusterId
             self.serviceAccounts = serviceAccounts
             self.oidcConfig = oidcConfig
@@ -59,5 +47,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改集群认证配置
+    @inlinable
+    public func modifyClusterAuthenticationOptions(_ input: ModifyClusterAuthenticationOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterAuthenticationOptionsResponse > {
+        self.client.execute(action: "ModifyClusterAuthenticationOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改集群认证配置
+    @inlinable
+    public func modifyClusterAuthenticationOptions(_ input: ModifyClusterAuthenticationOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAuthenticationOptionsResponse {
+        try await self.client.execute(action: "ModifyClusterAuthenticationOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

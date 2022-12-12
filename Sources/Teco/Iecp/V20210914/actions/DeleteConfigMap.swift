@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 删除ConfigMap
-    @inlinable
-    public func deleteConfigMap(_ input: DeleteConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConfigMapResponse > {
-        self.client.execute(action: "DeleteConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除ConfigMap
-    @inlinable
-    public func deleteConfigMap(_ input: DeleteConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigMapResponse {
-        try await self.client.execute(action: "DeleteConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteConfigMap请求参数结构体
     public struct DeleteConfigMapRequest: TCRequestModel {
         /// 单元ID
@@ -38,7 +26,7 @@ extension Iecp {
         /// ConfigMap命名空间，默认：default
         public let configMapNamespace: String?
         
-        public init (edgeUnitID: UInt64, configMapName: String, configMapNamespace: String?) {
+        public init (edgeUnitID: UInt64, configMapName: String, configMapNamespace: String? = nil) {
             self.edgeUnitID = edgeUnitID
             self.configMapName = configMapName
             self.configMapNamespace = configMapNamespace
@@ -59,5 +47,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除ConfigMap
+    @inlinable
+    public func deleteConfigMap(_ input: DeleteConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConfigMapResponse > {
+        self.client.execute(action: "DeleteConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除ConfigMap
+    @inlinable
+    public func deleteConfigMap(_ input: DeleteConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigMapResponse {
+        try await self.client.execute(action: "DeleteConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

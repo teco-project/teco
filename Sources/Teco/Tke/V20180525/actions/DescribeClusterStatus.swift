@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查看集群状态列表
-    @inlinable
-    public func describeClusterStatus(_ input: DescribeClusterStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterStatusResponse > {
-        self.client.execute(action: "DescribeClusterStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看集群状态列表
-    @inlinable
-    public func describeClusterStatus(_ input: DescribeClusterStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterStatusResponse {
-        try await self.client.execute(action: "DescribeClusterStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterStatus请求参数结构体
     public struct DescribeClusterStatusRequest: TCRequestModel {
         /// 集群ID列表，不传默认拉取所有集群
         public let clusterIds: [String]?
         
-        public init (clusterIds: [String]?) {
+        public init (clusterIds: [String]? = nil) {
             self.clusterIds = clusterIds
         }
         
@@ -57,5 +45,17 @@ extension Tke {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看集群状态列表
+    @inlinable
+    public func describeClusterStatus(_ input: DescribeClusterStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterStatusResponse > {
+        self.client.execute(action: "DescribeClusterStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看集群状态列表
+    @inlinable
+    public func describeClusterStatus(_ input: DescribeClusterStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterStatusResponse {
+        try await self.client.execute(action: "DescribeClusterStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

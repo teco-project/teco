@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 获取批量计算可用的CVM机型配置信息
-    ///
-    /// 查看可用的CVM机型配置信息
-    @inlinable
-    public func describeAvailableCvmInstanceTypes(_ input: DescribeAvailableCvmInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableCvmInstanceTypesResponse > {
-        self.client.execute(action: "DescribeAvailableCvmInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取批量计算可用的CVM机型配置信息
-    ///
-    /// 查看可用的CVM机型配置信息
-    @inlinable
-    public func describeAvailableCvmInstanceTypes(_ input: DescribeAvailableCvmInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableCvmInstanceTypesResponse {
-        try await self.client.execute(action: "DescribeAvailableCvmInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAvailableCvmInstanceTypes请求参数结构体
     public struct DescribeAvailableCvmInstanceTypesRequest: TCRequestModel {
         /// 过滤条件。
@@ -38,7 +22,7 @@ extension Batch {
         /// <li> instance-family String - 是否必填：否 -（过滤条件）按照机型系列过滤。实例机型系列形如：S1、I1、M1等。</li>
         public let filters: [Filter]?
         
-        public init (filters: [Filter]?) {
+        public init (filters: [Filter]? = nil) {
             self.filters = filters
         }
         
@@ -59,5 +43,21 @@ extension Batch {
             case instanceTypeConfigSet = "InstanceTypeConfigSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取批量计算可用的CVM机型配置信息
+    ///
+    /// 查看可用的CVM机型配置信息
+    @inlinable
+    public func describeAvailableCvmInstanceTypes(_ input: DescribeAvailableCvmInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAvailableCvmInstanceTypesResponse > {
+        self.client.execute(action: "DescribeAvailableCvmInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取批量计算可用的CVM机型配置信息
+    ///
+    /// 查看可用的CVM机型配置信息
+    @inlinable
+    public func describeAvailableCvmInstanceTypes(_ input: DescribeAvailableCvmInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableCvmInstanceTypesResponse {
+        try await self.client.execute(action: "DescribeAvailableCvmInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

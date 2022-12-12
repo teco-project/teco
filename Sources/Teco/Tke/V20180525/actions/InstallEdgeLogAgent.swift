@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 安装边缘日志采集组件
-    ///
-    /// 在tke@edge集群的边缘节点上安装日志采集组件
-    @inlinable
-    public func installEdgeLogAgent(_ input: InstallEdgeLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallEdgeLogAgentResponse > {
-        self.client.execute(action: "InstallEdgeLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安装边缘日志采集组件
-    ///
-    /// 在tke@edge集群的边缘节点上安装日志采集组件
-    @inlinable
-    public func installEdgeLogAgent(_ input: InstallEdgeLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallEdgeLogAgentResponse {
-        try await self.client.execute(action: "InstallEdgeLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InstallEdgeLogAgent请求参数结构体
     public struct InstallEdgeLogAgentRequest: TCRequestModel {
         /// 集群ID
@@ -53,5 +37,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安装边缘日志采集组件
+    ///
+    /// 在tke@edge集群的边缘节点上安装日志采集组件
+    @inlinable
+    public func installEdgeLogAgent(_ input: InstallEdgeLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallEdgeLogAgentResponse > {
+        self.client.execute(action: "InstallEdgeLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安装边缘日志采集组件
+    ///
+    /// 在tke@edge集群的边缘节点上安装日志采集组件
+    @inlinable
+    public func installEdgeLogAgent(_ input: InstallEdgeLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallEdgeLogAgentResponse {
+        try await self.client.execute(action: "InstallEdgeLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

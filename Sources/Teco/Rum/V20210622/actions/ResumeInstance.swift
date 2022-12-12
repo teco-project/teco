@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 恢复实例
-    @inlinable
-    public func resumeInstance(_ input: ResumeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeInstanceResponse > {
-        self.client.execute(action: "ResumeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 恢复实例
-    @inlinable
-    public func resumeInstance(_ input: ResumeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeInstanceResponse {
-        try await self.client.execute(action: "ResumeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResumeInstance请求参数结构体
     public struct ResumeInstanceRequest: TCRequestModel {
         /// 需要恢复的实例id
@@ -49,5 +37,17 @@ extension Rum {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 恢复实例
+    @inlinable
+    public func resumeInstance(_ input: ResumeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeInstanceResponse > {
+        self.client.execute(action: "ResumeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复实例
+    @inlinable
+    public func resumeInstance(_ input: ResumeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeInstanceResponse {
+        try await self.client.execute(action: "ResumeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

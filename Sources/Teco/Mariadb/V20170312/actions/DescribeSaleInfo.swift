@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 查询云数据库可售卖地域和可用区信息
-    ///
-    /// 本接口(DescribeSaleInfo)用于查询云数据库可售卖的地域和可用区信息。
-    @inlinable
-    public func describeSaleInfo(_ input: DescribeSaleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSaleInfoResponse > {
-        self.client.execute(action: "DescribeSaleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云数据库可售卖地域和可用区信息
-    ///
-    /// 本接口(DescribeSaleInfo)用于查询云数据库可售卖的地域和可用区信息。
-    @inlinable
-    public func describeSaleInfo(_ input: DescribeSaleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSaleInfoResponse {
-        try await self.client.execute(action: "DescribeSaleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSaleInfo请求参数结构体
     public struct DescribeSaleInfoRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Mariadb {
             case regionList = "RegionList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云数据库可售卖地域和可用区信息
+    ///
+    /// 本接口(DescribeSaleInfo)用于查询云数据库可售卖的地域和可用区信息。
+    @inlinable
+    public func describeSaleInfo(_ input: DescribeSaleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSaleInfoResponse > {
+        self.client.execute(action: "DescribeSaleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云数据库可售卖地域和可用区信息
+    ///
+    /// 本接口(DescribeSaleInfo)用于查询云数据库可售卖的地域和可用区信息。
+    @inlinable
+    public func describeSaleInfo(_ input: DescribeSaleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSaleInfoResponse {
+        try await self.client.execute(action: "DescribeSaleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

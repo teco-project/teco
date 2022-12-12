@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 获取流量镜像的监听器列表信息
-    ///
-    /// 获取流量镜像的监听器列表信息。
-    @inlinable
-    public func describeTrafficMirrorListeners(_ input: DescribeTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorListenersResponse > {
-        self.client.execute(action: "DescribeTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取流量镜像的监听器列表信息
-    ///
-    /// 获取流量镜像的监听器列表信息。
-    @inlinable
-    public func describeTrafficMirrorListeners(_ input: DescribeTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorListenersResponse {
-        try await self.client.execute(action: "DescribeTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrafficMirrorListeners请求参数结构体
     public struct DescribeTrafficMirrorListenersRequest: TCRequestModel {
         /// 流量镜像实例ID。
@@ -63,7 +47,7 @@ extension Bmlb {
         /// 待搜索的端口。
         public let searchLoadBalancerPorts: [UInt64]?
         
-        public init (trafficMirrorId: String, offset: Int64?, limit: Int64?, searchLoadBalancerIds: [String]?, searchLoadBalancerNames: [String]?, searchVips: [String]?, searchListenerIds: [String]?, searchListenerNames: [String]?, searchProtocols: [String]?, searchLoadBalancerPorts: [UInt64]?) {
+        public init (trafficMirrorId: String, offset: Int64? = nil, limit: Int64? = nil, searchLoadBalancerIds: [String]? = nil, searchLoadBalancerNames: [String]? = nil, searchVips: [String]? = nil, searchListenerIds: [String]? = nil, searchListenerNames: [String]? = nil, searchProtocols: [String]? = nil, searchLoadBalancerPorts: [UInt64]? = nil) {
             self.trafficMirrorId = trafficMirrorId
             self.offset = offset
             self.limit = limit
@@ -106,5 +90,21 @@ extension Bmlb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取流量镜像的监听器列表信息
+    ///
+    /// 获取流量镜像的监听器列表信息。
+    @inlinable
+    public func describeTrafficMirrorListeners(_ input: DescribeTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorListenersResponse > {
+        self.client.execute(action: "DescribeTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取流量镜像的监听器列表信息
+    ///
+    /// 获取流量镜像的监听器列表信息。
+    @inlinable
+    public func describeTrafficMirrorListeners(_ input: DescribeTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorListenersResponse {
+        try await self.client.execute(action: "DescribeTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

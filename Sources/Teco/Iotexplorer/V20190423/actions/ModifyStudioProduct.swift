@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 修改产品
-    ///
-    /// 提供修改产品的名称和描述等信息的能力，对于已发布产品不允许进行修改。
-    @inlinable
-    public func modifyStudioProduct(_ input: ModifyStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyStudioProductResponse > {
-        self.client.execute(action: "ModifyStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改产品
-    ///
-    /// 提供修改产品的名称和描述等信息的能力，对于已发布产品不允许进行修改。
-    @inlinable
-    public func modifyStudioProduct(_ input: ModifyStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStudioProductResponse {
-        try await self.client.execute(action: "ModifyStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyStudioProduct请求参数结构体
     public struct ModifyStudioProductRequest: TCRequestModel {
         /// 产品ID
@@ -48,7 +32,7 @@ extension Iotexplorer {
         /// 是否打开二进制转Json功能, 取值为字符串 true/false
         public let enableProductScript: String?
         
-        public init (productId: String, productName: String, productDesc: String, moduleId: Int64, enableProductScript: String?) {
+        public init (productId: String, productName: String, productDesc: String, moduleId: Int64, enableProductScript: String? = nil) {
             self.productId = productId
             self.productName = productName
             self.productDesc = productDesc
@@ -77,5 +61,21 @@ extension Iotexplorer {
             case product = "Product"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改产品
+    ///
+    /// 提供修改产品的名称和描述等信息的能力，对于已发布产品不允许进行修改。
+    @inlinable
+    public func modifyStudioProduct(_ input: ModifyStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyStudioProductResponse > {
+        self.client.execute(action: "ModifyStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改产品
+    ///
+    /// 提供修改产品的名称和描述等信息的能力，对于已发布产品不允许进行修改。
+    @inlinable
+    public func modifyStudioProduct(_ input: ModifyStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStudioProductResponse {
+        try await self.client.execute(action: "ModifyStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

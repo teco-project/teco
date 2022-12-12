@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cws {
-    /// 新增监测任务
-    ///
-    /// 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。
-    @inlinable
-    public func createMonitors(_ input: CreateMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMonitorsResponse > {
-        self.client.execute(action: "CreateMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增监测任务
-    ///
-    /// 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。
-    @inlinable
-    public func createMonitors(_ input: CreateMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMonitorsResponse {
-        try await self.client.execute(action: "CreateMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMonitors请求参数结构体
     public struct CreateMonitorsRequest: TCRequestModel {
         /// 站点的url列表
@@ -81,5 +65,21 @@ extension Cws {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增监测任务
+    ///
+    /// 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。
+    @inlinable
+    public func createMonitors(_ input: CreateMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMonitorsResponse > {
+        self.client.execute(action: "CreateMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增监测任务
+    ///
+    /// 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。
+    @inlinable
+    public func createMonitors(_ input: CreateMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMonitorsResponse {
+        try await self.client.execute(action: "CreateMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

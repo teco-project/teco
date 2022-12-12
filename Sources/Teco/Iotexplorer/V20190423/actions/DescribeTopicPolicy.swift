@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 查看Topic详情
-    ///
-    /// 本接口（DescribeTopicPolicy）用于查看Topic详细信息 
-    @inlinable
-    public func describeTopicPolicy(_ input: DescribeTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicPolicyResponse > {
-        self.client.execute(action: "DescribeTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看Topic详情
-    ///
-    /// 本接口（DescribeTopicPolicy）用于查看Topic详细信息 
-    @inlinable
-    public func describeTopicPolicy(_ input: DescribeTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicPolicyResponse {
-        try await self.client.execute(action: "DescribeTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTopicPolicy请求参数结构体
     public struct DescribeTopicPolicyRequest: TCRequestModel {
         /// 产品ID
@@ -70,5 +54,21 @@ extension Iotexplorer {
             case privilege = "Privilege"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看Topic详情
+    ///
+    /// 本接口（DescribeTopicPolicy）用于查看Topic详细信息 
+    @inlinable
+    public func describeTopicPolicy(_ input: DescribeTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicPolicyResponse > {
+        self.client.execute(action: "DescribeTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看Topic详情
+    ///
+    /// 本接口（DescribeTopicPolicy）用于查看Topic详细信息 
+    @inlinable
+    public func describeTopicPolicy(_ input: DescribeTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicPolicyResponse {
+        try await self.client.execute(action: "DescribeTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

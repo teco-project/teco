@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询环境的监控曲线数据
-    ///
-    /// 根据用户传入的指标, 拉取一段时间内的监控数据。
-    @inlinable
-    public func describeCurveData(_ input: DescribeCurveDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCurveDataResponse > {
-        self.client.execute(action: "DescribeCurveData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询环境的监控曲线数据
-    ///
-    /// 根据用户传入的指标, 拉取一段时间内的监控数据。
-    @inlinable
-    public func describeCurveData(_ input: DescribeCurveDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCurveDataResponse {
-        try await self.client.execute(action: "DescribeCurveData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCurveData请求参数结构体
     public struct DescribeCurveDataRequest: TCRequestModel {
         /// 环境ID
@@ -67,7 +51,7 @@ extension Tcb {
         /// 资源ID, 目前仅对云函数、容器托管相关的指标有意义。云函数(FunctionInvocation, FunctionGBs, FunctionFlux, FunctionError, FunctionDuration)、容器托管（服务名称）, 如果想查询某个云函数的指标则在ResourceId中传入函数名; 如果只想查询整个namespace的指标, 则留空或不传.如果想查询数据库某个集合相关信息，传入集合名称
         public let resourceID: String?
         
-        public init (envId: String, metricName: String, startTime: String, endTime: String, resourceID: String?) {
+        public init (envId: String, metricName: String, startTime: String, endTime: String, resourceID: String? = nil) {
             self.envId = envId
             self.metricName = metricName
             self.startTime = startTime
@@ -116,5 +100,21 @@ extension Tcb {
             case time = "Time"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询环境的监控曲线数据
+    ///
+    /// 根据用户传入的指标, 拉取一段时间内的监控数据。
+    @inlinable
+    public func describeCurveData(_ input: DescribeCurveDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCurveDataResponse > {
+        self.client.execute(action: "DescribeCurveData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询环境的监控曲线数据
+    ///
+    /// 根据用户传入的指标, 拉取一段时间内的监控数据。
+    @inlinable
+    public func describeCurveData(_ input: DescribeCurveDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCurveDataResponse {
+        try await self.client.execute(action: "DescribeCurveData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

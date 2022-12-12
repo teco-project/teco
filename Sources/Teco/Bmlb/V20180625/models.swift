@@ -31,7 +31,7 @@ extension Bmlb {
         /// 自定义探测的主机端口，可选值1~65535。（需要监听器开启自定义健康检查）
         public let probePort: Int64?
         
-        public init (port: Int64, instanceId: String, weight: Int64, probePort: Int64?) {
+        public init (port: Int64, instanceId: String, weight: Int64, probePort: Int64? = nil) {
             self.port = port
             self.instanceId = instanceId
             self.weight = weight
@@ -57,7 +57,7 @@ extension Bmlb {
         /// 待绑定的主机权重，可选值0~100。
         public let weight: Int64?
         
-        public init (port: Int64?, instanceId: String?, weight: Int64?) {
+        public init (port: Int64? = nil, instanceId: String? = nil, weight: Int64? = nil) {
             self.port = port
             self.instanceId = instanceId
             self.weight = weight
@@ -108,7 +108,7 @@ extension Bmlb {
         /// 该黑石负载均衡所在的regionId。
         public let regionId: Int64?
         
-        public init (loadBalancerId: String?, loadBalancerName: String?, vpcId: String?, regionId: Int64?) {
+        public init (loadBalancerId: String? = nil, loadBalancerName: String? = nil, vpcId: String? = nil, regionId: Int64? = nil) {
             self.loadBalancerId = loadBalancerId
             self.loadBalancerName = loadBalancerName
             self.vpcId = vpcId
@@ -173,7 +173,7 @@ extension Bmlb {
         /// 是否开启toa。可选值：0（关闭）、1（开启），默认关闭。（该字段在负载均衡为fullnat类型下才生效）
         public let toaFlag: Int64?
         
-        public init (loadBalancerPort: Int64, `protocol`: String, listenerName: String, sessionExpire: Int64?, healthSwitch: Int64?, timeOut: Int64?, intervalTime: Int64?, healthNum: Int64?, unhealthNum: Int64?, bandwidth: Int64?, customHealthSwitch: Int64?, inputType: String?, lineSeparatorType: Int64?, healthRequest: String?, healthResponse: String?, toaFlag: Int64?) {
+        public init (loadBalancerPort: Int64, `protocol`: String, listenerName: String, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, bandwidth: Int64? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil) {
             self.loadBalancerPort = loadBalancerPort
             self.`protocol` = `protocol`
             self.listenerName = listenerName
@@ -253,7 +253,7 @@ extension Bmlb {
         /// 转发协议。当Protocol为https时并且SslMode为1或2时，有意义。可选的值为0：https，1：spdy，2：http2，3：spdy+http2。
         public let forwardProtocol: Int64?
         
-        public init (loadBalancerPort: Int64, `protocol`: String, listenerName: String, sslMode: Int64?, certId: String?, certName: String?, certContent: String?, certKey: String?, certCaId: String?, certCaName: String?, certCaContent: String?, bandwidth: Int64?, forwardProtocol: Int64?) {
+        public init (loadBalancerPort: Int64, `protocol`: String, listenerName: String, sslMode: Int64? = nil, certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil, certCaId: String? = nil, certCaName: String? = nil, certCaContent: String? = nil, bandwidth: Int64? = nil, forwardProtocol: Int64? = nil) {
             self.loadBalancerPort = loadBalancerPort
             self.`protocol` = `protocol`
             self.listenerName = listenerName
@@ -321,7 +321,7 @@ extension Bmlb {
         /// 均衡方式：ip_hash、wrr。默认值wrr。
         public let balanceMode: String?
         
-        public init (domain: String, url: String, sessionExpire: Int64?, healthSwitch: Int64?, intervalTime: Int64?, healthNum: Int64?, unhealthNum: Int64?, httpCodes: [UInt64]?, httpCheckPath: String?, httpCheckDomain: String?, balanceMode: String?) {
+        public init (domain: String, url: String, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, httpCodes: [UInt64]? = nil, httpCheckPath: String? = nil, httpCheckDomain: String? = nil, balanceMode: String? = nil) {
             self.domain = domain
             self.url = url
             self.sessionExpire = sessionExpire
@@ -361,7 +361,7 @@ extension Bmlb {
         /// 七层可选按qps衡量。
         public let bzL7Metrics: String?
         
-        public init (bzPayMode: String?, bzL4Metrics: String?, bzL7Metrics: String?) {
+        public init (bzPayMode: String? = nil, bzL4Metrics: String? = nil, bzL7Metrics: String? = nil) {
             self.bzPayMode = bzPayMode
             self.bzL4Metrics = bzL4Metrics
             self.bzL7Metrics = bzL7Metrics
@@ -382,7 +382,7 @@ extension Bmlb {
         /// 黑石物理机的主机ID。
         public let instanceId: String?
         
-        public init (port: Int64?, instanceId: String?) {
+        public init (port: Int64? = nil, instanceId: String? = nil) {
             self.port = port
             self.instanceId = instanceId
         }
@@ -420,7 +420,7 @@ extension Bmlb {
         /// 主机端口。
         public let port: Int64?
         
-        public init (instanceId: String?, port: Int64?) {
+        public init (instanceId: String? = nil, port: Int64? = nil) {
             self.instanceId = instanceId
             self.port = port
         }
@@ -445,7 +445,7 @@ extension Bmlb {
         /// 该转发路径所绑定的主机列表。
         public let backendSet: [DevicesBindInfoBackend]?
         
-        public init (listenerId: String?, `protocol`: String?, loadBalancerPort: Int64?, backendSet: [DevicesBindInfoBackend]?) {
+        public init (listenerId: String? = nil, `protocol`: String? = nil, loadBalancerPort: Int64? = nil, backendSet: [DevicesBindInfoBackend]? = nil) {
             self.listenerId = listenerId
             self.`protocol` = `protocol`
             self.loadBalancerPort = loadBalancerPort
@@ -474,7 +474,7 @@ extension Bmlb {
         /// 返回的转发规则列表。
         public let ruleSet: [DevicesBindInfoRule]?
         
-        public init (listenerId: String?, `protocol`: String?, loadBalancerPort: Int64?, ruleSet: [DevicesBindInfoRule]?) {
+        public init (listenerId: String? = nil, `protocol`: String? = nil, loadBalancerPort: Int64? = nil, ruleSet: [DevicesBindInfoRule]? = nil) {
             self.listenerId = listenerId
             self.`protocol` = `protocol`
             self.loadBalancerPort = loadBalancerPort
@@ -518,7 +518,7 @@ extension Bmlb {
         /// 具有该绑定关系的七层监听器列表。
         public let l7ListenerSet: [DevicesBindInfoL7Listener]?
         
-        public init (loadBalancerId: String?, appId: Int64?, projectId: Int64?, vpcId: String?, vip: String?, tgwSetType: String?, exclusive: Int64?, l4ListenerSet: [DevicesBindInfoL4Listener]?, l7ListenerSet: [DevicesBindInfoL7Listener]?) {
+        public init (loadBalancerId: String? = nil, appId: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, vip: String? = nil, tgwSetType: String? = nil, exclusive: Int64? = nil, l4ListenerSet: [DevicesBindInfoL4Listener]? = nil, l7ListenerSet: [DevicesBindInfoL7Listener]? = nil) {
             self.loadBalancerId = loadBalancerId
             self.appId = appId
             self.projectId = projectId
@@ -554,7 +554,7 @@ extension Bmlb {
         /// 该转发路径所绑定的主机列表。
         public let backendSet: [DevicesBindInfoBackend]?
         
-        public init (url: String?, locationId: String?, backendSet: [DevicesBindInfoBackend]?) {
+        public init (url: String? = nil, locationId: String? = nil, backendSet: [DevicesBindInfoBackend]? = nil) {
             self.url = url
             self.locationId = locationId
             self.backendSet = backendSet
@@ -578,7 +578,7 @@ extension Bmlb {
         /// 转发路径列表。
         public let locationSet: [DevicesBindInfoLocation]?
         
-        public init (domain: String?, domainId: String?, locationSet: [DevicesBindInfoLocation]?) {
+        public init (domain: String? = nil, domainId: String? = nil, locationSet: [DevicesBindInfoLocation]? = nil) {
             self.domain = domain
             self.domainId = domainId
             self.locationSet = locationSet
@@ -639,7 +639,7 @@ extension Bmlb {
         /// 主机探测端口。
         public let probePort: Int64?
         
-        public init (bindType: Int64?, port: Int64?, weight: Int64?, status: String?, instanceId: String?, alias: String?, lanIp: String?, operates: [String]?, probePort: Int64?) {
+        public init (bindType: Int64? = nil, port: Int64? = nil, weight: Int64? = nil, status: String? = nil, instanceId: String? = nil, alias: String? = nil, lanIp: String? = nil, operates: [String]? = nil, probePort: Int64? = nil) {
             self.bindType = bindType
             self.port = port
             self.weight = weight
@@ -729,7 +729,7 @@ extension Bmlb {
         /// 转发后端服务器调度类型。
         public let balanceMode: String?
         
-        public init (listenerId: String?, listenerName: String?, `protocol`: String?, loadBalancerPort: Int64?, bandwidth: Int64?, listenerType: String?, sessionExpire: Int64?, healthSwitch: Int64?, timeOut: Int64?, intervalTime: Int64?, healthNum: Int64?, unhealthNum: Int64?, customHealthSwitch: Int64?, inputType: String?, lineSeparatorType: Int64?, healthRequest: String?, healthResponse: String?, toaFlag: Int64?, status: Int64?, addTimestamp: Date?, balanceMode: String?) {
+        public init (listenerId: String? = nil, listenerName: String? = nil, `protocol`: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil, status: Int64? = nil, addTimestamp: Date? = nil, balanceMode: String? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
             self.`protocol` = `protocol`
@@ -843,7 +843,7 @@ extension Bmlb {
         /// 转发后端服务器调度类型。
         public let balanceMode: String?
         
-        public init (listenerId: String?, listenerName: String?, `protocol`: String?, loadBalancerPort: Int64?, bandwidth: Int64?, listenerType: String?, sessionExpire: Int64?, healthSwitch: Int64?, timeOut: Int64?, intervalTime: Int64?, healthNum: Int64?, unhealthNum: Int64?, status: Int64?, addTimestamp: Date?, customHealthSwitch: Int64?, inputType: String?, lineSeparatorType: Int64?, healthRequest: String?, healthResponse: String?, toaFlag: Int64?, balanceMode: String?) {
+        public init (listenerId: String? = nil, listenerName: String? = nil, `protocol`: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, status: Int64? = nil, addTimestamp: Date? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil, balanceMode: String? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
             self.`protocol` = `protocol`
@@ -921,7 +921,7 @@ extension Bmlb {
         /// 黑石物理机当前可以执行的操作。
         public let operates: [String]?
         
-        public init (bindType: Int64?, port: Int64?, weight: Int64?, status: String?, instanceId: String?, alias: String?, lanIp: String?, mgtIp: String?, operates: [String]?) {
+        public init (bindType: Int64? = nil, port: Int64? = nil, weight: Int64? = nil, status: String? = nil, instanceId: String? = nil, alias: String? = nil, lanIp: String? = nil, mgtIp: String? = nil, operates: [String]? = nil) {
             self.bindType = bindType
             self.port = port
             self.weight = weight
@@ -1067,7 +1067,7 @@ extension Bmlb {
         /// https转发类型。0：https。1：spdy。2：http2。3：spdy+http2。
         public let forwardProtocol: Int64?
         
-        public init (listenerId: String?, listenerName: String?, `protocol`: String?, loadBalancerPort: Int64?, bandwidth: Int64?, listenerType: String?, sslMode: Int64?, certId: String?, certCaId: String?, status: Int64?, addTimestamp: Date?, forwardProtocol: Int64?) {
+        public init (listenerId: String? = nil, listenerName: String? = nil, `protocol`: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certCaId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, forwardProtocol: Int64? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
             self.`protocol` = `protocol`
@@ -1139,7 +1139,7 @@ extension Bmlb {
         /// https转发类型。0：https。1：spdy。2：http2。3：spdy+http2。
         public let forwardProtocol: Int64?
         
-        public init (listenerId: String?, listenerName: String?, `protocol`: String?, loadBalancerPort: Int64?, bandwidth: Int64?, listenerType: String?, sslMode: Int64?, certId: String?, certCaId: String?, status: Int64?, addTimestamp: Date?, ruleSet: [L7ListenerInfoRule]?, forwardProtocol: Int64?) {
+        public init (listenerId: String? = nil, listenerName: String? = nil, `protocol`: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certCaId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, ruleSet: [L7ListenerInfoRule]? = nil, forwardProtocol: Int64? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
             self.`protocol` = `protocol`
@@ -1195,7 +1195,7 @@ extension Bmlb {
         /// 主机IP。
         public let lanIp: String?
         
-        public init (bindType: Int64?, port: Int64?, weight: Int64?, status: String?, instanceId: String?, alias: String?, lanIp: String?) {
+        public init (bindType: Int64? = nil, port: Int64? = nil, weight: Int64? = nil, status: String? = nil, instanceId: String? = nil, alias: String? = nil, lanIp: String? = nil) {
             self.bindType = bindType
             self.port = port
             self.weight = weight
@@ -1260,7 +1260,7 @@ extension Bmlb {
         /// 该转发路径所绑定的主机列表。
         public let backendSet: [L7ListenerInfoBackend]?
         
-        public init (url: String?, locationId: String?, sessionExpire: Int64?, healthSwitch: Int64?, httpCheckPath: String?, httpCheckDomain: String?, intervalTime: Int64?, healthNum: Int64?, unhealthNum: Int64?, httpCodes: [UInt64]?, balanceMode: String?, status: Int64?, addTimestamp: Date?, backendSet: [L7ListenerInfoBackend]?) {
+        public init (url: String? = nil, locationId: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, httpCheckPath: String? = nil, httpCheckDomain: String? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, httpCodes: [UInt64]? = nil, balanceMode: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, backendSet: [L7ListenerInfoBackend]? = nil) {
             self.url = url
             self.locationId = locationId
             self.sessionExpire = sessionExpire
@@ -1312,7 +1312,7 @@ extension Bmlb {
         /// 该转发域名下面的转发路径列表。
         public let locationSet: [L7ListenerInfoLocation]?
         
-        public init (domain: String?, domainId: String?, status: Int64?, addTimestamp: Date?, locationSet: [L7ListenerInfoLocation]?) {
+        public init (domain: String? = nil, domainId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, locationSet: [L7ListenerInfoLocation]? = nil) {
             self.domain = domain
             self.domainId = domainId
             self.status = status
@@ -1346,7 +1346,7 @@ extension Bmlb {
         /// 该转发域名下面的转发路径列表。
         public let locationSet: [L7RulesLocation]?
         
-        public init (domain: String?, domainId: String?, status: Int64?, addTimestamp: Date?, locationSet: [L7RulesLocation]?) {
+        public init (domain: String? = nil, domainId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, locationSet: [L7RulesLocation]? = nil) {
             self.domain = domain
             self.domainId = domainId
             self.status = status
@@ -1404,7 +1404,7 @@ extension Bmlb {
         /// 创建时间戳。
         public let addTimestamp: Date?
         
-        public init (url: String?, locationId: String?, sessionExpire: Int64?, healthSwitch: Int64?, httpCheckPath: String?, httpCheckDomain: String?, intervalTime: Int64?, healthNum: Int64?, unhealthNum: Int64?, httpCodes: [UInt64]?, balanceMode: String?, status: Int64?, addTimestamp: Date?) {
+        public init (url: String? = nil, locationId: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, httpCheckPath: String? = nil, httpCheckDomain: String? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, httpCodes: [UInt64]? = nil, balanceMode: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil) {
             self.url = url
             self.locationId = locationId
             self.sessionExpire = sessionExpire
@@ -1524,7 +1524,7 @@ extension Bmlb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let curVips: [String]?
         
-        public init (loadBalancerId: String?, projectId: UInt64?, loadBalancerName: String?, loadBalancerType: String?, exclusive: UInt64?, tgwSetType: String?, domain: String?, vpcId: String?, subnetId: String?, status: UInt64?, payMode: String?, latestPayMode: String?, createTime: Date?, statusTime: Date?, vpcName: String?, vpcCidrBlock: String?, loadBalancerVips: [String]?, supportListenerTypes: [String]?, bandwidth: UInt64?, confId: String?, confName: String?, loadBalancerVipv6s: [String]?, ipProtocolType: String?, bzPayMode: String?, bzL4Metrics: String?, bzL7Metrics: String?, intVpcId: UInt64?, curVips: [String]?) {
+        public init (loadBalancerId: String? = nil, projectId: UInt64? = nil, loadBalancerName: String? = nil, loadBalancerType: String? = nil, exclusive: UInt64? = nil, tgwSetType: String? = nil, domain: String? = nil, vpcId: String? = nil, subnetId: String? = nil, status: UInt64? = nil, payMode: String? = nil, latestPayMode: String? = nil, createTime: Date? = nil, statusTime: Date? = nil, vpcName: String? = nil, vpcCidrBlock: String? = nil, loadBalancerVips: [String]? = nil, supportListenerTypes: [String]? = nil, bandwidth: UInt64? = nil, confId: String? = nil, confName: String? = nil, loadBalancerVipv6s: [String]? = nil, ipProtocolType: String? = nil, bzPayMode: String? = nil, bzL4Metrics: String? = nil, bzL7Metrics: String? = nil, intVpcId: UInt64? = nil, curVips: [String]? = nil) {
             self.loadBalancerId = loadBalancerId
             self.projectId = projectId
             self.loadBalancerName = loadBalancerName
@@ -1662,7 +1662,7 @@ extension Bmlb {
         /// 转发域名。
         public let domain: String?
         
-        public init (domainId: String, locationId: String, url: String?, sessionExpire: Int64?, healthSwitch: Int64?, intervalTime: Int64?, healthNum: Int64?, unhealthNum: Int64?, httpCodes: [UInt64]?, httpCheckPath: String?, httpCheckDomain: String?, balanceMode: String?, domain: String?) {
+        public init (domainId: String, locationId: String, url: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, httpCodes: [UInt64]? = nil, httpCheckPath: String? = nil, httpCheckDomain: String? = nil, balanceMode: String? = nil, domain: String? = nil) {
             self.domainId = domainId
             self.locationId = locationId
             self.url = url
@@ -1763,7 +1763,7 @@ extension Bmlb {
         /// 流量镜像所在私有网络的名称。
         public let vpcName: String?
         
-        public init (trafficMirrorId: String?, alias: String?, vpcId: String?, loadBalancerType: String?, healthSwitch: Int64?, healthNum: Int64?, unhealthNum: Int64?, intervalTime: Int64?, httpCheckDomain: String?, httpCheckPath: String?, httpCodes: [Int64]?, createTime: Date?, vpcCidrBlock: String?, vpcName: String?) {
+        public init (trafficMirrorId: String? = nil, alias: String? = nil, vpcId: String? = nil, loadBalancerType: String? = nil, healthSwitch: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, intervalTime: Int64? = nil, httpCheckDomain: String? = nil, httpCheckPath: String? = nil, httpCodes: [Int64]? = nil, createTime: Date? = nil, vpcCidrBlock: String? = nil, vpcName: String? = nil) {
             self.trafficMirrorId = trafficMirrorId
             self.alias = alias
             self.vpcId = vpcId
@@ -1975,7 +1975,7 @@ extension Bmlb {
         /// 黑石物理机主机ID、虚拟机IP或者是半托管主机ID。
         public let instanceId: String?
         
-        public init (port: Int64?, instanceId: String?) {
+        public init (port: Int64? = nil, instanceId: String? = nil) {
             self.port = port
             self.instanceId = instanceId
         }
@@ -1994,7 +1994,7 @@ extension Bmlb {
         /// 黑石物理机主机ID、虚拟机IP或者是半托管主机ID。
         public let instanceId: String?
         
-        public init (port: Int64?, instanceId: String?) {
+        public init (port: Int64? = nil, instanceId: String? = nil) {
             self.port = port
             self.instanceId = instanceId
         }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Sms {
-    /// 号码信息查询
-    ///
-    /// 提供电话号码的信息查询，包括国家（或地区）码、规范的 E.164 格式号码等。
-    /// >- 例如：查询号码 +86018845720123，可以得到国家码 86、规范的 E.164 号码 +8618845720123 等信息。
-    @inlinable
-    public func describePhoneNumberInfo(_ input: DescribePhoneNumberInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePhoneNumberInfoResponse > {
-        self.client.execute(action: "DescribePhoneNumberInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 号码信息查询
-    ///
-    /// 提供电话号码的信息查询，包括国家（或地区）码、规范的 E.164 格式号码等。
-    /// >- 例如：查询号码 +86018845720123，可以得到国家码 86、规范的 E.164 号码 +8618845720123 等信息。
-    @inlinable
-    public func describePhoneNumberInfo(_ input: DescribePhoneNumberInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePhoneNumberInfoResponse {
-        try await self.client.execute(action: "DescribePhoneNumberInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePhoneNumberInfo请求参数结构体
     public struct DescribePhoneNumberInfoRequest: TCRequestModel {
         /// 查询手机号码，采用 E.164 标准，格式为+[国家或地区码][手机号]，单次请求最多支持200个手机号。
@@ -60,5 +42,23 @@ extension Sms {
             case phoneNumberInfoSet = "PhoneNumberInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 号码信息查询
+    ///
+    /// 提供电话号码的信息查询，包括国家（或地区）码、规范的 E.164 格式号码等。
+    /// >- 例如：查询号码 +86018845720123，可以得到国家码 86、规范的 E.164 号码 +8618845720123 等信息。
+    @inlinable
+    public func describePhoneNumberInfo(_ input: DescribePhoneNumberInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePhoneNumberInfoResponse > {
+        self.client.execute(action: "DescribePhoneNumberInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 号码信息查询
+    ///
+    /// 提供电话号码的信息查询，包括国家（或地区）码、规范的 E.164 格式号码等。
+    /// >- 例如：查询号码 +86018845720123，可以得到国家码 86、规范的 E.164 号码 +8618845720123 等信息。
+    @inlinable
+    public func describePhoneNumberInfo(_ input: DescribePhoneNumberInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePhoneNumberInfoResponse {
+        try await self.client.execute(action: "DescribePhoneNumberInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

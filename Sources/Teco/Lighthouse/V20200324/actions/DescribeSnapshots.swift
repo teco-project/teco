@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查看快照列表
-    ///
-    /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
-    @inlinable
-    public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotsResponse > {
-        self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看快照列表
-    ///
-    /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
-    @inlinable
-    public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
-        try await self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSnapshots请求参数结构体
     public struct DescribeSnapshotsRequest: TCRequestModel {
         /// 要查询快照的 ID 列表。
@@ -59,7 +43,7 @@ extension Lighthouse {
         /// 返回数量，默认为 20，最大值为 100。
         public let limit: Int64?
         
-        public init (snapshotIds: [String]?, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (snapshotIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.snapshotIds = snapshotIds
             self.filters = filters
             self.offset = offset
@@ -90,5 +74,21 @@ extension Lighthouse {
             case snapshotSet = "SnapshotSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看快照列表
+    ///
+    /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
+    @inlinable
+    public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotsResponse > {
+        self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看快照列表
+    ///
+    /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
+    @inlinable
+    public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
+        try await self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

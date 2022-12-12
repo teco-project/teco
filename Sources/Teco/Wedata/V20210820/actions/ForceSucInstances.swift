@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 实例批量置成功【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 实例批量置成功
-    @inlinable
-    public func forceSucInstances(_ input: ForceSucInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ForceSucInstancesResponse > {
-        self.client.execute(action: "ForceSucInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实例批量置成功【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 实例批量置成功
-    @inlinable
-    public func forceSucInstances(_ input: ForceSucInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForceSucInstancesResponse {
-        try await self.client.execute(action: "ForceSucInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ForceSucInstances请求参数结构体
     public struct ForceSucInstancesRequest: TCRequestModel {
         /// 项目Id
@@ -64,5 +46,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实例批量置成功【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 实例批量置成功
+    @inlinable
+    public func forceSucInstances(_ input: ForceSucInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ForceSucInstancesResponse > {
+        self.client.execute(action: "ForceSucInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实例批量置成功【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 实例批量置成功
+    @inlinable
+    public func forceSucInstances(_ input: ForceSucInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForceSucInstancesResponse {
+        try await self.client.execute(action: "ForceSucInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

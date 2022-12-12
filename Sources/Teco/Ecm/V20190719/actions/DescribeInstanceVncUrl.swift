@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 查询实例管理终端地址
-    @inlinable
-    public func describeInstanceVncUrl(_ input: DescribeInstanceVncUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceVncUrlResponse > {
-        self.client.execute(action: "DescribeInstanceVncUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例管理终端地址
-    @inlinable
-    public func describeInstanceVncUrl(_ input: DescribeInstanceVncUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceVncUrlResponse {
-        try await self.client.execute(action: "DescribeInstanceVncUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceVncUrl请求参数结构体
     public struct DescribeInstanceVncUrlRequest: TCRequestModel {
         /// 一个操作的实例ID。可通过DescribeInstances API返回值中的InstanceId获取。
@@ -53,5 +41,17 @@ extension Ecm {
             case instanceVncUrl = "InstanceVncUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例管理终端地址
+    @inlinable
+    public func describeInstanceVncUrl(_ input: DescribeInstanceVncUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceVncUrlResponse > {
+        self.client.execute(action: "DescribeInstanceVncUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例管理终端地址
+    @inlinable
+    public func describeInstanceVncUrl(_ input: DescribeInstanceVncUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceVncUrlResponse {
+        try await self.client.execute(action: "DescribeInstanceVncUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

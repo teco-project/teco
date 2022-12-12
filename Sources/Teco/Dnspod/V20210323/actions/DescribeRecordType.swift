@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 获取等级允许的记录类型
-    @inlinable
-    public func describeRecordType(_ input: DescribeRecordTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordTypeResponse > {
-        self.client.execute(action: "DescribeRecordType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取等级允许的记录类型
-    @inlinable
-    public func describeRecordType(_ input: DescribeRecordTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordTypeResponse {
-        try await self.client.execute(action: "DescribeRecordType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRecordType请求参数结构体
     public struct DescribeRecordTypeRequest: TCRequestModel {
         /// 域名等级。
@@ -55,5 +43,17 @@ extension Dnspod {
             case typeList = "TypeList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取等级允许的记录类型
+    @inlinable
+    public func describeRecordType(_ input: DescribeRecordTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordTypeResponse > {
+        self.client.execute(action: "DescribeRecordType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取等级允许的记录类型
+    @inlinable
+    public func describeRecordType(_ input: DescribeRecordTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordTypeResponse {
+        try await self.client.execute(action: "DescribeRecordType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

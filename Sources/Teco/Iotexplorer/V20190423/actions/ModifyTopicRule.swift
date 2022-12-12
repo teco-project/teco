@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 修改规则
-    @inlinable
-    public func modifyTopicRule(_ input: ModifyTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTopicRuleResponse > {
-        self.client.execute(action: "ModifyTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改规则
-    @inlinable
-    public func modifyTopicRule(_ input: ModifyTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicRuleResponse {
-        try await self.client.execute(action: "ModifyTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTopicRule请求参数结构体
     public struct ModifyTopicRuleRequest: TCRequestModel {
         /// 规则名称
@@ -54,5 +42,17 @@ extension Iotexplorer {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改规则
+    @inlinable
+    public func modifyTopicRule(_ input: ModifyTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTopicRuleResponse > {
+        self.client.execute(action: "ModifyTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改规则
+    @inlinable
+    public func modifyTopicRule(_ input: ModifyTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicRuleResponse {
+        try await self.client.execute(action: "ModifyTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

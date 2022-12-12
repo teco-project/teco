@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫-关闭订单接口
-    ///
-    /// 通过此接口关闭此前已创建的订单，关闭后，用户将无法继续付款。仅能关闭创建后未支付的订单
-    @inlinable
-    public func closeOrder(_ input: CloseOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseOrderResponse > {
-        self.client.execute(action: "CloseOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫-关闭订单接口
-    ///
-    /// 通过此接口关闭此前已创建的订单，关闭后，用户将无法继续付款。仅能关闭创建后未支付的订单
-    @inlinable
-    public func closeOrder(_ input: CloseOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseOrderResponse {
-        try await self.client.execute(action: "CloseOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CloseOrder请求参数结构体
     public struct CloseOrderRequest: TCRequestModel {
         /// 聚鑫分配的支付主MidasAppId
@@ -58,7 +42,7 @@ extension Cpdp {
         /// 缺省: release
         public let midasEnvironment: String?
         
-        public init (midasAppId: String, userId: String, midasSecretId: String, midasSignature: String, outTradeNo: String?, transactionId: String?, midasEnvironment: String?) {
+        public init (midasAppId: String, userId: String, midasSecretId: String, midasSignature: String, outTradeNo: String? = nil, transactionId: String? = nil, midasEnvironment: String? = nil) {
             self.midasAppId = midasAppId
             self.userId = userId
             self.midasSecretId = midasSecretId
@@ -87,5 +71,21 @@ extension Cpdp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫-关闭订单接口
+    ///
+    /// 通过此接口关闭此前已创建的订单，关闭后，用户将无法继续付款。仅能关闭创建后未支付的订单
+    @inlinable
+    public func closeOrder(_ input: CloseOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseOrderResponse > {
+        self.client.execute(action: "CloseOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-关闭订单接口
+    ///
+    /// 通过此接口关闭此前已创建的订单，关闭后，用户将无法继续付款。仅能关闭创建后未支付的订单
+    @inlinable
+    public func closeOrder(_ input: CloseOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseOrderResponse {
+        try await self.client.execute(action: "CloseOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

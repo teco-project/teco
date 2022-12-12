@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 批量销毁计算节点
-    ///
-    /// 用于批量销毁计算节点，不允许重复销毁同一个节点。
-    @inlinable
-    public func terminateComputeNodes(_ input: TerminateComputeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateComputeNodesResponse > {
-        self.client.execute(action: "TerminateComputeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量销毁计算节点
-    ///
-    /// 用于批量销毁计算节点，不允许重复销毁同一个节点。
-    @inlinable
-    public func terminateComputeNodes(_ input: TerminateComputeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateComputeNodesResponse {
-        try await self.client.execute(action: "TerminateComputeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TerminateComputeNodes请求参数结构体
     public struct TerminateComputeNodesRequest: TCRequestModel {
         /// 计算环境ID
@@ -58,5 +42,21 @@ extension Batch {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量销毁计算节点
+    ///
+    /// 用于批量销毁计算节点，不允许重复销毁同一个节点。
+    @inlinable
+    public func terminateComputeNodes(_ input: TerminateComputeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateComputeNodesResponse > {
+        self.client.execute(action: "TerminateComputeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量销毁计算节点
+    ///
+    /// 用于批量销毁计算节点，不允许重复销毁同一个节点。
+    @inlinable
+    public func terminateComputeNodes(_ input: TerminateComputeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateComputeNodesResponse {
+        try await self.client.execute(action: "TerminateComputeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

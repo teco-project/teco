@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 删除水印
-    ///
-    /// 删除水印。
-    @inlinable
-    public func deleteLiveWatermark(_ input: DeleteLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveWatermarkResponse > {
-        self.client.execute(action: "DeleteLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除水印
-    ///
-    /// 删除水印。
-    @inlinable
-    public func deleteLiveWatermark(_ input: DeleteLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveWatermarkResponse {
-        try await self.client.execute(action: "DeleteLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLiveWatermark请求参数结构体
     public struct DeleteLiveWatermarkRequest: TCRequestModel {
         /// 水印 ID。
@@ -55,5 +39,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除水印
+    ///
+    /// 删除水印。
+    @inlinable
+    public func deleteLiveWatermark(_ input: DeleteLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveWatermarkResponse > {
+        self.client.execute(action: "DeleteLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除水印
+    ///
+    /// 删除水印。
+    @inlinable
+    public func deleteLiveWatermark(_ input: DeleteLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveWatermarkResponse {
+        try await self.client.execute(action: "DeleteLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

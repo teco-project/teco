@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 展示白盒密钥的信息
-    @inlinable
-    public func describeWhiteBoxKey(_ input: DescribeWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxKeyResponse > {
-        self.client.execute(action: "DescribeWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 展示白盒密钥的信息
-    @inlinable
-    public func describeWhiteBoxKey(_ input: DescribeWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxKeyResponse {
-        try await self.client.execute(action: "DescribeWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWhiteBoxKey请求参数结构体
     public struct DescribeWhiteBoxKeyRequest: TCRequestModel {
         /// 白盒密钥的全局唯一标识符
@@ -53,5 +41,17 @@ extension Kms {
             case keyInfo = "KeyInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 展示白盒密钥的信息
+    @inlinable
+    public func describeWhiteBoxKey(_ input: DescribeWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxKeyResponse > {
+        self.client.execute(action: "DescribeWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 展示白盒密钥的信息
+    @inlinable
+    public func describeWhiteBoxKey(_ input: DescribeWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxKeyResponse {
+        try await self.client.execute(action: "DescribeWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

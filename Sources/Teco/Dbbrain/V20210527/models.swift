@@ -270,7 +270,7 @@ extension Dbbrain {
         /// 实例概览开关，Yes/No。
         public let overviewDisplay: String?
         
-        public init (dailyInspection: String?, overviewDisplay: String?) {
+        public init (dailyInspection: String? = nil, overviewDisplay: String? = nil) {
             self.dailyInspection = dailyInspection
             self.overviewDisplay = overviewDisplay
         }
@@ -435,7 +435,7 @@ extension Dbbrain {
         /// 联系组id, 联系人/联系组不能都为空。
         public let contactGroup: [Int64]?
         
-        public init (sendMail: Int64, region: [String], healthStatus: [String], contactPerson: [Int64]?, contactGroup: [Int64]?) {
+        public init (sendMail: Int64, region: [String], healthStatus: [String], contactPerson: [Int64]? = nil, contactGroup: [Int64]? = nil) {
             self.sendMail = sendMail
             self.region = region
             self.healthStatus = healthStatus

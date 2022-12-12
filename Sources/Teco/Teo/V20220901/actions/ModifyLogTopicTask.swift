@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改推送任务
-    ///
-    /// 本接口（ModifyLogTopicTask）用于修改日志推送任务信息。
-    @inlinable
-    public func modifyLogTopicTask(_ input: ModifyLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLogTopicTaskResponse > {
-        self.client.execute(action: "ModifyLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改推送任务
-    ///
-    /// 本接口（ModifyLogTopicTask）用于修改日志推送任务信息。
-    @inlinable
-    public func modifyLogTopicTask(_ input: ModifyLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogTopicTaskResponse {
-        try await self.client.execute(action: "ModifyLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLogTopicTask请求参数结构体
     public struct ModifyLogTopicTaskRequest: TCRequestModel {
         /// 站点ID。
@@ -72,7 +56,7 @@ extension Teo {
         /// 待删除的推送任务实例列表。
         public let addedEntityList: [String]?
         
-        public init (zoneId: String, logSetRegion: String, logSetId: String, topicId: String, entityType: String?, taskName: String?, topicName: String?, logSetName: String?, period: Int64?, dropEntityList: [String]?, addedEntityList: [String]?) {
+        public init (zoneId: String, logSetRegion: String, logSetId: String, topicId: String, entityType: String? = nil, taskName: String? = nil, topicName: String? = nil, logSetName: String? = nil, period: Int64? = nil, dropEntityList: [String]? = nil, addedEntityList: [String]? = nil) {
             self.zoneId = zoneId
             self.logSetRegion = logSetRegion
             self.logSetId = logSetId
@@ -109,5 +93,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改推送任务
+    ///
+    /// 本接口（ModifyLogTopicTask）用于修改日志推送任务信息。
+    @inlinable
+    public func modifyLogTopicTask(_ input: ModifyLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLogTopicTaskResponse > {
+        self.client.execute(action: "ModifyLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改推送任务
+    ///
+    /// 本接口（ModifyLogTopicTask）用于修改日志推送任务信息。
+    @inlinable
+    public func modifyLogTopicTask(_ input: ModifyLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogTopicTaskResponse {
+        try await self.client.execute(action: "ModifyLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

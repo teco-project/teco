@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 获取组织成员访问身份列表
-    @inlinable
-    public func listOrganizationIdentity(_ input: ListOrganizationIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListOrganizationIdentityResponse > {
-        self.client.execute(action: "ListOrganizationIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取组织成员访问身份列表
-    @inlinable
-    public func listOrganizationIdentity(_ input: ListOrganizationIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationIdentityResponse {
-        try await self.client.execute(action: "ListOrganizationIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListOrganizationIdentity请求参数结构体
     public struct ListOrganizationIdentityRequest: TCRequestModel {
         /// 偏移量。
@@ -41,7 +29,7 @@ extension Organization {
         /// 身份ID搜索。
         public let identityId: UInt64?
         
-        public init (offset: UInt64, limit: UInt64, searchKey: String?, identityId: UInt64?) {
+        public init (offset: UInt64, limit: UInt64, searchKey: String? = nil, identityId: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
             self.searchKey = searchKey
@@ -74,5 +62,17 @@ extension Organization {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取组织成员访问身份列表
+    @inlinable
+    public func listOrganizationIdentity(_ input: ListOrganizationIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListOrganizationIdentityResponse > {
+        self.client.execute(action: "ListOrganizationIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取组织成员访问身份列表
+    @inlinable
+    public func listOrganizationIdentity(_ input: ListOrganizationIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationIdentityResponse {
+        try await self.client.execute(action: "ListOrganizationIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

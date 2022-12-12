@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 查询变配分布式数据库实例价格
-    ///
-    /// 本接口（DescribeDCDBUpgradePrice）用于查询变配分布式数据库实例价格。
-    @inlinable
-    public func describeDCDBUpgradePrice(_ input: DescribeDCDBUpgradePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDCDBUpgradePriceResponse > {
-        self.client.execute(action: "DescribeDCDBUpgradePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询变配分布式数据库实例价格
-    ///
-    /// 本接口（DescribeDCDBUpgradePrice）用于查询变配分布式数据库实例价格。
-    @inlinable
-    public func describeDCDBUpgradePrice(_ input: DescribeDCDBUpgradePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBUpgradePriceResponse {
-        try await self.client.execute(action: "DescribeDCDBUpgradePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDCDBUpgradePrice请求参数结构体
     public struct DescribeDCDBUpgradePriceRequest: TCRequestModel {
         /// 待升级的实例ID。形如：dcdbt-ow728lmc，可以通过 DescribeDCDBInstances 查询实例详情获得。
@@ -43,20 +27,20 @@ extension Dcdb {
         public let upgradeType: String
         
         /// 新增分片配置，当UpgradeType为ADD时生效。
-        public let addShardConfig: AddShardConfig
+        public let addShardConfig: AddShardConfig?
         
         /// 扩容分片配置，当UpgradeType为EXPAND时生效。
-        public let expandShardConfig: ExpandShardConfig
+        public let expandShardConfig: ExpandShardConfig?
         
         /// 切分分片配置，当UpgradeType为SPLIT时生效。
-        public let splitShardConfig: SplitShardConfig
+        public let splitShardConfig: SplitShardConfig?
         
         /// 价格金额单位，不传默认单位为分，取值：  
         /// * pent：分
         /// * microPent：微分
         public let amountUnit: String?
         
-        public init (instanceId: String, upgradeType: String, addShardConfig: AddShardConfig, expandShardConfig: ExpandShardConfig, splitShardConfig: SplitShardConfig, amountUnit: String?) {
+        public init (instanceId: String, upgradeType: String, addShardConfig: AddShardConfig? = nil, expandShardConfig: ExpandShardConfig? = nil, splitShardConfig: SplitShardConfig? = nil, amountUnit: String? = nil) {
             self.instanceId = instanceId
             self.upgradeType = upgradeType
             self.addShardConfig = addShardConfig
@@ -99,5 +83,21 @@ extension Dcdb {
             case formula = "Formula"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询变配分布式数据库实例价格
+    ///
+    /// 本接口（DescribeDCDBUpgradePrice）用于查询变配分布式数据库实例价格。
+    @inlinable
+    public func describeDCDBUpgradePrice(_ input: DescribeDCDBUpgradePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDCDBUpgradePriceResponse > {
+        self.client.execute(action: "DescribeDCDBUpgradePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询变配分布式数据库实例价格
+    ///
+    /// 本接口（DescribeDCDBUpgradePrice）用于查询变配分布式数据库实例价格。
+    @inlinable
+    public func describeDCDBUpgradePrice(_ input: DescribeDCDBUpgradePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBUpgradePriceResponse {
+        try await self.client.execute(action: "DescribeDCDBUpgradePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

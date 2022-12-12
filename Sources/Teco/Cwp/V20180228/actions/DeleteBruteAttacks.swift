@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 删除暴力破解记录
-    ///
-    /// 本接口 (DeleteBruteAttacks) 用于删除暴力破解记录。
-    @inlinable
-    public func deleteBruteAttacks(_ input: DeleteBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBruteAttacksResponse > {
-        self.client.execute(action: "DeleteBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除暴力破解记录
-    ///
-    /// 本接口 (DeleteBruteAttacks) 用于删除暴力破解记录。
-    @inlinable
-    public func deleteBruteAttacks(_ input: DeleteBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBruteAttacksResponse {
-        try await self.client.execute(action: "DeleteBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteBruteAttacks请求参数结构体
     public struct DeleteBruteAttacksRequest: TCRequestModel {
         /// 暴力破解事件Id数组。(最大 100条)
@@ -53,5 +37,21 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除暴力破解记录
+    ///
+    /// 本接口 (DeleteBruteAttacks) 用于删除暴力破解记录。
+    @inlinable
+    public func deleteBruteAttacks(_ input: DeleteBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBruteAttacksResponse > {
+        self.client.execute(action: "DeleteBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除暴力破解记录
+    ///
+    /// 本接口 (DeleteBruteAttacks) 用于删除暴力破解记录。
+    @inlinable
+    public func deleteBruteAttacks(_ input: DeleteBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBruteAttacksResponse {
+        try await self.client.execute(action: "DeleteBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Npp {
-    /// 直拨解绑中间号
-    @inlinable
-    public func delVirtualNum(_ input: DelVirtualNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DelVirtualNumResponse > {
-        self.client.execute(action: "DelVirtualNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直拨解绑中间号
-    @inlinable
-    public func delVirtualNum(_ input: DelVirtualNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelVirtualNumResponse {
-        try await self.client.execute(action: "DelVirtualNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DelVirtualNum请求参数结构体
     public struct DelVirtualNumRequest: TCRequestModel {
         /// 业务appid
@@ -38,7 +26,7 @@ extension Npp {
         /// 应用二级业务 ID，bizId 需保证在该 appId 下全局唯一，最大长度不超过 16 个字节。
         public let bizId: String?
         
-        public init (bizAppId: String, bindId: String, bizId: String?) {
+        public init (bizAppId: String, bindId: String, bizId: String? = nil) {
             self.bizAppId = bizAppId
             self.bindId = bindId
             self.bizId = bizId
@@ -78,5 +66,17 @@ extension Npp {
             case refLeftNum = "RefLeftNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直拨解绑中间号
+    @inlinable
+    public func delVirtualNum(_ input: DelVirtualNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DelVirtualNumResponse > {
+        self.client.execute(action: "DelVirtualNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直拨解绑中间号
+    @inlinable
+    public func delVirtualNum(_ input: DelVirtualNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelVirtualNumResponse {
+        try await self.client.execute(action: "DelVirtualNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

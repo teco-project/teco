@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 创建主密钥
-    ///
-    /// 创建用户管理数据密钥的主密钥CMK（Custom Master Key）。
-    @inlinable
-    public func createKey(_ input: CreateKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateKeyResponse > {
-        self.client.execute(action: "CreateKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建主密钥
-    ///
-    /// 创建用户管理数据密钥的主密钥CMK（Custom Master Key）。
-    @inlinable
-    public func createKey(_ input: CreateKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKeyResponse {
-        try await self.client.execute(action: "CreateKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateKey请求参数结构体
     public struct CreateKeyRequest: TCRequestModel {
         /// 作为密钥更容易辨识，更容易被人看懂的别名， 不可为空，1-60个字母数字 - _ 的组合，首字符必须为字母或者数字。以 kms- 作为前缀的用于云产品使用，Alias 不可重复。
@@ -51,7 +35,7 @@ extension Kms {
         /// KMS 高级版对应的 HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）。
         public let hsmClusterId: String?
         
-        public init (alias: String, description: String?, keyUsage: String?, type: UInt64?, tags: [Tag]?, hsmClusterId: String?) {
+        public init (alias: String, description: String? = nil, keyUsage: String? = nil, type: UInt64? = nil, tags: [Tag]? = nil, hsmClusterId: String? = nil) {
             self.alias = alias
             self.description = description
             self.keyUsage = keyUsage
@@ -118,5 +102,21 @@ extension Kms {
             case hsmClusterId = "HsmClusterId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建主密钥
+    ///
+    /// 创建用户管理数据密钥的主密钥CMK（Custom Master Key）。
+    @inlinable
+    public func createKey(_ input: CreateKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateKeyResponse > {
+        self.client.execute(action: "CreateKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建主密钥
+    ///
+    /// 创建用户管理数据密钥的主密钥CMK（Custom Master Key）。
+    @inlinable
+    public func createKey(_ input: CreateKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKeyResponse {
+        try await self.client.execute(action: "CreateKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

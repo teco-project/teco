@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 查询Datahub连接源列表
-    @inlinable
-    public func describeConnectResources(_ input: DescribeConnectResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConnectResourcesResponse > {
-        self.client.execute(action: "DescribeConnectResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Datahub连接源列表
-    @inlinable
-    public func describeConnectResources(_ input: DescribeConnectResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConnectResourcesResponse {
-        try await self.client.execute(action: "DescribeConnectResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeConnectResources请求参数结构体
     public struct DescribeConnectResourcesRequest: TCRequestModel {
         /// 连接源类型
@@ -41,7 +29,7 @@ extension Ckafka {
         /// 返回数量，默认为20，最大值为100
         public let limit: Int64?
         
-        public init (type: String?, searchWord: String?, offset: Int64?, limit: Int64?) {
+        public init (type: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.type = type
             self.searchWord = searchWord
             self.offset = offset
@@ -68,5 +56,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Datahub连接源列表
+    @inlinable
+    public func describeConnectResources(_ input: DescribeConnectResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConnectResourcesResponse > {
+        self.client.execute(action: "DescribeConnectResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Datahub连接源列表
+    @inlinable
+    public func describeConnectResources(_ input: DescribeConnectResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConnectResourcesResponse {
+        try await self.client.execute(action: "DescribeConnectResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

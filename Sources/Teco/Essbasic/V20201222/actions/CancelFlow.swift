@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 撤销流程
-    ///
-    /// 此接口（CancelFlow）用于撤销正在进行中的流程。
-    /// 注：已归档流程不可完成撤销动作。
-    @inlinable
-    public func cancelFlow(_ input: CancelFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelFlowResponse > {
-        self.client.execute(action: "CancelFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 撤销流程
-    ///
-    /// 此接口（CancelFlow）用于撤销正在进行中的流程。
-    /// 注：已归档流程不可完成撤销动作。
-    @inlinable
-    public func cancelFlow(_ input: CancelFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFlowResponse {
-        try await self.client.execute(action: "CancelFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelFlow请求参数结构体
     public struct CancelFlowRequest: TCRequestModel {
         /// 调用方信息
@@ -44,7 +26,7 @@ extension Essbasic {
         /// 撤销原因
         public let cancelMessage: String?
         
-        public init (caller: Caller, flowId: String, cancelMessage: String?) {
+        public init (caller: Caller, flowId: String, cancelMessage: String? = nil) {
             self.caller = caller
             self.flowId = flowId
             self.cancelMessage = cancelMessage
@@ -65,5 +47,23 @@ extension Essbasic {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 撤销流程
+    ///
+    /// 此接口（CancelFlow）用于撤销正在进行中的流程。
+    /// 注：已归档流程不可完成撤销动作。
+    @inlinable
+    public func cancelFlow(_ input: CancelFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelFlowResponse > {
+        self.client.execute(action: "CancelFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 撤销流程
+    ///
+    /// 此接口（CancelFlow）用于撤销正在进行中的流程。
+    /// 注：已归档流程不可完成撤销动作。
+    @inlinable
+    public func cancelFlow(_ input: CancelFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFlowResponse {
+        try await self.client.execute(action: "CancelFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

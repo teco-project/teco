@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 集群关联的伸缩组列表
-    @inlinable
-    public func describeClusterAsGroups(_ input: DescribeClusterAsGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterAsGroupsResponse > {
-        self.client.execute(action: "DescribeClusterAsGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 集群关联的伸缩组列表
-    @inlinable
-    public func describeClusterAsGroups(_ input: DescribeClusterAsGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterAsGroupsResponse {
-        try await self.client.execute(action: "DescribeClusterAsGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterAsGroups请求参数结构体
     public struct DescribeClusterAsGroupsRequest: TCRequestModel {
         /// 集群ID
@@ -41,7 +29,7 @@ extension Tke {
         /// 返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: Int64?
         
-        public init (clusterId: String, autoScalingGroupIds: [String]?, offset: Int64?, limit: Int64?) {
+        public init (clusterId: String, autoScalingGroupIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.clusterId = clusterId
             self.autoScalingGroupIds = autoScalingGroupIds
             self.offset = offset
@@ -72,5 +60,17 @@ extension Tke {
             case clusterAsGroupSet = "ClusterAsGroupSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 集群关联的伸缩组列表
+    @inlinable
+    public func describeClusterAsGroups(_ input: DescribeClusterAsGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterAsGroupsResponse > {
+        self.client.execute(action: "DescribeClusterAsGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 集群关联的伸缩组列表
+    @inlinable
+    public func describeClusterAsGroups(_ input: DescribeClusterAsGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterAsGroupsResponse {
+        try await self.client.execute(action: "DescribeClusterAsGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

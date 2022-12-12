@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取围栏列表
-    @inlinable
-    public func describePositionFenceList(_ input: DescribePositionFenceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePositionFenceListResponse > {
-        self.client.execute(action: "DescribePositionFenceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取围栏列表
-    @inlinable
-    public func describePositionFenceList(_ input: DescribePositionFenceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePositionFenceListResponse {
-        try await self.client.execute(action: "DescribePositionFenceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePositionFenceList请求参数结构体
     public struct DescribePositionFenceListRequest: TCRequestModel {
         /// 位置空间Id
@@ -38,7 +26,7 @@ extension Iotexplorer {
         /// 最大返回结果数
         public let limit: Int64?
         
-        public init (spaceId: String, offset: Int64?, limit: Int64?) {
+        public init (spaceId: String, offset: Int64? = nil, limit: Int64? = nil) {
             self.spaceId = spaceId
             self.offset = offset
             self.limit = limit
@@ -69,5 +57,17 @@ extension Iotexplorer {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取围栏列表
+    @inlinable
+    public func describePositionFenceList(_ input: DescribePositionFenceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePositionFenceListResponse > {
+        self.client.execute(action: "DescribePositionFenceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取围栏列表
+    @inlinable
+    public func describePositionFenceList(_ input: DescribePositionFenceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePositionFenceListResponse {
+        try await self.client.execute(action: "DescribePositionFenceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

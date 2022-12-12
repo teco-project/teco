@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 新建发函
-    ///
-    /// 版权保护-新建发函接口
-    @inlinable
-    public func createCRRight(_ input: CreateCRRightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRRightResponse > {
-        self.client.execute(action: "CreateCRRight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建发函
-    ///
-    /// 版权保护-新建发函接口
-    @inlinable
-    public func createCRRight(_ input: CreateCRRightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRRightResponse {
-        try await self.client.execute(action: "CreateCRRight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCRRight请求参数结构体
     public struct CreateCRRightRequest: TCRequestModel {
         /// 作品ID
@@ -87,7 +71,7 @@ extension Bma {
         /// 存证证书截止日期
         public let evidenceValidEndDate: String?
         
-        public init (workId: Int64, tortUrl: String, tortTitle: String?, tortPlat: String?, rightUrl: String?, fileUrl: String?, validStartDate: String?, validEndDate: String?, commFileUrl: String?, commValidStartDate: String?, commValidEndDate: String?, homeFileUrl: String?, homeValidStartDate: String?, homeValidEndDate: String?, isProducer: String?, evidenceFileUrl: String?, evidenceValidStartDate: String?, evidenceValidEndDate: String?) {
+        public init (workId: Int64, tortUrl: String, tortTitle: String? = nil, tortPlat: String? = nil, rightUrl: String? = nil, fileUrl: String? = nil, validStartDate: String? = nil, validEndDate: String? = nil, commFileUrl: String? = nil, commValidStartDate: String? = nil, commValidEndDate: String? = nil, homeFileUrl: String? = nil, homeValidStartDate: String? = nil, homeValidEndDate: String? = nil, isProducer: String? = nil, evidenceFileUrl: String? = nil, evidenceValidStartDate: String? = nil, evidenceValidEndDate: String? = nil) {
             self.workId = workId
             self.tortUrl = tortUrl
             self.tortTitle = tortTitle
@@ -146,5 +130,21 @@ extension Bma {
             case tortNum = "TortNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建发函
+    ///
+    /// 版权保护-新建发函接口
+    @inlinable
+    public func createCRRight(_ input: CreateCRRightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRRightResponse > {
+        self.client.execute(action: "CreateCRRight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建发函
+    ///
+    /// 版权保护-新建发函接口
+    @inlinable
+    public func createCRRight(_ input: CreateCRRightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRRightResponse {
+        try await self.client.execute(action: "CreateCRRight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

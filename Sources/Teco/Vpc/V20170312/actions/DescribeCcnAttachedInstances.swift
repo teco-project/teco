@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询云联网关联实例列表
-    ///
-    /// 本接口（DescribeCcnAttachedInstances）用于查询云联网实例下已关联的网络实例。
-    @inlinable
-    public func describeCcnAttachedInstances(_ input: DescribeCcnAttachedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCcnAttachedInstancesResponse > {
-        self.client.execute(action: "DescribeCcnAttachedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云联网关联实例列表
-    ///
-    /// 本接口（DescribeCcnAttachedInstances）用于查询云联网实例下已关联的网络实例。
-    @inlinable
-    public func describeCcnAttachedInstances(_ input: DescribeCcnAttachedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnAttachedInstancesResponse {
-        try await self.client.execute(action: "DescribeCcnAttachedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCcnAttachedInstances请求参数结构体
     public struct DescribeCcnAttachedInstancesRequest: TCRequestModel {
         /// 偏移量
@@ -55,7 +39,7 @@ extension Vpc {
         /// 排序方法。升序：`ASC`，倒序：`DESC`。
         public let orderDirection: String?
         
-        public init (offset: UInt64?, limit: UInt64?, filters: [Filter]?, ccnId: String?, orderField: String?, orderDirection: String?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, ccnId: String? = nil, orderField: String? = nil, orderDirection: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -90,5 +74,21 @@ extension Vpc {
             case instanceSet = "InstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云联网关联实例列表
+    ///
+    /// 本接口（DescribeCcnAttachedInstances）用于查询云联网实例下已关联的网络实例。
+    @inlinable
+    public func describeCcnAttachedInstances(_ input: DescribeCcnAttachedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCcnAttachedInstancesResponse > {
+        self.client.execute(action: "DescribeCcnAttachedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云联网关联实例列表
+    ///
+    /// 本接口（DescribeCcnAttachedInstances）用于查询云联网实例下已关联的网络实例。
+    @inlinable
+    public func describeCcnAttachedInstances(_ input: DescribeCcnAttachedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnAttachedInstancesResponse {
+        try await self.client.execute(action: "DescribeCcnAttachedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

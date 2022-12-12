@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 基线影响主机列表导出
-    ///
-    /// 导出基线影响主机列表
-    @inlinable
-    public func exportBaselineEffectHostList(_ input: ExportBaselineEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBaselineEffectHostListResponse > {
-        self.client.execute(action: "ExportBaselineEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 基线影响主机列表导出
-    ///
-    /// 导出基线影响主机列表
-    @inlinable
-    public func exportBaselineEffectHostList(_ input: ExportBaselineEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBaselineEffectHostListResponse {
-        try await self.client.execute(action: "ExportBaselineEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportBaselineEffectHostList请求参数结构体
     public struct ExportBaselineEffectHostListRequest: TCRequestModel {
         /// 基线id
@@ -49,7 +33,7 @@ extension Cwp {
         /// 基线名称
         public let baselineName: String?
         
-        public init (baselineId: UInt64, filters: [Filters]?, strategyId: UInt64?, uuidList: [String]?, baselineName: String?) {
+        public init (baselineId: UInt64, filters: [Filters]? = nil, strategyId: UInt64? = nil, uuidList: [String]? = nil, baselineName: String? = nil) {
             self.baselineId = baselineId
             self.filters = filters
             self.strategyId = strategyId
@@ -83,5 +67,21 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 基线影响主机列表导出
+    ///
+    /// 导出基线影响主机列表
+    @inlinable
+    public func exportBaselineEffectHostList(_ input: ExportBaselineEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBaselineEffectHostListResponse > {
+        self.client.execute(action: "ExportBaselineEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 基线影响主机列表导出
+    ///
+    /// 导出基线影响主机列表
+    @inlinable
+    public func exportBaselineEffectHostList(_ input: ExportBaselineEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBaselineEffectHostListResponse {
+        try await self.client.execute(action: "ExportBaselineEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

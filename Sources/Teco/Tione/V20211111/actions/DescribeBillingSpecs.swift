@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询计费项列表
-    ///
-    /// 本接口(DescribeBillingSpecs)用于查询计费项列表
-    @inlinable
-    public func describeBillingSpecs(_ input: DescribeBillingSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillingSpecsResponse > {
-        self.client.execute(action: "DescribeBillingSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询计费项列表
-    ///
-    /// 本接口(DescribeBillingSpecs)用于查询计费项列表
-    @inlinable
-    public func describeBillingSpecs(_ input: DescribeBillingSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsResponse {
-        try await self.client.execute(action: "DescribeBillingSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBillingSpecs请求参数结构体
     public struct DescribeBillingSpecsRequest: TCRequestModel {
         /// 枚举值：TRAIN、NOTEBOOK、INFERENCE
@@ -42,7 +26,7 @@ extension Tione {
         /// 资源类型：CALC 计算资源、CPU CPU资源、GPU GPU资源、CBS云硬盘
         public let resourceType: String?
         
-        public init (taskType: String, chargeType: String, resourceType: String?) {
+        public init (taskType: String, chargeType: String, resourceType: String? = nil) {
             self.taskType = taskType
             self.chargeType = chargeType
             self.resourceType = resourceType
@@ -67,5 +51,21 @@ extension Tione {
             case specs = "Specs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询计费项列表
+    ///
+    /// 本接口(DescribeBillingSpecs)用于查询计费项列表
+    @inlinable
+    public func describeBillingSpecs(_ input: DescribeBillingSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillingSpecsResponse > {
+        self.client.execute(action: "DescribeBillingSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询计费项列表
+    ///
+    /// 本接口(DescribeBillingSpecs)用于查询计费项列表
+    @inlinable
+    public func describeBillingSpecs(_ input: DescribeBillingSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsResponse {
+        try await self.client.execute(action: "DescribeBillingSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

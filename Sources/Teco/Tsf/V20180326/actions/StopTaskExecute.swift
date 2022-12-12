@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 停止正在执行的任务
-    ///
-    /// 停止正在某个节点上执行的任务
-    @inlinable
-    public func stopTaskExecute(_ input: StopTaskExecuteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopTaskExecuteResponse > {
-        self.client.execute(action: "StopTaskExecute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止正在执行的任务
-    ///
-    /// 停止正在某个节点上执行的任务
-    @inlinable
-    public func stopTaskExecute(_ input: StopTaskExecuteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTaskExecuteResponse {
-        try await self.client.execute(action: "StopTaskExecute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopTaskExecute请求参数结构体
     public struct StopTaskExecuteRequest: TCRequestModel {
         /// 任务执行ID
@@ -42,7 +26,7 @@ extension Tsf {
         /// 任务ID
         public let taskId: String?
         
-        public init (executeId: String, batchId: String?, taskId: String?) {
+        public init (executeId: String, batchId: String? = nil, taskId: String? = nil) {
             self.executeId = executeId
             self.batchId = batchId
             self.taskId = taskId
@@ -67,5 +51,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止正在执行的任务
+    ///
+    /// 停止正在某个节点上执行的任务
+    @inlinable
+    public func stopTaskExecute(_ input: StopTaskExecuteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopTaskExecuteResponse > {
+        self.client.execute(action: "StopTaskExecute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止正在执行的任务
+    ///
+    /// 停止正在某个节点上执行的任务
+    @inlinable
+    public func stopTaskExecute(_ input: StopTaskExecuteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTaskExecuteResponse {
+        try await self.client.execute(action: "StopTaskExecute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 获取SDKToken
-    ///
-    /// 每次调用人脸核身SDK服务前，需先调用本接口获取SDKToken，用来串联核身流程，在验证完成后，用于获取验证结果信息，该token仅能核身一次。
-    @inlinable
-    public func getFaceIdToken(_ input: GetFaceIdTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFaceIdTokenResponse > {
-        self.client.execute(action: "GetFaceIdToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取SDKToken
-    ///
-    /// 每次调用人脸核身SDK服务前，需先调用本接口获取SDKToken，用来串联核身流程，在验证完成后，用于获取验证结果信息，该token仅能核身一次。
-    @inlinable
-    public func getFaceIdToken(_ input: GetFaceIdTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFaceIdTokenResponse {
-        try await self.client.execute(action: "GetFaceIdToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetFaceIdToken请求参数结构体
     public struct GetFaceIdTokenRequest: TCRequestModel {
         /// 本地上传照片(LOCAL)、商业库(BUSINESS)
@@ -57,9 +41,9 @@ extension Faceid {
         public let useCos: Bool?
         
         /// 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
-        public let encryption: Encryption
+        public let encryption: Encryption?
         
-        public init (compareLib: String, idCard: String?, name: String?, imageBase64: String?, meta: String?, extra: String?, useCos: Bool?, encryption: Encryption) {
+        public init (compareLib: String, idCard: String? = nil, name: String? = nil, imageBase64: String? = nil, meta: String? = nil, extra: String? = nil, useCos: Bool? = nil, encryption: Encryption? = nil) {
             self.compareLib = compareLib
             self.idCard = idCard
             self.name = name
@@ -94,5 +78,21 @@ extension Faceid {
             case faceIdToken = "FaceIdToken"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取SDKToken
+    ///
+    /// 每次调用人脸核身SDK服务前，需先调用本接口获取SDKToken，用来串联核身流程，在验证完成后，用于获取验证结果信息，该token仅能核身一次。
+    @inlinable
+    public func getFaceIdToken(_ input: GetFaceIdTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFaceIdTokenResponse > {
+        self.client.execute(action: "GetFaceIdToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取SDKToken
+    ///
+    /// 每次调用人脸核身SDK服务前，需先调用本接口获取SDKToken，用来串联核身流程，在验证完成后，用于获取验证结果信息，该token仅能核身一次。
+    @inlinable
+    public func getFaceIdToken(_ input: GetFaceIdTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFaceIdTokenResponse {
+        try await self.client.execute(action: "GetFaceIdToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

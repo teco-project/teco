@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改负载均衡
-    @inlinable
-    public func modifyLoadBalancing(_ input: ModifyLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancingResponse > {
-        self.client.execute(action: "ModifyLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改负载均衡
-    @inlinable
-    public func modifyLoadBalancing(_ input: ModifyLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancingResponse {
-        try await self.client.execute(action: "ModifyLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLoadBalancing请求参数结构体
     public struct ModifyLoadBalancingRequest: TCRequestModel {
         /// 站点ID
@@ -46,7 +34,7 @@ extension Teo {
         /// 当Type=dns_only表示DNS的TTL时间
         public let ttl: UInt64?
         
-        public init (zoneId: String, loadBalancingId: String, type: String, originId: [String], ttl: UInt64?) {
+        public init (zoneId: String, loadBalancingId: String, type: String, originId: [String], ttl: UInt64? = nil) {
             self.zoneId = zoneId
             self.loadBalancingId = loadBalancingId
             self.type = type
@@ -75,5 +63,17 @@ extension Teo {
             case loadBalancingId = "LoadBalancingId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改负载均衡
+    @inlinable
+    public func modifyLoadBalancing(_ input: ModifyLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoadBalancingResponse > {
+        self.client.execute(action: "ModifyLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改负载均衡
+    @inlinable
+    public func modifyLoadBalancing(_ input: ModifyLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancingResponse {
+        try await self.client.execute(action: "ModifyLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

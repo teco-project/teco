@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 重启采集器
-    @inlinable
-    public func restartInLongAgent(_ input: RestartInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartInLongAgentResponse > {
-        self.client.execute(action: "RestartInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重启采集器
-    @inlinable
-    public func restartInLongAgent(_ input: RestartInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInLongAgentResponse {
-        try await self.client.execute(action: "RestartInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestartInLongAgent请求参数结构体
     public struct RestartInLongAgentRequest: TCRequestModel {
         /// 采集器ID
@@ -54,5 +42,17 @@ extension Wedata {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重启采集器
+    @inlinable
+    public func restartInLongAgent(_ input: RestartInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartInLongAgentResponse > {
+        self.client.execute(action: "RestartInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重启采集器
+    @inlinable
+    public func restartInLongAgent(_ input: RestartInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInLongAgentResponse {
+        try await self.client.execute(action: "RestartInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 查询ip惩罚规则
-    ///
-    /// 返回ip惩罚规则详细信息
-    @inlinable
-    public func describeWafAutoDenyRules(_ input: DescribeWafAutoDenyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWafAutoDenyRulesResponse > {
-        self.client.execute(action: "DescribeWafAutoDenyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询ip惩罚规则
-    ///
-    /// 返回ip惩罚规则详细信息
-    @inlinable
-    public func describeWafAutoDenyRules(_ input: DescribeWafAutoDenyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyRulesResponse {
-        try await self.client.execute(action: "DescribeWafAutoDenyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWafAutoDenyRules请求参数结构体
     public struct DescribeWafAutoDenyRulesRequest: TCRequestModel {
         /// 域名
@@ -69,5 +53,21 @@ extension Waf {
             case defenseStatus = "DefenseStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询ip惩罚规则
+    ///
+    /// 返回ip惩罚规则详细信息
+    @inlinable
+    public func describeWafAutoDenyRules(_ input: DescribeWafAutoDenyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWafAutoDenyRulesResponse > {
+        self.client.execute(action: "DescribeWafAutoDenyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询ip惩罚规则
+    ///
+    /// 返回ip惩罚规则详细信息
+    @inlinable
+    public func describeWafAutoDenyRules(_ input: DescribeWafAutoDenyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyRulesResponse {
+        try await self.client.execute(action: "DescribeWafAutoDenyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

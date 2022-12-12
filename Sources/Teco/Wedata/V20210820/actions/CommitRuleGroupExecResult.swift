@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 规则检测结果上报
-    ///
-    /// Runner 规则检测结果上报
-    @inlinable
-    public func commitRuleGroupExecResult(_ input: CommitRuleGroupExecResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitRuleGroupExecResultResponse > {
-        self.client.execute(action: "CommitRuleGroupExecResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 规则检测结果上报
-    ///
-    /// Runner 规则检测结果上报
-    @inlinable
-    public func commitRuleGroupExecResult(_ input: CommitRuleGroupExecResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupExecResultResponse {
-        try await self.client.execute(action: "CommitRuleGroupExecResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CommitRuleGroupExecResult请求参数结构体
     public struct CommitRuleGroupExecResultRequest: TCRequestModel {
         /// preject id
@@ -73,5 +57,21 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 规则检测结果上报
+    ///
+    /// Runner 规则检测结果上报
+    @inlinable
+    public func commitRuleGroupExecResult(_ input: CommitRuleGroupExecResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitRuleGroupExecResultResponse > {
+        self.client.execute(action: "CommitRuleGroupExecResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 规则检测结果上报
+    ///
+    /// Runner 规则检测结果上报
+    @inlinable
+    public func commitRuleGroupExecResult(_ input: CommitRuleGroupExecResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupExecResultResponse {
+        try await self.client.execute(action: "CommitRuleGroupExecResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 创建订阅关系
-    ///
-    /// 创建一个主题的订阅关系
-    @inlinable
-    public func createSubscription(_ input: CreateSubscriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubscriptionResponse > {
-        self.client.execute(action: "CreateSubscription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建订阅关系
-    ///
-    /// 创建一个主题的订阅关系
-    @inlinable
-    public func createSubscription(_ input: CreateSubscriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscriptionResponse {
-        try await self.client.execute(action: "CreateSubscription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSubscription请求参数结构体
     public struct CreateSubscriptionRequest: TCRequestModel {
         /// 环境（命名空间）名称。
@@ -57,7 +41,7 @@ extension Tdmq {
         /// 指定死信和重试主题名称规范，LEGACY表示历史命名规则，COMMUNITY表示Pulsar社区命名规范
         public let postFixPattern: String?
         
-        public init (environmentId: String, topicName: String, subscriptionName: String, isIdempotent: Bool, remark: String?, clusterId: String?, autoCreatePolicyTopic: Bool?, postFixPattern: String?) {
+        public init (environmentId: String, topicName: String, subscriptionName: String, isIdempotent: Bool, remark: String? = nil, clusterId: String? = nil, autoCreatePolicyTopic: Bool? = nil, postFixPattern: String? = nil) {
             self.environmentId = environmentId
             self.topicName = topicName
             self.subscriptionName = subscriptionName
@@ -92,5 +76,21 @@ extension Tdmq {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建订阅关系
+    ///
+    /// 创建一个主题的订阅关系
+    @inlinable
+    public func createSubscription(_ input: CreateSubscriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubscriptionResponse > {
+        self.client.execute(action: "CreateSubscription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建订阅关系
+    ///
+    /// 创建一个主题的订阅关系
+    @inlinable
+    public func createSubscription(_ input: CreateSubscriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscriptionResponse {
+        try await self.client.execute(action: "CreateSubscription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

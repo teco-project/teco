@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询增量备份上传权限
-    ///
-    /// 本接口（DescribeUploadIncrementalInfo）用于查询增量备份上传权限。
-    @inlinable
-    public func describeUploadIncrementalInfo(_ input: DescribeUploadIncrementalInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUploadIncrementalInfoResponse > {
-        self.client.execute(action: "DescribeUploadIncrementalInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询增量备份上传权限
-    ///
-    /// 本接口（DescribeUploadIncrementalInfo）用于查询增量备份上传权限。
-    @inlinable
-    public func describeUploadIncrementalInfo(_ input: DescribeUploadIncrementalInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadIncrementalInfoResponse {
-        try await self.client.execute(action: "DescribeUploadIncrementalInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUploadIncrementalInfo请求参数结构体
     public struct DescribeUploadIncrementalInfoRequest: TCRequestModel {
         /// 导入目标实例ID
@@ -95,5 +79,21 @@ extension Sqlserver {
             case expiredTime = "ExpiredTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询增量备份上传权限
+    ///
+    /// 本接口（DescribeUploadIncrementalInfo）用于查询增量备份上传权限。
+    @inlinable
+    public func describeUploadIncrementalInfo(_ input: DescribeUploadIncrementalInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUploadIncrementalInfoResponse > {
+        self.client.execute(action: "DescribeUploadIncrementalInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询增量备份上传权限
+    ///
+    /// 本接口（DescribeUploadIncrementalInfo）用于查询增量备份上传权限。
+    @inlinable
+    public func describeUploadIncrementalInfo(_ input: DescribeUploadIncrementalInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadIncrementalInfoResponse {
+        try await self.client.execute(action: "DescribeUploadIncrementalInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

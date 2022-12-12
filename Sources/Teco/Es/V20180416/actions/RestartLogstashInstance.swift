@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 重启Logstash实例
-    ///
-    /// 用于重启Logstash实例
-    @inlinable
-    public func restartLogstashInstance(_ input: RestartLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartLogstashInstanceResponse > {
-        self.client.execute(action: "RestartLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重启Logstash实例
-    ///
-    /// 用于重启Logstash实例
-    @inlinable
-    public func restartLogstashInstance(_ input: RestartLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartLogstashInstanceResponse {
-        try await self.client.execute(action: "RestartLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestartLogstashInstance请求参数结构体
     public struct RestartLogstashInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -39,7 +23,7 @@ extension Es {
         /// 重启类型，0全量重启，1滚动重启
         public let type: Int64?
         
-        public init (instanceId: String, type: Int64?) {
+        public init (instanceId: String, type: Int64? = nil) {
             self.instanceId = instanceId
             self.type = type
         }
@@ -58,5 +42,21 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重启Logstash实例
+    ///
+    /// 用于重启Logstash实例
+    @inlinable
+    public func restartLogstashInstance(_ input: RestartLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartLogstashInstanceResponse > {
+        self.client.execute(action: "RestartLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重启Logstash实例
+    ///
+    /// 用于重启Logstash实例
+    @inlinable
+    public func restartLogstashInstance(_ input: RestartLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartLogstashInstanceResponse {
+        try await self.client.execute(action: "RestartLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

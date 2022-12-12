@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mna {
-    /// 删除设备
-    ///
-    /// 删除设备信息
-    @inlinable
-    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceResponse > {
-        self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除设备
-    ///
-    /// 删除设备信息
-    @inlinable
-    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
-        try await self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDevice请求参数结构体
     public struct DeleteDeviceRequest: TCRequestModel {
         /// 删除设备的唯一ID
@@ -53,5 +37,21 @@ extension Mna {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除设备
+    ///
+    /// 删除设备信息
+    @inlinable
+    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceResponse > {
+        self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除设备
+    ///
+    /// 删除设备信息
+    @inlinable
+    public func deleteDevice(_ input: DeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
+        try await self.client.execute(action: "DeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Pds {
-    /// 拉新判断服务
-    ///
-    /// 判断新用户信誉值
-    @inlinable
-    public func describeNewUserAcquisition(_ input: DescribeNewUserAcquisitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewUserAcquisitionResponse > {
-        self.client.execute(action: "DescribeNewUserAcquisition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉新判断服务
-    ///
-    /// 判断新用户信誉值
-    @inlinable
-    public func describeNewUserAcquisition(_ input: DescribeNewUserAcquisitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewUserAcquisitionResponse {
-        try await self.client.execute(action: "DescribeNewUserAcquisition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNewUserAcquisition请求参数结构体
     public struct DescribeNewUserAcquisitionRequest: TCRequestModel {
         /// 用户信息
@@ -57,5 +41,21 @@ extension Pds {
             case serviceRsp = "ServiceRsp"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉新判断服务
+    ///
+    /// 判断新用户信誉值
+    @inlinable
+    public func describeNewUserAcquisition(_ input: DescribeNewUserAcquisitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewUserAcquisitionResponse > {
+        self.client.execute(action: "DescribeNewUserAcquisition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉新判断服务
+    ///
+    /// 判断新用户信誉值
+    @inlinable
+    public func describeNewUserAcquisition(_ input: DescribeNewUserAcquisitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewUserAcquisitionResponse {
+        try await self.client.execute(action: "DescribeNewUserAcquisition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

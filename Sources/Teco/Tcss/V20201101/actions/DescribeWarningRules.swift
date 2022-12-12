@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 获取告警策略列表
-    @inlinable
-    public func describeWarningRules(_ input: DescribeWarningRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWarningRulesResponse > {
-        self.client.execute(action: "DescribeWarningRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取告警策略列表
-    @inlinable
-    public func describeWarningRules(_ input: DescribeWarningRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningRulesResponse {
-        try await self.client.execute(action: "DescribeWarningRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWarningRules请求参数结构体
     public struct DescribeWarningRulesRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Tcss {
             case warningRules = "WarningRules"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取告警策略列表
+    @inlinable
+    public func describeWarningRules(_ input: DescribeWarningRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWarningRulesResponse > {
+        self.client.execute(action: "DescribeWarningRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取告警策略列表
+    @inlinable
+    public func describeWarningRules(_ input: DescribeWarningRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningRulesResponse {
+        try await self.client.execute(action: "DescribeWarningRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

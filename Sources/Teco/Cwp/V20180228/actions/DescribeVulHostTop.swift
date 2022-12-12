@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取服务器风险top列表
-    @inlinable
-    public func describeVulHostTop(_ input: DescribeVulHostTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulHostTopResponse > {
-        self.client.execute(action: "DescribeVulHostTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取服务器风险top列表
-    @inlinable
-    public func describeVulHostTop(_ input: DescribeVulHostTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulHostTopResponse {
-        try await self.client.execute(action: "DescribeVulHostTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulHostTop请求参数结构体
     public struct DescribeVulHostTopRequest: TCRequestModel {
         /// 获取top值，1-100
@@ -38,7 +26,7 @@ extension Cwp {
         /// 是否仅统计重点关注漏洞 1=仅统计重点关注漏洞, 0=统计全部漏洞
         public let isFollowVul: UInt64?
         
-        public init (top: UInt64, vulCategory: UInt64?, isFollowVul: UInt64?) {
+        public init (top: UInt64, vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil) {
             self.top = top
             self.vulCategory = vulCategory
             self.isFollowVul = isFollowVul
@@ -64,5 +52,17 @@ extension Cwp {
             case vulHostTopList = "VulHostTopList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取服务器风险top列表
+    @inlinable
+    public func describeVulHostTop(_ input: DescribeVulHostTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulHostTopResponse > {
+        self.client.execute(action: "DescribeVulHostTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取服务器风险top列表
+    @inlinable
+    public func describeVulHostTop(_ input: DescribeVulHostTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulHostTopResponse {
+        try await self.client.execute(action: "DescribeVulHostTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

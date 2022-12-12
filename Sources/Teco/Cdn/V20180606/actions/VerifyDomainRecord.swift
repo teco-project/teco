@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 验证域名解析
-    ///
-    /// 验证域名解析值
-    @inlinable
-    public func verifyDomainRecord(_ input: VerifyDomainRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyDomainRecordResponse > {
-        self.client.execute(action: "VerifyDomainRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 验证域名解析
-    ///
-    /// 验证域名解析值
-    @inlinable
-    public func verifyDomainRecord(_ input: VerifyDomainRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyDomainRecordResponse {
-        try await self.client.execute(action: "VerifyDomainRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifyDomainRecord请求参数结构体
     public struct VerifyDomainRecordRequest: TCRequestModel {
         /// 域名
@@ -41,7 +25,7 @@ extension Cdn {
         /// file: 文件验证
         public let verifyType: String?
         
-        public init (domain: String, verifyType: String?) {
+        public init (domain: String, verifyType: String? = nil) {
             self.domain = domain
             self.verifyType = verifyType
         }
@@ -64,5 +48,21 @@ extension Cdn {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 验证域名解析
+    ///
+    /// 验证域名解析值
+    @inlinable
+    public func verifyDomainRecord(_ input: VerifyDomainRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyDomainRecordResponse > {
+        self.client.execute(action: "VerifyDomainRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 验证域名解析
+    ///
+    /// 验证域名解析值
+    @inlinable
+    public func verifyDomainRecord(_ input: VerifyDomainRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyDomainRecordResponse {
+        try await self.client.execute(action: "VerifyDomainRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

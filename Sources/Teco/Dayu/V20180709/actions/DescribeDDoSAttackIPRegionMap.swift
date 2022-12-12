@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// DDoS攻击源IP地域分布图
-    ///
-    /// 获取DDoS攻击源IP地域分布图，支持全球攻击分布和国内省份攻击分布；
-    @inlinable
-    public func describeDDoSAttackIPRegionMap(_ input: DescribeDDoSAttackIPRegionMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAttackIPRegionMapResponse > {
-        self.client.execute(action: "DescribeDDoSAttackIPRegionMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DDoS攻击源IP地域分布图
-    ///
-    /// 获取DDoS攻击源IP地域分布图，支持全球攻击分布和国内省份攻击分布；
-    @inlinable
-    public func describeDDoSAttackIPRegionMap(_ input: DescribeDDoSAttackIPRegionMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackIPRegionMapResponse {
-        try await self.client.execute(action: "DescribeDDoSAttackIPRegionMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSAttackIPRegionMap请求参数结构体
     public struct DescribeDDoSAttackIPRegionMapRequest: TCRequestModel {
         /// 大禹子产品代号（shield表示棋牌；bgpip表示高防IP；bgp表示高防包；bgp-multip表示多ip高防包；net表示高防IP专业版）
@@ -52,7 +36,7 @@ extension Dayu {
         /// 指定资源的特定IP的攻击源，可选
         public let ipList: [String]?
         
-        public init (business: String, id: String, startTime: Date, endTime: Date, ipList: [String]?) {
+        public init (business: String, id: String, startTime: Date, endTime: Date, ipList: [String]? = nil) {
             self.business = business
             self.id = id
             self.startTime = startTime
@@ -85,5 +69,21 @@ extension Dayu {
             case provinceCount = "ProvinceCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// DDoS攻击源IP地域分布图
+    ///
+    /// 获取DDoS攻击源IP地域分布图，支持全球攻击分布和国内省份攻击分布；
+    @inlinable
+    public func describeDDoSAttackIPRegionMap(_ input: DescribeDDoSAttackIPRegionMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAttackIPRegionMapResponse > {
+        self.client.execute(action: "DescribeDDoSAttackIPRegionMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DDoS攻击源IP地域分布图
+    ///
+    /// 获取DDoS攻击源IP地域分布图，支持全球攻击分布和国内省份攻击分布；
+    @inlinable
+    public func describeDDoSAttackIPRegionMap(_ input: DescribeDDoSAttackIPRegionMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackIPRegionMapResponse {
+        try await self.client.execute(action: "DescribeDDoSAttackIPRegionMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

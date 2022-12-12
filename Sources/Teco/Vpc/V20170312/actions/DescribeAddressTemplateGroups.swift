@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询IP地址模板集合
-    ///
-    /// 本接口（DescribeAddressTemplateGroups）用于查询IP地址模板集合
-    @inlinable
-    public func describeAddressTemplateGroups(_ input: DescribeAddressTemplateGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAddressTemplateGroupsResponse > {
-        self.client.execute(action: "DescribeAddressTemplateGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询IP地址模板集合
-    ///
-    /// 本接口（DescribeAddressTemplateGroups）用于查询IP地址模板集合
-    @inlinable
-    public func describeAddressTemplateGroups(_ input: DescribeAddressTemplateGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressTemplateGroupsResponse {
-        try await self.client.execute(action: "DescribeAddressTemplateGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAddressTemplateGroups请求参数结构体
     public struct DescribeAddressTemplateGroupsRequest: TCRequestModel {
         /// 过滤条件。
@@ -44,7 +28,7 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。
         public let limit: String?
         
-        public init (filters: [Filter]?, offset: String?, limit: String?) {
+        public init (filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -73,5 +57,21 @@ extension Vpc {
             case addressTemplateGroupSet = "AddressTemplateGroupSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询IP地址模板集合
+    ///
+    /// 本接口（DescribeAddressTemplateGroups）用于查询IP地址模板集合
+    @inlinable
+    public func describeAddressTemplateGroups(_ input: DescribeAddressTemplateGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAddressTemplateGroupsResponse > {
+        self.client.execute(action: "DescribeAddressTemplateGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询IP地址模板集合
+    ///
+    /// 本接口（DescribeAddressTemplateGroups）用于查询IP地址模板集合
+    @inlinable
+    public func describeAddressTemplateGroups(_ input: DescribeAddressTemplateGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressTemplateGroupsResponse {
+        try await self.client.execute(action: "DescribeAddressTemplateGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

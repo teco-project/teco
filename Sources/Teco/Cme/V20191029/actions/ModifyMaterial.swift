@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 修改媒体信息
-    ///
-    /// 修改媒体信息，支持修改媒体名称、分类路径、标签等信息。
-    @inlinable
-    public func modifyMaterial(_ input: ModifyMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMaterialResponse > {
-        self.client.execute(action: "ModifyMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改媒体信息
-    ///
-    /// 修改媒体信息，支持修改媒体名称、分类路径、标签等信息。
-    @inlinable
-    public func modifyMaterial(_ input: ModifyMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaterialResponse {
-        try await self.client.execute(action: "ModifyMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMaterial请求参数结构体
     public struct ModifyMaterialRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -40,7 +24,7 @@ extension Cme {
         public let materialId: String
         
         /// 媒体归属者。
-        public let owner: Entity
+        public let owner: Entity?
         
         /// 媒体名称，不能超过30个字符，不填则不修改。
         public let name: String?
@@ -51,7 +35,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以修改任意媒体的信息。如果指定操作者，则操作者必须对媒体有写权限。
         public let `operator`: String?
         
-        public init (platform: String, materialId: String, owner: Entity, name: String?, classPath: String?, `operator`: String?) {
+        public init (platform: String, materialId: String, owner: Entity? = nil, name: String? = nil, classPath: String? = nil, `operator`: String? = nil) {
             self.platform = platform
             self.materialId = materialId
             self.owner = owner
@@ -78,5 +62,21 @@ extension Cme {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改媒体信息
+    ///
+    /// 修改媒体信息，支持修改媒体名称、分类路径、标签等信息。
+    @inlinable
+    public func modifyMaterial(_ input: ModifyMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMaterialResponse > {
+        self.client.execute(action: "ModifyMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改媒体信息
+    ///
+    /// 修改媒体信息，支持修改媒体名称、分类路径、标签等信息。
+    @inlinable
+    public func modifyMaterial(_ input: ModifyMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaterialResponse {
+        try await self.client.execute(action: "ModifyMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

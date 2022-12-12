@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 获取NAT网关列表
-    ///
-    /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
-    @inlinable
-    public func describeNatGateways(_ input: DescribeNatGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatGatewaysResponse > {
-        self.client.execute(action: "DescribeNatGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取NAT网关列表
-    ///
-    /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
-    @inlinable
-    public func describeNatGateways(_ input: DescribeNatGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewaysResponse {
-        try await self.client.execute(action: "DescribeNatGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNatGateways请求参数结构体
     public struct DescribeNatGatewaysRequest: TCRequestModel {
         /// NAT网关ID，例如：nat-kdm476mp
@@ -60,7 +44,7 @@ extension Bmvpc {
         /// 排序方向, “asc”、“desc”
         public let orderDirection: String?
         
-        public init (natId: String?, natName: String?, searchKey: String?, vpcId: String?, offset: UInt64?, limit: UInt64?, zone: String?, orderField: String?, orderDirection: String?) {
+        public init (natId: String? = nil, natName: String? = nil, searchKey: String? = nil, vpcId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, zone: String? = nil, orderField: String? = nil, orderDirection: String? = nil) {
             self.natId = natId
             self.natName = natName
             self.searchKey = searchKey
@@ -101,5 +85,21 @@ extension Bmvpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取NAT网关列表
+    ///
+    /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
+    @inlinable
+    public func describeNatGateways(_ input: DescribeNatGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatGatewaysResponse > {
+        self.client.execute(action: "DescribeNatGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取NAT网关列表
+    ///
+    /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
+    @inlinable
+    public func describeNatGateways(_ input: DescribeNatGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewaysResponse {
+        try await self.client.execute(action: "DescribeNatGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

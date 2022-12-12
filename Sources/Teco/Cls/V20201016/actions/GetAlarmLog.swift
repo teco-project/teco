@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 获取告警任务历史记录
-    ///
-    /// 本接口用于获取告警任务历史
-    @inlinable
-    public func getAlarmLog(_ input: GetAlarmLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAlarmLogResponse > {
-        self.client.execute(action: "GetAlarmLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取告警任务历史记录
-    ///
-    /// 本接口用于获取告警任务历史
-    @inlinable
-    public func getAlarmLog(_ input: GetAlarmLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAlarmLogResponse {
-        try await self.client.execute(action: "GetAlarmLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetAlarmLog请求参数结构体
     public struct GetAlarmLogRequest: TCRequestModel {
         /// 要查询的日志的起始时间，Unix时间戳，单位ms
@@ -54,7 +38,7 @@ extension Cls {
         /// 为true代表使用新检索,响应参数AnalysisRecords和Columns有效， 为false时代表使用老检索方式, AnalysisResults和ColNames有效
         public let useNewAnalysis: Bool?
         
-        public init (from: Int64, to: Int64, query: String, limit: Int64?, context: String?, sort: String?, useNewAnalysis: Bool?) {
+        public init (from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil) {
             self.from = from
             self.to = to
             self.query = query
@@ -120,5 +104,21 @@ extension Cls {
             case columns = "Columns"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取告警任务历史记录
+    ///
+    /// 本接口用于获取告警任务历史
+    @inlinable
+    public func getAlarmLog(_ input: GetAlarmLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAlarmLogResponse > {
+        self.client.execute(action: "GetAlarmLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取告警任务历史记录
+    ///
+    /// 本接口用于获取告警任务历史
+    @inlinable
+    public func getAlarmLog(_ input: GetAlarmLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAlarmLogResponse {
+        try await self.client.execute(action: "GetAlarmLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

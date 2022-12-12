@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取独享包或共享包IP对应的云资产信息
-    ///
-    /// 获取独享包或共享包IP对应的云资产信息，只支持独享包和共享包的IP
-    @inlinable
-    public func describeIPProductInfo(_ input: DescribeIPProductInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIPProductInfoResponse > {
-        self.client.execute(action: "DescribeIPProductInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取独享包或共享包IP对应的云资产信息
-    ///
-    /// 获取独享包或共享包IP对应的云资产信息，只支持独享包和共享包的IP
-    @inlinable
-    public func describeIPProductInfo(_ input: DescribeIPProductInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPProductInfoResponse {
-        try await self.client.execute(action: "DescribeIPProductInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIPProductInfo请求参数结构体
     public struct DescribeIPProductInfoRequest: TCRequestModel {
         /// 大禹子产品代号（bgp表示独享包；bgp-multip表示共享包）
@@ -66,5 +50,21 @@ extension Dayu {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取独享包或共享包IP对应的云资产信息
+    ///
+    /// 获取独享包或共享包IP对应的云资产信息，只支持独享包和共享包的IP
+    @inlinable
+    public func describeIPProductInfo(_ input: DescribeIPProductInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIPProductInfoResponse > {
+        self.client.execute(action: "DescribeIPProductInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取独享包或共享包IP对应的云资产信息
+    ///
+    /// 获取独享包或共享包IP对应的云资产信息，只支持独享包和共享包的IP
+    @inlinable
+    public func describeIPProductInfo(_ input: DescribeIPProductInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPProductInfoResponse {
+        try await self.client.execute(action: "DescribeIPProductInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

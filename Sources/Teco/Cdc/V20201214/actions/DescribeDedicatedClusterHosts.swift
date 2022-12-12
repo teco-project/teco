@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 专用集群宿主机信息
-    @inlinable
-    public func describeDedicatedClusterHosts(_ input: DescribeDedicatedClusterHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterHostsResponse > {
-        self.client.execute(action: "DescribeDedicatedClusterHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 专用集群宿主机信息
-    @inlinable
-    public func describeDedicatedClusterHosts(_ input: DescribeDedicatedClusterHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterHostsResponse {
-        try await self.client.execute(action: "DescribeDedicatedClusterHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDedicatedClusterHosts请求参数结构体
     public struct DescribeDedicatedClusterHostsRequest: TCRequestModel {
         /// 集群id
@@ -38,7 +26,7 @@ extension Cdc {
         /// 返回数量，默认为20
         public let limit: UInt64?
         
-        public init (dedicatedClusterId: String, offset: UInt64?, limit: UInt64?) {
+        public init (dedicatedClusterId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.dedicatedClusterId = dedicatedClusterId
             self.offset = offset
             self.limit = limit
@@ -68,5 +56,17 @@ extension Cdc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 专用集群宿主机信息
+    @inlinable
+    public func describeDedicatedClusterHosts(_ input: DescribeDedicatedClusterHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterHostsResponse > {
+        self.client.execute(action: "DescribeDedicatedClusterHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 专用集群宿主机信息
+    @inlinable
+    public func describeDedicatedClusterHosts(_ input: DescribeDedicatedClusterHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterHostsResponse {
+        try await self.client.execute(action: "DescribeDedicatedClusterHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

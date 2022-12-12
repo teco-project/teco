@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 导出扫描任务详情
-    ///
-    /// 根据任务id导出指定扫描任务详情 
-    @inlinable
-    public func exportScanTaskDetails(_ input: ExportScanTaskDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportScanTaskDetailsResponse > {
-        self.client.execute(action: "ExportScanTaskDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出扫描任务详情
-    ///
-    /// 根据任务id导出指定扫描任务详情 
-    @inlinable
-    public func exportScanTaskDetails(_ input: ExportScanTaskDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportScanTaskDetailsResponse {
-        try await self.client.execute(action: "ExportScanTaskDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportScanTaskDetails请求参数结构体
     public struct ExportScanTaskDetailsRequest: TCRequestModel {
         /// 本次检测的任务id（不同于出参的导出本次检测Excel的任务Id）
@@ -42,7 +26,7 @@ extension Cwp {
         /// 过滤参数：ipOrAlias（服务器名/ip）
         public let filters: [Filters]?
         
-        public init (taskId: UInt64, moduleType: String, filters: [Filters]?) {
+        public init (taskId: UInt64, moduleType: String, filters: [Filters]? = nil) {
             self.taskId = taskId
             self.moduleType = moduleType
             self.filters = filters
@@ -67,5 +51,21 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出扫描任务详情
+    ///
+    /// 根据任务id导出指定扫描任务详情 
+    @inlinable
+    public func exportScanTaskDetails(_ input: ExportScanTaskDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportScanTaskDetailsResponse > {
+        self.client.execute(action: "ExportScanTaskDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出扫描任务详情
+    ///
+    /// 根据任务id导出指定扫描任务详情 
+    @inlinable
+    public func exportScanTaskDetails(_ input: ExportScanTaskDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportScanTaskDetailsResponse {
+        try await self.client.execute(action: "ExportScanTaskDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

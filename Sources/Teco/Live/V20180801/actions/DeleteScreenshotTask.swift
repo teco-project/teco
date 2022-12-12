@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 删除截图任务
-    ///
-    /// 删除截图任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
-    @inlinable
-    public func deleteScreenshotTask(_ input: DeleteScreenshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScreenshotTaskResponse > {
-        self.client.execute(action: "DeleteScreenshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除截图任务
-    ///
-    /// 删除截图任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
-    @inlinable
-    public func deleteScreenshotTask(_ input: DeleteScreenshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScreenshotTaskResponse {
-        try await self.client.execute(action: "DeleteScreenshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteScreenshotTask请求参数结构体
     public struct DeleteScreenshotTaskRequest: TCRequestModel {
         /// 任务ID，CreateScreenshotTask返回。删除TaskId指定的截图任务。
@@ -53,5 +37,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除截图任务
+    ///
+    /// 删除截图任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
+    @inlinable
+    public func deleteScreenshotTask(_ input: DeleteScreenshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScreenshotTaskResponse > {
+        self.client.execute(action: "DeleteScreenshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除截图任务
+    ///
+    /// 删除截图任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
+    @inlinable
+    public func deleteScreenshotTask(_ input: DeleteScreenshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScreenshotTaskResponse {
+        try await self.client.execute(action: "DeleteScreenshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

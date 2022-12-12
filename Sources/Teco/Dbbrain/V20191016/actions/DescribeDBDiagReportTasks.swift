@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dbbrain {
-    /// 查询健康报告生成任务列表
-    ///
-    /// 查询健康报告生成任务列表。
-    @inlinable
-    public func describeDBDiagReportTasks(_ input: DescribeDBDiagReportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBDiagReportTasksResponse > {
-        self.client.execute(action: "DescribeDBDiagReportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询健康报告生成任务列表
-    ///
-    /// 查询健康报告生成任务列表。
-    @inlinable
-    public func describeDBDiagReportTasks(_ input: DescribeDBDiagReportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBDiagReportTasksResponse {
-        try await self.client.execute(action: "DescribeDBDiagReportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBDiagReportTasks请求参数结构体
     public struct DescribeDBDiagReportTasksRequest: TCRequestModel {
         /// 第一个任务的开始时间，用于范围查询，时间格式如：2019-09-10 12:13:14。
@@ -62,7 +46,7 @@ extension Dbbrain {
         /// 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         public let product: String?
         
-        public init (startTime: Date?, endTime: Date?, instanceIds: [String]?, sources: [String]?, healthLevels: String?, taskStatuses: String?, offset: Int64?, limit: Int64?, product: String?) {
+        public init (startTime: Date? = nil, endTime: Date? = nil, instanceIds: [String]? = nil, sources: [String]? = nil, healthLevels: String? = nil, taskStatuses: String? = nil, offset: Int64? = nil, limit: Int64? = nil, product: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.instanceIds = instanceIds
@@ -103,5 +87,21 @@ extension Dbbrain {
             case tasks = "Tasks"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询健康报告生成任务列表
+    ///
+    /// 查询健康报告生成任务列表。
+    @inlinable
+    public func describeDBDiagReportTasks(_ input: DescribeDBDiagReportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBDiagReportTasksResponse > {
+        self.client.execute(action: "DescribeDBDiagReportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询健康报告生成任务列表
+    ///
+    /// 查询健康报告生成任务列表。
+    @inlinable
+    public func describeDBDiagReportTasks(_ input: DescribeDBDiagReportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBDiagReportTasksResponse {
+        try await self.client.execute(action: "DescribeDBDiagReportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

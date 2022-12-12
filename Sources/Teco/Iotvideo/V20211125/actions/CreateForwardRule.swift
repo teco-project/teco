@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 创建转发规则
-    @inlinable
-    public func createForwardRule(_ input: CreateForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateForwardRuleResponse > {
-        self.client.execute(action: "CreateForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建转发规则
-    @inlinable
-    public func createForwardRule(_ input: CreateForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateForwardRuleResponse {
-        try await self.client.execute(action: "CreateForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateForwardRule请求参数结构体
     public struct CreateForwardRuleRequest: TCRequestModel {
         /// 产品ID
@@ -59,7 +47,7 @@ extension Iotvideo {
         /// 队列或主题名称
         public let queueName: String?
         
-        public init (productID: String, msgType: UInt64, skey: String, queueRegion: String, queueType: UInt64, consecretid: String?, instanceId: String?, instanceName: String?, queueID: String?, queueName: String?) {
+        public init (productID: String, msgType: UInt64, skey: String, queueRegion: String, queueType: UInt64, consecretid: String? = nil, instanceId: String? = nil, instanceName: String? = nil, queueID: String? = nil, queueName: String? = nil) {
             self.productID = productID
             self.msgType = msgType
             self.skey = skey
@@ -142,5 +130,17 @@ extension Iotvideo {
             case errMsg = "ErrMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建转发规则
+    @inlinable
+    public func createForwardRule(_ input: CreateForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateForwardRuleResponse > {
+        self.client.execute(action: "CreateForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建转发规则
+    @inlinable
+    public func createForwardRule(_ input: CreateForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateForwardRuleResponse {
+        try await self.client.execute(action: "CreateForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

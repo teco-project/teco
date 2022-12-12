@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 查询专有集群配置列表
-    @inlinable
-    public func describeDedicatedClusterTypes(_ input: DescribeDedicatedClusterTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterTypesResponse > {
-        self.client.execute(action: "DescribeDedicatedClusterTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询专有集群配置列表
-    @inlinable
-    public func describeDedicatedClusterTypes(_ input: DescribeDedicatedClusterTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterTypesResponse {
-        try await self.client.execute(action: "DescribeDedicatedClusterTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDedicatedClusterTypes请求参数结构体
     public struct DescribeDedicatedClusterTypesRequest: TCRequestModel {
         /// 模糊匹配专用集群配置名称
@@ -44,7 +32,7 @@ extension Cdc {
         /// 是否只查询计算规格类型
         public let isCompute: Bool?
         
-        public init (name: String?, dedicatedClusterTypeIds: [String]?, offset: Int64?, limit: Int64?, isCompute: Bool?) {
+        public init (name: String? = nil, dedicatedClusterTypeIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, isCompute: Bool? = nil) {
             self.name = name
             self.dedicatedClusterTypeIds = dedicatedClusterTypeIds
             self.offset = offset
@@ -77,5 +65,17 @@ extension Cdc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询专有集群配置列表
+    @inlinable
+    public func describeDedicatedClusterTypes(_ input: DescribeDedicatedClusterTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClusterTypesResponse > {
+        self.client.execute(action: "DescribeDedicatedClusterTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专有集群配置列表
+    @inlinable
+    public func describeDedicatedClusterTypes(_ input: DescribeDedicatedClusterTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterTypesResponse {
+        try await self.client.execute(action: "DescribeDedicatedClusterTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 修改任务模板
-    ///
-    /// 用于修改任务模板
-    @inlinable
-    public func modifyTaskTemplate(_ input: ModifyTaskTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskTemplateResponse > {
-        self.client.execute(action: "ModifyTaskTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改任务模板
-    ///
-    /// 用于修改任务模板
-    @inlinable
-    public func modifyTaskTemplate(_ input: ModifyTaskTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskTemplateResponse {
-        try await self.client.execute(action: "ModifyTaskTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTaskTemplate请求参数结构体
     public struct ModifyTaskTemplateRequest: TCRequestModel {
         /// 任务模板ID
@@ -43,9 +27,9 @@ extension Batch {
         public let taskTemplateDescription: String?
         
         /// 任务模板信息
-        public let taskTemplateInfo: Task
+        public let taskTemplateInfo: Task?
         
-        public init (taskTemplateId: String, taskTemplateName: String?, taskTemplateDescription: String?, taskTemplateInfo: Task) {
+        public init (taskTemplateId: String, taskTemplateName: String? = nil, taskTemplateDescription: String? = nil, taskTemplateInfo: Task? = nil) {
             self.taskTemplateId = taskTemplateId
             self.taskTemplateName = taskTemplateName
             self.taskTemplateDescription = taskTemplateDescription
@@ -68,5 +52,21 @@ extension Batch {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改任务模板
+    ///
+    /// 用于修改任务模板
+    @inlinable
+    public func modifyTaskTemplate(_ input: ModifyTaskTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskTemplateResponse > {
+        self.client.execute(action: "ModifyTaskTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改任务模板
+    ///
+    /// 用于修改任务模板
+    @inlinable
+    public func modifyTaskTemplate(_ input: ModifyTaskTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskTemplateResponse {
+        try await self.client.execute(action: "ModifyTaskTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

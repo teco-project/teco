@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 创建备份导入任务
-    ///
-    /// 本接口（CreateBackupMigration）用于创建备份导入任务。
-    @inlinable
-    public func createBackupMigration(_ input: CreateBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackupMigrationResponse > {
-        self.client.execute(action: "CreateBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建备份导入任务
-    ///
-    /// 本接口（CreateBackupMigration）用于创建备份导入任务。
-    @inlinable
-    public func createBackupMigration(_ input: CreateBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupMigrationResponse {
-        try await self.client.execute(action: "CreateBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBackupMigration请求参数结构体
     public struct CreateBackupMigrationRequest: TCRequestModel {
         /// 导入目标实例ID
@@ -48,7 +32,7 @@ extension Sqlserver {
         /// UploadType是COS_URL时这里填URL，COS_UPLOAD这里填备份文件的名字。只支持1个备份文件，但1个备份文件内可包含多个库
         public let backupFiles: [String]?
         
-        public init (instanceId: String, recoveryType: String, uploadType: String, migrationName: String, backupFiles: [String]?) {
+        public init (instanceId: String, recoveryType: String, uploadType: String, migrationName: String, backupFiles: [String]? = nil) {
             self.instanceId = instanceId
             self.recoveryType = recoveryType
             self.uploadType = uploadType
@@ -77,5 +61,21 @@ extension Sqlserver {
             case backupMigrationId = "BackupMigrationId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建备份导入任务
+    ///
+    /// 本接口（CreateBackupMigration）用于创建备份导入任务。
+    @inlinable
+    public func createBackupMigration(_ input: CreateBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackupMigrationResponse > {
+        self.client.execute(action: "CreateBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建备份导入任务
+    ///
+    /// 本接口（CreateBackupMigration）用于创建备份导入任务。
+    @inlinable
+    public func createBackupMigration(_ input: CreateBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupMigrationResponse {
+        try await self.client.execute(action: "CreateBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

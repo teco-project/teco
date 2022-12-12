@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 随机数生成接口
-    ///
-    /// 随机数生成接口。
-    @inlinable
-    public func generateRandom(_ input: GenerateRandomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateRandomResponse > {
-        self.client.execute(action: "GenerateRandom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 随机数生成接口
-    ///
-    /// 随机数生成接口。
-    @inlinable
-    public func generateRandom(_ input: GenerateRandomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateRandomResponse {
-        try await self.client.execute(action: "GenerateRandom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GenerateRandom请求参数结构体
     public struct GenerateRandomRequest: TCRequestModel {
         /// 生成的随机数的长度。最小值为1， 最大值为1024。
@@ -57,5 +41,21 @@ extension Kms {
             case plaintext = "Plaintext"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 随机数生成接口
+    ///
+    /// 随机数生成接口。
+    @inlinable
+    public func generateRandom(_ input: GenerateRandomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateRandomResponse > {
+        self.client.execute(action: "GenerateRandom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 随机数生成接口
+    ///
+    /// 随机数生成接口。
+    @inlinable
+    public func generateRandom(_ input: GenerateRandomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateRandomResponse {
+        try await self.client.execute(action: "GenerateRandom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

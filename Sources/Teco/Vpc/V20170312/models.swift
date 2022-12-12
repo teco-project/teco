@@ -160,7 +160,7 @@ extension Vpc {
         /// 自动续费标志。0表示手动续费，1表示自动续费，2表示到期不续费。默认缺省为0即手动续费
         public let autoRenewFlag: Int64?
         
-        public init (period: Int64, autoRenewFlag: Int64?) {
+        public init (period: Int64, autoRenewFlag: Int64? = nil) {
             self.period = period
             self.autoRenewFlag = autoRenewFlag
         }
@@ -180,7 +180,7 @@ extension Vpc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
         
-        public init (address: String, description: String?) {
+        public init (address: String, description: String? = nil) {
             self.address = address
             self.description = description
         }
@@ -526,7 +526,7 @@ extension Vpc {
         
         /// 描述带宽的地域和限速上限信息。在地域间限速的情况下才会返回参数，出口限速模式不返回。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ccnRegionBandwidthLimit: CcnRegionBandwidthLimit
+        public let ccnRegionBandwidthLimit: CcnRegionBandwidthLimit?
         
         /// 云市场实例ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -565,7 +565,7 @@ extension Vpc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let routeTableId: String?
         
-        public init (instanceId: String, instanceRegion: String, instanceType: String?, description: String?, routeTableId: String?) {
+        public init (instanceId: String, instanceRegion: String, instanceType: String? = nil, description: String? = nil, routeTableId: String? = nil) {
             self.instanceId = instanceId
             self.instanceRegion = instanceRegion
             self.instanceType = instanceType
@@ -600,7 +600,7 @@ extension Vpc {
         /// 目的地域是否为黑石地域，默认`false`。
         public let dstIsBm: Bool?
         
-        public init (region: String, bandwidthLimit: UInt64, isBm: Bool?, dstRegion: String?, dstIsBm: Bool?) {
+        public init (region: String, bandwidthLimit: UInt64, isBm: Bool? = nil, dstRegion: String? = nil, dstIsBm: Bool? = nil) {
             self.region = region
             self.bandwidthLimit = bandwidthLimit
             self.isBm = isBm
@@ -1400,7 +1400,7 @@ extension Vpc {
         
         /// 消费端信息，当消费端类型为ckafka时返回
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let flowLogStorage: FlowLogStorage
+        public let flowLogStorage: FlowLogStorage?
         
         /// 流日志存储ID对应的地域信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1434,7 +1434,7 @@ extension Vpc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageTopic: String?
         
-        public init (storageId: String, storageTopic: String?) {
+        public init (storageId: String, storageTopic: String? = nil) {
             self.storageId = storageId
             self.storageTopic = storageTopic
         }
@@ -1584,7 +1584,7 @@ extension Vpc {
         /// IKE版本
         public let ikeVersion: String?
         
-        public init (propoEncryAlgorithm: String?, propoAuthenAlgorithm: String?, exchangeMode: String?, localIdentity: String?, remoteIdentity: String?, localAddress: String?, remoteAddress: String?, localFqdnName: String?, remoteFqdnName: String?, dhGroupName: String?, ikeSaLifetimeSeconds: UInt64?, ikeVersion: String?) {
+        public init (propoEncryAlgorithm: String? = nil, propoAuthenAlgorithm: String? = nil, exchangeMode: String? = nil, localIdentity: String? = nil, remoteIdentity: String? = nil, localAddress: String? = nil, remoteAddress: String? = nil, localFqdnName: String? = nil, remoteFqdnName: String? = nil, dhGroupName: String? = nil, ikeSaLifetimeSeconds: UInt64? = nil, ikeVersion: String? = nil) {
             self.propoEncryAlgorithm = propoEncryAlgorithm
             self.propoAuthenAlgorithm = propoAuthenAlgorithm
             self.exchangeMode = exchangeMode
@@ -1632,7 +1632,7 @@ extension Vpc {
         /// IPsec SA lifetime(KB)：单位KB，取值范围：2560-604800
         public let ipsecSaLifetimeTraffic: UInt64?
         
-        public init (encryptAlgorithm: String?, integrityAlgorith: String?, ipsecSaLifetimeSeconds: UInt64?, pfsDhGroup: String?, ipsecSaLifetimeTraffic: UInt64?) {
+        public init (encryptAlgorithm: String? = nil, integrityAlgorith: String? = nil, ipsecSaLifetimeSeconds: UInt64? = nil, pfsDhGroup: String? = nil, ipsecSaLifetimeTraffic: UInt64? = nil) {
             self.encryptAlgorithm = encryptAlgorithm
             self.integrityAlgorith = integrityAlgorith
             self.ipsecSaLifetimeSeconds = ipsecSaLifetimeSeconds
@@ -1657,7 +1657,7 @@ extension Vpc {
         /// 自动续费标识。取值范围： NOTIFY_AND_AUTO_RENEW：通知过期且自动续费， NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费。默认：NOTIFY_AND_MANUAL_RENEW
         public let renewFlag: String?
         
-        public init (period: UInt64, renewFlag: String?) {
+        public init (period: UInt64, renewFlag: String? = nil) {
             self.period = period
             self.renewFlag = renewFlag
         }
@@ -1819,7 +1819,7 @@ extension Vpc {
         /// 注释字段
         public let comment: Bool?
         
-        public init (country: Bool?, province: Bool?, city: Bool?, region: Bool?, isp: Bool?, asName: Bool?, asId: Bool?, comment: Bool?) {
+        public init (country: Bool? = nil, province: Bool? = nil, city: Bool? = nil, region: Bool? = nil, isp: Bool? = nil, asName: Bool? = nil, asId: Bool? = nil, comment: Bool? = nil) {
             self.country = country
             self.province = province
             self.city = city
@@ -1917,7 +1917,7 @@ extension Vpc {
         /// <li>`AVAILABLE`：可用的</li>
         public let state: String?
         
-        public init (address: String, primary: Bool?, addressId: String?, description: String?, isWanIpBlocked: Bool?, state: String?) {
+        public init (address: String, primary: Bool? = nil, addressId: String? = nil, description: String? = nil, isWanIpBlocked: Bool? = nil, state: String? = nil) {
             self.address = address
             self.primary = primary
             self.addressId = addressId
@@ -1944,7 +1944,7 @@ extension Vpc {
         /// `IPv6`子网段。形如：`3402:4e00:20:1001::/64`
         public let ipv6CidrBlock: String?
         
-        public init (subnetId: String, ipv6CidrBlock: String?) {
+        public init (subnetId: String, ipv6CidrBlock: String? = nil) {
             self.subnetId = subnetId
             self.ipv6CidrBlock = ipv6CidrBlock
         }
@@ -2015,7 +2015,7 @@ extension Vpc {
         /// 模板对象成员描述信息
         public let description: String?
         
-        public init (member: String, description: String?) {
+        public init (member: String, description: String? = nil) {
             self.member = member
             self.description = description
         }
@@ -2388,7 +2388,7 @@ extension Vpc {
         /// 规则描述，最大长度100。
         public let description: String?
         
-        public init (modifyTime: String, `protocol`: String?, port: String?, cidrBlock: String?, ipv6CidrBlock: String?, action: String?, description: String?) {
+        public init (modifyTime: String, `protocol`: String? = nil, port: String? = nil, cidrBlock: String? = nil, ipv6CidrBlock: String? = nil, action: String? = nil, description: String? = nil) {
             self.modifyTime = modifyTime
             self.`protocol` = `protocol`
             self.port = port
@@ -2417,7 +2417,7 @@ extension Vpc {
         /// 出站规则。
         public let egress: [NetworkAclEntry]?
         
-        public init (ingress: [NetworkAclEntry]?, egress: [NetworkAclEntry]?) {
+        public init (ingress: [NetworkAclEntry]? = nil, egress: [NetworkAclEntry]? = nil) {
             self.ingress = ingress
             self.egress = egress
         }
@@ -2436,7 +2436,7 @@ extension Vpc {
         /// 网络ACL五元组出站规则
         public let egress: [NetworkAclQuintupleEntry]?
         
-        public init (ingress: [NetworkAclQuintupleEntry]?, egress: [NetworkAclQuintupleEntry]?) {
+        public init (ingress: [NetworkAclQuintupleEntry]? = nil, egress: [NetworkAclQuintupleEntry]? = nil) {
             self.ingress = ingress
             self.egress = egress
         }
@@ -2482,7 +2482,7 @@ extension Vpc {
         /// 方向，INGRESS或EGRESS，用于DescribeNetworkAclQuintupleEntries的出参。
         public let networkAclDirection: String?
         
-        public init (`protocol`: String?, description: String?, sourcePort: String?, sourceCidr: String?, destinationPort: String?, destinationCidr: String?, action: String?, networkAclQuintupleEntryId: String?, priority: Int64?, createTime: String?, networkAclDirection: String?) {
+        public init (`protocol`: String? = nil, description: String? = nil, sourcePort: String? = nil, sourceCidr: String? = nil, destinationPort: String? = nil, destinationCidr: String? = nil, action: String? = nil, networkAclQuintupleEntryId: String? = nil, priority: Int64? = nil, createTime: String? = nil, networkAclDirection: String? = nil) {
             self.`protocol` = `protocol`
             self.description = description
             self.sourcePort = sourcePort
@@ -2550,7 +2550,7 @@ extension Vpc {
         
         /// 绑定的云服务器对象。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let attachment: NetworkInterfaceAttachment
+        public let attachment: NetworkInterfaceAttachment?
         
         /// 可用区。
         public let zone: String?
@@ -2591,7 +2591,7 @@ extension Vpc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qosLevel: String?
         
-        public init (networkInterfaceId: String?, networkInterfaceName: String?, networkInterfaceDescription: String?, subnetId: String?, vpcId: String?, groupSet: [String]?, primary: Bool?, macAddress: String?, state: String?, privateIpAddressSet: [PrivateIpAddressSpecification]?, attachment: NetworkInterfaceAttachment, zone: String?, createdTime: String?, ipv6AddressSet: [Ipv6Address]?, tagSet: [Tag]?, eniType: UInt64?, business: String?, cdcId: String?, attachType: UInt64?, resourceId: String?, qosLevel: String?) {
+        public init (networkInterfaceId: String? = nil, networkInterfaceName: String? = nil, networkInterfaceDescription: String? = nil, subnetId: String? = nil, vpcId: String? = nil, groupSet: [String]? = nil, primary: Bool? = nil, macAddress: String? = nil, state: String? = nil, privateIpAddressSet: [PrivateIpAddressSpecification]? = nil, attachment: NetworkInterfaceAttachment? = nil, zone: String? = nil, createdTime: String? = nil, ipv6AddressSet: [Ipv6Address]? = nil, tagSet: [Tag]? = nil, eniType: UInt64? = nil, business: String? = nil, cdcId: String? = nil, attachType: UInt64? = nil, resourceId: String? = nil, qosLevel: String? = nil) {
             self.networkInterfaceId = networkInterfaceId
             self.networkInterfaceName = networkInterfaceName
             self.networkInterfaceDescription = networkInterfaceDescription
@@ -2665,10 +2665,10 @@ extension Vpc {
     /// 价格
     public struct Price: TCOutputModel {
         /// 实例价格。
-        public let instancePrice: ItemPrice
+        public let instancePrice: ItemPrice?
         
         /// 网络价格。
-        public let bandwidthPrice: ItemPrice
+        public let bandwidthPrice: ItemPrice?
         
         enum CodingKeys: String, CodingKey {
             case instancePrice = "InstancePrice"
@@ -2703,7 +2703,7 @@ extension Vpc {
         /// AVAILABLE：可用的
         public let state: String?
         
-        public init (privateIpAddress: String, primary: Bool?, publicIpAddress: String?, addressId: String?, description: String?, isWanIpBlocked: Bool?, state: String?) {
+        public init (privateIpAddress: String, primary: Bool? = nil, publicIpAddress: String? = nil, addressId: String? = nil, description: String? = nil, isWanIpBlocked: Bool? = nil, state: String? = nil) {
             self.privateIpAddress = privateIpAddress
             self.primary = primary
             self.publicIpAddress = publicIpAddress
@@ -3027,7 +3027,7 @@ extension Vpc {
         /// 路由策略创建时间
         public let createdTime: Date?
         
-        public init (destinationCidrBlock: String, gatewayType: String, gatewayId: String, routeId: UInt64?, routeDescription: String?, enabled: Bool?, routeType: String?, routeTableId: String?, destinationIpv6CidrBlock: String?, routeItemId: String?, publishedToVbc: Bool?, createdTime: Date?) {
+        public init (destinationCidrBlock: String, gatewayType: String, gatewayId: String, routeId: UInt64? = nil, routeDescription: String? = nil, enabled: Bool? = nil, routeType: String? = nil, routeTableId: String? = nil, destinationIpv6CidrBlock: String? = nil, routeItemId: String? = nil, publishedToVbc: Bool? = nil, createdTime: Date? = nil) {
             self.destinationCidrBlock = destinationCidrBlock
             self.gatewayType = gatewayType
             self.gatewayId = gatewayId
@@ -3160,7 +3160,7 @@ extension Vpc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
         
-        public init (securityGroupId: String, securityGroupName: String, securityGroupDesc: String, projectId: String?, isDefault: Bool?, createdTime: String?, tagSet: [Tag]?, updateTime: String?) {
+        public init (securityGroupId: String, securityGroupName: String, securityGroupDesc: String, projectId: String? = nil, isDefault: Bool? = nil, createdTime: String? = nil, tagSet: [Tag]? = nil, updateTime: String? = nil) {
             self.securityGroupId = securityGroupId
             self.securityGroupName = securityGroupName
             self.securityGroupDesc = securityGroupDesc
@@ -3260,7 +3260,7 @@ extension Vpc {
         public let port: String?
         
         /// 协议端口ID或者协议端口组ID。ServiceTemplate和Protocol+Port互斥。
-        public let serviceTemplate: ServiceTemplateSpecification
+        public let serviceTemplate: ServiceTemplateSpecification?
         
         /// 网段或IP(互斥)。
         public let cidrBlock: String?
@@ -3272,7 +3272,7 @@ extension Vpc {
         public let securityGroupId: String?
         
         /// IP地址ID或者ID地址组ID。
-        public let addressTemplate: AddressTemplateSpecification
+        public let addressTemplate: AddressTemplateSpecification?
         
         /// ACCEPT 或 DROP。
         public let action: String?
@@ -3283,7 +3283,7 @@ extension Vpc {
         /// 安全组最近修改时间。
         public let modifyTime: String?
         
-        public init (policyIndex: Int64?, `protocol`: String?, port: String?, serviceTemplate: ServiceTemplateSpecification, cidrBlock: String?, ipv6CidrBlock: String?, securityGroupId: String?, addressTemplate: AddressTemplateSpecification, action: String?, policyDescription: String?, modifyTime: String?) {
+        public init (policyIndex: Int64? = nil, `protocol`: String? = nil, port: String? = nil, serviceTemplate: ServiceTemplateSpecification? = nil, cidrBlock: String? = nil, ipv6CidrBlock: String? = nil, securityGroupId: String? = nil, addressTemplate: AddressTemplateSpecification? = nil, action: String? = nil, policyDescription: String? = nil, modifyTime: String? = nil) {
             self.policyIndex = policyIndex
             self.`protocol` = `protocol`
             self.port = port
@@ -3323,7 +3323,7 @@ extension Vpc {
         /// 入站规则。
         public let ingress: [SecurityGroupPolicy]?
         
-        public init (version: String?, egress: [SecurityGroupPolicy]?, ingress: [SecurityGroupPolicy]?) {
+        public init (version: String? = nil, egress: [SecurityGroupPolicy]? = nil, ingress: [SecurityGroupPolicy]? = nil) {
             self.version = version
             self.egress = egress
             self.ingress = ingress
@@ -3430,7 +3430,7 @@ extension Vpc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
         
-        public init (service: String, description: String?) {
+        public init (service: String, description: String? = nil) {
             self.service = service
             self.description = description
         }
@@ -3448,7 +3448,7 @@ extension Vpc {
         
         /// 资源类型，目前包含SUBNET、NETWORKINTERFACE
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let resourceType: String
+        public let resourceType: String?
         
         /// 源IP/网段
         public let privateIpAddress: String
@@ -3474,7 +3474,7 @@ extension Vpc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdTime: String?
         
-        public init (resourceId: String, resourceType: String, privateIpAddress: String, publicIpAddresses: [String], description: String, natGatewaySnatId: String?, natGatewayId: String?, vpcId: String?, createdTime: String?) {
+        public init (resourceId: String, resourceType: String, privateIpAddress: String, publicIpAddresses: [String], description: String, natGatewaySnatId: String? = nil, natGatewayId: String? = nil, vpcId: String? = nil, createdTime: String? = nil) {
             self.resourceId = resourceId
             self.resourceType = resourceType
             self.privateIpAddress = privateIpAddress
@@ -3753,7 +3753,7 @@ extension Vpc {
         /// 指定关联路由表，形如：`rtb-3ryrwzuu`。
         public let routeTableId: String?
         
-        public init (cidrBlock: String, subnetName: String, zone: String, routeTableId: String?) {
+        public init (cidrBlock: String, subnetName: String, zone: String, routeTableId: String? = nil) {
             self.cidrBlock = cidrBlock
             self.subnetName = subnetName
             self.zone = zone
@@ -3772,13 +3772,13 @@ extension Vpc {
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let key: String
+        public let key: String?
         
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
         
-        public init (key: String, value: String?) {
+        public init (key: String, value: String? = nil) {
             self.key = key
             self.value = value
         }
@@ -4247,7 +4247,7 @@ extension Vpc {
         /// 更新时间
         public let updateTime: Date?
         
-        public init (destinationCidrBlock: String, instanceType: String, instanceId: String, priority: Int64, status: String, routeId: String?, type: String?, createTime: Date?, updateTime: Date?) {
+        public init (destinationCidrBlock: String, instanceType: String, instanceId: String, priority: Int64, status: String, routeId: String? = nil, type: String? = nil, createTime: Date? = nil, updateTime: Date? = nil) {
             self.destinationCidrBlock = destinationCidrBlock
             self.instanceType = instanceType
             self.instanceId = instanceId
@@ -4301,7 +4301,7 @@ extension Vpc {
         /// DISABLE：不启用该路由
         public let status: String?
         
-        public init (routeId: String, status: String?) {
+        public init (routeId: String, status: String? = nil) {
             self.routeId = routeId
             self.status = status
         }

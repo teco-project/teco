@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 获取批量计算可用区机型配置信息
-    @inlinable
-    public func describeCvmZoneInstanceConfigInfos(_ input: DescribeCvmZoneInstanceConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCvmZoneInstanceConfigInfosResponse > {
-        self.client.execute(action: "DescribeCvmZoneInstanceConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取批量计算可用区机型配置信息
-    @inlinable
-    public func describeCvmZoneInstanceConfigInfos(_ input: DescribeCvmZoneInstanceConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCvmZoneInstanceConfigInfosResponse {
-        try await self.client.execute(action: "DescribeCvmZoneInstanceConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCvmZoneInstanceConfigInfos请求参数结构体
     public struct DescribeCvmZoneInstanceConfigInfosRequest: TCRequestModel {
         /// 过滤条件。
@@ -36,7 +24,7 @@ extension Batch {
         /// <li> instance-charge-type - String - 是否必填：否 -（过滤条件）按照实例计费模式过滤。 ( POSTPAID_BY_HOUR：表示后付费，即按量计费机型 | SPOTPAID：表示竞价付费机型。 )  </li>
         public let filters: [Filter]?
         
-        public init (filters: [Filter]?) {
+        public init (filters: [Filter]? = nil) {
             self.filters = filters
         }
         
@@ -57,5 +45,17 @@ extension Batch {
             case instanceTypeQuotaSet = "InstanceTypeQuotaSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取批量计算可用区机型配置信息
+    @inlinable
+    public func describeCvmZoneInstanceConfigInfos(_ input: DescribeCvmZoneInstanceConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCvmZoneInstanceConfigInfosResponse > {
+        self.client.execute(action: "DescribeCvmZoneInstanceConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取批量计算可用区机型配置信息
+    @inlinable
+    public func describeCvmZoneInstanceConfigInfos(_ input: DescribeCvmZoneInstanceConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCvmZoneInstanceConfigInfosResponse {
+        try await self.client.execute(action: "DescribeCvmZoneInstanceConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

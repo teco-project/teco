@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 安全合规重新检测选定的检测项
-    ///
-    /// 重新检测选的检测项下的所有资产，返回创建的合规检查任务的ID。
-    @inlinable
-    public func scanCompliancePolicyItems(_ input: ScanCompliancePolicyItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanCompliancePolicyItemsResponse > {
-        self.client.execute(action: "ScanCompliancePolicyItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全合规重新检测选定的检测项
-    ///
-    /// 重新检测选的检测项下的所有资产，返回创建的合规检查任务的ID。
-    @inlinable
-    public func scanCompliancePolicyItems(_ input: ScanCompliancePolicyItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanCompliancePolicyItemsResponse {
-        try await self.client.execute(action: "ScanCompliancePolicyItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ScanCompliancePolicyItems请求参数结构体
     public struct ScanCompliancePolicyItemsRequest: TCRequestModel {
         /// 要重新扫描的客户检测项的列表。
@@ -57,5 +41,21 @@ extension Tcss {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全合规重新检测选定的检测项
+    ///
+    /// 重新检测选的检测项下的所有资产，返回创建的合规检查任务的ID。
+    @inlinable
+    public func scanCompliancePolicyItems(_ input: ScanCompliancePolicyItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanCompliancePolicyItemsResponse > {
+        self.client.execute(action: "ScanCompliancePolicyItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规重新检测选定的检测项
+    ///
+    /// 重新检测选的检测项下的所有资产，返回创建的合规检查任务的ID。
+    @inlinable
+    public func scanCompliancePolicyItems(_ input: ScanCompliancePolicyItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanCompliancePolicyItemsResponse {
+        try await self.client.execute(action: "ScanCompliancePolicyItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

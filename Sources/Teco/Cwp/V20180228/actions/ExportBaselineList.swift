@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 导出基线列表
-    @inlinable
-    public func exportBaselineList(_ input: ExportBaselineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBaselineListResponse > {
-        self.client.execute(action: "ExportBaselineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出基线列表
-    @inlinable
-    public func exportBaselineList(_ input: ExportBaselineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBaselineListResponse {
-        try await self.client.execute(action: "ExportBaselineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportBaselineList请求参数结构体
     public struct ExportBaselineListRequest: TCRequestModel {
         /// 过滤条件：
@@ -40,7 +28,7 @@ extension Cwp {
         /// 已废弃
         public let ifDetail: UInt64?
         
-        public init (filters: [Filters]?, ifDetail: UInt64?) {
+        public init (filters: [Filters]? = nil, ifDetail: UInt64? = nil) {
             self.filters = filters
             self.ifDetail = ifDetail
         }
@@ -68,5 +56,17 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出基线列表
+    @inlinable
+    public func exportBaselineList(_ input: ExportBaselineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportBaselineListResponse > {
+        self.client.execute(action: "ExportBaselineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出基线列表
+    @inlinable
+    public func exportBaselineList(_ input: ExportBaselineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBaselineListResponse {
+        try await self.client.execute(action: "ExportBaselineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

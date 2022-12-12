@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 关闭数据库代理
-    @inlinable
-    public func closeCDBProxy(_ input: CloseCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseCDBProxyResponse > {
-        self.client.execute(action: "CloseCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关闭数据库代理
-    @inlinable
-    public func closeCDBProxy(_ input: CloseCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseCDBProxyResponse {
-        try await self.client.execute(action: "CloseCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CloseCDBProxy请求参数结构体
     public struct CloseCDBProxyRequest: TCRequestModel {
         /// 实例ID
@@ -38,7 +26,7 @@ extension Cdb {
         /// 是否只关闭读写分离，取值："true" | "false"，默认为"false"
         public let onlyCloseRW: Bool?
         
-        public init (instanceId: String, proxyGroupId: String?, onlyCloseRW: Bool?) {
+        public init (instanceId: String, proxyGroupId: String? = nil, onlyCloseRW: Bool? = nil) {
             self.instanceId = instanceId
             self.proxyGroupId = proxyGroupId
             self.onlyCloseRW = onlyCloseRW
@@ -59,5 +47,17 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关闭数据库代理
+    @inlinable
+    public func closeCDBProxy(_ input: CloseCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseCDBProxyResponse > {
+        self.client.execute(action: "CloseCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭数据库代理
+    @inlinable
+    public func closeCDBProxy(_ input: CloseCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseCDBProxyResponse {
+        try await self.client.execute(action: "CloseCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

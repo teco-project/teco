@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询java内存马事件列表
-    @inlinable
-    public func describeJavaMemShellList(_ input: DescribeJavaMemShellListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJavaMemShellListResponse > {
-        self.client.execute(action: "DescribeJavaMemShellList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询java内存马事件列表
-    @inlinable
-    public func describeJavaMemShellList(_ input: DescribeJavaMemShellListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJavaMemShellListResponse {
-        try await self.client.execute(action: "DescribeJavaMemShellList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeJavaMemShellList请求参数结构体
     public struct DescribeJavaMemShellListRequest: TCRequestModel {
         /// 过滤条件：Keywords: ip或者主机名模糊查询, Type，Status精确匹配，CreateBeginTime，CreateEndTime时间段
@@ -38,7 +26,7 @@ extension Cwp {
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
         
-        public init (filters: [Filters]?, offset: UInt64?, limit: UInt64?) {
+        public init (filters: [Filters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -68,5 +56,17 @@ extension Cwp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询java内存马事件列表
+    @inlinable
+    public func describeJavaMemShellList(_ input: DescribeJavaMemShellListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJavaMemShellListResponse > {
+        self.client.execute(action: "DescribeJavaMemShellList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询java内存马事件列表
+    @inlinable
+    public func describeJavaMemShellList(_ input: DescribeJavaMemShellListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJavaMemShellListResponse {
+        try await self.client.execute(action: "DescribeJavaMemShellList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

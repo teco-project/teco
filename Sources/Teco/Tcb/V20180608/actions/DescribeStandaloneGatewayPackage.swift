@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询小租户网关套餐信息
-    ///
-    /// 本接口（DescribeStandaloneGatewayPackage）用于查询小租户网关套餐信息。
-    @inlinable
-    public func describeStandaloneGatewayPackage(_ input: DescribeStandaloneGatewayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStandaloneGatewayPackageResponse > {
-        self.client.execute(action: "DescribeStandaloneGatewayPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询小租户网关套餐信息
-    ///
-    /// 本接口（DescribeStandaloneGatewayPackage）用于查询小租户网关套餐信息。
-    @inlinable
-    public func describeStandaloneGatewayPackage(_ input: DescribeStandaloneGatewayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStandaloneGatewayPackageResponse {
-        try await self.client.execute(action: "DescribeStandaloneGatewayPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStandaloneGatewayPackage请求参数结构体
     public struct DescribeStandaloneGatewayPackageRequest: TCRequestModel {
         /// 环境ID
@@ -39,7 +23,7 @@ extension Tcb {
         /// 套餐版本，包含starter、basic、advanced、enterprise
         public let packageVersion: String?
         
-        public init (envId: String?, packageVersion: String?) {
+        public init (envId: String? = nil, packageVersion: String? = nil) {
             self.envId = envId
             self.packageVersion = packageVersion
         }
@@ -66,5 +50,21 @@ extension Tcb {
             case standaloneGatewayPackageList = "StandaloneGatewayPackageList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询小租户网关套餐信息
+    ///
+    /// 本接口（DescribeStandaloneGatewayPackage）用于查询小租户网关套餐信息。
+    @inlinable
+    public func describeStandaloneGatewayPackage(_ input: DescribeStandaloneGatewayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStandaloneGatewayPackageResponse > {
+        self.client.execute(action: "DescribeStandaloneGatewayPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询小租户网关套餐信息
+    ///
+    /// 本接口（DescribeStandaloneGatewayPackage）用于查询小租户网关套餐信息。
+    @inlinable
+    public func describeStandaloneGatewayPackage(_ input: DescribeStandaloneGatewayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStandaloneGatewayPackageResponse {
+        try await self.client.execute(action: "DescribeStandaloneGatewayPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

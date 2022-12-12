@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 修改项目
-    ///
-    /// 修改项目信息。
-    @inlinable
-    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectResponse > {
-        self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改项目
-    ///
-    /// 修改项目信息。
-    @inlinable
-    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
-        try await self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyProject请求参数结构体
     public struct ModifyProjectRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -46,7 +30,7 @@ extension Cme {
         public let aspectRatio: String?
         
         /// 项目所有者。目前仅支持个人项目，不支持团队项目。
-        public let owner: Entity
+        public let owner: Entity?
         
         /// 项目模式，一个项目可以有多种模式并相互切换。
         /// 当 Category 为 VIDEO_EDIT 时，可选模式有：
@@ -54,7 +38,7 @@ extension Cme {
         /// <li>VideoEditTemplate：剪辑模板制作模式，用于制作剪辑模板。</li>
         public let mode: String?
         
-        public init (platform: String, projectId: String, name: String?, aspectRatio: String?, owner: Entity, mode: String?) {
+        public init (platform: String, projectId: String, name: String? = nil, aspectRatio: String? = nil, owner: Entity? = nil, mode: String? = nil) {
             self.platform = platform
             self.projectId = projectId
             self.name = name
@@ -81,5 +65,21 @@ extension Cme {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改项目
+    ///
+    /// 修改项目信息。
+    @inlinable
+    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectResponse > {
+        self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改项目
+    ///
+    /// 修改项目信息。
+    @inlinable
+    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
+        try await self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 删除云数据库的账号
-    ///
-    /// 本接口(DeleteAccounts)用于删除云数据库的账户。
-    @inlinable
-    public func deleteAccounts(_ input: DeleteAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccountsResponse > {
-        self.client.execute(action: "DeleteAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除云数据库的账号
-    ///
-    /// 本接口(DeleteAccounts)用于删除云数据库的账户。
-    @inlinable
-    public func deleteAccounts(_ input: DeleteAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountsResponse {
-        try await self.client.execute(action: "DeleteAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAccounts请求参数结构体
     public struct DeleteAccountsRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -62,5 +46,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除云数据库的账号
+    ///
+    /// 本接口(DeleteAccounts)用于删除云数据库的账户。
+    @inlinable
+    public func deleteAccounts(_ input: DeleteAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAccountsResponse > {
+        self.client.execute(action: "DeleteAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除云数据库的账号
+    ///
+    /// 本接口(DeleteAccounts)用于删除云数据库的账户。
+    @inlinable
+    public func deleteAccounts(_ input: DeleteAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountsResponse {
+        try await self.client.execute(action: "DeleteAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

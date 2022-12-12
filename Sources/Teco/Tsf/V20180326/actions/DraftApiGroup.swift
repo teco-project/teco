@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 下线Api分组
-    @inlinable
-    public func draftApiGroup(_ input: DraftApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DraftApiGroupResponse > {
-        self.client.execute(action: "DraftApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下线Api分组
-    @inlinable
-    public func draftApiGroup(_ input: DraftApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DraftApiGroupResponse {
-        try await self.client.execute(action: "DraftApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DraftApiGroup请求参数结构体
     public struct DraftApiGroupRequest: TCRequestModel {
         /// Api 分组ID
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下线Api分组
+    @inlinable
+    public func draftApiGroup(_ input: DraftApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DraftApiGroupResponse > {
+        self.client.execute(action: "DraftApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下线Api分组
+    @inlinable
+    public func draftApiGroup(_ input: DraftApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DraftApiGroupResponse {
+        try await self.client.execute(action: "DraftApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

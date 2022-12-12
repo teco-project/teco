@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 查看快照分享信息
-    ///
-    /// 本接口（DescribeSnapshotSharePermission）用于查询快照的分享信息。
-    @inlinable
-    public func describeSnapshotSharePermission(_ input: DescribeSnapshotSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotSharePermissionResponse > {
-        self.client.execute(action: "DescribeSnapshotSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看快照分享信息
-    ///
-    /// 本接口（DescribeSnapshotSharePermission）用于查询快照的分享信息。
-    @inlinable
-    public func describeSnapshotSharePermission(_ input: DescribeSnapshotSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotSharePermissionResponse {
-        try await self.client.execute(action: "DescribeSnapshotSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSnapshotSharePermission请求参数结构体
     public struct DescribeSnapshotSharePermissionRequest: TCRequestModel {
         /// 要查询快照的ID。可通过[DescribeSnapshots](https://cloud.tencent.com/document/api/362/15647)查询获取。
@@ -57,5 +41,21 @@ extension Cbs {
             case sharePermissionSet = "SharePermissionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看快照分享信息
+    ///
+    /// 本接口（DescribeSnapshotSharePermission）用于查询快照的分享信息。
+    @inlinable
+    public func describeSnapshotSharePermission(_ input: DescribeSnapshotSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotSharePermissionResponse > {
+        self.client.execute(action: "DescribeSnapshotSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看快照分享信息
+    ///
+    /// 本接口（DescribeSnapshotSharePermission）用于查询快照的分享信息。
+    @inlinable
+    public func describeSnapshotSharePermission(_ input: DescribeSnapshotSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotSharePermissionResponse {
+        try await self.client.execute(action: "DescribeSnapshotSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

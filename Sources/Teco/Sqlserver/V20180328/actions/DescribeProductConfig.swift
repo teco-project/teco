@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询售卖规格配置
-    ///
-    /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
-    @inlinable
-    public func describeProductConfig(_ input: DescribeProductConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductConfigResponse > {
-        self.client.execute(action: "DescribeProductConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询售卖规格配置
-    ///
-    /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
-    @inlinable
-    public func describeProductConfig(_ input: DescribeProductConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductConfigResponse {
-        try await self.client.execute(action: "DescribeProductConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProductConfig请求参数结构体
     public struct DescribeProductConfigRequest: TCRequestModel {
         /// 可用区英文ID，形如ap-guangzhou-1
@@ -39,7 +23,7 @@ extension Sqlserver {
         /// 购买实例的类型 HA-高可用型(包括双机高可用，alwaysOn集群)，RO-只读副本型，SI-基础版本型
         public let instanceType: String?
         
-        public init (zone: String, instanceType: String?) {
+        public init (zone: String, instanceType: String? = nil) {
             self.zone = zone
             self.instanceType = instanceType
         }
@@ -66,5 +50,21 @@ extension Sqlserver {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询售卖规格配置
+    ///
+    /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
+    @inlinable
+    public func describeProductConfig(_ input: DescribeProductConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductConfigResponse > {
+        self.client.execute(action: "DescribeProductConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询售卖规格配置
+    ///
+    /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
+    @inlinable
+    public func describeProductConfig(_ input: DescribeProductConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductConfigResponse {
+        try await self.client.execute(action: "DescribeProductConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

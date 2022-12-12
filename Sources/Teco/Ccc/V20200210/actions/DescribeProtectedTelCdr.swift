@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 获取主被叫受保护的电话服务记录与录音
-    @inlinable
-    public func describeProtectedTelCdr(_ input: DescribeProtectedTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProtectedTelCdrResponse > {
-        self.client.execute(action: "DescribeProtectedTelCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取主被叫受保护的电话服务记录与录音
-    @inlinable
-    public func describeProtectedTelCdr(_ input: DescribeProtectedTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectedTelCdrResponse {
-        try await self.client.execute(action: "DescribeProtectedTelCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProtectedTelCdr请求参数结构体
     public struct DescribeProtectedTelCdrRequest: TCRequestModel {
         /// 起始时间戳，Unix 秒级时间戳
@@ -77,5 +65,17 @@ extension Ccc {
             case telCdrs = "TelCdrs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取主被叫受保护的电话服务记录与录音
+    @inlinable
+    public func describeProtectedTelCdr(_ input: DescribeProtectedTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProtectedTelCdrResponse > {
+        self.client.execute(action: "DescribeProtectedTelCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取主被叫受保护的电话服务记录与录音
+    @inlinable
+    public func describeProtectedTelCdr(_ input: DescribeProtectedTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectedTelCdrResponse {
+        try await self.client.execute(action: "DescribeProtectedTelCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

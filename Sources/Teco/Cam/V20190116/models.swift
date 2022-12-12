@@ -260,7 +260,7 @@ extension Cam {
         /// 子用户 Uin，Uid和Uin至少有一个必填
         public let uin: UInt64?
         
-        public init (groupId: UInt64, uid: UInt64?, uin: UInt64?) {
+        public init (groupId: UInt64, uid: UInt64? = nil, uin: UInt64? = nil) {
             self.groupId = groupId
             self.uid = uid
             self.uin = uin
@@ -430,7 +430,7 @@ extension Cam {
         /// 自定义
         public let custom: UInt64?
         
-        public init (phone: UInt64?, token: UInt64?, stoken: UInt64?, wechat: UInt64?, custom: UInt64?) {
+        public init (phone: UInt64? = nil, token: UInt64? = nil, stoken: UInt64? = nil, wechat: UInt64? = nil, custom: UInt64? = nil) {
             self.phone = phone
             self.token = token
             self.stoken = stoken
@@ -467,7 +467,7 @@ extension Cam {
         /// 邮件
         public let mail: UInt64?
         
-        public init (phone: UInt64?, token: UInt64?, stoken: UInt64?, wechat: UInt64?, custom: UInt64?, mail: UInt64?) {
+        public init (phone: UInt64? = nil, token: UInt64? = nil, stoken: UInt64? = nil, wechat: UInt64? = nil, custom: UInt64? = nil, mail: UInt64? = nil) {
             self.phone = phone
             self.token = token
             self.stoken = stoken
@@ -497,7 +497,7 @@ extension Cam {
         /// 微信
         public let wechat: UInt64?
         
-        public init (phone: UInt64?, stoken: UInt64?, wechat: UInt64?) {
+        public init (phone: UInt64? = nil, stoken: UInt64? = nil, wechat: UInt64? = nil) {
             self.phone = phone
             self.stoken = stoken
             self.wechat = wechat
@@ -527,7 +527,7 @@ extension Cam {
         /// 提示
         public let tips: UInt64?
         
-        public init (verifyFlag: UInt64?, notifyPhone: UInt64?, notifyEmail: Int64?, notifyWechat: UInt64?, tips: UInt64?) {
+        public init (verifyFlag: UInt64? = nil, notifyPhone: UInt64? = nil, notifyEmail: Int64? = nil, notifyWechat: UInt64? = nil, tips: UInt64? = nil) {
             self.verifyFlag = verifyFlag
             self.notifyPhone = notifyPhone
             self.notifyEmail = notifyEmail

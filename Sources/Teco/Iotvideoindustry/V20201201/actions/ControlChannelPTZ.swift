@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 远程PTZ控制设备通道
-    ///
-    /// 本接口(ControlChannelPTZ) 用于对支持GB28181 PTZ信令的设备进行指定通道的远程控制。
-    @inlinable
-    public func controlChannelPTZ(_ input: ControlChannelPTZRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlChannelPTZResponse > {
-        self.client.execute(action: "ControlChannelPTZ", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 远程PTZ控制设备通道
-    ///
-    /// 本接口(ControlChannelPTZ) 用于对支持GB28181 PTZ信令的设备进行指定通道的远程控制。
-    @inlinable
-    public func controlChannelPTZ(_ input: ControlChannelPTZRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlChannelPTZResponse {
-        try await self.client.execute(action: "ControlChannelPTZ", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ControlChannelPTZ请求参数结构体
     public struct ControlChannelPTZRequest: TCRequestModel {
         /// 设备唯一标识
@@ -78,5 +62,21 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 远程PTZ控制设备通道
+    ///
+    /// 本接口(ControlChannelPTZ) 用于对支持GB28181 PTZ信令的设备进行指定通道的远程控制。
+    @inlinable
+    public func controlChannelPTZ(_ input: ControlChannelPTZRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlChannelPTZResponse > {
+        self.client.execute(action: "ControlChannelPTZ", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 远程PTZ控制设备通道
+    ///
+    /// 本接口(ControlChannelPTZ) 用于对支持GB28181 PTZ信令的设备进行指定通道的远程控制。
+    @inlinable
+    public func controlChannelPTZ(_ input: ControlChannelPTZRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlChannelPTZResponse {
+        try await self.client.execute(action: "ControlChannelPTZ", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

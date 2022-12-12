@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 修改k8sapi异常规则信息
-    @inlinable
-    public func modifyK8sApiAbnormalRuleInfo(_ input: ModifyK8sApiAbnormalRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyK8sApiAbnormalRuleInfoResponse > {
-        self.client.execute(action: "ModifyK8sApiAbnormalRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改k8sapi异常规则信息
-    @inlinable
-    public func modifyK8sApiAbnormalRuleInfo(_ input: ModifyK8sApiAbnormalRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalRuleInfoResponse {
-        try await self.client.execute(action: "ModifyK8sApiAbnormalRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyK8sApiAbnormalRuleInfo请求参数结构体
     public struct ModifyK8sApiAbnormalRuleInfoRequest: TCRequestModel {
         /// 规则详情
@@ -49,5 +37,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改k8sapi异常规则信息
+    @inlinable
+    public func modifyK8sApiAbnormalRuleInfo(_ input: ModifyK8sApiAbnormalRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyK8sApiAbnormalRuleInfoResponse > {
+        self.client.execute(action: "ModifyK8sApiAbnormalRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改k8sapi异常规则信息
+    @inlinable
+    public func modifyK8sApiAbnormalRuleInfo(_ input: ModifyK8sApiAbnormalRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalRuleInfoResponse {
+        try await self.client.execute(action: "ModifyK8sApiAbnormalRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

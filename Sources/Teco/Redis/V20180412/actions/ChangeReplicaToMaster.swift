@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 副本组提主
-    ///
-    /// 该接口仅支持多AZ实例副本组提主和单AZ副本提主
-    @inlinable
-    public func changeReplicaToMaster(_ input: ChangeReplicaToMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeReplicaToMasterResponse > {
-        self.client.execute(action: "ChangeReplicaToMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 副本组提主
-    ///
-    /// 该接口仅支持多AZ实例副本组提主和单AZ副本提主
-    @inlinable
-    public func changeReplicaToMaster(_ input: ChangeReplicaToMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeReplicaToMasterResponse {
-        try await self.client.execute(action: "ChangeReplicaToMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ChangeReplicaToMaster请求参数结构体
     public struct ChangeReplicaToMasterRequest: TCRequestModel {
         /// 实例Id
@@ -39,7 +23,7 @@ extension Redis {
         /// 副本组Id，多AZ实例必填
         public let groupId: Int64?
         
-        public init (instanceId: String, groupId: Int64?) {
+        public init (instanceId: String, groupId: Int64? = nil) {
             self.instanceId = instanceId
             self.groupId = groupId
         }
@@ -62,5 +46,21 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 副本组提主
+    ///
+    /// 该接口仅支持多AZ实例副本组提主和单AZ副本提主
+    @inlinable
+    public func changeReplicaToMaster(_ input: ChangeReplicaToMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeReplicaToMasterResponse > {
+        self.client.execute(action: "ChangeReplicaToMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 副本组提主
+    ///
+    /// 该接口仅支持多AZ实例副本组提主和单AZ副本提主
+    @inlinable
+    public func changeReplicaToMaster(_ input: ChangeReplicaToMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeReplicaToMasterResponse {
+        try await self.client.execute(action: "ChangeReplicaToMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

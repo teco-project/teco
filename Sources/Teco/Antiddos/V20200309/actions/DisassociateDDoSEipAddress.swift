@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 解绑高防弹性公网IP
-    ///
-    /// 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
-    @inlinable
-    public func disassociateDDoSEipAddress(_ input: DisassociateDDoSEipAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateDDoSEipAddressResponse > {
-        self.client.execute(action: "DisassociateDDoSEipAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑高防弹性公网IP
-    ///
-    /// 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
-    @inlinable
-    public func disassociateDDoSEipAddress(_ input: DisassociateDDoSEipAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDDoSEipAddressResponse {
-        try await self.client.execute(action: "DisassociateDDoSEipAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisassociateDDoSEipAddress请求参数结构体
     public struct DisassociateDDoSEipAddressRequest: TCRequestModel {
         /// 资源实例ID，实例ID形如：bgpip-0000011x。只能填写高防IP实例。
@@ -58,5 +42,21 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑高防弹性公网IP
+    ///
+    /// 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
+    @inlinable
+    public func disassociateDDoSEipAddress(_ input: DisassociateDDoSEipAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateDDoSEipAddressResponse > {
+        self.client.execute(action: "DisassociateDDoSEipAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑高防弹性公网IP
+    ///
+    /// 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
+    @inlinable
+    public func disassociateDDoSEipAddress(_ input: DisassociateDDoSEipAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDDoSEipAddressResponse {
+        try await self.client.execute(action: "DisassociateDDoSEipAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

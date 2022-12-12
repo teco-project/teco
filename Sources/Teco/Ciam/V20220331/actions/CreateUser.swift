@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ciam {
-    /// 创建用户
-    @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
-        self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建用户
-    @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
-        try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUser请求参数结构体
     public struct CreateUserRequest: TCRequestModel {
         /// 用户目录ID
@@ -74,7 +62,7 @@ extension Ciam {
         /// 索引字段5
         public let indexedAttribute5: String?
         
-        public init (userStoreId: String, phoneNumber: String, email: String, password: String, userName: String, nickname: String?, address: String?, userGroup: [String]?, birthdate: Int64?, customizationAttributes: [MemberMap]?, indexedAttribute1: String?, indexedAttribute2: String?, indexedAttribute3: String?, indexedAttribute4: String?, indexedAttribute5: String?) {
+        public init (userStoreId: String, phoneNumber: String, email: String, password: String, userName: String, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil) {
             self.userStoreId = userStoreId
             self.phoneNumber = phoneNumber
             self.email = email
@@ -115,7 +103,7 @@ extension Ciam {
     public struct CreateUserResponse: TCResponseModel {
         /// 创建的用户信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let user: User
+        public let user: User?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -124,5 +112,17 @@ extension Ciam {
             case user = "User"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建用户
+    @inlinable
+    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
+        self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建用户
+    @inlinable
+    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
+        try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 创建边缘单元
-    @inlinable
-    public func createEdgeUnitCloud(_ input: CreateEdgeUnitCloudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeUnitCloudResponse > {
-        self.client.execute(action: "CreateEdgeUnitCloud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建边缘单元
-    @inlinable
-    public func createEdgeUnitCloud(_ input: CreateEdgeUnitCloudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitCloudResponse {
-        try await self.client.execute(action: "CreateEdgeUnitCloud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEdgeUnitCloud请求参数结构体
     public struct CreateEdgeUnitCloudRequest: TCRequestModel {
         /// 集群名称，长度小于32
@@ -50,7 +38,7 @@ extension Iecp {
         /// 是否开启监控。目前内存中权限开启联系产品开通白名单
         public let openCloudMonitor: Bool?
         
-        public init (name: String, k8sVersion: String, vpcId: String?, description: String?, podCIDR: String?, serviceCIDR: String?, openCloudMonitor: Bool?) {
+        public init (name: String, k8sVersion: String, vpcId: String? = nil, description: String? = nil, podCIDR: String? = nil, serviceCIDR: String? = nil, openCloudMonitor: Bool? = nil) {
             self.name = name
             self.k8sVersion = k8sVersion
             self.vpcId = vpcId
@@ -89,5 +77,17 @@ extension Iecp {
             case edgeUnitId = "EdgeUnitId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建边缘单元
+    @inlinable
+    public func createEdgeUnitCloud(_ input: CreateEdgeUnitCloudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeUnitCloudResponse > {
+        self.client.execute(action: "CreateEdgeUnitCloud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建边缘单元
+    @inlinable
+    public func createEdgeUnitCloud(_ input: CreateEdgeUnitCloudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitCloudResponse {
+        try await self.client.execute(action: "CreateEdgeUnitCloud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

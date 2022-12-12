@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 删除Api分组
-    @inlinable
-    public func deleteApiGroup(_ input: DeleteApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApiGroupResponse > {
-        self.client.execute(action: "DeleteApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除Api分组
-    @inlinable
-    public func deleteApiGroup(_ input: DeleteApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiGroupResponse {
-        try await self.client.execute(action: "DeleteApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteApiGroup请求参数结构体
     public struct DeleteApiGroupRequest: TCRequestModel {
         /// API 分组ID
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除Api分组
+    @inlinable
+    public func deleteApiGroup(_ input: DeleteApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApiGroupResponse > {
+        self.client.execute(action: "DeleteApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Api分组
+    @inlinable
+    public func deleteApiGroup(_ input: DeleteApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiGroupResponse {
+        try await self.client.execute(action: "DeleteApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

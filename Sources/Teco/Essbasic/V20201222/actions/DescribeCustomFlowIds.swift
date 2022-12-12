@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 根据用户自定义id查询流程id
-    ///
-    /// 此接口（DescribeCustomFlowIds）用于通过自定义流程id来查询对应的电子签流程id
-    @inlinable
-    public func describeCustomFlowIds(_ input: DescribeCustomFlowIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomFlowIdsResponse > {
-        self.client.execute(action: "DescribeCustomFlowIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据用户自定义id查询流程id
-    ///
-    /// 此接口（DescribeCustomFlowIds）用于通过自定义流程id来查询对应的电子签流程id
-    @inlinable
-    public func describeCustomFlowIds(_ input: DescribeCustomFlowIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomFlowIdsResponse {
-        try await self.client.execute(action: "DescribeCustomFlowIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomFlowIds请求参数结构体
     public struct DescribeCustomFlowIdsRequest: TCRequestModel {
         /// 调用方信息
@@ -62,5 +46,21 @@ extension Essbasic {
             case customIdList = "CustomIdList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据用户自定义id查询流程id
+    ///
+    /// 此接口（DescribeCustomFlowIds）用于通过自定义流程id来查询对应的电子签流程id
+    @inlinable
+    public func describeCustomFlowIds(_ input: DescribeCustomFlowIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomFlowIdsResponse > {
+        self.client.execute(action: "DescribeCustomFlowIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据用户自定义id查询流程id
+    ///
+    /// 此接口（DescribeCustomFlowIds）用于通过自定义流程id来查询对应的电子签流程id
+    @inlinable
+    public func describeCustomFlowIds(_ input: DescribeCustomFlowIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomFlowIdsResponse {
+        try await self.client.execute(action: "DescribeCustomFlowIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 终止截图任务
-    ///
-    /// 提前结束截图，中止运行中的截图任务。任务被成功终止后，本次任务将不再启动。
-    @inlinable
-    public func stopScreenshotTask(_ input: StopScreenshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopScreenshotTaskResponse > {
-        self.client.execute(action: "StopScreenshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 终止截图任务
-    ///
-    /// 提前结束截图，中止运行中的截图任务。任务被成功终止后，本次任务将不再启动。
-    @inlinable
-    public func stopScreenshotTask(_ input: StopScreenshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScreenshotTaskResponse {
-        try await self.client.execute(action: "StopScreenshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopScreenshotTask请求参数结构体
     public struct StopScreenshotTaskRequest: TCRequestModel {
         /// 截图任务ID。
@@ -53,5 +37,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 终止截图任务
+    ///
+    /// 提前结束截图，中止运行中的截图任务。任务被成功终止后，本次任务将不再启动。
+    @inlinable
+    public func stopScreenshotTask(_ input: StopScreenshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopScreenshotTaskResponse > {
+        self.client.execute(action: "StopScreenshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 终止截图任务
+    ///
+    /// 提前结束截图，中止运行中的截图任务。任务被成功终止后，本次任务将不再启动。
+    @inlinable
+    public func stopScreenshotTask(_ input: StopScreenshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScreenshotTaskResponse {
+        try await self.client.execute(action: "StopScreenshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

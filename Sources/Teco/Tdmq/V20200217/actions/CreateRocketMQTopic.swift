@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 创建RocketMQ主题
-    @inlinable
-    public func createRocketMQTopic(_ input: CreateRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRocketMQTopicResponse > {
-        self.client.execute(action: "CreateRocketMQTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建RocketMQ主题
-    @inlinable
-    public func createRocketMQTopic(_ input: CreateRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQTopicResponse {
-        try await self.client.execute(action: "CreateRocketMQTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRocketMQTopic请求参数结构体
     public struct CreateRocketMQTopicRequest: TCRequestModel {
         /// 主题名称，3-64个字符，只能包含字母、数字、“-”及“_”
@@ -47,7 +35,7 @@ extension Tdmq {
         /// 分区数，全局顺序无效
         public let partitionNum: Int64?
         
-        public init (topic: String, namespaces: [String], type: String, clusterId: String, remark: String?, partitionNum: Int64?) {
+        public init (topic: String, namespaces: [String], type: String, clusterId: String, remark: String? = nil, partitionNum: Int64? = nil) {
             self.topic = topic
             self.namespaces = namespaces
             self.type = type
@@ -74,5 +62,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建RocketMQ主题
+    @inlinable
+    public func createRocketMQTopic(_ input: CreateRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRocketMQTopicResponse > {
+        self.client.execute(action: "CreateRocketMQTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建RocketMQ主题
+    @inlinable
+    public func createRocketMQTopic(_ input: CreateRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQTopicResponse {
+        try await self.client.execute(action: "CreateRocketMQTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

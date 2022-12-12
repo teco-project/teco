@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Ess {
-    /// 撤销签署流程
-    ///
-    /// 用于撤销签署流程
-    /// 适用场景：如果某个合同流程当前至少还有一方没有签署，则可通过该接口取消该合同流程。常用于合同发错、内容填错，需要及时撤销的场景。
-    /// 注：如果合同流程中的参与方均已签署完毕，则无法通过该接口撤销合同。
-    @inlinable
-    public func cancelFlow(_ input: CancelFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelFlowResponse > {
-        self.client.execute(action: "CancelFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 撤销签署流程
-    ///
-    /// 用于撤销签署流程
-    /// 适用场景：如果某个合同流程当前至少还有一方没有签署，则可通过该接口取消该合同流程。常用于合同发错、内容填错，需要及时撤销的场景。
-    /// 注：如果合同流程中的参与方均已签署完毕，则无法通过该接口撤销合同。
-    @inlinable
-    public func cancelFlow(_ input: CancelFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFlowResponse {
-        try await self.client.execute(action: "CancelFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelFlow请求参数结构体
     public struct CancelFlowRequest: TCRequestModel {
         /// 调用方用户信息，userId 必填
@@ -47,9 +27,9 @@ extension Ess {
         public let cancelMessage: String
         
         /// 应用相关信息
-        public let agent: Agent
+        public let agent: Agent?
         
-        public init (`operator`: UserInfo, flowId: String, cancelMessage: String, agent: Agent) {
+        public init (`operator`: UserInfo, flowId: String, cancelMessage: String, agent: Agent? = nil) {
             self.`operator` = `operator`
             self.flowId = flowId
             self.cancelMessage = cancelMessage
@@ -72,5 +52,25 @@ extension Ess {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 撤销签署流程
+    ///
+    /// 用于撤销签署流程
+    /// 适用场景：如果某个合同流程当前至少还有一方没有签署，则可通过该接口取消该合同流程。常用于合同发错、内容填错，需要及时撤销的场景。
+    /// 注：如果合同流程中的参与方均已签署完毕，则无法通过该接口撤销合同。
+    @inlinable
+    public func cancelFlow(_ input: CancelFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelFlowResponse > {
+        self.client.execute(action: "CancelFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 撤销签署流程
+    ///
+    /// 用于撤销签署流程
+    /// 适用场景：如果某个合同流程当前至少还有一方没有签署，则可通过该接口取消该合同流程。常用于合同发错、内容填错，需要及时撤销的场景。
+    /// 注：如果合同流程中的参与方均已签署完毕，则无法通过该接口撤销合同。
+    @inlinable
+    public func cancelFlow(_ input: CancelFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFlowResponse {
+        try await self.client.execute(action: "CancelFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

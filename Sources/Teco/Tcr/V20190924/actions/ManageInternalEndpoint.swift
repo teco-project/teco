@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 管理实例内网访问VPC链接
-    @inlinable
-    public func manageInternalEndpoint(_ input: ManageInternalEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageInternalEndpointResponse > {
-        self.client.execute(action: "ManageInternalEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 管理实例内网访问VPC链接
-    @inlinable
-    public func manageInternalEndpoint(_ input: ManageInternalEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageInternalEndpointResponse {
-        try await self.client.execute(action: "ManageInternalEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ManageInternalEndpoint请求参数结构体
     public struct ManageInternalEndpointRequest: TCRequestModel {
         /// 实例Id
@@ -47,7 +35,7 @@ extension Tcr {
         /// 请求的地域名称，用于实例复制地域
         public let regionName: String?
         
-        public init (registryId: String, operation: String, vpcId: String, subnetId: String, regionId: UInt64?, regionName: String?) {
+        public init (registryId: String, operation: String, vpcId: String, subnetId: String, regionId: UInt64? = nil, regionName: String? = nil) {
             self.registryId = registryId
             self.operation = operation
             self.vpcId = vpcId
@@ -78,5 +66,17 @@ extension Tcr {
             case registryId = "RegistryId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 管理实例内网访问VPC链接
+    @inlinable
+    public func manageInternalEndpoint(_ input: ManageInternalEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageInternalEndpointResponse > {
+        self.client.execute(action: "ManageInternalEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 管理实例内网访问VPC链接
+    @inlinable
+    public func manageInternalEndpoint(_ input: ManageInternalEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageInternalEndpointResponse {
+        try await self.client.execute(action: "ManageInternalEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

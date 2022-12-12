@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取设备列表信息
-    @inlinable
-    public func describeIotDevices(_ input: DescribeIotDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIotDevicesResponse > {
-        self.client.execute(action: "DescribeIotDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备列表信息
-    @inlinable
-    public func describeIotDevices(_ input: DescribeIotDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDevicesResponse {
-        try await self.client.execute(action: "DescribeIotDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIotDevices请求参数结构体
     public struct DescribeIotDevicesRequest: TCRequestModel {
         /// 页偏移
@@ -47,7 +35,7 @@ extension Iecp {
         /// ASC 或 DESC
         public let order: String?
         
-        public init (offset: Int64, limit: Int64, productId: String?, namePattern: String?, versions: [String]?, order: String?) {
+        public init (offset: Int64, limit: Int64, productId: String? = nil, namePattern: String? = nil, versions: [String]? = nil, order: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.productId = productId
@@ -82,5 +70,17 @@ extension Iecp {
             case deviceSet = "DeviceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备列表信息
+    @inlinable
+    public func describeIotDevices(_ input: DescribeIotDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIotDevicesResponse > {
+        self.client.execute(action: "DescribeIotDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备列表信息
+    @inlinable
+    public func describeIotDevices(_ input: DescribeIotDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDevicesResponse {
+        try await self.client.execute(action: "DescribeIotDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

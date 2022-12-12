@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改CCN关联实例属性
-    ///
-    /// 修改CCN关联实例属性，目前仅修改备注description
-    @inlinable
-    public func modifyCcnAttachedInstancesAttribute(_ input: ModifyCcnAttachedInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCcnAttachedInstancesAttributeResponse > {
-        self.client.execute(action: "ModifyCcnAttachedInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改CCN关联实例属性
-    ///
-    /// 修改CCN关联实例属性，目前仅修改备注description
-    @inlinable
-    public func modifyCcnAttachedInstancesAttribute(_ input: ModifyCcnAttachedInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttachedInstancesAttributeResponse {
-        try await self.client.execute(action: "ModifyCcnAttachedInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCcnAttachedInstancesAttribute请求参数结构体
     public struct ModifyCcnAttachedInstancesAttributeRequest: TCRequestModel {
         /// CCN实例ID。形如：ccn-f49l6u0z。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改CCN关联实例属性
+    ///
+    /// 修改CCN关联实例属性，目前仅修改备注description
+    @inlinable
+    public func modifyCcnAttachedInstancesAttribute(_ input: ModifyCcnAttachedInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCcnAttachedInstancesAttributeResponse > {
+        self.client.execute(action: "ModifyCcnAttachedInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CCN关联实例属性
+    ///
+    /// 修改CCN关联实例属性，目前仅修改备注description
+    @inlinable
+    public func modifyCcnAttachedInstancesAttribute(_ input: ModifyCcnAttachedInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttachedInstancesAttributeResponse {
+        try await self.client.execute(action: "ModifyCcnAttachedInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

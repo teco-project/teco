@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cis {
-    /// 删除容器实例
-    ///
-    /// 此接口（DeleteContainerInstance）用于删除容器实例
-    @inlinable
-    public func deleteContainerInstance(_ input: DeleteContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteContainerInstanceResponse > {
-        self.client.execute(action: "DeleteContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除容器实例
-    ///
-    /// 此接口（DeleteContainerInstance）用于删除容器实例
-    @inlinable
-    public func deleteContainerInstance(_ input: DeleteContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerInstanceResponse {
-        try await self.client.execute(action: "DeleteContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteContainerInstance请求参数结构体
     public struct DeleteContainerInstanceRequest: TCRequestModel {
         /// 容器实例名称
@@ -57,5 +41,21 @@ extension Cis {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除容器实例
+    ///
+    /// 此接口（DeleteContainerInstance）用于删除容器实例
+    @inlinable
+    public func deleteContainerInstance(_ input: DeleteContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteContainerInstanceResponse > {
+        self.client.execute(action: "DeleteContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除容器实例
+    ///
+    /// 此接口（DeleteContainerInstance）用于删除容器实例
+    @inlinable
+    public func deleteContainerInstance(_ input: DeleteContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerInstanceResponse {
+        try await self.client.execute(action: "DeleteContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

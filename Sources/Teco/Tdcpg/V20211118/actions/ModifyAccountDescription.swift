@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdcpg {
-    /// 修改数据库账号描述
-    @inlinable
-    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountDescriptionResponse > {
-        self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改数据库账号描述
-    @inlinable
-    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
-        try await self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAccountDescription请求参数结构体
     public struct ModifyAccountDescriptionRequest: TCRequestModel {
         /// 集群ID
@@ -59,5 +47,17 @@ extension Tdcpg {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改数据库账号描述
+    @inlinable
+    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountDescriptionResponse > {
+        self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改数据库账号描述
+    @inlinable
+    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
+        try await self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

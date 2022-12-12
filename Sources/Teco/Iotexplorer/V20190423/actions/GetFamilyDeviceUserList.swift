@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取设备绑定的用户列表
-    ///
-    /// 用于获取设备绑定的用户列表
-    @inlinable
-    public func getFamilyDeviceUserList(_ input: GetFamilyDeviceUserListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFamilyDeviceUserListResponse > {
-        self.client.execute(action: "GetFamilyDeviceUserList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备绑定的用户列表
-    ///
-    /// 用于获取设备绑定的用户列表
-    @inlinable
-    public func getFamilyDeviceUserList(_ input: GetFamilyDeviceUserListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFamilyDeviceUserListResponse {
-        try await self.client.execute(action: "GetFamilyDeviceUserList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetFamilyDeviceUserList请求参数结构体
     public struct GetFamilyDeviceUserListRequest: TCRequestModel {
         /// 产品ID
@@ -63,5 +47,21 @@ extension Iotexplorer {
             case userList = "UserList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备绑定的用户列表
+    ///
+    /// 用于获取设备绑定的用户列表
+    @inlinable
+    public func getFamilyDeviceUserList(_ input: GetFamilyDeviceUserListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFamilyDeviceUserListResponse > {
+        self.client.execute(action: "GetFamilyDeviceUserList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备绑定的用户列表
+    ///
+    /// 用于获取设备绑定的用户列表
+    @inlinable
+    public func getFamilyDeviceUserList(_ input: GetFamilyDeviceUserListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFamilyDeviceUserListResponse {
+        try await self.client.execute(action: "GetFamilyDeviceUserList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

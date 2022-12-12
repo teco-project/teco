@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 容器网络集群网络策略创建自动发现任务
-    @inlinable
-    public func createNetworkFirewallPolicyDiscover(_ input: CreateNetworkFirewallPolicyDiscoverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkFirewallPolicyDiscoverResponse > {
-        self.client.execute(action: "CreateNetworkFirewallPolicyDiscover", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 容器网络集群网络策略创建自动发现任务
-    @inlinable
-    public func createNetworkFirewallPolicyDiscover(_ input: CreateNetworkFirewallPolicyDiscoverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallPolicyDiscoverResponse {
-        try await self.client.execute(action: "CreateNetworkFirewallPolicyDiscover", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNetworkFirewallPolicyDiscover请求参数结构体
     public struct CreateNetworkFirewallPolicyDiscoverRequest: TCRequestModel {
         /// 集群Id
@@ -57,5 +45,17 @@ extension Tcss {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 容器网络集群网络策略创建自动发现任务
+    @inlinable
+    public func createNetworkFirewallPolicyDiscover(_ input: CreateNetworkFirewallPolicyDiscoverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkFirewallPolicyDiscoverResponse > {
+        self.client.execute(action: "CreateNetworkFirewallPolicyDiscover", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络集群网络策略创建自动发现任务
+    @inlinable
+    public func createNetworkFirewallPolicyDiscover(_ input: CreateNetworkFirewallPolicyDiscoverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallPolicyDiscoverResponse {
+        try await self.client.execute(action: "CreateNetworkFirewallPolicyDiscover", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

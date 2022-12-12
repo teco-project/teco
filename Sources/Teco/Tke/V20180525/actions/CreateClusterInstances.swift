@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 扩展集群节点
-    ///
-    /// 扩展(新建)集群节点
-    @inlinable
-    public func createClusterInstances(_ input: CreateClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterInstancesResponse > {
-        self.client.execute(action: "CreateClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 扩展集群节点
-    ///
-    /// 扩展(新建)集群节点
-    @inlinable
-    public func createClusterInstances(_ input: CreateClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterInstancesResponse {
-        try await self.client.execute(action: "CreateClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateClusterInstances请求参数结构体
     public struct CreateClusterInstancesRequest: TCRequestModel {
         /// 集群 ID，请填写 查询集群列表 接口中返回的 clusterId 字段
@@ -40,12 +24,12 @@ extension Tke {
         public let runInstancePara: String
         
         /// 实例额外需要设置参数信息
-        public let instanceAdvancedSettings: InstanceAdvancedSettings
+        public let instanceAdvancedSettings: InstanceAdvancedSettings?
         
         /// 校验规则相关选项，可配置跳过某些校验规则。目前支持GlobalRouteCIDRCheck（跳过GlobalRouter的相关校验），VpcCniCIDRCheck（跳过VpcCni相关校验）
         public let skipValidateOptions: [String]?
         
-        public init (clusterId: String, runInstancePara: String, instanceAdvancedSettings: InstanceAdvancedSettings, skipValidateOptions: [String]?) {
+        public init (clusterId: String, runInstancePara: String, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, skipValidateOptions: [String]? = nil) {
             self.clusterId = clusterId
             self.runInstancePara = runInstancePara
             self.instanceAdvancedSettings = instanceAdvancedSettings
@@ -72,5 +56,21 @@ extension Tke {
             case instanceIdSet = "InstanceIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 扩展集群节点
+    ///
+    /// 扩展(新建)集群节点
+    @inlinable
+    public func createClusterInstances(_ input: CreateClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterInstancesResponse > {
+        self.client.execute(action: "CreateClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 扩展集群节点
+    ///
+    /// 扩展(新建)集群节点
+    @inlinable
+    public func createClusterInstances(_ input: CreateClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterInstancesResponse {
+        try await self.client.execute(action: "CreateClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

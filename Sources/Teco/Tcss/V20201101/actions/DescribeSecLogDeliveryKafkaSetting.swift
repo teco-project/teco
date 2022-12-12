@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询安全日志投递kafka配置
-    @inlinable
-    public func describeSecLogDeliveryKafkaSetting(_ input: DescribeSecLogDeliveryKafkaSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogDeliveryKafkaSettingResponse > {
-        self.client.execute(action: "DescribeSecLogDeliveryKafkaSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全日志投递kafka配置
-    @inlinable
-    public func describeSecLogDeliveryKafkaSetting(_ input: DescribeSecLogDeliveryKafkaSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryKafkaSettingResponse {
-        try await self.client.execute(action: "DescribeSecLogDeliveryKafkaSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecLogDeliveryKafkaSetting请求参数结构体
     public struct DescribeSecLogDeliveryKafkaSettingRequest: TCRequestModel {
         public init () {
@@ -71,5 +59,17 @@ extension Tcss {
             case regionID = "RegionID"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全日志投递kafka配置
+    @inlinable
+    public func describeSecLogDeliveryKafkaSetting(_ input: DescribeSecLogDeliveryKafkaSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogDeliveryKafkaSettingResponse > {
+        self.client.execute(action: "DescribeSecLogDeliveryKafkaSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全日志投递kafka配置
+    @inlinable
+    public func describeSecLogDeliveryKafkaSetting(_ input: DescribeSecLogDeliveryKafkaSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryKafkaSettingResponse {
+        try await self.client.execute(action: "DescribeSecLogDeliveryKafkaSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

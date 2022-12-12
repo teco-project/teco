@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询DDoS攻击Top数据
-    ///
-    /// 本接口（DescribeDDoSAttackTopData）用于查询DDoS攻击Top数据。
-    @inlinable
-    public func describeDDoSAttackTopData(_ input: DescribeDDoSAttackTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAttackTopDataResponse > {
-        self.client.execute(action: "DescribeDDoSAttackTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询DDoS攻击Top数据
-    ///
-    /// 本接口（DescribeDDoSAttackTopData）用于查询DDoS攻击Top数据。
-    @inlinable
-    public func describeDDoSAttackTopData(_ input: DescribeDDoSAttackTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackTopDataResponse {
-        try await self.client.execute(action: "DescribeDDoSAttackTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSAttackTopData请求参数结构体
     public struct DescribeDDoSAttackTopDataRequest: TCRequestModel {
         /// 开始时间。
@@ -81,7 +65,7 @@ extension Teo {
         /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
         public let area: String?
         
-        public init (startTime: Date, endTime: Date, metricName: String, zoneIds: [String]?, policyIds: [Int64]?, attackType: String?, protocolType: String?, port: Int64?, limit: Int64?, area: String?) {
+        public init (startTime: Date, endTime: Date, metricName: String, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, attackType: String? = nil, protocolType: String? = nil, port: Int64? = nil, limit: Int64? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metricName = metricName
@@ -125,5 +109,21 @@ extension Teo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询DDoS攻击Top数据
+    ///
+    /// 本接口（DescribeDDoSAttackTopData）用于查询DDoS攻击Top数据。
+    @inlinable
+    public func describeDDoSAttackTopData(_ input: DescribeDDoSAttackTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAttackTopDataResponse > {
+        self.client.execute(action: "DescribeDDoSAttackTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询DDoS攻击Top数据
+    ///
+    /// 本接口（DescribeDDoSAttackTopData）用于查询DDoS攻击Top数据。
+    @inlinable
+    public func describeDDoSAttackTopData(_ input: DescribeDDoSAttackTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackTopDataResponse {
+        try await self.client.execute(action: "DescribeDDoSAttackTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

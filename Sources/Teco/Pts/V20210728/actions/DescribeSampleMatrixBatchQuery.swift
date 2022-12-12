@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 批量查询指标矩阵
-    @inlinable
-    public func describeSampleMatrixBatchQuery(_ input: DescribeSampleMatrixBatchQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSampleMatrixBatchQueryResponse > {
-        self.client.execute(action: "DescribeSampleMatrixBatchQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量查询指标矩阵
-    @inlinable
-    public func describeSampleMatrixBatchQuery(_ input: DescribeSampleMatrixBatchQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleMatrixBatchQueryResponse {
-        try await self.client.execute(action: "DescribeSampleMatrixBatchQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSampleMatrixBatchQuery请求参数结构体
     public struct DescribeSampleMatrixBatchQueryRequest: TCRequestModel {
         /// 任务ID
@@ -69,5 +57,17 @@ extension Pts {
             case metricSampleMatrixSet = "MetricSampleMatrixSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量查询指标矩阵
+    @inlinable
+    public func describeSampleMatrixBatchQuery(_ input: DescribeSampleMatrixBatchQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSampleMatrixBatchQueryResponse > {
+        self.client.execute(action: "DescribeSampleMatrixBatchQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量查询指标矩阵
+    @inlinable
+    public func describeSampleMatrixBatchQuery(_ input: DescribeSampleMatrixBatchQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleMatrixBatchQueryResponse {
+        try await self.client.execute(action: "DescribeSampleMatrixBatchQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

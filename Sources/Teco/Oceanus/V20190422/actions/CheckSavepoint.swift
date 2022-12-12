@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 检查快照是否可用
-    @inlinable
-    public func checkSavepoint(_ input: CheckSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckSavepointResponse > {
-        self.client.execute(action: "CheckSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检查快照是否可用
-    @inlinable
-    public func checkSavepoint(_ input: CheckSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckSavepointResponse {
-        try await self.client.execute(action: "CheckSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckSavepoint请求参数结构体
     public struct CheckSavepointRequest: TCRequestModel {
         /// 作业 id
@@ -77,5 +65,17 @@ extension Oceanus {
             case savepointStatus = "SavepointStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检查快照是否可用
+    @inlinable
+    public func checkSavepoint(_ input: CheckSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckSavepointResponse > {
+        self.client.execute(action: "CheckSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检查快照是否可用
+    @inlinable
+    public func checkSavepoint(_ input: CheckSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckSavepointResponse {
+        try await self.client.execute(action: "CheckSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

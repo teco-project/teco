@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 修改实例账户权限
-    ///
-    /// 本接口（ModifyAccountPrivilege）用于修改实例账户权限。
-    @inlinable
-    public func modifyAccountPrivilege(_ input: ModifyAccountPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountPrivilegeResponse > {
-        self.client.execute(action: "ModifyAccountPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例账户权限
-    ///
-    /// 本接口（ModifyAccountPrivilege）用于修改实例账户权限。
-    @inlinable
-    public func modifyAccountPrivilege(_ input: ModifyAccountPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegeResponse {
-        try await self.client.execute(action: "ModifyAccountPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAccountPrivilege请求参数结构体
     public struct ModifyAccountPrivilegeRequest: TCRequestModel {
         /// 数据库实例ID，形如mssql-njj2mtpl
@@ -62,5 +46,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例账户权限
+    ///
+    /// 本接口（ModifyAccountPrivilege）用于修改实例账户权限。
+    @inlinable
+    public func modifyAccountPrivilege(_ input: ModifyAccountPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountPrivilegeResponse > {
+        self.client.execute(action: "ModifyAccountPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例账户权限
+    ///
+    /// 本接口（ModifyAccountPrivilege）用于修改实例账户权限。
+    @inlinable
+    public func modifyAccountPrivilege(_ input: ModifyAccountPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegeResponse {
+        try await self.client.execute(action: "ModifyAccountPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

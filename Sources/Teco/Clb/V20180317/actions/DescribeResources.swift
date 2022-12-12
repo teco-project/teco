@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 查询用户在当前地域支持可用区列表和资源列表
-    ///
-    /// 查询用户在当前地域支持可用区列表和资源列表。
-    @inlinable
-    public func describeResources(_ input: DescribeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesResponse > {
-        self.client.execute(action: "DescribeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户在当前地域支持可用区列表和资源列表
-    ///
-    /// 查询用户在当前地域支持可用区列表和资源列表。
-    @inlinable
-    public func describeResources(_ input: DescribeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesResponse {
-        try await self.client.execute(action: "DescribeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResources请求参数结构体
     public struct DescribeResourcesRequest: TCRequestModel {
         /// 返回可用区资源列表数目，默认20，最大值100。
@@ -44,7 +28,7 @@ extension Clb {
         /// <li> isp -- String - 是否必填：否 - （过滤条件）按照 Isp 类型过滤，如："BGP","CMCC","CUCC","CTCC"。</li>
         public let filters: [Filter]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -73,5 +57,21 @@ extension Clb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户在当前地域支持可用区列表和资源列表
+    ///
+    /// 查询用户在当前地域支持可用区列表和资源列表。
+    @inlinable
+    public func describeResources(_ input: DescribeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesResponse > {
+        self.client.execute(action: "DescribeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户在当前地域支持可用区列表和资源列表
+    ///
+    /// 查询用户在当前地域支持可用区列表和资源列表。
+    @inlinable
+    public func describeResources(_ input: DescribeResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesResponse {
+        try await self.client.execute(action: "DescribeResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取弹性容器集群的认证信息
-    ///
-    /// 获取弹性容器集群的接入认证信息
-    @inlinable
-    public func describeEKSClusterCredential(_ input: DescribeEKSClusterCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSClusterCredentialResponse > {
-        self.client.execute(action: "DescribeEKSClusterCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取弹性容器集群的认证信息
-    ///
-    /// 获取弹性容器集群的接入认证信息
-    @inlinable
-    public func describeEKSClusterCredential(_ input: DescribeEKSClusterCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSClusterCredentialResponse {
-        try await self.client.execute(action: "DescribeEKSClusterCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEKSClusterCredential请求参数结构体
     public struct DescribeEKSClusterCredentialRequest: TCRequestModel {
         /// 集群Id
@@ -77,5 +61,21 @@ extension Tke {
             case kubeconfig = "Kubeconfig"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取弹性容器集群的认证信息
+    ///
+    /// 获取弹性容器集群的接入认证信息
+    @inlinable
+    public func describeEKSClusterCredential(_ input: DescribeEKSClusterCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSClusterCredentialResponse > {
+        self.client.execute(action: "DescribeEKSClusterCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取弹性容器集群的认证信息
+    ///
+    /// 获取弹性容器集群的接入认证信息
+    @inlinable
+    public func describeEKSClusterCredential(_ input: DescribeEKSClusterCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSClusterCredentialResponse {
+        try await self.client.execute(action: "DescribeEKSClusterCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 修改素材样本
-    ///
-    /// 该接口用于根据素材 ID，修改素材样本信息，包括名称、描述的修改，以及五官、标签的添加、删除、重置操作。五官删除操作需保证至少剩余 1 张图片，否则，请使用重置操作。
-    @inlinable
-    public func modifyPersonSample(_ input: ModifyPersonSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonSampleResponse > {
-        self.client.execute(action: "ModifyPersonSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改素材样本
-    ///
-    /// 该接口用于根据素材 ID，修改素材样本信息，包括名称、描述的修改，以及五官、标签的添加、删除、重置操作。五官删除操作需保证至少剩余 1 张图片，否则，请使用重置操作。
-    @inlinable
-    public func modifyPersonSample(_ input: ModifyPersonSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonSampleResponse {
-        try await self.client.execute(action: "ModifyPersonSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPersonSample请求参数结构体
     public struct ModifyPersonSampleRequest: TCRequestModel {
         /// 素材 ID。
@@ -52,12 +36,12 @@ extension Vod {
         public let usages: [String]?
         
         /// 五官操作信息。
-        public let faceOperationInfo: AiSampleFaceOperation
+        public let faceOperationInfo: AiSampleFaceOperation?
         
         /// 标签操作信息。
-        public let tagOperationInfo: AiSampleTagOperation
+        public let tagOperationInfo: AiSampleTagOperation?
         
-        public init (personId: String, subAppId: UInt64?, name: String?, description: String?, usages: [String]?, faceOperationInfo: AiSampleFaceOperation, tagOperationInfo: AiSampleTagOperation) {
+        public init (personId: String, subAppId: UInt64? = nil, name: String? = nil, description: String? = nil, usages: [String]? = nil, faceOperationInfo: AiSampleFaceOperation? = nil, tagOperationInfo: AiSampleTagOperation? = nil) {
             self.personId = personId
             self.subAppId = subAppId
             self.name = name
@@ -95,5 +79,21 @@ extension Vod {
             case failFaceInfoSet = "FailFaceInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改素材样本
+    ///
+    /// 该接口用于根据素材 ID，修改素材样本信息，包括名称、描述的修改，以及五官、标签的添加、删除、重置操作。五官删除操作需保证至少剩余 1 张图片，否则，请使用重置操作。
+    @inlinable
+    public func modifyPersonSample(_ input: ModifyPersonSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonSampleResponse > {
+        self.client.execute(action: "ModifyPersonSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改素材样本
+    ///
+    /// 该接口用于根据素材 ID，修改素材样本信息，包括名称、描述的修改，以及五官、标签的添加、删除、重置操作。五官删除操作需保证至少剩余 1 张图片，否则，请使用重置操作。
+    @inlinable
+    public func modifyPersonSample(_ input: ModifyPersonSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonSampleResponse {
+        try await self.client.execute(action: "ModifyPersonSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

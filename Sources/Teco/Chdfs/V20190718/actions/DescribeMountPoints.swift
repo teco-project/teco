@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 查看挂载点列表
-    ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    /// 通过文件系统ID或者权限组ID查看挂载点列表。
-    @inlinable
-    public func describeMountPoints(_ input: DescribeMountPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMountPointsResponse > {
-        self.client.execute(action: "DescribeMountPoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看挂载点列表
-    ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    /// 通过文件系统ID或者权限组ID查看挂载点列表。
-    @inlinable
-    public func describeMountPoints(_ input: DescribeMountPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountPointsResponse {
-        try await self.client.execute(action: "DescribeMountPoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMountPoints请求参数结构体
     public struct DescribeMountPointsRequest: TCRequestModel {
         /// 文件系统ID
@@ -49,7 +31,7 @@ extension Chdfs {
         /// 返回数量，默认为所有
         public let limit: UInt64?
         
-        public init (fileSystemId: String?, accessGroupId: String?, offset: UInt64?, limit: UInt64?) {
+        public init (fileSystemId: String? = nil, accessGroupId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.fileSystemId = fileSystemId
             self.accessGroupId = accessGroupId
             self.offset = offset
@@ -76,5 +58,23 @@ extension Chdfs {
             case mountPoints = "MountPoints"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看挂载点列表
+    ///
+    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    /// 通过文件系统ID或者权限组ID查看挂载点列表。
+    @inlinable
+    public func describeMountPoints(_ input: DescribeMountPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMountPointsResponse > {
+        self.client.execute(action: "DescribeMountPoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看挂载点列表
+    ///
+    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    /// 通过文件系统ID或者权限组ID查看挂载点列表。
+    @inlinable
+    public func describeMountPoints(_ input: DescribeMountPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountPointsResponse {
+        try await self.client.execute(action: "DescribeMountPoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

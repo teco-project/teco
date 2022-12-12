@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 注销私有网络IP
-    ///
-    /// 注销私有网络IP为空闲
-    @inlinable
-    public func deregisterIps(_ input: DeregisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeregisterIpsResponse > {
-        self.client.execute(action: "DeregisterIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 注销私有网络IP
-    ///
-    /// 注销私有网络IP为空闲
-    @inlinable
-    public func deregisterIps(_ input: DeregisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterIpsResponse {
-        try await self.client.execute(action: "DeregisterIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeregisterIps请求参数结构体
     public struct DeregisterIpsRequest: TCRequestModel {
         /// 私有网络ID
@@ -42,7 +26,7 @@ extension Bmvpc {
         /// 私有网络子网ID
         public let subnetId: String?
         
-        public init (vpcId: String, ipSet: [String], subnetId: String?) {
+        public init (vpcId: String, ipSet: [String], subnetId: String? = nil) {
             self.vpcId = vpcId
             self.ipSet = ipSet
             self.subnetId = subnetId
@@ -63,5 +47,21 @@ extension Bmvpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 注销私有网络IP
+    ///
+    /// 注销私有网络IP为空闲
+    @inlinable
+    public func deregisterIps(_ input: DeregisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeregisterIpsResponse > {
+        self.client.execute(action: "DeregisterIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 注销私有网络IP
+    ///
+    /// 注销私有网络IP为空闲
+    @inlinable
+    public func deregisterIps(_ input: DeregisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterIpsResponse {
+        try await self.client.execute(action: "DeregisterIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

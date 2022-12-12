@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 从云联网撤销路由
-    ///
-    /// 路由表列表页操作增加“从云联网撤销”，用于撤销已发布到云联网的路由。
-    @inlinable
-    public func withdrawNotifyRoutes(_ input: WithdrawNotifyRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < WithdrawNotifyRoutesResponse > {
-        self.client.execute(action: "WithdrawNotifyRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 从云联网撤销路由
-    ///
-    /// 路由表列表页操作增加“从云联网撤销”，用于撤销已发布到云联网的路由。
-    @inlinable
-    public func withdrawNotifyRoutes(_ input: WithdrawNotifyRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WithdrawNotifyRoutesResponse {
-        try await self.client.execute(action: "WithdrawNotifyRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// WithdrawNotifyRoutes请求参数结构体
     public struct WithdrawNotifyRoutesRequest: TCRequestModel {
         /// 路由表唯一ID。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 从云联网撤销路由
+    ///
+    /// 路由表列表页操作增加“从云联网撤销”，用于撤销已发布到云联网的路由。
+    @inlinable
+    public func withdrawNotifyRoutes(_ input: WithdrawNotifyRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < WithdrawNotifyRoutesResponse > {
+        self.client.execute(action: "WithdrawNotifyRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 从云联网撤销路由
+    ///
+    /// 路由表列表页操作增加“从云联网撤销”，用于撤销已发布到云联网的路由。
+    @inlinable
+    public func withdrawNotifyRoutes(_ input: WithdrawNotifyRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WithdrawNotifyRoutesResponse {
+        try await self.client.execute(action: "WithdrawNotifyRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

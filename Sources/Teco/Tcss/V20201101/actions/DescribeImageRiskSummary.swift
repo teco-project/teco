@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询本地镜像风险概览
-    @inlinable
-    public func describeImageRiskSummary(_ input: DescribeImageRiskSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRiskSummaryResponse > {
-        self.client.execute(action: "DescribeImageRiskSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询本地镜像风险概览
-    @inlinable
-    public func describeImageRiskSummary(_ input: DescribeImageRiskSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskSummaryResponse {
-        try await self.client.execute(action: "DescribeImageRiskSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageRiskSummary请求参数结构体
     public struct DescribeImageRiskSummaryRequest: TCRequestModel {
         public init () {
@@ -53,5 +41,17 @@ extension Tcss {
             case riskCnt = "RiskCnt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询本地镜像风险概览
+    @inlinable
+    public func describeImageRiskSummary(_ input: DescribeImageRiskSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRiskSummaryResponse > {
+        self.client.execute(action: "DescribeImageRiskSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询本地镜像风险概览
+    @inlinable
+    public func describeImageRiskSummary(_ input: DescribeImageRiskSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskSummaryResponse {
+        try await self.client.execute(action: "DescribeImageRiskSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 实时任务同步速度趋势
-    @inlinable
-    public func describeRealTimeTaskSpeed(_ input: DescribeRealTimeTaskSpeedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealTimeTaskSpeedResponse > {
-        self.client.execute(action: "DescribeRealTimeTaskSpeed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实时任务同步速度趋势
-    @inlinable
-    public func describeRealTimeTaskSpeed(_ input: DescribeRealTimeTaskSpeedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskSpeedResponse {
-        try await self.client.execute(action: "DescribeRealTimeTaskSpeed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRealTimeTaskSpeed请求参数结构体
     public struct DescribeRealTimeTaskSpeedRequest: TCRequestModel {
         /// 无
@@ -77,5 +65,17 @@ extension Wedata {
             case bytesSpeedList = "BytesSpeedList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实时任务同步速度趋势
+    @inlinable
+    public func describeRealTimeTaskSpeed(_ input: DescribeRealTimeTaskSpeedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRealTimeTaskSpeedResponse > {
+        self.client.execute(action: "DescribeRealTimeTaskSpeed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实时任务同步速度趋势
+    @inlinable
+    public func describeRealTimeTaskSpeed(_ input: DescribeRealTimeTaskSpeedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskSpeedResponse {
+        try await self.client.execute(action: "DescribeRealTimeTaskSpeed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// DMS元数据获取库
-    @inlinable
-    public func describeDMSDatabase(_ input: DescribeDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDMSDatabaseResponse > {
-        self.client.execute(action: "DescribeDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DMS元数据获取库
-    @inlinable
-    public func describeDMSDatabase(_ input: DescribeDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSDatabaseResponse {
-        try await self.client.execute(action: "DescribeDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDMSDatabase请求参数结构体
     public struct DescribeDMSDatabaseRequest: TCRequestModel {
         /// 数据库名称
@@ -38,7 +26,7 @@ extension Dlc {
         /// 匹配规则
         public let pattern: String?
         
-        public init (name: String?, schemaName: String?, pattern: String?) {
+        public init (name: String? = nil, schemaName: String? = nil, pattern: String? = nil) {
             self.name = name
             self.schemaName = schemaName
             self.pattern = pattern
@@ -67,7 +55,7 @@ extension Dlc {
         
         /// 数据对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let asset: Asset
+        public let asset: Asset?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -79,5 +67,17 @@ extension Dlc {
             case asset = "Asset"
             case requestId = "RequestId"
         }
+    }
+    
+    /// DMS元数据获取库
+    @inlinable
+    public func describeDMSDatabase(_ input: DescribeDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDMSDatabaseResponse > {
+        self.client.execute(action: "DescribeDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据获取库
+    @inlinable
+    public func describeDMSDatabase(_ input: DescribeDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSDatabaseResponse {
+        try await self.client.execute(action: "DescribeDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 修改实例续费标记
-    ///
-    /// 本接口（ModifyDBInstanceRenewFlag）用于修改实例续费标记
-    @inlinable
-    public func modifyDBInstanceRenewFlag(_ input: ModifyDBInstanceRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceRenewFlagResponse > {
-        self.client.execute(action: "ModifyDBInstanceRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例续费标记
-    ///
-    /// 本接口（ModifyDBInstanceRenewFlag）用于修改实例续费标记
-    @inlinable
-    public func modifyDBInstanceRenewFlag(_ input: ModifyDBInstanceRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceRenewFlagResponse {
-        try await self.client.execute(action: "ModifyDBInstanceRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBInstanceRenewFlag请求参数结构体
     public struct ModifyDBInstanceRenewFlagRequest: TCRequestModel {
         /// 实例续费状态标记信息
@@ -57,5 +41,21 @@ extension Sqlserver {
             case count = "Count"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例续费标记
+    ///
+    /// 本接口（ModifyDBInstanceRenewFlag）用于修改实例续费标记
+    @inlinable
+    public func modifyDBInstanceRenewFlag(_ input: ModifyDBInstanceRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceRenewFlagResponse > {
+        self.client.execute(action: "ModifyDBInstanceRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例续费标记
+    ///
+    /// 本接口（ModifyDBInstanceRenewFlag）用于修改实例续费标记
+    @inlinable
+    public func modifyDBInstanceRenewFlag(_ input: ModifyDBInstanceRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceRenewFlagResponse {
+        try await self.client.execute(action: "ModifyDBInstanceRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

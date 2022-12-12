@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 修改智能解析域名名称
-    @inlinable
-    public func modifyDomainUsrName(_ input: ModifyDomainUsrNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainUsrNameResponse > {
-        self.client.execute(action: "ModifyDomainUsrName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改智能解析域名名称
-    @inlinable
-    public func modifyDomainUsrName(_ input: ModifyDomainUsrNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainUsrNameResponse {
-        try await self.client.execute(action: "ModifyDomainUsrName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDomainUsrName请求参数结构体
     public struct ModifyDomainUsrNameRequest: TCRequestModel {
         /// 用户CNAME
@@ -54,5 +42,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改智能解析域名名称
+    @inlinable
+    public func modifyDomainUsrName(_ input: ModifyDomainUsrNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainUsrNameResponse > {
+        self.client.execute(action: "ModifyDomainUsrName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改智能解析域名名称
+    @inlinable
+    public func modifyDomainUsrName(_ input: ModifyDomainUsrNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainUsrNameResponse {
+        try await self.client.execute(action: "ModifyDomainUsrName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

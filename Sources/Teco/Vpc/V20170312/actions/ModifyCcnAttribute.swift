@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改CCN属性
-    ///
-    /// 本接口（ModifyCcnAttribute）用于修改云联网（CCN）的相关属性。
-    @inlinable
-    public func modifyCcnAttribute(_ input: ModifyCcnAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCcnAttributeResponse > {
-        self.client.execute(action: "ModifyCcnAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改CCN属性
-    ///
-    /// 本接口（ModifyCcnAttribute）用于修改云联网（CCN）的相关属性。
-    @inlinable
-    public func modifyCcnAttribute(_ input: ModifyCcnAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttributeResponse {
-        try await self.client.execute(action: "ModifyCcnAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCcnAttribute请求参数结构体
     public struct ModifyCcnAttributeRequest: TCRequestModel {
         /// CCN实例ID。形如：ccn-f49l6u0z。
@@ -42,7 +26,7 @@ extension Vpc {
         /// CCN描述信息，最大长度不能超过100个字节，限制：CcnName和CcnDescription必须至少选择一个参数输入，否则报错。
         public let ccnDescription: String?
         
-        public init (ccnId: String, ccnName: String?, ccnDescription: String?) {
+        public init (ccnId: String, ccnName: String? = nil, ccnDescription: String? = nil) {
             self.ccnId = ccnId
             self.ccnName = ccnName
             self.ccnDescription = ccnDescription
@@ -63,5 +47,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改CCN属性
+    ///
+    /// 本接口（ModifyCcnAttribute）用于修改云联网（CCN）的相关属性。
+    @inlinable
+    public func modifyCcnAttribute(_ input: ModifyCcnAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCcnAttributeResponse > {
+        self.client.execute(action: "ModifyCcnAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CCN属性
+    ///
+    /// 本接口（ModifyCcnAttribute）用于修改云联网（CCN）的相关属性。
+    @inlinable
+    public func modifyCcnAttribute(_ input: ModifyCcnAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttributeResponse {
+        try await self.client.execute(action: "ModifyCcnAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

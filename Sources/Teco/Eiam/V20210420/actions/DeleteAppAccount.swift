@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 删除应用账号
-    @inlinable
-    public func deleteAppAccount(_ input: DeleteAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAppAccountResponse > {
-        self.client.execute(action: "DeleteAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除应用账号
-    @inlinable
-    public func deleteAppAccount(_ input: DeleteAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAppAccountResponse {
-        try await self.client.execute(action: "DeleteAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAppAccount请求参数结构体
     public struct DeleteAppAccountRequest: TCRequestModel {
         /// 账号ID数组。
@@ -49,5 +37,17 @@ extension Eiam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除应用账号
+    @inlinable
+    public func deleteAppAccount(_ input: DeleteAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAppAccountResponse > {
+        self.client.execute(action: "DeleteAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除应用账号
+    @inlinable
+    public func deleteAppAccount(_ input: DeleteAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAppAccountResponse {
+        try await self.client.execute(action: "DeleteAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

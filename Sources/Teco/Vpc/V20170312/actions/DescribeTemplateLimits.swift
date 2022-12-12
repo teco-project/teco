@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询参数模板配额列表
-    ///
-    /// 本接口（DescribeTemplateLimits）用于查询参数模板配额列表。
-    @inlinable
-    public func describeTemplateLimits(_ input: DescribeTemplateLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateLimitsResponse > {
-        self.client.execute(action: "DescribeTemplateLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询参数模板配额列表
-    ///
-    /// 本接口（DescribeTemplateLimits）用于查询参数模板配额列表。
-    @inlinable
-    public func describeTemplateLimits(_ input: DescribeTemplateLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateLimitsResponse {
-        try await self.client.execute(action: "DescribeTemplateLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTemplateLimits请求参数结构体
     public struct DescribeTemplateLimitsRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Vpc {
             case templateLimit = "TemplateLimit"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询参数模板配额列表
+    ///
+    /// 本接口（DescribeTemplateLimits）用于查询参数模板配额列表。
+    @inlinable
+    public func describeTemplateLimits(_ input: DescribeTemplateLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateLimitsResponse > {
+        self.client.execute(action: "DescribeTemplateLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询参数模板配额列表
+    ///
+    /// 本接口（DescribeTemplateLimits）用于查询参数模板配额列表。
+    @inlinable
+    public func describeTemplateLimits(_ input: DescribeTemplateLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateLimitsResponse {
+        try await self.client.execute(action: "DescribeTemplateLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

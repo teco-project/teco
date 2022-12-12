@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 七层缓存分析类时序流量数据接口
-    ///
-    /// 七层查询缓存分析时序类流量数据
-    @inlinable
-    public func describeTimingL7CacheData(_ input: DescribeTimingL7CacheDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTimingL7CacheDataResponse > {
-        self.client.execute(action: "DescribeTimingL7CacheData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 七层缓存分析类时序流量数据接口
-    ///
-    /// 七层查询缓存分析时序类流量数据
-    @inlinable
-    public func describeTimingL7CacheData(_ input: DescribeTimingL7CacheDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL7CacheDataResponse {
-        try await self.client.execute(action: "DescribeTimingL7CacheData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTimingL7CacheData请求参数结构体
     public struct DescribeTimingL7CacheDataRequest: TCRequestModel {
         /// RFC3339标准，客户端时间
@@ -64,7 +48,7 @@ extension Teo {
         /// <li>overseas：全球（不含中国大陆）。</li>
         public let area: String?
         
-        public init (startTime: Date, endTime: Date, metricNames: [String], interval: String, zoneIds: [String]?, filters: [Filter]?, area: String?) {
+        public init (startTime: Date, endTime: Date, metricNames: [String], interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metricNames = metricNames
@@ -106,5 +90,21 @@ extension Teo {
             case interval = "Interval"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 七层缓存分析类时序流量数据接口
+    ///
+    /// 七层查询缓存分析时序类流量数据
+    @inlinable
+    public func describeTimingL7CacheData(_ input: DescribeTimingL7CacheDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTimingL7CacheDataResponse > {
+        self.client.execute(action: "DescribeTimingL7CacheData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 七层缓存分析类时序流量数据接口
+    ///
+    /// 七层查询缓存分析时序类流量数据
+    @inlinable
+    public func describeTimingL7CacheData(_ input: DescribeTimingL7CacheDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL7CacheDataResponse {
+        try await self.client.execute(action: "DescribeTimingL7CacheData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

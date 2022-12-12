@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 批量查询分组信息
-    ///
-    /// 本接口(DescribeGroups)用于批量查询分组信息。
-    @inlinable
-    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupsResponse > {
-        self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量查询分组信息
-    ///
-    /// 本接口(DescribeGroups)用于批量查询分组信息。
-    @inlinable
-    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
-        try await self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGroups请求参数结构体
     public struct DescribeGroupsRequest: TCRequestModel {
         /// 分组ID列表
         public let groupIds: [String]?
         
-        public init (groupIds: [String]?) {
+        public init (groupIds: [String]? = nil) {
             self.groupIds = groupIds
         }
         
@@ -58,5 +42,21 @@ extension Iotvideoindustry {
             case groups = "Groups"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量查询分组信息
+    ///
+    /// 本接口(DescribeGroups)用于批量查询分组信息。
+    @inlinable
+    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupsResponse > {
+        self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量查询分组信息
+    ///
+    /// 本接口(DescribeGroups)用于批量查询分组信息。
+    @inlinable
+    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
+        try await self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 更新 Grafana 告警通道
-    @inlinable
-    public func updateGrafanaNotificationChannel(_ input: UpdateGrafanaNotificationChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGrafanaNotificationChannelResponse > {
-        self.client.execute(action: "UpdateGrafanaNotificationChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新 Grafana 告警通道
-    @inlinable
-    public func updateGrafanaNotificationChannel(_ input: UpdateGrafanaNotificationChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaNotificationChannelResponse {
-        try await self.client.execute(action: "UpdateGrafanaNotificationChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateGrafanaNotificationChannel请求参数结构体
     public struct UpdateGrafanaNotificationChannelRequest: TCRequestModel {
         /// 通道 ID，例如：nchannel-abcd1234
@@ -47,7 +35,7 @@ extension Monitor {
         /// 生效的组织 ID 数组
         public let organizationIds: [String]?
         
-        public init (channelId: String, instanceId: String, channelName: String, receivers: [String], extraOrgIds: [String]?, organizationIds: [String]?) {
+        public init (channelId: String, instanceId: String, channelName: String, receivers: [String], extraOrgIds: [String]? = nil, organizationIds: [String]? = nil) {
             self.channelId = channelId
             self.instanceId = instanceId
             self.channelName = channelName
@@ -74,5 +62,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新 Grafana 告警通道
+    @inlinable
+    public func updateGrafanaNotificationChannel(_ input: UpdateGrafanaNotificationChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGrafanaNotificationChannelResponse > {
+        self.client.execute(action: "UpdateGrafanaNotificationChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新 Grafana 告警通道
+    @inlinable
+    public func updateGrafanaNotificationChannel(_ input: UpdateGrafanaNotificationChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaNotificationChannelResponse {
+        try await self.client.execute(action: "UpdateGrafanaNotificationChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

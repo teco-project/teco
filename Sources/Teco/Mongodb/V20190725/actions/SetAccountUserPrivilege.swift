@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 设置账户权限
-    ///
-    /// 账户权限设置。
-    @inlinable
-    public func setAccountUserPrivilege(_ input: SetAccountUserPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAccountUserPrivilegeResponse > {
-        self.client.execute(action: "SetAccountUserPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置账户权限
-    ///
-    /// 账户权限设置。
-    @inlinable
-    public func setAccountUserPrivilege(_ input: SetAccountUserPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAccountUserPrivilegeResponse {
-        try await self.client.execute(action: "SetAccountUserPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetAccountUserPrivilege请求参数结构体
     public struct SetAccountUserPrivilegeRequest: TCRequestModel {
         /// 实例ID
@@ -67,5 +51,21 @@ extension Mongodb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置账户权限
+    ///
+    /// 账户权限设置。
+    @inlinable
+    public func setAccountUserPrivilege(_ input: SetAccountUserPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetAccountUserPrivilegeResponse > {
+        self.client.execute(action: "SetAccountUserPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置账户权限
+    ///
+    /// 账户权限设置。
+    @inlinable
+    public func setAccountUserPrivilege(_ input: SetAccountUserPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAccountUserPrivilegeResponse {
+        try await self.client.execute(action: "SetAccountUserPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

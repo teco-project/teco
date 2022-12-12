@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询DDoS封禁解封列表
-    ///
-    /// 本接口（DescribeDDoSBlockList）用于查询DDoS封禁解封列表。
-    @inlinable
-    public func describeDDoSBlockList(_ input: DescribeDDoSBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSBlockListResponse > {
-        self.client.execute(action: "DescribeDDoSBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询DDoS封禁解封列表
-    ///
-    /// 本接口（DescribeDDoSBlockList）用于查询DDoS封禁解封列表。
-    @inlinable
-    public func describeDDoSBlockList(_ input: DescribeDDoSBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSBlockListResponse {
-        try await self.client.execute(action: "DescribeDDoSBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSBlockList请求参数结构体
     public struct DescribeDDoSBlockListRequest: TCRequestModel {
         /// 攻击事件起始时间。
@@ -59,7 +43,7 @@ extension Teo {
         /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
         public let area: String?
         
-        public init (startTime: Date, eventIds: [String], zoneIds: [String]?, policyIds: [Int64]?, limit: Int64?, offset: Int64?, area: String?) {
+        public init (startTime: Date, eventIds: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil) {
             self.startTime = startTime
             self.eventIds = eventIds
             self.zoneIds = zoneIds
@@ -97,5 +81,21 @@ extension Teo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询DDoS封禁解封列表
+    ///
+    /// 本接口（DescribeDDoSBlockList）用于查询DDoS封禁解封列表。
+    @inlinable
+    public func describeDDoSBlockList(_ input: DescribeDDoSBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSBlockListResponse > {
+        self.client.execute(action: "DescribeDDoSBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询DDoS封禁解封列表
+    ///
+    /// 本接口（DescribeDDoSBlockList）用于查询DDoS封禁解封列表。
+    @inlinable
+    public func describeDDoSBlockList(_ input: DescribeDDoSBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSBlockListResponse {
+        try await self.client.execute(action: "DescribeDDoSBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

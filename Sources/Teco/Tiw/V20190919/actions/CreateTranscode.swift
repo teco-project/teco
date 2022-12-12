@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 创建文档转码任务
-    ///
-    /// 创建一个文档转码任务
-    @inlinable
-    public func createTranscode(_ input: CreateTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTranscodeResponse > {
-        self.client.execute(action: "CreateTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建文档转码任务
-    ///
-    /// 创建一个文档转码任务
-    @inlinable
-    public func createTranscode(_ input: CreateTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTranscodeResponse {
-        try await self.client.execute(action: "CreateTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTranscode请求参数结构体
     public struct CreateTranscodeRequest: TCRequestModel {
         /// 客户的SdkAppId
@@ -71,7 +55,7 @@ extension Tiw {
         /// 示例：1280x720，注意分辨率宽高中间为英文字母"xyz"的"x"
         public let minScaleResolution: String?
         
-        public init (sdkAppId: Int64, url: String, isStaticPPT: Bool?, minResolution: String?, thumbnailResolution: String?, compressFileType: String?, extraData: String?, priority: String?, minScaleResolution: String?) {
+        public init (sdkAppId: Int64, url: String, isStaticPPT: Bool? = nil, minResolution: String? = nil, thumbnailResolution: String? = nil, compressFileType: String? = nil, extraData: String? = nil, priority: String? = nil, minScaleResolution: String? = nil) {
             self.sdkAppId = sdkAppId
             self.url = url
             self.isStaticPPT = isStaticPPT
@@ -108,5 +92,21 @@ extension Tiw {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建文档转码任务
+    ///
+    /// 创建一个文档转码任务
+    @inlinable
+    public func createTranscode(_ input: CreateTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTranscodeResponse > {
+        self.client.execute(action: "CreateTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文档转码任务
+    ///
+    /// 创建一个文档转码任务
+    @inlinable
+    public func createTranscode(_ input: CreateTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTranscodeResponse {
+        try await self.client.execute(action: "CreateTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

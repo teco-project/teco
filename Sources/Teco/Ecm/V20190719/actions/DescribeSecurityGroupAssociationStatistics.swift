@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 查询安全组关联统计
-    ///
-    /// 查询安全组关联实例统计
-    @inlinable
-    public func describeSecurityGroupAssociationStatistics(_ input: DescribeSecurityGroupAssociationStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupAssociationStatisticsResponse > {
-        self.client.execute(action: "DescribeSecurityGroupAssociationStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全组关联统计
-    ///
-    /// 查询安全组关联实例统计
-    @inlinable
-    public func describeSecurityGroupAssociationStatistics(_ input: DescribeSecurityGroupAssociationStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupAssociationStatisticsResponse {
-        try await self.client.execute(action: "DescribeSecurityGroupAssociationStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityGroupAssociationStatistics请求参数结构体
     public struct DescribeSecurityGroupAssociationStatisticsRequest: TCRequestModel {
         /// 安全实例ID，例如esg-33ocnj9n，可通过[DescribeSecurityGroups](https://cloud.tencent.com/document/product/1108/47697)获取。
@@ -57,5 +41,21 @@ extension Ecm {
             case securityGroupAssociationStatisticsSet = "SecurityGroupAssociationStatisticsSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全组关联统计
+    ///
+    /// 查询安全组关联实例统计
+    @inlinable
+    public func describeSecurityGroupAssociationStatistics(_ input: DescribeSecurityGroupAssociationStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupAssociationStatisticsResponse > {
+        self.client.execute(action: "DescribeSecurityGroupAssociationStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全组关联统计
+    ///
+    /// 查询安全组关联实例统计
+    @inlinable
+    public func describeSecurityGroupAssociationStatistics(_ input: DescribeSecurityGroupAssociationStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupAssociationStatisticsResponse {
+        try await self.client.execute(action: "DescribeSecurityGroupAssociationStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

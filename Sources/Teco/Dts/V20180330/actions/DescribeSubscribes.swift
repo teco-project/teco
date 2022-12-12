@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 获取数据订阅实例列表
-    ///
-    /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
-    @inlinable
-    public func describeSubscribes(_ input: DescribeSubscribesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubscribesResponse > {
-        self.client.execute(action: "DescribeSubscribes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取数据订阅实例列表
-    ///
-    /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
-    @inlinable
-    public func describeSubscribes(_ input: DescribeSubscribesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscribesResponse {
-        try await self.client.execute(action: "DescribeSubscribes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSubscribes请求参数结构体
     public struct DescribeSubscribesRequest: TCRequestModel {
         /// 数据订阅的实例ID
@@ -72,7 +56,7 @@ extension Dts {
         /// 订阅实例版本;txdts-旧版数据订阅，kafka-kafka版本数据订阅
         public let subscribeVersion: String?
         
-        public init (subscribeId: String?, subscribeName: String?, instanceId: String?, channelId: String?, payType: String?, product: String?, status: [String]?, subsStatus: [String]?, offset: Int64?, limit: Int64?, orderDirection: String?, tagFilters: [TagFilter]?, subscribeVersion: String?) {
+        public init (subscribeId: String? = nil, subscribeName: String? = nil, instanceId: String? = nil, channelId: String? = nil, payType: String? = nil, product: String? = nil, status: [String]? = nil, subsStatus: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderDirection: String? = nil, tagFilters: [TagFilter]? = nil, subscribeVersion: String? = nil) {
             self.subscribeId = subscribeId
             self.subscribeName = subscribeName
             self.instanceId = instanceId
@@ -121,5 +105,21 @@ extension Dts {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取数据订阅实例列表
+    ///
+    /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
+    @inlinable
+    public func describeSubscribes(_ input: DescribeSubscribesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubscribesResponse > {
+        self.client.execute(action: "DescribeSubscribes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取数据订阅实例列表
+    ///
+    /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
+    @inlinable
+    public func describeSubscribes(_ input: DescribeSubscribesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscribesResponse {
+        try await self.client.execute(action: "DescribeSubscribes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

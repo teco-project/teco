@@ -15,34 +15,18 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 智学智能媒体识别
-    ///
-    /// 智能媒体识别，包含表情和动作识别。仅用于智学，其他调用无效。
-    @inlinable
-    public func recognizeMediaForZhiXue(_ input: RecognizeMediaForZhiXueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeMediaForZhiXueResponse > {
-        self.client.execute(action: "RecognizeMediaForZhiXue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 智学智能媒体识别
-    ///
-    /// 智能媒体识别，包含表情和动作识别。仅用于智学，其他调用无效。
-    @inlinable
-    public func recognizeMediaForZhiXue(_ input: RecognizeMediaForZhiXueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeMediaForZhiXueResponse {
-        try await self.client.execute(action: "RecognizeMediaForZhiXue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecognizeMediaForZhiXue请求参数结构体
     public struct RecognizeMediaForZhiXueRequest: TCRequestModel {
         /// 输入媒体文件存储信息。
         public let inputInfo: MediaInputInfo
         
         /// 表情识别参数配置。默认开启。
-        public let expressionConfig: ExpressionConfigInfo
+        public let expressionConfig: ExpressionConfigInfo?
         
         /// 动作识别参数配置。默认开启。
-        public let actionConfig: ActionConfigInfo
+        public let actionConfig: ActionConfigInfo?
         
-        public init (inputInfo: MediaInputInfo, expressionConfig: ExpressionConfigInfo, actionConfig: ActionConfigInfo) {
+        public init (inputInfo: MediaInputInfo, expressionConfig: ExpressionConfigInfo? = nil, actionConfig: ActionConfigInfo? = nil) {
             self.inputInfo = inputInfo
             self.expressionConfig = expressionConfig
             self.actionConfig = actionConfig
@@ -67,5 +51,21 @@ extension Mps {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 智学智能媒体识别
+    ///
+    /// 智能媒体识别，包含表情和动作识别。仅用于智学，其他调用无效。
+    @inlinable
+    public func recognizeMediaForZhiXue(_ input: RecognizeMediaForZhiXueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeMediaForZhiXueResponse > {
+        self.client.execute(action: "RecognizeMediaForZhiXue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 智学智能媒体识别
+    ///
+    /// 智能媒体识别，包含表情和动作识别。仅用于智学，其他调用无效。
+    @inlinable
+    public func recognizeMediaForZhiXue(_ input: RecognizeMediaForZhiXueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeMediaForZhiXueResponse {
+        try await self.client.execute(action: "RecognizeMediaForZhiXue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

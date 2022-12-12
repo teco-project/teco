@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apcas {
-    /// 查询画像洞察任务列表
-    ///
-    /// 查询当前账号AppID下的画像洞察任务列表
-    @inlinable
-    public func getTaskList(_ input: GetTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTaskListResponse > {
-        self.client.execute(action: "GetTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询画像洞察任务列表
-    ///
-    /// 查询当前账号AppID下的画像洞察任务列表
-    @inlinable
-    public func getTaskList(_ input: GetTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskListResponse {
-        try await self.client.execute(action: "GetTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetTaskList请求参数结构体
     public struct GetTaskListRequest: TCRequestModel {
         /// 查询分页页码
@@ -51,7 +35,7 @@ extension Apcas {
         /// 查询任务状态 0:默认状态 1:任务正在运行 2:任务运行成功 3:任务运行失败
         public let taskStatus: UInt64?
         
-        public init (pageNumber: UInt64, pageSize: UInt64, startTime: UInt64?, endTime: UInt64?, taskName: String?, taskStatus: UInt64?) {
+        public init (pageNumber: UInt64, pageSize: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, taskName: String? = nil, taskStatus: UInt64? = nil) {
             self.pageNumber = pageNumber
             self.pageSize = pageSize
             self.startTime = startTime
@@ -82,5 +66,21 @@ extension Apcas {
             case taskListData = "TaskListData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询画像洞察任务列表
+    ///
+    /// 查询当前账号AppID下的画像洞察任务列表
+    @inlinable
+    public func getTaskList(_ input: GetTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTaskListResponse > {
+        self.client.execute(action: "GetTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询画像洞察任务列表
+    ///
+    /// 查询当前账号AppID下的画像洞察任务列表
+    @inlinable
+    public func getTaskList(_ input: GetTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskListResponse {
+        try await self.client.execute(action: "GetTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

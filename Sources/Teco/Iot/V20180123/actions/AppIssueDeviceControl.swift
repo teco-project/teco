@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 用户控制设备
-    ///
-    /// 用户通过APP控制设备
-    @inlinable
-    public func appIssueDeviceControl(_ input: AppIssueDeviceControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppIssueDeviceControlResponse > {
-        self.client.execute(action: "AppIssueDeviceControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 用户控制设备
-    ///
-    /// 用户通过APP控制设备
-    @inlinable
-    public func appIssueDeviceControl(_ input: AppIssueDeviceControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppIssueDeviceControlResponse {
-        try await self.client.execute(action: "AppIssueDeviceControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AppIssueDeviceControl请求参数结构体
     public struct AppIssueDeviceControlRequest: TCRequestModel {
         /// 访问Token
@@ -48,7 +32,7 @@ extension Iot {
         /// 是否发送metadata字段
         public let metadata: Bool?
         
-        public init (accessToken: String, productId: String, deviceName: String, controlData: String, metadata: Bool?) {
+        public init (accessToken: String, productId: String, deviceName: String, controlData: String, metadata: Bool? = nil) {
             self.accessToken = accessToken
             self.productId = productId
             self.deviceName = deviceName
@@ -73,5 +57,21 @@ extension Iot {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 用户控制设备
+    ///
+    /// 用户通过APP控制设备
+    @inlinable
+    public func appIssueDeviceControl(_ input: AppIssueDeviceControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppIssueDeviceControlResponse > {
+        self.client.execute(action: "AppIssueDeviceControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 用户控制设备
+    ///
+    /// 用户通过APP控制设备
+    @inlinable
+    public func appIssueDeviceControl(_ input: AppIssueDeviceControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppIssueDeviceControlResponse {
+        try await self.client.execute(action: "AppIssueDeviceControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

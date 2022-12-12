@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ivld {
-    /// 删除自定义人物
-    @inlinable
-    public func deleteCustomPerson(_ input: DeleteCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomPersonResponse > {
-        self.client.execute(action: "DeleteCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除自定义人物
-    @inlinable
-    public func deleteCustomPerson(_ input: DeleteCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonResponse {
-        try await self.client.execute(action: "DeleteCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCustomPerson请求参数结构体
     public struct DeleteCustomPersonRequest: TCRequestModel {
         /// 待删除的自定义人物ID
@@ -53,5 +41,17 @@ extension Ivld {
             case personId = "PersonId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除自定义人物
+    @inlinable
+    public func deleteCustomPerson(_ input: DeleteCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomPersonResponse > {
+        self.client.execute(action: "DeleteCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除自定义人物
+    @inlinable
+    public func deleteCustomPerson(_ input: DeleteCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonResponse {
+        try await self.client.execute(action: "DeleteCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

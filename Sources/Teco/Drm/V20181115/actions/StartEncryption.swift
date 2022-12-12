@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Drm {
-    /// 启动DRM加密(该接口已下线)
-    ///
-    /// 开发者调用该接口，启动一次内容文件的DRM加密工作流。
-    /// 注意：该接口已下线。
-    @inlinable
-    public func startEncryption(_ input: StartEncryptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartEncryptionResponse > {
-        self.client.execute(action: "StartEncryption", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启动DRM加密(该接口已下线)
-    ///
-    /// 开发者调用该接口，启动一次内容文件的DRM加密工作流。
-    /// 注意：该接口已下线。
-    @inlinable
-    public func startEncryption(_ input: StartEncryptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartEncryptionResponse {
-        try await self.client.execute(action: "StartEncryption", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartEncryption请求参数结构体
     public struct StartEncryptionRequest: TCRequestModel {
         /// cos的end point。
@@ -80,5 +62,23 @@ extension Drm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启动DRM加密(该接口已下线)
+    ///
+    /// 开发者调用该接口，启动一次内容文件的DRM加密工作流。
+    /// 注意：该接口已下线。
+    @inlinable
+    public func startEncryption(_ input: StartEncryptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartEncryptionResponse > {
+        self.client.execute(action: "StartEncryption", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启动DRM加密(该接口已下线)
+    ///
+    /// 开发者调用该接口，启动一次内容文件的DRM加密工作流。
+    /// 注意：该接口已下线。
+    @inlinable
+    public func startEncryption(_ input: StartEncryptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartEncryptionResponse {
+        try await self.client.execute(action: "StartEncryption", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

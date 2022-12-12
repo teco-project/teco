@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 更新数据库名
-    ///
-    /// 本接口（ModifyDBName）用于更新数据库名。
-    @inlinable
-    public func modifyDBName(_ input: ModifyDBNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBNameResponse > {
-        self.client.execute(action: "ModifyDBName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新数据库名
-    ///
-    /// 本接口（ModifyDBName）用于更新数据库名。
-    @inlinable
-    public func modifyDBName(_ input: ModifyDBNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBNameResponse {
-        try await self.client.execute(action: "ModifyDBName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBName请求参数结构体
     public struct ModifyDBNameRequest: TCRequestModel {
         /// 实例ID
@@ -67,5 +51,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新数据库名
+    ///
+    /// 本接口（ModifyDBName）用于更新数据库名。
+    @inlinable
+    public func modifyDBName(_ input: ModifyDBNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBNameResponse > {
+        self.client.execute(action: "ModifyDBName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新数据库名
+    ///
+    /// 本接口（ModifyDBName）用于更新数据库名。
+    @inlinable
+    public func modifyDBName(_ input: ModifyDBNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBNameResponse {
+        try await self.client.execute(action: "ModifyDBName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

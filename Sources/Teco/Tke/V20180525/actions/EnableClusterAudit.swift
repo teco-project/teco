@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 开启集群审计
-    @inlinable
-    public func enableClusterAudit(_ input: EnableClusterAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableClusterAuditResponse > {
-        self.client.execute(action: "EnableClusterAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启集群审计
-    @inlinable
-    public func enableClusterAudit(_ input: EnableClusterAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClusterAuditResponse {
-        try await self.client.execute(action: "EnableClusterAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableClusterAudit请求参数结构体
     public struct EnableClusterAuditRequest: TCRequestModel {
         /// 集群ID
@@ -38,7 +26,7 @@ extension Tke {
         /// CLS日志主题ID
         public let topicId: String?
         
-        public init (clusterId: String, logsetId: String?, topicId: String?) {
+        public init (clusterId: String, logsetId: String? = nil, topicId: String? = nil) {
             self.clusterId = clusterId
             self.logsetId = logsetId
             self.topicId = topicId
@@ -59,5 +47,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启集群审计
+    @inlinable
+    public func enableClusterAudit(_ input: EnableClusterAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableClusterAuditResponse > {
+        self.client.execute(action: "EnableClusterAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启集群审计
+    @inlinable
+    public func enableClusterAudit(_ input: EnableClusterAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClusterAuditResponse {
+        try await self.client.execute(action: "EnableClusterAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

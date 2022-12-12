@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 根据分组ID查询分组
-    ///
-    /// 本接口(DescribeGroupById)用于根据分组ID查询分组。
-    @inlinable
-    public func describeGroupById(_ input: DescribeGroupByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupByIdResponse > {
-        self.client.execute(action: "DescribeGroupById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据分组ID查询分组
-    ///
-    /// 本接口(DescribeGroupById)用于根据分组ID查询分组。
-    @inlinable
-    public func describeGroupById(_ input: DescribeGroupByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupByIdResponse {
-        try await self.client.execute(action: "DescribeGroupById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGroupById请求参数结构体
     public struct DescribeGroupByIdRequest: TCRequestModel {
         /// 分组ID
@@ -49,7 +33,7 @@ extension Iotvideoindustry {
     public struct DescribeGroupByIdResponse: TCResponseModel {
         /// 分组信息详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let group: GroupItem
+        public let group: GroupItem?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -58,5 +42,21 @@ extension Iotvideoindustry {
             case group = "Group"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据分组ID查询分组
+    ///
+    /// 本接口(DescribeGroupById)用于根据分组ID查询分组。
+    @inlinable
+    public func describeGroupById(_ input: DescribeGroupByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupByIdResponse > {
+        self.client.execute(action: "DescribeGroupById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据分组ID查询分组
+    ///
+    /// 本接口(DescribeGroupById)用于根据分组ID查询分组。
+    @inlinable
+    public func describeGroupById(_ input: DescribeGroupByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupByIdResponse {
+        try await self.client.execute(action: "DescribeGroupById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

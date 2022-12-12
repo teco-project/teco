@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取ConfigMap列表
-    @inlinable
-    public func describeConfigMaps(_ input: DescribeConfigMapsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigMapsResponse > {
-        self.client.execute(action: "DescribeConfigMaps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取ConfigMap列表
-    @inlinable
-    public func describeConfigMaps(_ input: DescribeConfigMapsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapsResponse {
-        try await self.client.execute(action: "DescribeConfigMaps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeConfigMaps请求参数结构体
     public struct DescribeConfigMapsRequest: TCRequestModel {
         /// 单元ID
@@ -45,9 +33,9 @@ extension Iecp {
         public let namePattern: String?
         
         /// Sort.Fileld填写CreateTime Sort.Order(ASC|DESC) 默认ASC
-        public let sort: FieldSort
+        public let sort: FieldSort?
         
-        public init (edgeUnitID: UInt64, offset: UInt64, limit: UInt64, configMapNamespace: String?, namePattern: String?, sort: FieldSort) {
+        public init (edgeUnitID: UInt64, offset: UInt64, limit: UInt64, configMapNamespace: String? = nil, namePattern: String? = nil, sort: FieldSort? = nil) {
             self.edgeUnitID = edgeUnitID
             self.offset = offset
             self.limit = limit
@@ -79,5 +67,17 @@ extension Iecp {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取ConfigMap列表
+    @inlinable
+    public func describeConfigMaps(_ input: DescribeConfigMapsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigMapsResponse > {
+        self.client.execute(action: "DescribeConfigMaps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取ConfigMap列表
+    @inlinable
+    public func describeConfigMaps(_ input: DescribeConfigMapsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapsResponse {
+        try await self.client.execute(action: "DescribeConfigMaps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

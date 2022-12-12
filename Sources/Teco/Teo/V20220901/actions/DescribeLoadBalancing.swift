@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 获取负载均衡列表
-    @inlinable
-    public func describeLoadBalancing(_ input: DescribeLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancingResponse > {
-        self.client.execute(action: "DescribeLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取负载均衡列表
-    @inlinable
-    public func describeLoadBalancing(_ input: DescribeLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancingResponse {
-        try await self.client.execute(action: "DescribeLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLoadBalancing请求参数结构体
     public struct DescribeLoadBalancingRequest: TCRequestModel {
         /// 分页查询偏移量，默认为0。
@@ -41,7 +29,7 @@ extension Teo {
         /// </li><li>host<br>   按照【<strong>负载均衡host</strong>】进行过滤。host形如：lb.tencent.com<br>   类型：String<br>   必选：否<br>   模糊查询：支持，模糊查询时仅支持一个host</li>
         public let filters: [AdvancedFilter]?
         
-        public init (offset: UInt64, limit: UInt64, filters: [AdvancedFilter]?) {
+        public init (offset: UInt64, limit: UInt64, filters: [AdvancedFilter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -70,5 +58,17 @@ extension Teo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取负载均衡列表
+    @inlinable
+    public func describeLoadBalancing(_ input: DescribeLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancingResponse > {
+        self.client.execute(action: "DescribeLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取负载均衡列表
+    @inlinable
+    public func describeLoadBalancing(_ input: DescribeLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancingResponse {
+        try await self.client.execute(action: "DescribeLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

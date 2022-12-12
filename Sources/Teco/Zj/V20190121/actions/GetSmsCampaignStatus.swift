@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 获取短信活动状态
-    ///
-    /// 获取短信活动状态信息
-    @inlinable
-    public func getSmsCampaignStatus(_ input: GetSmsCampaignStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSmsCampaignStatusResponse > {
-        self.client.execute(action: "GetSmsCampaignStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取短信活动状态
-    ///
-    /// 获取短信活动状态信息
-    @inlinable
-    public func getSmsCampaignStatus(_ input: GetSmsCampaignStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSmsCampaignStatusResponse {
-        try await self.client.execute(action: "GetSmsCampaignStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetSmsCampaignStatus请求参数结构体
     public struct GetSmsCampaignStatusRequest: TCRequestModel {
         /// 商户证书
@@ -62,5 +46,21 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取短信活动状态
+    ///
+    /// 获取短信活动状态信息
+    @inlinable
+    public func getSmsCampaignStatus(_ input: GetSmsCampaignStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSmsCampaignStatusResponse > {
+        self.client.execute(action: "GetSmsCampaignStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取短信活动状态
+    ///
+    /// 获取短信活动状态信息
+    @inlinable
+    public func getSmsCampaignStatus(_ input: GetSmsCampaignStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSmsCampaignStatusResponse {
+        try await self.client.execute(action: "GetSmsCampaignStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

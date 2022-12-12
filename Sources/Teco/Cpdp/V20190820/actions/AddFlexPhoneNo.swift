@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云V2-补充手机号信息
-    @inlinable
-    public func addFlexPhoneNo(_ input: AddFlexPhoneNoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddFlexPhoneNoResponse > {
-        self.client.execute(action: "AddFlexPhoneNo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云V2-补充手机号信息
-    @inlinable
-    public func addFlexPhoneNo(_ input: AddFlexPhoneNoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexPhoneNoResponse {
-        try await self.client.execute(action: "AddFlexPhoneNo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddFlexPhoneNo请求参数结构体
     public struct AddFlexPhoneNoRequest: TCRequestModel {
         /// 手机号
@@ -42,7 +30,7 @@ extension Cpdp {
         /// 缺省默认为生产环境
         public let environment: String?
         
-        public init (phoneNo: String, payeeId: String, environment: String?) {
+        public init (phoneNo: String, payeeId: String, environment: String? = nil) {
             self.phoneNo = phoneNo
             self.payeeId = payeeId
             self.environment = environment
@@ -76,5 +64,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云V2-补充手机号信息
+    @inlinable
+    public func addFlexPhoneNo(_ input: AddFlexPhoneNoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddFlexPhoneNoResponse > {
+        self.client.execute(action: "AddFlexPhoneNo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云V2-补充手机号信息
+    @inlinable
+    public func addFlexPhoneNo(_ input: AddFlexPhoneNoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexPhoneNoResponse {
+        try await self.client.execute(action: "AddFlexPhoneNo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

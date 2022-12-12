@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 商品下单
-    ///
-    /// DNSPod商品下单
-    @inlinable
-    public func createDeal(_ input: CreateDealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDealResponse > {
-        self.client.execute(action: "CreateDeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 商品下单
-    ///
-    /// DNSPod商品下单
-    @inlinable
-    public func createDeal(_ input: CreateDealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDealResponse {
-        try await self.client.execute(action: "CreateDeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDeal请求参数结构体
     public struct CreateDealRequest: TCRequestModel {
         /// 询价类型，1 新购，2 续费，3 套餐升级（增值服务暂时只支持新购）
@@ -70,7 +54,7 @@ extension Dnspod {
         /// 套餐类型，需要升级到的套餐类型，只有升级时需要。
         public let newPackageType: String?
         
-        public init (dealType: UInt64, goodsType: UInt64, goodsChildType: String, goodsNum: UInt64, autoRenew: UInt64, domain: String?, timeSpan: UInt64?, newPackageType: String?) {
+        public init (dealType: UInt64, goodsType: UInt64, goodsChildType: String, goodsNum: UInt64, autoRenew: UInt64, domain: String? = nil, timeSpan: UInt64? = nil, newPackageType: String? = nil) {
             self.dealType = dealType
             self.goodsType = goodsType
             self.goodsChildType = goodsChildType
@@ -109,5 +93,21 @@ extension Dnspod {
             case dealList = "DealList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 商品下单
+    ///
+    /// DNSPod商品下单
+    @inlinable
+    public func createDeal(_ input: CreateDealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDealResponse > {
+        self.client.execute(action: "CreateDeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 商品下单
+    ///
+    /// DNSPod商品下单
+    @inlinable
+    public func createDeal(_ input: CreateDealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDealResponse {
+        try await self.client.execute(action: "CreateDeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

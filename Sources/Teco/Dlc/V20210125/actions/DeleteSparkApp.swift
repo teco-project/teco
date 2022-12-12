@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 删除spark应用
-    @inlinable
-    public func deleteSparkApp(_ input: DeleteSparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSparkAppResponse > {
-        self.client.execute(action: "DeleteSparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除spark应用
-    @inlinable
-    public func deleteSparkApp(_ input: DeleteSparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSparkAppResponse {
-        try await self.client.execute(action: "DeleteSparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSparkApp请求参数结构体
     public struct DeleteSparkAppRequest: TCRequestModel {
         /// spark应用名
@@ -49,5 +37,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除spark应用
+    @inlinable
+    public func deleteSparkApp(_ input: DeleteSparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSparkAppResponse > {
+        self.client.execute(action: "DeleteSparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除spark应用
+    @inlinable
+    public func deleteSparkApp(_ input: DeleteSparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSparkAppResponse {
+        try await self.client.execute(action: "DeleteSparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

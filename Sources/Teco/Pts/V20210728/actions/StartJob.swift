@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 创建并启动任务
-    @inlinable
-    public func startJob(_ input: StartJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartJobResponse > {
-        self.client.execute(action: "StartJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建并启动任务
-    @inlinable
-    public func startJob(_ input: StartJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartJobResponse {
-        try await self.client.execute(action: "StartJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartJob请求参数结构体
     public struct StartJobRequest: TCRequestModel {
         /// 场景ID
@@ -44,7 +32,7 @@ extension Pts {
         /// 备注
         public let note: String?
         
-        public init (scenarioId: String, jobOwner: String, projectId: String, debug: Bool?, note: String?) {
+        public init (scenarioId: String, jobOwner: String, projectId: String, debug: Bool? = nil, note: String? = nil) {
             self.scenarioId = scenarioId
             self.jobOwner = jobOwner
             self.projectId = projectId
@@ -73,5 +61,17 @@ extension Pts {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建并启动任务
+    @inlinable
+    public func startJob(_ input: StartJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartJobResponse > {
+        self.client.execute(action: "StartJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建并启动任务
+    @inlinable
+    public func startJob(_ input: StartJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartJobResponse {
+        try await self.client.execute(action: "StartJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

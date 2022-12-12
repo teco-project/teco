@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Billing {
-    /// 查询消耗明细
-    @inlinable
-    public func describeCostDetail(_ input: DescribeCostDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCostDetailResponse > {
-        self.client.execute(action: "DescribeCostDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询消耗明细
-    @inlinable
-    public func describeCostDetail(_ input: DescribeCostDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostDetailResponse {
-        try await self.client.execute(action: "DescribeCostDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCostDetail请求参数结构体
     public struct DescribeCostDetailRequest: TCRequestModel {
         /// 数量，最大值为100
@@ -59,7 +47,7 @@ extension Billing {
         /// 查询指定资源信息
         public let resourceId: String?
         
-        public init (limit: Int64, offset: UInt64, beginTime: Date?, endTime: Date?, needRecordNum: UInt64?, month: String?, productCode: String?, payMode: String?, resourceId: String?) {
+        public init (limit: Int64, offset: UInt64, beginTime: Date? = nil, endTime: Date? = nil, needRecordNum: UInt64? = nil, month: String? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.beginTime = beginTime
@@ -102,5 +90,17 @@ extension Billing {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询消耗明细
+    @inlinable
+    public func describeCostDetail(_ input: DescribeCostDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCostDetailResponse > {
+        self.client.execute(action: "DescribeCostDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询消耗明细
+    @inlinable
+    public func describeCostDetail(_ input: DescribeCostDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostDetailResponse {
+        try await self.client.execute(action: "DescribeCostDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

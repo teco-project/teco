@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查看实例操作限制列表
-    ///
-    /// 本接口（DescribeInstancesDeniedActions）用于查询一个或多个实例的操作限制列表信息。
-    @inlinable
-    public func describeInstancesDeniedActions(_ input: DescribeInstancesDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesDeniedActionsResponse > {
-        self.client.execute(action: "DescribeInstancesDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看实例操作限制列表
-    ///
-    /// 本接口（DescribeInstancesDeniedActions）用于查询一个或多个实例的操作限制列表信息。
-    @inlinable
-    public func describeInstancesDeniedActions(_ input: DescribeInstancesDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDeniedActionsResponse {
-        try await self.client.execute(action: "DescribeInstancesDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstancesDeniedActions请求参数结构体
     public struct DescribeInstancesDeniedActionsRequest: TCRequestModel {
         /// 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
@@ -57,5 +41,21 @@ extension Lighthouse {
             case instanceDeniedActionSet = "InstanceDeniedActionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看实例操作限制列表
+    ///
+    /// 本接口（DescribeInstancesDeniedActions）用于查询一个或多个实例的操作限制列表信息。
+    @inlinable
+    public func describeInstancesDeniedActions(_ input: DescribeInstancesDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesDeniedActionsResponse > {
+        self.client.execute(action: "DescribeInstancesDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看实例操作限制列表
+    ///
+    /// 本接口（DescribeInstancesDeniedActions）用于查询一个或多个实例的操作限制列表信息。
+    @inlinable
+    public func describeInstancesDeniedActions(_ input: DescribeInstancesDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDeniedActionsResponse {
+        try await self.client.execute(action: "DescribeInstancesDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

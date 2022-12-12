@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 抢占锁定集成任务
-    @inlinable
-    public func robAndLockIntegrationTask(_ input: RobAndLockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RobAndLockIntegrationTaskResponse > {
-        self.client.execute(action: "RobAndLockIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 抢占锁定集成任务
-    @inlinable
-    public func robAndLockIntegrationTask(_ input: RobAndLockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RobAndLockIntegrationTaskResponse {
-        try await self.client.execute(action: "RobAndLockIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RobAndLockIntegrationTask请求参数结构体
     public struct RobAndLockIntegrationTaskRequest: TCRequestModel {
         /// 任务id
@@ -63,5 +51,17 @@ extension Wedata {
             case robLockState = "RobLockState"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 抢占锁定集成任务
+    @inlinable
+    public func robAndLockIntegrationTask(_ input: RobAndLockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RobAndLockIntegrationTaskResponse > {
+        self.client.execute(action: "RobAndLockIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 抢占锁定集成任务
+    @inlinable
+    public func robAndLockIntegrationTask(_ input: RobAndLockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RobAndLockIntegrationTaskResponse {
+        try await self.client.execute(action: "RobAndLockIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

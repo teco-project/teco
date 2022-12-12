@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 准备待发起文件
-    ///
-    /// 该接口 (PrepareFlows) 用于创建待发起文件
-    /// 用户通过该接口进入签署流程发起的确认页面，进行发起信息二次确认， 如果确认则进行正常发起。
-    /// 目前该接口只支持B2C，不建议使用，将会废弃。
-    @inlinable
-    public func prepareFlows(_ input: PrepareFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PrepareFlowsResponse > {
-        self.client.execute(action: "PrepareFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 准备待发起文件
-    ///
-    /// 该接口 (PrepareFlows) 用于创建待发起文件
-    /// 用户通过该接口进入签署流程发起的确认页面，进行发起信息二次确认， 如果确认则进行正常发起。
-    /// 目前该接口只支持B2C，不建议使用，将会废弃。
-    @inlinable
-    public func prepareFlows(_ input: PrepareFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PrepareFlowsResponse {
-        try await self.client.execute(action: "PrepareFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PrepareFlows请求参数结构体
     public struct PrepareFlowsRequest: TCRequestModel {
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -47,9 +27,9 @@ extension Essbasic {
         public let jumpUrl: String
         
         /// 操作者的信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
-        public init (agent: Agent, flowInfos: [FlowInfo], jumpUrl: String, `operator`: UserInfo) {
+        public init (agent: Agent, flowInfos: [FlowInfo], jumpUrl: String, `operator`: UserInfo? = nil) {
             self.agent = agent
             self.flowInfos = flowInfos
             self.jumpUrl = jumpUrl
@@ -76,5 +56,25 @@ extension Essbasic {
             case confirmUrl = "ConfirmUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 准备待发起文件
+    ///
+    /// 该接口 (PrepareFlows) 用于创建待发起文件
+    /// 用户通过该接口进入签署流程发起的确认页面，进行发起信息二次确认， 如果确认则进行正常发起。
+    /// 目前该接口只支持B2C，不建议使用，将会废弃。
+    @inlinable
+    public func prepareFlows(_ input: PrepareFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PrepareFlowsResponse > {
+        self.client.execute(action: "PrepareFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 准备待发起文件
+    ///
+    /// 该接口 (PrepareFlows) 用于创建待发起文件
+    /// 用户通过该接口进入签署流程发起的确认页面，进行发起信息二次确认， 如果确认则进行正常发起。
+    /// 目前该接口只支持B2C，不建议使用，将会废弃。
+    @inlinable
+    public func prepareFlows(_ input: PrepareFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PrepareFlowsResponse {
+        try await self.client.execute(action: "PrepareFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

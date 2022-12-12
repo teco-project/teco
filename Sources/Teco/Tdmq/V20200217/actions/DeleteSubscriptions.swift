@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 删除订阅关系
-    @inlinable
-    public func deleteSubscriptions(_ input: DeleteSubscriptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSubscriptionsResponse > {
-        self.client.execute(action: "DeleteSubscriptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除订阅关系
-    @inlinable
-    public func deleteSubscriptions(_ input: DeleteSubscriptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubscriptionsResponse {
-        try await self.client.execute(action: "DeleteSubscriptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSubscriptions请求参数结构体
     public struct DeleteSubscriptionsRequest: TCRequestModel {
         /// 订阅关系集合，每次最多删除20个。
@@ -41,7 +29,7 @@ extension Tdmq {
         /// 是否强制删除，默认为false
         public let force: Bool?
         
-        public init (subscriptionTopicSets: [SubscriptionTopic], clusterId: String?, environmentId: String?, force: Bool?) {
+        public init (subscriptionTopicSets: [SubscriptionTopic], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil) {
             self.subscriptionTopicSets = subscriptionTopicSets
             self.clusterId = clusterId
             self.environmentId = environmentId
@@ -68,5 +56,17 @@ extension Tdmq {
             case subscriptionTopicSets = "SubscriptionTopicSets"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除订阅关系
+    @inlinable
+    public func deleteSubscriptions(_ input: DeleteSubscriptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSubscriptionsResponse > {
+        self.client.execute(action: "DeleteSubscriptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除订阅关系
+    @inlinable
+    public func deleteSubscriptions(_ input: DeleteSubscriptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubscriptionsResponse {
+        try await self.client.execute(action: "DeleteSubscriptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

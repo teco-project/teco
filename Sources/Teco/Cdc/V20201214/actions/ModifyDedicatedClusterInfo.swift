@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 修改本地专用集群信息
-    @inlinable
-    public func modifyDedicatedClusterInfo(_ input: ModifyDedicatedClusterInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDedicatedClusterInfoResponse > {
-        self.client.execute(action: "ModifyDedicatedClusterInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改本地专用集群信息
-    @inlinable
-    public func modifyDedicatedClusterInfo(_ input: ModifyDedicatedClusterInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDedicatedClusterInfoResponse {
-        try await self.client.execute(action: "ModifyDedicatedClusterInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDedicatedClusterInfo请求参数结构体
     public struct ModifyDedicatedClusterInfoRequest: TCRequestModel {
         /// 本地专用集群ID
@@ -44,7 +32,7 @@ extension Cdc {
         /// 集群所在站点
         public let siteId: String?
         
-        public init (dedicatedClusterId: String, name: String?, zone: String?, description: String?, siteId: String?) {
+        public init (dedicatedClusterId: String, name: String? = nil, zone: String? = nil, description: String? = nil, siteId: String? = nil) {
             self.dedicatedClusterId = dedicatedClusterId
             self.name = name
             self.zone = zone
@@ -69,5 +57,17 @@ extension Cdc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改本地专用集群信息
+    @inlinable
+    public func modifyDedicatedClusterInfo(_ input: ModifyDedicatedClusterInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDedicatedClusterInfoResponse > {
+        self.client.execute(action: "ModifyDedicatedClusterInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改本地专用集群信息
+    @inlinable
+    public func modifyDedicatedClusterInfo(_ input: ModifyDedicatedClusterInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDedicatedClusterInfoResponse {
+        try await self.client.execute(action: "ModifyDedicatedClusterInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

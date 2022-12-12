@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取组件统计列表
-    ///
-    /// 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
-    @inlinable
-    public func describeComponentStatistics(_ input: DescribeComponentStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComponentStatisticsResponse > {
-        self.client.execute(action: "DescribeComponentStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取组件统计列表
-    ///
-    /// 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
-    @inlinable
-    public func describeComponentStatistics(_ input: DescribeComponentStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentStatisticsResponse {
-        try await self.client.execute(action: "DescribeComponentStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeComponentStatistics请求参数结构体
     public struct DescribeComponentStatisticsRequest: TCRequestModel {
         /// 返回数量，默认为10，最大值为100。
@@ -43,7 +27,7 @@ extension Cwp {
         /// ComponentName - String - 是否必填：否 - 组件名称
         public let filters: [Filter]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -72,5 +56,21 @@ extension Cwp {
             case componentStatistics = "ComponentStatistics"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取组件统计列表
+    ///
+    /// 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
+    @inlinable
+    public func describeComponentStatistics(_ input: DescribeComponentStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComponentStatisticsResponse > {
+        self.client.execute(action: "DescribeComponentStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取组件统计列表
+    ///
+    /// 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
+    @inlinable
+    public func describeComponentStatistics(_ input: DescribeComponentStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentStatisticsResponse {
+        try await self.client.execute(action: "DescribeComponentStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 人员库升级
-    ///
-    /// 升级人员库。升级过程中，人员库仍然为原算法版本，人员库相关操作仍然支持。升级完成后，人员库为新算法版本。
-    /// 单个人员库有且仅支持一次回滚操作。
-    /// 注：此处QPS限制为10。
-    @inlinable
-    public func upgradeGroupFaceModelVersion(_ input: UpgradeGroupFaceModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeGroupFaceModelVersionResponse > {
-        self.client.execute(action: "UpgradeGroupFaceModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人员库升级
-    ///
-    /// 升级人员库。升级过程中，人员库仍然为原算法版本，人员库相关操作仍然支持。升级完成后，人员库为新算法版本。
-    /// 单个人员库有且仅支持一次回滚操作。
-    /// 注：此处QPS限制为10。
-    @inlinable
-    public func upgradeGroupFaceModelVersion(_ input: UpgradeGroupFaceModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGroupFaceModelVersionResponse {
-        try await self.client.execute(action: "UpgradeGroupFaceModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeGroupFaceModelVersion请求参数结构体
     public struct UpgradeGroupFaceModelVersionRequest: TCRequestModel {
         /// 需要升级的人员库ID。
@@ -66,5 +46,25 @@ extension Iai {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人员库升级
+    ///
+    /// 升级人员库。升级过程中，人员库仍然为原算法版本，人员库相关操作仍然支持。升级完成后，人员库为新算法版本。
+    /// 单个人员库有且仅支持一次回滚操作。
+    /// 注：此处QPS限制为10。
+    @inlinable
+    public func upgradeGroupFaceModelVersion(_ input: UpgradeGroupFaceModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeGroupFaceModelVersionResponse > {
+        self.client.execute(action: "UpgradeGroupFaceModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人员库升级
+    ///
+    /// 升级人员库。升级过程中，人员库仍然为原算法版本，人员库相关操作仍然支持。升级完成后，人员库为新算法版本。
+    /// 单个人员库有且仅支持一次回滚操作。
+    /// 注：此处QPS限制为10。
+    @inlinable
+    public func upgradeGroupFaceModelVersion(_ input: UpgradeGroupFaceModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGroupFaceModelVersionResponse {
+        try await self.client.execute(action: "UpgradeGroupFaceModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

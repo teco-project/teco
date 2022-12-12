@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssa {
-    /// 漏洞管理-漏洞列表
-    ///
-    /// 漏洞管理页，获取漏洞列表
-    @inlinable
-    public func describeVulList(_ input: DescribeVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulListResponse > {
-        self.client.execute(action: "DescribeVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 漏洞管理-漏洞列表
-    ///
-    /// 漏洞管理页，获取漏洞列表
-    @inlinable
-    public func describeVulList(_ input: DescribeVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulListResponse {
-        try await self.client.execute(action: "DescribeVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulList请求参数结构体
     public struct DescribeVulListRequest: TCRequestModel {
         /// 查询过滤参数
@@ -57,5 +41,21 @@ extension Ssa {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 漏洞管理-漏洞列表
+    ///
+    /// 漏洞管理页，获取漏洞列表
+    @inlinable
+    public func describeVulList(_ input: DescribeVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulListResponse > {
+        self.client.execute(action: "DescribeVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 漏洞管理-漏洞列表
+    ///
+    /// 漏洞管理页，获取漏洞列表
+    @inlinable
+    public func describeVulList(_ input: DescribeVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulListResponse {
+        try await self.client.execute(action: "DescribeVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 查询作业配置
-    ///
-    /// 查询作业配置列表，一次最多查询100个
-    @inlinable
-    public func describeJobConfigs(_ input: DescribeJobConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobConfigsResponse > {
-        self.client.execute(action: "DescribeJobConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询作业配置
-    ///
-    /// 查询作业配置列表，一次最多查询100个
-    @inlinable
-    public func describeJobConfigs(_ input: DescribeJobConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobConfigsResponse {
-        try await self.client.execute(action: "DescribeJobConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeJobConfigs请求参数结构体
     public struct DescribeJobConfigsRequest: TCRequestModel {
         /// 作业Id
@@ -54,7 +38,7 @@ extension Oceanus {
         /// 工作空间 SerialId
         public let workSpaceId: String?
         
-        public init (jobId: String, jobConfigVersions: [UInt64]?, offset: Int64?, limit: UInt64?, filters: [Filter]?, onlyDraft: Bool?, workSpaceId: String?) {
+        public init (jobId: String, jobConfigVersions: [UInt64]? = nil, offset: Int64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, onlyDraft: Bool? = nil, workSpaceId: String? = nil) {
             self.jobId = jobId
             self.jobConfigVersions = jobConfigVersions
             self.offset = offset
@@ -91,5 +75,21 @@ extension Oceanus {
             case jobConfigSet = "JobConfigSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询作业配置
+    ///
+    /// 查询作业配置列表，一次最多查询100个
+    @inlinable
+    public func describeJobConfigs(_ input: DescribeJobConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobConfigsResponse > {
+        self.client.execute(action: "DescribeJobConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询作业配置
+    ///
+    /// 查询作业配置列表，一次最多查询100个
+    @inlinable
+    public func describeJobConfigs(_ input: DescribeJobConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobConfigsResponse {
+        try await self.client.execute(action: "DescribeJobConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ciam {
-    /// 根据ID查询用户信息
-    @inlinable
-    public func describeUserById(_ input: DescribeUserByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserByIdResponse > {
-        self.client.execute(action: "DescribeUserById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据ID查询用户信息
-    @inlinable
-    public func describeUserById(_ input: DescribeUserByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserByIdResponse {
-        try await self.client.execute(action: "DescribeUserById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserById请求参数结构体
     public struct DescribeUserByIdRequest: TCRequestModel {
         /// 用户目录ID
@@ -40,7 +28,7 @@ extension Ciam {
         /// <li> **true** </li>	返回用户信息原文
         public let original: Bool?
         
-        public init (userStoreId: String, userId: String, original: Bool?) {
+        public init (userStoreId: String, userId: String, original: Bool? = nil) {
             self.userStoreId = userStoreId
             self.userId = userId
             self.original = original
@@ -57,7 +45,7 @@ extension Ciam {
     public struct DescribeUserByIdResponse: TCResponseModel {
         /// 用户信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let user: User
+        public let user: User?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -66,5 +54,17 @@ extension Ciam {
             case user = "User"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据ID查询用户信息
+    @inlinable
+    public func describeUserById(_ input: DescribeUserByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserByIdResponse > {
+        self.client.execute(action: "DescribeUserById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据ID查询用户信息
+    @inlinable
+    public func describeUserById(_ input: DescribeUserByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserByIdResponse {
+        try await self.client.execute(action: "DescribeUserById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

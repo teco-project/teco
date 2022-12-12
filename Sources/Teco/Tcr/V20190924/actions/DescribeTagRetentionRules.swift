@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询版本保留规则
-    @inlinable
-    public func describeTagRetentionRules(_ input: DescribeTagRetentionRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagRetentionRulesResponse > {
-        self.client.execute(action: "DescribeTagRetentionRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询版本保留规则
-    @inlinable
-    public func describeTagRetentionRules(_ input: DescribeTagRetentionRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionRulesResponse {
-        try await self.client.execute(action: "DescribeTagRetentionRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTagRetentionRules请求参数结构体
     public struct DescribeTagRetentionRulesRequest: TCRequestModel {
         /// 主实例iD
@@ -41,7 +29,7 @@ extension Tcr {
         /// 分页Page
         public let offset: Int64?
         
-        public init (registryId: String, namespaceName: String?, limit: Int64?, offset: Int64?) {
+        public init (registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.registryId = registryId
             self.namespaceName = namespaceName
             self.limit = limit
@@ -72,5 +60,17 @@ extension Tcr {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询版本保留规则
+    @inlinable
+    public func describeTagRetentionRules(_ input: DescribeTagRetentionRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagRetentionRulesResponse > {
+        self.client.execute(action: "DescribeTagRetentionRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询版本保留规则
+    @inlinable
+    public func describeTagRetentionRules(_ input: DescribeTagRetentionRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionRulesResponse {
+        try await self.client.execute(action: "DescribeTagRetentionRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

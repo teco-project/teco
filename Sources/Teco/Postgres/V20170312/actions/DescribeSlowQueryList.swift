@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 获取慢查询列表
-    ///
-    /// 此接口（DescribeSlowQueryList）用于查询指定时间范围内的所有慢查询。
-    @inlinable
-    public func describeSlowQueryList(_ input: DescribeSlowQueryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowQueryListResponse > {
-        self.client.execute(action: "DescribeSlowQueryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取慢查询列表
-    ///
-    /// 此接口（DescribeSlowQueryList）用于查询指定时间范围内的所有慢查询。
-    @inlinable
-    public func describeSlowQueryList(_ input: DescribeSlowQueryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowQueryListResponse {
-        try await self.client.execute(action: "DescribeSlowQueryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSlowQueryList请求参数结构体
     public struct DescribeSlowQueryListRequest: TCRequestModel {
         /// 实例ID。
@@ -57,7 +41,7 @@ extension Postgres {
         /// 分页偏移。取值范围[0,INF)，默认为0。
         public let offset: Int64?
         
-        public init (dbInstanceId: String, startTime: String, endTime: String, databaseName: String?, orderByType: String?, orderBy: String?, limit: Int64?, offset: Int64?) {
+        public init (dbInstanceId: String, startTime: String, endTime: String, databaseName: String? = nil, orderByType: String? = nil, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.dbInstanceId = dbInstanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -102,5 +86,21 @@ extension Postgres {
             case rawSlowQueryList = "RawSlowQueryList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取慢查询列表
+    ///
+    /// 此接口（DescribeSlowQueryList）用于查询指定时间范围内的所有慢查询。
+    @inlinable
+    public func describeSlowQueryList(_ input: DescribeSlowQueryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowQueryListResponse > {
+        self.client.execute(action: "DescribeSlowQueryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取慢查询列表
+    ///
+    /// 此接口（DescribeSlowQueryList）用于查询指定时间范围内的所有慢查询。
+    @inlinable
+    public func describeSlowQueryList(_ input: DescribeSlowQueryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowQueryListResponse {
+        try await self.client.execute(action: "DescribeSlowQueryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

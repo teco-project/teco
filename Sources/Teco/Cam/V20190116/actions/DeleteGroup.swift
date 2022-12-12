@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 删除用户组
-    @inlinable
-    public func deleteGroup(_ input: DeleteGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGroupResponse > {
-        self.client.execute(action: "DeleteGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除用户组
-    @inlinable
-    public func deleteGroup(_ input: DeleteGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGroupResponse {
-        try await self.client.execute(action: "DeleteGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteGroup请求参数结构体
     public struct DeleteGroupRequest: TCRequestModel {
         /// 用户组 ID
@@ -49,5 +37,17 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除用户组
+    @inlinable
+    public func deleteGroup(_ input: DeleteGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGroupResponse > {
+        self.client.execute(action: "DeleteGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除用户组
+    @inlinable
+    public func deleteGroup(_ input: DeleteGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGroupResponse {
+        try await self.client.execute(action: "DeleteGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

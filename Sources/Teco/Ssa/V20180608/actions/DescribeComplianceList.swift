@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Ssa {
-    /// 合规管理总览页检查项列表
-    @inlinable
-    public func describeComplianceList(_ input: DescribeComplianceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceListResponse > {
-        self.client.execute(action: "DescribeComplianceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 合规管理总览页检查项列表
-    @inlinable
-    public func describeComplianceList(_ input: DescribeComplianceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceListResponse {
-        try await self.client.execute(action: "DescribeComplianceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeComplianceList请求参数结构体
     public struct DescribeComplianceListRequest: TCRequestModel {
         /// 搜索过滤条件
         public let filter: String?
         
-        public init (filter: String?) {
+        public init (filter: String? = nil) {
             self.filter = filter
         }
         
@@ -63,5 +51,17 @@ extension Ssa {
             case configTotalNum = "ConfigTotalNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 合规管理总览页检查项列表
+    @inlinable
+    public func describeComplianceList(_ input: DescribeComplianceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceListResponse > {
+        self.client.execute(action: "DescribeComplianceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 合规管理总览页检查项列表
+    @inlinable
+    public func describeComplianceList(_ input: DescribeComplianceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceListResponse {
+        try await self.client.execute(action: "DescribeComplianceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

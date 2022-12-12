@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询活动信息
-    @inlinable
-    public func describeActivityInfo(_ input: DescribeActivityInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeActivityInfoResponse > {
-        self.client.execute(action: "DescribeActivityInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询活动信息
-    @inlinable
-    public func describeActivityInfo(_ input: DescribeActivityInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeActivityInfoResponse {
-        try await self.client.execute(action: "DescribeActivityInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeActivityInfo请求参数结构体
     public struct DescribeActivityInfoRequest: TCRequestModel {
         /// 活动id列表
         public let activityIdList: [Int64]?
         
-        public init (activityIdList: [Int64]?) {
+        public init (activityIdList: [Int64]? = nil) {
             self.activityIdList = activityIdList
         }
         
@@ -53,5 +41,17 @@ extension Tcb {
             case activityInfoList = "ActivityInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询活动信息
+    @inlinable
+    public func describeActivityInfo(_ input: DescribeActivityInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeActivityInfoResponse > {
+        self.client.execute(action: "DescribeActivityInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询活动信息
+    @inlinable
+    public func describeActivityInfo(_ input: DescribeActivityInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeActivityInfoResponse {
+        try await self.client.execute(action: "DescribeActivityInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

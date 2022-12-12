@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询简单集群列表
-    @inlinable
-    public func describeSimpleClusters(_ input: DescribeSimpleClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSimpleClustersResponse > {
-        self.client.execute(action: "DescribeSimpleClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询简单集群列表
-    @inlinable
-    public func describeSimpleClusters(_ input: DescribeSimpleClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleClustersResponse {
-        try await self.client.execute(action: "DescribeSimpleClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSimpleClusters请求参数结构体
     public struct DescribeSimpleClustersRequest: TCRequestModel {
         /// 需要查询的集群ID列表，不填或不传入时查询所有内容
@@ -47,7 +35,7 @@ extension Tsf {
         /// 无
         public let disableProgramAuthCheck: Bool?
         
-        public init (clusterIdList: [String]?, clusterType: String?, offset: Int64?, limit: Int64?, searchWord: String?, disableProgramAuthCheck: Bool?) {
+        public init (clusterIdList: [String]? = nil, clusterType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil) {
             self.clusterIdList = clusterIdList
             self.clusterType = clusterType
             self.offset = offset
@@ -70,7 +58,7 @@ extension Tsf {
     public struct DescribeSimpleClustersResponse: TCResponseModel {
         /// TSF集群分页对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TsfPageCluster
+        public let result: TsfPageCluster?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -79,5 +67,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询简单集群列表
+    @inlinable
+    public func describeSimpleClusters(_ input: DescribeSimpleClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSimpleClustersResponse > {
+        self.client.execute(action: "DescribeSimpleClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询简单集群列表
+    @inlinable
+    public func describeSimpleClusters(_ input: DescribeSimpleClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleClustersResponse {
+        try await self.client.execute(action: "DescribeSimpleClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建弹性公网IP
-    ///
-    /// 本接口 (AllocateAddresses) 用于申请一个或多个[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）。
-    /// * EIP 是专为动态云计算设计的静态 IP 地址。借助 EIP，您可以快速将 EIP 重新映射到您的另一个实例上，从而屏蔽实例故障。
-    /// * 您的 EIP 与腾讯云账户相关联，而不是与某个实例相关联。在您选择显式释放该地址，或欠费超过24小时之前，它会一直与您的腾讯云账户保持关联。
-    /// * 一个腾讯云账户在每个地域能申请的 EIP 最大配额有所限制，可参见 [EIP 产品简介](https://cloud.tencent.com/document/product/213/5733)，上述配额可通过 DescribeAddressQuota 接口获取。
-    @inlinable
-    public func allocateAddresses(_ input: AllocateAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AllocateAddressesResponse > {
-        self.client.execute(action: "AllocateAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建弹性公网IP
-    ///
-    /// 本接口 (AllocateAddresses) 用于申请一个或多个[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）。
-    /// * EIP 是专为动态云计算设计的静态 IP 地址。借助 EIP，您可以快速将 EIP 重新映射到您的另一个实例上，从而屏蔽实例故障。
-    /// * 您的 EIP 与腾讯云账户相关联，而不是与某个实例相关联。在您选择显式释放该地址，或欠费超过24小时之前，它会一直与您的腾讯云账户保持关联。
-    /// * 一个腾讯云账户在每个地域能申请的 EIP 最大配额有所限制，可参见 [EIP 产品简介](https://cloud.tencent.com/document/product/213/5733)，上述配额可通过 DescribeAddressQuota 接口获取。
-    @inlinable
-    public func allocateAddresses(_ input: AllocateAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateAddressesResponse {
-        try await self.client.execute(action: "AllocateAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AllocateAddresses请求参数结构体
     public struct AllocateAddressesRequest: TCRequestModel {
         /// EIP数量。默认值：1。
@@ -65,7 +43,7 @@ extension Vpc {
         public let internetMaxBandwidthOut: Int64?
         
         /// 包月按带宽预付费EIP的计费参数。EIP为包月按带宽预付费时，该参数必传，其余场景不需传递
-        public let addressChargePrepaid: AddressChargePrepaid
+        public let addressChargePrepaid: AddressChargePrepaid?
         
         /// EIP类型。默认值：EIP。
         /// <ul style="margin:0"><li>已开通Anycast公网加速白名单的用户，可选值：<ul><li>AnycastEIP：加速IP，可参见 [Anycast 公网加速](https://cloud.tencent.com/document/product/644)</li></ul>注意：仅部分地域支持加速IP。</li></ul>
@@ -91,7 +69,7 @@ extension Vpc {
         /// EIP名称，用于申请EIP时用户自定义该EIP的个性化名称，默认值：未命名
         public let addressName: String?
         
-        public init (addressCount: Int64?, internetServiceProvider: String?, internetChargeType: String?, internetMaxBandwidthOut: Int64?, addressChargePrepaid: AddressChargePrepaid, addressType: String?, anycastZone: String?, applicableForCLB: Bool?, tags: [Tag]?, bandwidthPackageId: String?, addressName: String?) {
+        public init (addressCount: Int64? = nil, internetServiceProvider: String? = nil, internetChargeType: String? = nil, internetMaxBandwidthOut: Int64? = nil, addressChargePrepaid: AddressChargePrepaid? = nil, addressType: String? = nil, anycastZone: String? = nil, applicableForCLB: Bool? = nil, tags: [Tag]? = nil, bandwidthPackageId: String? = nil, addressName: String? = nil) {
             self.addressCount = addressCount
             self.internetServiceProvider = internetServiceProvider
             self.internetChargeType = internetChargeType
@@ -136,5 +114,27 @@ extension Vpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建弹性公网IP
+    ///
+    /// 本接口 (AllocateAddresses) 用于申请一个或多个[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）。
+    /// * EIP 是专为动态云计算设计的静态 IP 地址。借助 EIP，您可以快速将 EIP 重新映射到您的另一个实例上，从而屏蔽实例故障。
+    /// * 您的 EIP 与腾讯云账户相关联，而不是与某个实例相关联。在您选择显式释放该地址，或欠费超过24小时之前，它会一直与您的腾讯云账户保持关联。
+    /// * 一个腾讯云账户在每个地域能申请的 EIP 最大配额有所限制，可参见 [EIP 产品简介](https://cloud.tencent.com/document/product/213/5733)，上述配额可通过 DescribeAddressQuota 接口获取。
+    @inlinable
+    public func allocateAddresses(_ input: AllocateAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AllocateAddressesResponse > {
+        self.client.execute(action: "AllocateAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建弹性公网IP
+    ///
+    /// 本接口 (AllocateAddresses) 用于申请一个或多个[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）。
+    /// * EIP 是专为动态云计算设计的静态 IP 地址。借助 EIP，您可以快速将 EIP 重新映射到您的另一个实例上，从而屏蔽实例故障。
+    /// * 您的 EIP 与腾讯云账户相关联，而不是与某个实例相关联。在您选择显式释放该地址，或欠费超过24小时之前，它会一直与您的腾讯云账户保持关联。
+    /// * 一个腾讯云账户在每个地域能申请的 EIP 最大配额有所限制，可参见 [EIP 产品简介](https://cloud.tencent.com/document/product/213/5733)，上述配额可通过 DescribeAddressQuota 接口获取。
+    @inlinable
+    public func allocateAddresses(_ input: AllocateAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateAddressesResponse {
+        try await self.client.execute(action: "AllocateAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

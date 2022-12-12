@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// 获取安全统计
-    ///
-    /// 获取本月安全统计
-    @inlinable
-    public func describeSecIndex(_ input: DescribeSecIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecIndexResponse > {
-        self.client.execute(action: "DescribeSecIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取安全统计
-    ///
-    /// 获取本月安全统计
-    @inlinable
-    public func describeSecIndex(_ input: DescribeSecIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecIndexResponse {
-        try await self.client.execute(action: "DescribeSecIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecIndex请求参数结构体
     public struct DescribeSecIndexRequest: TCRequestModel {
         public init () {
@@ -66,5 +50,21 @@ extension Dayu {
             case endDate = "EndDate"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取安全统计
+    ///
+    /// 获取本月安全统计
+    @inlinable
+    public func describeSecIndex(_ input: DescribeSecIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecIndexResponse > {
+        self.client.execute(action: "DescribeSecIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全统计
+    ///
+    /// 获取本月安全统计
+    @inlinable
+    public func describeSecIndex(_ input: DescribeSecIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecIndexResponse {
+        try await self.client.execute(action: "DescribeSecIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

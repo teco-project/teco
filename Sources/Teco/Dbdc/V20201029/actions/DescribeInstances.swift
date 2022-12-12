@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbdc {
-    /// 查询独享集群列表
-    ///
-    /// 根据不同地域不同用户，获取集群列表信息
-    @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
-        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询独享集群列表
-    ///
-    /// 根据不同地域不同用户，获取集群列表信息
-    @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstances请求参数结构体
     public struct DescribeInstancesRequest: TCRequestModel {
         /// 集群类型: 0 一主一备, 1 一主两备...N-1 一主N备
@@ -63,7 +47,7 @@ extension Dbdc {
         /// 集群状态: -2 已删除, -1 已隔离, 0 创建中, 1 运行中, 2 扩容中, 3 删除中
         public let instanceStatus: Int64?
         
-        public init (instanceTypes: [Int64]?, productIds: [Int64]?, instanceIds: [String]?, fenceFlag: Bool?, instanceName: String?, pageSize: Int64?, pageNumber: Int64?, orderBy: String?, orderByType: String?, instanceStatus: Int64?) {
+        public init (instanceTypes: [Int64]? = nil, productIds: [Int64]? = nil, instanceIds: [String]? = nil, fenceFlag: Bool? = nil, instanceName: String? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, instanceStatus: Int64? = nil) {
             self.instanceTypes = instanceTypes
             self.productIds = productIds
             self.instanceIds = instanceIds
@@ -106,5 +90,21 @@ extension Dbdc {
             case instances = "Instances"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询独享集群列表
+    ///
+    /// 根据不同地域不同用户，获取集群列表信息
+    @inlinable
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询独享集群列表
+    ///
+    /// 根据不同地域不同用户，获取集群列表信息
+    @inlinable
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

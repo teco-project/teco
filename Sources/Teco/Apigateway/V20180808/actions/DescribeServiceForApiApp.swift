@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Apigateway {
-    /// 应用使用者查询服务详情
-    ///
-    /// 本接口（DescribeServiceForApiApp）用于应用使用者查询一个服务的详细信息、包括服务的描述、域名、协议等信息。
-    @inlinable
-    public func describeServiceForApiApp(_ input: DescribeServiceForApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceForApiAppResponse > {
-        self.client.execute(action: "DescribeServiceForApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 应用使用者查询服务详情
-    ///
-    /// 本接口（DescribeServiceForApiApp）用于应用使用者查询一个服务的详细信息、包括服务的描述、域名、协议等信息。
-    @inlinable
-    public func describeServiceForApiApp(_ input: DescribeServiceForApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceForApiAppResponse {
-        try await self.client.execute(action: "DescribeServiceForApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeServiceForApiApp请求参数结构体
     public struct DescribeServiceForApiAppRequest: TCRequestModel {
         /// 待查询的服务唯一 ID。
@@ -158,5 +142,21 @@ extension Apigateway {
             case tags = "Tags"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 应用使用者查询服务详情
+    ///
+    /// 本接口（DescribeServiceForApiApp）用于应用使用者查询一个服务的详细信息、包括服务的描述、域名、协议等信息。
+    @inlinable
+    public func describeServiceForApiApp(_ input: DescribeServiceForApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceForApiAppResponse > {
+        self.client.execute(action: "DescribeServiceForApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 应用使用者查询服务详情
+    ///
+    /// 本接口（DescribeServiceForApiApp）用于应用使用者查询一个服务的详细信息、包括服务的描述、域名、协议等信息。
+    @inlinable
+    public func describeServiceForApiApp(_ input: DescribeServiceForApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceForApiAppResponse {
+        try await self.client.execute(action: "DescribeServiceForApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

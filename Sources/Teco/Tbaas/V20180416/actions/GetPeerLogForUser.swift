@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 获取节点日志
-    @inlinable
-    public func getPeerLogForUser(_ input: GetPeerLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPeerLogForUserResponse > {
-        self.client.execute(action: "GetPeerLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取节点日志
-    @inlinable
-    public func getPeerLogForUser(_ input: GetPeerLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPeerLogForUserResponse {
-        try await self.client.execute(action: "GetPeerLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetPeerLogForUser请求参数结构体
     public struct GetPeerLogForUserRequest: TCRequestModel {
         /// 模块名，本接口取值：peer_mng
@@ -87,5 +75,17 @@ extension Tbaas {
             case peerLogList = "PeerLogList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取节点日志
+    @inlinable
+    public func getPeerLogForUser(_ input: GetPeerLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPeerLogForUserResponse > {
+        self.client.execute(action: "GetPeerLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取节点日志
+    @inlinable
+    public func getPeerLogForUser(_ input: GetPeerLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPeerLogForUserResponse {
+        try await self.client.execute(action: "GetPeerLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 批量删除个人版仓库
-    ///
-    /// 用于个人版镜像仓库中批量删除镜像仓库
-    @inlinable
-    public func batchDeleteRepositoryPersonal(_ input: BatchDeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDeleteRepositoryPersonalResponse > {
-        self.client.execute(action: "BatchDeleteRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量删除个人版仓库
-    ///
-    /// 用于个人版镜像仓库中批量删除镜像仓库
-    @inlinable
-    public func batchDeleteRepositoryPersonal(_ input: BatchDeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteRepositoryPersonalResponse {
-        try await self.client.execute(action: "BatchDeleteRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchDeleteRepositoryPersonal请求参数结构体
     public struct BatchDeleteRepositoryPersonalRequest: TCRequestModel {
         /// 仓库名称数组
@@ -53,5 +37,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量删除个人版仓库
+    ///
+    /// 用于个人版镜像仓库中批量删除镜像仓库
+    @inlinable
+    public func batchDeleteRepositoryPersonal(_ input: BatchDeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDeleteRepositoryPersonalResponse > {
+        self.client.execute(action: "BatchDeleteRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除个人版仓库
+    ///
+    /// 用于个人版镜像仓库中批量删除镜像仓库
+    @inlinable
+    public func batchDeleteRepositoryPersonal(_ input: BatchDeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteRepositoryPersonalResponse {
+        try await self.client.execute(action: "BatchDeleteRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

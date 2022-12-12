@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 删除围栏
-    @inlinable
-    public func deletePositionFence(_ input: DeletePositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePositionFenceResponse > {
-        self.client.execute(action: "DeletePositionFence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除围栏
-    @inlinable
-    public func deletePositionFence(_ input: DeletePositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePositionFenceResponse {
-        try await self.client.execute(action: "DeletePositionFence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePositionFence请求参数结构体
     public struct DeletePositionFenceRequest: TCRequestModel {
         /// 位置空间Id
@@ -54,5 +42,17 @@ extension Iotexplorer {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除围栏
+    @inlinable
+    public func deletePositionFence(_ input: DeletePositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePositionFenceResponse > {
+        self.client.execute(action: "DeletePositionFence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除围栏
+    @inlinable
+    public func deletePositionFence(_ input: DeletePositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePositionFenceResponse {
+        try await self.client.execute(action: "DeletePositionFence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

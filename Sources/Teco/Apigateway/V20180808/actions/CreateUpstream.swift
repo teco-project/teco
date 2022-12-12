@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 创建后端通道
-    ///
-    /// 用于创建创建后端通道
-    @inlinable
-    public func createUpstream(_ input: CreateUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUpstreamResponse > {
-        self.client.execute(action: "CreateUpstream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建后端通道
-    ///
-    /// 用于创建创建后端通道
-    @inlinable
-    public func createUpstream(_ input: CreateUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUpstreamResponse {
-        try await self.client.execute(action: "CreateUpstream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUpstream请求参数结构体
     public struct CreateUpstreamRequest: TCRequestModel {
         /// 后端协议，取值范围：HTTP, HTTPS
@@ -64,12 +48,12 @@ extension Apigateway {
         public let tags: [Tag]?
         
         /// 健康检查配置，目前只支持VPC通道
-        public let healthChecker: UpstreamHealthChecker
+        public let healthChecker: UpstreamHealthChecker?
         
         /// K8S容器服务的配置
         public let k8sService: [K8sService]?
         
-        public init (scheme: String, algorithm: String, uniqVpcId: String, upstreamName: String?, upstreamDescription: String?, upstreamType: String?, retries: UInt64?, upstreamHost: String?, nodes: [UpstreamNode]?, tags: [Tag]?, healthChecker: UpstreamHealthChecker, k8sService: [K8sService]?) {
+        public init (scheme: String, algorithm: String, uniqVpcId: String, upstreamName: String? = nil, upstreamDescription: String? = nil, upstreamType: String? = nil, retries: UInt64? = nil, upstreamHost: String? = nil, nodes: [UpstreamNode]? = nil, tags: [Tag]? = nil, healthChecker: UpstreamHealthChecker? = nil, k8sService: [K8sService]? = nil) {
             self.scheme = scheme
             self.algorithm = algorithm
             self.uniqVpcId = uniqVpcId
@@ -113,5 +97,21 @@ extension Apigateway {
             case upstreamId = "UpstreamId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建后端通道
+    ///
+    /// 用于创建创建后端通道
+    @inlinable
+    public func createUpstream(_ input: CreateUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUpstreamResponse > {
+        self.client.execute(action: "CreateUpstream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建后端通道
+    ///
+    /// 用于创建创建后端通道
+    @inlinable
+    public func createUpstream(_ input: CreateUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUpstreamResponse {
+        try await self.client.execute(action: "CreateUpstream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

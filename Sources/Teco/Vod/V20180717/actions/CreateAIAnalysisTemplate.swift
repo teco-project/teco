@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 创建音视频内容分析模板
-    ///
-    /// 创建用户自定义音视频内容分析模板，数量上限：50。
-    @inlinable
-    public func createAIAnalysisTemplate(_ input: CreateAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAIAnalysisTemplateResponse > {
-        self.client.execute(action: "CreateAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建音视频内容分析模板
-    ///
-    /// 创建用户自定义音视频内容分析模板，数量上限：50。
-    @inlinable
-    public func createAIAnalysisTemplate(_ input: CreateAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIAnalysisTemplateResponse {
-        try await self.client.execute(action: "CreateAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAIAnalysisTemplate请求参数结构体
     public struct CreateAIAnalysisTemplateRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -43,21 +27,21 @@ extension Vod {
         public let comment: String?
         
         /// 智能分类任务控制参数。
-        public let classificationConfigure: ClassificationConfigureInfo
+        public let classificationConfigure: ClassificationConfigureInfo?
         
         /// 智能标签任务控制参数。
-        public let tagConfigure: TagConfigureInfo
+        public let tagConfigure: TagConfigureInfo?
         
         /// 智能封面任务控制参数。
-        public let coverConfigure: CoverConfigureInfo
+        public let coverConfigure: CoverConfigureInfo?
         
         /// 智能按帧标签任务控制参数。
-        public let frameTagConfigure: FrameTagConfigureInfo
+        public let frameTagConfigure: FrameTagConfigureInfo?
         
         /// 智能精彩集锦任务控制参数。
-        public let highlightConfigure: HighlightsConfigureInfo
+        public let highlightConfigure: HighlightsConfigureInfo?
         
-        public init (subAppId: UInt64?, name: String?, comment: String?, classificationConfigure: ClassificationConfigureInfo, tagConfigure: TagConfigureInfo, coverConfigure: CoverConfigureInfo, frameTagConfigure: FrameTagConfigureInfo, highlightConfigure: HighlightsConfigureInfo) {
+        public init (subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfo? = nil, tagConfigure: TagConfigureInfo? = nil, coverConfigure: CoverConfigureInfo? = nil, frameTagConfigure: FrameTagConfigureInfo? = nil, highlightConfigure: HighlightsConfigureInfo? = nil) {
             self.subAppId = subAppId
             self.name = name
             self.comment = comment
@@ -92,5 +76,21 @@ extension Vod {
             case definition = "Definition"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建音视频内容分析模板
+    ///
+    /// 创建用户自定义音视频内容分析模板，数量上限：50。
+    @inlinable
+    public func createAIAnalysisTemplate(_ input: CreateAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAIAnalysisTemplateResponse > {
+        self.client.execute(action: "CreateAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建音视频内容分析模板
+    ///
+    /// 创建用户自定义音视频内容分析模板，数量上限：50。
+    @inlinable
+    public func createAIAnalysisTemplate(_ input: CreateAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIAnalysisTemplateResponse {
+        try await self.client.execute(action: "CreateAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

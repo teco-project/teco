@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询资产管理内核模块列表
-    @inlinable
-    public func describeAssetCoreModuleList(_ input: DescribeAssetCoreModuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetCoreModuleListResponse > {
-        self.client.execute(action: "DescribeAssetCoreModuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询资产管理内核模块列表
-    @inlinable
-    public func describeAssetCoreModuleList(_ input: DescribeAssetCoreModuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetCoreModuleListResponse {
-        try await self.client.execute(action: "DescribeAssetCoreModuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetCoreModuleList请求参数结构体
     public struct DescribeAssetCoreModuleListRequest: TCRequestModel {
         /// 服务器Uuid
@@ -53,7 +41,7 @@ extension Cwp {
         /// 排序依据[Size|FirstTime|ProcessCount|ModuleCount]
         public let by: String?
         
-        public init (uuid: String?, quuid: String?, filters: [AssetFilters]?, offset: UInt64?, limit: UInt64?, order: String?, by: String?) {
+        public init (uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.uuid = uuid
             self.quuid = quuid
             self.filters = filters
@@ -91,5 +79,17 @@ extension Cwp {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询资产管理内核模块列表
+    @inlinable
+    public func describeAssetCoreModuleList(_ input: DescribeAssetCoreModuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetCoreModuleListResponse > {
+        self.client.execute(action: "DescribeAssetCoreModuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资产管理内核模块列表
+    @inlinable
+    public func describeAssetCoreModuleList(_ input: DescribeAssetCoreModuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetCoreModuleListResponse {
+        try await self.client.execute(action: "DescribeAssetCoreModuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

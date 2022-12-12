@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 关闭实例外网访问
-    ///
-    /// 本接口(CloseWanService)用于关闭云数据库实例的外网访问。关闭外网访问后，外网地址将不可访问。
-    @inlinable
-    public func closeWanService(_ input: CloseWanServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseWanServiceResponse > {
-        self.client.execute(action: "CloseWanService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关闭实例外网访问
-    ///
-    /// 本接口(CloseWanService)用于关闭云数据库实例的外网访问。关闭外网访问后，外网地址将不可访问。
-    @inlinable
-    public func closeWanService(_ input: CloseWanServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseWanServiceResponse {
-        try await self.client.execute(action: "CloseWanService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CloseWanService请求参数结构体
     public struct CloseWanServiceRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
@@ -57,5 +41,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关闭实例外网访问
+    ///
+    /// 本接口(CloseWanService)用于关闭云数据库实例的外网访问。关闭外网访问后，外网地址将不可访问。
+    @inlinable
+    public func closeWanService(_ input: CloseWanServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseWanServiceResponse > {
+        self.client.execute(action: "CloseWanService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭实例外网访问
+    ///
+    /// 本接口(CloseWanService)用于关闭云数据库实例的外网访问。关闭外网访问后，外网地址将不可访问。
+    @inlinable
+    public func closeWanService(_ input: CloseWanServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseWanServiceResponse {
+        try await self.client.execute(action: "CloseWanService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

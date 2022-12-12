@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// DMS元数据更新分区
-    @inlinable
-    public func alterDMSPartition(_ input: AlterDMSPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AlterDMSPartitionResponse > {
-        self.client.execute(action: "AlterDMSPartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DMS元数据更新分区
-    @inlinable
-    public func alterDMSPartition(_ input: AlterDMSPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSPartitionResponse {
-        try await self.client.execute(action: "AlterDMSPartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AlterDMSPartition请求参数结构体
     public struct AlterDMSPartitionRequest: TCRequestModel {
         /// 当前名称，变更前db名称
@@ -39,9 +27,9 @@ extension Dlc {
         public let currentValues: String
         
         /// 分区
-        public let partition: DMSPartition
+        public let partition: DMSPartition?
         
-        public init (currentDbName: String, currentTableName: String, currentValues: String, partition: DMSPartition) {
+        public init (currentDbName: String, currentTableName: String, currentValues: String, partition: DMSPartition? = nil) {
             self.currentDbName = currentDbName
             self.currentTableName = currentTableName
             self.currentValues = currentValues
@@ -64,5 +52,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// DMS元数据更新分区
+    @inlinable
+    public func alterDMSPartition(_ input: AlterDMSPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AlterDMSPartitionResponse > {
+        self.client.execute(action: "AlterDMSPartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据更新分区
+    @inlinable
+    public func alterDMSPartition(_ input: AlterDMSPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSPartitionResponse {
+        try await self.client.execute(action: "AlterDMSPartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Drm {
-    /// 查询所设置的FairPlay私钥
-    ///
-    /// 该接口用来查询设置的FairPlay私钥校验信息。可用该接口校验设置的私钥与本身的私钥是否一致。
-    @inlinable
-    public func describeFairPlayPem(_ input: DescribeFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFairPlayPemResponse > {
-        self.client.execute(action: "DescribeFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询所设置的FairPlay私钥
-    ///
-    /// 该接口用来查询设置的FairPlay私钥校验信息。可用该接口校验设置的私钥与本身的私钥是否一致。
-    @inlinable
-    public func describeFairPlayPem(_ input: DescribeFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFairPlayPemResponse {
-        try await self.client.execute(action: "DescribeFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFairPlayPem请求参数结构体
     public struct DescribeFairPlayPemRequest: TCRequestModel {
         /// 委托者Id,适用于托管自身证书的客户。普通客户无需填该字段。
@@ -40,7 +24,7 @@ extension Drm {
         /// 当该值未填入时，将返回所有的私钥信息。
         public let fairPlayPemId: UInt64?
         
-        public init (bailorId: UInt64?, fairPlayPemId: UInt64?) {
+        public init (bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil) {
             self.bailorId = bailorId
             self.fairPlayPemId = fairPlayPemId
         }
@@ -64,5 +48,21 @@ extension Drm {
             case fairPlayPems = "FairPlayPems"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询所设置的FairPlay私钥
+    ///
+    /// 该接口用来查询设置的FairPlay私钥校验信息。可用该接口校验设置的私钥与本身的私钥是否一致。
+    @inlinable
+    public func describeFairPlayPem(_ input: DescribeFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFairPlayPemResponse > {
+        self.client.execute(action: "DescribeFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询所设置的FairPlay私钥
+    ///
+    /// 该接口用来查询设置的FairPlay私钥校验信息。可用该接口校验设置的私钥与本身的私钥是否一致。
+    @inlinable
+    public func describeFairPlayPem(_ input: DescribeFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFairPlayPemResponse {
+        try await self.client.execute(action: "DescribeFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

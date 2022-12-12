@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 删除NAT网关
-    @inlinable
-    public func deleteNatGateway(_ input: DeleteNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNatGatewayResponse > {
-        self.client.execute(action: "DeleteNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除NAT网关
-    @inlinable
-    public func deleteNatGateway(_ input: DeleteNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatGatewayResponse {
-        try await self.client.execute(action: "DeleteNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteNatGateway请求参数结构体
     public struct DeleteNatGatewayRequest: TCRequestModel {
         /// NAT网关ID，例如：nat-kdm476mp
@@ -58,5 +46,17 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除NAT网关
+    @inlinable
+    public func deleteNatGateway(_ input: DeleteNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNatGatewayResponse > {
+        self.client.execute(action: "DeleteNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除NAT网关
+    @inlinable
+    public func deleteNatGateway(_ input: DeleteNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatGatewayResponse {
+        try await self.client.execute(action: "DeleteNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

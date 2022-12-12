@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 删除告警策略
-    @inlinable
-    public func deleteAlarmPolicy(_ input: DeleteAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAlarmPolicyResponse > {
-        self.client.execute(action: "DeleteAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除告警策略
-    @inlinable
-    public func deleteAlarmPolicy(_ input: DeleteAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmPolicyResponse {
-        try await self.client.execute(action: "DeleteAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAlarmPolicy请求参数结构体
     public struct DeleteAlarmPolicyRequest: TCRequestModel {
         /// 模块名，固定值 monitor
@@ -54,5 +42,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除告警策略
+    @inlinable
+    public func deleteAlarmPolicy(_ input: DeleteAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAlarmPolicyResponse > {
+        self.client.execute(action: "DeleteAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除告警策略
+    @inlinable
+    public func deleteAlarmPolicy(_ input: DeleteAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmPolicyResponse {
+        try await self.client.execute(action: "DeleteAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

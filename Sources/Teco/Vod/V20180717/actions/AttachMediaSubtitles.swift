@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 关联媒体字幕
-    ///
-    /// 关联媒资字幕，将指定的字幕关联到转自适应码流模板号对应的媒体输出文件中（或解除关联）。
-    @inlinable
-    public func attachMediaSubtitles(_ input: AttachMediaSubtitlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachMediaSubtitlesResponse > {
-        self.client.execute(action: "AttachMediaSubtitles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关联媒体字幕
-    ///
-    /// 关联媒资字幕，将指定的字幕关联到转自适应码流模板号对应的媒体输出文件中（或解除关联）。
-    @inlinable
-    public func attachMediaSubtitles(_ input: AttachMediaSubtitlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachMediaSubtitlesResponse {
-        try await self.client.execute(action: "AttachMediaSubtitles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AttachMediaSubtitles请求参数结构体
     public struct AttachMediaSubtitlesRequest: TCRequestModel {
         /// 媒体文件唯一标识。
@@ -50,7 +34,7 @@ extension Vod {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
         
-        public init (fileId: String, operation: String, adaptiveDynamicStreamingDefinition: UInt64, subtitleIds: [String], subAppId: UInt64?) {
+        public init (fileId: String, operation: String, adaptiveDynamicStreamingDefinition: UInt64, subtitleIds: [String], subAppId: UInt64? = nil) {
             self.fileId = fileId
             self.operation = operation
             self.adaptiveDynamicStreamingDefinition = adaptiveDynamicStreamingDefinition
@@ -75,5 +59,21 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关联媒体字幕
+    ///
+    /// 关联媒资字幕，将指定的字幕关联到转自适应码流模板号对应的媒体输出文件中（或解除关联）。
+    @inlinable
+    public func attachMediaSubtitles(_ input: AttachMediaSubtitlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachMediaSubtitlesResponse > {
+        self.client.execute(action: "AttachMediaSubtitles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关联媒体字幕
+    ///
+    /// 关联媒资字幕，将指定的字幕关联到转自适应码流模板号对应的媒体输出文件中（或解除关联）。
+    @inlinable
+    public func attachMediaSubtitles(_ input: AttachMediaSubtitlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachMediaSubtitlesResponse {
+        try await self.client.execute(action: "AttachMediaSubtitles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

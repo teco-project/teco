@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 设备唤醒
-    @inlinable
-    public func wakeUpDevice(_ input: WakeUpDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < WakeUpDeviceResponse > {
-        self.client.execute(action: "WakeUpDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设备唤醒
-    @inlinable
-    public func wakeUpDevice(_ input: WakeUpDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WakeUpDeviceResponse {
-        try await self.client.execute(action: "WakeUpDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// WakeUpDevice请求参数结构体
     public struct WakeUpDeviceRequest: TCRequestModel {
         /// 产品ID
@@ -54,5 +42,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设备唤醒
+    @inlinable
+    public func wakeUpDevice(_ input: WakeUpDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < WakeUpDeviceResponse > {
+        self.client.execute(action: "WakeUpDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设备唤醒
+    @inlinable
+    public func wakeUpDevice(_ input: WakeUpDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WakeUpDeviceResponse {
+        try await self.client.execute(action: "WakeUpDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

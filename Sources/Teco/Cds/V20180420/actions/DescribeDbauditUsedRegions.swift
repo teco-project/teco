@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cds {
-    /// 查询可售卖地域列表
-    ///
-    /// 本接口 (DescribeDbauditUsedRegions) 用于查询可售卖地域列表。
-    @inlinable
-    public func describeDbauditUsedRegions(_ input: DescribeDbauditUsedRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDbauditUsedRegionsResponse > {
-        self.client.execute(action: "DescribeDbauditUsedRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询可售卖地域列表
-    ///
-    /// 本接口 (DescribeDbauditUsedRegions) 用于查询可售卖地域列表。
-    @inlinable
-    public func describeDbauditUsedRegions(_ input: DescribeDbauditUsedRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditUsedRegionsResponse {
-        try await self.client.execute(action: "DescribeDbauditUsedRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDbauditUsedRegions请求参数结构体
     public struct DescribeDbauditUsedRegionsRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Cds {
             case regionSet = "RegionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询可售卖地域列表
+    ///
+    /// 本接口 (DescribeDbauditUsedRegions) 用于查询可售卖地域列表。
+    @inlinable
+    public func describeDbauditUsedRegions(_ input: DescribeDbauditUsedRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDbauditUsedRegionsResponse > {
+        self.client.execute(action: "DescribeDbauditUsedRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询可售卖地域列表
+    ///
+    /// 本接口 (DescribeDbauditUsedRegions) 用于查询可售卖地域列表。
+    @inlinable
+    public func describeDbauditUsedRegions(_ input: DescribeDbauditUsedRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditUsedRegionsResponse {
+        try await self.client.execute(action: "DescribeDbauditUsedRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

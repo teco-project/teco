@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询应用更新触发器
-    ///
-    /// 用于查询应用更新触发器
-    @inlinable
-    public func describeApplicationTriggerPersonal(_ input: DescribeApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationTriggerPersonalResponse > {
-        self.client.execute(action: "DescribeApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询应用更新触发器
-    ///
-    /// 用于查询应用更新触发器
-    @inlinable
-    public func describeApplicationTriggerPersonal(_ input: DescribeApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationTriggerPersonalResponse {
-        try await self.client.execute(action: "DescribeApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplicationTriggerPersonal请求参数结构体
     public struct DescribeApplicationTriggerPersonalRequest: TCRequestModel {
         /// 仓库名称
@@ -45,7 +29,7 @@ extension Tcr {
         /// 返回最大数量，默认 20, 最大值 100
         public let limit: Int64?
         
-        public init (repoName: String?, triggerName: String?, offset: Int64?, limit: Int64?) {
+        public init (repoName: String? = nil, triggerName: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.repoName = repoName
             self.triggerName = triggerName
             self.offset = offset
@@ -72,5 +56,21 @@ extension Tcr {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询应用更新触发器
+    ///
+    /// 用于查询应用更新触发器
+    @inlinable
+    public func describeApplicationTriggerPersonal(_ input: DescribeApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationTriggerPersonalResponse > {
+        self.client.execute(action: "DescribeApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询应用更新触发器
+    ///
+    /// 用于查询应用更新触发器
+    @inlinable
+    public func describeApplicationTriggerPersonal(_ input: DescribeApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationTriggerPersonalResponse {
+        try await self.client.execute(action: "DescribeApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

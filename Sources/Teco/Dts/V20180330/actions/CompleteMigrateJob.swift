@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 完成数据迁移任务
-    ///
-    /// 本接口（CompleteMigrateJob）用于完成数据迁移任务。
-    /// 选择采用增量迁移方式的任务, 需要在迁移进度进入准备完成阶段后, 调用本接口, 停止迁移增量数据。
-    /// 通过DescribeMigrateJobs接口查询到任务的状态为准备完成（status=8）时，此时可以调用本接口完成迁移任务。
-    @inlinable
-    public func completeMigrateJob(_ input: CompleteMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CompleteMigrateJobResponse > {
-        self.client.execute(action: "CompleteMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 完成数据迁移任务
-    ///
-    /// 本接口（CompleteMigrateJob）用于完成数据迁移任务。
-    /// 选择采用增量迁移方式的任务, 需要在迁移进度进入准备完成阶段后, 调用本接口, 停止迁移增量数据。
-    /// 通过DescribeMigrateJobs接口查询到任务的状态为准备完成（status=8）时，此时可以调用本接口完成迁移任务。
-    @inlinable
-    public func completeMigrateJob(_ input: CompleteMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteMigrateJobResponse {
-        try await self.client.execute(action: "CompleteMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CompleteMigrateJob请求参数结构体
     public struct CompleteMigrateJobRequest: TCRequestModel {
         /// 数据迁移任务ID
@@ -43,7 +23,7 @@ extension Dts {
         /// 完成任务的方式,仅支持旧版MySQL迁移任务。waitForSync-等待主从差距为0才停止,immediately-立即完成，不会等待主从差距一致。默认为waitForSync
         public let completeMode: String?
         
-        public init (jobId: String, completeMode: String?) {
+        public init (jobId: String, completeMode: String? = nil) {
             self.jobId = jobId
             self.completeMode = completeMode
         }
@@ -62,5 +42,25 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 完成数据迁移任务
+    ///
+    /// 本接口（CompleteMigrateJob）用于完成数据迁移任务。
+    /// 选择采用增量迁移方式的任务, 需要在迁移进度进入准备完成阶段后, 调用本接口, 停止迁移增量数据。
+    /// 通过DescribeMigrateJobs接口查询到任务的状态为准备完成（status=8）时，此时可以调用本接口完成迁移任务。
+    @inlinable
+    public func completeMigrateJob(_ input: CompleteMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CompleteMigrateJobResponse > {
+        self.client.execute(action: "CompleteMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 完成数据迁移任务
+    ///
+    /// 本接口（CompleteMigrateJob）用于完成数据迁移任务。
+    /// 选择采用增量迁移方式的任务, 需要在迁移进度进入准备完成阶段后, 调用本接口, 停止迁移增量数据。
+    /// 通过DescribeMigrateJobs接口查询到任务的状态为准备完成（status=8）时，此时可以调用本接口完成迁移任务。
+    @inlinable
+    public func completeMigrateJob(_ input: CompleteMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteMigrateJobResponse {
+        try await self.client.execute(action: "CompleteMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

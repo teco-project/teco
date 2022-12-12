@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Cii {
-    /// 上传医疗影像文件
-    ///
-    /// 上传医疗影像文件，可以用来做结构化。
-    @inlinable
-    public func uploadMedicalFile(_ input: UploadMedicalFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadMedicalFileResponse > {
-        self.client.execute(action: "UploadMedicalFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上传医疗影像文件
-    ///
-    /// 上传医疗影像文件，可以用来做结构化。
-    @inlinable
-    public func uploadMedicalFile(_ input: UploadMedicalFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadMedicalFileResponse {
-        try await self.client.execute(action: "UploadMedicalFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadMedicalFile请求参数结构体
     public struct UploadMedicalFileRequest: TCRequestModel {
         /// 文件的URL地址。File与FileURL不能同时为空，若File参数也存在，会只取File的内容。
         public let fileURL: String?
         
-        public init (fileURL: String?) {
+        public init (fileURL: String? = nil) {
             self.fileURL = fileURL
         }
         
@@ -58,5 +42,21 @@ extension Cii {
             case fileKey = "FileKey"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上传医疗影像文件
+    ///
+    /// 上传医疗影像文件，可以用来做结构化。
+    @inlinable
+    public func uploadMedicalFile(_ input: UploadMedicalFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadMedicalFileResponse > {
+        self.client.execute(action: "UploadMedicalFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上传医疗影像文件
+    ///
+    /// 上传医疗影像文件，可以用来做结构化。
+    @inlinable
+    public func uploadMedicalFile(_ input: UploadMedicalFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadMedicalFileResponse {
+        try await self.client.execute(action: "UploadMedicalFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 查询Logstash实例日志
-    ///
-    /// 查询用户该地域下符合条件的Logstash实例的日志
-    @inlinable
-    public func describeLogstashInstanceLogs(_ input: DescribeLogstashInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogstashInstanceLogsResponse > {
-        self.client.execute(action: "DescribeLogstashInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Logstash实例日志
-    ///
-    /// 查询用户该地域下符合条件的Logstash实例的日志
-    @inlinable
-    public func describeLogstashInstanceLogs(_ input: DescribeLogstashInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashInstanceLogsResponse {
-        try await self.client.execute(action: "DescribeLogstashInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLogstashInstanceLogs请求参数结构体
     public struct DescribeLogstashInstanceLogsRequest: TCRequestModel {
         /// 实例ID
@@ -62,7 +46,7 @@ extension Es {
         /// <li>1, 升序</li>
         public let orderByType: UInt64?
         
-        public init (instanceId: String, logType: UInt64?, searchKey: String?, startTime: String?, endTime: String?, offset: UInt64?, limit: UInt64?, orderByType: UInt64?) {
+        public init (instanceId: String, logType: UInt64? = nil, searchKey: String? = nil, startTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderByType: UInt64? = nil) {
             self.instanceId = instanceId
             self.logType = logType
             self.searchKey = searchKey
@@ -101,5 +85,21 @@ extension Es {
             case instanceLogList = "InstanceLogList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Logstash实例日志
+    ///
+    /// 查询用户该地域下符合条件的Logstash实例的日志
+    @inlinable
+    public func describeLogstashInstanceLogs(_ input: DescribeLogstashInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogstashInstanceLogsResponse > {
+        self.client.execute(action: "DescribeLogstashInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Logstash实例日志
+    ///
+    /// 查询用户该地域下符合条件的Logstash实例的日志
+    @inlinable
+    public func describeLogstashInstanceLogs(_ input: DescribeLogstashInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashInstanceLogsResponse {
+        try await self.client.execute(action: "DescribeLogstashInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

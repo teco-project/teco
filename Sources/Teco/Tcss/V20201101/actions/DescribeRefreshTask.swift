@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询刷新任务
-    @inlinable
-    public func describeRefreshTask(_ input: DescribeRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRefreshTaskResponse > {
-        self.client.execute(action: "DescribeRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询刷新任务
-    @inlinable
-    public func describeRefreshTask(_ input: DescribeRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRefreshTaskResponse {
-        try await self.client.execute(action: "DescribeRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRefreshTask请求参数结构体
     public struct DescribeRefreshTaskRequest: TCRequestModel {
         /// 任务ID
@@ -53,5 +41,17 @@ extension Tcss {
             case taskStatus = "TaskStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询刷新任务
+    @inlinable
+    public func describeRefreshTask(_ input: DescribeRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRefreshTaskResponse > {
+        self.client.execute(action: "DescribeRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询刷新任务
+    @inlinable
+    public func describeRefreshTask(_ input: DescribeRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRefreshTaskResponse {
+        try await self.client.execute(action: "DescribeRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

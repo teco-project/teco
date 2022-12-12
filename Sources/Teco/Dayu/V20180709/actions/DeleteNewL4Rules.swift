@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 删除四层转发规则
-    ///
-    /// 删除L4转发规则
-    @inlinable
-    public func deleteNewL4Rules(_ input: DeleteNewL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNewL4RulesResponse > {
-        self.client.execute(action: "DeleteNewL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除四层转发规则
-    ///
-    /// 删除L4转发规则
-    @inlinable
-    public func deleteNewL4Rules(_ input: DeleteNewL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNewL4RulesResponse {
-        try await self.client.execute(action: "DeleteNewL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteNewL4Rules请求参数结构体
     public struct DeleteNewL4RulesRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP）
@@ -62,5 +46,21 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除四层转发规则
+    ///
+    /// 删除L4转发规则
+    @inlinable
+    public func deleteNewL4Rules(_ input: DeleteNewL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNewL4RulesResponse > {
+        self.client.execute(action: "DeleteNewL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除四层转发规则
+    ///
+    /// 删除L4转发规则
+    @inlinable
+    public func deleteNewL4Rules(_ input: DeleteNewL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNewL4RulesResponse {
+        try await self.client.execute(action: "DeleteNewL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

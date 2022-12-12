@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 角色修改
-    @inlinable
-    public func modifyRole(_ input: ModifyRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRoleResponse > {
-        self.client.execute(action: "ModifyRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 角色修改
-    @inlinable
-    public func modifyRole(_ input: ModifyRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoleResponse {
-        try await self.client.execute(action: "ModifyRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRole请求参数结构体
     public struct ModifyRoleRequest: TCRequestModel {
         /// 角色名称，不支持中字以及除了短线和下划线外的特殊字符且长度必须大于0且小等于32。
@@ -38,7 +26,7 @@ extension Tdmq {
         /// 必填字段，集群Id
         public let clusterId: String?
         
-        public init (roleName: String, remark: String?, clusterId: String?) {
+        public init (roleName: String, remark: String? = nil, clusterId: String? = nil) {
             self.roleName = roleName
             self.remark = remark
             self.clusterId = clusterId
@@ -67,5 +55,17 @@ extension Tdmq {
             case remark = "Remark"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 角色修改
+    @inlinable
+    public func modifyRole(_ input: ModifyRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRoleResponse > {
+        self.client.execute(action: "ModifyRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 角色修改
+    @inlinable
+    public func modifyRole(_ input: ModifyRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoleResponse {
+        try await self.client.execute(action: "ModifyRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

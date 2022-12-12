@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取通道录制文件列表
-    ///
-    /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表
-    @inlinable
-    public func describeVideoListByChannel(_ input: DescribeVideoListByChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoListByChannelResponse > {
-        self.client.execute(action: "DescribeVideoListByChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取通道录制文件列表
-    ///
-    /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表
-    @inlinable
-    public func describeVideoListByChannel(_ input: DescribeVideoListByChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoListByChannelResponse {
-        try await self.client.execute(action: "DescribeVideoListByChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVideoListByChannel请求参数结构体
     public struct DescribeVideoListByChannelRequest: TCRequestModel {
         /// 设备唯一标识
@@ -52,7 +36,7 @@ extension Iotvideoindustry {
         /// 偏移量，默认0
         public let offset: Int64?
         
-        public init (deviceId: String, channelId: String, type: Int64, date: String?, limit: Int64?, offset: Int64?) {
+        public init (deviceId: String, channelId: String, type: Int64, date: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.deviceId = deviceId
             self.channelId = channelId
             self.type = type
@@ -89,5 +73,21 @@ extension Iotvideoindustry {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取通道录制文件列表
+    ///
+    /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表
+    @inlinable
+    public func describeVideoListByChannel(_ input: DescribeVideoListByChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVideoListByChannelResponse > {
+        self.client.execute(action: "DescribeVideoListByChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取通道录制文件列表
+    ///
+    /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表
+    @inlinable
+    public func describeVideoListByChannel(_ input: DescribeVideoListByChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoListByChannelResponse {
+        try await self.client.execute(action: "DescribeVideoListByChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

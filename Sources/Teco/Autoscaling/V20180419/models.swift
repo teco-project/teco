@@ -376,7 +376,7 @@ extension As {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let throughputPerformance: UInt64?
         
-        public init (diskType: String?, diskSize: UInt64?, snapshotId: String?, deleteWithInstance: Bool?, encrypt: Bool?, throughputPerformance: UInt64?) {
+        public init (diskType: String? = nil, diskSize: UInt64? = nil, snapshotId: String? = nil, deleteWithInstance: Bool? = nil, encrypt: Bool? = nil, throughputPerformance: UInt64? = nil) {
             self.diskType = diskType
             self.diskSize = diskSize
             self.snapshotId = snapshotId
@@ -432,18 +432,18 @@ extension As {
     /// 描述了实例的增强服务启用情况与其设置，如云安全，云监控，自动化助手等实例 Agent。
     public struct EnhancedService: TCInputModel, TCOutputModel {
         /// 开启云安全服务。若不指定该参数，则默认开启云安全服务。
-        public let securityService: RunSecurityServiceEnabled
+        public let securityService: RunSecurityServiceEnabled?
         
         /// 开启云监控服务。若不指定该参数，则默认开启云监控服务。
-        public let monitorService: RunMonitorServiceEnabled
+        public let monitorService: RunMonitorServiceEnabled?
         
         /// 该参数已废弃，查询时会返回空值，请勿使用。
         public let automationService: [RunAutomationServiceEnabled]?
         
         /// 开启自动化助手服务。若不指定该参数，则默认逻辑与CVM保持一致。注意：此字段可能返回 null，表示取不到有效值。
-        public let automationToolsService: RunAutomationServiceEnabled
+        public let automationToolsService: RunAutomationServiceEnabled?
         
-        public init (securityService: RunSecurityServiceEnabled, monitorService: RunMonitorServiceEnabled, automationService: [RunAutomationServiceEnabled]?, automationToolsService: RunAutomationServiceEnabled) {
+        public init (securityService: RunSecurityServiceEnabled? = nil, monitorService: RunMonitorServiceEnabled? = nil, automationService: [RunAutomationServiceEnabled]? = nil, automationToolsService: RunAutomationServiceEnabled? = nil) {
             self.securityService = securityService
             self.monitorService = monitorService
             self.automationService = automationService
@@ -505,7 +505,7 @@ extension As {
         /// 负载均衡实例所属地域，默认取AS服务所在地域。格式与公共参数Region相同，如："ap-guangzhou"。
         public let region: String?
         
-        public init (loadBalancerId: String, listenerId: String, targetAttributes: [TargetAttribute], locationId: String?, region: String?) {
+        public init (loadBalancerId: String, listenerId: String, targetAttributes: [TargetAttribute], locationId: String? = nil, region: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.targetAttributes = targetAttributes
@@ -533,7 +533,7 @@ extension As {
         /// 转发规则ID，注意：针对七层监听器此参数必填
         public let locationId: String?
         
-        public init (loadBalancerId: String, listenerId: String, locationId: String?) {
+        public init (loadBalancerId: String, listenerId: String, locationId: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.locationId = locationId
@@ -553,7 +553,7 @@ extension As {
         /// <br><li> 不支持 Windows 实例。
         /// <br><li> 其他类型（Linux 等）实例：字符长度为[2, 40]，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。不允许为纯数字。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let hostName: String
+        public let hostName: String?
         
         /// 云服务器主机名的风格，取值范围包括 ORIGINAL 和  UNIQUE，默认为 ORIGINAL。
         /// <br><li> ORIGINAL，AS 直接将入参中所填的 HostName 传递给 CVM，CVM 可能会对 HostName 追加序列号，伸缩组中实例的 HostName 会出现冲突的情况。
@@ -561,7 +561,7 @@ extension As {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostNameStyle: String?
         
-        public init (hostName: String, hostNameStyle: String?) {
+        public init (hostName: String, hostNameStyle: String? = nil) {
             self.hostName = hostName
             self.hostNameStyle = hostNameStyle
         }
@@ -588,7 +588,7 @@ extension As {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bandwidthPackageId: String?
         
-        public init (internetChargeType: String?, internetMaxBandwidthOut: UInt64?, bandwidthPackageId: String?) {
+        public init (internetChargeType: String? = nil, internetMaxBandwidthOut: UInt64? = nil, bandwidthPackageId: String? = nil) {
             self.internetChargeType = internetChargeType
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
             self.bandwidthPackageId = bandwidthPackageId
@@ -681,7 +681,7 @@ extension As {
         /// 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费<br><br>默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String?
         
-        public init (period: Int64, renewFlag: String?) {
+        public init (period: Int64, renewFlag: String? = nil) {
             self.period = period
             self.renewFlag = renewFlag
         }
@@ -701,7 +701,7 @@ extension As {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let marketType: String?
         
-        public init (spotOptions: SpotMarketOptions, marketType: String?) {
+        public init (spotOptions: SpotMarketOptions, marketType: String? = nil) {
             self.spotOptions = spotOptions
             self.marketType = marketType
         }
@@ -724,7 +724,7 @@ extension As {
         /// UNIQUE，入参所填的 InstanceName 相当于实例名前缀，AS 和 CVM 会对其进行拓展，伸缩组中实例的 InstanceName 可以保证唯一。
         public let instanceNameStyle: String?
         
-        public init (instanceName: String, instanceNameStyle: String?) {
+        public init (instanceName: String, instanceNameStyle: String? = nil) {
             self.instanceName = instanceName
             self.instanceNameStyle = instanceNameStyle
         }
@@ -772,7 +772,7 @@ extension As {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bandwidthPackageId: String?
         
-        public init (internetChargeType: String?, internetMaxBandwidthOut: UInt64?, publicIpAssigned: Bool?, bandwidthPackageId: String?) {
+        public init (internetChargeType: String? = nil, internetMaxBandwidthOut: UInt64? = nil, publicIpAssigned: Bool? = nil, bandwidthPackageId: String? = nil) {
             self.internetChargeType = internetChargeType
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
             self.publicIpAssigned = publicIpAssigned
@@ -879,7 +879,7 @@ extension As {
         
         /// 实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instanceMarketOptions: InstanceMarketOptionsRequest
+        public let instanceMarketOptions: InstanceMarketOptionsRequest?
         
         /// 实例机型列表。
         public let instanceTypes: [String]
@@ -1011,7 +1011,7 @@ extension As {
     public struct LifecycleCommand: TCInputModel, TCOutputModel {
         /// 远程命令ID。若选择执行命令，则此项必填。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let commandId: String
+        public let commandId: String?
         
         /// 自定义参数。字段类型为 json encoded string。如：{"varA": "222"}。
         /// key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
@@ -1020,7 +1020,7 @@ extension As {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let parameters: String?
         
-        public init (commandId: String, parameters: String?) {
+        public init (commandId: String, parameters: String? = nil) {
             self.commandId = commandId
             self.parameters = parameters
         }
@@ -1066,7 +1066,7 @@ extension As {
         
         /// 远程命令执行对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let lifecycleCommand: LifecycleCommand
+        public let lifecycleCommand: LifecycleCommand?
         
         enum CodingKeys: String, CodingKey {
             case lifecycleHookId = "LifecycleHookId"
@@ -1106,7 +1106,7 @@ extension As {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keepImageLogin: Bool?
         
-        public init (password: String?, keyIds: [String]?, keepImageLogin: Bool?) {
+        public init (password: String? = nil, keyIds: [String]? = nil, keepImageLogin: Bool? = nil) {
             self.password = password
             self.keyIds = keyIds
             self.keepImageLogin = keepImageLogin
@@ -1139,7 +1139,7 @@ extension As {
         /// 统计类型，可选字段如下：<br><li>AVERAGE：平均值</li><li>MAXIMUM：最大值<li>MINIMUM：最小值</li><br> 默认取值：AVERAGE
         public let statistic: String?
         
-        public init (comparisonOperator: String, metricName: String, threshold: UInt64, period: UInt64, continuousTime: UInt64, statistic: String?) {
+        public init (comparisonOperator: String, metricName: String, threshold: UInt64, period: UInt64, continuousTime: UInt64, statistic: String? = nil) {
             self.comparisonOperator = comparisonOperator
             self.metricName = metricName
             self.threshold = threshold
@@ -1173,7 +1173,7 @@ extension As {
         /// 主题名称，如果`TargetType`取值为`CMQ_TOPIC` 或 `TDMQ_CMQ_TOPIC`，则本字段必填。
         public let topicName: String?
         
-        public init (targetType: String, queueName: String?, topicName: String?) {
+        public init (targetType: String, queueName: String? = nil, topicName: String? = nil) {
             self.targetType = targetType
             self.queueName = queueName
             self.topicName = topicName
@@ -1192,7 +1192,7 @@ extension As {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enabled: Bool?
         
-        public init (enabled: Bool?) {
+        public init (enabled: Bool? = nil) {
             self.enabled = enabled
         }
         
@@ -1207,7 +1207,7 @@ extension As {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enabled: Bool?
         
-        public init (enabled: Bool?) {
+        public init (enabled: Bool? = nil) {
             self.enabled = enabled
         }
         
@@ -1222,7 +1222,7 @@ extension As {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enabled: Bool?
         
-        public init (enabled: Bool?) {
+        public init (enabled: Bool? = nil) {
             self.enabled = enabled
         }
         
@@ -1336,7 +1336,7 @@ extension As {
         /// 开启负载均衡不健康替换服务。若开启则对于负载均衡健康检查判断不健康的实例，弹性伸缩服务会进行替换。若不指定该参数，则默认为 False。
         public let replaceLoadBalancerUnhealthy: Bool?
         
-        public init (replaceMonitorUnhealthy: Bool?, scalingMode: String?, replaceLoadBalancerUnhealthy: Bool?) {
+        public init (replaceMonitorUnhealthy: Bool? = nil, scalingMode: String? = nil, replaceLoadBalancerUnhealthy: Bool? = nil) {
             self.replaceMonitorUnhealthy = replaceMonitorUnhealthy
             self.scalingMode = scalingMode
             self.replaceLoadBalancerUnhealthy = replaceLoadBalancerUnhealthy
@@ -1358,7 +1358,7 @@ extension As {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let spotInstanceType: String?
         
-        public init (maxPrice: String, spotInstanceType: String?) {
+        public init (maxPrice: String, spotInstanceType: String? = nil) {
             self.maxPrice = maxPrice
             self.spotInstanceType = spotInstanceType
         }
@@ -1393,7 +1393,7 @@ extension As {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compensateWithBaseInstance: Bool?
         
-        public init (baseCapacity: UInt64?, onDemandPercentageAboveBaseCapacity: UInt64?, spotAllocationStrategy: String?, compensateWithBaseInstance: Bool?) {
+        public init (baseCapacity: UInt64? = nil, onDemandPercentageAboveBaseCapacity: UInt64? = nil, spotAllocationStrategy: String? = nil, compensateWithBaseInstance: Bool? = nil) {
             self.baseCapacity = baseCapacity
             self.onDemandPercentageAboveBaseCapacity = onDemandPercentageAboveBaseCapacity
             self.spotAllocationStrategy = spotAllocationStrategy
@@ -1418,7 +1418,7 @@ extension As {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskSize: UInt64?
         
-        public init (diskType: String?, diskSize: UInt64?) {
+        public init (diskType: String? = nil, diskSize: UInt64? = nil) {
             self.diskType = diskType
             self.diskSize = diskSize
         }
@@ -1441,7 +1441,7 @@ extension As {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceType: String?
         
-        public init (key: String, value: String, resourceType: String?) {
+        public init (key: String, value: String, resourceType: String? = nil) {
             self.key = key
             self.value = value
             self.resourceType = resourceType

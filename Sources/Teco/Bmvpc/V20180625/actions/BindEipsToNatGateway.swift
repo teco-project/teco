@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// NAT网关绑定EIP
-    ///
-    /// NAT网关绑定EIP接口，可将EIP绑定到NAT网关，该EIP作为访问外网的源IP地址，将流量发送到Internet
-    @inlinable
-    public func bindEipsToNatGateway(_ input: BindEipsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindEipsToNatGatewayResponse > {
-        self.client.execute(action: "BindEipsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// NAT网关绑定EIP
-    ///
-    /// NAT网关绑定EIP接口，可将EIP绑定到NAT网关，该EIP作为访问外网的源IP地址，将流量发送到Internet
-    @inlinable
-    public func bindEipsToNatGateway(_ input: BindEipsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEipsToNatGatewayResponse {
-        try await self.client.execute(action: "BindEipsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindEipsToNatGateway请求参数结构体
     public struct BindEipsToNatGatewayRequest: TCRequestModel {
         /// NAT网关ID，例如：nat-kdm476mp
@@ -45,7 +29,7 @@ extension Bmvpc {
         /// 新建EIP数目，系统将会按您的要求生产该数目个数EIP；AssignedEips和AutoAllocEipNum至少输入一个
         public let autoAllocEipNum: UInt64?
         
-        public init (natId: String, vpcId: String, assignedEips: [String]?, autoAllocEipNum: UInt64?) {
+        public init (natId: String, vpcId: String, assignedEips: [String]? = nil, autoAllocEipNum: UInt64? = nil) {
             self.natId = natId
             self.vpcId = vpcId
             self.assignedEips = assignedEips
@@ -72,5 +56,21 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// NAT网关绑定EIP
+    ///
+    /// NAT网关绑定EIP接口，可将EIP绑定到NAT网关，该EIP作为访问外网的源IP地址，将流量发送到Internet
+    @inlinable
+    public func bindEipsToNatGateway(_ input: BindEipsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindEipsToNatGatewayResponse > {
+        self.client.execute(action: "BindEipsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// NAT网关绑定EIP
+    ///
+    /// NAT网关绑定EIP接口，可将EIP绑定到NAT网关，该EIP作为访问外网的源IP地址，将流量发送到Internet
+    @inlinable
+    public func bindEipsToNatGateway(_ input: BindEipsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEipsToNatGatewayResponse {
+        try await self.client.execute(action: "BindEipsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

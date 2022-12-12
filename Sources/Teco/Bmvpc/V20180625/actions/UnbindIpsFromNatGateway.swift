@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// NAT网关解绑IP
-    ///
-    /// NAT网关解绑IP接口，可将子网的部分IP从NAT网关中解绑
-    @inlinable
-    public func unbindIpsFromNatGateway(_ input: UnbindIpsFromNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindIpsFromNatGatewayResponse > {
-        self.client.execute(action: "UnbindIpsFromNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// NAT网关解绑IP
-    ///
-    /// NAT网关解绑IP接口，可将子网的部分IP从NAT网关中解绑
-    @inlinable
-    public func unbindIpsFromNatGateway(_ input: UnbindIpsFromNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindIpsFromNatGatewayResponse {
-        try await self.client.execute(action: "UnbindIpsFromNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindIpsFromNatGateway请求参数结构体
     public struct UnbindIpsFromNatGatewayRequest: TCRequestModel {
         /// NAT网关ID，例如：nat-kdm476mp
@@ -67,5 +51,21 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// NAT网关解绑IP
+    ///
+    /// NAT网关解绑IP接口，可将子网的部分IP从NAT网关中解绑
+    @inlinable
+    public func unbindIpsFromNatGateway(_ input: UnbindIpsFromNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindIpsFromNatGatewayResponse > {
+        self.client.execute(action: "UnbindIpsFromNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// NAT网关解绑IP
+    ///
+    /// NAT网关解绑IP接口，可将子网的部分IP从NAT网关中解绑
+    @inlinable
+    public func unbindIpsFromNatGateway(_ input: UnbindIpsFromNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindIpsFromNatGatewayResponse {
+        try await self.client.execute(action: "UnbindIpsFromNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

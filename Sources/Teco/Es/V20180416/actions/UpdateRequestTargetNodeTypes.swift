@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 更新接收客户端请求的节点类型
-    @inlinable
-    public func updateRequestTargetNodeTypes(_ input: UpdateRequestTargetNodeTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRequestTargetNodeTypesResponse > {
-        self.client.execute(action: "UpdateRequestTargetNodeTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新接收客户端请求的节点类型
-    @inlinable
-    public func updateRequestTargetNodeTypes(_ input: UpdateRequestTargetNodeTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRequestTargetNodeTypesResponse {
-        try await self.client.execute(action: "UpdateRequestTargetNodeTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateRequestTargetNodeTypes请求参数结构体
     public struct UpdateRequestTargetNodeTypesRequest: TCRequestModel {
         /// 实例ID
@@ -54,5 +42,17 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新接收客户端请求的节点类型
+    @inlinable
+    public func updateRequestTargetNodeTypes(_ input: UpdateRequestTargetNodeTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRequestTargetNodeTypesResponse > {
+        self.client.execute(action: "UpdateRequestTargetNodeTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新接收客户端请求的节点类型
+    @inlinable
+    public func updateRequestTargetNodeTypes(_ input: UpdateRequestTargetNodeTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRequestTargetNodeTypesResponse {
+        try await self.client.execute(action: "UpdateRequestTargetNodeTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

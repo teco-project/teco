@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 镜像绑定规则列表
-    ///
-    /// 镜像绑定规则列表信息，包含运行时访问控制和异常进程公用
-    @inlinable
-    public func describeAssetImageBindRuleInfo(_ input: DescribeAssetImageBindRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageBindRuleInfoResponse > {
-        self.client.execute(action: "DescribeAssetImageBindRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 镜像绑定规则列表
-    ///
-    /// 镜像绑定规则列表信息，包含运行时访问控制和异常进程公用
-    @inlinable
-    public func describeAssetImageBindRuleInfo(_ input: DescribeAssetImageBindRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageBindRuleInfoResponse {
-        try await self.client.execute(action: "DescribeAssetImageBindRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageBindRuleInfo请求参数结构体
     public struct DescribeAssetImageBindRuleInfoRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -51,7 +35,7 @@ extension Tcss {
         /// 排序字段
         public let by: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, order: String?, by: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -84,5 +68,21 @@ extension Tcss {
             case imageBindRuleSet = "ImageBindRuleSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 镜像绑定规则列表
+    ///
+    /// 镜像绑定规则列表信息，包含运行时访问控制和异常进程公用
+    @inlinable
+    public func describeAssetImageBindRuleInfo(_ input: DescribeAssetImageBindRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageBindRuleInfoResponse > {
+        self.client.execute(action: "DescribeAssetImageBindRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像绑定规则列表
+    ///
+    /// 镜像绑定规则列表信息，包含运行时访问控制和异常进程公用
+    @inlinable
+    public func describeAssetImageBindRuleInfo(_ input: DescribeAssetImageBindRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageBindRuleInfoResponse {
+        try await self.client.execute(action: "DescribeAssetImageBindRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

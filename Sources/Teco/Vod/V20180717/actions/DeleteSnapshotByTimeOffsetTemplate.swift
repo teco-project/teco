@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 删除指定时间点截图模板
-    ///
-    /// 删除用户自定义指定时间点截图模板。
-    @inlinable
-    public func deleteSnapshotByTimeOffsetTemplate(_ input: DeleteSnapshotByTimeOffsetTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotByTimeOffsetTemplateResponse > {
-        self.client.execute(action: "DeleteSnapshotByTimeOffsetTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除指定时间点截图模板
-    ///
-    /// 删除用户自定义指定时间点截图模板。
-    @inlinable
-    public func deleteSnapshotByTimeOffsetTemplate(_ input: DeleteSnapshotByTimeOffsetTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotByTimeOffsetTemplateResponse {
-        try await self.client.execute(action: "DeleteSnapshotByTimeOffsetTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSnapshotByTimeOffsetTemplate请求参数结构体
     public struct DeleteSnapshotByTimeOffsetTemplateRequest: TCRequestModel {
         /// 指定时间点截图模板唯一标识。
@@ -39,7 +23,7 @@ extension Vod {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
         
-        public init (definition: UInt64, subAppId: UInt64?) {
+        public init (definition: UInt64, subAppId: UInt64? = nil) {
             self.definition = definition
             self.subAppId = subAppId
         }
@@ -58,5 +42,21 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除指定时间点截图模板
+    ///
+    /// 删除用户自定义指定时间点截图模板。
+    @inlinable
+    public func deleteSnapshotByTimeOffsetTemplate(_ input: DeleteSnapshotByTimeOffsetTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotByTimeOffsetTemplateResponse > {
+        self.client.execute(action: "DeleteSnapshotByTimeOffsetTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除指定时间点截图模板
+    ///
+    /// 删除用户自定义指定时间点截图模板。
+    @inlinable
+    public func deleteSnapshotByTimeOffsetTemplate(_ input: DeleteSnapshotByTimeOffsetTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotByTimeOffsetTemplateResponse {
+        try await self.client.execute(action: "DeleteSnapshotByTimeOffsetTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

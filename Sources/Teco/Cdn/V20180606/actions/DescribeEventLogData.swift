@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 查询事件日志统计曲线
-    ///
-    /// DescribeEventLogData 用于查询事件日志统计曲线
-    @inlinable
-    public func describeEventLogData(_ input: DescribeEventLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEventLogDataResponse > {
-        self.client.execute(action: "DescribeEventLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询事件日志统计曲线
-    ///
-    /// DescribeEventLogData 用于查询事件日志统计曲线
-    @inlinable
-    public func describeEventLogData(_ input: DescribeEventLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventLogDataResponse {
-        try await self.client.execute(action: "DescribeEventLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEventLogData请求参数结构体
     public struct DescribeEventLogDataRequest: TCRequestModel {
         /// 防护类型，映射如下：
@@ -64,7 +48,7 @@ extension Cdn {
         /// 来源产品，cdn 或者 ecdn，为空时默认 cdn
         public let source: String?
         
-        public init (mode: String, startTime: String, endTime: String, domain: String, actionName: String, url: String, area: String?, source: String?) {
+        public init (mode: String, startTime: String, endTime: String, domain: String, actionName: String, url: String, area: String? = nil, source: String? = nil) {
             self.mode = mode
             self.startTime = startTime
             self.endTime = endTime
@@ -99,5 +83,21 @@ extension Cdn {
             case results = "Results"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询事件日志统计曲线
+    ///
+    /// DescribeEventLogData 用于查询事件日志统计曲线
+    @inlinable
+    public func describeEventLogData(_ input: DescribeEventLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEventLogDataResponse > {
+        self.client.execute(action: "DescribeEventLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询事件日志统计曲线
+    ///
+    /// DescribeEventLogData 用于查询事件日志统计曲线
+    @inlinable
+    public func describeEventLogData(_ input: DescribeEventLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventLogDataResponse {
+        try await self.client.execute(action: "DescribeEventLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudaudit {
-    /// 查询云审计跟踪集列表
-    @inlinable
-    public func describeAuditTracks(_ input: DescribeAuditTracksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditTracksResponse > {
-        self.client.execute(action: "DescribeAuditTracks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云审计跟踪集列表
-    @inlinable
-    public func describeAuditTracks(_ input: DescribeAuditTracksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditTracksResponse {
-        try await self.client.execute(action: "DescribeAuditTracks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAuditTracks请求参数结构体
     public struct DescribeAuditTracksRequest: TCRequestModel {
         /// 页码
@@ -62,5 +50,17 @@ extension Cloudaudit {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云审计跟踪集列表
+    @inlinable
+    public func describeAuditTracks(_ input: DescribeAuditTracksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditTracksResponse > {
+        self.client.execute(action: "DescribeAuditTracks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云审计跟踪集列表
+    @inlinable
+    public func describeAuditTracks(_ input: DescribeAuditTracksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditTracksResponse {
+        try await self.client.execute(action: "DescribeAuditTracks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

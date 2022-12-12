@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 管理实例公网访问
-    @inlinable
-    public func manageExternalEndpoint(_ input: ManageExternalEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageExternalEndpointResponse > {
-        self.client.execute(action: "ManageExternalEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 管理实例公网访问
-    @inlinable
-    public func manageExternalEndpoint(_ input: ManageExternalEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageExternalEndpointResponse {
-        try await self.client.execute(action: "ManageExternalEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ManageExternalEndpoint请求参数结构体
     public struct ManageExternalEndpointRequest: TCRequestModel {
         /// 实例Id
@@ -58,5 +46,17 @@ extension Tcr {
             case registryId = "RegistryId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 管理实例公网访问
+    @inlinable
+    public func manageExternalEndpoint(_ input: ManageExternalEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageExternalEndpointResponse > {
+        self.client.execute(action: "ManageExternalEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 管理实例公网访问
+    @inlinable
+    public func manageExternalEndpoint(_ input: ManageExternalEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageExternalEndpointResponse {
+        try await self.client.execute(action: "ManageExternalEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

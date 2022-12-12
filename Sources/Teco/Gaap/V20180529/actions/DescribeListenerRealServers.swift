@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 查询监听器源站列表
-    ///
-    /// 该接口（DescribeListenerRealServers）用于查询TCP/UDP监听器源站列表，包括该监听器已经绑定的源站列表以及可以绑定的源站列表。
-    @inlinable
-    public func describeListenerRealServers(_ input: DescribeListenerRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListenerRealServersResponse > {
-        self.client.execute(action: "DescribeListenerRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询监听器源站列表
-    ///
-    /// 该接口（DescribeListenerRealServers）用于查询TCP/UDP监听器源站列表，包括该监听器已经绑定的源站列表以及可以绑定的源站列表。
-    @inlinable
-    public func describeListenerRealServers(_ input: DescribeListenerRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListenerRealServersResponse {
-        try await self.client.execute(action: "DescribeListenerRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeListenerRealServers请求参数结构体
     public struct DescribeListenerRealServersRequest: TCRequestModel {
         /// 监听器ID
@@ -69,5 +53,21 @@ extension Gaap {
             case bindRealServerSet = "BindRealServerSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询监听器源站列表
+    ///
+    /// 该接口（DescribeListenerRealServers）用于查询TCP/UDP监听器源站列表，包括该监听器已经绑定的源站列表以及可以绑定的源站列表。
+    @inlinable
+    public func describeListenerRealServers(_ input: DescribeListenerRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListenerRealServersResponse > {
+        self.client.execute(action: "DescribeListenerRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询监听器源站列表
+    ///
+    /// 该接口（DescribeListenerRealServers）用于查询TCP/UDP监听器源站列表，包括该监听器已经绑定的源站列表以及可以绑定的源站列表。
+    @inlinable
+    public func describeListenerRealServers(_ input: DescribeListenerRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListenerRealServersResponse {
+        try await self.client.execute(action: "DescribeListenerRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 删除媒体
-    ///
-    /// * 删除媒体及其对应的视频处理文件（原始文件、如转码视频、雪碧图、截图、微信发布视频等）；
-    /// * 可单独删除指定 ID 的视频文件下的原文件、转码视频、微信发布视频等；
-    /// * 注意：原文件删除后，无法发起转码、微信发布等任何视频处理操作。
-    @inlinable
-    public func deleteMedia(_ input: DeleteMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMediaResponse > {
-        self.client.execute(action: "DeleteMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除媒体
-    ///
-    /// * 删除媒体及其对应的视频处理文件（原始文件、如转码视频、雪碧图、截图、微信发布视频等）；
-    /// * 可单独删除指定 ID 的视频文件下的原文件、转码视频、微信发布视频等；
-    /// * 注意：原文件删除后，无法发起转码、微信发布等任何视频处理操作。
-    @inlinable
-    public func deleteMedia(_ input: DeleteMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMediaResponse {
-        try await self.client.execute(action: "DeleteMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMedia请求参数结构体
     public struct DeleteMediaRequest: TCRequestModel {
         /// 媒体文件的唯一标识。
@@ -46,7 +26,7 @@ extension Vod {
         /// 指定本次需要删除的部分。默认值为 "[]", 表示删除媒体及其对应的全部视频处理文件。
         public let deleteParts: [MediaDeleteItem]?
         
-        public init (fileId: String, subAppId: UInt64?, deleteParts: [MediaDeleteItem]?) {
+        public init (fileId: String, subAppId: UInt64? = nil, deleteParts: [MediaDeleteItem]? = nil) {
             self.fileId = fileId
             self.subAppId = subAppId
             self.deleteParts = deleteParts
@@ -67,5 +47,25 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除媒体
+    ///
+    /// * 删除媒体及其对应的视频处理文件（原始文件、如转码视频、雪碧图、截图、微信发布视频等）；
+    /// * 可单独删除指定 ID 的视频文件下的原文件、转码视频、微信发布视频等；
+    /// * 注意：原文件删除后，无法发起转码、微信发布等任何视频处理操作。
+    @inlinable
+    public func deleteMedia(_ input: DeleteMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMediaResponse > {
+        self.client.execute(action: "DeleteMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除媒体
+    ///
+    /// * 删除媒体及其对应的视频处理文件（原始文件、如转码视频、雪碧图、截图、微信发布视频等）；
+    /// * 可单独删除指定 ID 的视频文件下的原文件、转码视频、微信发布视频等；
+    /// * 注意：原文件删除后，无法发起转码、微信发布等任何视频处理操作。
+    @inlinable
+    public func deleteMedia(_ input: DeleteMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMediaResponse {
+        try await self.client.execute(action: "DeleteMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

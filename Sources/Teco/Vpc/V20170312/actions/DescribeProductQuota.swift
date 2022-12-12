@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询网络产品配额信息
-    ///
-    /// 本接口用于查询网络产品的配额信息
-    @inlinable
-    public func describeProductQuota(_ input: DescribeProductQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductQuotaResponse > {
-        self.client.execute(action: "DescribeProductQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询网络产品配额信息
-    ///
-    /// 本接口用于查询网络产品的配额信息
-    @inlinable
-    public func describeProductQuota(_ input: DescribeProductQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductQuotaResponse {
-        try await self.client.execute(action: "DescribeProductQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProductQuota请求参数结构体
     public struct DescribeProductQuotaRequest: TCRequestModel {
         /// 查询的网络产品名称，可查询的产品有：vpc、ccn、vpn、dc、dfw、clb、eip。
@@ -61,5 +45,21 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询网络产品配额信息
+    ///
+    /// 本接口用于查询网络产品的配额信息
+    @inlinable
+    public func describeProductQuota(_ input: DescribeProductQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductQuotaResponse > {
+        self.client.execute(action: "DescribeProductQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网络产品配额信息
+    ///
+    /// 本接口用于查询网络产品的配额信息
+    @inlinable
+    public func describeProductQuota(_ input: DescribeProductQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductQuotaResponse {
+        try await self.client.execute(action: "DescribeProductQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

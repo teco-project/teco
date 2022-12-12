@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// HTTP发送消息
-    ///
-    /// 通过HTTP接入层发送消息
-    @inlinable
-    public func sendMessage(_ input: SendMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendMessageResponse > {
-        self.client.execute(action: "SendMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// HTTP发送消息
-    ///
-    /// 通过HTTP接入层发送消息
-    @inlinable
-    public func sendMessage(_ input: SendMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessageResponse {
-        try await self.client.execute(action: "SendMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendMessage请求参数结构体
     public struct SendMessageRequest: TCRequestModel {
         /// DataHub接入ID
@@ -62,5 +46,21 @@ extension Ckafka {
             case messageId = "MessageId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// HTTP发送消息
+    ///
+    /// 通过HTTP接入层发送消息
+    @inlinable
+    public func sendMessage(_ input: SendMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendMessageResponse > {
+        self.client.execute(action: "SendMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// HTTP发送消息
+    ///
+    /// 通过HTTP接入层发送消息
+    @inlinable
+    public func sendMessage(_ input: SendMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessageResponse {
+        try await self.client.execute(action: "SendMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 根据订单id查询资源信息
-    ///
-    /// 根据计费订单id查询资源列表
-    @inlinable
-    public func describeResourcesByDealName(_ input: DescribeResourcesByDealNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesByDealNameResponse > {
-        self.client.execute(action: "DescribeResourcesByDealName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据订单id查询资源信息
-    ///
-    /// 根据计费订单id查询资源列表
-    @inlinable
-    public func describeResourcesByDealName(_ input: DescribeResourcesByDealNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByDealNameResponse {
-        try await self.client.execute(action: "DescribeResourcesByDealName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourcesByDealName请求参数结构体
     public struct DescribeResourcesByDealNameRequest: TCRequestModel {
         /// 计费订单ID（如果计费还没回调业务发货，可能出现错误码InvalidParameterValue.DealNameNotFound，这种情况需要业务重试DescribeResourcesByDealName接口直到成功）
@@ -39,7 +23,7 @@ extension Cynosdb {
         /// 计费订单ID列表，可以一次查询若干条订单ID对应资源信息（如果计费还没回调业务发货，可能出现错误码InvalidParameterValue.DealNameNotFound，这种情况需要业务重试DescribeResourcesByDealName接口直到成功）
         public let dealNames: [String]?
         
-        public init (dealName: String?, dealNames: [String]?) {
+        public init (dealName: String? = nil, dealNames: [String]? = nil) {
             self.dealName = dealName
             self.dealNames = dealNames
         }
@@ -62,5 +46,21 @@ extension Cynosdb {
             case billingResourceInfos = "BillingResourceInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据订单id查询资源信息
+    ///
+    /// 根据计费订单id查询资源列表
+    @inlinable
+    public func describeResourcesByDealName(_ input: DescribeResourcesByDealNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourcesByDealNameResponse > {
+        self.client.execute(action: "DescribeResourcesByDealName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据订单id查询资源信息
+    ///
+    /// 根据计费订单id查询资源列表
+    @inlinable
+    public func describeResourcesByDealName(_ input: DescribeResourcesByDealNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByDealNameResponse {
+        try await self.client.execute(action: "DescribeResourcesByDealName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

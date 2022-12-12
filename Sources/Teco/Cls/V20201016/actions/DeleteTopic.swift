@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 删除日志主题
-    ///
-    /// 本接口用于删除日志主题。
-    @inlinable
-    public func deleteTopic(_ input: DeleteTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTopicResponse > {
-        self.client.execute(action: "DeleteTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除日志主题
-    ///
-    /// 本接口用于删除日志主题。
-    @inlinable
-    public func deleteTopic(_ input: DeleteTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicResponse {
-        try await self.client.execute(action: "DeleteTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTopic请求参数结构体
     public struct DeleteTopicRequest: TCRequestModel {
         /// 日志主题ID
@@ -53,5 +37,21 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除日志主题
+    ///
+    /// 本接口用于删除日志主题。
+    @inlinable
+    public func deleteTopic(_ input: DeleteTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTopicResponse > {
+        self.client.execute(action: "DeleteTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除日志主题
+    ///
+    /// 本接口用于删除日志主题。
+    @inlinable
+    public func deleteTopic(_ input: DeleteTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicResponse {
+        try await self.client.execute(action: "DeleteTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

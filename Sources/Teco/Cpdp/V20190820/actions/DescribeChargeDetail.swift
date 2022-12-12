@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 查询充值明细接口
-    @inlinable
-    public func describeChargeDetail(_ input: DescribeChargeDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChargeDetailResponse > {
-        self.client.execute(action: "DescribeChargeDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询充值明细接口
-    @inlinable
-    public func describeChargeDetail(_ input: DescribeChargeDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChargeDetailResponse {
-        try await self.client.execute(action: "DescribeChargeDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeChargeDetail请求参数结构体
     public struct DescribeChargeDetailRequest: TCRequestModel {
         /// 请求类型
@@ -71,7 +59,7 @@ extension Cpdp {
         /// 保留域
         public let reservedMessage: String?
         
-        public init (requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, acquiringChannelType: String, platformShortNumber: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSequenceNumber: String, midasEnvironment: String, reservedMessage: String?) {
+        public init (requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, acquiringChannelType: String, platformShortNumber: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSequenceNumber: String, midasEnvironment: String, reservedMessage: String? = nil) {
             self.requestType = requestType
             self.merchantCode = merchantCode
             self.payChannel = payChannel
@@ -166,5 +154,17 @@ extension Cpdp {
             case requestType = "RequestType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询充值明细接口
+    @inlinable
+    public func describeChargeDetail(_ input: DescribeChargeDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChargeDetailResponse > {
+        self.client.execute(action: "DescribeChargeDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询充值明细接口
+    @inlinable
+    public func describeChargeDetail(_ input: DescribeChargeDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChargeDetailResponse {
+        try await self.client.execute(action: "DescribeChargeDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

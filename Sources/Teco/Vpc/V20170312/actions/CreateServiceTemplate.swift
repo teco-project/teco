@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建协议端口模板
-    ///
-    /// 本接口（CreateServiceTemplate）用于创建协议端口模板
-    @inlinable
-    public func createServiceTemplate(_ input: CreateServiceTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceTemplateResponse > {
-        self.client.execute(action: "CreateServiceTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建协议端口模板
-    ///
-    /// 本接口（CreateServiceTemplate）用于创建协议端口模板
-    @inlinable
-    public func createServiceTemplate(_ input: CreateServiceTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceTemplateResponse {
-        try await self.client.execute(action: "CreateServiceTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateServiceTemplate请求参数结构体
     public struct CreateServiceTemplateRequest: TCRequestModel {
         /// 协议端口模板名称
@@ -42,7 +26,7 @@ extension Vpc {
         /// 支持添加备注，单个端口、多个端口、连续端口及所有端口，协议支持：TCP、UDP、ICMP、GRE 协议。Services与ServicesExtra必填其一。
         public let servicesExtra: [ServicesInfo]?
         
-        public init (serviceTemplateName: String, services: [String]?, servicesExtra: [ServicesInfo]?) {
+        public init (serviceTemplateName: String, services: [String]? = nil, servicesExtra: [ServicesInfo]? = nil) {
             self.serviceTemplateName = serviceTemplateName
             self.services = services
             self.servicesExtra = servicesExtra
@@ -67,5 +51,21 @@ extension Vpc {
             case serviceTemplate = "ServiceTemplate"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建协议端口模板
+    ///
+    /// 本接口（CreateServiceTemplate）用于创建协议端口模板
+    @inlinable
+    public func createServiceTemplate(_ input: CreateServiceTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceTemplateResponse > {
+        self.client.execute(action: "CreateServiceTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建协议端口模板
+    ///
+    /// 本接口（CreateServiceTemplate）用于创建协议端口模板
+    @inlinable
+    public func createServiceTemplate(_ input: CreateServiceTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceTemplateResponse {
+        try await self.client.execute(action: "CreateServiceTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

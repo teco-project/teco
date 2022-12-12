@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 修改记录可选字段
-    @inlinable
-    public func modifyRecordFields(_ input: ModifyRecordFieldsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordFieldsResponse > {
-        self.client.execute(action: "ModifyRecordFields", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改记录可选字段
-    @inlinable
-    public func modifyRecordFields(_ input: ModifyRecordFieldsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordFieldsResponse {
-        try await self.client.execute(action: "ModifyRecordFields", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRecordFields请求参数结构体
     public struct ModifyRecordFieldsRequest: TCRequestModel {
         /// 域名
@@ -41,7 +29,7 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
         public let domainId: UInt64?
         
-        public init (domain: String, recordId: UInt64, fieldList: [KeyValue], domainId: UInt64?) {
+        public init (domain: String, recordId: UInt64, fieldList: [KeyValue], domainId: UInt64? = nil) {
             self.domain = domain
             self.recordId = recordId
             self.fieldList = fieldList
@@ -68,5 +56,17 @@ extension Dnspod {
             case recordId = "RecordId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改记录可选字段
+    @inlinable
+    public func modifyRecordFields(_ input: ModifyRecordFieldsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordFieldsResponse > {
+        self.client.execute(action: "ModifyRecordFields", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改记录可选字段
+    @inlinable
+    public func modifyRecordFields(_ input: ModifyRecordFieldsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordFieldsResponse {
+        try await self.client.execute(action: "ModifyRecordFields", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

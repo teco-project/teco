@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 查询克隆实例购买规格
-    ///
-    /// 本接口（DescribeCloneDBInstanceSpec）用于查询克隆实例可选择的最小规格，包括SpecCode和磁盘。
-    @inlinable
-    public func describeCloneDBInstanceSpec(_ input: DescribeCloneDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloneDBInstanceSpecResponse > {
-        self.client.execute(action: "DescribeCloneDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询克隆实例购买规格
-    ///
-    /// 本接口（DescribeCloneDBInstanceSpec）用于查询克隆实例可选择的最小规格，包括SpecCode和磁盘。
-    @inlinable
-    public func describeCloneDBInstanceSpec(_ input: DescribeCloneDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloneDBInstanceSpecResponse {
-        try await self.client.execute(action: "DescribeCloneDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloneDBInstanceSpec请求参数结构体
     public struct DescribeCloneDBInstanceSpecRequest: TCRequestModel {
         /// 实例ID。
@@ -42,7 +26,7 @@ extension Postgres {
         /// 恢复目标时间，此入参和BackupSetId必须选择一个传入。时区以东八区（UTC+8）为准。
         public let recoveryTargetTime: String?
         
-        public init (dbInstanceId: String, backupSetId: String?, recoveryTargetTime: String?) {
+        public init (dbInstanceId: String, backupSetId: String? = nil, recoveryTargetTime: String? = nil) {
             self.dbInstanceId = dbInstanceId
             self.backupSetId = backupSetId
             self.recoveryTargetTime = recoveryTargetTime
@@ -71,5 +55,21 @@ extension Postgres {
             case minStorage = "MinStorage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询克隆实例购买规格
+    ///
+    /// 本接口（DescribeCloneDBInstanceSpec）用于查询克隆实例可选择的最小规格，包括SpecCode和磁盘。
+    @inlinable
+    public func describeCloneDBInstanceSpec(_ input: DescribeCloneDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloneDBInstanceSpecResponse > {
+        self.client.execute(action: "DescribeCloneDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询克隆实例购买规格
+    ///
+    /// 本接口（DescribeCloneDBInstanceSpec）用于查询克隆实例可选择的最小规格，包括SpecCode和磁盘。
+    @inlinable
+    public func describeCloneDBInstanceSpec(_ input: DescribeCloneDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloneDBInstanceSpecResponse {
+        try await self.client.execute(action: "DescribeCloneDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

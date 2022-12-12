@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ic {
-    /// 编辑卡片备注
-    @inlinable
-    public func modifyUserCardRemark(_ input: ModifyUserCardRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserCardRemarkResponse > {
-        self.client.execute(action: "ModifyUserCardRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑卡片备注
-    @inlinable
-    public func modifyUserCardRemark(_ input: ModifyUserCardRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserCardRemarkResponse {
-        try await self.client.execute(action: "ModifyUserCardRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyUserCardRemark请求参数结构体
     public struct ModifyUserCardRemarkRequest: TCRequestModel {
         /// 应用ID
@@ -38,7 +26,7 @@ extension Ic {
         /// 备注信息，限50字
         public let remark: String?
         
-        public init (sdkappid: Int64, iccid: String, remark: String?) {
+        public init (sdkappid: Int64, iccid: String, remark: String? = nil) {
             self.sdkappid = sdkappid
             self.iccid = iccid
             self.remark = remark
@@ -59,5 +47,17 @@ extension Ic {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑卡片备注
+    @inlinable
+    public func modifyUserCardRemark(_ input: ModifyUserCardRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserCardRemarkResponse > {
+        self.client.execute(action: "ModifyUserCardRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑卡片备注
+    @inlinable
+    public func modifyUserCardRemark(_ input: ModifyUserCardRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserCardRemarkResponse {
+        try await self.client.execute(action: "ModifyUserCardRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 查询应用模板Yaml
-    @inlinable
-    public func describeApplicationYaml(_ input: DescribeApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationYamlResponse > {
-        self.client.execute(action: "DescribeApplicationYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询应用模板Yaml
-    @inlinable
-    public func describeApplicationYaml(_ input: DescribeApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationYamlResponse {
-        try await self.client.execute(action: "DescribeApplicationYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplicationYaml请求参数结构体
     public struct DescribeApplicationYamlRequest: TCRequestModel {
         /// 应用模板ID
@@ -54,5 +42,17 @@ extension Iecp {
             case yaml = "Yaml"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询应用模板Yaml
+    @inlinable
+    public func describeApplicationYaml(_ input: DescribeApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationYamlResponse > {
+        self.client.execute(action: "DescribeApplicationYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询应用模板Yaml
+    @inlinable
+    public func describeApplicationYaml(_ input: DescribeApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationYamlResponse {
+        try await self.client.execute(action: "DescribeApplicationYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

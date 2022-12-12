@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 中止安全组规则下发
-    @inlinable
-    public func stopSecurityGroupRuleDispatch(_ input: StopSecurityGroupRuleDispatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopSecurityGroupRuleDispatchResponse > {
-        self.client.execute(action: "StopSecurityGroupRuleDispatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 中止安全组规则下发
-    @inlinable
-    public func stopSecurityGroupRuleDispatch(_ input: StopSecurityGroupRuleDispatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopSecurityGroupRuleDispatchResponse {
-        try await self.client.execute(action: "StopSecurityGroupRuleDispatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopSecurityGroupRuleDispatch请求参数结构体
     public struct StopSecurityGroupRuleDispatchRequest: TCRequestModel {
         /// 值为1，中止全部
         public let stopType: Int64?
         
-        public init (stopType: Int64?) {
+        public init (stopType: Int64? = nil) {
             self.stopType = stopType
         }
         
@@ -54,5 +42,17 @@ extension Cfw {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 中止安全组规则下发
+    @inlinable
+    public func stopSecurityGroupRuleDispatch(_ input: StopSecurityGroupRuleDispatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopSecurityGroupRuleDispatchResponse > {
+        self.client.execute(action: "StopSecurityGroupRuleDispatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 中止安全组规则下发
+    @inlinable
+    public func stopSecurityGroupRuleDispatch(_ input: StopSecurityGroupRuleDispatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopSecurityGroupRuleDispatchResponse {
+        try await self.client.execute(action: "StopSecurityGroupRuleDispatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 删除RO组网络
-    ///
-    /// 可对RO组进行网络的删除操作。
-    @inlinable
-    public func deleteReadOnlyGroupNetworkAccess(_ input: DeleteReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReadOnlyGroupNetworkAccessResponse > {
-        self.client.execute(action: "DeleteReadOnlyGroupNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除RO组网络
-    ///
-    /// 可对RO组进行网络的删除操作。
-    @inlinable
-    public func deleteReadOnlyGroupNetworkAccess(_ input: DeleteReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReadOnlyGroupNetworkAccessResponse {
-        try await self.client.execute(action: "DeleteReadOnlyGroupNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteReadOnlyGroupNetworkAccess请求参数结构体
     public struct DeleteReadOnlyGroupNetworkAccessRequest: TCRequestModel {
         /// RO组ID，形如：pgro-4t9c6g7k。
@@ -73,5 +57,21 @@ extension Postgres {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除RO组网络
+    ///
+    /// 可对RO组进行网络的删除操作。
+    @inlinable
+    public func deleteReadOnlyGroupNetworkAccess(_ input: DeleteReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReadOnlyGroupNetworkAccessResponse > {
+        self.client.execute(action: "DeleteReadOnlyGroupNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除RO组网络
+    ///
+    /// 可对RO组进行网络的删除操作。
+    @inlinable
+    public func deleteReadOnlyGroupNetworkAccess(_ input: DeleteReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReadOnlyGroupNetworkAccessResponse {
+        try await self.client.execute(action: "DeleteReadOnlyGroupNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

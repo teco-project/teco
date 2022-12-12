@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 创建站点
-    ///
-    /// 用于用户接入新的站点。
-    @inlinable
-    public func createZone(_ input: CreateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateZoneResponse > {
-        self.client.execute(action: "CreateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建站点
-    ///
-    /// 用于用户接入新的站点。
-    @inlinable
-    public func createZone(_ input: CreateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
-        try await self.client.execute(action: "CreateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateZone请求参数结构体
     public struct CreateZoneRequest: TCRequestModel {
         /// 站点名称。
@@ -55,7 +39,7 @@ extension Teo {
         /// 站点别名。数字、英文、-和_组合，限制20个字符。
         public let aliasZoneName: String?
         
-        public init (zoneName: String, type: String?, jumpStart: Bool?, tags: [Tag]?, allowDuplicates: Bool?, aliasZoneName: String?) {
+        public init (zoneName: String, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, aliasZoneName: String? = nil) {
             self.zoneName = zoneName
             self.type = type
             self.jumpStart = jumpStart
@@ -86,5 +70,21 @@ extension Teo {
             case zoneId = "ZoneId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建站点
+    ///
+    /// 用于用户接入新的站点。
+    @inlinable
+    public func createZone(_ input: CreateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateZoneResponse > {
+        self.client.execute(action: "CreateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建站点
+    ///
+    /// 用于用户接入新的站点。
+    @inlinable
+    public func createZone(_ input: CreateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
+        try await self.client.execute(action: "CreateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

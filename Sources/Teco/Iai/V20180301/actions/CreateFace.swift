@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 增加人脸
-    ///
-    /// 将一组人脸图片添加到一个人员中。一个人员最多允许包含 5 张图片。若该人员存在多个人员库中，所有人员库中该人员图片均会增加。
-    /// >     
-    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func createFace(_ input: CreateFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFaceResponse > {
-        self.client.execute(action: "CreateFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 增加人脸
-    ///
-    /// 将一组人脸图片添加到一个人员中。一个人员最多允许包含 5 张图片。若该人员存在多个人员库中，所有人员库中该人员图片均会增加。
-    /// >     
-    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func createFace(_ input: CreateFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceResponse {
-        try await self.client.execute(action: "CreateFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFace请求参数结构体
     public struct CreateFaceRequest: TCRequestModel {
         /// 人员ID。
@@ -72,7 +52,7 @@ extension Iai {
         /// 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         public let needRotateDetection: UInt64?
         
-        public init (personId: String, images: [String]?, urls: [String]?, faceMatchThreshold: Float?, qualityControl: UInt64?, needRotateDetection: UInt64?) {
+        public init (personId: String, images: [String]? = nil, urls: [String]? = nil, faceMatchThreshold: Float? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil) {
             self.personId = personId
             self.images = images
             self.urls = urls
@@ -127,5 +107,25 @@ extension Iai {
             case faceModelVersion = "FaceModelVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 增加人脸
+    ///
+    /// 将一组人脸图片添加到一个人员中。一个人员最多允许包含 5 张图片。若该人员存在多个人员库中，所有人员库中该人员图片均会增加。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func createFace(_ input: CreateFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFaceResponse > {
+        self.client.execute(action: "CreateFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 增加人脸
+    ///
+    /// 将一组人脸图片添加到一个人员中。一个人员最多允许包含 5 张图片。若该人员存在多个人员库中，所有人员库中该人员图片均会增加。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func createFace(_ input: CreateFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceResponse {
+        try await self.client.execute(action: "CreateFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

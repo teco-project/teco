@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 判断告警规则重名
-    @inlinable
-    public func checkAlarmRegularNameExist(_ input: CheckAlarmRegularNameExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckAlarmRegularNameExistResponse > {
-        self.client.execute(action: "CheckAlarmRegularNameExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 判断告警规则重名
-    @inlinable
-    public func checkAlarmRegularNameExist(_ input: CheckAlarmRegularNameExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAlarmRegularNameExistResponse {
-        try await self.client.execute(action: "CheckAlarmRegularNameExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckAlarmRegularNameExist请求参数结构体
     public struct CheckAlarmRegularNameExistRequest: TCRequestModel {
         /// 项目名称
@@ -41,7 +29,7 @@ extension Wedata {
         /// 主键ID
         public let id: String?
         
-        public init (projectId: String, taskId: String, alarmRegularName: String, id: String?) {
+        public init (projectId: String, taskId: String, alarmRegularName: String, id: String? = nil) {
             self.projectId = projectId
             self.taskId = taskId
             self.alarmRegularName = alarmRegularName
@@ -68,5 +56,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 判断告警规则重名
+    @inlinable
+    public func checkAlarmRegularNameExist(_ input: CheckAlarmRegularNameExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckAlarmRegularNameExistResponse > {
+        self.client.execute(action: "CheckAlarmRegularNameExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 判断告警规则重名
+    @inlinable
+    public func checkAlarmRegularNameExist(_ input: CheckAlarmRegularNameExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAlarmRegularNameExistResponse {
+        try await self.client.execute(action: "CheckAlarmRegularNameExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

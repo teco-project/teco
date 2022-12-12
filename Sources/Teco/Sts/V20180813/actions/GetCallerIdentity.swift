@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Sts {
-    /// 获取当前调用者的身份信息
-    ///
-    /// 获取当前调用者的身份信息。
-    /// 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时凭据的身份获取。
-    @inlinable
-    public func getCallerIdentity(_ input: GetCallerIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCallerIdentityResponse > {
-        self.client.execute(action: "GetCallerIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取当前调用者的身份信息
-    ///
-    /// 获取当前调用者的身份信息。
-    /// 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时凭据的身份获取。
-    @inlinable
-    public func getCallerIdentity(_ input: GetCallerIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCallerIdentityResponse {
-        try await self.client.execute(action: "GetCallerIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetCallerIdentity请求参数结构体
     public struct GetCallerIdentityRequest: TCRequestModel {
         public init () {
@@ -72,5 +54,23 @@ extension Sts {
             case type = "Type"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取当前调用者的身份信息
+    ///
+    /// 获取当前调用者的身份信息。
+    /// 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时凭据的身份获取。
+    @inlinable
+    public func getCallerIdentity(_ input: GetCallerIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCallerIdentityResponse > {
+        self.client.execute(action: "GetCallerIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取当前调用者的身份信息
+    ///
+    /// 获取当前调用者的身份信息。
+    /// 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时凭据的身份获取。
+    @inlinable
+    public func getCallerIdentity(_ input: GetCallerIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCallerIdentityResponse {
+        try await self.client.execute(action: "GetCallerIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

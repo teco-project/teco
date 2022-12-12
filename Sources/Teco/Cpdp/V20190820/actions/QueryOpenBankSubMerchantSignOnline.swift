@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-子商户在线签约查询
-    ///
-    /// 子商户在线签约查询
-    @inlinable
-    public func queryOpenBankSubMerchantSignOnline(_ input: QueryOpenBankSubMerchantSignOnlineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankSubMerchantSignOnlineResponse > {
-        self.client.execute(action: "QueryOpenBankSubMerchantSignOnline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-子商户在线签约查询
-    ///
-    /// 子商户在线签约查询
-    @inlinable
-    public func queryOpenBankSubMerchantSignOnline(_ input: QueryOpenBankSubMerchantSignOnlineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSubMerchantSignOnlineResponse {
-        try await self.client.execute(action: "QueryOpenBankSubMerchantSignOnline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryOpenBankSubMerchantSignOnline请求参数结构体
     public struct QueryOpenBankSubMerchantSignOnlineRequest: TCRequestModel {
         /// 渠道商户号。外部平台接入云企付平台下发。必填。
@@ -45,7 +29,7 @@ extension Cpdp {
         /// 渠道子商户ID。
         public let channelSubMerchantId: String?
         
-        public init (channelMerchantId: String, channelName: String, outSubMerchantId: String?, channelSubMerchantId: String?) {
+        public init (channelMerchantId: String, channelName: String, outSubMerchantId: String? = nil, channelSubMerchantId: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.channelName = channelName
             self.outSubMerchantId = outSubMerchantId
@@ -70,7 +54,7 @@ extension Cpdp {
         
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: QueryOpenBankSubMerchantSignOnlineResult
+        public let result: QueryOpenBankSubMerchantSignOnlineResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -81,5 +65,21 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-子商户在线签约查询
+    ///
+    /// 子商户在线签约查询
+    @inlinable
+    public func queryOpenBankSubMerchantSignOnline(_ input: QueryOpenBankSubMerchantSignOnlineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankSubMerchantSignOnlineResponse > {
+        self.client.execute(action: "QueryOpenBankSubMerchantSignOnline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-子商户在线签约查询
+    ///
+    /// 子商户在线签约查询
+    @inlinable
+    public func queryOpenBankSubMerchantSignOnline(_ input: QueryOpenBankSubMerchantSignOnlineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSubMerchantSignOnlineResponse {
+        try await self.client.execute(action: "QueryOpenBankSubMerchantSignOnline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

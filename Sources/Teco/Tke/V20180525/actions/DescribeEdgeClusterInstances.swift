@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询边缘计算集群的节点信息
-    @inlinable
-    public func describeEdgeClusterInstances(_ input: DescribeEdgeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeClusterInstancesResponse > {
-        self.client.execute(action: "DescribeEdgeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询边缘计算集群的节点信息
-    @inlinable
-    public func describeEdgeClusterInstances(_ input: DescribeEdgeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterInstancesResponse {
-        try await self.client.execute(action: "DescribeEdgeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeClusterInstances请求参数结构体
     public struct DescribeEdgeClusterInstancesRequest: TCRequestModel {
         /// 集群id
@@ -41,7 +29,7 @@ extension Tke {
         /// 过滤条件，仅支持NodeName过滤
         public let filters: [Filter]?
         
-        public init (clusterID: String, limit: Int64, offset: Int64, filters: [Filter]?) {
+        public init (clusterID: String, limit: Int64, offset: Int64, filters: [Filter]? = nil) {
             self.clusterID = clusterID
             self.limit = limit
             self.offset = offset
@@ -72,5 +60,17 @@ extension Tke {
             case instanceInfoSet = "InstanceInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询边缘计算集群的节点信息
+    @inlinable
+    public func describeEdgeClusterInstances(_ input: DescribeEdgeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeClusterInstancesResponse > {
+        self.client.execute(action: "DescribeEdgeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘计算集群的节点信息
+    @inlinable
+    public func describeEdgeClusterInstances(_ input: DescribeEdgeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterInstancesResponse {
+        try await self.client.execute(action: "DescribeEdgeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

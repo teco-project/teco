@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 修改云数据库实例账号的密码
-    ///
-    /// 本接口(ModifyAccountPassword)用于修改云数据库账户的密码。
-    @inlinable
-    public func modifyAccountPassword(_ input: ModifyAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountPasswordResponse > {
-        self.client.execute(action: "ModifyAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改云数据库实例账号的密码
-    ///
-    /// 本接口(ModifyAccountPassword)用于修改云数据库账户的密码。
-    @inlinable
-    public func modifyAccountPassword(_ input: ModifyAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPasswordResponse {
-        try await self.client.execute(action: "ModifyAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAccountPassword请求参数结构体
     public struct ModifyAccountPasswordRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -67,5 +51,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改云数据库实例账号的密码
+    ///
+    /// 本接口(ModifyAccountPassword)用于修改云数据库账户的密码。
+    @inlinable
+    public func modifyAccountPassword(_ input: ModifyAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountPasswordResponse > {
+        self.client.execute(action: "ModifyAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库实例账号的密码
+    ///
+    /// 本接口(ModifyAccountPassword)用于修改云数据库账户的密码。
+    @inlinable
+    public func modifyAccountPassword(_ input: ModifyAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPasswordResponse {
+        try await self.client.execute(action: "ModifyAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

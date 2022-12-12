@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 获取流量镜像接收机健康状态
-    ///
-    /// 获取流量镜像接收机健康状态。
-    @inlinable
-    public func describeTrafficMirrorReceiverHealthStatus(_ input: DescribeTrafficMirrorReceiverHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorReceiverHealthStatusResponse > {
-        self.client.execute(action: "DescribeTrafficMirrorReceiverHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取流量镜像接收机健康状态
-    ///
-    /// 获取流量镜像接收机健康状态。
-    @inlinable
-    public func describeTrafficMirrorReceiverHealthStatus(_ input: DescribeTrafficMirrorReceiverHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorReceiverHealthStatusResponse {
-        try await self.client.execute(action: "DescribeTrafficMirrorReceiverHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrafficMirrorReceiverHealthStatus请求参数结构体
     public struct DescribeTrafficMirrorReceiverHealthStatusRequest: TCRequestModel {
         /// 查询所在的流量镜像ID。
@@ -62,5 +46,21 @@ extension Bmlb {
             case receiversStatusSet = "ReceiversStatusSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取流量镜像接收机健康状态
+    ///
+    /// 获取流量镜像接收机健康状态。
+    @inlinable
+    public func describeTrafficMirrorReceiverHealthStatus(_ input: DescribeTrafficMirrorReceiverHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficMirrorReceiverHealthStatusResponse > {
+        self.client.execute(action: "DescribeTrafficMirrorReceiverHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取流量镜像接收机健康状态
+    ///
+    /// 获取流量镜像接收机健康状态。
+    @inlinable
+    public func describeTrafficMirrorReceiverHealthStatus(_ input: DescribeTrafficMirrorReceiverHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorReceiverHealthStatusResponse {
+        try await self.client.execute(action: "DescribeTrafficMirrorReceiverHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

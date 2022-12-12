@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 停止SCDN域名安全防护
-    ///
-    /// StopScdnDomain 用于关闭域名的安全防护配置
-    @inlinable
-    public func stopScdnDomain(_ input: StopScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopScdnDomainResponse > {
-        self.client.execute(action: "StopScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止SCDN域名安全防护
-    ///
-    /// StopScdnDomain 用于关闭域名的安全防护配置
-    @inlinable
-    public func stopScdnDomain(_ input: StopScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScdnDomainResponse {
-        try await self.client.execute(action: "StopScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopScdnDomain请求参数结构体
     public struct StopScdnDomainRequest: TCRequestModel {
         /// 域名
@@ -57,5 +41,21 @@ extension Cdn {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止SCDN域名安全防护
+    ///
+    /// StopScdnDomain 用于关闭域名的安全防护配置
+    @inlinable
+    public func stopScdnDomain(_ input: StopScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopScdnDomainResponse > {
+        self.client.execute(action: "StopScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止SCDN域名安全防护
+    ///
+    /// StopScdnDomain 用于关闭域名的安全防护配置
+    @inlinable
+    public func stopScdnDomain(_ input: StopScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScdnDomainResponse {
+        try await self.client.execute(action: "StopScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

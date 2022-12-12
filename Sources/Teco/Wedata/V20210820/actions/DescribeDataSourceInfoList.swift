@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取数据源信息
-    ///
-    /// 获取数据源信息-数据源分页列表
-    @inlinable
-    public func describeDataSourceInfoList(_ input: DescribeDataSourceInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataSourceInfoListResponse > {
-        self.client.execute(action: "DescribeDataSourceInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取数据源信息
-    ///
-    /// 获取数据源信息-数据源分页列表
-    @inlinable
-    public func describeDataSourceInfoList(_ input: DescribeDataSourceInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceInfoListResponse {
-        try await self.client.execute(action: "DescribeDataSourceInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDataSourceInfoList请求参数结构体
     public struct DescribeDataSourceInfoListRequest: TCRequestModel {
         /// 工作空间id
@@ -43,10 +27,10 @@ extension Wedata {
         public let pageSize: UInt64?
         
         /// 可选过滤条件，Filter可选配置(参考): "Name": { "type": "string", "description": "数据源名称" }, "Type": { "type": "string", "description": "类型" }, "ClusterId": { "type": "string", "description": "集群id" }, "CategoryId": { "type": "string", "description": "分类，项目或空间id" }
-        public let filters: Filter
+        public let filters: Filter?
         
         /// 排序配置
-        public let orderFields: OrderField
+        public let orderFields: OrderField?
         
         /// 数据源类型
         public let type: String?
@@ -54,7 +38,7 @@ extension Wedata {
         /// 数据源名称过滤用
         public let datasourceName: String?
         
-        public init (projectId: String, pageNumber: UInt64?, pageSize: UInt64?, filters: Filter, orderFields: OrderField, type: String?, datasourceName: String?) {
+        public init (projectId: String, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: Filter? = nil, orderFields: OrderField? = nil, type: String? = nil, datasourceName: String? = nil) {
             self.projectId = projectId
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -92,5 +76,21 @@ extension Wedata {
             case datasourceSet = "DatasourceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取数据源信息
+    ///
+    /// 获取数据源信息-数据源分页列表
+    @inlinable
+    public func describeDataSourceInfoList(_ input: DescribeDataSourceInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataSourceInfoListResponse > {
+        self.client.execute(action: "DescribeDataSourceInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取数据源信息
+    ///
+    /// 获取数据源信息-数据源分页列表
+    @inlinable
+    public func describeDataSourceInfoList(_ input: DescribeDataSourceInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceInfoListResponse {
+        try await self.client.execute(action: "DescribeDataSourceInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

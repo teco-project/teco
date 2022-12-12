@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 禁用SSL-VPN-CLIENT 证书
-    @inlinable
-    public func disableVpnGatewaySslClientCert(_ input: DisableVpnGatewaySslClientCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableVpnGatewaySslClientCertResponse > {
-        self.client.execute(action: "DisableVpnGatewaySslClientCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 禁用SSL-VPN-CLIENT 证书
-    @inlinable
-    public func disableVpnGatewaySslClientCert(_ input: DisableVpnGatewaySslClientCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableVpnGatewaySslClientCertResponse {
-        try await self.client.execute(action: "DisableVpnGatewaySslClientCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableVpnGatewaySslClientCert请求参数结构体
     public struct DisableVpnGatewaySslClientCertRequest: TCRequestModel {
         /// SSL-VPN-CLIENT 实例ID。
@@ -53,5 +41,17 @@ extension Vpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 禁用SSL-VPN-CLIENT 证书
+    @inlinable
+    public func disableVpnGatewaySslClientCert(_ input: DisableVpnGatewaySslClientCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableVpnGatewaySslClientCertResponse > {
+        self.client.execute(action: "DisableVpnGatewaySslClientCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用SSL-VPN-CLIENT 证书
+    @inlinable
+    public func disableVpnGatewaySslClientCert(_ input: DisableVpnGatewaySslClientCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableVpnGatewaySslClientCertResponse {
+        try await self.client.execute(action: "DisableVpnGatewaySslClientCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

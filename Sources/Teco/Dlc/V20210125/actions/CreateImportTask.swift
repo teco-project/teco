@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 创建导入任务
-    ///
-    /// 该接口（CreateImportTask）用于创建导入任务
-    @inlinable
-    public func createImportTask(_ input: CreateImportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImportTaskResponse > {
-        self.client.execute(action: "CreateImportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建导入任务
-    ///
-    /// 该接口（CreateImportTask）用于创建导入任务
-    @inlinable
-    public func createImportTask(_ input: CreateImportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImportTaskResponse {
-        try await self.client.execute(action: "CreateImportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateImportTask请求参数结构体
     public struct CreateImportTaskRequest: TCRequestModel {
         /// 数据来源，cos
@@ -45,7 +29,7 @@ extension Dlc {
         /// 目标数据源的类型，目前支持导入到托管存储，即lakefsStorage
         public let outputType: String?
         
-        public init (inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String?) {
+        public init (inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil) {
             self.inputType = inputType
             self.inputConf = inputConf
             self.outputConf = outputConf
@@ -72,5 +56,21 @@ extension Dlc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建导入任务
+    ///
+    /// 该接口（CreateImportTask）用于创建导入任务
+    @inlinable
+    public func createImportTask(_ input: CreateImportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImportTaskResponse > {
+        self.client.execute(action: "CreateImportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建导入任务
+    ///
+    /// 该接口（CreateImportTask）用于创建导入任务
+    @inlinable
+    public func createImportTask(_ input: CreateImportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImportTaskResponse {
+        try await self.client.execute(action: "CreateImportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

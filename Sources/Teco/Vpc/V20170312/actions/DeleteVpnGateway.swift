@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除VPN网关
-    ///
-    /// 本接口（DeleteVpnGateway）用于删除VPN网关。目前只支持删除运行中的按量计费的IPSEC网关实例。
-    @inlinable
-    public func deleteVpnGateway(_ input: DeleteVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnGatewayResponse > {
-        self.client.execute(action: "DeleteVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除VPN网关
-    ///
-    /// 本接口（DeleteVpnGateway）用于删除VPN网关。目前只支持删除运行中的按量计费的IPSEC网关实例。
-    @inlinable
-    public func deleteVpnGateway(_ input: DeleteVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewayResponse {
-        try await self.client.execute(action: "DeleteVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteVpnGateway请求参数结构体
     public struct DeleteVpnGatewayRequest: TCRequestModel {
         /// VPN网关实例ID。
@@ -53,5 +37,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除VPN网关
+    ///
+    /// 本接口（DeleteVpnGateway）用于删除VPN网关。目前只支持删除运行中的按量计费的IPSEC网关实例。
+    @inlinable
+    public func deleteVpnGateway(_ input: DeleteVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnGatewayResponse > {
+        self.client.execute(action: "DeleteVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除VPN网关
+    ///
+    /// 本接口（DeleteVpnGateway）用于删除VPN网关。目前只支持删除运行中的按量计费的IPSEC网关实例。
+    @inlinable
+    public func deleteVpnGateway(_ input: DeleteVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewayResponse {
+        try await self.client.execute(action: "DeleteVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

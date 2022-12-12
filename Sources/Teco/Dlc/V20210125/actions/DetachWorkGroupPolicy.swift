@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 解绑工作组鉴权策略
-    @inlinable
-    public func detachWorkGroupPolicy(_ input: DetachWorkGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachWorkGroupPolicyResponse > {
-        self.client.execute(action: "DetachWorkGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑工作组鉴权策略
-    @inlinable
-    public func detachWorkGroupPolicy(_ input: DetachWorkGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachWorkGroupPolicyResponse {
-        try await self.client.execute(action: "DetachWorkGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetachWorkGroupPolicy请求参数结构体
     public struct DetachWorkGroupPolicyRequest: TCRequestModel {
         /// 工作组Id
@@ -35,7 +23,7 @@ extension Dlc {
         /// 解绑的权限集合
         public let policySet: [Policy]?
         
-        public init (workGroupId: Int64, policySet: [Policy]?) {
+        public init (workGroupId: Int64, policySet: [Policy]? = nil) {
             self.workGroupId = workGroupId
             self.policySet = policySet
         }
@@ -54,5 +42,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑工作组鉴权策略
+    @inlinable
+    public func detachWorkGroupPolicy(_ input: DetachWorkGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachWorkGroupPolicyResponse > {
+        self.client.execute(action: "DetachWorkGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑工作组鉴权策略
+    @inlinable
+    public func detachWorkGroupPolicy(_ input: DetachWorkGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachWorkGroupPolicyResponse {
+        try await self.client.execute(action: "DetachWorkGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

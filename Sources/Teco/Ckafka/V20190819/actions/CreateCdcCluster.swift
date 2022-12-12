@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 创建cdc-ckafka集群
-    ///
-    /// 用于cdc的专用ckafka集群
-    @inlinable
-    public func createCdcCluster(_ input: CreateCdcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCdcClusterResponse > {
-        self.client.execute(action: "CreateCdcCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建cdc-ckafka集群
-    ///
-    /// 用于cdc的专用ckafka集群
-    @inlinable
-    public func createCdcCluster(_ input: CreateCdcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCdcClusterResponse {
-        try await self.client.execute(action: "CreateCdcCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCdcCluster请求参数结构体
     public struct CreateCdcClusterRequest: TCRequestModel {
         /// cdc的id
@@ -92,5 +76,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建cdc-ckafka集群
+    ///
+    /// 用于cdc的专用ckafka集群
+    @inlinable
+    public func createCdcCluster(_ input: CreateCdcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCdcClusterResponse > {
+        self.client.execute(action: "CreateCdcCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建cdc-ckafka集群
+    ///
+    /// 用于cdc的专用ckafka集群
+    @inlinable
+    public func createCdcCluster(_ input: CreateCdcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCdcClusterResponse {
+        try await self.client.execute(action: "CreateCdcCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

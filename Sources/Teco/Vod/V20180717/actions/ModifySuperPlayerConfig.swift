@@ -17,24 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Vod {
-    /// 修改播放器配置
-    ///
-    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
-    /// 修改播放器配置。
-    @inlinable
-    public func modifySuperPlayerConfig(_ input: ModifySuperPlayerConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySuperPlayerConfigResponse > {
-        self.client.execute(action: "ModifySuperPlayerConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改播放器配置
-    ///
-    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
-    /// 修改播放器配置。
-    @inlinable
-    public func modifySuperPlayerConfig(_ input: ModifySuperPlayerConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySuperPlayerConfigResponse {
-        try await self.client.execute(action: "ModifySuperPlayerConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySuperPlayerConfig请求参数结构体
     public struct ModifySuperPlayerConfigRequest: TCRequestModel {
         /// 播放器配置名称。
@@ -58,7 +40,7 @@ extension Vod {
         public let adaptiveDynamicStreamingDefinition: UInt64?
         
         /// 允许输出的 DRM 自适应码流模板内容。
-        public let drmStreamingsInfo: DrmStreamingsInfoForUpdate
+        public let drmStreamingsInfo: DrmStreamingsInfoForUpdate?
         
         /// 允许输出的转码模板 ID。
         public let transcodeDefinition: UInt64?
@@ -81,7 +63,7 @@ extension Vod {
         /// 模板描述信息，长度限制：256 个字符。
         public let comment: String?
         
-        public init (name: String, subAppId: UInt64?, audioVideoType: String?, drmSwitch: String?, adaptiveDynamicStreamingDefinition: UInt64?, drmStreamingsInfo: DrmStreamingsInfoForUpdate, transcodeDefinition: UInt64?, imageSpriteDefinition: UInt64?, resolutionNames: [ResolutionNameInfo]?, domain: String?, scheme: String?, comment: String?) {
+        public init (name: String, subAppId: UInt64? = nil, audioVideoType: String? = nil, drmSwitch: String? = nil, adaptiveDynamicStreamingDefinition: UInt64? = nil, drmStreamingsInfo: DrmStreamingsInfoForUpdate? = nil, transcodeDefinition: UInt64? = nil, imageSpriteDefinition: UInt64? = nil, resolutionNames: [ResolutionNameInfo]? = nil, domain: String? = nil, scheme: String? = nil, comment: String? = nil) {
             self.name = name
             self.subAppId = subAppId
             self.audioVideoType = audioVideoType
@@ -120,5 +102,23 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改播放器配置
+    ///
+    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
+    /// 修改播放器配置。
+    @inlinable
+    public func modifySuperPlayerConfig(_ input: ModifySuperPlayerConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySuperPlayerConfigResponse > {
+        self.client.execute(action: "ModifySuperPlayerConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改播放器配置
+    ///
+    /// 该 API 已经<font color='red'>不再维护</font>，新版播放器签名不再使用播放器配置模板，详细请参考 [播放器签名](https://cloud.tencent.com/document/product/266/45554)。
+    /// 修改播放器配置。
+    @inlinable
+    public func modifySuperPlayerConfig(_ input: ModifySuperPlayerConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySuperPlayerConfigResponse {
+        try await self.client.execute(action: "ModifySuperPlayerConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

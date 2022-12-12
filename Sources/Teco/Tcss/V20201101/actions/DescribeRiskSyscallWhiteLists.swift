@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时高危系统调用白名单列表
-    ///
-    /// 查询运行时高危系统调用白名单列表信息
-    @inlinable
-    public func describeRiskSyscallWhiteLists(_ input: DescribeRiskSyscallWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskSyscallWhiteListsResponse > {
-        self.client.execute(action: "DescribeRiskSyscallWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时高危系统调用白名单列表
-    ///
-    /// 查询运行时高危系统调用白名单列表信息
-    @inlinable
-    public func describeRiskSyscallWhiteLists(_ input: DescribeRiskSyscallWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallWhiteListsResponse {
-        try await self.client.execute(action: "DescribeRiskSyscallWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRiskSyscallWhiteLists请求参数结构体
     public struct DescribeRiskSyscallWhiteListsRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -48,7 +32,7 @@ extension Tcss {
         /// 排序字段
         public let by: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, order: String?, by: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -81,5 +65,21 @@ extension Tcss {
             case whiteListSet = "WhiteListSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时高危系统调用白名单列表
+    ///
+    /// 查询运行时高危系统调用白名单列表信息
+    @inlinable
+    public func describeRiskSyscallWhiteLists(_ input: DescribeRiskSyscallWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskSyscallWhiteListsResponse > {
+        self.client.execute(action: "DescribeRiskSyscallWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时高危系统调用白名单列表
+    ///
+    /// 查询运行时高危系统调用白名单列表信息
+    @inlinable
+    public func describeRiskSyscallWhiteLists(_ input: DescribeRiskSyscallWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallWhiteListsResponse {
+        try await self.client.execute(action: "DescribeRiskSyscallWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

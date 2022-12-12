@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tat {
-    /// 查询命令详情
-    ///
-    /// 此接口用于查询命令详情。
-    @inlinable
-    public func describeCommands(_ input: DescribeCommandsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCommandsResponse > {
-        self.client.execute(action: "DescribeCommands", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询命令详情
-    ///
-    /// 此接口用于查询命令详情。
-    @inlinable
-    public func describeCommands(_ input: DescribeCommandsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCommandsResponse {
-        try await self.client.execute(action: "DescribeCommands", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCommands请求参数结构体
     public struct DescribeCommandsRequest: TCRequestModel {
         /// 命令ID列表，每次请求的上限为100。参数不支持同时指定 `CommandIds` 和 `Filters` 。
@@ -53,7 +37,7 @@ extension Tat {
         /// 偏移量，默认为0。关于 `Offset` 的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let offset: UInt64?
         
-        public init (commandIds: [String]?, filters: [Filter]?, limit: UInt64?, offset: UInt64?) {
+        public init (commandIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.commandIds = commandIds
             self.filters = filters
             self.limit = limit
@@ -84,5 +68,21 @@ extension Tat {
             case commandSet = "CommandSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询命令详情
+    ///
+    /// 此接口用于查询命令详情。
+    @inlinable
+    public func describeCommands(_ input: DescribeCommandsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCommandsResponse > {
+        self.client.execute(action: "DescribeCommands", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询命令详情
+    ///
+    /// 此接口用于查询命令详情。
+    @inlinable
+    public func describeCommands(_ input: DescribeCommandsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCommandsResponse {
+        try await self.client.execute(action: "DescribeCommands", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

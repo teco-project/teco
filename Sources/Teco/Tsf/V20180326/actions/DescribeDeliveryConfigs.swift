@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 获取多个投递项配置
-    ///
-    /// 获取多个投递项配置 
-    @inlinable
-    public func describeDeliveryConfigs(_ input: DescribeDeliveryConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeliveryConfigsResponse > {
-        self.client.execute(action: "DescribeDeliveryConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取多个投递项配置
-    ///
-    /// 获取多个投递项配置 
-    @inlinable
-    public func describeDeliveryConfigs(_ input: DescribeDeliveryConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigsResponse {
-        try await self.client.execute(action: "DescribeDeliveryConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeliveryConfigs请求参数结构体
     public struct DescribeDeliveryConfigsRequest: TCRequestModel {
         /// 关键字
@@ -42,7 +26,7 @@ extension Tsf {
         /// 搜索条数
         public let limit: Int64?
         
-        public init (searchWord: String?, offset: Int64?, limit: Int64?) {
+        public init (searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.searchWord = searchWord
             self.offset = offset
             self.limit = limit
@@ -59,7 +43,7 @@ extension Tsf {
     public struct DescribeDeliveryConfigsResponse: TCResponseModel {
         /// 投递项关联部署组信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: DeliveryConfigBindGroups
+        public let result: DeliveryConfigBindGroups?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -68,5 +52,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取多个投递项配置
+    ///
+    /// 获取多个投递项配置 
+    @inlinable
+    public func describeDeliveryConfigs(_ input: DescribeDeliveryConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeliveryConfigsResponse > {
+        self.client.execute(action: "DescribeDeliveryConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取多个投递项配置
+    ///
+    /// 获取多个投递项配置 
+    @inlinable
+    public func describeDeliveryConfigs(_ input: DescribeDeliveryConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigsResponse {
+        try await self.client.execute(action: "DescribeDeliveryConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

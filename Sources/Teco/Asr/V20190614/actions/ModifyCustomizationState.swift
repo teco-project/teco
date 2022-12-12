@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Asr {
-    /// 修改自学习模型状态
-    ///
-    /// 通过该接口，用户可以修改自学习模型状态，上下线自学习模型
-    @inlinable
-    public func modifyCustomizationState(_ input: ModifyCustomizationStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizationStateResponse > {
-        self.client.execute(action: "ModifyCustomizationState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改自学习模型状态
-    ///
-    /// 通过该接口，用户可以修改自学习模型状态，上下线自学习模型
-    @inlinable
-    public func modifyCustomizationState(_ input: ModifyCustomizationStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationStateResponse {
-        try await self.client.execute(action: "ModifyCustomizationState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCustomizationState请求参数结构体
     public struct ModifyCustomizationStateRequest: TCRequestModel {
         /// 自学习模型ID
@@ -62,5 +46,21 @@ extension Asr {
             case modelId = "ModelId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改自学习模型状态
+    ///
+    /// 通过该接口，用户可以修改自学习模型状态，上下线自学习模型
+    @inlinable
+    public func modifyCustomizationState(_ input: ModifyCustomizationStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizationStateResponse > {
+        self.client.execute(action: "ModifyCustomizationState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改自学习模型状态
+    ///
+    /// 通过该接口，用户可以修改自学习模型状态，上下线自学习模型
+    @inlinable
+    public func modifyCustomizationState(_ input: ModifyCustomizationStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationStateResponse {
+        try await self.client.execute(action: "ModifyCustomizationState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

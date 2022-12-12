@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Gme {
-    /// 获取数据详情
-    ///
-    /// 本接口(DescribeApplicationData)用于获取数据详情信息，最多可拉取最近90天的数据。
-    @inlinable
-    public func describeApplicationData(_ input: DescribeApplicationDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationDataResponse > {
-        self.client.execute(action: "DescribeApplicationData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取数据详情
-    ///
-    /// 本接口(DescribeApplicationData)用于获取数据详情信息，最多可拉取最近90天的数据。
-    @inlinable
-    public func describeApplicationData(_ input: DescribeApplicationDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationDataResponse {
-        try await self.client.execute(action: "DescribeApplicationData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplicationData请求参数结构体
     public struct DescribeApplicationDataRequest: TCRequestModel {
         /// 应用ID
@@ -71,5 +55,21 @@ extension Gme {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取数据详情
+    ///
+    /// 本接口(DescribeApplicationData)用于获取数据详情信息，最多可拉取最近90天的数据。
+    @inlinable
+    public func describeApplicationData(_ input: DescribeApplicationDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationDataResponse > {
+        self.client.execute(action: "DescribeApplicationData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取数据详情
+    ///
+    /// 本接口(DescribeApplicationData)用于获取数据详情信息，最多可拉取最近90天的数据。
+    @inlinable
+    public func describeApplicationData(_ input: DescribeApplicationDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationDataResponse {
+        try await self.client.execute(action: "DescribeApplicationData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssa {
-    /// 获取泄露列表
-    @inlinable
-    public func describeLeakDetectionList(_ input: DescribeLeakDetectionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLeakDetectionListResponse > {
-        self.client.execute(action: "DescribeLeakDetectionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取泄露列表
-    @inlinable
-    public func describeLeakDetectionList(_ input: DescribeLeakDetectionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLeakDetectionListResponse {
-        try await self.client.execute(action: "DescribeLeakDetectionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLeakDetectionList请求参数结构体
     public struct DescribeLeakDetectionListRequest: TCRequestModel {
         /// 筛选条件
@@ -77,5 +65,17 @@ extension Ssa {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取泄露列表
+    @inlinable
+    public func describeLeakDetectionList(_ input: DescribeLeakDetectionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLeakDetectionListResponse > {
+        self.client.execute(action: "DescribeLeakDetectionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取泄露列表
+    @inlinable
+    public func describeLeakDetectionList(_ input: DescribeLeakDetectionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLeakDetectionListResponse {
+        try await self.client.execute(action: "DescribeLeakDetectionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

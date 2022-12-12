@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 更新健康检查配置
-    @inlinable
-    public func updateHealthCheckSettings(_ input: UpdateHealthCheckSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateHealthCheckSettingsResponse > {
-        self.client.execute(action: "UpdateHealthCheckSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新健康检查配置
-    @inlinable
-    public func updateHealthCheckSettings(_ input: UpdateHealthCheckSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateHealthCheckSettingsResponse {
-        try await self.client.execute(action: "UpdateHealthCheckSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateHealthCheckSettings请求参数结构体
     public struct UpdateHealthCheckSettingsRequest: TCRequestModel {
         /// 部署组ID
@@ -36,9 +24,9 @@ extension Tsf {
         public let enableHealthCheck: Bool?
         
         /// 健康检查配置
-        public let healthCheckSettings: HealthCheckSettings
+        public let healthCheckSettings: HealthCheckSettings?
         
-        public init (groupId: String, enableHealthCheck: Bool?, healthCheckSettings: HealthCheckSettings) {
+        public init (groupId: String, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil) {
             self.groupId = groupId
             self.enableHealthCheck = enableHealthCheck
             self.healthCheckSettings = healthCheckSettings
@@ -66,5 +54,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新健康检查配置
+    @inlinable
+    public func updateHealthCheckSettings(_ input: UpdateHealthCheckSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateHealthCheckSettingsResponse > {
+        self.client.execute(action: "UpdateHealthCheckSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新健康检查配置
+    @inlinable
+    public func updateHealthCheckSettings(_ input: UpdateHealthCheckSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateHealthCheckSettingsResponse {
+        try await self.client.execute(action: "UpdateHealthCheckSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

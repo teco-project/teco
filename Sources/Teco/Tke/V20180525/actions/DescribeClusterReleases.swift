@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询集群已安装应用列表
-    ///
-    /// 查询集群在应用市场中已安装应用列表
-    @inlinable
-    public func describeClusterReleases(_ input: DescribeClusterReleasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterReleasesResponse > {
-        self.client.execute(action: "DescribeClusterReleases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群已安装应用列表
-    ///
-    /// 查询集群在应用市场中已安装应用列表
-    @inlinable
-    public func describeClusterReleases(_ input: DescribeClusterReleasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleasesResponse {
-        try await self.client.execute(action: "DescribeClusterReleases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterReleases请求参数结构体
     public struct DescribeClusterReleasesRequest: TCRequestModel {
         /// 集群id
@@ -51,7 +35,7 @@ extension Tke {
         /// helm Chart 的名字
         public let chartName: String?
         
-        public init (clusterId: String, limit: Int64?, offset: Int64?, namespace: String?, releaseName: String?, chartName: String?) {
+        public init (clusterId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, releaseName: String? = nil, chartName: String? = nil) {
             self.clusterId = clusterId
             self.limit = limit
             self.offset = offset
@@ -98,5 +82,21 @@ extension Tke {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群已安装应用列表
+    ///
+    /// 查询集群在应用市场中已安装应用列表
+    @inlinable
+    public func describeClusterReleases(_ input: DescribeClusterReleasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterReleasesResponse > {
+        self.client.execute(action: "DescribeClusterReleases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群已安装应用列表
+    ///
+    /// 查询集群在应用市场中已安装应用列表
+    @inlinable
+    public func describeClusterReleases(_ input: DescribeClusterReleasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleasesResponse {
+        try await self.client.execute(action: "DescribeClusterReleases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

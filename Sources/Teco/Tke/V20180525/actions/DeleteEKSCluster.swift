@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 删除弹性集群
-    ///
-    /// 删除弹性集群(yunapiv3)
-    @inlinable
-    public func deleteEKSCluster(_ input: DeleteEKSClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEKSClusterResponse > {
-        self.client.execute(action: "DeleteEKSCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除弹性集群
-    ///
-    /// 删除弹性集群(yunapiv3)
-    @inlinable
-    public func deleteEKSCluster(_ input: DeleteEKSClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEKSClusterResponse {
-        try await self.client.execute(action: "DeleteEKSCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteEKSCluster请求参数结构体
     public struct DeleteEKSClusterRequest: TCRequestModel {
         /// 弹性集群Id
@@ -53,5 +37,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除弹性集群
+    ///
+    /// 删除弹性集群(yunapiv3)
+    @inlinable
+    public func deleteEKSCluster(_ input: DeleteEKSClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEKSClusterResponse > {
+        self.client.execute(action: "DeleteEKSCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除弹性集群
+    ///
+    /// 删除弹性集群(yunapiv3)
+    @inlinable
+    public func deleteEKSCluster(_ input: DeleteEKSClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEKSClusterResponse {
+        try await self.client.execute(action: "DeleteEKSCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

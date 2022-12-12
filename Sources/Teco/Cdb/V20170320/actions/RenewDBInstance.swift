@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 续费云数据库实例
-    ///
-    /// 本接口(RenewDBInstance)用于续费云数据库实例，支持付费模式为包年包月的实例。按量计费实例可通过该接口续费为包年包月的实例。
-    @inlinable
-    public func renewDBInstance(_ input: RenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewDBInstanceResponse > {
-        self.client.execute(action: "RenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费云数据库实例
-    ///
-    /// 本接口(RenewDBInstance)用于续费云数据库实例，支持付费模式为包年包月的实例。按量计费实例可通过该接口续费为包年包月的实例。
-    @inlinable
-    public func renewDBInstance(_ input: RenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstanceResponse {
-        try await self.client.execute(action: "RenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RenewDBInstance请求参数结构体
     public struct RenewDBInstanceRequest: TCRequestModel {
         /// 待续费的实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872)。
@@ -42,7 +26,7 @@ extension Cdb {
         /// 如果需要将按量计费实例续费为包年包月的实例，该入参的值需要指定为 "PREPAID" 。
         public let modifyPayType: String?
         
-        public init (instanceId: String, timeSpan: Int64, modifyPayType: String?) {
+        public init (instanceId: String, timeSpan: Int64, modifyPayType: String? = nil) {
             self.instanceId = instanceId
             self.timeSpan = timeSpan
             self.modifyPayType = modifyPayType
@@ -67,5 +51,21 @@ extension Cdb {
             case dealId = "DealId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费云数据库实例
+    ///
+    /// 本接口(RenewDBInstance)用于续费云数据库实例，支持付费模式为包年包月的实例。按量计费实例可通过该接口续费为包年包月的实例。
+    @inlinable
+    public func renewDBInstance(_ input: RenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewDBInstanceResponse > {
+        self.client.execute(action: "RenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费云数据库实例
+    ///
+    /// 本接口(RenewDBInstance)用于续费云数据库实例，支持付费模式为包年包月的实例。按量计费实例可通过该接口续费为包年包月的实例。
+    @inlinable
+    public func renewDBInstance(_ input: RenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstanceResponse {
+        try await self.client.execute(action: "RenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

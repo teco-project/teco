@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 恢复 CRS 实例
-    @inlinable
-    public func restoreInstance(_ input: RestoreInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestoreInstanceResponse > {
-        self.client.execute(action: "RestoreInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 恢复 CRS 实例
-    @inlinable
-    public func restoreInstance(_ input: RestoreInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
-        try await self.client.execute(action: "RestoreInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestoreInstance请求参数结构体
     public struct RestoreInstanceRequest: TCRequestModel {
         /// 待操作的实例ID，可通过 DescribeInstances 接口返回值中的 InstanceId 获取。
@@ -38,7 +26,7 @@ extension Redis {
         /// 实例密码，恢复实例时，需要校验实例密码（免密实例不需要传密码）
         public let password: String?
         
-        public init (instanceId: String, backupId: String, password: String?) {
+        public init (instanceId: String, backupId: String, password: String? = nil) {
             self.instanceId = instanceId
             self.backupId = backupId
             self.password = password
@@ -63,5 +51,17 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 恢复 CRS 实例
+    @inlinable
+    public func restoreInstance(_ input: RestoreInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestoreInstanceResponse > {
+        self.client.execute(action: "RestoreInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复 CRS 实例
+    @inlinable
+    public func restoreInstance(_ input: RestoreInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
+        try await self.client.execute(action: "RestoreInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

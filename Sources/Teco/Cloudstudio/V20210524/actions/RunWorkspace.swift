@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudstudio {
-    /// 运行空间
-    @inlinable
-    public func runWorkspace(_ input: RunWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunWorkspaceResponse > {
-        self.client.execute(action: "RunWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行空间
-    @inlinable
-    public func runWorkspace(_ input: RunWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunWorkspaceResponse {
-        try await self.client.execute(action: "RunWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RunWorkspace请求参数结构体
     public struct RunWorkspaceRequest: TCRequestModel {
         /// 空间标识
@@ -54,5 +42,17 @@ extension Cloudstudio {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行空间
+    @inlinable
+    public func runWorkspace(_ input: RunWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunWorkspaceResponse > {
+        self.client.execute(action: "RunWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行空间
+    @inlinable
+    public func runWorkspace(_ input: RunWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunWorkspaceResponse {
+        try await self.client.execute(action: "RunWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

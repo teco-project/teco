@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 开启或关闭推送任务
-    ///
-    /// 本接口（SwitchLogTopicTask）用于开启/关闭推送任务。
-    @inlinable
-    public func switchLogTopicTask(_ input: SwitchLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchLogTopicTaskResponse > {
-        self.client.execute(action: "SwitchLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启或关闭推送任务
-    ///
-    /// 本接口（SwitchLogTopicTask）用于开启/关闭推送任务。
-    @inlinable
-    public func switchLogTopicTask(_ input: SwitchLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchLogTopicTaskResponse {
-        try await self.client.execute(action: "SwitchLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SwitchLogTopicTask请求参数结构体
     public struct SwitchLogTopicTaskRequest: TCRequestModel {
         /// 推送任务的主题ID。
@@ -60,5 +44,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启或关闭推送任务
+    ///
+    /// 本接口（SwitchLogTopicTask）用于开启/关闭推送任务。
+    @inlinable
+    public func switchLogTopicTask(_ input: SwitchLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchLogTopicTaskResponse > {
+        self.client.execute(action: "SwitchLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启或关闭推送任务
+    ///
+    /// 本接口（SwitchLogTopicTask）用于开启/关闭推送任务。
+    @inlinable
+    public func switchLogTopicTask(_ input: SwitchLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchLogTopicTaskResponse {
+        try await self.client.execute(action: "SwitchLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

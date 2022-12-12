@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 查询负载均衡详细信息
-    ///
-    /// 查询负载均衡的详细信息，包括监听器，规则及后端目标。
-    @inlinable
-    public func describeLoadBalancersDetail(_ input: DescribeLoadBalancersDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancersDetailResponse > {
-        self.client.execute(action: "DescribeLoadBalancersDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询负载均衡详细信息
-    ///
-    /// 查询负载均衡的详细信息，包括监听器，规则及后端目标。
-    @inlinable
-    public func describeLoadBalancersDetail(_ input: DescribeLoadBalancersDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersDetailResponse {
-        try await self.client.execute(action: "DescribeLoadBalancersDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLoadBalancersDetail请求参数结构体
     public struct DescribeLoadBalancersDetailRequest: TCRequestModel {
         /// 返回负载均衡列表数目，默认20，最大值100。
@@ -58,7 +42,7 @@ extension Clb {
         /// <li> fuzzy-search - String - 是否必填：否 - （过滤条件）按照 负载均衡Vip，负载均衡名称 模糊搜索，如："1.1"。</li>
         public let filters: [Filter]?
         
-        public init (limit: UInt64?, offset: UInt64?, fields: [String]?, targetType: String?, filters: [Filter]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, fields: [String]? = nil, targetType: String? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.fields = fields
@@ -92,5 +76,21 @@ extension Clb {
             case loadBalancerDetailSet = "LoadBalancerDetailSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询负载均衡详细信息
+    ///
+    /// 查询负载均衡的详细信息，包括监听器，规则及后端目标。
+    @inlinable
+    public func describeLoadBalancersDetail(_ input: DescribeLoadBalancersDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancersDetailResponse > {
+        self.client.execute(action: "DescribeLoadBalancersDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询负载均衡详细信息
+    ///
+    /// 查询负载均衡的详细信息，包括监听器，规则及后端目标。
+    @inlinable
+    public func describeLoadBalancersDetail(_ input: DescribeLoadBalancersDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersDetailResponse {
+        try await self.client.execute(action: "DescribeLoadBalancersDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

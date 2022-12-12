@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取应用模板列表
-    @inlinable
-    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationsResponse > {
-        self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取应用模板列表
-    @inlinable
-    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
-        try await self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplications请求参数结构体
     public struct DescribeApplicationsRequest: TCRequestModel {
         /// 模糊搜索字符串
@@ -41,7 +29,7 @@ extension Iecp {
         /// 仅支持对 DistributeTime 字段排序，ASC/DESC
         public let sort: [FieldSort]?
         
-        public init (namePattern: String?, offset: UInt64?, limit: UInt64?, sort: [FieldSort]?) {
+        public init (namePattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sort: [FieldSort]? = nil) {
             self.namePattern = namePattern
             self.offset = offset
             self.limit = limit
@@ -73,5 +61,17 @@ extension Iecp {
             case applicationSet = "ApplicationSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取应用模板列表
+    @inlinable
+    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationsResponse > {
+        self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用模板列表
+    @inlinable
+    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
+        try await self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

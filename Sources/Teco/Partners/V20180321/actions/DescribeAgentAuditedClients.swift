@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Partners {
-    /// 查询已审核客户列表
-    @inlinable
-    public func describeAgentAuditedClients(_ input: DescribeAgentAuditedClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentAuditedClientsResponse > {
-        self.client.execute(action: "DescribeAgentAuditedClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询已审核客户列表
-    @inlinable
-    public func describeAgentAuditedClients(_ input: DescribeAgentAuditedClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentAuditedClientsResponse {
-        try await self.client.execute(action: "DescribeAgentAuditedClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAgentAuditedClients请求参数结构体
     public struct DescribeAgentAuditedClientsRequest: TCRequestModel {
         /// 客户账号ID
@@ -68,7 +56,7 @@ extension Partners {
         /// 业务员姓名（模糊查询）
         public let salesName: String?
         
-        public init (clientUin: String?, clientName: String?, clientFlag: String?, orderDirection: String?, clientUins: [String]?, hasOverdueBill: UInt64?, clientRemark: String?, offset: UInt64?, limit: UInt64?, clientType: String?, projectType: String?, salesUin: String?, salesName: String?) {
+        public init (clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, clientUins: [String]? = nil, hasOverdueBill: UInt64? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, clientType: String? = nil, projectType: String? = nil, salesUin: String? = nil, salesName: String? = nil) {
             self.clientUin = clientUin
             self.clientName = clientName
             self.clientFlag = clientFlag
@@ -117,5 +105,17 @@ extension Partners {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询已审核客户列表
+    @inlinable
+    public func describeAgentAuditedClients(_ input: DescribeAgentAuditedClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentAuditedClientsResponse > {
+        self.client.execute(action: "DescribeAgentAuditedClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询已审核客户列表
+    @inlinable
+    public func describeAgentAuditedClients(_ input: DescribeAgentAuditedClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentAuditedClientsResponse {
+        try await self.client.execute(action: "DescribeAgentAuditedClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

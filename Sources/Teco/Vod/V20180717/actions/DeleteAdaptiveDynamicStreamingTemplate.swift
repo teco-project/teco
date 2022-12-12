@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 删除转自适应码流模板
-    @inlinable
-    public func deleteAdaptiveDynamicStreamingTemplate(_ input: DeleteAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAdaptiveDynamicStreamingTemplateResponse > {
-        self.client.execute(action: "DeleteAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除转自适应码流模板
-    @inlinable
-    public func deleteAdaptiveDynamicStreamingTemplate(_ input: DeleteAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAdaptiveDynamicStreamingTemplateResponse {
-        try await self.client.execute(action: "DeleteAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAdaptiveDynamicStreamingTemplate请求参数结构体
     public struct DeleteAdaptiveDynamicStreamingTemplateRequest: TCRequestModel {
         /// 自适应转码模板唯一标识。
@@ -35,7 +23,7 @@ extension Vod {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
         
-        public init (definition: UInt64, subAppId: UInt64?) {
+        public init (definition: UInt64, subAppId: UInt64? = nil) {
             self.definition = definition
             self.subAppId = subAppId
         }
@@ -54,5 +42,17 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除转自适应码流模板
+    @inlinable
+    public func deleteAdaptiveDynamicStreamingTemplate(_ input: DeleteAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAdaptiveDynamicStreamingTemplateResponse > {
+        self.client.execute(action: "DeleteAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除转自适应码流模板
+    @inlinable
+    public func deleteAdaptiveDynamicStreamingTemplate(_ input: DeleteAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAdaptiveDynamicStreamingTemplateResponse {
+        try await self.client.execute(action: "DeleteAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

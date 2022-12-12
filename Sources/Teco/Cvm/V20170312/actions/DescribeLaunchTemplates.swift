@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查询实例启动模板
-    ///
-    /// 本接口（DescribeLaunchTemplates）用于查询一个或者多个实例启动模板。
-    @inlinable
-    public func describeLaunchTemplates(_ input: DescribeLaunchTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLaunchTemplatesResponse > {
-        self.client.execute(action: "DescribeLaunchTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例启动模板
-    ///
-    /// 本接口（DescribeLaunchTemplates）用于查询一个或者多个实例启动模板。
-    @inlinable
-    public func describeLaunchTemplates(_ input: DescribeLaunchTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaunchTemplatesResponse {
-        try await self.client.execute(action: "DescribeLaunchTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLaunchTemplates请求参数结构体
     public struct DescribeLaunchTemplatesRequest: TCRequestModel {
         /// 启动模板ID，一个或者多个启动模板ID。若未指定，则显示用户所有模板。
@@ -46,7 +30,7 @@ extension Cvm {
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: Int64?
         
-        public init (launchTemplateIds: [String]?, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (launchTemplateIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.launchTemplateIds = launchTemplateIds
             self.filters = filters
             self.offset = offset
@@ -79,5 +63,21 @@ extension Cvm {
             case launchTemplateSet = "LaunchTemplateSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例启动模板
+    ///
+    /// 本接口（DescribeLaunchTemplates）用于查询一个或者多个实例启动模板。
+    @inlinable
+    public func describeLaunchTemplates(_ input: DescribeLaunchTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLaunchTemplatesResponse > {
+        self.client.execute(action: "DescribeLaunchTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例启动模板
+    ///
+    /// 本接口（DescribeLaunchTemplates）用于查询一个或者多个实例启动模板。
+    @inlinable
+    public func describeLaunchTemplates(_ input: DescribeLaunchTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaunchTemplatesResponse {
+        try await self.client.execute(action: "DescribeLaunchTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

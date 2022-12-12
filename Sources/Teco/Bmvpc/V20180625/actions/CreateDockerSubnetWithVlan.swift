@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 创建黑石Docker子网
-    ///
-    /// 创建黑石Docker子网， 如果不指定VlanId，将会分配2000--2999范围的VlanId; 子网会关闭分布式网关
-    @inlinable
-    public func createDockerSubnetWithVlan(_ input: CreateDockerSubnetWithVlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDockerSubnetWithVlanResponse > {
-        self.client.execute(action: "CreateDockerSubnetWithVlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建黑石Docker子网
-    ///
-    /// 创建黑石Docker子网， 如果不指定VlanId，将会分配2000--2999范围的VlanId; 子网会关闭分布式网关
-    @inlinable
-    public func createDockerSubnetWithVlan(_ input: CreateDockerSubnetWithVlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDockerSubnetWithVlanResponse {
-        try await self.client.execute(action: "CreateDockerSubnetWithVlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDockerSubnetWithVlan请求参数结构体
     public struct CreateDockerSubnetWithVlanRequest: TCRequestModel {
         /// 系统分配的私有网络ID，例如：vpc-kd7d06of
@@ -62,5 +46,21 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建黑石Docker子网
+    ///
+    /// 创建黑石Docker子网， 如果不指定VlanId，将会分配2000--2999范围的VlanId; 子网会关闭分布式网关
+    @inlinable
+    public func createDockerSubnetWithVlan(_ input: CreateDockerSubnetWithVlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDockerSubnetWithVlanResponse > {
+        self.client.execute(action: "CreateDockerSubnetWithVlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建黑石Docker子网
+    ///
+    /// 创建黑石Docker子网， 如果不指定VlanId，将会分配2000--2999范围的VlanId; 子网会关闭分布式网关
+    @inlinable
+    public func createDockerSubnetWithVlan(_ input: CreateDockerSubnetWithVlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDockerSubnetWithVlanResponse {
+        try await self.client.execute(action: "CreateDockerSubnetWithVlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

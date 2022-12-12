@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询置放群组列表
-    ///
-    /// 本接口(DescribeDeployGroupList)用于查询用户的置放群组列表，可以指定置放群组 ID 或置放群组名称。
-    @inlinable
-    public func describeDeployGroupList(_ input: DescribeDeployGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeployGroupListResponse > {
-        self.client.execute(action: "DescribeDeployGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询置放群组列表
-    ///
-    /// 本接口(DescribeDeployGroupList)用于查询用户的置放群组列表，可以指定置放群组 ID 或置放群组名称。
-    @inlinable
-    public func describeDeployGroupList(_ input: DescribeDeployGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployGroupListResponse {
-        try await self.client.execute(action: "DescribeDeployGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeployGroupList请求参数结构体
     public struct DescribeDeployGroupListRequest: TCRequestModel {
         /// 置放群组 ID。
@@ -45,7 +29,7 @@ extension Cdb {
         /// 偏移量，默认为0。
         public let offset: Int64?
         
-        public init (deployGroupId: String?, deployGroupName: String?, limit: Int64?, offset: Int64?) {
+        public init (deployGroupId: String? = nil, deployGroupName: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.deployGroupId = deployGroupId
             self.deployGroupName = deployGroupName
             self.limit = limit
@@ -77,5 +61,21 @@ extension Cdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询置放群组列表
+    ///
+    /// 本接口(DescribeDeployGroupList)用于查询用户的置放群组列表，可以指定置放群组 ID 或置放群组名称。
+    @inlinable
+    public func describeDeployGroupList(_ input: DescribeDeployGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeployGroupListResponse > {
+        self.client.execute(action: "DescribeDeployGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询置放群组列表
+    ///
+    /// 本接口(DescribeDeployGroupList)用于查询用户的置放群组列表，可以指定置放群组 ID 或置放群组名称。
+    @inlinable
+    public func describeDeployGroupList(_ input: DescribeDeployGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployGroupListResponse {
+        try await self.client.execute(action: "DescribeDeployGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 创建挂载点
-    ///
-    /// 创建文件系统挂载点，仅限于创建成功的文件系统。
-    @inlinable
-    public func createMountPoint(_ input: CreateMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMountPointResponse > {
-        self.client.execute(action: "CreateMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建挂载点
-    ///
-    /// 创建文件系统挂载点，仅限于创建成功的文件系统。
-    @inlinable
-    public func createMountPoint(_ input: CreateMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMountPointResponse {
-        try await self.client.execute(action: "CreateMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMountPoint请求参数结构体
     public struct CreateMountPointRequest: TCRequestModel {
         /// 挂载点名称
@@ -67,5 +51,21 @@ extension Chdfs {
             case mountPoint = "MountPoint"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建挂载点
+    ///
+    /// 创建文件系统挂载点，仅限于创建成功的文件系统。
+    @inlinable
+    public func createMountPoint(_ input: CreateMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMountPointResponse > {
+        self.client.execute(action: "CreateMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建挂载点
+    ///
+    /// 创建文件系统挂载点，仅限于创建成功的文件系统。
+    @inlinable
+    public func createMountPoint(_ input: CreateMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMountPointResponse {
+        try await self.client.execute(action: "CreateMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

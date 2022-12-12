@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询实例内网访问VPC链接
-    @inlinable
-    public func describeInternalEndpoints(_ input: DescribeInternalEndpointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternalEndpointsResponse > {
-        self.client.execute(action: "DescribeInternalEndpoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例内网访问VPC链接
-    @inlinable
-    public func describeInternalEndpoints(_ input: DescribeInternalEndpointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternalEndpointsResponse {
-        try await self.client.execute(action: "DescribeInternalEndpoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInternalEndpoints请求参数结构体
     public struct DescribeInternalEndpointsRequest: TCRequestModel {
         /// 实例Id
@@ -58,5 +46,17 @@ extension Tcr {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例内网访问VPC链接
+    @inlinable
+    public func describeInternalEndpoints(_ input: DescribeInternalEndpointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternalEndpointsResponse > {
+        self.client.execute(action: "DescribeInternalEndpoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例内网访问VPC链接
+    @inlinable
+    public func describeInternalEndpoints(_ input: DescribeInternalEndpointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternalEndpointsResponse {
+        try await self.client.execute(action: "DescribeInternalEndpoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

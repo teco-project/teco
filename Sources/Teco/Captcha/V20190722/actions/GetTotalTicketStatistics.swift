@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Captcha {
-    /// 查询全部票据校验统计数据
-    ///
-    /// 查询全部票据校验的统计数据，包括：总票据校验量、总票据校验通过量、总票据校验拦截量。
-    @inlinable
-    public func getTotalTicketStatistics(_ input: GetTotalTicketStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTotalTicketStatisticsResponse > {
-        self.client.execute(action: "GetTotalTicketStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询全部票据校验统计数据
-    ///
-    /// 查询全部票据校验的统计数据，包括：总票据校验量、总票据校验通过量、总票据校验拦截量。
-    @inlinable
-    public func getTotalTicketStatistics(_ input: GetTotalTicketStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTotalTicketStatisticsResponse {
-        try await self.client.execute(action: "GetTotalTicketStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetTotalTicketStatistics请求参数结构体
     public struct GetTotalTicketStatisticsRequest: TCRequestModel {
         /// 开始时间
@@ -62,7 +46,7 @@ extension Captcha {
     public struct GetTotalTicketStatisticsResponse: TCResponseModel {
         /// 返回数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: CaptchaStatisticObj
+        public let data: CaptchaStatisticObj?
         
         /// 返回码
         public let captchaCode: Int64
@@ -79,5 +63,21 @@ extension Captcha {
             case captchaMsg = "CaptchaMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询全部票据校验统计数据
+    ///
+    /// 查询全部票据校验的统计数据，包括：总票据校验量、总票据校验通过量、总票据校验拦截量。
+    @inlinable
+    public func getTotalTicketStatistics(_ input: GetTotalTicketStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTotalTicketStatisticsResponse > {
+        self.client.execute(action: "GetTotalTicketStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询全部票据校验统计数据
+    ///
+    /// 查询全部票据校验的统计数据，包括：总票据校验量、总票据校验通过量、总票据校验拦截量。
+    @inlinable
+    public func getTotalTicketStatistics(_ input: GetTotalTicketStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTotalTicketStatisticsResponse {
+        try await self.client.execute(action: "GetTotalTicketStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

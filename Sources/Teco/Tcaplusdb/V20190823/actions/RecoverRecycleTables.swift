@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 恢复回收站中的表
-    ///
-    /// 恢复回收站中，用户自行删除的表。对欠费待释放的表无效。
-    @inlinable
-    public func recoverRecycleTables(_ input: RecoverRecycleTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverRecycleTablesResponse > {
-        self.client.execute(action: "RecoverRecycleTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 恢复回收站中的表
-    ///
-    /// 恢复回收站中，用户自行删除的表。对欠费待释放的表无效。
-    @inlinable
-    public func recoverRecycleTables(_ input: RecoverRecycleTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverRecycleTablesResponse {
-        try await self.client.execute(action: "RecoverRecycleTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecoverRecycleTables请求参数结构体
     public struct RecoverRecycleTablesRequest: TCRequestModel {
         /// 表所在集群ID
@@ -66,5 +50,21 @@ extension Tcaplusdb {
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 恢复回收站中的表
+    ///
+    /// 恢复回收站中，用户自行删除的表。对欠费待释放的表无效。
+    @inlinable
+    public func recoverRecycleTables(_ input: RecoverRecycleTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverRecycleTablesResponse > {
+        self.client.execute(action: "RecoverRecycleTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复回收站中的表
+    ///
+    /// 恢复回收站中，用户自行删除的表。对欠费待释放的表无效。
+    @inlinable
+    public func recoverRecycleTables(_ input: RecoverRecycleTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverRecycleTablesResponse {
+        try await self.client.execute(action: "RecoverRecycleTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

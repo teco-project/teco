@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 删除别名
-    ///
-    /// 删除一个函数版本的别名
-    @inlinable
-    public func deleteAlias(_ input: DeleteAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAliasResponse > {
-        self.client.execute(action: "DeleteAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除别名
-    ///
-    /// 删除一个函数版本的别名
-    @inlinable
-    public func deleteAlias(_ input: DeleteAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasResponse {
-        try await self.client.execute(action: "DeleteAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAlias请求参数结构体
     public struct DeleteAliasRequest: TCRequestModel {
         /// 函数名称
@@ -42,7 +26,7 @@ extension Scf {
         /// 函数所在的命名空间
         public let namespace: String?
         
-        public init (functionName: String, name: String, namespace: String?) {
+        public init (functionName: String, name: String, namespace: String? = nil) {
             self.functionName = functionName
             self.name = name
             self.namespace = namespace
@@ -63,5 +47,21 @@ extension Scf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除别名
+    ///
+    /// 删除一个函数版本的别名
+    @inlinable
+    public func deleteAlias(_ input: DeleteAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAliasResponse > {
+        self.client.execute(action: "DeleteAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除别名
+    ///
+    /// 删除一个函数版本的别名
+    @inlinable
+    public func deleteAlias(_ input: DeleteAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasResponse {
+        try await self.client.execute(action: "DeleteAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 创建支持防御的漏洞导出任务
-    @inlinable
-    public func createDefenceVulExportJob(_ input: CreateDefenceVulExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDefenceVulExportJobResponse > {
-        self.client.execute(action: "CreateDefenceVulExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建支持防御的漏洞导出任务
-    @inlinable
-    public func createDefenceVulExportJob(_ input: CreateDefenceVulExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefenceVulExportJobResponse {
-        try await self.client.execute(action: "CreateDefenceVulExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDefenceVulExportJob请求参数结构体
     public struct CreateDefenceVulExportJobRequest: TCRequestModel {
         /// 需要返回的数量，默认为10000，最大值为10000
@@ -47,7 +35,7 @@ extension Tcss {
         /// 排序字段
         public let by: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, order: String?, by: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -76,5 +64,17 @@ extension Tcss {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建支持防御的漏洞导出任务
+    @inlinable
+    public func createDefenceVulExportJob(_ input: CreateDefenceVulExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDefenceVulExportJobResponse > {
+        self.client.execute(action: "CreateDefenceVulExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建支持防御的漏洞导出任务
+    @inlinable
+    public func createDefenceVulExportJob(_ input: CreateDefenceVulExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefenceVulExportJobResponse {
+        try await self.client.execute(action: "CreateDefenceVulExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 获取告警策略列表
-    ///
-    /// 本接口用于获取告警策略列表。
-    @inlinable
-    public func describeAlarms(_ input: DescribeAlarmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmsResponse > {
-        self.client.execute(action: "DescribeAlarms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取告警策略列表
-    ///
-    /// 本接口用于获取告警策略列表。
-    @inlinable
-    public func describeAlarms(_ input: DescribeAlarmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmsResponse {
-        try await self.client.execute(action: "DescribeAlarms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAlarms请求参数结构体
     public struct DescribeAlarmsRequest: TCRequestModel {
         /// <br><li> name
@@ -59,7 +43,7 @@ extension Cls {
         /// 分页单页限制数目，默认值为20，最大值100。
         public let limit: Int64?
         
-        public init (filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -88,5 +72,21 @@ extension Cls {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取告警策略列表
+    ///
+    /// 本接口用于获取告警策略列表。
+    @inlinable
+    public func describeAlarms(_ input: DescribeAlarmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmsResponse > {
+        self.client.execute(action: "DescribeAlarms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取告警策略列表
+    ///
+    /// 本接口用于获取告警策略列表。
+    @inlinable
+    public func describeAlarms(_ input: DescribeAlarmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmsResponse {
+        try await self.client.execute(action: "DescribeAlarms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

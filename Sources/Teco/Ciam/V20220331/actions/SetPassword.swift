@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ciam {
-    /// 设置用户密码
-    @inlinable
-    public func setPassword(_ input: SetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetPasswordResponse > {
-        self.client.execute(action: "SetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置用户密码
-    @inlinable
-    public func setPassword(_ input: SetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetPasswordResponse {
-        try await self.client.execute(action: "SetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetPassword请求参数结构体
     public struct SetPasswordRequest: TCRequestModel {
         /// 用户目录ID
@@ -59,5 +47,17 @@ extension Ciam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置用户密码
+    @inlinable
+    public func setPassword(_ input: SetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetPasswordResponse > {
+        self.client.execute(action: "SetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置用户密码
+    @inlinable
+    public func setPassword(_ input: SetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetPasswordResponse {
+        try await self.client.execute(action: "SetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

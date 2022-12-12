@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 查询数据库对象列表
-    ///
-    /// 本接口（DescribeDatabaseObjects）用于查询云数据库实例的数据库中的对象列表，包含表、存储过程、视图和函数。
-    @inlinable
-    public func describeDatabaseObjects(_ input: DescribeDatabaseObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabaseObjectsResponse > {
-        self.client.execute(action: "DescribeDatabaseObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据库对象列表
-    ///
-    /// 本接口（DescribeDatabaseObjects）用于查询云数据库实例的数据库中的对象列表，包含表、存储过程、视图和函数。
-    @inlinable
-    public func describeDatabaseObjects(_ input: DescribeDatabaseObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseObjectsResponse {
-        try await self.client.execute(action: "DescribeDatabaseObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDatabaseObjects请求参数结构体
     public struct DescribeDatabaseObjectsRequest: TCRequestModel {
         /// 实例 ID，形如：dcdbt-ow7t8lmc。
@@ -82,5 +66,21 @@ extension Dcdb {
             case funcs = "Funcs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据库对象列表
+    ///
+    /// 本接口（DescribeDatabaseObjects）用于查询云数据库实例的数据库中的对象列表，包含表、存储过程、视图和函数。
+    @inlinable
+    public func describeDatabaseObjects(_ input: DescribeDatabaseObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabaseObjectsResponse > {
+        self.client.execute(action: "DescribeDatabaseObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库对象列表
+    ///
+    /// 本接口（DescribeDatabaseObjects）用于查询云数据库实例的数据库中的对象列表，包含表、存储过程、视图和函数。
+    @inlinable
+    public func describeDatabaseObjects(_ input: DescribeDatabaseObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseObjectsResponse {
+        try await self.client.execute(action: "DescribeDatabaseObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取软件关联进程列表
-    @inlinable
-    public func describeAssetAppProcessList(_ input: DescribeAssetAppProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetAppProcessListResponse > {
-        self.client.execute(action: "DescribeAssetAppProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取软件关联进程列表
-    @inlinable
-    public func describeAssetAppProcessList(_ input: DescribeAssetAppProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetAppProcessListResponse {
-        try await self.client.execute(action: "DescribeAssetAppProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetAppProcessList请求参数结构体
     public struct DescribeAssetAppProcessListRequest: TCRequestModel {
         /// 主机Quuid
@@ -44,7 +32,7 @@ extension Cwp {
         /// 需要返回的数量，默认为10，最大值为100
         public let limit: UInt64?
         
-        public init (quuid: String, uuid: String, name: String, offset: UInt64?, limit: UInt64?) {
+        public init (quuid: String, uuid: String, name: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.quuid = quuid
             self.uuid = uuid
             self.name = name
@@ -78,5 +66,17 @@ extension Cwp {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取软件关联进程列表
+    @inlinable
+    public func describeAssetAppProcessList(_ input: DescribeAssetAppProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetAppProcessListResponse > {
+        self.client.execute(action: "DescribeAssetAppProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取软件关联进程列表
+    @inlinable
+    public func describeAssetAppProcessList(_ input: DescribeAssetAppProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetAppProcessListResponse {
+        try await self.client.execute(action: "DescribeAssetAppProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

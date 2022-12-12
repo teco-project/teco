@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 获取实例属性
-    ///
-    /// 获取实例属性 
-    @inlinable
-    public func describeInstanceAttributes(_ input: DescribeInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceAttributesResponse > {
-        self.client.execute(action: "DescribeInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实例属性
-    ///
-    /// 获取实例属性 
-    @inlinable
-    public func describeInstanceAttributes(_ input: DescribeInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAttributesResponse {
-        try await self.client.execute(action: "DescribeInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceAttributes请求参数结构体
     public struct DescribeInstanceAttributesRequest: TCRequestModel {
         /// 实例id
@@ -57,5 +41,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实例属性
+    ///
+    /// 获取实例属性 
+    @inlinable
+    public func describeInstanceAttributes(_ input: DescribeInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceAttributesResponse > {
+        self.client.execute(action: "DescribeInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例属性
+    ///
+    /// 获取实例属性 
+    @inlinable
+    public func describeInstanceAttributes(_ input: DescribeInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAttributesResponse {
+        try await self.client.execute(action: "DescribeInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

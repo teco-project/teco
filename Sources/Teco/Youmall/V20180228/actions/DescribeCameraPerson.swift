@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 获取收银台前顾客身份ID
-    ///
-    /// 通过指定设备ID和指定时段，获取该时段内中收银台摄像设备抓取到顾客头像及身份ID
-    @inlinable
-    public func describeCameraPerson(_ input: DescribeCameraPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCameraPersonResponse > {
-        self.client.execute(action: "DescribeCameraPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取收银台前顾客身份ID
-    ///
-    /// 通过指定设备ID和指定时段，获取该时段内中收银台摄像设备抓取到顾客头像及身份ID
-    @inlinable
-    public func describeCameraPerson(_ input: DescribeCameraPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCameraPersonResponse {
-        try await self.client.execute(action: "DescribeCameraPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCameraPerson请求参数结构体
     public struct DescribeCameraPersonRequest: TCRequestModel {
         /// 优mall集团id，通过"指定身份标识获取客户门店列表"接口获取
@@ -57,7 +41,7 @@ extension Youmall {
         /// 是否需要base64的图片，0-不需要，1-需要，默认0
         public let isNeedPic: Int64?
         
-        public init (companyId: String, shopId: Int64, cameraId: Int64, startTime: Int64, endTime: Int64, posId: String?, num: Int64?, isNeedPic: Int64?) {
+        public init (companyId: String, shopId: Int64, cameraId: Int64, startTime: Int64, endTime: Int64, posId: String? = nil, num: Int64? = nil, isNeedPic: Int64? = nil) {
             self.companyId = companyId
             self.shopId = shopId
             self.cameraId = cameraId
@@ -108,5 +92,21 @@ extension Youmall {
             case infos = "Infos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取收银台前顾客身份ID
+    ///
+    /// 通过指定设备ID和指定时段，获取该时段内中收银台摄像设备抓取到顾客头像及身份ID
+    @inlinable
+    public func describeCameraPerson(_ input: DescribeCameraPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCameraPersonResponse > {
+        self.client.execute(action: "DescribeCameraPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取收银台前顾客身份ID
+    ///
+    /// 通过指定设备ID和指定时段，获取该时段内中收银台摄像设备抓取到顾客头像及身份ID
+    @inlinable
+    public func describeCameraPerson(_ input: DescribeCameraPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCameraPersonResponse {
+        try await self.client.execute(action: "DescribeCameraPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

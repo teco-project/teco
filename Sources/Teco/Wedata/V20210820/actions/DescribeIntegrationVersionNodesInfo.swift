@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询集成任务版本节点信息
-    @inlinable
-    public func describeIntegrationVersionNodesInfo(_ input: DescribeIntegrationVersionNodesInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationVersionNodesInfoResponse > {
-        self.client.execute(action: "DescribeIntegrationVersionNodesInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集成任务版本节点信息
-    @inlinable
-    public func describeIntegrationVersionNodesInfo(_ input: DescribeIntegrationVersionNodesInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationVersionNodesInfoResponse {
-        try await self.client.execute(action: "DescribeIntegrationVersionNodesInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIntegrationVersionNodesInfo请求参数结构体
     public struct DescribeIntegrationVersionNodesInfoRequest: TCRequestModel {
         /// 任务id
@@ -41,7 +29,7 @@ extension Wedata {
         /// task version
         public let taskVersion: String?
         
-        public init (taskId: String, projectId: String, taskVersionPath: String, taskVersion: String?) {
+        public init (taskId: String, projectId: String, taskVersionPath: String, taskVersion: String? = nil) {
             self.taskId = taskId
             self.projectId = projectId
             self.taskVersionPath = taskVersionPath
@@ -78,5 +66,17 @@ extension Wedata {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集成任务版本节点信息
+    @inlinable
+    public func describeIntegrationVersionNodesInfo(_ input: DescribeIntegrationVersionNodesInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIntegrationVersionNodesInfoResponse > {
+        self.client.execute(action: "DescribeIntegrationVersionNodesInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集成任务版本节点信息
+    @inlinable
+    public func describeIntegrationVersionNodesInfo(_ input: DescribeIntegrationVersionNodesInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationVersionNodesInfoResponse {
+        try await self.client.execute(action: "DescribeIntegrationVersionNodesInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 更新设备日志级别
-    @inlinable
-    public func modifyDeviceLogLevel(_ input: ModifyDeviceLogLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceLogLevelResponse > {
-        self.client.execute(action: "ModifyDeviceLogLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新设备日志级别
-    @inlinable
-    public func modifyDeviceLogLevel(_ input: ModifyDeviceLogLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceLogLevelResponse {
-        try await self.client.execute(action: "ModifyDeviceLogLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDeviceLogLevel请求参数结构体
     public struct ModifyDeviceLogLevelRequest: TCRequestModel {
         /// 产品ID
@@ -59,5 +47,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新设备日志级别
+    @inlinable
+    public func modifyDeviceLogLevel(_ input: ModifyDeviceLogLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceLogLevelResponse > {
+        self.client.execute(action: "ModifyDeviceLogLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新设备日志级别
+    @inlinable
+    public func modifyDeviceLogLevel(_ input: ModifyDeviceLogLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceLogLevelResponse {
+        try await self.client.execute(action: "ModifyDeviceLogLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

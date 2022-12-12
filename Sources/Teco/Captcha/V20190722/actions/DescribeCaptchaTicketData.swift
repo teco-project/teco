@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Captcha {
-    /// 安全验证码用户操作票据数据查询
-    @inlinable
-    public func describeCaptchaTicketData(_ input: DescribeCaptchaTicketDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaTicketDataResponse > {
-        self.client.execute(action: "DescribeCaptchaTicketData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全验证码用户操作票据数据查询
-    @inlinable
-    public func describeCaptchaTicketData(_ input: DescribeCaptchaTicketDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaTicketDataResponse {
-        try await self.client.execute(action: "DescribeCaptchaTicketData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCaptchaTicketData请求参数结构体
     public struct DescribeCaptchaTicketDataRequest: TCRequestModel {
         /// 验证码应用ID
@@ -38,7 +26,7 @@ extension Captcha {
         /// 查询结束时间 例如：20220314
         public let end: Int64?
         
-        public init (captchaAppId: Int64, start: Int64, end: Int64?) {
+        public init (captchaAppId: Int64, start: Int64, end: Int64? = nil) {
             self.captchaAppId = captchaAppId
             self.start = start
             self.end = end
@@ -62,7 +50,7 @@ extension Captcha {
         
         /// 验证码票据信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: CaptchaTicketDataRes
+        public let data: CaptchaTicketDataRes?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -73,5 +61,17 @@ extension Captcha {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全验证码用户操作票据数据查询
+    @inlinable
+    public func describeCaptchaTicketData(_ input: DescribeCaptchaTicketDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaTicketDataResponse > {
+        self.client.execute(action: "DescribeCaptchaTicketData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全验证码用户操作票据数据查询
+    @inlinable
+    public func describeCaptchaTicketData(_ input: DescribeCaptchaTicketDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaTicketDataResponse {
+        try await self.client.execute(action: "DescribeCaptchaTicketData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

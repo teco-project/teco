@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wav {
-    /// 查询外部联系人事件明细列表接口
-    ///
-    /// 通过接口拉取租户在指定时间范围内的外部联系人添加/删除明细，此接口提供的数据以天为维度，查询的时间范围为[StarTime, EndTime]，即前后均为闭区间，支持的最大查询跨度为365天；
-    @inlinable
-    public func queryExternalUserEventList(_ input: QueryExternalUserEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryExternalUserEventListResponse > {
-        self.client.execute(action: "QueryExternalUserEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询外部联系人事件明细列表接口
-    ///
-    /// 通过接口拉取租户在指定时间范围内的外部联系人添加/删除明细，此接口提供的数据以天为维度，查询的时间范围为[StarTime, EndTime]，即前后均为闭区间，支持的最大查询跨度为365天；
-    @inlinable
-    public func queryExternalUserEventList(_ input: QueryExternalUserEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalUserEventListResponse {
-        try await self.client.execute(action: "QueryExternalUserEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryExternalUserEventList请求参数结构体
     public struct QueryExternalUserEventListRequest: TCRequestModel {
         /// 查询开始时间， 单位秒
@@ -45,7 +29,7 @@ extension Wav {
         /// 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
         public let limit: Int64?
         
-        public init (beginTime: UInt64, endTime: UInt64, cursor: String?, limit: Int64?) {
+        public init (beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil) {
             self.beginTime = beginTime
             self.endTime = endTime
             self.cursor = cursor
@@ -78,5 +62,21 @@ extension Wav {
             case pageData = "PageData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询外部联系人事件明细列表接口
+    ///
+    /// 通过接口拉取租户在指定时间范围内的外部联系人添加/删除明细，此接口提供的数据以天为维度，查询的时间范围为[StarTime, EndTime]，即前后均为闭区间，支持的最大查询跨度为365天；
+    @inlinable
+    public func queryExternalUserEventList(_ input: QueryExternalUserEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryExternalUserEventListResponse > {
+        self.client.execute(action: "QueryExternalUserEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询外部联系人事件明细列表接口
+    ///
+    /// 通过接口拉取租户在指定时间范围内的外部联系人添加/删除明细，此接口提供的数据以天为维度，查询的时间范围为[StarTime, EndTime]，即前后均为闭区间，支持的最大查询跨度为365天；
+    @inlinable
+    public func queryExternalUserEventList(_ input: QueryExternalUserEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalUserEventListResponse {
+        try await self.client.execute(action: "QueryExternalUserEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

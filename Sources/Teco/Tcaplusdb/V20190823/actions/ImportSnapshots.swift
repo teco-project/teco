@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 导入快照数据
-    ///
-    /// 将快照数据导入到新表或当前表
-    @inlinable
-    public func importSnapshots(_ input: ImportSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportSnapshotsResponse > {
-        self.client.execute(action: "ImportSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导入快照数据
-    ///
-    /// 将快照数据导入到新表或当前表
-    @inlinable
-    public func importSnapshots(_ input: ImportSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportSnapshotsResponse {
-        try await self.client.execute(action: "ImportSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ImportSnapshots请求参数结构体
     public struct ImportSnapshotsRequest: TCRequestModel {
         /// 表格所属的集群id
@@ -46,7 +30,7 @@ extension Tcaplusdb {
         public let importOriginTable: String
         
         /// 部分记录的key文件
-        public let keyFile: KeyFile
+        public let keyFile: KeyFile?
         
         /// 如果导入到新表，此为新表所属的表格组id
         public let newTableGroupId: String?
@@ -54,7 +38,7 @@ extension Tcaplusdb {
         /// 如果导入到新表，此为新表的表名，系统会以该名称自动创建一张结构相同的空表
         public let newTableName: String?
         
-        public init (clusterId: String, snapshots: SnapshotInfo, importSpecialKey: String, importOriginTable: String, keyFile: KeyFile, newTableGroupId: String?, newTableName: String?) {
+        public init (clusterId: String, snapshots: SnapshotInfo, importSpecialKey: String, importOriginTable: String, keyFile: KeyFile? = nil, newTableGroupId: String? = nil, newTableName: String? = nil) {
             self.clusterId = clusterId
             self.snapshots = snapshots
             self.importSpecialKey = importSpecialKey
@@ -88,5 +72,21 @@ extension Tcaplusdb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导入快照数据
+    ///
+    /// 将快照数据导入到新表或当前表
+    @inlinable
+    public func importSnapshots(_ input: ImportSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportSnapshotsResponse > {
+        self.client.execute(action: "ImportSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导入快照数据
+    ///
+    /// 将快照数据导入到新表或当前表
+    @inlinable
+    public func importSnapshots(_ input: ImportSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportSnapshotsResponse {
+        try await self.client.execute(action: "ImportSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 创建实例
-    @inlinable
-    public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceResponse > {
-        self.client.execute(action: "CreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例
-    @inlinable
-    public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceResponse {
-        try await self.client.execute(action: "CreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateInstance请求参数结构体
     public struct CreateInstanceRequest: TCRequestModel {
         /// 企业版实例名称
@@ -36,7 +24,7 @@ extension Tcr {
         public let registryType: String
         
         /// 云标签描述
-        public let tagSpecification: TagSpecification
+        public let tagSpecification: TagSpecification?
         
         /// 实例计费类型，0表示按量计费，1表示预付费，默认为按量计费
         public let registryChargeType: Int64?
@@ -44,7 +32,7 @@ extension Tcr {
         /// 是否同步TCR云标签至生成的COS Bucket
         public let syncTag: Bool?
         
-        public init (registryName: String, registryType: String, tagSpecification: TagSpecification, registryChargeType: Int64?, syncTag: Bool?) {
+        public init (registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, syncTag: Bool? = nil) {
             self.registryName = registryName
             self.registryType = registryType
             self.tagSpecification = tagSpecification
@@ -73,5 +61,17 @@ extension Tcr {
             case registryId = "RegistryId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例
+    @inlinable
+    public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceResponse > {
+        self.client.execute(action: "CreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例
+    @inlinable
+    public func createInstance(_ input: CreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceResponse {
+        try await self.client.execute(action: "CreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

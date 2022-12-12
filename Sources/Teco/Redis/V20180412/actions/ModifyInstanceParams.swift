@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 修改实例参数
-    ///
-    /// 本接口(ModifyInstanceParams)用于修改Redis实例的参数配置。
-    @inlinable
-    public func modifyInstanceParams(_ input: ModifyInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceParamsResponse > {
-        self.client.execute(action: "ModifyInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例参数
-    ///
-    /// 本接口(ModifyInstanceParams)用于修改Redis实例的参数配置。
-    @inlinable
-    public func modifyInstanceParams(_ input: ModifyInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceParamsResponse {
-        try await self.client.execute(action: "ModifyInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstanceParams请求参数结构体
     public struct ModifyInstanceParamsRequest: TCRequestModel {
         /// 实例ID。
@@ -66,5 +50,21 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例参数
+    ///
+    /// 本接口(ModifyInstanceParams)用于修改Redis实例的参数配置。
+    @inlinable
+    public func modifyInstanceParams(_ input: ModifyInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceParamsResponse > {
+        self.client.execute(action: "ModifyInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例参数
+    ///
+    /// 本接口(ModifyInstanceParams)用于修改Redis实例的参数配置。
+    @inlinable
+    public func modifyInstanceParams(_ input: ModifyInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceParamsResponse {
+        try await self.client.execute(action: "ModifyInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

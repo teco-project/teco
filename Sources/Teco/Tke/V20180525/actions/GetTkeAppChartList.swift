@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取TKE支持的App列表
-    @inlinable
-    public func getTkeAppChartList(_ input: GetTkeAppChartListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTkeAppChartListResponse > {
-        self.client.execute(action: "GetTkeAppChartList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取TKE支持的App列表
-    @inlinable
-    public func getTkeAppChartList(_ input: GetTkeAppChartListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTkeAppChartListResponse {
-        try await self.client.execute(action: "GetTkeAppChartList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetTkeAppChartList请求参数结构体
     public struct GetTkeAppChartListRequest: TCRequestModel {
         /// app类型，取值log,scheduler,network,storage,monitor,dns,image,other,invisible
@@ -38,7 +26,7 @@ extension Tke {
         /// 集群类型，取值tke、eks
         public let clusterType: String?
         
-        public init (kind: String?, arch: String?, clusterType: String?) {
+        public init (kind: String? = nil, arch: String? = nil, clusterType: String? = nil) {
             self.kind = kind
             self.arch = arch
             self.clusterType = clusterType
@@ -64,5 +52,17 @@ extension Tke {
             case appCharts = "AppCharts"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取TKE支持的App列表
+    @inlinable
+    public func getTkeAppChartList(_ input: GetTkeAppChartListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTkeAppChartListResponse > {
+        self.client.execute(action: "GetTkeAppChartList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取TKE支持的App列表
+    @inlinable
+    public func getTkeAppChartList(_ input: GetTkeAppChartListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTkeAppChartListResponse {
+        try await self.client.execute(action: "GetTkeAppChartList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

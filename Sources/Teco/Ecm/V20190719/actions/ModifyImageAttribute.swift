@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改镜像属性
-    ///
-    /// 本接口（ModifyImageAttribute）用于修改镜像属性。
-    @inlinable
-    public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyImageAttributeResponse > {
-        self.client.execute(action: "ModifyImageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改镜像属性
-    ///
-    /// 本接口（ModifyImageAttribute）用于修改镜像属性。
-    @inlinable
-    public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAttributeResponse {
-        try await self.client.execute(action: "ModifyImageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyImageAttribute请求参数结构体
     public struct ModifyImageAttributeRequest: TCRequestModel {
         /// 镜像ID，形如img-gvbnzy6f
@@ -45,7 +29,7 @@ extension Ecm {
         /// - 不得超过60个字符。
         public let imageDescription: String?
         
-        public init (imageId: String, imageName: String?, imageDescription: String?) {
+        public init (imageId: String, imageName: String? = nil, imageDescription: String? = nil) {
             self.imageId = imageId
             self.imageName = imageName
             self.imageDescription = imageDescription
@@ -66,5 +50,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改镜像属性
+    ///
+    /// 本接口（ModifyImageAttribute）用于修改镜像属性。
+    @inlinable
+    public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyImageAttributeResponse > {
+        self.client.execute(action: "ModifyImageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改镜像属性
+    ///
+    /// 本接口（ModifyImageAttribute）用于修改镜像属性。
+    @inlinable
+    public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAttributeResponse {
+        try await self.client.execute(action: "ModifyImageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

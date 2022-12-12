@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 创建音视频内容识别模板
-    ///
-    /// 创建用户自定义音视频内容识别模板，数量上限：50。
-    @inlinable
-    public func createAIRecognitionTemplate(_ input: CreateAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAIRecognitionTemplateResponse > {
-        self.client.execute(action: "CreateAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建音视频内容识别模板
-    ///
-    /// 创建用户自定义音视频内容识别模板，数量上限：50。
-    @inlinable
-    public func createAIRecognitionTemplate(_ input: CreateAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIRecognitionTemplateResponse {
-        try await self.client.execute(action: "CreateAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAIRecognitionTemplate请求参数结构体
     public struct CreateAIRecognitionTemplateRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -43,33 +27,33 @@ extension Vod {
         public let comment: String?
         
         /// 视频片头片尾识别控制参数。
-        public let headTailConfigure: HeadTailConfigureInfo
+        public let headTailConfigure: HeadTailConfigureInfo?
         
         /// 视频拆条识别控制参数。
-        public let segmentConfigure: SegmentConfigureInfo
+        public let segmentConfigure: SegmentConfigureInfo?
         
         /// 人脸识别控制参数。
-        public let faceConfigure: FaceConfigureInfo
+        public let faceConfigure: FaceConfigureInfo?
         
         /// 文本全文识别控制参数。
-        public let ocrFullTextConfigure: OcrFullTextConfigureInfo
+        public let ocrFullTextConfigure: OcrFullTextConfigureInfo?
         
         /// 文本关键词识别控制参数。
-        public let ocrWordsConfigure: OcrWordsConfigureInfo
+        public let ocrWordsConfigure: OcrWordsConfigureInfo?
         
         /// 语音全文识别控制参数。
-        public let asrFullTextConfigure: AsrFullTextConfigureInfo
+        public let asrFullTextConfigure: AsrFullTextConfigureInfo?
         
         /// 语音关键词识别控制参数。
-        public let asrWordsConfigure: AsrWordsConfigureInfo
+        public let asrWordsConfigure: AsrWordsConfigureInfo?
         
         /// 物体识别控制参数。
-        public let objectConfigure: ObjectConfigureInfo
+        public let objectConfigure: ObjectConfigureInfo?
         
         /// 截帧间隔，单位为秒。当不填时，默认截帧间隔为 1 秒，最小值为 0.5 秒。
         public let screenshotInterval: Float?
         
-        public init (subAppId: UInt64?, name: String?, comment: String?, headTailConfigure: HeadTailConfigureInfo, segmentConfigure: SegmentConfigureInfo, faceConfigure: FaceConfigureInfo, ocrFullTextConfigure: OcrFullTextConfigureInfo, ocrWordsConfigure: OcrWordsConfigureInfo, asrFullTextConfigure: AsrFullTextConfigureInfo, asrWordsConfigure: AsrWordsConfigureInfo, objectConfigure: ObjectConfigureInfo, screenshotInterval: Float?) {
+        public init (subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headTailConfigure: HeadTailConfigureInfo? = nil, segmentConfigure: SegmentConfigureInfo? = nil, faceConfigure: FaceConfigureInfo? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfo? = nil, ocrWordsConfigure: OcrWordsConfigureInfo? = nil, asrFullTextConfigure: AsrFullTextConfigureInfo? = nil, asrWordsConfigure: AsrWordsConfigureInfo? = nil, objectConfigure: ObjectConfigureInfo? = nil, screenshotInterval: Float? = nil) {
             self.subAppId = subAppId
             self.name = name
             self.comment = comment
@@ -112,5 +96,21 @@ extension Vod {
             case definition = "Definition"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建音视频内容识别模板
+    ///
+    /// 创建用户自定义音视频内容识别模板，数量上限：50。
+    @inlinable
+    public func createAIRecognitionTemplate(_ input: CreateAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAIRecognitionTemplateResponse > {
+        self.client.execute(action: "CreateAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建音视频内容识别模板
+    ///
+    /// 创建用户自定义音视频内容识别模板，数量上限：50。
+    @inlinable
+    public func createAIRecognitionTemplate(_ input: CreateAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIRecognitionTemplateResponse {
+        try await self.client.execute(action: "CreateAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

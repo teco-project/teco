@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-查询核销订单状态
-    ///
-    /// 云企付-查询核销订单状态，客户可以使用该接口来查询核销申请的订单状态。目前仅支持TENPAY渠道EBANK_PAYMENT付款方式的担保支付订单查询。
-    @inlinable
-    public func queryOpenBankVerificationOrder(_ input: QueryOpenBankVerificationOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankVerificationOrderResponse > {
-        self.client.execute(action: "QueryOpenBankVerificationOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-查询核销订单状态
-    ///
-    /// 云企付-查询核销订单状态，客户可以使用该接口来查询核销申请的订单状态。目前仅支持TENPAY渠道EBANK_PAYMENT付款方式的担保支付订单查询。
-    @inlinable
-    public func queryOpenBankVerificationOrder(_ input: QueryOpenBankVerificationOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankVerificationOrderResponse {
-        try await self.client.execute(action: "QueryOpenBankVerificationOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryOpenBankVerificationOrder请求参数结构体
     public struct QueryOpenBankVerificationOrderRequest: TCRequestModel {
         /// 云企付渠道商户号。外部接入平台入驻云企付平台后下发。
@@ -48,7 +32,7 @@ extension Cpdp {
         /// _不填默认为生产环境_
         public let environment: String?
         
-        public init (channelMerchantId: String, channelVerificationId: String?, outVerificationId: String?, environment: String?) {
+        public init (channelMerchantId: String, channelVerificationId: String? = nil, outVerificationId: String? = nil, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.channelVerificationId = channelVerificationId
             self.outVerificationId = outVerificationId
@@ -74,7 +58,7 @@ extension Cpdp {
         
         /// 核销查询响应对象。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: QueryOpenBankVerificationResult
+        public let result: QueryOpenBankVerificationResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -85,5 +69,21 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-查询核销订单状态
+    ///
+    /// 云企付-查询核销订单状态，客户可以使用该接口来查询核销申请的订单状态。目前仅支持TENPAY渠道EBANK_PAYMENT付款方式的担保支付订单查询。
+    @inlinable
+    public func queryOpenBankVerificationOrder(_ input: QueryOpenBankVerificationOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankVerificationOrderResponse > {
+        self.client.execute(action: "QueryOpenBankVerificationOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-查询核销订单状态
+    ///
+    /// 云企付-查询核销订单状态，客户可以使用该接口来查询核销申请的订单状态。目前仅支持TENPAY渠道EBANK_PAYMENT付款方式的担保支付订单查询。
+    @inlinable
+    public func queryOpenBankVerificationOrder(_ input: QueryOpenBankVerificationOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankVerificationOrderResponse {
+        try await self.client.execute(action: "QueryOpenBankVerificationOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

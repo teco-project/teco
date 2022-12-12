@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取所有版本列表
-    ///
-    /// 本接口（GetAllFirmwareVersion）用于获取所有的版本列表 
-    @inlinable
-    public func getAllFirmwareVersion(_ input: GetAllFirmwareVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAllFirmwareVersionResponse > {
-        self.client.execute(action: "GetAllFirmwareVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取所有版本列表
-    ///
-    /// 本接口（GetAllFirmwareVersion）用于获取所有的版本列表 
-    @inlinable
-    public func getAllFirmwareVersion(_ input: GetAllFirmwareVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAllFirmwareVersionResponse {
-        try await self.client.execute(action: "GetAllFirmwareVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetAllFirmwareVersion请求参数结构体
     public struct GetAllFirmwareVersionRequest: TCRequestModel {
         /// 产品ID
@@ -57,5 +41,21 @@ extension Iotvideo {
             case version = "Version"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取所有版本列表
+    ///
+    /// 本接口（GetAllFirmwareVersion）用于获取所有的版本列表 
+    @inlinable
+    public func getAllFirmwareVersion(_ input: GetAllFirmwareVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAllFirmwareVersionResponse > {
+        self.client.execute(action: "GetAllFirmwareVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取所有版本列表
+    ///
+    /// 本接口（GetAllFirmwareVersion）用于获取所有的版本列表 
+    @inlinable
+    public func getAllFirmwareVersion(_ input: GetAllFirmwareVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAllFirmwareVersionResponse {
+        try await self.client.execute(action: "GetAllFirmwareVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

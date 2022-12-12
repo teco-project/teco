@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询微信云托管环境信息
-    @inlinable
-    public func describeWxCloudBaseRunEnvs(_ input: DescribeWxCloudBaseRunEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWxCloudBaseRunEnvsResponse > {
-        self.client.execute(action: "DescribeWxCloudBaseRunEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询微信云托管环境信息
-    @inlinable
-    public func describeWxCloudBaseRunEnvs(_ input: DescribeWxCloudBaseRunEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWxCloudBaseRunEnvsResponse {
-        try await self.client.execute(action: "DescribeWxCloudBaseRunEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWxCloudBaseRunEnvs请求参数结构体
     public struct DescribeWxCloudBaseRunEnvsRequest: TCRequestModel {
         /// wx应用Id
@@ -35,7 +23,7 @@ extension Tcb {
         /// 是否查询全地域
         public let allRegions: Bool?
         
-        public init (wxAppId: String?, allRegions: Bool?) {
+        public init (wxAppId: String? = nil, allRegions: Bool? = nil) {
             self.wxAppId = wxAppId
             self.allRegions = allRegions
         }
@@ -58,5 +46,17 @@ extension Tcb {
             case envList = "EnvList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询微信云托管环境信息
+    @inlinable
+    public func describeWxCloudBaseRunEnvs(_ input: DescribeWxCloudBaseRunEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWxCloudBaseRunEnvsResponse > {
+        self.client.execute(action: "DescribeWxCloudBaseRunEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询微信云托管环境信息
+    @inlinable
+    public func describeWxCloudBaseRunEnvs(_ input: DescribeWxCloudBaseRunEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWxCloudBaseRunEnvsResponse {
+        try await self.client.execute(action: "DescribeWxCloudBaseRunEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改 DNSSEC 状态
-    ///
-    /// 设置站点DNSSEC状态
-    @inlinable
-    public func modifyDnssec(_ input: ModifyDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDnssecResponse > {
-        self.client.execute(action: "ModifyDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改 DNSSEC 状态
-    ///
-    /// 设置站点DNSSEC状态
-    @inlinable
-    public func modifyDnssec(_ input: ModifyDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDnssecResponse {
-        try await self.client.execute(action: "ModifyDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDnssec请求参数结构体
     public struct ModifyDnssecRequest: TCRequestModel {
         /// 站点ID。
@@ -60,5 +44,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改 DNSSEC 状态
+    ///
+    /// 设置站点DNSSEC状态
+    @inlinable
+    public func modifyDnssec(_ input: ModifyDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDnssecResponse > {
+        self.client.execute(action: "ModifyDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改 DNSSEC 状态
+    ///
+    /// 设置站点DNSSEC状态
+    @inlinable
+    public func modifyDnssec(_ input: ModifyDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDnssecResponse {
+        try await self.client.execute(action: "ModifyDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

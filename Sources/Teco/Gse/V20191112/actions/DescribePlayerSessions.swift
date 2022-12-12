@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 查询玩家会话列表
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribePlayerSessions）用于获取玩家会话列表。
-    @inlinable
-    public func describePlayerSessions(_ input: DescribePlayerSessionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePlayerSessionsResponse > {
-        self.client.execute(action: "DescribePlayerSessions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询玩家会话列表
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribePlayerSessions）用于获取玩家会话列表。
-    @inlinable
-    public func describePlayerSessions(_ input: DescribePlayerSessionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayerSessionsResponse {
-        try await self.client.execute(action: "DescribePlayerSessions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePlayerSessions请求参数结构体
     public struct DescribePlayerSessionsRequest: TCRequestModel {
         /// 游戏服务器会话ID，最小长度不小于1个ASCII字符，最大长度不超过48个ASCII字符
@@ -53,7 +35,7 @@ extension Gse {
         /// 玩家会话状态（RESERVED,ACTIVE,COMPLETED,TIMEDOUT）
         public let playerSessionStatusFilter: String?
         
-        public init (gameServerSessionId: String?, limit: UInt64?, nextToken: String?, playerId: String?, playerSessionId: String?, playerSessionStatusFilter: String?) {
+        public init (gameServerSessionId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, playerId: String? = nil, playerSessionId: String? = nil, playerSessionStatusFilter: String? = nil) {
             self.gameServerSessionId = gameServerSessionId
             self.limit = limit
             self.nextToken = nextToken
@@ -90,5 +72,23 @@ extension Gse {
             case nextToken = "NextToken"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询玩家会话列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribePlayerSessions）用于获取玩家会话列表。
+    @inlinable
+    public func describePlayerSessions(_ input: DescribePlayerSessionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePlayerSessionsResponse > {
+        self.client.execute(action: "DescribePlayerSessions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询玩家会话列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribePlayerSessions）用于获取玩家会话列表。
+    @inlinable
+    public func describePlayerSessions(_ input: DescribePlayerSessionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayerSessionsResponse {
+        try await self.client.execute(action: "DescribePlayerSessions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询Web攻击命中规则详情
-    ///
-    /// 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
-    @inlinable
-    public func describeWebManagedRulesHitRuleDetail(_ input: DescribeWebManagedRulesHitRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebManagedRulesHitRuleDetailResponse > {
-        self.client.execute(action: "DescribeWebManagedRulesHitRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Web攻击命中规则详情
-    ///
-    /// 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
-    @inlinable
-    public func describeWebManagedRulesHitRuleDetail(_ input: DescribeWebManagedRulesHitRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesHitRuleDetailResponse {
-        try await self.client.execute(action: "DescribeWebManagedRulesHitRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWebManagedRulesHitRuleDetail请求参数结构体
     public struct DescribeWebManagedRulesHitRuleDetailRequest: TCRequestModel {
         /// 开始时间。
@@ -71,7 +55,7 @@ extension Teo {
         /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
         public let area: String?
         
-        public init (startTime: Date, endTime: Date, zoneIds: [String]?, domains: [String]?, interval: String?, queryCondition: [QueryCondition]?, limit: Int64?, offset: Int64?, area: String?) {
+        public init (startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.zoneIds = zoneIds
@@ -113,5 +97,21 @@ extension Teo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Web攻击命中规则详情
+    ///
+    /// 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
+    @inlinable
+    public func describeWebManagedRulesHitRuleDetail(_ input: DescribeWebManagedRulesHitRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebManagedRulesHitRuleDetailResponse > {
+        self.client.execute(action: "DescribeWebManagedRulesHitRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Web攻击命中规则详情
+    ///
+    /// 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
+    @inlinable
+    public func describeWebManagedRulesHitRuleDetail(_ input: DescribeWebManagedRulesHitRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesHitRuleDetailResponse {
+        try await self.client.execute(action: "DescribeWebManagedRulesHitRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

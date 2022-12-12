@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 查询应用访问方式列表
-    @inlinable
-    public func describeApplicationServiceList(_ input: DescribeApplicationServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationServiceListResponse > {
-        self.client.execute(action: "DescribeApplicationServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询应用访问方式列表
-    @inlinable
-    public func describeApplicationServiceList(_ input: DescribeApplicationServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationServiceListResponse {
-        try await self.client.execute(action: "DescribeApplicationServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplicationServiceList请求参数结构体
     public struct DescribeApplicationServiceListRequest: TCRequestModel {
         /// namespace id
@@ -38,7 +26,7 @@ extension Tem {
         /// xx
         public let sourceChannel: Int64?
         
-        public init (environmentId: String, applicationId: String, sourceChannel: Int64?) {
+        public init (environmentId: String, applicationId: String, sourceChannel: Int64? = nil) {
             self.environmentId = environmentId
             self.applicationId = applicationId
             self.sourceChannel = sourceChannel
@@ -63,5 +51,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询应用访问方式列表
+    @inlinable
+    public func describeApplicationServiceList(_ input: DescribeApplicationServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationServiceListResponse > {
+        self.client.execute(action: "DescribeApplicationServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询应用访问方式列表
+    @inlinable
+    public func describeApplicationServiceList(_ input: DescribeApplicationServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationServiceListResponse {
+        try await self.client.execute(action: "DescribeApplicationServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

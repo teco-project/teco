@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取机器地域列表
-    @inlinable
-    public func describeMachineRegions(_ input: DescribeMachineRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineRegionsResponse > {
-        self.client.execute(action: "DescribeMachineRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取机器地域列表
-    @inlinable
-    public func describeMachineRegions(_ input: DescribeMachineRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineRegionsResponse {
-        try await self.client.execute(action: "DescribeMachineRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMachineRegions请求参数结构体
     public struct DescribeMachineRegionsRequest: TCRequestModel {
         public init () {
@@ -65,5 +53,17 @@ extension Cwp {
             case all = "ALL"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取机器地域列表
+    @inlinable
+    public func describeMachineRegions(_ input: DescribeMachineRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachineRegionsResponse > {
+        self.client.execute(action: "DescribeMachineRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取机器地域列表
+    @inlinable
+    public func describeMachineRegions(_ input: DescribeMachineRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineRegionsResponse {
+        try await self.client.execute(action: "DescribeMachineRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

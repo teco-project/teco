@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 禁用单元化路由
-    @inlinable
-    public func disableUnitRoute(_ input: DisableUnitRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableUnitRouteResponse > {
-        self.client.execute(action: "DisableUnitRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 禁用单元化路由
-    @inlinable
-    public func disableUnitRoute(_ input: DisableUnitRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUnitRouteResponse {
-        try await self.client.execute(action: "DisableUnitRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableUnitRoute请求参数结构体
     public struct DisableUnitRouteRequest: TCRequestModel {
         /// 网关实体ID
@@ -54,5 +42,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 禁用单元化路由
+    @inlinable
+    public func disableUnitRoute(_ input: DisableUnitRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableUnitRouteResponse > {
+        self.client.execute(action: "DisableUnitRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用单元化路由
+    @inlinable
+    public func disableUnitRoute(_ input: DisableUnitRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUnitRouteResponse {
+        try await self.client.execute(action: "DisableUnitRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

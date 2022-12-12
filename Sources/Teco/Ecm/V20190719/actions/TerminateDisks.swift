@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 退还云硬盘
-    ///
-    /// 本接口（TerminateDisks）用于退还云硬盘。
-    /// * 不再使用的云盘，可通过本接口主动退还。
-    /// * 本接口支持退还预付费云盘和按小时后付费云盘。按小时后付费云盘可直接退还，预付费云盘需符合退还规则。
-    /// * 支持批量操作，每次请求批量云硬盘的上限为50。如果批量云盘存在不允许操作的，请求会以特定错误码返回。
-    @inlinable
-    public func terminateDisks(_ input: TerminateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateDisksResponse > {
-        self.client.execute(action: "TerminateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 退还云硬盘
-    ///
-    /// 本接口（TerminateDisks）用于退还云硬盘。
-    /// * 不再使用的云盘，可通过本接口主动退还。
-    /// * 本接口支持退还预付费云盘和按小时后付费云盘。按小时后付费云盘可直接退还，预付费云盘需符合退还规则。
-    /// * 支持批量操作，每次请求批量云硬盘的上限为50。如果批量云盘存在不允许操作的，请求会以特定错误码返回。
-    @inlinable
-    public func terminateDisks(_ input: TerminateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDisksResponse {
-        try await self.client.execute(action: "TerminateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TerminateDisks请求参数结构体
     public struct TerminateDisksRequest: TCRequestModel {
         /// 需退还的云盘ID列表。
@@ -59,5 +37,27 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 退还云硬盘
+    ///
+    /// 本接口（TerminateDisks）用于退还云硬盘。
+    /// * 不再使用的云盘，可通过本接口主动退还。
+    /// * 本接口支持退还预付费云盘和按小时后付费云盘。按小时后付费云盘可直接退还，预付费云盘需符合退还规则。
+    /// * 支持批量操作，每次请求批量云硬盘的上限为50。如果批量云盘存在不允许操作的，请求会以特定错误码返回。
+    @inlinable
+    public func terminateDisks(_ input: TerminateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateDisksResponse > {
+        self.client.execute(action: "TerminateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 退还云硬盘
+    ///
+    /// 本接口（TerminateDisks）用于退还云硬盘。
+    /// * 不再使用的云盘，可通过本接口主动退还。
+    /// * 本接口支持退还预付费云盘和按小时后付费云盘。按小时后付费云盘可直接退还，预付费云盘需符合退还规则。
+    /// * 支持批量操作，每次请求批量云硬盘的上限为50。如果批量云盘存在不允许操作的，请求会以特定错误码返回。
+    @inlinable
+    public func terminateDisks(_ input: TerminateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDisksResponse {
+        try await self.client.execute(action: "TerminateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

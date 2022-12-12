@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 删除白名单
-    @inlinable
-    public func deleteWhitelist(_ input: DeleteWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWhitelistResponse > {
-        self.client.execute(action: "DeleteWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除白名单
-    @inlinable
-    public func deleteWhitelist(_ input: DeleteWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhitelistResponse {
-        try await self.client.execute(action: "DeleteWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteWhitelist请求参数结构体
     public struct DeleteWhitelistRequest: TCRequestModel {
         /// 实例ID
@@ -58,5 +46,17 @@ extension Rum {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除白名单
+    @inlinable
+    public func deleteWhitelist(_ input: DeleteWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWhitelistResponse > {
+        self.client.execute(action: "DeleteWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除白名单
+    @inlinable
+    public func deleteWhitelist(_ input: DeleteWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhitelistResponse {
+        try await self.client.execute(action: "DeleteWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

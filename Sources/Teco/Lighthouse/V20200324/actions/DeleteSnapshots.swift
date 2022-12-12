@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 删除快照
-    ///
-    /// 本接口（DeleteSnapshots）用于删除快照。
-    /// 快照必须处于 NORMAL 状态，快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。
-    @inlinable
-    public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotsResponse > {
-        self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除快照
-    ///
-    /// 本接口（DeleteSnapshots）用于删除快照。
-    /// 快照必须处于 NORMAL 状态，快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。
-    @inlinable
-    public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotsResponse {
-        try await self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSnapshots请求参数结构体
     public struct DeleteSnapshotsRequest: TCRequestModel {
         /// 要删除的快照 ID 列表，可通过 DescribeSnapshots 查询。
@@ -55,5 +37,23 @@ extension Lighthouse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除快照
+    ///
+    /// 本接口（DeleteSnapshots）用于删除快照。
+    /// 快照必须处于 NORMAL 状态，快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。
+    @inlinable
+    public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotsResponse > {
+        self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除快照
+    ///
+    /// 本接口（DeleteSnapshots）用于删除快照。
+    /// 快照必须处于 NORMAL 状态，快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。
+    @inlinable
+    public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotsResponse {
+        try await self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

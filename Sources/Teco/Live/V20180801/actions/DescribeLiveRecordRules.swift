@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 获取录制规则列表
-    @inlinable
-    public func describeLiveRecordRules(_ input: DescribeLiveRecordRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordRulesResponse > {
-        self.client.execute(action: "DescribeLiveRecordRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取录制规则列表
-    @inlinable
-    public func describeLiveRecordRules(_ input: DescribeLiveRecordRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordRulesResponse {
-        try await self.client.execute(action: "DescribeLiveRecordRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveRecordRules请求参数结构体
     public struct DescribeLiveRecordRulesRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Live {
             case rules = "Rules"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取录制规则列表
+    @inlinable
+    public func describeLiveRecordRules(_ input: DescribeLiveRecordRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordRulesResponse > {
+        self.client.execute(action: "DescribeLiveRecordRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取录制规则列表
+    @inlinable
+    public func describeLiveRecordRules(_ input: DescribeLiveRecordRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordRulesResponse {
+        try await self.client.execute(action: "DescribeLiveRecordRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

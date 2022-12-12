@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 重置云存服务
-    @inlinable
-    public func resetCloudStorage(_ input: ResetCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetCloudStorageResponse > {
-        self.client.execute(action: "ResetCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置云存服务
-    @inlinable
-    public func resetCloudStorage(_ input: ResetCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetCloudStorageResponse {
-        try await self.client.execute(action: "ResetCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetCloudStorage请求参数结构体
     public struct ResetCloudStorageRequest: TCRequestModel {
         /// 产品ID
@@ -41,7 +29,7 @@ extension Iotvideo {
         /// 云存用户Id，为空则为默认云存空间。
         public let userId: String?
         
-        public init (productId: String, deviceName: String, channelId: UInt64?, userId: String?) {
+        public init (productId: String, deviceName: String, channelId: UInt64? = nil, userId: String? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.channelId = channelId
@@ -64,5 +52,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置云存服务
+    @inlinable
+    public func resetCloudStorage(_ input: ResetCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetCloudStorageResponse > {
+        self.client.execute(action: "ResetCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置云存服务
+    @inlinable
+    public func resetCloudStorage(_ input: ResetCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetCloudStorageResponse {
+        try await self.client.execute(action: "ResetCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

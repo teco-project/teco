@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 取消关联投递信息和部署组
-    @inlinable
-    public func disassociateKafkaConfig(_ input: DisassociateKafkaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateKafkaConfigResponse > {
-        self.client.execute(action: "DisassociateKafkaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消关联投递信息和部署组
-    @inlinable
-    public func disassociateKafkaConfig(_ input: DisassociateKafkaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateKafkaConfigResponse {
-        try await self.client.execute(action: "DisassociateKafkaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisassociateKafkaConfig请求参数结构体
     public struct DisassociateKafkaConfigRequest: TCRequestModel {
         /// 配置项id
@@ -35,7 +23,7 @@ extension Tsf {
         /// 部署组id
         public let groupIds: [String]?
         
-        public init (configId: String, groupIds: [String]?) {
+        public init (configId: String, groupIds: [String]? = nil) {
             self.configId = configId
             self.groupIds = groupIds
         }
@@ -59,5 +47,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消关联投递信息和部署组
+    @inlinable
+    public func disassociateKafkaConfig(_ input: DisassociateKafkaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateKafkaConfigResponse > {
+        self.client.execute(action: "DisassociateKafkaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消关联投递信息和部署组
+    @inlinable
+    public func disassociateKafkaConfig(_ input: DisassociateKafkaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateKafkaConfigResponse {
+        try await self.client.execute(action: "DisassociateKafkaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

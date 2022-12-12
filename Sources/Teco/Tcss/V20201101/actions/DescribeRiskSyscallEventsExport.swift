@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时高危系统调用列表导出
-    @inlinable
-    public func describeRiskSyscallEventsExport(_ input: DescribeRiskSyscallEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskSyscallEventsExportResponse > {
-        self.client.execute(action: "DescribeRiskSyscallEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时高危系统调用列表导出
-    @inlinable
-    public func describeRiskSyscallEventsExport(_ input: DescribeRiskSyscallEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallEventsExportResponse {
-        try await self.client.execute(action: "DescribeRiskSyscallEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRiskSyscallEventsExport请求参数结构体
     public struct DescribeRiskSyscallEventsExportRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -47,7 +35,7 @@ extension Tcss {
         /// 导出字段
         public let exportField: [String]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, order: String?, by: String?, exportField: [String]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -84,5 +72,17 @@ extension Tcss {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时高危系统调用列表导出
+    @inlinable
+    public func describeRiskSyscallEventsExport(_ input: DescribeRiskSyscallEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskSyscallEventsExportResponse > {
+        self.client.execute(action: "DescribeRiskSyscallEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时高危系统调用列表导出
+    @inlinable
+    public func describeRiskSyscallEventsExport(_ input: DescribeRiskSyscallEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallEventsExportResponse {
+        try await self.client.execute(action: "DescribeRiskSyscallEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

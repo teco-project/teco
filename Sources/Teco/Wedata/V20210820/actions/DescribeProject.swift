@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取项目信息
-    @inlinable
-    public func describeProject(_ input: DescribeProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectResponse > {
-        self.client.execute(action: "DescribeProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取项目信息
-    @inlinable
-    public func describeProject(_ input: DescribeProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectResponse {
-        try await self.client.execute(action: "DescribeProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProject请求参数结构体
     public struct DescribeProjectRequest: TCRequestModel {
         /// 项目id。一般使用项目Id来查询，与projectName必须存在一个。
@@ -50,7 +38,7 @@ extension Wedata {
         /// 项目名只在租户内唯一，一般用来转化为项目ID。
         public let projectName: String?
         
-        public init (projectId: String?, describeClusters: Bool?, describeExecutors: Bool?, describeAdminUsers: Bool?, describeMemberCount: Bool?, describeCreator: Bool?, projectName: String?) {
+        public init (projectId: String? = nil, describeClusters: Bool? = nil, describeExecutors: Bool? = nil, describeAdminUsers: Bool? = nil, describeMemberCount: Bool? = nil, describeCreator: Bool? = nil, projectName: String? = nil) {
             self.projectId = projectId
             self.describeClusters = describeClusters
             self.describeExecutors = describeExecutors
@@ -79,5 +67,17 @@ extension Wedata {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取项目信息
+    @inlinable
+    public func describeProject(_ input: DescribeProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectResponse > {
+        self.client.execute(action: "DescribeProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取项目信息
+    @inlinable
+    public func describeProject(_ input: DescribeProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectResponse {
+        try await self.client.execute(action: "DescribeProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

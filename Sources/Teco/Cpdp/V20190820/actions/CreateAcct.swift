@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫-商户入驻
-    ///
-    /// 子商户入驻聚鑫平台
-    @inlinable
-    public func createAcct(_ input: CreateAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAcctResponse > {
-        self.client.execute(action: "CreateAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫-商户入驻
-    ///
-    /// 子商户入驻聚鑫平台
-    @inlinable
-    public func createAcct(_ input: CreateAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAcctResponse {
-        try await self.client.execute(action: "CreateAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAcct请求参数结构体
     public struct CreateAcctRequest: TCRequestModel {
         /// 聚鑫平台分配的支付MidasAppId
@@ -108,7 +92,7 @@ extension Cpdp {
         public let subMerchantStoreName: String?
         
         /// 公司信息
-        public let organizationInfo: OrganizationInfo
+        public let organizationInfo: OrganizationInfo?
         
         /// 子商户证件类型
         /// 1 - 身份证
@@ -125,7 +109,7 @@ extension Cpdp {
         /// <敏感信息>加密详见<a href="https://cloud.tencent.com/document/product/1122/48979" target="_blank">《商户端接口敏感信息加密说明》</a>
         public let subMerchantIdCode: String?
         
-        public init (midasAppId: String, subMchId: String, subMchName: String, address: String, contact: String, mobile: String, email: String, midasSecretId: String, midasSignature: String, subMchType: String?, shortName: String?, subMerchantMemberType: String?, subMerchantKey: String?, subMerchantPrivateKey: String?, encryptType: String?, subAcctNo: String?, midasEnvironment: String?, subMerchantStoreName: String?, organizationInfo: OrganizationInfo, subMerchantIdType: String?, subMerchantIdCode: String?) {
+        public init (midasAppId: String, subMchId: String, subMchName: String, address: String, contact: String, mobile: String, email: String, midasSecretId: String, midasSignature: String, subMchType: String? = nil, shortName: String? = nil, subMerchantMemberType: String? = nil, subMerchantKey: String? = nil, subMerchantPrivateKey: String? = nil, encryptType: String? = nil, subAcctNo: String? = nil, midasEnvironment: String? = nil, subMerchantStoreName: String? = nil, organizationInfo: OrganizationInfo? = nil, subMerchantIdType: String? = nil, subMerchantIdCode: String? = nil) {
             self.midasAppId = midasAppId
             self.subMchId = subMchId
             self.subMchName = subMchName
@@ -190,5 +174,21 @@ extension Cpdp {
             case subAcctNo = "SubAcctNo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫-商户入驻
+    ///
+    /// 子商户入驻聚鑫平台
+    @inlinable
+    public func createAcct(_ input: CreateAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAcctResponse > {
+        self.client.execute(action: "CreateAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-商户入驻
+    ///
+    /// 子商户入驻聚鑫平台
+    @inlinable
+    public func createAcct(_ input: CreateAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAcctResponse {
+        try await self.client.execute(action: "CreateAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

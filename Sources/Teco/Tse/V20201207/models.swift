@@ -61,13 +61,13 @@ extension Tse {
         
         /// 绑定的kubernetes的集群类型，分tke和eks两种
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let boundClusterType: String
+        public let boundClusterType: String?
         
         /// 服务同步模式，all为全量同步，demand为按需同步
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let syncMode: String?
         
-        public init (boundClusterId: String, boundClusterType: String, syncMode: String?) {
+        public init (boundClusterId: String, boundClusterType: String, syncMode: String? = nil) {
             self.boundClusterId = boundClusterId
             self.boundClusterType = boundClusterType
             self.syncMode = syncMode
@@ -150,7 +150,7 @@ extension Tse {
         /// 引擎接口的管理员 Token
         public let token: String?
         
-        public init (name: String?, password: String?, token: String?) {
+        public init (name: String? = nil, password: String? = nil, token: String? = nil) {
             self.name = name
             self.password = password
             self.token = token
@@ -230,7 +230,7 @@ extension Tse {
         /// 客户端带宽
         public let clientBandWidth: UInt64?
         
-        public init (envName: String, vpcInfos: [VpcInfo], storageCapacity: Int64, status: String?, adminServiceIp: String?, configServiceIp: String?, enableConfigInternet: Bool?, configInternetServiceIp: String?, specId: String?, envReplica: Int64?, runningCount: Int64?, aliasEnvName: String?, envDesc: String?, clientBandWidth: UInt64?) {
+        public init (envName: String, vpcInfos: [VpcInfo], storageCapacity: Int64, status: String? = nil, adminServiceIp: String? = nil, configServiceIp: String? = nil, enableConfigInternet: Bool? = nil, configInternetServiceIp: String? = nil, specId: String? = nil, envReplica: Int64? = nil, runningCount: Int64? = nil, aliasEnvName: String? = nil, envDesc: String? = nil, clientBandWidth: UInt64? = nil) {
             self.envName = envName
             self.vpcInfos = vpcInfos
             self.storageCapacity = storageCapacity
@@ -292,7 +292,7 @@ extension Tse {
         /// 标签值
         public let tagValue: String?
         
-        public init (tagKey: String?, tagValue: String?) {
+        public init (tagKey: String? = nil, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
@@ -546,7 +546,7 @@ extension Tse {
         /// 服务治理限流server引擎绑定的网络信息
         public let limiterVpcInfos: [VpcInfo]?
         
-        public init (engineRegion: String, boundK8SInfos: [BoundK8SInfo]?, vpcInfos: [VpcInfo]?, authOpen: Bool?, features: [String]?, mainPassword: String?, pgwVpcInfos: [VpcInfo]?, limiterVpcInfos: [VpcInfo]?) {
+        public init (engineRegion: String, boundK8SInfos: [BoundK8SInfo]? = nil, vpcInfos: [VpcInfo]? = nil, authOpen: Bool? = nil, features: [String]? = nil, mainPassword: String? = nil, pgwVpcInfos: [VpcInfo]? = nil, limiterVpcInfos: [VpcInfo]? = nil) {
             self.engineRegion = engineRegion
             self.boundK8SInfos = boundK8SInfos
             self.vpcInfos = vpcInfos
@@ -581,7 +581,7 @@ extension Tse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let intranetAddress: String?
         
-        public init (vpcId: String, subnetId: String, intranetAddress: String?) {
+        public init (vpcId: String, subnetId: String, intranetAddress: String? = nil) {
             self.vpcId = vpcId
             self.subnetId = subnetId
             self.intranetAddress = intranetAddress

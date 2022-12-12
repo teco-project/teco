@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 列出TCR可用区域
-    ///
-    /// 用于在TCR中获取可用区域
-    @inlinable
-    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionsResponse > {
-        self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出TCR可用区域
-    ///
-    /// 用于在TCR中获取可用区域
-    @inlinable
-    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
-        try await self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRegions请求参数结构体
     public struct DescribeRegionsRequest: TCRequestModel {
         public init () {
@@ -53,5 +37,21 @@ extension Tcr {
             case regions = "Regions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出TCR可用区域
+    ///
+    /// 用于在TCR中获取可用区域
+    @inlinable
+    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionsResponse > {
+        self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出TCR可用区域
+    ///
+    /// 用于在TCR中获取可用区域
+    @inlinable
+    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
+        try await self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

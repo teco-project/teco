@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 修改增量备份导入任务
-    ///
-    /// 本接口（ModifyIncrementalMigration）用于修改增量备份导入任务。
-    @inlinable
-    public func modifyIncrementalMigration(_ input: ModifyIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIncrementalMigrationResponse > {
-        self.client.execute(action: "ModifyIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改增量备份导入任务
-    ///
-    /// 本接口（ModifyIncrementalMigration）用于修改增量备份导入任务。
-    @inlinable
-    public func modifyIncrementalMigration(_ input: ModifyIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIncrementalMigrationResponse {
-        try await self.client.execute(action: "ModifyIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyIncrementalMigration请求参数结构体
     public struct ModifyIncrementalMigrationRequest: TCRequestModel {
         /// 导入目标实例ID
@@ -48,7 +32,7 @@ extension Sqlserver {
         /// UploadType是COS_URL时这里时URL，COS_UPLOAD这里填备份文件的名字；只支持1个备份文件，但1个备份文件内可包含多个库
         public let backupFiles: [String]?
         
-        public init (instanceId: String, backupMigrationId: String, incrementalMigrationId: String, isRecovery: String?, backupFiles: [String]?) {
+        public init (instanceId: String, backupMigrationId: String, incrementalMigrationId: String, isRecovery: String? = nil, backupFiles: [String]? = nil) {
             self.instanceId = instanceId
             self.backupMigrationId = backupMigrationId
             self.incrementalMigrationId = incrementalMigrationId
@@ -77,5 +61,21 @@ extension Sqlserver {
             case incrementalMigrationId = "IncrementalMigrationId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改增量备份导入任务
+    ///
+    /// 本接口（ModifyIncrementalMigration）用于修改增量备份导入任务。
+    @inlinable
+    public func modifyIncrementalMigration(_ input: ModifyIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIncrementalMigrationResponse > {
+        self.client.execute(action: "ModifyIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改增量备份导入任务
+    ///
+    /// 本接口（ModifyIncrementalMigration）用于修改增量备份导入任务。
+    @inlinable
+    public func modifyIncrementalMigration(_ input: ModifyIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIncrementalMigrationResponse {
+        try await self.client.execute(action: "ModifyIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

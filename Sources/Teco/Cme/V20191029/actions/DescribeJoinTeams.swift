@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 获取成员加入的团队列表
-    ///
-    /// 获取用户所加入的团队列表
-    @inlinable
-    public func describeJoinTeams(_ input: DescribeJoinTeamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJoinTeamsResponse > {
-        self.client.execute(action: "DescribeJoinTeams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取成员加入的团队列表
-    ///
-    /// 获取用户所加入的团队列表
-    @inlinable
-    public func describeJoinTeams(_ input: DescribeJoinTeamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJoinTeamsResponse {
-        try await self.client.execute(action: "DescribeJoinTeams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeJoinTeams请求参数结构体
     public struct DescribeJoinTeamsRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -45,7 +29,7 @@ extension Cme {
         /// 返回记录条数，默认值：30，最大值：30。
         public let limit: UInt64?
         
-        public init (platform: String, memberId: String, offset: UInt64?, limit: UInt64?) {
+        public init (platform: String, memberId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.platform = platform
             self.memberId = memberId
             self.offset = offset
@@ -76,5 +60,21 @@ extension Cme {
             case teamSet = "TeamSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取成员加入的团队列表
+    ///
+    /// 获取用户所加入的团队列表
+    @inlinable
+    public func describeJoinTeams(_ input: DescribeJoinTeamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJoinTeamsResponse > {
+        self.client.execute(action: "DescribeJoinTeams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取成员加入的团队列表
+    ///
+    /// 获取用户所加入的团队列表
+    @inlinable
+    public func describeJoinTeams(_ input: DescribeJoinTeamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJoinTeamsResponse {
+        try await self.client.execute(action: "DescribeJoinTeams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 批量授权镜像扫描V2.0
-    @inlinable
-    public func modifyImageAuthorized(_ input: ModifyImageAuthorizedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyImageAuthorizedResponse > {
-        self.client.execute(action: "ModifyImageAuthorized", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量授权镜像扫描V2.0
-    @inlinable
-    public func modifyImageAuthorized(_ input: ModifyImageAuthorizedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAuthorizedResponse {
-        try await self.client.execute(action: "ModifyImageAuthorized", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyImageAuthorized请求参数结构体
     public struct ModifyImageAuthorizedRequest: TCRequestModel {
         /// 本地镜像是否全部授权的标识，优先权高于根据本地镜像ids授权。等于true时需UpdatedLocalImageCnt大于0。
@@ -65,7 +53,7 @@ extension Tcss {
         /// 是否仅最新的镜像；RegistryImageFilter不为空且UpdatedRegistryImageCnt大于0时仓库镜像需要。
         public let onlyShowLatest: Bool?
         
-        public init (allLocalImages: Bool, allRegistryImages: Bool, updatedLocalImageCnt: UInt64, updatedRegistryImageCnt: UInt64, imageSourceType: String, localImageFilter: [AssetFilters]?, registryImageFilter: [AssetFilters]?, excludeLocalImageIds: [String]?, excludeRegistryImageIds: [String]?, localImageIds: [String]?, registryImageIds: [String]?, onlyShowLatest: Bool?) {
+        public init (allLocalImages: Bool, allRegistryImages: Bool, updatedLocalImageCnt: UInt64, updatedRegistryImageCnt: UInt64, imageSourceType: String, localImageFilter: [AssetFilters]? = nil, registryImageFilter: [AssetFilters]? = nil, excludeLocalImageIds: [String]? = nil, excludeRegistryImageIds: [String]? = nil, localImageIds: [String]? = nil, registryImageIds: [String]? = nil, onlyShowLatest: Bool? = nil) {
             self.allLocalImages = allLocalImages
             self.allRegistryImages = allRegistryImages
             self.updatedLocalImageCnt = updatedLocalImageCnt
@@ -104,5 +92,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量授权镜像扫描V2.0
+    @inlinable
+    public func modifyImageAuthorized(_ input: ModifyImageAuthorizedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyImageAuthorizedResponse > {
+        self.client.execute(action: "ModifyImageAuthorized", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量授权镜像扫描V2.0
+    @inlinable
+    public func modifyImageAuthorized(_ input: ModifyImageAuthorizedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAuthorizedResponse {
+        try await self.client.execute(action: "ModifyImageAuthorized", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

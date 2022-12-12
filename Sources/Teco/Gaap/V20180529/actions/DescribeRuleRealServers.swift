@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 查询转发规则相关源站信息
-    ///
-    /// 本接口（DescribeRuleRealServers）用于查询转发规则相关的源站信息， 包括该规则可绑定的源站信息和已绑定的源站信息。
-    @inlinable
-    public func describeRuleRealServers(_ input: DescribeRuleRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleRealServersResponse > {
-        self.client.execute(action: "DescribeRuleRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询转发规则相关源站信息
-    ///
-    /// 本接口（DescribeRuleRealServers）用于查询转发规则相关的源站信息， 包括该规则可绑定的源站信息和已绑定的源站信息。
-    @inlinable
-    public func describeRuleRealServers(_ input: DescribeRuleRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleRealServersResponse {
-        try await self.client.execute(action: "DescribeRuleRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRuleRealServers请求参数结构体
     public struct DescribeRuleRealServersRequest: TCRequestModel {
         /// 转发规则ID
@@ -42,7 +26,7 @@ extension Gaap {
         /// 返回数量，默认为20，最大值为1000。
         public let limit: UInt64?
         
-        public init (ruleId: String, offset: UInt64?, limit: UInt64?) {
+        public init (ruleId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.ruleId = ruleId
             self.offset = offset
             self.limit = limit
@@ -79,5 +63,21 @@ extension Gaap {
             case bindRealServerSet = "BindRealServerSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询转发规则相关源站信息
+    ///
+    /// 本接口（DescribeRuleRealServers）用于查询转发规则相关的源站信息， 包括该规则可绑定的源站信息和已绑定的源站信息。
+    @inlinable
+    public func describeRuleRealServers(_ input: DescribeRuleRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleRealServersResponse > {
+        self.client.execute(action: "DescribeRuleRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询转发规则相关源站信息
+    ///
+    /// 本接口（DescribeRuleRealServers）用于查询转发规则相关的源站信息， 包括该规则可绑定的源站信息和已绑定的源站信息。
+    @inlinable
+    public func describeRuleRealServers(_ input: DescribeRuleRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleRealServersResponse {
+        try await self.client.execute(action: "DescribeRuleRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 导出异地登录记录
-    ///
-    /// 本接口 (ExportNonlocalLoginPlaces) 用于导出异地登录事件记录CSV文件。
-    @inlinable
-    public func exportNonlocalLoginPlaces(_ input: ExportNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportNonlocalLoginPlacesResponse > {
-        self.client.execute(action: "ExportNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出异地登录记录
-    ///
-    /// 本接口 (ExportNonlocalLoginPlaces) 用于导出异地登录事件记录CSV文件。
-    @inlinable
-    public func exportNonlocalLoginPlaces(_ input: ExportNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportNonlocalLoginPlacesResponse {
-        try await self.client.execute(action: "ExportNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportNonlocalLoginPlaces请求参数结构体
     public struct ExportNonlocalLoginPlacesRequest: TCRequestModel {
         /// <li>Status - int - 是否必填：否 - 状态筛选1:正常登录；2：异地登录</li>
         public let filters: [Filter]?
         
-        public init (filters: [Filter]?) {
+        public init (filters: [Filter]? = nil) {
             self.filters = filters
         }
         
@@ -61,5 +45,21 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出异地登录记录
+    ///
+    /// 本接口 (ExportNonlocalLoginPlaces) 用于导出异地登录事件记录CSV文件。
+    @inlinable
+    public func exportNonlocalLoginPlaces(_ input: ExportNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportNonlocalLoginPlacesResponse > {
+        self.client.execute(action: "ExportNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出异地登录记录
+    ///
+    /// 本接口 (ExportNonlocalLoginPlaces) 用于导出异地登录事件记录CSV文件。
+    @inlinable
+    public func exportNonlocalLoginPlaces(_ input: ExportNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportNonlocalLoginPlacesResponse {
+        try await self.client.execute(action: "ExportNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 删除RocketMQ主题
-    @inlinable
-    public func deleteRocketMQTopic(_ input: DeleteRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRocketMQTopicResponse > {
-        self.client.execute(action: "DeleteRocketMQTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除RocketMQ主题
-    @inlinable
-    public func deleteRocketMQTopic(_ input: DeleteRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQTopicResponse {
-        try await self.client.execute(action: "DeleteRocketMQTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRocketMQTopic请求参数结构体
     public struct DeleteRocketMQTopicRequest: TCRequestModel {
         /// 集群ID
@@ -59,5 +47,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除RocketMQ主题
+    @inlinable
+    public func deleteRocketMQTopic(_ input: DeleteRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRocketMQTopicResponse > {
+        self.client.execute(action: "DeleteRocketMQTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除RocketMQ主题
+    @inlinable
+    public func deleteRocketMQTopic(_ input: DeleteRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQTopicResponse {
+        try await self.client.execute(action: "DeleteRocketMQTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 获取安全组关联实例列表
-    @inlinable
-    public func describeAssociatedInstanceList(_ input: DescribeAssociatedInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssociatedInstanceListResponse > {
-        self.client.execute(action: "DescribeAssociatedInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取安全组关联实例列表
-    @inlinable
-    public func describeAssociatedInstanceList(_ input: DescribeAssociatedInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssociatedInstanceListResponse {
-        try await self.client.execute(action: "DescribeAssociatedInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssociatedInstanceList请求参数结构体
     public struct DescribeAssociatedInstanceListRequest: TCRequestModel {
         /// 列表偏移量
@@ -53,7 +41,7 @@ extension Cfw {
         /// 实例类型,'3'是cvm实例,'4'是clb实例,'5'是eni实例,'6'是云数据库
         public let type: String?
         
-        public init (offset: UInt64, limit: UInt64, area: String, searchValue: String?, by: String?, order: String?, securityGroupId: String?, type: String?) {
+        public init (offset: UInt64, limit: UInt64, area: String, searchValue: String? = nil, by: String? = nil, order: String? = nil, securityGroupId: String? = nil, type: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.area = area
@@ -94,5 +82,17 @@ extension Cfw {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取安全组关联实例列表
+    @inlinable
+    public func describeAssociatedInstanceList(_ input: DescribeAssociatedInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssociatedInstanceListResponse > {
+        self.client.execute(action: "DescribeAssociatedInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全组关联实例列表
+    @inlinable
+    public func describeAssociatedInstanceList(_ input: DescribeAssociatedInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssociatedInstanceListResponse {
+        try await self.client.execute(action: "DescribeAssociatedInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

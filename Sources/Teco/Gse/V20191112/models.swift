@@ -340,7 +340,7 @@ extension Gse {
         /// 过滤属性的 values 值
         public let values: [String]?
         
-        public init (key: String?, values: [String]?) {
+        public init (key: String? = nil, values: [String]? = nil) {
             self.key = key
             self.values = values
         }
@@ -392,7 +392,7 @@ extension Gse {
         
         /// 资源创建限制策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let resourceCreationLimitPolicy: ResourceCreationLimitPolicy
+        public let resourceCreationLimitPolicy: ResourceCreationLimitPolicy?
         
         /// 状态：新建、下载中、验证中、生成中、激活中、活跃、异常、删除中、结束
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -424,7 +424,7 @@ extension Gse {
         
         /// 系统盘，储存类型为 SSD 云硬盘（CLOUD_SSD）时，100-500GB；储存类型为高性能云硬盘（CLOUD_PREMIUM）时，50-500GB；容量以1为单位
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let systemDiskInfo: DiskInfo
+        public let systemDiskInfo: DiskInfo?
         
         /// 云联网相关信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -471,7 +471,7 @@ extension Gse {
         
         /// 服务器实例统计数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instanceCounts: InstanceCounts
+        public let instanceCounts: InstanceCounts?
         
         /// 服务器伸缩容间隔，单位分钟，最小值3，最大值30，默认值10
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -878,7 +878,7 @@ extension Gse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fleetStatus: String?
         
-        public init (destinationArn: String?, fleetStatus: String?) {
+        public init (destinationArn: String? = nil, fleetStatus: String? = nil) {
             self.destinationArn = destinationArn
             self.fleetStatus = fleetStatus
         }
@@ -903,7 +903,7 @@ extension Gse {
         /// 终止端口号，最大值60000
         public let toPort: UInt64?
         
-        public init (fromPort: UInt64?, ipRange: String?, `protocol`: String?, toPort: UInt64?) {
+        public init (fromPort: UInt64? = nil, ipRange: String? = nil, `protocol`: String? = nil, toPort: UInt64? = nil) {
             self.fromPort = fromPort
             self.ipRange = ipRange
             self.`protocol` = `protocol`
@@ -932,7 +932,7 @@ extension Gse {
         /// 终止端口号
         public let toPort: UInt64?
         
-        public init (fromPort: UInt64?, ipRange: String?, `protocol`: String?, toPort: UInt64?) {
+        public init (fromPort: UInt64? = nil, ipRange: String? = nil, `protocol`: String? = nil, toPort: UInt64? = nil) {
             self.fromPort = fromPort
             self.ipRange = ipRange
             self.`protocol` = `protocol`
@@ -961,7 +961,7 @@ extension Gse {
         /// 终止端口号
         public let toPort: UInt64?
         
-        public init (fromPort: UInt64?, ipRange: String?, `protocol`: String?, toPort: UInt64?) {
+        public init (fromPort: UInt64? = nil, ipRange: String? = nil, `protocol`: String? = nil, toPort: UInt64? = nil) {
             self.fromPort = fromPort
             self.ipRange = ipRange
             self.`protocol` = `protocol`
@@ -1108,7 +1108,7 @@ extension Gse {
     public struct InstanceExtend: TCOutputModel {
         /// 实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instance: Instance
+        public let instance: Instance?
         
         /// 实例状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1222,7 +1222,7 @@ extension Gse {
         /// 毫秒级延迟
         public let latencyInMilliseconds: UInt64?
         
-        public init (playerId: String?, regionIdentifier: String?, latencyInMilliseconds: UInt64?) {
+        public init (playerId: String? = nil, regionIdentifier: String? = nil, latencyInMilliseconds: UInt64? = nil) {
             self.playerId = playerId
             self.regionIdentifier = regionIdentifier
             self.latencyInMilliseconds = latencyInMilliseconds
@@ -1239,13 +1239,13 @@ extension Gse {
     public struct PlayerLatencyPolicy: TCInputModel, TCOutputModel {
         /// 任意player允许的最大延迟，单位：毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let maximumIndividualPlayerLatencyMilliseconds: UInt64
+        public let maximumIndividualPlayerLatencyMilliseconds: UInt64?
         
         /// 放置新GameServerSession时强制实施策略的时间长度，单位：秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyDurationSeconds: UInt64?
         
-        public init (maximumIndividualPlayerLatencyMilliseconds: UInt64, policyDurationSeconds: UInt64?) {
+        public init (maximumIndividualPlayerLatencyMilliseconds: UInt64, policyDurationSeconds: UInt64? = nil) {
             self.maximumIndividualPlayerLatencyMilliseconds = maximumIndividualPlayerLatencyMilliseconds
             self.policyDurationSeconds = policyDurationSeconds
         }
@@ -1362,7 +1362,7 @@ extension Gse {
         /// 单位时间，最小值1，默认3，单位分钟
         public let policyPeriodInMinutes: UInt64?
         
-        public init (newGameServerSessionsPerCreator: UInt64?, policyPeriodInMinutes: UInt64?) {
+        public init (newGameServerSessionsPerCreator: UInt64? = nil, policyPeriodInMinutes: UInt64? = nil) {
             self.newGameServerSessionsPerCreator = newGameServerSessionsPerCreator
             self.policyPeriodInMinutes = policyPeriodInMinutes
         }
@@ -1386,7 +1386,7 @@ extension Gse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
         
-        public init (type: String, fleetId: String?, message: String?) {
+        public init (type: String, fleetId: String? = nil, message: String? = nil) {
             self.type = type
             self.fleetId = fleetId
             self.message = message
@@ -1410,7 +1410,7 @@ extension Gse {
         /// 服务进程配置，至少有一个进程配置
         public let serverProcesses: [ServerProcesse]?
         
-        public init (gameServerSessionActivationTimeoutSeconds: UInt64?, maxConcurrentGameServerSessionActivations: UInt64?, serverProcesses: [ServerProcesse]?) {
+        public init (gameServerSessionActivationTimeoutSeconds: UInt64? = nil, maxConcurrentGameServerSessionActivations: UInt64? = nil, serverProcesses: [ServerProcesse]? = nil) {
             self.gameServerSessionActivationTimeoutSeconds = gameServerSessionActivationTimeoutSeconds
             self.maxConcurrentGameServerSessionActivations = maxConcurrentGameServerSessionActivations
             self.serverProcesses = serverProcesses
@@ -1467,7 +1467,7 @@ extension Gse {
         
         /// 基于规则的配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let targetConfiguration: TargetConfiguration
+        public let targetConfiguration: TargetConfiguration?
         
         enum CodingKeys: String, CodingKey {
             case fleetId = "FleetId"
@@ -1495,7 +1495,7 @@ extension Gse {
         /// 启动参数，最小长度0，最大长度1024
         public let parameters: String?
         
-        public init (concurrentExecutions: UInt64?, launchPath: String?, parameters: String?) {
+        public init (concurrentExecutions: UInt64? = nil, launchPath: String? = nil, parameters: String? = nil) {
             self.concurrentExecutions = concurrentExecutions
             self.launchPath = launchPath
             self.parameters = parameters
@@ -1533,7 +1533,7 @@ extension Gse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetValue: UInt64?
         
-        public init (targetValue: UInt64?) {
+        public init (targetValue: UInt64? = nil) {
             self.targetValue = targetValue
         }
         
@@ -1550,7 +1550,7 @@ extension Gse {
         
         /// 定时器取值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let timerValue: TimerValue
+        public let timerValue: TimerValue?
         
         /// 定时器开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1560,7 +1560,7 @@ extension Gse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
         
-        public init (timerType: Int64?, timerValue: TimerValue, beginTime: String?, endTime: String?) {
+        public init (timerType: Int64? = nil, timerValue: TimerValue? = nil, beginTime: String? = nil, endTime: String? = nil) {
             self.timerType = timerType
             self.timerValue = timerValue
             self.beginTime = beginTime
@@ -1603,9 +1603,9 @@ extension Gse {
         
         /// 基于目标的扩展策略的设置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let targetConfiguration: TargetConfiguration
+        public let targetConfiguration: TargetConfiguration?
         
-        public init (fleetId: String?, desiredInstances: Int64?, minSize: Int64?, maxSize: Int64?, scalingInterval: Int64?, scalingType: Int64?, targetConfiguration: TargetConfiguration) {
+        public init (fleetId: String? = nil, desiredInstances: Int64? = nil, minSize: Int64? = nil, maxSize: Int64? = nil, scalingInterval: Int64? = nil, scalingType: Int64? = nil, targetConfiguration: TargetConfiguration? = nil) {
             self.fleetId = fleetId
             self.desiredInstances = desiredInstances
             self.minSize = minSize
@@ -1642,13 +1642,13 @@ extension Gse {
         
         /// 定时器弹性伸缩策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let timerFleetCapacity: TimerFleetCapacity
+        public let timerFleetCapacity: TimerFleetCapacity?
         
         /// 重复周期配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let timerConfiguration: TimerConfiguration
+        public let timerConfiguration: TimerConfiguration?
         
-        public init (timerId: String?, timerName: String?, timerStatus: Int64?, timerFleetCapacity: TimerFleetCapacity, timerConfiguration: TimerConfiguration) {
+        public init (timerId: String? = nil, timerName: String? = nil, timerStatus: Int64? = nil, timerFleetCapacity: TimerFleetCapacity? = nil, timerConfiguration: TimerConfiguration? = nil) {
             self.timerId = timerId
             self.timerName = timerName
             self.timerStatus = timerStatus
@@ -1683,7 +1683,7 @@ extension Gse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weekDays: [Int64]?
         
-        public init (day: Int64?, fromDay: Int64?, toDay: Int64?, weekDays: [Int64]?) {
+        public init (day: Int64? = nil, fromDay: Int64? = nil, toDay: Int64? = nil, weekDays: [Int64]? = nil) {
             self.day = day
             self.fromDay = fromDay
             self.toDay = toDay

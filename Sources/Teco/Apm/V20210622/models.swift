@@ -376,7 +376,7 @@ extension Apm {
         /// 同比，支持多种同比方式
         public let compares: [String]?
         
-        public init (metricName: String, compare: String?, compares: [String]?) {
+        public init (metricName: String, compare: String? = nil, compares: [String]? = nil) {
             self.metricName = metricName
             self.compare = compare
             self.compares = compares

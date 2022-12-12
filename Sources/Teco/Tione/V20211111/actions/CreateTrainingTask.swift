@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 创建模型训练任务
-    @inlinable
-    public func createTrainingTask(_ input: CreateTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTrainingTaskResponse > {
-        self.client.execute(action: "CreateTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建模型训练任务
-    @inlinable
-    public func createTrainingTask(_ input: CreateTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrainingTaskResponse {
-        try await self.client.execute(action: "CreateTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTrainingTask请求参数结构体
     public struct CreateTrainingTaskRequest: TCRequestModel {
         /// 训练任务名称，不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
@@ -66,10 +54,10 @@ extension Tione {
         public let tags: [Tag]?
         
         /// 自定义镜像信息
-        public let imageInfo: ImageInfo
+        public let imageInfo: ImageInfo?
         
         /// 启动命令信息，默认为sh start.sh
-        public let startCmdInfo: StartCmdInfo
+        public let startCmdInfo: StartCmdInfo?
         
         /// 数据配置，依赖DataSource字段
         public let dataConfigs: [DataConfig]?
@@ -81,7 +69,7 @@ extension Tione {
         public let subnetId: String?
         
         /// CLS日志配置
-        public let logConfig: LogConfig
+        public let logConfig: LogConfig?
         
         /// 调优参数
         public let tuningParameters: String?
@@ -92,7 +80,7 @@ extension Tione {
         /// 数据来源，eg：DATASET、COS、CFS、HDFS
         public let dataSource: String?
         
-        public init (name: String, chargeType: String, resourceConfigInfos: [ResourceConfigInfo], codePackagePath: CosPathInfo, trainingMode: String, output: CosPathInfo, logEnable: Bool, frameworkName: String?, frameworkVersion: String?, frameworkEnvironment: String?, resourceGroupId: String?, tags: [Tag]?, imageInfo: ImageInfo, startCmdInfo: StartCmdInfo, dataConfigs: [DataConfig]?, vpcId: String?, subnetId: String?, logConfig: LogConfig, tuningParameters: String?, remark: String?, dataSource: String?) {
+        public init (name: String, chargeType: String, resourceConfigInfos: [ResourceConfigInfo], codePackagePath: CosPathInfo, trainingMode: String, output: CosPathInfo, logEnable: Bool, frameworkName: String? = nil, frameworkVersion: String? = nil, frameworkEnvironment: String? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, imageInfo: ImageInfo? = nil, startCmdInfo: StartCmdInfo? = nil, dataConfigs: [DataConfig]? = nil, vpcId: String? = nil, subnetId: String? = nil, logConfig: LogConfig? = nil, tuningParameters: String? = nil, remark: String? = nil, dataSource: String? = nil) {
             self.name = name
             self.chargeType = chargeType
             self.resourceConfigInfos = resourceConfigInfos
@@ -153,5 +141,17 @@ extension Tione {
             case id = "Id"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建模型训练任务
+    @inlinable
+    public func createTrainingTask(_ input: CreateTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTrainingTaskResponse > {
+        self.client.execute(action: "CreateTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建模型训练任务
+    @inlinable
+    public func createTrainingTask(_ input: CreateTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrainingTaskResponse {
+        try await self.client.execute(action: "CreateTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

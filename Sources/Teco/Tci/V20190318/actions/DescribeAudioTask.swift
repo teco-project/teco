@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 音频分析结果查询
-    ///
-    /// 音频评估任务信息查询接口，异步查询客户提交的请求的结果。
-    @inlinable
-    public func describeAudioTask(_ input: DescribeAudioTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAudioTaskResponse > {
-        self.client.execute(action: "DescribeAudioTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 音频分析结果查询
-    ///
-    /// 音频评估任务信息查询接口，异步查询客户提交的请求的结果。
-    @inlinable
-    public func describeAudioTask(_ input: DescribeAudioTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAudioTaskResponse {
-        try await self.client.execute(action: "DescribeAudioTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAudioTask请求参数结构体
     public struct DescribeAudioTaskRequest: TCRequestModel {
         /// 音频任务唯一id。在URL方式时提交请求后会返回一个jobid，后续查询该url的结果时使用这个jobid进行查询。
@@ -42,7 +26,7 @@ extension Tci {
         /// 偏移量
         public let offset: Int64?
         
-        public init (jobId: Int64, limit: Int64?, offset: Int64?) {
+        public init (jobId: Int64, limit: Int64? = nil, offset: Int64? = nil) {
             self.jobId = jobId
             self.limit = limit
             self.offset = offset
@@ -99,5 +83,21 @@ extension Tci {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 音频分析结果查询
+    ///
+    /// 音频评估任务信息查询接口，异步查询客户提交的请求的结果。
+    @inlinable
+    public func describeAudioTask(_ input: DescribeAudioTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAudioTaskResponse > {
+        self.client.execute(action: "DescribeAudioTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 音频分析结果查询
+    ///
+    /// 音频评估任务信息查询接口，异步查询客户提交的请求的结果。
+    @inlinable
+    public func describeAudioTask(_ input: DescribeAudioTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAudioTaskResponse {
+        try await self.client.execute(action: "DescribeAudioTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

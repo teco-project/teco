@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 创建直播互动机器人
-    ///
-    /// 创建机器人，支持进入 RTC 房间，播放直播互动曲库歌曲。
-    @inlinable
-    public func createKTVRobot(_ input: CreateKTVRobotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateKTVRobotResponse > {
-        self.client.execute(action: "CreateKTVRobot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建直播互动机器人
-    ///
-    /// 创建机器人，支持进入 RTC 房间，播放直播互动曲库歌曲。
-    @inlinable
-    public func createKTVRobot(_ input: CreateKTVRobotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKTVRobotResponse {
-        try await self.client.execute(action: "CreateKTVRobot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateKTVRobot请求参数结构体
     public struct CreateKTVRobotRequest: TCRequestModel {
         /// RTC厂商类型，取值有：
@@ -41,12 +25,12 @@ extension Ame {
         public let joinRoomInput: JoinRoomInput
         
         /// license基础信息
-        public let applicationLicenseInput: ApplicationLicenseInput
+        public let applicationLicenseInput: ApplicationLicenseInput?
         
         /// 创建机器人时初始化参数。
         public let syncRobotCommands: [SyncRobotCommand]?
         
-        public init (rtcSystem: String, joinRoomInput: JoinRoomInput, applicationLicenseInput: ApplicationLicenseInput, syncRobotCommands: [SyncRobotCommand]?) {
+        public init (rtcSystem: String, joinRoomInput: JoinRoomInput, applicationLicenseInput: ApplicationLicenseInput? = nil, syncRobotCommands: [SyncRobotCommand]? = nil) {
             self.rtcSystem = rtcSystem
             self.joinRoomInput = joinRoomInput
             self.applicationLicenseInput = applicationLicenseInput
@@ -73,5 +57,21 @@ extension Ame {
             case robotId = "RobotId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建直播互动机器人
+    ///
+    /// 创建机器人，支持进入 RTC 房间，播放直播互动曲库歌曲。
+    @inlinable
+    public func createKTVRobot(_ input: CreateKTVRobotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateKTVRobotResponse > {
+        self.client.execute(action: "CreateKTVRobot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建直播互动机器人
+    ///
+    /// 创建机器人，支持进入 RTC 房间，播放直播互动曲库歌曲。
+    @inlinable
+    public func createKTVRobot(_ input: CreateKTVRobotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKTVRobotResponse {
+        try await self.client.execute(action: "CreateKTVRobot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

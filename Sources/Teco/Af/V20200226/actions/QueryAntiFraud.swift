@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Af {
-    /// 借贷反欺诈
-    ///
-    /// 天御反欺诈服务，主要应用于银行、证券、保险、消费金融等金融行业客户，通过腾讯的大数据风控能力，
-    /// 可以准确识别恶意用户信息，解决客户在支付、活动、理财，风控等业务环节遇到的欺诈威胁，降低企业
-    /// 的损失。
-    @inlinable
-    public func queryAntiFraud(_ input: QueryAntiFraudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAntiFraudResponse > {
-        self.client.execute(action: "QueryAntiFraud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 借贷反欺诈
-    ///
-    /// 天御反欺诈服务，主要应用于银行、证券、保险、消费金融等金融行业客户，通过腾讯的大数据风控能力，
-    /// 可以准确识别恶意用户信息，解决客户在支付、活动、理财，风控等业务环节遇到的欺诈威胁，降低企业
-    /// 的损失。
-    @inlinable
-    public func queryAntiFraud(_ input: QueryAntiFraudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAntiFraudResponse {
-        try await self.client.execute(action: "QueryAntiFraud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryAntiFraud请求参数结构体
     public struct QueryAntiFraudRequest: TCRequestModel {
         /// 电话号码(五选二)
@@ -117,7 +97,7 @@ extension Af {
         /// 3：SM3
         public let nameCryptoType: String?
         
-        public init (phoneNumber: String?, idNumber: String?, bankCardNumber: String?, userIp: String?, imei: String?, idfa: String?, scene: String?, name: String?, emailAddress: String?, address: String?, mac: String?, imsi: String?, accountType: String?, uid: String?, appIdU: String?, wifiMac: String?, wifiSSID: String?, wifiBSSID: String?, businessId: String?, idCryptoType: String?, phoneCryptoType: String?, nameCryptoType: String?) {
+        public init (phoneNumber: String? = nil, idNumber: String? = nil, bankCardNumber: String? = nil, userIp: String? = nil, imei: String? = nil, idfa: String? = nil, scene: String? = nil, name: String? = nil, emailAddress: String? = nil, address: String? = nil, mac: String? = nil, imsi: String? = nil, accountType: String? = nil, uid: String? = nil, appIdU: String? = nil, wifiMac: String? = nil, wifiSSID: String? = nil, wifiBSSID: String? = nil, businessId: String? = nil, idCryptoType: String? = nil, phoneCryptoType: String? = nil, nameCryptoType: String? = nil) {
             self.phoneNumber = phoneNumber
             self.idNumber = idNumber
             self.bankCardNumber = bankCardNumber
@@ -197,5 +177,25 @@ extension Af {
             case codeDesc = "CodeDesc"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 借贷反欺诈
+    ///
+    /// 天御反欺诈服务，主要应用于银行、证券、保险、消费金融等金融行业客户，通过腾讯的大数据风控能力，
+    /// 可以准确识别恶意用户信息，解决客户在支付、活动、理财，风控等业务环节遇到的欺诈威胁，降低企业
+    /// 的损失。
+    @inlinable
+    public func queryAntiFraud(_ input: QueryAntiFraudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAntiFraudResponse > {
+        self.client.execute(action: "QueryAntiFraud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 借贷反欺诈
+    ///
+    /// 天御反欺诈服务，主要应用于银行、证券、保险、消费金融等金融行业客户，通过腾讯的大数据风控能力，
+    /// 可以准确识别恶意用户信息，解决客户在支付、活动、理财，风控等业务环节遇到的欺诈威胁，降低企业
+    /// 的损失。
+    @inlinable
+    public func queryAntiFraud(_ input: QueryAntiFraudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAntiFraudResponse {
+        try await self.client.execute(action: "QueryAntiFraud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

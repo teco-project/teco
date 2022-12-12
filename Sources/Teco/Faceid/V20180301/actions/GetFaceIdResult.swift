@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 获取SDK核验结果
-    ///
-    /// 完成验证后，用FaceIdToken调用本接口获取结果信息，FaceIdToken生成后三天内（3\*24\*3,600秒）可多次拉取。
-    @inlinable
-    public func getFaceIdResult(_ input: GetFaceIdResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFaceIdResultResponse > {
-        self.client.execute(action: "GetFaceIdResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取SDK核验结果
-    ///
-    /// 完成验证后，用FaceIdToken调用本接口获取结果信息，FaceIdToken生成后三天内（3\*24\*3,600秒）可多次拉取。
-    @inlinable
-    public func getFaceIdResult(_ input: GetFaceIdResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFaceIdResultResponse {
-        try await self.client.execute(action: "GetFaceIdResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetFaceIdResult请求参数结构体
     public struct GetFaceIdResultRequest: TCRequestModel {
         /// SDK人脸核身流程的标识，调用GetFaceIdToken接口时生成。
@@ -42,7 +26,7 @@ extension Faceid {
         /// 是否需要拉取截帧，默认false不需要
         public let isNeedBestFrame: Bool?
         
-        public init (faceIdToken: String, isNeedVideo: Bool?, isNeedBestFrame: Bool?) {
+        public init (faceIdToken: String, isNeedVideo: Bool? = nil, isNeedBestFrame: Bool? = nil) {
             self.faceIdToken = faceIdToken
             self.isNeedVideo = isNeedVideo
             self.isNeedBestFrame = isNeedBestFrame
@@ -115,5 +99,21 @@ extension Faceid {
             case riskInfoTag = "RiskInfoTag"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取SDK核验结果
+    ///
+    /// 完成验证后，用FaceIdToken调用本接口获取结果信息，FaceIdToken生成后三天内（3\*24\*3,600秒）可多次拉取。
+    @inlinable
+    public func getFaceIdResult(_ input: GetFaceIdResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFaceIdResultResponse > {
+        self.client.execute(action: "GetFaceIdResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取SDK核验结果
+    ///
+    /// 完成验证后，用FaceIdToken调用本接口获取结果信息，FaceIdToken生成后三天内（3\*24\*3,600秒）可多次拉取。
+    @inlinable
+    public func getFaceIdResult(_ input: GetFaceIdResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFaceIdResultResponse {
+        try await self.client.execute(action: "GetFaceIdResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

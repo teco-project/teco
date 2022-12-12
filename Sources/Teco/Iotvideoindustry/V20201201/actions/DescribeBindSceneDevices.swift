@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取场景绑定设备列表(旧)
-    ///
-    /// 获取场景绑定设备列表
-    @inlinable
-    public func describeBindSceneDevices(_ input: DescribeBindSceneDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindSceneDevicesResponse > {
-        self.client.execute(action: "DescribeBindSceneDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取场景绑定设备列表(旧)
-    ///
-    /// 获取场景绑定设备列表
-    @inlinable
-    public func describeBindSceneDevices(_ input: DescribeBindSceneDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindSceneDevicesResponse {
-        try await self.client.execute(action: "DescribeBindSceneDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBindSceneDevices请求参数结构体
     public struct DescribeBindSceneDevicesRequest: TCRequestModel {
         /// 场景ID
@@ -42,7 +26,7 @@ extension Iotvideoindustry {
         /// 条数限制最大不能超过1000
         public let limit: Int64?
         
-        public init (sceneId: Int64?, offset: Int64?, limit: Int64?) {
+        public init (sceneId: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.sceneId = sceneId
             self.offset = offset
             self.limit = limit
@@ -73,5 +57,21 @@ extension Iotvideoindustry {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取场景绑定设备列表(旧)
+    ///
+    /// 获取场景绑定设备列表
+    @inlinable
+    public func describeBindSceneDevices(_ input: DescribeBindSceneDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBindSceneDevicesResponse > {
+        self.client.execute(action: "DescribeBindSceneDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取场景绑定设备列表(旧)
+    ///
+    /// 获取场景绑定设备列表
+    @inlinable
+    public func describeBindSceneDevices(_ input: DescribeBindSceneDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindSceneDevicesResponse {
+        try await self.client.execute(action: "DescribeBindSceneDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

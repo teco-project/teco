@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eis {
-    /// 获取运行时资源监控详情
-    ///
-    /// 获取运行时资源监控详情，cpu，memory，bandwidth
-    @inlinable
-    public func getRuntimeResourceMonitorMetricMC(_ input: GetRuntimeResourceMonitorMetricMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRuntimeResourceMonitorMetricMCResponse > {
-        self.client.execute(action: "GetRuntimeResourceMonitorMetricMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取运行时资源监控详情
-    ///
-    /// 获取运行时资源监控详情，cpu，memory，bandwidth
-    @inlinable
-    public func getRuntimeResourceMonitorMetricMC(_ input: GetRuntimeResourceMonitorMetricMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuntimeResourceMonitorMetricMCResponse {
-        try await self.client.execute(action: "GetRuntimeResourceMonitorMetricMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetRuntimeResourceMonitorMetricMC请求参数结构体
     public struct GetRuntimeResourceMonitorMetricMCRequest: TCRequestModel {
         /// 运行时id
@@ -54,7 +38,7 @@ extension Eis {
         /// 环境运行类型：0:运行时类型、1:api类型
         public let runtimeClass: Int64?
         
-        public init (runtimeId: Int64, startTime: Int64, endTime: Int64, metricType: Int64, rateType: Bool, interval: Int64?, runtimeClass: Int64?) {
+        public init (runtimeId: Int64, startTime: Int64, endTime: Int64, metricType: Int64, rateType: Bool, interval: Int64? = nil, runtimeClass: Int64? = nil) {
             self.runtimeId = runtimeId
             self.startTime = startTime
             self.endTime = endTime
@@ -91,5 +75,21 @@ extension Eis {
             case values = "Values"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取运行时资源监控详情
+    ///
+    /// 获取运行时资源监控详情，cpu，memory，bandwidth
+    @inlinable
+    public func getRuntimeResourceMonitorMetricMC(_ input: GetRuntimeResourceMonitorMetricMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRuntimeResourceMonitorMetricMCResponse > {
+        self.client.execute(action: "GetRuntimeResourceMonitorMetricMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取运行时资源监控详情
+    ///
+    /// 获取运行时资源监控详情，cpu，memory，bandwidth
+    @inlinable
+    public func getRuntimeResourceMonitorMetricMC(_ input: GetRuntimeResourceMonitorMetricMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuntimeResourceMonitorMetricMCResponse {
+        try await self.client.execute(action: "GetRuntimeResourceMonitorMetricMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

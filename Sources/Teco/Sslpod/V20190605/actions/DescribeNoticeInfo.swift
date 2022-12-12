@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sslpod {
-    /// 通知额度信息
-    ///
-    /// 获取通知额度信息
-    @inlinable
-    public func describeNoticeInfo(_ input: DescribeNoticeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNoticeInfoResponse > {
-        self.client.execute(action: "DescribeNoticeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通知额度信息
-    ///
-    /// 获取通知额度信息
-    @inlinable
-    public func describeNoticeInfo(_ input: DescribeNoticeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoticeInfoResponse {
-        try await self.client.execute(action: "DescribeNoticeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNoticeInfo请求参数结构体
     public struct DescribeNoticeInfoRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Sslpod {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通知额度信息
+    ///
+    /// 获取通知额度信息
+    @inlinable
+    public func describeNoticeInfo(_ input: DescribeNoticeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNoticeInfoResponse > {
+        self.client.execute(action: "DescribeNoticeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通知额度信息
+    ///
+    /// 获取通知额度信息
+    @inlinable
+    public func describeNoticeInfo(_ input: DescribeNoticeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoticeInfoResponse {
+        try await self.client.execute(action: "DescribeNoticeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

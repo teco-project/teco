@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 查询点播域名的 CDN 统计数据
-    ///
-    /// 该接口用于查询点播域名的 CDN 带宽、流量等统计数据。
-    /// * 查询的起始时间和结束时间跨度不超过90天。
-    /// * 可以查询不同服务区域的数据。
-    /// * 中国境内的数据支持查询指定地区、运营商的统计数据。
-    @inlinable
-    public func describeCDNStatDetails(_ input: DescribeCDNStatDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCDNStatDetailsResponse > {
-        self.client.execute(action: "DescribeCDNStatDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询点播域名的 CDN 统计数据
-    ///
-    /// 该接口用于查询点播域名的 CDN 带宽、流量等统计数据。
-    /// * 查询的起始时间和结束时间跨度不超过90天。
-    /// * 可以查询不同服务区域的数据。
-    /// * 中国境内的数据支持查询指定地区、运营商的统计数据。
-    @inlinable
-    public func describeCDNStatDetails(_ input: DescribeCDNStatDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDNStatDetailsResponse {
-        try await self.client.execute(action: "DescribeCDNStatDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCDNStatDetails请求参数结构体
     public struct DescribeCDNStatDetailsRequest: TCRequestModel {
         /// 查询指标，取值有：
@@ -124,7 +102,7 @@ extension Vod {
         /// 当 StartTime 和 EndTime 时间跨度大于24小时时，DataInterval 默认为 1440。
         public let dataInterval: UInt64?
         
-        public init (metric: String, startTime: String, endTime: String, subAppId: UInt64?, domainNames: [String]?, area: String?, districts: [String]?, isps: [String]?, dataInterval: UInt64?) {
+        public init (metric: String, startTime: String, endTime: String, subAppId: UInt64? = nil, domainNames: [String]? = nil, area: String? = nil, districts: [String]? = nil, isps: [String]? = nil, dataInterval: UInt64? = nil) {
             self.metric = metric
             self.startTime = startTime
             self.endTime = endTime
@@ -165,5 +143,27 @@ extension Vod {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询点播域名的 CDN 统计数据
+    ///
+    /// 该接口用于查询点播域名的 CDN 带宽、流量等统计数据。
+    /// * 查询的起始时间和结束时间跨度不超过90天。
+    /// * 可以查询不同服务区域的数据。
+    /// * 中国境内的数据支持查询指定地区、运营商的统计数据。
+    @inlinable
+    public func describeCDNStatDetails(_ input: DescribeCDNStatDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCDNStatDetailsResponse > {
+        self.client.execute(action: "DescribeCDNStatDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询点播域名的 CDN 统计数据
+    ///
+    /// 该接口用于查询点播域名的 CDN 带宽、流量等统计数据。
+    /// * 查询的起始时间和结束时间跨度不超过90天。
+    /// * 可以查询不同服务区域的数据。
+    /// * 中国境内的数据支持查询指定地区、运营商的统计数据。
+    @inlinable
+    public func describeCDNStatDetails(_ input: DescribeCDNStatDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDNStatDetailsResponse {
+        try await self.client.execute(action: "DescribeCDNStatDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

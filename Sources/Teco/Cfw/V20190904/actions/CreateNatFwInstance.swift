@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 创建NAT防火墙实例（Region参数必填）
-    @inlinable
-    public func createNatFwInstance(_ input: CreateNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatFwInstanceResponse > {
-        self.client.execute(action: "CreateNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建NAT防火墙实例（Region参数必填）
-    @inlinable
-    public func createNatFwInstance(_ input: CreateNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceResponse {
-        try await self.client.execute(action: "CreateNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNatFwInstance请求参数结构体
     public struct CreateNatFwInstanceRequest: TCRequestModel {
         /// 防火墙实例名称
@@ -39,7 +27,7 @@ extension Cfw {
         public let mode: Int64
         
         /// 新增模式传递参数，其中NewModeItems和NatgwList至少传递一种。
-        public let newModeItems: NewModeItems
+        public let newModeItems: NewModeItems?
         
         /// 接入模式接入的nat网关列表，其中NewModeItems和NatgwList至少传递一种。
         public let natGwList: [String]?
@@ -53,7 +41,7 @@ extension Cfw {
         /// 异地灾备 1：使用异地灾备；0：不使用异地灾备；为空则默认不使用异地灾备
         public let crossAZone: Int64?
         
-        public init (name: String, width: Int64, mode: Int64, newModeItems: NewModeItems, natGwList: [String]?, zone: String?, zoneBak: String?, crossAZone: Int64?) {
+        public init (name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil) {
             self.name = name
             self.width = width
             self.mode = mode
@@ -88,5 +76,17 @@ extension Cfw {
             case cfwInsId = "CfwInsId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建NAT防火墙实例（Region参数必填）
+    @inlinable
+    public func createNatFwInstance(_ input: CreateNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNatFwInstanceResponse > {
+        self.client.execute(action: "CreateNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建NAT防火墙实例（Region参数必填）
+    @inlinable
+    public func createNatFwInstance(_ input: CreateNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceResponse {
+        try await self.client.execute(action: "CreateNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

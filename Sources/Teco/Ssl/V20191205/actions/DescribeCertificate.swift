@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 获取证书信息
-    ///
-    /// 本接口（DescribeCertificate）用于获取证书信息。
-    @inlinable
-    public func describeCertificate(_ input: DescribeCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertificateResponse > {
-        self.client.execute(action: "DescribeCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取证书信息
-    ///
-    /// 本接口（DescribeCertificate）用于获取证书信息。
-    @inlinable
-    public func describeCertificate(_ input: DescribeCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateResponse {
-        try await self.client.execute(action: "DescribeCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCertificate请求参数结构体
     public struct DescribeCertificateRequest: TCRequestModel {
         /// 证书 ID。
@@ -117,11 +101,11 @@ extension Ssl {
         
         /// 证书扩展信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let certificateExtra: CertificateExtra
+        public let certificateExtra: CertificateExtra?
         
         /// DV 认证信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dvAuthDetail: DvAuthDetail
+        public let dvAuthDetail: DvAuthDetail?
         
         /// 漏洞扫描评估报告。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -165,7 +149,7 @@ extension Ssl {
         
         /// 提交的资料信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let submittedData: SubmittedData
+        public let submittedData: SubmittedData?
         
         /// 是否可部署。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -213,5 +197,21 @@ extension Ssl {
             case tags = "Tags"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取证书信息
+    ///
+    /// 本接口（DescribeCertificate）用于获取证书信息。
+    @inlinable
+    public func describeCertificate(_ input: DescribeCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCertificateResponse > {
+        self.client.execute(action: "DescribeCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取证书信息
+    ///
+    /// 本接口（DescribeCertificate）用于获取证书信息。
+    @inlinable
+    public func describeCertificate(_ input: DescribeCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateResponse {
+        try await self.client.execute(action: "DescribeCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

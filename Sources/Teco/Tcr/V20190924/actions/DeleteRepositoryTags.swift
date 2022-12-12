@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 批量删除Repository Tag
-    ///
-    /// 用于企业版批量删除Repository Tag
-    @inlinable
-    public func deleteRepositoryTags(_ input: DeleteRepositoryTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRepositoryTagsResponse > {
-        self.client.execute(action: "DeleteRepositoryTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量删除Repository Tag
-    ///
-    /// 用于企业版批量删除Repository Tag
-    @inlinable
-    public func deleteRepositoryTags(_ input: DeleteRepositoryTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryTagsResponse {
-        try await self.client.execute(action: "DeleteRepositoryTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRepositoryTags请求参数结构体
     public struct DeleteRepositoryTagsRequest: TCRequestModel {
         /// 实例ID
@@ -68,5 +52,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量删除Repository Tag
+    ///
+    /// 用于企业版批量删除Repository Tag
+    @inlinable
+    public func deleteRepositoryTags(_ input: DeleteRepositoryTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRepositoryTagsResponse > {
+        self.client.execute(action: "DeleteRepositoryTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除Repository Tag
+    ///
+    /// 用于企业版批量删除Repository Tag
+    @inlinable
+    public func deleteRepositoryTags(_ input: DeleteRepositoryTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryTagsResponse {
+        try await self.client.execute(action: "DeleteRepositoryTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

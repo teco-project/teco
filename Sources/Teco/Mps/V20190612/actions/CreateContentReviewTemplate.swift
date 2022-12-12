@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 创建内容审核模板
-    ///
-    /// 创建用户自定义内容审核模板，数量上限：50。
-    @inlinable
-    public func createContentReviewTemplate(_ input: CreateContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateContentReviewTemplateResponse > {
-        self.client.execute(action: "CreateContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建内容审核模板
-    ///
-    /// 创建用户自定义内容审核模板，数量上限：50。
-    @inlinable
-    public func createContentReviewTemplate(_ input: CreateContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContentReviewTemplateResponse {
-        try await self.client.execute(action: "CreateContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateContentReviewTemplate请求参数结构体
     public struct CreateContentReviewTemplateRequest: TCRequestModel {
         /// 内容审核模板名称，长度限制：64 个字符。
@@ -40,24 +24,24 @@ extension Mps {
         public let comment: String?
         
         /// 令人反感的信息的控制参数。
-        public let pornConfigure: PornConfigureInfo
+        public let pornConfigure: PornConfigureInfo?
         
         /// 令人不安全的信息的控制参数。
-        public let terrorismConfigure: TerrorismConfigureInfo
+        public let terrorismConfigure: TerrorismConfigureInfo?
         
         /// 令人不适宜的信息的控制参数。
-        public let politicalConfigure: PoliticalConfigureInfo
+        public let politicalConfigure: PoliticalConfigureInfo?
         
         /// 违禁控制参数。违禁内容包括：
         /// <li>谩骂；</li>
         /// <li>涉毒违法。</li>
         /// 注意：此参数尚未支持。
-        public let prohibitedConfigure: ProhibitedConfigureInfo
+        public let prohibitedConfigure: ProhibitedConfigureInfo?
         
         /// 用户自定义内容审核控制参数。
-        public let userDefineConfigure: UserDefineConfigureInfo
+        public let userDefineConfigure: UserDefineConfigureInfo?
         
-        public init (name: String?, comment: String?, pornConfigure: PornConfigureInfo, terrorismConfigure: TerrorismConfigureInfo, politicalConfigure: PoliticalConfigureInfo, prohibitedConfigure: ProhibitedConfigureInfo, userDefineConfigure: UserDefineConfigureInfo) {
+        public init (name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfo? = nil, terrorismConfigure: TerrorismConfigureInfo? = nil, politicalConfigure: PoliticalConfigureInfo? = nil, prohibitedConfigure: ProhibitedConfigureInfo? = nil, userDefineConfigure: UserDefineConfigureInfo? = nil) {
             self.name = name
             self.comment = comment
             self.pornConfigure = pornConfigure
@@ -90,5 +74,21 @@ extension Mps {
             case definition = "Definition"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建内容审核模板
+    ///
+    /// 创建用户自定义内容审核模板，数量上限：50。
+    @inlinable
+    public func createContentReviewTemplate(_ input: CreateContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateContentReviewTemplateResponse > {
+        self.client.execute(action: "CreateContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建内容审核模板
+    ///
+    /// 创建用户自定义内容审核模板，数量上限：50。
+    @inlinable
+    public func createContentReviewTemplate(_ input: CreateContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContentReviewTemplateResponse {
+        try await self.client.execute(action: "CreateContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

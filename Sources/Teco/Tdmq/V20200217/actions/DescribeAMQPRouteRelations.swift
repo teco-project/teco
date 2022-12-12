@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取Amqp路由关系列表
-    @inlinable
-    public func describeAMQPRouteRelations(_ input: DescribeAMQPRouteRelationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAMQPRouteRelationsResponse > {
-        self.client.execute(action: "DescribeAMQPRouteRelations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Amqp路由关系列表
-    @inlinable
-    public func describeAMQPRouteRelations(_ input: DescribeAMQPRouteRelationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPRouteRelationsResponse {
-        try await self.client.execute(action: "DescribeAMQPRouteRelations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAMQPRouteRelations请求参数结构体
     public struct DescribeAMQPRouteRelationsRequest: TCRequestModel {
         /// 查询偏移量
@@ -50,7 +38,7 @@ extension Tdmq {
         /// 按目标名称过滤查询结果，支持模糊查询
         public let filterDestValue: String?
         
-        public init (offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, filterSourceExchange: String?, filterDestType: String?, filterDestValue: String?) {
+        public init (offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, filterSourceExchange: String? = nil, filterDestType: String? = nil, filterDestValue: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.clusterId = clusterId
@@ -87,5 +75,17 @@ extension Tdmq {
             case routeRelations = "RouteRelations"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Amqp路由关系列表
+    @inlinable
+    public func describeAMQPRouteRelations(_ input: DescribeAMQPRouteRelationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAMQPRouteRelationsResponse > {
+        self.client.execute(action: "DescribeAMQPRouteRelations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Amqp路由关系列表
+    @inlinable
+    public func describeAMQPRouteRelations(_ input: DescribeAMQPRouteRelationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPRouteRelationsResponse {
+        try await self.client.execute(action: "DescribeAMQPRouteRelations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

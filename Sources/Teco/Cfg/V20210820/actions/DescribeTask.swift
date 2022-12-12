@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfg {
-    /// 查询任务
-    @inlinable
-    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResponse > {
-        self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询任务
-    @inlinable
-    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResponse {
-        try await self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTask请求参数结构体
     public struct DescribeTaskRequest: TCRequestModel {
         /// 任务ID
@@ -53,5 +41,17 @@ extension Cfg {
             case task = "Task"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询任务
+    @inlinable
+    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResponse > {
+        self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务
+    @inlinable
+    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResponse {
+        try await self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

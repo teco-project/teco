@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 账号组添加账号
-    @inlinable
-    public func addAccountToAccountGroup(_ input: AddAccountToAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddAccountToAccountGroupResponse > {
-        self.client.execute(action: "AddAccountToAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 账号组添加账号
-    @inlinable
-    public func addAccountToAccountGroup(_ input: AddAccountToAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAccountToAccountGroupResponse {
-        try await self.client.execute(action: "AddAccountToAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddAccountToAccountGroup请求参数结构体
     public struct AddAccountToAccountGroupRequest: TCRequestModel {
         /// 账号组ID
@@ -35,7 +23,7 @@ extension Eiam {
         /// 加入账号组的账号ID列表。
         public let accountIds: [String]?
         
-        public init (accountGroupId: String, accountIds: [String]?) {
+        public init (accountGroupId: String, accountIds: [String]? = nil) {
             self.accountGroupId = accountGroupId
             self.accountIds = accountIds
         }
@@ -54,5 +42,17 @@ extension Eiam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 账号组添加账号
+    @inlinable
+    public func addAccountToAccountGroup(_ input: AddAccountToAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddAccountToAccountGroupResponse > {
+        self.client.execute(action: "AddAccountToAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 账号组添加账号
+    @inlinable
+    public func addAccountToAccountGroup(_ input: AddAccountToAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAccountToAccountGroupResponse {
+        try await self.client.execute(action: "AddAccountToAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

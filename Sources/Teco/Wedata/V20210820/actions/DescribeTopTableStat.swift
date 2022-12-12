@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 数据质量表排行接口
-    ///
-    /// 数据质量概览页面表排行接口
-    @inlinable
-    public func describeTopTableStat(_ input: DescribeTopTableStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopTableStatResponse > {
-        self.client.execute(action: "DescribeTopTableStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 数据质量表排行接口
-    ///
-    /// 数据质量概览页面表排行接口
-    @inlinable
-    public func describeTopTableStat(_ input: DescribeTopTableStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopTableStatResponse {
-        try await self.client.execute(action: "DescribeTopTableStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTopTableStat请求参数结构体
     public struct DescribeTopTableStatRequest: TCRequestModel {
         /// Project Id
@@ -67,5 +51,21 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 数据质量表排行接口
+    ///
+    /// 数据质量概览页面表排行接口
+    @inlinable
+    public func describeTopTableStat(_ input: DescribeTopTableStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopTableStatResponse > {
+        self.client.execute(action: "DescribeTopTableStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 数据质量表排行接口
+    ///
+    /// 数据质量概览页面表排行接口
+    @inlinable
+    public func describeTopTableStat(_ input: DescribeTopTableStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopTableStatResponse {
+        try await self.client.execute(action: "DescribeTopTableStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

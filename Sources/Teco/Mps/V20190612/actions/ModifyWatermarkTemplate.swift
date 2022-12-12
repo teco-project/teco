@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Mps {
-    /// 修改水印模板
-    ///
-    /// 修改用户自定义水印模板，水印类型不允许修改。
-    @inlinable
-    public func modifyWatermarkTemplate(_ input: ModifyWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWatermarkTemplateResponse > {
-        self.client.execute(action: "ModifyWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改水印模板
-    ///
-    /// 修改用户自定义水印模板，水印类型不允许修改。
-    @inlinable
-    public func modifyWatermarkTemplate(_ input: ModifyWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWatermarkTemplateResponse {
-        try await self.client.execute(action: "ModifyWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyWatermarkTemplate请求参数结构体
     public struct ModifyWatermarkTemplateRequest: TCRequestModel {
         /// 水印模板唯一标识。
@@ -62,15 +46,15 @@ extension Mps {
         public let yPos: String?
         
         /// 图片水印模板，该字段仅对图片水印模板有效。
-        public let imageTemplate: ImageWatermarkInputForUpdate
+        public let imageTemplate: ImageWatermarkInputForUpdate?
         
         /// 文字水印模板，该字段仅对文字水印模板有效。
-        public let textTemplate: TextWatermarkTemplateInputForUpdate
+        public let textTemplate: TextWatermarkTemplateInputForUpdate?
         
         /// SVG水印模板，当 Type 为 svg，该字段必填。当 Type 为 image 或 text，该字段无效。
-        public let svgTemplate: SvgWatermarkInputForUpdate
+        public let svgTemplate: SvgWatermarkInputForUpdate?
         
-        public init (definition: Int64, name: String?, comment: String?, coordinateOrigin: String?, xPos: String?, yPos: String?, imageTemplate: ImageWatermarkInputForUpdate, textTemplate: TextWatermarkTemplateInputForUpdate, svgTemplate: SvgWatermarkInputForUpdate) {
+        public init (definition: Int64, name: String? = nil, comment: String? = nil, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, imageTemplate: ImageWatermarkInputForUpdate? = nil, textTemplate: TextWatermarkTemplateInputForUpdate? = nil, svgTemplate: SvgWatermarkInputForUpdate? = nil) {
             self.definition = definition
             self.name = name
             self.comment = comment
@@ -107,5 +91,21 @@ extension Mps {
             case imageUrl = "ImageUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改水印模板
+    ///
+    /// 修改用户自定义水印模板，水印类型不允许修改。
+    @inlinable
+    public func modifyWatermarkTemplate(_ input: ModifyWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWatermarkTemplateResponse > {
+        self.client.execute(action: "ModifyWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改水印模板
+    ///
+    /// 修改用户自定义水印模板，水印类型不允许修改。
+    @inlinable
+    public func modifyWatermarkTemplate(_ input: ModifyWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWatermarkTemplateResponse {
+        try await self.client.execute(action: "ModifyWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

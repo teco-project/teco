@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 出租车发票识别
-    ///
-    /// 本接口支持出租车发票关键字段的识别，包括发票号码、发票代码、金额、日期、上下车时间、里程、车牌号、发票类型及所属地区等字段。
-    @inlinable
-    public func taxiInvoiceOCR(_ input: TaxiInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TaxiInvoiceOCRResponse > {
-        self.client.execute(action: "TaxiInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 出租车发票识别
-    ///
-    /// 本接口支持出租车发票关键字段的识别，包括发票号码、发票代码、金额、日期、上下车时间、里程、车牌号、发票类型及所属地区等字段。
-    @inlinable
-    public func taxiInvoiceOCR(_ input: TaxiInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TaxiInvoiceOCRResponse {
-        try await self.client.execute(action: "TaxiInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TaxiInvoiceOCR请求参数结构体
     public struct TaxiInvoiceOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -52,7 +36,7 @@ extension Ocr {
         /// 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         public let pdfPageNumber: Int64?
         
-        public init (imageBase64: String?, imageUrl: String?, isPdf: Bool?, pdfPageNumber: Int64?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.isPdf = isPdf
@@ -125,5 +109,21 @@ extension Ocr {
             case city = "City"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 出租车发票识别
+    ///
+    /// 本接口支持出租车发票关键字段的识别，包括发票号码、发票代码、金额、日期、上下车时间、里程、车牌号、发票类型及所属地区等字段。
+    @inlinable
+    public func taxiInvoiceOCR(_ input: TaxiInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TaxiInvoiceOCRResponse > {
+        self.client.execute(action: "TaxiInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 出租车发票识别
+    ///
+    /// 本接口支持出租车发票关键字段的识别，包括发票号码、发票代码、金额、日期、上下车时间、里程、车牌号、发票类型及所属地区等字段。
+    @inlinable
+    public func taxiInvoiceOCR(_ input: TaxiInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TaxiInvoiceOCRResponse {
+        try await self.client.execute(action: "TaxiInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

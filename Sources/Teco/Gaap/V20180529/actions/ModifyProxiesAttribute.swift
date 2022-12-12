@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 修改通道的属性
-    ///
-    /// 本接口（ModifyProxiesAttribute）用于修改实例的属性（目前只支持修改通道的名称）。
-    @inlinable
-    public func modifyProxiesAttribute(_ input: ModifyProxiesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProxiesAttributeResponse > {
-        self.client.execute(action: "ModifyProxiesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改通道的属性
-    ///
-    /// 本接口（ModifyProxiesAttribute）用于修改实例的属性（目前只支持修改通道的名称）。
-    @inlinable
-    public func modifyProxiesAttribute(_ input: ModifyProxiesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesAttributeResponse {
-        try await self.client.execute(action: "ModifyProxiesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyProxiesAttribute请求参数结构体
     public struct ModifyProxiesAttributeRequest: TCRequestModel {
         /// （旧参数，请切换到ProxyIds）一个或多个待操作的通道ID。
@@ -46,7 +30,7 @@ extension Gaap {
         /// （新参数）一个或多个待操作的通道ID。
         public let proxyIds: [String]?
         
-        public init (instanceIds: [String]?, proxyName: String?, clientToken: String?, proxyIds: [String]?) {
+        public init (instanceIds: [String]? = nil, proxyName: String? = nil, clientToken: String? = nil, proxyIds: [String]? = nil) {
             self.instanceIds = instanceIds
             self.proxyName = proxyName
             self.clientToken = clientToken
@@ -69,5 +53,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改通道的属性
+    ///
+    /// 本接口（ModifyProxiesAttribute）用于修改实例的属性（目前只支持修改通道的名称）。
+    @inlinable
+    public func modifyProxiesAttribute(_ input: ModifyProxiesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProxiesAttributeResponse > {
+        self.client.execute(action: "ModifyProxiesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改通道的属性
+    ///
+    /// 本接口（ModifyProxiesAttribute）用于修改实例的属性（目前只支持修改通道的名称）。
+    @inlinable
+    public func modifyProxiesAttribute(_ input: ModifyProxiesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesAttributeResponse {
+        try await self.client.execute(action: "ModifyProxiesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

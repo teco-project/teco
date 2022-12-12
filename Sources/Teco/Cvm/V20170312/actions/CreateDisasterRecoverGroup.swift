@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cvm {
-    /// 创建分散置放群组
-    ///
-    /// 本接口 (CreateDisasterRecoverGroup)用于创建[分散置放群组](https://cloud.tencent.com/document/product/213/15486)。创建好的置放群组，可在[创建实例](https://cloud.tencent.com/document/api/213/15730)时指定。
-    @inlinable
-    public func createDisasterRecoverGroup(_ input: CreateDisasterRecoverGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDisasterRecoverGroupResponse > {
-        self.client.execute(action: "CreateDisasterRecoverGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建分散置放群组
-    ///
-    /// 本接口 (CreateDisasterRecoverGroup)用于创建[分散置放群组](https://cloud.tencent.com/document/product/213/15486)。创建好的置放群组，可在[创建实例](https://cloud.tencent.com/document/api/213/15730)时指定。
-    @inlinable
-    public func createDisasterRecoverGroup(_ input: CreateDisasterRecoverGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDisasterRecoverGroupResponse {
-        try await self.client.execute(action: "CreateDisasterRecoverGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDisasterRecoverGroup请求参数结构体
     public struct CreateDisasterRecoverGroupRequest: TCRequestModel {
         /// 分散置放群组名称，长度1-60个字符，支持中、英文。
@@ -44,7 +28,7 @@ extension Cvm {
         /// 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。<br>更多详细信息请参阅：如何保证幂等性。
         public let clientToken: String?
         
-        public init (name: String, type: String, clientToken: String?) {
+        public init (name: String, type: String, clientToken: String? = nil) {
             self.name = name
             self.type = type
             self.clientToken = clientToken
@@ -90,5 +74,21 @@ extension Cvm {
             case createTime = "CreateTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建分散置放群组
+    ///
+    /// 本接口 (CreateDisasterRecoverGroup)用于创建[分散置放群组](https://cloud.tencent.com/document/product/213/15486)。创建好的置放群组，可在[创建实例](https://cloud.tencent.com/document/api/213/15730)时指定。
+    @inlinable
+    public func createDisasterRecoverGroup(_ input: CreateDisasterRecoverGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDisasterRecoverGroupResponse > {
+        self.client.execute(action: "CreateDisasterRecoverGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建分散置放群组
+    ///
+    /// 本接口 (CreateDisasterRecoverGroup)用于创建[分散置放群组](https://cloud.tencent.com/document/product/213/15486)。创建好的置放群组，可在[创建实例](https://cloud.tencent.com/document/api/213/15730)时指定。
+    @inlinable
+    public func createDisasterRecoverGroup(_ input: CreateDisasterRecoverGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDisasterRecoverGroupResponse {
+        try await self.client.execute(action: "CreateDisasterRecoverGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

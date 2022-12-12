@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 删除转码模板
-    ///
-    /// 删除用户自定义转码模板。
-    @inlinable
-    public func deleteTranscodeTemplate(_ input: DeleteTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTranscodeTemplateResponse > {
-        self.client.execute(action: "DeleteTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除转码模板
-    ///
-    /// 删除用户自定义转码模板。
-    @inlinable
-    public func deleteTranscodeTemplate(_ input: DeleteTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTranscodeTemplateResponse {
-        try await self.client.execute(action: "DeleteTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTranscodeTemplate请求参数结构体
     public struct DeleteTranscodeTemplateRequest: TCRequestModel {
         /// 转码模板唯一标识。
@@ -53,5 +37,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除转码模板
+    ///
+    /// 删除用户自定义转码模板。
+    @inlinable
+    public func deleteTranscodeTemplate(_ input: DeleteTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTranscodeTemplateResponse > {
+        self.client.execute(action: "DeleteTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除转码模板
+    ///
+    /// 删除用户自定义转码模板。
+    @inlinable
+    public func deleteTranscodeTemplate(_ input: DeleteTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTranscodeTemplateResponse {
+        try await self.client.execute(action: "DeleteTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

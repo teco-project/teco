@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 删除模型服务组
-    ///
-    /// 根据服务组id删除服务组下所有模型服务
-    @inlinable
-    public func deleteModelServiceGroup(_ input: DeleteModelServiceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModelServiceGroupResponse > {
-        self.client.execute(action: "DeleteModelServiceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除模型服务组
-    ///
-    /// 根据服务组id删除服务组下所有模型服务
-    @inlinable
-    public func deleteModelServiceGroup(_ input: DeleteModelServiceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceGroupResponse {
-        try await self.client.execute(action: "DeleteModelServiceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteModelServiceGroup请求参数结构体
     public struct DeleteModelServiceGroupRequest: TCRequestModel {
         /// 服务id
@@ -53,5 +37,21 @@ extension Tione {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除模型服务组
+    ///
+    /// 根据服务组id删除服务组下所有模型服务
+    @inlinable
+    public func deleteModelServiceGroup(_ input: DeleteModelServiceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModelServiceGroupResponse > {
+        self.client.execute(action: "DeleteModelServiceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除模型服务组
+    ///
+    /// 根据服务组id删除服务组下所有模型服务
+    @inlinable
+    public func deleteModelServiceGroup(_ input: DeleteModelServiceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceGroupResponse {
+        try await self.client.execute(action: "DeleteModelServiceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

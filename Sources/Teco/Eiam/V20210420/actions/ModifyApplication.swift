@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 更新应用
-    ///
-    /// 更新一个应用的信息
-    @inlinable
-    public func modifyApplication(_ input: ModifyApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationResponse > {
-        self.client.execute(action: "ModifyApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新应用
-    ///
-    /// 更新一个应用的信息
-    @inlinable
-    public func modifyApplication(_ input: ModifyApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationResponse {
-        try await self.client.execute(action: "ModifyApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyApplication请求参数结构体
     public struct ModifyApplicationRequest: TCRequestModel {
         /// 应用ID，是应用的全局唯一标识。
@@ -51,7 +35,7 @@ extension Eiam {
         /// 描述。长度不超过128。
         public let description: String?
         
-        public init (applicationId: String, secureLevel: String?, displayName: String?, appStatus: Bool?, iconUrl: String?, description: String?) {
+        public init (applicationId: String, secureLevel: String? = nil, displayName: String? = nil, appStatus: Bool? = nil, iconUrl: String? = nil, description: String? = nil) {
             self.applicationId = applicationId
             self.secureLevel = secureLevel
             self.displayName = displayName
@@ -78,5 +62,21 @@ extension Eiam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新应用
+    ///
+    /// 更新一个应用的信息
+    @inlinable
+    public func modifyApplication(_ input: ModifyApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationResponse > {
+        self.client.execute(action: "ModifyApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新应用
+    ///
+    /// 更新一个应用的信息
+    @inlinable
+    public func modifyApplication(_ input: ModifyApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationResponse {
+        try await self.client.execute(action: "ModifyApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

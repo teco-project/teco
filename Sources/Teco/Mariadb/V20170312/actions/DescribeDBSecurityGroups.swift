@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 查询实例安全组信息
-    ///
-    /// 本接口（DescribeDBSecurityGroups）用于查询实例安全组信息
-    @inlinable
-    public func describeDBSecurityGroups(_ input: DescribeDBSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBSecurityGroupsResponse > {
-        self.client.execute(action: "DescribeDBSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例安全组信息
-    ///
-    /// 本接口（DescribeDBSecurityGroups）用于查询实例安全组信息
-    @inlinable
-    public func describeDBSecurityGroups(_ input: DescribeDBSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSecurityGroupsResponse {
-        try await self.client.execute(action: "DescribeDBSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBSecurityGroups请求参数结构体
     public struct DescribeDBSecurityGroupsRequest: TCRequestModel {
         /// 数据库引擎名称，本接口取值：mariadb。
@@ -72,5 +56,21 @@ extension Mariadb {
             case vPort = "VPort"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例安全组信息
+    ///
+    /// 本接口（DescribeDBSecurityGroups）用于查询实例安全组信息
+    @inlinable
+    public func describeDBSecurityGroups(_ input: DescribeDBSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBSecurityGroupsResponse > {
+        self.client.execute(action: "DescribeDBSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例安全组信息
+    ///
+    /// 本接口（DescribeDBSecurityGroups）用于查询实例安全组信息
+    @inlinable
+    public func describeDBSecurityGroups(_ input: DescribeDBSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSecurityGroupsResponse {
+        try await self.client.execute(action: "DescribeDBSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

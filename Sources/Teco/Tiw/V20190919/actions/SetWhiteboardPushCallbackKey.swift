@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 设置白板推流回调密钥
-    ///
-    /// 设置白板推流回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
-    @inlinable
-    public func setWhiteboardPushCallbackKey(_ input: SetWhiteboardPushCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetWhiteboardPushCallbackKeyResponse > {
-        self.client.execute(action: "SetWhiteboardPushCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置白板推流回调密钥
-    ///
-    /// 设置白板推流回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
-    @inlinable
-    public func setWhiteboardPushCallbackKey(_ input: SetWhiteboardPushCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetWhiteboardPushCallbackKeyResponse {
-        try await self.client.execute(action: "SetWhiteboardPushCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetWhiteboardPushCallbackKey请求参数结构体
     public struct SetWhiteboardPushCallbackKeyRequest: TCRequestModel {
         /// 应用的SdkAppId
@@ -58,5 +42,21 @@ extension Tiw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置白板推流回调密钥
+    ///
+    /// 设置白板推流回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
+    @inlinable
+    public func setWhiteboardPushCallbackKey(_ input: SetWhiteboardPushCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetWhiteboardPushCallbackKeyResponse > {
+        self.client.execute(action: "SetWhiteboardPushCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置白板推流回调密钥
+    ///
+    /// 设置白板推流回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
+    @inlinable
+    public func setWhiteboardPushCallbackKey(_ input: SetWhiteboardPushCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetWhiteboardPushCallbackKeyResponse {
+        try await self.client.execute(action: "SetWhiteboardPushCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询云数据实例的GTID是否开通
-    ///
-    /// 本接口(DescribeDBInstanceGTID)用于查询云数据库实例是否开通了 GTID，不支持版本为 5.5 以及以下的实例。
-    @inlinable
-    public func describeDBInstanceGTID(_ input: DescribeDBInstanceGTIDRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceGTIDResponse > {
-        self.client.execute(action: "DescribeDBInstanceGTID", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云数据实例的GTID是否开通
-    ///
-    /// 本接口(DescribeDBInstanceGTID)用于查询云数据库实例是否开通了 GTID，不支持版本为 5.5 以及以下的实例。
-    @inlinable
-    public func describeDBInstanceGTID(_ input: DescribeDBInstanceGTIDRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceGTIDResponse {
-        try await self.client.execute(action: "DescribeDBInstanceGTID", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBInstanceGTID请求参数结构体
     public struct DescribeDBInstanceGTIDRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
@@ -57,5 +41,21 @@ extension Cdb {
             case isGTIDOpen = "IsGTIDOpen"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云数据实例的GTID是否开通
+    ///
+    /// 本接口(DescribeDBInstanceGTID)用于查询云数据库实例是否开通了 GTID，不支持版本为 5.5 以及以下的实例。
+    @inlinable
+    public func describeDBInstanceGTID(_ input: DescribeDBInstanceGTIDRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceGTIDResponse > {
+        self.client.execute(action: "DescribeDBInstanceGTID", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云数据实例的GTID是否开通
+    ///
+    /// 本接口(DescribeDBInstanceGTID)用于查询云数据库实例是否开通了 GTID，不支持版本为 5.5 以及以下的实例。
+    @inlinable
+    public func describeDBInstanceGTID(_ input: DescribeDBInstanceGTIDRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceGTIDResponse {
+        try await self.client.execute(action: "DescribeDBInstanceGTID", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

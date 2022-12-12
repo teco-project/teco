@@ -37,7 +37,7 @@ extension Sqlserver {
         /// win-windows鉴权,sql-sqlserver鉴权，不填默认值为sql-sqlserver鉴权
         public let authentication: String?
         
-        public init (userName: String, password: String, dbPrivileges: [DBPrivilege]?, remark: String?, isAdmin: Bool?, authentication: String?) {
+        public init (userName: String, password: String, dbPrivileges: [DBPrivilege]? = nil, remark: String? = nil, isAdmin: Bool? = nil, authentication: String? = nil) {
             self.userName = userName
             self.password = password
             self.dbPrivileges = dbPrivileges
@@ -158,7 +158,7 @@ extension Sqlserver {
         /// 是否为管理员账户
         public let isAdmin: Bool?
         
-        public init (userName: String, dbPrivileges: [DBPrivilegeModifyInfo], isAdmin: Bool?) {
+        public init (userName: String, dbPrivileges: [DBPrivilegeModifyInfo], isAdmin: Bool? = nil) {
             self.userName = userName
             self.dbPrivileges = dbPrivileges
             self.isAdmin = isAdmin
@@ -417,7 +417,7 @@ extension Sqlserver {
         /// 备注
         public let remark: String?
         
-        public init (dbName: String, charset: String?, accounts: [AccountPrivilege]?, remark: String?) {
+        public init (dbName: String, charset: String? = nil, accounts: [AccountPrivilege]? = nil, remark: String? = nil) {
             self.dbName = dbName
             self.charset = charset
             self.accounts = accounts
@@ -636,7 +636,7 @@ extension Sqlserver {
         
         /// 备可用区信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let slaveZones: SlaveZones
+        public let slaveZones: SlaveZones?
         
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
@@ -1036,7 +1036,7 @@ extension Sqlserver {
         /// 迁移数据库的名称
         public let dbName: String?
         
-        public init (dbName: String?) {
+        public init (dbName: String? = nil) {
             self.dbName = dbName
         }
         
@@ -1091,7 +1091,7 @@ extension Sqlserver {
         /// 离线迁移的源备份密码，MigrateType=4或MigrateType=5使用
         public let urlPassword: String?
         
-        public init (instanceId: String?, cvmId: String?, vpcId: String?, subnetId: String?, userName: String?, password: String?, ip: String?, port: UInt64?, url: [String]?, urlPassword: String?) {
+        public init (instanceId: String? = nil, cvmId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, userName: String? = nil, password: String? = nil, ip: String? = nil, port: UInt64? = nil, url: [String]? = nil, urlPassword: String? = nil) {
             self.instanceId = instanceId
             self.cvmId = cvmId
             self.vpcId = vpcId
@@ -1129,7 +1129,7 @@ extension Sqlserver {
         /// 迁移目标实例的密码
         public let password: String?
         
-        public init (instanceId: String?, userName: String?, password: String?) {
+        public init (instanceId: String? = nil, userName: String? = nil, password: String? = nil) {
             self.instanceId = instanceId
             self.userName = userName
             self.password = password
@@ -1372,7 +1372,7 @@ extension Sqlserver {
         /// 参数值
         public let currentValue: String?
         
-        public init (name: String?, currentValue: String?) {
+        public init (name: String? = nil, currentValue: String? = nil) {
             self.name = name
             self.currentValue = currentValue
         }
@@ -1699,7 +1699,7 @@ extension Sqlserver {
         /// 库的新名字，在用于离线迁移时，不填则按照OldName命名，OldName和NewName不能同时不填。在用于克隆数据库时，OldName和NewName都必须填写，且不能重复
         public let newName: String?
         
-        public init (oldName: String?, newName: String?) {
+        public init (oldName: String? = nil, newName: String? = nil) {
             self.oldName = oldName
             self.newName = newName
         }

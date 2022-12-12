@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cr {
-    /// 查询录音列表
-    @inlinable
-    public func queryRecordList(_ input: QueryRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryRecordListResponse > {
-        self.client.execute(action: "QueryRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询录音列表
-    @inlinable
-    public func queryRecordList(_ input: QueryRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRecordListResponse {
-        try await self.client.execute(action: "QueryRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryRecordList请求参数结构体
     public struct QueryRecordListRequest: TCRequestModel {
         /// 模块名。AiApi
@@ -58,7 +46,7 @@ extension Cr {
         /// 结束日期
         public let endBizDate: Date?
         
-        public init (module: String, operation: String, offset: Int64, limit: Int64, botId: String?, botName: String?, calledPhone: String?, startBizDate: Date?, endBizDate: Date?) {
+        public init (module: String, operation: String, offset: Int64, limit: Int64, botId: String? = nil, botName: String? = nil, calledPhone: String? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil) {
             self.module = module
             self.operation = operation
             self.offset = offset
@@ -99,5 +87,17 @@ extension Cr {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询录音列表
+    @inlinable
+    public func queryRecordList(_ input: QueryRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryRecordListResponse > {
+        self.client.execute(action: "QueryRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询录音列表
+    @inlinable
+    public func queryRecordList(_ input: QueryRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRecordListResponse {
+        try await self.client.execute(action: "QueryRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

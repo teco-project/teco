@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tia {
-    /// 安装agent
-    @inlinable
-    public func installAgent(_ input: InstallAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallAgentResponse > {
-        self.client.execute(action: "InstallAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安装agent
-    @inlinable
-    public func installAgent(_ input: InstallAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallAgentResponse {
-        try await self.client.execute(action: "InstallAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InstallAgent请求参数结构体
     public struct InstallAgentRequest: TCRequestModel {
         /// 集群名称
@@ -38,7 +26,7 @@ extension Tia {
         /// 是否允许更新Agent
         public let update: Bool?
         
-        public init (cluster: String, tiaVersion: String?, update: Bool?) {
+        public init (cluster: String, tiaVersion: String? = nil, update: Bool? = nil) {
             self.cluster = cluster
             self.tiaVersion = tiaVersion
             self.update = update
@@ -63,5 +51,17 @@ extension Tia {
             case tiaVersion = "TiaVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安装agent
+    @inlinable
+    public func installAgent(_ input: InstallAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallAgentResponse > {
+        self.client.execute(action: "InstallAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安装agent
+    @inlinable
+    public func installAgent(_ input: InstallAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallAgentResponse {
+        try await self.client.execute(action: "InstallAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

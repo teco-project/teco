@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 获取分批发布详情
-    @inlinable
-    public func describeDeployApplicationDetail(_ input: DescribeDeployApplicationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeployApplicationDetailResponse > {
-        self.client.execute(action: "DescribeDeployApplicationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取分批发布详情
-    @inlinable
-    public func describeDeployApplicationDetail(_ input: DescribeDeployApplicationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployApplicationDetailResponse {
-        try await self.client.execute(action: "DescribeDeployApplicationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeployApplicationDetail请求参数结构体
     public struct DescribeDeployApplicationDetailRequest: TCRequestModel {
         /// 服务id
@@ -38,7 +26,7 @@ extension Tem {
         /// 版本部署id
         public let versionId: String?
         
-        public init (applicationId: String?, environmentId: String?, versionId: String?) {
+        public init (applicationId: String? = nil, environmentId: String? = nil, versionId: String? = nil) {
             self.applicationId = applicationId
             self.environmentId = environmentId
             self.versionId = versionId
@@ -63,5 +51,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取分批发布详情
+    @inlinable
+    public func describeDeployApplicationDetail(_ input: DescribeDeployApplicationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeployApplicationDetailResponse > {
+        self.client.execute(action: "DescribeDeployApplicationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取分批发布详情
+    @inlinable
+    public func describeDeployApplicationDetail(_ input: DescribeDeployApplicationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployApplicationDetailResponse {
+        try await self.client.execute(action: "DescribeDeployApplicationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

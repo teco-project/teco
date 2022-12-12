@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-聚合下单
-    @inlinable
-    public func createOpenBankUnifiedOrder(_ input: CreateOpenBankUnifiedOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankUnifiedOrderResponse > {
-        self.client.execute(action: "CreateOpenBankUnifiedOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-聚合下单
-    @inlinable
-    public func createOpenBankUnifiedOrder(_ input: CreateOpenBankUnifiedOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankUnifiedOrderResponse {
-        try await self.client.execute(action: "CreateOpenBankUnifiedOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOpenBankUnifiedOrder请求参数结构体
     public struct CreateOpenBankUnifiedOrderRequest: TCRequestModel {
         /// 渠道商户号。
@@ -63,7 +51,7 @@ extension Cpdp {
         public let payChannel: String?
         
         /// 设备信息。
-        public let sceneInfo: OpenBankSceneInfo
+        public let sceneInfo: OpenBankSceneInfo?
         
         /// 分账信息列表。
         public let profitShareInfoList: [OpenBankProfitShareInfo]?
@@ -94,10 +82,10 @@ extension Cpdp {
         public let remark: String?
         
         /// 门店信息。
-        public let storeInfo: OpenBankStoreInfo
+        public let storeInfo: OpenBankStoreInfo?
         
         /// 支付限制。
-        public let payLimitInfo: OpenBankPayLimitInfo
+        public let payLimitInfo: OpenBankPayLimitInfo?
         
         /// 环境类型。
         /// __release__:生产环境
@@ -105,7 +93,7 @@ extension Cpdp {
         /// _不填默认为生产环境_
         public let environment: String?
         
-        public init (channelMerchantId: String, channelName: String, payType: String, outOrderId: String, totalAmount: Int64, currency: String, channelSubMerchantId: String?, payChannel: String?, sceneInfo: OpenBankSceneInfo, profitShareInfoList: [OpenBankProfitShareInfo]?, orderSubject: String?, goodsDetail: String?, expireTime: String?, notifyUrl: String?, frontUrl: String?, attachment: String?, externalPaymentData: String?, remark: String?, storeInfo: OpenBankStoreInfo, payLimitInfo: OpenBankPayLimitInfo, environment: String?) {
+        public init (channelMerchantId: String, channelName: String, payType: String, outOrderId: String, totalAmount: Int64, currency: String, channelSubMerchantId: String? = nil, payChannel: String? = nil, sceneInfo: OpenBankSceneInfo? = nil, profitShareInfoList: [OpenBankProfitShareInfo]? = nil, orderSubject: String? = nil, goodsDetail: String? = nil, expireTime: String? = nil, notifyUrl: String? = nil, frontUrl: String? = nil, attachment: String? = nil, externalPaymentData: String? = nil, remark: String? = nil, storeInfo: OpenBankStoreInfo? = nil, payLimitInfo: OpenBankPayLimitInfo? = nil, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.channelName = channelName
             self.payType = payType
@@ -165,7 +153,7 @@ extension Cpdp {
         
         /// 统一下单响应对象。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: CreateOpenBankOrderPaymentResult
+        public let result: CreateOpenBankOrderPaymentResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -176,5 +164,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-聚合下单
+    @inlinable
+    public func createOpenBankUnifiedOrder(_ input: CreateOpenBankUnifiedOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankUnifiedOrderResponse > {
+        self.client.execute(action: "CreateOpenBankUnifiedOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-聚合下单
+    @inlinable
+    public func createOpenBankUnifiedOrder(_ input: CreateOpenBankUnifiedOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankUnifiedOrderResponse {
+        try await self.client.execute(action: "CreateOpenBankUnifiedOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

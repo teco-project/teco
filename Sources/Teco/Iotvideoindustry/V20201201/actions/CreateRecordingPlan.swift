@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 创建录制计划
-    ///
-    /// 本接口(CreateRecordingPlan) 用于创建录制计划，使通道与时间模板绑定，以便及时启动录制
-    @inlinable
-    public func createRecordingPlan(_ input: CreateRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRecordingPlanResponse > {
-        self.client.execute(action: "CreateRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建录制计划
-    ///
-    /// 本接口(CreateRecordingPlan) 用于创建录制计划，使通道与时间模板绑定，以便及时启动录制
-    @inlinable
-    public func createRecordingPlan(_ input: CreateRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordingPlanResponse {
-        try await self.client.execute(action: "CreateRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRecordingPlan请求参数结构体
     public struct CreateRecordingPlanRequest: TCRequestModel {
         /// 计划名称
@@ -45,7 +29,7 @@ extension Iotvideoindustry {
         /// 存储周期(天)；默认存储30天
         public let recordStorageTime: Int64?
         
-        public init (name: String, timeTemplateId: String, channels: [ChannelItem]?, recordStorageTime: Int64?) {
+        public init (name: String, timeTemplateId: String, channels: [ChannelItem]? = nil, recordStorageTime: Int64? = nil) {
             self.name = name
             self.timeTemplateId = timeTemplateId
             self.channels = channels
@@ -72,5 +56,21 @@ extension Iotvideoindustry {
             case planId = "PlanId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建录制计划
+    ///
+    /// 本接口(CreateRecordingPlan) 用于创建录制计划，使通道与时间模板绑定，以便及时启动录制
+    @inlinable
+    public func createRecordingPlan(_ input: CreateRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRecordingPlanResponse > {
+        self.client.execute(action: "CreateRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建录制计划
+    ///
+    /// 本接口(CreateRecordingPlan) 用于创建录制计划，使通道与时间模板绑定，以便及时启动录制
+    @inlinable
+    public func createRecordingPlan(_ input: CreateRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordingPlanResponse {
+        try await self.client.execute(action: "CreateRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 创建命名空间
-    ///
-    /// 用于在用户账户下创建消息队列 Tdmq 命名空间
-    @inlinable
-    public func createEnvironment(_ input: CreateEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEnvironmentResponse > {
-        self.client.execute(action: "CreateEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建命名空间
-    ///
-    /// 用于在用户账户下创建消息队列 Tdmq 命名空间
-    @inlinable
-    public func createEnvironment(_ input: CreateEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentResponse {
-        try await self.client.execute(action: "CreateEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEnvironment请求参数结构体
     public struct CreateEnvironmentRequest: TCRequestModel {
         /// 环境（命名空间）名称，不支持中字以及除了短线和下划线外的特殊字符且不超过16个字符。
@@ -46,9 +30,9 @@ extension Tdmq {
         public let clusterId: String?
         
         /// 消息保留策略
-        public let retentionPolicy: RetentionPolicy
+        public let retentionPolicy: RetentionPolicy?
         
-        public init (environmentId: String, msgTTL: UInt64, remark: String?, clusterId: String?, retentionPolicy: RetentionPolicy) {
+        public init (environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil) {
             self.environmentId = environmentId
             self.msgTTL = msgTTL
             self.remark = remark
@@ -90,5 +74,21 @@ extension Tdmq {
             case namespaceId = "NamespaceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建命名空间
+    ///
+    /// 用于在用户账户下创建消息队列 Tdmq 命名空间
+    @inlinable
+    public func createEnvironment(_ input: CreateEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEnvironmentResponse > {
+        self.client.execute(action: "CreateEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建命名空间
+    ///
+    /// 用于在用户账户下创建消息队列 Tdmq 命名空间
+    @inlinable
+    public func createEnvironment(_ input: CreateEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentResponse {
+        try await self.client.execute(action: "CreateEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

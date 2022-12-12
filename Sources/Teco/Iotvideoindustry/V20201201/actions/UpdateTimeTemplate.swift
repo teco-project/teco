@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 更新时间模板
-    ///
-    /// 本接口(UpdateTimeTemplate)用于更新时间模板。
-    @inlinable
-    public func updateTimeTemplate(_ input: UpdateTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTimeTemplateResponse > {
-        self.client.execute(action: "UpdateTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新时间模板
-    ///
-    /// 本接口(UpdateTimeTemplate)用于更新时间模板。
-    @inlinable
-    public func updateTimeTemplate(_ input: UpdateTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTimeTemplateResponse {
-        try await self.client.execute(action: "UpdateTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateTimeTemplate请求参数结构体
     public struct UpdateTimeTemplateRequest: TCRequestModel {
         /// 时间模板ID
@@ -46,7 +30,7 @@ extension Iotvideoindustry {
         /// 录制时间片段
         public let timeTemplateSpecs: [TimeTemplateSpec]?
         
-        public init (templateId: String, name: String?, isAllWeek: Int64?, timeTemplateSpecs: [TimeTemplateSpec]?) {
+        public init (templateId: String, name: String? = nil, isAllWeek: Int64? = nil, timeTemplateSpecs: [TimeTemplateSpec]? = nil) {
             self.templateId = templateId
             self.name = name
             self.isAllWeek = isAllWeek
@@ -73,5 +57,21 @@ extension Iotvideoindustry {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新时间模板
+    ///
+    /// 本接口(UpdateTimeTemplate)用于更新时间模板。
+    @inlinable
+    public func updateTimeTemplate(_ input: UpdateTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateTimeTemplateResponse > {
+        self.client.execute(action: "UpdateTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新时间模板
+    ///
+    /// 本接口(UpdateTimeTemplate)用于更新时间模板。
+    @inlinable
+    public func updateTimeTemplate(_ input: UpdateTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTimeTemplateResponse {
+        try await self.client.execute(action: "UpdateTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

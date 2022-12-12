@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 查询实例绑定的安全组
-    @inlinable
-    public func describeSecurityGroup(_ input: DescribeSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupResponse > {
-        self.client.execute(action: "DescribeSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例绑定的安全组
-    @inlinable
-    public func describeSecurityGroup(_ input: DescribeSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupResponse {
-        try await self.client.execute(action: "DescribeSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityGroup请求参数结构体
     public struct DescribeSecurityGroupRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。
@@ -53,5 +41,17 @@ extension Mongodb {
             case groups = "Groups"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例绑定的安全组
+    @inlinable
+    public func describeSecurityGroup(_ input: DescribeSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupResponse > {
+        self.client.execute(action: "DescribeSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例绑定的安全组
+    @inlinable
+    public func describeSecurityGroup(_ input: DescribeSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupResponse {
+        try await self.client.execute(action: "DescribeSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

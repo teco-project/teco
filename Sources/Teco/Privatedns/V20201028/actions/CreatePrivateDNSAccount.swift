@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 创建私有域解析账号
-    @inlinable
-    public func createPrivateDNSAccount(_ input: CreatePrivateDNSAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrivateDNSAccountResponse > {
-        self.client.execute(action: "CreatePrivateDNSAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建私有域解析账号
-    @inlinable
-    public func createPrivateDNSAccount(_ input: CreatePrivateDNSAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateDNSAccountResponse {
-        try await self.client.execute(action: "CreatePrivateDNSAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePrivateDNSAccount请求参数结构体
     public struct CreatePrivateDNSAccountRequest: TCRequestModel {
         /// 私有域解析账号
@@ -49,5 +37,17 @@ extension Privatedns {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建私有域解析账号
+    @inlinable
+    public func createPrivateDNSAccount(_ input: CreatePrivateDNSAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrivateDNSAccountResponse > {
+        self.client.execute(action: "CreatePrivateDNSAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建私有域解析账号
+    @inlinable
+    public func createPrivateDNSAccount(_ input: CreatePrivateDNSAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateDNSAccountResponse {
+        try await self.client.execute(action: "CreatePrivateDNSAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

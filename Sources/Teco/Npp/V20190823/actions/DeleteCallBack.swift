@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Npp {
-    /// 回拨呼叫取消
-    @inlinable
-    public func deleteCallBack(_ input: DeleteCallBackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCallBackResponse > {
-        self.client.execute(action: "DeleteCallBack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 回拨呼叫取消
-    @inlinable
-    public func deleteCallBack(_ input: DeleteCallBackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCallBackResponse {
-        try await self.client.execute(action: "DeleteCallBack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCallBack请求参数结构体
     public struct DeleteCallBackRequest: TCRequestModel {
         /// 业务appid
@@ -38,7 +26,7 @@ extension Npp {
         /// 0：不管通话状态直接拆线（默认) 1：主叫响铃以后状态不拆线 2：主叫接听以后状态不拆线 3：被叫响铃以后状态不拆线 4：被叫接听以后状态不拆线
         public let cancelFlag: String?
         
-        public init (bizAppId: String, callId: String, cancelFlag: String?) {
+        public init (bizAppId: String, callId: String, cancelFlag: String? = nil) {
             self.bizAppId = bizAppId
             self.callId = callId
             self.cancelFlag = cancelFlag
@@ -73,5 +61,17 @@ extension Npp {
             case callId = "CallId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 回拨呼叫取消
+    @inlinable
+    public func deleteCallBack(_ input: DeleteCallBackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCallBackResponse > {
+        self.client.execute(action: "DeleteCallBack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 回拨呼叫取消
+    @inlinable
+    public func deleteCallBack(_ input: DeleteCallBackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCallBackResponse {
+        try await self.client.execute(action: "DeleteCallBack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改对端网关
-    ///
-    /// 本接口（ModifyCustomerGatewayAttribute）用于修改对端网关信息。
-    @inlinable
-    public func modifyCustomerGatewayAttribute(_ input: ModifyCustomerGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomerGatewayAttributeResponse > {
-        self.client.execute(action: "ModifyCustomerGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改对端网关
-    ///
-    /// 本接口（ModifyCustomerGatewayAttribute）用于修改对端网关信息。
-    @inlinable
-    public func modifyCustomerGatewayAttribute(_ input: ModifyCustomerGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomerGatewayAttributeResponse {
-        try await self.client.execute(action: "ModifyCustomerGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCustomerGatewayAttribute请求参数结构体
     public struct ModifyCustomerGatewayAttributeRequest: TCRequestModel {
         /// 对端网关ID，例如：cgw-2wqq41m9，可通过DescribeCustomerGateways接口查询对端网关。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改对端网关
+    ///
+    /// 本接口（ModifyCustomerGatewayAttribute）用于修改对端网关信息。
+    @inlinable
+    public func modifyCustomerGatewayAttribute(_ input: ModifyCustomerGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomerGatewayAttributeResponse > {
+        self.client.execute(action: "ModifyCustomerGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改对端网关
+    ///
+    /// 本接口（ModifyCustomerGatewayAttribute）用于修改对端网关信息。
+    @inlinable
+    public func modifyCustomerGatewayAttribute(_ input: ModifyCustomerGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomerGatewayAttributeResponse {
+        try await self.client.execute(action: "ModifyCustomerGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

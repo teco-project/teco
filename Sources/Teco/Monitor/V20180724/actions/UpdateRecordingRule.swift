@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 更新预聚合规则
-    ///
-    /// 更新 Prometheus 的预聚合规则
-    @inlinable
-    public func updateRecordingRule(_ input: UpdateRecordingRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRecordingRuleResponse > {
-        self.client.execute(action: "UpdateRecordingRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新预聚合规则
-    ///
-    /// 更新 Prometheus 的预聚合规则
-    @inlinable
-    public func updateRecordingRule(_ input: UpdateRecordingRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRecordingRuleResponse {
-        try await self.client.execute(action: "UpdateRecordingRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateRecordingRule请求参数结构体
     public struct UpdateRecordingRuleRequest: TCRequestModel {
         /// 聚合规则名称
@@ -52,7 +36,7 @@ extension Monitor {
         /// 默认状态码为 2 启用。
         public let ruleState: Int64?
         
-        public init (name: String, group: String, instanceId: String, ruleId: String, ruleState: Int64?) {
+        public init (name: String, group: String, instanceId: String, ruleId: String, ruleState: Int64? = nil) {
             self.name = name
             self.group = group
             self.instanceId = instanceId
@@ -82,5 +66,21 @@ extension Monitor {
             case ruleId = "RuleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新预聚合规则
+    ///
+    /// 更新 Prometheus 的预聚合规则
+    @inlinable
+    public func updateRecordingRule(_ input: UpdateRecordingRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRecordingRuleResponse > {
+        self.client.execute(action: "UpdateRecordingRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新预聚合规则
+    ///
+    /// 更新 Prometheus 的预聚合规则
+    @inlinable
+    public func updateRecordingRule(_ input: UpdateRecordingRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRecordingRuleResponse {
+        try await self.client.execute(action: "UpdateRecordingRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 获取计算环境详情
-    ///
-    /// 用于查询计算环境的详细信息
-    @inlinable
-    public func describeComputeEnv(_ input: DescribeComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComputeEnvResponse > {
-        self.client.execute(action: "DescribeComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取计算环境详情
-    ///
-    /// 用于查询计算环境的详细信息
-    @inlinable
-    public func describeComputeEnv(_ input: DescribeComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvResponse {
-        try await self.client.execute(action: "DescribeComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeComputeEnv请求参数结构体
     public struct DescribeComputeEnvRequest: TCRequestModel {
         /// 计算环境ID
@@ -102,5 +86,21 @@ extension Batch {
             case tags = "Tags"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取计算环境详情
+    ///
+    /// 用于查询计算环境的详细信息
+    @inlinable
+    public func describeComputeEnv(_ input: DescribeComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComputeEnvResponse > {
+        self.client.execute(action: "DescribeComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取计算环境详情
+    ///
+    /// 用于查询计算环境的详细信息
+    @inlinable
+    public func describeComputeEnv(_ input: DescribeComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvResponse {
+        try await self.client.execute(action: "DescribeComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

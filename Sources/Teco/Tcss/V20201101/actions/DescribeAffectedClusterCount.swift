@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 获取受影响的集群数量
-    ///
-    /// 获取受影响的集群数量，返回数量
-    @inlinable
-    public func describeAffectedClusterCount(_ input: DescribeAffectedClusterCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAffectedClusterCountResponse > {
-        self.client.execute(action: "DescribeAffectedClusterCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取受影响的集群数量
-    ///
-    /// 获取受影响的集群数量，返回数量
-    @inlinable
-    public func describeAffectedClusterCount(_ input: DescribeAffectedClusterCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedClusterCountResponse {
-        try await self.client.execute(action: "DescribeAffectedClusterCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAffectedClusterCount请求参数结构体
     public struct DescribeAffectedClusterCountRequest: TCRequestModel {
         public init () {
@@ -61,5 +45,21 @@ extension Tcss {
             case hintRiskClusterCount = "HintRiskClusterCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取受影响的集群数量
+    ///
+    /// 获取受影响的集群数量，返回数量
+    @inlinable
+    public func describeAffectedClusterCount(_ input: DescribeAffectedClusterCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAffectedClusterCountResponse > {
+        self.client.execute(action: "DescribeAffectedClusterCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取受影响的集群数量
+    ///
+    /// 获取受影响的集群数量，返回数量
+    @inlinable
+    public func describeAffectedClusterCount(_ input: DescribeAffectedClusterCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedClusterCountResponse {
+        try await self.client.execute(action: "DescribeAffectedClusterCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

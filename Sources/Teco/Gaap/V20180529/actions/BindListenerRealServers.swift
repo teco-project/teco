@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 监听器绑定源站
-    ///
-    /// 本接口（BindListenerRealServers）用于TCP/UDP监听器绑定解绑源站。
-    /// 注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。例如：原来绑定的源站为A，B，C，本次调用的选择绑定的源站为C，D，E，那么调用后所绑定的源站为C，D，E。
-    @inlinable
-    public func bindListenerRealServers(_ input: BindListenerRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindListenerRealServersResponse > {
-        self.client.execute(action: "BindListenerRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 监听器绑定源站
-    ///
-    /// 本接口（BindListenerRealServers）用于TCP/UDP监听器绑定解绑源站。
-    /// 注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。例如：原来绑定的源站为A，B，C，本次调用的选择绑定的源站为C，D，E，那么调用后所绑定的源站为C，D，E。
-    @inlinable
-    public func bindListenerRealServers(_ input: BindListenerRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindListenerRealServersResponse {
-        try await self.client.execute(action: "BindListenerRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindListenerRealServers请求参数结构体
     public struct BindListenerRealServersRequest: TCRequestModel {
         /// 监听器ID
@@ -41,7 +23,7 @@ extension Gaap {
         /// 待绑定源站列表。如果该监听器的源站调度策略是加权轮询，需要填写源站权重 RealServerWeight, 不填或者其他调度类型默认源站权重为1。
         public let realServerBindSet: [RealServerBindSetReq]?
         
-        public init (listenerId: String, realServerBindSet: [RealServerBindSetReq]?) {
+        public init (listenerId: String, realServerBindSet: [RealServerBindSetReq]? = nil) {
             self.listenerId = listenerId
             self.realServerBindSet = realServerBindSet
         }
@@ -60,5 +42,23 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 监听器绑定源站
+    ///
+    /// 本接口（BindListenerRealServers）用于TCP/UDP监听器绑定解绑源站。
+    /// 注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。例如：原来绑定的源站为A，B，C，本次调用的选择绑定的源站为C，D，E，那么调用后所绑定的源站为C，D，E。
+    @inlinable
+    public func bindListenerRealServers(_ input: BindListenerRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindListenerRealServersResponse > {
+        self.client.execute(action: "BindListenerRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 监听器绑定源站
+    ///
+    /// 本接口（BindListenerRealServers）用于TCP/UDP监听器绑定解绑源站。
+    /// 注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。例如：原来绑定的源站为A，B，C，本次调用的选择绑定的源站为C，D，E，那么调用后所绑定的源站为C，D，E。
+    @inlinable
+    public func bindListenerRealServers(_ input: BindListenerRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindListenerRealServersResponse {
+        try await self.client.execute(action: "BindListenerRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

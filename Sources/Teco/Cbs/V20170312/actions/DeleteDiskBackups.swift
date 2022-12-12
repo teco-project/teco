@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 删除云硬盘备份点
-    ///
-    /// 批量删除指定的云硬盘备份点。
-    @inlinable
-    public func deleteDiskBackups(_ input: DeleteDiskBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDiskBackupsResponse > {
-        self.client.execute(action: "DeleteDiskBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除云硬盘备份点
-    ///
-    /// 批量删除指定的云硬盘备份点。
-    @inlinable
-    public func deleteDiskBackups(_ input: DeleteDiskBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDiskBackupsResponse {
-        try await self.client.execute(action: "DeleteDiskBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDiskBackups请求参数结构体
     public struct DeleteDiskBackupsRequest: TCRequestModel {
         /// 待删除的云硬盘备份点ID。
@@ -53,5 +37,21 @@ extension Cbs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除云硬盘备份点
+    ///
+    /// 批量删除指定的云硬盘备份点。
+    @inlinable
+    public func deleteDiskBackups(_ input: DeleteDiskBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDiskBackupsResponse > {
+        self.client.execute(action: "DeleteDiskBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除云硬盘备份点
+    ///
+    /// 批量删除指定的云硬盘备份点。
+    @inlinable
+    public func deleteDiskBackups(_ input: DeleteDiskBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDiskBackupsResponse {
+        try await self.client.execute(action: "DeleteDiskBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

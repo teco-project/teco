@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Btoe {
-    /// 区块链交易hash核验接口
-    ///
-    /// 用户向BTOE核验存证结果中的区块链交易hash的真实性
-    @inlinable
-    public func verifyEvidenceBlockChainTxHash(_ input: VerifyEvidenceBlockChainTxHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyEvidenceBlockChainTxHashResponse > {
-        self.client.execute(action: "VerifyEvidenceBlockChainTxHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 区块链交易hash核验接口
-    ///
-    /// 用户向BTOE核验存证结果中的区块链交易hash的真实性
-    @inlinable
-    public func verifyEvidenceBlockChainTxHash(_ input: VerifyEvidenceBlockChainTxHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEvidenceBlockChainTxHashResponse {
-        try await self.client.execute(action: "VerifyEvidenceBlockChainTxHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifyEvidenceBlockChainTxHash请求参数结构体
     public struct VerifyEvidenceBlockChainTxHashRequest: TCRequestModel {
         /// 区块链交易 hash，在“存证基本信息查询（GetDepositInfo）”接口中可以获取。
@@ -67,5 +51,21 @@ extension Btoe {
             case evidenceId = "EvidenceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 区块链交易hash核验接口
+    ///
+    /// 用户向BTOE核验存证结果中的区块链交易hash的真实性
+    @inlinable
+    public func verifyEvidenceBlockChainTxHash(_ input: VerifyEvidenceBlockChainTxHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyEvidenceBlockChainTxHashResponse > {
+        self.client.execute(action: "VerifyEvidenceBlockChainTxHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 区块链交易hash核验接口
+    ///
+    /// 用户向BTOE核验存证结果中的区块链交易hash的真实性
+    @inlinable
+    public func verifyEvidenceBlockChainTxHash(_ input: VerifyEvidenceBlockChainTxHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEvidenceBlockChainTxHashResponse {
+        try await self.client.execute(action: "VerifyEvidenceBlockChainTxHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

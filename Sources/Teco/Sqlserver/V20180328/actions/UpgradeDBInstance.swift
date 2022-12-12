@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 升级实例
-    ///
-    /// 本接口（UpgradeDBInstance）用于升级实例
-    @inlinable
-    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDBInstanceResponse > {
-        self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 升级实例
-    ///
-    /// 本接口（UpgradeDBInstance）用于升级实例
-    @inlinable
-    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
-        try await self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeDBInstance请求参数结构体
     public struct UpgradeDBInstanceRequest: TCRequestModel {
         /// 实例ID，形如mssql-j8kv137v
@@ -63,7 +47,7 @@ extension Sqlserver {
         /// 执行变配的方式，默认为 1。支持值包括：0 - 立刻执行，1 - 维护时间窗执行
         public let waitSwitch: Int64?
         
-        public init (instanceId: String, memory: Int64?, storage: Int64?, autoVoucher: Int64?, voucherIds: [String]?, cpu: Int64?, dbVersion: String?, haType: String?, multiZones: String?, waitSwitch: Int64?) {
+        public init (instanceId: String, memory: Int64? = nil, storage: Int64? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, cpu: Int64? = nil, dbVersion: String? = nil, haType: String? = nil, multiZones: String? = nil, waitSwitch: Int64? = nil) {
             self.instanceId = instanceId
             self.memory = memory
             self.storage = storage
@@ -102,5 +86,21 @@ extension Sqlserver {
             case dealName = "DealName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 升级实例
+    ///
+    /// 本接口（UpgradeDBInstance）用于升级实例
+    @inlinable
+    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDBInstanceResponse > {
+        self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 升级实例
+    ///
+    /// 本接口（UpgradeDBInstance）用于升级实例
+    @inlinable
+    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
+        try await self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

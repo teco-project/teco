@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ape {
-    /// 获取图片下载地址
-    ///
-    /// 核销图片，获取原图URL地址
-    @inlinable
-    public func createOrderAndDownloads(_ input: CreateOrderAndDownloadsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrderAndDownloadsResponse > {
-        self.client.execute(action: "CreateOrderAndDownloads", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取图片下载地址
-    ///
-    /// 核销图片，获取原图URL地址
-    @inlinable
-    public func createOrderAndDownloads(_ input: CreateOrderAndDownloadsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderAndDownloadsResponse {
-        try await self.client.execute(action: "CreateOrderAndDownloads", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOrderAndDownloads请求参数结构体
     public struct CreateOrderAndDownloadsRequest: TCRequestModel {
         /// ImageId必填，单张购买，所有必填，会员身份可以省略部分参数
@@ -62,5 +46,21 @@ extension Ape {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取图片下载地址
+    ///
+    /// 核销图片，获取原图URL地址
+    @inlinable
+    public func createOrderAndDownloads(_ input: CreateOrderAndDownloadsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrderAndDownloadsResponse > {
+        self.client.execute(action: "CreateOrderAndDownloads", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取图片下载地址
+    ///
+    /// 核销图片，获取原图URL地址
+    @inlinable
+    public func createOrderAndDownloads(_ input: CreateOrderAndDownloadsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderAndDownloadsResponse {
+        try await self.client.execute(action: "CreateOrderAndDownloads", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

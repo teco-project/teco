@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 禁用工作流
-    ///
-    /// 禁用工作流。
-    @inlinable
-    public func disableWorkflow(_ input: DisableWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableWorkflowResponse > {
-        self.client.execute(action: "DisableWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 禁用工作流
-    ///
-    /// 禁用工作流。
-    @inlinable
-    public func disableWorkflow(_ input: DisableWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableWorkflowResponse {
-        try await self.client.execute(action: "DisableWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableWorkflow请求参数结构体
     public struct DisableWorkflowRequest: TCRequestModel {
         /// 工作流 ID。
@@ -53,5 +37,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 禁用工作流
+    ///
+    /// 禁用工作流。
+    @inlinable
+    public func disableWorkflow(_ input: DisableWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableWorkflowResponse > {
+        self.client.execute(action: "DisableWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用工作流
+    ///
+    /// 禁用工作流。
+    @inlinable
+    public func disableWorkflow(_ input: DisableWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableWorkflowResponse {
+        try await self.client.execute(action: "DisableWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

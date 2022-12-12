@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 短信模板查询接口
-    ///
-    /// 获取模板信息
-    @inlinable
-    public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmsTemplateListResponse > {
-        self.client.execute(action: "DescribeSmsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 短信模板查询接口
-    ///
-    /// 获取模板信息
-    @inlinable
-    public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
-        try await self.client.execute(action: "DescribeSmsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSmsTemplateList请求参数结构体
     public struct DescribeSmsTemplateListRequest: TCRequestModel {
         /// 商户证书
@@ -69,5 +53,21 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 短信模板查询接口
+    ///
+    /// 获取模板信息
+    @inlinable
+    public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmsTemplateListResponse > {
+        self.client.execute(action: "DescribeSmsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 短信模板查询接口
+    ///
+    /// 获取模板信息
+    @inlinable
+    public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
+        try await self.client.execute(action: "DescribeSmsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

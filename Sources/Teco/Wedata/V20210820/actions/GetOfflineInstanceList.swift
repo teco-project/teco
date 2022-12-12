@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取离线任务实例
-    @inlinable
-    public func getOfflineInstanceList(_ input: GetOfflineInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetOfflineInstanceListResponse > {
-        self.client.execute(action: "GetOfflineInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取离线任务实例
-    @inlinable
-    public func getOfflineInstanceList(_ input: GetOfflineInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOfflineInstanceListResponse {
-        try await self.client.execute(action: "GetOfflineInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetOfflineInstanceList请求参数结构体
     public struct GetOfflineInstanceListRequest: TCRequestModel {
         /// 第几页
@@ -39,9 +27,9 @@ extension Wedata {
         public let projectId: String
         
         /// 无
-        public let searchCondition: SearchCondition
+        public let searchCondition: SearchCondition?
         
-        public init (pageIndex: String, pageSize: UInt64, projectId: String, searchCondition: SearchCondition) {
+        public init (pageIndex: String, pageSize: UInt64, projectId: String, searchCondition: SearchCondition? = nil) {
             self.pageIndex = pageIndex
             self.pageSize = pageSize
             self.projectId = projectId
@@ -72,5 +60,17 @@ extension Wedata {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取离线任务实例
+    @inlinable
+    public func getOfflineInstanceList(_ input: GetOfflineInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetOfflineInstanceListResponse > {
+        self.client.execute(action: "GetOfflineInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取离线任务实例
+    @inlinable
+    public func getOfflineInstanceList(_ input: GetOfflineInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOfflineInstanceListResponse {
+        try await self.client.execute(action: "GetOfflineInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

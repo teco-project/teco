@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 注册个人用户
-    ///
-    /// 此接口（CreateUser）用于注册腾讯电子签个人用户。
-    @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
-        self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 注册个人用户
-    ///
-    /// 此接口（CreateUser）用于注册腾讯电子签个人用户。
-    @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
-        try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUser请求参数结构体
     public struct CreateUserRequest: TCRequestModel {
         /// 调用方信息
@@ -63,7 +47,7 @@ extension Essbasic {
         /// 用户手机号码，不要求唯一
         public let mobile: String?
         
-        public init (caller: Caller, openId: String, name: String, idCardType: String, idCardNumber: String, useOpenId: Bool?, email: String?, mobile: String?) {
+        public init (caller: Caller, openId: String, name: String, idCardType: String, idCardNumber: String, useOpenId: Bool? = nil, email: String? = nil, mobile: String? = nil) {
             self.caller = caller
             self.openId = openId
             self.name = name
@@ -98,5 +82,21 @@ extension Essbasic {
             case userId = "UserId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 注册个人用户
+    ///
+    /// 此接口（CreateUser）用于注册腾讯电子签个人用户。
+    @inlinable
+    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
+        self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 注册个人用户
+    ///
+    /// 此接口（CreateUser）用于注册腾讯电子签个人用户。
+    @inlinable
+    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
+        try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

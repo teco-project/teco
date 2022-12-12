@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 短信签名创建接口
-    ///
-    /// 创建普通短信签名信息
-    @inlinable
-    public func addSmsSign(_ input: AddSmsSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddSmsSignResponse > {
-        self.client.execute(action: "AddSmsSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 短信签名创建接口
-    ///
-    /// 创建普通短信签名信息
-    @inlinable
-    public func addSmsSign(_ input: AddSmsSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSmsSignResponse {
-        try await self.client.execute(action: "AddSmsSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddSmsSign请求参数结构体
     public struct AddSmsSignRequest: TCRequestModel {
         /// 商户证书
@@ -71,7 +55,7 @@ extension Zj {
         /// 签名备注，比如申请原因，使用场景等,可以填空
         public let remark: String?
         
-        public init (license: String, signType: UInt64, documentType: UInt64, international: UInt64, proofImage: String, signName: String, remark: String?) {
+        public init (license: String, signType: UInt64, documentType: UInt64, international: UInt64, proofImage: String, signName: String, remark: String? = nil) {
             self.license = license
             self.signType = signType
             self.documentType = documentType
@@ -104,5 +88,21 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 短信签名创建接口
+    ///
+    /// 创建普通短信签名信息
+    @inlinable
+    public func addSmsSign(_ input: AddSmsSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddSmsSignResponse > {
+        self.client.execute(action: "AddSmsSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 短信签名创建接口
+    ///
+    /// 创建普通短信签名信息
+    @inlinable
+    public func addSmsSign(_ input: AddSmsSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSmsSignResponse {
+        try await self.client.execute(action: "AddSmsSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mmps {
-    /// 隐私合规诊断重试任务
-    ///
-    /// 小程序隐私合规诊断重试任务
-    @inlinable
-    public func createAppScanTaskRepeat(_ input: CreateAppScanTaskRepeatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppScanTaskRepeatResponse > {
-        self.client.execute(action: "CreateAppScanTaskRepeat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 隐私合规诊断重试任务
-    ///
-    /// 小程序隐私合规诊断重试任务
-    @inlinable
-    public func createAppScanTaskRepeat(_ input: CreateAppScanTaskRepeatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskRepeatResponse {
-        try await self.client.execute(action: "CreateAppScanTaskRepeat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAppScanTaskRepeat请求参数结构体
     public struct CreateAppScanTaskRepeatRequest: TCRequestModel {
         /// 任务类型, 0:基础版, 1:专家版, 2:本地化
@@ -81,5 +65,21 @@ extension Mmps {
             case taskID = "TaskID"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 隐私合规诊断重试任务
+    ///
+    /// 小程序隐私合规诊断重试任务
+    @inlinable
+    public func createAppScanTaskRepeat(_ input: CreateAppScanTaskRepeatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppScanTaskRepeatResponse > {
+        self.client.execute(action: "CreateAppScanTaskRepeat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 隐私合规诊断重试任务
+    ///
+    /// 小程序隐私合规诊断重试任务
+    @inlinable
+    public func createAppScanTaskRepeat(_ input: CreateAppScanTaskRepeatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskRepeatResponse {
+        try await self.client.execute(action: "CreateAppScanTaskRepeat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取模板关联实例信息
-    ///
-    /// 获取模板关联实例信息，针对V2版本实例
-    @inlinable
-    public func describePrometheusTempSync(_ input: DescribePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusTempSyncResponse > {
-        self.client.execute(action: "DescribePrometheusTempSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取模板关联实例信息
-    ///
-    /// 获取模板关联实例信息，针对V2版本实例
-    @inlinable
-    public func describePrometheusTempSync(_ input: DescribePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTempSyncResponse {
-        try await self.client.execute(action: "DescribePrometheusTempSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrometheusTempSync请求参数结构体
     public struct DescribePrometheusTempSyncRequest: TCRequestModel {
         /// 模板ID
@@ -58,5 +42,21 @@ extension Tke {
             case targets = "Targets"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取模板关联实例信息
+    ///
+    /// 获取模板关联实例信息，针对V2版本实例
+    @inlinable
+    public func describePrometheusTempSync(_ input: DescribePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusTempSyncResponse > {
+        self.client.execute(action: "DescribePrometheusTempSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取模板关联实例信息
+    ///
+    /// 获取模板关联实例信息，针对V2版本实例
+    @inlinable
+    public func describePrometheusTempSync(_ input: DescribePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTempSyncResponse {
+        try await self.client.execute(action: "DescribePrometheusTempSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

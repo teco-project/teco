@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 下载证书
-    ///
-    /// 本接口（DownloadCertificate）用于下载证书。
-    @inlinable
-    public func downloadCertificate(_ input: DownloadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadCertificateResponse > {
-        self.client.execute(action: "DownloadCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下载证书
-    ///
-    /// 本接口（DownloadCertificate）用于下载证书。
-    @inlinable
-    public func downloadCertificate(_ input: DownloadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCertificateResponse {
-        try await self.client.execute(action: "DownloadCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DownloadCertificate请求参数结构体
     public struct DownloadCertificateRequest: TCRequestModel {
         /// 证书 ID。
@@ -63,5 +47,21 @@ extension Ssl {
             case contentType = "ContentType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下载证书
+    ///
+    /// 本接口（DownloadCertificate）用于下载证书。
+    @inlinable
+    public func downloadCertificate(_ input: DownloadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadCertificateResponse > {
+        self.client.execute(action: "DownloadCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下载证书
+    ///
+    /// 本接口（DownloadCertificate）用于下载证书。
+    @inlinable
+    public func downloadCertificate(_ input: DownloadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCertificateResponse {
+        try await self.client.execute(action: "DownloadCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

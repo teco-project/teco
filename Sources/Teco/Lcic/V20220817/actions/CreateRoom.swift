@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Lcic {
-    /// 创建房间
-    @inlinable
-    public func createRoom(_ input: CreateRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoomResponse > {
-        self.client.execute(action: "CreateRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建房间
-    @inlinable
-    public func createRoom(_ input: CreateRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoomResponse {
-        try await self.client.execute(action: "CreateRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRoom请求参数结构体
     public struct CreateRoomRequest: TCRequestModel {
         /// 房间名称。
@@ -80,7 +68,7 @@ extension Lcic {
         /// 录制布局。
         public let recordLayout: UInt64?
         
-        public init (name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String?, autoMic: UInt64?, audioQuality: UInt64?, disableRecord: UInt64?, assistants: [String]?, recordLayout: UInt64?) {
+        public init (name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil) {
             self.name = name
             self.startTime = startTime
             self.endTime = endTime
@@ -125,5 +113,17 @@ extension Lcic {
             case roomId = "RoomId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建房间
+    @inlinable
+    public func createRoom(_ input: CreateRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRoomResponse > {
+        self.client.execute(action: "CreateRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建房间
+    @inlinable
+    public func createRoom(_ input: CreateRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoomResponse {
+        try await self.client.execute(action: "CreateRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

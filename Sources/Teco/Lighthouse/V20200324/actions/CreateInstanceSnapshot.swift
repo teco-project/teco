@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 创建实例快照
-    ///
-    /// 本接口（CreateInstanceSnapshot）用于创建指定实例的系统盘快照。
-    @inlinable
-    public func createInstanceSnapshot(_ input: CreateInstanceSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceSnapshotResponse > {
-        self.client.execute(action: "CreateInstanceSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例快照
-    ///
-    /// 本接口（CreateInstanceSnapshot）用于创建指定实例的系统盘快照。
-    @inlinable
-    public func createInstanceSnapshot(_ input: CreateInstanceSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceSnapshotResponse {
-        try await self.client.execute(action: "CreateInstanceSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateInstanceSnapshot请求参数结构体
     public struct CreateInstanceSnapshotRequest: TCRequestModel {
         /// 需要创建快照的实例 ID。
@@ -39,7 +23,7 @@ extension Lighthouse {
         /// 快照名称，最长为 60 个字符。
         public let snapshotName: String?
         
-        public init (instanceId: String, snapshotName: String?) {
+        public init (instanceId: String, snapshotName: String? = nil) {
             self.instanceId = instanceId
             self.snapshotName = snapshotName
         }
@@ -62,5 +46,21 @@ extension Lighthouse {
             case snapshotId = "SnapshotId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例快照
+    ///
+    /// 本接口（CreateInstanceSnapshot）用于创建指定实例的系统盘快照。
+    @inlinable
+    public func createInstanceSnapshot(_ input: CreateInstanceSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceSnapshotResponse > {
+        self.client.execute(action: "CreateInstanceSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例快照
+    ///
+    /// 本接口（CreateInstanceSnapshot）用于创建指定实例的系统盘快照。
+    @inlinable
+    public func createInstanceSnapshot(_ input: CreateInstanceSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceSnapshotResponse {
+        try await self.client.execute(action: "CreateInstanceSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

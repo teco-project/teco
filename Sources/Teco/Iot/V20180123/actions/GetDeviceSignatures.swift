@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 获取设备绑定签名
-    ///
-    /// 获取设备绑定签名，用于用户绑定某个设备的应用场景
-    @inlinable
-    public func getDeviceSignatures(_ input: GetDeviceSignaturesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceSignaturesResponse > {
-        self.client.execute(action: "GetDeviceSignatures", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备绑定签名
-    ///
-    /// 获取设备绑定签名，用于用户绑定某个设备的应用场景
-    @inlinable
-    public func getDeviceSignatures(_ input: GetDeviceSignaturesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceSignaturesResponse {
-        try await self.client.execute(action: "GetDeviceSignatures", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDeviceSignatures请求参数结构体
     public struct GetDeviceSignaturesRequest: TCRequestModel {
         /// 产品ID
@@ -42,7 +26,7 @@ extension Iot {
         /// 过期时间
         public let expire: UInt64?
         
-        public init (productId: String, deviceNames: [String], expire: UInt64?) {
+        public init (productId: String, deviceNames: [String], expire: UInt64? = nil) {
             self.productId = productId
             self.deviceNames = deviceNames
             self.expire = expire
@@ -67,5 +51,21 @@ extension Iot {
             case deviceSignatures = "DeviceSignatures"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备绑定签名
+    ///
+    /// 获取设备绑定签名，用于用户绑定某个设备的应用场景
+    @inlinable
+    public func getDeviceSignatures(_ input: GetDeviceSignaturesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceSignaturesResponse > {
+        self.client.execute(action: "GetDeviceSignatures", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备绑定签名
+    ///
+    /// 获取设备绑定签名，用于用户绑定某个设备的应用场景
+    @inlinable
+    public func getDeviceSignatures(_ input: GetDeviceSignaturesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceSignaturesResponse {
+        try await self.client.execute(action: "GetDeviceSignatures", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

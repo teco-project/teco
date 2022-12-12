@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 修改路由触发时间
-    ///
-    /// 修改删除路由延迟触发时间
-    @inlinable
-    public func deleteRouteTriggerTime(_ input: DeleteRouteTriggerTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRouteTriggerTimeResponse > {
-        self.client.execute(action: "DeleteRouteTriggerTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改路由触发时间
-    ///
-    /// 修改删除路由延迟触发时间
-    @inlinable
-    public func deleteRouteTriggerTime(_ input: DeleteRouteTriggerTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTriggerTimeResponse {
-        try await self.client.execute(action: "DeleteRouteTriggerTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRouteTriggerTime请求参数结构体
     public struct DeleteRouteTriggerTimeRequest: TCRequestModel {
         /// 修改时间
@@ -53,5 +37,21 @@ extension Ckafka {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改路由触发时间
+    ///
+    /// 修改删除路由延迟触发时间
+    @inlinable
+    public func deleteRouteTriggerTime(_ input: DeleteRouteTriggerTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRouteTriggerTimeResponse > {
+        self.client.execute(action: "DeleteRouteTriggerTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改路由触发时间
+    ///
+    /// 修改删除路由延迟触发时间
+    @inlinable
+    public func deleteRouteTriggerTime(_ input: DeleteRouteTriggerTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTriggerTimeResponse {
+        try await self.client.execute(action: "DeleteRouteTriggerTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

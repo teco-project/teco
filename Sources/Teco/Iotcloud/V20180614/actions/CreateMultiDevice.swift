@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 创建多个设备
-    ///
-    /// 本接口（CreateMultiDevice）用于批量创建物联云设备。
-    @inlinable
-    public func createMultiDevice(_ input: CreateMultiDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMultiDeviceResponse > {
-        self.client.execute(action: "CreateMultiDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建多个设备
-    ///
-    /// 本接口（CreateMultiDevice）用于批量创建物联云设备。
-    @inlinable
-    public func createMultiDevice(_ input: CreateMultiDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiDeviceResponse {
-        try await self.client.execute(action: "CreateMultiDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMultiDevice请求参数结构体
     public struct CreateMultiDeviceRequest: TCRequestModel {
         /// 产品 ID。创建产品时腾讯云为用户分配全局唯一的 ID
@@ -62,5 +46,21 @@ extension Iotcloud {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建多个设备
+    ///
+    /// 本接口（CreateMultiDevice）用于批量创建物联云设备。
+    @inlinable
+    public func createMultiDevice(_ input: CreateMultiDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMultiDeviceResponse > {
+        self.client.execute(action: "CreateMultiDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建多个设备
+    ///
+    /// 本接口（CreateMultiDevice）用于批量创建物联云设备。
+    @inlinable
+    public func createMultiDevice(_ input: CreateMultiDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiDeviceResponse {
+        try await self.client.execute(action: "CreateMultiDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 跨境-付款人申请
-    ///
-    /// 跨境-付款人申请。通过该接口提交付款人信息并进行 kyc 审核。
-    @inlinable
-    public func applyPayerInfo(_ input: ApplyPayerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyPayerInfoResponse > {
-        self.client.execute(action: "ApplyPayerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 跨境-付款人申请
-    ///
-    /// 跨境-付款人申请。通过该接口提交付款人信息并进行 kyc 审核。
-    @inlinable
-    public func applyPayerInfo(_ input: ApplyPayerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyPayerInfoResponse {
-        try await self.client.execute(action: "ApplyPayerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyPayerInfo请求参数结构体
     public struct ApplyPayerInfoRequest: TCRequestModel {
         /// 付款人ID
@@ -63,7 +47,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
         
-        public init (payerId: String, payerType: String, payerName: String, payerIdType: String, payerIdNo: String, payerCountryCode: String, payerContactName: String?, payerContactNumber: String?, payerEmailAddress: String?, profile: String?) {
+        public init (payerId: String, payerType: String, payerName: String, payerIdType: String, payerIdNo: String, payerCountryCode: String, payerContactName: String? = nil, payerContactNumber: String? = nil, payerEmailAddress: String? = nil, profile: String? = nil) {
             self.payerId = payerId
             self.payerType = payerType
             self.payerName = payerName
@@ -102,5 +86,21 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 跨境-付款人申请
+    ///
+    /// 跨境-付款人申请。通过该接口提交付款人信息并进行 kyc 审核。
+    @inlinable
+    public func applyPayerInfo(_ input: ApplyPayerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyPayerInfoResponse > {
+        self.client.execute(action: "ApplyPayerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 跨境-付款人申请
+    ///
+    /// 跨境-付款人申请。通过该接口提交付款人信息并进行 kyc 审核。
+    @inlinable
+    public func applyPayerInfo(_ input: ApplyPayerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyPayerInfoResponse {
+        try await self.client.execute(action: "ApplyPayerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

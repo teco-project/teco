@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 修改备份配置
-    ///
-    /// 修改指定集群的备份配置
-    @inlinable
-    public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupConfigResponse > {
-        self.client.execute(action: "ModifyBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改备份配置
-    ///
-    /// 修改指定集群的备份配置
-    @inlinable
-    public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupConfigResponse {
-        try await self.client.execute(action: "ModifyBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyBackupConfig请求参数结构体
     public struct ModifyBackupConfigRequest: TCRequestModel {
         /// 集群ID
@@ -51,7 +35,7 @@ extension Cynosdb {
         /// 该参数目前不支持修改，无需填写。备份方式，logic-逻辑备份，snapshot-快照备份
         public let backupType: String?
         
-        public init (clusterId: String, backupTimeBeg: UInt64, backupTimeEnd: UInt64, reserveDuration: UInt64, backupFreq: [String]?, backupType: String?) {
+        public init (clusterId: String, backupTimeBeg: UInt64, backupTimeEnd: UInt64, reserveDuration: UInt64, backupFreq: [String]? = nil, backupType: String? = nil) {
             self.clusterId = clusterId
             self.backupTimeBeg = backupTimeBeg
             self.backupTimeEnd = backupTimeEnd
@@ -78,5 +62,21 @@ extension Cynosdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改备份配置
+    ///
+    /// 修改指定集群的备份配置
+    @inlinable
+    public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupConfigResponse > {
+        self.client.execute(action: "ModifyBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改备份配置
+    ///
+    /// 修改指定集群的备份配置
+    @inlinable
+    public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupConfigResponse {
+        try await self.client.execute(action: "ModifyBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

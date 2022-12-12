@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 获取用户当前灰度配置
-    @inlinable
-    public func describeABTestConfig(_ input: DescribeABTestConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeABTestConfigResponse > {
-        self.client.execute(action: "DescribeABTestConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户当前灰度配置
-    @inlinable
-    public func describeABTestConfig(_ input: DescribeABTestConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeABTestConfigResponse {
-        try await self.client.execute(action: "DescribeABTestConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeABTestConfig请求参数结构体
     public struct DescribeABTestConfigRequest: TCRequestModel {
         /// 灰度项目名称
         public let projectName: String?
         
-        public init (projectName: String?) {
+        public init (projectName: String? = nil) {
             self.projectName = projectName
         }
         
@@ -53,5 +41,17 @@ extension Tcss {
             case config = "Config"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户当前灰度配置
+    @inlinable
+    public func describeABTestConfig(_ input: DescribeABTestConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeABTestConfigResponse > {
+        self.client.execute(action: "DescribeABTestConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户当前灰度配置
+    @inlinable
+    public func describeABTestConfig(_ input: DescribeABTestConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeABTestConfigResponse {
+        try await self.client.execute(action: "DescribeABTestConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

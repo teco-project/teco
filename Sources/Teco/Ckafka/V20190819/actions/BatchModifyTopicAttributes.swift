@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 批量设置主题属性
-    @inlinable
-    public func batchModifyTopicAttributes(_ input: BatchModifyTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyTopicAttributesResponse > {
-        self.client.execute(action: "BatchModifyTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量设置主题属性
-    @inlinable
-    public func batchModifyTopicAttributes(_ input: BatchModifyTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTopicAttributesResponse {
-        try await self.client.execute(action: "BatchModifyTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchModifyTopicAttributes请求参数结构体
     public struct BatchModifyTopicAttributesRequest: TCRequestModel {
         /// 实例id
@@ -58,5 +46,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量设置主题属性
+    @inlinable
+    public func batchModifyTopicAttributes(_ input: BatchModifyTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchModifyTopicAttributesResponse > {
+        self.client.execute(action: "BatchModifyTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量设置主题属性
+    @inlinable
+    public func batchModifyTopicAttributes(_ input: BatchModifyTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTopicAttributesResponse {
+        try await self.client.execute(action: "BatchModifyTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

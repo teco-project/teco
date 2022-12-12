@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取设备信息
-    @inlinable
-    public func describeIotDevice(_ input: DescribeIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIotDeviceResponse > {
-        self.client.execute(action: "DescribeIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备信息
-    @inlinable
-    public func describeIotDevice(_ input: DescribeIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDeviceResponse {
-        try await self.client.execute(action: "DescribeIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIotDevice请求参数结构体
     public struct DescribeIotDeviceRequest: TCRequestModel {
         /// 设备id，传0值表示此参数无效
@@ -38,7 +26,7 @@ extension Iecp {
         /// 无
         public let deviceName: String?
         
-        public init (deviceId: Int64?, productID: String?, deviceName: String?) {
+        public init (deviceId: Int64? = nil, productID: String? = nil, deviceName: String? = nil) {
             self.deviceId = deviceId
             self.productID = productID
             self.deviceName = deviceName
@@ -131,5 +119,17 @@ extension Iecp {
             case unitName = "UnitName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备信息
+    @inlinable
+    public func describeIotDevice(_ input: DescribeIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIotDeviceResponse > {
+        self.client.execute(action: "DescribeIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备信息
+    @inlinable
+    public func describeIotDevice(_ input: DescribeIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDeviceResponse {
+        try await self.client.execute(action: "DescribeIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

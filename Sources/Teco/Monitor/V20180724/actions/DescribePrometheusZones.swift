@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 列出 Prometheus 服务可用区
-    @inlinable
-    public func describePrometheusZones(_ input: DescribePrometheusZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusZonesResponse > {
-        self.client.execute(action: "DescribePrometheusZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出 Prometheus 服务可用区
-    @inlinable
-    public func describePrometheusZones(_ input: DescribePrometheusZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusZonesResponse {
-        try await self.client.execute(action: "DescribePrometheusZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrometheusZones请求参数结构体
     public struct DescribePrometheusZonesRequest: TCRequestModel {
         /// 地域 ID
@@ -54,5 +42,17 @@ extension Monitor {
             case zoneSet = "ZoneSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出 Prometheus 服务可用区
+    @inlinable
+    public func describePrometheusZones(_ input: DescribePrometheusZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusZonesResponse > {
+        self.client.execute(action: "DescribePrometheusZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出 Prometheus 服务可用区
+    @inlinable
+    public func describePrometheusZones(_ input: DescribePrometheusZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusZonesResponse {
+        try await self.client.execute(action: "DescribePrometheusZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

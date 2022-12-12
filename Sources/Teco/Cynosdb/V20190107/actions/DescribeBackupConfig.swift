@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 查询备份配置信息
-    ///
-    /// 获取指定集群的备份配置信息，包括全量备份时间段，备份文件保留时间
-    @inlinable
-    public func describeBackupConfig(_ input: DescribeBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupConfigResponse > {
-        self.client.execute(action: "DescribeBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询备份配置信息
-    ///
-    /// 获取指定集群的备份配置信息，包括全量备份时间段，备份文件保留时间
-    @inlinable
-    public func describeBackupConfig(_ input: DescribeBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupConfigResponse {
-        try await self.client.execute(action: "DescribeBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBackupConfig请求参数结构体
     public struct DescribeBackupConfigRequest: TCRequestModel {
         /// 集群ID
@@ -75,5 +59,21 @@ extension Cynosdb {
             case backupType = "BackupType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询备份配置信息
+    ///
+    /// 获取指定集群的备份配置信息，包括全量备份时间段，备份文件保留时间
+    @inlinable
+    public func describeBackupConfig(_ input: DescribeBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupConfigResponse > {
+        self.client.execute(action: "DescribeBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份配置信息
+    ///
+    /// 获取指定集群的备份配置信息，包括全量备份时间段，备份文件保留时间
+    @inlinable
+    public func describeBackupConfig(_ input: DescribeBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupConfigResponse {
+        try await self.client.execute(action: "DescribeBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 批量绑定虚拟主机或弹性网卡
-    ///
-    /// 批量绑定虚拟主机或弹性网卡，支持跨域绑定，支持四层、七层（TCP、UDP、HTTP、HTTPS）协议绑定。批量绑定的资源数量上限为500。只支持VPC网络负载均衡。
-    @inlinable
-    public func batchRegisterTargets(_ input: BatchRegisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchRegisterTargetsResponse > {
-        self.client.execute(action: "BatchRegisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量绑定虚拟主机或弹性网卡
-    ///
-    /// 批量绑定虚拟主机或弹性网卡，支持跨域绑定，支持四层、七层（TCP、UDP、HTTP、HTTPS）协议绑定。批量绑定的资源数量上限为500。只支持VPC网络负载均衡。
-    @inlinable
-    public func batchRegisterTargets(_ input: BatchRegisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRegisterTargetsResponse {
-        try await self.client.execute(action: "BatchRegisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchRegisterTargets请求参数结构体
     public struct BatchRegisterTargetsRequest: TCRequestModel {
         /// 负载均衡ID。
@@ -63,5 +47,21 @@ extension Clb {
             case failListenerIdSet = "FailListenerIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量绑定虚拟主机或弹性网卡
+    ///
+    /// 批量绑定虚拟主机或弹性网卡，支持跨域绑定，支持四层、七层（TCP、UDP、HTTP、HTTPS）协议绑定。批量绑定的资源数量上限为500。只支持VPC网络负载均衡。
+    @inlinable
+    public func batchRegisterTargets(_ input: BatchRegisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchRegisterTargetsResponse > {
+        self.client.execute(action: "BatchRegisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量绑定虚拟主机或弹性网卡
+    ///
+    /// 批量绑定虚拟主机或弹性网卡，支持跨域绑定，支持四层、七层（TCP、UDP、HTTP、HTTPS）协议绑定。批量绑定的资源数量上限为500。只支持VPC网络负载均衡。
+    @inlinable
+    public func batchRegisterTargets(_ input: BatchRegisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRegisterTargetsResponse {
+        try await self.client.execute(action: "BatchRegisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

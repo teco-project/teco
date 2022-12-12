@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 添加CC防护的访问频率控制规则
-    @inlinable
-    public func createCCFrequencyRules(_ input: CreateCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCCFrequencyRulesResponse > {
-        self.client.execute(action: "CreateCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加CC防护的访问频率控制规则
-    @inlinable
-    public func createCCFrequencyRules(_ input: CreateCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCFrequencyRulesResponse {
-        try await self.client.execute(action: "CreateCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCCFrequencyRules请求参数结构体
     public struct CreateCCFrequencyRulesRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -62,7 +50,7 @@ extension Dayu {
         /// Cookie字符串，长度不超过40
         public let cookie: String?
         
-        public init (business: String, id: String, ruleId: String, mode: String, period: UInt64, reqNumber: UInt64, act: String, exeDuration: UInt64, uri: String?, userAgent: String?, cookie: String?) {
+        public init (business: String, id: String, ruleId: String, mode: String, period: UInt64, reqNumber: UInt64, act: String, exeDuration: UInt64, uri: String? = nil, userAgent: String? = nil, cookie: String? = nil) {
             self.business = business
             self.id = id
             self.ruleId = ruleId
@@ -103,5 +91,17 @@ extension Dayu {
             case ccFrequencyRuleId = "CCFrequencyRuleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加CC防护的访问频率控制规则
+    @inlinable
+    public func createCCFrequencyRules(_ input: CreateCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCCFrequencyRulesResponse > {
+        self.client.execute(action: "CreateCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加CC防护的访问频率控制规则
+    @inlinable
+    public func createCCFrequencyRules(_ input: CreateCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCFrequencyRulesResponse {
+        try await self.client.execute(action: "CreateCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

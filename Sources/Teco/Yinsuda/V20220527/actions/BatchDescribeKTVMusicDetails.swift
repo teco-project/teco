@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yinsuda {
-    /// 批量获取歌曲详情
-    ///
-    /// 批量获取歌曲详细信息，包括：歌词下载链接、播放凭证、音高数据下载链接信息等。
-    @inlinable
-    public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDescribeKTVMusicDetailsResponse > {
-        self.client.execute(action: "BatchDescribeKTVMusicDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量获取歌曲详情
-    ///
-    /// 批量获取歌曲详细信息，包括：歌词下载链接、播放凭证、音高数据下载链接信息等。
-    @inlinable
-    public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
-        try await self.client.execute(action: "BatchDescribeKTVMusicDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchDescribeKTVMusicDetails请求参数结构体
     public struct BatchDescribeKTVMusicDetailsRequest: TCRequestModel {
         /// 应用名称。
@@ -71,5 +55,21 @@ extension Yinsuda {
             case notExistMusicIdSet = "NotExistMusicIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量获取歌曲详情
+    ///
+    /// 批量获取歌曲详细信息，包括：歌词下载链接、播放凭证、音高数据下载链接信息等。
+    @inlinable
+    public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDescribeKTVMusicDetailsResponse > {
+        self.client.execute(action: "BatchDescribeKTVMusicDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量获取歌曲详情
+    ///
+    /// 批量获取歌曲详细信息，包括：歌词下载链接、播放凭证、音高数据下载链接信息等。
+    @inlinable
+    public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
+        try await self.client.execute(action: "BatchDescribeKTVMusicDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

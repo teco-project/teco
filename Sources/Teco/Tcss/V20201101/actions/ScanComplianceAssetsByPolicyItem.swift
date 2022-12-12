@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 安全合规用指定的检测项重新检测选定的资产
-    ///
-    /// 用指定的检测项重新检测选定的资产，返回创建的合规检查任务的ID。
-    @inlinable
-    public func scanComplianceAssetsByPolicyItem(_ input: ScanComplianceAssetsByPolicyItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanComplianceAssetsByPolicyItemResponse > {
-        self.client.execute(action: "ScanComplianceAssetsByPolicyItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全合规用指定的检测项重新检测选定的资产
-    ///
-    /// 用指定的检测项重新检测选定的资产，返回创建的合规检查任务的ID。
-    @inlinable
-    public func scanComplianceAssetsByPolicyItem(_ input: ScanComplianceAssetsByPolicyItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanComplianceAssetsByPolicyItemResponse {
-        try await self.client.execute(action: "ScanComplianceAssetsByPolicyItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ScanComplianceAssetsByPolicyItem请求参数结构体
     public struct ScanComplianceAssetsByPolicyItemRequest: TCRequestModel {
         /// 指定的检测项的ID
@@ -62,5 +46,21 @@ extension Tcss {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全合规用指定的检测项重新检测选定的资产
+    ///
+    /// 用指定的检测项重新检测选定的资产，返回创建的合规检查任务的ID。
+    @inlinable
+    public func scanComplianceAssetsByPolicyItem(_ input: ScanComplianceAssetsByPolicyItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanComplianceAssetsByPolicyItemResponse > {
+        self.client.execute(action: "ScanComplianceAssetsByPolicyItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规用指定的检测项重新检测选定的资产
+    ///
+    /// 用指定的检测项重新检测选定的资产，返回创建的合规检查任务的ID。
+    @inlinable
+    public func scanComplianceAssetsByPolicyItem(_ input: ScanComplianceAssetsByPolicyItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanComplianceAssetsByPolicyItemResponse {
+        try await self.client.execute(action: "ScanComplianceAssetsByPolicyItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

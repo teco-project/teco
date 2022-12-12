@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Pts {
-    /// 创建定时任务
-    @inlinable
-    public func createCronJob(_ input: CreateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCronJobResponse > {
-        self.client.execute(action: "CreateCronJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建定时任务
-    @inlinable
-    public func createCronJob(_ input: CreateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCronJobResponse {
-        try await self.client.execute(action: "CreateCronJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCronJob请求参数结构体
     public struct CreateCronJobRequest: TCRequestModel {
         /// 定时任务名字
@@ -61,7 +49,7 @@ extension Pts {
         /// 备注
         public let note: String?
         
-        public init (name: String, projectId: String, scenarioId: String, scenarioName: String, frequencyType: Int64, cronExpression: String, jobOwner: String, endTime: Date?, noticeId: String?, note: String?) {
+        public init (name: String, projectId: String, scenarioId: String, scenarioName: String, frequencyType: Int64, cronExpression: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil, note: String? = nil) {
             self.name = name
             self.projectId = projectId
             self.scenarioId = scenarioId
@@ -100,5 +88,17 @@ extension Pts {
             case cronJobId = "CronJobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建定时任务
+    @inlinable
+    public func createCronJob(_ input: CreateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCronJobResponse > {
+        self.client.execute(action: "CreateCronJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建定时任务
+    @inlinable
+    public func createCronJob(_ input: CreateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCronJobResponse {
+        try await self.client.execute(action: "CreateCronJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

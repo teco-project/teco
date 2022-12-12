@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 重置设备
-    ///
-    /// 重置设备操作，将会为设备生成新的证书及清空最新数据，需谨慎操作。
-    @inlinable
-    public func resetDevice(_ input: ResetDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetDeviceResponse > {
-        self.client.execute(action: "ResetDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置设备
-    ///
-    /// 重置设备操作，将会为设备生成新的证书及清空最新数据，需谨慎操作。
-    @inlinable
-    public func resetDevice(_ input: ResetDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDeviceResponse {
-        try await self.client.execute(action: "ResetDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetDevice请求参数结构体
     public struct ResetDeviceRequest: TCRequestModel {
         /// 产品Id
@@ -62,5 +46,21 @@ extension Iot {
             case device = "Device"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置设备
+    ///
+    /// 重置设备操作，将会为设备生成新的证书及清空最新数据，需谨慎操作。
+    @inlinable
+    public func resetDevice(_ input: ResetDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetDeviceResponse > {
+        self.client.execute(action: "ResetDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置设备
+    ///
+    /// 重置设备操作，将会为设备生成新的证书及清空最新数据，需谨慎操作。
+    @inlinable
+    public func resetDevice(_ input: ResetDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDeviceResponse {
+        try await self.client.execute(action: "ResetDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

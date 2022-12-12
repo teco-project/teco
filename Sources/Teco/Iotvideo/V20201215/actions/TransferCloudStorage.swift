@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 转移云存服务
-    @inlinable
-    public func transferCloudStorage(_ input: TransferCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransferCloudStorageResponse > {
-        self.client.execute(action: "TransferCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 转移云存服务
-    @inlinable
-    public func transferCloudStorage(_ input: TransferCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferCloudStorageResponse {
-        try await self.client.execute(action: "TransferCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TransferCloudStorage请求参数结构体
     public struct TransferCloudStorageRequest: TCRequestModel {
         /// 产品ID
@@ -59,5 +47,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 转移云存服务
+    @inlinable
+    public func transferCloudStorage(_ input: TransferCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransferCloudStorageResponse > {
+        self.client.execute(action: "TransferCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 转移云存服务
+    @inlinable
+    public func transferCloudStorage(_ input: TransferCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferCloudStorageResponse {
+        try await self.client.execute(action: "TransferCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

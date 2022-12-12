@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cme {
-    /// 修改视频编码配置
-    ///
-    /// 修改视频编码配置信息。
-    @inlinable
-    public func modifyVideoEncodingPreset(_ input: ModifyVideoEncodingPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVideoEncodingPresetResponse > {
-        self.client.execute(action: "ModifyVideoEncodingPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改视频编码配置
-    ///
-    /// 修改视频编码配置信息。
-    @inlinable
-    public func modifyVideoEncodingPreset(_ input: ModifyVideoEncodingPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoEncodingPresetResponse {
-        try await self.client.execute(action: "ModifyVideoEncodingPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVideoEncodingPreset请求参数结构体
     public struct ModifyVideoEncodingPresetRequest: TCRequestModel {
         /// 平台名称，指定访问的平台。
@@ -57,12 +41,12 @@ extension Cme {
         public let removeAudio: Int64?
         
         /// 更改后的编码配置的视频设置。
-        public let videoSetting: VideoEncodingPresetVideoSettingForUpdate
+        public let videoSetting: VideoEncodingPresetVideoSettingForUpdate?
         
         /// 更改后的编码配置的音频设置。
-        public let audioSetting: VideoEncodingPresetAudioSettingForUpdate
+        public let audioSetting: VideoEncodingPresetAudioSettingForUpdate?
         
-        public init (platform: String, id: UInt64, name: String?, removeVideo: Int64?, removeAudio: Int64?, videoSetting: VideoEncodingPresetVideoSettingForUpdate, audioSetting: VideoEncodingPresetAudioSettingForUpdate) {
+        public init (platform: String, id: UInt64, name: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoSetting: VideoEncodingPresetVideoSettingForUpdate? = nil, audioSetting: VideoEncodingPresetAudioSettingForUpdate? = nil) {
             self.platform = platform
             self.id = id
             self.name = name
@@ -91,5 +75,21 @@ extension Cme {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改视频编码配置
+    ///
+    /// 修改视频编码配置信息。
+    @inlinable
+    public func modifyVideoEncodingPreset(_ input: ModifyVideoEncodingPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVideoEncodingPresetResponse > {
+        self.client.execute(action: "ModifyVideoEncodingPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改视频编码配置
+    ///
+    /// 修改视频编码配置信息。
+    @inlinable
+    public func modifyVideoEncodingPreset(_ input: ModifyVideoEncodingPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoEncodingPresetResponse {
+        try await self.client.execute(action: "ModifyVideoEncodingPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

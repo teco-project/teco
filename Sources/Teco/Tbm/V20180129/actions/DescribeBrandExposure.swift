@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tbm {
-    /// 获取品牌总热度
-    ///
-    /// 监测品牌关键词命中文章标题或全文的文章篇数，按天输出数据。
-    @inlinable
-    public func describeBrandExposure(_ input: DescribeBrandExposureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandExposureResponse > {
-        self.client.execute(action: "DescribeBrandExposure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取品牌总热度
-    ///
-    /// 监测品牌关键词命中文章标题或全文的文章篇数，按天输出数据。
-    @inlinable
-    public func describeBrandExposure(_ input: DescribeBrandExposureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandExposureResponse {
-        try await self.client.execute(action: "DescribeBrandExposure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBrandExposure请求参数结构体
     public struct DescribeBrandExposureRequest: TCRequestModel {
         /// 品牌ID
@@ -75,5 +59,21 @@ extension Tbm {
             case dateCountSet = "DateCountSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取品牌总热度
+    ///
+    /// 监测品牌关键词命中文章标题或全文的文章篇数，按天输出数据。
+    @inlinable
+    public func describeBrandExposure(_ input: DescribeBrandExposureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBrandExposureResponse > {
+        self.client.execute(action: "DescribeBrandExposure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取品牌总热度
+    ///
+    /// 监测品牌关键词命中文章标题或全文的文章篇数，按天输出数据。
+    @inlinable
+    public func describeBrandExposure(_ input: DescribeBrandExposureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandExposureResponse {
+        try await self.client.execute(action: "DescribeBrandExposure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 删除实例SQL限流任务
-    ///
-    /// 删除实例SQL限流任务。
-    @inlinable
-    public func deleteSqlFilters(_ input: DeleteSqlFiltersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSqlFiltersResponse > {
-        self.client.execute(action: "DeleteSqlFilters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除实例SQL限流任务
-    ///
-    /// 删除实例SQL限流任务。
-    @inlinable
-    public func deleteSqlFilters(_ input: DeleteSqlFiltersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSqlFiltersResponse {
-        try await self.client.execute(action: "DeleteSqlFilters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSqlFilters请求参数结构体
     public struct DeleteSqlFiltersRequest: TCRequestModel {
         /// 实例ID。
@@ -63,5 +47,21 @@ extension Dbbrain {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除实例SQL限流任务
+    ///
+    /// 删除实例SQL限流任务。
+    @inlinable
+    public func deleteSqlFilters(_ input: DeleteSqlFiltersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSqlFiltersResponse > {
+        self.client.execute(action: "DeleteSqlFilters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例SQL限流任务
+    ///
+    /// 删除实例SQL限流任务。
+    @inlinable
+    public func deleteSqlFilters(_ input: DeleteSqlFiltersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSqlFiltersResponse {
+        try await self.client.execute(action: "DeleteSqlFilters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

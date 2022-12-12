@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 查询运营商白名单号码申请
-    ///
-    /// 查询单状态
-    @inlinable
-    public func describeCarrierPrivilegeNumberApplicants(_ input: DescribeCarrierPrivilegeNumberApplicantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCarrierPrivilegeNumberApplicantsResponse > {
-        self.client.execute(action: "DescribeCarrierPrivilegeNumberApplicants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询运营商白名单号码申请
-    ///
-    /// 查询单状态
-    @inlinable
-    public func describeCarrierPrivilegeNumberApplicants(_ input: DescribeCarrierPrivilegeNumberApplicantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCarrierPrivilegeNumberApplicantsResponse {
-        try await self.client.execute(action: "DescribeCarrierPrivilegeNumberApplicants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCarrierPrivilegeNumberApplicants请求参数结构体
     public struct DescribeCarrierPrivilegeNumberApplicantsRequest: TCRequestModel {
         /// 实例Id
@@ -45,7 +29,7 @@ extension Ccc {
         /// 筛选条件,Name支持ApplicantId,PhoneNumber(按号码模糊查找)
         public let filters: [Filter]?
         
-        public init (sdkAppId: UInt64, pageNumber: UInt64?, pageSize: UInt64?, filters: [Filter]?) {
+        public init (sdkAppId: UInt64, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil) {
             self.sdkAppId = sdkAppId
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -76,5 +60,21 @@ extension Ccc {
             case applicants = "Applicants"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询运营商白名单号码申请
+    ///
+    /// 查询单状态
+    @inlinable
+    public func describeCarrierPrivilegeNumberApplicants(_ input: DescribeCarrierPrivilegeNumberApplicantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCarrierPrivilegeNumberApplicantsResponse > {
+        self.client.execute(action: "DescribeCarrierPrivilegeNumberApplicants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询运营商白名单号码申请
+    ///
+    /// 查询单状态
+    @inlinable
+    public func describeCarrierPrivilegeNumberApplicants(_ input: DescribeCarrierPrivilegeNumberApplicantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCarrierPrivilegeNumberApplicantsResponse {
+        try await self.client.execute(action: "DescribeCarrierPrivilegeNumberApplicants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

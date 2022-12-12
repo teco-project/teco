@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改弹性公网IP属性
-    @inlinable
-    public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressAttributeResponse > {
-        self.client.execute(action: "ModifyAddressAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改弹性公网IP属性
-    @inlinable
-    public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {
-        try await self.client.execute(action: "ModifyAddressAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAddressAttribute请求参数结构体
     public struct ModifyAddressAttributeRequest: TCRequestModel {
         /// ECM 地域
@@ -41,7 +29,7 @@ extension Ecm {
         /// 设定EIP是否直通，"TRUE"表示直通，"FALSE"表示非直通。注意该参数仅对EIP直通功能可见的用户可以设定。
         public let eipDirectConnection: String?
         
-        public init (ecmRegion: String, addressId: String, addressName: String?, eipDirectConnection: String?) {
+        public init (ecmRegion: String, addressId: String, addressName: String? = nil, eipDirectConnection: String? = nil) {
             self.ecmRegion = ecmRegion
             self.addressId = addressId
             self.addressName = addressName
@@ -64,5 +52,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改弹性公网IP属性
+    @inlinable
+    public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressAttributeResponse > {
+        self.client.execute(action: "ModifyAddressAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改弹性公网IP属性
+    @inlinable
+    public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {
+        try await self.client.execute(action: "ModifyAddressAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

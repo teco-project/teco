@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取高危命令列表
-    @inlinable
-    public func describeBashEvents(_ input: DescribeBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBashEventsResponse > {
-        self.client.execute(action: "DescribeBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取高危命令列表
-    @inlinable
-    public func describeBashEvents(_ input: DescribeBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashEventsResponse {
-        try await self.client.execute(action: "DescribeBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBashEvents请求参数结构体
     public struct DescribeBashEventsRequest: TCRequestModel {
         /// 返回数量，默认为10，最大值为100。
@@ -39,7 +27,7 @@ extension Yunjing {
         /// <li>Keywords - String - 是否必填：否 - 关键词(主机内网IP)</li>
         public let filters: [Filter]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -68,5 +56,17 @@ extension Yunjing {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取高危命令列表
+    @inlinable
+    public func describeBashEvents(_ input: DescribeBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBashEventsResponse > {
+        self.client.execute(action: "DescribeBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取高危命令列表
+    @inlinable
+    public func describeBashEvents(_ input: DescribeBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashEventsResponse {
+        try await self.client.execute(action: "DescribeBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cr {
-    /// 对话文本下载
-    ///
-    /// 用于获取指定案件的对话文本内容，次日早上8:00后可查询前日对话文本内容。
-    @inlinable
-    public func downloadDialogueText(_ input: DownloadDialogueTextRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadDialogueTextResponse > {
-        self.client.execute(action: "DownloadDialogueText", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 对话文本下载
-    ///
-    /// 用于获取指定案件的对话文本内容，次日早上8:00后可查询前日对话文本内容。
-    @inlinable
-    public func downloadDialogueText(_ input: DownloadDialogueTextRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadDialogueTextResponse {
-        try await self.client.execute(action: "DownloadDialogueText", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DownloadDialogueText请求参数结构体
     public struct DownloadDialogueTextRequest: TCRequestModel {
         /// 模块名，本接口取值：Report
@@ -75,5 +59,21 @@ extension Cr {
             case textReportUrl = "TextReportUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 对话文本下载
+    ///
+    /// 用于获取指定案件的对话文本内容，次日早上8:00后可查询前日对话文本内容。
+    @inlinable
+    public func downloadDialogueText(_ input: DownloadDialogueTextRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadDialogueTextResponse > {
+        self.client.execute(action: "DownloadDialogueText", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 对话文本下载
+    ///
+    /// 用于获取指定案件的对话文本内容，次日早上8:00后可查询前日对话文本内容。
+    @inlinable
+    public func downloadDialogueText(_ input: DownloadDialogueTextRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadDialogueTextResponse {
+        try await self.client.execute(action: "DownloadDialogueText", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询云数据库实例的配置信息
-    ///
-    /// 本接口(DescribeDBInstanceConfig)用于云数据库实例的配置信息，包括同步模式，部署模式等。
-    @inlinable
-    public func describeDBInstanceConfig(_ input: DescribeDBInstanceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceConfigResponse > {
-        self.client.execute(action: "DescribeDBInstanceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云数据库实例的配置信息
-    ///
-    /// 本接口(DescribeDBInstanceConfig)用于云数据库实例的配置信息，包括同步模式，部署模式等。
-    @inlinable
-    public func describeDBInstanceConfig(_ input: DescribeDBInstanceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceConfigResponse {
-        try await self.client.execute(action: "DescribeDBInstanceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBInstanceConfig请求参数结构体
     public struct DescribeDBInstanceConfigRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -58,11 +42,11 @@ extension Cdb {
         
         /// 备库的配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let slaveConfig: SlaveConfig
+        public let slaveConfig: SlaveConfig?
         
         /// 强同步实例第二备库的配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let backupConfig: BackupConfig
+        public let backupConfig: BackupConfig?
         
         /// 是否切换备库。
         public let switched: Bool
@@ -79,5 +63,21 @@ extension Cdb {
             case switched = "Switched"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云数据库实例的配置信息
+    ///
+    /// 本接口(DescribeDBInstanceConfig)用于云数据库实例的配置信息，包括同步模式，部署模式等。
+    @inlinable
+    public func describeDBInstanceConfig(_ input: DescribeDBInstanceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceConfigResponse > {
+        self.client.execute(action: "DescribeDBInstanceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云数据库实例的配置信息
+    ///
+    /// 本接口(DescribeDBInstanceConfig)用于云数据库实例的配置信息，包括同步模式，部署模式等。
+    @inlinable
+    public func describeDBInstanceConfig(_ input: DescribeDBInstanceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceConfigResponse {
+        try await self.client.execute(action: "DescribeDBInstanceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

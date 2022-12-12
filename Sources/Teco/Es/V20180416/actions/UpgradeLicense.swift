@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 升级ES商业特性
-    @inlinable
-    public func upgradeLicense(_ input: UpgradeLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeLicenseResponse > {
-        self.client.execute(action: "UpgradeLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 升级ES商业特性
-    @inlinable
-    public func upgradeLicense(_ input: UpgradeLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLicenseResponse {
-        try await self.client.execute(action: "UpgradeLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeLicense请求参数结构体
     public struct UpgradeLicenseRequest: TCRequestModel {
         /// 实例ID
@@ -47,7 +35,7 @@ extension Es {
         /// 是否强制重启<li>true强制重启</li><li>false不强制重启</li> 默认值false
         public let forceRestart: Bool?
         
-        public init (instanceId: String, licenseType: String, autoVoucher: Int64?, voucherIds: [String]?, basicSecurityType: UInt64?, forceRestart: Bool?) {
+        public init (instanceId: String, licenseType: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, basicSecurityType: UInt64? = nil, forceRestart: Bool? = nil) {
             self.instanceId = instanceId
             self.licenseType = licenseType
             self.autoVoucher = autoVoucher
@@ -79,5 +67,17 @@ extension Es {
             case dealName = "DealName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 升级ES商业特性
+    @inlinable
+    public func upgradeLicense(_ input: UpgradeLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeLicenseResponse > {
+        self.client.execute(action: "UpgradeLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 升级ES商业特性
+    @inlinable
+    public func upgradeLicense(_ input: UpgradeLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLicenseResponse {
+        try await self.client.execute(action: "UpgradeLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

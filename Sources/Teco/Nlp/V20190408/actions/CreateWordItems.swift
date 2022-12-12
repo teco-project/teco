@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Nlp {
-    /// 新增自定义词库词条
-    ///
-    /// 向指定的词库中添加词条。
-    @inlinable
-    public func createWordItems(_ input: CreateWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWordItemsResponse > {
-        self.client.execute(action: "CreateWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增自定义词库词条
-    ///
-    /// 向指定的词库中添加词条。
-    @inlinable
-    public func createWordItems(_ input: CreateWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordItemsResponse {
-        try await self.client.execute(action: "CreateWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateWordItems请求参数结构体
     public struct CreateWordItemsRequest: TCRequestModel {
         /// 自定义词库ID。
@@ -58,5 +42,21 @@ extension Nlp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增自定义词库词条
+    ///
+    /// 向指定的词库中添加词条。
+    @inlinable
+    public func createWordItems(_ input: CreateWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWordItemsResponse > {
+        self.client.execute(action: "CreateWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增自定义词库词条
+    ///
+    /// 向指定的词库中添加词条。
+    @inlinable
+    public func createWordItems(_ input: CreateWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordItemsResponse {
+        try await self.client.execute(action: "CreateWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

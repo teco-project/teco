@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 查询专用集群列表
-    @inlinable
-    public func describeDedicatedClusters(_ input: DescribeDedicatedClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClustersResponse > {
-        self.client.execute(action: "DescribeDedicatedClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询专用集群列表
-    @inlinable
-    public func describeDedicatedClusters(_ input: DescribeDedicatedClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClustersResponse {
-        try await self.client.execute(action: "DescribeDedicatedClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDedicatedClusters请求参数结构体
     public struct DescribeDedicatedClustersRequest: TCRequestModel {
         /// 按照一个或者多个实例ID查询。实例ID形如：`cluster-xxxxxxxx`
@@ -50,7 +38,7 @@ extension Cdc {
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: Int64?
         
-        public init (dedicatedClusterIds: [String]?, zones: [String]?, siteIds: [String]?, lifecycleStatuses: [String]?, name: String?, offset: Int64?, limit: Int64?) {
+        public init (dedicatedClusterIds: [String]? = nil, zones: [String]? = nil, siteIds: [String]? = nil, lifecycleStatuses: [String]? = nil, name: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.dedicatedClusterIds = dedicatedClusterIds
             self.zones = zones
             self.siteIds = siteIds
@@ -87,5 +75,17 @@ extension Cdc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询专用集群列表
+    @inlinable
+    public func describeDedicatedClusters(_ input: DescribeDedicatedClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDedicatedClustersResponse > {
+        self.client.execute(action: "DescribeDedicatedClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专用集群列表
+    @inlinable
+    public func describeDedicatedClusters(_ input: DescribeDedicatedClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClustersResponse {
+        try await self.client.execute(action: "DescribeDedicatedClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

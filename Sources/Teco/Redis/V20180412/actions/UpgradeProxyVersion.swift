@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 实例proxy版本升级接口
-    ///
-    /// 实例proxy版本升级
-    @inlinable
-    public func upgradeProxyVersion(_ input: UpgradeProxyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeProxyVersionResponse > {
-        self.client.execute(action: "UpgradeProxyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实例proxy版本升级接口
-    ///
-    /// 实例proxy版本升级
-    @inlinable
-    public func upgradeProxyVersion(_ input: UpgradeProxyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeProxyVersionResponse {
-        try await self.client.execute(action: "UpgradeProxyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeProxyVersion请求参数结构体
     public struct UpgradeProxyVersionRequest: TCRequestModel {
         /// 实例ID
@@ -72,5 +56,21 @@ extension Redis {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实例proxy版本升级接口
+    ///
+    /// 实例proxy版本升级
+    @inlinable
+    public func upgradeProxyVersion(_ input: UpgradeProxyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeProxyVersionResponse > {
+        self.client.execute(action: "UpgradeProxyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实例proxy版本升级接口
+    ///
+    /// 实例proxy版本升级
+    @inlinable
+    public func upgradeProxyVersion(_ input: UpgradeProxyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeProxyVersionResponse {
+        try await self.client.execute(action: "UpgradeProxyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

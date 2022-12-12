@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiia {
-    /// 图像标签测试接口
-    ///
-    /// 图像标签测试接口
-    /// >     
-    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func detectLabelBeta(_ input: DetectLabelBetaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectLabelBetaResponse > {
-        self.client.execute(action: "DetectLabelBeta", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 图像标签测试接口
-    ///
-    /// 图像标签测试接口
-    /// >     
-    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func detectLabelBeta(_ input: DetectLabelBetaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLabelBetaResponse {
-        try await self.client.execute(action: "DetectLabelBeta", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetectLabelBeta请求参数结构体
     public struct DetectLabelBetaRequest: TCRequestModel {
         /// 图片URL地址。 
@@ -62,7 +42,7 @@ extension Tiia {
         /// 支持多场景（Scenes）一起检测。例如，使用 Scenes=["WEB", "CAMERA"]，即对一张图片使用两个模型同时检测，输出两套识别结果。
         public let scenes: [String]?
         
-        public init (imageUrl: String?, imageBase64: String?, scenes: [String]?) {
+        public init (imageUrl: String? = nil, imageBase64: String? = nil, scenes: [String]? = nil) {
             self.imageUrl = imageUrl
             self.imageBase64 = imageBase64
             self.scenes = scenes
@@ -114,5 +94,25 @@ extension Tiia {
             case locationLabels = "LocationLabels"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 图像标签测试接口
+    ///
+    /// 图像标签测试接口
+    /// >     
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func detectLabelBeta(_ input: DetectLabelBetaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectLabelBetaResponse > {
+        self.client.execute(action: "DetectLabelBeta", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 图像标签测试接口
+    ///
+    /// 图像标签测试接口
+    /// >     
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func detectLabelBeta(_ input: DetectLabelBetaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLabelBetaResponse {
+        try await self.client.execute(action: "DetectLabelBeta", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

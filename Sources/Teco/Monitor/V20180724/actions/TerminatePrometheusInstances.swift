@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 销毁按量 Prometheus 实例
-    @inlinable
-    public func terminatePrometheusInstances(_ input: TerminatePrometheusInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminatePrometheusInstancesResponse > {
-        self.client.execute(action: "TerminatePrometheusInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 销毁按量 Prometheus 实例
-    @inlinable
-    public func terminatePrometheusInstances(_ input: TerminatePrometheusInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminatePrometheusInstancesResponse {
-        try await self.client.execute(action: "TerminatePrometheusInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TerminatePrometheusInstances请求参数结构体
     public struct TerminatePrometheusInstancesRequest: TCRequestModel {
         /// 实例 ID 列表
@@ -49,5 +37,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 销毁按量 Prometheus 实例
+    @inlinable
+    public func terminatePrometheusInstances(_ input: TerminatePrometheusInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminatePrometheusInstancesResponse > {
+        self.client.execute(action: "TerminatePrometheusInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁按量 Prometheus 实例
+    @inlinable
+    public func terminatePrometheusInstances(_ input: TerminatePrometheusInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminatePrometheusInstancesResponse {
+        try await self.client.execute(action: "TerminatePrometheusInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

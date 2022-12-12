@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tms {
-    /// 账号举报接口
-    ///
-    /// 举报恶意账号
-    @inlinable
-    public func accountTipoffAccess(_ input: AccountTipoffAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AccountTipoffAccessResponse > {
-        self.client.execute(action: "AccountTipoffAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 账号举报接口
-    ///
-    /// 举报恶意账号
-    @inlinable
-    public func accountTipoffAccess(_ input: AccountTipoffAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AccountTipoffAccessResponse {
-        try await self.client.execute(action: "AccountTipoffAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AccountTipoffAccess请求参数结构体
     public struct AccountTipoffAccessRequest: TCRequestModel {
         /// 被举报账号，长度低于 128 个字符
@@ -54,7 +38,7 @@ extension Tms {
         /// 包含被举报账号的恶意内容（比如文本、图片链接，长度低于1024个字符）
         public let evilContent: String?
         
-        public init (reportedAccount: String, reportedAccountType: Int64, evilType: Int64, senderAccount: String?, senderAccountType: Int64?, senderIP: String?, evilContent: String?) {
+        public init (reportedAccount: String, reportedAccountType: Int64, evilType: Int64, senderAccount: String? = nil, senderAccountType: Int64? = nil, senderIP: String? = nil, evilContent: String? = nil) {
             self.reportedAccount = reportedAccount
             self.reportedAccountType = reportedAccountType
             self.evilType = evilType
@@ -79,7 +63,7 @@ extension Tms {
     public struct AccountTipoffAccessResponse: TCResponseModel {
         /// 举报接口响应数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: TipoffResponse
+        public let data: TipoffResponse?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -88,5 +72,21 @@ extension Tms {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 账号举报接口
+    ///
+    /// 举报恶意账号
+    @inlinable
+    public func accountTipoffAccess(_ input: AccountTipoffAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AccountTipoffAccessResponse > {
+        self.client.execute(action: "AccountTipoffAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 账号举报接口
+    ///
+    /// 举报恶意账号
+    @inlinable
+    public func accountTipoffAccess(_ input: AccountTipoffAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AccountTipoffAccessResponse {
+        try await self.client.execute(action: "AccountTipoffAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

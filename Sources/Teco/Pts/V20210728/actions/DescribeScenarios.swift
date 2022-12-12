@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 查询场景列表
-    @inlinable
-    public func describeScenarios(_ input: DescribeScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScenariosResponse > {
-        self.client.execute(action: "DescribeScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询场景列表
-    @inlinable
-    public func describeScenarios(_ input: DescribeScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenariosResponse {
-        try await self.client.execute(action: "DescribeScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScenarios请求参数结构体
     public struct DescribeScenariosRequest: TCRequestModel {
         /// 场景ID数组
@@ -56,7 +44,7 @@ extension Pts {
         /// 场景类型
         public let scenarioType: String?
         
-        public init (scenarioIds: [String]?, scenarioName: String?, scenarioStatus: [Int64]?, offset: Int64?, limit: Int64?, orderBy: String?, ascend: Bool?, projectIds: [String]?, scenarioType: String?) {
+        public init (scenarioIds: [String]? = nil, scenarioName: String? = nil, scenarioStatus: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil, projectIds: [String]? = nil, scenarioType: String? = nil) {
             self.scenarioIds = scenarioIds
             self.scenarioName = scenarioName
             self.scenarioStatus = scenarioStatus
@@ -98,5 +86,17 @@ extension Pts {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询场景列表
+    @inlinable
+    public func describeScenarios(_ input: DescribeScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScenariosResponse > {
+        self.client.execute(action: "DescribeScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询场景列表
+    @inlinable
+    public func describeScenarios(_ input: DescribeScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenariosResponse {
+        try await self.client.execute(action: "DescribeScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

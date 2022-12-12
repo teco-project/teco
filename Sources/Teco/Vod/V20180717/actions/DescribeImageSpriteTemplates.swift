@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 获取雪碧图模板列表
-    ///
-    /// 查询雪碧图模板，支持根据条件，分页查询。
-    @inlinable
-    public func describeImageSpriteTemplates(_ input: DescribeImageSpriteTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageSpriteTemplatesResponse > {
-        self.client.execute(action: "DescribeImageSpriteTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取雪碧图模板列表
-    ///
-    /// 查询雪碧图模板，支持根据条件，分页查询。
-    @inlinable
-    public func describeImageSpriteTemplates(_ input: DescribeImageSpriteTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSpriteTemplatesResponse {
-        try await self.client.execute(action: "DescribeImageSpriteTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageSpriteTemplates请求参数结构体
     public struct DescribeImageSpriteTemplatesRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -50,7 +34,7 @@ extension Vod {
         /// <li>Custom：用户自定义模板。</li>
         public let type: String?
         
-        public init (subAppId: UInt64?, definitions: [UInt64]?, offset: UInt64?, limit: UInt64?, type: String?) {
+        public init (subAppId: UInt64? = nil, definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil) {
             self.subAppId = subAppId
             self.definitions = definitions
             self.offset = offset
@@ -83,5 +67,21 @@ extension Vod {
             case imageSpriteTemplateSet = "ImageSpriteTemplateSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取雪碧图模板列表
+    ///
+    /// 查询雪碧图模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeImageSpriteTemplates(_ input: DescribeImageSpriteTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageSpriteTemplatesResponse > {
+        self.client.execute(action: "DescribeImageSpriteTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取雪碧图模板列表
+    ///
+    /// 查询雪碧图模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeImageSpriteTemplates(_ input: DescribeImageSpriteTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSpriteTemplatesResponse {
+        try await self.client.execute(action: "DescribeImageSpriteTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

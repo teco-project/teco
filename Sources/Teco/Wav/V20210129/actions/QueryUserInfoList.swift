@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wav {
-    /// 查询企业成员信息列表接口
-    @inlinable
-    public func queryUserInfoList(_ input: QueryUserInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryUserInfoListResponse > {
-        self.client.execute(action: "QueryUserInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询企业成员信息列表接口
-    @inlinable
-    public func queryUserInfoList(_ input: QueryUserInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryUserInfoListResponse {
-        try await self.client.execute(action: "QueryUserInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryUserInfoList请求参数结构体
     public struct QueryUserInfoListRequest: TCRequestModel {
         /// 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
@@ -35,7 +23,7 @@ extension Wav {
         /// 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
         public let limit: Int64?
         
-        public init (cursor: String?, limit: Int64?) {
+        public init (cursor: String? = nil, limit: Int64? = nil) {
             self.cursor = cursor
             self.limit = limit
         }
@@ -64,5 +52,17 @@ extension Wav {
             case pageData = "PageData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询企业成员信息列表接口
+    @inlinable
+    public func queryUserInfoList(_ input: QueryUserInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryUserInfoListResponse > {
+        self.client.execute(action: "QueryUserInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询企业成员信息列表接口
+    @inlinable
+    public func queryUserInfoList(_ input: QueryUserInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryUserInfoListResponse {
+        try await self.client.execute(action: "QueryUserInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

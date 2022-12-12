@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 查询VPC列表
-    ///
-    /// 本接口（DescribeVpcs）用于查询私有网络列表。
-    /// 本接口不传参数时，返回默认排序下的前20条VPC信息。
-    @inlinable
-    public func describeVpcs(_ input: DescribeVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcsResponse > {
-        self.client.execute(action: "DescribeVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询VPC列表
-    ///
-    /// 本接口（DescribeVpcs）用于查询私有网络列表。
-    /// 本接口不传参数时，返回默认排序下的前20条VPC信息。
-    @inlinable
-    public func describeVpcs(_ input: DescribeVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcsResponse {
-        try await self.client.execute(action: "DescribeVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpcs请求参数结构体
     public struct DescribeVpcsRequest: TCRequestModel {
         /// VPC实例ID。形如：vpc-f49l6u0z。每次请求的实例的上限为100。参数不支持同时指定VpcIds和Filters。
@@ -52,7 +34,7 @@ extension Bmvpc {
         /// 每页行数，默认为20。
         public let limit: UInt64?
         
-        public init (vpcIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.vpcIds = vpcIds
             self.filters = filters
             self.offset = offset
@@ -79,5 +61,23 @@ extension Bmvpc {
             case vpcSet = "VpcSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询VPC列表
+    ///
+    /// 本接口（DescribeVpcs）用于查询私有网络列表。
+    /// 本接口不传参数时，返回默认排序下的前20条VPC信息。
+    @inlinable
+    public func describeVpcs(_ input: DescribeVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcsResponse > {
+        self.client.execute(action: "DescribeVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询VPC列表
+    ///
+    /// 本接口（DescribeVpcs）用于查询私有网络列表。
+    /// 本接口不传参数时，返回默认排序下的前20条VPC信息。
+    @inlinable
+    public func describeVpcs(_ input: DescribeVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcsResponse {
+        try await self.client.execute(action: "DescribeVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

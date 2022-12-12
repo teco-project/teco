@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 修改黑石VPC属性
-    ///
-    /// 本接口（ModifyVpcAttribute）用于修改VPC的标识名称和控制VPC的监控起停。
-    @inlinable
-    public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpcAttributeResponse > {
-        self.client.execute(action: "ModifyVpcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改黑石VPC属性
-    ///
-    /// 本接口（ModifyVpcAttribute）用于修改VPC的标识名称和控制VPC的监控起停。
-    @inlinable
-    public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
-        try await self.client.execute(action: "ModifyVpcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVpcAttribute请求参数结构体
     public struct ModifyVpcAttributeRequest: TCRequestModel {
         /// 私有网络ID
@@ -42,7 +26,7 @@ extension Bmvpc {
         /// 是否开启内网监控，0为关闭，1为开启
         public let enableMonitor: Bool?
         
-        public init (vpcId: String, vpcName: String?, enableMonitor: Bool?) {
+        public init (vpcId: String, vpcName: String? = nil, enableMonitor: Bool? = nil) {
             self.vpcId = vpcId
             self.vpcName = vpcName
             self.enableMonitor = enableMonitor
@@ -63,5 +47,21 @@ extension Bmvpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改黑石VPC属性
+    ///
+    /// 本接口（ModifyVpcAttribute）用于修改VPC的标识名称和控制VPC的监控起停。
+    @inlinable
+    public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpcAttributeResponse > {
+        self.client.execute(action: "ModifyVpcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改黑石VPC属性
+    ///
+    /// 本接口（ModifyVpcAttribute）用于修改VPC的标识名称和控制VPC的监控起停。
+    @inlinable
+    public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
+        try await self.client.execute(action: "ModifyVpcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

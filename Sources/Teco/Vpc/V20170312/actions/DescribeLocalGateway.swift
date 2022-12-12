@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询本地网关
-    ///
-    /// 该接口用于查询CDC的本地网关。
-    @inlinable
-    public func describeLocalGateway(_ input: DescribeLocalGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLocalGatewayResponse > {
-        self.client.execute(action: "DescribeLocalGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询本地网关
-    ///
-    /// 该接口用于查询CDC的本地网关。
-    @inlinable
-    public func describeLocalGateway(_ input: DescribeLocalGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLocalGatewayResponse {
-        try await self.client.execute(action: "DescribeLocalGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLocalGateway请求参数结构体
     public struct DescribeLocalGatewayRequest: TCRequestModel {
         /// 查询条件：
@@ -43,7 +27,7 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
         public let limit: Int64?
         
-        public init (filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -72,5 +56,21 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询本地网关
+    ///
+    /// 该接口用于查询CDC的本地网关。
+    @inlinable
+    public func describeLocalGateway(_ input: DescribeLocalGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLocalGatewayResponse > {
+        self.client.execute(action: "DescribeLocalGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询本地网关
+    ///
+    /// 该接口用于查询CDC的本地网关。
+    @inlinable
+    public func describeLocalGateway(_ input: DescribeLocalGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLocalGatewayResponse {
+        try await self.client.execute(action: "DescribeLocalGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

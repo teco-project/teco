@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 解绑权限组列表
-    ///
-    /// 给挂载点解绑多个权限组。
-    @inlinable
-    public func disassociateAccessGroups(_ input: DisassociateAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateAccessGroupsResponse > {
-        self.client.execute(action: "DisassociateAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑权限组列表
-    ///
-    /// 给挂载点解绑多个权限组。
-    @inlinable
-    public func disassociateAccessGroups(_ input: DisassociateAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateAccessGroupsResponse {
-        try await self.client.execute(action: "DisassociateAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisassociateAccessGroups请求参数结构体
     public struct DisassociateAccessGroupsRequest: TCRequestModel {
         /// 挂载点ID
@@ -58,5 +42,21 @@ extension Chdfs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑权限组列表
+    ///
+    /// 给挂载点解绑多个权限组。
+    @inlinable
+    public func disassociateAccessGroups(_ input: DisassociateAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateAccessGroupsResponse > {
+        self.client.execute(action: "DisassociateAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑权限组列表
+    ///
+    /// 给挂载点解绑多个权限组。
+    @inlinable
+    public func disassociateAccessGroups(_ input: DisassociateAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateAccessGroupsResponse {
+        try await self.client.execute(action: "DisassociateAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 删除策略的策略版本
-    ///
-    /// 本接口（DeletePolicyVersion）可用于删除一个策略的策略版本。
-    @inlinable
-    public func deletePolicyVersion(_ input: DeletePolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePolicyVersionResponse > {
-        self.client.execute(action: "DeletePolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除策略的策略版本
-    ///
-    /// 本接口（DeletePolicyVersion）可用于删除一个策略的策略版本。
-    @inlinable
-    public func deletePolicyVersion(_ input: DeletePolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyVersionResponse {
-        try await self.client.execute(action: "DeletePolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePolicyVersion请求参数结构体
     public struct DeletePolicyVersionRequest: TCRequestModel {
         /// 策略ID
@@ -58,5 +42,21 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除策略的策略版本
+    ///
+    /// 本接口（DeletePolicyVersion）可用于删除一个策略的策略版本。
+    @inlinable
+    public func deletePolicyVersion(_ input: DeletePolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePolicyVersionResponse > {
+        self.client.execute(action: "DeletePolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除策略的策略版本
+    ///
+    /// 本接口（DeletePolicyVersion）可用于删除一个策略的策略版本。
+    @inlinable
+    public func deletePolicyVersion(_ input: DeletePolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyVersionResponse {
+        try await self.client.execute(action: "DeletePolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

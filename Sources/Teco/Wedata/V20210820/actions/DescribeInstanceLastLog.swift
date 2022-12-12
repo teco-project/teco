@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 日志获取详情页面
-    @inlinable
-    public func describeInstanceLastLog(_ input: DescribeInstanceLastLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLastLogResponse > {
-        self.client.execute(action: "DescribeInstanceLastLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 日志获取详情页面
-    @inlinable
-    public func describeInstanceLastLog(_ input: DescribeInstanceLastLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLastLogResponse {
-        try await self.client.execute(action: "DescribeInstanceLastLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceLastLog请求参数结构体
     public struct DescribeInstanceLastLogRequest: TCRequestModel {
         /// 任务id
@@ -58,5 +46,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 日志获取详情页面
+    @inlinable
+    public func describeInstanceLastLog(_ input: DescribeInstanceLastLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLastLogResponse > {
+        self.client.execute(action: "DescribeInstanceLastLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 日志获取详情页面
+    @inlinable
+    public func describeInstanceLastLog(_ input: DescribeInstanceLastLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLastLogResponse {
+        try await self.client.execute(action: "DescribeInstanceLastLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

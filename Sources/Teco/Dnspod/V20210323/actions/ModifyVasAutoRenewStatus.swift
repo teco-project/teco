@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 增值服务自动续费设置
-    @inlinable
-    public func modifyVasAutoRenewStatus(_ input: ModifyVasAutoRenewStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVasAutoRenewStatusResponse > {
-        self.client.execute(action: "ModifyVasAutoRenewStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 增值服务自动续费设置
-    @inlinable
-    public func modifyVasAutoRenewStatus(_ input: ModifyVasAutoRenewStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVasAutoRenewStatusResponse {
-        try await self.client.execute(action: "ModifyVasAutoRenewStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVasAutoRenewStatus请求参数结构体
     public struct ModifyVasAutoRenewStatusRequest: TCRequestModel {
         /// 资源ID。可以从控制台查看所有的资源
@@ -54,5 +42,17 @@ extension Dnspod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 增值服务自动续费设置
+    @inlinable
+    public func modifyVasAutoRenewStatus(_ input: ModifyVasAutoRenewStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVasAutoRenewStatusResponse > {
+        self.client.execute(action: "ModifyVasAutoRenewStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 增值服务自动续费设置
+    @inlinable
+    public func modifyVasAutoRenewStatus(_ input: ModifyVasAutoRenewStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVasAutoRenewStatusResponse {
+        try await self.client.execute(action: "ModifyVasAutoRenewStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

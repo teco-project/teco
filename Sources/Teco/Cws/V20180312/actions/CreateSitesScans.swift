@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cws {
-    /// 新增站点扫描任务
-    ///
-    /// 本接口（CreateSitesScans）用于新增一个或多个站点的单次扫描任务。
-    @inlinable
-    public func createSitesScans(_ input: CreateSitesScansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSitesScansResponse > {
-        self.client.execute(action: "CreateSitesScans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增站点扫描任务
-    ///
-    /// 本接口（CreateSitesScans）用于新增一个或多个站点的单次扫描任务。
-    @inlinable
-    public func createSitesScans(_ input: CreateSitesScansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSitesScansResponse {
-        try await self.client.execute(action: "CreateSitesScans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSitesScans请求参数结构体
     public struct CreateSitesScansRequest: TCRequestModel {
         /// 站点的ID列表
@@ -63,5 +47,21 @@ extension Cws {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增站点扫描任务
+    ///
+    /// 本接口（CreateSitesScans）用于新增一个或多个站点的单次扫描任务。
+    @inlinable
+    public func createSitesScans(_ input: CreateSitesScansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSitesScansResponse > {
+        self.client.execute(action: "CreateSitesScans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增站点扫描任务
+    ///
+    /// 本接口（CreateSitesScans）用于新增一个或多个站点的单次扫描任务。
+    @inlinable
+    public func createSitesScans(_ input: CreateSitesScansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSitesScansResponse {
+        try await self.client.execute(action: "CreateSitesScans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

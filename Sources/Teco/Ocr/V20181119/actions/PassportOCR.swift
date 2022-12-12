@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 护照识别（中国大陆地区护照）
-    ///
-    /// 本接口支持中国大陆地区护照个人资料页多个字段的检测与识别。已支持字段包括英文姓名、中文姓名、国家码、护照号、出生地、出生日期、国籍英文、性别英文、有效期、签发地点英文、签发日期、持证人签名、护照机读码（MRZ码）等。
-    @inlinable
-    public func passportOCR(_ input: PassportOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PassportOCRResponse > {
-        self.client.execute(action: "PassportOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 护照识别（中国大陆地区护照）
-    ///
-    /// 本接口支持中国大陆地区护照个人资料页多个字段的检测与识别。已支持字段包括英文姓名、中文姓名、国家码、护照号、出生地、出生日期、国籍英文、性别英文、有效期、签发地点英文、签发日期、持证人签名、护照机读码（MRZ码）等。
-    @inlinable
-    public func passportOCR(_ input: PassportOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PassportOCRResponse {
-        try await self.client.execute(action: "PassportOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PassportOCR请求参数结构体
     public struct PassportOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。
@@ -45,7 +29,7 @@ extension Ocr {
         /// 支持中国大陆地区护照。
         public let type: String?
         
-        public init (imageBase64: String?, imageUrl: String?, type: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, type: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.type = type
@@ -126,5 +110,21 @@ extension Ocr {
             case firstName = "FirstName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 护照识别（中国大陆地区护照）
+    ///
+    /// 本接口支持中国大陆地区护照个人资料页多个字段的检测与识别。已支持字段包括英文姓名、中文姓名、国家码、护照号、出生地、出生日期、国籍英文、性别英文、有效期、签发地点英文、签发日期、持证人签名、护照机读码（MRZ码）等。
+    @inlinable
+    public func passportOCR(_ input: PassportOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PassportOCRResponse > {
+        self.client.execute(action: "PassportOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 护照识别（中国大陆地区护照）
+    ///
+    /// 本接口支持中国大陆地区护照个人资料页多个字段的检测与识别。已支持字段包括英文姓名、中文姓名、国家码、护照号、出生地、出生日期、国籍英文、性别英文、有效期、签发地点英文、签发日期、持证人签名、护照机读码（MRZ码）等。
+    @inlinable
+    public func passportOCR(_ input: PassportOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PassportOCRResponse {
+        try await self.client.execute(action: "PassportOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

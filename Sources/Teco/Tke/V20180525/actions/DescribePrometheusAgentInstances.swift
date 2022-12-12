@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取关联目标集群的实例列表
-    @inlinable
-    public func describePrometheusAgentInstances(_ input: DescribePrometheusAgentInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusAgentInstancesResponse > {
-        self.client.execute(action: "DescribePrometheusAgentInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取关联目标集群的实例列表
-    @inlinable
-    public func describePrometheusAgentInstances(_ input: DescribePrometheusAgentInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAgentInstancesResponse {
-        try await self.client.execute(action: "DescribePrometheusAgentInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrometheusAgentInstances请求参数结构体
     public struct DescribePrometheusAgentInstancesRequest: TCRequestModel {
         /// 集群id
@@ -55,5 +43,17 @@ extension Tke {
             case instances = "Instances"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取关联目标集群的实例列表
+    @inlinable
+    public func describePrometheusAgentInstances(_ input: DescribePrometheusAgentInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusAgentInstancesResponse > {
+        self.client.execute(action: "DescribePrometheusAgentInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取关联目标集群的实例列表
+    @inlinable
+    public func describePrometheusAgentInstances(_ input: DescribePrometheusAgentInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAgentInstancesResponse {
+        try await self.client.execute(action: "DescribePrometheusAgentInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 通用机打发票识别
-    ///
-    /// 本接口支持对通用机打发票的发票代码、发票号码、日期、购买方识别号、销售方识别号、校验码、小写金额等关键字段的识别。
-    @inlinable
-    public func invoiceGeneralOCR(_ input: InvoiceGeneralOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvoiceGeneralOCRResponse > {
-        self.client.execute(action: "InvoiceGeneralOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通用机打发票识别
-    ///
-    /// 本接口支持对通用机打发票的发票代码、发票号码、日期、购买方识别号、销售方识别号、校验码、小写金额等关键字段的识别。
-    @inlinable
-    public func invoiceGeneralOCR(_ input: InvoiceGeneralOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvoiceGeneralOCRResponse {
-        try await self.client.execute(action: "InvoiceGeneralOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InvoiceGeneralOCR请求参数结构体
     public struct InvoiceGeneralOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -52,7 +36,7 @@ extension Ocr {
         /// 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
         public let pdfPageNumber: Int64?
         
-        public init (imageBase64: String?, imageUrl: String?, isPdf: Bool?, pdfPageNumber: Int64?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.isPdf = isPdf
@@ -83,5 +67,21 @@ extension Ocr {
             case angle = "Angle"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通用机打发票识别
+    ///
+    /// 本接口支持对通用机打发票的发票代码、发票号码、日期、购买方识别号、销售方识别号、校验码、小写金额等关键字段的识别。
+    @inlinable
+    public func invoiceGeneralOCR(_ input: InvoiceGeneralOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvoiceGeneralOCRResponse > {
+        self.client.execute(action: "InvoiceGeneralOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通用机打发票识别
+    ///
+    /// 本接口支持对通用机打发票的发票代码、发票号码、日期、购买方识别号、销售方识别号、校验码、小写金额等关键字段的识别。
+    @inlinable
+    public func invoiceGeneralOCR(_ input: InvoiceGeneralOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvoiceGeneralOCRResponse {
+        try await self.client.execute(action: "InvoiceGeneralOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

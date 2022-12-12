@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 创建投递规则
-    ///
-    /// 创建新的投递规则，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
-    @inlinable
-    public func createShipper(_ input: CreateShipperRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateShipperResponse > {
-        self.client.execute(action: "CreateShipper", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建投递规则
-    ///
-    /// 创建新的投递规则，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
-    @inlinable
-    public func createShipper(_ input: CreateShipperRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateShipperResponse {
-        try await self.client.execute(action: "CreateShipper", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateShipper请求参数结构体
     public struct CreateShipperRequest: TCRequestModel {
         /// 创建的投递规则所属的日志主题ID
@@ -58,15 +42,15 @@ extension Cls {
         public let partition: String?
         
         /// 投递日志的压缩配置
-        public let compress: CompressInfo
+        public let compress: CompressInfo?
         
         /// 投递日志的内容格式配置
-        public let content: ContentInfo
+        public let content: ContentInfo?
         
         /// 投递文件命名配置，0：随机数命名，1：投递时间命名，默认0（随机数命名）
         public let filenameMode: UInt64?
         
-        public init (topicId: String, bucket: String, prefix: String, shipperName: String, interval: UInt64?, maxSize: UInt64?, filterRules: [FilterRuleInfo]?, partition: String?, compress: CompressInfo, content: ContentInfo, filenameMode: UInt64?) {
+        public init (topicId: String, bucket: String, prefix: String, shipperName: String, interval: UInt64? = nil, maxSize: UInt64? = nil, filterRules: [FilterRuleInfo]? = nil, partition: String? = nil, compress: CompressInfo? = nil, content: ContentInfo? = nil, filenameMode: UInt64? = nil) {
             self.topicId = topicId
             self.bucket = bucket
             self.prefix = prefix
@@ -107,5 +91,21 @@ extension Cls {
             case shipperId = "ShipperId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建投递规则
+    ///
+    /// 创建新的投递规则，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
+    @inlinable
+    public func createShipper(_ input: CreateShipperRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateShipperResponse > {
+        self.client.execute(action: "CreateShipper", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建投递规则
+    ///
+    /// 创建新的投递规则，【！！！注意】使用此接口，需要检查是否配置了投递COS的角色和权限。如果没有配置，请参考文档投递权限查看和配置https://cloud.tencent.com/document/product/614/71623。
+    @inlinable
+    public func createShipper(_ input: CreateShipperRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateShipperResponse {
+        try await self.client.execute(action: "CreateShipper", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

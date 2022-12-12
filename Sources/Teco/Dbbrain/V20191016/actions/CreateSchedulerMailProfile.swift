@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 创建定期生成的邮件发送配置
-    ///
-    /// 该接口用于创建定期生成健康报告并邮件发送的配置，将健康报告的定期生成时间作为参数传入（周一至周日），用于设置健康报告的定期生成时间，同时保存相应的定期邮件发送的配置。
-    @inlinable
-    public func createSchedulerMailProfile(_ input: CreateSchedulerMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSchedulerMailProfileResponse > {
-        self.client.execute(action: "CreateSchedulerMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建定期生成的邮件发送配置
-    ///
-    /// 该接口用于创建定期生成健康报告并邮件发送的配置，将健康报告的定期生成时间作为参数传入（周一至周日），用于设置健康报告的定期生成时间，同时保存相应的定期邮件发送的配置。
-    @inlinable
-    public func createSchedulerMailProfile(_ input: CreateSchedulerMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchedulerMailProfileResponse {
-        try await self.client.execute(action: "CreateSchedulerMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSchedulerMailProfile请求参数结构体
     public struct CreateSchedulerMailProfileRequest: TCRequestModel {
         /// 取值范围1-7，分别代表周一至周日。
@@ -73,5 +57,21 @@ extension Dbbrain {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建定期生成的邮件发送配置
+    ///
+    /// 该接口用于创建定期生成健康报告并邮件发送的配置，将健康报告的定期生成时间作为参数传入（周一至周日），用于设置健康报告的定期生成时间，同时保存相应的定期邮件发送的配置。
+    @inlinable
+    public func createSchedulerMailProfile(_ input: CreateSchedulerMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSchedulerMailProfileResponse > {
+        self.client.execute(action: "CreateSchedulerMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建定期生成的邮件发送配置
+    ///
+    /// 该接口用于创建定期生成健康报告并邮件发送的配置，将健康报告的定期生成时间作为参数传入（周一至周日），用于设置健康报告的定期生成时间，同时保存相应的定期邮件发送的配置。
+    @inlinable
+    public func createSchedulerMailProfile(_ input: CreateSchedulerMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchedulerMailProfileResponse {
+        try await self.client.execute(action: "CreateSchedulerMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 以订单方式新建企业
-    ///
-    /// 以订单方式新建企业信息/配额信息
-    @inlinable
-    public func createCorporationOrder(_ input: CreateCorporationOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCorporationOrderResponse > {
-        self.client.execute(action: "CreateCorporationOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 以订单方式新建企业
-    ///
-    /// 以订单方式新建企业信息/配额信息
-    @inlinable
-    public func createCorporationOrder(_ input: CreateCorporationOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCorporationOrderResponse {
-        try await self.client.execute(action: "CreateCorporationOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCorporationOrder请求参数结构体
     public struct CreateCorporationOrderRequest: TCRequestModel {
         /// 企业名称
@@ -60,7 +44,7 @@ extension Trp {
         /// 备注
         public let remark: String?
         
-        public init (corpName: String, owner: String, codeQuota: UInt64, expireTime: String, amount: Int64, corpId: UInt64?, contactPerson: String?, contactNumber: String?, remark: String?) {
+        public init (corpName: String, owner: String, codeQuota: UInt64, expireTime: String, amount: Int64, corpId: UInt64? = nil, contactPerson: String? = nil, contactNumber: String? = nil, remark: String? = nil) {
             self.corpName = corpName
             self.owner = owner
             self.codeQuota = codeQuota
@@ -98,5 +82,21 @@ extension Trp {
             case corpId = "CorpId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 以订单方式新建企业
+    ///
+    /// 以订单方式新建企业信息/配额信息
+    @inlinable
+    public func createCorporationOrder(_ input: CreateCorporationOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCorporationOrderResponse > {
+        self.client.execute(action: "CreateCorporationOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 以订单方式新建企业
+    ///
+    /// 以订单方式新建企业信息/配额信息
+    @inlinable
+    public func createCorporationOrder(_ input: CreateCorporationOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCorporationOrderResponse {
+        try await self.client.execute(action: "CreateCorporationOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Fmu {
-    /// 视频美颜
-    @inlinable
-    public func beautifyVideo(_ input: BeautifyVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BeautifyVideoResponse > {
-        self.client.execute(action: "BeautifyVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 视频美颜
-    @inlinable
-    public func beautifyVideo(_ input: BeautifyVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyVideoResponse {
-        try await self.client.execute(action: "BeautifyVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BeautifyVideo请求参数结构体
     public struct BeautifyVideoRequest: TCRequestModel {
         /// 视频url地址
@@ -38,7 +26,7 @@ extension Fmu {
         /// 目前只支持mp4
         public let outputVideoType: String?
         
-        public init (url: String, beautyParam: [BeautyParam]?, outputVideoType: String?) {
+        public init (url: String, beautyParam: [BeautyParam]? = nil, outputVideoType: String? = nil) {
             self.url = url
             self.beautyParam = beautyParam
             self.outputVideoType = outputVideoType
@@ -67,5 +55,17 @@ extension Fmu {
             case estimatedProcessTime = "EstimatedProcessTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 视频美颜
+    @inlinable
+    public func beautifyVideo(_ input: BeautifyVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BeautifyVideoResponse > {
+        self.client.execute(action: "BeautifyVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 视频美颜
+    @inlinable
+    public func beautifyVideo(_ input: BeautifyVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyVideoResponse {
+        try await self.client.execute(action: "BeautifyVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

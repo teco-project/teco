@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 查询实例列表
-    ///
-    /// 查询云数据库实例列表，支持通过项目ID、实例ID、内网地址、实例名称等来筛选实例。
-    /// 如果不指定任何筛选条件，则默认返回10条实例记录，单次请求最多支持返回100条实例记录。
-    @inlinable
-    public func describeDCDBInstances(_ input: DescribeDCDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDCDBInstancesResponse > {
-        self.client.execute(action: "DescribeDCDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例列表
-    ///
-    /// 查询云数据库实例列表，支持通过项目ID、实例ID、内网地址、实例名称等来筛选实例。
-    /// 如果不指定任何筛选条件，则默认返回10条实例记录，单次请求最多支持返回100条实例记录。
-    @inlinable
-    public func describeDCDBInstances(_ input: DescribeDCDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBInstancesResponse {
-        try await self.client.execute(action: "DescribeDCDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDCDBInstances请求参数结构体
     public struct DescribeDCDBInstancesRequest: TCRequestModel {
         /// 按照一个或者多个实例 ID 查询。实例 ID 形如：dcdbt-2t4cf98d
@@ -89,7 +71,7 @@ extension Dcdb {
         /// 排除实例状态
         public let excludeStatus: [Int64]?
         
-        public init (instanceIds: [String]?, searchName: String?, searchKey: String?, projectIds: [Int64]?, isFilterVpc: Bool?, vpcId: String?, subnetId: String?, orderBy: String?, orderByType: String?, offset: Int64?, limit: Int64?, exclusterType: Int64?, isFilterExcluster: Bool?, exclusterIds: [String]?, tagKeys: [String]?, filterInstanceType: String?, status: [Int64]?, excludeStatus: [Int64]?) {
+        public init (instanceIds: [String]? = nil, searchName: String? = nil, searchKey: String? = nil, projectIds: [Int64]? = nil, isFilterVpc: Bool? = nil, vpcId: String? = nil, subnetId: String? = nil, orderBy: String? = nil, orderByType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, exclusterType: Int64? = nil, isFilterExcluster: Bool? = nil, exclusterIds: [String]? = nil, tagKeys: [String]? = nil, filterInstanceType: String? = nil, status: [Int64]? = nil, excludeStatus: [Int64]? = nil) {
             self.instanceIds = instanceIds
             self.searchName = searchName
             self.searchKey = searchKey
@@ -148,5 +130,23 @@ extension Dcdb {
             case instances = "Instances"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例列表
+    ///
+    /// 查询云数据库实例列表，支持通过项目ID、实例ID、内网地址、实例名称等来筛选实例。
+    /// 如果不指定任何筛选条件，则默认返回10条实例记录，单次请求最多支持返回100条实例记录。
+    @inlinable
+    public func describeDCDBInstances(_ input: DescribeDCDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDCDBInstancesResponse > {
+        self.client.execute(action: "DescribeDCDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例列表
+    ///
+    /// 查询云数据库实例列表，支持通过项目ID、实例ID、内网地址、实例名称等来筛选实例。
+    /// 如果不指定任何筛选条件，则默认返回10条实例记录，单次请求最多支持返回100条实例记录。
+    @inlinable
+    public func describeDCDBInstances(_ input: DescribeDCDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBInstancesResponse {
+        try await self.client.execute(action: "DescribeDCDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

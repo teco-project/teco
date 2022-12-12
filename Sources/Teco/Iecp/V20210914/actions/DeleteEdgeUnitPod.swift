@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 删除指定pod
-    @inlinable
-    public func deleteEdgeUnitPod(_ input: DeleteEdgeUnitPodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeUnitPodResponse > {
-        self.client.execute(action: "DeleteEdgeUnitPod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除指定pod
-    @inlinable
-    public func deleteEdgeUnitPod(_ input: DeleteEdgeUnitPodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitPodResponse {
-        try await self.client.execute(action: "DeleteEdgeUnitPod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteEdgeUnitPod请求参数结构体
     public struct DeleteEdgeUnitPodRequest: TCRequestModel {
         /// 集群ID
@@ -59,5 +47,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除指定pod
+    @inlinable
+    public func deleteEdgeUnitPod(_ input: DeleteEdgeUnitPodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeUnitPodResponse > {
+        self.client.execute(action: "DeleteEdgeUnitPod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除指定pod
+    @inlinable
+    public func deleteEdgeUnitPod(_ input: DeleteEdgeUnitPodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitPodResponse {
+        try await self.client.execute(action: "DeleteEdgeUnitPod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

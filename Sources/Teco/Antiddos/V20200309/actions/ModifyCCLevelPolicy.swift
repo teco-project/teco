@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 修改CC的防护等级
-    ///
-    /// 修改CC防护等级
-    @inlinable
-    public func modifyCCLevelPolicy(_ input: ModifyCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCLevelPolicyResponse > {
-        self.client.execute(action: "ModifyCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改CC的防护等级
-    ///
-    /// 修改CC防护等级
-    @inlinable
-    public func modifyCCLevelPolicy(_ input: ModifyCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCLevelPolicyResponse {
-        try await self.client.execute(action: "ModifyCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCCLevelPolicy请求参数结构体
     public struct ModifyCCLevelPolicyRequest: TCRequestModel {
         /// 实例Id
@@ -73,5 +57,21 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改CC的防护等级
+    ///
+    /// 修改CC防护等级
+    @inlinable
+    public func modifyCCLevelPolicy(_ input: ModifyCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCLevelPolicyResponse > {
+        self.client.execute(action: "ModifyCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CC的防护等级
+    ///
+    /// 修改CC防护等级
+    @inlinable
+    public func modifyCCLevelPolicy(_ input: ModifyCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCLevelPolicyResponse {
+        try await self.client.execute(action: "ModifyCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

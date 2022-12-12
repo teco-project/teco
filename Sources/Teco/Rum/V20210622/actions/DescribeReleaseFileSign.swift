@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取存储临时密钥
-    ///
-    /// 获取上传文件存储的临时密钥
-    @inlinable
-    public func describeReleaseFileSign(_ input: DescribeReleaseFileSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReleaseFileSignResponse > {
-        self.client.execute(action: "DescribeReleaseFileSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取存储临时密钥
-    ///
-    /// 获取上传文件存储的临时密钥
-    @inlinable
-    public func describeReleaseFileSign(_ input: DescribeReleaseFileSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFileSignResponse {
-        try await self.client.execute(action: "DescribeReleaseFileSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReleaseFileSign请求参数结构体
     public struct DescribeReleaseFileSignRequest: TCRequestModel {
         /// 超时时间，不填默认是 5 分钟
         public let timeout: Int64?
         
-        public init (timeout: Int64?) {
+        public init (timeout: Int64? = nil) {
             self.timeout = timeout
         }
         
@@ -73,5 +57,21 @@ extension Rum {
             case expiredTime = "ExpiredTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取存储临时密钥
+    ///
+    /// 获取上传文件存储的临时密钥
+    @inlinable
+    public func describeReleaseFileSign(_ input: DescribeReleaseFileSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReleaseFileSignResponse > {
+        self.client.execute(action: "DescribeReleaseFileSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取存储临时密钥
+    ///
+    /// 获取上传文件存储的临时密钥
+    @inlinable
+    public func describeReleaseFileSign(_ input: DescribeReleaseFileSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFileSignResponse {
+        try await self.client.execute(action: "DescribeReleaseFileSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 拉取云存事件缩略图
-    @inlinable
-    public func describeCloudStorageThumbnail(_ input: DescribeCloudStorageThumbnailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStorageThumbnailResponse > {
-        self.client.execute(action: "DescribeCloudStorageThumbnail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取云存事件缩略图
-    @inlinable
-    public func describeCloudStorageThumbnail(_ input: DescribeCloudStorageThumbnailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageThumbnailResponse {
-        try await self.client.execute(action: "DescribeCloudStorageThumbnail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudStorageThumbnail请求参数结构体
     public struct DescribeCloudStorageThumbnailRequest: TCRequestModel {
         /// 产品ID
@@ -63,5 +51,17 @@ extension Iotvideo {
             case thumbnailURL = "ThumbnailURL"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取云存事件缩略图
+    @inlinable
+    public func describeCloudStorageThumbnail(_ input: DescribeCloudStorageThumbnailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStorageThumbnailResponse > {
+        self.client.execute(action: "DescribeCloudStorageThumbnail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取云存事件缩略图
+    @inlinable
+    public func describeCloudStorageThumbnail(_ input: DescribeCloudStorageThumbnailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageThumbnailResponse {
+        try await self.client.execute(action: "DescribeCloudStorageThumbnail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

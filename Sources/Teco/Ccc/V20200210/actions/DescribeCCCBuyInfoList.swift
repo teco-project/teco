@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 获取用户购买信息列表
-    @inlinable
-    public func describeCCCBuyInfoList(_ input: DescribeCCCBuyInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCCBuyInfoListResponse > {
-        self.client.execute(action: "DescribeCCCBuyInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户购买信息列表
-    @inlinable
-    public func describeCCCBuyInfoList(_ input: DescribeCCCBuyInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCCBuyInfoListResponse {
-        try await self.client.execute(action: "DescribeCCCBuyInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCCCBuyInfoList请求参数结构体
     public struct DescribeCCCBuyInfoListRequest: TCRequestModel {
         /// 应用ID列表，不传时查询所有应用
         public let sdkAppIds: [Int64]?
         
-        public init (sdkAppIds: [Int64]?) {
+        public init (sdkAppIds: [Int64]? = nil) {
             self.sdkAppIds = sdkAppIds
         }
         
@@ -61,5 +49,17 @@ extension Ccc {
             case packageBuyList = "PackageBuyList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户购买信息列表
+    @inlinable
+    public func describeCCCBuyInfoList(_ input: DescribeCCCBuyInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCCBuyInfoListResponse > {
+        self.client.execute(action: "DescribeCCCBuyInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户购买信息列表
+    @inlinable
+    public func describeCCCBuyInfoList(_ input: DescribeCCCBuyInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCCBuyInfoListResponse {
+        try await self.client.execute(action: "DescribeCCCBuyInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

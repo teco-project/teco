@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 断开直播推流
-    ///
-    /// 断开推流连接，但可以重新推流。
-    /// 注：对已经不活跃的流，调用该断流接口时，接口返回成功。
-    @inlinable
-    public func dropLiveStream(_ input: DropLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DropLiveStreamResponse > {
-        self.client.execute(action: "DropLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 断开直播推流
-    ///
-    /// 断开推流连接，但可以重新推流。
-    /// 注：对已经不活跃的流，调用该断流接口时，接口返回成功。
-    @inlinable
-    public func dropLiveStream(_ input: DropLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropLiveStreamResponse {
-        try await self.client.execute(action: "DropLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DropLiveStream请求参数结构体
     public struct DropLiveStreamRequest: TCRequestModel {
         /// 流名称。
@@ -65,5 +47,23 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 断开直播推流
+    ///
+    /// 断开推流连接，但可以重新推流。
+    /// 注：对已经不活跃的流，调用该断流接口时，接口返回成功。
+    @inlinable
+    public func dropLiveStream(_ input: DropLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DropLiveStreamResponse > {
+        self.client.execute(action: "DropLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 断开直播推流
+    ///
+    /// 断开推流连接，但可以重新推流。
+    /// 注：对已经不活跃的流，调用该断流接口时，接口返回成功。
+    @inlinable
+    public func dropLiveStream(_ input: DropLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropLiveStreamResponse {
+        try await self.client.execute(action: "DropLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询数据库价格
-    ///
-    /// 本接口(DescribeDBPrice)用于查询购买或续费云数据库实例的价格，支持查询按量计费或者包年包月的价格。可传入实例类型、购买时长、购买数量、内存大小、硬盘大小和可用区信息等来查询实例价格。可传入实例名称来查询实例续费价格。
-    /// 注意：对某个地域进行询价，请使用对应地域的接入点，接入点信息请参照 <a href="https://cloud.tencent.com/document/api/236/15832">服务地址</a> 文档。例如：对广州地域进行询价，请把请求发到：cdb.ap-guangzhou.tencentcloudapi.com。同理对上海地域询价，把请求发到：cdb.ap-shanghai.tencentcloudapi.com。
-    @inlinable
-    public func describeDBPrice(_ input: DescribeDBPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBPriceResponse > {
-        self.client.execute(action: "DescribeDBPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据库价格
-    ///
-    /// 本接口(DescribeDBPrice)用于查询购买或续费云数据库实例的价格，支持查询按量计费或者包年包月的价格。可传入实例类型、购买时长、购买数量、内存大小、硬盘大小和可用区信息等来查询实例价格。可传入实例名称来查询实例续费价格。
-    /// 注意：对某个地域进行询价，请使用对应地域的接入点，接入点信息请参照 <a href="https://cloud.tencent.com/document/api/236/15832">服务地址</a> 文档。例如：对广州地域进行询价，请把请求发到：cdb.ap-guangzhou.tencentcloudapi.com。同理对上海地域询价，把请求发到：cdb.ap-shanghai.tencentcloudapi.com。
-    @inlinable
-    public func describeDBPrice(_ input: DescribeDBPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBPriceResponse {
-        try await self.client.execute(action: "DescribeDBPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBPrice请求参数结构体
     public struct DescribeDBPriceRequest: TCRequestModel {
         /// 实例时长，单位：月，最小值 1，最大值为 36；查询按量计费价格时，该字段无效。
@@ -74,7 +56,7 @@ extension Cdb {
         /// 按量计费阶梯。仅PayType=HOUR_PAID有效，支持值包括：1，2，3。阶梯时长见https://cloud.tencent.com/document/product/236/18335。
         public let ladder: UInt64?
         
-        public init (period: Int64, zone: String?, goodsNum: Int64?, memory: Int64?, volume: Int64?, instanceRole: String?, payType: String?, protectMode: Int64?, deviceType: String?, instanceNodes: Int64?, cpu: Int64?, instanceId: String?, ladder: UInt64?) {
+        public init (period: Int64, zone: String? = nil, goodsNum: Int64? = nil, memory: Int64? = nil, volume: Int64? = nil, instanceRole: String? = nil, payType: String? = nil, protectMode: Int64? = nil, deviceType: String? = nil, instanceNodes: Int64? = nil, cpu: Int64? = nil, instanceId: String? = nil, ladder: UInt64? = nil) {
             self.period = period
             self.zone = zone
             self.goodsNum = goodsNum
@@ -127,5 +109,23 @@ extension Cdb {
             case currency = "Currency"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据库价格
+    ///
+    /// 本接口(DescribeDBPrice)用于查询购买或续费云数据库实例的价格，支持查询按量计费或者包年包月的价格。可传入实例类型、购买时长、购买数量、内存大小、硬盘大小和可用区信息等来查询实例价格。可传入实例名称来查询实例续费价格。
+    /// 注意：对某个地域进行询价，请使用对应地域的接入点，接入点信息请参照 <a href="https://cloud.tencent.com/document/api/236/15832">服务地址</a> 文档。例如：对广州地域进行询价，请把请求发到：cdb.ap-guangzhou.tencentcloudapi.com。同理对上海地域询价，把请求发到：cdb.ap-shanghai.tencentcloudapi.com。
+    @inlinable
+    public func describeDBPrice(_ input: DescribeDBPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBPriceResponse > {
+        self.client.execute(action: "DescribeDBPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库价格
+    ///
+    /// 本接口(DescribeDBPrice)用于查询购买或续费云数据库实例的价格，支持查询按量计费或者包年包月的价格。可传入实例类型、购买时长、购买数量、内存大小、硬盘大小和可用区信息等来查询实例价格。可传入实例名称来查询实例续费价格。
+    /// 注意：对某个地域进行询价，请使用对应地域的接入点，接入点信息请参照 <a href="https://cloud.tencent.com/document/api/236/15832">服务地址</a> 文档。例如：对广州地域进行询价，请把请求发到：cdb.ap-guangzhou.tencentcloudapi.com。同理对上海地域询价，把请求发到：cdb.ap-shanghai.tencentcloudapi.com。
+    @inlinable
+    public func describeDBPrice(_ input: DescribeDBPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBPriceResponse {
+        try await self.client.execute(action: "DescribeDBPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

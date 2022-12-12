@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取边缘节点信息
-    @inlinable
-    public func describeEdgeNode(_ input: DescribeEdgeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeNodeResponse > {
-        self.client.execute(action: "DescribeEdgeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取边缘节点信息
-    @inlinable
-    public func describeEdgeNode(_ input: DescribeEdgeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodeResponse {
-        try await self.client.execute(action: "DescribeEdgeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeNode请求参数结构体
     public struct DescribeEdgeNodeRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -81,7 +69,7 @@ extension Iecp {
         
         /// 节点资源信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let resource: EdgeNodeResourceInfo
+        public let resource: EdgeNodeResourceInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -98,5 +86,17 @@ extension Iecp {
             case resource = "Resource"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取边缘节点信息
+    @inlinable
+    public func describeEdgeNode(_ input: DescribeEdgeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeNodeResponse > {
+        self.client.execute(action: "DescribeEdgeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取边缘节点信息
+    @inlinable
+    public func describeEdgeNode(_ input: DescribeEdgeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodeResponse {
+        try await self.client.execute(action: "DescribeEdgeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

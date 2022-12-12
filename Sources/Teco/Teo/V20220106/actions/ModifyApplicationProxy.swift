@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改应用代理
-    @inlinable
-    public func modifyApplicationProxy(_ input: ModifyApplicationProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationProxyResponse > {
-        self.client.execute(action: "ModifyApplicationProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改应用代理
-    @inlinable
-    public func modifyApplicationProxy(_ input: ModifyApplicationProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyResponse {
-        try await self.client.execute(action: "ModifyApplicationProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyApplicationProxy请求参数结构体
     public struct ModifyApplicationProxyRequest: TCRequestModel {
         /// 站点ID。
@@ -54,9 +42,9 @@ extension Teo {
         public let proxyType: String?
         
         /// Ipv6访问配置，不填写保持原有配置。
-        public let ipv6: Ipv6Access
+        public let ipv6: Ipv6Access?
         
-        public init (zoneId: String, proxyId: String, proxyName: String, forwardClientIp: String, sessionPersist: Bool, sessionPersistTime: UInt64?, proxyType: String?, ipv6: Ipv6Access) {
+        public init (zoneId: String, proxyId: String, proxyName: String, forwardClientIp: String, sessionPersist: Bool, sessionPersistTime: UInt64? = nil, proxyType: String? = nil, ipv6: Ipv6Access? = nil) {
             self.zoneId = zoneId
             self.proxyId = proxyId
             self.proxyName = proxyName
@@ -91,5 +79,17 @@ extension Teo {
             case proxyId = "ProxyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改应用代理
+    @inlinable
+    public func modifyApplicationProxy(_ input: ModifyApplicationProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationProxyResponse > {
+        self.client.execute(action: "ModifyApplicationProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用代理
+    @inlinable
+    public func modifyApplicationProxy(_ input: ModifyApplicationProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyResponse {
+        try await self.client.execute(action: "ModifyApplicationProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

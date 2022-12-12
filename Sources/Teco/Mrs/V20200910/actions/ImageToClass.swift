@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mrs {
-    /// 图片分类接口
-    ///
-    /// 图片分类
-    @inlinable
-    public func imageToClass(_ input: ImageToClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImageToClassResponse > {
-        self.client.execute(action: "ImageToClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 图片分类接口
-    ///
-    /// 图片分类
-    @inlinable
-    public func imageToClass(_ input: ImageToClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToClassResponse {
-        try await self.client.execute(action: "ImageToClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ImageToClass请求参数结构体
     public struct ImageToClassRequest: TCRequestModel {
         /// 图片列表，允许传入多张图片，支持传入图片的base64编码，暂不支持图片url
@@ -45,7 +29,7 @@ extension Mrs {
         /// 用户类型，新客户传1，老客户可不传
         public let userType: UInt64?
         
-        public init (imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, userType: UInt64?) {
+        public init (imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, userType: UInt64? = nil) {
             self.imageInfoList = imageInfoList
             self.handleParam = handleParam
             self.type = type
@@ -73,5 +57,21 @@ extension Mrs {
             case textTypeList = "TextTypeList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 图片分类接口
+    ///
+    /// 图片分类
+    @inlinable
+    public func imageToClass(_ input: ImageToClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImageToClassResponse > {
+        self.client.execute(action: "ImageToClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 图片分类接口
+    ///
+    /// 图片分类
+    @inlinable
+    public func imageToClass(_ input: ImageToClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToClassResponse {
+        try await self.client.execute(action: "ImageToClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

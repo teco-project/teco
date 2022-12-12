@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 创建Topic
-    ///
-    /// 本接口（CreateTopicPolicy）用于创建一个Topic 
-    @inlinable
-    public func createTopicPolicy(_ input: CreateTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicPolicyResponse > {
-        self.client.execute(action: "CreateTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建Topic
-    ///
-    /// 本接口（CreateTopicPolicy）用于创建一个Topic 
-    @inlinable
-    public func createTopicPolicy(_ input: CreateTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicPolicyResponse {
-        try await self.client.execute(action: "CreateTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTopicPolicy请求参数结构体
     public struct CreateTopicPolicyRequest: TCRequestModel {
         /// 产品自身ID
@@ -43,9 +27,9 @@ extension Iotcloud {
         public let privilege: UInt64
         
         /// 代理订阅信息，网关产品为绑定的子产品创建topic时需要填写，内容为子产品的ID和设备信息。
-        public let brokerSubscribe: BrokerSubscribe
+        public let brokerSubscribe: BrokerSubscribe?
         
-        public init (productId: String, topicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe) {
+        public init (productId: String, topicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil) {
             self.productId = productId
             self.topicName = topicName
             self.privilege = privilege
@@ -68,5 +52,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建Topic
+    ///
+    /// 本接口（CreateTopicPolicy）用于创建一个Topic 
+    @inlinable
+    public func createTopicPolicy(_ input: CreateTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicPolicyResponse > {
+        self.client.execute(action: "CreateTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建Topic
+    ///
+    /// 本接口（CreateTopicPolicy）用于创建一个Topic 
+    @inlinable
+    public func createTopicPolicy(_ input: CreateTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicPolicyResponse {
+        try await self.client.execute(action: "CreateTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

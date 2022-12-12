@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 修改顾客特征信息
-    ///
-    /// 支持修改黑白名单类型的顾客特征
-    @inlinable
-    public func modifyPersonFeatureInfo(_ input: ModifyPersonFeatureInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonFeatureInfoResponse > {
-        self.client.execute(action: "ModifyPersonFeatureInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改顾客特征信息
-    ///
-    /// 支持修改黑白名单类型的顾客特征
-    @inlinable
-    public func modifyPersonFeatureInfo(_ input: ModifyPersonFeatureInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonFeatureInfoResponse {
-        try await self.client.execute(action: "ModifyPersonFeatureInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPersonFeatureInfo请求参数结构体
     public struct ModifyPersonFeatureInfoRequest: TCRequestModel {
         /// 集团ID
@@ -51,7 +35,7 @@ extension Youmall {
         /// 店铺ID，如果不填表示操作集团身份库
         public let shopId: Int64?
         
-        public init (companyId: String, personId: Int64, picture: String, pictureName: String, personType: Int64, shopId: Int64?) {
+        public init (companyId: String, personId: Int64, picture: String, pictureName: String, personType: Int64, shopId: Int64? = nil) {
             self.companyId = companyId
             self.personId = personId
             self.picture = picture
@@ -102,5 +86,21 @@ extension Youmall {
             case similarPersonIds = "SimilarPersonIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改顾客特征信息
+    ///
+    /// 支持修改黑白名单类型的顾客特征
+    @inlinable
+    public func modifyPersonFeatureInfo(_ input: ModifyPersonFeatureInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonFeatureInfoResponse > {
+        self.client.execute(action: "ModifyPersonFeatureInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改顾客特征信息
+    ///
+    /// 支持修改黑白名单类型的顾客特征
+    @inlinable
+    public func modifyPersonFeatureInfo(_ input: ModifyPersonFeatureInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonFeatureInfoResponse {
+        try await self.client.execute(action: "ModifyPersonFeatureInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

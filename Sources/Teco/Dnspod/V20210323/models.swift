@@ -50,7 +50,7 @@ extension Dnspod {
         /// 记录备注(暂未支持)。
         public let remark: String?
         
-        public init (recordType: String, value: String, subDomain: String?, recordLine: String?, recordLineId: String?, weight: UInt64?, mx: UInt64?, ttl: UInt64?, enabled: UInt64?, remark: String?) {
+        public init (recordType: String, value: String, subDomain: String? = nil, recordLine: String? = nil, recordLineId: String? = nil, weight: UInt64? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, enabled: UInt64? = nil, remark: String? = nil) {
             self.recordType = recordType
             self.value = value
             self.subDomain = subDomain
@@ -790,7 +790,7 @@ extension Dnspod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
         
-        public init (key: String, value: String?) {
+        public init (key: String, value: String? = nil) {
             self.key = key
             self.value = value
         }
@@ -1179,7 +1179,7 @@ extension Dnspod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mx: String?
         
-        public init (subDomain: String, recordType: String, recordLine: String, value: String, ttl: String, recordId: String?, mx: String?) {
+        public init (subDomain: String, recordType: String, recordLine: String, value: String, ttl: String, recordId: String? = nil, mx: String? = nil) {
             self.subDomain = subDomain
             self.recordType = recordType
             self.recordLine = recordLine

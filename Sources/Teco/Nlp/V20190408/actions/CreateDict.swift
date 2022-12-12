@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Nlp {
-    /// 创建自定义词库
-    ///
-    /// 根据指定的名称、描述创建自定义词库。
-    @inlinable
-    public func createDict(_ input: CreateDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDictResponse > {
-        self.client.execute(action: "CreateDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建自定义词库
-    ///
-    /// 根据指定的名称、描述创建自定义词库。
-    @inlinable
-    public func createDict(_ input: CreateDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDictResponse {
-        try await self.client.execute(action: "CreateDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDict请求参数结构体
     public struct CreateDictRequest: TCRequestModel {
         /// 自定义词库名称，不超过20字。
@@ -39,7 +23,7 @@ extension Nlp {
         /// 自定义词库描述，不超过100字。
         public let description: String?
         
-        public init (name: String, description: String?) {
+        public init (name: String, description: String? = nil) {
             self.name = name
             self.description = description
         }
@@ -63,5 +47,21 @@ extension Nlp {
             case dictId = "DictId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建自定义词库
+    ///
+    /// 根据指定的名称、描述创建自定义词库。
+    @inlinable
+    public func createDict(_ input: CreateDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDictResponse > {
+        self.client.execute(action: "CreateDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建自定义词库
+    ///
+    /// 根据指定的名称、描述创建自定义词库。
+    @inlinable
+    public func createDict(_ input: CreateDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDictResponse {
+        try await self.client.execute(action: "CreateDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

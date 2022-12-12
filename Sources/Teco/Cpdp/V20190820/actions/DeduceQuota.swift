@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 直播平台-扣减额度
-    @inlinable
-    public func deduceQuota(_ input: DeduceQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeduceQuotaResponse > {
-        self.client.execute(action: "DeduceQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播平台-扣减额度
-    @inlinable
-    public func deduceQuota(_ input: DeduceQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeduceQuotaResponse {
-        try await self.client.execute(action: "DeduceQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeduceQuota请求参数结构体
     public struct DeduceQuotaRequest: TCRequestModel {
         /// 主播ID
@@ -61,7 +49,7 @@ extension Cpdp {
         
         /// 返回响应
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: AssignmentData
+        public let result: AssignmentData?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -72,5 +60,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播平台-扣减额度
+    @inlinable
+    public func deduceQuota(_ input: DeduceQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeduceQuotaResponse > {
+        self.client.execute(action: "DeduceQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-扣减额度
+    @inlinable
+    public func deduceQuota(_ input: DeduceQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeduceQuotaResponse {
+        try await self.client.execute(action: "DeduceQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

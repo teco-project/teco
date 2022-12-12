@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Nlp {
-    /// 关键词提取
-    ///
-    /// 基于关键词提取平台，通过对文本内容进行深度分析，提取出文本内容中的关键信息，为用户实现诸如新闻内容关键词自动提取、评论关键词提取等提供基础服务。
-    @inlinable
-    public func keywordsExtraction(_ input: KeywordsExtractionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < KeywordsExtractionResponse > {
-        self.client.execute(action: "KeywordsExtraction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关键词提取
-    ///
-    /// 基于关键词提取平台，通过对文本内容进行深度分析，提取出文本内容中的关键信息，为用户实现诸如新闻内容关键词自动提取、评论关键词提取等提供基础服务。
-    @inlinable
-    public func keywordsExtraction(_ input: KeywordsExtractionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KeywordsExtractionResponse {
-        try await self.client.execute(action: "KeywordsExtraction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// KeywordsExtraction请求参数结构体
     public struct KeywordsExtractionRequest: TCRequestModel {
         /// 待处理的文本（仅支持UTF-8格式，不超过10000字符）
@@ -39,7 +23,7 @@ extension Nlp {
         /// 指定关键词个数上限（默认值为5）
         public let num: UInt64?
         
-        public init (text: String, num: UInt64?) {
+        public init (text: String, num: UInt64? = nil) {
             self.text = text
             self.num = num
         }
@@ -63,5 +47,21 @@ extension Nlp {
             case keywords = "Keywords"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关键词提取
+    ///
+    /// 基于关键词提取平台，通过对文本内容进行深度分析，提取出文本内容中的关键信息，为用户实现诸如新闻内容关键词自动提取、评论关键词提取等提供基础服务。
+    @inlinable
+    public func keywordsExtraction(_ input: KeywordsExtractionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < KeywordsExtractionResponse > {
+        self.client.execute(action: "KeywordsExtraction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关键词提取
+    ///
+    /// 基于关键词提取平台，通过对文本内容进行深度分析，提取出文本内容中的关键信息，为用户实现诸如新闻内容关键词自动提取、评论关键词提取等提供基础服务。
+    @inlinable
+    public func keywordsExtraction(_ input: KeywordsExtractionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KeywordsExtractionResponse {
+        try await self.client.execute(action: "KeywordsExtraction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 创建清除缓存任务
-    @inlinable
-    public func createPurgeTask(_ input: CreatePurgeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePurgeTaskResponse > {
-        self.client.execute(action: "CreatePurgeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建清除缓存任务
-    @inlinable
-    public func createPurgeTask(_ input: CreatePurgeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {
-        try await self.client.execute(action: "CreatePurgeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePurgeTask请求参数结构体
     public struct CreatePurgeTaskRequest: TCRequestModel {
         /// Zone ID
@@ -54,7 +42,7 @@ extension Teo {
         /// 若内容含有非 ASCII 字符集的字符，请开启此开关，编码转换（编码规则遵循 RFC3986）
         public let encodeUrl: Bool?
         
-        public init (zoneId: String, type: String, targets: [String]?, encodeUrl: Bool?) {
+        public init (zoneId: String, type: String, targets: [String]? = nil, encodeUrl: Bool? = nil) {
             self.zoneId = zoneId
             self.type = type
             self.targets = targets
@@ -86,5 +74,17 @@ extension Teo {
             case failedList = "FailedList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建清除缓存任务
+    @inlinable
+    public func createPurgeTask(_ input: CreatePurgeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePurgeTaskResponse > {
+        self.client.execute(action: "CreatePurgeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建清除缓存任务
+    @inlinable
+    public func createPurgeTask(_ input: CreatePurgeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {
+        try await self.client.execute(action: "CreatePurgeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssm {
-    /// 获取凭据详细信息
-    ///
-    /// 获取凭据的详细属性信息。
-    @inlinable
-    public func describeSecret(_ input: DescribeSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecretResponse > {
-        self.client.execute(action: "DescribeSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取凭据详细信息
-    ///
-    /// 获取凭据的详细属性信息。
-    @inlinable
-    public func describeSecret(_ input: DescribeSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretResponse {
-        try await self.client.execute(action: "DescribeSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecret请求参数结构体
     public struct DescribeSecretRequest: TCRequestModel {
         /// 指定需要获取凭据详细信息的凭据名称。
@@ -126,5 +110,21 @@ extension Ssm {
             case targetUin = "TargetUin"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取凭据详细信息
+    ///
+    /// 获取凭据的详细属性信息。
+    @inlinable
+    public func describeSecret(_ input: DescribeSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecretResponse > {
+        self.client.execute(action: "DescribeSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取凭据详细信息
+    ///
+    /// 获取凭据的详细属性信息。
+    @inlinable
+    public func describeSecret(_ input: DescribeSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretResponse {
+        try await self.client.execute(action: "DescribeSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ms {
-    /// 查询加固结果
-    ///
-    /// 通过唯一标识获取加固的结果。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
-    @inlinable
-    public func describeShieldResult(_ input: DescribeShieldResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShieldResultResponse > {
-        self.client.execute(action: "DescribeShieldResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询加固结果
-    ///
-    /// 通过唯一标识获取加固的结果。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
-    @inlinable
-    public func describeShieldResult(_ input: DescribeShieldResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShieldResultResponse {
-        try await self.client.execute(action: "DescribeShieldResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeShieldResult请求参数结构体
     public struct DescribeShieldResultRequest: TCRequestModel {
         /// 任务唯一标识
@@ -73,5 +57,21 @@ extension Ms {
             case statusRef = "StatusRef"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询加固结果
+    ///
+    /// 通过唯一标识获取加固的结果。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    @inlinable
+    public func describeShieldResult(_ input: DescribeShieldResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShieldResultResponse > {
+        self.client.execute(action: "DescribeShieldResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询加固结果
+    ///
+    /// 通过唯一标识获取加固的结果。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    @inlinable
+    public func describeShieldResult(_ input: DescribeShieldResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShieldResultResponse {
+        try await self.client.execute(action: "DescribeShieldResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

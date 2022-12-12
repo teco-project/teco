@@ -15,6 +15,55 @@
 // DO NOT EDIT.
 
 extension Ams {
+    /// CreateAudioModerationTask请求参数结构体
+    public struct CreateAudioModerationTaskRequest: TCRequestModel {
+        /// 业务类型, 定义 模版策略，输出存储配置。如果没有BizType，可以先参考 【创建业务配置】接口进行创建
+        public let bizType: String?
+        
+        /// 审核类型，这里可选：AUDIO (点播音频)和 LIVE_AUDIO（直播音频）
+        public let type: String?
+        
+        /// 回调签名key，具体可以查看签名文档。
+        public let seed: String?
+        
+        /// 接收审核信息回调地址，如果设置，则审核过程中产生的违规音频片段和画面截帧发送此接口
+        public let callbackUrl: String?
+        
+        /// 输入的任务信息，最多可以同时创建10个任务
+        public let tasks: [TaskInput]?
+        
+        public init (bizType: String? = nil, type: String? = nil, seed: String? = nil, callbackUrl: String? = nil, tasks: [TaskInput]? = nil) {
+            self.bizType = bizType
+            self.type = type
+            self.seed = seed
+            self.callbackUrl = callbackUrl
+            self.tasks = tasks
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case bizType = "BizType"
+            case type = "Type"
+            case seed = "Seed"
+            case callbackUrl = "CallbackUrl"
+            case tasks = "Tasks"
+        }
+    }
+    
+    /// CreateAudioModerationTask返回参数结构体
+    public struct CreateAudioModerationTaskResponse: TCResponseModel {
+        /// 任务创建结果
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let results: [TaskResult]?
+        
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case results = "Results"
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 创建音频审核任务
     ///
     /// 本接口（Audio Moderation）用于提交音频内容（包括音频文件或流地址）进行智能审核任务，使用前请您登陆控制台开通音频内容安全服务。
@@ -67,54 +116,5 @@ extension Ams {
     @inlinable
     public func createAudioModerationTask(_ input: CreateAudioModerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioModerationTaskResponse {
         try await self.client.execute(action: "CreateAudioModerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// CreateAudioModerationTask请求参数结构体
-    public struct CreateAudioModerationTaskRequest: TCRequestModel {
-        /// 业务类型, 定义 模版策略，输出存储配置。如果没有BizType，可以先参考 【创建业务配置】接口进行创建
-        public let bizType: String?
-        
-        /// 审核类型，这里可选：AUDIO (点播音频)和 LIVE_AUDIO（直播音频）
-        public let type: String?
-        
-        /// 回调签名key，具体可以查看签名文档。
-        public let seed: String?
-        
-        /// 接收审核信息回调地址，如果设置，则审核过程中产生的违规音频片段和画面截帧发送此接口
-        public let callbackUrl: String?
-        
-        /// 输入的任务信息，最多可以同时创建10个任务
-        public let tasks: [TaskInput]?
-        
-        public init (bizType: String?, type: String?, seed: String?, callbackUrl: String?, tasks: [TaskInput]?) {
-            self.bizType = bizType
-            self.type = type
-            self.seed = seed
-            self.callbackUrl = callbackUrl
-            self.tasks = tasks
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case bizType = "BizType"
-            case type = "Type"
-            case seed = "Seed"
-            case callbackUrl = "CallbackUrl"
-            case tasks = "Tasks"
-        }
-    }
-    
-    /// CreateAudioModerationTask返回参数结构体
-    public struct CreateAudioModerationTaskResponse: TCResponseModel {
-        /// 任务创建结果
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let results: [TaskResult]?
-        
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case results = "Results"
-            case requestId = "RequestId"
-        }
     }
 }

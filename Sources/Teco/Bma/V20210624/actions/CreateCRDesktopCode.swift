@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 新建过程取证码
-    @inlinable
-    public func createCRDesktopCode(_ input: CreateCRDesktopCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRDesktopCodeResponse > {
-        self.client.execute(action: "CreateCRDesktopCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建过程取证码
-    @inlinable
-    public func createCRDesktopCode(_ input: CreateCRDesktopCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRDesktopCodeResponse {
-        try await self.client.execute(action: "CreateCRDesktopCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCRDesktopCode请求参数结构体
     public struct CreateCRDesktopCodeRequest: TCRequestModel {
         /// xxx
@@ -54,5 +42,17 @@ extension Bma {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建过程取证码
+    @inlinable
+    public func createCRDesktopCode(_ input: CreateCRDesktopCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRDesktopCodeResponse > {
+        self.client.execute(action: "CreateCRDesktopCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建过程取证码
+    @inlinable
+    public func createCRDesktopCode(_ input: CreateCRDesktopCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRDesktopCodeResponse {
+        try await self.client.execute(action: "CreateCRDesktopCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

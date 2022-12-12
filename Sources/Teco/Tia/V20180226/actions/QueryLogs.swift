@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tia {
-    /// 查询日志
-    ///
-    /// 查询 TI-A 训练任务的日志
-    @inlinable
-    public func queryLogs(_ input: QueryLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryLogsResponse > {
-        self.client.execute(action: "QueryLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询日志
-    ///
-    /// 查询 TI-A 训练任务的日志
-    @inlinable
-    public func queryLogs(_ input: QueryLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLogsResponse {
-        try await self.client.execute(action: "QueryLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryLogs请求参数结构体
     public struct QueryLogsRequest: TCRequestModel {
         /// 任务的名称
@@ -51,7 +35,7 @@ extension Tia {
         /// 加载更多日志时使用，透传上次返回的 Context 值，获取后续的日志内容；使用 Context 翻页最多能获取 10000 条日志
         public let context: String?
         
-        public init (jobName: String, cluster: String, startTime: String, endTime: String, limit: UInt64, context: String?) {
+        public init (jobName: String, cluster: String, startTime: String, endTime: String, limit: UInt64, context: String? = nil) {
             self.jobName = jobName
             self.cluster = cluster
             self.startTime = startTime
@@ -90,5 +74,21 @@ extension Tia {
             case listover = "Listover"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询日志
+    ///
+    /// 查询 TI-A 训练任务的日志
+    @inlinable
+    public func queryLogs(_ input: QueryLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryLogsResponse > {
+        self.client.execute(action: "QueryLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询日志
+    ///
+    /// 查询 TI-A 训练任务的日志
+    @inlinable
+    public func queryLogs(_ input: QueryLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLogsResponse {
+        try await self.client.execute(action: "QueryLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

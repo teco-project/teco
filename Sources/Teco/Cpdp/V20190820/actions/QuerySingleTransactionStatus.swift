@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-查询银行单笔交易状态
-    ///
-    /// 查询银行单笔交易状态。查询单笔交易的状态。
-    @inlinable
-    public func querySingleTransactionStatus(_ input: QuerySingleTransactionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QuerySingleTransactionStatusResponse > {
-        self.client.execute(action: "QuerySingleTransactionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-查询银行单笔交易状态
-    ///
-    /// 查询银行单笔交易状态。查询单笔交易的状态。
-    @inlinable
-    public func querySingleTransactionStatus(_ input: QuerySingleTransactionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuerySingleTransactionStatusResponse {
-        try await self.client.execute(action: "QuerySingleTransactionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QuerySingleTransactionStatus请求参数结构体
     public struct QuerySingleTransactionStatusRequest: TCRequestModel {
         /// String(22)，商户号（签约客户号）
@@ -54,7 +38,7 @@ extension Cpdp {
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
         
-        public init (mrchCode: String, functionFlag: String, tranNetSeqNo: String, subAcctNo: String?, tranDate: String?, reservedMsg: String?, profile: String?) {
+        public init (mrchCode: String, functionFlag: String, tranNetSeqNo: String, subAcctNo: String? = nil, tranDate: String? = nil, reservedMsg: String? = nil, profile: String? = nil) {
             self.mrchCode = mrchCode
             self.functionFlag = functionFlag
             self.tranNetSeqNo = tranNetSeqNo
@@ -140,5 +124,21 @@ extension Cpdp {
             case oldTranFrontSeqNo = "OldTranFrontSeqNo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-查询银行单笔交易状态
+    ///
+    /// 查询银行单笔交易状态。查询单笔交易的状态。
+    @inlinable
+    public func querySingleTransactionStatus(_ input: QuerySingleTransactionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QuerySingleTransactionStatusResponse > {
+        self.client.execute(action: "QuerySingleTransactionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-查询银行单笔交易状态
+    ///
+    /// 查询银行单笔交易状态。查询单笔交易的状态。
+    @inlinable
+    public func querySingleTransactionStatus(_ input: QuerySingleTransactionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuerySingleTransactionStatusResponse {
+        try await self.client.execute(action: "QuerySingleTransactionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

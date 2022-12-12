@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Ivld {
-    /// 创建自定义人物
-    ///
-    /// 创建自定义人物。
-    /// 输入人物名称，基本信息，分类信息与人脸图片，创建自定义人物
-    /// 人脸图片可使用图片数据(base64编码的图片数据)或者图片URL(推荐使用COS以减少下载时间，其他地址也支持)，原始图片优先，也即如果同时指定了图片数据和图片URL，接口将仅使用图片数据
-    @inlinable
-    public func createCustomPerson(_ input: CreateCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomPersonResponse > {
-        self.client.execute(action: "CreateCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建自定义人物
-    ///
-    /// 创建自定义人物。
-    /// 输入人物名称，基本信息，分类信息与人脸图片，创建自定义人物
-    /// 人脸图片可使用图片数据(base64编码的图片数据)或者图片URL(推荐使用COS以减少下载时间，其他地址也支持)，原始图片优先，也即如果同时指定了图片数据和图片URL，接口将仅使用图片数据
-    @inlinable
-    public func createCustomPerson(_ input: CreateCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPersonResponse {
-        try await self.client.execute(action: "CreateCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCustomPerson请求参数结构体
     public struct CreateCustomPersonRequest: TCRequestModel {
         /// 自定义人物姓名
@@ -52,7 +32,7 @@ extension Ivld {
         /// 原始图片base64编码后的数据
         public let image: String?
         
-        public init (name: String, basicInfo: String, categoryId: String, imageURL: String?, image: String?) {
+        public init (name: String, basicInfo: String, categoryId: String, imageURL: String? = nil, image: String? = nil) {
             self.name = name
             self.basicInfo = basicInfo
             self.categoryId = categoryId
@@ -85,5 +65,25 @@ extension Ivld {
             case imageInfo = "ImageInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建自定义人物
+    ///
+    /// 创建自定义人物。
+    /// 输入人物名称，基本信息，分类信息与人脸图片，创建自定义人物
+    /// 人脸图片可使用图片数据(base64编码的图片数据)或者图片URL(推荐使用COS以减少下载时间，其他地址也支持)，原始图片优先，也即如果同时指定了图片数据和图片URL，接口将仅使用图片数据
+    @inlinable
+    public func createCustomPerson(_ input: CreateCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomPersonResponse > {
+        self.client.execute(action: "CreateCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建自定义人物
+    ///
+    /// 创建自定义人物。
+    /// 输入人物名称，基本信息，分类信息与人脸图片，创建自定义人物
+    /// 人脸图片可使用图片数据(base64编码的图片数据)或者图片URL(推荐使用COS以减少下载时间，其他地址也支持)，原始图片优先，也即如果同时指定了图片数据和图片URL，接口将仅使用图片数据
+    @inlinable
+    public func createCustomPerson(_ input: CreateCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPersonResponse {
+        try await self.client.execute(action: "CreateCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

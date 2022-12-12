@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 开启或关闭DDoS防护
-    ///
-    /// 开启或关闭DDoS防护，只支持基础防护产品；
-    @inlinable
-    public func modifyDDoSSwitch(_ input: ModifyDDoSSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSSwitchResponse > {
-        self.client.execute(action: "ModifyDDoSSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启或关闭DDoS防护
-    ///
-    /// 开启或关闭DDoS防护，只支持基础防护产品；
-    @inlinable
-    public func modifyDDoSSwitch(_ input: ModifyDDoSSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSSwitchResponse {
-        try await self.client.execute(action: "ModifyDDoSSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDDoSSwitch请求参数结构体
     public struct ModifyDDoSSwitchRequest: TCRequestModel {
         /// 大禹子产品代号（basic表示基础防护）
@@ -79,7 +63,7 @@ extension Dayu {
         /// 可选字段，防护状态值，取值[0（关闭），1（开启）]；当Method为get时可以不填写此字段；
         public let status: UInt64?
         
-        public init (business: String, method: String, ip: String?, bizType: String?, deviceType: String?, instanceId: String?, ipRegion: String?, status: UInt64?) {
+        public init (business: String, method: String, ip: String? = nil, bizType: String? = nil, deviceType: String? = nil, instanceId: String? = nil, ipRegion: String? = nil, status: UInt64? = nil) {
             self.business = business
             self.method = method
             self.ip = ip
@@ -114,5 +98,21 @@ extension Dayu {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启或关闭DDoS防护
+    ///
+    /// 开启或关闭DDoS防护，只支持基础防护产品；
+    @inlinable
+    public func modifyDDoSSwitch(_ input: ModifyDDoSSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSSwitchResponse > {
+        self.client.execute(action: "ModifyDDoSSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启或关闭DDoS防护
+    ///
+    /// 开启或关闭DDoS防护，只支持基础防护产品；
+    @inlinable
+    public func modifyDDoSSwitch(_ input: ModifyDDoSSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSSwitchResponse {
+        try await self.client.execute(action: "ModifyDDoSSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

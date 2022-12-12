@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云-主播入驻
-    @inlinable
-    public func createExternalAnchor(_ input: CreateExternalAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExternalAnchorResponse > {
-        self.client.execute(action: "CreateExternalAnchor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云-主播入驻
-    @inlinable
-    public func createExternalAnchor(_ input: CreateExternalAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExternalAnchorResponse {
-        try await self.client.execute(action: "CreateExternalAnchor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateExternalAnchor请求参数结构体
     public struct CreateExternalAnchorRequest: TCRequestModel {
         /// 平台业务系统唯一标示的主播id
@@ -47,7 +35,7 @@ extension Cpdp {
         /// 指定分配的代理商ID
         public let agentId: String?
         
-        public init (uid: String, name: String, idNo: String, idCardFront: String?, idCardReverse: String?, agentId: String?) {
+        public init (uid: String, name: String, idNo: String, idCardFront: String? = nil, idCardReverse: String? = nil, agentId: String? = nil) {
             self.uid = uid
             self.name = name
             self.idNo = idNo
@@ -76,7 +64,7 @@ extension Cpdp {
         
         /// 返回响应
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: CreateExternalAnchorData
+        public let result: CreateExternalAnchorData?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -87,5 +75,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云-主播入驻
+    @inlinable
+    public func createExternalAnchor(_ input: CreateExternalAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateExternalAnchorResponse > {
+        self.client.execute(action: "CreateExternalAnchor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云-主播入驻
+    @inlinable
+    public func createExternalAnchor(_ input: CreateExternalAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExternalAnchorResponse {
+        try await self.client.execute(action: "CreateExternalAnchor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

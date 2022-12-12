@@ -17,24 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Mps {
-    /// 修改内容分析模板
-    ///
-    /// 修改用户自定义内容分析模板。
-    /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
-    @inlinable
-    public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAIAnalysisTemplateResponse > {
-        self.client.execute(action: "ModifyAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改内容分析模板
-    ///
-    /// 修改用户自定义内容分析模板。
-    /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
-    @inlinable
-    public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIAnalysisTemplateResponse {
-        try await self.client.execute(action: "ModifyAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAIAnalysisTemplate请求参数结构体
     public struct ModifyAIAnalysisTemplateRequest: TCRequestModel {
         /// 视频内容分析模板唯一标识。
@@ -47,18 +29,18 @@ extension Mps {
         public let comment: String?
         
         /// 智能分类任务控制参数。
-        public let classificationConfigure: ClassificationConfigureInfoForUpdate
+        public let classificationConfigure: ClassificationConfigureInfoForUpdate?
         
         /// 智能标签任务控制参数。
-        public let tagConfigure: TagConfigureInfoForUpdate
+        public let tagConfigure: TagConfigureInfoForUpdate?
         
         /// 智能封面任务控制参数。
-        public let coverConfigure: CoverConfigureInfoForUpdate
+        public let coverConfigure: CoverConfigureInfoForUpdate?
         
         /// 智能按帧标签任务控制参数。
-        public let frameTagConfigure: FrameTagConfigureInfoForUpdate
+        public let frameTagConfigure: FrameTagConfigureInfoForUpdate?
         
-        public init (definition: Int64, name: String?, comment: String?, classificationConfigure: ClassificationConfigureInfoForUpdate, tagConfigure: TagConfigureInfoForUpdate, coverConfigure: CoverConfigureInfoForUpdate, frameTagConfigure: FrameTagConfigureInfoForUpdate) {
+        public init (definition: Int64, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfoForUpdate? = nil, tagConfigure: TagConfigureInfoForUpdate? = nil, coverConfigure: CoverConfigureInfoForUpdate? = nil, frameTagConfigure: FrameTagConfigureInfoForUpdate? = nil) {
             self.definition = definition
             self.name = name
             self.comment = comment
@@ -87,5 +69,23 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改内容分析模板
+    ///
+    /// 修改用户自定义内容分析模板。
+    /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
+    @inlinable
+    public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAIAnalysisTemplateResponse > {
+        self.client.execute(action: "ModifyAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改内容分析模板
+    ///
+    /// 修改用户自定义内容分析模板。
+    /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
+    @inlinable
+    public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIAnalysisTemplateResponse {
+        try await self.client.execute(action: "ModifyAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 修改任务告警规则
-    @inlinable
-    public func modifyTaskAlarmRegular(_ input: ModifyTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskAlarmRegularResponse > {
-        self.client.execute(action: "ModifyTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改任务告警规则
-    @inlinable
-    public func modifyTaskAlarmRegular(_ input: ModifyTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskAlarmRegularResponse {
-        try await self.client.execute(action: "ModifyTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTaskAlarmRegular请求参数结构体
     public struct ModifyTaskAlarmRegularRequest: TCRequestModel {
         /// 主键ID
@@ -64,5 +52,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改任务告警规则
+    @inlinable
+    public func modifyTaskAlarmRegular(_ input: ModifyTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskAlarmRegularResponse > {
+        self.client.execute(action: "ModifyTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改任务告警规则
+    @inlinable
+    public func modifyTaskAlarmRegular(_ input: ModifyTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskAlarmRegularResponse {
+        try await self.client.execute(action: "ModifyTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 获取自定义多因子Token关联信息
-    @inlinable
-    public func getCustomMFATokenInfo(_ input: GetCustomMFATokenInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCustomMFATokenInfoResponse > {
-        self.client.execute(action: "GetCustomMFATokenInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取自定义多因子Token关联信息
-    @inlinable
-    public func getCustomMFATokenInfo(_ input: GetCustomMFATokenInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomMFATokenInfoResponse {
-        try await self.client.execute(action: "GetCustomMFATokenInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetCustomMFATokenInfo请求参数结构体
     public struct GetCustomMFATokenInfoRequest: TCRequestModel {
         /// 自定义多因子验证Token
@@ -53,5 +41,17 @@ extension Cam {
             case uin = "Uin"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取自定义多因子Token关联信息
+    @inlinable
+    public func getCustomMFATokenInfo(_ input: GetCustomMFATokenInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCustomMFATokenInfoResponse > {
+        self.client.execute(action: "GetCustomMFATokenInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取自定义多因子Token关联信息
+    @inlinable
+    public func getCustomMFATokenInfo(_ input: GetCustomMFATokenInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomMFATokenInfoResponse {
+        try await self.client.execute(action: "GetCustomMFATokenInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

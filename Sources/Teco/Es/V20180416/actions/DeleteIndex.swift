@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 删除索引
-    @inlinable
-    public func deleteIndex(_ input: DeleteIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIndexResponse > {
-        self.client.execute(action: "DeleteIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除索引
-    @inlinable
-    public func deleteIndex(_ input: DeleteIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
-        try await self.client.execute(action: "DeleteIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteIndex请求参数结构体
     public struct DeleteIndexRequest: TCRequestModel {
         /// ES集群ID
@@ -47,7 +35,7 @@ extension Es {
         /// 后备索引名
         public let backingIndexName: String?
         
-        public init (instanceId: String, indexType: String, indexName: String, username: String?, password: String?, backingIndexName: String?) {
+        public init (instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, backingIndexName: String? = nil) {
             self.instanceId = instanceId
             self.indexType = indexType
             self.indexName = indexName
@@ -74,5 +62,17 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除索引
+    @inlinable
+    public func deleteIndex(_ input: DeleteIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIndexResponse > {
+        self.client.execute(action: "DeleteIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除索引
+    @inlinable
+    public func deleteIndex(_ input: DeleteIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
+        try await self.client.execute(action: "DeleteIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

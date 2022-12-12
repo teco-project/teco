@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 更新机构节点
-    ///
-    /// 新建一个机构节点，
-    @inlinable
-    public func updateOrgNode(_ input: UpdateOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateOrgNodeResponse > {
-        self.client.execute(action: "UpdateOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新机构节点
-    ///
-    /// 新建一个机构节点，
-    @inlinable
-    public func updateOrgNode(_ input: UpdateOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrgNodeResponse {
-        try await self.client.execute(action: "UpdateOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateOrgNode请求参数结构体
     public struct UpdateOrgNodeRequest: TCRequestModel {
         /// 机构节点ID，是机构节点的全局唯一标识。
@@ -45,7 +29,7 @@ extension Eiam {
         /// 机构代码。如果非空则校验此ID的唯一性。
         public let customizedOrgNodeId: String?
         
-        public init (orgNodeId: String, displayName: String, description: String?, customizedOrgNodeId: String?) {
+        public init (orgNodeId: String, displayName: String, description: String? = nil, customizedOrgNodeId: String? = nil) {
             self.orgNodeId = orgNodeId
             self.displayName = displayName
             self.description = description
@@ -68,5 +52,21 @@ extension Eiam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新机构节点
+    ///
+    /// 新建一个机构节点，
+    @inlinable
+    public func updateOrgNode(_ input: UpdateOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateOrgNodeResponse > {
+        self.client.execute(action: "UpdateOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新机构节点
+    ///
+    /// 新建一个机构节点，
+    @inlinable
+    public func updateOrgNode(_ input: UpdateOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrgNodeResponse {
+        try await self.client.execute(action: "UpdateOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

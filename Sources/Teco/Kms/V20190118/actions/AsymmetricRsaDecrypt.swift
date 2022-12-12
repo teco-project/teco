@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 非对称密钥RSA解密
-    ///
-    /// 使用指定的RSA非对称密钥的私钥进行数据解密，密文必须是使用对应公钥加密的。处于Enabled 状态的非对称密钥才能进行解密操作。
-    @inlinable
-    public func asymmetricRsaDecrypt(_ input: AsymmetricRsaDecryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AsymmetricRsaDecryptResponse > {
-        self.client.execute(action: "AsymmetricRsaDecrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 非对称密钥RSA解密
-    ///
-    /// 使用指定的RSA非对称密钥的私钥进行数据解密，密文必须是使用对应公钥加密的。处于Enabled 状态的非对称密钥才能进行解密操作。
-    @inlinable
-    public func asymmetricRsaDecrypt(_ input: AsymmetricRsaDecryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AsymmetricRsaDecryptResponse {
-        try await self.client.execute(action: "AsymmetricRsaDecrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AsymmetricRsaDecrypt请求参数结构体
     public struct AsymmetricRsaDecryptRequest: TCRequestModel {
         /// CMK的唯一标识
@@ -71,5 +55,21 @@ extension Kms {
             case plaintext = "Plaintext"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 非对称密钥RSA解密
+    ///
+    /// 使用指定的RSA非对称密钥的私钥进行数据解密，密文必须是使用对应公钥加密的。处于Enabled 状态的非对称密钥才能进行解密操作。
+    @inlinable
+    public func asymmetricRsaDecrypt(_ input: AsymmetricRsaDecryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AsymmetricRsaDecryptResponse > {
+        self.client.execute(action: "AsymmetricRsaDecrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 非对称密钥RSA解密
+    ///
+    /// 使用指定的RSA非对称密钥的私钥进行数据解密，密文必须是使用对应公钥加密的。处于Enabled 状态的非对称密钥才能进行解密操作。
+    @inlinable
+    public func asymmetricRsaDecrypt(_ input: AsymmetricRsaDecryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AsymmetricRsaDecryptResponse {
+        try await self.client.execute(action: "AsymmetricRsaDecrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

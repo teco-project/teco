@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取产品级任务列表
-    ///
-    /// 本接口（DescribeProductTasks）用于查看产品级别的任务列表
-    @inlinable
-    public func describeProductTasks(_ input: DescribeProductTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductTasksResponse > {
-        self.client.execute(action: "DescribeProductTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取产品级任务列表
-    ///
-    /// 本接口（DescribeProductTasks）用于查看产品级别的任务列表
-    @inlinable
-    public func describeProductTasks(_ input: DescribeProductTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductTasksResponse {
-        try await self.client.execute(action: "DescribeProductTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProductTasks请求参数结构体
     public struct DescribeProductTasksRequest: TCRequestModel {
         /// 产品ID
@@ -71,5 +55,21 @@ extension Iotcloud {
             case taskInfos = "TaskInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取产品级任务列表
+    ///
+    /// 本接口（DescribeProductTasks）用于查看产品级别的任务列表
+    @inlinable
+    public func describeProductTasks(_ input: DescribeProductTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductTasksResponse > {
+        self.client.execute(action: "DescribeProductTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品级任务列表
+    ///
+    /// 本接口（DescribeProductTasks）用于查看产品级别的任务列表
+    @inlinable
+    public func describeProductTasks(_ input: DescribeProductTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductTasksResponse {
+        try await self.client.execute(action: "DescribeProductTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

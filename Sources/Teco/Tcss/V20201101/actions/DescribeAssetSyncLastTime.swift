@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询资产同步最近时间
-    @inlinable
-    public func describeAssetSyncLastTime(_ input: DescribeAssetSyncLastTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetSyncLastTimeResponse > {
-        self.client.execute(action: "DescribeAssetSyncLastTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询资产同步最近时间
-    @inlinable
-    public func describeAssetSyncLastTime(_ input: DescribeAssetSyncLastTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSyncLastTimeResponse {
-        try await self.client.execute(action: "DescribeAssetSyncLastTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetSyncLastTime请求参数结构体
     public struct DescribeAssetSyncLastTimeRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Tcss {
             case assetSyncLastTime = "AssetSyncLastTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询资产同步最近时间
+    @inlinable
+    public func describeAssetSyncLastTime(_ input: DescribeAssetSyncLastTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetSyncLastTimeResponse > {
+        self.client.execute(action: "DescribeAssetSyncLastTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资产同步最近时间
+    @inlinable
+    public func describeAssetSyncLastTime(_ input: DescribeAssetSyncLastTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSyncLastTimeResponse {
+        try await self.client.execute(action: "DescribeAssetSyncLastTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

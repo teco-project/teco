@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 更新设备影子
-    ///
-    /// 本接口（UpdateDeviceShadow）用于更新虚拟设备信息。
-    @inlinable
-    public func updateDeviceShadow(_ input: UpdateDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDeviceShadowResponse > {
-        self.client.execute(action: "UpdateDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新设备影子
-    ///
-    /// 本接口（UpdateDeviceShadow）用于更新虚拟设备信息。
-    @inlinable
-    public func updateDeviceShadow(_ input: UpdateDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceShadowResponse {
-        try await self.client.execute(action: "UpdateDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateDeviceShadow请求参数结构体
     public struct UpdateDeviceShadowRequest: TCRequestModel {
         /// 产品ID
@@ -48,7 +32,7 @@ extension Iotcloud {
         /// 下发delta消息的topic前缀，可选类型: "$shadow","$template"。不填写默认"$shadow"。
         public let prefix: String?
         
-        public init (productId: String, deviceName: String, state: String, shadowVersion: UInt64, prefix: String?) {
+        public init (productId: String, deviceName: String, state: String, shadowVersion: UInt64, prefix: String? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.state = state
@@ -77,5 +61,21 @@ extension Iotcloud {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新设备影子
+    ///
+    /// 本接口（UpdateDeviceShadow）用于更新虚拟设备信息。
+    @inlinable
+    public func updateDeviceShadow(_ input: UpdateDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDeviceShadowResponse > {
+        self.client.execute(action: "UpdateDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新设备影子
+    ///
+    /// 本接口（UpdateDeviceShadow）用于更新虚拟设备信息。
+    @inlinable
+    public func updateDeviceShadow(_ input: UpdateDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceShadowResponse {
+        try await self.client.execute(action: "UpdateDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

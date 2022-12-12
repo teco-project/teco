@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cms {
-    /// 查询图片样本库
-    ///
-    /// 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。
-    /// <br>
-    /// 查询图片样本库，支持批量查询。
-    @inlinable
-    public func describeFileSample(_ input: DescribeFileSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileSampleResponse > {
-        self.client.execute(action: "DescribeFileSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询图片样本库
-    ///
-    /// 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。
-    /// <br>
-    /// 查询图片样本库，支持批量查询。
-    @inlinable
-    public func describeFileSample(_ input: DescribeFileSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileSampleResponse {
-        try await self.client.execute(action: "DescribeFileSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFileSample请求参数结构体
     public struct DescribeFileSampleRequest: TCRequestModel {
         /// 支持通过标签值进行筛选
@@ -52,7 +32,7 @@ extension Cms {
         /// 按某个字段排序，目前仅支持CreatedAt排序
         public let orderField: String?
         
-        public init (filters: [Filter]?, limit: UInt64?, offset: UInt64?, orderDirection: String?, orderField: String?) {
+        public init (filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderDirection: String? = nil, orderField: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -85,5 +65,25 @@ extension Cms {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询图片样本库
+    ///
+    /// 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。
+    /// <br>
+    /// 查询图片样本库，支持批量查询。
+    @inlinable
+    public func describeFileSample(_ input: DescribeFileSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileSampleResponse > {
+        self.client.execute(action: "DescribeFileSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询图片样本库
+    ///
+    /// 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。
+    /// <br>
+    /// 查询图片样本库，支持批量查询。
+    @inlinable
+    public func describeFileSample(_ input: DescribeFileSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileSampleResponse {
+        try await self.client.execute(action: "DescribeFileSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

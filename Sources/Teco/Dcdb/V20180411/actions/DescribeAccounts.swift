@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 查询账号列表
-    ///
-    /// 本接口（DescribeAccounts）用于查询指定云数据库实例的账号列表。
-    @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
-        self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询账号列表
-    ///
-    /// 本接口（DescribeAccounts）用于查询指定云数据库实例的账号列表。
-    @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
-        try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccounts请求参数结构体
     public struct DescribeAccountsRequest: TCRequestModel {
         /// 实例ID，形如：dcdbt-ow728lmc。
@@ -62,5 +46,21 @@ extension Dcdb {
             case users = "Users"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询账号列表
+    ///
+    /// 本接口（DescribeAccounts）用于查询指定云数据库实例的账号列表。
+    @inlinable
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+        self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账号列表
+    ///
+    /// 本接口（DescribeAccounts）用于查询指定云数据库实例的账号列表。
+    @inlinable
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
+        try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

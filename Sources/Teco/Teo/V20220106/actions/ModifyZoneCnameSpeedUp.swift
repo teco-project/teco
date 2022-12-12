@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 修改 CNAME 加速状态
-    ///
-    /// 开启，关闭 CNAME 加速
-    @inlinable
-    public func modifyZoneCnameSpeedUp(_ input: ModifyZoneCnameSpeedUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyZoneCnameSpeedUpResponse > {
-        self.client.execute(action: "ModifyZoneCnameSpeedUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改 CNAME 加速状态
-    ///
-    /// 开启，关闭 CNAME 加速
-    @inlinable
-    public func modifyZoneCnameSpeedUp(_ input: ModifyZoneCnameSpeedUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneCnameSpeedUpResponse {
-        try await self.client.execute(action: "ModifyZoneCnameSpeedUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyZoneCnameSpeedUp请求参数结构体
     public struct ModifyZoneCnameSpeedUpRequest: TCRequestModel {
         /// 站点 ID
@@ -81,5 +65,21 @@ extension Teo {
             case modifiedOn = "ModifiedOn"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改 CNAME 加速状态
+    ///
+    /// 开启，关闭 CNAME 加速
+    @inlinable
+    public func modifyZoneCnameSpeedUp(_ input: ModifyZoneCnameSpeedUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyZoneCnameSpeedUpResponse > {
+        self.client.execute(action: "ModifyZoneCnameSpeedUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改 CNAME 加速状态
+    ///
+    /// 开启，关闭 CNAME 加速
+    @inlinable
+    public func modifyZoneCnameSpeedUp(_ input: ModifyZoneCnameSpeedUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneCnameSpeedUpResponse {
+        try await self.client.execute(action: "ModifyZoneCnameSpeedUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

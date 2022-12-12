@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 查询表描述文件详情
-    @inlinable
-    public func describeIdlFileInfos(_ input: DescribeIdlFileInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIdlFileInfosResponse > {
-        self.client.execute(action: "DescribeIdlFileInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询表描述文件详情
-    @inlinable
-    public func describeIdlFileInfos(_ input: DescribeIdlFileInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdlFileInfosResponse {
-        try await self.client.execute(action: "DescribeIdlFileInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIdlFileInfos请求参数结构体
     public struct DescribeIdlFileInfosRequest: TCRequestModel {
         /// 文件所属集群ID
@@ -44,7 +32,7 @@ extension Tcaplusdb {
         /// 查询列表返回记录数
         public let limit: Int64?
         
-        public init (clusterId: String, tableGroupIds: [String]?, idlFileIds: [String]?, offset: Int64?, limit: Int64?) {
+        public init (clusterId: String, tableGroupIds: [String]? = nil, idlFileIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.clusterId = clusterId
             self.tableGroupIds = tableGroupIds
             self.idlFileIds = idlFileIds
@@ -77,5 +65,17 @@ extension Tcaplusdb {
             case idlFileInfos = "IdlFileInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询表描述文件详情
+    @inlinable
+    public func describeIdlFileInfos(_ input: DescribeIdlFileInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIdlFileInfosResponse > {
+        self.client.execute(action: "DescribeIdlFileInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询表描述文件详情
+    @inlinable
+    public func describeIdlFileInfos(_ input: DescribeIdlFileInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdlFileInfosResponse {
+        try await self.client.execute(action: "DescribeIdlFileInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

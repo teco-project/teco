@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 运营端获取命名空间bundle列表
-    @inlinable
-    public func describeNamespaceBundlesOpt(_ input: DescribeNamespaceBundlesOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespaceBundlesOptResponse > {
-        self.client.execute(action: "DescribeNamespaceBundlesOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运营端获取命名空间bundle列表
-    @inlinable
-    public func describeNamespaceBundlesOpt(_ input: DescribeNamespaceBundlesOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceBundlesOptResponse {
-        try await self.client.execute(action: "DescribeNamespaceBundlesOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNamespaceBundlesOpt请求参数结构体
     public struct DescribeNamespaceBundlesOptRequest: TCRequestModel {
         /// 物理集群名
@@ -47,7 +35,7 @@ extension Tdmq {
         /// 查询偏移量
         public let offset: Int64?
         
-        public init (clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64?, offset: Int64?) {
+        public init (clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil) {
             self.clusterName = clusterName
             self.tenantId = tenantId
             self.namespaceName = namespaceName
@@ -82,5 +70,17 @@ extension Tdmq {
             case bundleSet = "BundleSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运营端获取命名空间bundle列表
+    @inlinable
+    public func describeNamespaceBundlesOpt(_ input: DescribeNamespaceBundlesOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNamespaceBundlesOptResponse > {
+        self.client.execute(action: "DescribeNamespaceBundlesOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运营端获取命名空间bundle列表
+    @inlinable
+    public func describeNamespaceBundlesOpt(_ input: DescribeNamespaceBundlesOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceBundlesOptResponse {
+        try await self.client.execute(action: "DescribeNamespaceBundlesOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

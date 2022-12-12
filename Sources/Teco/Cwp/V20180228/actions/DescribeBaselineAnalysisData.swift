@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 基线策略概览统计数据查询
-    ///
-    /// 根据基线策略id查询基线策略数据概览统计
-    @inlinable
-    public func describeBaselineAnalysisData(_ input: DescribeBaselineAnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineAnalysisDataResponse > {
-        self.client.execute(action: "DescribeBaselineAnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 基线策略概览统计数据查询
-    ///
-    /// 根据基线策略id查询基线策略数据概览统计
-    @inlinable
-    public func describeBaselineAnalysisData(_ input: DescribeBaselineAnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineAnalysisDataResponse {
-        try await self.client.execute(action: "DescribeBaselineAnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBaselineAnalysisData请求参数结构体
     public struct DescribeBaselineAnalysisDataRequest: TCRequestModel {
         /// 基线策略id
@@ -78,5 +62,21 @@ extension Cwp {
             case ifFirstScan = "IfFirstScan"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 基线策略概览统计数据查询
+    ///
+    /// 根据基线策略id查询基线策略数据概览统计
+    @inlinable
+    public func describeBaselineAnalysisData(_ input: DescribeBaselineAnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineAnalysisDataResponse > {
+        self.client.execute(action: "DescribeBaselineAnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 基线策略概览统计数据查询
+    ///
+    /// 根据基线策略id查询基线策略数据概览统计
+    @inlinable
+    public func describeBaselineAnalysisData(_ input: DescribeBaselineAnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineAnalysisDataResponse {
+        try await self.client.execute(action: "DescribeBaselineAnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

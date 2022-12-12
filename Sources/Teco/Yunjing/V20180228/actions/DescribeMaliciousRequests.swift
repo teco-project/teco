@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取恶意请求数据
-    ///
-    /// 本接口 (DescribeMaliciousRequests) 用于获取恶意请求数据。
-    @inlinable
-    public func describeMaliciousRequests(_ input: DescribeMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaliciousRequestsResponse > {
-        self.client.execute(action: "DescribeMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取恶意请求数据
-    ///
-    /// 本接口 (DescribeMaliciousRequests) 用于获取恶意请求数据。
-    @inlinable
-    public func describeMaliciousRequests(_ input: DescribeMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaliciousRequestsResponse {
-        try await self.client.execute(action: "DescribeMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMaliciousRequests请求参数结构体
     public struct DescribeMaliciousRequestsRequest: TCRequestModel {
         /// 返回数量，默认为10，最大值为100。
@@ -48,7 +32,7 @@ extension Yunjing {
         /// 云镜客户端唯一UUID。
         public let uuid: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?, uuid: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, uuid: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -79,5 +63,21 @@ extension Yunjing {
             case maliciousRequests = "MaliciousRequests"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取恶意请求数据
+    ///
+    /// 本接口 (DescribeMaliciousRequests) 用于获取恶意请求数据。
+    @inlinable
+    public func describeMaliciousRequests(_ input: DescribeMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaliciousRequestsResponse > {
+        self.client.execute(action: "DescribeMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取恶意请求数据
+    ///
+    /// 本接口 (DescribeMaliciousRequests) 用于获取恶意请求数据。
+    @inlinable
+    public func describeMaliciousRequests(_ input: DescribeMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaliciousRequestsResponse {
+        try await self.client.execute(action: "DescribeMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

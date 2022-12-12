@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gpm {
-    /// 分页查询匹配Code
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 分页查询匹配Code
-    @inlinable
-    public func describeMatchCodes(_ input: DescribeMatchCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMatchCodesResponse > {
-        self.client.execute(action: "DescribeMatchCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分页查询匹配Code
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 分页查询匹配Code
-    @inlinable
-    public func describeMatchCodes(_ input: DescribeMatchCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchCodesResponse {
-        try await self.client.execute(action: "DescribeMatchCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMatchCodes请求参数结构体
     public struct DescribeMatchCodesRequest: TCRequestModel {
         /// 偏移量，页码
@@ -44,7 +26,7 @@ extension Gpm {
         /// 搜索的字符串
         public let matchCode: String?
         
-        public init (offset: Int64, limit: Int64, matchCode: String?) {
+        public init (offset: Int64, limit: Int64, matchCode: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.matchCode = matchCode
@@ -75,5 +57,23 @@ extension Gpm {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分页查询匹配Code
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 分页查询匹配Code
+    @inlinable
+    public func describeMatchCodes(_ input: DescribeMatchCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMatchCodesResponse > {
+        self.client.execute(action: "DescribeMatchCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分页查询匹配Code
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 分页查询匹配Code
+    @inlinable
+    public func describeMatchCodes(_ input: DescribeMatchCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchCodesResponse {
+        try await self.client.execute(action: "DescribeMatchCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

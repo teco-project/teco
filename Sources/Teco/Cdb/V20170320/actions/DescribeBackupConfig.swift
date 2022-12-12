@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询云数据库备份配置信息
-    ///
-    /// 本接口(DescribeBackupConfig)用于查询数据库备份配置信息。
-    @inlinable
-    public func describeBackupConfig(_ input: DescribeBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupConfigResponse > {
-        self.client.execute(action: "DescribeBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云数据库备份配置信息
-    ///
-    /// 本接口(DescribeBackupConfig)用于查询数据库备份配置信息。
-    @inlinable
-    public func describeBackupConfig(_ input: DescribeBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupConfigResponse {
-        try await self.client.execute(action: "DescribeBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBackupConfig请求参数结构体
     public struct DescribeBackupConfigRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
@@ -113,5 +97,21 @@ extension Cdb {
             case binlogArchiveDays = "BinlogArchiveDays"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云数据库备份配置信息
+    ///
+    /// 本接口(DescribeBackupConfig)用于查询数据库备份配置信息。
+    @inlinable
+    public func describeBackupConfig(_ input: DescribeBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupConfigResponse > {
+        self.client.execute(action: "DescribeBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云数据库备份配置信息
+    ///
+    /// 本接口(DescribeBackupConfig)用于查询数据库备份配置信息。
+    @inlinable
+    public func describeBackupConfig(_ input: DescribeBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupConfigResponse {
+        try await self.client.execute(action: "DescribeBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

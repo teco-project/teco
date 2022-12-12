@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 删除资源
-    ///
-    /// 资源管理删除资源
-    @inlinable
-    public func deleteResource(_ input: DeleteResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourceResponse > {
-        self.client.execute(action: "DeleteResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除资源
-    ///
-    /// 资源管理删除资源
-    @inlinable
-    public func deleteResource(_ input: DeleteResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceResponse {
-        try await self.client.execute(action: "DeleteResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteResource请求参数结构体
     public struct DeleteResourceRequest: TCRequestModel {
         /// 项目ID
@@ -39,7 +23,7 @@ extension Wedata {
         /// 资源ID
         public let resourceId: String?
         
-        public init (projectId: String?, resourceId: String?) {
+        public init (projectId: String? = nil, resourceId: String? = nil) {
             self.projectId = projectId
             self.resourceId = resourceId
         }
@@ -63,5 +47,21 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除资源
+    ///
+    /// 资源管理删除资源
+    @inlinable
+    public func deleteResource(_ input: DeleteResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourceResponse > {
+        self.client.execute(action: "DeleteResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除资源
+    ///
+    /// 资源管理删除资源
+    @inlinable
+    public func deleteResource(_ input: DeleteResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceResponse {
+        try await self.client.execute(action: "DeleteResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension As {
-    /// 查询伸缩活动
-    ///
-    /// 本接口（DescribeAutoScalingActivities）用于查询伸缩组的伸缩活动记录。
-    @inlinable
-    public func describeAutoScalingActivities(_ input: DescribeAutoScalingActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoScalingActivitiesResponse > {
-        self.client.execute(action: "DescribeAutoScalingActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询伸缩活动
-    ///
-    /// 本接口（DescribeAutoScalingActivities）用于查询伸缩组的伸缩活动记录。
-    @inlinable
-    public func describeAutoScalingActivities(_ input: DescribeAutoScalingActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingActivitiesResponse {
-        try await self.client.execute(action: "DescribeAutoScalingActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAutoScalingActivities请求参数结构体
     public struct DescribeAutoScalingActivitiesRequest: TCRequestModel {
         /// 按照一个或者多个伸缩活动ID查询。伸缩活动ID形如：`asa-5l2ejpfo`。每次请求的上限为100。参数不支持同时指定`ActivityIds`和`Filters`。
@@ -58,7 +42,7 @@ extension As {
         /// 伸缩活动最晚的结束时间，如果指定了ActivityIds，此参数将被忽略。取值为`UTC`时间，按照`ISO8601`标准，格式：`YYYY-MM-DDThh:mm:ssZ`。
         public let endTime: Date?
         
-        public init (activityIds: [String]?, filters: [Filter]?, limit: UInt64?, offset: UInt64?, startTime: Date?, endTime: Date?) {
+        public init (activityIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil) {
             self.activityIds = activityIds
             self.filters = filters
             self.limit = limit
@@ -93,5 +77,21 @@ extension As {
             case activitySet = "ActivitySet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询伸缩活动
+    ///
+    /// 本接口（DescribeAutoScalingActivities）用于查询伸缩组的伸缩活动记录。
+    @inlinable
+    public func describeAutoScalingActivities(_ input: DescribeAutoScalingActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoScalingActivitiesResponse > {
+        self.client.execute(action: "DescribeAutoScalingActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询伸缩活动
+    ///
+    /// 本接口（DescribeAutoScalingActivities）用于查询伸缩组的伸缩活动记录。
+    @inlinable
+    public func describeAutoScalingActivities(_ input: DescribeAutoScalingActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingActivitiesResponse {
+        try await self.client.execute(action: "DescribeAutoScalingActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

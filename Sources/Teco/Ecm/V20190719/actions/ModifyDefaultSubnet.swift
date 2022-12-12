@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改默认子网
-    ///
-    /// 修改在一个可用区下创建实例时使用的默认子网（创建实例时，未填写VPC参数时使用的sunbetId）
-    @inlinable
-    public func modifyDefaultSubnet(_ input: ModifyDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDefaultSubnetResponse > {
-        self.client.execute(action: "ModifyDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改默认子网
-    ///
-    /// 修改在一个可用区下创建实例时使用的默认子网（创建实例时，未填写VPC参数时使用的sunbetId）
-    @inlinable
-    public func modifyDefaultSubnet(_ input: ModifyDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDefaultSubnetResponse {
-        try await self.client.execute(action: "ModifyDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDefaultSubnet请求参数结构体
     public struct ModifyDefaultSubnetRequest: TCRequestModel {
         /// ECM地域
@@ -68,5 +52,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改默认子网
+    ///
+    /// 修改在一个可用区下创建实例时使用的默认子网（创建实例时，未填写VPC参数时使用的sunbetId）
+    @inlinable
+    public func modifyDefaultSubnet(_ input: ModifyDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDefaultSubnetResponse > {
+        self.client.execute(action: "ModifyDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改默认子网
+    ///
+    /// 修改在一个可用区下创建实例时使用的默认子网（创建实例时，未填写VPC参数时使用的sunbetId）
+    @inlinable
+    public func modifyDefaultSubnet(_ input: ModifyDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDefaultSubnetResponse {
+        try await self.client.execute(action: "ModifyDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

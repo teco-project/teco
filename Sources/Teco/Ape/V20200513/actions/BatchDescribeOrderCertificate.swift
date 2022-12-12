@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ape {
-    /// 批量获取授权书下载地址
-    @inlinable
-    public func batchDescribeOrderCertificate(_ input: BatchDescribeOrderCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDescribeOrderCertificateResponse > {
-        self.client.execute(action: "BatchDescribeOrderCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量获取授权书下载地址
-    @inlinable
-    public func batchDescribeOrderCertificate(_ input: BatchDescribeOrderCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeOrderCertificateResponse {
-        try await self.client.execute(action: "BatchDescribeOrderCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchDescribeOrderCertificate请求参数结构体
     public struct BatchDescribeOrderCertificateRequest: TCRequestModel {
         /// 要下载授权书的订单id
@@ -53,5 +41,17 @@ extension Ape {
             case certificateUrls = "CertificateUrls"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量获取授权书下载地址
+    @inlinable
+    public func batchDescribeOrderCertificate(_ input: BatchDescribeOrderCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDescribeOrderCertificateResponse > {
+        self.client.execute(action: "BatchDescribeOrderCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量获取授权书下载地址
+    @inlinable
+    public func batchDescribeOrderCertificate(_ input: BatchDescribeOrderCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeOrderCertificateResponse {
+        try await self.client.execute(action: "BatchDescribeOrderCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

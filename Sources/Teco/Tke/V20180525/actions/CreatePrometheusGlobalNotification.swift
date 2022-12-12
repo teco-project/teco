@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 创建全局告警通知渠道
-    @inlinable
-    public func createPrometheusGlobalNotification(_ input: CreatePrometheusGlobalNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusGlobalNotificationResponse > {
-        self.client.execute(action: "CreatePrometheusGlobalNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建全局告警通知渠道
-    @inlinable
-    public func createPrometheusGlobalNotification(_ input: CreatePrometheusGlobalNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusGlobalNotificationResponse {
-        try await self.client.execute(action: "CreatePrometheusGlobalNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePrometheusGlobalNotification请求参数结构体
     public struct CreatePrometheusGlobalNotificationRequest: TCRequestModel {
         /// 实例ID
@@ -59,5 +47,17 @@ extension Tke {
             case id = "Id"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建全局告警通知渠道
+    @inlinable
+    public func createPrometheusGlobalNotification(_ input: CreatePrometheusGlobalNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusGlobalNotificationResponse > {
+        self.client.execute(action: "CreatePrometheusGlobalNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建全局告警通知渠道
+    @inlinable
+    public func createPrometheusGlobalNotification(_ input: CreatePrometheusGlobalNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusGlobalNotificationResponse {
+        try await self.client.execute(action: "CreatePrometheusGlobalNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

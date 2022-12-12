@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询VPN通道列表
-    ///
-    ///  本接口（DescribeVpnConnections）查询VPN通道列表。
-    @inlinable
-    public func describeVpnConnections(_ input: DescribeVpnConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpnConnectionsResponse > {
-        self.client.execute(action: "DescribeVpnConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询VPN通道列表
-    ///
-    ///  本接口（DescribeVpnConnections）查询VPN通道列表。
-    @inlinable
-    public func describeVpnConnections(_ input: DescribeVpnConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnConnectionsResponse {
-        try await self.client.execute(action: "DescribeVpnConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpnConnections请求参数结构体
     public struct DescribeVpnConnectionsRequest: TCRequestModel {
         /// VPN通道实例ID。形如：vpnx-f49l6u0z。每次请求的实例的上限为100。参数不支持同时指定VpnConnectionIds和Filters。
@@ -50,7 +34,7 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。
         public let limit: UInt64?
         
-        public init (vpnConnectionIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (vpnConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.vpnConnectionIds = vpnConnectionIds
             self.filters = filters
             self.offset = offset
@@ -81,5 +65,21 @@ extension Vpc {
             case vpnConnectionSet = "VpnConnectionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询VPN通道列表
+    ///
+    ///  本接口（DescribeVpnConnections）查询VPN通道列表。
+    @inlinable
+    public func describeVpnConnections(_ input: DescribeVpnConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpnConnectionsResponse > {
+        self.client.execute(action: "DescribeVpnConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询VPN通道列表
+    ///
+    ///  本接口（DescribeVpnConnections）查询VPN通道列表。
+    @inlinable
+    public func describeVpnConnections(_ input: DescribeVpnConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnConnectionsResponse {
+        try await self.client.execute(action: "DescribeVpnConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

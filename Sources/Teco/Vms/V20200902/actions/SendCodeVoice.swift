@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vms {
-    /// 发送语音验证码
-    ///
-    /// 给用户发语音验证码（仅支持数字）。
-    @inlinable
-    public func sendCodeVoice(_ input: SendCodeVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendCodeVoiceResponse > {
-        self.client.execute(action: "SendCodeVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送语音验证码
-    ///
-    /// 给用户发语音验证码（仅支持数字）。
-    @inlinable
-    public func sendCodeVoice(_ input: SendCodeVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendCodeVoiceResponse {
-        try await self.client.execute(action: "SendCodeVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendCodeVoice请求参数结构体
     public struct SendCodeVoiceRequest: TCRequestModel {
         /// 验证码，仅支持填写数字，实际播报语音时，会自动在数字前补充语音文本"您的验证码是"。
@@ -49,7 +33,7 @@ extension Vms {
         /// 用户的 session 内容，腾讯 server 回包中会原样返回。
         public let sessionContext: String?
         
-        public init (codeMessage: String, calledNumber: String, voiceSdkAppid: String, playTimes: UInt64?, sessionContext: String?) {
+        public init (codeMessage: String, calledNumber: String, voiceSdkAppid: String, playTimes: UInt64? = nil, sessionContext: String? = nil) {
             self.codeMessage = codeMessage
             self.calledNumber = calledNumber
             self.voiceSdkAppid = voiceSdkAppid
@@ -78,5 +62,21 @@ extension Vms {
             case sendStatus = "SendStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送语音验证码
+    ///
+    /// 给用户发语音验证码（仅支持数字）。
+    @inlinable
+    public func sendCodeVoice(_ input: SendCodeVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendCodeVoiceResponse > {
+        self.client.execute(action: "SendCodeVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送语音验证码
+    ///
+    /// 给用户发语音验证码（仅支持数字）。
+    @inlinable
+    public func sendCodeVoice(_ input: SendCodeVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendCodeVoiceResponse {
+        try await self.client.execute(action: "SendCodeVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

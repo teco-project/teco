@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// SCDN域名配置
-    ///
-    /// DescribeScdnConfig 用于查询指定 SCDN 加速域名的安全相关配置
-    @inlinable
-    public func describeScdnConfig(_ input: DescribeScdnConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnConfigResponse > {
-        self.client.execute(action: "DescribeScdnConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// SCDN域名配置
-    ///
-    /// DescribeScdnConfig 用于查询指定 SCDN 加速域名的安全相关配置
-    @inlinable
-    public func describeScdnConfig(_ input: DescribeScdnConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnConfigResponse {
-        try await self.client.execute(action: "DescribeScdnConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScdnConfig请求参数结构体
     public struct DescribeScdnConfigRequest: TCRequestModel {
         /// 域名
@@ -78,5 +62,21 @@ extension Cdn {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// SCDN域名配置
+    ///
+    /// DescribeScdnConfig 用于查询指定 SCDN 加速域名的安全相关配置
+    @inlinable
+    public func describeScdnConfig(_ input: DescribeScdnConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnConfigResponse > {
+        self.client.execute(action: "DescribeScdnConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// SCDN域名配置
+    ///
+    /// DescribeScdnConfig 用于查询指定 SCDN 加速域名的安全相关配置
+    @inlinable
+    public func describeScdnConfig(_ input: DescribeScdnConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnConfigResponse {
+        try await self.client.execute(action: "DescribeScdnConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

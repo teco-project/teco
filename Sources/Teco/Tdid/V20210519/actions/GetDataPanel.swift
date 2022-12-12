@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 概览
-    @inlinable
-    public func getDataPanel(_ input: GetDataPanelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDataPanelResponse > {
-        self.client.execute(action: "GetDataPanel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 概览
-    @inlinable
-    public func getDataPanel(_ input: GetDataPanelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataPanelResponse {
-        try await self.client.execute(action: "GetDataPanel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDataPanel请求参数结构体
     public struct GetDataPanelRequest: TCRequestModel {
         /// 网络ID
         public let clusterId: String?
         
-        public init (clusterId: String?) {
+        public init (clusterId: String? = nil) {
             self.clusterId = clusterId
         }
         
@@ -97,5 +85,17 @@ extension Tdid {
             case chainMakerCount = "ChainMakerCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 概览
+    @inlinable
+    public func getDataPanel(_ input: GetDataPanelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDataPanelResponse > {
+        self.client.execute(action: "GetDataPanel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 概览
+    @inlinable
+    public func getDataPanel(_ input: GetDataPanelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataPanelResponse {
+        try await self.client.execute(action: "GetDataPanel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 获取云开发项目列表
-    @inlinable
-    public func describeCloudBaseProjectLatestVersionList(_ input: DescribeCloudBaseProjectLatestVersionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseProjectLatestVersionListResponse > {
-        self.client.execute(action: "DescribeCloudBaseProjectLatestVersionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取云开发项目列表
-    @inlinable
-    public func describeCloudBaseProjectLatestVersionList(_ input: DescribeCloudBaseProjectLatestVersionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseProjectLatestVersionListResponse {
-        try await self.client.execute(action: "DescribeCloudBaseProjectLatestVersionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudBaseProjectLatestVersionList请求参数结构体
     public struct DescribeCloudBaseProjectLatestVersionListRequest: TCRequestModel {
         /// 偏移量
@@ -50,7 +38,7 @@ extension Tcb {
         /// ci的id
         public let ciId: String?
         
-        public init (offset: Int64, pageSize: Int64, envId: String?, projectName: String?, projectType: String?, tags: [String]?, ciId: String?) {
+        public init (offset: Int64, pageSize: Int64, envId: String? = nil, projectName: String? = nil, projectType: String? = nil, tags: [String]? = nil, ciId: String? = nil) {
             self.offset = offset
             self.pageSize = pageSize
             self.envId = envId
@@ -89,5 +77,17 @@ extension Tcb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取云开发项目列表
+    @inlinable
+    public func describeCloudBaseProjectLatestVersionList(_ input: DescribeCloudBaseProjectLatestVersionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseProjectLatestVersionListResponse > {
+        self.client.execute(action: "DescribeCloudBaseProjectLatestVersionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云开发项目列表
+    @inlinable
+    public func describeCloudBaseProjectLatestVersionList(_ input: DescribeCloudBaseProjectLatestVersionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseProjectLatestVersionListResponse {
+        try await self.client.execute(action: "DescribeCloudBaseProjectLatestVersionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

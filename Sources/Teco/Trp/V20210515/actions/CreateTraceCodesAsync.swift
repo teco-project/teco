@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 异步导入激活码包
-    ///
-    /// 异步导入激活码包，如果是第三方码包，需要域名跟配置的匹配
-    @inlinable
-    public func createTraceCodesAsync(_ input: CreateTraceCodesAsyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceCodesAsyncResponse > {
-        self.client.execute(action: "CreateTraceCodesAsync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 异步导入激活码包
-    ///
-    /// 异步导入激活码包，如果是第三方码包，需要域名跟配置的匹配
-    @inlinable
-    public func createTraceCodesAsync(_ input: CreateTraceCodesAsyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceCodesAsyncResponse {
-        try await self.client.execute(action: "CreateTraceCodesAsync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTraceCodesAsync请求参数结构体
     public struct CreateTraceCodesAsyncRequest: TCRequestModel {
         /// 企业ID
@@ -42,7 +26,7 @@ extension Trp {
         /// 上传文件Key，仅支持 csv 或者 zip 类型
         public let fileKey: String?
         
-        public init (corpId: UInt64?, batchId: String?, fileKey: String?) {
+        public init (corpId: UInt64? = nil, batchId: String? = nil, fileKey: String? = nil) {
             self.corpId = corpId
             self.batchId = batchId
             self.fileKey = fileKey
@@ -68,5 +52,21 @@ extension Trp {
             case batchId = "BatchId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 异步导入激活码包
+    ///
+    /// 异步导入激活码包，如果是第三方码包，需要域名跟配置的匹配
+    @inlinable
+    public func createTraceCodesAsync(_ input: CreateTraceCodesAsyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceCodesAsyncResponse > {
+        self.client.execute(action: "CreateTraceCodesAsync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 异步导入激活码包
+    ///
+    /// 异步导入激活码包，如果是第三方码包，需要域名跟配置的匹配
+    @inlinable
+    public func createTraceCodesAsync(_ input: CreateTraceCodesAsyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceCodesAsyncResponse {
+        try await self.client.execute(action: "CreateTraceCodesAsync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

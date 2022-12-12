@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 获取转码规则列表
-    @inlinable
-    public func describeLiveTranscodeRules(_ input: DescribeLiveTranscodeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTranscodeRulesResponse > {
-        self.client.execute(action: "DescribeLiveTranscodeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取转码规则列表
-    @inlinable
-    public func describeLiveTranscodeRules(_ input: DescribeLiveTranscodeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeRulesResponse {
-        try await self.client.execute(action: "DescribeLiveTranscodeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveTranscodeRules请求参数结构体
     public struct DescribeLiveTranscodeRulesRequest: TCRequestModel {
         /// 要筛选的模板ID数组。
@@ -35,7 +23,7 @@ extension Live {
         /// 要筛选的域名数组。
         public let domainNames: [String]?
         
-        public init (templateIds: [Int64]?, domainNames: [String]?) {
+        public init (templateIds: [Int64]? = nil, domainNames: [String]? = nil) {
             self.templateIds = templateIds
             self.domainNames = domainNames
         }
@@ -58,5 +46,17 @@ extension Live {
             case rules = "Rules"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取转码规则列表
+    @inlinable
+    public func describeLiveTranscodeRules(_ input: DescribeLiveTranscodeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTranscodeRulesResponse > {
+        self.client.execute(action: "DescribeLiveTranscodeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取转码规则列表
+    @inlinable
+    public func describeLiveTranscodeRules(_ input: DescribeLiveTranscodeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeRulesResponse {
+        try await self.client.execute(action: "DescribeLiveTranscodeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

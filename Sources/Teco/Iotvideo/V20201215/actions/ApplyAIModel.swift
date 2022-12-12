@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 申请AI模型
-    @inlinable
-    public func applyAIModel(_ input: ApplyAIModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyAIModelResponse > {
-        self.client.execute(action: "ApplyAIModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 申请AI模型
-    @inlinable
-    public func applyAIModel(_ input: ApplyAIModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyAIModelResponse {
-        try await self.client.execute(action: "ApplyAIModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyAIModel请求参数结构体
     public struct ApplyAIModelRequest: TCRequestModel {
         /// AI模型ID
@@ -54,5 +42,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 申请AI模型
+    @inlinable
+    public func applyAIModel(_ input: ApplyAIModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyAIModelResponse > {
+        self.client.execute(action: "ApplyAIModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 申请AI模型
+    @inlinable
+    public func applyAIModel(_ input: ApplyAIModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyAIModelResponse {
+        try await self.client.execute(action: "ApplyAIModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

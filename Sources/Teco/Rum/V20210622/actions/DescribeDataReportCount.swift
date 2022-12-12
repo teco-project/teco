@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取上报量
-    ///
-    /// 获取项目上报量
-    @inlinable
-    public func describeDataReportCount(_ input: DescribeDataReportCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataReportCountResponse > {
-        self.client.execute(action: "DescribeDataReportCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取上报量
-    ///
-    /// 获取项目上报量
-    @inlinable
-    public func describeDataReportCount(_ input: DescribeDataReportCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataReportCountResponse {
-        try await self.client.execute(action: "DescribeDataReportCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDataReportCount请求参数结构体
     public struct DescribeDataReportCountRequest: TCRequestModel {
         /// 开始时间
@@ -48,7 +32,7 @@ extension Rum {
         /// 实例ID
         public let instanceID: String?
         
-        public init (startTime: Int64, endTime: Int64, id: Int64?, reportType: String?, instanceID: String?) {
+        public init (startTime: Int64, endTime: Int64, id: Int64? = nil, reportType: String? = nil, instanceID: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.id = id
@@ -77,5 +61,21 @@ extension Rum {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取上报量
+    ///
+    /// 获取项目上报量
+    @inlinable
+    public func describeDataReportCount(_ input: DescribeDataReportCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataReportCountResponse > {
+        self.client.execute(action: "DescribeDataReportCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取上报量
+    ///
+    /// 获取项目上报量
+    @inlinable
+    public func describeDataReportCount(_ input: DescribeDataReportCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataReportCountResponse {
+        try await self.client.execute(action: "DescribeDataReportCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取业务流量状态码统计
-    @inlinable
-    public func describeBizHttpStatus(_ input: DescribeBizHttpStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBizHttpStatusResponse > {
-        self.client.execute(action: "DescribeBizHttpStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取业务流量状态码统计
-    @inlinable
-    public func describeBizHttpStatus(_ input: DescribeBizHttpStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizHttpStatusResponse {
-        try await self.client.execute(action: "DescribeBizHttpStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBizHttpStatus请求参数结构体
     public struct DescribeBizHttpStatusRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP）
@@ -53,7 +41,7 @@ extension Dayu {
         /// 特定域名查询
         public let domain: String?
         
-        public init (business: String, id: String, period: Int64, startTime: String, endTime: String, statistics: String, protoInfo: [ProtocolPort]?, domain: String?) {
+        public init (business: String, id: String, period: Int64, startTime: String, endTime: String, statistics: String, protoInfo: [ProtocolPort]? = nil, domain: String? = nil) {
             self.business = business
             self.id = id
             self.period = period
@@ -88,5 +76,17 @@ extension Dayu {
             case httpStatusMap = "HttpStatusMap"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取业务流量状态码统计
+    @inlinable
+    public func describeBizHttpStatus(_ input: DescribeBizHttpStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBizHttpStatusResponse > {
+        self.client.execute(action: "DescribeBizHttpStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取业务流量状态码统计
+    @inlinable
+    public func describeBizHttpStatus(_ input: DescribeBizHttpStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizHttpStatusResponse {
+        try await self.client.execute(action: "DescribeBizHttpStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

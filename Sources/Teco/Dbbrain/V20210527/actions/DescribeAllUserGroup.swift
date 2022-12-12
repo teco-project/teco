@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 获取邮件发送中联系组信息
-    ///
-    /// 获取邮件发送联系组的相关信息。
-    @inlinable
-    public func describeAllUserGroup(_ input: DescribeAllUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllUserGroupResponse > {
-        self.client.execute(action: "DescribeAllUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取邮件发送中联系组信息
-    ///
-    /// 获取邮件发送联系组的相关信息。
-    @inlinable
-    public func describeAllUserGroup(_ input: DescribeAllUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllUserGroupResponse {
-        try await self.client.execute(action: "DescribeAllUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAllUserGroup请求参数结构体
     public struct DescribeAllUserGroupRequest: TCRequestModel {
         /// 服务产品类型，固定值：mysql。
@@ -39,7 +23,7 @@ extension Dbbrain {
         /// 联系组名称数组，支持模糊搜索。
         public let names: [String]?
         
-        public init (product: String, names: [String]?) {
+        public init (product: String, names: [String]? = nil) {
             self.product = product
             self.names = names
         }
@@ -67,5 +51,21 @@ extension Dbbrain {
             case groups = "Groups"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取邮件发送中联系组信息
+    ///
+    /// 获取邮件发送联系组的相关信息。
+    @inlinable
+    public func describeAllUserGroup(_ input: DescribeAllUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllUserGroupResponse > {
+        self.client.execute(action: "DescribeAllUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取邮件发送中联系组信息
+    ///
+    /// 获取邮件发送联系组的相关信息。
+    @inlinable
+    public func describeAllUserGroup(_ input: DescribeAllUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllUserGroupResponse {
+        try await self.client.execute(action: "DescribeAllUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

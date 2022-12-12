@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-创建充值订单
-    @inlinable
-    public func createOpenBankRechargeOrder(_ input: CreateOpenBankRechargeOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankRechargeOrderResponse > {
-        self.client.execute(action: "CreateOpenBankRechargeOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-创建充值订单
-    @inlinable
-    public func createOpenBankRechargeOrder(_ input: CreateOpenBankRechargeOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankRechargeOrderResponse {
-        try await self.client.execute(action: "CreateOpenBankRechargeOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOpenBankRechargeOrder请求参数结构体
     public struct CreateOpenBankRechargeOrderRequest: TCRequestModel {
         /// 云企付渠道商户号。外部接入平台入驻云企付平台后下发。
@@ -74,7 +62,7 @@ extension Cpdp {
         /// _不填默认为生产环境_
         public let environment: String?
         
-        public init (channelMerchantId: String, outOrderId: String, totalAmount: Int64, currency: String, expireTime: String, channelName: String, paymentMethod: String, payeeInfo: OpenBankRechargePayeeInfo, channelSubMerchantId: String, notifyUrl: String?, remark: String?, environment: String?) {
+        public init (channelMerchantId: String, outOrderId: String, totalAmount: Int64, currency: String, expireTime: String, channelName: String, paymentMethod: String, payeeInfo: OpenBankRechargePayeeInfo, channelSubMerchantId: String, notifyUrl: String? = nil, remark: String? = nil, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.outOrderId = outOrderId
             self.totalAmount = totalAmount
@@ -116,7 +104,7 @@ extension Cpdp {
         
         /// 充值响应对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: CreateOpenBankOrderRechargeResult
+        public let result: CreateOpenBankOrderRechargeResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -127,5 +115,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-创建充值订单
+    @inlinable
+    public func createOpenBankRechargeOrder(_ input: CreateOpenBankRechargeOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankRechargeOrderResponse > {
+        self.client.execute(action: "CreateOpenBankRechargeOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-创建充值订单
+    @inlinable
+    public func createOpenBankRechargeOrder(_ input: CreateOpenBankRechargeOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankRechargeOrderResponse {
+        try await self.client.execute(action: "CreateOpenBankRechargeOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

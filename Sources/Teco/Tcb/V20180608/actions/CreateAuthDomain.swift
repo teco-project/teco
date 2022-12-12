@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 增加安全域名
-    @inlinable
-    public func createAuthDomain(_ input: CreateAuthDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAuthDomainResponse > {
-        self.client.execute(action: "CreateAuthDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 增加安全域名
-    @inlinable
-    public func createAuthDomain(_ input: CreateAuthDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuthDomainResponse {
-        try await self.client.execute(action: "CreateAuthDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAuthDomain请求参数结构体
     public struct CreateAuthDomainRequest: TCRequestModel {
         /// 环境ID
@@ -54,5 +42,17 @@ extension Tcb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 增加安全域名
+    @inlinable
+    public func createAuthDomain(_ input: CreateAuthDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAuthDomainResponse > {
+        self.client.execute(action: "CreateAuthDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 增加安全域名
+    @inlinable
+    public func createAuthDomain(_ input: CreateAuthDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuthDomainResponse {
+        try await self.client.execute(action: "CreateAuthDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

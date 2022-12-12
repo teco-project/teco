@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 检查单元应用的Yaml配置
-    @inlinable
-    public func describeEdgeUnitApplicationYamlError(_ input: DescribeEdgeUnitApplicationYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitApplicationYamlErrorResponse > {
-        self.client.execute(action: "DescribeEdgeUnitApplicationYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检查单元应用的Yaml配置
-    @inlinable
-    public func describeEdgeUnitApplicationYamlError(_ input: DescribeEdgeUnitApplicationYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationYamlErrorResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitApplicationYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeUnitApplicationYamlError请求参数结构体
     public struct DescribeEdgeUnitApplicationYamlErrorRequest: TCRequestModel {
         /// Yaml配置
@@ -63,5 +51,17 @@ extension Iecp {
             case errInfo = "ErrInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检查单元应用的Yaml配置
+    @inlinable
+    public func describeEdgeUnitApplicationYamlError(_ input: DescribeEdgeUnitApplicationYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitApplicationYamlErrorResponse > {
+        self.client.execute(action: "DescribeEdgeUnitApplicationYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检查单元应用的Yaml配置
+    @inlinable
+    public func describeEdgeUnitApplicationYamlError(_ input: DescribeEdgeUnitApplicationYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationYamlErrorResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitApplicationYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

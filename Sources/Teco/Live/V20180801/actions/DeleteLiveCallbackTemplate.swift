@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 删除回调模板
-    ///
-    /// 删除回调模板。
-    @inlinable
-    public func deleteLiveCallbackTemplate(_ input: DeleteLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveCallbackTemplateResponse > {
-        self.client.execute(action: "DeleteLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除回调模板
-    ///
-    /// 删除回调模板。
-    @inlinable
-    public func deleteLiveCallbackTemplate(_ input: DeleteLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveCallbackTemplateResponse {
-        try await self.client.execute(action: "DeleteLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLiveCallbackTemplate请求参数结构体
     public struct DeleteLiveCallbackTemplateRequest: TCRequestModel {
         /// 模板 ID。
@@ -55,5 +39,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除回调模板
+    ///
+    /// 删除回调模板。
+    @inlinable
+    public func deleteLiveCallbackTemplate(_ input: DeleteLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveCallbackTemplateResponse > {
+        self.client.execute(action: "DeleteLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除回调模板
+    ///
+    /// 删除回调模板。
+    @inlinable
+    public func deleteLiveCallbackTemplate(_ input: DeleteLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveCallbackTemplateResponse {
+        try await self.client.execute(action: "DeleteLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

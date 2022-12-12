@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Aa {
-    /// 活动防刷
-    ///
-    /// 腾讯云活动防刷（ActivityAntiRush，AA）是针对电商、O2O、P2P、游戏、支付等行业在促销活动中遇到“羊毛党”恶意刷取优惠福利的行为时，通过防刷引擎，精准识别出“薅羊毛”恶意行为的活动防刷服务，避免了企业被刷带来的巨大经济损失。
-    @inlinable
-    public func queryActivityAntiRush(_ input: QueryActivityAntiRushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryActivityAntiRushResponse > {
-        self.client.execute(action: "QueryActivityAntiRush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 活动防刷
-    ///
-    /// 腾讯云活动防刷（ActivityAntiRush，AA）是针对电商、O2O、P2P、游戏、支付等行业在促销活动中遇到“羊毛党”恶意刷取优惠福利的行为时，通过防刷引擎，精准识别出“薅羊毛”恶意行为的活动防刷服务，避免了企业被刷带来的巨大经济损失。
-    @inlinable
-    public func queryActivityAntiRush(_ input: QueryActivityAntiRushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityAntiRushResponse {
-        try await self.client.execute(action: "QueryActivityAntiRush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryActivityAntiRush请求参数结构体
     public struct QueryActivityAntiRushRequest: TCRequestModel {
         /// 账号类型
@@ -142,7 +126,7 @@ extension Aa {
         /// 1：识别。
         public let checkDevice: String?
         
-        public init (accountType: String, uid: String, userIp: String, postTime: String, appIdU: String?, nickName: String?, phoneNumber: String?, emailAddress: String?, registerTime: String?, registerIp: String?, cookieHash: String?, address: String?, loginSource: String?, loginType: String?, loginSpend: String?, rootId: String?, referer: String?, jumpUrl: String?, userAgent: String?, xForwardedFor: String?, mouseClickCount: String?, keyboardClickCount: String?, macAddress: String?, vendorId: String?, imei: String?, appVersion: String?, businessId: String?, wxSubType: String?, randNum: String?, wxToken: String?, checkDevice: String?) {
+        public init (accountType: String, uid: String, userIp: String, postTime: String, appIdU: String? = nil, nickName: String? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, registerTime: String? = nil, registerIp: String? = nil, cookieHash: String? = nil, address: String? = nil, loginSource: String? = nil, loginType: String? = nil, loginSpend: String? = nil, rootId: String? = nil, referer: String? = nil, jumpUrl: String? = nil, userAgent: String? = nil, xForwardedFor: String? = nil, mouseClickCount: String? = nil, keyboardClickCount: String? = nil, macAddress: String? = nil, vendorId: String? = nil, imei: String? = nil, appVersion: String? = nil, businessId: String? = nil, wxSubType: String? = nil, randNum: String? = nil, wxToken: String? = nil, checkDevice: String? = nil) {
             self.accountType = accountType
             self.uid = uid
             self.userIp = userIp
@@ -273,5 +257,21 @@ extension Aa {
             case codeDesc = "CodeDesc"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 活动防刷
+    ///
+    /// 腾讯云活动防刷（ActivityAntiRush，AA）是针对电商、O2O、P2P、游戏、支付等行业在促销活动中遇到“羊毛党”恶意刷取优惠福利的行为时，通过防刷引擎，精准识别出“薅羊毛”恶意行为的活动防刷服务，避免了企业被刷带来的巨大经济损失。
+    @inlinable
+    public func queryActivityAntiRush(_ input: QueryActivityAntiRushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryActivityAntiRushResponse > {
+        self.client.execute(action: "QueryActivityAntiRush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 活动防刷
+    ///
+    /// 腾讯云活动防刷（ActivityAntiRush，AA）是针对电商、O2O、P2P、游戏、支付等行业在促销活动中遇到“羊毛党”恶意刷取优惠福利的行为时，通过防刷引擎，精准识别出“薅羊毛”恶意行为的活动防刷服务，避免了企业被刷带来的巨大经济损失。
+    @inlinable
+    public func queryActivityAntiRush(_ input: QueryActivityAntiRushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityAntiRushResponse {
+        try await self.client.execute(action: "QueryActivityAntiRush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

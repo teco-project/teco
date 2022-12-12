@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询转码总量数据
-    ///
-    /// 查询转码总量数据，可查询近三个月内的数据。
-    /// 注意：
-    /// 如果是查询某一天内，则返回5分钟粒度数据；
-    /// 如果是查询跨天或指定域名， 则返回1小时粒度数据。
-    @inlinable
-    public func describeLiveTranscodeTotalInfo(_ input: DescribeLiveTranscodeTotalInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTranscodeTotalInfoResponse > {
-        self.client.execute(action: "DescribeLiveTranscodeTotalInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询转码总量数据
-    ///
-    /// 查询转码总量数据，可查询近三个月内的数据。
-    /// 注意：
-    /// 如果是查询某一天内，则返回5分钟粒度数据；
-    /// 如果是查询跨天或指定域名， 则返回1小时粒度数据。
-    @inlinable
-    public func describeLiveTranscodeTotalInfo(_ input: DescribeLiveTranscodeTotalInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTotalInfoResponse {
-        try await self.client.execute(action: "DescribeLiveTranscodeTotalInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveTranscodeTotalInfo请求参数结构体
     public struct DescribeLiveTranscodeTotalInfoRequest: TCRequestModel {
         /// 开始时间，北京时间。
@@ -57,7 +35,7 @@ extension Live {
         /// 默认：查询全球地区（境内+境外）的数据。
         public let mainlandOrOversea: String?
         
-        public init (startTime: String, endTime: String, pushDomains: [String]?, mainlandOrOversea: String?) {
+        public init (startTime: String, endTime: String, pushDomains: [String]? = nil, mainlandOrOversea: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.pushDomains = pushDomains
@@ -85,5 +63,27 @@ extension Live {
             case dataInfoList = "DataInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询转码总量数据
+    ///
+    /// 查询转码总量数据，可查询近三个月内的数据。
+    /// 注意：
+    /// 如果是查询某一天内，则返回5分钟粒度数据；
+    /// 如果是查询跨天或指定域名， 则返回1小时粒度数据。
+    @inlinable
+    public func describeLiveTranscodeTotalInfo(_ input: DescribeLiveTranscodeTotalInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTranscodeTotalInfoResponse > {
+        self.client.execute(action: "DescribeLiveTranscodeTotalInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询转码总量数据
+    ///
+    /// 查询转码总量数据，可查询近三个月内的数据。
+    /// 注意：
+    /// 如果是查询某一天内，则返回5分钟粒度数据；
+    /// 如果是查询跨天或指定域名， 则返回1小时粒度数据。
+    @inlinable
+    public func describeLiveTranscodeTotalInfo(_ input: DescribeLiveTranscodeTotalInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTotalInfoResponse {
+        try await self.client.execute(action: "DescribeLiveTranscodeTotalInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

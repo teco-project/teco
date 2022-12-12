@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 容器网络创建网络策略确认任务
-    @inlinable
-    public func confirmNetworkFirewallPolicy(_ input: ConfirmNetworkFirewallPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ConfirmNetworkFirewallPolicyResponse > {
-        self.client.execute(action: "ConfirmNetworkFirewallPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 容器网络创建网络策略确认任务
-    @inlinable
-    public func confirmNetworkFirewallPolicy(_ input: ConfirmNetworkFirewallPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmNetworkFirewallPolicyResponse {
-        try await self.client.execute(action: "ConfirmNetworkFirewallPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ConfirmNetworkFirewallPolicy请求参数结构体
     public struct ConfirmNetworkFirewallPolicyRequest: TCRequestModel {
         /// 集群Id
@@ -62,5 +50,17 @@ extension Tcss {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 容器网络创建网络策略确认任务
+    @inlinable
+    public func confirmNetworkFirewallPolicy(_ input: ConfirmNetworkFirewallPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ConfirmNetworkFirewallPolicyResponse > {
+        self.client.execute(action: "ConfirmNetworkFirewallPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络创建网络策略确认任务
+    @inlinable
+    public func confirmNetworkFirewallPolicy(_ input: ConfirmNetworkFirewallPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmNetworkFirewallPolicyResponse {
+        try await self.client.execute(action: "ConfirmNetworkFirewallPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

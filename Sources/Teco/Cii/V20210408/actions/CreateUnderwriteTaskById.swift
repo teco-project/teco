@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cii {
-    /// 根据结构化任务ID创建核保任务
-    ///
-    /// 本接口(CreateUnderwriteTaskById)用于根据结构化任务ID创建核保任务
-    @inlinable
-    public func createUnderwriteTaskById(_ input: CreateUnderwriteTaskByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUnderwriteTaskByIdResponse > {
-        self.client.execute(action: "CreateUnderwriteTaskById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据结构化任务ID创建核保任务
-    ///
-    /// 本接口(CreateUnderwriteTaskById)用于根据结构化任务ID创建核保任务
-    @inlinable
-    public func createUnderwriteTaskById(_ input: CreateUnderwriteTaskByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnderwriteTaskByIdResponse {
-        try await self.client.execute(action: "CreateUnderwriteTaskById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUnderwriteTaskById请求参数结构体
     public struct CreateUnderwriteTaskByIdRequest: TCRequestModel {
         /// 主任务ID数组，
@@ -39,7 +23,7 @@ extension Cii {
         /// 回调地址，可不传（提供轮询机制）。
         public let callbackUrl: String?
         
-        public init (mainTaskIds: [String], callbackUrl: String?) {
+        public init (mainTaskIds: [String], callbackUrl: String? = nil) {
             self.mainTaskIds = mainTaskIds
             self.callbackUrl = callbackUrl
         }
@@ -62,5 +46,21 @@ extension Cii {
             case underwriteTaskIds = "UnderwriteTaskIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据结构化任务ID创建核保任务
+    ///
+    /// 本接口(CreateUnderwriteTaskById)用于根据结构化任务ID创建核保任务
+    @inlinable
+    public func createUnderwriteTaskById(_ input: CreateUnderwriteTaskByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUnderwriteTaskByIdResponse > {
+        self.client.execute(action: "CreateUnderwriteTaskById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据结构化任务ID创建核保任务
+    ///
+    /// 本接口(CreateUnderwriteTaskById)用于根据结构化任务ID创建核保任务
+    @inlinable
+    public func createUnderwriteTaskById(_ input: CreateUnderwriteTaskByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnderwriteTaskByIdResponse {
+        try await self.client.execute(action: "CreateUnderwriteTaskById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

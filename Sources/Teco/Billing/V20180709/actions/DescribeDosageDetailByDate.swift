@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Billing {
-    /// 按日期获取产品用量明细
-    @inlinable
-    public func describeDosageDetailByDate(_ input: DescribeDosageDetailByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDosageDetailByDateResponse > {
-        self.client.execute(action: "DescribeDosageDetailByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 按日期获取产品用量明细
-    @inlinable
-    public func describeDosageDetailByDate(_ input: DescribeDosageDetailByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDosageDetailByDateResponse {
-        try await self.client.execute(action: "DescribeDosageDetailByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDosageDetailByDate请求参数结构体
     public struct DescribeDosageDetailByDateRequest: TCRequestModel {
         /// 查询账单开始日期，如 2019-01-01
@@ -62,7 +50,7 @@ extension Billing {
         /// 2、如果传入实例名，则返回该实例明细
         public let instanceID: String?
         
-        public init (startDate: String, endDate: String, productCode: String, domain: String, instanceID: String?) {
+        public init (startDate: String, endDate: String, productCode: String, domain: String, instanceID: String? = nil) {
             self.startDate = startDate
             self.endDate = endDate
             self.productCode = productCode
@@ -107,5 +95,17 @@ extension Billing {
             case retMsg = "RetMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 按日期获取产品用量明细
+    @inlinable
+    public func describeDosageDetailByDate(_ input: DescribeDosageDetailByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDosageDetailByDateResponse > {
+        self.client.execute(action: "DescribeDosageDetailByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 按日期获取产品用量明细
+    @inlinable
+    public func describeDosageDetailByDate(_ input: DescribeDosageDetailByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDosageDetailByDateResponse {
+        try await self.client.execute(action: "DescribeDosageDetailByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

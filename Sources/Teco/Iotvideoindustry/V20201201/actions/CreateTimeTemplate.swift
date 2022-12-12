@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 创建时间模板
-    ///
-    /// 本接口(CreateTimeTemplate) 用于根据模板描述的具体录制时间片段，创建定制化的时间模板。
-    @inlinable
-    public func createTimeTemplate(_ input: CreateTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTimeTemplateResponse > {
-        self.client.execute(action: "CreateTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建时间模板
-    ///
-    /// 本接口(CreateTimeTemplate) 用于根据模板描述的具体录制时间片段，创建定制化的时间模板。
-    @inlinable
-    public func createTimeTemplate(_ input: CreateTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTimeTemplateResponse {
-        try await self.client.execute(action: "CreateTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTimeTemplate请求参数结构体
     public struct CreateTimeTemplateRequest: TCRequestModel {
         /// 时间模板名称
@@ -42,7 +26,7 @@ extension Iotvideoindustry {
         /// 当IsAllWeek为0时必选，用于描述模板的各个时间片段
         public let timeTemplateSpecs: [TimeTemplateSpec]?
         
-        public init (name: String, isAllWeek: Int64, timeTemplateSpecs: [TimeTemplateSpec]?) {
+        public init (name: String, isAllWeek: Int64, timeTemplateSpecs: [TimeTemplateSpec]? = nil) {
             self.name = name
             self.isAllWeek = isAllWeek
             self.timeTemplateSpecs = timeTemplateSpecs
@@ -67,5 +51,21 @@ extension Iotvideoindustry {
             case templateId = "TemplateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建时间模板
+    ///
+    /// 本接口(CreateTimeTemplate) 用于根据模板描述的具体录制时间片段，创建定制化的时间模板。
+    @inlinable
+    public func createTimeTemplate(_ input: CreateTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTimeTemplateResponse > {
+        self.client.execute(action: "CreateTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建时间模板
+    ///
+    /// 本接口(CreateTimeTemplate) 用于根据模板描述的具体录制时间片段，创建定制化的时间模板。
+    @inlinable
+    public func createTimeTemplate(_ input: CreateTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTimeTemplateResponse {
+        try await self.client.execute(action: "CreateTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

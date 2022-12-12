@@ -229,7 +229,7 @@ extension Ams {
         
         /// 该字段用于返回音频片段的具体审核结果，详细内容敬请参考AudioResult数据结构的描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: AudioResult
+        public let result: AudioResult?
         
         enum CodingKeys: String, CodingKey {
             case offsetTime = "OffsetTime"
@@ -274,7 +274,7 @@ extension Ams {
         
         /// 该字段表示文件访问的腾讯云存储桶信息。<br> 备注：当Type为COS时此字段不为空。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let bucketInfo: BucketInfo
+        public let bucketInfo: BucketInfo?
         
         enum CodingKeys: String, CodingKey {
             case type = "Type"
@@ -369,9 +369,9 @@ extension Ams {
         public let url: String?
         
         /// 该字段表示文件访问的腾讯云存储桶信息。<br> 备注：当Type为COS时此字段不为空，该参数与Url参数须传入其中之一。
-        public let bucketInfo: BucketInfo
+        public let bucketInfo: BucketInfo?
         
-        public init (type: String?, url: String?, bucketInfo: BucketInfo) {
+        public init (type: String? = nil, url: String? = nil, bucketInfo: BucketInfo? = nil) {
             self.type = type
             self.url = url
             self.bucketInfo = bucketInfo
@@ -443,7 +443,7 @@ extension Ams {
         
         /// 输入信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mediaInfo: MediaInfo
+        public let mediaInfo: MediaInfo?
         
         /// 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -485,7 +485,7 @@ extension Ams {
         /// 该字段用于传入审核任务的任务状态供筛选器进行筛选，取值为：**FINISH**（任务已完成）、**PENDING** （任务等待中）、**RUNNING** （任务进行中）、**ERROR** （任务出错）、**CANCELLED** （任务已取消）。<br>备注：在不传入该参数时筛选器默认不筛选任务状态。
         public let taskStatus: String?
         
-        public init (bizType: String?, type: String?, suggestion: String?, taskStatus: String?) {
+        public init (bizType: String? = nil, type: String? = nil, suggestion: String? = nil, taskStatus: String? = nil) {
             self.bizType = bizType
             self.type = type
             self.suggestion = suggestion
@@ -509,9 +509,9 @@ extension Ams {
         public let name: String?
         
         /// 必填参数，该字段表示审核文件的访问参数，用于获取审核媒体文件，该参数内包括访问类型和访问地址。
-        public let input: StorageInfo
+        public let input: StorageInfo?
         
-        public init (dataId: String?, name: String?, input: StorageInfo) {
+        public init (dataId: String? = nil, name: String? = nil, input: StorageInfo? = nil) {
             self.dataId = dataId
             self.name = name
             self.input = input

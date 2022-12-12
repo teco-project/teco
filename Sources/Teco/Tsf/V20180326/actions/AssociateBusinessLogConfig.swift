@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 关联日志配置项到应用
-    @inlinable
-    public func associateBusinessLogConfig(_ input: AssociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateBusinessLogConfigResponse > {
-        self.client.execute(action: "AssociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关联日志配置项到应用
-    @inlinable
-    public func associateBusinessLogConfig(_ input: AssociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateBusinessLogConfigResponse {
-        try await self.client.execute(action: "AssociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssociateBusinessLogConfig请求参数结构体
     public struct AssociateBusinessLogConfigRequest: TCRequestModel {
         /// TSF分组ID
@@ -35,7 +23,7 @@ extension Tsf {
         /// 日志配置项ID列表
         public let configIdList: [String]?
         
-        public init (groupId: String, configIdList: [String]?) {
+        public init (groupId: String, configIdList: [String]? = nil) {
             self.groupId = groupId
             self.configIdList = configIdList
         }
@@ -59,5 +47,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关联日志配置项到应用
+    @inlinable
+    public func associateBusinessLogConfig(_ input: AssociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateBusinessLogConfigResponse > {
+        self.client.execute(action: "AssociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关联日志配置项到应用
+    @inlinable
+    public func associateBusinessLogConfig(_ input: AssociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateBusinessLogConfigResponse {
+        try await self.client.execute(action: "AssociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,6 +15,50 @@
 // DO NOT EDIT.
 
 extension Oceanus {
+    /// ModifyJob请求参数结构体
+    public struct ModifyJobRequest: TCRequestModel {
+        /// 作业Id
+        public let jobId: String
+        
+        /// 作业名称，支持长度小于50的中文/英文/数字/”-”/”_”/”.”，不能重名
+        public let name: String?
+        
+        /// 描述
+        public let remark: String?
+        
+        /// 拖拽文件需传入此参数
+        public let targetFolderId: String?
+        
+        /// 工作空间 SerialId
+        public let workSpaceId: String?
+        
+        public init (jobId: String, name: String? = nil, remark: String? = nil, targetFolderId: String? = nil, workSpaceId: String? = nil) {
+            self.jobId = jobId
+            self.name = name
+            self.remark = remark
+            self.targetFolderId = targetFolderId
+            self.workSpaceId = workSpaceId
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case jobId = "JobId"
+            case name = "Name"
+            case remark = "Remark"
+            case targetFolderId = "TargetFolderId"
+            case workSpaceId = "WorkSpaceId"
+        }
+    }
+    
+    /// ModifyJob返回参数结构体
+    public struct ModifyJobResponse: TCResponseModel {
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 更新作业
     ///
     /// 更新作业属性，仅允许以下3种操作，不支持组合操作：
@@ -45,49 +89,5 @@ extension Oceanus {
     @inlinable
     public func modifyJob(_ input: ModifyJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyJobResponse {
         try await self.client.execute(action: "ModifyJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// ModifyJob请求参数结构体
-    public struct ModifyJobRequest: TCRequestModel {
-        /// 作业Id
-        public let jobId: String
-        
-        /// 作业名称，支持长度小于50的中文/英文/数字/”-”/”_”/”.”，不能重名
-        public let name: String?
-        
-        /// 描述
-        public let remark: String?
-        
-        /// 拖拽文件需传入此参数
-        public let targetFolderId: String?
-        
-        /// 工作空间 SerialId
-        public let workSpaceId: String?
-        
-        public init (jobId: String, name: String?, remark: String?, targetFolderId: String?, workSpaceId: String?) {
-            self.jobId = jobId
-            self.name = name
-            self.remark = remark
-            self.targetFolderId = targetFolderId
-            self.workSpaceId = workSpaceId
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case jobId = "JobId"
-            case name = "Name"
-            case remark = "Remark"
-            case targetFolderId = "TargetFolderId"
-            case workSpaceId = "WorkSpaceId"
-        }
-    }
-    
-    /// ModifyJob返回参数结构体
-    public struct ModifyJobResponse: TCResponseModel {
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case requestId = "RequestId"
-        }
     }
 }

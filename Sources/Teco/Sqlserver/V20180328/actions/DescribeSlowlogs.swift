@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Sqlserver {
-    /// 获取慢查询日志文件信息
-    ///
-    /// 本接口（DescribeSlowlogs）用于获取慢查询日志文件信息
-    @inlinable
-    public func describeSlowlogs(_ input: DescribeSlowlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowlogsResponse > {
-        self.client.execute(action: "DescribeSlowlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取慢查询日志文件信息
-    ///
-    /// 本接口（DescribeSlowlogs）用于获取慢查询日志文件信息
-    @inlinable
-    public func describeSlowlogs(_ input: DescribeSlowlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowlogsResponse {
-        try await self.client.execute(action: "DescribeSlowlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSlowlogs请求参数结构体
     public struct DescribeSlowlogsRequest: TCRequestModel {
         /// 实例ID，形如mssql-k8voqdlz
@@ -52,7 +36,7 @@ extension Sqlserver {
         /// 分页返回，页编号，默认值为第0页
         public let offset: UInt64?
         
-        public init (instanceId: String, startTime: Date, endTime: Date, limit: Int64?, offset: UInt64?) {
+        public init (instanceId: String, startTime: Date, endTime: Date, limit: Int64? = nil, offset: UInt64? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -85,5 +69,21 @@ extension Sqlserver {
             case slowlogs = "Slowlogs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取慢查询日志文件信息
+    ///
+    /// 本接口（DescribeSlowlogs）用于获取慢查询日志文件信息
+    @inlinable
+    public func describeSlowlogs(_ input: DescribeSlowlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowlogsResponse > {
+        self.client.execute(action: "DescribeSlowlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取慢查询日志文件信息
+    ///
+    /// 本接口（DescribeSlowlogs）用于获取慢查询日志文件信息
+    @inlinable
+    public func describeSlowlogs(_ input: DescribeSlowlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowlogsResponse {
+        try await self.client.execute(action: "DescribeSlowlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

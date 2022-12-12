@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 删除容器部署组
-    @inlinable
-    public func deleteContainerGroup(_ input: DeleteContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteContainerGroupResponse > {
-        self.client.execute(action: "DeleteContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除容器部署组
-    @inlinable
-    public func deleteContainerGroup(_ input: DeleteContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerGroupResponse {
-        try await self.client.execute(action: "DeleteContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteContainerGroup请求参数结构体
     public struct DeleteContainerGroupRequest: TCRequestModel {
         /// 部署组ID，分组唯一标识
@@ -55,5 +43,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除容器部署组
+    @inlinable
+    public func deleteContainerGroup(_ input: DeleteContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteContainerGroupResponse > {
+        self.client.execute(action: "DeleteContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除容器部署组
+    @inlinable
+    public func deleteContainerGroup(_ input: DeleteContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerGroupResponse {
+        try await self.client.execute(action: "DeleteContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

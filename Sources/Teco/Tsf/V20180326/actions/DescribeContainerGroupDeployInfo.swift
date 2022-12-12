@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 获取部署组详情
-    ///
-    ///  获取部署组详情
-    @inlinable
-    public func describeContainerGroupDeployInfo(_ input: DescribeContainerGroupDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerGroupDeployInfoResponse > {
-        self.client.execute(action: "DescribeContainerGroupDeployInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取部署组详情
-    ///
-    ///  获取部署组详情
-    @inlinable
-    public func describeContainerGroupDeployInfo(_ input: DescribeContainerGroupDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupDeployInfoResponse {
-        try await self.client.execute(action: "DescribeContainerGroupDeployInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeContainerGroupDeployInfo请求参数结构体
     public struct DescribeContainerGroupDeployInfoRequest: TCRequestModel {
         /// 实例所属 groupId
@@ -49,7 +33,7 @@ extension Tsf {
     public struct DescribeContainerGroupDeployInfoResponse: TCResponseModel {
         /// 获取部署组
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: ContainerGroupDeploy
+        public let result: ContainerGroupDeploy?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -58,5 +42,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取部署组详情
+    ///
+    ///  获取部署组详情
+    @inlinable
+    public func describeContainerGroupDeployInfo(_ input: DescribeContainerGroupDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeContainerGroupDeployInfoResponse > {
+        self.client.execute(action: "DescribeContainerGroupDeployInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取部署组详情
+    ///
+    ///  获取部署组详情
+    @inlinable
+    public func describeContainerGroupDeployInfo(_ input: DescribeContainerGroupDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupDeployInfoResponse {
+        try await self.client.execute(action: "DescribeContainerGroupDeployInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

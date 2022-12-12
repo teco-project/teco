@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gme {
-    /// 查询语音检测结果
-    ///
-    /// 本接口(DescribeScanResultList)用于查询语音检测结果，查询任务列表最多支持100个。
-    /// <p style="color:red">如果在提交语音检测任务时未设置 Callback 字段，则需要通过本接口获取检测结果</p>
-    @inlinable
-    public func describeScanResultList(_ input: DescribeScanResultListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanResultListResponse > {
-        self.client.execute(action: "DescribeScanResultList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询语音检测结果
-    ///
-    /// 本接口(DescribeScanResultList)用于查询语音检测结果，查询任务列表最多支持100个。
-    /// <p style="color:red">如果在提交语音检测任务时未设置 Callback 字段，则需要通过本接口获取检测结果</p>
-    @inlinable
-    public func describeScanResultList(_ input: DescribeScanResultListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanResultListResponse {
-        try await self.client.execute(action: "DescribeScanResultList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScanResultList请求参数结构体
     public struct DescribeScanResultListRequest: TCRequestModel {
         /// 应用 ID，登录[控制台](https://console.cloud.tencent.com/gamegme)创建应用得到的AppID
@@ -44,7 +26,7 @@ extension Gme {
         /// 任务返回结果数量，默认10，上限500。大文件任务忽略此参数，返回全量结果
         public let limit: UInt64?
         
-        public init (bizId: UInt64, taskIdList: [String], limit: UInt64?) {
+        public init (bizId: UInt64, taskIdList: [String], limit: UInt64? = nil) {
             self.bizId = bizId
             self.taskIdList = taskIdList
             self.limit = limit
@@ -70,5 +52,23 @@ extension Gme {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询语音检测结果
+    ///
+    /// 本接口(DescribeScanResultList)用于查询语音检测结果，查询任务列表最多支持100个。
+    /// <p style="color:red">如果在提交语音检测任务时未设置 Callback 字段，则需要通过本接口获取检测结果</p>
+    @inlinable
+    public func describeScanResultList(_ input: DescribeScanResultListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanResultListResponse > {
+        self.client.execute(action: "DescribeScanResultList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询语音检测结果
+    ///
+    /// 本接口(DescribeScanResultList)用于查询语音检测结果，查询任务列表最多支持100个。
+    /// <p style="color:red">如果在提交语音检测任务时未设置 Callback 字段，则需要通过本接口获取检测结果</p>
+    @inlinable
+    public func describeScanResultList(_ input: DescribeScanResultListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanResultListResponse {
+        try await self.client.execute(action: "DescribeScanResultList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询迁移校验任务进度
-    ///
-    /// 本接口（QueryMigrationCheckProcess）的作用是查询迁移检查任务的进度，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
-    @inlinable
-    public func queryMigrationCheckProcess(_ input: QueryMigrationCheckProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMigrationCheckProcessResponse > {
-        self.client.execute(action: "QueryMigrationCheckProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询迁移校验任务进度
-    ///
-    /// 本接口（QueryMigrationCheckProcess）的作用是查询迁移检查任务的进度，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
-    @inlinable
-    public func queryMigrationCheckProcess(_ input: QueryMigrationCheckProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMigrationCheckProcessResponse {
-        try await self.client.execute(action: "QueryMigrationCheckProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryMigrationCheckProcess请求参数结构体
     public struct QueryMigrationCheckProcessRequest: TCRequestModel {
         /// 迁移任务ID
@@ -65,5 +49,21 @@ extension Sqlserver {
             case stepDetails = "StepDetails"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询迁移校验任务进度
+    ///
+    /// 本接口（QueryMigrationCheckProcess）的作用是查询迁移检查任务的进度，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
+    @inlinable
+    public func queryMigrationCheckProcess(_ input: QueryMigrationCheckProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMigrationCheckProcessResponse > {
+        self.client.execute(action: "QueryMigrationCheckProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询迁移校验任务进度
+    ///
+    /// 本接口（QueryMigrationCheckProcess）的作用是查询迁移检查任务的进度，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
+    @inlinable
+    public func queryMigrationCheckProcess(_ input: QueryMigrationCheckProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMigrationCheckProcessResponse {
+        try await self.client.execute(action: "QueryMigrationCheckProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

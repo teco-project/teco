@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取所有主机标签
-    @inlinable
-    public func describeTags(_ input: DescribeTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagsResponse > {
-        self.client.execute(action: "DescribeTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取所有主机标签
-    @inlinable
-    public func describeTags(_ input: DescribeTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsResponse {
-        try await self.client.execute(action: "DescribeTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTags请求参数结构体
     public struct DescribeTagsRequest: TCRequestModel {
         /// 云主机类型。
@@ -49,7 +37,7 @@ extension Cwp {
         /// 每个过滤条件只支持一个值，暂不支持多个值“或”关系查询
         public let filters: [Filters]?
         
-        public init (machineType: String?, machineRegion: String?, filters: [Filters]?) {
+        public init (machineType: String? = nil, machineRegion: String? = nil, filters: [Filters]? = nil) {
             self.machineType = machineType
             self.machineRegion = machineRegion
             self.filters = filters
@@ -74,5 +62,17 @@ extension Cwp {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取所有主机标签
+    @inlinable
+    public func describeTags(_ input: DescribeTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagsResponse > {
+        self.client.execute(action: "DescribeTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取所有主机标签
+    @inlinable
+    public func describeTags(_ input: DescribeTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsResponse {
+        try await self.client.execute(action: "DescribeTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

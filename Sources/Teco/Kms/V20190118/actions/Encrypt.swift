@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 加密
-    ///
-    /// 本接口用于加密最多为4KB任意数据，可用于加密数据库密码，RSA Key，或其它较小的敏感信息。对于应用的数据加密，使用GenerateDataKey生成的DataKey进行本地数据的加解密操作
-    @inlinable
-    public func encrypt(_ input: EncryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EncryptResponse > {
-        self.client.execute(action: "Encrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 加密
-    ///
-    /// 本接口用于加密最多为4KB任意数据，可用于加密数据库密码，RSA Key，或其它较小的敏感信息。对于应用的数据加密，使用GenerateDataKey生成的DataKey进行本地数据的加解密操作
-    @inlinable
-    public func encrypt(_ input: EncryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EncryptResponse {
-        try await self.client.execute(action: "Encrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// Encrypt请求参数结构体
     public struct EncryptRequest: TCRequestModel {
         /// 调用CreateKey生成的CMK全局唯一标识符
@@ -42,7 +26,7 @@ extension Kms {
         /// key/value对的json字符串，如果指定了该参数，则在调用Decrypt API时需要提供同样的参数，最大支持1024个字符
         public let encryptionContext: String?
         
-        public init (keyId: String, plaintext: String, encryptionContext: String?) {
+        public init (keyId: String, plaintext: String, encryptionContext: String? = nil) {
             self.keyId = keyId
             self.plaintext = plaintext
             self.encryptionContext = encryptionContext
@@ -71,5 +55,21 @@ extension Kms {
             case keyId = "KeyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 加密
+    ///
+    /// 本接口用于加密最多为4KB任意数据，可用于加密数据库密码，RSA Key，或其它较小的敏感信息。对于应用的数据加密，使用GenerateDataKey生成的DataKey进行本地数据的加解密操作
+    @inlinable
+    public func encrypt(_ input: EncryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EncryptResponse > {
+        self.client.execute(action: "Encrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 加密
+    ///
+    /// 本接口用于加密最多为4KB任意数据，可用于加密数据库密码，RSA Key，或其它较小的敏感信息。对于应用的数据加密，使用GenerateDataKey生成的DataKey进行本地数据的加解密操作
+    @inlinable
+    public func encrypt(_ input: EncryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EncryptResponse {
+        try await self.client.execute(action: "Encrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

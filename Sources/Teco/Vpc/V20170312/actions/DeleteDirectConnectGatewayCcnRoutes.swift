@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除专线网关云联网路由
-    ///
-    /// 本接口（DeleteDirectConnectGatewayCcnRoutes）用于删除专线网关的云联网路由（IDC网段）
-    @inlinable
-    public func deleteDirectConnectGatewayCcnRoutes(_ input: DeleteDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDirectConnectGatewayCcnRoutesResponse > {
-        self.client.execute(action: "DeleteDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除专线网关云联网路由
-    ///
-    /// 本接口（DeleteDirectConnectGatewayCcnRoutes）用于删除专线网关的云联网路由（IDC网段）
-    @inlinable
-    public func deleteDirectConnectGatewayCcnRoutes(_ input: DeleteDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectGatewayCcnRoutesResponse {
-        try await self.client.execute(action: "DeleteDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDirectConnectGatewayCcnRoutes请求参数结构体
     public struct DeleteDirectConnectGatewayCcnRoutesRequest: TCRequestModel {
         /// 专线网关ID，形如：dcg-prpqlmg1
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除专线网关云联网路由
+    ///
+    /// 本接口（DeleteDirectConnectGatewayCcnRoutes）用于删除专线网关的云联网路由（IDC网段）
+    @inlinable
+    public func deleteDirectConnectGatewayCcnRoutes(_ input: DeleteDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDirectConnectGatewayCcnRoutesResponse > {
+        self.client.execute(action: "DeleteDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除专线网关云联网路由
+    ///
+    /// 本接口（DeleteDirectConnectGatewayCcnRoutes）用于删除专线网关的云联网路由（IDC网段）
+    @inlinable
+    public func deleteDirectConnectGatewayCcnRoutes(_ input: DeleteDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectGatewayCcnRoutesResponse {
+        try await self.client.execute(action: "DeleteDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

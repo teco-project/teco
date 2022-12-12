@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 替换负载均衡实例所关联的证书
-    ///
-    /// ReplaceCertForLoadBalancers 接口用以替换负载均衡实例所关联的证书，对于各个地域的负载均衡，如果指定的老的证书ID与其有关联关系，则会先解除关联，再建立新证书与该负载均衡的关联关系。
-    /// 此接口支持替换服务端证书或客户端证书。
-    /// 需要使用的新证书，可以通过传入证书ID来指定，如果不指定证书ID，则必须传入证书内容等相关信息，用以新建证书并绑定至负载均衡。
-    /// 注：本接口仅可从广州地域调用。
-    @inlinable
-    public func replaceCertForLoadBalancers(_ input: ReplaceCertForLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceCertForLoadBalancersResponse > {
-        self.client.execute(action: "ReplaceCertForLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 替换负载均衡实例所关联的证书
-    ///
-    /// ReplaceCertForLoadBalancers 接口用以替换负载均衡实例所关联的证书，对于各个地域的负载均衡，如果指定的老的证书ID与其有关联关系，则会先解除关联，再建立新证书与该负载均衡的关联关系。
-    /// 此接口支持替换服务端证书或客户端证书。
-    /// 需要使用的新证书，可以通过传入证书ID来指定，如果不指定证书ID，则必须传入证书内容等相关信息，用以新建证书并绑定至负载均衡。
-    /// 注：本接口仅可从广州地域调用。
-    @inlinable
-    public func replaceCertForLoadBalancers(_ input: ReplaceCertForLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertForLoadBalancersResponse {
-        try await self.client.execute(action: "ReplaceCertForLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReplaceCertForLoadBalancers请求参数结构体
     public struct ReplaceCertForLoadBalancersRequest: TCRequestModel {
         /// 需要被替换的证书的ID，可以是服务端证书或客户端证书
@@ -64,5 +42,27 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 替换负载均衡实例所关联的证书
+    ///
+    /// ReplaceCertForLoadBalancers 接口用以替换负载均衡实例所关联的证书，对于各个地域的负载均衡，如果指定的老的证书ID与其有关联关系，则会先解除关联，再建立新证书与该负载均衡的关联关系。
+    /// 此接口支持替换服务端证书或客户端证书。
+    /// 需要使用的新证书，可以通过传入证书ID来指定，如果不指定证书ID，则必须传入证书内容等相关信息，用以新建证书并绑定至负载均衡。
+    /// 注：本接口仅可从广州地域调用。
+    @inlinable
+    public func replaceCertForLoadBalancers(_ input: ReplaceCertForLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceCertForLoadBalancersResponse > {
+        self.client.execute(action: "ReplaceCertForLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 替换负载均衡实例所关联的证书
+    ///
+    /// ReplaceCertForLoadBalancers 接口用以替换负载均衡实例所关联的证书，对于各个地域的负载均衡，如果指定的老的证书ID与其有关联关系，则会先解除关联，再建立新证书与该负载均衡的关联关系。
+    /// 此接口支持替换服务端证书或客户端证书。
+    /// 需要使用的新证书，可以通过传入证书ID来指定，如果不指定证书ID，则必须传入证书内容等相关信息，用以新建证书并绑定至负载均衡。
+    /// 注：本接口仅可从广州地域调用。
+    @inlinable
+    public func replaceCertForLoadBalancers(_ input: ReplaceCertForLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertForLoadBalancersResponse {
+        try await self.client.execute(action: "ReplaceCertForLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

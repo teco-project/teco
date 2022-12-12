@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudhsm {
-    /// 查询私有网络列表
-    ///
-    /// 查询用户的私有网络列表
-    @inlinable
-    public func describeVpc(_ input: DescribeVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcResponse > {
-        self.client.execute(action: "DescribeVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询私有网络列表
-    ///
-    /// 查询用户的私有网络列表
-    @inlinable
-    public func describeVpc(_ input: DescribeVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResponse {
-        try await self.client.execute(action: "DescribeVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpc请求参数结构体
     public struct DescribeVpcRequest: TCRequestModel {
         /// 返回偏移量。Offset最小为0。
@@ -42,7 +26,7 @@ extension Cloudhsm {
         /// 搜索关键字
         public let searchWord: String?
         
-        public init (offset: Int64, limit: Int64, searchWord: String?) {
+        public init (offset: Int64, limit: Int64, searchWord: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.searchWord = searchWord
@@ -72,5 +56,21 @@ extension Cloudhsm {
             case vpcList = "VpcList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询私有网络列表
+    ///
+    /// 查询用户的私有网络列表
+    @inlinable
+    public func describeVpc(_ input: DescribeVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcResponse > {
+        self.client.execute(action: "DescribeVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询私有网络列表
+    ///
+    /// 查询用户的私有网络列表
+    @inlinable
+    public func describeVpc(_ input: DescribeVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResponse {
+        try await self.client.execute(action: "DescribeVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 删除检索模板
-    @inlinable
-    public func deleteSearchTemplate(_ input: DeleteSearchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSearchTemplateResponse > {
-        self.client.execute(action: "DeleteSearchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除检索模板
-    @inlinable
-    public func deleteSearchTemplate(_ input: DeleteSearchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSearchTemplateResponse {
-        try await self.client.execute(action: "DeleteSearchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSearchTemplate请求参数结构体
     public struct DeleteSearchTemplateRequest: TCRequestModel {
         /// 模板ID
@@ -53,5 +41,17 @@ extension Cwp {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除检索模板
+    @inlinable
+    public func deleteSearchTemplate(_ input: DeleteSearchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSearchTemplateResponse > {
+        self.client.execute(action: "DeleteSearchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除检索模板
+    @inlinable
+    public func deleteSearchTemplate(_ input: DeleteSearchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSearchTemplateResponse {
+        try await self.client.execute(action: "DeleteSearchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

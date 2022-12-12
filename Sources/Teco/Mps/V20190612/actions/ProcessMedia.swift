@@ -15,65 +15,31 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 发起媒体处理
-    ///
-    /// 对 URL视频链接 或 COS 中的媒体文件发起处理任务，功能包括：
-    /// 1. 视频转码（普通转码、极速高清转码、音视频增强）；
-    /// 2. 视频转动图；
-    /// 3. 对视频按指定时间点截图；
-    /// 4. 对视频采样截图；
-    /// 5. 对视频截图雪碧图；
-    /// 6. 对视频转自适应码流；
-    /// 7. 智能内容审核（鉴黄、敏感信息检测）；
-    /// 8. 智能内容分析（标签、分类、封面、按帧标签、拆条、集锦、片头片尾）；
-    /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音翻译、物体识别）。
-    @inlinable
-    public func processMedia(_ input: ProcessMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ProcessMediaResponse > {
-        self.client.execute(action: "ProcessMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发起媒体处理
-    ///
-    /// 对 URL视频链接 或 COS 中的媒体文件发起处理任务，功能包括：
-    /// 1. 视频转码（普通转码、极速高清转码、音视频增强）；
-    /// 2. 视频转动图；
-    /// 3. 对视频按指定时间点截图；
-    /// 4. 对视频采样截图；
-    /// 5. 对视频截图雪碧图；
-    /// 6. 对视频转自适应码流；
-    /// 7. 智能内容审核（鉴黄、敏感信息检测）；
-    /// 8. 智能内容分析（标签、分类、封面、按帧标签、拆条、集锦、片头片尾）；
-    /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音翻译、物体识别）。
-    @inlinable
-    public func processMedia(_ input: ProcessMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaResponse {
-        try await self.client.execute(action: "ProcessMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ProcessMedia请求参数结构体
     public struct ProcessMediaRequest: TCRequestModel {
         /// 媒体处理的文件输入信息。
         public let inputInfo: MediaInputInfo
         
         /// 媒体处理输出文件的目标存储。不填则继承 InputInfo 中的存储位置。
-        public let outputStorage: TaskOutputStorage
+        public let outputStorage: TaskOutputStorage?
         
         /// 媒体处理生成的文件输出的目标目录，如`/movie/201907/`。如果不填，表示与 InputInfo 中文件所在的目录一致。
         public let outputDir: String?
         
         /// 媒体处理类型任务参数。
-        public let mediaProcessTask: MediaProcessTaskInput
+        public let mediaProcessTask: MediaProcessTaskInput?
         
         /// 视频内容审核类型任务参数。
-        public let aiContentReviewTask: AiContentReviewTaskInput
+        public let aiContentReviewTask: AiContentReviewTaskInput?
         
         /// 视频内容分析类型任务参数。
-        public let aiAnalysisTask: AiAnalysisTaskInput
+        public let aiAnalysisTask: AiAnalysisTaskInput?
         
         /// 视频内容识别类型任务参数。
-        public let aiRecognitionTask: AiRecognitionTaskInput
+        public let aiRecognitionTask: AiRecognitionTaskInput?
         
         /// 任务的事件通知信息，不填代表不获取事件通知。
-        public let taskNotifyConfig: TaskNotifyConfig
+        public let taskNotifyConfig: TaskNotifyConfig?
         
         /// 任务流的优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。
         public let tasksPriority: Int64?
@@ -92,7 +58,7 @@ extension Mps {
         /// 注意3：编排的 Trigger 只是用来自动化触发场景，在手动发起的请求中已经配置的 Trigger 无意义。
         public let scheduleId: Int64?
         
-        public init (inputInfo: MediaInputInfo, outputStorage: TaskOutputStorage, outputDir: String?, mediaProcessTask: MediaProcessTaskInput, aiContentReviewTask: AiContentReviewTaskInput, aiAnalysisTask: AiAnalysisTaskInput, aiRecognitionTask: AiRecognitionTaskInput, taskNotifyConfig: TaskNotifyConfig, tasksPriority: Int64?, sessionId: String?, sessionContext: String?, scheduleId: Int64?) {
+        public init (inputInfo: MediaInputInfo, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, scheduleId: Int64? = nil) {
             self.inputInfo = inputInfo
             self.outputStorage = outputStorage
             self.outputDir = outputDir
@@ -135,5 +101,39 @@ extension Mps {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发起媒体处理
+    ///
+    /// 对 URL视频链接 或 COS 中的媒体文件发起处理任务，功能包括：
+    /// 1. 视频转码（普通转码、极速高清转码、音视频增强）；
+    /// 2. 视频转动图；
+    /// 3. 对视频按指定时间点截图；
+    /// 4. 对视频采样截图；
+    /// 5. 对视频截图雪碧图；
+    /// 6. 对视频转自适应码流；
+    /// 7. 智能内容审核（鉴黄、敏感信息检测）；
+    /// 8. 智能内容分析（标签、分类、封面、按帧标签、拆条、集锦、片头片尾）；
+    /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音翻译、物体识别）。
+    @inlinable
+    public func processMedia(_ input: ProcessMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ProcessMediaResponse > {
+        self.client.execute(action: "ProcessMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发起媒体处理
+    ///
+    /// 对 URL视频链接 或 COS 中的媒体文件发起处理任务，功能包括：
+    /// 1. 视频转码（普通转码、极速高清转码、音视频增强）；
+    /// 2. 视频转动图；
+    /// 3. 对视频按指定时间点截图；
+    /// 4. 对视频采样截图；
+    /// 5. 对视频截图雪碧图；
+    /// 6. 对视频转自适应码流；
+    /// 7. 智能内容审核（鉴黄、敏感信息检测）；
+    /// 8. 智能内容分析（标签、分类、封面、按帧标签、拆条、集锦、片头片尾）；
+    /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音翻译、物体识别）。
+    @inlinable
+    public func processMedia(_ input: ProcessMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaResponse {
+        try await self.client.execute(action: "ProcessMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

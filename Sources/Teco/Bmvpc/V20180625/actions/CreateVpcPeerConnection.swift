@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 创建对等连接
-    @inlinable
-    public func createVpcPeerConnection(_ input: CreateVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpcPeerConnectionResponse > {
-        self.client.execute(action: "CreateVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建对等连接
-    @inlinable
-    public func createVpcPeerConnection(_ input: CreateVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcPeerConnectionResponse {
-        try await self.client.execute(action: "CreateVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVpcPeerConnection请求参数结构体
     public struct CreateVpcPeerConnectionRequest: TCRequestModel {
         /// 本端VPC唯一ID
@@ -47,7 +35,7 @@ extension Bmvpc {
         /// 跨地域必传，带宽上限值
         public let bandwidth: UInt64?
         
-        public init (vpcId: String, peerVpcId: String, peerRegion: String, vpcPeerConnectionName: String, peerUin: String?, bandwidth: UInt64?) {
+        public init (vpcId: String, peerVpcId: String, peerRegion: String, vpcPeerConnectionName: String, peerUin: String? = nil, bandwidth: UInt64? = nil) {
             self.vpcId = vpcId
             self.peerVpcId = peerVpcId
             self.peerRegion = peerRegion
@@ -78,5 +66,17 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建对等连接
+    @inlinable
+    public func createVpcPeerConnection(_ input: CreateVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpcPeerConnectionResponse > {
+        self.client.execute(action: "CreateVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建对等连接
+    @inlinable
+    public func createVpcPeerConnection(_ input: CreateVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcPeerConnectionResponse {
+        try await self.client.execute(action: "CreateVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

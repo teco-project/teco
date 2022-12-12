@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// Invoke异步调用结果查询
-    @inlinable
-    public func getInvokeTx(_ input: GetInvokeTxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetInvokeTxResponse > {
-        self.client.execute(action: "GetInvokeTx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// Invoke异步调用结果查询
-    @inlinable
-    public func getInvokeTx(_ input: GetInvokeTxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetInvokeTxResponse {
-        try await self.client.execute(action: "GetInvokeTx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetInvokeTx请求参数结构体
     public struct GetInvokeTxRequest: TCRequestModel {
         /// 模块名，固定字段：transaction
@@ -96,5 +84,17 @@ extension Tbaas {
             case blockId = "BlockId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// Invoke异步调用结果查询
+    @inlinable
+    public func getInvokeTx(_ input: GetInvokeTxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetInvokeTxResponse > {
+        self.client.execute(action: "GetInvokeTx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// Invoke异步调用结果查询
+    @inlinable
+    public func getInvokeTx(_ input: GetInvokeTxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetInvokeTxResponse {
+        try await self.client.execute(action: "GetInvokeTx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

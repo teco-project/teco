@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 查询订阅某主题消息分组信息
-    @inlinable
-    public func describeTopicSubscribeGroup(_ input: DescribeTopicSubscribeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicSubscribeGroupResponse > {
-        self.client.execute(action: "DescribeTopicSubscribeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询订阅某主题消息分组信息
-    @inlinable
-    public func describeTopicSubscribeGroup(_ input: DescribeTopicSubscribeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicSubscribeGroupResponse {
-        try await self.client.execute(action: "DescribeTopicSubscribeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTopicSubscribeGroup请求参数结构体
     public struct DescribeTopicSubscribeGroupRequest: TCRequestModel {
         /// 实例Id
@@ -41,7 +29,7 @@ extension Ckafka {
         /// 分页时的个数
         public let limit: UInt64?
         
-        public init (instanceId: String, topicName: String, offset: UInt64?, limit: UInt64?) {
+        public init (instanceId: String, topicName: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.instanceId = instanceId
             self.topicName = topicName
             self.offset = offset
@@ -68,5 +56,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询订阅某主题消息分组信息
+    @inlinable
+    public func describeTopicSubscribeGroup(_ input: DescribeTopicSubscribeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicSubscribeGroupResponse > {
+        self.client.execute(action: "DescribeTopicSubscribeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询订阅某主题消息分组信息
+    @inlinable
+    public func describeTopicSubscribeGroup(_ input: DescribeTopicSubscribeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicSubscribeGroupResponse {
+        try await self.client.execute(action: "DescribeTopicSubscribeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

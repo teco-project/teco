@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询容器镜像信息
-    ///
-    /// 查询镜像版本列表或指定容器镜像信息
-    @inlinable
-    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
-        self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器镜像信息
-    ///
-    /// 查询镜像版本列表或指定容器镜像信息
-    @inlinable
-    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
-        try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImages请求参数结构体
     public struct DescribeImagesRequest: TCRequestModel {
         /// 实例ID
@@ -57,7 +41,7 @@ extension Tcr {
         /// 指定是否为精准匹配，true为精准匹配，不填为模糊匹配
         public let exactMatch: Bool?
         
-        public init (registryId: String, namespaceName: String, repositoryName: String, imageVersion: String?, limit: Int64?, offset: Int64?, digest: String?, exactMatch: Bool?) {
+        public init (registryId: String, namespaceName: String, repositoryName: String, imageVersion: String? = nil, limit: Int64? = nil, offset: Int64? = nil, digest: String? = nil, exactMatch: Bool? = nil) {
             self.registryId = registryId
             self.namespaceName = namespaceName
             self.repositoryName = repositoryName
@@ -96,5 +80,21 @@ extension Tcr {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器镜像信息
+    ///
+    /// 查询镜像版本列表或指定容器镜像信息
+    @inlinable
+    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
+        self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器镜像信息
+    ///
+    /// 查询镜像版本列表或指定容器镜像信息
+    @inlinable
+    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
+        try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

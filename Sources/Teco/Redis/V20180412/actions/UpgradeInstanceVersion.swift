@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 升级实例版本或者结构
-    ///
-    /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
-    @inlinable
-    public func upgradeInstanceVersion(_ input: UpgradeInstanceVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeInstanceVersionResponse > {
-        self.client.execute(action: "UpgradeInstanceVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 升级实例版本或者结构
-    ///
-    /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
-    @inlinable
-    public func upgradeInstanceVersion(_ input: UpgradeInstanceVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceVersionResponse {
-        try await self.client.execute(action: "UpgradeInstanceVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeInstanceVersion请求参数结构体
     public struct UpgradeInstanceVersionRequest: TCRequestModel {
         /// 目标实例类型，同 [CreateInstances](https://cloud.tencent.com/document/api/239/20026) 的Type，即实例要变更的目标类型
@@ -67,5 +51,21 @@ extension Redis {
             case dealId = "DealId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 升级实例版本或者结构
+    ///
+    /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
+    @inlinable
+    public func upgradeInstanceVersion(_ input: UpgradeInstanceVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeInstanceVersionResponse > {
+        self.client.execute(action: "UpgradeInstanceVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 升级实例版本或者结构
+    ///
+    /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
+    @inlinable
+    public func upgradeInstanceVersion(_ input: UpgradeInstanceVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceVersionResponse {
+        try await self.client.execute(action: "UpgradeInstanceVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

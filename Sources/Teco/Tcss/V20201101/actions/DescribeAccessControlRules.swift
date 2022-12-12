@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时访问控制策略列表
-    ///
-    /// 查询运行访问控制策略列表信息
-    @inlinable
-    public func describeAccessControlRules(_ input: DescribeAccessControlRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessControlRulesResponse > {
-        self.client.execute(action: "DescribeAccessControlRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时访问控制策略列表
-    ///
-    /// 查询运行访问控制策略列表信息
-    @inlinable
-    public func describeAccessControlRules(_ input: DescribeAccessControlRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlRulesResponse {
-        try await self.client.execute(action: "DescribeAccessControlRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccessControlRules请求参数结构体
     public struct DescribeAccessControlRulesRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -48,7 +32,7 @@ extension Tcss {
         /// 排序字段
         public let by: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, order: String?, by: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -81,5 +65,21 @@ extension Tcss {
             case ruleSet = "RuleSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时访问控制策略列表
+    ///
+    /// 查询运行访问控制策略列表信息
+    @inlinable
+    public func describeAccessControlRules(_ input: DescribeAccessControlRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessControlRulesResponse > {
+        self.client.execute(action: "DescribeAccessControlRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时访问控制策略列表
+    ///
+    /// 查询运行访问控制策略列表信息
+    @inlinable
+    public func describeAccessControlRules(_ input: DescribeAccessControlRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlRulesResponse {
+        try await self.client.execute(action: "DescribeAccessControlRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

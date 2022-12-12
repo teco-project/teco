@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取曲库包已核销歌曲列表
-    ///
-    /// 获取曲库包下已核销歌曲列表接口
-    @inlinable
-    public func describePackageItems(_ input: DescribePackageItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePackageItemsResponse > {
-        self.client.execute(action: "DescribePackageItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取曲库包已核销歌曲列表
-    ///
-    /// 获取曲库包下已核销歌曲列表接口
-    @inlinable
-    public func describePackageItems(_ input: DescribePackageItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackageItemsResponse {
-        try await self.client.execute(action: "DescribePackageItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePackageItems请求参数结构体
     public struct DescribePackageItemsRequest: TCRequestModel {
         /// 订单id，从获取已购曲库包列表中获取
@@ -42,7 +26,7 @@ extension Ame {
         /// 默认20
         public let length: UInt64?
         
-        public init (orderId: String, offset: UInt64?, length: UInt64?) {
+        public init (orderId: String, offset: UInt64? = nil, length: UInt64? = nil) {
             self.orderId = orderId
             self.offset = offset
             self.length = length
@@ -68,5 +52,21 @@ extension Ame {
             case packageItems = "PackageItems"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取曲库包已核销歌曲列表
+    ///
+    /// 获取曲库包下已核销歌曲列表接口
+    @inlinable
+    public func describePackageItems(_ input: DescribePackageItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePackageItemsResponse > {
+        self.client.execute(action: "DescribePackageItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取曲库包已核销歌曲列表
+    ///
+    /// 获取曲库包下已核销歌曲列表接口
+    @inlinable
+    public func describePackageItems(_ input: DescribePackageItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackageItemsResponse {
+        try await self.client.execute(action: "DescribePackageItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

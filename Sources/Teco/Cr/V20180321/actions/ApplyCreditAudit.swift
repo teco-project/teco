@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cr {
-    /// 提交信审申请
-    ///
-    /// 提交信审外呼申请，返回当次请求日期。
-    @inlinable
-    public func applyCreditAudit(_ input: ApplyCreditAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyCreditAuditResponse > {
-        self.client.execute(action: "ApplyCreditAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交信审申请
-    ///
-    /// 提交信审外呼申请，返回当次请求日期。
-    @inlinable
-    public func applyCreditAudit(_ input: ApplyCreditAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyCreditAuditResponse {
-        try await self.client.execute(action: "ApplyCreditAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyCreditAudit请求参数结构体
     public struct ApplyCreditAuditRequest: TCRequestModel {
         /// 模块名，本接口取值：Credit
@@ -90,5 +74,21 @@ extension Cr {
             case requestDate = "RequestDate"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交信审申请
+    ///
+    /// 提交信审外呼申请，返回当次请求日期。
+    @inlinable
+    public func applyCreditAudit(_ input: ApplyCreditAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyCreditAuditResponse > {
+        self.client.execute(action: "ApplyCreditAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交信审申请
+    ///
+    /// 提交信审外呼申请，返回当次请求日期。
+    @inlinable
+    public func applyCreditAudit(_ input: ApplyCreditAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyCreditAuditResponse {
+        try await self.client.execute(action: "ApplyCreditAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

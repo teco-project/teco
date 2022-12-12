@@ -132,7 +132,7 @@ extension Lowcode {
         
         /// 数据源授权信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let authInfo: TicketAuthInfo
+        public let authInfo: TicketAuthInfo?
         
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -221,7 +221,7 @@ extension Lowcode {
         /// 数据源名称模糊匹配
         public let likeTitle: String?
         
-        public init (likeName: String?, likeTitle: String?) {
+        public init (likeName: String? = nil, likeTitle: String? = nil) {
             self.likeName = likeName
             self.likeTitle = likeTitle
         }

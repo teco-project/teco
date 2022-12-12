@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取安全事件统计
-    @inlinable
-    public func describeSecurityEventStat(_ input: DescribeSecurityEventStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityEventStatResponse > {
-        self.client.execute(action: "DescribeSecurityEventStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取安全事件统计
-    @inlinable
-    public func describeSecurityEventStat(_ input: DescribeSecurityEventStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityEventStatResponse {
-        try await self.client.execute(action: "DescribeSecurityEventStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityEventStat请求参数结构体
     public struct DescribeSecurityEventStatRequest: TCRequestModel {
         /// 该接口无过滤条件
         public let filters: [Filter]?
         
-        public init (filters: [Filter]?) {
+        public init (filters: [Filter]? = nil) {
             self.filters = filters
         }
         
@@ -141,5 +129,17 @@ extension Cwp {
             case score = "Score"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取安全事件统计
+    @inlinable
+    public func describeSecurityEventStat(_ input: DescribeSecurityEventStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityEventStatResponse > {
+        self.client.execute(action: "DescribeSecurityEventStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全事件统计
+    @inlinable
+    public func describeSecurityEventStat(_ input: DescribeSecurityEventStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityEventStatResponse {
+        try await self.client.execute(action: "DescribeSecurityEventStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

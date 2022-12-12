@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 停止Notebook实例
-    @inlinable
-    public func stopNotebookInstance(_ input: StopNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopNotebookInstanceResponse > {
-        self.client.execute(action: "StopNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止Notebook实例
-    @inlinable
-    public func stopNotebookInstance(_ input: StopNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNotebookInstanceResponse {
-        try await self.client.execute(action: "StopNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopNotebookInstance请求参数结构体
     public struct StopNotebookInstanceRequest: TCRequestModel {
         /// Notebook实例名称
@@ -49,5 +37,17 @@ extension Tione {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止Notebook实例
+    @inlinable
+    public func stopNotebookInstance(_ input: StopNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopNotebookInstanceResponse > {
+        self.client.execute(action: "StopNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止Notebook实例
+    @inlinable
+    public func stopNotebookInstance(_ input: StopNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNotebookInstanceResponse {
+        try await self.client.execute(action: "StopNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 创建事件连接器
-    @inlinable
-    public func createConnection(_ input: CreateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConnectionResponse > {
-        self.client.execute(action: "CreateConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建事件连接器
-    @inlinable
-    public func createConnection(_ input: CreateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectionResponse {
-        try await self.client.execute(action: "CreateConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateConnection请求参数结构体
     public struct CreateConnectionRequest: TCRequestModel {
         /// 连接器描述
@@ -47,7 +35,7 @@ extension Eb {
         /// 类型
         public let type: String?
         
-        public init (connectionDescription: ConnectionDescription, eventBusId: String, connectionName: String, description: String?, enable: Bool?, type: String?) {
+        public init (connectionDescription: ConnectionDescription, eventBusId: String, connectionName: String, description: String? = nil, enable: Bool? = nil, type: String? = nil) {
             self.connectionDescription = connectionDescription
             self.eventBusId = eventBusId
             self.connectionName = connectionName
@@ -78,5 +66,17 @@ extension Eb {
             case connectionId = "ConnectionId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建事件连接器
+    @inlinable
+    public func createConnection(_ input: CreateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConnectionResponse > {
+        self.client.execute(action: "CreateConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建事件连接器
+    @inlinable
+    public func createConnection(_ input: CreateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectionResponse {
+        try await self.client.execute(action: "CreateConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

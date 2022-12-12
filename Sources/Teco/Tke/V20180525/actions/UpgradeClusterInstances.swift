@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 集群节点升级
-    ///
-    /// 给集群的一批work节点进行升级 
-    @inlinable
-    public func upgradeClusterInstances(_ input: UpgradeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeClusterInstancesResponse > {
-        self.client.execute(action: "UpgradeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 集群节点升级
-    ///
-    /// 给集群的一批work节点进行升级 
-    @inlinable
-    public func upgradeClusterInstances(_ input: UpgradeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterInstancesResponse {
-        try await self.client.execute(action: "UpgradeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeClusterInstances请求参数结构体
     public struct UpgradeClusterInstancesRequest: TCRequestModel {
         /// 集群ID
@@ -52,7 +36,7 @@ extension Tke {
         public let instanceIds: [String]?
         
         /// 当节点重新加入集群时候所使用的参数，参考添加已有节点接口
-        public let resetParam: UpgradeNodeResetParam
+        public let resetParam: UpgradeNodeResetParam?
         
         /// 是否忽略节点升级前检查
         public let skipPreCheck: Bool?
@@ -60,7 +44,7 @@ extension Tke {
         /// 最大可容忍的不可用Pod比例
         public let maxNotReadyPercent: Float?
         
-        public init (clusterId: String, operation: String, upgradeType: String?, instanceIds: [String]?, resetParam: UpgradeNodeResetParam, skipPreCheck: Bool?, maxNotReadyPercent: Float?) {
+        public init (clusterId: String, operation: String, upgradeType: String? = nil, instanceIds: [String]? = nil, resetParam: UpgradeNodeResetParam? = nil, skipPreCheck: Bool? = nil, maxNotReadyPercent: Float? = nil) {
             self.clusterId = clusterId
             self.operation = operation
             self.upgradeType = upgradeType
@@ -89,5 +73,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 集群节点升级
+    ///
+    /// 给集群的一批work节点进行升级 
+    @inlinable
+    public func upgradeClusterInstances(_ input: UpgradeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeClusterInstancesResponse > {
+        self.client.execute(action: "UpgradeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 集群节点升级
+    ///
+    /// 给集群的一批work节点进行升级 
+    @inlinable
+    public func upgradeClusterInstances(_ input: UpgradeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterInstancesResponse {
+        try await self.client.execute(action: "UpgradeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

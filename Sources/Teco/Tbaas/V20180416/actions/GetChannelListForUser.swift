@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 获取通道列表
-    @inlinable
-    public func getChannelListForUser(_ input: GetChannelListForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetChannelListForUserResponse > {
-        self.client.execute(action: "GetChannelListForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取通道列表
-    @inlinable
-    public func getChannelListForUser(_ input: GetChannelListForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChannelListForUserResponse {
-        try await self.client.execute(action: "GetChannelListForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetChannelListForUser请求参数结构体
     public struct GetChannelListForUserRequest: TCRequestModel {
         /// 模块名，本接口取值：channel_mng
@@ -47,7 +35,7 @@ extension Tbaas {
         /// 返回数据起始偏移，本接口默认取值：0
         public let offset: UInt64?
         
-        public init (module: String, operation: String, clusterId: String, groupName: String, limit: UInt64?, offset: UInt64?) {
+        public init (module: String, operation: String, clusterId: String, groupName: String, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.module = module
             self.operation = operation
             self.clusterId = clusterId
@@ -82,5 +70,17 @@ extension Tbaas {
             case channelList = "ChannelList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取通道列表
+    @inlinable
+    public func getChannelListForUser(_ input: GetChannelListForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetChannelListForUserResponse > {
+        self.client.execute(action: "GetChannelListForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取通道列表
+    @inlinable
+    public func getChannelListForUser(_ input: GetChannelListForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChannelListForUserResponse {
+        try await self.client.execute(action: "GetChannelListForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 修改暴力破解规则
-    @inlinable
-    public func modifyBruteAttackRules(_ input: ModifyBruteAttackRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBruteAttackRulesResponse > {
-        self.client.execute(action: "ModifyBruteAttackRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改暴力破解规则
-    @inlinable
-    public func modifyBruteAttackRules(_ input: ModifyBruteAttackRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBruteAttackRulesResponse {
-        try await self.client.execute(action: "ModifyBruteAttackRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyBruteAttackRules请求参数结构体
     public struct ModifyBruteAttackRulesRequest: TCRequestModel {
         /// 暴力破解判断规则
@@ -49,5 +37,17 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改暴力破解规则
+    @inlinable
+    public func modifyBruteAttackRules(_ input: ModifyBruteAttackRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBruteAttackRulesResponse > {
+        self.client.execute(action: "ModifyBruteAttackRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改暴力破解规则
+    @inlinable
+    public func modifyBruteAttackRules(_ input: ModifyBruteAttackRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBruteAttackRulesResponse {
+        try await self.client.execute(action: "ModifyBruteAttackRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

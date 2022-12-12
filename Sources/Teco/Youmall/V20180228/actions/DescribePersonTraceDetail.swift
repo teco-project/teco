@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 查询客户单次到场轨迹明细
-    @inlinable
-    public func describePersonTraceDetail(_ input: DescribePersonTraceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonTraceDetailResponse > {
-        self.client.execute(action: "DescribePersonTraceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询客户单次到场轨迹明细
-    @inlinable
-    public func describePersonTraceDetail(_ input: DescribePersonTraceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonTraceDetailResponse {
-        try await self.client.execute(action: "DescribePersonTraceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePersonTraceDetail请求参数结构体
     public struct DescribePersonTraceDetailRequest: TCRequestModel {
         /// 卖场编码
@@ -75,5 +63,17 @@ extension Youmall {
             case coordinateSet = "CoordinateSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询客户单次到场轨迹明细
+    @inlinable
+    public func describePersonTraceDetail(_ input: DescribePersonTraceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonTraceDetailResponse > {
+        self.client.execute(action: "DescribePersonTraceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询客户单次到场轨迹明细
+    @inlinable
+    public func describePersonTraceDetail(_ input: DescribePersonTraceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonTraceDetailResponse {
+        try await self.client.execute(action: "DescribePersonTraceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

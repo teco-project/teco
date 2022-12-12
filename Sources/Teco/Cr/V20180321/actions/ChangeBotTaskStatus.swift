@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cr {
-    /// 更新机器人任务状态
-    @inlinable
-    public func changeBotTaskStatus(_ input: ChangeBotTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeBotTaskStatusResponse > {
-        self.client.execute(action: "ChangeBotTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新机器人任务状态
-    @inlinable
-    public func changeBotTaskStatus(_ input: ChangeBotTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotTaskStatusResponse {
-        try await self.client.execute(action: "ChangeBotTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ChangeBotTaskStatus请求参数结构体
     public struct ChangeBotTaskStatusRequest: TCRequestModel {
         /// 模块名。默认值（固定）：AiApi
@@ -45,7 +33,7 @@ extension Cr {
         /// 任务名称，二者必填一个
         public let botName: String?
         
-        public init (module: String, operation: String, status: String, botId: String?, botName: String?) {
+        public init (module: String, operation: String, status: String, botId: String? = nil, botName: String? = nil) {
             self.module = module
             self.operation = operation
             self.status = status
@@ -70,5 +58,17 @@ extension Cr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新机器人任务状态
+    @inlinable
+    public func changeBotTaskStatus(_ input: ChangeBotTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeBotTaskStatusResponse > {
+        self.client.execute(action: "ChangeBotTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新机器人任务状态
+    @inlinable
+    public func changeBotTaskStatus(_ input: ChangeBotTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotTaskStatusResponse {
+        try await self.client.execute(action: "ChangeBotTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

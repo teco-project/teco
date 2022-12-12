@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取具有云存的日期
-    @inlinable
-    public func describeCloudStorageDate(_ input: DescribeCloudStorageDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStorageDateResponse > {
-        self.client.execute(action: "DescribeCloudStorageDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取具有云存的日期
-    @inlinable
-    public func describeCloudStorageDate(_ input: DescribeCloudStorageDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageDateResponse {
-        try await self.client.execute(action: "DescribeCloudStorageDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudStorageDate请求参数结构体
     public struct DescribeCloudStorageDateRequest: TCRequestModel {
         /// 产品ID
@@ -38,7 +26,7 @@ extension Iotvideo {
         /// 用户ID
         public let userId: String?
         
-        public init (productId: String, deviceName: String, userId: String?) {
+        public init (productId: String, deviceName: String, userId: String? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.userId = userId
@@ -63,5 +51,17 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取具有云存的日期
+    @inlinable
+    public func describeCloudStorageDate(_ input: DescribeCloudStorageDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStorageDateResponse > {
+        self.client.execute(action: "DescribeCloudStorageDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取具有云存的日期
+    @inlinable
+    public func describeCloudStorageDate(_ input: DescribeCloudStorageDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageDateResponse {
+        try await self.client.execute(action: "DescribeCloudStorageDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

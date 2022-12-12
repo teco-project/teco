@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 更新个人用户信息
-    ///
-    /// 此接口（ModifyUser）用于更新个人用户信息。
-    /// 注：若修改用户姓名，需要重新通过个人用户实名接口（VerifyUser）进行重新实名。
-    @inlinable
-    public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserResponse > {
-        self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新个人用户信息
-    ///
-    /// 此接口（ModifyUser）用于更新个人用户信息。
-    /// 注：若修改用户姓名，需要重新通过个人用户实名接口（VerifyUser）进行重新实名。
-    @inlinable
-    public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
-        try await self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyUser请求参数结构体
     public struct ModifyUserRequest: TCRequestModel {
         /// 调用方信息
@@ -53,7 +35,7 @@ extension Essbasic {
         /// 用户姓名
         public let name: String?
         
-        public init (caller: Caller, openId: String?, userId: String?, mobile: String?, email: String?, name: String?) {
+        public init (caller: Caller, openId: String? = nil, userId: String? = nil, mobile: String? = nil, email: String? = nil, name: String? = nil) {
             self.caller = caller
             self.openId = openId
             self.userId = userId
@@ -84,5 +66,23 @@ extension Essbasic {
             case userId = "UserId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新个人用户信息
+    ///
+    /// 此接口（ModifyUser）用于更新个人用户信息。
+    /// 注：若修改用户姓名，需要重新通过个人用户实名接口（VerifyUser）进行重新实名。
+    @inlinable
+    public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserResponse > {
+        self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新个人用户信息
+    ///
+    /// 此接口（ModifyUser）用于更新个人用户信息。
+    /// 注：若修改用户姓名，需要重新通过个人用户实名接口（VerifyUser）进行重新实名。
+    @inlinable
+    public func modifyUser(_ input: ModifyUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
+        try await self.client.execute(action: "ModifyUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

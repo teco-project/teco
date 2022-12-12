@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 获取账号短信额度配置信息
-    @inlinable
-    public func getSmsAmountInfo(_ input: GetSmsAmountInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSmsAmountInfoResponse > {
-        self.client.execute(action: "GetSmsAmountInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取账号短信额度配置信息
-    @inlinable
-    public func getSmsAmountInfo(_ input: GetSmsAmountInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSmsAmountInfoResponse {
-        try await self.client.execute(action: "GetSmsAmountInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetSmsAmountInfo请求参数结构体
     public struct GetSmsAmountInfoRequest: TCRequestModel {
         /// 商户证书
@@ -53,5 +41,17 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取账号短信额度配置信息
+    @inlinable
+    public func getSmsAmountInfo(_ input: GetSmsAmountInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSmsAmountInfoResponse > {
+        self.client.execute(action: "GetSmsAmountInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取账号短信额度配置信息
+    @inlinable
+    public func getSmsAmountInfo(_ input: GetSmsAmountInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSmsAmountInfoResponse {
+        try await self.client.execute(action: "GetSmsAmountInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

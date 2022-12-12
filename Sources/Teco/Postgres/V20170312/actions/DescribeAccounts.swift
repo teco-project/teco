@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 获取实例用户列表
-    ///
-    /// 本接口（DescribeAccounts）用于获取实例用户列表。
-    @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
-        self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实例用户列表
-    ///
-    /// 本接口（DescribeAccounts）用于获取实例用户列表。
-    @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
-        try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccounts请求参数结构体
     public struct DescribeAccountsRequest: TCRequestModel {
         /// 实例ID，形如postgres-6fego161
@@ -48,7 +32,7 @@ extension Postgres {
         /// 返回结果是升序还是降序。取值只能为desc或者asc。desc-降序；asc-升序
         public let orderByType: String?
         
-        public init (dbInstanceId: String, limit: Int64?, offset: Int64?, orderBy: String?, orderByType: String?) {
+        public init (dbInstanceId: String, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.dbInstanceId = dbInstanceId
             self.limit = limit
             self.offset = offset
@@ -81,5 +65,21 @@ extension Postgres {
             case details = "Details"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实例用户列表
+    ///
+    /// 本接口（DescribeAccounts）用于获取实例用户列表。
+    @inlinable
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+        self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例用户列表
+    ///
+    /// 本接口（DescribeAccounts）用于获取实例用户列表。
+    @inlinable
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
+        try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

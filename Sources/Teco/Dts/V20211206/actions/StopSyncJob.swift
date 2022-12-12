@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 结束同步任务
-    ///
-    /// 结束同步任务，操作后可通过查询同步任务信息接口DescribeSyncJobs，获取操作后的状态。
-    @inlinable
-    public func stopSyncJob(_ input: StopSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopSyncJobResponse > {
-        self.client.execute(action: "StopSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 结束同步任务
-    ///
-    /// 结束同步任务，操作后可通过查询同步任务信息接口DescribeSyncJobs，获取操作后的状态。
-    @inlinable
-    public func stopSyncJob(_ input: StopSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopSyncJobResponse {
-        try await self.client.execute(action: "StopSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopSyncJob请求参数结构体
     public struct StopSyncJobRequest: TCRequestModel {
         /// 同步任务id
@@ -53,5 +37,21 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 结束同步任务
+    ///
+    /// 结束同步任务，操作后可通过查询同步任务信息接口DescribeSyncJobs，获取操作后的状态。
+    @inlinable
+    public func stopSyncJob(_ input: StopSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopSyncJobResponse > {
+        self.client.execute(action: "StopSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 结束同步任务
+    ///
+    /// 结束同步任务，操作后可通过查询同步任务信息接口DescribeSyncJobs，获取操作后的状态。
+    @inlinable
+    public func stopSyncJob(_ input: StopSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopSyncJobResponse {
+        try await self.client.execute(action: "StopSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

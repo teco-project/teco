@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 修改项目
-    ///
-    /// 修改 rum 项目信息
-    @inlinable
-    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectResponse > {
-        self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改项目
-    ///
-    /// 修改 rum 项目信息
-    @inlinable
-    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
-        try await self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyProject请求参数结构体
     public struct ModifyProjectRequest: TCRequestModel {
         /// 项目 id
@@ -60,7 +44,7 @@ extension Rum {
         /// 项目描述(可选，最长为 1000)
         public let desc: String?
         
-        public init (id: UInt64, name: String?, url: String?, repo: String?, instanceID: String?, rate: String?, enableURLGroup: UInt64?, type: String?, desc: String?) {
+        public init (id: UInt64, name: String? = nil, url: String? = nil, repo: String? = nil, instanceID: String? = nil, rate: String? = nil, enableURLGroup: UInt64? = nil, type: String? = nil, desc: String? = nil) {
             self.id = id
             self.name = name
             self.url = url
@@ -101,5 +85,21 @@ extension Rum {
             case id = "ID"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改项目
+    ///
+    /// 修改 rum 项目信息
+    @inlinable
+    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProjectResponse > {
+        self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改项目
+    ///
+    /// 修改 rum 项目信息
+    @inlinable
+    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
+        try await self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

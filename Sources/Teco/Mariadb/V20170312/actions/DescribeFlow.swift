@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 查询流程状态
-    ///
-    /// 本接口（DescribeFlow）用于查询流程状态。
-    @inlinable
-    public func describeFlow(_ input: DescribeFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowResponse > {
-        self.client.execute(action: "DescribeFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询流程状态
-    ///
-    /// 本接口（DescribeFlow）用于查询流程状态。
-    @inlinable
-    public func describeFlow(_ input: DescribeFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowResponse {
-        try await self.client.execute(action: "DescribeFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlow请求参数结构体
     public struct DescribeFlowRequest: TCRequestModel {
         /// 异步请求接口返回的任务流程号。
@@ -57,5 +41,21 @@ extension Mariadb {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询流程状态
+    ///
+    /// 本接口（DescribeFlow）用于查询流程状态。
+    @inlinable
+    public func describeFlow(_ input: DescribeFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowResponse > {
+        self.client.execute(action: "DescribeFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流程状态
+    ///
+    /// 本接口（DescribeFlow）用于查询流程状态。
+    @inlinable
+    public func describeFlow(_ input: DescribeFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowResponse {
+        try await self.client.execute(action: "DescribeFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

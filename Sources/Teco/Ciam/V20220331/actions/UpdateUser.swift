@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ciam {
-    /// 更新用户
-    @inlinable
-    public func updateUser(_ input: UpdateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUserResponse > {
-        self.client.execute(action: "UpdateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新用户
-    @inlinable
-    public func updateUser(_ input: UpdateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserResponse {
-        try await self.client.execute(action: "UpdateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateUser请求参数结构体
     public struct UpdateUserRequest: TCRequestModel {
         /// 用户ID
@@ -74,7 +62,7 @@ extension Ciam {
         /// 索引字段5
         public let indexedAttribute5: String?
         
-        public init (userId: String, userStoreId: String, userName: String?, phoneNumber: String?, email: String?, nickname: String?, address: String?, userGroup: [String]?, birthdate: Int64?, customizationAttributes: [MemberMap]?, indexedAttribute1: String?, indexedAttribute2: String?, indexedAttribute3: String?, indexedAttribute4: String?, indexedAttribute5: String?) {
+        public init (userId: String, userStoreId: String, userName: String? = nil, phoneNumber: String? = nil, email: String? = nil, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil) {
             self.userId = userId
             self.userStoreId = userStoreId
             self.userName = userName
@@ -115,7 +103,7 @@ extension Ciam {
     public struct UpdateUserResponse: TCResponseModel {
         /// 更新之后的用户信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let user: User
+        public let user: User?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -124,5 +112,17 @@ extension Ciam {
             case user = "User"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新用户
+    @inlinable
+    public func updateUser(_ input: UpdateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateUserResponse > {
+        self.client.execute(action: "UpdateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新用户
+    @inlinable
+    public func updateUser(_ input: UpdateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserResponse {
+        try await self.client.execute(action: "UpdateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

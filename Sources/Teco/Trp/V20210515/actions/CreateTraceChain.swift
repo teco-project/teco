@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 上链溯源信息
-    @inlinable
-    public func createTraceChain(_ input: CreateTraceChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceChainResponse > {
-        self.client.execute(action: "CreateTraceChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上链溯源信息
-    @inlinable
-    public func createTraceChain(_ input: CreateTraceChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceChainResponse {
-        try await self.client.execute(action: "CreateTraceChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTraceChain请求参数结构体
     public struct CreateTraceChainRequest: TCRequestModel {
         /// 企业ID
@@ -35,7 +23,7 @@ extension Trp {
         /// 溯源ID
         public let traceId: String?
         
-        public init (corpId: UInt64?, traceId: String?) {
+        public init (corpId: UInt64? = nil, traceId: String? = nil) {
             self.corpId = corpId
             self.traceId = traceId
         }
@@ -58,5 +46,17 @@ extension Trp {
             case traceId = "TraceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上链溯源信息
+    @inlinable
+    public func createTraceChain(_ input: CreateTraceChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceChainResponse > {
+        self.client.execute(action: "CreateTraceChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上链溯源信息
+    @inlinable
+    public func createTraceChain(_ input: CreateTraceChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceChainResponse {
+        try await self.client.execute(action: "CreateTraceChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

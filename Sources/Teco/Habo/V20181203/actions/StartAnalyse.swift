@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Habo {
-    /// 分析样本
-    ///
-    /// 上传样本到哈勃进行分析，异步生成分析日志。
-    @inlinable
-    public func startAnalyse(_ input: StartAnalyseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartAnalyseResponse > {
-        self.client.execute(action: "StartAnalyse", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分析样本
-    ///
-    /// 上传样本到哈勃进行分析，异步生成分析日志。
-    @inlinable
-    public func startAnalyse(_ input: StartAnalyseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartAnalyseResponse {
-        try await self.client.execute(action: "StartAnalyse", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartAnalyse请求参数结构体
     public struct StartAnalyseRequest: TCRequestModel {
         /// 购买服务后获得的授权帐号，用于保证请求有效性
@@ -75,5 +59,21 @@ extension Habo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分析样本
+    ///
+    /// 上传样本到哈勃进行分析，异步生成分析日志。
+    @inlinable
+    public func startAnalyse(_ input: StartAnalyseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartAnalyseResponse > {
+        self.client.execute(action: "StartAnalyse", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分析样本
+    ///
+    /// 上传样本到哈勃进行分析，异步生成分析日志。
+    @inlinable
+    public func startAnalyse(_ input: StartAnalyseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartAnalyseResponse {
+        try await self.client.execute(action: "StartAnalyse", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

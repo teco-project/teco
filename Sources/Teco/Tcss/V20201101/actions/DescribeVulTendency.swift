@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tcss {
-    /// 查询漏洞风险趋势
-    ///
-    /// 查询本地镜像、仓库镜像中严重&高危的漏洞趋势
-    @inlinable
-    public func describeVulTendency(_ input: DescribeVulTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulTendencyResponse > {
-        self.client.execute(action: "DescribeVulTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询漏洞风险趋势
-    ///
-    /// 查询本地镜像、仓库镜像中严重&高危的漏洞趋势
-    @inlinable
-    public func describeVulTendency(_ input: DescribeVulTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTendencyResponse {
-        try await self.client.execute(action: "DescribeVulTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulTendency请求参数结构体
     public struct DescribeVulTendencyRequest: TCRequestModel {
         /// 开始时间
@@ -73,5 +57,21 @@ extension Tcss {
             case vulTendencySet = "VulTendencySet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询漏洞风险趋势
+    ///
+    /// 查询本地镜像、仓库镜像中严重&高危的漏洞趋势
+    @inlinable
+    public func describeVulTendency(_ input: DescribeVulTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulTendencyResponse > {
+        self.client.execute(action: "DescribeVulTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞风险趋势
+    ///
+    /// 查询本地镜像、仓库镜像中严重&高危的漏洞趋势
+    @inlinable
+    public func describeVulTendency(_ input: DescribeVulTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTendencyResponse {
+        try await self.client.execute(action: "DescribeVulTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

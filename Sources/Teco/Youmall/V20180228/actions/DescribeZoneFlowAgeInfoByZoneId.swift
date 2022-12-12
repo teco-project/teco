@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 获取指定区域人流各年龄占比
-    @inlinable
-    public func describeZoneFlowAgeInfoByZoneId(_ input: DescribeZoneFlowAgeInfoByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowAgeInfoByZoneIdResponse > {
-        self.client.execute(action: "DescribeZoneFlowAgeInfoByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取指定区域人流各年龄占比
-    @inlinable
-    public func describeZoneFlowAgeInfoByZoneId(_ input: DescribeZoneFlowAgeInfoByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowAgeInfoByZoneIdResponse {
-        try await self.client.execute(action: "DescribeZoneFlowAgeInfoByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeZoneFlowAgeInfoByZoneId请求参数结构体
     public struct DescribeZoneFlowAgeInfoByZoneIdRequest: TCRequestModel {
         /// 集团ID
@@ -89,5 +77,17 @@ extension Youmall {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取指定区域人流各年龄占比
+    @inlinable
+    public func describeZoneFlowAgeInfoByZoneId(_ input: DescribeZoneFlowAgeInfoByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowAgeInfoByZoneIdResponse > {
+        self.client.execute(action: "DescribeZoneFlowAgeInfoByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定区域人流各年龄占比
+    @inlinable
+    public func describeZoneFlowAgeInfoByZoneId(_ input: DescribeZoneFlowAgeInfoByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowAgeInfoByZoneIdResponse {
+        try await self.client.execute(action: "DescribeZoneFlowAgeInfoByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

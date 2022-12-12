@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获得节点升级当前的进度
-    ///
-    /// 获得节点升级当前的进度 
-    @inlinable
-    public func getUpgradeInstanceProgress(_ input: GetUpgradeInstanceProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUpgradeInstanceProgressResponse > {
-        self.client.execute(action: "GetUpgradeInstanceProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获得节点升级当前的进度
-    ///
-    /// 获得节点升级当前的进度 
-    @inlinable
-    public func getUpgradeInstanceProgress(_ input: GetUpgradeInstanceProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeInstanceProgressResponse {
-        try await self.client.execute(action: "GetUpgradeInstanceProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetUpgradeInstanceProgress请求参数结构体
     public struct GetUpgradeInstanceProgressRequest: TCRequestModel {
         /// 集群ID
@@ -42,7 +26,7 @@ extension Tke {
         /// 从第几个节点开始获取进度
         public let offset: Int64?
         
-        public init (clusterId: String, limit: Int64?, offset: Int64?) {
+        public init (clusterId: String, limit: Int64? = nil, offset: Int64? = nil) {
             self.clusterId = clusterId
             self.limit = limit
             self.offset = offset
@@ -89,5 +73,21 @@ extension Tke {
             case clusterStatus = "ClusterStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获得节点升级当前的进度
+    ///
+    /// 获得节点升级当前的进度 
+    @inlinable
+    public func getUpgradeInstanceProgress(_ input: GetUpgradeInstanceProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUpgradeInstanceProgressResponse > {
+        self.client.execute(action: "GetUpgradeInstanceProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获得节点升级当前的进度
+    ///
+    /// 获得节点升级当前的进度 
+    @inlinable
+    public func getUpgradeInstanceProgress(_ input: GetUpgradeInstanceProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeInstanceProgressResponse {
+        try await self.client.execute(action: "GetUpgradeInstanceProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

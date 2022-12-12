@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 修改黑石负载均衡四层监听器后端实例权重
-    ///
-    /// 修改黑石负载均衡四层监听器后端实例权重功能。
-    @inlinable
-    public func modifyL4BackendWeight(_ input: ModifyL4BackendWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL4BackendWeightResponse > {
-        self.client.execute(action: "ModifyL4BackendWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改黑石负载均衡四层监听器后端实例权重
-    ///
-    /// 修改黑石负载均衡四层监听器后端实例权重功能。
-    @inlinable
-    public func modifyL4BackendWeight(_ input: ModifyL4BackendWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4BackendWeightResponse {
-        try await self.client.execute(action: "ModifyL4BackendWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyL4BackendWeight请求参数结构体
     public struct ModifyL4BackendWeightRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -82,5 +66,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改黑石负载均衡四层监听器后端实例权重
+    ///
+    /// 修改黑石负载均衡四层监听器后端实例权重功能。
+    @inlinable
+    public func modifyL4BackendWeight(_ input: ModifyL4BackendWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyL4BackendWeightResponse > {
+        self.client.execute(action: "ModifyL4BackendWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改黑石负载均衡四层监听器后端实例权重
+    ///
+    /// 修改黑石负载均衡四层监听器后端实例权重功能。
+    @inlinable
+    public func modifyL4BackendWeight(_ input: ModifyL4BackendWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4BackendWeightResponse {
+        try await self.client.execute(action: "ModifyL4BackendWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

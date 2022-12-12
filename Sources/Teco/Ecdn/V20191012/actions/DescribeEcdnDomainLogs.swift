@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Ecdn {
-    /// 查询域名日志下载链接
-    ///
-    /// 本接口（DescribeEcdnDomainLogs）用于查询域名的访问日志下载地址。
-    @inlinable
-    public func describeEcdnDomainLogs(_ input: DescribeEcdnDomainLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEcdnDomainLogsResponse > {
-        self.client.execute(action: "DescribeEcdnDomainLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询域名日志下载链接
-    ///
-    /// 本接口（DescribeEcdnDomainLogs）用于查询域名的访问日志下载地址。
-    @inlinable
-    public func describeEcdnDomainLogs(_ input: DescribeEcdnDomainLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEcdnDomainLogsResponse {
-        try await self.client.execute(action: "DescribeEcdnDomainLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEcdnDomainLogs请求参数结构体
     public struct DescribeEcdnDomainLogsRequest: TCRequestModel {
         /// 待查询域名。
@@ -52,7 +36,7 @@ extension Ecdn {
         /// 日志链接列表分页记录条数，默认100，最大1000。
         public let limit: Int64?
         
-        public init (domain: String, startTime: Date, endTime: Date, offset: Int64?, limit: Int64?) {
+        public init (domain: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil) {
             self.domain = domain
             self.startTime = startTime
             self.endTime = endTime
@@ -86,5 +70,21 @@ extension Ecdn {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询域名日志下载链接
+    ///
+    /// 本接口（DescribeEcdnDomainLogs）用于查询域名的访问日志下载地址。
+    @inlinable
+    public func describeEcdnDomainLogs(_ input: DescribeEcdnDomainLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEcdnDomainLogsResponse > {
+        self.client.execute(action: "DescribeEcdnDomainLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询域名日志下载链接
+    ///
+    /// 本接口（DescribeEcdnDomainLogs）用于查询域名的访问日志下载地址。
+    @inlinable
+    public func describeEcdnDomainLogs(_ input: DescribeEcdnDomainLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEcdnDomainLogsResponse {
+        try await self.client.execute(action: "DescribeEcdnDomainLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

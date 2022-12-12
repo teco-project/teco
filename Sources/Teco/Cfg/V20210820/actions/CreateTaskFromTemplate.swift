@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfg {
-    /// 从经验库创建演练
-    @inlinable
-    public func createTaskFromTemplate(_ input: CreateTaskFromTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskFromTemplateResponse > {
-        self.client.execute(action: "CreateTaskFromTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 从经验库创建演练
-    @inlinable
-    public func createTaskFromTemplate(_ input: CreateTaskFromTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFromTemplateResponse {
-        try await self.client.execute(action: "CreateTaskFromTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTaskFromTemplate请求参数结构体
     public struct CreateTaskFromTemplateRequest: TCRequestModel {
         /// 从经验库中查询到的经验模版ID
@@ -58,5 +46,17 @@ extension Cfg {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 从经验库创建演练
+    @inlinable
+    public func createTaskFromTemplate(_ input: CreateTaskFromTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTaskFromTemplateResponse > {
+        self.client.execute(action: "CreateTaskFromTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 从经验库创建演练
+    @inlinable
+    public func createTaskFromTemplate(_ input: CreateTaskFromTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFromTemplateResponse {
+        try await self.client.execute(action: "CreateTaskFromTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

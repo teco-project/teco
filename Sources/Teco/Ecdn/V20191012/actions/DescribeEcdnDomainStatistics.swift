@@ -17,24 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Ecdn {
-    /// 域名统计指标查询
-    ///
-    /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/30986"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
-    public func describeEcdnDomainStatistics(_ input: DescribeEcdnDomainStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEcdnDomainStatisticsResponse > {
-        self.client.execute(action: "DescribeEcdnDomainStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 域名统计指标查询
-    ///
-    /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/30986"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
-    public func describeEcdnDomainStatistics(_ input: DescribeEcdnDomainStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEcdnDomainStatisticsResponse {
-        try await self.client.execute(action: "DescribeEcdnDomainStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEcdnDomainStatistics请求参数结构体
     public struct DescribeEcdnDomainStatisticsRequest: TCRequestModel {
         /// 查询起始时间，如：2019-12-13 00:00:00。
@@ -73,7 +55,7 @@ extension Ecdn {
         /// 默认 global
         public let area: String?
         
-        public init (startTime: Date, endTime: Date, metrics: [String], domains: [String]?, projects: [Int64]?, offset: Int64?, limit: Int64?, area: String?) {
+        public init (startTime: Date, endTime: Date, metrics: [String], domains: [String]? = nil, projects: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metrics = metrics
@@ -112,5 +94,23 @@ extension Ecdn {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 域名统计指标查询
+    ///
+    /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。
+    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/30986"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @inlinable
+    public func describeEcdnDomainStatistics(_ input: DescribeEcdnDomainStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEcdnDomainStatisticsResponse > {
+        self.client.execute(action: "DescribeEcdnDomainStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 域名统计指标查询
+    ///
+    /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。
+    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/30986"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @inlinable
+    public func describeEcdnDomainStatistics(_ input: DescribeEcdnDomainStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEcdnDomainStatisticsResponse {
+        try await self.client.execute(action: "DescribeEcdnDomainStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

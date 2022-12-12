@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 查询表格组列表
-    @inlinable
-    public func describeTableGroups(_ input: DescribeTableGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableGroupsResponse > {
-        self.client.execute(action: "DescribeTableGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询表格组列表
-    @inlinable
-    public func describeTableGroups(_ input: DescribeTableGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableGroupsResponse {
-        try await self.client.execute(action: "DescribeTableGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTableGroups请求参数结构体
     public struct DescribeTableGroupsRequest: TCRequestModel {
         /// 表格组所属集群ID
@@ -44,7 +32,7 @@ extension Tcaplusdb {
         /// 查询列表返回记录数
         public let limit: Int64?
         
-        public init (clusterId: String, tableGroupIds: [String]?, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (clusterId: String, tableGroupIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.clusterId = clusterId
             self.tableGroupIds = tableGroupIds
             self.filters = filters
@@ -77,5 +65,17 @@ extension Tcaplusdb {
             case tableGroups = "TableGroups"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询表格组列表
+    @inlinable
+    public func describeTableGroups(_ input: DescribeTableGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableGroupsResponse > {
+        self.client.execute(action: "DescribeTableGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询表格组列表
+    @inlinable
+    public func describeTableGroups(_ input: DescribeTableGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableGroupsResponse {
+        try await self.client.execute(action: "DescribeTableGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

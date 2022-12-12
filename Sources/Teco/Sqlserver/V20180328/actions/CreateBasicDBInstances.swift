@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 创建基础版实例
-    ///
-    /// 本接口（CreateBasicDBInstances）用于创建SQL server基础版实例。
-    @inlinable
-    public func createBasicDBInstances(_ input: CreateBasicDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBasicDBInstancesResponse > {
-        self.client.execute(action: "CreateBasicDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建基础版实例
-    ///
-    /// 本接口（CreateBasicDBInstances）用于创建SQL server基础版实例。
-    @inlinable
-    public func createBasicDBInstances(_ input: CreateBasicDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBasicDBInstancesResponse {
-        try await self.client.execute(action: "CreateBasicDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBasicDBInstances请求参数结构体
     public struct CreateBasicDBInstancesRequest: TCRequestModel {
         /// 实例可用区，类似ap-guangzhou-1（广州一区）；实例可售卖区域可以通过接口DescribeZones获取
@@ -99,7 +83,7 @@ extension Sqlserver {
         /// 系统时区，默认：China Standard Time
         public let timeZone: String?
         
-        public init (zone: String, cpu: UInt64, memory: UInt64, storage: UInt64, subnetId: String, vpcId: String, machineType: String, instanceChargeType: String?, projectId: UInt64?, goodsNum: UInt64?, dbVersion: String?, period: Int64?, securityGroupList: [String]?, autoRenewFlag: Int64?, autoVoucher: Int64?, voucherIds: [String]?, weekly: [Int64]?, startTime: String?, span: Int64?, resourceTags: [ResourceTag]?, collation: String?, timeZone: String?) {
+        public init (zone: String, cpu: UInt64, memory: UInt64, storage: UInt64, subnetId: String, vpcId: String, machineType: String, instanceChargeType: String? = nil, projectId: UInt64? = nil, goodsNum: UInt64? = nil, dbVersion: String? = nil, period: Int64? = nil, securityGroupList: [String]? = nil, autoRenewFlag: Int64? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, weekly: [Int64]? = nil, startTime: String? = nil, span: Int64? = nil, resourceTags: [ResourceTag]? = nil, collation: String? = nil, timeZone: String? = nil) {
             self.zone = zone
             self.cpu = cpu
             self.memory = memory
@@ -162,5 +146,21 @@ extension Sqlserver {
             case dealName = "DealName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建基础版实例
+    ///
+    /// 本接口（CreateBasicDBInstances）用于创建SQL server基础版实例。
+    @inlinable
+    public func createBasicDBInstances(_ input: CreateBasicDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBasicDBInstancesResponse > {
+        self.client.execute(action: "CreateBasicDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建基础版实例
+    ///
+    /// 本接口（CreateBasicDBInstances）用于创建SQL server基础版实例。
+    @inlinable
+    public func createBasicDBInstances(_ input: CreateBasicDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBasicDBInstancesResponse {
+        try await self.client.execute(action: "CreateBasicDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

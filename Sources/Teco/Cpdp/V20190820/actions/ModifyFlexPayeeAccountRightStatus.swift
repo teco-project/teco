@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云V2-收款用户账户权益状态修改
-    @inlinable
-    public func modifyFlexPayeeAccountRightStatus(_ input: ModifyFlexPayeeAccountRightStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFlexPayeeAccountRightStatusResponse > {
-        self.client.execute(action: "ModifyFlexPayeeAccountRightStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云V2-收款用户账户权益状态修改
-    @inlinable
-    public func modifyFlexPayeeAccountRightStatus(_ input: ModifyFlexPayeeAccountRightStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlexPayeeAccountRightStatusResponse {
-        try await self.client.execute(action: "ModifyFlexPayeeAccountRightStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyFlexPayeeAccountRightStatus请求参数结构体
     public struct ModifyFlexPayeeAccountRightStatusRequest: TCRequestModel {
         /// 收款用户ID
@@ -49,7 +37,7 @@ extension Cpdp {
         /// 缺省默认为生产环境
         public let environment: String?
         
-        public init (payeeId: String, accountRightType: String, accountRightStatus: String, environment: String?) {
+        public init (payeeId: String, accountRightType: String, accountRightStatus: String, environment: String? = nil) {
             self.payeeId = payeeId
             self.accountRightType = accountRightType
             self.accountRightStatus = accountRightStatus
@@ -85,5 +73,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云V2-收款用户账户权益状态修改
+    @inlinable
+    public func modifyFlexPayeeAccountRightStatus(_ input: ModifyFlexPayeeAccountRightStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFlexPayeeAccountRightStatusResponse > {
+        self.client.execute(action: "ModifyFlexPayeeAccountRightStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云V2-收款用户账户权益状态修改
+    @inlinable
+    public func modifyFlexPayeeAccountRightStatus(_ input: ModifyFlexPayeeAccountRightStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlexPayeeAccountRightStatusResponse {
+        try await self.client.execute(action: "ModifyFlexPayeeAccountRightStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

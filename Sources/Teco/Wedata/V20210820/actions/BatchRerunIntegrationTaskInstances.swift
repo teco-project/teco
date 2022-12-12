@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 批量重跑集成任务实例
-    @inlinable
-    public func batchRerunIntegrationTaskInstances(_ input: BatchRerunIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchRerunIntegrationTaskInstancesResponse > {
-        self.client.execute(action: "BatchRerunIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量重跑集成任务实例
-    @inlinable
-    public func batchRerunIntegrationTaskInstances(_ input: BatchRerunIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRerunIntegrationTaskInstancesResponse {
-        try await self.client.execute(action: "BatchRerunIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchRerunIntegrationTaskInstances请求参数结构体
     public struct BatchRerunIntegrationTaskInstancesRequest: TCRequestModel {
         /// 实例信息
@@ -66,5 +54,17 @@ extension Wedata {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量重跑集成任务实例
+    @inlinable
+    public func batchRerunIntegrationTaskInstances(_ input: BatchRerunIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchRerunIntegrationTaskInstancesResponse > {
+        self.client.execute(action: "BatchRerunIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量重跑集成任务实例
+    @inlinable
+    public func batchRerunIntegrationTaskInstances(_ input: BatchRerunIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRerunIntegrationTaskInstancesResponse {
+        try await self.client.execute(action: "BatchRerunIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 解绑密钥对
-    ///
-    /// 用于解除实例的密钥绑定关系。
-    @inlinable
-    public func disassociateInstancesKeyPairs(_ input: DisassociateInstancesKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateInstancesKeyPairsResponse > {
-        self.client.execute(action: "DisassociateInstancesKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑密钥对
-    ///
-    /// 用于解除实例的密钥绑定关系。
-    @inlinable
-    public func disassociateInstancesKeyPairs(_ input: DisassociateInstancesKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateInstancesKeyPairsResponse {
-        try await self.client.execute(action: "DisassociateInstancesKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisassociateInstancesKeyPairs请求参数结构体
     public struct DisassociateInstancesKeyPairsRequest: TCRequestModel {
         /// 可以通过以下方式获取可用的实例ID：
@@ -50,7 +34,7 @@ extension Ecm {
         /// 默认取值：FALSE。
         public let forceStop: Bool?
         
-        public init (instanceIds: [String], keyIds: [String], forceStop: Bool?) {
+        public init (instanceIds: [String], keyIds: [String], forceStop: Bool? = nil) {
             self.instanceIds = instanceIds
             self.keyIds = keyIds
             self.forceStop = forceStop
@@ -71,5 +55,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑密钥对
+    ///
+    /// 用于解除实例的密钥绑定关系。
+    @inlinable
+    public func disassociateInstancesKeyPairs(_ input: DisassociateInstancesKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateInstancesKeyPairsResponse > {
+        self.client.execute(action: "DisassociateInstancesKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑密钥对
+    ///
+    /// 用于解除实例的密钥绑定关系。
+    @inlinable
+    public func disassociateInstancesKeyPairs(_ input: DisassociateInstancesKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateInstancesKeyPairsResponse {
+        try await self.client.execute(action: "DisassociateInstancesKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

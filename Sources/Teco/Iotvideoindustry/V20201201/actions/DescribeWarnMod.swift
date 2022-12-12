@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 告警等级列表
-    @inlinable
-    public func describeWarnMod(_ input: DescribeWarnModRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWarnModResponse > {
-        self.client.execute(action: "DescribeWarnMod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 告警等级列表
-    @inlinable
-    public func describeWarnMod(_ input: DescribeWarnModRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarnModResponse {
-        try await self.client.execute(action: "DescribeWarnMod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWarnMod请求参数结构体
     public struct DescribeWarnModRequest: TCRequestModel {
         public init () {
@@ -46,5 +34,17 @@ extension Iotvideoindustry {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 告警等级列表
+    @inlinable
+    public func describeWarnMod(_ input: DescribeWarnModRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWarnModResponse > {
+        self.client.execute(action: "DescribeWarnMod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 告警等级列表
+    @inlinable
+    public func describeWarnMod(_ input: DescribeWarnModRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarnModResponse {
+        try await self.client.execute(action: "DescribeWarnMod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 设置文档转码回调地址
-    ///
-    /// 设置文档转码回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
-    @inlinable
-    public func setTranscodeCallback(_ input: SetTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTranscodeCallbackResponse > {
-        self.client.execute(action: "SetTranscodeCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置文档转码回调地址
-    ///
-    /// 设置文档转码回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
-    @inlinable
-    public func setTranscodeCallback(_ input: SetTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTranscodeCallbackResponse {
-        try await self.client.execute(action: "SetTranscodeCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetTranscodeCallback请求参数结构体
     public struct SetTranscodeCallbackRequest: TCRequestModel {
         /// 客户的SdkAppId
@@ -59,5 +43,21 @@ extension Tiw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置文档转码回调地址
+    ///
+    /// 设置文档转码回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
+    @inlinable
+    public func setTranscodeCallback(_ input: SetTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTranscodeCallbackResponse > {
+        self.client.execute(action: "SetTranscodeCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置文档转码回调地址
+    ///
+    /// 设置文档转码回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
+    @inlinable
+    public func setTranscodeCallback(_ input: SetTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTranscodeCallbackResponse {
+        try await self.client.execute(action: "SetTranscodeCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

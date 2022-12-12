@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 启用读写分离
-    @inlinable
-    public func enableReplicaReadonly(_ input: EnableReplicaReadonlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableReplicaReadonlyResponse > {
-        self.client.execute(action: "EnableReplicaReadonly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启用读写分离
-    @inlinable
-    public func enableReplicaReadonly(_ input: EnableReplicaReadonlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableReplicaReadonlyResponse {
-        try await self.client.execute(action: "EnableReplicaReadonly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableReplicaReadonly请求参数结构体
     public struct EnableReplicaReadonlyRequest: TCRequestModel {
         /// 实例序号ID
@@ -35,7 +23,7 @@ extension Redis {
         /// 账号路由策略：填写master或者replication，表示路由主节点，从节点；不填路由策略默认为写主节点，读从节点
         public let readonlyPolicy: [String]?
         
-        public init (instanceId: String, readonlyPolicy: [String]?) {
+        public init (instanceId: String, readonlyPolicy: [String]? = nil) {
             self.instanceId = instanceId
             self.readonlyPolicy = readonlyPolicy
         }
@@ -64,5 +52,17 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启用读写分离
+    @inlinable
+    public func enableReplicaReadonly(_ input: EnableReplicaReadonlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableReplicaReadonlyResponse > {
+        self.client.execute(action: "EnableReplicaReadonly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启用读写分离
+    @inlinable
+    public func enableReplicaReadonly(_ input: EnableReplicaReadonlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableReplicaReadonlyResponse {
+        try await self.client.execute(action: "EnableReplicaReadonly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

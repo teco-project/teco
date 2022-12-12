@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 停止媒体传输流
-    ///
-    /// 停止媒体传输流。
-    @inlinable
-    public func stopStreamLinkFlow(_ input: StopStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopStreamLinkFlowResponse > {
-        self.client.execute(action: "StopStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止媒体传输流
-    ///
-    /// 停止媒体传输流。
-    @inlinable
-    public func stopStreamLinkFlow(_ input: StopStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopStreamLinkFlowResponse {
-        try await self.client.execute(action: "StopStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopStreamLinkFlow请求参数结构体
     public struct StopStreamLinkFlowRequest: TCRequestModel {
         /// 流Id。
@@ -53,5 +37,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止媒体传输流
+    ///
+    /// 停止媒体传输流。
+    @inlinable
+    public func stopStreamLinkFlow(_ input: StopStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopStreamLinkFlowResponse > {
+        self.client.execute(action: "StopStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止媒体传输流
+    ///
+    /// 停止媒体传输流。
+    @inlinable
+    public func stopStreamLinkFlow(_ input: StopStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopStreamLinkFlowResponse {
+        try await self.client.execute(action: "StopStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

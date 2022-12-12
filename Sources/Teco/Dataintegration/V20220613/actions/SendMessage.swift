@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dataintegration {
-    /// 数据上报
-    ///
-    /// 使用SDK将数据上报到DIP
-    @inlinable
-    public func sendMessage(_ input: SendMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendMessageResponse > {
-        self.client.execute(action: "SendMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 数据上报
-    ///
-    /// 使用SDK将数据上报到DIP
-    @inlinable
-    public func sendMessage(_ input: SendMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessageResponse {
-        try await self.client.execute(action: "SendMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendMessage请求参数结构体
     public struct SendMessageRequest: TCRequestModel {
         /// 接入资源ID
@@ -62,5 +46,21 @@ extension Dataintegration {
             case messageId = "MessageId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 数据上报
+    ///
+    /// 使用SDK将数据上报到DIP
+    @inlinable
+    public func sendMessage(_ input: SendMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendMessageResponse > {
+        self.client.execute(action: "SendMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 数据上报
+    ///
+    /// 使用SDK将数据上报到DIP
+    @inlinable
+    public func sendMessage(_ input: SendMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessageResponse {
+        try await self.client.execute(action: "SendMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

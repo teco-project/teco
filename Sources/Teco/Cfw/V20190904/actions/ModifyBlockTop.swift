@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 取消阻断记录置顶接口
-    ///
-    /// ModifyBlockTop取消置顶接口
-    @inlinable
-    public func modifyBlockTop(_ input: ModifyBlockTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBlockTopResponse > {
-        self.client.execute(action: "ModifyBlockTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消阻断记录置顶接口
-    ///
-    /// ModifyBlockTop取消置顶接口
-    @inlinable
-    public func modifyBlockTop(_ input: ModifyBlockTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockTopResponse {
-        try await self.client.execute(action: "ModifyBlockTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyBlockTop请求参数结构体
     public struct ModifyBlockTopRequest: TCRequestModel {
         /// 记录id
@@ -58,5 +42,21 @@ extension Cfw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消阻断记录置顶接口
+    ///
+    /// ModifyBlockTop取消置顶接口
+    @inlinable
+    public func modifyBlockTop(_ input: ModifyBlockTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBlockTopResponse > {
+        self.client.execute(action: "ModifyBlockTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消阻断记录置顶接口
+    ///
+    /// ModifyBlockTop取消置顶接口
+    @inlinable
+    public func modifyBlockTop(_ input: ModifyBlockTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockTopResponse {
+        try await self.client.execute(action: "ModifyBlockTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

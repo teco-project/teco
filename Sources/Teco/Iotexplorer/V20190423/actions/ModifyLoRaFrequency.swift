@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 修改LoRa自定义频点
-    @inlinable
-    public func modifyLoRaFrequency(_ input: ModifyLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoRaFrequencyResponse > {
-        self.client.execute(action: "ModifyLoRaFrequency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改LoRa自定义频点
-    @inlinable
-    public func modifyLoRaFrequency(_ input: ModifyLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoRaFrequencyResponse {
-        try await self.client.execute(action: "ModifyLoRaFrequency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLoRaFrequency请求参数结构体
     public struct ModifyLoRaFrequencyRequest: TCRequestModel {
         /// 频点唯一ID
@@ -56,7 +44,7 @@ extension Iotexplorer {
         /// 入网下行信道RX2
         public let channelsJoinRX2: [UInt64]?
         
-        public init (freqId: String?, freqName: String?, description: String?, channelsDataUp: [UInt64]?, channelsDataRX1: [UInt64]?, channelsDataRX2: [UInt64]?, channelsJoinUp: [UInt64]?, channelsJoinRX1: [UInt64]?, channelsJoinRX2: [UInt64]?) {
+        public init (freqId: String? = nil, freqName: String? = nil, description: String? = nil, channelsDataUp: [UInt64]? = nil, channelsDataRX1: [UInt64]? = nil, channelsDataRX2: [UInt64]? = nil, channelsJoinUp: [UInt64]? = nil, channelsJoinRX1: [UInt64]? = nil, channelsJoinRX2: [UInt64]? = nil) {
             self.freqId = freqId
             self.freqName = freqName
             self.description = description
@@ -93,5 +81,17 @@ extension Iotexplorer {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改LoRa自定义频点
+    @inlinable
+    public func modifyLoRaFrequency(_ input: ModifyLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoRaFrequencyResponse > {
+        self.client.execute(action: "ModifyLoRaFrequency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改LoRa自定义频点
+    @inlinable
+    public func modifyLoRaFrequency(_ input: ModifyLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoRaFrequencyResponse {
+        try await self.client.execute(action: "ModifyLoRaFrequency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

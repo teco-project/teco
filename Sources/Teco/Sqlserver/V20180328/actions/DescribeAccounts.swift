@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 拉取实例账户列表
-    ///
-    /// 本接口（DescribeAccounts）用于拉取实例账户列表。
-    @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
-        self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取实例账户列表
-    ///
-    /// 本接口（DescribeAccounts）用于拉取实例账户列表。
-    @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
-        try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccounts请求参数结构体
     public struct DescribeAccountsRequest: TCRequestModel {
         /// 实例ID
@@ -51,7 +35,7 @@ extension Sqlserver {
         /// 排序规则（desc-降序，asc-升序），默认desc
         public let orderByType: String?
         
-        public init (instanceId: String, limit: UInt64?, offset: UInt64?, name: String?, orderBy: String?, orderByType: String?) {
+        public init (instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset
@@ -90,5 +74,21 @@ extension Sqlserver {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取实例账户列表
+    ///
+    /// 本接口（DescribeAccounts）用于拉取实例账户列表。
+    @inlinable
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+        self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取实例账户列表
+    ///
+    /// 本接口（DescribeAccounts）用于拉取实例账户列表。
+    @inlinable
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
+        try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

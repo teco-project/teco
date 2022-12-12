@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 更新Amqp队列
-    @inlinable
-    public func modifyAMQPQueue(_ input: ModifyAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAMQPQueueResponse > {
-        self.client.execute(action: "ModifyAMQPQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新Amqp队列
-    @inlinable
-    public func modifyAMQPQueue(_ input: ModifyAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPQueueResponse {
-        try await self.client.execute(action: "ModifyAMQPQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAMQPQueue请求参数结构体
     public struct ModifyAMQPQueueRequest: TCRequestModel {
         /// 集群ID
@@ -50,7 +38,7 @@ extension Tdmq {
         /// 路由键
         public let deadLetterRoutingKey: String?
         
-        public init (clusterId: String, vHostId: String, queue: String, autoDelete: Bool, remark: String?, deadLetterExchange: String?, deadLetterRoutingKey: String?) {
+        public init (clusterId: String, vHostId: String, queue: String, autoDelete: Bool, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil) {
             self.clusterId = clusterId
             self.vHostId = vHostId
             self.queue = queue
@@ -79,5 +67,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新Amqp队列
+    @inlinable
+    public func modifyAMQPQueue(_ input: ModifyAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAMQPQueueResponse > {
+        self.client.execute(action: "ModifyAMQPQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新Amqp队列
+    @inlinable
+    public func modifyAMQPQueue(_ input: ModifyAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPQueueResponse {
+        try await self.client.execute(action: "ModifyAMQPQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

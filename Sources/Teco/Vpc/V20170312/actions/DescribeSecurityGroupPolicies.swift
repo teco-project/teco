@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询安全组规则
-    ///
-    /// 本接口（DescribeSecurityGroupPolicies）用于查询安全组规则。
-    @inlinable
-    public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupPoliciesResponse > {
-        self.client.execute(action: "DescribeSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全组规则
-    ///
-    /// 本接口（DescribeSecurityGroupPolicies）用于查询安全组规则。
-    @inlinable
-    public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupPoliciesResponse {
-        try await self.client.execute(action: "DescribeSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityGroupPolicies请求参数结构体
     public struct DescribeSecurityGroupPoliciesRequest: TCRequestModel {
         /// 安全组实例ID，例如：sg-33ocnj9n，可通过DescribeSecurityGroups获取。
@@ -48,7 +32,7 @@ extension Vpc {
         /// <li>description - String - 协议描述，该过滤条件支持模糊匹配。</li>
         public let filters: [Filter]?
         
-        public init (securityGroupId: String, filters: [Filter]?) {
+        public init (securityGroupId: String, filters: [Filter]? = nil) {
             self.securityGroupId = securityGroupId
             self.filters = filters
         }
@@ -71,5 +55,21 @@ extension Vpc {
             case securityGroupPolicySet = "SecurityGroupPolicySet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全组规则
+    ///
+    /// 本接口（DescribeSecurityGroupPolicies）用于查询安全组规则。
+    @inlinable
+    public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupPoliciesResponse > {
+        self.client.execute(action: "DescribeSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全组规则
+    ///
+    /// 本接口（DescribeSecurityGroupPolicies）用于查询安全组规则。
+    @inlinable
+    public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupPoliciesResponse {
+        try await self.client.execute(action: "DescribeSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

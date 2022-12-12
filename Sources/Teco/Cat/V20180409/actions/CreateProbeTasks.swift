@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cat {
-    /// 批量创建拨测任务
-    @inlinable
-    public func createProbeTasks(_ input: CreateProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProbeTasksResponse > {
-        self.client.execute(action: "CreateProbeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量创建拨测任务
-    @inlinable
-    public func createProbeTasks(_ input: CreateProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProbeTasksResponse {
-        try await self.client.execute(action: "CreateProbeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProbeTasks请求参数结构体
     public struct CreateProbeTasksRequest: TCRequestModel {
         /// 批量任务名-地址
@@ -64,7 +52,7 @@ extension Cat {
         /// 客户端ID
         public let clientNum: String?
         
-        public init (batchTasks: [ProbeTaskBasicConfiguration], taskType: Int64, nodes: [String], interval: Int64, parameters: String, taskCategory: Int64, cron: String?, tag: [Tag]?, probeType: UInt64?, pluginSource: String?, clientNum: String?) {
+        public init (batchTasks: [ProbeTaskBasicConfiguration], taskType: Int64, nodes: [String], interval: Int64, parameters: String, taskCategory: Int64, cron: String? = nil, tag: [Tag]? = nil, probeType: UInt64? = nil, pluginSource: String? = nil, clientNum: String? = nil) {
             self.batchTasks = batchTasks
             self.taskType = taskType
             self.nodes = nodes
@@ -105,5 +93,17 @@ extension Cat {
             case taskIDs = "TaskIDs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量创建拨测任务
+    @inlinable
+    public func createProbeTasks(_ input: CreateProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProbeTasksResponse > {
+        self.client.execute(action: "CreateProbeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量创建拨测任务
+    @inlinable
+    public func createProbeTasks(_ input: CreateProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProbeTasksResponse {
+        try await self.client.execute(action: "CreateProbeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

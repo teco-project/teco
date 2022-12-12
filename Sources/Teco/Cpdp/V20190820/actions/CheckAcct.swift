@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫-提现银行卡验证
-    ///
-    /// 商户绑定提现银行卡的验证接口
-    @inlinable
-    public func checkAcct(_ input: CheckAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckAcctResponse > {
-        self.client.execute(action: "CheckAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫-提现银行卡验证
-    ///
-    /// 商户绑定提现银行卡的验证接口
-    @inlinable
-    public func checkAcct(_ input: CheckAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAcctResponse {
-        try await self.client.execute(action: "CheckAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckAcct请求参数结构体
     public struct CheckAcctRequest: TCRequestModel {
         /// 聚鑫分配的支付主MidasAppId
@@ -84,7 +68,7 @@ extension Cpdp {
         /// 缺省: release
         public let midasEnvironment: String?
         
-        public init (midasAppId: String, subAppId: String, bindType: Int64, settleAcctNo: String, midasSecretId: String, midasSignature: String, checkCode: String?, currencyType: String?, currencyUnit: Int64?, currencyAmt: String?, encryptType: String?, midasEnvironment: String?) {
+        public init (midasAppId: String, subAppId: String, bindType: Int64, settleAcctNo: String, midasSecretId: String, midasSignature: String, checkCode: String? = nil, currencyType: String? = nil, currencyUnit: Int64? = nil, currencyAmt: String? = nil, encryptType: String? = nil, midasEnvironment: String? = nil) {
             self.midasAppId = midasAppId
             self.subAppId = subAppId
             self.bindType = bindType
@@ -127,5 +111,21 @@ extension Cpdp {
             case frontSeqNo = "FrontSeqNo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫-提现银行卡验证
+    ///
+    /// 商户绑定提现银行卡的验证接口
+    @inlinable
+    public func checkAcct(_ input: CheckAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckAcctResponse > {
+        self.client.execute(action: "CheckAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-提现银行卡验证
+    ///
+    /// 商户绑定提现银行卡的验证接口
+    @inlinable
+    public func checkAcct(_ input: CheckAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAcctResponse {
+        try await self.client.execute(action: "CheckAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

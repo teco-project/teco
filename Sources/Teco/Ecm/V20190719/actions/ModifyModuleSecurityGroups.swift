@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改模块默认安全组
-    @inlinable
-    public func modifyModuleSecurityGroups(_ input: ModifyModuleSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleSecurityGroupsResponse > {
-        self.client.execute(action: "ModifyModuleSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改模块默认安全组
-    @inlinable
-    public func modifyModuleSecurityGroups(_ input: ModifyModuleSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleSecurityGroupsResponse {
-        try await self.client.execute(action: "ModifyModuleSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyModuleSecurityGroups请求参数结构体
     public struct ModifyModuleSecurityGroupsRequest: TCRequestModel {
         /// 安全组列表。不超过5个。
@@ -54,5 +42,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改模块默认安全组
+    @inlinable
+    public func modifyModuleSecurityGroups(_ input: ModifyModuleSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleSecurityGroupsResponse > {
+        self.client.execute(action: "ModifyModuleSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改模块默认安全组
+    @inlinable
+    public func modifyModuleSecurityGroups(_ input: ModifyModuleSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleSecurityGroupsResponse {
+        try await self.client.execute(action: "ModifyModuleSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Partners {
-    /// 查询待审核客户列表
-    ///
-    /// 代理商可查询自己名下待审核客户列表
-    @inlinable
-    public func describeAgentClients(_ input: DescribeAgentClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentClientsResponse > {
-        self.client.execute(action: "DescribeAgentClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询待审核客户列表
-    ///
-    /// 代理商可查询自己名下待审核客户列表
-    @inlinable
-    public func describeAgentClients(_ input: DescribeAgentClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientsResponse {
-        try await self.client.execute(action: "DescribeAgentClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAgentClients请求参数结构体
     public struct DescribeAgentClientsRequest: TCRequestModel {
         /// 客户账号ID
@@ -57,7 +41,7 @@ extension Partners {
         /// 业务员姓名（模糊查询）
         public let salesName: String?
         
-        public init (clientUin: String?, clientName: String?, clientFlag: String?, orderDirection: String?, offset: UInt64?, limit: UInt64?, salesUin: String?, salesName: String?) {
+        public init (clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, salesUin: String? = nil, salesName: String? = nil) {
             self.clientUin = clientUin
             self.clientName = clientName
             self.clientFlag = clientFlag
@@ -96,5 +80,21 @@ extension Partners {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询待审核客户列表
+    ///
+    /// 代理商可查询自己名下待审核客户列表
+    @inlinable
+    public func describeAgentClients(_ input: DescribeAgentClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentClientsResponse > {
+        self.client.execute(action: "DescribeAgentClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询待审核客户列表
+    ///
+    /// 代理商可查询自己名下待审核客户列表
+    @inlinable
+    public func describeAgentClients(_ input: DescribeAgentClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientsResponse {
+        try await self.client.execute(action: "DescribeAgentClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

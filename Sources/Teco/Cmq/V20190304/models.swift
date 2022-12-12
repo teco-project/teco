@@ -70,7 +70,7 @@ extension Cmq {
         /// 过滤参数的名字
         public let name: String?
         
-        public init (values: [String]?, name: String?) {
+        public init (values: [String]? = nil, name: String? = nil) {
             self.values = values
             self.name = name
         }
@@ -123,7 +123,7 @@ extension Cmq {
         
         /// 事务消息策略。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let transactionPolicy: TransactionPolicy
+        public let transactionPolicy: TransactionPolicy?
         
         /// 消息保留周期。取值范围60-1296000秒（1min-15天），默认值345600秒（4 天）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -151,7 +151,7 @@ extension Cmq {
         
         /// 死信队列策略。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let deadLetterPolicy: DeadLetterPolicy
+        public let deadLetterPolicy: DeadLetterPolicy?
         
         /// 在队列中处于 Active 状态（不处于被消费状态）的消息总数，为近似值。
         /// 注意：此字段可能返回 null，表示取不到有效值。

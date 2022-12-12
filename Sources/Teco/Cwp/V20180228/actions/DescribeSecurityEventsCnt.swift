@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取安全事件数统计数据
-    ///
-    /// 获取安全概览相关事件统计数据接口
-    @inlinable
-    public func describeSecurityEventsCnt(_ input: DescribeSecurityEventsCntRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityEventsCntResponse > {
-        self.client.execute(action: "DescribeSecurityEventsCnt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取安全事件数统计数据
-    ///
-    /// 获取安全概览相关事件统计数据接口
-    @inlinable
-    public func describeSecurityEventsCnt(_ input: DescribeSecurityEventsCntRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityEventsCntResponse {
-        try await self.client.execute(action: "DescribeSecurityEventsCnt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityEventsCnt请求参数结构体
     public struct DescribeSecurityEventsCntRequest: TCRequestModel {
         public init () {
@@ -83,11 +67,11 @@ extension Cwp {
         
         /// window 系统漏洞事件总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let windowVul: SecurityEventInfo
+        public let windowVul: SecurityEventInfo?
         
         /// linux系统漏洞事件总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let linuxVul: SecurityEventInfo
+        public let linuxVul: SecurityEventInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -111,5 +95,21 @@ extension Cwp {
             case linuxVul = "LinuxVul"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取安全事件数统计数据
+    ///
+    /// 获取安全概览相关事件统计数据接口
+    @inlinable
+    public func describeSecurityEventsCnt(_ input: DescribeSecurityEventsCntRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityEventsCntResponse > {
+        self.client.execute(action: "DescribeSecurityEventsCnt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全事件数统计数据
+    ///
+    /// 获取安全概览相关事件统计数据接口
+    @inlinable
+    public func describeSecurityEventsCnt(_ input: DescribeSecurityEventsCntRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityEventsCntResponse {
+        try await self.client.execute(action: "DescribeSecurityEventsCnt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

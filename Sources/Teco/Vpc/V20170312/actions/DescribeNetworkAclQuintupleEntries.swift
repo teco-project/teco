@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 分页查询网络ACL五元组条目列表
-    ///
-    /// 本接口（DescribeNetworkAclQuintupleEntries）查询入方向或出方向网络ACL五元组条目列表。
-    @inlinable
-    public func describeNetworkAclQuintupleEntries(_ input: DescribeNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkAclQuintupleEntriesResponse > {
-        self.client.execute(action: "DescribeNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分页查询网络ACL五元组条目列表
-    ///
-    /// 本接口（DescribeNetworkAclQuintupleEntries）查询入方向或出方向网络ACL五元组条目列表。
-    @inlinable
-    public func describeNetworkAclQuintupleEntries(_ input: DescribeNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkAclQuintupleEntriesResponse {
-        try await self.client.execute(action: "DescribeNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNetworkAclQuintupleEntries请求参数结构体
     public struct DescribeNetworkAclQuintupleEntriesRequest: TCRequestModel {
         /// 网络ACL实例ID。形如：acl-12345678。
@@ -52,7 +36,7 @@ extension Vpc {
         /// <li>network-acl-direction - String - 方向，形如：'INGRESS'或'EGRESS'。</li>
         public let filters: [Filter]?
         
-        public init (networkAclId: String, offset: UInt64?, limit: UInt64?, filters: [Filter]?) {
+        public init (networkAclId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
             self.networkAclId = networkAclId
             self.offset = offset
             self.limit = limit
@@ -83,5 +67,21 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分页查询网络ACL五元组条目列表
+    ///
+    /// 本接口（DescribeNetworkAclQuintupleEntries）查询入方向或出方向网络ACL五元组条目列表。
+    @inlinable
+    public func describeNetworkAclQuintupleEntries(_ input: DescribeNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkAclQuintupleEntriesResponse > {
+        self.client.execute(action: "DescribeNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分页查询网络ACL五元组条目列表
+    ///
+    /// 本接口（DescribeNetworkAclQuintupleEntries）查询入方向或出方向网络ACL五元组条目列表。
+    @inlinable
+    public func describeNetworkAclQuintupleEntries(_ input: DescribeNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkAclQuintupleEntriesResponse {
+        try await self.client.execute(action: "DescribeNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

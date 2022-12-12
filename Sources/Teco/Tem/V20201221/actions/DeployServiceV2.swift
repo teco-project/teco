@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 服务部署
-    @inlinable
-    public func deployServiceV2(_ input: DeployServiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeployServiceV2Response > {
-        self.client.execute(action: "DeployServiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 服务部署
-    @inlinable
-    public func deployServiceV2(_ input: DeployServiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployServiceV2Response {
-        try await self.client.execute(action: "DeployServiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeployServiceV2请求参数结构体
     public struct DeployServiceV2Request: TCRequestModel {
         /// 服务ID
@@ -57,7 +45,7 @@ extension Tem {
         public let jvmOpts: String?
         
         /// 弹性伸缩配置，不传默认不启用弹性伸缩配置
-        public let esInfo: EsInfo
+        public let esInfo: EsInfo?
         
         /// 环境变量配置
         public let envConf: [Pair]?
@@ -93,7 +81,7 @@ extension Tem {
         public let securityGroupIds: [String]?
         
         /// 日志输出配置
-        public let logOutputConf: LogOutputConf
+        public let logOutputConf: LogOutputConf?
         
         /// 来源渠道
         public let sourceChannel: Int64?
@@ -117,7 +105,7 @@ extension Tem {
         public let settingConfs: [MountedSettingConf]?
         
         /// eks 访问设置
-        public let eksService: EksService
+        public let eksService: EksService?
         
         /// 要回滚到的历史版本id
         public let versionId: String?
@@ -129,15 +117,15 @@ extension Tem {
         public let preStop: String?
         
         /// 分批发布策略配置
-        public let deployStrategyConf: DeployStrategyConf
+        public let deployStrategyConf: DeployStrategyConf?
         
         /// 存活探针配置
-        public let liveness: HealthCheckConfig
+        public let liveness: HealthCheckConfig?
         
         /// 就绪探针配置
-        public let readiness: HealthCheckConfig
+        public let readiness: HealthCheckConfig?
         
-        public init (serviceId: String, containerPort: UInt64, initPodNum: UInt64, cpuSpec: Float, memorySpec: Float, namespaceId: String, imgRepo: String?, versionDesc: String?, jvmOpts: String?, esInfo: EsInfo, envConf: [Pair]?, logConfs: [String]?, storageConfs: [StorageConf]?, storageMountConfs: [StorageMountConf]?, deployMode: String?, deployVersion: String?, pkgName: String?, jdkVersion: String?, securityGroupIds: [String]?, logOutputConf: LogOutputConf, sourceChannel: Int64?, description: String?, imageCommand: String?, imageArgs: [String]?, portMappings: [PortMapping]?, useRegistryDefaultConfig: Bool?, settingConfs: [MountedSettingConf]?, eksService: EksService, versionId: String?, postStart: String?, preStop: String?, deployStrategyConf: DeployStrategyConf, liveness: HealthCheckConfig, readiness: HealthCheckConfig) {
+        public init (serviceId: String, containerPort: UInt64, initPodNum: UInt64, cpuSpec: Float, memorySpec: Float, namespaceId: String, imgRepo: String? = nil, versionDesc: String? = nil, jvmOpts: String? = nil, esInfo: EsInfo? = nil, envConf: [Pair]? = nil, logConfs: [String]? = nil, storageConfs: [StorageConf]? = nil, storageMountConfs: [StorageMountConf]? = nil, deployMode: String? = nil, deployVersion: String? = nil, pkgName: String? = nil, jdkVersion: String? = nil, securityGroupIds: [String]? = nil, logOutputConf: LogOutputConf? = nil, sourceChannel: Int64? = nil, description: String? = nil, imageCommand: String? = nil, imageArgs: [String]? = nil, portMappings: [PortMapping]? = nil, useRegistryDefaultConfig: Bool? = nil, settingConfs: [MountedSettingConf]? = nil, eksService: EksService? = nil, versionId: String? = nil, postStart: String? = nil, preStop: String? = nil, deployStrategyConf: DeployStrategyConf? = nil, liveness: HealthCheckConfig? = nil, readiness: HealthCheckConfig? = nil) {
             self.serviceId = serviceId
             self.containerPort = containerPort
             self.initPodNum = initPodNum
@@ -224,5 +212,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 服务部署
+    @inlinable
+    public func deployServiceV2(_ input: DeployServiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeployServiceV2Response > {
+        self.client.execute(action: "DeployServiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 服务部署
+    @inlinable
+    public func deployServiceV2(_ input: DeployServiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployServiceV2Response {
+        try await self.client.execute(action: "DeployServiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询封禁客户端信息列表
-    ///
-    /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
-    @inlinable
-    public func describeClientRuleList(_ input: DescribeClientRuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientRuleListResponse > {
-        self.client.execute(action: "DescribeClientRuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询封禁客户端信息列表
-    ///
-    /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
-    @inlinable
-    public func describeClientRuleList(_ input: DescribeClientRuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientRuleListResponse {
-        try await self.client.execute(action: "DescribeClientRuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClientRuleList请求参数结构体
     public struct DescribeClientRuleListRequest: TCRequestModel {
         /// 查询的站点ID.
@@ -61,7 +45,7 @@ extension Teo {
         /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
         public let area: String?
         
-        public init (zoneId: String, domain: String, ruleType: String?, ruleId: Int64?, sourceClientIp: String?, limit: Int64?, offset: Int64?, area: String?) {
+        public init (zoneId: String, domain: String, ruleType: String? = nil, ruleId: Int64? = nil, sourceClientIp: String? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil) {
             self.zoneId = zoneId
             self.domain = domain
             self.ruleType = ruleType
@@ -101,5 +85,21 @@ extension Teo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询封禁客户端信息列表
+    ///
+    /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
+    @inlinable
+    public func describeClientRuleList(_ input: DescribeClientRuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientRuleListResponse > {
+        self.client.execute(action: "DescribeClientRuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询封禁客户端信息列表
+    ///
+    /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
+    @inlinable
+    public func describeClientRuleList(_ input: DescribeClientRuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientRuleListResponse {
+        try await self.client.execute(action: "DescribeClientRuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

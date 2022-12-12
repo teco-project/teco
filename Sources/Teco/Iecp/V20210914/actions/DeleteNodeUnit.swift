@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 删除边缘单元NodeUnit
-    @inlinable
-    public func deleteNodeUnit(_ input: DeleteNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNodeUnitResponse > {
-        self.client.execute(action: "DeleteNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除边缘单元NodeUnit
-    @inlinable
-    public func deleteNodeUnit(_ input: DeleteNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNodeUnitResponse {
-        try await self.client.execute(action: "DeleteNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteNodeUnit请求参数结构体
     public struct DeleteNodeUnitRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -44,7 +32,7 @@ extension Iecp {
         /// NodeUnit包含的节点列表
         public let nodes: [String]?
         
-        public init (edgeUnitId: UInt64, nodeGroupName: String, nodeUnitName: String, namespace: String?, nodes: [String]?) {
+        public init (edgeUnitId: UInt64, nodeGroupName: String, nodeUnitName: String, namespace: String? = nil, nodes: [String]? = nil) {
             self.edgeUnitId = edgeUnitId
             self.nodeGroupName = nodeGroupName
             self.nodeUnitName = nodeUnitName
@@ -69,5 +57,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除边缘单元NodeUnit
+    @inlinable
+    public func deleteNodeUnit(_ input: DeleteNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNodeUnitResponse > {
+        self.client.execute(action: "DeleteNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除边缘单元NodeUnit
+    @inlinable
+    public func deleteNodeUnit(_ input: DeleteNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNodeUnitResponse {
+        try await self.client.execute(action: "DeleteNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

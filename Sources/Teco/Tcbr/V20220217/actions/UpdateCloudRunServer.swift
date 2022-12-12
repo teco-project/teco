@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcbr {
-    /// 更新云托管服务
-    @inlinable
-    public func updateCloudRunServer(_ input: UpdateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCloudRunServerResponse > {
-        self.client.execute(action: "UpdateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新云托管服务
-    @inlinable
-    public func updateCloudRunServer(_ input: UpdateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCloudRunServerResponse {
-        try await self.client.execute(action: "UpdateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateCloudRunServer请求参数结构体
     public struct UpdateCloudRunServerRequest: TCRequestModel {
         /// 环境Id
@@ -72,5 +60,17 @@ extension Tcbr {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新云托管服务
+    @inlinable
+    public func updateCloudRunServer(_ input: UpdateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCloudRunServerResponse > {
+        self.client.execute(action: "UpdateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新云托管服务
+    @inlinable
+    public func updateCloudRunServer(_ input: UpdateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCloudRunServerResponse {
+        try await self.client.execute(action: "UpdateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 查询通道实例列表
-    ///
-    /// 本接口（DescribeProxies）用于查询通道实例列表。
-    @inlinable
-    public func describeProxies(_ input: DescribeProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxiesResponse > {
-        self.client.execute(action: "DescribeProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询通道实例列表
-    ///
-    /// 本接口（DescribeProxies）用于查询通道实例列表。
-    @inlinable
-    public func describeProxies(_ input: DescribeProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxiesResponse {
-        try await self.client.execute(action: "DescribeProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProxies请求参数结构体
     public struct DescribeProxiesRequest: TCRequestModel {
         /// （旧参数，请切换到ProxyIds）按照一个或者多个实例ID查询。每次请求的实例的上限为100。参数不支持同时指定InstanceIds和Filters。
@@ -78,7 +62,7 @@ extension Gaap {
         /// 默认按通道创建时间排序。
         public let orderField: String?
         
-        public init (instanceIds: [String]?, offset: UInt64?, limit: UInt64?, filters: [Filter]?, proxyIds: [String]?, tagSet: [TagPair]?, independent: Int64?, order: String?, orderField: String?) {
+        public init (instanceIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, proxyIds: [String]? = nil, tagSet: [TagPair]? = nil, independent: Int64? = nil, order: String? = nil, orderField: String? = nil) {
             self.instanceIds = instanceIds
             self.offset = offset
             self.limit = limit
@@ -123,5 +107,21 @@ extension Gaap {
             case proxySet = "ProxySet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询通道实例列表
+    ///
+    /// 本接口（DescribeProxies）用于查询通道实例列表。
+    @inlinable
+    public func describeProxies(_ input: DescribeProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxiesResponse > {
+        self.client.execute(action: "DescribeProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询通道实例列表
+    ///
+    /// 本接口（DescribeProxies）用于查询通道实例列表。
+    @inlinable
+    public func describeProxies(_ input: DescribeProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxiesResponse {
+        try await self.client.execute(action: "DescribeProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

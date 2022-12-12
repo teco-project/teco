@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 查询安全审计日志导出文件下载链接
-    ///
-    /// 查询安全审计日志导出文件下载链接。目前日志文件下载仅提供腾讯云内网地址，请通过广州地域的腾讯云服务器进行下载。
-    @inlinable
-    public func describeSecurityAuditLogDownloadUrls(_ input: DescribeSecurityAuditLogDownloadUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityAuditLogDownloadUrlsResponse > {
-        self.client.execute(action: "DescribeSecurityAuditLogDownloadUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全审计日志导出文件下载链接
-    ///
-    /// 查询安全审计日志导出文件下载链接。目前日志文件下载仅提供腾讯云内网地址，请通过广州地域的腾讯云服务器进行下载。
-    @inlinable
-    public func describeSecurityAuditLogDownloadUrls(_ input: DescribeSecurityAuditLogDownloadUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityAuditLogDownloadUrlsResponse {
-        try await self.client.execute(action: "DescribeSecurityAuditLogDownloadUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityAuditLogDownloadUrls请求参数结构体
     public struct DescribeSecurityAuditLogDownloadUrlsRequest: TCRequestModel {
         /// 安全审计组Id。
@@ -67,5 +51,21 @@ extension Dbbrain {
             case urls = "Urls"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全审计日志导出文件下载链接
+    ///
+    /// 查询安全审计日志导出文件下载链接。目前日志文件下载仅提供腾讯云内网地址，请通过广州地域的腾讯云服务器进行下载。
+    @inlinable
+    public func describeSecurityAuditLogDownloadUrls(_ input: DescribeSecurityAuditLogDownloadUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityAuditLogDownloadUrlsResponse > {
+        self.client.execute(action: "DescribeSecurityAuditLogDownloadUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全审计日志导出文件下载链接
+    ///
+    /// 查询安全审计日志导出文件下载链接。目前日志文件下载仅提供腾讯云内网地址，请通过广州地域的腾讯云服务器进行下载。
+    @inlinable
+    public func describeSecurityAuditLogDownloadUrls(_ input: DescribeSecurityAuditLogDownloadUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityAuditLogDownloadUrlsResponse {
+        try await self.client.execute(action: "DescribeSecurityAuditLogDownloadUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取生产者信息
-    ///
-    /// 获取生产者信息列表
-    @inlinable
-    public func describePublishers(_ input: DescribePublishersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublishersResponse > {
-        self.client.execute(action: "DescribePublishers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取生产者信息
-    ///
-    /// 获取生产者信息列表
-    @inlinable
-    public func describePublishers(_ input: DescribePublishersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublishersResponse {
-        try await self.client.execute(action: "DescribePublishers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePublishers请求参数结构体
     public struct DescribePublishersRequest: TCRequestModel {
         /// 集群ID
@@ -52,9 +36,9 @@ extension Tdmq {
         public let limit: Int64?
         
         /// 排序器
-        public let sort: Sort
+        public let sort: Sort?
         
-        public init (clusterId: String, namespace: String, topic: String, filters: [Filter]?, offset: Int64?, limit: Int64?, sort: Sort) {
+        public init (clusterId: String, namespace: String, topic: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, sort: Sort? = nil) {
             self.clusterId = clusterId
             self.namespace = namespace
             self.topic = topic
@@ -92,5 +76,21 @@ extension Tdmq {
             case publishers = "Publishers"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取生产者信息
+    ///
+    /// 获取生产者信息列表
+    @inlinable
+    public func describePublishers(_ input: DescribePublishersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublishersResponse > {
+        self.client.execute(action: "DescribePublishers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取生产者信息
+    ///
+    /// 获取生产者信息列表
+    @inlinable
+    public func describePublishers(_ input: DescribePublishersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublishersResponse {
+        try await self.client.execute(action: "DescribePublishers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

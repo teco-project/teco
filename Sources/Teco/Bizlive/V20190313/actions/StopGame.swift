@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bizlive {
-    /// 强制退出游戏
-    @inlinable
-    public func stopGame(_ input: StopGameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopGameResponse > {
-        self.client.execute(action: "StopGame", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 强制退出游戏
-    @inlinable
-    public func stopGame(_ input: StopGameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameResponse {
-        try await self.client.execute(action: "StopGame", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopGame请求参数结构体
     public struct StopGameRequest: TCRequestModel {
         /// 游戏用户ID
@@ -49,5 +37,17 @@ extension Bizlive {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 强制退出游戏
+    @inlinable
+    public func stopGame(_ input: StopGameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopGameResponse > {
+        self.client.execute(action: "StopGame", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 强制退出游戏
+    @inlinable
+    public func stopGame(_ input: StopGameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameResponse {
+        try await self.client.execute(action: "StopGame", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

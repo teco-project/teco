@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Irp {
-    /// 上报物料
-    @inlinable
-    public func reportMaterial(_ input: ReportMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportMaterialResponse > {
-        self.client.execute(action: "ReportMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上报物料
-    @inlinable
-    public func reportMaterial(_ input: ReportMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportMaterialResponse {
-        try await self.client.execute(action: "ReportMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReportMaterial请求参数结构体
     public struct ReportMaterialRequest: TCRequestModel {
         /// 业务id
@@ -54,5 +42,17 @@ extension Irp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上报物料
+    @inlinable
+    public func reportMaterial(_ input: ReportMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportMaterialResponse > {
+        self.client.execute(action: "ReportMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上报物料
+    @inlinable
+    public func reportMaterial(_ input: ReportMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportMaterialResponse {
+        try await self.client.execute(action: "ReportMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取设备sdk日志
-    @inlinable
-    public func describeSDKLog(_ input: DescribeSDKLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSDKLogResponse > {
-        self.client.execute(action: "DescribeSDKLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备sdk日志
-    @inlinable
-    public func describeSDKLog(_ input: DescribeSDKLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSDKLogResponse {
-        try await self.client.execute(action: "DescribeSDKLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSDKLog请求参数结构体
     public struct DescribeSDKLogRequest: TCRequestModel {
         /// 日志开始时间
@@ -48,7 +36,7 @@ extension Iotvideo {
         /// 查询条数
         public let maxNum: UInt64?
         
-        public init (minTime: UInt64, maxTime: UInt64, keywords: String, context: String?, maxNum: UInt64?) {
+        public init (minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: UInt64? = nil) {
             self.minTime = minTime
             self.maxTime = maxTime
             self.keywords = keywords
@@ -85,5 +73,17 @@ extension Iotvideo {
             case results = "Results"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备sdk日志
+    @inlinable
+    public func describeSDKLog(_ input: DescribeSDKLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSDKLogResponse > {
+        self.client.execute(action: "DescribeSDKLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备sdk日志
+    @inlinable
+    public func describeSDKLog(_ input: DescribeSDKLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSDKLogResponse {
+        try await self.client.execute(action: "DescribeSDKLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

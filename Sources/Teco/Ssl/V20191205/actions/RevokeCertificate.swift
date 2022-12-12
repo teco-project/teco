@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Ssl {
-    /// 吊销证书
-    ///
-    /// 本接口（RevokeCertificate）用于吊销证书。
-    @inlinable
-    public func revokeCertificate(_ input: RevokeCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevokeCertificateResponse > {
-        self.client.execute(action: "RevokeCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 吊销证书
-    ///
-    /// 本接口（RevokeCertificate）用于吊销证书。
-    @inlinable
-    public func revokeCertificate(_ input: RevokeCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeCertificateResponse {
-        try await self.client.execute(action: "RevokeCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RevokeCertificate请求参数结构体
     public struct RevokeCertificateRequest: TCRequestModel {
         /// 证书 ID。
@@ -41,7 +25,7 @@ extension Ssl {
         /// 吊销证书原因。
         public let reason: String?
         
-        public init (certificateId: String, reason: String?) {
+        public init (certificateId: String, reason: String? = nil) {
             self.certificateId = certificateId
             self.reason = reason
         }
@@ -56,7 +40,7 @@ extension Ssl {
     public struct RevokeCertificateResponse: TCResponseModel {
         /// 吊销证书域名验证信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let revokeDomainValidateAuths: [Date]?
+        public let revokeDomainValidateAuths: [RevokeDomainValidateAuths]?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -65,5 +49,21 @@ extension Ssl {
             case revokeDomainValidateAuths = "RevokeDomainValidateAuths"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 吊销证书
+    ///
+    /// 本接口（RevokeCertificate）用于吊销证书。
+    @inlinable
+    public func revokeCertificate(_ input: RevokeCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevokeCertificateResponse > {
+        self.client.execute(action: "RevokeCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 吊销证书
+    ///
+    /// 本接口（RevokeCertificate）用于吊销证书。
+    @inlinable
+    public func revokeCertificate(_ input: RevokeCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeCertificateResponse {
+        try await self.client.execute(action: "RevokeCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

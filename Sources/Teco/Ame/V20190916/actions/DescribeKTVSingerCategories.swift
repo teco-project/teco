@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取直播互动曲库歌手分类信息
-    @inlinable
-    public func describeKTVSingerCategories(_ input: DescribeKTVSingerCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVSingerCategoriesResponse > {
-        self.client.execute(action: "DescribeKTVSingerCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取直播互动曲库歌手分类信息
-    @inlinable
-    public func describeKTVSingerCategories(_ input: DescribeKTVSingerCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingerCategoriesResponse {
-        try await self.client.execute(action: "DescribeKTVSingerCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKTVSingerCategories请求参数结构体
     public struct DescribeKTVSingerCategoriesRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Ame {
             case areaSet = "AreaSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取直播互动曲库歌手分类信息
+    @inlinable
+    public func describeKTVSingerCategories(_ input: DescribeKTVSingerCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVSingerCategoriesResponse > {
+        self.client.execute(action: "DescribeKTVSingerCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播互动曲库歌手分类信息
+    @inlinable
+    public func describeKTVSingerCategories(_ input: DescribeKTVSingerCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingerCategoriesResponse {
+        try await self.client.execute(action: "DescribeKTVSingerCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

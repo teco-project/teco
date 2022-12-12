@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 删除作业
-    ///
-    /// 用于删除作业记录。
-    /// 删除作业的效果相当于删除作业相关的所有信息。删除成功后，作业相关的所有信息都无法查询。
-    /// 待删除的作业必须处于完结状态，且其内部包含的所有任务实例也必须处于完结状态，否则会禁止操作。完结状态，是指处于 SUCCEED 或 FAILED 状态。
-    @inlinable
-    public func deleteJob(_ input: DeleteJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteJobResponse > {
-        self.client.execute(action: "DeleteJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除作业
-    ///
-    /// 用于删除作业记录。
-    /// 删除作业的效果相当于删除作业相关的所有信息。删除成功后，作业相关的所有信息都无法查询。
-    /// 待删除的作业必须处于完结状态，且其内部包含的所有任务实例也必须处于完结状态，否则会禁止操作。完结状态，是指处于 SUCCEED 或 FAILED 状态。
-    @inlinable
-    public func deleteJob(_ input: DeleteJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobResponse {
-        try await self.client.execute(action: "DeleteJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteJob请求参数结构体
     public struct DeleteJobRequest: TCRequestModel {
         /// 作业ID
@@ -57,5 +37,25 @@ extension Batch {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除作业
+    ///
+    /// 用于删除作业记录。
+    /// 删除作业的效果相当于删除作业相关的所有信息。删除成功后，作业相关的所有信息都无法查询。
+    /// 待删除的作业必须处于完结状态，且其内部包含的所有任务实例也必须处于完结状态，否则会禁止操作。完结状态，是指处于 SUCCEED 或 FAILED 状态。
+    @inlinable
+    public func deleteJob(_ input: DeleteJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteJobResponse > {
+        self.client.execute(action: "DeleteJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除作业
+    ///
+    /// 用于删除作业记录。
+    /// 删除作业的效果相当于删除作业相关的所有信息。删除成功后，作业相关的所有信息都无法查询。
+    /// 待删除的作业必须处于完结状态，且其内部包含的所有任务实例也必须处于完结状态，否则会禁止操作。完结状态，是指处于 SUCCEED 或 FAILED 状态。
+    @inlinable
+    public func deleteJob(_ input: DeleteJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobResponse {
+        try await self.client.execute(action: "DeleteJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

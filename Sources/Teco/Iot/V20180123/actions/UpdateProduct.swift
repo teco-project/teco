@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 更新产品信息
-    ///
-    /// 提供修改产品信息及数据模板的能力。
-    @inlinable
-    public func updateProduct(_ input: UpdateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProductResponse > {
-        self.client.execute(action: "UpdateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新产品信息
-    ///
-    /// 提供修改产品信息及数据模板的能力。
-    @inlinable
-    public func updateProduct(_ input: UpdateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductResponse {
-        try await self.client.execute(action: "UpdateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateProduct请求参数结构体
     public struct UpdateProductRequest: TCRequestModel {
         /// 产品Id
@@ -45,7 +29,7 @@ extension Iot {
         /// 数据模版
         public let dataTemplate: [DataTemplate]?
         
-        public init (productId: String, name: String?, description: String?, dataTemplate: [DataTemplate]?) {
+        public init (productId: String, name: String? = nil, description: String? = nil, dataTemplate: [DataTemplate]? = nil) {
             self.productId = productId
             self.name = name
             self.description = description
@@ -72,5 +56,21 @@ extension Iot {
             case product = "Product"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新产品信息
+    ///
+    /// 提供修改产品信息及数据模板的能力。
+    @inlinable
+    public func updateProduct(_ input: UpdateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProductResponse > {
+        self.client.execute(action: "UpdateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新产品信息
+    ///
+    /// 提供修改产品信息及数据模板的能力。
+    @inlinable
+    public func updateProduct(_ input: UpdateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductResponse {
+        try await self.client.execute(action: "UpdateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

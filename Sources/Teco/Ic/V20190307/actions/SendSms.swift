@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ic {
-    /// 发送短信息接口
-    @inlinable
-    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendSmsResponse > {
-        self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送短信息接口
-    @inlinable
-    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
-        try await self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendSms请求参数结构体
     public struct SendSmsRequest: TCRequestModel {
         /// 应用ID
@@ -55,7 +43,7 @@ extension Ic {
     public struct SendSmsResponse: TCResponseModel {
         /// 短信流水信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: SmsSid
+        public let data: SmsSid?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -64,5 +52,17 @@ extension Ic {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送短信息接口
+    @inlinable
+    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendSmsResponse > {
+        self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送短信息接口
+    @inlinable
+    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
+        try await self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

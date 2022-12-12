@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 修改服务访问方式列表
-    @inlinable
-    public func modifyApplicationService(_ input: ModifyApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationServiceResponse > {
-        self.client.execute(action: "ModifyApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改服务访问方式列表
-    @inlinable
-    public func modifyApplicationService(_ input: ModifyApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationServiceResponse {
-        try await self.client.execute(action: "ModifyApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyApplicationService请求参数结构体
     public struct ModifyApplicationServiceRequest: TCRequestModel {
         /// 服务id
@@ -39,12 +27,12 @@ extension Tem {
         public let sourceChannel: Int64?
         
         /// 全量访问方式设置
-        public let service: EksService
+        public let service: EksService?
         
         /// 单条访问方式设置
-        public let data: ServicePortMapping
+        public let data: ServicePortMapping?
         
-        public init (applicationId: String, environmentId: String, sourceChannel: Int64?, service: EksService, data: ServicePortMapping) {
+        public init (applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: EksService? = nil, data: ServicePortMapping? = nil) {
             self.applicationId = applicationId
             self.environmentId = environmentId
             self.sourceChannel = sourceChannel
@@ -74,5 +62,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改服务访问方式列表
+    @inlinable
+    public func modifyApplicationService(_ input: ModifyApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationServiceResponse > {
+        self.client.execute(action: "ModifyApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改服务访问方式列表
+    @inlinable
+    public func modifyApplicationService(_ input: ModifyApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationServiceResponse {
+        try await self.client.execute(action: "ModifyApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

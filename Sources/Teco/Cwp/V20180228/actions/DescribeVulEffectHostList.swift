@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 漏洞影响主机列表
-    @inlinable
-    public func describeVulEffectHostList(_ input: DescribeVulEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulEffectHostListResponse > {
-        self.client.execute(action: "DescribeVulEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 漏洞影响主机列表
-    @inlinable
-    public func describeVulEffectHostList(_ input: DescribeVulEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulEffectHostListResponse {
-        try await self.client.execute(action: "DescribeVulEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulEffectHostList请求参数结构体
     public struct DescribeVulEffectHostListRequest: TCRequestModel {
         /// 分页limit 最大100
@@ -47,7 +35,7 @@ extension Cwp {
         /// <li>InstanceState - String数组 - 实例状态数组："PENDING"-创建中 "LAUNCH_FAILED"-创建失败 "RUNNING"-运行中 "STOPPED"-关机 "STARTING"-开机中 "STOPPING"-关机中 "REBOOTING"-重启中 "SHUTDOWN"-待销毁 "TERMINATING"-销毁中 "UNKNOWN"-未知（针对非腾讯云机器，且客户端离线的场景） </li>
         public let filters: [Filter]?
         
-        public init (limit: UInt64, offset: UInt64, vulId: UInt64, filters: [Filter]?) {
+        public init (limit: UInt64, offset: UInt64, vulId: UInt64, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.vulId = vulId
@@ -79,5 +67,17 @@ extension Cwp {
             case vulEffectHostList = "VulEffectHostList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 漏洞影响主机列表
+    @inlinable
+    public func describeVulEffectHostList(_ input: DescribeVulEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulEffectHostListResponse > {
+        self.client.execute(action: "DescribeVulEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 漏洞影响主机列表
+    @inlinable
+    public func describeVulEffectHostList(_ input: DescribeVulEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulEffectHostListResponse {
+        try await self.client.execute(action: "DescribeVulEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

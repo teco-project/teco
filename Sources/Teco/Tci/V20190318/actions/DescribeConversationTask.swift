@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 音频对话任务分析结果查询
-    ///
-    /// 音频对话任务评估任务信息查询接口，异步查询客户提交的请求的结果。
-    @inlinable
-    public func describeConversationTask(_ input: DescribeConversationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConversationTaskResponse > {
-        self.client.execute(action: "DescribeConversationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 音频对话任务分析结果查询
-    ///
-    /// 音频对话任务评估任务信息查询接口，异步查询客户提交的请求的结果。
-    @inlinable
-    public func describeConversationTask(_ input: DescribeConversationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConversationTaskResponse {
-        try await self.client.execute(action: "DescribeConversationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeConversationTask请求参数结构体
     public struct DescribeConversationTaskRequest: TCRequestModel {
         /// 音频任务唯一id。在URL方式时提交请求后会返回一个jobid，后续查询该url的结果时使用这个jobid进行查询。
@@ -45,7 +29,7 @@ extension Tci {
         /// 偏移量
         public let offset: Int64?
         
-        public init (jobId: Int64, identity: Int64?, limit: Int64?, offset: Int64?) {
+        public init (jobId: Int64, identity: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.jobId = jobId
             self.identity = identity
             self.limit = limit
@@ -100,5 +84,21 @@ extension Tci {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 音频对话任务分析结果查询
+    ///
+    /// 音频对话任务评估任务信息查询接口，异步查询客户提交的请求的结果。
+    @inlinable
+    public func describeConversationTask(_ input: DescribeConversationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConversationTaskResponse > {
+        self.client.execute(action: "DescribeConversationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 音频对话任务分析结果查询
+    ///
+    /// 音频对话任务评估任务信息查询接口，异步查询客户提交的请求的结果。
+    @inlinable
+    public func describeConversationTask(_ input: DescribeConversationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConversationTaskResponse {
+        try await self.client.execute(action: "DescribeConversationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 提交证书资料
-    ///
-    /// 提交证书资料。输入参数信息可以分多次提交，但提交的证书资料应最低限度保持完整。
-    @inlinable
-    public func submitCertificateInformation(_ input: SubmitCertificateInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitCertificateInformationResponse > {
-        self.client.execute(action: "SubmitCertificateInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交证书资料
-    ///
-    /// 提交证书资料。输入参数信息可以分多次提交，但提交的证书资料应最低限度保持完整。
-    @inlinable
-    public func submitCertificateInformation(_ input: SubmitCertificateInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCertificateInformationResponse {
-        try await self.client.execute(action: "SubmitCertificateInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SubmitCertificateInformation请求参数结构体
     public struct SubmitCertificateInformationRequest: TCRequestModel {
         /// 证书 ID。
@@ -111,7 +95,7 @@ extension Ssl {
         /// 联系人职位。
         public let contactPosition: String?
         
-        public init (certificateId: String, csrType: String?, csrContent: String?, certificateDomain: String?, domainList: [String]?, keyPassword: String?, organizationName: String?, organizationDivision: String?, organizationAddress: String?, organizationCountry: String?, organizationCity: String?, organizationRegion: String?, postalCode: String?, phoneAreaCode: String?, phoneNumber: String?, verifyType: String?, adminFirstName: String?, adminLastName: String?, adminPhoneNum: String?, adminEmail: String?, adminPosition: String?, contactFirstName: String?, contactLastName: String?, contactEmail: String?, contactNumber: String?, contactPosition: String?) {
+        public init (certificateId: String, csrType: String? = nil, csrContent: String? = nil, certificateDomain: String? = nil, domainList: [String]? = nil, keyPassword: String? = nil, organizationName: String? = nil, organizationDivision: String? = nil, organizationAddress: String? = nil, organizationCountry: String? = nil, organizationCity: String? = nil, organizationRegion: String? = nil, postalCode: String? = nil, phoneAreaCode: String? = nil, phoneNumber: String? = nil, verifyType: String? = nil, adminFirstName: String? = nil, adminLastName: String? = nil, adminPhoneNum: String? = nil, adminEmail: String? = nil, adminPosition: String? = nil, contactFirstName: String? = nil, contactLastName: String? = nil, contactEmail: String? = nil, contactNumber: String? = nil, contactPosition: String? = nil) {
             self.certificateId = certificateId
             self.csrType = csrType
             self.csrContent = csrContent
@@ -182,5 +166,21 @@ extension Ssl {
             case certificateId = "CertificateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交证书资料
+    ///
+    /// 提交证书资料。输入参数信息可以分多次提交，但提交的证书资料应最低限度保持完整。
+    @inlinable
+    public func submitCertificateInformation(_ input: SubmitCertificateInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitCertificateInformationResponse > {
+        self.client.execute(action: "SubmitCertificateInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交证书资料
+    ///
+    /// 提交证书资料。输入参数信息可以分多次提交，但提交的证书资料应最低限度保持完整。
+    @inlinable
+    public func submitCertificateInformation(_ input: SubmitCertificateInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCertificateInformationResponse {
+        try await self.client.execute(action: "SubmitCertificateInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

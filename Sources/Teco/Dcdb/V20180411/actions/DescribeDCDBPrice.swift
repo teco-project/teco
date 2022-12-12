@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 新购分布式数据库实例询价
-    ///
-    /// 本接口（DescribeDCDBPrice）用于在购买实例前，查询实例的价格。
-    @inlinable
-    public func describeDCDBPrice(_ input: DescribeDCDBPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDCDBPriceResponse > {
-        self.client.execute(action: "DescribeDCDBPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新购分布式数据库实例询价
-    ///
-    /// 本接口（DescribeDCDBPrice）用于在购买实例前，查询实例的价格。
-    @inlinable
-    public func describeDCDBPrice(_ input: DescribeDCDBPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBPriceResponse {
-        try await self.client.execute(action: "DescribeDCDBPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDCDBPrice请求参数结构体
     public struct DescribeDCDBPriceRequest: TCRequestModel {
         /// 欲新购实例的可用区ID。
@@ -65,7 +49,7 @@ extension Dcdb {
         /// * microPent：微分
         public let amountUnit: String?
         
-        public init (zone: String, count: Int64, period: Int64, shardNodeCount: Int64, shardMemory: Int64, shardStorage: Int64, shardCount: Int64, paymode: String?, amountUnit: String?) {
+        public init (zone: String, count: Int64, period: Int64, shardNodeCount: Int64, shardMemory: Int64, shardStorage: Int64, shardCount: Int64, paymode: String? = nil, amountUnit: String? = nil) {
             self.zone = zone
             self.count = count
             self.period = period
@@ -110,5 +94,21 @@ extension Dcdb {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新购分布式数据库实例询价
+    ///
+    /// 本接口（DescribeDCDBPrice）用于在购买实例前，查询实例的价格。
+    @inlinable
+    public func describeDCDBPrice(_ input: DescribeDCDBPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDCDBPriceResponse > {
+        self.client.execute(action: "DescribeDCDBPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新购分布式数据库实例询价
+    ///
+    /// 本接口（DescribeDCDBPrice）用于在购买实例前，查询实例的价格。
+    @inlinable
+    public func describeDCDBPrice(_ input: DescribeDCDBPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBPriceResponse {
+        try await self.client.execute(action: "DescribeDCDBPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

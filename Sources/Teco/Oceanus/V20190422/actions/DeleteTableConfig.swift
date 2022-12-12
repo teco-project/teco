@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 删除作业表配置
-    @inlinable
-    public func deleteTableConfig(_ input: DeleteTableConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTableConfigResponse > {
-        self.client.execute(action: "DeleteTableConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除作业表配置
-    @inlinable
-    public func deleteTableConfig(_ input: DeleteTableConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableConfigResponse {
-        try await self.client.execute(action: "DeleteTableConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTableConfig请求参数结构体
     public struct DeleteTableConfigRequest: TCRequestModel {
         /// 作业ID
@@ -41,7 +29,7 @@ extension Oceanus {
         /// 工作空间 SerialId
         public let workSpaceId: String?
         
-        public init (jobId: String, debugId: Int64, tableName: String, workSpaceId: String?) {
+        public init (jobId: String, debugId: Int64, tableName: String, workSpaceId: String? = nil) {
             self.jobId = jobId
             self.debugId = debugId
             self.tableName = tableName
@@ -64,5 +52,17 @@ extension Oceanus {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除作业表配置
+    @inlinable
+    public func deleteTableConfig(_ input: DeleteTableConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTableConfigResponse > {
+        self.client.execute(action: "DeleteTableConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除作业表配置
+    @inlinable
+    public func deleteTableConfig(_ input: DeleteTableConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableConfigResponse {
+        try await self.client.execute(action: "DeleteTableConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

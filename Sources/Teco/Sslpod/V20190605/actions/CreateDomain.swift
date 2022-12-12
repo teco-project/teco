@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sslpod {
-    /// 添加域名
-    ///
-    /// 通过域名端口添加监控
-    @inlinable
-    public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainResponse > {
-        self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加域名
-    ///
-    /// 通过域名端口添加监控
-    @inlinable
-    public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
-        try await self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDomain请求参数结构体
     public struct CreateDomainRequest: TCRequestModel {
         /// 监控的服务器类型（0：web，1：smtp，2：imap，3：pops）
@@ -51,7 +35,7 @@ extension Sslpod {
         /// 给域名添加标签，多个以逗号隔开
         public let tags: String?
         
-        public init (serverType: Int64, domain: String, port: String, ip: String?, notice: Bool?, tags: String?) {
+        public init (serverType: Int64, domain: String, port: String, ip: String? = nil, notice: Bool? = nil, tags: String? = nil) {
             self.serverType = serverType
             self.domain = domain
             self.port = port
@@ -78,5 +62,21 @@ extension Sslpod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加域名
+    ///
+    /// 通过域名端口添加监控
+    @inlinable
+    public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDomainResponse > {
+        self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加域名
+    ///
+    /// 通过域名端口添加监控
+    @inlinable
+    public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
+        try await self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

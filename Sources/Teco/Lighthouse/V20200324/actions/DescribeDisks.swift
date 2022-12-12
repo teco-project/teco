@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询云硬盘
-    ///
-    /// 本接口（DescribeDisks）用于查询云硬盘信息。
-    @inlinable
-    public func describeDisks(_ input: DescribeDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDisksResponse > {
-        self.client.execute(action: "DescribeDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云硬盘
-    ///
-    /// 本接口（DescribeDisks）用于查询云硬盘信息。
-    @inlinable
-    public func describeDisks(_ input: DescribeDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksResponse {
-        try await self.client.execute(action: "DescribeDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDisks请求参数结构体
     public struct DescribeDisksRequest: TCRequestModel {
         /// 云硬盘ID列表。
@@ -78,7 +62,7 @@ extension Lighthouse {
         /// 输出云硬盘列表的排列顺序。取值范围："ASC"：升序排列。 "DESC"：降序排列。默认按降序排列。
         public let order: String?
         
-        public init (diskIds: [String]?, filters: [Filter]?, limit: Int64?, offset: Int64?, orderField: String?, order: String?) {
+        public init (diskIds: [String]? = nil, filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, orderField: String? = nil, order: String? = nil) {
             self.diskIds = diskIds
             self.filters = filters
             self.limit = limit
@@ -113,5 +97,21 @@ extension Lighthouse {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云硬盘
+    ///
+    /// 本接口（DescribeDisks）用于查询云硬盘信息。
+    @inlinable
+    public func describeDisks(_ input: DescribeDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDisksResponse > {
+        self.client.execute(action: "DescribeDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云硬盘
+    ///
+    /// 本接口（DescribeDisks）用于查询云硬盘信息。
+    @inlinable
+    public func describeDisks(_ input: DescribeDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksResponse {
+        try await self.client.execute(action: "DescribeDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

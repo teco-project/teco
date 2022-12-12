@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 校验Secret的Yaml语法
-    @inlinable
-    public func describeSecretYamlError(_ input: DescribeSecretYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecretYamlErrorResponse > {
-        self.client.execute(action: "DescribeSecretYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 校验Secret的Yaml语法
-    @inlinable
-    public func describeSecretYamlError(_ input: DescribeSecretYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretYamlErrorResponse {
-        try await self.client.execute(action: "DescribeSecretYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecretYamlError请求参数结构体
     public struct DescribeSecretYamlErrorRequest: TCRequestModel {
         /// yaml文件
@@ -64,5 +52,17 @@ extension Iecp {
             case errInfo = "ErrInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 校验Secret的Yaml语法
+    @inlinable
+    public func describeSecretYamlError(_ input: DescribeSecretYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecretYamlErrorResponse > {
+        self.client.execute(action: "DescribeSecretYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 校验Secret的Yaml语法
+    @inlinable
+    public func describeSecretYamlError(_ input: DescribeSecretYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretYamlErrorResponse {
+        try await self.client.execute(action: "DescribeSecretYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

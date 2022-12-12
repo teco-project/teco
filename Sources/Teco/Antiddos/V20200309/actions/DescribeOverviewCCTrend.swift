@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Antiddos {
-    /// 获取防护概览趋势图
-    ///
-    /// 获取防护概览总请求峰值(QPS)和攻击请求(QPS)以及总请求次数和攻击请求次数
-    @inlinable
-    public func describeOverviewCCTrend(_ input: DescribeOverviewCCTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewCCTrendResponse > {
-        self.client.execute(action: "DescribeOverviewCCTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取防护概览趋势图
-    ///
-    /// 获取防护概览总请求峰值(QPS)和攻击请求(QPS)以及总请求次数和攻击请求次数
-    @inlinable
-    public func describeOverviewCCTrend(_ input: DescribeOverviewCCTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewCCTrendResponse {
-        try await self.client.execute(action: "DescribeOverviewCCTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOverviewCCTrend请求参数结构体
     public struct DescribeOverviewCCTrendRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp-multip表示共享包；basic表示DDoS基础防护）
@@ -58,7 +42,7 @@ extension Antiddos {
         /// 资源实例ID
         public let id: String?
         
-        public init (business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]?, id: String?) {
+        public init (business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil) {
             self.business = business
             self.period = period
             self.startTime = startTime
@@ -95,5 +79,21 @@ extension Antiddos {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取防护概览趋势图
+    ///
+    /// 获取防护概览总请求峰值(QPS)和攻击请求(QPS)以及总请求次数和攻击请求次数
+    @inlinable
+    public func describeOverviewCCTrend(_ input: DescribeOverviewCCTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOverviewCCTrendResponse > {
+        self.client.execute(action: "DescribeOverviewCCTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取防护概览趋势图
+    ///
+    /// 获取防护概览总请求峰值(QPS)和攻击请求(QPS)以及总请求次数和攻击请求次数
+    @inlinable
+    public func describeOverviewCCTrend(_ input: DescribeOverviewCCTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewCCTrendResponse {
+        try await self.client.execute(action: "DescribeOverviewCCTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

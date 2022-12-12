@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 获取E证通Token
-    ///
-    /// 每次调用E证通服务前，需先调用本接口获取EidToken，用来串联E证通流程，在验证完成后，用于获取E证通结果信息。
-    @inlinable
-    public func getEidToken(_ input: GetEidTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetEidTokenResponse > {
-        self.client.execute(action: "GetEidToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取E证通Token
-    ///
-    /// 每次调用E证通服务前，需先调用本接口获取EidToken，用来串联E证通流程，在验证完成后，用于获取E证通结果信息。
-    @inlinable
-    public func getEidToken(_ input: GetEidTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEidTokenResponse {
-        try await self.client.execute(action: "GetEidToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetEidToken请求参数结构体
     public struct GetEidTokenRequest: TCRequestModel {
         /// EID商户id，字段长度最长50位。
@@ -47,15 +31,15 @@ extension Faceid {
         public let extra: String?
         
         /// 小程序模式配置，包括如何传入姓名身份证的配置，以及是否使用意愿核身。
-        public let config: GetEidTokenConfig
+        public let config: GetEidTokenConfig?
         
         /// 最长长度1024位。用户从Url中进入核身认证结束后重定向的回调链接地址。EidToken会在该链接的query参数中。
         public let redirectUrl: String?
         
         /// 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
-        public let encryption: Encryption
+        public let encryption: Encryption?
         
-        public init (merchantId: String, idCard: String?, name: String?, extra: String?, config: GetEidTokenConfig, redirectUrl: String?, encryption: Encryption) {
+        public init (merchantId: String, idCard: String? = nil, name: String? = nil, extra: String? = nil, config: GetEidTokenConfig? = nil, redirectUrl: String? = nil, encryption: Encryption? = nil) {
             self.merchantId = merchantId
             self.idCard = idCard
             self.name = name
@@ -93,5 +77,21 @@ extension Faceid {
             case url = "Url"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取E证通Token
+    ///
+    /// 每次调用E证通服务前，需先调用本接口获取EidToken，用来串联E证通流程，在验证完成后，用于获取E证通结果信息。
+    @inlinable
+    public func getEidToken(_ input: GetEidTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetEidTokenResponse > {
+        self.client.execute(action: "GetEidToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取E证通Token
+    ///
+    /// 每次调用E证通服务前，需先调用本接口获取EidToken，用来串联E证通流程，在验证完成后，用于获取E证通结果信息。
+    @inlinable
+    public func getEidToken(_ input: GetEidTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEidTokenResponse {
+        try await self.client.execute(action: "GetEidToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 删除推送任务
-    ///
-    /// 本接口（DeleteLogTopicTask）用于删除日志推送任务。
-    @inlinable
-    public func deleteLogTopicTask(_ input: DeleteLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogTopicTaskResponse > {
-        self.client.execute(action: "DeleteLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除推送任务
-    ///
-    /// 本接口（DeleteLogTopicTask）用于删除日志推送任务。
-    @inlinable
-    public func deleteLogTopicTask(_ input: DeleteLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogTopicTaskResponse {
-        try await self.client.execute(action: "DeleteLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLogTopicTask请求参数结构体
     public struct DeleteLogTopicTaskRequest: TCRequestModel {
         /// 待删除的推送任务ID。
@@ -39,7 +23,7 @@ extension Teo {
         /// 推送任务所属日志集地域，此字段仅用于CLS推送任务。
         public let logSetRegion: String?
         
-        public init (topicId: String, logSetRegion: String?) {
+        public init (topicId: String, logSetRegion: String? = nil) {
             self.topicId = topicId
             self.logSetRegion = logSetRegion
         }
@@ -58,5 +42,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除推送任务
+    ///
+    /// 本接口（DeleteLogTopicTask）用于删除日志推送任务。
+    @inlinable
+    public func deleteLogTopicTask(_ input: DeleteLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLogTopicTaskResponse > {
+        self.client.execute(action: "DeleteLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除推送任务
+    ///
+    /// 本接口（DeleteLogTopicTask）用于删除日志推送任务。
+    @inlinable
+    public func deleteLogTopicTask(_ input: DeleteLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogTopicTaskResponse {
+        try await self.client.execute(action: "DeleteLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

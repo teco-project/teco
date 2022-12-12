@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 查询传输流的日志
-    ///
-    /// 查询媒体传输流的日志信息。
-    @inlinable
-    public func describeStreamLinkFlowLogs(_ input: DescribeStreamLinkFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkFlowLogsResponse > {
-        self.client.execute(action: "DescribeStreamLinkFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询传输流的日志
-    ///
-    /// 查询媒体传输流的日志信息。
-    @inlinable
-    public func describeStreamLinkFlowLogs(_ input: DescribeStreamLinkFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowLogsResponse {
-        try await self.client.execute(action: "DescribeStreamLinkFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStreamLinkFlowLogs请求参数结构体
     public struct DescribeStreamLinkFlowLogsRequest: TCRequestModel {
         /// 传输流Id。
@@ -59,7 +43,7 @@ extension Mps {
         /// 页码，默认1，范围为[1, 1000]。
         public let pageNum: Int64?
         
-        public init (flowId: String, startTime: String, endTime: String, type: [String], pipeline: [String], pageSize: Int64, sortType: String?, pageNum: Int64?) {
+        public init (flowId: String, startTime: String, endTime: String, type: [String], pipeline: [String], pageSize: Int64, sortType: String? = nil, pageNum: Int64? = nil) {
             self.flowId = flowId
             self.startTime = startTime
             self.endTime = endTime
@@ -110,5 +94,21 @@ extension Mps {
             case totalPage = "TotalPage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询传输流的日志
+    ///
+    /// 查询媒体传输流的日志信息。
+    @inlinable
+    public func describeStreamLinkFlowLogs(_ input: DescribeStreamLinkFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkFlowLogsResponse > {
+        self.client.execute(action: "DescribeStreamLinkFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询传输流的日志
+    ///
+    /// 查询媒体传输流的日志信息。
+    @inlinable
+    public func describeStreamLinkFlowLogs(_ input: DescribeStreamLinkFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowLogsResponse {
+        try await self.client.execute(action: "DescribeStreamLinkFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

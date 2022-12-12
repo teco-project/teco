@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 增加自定义策略
-    @inlinable
-    public func addCustomRule(_ input: AddCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddCustomRuleResponse > {
-        self.client.execute(action: "AddCustomRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 增加自定义策略
-    @inlinable
-    public func addCustomRule(_ input: AddCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCustomRuleResponse {
-        try await self.client.execute(action: "AddCustomRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddCustomRule请求参数结构体
     public struct AddCustomRuleRequest: TCRequestModel {
         /// 规则名称
@@ -56,7 +44,7 @@ extension Waf {
         /// 放行的详情
         public let bypass: String?
         
-        public init (name: String, sortId: String, expireTime: String, strategies: [Strategy], domain: String, actionType: String, redirect: String?, edition: String?, bypass: String?) {
+        public init (name: String, sortId: String, expireTime: String, strategies: [Strategy], domain: String, actionType: String, redirect: String? = nil, edition: String? = nil, bypass: String? = nil) {
             self.name = name
             self.sortId = sortId
             self.expireTime = expireTime
@@ -98,5 +86,17 @@ extension Waf {
             case ruleId = "RuleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 增加自定义策略
+    @inlinable
+    public func addCustomRule(_ input: AddCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddCustomRuleResponse > {
+        self.client.execute(action: "AddCustomRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 增加自定义策略
+    @inlinable
+    public func addCustomRule(_ input: AddCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCustomRuleResponse {
+        try await self.client.execute(action: "AddCustomRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

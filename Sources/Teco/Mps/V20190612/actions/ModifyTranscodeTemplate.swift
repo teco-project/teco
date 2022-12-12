@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Mps {
-    /// 修改转码模板
-    ///
-    /// 修改用户自定义转码模板信息。
-    @inlinable
-    public func modifyTranscodeTemplate(_ input: ModifyTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTranscodeTemplateResponse > {
-        self.client.execute(action: "ModifyTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改转码模板
-    ///
-    /// 修改用户自定义转码模板信息。
-    @inlinable
-    public func modifyTranscodeTemplate(_ input: ModifyTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTranscodeTemplateResponse {
-        try await self.client.execute(action: "ModifyTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTranscodeTemplate请求参数结构体
     public struct ModifyTranscodeTemplateRequest: TCRequestModel {
         /// 转码模板唯一标识。
@@ -58,18 +42,18 @@ extension Mps {
         public let removeAudio: Int64?
         
         /// 视频流配置参数。
-        public let videoTemplate: VideoTemplateInfoForUpdate
+        public let videoTemplate: VideoTemplateInfoForUpdate?
         
         /// 音频流配置参数。
-        public let audioTemplate: AudioTemplateInfoForUpdate
+        public let audioTemplate: AudioTemplateInfoForUpdate?
         
         /// 极速高清转码参数。
-        public let tehdConfig: TEHDConfigForUpdate
+        public let tehdConfig: TEHDConfigForUpdate?
         
         /// 音视频增强参数。
-        public let enhanceConfig: EnhanceConfig
+        public let enhanceConfig: EnhanceConfig?
         
-        public init (definition: Int64, container: String?, name: String?, comment: String?, removeVideo: Int64?, removeAudio: Int64?, videoTemplate: VideoTemplateInfoForUpdate, audioTemplate: AudioTemplateInfoForUpdate, tehdConfig: TEHDConfigForUpdate, enhanceConfig: EnhanceConfig) {
+        public init (definition: Int64, container: String? = nil, name: String? = nil, comment: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoTemplate: VideoTemplateInfoForUpdate? = nil, audioTemplate: AudioTemplateInfoForUpdate? = nil, tehdConfig: TEHDConfigForUpdate? = nil, enhanceConfig: EnhanceConfig? = nil) {
             self.definition = definition
             self.container = container
             self.name = name
@@ -104,5 +88,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改转码模板
+    ///
+    /// 修改用户自定义转码模板信息。
+    @inlinable
+    public func modifyTranscodeTemplate(_ input: ModifyTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTranscodeTemplateResponse > {
+        self.client.execute(action: "ModifyTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改转码模板
+    ///
+    /// 修改用户自定义转码模板信息。
+    @inlinable
+    public func modifyTranscodeTemplate(_ input: ModifyTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTranscodeTemplateResponse {
+        try await self.client.execute(action: "ModifyTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

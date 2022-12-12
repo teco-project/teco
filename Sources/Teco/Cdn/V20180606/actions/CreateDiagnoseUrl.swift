@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 添加诊断URL
-    ///
-    /// CreateDiagnoseUrl 用于添加域名诊断任务URL
-    @inlinable
-    public func createDiagnoseUrl(_ input: CreateDiagnoseUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDiagnoseUrlResponse > {
-        self.client.execute(action: "CreateDiagnoseUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加诊断URL
-    ///
-    /// CreateDiagnoseUrl 用于添加域名诊断任务URL
-    @inlinable
-    public func createDiagnoseUrl(_ input: CreateDiagnoseUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDiagnoseUrlResponse {
-        try await self.client.execute(action: "CreateDiagnoseUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDiagnoseUrl请求参数结构体
     public struct CreateDiagnoseUrlRequest: TCRequestModel {
         /// 需诊断的url，形如：http://www.test.com/test.txt。
@@ -39,7 +23,7 @@ extension Cdn {
         /// 请求源带协议头，形如：https://console.cloud.tencent.com
         public let origin: String?
         
-        public init (url: String, origin: String?) {
+        public init (url: String, origin: String? = nil) {
             self.url = url
             self.origin = origin
         }
@@ -62,5 +46,21 @@ extension Cdn {
             case diagnoseLink = "DiagnoseLink"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加诊断URL
+    ///
+    /// CreateDiagnoseUrl 用于添加域名诊断任务URL
+    @inlinable
+    public func createDiagnoseUrl(_ input: CreateDiagnoseUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDiagnoseUrlResponse > {
+        self.client.execute(action: "CreateDiagnoseUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加诊断URL
+    ///
+    /// CreateDiagnoseUrl 用于添加域名诊断任务URL
+    @inlinable
+    public func createDiagnoseUrl(_ input: CreateDiagnoseUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDiagnoseUrlResponse {
+        try await self.client.execute(action: "CreateDiagnoseUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

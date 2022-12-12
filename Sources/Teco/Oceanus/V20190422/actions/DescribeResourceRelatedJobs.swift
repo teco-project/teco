@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 获取资源关联作业信息
-    @inlinable
-    public func describeResourceRelatedJobs(_ input: DescribeResourceRelatedJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceRelatedJobsResponse > {
-        self.client.execute(action: "DescribeResourceRelatedJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取资源关联作业信息
-    @inlinable
-    public func describeResourceRelatedJobs(_ input: DescribeResourceRelatedJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceRelatedJobsResponse {
-        try await self.client.execute(action: "DescribeResourceRelatedJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourceRelatedJobs请求参数结构体
     public struct DescribeResourceRelatedJobsRequest: TCRequestModel {
         /// 资源ID
@@ -47,7 +35,7 @@ extension Oceanus {
         /// 工作空间 SerialId
         public let workSpaceId: String?
         
-        public init (resourceId: String, descByJobConfigCreateTime: Int64?, offset: Int64?, limit: Int64?, resourceConfigVersion: Int64?, workSpaceId: String?) {
+        public init (resourceId: String, descByJobConfigCreateTime: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, resourceConfigVersion: Int64? = nil, workSpaceId: String? = nil) {
             self.resourceId = resourceId
             self.descByJobConfigCreateTime = descByJobConfigCreateTime
             self.offset = offset
@@ -82,5 +70,17 @@ extension Oceanus {
             case refJobInfos = "RefJobInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取资源关联作业信息
+    @inlinable
+    public func describeResourceRelatedJobs(_ input: DescribeResourceRelatedJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceRelatedJobsResponse > {
+        self.client.execute(action: "DescribeResourceRelatedJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资源关联作业信息
+    @inlinable
+    public func describeResourceRelatedJobs(_ input: DescribeResourceRelatedJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceRelatedJobsResponse {
+        try await self.client.execute(action: "DescribeResourceRelatedJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

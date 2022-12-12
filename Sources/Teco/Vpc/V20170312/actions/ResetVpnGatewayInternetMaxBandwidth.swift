@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 调整VPN网关带宽上限
-    ///
-    /// 本接口（ResetVpnGatewayInternetMaxBandwidth）调整VPN网关带宽上限。目前支持升级配置，如果是包年包月VPN网关需要在有效期内。
-    @inlinable
-    public func resetVpnGatewayInternetMaxBandwidth(_ input: ResetVpnGatewayInternetMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetVpnGatewayInternetMaxBandwidthResponse > {
-        self.client.execute(action: "ResetVpnGatewayInternetMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调整VPN网关带宽上限
-    ///
-    /// 本接口（ResetVpnGatewayInternetMaxBandwidth）调整VPN网关带宽上限。目前支持升级配置，如果是包年包月VPN网关需要在有效期内。
-    @inlinable
-    public func resetVpnGatewayInternetMaxBandwidth(_ input: ResetVpnGatewayInternetMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetVpnGatewayInternetMaxBandwidthResponse {
-        try await self.client.execute(action: "ResetVpnGatewayInternetMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetVpnGatewayInternetMaxBandwidth请求参数结构体
     public struct ResetVpnGatewayInternetMaxBandwidthRequest: TCRequestModel {
         /// VPN网关实例ID。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调整VPN网关带宽上限
+    ///
+    /// 本接口（ResetVpnGatewayInternetMaxBandwidth）调整VPN网关带宽上限。目前支持升级配置，如果是包年包月VPN网关需要在有效期内。
+    @inlinable
+    public func resetVpnGatewayInternetMaxBandwidth(_ input: ResetVpnGatewayInternetMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetVpnGatewayInternetMaxBandwidthResponse > {
+        self.client.execute(action: "ResetVpnGatewayInternetMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调整VPN网关带宽上限
+    ///
+    /// 本接口（ResetVpnGatewayInternetMaxBandwidth）调整VPN网关带宽上限。目前支持升级配置，如果是包年包月VPN网关需要在有效期内。
+    @inlinable
+    public func resetVpnGatewayInternetMaxBandwidth(_ input: ResetVpnGatewayInternetMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetVpnGatewayInternetMaxBandwidthResponse {
+        try await self.client.execute(action: "ResetVpnGatewayInternetMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

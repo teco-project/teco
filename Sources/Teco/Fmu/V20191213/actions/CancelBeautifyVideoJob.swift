@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Fmu {
-    /// 撤销视频美颜任务
-    ///
-    /// 撤销视频美颜任务请求
-    @inlinable
-    public func cancelBeautifyVideoJob(_ input: CancelBeautifyVideoJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelBeautifyVideoJobResponse > {
-        self.client.execute(action: "CancelBeautifyVideoJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 撤销视频美颜任务
-    ///
-    /// 撤销视频美颜任务请求
-    @inlinable
-    public func cancelBeautifyVideoJob(_ input: CancelBeautifyVideoJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelBeautifyVideoJobResponse {
-        try await self.client.execute(action: "CancelBeautifyVideoJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelBeautifyVideoJob请求参数结构体
     public struct CancelBeautifyVideoJobRequest: TCRequestModel {
         /// 美颜视频的Job id
@@ -53,5 +37,21 @@ extension Fmu {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 撤销视频美颜任务
+    ///
+    /// 撤销视频美颜任务请求
+    @inlinable
+    public func cancelBeautifyVideoJob(_ input: CancelBeautifyVideoJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelBeautifyVideoJobResponse > {
+        self.client.execute(action: "CancelBeautifyVideoJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 撤销视频美颜任务
+    ///
+    /// 撤销视频美颜任务请求
+    @inlinable
+    public func cancelBeautifyVideoJob(_ input: CancelBeautifyVideoJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelBeautifyVideoJobResponse {
+        try await self.client.execute(action: "CancelBeautifyVideoJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

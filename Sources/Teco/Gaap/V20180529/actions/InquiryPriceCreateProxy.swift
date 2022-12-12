@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 创建加速通道询价
-    ///
-    /// 本接口（InquiryPriceCreateProxy）用于创建加速通道询价。
-    @inlinable
-    public func inquiryPriceCreateProxy(_ input: InquiryPriceCreateProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateProxyResponse > {
-        self.client.execute(action: "InquiryPriceCreateProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建加速通道询价
-    ///
-    /// 本接口（InquiryPriceCreateProxy）用于创建加速通道询价。
-    @inlinable
-    public func inquiryPriceCreateProxy(_ input: InquiryPriceCreateProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateProxyResponse {
-        try await self.client.execute(action: "InquiryPriceCreateProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceCreateProxy请求参数结构体
     public struct InquiryPriceCreateProxyRequest: TCRequestModel {
         /// 加速区域名称。
@@ -66,7 +50,7 @@ extension Gaap {
         /// 该字段已废弃，当IPAddressVersion为IPv4时，所创建的通道默认支持Http3.0；当为IPv6，默认不支持Http3.0。
         public let http3Supported: Int64?
         
-        public init (accessRegion: String, bandwidth: Int64, destRegion: String?, concurrency: Int64?, realServerRegion: String?, concurrent: Int64?, billingType: Int64?, ipAddressVersion: String?, networkType: String?, packageType: String?, http3Supported: Int64?) {
+        public init (accessRegion: String, bandwidth: Int64, destRegion: String? = nil, concurrency: Int64? = nil, realServerRegion: String? = nil, concurrent: Int64? = nil, billingType: Int64? = nil, ipAddressVersion: String? = nil, networkType: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil) {
             self.accessRegion = accessRegion
             self.bandwidth = bandwidth
             self.destRegion = destRegion
@@ -140,5 +124,21 @@ extension Gaap {
             case cn2BandwidthPriceWithDiscount = "Cn2BandwidthPriceWithDiscount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建加速通道询价
+    ///
+    /// 本接口（InquiryPriceCreateProxy）用于创建加速通道询价。
+    @inlinable
+    public func inquiryPriceCreateProxy(_ input: InquiryPriceCreateProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateProxyResponse > {
+        self.client.execute(action: "InquiryPriceCreateProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建加速通道询价
+    ///
+    /// 本接口（InquiryPriceCreateProxy）用于创建加速通道询价。
+    @inlinable
+    public func inquiryPriceCreateProxy(_ input: InquiryPriceCreateProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateProxyResponse {
+        try await self.client.execute(action: "InquiryPriceCreateProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

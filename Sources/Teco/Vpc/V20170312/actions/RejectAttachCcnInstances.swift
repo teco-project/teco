@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 云联网拒绝关联实例
-    ///
-    /// 本接口（RejectAttachCcnInstances）用于跨账号关联实例时，云联网所有者拒绝关联操作。
-    @inlinable
-    public func rejectAttachCcnInstances(_ input: RejectAttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RejectAttachCcnInstancesResponse > {
-        self.client.execute(action: "RejectAttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云联网拒绝关联实例
-    ///
-    /// 本接口（RejectAttachCcnInstances）用于跨账号关联实例时，云联网所有者拒绝关联操作。
-    @inlinable
-    public func rejectAttachCcnInstances(_ input: RejectAttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectAttachCcnInstancesResponse {
-        try await self.client.execute(action: "RejectAttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RejectAttachCcnInstances请求参数结构体
     public struct RejectAttachCcnInstancesRequest: TCRequestModel {
         /// CCN实例ID。形如：ccn-f49l6u0z。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云联网拒绝关联实例
+    ///
+    /// 本接口（RejectAttachCcnInstances）用于跨账号关联实例时，云联网所有者拒绝关联操作。
+    @inlinable
+    public func rejectAttachCcnInstances(_ input: RejectAttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RejectAttachCcnInstancesResponse > {
+        self.client.execute(action: "RejectAttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云联网拒绝关联实例
+    ///
+    /// 本接口（RejectAttachCcnInstances）用于跨账号关联实例时，云联网所有者拒绝关联操作。
+    @inlinable
+    public func rejectAttachCcnInstances(_ input: RejectAttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectAttachCcnInstancesResponse {
+        try await self.client.execute(action: "RejectAttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

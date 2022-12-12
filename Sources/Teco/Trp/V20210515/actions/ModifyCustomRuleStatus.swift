@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 更新自定义码规则状态
-    @inlinable
-    public func modifyCustomRuleStatus(_ input: ModifyCustomRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomRuleStatusResponse > {
-        self.client.execute(action: "ModifyCustomRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新自定义码规则状态
-    @inlinable
-    public func modifyCustomRuleStatus(_ input: ModifyCustomRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomRuleStatusResponse {
-        try await self.client.execute(action: "ModifyCustomRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCustomRuleStatus请求参数结构体
     public struct ModifyCustomRuleStatusRequest: TCRequestModel {
         /// 码规则ID
@@ -38,7 +26,7 @@ extension Trp {
         /// 企业ID
         public let corpId: UInt64?
         
-        public init (customId: String, status: Int64, corpId: UInt64?) {
+        public init (customId: String, status: Int64, corpId: UInt64? = nil) {
             self.customId = customId
             self.status = status
             self.corpId = corpId
@@ -64,5 +52,17 @@ extension Trp {
             case customId = "CustomId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新自定义码规则状态
+    @inlinable
+    public func modifyCustomRuleStatus(_ input: ModifyCustomRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomRuleStatusResponse > {
+        self.client.execute(action: "ModifyCustomRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新自定义码规则状态
+    @inlinable
+    public func modifyCustomRuleStatus(_ input: ModifyCustomRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomRuleStatusResponse {
+        try await self.client.execute(action: "ModifyCustomRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

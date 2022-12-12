@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 查询告警策略列表（支持按实例等条件筛选）
-    ///
-    /// 查询告警策略列表
-    @inlinable
-    public func describeAlarmPolicies(_ input: DescribeAlarmPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmPoliciesResponse > {
-        self.client.execute(action: "DescribeAlarmPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询告警策略列表（支持按实例等条件筛选）
-    ///
-    /// 查询告警策略列表
-    @inlinable
-    public func describeAlarmPolicies(_ input: DescribeAlarmPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmPoliciesResponse {
-        try await self.client.execute(action: "DescribeAlarmPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAlarmPolicies请求参数结构体
     public struct DescribeAlarmPoliciesRequest: TCRequestModel {
         /// 固定值，为"monitor"
@@ -112,7 +96,7 @@ extension Monitor {
         /// 策略根据标签过滤
         public let tags: [Tag]?
         
-        public init (module: String, pageNumber: Int64?, pageSize: Int64?, policyName: String?, monitorTypes: [String]?, namespaces: [String]?, dimensions: String?, receiverUids: [Int64]?, receiverGroups: [Int64]?, policyType: [String]?, field: String?, order: String?, projectIds: [Int64]?, noticeIds: [String]?, ruleTypes: [String]?, enable: [Int64]?, notBindingNoticeRule: Int64?, instanceGroupId: Int64?, needCorrespondence: Int64?, triggerTasks: [AlarmPolicyTriggerTask]?, oneClickPolicyType: [String]?, notBindAll: Int64?, notInstanceGroup: Int64?, tags: [Tag]?) {
+        public init (module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, policyName: String? = nil, monitorTypes: [String]? = nil, namespaces: [String]? = nil, dimensions: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyType: [String]? = nil, field: String? = nil, order: String? = nil, projectIds: [Int64]? = nil, noticeIds: [String]? = nil, ruleTypes: [String]? = nil, enable: [Int64]? = nil, notBindingNoticeRule: Int64? = nil, instanceGroupId: Int64? = nil, needCorrespondence: Int64? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, oneClickPolicyType: [String]? = nil, notBindAll: Int64? = nil, notInstanceGroup: Int64? = nil, tags: [Tag]? = nil) {
             self.module = module
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -183,5 +167,21 @@ extension Monitor {
             case policies = "Policies"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询告警策略列表（支持按实例等条件筛选）
+    ///
+    /// 查询告警策略列表
+    @inlinable
+    public func describeAlarmPolicies(_ input: DescribeAlarmPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmPoliciesResponse > {
+        self.client.execute(action: "DescribeAlarmPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询告警策略列表（支持按实例等条件筛选）
+    ///
+    /// 查询告警策略列表
+    @inlinable
+    public func describeAlarmPolicies(_ input: DescribeAlarmPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmPoliciesResponse {
+        try await self.client.execute(action: "DescribeAlarmPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

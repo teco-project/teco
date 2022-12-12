@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 重置路由表名称和路由策略
-    ///
-    /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。<br />
-    /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
-    @inlinable
-    public func resetRoutes(_ input: ResetRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetRoutesResponse > {
-        self.client.execute(action: "ResetRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置路由表名称和路由策略
-    ///
-    /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。<br />
-    /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
-    @inlinable
-    public func resetRoutes(_ input: ResetRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRoutesResponse {
-        try await self.client.execute(action: "ResetRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetRoutes请求参数结构体
     public struct ResetRoutesRequest: TCRequestModel {
         /// 路由表实例ID，例如：rtb-azd4dt1c。
@@ -65,5 +47,23 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置路由表名称和路由策略
+    ///
+    /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。<br />
+    /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
+    @inlinable
+    public func resetRoutes(_ input: ResetRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetRoutesResponse > {
+        self.client.execute(action: "ResetRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置路由表名称和路由策略
+    ///
+    /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。<br />
+    /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
+    @inlinable
+    public func resetRoutes(_ input: ResetRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRoutesResponse {
+        try await self.client.execute(action: "ResetRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

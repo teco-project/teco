@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取DDoS防护状态
-    ///
-    /// 获取DDoS防护状态（临时关闭状态），支持产品：基础防护，独享包，共享包，高防IP，高防IP专业版；调用此接口是获取当前是否有设置临时关闭DDoS防护状态，如果有设置会返回临时关闭的时长等参数。
-    @inlinable
-    public func describeDDoSDefendStatus(_ input: DescribeDDoSDefendStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSDefendStatusResponse > {
-        self.client.execute(action: "DescribeDDoSDefendStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DDoS防护状态
-    ///
-    /// 获取DDoS防护状态（临时关闭状态），支持产品：基础防护，独享包，共享包，高防IP，高防IP专业版；调用此接口是获取当前是否有设置临时关闭DDoS防护状态，如果有设置会返回临时关闭的时长等参数。
-    @inlinable
-    public func describeDDoSDefendStatus(_ input: DescribeDDoSDefendStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDefendStatusResponse {
-        try await self.client.execute(action: "DescribeDDoSDefendStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSDefendStatus请求参数结构体
     public struct DescribeDDoSDefendStatusRequest: TCRequestModel {
         /// 大禹子产品代号（basic表示基础防护；bgp表示独享包；bgp-multip表示共享包；bgpip表示高防IP；net表示高防IP专业版）
@@ -76,7 +60,7 @@ extension Dayu {
         /// "nj":     南京
         public let ipRegion: String?
         
-        public init (business: String, id: String?, ip: String?, bizType: String?, deviceType: String?, instanceId: String?, ipRegion: String?) {
+        public init (business: String, id: String? = nil, ip: String? = nil, bizType: String? = nil, deviceType: String? = nil, instanceId: String? = nil, ipRegion: String? = nil) {
             self.business = business
             self.id = id
             self.ip = ip
@@ -120,5 +104,21 @@ extension Dayu {
             case showFlag = "ShowFlag"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DDoS防护状态
+    ///
+    /// 获取DDoS防护状态（临时关闭状态），支持产品：基础防护，独享包，共享包，高防IP，高防IP专业版；调用此接口是获取当前是否有设置临时关闭DDoS防护状态，如果有设置会返回临时关闭的时长等参数。
+    @inlinable
+    public func describeDDoSDefendStatus(_ input: DescribeDDoSDefendStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSDefendStatusResponse > {
+        self.client.execute(action: "DescribeDDoSDefendStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS防护状态
+    ///
+    /// 获取DDoS防护状态（临时关闭状态），支持产品：基础防护，独享包，共享包，高防IP，高防IP专业版；调用此接口是获取当前是否有设置临时关闭DDoS防护状态，如果有设置会返回临时关闭的时长等参数。
+    @inlinable
+    public func describeDDoSDefendStatus(_ input: DescribeDDoSDefendStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDefendStatusResponse {
+        try await self.client.execute(action: "DescribeDDoSDefendStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

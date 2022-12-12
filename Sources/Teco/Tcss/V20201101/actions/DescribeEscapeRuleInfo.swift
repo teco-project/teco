@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询容器逃逸扫描规则信息
-    ///
-    /// DescribeEscapeRuleInfo 查询容器逃逸扫描规则信息
-    @inlinable
-    public func describeEscapeRuleInfo(_ input: DescribeEscapeRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeRuleInfoResponse > {
-        self.client.execute(action: "DescribeEscapeRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器逃逸扫描规则信息
-    ///
-    /// DescribeEscapeRuleInfo 查询容器逃逸扫描规则信息
-    @inlinable
-    public func describeEscapeRuleInfo(_ input: DescribeEscapeRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeRuleInfoResponse {
-        try await self.client.execute(action: "DescribeEscapeRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEscapeRuleInfo请求参数结构体
     public struct DescribeEscapeRuleInfoRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Tcss {
             case ruleSet = "RuleSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器逃逸扫描规则信息
+    ///
+    /// DescribeEscapeRuleInfo 查询容器逃逸扫描规则信息
+    @inlinable
+    public func describeEscapeRuleInfo(_ input: DescribeEscapeRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeRuleInfoResponse > {
+        self.client.execute(action: "DescribeEscapeRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器逃逸扫描规则信息
+    ///
+    /// DescribeEscapeRuleInfo 查询容器逃逸扫描规则信息
+    @inlinable
+    public func describeEscapeRuleInfo(_ input: DescribeEscapeRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeRuleInfoResponse {
+        try await self.client.execute(action: "DescribeEscapeRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

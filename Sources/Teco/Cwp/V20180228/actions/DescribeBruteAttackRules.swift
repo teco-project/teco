@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取爆破破解规则
-    @inlinable
-    public func describeBruteAttackRules(_ input: DescribeBruteAttackRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBruteAttackRulesResponse > {
-        self.client.execute(action: "DescribeBruteAttackRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取爆破破解规则
-    @inlinable
-    public func describeBruteAttackRules(_ input: DescribeBruteAttackRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBruteAttackRulesResponse {
-        try await self.client.execute(action: "DescribeBruteAttackRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBruteAttackRules请求参数结构体
     public struct DescribeBruteAttackRulesRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Cwp {
             case rules = "Rules"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取爆破破解规则
+    @inlinable
+    public func describeBruteAttackRules(_ input: DescribeBruteAttackRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBruteAttackRulesResponse > {
+        self.client.execute(action: "DescribeBruteAttackRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取爆破破解规则
+    @inlinable
+    public func describeBruteAttackRules(_ input: DescribeBruteAttackRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBruteAttackRulesResponse {
+        try await self.client.execute(action: "DescribeBruteAttackRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

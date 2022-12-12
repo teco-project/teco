@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改弹性网卡IPv6地址属性
-    ///
-    /// 本接口（ModifyIpv6AddressesAttribute）用于修改弹性网卡内网IPv6地址属性。
-    @inlinable
-    public func modifyIpv6AddressesAttribute(_ input: ModifyIpv6AddressesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIpv6AddressesAttributeResponse > {
-        self.client.execute(action: "ModifyIpv6AddressesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改弹性网卡IPv6地址属性
-    ///
-    /// 本接口（ModifyIpv6AddressesAttribute）用于修改弹性网卡内网IPv6地址属性。
-    @inlinable
-    public func modifyIpv6AddressesAttribute(_ input: ModifyIpv6AddressesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIpv6AddressesAttributeResponse {
-        try await self.client.execute(action: "ModifyIpv6AddressesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyIpv6AddressesAttribute请求参数结构体
     public struct ModifyIpv6AddressesAttributeRequest: TCRequestModel {
         /// 弹性网卡实例`ID`，形如：`eni-m6dyj72l`。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改弹性网卡IPv6地址属性
+    ///
+    /// 本接口（ModifyIpv6AddressesAttribute）用于修改弹性网卡内网IPv6地址属性。
+    @inlinable
+    public func modifyIpv6AddressesAttribute(_ input: ModifyIpv6AddressesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIpv6AddressesAttributeResponse > {
+        self.client.execute(action: "ModifyIpv6AddressesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改弹性网卡IPv6地址属性
+    ///
+    /// 本接口（ModifyIpv6AddressesAttribute）用于修改弹性网卡内网IPv6地址属性。
+    @inlinable
+    public func modifyIpv6AddressesAttribute(_ input: ModifyIpv6AddressesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIpv6AddressesAttributeResponse {
+        try await self.client.execute(action: "ModifyIpv6AddressesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

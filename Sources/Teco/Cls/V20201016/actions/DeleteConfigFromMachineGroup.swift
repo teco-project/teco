@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 删除应用到机器组的采集配置
-    @inlinable
-    public func deleteConfigFromMachineGroup(_ input: DeleteConfigFromMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConfigFromMachineGroupResponse > {
-        self.client.execute(action: "DeleteConfigFromMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除应用到机器组的采集配置
-    @inlinable
-    public func deleteConfigFromMachineGroup(_ input: DeleteConfigFromMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigFromMachineGroupResponse {
-        try await self.client.execute(action: "DeleteConfigFromMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteConfigFromMachineGroup请求参数结构体
     public struct DeleteConfigFromMachineGroupRequest: TCRequestModel {
         /// 机器组ID
@@ -54,5 +42,17 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除应用到机器组的采集配置
+    @inlinable
+    public func deleteConfigFromMachineGroup(_ input: DeleteConfigFromMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConfigFromMachineGroupResponse > {
+        self.client.execute(action: "DeleteConfigFromMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除应用到机器组的采集配置
+    @inlinable
+    public func deleteConfigFromMachineGroup(_ input: DeleteConfigFromMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigFromMachineGroupResponse {
+        try await self.client.execute(action: "DeleteConfigFromMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

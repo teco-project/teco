@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 提交任务【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 提交任务
-    @inlinable
-    public func submitTask(_ input: SubmitTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitTaskResponse > {
-        self.client.execute(action: "SubmitTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交任务【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 提交任务
-    @inlinable
-    public func submitTask(_ input: SubmitTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitTaskResponse {
-        try await self.client.execute(action: "SubmitTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SubmitTask请求参数结构体
     public struct SubmitTaskRequest: TCRequestModel {
         /// 项目Id
@@ -74,5 +56,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 提交任务
+    @inlinable
+    public func submitTask(_ input: SubmitTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitTaskResponse > {
+        self.client.execute(action: "SubmitTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 提交任务
+    @inlinable
+    public func submitTask(_ input: SubmitTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitTaskResponse {
+        try await self.client.execute(action: "SubmitTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

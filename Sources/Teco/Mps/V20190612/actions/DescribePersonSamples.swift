@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 获取素材样本列表
-    ///
-    /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
-    @inlinable
-    public func describePersonSamples(_ input: DescribePersonSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonSamplesResponse > {
-        self.client.execute(action: "DescribePersonSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取素材样本列表
-    ///
-    /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
-    @inlinable
-    public func describePersonSamples(_ input: DescribePersonSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonSamplesResponse {
-        try await self.client.execute(action: "DescribePersonSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePersonSamples请求参数结构体
     public struct DescribePersonSamplesRequest: TCRequestModel {
         /// 拉取的素材类型，可选值：
@@ -55,7 +39,7 @@ extension Mps {
         /// 返回记录条数，默认值：100，最大值：100。
         public let limit: UInt64?
         
-        public init (type: String?, personIds: [String]?, names: [String]?, tags: [String]?, offset: UInt64?, limit: UInt64?) {
+        public init (type: String? = nil, personIds: [String]? = nil, names: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.type = type
             self.personIds = personIds
             self.names = names
@@ -90,5 +74,21 @@ extension Mps {
             case personSet = "PersonSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取素材样本列表
+    ///
+    /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
+    @inlinable
+    public func describePersonSamples(_ input: DescribePersonSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonSamplesResponse > {
+        self.client.execute(action: "DescribePersonSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取素材样本列表
+    ///
+    /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
+    @inlinable
+    public func describePersonSamples(_ input: DescribePersonSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonSamplesResponse {
+        try await self.client.execute(action: "DescribePersonSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

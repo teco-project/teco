@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Billing {
-    /// 获取代金券相关信息
-    @inlinable
-    public func describeVoucherInfo(_ input: DescribeVoucherInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVoucherInfoResponse > {
-        self.client.execute(action: "DescribeVoucherInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取代金券相关信息
-    @inlinable
-    public func describeVoucherInfo(_ input: DescribeVoucherInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVoucherInfoResponse {
-        try await self.client.execute(action: "DescribeVoucherInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVoucherInfo请求参数结构体
     public struct DescribeVoucherInfoRequest: TCRequestModel {
         /// 一页多少条数据，默认是20条，最大不超过1000
@@ -74,7 +62,7 @@ extension Billing {
         /// 操作人，默认就是用户uin
         public let `operator`: String?
         
-        public init (limit: Int64, offset: Int64, status: String?, voucherId: String?, codeId: String?, productCode: String?, activityId: String?, voucherName: String?, timeFrom: String?, timeTo: String?, sortField: String?, sortOrder: String?, payMode: String?, payScene: String?, `operator`: String?) {
+        public init (limit: Int64, offset: Int64, status: String? = nil, voucherId: String? = nil, codeId: String? = nil, productCode: String? = nil, activityId: String? = nil, voucherName: String? = nil, timeFrom: String? = nil, timeTo: String? = nil, sortField: String? = nil, sortOrder: String? = nil, payMode: String? = nil, payScene: String? = nil, `operator`: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.status = status
@@ -132,5 +120,17 @@ extension Billing {
             case voucherInfos = "VoucherInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取代金券相关信息
+    @inlinable
+    public func describeVoucherInfo(_ input: DescribeVoucherInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVoucherInfoResponse > {
+        self.client.execute(action: "DescribeVoucherInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取代金券相关信息
+    @inlinable
+    public func describeVoucherInfo(_ input: DescribeVoucherInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVoucherInfoResponse {
+        try await self.client.execute(action: "DescribeVoucherInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

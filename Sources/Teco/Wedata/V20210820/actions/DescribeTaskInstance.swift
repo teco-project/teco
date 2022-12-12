@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 离线任务实例详情
-    @inlinable
-    public func describeTaskInstance(_ input: DescribeTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInstanceResponse > {
-        self.client.execute(action: "DescribeTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 离线任务实例详情
-    @inlinable
-    public func describeTaskInstance(_ input: DescribeTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstanceResponse {
-        try await self.client.execute(action: "DescribeTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskInstance请求参数结构体
     public struct DescribeTaskInstanceRequest: TCRequestModel {
         /// WeData项目ID
@@ -41,7 +29,7 @@ extension Wedata {
         /// 任务实例运行时间
         public let issueDate: String?
         
-        public init (projectId: String, taskId: String, curRunDate: String?, issueDate: String?) {
+        public init (projectId: String, taskId: String, curRunDate: String? = nil, issueDate: String? = nil) {
             self.projectId = projectId
             self.taskId = taskId
             self.curRunDate = curRunDate
@@ -68,5 +56,17 @@ extension Wedata {
             case taskInstanceDetail = "TaskInstanceDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 离线任务实例详情
+    @inlinable
+    public func describeTaskInstance(_ input: DescribeTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInstanceResponse > {
+        self.client.execute(action: "DescribeTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 离线任务实例详情
+    @inlinable
+    public func describeTaskInstance(_ input: DescribeTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstanceResponse {
+        try await self.client.execute(action: "DescribeTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

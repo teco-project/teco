@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取位置空间列表
-    @inlinable
-    public func getPositionSpaceList(_ input: GetPositionSpaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPositionSpaceListResponse > {
-        self.client.execute(action: "GetPositionSpaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取位置空间列表
-    @inlinable
-    public func getPositionSpaceList(_ input: GetPositionSpaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPositionSpaceListResponse {
-        try await self.client.execute(action: "GetPositionSpaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetPositionSpaceList请求参数结构体
     public struct GetPositionSpaceListRequest: TCRequestModel {
         /// 项目Id
@@ -69,5 +57,17 @@ extension Iotexplorer {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取位置空间列表
+    @inlinable
+    public func getPositionSpaceList(_ input: GetPositionSpaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPositionSpaceListResponse > {
+        self.client.execute(action: "GetPositionSpaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取位置空间列表
+    @inlinable
+    public func getPositionSpaceList(_ input: GetPositionSpaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPositionSpaceListResponse {
+        try await self.client.execute(action: "GetPositionSpaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

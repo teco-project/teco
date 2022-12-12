@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询Redis节点详细信息
-    @inlinable
-    public func describeInstanceZoneInfo(_ input: DescribeInstanceZoneInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceZoneInfoResponse > {
-        self.client.execute(action: "DescribeInstanceZoneInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Redis节点详细信息
-    @inlinable
-    public func describeInstanceZoneInfo(_ input: DescribeInstanceZoneInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceZoneInfoResponse {
-        try await self.client.execute(action: "DescribeInstanceZoneInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceZoneInfo请求参数结构体
     public struct DescribeInstanceZoneInfoRequest: TCRequestModel {
         /// 实例Id，如：crs-6ubhgouj
         public let instanceId: String?
         
-        public init (instanceId: String?) {
+        public init (instanceId: String? = nil) {
             self.instanceId = instanceId
         }
         
@@ -57,5 +45,17 @@ extension Redis {
             case replicaGroups = "ReplicaGroups"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Redis节点详细信息
+    @inlinable
+    public func describeInstanceZoneInfo(_ input: DescribeInstanceZoneInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceZoneInfoResponse > {
+        self.client.execute(action: "DescribeInstanceZoneInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Redis节点详细信息
+    @inlinable
+    public func describeInstanceZoneInfo(_ input: DescribeInstanceZoneInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceZoneInfoResponse {
+        try await self.client.execute(action: "DescribeInstanceZoneInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

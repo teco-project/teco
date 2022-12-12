@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tcss {
-    /// 查询容器安全本地镜像风险趋势
-    @inlinable
-    public func describeImageRiskTendency(_ input: DescribeImageRiskTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRiskTendencyResponse > {
-        self.client.execute(action: "DescribeImageRiskTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器安全本地镜像风险趋势
-    @inlinable
-    public func describeImageRiskTendency(_ input: DescribeImageRiskTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskTendencyResponse {
-        try await self.client.execute(action: "DescribeImageRiskTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageRiskTendency请求参数结构体
     public struct DescribeImageRiskTendencyRequest: TCRequestModel {
         /// 开始时间
@@ -62,5 +50,17 @@ extension Tcss {
             case imageRiskTendencySet = "ImageRiskTendencySet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器安全本地镜像风险趋势
+    @inlinable
+    public func describeImageRiskTendency(_ input: DescribeImageRiskTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRiskTendencyResponse > {
+        self.client.execute(action: "DescribeImageRiskTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器安全本地镜像风险趋势
+    @inlinable
+    public func describeImageRiskTendency(_ input: DescribeImageRiskTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskTendencyResponse {
+        try await self.client.execute(action: "DescribeImageRiskTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

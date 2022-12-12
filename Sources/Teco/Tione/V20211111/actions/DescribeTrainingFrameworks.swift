@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 训练框架列表
-    @inlinable
-    public func describeTrainingFrameworks(_ input: DescribeTrainingFrameworksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingFrameworksResponse > {
-        self.client.execute(action: "DescribeTrainingFrameworks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 训练框架列表
-    @inlinable
-    public func describeTrainingFrameworks(_ input: DescribeTrainingFrameworksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingFrameworksResponse {
-        try await self.client.execute(action: "DescribeTrainingFrameworks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrainingFrameworks请求参数结构体
     public struct DescribeTrainingFrameworksRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Tione {
             case frameworkInfos = "FrameworkInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 训练框架列表
+    @inlinable
+    public func describeTrainingFrameworks(_ input: DescribeTrainingFrameworksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingFrameworksResponse > {
+        self.client.execute(action: "DescribeTrainingFrameworks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 训练框架列表
+    @inlinable
+    public func describeTrainingFrameworks(_ input: DescribeTrainingFrameworksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingFrameworksResponse {
+        try await self.client.execute(action: "DescribeTrainingFrameworks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

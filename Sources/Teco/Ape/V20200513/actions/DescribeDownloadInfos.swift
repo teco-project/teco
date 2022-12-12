@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Ape {
-    /// 获取图片下载记录
-    ///
-    /// 获取用户图片下载记录
-    @inlinable
-    public func describeDownloadInfos(_ input: DescribeDownloadInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDownloadInfosResponse > {
-        self.client.execute(action: "DescribeDownloadInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取图片下载记录
-    ///
-    /// 获取用户图片下载记录
-    @inlinable
-    public func describeDownloadInfos(_ input: DescribeDownloadInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDownloadInfosResponse {
-        try await self.client.execute(action: "DescribeDownloadInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDownloadInfos请求参数结构体
     public struct DescribeDownloadInfosRequest: TCRequestModel {
         /// 默认10
@@ -50,7 +34,7 @@ extension Ape {
         /// 无效值，过滤结果为空
         public let imageIds: [Int64]?
         
-        public init (limit: Int64?, offset: Int64?, beginTime: Date?, endTime: Date?, imageIds: [Int64]?) {
+        public init (limit: Int64? = nil, offset: Int64? = nil, beginTime: Date? = nil, endTime: Date? = nil, imageIds: [Int64]? = nil) {
             self.limit = limit
             self.offset = offset
             self.beginTime = beginTime
@@ -84,5 +68,21 @@ extension Ape {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取图片下载记录
+    ///
+    /// 获取用户图片下载记录
+    @inlinable
+    public func describeDownloadInfos(_ input: DescribeDownloadInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDownloadInfosResponse > {
+        self.client.execute(action: "DescribeDownloadInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取图片下载记录
+    ///
+    /// 获取用户图片下载记录
+    @inlinable
+    public func describeDownloadInfos(_ input: DescribeDownloadInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDownloadInfosResponse {
+        try await self.client.execute(action: "DescribeDownloadInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

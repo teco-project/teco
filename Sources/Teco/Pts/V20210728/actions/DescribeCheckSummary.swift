@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 查询检查点汇总信息
-    @inlinable
-    public func describeCheckSummary(_ input: DescribeCheckSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckSummaryResponse > {
-        self.client.execute(action: "DescribeCheckSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询检查点汇总信息
-    @inlinable
-    public func describeCheckSummary(_ input: DescribeCheckSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckSummaryResponse {
-        try await self.client.execute(action: "DescribeCheckSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCheckSummary请求参数结构体
     public struct DescribeCheckSummaryRequest: TCRequestModel {
         /// 任务ID
@@ -64,5 +52,17 @@ extension Pts {
             case checkSummarySet = "CheckSummarySet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询检查点汇总信息
+    @inlinable
+    public func describeCheckSummary(_ input: DescribeCheckSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckSummaryResponse > {
+        self.client.execute(action: "DescribeCheckSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询检查点汇总信息
+    @inlinable
+    public func describeCheckSummary(_ input: DescribeCheckSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckSummaryResponse {
+        try await self.client.execute(action: "DescribeCheckSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

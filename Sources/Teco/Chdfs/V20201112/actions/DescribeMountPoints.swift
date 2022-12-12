@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 查看挂载点列表
-    ///
-    /// 查看挂载点列表。
-    @inlinable
-    public func describeMountPoints(_ input: DescribeMountPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMountPointsResponse > {
-        self.client.execute(action: "DescribeMountPoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看挂载点列表
-    ///
-    /// 查看挂载点列表。
-    @inlinable
-    public func describeMountPoints(_ input: DescribeMountPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountPointsResponse {
-        try await self.client.execute(action: "DescribeMountPoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMountPoints请求参数结构体
     public struct DescribeMountPointsRequest: TCRequestModel {
         /// 文件系统ID
@@ -43,7 +27,7 @@ extension Chdfs {
         /// 资源所属者Uin
         public let ownerUin: UInt64?
         
-        public init (fileSystemId: String?, accessGroupId: String?, ownerUin: UInt64?) {
+        public init (fileSystemId: String? = nil, accessGroupId: String? = nil, ownerUin: UInt64? = nil) {
             self.fileSystemId = fileSystemId
             self.accessGroupId = accessGroupId
             self.ownerUin = ownerUin
@@ -68,5 +52,21 @@ extension Chdfs {
             case mountPoints = "MountPoints"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看挂载点列表
+    ///
+    /// 查看挂载点列表。
+    @inlinable
+    public func describeMountPoints(_ input: DescribeMountPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMountPointsResponse > {
+        self.client.execute(action: "DescribeMountPoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看挂载点列表
+    ///
+    /// 查看挂载点列表。
+    @inlinable
+    public func describeMountPoints(_ input: DescribeMountPointsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountPointsResponse {
+        try await self.client.execute(action: "DescribeMountPoints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

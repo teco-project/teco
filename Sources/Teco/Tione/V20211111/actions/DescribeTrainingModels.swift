@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 模型列表
-    @inlinable
-    public func describeTrainingModels(_ input: DescribeTrainingModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingModelsResponse > {
-        self.client.execute(action: "DescribeTrainingModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 模型列表
-    @inlinable
-    public func describeTrainingModels(_ input: DescribeTrainingModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelsResponse {
-        try await self.client.execute(action: "DescribeTrainingModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrainingModels请求参数结构体
     public struct DescribeTrainingModelsRequest: TCRequestModel {
         /// 过滤器
@@ -57,7 +45,7 @@ extension Tione {
         /// 标签过滤
         public let tagFilters: [TagFilter]?
         
-        public init (filters: [Filter]?, orderField: String?, order: String?, offset: Int64?, limit: Int64?, tagFilters: [TagFilter]?) {
+        public init (filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: Int64? = nil, limit: Int64? = nil, tagFilters: [TagFilter]? = nil) {
             self.filters = filters
             self.orderField = orderField
             self.order = order
@@ -92,5 +80,17 @@ extension Tione {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 模型列表
+    @inlinable
+    public func describeTrainingModels(_ input: DescribeTrainingModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingModelsResponse > {
+        self.client.execute(action: "DescribeTrainingModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 模型列表
+    @inlinable
+    public func describeTrainingModels(_ input: DescribeTrainingModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelsResponse {
+        try await self.client.execute(action: "DescribeTrainingModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 删除流量镜像实例
-    ///
-    /// 删除已创建的黑石流量镜像实例，删除过程是异步执行的，因此需要使用查询任务接口获取删除的结果。
-    @inlinable
-    public func deleteTrafficMirror(_ input: DeleteTrafficMirrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTrafficMirrorResponse > {
-        self.client.execute(action: "DeleteTrafficMirror", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除流量镜像实例
-    ///
-    /// 删除已创建的黑石流量镜像实例，删除过程是异步执行的，因此需要使用查询任务接口获取删除的结果。
-    @inlinable
-    public func deleteTrafficMirror(_ input: DeleteTrafficMirrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrafficMirrorResponse {
-        try await self.client.execute(action: "DeleteTrafficMirror", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTrafficMirror请求参数结构体
     public struct DeleteTrafficMirrorRequest: TCRequestModel {
         /// 流量镜像实例ID数组，可以批量删除，每次删除上限为20
@@ -57,5 +41,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除流量镜像实例
+    ///
+    /// 删除已创建的黑石流量镜像实例，删除过程是异步执行的，因此需要使用查询任务接口获取删除的结果。
+    @inlinable
+    public func deleteTrafficMirror(_ input: DeleteTrafficMirrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTrafficMirrorResponse > {
+        self.client.execute(action: "DeleteTrafficMirror", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除流量镜像实例
+    ///
+    /// 删除已创建的黑石流量镜像实例，删除过程是异步执行的，因此需要使用查询任务接口获取删除的结果。
+    @inlinable
+    public func deleteTrafficMirror(_ input: DeleteTrafficMirrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrafficMirrorResponse {
+        try await self.client.execute(action: "DeleteTrafficMirror", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

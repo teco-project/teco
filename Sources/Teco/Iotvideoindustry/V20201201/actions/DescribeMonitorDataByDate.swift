@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 运营中心-设备录像存储统计
-    @inlinable
-    public func describeMonitorDataByDate(_ input: DescribeMonitorDataByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorDataByDateResponse > {
-        self.client.execute(action: "DescribeMonitorDataByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运营中心-设备录像存储统计
-    @inlinable
-    public func describeMonitorDataByDate(_ input: DescribeMonitorDataByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorDataByDateResponse {
-        try await self.client.execute(action: "DescribeMonitorDataByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMonitorDataByDate请求参数结构体
     public struct DescribeMonitorDataByDateRequest: TCRequestModel {
         /// 开始时间戳
@@ -59,5 +47,17 @@ extension Iotvideoindustry {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运营中心-设备录像存储统计
+    @inlinable
+    public func describeMonitorDataByDate(_ input: DescribeMonitorDataByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorDataByDateResponse > {
+        self.client.execute(action: "DescribeMonitorDataByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运营中心-设备录像存储统计
+    @inlinable
+    public func describeMonitorDataByDate(_ input: DescribeMonitorDataByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorDataByDateResponse {
+        try await self.client.execute(action: "DescribeMonitorDataByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

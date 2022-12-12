@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取设备影子
-    ///
-    /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。 
-    @inlinable
-    public func describeDeviceShadow(_ input: DescribeDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceShadowResponse > {
-        self.client.execute(action: "DescribeDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备影子
-    ///
-    /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。 
-    @inlinable
-    public func describeDeviceShadow(_ input: DescribeDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceShadowResponse {
-        try await self.client.execute(action: "DescribeDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceShadow请求参数结构体
     public struct DescribeDeviceShadowRequest: TCRequestModel {
         /// 产品 ID
@@ -62,5 +46,21 @@ extension Iotcloud {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备影子
+    ///
+    /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。 
+    @inlinable
+    public func describeDeviceShadow(_ input: DescribeDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceShadowResponse > {
+        self.client.execute(action: "DescribeDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备影子
+    ///
+    /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。 
+    @inlinable
+    public func describeDeviceShadow(_ input: DescribeDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceShadowResponse {
+        try await self.client.execute(action: "DescribeDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

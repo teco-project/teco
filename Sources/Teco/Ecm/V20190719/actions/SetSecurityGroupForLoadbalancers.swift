@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 绑定或解绑一个安全组到多个负载均衡实例
-    ///
-    /// 绑定或解绑一个安全组到多个负载均衡实例。
-    @inlinable
-    public func setSecurityGroupForLoadbalancers(_ input: SetSecurityGroupForLoadbalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetSecurityGroupForLoadbalancersResponse > {
-        self.client.execute(action: "SetSecurityGroupForLoadbalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定或解绑一个安全组到多个负载均衡实例
-    ///
-    /// 绑定或解绑一个安全组到多个负载均衡实例。
-    @inlinable
-    public func setSecurityGroupForLoadbalancers(_ input: SetSecurityGroupForLoadbalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetSecurityGroupForLoadbalancersResponse {
-        try await self.client.execute(action: "SetSecurityGroupForLoadbalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetSecurityGroupForLoadbalancers请求参数结构体
     public struct SetSecurityGroupForLoadbalancersRequest: TCRequestModel {
         /// 负载均衡实例ID数组
@@ -64,5 +48,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定或解绑一个安全组到多个负载均衡实例
+    ///
+    /// 绑定或解绑一个安全组到多个负载均衡实例。
+    @inlinable
+    public func setSecurityGroupForLoadbalancers(_ input: SetSecurityGroupForLoadbalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetSecurityGroupForLoadbalancersResponse > {
+        self.client.execute(action: "SetSecurityGroupForLoadbalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定或解绑一个安全组到多个负载均衡实例
+    ///
+    /// 绑定或解绑一个安全组到多个负载均衡实例。
+    @inlinable
+    public func setSecurityGroupForLoadbalancers(_ input: SetSecurityGroupForLoadbalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetSecurityGroupForLoadbalancersResponse {
+        try await self.client.execute(action: "SetSecurityGroupForLoadbalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

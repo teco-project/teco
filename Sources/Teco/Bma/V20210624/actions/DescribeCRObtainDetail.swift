@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 查询取证详情
-    @inlinable
-    public func describeCRObtainDetail(_ input: DescribeCRObtainDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCRObtainDetailResponse > {
-        self.client.execute(action: "DescribeCRObtainDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询取证详情
-    @inlinable
-    public func describeCRObtainDetail(_ input: DescribeCRObtainDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRObtainDetailResponse {
-        try await self.client.execute(action: "DescribeCRObtainDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCRObtainDetail请求参数结构体
     public struct DescribeCRObtainDetailRequest: TCRequestModel {
         /// 侵权ID
@@ -113,5 +101,17 @@ extension Bma {
             case depositPdfCert = "DepositPdfCert"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询取证详情
+    @inlinable
+    public func describeCRObtainDetail(_ input: DescribeCRObtainDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCRObtainDetailResponse > {
+        self.client.execute(action: "DescribeCRObtainDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询取证详情
+    @inlinable
+    public func describeCRObtainDetail(_ input: DescribeCRObtainDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRObtainDetailResponse {
+        try await self.client.execute(action: "DescribeCRObtainDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询路由表冲突列表
-    @inlinable
-    public func describeRouteTableConflicts(_ input: DescribeRouteTableConflictsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteTableConflictsResponse > {
-        self.client.execute(action: "DescribeRouteTableConflicts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询路由表冲突列表
-    @inlinable
-    public func describeRouteTableConflicts(_ input: DescribeRouteTableConflictsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteTableConflictsResponse {
-        try await self.client.execute(action: "DescribeRouteTableConflicts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRouteTableConflicts请求参数结构体
     public struct DescribeRouteTableConflictsRequest: TCRequestModel {
         /// 路由表CIDR
@@ -63,5 +51,17 @@ extension Tke {
             case routeTableConflictSet = "RouteTableConflictSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询路由表冲突列表
+    @inlinable
+    public func describeRouteTableConflicts(_ input: DescribeRouteTableConflictsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteTableConflictsResponse > {
+        self.client.execute(action: "DescribeRouteTableConflicts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询路由表冲突列表
+    @inlinable
+    public func describeRouteTableConflicts(_ input: DescribeRouteTableConflictsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteTableConflictsResponse {
+        try await self.client.execute(action: "DescribeRouteTableConflicts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

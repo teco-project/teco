@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 执行定制 API
-    ///
-    /// 本接口仅用于定制开发的特殊场景，除非云点播客服人员主动告知您需要使用本接口，其它情况请勿调用。
-    @inlinable
-    public func executeFunction(_ input: ExecuteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteFunctionResponse > {
-        self.client.execute(action: "ExecuteFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 执行定制 API
-    ///
-    /// 本接口仅用于定制开发的特殊场景，除非云点播客服人员主动告知您需要使用本接口，其它情况请勿调用。
-    @inlinable
-    public func executeFunction(_ input: ExecuteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteFunctionResponse {
-        try await self.client.execute(action: "ExecuteFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExecuteFunction请求参数结构体
     public struct ExecuteFunctionRequest: TCRequestModel {
         /// 调用后端接口名称。
@@ -51,7 +35,7 @@ extension Vod {
         /// 保留字段，特殊用途时使用。
         public let extInfo: String?
         
-        public init (functionName: String, functionArg: String, subAppId: UInt64?, sessionContext: String?, sessionId: String?, extInfo: String?) {
+        public init (functionName: String, functionArg: String, subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil) {
             self.functionName = functionName
             self.functionArg = functionArg
             self.subAppId = subAppId
@@ -82,5 +66,21 @@ extension Vod {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 执行定制 API
+    ///
+    /// 本接口仅用于定制开发的特殊场景，除非云点播客服人员主动告知您需要使用本接口，其它情况请勿调用。
+    @inlinable
+    public func executeFunction(_ input: ExecuteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteFunctionResponse > {
+        self.client.execute(action: "ExecuteFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 执行定制 API
+    ///
+    /// 本接口仅用于定制开发的特殊场景，除非云点播客服人员主动告知您需要使用本接口，其它情况请勿调用。
+    @inlinable
+    public func executeFunction(_ input: ExecuteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteFunctionResponse {
+        try await self.client.execute(action: "ExecuteFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

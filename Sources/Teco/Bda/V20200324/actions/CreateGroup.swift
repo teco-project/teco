@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Bda {
-    /// 创建人体库
-    ///
-    /// 用于创建一个空的人体库，如果人体库已存在返回错误。
-    /// 1个APPID下最多有2000W个人体动作轨迹（Trace），最多1W个人体库（Group）。
-    /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
-    /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
-    @inlinable
-    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGroupResponse > {
-        self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建人体库
-    ///
-    /// 用于创建一个空的人体库，如果人体库已存在返回错误。
-    /// 1个APPID下最多有2000W个人体动作轨迹（Trace），最多1W个人体库（Group）。
-    /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
-    /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
-    @inlinable
-    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
-        try await self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateGroup请求参数结构体
     public struct CreateGroupRequest: TCRequestModel {
         /// 人体库名称，[1,60]个字符，可修改，不可重复。
@@ -53,7 +31,7 @@ extension Bda {
         /// 不同算法模型版本对应的人体识别算法不同，新版本的整体效果会优于旧版本，后续我们将推出更新版本。
         public let bodyModelVersion: String?
         
-        public init (groupName: String, groupId: String, tag: String?, bodyModelVersion: String?) {
+        public init (groupName: String, groupId: String, tag: String? = nil, bodyModelVersion: String? = nil) {
             self.groupName = groupName
             self.groupId = groupId
             self.tag = tag
@@ -76,5 +54,27 @@ extension Bda {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建人体库
+    ///
+    /// 用于创建一个空的人体库，如果人体库已存在返回错误。
+    /// 1个APPID下最多有2000W个人体动作轨迹（Trace），最多1W个人体库（Group）。
+    /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
+    /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
+    @inlinable
+    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGroupResponse > {
+        self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建人体库
+    ///
+    /// 用于创建一个空的人体库，如果人体库已存在返回错误。
+    /// 1个APPID下最多有2000W个人体动作轨迹（Trace），最多1W个人体库（Group）。
+    /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
+    /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
+    @inlinable
+    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
+        try await self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

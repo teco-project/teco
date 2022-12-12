@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 关闭通道
-    ///
-    /// 本接口（CloseProxies）用于关闭通道。通道关闭后，不再产生流量，但每天仍然收取通道基础配置费用。
-    @inlinable
-    public func closeProxies(_ input: CloseProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseProxiesResponse > {
-        self.client.execute(action: "CloseProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关闭通道
-    ///
-    /// 本接口（CloseProxies）用于关闭通道。通道关闭后，不再产生流量，但每天仍然收取通道基础配置费用。
-    @inlinable
-    public func closeProxies(_ input: CloseProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseProxiesResponse {
-        try await self.client.execute(action: "CloseProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CloseProxies请求参数结构体
     public struct CloseProxiesRequest: TCRequestModel {
         /// （旧参数，请切换到ProxyIds）通道的实例ID。
@@ -43,7 +27,7 @@ extension Gaap {
         /// （新参数）通道的实例ID。
         public let proxyIds: [String]?
         
-        public init (instanceIds: [String]?, clientToken: String?, proxyIds: [String]?) {
+        public init (instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil) {
             self.instanceIds = instanceIds
             self.clientToken = clientToken
             self.proxyIds = proxyIds
@@ -72,5 +56,21 @@ extension Gaap {
             case operationFailedInstanceSet = "OperationFailedInstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关闭通道
+    ///
+    /// 本接口（CloseProxies）用于关闭通道。通道关闭后，不再产生流量，但每天仍然收取通道基础配置费用。
+    @inlinable
+    public func closeProxies(_ input: CloseProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseProxiesResponse > {
+        self.client.execute(action: "CloseProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭通道
+    ///
+    /// 本接口（CloseProxies）用于关闭通道。通道关闭后，不再产生流量，但每天仍然收取通道基础配置费用。
+    @inlinable
+    public func closeProxies(_ input: CloseProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseProxiesResponse {
+        try await self.client.execute(action: "CloseProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 创建私有域
-    @inlinable
-    public func createPrivateZone(_ input: CreatePrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrivateZoneResponse > {
-        self.client.execute(action: "CreatePrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建私有域
-    @inlinable
-    public func createPrivateZone(_ input: CreatePrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateZoneResponse {
-        try await self.client.execute(action: "CreatePrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePrivateZone请求参数结构体
     public struct CreatePrivateZoneRequest: TCRequestModel {
         /// 域名，格式必须是标准的TLD
@@ -53,7 +41,7 @@ extension Privatedns {
         /// 是否CNAME加速：ENABLED，DISABLED，默认值为ENABLED
         public let cnameSpeedupStatus: String?
         
-        public init (domain: String, tagSet: [TagInfo]?, vpcSet: [VpcInfo]?, remark: String?, dnsForwardStatus: String?, vpcs: [VpcInfo]?, accountVpcSet: [AccountVpcInfo]?, cnameSpeedupStatus: String?) {
+        public init (domain: String, tagSet: [TagInfo]? = nil, vpcSet: [VpcInfo]? = nil, remark: String? = nil, dnsForwardStatus: String? = nil, vpcs: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil, cnameSpeedupStatus: String? = nil) {
             self.domain = domain
             self.tagSet = tagSet
             self.vpcSet = vpcSet
@@ -92,5 +80,17 @@ extension Privatedns {
             case domain = "Domain"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建私有域
+    @inlinable
+    public func createPrivateZone(_ input: CreatePrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrivateZoneResponse > {
+        self.client.execute(action: "CreatePrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建私有域
+    @inlinable
+    public func createPrivateZone(_ input: CreatePrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateZoneResponse {
+        try await self.client.execute(action: "CreatePrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

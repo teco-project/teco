@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 设置自动切回
-    ///
-    /// 在客户收攻击或者被封堵时，切回到源站，并设置回切的时长
-    @inlinable
-    public func modifyNetReturnSwitch(_ input: ModifyNetReturnSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetReturnSwitchResponse > {
-        self.client.execute(action: "ModifyNetReturnSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置自动切回
-    ///
-    /// 在客户收攻击或者被封堵时，切回到源站，并设置回切的时长
-    @inlinable
-    public func modifyNetReturnSwitch(_ input: ModifyNetReturnSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetReturnSwitchResponse {
-        try await self.client.execute(action: "ModifyNetReturnSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNetReturnSwitch请求参数结构体
     public struct ModifyNetReturnSwitchRequest: TCRequestModel {
         /// 大禹子产品代号（net表示高防IP专业版）
@@ -68,5 +52,21 @@ extension Dayu {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置自动切回
+    ///
+    /// 在客户收攻击或者被封堵时，切回到源站，并设置回切的时长
+    @inlinable
+    public func modifyNetReturnSwitch(_ input: ModifyNetReturnSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNetReturnSwitchResponse > {
+        self.client.execute(action: "ModifyNetReturnSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置自动切回
+    ///
+    /// 在客户收攻击或者被封堵时，切回到源站，并设置回切的时长
+    @inlinable
+    public func modifyNetReturnSwitch(_ input: ModifyNetReturnSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetReturnSwitchResponse {
+        try await self.client.execute(action: "ModifyNetReturnSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 创建资源配置接口
-    @inlinable
-    public func createResourceConfig(_ input: CreateResourceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourceConfigResponse > {
-        self.client.execute(action: "CreateResourceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建资源配置接口
-    @inlinable
-    public func createResourceConfig(_ input: CreateResourceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceConfigResponse {
-        try await self.client.execute(action: "CreateResourceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateResourceConfig请求参数结构体
     public struct CreateResourceConfigRequest: TCRequestModel {
         /// 资源ID
@@ -44,7 +32,7 @@ extension Oceanus {
         /// 工作空间 SerialId
         public let workSpaceId: String?
         
-        public init (resourceId: String, resourceLoc: ResourceLoc, remark: String?, autoDelete: Int64?, workSpaceId: String?) {
+        public init (resourceId: String, resourceLoc: ResourceLoc, remark: String? = nil, autoDelete: Int64? = nil, workSpaceId: String? = nil) {
             self.resourceId = resourceId
             self.resourceLoc = resourceLoc
             self.remark = remark
@@ -73,5 +61,17 @@ extension Oceanus {
             case version = "Version"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建资源配置接口
+    @inlinable
+    public func createResourceConfig(_ input: CreateResourceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourceConfigResponse > {
+        self.client.execute(action: "CreateResourceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建资源配置接口
+    @inlinable
+    public func createResourceConfig(_ input: CreateResourceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceConfigResponse {
+        try await self.client.execute(action: "CreateResourceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

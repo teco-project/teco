@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 创建截图规则
-    ///
-    /// 创建截图规则，需要先调用[CreateLiveSnapshotTemplate](/document/product/267/32624)接口创建截图模板，然后将返回的模板 ID 绑定到流进行使用。
-    /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
-    /// 注意：单个域名仅支持关联一个截图模板。
-    @inlinable
-    public func createLiveSnapshotRule(_ input: CreateLiveSnapshotRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveSnapshotRuleResponse > {
-        self.client.execute(action: "CreateLiveSnapshotRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建截图规则
-    ///
-    /// 创建截图规则，需要先调用[CreateLiveSnapshotTemplate](/document/product/267/32624)接口创建截图模板，然后将返回的模板 ID 绑定到流进行使用。
-    /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
-    /// 注意：单个域名仅支持关联一个截图模板。
-    @inlinable
-    public func createLiveSnapshotRule(_ input: CreateLiveSnapshotRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveSnapshotRuleResponse {
-        try await self.client.execute(action: "CreateLiveSnapshotRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLiveSnapshotRule请求参数结构体
     public struct CreateLiveSnapshotRuleRequest: TCRequestModel {
         /// 推流域名。
@@ -50,7 +30,7 @@ extension Live {
         /// 注：如果本参数设置为非空字符串，规则将只对此推流起作用。
         public let streamName: String?
         
-        public init (domainName: String, templateId: Int64, appName: String?, streamName: String?) {
+        public init (domainName: String, templateId: Int64, appName: String? = nil, streamName: String? = nil) {
             self.domainName = domainName
             self.templateId = templateId
             self.appName = appName
@@ -73,5 +53,25 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建截图规则
+    ///
+    /// 创建截图规则，需要先调用[CreateLiveSnapshotTemplate](/document/product/267/32624)接口创建截图模板，然后将返回的模板 ID 绑定到流进行使用。
+    /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
+    /// 注意：单个域名仅支持关联一个截图模板。
+    @inlinable
+    public func createLiveSnapshotRule(_ input: CreateLiveSnapshotRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveSnapshotRuleResponse > {
+        self.client.execute(action: "CreateLiveSnapshotRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建截图规则
+    ///
+    /// 创建截图规则，需要先调用[CreateLiveSnapshotTemplate](/document/product/267/32624)接口创建截图模板，然后将返回的模板 ID 绑定到流进行使用。
+    /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
+    /// 注意：单个域名仅支持关联一个截图模板。
+    @inlinable
+    public func createLiveSnapshotRule(_ input: CreateLiveSnapshotRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveSnapshotRuleResponse {
+        try await self.client.execute(action: "CreateLiveSnapshotRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

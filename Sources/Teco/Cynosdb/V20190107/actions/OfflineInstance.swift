@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 下线实例
-    @inlinable
-    public func offlineInstance(_ input: OfflineInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OfflineInstanceResponse > {
-        self.client.execute(action: "OfflineInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下线实例
-    @inlinable
-    public func offlineInstance(_ input: OfflineInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineInstanceResponse {
-        try await self.client.execute(action: "OfflineInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OfflineInstance请求参数结构体
     public struct OfflineInstanceRequest: TCRequestModel {
         /// 集群ID
@@ -58,5 +46,17 @@ extension Cynosdb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下线实例
+    @inlinable
+    public func offlineInstance(_ input: OfflineInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OfflineInstanceResponse > {
+        self.client.execute(action: "OfflineInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下线实例
+    @inlinable
+    public func offlineInstance(_ input: OfflineInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineInstanceResponse {
+        try await self.client.execute(action: "OfflineInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

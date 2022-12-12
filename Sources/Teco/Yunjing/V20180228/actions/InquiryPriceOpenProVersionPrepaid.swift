@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 开通专业版询价(预付费)
-    ///
-    /// 本接口 (InquiryPriceOpenProVersionPrepaid) 用于开通专业版询价(预付费)。
-    @inlinable
-    public func inquiryPriceOpenProVersionPrepaid(_ input: InquiryPriceOpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceOpenProVersionPrepaidResponse > {
-        self.client.execute(action: "InquiryPriceOpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开通专业版询价(预付费)
-    ///
-    /// 本接口 (InquiryPriceOpenProVersionPrepaid) 用于开通专业版询价(预付费)。
-    @inlinable
-    public func inquiryPriceOpenProVersionPrepaid(_ input: InquiryPriceOpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceOpenProVersionPrepaidResponse {
-        try await self.client.execute(action: "InquiryPriceOpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceOpenProVersionPrepaid请求参数结构体
     public struct InquiryPriceOpenProVersionPrepaidRequest: TCRequestModel {
         /// 预付费模式(包年包月)参数设置。
@@ -66,5 +50,21 @@ extension Yunjing {
             case discountPrice = "DiscountPrice"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开通专业版询价(预付费)
+    ///
+    /// 本接口 (InquiryPriceOpenProVersionPrepaid) 用于开通专业版询价(预付费)。
+    @inlinable
+    public func inquiryPriceOpenProVersionPrepaid(_ input: InquiryPriceOpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceOpenProVersionPrepaidResponse > {
+        self.client.execute(action: "InquiryPriceOpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开通专业版询价(预付费)
+    ///
+    /// 本接口 (InquiryPriceOpenProVersionPrepaid) 用于开通专业版询价(预付费)。
+    @inlinable
+    public func inquiryPriceOpenProVersionPrepaid(_ input: InquiryPriceOpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceOpenProVersionPrepaidResponse {
+        try await self.client.execute(action: "InquiryPriceOpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

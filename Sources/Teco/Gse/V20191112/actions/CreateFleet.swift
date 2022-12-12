@@ -17,24 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Gse {
-    /// 创建服务器舰队
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（CreateFleet）用于创建服务器舰队。
-    @inlinable
-    public func createFleet(_ input: CreateFleetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFleetResponse > {
-        self.client.execute(action: "CreateFleet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建服务器舰队
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（CreateFleet）用于创建服务器舰队。
-    @inlinable
-    public func createFleet(_ input: CreateFleetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFleetResponse {
-        try await self.client.execute(action: "CreateFleet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFleet请求参数结构体
     public struct CreateFleetRequest: TCRequestModel {
         /// 生成包 Id
@@ -62,10 +44,10 @@ extension Gse {
         public let peerVpcId: String?
         
         /// 资源创建限制策略
-        public let resourceCreationLimitPolicy: ResourceCreationLimitPolicy
+        public let resourceCreationLimitPolicy: ResourceCreationLimitPolicy?
         
         /// 进程配置
-        public let runtimeConfiguration: RuntimeConfiguration
+        public let runtimeConfiguration: RuntimeConfiguration?
         
         /// VPC 子网，对等连接已不再使用
         public let subNetId: String?
@@ -77,7 +59,7 @@ extension Gse {
         public let tags: [Tag]?
         
         /// 系统盘，储存类型为 SSD 云硬盘（CLOUD_SSD）时，100-500GB；储存类型为高性能云硬盘（CLOUD_PREMIUM）时，50-500GB；容量以1为单位
-        public let systemDiskInfo: DiskInfo
+        public let systemDiskInfo: DiskInfo?
         
         /// 数据盘，储存类型为 SSD 云硬盘（CLOUD_SSD）时，100-32000GB；储存类型为高性能云硬盘（CLOUD_PREMIUM）时，10-32000GB；容量以10为单位
         public let dataDiskInfo: [DiskInfo]?
@@ -88,7 +70,7 @@ extension Gse {
         /// fleet公网出带宽最大值，默认100Mbps，范围1-200Mbps
         public let internetMaxBandwidthOut: Int64?
         
-        public init (assetId: String?, description: String?, inboundPermissions: [InboundPermission]?, instanceType: String?, fleetType: String?, name: String?, newGameServerSessionProtectionPolicy: String?, peerVpcId: String?, resourceCreationLimitPolicy: ResourceCreationLimitPolicy, runtimeConfiguration: RuntimeConfiguration, subNetId: String?, gameServerSessionProtectionTimeLimit: Int64?, tags: [Tag]?, systemDiskInfo: DiskInfo, dataDiskInfo: [DiskInfo]?, ccnInfos: [CcnInfo]?, internetMaxBandwidthOut: Int64?) {
+        public init (assetId: String? = nil, description: String? = nil, inboundPermissions: [InboundPermission]? = nil, instanceType: String? = nil, fleetType: String? = nil, name: String? = nil, newGameServerSessionProtectionPolicy: String? = nil, peerVpcId: String? = nil, resourceCreationLimitPolicy: ResourceCreationLimitPolicy? = nil, runtimeConfiguration: RuntimeConfiguration? = nil, subNetId: String? = nil, gameServerSessionProtectionTimeLimit: Int64? = nil, tags: [Tag]? = nil, systemDiskInfo: DiskInfo? = nil, dataDiskInfo: [DiskInfo]? = nil, ccnInfos: [CcnInfo]? = nil, internetMaxBandwidthOut: Int64? = nil) {
             self.assetId = assetId
             self.description = description
             self.inboundPermissions = inboundPermissions
@@ -133,7 +115,7 @@ extension Gse {
     public struct CreateFleetResponse: TCResponseModel {
         /// 服务器舰队属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let fleetAttributes: FleetAttributes
+        public let fleetAttributes: FleetAttributes?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -142,5 +124,23 @@ extension Gse {
             case fleetAttributes = "FleetAttributes"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建服务器舰队
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（CreateFleet）用于创建服务器舰队。
+    @inlinable
+    public func createFleet(_ input: CreateFleetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFleetResponse > {
+        self.client.execute(action: "CreateFleet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建服务器舰队
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（CreateFleet）用于创建服务器舰队。
+    @inlinable
+    public func createFleet(_ input: CreateFleetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFleetResponse {
+        try await self.client.execute(action: "CreateFleet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

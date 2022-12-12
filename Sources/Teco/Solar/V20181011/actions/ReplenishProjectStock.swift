@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Solar {
-    /// 补充（子）项目库存
-    ///
-    /// 补充子项目库存
-    @inlinable
-    public func replenishProjectStock(_ input: ReplenishProjectStockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplenishProjectStockResponse > {
-        self.client.execute(action: "ReplenishProjectStock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 补充（子）项目库存
-    ///
-    /// 补充子项目库存
-    @inlinable
-    public func replenishProjectStock(_ input: ReplenishProjectStockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplenishProjectStockResponse {
-        try await self.client.execute(action: "ReplenishProjectStock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReplenishProjectStock请求参数结构体
     public struct ReplenishProjectStockRequest: TCRequestModel {
         /// 项目id
@@ -48,7 +32,7 @@ extension Solar {
         /// 奖池名称
         public let poolName: String?
         
-        public init (subProjectId: String, prizeId: String, prizeNum: UInt64, poolIndex: UInt64, poolName: String?) {
+        public init (subProjectId: String, prizeId: String, prizeNum: UInt64, poolIndex: UInt64, poolName: String? = nil) {
             self.subProjectId = subProjectId
             self.prizeId = prizeId
             self.prizeNum = prizeNum
@@ -73,5 +57,21 @@ extension Solar {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 补充（子）项目库存
+    ///
+    /// 补充子项目库存
+    @inlinable
+    public func replenishProjectStock(_ input: ReplenishProjectStockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplenishProjectStockResponse > {
+        self.client.execute(action: "ReplenishProjectStock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 补充（子）项目库存
+    ///
+    /// 补充子项目库存
+    @inlinable
+    public func replenishProjectStock(_ input: ReplenishProjectStockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplenishProjectStockResponse {
+        try await self.client.execute(action: "ReplenishProjectStock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 修改子应用信息
-    ///
-    /// 该接口用于修改子应用信息，但不允许修改主应用信息。
-    @inlinable
-    public func modifySubAppIdInfo(_ input: ModifySubAppIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubAppIdInfoResponse > {
-        self.client.execute(action: "ModifySubAppIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改子应用信息
-    ///
-    /// 该接口用于修改子应用信息，但不允许修改主应用信息。
-    @inlinable
-    public func modifySubAppIdInfo(_ input: ModifySubAppIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubAppIdInfoResponse {
-        try await self.client.execute(action: "ModifySubAppIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySubAppIdInfo请求参数结构体
     public struct ModifySubAppIdInfoRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -42,7 +26,7 @@ extension Vod {
         /// 子应用简介，长度限制： 300个字符。
         public let description: String?
         
-        public init (subAppId: UInt64, name: String?, description: String?) {
+        public init (subAppId: UInt64, name: String? = nil, description: String? = nil) {
             self.subAppId = subAppId
             self.name = name
             self.description = description
@@ -63,5 +47,21 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改子应用信息
+    ///
+    /// 该接口用于修改子应用信息，但不允许修改主应用信息。
+    @inlinable
+    public func modifySubAppIdInfo(_ input: ModifySubAppIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubAppIdInfoResponse > {
+        self.client.execute(action: "ModifySubAppIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改子应用信息
+    ///
+    /// 该接口用于修改子应用信息，但不允许修改主应用信息。
+    @inlinable
+    public func modifySubAppIdInfo(_ input: ModifySubAppIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubAppIdInfoResponse {
+        try await self.client.execute(action: "ModifySubAppIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

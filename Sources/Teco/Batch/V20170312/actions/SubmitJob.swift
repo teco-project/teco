@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 提交作业
-    ///
-    /// 用于提交一个作业
-    @inlinable
-    public func submitJob(_ input: SubmitJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitJobResponse > {
-        self.client.execute(action: "SubmitJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交作业
-    ///
-    /// 用于提交一个作业
-    @inlinable
-    public func submitJob(_ input: SubmitJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitJobResponse {
-        try await self.client.execute(action: "SubmitJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SubmitJob请求参数结构体
     public struct SubmitJobRequest: TCRequestModel {
         /// 作业所提交的位置信息。通过该参数可以指定作业关联CVM所属可用区等信息。
@@ -42,7 +26,7 @@ extension Batch {
         /// 用于保证请求幂等性的字符串。该字符串由用户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         public let clientToken: String?
         
-        public init (placement: Placement, job: Job, clientToken: String?) {
+        public init (placement: Placement, job: Job, clientToken: String? = nil) {
             self.placement = placement
             self.job = job
             self.clientToken = clientToken
@@ -67,5 +51,21 @@ extension Batch {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交作业
+    ///
+    /// 用于提交一个作业
+    @inlinable
+    public func submitJob(_ input: SubmitJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitJobResponse > {
+        self.client.execute(action: "SubmitJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交作业
+    ///
+    /// 用于提交一个作业
+    @inlinable
+    public func submitJob(_ input: SubmitJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitJobResponse {
+        try await self.client.execute(action: "SubmitJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

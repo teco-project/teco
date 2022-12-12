@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 取消组织成员和组织管理员子账号的授权关系
-    @inlinable
-    public func cancelOrganizationMemberAuthAccount(_ input: CancelOrganizationMemberAuthAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelOrganizationMemberAuthAccountResponse > {
-        self.client.execute(action: "CancelOrganizationMemberAuthAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消组织成员和组织管理员子账号的授权关系
-    @inlinable
-    public func cancelOrganizationMemberAuthAccount(_ input: CancelOrganizationMemberAuthAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelOrganizationMemberAuthAccountResponse {
-        try await self.client.execute(action: "CancelOrganizationMemberAuthAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelOrganizationMemberAuthAccount请求参数结构体
     public struct CancelOrganizationMemberAuthAccountRequest: TCRequestModel {
         /// 成员Uin。
@@ -59,5 +47,17 @@ extension Organization {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消组织成员和组织管理员子账号的授权关系
+    @inlinable
+    public func cancelOrganizationMemberAuthAccount(_ input: CancelOrganizationMemberAuthAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelOrganizationMemberAuthAccountResponse > {
+        self.client.execute(action: "CancelOrganizationMemberAuthAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消组织成员和组织管理员子账号的授权关系
+    @inlinable
+    public func cancelOrganizationMemberAuthAccount(_ input: CancelOrganizationMemberAuthAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelOrganizationMemberAuthAccountResponse {
+        try await self.client.execute(action: "CancelOrganizationMemberAuthAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

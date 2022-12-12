@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询实时的域名维度下行播放数据
-    ///
-    /// 查询实时的域名维度下行播放数据，由于数据处理有耗时，接口默认查询4分钟前的准实时数据。
-    @inlinable
-    public func describeLiveDomainPlayInfoList(_ input: DescribeLiveDomainPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveDomainPlayInfoListResponse > {
-        self.client.execute(action: "DescribeLiveDomainPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实时的域名维度下行播放数据
-    ///
-    /// 查询实时的域名维度下行播放数据，由于数据处理有耗时，接口默认查询4分钟前的准实时数据。
-    @inlinable
-    public func describeLiveDomainPlayInfoList(_ input: DescribeLiveDomainPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainPlayInfoListResponse {
-        try await self.client.execute(action: "DescribeLiveDomainPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveDomainPlayInfoList请求参数结构体
     public struct DescribeLiveDomainPlayInfoListRequest: TCRequestModel {
         /// 播放域名列表。
         public let playDomains: [String]?
         
-        public init (playDomains: [String]?) {
+        public init (playDomains: [String]? = nil) {
             self.playDomains = playDomains
         }
         
@@ -77,5 +61,21 @@ extension Live {
             case domainInfoList = "DomainInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实时的域名维度下行播放数据
+    ///
+    /// 查询实时的域名维度下行播放数据，由于数据处理有耗时，接口默认查询4分钟前的准实时数据。
+    @inlinable
+    public func describeLiveDomainPlayInfoList(_ input: DescribeLiveDomainPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveDomainPlayInfoListResponse > {
+        self.client.execute(action: "DescribeLiveDomainPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实时的域名维度下行播放数据
+    ///
+    /// 查询实时的域名维度下行播放数据，由于数据处理有耗时，接口默认查询4分钟前的准实时数据。
+    @inlinable
+    public func describeLiveDomainPlayInfoList(_ input: DescribeLiveDomainPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainPlayInfoListResponse {
+        try await self.client.execute(action: "DescribeLiveDomainPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

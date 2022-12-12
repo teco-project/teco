@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 更新API
-    @inlinable
-    public func updateGatewayApi(_ input: UpdateGatewayApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGatewayApiResponse > {
-        self.client.execute(action: "UpdateGatewayApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新API
-    @inlinable
-    public func updateGatewayApi(_ input: UpdateGatewayApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGatewayApiResponse {
-        try await self.client.execute(action: "UpdateGatewayApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateGatewayApi请求参数结构体
     public struct UpdateGatewayApiRequest: TCRequestModel {
         /// API ID
@@ -47,7 +35,7 @@ extension Tsf {
         /// api描述信息
         public let description: String?
         
-        public init (apiId: String, path: String?, method: String?, pathMapping: String?, host: String?, description: String?) {
+        public init (apiId: String, path: String? = nil, method: String? = nil, pathMapping: String? = nil, host: String? = nil, description: String? = nil) {
             self.apiId = apiId
             self.path = path
             self.method = method
@@ -78,5 +66,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新API
+    @inlinable
+    public func updateGatewayApi(_ input: UpdateGatewayApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGatewayApiResponse > {
+        self.client.execute(action: "UpdateGatewayApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新API
+    @inlinable
+    public func updateGatewayApi(_ input: UpdateGatewayApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGatewayApiResponse {
+        try await self.client.execute(action: "UpdateGatewayApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

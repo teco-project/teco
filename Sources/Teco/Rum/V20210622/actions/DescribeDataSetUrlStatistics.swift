@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取DescribeDataSetUrlStatistics信息
-    @inlinable
-    public func describeDataSetUrlStatistics(_ input: DescribeDataSetUrlStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataSetUrlStatisticsResponse > {
-        self.client.execute(action: "DescribeDataSetUrlStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DescribeDataSetUrlStatistics信息
-    @inlinable
-    public func describeDataSetUrlStatistics(_ input: DescribeDataSetUrlStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSetUrlStatisticsResponse {
-        try await self.client.execute(action: "DescribeDataSetUrlStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDataSetUrlStatistics请求参数结构体
     public struct DescribeDataSetUrlStatisticsRequest: TCRequestModel {
         /// 开始时间
@@ -98,7 +86,7 @@ extension Rum {
         /// 获取package
         public let packageType: String?
         
-        public init (startTime: Int64, type: String, endTime: Int64, id: Int64, extSecond: String?, engine: String?, isp: String?, from: String?, level: String?, brand: String?, area: String?, versionNum: String?, platform: String?, extThird: String?, extFirst: String?, netType: String?, device: String?, isAbroad: String?, os: String?, browser: String?, costType: String?, env: String?, packageType: String?) {
+        public init (startTime: Int64, type: String, endTime: Int64, id: Int64, extSecond: String? = nil, engine: String? = nil, isp: String? = nil, from: String? = nil, level: String? = nil, brand: String? = nil, area: String? = nil, versionNum: String? = nil, platform: String? = nil, extThird: String? = nil, extFirst: String? = nil, netType: String? = nil, device: String? = nil, isAbroad: String? = nil, os: String? = nil, browser: String? = nil, costType: String? = nil, env: String? = nil, packageType: String? = nil) {
             self.startTime = startTime
             self.type = type
             self.endTime = endTime
@@ -163,5 +151,17 @@ extension Rum {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DescribeDataSetUrlStatistics信息
+    @inlinable
+    public func describeDataSetUrlStatistics(_ input: DescribeDataSetUrlStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataSetUrlStatisticsResponse > {
+        self.client.execute(action: "DescribeDataSetUrlStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DescribeDataSetUrlStatistics信息
+    @inlinable
+    public func describeDataSetUrlStatistics(_ input: DescribeDataSetUrlStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSetUrlStatisticsResponse {
+        try await self.client.execute(action: "DescribeDataSetUrlStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

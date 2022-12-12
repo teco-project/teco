@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 获取联盟bcos网络列表
-    @inlinable
-    public func getConsortiumClusterList(_ input: GetConsortiumClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetConsortiumClusterListResponse > {
-        self.client.execute(action: "GetConsortiumClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取联盟bcos网络列表
-    @inlinable
-    public func getConsortiumClusterList(_ input: GetConsortiumClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetConsortiumClusterListResponse {
-        try await self.client.execute(action: "GetConsortiumClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetConsortiumClusterList请求参数结构体
     public struct GetConsortiumClusterListRequest: TCRequestModel {
         /// 联盟id
@@ -53,5 +41,17 @@ extension Tdid {
             case clusterList = "ClusterList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取联盟bcos网络列表
+    @inlinable
+    public func getConsortiumClusterList(_ input: GetConsortiumClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetConsortiumClusterListResponse > {
+        self.client.execute(action: "GetConsortiumClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取联盟bcos网络列表
+    @inlinable
+    public func getConsortiumClusterList(_ input: GetConsortiumClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetConsortiumClusterListResponse {
+        try await self.client.execute(action: "GetConsortiumClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

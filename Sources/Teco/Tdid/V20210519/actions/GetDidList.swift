@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// DID列表
-    @inlinable
-    public func getDidList(_ input: GetDidListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidListResponse > {
-        self.client.execute(action: "GetDidList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DID列表
-    @inlinable
-    public func getDidList(_ input: GetDidListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidListResponse {
-        try await self.client.execute(action: "GetDidList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDidList请求参数结构体
     public struct GetDidListRequest: TCRequestModel {
         /// 每页大小
@@ -44,7 +32,7 @@ extension Tdid {
         /// 群组ID
         public let groupId: Int64?
         
-        public init (pageSize: Int64, pageNumber: Int64, did: String?, clusterId: String?, groupId: Int64?) {
+        public init (pageSize: Int64, pageNumber: Int64, did: String? = nil, clusterId: String? = nil, groupId: Int64? = nil) {
             self.pageSize = pageSize
             self.pageNumber = pageNumber
             self.did = did
@@ -77,5 +65,17 @@ extension Tdid {
             case allCount = "AllCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// DID列表
+    @inlinable
+    public func getDidList(_ input: GetDidListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidListResponse > {
+        self.client.execute(action: "GetDidList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DID列表
+    @inlinable
+    public func getDidList(_ input: GetDidListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidListResponse {
+        try await self.client.execute(action: "GetDidList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

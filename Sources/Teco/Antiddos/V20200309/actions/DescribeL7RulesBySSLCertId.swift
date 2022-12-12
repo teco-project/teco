@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 查询与证书ID匹配的七层规则
-    ///
-    /// 查询与证书ID对于域名匹配的七层规则
-    @inlinable
-    public func describeL7RulesBySSLCertId(_ input: DescribeL7RulesBySSLCertIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7RulesBySSLCertIdResponse > {
-        self.client.execute(action: "DescribeL7RulesBySSLCertId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询与证书ID匹配的七层规则
-    ///
-    /// 查询与证书ID对于域名匹配的七层规则
-    @inlinable
-    public func describeL7RulesBySSLCertId(_ input: DescribeL7RulesBySSLCertIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7RulesBySSLCertIdResponse {
-        try await self.client.execute(action: "DescribeL7RulesBySSLCertId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeL7RulesBySSLCertId请求参数结构体
     public struct DescribeL7RulesBySSLCertIdRequest: TCRequestModel {
         /// 域名状态，可取bindable, binded, opened, closed, all，all表示全部状态
@@ -62,5 +46,21 @@ extension Antiddos {
             case certSet = "CertSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询与证书ID匹配的七层规则
+    ///
+    /// 查询与证书ID对于域名匹配的七层规则
+    @inlinable
+    public func describeL7RulesBySSLCertId(_ input: DescribeL7RulesBySSLCertIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL7RulesBySSLCertIdResponse > {
+        self.client.execute(action: "DescribeL7RulesBySSLCertId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询与证书ID匹配的七层规则
+    ///
+    /// 查询与证书ID对于域名匹配的七层规则
+    @inlinable
+    public func describeL7RulesBySSLCertId(_ input: DescribeL7RulesBySSLCertIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7RulesBySSLCertIdResponse {
+        try await self.client.execute(action: "DescribeL7RulesBySSLCertId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

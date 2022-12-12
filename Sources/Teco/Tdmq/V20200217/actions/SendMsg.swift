@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 发送消息
-    ///
-    /// 此接口仅用于测试发生消息，不能作为现网正式生产使用
-    @inlinable
-    public func sendMsg(_ input: SendMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendMsgResponse > {
-        self.client.execute(action: "SendMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送消息
-    ///
-    /// 此接口仅用于测试发生消息，不能作为现网正式生产使用
-    @inlinable
-    public func sendMsg(_ input: SendMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMsgResponse {
-        try await self.client.execute(action: "SendMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendMsg请求参数结构体
     public struct SendMsgRequest: TCRequestModel {
         /// 环境（命名空间）名称。
@@ -45,7 +29,7 @@ extension Tdmq {
         /// Pulsar 集群的ID
         public let clusterId: String?
         
-        public init (environmentId: String, topicName: String, msgContent: String, clusterId: String?) {
+        public init (environmentId: String, topicName: String, msgContent: String, clusterId: String? = nil) {
             self.environmentId = environmentId
             self.topicName = topicName
             self.msgContent = msgContent
@@ -68,5 +52,21 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送消息
+    ///
+    /// 此接口仅用于测试发生消息，不能作为现网正式生产使用
+    @inlinable
+    public func sendMsg(_ input: SendMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendMsgResponse > {
+        self.client.execute(action: "SendMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送消息
+    ///
+    /// 此接口仅用于测试发生消息，不能作为现网正式生产使用
+    @inlinable
+    public func sendMsg(_ input: SendMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMsgResponse {
+        try await self.client.execute(action: "SendMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

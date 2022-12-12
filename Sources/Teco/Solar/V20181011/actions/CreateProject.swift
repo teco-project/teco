@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Solar {
-    /// 创建项目
-    @inlinable
-    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProjectResponse > {
-        self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建项目
-    @inlinable
-    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
-        try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProject请求参数结构体
     public struct CreateProjectRequest: TCRequestModel {
         /// 项目名称
@@ -44,7 +32,7 @@ extension Solar {
         /// 所属部门ID
         public let projectOrgId: String?
         
-        public init (projectName: String, projectOrg: String, projectBudget: String, projectIntroduction: String, projectOrgId: String?) {
+        public init (projectName: String, projectOrg: String, projectBudget: String, projectIntroduction: String, projectOrgId: String? = nil) {
             self.projectName = projectName
             self.projectOrg = projectOrg
             self.projectBudget = projectBudget
@@ -73,5 +61,17 @@ extension Solar {
             case projectId = "ProjectId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建项目
+    @inlinable
+    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProjectResponse > {
+        self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建项目
+    @inlinable
+    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
+        try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

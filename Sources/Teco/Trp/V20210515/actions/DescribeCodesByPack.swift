@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 查询码包的二维码列表
-    ///
-    /// 查询码包的二维码列表，上限 3 万
-    @inlinable
-    public func describeCodesByPack(_ input: DescribeCodesByPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodesByPackResponse > {
-        self.client.execute(action: "DescribeCodesByPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询码包的二维码列表
-    ///
-    /// 查询码包的二维码列表，上限 3 万
-    @inlinable
-    public func describeCodesByPack(_ input: DescribeCodesByPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodesByPackResponse {
-        try await self.client.execute(action: "DescribeCodesByPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCodesByPack请求参数结构体
     public struct DescribeCodesByPackRequest: TCRequestModel {
         /// 码包ID
@@ -39,7 +23,7 @@ extension Trp {
         /// 企业ID
         public let corpId: UInt64?
         
-        public init (packId: String, corpId: UInt64?) {
+        public init (packId: String, corpId: UInt64? = nil) {
             self.packId = packId
             self.corpId = corpId
         }
@@ -63,5 +47,21 @@ extension Trp {
             case codes = "Codes"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询码包的二维码列表
+    ///
+    /// 查询码包的二维码列表，上限 3 万
+    @inlinable
+    public func describeCodesByPack(_ input: DescribeCodesByPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodesByPackResponse > {
+        self.client.execute(action: "DescribeCodesByPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询码包的二维码列表
+    ///
+    /// 查询码包的二维码列表，上限 3 万
+    @inlinable
+    public func describeCodesByPack(_ input: DescribeCodesByPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodesByPackResponse {
+        try await self.client.execute(action: "DescribeCodesByPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

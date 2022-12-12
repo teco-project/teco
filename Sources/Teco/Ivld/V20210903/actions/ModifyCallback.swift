@@ -15,6 +15,35 @@
 // DO NOT EDIT.
 
 extension Ivld {
+    /// ModifyCallback请求参数结构体
+    public struct ModifyCallbackRequest: TCRequestModel {
+        /// 任务分析完成后回调地址
+        public let taskFinishNotifyURL: String
+        
+        /// 媒体导入完成后回调地址
+        public let mediaFinishNotifyURL: String
+        
+        public init (taskFinishNotifyURL: String, mediaFinishNotifyURL: String) {
+            self.taskFinishNotifyURL = taskFinishNotifyURL
+            self.mediaFinishNotifyURL = mediaFinishNotifyURL
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case taskFinishNotifyURL = "TaskFinishNotifyURL"
+            case mediaFinishNotifyURL = "MediaFinishNotifyURL"
+        }
+    }
+    
+    /// ModifyCallback返回参数结构体
+    public struct ModifyCallbackResponse: TCResponseModel {
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 编辑回调地址
     ///
     /// 用户设置对应事件的回调地址
@@ -79,34 +108,5 @@ extension Ivld {
     @inlinable
     public func modifyCallback(_ input: ModifyCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCallbackResponse {
         try await self.client.execute(action: "ModifyCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// ModifyCallback请求参数结构体
-    public struct ModifyCallbackRequest: TCRequestModel {
-        /// 任务分析完成后回调地址
-        public let taskFinishNotifyURL: String
-        
-        /// 媒体导入完成后回调地址
-        public let mediaFinishNotifyURL: String
-        
-        public init (taskFinishNotifyURL: String, mediaFinishNotifyURL: String) {
-            self.taskFinishNotifyURL = taskFinishNotifyURL
-            self.mediaFinishNotifyURL = mediaFinishNotifyURL
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case taskFinishNotifyURL = "TaskFinishNotifyURL"
-            case mediaFinishNotifyURL = "MediaFinishNotifyURL"
-        }
-    }
-    
-    /// ModifyCallback返回参数结构体
-    public struct ModifyCallbackResponse: TCResponseModel {
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case requestId = "RequestId"
-        }
     }
 }

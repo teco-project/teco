@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 解冻媒体文件
-    ///
-    /// 当媒体文件的存储类型是归档存储或深度归档存储时，是不可访问的。如需访问，则需要调用本接口进行解冻，解冻后可访问的媒体文件是临时的，在有效期过后，则不可访问。
-    @inlinable
-    public func restoreMedia(_ input: RestoreMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestoreMediaResponse > {
-        self.client.execute(action: "RestoreMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解冻媒体文件
-    ///
-    /// 当媒体文件的存储类型是归档存储或深度归档存储时，是不可访问的。如需访问，则需要调用本接口进行解冻，解冻后可访问的媒体文件是临时的，在有效期过后，则不可访问。
-    @inlinable
-    public func restoreMedia(_ input: RestoreMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreMediaResponse {
-        try await self.client.execute(action: "RestoreMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestoreMedia请求参数结构体
     public struct RestoreMediaRequest: TCRequestModel {
         /// 媒体文件唯一标识列表。
@@ -51,7 +35,7 @@ extension Vod {
         /// 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
         public let subAppId: UInt64?
         
-        public init (fileIds: [String], restoreDay: UInt64?, restoreTier: String?, subAppId: UInt64?) {
+        public init (fileIds: [String], restoreDay: UInt64? = nil, restoreTier: String? = nil, subAppId: UInt64? = nil) {
             self.fileIds = fileIds
             self.restoreDay = restoreDay
             self.restoreTier = restoreTier
@@ -74,5 +58,21 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解冻媒体文件
+    ///
+    /// 当媒体文件的存储类型是归档存储或深度归档存储时，是不可访问的。如需访问，则需要调用本接口进行解冻，解冻后可访问的媒体文件是临时的，在有效期过后，则不可访问。
+    @inlinable
+    public func restoreMedia(_ input: RestoreMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestoreMediaResponse > {
+        self.client.execute(action: "RestoreMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解冻媒体文件
+    ///
+    /// 当媒体文件的存储类型是归档存储或深度归档存储时，是不可访问的。如需访问，则需要调用本接口进行解冻，解冻后可访问的媒体文件是临时的，在有效期过后，则不可访问。
+    @inlinable
+    public func restoreMedia(_ input: RestoreMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreMediaResponse {
+        try await self.client.execute(action: "RestoreMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

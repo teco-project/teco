@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 创建实例公网访问白名单策略
-    @inlinable
-    public func createSecurityPolicies(_ input: CreateSecurityPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityPoliciesResponse > {
-        self.client.execute(action: "CreateSecurityPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例公网访问白名单策略
-    @inlinable
-    public func createSecurityPolicies(_ input: CreateSecurityPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityPoliciesResponse {
-        try await self.client.execute(action: "CreateSecurityPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSecurityPolicies请求参数结构体
     public struct CreateSecurityPoliciesRequest: TCRequestModel {
         /// 实例Id
@@ -38,7 +26,7 @@ extension Tcr {
         /// 描述
         public let description: String?
         
-        public init (registryId: String, cidrBlock: String, description: String?) {
+        public init (registryId: String, cidrBlock: String, description: String? = nil) {
             self.registryId = registryId
             self.cidrBlock = cidrBlock
             self.description = description
@@ -63,5 +51,17 @@ extension Tcr {
             case registryId = "RegistryId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例公网访问白名单策略
+    @inlinable
+    public func createSecurityPolicies(_ input: CreateSecurityPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityPoliciesResponse > {
+        self.client.execute(action: "CreateSecurityPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例公网访问白名单策略
+    @inlinable
+    public func createSecurityPolicies(_ input: CreateSecurityPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityPoliciesResponse {
+        try await self.client.execute(action: "CreateSecurityPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

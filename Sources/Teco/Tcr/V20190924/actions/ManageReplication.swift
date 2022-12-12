@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 管理实例同步
-    @inlinable
-    public func manageReplication(_ input: ManageReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageReplicationResponse > {
-        self.client.execute(action: "ManageReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 管理实例同步
-    @inlinable
-    public func manageReplication(_ input: ManageReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageReplicationResponse {
-        try await self.client.execute(action: "ManageReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ManageReplication请求参数结构体
     public struct ManageReplicationRequest: TCRequestModel {
         /// 复制源实例ID
@@ -45,9 +33,9 @@ extension Tcr {
         public let destinationRegionId: UInt64?
         
         /// 开启跨主账号实例同步配置项
-        public let peerReplicationOption: PeerReplicationOption
+        public let peerReplicationOption: PeerReplicationOption?
         
-        public init (sourceRegistryId: String, destinationRegistryId: String, rule: ReplicationRule, description: String?, destinationRegionId: UInt64?, peerReplicationOption: PeerReplicationOption) {
+        public init (sourceRegistryId: String, destinationRegistryId: String, rule: ReplicationRule, description: String? = nil, destinationRegionId: UInt64? = nil, peerReplicationOption: PeerReplicationOption? = nil) {
             self.sourceRegistryId = sourceRegistryId
             self.destinationRegistryId = destinationRegistryId
             self.rule = rule
@@ -74,5 +62,17 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 管理实例同步
+    @inlinable
+    public func manageReplication(_ input: ManageReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageReplicationResponse > {
+        self.client.execute(action: "ManageReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 管理实例同步
+    @inlinable
+    public func manageReplication(_ input: ManageReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageReplicationResponse {
+        try await self.client.execute(action: "ManageReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

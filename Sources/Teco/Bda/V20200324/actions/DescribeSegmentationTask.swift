@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bda {
-    /// 查看视频人像分割处理任务信息
-    ///
-    /// 可以查看单条任务的处理情况，包括处理状态，处理结果。
-    @inlinable
-    public func describeSegmentationTask(_ input: DescribeSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSegmentationTaskResponse > {
-        self.client.execute(action: "DescribeSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看视频人像分割处理任务信息
-    ///
-    /// 可以查看单条任务的处理情况，包括处理状态，处理结果。
-    @inlinable
-    public func describeSegmentationTask(_ input: DescribeSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSegmentationTaskResponse {
-        try await self.client.execute(action: "DescribeSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSegmentationTask请求参数结构体
     public struct DescribeSegmentationTaskRequest: TCRequestModel {
         /// 在提交分割任务成功时返回的任务标识ID。
@@ -63,7 +47,7 @@ extension Bda {
         
         /// 视频基本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let videoBasicInformation: VideoBasicInformation
+        public let videoBasicInformation: VideoBasicInformation?
         
         /// 分割任务错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -80,5 +64,21 @@ extension Bda {
             case errorMsg = "ErrorMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看视频人像分割处理任务信息
+    ///
+    /// 可以查看单条任务的处理情况，包括处理状态，处理结果。
+    @inlinable
+    public func describeSegmentationTask(_ input: DescribeSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSegmentationTaskResponse > {
+        self.client.execute(action: "DescribeSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看视频人像分割处理任务信息
+    ///
+    /// 可以查看单条任务的处理情况，包括处理状态，处理结果。
+    @inlinable
+    public func describeSegmentationTask(_ input: DescribeSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSegmentationTaskResponse {
+        try await self.client.execute(action: "DescribeSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 查询用户账号的资源限制
-    ///
-    /// 本接口（DescribeAccountLimits）用于查询用户账户在弹性伸缩中的资源限制。
-    @inlinable
-    public func describeAccountLimits(_ input: DescribeAccountLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountLimitsResponse > {
-        self.client.execute(action: "DescribeAccountLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户账号的资源限制
-    ///
-    /// 本接口（DescribeAccountLimits）用于查询用户账户在弹性伸缩中的资源限制。
-    @inlinable
-    public func describeAccountLimits(_ input: DescribeAccountLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountLimitsResponse {
-        try await self.client.execute(action: "DescribeAccountLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccountLimits请求参数结构体
     public struct DescribeAccountLimitsRequest: TCRequestModel {
         public init () {
@@ -61,5 +45,21 @@ extension As {
             case numberOfAutoScalingGroups = "NumberOfAutoScalingGroups"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户账号的资源限制
+    ///
+    /// 本接口（DescribeAccountLimits）用于查询用户账户在弹性伸缩中的资源限制。
+    @inlinable
+    public func describeAccountLimits(_ input: DescribeAccountLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountLimitsResponse > {
+        self.client.execute(action: "DescribeAccountLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户账号的资源限制
+    ///
+    /// 本接口（DescribeAccountLimits）用于查询用户账户在弹性伸缩中的资源限制。
+    @inlinable
+    public func describeAccountLimits(_ input: DescribeAccountLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountLimitsResponse {
+        try await self.client.execute(action: "DescribeAccountLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

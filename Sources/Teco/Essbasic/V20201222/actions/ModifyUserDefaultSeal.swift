@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 修改个人默认印章
-    ///
-    /// 此接口 (ModifyUserDefaultSeal) 用于重新指定个人默认印章。
-    @inlinable
-    public func modifyUserDefaultSeal(_ input: ModifyUserDefaultSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserDefaultSealResponse > {
-        self.client.execute(action: "ModifyUserDefaultSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改个人默认印章
-    ///
-    /// 此接口 (ModifyUserDefaultSeal) 用于重新指定个人默认印章。
-    @inlinable
-    public func modifyUserDefaultSeal(_ input: ModifyUserDefaultSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserDefaultSealResponse {
-        try await self.client.execute(action: "ModifyUserDefaultSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyUserDefaultSeal请求参数结构体
     public struct ModifyUserDefaultSealRequest: TCRequestModel {
         /// 调用方信息
@@ -68,5 +52,21 @@ extension Essbasic {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改个人默认印章
+    ///
+    /// 此接口 (ModifyUserDefaultSeal) 用于重新指定个人默认印章。
+    @inlinable
+    public func modifyUserDefaultSeal(_ input: ModifyUserDefaultSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserDefaultSealResponse > {
+        self.client.execute(action: "ModifyUserDefaultSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改个人默认印章
+    ///
+    /// 此接口 (ModifyUserDefaultSeal) 用于重新指定个人默认印章。
+    @inlinable
+    public func modifyUserDefaultSeal(_ input: ModifyUserDefaultSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserDefaultSealResponse {
+        try await self.client.execute(action: "ModifyUserDefaultSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

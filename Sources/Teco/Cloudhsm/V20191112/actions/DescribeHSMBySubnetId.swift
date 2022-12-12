@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudhsm {
-    /// 通过SubnetId获取Hsm资源数
-    @inlinable
-    public func describeHSMBySubnetId(_ input: DescribeHSMBySubnetIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHSMBySubnetIdResponse > {
-        self.client.execute(action: "DescribeHSMBySubnetId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通过SubnetId获取Hsm资源数
-    @inlinable
-    public func describeHSMBySubnetId(_ input: DescribeHSMBySubnetIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHSMBySubnetIdResponse {
-        try await self.client.execute(action: "DescribeHSMBySubnetId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHSMBySubnetId请求参数结构体
     public struct DescribeHSMBySubnetIdRequest: TCRequestModel {
         /// Subnet标识符
@@ -57,5 +45,17 @@ extension Cloudhsm {
             case subnetId = "SubnetId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通过SubnetId获取Hsm资源数
+    @inlinable
+    public func describeHSMBySubnetId(_ input: DescribeHSMBySubnetIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHSMBySubnetIdResponse > {
+        self.client.execute(action: "DescribeHSMBySubnetId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通过SubnetId获取Hsm资源数
+    @inlinable
+    public func describeHSMBySubnetId(_ input: DescribeHSMBySubnetIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHSMBySubnetIdResponse {
+        try await self.client.execute(action: "DescribeHSMBySubnetId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

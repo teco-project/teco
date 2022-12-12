@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 关闭附加的VPC-CNI网络能力
-    ///
-    /// 提供给附加了VPC-CNI能力的Global-Route集群关闭VPC-CNI
-    @inlinable
-    public func disableVpcCniNetworkType(_ input: DisableVpcCniNetworkTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableVpcCniNetworkTypeResponse > {
-        self.client.execute(action: "DisableVpcCniNetworkType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关闭附加的VPC-CNI网络能力
-    ///
-    /// 提供给附加了VPC-CNI能力的Global-Route集群关闭VPC-CNI
-    @inlinable
-    public func disableVpcCniNetworkType(_ input: DisableVpcCniNetworkTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableVpcCniNetworkTypeResponse {
-        try await self.client.execute(action: "DisableVpcCniNetworkType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableVpcCniNetworkType请求参数结构体
     public struct DisableVpcCniNetworkTypeRequest: TCRequestModel {
         /// 集群ID
@@ -53,5 +37,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关闭附加的VPC-CNI网络能力
+    ///
+    /// 提供给附加了VPC-CNI能力的Global-Route集群关闭VPC-CNI
+    @inlinable
+    public func disableVpcCniNetworkType(_ input: DisableVpcCniNetworkTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableVpcCniNetworkTypeResponse > {
+        self.client.execute(action: "DisableVpcCniNetworkType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭附加的VPC-CNI网络能力
+    ///
+    /// 提供给附加了VPC-CNI能力的Global-Route集群关闭VPC-CNI
+    @inlinable
+    public func disableVpcCniNetworkType(_ input: DisableVpcCniNetworkTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableVpcCniNetworkTypeResponse {
+        try await self.client.execute(action: "DisableVpcCniNetworkType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

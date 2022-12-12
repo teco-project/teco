@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 获取应用代理列表
-    @inlinable
-    public func describeApplicationProxy(_ input: DescribeApplicationProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationProxyResponse > {
-        self.client.execute(action: "DescribeApplicationProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取应用代理列表
-    @inlinable
-    public func describeApplicationProxy(_ input: DescribeApplicationProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxyResponse {
-        try await self.client.execute(action: "DescribeApplicationProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplicationProxy请求参数结构体
     public struct DescribeApplicationProxyRequest: TCRequestModel {
         /// 站点ID。
@@ -42,7 +30,7 @@ extension Teo {
         /// 当ProxyId为空时，表示查询站点下所有应用代理的列表。
         public let proxyId: String?
         
-        public init (zoneId: String?, offset: Int64?, limit: Int64?, proxyId: String?) {
+        public init (zoneId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, proxyId: String? = nil) {
             self.zoneId = zoneId
             self.offset = offset
             self.limit = limit
@@ -85,5 +73,17 @@ extension Teo {
             case domainCount = "DomainCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取应用代理列表
+    @inlinable
+    public func describeApplicationProxy(_ input: DescribeApplicationProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationProxyResponse > {
+        self.client.execute(action: "DescribeApplicationProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用代理列表
+    @inlinable
+    public func describeApplicationProxy(_ input: DescribeApplicationProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxyResponse {
+        try await self.client.execute(action: "DescribeApplicationProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

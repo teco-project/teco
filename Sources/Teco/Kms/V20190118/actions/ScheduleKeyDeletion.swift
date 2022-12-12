@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// CMK计划删除接口
-    ///
-    /// CMK计划删除接口，用于指定CMK删除的时间，可选时间区间为[7,30]天
-    @inlinable
-    public func scheduleKeyDeletion(_ input: ScheduleKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScheduleKeyDeletionResponse > {
-        self.client.execute(action: "ScheduleKeyDeletion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// CMK计划删除接口
-    ///
-    /// CMK计划删除接口，用于指定CMK删除的时间，可选时间区间为[7,30]天
-    @inlinable
-    public func scheduleKeyDeletion(_ input: ScheduleKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScheduleKeyDeletionResponse {
-        try await self.client.execute(action: "ScheduleKeyDeletion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ScheduleKeyDeletion请求参数结构体
     public struct ScheduleKeyDeletionRequest: TCRequestModel {
         /// CMK的唯一标志
@@ -66,5 +50,21 @@ extension Kms {
             case keyId = "KeyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// CMK计划删除接口
+    ///
+    /// CMK计划删除接口，用于指定CMK删除的时间，可选时间区间为[7,30]天
+    @inlinable
+    public func scheduleKeyDeletion(_ input: ScheduleKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScheduleKeyDeletionResponse > {
+        self.client.execute(action: "ScheduleKeyDeletion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// CMK计划删除接口
+    ///
+    /// CMK计划删除接口，用于指定CMK删除的时间，可选时间区间为[7,30]天
+    @inlinable
+    public func scheduleKeyDeletion(_ input: ScheduleKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScheduleKeyDeletionResponse {
+        try await self.client.execute(action: "ScheduleKeyDeletion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -46,7 +46,7 @@ extension Scf {
         
         /// 别名的路由信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let routingConfig: RoutingConfig
+        public let routingConfig: RoutingConfig?
         
         /// 描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -60,7 +60,7 @@ extension Scf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modTime: Date?
         
-        public init (functionVersion: String, name: String, routingConfig: RoutingConfig, description: String?, addTime: Date?, modTime: Date?) {
+        public init (functionVersion: String, name: String, routingConfig: RoutingConfig, description: String? = nil, addTime: Date? = nil, modTime: Date? = nil) {
             self.functionVersion = functionVersion
             self.name = name
             self.routingConfig = routingConfig
@@ -195,7 +195,7 @@ extension Scf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mountSubnetId: String?
         
-        public init (userId: String, userGroupId: String, cfsId: String, mountInsId: String, localMountDir: String, remoteMountDir: String, ipAddress: String?, mountVpcId: String?, mountSubnetId: String?) {
+        public init (userId: String, userGroupId: String, cfsId: String, mountInsId: String, localMountDir: String, remoteMountDir: String, ipAddress: String? = nil, mountVpcId: String? = nil, mountSubnetId: String? = nil) {
             self.userId = userId
             self.userGroupId = userGroupId
             self.cfsId = cfsId
@@ -265,9 +265,9 @@ extension Scf {
         public let gitUserNameSecret: String?
         
         /// 镜像部署时配置TCR镜像信息
-        public let imageConfig: ImageConfig
+        public let imageConfig: ImageConfig?
         
-        public init (cosBucketName: String?, cosObjectName: String?, zipFile: String?, cosBucketRegion: String?, demoId: String?, tempCosObjectName: String?, gitUrl: String?, gitUserName: String?, gitPassword: String?, gitPasswordSecret: String?, gitBranch: String?, gitDirectory: String?, gitCommitId: String?, gitUserNameSecret: String?, imageConfig: ImageConfig) {
+        public init (cosBucketName: String? = nil, cosObjectName: String? = nil, zipFile: String? = nil, cosBucketRegion: String? = nil, demoId: String? = nil, tempCosObjectName: String? = nil, gitUrl: String? = nil, gitUserName: String? = nil, gitPassword: String? = nil, gitPasswordSecret: String? = nil, gitBranch: String? = nil, gitDirectory: String? = nil, gitCommitId: String? = nil, gitUserNameSecret: String? = nil, imageConfig: ImageConfig? = nil) {
             self.cosBucketName = cosBucketName
             self.cosObjectName = cosObjectName
             self.zipFile = zipFile
@@ -315,7 +315,7 @@ extension Scf {
         /// 死信队列主题模式的标签形式
         public let filterType: String?
         
-        public init (type: String, name: String, filterType: String?) {
+        public init (type: String, name: String, filterType: String? = nil) {
             self.type = type
             self.name = name
             self.filterType = filterType
@@ -376,7 +376,7 @@ extension Scf {
         /// 环境变量数组
         public let variables: [Variable]?
         
-        public init (variables: [Variable]?) {
+        public init (variables: [Variable]? = nil) {
             self.variables = variables
         }
         
@@ -561,7 +561,7 @@ extension Scf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
         
-        public init (version: String, description: String?, addTime: Date?, modTime: Date?, status: String?) {
+        public init (version: String, description: String? = nil, addTime: Date? = nil, modTime: Date? = nil, status: String? = nil) {
             self.version = version
             self.description = description
             self.addTime = addTime
@@ -606,7 +606,7 @@ extension Scf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let containerImageAccelerate: Bool?
         
-        public init (imageType: String, imageUri: String, registryId: String?, entryPoint: String?, command: String?, args: String?, containerImageAccelerate: Bool?) {
+        public init (imageType: String, imageUri: String, registryId: String? = nil, entryPoint: String? = nil, command: String? = nil, args: String? = nil, containerImageAccelerate: Bool? = nil) {
             self.imageType = imageType
             self.imageUri = imageUri
             self.registryId = registryId
@@ -637,7 +637,7 @@ extension Scf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxConcurrency: UInt64?
         
-        public init (dynamicEnabled: String?, maxConcurrency: UInt64?) {
+        public init (dynamicEnabled: String? = nil, maxConcurrency: UInt64? = nil) {
             self.dynamicEnabled = dynamicEnabled
             self.maxConcurrency = maxConcurrency
         }
@@ -729,7 +729,7 @@ extension Scf {
         /// 无输入则返回所有日志。
         public let retCode: String?
         
-        public init (retCode: String?) {
+        public init (retCode: String? = nil) {
             self.retCode = retCode
         }
         
@@ -752,7 +752,7 @@ extension Scf {
         /// 日志类型，支持Application和Platform，默认为Application
         public let type: String?
         
-        public init (offset: String, limit: UInt64, keyword: String?, type: String?) {
+        public init (offset: String, limit: UInt64, keyword: String? = nil, type: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.keyword = keyword
@@ -879,9 +879,9 @@ extension Scf {
     public struct ProtocolParams: TCInputModel, TCOutputModel {
         /// WebSockets协议支持的参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let wsParams: WSParams
+        public let wsParams: WSParams?
         
-        public init (wsParams: WSParams) {
+        public init (wsParams: WSParams? = nil) {
             self.wsParams = wsParams
         }
         
@@ -896,9 +896,9 @@ extension Scf {
         public let publicNetStatus: String
         
         /// Eip配置
-        public let eipConfig: EipConfigIn
+        public let eipConfig: EipConfigIn?
         
-        public init (publicNetStatus: String, eipConfig: EipConfigIn) {
+        public init (publicNetStatus: String, eipConfig: EipConfigIn? = nil) {
             self.publicNetStatus = publicNetStatus
             self.eipConfig = eipConfig
         }
@@ -1021,7 +1021,7 @@ extension Scf {
         /// 规则路由附加版本
         public let addtionVersionMatchs: [VersionMatch]?
         
-        public init (additionalVersionWeights: [VersionWeight]?, addtionVersionMatchs: [VersionMatch]?) {
+        public init (additionalVersionWeights: [VersionWeight]? = nil, addtionVersionMatchs: [VersionMatch]? = nil) {
             self.additionalVersionWeights = additionalVersionWeights
             self.addtionVersionMatchs = addtionVersionMatchs
         }
@@ -1163,21 +1163,21 @@ extension Scf {
     public struct TriggerAction: TCInputModel, TCOutputModel {
         /// 定时预置名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let triggerName: String
+        public let triggerName: String?
         
         /// 定时预置并发数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let triggerProvisionedConcurrencyNum: UInt64
+        public let triggerProvisionedConcurrencyNum: UInt64?
         
         /// 设置定时触发器的时间配置，cron表达式。Cron 表达式有七个必需字段，按空格分隔。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let triggerCronConfig: String
+        public let triggerCronConfig: String?
         
         /// 预置类型 Default
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let provisionedType: String?
         
-        public init (triggerName: String, triggerProvisionedConcurrencyNum: UInt64, triggerCronConfig: String, provisionedType: String?) {
+        public init (triggerName: String, triggerProvisionedConcurrencyNum: UInt64, triggerCronConfig: String, provisionedType: String? = nil) {
             self.triggerName = triggerName
             self.triggerProvisionedConcurrencyNum = triggerProvisionedConcurrencyNum
             self.triggerCronConfig = triggerCronConfig
@@ -1333,7 +1333,7 @@ extension Scf {
         /// 变量的值，不可为空字符
         public let value: String?
         
-        public init (key: String?, value: String?) {
+        public init (key: String? = nil, value: String? = nil) {
             self.key = key
             self.value = value
         }
@@ -1438,7 +1438,7 @@ extension Scf {
         /// 子网的 Id
         public let subnetId: String?
         
-        public init (vpcId: String?, subnetId: String?) {
+        public init (vpcId: String? = nil, subnetId: String? = nil) {
             self.vpcId = vpcId
             self.subnetId = subnetId
         }
@@ -1455,7 +1455,7 @@ extension Scf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let idleTimeOut: UInt64?
         
-        public init (idleTimeOut: UInt64?) {
+        public init (idleTimeOut: UInt64? = nil) {
             self.idleTimeOut = idleTimeOut
         }
         

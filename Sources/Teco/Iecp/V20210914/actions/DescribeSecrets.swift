@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取Secrets列表
-    @inlinable
-    public func describeSecrets(_ input: DescribeSecretsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecretsResponse > {
-        self.client.execute(action: "DescribeSecrets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Secrets列表
-    @inlinable
-    public func describeSecrets(_ input: DescribeSecretsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretsResponse {
-        try await self.client.execute(action: "DescribeSecrets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecrets请求参数结构体
     public struct DescribeSecretsRequest: TCRequestModel {
         /// 边缘单元ID
@@ -45,12 +33,12 @@ extension Iecp {
         public let namePattern: String?
         
         /// Sort.Field:CreateTime Sort.Order:ASC|DESC
-        public let sort: FieldSort
+        public let sort: FieldSort?
         
         /// Secret类型(DockerConfigJson或Opaque)
         public let secretType: String?
         
-        public init (edgeUnitID: UInt64, offset: UInt64, limit: UInt64, secretNamespace: String?, namePattern: String?, sort: FieldSort, secretType: String?) {
+        public init (edgeUnitID: UInt64, offset: UInt64, limit: UInt64, secretNamespace: String? = nil, namePattern: String? = nil, sort: FieldSort? = nil, secretType: String? = nil) {
             self.edgeUnitID = edgeUnitID
             self.offset = offset
             self.limit = limit
@@ -89,5 +77,17 @@ extension Iecp {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Secrets列表
+    @inlinable
+    public func describeSecrets(_ input: DescribeSecretsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecretsResponse > {
+        self.client.execute(action: "DescribeSecrets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Secrets列表
+    @inlinable
+    public func describeSecrets(_ input: DescribeSecretsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretsResponse {
+        try await self.client.execute(action: "DescribeSecrets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 创建源站组
-    @inlinable
-    public func createOriginGroup(_ input: CreateOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOriginGroupResponse > {
-        self.client.execute(action: "CreateOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建源站组
-    @inlinable
-    public func createOriginGroup(_ input: CreateOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOriginGroupResponse {
-        try await self.client.execute(action: "CreateOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOriginGroup请求参数结构体
     public struct CreateOriginGroupRequest: TCRequestModel {
         /// 站点ID。
@@ -53,7 +41,7 @@ extension Teo {
         /// 回源Host，仅当OriginType=self时可以设置。
         public let hostHeader: String?
         
-        public init (zoneId: String, originType: String, originGroupName: String, configurationType: String, originRecords: [OriginRecord], hostHeader: String?) {
+        public init (zoneId: String, originType: String, originGroupName: String, configurationType: String, originRecords: [OriginRecord], hostHeader: String? = nil) {
             self.zoneId = zoneId
             self.originType = originType
             self.originGroupName = originGroupName
@@ -84,5 +72,17 @@ extension Teo {
             case originGroupId = "OriginGroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建源站组
+    @inlinable
+    public func createOriginGroup(_ input: CreateOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOriginGroupResponse > {
+        self.client.execute(action: "CreateOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建源站组
+    @inlinable
+    public func createOriginGroup(_ input: CreateOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOriginGroupResponse {
+        try await self.client.execute(action: "CreateOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取产品的设备列表
-    ///
-    /// 用于查询某个产品下的设备列表
-    @inlinable
-    public func getDeviceList(_ input: GetDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceListResponse > {
-        self.client.execute(action: "GetDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取产品的设备列表
-    ///
-    /// 用于查询某个产品下的设备列表
-    @inlinable
-    public func getDeviceList(_ input: GetDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceListResponse {
-        try await self.client.execute(action: "GetDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDeviceList请求参数结构体
     public struct GetDeviceListRequest: TCRequestModel {
         /// 需要查看设备列表的产品ID, -1代表ProjectId来筛选
@@ -51,7 +35,7 @@ extension Iotexplorer {
         /// 项目ID。产品 ID 为 -1 时，该参数必填
         public let projectId: String?
         
-        public init (productId: String, offset: Int64?, limit: Int64?, firmwareVersion: String?, deviceName: String?, projectId: String?) {
+        public init (productId: String, offset: Int64? = nil, limit: Int64? = nil, firmwareVersion: String? = nil, deviceName: String? = nil, projectId: String? = nil) {
             self.productId = productId
             self.offset = offset
             self.limit = limit
@@ -88,5 +72,21 @@ extension Iotexplorer {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取产品的设备列表
+    ///
+    /// 用于查询某个产品下的设备列表
+    @inlinable
+    public func getDeviceList(_ input: GetDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceListResponse > {
+        self.client.execute(action: "GetDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品的设备列表
+    ///
+    /// 用于查询某个产品下的设备列表
+    @inlinable
+    public func getDeviceList(_ input: GetDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceListResponse {
+        try await self.client.execute(action: "GetDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

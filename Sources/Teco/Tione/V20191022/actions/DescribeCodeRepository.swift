@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tione {
-    /// 查询存储库详情
-    @inlinable
-    public func describeCodeRepository(_ input: DescribeCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodeRepositoryResponse > {
-        self.client.execute(action: "DescribeCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询存储库详情
-    @inlinable
-    public func describeCodeRepository(_ input: DescribeCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodeRepositoryResponse {
-        try await self.client.execute(action: "DescribeCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCodeRepository请求参数结构体
     public struct DescribeCodeRepositoryRequest: TCRequestModel {
         /// 存储库名称
@@ -73,5 +61,17 @@ extension Tione {
             case noSecret = "NoSecret"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询存储库详情
+    @inlinable
+    public func describeCodeRepository(_ input: DescribeCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodeRepositoryResponse > {
+        self.client.execute(action: "DescribeCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询存储库详情
+    @inlinable
+    public func describeCodeRepository(_ input: DescribeCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodeRepositoryResponse {
+        try await self.client.execute(action: "DescribeCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 创建个人用户
-    @inlinable
-    public func createUserPersonal(_ input: CreateUserPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserPersonalResponse > {
-        self.client.execute(action: "CreateUserPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建个人用户
-    @inlinable
-    public func createUserPersonal(_ input: CreateUserPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserPersonalResponse {
-        try await self.client.execute(action: "CreateUserPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUserPersonal请求参数结构体
     public struct CreateUserPersonalRequest: TCRequestModel {
         /// 用户密码，密码必须为8到16位
@@ -49,5 +37,17 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建个人用户
+    @inlinable
+    public func createUserPersonal(_ input: CreateUserPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserPersonalResponse > {
+        self.client.execute(action: "CreateUserPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建个人用户
+    @inlinable
+    public func createUserPersonal(_ input: CreateUserPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserPersonalResponse {
+        try await self.client.execute(action: "CreateUserPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 重颁发证书
-    ///
-    /// 本接口（ReplaceCertificate）用于重颁发证书。已申请的免费证书仅支持 RSA 算法、密钥对参数为2048的证书重颁发，并且目前仅支持1次重颁发。
-    @inlinable
-    public func replaceCertificate(_ input: ReplaceCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceCertificateResponse > {
-        self.client.execute(action: "ReplaceCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重颁发证书
-    ///
-    /// 本接口（ReplaceCertificate）用于重颁发证书。已申请的免费证书仅支持 RSA 算法、密钥对参数为2048的证书重颁发，并且目前仅支持1次重颁发。
-    @inlinable
-    public func replaceCertificate(_ input: ReplaceCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertificateResponse {
-        try await self.client.execute(action: "ReplaceCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReplaceCertificate请求参数结构体
     public struct ReplaceCertificateRequest: TCRequestModel {
         /// 证书 ID。
@@ -51,7 +35,7 @@ extension Ssl {
         /// 重颁发原因。
         public let reason: String?
         
-        public init (certificateId: String, validType: String, csrType: String?, csrContent: String?, csrkeyPassword: String?, reason: String?) {
+        public init (certificateId: String, validType: String, csrType: String? = nil, csrContent: String? = nil, csrkeyPassword: String? = nil, reason: String? = nil) {
             self.certificateId = certificateId
             self.validType = validType
             self.csrType = csrType
@@ -82,5 +66,21 @@ extension Ssl {
             case certificateId = "CertificateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重颁发证书
+    ///
+    /// 本接口（ReplaceCertificate）用于重颁发证书。已申请的免费证书仅支持 RSA 算法、密钥对参数为2048的证书重颁发，并且目前仅支持1次重颁发。
+    @inlinable
+    public func replaceCertificate(_ input: ReplaceCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceCertificateResponse > {
+        self.client.execute(action: "ReplaceCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重颁发证书
+    ///
+    /// 本接口（ReplaceCertificate）用于重颁发证书。已申请的免费证书仅支持 RSA 算法、密钥对参数为2048的证书重颁发，并且目前仅支持1次重颁发。
+    @inlinable
+    public func replaceCertificate(_ input: ReplaceCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertificateResponse {
+        try await self.client.execute(action: "ReplaceCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Mps {
-    /// 查询流实时状态接口
-    ///
-    /// 实时查询流的当前状态
-    @inlinable
-    public func describeStreamLinkFlowRealtimeStatus(_ input: DescribeStreamLinkFlowRealtimeStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkFlowRealtimeStatusResponse > {
-        self.client.execute(action: "DescribeStreamLinkFlowRealtimeStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询流实时状态接口
-    ///
-    /// 实时查询流的当前状态
-    @inlinable
-    public func describeStreamLinkFlowRealtimeStatus(_ input: DescribeStreamLinkFlowRealtimeStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowRealtimeStatusResponse {
-        try await self.client.execute(action: "DescribeStreamLinkFlowRealtimeStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStreamLinkFlowRealtimeStatus请求参数结构体
     public struct DescribeStreamLinkFlowRealtimeStatusRequest: TCRequestModel {
         /// 流ID。
@@ -44,7 +28,7 @@ extension Mps {
         /// 输出id数组，如果输入输出数组都为空，则代表全量查询。
         public let outputIds: [String]?
         
-        public init (flowId: String, inputIds: [String]?, outputIds: [String]?) {
+        public init (flowId: String, inputIds: [String]? = nil, outputIds: [String]? = nil) {
             self.flowId = flowId
             self.inputIds = inputIds
             self.outputIds = outputIds
@@ -63,7 +47,7 @@ extension Mps {
         public let timestamp: Int64
         
         /// 实时数据信息列表。
-        public let datas: [Date]
+        public let datas: [FlowRealtimeStatusItem]
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -73,5 +57,21 @@ extension Mps {
             case datas = "Datas"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询流实时状态接口
+    ///
+    /// 实时查询流的当前状态
+    @inlinable
+    public func describeStreamLinkFlowRealtimeStatus(_ input: DescribeStreamLinkFlowRealtimeStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkFlowRealtimeStatusResponse > {
+        self.client.execute(action: "DescribeStreamLinkFlowRealtimeStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流实时状态接口
+    ///
+    /// 实时查询流的当前状态
+    @inlinable
+    public func describeStreamLinkFlowRealtimeStatus(_ input: DescribeStreamLinkFlowRealtimeStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowRealtimeStatusResponse {
+        try await self.client.execute(action: "DescribeStreamLinkFlowRealtimeStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

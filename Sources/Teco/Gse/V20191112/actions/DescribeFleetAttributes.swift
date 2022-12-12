@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 获取服务器舰队属性
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeFleetAttributes）用于查询服务器舰队属性。
-    @inlinable
-    public func describeFleetAttributes(_ input: DescribeFleetAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFleetAttributesResponse > {
-        self.client.execute(action: "DescribeFleetAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取服务器舰队属性
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeFleetAttributes）用于查询服务器舰队属性。
-    @inlinable
-    public func describeFleetAttributes(_ input: DescribeFleetAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetAttributesResponse {
-        try await self.client.execute(action: "DescribeFleetAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFleetAttributes请求参数结构体
     public struct DescribeFleetAttributesRequest: TCRequestModel {
         /// 服务器舰队 Ids
@@ -44,7 +26,7 @@ extension Gse {
         /// 返回结果偏移，最小值0
         public let offset: UInt64?
         
-        public init (fleetIds: [String]?, limit: UInt64?, offset: UInt64?) {
+        public init (fleetIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.fleetIds = fleetIds
             self.limit = limit
             self.offset = offset
@@ -74,5 +56,23 @@ extension Gse {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取服务器舰队属性
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeFleetAttributes）用于查询服务器舰队属性。
+    @inlinable
+    public func describeFleetAttributes(_ input: DescribeFleetAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFleetAttributesResponse > {
+        self.client.execute(action: "DescribeFleetAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取服务器舰队属性
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeFleetAttributes）用于查询服务器舰队属性。
+    @inlinable
+    public func describeFleetAttributes(_ input: DescribeFleetAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetAttributesResponse {
+        try await self.client.execute(action: "DescribeFleetAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

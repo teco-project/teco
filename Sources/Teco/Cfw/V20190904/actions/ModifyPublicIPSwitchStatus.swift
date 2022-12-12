@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 单个修改互联网边界防火墙开关
-    @inlinable
-    public func modifyPublicIPSwitchStatus(_ input: ModifyPublicIPSwitchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPublicIPSwitchStatusResponse > {
-        self.client.execute(action: "ModifyPublicIPSwitchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 单个修改互联网边界防火墙开关
-    @inlinable
-    public func modifyPublicIPSwitchStatus(_ input: ModifyPublicIPSwitchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublicIPSwitchStatusResponse {
-        try await self.client.execute(action: "ModifyPublicIPSwitchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPublicIPSwitchStatus请求参数结构体
     public struct ModifyPublicIPSwitchStatusRequest: TCRequestModel {
         /// 公网IP
@@ -63,5 +51,17 @@ extension Cfw {
             case returnCode = "ReturnCode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 单个修改互联网边界防火墙开关
+    @inlinable
+    public func modifyPublicIPSwitchStatus(_ input: ModifyPublicIPSwitchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPublicIPSwitchStatusResponse > {
+        self.client.execute(action: "ModifyPublicIPSwitchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 单个修改互联网边界防火墙开关
+    @inlinable
+    public func modifyPublicIPSwitchStatus(_ input: ModifyPublicIPSwitchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublicIPSwitchStatusResponse {
+        try await self.client.execute(action: "ModifyPublicIPSwitchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

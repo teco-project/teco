@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 启动容器部署组
-    @inlinable
-    public func startContainerGroup(_ input: StartContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartContainerGroupResponse > {
-        self.client.execute(action: "StartContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启动容器部署组
-    @inlinable
-    public func startContainerGroup(_ input: StartContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartContainerGroupResponse {
-        try await self.client.execute(action: "StartContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartContainerGroup请求参数结构体
     public struct StartContainerGroupRequest: TCRequestModel {
         /// 部署组ID
@@ -55,5 +43,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启动容器部署组
+    @inlinable
+    public func startContainerGroup(_ input: StartContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartContainerGroupResponse > {
+        self.client.execute(action: "StartContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启动容器部署组
+    @inlinable
+    public func startContainerGroup(_ input: StartContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartContainerGroupResponse {
+        try await self.client.execute(action: "StartContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

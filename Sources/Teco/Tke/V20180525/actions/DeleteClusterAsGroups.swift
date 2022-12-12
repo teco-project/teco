@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 删除集群伸缩组
-    @inlinable
-    public func deleteClusterAsGroups(_ input: DeleteClusterAsGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterAsGroupsResponse > {
-        self.client.execute(action: "DeleteClusterAsGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除集群伸缩组
-    @inlinable
-    public func deleteClusterAsGroups(_ input: DeleteClusterAsGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterAsGroupsResponse {
-        try await self.client.execute(action: "DeleteClusterAsGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteClusterAsGroups请求参数结构体
     public struct DeleteClusterAsGroupsRequest: TCRequestModel {
         /// 集群ID，通过[DescribeClusters](https://cloud.tencent.com/document/api/457/31862)接口获取。
@@ -38,7 +26,7 @@ extension Tke {
         /// 是否保留伸缩组中的节点(默认值： false(不保留))
         public let keepInstance: Bool?
         
-        public init (clusterId: String, autoScalingGroupIds: [String], keepInstance: Bool?) {
+        public init (clusterId: String, autoScalingGroupIds: [String], keepInstance: Bool? = nil) {
             self.clusterId = clusterId
             self.autoScalingGroupIds = autoScalingGroupIds
             self.keepInstance = keepInstance
@@ -59,5 +47,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除集群伸缩组
+    @inlinable
+    public func deleteClusterAsGroups(_ input: DeleteClusterAsGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterAsGroupsResponse > {
+        self.client.execute(action: "DeleteClusterAsGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除集群伸缩组
+    @inlinable
+    public func deleteClusterAsGroups(_ input: DeleteClusterAsGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterAsGroupsResponse {
+        try await self.client.execute(action: "DeleteClusterAsGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

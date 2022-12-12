@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 删除托管集群外网访问端口
-    ///
-    /// 删除托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
-    @inlinable
-    public func deleteClusterEndpointVip(_ input: DeleteClusterEndpointVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterEndpointVipResponse > {
-        self.client.execute(action: "DeleteClusterEndpointVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除托管集群外网访问端口
-    ///
-    /// 删除托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
-    @inlinable
-    public func deleteClusterEndpointVip(_ input: DeleteClusterEndpointVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterEndpointVipResponse {
-        try await self.client.execute(action: "DeleteClusterEndpointVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteClusterEndpointVip请求参数结构体
     public struct DeleteClusterEndpointVipRequest: TCRequestModel {
         /// 集群ID
@@ -53,5 +37,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除托管集群外网访问端口
+    ///
+    /// 删除托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
+    @inlinable
+    public func deleteClusterEndpointVip(_ input: DeleteClusterEndpointVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterEndpointVipResponse > {
+        self.client.execute(action: "DeleteClusterEndpointVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除托管集群外网访问端口
+    ///
+    /// 删除托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
+    @inlinable
+    public func deleteClusterEndpointVip(_ input: DeleteClusterEndpointVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterEndpointVipResponse {
+        try await self.client.execute(action: "DeleteClusterEndpointVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 获取实名核身结果信息增强版
-    ///
-    /// 完成验证后，用BizToken调用本接口获取结果信息，BizToken生成后三天内（3\*24\*3,600秒）可多次拉取。
-    @inlinable
-    public func getDetectInfoEnhanced(_ input: GetDetectInfoEnhancedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDetectInfoEnhancedResponse > {
-        self.client.execute(action: "GetDetectInfoEnhanced", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实名核身结果信息增强版
-    ///
-    /// 完成验证后，用BizToken调用本接口获取结果信息，BizToken生成后三天内（3\*24\*3,600秒）可多次拉取。
-    @inlinable
-    public func getDetectInfoEnhanced(_ input: GetDetectInfoEnhancedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDetectInfoEnhancedResponse {
-        try await self.client.execute(action: "GetDetectInfoEnhanced", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDetectInfoEnhanced请求参数结构体
     public struct GetDetectInfoEnhancedRequest: TCRequestModel {
         /// 人脸核身流程的标识，调用DetectAuth接口时生成。
@@ -57,9 +41,9 @@ extension Faceid {
         public let isEncrypt: Bool?
         
         /// 是否需要对返回中的敏感信息进行加密。仅指定加密算法Algorithm即可，其余字段传入默认值。其中敏感信息包括：Response.Text.IdCard、Response.Text.Name、Response.Text.OcrIdCard、Response.Text.OcrName
-        public let encryption: Encryption
+        public let encryption: Encryption?
         
-        public init (bizToken: String, ruleId: String, infoType: String?, bestFramesCount: UInt64?, isCutIdCardImage: Bool?, isNeedIdCardAvatar: Bool?, isEncrypt: Bool?, encryption: Encryption) {
+        public init (bizToken: String, ruleId: String, infoType: String? = nil, bestFramesCount: UInt64? = nil, isCutIdCardImage: Bool? = nil, isNeedIdCardAvatar: Bool? = nil, isEncrypt: Bool? = nil, encryption: Encryption? = nil) {
             self.bizToken = bizToken
             self.ruleId = ruleId
             self.infoType = infoType
@@ -86,31 +70,31 @@ extension Faceid {
     public struct GetDetectInfoEnhancedResponse: TCResponseModel {
         /// 文本类信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let text: DetectInfoText
+        public let text: DetectInfoText?
         
         /// 身份证照片信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let idCardData: DetectInfoIdCardData
+        public let idCardData: DetectInfoIdCardData?
         
         /// 最佳帧信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let bestFrame: DetectInfoBestFrame
+        public let bestFrame: DetectInfoBestFrame?
         
         /// 视频信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let videoData: DetectInfoVideoData
+        public let videoData: DetectInfoVideoData?
         
         /// 敏感数据加密信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let encryption: Encryption
+        public let encryption: Encryption?
         
         /// 意愿核身相关信息。若未使用意愿核身功能，该字段返回值可以不处理。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let intentionVerifyData: IntentionVerifyData
+        public let intentionVerifyData: IntentionVerifyData?
         
         /// 意愿核身问答模式结果。若未使用该意愿核身功能，该字段返回值可以不处理。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let intentionQuestionResult: IntentionQuestionResult
+        public let intentionQuestionResult: IntentionQuestionResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -125,5 +109,21 @@ extension Faceid {
             case intentionQuestionResult = "IntentionQuestionResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实名核身结果信息增强版
+    ///
+    /// 完成验证后，用BizToken调用本接口获取结果信息，BizToken生成后三天内（3\*24\*3,600秒）可多次拉取。
+    @inlinable
+    public func getDetectInfoEnhanced(_ input: GetDetectInfoEnhancedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDetectInfoEnhancedResponse > {
+        self.client.execute(action: "GetDetectInfoEnhanced", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实名核身结果信息增强版
+    ///
+    /// 完成验证后，用BizToken调用本接口获取结果信息，BizToken生成后三天内（3\*24\*3,600秒）可多次拉取。
+    @inlinable
+    public func getDetectInfoEnhanced(_ input: GetDetectInfoEnhancedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDetectInfoEnhancedResponse {
+        try await self.client.execute(action: "GetDetectInfoEnhanced", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

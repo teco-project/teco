@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 发布RRPC消息
-    @inlinable
-    public func publishRRPCMessage(_ input: PublishRRPCMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishRRPCMessageResponse > {
-        self.client.execute(action: "PublishRRPCMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发布RRPC消息
-    @inlinable
-    public func publishRRPCMessage(_ input: PublishRRPCMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishRRPCMessageResponse {
-        try await self.client.execute(action: "PublishRRPCMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PublishRRPCMessage请求参数结构体
     public struct PublishRRPCMessageRequest: TCRequestModel {
         /// 产品ID
@@ -67,5 +55,17 @@ extension Iotcloud {
             case payloadBase64 = "PayloadBase64"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发布RRPC消息
+    @inlinable
+    public func publishRRPCMessage(_ input: PublishRRPCMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishRRPCMessageResponse > {
+        self.client.execute(action: "PublishRRPCMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发布RRPC消息
+    @inlinable
+    public func publishRRPCMessage(_ input: PublishRRPCMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishRRPCMessageResponse {
+        try await self.client.execute(action: "PublishRRPCMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 智慧薪酬-通过商家或者微信批次号查询批次单
-    ///
-    /// 通过商家批次单号或者微信批次号查询批次单
-    @inlinable
-    public func queryTransferBatch(_ input: QueryTransferBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryTransferBatchResponse > {
-        self.client.execute(action: "QueryTransferBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 智慧薪酬-通过商家或者微信批次号查询批次单
-    ///
-    /// 通过商家批次单号或者微信批次号查询批次单
-    @inlinable
-    public func queryTransferBatch(_ input: QueryTransferBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferBatchResponse {
-        try await self.client.execute(action: "QueryTransferBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryTransferBatch请求参数结构体
     public struct QueryTransferBatchRequest: TCRequestModel {
         /// 商户号。
@@ -78,7 +62,7 @@ extension Cpdp {
         /// 示例值：FAIL
         public let detailStatus: String?
         
-        public init (merchantId: String, needQueryDetail: Bool, merchantBatchNo: String?, batchId: String?, profile: String?, offset: UInt64?, limit: UInt64?, detailStatus: String?) {
+        public init (merchantId: String, needQueryDetail: Bool, merchantBatchNo: String? = nil, batchId: String? = nil, profile: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, detailStatus: String? = nil) {
             self.merchantId = merchantId
             self.needQueryDetail = needQueryDetail
             self.merchantBatchNo = merchantBatchNo
@@ -223,5 +207,21 @@ extension Cpdp {
             case batchRemark = "BatchRemark"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 智慧薪酬-通过商家或者微信批次号查询批次单
+    ///
+    /// 通过商家批次单号或者微信批次号查询批次单
+    @inlinable
+    public func queryTransferBatch(_ input: QueryTransferBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryTransferBatchResponse > {
+        self.client.execute(action: "QueryTransferBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 智慧薪酬-通过商家或者微信批次号查询批次单
+    ///
+    /// 通过商家批次单号或者微信批次号查询批次单
+    @inlinable
+    public func queryTransferBatch(_ input: QueryTransferBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferBatchResponse {
+        try await self.client.execute(action: "QueryTransferBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

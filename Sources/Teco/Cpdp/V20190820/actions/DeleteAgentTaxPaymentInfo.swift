@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 直播平台-删除代理商完税信息
-    @inlinable
-    public func deleteAgentTaxPaymentInfo(_ input: DeleteAgentTaxPaymentInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAgentTaxPaymentInfoResponse > {
-        self.client.execute(action: "DeleteAgentTaxPaymentInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播平台-删除代理商完税信息
-    @inlinable
-    public func deleteAgentTaxPaymentInfo(_ input: DeleteAgentTaxPaymentInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAgentTaxPaymentInfoResponse {
-        try await self.client.execute(action: "DeleteAgentTaxPaymentInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAgentTaxPaymentInfo请求参数结构体
     public struct DeleteAgentTaxPaymentInfoRequest: TCRequestModel {
         /// 批次号
@@ -35,7 +23,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
         
-        public init (batchNum: Int64, profile: String?) {
+        public init (batchNum: Int64, profile: String? = nil) {
             self.batchNum = batchNum
             self.profile = profile
         }
@@ -54,5 +42,17 @@ extension Cpdp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播平台-删除代理商完税信息
+    @inlinable
+    public func deleteAgentTaxPaymentInfo(_ input: DeleteAgentTaxPaymentInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAgentTaxPaymentInfoResponse > {
+        self.client.execute(action: "DeleteAgentTaxPaymentInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-删除代理商完税信息
+    @inlinable
+    public func deleteAgentTaxPaymentInfo(_ input: DeleteAgentTaxPaymentInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAgentTaxPaymentInfoResponse {
+        try await self.client.execute(action: "DeleteAgentTaxPaymentInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

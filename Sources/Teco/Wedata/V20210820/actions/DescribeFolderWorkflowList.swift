@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 拉取文件夹下的工作流【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 拉取文件夹下的工作流
-    @inlinable
-    public func describeFolderWorkflowList(_ input: DescribeFolderWorkflowListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFolderWorkflowListResponse > {
-        self.client.execute(action: "DescribeFolderWorkflowList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取文件夹下的工作流【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 拉取文件夹下的工作流
-    @inlinable
-    public func describeFolderWorkflowList(_ input: DescribeFolderWorkflowListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFolderWorkflowListResponse {
-        try await self.client.execute(action: "DescribeFolderWorkflowList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFolderWorkflowList请求参数结构体
     public struct DescribeFolderWorkflowListRequest: TCRequestModel {
         /// 项目Id
@@ -50,7 +32,7 @@ extension Wedata {
         /// 页大小，默认10
         public let pageSize: Int64?
         
-        public init (projectId: String, parentsFolderId: String, keyWords: String?, pageNumber: Int64?, pageSize: Int64?) {
+        public init (projectId: String, parentsFolderId: String, keyWords: String? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil) {
             self.projectId = projectId
             self.parentsFolderId = parentsFolderId
             self.keyWords = keyWords
@@ -71,7 +53,7 @@ extension Wedata {
     public struct DescribeFolderWorkflowListResponse: TCResponseModel {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: DescribeFolderWorkflowListData
+        public let data: DescribeFolderWorkflowListData?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -80,5 +62,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取文件夹下的工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 拉取文件夹下的工作流
+    @inlinable
+    public func describeFolderWorkflowList(_ input: DescribeFolderWorkflowListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFolderWorkflowListResponse > {
+        self.client.execute(action: "DescribeFolderWorkflowList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取文件夹下的工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 拉取文件夹下的工作流
+    @inlinable
+    public func describeFolderWorkflowList(_ input: DescribeFolderWorkflowListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFolderWorkflowListResponse {
+        try await self.client.execute(action: "DescribeFolderWorkflowList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

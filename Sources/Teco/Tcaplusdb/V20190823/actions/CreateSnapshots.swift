@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 创建表格快照
-    ///
-    /// 构造表格过去时间点的快照
-    @inlinable
-    public func createSnapshots(_ input: CreateSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSnapshotsResponse > {
-        self.client.execute(action: "CreateSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建表格快照
-    ///
-    /// 构造表格过去时间点的快照
-    @inlinable
-    public func createSnapshots(_ input: CreateSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotsResponse {
-        try await self.client.execute(action: "CreateSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSnapshots请求参数结构体
     public struct CreateSnapshotsRequest: TCRequestModel {
         /// 表格所属集群id
@@ -66,5 +50,21 @@ extension Tcaplusdb {
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建表格快照
+    ///
+    /// 构造表格过去时间点的快照
+    @inlinable
+    public func createSnapshots(_ input: CreateSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSnapshotsResponse > {
+        self.client.execute(action: "CreateSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建表格快照
+    ///
+    /// 构造表格过去时间点的快照
+    @inlinable
+    public func createSnapshots(_ input: CreateSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotsResponse {
+        try await self.client.execute(action: "CreateSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

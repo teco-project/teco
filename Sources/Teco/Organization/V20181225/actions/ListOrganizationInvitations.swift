@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 获取邀请信息列表
-    @inlinable
-    public func listOrganizationInvitations(_ input: ListOrganizationInvitationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListOrganizationInvitationsResponse > {
-        self.client.execute(action: "ListOrganizationInvitations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取邀请信息列表
-    @inlinable
-    public func listOrganizationInvitations(_ input: ListOrganizationInvitationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationInvitationsResponse {
-        try await self.client.execute(action: "ListOrganizationInvitations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListOrganizationInvitations请求参数结构体
     public struct ListOrganizationInvitationsRequest: TCRequestModel {
         /// 是否被邀请。1：被邀请，0：发出的邀请
@@ -38,7 +26,7 @@ extension Organization {
         /// 限制数目
         public let limit: UInt64?
         
-        public init (invited: UInt64, offset: UInt64?, limit: UInt64?) {
+        public init (invited: UInt64, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.invited = invited
             self.offset = offset
             self.limit = limit
@@ -67,5 +55,17 @@ extension Organization {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取邀请信息列表
+    @inlinable
+    public func listOrganizationInvitations(_ input: ListOrganizationInvitationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListOrganizationInvitationsResponse > {
+        self.client.execute(action: "ListOrganizationInvitations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取邀请信息列表
+    @inlinable
+    public func listOrganizationInvitations(_ input: ListOrganizationInvitationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationInvitationsResponse {
+        try await self.client.execute(action: "ListOrganizationInvitations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

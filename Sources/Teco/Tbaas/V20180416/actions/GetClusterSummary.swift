@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 获取区块链网络概要
-    @inlinable
-    public func getClusterSummary(_ input: GetClusterSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetClusterSummaryResponse > {
-        self.client.execute(action: "GetClusterSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取区块链网络概要
-    @inlinable
-    public func getClusterSummary(_ input: GetClusterSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterSummaryResponse {
-        try await self.client.execute(action: "GetClusterSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetClusterSummary请求参数结构体
     public struct GetClusterSummaryRequest: TCRequestModel {
         /// 模块名称，固定字段：cluster_mng
@@ -129,5 +117,17 @@ extension Tbaas {
             case clientCertCount = "ClientCertCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取区块链网络概要
+    @inlinable
+    public func getClusterSummary(_ input: GetClusterSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetClusterSummaryResponse > {
+        self.client.execute(action: "GetClusterSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取区块链网络概要
+    @inlinable
+    public func getClusterSummary(_ input: GetClusterSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterSummaryResponse {
+        try await self.client.execute(action: "GetClusterSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

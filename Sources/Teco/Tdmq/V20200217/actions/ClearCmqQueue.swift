@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 清空cmq消息队列中的消息
-    @inlinable
-    public func clearCmqQueue(_ input: ClearCmqQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClearCmqQueueResponse > {
-        self.client.execute(action: "ClearCmqQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 清空cmq消息队列中的消息
-    @inlinable
-    public func clearCmqQueue(_ input: ClearCmqQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearCmqQueueResponse {
-        try await self.client.execute(action: "ClearCmqQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ClearCmqQueue请求参数结构体
     public struct ClearCmqQueueRequest: TCRequestModel {
         /// 队列名字，在单个地域同一帐号下唯一。队列名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
@@ -49,5 +37,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 清空cmq消息队列中的消息
+    @inlinable
+    public func clearCmqQueue(_ input: ClearCmqQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClearCmqQueueResponse > {
+        self.client.execute(action: "ClearCmqQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 清空cmq消息队列中的消息
+    @inlinable
+    public func clearCmqQueue(_ input: ClearCmqQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearCmqQueueResponse {
+        try await self.client.execute(action: "ClearCmqQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

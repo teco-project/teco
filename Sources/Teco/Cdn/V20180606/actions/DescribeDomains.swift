@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 查询域名基本信息
-    ///
-    /// DescribeDomains 用于查询内容分发网络加速域名（含境内、境外）基本配置信息，包括项目ID、服务状态，业务类型、创建时间、更新时间等信息。
-    @inlinable
-    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainsResponse > {
-        self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询域名基本信息
-    ///
-    /// DescribeDomains 用于查询内容分发网络加速域名（含境内、境外）基本配置信息，包括项目ID、服务状态，业务类型、创建时间、更新时间等信息。
-    @inlinable
-    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsResponse {
-        try await self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomains请求参数结构体
     public struct DescribeDomainsRequest: TCRequestModel {
         /// 分页查询偏移量，默认为 0
@@ -42,7 +26,7 @@ extension Cdn {
         /// 查询条件过滤器，复杂类型
         public let filters: [DomainFilter]?
         
-        public init (offset: Int64?, limit: Int64?, filters: [DomainFilter]?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, filters: [DomainFilter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -72,5 +56,21 @@ extension Cdn {
             case totalNumber = "TotalNumber"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询域名基本信息
+    ///
+    /// DescribeDomains 用于查询内容分发网络加速域名（含境内、境外）基本配置信息，包括项目ID、服务状态，业务类型、创建时间、更新时间等信息。
+    @inlinable
+    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainsResponse > {
+        self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询域名基本信息
+    ///
+    /// DescribeDomains 用于查询内容分发网络加速域名（含境内、境外）基本配置信息，包括项目ID、服务状态，业务类型、创建时间、更新时间等信息。
+    @inlinable
+    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsResponse {
+        try await self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

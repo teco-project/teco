@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 获取企业组织信息
-    @inlinable
-    public func describeOrganization(_ input: DescribeOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationResponse > {
-        self.client.execute(action: "DescribeOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取企业组织信息
-    @inlinable
-    public func describeOrganization(_ input: DescribeOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationResponse {
-        try await self.client.execute(action: "DescribeOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOrganization请求参数结构体
     public struct DescribeOrganizationRequest: TCRequestModel {
         /// 国际站：en，国内站：zh
@@ -35,7 +23,7 @@ extension Organization {
         /// 可信服务产品简称。查询是否该可信服务管理员时必须指定
         public let product: String?
         
-        public init (lang: String?, product: String?) {
+        public init (lang: String? = nil, product: String? = nil) {
             self.lang = lang
             self.product = product
         }
@@ -134,5 +122,17 @@ extension Organization {
             case isAuthManager = "IsAuthManager"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取企业组织信息
+    @inlinable
+    public func describeOrganization(_ input: DescribeOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationResponse > {
+        self.client.execute(action: "DescribeOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取企业组织信息
+    @inlinable
+    public func describeOrganization(_ input: DescribeOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationResponse {
+        try await self.client.execute(action: "DescribeOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

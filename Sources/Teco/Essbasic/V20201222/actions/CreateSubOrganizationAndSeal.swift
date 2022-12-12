@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 注册实名子机构并生成印章
-    ///
-    /// 此接口（CreateSubOrganizationAndSeal）用于注册子机构，同时系统将为该子企业自动生成一个默认电子印章图片。
-    /// 注意：
-    /// 1. 在后续的签署流程中，若未指定签署使用的印章ID，则默认调用自动生成的印章图片进行签署。
-    /// 2. 此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
-    @inlinable
-    public func createSubOrganizationAndSeal(_ input: CreateSubOrganizationAndSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubOrganizationAndSealResponse > {
-        self.client.execute(action: "CreateSubOrganizationAndSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 注册实名子机构并生成印章
-    ///
-    /// 此接口（CreateSubOrganizationAndSeal）用于注册子机构，同时系统将为该子企业自动生成一个默认电子印章图片。
-    /// 注意：
-    /// 1. 在后续的签署流程中，若未指定签署使用的印章ID，则默认调用自动生成的印章图片进行签署。
-    /// 2. 此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
-    @inlinable
-    public func createSubOrganizationAndSeal(_ input: CreateSubOrganizationAndSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubOrganizationAndSealResponse {
-        try await self.client.execute(action: "CreateSubOrganizationAndSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSubOrganizationAndSeal请求参数结构体
     public struct CreateSubOrganizationAndSealRequest: TCRequestModel {
         /// 调用方信息
@@ -103,7 +81,7 @@ extension Essbasic {
         public let verifyServerIp: String?
         
         /// 企业联系地址
-        public let contactAddress: Address
+        public let contactAddress: Address?
         
         /// 电子印章名称
         public let sealName: String?
@@ -126,7 +104,7 @@ extension Essbasic {
         /// 是否使用OpenId作为数据主键，如果为true，请确保OpenId在当前应用号唯一
         public let useOpenId: Bool?
         
-        public init (caller: Caller, name: String, idCardType: String, idCardNumber: String, organizationType: String, legalName: String, legalIdCardType: String, legalIdCardNumber: String, verifyClientIp: String, email: String?, idCardFileType: String?, bizLicenseFile: String?, bizLicenseFileName: String?, legalMobile: String?, contactName: String?, verifyServerIp: String?, contactAddress: Address, sealName: String?, sealType: String?, sealHorizontalText: String?, openId: String?, useOpenId: Bool?) {
+        public init (caller: Caller, name: String, idCardType: String, idCardNumber: String, organizationType: String, legalName: String, legalIdCardType: String, legalIdCardNumber: String, verifyClientIp: String, email: String? = nil, idCardFileType: String? = nil, bizLicenseFile: String? = nil, bizLicenseFileName: String? = nil, legalMobile: String? = nil, contactName: String? = nil, verifyServerIp: String? = nil, contactAddress: Address? = nil, sealName: String? = nil, sealType: String? = nil, sealHorizontalText: String? = nil, openId: String? = nil, useOpenId: Bool? = nil) {
             self.caller = caller
             self.name = name
             self.idCardType = idCardType
@@ -193,5 +171,27 @@ extension Essbasic {
             case sealId = "SealId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 注册实名子机构并生成印章
+    ///
+    /// 此接口（CreateSubOrganizationAndSeal）用于注册子机构，同时系统将为该子企业自动生成一个默认电子印章图片。
+    /// 注意：
+    /// 1. 在后续的签署流程中，若未指定签署使用的印章ID，则默认调用自动生成的印章图片进行签署。
+    /// 2. 此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
+    @inlinable
+    public func createSubOrganizationAndSeal(_ input: CreateSubOrganizationAndSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubOrganizationAndSealResponse > {
+        self.client.execute(action: "CreateSubOrganizationAndSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 注册实名子机构并生成印章
+    ///
+    /// 此接口（CreateSubOrganizationAndSeal）用于注册子机构，同时系统将为该子企业自动生成一个默认电子印章图片。
+    /// 注意：
+    /// 1. 在后续的签署流程中，若未指定签署使用的印章ID，则默认调用自动生成的印章图片进行签署。
+    /// 2. 此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
+    @inlinable
+    public func createSubOrganizationAndSeal(_ input: CreateSubOrganizationAndSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubOrganizationAndSealResponse {
+        try await self.client.execute(action: "CreateSubOrganizationAndSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

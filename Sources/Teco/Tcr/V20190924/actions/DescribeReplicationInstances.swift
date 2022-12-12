@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询从实例列表
-    @inlinable
-    public func describeReplicationInstances(_ input: DescribeReplicationInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReplicationInstancesResponse > {
-        self.client.execute(action: "DescribeReplicationInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询从实例列表
-    @inlinable
-    public func describeReplicationInstances(_ input: DescribeReplicationInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstancesResponse {
-        try await self.client.execute(action: "DescribeReplicationInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReplicationInstances请求参数结构体
     public struct DescribeReplicationInstancesRequest: TCRequestModel {
         /// 实例Id
@@ -38,7 +26,7 @@ extension Tcr {
         /// 最大输出条数，默认20，最大为100
         public let limit: Int64?
         
-        public init (registryId: String, offset: Int64?, limit: Int64?) {
+        public init (registryId: String, offset: Int64? = nil, limit: Int64? = nil) {
             self.registryId = registryId
             self.offset = offset
             self.limit = limit
@@ -68,5 +56,17 @@ extension Tcr {
             case replicationRegistries = "ReplicationRegistries"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询从实例列表
+    @inlinable
+    public func describeReplicationInstances(_ input: DescribeReplicationInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReplicationInstancesResponse > {
+        self.client.execute(action: "DescribeReplicationInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询从实例列表
+    @inlinable
+    public func describeReplicationInstances(_ input: DescribeReplicationInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstancesResponse {
+        try await self.client.execute(action: "DescribeReplicationInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 删除位置空间
-    @inlinable
-    public func deletePositionSpace(_ input: DeletePositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePositionSpaceResponse > {
-        self.client.execute(action: "DeletePositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除位置空间
-    @inlinable
-    public func deletePositionSpace(_ input: DeletePositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePositionSpaceResponse {
-        try await self.client.execute(action: "DeletePositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePositionSpace请求参数结构体
     public struct DeletePositionSpaceRequest: TCRequestModel {
         /// 位置空间Id
@@ -49,5 +37,17 @@ extension Iotexplorer {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除位置空间
+    @inlinable
+    public func deletePositionSpace(_ input: DeletePositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePositionSpaceResponse > {
+        self.client.execute(action: "DeletePositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除位置空间
+    @inlinable
+    public func deletePositionSpace(_ input: DeletePositionSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePositionSpaceResponse {
+        try await self.client.execute(action: "DeletePositionSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

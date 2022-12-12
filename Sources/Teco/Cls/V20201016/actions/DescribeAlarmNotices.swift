@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 获取通知渠道组列表
-    ///
-    /// 该接口用于获取通知渠道组列表
-    @inlinable
-    public func describeAlarmNotices(_ input: DescribeAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmNoticesResponse > {
-        self.client.execute(action: "DescribeAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取通知渠道组列表
-    ///
-    /// 该接口用于获取通知渠道组列表
-    @inlinable
-    public func describeAlarmNotices(_ input: DescribeAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticesResponse {
-        try await self.client.execute(action: "DescribeAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAlarmNotices请求参数结构体
     public struct DescribeAlarmNoticesRequest: TCRequestModel {
         /// <li> name
@@ -58,7 +42,7 @@ extension Cls {
         /// 分页单页限制数目，默认值为20，最大值100。
         public let limit: Int64?
         
-        public init (filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -88,5 +72,21 @@ extension Cls {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取通知渠道组列表
+    ///
+    /// 该接口用于获取通知渠道组列表
+    @inlinable
+    public func describeAlarmNotices(_ input: DescribeAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAlarmNoticesResponse > {
+        self.client.execute(action: "DescribeAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取通知渠道组列表
+    ///
+    /// 该接口用于获取通知渠道组列表
+    @inlinable
+    public func describeAlarmNotices(_ input: DescribeAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticesResponse {
+        try await self.client.execute(action: "DescribeAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 查询分片信息
-    ///
-    /// 本接口（DescribeDCDBShards）用于查询云数据库实例的分片信息。
-    @inlinable
-    public func describeDCDBShards(_ input: DescribeDCDBShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDCDBShardsResponse > {
-        self.client.execute(action: "DescribeDCDBShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询分片信息
-    ///
-    /// 本接口（DescribeDCDBShards）用于查询云数据库实例的分片信息。
-    @inlinable
-    public func describeDCDBShards(_ input: DescribeDCDBShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBShardsResponse {
-        try await self.client.execute(action: "DescribeDCDBShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDCDBShards请求参数结构体
     public struct DescribeDCDBShardsRequest: TCRequestModel {
         /// 实例ID，形如：dcdbt-ow728lmc。
@@ -51,7 +35,7 @@ extension Dcdb {
         /// 排序类型， desc 或者 asc
         public let orderByType: String?
         
-        public init (instanceId: String, shardInstanceIds: [String]?, offset: Int64?, limit: Int64?, orderBy: String?, orderByType: String?) {
+        public init (instanceId: String, shardInstanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.instanceId = instanceId
             self.shardInstanceIds = shardInstanceIds
             self.offset = offset
@@ -91,5 +75,21 @@ extension Dcdb {
             case dcnFlag = "DcnFlag"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询分片信息
+    ///
+    /// 本接口（DescribeDCDBShards）用于查询云数据库实例的分片信息。
+    @inlinable
+    public func describeDCDBShards(_ input: DescribeDCDBShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDCDBShardsResponse > {
+        self.client.execute(action: "DescribeDCDBShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询分片信息
+    ///
+    /// 本接口（DescribeDCDBShards）用于查询云数据库实例的分片信息。
+    @inlinable
+    public func describeDCDBShards(_ input: DescribeDCDBShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBShardsResponse {
+        try await self.client.execute(action: "DescribeDCDBShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

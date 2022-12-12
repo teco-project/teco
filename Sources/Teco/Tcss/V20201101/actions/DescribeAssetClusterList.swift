@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询集群列表
-    @inlinable
-    public func describeAssetClusterList(_ input: DescribeAssetClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetClusterListResponse > {
-        self.client.execute(action: "DescribeAssetClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群列表
-    @inlinable
-    public func describeAssetClusterList(_ input: DescribeAssetClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetClusterListResponse {
-        try await self.client.execute(action: "DescribeAssetClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetClusterList请求参数结构体
     public struct DescribeAssetClusterListRequest: TCRequestModel {
         /// 过滤条件。
@@ -47,7 +35,7 @@ extension Tcss {
         /// 排序字段。
         public let by: String?
         
-        public init (filters: [RunTimeFilters]?, limit: UInt64?, offset: UInt64?, order: String?, by: String?) {
+        public init (filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -80,5 +68,17 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群列表
+    @inlinable
+    public func describeAssetClusterList(_ input: DescribeAssetClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetClusterListResponse > {
+        self.client.execute(action: "DescribeAssetClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群列表
+    @inlinable
+    public func describeAssetClusterList(_ input: DescribeAssetClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetClusterListResponse {
+        try await self.client.execute(action: "DescribeAssetClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

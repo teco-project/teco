@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取阻断地域
-    @inlinable
-    public func describeBanRegions(_ input: DescribeBanRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBanRegionsResponse > {
-        self.client.execute(action: "DescribeBanRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取阻断地域
-    @inlinable
-    public func describeBanRegions(_ input: DescribeBanRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanRegionsResponse {
-        try await self.client.execute(action: "DescribeBanRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBanRegions请求参数结构体
     public struct DescribeBanRegionsRequest: TCRequestModel {
         /// 阻断模式，STANDARD_MODE：标准阻断，DEEP_MODE：深度阻断
@@ -53,5 +41,17 @@ extension Cwp {
             case regionSet = "RegionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取阻断地域
+    @inlinable
+    public func describeBanRegions(_ input: DescribeBanRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBanRegionsResponse > {
+        self.client.execute(action: "DescribeBanRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取阻断地域
+    @inlinable
+    public func describeBanRegions(_ input: DescribeBanRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanRegionsResponse {
+        try await self.client.execute(action: "DescribeBanRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 创建分类
-    ///
-    /// 新增分类，用于管理素材。分类层数不能超过20。
-    @inlinable
-    public func createClass(_ input: CreateClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClassResponse > {
-        self.client.execute(action: "CreateClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建分类
-    ///
-    /// 新增分类，用于管理素材。分类层数不能超过20。
-    @inlinable
-    public func createClass(_ input: CreateClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClassResponse {
-        try await self.client.execute(action: "CreateClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateClass请求参数结构体
     public struct CreateClassRequest: TCRequestModel {
         /// 平台名称，指定访问的平台。
@@ -45,7 +29,7 @@ extension Cme {
         /// 操作者。填写用户的 Id，用于标识调用者及校验分类创建权限。
         public let `operator`: String?
         
-        public init (platform: String, owner: Entity, classPath: String, `operator`: String?) {
+        public init (platform: String, owner: Entity, classPath: String, `operator`: String? = nil) {
             self.platform = platform
             self.owner = owner
             self.classPath = classPath
@@ -68,5 +52,21 @@ extension Cme {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建分类
+    ///
+    /// 新增分类，用于管理素材。分类层数不能超过20。
+    @inlinable
+    public func createClass(_ input: CreateClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClassResponse > {
+        self.client.execute(action: "CreateClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建分类
+    ///
+    /// 新增分类，用于管理素材。分类层数不能超过20。
+    @inlinable
+    public func createClass(_ input: CreateClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClassResponse {
+        try await self.client.execute(action: "CreateClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

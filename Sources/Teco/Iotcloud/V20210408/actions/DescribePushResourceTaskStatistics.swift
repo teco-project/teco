@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 查询推送资源任务统计信息
-    @inlinable
-    public func describePushResourceTaskStatistics(_ input: DescribePushResourceTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePushResourceTaskStatisticsResponse > {
-        self.client.execute(action: "DescribePushResourceTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询推送资源任务统计信息
-    @inlinable
-    public func describePushResourceTaskStatistics(_ input: DescribePushResourceTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushResourceTaskStatisticsResponse {
-        try await self.client.execute(action: "DescribePushResourceTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePushResourceTaskStatistics请求参数结构体
     public struct DescribePushResourceTaskStatisticsRequest: TCRequestModel {
         /// 产品ID
@@ -69,5 +57,17 @@ extension Iotcloud {
             case upgradingTotal = "UpgradingTotal"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询推送资源任务统计信息
+    @inlinable
+    public func describePushResourceTaskStatistics(_ input: DescribePushResourceTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePushResourceTaskStatisticsResponse > {
+        self.client.execute(action: "DescribePushResourceTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询推送资源任务统计信息
+    @inlinable
+    public func describePushResourceTaskStatistics(_ input: DescribePushResourceTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushResourceTaskStatisticsResponse {
+        try await self.client.execute(action: "DescribePushResourceTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

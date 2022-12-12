@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 启用合约
-    @inlinable
-    public func enableHash(_ input: EnableHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableHashResponse > {
-        self.client.execute(action: "EnableHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启用合约
-    @inlinable
-    public func enableHash(_ input: EnableHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableHashResponse {
-        try await self.client.execute(action: "EnableHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableHash请求参数结构体
     public struct EnableHashRequest: TCRequestModel {
         /// 合约CNS地址
@@ -49,5 +37,17 @@ extension Tdid {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启用合约
+    @inlinable
+    public func enableHash(_ input: EnableHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableHashResponse > {
+        self.client.execute(action: "EnableHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启用合约
+    @inlinable
+    public func enableHash(_ input: EnableHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableHashResponse {
+        try await self.client.execute(action: "EnableHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

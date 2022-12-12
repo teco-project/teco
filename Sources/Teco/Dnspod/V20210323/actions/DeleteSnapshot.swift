@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 删除快照
-    @inlinable
-    public func deleteSnapshot(_ input: DeleteSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotResponse > {
-        self.client.execute(action: "DeleteSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除快照
-    @inlinable
-    public func deleteSnapshot(_ input: DeleteSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotResponse {
-        try await self.client.execute(action: "DeleteSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSnapshot请求参数结构体
     public struct DeleteSnapshotRequest: TCRequestModel {
         /// 域名
@@ -38,7 +26,7 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
         public let domainId: UInt64?
         
-        public init (domain: String, snapshotId: String, domainId: UInt64?) {
+        public init (domain: String, snapshotId: String, domainId: UInt64? = nil) {
             self.domain = domain
             self.snapshotId = snapshotId
             self.domainId = domainId
@@ -59,5 +47,17 @@ extension Dnspod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除快照
+    @inlinable
+    public func deleteSnapshot(_ input: DeleteSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotResponse > {
+        self.client.execute(action: "DeleteSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除快照
+    @inlinable
+    public func deleteSnapshot(_ input: DeleteSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotResponse {
+        try await self.client.execute(action: "DeleteSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

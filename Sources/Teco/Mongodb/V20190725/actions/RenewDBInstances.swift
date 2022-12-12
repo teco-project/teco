@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 续费云数据库实例
-    ///
-    /// 本接口(RenewDBInstance)用于续费云数据库实例，仅支持付费模式为包年包月的实例。按量计费实例不需要续费。
-    @inlinable
-    public func renewDBInstances(_ input: RenewDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewDBInstancesResponse > {
-        self.client.execute(action: "RenewDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费云数据库实例
-    ///
-    /// 本接口(RenewDBInstance)用于续费云数据库实例，仅支持付费模式为包年包月的实例。按量计费实例不需要续费。
-    @inlinable
-    public func renewDBInstances(_ input: RenewDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstancesResponse {
-        try await self.client.execute(action: "RenewDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RenewDBInstances请求参数结构体
     public struct RenewDBInstancesRequest: TCRequestModel {
         /// 一个或多个待操作的实例ID。可通过DescribeInstances接口返回值中的InstanceId获取。每次请求批量实例的上限为100。
@@ -58,5 +42,21 @@ extension Mongodb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费云数据库实例
+    ///
+    /// 本接口(RenewDBInstance)用于续费云数据库实例，仅支持付费模式为包年包月的实例。按量计费实例不需要续费。
+    @inlinable
+    public func renewDBInstances(_ input: RenewDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewDBInstancesResponse > {
+        self.client.execute(action: "RenewDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费云数据库实例
+    ///
+    /// 本接口(RenewDBInstance)用于续费云数据库实例，仅支持付费模式为包年包月的实例。按量计费实例不需要续费。
+    @inlinable
+    public func renewDBInstances(_ input: RenewDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstancesResponse {
+        try await self.client.execute(action: "RenewDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

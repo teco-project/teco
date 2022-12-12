@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 删除表格组
-    @inlinable
-    public func deleteTableGroup(_ input: DeleteTableGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTableGroupResponse > {
-        self.client.execute(action: "DeleteTableGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除表格组
-    @inlinable
-    public func deleteTableGroup(_ input: DeleteTableGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableGroupResponse {
-        try await self.client.execute(action: "DeleteTableGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTableGroup请求参数结构体
     public struct DeleteTableGroupRequest: TCRequestModel {
         /// 表格组所属的集群ID
@@ -58,5 +46,17 @@ extension Tcaplusdb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除表格组
+    @inlinable
+    public func deleteTableGroup(_ input: DeleteTableGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTableGroupResponse > {
+        self.client.execute(action: "DeleteTableGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除表格组
+    @inlinable
+    public func deleteTableGroup(_ input: DeleteTableGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableGroupResponse {
+        try await self.client.execute(action: "DeleteTableGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

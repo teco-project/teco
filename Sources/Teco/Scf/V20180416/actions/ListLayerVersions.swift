@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 获取层版本列表
-    ///
-    /// 返回指定层的全部版本的信息
-    @inlinable
-    public func listLayerVersions(_ input: ListLayerVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListLayerVersionsResponse > {
-        self.client.execute(action: "ListLayerVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取层版本列表
-    ///
-    /// 返回指定层的全部版本的信息
-    @inlinable
-    public func listLayerVersions(_ input: ListLayerVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLayerVersionsResponse {
-        try await self.client.execute(action: "ListLayerVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListLayerVersions请求参数结构体
     public struct ListLayerVersionsRequest: TCRequestModel {
         /// 层名称
@@ -39,7 +23,7 @@ extension Scf {
         /// 适配的运行时
         public let compatibleRuntime: [String]?
         
-        public init (layerName: String, compatibleRuntime: [String]?) {
+        public init (layerName: String, compatibleRuntime: [String]? = nil) {
             self.layerName = layerName
             self.compatibleRuntime = compatibleRuntime
         }
@@ -62,5 +46,21 @@ extension Scf {
             case layerVersions = "LayerVersions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取层版本列表
+    ///
+    /// 返回指定层的全部版本的信息
+    @inlinable
+    public func listLayerVersions(_ input: ListLayerVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListLayerVersionsResponse > {
+        self.client.execute(action: "ListLayerVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取层版本列表
+    ///
+    /// 返回指定层的全部版本的信息
+    @inlinable
+    public func listLayerVersions(_ input: ListLayerVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLayerVersionsResponse {
+        try await self.client.execute(action: "ListLayerVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

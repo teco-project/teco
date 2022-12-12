@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 启动同步任务
-    @inlinable
-    public func startSyncJob(_ input: StartSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartSyncJobResponse > {
-        self.client.execute(action: "StartSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启动同步任务
-    @inlinable
-    public func startSyncJob(_ input: StartSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartSyncJobResponse {
-        try await self.client.execute(action: "StartSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartSyncJob请求参数结构体
     public struct StartSyncJobRequest: TCRequestModel {
         /// 同步任务id
         public let jobId: String?
         
-        public init (jobId: String?) {
+        public init (jobId: String? = nil) {
             self.jobId = jobId
         }
         
@@ -49,5 +37,17 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启动同步任务
+    @inlinable
+    public func startSyncJob(_ input: StartSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartSyncJobResponse > {
+        self.client.execute(action: "StartSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启动同步任务
+    @inlinable
+    public func startSyncJob(_ input: StartSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartSyncJobResponse {
+        try await self.client.execute(action: "StartSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

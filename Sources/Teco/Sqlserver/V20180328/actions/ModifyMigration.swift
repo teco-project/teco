@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 修改迁移任务
-    ///
-    /// 本接口（ModifyMigration）可以修改已有的迁移任务信息
-    @inlinable
-    public func modifyMigration(_ input: ModifyMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrationResponse > {
-        self.client.execute(action: "ModifyMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改迁移任务
-    ///
-    /// 本接口（ModifyMigration）可以修改已有的迁移任务信息
-    @inlinable
-    public func modifyMigration(_ input: ModifyMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationResponse {
-        try await self.client.execute(action: "ModifyMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMigration请求参数结构体
     public struct ModifyMigrationRequest: TCRequestModel {
         /// 迁移任务ID
@@ -46,15 +30,15 @@ extension Sqlserver {
         public let sourceType: UInt64?
         
         /// 迁移源，若不填则不修改
-        public let source: MigrateSource
+        public let source: MigrateSource?
         
         /// 迁移目标，若不填则不修改
-        public let target: MigrateTarget
+        public let target: MigrateTarget?
         
         /// 迁移DB对象 ，离线迁移（SourceType=4或SourceType=5）不使用，若不填则不修改
         public let migrateDBSet: [MigrateDB]?
         
-        public init (migrateId: UInt64, migrateName: String?, migrateType: UInt64?, sourceType: UInt64?, source: MigrateSource, target: MigrateTarget, migrateDBSet: [MigrateDB]?) {
+        public init (migrateId: UInt64, migrateName: String? = nil, migrateType: UInt64? = nil, sourceType: UInt64? = nil, source: MigrateSource? = nil, target: MigrateTarget? = nil, migrateDBSet: [MigrateDB]? = nil) {
             self.migrateId = migrateId
             self.migrateName = migrateName
             self.migrateType = migrateType
@@ -87,5 +71,21 @@ extension Sqlserver {
             case migrateId = "MigrateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改迁移任务
+    ///
+    /// 本接口（ModifyMigration）可以修改已有的迁移任务信息
+    @inlinable
+    public func modifyMigration(_ input: ModifyMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrationResponse > {
+        self.client.execute(action: "ModifyMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改迁移任务
+    ///
+    /// 本接口（ModifyMigration）可以修改已有的迁移任务信息
+    @inlinable
+    public func modifyMigration(_ input: ModifyMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationResponse {
+        try await self.client.execute(action: "ModifyMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

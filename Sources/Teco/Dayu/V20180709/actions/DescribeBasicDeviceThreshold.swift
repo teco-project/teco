@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取基础防护黑洞阈值
-    @inlinable
-    public func describeBasicDeviceThreshold(_ input: DescribeBasicDeviceThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicDeviceThresholdResponse > {
-        self.client.execute(action: "DescribeBasicDeviceThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取基础防护黑洞阈值
-    @inlinable
-    public func describeBasicDeviceThreshold(_ input: DescribeBasicDeviceThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceThresholdResponse {
-        try await self.client.execute(action: "DescribeBasicDeviceThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBasicDeviceThreshold请求参数结构体
     public struct DescribeBasicDeviceThresholdRequest: TCRequestModel {
         /// 查询的IP地址，取值如：1.1.1.1
@@ -50,7 +38,7 @@ extension Dayu {
         /// 可选，运营商线路（如果查询的设备类型是NAT服务器，需要传此参数为5）
         public let basicIspCode: UInt64?
         
-        public init (basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicCheckFlag: UInt64, basicIpInstance: String?, basicIspCode: UInt64?) {
+        public init (basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicCheckFlag: UInt64, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil) {
             self.basicIp = basicIp
             self.basicRegion = basicRegion
             self.basicBizType = basicBizType
@@ -83,5 +71,17 @@ extension Dayu {
             case threshold = "Threshold"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取基础防护黑洞阈值
+    @inlinable
+    public func describeBasicDeviceThreshold(_ input: DescribeBasicDeviceThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBasicDeviceThresholdResponse > {
+        self.client.execute(action: "DescribeBasicDeviceThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取基础防护黑洞阈值
+    @inlinable
+    public func describeBasicDeviceThreshold(_ input: DescribeBasicDeviceThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceThresholdResponse {
+        try await self.client.execute(action: "DescribeBasicDeviceThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

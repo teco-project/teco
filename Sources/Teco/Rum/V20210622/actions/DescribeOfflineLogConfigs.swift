@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取设置的离线日志监听配置
-    ///
-    /// 获取设置的离线日志监听配置 - 返回设置的用户唯一标识
-    @inlinable
-    public func describeOfflineLogConfigs(_ input: DescribeOfflineLogConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfflineLogConfigsResponse > {
-        self.client.execute(action: "DescribeOfflineLogConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设置的离线日志监听配置
-    ///
-    /// 获取设置的离线日志监听配置 - 返回设置的用户唯一标识
-    @inlinable
-    public func describeOfflineLogConfigs(_ input: DescribeOfflineLogConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogConfigsResponse {
-        try await self.client.execute(action: "DescribeOfflineLogConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOfflineLogConfigs请求参数结构体
     public struct DescribeOfflineLogConfigsRequest: TCRequestModel {
         /// 项目唯一上报 key
@@ -61,5 +45,21 @@ extension Rum {
             case uniqueIDSet = "UniqueIDSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设置的离线日志监听配置
+    ///
+    /// 获取设置的离线日志监听配置 - 返回设置的用户唯一标识
+    @inlinable
+    public func describeOfflineLogConfigs(_ input: DescribeOfflineLogConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfflineLogConfigsResponse > {
+        self.client.execute(action: "DescribeOfflineLogConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设置的离线日志监听配置
+    ///
+    /// 获取设置的离线日志监听配置 - 返回设置的用户唯一标识
+    @inlinable
+    public func describeOfflineLogConfigs(_ input: DescribeOfflineLogConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogConfigsResponse {
+        try await self.client.execute(action: "DescribeOfflineLogConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

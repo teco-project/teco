@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 开通实例外网访问
-    ///
-    /// 本接口(OpenWanService)用于开通实例外网访问。
-    /// 注意，实例开通外网访问之前，需要先将实例进行 [实例初始化](https://cloud.tencent.com/document/api/236/15873) 操作。
-    @inlinable
-    public func openWanService(_ input: OpenWanServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenWanServiceResponse > {
-        self.client.execute(action: "OpenWanService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开通实例外网访问
-    ///
-    /// 本接口(OpenWanService)用于开通实例外网访问。
-    /// 注意，实例开通外网访问之前，需要先将实例进行 [实例初始化](https://cloud.tencent.com/document/api/236/15873) 操作。
-    @inlinable
-    public func openWanService(_ input: OpenWanServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenWanServiceResponse {
-        try await self.client.execute(action: "OpenWanService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OpenWanService请求参数结构体
     public struct OpenWanServiceRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
@@ -59,5 +41,23 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开通实例外网访问
+    ///
+    /// 本接口(OpenWanService)用于开通实例外网访问。
+    /// 注意，实例开通外网访问之前，需要先将实例进行 [实例初始化](https://cloud.tencent.com/document/api/236/15873) 操作。
+    @inlinable
+    public func openWanService(_ input: OpenWanServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenWanServiceResponse > {
+        self.client.execute(action: "OpenWanService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开通实例外网访问
+    ///
+    /// 本接口(OpenWanService)用于开通实例外网访问。
+    /// 注意，实例开通外网访问之前，需要先将实例进行 [实例初始化](https://cloud.tencent.com/document/api/236/15873) 操作。
+    @inlinable
+    public func openWanService(_ input: OpenWanServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenWanServiceResponse {
+        try await self.client.execute(action: "OpenWanService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

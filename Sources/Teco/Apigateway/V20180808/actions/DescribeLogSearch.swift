@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Apigateway {
-    /// 日志搜索服务
-    ///
-    /// 本接口DescribeLogSearch用于搜索日志
-    @inlinable
-    public func describeLogSearch(_ input: DescribeLogSearchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogSearchResponse > {
-        self.client.execute(action: "DescribeLogSearch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 日志搜索服务
-    ///
-    /// 本接口DescribeLogSearch用于搜索日志
-    @inlinable
-    public func describeLogSearch(_ input: DescribeLogSearchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSearchResponse {
-        try await self.client.execute(action: "DescribeLogSearch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLogSearch请求参数结构体
     public struct DescribeLogSearchRequest: TCRequestModel {
         /// 日志开始时间
@@ -73,7 +57,7 @@ extension Apigateway {
         /// “:”表示包含，“!=”表示不等于，字段含义见输出参数的LogSet说明
         public let logQuerys: [LogQuery]?
         
-        public init (startTime: Date, endTime: Date, serviceId: String, filters: [Filter]?, limit: UInt64?, conText: String?, sort: String?, query: String?, logQuerys: [LogQuery]?) {
+        public init (startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, logQuerys: [LogQuery]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.serviceId = serviceId
@@ -144,5 +128,21 @@ extension Apigateway {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 日志搜索服务
+    ///
+    /// 本接口DescribeLogSearch用于搜索日志
+    @inlinable
+    public func describeLogSearch(_ input: DescribeLogSearchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogSearchResponse > {
+        self.client.execute(action: "DescribeLogSearch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 日志搜索服务
+    ///
+    /// 本接口DescribeLogSearch用于搜索日志
+    @inlinable
+    public func describeLogSearch(_ input: DescribeLogSearchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSearchResponse {
+        try await self.client.execute(action: "DescribeLogSearch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

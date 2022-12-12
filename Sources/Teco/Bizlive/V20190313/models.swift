@@ -57,7 +57,7 @@ extension Bizlive {
         /// 区域
         public let region: String?
         
-        public init (idle: UInt64?, region: String?) {
+        public init (idle: UInt64? = nil, region: String? = nil) {
             self.idle = idle
             self.region = region
         }

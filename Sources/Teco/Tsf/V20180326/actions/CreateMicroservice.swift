@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 新增微服务
-    @inlinable
-    public func createMicroservice(_ input: CreateMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMicroserviceResponse > {
-        self.client.execute(action: "CreateMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增微服务
-    @inlinable
-    public func createMicroservice(_ input: CreateMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMicroserviceResponse {
-        try await self.client.execute(action: "CreateMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMicroservice请求参数结构体
     public struct CreateMicroserviceRequest: TCRequestModel {
         /// 命名空间ID
@@ -38,7 +26,7 @@ extension Tsf {
         /// 微服务描述信息
         public let microserviceDesc: String?
         
-        public init (namespaceId: String, microserviceName: String, microserviceDesc: String?) {
+        public init (namespaceId: String, microserviceName: String, microserviceDesc: String? = nil) {
             self.namespaceId = namespaceId
             self.microserviceName = microserviceName
             self.microserviceDesc = microserviceDesc
@@ -65,5 +53,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增微服务
+    @inlinable
+    public func createMicroservice(_ input: CreateMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMicroserviceResponse > {
+        self.client.execute(action: "CreateMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增微服务
+    @inlinable
+    public func createMicroservice(_ input: CreateMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMicroserviceResponse {
+        try await self.client.execute(action: "CreateMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

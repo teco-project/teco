@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bda {
-    /// 获取人体库列表
-    ///
-    /// 获取人体库列表。
-    @inlinable
-    public func getGroupList(_ input: GetGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGroupListResponse > {
-        self.client.execute(action: "GetGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取人体库列表
-    ///
-    /// 获取人体库列表。
-    @inlinable
-    public func getGroupList(_ input: GetGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupListResponse {
-        try await self.client.execute(action: "GetGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetGroupList请求参数结构体
     public struct GetGroupListRequest: TCRequestModel {
         /// 起始序号，默认值为0。
@@ -39,7 +23,7 @@ extension Bda {
         /// 返回数量，默认值为10，最大值为1000。
         public let limit: UInt64?
         
-        public init (offset: UInt64?, limit: UInt64?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
         }
@@ -66,5 +50,21 @@ extension Bda {
             case groupNum = "GroupNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取人体库列表
+    ///
+    /// 获取人体库列表。
+    @inlinable
+    public func getGroupList(_ input: GetGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGroupListResponse > {
+        self.client.execute(action: "GetGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人体库列表
+    ///
+    /// 获取人体库列表。
+    @inlinable
+    public func getGroupList(_ input: GetGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupListResponse {
+        try await self.client.execute(action: "GetGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

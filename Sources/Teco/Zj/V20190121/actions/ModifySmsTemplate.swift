@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 短信模板编辑接口
-    ///
-    /// 对未审核或者审核未通过的短信模板内容进行编辑修改
-    @inlinable
-    public func modifySmsTemplate(_ input: ModifySmsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySmsTemplateResponse > {
-        self.client.execute(action: "ModifySmsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 短信模板编辑接口
-    ///
-    /// 对未审核或者审核未通过的短信模板内容进行编辑修改
-    @inlinable
-    public func modifySmsTemplate(_ input: ModifySmsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySmsTemplateResponse {
-        try await self.client.execute(action: "ModifySmsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySmsTemplate请求参数结构体
     public struct ModifySmsTemplateRequest: TCRequestModel {
         /// 商户证书
@@ -68,7 +52,7 @@ extension Zj {
         /// 发送短信活动时用于展示短连接模板占位符序号,仅用作短信活动
         public let urlParams: [Int64]?
         
-        public init (license: String, templateId: Int64, signID: UInt64, templateName: String, templateContent: String, smsType: UInt64, international: UInt64, remark: String, urls: [String]?, commonParams: [Int64]?, urlParams: [Int64]?) {
+        public init (license: String, templateId: Int64, signID: UInt64, templateName: String, templateContent: String, smsType: UInt64, international: UInt64, remark: String, urls: [String]? = nil, commonParams: [Int64]? = nil, urlParams: [Int64]? = nil) {
             self.license = license
             self.templateId = templateId
             self.signID = signID
@@ -109,5 +93,21 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 短信模板编辑接口
+    ///
+    /// 对未审核或者审核未通过的短信模板内容进行编辑修改
+    @inlinable
+    public func modifySmsTemplate(_ input: ModifySmsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySmsTemplateResponse > {
+        self.client.execute(action: "ModifySmsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 短信模板编辑接口
+    ///
+    /// 对未审核或者审核未通过的短信模板内容进行编辑修改
+    @inlinable
+    public func modifySmsTemplate(_ input: ModifySmsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySmsTemplateResponse {
+        try await self.client.execute(action: "ModifySmsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

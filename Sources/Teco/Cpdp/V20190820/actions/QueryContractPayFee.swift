@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云支付-查询支付方式费率及自定义表单项接口
-    @inlinable
-    public func queryContractPayFee(_ input: QueryContractPayFeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryContractPayFeeResponse > {
-        self.client.execute(action: "QueryContractPayFee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云支付-查询支付方式费率及自定义表单项接口
-    @inlinable
-    public func queryContractPayFee(_ input: QueryContractPayFeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryContractPayFeeResponse {
-        try await self.client.execute(action: "QueryContractPayFee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryContractPayFee请求参数结构体
     public struct QueryContractPayFeeRequest: TCRequestModel {
         /// 收单系统分配的开放ID
@@ -41,7 +29,7 @@ extension Cpdp {
         /// 沙箱环境填sandbox，正式环境不填
         public let profile: String?
         
-        public init (openId: String, openKey: String, paymentId: String, profile: String?) {
+        public init (openId: String, openKey: String, paymentId: String, profile: String? = nil) {
             self.openId = openId
             self.openKey = openKey
             self.paymentId = paymentId
@@ -67,7 +55,7 @@ extension Cpdp {
         
         /// 查询支付方式费率及自定义表单项响应对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: QueryContractPayFeeResult
+        public let result: QueryContractPayFeeResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -78,5 +66,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云支付-查询支付方式费率及自定义表单项接口
+    @inlinable
+    public func queryContractPayFee(_ input: QueryContractPayFeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryContractPayFeeResponse > {
+        self.client.execute(action: "QueryContractPayFee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-查询支付方式费率及自定义表单项接口
+    @inlinable
+    public func queryContractPayFee(_ input: QueryContractPayFeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryContractPayFeeResponse {
+        try await self.client.execute(action: "QueryContractPayFee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

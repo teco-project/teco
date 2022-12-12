@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wav {
-    /// 线索回收接口
-    @inlinable
-    public func createLead(_ input: CreateLeadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLeadResponse > {
-        self.client.execute(action: "CreateLead", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 线索回收接口
-    @inlinable
-    public func createLead(_ input: CreateLeadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLeadResponse {
-        try await self.client.execute(action: "CreateLead", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLead请求参数结构体
     public struct CreateLeadRequest: TCRequestModel {
         /// 来源ID
@@ -74,7 +62,7 @@ extension Wav {
         /// 备注
         public let remark: String?
         
-        public init (channelId: UInt64, channelName: String, createTime: UInt64, sourceType: Int64, dealerId: UInt64, brandId: UInt64, seriesId: UInt64, customerName: String, customerPhone: String, modelId: UInt64?, customerSex: Int64?, salesName: String?, salesPhone: String?, ccName: String?, remark: String?) {
+        public init (channelId: UInt64, channelName: String, createTime: UInt64, sourceType: Int64, dealerId: UInt64, brandId: UInt64, seriesId: UInt64, customerName: String, customerPhone: String, modelId: UInt64? = nil, customerSex: Int64? = nil, salesName: String? = nil, salesPhone: String? = nil, ccName: String? = nil, remark: String? = nil) {
             self.channelId = channelId
             self.channelName = channelName
             self.createTime = createTime
@@ -127,5 +115,17 @@ extension Wav {
             case businessMsg = "BusinessMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 线索回收接口
+    @inlinable
+    public func createLead(_ input: CreateLeadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLeadResponse > {
+        self.client.execute(action: "CreateLead", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 线索回收接口
+    @inlinable
+    public func createLead(_ input: CreateLeadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLeadResponse {
+        try await self.client.execute(action: "CreateLead", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫V2-创建子商户
-    ///
-    /// 创建子商户
-    @inlinable
-    public func createCloudSubMerchant(_ input: CreateCloudSubMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudSubMerchantResponse > {
-        self.client.execute(action: "CreateCloudSubMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫V2-创建子商户
-    ///
-    /// 创建子商户
-    @inlinable
-    public func createCloudSubMerchant(_ input: CreateCloudSubMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudSubMerchantResponse {
-        try await self.client.execute(action: "CreateCloudSubMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCloudSubMerchant请求参数结构体
     public struct CreateCloudSubMerchantRequest: TCRequestModel {
         /// 米大师分配的支付主MidasAppId，根应用Id。
@@ -60,7 +44,7 @@ extension Cpdp {
         /// 业务平台自定义的子商户Id，唯一。
         public let outSubMerchantId: String?
         
-        public init (midasAppId: String, parentAppId: String, subMchName: String, subMchDescription: String, midasEnvironment: String?, subAppId: String?, subMchShortName: String?, outSubMerchantId: String?) {
+        public init (midasAppId: String, parentAppId: String, subMchName: String, subMchDescription: String, midasEnvironment: String? = nil, subAppId: String? = nil, subMchShortName: String? = nil, outSubMerchantId: String? = nil) {
             self.midasAppId = midasAppId
             self.parentAppId = parentAppId
             self.subMchName = subMchName
@@ -111,5 +95,21 @@ extension Cpdp {
             case channelAppId = "ChannelAppId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫V2-创建子商户
+    ///
+    /// 创建子商户
+    @inlinable
+    public func createCloudSubMerchant(_ input: CreateCloudSubMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudSubMerchantResponse > {
+        self.client.execute(action: "CreateCloudSubMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫V2-创建子商户
+    ///
+    /// 创建子商户
+    @inlinable
+    public func createCloudSubMerchant(_ input: CreateCloudSubMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudSubMerchantResponse {
+        try await self.client.execute(action: "CreateCloudSubMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

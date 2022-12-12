@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 添加负载均衡器
-    ///
-    /// 此接口（AttachLoadBalancers）用于将负载均衡器添加到伸缩组。
-    @inlinable
-    public func attachLoadBalancers(_ input: AttachLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachLoadBalancersResponse > {
-        self.client.execute(action: "AttachLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加负载均衡器
-    ///
-    /// 此接口（AttachLoadBalancers）用于将负载均衡器添加到伸缩组。
-    @inlinable
-    public func attachLoadBalancers(_ input: AttachLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachLoadBalancersResponse {
-        try await self.client.execute(action: "AttachLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AttachLoadBalancers请求参数结构体
     public struct AttachLoadBalancersRequest: TCRequestModel {
         /// 伸缩组ID
@@ -42,7 +26,7 @@ extension As {
         /// 应用型负载均衡器列表，每个伸缩组绑定应用型负载均衡器数量上限为100，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个
         public let forwardLoadBalancers: [ForwardLoadBalancer]?
         
-        public init (autoScalingGroupId: String, loadBalancerIds: [String]?, forwardLoadBalancers: [ForwardLoadBalancer]?) {
+        public init (autoScalingGroupId: String, loadBalancerIds: [String]? = nil, forwardLoadBalancers: [ForwardLoadBalancer]? = nil) {
             self.autoScalingGroupId = autoScalingGroupId
             self.loadBalancerIds = loadBalancerIds
             self.forwardLoadBalancers = forwardLoadBalancers
@@ -67,5 +51,21 @@ extension As {
             case activityId = "ActivityId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加负载均衡器
+    ///
+    /// 此接口（AttachLoadBalancers）用于将负载均衡器添加到伸缩组。
+    @inlinable
+    public func attachLoadBalancers(_ input: AttachLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachLoadBalancersResponse > {
+        self.client.execute(action: "AttachLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加负载均衡器
+    ///
+    /// 此接口（AttachLoadBalancers）用于将负载均衡器添加到伸缩组。
+    @inlinable
+    public func attachLoadBalancers(_ input: AttachLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachLoadBalancersResponse {
+        try await self.client.execute(action: "AttachLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询辅助CIDR列表
-    ///
-    /// 本接口（DescribeAssistantCidr）用于查询辅助CIDR列表。
-    @inlinable
-    public func describeAssistantCidr(_ input: DescribeAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssistantCidrResponse > {
-        self.client.execute(action: "DescribeAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询辅助CIDR列表
-    ///
-    /// 本接口（DescribeAssistantCidr）用于查询辅助CIDR列表。
-    @inlinable
-    public func describeAssistantCidr(_ input: DescribeAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssistantCidrResponse {
-        try await self.client.execute(action: "DescribeAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssistantCidr请求参数结构体
     public struct DescribeAssistantCidrRequest: TCRequestModel {
         /// `VPC`实例`ID`数组。形如：[`vpc-6v2ht8q5`]
@@ -46,7 +30,7 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。
         public let limit: UInt64?
         
-        public init (vpcIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (vpcIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.vpcIds = vpcIds
             self.filters = filters
             self.offset = offset
@@ -78,5 +62,21 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询辅助CIDR列表
+    ///
+    /// 本接口（DescribeAssistantCidr）用于查询辅助CIDR列表。
+    @inlinable
+    public func describeAssistantCidr(_ input: DescribeAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssistantCidrResponse > {
+        self.client.execute(action: "DescribeAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询辅助CIDR列表
+    ///
+    /// 本接口（DescribeAssistantCidr）用于查询辅助CIDR列表。
+    @inlinable
+    public func describeAssistantCidr(_ input: DescribeAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssistantCidrResponse {
+        try await self.client.execute(action: "DescribeAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

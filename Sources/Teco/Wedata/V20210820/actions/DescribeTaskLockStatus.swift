@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查看任务锁状态信息
-    @inlinable
-    public func describeTaskLockStatus(_ input: DescribeTaskLockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskLockStatusResponse > {
-        self.client.execute(action: "DescribeTaskLockStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看任务锁状态信息
-    @inlinable
-    public func describeTaskLockStatus(_ input: DescribeTaskLockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLockStatusResponse {
-        try await self.client.execute(action: "DescribeTaskLockStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskLockStatus请求参数结构体
     public struct DescribeTaskLockStatusRequest: TCRequestModel {
         /// 任务id
@@ -63,5 +51,17 @@ extension Wedata {
             case taskLockStatus = "TaskLockStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看任务锁状态信息
+    @inlinable
+    public func describeTaskLockStatus(_ input: DescribeTaskLockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskLockStatusResponse > {
+        self.client.execute(action: "DescribeTaskLockStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看任务锁状态信息
+    @inlinable
+    public func describeTaskLockStatus(_ input: DescribeTaskLockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLockStatusResponse {
+        try await self.client.execute(action: "DescribeTaskLockStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

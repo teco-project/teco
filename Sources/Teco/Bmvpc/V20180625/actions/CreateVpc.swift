@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 创建黑石私有网络
-    @inlinable
-    public func createVpc(_ input: CreateVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpcResponse > {
-        self.client.execute(action: "CreateVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建黑石私有网络
-    @inlinable
-    public func createVpc(_ input: CreateVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {
-        try await self.client.execute(action: "CreateVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVpc请求参数结构体
     public struct CreateVpcRequest: TCRequestModel {
         /// 私有网络的名称
@@ -44,7 +32,7 @@ extension Bmvpc {
         /// 是否启用内网监控
         public let enableMonitoring: Bool?
         
-        public init (vpcName: String, cidrBlock: String, zone: String, subnetSet: [VpcSubnetCreateInfo]?, enableMonitoring: Bool?) {
+        public init (vpcName: String, cidrBlock: String, zone: String, subnetSet: [VpcSubnetCreateInfo]? = nil, enableMonitoring: Bool? = nil) {
             self.vpcName = vpcName
             self.cidrBlock = cidrBlock
             self.zone = zone
@@ -73,5 +61,17 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建黑石私有网络
+    @inlinable
+    public func createVpc(_ input: CreateVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVpcResponse > {
+        self.client.execute(action: "CreateVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建黑石私有网络
+    @inlinable
+    public func createVpc(_ input: CreateVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {
+        try await self.client.execute(action: "CreateVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gme {
-    /// 更新语音消息转文本自学习模型
-    ///
-    /// 用户通过该接口可以更新语音消息转文本自学习模型。
-    @inlinable
-    public func modifyCustomization(_ input: ModifyCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizationResponse > {
-        self.client.execute(action: "ModifyCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新语音消息转文本自学习模型
-    ///
-    /// 用户通过该接口可以更新语音消息转文本自学习模型。
-    @inlinable
-    public func modifyCustomization(_ input: ModifyCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationResponse {
-        try await self.client.execute(action: "ModifyCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCustomization请求参数结构体
     public struct ModifyCustomizationRequest: TCRequestModel {
         /// 应用 ID，登录控制台创建应用得到的AppID
@@ -71,5 +55,21 @@ extension Gme {
             case modelId = "ModelId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新语音消息转文本自学习模型
+    ///
+    /// 用户通过该接口可以更新语音消息转文本自学习模型。
+    @inlinable
+    public func modifyCustomization(_ input: ModifyCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizationResponse > {
+        self.client.execute(action: "ModifyCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新语音消息转文本自学习模型
+    ///
+    /// 用户通过该接口可以更新语音消息转文本自学习模型。
+    @inlinable
+    public func modifyCustomization(_ input: ModifyCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationResponse {
+        try await self.client.execute(action: "ModifyCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

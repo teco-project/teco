@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 人员库删除人员
-    ///
-    /// 从某人员库中删除人员，此操作仅影响该人员库。若该人员仅存在于指定的人员库中，该人员将被删除，其所有的人脸信息也将被删除。
-    @inlinable
-    public func deletePersonFromGroup(_ input: DeletePersonFromGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePersonFromGroupResponse > {
-        self.client.execute(action: "DeletePersonFromGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人员库删除人员
-    ///
-    /// 从某人员库中删除人员，此操作仅影响该人员库。若该人员仅存在于指定的人员库中，该人员将被删除，其所有的人脸信息也将被删除。
-    @inlinable
-    public func deletePersonFromGroup(_ input: DeletePersonFromGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonFromGroupResponse {
-        try await self.client.execute(action: "DeletePersonFromGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePersonFromGroup请求参数结构体
     public struct DeletePersonFromGroupRequest: TCRequestModel {
         /// 人员ID
@@ -58,5 +42,21 @@ extension Iai {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人员库删除人员
+    ///
+    /// 从某人员库中删除人员，此操作仅影响该人员库。若该人员仅存在于指定的人员库中，该人员将被删除，其所有的人脸信息也将被删除。
+    @inlinable
+    public func deletePersonFromGroup(_ input: DeletePersonFromGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePersonFromGroupResponse > {
+        self.client.execute(action: "DeletePersonFromGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人员库删除人员
+    ///
+    /// 从某人员库中删除人员，此操作仅影响该人员库。若该人员仅存在于指定的人员库中，该人员将被删除，其所有的人脸信息也将被删除。
+    @inlinable
+    public func deletePersonFromGroup(_ input: DeletePersonFromGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonFromGroupResponse {
+        try await self.client.execute(action: "DeletePersonFromGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 直播平台-查询主播签约信息
-    @inlinable
-    public func queryAnchorContractInfo(_ input: QueryAnchorContractInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAnchorContractInfoResponse > {
-        self.client.execute(action: "QueryAnchorContractInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播平台-查询主播签约信息
-    @inlinable
-    public func queryAnchorContractInfo(_ input: QueryAnchorContractInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAnchorContractInfoResponse {
-        try await self.client.execute(action: "QueryAnchorContractInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryAnchorContractInfo请求参数结构体
     public struct QueryAnchorContractInfoRequest: TCRequestModel {
         /// 起始时间，格式为yyyy-MM-dd
@@ -58,5 +46,17 @@ extension Cpdp {
             case anchorContractInfoList = "AnchorContractInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播平台-查询主播签约信息
+    @inlinable
+    public func queryAnchorContractInfo(_ input: QueryAnchorContractInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAnchorContractInfoResponse > {
+        self.client.execute(action: "QueryAnchorContractInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播平台-查询主播签约信息
+    @inlinable
+    public func queryAnchorContractInfo(_ input: QueryAnchorContractInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAnchorContractInfoResponse {
+        try await self.client.execute(action: "QueryAnchorContractInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

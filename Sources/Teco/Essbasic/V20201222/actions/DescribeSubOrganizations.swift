@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 查询子机构信息
-    ///
-    /// 此接口（DescribeSubOrganizations）用于查询子机构信息。
-    /// 注：此接口仅可查询您所属机构应用号创建的子机构信息，不可跨应用/跨机构查询。
-    @inlinable
-    public func describeSubOrganizations(_ input: DescribeSubOrganizationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubOrganizationsResponse > {
-        self.client.execute(action: "DescribeSubOrganizations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询子机构信息
-    ///
-    /// 此接口（DescribeSubOrganizations）用于查询子机构信息。
-    /// 注：此接口仅可查询您所属机构应用号创建的子机构信息，不可跨应用/跨机构查询。
-    @inlinable
-    public func describeSubOrganizations(_ input: DescribeSubOrganizationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubOrganizationsResponse {
-        try await self.client.execute(action: "DescribeSubOrganizations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSubOrganizations请求参数结构体
     public struct DescribeSubOrganizationsRequest: TCRequestModel {
         /// 调用方信息
@@ -64,5 +46,23 @@ extension Essbasic {
             case subOrganizationInfos = "SubOrganizationInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询子机构信息
+    ///
+    /// 此接口（DescribeSubOrganizations）用于查询子机构信息。
+    /// 注：此接口仅可查询您所属机构应用号创建的子机构信息，不可跨应用/跨机构查询。
+    @inlinable
+    public func describeSubOrganizations(_ input: DescribeSubOrganizationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubOrganizationsResponse > {
+        self.client.execute(action: "DescribeSubOrganizations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询子机构信息
+    ///
+    /// 此接口（DescribeSubOrganizations）用于查询子机构信息。
+    /// 注：此接口仅可查询您所属机构应用号创建的子机构信息，不可跨应用/跨机构查询。
+    @inlinable
+    public func describeSubOrganizations(_ input: DescribeSubOrganizationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubOrganizationsResponse {
+        try await self.client.execute(action: "DescribeSubOrganizations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

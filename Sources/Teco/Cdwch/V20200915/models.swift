@@ -32,7 +32,7 @@ extension Cdwch {
         /// 表ip
         public let ips: String?
         
-        public init (database: String, table: String, totalBytes: Int64, vCluster: String?, ips: String?) {
+        public init (database: String, table: String, totalBytes: Int64, vCluster: String? = nil, ips: String? = nil) {
             self.database = database
             self.table = table
             self.totalBytes = totalBytes
@@ -63,7 +63,7 @@ extension Cdwch {
         /// 描述
         public let describe: String?
         
-        public init (instanceId: String, userName: String, passWord: String, describe: String?) {
+        public init (instanceId: String, userName: String, passWord: String, describe: String? = nil) {
             self.instanceId = instanceId
             self.userName = userName
             self.passWord = passWord
@@ -92,7 +92,7 @@ extension Cdwch {
         /// 保存配置文件的路径
         public let filePath: String?
         
-        public init (fileName: String, oldConfValue: String, newConfValue: String, filePath: String?) {
+        public init (fileName: String, oldConfValue: String, newConfValue: String, filePath: String? = nil) {
             self.fileName = fileName
             self.oldConfValue = oldConfValue
             self.newConfValue = newConfValue

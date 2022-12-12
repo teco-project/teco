@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 重置VPN通道
-    ///
-    /// 本接口(ResetVpnConnection)用于重置VPN通道。
-    @inlinable
-    public func resetVpnConnection(_ input: ResetVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetVpnConnectionResponse > {
-        self.client.execute(action: "ResetVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置VPN通道
-    ///
-    /// 本接口(ResetVpnConnection)用于重置VPN通道。
-    @inlinable
-    public func resetVpnConnection(_ input: ResetVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetVpnConnectionResponse {
-        try await self.client.execute(action: "ResetVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetVpnConnection请求参数结构体
     public struct ResetVpnConnectionRequest: TCRequestModel {
         /// VPC唯一ID
@@ -58,5 +42,21 @@ extension Bmvpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置VPN通道
+    ///
+    /// 本接口(ResetVpnConnection)用于重置VPN通道。
+    @inlinable
+    public func resetVpnConnection(_ input: ResetVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetVpnConnectionResponse > {
+        self.client.execute(action: "ResetVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置VPN通道
+    ///
+    /// 本接口(ResetVpnConnection)用于重置VPN通道。
+    @inlinable
+    public func resetVpnConnection(_ input: ResetVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetVpnConnectionResponse {
+        try await self.client.execute(action: "ResetVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

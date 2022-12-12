@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 删除应用列表
-    @inlinable
-    public func deleteEdgeUnitApplications(_ input: DeleteEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeUnitApplicationsResponse > {
-        self.client.execute(action: "DeleteEdgeUnitApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除应用列表
-    @inlinable
-    public func deleteEdgeUnitApplications(_ input: DeleteEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitApplicationsResponse {
-        try await self.client.execute(action: "DeleteEdgeUnitApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteEdgeUnitApplications请求参数结构体
     public struct DeleteEdgeUnitApplicationsRequest: TCRequestModel {
         /// 单元ID
@@ -54,5 +42,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除应用列表
+    @inlinable
+    public func deleteEdgeUnitApplications(_ input: DeleteEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEdgeUnitApplicationsResponse > {
+        self.client.execute(action: "DeleteEdgeUnitApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除应用列表
+    @inlinable
+    public func deleteEdgeUnitApplications(_ input: DeleteEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitApplicationsResponse {
+        try await self.client.execute(action: "DeleteEdgeUnitApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

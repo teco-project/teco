@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 营业执照识别及核验（基础版）
-    ///
-    /// 本接口支持营业执照信息的识别与准确性核验。
-    /// 您可以通过输入营业执照注册号或营业执照图片（若两者都输入则只用注册号做查询）进行核验，接口返回查询到的工商照面信息，并比对要校验的字段与查询结果的一致性。查询到工商信息包括：统一社会信用代码、经营期限、法人姓名、经营状态、经营业务范围、注册资本等。
-    @inlinable
-    public func verifyBasicBizLicense(_ input: VerifyBasicBizLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyBasicBizLicenseResponse > {
-        self.client.execute(action: "VerifyBasicBizLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 营业执照识别及核验（基础版）
-    ///
-    /// 本接口支持营业执照信息的识别与准确性核验。
-    /// 您可以通过输入营业执照注册号或营业执照图片（若两者都输入则只用注册号做查询）进行核验，接口返回查询到的工商照面信息，并比对要校验的字段与查询结果的一致性。查询到工商信息包括：统一社会信用代码、经营期限、法人姓名、经营状态、经营业务范围、注册资本等。
-    @inlinable
-    public func verifyBasicBizLicense(_ input: VerifyBasicBizLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyBasicBizLicenseResponse {
-        try await self.client.execute(action: "VerifyBasicBizLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifyBasicBizLicense请求参数结构体
     public struct VerifyBasicBizLicenseRequest: TCRequestModel {
         /// 用于入参是营业执照图片的场景，ImageBase64和ImageUrl必须提供一个，如果都提供，只使用 ImageUrl。
@@ -68,7 +50,7 @@ extension Ocr {
         /// true表示展示成立/注册日期
         public let establishTime: Bool?
         
-        public init (imageBase64: String?, imageUrl: String?, imageConfig: String?, regNum: String?, name: String?, address: String?, regCapital: Int64?, establishTime: Bool?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, imageConfig: String? = nil, regNum: String? = nil, name: String? = nil, address: String? = nil, regCapital: Int64? = nil, establishTime: Bool? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.imageConfig = imageConfig
@@ -171,5 +153,23 @@ extension Ocr {
             case establishTime = "EstablishTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 营业执照识别及核验（基础版）
+    ///
+    /// 本接口支持营业执照信息的识别与准确性核验。
+    /// 您可以通过输入营业执照注册号或营业执照图片（若两者都输入则只用注册号做查询）进行核验，接口返回查询到的工商照面信息，并比对要校验的字段与查询结果的一致性。查询到工商信息包括：统一社会信用代码、经营期限、法人姓名、经营状态、经营业务范围、注册资本等。
+    @inlinable
+    public func verifyBasicBizLicense(_ input: VerifyBasicBizLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyBasicBizLicenseResponse > {
+        self.client.execute(action: "VerifyBasicBizLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 营业执照识别及核验（基础版）
+    ///
+    /// 本接口支持营业执照信息的识别与准确性核验。
+    /// 您可以通过输入营业执照注册号或营业执照图片（若两者都输入则只用注册号做查询）进行核验，接口返回查询到的工商照面信息，并比对要校验的字段与查询结果的一致性。查询到工商信息包括：统一社会信用代码、经营期限、法人姓名、经营状态、经营业务范围、注册资本等。
+    @inlinable
+    public func verifyBasicBizLicense(_ input: VerifyBasicBizLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyBasicBizLicenseResponse {
+        try await self.client.execute(action: "VerifyBasicBizLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

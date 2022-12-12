@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 删除自定义域名
-    @inlinable
-    public func deleteInstanceCustomizedDomain(_ input: DeleteInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstanceCustomizedDomainResponse > {
-        self.client.execute(action: "DeleteInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除自定义域名
-    @inlinable
-    public func deleteInstanceCustomizedDomain(_ input: DeleteInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceCustomizedDomainResponse {
-        try await self.client.execute(action: "DeleteInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteInstanceCustomizedDomain请求参数结构体
     public struct DeleteInstanceCustomizedDomainRequest: TCRequestModel {
         /// 主实例iD
@@ -38,7 +26,7 @@ extension Tcr {
         /// 证书ID
         public let certificateId: String?
         
-        public init (registryId: String, domainName: String, certificateId: String?) {
+        public init (registryId: String, domainName: String, certificateId: String? = nil) {
             self.registryId = registryId
             self.domainName = domainName
             self.certificateId = certificateId
@@ -59,5 +47,17 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除自定义域名
+    @inlinable
+    public func deleteInstanceCustomizedDomain(_ input: DeleteInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstanceCustomizedDomainResponse > {
+        self.client.execute(action: "DeleteInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除自定义域名
+    @inlinable
+    public func deleteInstanceCustomizedDomain(_ input: DeleteInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceCustomizedDomainResponse {
+        try await self.client.execute(action: "DeleteInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

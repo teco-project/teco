@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssa {
-    /// 告警详情
-    ///
-    /// 返回告警详情
-    @inlinable
-    public func describeSocAlertDetails(_ input: DescribeSocAlertDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSocAlertDetailsResponse > {
-        self.client.execute(action: "DescribeSocAlertDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 告警详情
-    ///
-    /// 返回告警详情
-    @inlinable
-    public func describeSocAlertDetails(_ input: DescribeSocAlertDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocAlertDetailsResponse {
-        try await self.client.execute(action: "DescribeSocAlertDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSocAlertDetails请求参数结构体
     public struct DescribeSocAlertDetailsRequest: TCRequestModel {
         /// 告警id
@@ -39,7 +23,7 @@ extension Ssa {
         /// 告警时间，取Timestamp字段
         public let alertTimestamp: String?
         
-        public init (alertId: String, alertTimestamp: String?) {
+        public init (alertId: String, alertTimestamp: String? = nil) {
             self.alertId = alertId
             self.alertTimestamp = alertTimestamp
         }
@@ -54,7 +38,7 @@ extension Ssa {
     public struct DescribeSocAlertDetailsResponse: TCResponseModel {
         /// 返回详情数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: AlertDetail
+        public let data: AlertDetail?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -63,5 +47,21 @@ extension Ssa {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 告警详情
+    ///
+    /// 返回告警详情
+    @inlinable
+    public func describeSocAlertDetails(_ input: DescribeSocAlertDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSocAlertDetailsResponse > {
+        self.client.execute(action: "DescribeSocAlertDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 告警详情
+    ///
+    /// 返回告警详情
+    @inlinable
+    public func describeSocAlertDetails(_ input: DescribeSocAlertDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocAlertDetailsResponse {
+        try await self.client.execute(action: "DescribeSocAlertDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

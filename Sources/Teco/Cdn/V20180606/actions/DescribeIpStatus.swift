@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 查询域名节点状态
-    ///
-    /// DescribeIpStatus 用于查询域名所在加速平台的边缘节点、回源节点明细。注意事项：暂不支持查询边缘节点信息并且数据会存在一定延迟。
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41954"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
-    public func describeIpStatus(_ input: DescribeIpStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpStatusResponse > {
-        self.client.execute(action: "DescribeIpStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询域名节点状态
-    ///
-    /// DescribeIpStatus 用于查询域名所在加速平台的边缘节点、回源节点明细。注意事项：暂不支持查询边缘节点信息并且数据会存在一定延迟。
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41954"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
-    public func describeIpStatus(_ input: DescribeIpStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpStatusResponse {
-        try await self.client.execute(action: "DescribeIpStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIpStatus请求参数结构体
     public struct DescribeIpStatusRequest: TCRequestModel {
         /// 加速域名
@@ -59,7 +41,7 @@ extension Cdn {
         /// 是否对IPV6进行缩写。
         public let abbreviationIpv6: Bool?
         
-        public init (domain: String, layer: String?, area: String?, segment: Bool?, showIpv6: Bool?, abbreviationIpv6: Bool?) {
+        public init (domain: String, layer: String? = nil, area: String? = nil, segment: Bool? = nil, showIpv6: Bool? = nil, abbreviationIpv6: Bool? = nil) {
             self.domain = domain
             self.layer = layer
             self.area = area
@@ -94,5 +76,23 @@ extension Cdn {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询域名节点状态
+    ///
+    /// DescribeIpStatus 用于查询域名所在加速平台的边缘节点、回源节点明细。注意事项：暂不支持查询边缘节点信息并且数据会存在一定延迟。
+    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41954"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @inlinable
+    public func describeIpStatus(_ input: DescribeIpStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpStatusResponse > {
+        self.client.execute(action: "DescribeIpStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询域名节点状态
+    ///
+    /// DescribeIpStatus 用于查询域名所在加速平台的边缘节点、回源节点明细。注意事项：暂不支持查询边缘节点信息并且数据会存在一定延迟。
+    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41954"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @inlinable
+    public func describeIpStatus(_ input: DescribeIpStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpStatusResponse {
+        try await self.client.execute(action: "DescribeIpStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

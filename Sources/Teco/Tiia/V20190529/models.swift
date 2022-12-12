@@ -33,7 +33,7 @@ extension Tiia {
     public struct AttributesForBody: TCOutputModel {
         /// 人体框。当不开启人体检测时，内部参数默认为0。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rect: ImageRect
+        public let rect: ImageRect?
         
         /// 人体检测置信度。取值0-1之间，当不开启人体检测开关时默认为0。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -158,7 +158,7 @@ extension Tiia {
         
         /// 车牌信息，仅车辆识别（增强版）支持
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let plateContent: CarPlateContent
+        public let plateContent: CarPlateContent?
         
         /// 车牌信息置信度，0-100，仅车辆识别（增强版）支持
         /// 注意：此字段可能返回 null，表示取不到有效值。

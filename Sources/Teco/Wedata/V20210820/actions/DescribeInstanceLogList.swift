@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取离线任务实例运行日志列表
-    ///
-    /// 离线任务实例运行日志列表
-    @inlinable
-    public func describeInstanceLogList(_ input: DescribeInstanceLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLogListResponse > {
-        self.client.execute(action: "DescribeInstanceLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取离线任务实例运行日志列表
-    ///
-    /// 离线任务实例运行日志列表
-    @inlinable
-    public func describeInstanceLogList(_ input: DescribeInstanceLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogListResponse {
-        try await self.client.execute(action: "DescribeInstanceLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceLogList请求参数结构体
     public struct DescribeInstanceLogListRequest: TCRequestModel {
         /// 任务id
@@ -62,5 +46,21 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取离线任务实例运行日志列表
+    ///
+    /// 离线任务实例运行日志列表
+    @inlinable
+    public func describeInstanceLogList(_ input: DescribeInstanceLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLogListResponse > {
+        self.client.execute(action: "DescribeInstanceLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取离线任务实例运行日志列表
+    ///
+    /// 离线任务实例运行日志列表
+    @inlinable
+    public func describeInstanceLogList(_ input: DescribeInstanceLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogListResponse {
+        try await self.client.execute(action: "DescribeInstanceLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

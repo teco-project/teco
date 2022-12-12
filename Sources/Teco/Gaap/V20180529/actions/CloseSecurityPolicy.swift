@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 关闭安全策略
-    @inlinable
-    public func closeSecurityPolicy(_ input: CloseSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseSecurityPolicyResponse > {
-        self.client.execute(action: "CloseSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关闭安全策略
-    @inlinable
-    public func closeSecurityPolicy(_ input: CloseSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseSecurityPolicyResponse {
-        try await self.client.execute(action: "CloseSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CloseSecurityPolicy请求参数结构体
     public struct CloseSecurityPolicyRequest: TCRequestModel {
         /// 通道ID
@@ -35,7 +23,7 @@ extension Gaap {
         /// 安全组策略ID
         public let policyId: String?
         
-        public init (proxyId: String?, policyId: String?) {
+        public init (proxyId: String? = nil, policyId: String? = nil) {
             self.proxyId = proxyId
             self.policyId = policyId
         }
@@ -58,5 +46,17 @@ extension Gaap {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关闭安全策略
+    @inlinable
+    public func closeSecurityPolicy(_ input: CloseSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseSecurityPolicyResponse > {
+        self.client.execute(action: "CloseSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭安全策略
+    @inlinable
+    public func closeSecurityPolicy(_ input: CloseSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseSecurityPolicyResponse {
+        try await self.client.execute(action: "CloseSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

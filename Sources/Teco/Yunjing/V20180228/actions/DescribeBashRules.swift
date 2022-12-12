@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取高危命令规则列表
-    @inlinable
-    public func describeBashRules(_ input: DescribeBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBashRulesResponse > {
-        self.client.execute(action: "DescribeBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取高危命令规则列表
-    @inlinable
-    public func describeBashRules(_ input: DescribeBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashRulesResponse {
-        try await self.client.execute(action: "DescribeBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBashRules请求参数结构体
     public struct DescribeBashRulesRequest: TCRequestModel {
         /// 0-系统规则; 1-用户规则
@@ -42,7 +30,7 @@ extension Yunjing {
         /// <li>Keywords - String - 是否必填：否 - 关键字(规则名称)</li>
         public let filters: [Filter]?
         
-        public init (type: UInt64, limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (type: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.type = type
             self.limit = limit
             self.offset = offset
@@ -73,5 +61,17 @@ extension Yunjing {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取高危命令规则列表
+    @inlinable
+    public func describeBashRules(_ input: DescribeBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBashRulesResponse > {
+        self.client.execute(action: "DescribeBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取高危命令规则列表
+    @inlinable
+    public func describeBashRules(_ input: DescribeBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashRulesResponse {
+        try await self.client.execute(action: "DescribeBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

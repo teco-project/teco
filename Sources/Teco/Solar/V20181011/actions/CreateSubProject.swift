@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Solar {
-    /// 创建子项目
-    @inlinable
-    public func createSubProject(_ input: CreateSubProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubProjectResponse > {
-        self.client.execute(action: "CreateSubProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建子项目
-    @inlinable
-    public func createSubProject(_ input: CreateSubProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubProjectResponse {
-        try await self.client.execute(action: "CreateSubProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSubProject请求参数结构体
     public struct CreateSubProjectRequest: TCRequestModel {
         /// 所属项目id
@@ -58,5 +46,17 @@ extension Solar {
             case subProjectId = "SubProjectId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建子项目
+    @inlinable
+    public func createSubProject(_ input: CreateSubProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubProjectResponse > {
+        self.client.execute(action: "CreateSubProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建子项目
+    @inlinable
+    public func createSubProject(_ input: CreateSubProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubProjectResponse {
+        try await self.client.execute(action: "CreateSubProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

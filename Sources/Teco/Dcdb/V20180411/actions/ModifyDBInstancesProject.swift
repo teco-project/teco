@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 修改实例所属项目
-    ///
-    /// 本接口（ModifyDBInstancesProject）用于修改云数据库实例所属项目。
-    @inlinable
-    public func modifyDBInstancesProject(_ input: ModifyDBInstancesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstancesProjectResponse > {
-        self.client.execute(action: "ModifyDBInstancesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例所属项目
-    ///
-    /// 本接口（ModifyDBInstancesProject）用于修改云数据库实例所属项目。
-    @inlinable
-    public func modifyDBInstancesProject(_ input: ModifyDBInstancesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstancesProjectResponse {
-        try await self.client.execute(action: "ModifyDBInstancesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBInstancesProject请求参数结构体
     public struct ModifyDBInstancesProjectRequest: TCRequestModel {
         /// 待修改的实例ID列表。实例 ID 形如：dcdbt-ow728lmc。
@@ -58,5 +42,21 @@ extension Dcdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例所属项目
+    ///
+    /// 本接口（ModifyDBInstancesProject）用于修改云数据库实例所属项目。
+    @inlinable
+    public func modifyDBInstancesProject(_ input: ModifyDBInstancesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstancesProjectResponse > {
+        self.client.execute(action: "ModifyDBInstancesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例所属项目
+    ///
+    /// 本接口（ModifyDBInstancesProject）用于修改云数据库实例所属项目。
+    @inlinable
+    public func modifyDBInstancesProject(_ input: ModifyDBInstancesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstancesProjectResponse {
+        try await self.client.execute(action: "ModifyDBInstancesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

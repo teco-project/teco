@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 删除新企业安全组规则
-    @inlinable
-    public func removeEnterpriseSecurityGroupRule(_ input: RemoveEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveEnterpriseSecurityGroupRuleResponse > {
-        self.client.execute(action: "RemoveEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除新企业安全组规则
-    @inlinable
-    public func removeEnterpriseSecurityGroupRule(_ input: RemoveEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveEnterpriseSecurityGroupRuleResponse {
-        try await self.client.execute(action: "RemoveEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemoveEnterpriseSecurityGroupRule请求参数结构体
     public struct RemoveEnterpriseSecurityGroupRuleRequest: TCRequestModel {
         /// 规则的uuid，可通过查询规则列表获取
@@ -63,5 +51,17 @@ extension Cfw {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除新企业安全组规则
+    @inlinable
+    public func removeEnterpriseSecurityGroupRule(_ input: RemoveEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveEnterpriseSecurityGroupRuleResponse > {
+        self.client.execute(action: "RemoveEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除新企业安全组规则
+    @inlinable
+    public func removeEnterpriseSecurityGroupRule(_ input: RemoveEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveEnterpriseSecurityGroupRuleResponse {
+        try await self.client.execute(action: "RemoveEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

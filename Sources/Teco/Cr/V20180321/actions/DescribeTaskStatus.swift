@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cr {
-    /// 获取任务状态
-    ///
-    /// 根据上传文件接口的输出参数DataResId，获取相关上传结果。
-    @inlinable
-    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskStatusResponse > {
-        self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取任务状态
-    ///
-    /// 根据上传文件接口的输出参数DataResId，获取相关上传结果。
-    @inlinable
-    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
-        try await self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskStatus请求参数结构体
     public struct DescribeTaskStatusRequest: TCRequestModel {
         /// 模块名，本接口取值：Task
@@ -45,7 +29,7 @@ extension Cr {
         /// 实例ID，不传默认为系统分配的初始实例。
         public let instId: String?
         
-        public init (module: String, operation: String, taskId: String, instId: String?) {
+        public init (module: String, operation: String, taskId: String, instId: String? = nil) {
             self.module = module
             self.operation = operation
             self.taskId = taskId
@@ -81,5 +65,21 @@ extension Cr {
             case taskFileUrl = "TaskFileUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取任务状态
+    ///
+    /// 根据上传文件接口的输出参数DataResId，获取相关上传结果。
+    @inlinable
+    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskStatusResponse > {
+        self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务状态
+    ///
+    /// 根据上传文件接口的输出参数DataResId，获取相关上传结果。
+    @inlinable
+    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
+        try await self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

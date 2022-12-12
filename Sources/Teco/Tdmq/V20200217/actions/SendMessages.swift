@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 发送单条消息
-    @inlinable
-    public func sendMessages(_ input: SendMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendMessagesResponse > {
-        self.client.execute(action: "SendMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送单条消息
-    @inlinable
-    public func sendMessages(_ input: SendMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessagesResponse {
-        try await self.client.execute(action: "SendMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendMessages请求参数结构体
     public struct SendMessagesRequest: TCRequestModel {
         /// 消息要发送的topic的名字, 这里尽量需要使用topic的全路径，即：tenant/namespace/topic。如果不指定，默认使用的是：public/default
@@ -48,7 +36,7 @@ extension Tdmq {
         /// 内存中缓存的最大的生产消息的数量，默认为1000条
         public let maxPendingMessages: Int64?
         
-        public init (topic: String, payload: String, stringToken: String?, producerName: String?, sendTimeout: Int64?, maxPendingMessages: Int64?) {
+        public init (topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil) {
             self.topic = topic
             self.payload = payload
             self.stringToken = stringToken
@@ -85,5 +73,17 @@ extension Tdmq {
             case errorMsg = "ErrorMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送单条消息
+    @inlinable
+    public func sendMessages(_ input: SendMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendMessagesResponse > {
+        self.client.execute(action: "SendMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送单条消息
+    @inlinable
+    public func sendMessages(_ input: SendMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessagesResponse {
+        try await self.client.execute(action: "SendMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 查询数据迁移任务
-    ///
-    /// 查询数据迁移任务.
-    /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
-    @inlinable
-    public func describeMigrateJobs(_ input: DescribeMigrateJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrateJobsResponse > {
-        self.client.execute(action: "DescribeMigrateJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据迁移任务
-    ///
-    /// 查询数据迁移任务.
-    /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
-    @inlinable
-    public func describeMigrateJobs(_ input: DescribeMigrateJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrateJobsResponse {
-        try await self.client.execute(action: "DescribeMigrateJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMigrateJobs请求参数结构体
     public struct DescribeMigrateJobsRequest: TCRequestModel {
         /// 数据迁移任务ID
@@ -56,7 +38,7 @@ extension Dts {
         /// 标签过滤条件
         public let tagFilters: [TagFilter]?
         
-        public init (jobId: String?, jobName: String?, order: String?, orderSeq: String?, offset: UInt64?, limit: UInt64?, tagFilters: [TagFilter]?) {
+        public init (jobId: String? = nil, jobName: String? = nil, order: String? = nil, orderSeq: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil) {
             self.jobId = jobId
             self.jobName = jobName
             self.order = order
@@ -93,5 +75,23 @@ extension Dts {
             case jobList = "JobList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据迁移任务
+    ///
+    /// 查询数据迁移任务.
+    /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
+    @inlinable
+    public func describeMigrateJobs(_ input: DescribeMigrateJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMigrateJobsResponse > {
+        self.client.execute(action: "DescribeMigrateJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据迁移任务
+    ///
+    /// 查询数据迁移任务.
+    /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
+    @inlinable
+    public func describeMigrateJobs(_ input: DescribeMigrateJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrateJobsResponse {
+        try await self.client.execute(action: "DescribeMigrateJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

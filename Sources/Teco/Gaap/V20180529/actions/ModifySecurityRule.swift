@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 修改安全策略规则名
-    @inlinable
-    public func modifySecurityRule(_ input: ModifySecurityRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityRuleResponse > {
-        self.client.execute(action: "ModifySecurityRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改安全策略规则名
-    @inlinable
-    public func modifySecurityRule(_ input: ModifySecurityRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityRuleResponse {
-        try await self.client.execute(action: "ModifySecurityRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySecurityRule请求参数结构体
     public struct ModifySecurityRuleRequest: TCRequestModel {
         /// 规则ID
@@ -54,7 +42,7 @@ extension Gaap {
         /// 所有端口: ALL
         public let destPortRange: String?
         
-        public init (ruleId: String, aliasName: String, policyId: String, ruleAction: String?, sourceCidr: String?, `protocol`: String?, destPortRange: String?) {
+        public init (ruleId: String, aliasName: String, policyId: String, ruleAction: String? = nil, sourceCidr: String? = nil, `protocol`: String? = nil, destPortRange: String? = nil) {
             self.ruleId = ruleId
             self.aliasName = aliasName
             self.policyId = policyId
@@ -83,5 +71,17 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改安全策略规则名
+    @inlinable
+    public func modifySecurityRule(_ input: ModifySecurityRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityRuleResponse > {
+        self.client.execute(action: "ModifySecurityRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改安全策略规则名
+    @inlinable
+    public func modifySecurityRule(_ input: ModifySecurityRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityRuleResponse {
+        try await self.client.execute(action: "ModifySecurityRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

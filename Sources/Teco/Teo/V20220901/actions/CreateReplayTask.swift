@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 创建重放任务
-    ///
-    /// 创建刷新/预热重放任务
-    @inlinable
-    public func createReplayTask(_ input: CreateReplayTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReplayTaskResponse > {
-        self.client.execute(action: "CreateReplayTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建重放任务
-    ///
-    /// 创建刷新/预热重放任务
-    @inlinable
-    public func createReplayTask(_ input: CreateReplayTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplayTaskResponse {
-        try await self.client.execute(action: "CreateReplayTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateReplayTask请求参数结构体
     public struct CreateReplayTaskRequest: TCRequestModel {
         /// 重放任务的 ID 列表。
@@ -61,5 +45,21 @@ extension Teo {
             case failedList = "FailedList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建重放任务
+    ///
+    /// 创建刷新/预热重放任务
+    @inlinable
+    public func createReplayTask(_ input: CreateReplayTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReplayTaskResponse > {
+        self.client.execute(action: "CreateReplayTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建重放任务
+    ///
+    /// 创建刷新/预热重放任务
+    @inlinable
+    public func createReplayTask(_ input: CreateReplayTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplayTaskResponse {
+        try await self.client.execute(action: "CreateReplayTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

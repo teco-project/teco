@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 创建告警规则
-    ///
-    /// 创建 Prometheus 告警规则。
-    /// 请注意，**告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description**，，请参考 [Prometheus Rule更多配置请参考](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)。
-    @inlinable
-    public func createAlertRule(_ input: CreateAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAlertRuleResponse > {
-        self.client.execute(action: "CreateAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建告警规则
-    ///
-    /// 创建 Prometheus 告警规则。
-    /// 请注意，**告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description**，，请参考 [Prometheus Rule更多配置请参考](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)。
-    @inlinable
-    public func createAlertRule(_ input: CreateAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlertRuleResponse {
-        try await self.client.execute(action: "CreateAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAlertRule请求参数结构体
     public struct CreateAlertRuleRequest: TCRequestModel {
         /// Prometheus 实例 ID，例如：prom-abcd1234
@@ -65,7 +47,7 @@ extension Monitor {
         /// 报警策略模板分类
         public let type: String?
         
-        public init (instanceId: String, ruleName: String, expr: String, receivers: [String], ruleState: Int64?, duration: String?, labels: [PrometheusRuleKV]?, annotations: [PrometheusRuleKV]?, type: String?) {
+        public init (instanceId: String, ruleName: String, expr: String, receivers: [String], ruleState: Int64? = nil, duration: String? = nil, labels: [PrometheusRuleKV]? = nil, annotations: [PrometheusRuleKV]? = nil, type: String? = nil) {
             self.instanceId = instanceId
             self.ruleName = ruleName
             self.expr = expr
@@ -103,5 +85,23 @@ extension Monitor {
             case ruleId = "RuleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建告警规则
+    ///
+    /// 创建 Prometheus 告警规则。
+    /// 请注意，**告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description**，，请参考 [Prometheus Rule更多配置请参考](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)。
+    @inlinable
+    public func createAlertRule(_ input: CreateAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAlertRuleResponse > {
+        self.client.execute(action: "CreateAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建告警规则
+    ///
+    /// 创建 Prometheus 告警规则。
+    /// 请注意，**告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description**，，请参考 [Prometheus Rule更多配置请参考](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)。
+    @inlinable
+    public func createAlertRule(_ input: CreateAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlertRuleResponse {
+        try await self.client.execute(action: "CreateAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

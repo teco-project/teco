@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 获取模板信息
-    ///
-    /// 本接口 (DescribeTemplate) 用于获取模板信息。
-    @inlinable
-    public func describeTemplate(_ input: DescribeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateResponse > {
-        self.client.execute(action: "DescribeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取模板信息
-    ///
-    /// 本接口 (DescribeTemplate) 用于获取模板信息。
-    @inlinable
-    public func describeTemplate(_ input: DescribeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateResponse {
-        try await self.client.execute(action: "DescribeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTemplate请求参数结构体
     public struct DescribeTemplateRequest: TCRequestModel {
         /// 模板ID
@@ -57,5 +41,21 @@ extension Domain {
             case template = "Template"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取模板信息
+    ///
+    /// 本接口 (DescribeTemplate) 用于获取模板信息。
+    @inlinable
+    public func describeTemplate(_ input: DescribeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplateResponse > {
+        self.client.execute(action: "DescribeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取模板信息
+    ///
+    /// 本接口 (DescribeTemplate) 用于获取模板信息。
+    @inlinable
+    public func describeTemplate(_ input: DescribeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateResponse {
+        try await self.client.execute(action: "DescribeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

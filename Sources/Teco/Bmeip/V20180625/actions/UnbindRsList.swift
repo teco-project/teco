@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 批量解绑物理机弹性公网IP
-    ///
-    /// 批量解绑物理机弹性公网IP接口
-    @inlinable
-    public func unbindRsList(_ input: UnbindRsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindRsListResponse > {
-        self.client.execute(action: "UnbindRsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量解绑物理机弹性公网IP
-    ///
-    /// 批量解绑物理机弹性公网IP接口
-    @inlinable
-    public func unbindRsList(_ input: UnbindRsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRsListResponse {
-        try await self.client.execute(action: "UnbindRsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindRsList请求参数结构体
     public struct UnbindRsListRequest: TCRequestModel {
         /// 物理机绑定的EIP列表
@@ -57,5 +41,21 @@ extension Bmeip {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量解绑物理机弹性公网IP
+    ///
+    /// 批量解绑物理机弹性公网IP接口
+    @inlinable
+    public func unbindRsList(_ input: UnbindRsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindRsListResponse > {
+        self.client.execute(action: "UnbindRsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量解绑物理机弹性公网IP
+    ///
+    /// 批量解绑物理机弹性公网IP接口
+    @inlinable
+    public func unbindRsList(_ input: UnbindRsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRsListResponse {
+        try await self.client.execute(action: "UnbindRsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询漏洞防御事件列表
-    @inlinable
-    public func describeVulDefenceEvent(_ input: DescribeVulDefenceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefenceEventResponse > {
-        self.client.execute(action: "DescribeVulDefenceEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询漏洞防御事件列表
-    @inlinable
-    public func describeVulDefenceEvent(_ input: DescribeVulDefenceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceEventResponse {
-        try await self.client.execute(action: "DescribeVulDefenceEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulDefenceEvent请求参数结构体
     public struct DescribeVulDefenceEventRequest: TCRequestModel {
         /// 过滤条件。
@@ -58,7 +46,7 @@ extension Tcss {
         /// 排序字段：事件数量：EventCount
         public let by: String?
         
-        public init (filters: [RunTimeFilters]?, limit: UInt64?, offset: UInt64?, order: String?, by: String?) {
+        public init (filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -91,5 +79,17 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询漏洞防御事件列表
+    @inlinable
+    public func describeVulDefenceEvent(_ input: DescribeVulDefenceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulDefenceEventResponse > {
+        self.client.execute(action: "DescribeVulDefenceEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞防御事件列表
+    @inlinable
+    public func describeVulDefenceEvent(_ input: DescribeVulDefenceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceEventResponse {
+        try await self.client.execute(action: "DescribeVulDefenceEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

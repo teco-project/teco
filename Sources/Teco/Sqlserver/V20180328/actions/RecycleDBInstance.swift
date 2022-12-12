@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 主动回收实例
-    ///
-    /// 本接口（RecycleDBInstance）用于主动回收已下线的SQLSERVER实例
-    @inlinable
-    public func recycleDBInstance(_ input: RecycleDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecycleDBInstanceResponse > {
-        self.client.execute(action: "RecycleDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 主动回收实例
-    ///
-    /// 本接口（RecycleDBInstance）用于主动回收已下线的SQLSERVER实例
-    @inlinable
-    public func recycleDBInstance(_ input: RecycleDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecycleDBInstanceResponse {
-        try await self.client.execute(action: "RecycleDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecycleDBInstance请求参数结构体
     public struct RecycleDBInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -57,5 +41,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 主动回收实例
+    ///
+    /// 本接口（RecycleDBInstance）用于主动回收已下线的SQLSERVER实例
+    @inlinable
+    public func recycleDBInstance(_ input: RecycleDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecycleDBInstanceResponse > {
+        self.client.execute(action: "RecycleDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 主动回收实例
+    ///
+    /// 本接口（RecycleDBInstance）用于主动回收已下线的SQLSERVER实例
+    @inlinable
+    public func recycleDBInstance(_ input: RecycleDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecycleDBInstanceResponse {
+        try await self.client.execute(action: "RecycleDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

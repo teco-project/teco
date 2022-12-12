@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 删除指定时间点截图模板
-    ///
-    /// 删除用户自定义指定时间点截图模板。
-    @inlinable
-    public func deleteSnapshotByTimeOffsetTemplate(_ input: DeleteSnapshotByTimeOffsetTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotByTimeOffsetTemplateResponse > {
-        self.client.execute(action: "DeleteSnapshotByTimeOffsetTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除指定时间点截图模板
-    ///
-    /// 删除用户自定义指定时间点截图模板。
-    @inlinable
-    public func deleteSnapshotByTimeOffsetTemplate(_ input: DeleteSnapshotByTimeOffsetTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotByTimeOffsetTemplateResponse {
-        try await self.client.execute(action: "DeleteSnapshotByTimeOffsetTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSnapshotByTimeOffsetTemplate请求参数结构体
     public struct DeleteSnapshotByTimeOffsetTemplateRequest: TCRequestModel {
         /// 指定时间点截图模板唯一标识。
@@ -53,5 +37,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除指定时间点截图模板
+    ///
+    /// 删除用户自定义指定时间点截图模板。
+    @inlinable
+    public func deleteSnapshotByTimeOffsetTemplate(_ input: DeleteSnapshotByTimeOffsetTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotByTimeOffsetTemplateResponse > {
+        self.client.execute(action: "DeleteSnapshotByTimeOffsetTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除指定时间点截图模板
+    ///
+    /// 删除用户自定义指定时间点截图模板。
+    @inlinable
+    public func deleteSnapshotByTimeOffsetTemplate(_ input: DeleteSnapshotByTimeOffsetTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotByTimeOffsetTemplateResponse {
+        try await self.client.execute(action: "DeleteSnapshotByTimeOffsetTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

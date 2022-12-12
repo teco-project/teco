@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 修改客服账号
-    @inlinable
-    public func modifyStaff(_ input: ModifyStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyStaffResponse > {
-        self.client.execute(action: "ModifyStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改客服账号
-    @inlinable
-    public func modifyStaff(_ input: ModifyStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStaffResponse {
-        try await self.client.execute(action: "ModifyStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyStaff请求参数结构体
     public struct ModifyStaffRequest: TCRequestModel {
         /// 应用ID
@@ -53,7 +41,7 @@ extension Ccc {
         /// 手机接听模式 0 - 关闭 | 1 - 仅离线 | 2 - 始终
         public let useMobileAccept: Int64?
         
-        public init (sdkAppId: UInt64, email: String, name: String?, phone: String?, nick: String?, skillGroupIds: [Int64]?, useMobileCallOut: Bool?, useMobileAccept: Int64?) {
+        public init (sdkAppId: UInt64, email: String, name: String? = nil, phone: String? = nil, nick: String? = nil, skillGroupIds: [Int64]? = nil, useMobileCallOut: Bool? = nil, useMobileAccept: Int64? = nil) {
             self.sdkAppId = sdkAppId
             self.email = email
             self.name = name
@@ -84,5 +72,17 @@ extension Ccc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改客服账号
+    @inlinable
+    public func modifyStaff(_ input: ModifyStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyStaffResponse > {
+        self.client.execute(action: "ModifyStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改客服账号
+    @inlinable
+    public func modifyStaff(_ input: ModifyStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStaffResponse {
+        try await self.client.execute(action: "ModifyStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

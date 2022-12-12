@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 开启安全策略
-    @inlinable
-    public func openSecurityPolicy(_ input: OpenSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenSecurityPolicyResponse > {
-        self.client.execute(action: "OpenSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启安全策略
-    @inlinable
-    public func openSecurityPolicy(_ input: OpenSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenSecurityPolicyResponse {
-        try await self.client.execute(action: "OpenSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OpenSecurityPolicy请求参数结构体
     public struct OpenSecurityPolicyRequest: TCRequestModel {
         /// 需开启安全策略的通道ID
@@ -35,7 +23,7 @@ extension Gaap {
         /// 安全策略ID
         public let policyId: String?
         
-        public init (proxyId: String?, policyId: String?) {
+        public init (proxyId: String? = nil, policyId: String? = nil) {
             self.proxyId = proxyId
             self.policyId = policyId
         }
@@ -58,5 +46,17 @@ extension Gaap {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启安全策略
+    @inlinable
+    public func openSecurityPolicy(_ input: OpenSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenSecurityPolicyResponse > {
+        self.client.execute(action: "OpenSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启安全策略
+    @inlinable
+    public func openSecurityPolicy(_ input: OpenSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenSecurityPolicyResponse {
+        try await self.client.execute(action: "OpenSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

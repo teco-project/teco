@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 设置记录备注
-    @inlinable
-    public func modifyRecordRemark(_ input: ModifyRecordRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordRemarkResponse > {
-        self.client.execute(action: "ModifyRecordRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置记录备注
-    @inlinable
-    public func modifyRecordRemark(_ input: ModifyRecordRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordRemarkResponse {
-        try await self.client.execute(action: "ModifyRecordRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRecordRemark请求参数结构体
     public struct ModifyRecordRemarkRequest: TCRequestModel {
         /// 域名
@@ -41,7 +29,7 @@ extension Dnspod {
         /// 解析记录备注，删除备注请提交空内容。
         public let remark: String?
         
-        public init (domain: String, recordId: UInt64, domainId: UInt64?, remark: String?) {
+        public init (domain: String, recordId: UInt64, domainId: UInt64? = nil, remark: String? = nil) {
             self.domain = domain
             self.recordId = recordId
             self.domainId = domainId
@@ -64,5 +52,17 @@ extension Dnspod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置记录备注
+    @inlinable
+    public func modifyRecordRemark(_ input: ModifyRecordRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordRemarkResponse > {
+        self.client.execute(action: "ModifyRecordRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置记录备注
+    @inlinable
+    public func modifyRecordRemark(_ input: ModifyRecordRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordRemarkResponse {
+        try await self.client.execute(action: "ModifyRecordRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

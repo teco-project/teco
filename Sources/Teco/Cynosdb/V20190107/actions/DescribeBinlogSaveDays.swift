@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 查询Binlog保留天数
-    ///
-    /// 此接口（DescribeBinlogSaveDays）用于查询集群的Binlog保留天数。
-    @inlinable
-    public func describeBinlogSaveDays(_ input: DescribeBinlogSaveDaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBinlogSaveDaysResponse > {
-        self.client.execute(action: "DescribeBinlogSaveDays", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Binlog保留天数
-    ///
-    /// 此接口（DescribeBinlogSaveDays）用于查询集群的Binlog保留天数。
-    @inlinable
-    public func describeBinlogSaveDays(_ input: DescribeBinlogSaveDaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogSaveDaysResponse {
-        try await self.client.execute(action: "DescribeBinlogSaveDays", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBinlogSaveDays请求参数结构体
     public struct DescribeBinlogSaveDaysRequest: TCRequestModel {
         /// 集群ID
@@ -57,5 +41,21 @@ extension Cynosdb {
             case binlogSaveDays = "BinlogSaveDays"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Binlog保留天数
+    ///
+    /// 此接口（DescribeBinlogSaveDays）用于查询集群的Binlog保留天数。
+    @inlinable
+    public func describeBinlogSaveDays(_ input: DescribeBinlogSaveDaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBinlogSaveDaysResponse > {
+        self.client.execute(action: "DescribeBinlogSaveDays", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Binlog保留天数
+    ///
+    /// 此接口（DescribeBinlogSaveDays）用于查询集群的Binlog保留天数。
+    @inlinable
+    public func describeBinlogSaveDays(_ input: DescribeBinlogSaveDaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogSaveDaysResponse {
+        try await self.client.execute(action: "DescribeBinlogSaveDays", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

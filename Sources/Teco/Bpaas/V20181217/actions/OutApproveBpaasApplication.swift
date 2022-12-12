@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bpaas {
-    /// 外部审批申请单
-    @inlinable
-    public func outApproveBpaasApplication(_ input: OutApproveBpaasApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OutApproveBpaasApplicationResponse > {
-        self.client.execute(action: "OutApproveBpaasApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 外部审批申请单
-    @inlinable
-    public func outApproveBpaasApplication(_ input: OutApproveBpaasApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OutApproveBpaasApplicationResponse {
-        try await self.client.execute(action: "OutApproveBpaasApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OutApproveBpaasApplication请求参数结构体
     public struct OutApproveBpaasApplicationRequest: TCRequestModel {
         /// 状态  1:通过  2:拒绝
@@ -38,7 +26,7 @@ extension Bpaas {
         /// 审批意见
         public let msg: String?
         
-        public init (status: UInt64, approveId: UInt64, msg: String?) {
+        public init (status: UInt64, approveId: UInt64, msg: String? = nil) {
             self.status = status
             self.approveId = approveId
             self.msg = msg
@@ -59,5 +47,17 @@ extension Bpaas {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 外部审批申请单
+    @inlinable
+    public func outApproveBpaasApplication(_ input: OutApproveBpaasApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OutApproveBpaasApplicationResponse > {
+        self.client.execute(action: "OutApproveBpaasApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 外部审批申请单
+    @inlinable
+    public func outApproveBpaasApplication(_ input: OutApproveBpaasApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OutApproveBpaasApplicationResponse {
+        try await self.client.execute(action: "OutApproveBpaasApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

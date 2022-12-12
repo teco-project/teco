@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Billing {
-    /// 获取产品汇总费用分布
-    @inlinable
-    public func describeBillSummaryByProduct(_ input: DescribeBillSummaryByProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillSummaryByProductResponse > {
-        self.client.execute(action: "DescribeBillSummaryByProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取产品汇总费用分布
-    @inlinable
-    public func describeBillSummaryByProduct(_ input: DescribeBillSummaryByProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByProductResponse {
-        try await self.client.execute(action: "DescribeBillSummaryByProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBillSummaryByProduct请求参数结构体
     public struct DescribeBillSummaryByProductRequest: TCRequestModel {
         /// 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
@@ -46,7 +34,7 @@ extension Billing {
         /// adjustment-调账
         public let payType: String?
         
-        public init (beginTime: String, endTime: String, payerUin: String?, payType: String?) {
+        public init (beginTime: String, endTime: String, payerUin: String? = nil, payType: String? = nil) {
             self.beginTime = beginTime
             self.endTime = endTime
             self.payerUin = payerUin
@@ -68,7 +56,7 @@ extension Billing {
         
         /// 总花费详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let summaryTotal: BusinessSummaryTotal
+        public let summaryTotal: BusinessSummaryTotal?
         
         /// 各产品花费分布
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -83,5 +71,17 @@ extension Billing {
             case summaryOverview = "SummaryOverview"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取产品汇总费用分布
+    @inlinable
+    public func describeBillSummaryByProduct(_ input: DescribeBillSummaryByProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillSummaryByProductResponse > {
+        self.client.execute(action: "DescribeBillSummaryByProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品汇总费用分布
+    @inlinable
+    public func describeBillSummaryByProduct(_ input: DescribeBillSummaryByProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByProductResponse {
+        try await self.client.execute(action: "DescribeBillSummaryByProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

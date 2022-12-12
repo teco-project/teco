@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 导出ES查询文档列表
-    @inlinable
-    public func describeSearchExportList(_ input: DescribeSearchExportListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSearchExportListResponse > {
-        self.client.execute(action: "DescribeSearchExportList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出ES查询文档列表
-    @inlinable
-    public func describeSearchExportList(_ input: DescribeSearchExportListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchExportListResponse {
-        try await self.client.execute(action: "DescribeSearchExportList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSearchExportList请求参数结构体
     public struct DescribeSearchExportListRequest: TCRequestModel {
         /// ES查询条件JSON
@@ -53,5 +41,17 @@ extension Tcss {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出ES查询文档列表
+    @inlinable
+    public func describeSearchExportList(_ input: DescribeSearchExportListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSearchExportListResponse > {
+        self.client.execute(action: "DescribeSearchExportList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出ES查询文档列表
+    @inlinable
+    public func describeSearchExportList(_ input: DescribeSearchExportListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchExportListResponse {
+        try await self.client.execute(action: "DescribeSearchExportList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

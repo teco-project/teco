@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 撤回已发布的公共配置
-    @inlinable
-    public func revocationPublicConfig(_ input: RevocationPublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevocationPublicConfigResponse > {
-        self.client.execute(action: "RevocationPublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 撤回已发布的公共配置
-    @inlinable
-    public func revocationPublicConfig(_ input: RevocationPublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevocationPublicConfigResponse {
-        try await self.client.execute(action: "RevocationPublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RevocationPublicConfig请求参数结构体
     public struct RevocationPublicConfigRequest: TCRequestModel {
         /// 配置项发布ID
@@ -54,5 +42,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 撤回已发布的公共配置
+    @inlinable
+    public func revocationPublicConfig(_ input: RevocationPublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevocationPublicConfigResponse > {
+        self.client.execute(action: "RevocationPublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 撤回已发布的公共配置
+    @inlinable
+    public func revocationPublicConfig(_ input: RevocationPublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevocationPublicConfigResponse {
+        try await self.client.execute(action: "RevocationPublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

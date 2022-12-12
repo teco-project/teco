@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 修改云数据库实例的账户密码
-    ///
-    /// 本接口(SetPassword)用于设置云数据库账户的密码。
-    @inlinable
-    public func setPassword(_ input: SetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetPasswordResponse > {
-        self.client.execute(action: "SetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改云数据库实例的账户密码
-    ///
-    /// 本接口(SetPassword)用于设置云数据库账户的密码。
-    @inlinable
-    public func setPassword(_ input: SetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetPasswordResponse {
-        try await self.client.execute(action: "SetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetPassword请求参数结构体
     public struct SetPasswordRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -67,5 +51,21 @@ extension Mongodb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改云数据库实例的账户密码
+    ///
+    /// 本接口(SetPassword)用于设置云数据库账户的密码。
+    @inlinable
+    public func setPassword(_ input: SetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetPasswordResponse > {
+        self.client.execute(action: "SetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库实例的账户密码
+    ///
+    /// 本接口(SetPassword)用于设置云数据库账户的密码。
+    @inlinable
+    public func setPassword(_ input: SetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetPasswordResponse {
+        try await self.client.execute(action: "SetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

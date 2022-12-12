@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 删除表
-    ///
-    /// 删除指定的表,第一次调用此接口代表将表移动至回收站，再次调用代表将此表格从回收站中彻底删除。
-    @inlinable
-    public func deleteTables(_ input: DeleteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTablesResponse > {
-        self.client.execute(action: "DeleteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除表
-    ///
-    /// 删除指定的表,第一次调用此接口代表将表移动至回收站，再次调用代表将此表格从回收站中彻底删除。
-    @inlinable
-    public func deleteTables(_ input: DeleteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTablesResponse {
-        try await self.client.execute(action: "DeleteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTables请求参数结构体
     public struct DeleteTablesRequest: TCRequestModel {
         /// 待删除表所在集群ID
@@ -66,5 +50,21 @@ extension Tcaplusdb {
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除表
+    ///
+    /// 删除指定的表,第一次调用此接口代表将表移动至回收站，再次调用代表将此表格从回收站中彻底删除。
+    @inlinable
+    public func deleteTables(_ input: DeleteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTablesResponse > {
+        self.client.execute(action: "DeleteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除表
+    ///
+    /// 删除指定的表,第一次调用此接口代表将表移动至回收站，再次调用代表将此表格从回收站中彻底删除。
+    @inlinable
+    public func deleteTables(_ input: DeleteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTablesResponse {
+        try await self.client.execute(action: "DeleteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

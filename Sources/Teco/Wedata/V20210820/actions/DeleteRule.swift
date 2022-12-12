@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 删除质量规则接口
-    @inlinable
-    public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRuleResponse > {
-        self.client.execute(action: "DeleteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除质量规则接口
-    @inlinable
-    public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
-        try await self.client.execute(action: "DeleteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRule请求参数结构体
     public struct DeleteRuleRequest: TCRequestModel {
         /// 质量规则ID
@@ -35,7 +23,7 @@ extension Wedata {
         /// 项目ID
         public let projectId: String?
         
-        public init (ruleId: UInt64?, projectId: String?) {
+        public init (ruleId: UInt64? = nil, projectId: String? = nil) {
             self.ruleId = ruleId
             self.projectId = projectId
         }
@@ -59,5 +47,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除质量规则接口
+    @inlinable
+    public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRuleResponse > {
+        self.client.execute(action: "DeleteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除质量规则接口
+    @inlinable
+    public func deleteRule(_ input: DeleteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
+        try await self.client.execute(action: "DeleteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

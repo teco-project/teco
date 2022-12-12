@@ -47,7 +47,7 @@ extension Cloudstudio {
         /// 描述
         public let description: String?
         
-        public init (name: String, imageId: Int64, imageName: String, remoteUser: String, remoteHost: String, remotePort: String, workspaceType: String, workspaceVersion: Int64, workspaceResourceDTO: WorkspaceResourceDTO, description: String?) {
+        public init (name: String, imageId: Int64, imageName: String, remoteUser: String, remoteHost: String, remotePort: String, workspaceType: String, workspaceVersion: Int64, workspaceResourceDTO: WorkspaceResourceDTO, description: String? = nil) {
             self.name = name
             self.imageId = imageId
             self.imageName = imageName
@@ -86,7 +86,7 @@ extension Cloudstudio {
         
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let templates: UserDefinedTemplateParams
+        public let templates: UserDefinedTemplateParams?
         
         enum CodingKeys: String, CodingKey {
             case tags = "Tags"
@@ -145,19 +145,19 @@ extension Cloudstudio {
     public struct UserDefinedTemplateParams: TCInputModel, TCOutputModel {
         /// 模板名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let name: String
+        public let name: String?
         
         /// 模板图标地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let icon: String
+        public let icon: String?
         
         /// 模板标签列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tags: [String]
+        public let tags: [String]?
         
         /// 模板来源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let source: String
+        public let source: String?
         
         /// 模板描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -171,7 +171,7 @@ extension Cloudstudio {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let versionControlUrl: String?
         
-        public init (name: String, icon: String, tags: [String], source: String, description: String?, versionControlType: String?, versionControlUrl: String?) {
+        public init (name: String, icon: String, tags: [String], source: String, description: String? = nil, versionControlType: String? = nil, versionControlUrl: String? = nil) {
             self.name = name
             self.icon = icon
             self.tags = tags
@@ -196,7 +196,7 @@ extension Cloudstudio {
     public struct UserDefinedTemplatePatchedParams: TCInputModel, TCOutputModel {
         /// 模板来源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let source: String
+        public let source: String?
         
         /// 模板名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -214,7 +214,7 @@ extension Cloudstudio {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [String]?
         
-        public init (source: String, name: String?, icon: String?, description: String?, tags: [String]?) {
+        public init (source: String, name: String? = nil, icon: String? = nil, description: String? = nil, tags: [String]? = nil) {
             self.source = source
             self.name = name
             self.icon = icon
@@ -333,7 +333,7 @@ extension Cloudstudio {
         /// 描述
         public let versionControlDesc: String?
         
-        public init (name: String, versionControlType: String, imageId: Int64, imageName: String, description: String, workspaceVersion: Int64, workspaceResourceDTO: WorkspaceResourceDTO, versionControlUrl: String?, versionControlRef: String?, versionControlRefType: String?, snapshotUid: String?, templateId: Int64?, priceId: Int64?, initializeStatus: Int64?, versionControlDesc: String?) {
+        public init (name: String, versionControlType: String, imageId: Int64, imageName: String, description: String, workspaceVersion: Int64, workspaceResourceDTO: WorkspaceResourceDTO, versionControlUrl: String? = nil, versionControlRef: String? = nil, versionControlRefType: String? = nil, snapshotUid: String? = nil, templateId: Int64? = nil, priceId: Int64? = nil, initializeStatus: Int64? = nil, versionControlDesc: String? = nil) {
             self.name = name
             self.versionControlType = versionControlType
             self.imageId = imageId

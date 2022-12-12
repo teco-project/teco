@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 获取用户组被授权访问的应用列表
-    ///
-    /// 通过用户组ID获得被授权访问的应用列表。
-    @inlinable
-    public func listAuthorizedApplicationsToUserGroup(_ input: ListAuthorizedApplicationsToUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAuthorizedApplicationsToUserGroupResponse > {
-        self.client.execute(action: "ListAuthorizedApplicationsToUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户组被授权访问的应用列表
-    ///
-    /// 通过用户组ID获得被授权访问的应用列表。
-    @inlinable
-    public func listAuthorizedApplicationsToUserGroup(_ input: ListAuthorizedApplicationsToUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuthorizedApplicationsToUserGroupResponse {
-        try await self.client.execute(action: "ListAuthorizedApplicationsToUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListAuthorizedApplicationsToUserGroup请求参数结构体
     public struct ListAuthorizedApplicationsToUserGroupRequest: TCRequestModel {
         /// 用户组 Id 。
@@ -58,5 +42,21 @@ extension Eiam {
             case applicationIds = "ApplicationIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户组被授权访问的应用列表
+    ///
+    /// 通过用户组ID获得被授权访问的应用列表。
+    @inlinable
+    public func listAuthorizedApplicationsToUserGroup(_ input: ListAuthorizedApplicationsToUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAuthorizedApplicationsToUserGroupResponse > {
+        self.client.execute(action: "ListAuthorizedApplicationsToUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户组被授权访问的应用列表
+    ///
+    /// 通过用户组ID获得被授权访问的应用列表。
+    @inlinable
+    public func listAuthorizedApplicationsToUserGroup(_ input: ListAuthorizedApplicationsToUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuthorizedApplicationsToUserGroupResponse {
+        try await self.client.execute(action: "ListAuthorizedApplicationsToUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

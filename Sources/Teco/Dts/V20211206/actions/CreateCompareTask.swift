@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 创建一致性校验任务
-    ///
-    /// 本接口用于创建数据对比任务，创建成功后会返回数据对比任务 ID，形如：dts-8yv4w2i1-cmp-37skmii9，创建成功后可通过StartCompare启动一致性校验任务
-    @inlinable
-    public func createCompareTask(_ input: CreateCompareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCompareTaskResponse > {
-        self.client.execute(action: "CreateCompareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建一致性校验任务
-    ///
-    /// 本接口用于创建数据对比任务，创建成功后会返回数据对比任务 ID，形如：dts-8yv4w2i1-cmp-37skmii9，创建成功后可通过StartCompare启动一致性校验任务
-    @inlinable
-    public func createCompareTask(_ input: CreateCompareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCompareTaskResponse {
-        try await self.client.execute(action: "CreateCompareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCompareTask请求参数结构体
     public struct CreateCompareTaskRequest: TCRequestModel {
         /// 迁移任务 Id
@@ -43,9 +27,9 @@ extension Dts {
         public let objectMode: String?
         
         /// 一致性对比对象配置
-        public let objects: CompareObject
+        public let objects: CompareObject?
         
-        public init (jobId: String, taskName: String?, objectMode: String?, objects: CompareObject) {
+        public init (jobId: String, taskName: String? = nil, objectMode: String? = nil, objects: CompareObject? = nil) {
             self.jobId = jobId
             self.taskName = taskName
             self.objectMode = objectMode
@@ -73,5 +57,21 @@ extension Dts {
             case compareTaskId = "CompareTaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建一致性校验任务
+    ///
+    /// 本接口用于创建数据对比任务，创建成功后会返回数据对比任务 ID，形如：dts-8yv4w2i1-cmp-37skmii9，创建成功后可通过StartCompare启动一致性校验任务
+    @inlinable
+    public func createCompareTask(_ input: CreateCompareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCompareTaskResponse > {
+        self.client.execute(action: "CreateCompareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建一致性校验任务
+    ///
+    /// 本接口用于创建数据对比任务，创建成功后会返回数据对比任务 ID，形如：dts-8yv4w2i1-cmp-37skmii9，创建成功后可通过StartCompare启动一致性校验任务
+    @inlinable
+    public func createCompareTask(_ input: CreateCompareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCompareTaskResponse {
+        try await self.client.execute(action: "CreateCompareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

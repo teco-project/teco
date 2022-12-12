@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ape {
-    /// 查询图片列表
-    ///
-    /// 根据关键字搜索图片列表
-    @inlinable
-    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
-        self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询图片列表
-    ///
-    /// 根据关键字搜索图片列表
-    @inlinable
-    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
-        try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImages请求参数结构体
     public struct DescribeImagesRequest: TCRequestModel {
         /// 页偏移量
@@ -51,7 +35,7 @@ extension Ape {
         /// 分层图库id数组，可选以下数值：1(基础)，2(精选)，3(高级)
         public let layeredGalleryIds: [Int64]?
         
-        public init (offset: Int64, limit: Int64, keyword: String, orientation: String?, imageSenseType: String?, layeredGalleryIds: [Int64]?) {
+        public init (offset: Int64, limit: Int64, keyword: String, orientation: String? = nil, imageSenseType: String? = nil, layeredGalleryIds: [Int64]? = nil) {
             self.offset = offset
             self.limit = limit
             self.keyword = keyword
@@ -98,5 +82,21 @@ extension Ape {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询图片列表
+    ///
+    /// 根据关键字搜索图片列表
+    @inlinable
+    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagesResponse > {
+        self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询图片列表
+    ///
+    /// 根据关键字搜索图片列表
+    @inlinable
+    public func describeImages(_ input: DescribeImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
+        try await self.client.execute(action: "DescribeImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

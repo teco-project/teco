@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 删除专用通道
-    @inlinable
-    public func deleteDirectConnectTunnel(_ input: DeleteDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDirectConnectTunnelResponse > {
-        self.client.execute(action: "DeleteDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除专用通道
-    @inlinable
-    public func deleteDirectConnectTunnel(_ input: DeleteDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectTunnelResponse {
-        try await self.client.execute(action: "DeleteDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDirectConnectTunnel请求参数结构体
     public struct DeleteDirectConnectTunnelRequest: TCRequestModel {
         /// 专用通道ID
@@ -49,5 +37,17 @@ extension Dc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除专用通道
+    @inlinable
+    public func deleteDirectConnectTunnel(_ input: DeleteDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDirectConnectTunnelResponse > {
+        self.client.execute(action: "DeleteDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除专用通道
+    @inlinable
+    public func deleteDirectConnectTunnel(_ input: DeleteDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectTunnelResponse {
+        try await self.client.execute(action: "DeleteDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

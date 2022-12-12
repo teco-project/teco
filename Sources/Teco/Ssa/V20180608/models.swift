@@ -35,7 +35,7 @@ extension Ssa {
     public struct AlertDetail: TCOutputModel {
         /// 告警基础信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let baseInfo: AlertType
+        public let baseInfo: AlertType?
         
         /// 告警详情，json序列化
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -579,7 +579,7 @@ extension Ssa {
         /// 查询连接符，1 and  ，2 or
         public let logic: UInt64?
         
-        public init (filter: [QueryFilter]?, logic: UInt64?) {
+        public init (filter: [QueryFilter]? = nil, logic: UInt64? = nil) {
             self.filter = filter
             self.logic = logic
         }
@@ -643,7 +643,7 @@ extension Ssa {
         
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tag: String
+        public let tag: String?
         
         /// 是否忽略
         public let isIgnore: Int64
@@ -663,7 +663,7 @@ extension Ssa {
         /// 备注内容
         public let remarks: String?
         
-        public init (id: Int64, instid: String, url: String, taskid: String, result: Int64, updatetime: Date, tag: String, isIgnore: Int64, isChecked: Int64, assetInfo: String, assetId: String, detail: String?, remarks: String?) {
+        public init (id: Int64, instid: String, url: String, taskid: String, result: Int64, updatetime: Date, tag: String, isIgnore: Int64, isChecked: Int64, assetInfo: String, assetId: String, detail: String? = nil, remarks: String? = nil) {
             self.id = id
             self.instid = instid
             self.url = url
@@ -801,7 +801,7 @@ extension Ssa {
         
         /// 最近一次检测时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let lastCheckTime: Date
+        public let lastCheckTime: Date?
         
         /// 资产组类型
         public let assetType: String
@@ -814,15 +814,15 @@ extension Ssa {
         
         /// 标准项
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let standardItem: String
+        public let standardItem: String?
         
         /// 章节
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let chapter: String
+        public let chapter: String?
         
         /// 资产类型描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let assetTypeDesc: String
+        public let assetTypeDesc: String?
         
         /// 是否忽略
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -836,7 +836,7 @@ extension Ssa {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let title: String?
         
-        public init (id: String, category: String, type: String, errorCount: Int64, nameEn: String, checkName: String, method: String, doc: String, safeCount: Int64, content: String, isPass: Int64, ignoreCount: Int64, riskCount: Int64, lastCheckTime: Date, assetType: String, resCount: Int64, uuid: String, standardItem: String, chapter: String, assetTypeDesc: String, isIgnore: UInt64?, riskItem: String?, title: String?) {
+        public init (id: String, category: String, type: String, errorCount: Int64, nameEn: String, checkName: String, method: String, doc: String, safeCount: Int64, content: String, isPass: Int64, ignoreCount: Int64, riskCount: Int64, lastCheckTime: Date, assetType: String, resCount: Int64, uuid: String, standardItem: String, chapter: String, assetTypeDesc: String, isIgnore: UInt64? = nil, riskItem: String? = nil, title: String? = nil) {
             self.id = id
             self.category = category
             self.type = type
@@ -1410,7 +1410,7 @@ extension Ssa {
         /// 是否需要精确匹配
         public let exactMatch: Bool?
         
-        public init (name: String?, values: [String]?, exactMatch: Bool?) {
+        public init (name: String? = nil, values: [String]? = nil, exactMatch: Bool? = nil) {
             self.name = name
             self.values = values
             self.exactMatch = exactMatch
@@ -1530,7 +1530,7 @@ extension Ssa {
         /// 过滤value
         public let filterValue: String?
         
-        public init (filterKey: String?, filterOperatorType: Int64?, filterValue: String?) {
+        public init (filterKey: String? = nil, filterOperatorType: Int64? = nil, filterValue: String? = nil) {
             self.filterKey = filterKey
             self.filterOperatorType = filterOperatorType
             self.filterValue = filterValue
@@ -1706,33 +1706,33 @@ extension Ssa {
     public struct SocCheckItemV1: TCInputModel, TCOutputModel {
         /// 检查项id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let checkId: String
+        public let checkId: String?
         
         /// 配置要求
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let name: String
+        public let name: String?
         
         /// 检查项类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let type: String
+        public let type: String?
         
         /// 检查对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let assetType: String
+        public let assetType: String?
         
         /// 默认风险等级 2:低危 3:中危 4:高危
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let level: Int64
+        public let level: Int64?
         
         /// 相关规范
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let standard: String
+        public let standard: String?
         
         /// 检查项是否付费 1:免费 2:付费
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isFree: Int64?
         
-        public init (checkId: String, name: String, type: String, assetType: String, level: Int64, standard: String, isFree: Int64?) {
+        public init (checkId: String, name: String, type: String, assetType: String, level: Int64, standard: String, isFree: Int64? = nil) {
             self.checkId = checkId
             self.name = name
             self.type = type

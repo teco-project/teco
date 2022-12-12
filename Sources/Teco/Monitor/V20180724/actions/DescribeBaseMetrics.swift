@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 获取基础指标属性
-    @inlinable
-    public func describeBaseMetrics(_ input: DescribeBaseMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaseMetricsResponse > {
-        self.client.execute(action: "DescribeBaseMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取基础指标属性
-    @inlinable
-    public func describeBaseMetrics(_ input: DescribeBaseMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseMetricsResponse {
-        try await self.client.execute(action: "DescribeBaseMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBaseMetrics请求参数结构体
     public struct DescribeBaseMetricsRequest: TCRequestModel {
         /// 业务命名空间，各个云产品的业务命名空间不同。如需获取业务命名空间，请前往各产品监控指标文档，例如云服务器的命名空间，可参见 [云服务器监控指标](https://cloud.tencent.com/document/product/248/6843)
@@ -38,7 +26,7 @@ extension Monitor {
         /// 可选参数，按照维度过滤
         public let dimensions: [String]?
         
-        public init (namespace: String, metricName: String?, dimensions: [String]?) {
+        public init (namespace: String, metricName: String? = nil, dimensions: [String]? = nil) {
             self.namespace = namespace
             self.metricName = metricName
             self.dimensions = dimensions
@@ -63,5 +51,17 @@ extension Monitor {
             case metricSet = "MetricSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取基础指标属性
+    @inlinable
+    public func describeBaseMetrics(_ input: DescribeBaseMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaseMetricsResponse > {
+        self.client.execute(action: "DescribeBaseMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取基础指标属性
+    @inlinable
+    public func describeBaseMetrics(_ input: DescribeBaseMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseMetricsResponse {
+        try await self.client.execute(action: "DescribeBaseMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

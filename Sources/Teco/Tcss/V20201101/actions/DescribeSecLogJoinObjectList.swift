@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询安全日志接入对象列表
-    @inlinable
-    public func describeSecLogJoinObjectList(_ input: DescribeSecLogJoinObjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogJoinObjectListResponse > {
-        self.client.execute(action: "DescribeSecLogJoinObjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全日志接入对象列表
-    @inlinable
-    public func describeSecLogJoinObjectList(_ input: DescribeSecLogJoinObjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogJoinObjectListResponse {
-        try await self.client.execute(action: "DescribeSecLogJoinObjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecLogJoinObjectList请求参数结构体
     public struct DescribeSecLogJoinObjectListRequest: TCRequestModel {
         /// 日志类型
@@ -54,7 +42,7 @@ extension Tcss {
         /// 排序方式
         public let order: String?
         
-        public init (logType: String, limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, by: String?, order: String?) {
+        public init (logType: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.logType = logType
             self.limit = limit
             self.offset = offset
@@ -89,5 +77,17 @@ extension Tcss {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全日志接入对象列表
+    @inlinable
+    public func describeSecLogJoinObjectList(_ input: DescribeSecLogJoinObjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecLogJoinObjectListResponse > {
+        self.client.execute(action: "DescribeSecLogJoinObjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全日志接入对象列表
+    @inlinable
+    public func describeSecLogJoinObjectList(_ input: DescribeSecLogJoinObjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogJoinObjectListResponse {
+        try await self.client.execute(action: "DescribeSecLogJoinObjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

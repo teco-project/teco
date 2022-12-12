@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-子商户费率配置结果查询
-    @inlinable
-    public func queryOpenBankSubMerchantRateConfigure(_ input: QueryOpenBankSubMerchantRateConfigureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankSubMerchantRateConfigureResponse > {
-        self.client.execute(action: "QueryOpenBankSubMerchantRateConfigure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-子商户费率配置结果查询
-    @inlinable
-    public func queryOpenBankSubMerchantRateConfigure(_ input: QueryOpenBankSubMerchantRateConfigureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSubMerchantRateConfigureResponse {
-        try await self.client.execute(action: "QueryOpenBankSubMerchantRateConfigure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryOpenBankSubMerchantRateConfigure请求参数结构体
     public struct QueryOpenBankSubMerchantRateConfigureRequest: TCRequestModel {
         /// 渠道进件序列号。
@@ -57,7 +45,7 @@ extension Cpdp {
         /// _不填默认为生产环境_
         public let environment: String?
         
-        public init (channelRegistrationNo: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, channelProductFeeNo: String?, outProductFeeNo: String?, environment: String?) {
+        public init (channelRegistrationNo: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, channelProductFeeNo: String? = nil, outProductFeeNo: String? = nil, environment: String? = nil) {
             self.channelRegistrationNo = channelRegistrationNo
             self.channelMerchantId = channelMerchantId
             self.channelSubMerchantId = channelSubMerchantId
@@ -91,7 +79,7 @@ extension Cpdp {
         
         /// 返回结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: QueryOpenBankSubMerchantRateConfigureResult
+        public let result: QueryOpenBankSubMerchantRateConfigureResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -102,5 +90,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-子商户费率配置结果查询
+    @inlinable
+    public func queryOpenBankSubMerchantRateConfigure(_ input: QueryOpenBankSubMerchantRateConfigureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryOpenBankSubMerchantRateConfigureResponse > {
+        self.client.execute(action: "QueryOpenBankSubMerchantRateConfigure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-子商户费率配置结果查询
+    @inlinable
+    public func queryOpenBankSubMerchantRateConfigure(_ input: QueryOpenBankSubMerchantRateConfigureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSubMerchantRateConfigureResponse {
+        try await self.client.execute(action: "QueryOpenBankSubMerchantRateConfigure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

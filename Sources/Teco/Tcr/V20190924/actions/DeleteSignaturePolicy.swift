@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 删除命名空间加签策略
-    @inlinable
-    public func deleteSignaturePolicy(_ input: DeleteSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSignaturePolicyResponse > {
-        self.client.execute(action: "DeleteSignaturePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除命名空间加签策略
-    @inlinable
-    public func deleteSignaturePolicy(_ input: DeleteSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSignaturePolicyResponse {
-        try await self.client.execute(action: "DeleteSignaturePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSignaturePolicy请求参数结构体
     public struct DeleteSignaturePolicyRequest: TCRequestModel {
         /// 实例ID
@@ -54,5 +42,17 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除命名空间加签策略
+    @inlinable
+    public func deleteSignaturePolicy(_ input: DeleteSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSignaturePolicyResponse > {
+        self.client.execute(action: "DeleteSignaturePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除命名空间加签策略
+    @inlinable
+    public func deleteSignaturePolicy(_ input: DeleteSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSignaturePolicyResponse {
+        try await self.client.execute(action: "DeleteSignaturePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

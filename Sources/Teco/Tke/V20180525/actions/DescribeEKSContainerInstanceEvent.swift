@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询容器实例的事件
-    @inlinable
-    public func describeEKSContainerInstanceEvent(_ input: DescribeEKSContainerInstanceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSContainerInstanceEventResponse > {
-        self.client.execute(action: "DescribeEKSContainerInstanceEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器实例的事件
-    @inlinable
-    public func describeEKSContainerInstanceEvent(_ input: DescribeEKSContainerInstanceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSContainerInstanceEventResponse {
-        try await self.client.execute(action: "DescribeEKSContainerInstanceEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEKSContainerInstanceEvent请求参数结构体
     public struct DescribeEKSContainerInstanceEventRequest: TCRequestModel {
         /// 容器实例id
@@ -35,7 +23,7 @@ extension Tke {
         /// 最大事件数量。默认为50，最大取值100。
         public let limit: Int64?
         
-        public init (eksCiId: String, limit: Int64?) {
+        public init (eksCiId: String, limit: Int64? = nil) {
             self.eksCiId = eksCiId
             self.limit = limit
         }
@@ -62,5 +50,17 @@ extension Tke {
             case eksCiId = "EksCiId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器实例的事件
+    @inlinable
+    public func describeEKSContainerInstanceEvent(_ input: DescribeEKSContainerInstanceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEKSContainerInstanceEventResponse > {
+        self.client.execute(action: "DescribeEKSContainerInstanceEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器实例的事件
+    @inlinable
+    public func describeEKSContainerInstanceEvent(_ input: DescribeEKSContainerInstanceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSContainerInstanceEventResponse {
+        try await self.client.execute(action: "DescribeEKSContainerInstanceEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

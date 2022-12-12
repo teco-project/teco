@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 创建AMQP路由关系
-    @inlinable
-    public func createAMQPRouteRelation(_ input: CreateAMQPRouteRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAMQPRouteRelationResponse > {
-        self.client.execute(action: "CreateAMQPRouteRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建AMQP路由关系
-    @inlinable
-    public func createAMQPRouteRelation(_ input: CreateAMQPRouteRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPRouteRelationResponse {
-        try await self.client.execute(action: "CreateAMQPRouteRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAMQPRouteRelation请求参数结构体
     public struct CreateAMQPRouteRelationRequest: TCRequestModel {
         /// 集群ID
@@ -50,7 +38,7 @@ extension Tdmq {
         /// 绑定key,缺省值为default
         public let routingKey: String?
         
-        public init (clusterId: String, vHostId: String, sourceExchange: String, destType: String, destValue: String, remark: String?, routingKey: String?) {
+        public init (clusterId: String, vHostId: String, sourceExchange: String, destType: String, destValue: String, remark: String? = nil, routingKey: String? = nil) {
             self.clusterId = clusterId
             self.vHostId = vHostId
             self.sourceExchange = sourceExchange
@@ -79,5 +67,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建AMQP路由关系
+    @inlinable
+    public func createAMQPRouteRelation(_ input: CreateAMQPRouteRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAMQPRouteRelationResponse > {
+        self.client.execute(action: "CreateAMQPRouteRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建AMQP路由关系
+    @inlinable
+    public func createAMQPRouteRelation(_ input: CreateAMQPRouteRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPRouteRelationResponse {
+        try await self.client.execute(action: "CreateAMQPRouteRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

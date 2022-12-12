@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 新增规则
-    @inlinable
-    public func addRule(_ input: AddRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddRuleResponse > {
-        self.client.execute(action: "AddRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增规则
-    @inlinable
-    public func addRule(_ input: AddRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRuleResponse {
-        try await self.client.execute(action: "AddRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddRule请求参数结构体
     public struct AddRuleRequest: TCRequestModel {
         /// 名称
@@ -36,7 +24,7 @@ extension Iot {
         public let description: String
         
         /// 查询
-        public let query: RuleQuery
+        public let query: RuleQuery?
         
         /// 转发动作列表
         public let actions: [Action]?
@@ -44,7 +32,7 @@ extension Iot {
         /// 数据类型（0：文本，1：二进制）
         public let dataType: UInt64?
         
-        public init (name: String, description: String, query: RuleQuery, actions: [Action]?, dataType: UInt64?) {
+        public init (name: String, description: String, query: RuleQuery? = nil, actions: [Action]? = nil, dataType: UInt64? = nil) {
             self.name = name
             self.description = description
             self.query = query
@@ -73,5 +61,17 @@ extension Iot {
             case rule = "Rule"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增规则
+    @inlinable
+    public func addRule(_ input: AddRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddRuleResponse > {
+        self.client.execute(action: "AddRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增规则
+    @inlinable
+    public func addRule(_ input: AddRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRuleResponse {
+        try await self.client.execute(action: "AddRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

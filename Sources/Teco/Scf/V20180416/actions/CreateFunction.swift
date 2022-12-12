@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 创建函数
-    ///
-    /// 该接口根据传入参数创建新的函数。
-    @inlinable
-    public func createFunction(_ input: CreateFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFunctionResponse > {
-        self.client.execute(action: "CreateFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建函数
-    ///
-    /// 该接口根据传入参数创建新的函数。
-    @inlinable
-    public func createFunction(_ input: CreateFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFunctionResponse {
-        try await self.client.execute(action: "CreateFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFunction请求参数结构体
     public struct CreateFunctionRequest: TCRequestModel {
         /// 创建的函数名称，函数名称支持26个英文字母大小写、数字、连接符和下划线，第一个字符只能以字母开头，最后一个字符不能为连接符或者下划线，名称长度2-60
@@ -52,13 +36,13 @@ extension Scf {
         public let timeout: Int64?
         
         /// 函数的环境变量
-        public let environment: Environment
+        public let environment: Environment?
         
         /// 函数运行环境，目前仅支持 Python2.7，Python3.6，Nodejs6.10，Nodejs8.9，Nodejs10.15，Nodejs12.16， Php5， Php7，Go1，Java8 和 CustomRuntime，默认Python2.7
         public let runtime: String?
         
         /// 函数的私有网络配置
-        public let vpcConfig: VpcConfig
+        public let vpcConfig: VpcConfig?
         
         /// 函数所属命名空间
         public let namespace: String?
@@ -85,13 +69,13 @@ extension Scf {
         public let layers: [LayerVersionSimple]?
         
         /// 死信队列参数
-        public let deadLetterConfig: DeadLetterConfig
+        public let deadLetterConfig: DeadLetterConfig?
         
         /// 公网访问配置
-        public let publicNetConfig: PublicNetConfigIn
+        public let publicNetConfig: PublicNetConfigIn?
         
         /// 文件系统配置参数，用于云函数挂载文件系统
-        public let cfsConfig: CfsConfig
+        public let cfsConfig: CfsConfig?
         
         /// 函数初始化超时时间，默认 65s，镜像部署函数默认 90s。
         public let initTimeout: Int64?
@@ -109,12 +93,12 @@ extension Scf {
         public let protocolType: String?
         
         /// HTTP函数配置ProtocolType访问协议，当前协议可配置的参数
-        public let protocolParams: ProtocolParams
+        public let protocolParams: ProtocolParams?
         
         /// 单实例多并发配置。只支持Web函数。
-        public let instanceConcurrencyConfig: InstanceConcurrencyConfig
+        public let instanceConcurrencyConfig: InstanceConcurrencyConfig?
         
-        public init (functionName: String, code: Code, handler: String?, description: String?, memorySize: Int64?, timeout: Int64?, environment: Environment, runtime: String?, vpcConfig: VpcConfig, namespace: String?, role: String?, installDependency: String?, clsLogsetId: String?, clsTopicId: String?, type: String?, codeSource: String?, layers: [LayerVersionSimple]?, deadLetterConfig: DeadLetterConfig, publicNetConfig: PublicNetConfigIn, cfsConfig: CfsConfig, initTimeout: Int64?, tags: [Tag]?, asyncRunEnable: String?, traceEnable: String?, protocolType: String?, protocolParams: ProtocolParams, instanceConcurrencyConfig: InstanceConcurrencyConfig) {
+        public init (functionName: String, code: Code, handler: String? = nil, description: String? = nil, memorySize: Int64? = nil, timeout: Int64? = nil, environment: Environment? = nil, runtime: String? = nil, vpcConfig: VpcConfig? = nil, namespace: String? = nil, role: String? = nil, installDependency: String? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, type: String? = nil, codeSource: String? = nil, layers: [LayerVersionSimple]? = nil, deadLetterConfig: DeadLetterConfig? = nil, publicNetConfig: PublicNetConfigIn? = nil, cfsConfig: CfsConfig? = nil, initTimeout: Int64? = nil, tags: [Tag]? = nil, asyncRunEnable: String? = nil, traceEnable: String? = nil, protocolType: String? = nil, protocolParams: ProtocolParams? = nil, instanceConcurrencyConfig: InstanceConcurrencyConfig? = nil) {
             self.functionName = functionName
             self.code = code
             self.handler = handler
@@ -183,5 +167,21 @@ extension Scf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建函数
+    ///
+    /// 该接口根据传入参数创建新的函数。
+    @inlinable
+    public func createFunction(_ input: CreateFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFunctionResponse > {
+        self.client.execute(action: "CreateFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建函数
+    ///
+    /// 该接口根据传入参数创建新的函数。
+    @inlinable
+    public func createFunction(_ input: CreateFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFunctionResponse {
+        try await self.client.execute(action: "CreateFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

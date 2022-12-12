@@ -15,6 +15,39 @@
 // DO NOT EDIT.
 
 extension Vpc {
+    /// CreateDefaultVpc请求参数结构体
+    public struct CreateDefaultVpcRequest: TCRequestModel {
+        /// 子网所在的可用区，该参数可通过[DescribeZones](https://cloud.tencent.com/document/product/213/15707)接口获取，例如ap-guangzhou-1，不指定时将随机选择可用区。
+        public let zone: String?
+        
+        /// 是否强制返回默认VPC。
+        public let force: Bool?
+        
+        public init (zone: String? = nil, force: Bool? = nil) {
+            self.zone = zone
+            self.force = force
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case zone = "Zone"
+            case force = "Force"
+        }
+    }
+    
+    /// CreateDefaultVpc返回参数结构体
+    public struct CreateDefaultVpcResponse: TCResponseModel {
+        /// 默认VPC和子网ID
+        public let vpc: DefaultVpcSubnet
+        
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case vpc = "Vpc"
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 创建默认VPC和默认子网
     ///
     /// 本接口（CreateDefaultVpc）用于创建默认私有网络(VPC）。
@@ -39,38 +72,5 @@ extension Vpc {
     @inlinable
     public func createDefaultVpc(_ input: CreateDefaultVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultVpcResponse {
         try await self.client.execute(action: "CreateDefaultVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// CreateDefaultVpc请求参数结构体
-    public struct CreateDefaultVpcRequest: TCRequestModel {
-        /// 子网所在的可用区，该参数可通过[DescribeZones](https://cloud.tencent.com/document/product/213/15707)接口获取，例如ap-guangzhou-1，不指定时将随机选择可用区。
-        public let zone: String?
-        
-        /// 是否强制返回默认VPC。
-        public let force: Bool?
-        
-        public init (zone: String?, force: Bool?) {
-            self.zone = zone
-            self.force = force
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case zone = "Zone"
-            case force = "Force"
-        }
-    }
-    
-    /// CreateDefaultVpc返回参数结构体
-    public struct CreateDefaultVpcResponse: TCResponseModel {
-        /// 默认VPC和子网ID
-        public let vpc: DefaultVpcSubnet
-        
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case vpc = "Vpc"
-            case requestId = "RequestId"
-        }
     }
 }

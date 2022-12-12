@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时查询文件查杀任务状态
-    @inlinable
-    public func describeVirusScanTaskStatus(_ input: DescribeVirusScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusScanTaskStatusResponse > {
-        self.client.execute(action: "DescribeVirusScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时查询文件查杀任务状态
-    @inlinable
-    public func describeVirusScanTaskStatus(_ input: DescribeVirusScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusScanTaskStatusResponse {
-        try await self.client.execute(action: "DescribeVirusScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVirusScanTaskStatus请求参数结构体
     public struct DescribeVirusScanTaskStatusRequest: TCRequestModel {
         /// 任务id
         public let taskID: String?
         
-        public init (taskID: String?) {
+        public init (taskID: String? = nil) {
             self.taskID = taskID
         }
         
@@ -95,5 +83,17 @@ extension Tcss {
             case scanType = "ScanType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时查询文件查杀任务状态
+    @inlinable
+    public func describeVirusScanTaskStatus(_ input: DescribeVirusScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusScanTaskStatusResponse > {
+        self.client.execute(action: "DescribeVirusScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时查询文件查杀任务状态
+    @inlinable
+    public func describeVirusScanTaskStatus(_ input: DescribeVirusScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusScanTaskStatusResponse {
+        try await self.client.execute(action: "DescribeVirusScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

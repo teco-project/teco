@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 停止执行中的任务批次
-    ///
-    /// 停止执行中的任务批次， 非运行中的任务不可调用。
-    @inlinable
-    public func stopTaskBatch(_ input: StopTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopTaskBatchResponse > {
-        self.client.execute(action: "StopTaskBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止执行中的任务批次
-    ///
-    /// 停止执行中的任务批次， 非运行中的任务不可调用。
-    @inlinable
-    public func stopTaskBatch(_ input: StopTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTaskBatchResponse {
-        try await self.client.execute(action: "StopTaskBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopTaskBatch请求参数结构体
     public struct StopTaskBatchRequest: TCRequestModel {
         /// 批次ID
@@ -39,7 +23,7 @@ extension Tsf {
         /// 参数ID
         public let taskId: String?
         
-        public init (batchId: String, taskId: String?) {
+        public init (batchId: String, taskId: String? = nil) {
             self.batchId = batchId
             self.taskId = taskId
         }
@@ -62,5 +46,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止执行中的任务批次
+    ///
+    /// 停止执行中的任务批次， 非运行中的任务不可调用。
+    @inlinable
+    public func stopTaskBatch(_ input: StopTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopTaskBatchResponse > {
+        self.client.execute(action: "StopTaskBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止执行中的任务批次
+    ///
+    /// 停止执行中的任务批次， 非运行中的任务不可调用。
+    @inlinable
+    public func stopTaskBatch(_ input: StopTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTaskBatchResponse {
+        try await self.client.execute(action: "StopTaskBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

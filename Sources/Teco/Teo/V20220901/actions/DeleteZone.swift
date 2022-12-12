@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 删除站点
-    ///
-    /// 删除站点。
-    @inlinable
-    public func deleteZone(_ input: DeleteZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteZoneResponse > {
-        self.client.execute(action: "DeleteZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除站点
-    ///
-    /// 删除站点。
-    @inlinable
-    public func deleteZone(_ input: DeleteZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteZoneResponse {
-        try await self.client.execute(action: "DeleteZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteZone请求参数结构体
     public struct DeleteZoneRequest: TCRequestModel {
         /// 站点 ID。
@@ -53,5 +37,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除站点
+    ///
+    /// 删除站点。
+    @inlinable
+    public func deleteZone(_ input: DeleteZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteZoneResponse > {
+        self.client.execute(action: "DeleteZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除站点
+    ///
+    /// 删除站点。
+    @inlinable
+    public func deleteZone(_ input: DeleteZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteZoneResponse {
+        try await self.client.execute(action: "DeleteZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

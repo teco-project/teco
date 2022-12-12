@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取异常事件统计
-    @inlinable
-    public func describeAbnormalEvents(_ input: DescribeAbnormalEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalEventsResponse > {
-        self.client.execute(action: "DescribeAbnormalEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取异常事件统计
-    @inlinable
-    public func describeAbnormalEvents(_ input: DescribeAbnormalEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalEventsResponse {
-        try await self.client.execute(action: "DescribeAbnormalEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAbnormalEvents请求参数结构体
     public struct DescribeAbnormalEventsRequest: TCRequestModel {
         /// 开始时间
@@ -59,5 +47,17 @@ extension Iotvideoindustry {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取异常事件统计
+    @inlinable
+    public func describeAbnormalEvents(_ input: DescribeAbnormalEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalEventsResponse > {
+        self.client.execute(action: "DescribeAbnormalEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取异常事件统计
+    @inlinable
+    public func describeAbnormalEvents(_ input: DescribeAbnormalEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalEventsResponse {
+        try await self.client.execute(action: "DescribeAbnormalEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

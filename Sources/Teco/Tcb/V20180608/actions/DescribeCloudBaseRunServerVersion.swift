@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询服务版本的详情
-    ///
-    /// 查询服务版本的详情，CPU和MEM  请使用CPUSize和MemSize
-    @inlinable
-    public func describeCloudBaseRunServerVersion(_ input: DescribeCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunServerVersionResponse > {
-        self.client.execute(action: "DescribeCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询服务版本的详情
-    ///
-    /// 查询服务版本的详情，CPU和MEM  请使用CPUSize和MemSize
-    @inlinable
-    public func describeCloudBaseRunServerVersion(_ input: DescribeCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunServerVersionResponse {
-        try await self.client.execute(action: "DescribeCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudBaseRunServerVersion请求参数结构体
     public struct DescribeCloudBaseRunServerVersionRequest: TCRequestModel {
         /// 环境ID
@@ -239,5 +223,21 @@ extension Tcb {
             case policyDetail = "PolicyDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询服务版本的详情
+    ///
+    /// 查询服务版本的详情，CPU和MEM  请使用CPUSize和MemSize
+    @inlinable
+    public func describeCloudBaseRunServerVersion(_ input: DescribeCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunServerVersionResponse > {
+        self.client.execute(action: "DescribeCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务版本的详情
+    ///
+    /// 查询服务版本的详情，CPU和MEM  请使用CPUSize和MemSize
+    @inlinable
+    public func describeCloudBaseRunServerVersion(_ input: DescribeCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunServerVersionResponse {
+        try await self.client.execute(action: "DescribeCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

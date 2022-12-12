@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 设置实例输入模式
-    @inlinable
-    public func modifyInstanceReadOnly(_ input: ModifyInstanceReadOnlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceReadOnlyResponse > {
-        self.client.execute(action: "ModifyInstanceReadOnly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置实例输入模式
-    @inlinable
-    public func modifyInstanceReadOnly(_ input: ModifyInstanceReadOnlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceReadOnlyResponse {
-        try await self.client.execute(action: "ModifyInstanceReadOnly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstanceReadOnly请求参数结构体
     public struct ModifyInstanceReadOnlyRequest: TCRequestModel {
         /// 实例ID
@@ -58,5 +46,17 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置实例输入模式
+    @inlinable
+    public func modifyInstanceReadOnly(_ input: ModifyInstanceReadOnlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceReadOnlyResponse > {
+        self.client.execute(action: "ModifyInstanceReadOnly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置实例输入模式
+    @inlinable
+    public func modifyInstanceReadOnly(_ input: ModifyInstanceReadOnlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceReadOnlyResponse {
+        try await self.client.execute(action: "ModifyInstanceReadOnly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

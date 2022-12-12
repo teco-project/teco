@@ -52,7 +52,7 @@ extension Bda {
         /// 返回下装信息
         public let lowerBodyCloth: Bool?
         
-        public init (age: Bool?, bag: Bool?, gender: Bool?, orientation: Bool?, upperBodyCloth: Bool?, lowerBodyCloth: Bool?) {
+        public init (age: Bool? = nil, bag: Bool? = nil, gender: Bool? = nil, orientation: Bool? = nil, upperBodyCloth: Bool? = nil, lowerBodyCloth: Bool? = nil) {
             self.age = age
             self.bag = bag
             self.gender = gender
@@ -91,32 +91,32 @@ extension Bda {
         /// 人体年龄信息。 
         /// AttributesType 不含 Age 或检测超过 5 个人体时，此参数仍返回，但不具备参考意义。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let age: Age
+        public let age: Age?
         
         /// 人体是否挎包。 
         /// AttributesType 不含 Bag 或检测超过 5 个人体时，此参数仍返回，但不具备参考意义。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let bag: Bag
+        public let bag: Bag?
         
         /// 人体性别信息。 
         /// AttributesType 不含 Gender 或检测超过 5 个人体时，此参数仍返回，但不具备参考意义。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let gender: Gender
+        public let gender: Gender?
         
         /// 人体朝向信息。   
         /// AttributesType 不含 UpperBodyCloth 或检测超过 5 个人体时，此参数仍返回，但不具备参考意义。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let orientation: Orientation
+        public let orientation: Orientation?
         
         /// 人体上衣属性信息。
         /// AttributesType 不含 Orientation 或检测超过 5 个人体时，此参数仍返回，但不具备参考意义。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let upperBodyCloth: UpperBodyCloth
+        public let upperBodyCloth: UpperBodyCloth?
         
         /// 人体下衣属性信息。  
         /// AttributesType 不含 LowerBodyCloth 或检测超过 5 个人体时，此参数仍返回，但不具备参考意义。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let lowerBodyCloth: LowerBodyCloth
+        public let lowerBodyCloth: LowerBodyCloth?
         
         enum CodingKeys: String, CodingKey {
             case age = "Age"
@@ -488,7 +488,7 @@ extension Bda {
         /// 分割选项-随身物品（ 例如伞、包、手机等。 ）
         public let belongings: Bool?
         
-        public init (background: Bool?, hair: Bool?, leftEyebrow: Bool?, rightEyebrow: Bool?, leftEye: Bool?, rightEye: Bool?, nose: Bool?, upperLip: Bool?, lowerLip: Bool?, tooth: Bool?, mouth: Bool?, leftEar: Bool?, rightEar: Bool?, face: Bool?, head: Bool?, body: Bool?, hat: Bool?, headdress: Bool?, earrings: Bool?, necklace: Bool?, belongings: Bool?) {
+        public init (background: Bool? = nil, hair: Bool? = nil, leftEyebrow: Bool? = nil, rightEyebrow: Bool? = nil, leftEye: Bool? = nil, rightEye: Bool? = nil, nose: Bool? = nil, upperLip: Bool? = nil, lowerLip: Bool? = nil, tooth: Bool? = nil, mouth: Bool? = nil, leftEar: Bool? = nil, rightEar: Bool? = nil, face: Bool? = nil, head: Bool? = nil, body: Bool? = nil, hat: Bool? = nil, headdress: Bool? = nil, earrings: Bool? = nil, necklace: Bool? = nil, belongings: Bool? = nil) {
             self.background = background
             self.hair = hair
             self.leftEyebrow = leftEyebrow
@@ -560,7 +560,7 @@ extension Bda {
         /// 当不输入本参数时，我们将认为输入图片已是经过裁剪后的人体小图，不会进行人体检测而直接进行特征提取处理。
         public let bodyRects: [BodyRect]?
         
-        public init (images: [String]?, urls: [String]?, bodyRects: [BodyRect]?) {
+        public init (images: [String]? = nil, urls: [String]? = nil, bodyRects: [BodyRect]? = nil) {
             self.images = images
             self.urls = urls
             self.bodyRects = bodyRects

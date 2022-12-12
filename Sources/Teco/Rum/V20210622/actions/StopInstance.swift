@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 停止实例
-    @inlinable
-    public func stopInstance(_ input: StopInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopInstanceResponse > {
-        self.client.execute(action: "StopInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止实例
-    @inlinable
-    public func stopInstance(_ input: StopInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstanceResponse {
-        try await self.client.execute(action: "StopInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopInstance请求参数结构体
     public struct StopInstanceRequest: TCRequestModel {
         /// 需要停止的实例id
@@ -49,5 +37,17 @@ extension Rum {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止实例
+    @inlinable
+    public func stopInstance(_ input: StopInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopInstanceResponse > {
+        self.client.execute(action: "StopInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止实例
+    @inlinable
+    public func stopInstance(_ input: StopInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstanceResponse {
+        try await self.client.execute(action: "StopInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

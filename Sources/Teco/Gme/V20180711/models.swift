@@ -62,15 +62,15 @@ extension Gme {
     public struct AppStatisticsItem: TCOutputModel {
         /// 实时语音统计数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let realtimeSpeechStatisticsItem: RealTimeSpeechStatisticsItem
+        public let realtimeSpeechStatisticsItem: RealTimeSpeechStatisticsItem?
         
         /// 语音消息统计数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let voiceMessageStatisticsItem: VoiceMessageStatisticsItem
+        public let voiceMessageStatisticsItem: VoiceMessageStatisticsItem?
         
         /// 语音过滤统计数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let voiceFilterStatisticsItem: VoiceFilterStatisticsItem
+        public let voiceFilterStatisticsItem: VoiceFilterStatisticsItem?
         
         /// 统计时间
         // FIXME: Codable support not implemented for date yet.
@@ -78,19 +78,19 @@ extension Gme {
         
         /// 录音转文本用量统计数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let audioTextStatisticsItem: AudioTextStatisticsItem
+        public let audioTextStatisticsItem: AudioTextStatisticsItem?
         
         /// 流式转文本用量数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let streamTextStatisticsItem: StreamTextStatisticsItem
+        public let streamTextStatisticsItem: StreamTextStatisticsItem?
         
         /// 海外转文本用量数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let overseaTextStatisticsItem: OverseaTextStatisticsItem
+        public let overseaTextStatisticsItem: OverseaTextStatisticsItem?
         
         /// 实时语音转文本用量数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let realtimeTextStatisticsItem: RealtimeTextStatisticsItem
+        public let realtimeTextStatisticsItem: RealtimeTextStatisticsItem?
         
         enum CodingKeys: String, CodingKey {
             case realtimeSpeechStatisticsItem = "RealtimeSpeechStatisticsItem"
@@ -265,7 +265,7 @@ extension Gme {
         /// 更新时间，11位时间戳
         public let updateTime: Int64?
         
-        public init (bizId: Int64, modelId: String, modelState: Int64, modelName: String?, textUrl: String?, updateTime: Int64?) {
+        public init (bizId: Int64, modelId: String, modelState: Int64, modelName: String? = nil, textUrl: String? = nil, updateTime: Int64? = nil) {
             self.bizId = bizId
             self.modelId = modelId
             self.modelState = modelState
@@ -379,7 +379,7 @@ extension Gme {
         /// 多个关键字
         public let values: [String]?
         
-        public init (name: String?, values: [String]?) {
+        public init (name: String? = nil, values: [String]? = nil) {
             self.name = name
             self.values = values
         }
@@ -467,7 +467,7 @@ extension Gme {
         /// 实时语音音质类型，取值：high-高音质
         public let quality: String?
         
-        public init (status: String?, quality: String?) {
+        public init (status: String? = nil, quality: String? = nil) {
             self.status = status
             self.quality = quality
         }
@@ -607,23 +607,23 @@ extension Gme {
     public struct ServiceStatus: TCOutputModel {
         /// 实时语音服务开关状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let realTimeSpeech: StatusInfo
+        public let realTimeSpeech: StatusInfo?
         
         /// 语音消息服务开关状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let voiceMessage: StatusInfo
+        public let voiceMessage: StatusInfo?
         
         /// 语音内容安全服务开关状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let porn: StatusInfo
+        public let porn: StatusInfo?
         
         /// 语音录制服务开关状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let live: StatusInfo
+        public let live: StatusInfo?
         
         /// 语音转文本服务开关状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let realTimeAsr: StatusInfo
+        public let realTimeAsr: StatusInfo?
         
         enum CodingKeys: String, CodingKey {
             case realTimeSpeech = "RealTimeSpeech"
@@ -680,7 +680,7 @@ extension Gme {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagValue: String?
         
-        public init (tagKey: String?, tagValue: String?) {
+        public init (tagKey: String? = nil, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
@@ -705,7 +705,7 @@ extension Gme {
         /// gme实时语音用户ID，通过gme实时语音进行语音分析时输入
         public let openId: String?
         
-        public init (dataId: String, url: String, roomId: String?, openId: String?) {
+        public init (dataId: String, url: String, roomId: String? = nil, openId: String? = nil) {
             self.dataId = dataId
             self.url = url
             self.roomId = roomId
@@ -744,7 +744,7 @@ extension Gme {
         /// 语音过滤服务开关，取值：open/close
         public let status: String?
         
-        public init (status: String?) {
+        public init (status: String? = nil) {
             self.status = status
         }
         
@@ -771,7 +771,7 @@ extension Gme {
         /// 离线语音支持语种，取值： all-全部，cnen-中英文。默认为中英文
         public let language: String?
         
-        public init (status: String?, language: String?) {
+        public init (status: String? = nil, language: String? = nil) {
             self.status = status
             self.language = language
         }

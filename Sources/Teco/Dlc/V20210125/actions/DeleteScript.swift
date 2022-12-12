@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 删除sql脚本
-    ///
-    /// 该接口（DeleteScript）用于删除sql脚本。
-    @inlinable
-    public func deleteScript(_ input: DeleteScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScriptResponse > {
-        self.client.execute(action: "DeleteScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除sql脚本
-    ///
-    /// 该接口（DeleteScript）用于删除sql脚本。
-    @inlinable
-    public func deleteScript(_ input: DeleteScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScriptResponse {
-        try await self.client.execute(action: "DeleteScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteScript请求参数结构体
     public struct DeleteScriptRequest: TCRequestModel {
         /// 脚本id，其可以通过DescribeScripts接口提取
@@ -57,5 +41,21 @@ extension Dlc {
             case scriptsAffected = "ScriptsAffected"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除sql脚本
+    ///
+    /// 该接口（DeleteScript）用于删除sql脚本。
+    @inlinable
+    public func deleteScript(_ input: DeleteScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScriptResponse > {
+        self.client.execute(action: "DeleteScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除sql脚本
+    ///
+    /// 该接口（DeleteScript）用于删除sql脚本。
+    @inlinable
+    public func deleteScript(_ input: DeleteScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScriptResponse {
+        try await self.client.execute(action: "DeleteScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

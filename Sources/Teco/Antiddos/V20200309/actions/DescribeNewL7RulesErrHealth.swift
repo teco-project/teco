@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取L7转发规则健康检查异常结果列表
-    @inlinable
-    public func describeNewL7RulesErrHealth(_ input: DescribeNewL7RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewL7RulesErrHealthResponse > {
-        self.client.execute(action: "DescribeNewL7RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取L7转发规则健康检查异常结果列表
-    @inlinable
-    public func describeNewL7RulesErrHealth(_ input: DescribeNewL7RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL7RulesErrHealthResponse {
-        try await self.client.execute(action: "DescribeNewL7RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNewL7RulesErrHealth请求参数结构体
     public struct DescribeNewL7RulesErrHealthRequest: TCRequestModel {
         /// 大禹子产品代号(bgpip表示高防IP)
@@ -35,7 +23,7 @@ extension Antiddos {
         /// 规则Id列表
         public let ruleIdList: [String]?
         
-        public init (business: String, ruleIdList: [String]?) {
+        public init (business: String, ruleIdList: [String]? = nil) {
             self.business = business
             self.ruleIdList = ruleIdList
         }
@@ -62,5 +50,17 @@ extension Antiddos {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取L7转发规则健康检查异常结果列表
+    @inlinable
+    public func describeNewL7RulesErrHealth(_ input: DescribeNewL7RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNewL7RulesErrHealthResponse > {
+        self.client.execute(action: "DescribeNewL7RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取L7转发规则健康检查异常结果列表
+    @inlinable
+    public func describeNewL7RulesErrHealth(_ input: DescribeNewL7RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL7RulesErrHealthResponse {
+        try await self.client.execute(action: "DescribeNewL7RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

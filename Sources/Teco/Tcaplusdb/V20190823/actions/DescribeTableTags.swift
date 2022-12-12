@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 获取表格标签
-    @inlinable
-    public func describeTableTags(_ input: DescribeTableTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableTagsResponse > {
-        self.client.execute(action: "DescribeTableTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取表格标签
-    @inlinable
-    public func describeTableTags(_ input: DescribeTableTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableTagsResponse {
-        try await self.client.execute(action: "DescribeTableTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTableTags请求参数结构体
     public struct DescribeTableTagsRequest: TCRequestModel {
         /// 表格所属集群ID
@@ -62,5 +50,17 @@ extension Tcaplusdb {
             case rows = "Rows"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取表格标签
+    @inlinable
+    public func describeTableTags(_ input: DescribeTableTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableTagsResponse > {
+        self.client.execute(action: "DescribeTableTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取表格标签
+    @inlinable
+    public func describeTableTags(_ input: DescribeTableTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableTagsResponse {
+        try await self.client.execute(action: "DescribeTableTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

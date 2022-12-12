@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查询实例机型列表
-    ///
-    /// 本接口 (DescribeInstanceTypeConfigs) 用于查询实例机型配置。
-    /// * 可以根据`zone`、`instance-family`来查询实例机型配置。过滤条件详见过滤器[`Filter`](https://cloud.tencent.com/document/api/213/15753#Filter)。
-    /// * 如果参数为空，返回指定地域的所有实例机型配置。
-    @inlinable
-    public func describeInstanceTypeConfigs(_ input: DescribeInstanceTypeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceTypeConfigsResponse > {
-        self.client.execute(action: "DescribeInstanceTypeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例机型列表
-    ///
-    /// 本接口 (DescribeInstanceTypeConfigs) 用于查询实例机型配置。
-    /// * 可以根据`zone`、`instance-family`来查询实例机型配置。过滤条件详见过滤器[`Filter`](https://cloud.tencent.com/document/api/213/15753#Filter)。
-    /// * 如果参数为空，返回指定地域的所有实例机型配置。
-    @inlinable
-    public func describeInstanceTypeConfigs(_ input: DescribeInstanceTypeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypeConfigsResponse {
-        try await self.client.execute(action: "DescribeInstanceTypeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceTypeConfigs请求参数结构体
     public struct DescribeInstanceTypeConfigsRequest: TCRequestModel {
         /// <li><strong>zone</strong></li>
@@ -44,7 +24,7 @@ extension Cvm {
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为1。
         public let filters: [Filter]?
         
-        public init (filters: [Filter]?) {
+        public init (filters: [Filter]? = nil) {
             self.filters = filters
         }
         
@@ -65,5 +45,25 @@ extension Cvm {
             case instanceTypeConfigSet = "InstanceTypeConfigSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例机型列表
+    ///
+    /// 本接口 (DescribeInstanceTypeConfigs) 用于查询实例机型配置。
+    /// * 可以根据`zone`、`instance-family`来查询实例机型配置。过滤条件详见过滤器[`Filter`](https://cloud.tencent.com/document/api/213/15753#Filter)。
+    /// * 如果参数为空，返回指定地域的所有实例机型配置。
+    @inlinable
+    public func describeInstanceTypeConfigs(_ input: DescribeInstanceTypeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceTypeConfigsResponse > {
+        self.client.execute(action: "DescribeInstanceTypeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例机型列表
+    ///
+    /// 本接口 (DescribeInstanceTypeConfigs) 用于查询实例机型配置。
+    /// * 可以根据`zone`、`instance-family`来查询实例机型配置。过滤条件详见过滤器[`Filter`](https://cloud.tencent.com/document/api/213/15753#Filter)。
+    /// * 如果参数为空，返回指定地域的所有实例机型配置。
+    @inlinable
+    public func describeInstanceTypeConfigs(_ input: DescribeInstanceTypeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypeConfigsResponse {
+        try await self.client.execute(action: "DescribeInstanceTypeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 批量置成功集成任务实例
-    @inlinable
-    public func batchForceSuccessIntegrationTaskInstances(_ input: BatchForceSuccessIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchForceSuccessIntegrationTaskInstancesResponse > {
-        self.client.execute(action: "BatchForceSuccessIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量置成功集成任务实例
-    @inlinable
-    public func batchForceSuccessIntegrationTaskInstances(_ input: BatchForceSuccessIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchForceSuccessIntegrationTaskInstancesResponse {
-        try await self.client.execute(action: "BatchForceSuccessIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchForceSuccessIntegrationTaskInstances请求参数结构体
     public struct BatchForceSuccessIntegrationTaskInstancesRequest: TCRequestModel {
         /// 实例信息
@@ -66,5 +54,17 @@ extension Wedata {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量置成功集成任务实例
+    @inlinable
+    public func batchForceSuccessIntegrationTaskInstances(_ input: BatchForceSuccessIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchForceSuccessIntegrationTaskInstancesResponse > {
+        self.client.execute(action: "BatchForceSuccessIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量置成功集成任务实例
+    @inlinable
+    public func batchForceSuccessIntegrationTaskInstances(_ input: BatchForceSuccessIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchForceSuccessIntegrationTaskInstancesResponse {
+        try await self.client.execute(action: "BatchForceSuccessIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

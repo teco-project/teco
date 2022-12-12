@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 封禁列表和放通列表批量操作接口
-    ///
-    /// 支持对封禁列表、放通列表如下操作：
-    /// 批量增加封禁IP、放通IP/域名
-    /// 批量删除封禁IP、放通IP/域名
-    /// 批量修改封禁IP、放通IP/域名生效事件
-    @inlinable
-    public func modifyBlockIgnoreList(_ input: ModifyBlockIgnoreListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBlockIgnoreListResponse > {
-        self.client.execute(action: "ModifyBlockIgnoreList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 封禁列表和放通列表批量操作接口
-    ///
-    /// 支持对封禁列表、放通列表如下操作：
-    /// 批量增加封禁IP、放通IP/域名
-    /// 批量删除封禁IP、放通IP/域名
-    /// 批量修改封禁IP、放通IP/域名生效事件
-    @inlinable
-    public func modifyBlockIgnoreList(_ input: ModifyBlockIgnoreListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockIgnoreListResponse {
-        try await self.client.execute(action: "ModifyBlockIgnoreList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyBlockIgnoreList请求参数结构体
     public struct ModifyBlockIgnoreListRequest: TCRequestModel {
         /// 1封禁列表 2 放通列表
@@ -54,7 +32,7 @@ extension Cfw {
         /// 时间格式：yyyy-MM-dd HH:mm:ss，IocAction 为edit或add时必填，必须大于当前时间且大于StartTime
         public let endTime: String?
         
-        public init (ruleType: Int64, ioc: [IocListData], iocAction: String, startTime: String?, endTime: String?) {
+        public init (ruleType: Int64, ioc: [IocListData], iocAction: String, startTime: String? = nil, endTime: String? = nil) {
             self.ruleType = ruleType
             self.ioc = ioc
             self.iocAction = iocAction
@@ -87,5 +65,27 @@ extension Cfw {
             case returnCode = "ReturnCode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 封禁列表和放通列表批量操作接口
+    ///
+    /// 支持对封禁列表、放通列表如下操作：
+    /// 批量增加封禁IP、放通IP/域名
+    /// 批量删除封禁IP、放通IP/域名
+    /// 批量修改封禁IP、放通IP/域名生效事件
+    @inlinable
+    public func modifyBlockIgnoreList(_ input: ModifyBlockIgnoreListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBlockIgnoreListResponse > {
+        self.client.execute(action: "ModifyBlockIgnoreList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 封禁列表和放通列表批量操作接口
+    ///
+    /// 支持对封禁列表、放通列表如下操作：
+    /// 批量增加封禁IP、放通IP/域名
+    /// 批量删除封禁IP、放通IP/域名
+    /// 批量修改封禁IP、放通IP/域名生效事件
+    @inlinable
+    public func modifyBlockIgnoreList(_ input: ModifyBlockIgnoreListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockIgnoreListResponse {
+        try await self.client.execute(action: "ModifyBlockIgnoreList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 使用多个模板批量创建签署流程
-    ///
-    /// 接口（CreateFlowsByTemplates）用于使用多个模板批量创建签署流程。当前可批量发起合同（签署流程）数量最大为20个。
-    /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
-    /// 合同发起人必须在电子签已经进行实名。
-    @inlinable
-    public func createFlowsByTemplates(_ input: CreateFlowsByTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowsByTemplatesResponse > {
-        self.client.execute(action: "CreateFlowsByTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 使用多个模板批量创建签署流程
-    ///
-    /// 接口（CreateFlowsByTemplates）用于使用多个模板批量创建签署流程。当前可批量发起合同（签署流程）数量最大为20个。
-    /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
-    /// 合同发起人必须在电子签已经进行实名。
-    @inlinable
-    public func createFlowsByTemplates(_ input: CreateFlowsByTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowsByTemplatesResponse {
-        try await self.client.execute(action: "CreateFlowsByTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFlowsByTemplates请求参数结构体
     public struct CreateFlowsByTemplatesRequest: TCRequestModel {
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -52,9 +32,9 @@ extension Essbasic {
         public let previewType: Int64?
         
         /// 操作者的信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
-        public init (agent: Agent, flowInfos: [FlowInfo], needPreview: Bool?, previewType: Int64?, `operator`: UserInfo) {
+        public init (agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, `operator`: UserInfo? = nil) {
             self.agent = agent
             self.flowInfos = flowInfos
             self.needPreview = needPreview
@@ -101,5 +81,25 @@ extension Essbasic {
             case taskInfos = "TaskInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 使用多个模板批量创建签署流程
+    ///
+    /// 接口（CreateFlowsByTemplates）用于使用多个模板批量创建签署流程。当前可批量发起合同（签署流程）数量最大为20个。
+    /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
+    /// 合同发起人必须在电子签已经进行实名。
+    @inlinable
+    public func createFlowsByTemplates(_ input: CreateFlowsByTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowsByTemplatesResponse > {
+        self.client.execute(action: "CreateFlowsByTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 使用多个模板批量创建签署流程
+    ///
+    /// 接口（CreateFlowsByTemplates）用于使用多个模板批量创建签署流程。当前可批量发起合同（签署流程）数量最大为20个。
+    /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
+    /// 合同发起人必须在电子签已经进行实名。
+    @inlinable
+    public func createFlowsByTemplates(_ input: CreateFlowsByTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowsByTemplatesResponse {
+        try await self.client.execute(action: "CreateFlowsByTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

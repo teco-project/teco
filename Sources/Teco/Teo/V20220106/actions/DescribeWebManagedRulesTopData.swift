@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询waf攻击top数据
-    @inlinable
-    public func describeWebManagedRulesTopData(_ input: DescribeWebManagedRulesTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebManagedRulesTopDataResponse > {
-        self.client.execute(action: "DescribeWebManagedRulesTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询waf攻击top数据
-    @inlinable
-    public func describeWebManagedRulesTopData(_ input: DescribeWebManagedRulesTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesTopDataResponse {
-        try await self.client.execute(action: "DescribeWebManagedRulesTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWebManagedRulesTopData请求参数结构体
     public struct DescribeWebManagedRulesTopDataRequest: TCRequestModel {
         /// 开始时间。
@@ -82,7 +70,7 @@ extension Teo {
         /// <li>mainland ：中国大陆地区数据 。</li>不填默认查询overseas。
         public let area: String?
         
-        public init (startTime: Date, endTime: Date, metricName: String, limit: Int64, zoneIds: [String]?, policyIds: [Int64]?, port: Int64?, protocolType: String?, attackType: String?, domains: [String]?, interval: String?, queryCondition: [QueryCondition]?, area: String?) {
+        public init (startTime: Date, endTime: Date, metricName: String, limit: Int64, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, port: Int64? = nil, protocolType: String? = nil, attackType: String? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metricName = metricName
@@ -137,5 +125,17 @@ extension Teo {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询waf攻击top数据
+    @inlinable
+    public func describeWebManagedRulesTopData(_ input: DescribeWebManagedRulesTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebManagedRulesTopDataResponse > {
+        self.client.execute(action: "DescribeWebManagedRulesTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询waf攻击top数据
+    @inlinable
+    public func describeWebManagedRulesTopData(_ input: DescribeWebManagedRulesTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesTopDataResponse {
+        try await self.client.execute(action: "DescribeWebManagedRulesTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

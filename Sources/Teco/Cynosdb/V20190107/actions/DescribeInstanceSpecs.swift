@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 查询实例规格
-    ///
-    /// 本接口（DescribeInstanceSpecs）用于查询实例规格
-    @inlinable
-    public func describeInstanceSpecs(_ input: DescribeInstanceSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceSpecsResponse > {
-        self.client.execute(action: "DescribeInstanceSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例规格
-    ///
-    /// 本接口（DescribeInstanceSpecs）用于查询实例规格
-    @inlinable
-    public func describeInstanceSpecs(_ input: DescribeInstanceSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSpecsResponse {
-        try await self.client.execute(action: "DescribeInstanceSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceSpecs请求参数结构体
     public struct DescribeInstanceSpecsRequest: TCRequestModel {
         /// 数据库类型，取值范围: 
@@ -40,7 +24,7 @@ extension Cynosdb {
         /// 是否需要返回可用区信息
         public let includeZoneStocks: Bool?
         
-        public init (dbType: String, includeZoneStocks: Bool?) {
+        public init (dbType: String, includeZoneStocks: Bool? = nil) {
             self.dbType = dbType
             self.includeZoneStocks = includeZoneStocks
         }
@@ -63,5 +47,21 @@ extension Cynosdb {
             case instanceSpecSet = "InstanceSpecSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例规格
+    ///
+    /// 本接口（DescribeInstanceSpecs）用于查询实例规格
+    @inlinable
+    public func describeInstanceSpecs(_ input: DescribeInstanceSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceSpecsResponse > {
+        self.client.execute(action: "DescribeInstanceSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例规格
+    ///
+    /// 本接口（DescribeInstanceSpecs）用于查询实例规格
+    @inlinable
+    public func describeInstanceSpecs(_ input: DescribeInstanceSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSpecsResponse {
+        try await self.client.execute(action: "DescribeInstanceSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

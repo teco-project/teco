@@ -40,13 +40,13 @@ extension Ecdn {
         
         /// 回源层证书配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let certInfo: ServerCert
+        public let certInfo: ServerCert?
         
         /// 源站证书配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let originCertInfo: ClientCert
+        public let originCertInfo: ClientCert?
         
-        public init (customTlsStatus: String?, tlsVersion: [String]?, cipher: String?, verifyOriginType: String?, certInfo: ServerCert, originCertInfo: ClientCert) {
+        public init (customTlsStatus: String? = nil, tlsVersion: [String]? = nil, cipher: String? = nil, verifyOriginType: String? = nil, certInfo: ServerCert? = nil, originCertInfo: ClientCert? = nil) {
             self.customTlsStatus = customTlsStatus
             self.tlsVersion = tlsVersion
             self.cipher = cipher
@@ -77,7 +77,7 @@ extension Ecdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let followOrigin: String?
         
-        public init (cacheRules: [CacheRule], followOrigin: String?) {
+        public init (cacheRules: [CacheRule], followOrigin: String? = nil) {
             self.cacheRules = cacheRules
             self.followOrigin = followOrigin
         }
@@ -93,7 +93,7 @@ extension Ecdn {
         /// 是否开启全路径缓存，on或off。
         public let fullUrlCache: String?
         
-        public init (fullUrlCache: String?) {
+        public init (fullUrlCache: String? = nil) {
             self.fullUrlCache = fullUrlCache
         }
         
@@ -130,7 +130,7 @@ extension Ecdn {
     public struct ClientCert: TCInputModel, TCOutputModel {
         /// 客户端证书，pem格式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let certificate: String
+        public let certificate: String?
         
         /// 客户端证书名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -144,7 +144,7 @@ extension Ecdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployTime: Date?
         
-        public init (certificate: String, certName: String?, expireTime: Date?, deployTime: Date?) {
+        public init (certificate: String, certName: String? = nil, expireTime: Date? = nil, deployTime: Date? = nil) {
             self.certificate = certificate
             self.certName = certName
             self.expireTime = expireTime
@@ -282,27 +282,27 @@ extension Ecdn {
         
         /// IP黑白名单配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ipFilter: IpFilter
+        public let ipFilter: IpFilter?
         
         /// IP限频配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ipFreqLimit: IpFreqLimit
+        public let ipFreqLimit: IpFreqLimit?
         
         /// 源站响应头部配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let responseHeader: ResponseHeader
+        public let responseHeader: ResponseHeader?
         
         /// 节点缓存配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cacheKey: CacheKey
+        public let cacheKey: CacheKey?
         
         /// 缓存规则配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cache: Cache
+        public let cache: Cache?
         
         /// Https配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let https: Https
+        public let https: Https?
         
         /// 域名封禁状态，normal，overdue，quota，malicious，ddos，idle，unlicensed，capping，readonly分别表示 正常，欠费停服，试用客户流量包耗尽，恶意用户，ddos攻击，无流量域名，未备案，带宽封顶，只读。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -310,7 +310,7 @@ extension Ecdn {
         
         /// 访问协议强制跳转配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let forceRedirect: ForceRedirect
+        public let forceRedirect: ForceRedirect?
         
         /// 加速区域，mainland，overseas或global。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -326,7 +326,7 @@ extension Ecdn {
         
         /// WebSocket配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let webSocket: WebSocket
+        public let webSocket: WebSocket?
         
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
@@ -375,7 +375,7 @@ extension Ecdn {
         /// 是否启用模糊查询，仅支持过滤字段名为origin，domain。
         public let fuzzy: Bool?
         
-        public init (name: String, value: [String], fuzzy: Bool?) {
+        public init (name: String, value: [String], fuzzy: Bool? = nil) {
             self.name = name
             self.value = value
             self.fuzzy = fuzzy
@@ -426,7 +426,7 @@ extension Ecdn {
     public struct ForceRedirect: TCInputModel, TCOutputModel {
         /// 访问协议强制跳转配置开关，on或off。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let `switch`: String
+        public let `switch`: String?
         
         /// 强制跳转访问协议类型，支持http，https，分别表示请求强制跳转http协议，请求强制跳转https协议。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -436,7 +436,7 @@ extension Ecdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectStatusCode: Int64?
         
-        public init (`switch`: String, redirectType: String?, redirectStatusCode: Int64?) {
+        public init (`switch`: String, redirectType: String? = nil, redirectStatusCode: Int64? = nil) {
             self.`switch` = `switch`
             self.redirectType = redirectType
             self.redirectStatusCode = redirectStatusCode
@@ -462,7 +462,7 @@ extension Ecdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let includeSubDomains: String?
         
-        public init (`switch`: String, maxAge: Int64?, includeSubDomains: String?) {
+        public init (`switch`: String, maxAge: Int64? = nil, includeSubDomains: String? = nil) {
             self.`switch` = `switch`
             self.maxAge = maxAge
             self.includeSubDomains = includeSubDomains
@@ -480,23 +480,23 @@ extension Ecdn {
         /// http头部设置方式，支持add，set或del，分别表示新增，设置或删除头部。
         /// 请求头部暂不支持set。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let headerMode: String
+        public let headerMode: String?
         
         /// http头部名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let headerName: String
+        public let headerName: String?
         
         /// http头部值。del时可不填写该字段。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let headerValue: String
+        public let headerValue: String?
         
         /// 生效的url路径规则类型，支持all，file，directory或path，分别表示全部路径，文件后缀类型，目录或绝对路径生效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ruleType: String
+        public let ruleType: String?
         
         /// url路径或文件类型列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rulePaths: [String]
+        public let rulePaths: [String]?
         
         public init (headerMode: String, headerName: String, headerValue: String, ruleType: String, rulePaths: [String]) {
             self.headerMode = headerMode
@@ -519,7 +519,7 @@ extension Ecdn {
     public struct Https: TCInputModel, TCOutputModel {
         /// https配置开关，on或off。开启https配置的域名在部署中状态，开关保持off。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let `switch`: String
+        public let `switch`: String?
         
         /// 是否开启http2，on或off。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -535,11 +535,11 @@ extension Ecdn {
         
         /// 服务器证书配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let certInfo: ServerCert
+        public let certInfo: ServerCert?
         
         /// 客户端证书配置信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let clientCertInfo: ClientCert
+        public let clientCertInfo: ClientCert?
         
         /// 是否开启Spdy，on或off。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -551,9 +551,9 @@ extension Ecdn {
         
         /// Hsts配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let hsts: Hsts
+        public let hsts: Hsts?
         
-        public init (`switch`: String, http2: String?, ocspStapling: String?, verifyClient: String?, certInfo: ServerCert, clientCertInfo: ClientCert, spdy: String?, sslStatus: String?, hsts: Hsts) {
+        public init (`switch`: String, http2: String? = nil, ocspStapling: String? = nil, verifyClient: String? = nil, certInfo: ServerCert? = nil, clientCertInfo: ClientCert? = nil, spdy: String? = nil, sslStatus: String? = nil, hsts: Hsts? = nil) {
             self.`switch` = `switch`
             self.http2 = http2
             self.ocspStapling = ocspStapling
@@ -591,7 +591,7 @@ extension Ecdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filters: [String]?
         
-        public init (`switch`: String, filterType: String?, filters: [String]?) {
+        public init (`switch`: String, filterType: String? = nil, filters: [String]? = nil) {
             self.`switch` = `switch`
             self.filterType = filterType
             self.filters = filters
@@ -613,7 +613,7 @@ extension Ecdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qps: Int64?
         
-        public init (`switch`: String, qps: Int64?) {
+        public init (`switch`: String, qps: Int64? = nil) {
             self.`switch` = `switch`
             self.qps = qps
         }
@@ -686,9 +686,9 @@ extension Ecdn {
         
         /// HTTPS回源高级配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let advanceHttps: AdvanceHttps
+        public let advanceHttps: AdvanceHttps?
         
-        public init (origins: [String]?, originType: String?, serverName: String?, originPullProtocol: String?, backupOrigins: [String]?, backupOriginType: String?, advanceHttps: AdvanceHttps) {
+        public init (origins: [String]? = nil, originType: String? = nil, serverName: String? = nil, originPullProtocol: String? = nil, backupOrigins: [String]? = nil, backupOriginType: String? = nil, advanceHttps: AdvanceHttps? = nil) {
             self.origins = origins
             self.originType = originType
             self.serverName = serverName
@@ -785,7 +785,7 @@ extension Ecdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headerRules: [HttpHeaderPathRule]?
         
-        public init (`switch`: String, headerRules: [HttpHeaderPathRule]?) {
+        public init (`switch`: String, headerRules: [HttpHeaderPathRule]? = nil) {
             self.`switch` = `switch`
             self.headerRules = headerRules
         }
@@ -826,7 +826,7 @@ extension Ecdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
         
-        public init (certId: String?, certName: String?, certificate: String?, privateKey: String?, expireTime: Date?, deployTime: Date?, message: String?) {
+        public init (certId: String? = nil, certName: String? = nil, certificate: String? = nil, privateKey: String? = nil, expireTime: Date? = nil, deployTime: Date? = nil, message: String? = nil) {
             self.certId = certId
             self.certName = certName
             self.certificate = certificate
@@ -857,7 +857,7 @@ extension Ecdn {
         /// asc/desc，默认desc。
         public let sequence: String?
         
-        public init (key: String, sequence: String?) {
+        public init (key: String, sequence: String? = nil) {
             self.key = key
             self.sequence = sequence
         }
@@ -872,11 +872,11 @@ extension Ecdn {
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tagKey: String
+        public let tagKey: String?
         
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tagValue: String
+        public let tagValue: String?
         
         public init (tagKey: String, tagValue: String) {
             self.tagKey = tagKey
@@ -915,7 +915,7 @@ extension Ecdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeout: Int64?
         
-        public init (`switch`: String, timeout: Int64?) {
+        public init (`switch`: String, timeout: Int64? = nil) {
             self.`switch` = `switch`
             self.timeout = timeout
         }

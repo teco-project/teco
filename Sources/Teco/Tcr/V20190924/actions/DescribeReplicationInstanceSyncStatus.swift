@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询从实例同步状态
-    @inlinable
-    public func describeReplicationInstanceSyncStatus(_ input: DescribeReplicationInstanceSyncStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReplicationInstanceSyncStatusResponse > {
-        self.client.execute(action: "DescribeReplicationInstanceSyncStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询从实例同步状态
-    @inlinable
-    public func describeReplicationInstanceSyncStatus(_ input: DescribeReplicationInstanceSyncStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstanceSyncStatusResponse {
-        try await self.client.execute(action: "DescribeReplicationInstanceSyncStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReplicationInstanceSyncStatus请求参数结构体
     public struct DescribeReplicationInstanceSyncStatusRequest: TCRequestModel {
         /// 主实例Id
@@ -47,7 +35,7 @@ extension Tcr {
         /// 最大输出条数，默认5，最大为20
         public let limit: Int64?
         
-        public init (registryId: String, replicationRegistryId: String, replicationRegionId: UInt64?, showReplicationLog: Bool?, offset: Int64?, limit: Int64?) {
+        public init (registryId: String, replicationRegistryId: String, replicationRegionId: UInt64? = nil, showReplicationLog: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.registryId = registryId
             self.replicationRegistryId = replicationRegistryId
             self.replicationRegionId = replicationRegionId
@@ -76,7 +64,7 @@ extension Tcr {
         
         /// 同步日志
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let replicationLog: ReplicationLog
+        public let replicationLog: ReplicationLog?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -87,5 +75,17 @@ extension Tcr {
             case replicationLog = "ReplicationLog"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询从实例同步状态
+    @inlinable
+    public func describeReplicationInstanceSyncStatus(_ input: DescribeReplicationInstanceSyncStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReplicationInstanceSyncStatusResponse > {
+        self.client.execute(action: "DescribeReplicationInstanceSyncStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询从实例同步状态
+    @inlinable
+    public func describeReplicationInstanceSyncStatus(_ input: DescribeReplicationInstanceSyncStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstanceSyncStatusResponse {
+        try await self.client.execute(action: "DescribeReplicationInstanceSyncStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -147,12 +147,12 @@ extension Facefusion {
         public let url: String?
         
         /// 上传的图片人脸位置信息（人脸框）
-        public let inputImageFaceRect: FaceRect
+        public let inputImageFaceRect: FaceRect?
         
         /// 控制台上传的素材人脸ID，不填默认取最大人脸
         public let templateFaceID: String?
         
-        public init (image: String?, url: String?, inputImageFaceRect: FaceRect, templateFaceID: String?) {
+        public init (image: String? = nil, url: String? = nil, inputImageFaceRect: FaceRect? = nil, templateFaceID: String? = nil) {
             self.image = image
             self.url = url
             self.inputImageFaceRect = inputImageFaceRect

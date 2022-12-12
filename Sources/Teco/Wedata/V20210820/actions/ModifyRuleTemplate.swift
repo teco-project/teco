@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 编辑规则模版
-    @inlinable
-    public func modifyRuleTemplate(_ input: ModifyRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRuleTemplateResponse > {
-        self.client.execute(action: "ModifyRuleTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑规则模版
-    @inlinable
-    public func modifyRuleTemplate(_ input: ModifyRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleTemplateResponse {
-        try await self.client.execute(action: "ModifyRuleTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRuleTemplate请求参数结构体
     public struct ModifyRuleTemplateRequest: TCRequestModel {
         /// 模版ID
@@ -62,7 +50,7 @@ extension Wedata {
         /// 是否添加where参数
         public let whereFlag: Bool?
         
-        public init (templateId: UInt64?, type: UInt64?, name: String?, qualityDim: UInt64?, sourceObjectType: UInt64?, description: String?, sourceEngineTypes: [UInt64]?, multiSourceFlag: Bool?, sqlExpression: String?, projectId: String?, whereFlag: Bool?) {
+        public init (templateId: UInt64? = nil, type: UInt64? = nil, name: String? = nil, qualityDim: UInt64? = nil, sourceObjectType: UInt64? = nil, description: String? = nil, sourceEngineTypes: [UInt64]? = nil, multiSourceFlag: Bool? = nil, sqlExpression: String? = nil, projectId: String? = nil, whereFlag: Bool? = nil) {
             self.templateId = templateId
             self.type = type
             self.name = name
@@ -104,5 +92,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑规则模版
+    @inlinable
+    public func modifyRuleTemplate(_ input: ModifyRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRuleTemplateResponse > {
+        self.client.execute(action: "ModifyRuleTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑规则模版
+    @inlinable
+    public func modifyRuleTemplate(_ input: ModifyRuleTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleTemplateResponse {
+        try await self.client.execute(action: "ModifyRuleTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

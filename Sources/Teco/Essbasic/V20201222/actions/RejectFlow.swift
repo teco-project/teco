@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 拒签流程
-    ///
-    /// 此接口（RejectFlow）用于用户拒绝签署合同流程。
-    @inlinable
-    public func rejectFlow(_ input: RejectFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RejectFlowResponse > {
-        self.client.execute(action: "RejectFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拒签流程
-    ///
-    /// 此接口（RejectFlow）用于用户拒绝签署合同流程。
-    @inlinable
-    public func rejectFlow(_ input: RejectFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectFlowResponse {
-        try await self.client.execute(action: "RejectFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RejectFlow请求参数结构体
     public struct RejectFlowRequest: TCRequestModel {
         /// 调用方信息
@@ -65,7 +49,7 @@ extension Essbasic {
         /// 签署参与者编号
         public let signId: String?
         
-        public init (caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, rejectMessage: String?, signId: String?) {
+        public init (caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, rejectMessage: String? = nil, signId: String? = nil) {
             self.caller = caller
             self.flowId = flowId
             self.verifyResult = verifyResult
@@ -94,5 +78,21 @@ extension Essbasic {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拒签流程
+    ///
+    /// 此接口（RejectFlow）用于用户拒绝签署合同流程。
+    @inlinable
+    public func rejectFlow(_ input: RejectFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RejectFlowResponse > {
+        self.client.execute(action: "RejectFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拒签流程
+    ///
+    /// 此接口（RejectFlow）用于用户拒绝签署合同流程。
+    @inlinable
+    public func rejectFlow(_ input: RejectFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectFlowResponse {
+        try await self.client.execute(action: "RejectFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

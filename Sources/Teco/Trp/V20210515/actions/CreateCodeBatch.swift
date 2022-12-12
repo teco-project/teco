@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 新增批次
-    @inlinable
-    public func createCodeBatch(_ input: CreateCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCodeBatchResponse > {
-        self.client.execute(action: "CreateCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增批次
-    @inlinable
-    public func createCodeBatch(_ input: CreateCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodeBatchResponse {
-        try await self.client.execute(action: "CreateCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCodeBatch请求参数结构体
     public struct CreateCodeBatchRequest: TCRequestModel {
         /// 企业ID
@@ -53,7 +41,7 @@ extension Trp {
         /// 克隆批次ID，同时会复制溯源信息
         public let cloneId: String?
         
-        public init (corpId: UInt64?, merchantId: String?, productId: String?, batchType: UInt64?, batchId: String?, remark: String?, mpTpl: String?, cloneId: String?) {
+        public init (corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil) {
             self.corpId = corpId
             self.merchantId = merchantId
             self.productId = productId
@@ -88,5 +76,17 @@ extension Trp {
             case batchId = "BatchId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增批次
+    @inlinable
+    public func createCodeBatch(_ input: CreateCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCodeBatchResponse > {
+        self.client.execute(action: "CreateCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增批次
+    @inlinable
+    public func createCodeBatch(_ input: CreateCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodeBatchResponse {
+        try await self.client.execute(action: "CreateCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

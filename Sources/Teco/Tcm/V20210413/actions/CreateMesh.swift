@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcm {
-    /// 创建网格
-    @inlinable
-    public func createMesh(_ input: CreateMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMeshResponse > {
-        self.client.execute(action: "CreateMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建网格
-    @inlinable
-    public func createMesh(_ input: CreateMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMeshResponse {
-        try await self.client.execute(action: "CreateMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMesh请求参数结构体
     public struct CreateMeshRequest: TCRequestModel {
         /// Mesh名称
@@ -48,7 +36,7 @@ extension Tcm {
         /// 标签列表
         public let tagList: [Tag]?
         
-        public init (displayName: String, meshVersion: String, type: String, config: MeshConfig, clusterList: [Cluster]?, tagList: [Tag]?) {
+        public init (displayName: String, meshVersion: String, type: String, config: MeshConfig, clusterList: [Cluster]? = nil, tagList: [Tag]? = nil) {
             self.displayName = displayName
             self.meshVersion = meshVersion
             self.type = type
@@ -79,5 +67,17 @@ extension Tcm {
             case meshId = "MeshId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建网格
+    @inlinable
+    public func createMesh(_ input: CreateMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMeshResponse > {
+        self.client.execute(action: "CreateMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建网格
+    @inlinable
+    public func createMesh(_ input: CreateMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMeshResponse {
+        try await self.client.execute(action: "CreateMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

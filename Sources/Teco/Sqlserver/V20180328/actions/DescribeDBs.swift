@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询数据库列表
-    ///
-    /// 本接口（DescribeDBs）用于查询数据库列表。
-    @inlinable
-    public func describeDBs(_ input: DescribeDBsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBsResponse > {
-        self.client.execute(action: "DescribeDBs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据库列表
-    ///
-    /// 本接口（DescribeDBs）用于查询数据库列表。
-    @inlinable
-    public func describeDBs(_ input: DescribeDBsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsResponse {
-        try await self.client.execute(action: "DescribeDBs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBs请求参数结构体
     public struct DescribeDBsRequest: TCRequestModel {
         /// 实例ID
@@ -48,7 +32,7 @@ extension Sqlserver {
         /// 排序规则（desc-降序，asc-升序），默认desc
         public let orderByType: String?
         
-        public init (instanceIdSet: [String], limit: UInt64?, offset: UInt64?, name: String?, orderByType: String?) {
+        public init (instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil) {
             self.instanceIdSet = instanceIdSet
             self.limit = limit
             self.offset = offset
@@ -81,5 +65,21 @@ extension Sqlserver {
             case dbInstances = "DBInstances"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据库列表
+    ///
+    /// 本接口（DescribeDBs）用于查询数据库列表。
+    @inlinable
+    public func describeDBs(_ input: DescribeDBsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBsResponse > {
+        self.client.execute(action: "DescribeDBs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库列表
+    ///
+    /// 本接口（DescribeDBs）用于查询数据库列表。
+    @inlinable
+    public func describeDBs(_ input: DescribeDBsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsResponse {
+        try await self.client.execute(action: "DescribeDBs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

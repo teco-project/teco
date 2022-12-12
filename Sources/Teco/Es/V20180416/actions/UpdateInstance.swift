@@ -17,36 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Es {
-    /// 更新ES集群实例
-    ///
-    /// 对集群进行节点规格变更，修改实例名称，修改配置，重置密码， 添加Kibana黑白名单等操作。参数中InstanceId为必传参数，ForceRestart为选填参数，剩余参数传递组合及含义如下：
-    /// - InstanceName：修改实例名称(仅用于标识实例)
-    /// - NodeInfoList: 修改节点配置（节点横向扩缩容，纵向扩缩容，增加主节点，增加冷节点等）
-    /// - EsConfig：修改集群配置
-    /// - Password：修改默认用户elastic的密码
-    /// - EsAcl：修改访问控制列表
-    /// - CosBackUp: 设置集群COS自动备份信息
-    /// 以上参数组合只能传递一种，多传或少传均会导致请求失败
-    @inlinable
-    public func updateInstance(_ input: UpdateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateInstanceResponse > {
-        self.client.execute(action: "UpdateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新ES集群实例
-    ///
-    /// 对集群进行节点规格变更，修改实例名称，修改配置，重置密码， 添加Kibana黑白名单等操作。参数中InstanceId为必传参数，ForceRestart为选填参数，剩余参数传递组合及含义如下：
-    /// - InstanceName：修改实例名称(仅用于标识实例)
-    /// - NodeInfoList: 修改节点配置（节点横向扩缩容，纵向扩缩容，增加主节点，增加冷节点等）
-    /// - EsConfig：修改集群配置
-    /// - Password：修改默认用户elastic的密码
-    /// - EsAcl：修改访问控制列表
-    /// - CosBackUp: 设置集群COS自动备份信息
-    /// 以上参数组合只能传递一种，多传或少传均会导致请求失败
-    @inlinable
-    public func updateInstance(_ input: UpdateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateInstanceResponse {
-        try await self.client.execute(action: "UpdateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateInstance请求参数结构体
     public struct UpdateInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -66,7 +36,7 @@ extension Es {
         public let password: String?
         
         /// 可视化组件（Kibana、Cerebro）的公网访问策略
-        public let esAcl: EsAcl
+        public let esAcl: EsAcl?
         
         /// 已废弃请使用NodeInfoList
         /// 磁盘大小（单位GB）
@@ -92,7 +62,7 @@ extension Es {
         public let forceRestart: Bool?
         
         /// COS自动备份信息
-        public let cosBackup: CosBackup
+        public let cosBackup: CosBackup?
         
         /// 节点信息列表，可以只传递要更新的节点及其对应的规格信息。支持的操作包括<li>修改一种节点的个数</li><li>修改一种节点的节点规格及磁盘大小</li><li>增加一种节点类型（需要同时指定该节点的类型，个数，规格，磁盘等信息）</li>上述操作一次只能进行一种，且磁盘类型不支持修改
         public let nodeInfoList: [NodeInfo]?
@@ -103,7 +73,7 @@ extension Es {
         public let publicAccess: String?
         
         /// 公网访问控制列表
-        public let esPublicAcl: EsPublicAcl
+        public let esPublicAcl: EsPublicAcl?
         
         /// Kibana公网访问状态
         /// OPEN 开启
@@ -134,7 +104,7 @@ extension Es {
         public let kibanaConfig: String?
         
         /// 可视化节点配置
-        public let webNodeTypeInfo: WebNodeTypeInfo
+        public let webNodeTypeInfo: WebNodeTypeInfo?
         
         /// 切换到新网络架构
         public let switchPrivateLink: String?
@@ -153,17 +123,17 @@ extension Es {
         public let cerebroPrivateAccess: String?
         
         /// 新增或修改的配置组信息
-        public let esConfigSet: EsConfigSetInfo
+        public let esConfigSet: EsConfigSetInfo?
         
         /// 可维护时间段
-        public let operationDuration: OperationDurationUpdated
+        public let operationDuration: OperationDurationUpdated?
         
         /// 是否开启Alerting 外网告警输出：
         /// OPEN 开启
         /// CLOSE 关闭
         public let kibanaAlteringPublicAccess: String?
         
-        public init (instanceId: String, instanceName: String?, nodeNum: UInt64?, esConfig: String?, password: String?, esAcl: EsAcl, diskSize: UInt64?, nodeType: String?, masterNodeNum: UInt64?, masterNodeType: String?, masterNodeDiskSize: UInt64?, forceRestart: Bool?, cosBackup: CosBackup, nodeInfoList: [NodeInfo]?, publicAccess: String?, esPublicAcl: EsPublicAcl, kibanaPublicAccess: String?, kibanaPrivateAccess: String?, basicSecurityType: Int64?, kibanaPrivatePort: UInt64?, scaleType: Int64?, multiZoneInfo: [ZoneDetail]?, sceneType: Int64?, kibanaConfig: String?, webNodeTypeInfo: WebNodeTypeInfo, switchPrivateLink: String?, enableCerebro: Bool?, cerebroPublicAccess: String?, cerebroPrivateAccess: String?, esConfigSet: EsConfigSetInfo, operationDuration: OperationDurationUpdated, kibanaAlteringPublicAccess: String?) {
+        public init (instanceId: String, instanceName: String? = nil, nodeNum: UInt64? = nil, esConfig: String? = nil, password: String? = nil, esAcl: EsAcl? = nil, diskSize: UInt64? = nil, nodeType: String? = nil, masterNodeNum: UInt64? = nil, masterNodeType: String? = nil, masterNodeDiskSize: UInt64? = nil, forceRestart: Bool? = nil, cosBackup: CosBackup? = nil, nodeInfoList: [NodeInfo]? = nil, publicAccess: String? = nil, esPublicAcl: EsPublicAcl? = nil, kibanaPublicAccess: String? = nil, kibanaPrivateAccess: String? = nil, basicSecurityType: Int64? = nil, kibanaPrivatePort: UInt64? = nil, scaleType: Int64? = nil, multiZoneInfo: [ZoneDetail]? = nil, sceneType: Int64? = nil, kibanaConfig: String? = nil, webNodeTypeInfo: WebNodeTypeInfo? = nil, switchPrivateLink: String? = nil, enableCerebro: Bool? = nil, cerebroPublicAccess: String? = nil, cerebroPrivateAccess: String? = nil, esConfigSet: EsConfigSetInfo? = nil, operationDuration: OperationDurationUpdated? = nil, kibanaAlteringPublicAccess: String? = nil) {
             self.instanceId = instanceId
             self.instanceName = instanceName
             self.nodeNum = nodeNum
@@ -247,5 +217,35 @@ extension Es {
             case dealName = "DealName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新ES集群实例
+    ///
+    /// 对集群进行节点规格变更，修改实例名称，修改配置，重置密码， 添加Kibana黑白名单等操作。参数中InstanceId为必传参数，ForceRestart为选填参数，剩余参数传递组合及含义如下：
+    /// - InstanceName：修改实例名称(仅用于标识实例)
+    /// - NodeInfoList: 修改节点配置（节点横向扩缩容，纵向扩缩容，增加主节点，增加冷节点等）
+    /// - EsConfig：修改集群配置
+    /// - Password：修改默认用户elastic的密码
+    /// - EsAcl：修改访问控制列表
+    /// - CosBackUp: 设置集群COS自动备份信息
+    /// 以上参数组合只能传递一种，多传或少传均会导致请求失败
+    @inlinable
+    public func updateInstance(_ input: UpdateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateInstanceResponse > {
+        self.client.execute(action: "UpdateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新ES集群实例
+    ///
+    /// 对集群进行节点规格变更，修改实例名称，修改配置，重置密码， 添加Kibana黑白名单等操作。参数中InstanceId为必传参数，ForceRestart为选填参数，剩余参数传递组合及含义如下：
+    /// - InstanceName：修改实例名称(仅用于标识实例)
+    /// - NodeInfoList: 修改节点配置（节点横向扩缩容，纵向扩缩容，增加主节点，增加冷节点等）
+    /// - EsConfig：修改集群配置
+    /// - Password：修改默认用户elastic的密码
+    /// - EsAcl：修改访问控制列表
+    /// - CosBackUp: 设置集群COS自动备份信息
+    /// 以上参数组合只能传递一种，多传或少传均会导致请求失败
+    @inlinable
+    public func updateInstance(_ input: UpdateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateInstanceResponse {
+        try await self.client.execute(action: "UpdateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

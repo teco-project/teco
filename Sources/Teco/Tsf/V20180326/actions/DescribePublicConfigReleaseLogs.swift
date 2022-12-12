@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询公共配置发布历史
-    @inlinable
-    public func describePublicConfigReleaseLogs(_ input: DescribePublicConfigReleaseLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicConfigReleaseLogsResponse > {
-        self.client.execute(action: "DescribePublicConfigReleaseLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询公共配置发布历史
-    @inlinable
-    public func describePublicConfigReleaseLogs(_ input: DescribePublicConfigReleaseLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigReleaseLogsResponse {
-        try await self.client.execute(action: "DescribePublicConfigReleaseLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePublicConfigReleaseLogs请求参数结构体
     public struct DescribePublicConfigReleaseLogsRequest: TCRequestModel {
         /// 命名空间ID，不传入时查询全量
@@ -38,7 +26,7 @@ extension Tsf {
         /// 每页条数，默认为20
         public let limit: Int64?
         
-        public init (namespaceId: String?, offset: Int64?, limit: Int64?) {
+        public init (namespaceId: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.namespaceId = namespaceId
             self.offset = offset
             self.limit = limit
@@ -55,7 +43,7 @@ extension Tsf {
     public struct DescribePublicConfigReleaseLogsResponse: TCResponseModel {
         /// 分页后的公共配置项发布历史列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TsfPageConfigReleaseLog
+        public let result: TsfPageConfigReleaseLog?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -64,5 +52,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询公共配置发布历史
+    @inlinable
+    public func describePublicConfigReleaseLogs(_ input: DescribePublicConfigReleaseLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePublicConfigReleaseLogsResponse > {
+        self.client.execute(action: "DescribePublicConfigReleaseLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询公共配置发布历史
+    @inlinable
+    public func describePublicConfigReleaseLogs(_ input: DescribePublicConfigReleaseLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigReleaseLogsResponse {
+        try await self.client.execute(action: "DescribePublicConfigReleaseLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

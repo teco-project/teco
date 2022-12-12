@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 创建日志收集配置
-    @inlinable
-    public func createLogConfig(_ input: CreateLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLogConfigResponse > {
-        self.client.execute(action: "CreateLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建日志收集配置
-    @inlinable
-    public func createLogConfig(_ input: CreateLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogConfigResponse {
-        try await self.client.execute(action: "CreateLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLogConfig请求参数结构体
     public struct CreateLogConfigRequest: TCRequestModel {
         /// 环境 ID
@@ -60,9 +48,9 @@ extension Tem {
         public let filePattern: String?
         
         /// 导出规则
-        public let extractRule: LogConfigExtractRule
+        public let extractRule: LogConfigExtractRule?
         
-        public init (environmentId: String, name: String, inputType: String, applicationId: String?, logsetId: String?, topicId: String?, logType: String?, beginningRegex: String?, logPath: String?, filePattern: String?, extractRule: LogConfigExtractRule) {
+        public init (environmentId: String, name: String, inputType: String, applicationId: String? = nil, logsetId: String? = nil, topicId: String? = nil, logType: String? = nil, beginningRegex: String? = nil, logPath: String? = nil, filePattern: String? = nil, extractRule: LogConfigExtractRule? = nil) {
             self.environmentId = environmentId
             self.name = name
             self.inputType = inputType
@@ -103,5 +91,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建日志收集配置
+    @inlinable
+    public func createLogConfig(_ input: CreateLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLogConfigResponse > {
+        self.client.execute(action: "CreateLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建日志收集配置
+    @inlinable
+    public func createLogConfig(_ input: CreateLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogConfigResponse {
+        try await self.client.execute(action: "CreateLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

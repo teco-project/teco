@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 获取指定区域性别占比
-    @inlinable
-    public func describeZoneFlowGenderInfoByZoneId(_ input: DescribeZoneFlowGenderInfoByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowGenderInfoByZoneIdResponse > {
-        self.client.execute(action: "DescribeZoneFlowGenderInfoByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取指定区域性别占比
-    @inlinable
-    public func describeZoneFlowGenderInfoByZoneId(_ input: DescribeZoneFlowGenderInfoByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowGenderInfoByZoneIdResponse {
-        try await self.client.execute(action: "DescribeZoneFlowGenderInfoByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeZoneFlowGenderInfoByZoneId请求参数结构体
     public struct DescribeZoneFlowGenderInfoByZoneIdRequest: TCRequestModel {
         /// 集团ID
@@ -93,5 +81,17 @@ extension Youmall {
             case femalePercent = "FemalePercent"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取指定区域性别占比
+    @inlinable
+    public func describeZoneFlowGenderInfoByZoneId(_ input: DescribeZoneFlowGenderInfoByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowGenderInfoByZoneIdResponse > {
+        self.client.execute(action: "DescribeZoneFlowGenderInfoByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定区域性别占比
+    @inlinable
+    public func describeZoneFlowGenderInfoByZoneId(_ input: DescribeZoneFlowGenderInfoByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowGenderInfoByZoneIdResponse {
+        try await self.client.execute(action: "DescribeZoneFlowGenderInfoByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

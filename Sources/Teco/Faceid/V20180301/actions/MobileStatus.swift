@@ -15,31 +15,15 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 手机号状态查询
-    ///
-    /// 本接口用于验证手机号的状态，您可以输入手机号进行查询。
-    @inlinable
-    public func mobileStatus(_ input: MobileStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MobileStatusResponse > {
-        self.client.execute(action: "MobileStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 手机号状态查询
-    ///
-    /// 本接口用于验证手机号的状态，您可以输入手机号进行查询。
-    @inlinable
-    public func mobileStatus(_ input: MobileStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MobileStatusResponse {
-        try await self.client.execute(action: "MobileStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// MobileStatus请求参数结构体
     public struct MobileStatusRequest: TCRequestModel {
         /// 手机号码
         public let mobile: String
         
         /// 敏感数据加密信息。对传入信息（手机号）有加密需求的用户可使用此参数，详情请点击左侧链接。
-        public let encryption: Encryption
+        public let encryption: Encryption?
         
-        public init (mobile: String, encryption: Encryption) {
+        public init (mobile: String, encryption: Encryption? = nil) {
             self.mobile = mobile
             self.encryption = encryption
         }
@@ -82,5 +66,21 @@ extension Faceid {
             case statusCode = "StatusCode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 手机号状态查询
+    ///
+    /// 本接口用于验证手机号的状态，您可以输入手机号进行查询。
+    @inlinable
+    public func mobileStatus(_ input: MobileStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MobileStatusResponse > {
+        self.client.execute(action: "MobileStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 手机号状态查询
+    ///
+    /// 本接口用于验证手机号的状态，您可以输入手机号进行查询。
+    @inlinable
+    public func mobileStatus(_ input: MobileStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MobileStatusResponse {
+        try await self.client.execute(action: "MobileStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

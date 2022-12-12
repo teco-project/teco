@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iottid {
-    /// 安全芯片TID空发回执
-    ///
-    /// 安全芯片为载体的TID空发回执，绑定TID与订单号。 
-    @inlinable
-    public func deliverTidNotify(_ input: DeliverTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeliverTidNotifyResponse > {
-        self.client.execute(action: "DeliverTidNotify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全芯片TID空发回执
-    ///
-    /// 安全芯片为载体的TID空发回执，绑定TID与订单号。 
-    @inlinable
-    public func deliverTidNotify(_ input: DeliverTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidNotifyResponse {
-        try await self.client.execute(action: "DeliverTidNotify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeliverTidNotify请求参数结构体
     public struct DeliverTidNotifyRequest: TCRequestModel {
         /// 订单编号
@@ -70,5 +54,21 @@ extension Iottid {
             case productKey = "ProductKey"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全芯片TID空发回执
+    ///
+    /// 安全芯片为载体的TID空发回执，绑定TID与订单号。 
+    @inlinable
+    public func deliverTidNotify(_ input: DeliverTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeliverTidNotifyResponse > {
+        self.client.execute(action: "DeliverTidNotify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全芯片TID空发回执
+    ///
+    /// 安全芯片为载体的TID空发回执，绑定TID与订单号。 
+    @inlinable
+    public func deliverTidNotify(_ input: DeliverTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidNotifyResponse {
+        try await self.client.execute(action: "DeliverTidNotify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

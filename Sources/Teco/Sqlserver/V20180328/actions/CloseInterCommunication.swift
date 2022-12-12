@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 关闭实例互通
-    ///
-    /// 本接口（CloseInterCommunication）用于关闭实例互通。
-    @inlinable
-    public func closeInterCommunication(_ input: CloseInterCommunicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseInterCommunicationResponse > {
-        self.client.execute(action: "CloseInterCommunication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关闭实例互通
-    ///
-    /// 本接口（CloseInterCommunication）用于关闭实例互通。
-    @inlinable
-    public func closeInterCommunication(_ input: CloseInterCommunicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseInterCommunicationResponse {
-        try await self.client.execute(action: "CloseInterCommunication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CloseInterCommunication请求参数结构体
     public struct CloseInterCommunicationRequest: TCRequestModel {
         /// 关闭互通的实例ID集合
@@ -57,5 +41,21 @@ extension Sqlserver {
             case interInstanceFlowSet = "InterInstanceFlowSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关闭实例互通
+    ///
+    /// 本接口（CloseInterCommunication）用于关闭实例互通。
+    @inlinable
+    public func closeInterCommunication(_ input: CloseInterCommunicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseInterCommunicationResponse > {
+        self.client.execute(action: "CloseInterCommunication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭实例互通
+    ///
+    /// 本接口（CloseInterCommunication）用于关闭实例互通。
+    @inlinable
+    public func closeInterCommunication(_ input: CloseInterCommunicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseInterCommunicationResponse {
+        try await self.client.execute(action: "CloseInterCommunication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

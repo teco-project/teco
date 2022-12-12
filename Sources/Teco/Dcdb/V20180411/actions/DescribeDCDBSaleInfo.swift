@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 查询分布式数据库可售卖地域和可用区信息
-    ///
-    /// 本接口(DescribeDCDBSaleInfo)用于查询分布式数据库可售卖的地域和可用区信息。
-    @inlinable
-    public func describeDCDBSaleInfo(_ input: DescribeDCDBSaleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDCDBSaleInfoResponse > {
-        self.client.execute(action: "DescribeDCDBSaleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询分布式数据库可售卖地域和可用区信息
-    ///
-    /// 本接口(DescribeDCDBSaleInfo)用于查询分布式数据库可售卖的地域和可用区信息。
-    @inlinable
-    public func describeDCDBSaleInfo(_ input: DescribeDCDBSaleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBSaleInfoResponse {
-        try await self.client.execute(action: "DescribeDCDBSaleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDCDBSaleInfo请求参数结构体
     public struct DescribeDCDBSaleInfoRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Dcdb {
             case regionList = "RegionList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询分布式数据库可售卖地域和可用区信息
+    ///
+    /// 本接口(DescribeDCDBSaleInfo)用于查询分布式数据库可售卖的地域和可用区信息。
+    @inlinable
+    public func describeDCDBSaleInfo(_ input: DescribeDCDBSaleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDCDBSaleInfoResponse > {
+        self.client.execute(action: "DescribeDCDBSaleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询分布式数据库可售卖地域和可用区信息
+    ///
+    /// 本接口(DescribeDCDBSaleInfo)用于查询分布式数据库可售卖的地域和可用区信息。
+    @inlinable
+    public func describeDCDBSaleInfo(_ input: DescribeDCDBSaleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBSaleInfoResponse {
+        try await self.client.execute(action: "DescribeDCDBSaleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

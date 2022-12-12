@@ -15,30 +15,18 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 合同文件验签
-    @inlinable
-    public func channelVerifyPdf(_ input: ChannelVerifyPdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelVerifyPdfResponse > {
-        self.client.execute(action: "ChannelVerifyPdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 合同文件验签
-    @inlinable
-    public func channelVerifyPdf(_ input: ChannelVerifyPdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {
-        try await self.client.execute(action: "ChannelVerifyPdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ChannelVerifyPdf请求参数结构体
     public struct ChannelVerifyPdfRequest: TCRequestModel {
         /// 合同Id，流程Id
         public let flowId: String
         
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
-        public let agent: Agent
+        public let agent: Agent?
         
         /// 操作者的信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
-        public init (flowId: String, agent: Agent, `operator`: UserInfo) {
+        public init (flowId: String, agent: Agent? = nil, `operator`: UserInfo? = nil) {
             self.flowId = flowId
             self.agent = agent
             self.`operator` = `operator`
@@ -68,5 +56,17 @@ extension Essbasic {
             case pdfVerifyResults = "PdfVerifyResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 合同文件验签
+    @inlinable
+    public func channelVerifyPdf(_ input: ChannelVerifyPdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChannelVerifyPdfResponse > {
+        self.client.execute(action: "ChannelVerifyPdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 合同文件验签
+    @inlinable
+    public func channelVerifyPdf(_ input: ChannelVerifyPdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {
+        try await self.client.execute(action: "ChannelVerifyPdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

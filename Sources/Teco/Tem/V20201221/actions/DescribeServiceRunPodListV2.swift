@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 获取服务下面运行pod列表
-    @inlinable
-    public func describeServiceRunPodListV2(_ input: DescribeServiceRunPodListV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceRunPodListV2Response > {
-        self.client.execute(action: "DescribeServiceRunPodListV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取服务下面运行pod列表
-    @inlinable
-    public func describeServiceRunPodListV2(_ input: DescribeServiceRunPodListV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceRunPodListV2Response {
-        try await self.client.execute(action: "DescribeServiceRunPodListV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeServiceRunPodListV2请求参数结构体
     public struct DescribeServiceRunPodListV2Request: TCRequestModel {
         /// 环境id
@@ -53,7 +41,7 @@ extension Tem {
         /// 来源渠道
         public let sourceChannel: Int64?
         
-        public init (namespaceId: String, serviceId: String, limit: Int64?, offset: Int64?, status: String?, podName: String?, sourceChannel: Int64?) {
+        public init (namespaceId: String, serviceId: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, podName: String? = nil, sourceChannel: Int64? = nil) {
             self.namespaceId = namespaceId
             self.serviceId = serviceId
             self.limit = limit
@@ -86,5 +74,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取服务下面运行pod列表
+    @inlinable
+    public func describeServiceRunPodListV2(_ input: DescribeServiceRunPodListV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceRunPodListV2Response > {
+        self.client.execute(action: "DescribeServiceRunPodListV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取服务下面运行pod列表
+    @inlinable
+    public func describeServiceRunPodListV2(_ input: DescribeServiceRunPodListV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceRunPodListV2Response {
+        try await self.client.execute(action: "DescribeServiceRunPodListV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

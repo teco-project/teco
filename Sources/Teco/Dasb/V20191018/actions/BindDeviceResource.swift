@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dasb {
-    /// 修改资产绑定的堡垒机服务
-    @inlinable
-    public func bindDeviceResource(_ input: BindDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindDeviceResourceResponse > {
-        self.client.execute(action: "BindDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改资产绑定的堡垒机服务
-    @inlinable
-    public func bindDeviceResource(_ input: BindDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDeviceResourceResponse {
-        try await self.client.execute(action: "BindDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindDeviceResource请求参数结构体
     public struct BindDeviceResourceRequest: TCRequestModel {
         /// 资产ID集合
@@ -54,5 +42,17 @@ extension Dasb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改资产绑定的堡垒机服务
+    @inlinable
+    public func bindDeviceResource(_ input: BindDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindDeviceResourceResponse > {
+        self.client.execute(action: "BindDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改资产绑定的堡垒机服务
+    @inlinable
+    public func bindDeviceResource(_ input: BindDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDeviceResourceResponse {
+        try await self.client.execute(action: "BindDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

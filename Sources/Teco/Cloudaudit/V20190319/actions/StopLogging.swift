@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudaudit {
-    /// 关闭跟踪集
-    @inlinable
-    public func stopLogging(_ input: StopLoggingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopLoggingResponse > {
-        self.client.execute(action: "StopLogging", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关闭跟踪集
-    @inlinable
-    public func stopLogging(_ input: StopLoggingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopLoggingResponse {
-        try await self.client.execute(action: "StopLogging", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopLogging请求参数结构体
     public struct StopLoggingRequest: TCRequestModel {
         /// 跟踪集名称
@@ -53,5 +41,17 @@ extension Cloudaudit {
             case isSuccess = "IsSuccess"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关闭跟踪集
+    @inlinable
+    public func stopLogging(_ input: StopLoggingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopLoggingResponse > {
+        self.client.execute(action: "StopLogging", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭跟踪集
+    @inlinable
+    public func stopLogging(_ input: StopLoggingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopLoggingResponse {
+        try await self.client.execute(action: "StopLogging", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

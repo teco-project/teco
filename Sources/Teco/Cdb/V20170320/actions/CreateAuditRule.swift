@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 创建审计规则
-    ///
-    /// 本接口(CreateAuditRule)用于创建用户在当前地域的审计规则。
-    @inlinable
-    public func createAuditRule(_ input: CreateAuditRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAuditRuleResponse > {
-        self.client.execute(action: "CreateAuditRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建审计规则
-    ///
-    /// 本接口(CreateAuditRule)用于创建用户在当前地域的审计规则。
-    @inlinable
-    public func createAuditRule(_ input: CreateAuditRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditRuleResponse {
-        try await self.client.execute(action: "CreateAuditRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAuditRule请求参数结构体
     public struct CreateAuditRuleRequest: TCRequestModel {
         /// 审计规则名称。
@@ -45,7 +29,7 @@ extension Cdb {
         /// 是否开启全审计。支持值包括：false – 不开启全审计，true – 开启全审计。用户未设置审计规则过滤条件时，默认开启全审计。
         public let auditAll: Bool?
         
-        public init (ruleName: String, description: String?, ruleFilters: [AuditFilter]?, auditAll: Bool?) {
+        public init (ruleName: String, description: String? = nil, ruleFilters: [AuditFilter]? = nil, auditAll: Bool? = nil) {
             self.ruleName = ruleName
             self.description = description
             self.ruleFilters = ruleFilters
@@ -72,5 +56,21 @@ extension Cdb {
             case ruleId = "RuleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建审计规则
+    ///
+    /// 本接口(CreateAuditRule)用于创建用户在当前地域的审计规则。
+    @inlinable
+    public func createAuditRule(_ input: CreateAuditRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAuditRuleResponse > {
+        self.client.execute(action: "CreateAuditRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建审计规则
+    ///
+    /// 本接口(CreateAuditRule)用于创建用户在当前地域的审计规则。
+    @inlinable
+    public func createAuditRule(_ input: CreateAuditRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditRuleResponse {
+        try await self.client.execute(action: "CreateAuditRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

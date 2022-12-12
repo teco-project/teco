@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Iotcloud {
-    /// 查询固件升级任务的设备列表
-    @inlinable
-    public func describeFirmwareTaskDevices(_ input: DescribeFirmwareTaskDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirmwareTaskDevicesResponse > {
-        self.client.execute(action: "DescribeFirmwareTaskDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询固件升级任务的设备列表
-    @inlinable
-    public func describeFirmwareTaskDevices(_ input: DescribeFirmwareTaskDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskDevicesResponse {
-        try await self.client.execute(action: "DescribeFirmwareTaskDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFirmwareTaskDevices请求参数结构体
     public struct DescribeFirmwareTaskDevicesRequest: TCRequestModel {
         /// 产品ID
@@ -46,7 +34,7 @@ extension Iotcloud {
         /// 查询的数量
         public let limit: UInt64?
         
-        public init (productId: String, firmwareVersion: String?, filters: [SearchKeyword]?, offset: UInt64?, limit: UInt64?) {
+        public init (productId: String, firmwareVersion: String? = nil, filters: [SearchKeyword]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.productId = productId
             self.firmwareVersion = firmwareVersion
             self.filters = filters
@@ -71,7 +59,7 @@ extension Iotcloud {
         
         /// 固件升级任务的设备列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let devices: [Date]?
+        public let devices: [DeviceUpdateStatus]?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -81,5 +69,17 @@ extension Iotcloud {
             case devices = "Devices"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询固件升级任务的设备列表
+    @inlinable
+    public func describeFirmwareTaskDevices(_ input: DescribeFirmwareTaskDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFirmwareTaskDevicesResponse > {
+        self.client.execute(action: "DescribeFirmwareTaskDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询固件升级任务的设备列表
+    @inlinable
+    public func describeFirmwareTaskDevices(_ input: DescribeFirmwareTaskDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskDevicesResponse {
+        try await self.client.execute(action: "DescribeFirmwareTaskDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

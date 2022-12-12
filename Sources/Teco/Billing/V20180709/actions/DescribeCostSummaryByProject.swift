@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Billing {
-    /// 获取按项目汇总消耗详情
-    @inlinable
-    public func describeCostSummaryByProject(_ input: DescribeCostSummaryByProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCostSummaryByProjectResponse > {
-        self.client.execute(action: "DescribeCostSummaryByProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取按项目汇总消耗详情
-    @inlinable
-    public func describeCostSummaryByProject(_ input: DescribeCostSummaryByProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByProjectResponse {
-        try await self.client.execute(action: "DescribeCostSummaryByProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCostSummaryByProject请求参数结构体
     public struct DescribeCostSummaryByProjectRequest: TCRequestModel {
         /// 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
@@ -47,7 +35,7 @@ extension Billing {
         /// 是否需要返回记录数量，0不需要，1需要，默认不需要
         public let needRecordNum: UInt64?
         
-        public init (beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String?, needRecordNum: UInt64?) {
+        public init (beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil) {
             self.beginTime = beginTime
             self.endTime = endTime
             self.limit = limit
@@ -90,5 +78,17 @@ extension Billing {
             case recordNum = "RecordNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取按项目汇总消耗详情
+    @inlinable
+    public func describeCostSummaryByProject(_ input: DescribeCostSummaryByProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCostSummaryByProjectResponse > {
+        self.client.execute(action: "DescribeCostSummaryByProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取按项目汇总消耗详情
+    @inlinable
+    public func describeCostSummaryByProject(_ input: DescribeCostSummaryByProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByProjectResponse {
+        try await self.client.execute(action: "DescribeCostSummaryByProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 上传证书吊销确认函
-    ///
-    /// 本接口（UploadRevokeLetter）用于上传证书吊销确认函。
-    @inlinable
-    public func uploadRevokeLetter(_ input: UploadRevokeLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadRevokeLetterResponse > {
-        self.client.execute(action: "UploadRevokeLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上传证书吊销确认函
-    ///
-    /// 本接口（UploadRevokeLetter）用于上传证书吊销确认函。
-    @inlinable
-    public func uploadRevokeLetter(_ input: UploadRevokeLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadRevokeLetterResponse {
-        try await self.client.execute(action: "UploadRevokeLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadRevokeLetter请求参数结构体
     public struct UploadRevokeLetterRequest: TCRequestModel {
         /// 证书 ID。
@@ -66,5 +50,21 @@ extension Ssl {
             case isSuccess = "IsSuccess"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上传证书吊销确认函
+    ///
+    /// 本接口（UploadRevokeLetter）用于上传证书吊销确认函。
+    @inlinable
+    public func uploadRevokeLetter(_ input: UploadRevokeLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadRevokeLetterResponse > {
+        self.client.execute(action: "UploadRevokeLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上传证书吊销确认函
+    ///
+    /// 本接口（UploadRevokeLetter）用于上传证书吊销确认函。
+    @inlinable
+    public func uploadRevokeLetter(_ input: UploadRevokeLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadRevokeLetterResponse {
+        try await self.client.execute(action: "UploadRevokeLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

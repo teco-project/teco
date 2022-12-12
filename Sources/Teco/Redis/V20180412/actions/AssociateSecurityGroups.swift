@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 绑定安全组
-    ///
-    /// 本接口 (AssociateSecurityGroups) 用于安全组批量绑定多个指定实例。
-    @inlinable
-    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateSecurityGroupsResponse > {
-        self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定安全组
-    ///
-    /// 本接口 (AssociateSecurityGroups) 用于安全组批量绑定多个指定实例。
-    @inlinable
-    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
-        try await self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssociateSecurityGroups请求参数结构体
     public struct AssociateSecurityGroupsRequest: TCRequestModel {
         /// 数据库引擎名称，本接口取值：redis。
@@ -63,5 +47,21 @@ extension Redis {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定安全组
+    ///
+    /// 本接口 (AssociateSecurityGroups) 用于安全组批量绑定多个指定实例。
+    @inlinable
+    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateSecurityGroupsResponse > {
+        self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定安全组
+    ///
+    /// 本接口 (AssociateSecurityGroups) 用于安全组批量绑定多个指定实例。
+    @inlinable
+    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
+        try await self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

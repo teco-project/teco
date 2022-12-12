@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查看快照操作限制列表
-    ///
-    /// 本接口（DescribeSnapshotsDeniedActions）用于查询一个或多个快照的操作限制列表信息。
-    @inlinable
-    public func describeSnapshotsDeniedActions(_ input: DescribeSnapshotsDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotsDeniedActionsResponse > {
-        self.client.execute(action: "DescribeSnapshotsDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看快照操作限制列表
-    ///
-    /// 本接口（DescribeSnapshotsDeniedActions）用于查询一个或多个快照的操作限制列表信息。
-    @inlinable
-    public func describeSnapshotsDeniedActions(_ input: DescribeSnapshotsDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsDeniedActionsResponse {
-        try await self.client.execute(action: "DescribeSnapshotsDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSnapshotsDeniedActions请求参数结构体
     public struct DescribeSnapshotsDeniedActionsRequest: TCRequestModel {
         /// 快照 ID 列表, 可通过 DescribeSnapshots 查询。
@@ -57,5 +41,21 @@ extension Lighthouse {
             case snapshotDeniedActionSet = "SnapshotDeniedActionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看快照操作限制列表
+    ///
+    /// 本接口（DescribeSnapshotsDeniedActions）用于查询一个或多个快照的操作限制列表信息。
+    @inlinable
+    public func describeSnapshotsDeniedActions(_ input: DescribeSnapshotsDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotsDeniedActionsResponse > {
+        self.client.execute(action: "DescribeSnapshotsDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看快照操作限制列表
+    ///
+    /// 本接口（DescribeSnapshotsDeniedActions）用于查询一个或多个快照的操作限制列表信息。
+    @inlinable
+    public func describeSnapshotsDeniedActions(_ input: DescribeSnapshotsDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsDeniedActionsResponse {
+        try await self.client.execute(action: "DescribeSnapshotsDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

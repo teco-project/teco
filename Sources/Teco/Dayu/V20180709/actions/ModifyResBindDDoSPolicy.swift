@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 资源绑定DDoS高级策略
-    ///
-    /// 资源实例绑定DDoS高级策略
-    @inlinable
-    public func modifyResBindDDoSPolicy(_ input: ModifyResBindDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResBindDDoSPolicyResponse > {
-        self.client.execute(action: "ModifyResBindDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 资源绑定DDoS高级策略
-    ///
-    /// 资源实例绑定DDoS高级策略
-    @inlinable
-    public func modifyResBindDDoSPolicy(_ input: ModifyResBindDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResBindDDoSPolicyResponse {
-        try await self.client.execute(action: "ModifyResBindDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyResBindDDoSPolicy请求参数结构体
     public struct ModifyResBindDDoSPolicyRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -72,5 +56,21 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 资源绑定DDoS高级策略
+    ///
+    /// 资源实例绑定DDoS高级策略
+    @inlinable
+    public func modifyResBindDDoSPolicy(_ input: ModifyResBindDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResBindDDoSPolicyResponse > {
+        self.client.execute(action: "ModifyResBindDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 资源绑定DDoS高级策略
+    ///
+    /// 资源实例绑定DDoS高级策略
+    @inlinable
+    public func modifyResBindDDoSPolicy(_ input: ModifyResBindDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResBindDDoSPolicyResponse {
+        try await self.client.execute(action: "ModifyResBindDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

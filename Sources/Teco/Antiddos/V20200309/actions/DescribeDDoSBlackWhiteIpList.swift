@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取DDoS防护的IP网段黑白名单
-    @inlinable
-    public func describeDDoSBlackWhiteIpList(_ input: DescribeDDoSBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSBlackWhiteIpListResponse > {
-        self.client.execute(action: "DescribeDDoSBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DDoS防护的IP网段黑白名单
-    @inlinable
-    public func describeDDoSBlackWhiteIpList(_ input: DescribeDDoSBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSBlackWhiteIpListResponse {
-        try await self.client.execute(action: "DescribeDDoSBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSBlackWhiteIpList请求参数结构体
     public struct DescribeDDoSBlackWhiteIpListRequest: TCRequestModel {
         /// 资源实例ID
@@ -57,5 +45,17 @@ extension Antiddos {
             case whiteIpList = "WhiteIpList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DDoS防护的IP网段黑白名单
+    @inlinable
+    public func describeDDoSBlackWhiteIpList(_ input: DescribeDDoSBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSBlackWhiteIpListResponse > {
+        self.client.execute(action: "DescribeDDoSBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS防护的IP网段黑白名单
+    @inlinable
+    public func describeDDoSBlackWhiteIpList(_ input: DescribeDDoSBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSBlackWhiteIpListResponse {
+        try await self.client.execute(action: "DescribeDDoSBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

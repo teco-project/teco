@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 批量注册虚拟IP
-    ///
-    /// 批量注册虚拟IP，异步接口。通过接口来查询任务进度。每次请求最多注册256个IP
-    @inlinable
-    public func asyncRegisterIps(_ input: AsyncRegisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AsyncRegisterIpsResponse > {
-        self.client.execute(action: "AsyncRegisterIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量注册虚拟IP
-    ///
-    /// 批量注册虚拟IP，异步接口。通过接口来查询任务进度。每次请求最多注册256个IP
-    @inlinable
-    public func asyncRegisterIps(_ input: AsyncRegisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AsyncRegisterIpsResponse {
-        try await self.client.execute(action: "AsyncRegisterIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AsyncRegisterIps请求参数结构体
     public struct AsyncRegisterIpsRequest: TCRequestModel {
         /// 私有网络的唯一ID。
@@ -67,5 +51,21 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量注册虚拟IP
+    ///
+    /// 批量注册虚拟IP，异步接口。通过接口来查询任务进度。每次请求最多注册256个IP
+    @inlinable
+    public func asyncRegisterIps(_ input: AsyncRegisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AsyncRegisterIpsResponse > {
+        self.client.execute(action: "AsyncRegisterIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量注册虚拟IP
+    ///
+    /// 批量注册虚拟IP，异步接口。通过接口来查询任务进度。每次请求最多注册256个IP
+    @inlinable
+    public func asyncRegisterIps(_ input: AsyncRegisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AsyncRegisterIpsResponse {
+        try await self.client.execute(action: "AsyncRegisterIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

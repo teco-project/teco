@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 删除运行时反弹shell事件
-    @inlinable
-    public func deleteReverseShellEvents(_ input: DeleteReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReverseShellEventsResponse > {
-        self.client.execute(action: "DeleteReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除运行时反弹shell事件
-    @inlinable
-    public func deleteReverseShellEvents(_ input: DeleteReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellEventsResponse {
-        try await self.client.execute(action: "DeleteReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteReverseShellEvents请求参数结构体
     public struct DeleteReverseShellEventsRequest: TCRequestModel {
         /// 事件ids
@@ -49,5 +37,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除运行时反弹shell事件
+    @inlinable
+    public func deleteReverseShellEvents(_ input: DeleteReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReverseShellEventsResponse > {
+        self.client.execute(action: "DeleteReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除运行时反弹shell事件
+    @inlinable
+    public func deleteReverseShellEvents(_ input: DeleteReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellEventsResponse {
+        try await self.client.execute(action: "DeleteReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

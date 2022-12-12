@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 在线烧录FPGA镜像
-    ///
-    /// 本接口(ProgramFpgaImage)用于在线烧录由客户提供的FPGA镜像文件到指定实例的指定FPGA卡上。
-    /// * 只支持对单个实例发起在线烧录FPGA镜像的操作。
-    /// * 支持对单个实例的多块FPGA卡同时烧录FPGA镜像，DBDFs参数为空时，默认对指定实例的所有FPGA卡进行烧录。
-    @inlinable
-    public func programFpgaImage(_ input: ProgramFpgaImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ProgramFpgaImageResponse > {
-        self.client.execute(action: "ProgramFpgaImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 在线烧录FPGA镜像
-    ///
-    /// 本接口(ProgramFpgaImage)用于在线烧录由客户提供的FPGA镜像文件到指定实例的指定FPGA卡上。
-    /// * 只支持对单个实例发起在线烧录FPGA镜像的操作。
-    /// * 支持对单个实例的多块FPGA卡同时烧录FPGA镜像，DBDFs参数为空时，默认对指定实例的所有FPGA卡进行烧录。
-    @inlinable
-    public func programFpgaImage(_ input: ProgramFpgaImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProgramFpgaImageResponse {
-        try await self.client.execute(action: "ProgramFpgaImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ProgramFpgaImage请求参数结构体
     public struct ProgramFpgaImageRequest: TCRequestModel {
         /// 实例的ID信息。
@@ -49,7 +29,7 @@ extension Cvm {
         /// 试运行，不会执行实际的烧录动作，默认为False。
         public let dryRun: Bool?
         
-        public init (instanceId: String, fpgaUrl: String, dbdFs: [String]?, dryRun: Bool?) {
+        public init (instanceId: String, fpgaUrl: String, dbdFs: [String]? = nil, dryRun: Bool? = nil) {
             self.instanceId = instanceId
             self.fpgaUrl = fpgaUrl
             self.dbdFs = dbdFs
@@ -72,5 +52,25 @@ extension Cvm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 在线烧录FPGA镜像
+    ///
+    /// 本接口(ProgramFpgaImage)用于在线烧录由客户提供的FPGA镜像文件到指定实例的指定FPGA卡上。
+    /// * 只支持对单个实例发起在线烧录FPGA镜像的操作。
+    /// * 支持对单个实例的多块FPGA卡同时烧录FPGA镜像，DBDFs参数为空时，默认对指定实例的所有FPGA卡进行烧录。
+    @inlinable
+    public func programFpgaImage(_ input: ProgramFpgaImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ProgramFpgaImageResponse > {
+        self.client.execute(action: "ProgramFpgaImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 在线烧录FPGA镜像
+    ///
+    /// 本接口(ProgramFpgaImage)用于在线烧录由客户提供的FPGA镜像文件到指定实例的指定FPGA卡上。
+    /// * 只支持对单个实例发起在线烧录FPGA镜像的操作。
+    /// * 支持对单个实例的多块FPGA卡同时烧录FPGA镜像，DBDFs参数为空时，默认对指定实例的所有FPGA卡进行烧录。
+    @inlinable
+    public func programFpgaImage(_ input: ProgramFpgaImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProgramFpgaImageResponse {
+        try await self.client.execute(action: "ProgramFpgaImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

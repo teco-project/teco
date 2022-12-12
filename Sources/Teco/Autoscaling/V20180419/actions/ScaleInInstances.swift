@@ -15,34 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 指定数量缩容实例
-    ///
-    /// 为伸缩组指定数量缩容实例，返回缩容活动的 ActivityId。
-    /// * 伸缩组需要未处于活动中
-    /// * 伸缩组处于停用状态时，该接口也会生效，可参考[停用伸缩组](https://cloud.tencent.com/document/api/377/20435)文档查看伸缩组停用状态的影响范围
-    /// * 根据伸缩组的`TerminationPolicies`策略，选择被缩容的实例，可参考[缩容处理](https://cloud.tencent.com/document/product/377/8563)
-    /// * 接口只会选择`IN_SERVICE`实例缩容，如果需要缩容其他状态实例，可以使用 [DetachInstances](https://cloud.tencent.com/document/api/377/20436) 或 [RemoveInstances](https://cloud.tencent.com/document/api/377/20431) 接口
-    /// * 接口会减少期望实例数，新的期望实例数需要大于等于最小实例数
-    /// * 缩容如果失败或者部分成功，最后期望实例数只会扣减实际缩容成功的实例数量
-    @inlinable
-    public func scaleInInstances(_ input: ScaleInInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleInInstancesResponse > {
-        self.client.execute(action: "ScaleInInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 指定数量缩容实例
-    ///
-    /// 为伸缩组指定数量缩容实例，返回缩容活动的 ActivityId。
-    /// * 伸缩组需要未处于活动中
-    /// * 伸缩组处于停用状态时，该接口也会生效，可参考[停用伸缩组](https://cloud.tencent.com/document/api/377/20435)文档查看伸缩组停用状态的影响范围
-    /// * 根据伸缩组的`TerminationPolicies`策略，选择被缩容的实例，可参考[缩容处理](https://cloud.tencent.com/document/product/377/8563)
-    /// * 接口只会选择`IN_SERVICE`实例缩容，如果需要缩容其他状态实例，可以使用 [DetachInstances](https://cloud.tencent.com/document/api/377/20436) 或 [RemoveInstances](https://cloud.tencent.com/document/api/377/20431) 接口
-    /// * 接口会减少期望实例数，新的期望实例数需要大于等于最小实例数
-    /// * 缩容如果失败或者部分成功，最后期望实例数只会扣减实际缩容成功的实例数量
-    @inlinable
-    public func scaleInInstances(_ input: ScaleInInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInInstancesResponse {
-        try await self.client.execute(action: "ScaleInInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ScaleInInstances请求参数结构体
     public struct ScaleInInstancesRequest: TCRequestModel {
         /// 伸缩组ID。
@@ -74,5 +46,33 @@ extension As {
             case activityId = "ActivityId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 指定数量缩容实例
+    ///
+    /// 为伸缩组指定数量缩容实例，返回缩容活动的 ActivityId。
+    /// * 伸缩组需要未处于活动中
+    /// * 伸缩组处于停用状态时，该接口也会生效，可参考[停用伸缩组](https://cloud.tencent.com/document/api/377/20435)文档查看伸缩组停用状态的影响范围
+    /// * 根据伸缩组的`TerminationPolicies`策略，选择被缩容的实例，可参考[缩容处理](https://cloud.tencent.com/document/product/377/8563)
+    /// * 接口只会选择`IN_SERVICE`实例缩容，如果需要缩容其他状态实例，可以使用 [DetachInstances](https://cloud.tencent.com/document/api/377/20436) 或 [RemoveInstances](https://cloud.tencent.com/document/api/377/20431) 接口
+    /// * 接口会减少期望实例数，新的期望实例数需要大于等于最小实例数
+    /// * 缩容如果失败或者部分成功，最后期望实例数只会扣减实际缩容成功的实例数量
+    @inlinable
+    public func scaleInInstances(_ input: ScaleInInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleInInstancesResponse > {
+        self.client.execute(action: "ScaleInInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 指定数量缩容实例
+    ///
+    /// 为伸缩组指定数量缩容实例，返回缩容活动的 ActivityId。
+    /// * 伸缩组需要未处于活动中
+    /// * 伸缩组处于停用状态时，该接口也会生效，可参考[停用伸缩组](https://cloud.tencent.com/document/api/377/20435)文档查看伸缩组停用状态的影响范围
+    /// * 根据伸缩组的`TerminationPolicies`策略，选择被缩容的实例，可参考[缩容处理](https://cloud.tencent.com/document/product/377/8563)
+    /// * 接口只会选择`IN_SERVICE`实例缩容，如果需要缩容其他状态实例，可以使用 [DetachInstances](https://cloud.tencent.com/document/api/377/20436) 或 [RemoveInstances](https://cloud.tencent.com/document/api/377/20431) 接口
+    /// * 接口会减少期望实例数，新的期望实例数需要大于等于最小实例数
+    /// * 缩容如果失败或者部分成功，最后期望实例数只会扣减实际缩容成功的实例数量
+    @inlinable
+    public func scaleInInstances(_ input: ScaleInInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInInstancesResponse {
+        try await self.client.execute(action: "ScaleInInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

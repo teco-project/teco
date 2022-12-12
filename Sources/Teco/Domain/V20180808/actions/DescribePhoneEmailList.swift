@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 已验证手机邮箱列表
-    ///
-    /// 本接口用于获取已验证的手机邮箱列表
-    @inlinable
-    public func describePhoneEmailList(_ input: DescribePhoneEmailListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePhoneEmailListResponse > {
-        self.client.execute(action: "DescribePhoneEmailList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 已验证手机邮箱列表
-    ///
-    /// 本接口用于获取已验证的手机邮箱列表
-    @inlinable
-    public func describePhoneEmailList(_ input: DescribePhoneEmailListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePhoneEmailListResponse {
-        try await self.client.execute(action: "DescribePhoneEmailList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePhoneEmailList请求参数结构体
     public struct DescribePhoneEmailListRequest: TCRequestModel {
         /// 0：所有类型  1：手机  2：邮箱，默认0
@@ -45,7 +29,7 @@ extension Domain {
         /// 手机或者邮箱精确搜索
         public let code: String?
         
-        public init (type: UInt64?, offset: UInt64?, limit: UInt64?, code: String?) {
+        public init (type: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, code: String? = nil) {
             self.type = type
             self.offset = offset
             self.limit = limit
@@ -76,5 +60,21 @@ extension Domain {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 已验证手机邮箱列表
+    ///
+    /// 本接口用于获取已验证的手机邮箱列表
+    @inlinable
+    public func describePhoneEmailList(_ input: DescribePhoneEmailListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePhoneEmailListResponse > {
+        self.client.execute(action: "DescribePhoneEmailList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 已验证手机邮箱列表
+    ///
+    /// 本接口用于获取已验证的手机邮箱列表
+    @inlinable
+    public func describePhoneEmailList(_ input: DescribePhoneEmailListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePhoneEmailListResponse {
+        try await self.client.execute(action: "DescribePhoneEmailList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

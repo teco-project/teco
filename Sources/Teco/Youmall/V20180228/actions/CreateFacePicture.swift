@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 上传人脸图片
-    ///
-    /// 通过上传指定规格的人脸图片，创建黑名单用户或者白名单用户。
-    @inlinable
-    public func createFacePicture(_ input: CreateFacePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFacePictureResponse > {
-        self.client.execute(action: "CreateFacePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上传人脸图片
-    ///
-    /// 通过上传指定规格的人脸图片，创建黑名单用户或者白名单用户。
-    @inlinable
-    public func createFacePicture(_ input: CreateFacePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFacePictureResponse {
-        try await self.client.execute(action: "CreateFacePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFacePicture请求参数结构体
     public struct CreateFacePictureRequest: TCRequestModel {
         /// 集团ID
@@ -51,7 +35,7 @@ extension Youmall {
         /// 是否强制更新：为ture时会为用户创建一个新的指定PersonType的身份;目前这个参数已废弃，可不传
         public let isForceUpload: Bool?
         
-        public init (companyId: String, personType: Int64, picture: String, pictureName: String, shopId: Int64?, isForceUpload: Bool?) {
+        public init (companyId: String, personType: Int64, picture: String, pictureName: String, shopId: Int64? = nil, isForceUpload: Bool? = nil) {
             self.companyId = companyId
             self.personType = personType
             self.picture = picture
@@ -90,5 +74,21 @@ extension Youmall {
             case pictureUrl = "PictureUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上传人脸图片
+    ///
+    /// 通过上传指定规格的人脸图片，创建黑名单用户或者白名单用户。
+    @inlinable
+    public func createFacePicture(_ input: CreateFacePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFacePictureResponse > {
+        self.client.execute(action: "CreateFacePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上传人脸图片
+    ///
+    /// 通过上传指定规格的人脸图片，创建黑名单用户或者白名单用户。
+    @inlinable
+    public func createFacePicture(_ input: CreateFacePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFacePictureResponse {
+        try await self.client.execute(action: "CreateFacePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

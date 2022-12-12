@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 创建模板
-    ///
-    /// 创建一个云原生Prometheus模板实例
-    @inlinable
-    public func createPrometheusTemplate(_ input: CreatePrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusTemplateResponse > {
-        self.client.execute(action: "CreatePrometheusTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建模板
-    ///
-    /// 创建一个云原生Prometheus模板实例
-    @inlinable
-    public func createPrometheusTemplate(_ input: CreatePrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusTemplateResponse {
-        try await self.client.execute(action: "CreatePrometheusTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePrometheusTemplate请求参数结构体
     public struct CreatePrometheusTemplateRequest: TCRequestModel {
         /// 模板设置
@@ -57,5 +41,21 @@ extension Tke {
             case templateId = "TemplateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建模板
+    ///
+    /// 创建一个云原生Prometheus模板实例
+    @inlinable
+    public func createPrometheusTemplate(_ input: CreatePrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusTemplateResponse > {
+        self.client.execute(action: "CreatePrometheusTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建模板
+    ///
+    /// 创建一个云原生Prometheus模板实例
+    @inlinable
+    public func createPrometheusTemplate(_ input: CreatePrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusTemplateResponse {
+        try await self.client.execute(action: "CreatePrometheusTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

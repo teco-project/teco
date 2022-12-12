@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询微信云托管服务域名
-    @inlinable
-    public func describeCloudBaseRunServerDomainName(_ input: DescribeCloudBaseRunServerDomainNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunServerDomainNameResponse > {
-        self.client.execute(action: "DescribeCloudBaseRunServerDomainName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询微信云托管服务域名
-    @inlinable
-    public func describeCloudBaseRunServerDomainName(_ input: DescribeCloudBaseRunServerDomainNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunServerDomainNameResponse {
-        try await self.client.execute(action: "DescribeCloudBaseRunServerDomainName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudBaseRunServerDomainName请求参数结构体
     public struct DescribeCloudBaseRunServerDomainNameRequest: TCRequestModel {
         /// 服务名
@@ -76,5 +64,17 @@ extension Tcb {
             case domainName = "DomainName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询微信云托管服务域名
+    @inlinable
+    public func describeCloudBaseRunServerDomainName(_ input: DescribeCloudBaseRunServerDomainNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunServerDomainNameResponse > {
+        self.client.execute(action: "DescribeCloudBaseRunServerDomainName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询微信云托管服务域名
+    @inlinable
+    public func describeCloudBaseRunServerDomainName(_ input: DescribeCloudBaseRunServerDomainNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunServerDomainNameResponse {
+        try await self.client.execute(action: "DescribeCloudBaseRunServerDomainName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

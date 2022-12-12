@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 删除转动图模板
-    ///
-    /// 删除用户自定义转动图模板。
-    @inlinable
-    public func deleteAnimatedGraphicsTemplate(_ input: DeleteAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAnimatedGraphicsTemplateResponse > {
-        self.client.execute(action: "DeleteAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除转动图模板
-    ///
-    /// 删除用户自定义转动图模板。
-    @inlinable
-    public func deleteAnimatedGraphicsTemplate(_ input: DeleteAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAnimatedGraphicsTemplateResponse {
-        try await self.client.execute(action: "DeleteAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAnimatedGraphicsTemplate请求参数结构体
     public struct DeleteAnimatedGraphicsTemplateRequest: TCRequestModel {
         /// 转动图模板唯一标识。
@@ -53,5 +37,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除转动图模板
+    ///
+    /// 删除用户自定义转动图模板。
+    @inlinable
+    public func deleteAnimatedGraphicsTemplate(_ input: DeleteAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAnimatedGraphicsTemplateResponse > {
+        self.client.execute(action: "DeleteAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除转动图模板
+    ///
+    /// 删除用户自定义转动图模板。
+    @inlinable
+    public func deleteAnimatedGraphicsTemplate(_ input: DeleteAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAnimatedGraphicsTemplateResponse {
+        try await self.client.execute(action: "DeleteAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取RocketMQ命名空间列表
-    @inlinable
-    public func describeRocketMQNamespaces(_ input: DescribeRocketMQNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRocketMQNamespacesResponse > {
-        self.client.execute(action: "DescribeRocketMQNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取RocketMQ命名空间列表
-    @inlinable
-    public func describeRocketMQNamespaces(_ input: DescribeRocketMQNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQNamespacesResponse {
-        try await self.client.execute(action: "DescribeRocketMQNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRocketMQNamespaces请求参数结构体
     public struct DescribeRocketMQNamespacesRequest: TCRequestModel {
         /// 集群ID
@@ -41,7 +29,7 @@ extension Tdmq {
         /// 按名称搜索
         public let nameKeyword: String?
         
-        public init (clusterId: String, offset: UInt64, limit: UInt64, nameKeyword: String?) {
+        public init (clusterId: String, offset: UInt64, limit: UInt64, nameKeyword: String? = nil) {
             self.clusterId = clusterId
             self.offset = offset
             self.limit = limit
@@ -72,5 +60,17 @@ extension Tdmq {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取RocketMQ命名空间列表
+    @inlinable
+    public func describeRocketMQNamespaces(_ input: DescribeRocketMQNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRocketMQNamespacesResponse > {
+        self.client.execute(action: "DescribeRocketMQNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取RocketMQ命名空间列表
+    @inlinable
+    public func describeRocketMQNamespaces(_ input: DescribeRocketMQNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQNamespacesResponse {
+        try await self.client.execute(action: "DescribeRocketMQNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

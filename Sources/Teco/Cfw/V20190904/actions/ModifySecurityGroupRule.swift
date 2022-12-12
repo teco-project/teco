@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 编辑单条安全组规则
-    @inlinable
-    public func modifySecurityGroupRule(_ input: ModifySecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupRuleResponse > {
-        self.client.execute(action: "ModifySecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑单条安全组规则
-    @inlinable
-    public func modifySecurityGroupRule(_ input: ModifySecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupRuleResponse {
-        try await self.client.execute(action: "ModifySecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySecurityGroupRule请求参数结构体
     public struct ModifySecurityGroupRuleRequest: TCRequestModel {
         /// 方向，0：出站，1：入站，默认1
@@ -72,5 +60,17 @@ extension Cfw {
             case newRuleId = "NewRuleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑单条安全组规则
+    @inlinable
+    public func modifySecurityGroupRule(_ input: ModifySecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecurityGroupRuleResponse > {
+        self.client.execute(action: "ModifySecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑单条安全组规则
+    @inlinable
+    public func modifySecurityGroupRule(_ input: ModifySecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupRuleResponse {
+        try await self.client.execute(action: "ModifySecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

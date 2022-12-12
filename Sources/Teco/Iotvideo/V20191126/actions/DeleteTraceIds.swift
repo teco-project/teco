@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 将设备从白名单删除
-    ///
-    /// 本接口（DeleteTraceIds）用于将设备从日志跟踪白名单中删除，该接口可批量操作，最多支持同时操作100台设备。
-    @inlinable
-    public func deleteTraceIds(_ input: DeleteTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTraceIdsResponse > {
-        self.client.execute(action: "DeleteTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 将设备从白名单删除
-    ///
-    /// 本接口（DeleteTraceIds）用于将设备从日志跟踪白名单中删除，该接口可批量操作，最多支持同时操作100台设备。
-    @inlinable
-    public func deleteTraceIds(_ input: DeleteTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTraceIdsResponse {
-        try await self.client.execute(action: "DeleteTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTraceIds请求参数结构体
     public struct DeleteTraceIdsRequest: TCRequestModel {
         /// 设备TID列表
@@ -53,5 +37,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 将设备从白名单删除
+    ///
+    /// 本接口（DeleteTraceIds）用于将设备从日志跟踪白名单中删除，该接口可批量操作，最多支持同时操作100台设备。
+    @inlinable
+    public func deleteTraceIds(_ input: DeleteTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTraceIdsResponse > {
+        self.client.execute(action: "DeleteTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 将设备从白名单删除
+    ///
+    /// 本接口（DeleteTraceIds）用于将设备从日志跟踪白名单中删除，该接口可批量操作，最多支持同时操作100台设备。
+    @inlinable
+    public func deleteTraceIds(_ input: DeleteTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTraceIdsResponse {
+        try await self.client.execute(action: "DeleteTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 获取转换器详情
-    ///
-    /// 用于获取转换器详情
-    @inlinable
-    public func getTransformation(_ input: GetTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTransformationResponse > {
-        self.client.execute(action: "GetTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取转换器详情
-    ///
-    /// 用于获取转换器详情
-    @inlinable
-    public func getTransformation(_ input: GetTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTransformationResponse {
-        try await self.client.execute(action: "GetTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetTransformation请求参数结构体
     public struct GetTransformationRequest: TCRequestModel {
         /// 事件集ID
@@ -67,5 +51,21 @@ extension Eb {
             case transformations = "Transformations"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取转换器详情
+    ///
+    /// 用于获取转换器详情
+    @inlinable
+    public func getTransformation(_ input: GetTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTransformationResponse > {
+        self.client.execute(action: "GetTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取转换器详情
+    ///
+    /// 用于获取转换器详情
+    @inlinable
+    public func getTransformation(_ input: GetTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTransformationResponse {
+        try await self.client.execute(action: "GetTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

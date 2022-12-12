@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 安全合规查询定时任务列表
-    ///
-    /// 查询合规检测的定时任务列表
-    @inlinable
-    public func describeCompliancePeriodTaskList(_ input: DescribeCompliancePeriodTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCompliancePeriodTaskListResponse > {
-        self.client.execute(action: "DescribeCompliancePeriodTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全合规查询定时任务列表
-    ///
-    /// 查询合规检测的定时任务列表
-    @inlinable
-    public func describeCompliancePeriodTaskList(_ input: DescribeCompliancePeriodTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePeriodTaskListResponse {
-        try await self.client.execute(action: "DescribeCompliancePeriodTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCompliancePeriodTaskList请求参数结构体
     public struct DescribeCompliancePeriodTaskListRequest: TCRequestModel {
         /// 资产的类型，取值为：
@@ -46,7 +30,7 @@ extension Tcss {
         /// 需要返回的数量，默认为10，最大值为100。
         public let limit: UInt64?
         
-        public init (assetType: String?, offset: UInt64?, limit: UInt64?) {
+        public init (assetType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.assetType = assetType
             self.offset = offset
             self.limit = limit
@@ -75,5 +59,21 @@ extension Tcss {
             case periodTaskSet = "PeriodTaskSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全合规查询定时任务列表
+    ///
+    /// 查询合规检测的定时任务列表
+    @inlinable
+    public func describeCompliancePeriodTaskList(_ input: DescribeCompliancePeriodTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCompliancePeriodTaskListResponse > {
+        self.client.execute(action: "DescribeCompliancePeriodTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规查询定时任务列表
+    ///
+    /// 查询合规检测的定时任务列表
+    @inlinable
+    public func describeCompliancePeriodTaskList(_ input: DescribeCompliancePeriodTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePeriodTaskListResponse {
+        try await self.client.execute(action: "DescribeCompliancePeriodTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

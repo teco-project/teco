@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 获取传统型负载均衡后端的健康状态
-    ///
-    /// DescribeClassicalLBHealthStatus用于获取传统型负载均衡后端的健康状态
-    @inlinable
-    public func describeClassicalLBHealthStatus(_ input: DescribeClassicalLBHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClassicalLBHealthStatusResponse > {
-        self.client.execute(action: "DescribeClassicalLBHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取传统型负载均衡后端的健康状态
-    ///
-    /// DescribeClassicalLBHealthStatus用于获取传统型负载均衡后端的健康状态
-    @inlinable
-    public func describeClassicalLBHealthStatus(_ input: DescribeClassicalLBHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBHealthStatusResponse {
-        try await self.client.execute(action: "DescribeClassicalLBHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClassicalLBHealthStatus请求参数结构体
     public struct DescribeClassicalLBHealthStatusRequest: TCRequestModel {
         /// 负载均衡实例ID。
@@ -39,7 +23,7 @@ extension Clb {
         /// 负载均衡监听器ID。
         public let listenerId: String?
         
-        public init (loadBalancerId: String, listenerId: String?) {
+        public init (loadBalancerId: String, listenerId: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
         }
@@ -63,5 +47,21 @@ extension Clb {
             case healthList = "HealthList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取传统型负载均衡后端的健康状态
+    ///
+    /// DescribeClassicalLBHealthStatus用于获取传统型负载均衡后端的健康状态
+    @inlinable
+    public func describeClassicalLBHealthStatus(_ input: DescribeClassicalLBHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClassicalLBHealthStatusResponse > {
+        self.client.execute(action: "DescribeClassicalLBHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取传统型负载均衡后端的健康状态
+    ///
+    /// DescribeClassicalLBHealthStatus用于获取传统型负载均衡后端的健康状态
+    @inlinable
+    public func describeClassicalLBHealthStatus(_ input: DescribeClassicalLBHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBHealthStatusResponse {
+        try await self.client.execute(action: "DescribeClassicalLBHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

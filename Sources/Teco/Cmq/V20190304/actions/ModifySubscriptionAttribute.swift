@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cmq {
-    /// 修改订阅属性
-    @inlinable
-    public func modifySubscriptionAttribute(_ input: ModifySubscriptionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscriptionAttributeResponse > {
-        self.client.execute(action: "ModifySubscriptionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改订阅属性
-    @inlinable
-    public func modifySubscriptionAttribute(_ input: ModifySubscriptionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscriptionAttributeResponse {
-        try await self.client.execute(action: "ModifySubscriptionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySubscriptionAttribute请求参数结构体
     public struct ModifySubscriptionAttributeRequest: TCRequestModel {
         /// 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
@@ -49,7 +37,7 @@ extension Cmq {
         /// BindingKey数量不超过5个， 每个BindingKey长度不超过64字节，该字段表示订阅接收消息的过滤策略，每个BindingKey最多含有15个“.”， 即最多16个词组。
         public let bindingKey: [String]?
         
-        public init (topicName: String, subscriptionName: String, notifyStrategy: String?, notifyContentFormat: String?, filterTags: [String]?, bindingKey: [String]?) {
+        public init (topicName: String, subscriptionName: String, notifyStrategy: String? = nil, notifyContentFormat: String? = nil, filterTags: [String]? = nil, bindingKey: [String]? = nil) {
             self.topicName = topicName
             self.subscriptionName = subscriptionName
             self.notifyStrategy = notifyStrategy
@@ -76,5 +64,17 @@ extension Cmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改订阅属性
+    @inlinable
+    public func modifySubscriptionAttribute(_ input: ModifySubscriptionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscriptionAttributeResponse > {
+        self.client.execute(action: "ModifySubscriptionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改订阅属性
+    @inlinable
+    public func modifySubscriptionAttribute(_ input: ModifySubscriptionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscriptionAttributeResponse {
+        try await self.client.execute(action: "ModifySubscriptionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

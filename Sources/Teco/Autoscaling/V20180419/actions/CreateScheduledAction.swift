@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension As {
-    /// 创建定时任务
-    ///
-    /// 本接口（CreateScheduledAction）用于创建定时任务。
-    @inlinable
-    public func createScheduledAction(_ input: CreateScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScheduledActionResponse > {
-        self.client.execute(action: "CreateScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建定时任务
-    ///
-    /// 本接口（CreateScheduledAction）用于创建定时任务。
-    @inlinable
-    public func createScheduledAction(_ input: CreateScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScheduledActionResponse {
-        try await self.client.execute(action: "CreateScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateScheduledAction请求参数结构体
     public struct CreateScheduledActionRequest: TCRequestModel {
         /// 伸缩组ID
@@ -60,7 +44,7 @@ extension As {
         /// 定时任务的重复方式。为标准 Cron 格式<br><br>此参数与`EndTime`需要同时指定。
         public let recurrence: String?
         
-        public init (autoScalingGroupId: String, scheduledActionName: String, maxSize: UInt64, minSize: UInt64, desiredCapacity: UInt64, startTime: Date, endTime: Date?, recurrence: String?) {
+        public init (autoScalingGroupId: String, scheduledActionName: String, maxSize: UInt64, minSize: UInt64, desiredCapacity: UInt64, startTime: Date, endTime: Date? = nil, recurrence: String? = nil) {
             self.autoScalingGroupId = autoScalingGroupId
             self.scheduledActionName = scheduledActionName
             self.maxSize = maxSize
@@ -95,5 +79,21 @@ extension As {
             case scheduledActionId = "ScheduledActionId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建定时任务
+    ///
+    /// 本接口（CreateScheduledAction）用于创建定时任务。
+    @inlinable
+    public func createScheduledAction(_ input: CreateScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScheduledActionResponse > {
+        self.client.execute(action: "CreateScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建定时任务
+    ///
+    /// 本接口（CreateScheduledAction）用于创建定时任务。
+    @inlinable
+    public func createScheduledAction(_ input: CreateScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScheduledActionResponse {
+        try await self.client.execute(action: "CreateScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

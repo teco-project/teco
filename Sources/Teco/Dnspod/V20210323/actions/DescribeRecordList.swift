@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 获取域名的解析记录列表
-    ///
-    /// 获取某个域名下的解析记录列表
-    @inlinable
-    public func describeRecordList(_ input: DescribeRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordListResponse > {
-        self.client.execute(action: "DescribeRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取域名的解析记录列表
-    ///
-    /// 获取某个域名下的解析记录列表
-    @inlinable
-    public func describeRecordList(_ input: DescribeRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordListResponse {
-        try await self.client.execute(action: "DescribeRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRecordList请求参数结构体
     public struct DescribeRecordListRequest: TCRequestModel {
         /// 要获取的解析记录所属的域名
@@ -69,7 +53,7 @@ extension Dnspod {
         /// 限制数量，当前Limit最大支持3000。默认值为100。
         public let limit: UInt64?
         
-        public init (domain: String, domainId: UInt64?, subdomain: String?, recordType: String?, recordLine: String?, recordLineId: String?, groupId: UInt64?, keyword: String?, sortField: String?, sortType: String?, offset: UInt64?, limit: UInt64?) {
+        public init (domain: String, domainId: UInt64? = nil, subdomain: String? = nil, recordType: String? = nil, recordLine: String? = nil, recordLineId: String? = nil, groupId: UInt64? = nil, keyword: String? = nil, sortField: String? = nil, sortType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.domain = domain
             self.domainId = domainId
             self.subdomain = subdomain
@@ -116,5 +100,21 @@ extension Dnspod {
             case recordList = "RecordList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取域名的解析记录列表
+    ///
+    /// 获取某个域名下的解析记录列表
+    @inlinable
+    public func describeRecordList(_ input: DescribeRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordListResponse > {
+        self.client.execute(action: "DescribeRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取域名的解析记录列表
+    ///
+    /// 获取某个域名下的解析记录列表
+    @inlinable
+    public func describeRecordList(_ input: DescribeRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordListResponse {
+        try await self.client.execute(action: "DescribeRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

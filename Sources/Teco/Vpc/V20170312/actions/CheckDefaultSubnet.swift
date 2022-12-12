@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 预判是否可建默认子网
-    ///
-    /// 本接口（CheckDefaultSubnet）用于预判是否可建默认子网。
-    @inlinable
-    public func checkDefaultSubnet(_ input: CheckDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckDefaultSubnetResponse > {
-        self.client.execute(action: "CheckDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 预判是否可建默认子网
-    ///
-    /// 本接口（CheckDefaultSubnet）用于预判是否可建默认子网。
-    @inlinable
-    public func checkDefaultSubnet(_ input: CheckDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDefaultSubnetResponse {
-        try await self.client.execute(action: "CheckDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckDefaultSubnet请求参数结构体
     public struct CheckDefaultSubnetRequest: TCRequestModel {
         /// 子网所在的可用区ID，不同子网选择不同可用区可以做跨可用区灾备。
         public let zone: String?
         
-        public init (zone: String?) {
+        public init (zone: String? = nil) {
             self.zone = zone
         }
         
@@ -57,5 +41,21 @@ extension Vpc {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 预判是否可建默认子网
+    ///
+    /// 本接口（CheckDefaultSubnet）用于预判是否可建默认子网。
+    @inlinable
+    public func checkDefaultSubnet(_ input: CheckDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckDefaultSubnetResponse > {
+        self.client.execute(action: "CheckDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 预判是否可建默认子网
+    ///
+    /// 本接口（CheckDefaultSubnet）用于预判是否可建默认子网。
+    @inlinable
+    public func checkDefaultSubnet(_ input: CheckDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDefaultSubnetResponse {
+        try await self.client.execute(action: "CheckDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 修改Redis密码
-    ///
-    /// 修改redis密码
-    @inlinable
-    public func modfiyInstancePassword(_ input: ModfiyInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModfiyInstancePasswordResponse > {
-        self.client.execute(action: "ModfiyInstancePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改Redis密码
-    ///
-    /// 修改redis密码
-    @inlinable
-    public func modfiyInstancePassword(_ input: ModfiyInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModfiyInstancePasswordResponse {
-        try await self.client.execute(action: "ModfiyInstancePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModfiyInstancePassword请求参数结构体
     public struct ModfiyInstancePasswordRequest: TCRequestModel {
         /// 实例ID
@@ -67,5 +51,21 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改Redis密码
+    ///
+    /// 修改redis密码
+    @inlinable
+    public func modfiyInstancePassword(_ input: ModfiyInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModfiyInstancePasswordResponse > {
+        self.client.execute(action: "ModfiyInstancePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改Redis密码
+    ///
+    /// 修改redis密码
+    @inlinable
+    public func modfiyInstancePassword(_ input: ModfiyInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModfiyInstancePasswordResponse {
+        try await self.client.execute(action: "ModfiyInstancePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

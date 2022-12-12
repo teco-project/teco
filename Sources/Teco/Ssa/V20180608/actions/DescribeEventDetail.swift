@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssa {
-    /// 获取安全事件详情
-    @inlinable
-    public func describeEventDetail(_ input: DescribeEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEventDetailResponse > {
-        self.client.execute(action: "DescribeEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取安全事件详情
-    @inlinable
-    public func describeEventDetail(_ input: DescribeEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventDetailResponse {
-        try await self.client.execute(action: "DescribeEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEventDetail请求参数结构体
     public struct DescribeEventDetailRequest: TCRequestModel {
         /// 事件索引名
@@ -44,7 +32,7 @@ extension Ssa {
         /// 事件名称
         public let name: String?
         
-        public init (index: String?, id: String?, source: String?, subEventType: UInt64?, name: String?) {
+        public init (index: String? = nil, id: String? = nil, source: String? = nil, subEventType: UInt64? = nil, name: String? = nil) {
             self.index = index
             self.id = id
             self.source = source
@@ -73,5 +61,17 @@ extension Ssa {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取安全事件详情
+    @inlinable
+    public func describeEventDetail(_ input: DescribeEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEventDetailResponse > {
+        self.client.execute(action: "DescribeEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取安全事件详情
+    @inlinable
+    public func describeEventDetail(_ input: DescribeEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventDetailResponse {
+        try await self.client.execute(action: "DescribeEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

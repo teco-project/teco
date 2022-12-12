@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Eb {
-    /// 获取事件规则详情
-    @inlinable
-    public func getRule(_ input: GetRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRuleResponse > {
-        self.client.execute(action: "GetRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取事件规则详情
-    @inlinable
-    public func getRule(_ input: GetRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuleResponse {
-        try await self.client.execute(action: "GetRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetRule请求参数结构体
     public struct GetRuleRequest: TCRequestModel {
         /// 事件集ID
@@ -94,5 +82,17 @@ extension Eb {
             case modTime = "ModTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取事件规则详情
+    @inlinable
+    public func getRule(_ input: GetRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRuleResponse > {
+        self.client.execute(action: "GetRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取事件规则详情
+    @inlinable
+    public func getRule(_ input: GetRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuleResponse {
+        try await self.client.execute(action: "GetRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

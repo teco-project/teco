@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 安装 Grafana Plugin
-    @inlinable
-    public func installPlugins(_ input: InstallPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallPluginsResponse > {
-        self.client.execute(action: "InstallPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安装 Grafana Plugin
-    @inlinable
-    public func installPlugins(_ input: InstallPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallPluginsResponse {
-        try await self.client.execute(action: "InstallPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InstallPlugins请求参数结构体
     public struct InstallPluginsRequest: TCRequestModel {
         /// 插件信息
@@ -59,5 +47,17 @@ extension Monitor {
             case pluginIds = "PluginIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安装 Grafana Plugin
+    @inlinable
+    public func installPlugins(_ input: InstallPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InstallPluginsResponse > {
+        self.client.execute(action: "InstallPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安装 Grafana Plugin
+    @inlinable
+    public func installPlugins(_ input: InstallPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallPluginsResponse {
+        try await self.client.execute(action: "InstallPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

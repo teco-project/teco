@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tav {
-    /// 公有云查
-    ///
-    /// 通过文件哈希值获取文件黑白属性
-    @inlinable
-    public func scanFileHash(_ input: ScanFileHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanFileHashResponse > {
-        self.client.execute(action: "ScanFileHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 公有云查
-    ///
-    /// 通过文件哈希值获取文件黑白属性
-    @inlinable
-    public func scanFileHash(_ input: ScanFileHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanFileHashResponse {
-        try await self.client.execute(action: "ScanFileHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ScanFileHash请求参数结构体
     public struct ScanFileHashRequest: TCRequestModel {
         /// 购买服务后获得的授权信息，用于保证请求有效性
@@ -82,5 +66,21 @@ extension Tav {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 公有云查
+    ///
+    /// 通过文件哈希值获取文件黑白属性
+    @inlinable
+    public func scanFileHash(_ input: ScanFileHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanFileHashResponse > {
+        self.client.execute(action: "ScanFileHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 公有云查
+    ///
+    /// 通过文件哈希值获取文件黑白属性
+    @inlinable
+    public func scanFileHash(_ input: ScanFileHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanFileHashResponse {
+        try await self.client.execute(action: "ScanFileHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

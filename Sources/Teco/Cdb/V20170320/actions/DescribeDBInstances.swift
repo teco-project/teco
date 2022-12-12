@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询实例列表
-    ///
-    /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目 ID、实例 ID、访问地址、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
-    @inlinable
-    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstancesResponse > {
-        self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例列表
-    ///
-    /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目 ID、实例 ID、访问地址、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
-    @inlinable
-    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
-        try await self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBInstances请求参数结构体
     public struct DescribeDBInstancesRequest: TCRequestModel {
         /// 项目 ID，可使用 [查询项目列表](https://cloud.tencent.com/document/product/378/4400) 接口查询项目 ID。
@@ -129,7 +113,7 @@ extension Cdb {
         /// 标签键值
         public let tags: [Tag]?
         
-        public init (projectId: Int64?, instanceTypes: [UInt64]?, vips: [String]?, status: [UInt64]?, offset: UInt64?, limit: UInt64?, securityGroupId: String?, payTypes: [UInt64]?, instanceNames: [String]?, taskStatus: [UInt64]?, engineVersions: [String]?, vpcIds: [UInt64]?, zoneIds: [UInt64]?, subnetIds: [UInt64]?, cdbErrors: [Int64]?, orderBy: String?, orderDirection: String?, withSecurityGroup: Int64?, withExCluster: Int64?, exClusterId: String?, instanceIds: [String]?, initFlag: Int64?, withDr: Int64?, withRo: Int64?, withMaster: Int64?, deployGroupIds: [String]?, tagKeysForSearch: [String]?, cageIds: [String]?, tagValues: [String]?, uniqueVpcIds: [String]?, uniqSubnetIds: [String]?, tags: [Tag]?) {
+        public init (projectId: Int64? = nil, instanceTypes: [UInt64]? = nil, vips: [String]? = nil, status: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, securityGroupId: String? = nil, payTypes: [UInt64]? = nil, instanceNames: [String]? = nil, taskStatus: [UInt64]? = nil, engineVersions: [String]? = nil, vpcIds: [UInt64]? = nil, zoneIds: [UInt64]? = nil, subnetIds: [UInt64]? = nil, cdbErrors: [Int64]? = nil, orderBy: String? = nil, orderDirection: String? = nil, withSecurityGroup: Int64? = nil, withExCluster: Int64? = nil, exClusterId: String? = nil, instanceIds: [String]? = nil, initFlag: Int64? = nil, withDr: Int64? = nil, withRo: Int64? = nil, withMaster: Int64? = nil, deployGroupIds: [String]? = nil, tagKeysForSearch: [String]? = nil, cageIds: [String]? = nil, tagValues: [String]? = nil, uniqueVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, tags: [Tag]? = nil) {
             self.projectId = projectId
             self.instanceTypes = instanceTypes
             self.vips = vips
@@ -216,5 +200,21 @@ extension Cdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例列表
+    ///
+    /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目 ID、实例 ID、访问地址、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
+    @inlinable
+    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstancesResponse > {
+        self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例列表
+    ///
+    /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目 ID、实例 ID、访问地址、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
+    @inlinable
+    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
+        try await self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

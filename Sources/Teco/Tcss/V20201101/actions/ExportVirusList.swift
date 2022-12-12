@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时文件查杀事件列表导出
-    @inlinable
-    public func exportVirusList(_ input: ExportVirusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVirusListResponse > {
-        self.client.execute(action: "ExportVirusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时文件查杀事件列表导出
-    @inlinable
-    public func exportVirusList(_ input: ExportVirusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVirusListResponse {
-        try await self.client.execute(action: "ExportVirusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportVirusList请求参数结构体
     public struct ExportVirusListRequest: TCRequestModel {
         /// 过滤条件。
@@ -55,7 +43,7 @@ extension Tcss {
         /// 导出字段
         public let exportField: [String]?
         
-        public init (filters: [RunTimeFilters]?, order: String?, by: String?, exportField: [String]?) {
+        public init (filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil) {
             self.filters = filters
             self.order = order
             self.by = by
@@ -82,5 +70,17 @@ extension Tcss {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时文件查杀事件列表导出
+    @inlinable
+    public func exportVirusList(_ input: ExportVirusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVirusListResponse > {
+        self.client.execute(action: "ExportVirusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时文件查杀事件列表导出
+    @inlinable
+    public func exportVirusList(_ input: ExportVirusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVirusListResponse {
+        try await self.client.execute(action: "ExportVirusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

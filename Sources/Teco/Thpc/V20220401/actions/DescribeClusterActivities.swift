@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Thpc {
-    /// 查询集群活动历史记录
-    ///
-    /// 本接口（DescribeClusterActivities）用于查询集群活动历史记录列表。
-    @inlinable
-    public func describeClusterActivities(_ input: DescribeClusterActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterActivitiesResponse > {
-        self.client.execute(action: "DescribeClusterActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群活动历史记录
-    ///
-    /// 本接口（DescribeClusterActivities）用于查询集群活动历史记录列表。
-    @inlinable
-    public func describeClusterActivities(_ input: DescribeClusterActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterActivitiesResponse {
-        try await self.client.execute(action: "DescribeClusterActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterActivities请求参数结构体
     public struct DescribeClusterActivitiesRequest: TCRequestModel {
         /// 集群ID。通过该参数指定需要查询活动历史记录的集群。
@@ -42,7 +26,7 @@ extension Thpc {
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: Int64?
         
-        public init (clusterId: String, offset: Int64?, limit: Int64?) {
+        public init (clusterId: String, offset: Int64? = nil, limit: Int64? = nil) {
             self.clusterId = clusterId
             self.offset = offset
             self.limit = limit
@@ -71,5 +55,21 @@ extension Thpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群活动历史记录
+    ///
+    /// 本接口（DescribeClusterActivities）用于查询集群活动历史记录列表。
+    @inlinable
+    public func describeClusterActivities(_ input: DescribeClusterActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterActivitiesResponse > {
+        self.client.execute(action: "DescribeClusterActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群活动历史记录
+    ///
+    /// 本接口（DescribeClusterActivities）用于查询集群活动历史记录列表。
+    @inlinable
+    public func describeClusterActivities(_ input: DescribeClusterActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterActivitiesResponse {
+        try await self.client.execute(action: "DescribeClusterActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

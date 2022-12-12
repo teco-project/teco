@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 修改特殊采集配置任务
-    ///
-    /// 本接口用于修改特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
-    @inlinable
-    public func modifyConfigExtra(_ input: ModifyConfigExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConfigExtraResponse > {
-        self.client.execute(action: "ModifyConfigExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改特殊采集配置任务
-    ///
-    /// 本接口用于修改特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
-    @inlinable
-    public func modifyConfigExtra(_ input: ModifyConfigExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigExtraResponse {
-        try await self.client.execute(action: "ModifyConfigExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyConfigExtra请求参数结构体
     public struct ModifyConfigExtraRequest: TCRequestModel {
         /// 采集配置扩展信息id
@@ -43,13 +27,13 @@ extension Cls {
         public let topicId: String?
         
         /// 节点文件配置信息
-        public let hostFile: HostFileInfo
+        public let hostFile: HostFileInfo?
         
         /// 容器文件路径信息
-        public let containerFile: ContainerFileInfo
+        public let containerFile: ContainerFileInfo?
         
         /// 容器标准输出信息
-        public let containerStdout: ContainerStdoutInfo
+        public let containerStdout: ContainerStdoutInfo?
         
         /// 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表极简日志，multiline_log代表多行日志，fullregex_log代表完整正则，默认为minimalist_log
         public let logType: String?
@@ -58,7 +42,7 @@ extension Cls {
         public let logFormat: String?
         
         /// 提取规则，如果设置了ExtractRule，则必须设置LogType
-        public let extractRule: ExtractRuleInfo
+        public let extractRule: ExtractRuleInfo?
         
         /// 采集黑名单路径列表
         public let excludePaths: [ExcludePathInfo]?
@@ -84,7 +68,7 @@ extension Cls {
         /// 日志主题name
         public let topicName: String?
         
-        public init (configExtraId: String, name: String?, topicId: String?, hostFile: HostFileInfo, containerFile: ContainerFileInfo, containerStdout: ContainerStdoutInfo, logType: String?, logFormat: String?, extractRule: ExtractRuleInfo, excludePaths: [ExcludePathInfo]?, userDefineRule: String?, type: String?, groupId: String?, configFlag: String?, logsetId: String?, logsetName: String?, topicName: String?) {
+        public init (configExtraId: String, name: String? = nil, topicId: String? = nil, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logType: String? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, type: String? = nil, groupId: String? = nil, configFlag: String? = nil, logsetId: String? = nil, logsetName: String? = nil, topicName: String? = nil) {
             self.configExtraId = configExtraId
             self.name = name
             self.topicId = topicId
@@ -133,5 +117,21 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改特殊采集配置任务
+    ///
+    /// 本接口用于修改特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
+    @inlinable
+    public func modifyConfigExtra(_ input: ModifyConfigExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConfigExtraResponse > {
+        self.client.execute(action: "ModifyConfigExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改特殊采集配置任务
+    ///
+    /// 本接口用于修改特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
+    @inlinable
+    public func modifyConfigExtra(_ input: ModifyConfigExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigExtraResponse {
+        try await self.client.execute(action: "ModifyConfigExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

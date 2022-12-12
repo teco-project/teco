@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 查询溯源信息
-    ///
-    /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
-    @inlinable
-    public func describeTraceDataList(_ input: DescribeTraceDataListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTraceDataListResponse > {
-        self.client.execute(action: "DescribeTraceDataList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询溯源信息
-    ///
-    /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
-    @inlinable
-    public func describeTraceDataList(_ input: DescribeTraceDataListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceDataListResponse {
-        try await self.client.execute(action: "DescribeTraceDataList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTraceDataList请求参数结构体
     public struct DescribeTraceDataListRequest: TCRequestModel {
         /// 企业ID
@@ -54,7 +38,7 @@ extension Trp {
         /// 数量
         public let pageSize: UInt64?
         
-        public init (corpId: UInt64?, batchId: String?, taskId: String?, pageNumber: UInt64?, code: String?, phase: UInt64?, pageSize: UInt64?) {
+        public init (corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, pageNumber: UInt64? = nil, code: String? = nil, phase: UInt64? = nil, pageSize: UInt64? = nil) {
             self.corpId = corpId
             self.batchId = batchId
             self.taskId = taskId
@@ -91,5 +75,21 @@ extension Trp {
             case traceDataList = "TraceDataList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询溯源信息
+    ///
+    /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
+    @inlinable
+    public func describeTraceDataList(_ input: DescribeTraceDataListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTraceDataListResponse > {
+        self.client.execute(action: "DescribeTraceDataList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询溯源信息
+    ///
+    /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
+    @inlinable
+    public func describeTraceDataList(_ input: DescribeTraceDataListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceDataListResponse {
+        try await self.client.execute(action: "DescribeTraceDataList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 设备告警-删除告警
-    @inlinable
-    public func deleteWarning(_ input: DeleteWarningRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWarningResponse > {
-        self.client.execute(action: "DeleteWarning", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设备告警-删除告警
-    @inlinable
-    public func deleteWarning(_ input: DeleteWarningRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWarningResponse {
-        try await self.client.execute(action: "DeleteWarning", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteWarning请求参数结构体
     public struct DeleteWarningRequest: TCRequestModel {
         /// 告警ID
@@ -35,7 +23,7 @@ extension Iotvideoindustry {
         /// 告警索引
         public let index: String?
         
-        public init (id: Int64?, index: String?) {
+        public init (id: Int64? = nil, index: String? = nil) {
             self.id = id
             self.index = index
         }
@@ -54,5 +42,17 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设备告警-删除告警
+    @inlinable
+    public func deleteWarning(_ input: DeleteWarningRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWarningResponse > {
+        self.client.execute(action: "DeleteWarning", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设备告警-删除告警
+    @inlinable
+    public func deleteWarning(_ input: DeleteWarningRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWarningResponse {
+        try await self.client.execute(action: "DeleteWarning", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

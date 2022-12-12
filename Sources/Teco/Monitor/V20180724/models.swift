@@ -45,7 +45,7 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let classification: [String]?
         
-        public init (noticeId: String?, classification: [String]?) {
+        public init (noticeId: String? = nil, classification: [String]? = nil) {
             self.noticeId = noticeId
             self.classification = classification
         }
@@ -70,7 +70,7 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serious: String?
         
-        public init (remind: String?, warn: String?, serious: String?) {
+        public init (remind: String? = nil, warn: String? = nil, serious: String? = nil) {
             self.remind = remind
             self.warn = warn
             self.serious = serious
@@ -328,11 +328,11 @@ extension Monitor {
         
         /// 指标触发条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let condition: AlarmPolicyCondition
+        public let condition: AlarmPolicyCondition?
         
         /// 事件触发条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let eventCondition: AlarmPolicyEventCondition
+        public let eventCondition: AlarmPolicyEventCondition?
         
         /// 通知规则 id 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -349,7 +349,7 @@ extension Monitor {
         /// 模板策略组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let conditionsTemp: ConditionsTemp
+        public let conditionsTemp: ConditionsTemp?
         
         /// 最后编辑的用户uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -472,11 +472,11 @@ extension Monitor {
     public struct AlarmPolicyCondition: TCInputModel, TCOutputModel {
         /// 指标触发与或条件，0=或，1=与
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let isUnionRule: Int64
+        public let isUnionRule: Int64?
         
         /// 告警触发条件列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rules: [AlarmPolicyRule]
+        public let rules: [AlarmPolicyRule]?
         
         public init (isUnionRule: Int64, rules: [AlarmPolicyRule]) {
             self.isUnionRule = isUnionRule
@@ -493,7 +493,7 @@ extension Monitor {
     public struct AlarmPolicyEventCondition: TCInputModel, TCOutputModel {
         /// 告警触发条件列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rules: [AlarmPolicyRule]
+        public let rules: [AlarmPolicyRule]?
         
         public init (rules: [AlarmPolicyRule]) {
             self.rules = rules
@@ -508,13 +508,13 @@ extension Monitor {
     public struct AlarmPolicyFilter: TCInputModel, TCOutputModel {
         /// 过滤条件类型 DIMENSION=使用 Dimensions 做过滤
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let type: String
+        public let type: String?
         
         /// AlarmPolicyDimension 二维数组序列化后的json字符串，一维数组之间互为或关系，一维数组内的元素互为与关系
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dimensions: String?
         
-        public init (type: String, dimensions: String?) {
+        public init (type: String, dimensions: String? = nil) {
             self.type = type
             self.dimensions = dimensions
         }
@@ -575,7 +575,7 @@ extension Monitor {
         
         /// 对于单个触发规则的过滤条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let filter: AlarmPolicyFilter
+        public let filter: AlarmPolicyFilter?
         
         /// 指标展示名，用于出参
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -611,9 +611,9 @@ extension Monitor {
         
         /// 告警分级阈值配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let hierarchicalValue: AlarmHierarchicalValue
+        public let hierarchicalValue: AlarmHierarchicalValue?
         
-        public init (metricName: String?, period: Int64?, `operator`: String?, value: String?, continuePeriod: Int64?, noticeFrequency: Int64?, isPowerNotice: Int64?, filter: AlarmPolicyFilter, description: String?, unit: String?, ruleType: String?, isAdvanced: Int64?, isOpen: Int64?, productId: String?, valueMax: Float?, valueMin: Float?, hierarchicalValue: AlarmHierarchicalValue) {
+        public init (metricName: String? = nil, period: Int64? = nil, `operator`: String? = nil, value: String? = nil, continuePeriod: Int64? = nil, noticeFrequency: Int64? = nil, isPowerNotice: Int64? = nil, filter: AlarmPolicyFilter? = nil, description: String? = nil, unit: String? = nil, ruleType: String? = nil, isAdvanced: Int64? = nil, isOpen: Int64? = nil, productId: String? = nil, valueMax: Float? = nil, valueMin: Float? = nil, hierarchicalValue: AlarmHierarchicalValue? = nil) {
             self.metricName = metricName
             self.period = period
             self.`operator` = `operator`
@@ -658,11 +658,11 @@ extension Monitor {
     public struct AlarmPolicyTriggerTask: TCInputModel, TCOutputModel {
         /// 触发任务类型 AS=弹性伸缩
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let type: String
+        public let type: String?
         
         /// 用 json 表示配置信息 {"Key1":"Value1","Key2":"Value2"}
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskConfig: String
+        public let taskConfig: String?
         
         public init (type: String, taskConfig: String) {
             self.type = type
@@ -691,7 +691,7 @@ extension Monitor {
         /// 事件维度信息
         public let eventDimensions: String?
         
-        public init (region: String, regionId: Int64?, dimensions: String?, eventDimensions: String?) {
+        public init (region: String, regionId: Int64? = nil, dimensions: String? = nil, eventDimensions: String? = nil) {
             self.region = region
             self.regionId = regionId
             self.dimensions = dimensions
@@ -720,7 +720,7 @@ extension Monitor {
         /// 启停状态，可不传，默认启用。0=停用，1=启用
         public let enable: Int64?
         
-        public init (region: String, logSetId: String, topicId: String, enable: Int64?) {
+        public init (region: String, logSetId: String, topicId: String, enable: Int64? = nil) {
             self.region = region
             self.logSetId = logSetId
             self.topicId = topicId
@@ -865,11 +865,11 @@ extension Monitor {
         
         /// 指标触发条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let condition: AlarmPolicyCondition
+        public let condition: AlarmPolicyCondition?
         
         /// 事件触发条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let eventCondition: AlarmPolicyEventCondition
+        public let eventCondition: AlarmPolicyEventCondition?
         
         enum CodingKeys: String, CodingKey {
             case templateName = "TemplateName"
@@ -904,7 +904,7 @@ extension Monitor {
         /// 如果通过模版创建，需要传入模版中该指标的对应RuleId
         public let ruleId: Int64?
         
-        public init (metricId: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, calcType: Int64?, calcValue: Float?, calcPeriod: Int64?, continuePeriod: Int64?, ruleId: Int64?) {
+        public init (metricId: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, calcType: Int64? = nil, calcValue: Float? = nil, calcPeriod: Int64? = nil, continuePeriod: Int64? = nil, ruleId: Int64? = nil) {
             self.metricId = metricId
             self.alarmNotifyType = alarmNotifyType
             self.alarmNotifyPeriod = alarmNotifyPeriod
@@ -941,7 +941,7 @@ extension Monitor {
         /// 如果通过模版创建，需要传入模版中该指标的对应RuleId
         public let ruleId: Int64?
         
-        public init (eventId: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, ruleId: Int64?) {
+        public init (eventId: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, ruleId: Int64? = nil) {
             self.eventId = eventId
             self.alarmNotifyType = alarmNotifyType
             self.alarmNotifyPeriod = alarmNotifyPeriod
@@ -1270,27 +1270,27 @@ extension Monitor {
     public struct DescribePolicyConditionListConfigManual: TCOutputModel {
         /// 检测方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let calcType: DescribePolicyConditionListConfigManualCalcType
+        public let calcType: DescribePolicyConditionListConfigManualCalcType?
         
         /// 检测阈值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let calcValue: DescribePolicyConditionListConfigManualCalcValue
+        public let calcValue: DescribePolicyConditionListConfigManualCalcValue?
         
         /// 持续时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let continueTime: DescribePolicyConditionListConfigManualContinueTime
+        public let continueTime: DescribePolicyConditionListConfigManualContinueTime?
         
         /// 数据周期
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let period: DescribePolicyConditionListConfigManualPeriod
+        public let period: DescribePolicyConditionListConfigManualPeriod?
         
         /// 持续周期个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let periodNum: DescribePolicyConditionListConfigManualPeriodNum
+        public let periodNum: DescribePolicyConditionListConfigManualPeriodNum?
         
         /// 聚合方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let statType: DescribePolicyConditionListConfigManualStatType
+        public let statType: DescribePolicyConditionListConfigManualStatType?
         
         enum CodingKeys: String, CodingKey {
             case calcType = "CalcType"
@@ -1479,7 +1479,7 @@ extension Monitor {
     public struct DescribePolicyConditionListMetric: TCOutputModel {
         /// 指标配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let configManual: DescribePolicyConditionListConfigManual
+        public let configManual: DescribePolicyConditionListConfigManual?
         
         /// 指标id
         public let metricId: Int64
@@ -1759,11 +1759,11 @@ extension Monitor {
         
         /// 模板策略组
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let conditionsTemp: DescribePolicyGroupInfoConditionTpl
+        public let conditionsTemp: DescribePolicyGroupInfoConditionTpl?
         
         /// 策略组绑定的实例组信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instanceGroup: DescribePolicyGroupListGroupInstanceGroup
+        public let instanceGroup: DescribePolicyGroupListGroupInstanceGroup?
         
         /// 且或规则标识, 0表示或规则(任意一条规则满足阈值条件就告警), 1表示且规则(所有规则都满足阈值条件才告警)
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2172,7 +2172,7 @@ extension Monitor {
         /// 权限
         public let role: String?
         
-        public init (organization: String?, role: String?) {
+        public init (organization: String? = nil, role: String? = nil) {
             self.organization = organization
             self.role = role
         }
@@ -2381,7 +2381,7 @@ extension Monitor {
         
         /// Grafana 插件版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let version: String
+        public let version: String?
         
         public init (pluginId: String, version: String) {
             self.pluginId = pluginId
@@ -2581,7 +2581,7 @@ extension Monitor {
         
         /// 指标配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let metricConfig: MetricConfig
+        public let metricConfig: MetricConfig?
         
         /// 是否为高级指标。1是 0否
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2787,7 +2787,7 @@ extension Monitor {
         /// 规则id，不填表示新增，填写了ruleId表示在已存在的规则基础上进行修改
         public let ruleId: Int64?
         
-        public init (metricId: Int64, calcType: Int64, calcValue: String, calcPeriod: Int64, continuePeriod: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, ruleId: Int64?) {
+        public init (metricId: Int64, calcType: Int64, calcValue: String, calcPeriod: Int64, continuePeriod: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, ruleId: Int64? = nil) {
             self.metricId = metricId
             self.calcType = calcType
             self.calcValue = calcValue
@@ -2824,7 +2824,7 @@ extension Monitor {
         /// 规则id，不填表示新增，填写了ruleId表示在已存在的规则基础上进行修改
         public let ruleId: Int64?
         
-        public init (eventId: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, ruleId: Int64?) {
+        public init (eventId: Int64, alarmNotifyType: Int64, alarmNotifyPeriod: Int64, ruleId: Int64? = nil) {
             self.eventId = eventId
             self.alarmNotifyType = alarmNotifyType
             self.alarmNotifyPeriod = alarmNotifyPeriod
@@ -3301,7 +3301,7 @@ extension Monitor {
         
         /// 实例的授权信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let grant: PrometheusInstanceGrantInfo
+        public let grant: PrometheusInstanceGrantInfo?
         
         /// 绑定的 Grafana 实例 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3469,7 +3469,7 @@ extension Monitor {
         
         /// 标签对应的值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let value: String
+        public let value: String?
         
         public init (key: String, value: String) {
             self.key = key
@@ -3555,7 +3555,7 @@ extension Monitor {
         /// 告警接收语言，枚举值（zh-CN，en-US）
         public let receiveLanguage: String?
         
-        public init (startTime: Int64, endTime: Int64, notifyWay: [String], receiverType: String, id: Int64?, sendFor: [String]?, uidList: [Int64]?, roundNumber: Int64?, personInterval: Int64?, roundInterval: Int64?, recoverNotify: [String]?, needSendNotice: Int64?, receiverGroupList: [Int64]?, receiverUserList: [Int64]?, receiveLanguage: String?) {
+        public init (startTime: Int64, endTime: Int64, notifyWay: [String], receiverType: String, id: Int64? = nil, sendFor: [String]? = nil, uidList: [Int64]? = nil, roundNumber: Int64? = nil, personInterval: Int64? = nil, roundInterval: Int64? = nil, recoverNotify: [String]? = nil, needSendNotice: Int64? = nil, receiverGroupList: [Int64]? = nil, receiverUserList: [Int64]? = nil, receiveLanguage: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.notifyWay = notifyWay
@@ -3785,7 +3785,7 @@ extension Monitor {
     public struct URLNotice: TCInputModel, TCOutputModel {
         /// 回调 url（限长256字符）
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let url: String
+        public let url: String?
         
         /// 是否通过验证 0=否 1=是
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3807,7 +3807,7 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weekday: [Int64]?
         
-        public init (url: String, isValid: Int64?, validationCode: String?, startTime: Int64?, endTime: Int64?, weekday: [Int64]?) {
+        public init (url: String, isValid: Int64? = nil, validationCode: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, weekday: [Int64]? = nil) {
             self.url = url
             self.isValid = isValid
             self.validationCode = validationCode
@@ -3830,19 +3830,19 @@ extension Monitor {
     public struct UserNotice: TCInputModel, TCOutputModel {
         /// 接收者类型 USER=用户 GROUP=用户组
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let receiverType: String
+        public let receiverType: String?
         
         /// 通知开始时间 00:00:00 开始的秒数（取值范围0-86399）
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let startTime: Int64
+        public let startTime: Int64?
         
         /// 通知结束时间 00:00:00 开始的秒数（取值范围0-86399）
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let endTime: Int64
+        public let endTime: Int64?
         
         /// 通知渠道列表 EMAIL=邮件 SMS=短信 CALL=电话 WECHAT=微信 RTX=企业微信
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let noticeWay: [String]
+        public let noticeWay: [String]?
         
         /// 用户 uid 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3880,7 +3880,7 @@ extension Monitor {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weekday: [Int64]?
         
-        public init (receiverType: String, startTime: Int64, endTime: Int64, noticeWay: [String], userIds: [Int64]?, groupIds: [Int64]?, phoneOrder: [Int64]?, phoneCircleTimes: Int64?, phoneInnerInterval: Int64?, phoneCircleInterval: Int64?, needPhoneArriveNotice: Int64?, phoneCallType: String?, weekday: [Int64]?) {
+        public init (receiverType: String, startTime: Int64, endTime: Int64, noticeWay: [String], userIds: [Int64]? = nil, groupIds: [Int64]? = nil, phoneOrder: [Int64]? = nil, phoneCircleTimes: Int64? = nil, phoneInnerInterval: Int64? = nil, phoneCircleInterval: Int64? = nil, needPhoneArriveNotice: Int64? = nil, phoneCallType: String? = nil, weekday: [Int64]? = nil) {
             self.receiverType = receiverType
             self.startTime = startTime
             self.endTime = endTime

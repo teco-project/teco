@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 创建人脸
-    @inlinable
-    public func createFace(_ input: CreateFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFaceResponse > {
-        self.client.execute(action: "CreateFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建人脸
-    @inlinable
-    public func createFace(_ input: CreateFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceResponse {
-        try await self.client.execute(action: "CreateFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFace请求参数结构体
     public struct CreateFaceRequest: TCRequestModel {
         /// 人员唯一标识符
@@ -41,7 +29,7 @@ extension Tci {
         /// 图片下载地址，与 Images 参数选择一个输入
         public let urls: [String]?
         
-        public init (personId: String, images: [String]?, libraryId: String?, urls: [String]?) {
+        public init (personId: String, images: [String]? = nil, libraryId: String? = nil, urls: [String]? = nil) {
             self.personId = personId
             self.images = images
             self.libraryId = libraryId
@@ -68,5 +56,17 @@ extension Tci {
             case faceInfoSet = "FaceInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建人脸
+    @inlinable
+    public func createFace(_ input: CreateFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFaceResponse > {
+        self.client.execute(action: "CreateFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建人脸
+    @inlinable
+    public func createFace(_ input: CreateFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceResponse {
+        try await self.client.execute(action: "CreateFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

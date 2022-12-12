@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建安全组
-    ///
-    /// 本接口（CreateSecurityGroup）用于创建新的安全组（SecurityGroup）。
-    /// * 每个账户下每个地域的每个项目的<a href="https://cloud.tencent.com/document/product/213/12453">安全组数量限制</a>。
-    /// * 新建的安全组的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用CreateSecurityGroupPolicies将安全组的规则设置为需要的规则。
-    /// * 创建安全组同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
-    @inlinable
-    public func createSecurityGroup(_ input: CreateSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityGroupResponse > {
-        self.client.execute(action: "CreateSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建安全组
-    ///
-    /// 本接口（CreateSecurityGroup）用于创建新的安全组（SecurityGroup）。
-    /// * 每个账户下每个地域的每个项目的<a href="https://cloud.tencent.com/document/product/213/12453">安全组数量限制</a>。
-    /// * 新建的安全组的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用CreateSecurityGroupPolicies将安全组的规则设置为需要的规则。
-    /// * 创建安全组同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
-    @inlinable
-    public func createSecurityGroup(_ input: CreateSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupResponse {
-        try await self.client.execute(action: "CreateSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSecurityGroup请求参数结构体
     public struct CreateSecurityGroupRequest: TCRequestModel {
         /// 安全组名称，可任意命名，但不得超过60个字符。
@@ -51,7 +29,7 @@ extension Vpc {
         /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         public let tags: [Tag]?
         
-        public init (groupName: String, groupDescription: String, projectId: String?, tags: [Tag]?) {
+        public init (groupName: String, groupDescription: String, projectId: String? = nil, tags: [Tag]? = nil) {
             self.groupName = groupName
             self.groupDescription = groupDescription
             self.projectId = projectId
@@ -78,5 +56,27 @@ extension Vpc {
             case securityGroup = "SecurityGroup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建安全组
+    ///
+    /// 本接口（CreateSecurityGroup）用于创建新的安全组（SecurityGroup）。
+    /// * 每个账户下每个地域的每个项目的<a href="https://cloud.tencent.com/document/product/213/12453">安全组数量限制</a>。
+    /// * 新建的安全组的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用CreateSecurityGroupPolicies将安全组的规则设置为需要的规则。
+    /// * 创建安全组同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
+    @inlinable
+    public func createSecurityGroup(_ input: CreateSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityGroupResponse > {
+        self.client.execute(action: "CreateSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建安全组
+    ///
+    /// 本接口（CreateSecurityGroup）用于创建新的安全组（SecurityGroup）。
+    /// * 每个账户下每个地域的每个项目的<a href="https://cloud.tencent.com/document/product/213/12453">安全组数量限制</a>。
+    /// * 新建的安全组的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用CreateSecurityGroupPolicies将安全组的规则设置为需要的规则。
+    /// * 创建安全组同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
+    @inlinable
+    public func createSecurityGroup(_ input: CreateSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupResponse {
+        try await self.client.execute(action: "CreateSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

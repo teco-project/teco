@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 一键检测
-    ///
-    ///  一键检测
-    @inlinable
-    public func scanVul(_ input: ScanVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanVulResponse > {
-        self.client.execute(action: "ScanVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 一键检测
-    ///
-    ///  一键检测
-    @inlinable
-    public func scanVul(_ input: ScanVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulResponse {
-        try await self.client.execute(action: "ScanVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ScanVul请求参数结构体
     public struct ScanVulRequest: TCRequestModel {
         /// 危害等级：1-低危；2-中危；3-高危；4-严重 (多选英文;分隔)
@@ -54,7 +38,7 @@ extension Cwp {
         /// 需要扫描的漏洞id
         public let vulIds: [UInt64]?
         
-        public init (vulLevels: String, hostType: UInt64, vulCategories: String?, quuidList: [String]?, vulEmergency: UInt64?, timeoutPeriod: UInt64?, vulIds: [UInt64]?) {
+        public init (vulLevels: String, hostType: UInt64, vulCategories: String? = nil, quuidList: [String]? = nil, vulEmergency: UInt64? = nil, timeoutPeriod: UInt64? = nil, vulIds: [UInt64]? = nil) {
             self.vulLevels = vulLevels
             self.hostType = hostType
             self.vulCategories = vulCategories
@@ -88,5 +72,21 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 一键检测
+    ///
+    ///  一键检测
+    @inlinable
+    public func scanVul(_ input: ScanVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScanVulResponse > {
+        self.client.execute(action: "ScanVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 一键检测
+    ///
+    ///  一键检测
+    @inlinable
+    public func scanVul(_ input: ScanVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulResponse {
+        try await self.client.execute(action: "ScanVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

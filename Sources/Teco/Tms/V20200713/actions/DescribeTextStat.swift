@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tms {
-    /// 识别统计
-    ///
-    /// 控制台识别统计
-    @inlinable
-    public func describeTextStat(_ input: DescribeTextStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTextStatResponse > {
-        self.client.execute(action: "DescribeTextStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 识别统计
-    ///
-    /// 控制台识别统计
-    @inlinable
-    public func describeTextStat(_ input: DescribeTextStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextStatResponse {
-        try await self.client.execute(action: "DescribeTextStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTextStat请求参数结构体
     public struct DescribeTextStatRequest: TCRequestModel {
         /// 审核类型 1: 机器审核; 2: 人工审核
@@ -71,5 +55,21 @@ extension Tms {
             case evilCount = "EvilCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 识别统计
+    ///
+    /// 控制台识别统计
+    @inlinable
+    public func describeTextStat(_ input: DescribeTextStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTextStatResponse > {
+        self.client.execute(action: "DescribeTextStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 识别统计
+    ///
+    /// 控制台识别统计
+    @inlinable
+    public func describeTextStat(_ input: DescribeTextStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextStatResponse {
+        try await self.client.execute(action: "DescribeTextStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

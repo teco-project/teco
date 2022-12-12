@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 发布公共配置
-    @inlinable
-    public func releasePublicConfig(_ input: ReleasePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleasePublicConfigResponse > {
-        self.client.execute(action: "ReleasePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发布公共配置
-    @inlinable
-    public func releasePublicConfig(_ input: ReleasePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleasePublicConfigResponse {
-        try await self.client.execute(action: "ReleasePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReleasePublicConfig请求参数结构体
     public struct ReleasePublicConfigRequest: TCRequestModel {
         /// 配置ID
@@ -38,7 +26,7 @@ extension Tsf {
         /// 发布描述
         public let releaseDesc: String?
         
-        public init (configId: String, namespaceId: String, releaseDesc: String?) {
+        public init (configId: String, namespaceId: String, releaseDesc: String? = nil) {
             self.configId = configId
             self.namespaceId = namespaceId
             self.releaseDesc = releaseDesc
@@ -64,5 +52,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发布公共配置
+    @inlinable
+    public func releasePublicConfig(_ input: ReleasePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleasePublicConfigResponse > {
+        self.client.execute(action: "ReleasePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发布公共配置
+    @inlinable
+    public func releasePublicConfig(_ input: ReleasePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleasePublicConfigResponse {
+        try await self.client.execute(action: "ReleasePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Btoe {
-    /// 业务数据明文存证
-    ///
-    /// 用户通过本接口向BTOE写入待存证的业务数据明文，业务数据明文存证写入后不可修改，BTOE对业务数据明文存证生成含有电子签章的区块链存证电子凭证。
-    @inlinable
-    public func createDataDeposit(_ input: CreateDataDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDataDepositResponse > {
-        self.client.execute(action: "CreateDataDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 业务数据明文存证
-    ///
-    /// 用户通过本接口向BTOE写入待存证的业务数据明文，业务数据明文存证写入后不可修改，BTOE对业务数据明文存证生成含有电子签章的区块链存证电子凭证。
-    @inlinable
-    public func createDataDeposit(_ input: CreateDataDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataDepositResponse {
-        try await self.client.execute(action: "CreateDataDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDataDeposit请求参数结构体
     public struct CreateDataDepositRequest: TCRequestModel {
         /// 业务数据明文(json格式字符串)，最大256kb
@@ -48,7 +32,7 @@ extension Btoe {
         /// 存证描述
         public let evidenceDescription: String?
         
-        public init (evidenceInfo: String, evidenceName: String, businessId: String?, hashType: UInt64?, evidenceDescription: String?) {
+        public init (evidenceInfo: String, evidenceName: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil) {
             self.evidenceInfo = evidenceInfo
             self.evidenceName = evidenceName
             self.businessId = businessId
@@ -82,5 +66,21 @@ extension Btoe {
             case evidenceId = "EvidenceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 业务数据明文存证
+    ///
+    /// 用户通过本接口向BTOE写入待存证的业务数据明文，业务数据明文存证写入后不可修改，BTOE对业务数据明文存证生成含有电子签章的区块链存证电子凭证。
+    @inlinable
+    public func createDataDeposit(_ input: CreateDataDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDataDepositResponse > {
+        self.client.execute(action: "CreateDataDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 业务数据明文存证
+    ///
+    /// 用户通过本接口向BTOE写入待存证的业务数据明文，业务数据明文存证写入后不可修改，BTOE对业务数据明文存证生成含有电子签章的区块链存证电子凭证。
+    @inlinable
+    public func createDataDeposit(_ input: CreateDataDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataDepositResponse {
+        try await self.client.execute(action: "CreateDataDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

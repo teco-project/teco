@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 删除表格快照
-    ///
-    /// 删除表格的快照
-    @inlinable
-    public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotsResponse > {
-        self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除表格快照
-    ///
-    /// 删除表格的快照
-    @inlinable
-    public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotsResponse {
-        try await self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSnapshots请求参数结构体
     public struct DeleteSnapshotsRequest: TCRequestModel {
         /// 表格所属集群id
@@ -66,5 +50,21 @@ extension Tcaplusdb {
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除表格快照
+    ///
+    /// 删除表格的快照
+    @inlinable
+    public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotsResponse > {
+        self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除表格快照
+    ///
+    /// 删除表格的快照
+    @inlinable
+    public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotsResponse {
+        try await self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

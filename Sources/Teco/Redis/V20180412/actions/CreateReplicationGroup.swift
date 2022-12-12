@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 创建复制组接口
-    ///
-    /// 创建复制组
-    @inlinable
-    public func createReplicationGroup(_ input: CreateReplicationGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReplicationGroupResponse > {
-        self.client.execute(action: "CreateReplicationGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建复制组接口
-    ///
-    /// 创建复制组
-    @inlinable
-    public func createReplicationGroup(_ input: CreateReplicationGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationGroupResponse {
-        try await self.client.execute(action: "CreateReplicationGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateReplicationGroup请求参数结构体
     public struct CreateReplicationGroupRequest: TCRequestModel {
         /// 指定复制组中的主实例ID。
@@ -42,7 +26,7 @@ extension Redis {
         /// 备注信息。
         public let remark: String?
         
-        public init (instanceId: String, groupName: String?, remark: String?) {
+        public init (instanceId: String, groupName: String? = nil, remark: String? = nil) {
             self.instanceId = instanceId
             self.groupName = groupName
             self.remark = remark
@@ -67,5 +51,21 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建复制组接口
+    ///
+    /// 创建复制组
+    @inlinable
+    public func createReplicationGroup(_ input: CreateReplicationGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReplicationGroupResponse > {
+        self.client.execute(action: "CreateReplicationGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建复制组接口
+    ///
+    /// 创建复制组
+    @inlinable
+    public func createReplicationGroup(_ input: CreateReplicationGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationGroupResponse {
+        try await self.client.execute(action: "CreateReplicationGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

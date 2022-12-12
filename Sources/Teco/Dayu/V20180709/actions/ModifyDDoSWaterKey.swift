@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 修改水印密钥
-    ///
-    /// 支持水印密钥的添加，删除，开启，关闭
-    @inlinable
-    public func modifyDDoSWaterKey(_ input: ModifyDDoSWaterKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSWaterKeyResponse > {
-        self.client.execute(action: "ModifyDDoSWaterKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改水印密钥
-    ///
-    /// 支持水印密钥的添加，删除，开启，关闭
-    @inlinable
-    public func modifyDDoSWaterKey(_ input: ModifyDDoSWaterKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSWaterKeyResponse {
-        try await self.client.execute(action: "ModifyDDoSWaterKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDDoSWaterKey请求参数结构体
     public struct ModifyDDoSWaterKeyRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -45,7 +29,7 @@ extension Dayu {
         /// 密钥ID，当添加密钥操作时可以不填或填0，其他操作时必须填写；
         public let keyId: UInt64?
         
-        public init (business: String, policyId: String, method: String, keyId: UInt64?) {
+        public init (business: String, policyId: String, method: String, keyId: UInt64? = nil) {
             self.business = business
             self.policyId = policyId
             self.method = method
@@ -72,5 +56,21 @@ extension Dayu {
             case keyList = "KeyList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改水印密钥
+    ///
+    /// 支持水印密钥的添加，删除，开启，关闭
+    @inlinable
+    public func modifyDDoSWaterKey(_ input: ModifyDDoSWaterKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSWaterKeyResponse > {
+        self.client.execute(action: "ModifyDDoSWaterKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改水印密钥
+    ///
+    /// 支持水印密钥的添加，删除，开启，关闭
+    @inlinable
+    public func modifyDDoSWaterKey(_ input: ModifyDDoSWaterKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSWaterKeyResponse {
+        try await self.client.execute(action: "ModifyDDoSWaterKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

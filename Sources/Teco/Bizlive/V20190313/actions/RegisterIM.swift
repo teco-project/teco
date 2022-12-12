@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bizlive {
-    /// 注册聊天室
-    @inlinable
-    public func registerIM(_ input: RegisterIMRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterIMResponse > {
-        self.client.execute(action: "RegisterIM", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 注册聊天室
-    @inlinable
-    public func registerIM(_ input: RegisterIMRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIMResponse {
-        try await self.client.execute(action: "RegisterIM", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RegisterIM请求参数结构体
     public struct RegisterIMRequest: TCRequestModel {
         /// 用户昵称
@@ -41,7 +29,7 @@ extension Bizlive {
         /// 用户身份，默认值：0，表示无特殊身份
         public let level: Int64?
         
-        public init (nickname: String, userId: String, headImgUrl: String?, level: Int64?) {
+        public init (nickname: String, userId: String, headImgUrl: String? = nil, level: Int64? = nil) {
             self.nickname = nickname
             self.userId = userId
             self.headImgUrl = headImgUrl
@@ -68,5 +56,17 @@ extension Bizlive {
             case userKey = "UserKey"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 注册聊天室
+    @inlinable
+    public func registerIM(_ input: RegisterIMRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterIMResponse > {
+        self.client.execute(action: "RegisterIM", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 注册聊天室
+    @inlinable
+    public func registerIM(_ input: RegisterIMRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIMResponse {
+        try await self.client.execute(action: "RegisterIM", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

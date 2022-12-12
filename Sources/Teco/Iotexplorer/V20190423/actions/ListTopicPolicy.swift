@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取Topic列表
-    ///
-    /// 本接口（ListTopicPolicy）用于获取Topic列表
-    @inlinable
-    public func listTopicPolicy(_ input: ListTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopicPolicyResponse > {
-        self.client.execute(action: "ListTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Topic列表
-    ///
-    /// 本接口（ListTopicPolicy）用于获取Topic列表
-    @inlinable
-    public func listTopicPolicy(_ input: ListTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopicPolicyResponse {
-        try await self.client.execute(action: "ListTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListTopicPolicy请求参数结构体
     public struct ListTopicPolicyRequest: TCRequestModel {
         /// 产品ID
@@ -57,5 +41,21 @@ extension Iotexplorer {
             case topics = "Topics"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Topic列表
+    ///
+    /// 本接口（ListTopicPolicy）用于获取Topic列表
+    @inlinable
+    public func listTopicPolicy(_ input: ListTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopicPolicyResponse > {
+        self.client.execute(action: "ListTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Topic列表
+    ///
+    /// 本接口（ListTopicPolicy）用于获取Topic列表
+    @inlinable
+    public func listTopicPolicy(_ input: ListTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopicPolicyResponse {
+        try await self.client.execute(action: "ListTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

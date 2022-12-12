@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取CC精准防护列表
-    @inlinable
-    public func describeCCPrecisionPlyList(_ input: DescribeCCPrecisionPlyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCPrecisionPlyListResponse > {
-        self.client.execute(action: "DescribeCCPrecisionPlyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取CC精准防护列表
-    @inlinable
-    public func describeCCPrecisionPlyList(_ input: DescribeCCPrecisionPlyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCPrecisionPlyListResponse {
-        try await self.client.execute(action: "DescribeCCPrecisionPlyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCCPrecisionPlyList请求参数结构体
     public struct DescribeCCPrecisionPlyListRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip-multip：表示高防包；bgpip：表示高防IP）
@@ -50,7 +38,7 @@ extension Antiddos {
         /// 协议，普通高防IP要传该字段
         public let `protocol`: String?
         
-        public init (business: String, offset: UInt64, limit: UInt64, instanceId: String?, ip: String?, domain: String?, `protocol`: String?) {
+        public init (business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, `protocol`: String? = nil) {
             self.business = business
             self.offset = offset
             self.limit = limit
@@ -87,5 +75,17 @@ extension Antiddos {
             case precisionPolicyList = "PrecisionPolicyList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取CC精准防护列表
+    @inlinable
+    public func describeCCPrecisionPlyList(_ input: DescribeCCPrecisionPlyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCPrecisionPlyListResponse > {
+        self.client.execute(action: "DescribeCCPrecisionPlyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC精准防护列表
+    @inlinable
+    public func describeCCPrecisionPlyList(_ input: DescribeCCPrecisionPlyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCPrecisionPlyListResponse {
+        try await self.client.execute(action: "DescribeCCPrecisionPlyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

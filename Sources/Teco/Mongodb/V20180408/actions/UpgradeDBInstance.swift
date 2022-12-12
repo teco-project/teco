@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 升级云数据库实例（包年包月）
-    ///
-    /// 本接口(UpgradeDBInstance)用于升级包年包月的MongoDB云数据库实例，可以扩容内存、存储以及Oplog
-    @inlinable
-    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDBInstanceResponse > {
-        self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 升级云数据库实例（包年包月）
-    ///
-    /// 本接口(UpgradeDBInstance)用于升级包年包月的MongoDB云数据库实例，可以扩容内存、存储以及Oplog
-    @inlinable
-    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
-        try await self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeDBInstance请求参数结构体
     public struct UpgradeDBInstanceRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -45,7 +29,7 @@ extension Mongodb {
         /// 升级后oplog的大小，单位：GB，默认为磁盘空间的10%，允许设置的最小值为磁盘的10%，最大值为磁盘的90%
         public let oplogSize: UInt64?
         
-        public init (instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64?) {
+        public init (instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64? = nil) {
             self.instanceId = instanceId
             self.memory = memory
             self.volume = volume
@@ -72,5 +56,21 @@ extension Mongodb {
             case dealId = "DealId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 升级云数据库实例（包年包月）
+    ///
+    /// 本接口(UpgradeDBInstance)用于升级包年包月的MongoDB云数据库实例，可以扩容内存、存储以及Oplog
+    @inlinable
+    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeDBInstanceResponse > {
+        self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 升级云数据库实例（包年包月）
+    ///
+    /// 本接口(UpgradeDBInstance)用于升级包年包月的MongoDB云数据库实例，可以扩容内存、存储以及Oplog
+    @inlinable
+    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
+        try await self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

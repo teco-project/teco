@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 新建项目
-    ///
-    /// 为用户提供新建项目的能力，用于集中管理产品和应用。
-    @inlinable
-    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProjectResponse > {
-        self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建项目
-    ///
-    /// 为用户提供新建项目的能力，用于集中管理产品和应用。
-    @inlinable
-    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
-        try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProject请求参数结构体
     public struct CreateProjectRequest: TCRequestModel {
         /// 项目名称
@@ -42,7 +26,7 @@ extension Iotexplorer {
         /// 实例ID，不带实例ID，默认为公共实例
         public let instanceId: String?
         
-        public init (projectName: String, projectDesc: String, instanceId: String?) {
+        public init (projectName: String, projectDesc: String, instanceId: String? = nil) {
             self.projectName = projectName
             self.projectDesc = projectDesc
             self.instanceId = instanceId
@@ -67,5 +51,21 @@ extension Iotexplorer {
             case project = "Project"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建项目
+    ///
+    /// 为用户提供新建项目的能力，用于集中管理产品和应用。
+    @inlinable
+    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProjectResponse > {
+        self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建项目
+    ///
+    /// 为用户提供新建项目的能力，用于集中管理产品和应用。
+    @inlinable
+    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
+        try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

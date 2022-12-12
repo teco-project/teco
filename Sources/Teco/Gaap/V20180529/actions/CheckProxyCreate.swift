@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 查询通道是否可以创建
-    ///
-    /// 本接口(CheckProxyCreate)用于查询能否创建指定配置的加速通道。
-    @inlinable
-    public func checkProxyCreate(_ input: CheckProxyCreateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckProxyCreateResponse > {
-        self.client.execute(action: "CheckProxyCreate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询通道是否可以创建
-    ///
-    /// 本接口(CheckProxyCreate)用于查询能否创建指定配置的加速通道。
-    @inlinable
-    public func checkProxyCreate(_ input: CheckProxyCreateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckProxyCreateResponse {
-        try await self.client.execute(action: "CheckProxyCreate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckProxyCreate请求参数结构体
     public struct CheckProxyCreateRequest: TCRequestModel {
         /// 通道的接入(加速)区域。取值可通过接口DescribeAccessRegionsByDestRegion获取到
@@ -60,7 +44,7 @@ extension Gaap {
         /// 该字段已废弃，当IPAddressVersion为IPv4时，所创建的通道默认支持Http3.0；当为IPv6，默认不支持Http3.0。
         public let http3Supported: Int64?
         
-        public init (accessRegion: String, realServerRegion: String, bandwidth: UInt64, concurrent: UInt64, groupId: String?, ipAddressVersion: String?, networkType: String?, packageType: String?, http3Supported: Int64?) {
+        public init (accessRegion: String, realServerRegion: String, bandwidth: UInt64, concurrent: UInt64, groupId: String? = nil, ipAddressVersion: String? = nil, networkType: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil) {
             self.accessRegion = accessRegion
             self.realServerRegion = realServerRegion
             self.bandwidth = bandwidth
@@ -97,5 +81,21 @@ extension Gaap {
             case checkFlag = "CheckFlag"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询通道是否可以创建
+    ///
+    /// 本接口(CheckProxyCreate)用于查询能否创建指定配置的加速通道。
+    @inlinable
+    public func checkProxyCreate(_ input: CheckProxyCreateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckProxyCreateResponse > {
+        self.client.execute(action: "CheckProxyCreate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询通道是否可以创建
+    ///
+    /// 本接口(CheckProxyCreate)用于查询能否创建指定配置的加速通道。
+    @inlinable
+    public func checkProxyCreate(_ input: CheckProxyCreateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckProxyCreateResponse {
+        try await self.client.execute(action: "CheckProxyCreate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

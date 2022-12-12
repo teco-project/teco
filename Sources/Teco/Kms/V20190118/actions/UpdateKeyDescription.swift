@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 修改主密钥描述信息
-    ///
-    /// 该接口用于对指定的cmk修改描述信息。对于处于PendingDelete状态的CMK禁止修改。
-    @inlinable
-    public func updateKeyDescription(_ input: UpdateKeyDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateKeyDescriptionResponse > {
-        self.client.execute(action: "UpdateKeyDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改主密钥描述信息
-    ///
-    /// 该接口用于对指定的cmk修改描述信息。对于处于PendingDelete状态的CMK禁止修改。
-    @inlinable
-    public func updateKeyDescription(_ input: UpdateKeyDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateKeyDescriptionResponse {
-        try await self.client.execute(action: "UpdateKeyDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateKeyDescription请求参数结构体
     public struct UpdateKeyDescriptionRequest: TCRequestModel {
         /// 新的描述信息，最大支持1024字节
@@ -58,5 +42,21 @@ extension Kms {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改主密钥描述信息
+    ///
+    /// 该接口用于对指定的cmk修改描述信息。对于处于PendingDelete状态的CMK禁止修改。
+    @inlinable
+    public func updateKeyDescription(_ input: UpdateKeyDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateKeyDescriptionResponse > {
+        self.client.execute(action: "UpdateKeyDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改主密钥描述信息
+    ///
+    /// 该接口用于对指定的cmk修改描述信息。对于处于PendingDelete状态的CMK禁止修改。
+    @inlinable
+    public func updateKeyDescription(_ input: UpdateKeyDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateKeyDescriptionResponse {
+        try await self.client.execute(action: "UpdateKeyDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取实例详细信息
-    @inlinable
-    public func describePrometheusInstance(_ input: DescribePrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusInstanceResponse > {
-        self.client.execute(action: "DescribePrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实例详细信息
-    @inlinable
-    public func describePrometheusInstance(_ input: DescribePrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstanceResponse {
-        try await self.client.execute(action: "DescribePrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrometheusInstance请求参数结构体
     public struct DescribePrometheusInstanceRequest: TCRequestModel {
         /// 实例id
@@ -63,7 +51,7 @@ extension Tke {
         
         /// 实例中grafana相关的信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let grafana: PrometheusGrafanaInfo
+        public let grafana: PrometheusGrafanaInfo?
         
         /// 用户自定义alertmanager
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -83,5 +71,17 @@ extension Tke {
             case alertManagerUrl = "AlertManagerUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实例详细信息
+    @inlinable
+    public func describePrometheusInstance(_ input: DescribePrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusInstanceResponse > {
+        self.client.execute(action: "DescribePrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例详细信息
+    @inlinable
+    public func describePrometheusInstance(_ input: DescribePrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstanceResponse {
+        try await self.client.execute(action: "DescribePrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 删除 Grafana 实例
-    @inlinable
-    public func deleteGrafanaInstance(_ input: DeleteGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGrafanaInstanceResponse > {
-        self.client.execute(action: "DeleteGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除 Grafana 实例
-    @inlinable
-    public func deleteGrafanaInstance(_ input: DeleteGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaInstanceResponse {
-        try await self.client.execute(action: "DeleteGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteGrafanaInstance请求参数结构体
     public struct DeleteGrafanaInstanceRequest: TCRequestModel {
         /// 实例名数组
@@ -49,5 +37,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除 Grafana 实例
+    @inlinable
+    public func deleteGrafanaInstance(_ input: DeleteGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteGrafanaInstanceResponse > {
+        self.client.execute(action: "DeleteGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除 Grafana 实例
+    @inlinable
+    public func deleteGrafanaInstance(_ input: DeleteGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaInstanceResponse {
+        try await self.client.execute(action: "DeleteGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

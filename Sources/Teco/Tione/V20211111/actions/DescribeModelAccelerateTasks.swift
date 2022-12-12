@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询模型加速任务列表
-    @inlinable
-    public func describeModelAccelerateTasks(_ input: DescribeModelAccelerateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelAccelerateTasksResponse > {
-        self.client.execute(action: "DescribeModelAccelerateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询模型加速任务列表
-    @inlinable
-    public func describeModelAccelerateTasks(_ input: DescribeModelAccelerateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelAccelerateTasksResponse {
-        try await self.client.execute(action: "DescribeModelAccelerateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeModelAccelerateTasks请求参数结构体
     public struct DescribeModelAccelerateTasksRequest: TCRequestModel {
         /// 过滤器
@@ -49,7 +37,7 @@ extension Tione {
         /// 标签过滤
         public let tagFilters: [TagFilter]?
         
-        public init (filters: [Filter]?, orderField: String?, order: String?, offset: UInt64?, limit: UInt64?, tagFilters: [TagFilter]?) {
+        public init (filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil) {
             self.filters = filters
             self.orderField = orderField
             self.order = order
@@ -86,5 +74,17 @@ extension Tione {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询模型加速任务列表
+    @inlinable
+    public func describeModelAccelerateTasks(_ input: DescribeModelAccelerateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelAccelerateTasksResponse > {
+        self.client.execute(action: "DescribeModelAccelerateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询模型加速任务列表
+    @inlinable
+    public func describeModelAccelerateTasks(_ input: DescribeModelAccelerateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelAccelerateTasksResponse {
+        try await self.client.execute(action: "DescribeModelAccelerateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

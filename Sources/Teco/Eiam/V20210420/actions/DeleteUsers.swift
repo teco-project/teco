@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 批量删除用户
-    ///
-    /// 批量删除当前节点下的用户。如果出现个别用户删除错误，将不影响其余被勾选用户被删除的操作，同时提示未被删除的用户名称/用户ID。
-    @inlinable
-    public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUsersResponse > {
-        self.client.execute(action: "DeleteUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量删除用户
-    ///
-    /// 批量删除当前节点下的用户。如果出现个别用户删除错误，将不影响其余被勾选用户被删除的操作，同时提示未被删除的用户名称/用户ID。
-    @inlinable
-    public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersResponse {
-        try await self.client.execute(action: "DeleteUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteUsers请求参数结构体
     public struct DeleteUsersRequest: TCRequestModel {
         /// 被删除用户的ID列表。DeleteIdList 和 DeleteNameList 需至少一个不为空；都不为空时优先使用 DeleteNameList。
@@ -39,7 +23,7 @@ extension Eiam {
         /// 被删除用户的名称列表。DeleteIdList 和 DeleteNameList 需至少一个不为空；都不为空时优先使用 DeleteNameList。
         public let deleteNameList: [String]?
         
-        public init (deleteIdList: [String]?, deleteNameList: [String]?) {
+        public init (deleteIdList: [String]? = nil, deleteNameList: [String]? = nil) {
             self.deleteIdList = deleteIdList
             self.deleteNameList = deleteNameList
         }
@@ -63,5 +47,21 @@ extension Eiam {
             case failedItems = "FailedItems"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量删除用户
+    ///
+    /// 批量删除当前节点下的用户。如果出现个别用户删除错误，将不影响其余被勾选用户被删除的操作，同时提示未被删除的用户名称/用户ID。
+    @inlinable
+    public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUsersResponse > {
+        self.client.execute(action: "DeleteUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除用户
+    ///
+    /// 批量删除当前节点下的用户。如果出现个别用户删除错误，将不影响其余被勾选用户被删除的操作，同时提示未被删除的用户名称/用户ID。
+    @inlinable
+    public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersResponse {
+        try await self.client.execute(action: "DeleteUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

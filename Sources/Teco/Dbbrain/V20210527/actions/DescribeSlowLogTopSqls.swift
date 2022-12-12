@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dbbrain {
-    /// 按照Sql模板查询指定时间段内的慢日志统计结果
-    ///
-    /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
-    @inlinable
-    public func describeSlowLogTopSqls(_ input: DescribeSlowLogTopSqlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogTopSqlsResponse > {
-        self.client.execute(action: "DescribeSlowLogTopSqls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 按照Sql模板查询指定时间段内的慢日志统计结果
-    ///
-    /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
-    @inlinable
-    public func describeSlowLogTopSqls(_ input: DescribeSlowLogTopSqlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogTopSqlsResponse {
-        try await self.client.execute(action: "DescribeSlowLogTopSqls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSlowLogTopSqls请求参数结构体
     public struct DescribeSlowLogTopSqlsRequest: TCRequestModel {
         /// 实例 ID 。
@@ -64,7 +48,7 @@ extension Dbbrain {
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
         public let product: String?
         
-        public init (instanceId: String, startTime: Date, endTime: Date, sortBy: String?, orderBy: String?, limit: Int64?, offset: Int64?, schemaList: [SchemaItem]?, product: String?) {
+        public init (instanceId: String, startTime: Date, endTime: Date, sortBy: String? = nil, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, schemaList: [SchemaItem]? = nil, product: String? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -105,5 +89,21 @@ extension Dbbrain {
             case rows = "Rows"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 按照Sql模板查询指定时间段内的慢日志统计结果
+    ///
+    /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
+    @inlinable
+    public func describeSlowLogTopSqls(_ input: DescribeSlowLogTopSqlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogTopSqlsResponse > {
+        self.client.execute(action: "DescribeSlowLogTopSqls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 按照Sql模板查询指定时间段内的慢日志统计结果
+    ///
+    /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
+    @inlinable
+    public func describeSlowLogTopSqls(_ input: DescribeSlowLogTopSqlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogTopSqlsResponse {
+        try await self.client.execute(action: "DescribeSlowLogTopSqls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 绑定解绑tcr仓库
-    @inlinable
-    public func operateApplicationTcrBinding(_ input: OperateApplicationTcrBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OperateApplicationTcrBindingResponse > {
-        self.client.execute(action: "OperateApplicationTcrBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定解绑tcr仓库
-    @inlinable
-    public func operateApplicationTcrBinding(_ input: OperateApplicationTcrBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateApplicationTcrBindingResponse {
-        try await self.client.execute(action: "OperateApplicationTcrBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OperateApplicationTcrBinding请求参数结构体
     public struct OperateApplicationTcrBindingRequest: TCRequestModel {
         /// bind 或 unbind
@@ -36,9 +24,9 @@ extension Tsf {
         public let applicationId: String?
         
         /// TcrRepoInfo值
-        public let tcrRepoInfo: TcrRepoInfo
+        public let tcrRepoInfo: TcrRepoInfo?
         
-        public init (command: String?, applicationId: String?, tcrRepoInfo: TcrRepoInfo) {
+        public init (command: String? = nil, applicationId: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil) {
             self.command = command
             self.applicationId = applicationId
             self.tcrRepoInfo = tcrRepoInfo
@@ -63,5 +51,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定解绑tcr仓库
+    @inlinable
+    public func operateApplicationTcrBinding(_ input: OperateApplicationTcrBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OperateApplicationTcrBindingResponse > {
+        self.client.execute(action: "OperateApplicationTcrBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定解绑tcr仓库
+    @inlinable
+    public func operateApplicationTcrBinding(_ input: OperateApplicationTcrBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateApplicationTcrBindingResponse {
+        try await self.client.execute(action: "OperateApplicationTcrBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 查询任务列表
-    @inlinable
-    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
-        self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询任务列表
-    @inlinable
-    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
-        try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTasks请求参数结构体
     public struct DescribeTasksRequest: TCRequestModel {
         /// 需要查询任务所属的集群ID列表
@@ -44,7 +32,7 @@ extension Tcaplusdb {
         /// 查询列表返回记录数
         public let limit: Int64?
         
-        public init (clusterIds: [String]?, taskIds: [String]?, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (clusterIds: [String]? = nil, taskIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.clusterIds = clusterIds
             self.taskIds = taskIds
             self.filters = filters
@@ -77,5 +65,17 @@ extension Tcaplusdb {
             case taskInfos = "TaskInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询任务列表
+    @inlinable
+    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTasksResponse > {
+        self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务列表
+    @inlinable
+    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
+        try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

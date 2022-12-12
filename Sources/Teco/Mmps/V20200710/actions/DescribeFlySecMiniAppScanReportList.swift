@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mmps {
-    /// 查询指定小程序版本的安全得分
-    ///
-    /// 查询指定小程序版本的翼扬诊断安全得分
-    @inlinable
-    public func describeFlySecMiniAppScanReportList(_ input: DescribeFlySecMiniAppScanReportListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlySecMiniAppScanReportListResponse > {
-        self.client.execute(action: "DescribeFlySecMiniAppScanReportList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询指定小程序版本的安全得分
-    ///
-    /// 查询指定小程序版本的翼扬诊断安全得分
-    @inlinable
-    public func describeFlySecMiniAppScanReportList(_ input: DescribeFlySecMiniAppScanReportListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanReportListResponse {
-        try await self.client.execute(action: "DescribeFlySecMiniAppScanReportList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlySecMiniAppScanReportList请求参数结构体
     public struct DescribeFlySecMiniAppScanReportListRequest: TCRequestModel {
         /// 小程序AppID
@@ -48,7 +32,7 @@ extension Mmps {
         /// 小程序版本
         public let miniAppVersion: String?
         
-        public init (miniAppID: String, mode: Int64, status: Int64, size: Int64, miniAppVersion: String?) {
+        public init (miniAppID: String, mode: Int64, status: Int64, size: Int64, miniAppVersion: String? = nil) {
             self.miniAppID = miniAppID
             self.mode = mode
             self.status = status
@@ -87,5 +71,21 @@ extension Mmps {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询指定小程序版本的安全得分
+    ///
+    /// 查询指定小程序版本的翼扬诊断安全得分
+    @inlinable
+    public func describeFlySecMiniAppScanReportList(_ input: DescribeFlySecMiniAppScanReportListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlySecMiniAppScanReportListResponse > {
+        self.client.execute(action: "DescribeFlySecMiniAppScanReportList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询指定小程序版本的安全得分
+    ///
+    /// 查询指定小程序版本的翼扬诊断安全得分
+    @inlinable
+    public func describeFlySecMiniAppScanReportList(_ input: DescribeFlySecMiniAppScanReportListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanReportListResponse {
+        try await self.client.execute(action: "DescribeFlySecMiniAppScanReportList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 升级NAT网关
-    ///
-    /// 升级NAT网关接口，可NAT网关修改为小型NAT网关、中型NAT网关、以及大型NAT网关
-    @inlinable
-    public func upgradeNatGateway(_ input: UpgradeNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeNatGatewayResponse > {
-        self.client.execute(action: "UpgradeNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 升级NAT网关
-    ///
-    /// 升级NAT网关接口，可NAT网关修改为小型NAT网关、中型NAT网关、以及大型NAT网关
-    @inlinable
-    public func upgradeNatGateway(_ input: UpgradeNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeNatGatewayResponse {
-        try await self.client.execute(action: "UpgradeNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeNatGateway请求参数结构体
     public struct UpgradeNatGatewayRequest: TCRequestModel {
         /// NAT网关ID，例如：nat-kdm476mp
@@ -67,5 +51,21 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 升级NAT网关
+    ///
+    /// 升级NAT网关接口，可NAT网关修改为小型NAT网关、中型NAT网关、以及大型NAT网关
+    @inlinable
+    public func upgradeNatGateway(_ input: UpgradeNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeNatGatewayResponse > {
+        self.client.execute(action: "UpgradeNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 升级NAT网关
+    ///
+    /// 升级NAT网关接口，可NAT网关修改为小型NAT网关、中型NAT网关、以及大型NAT网关
+    @inlinable
+    public func upgradeNatGateway(_ input: UpgradeNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeNatGatewayResponse {
+        try await self.client.execute(action: "UpgradeNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

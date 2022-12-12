@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 集群导入云主机
-    ///
-    /// 添加云主机节点至TSF集群
-    @inlinable
-    public func addInstances(_ input: AddInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddInstancesResponse > {
-        self.client.execute(action: "AddInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 集群导入云主机
-    ///
-    /// 添加云主机节点至TSF集群
-    @inlinable
-    public func addInstances(_ input: AddInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddInstancesResponse {
-        try await self.client.execute(action: "AddInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddInstances请求参数结构体
     public struct AddInstancesRequest: TCRequestModel {
         /// 集群ID
@@ -57,7 +41,7 @@ extension Tsf {
         /// 云主机导入方式，虚拟机集群必填，容器集群不填写此字段，R：重装TSF系统镜像，M：手动安装agent
         public let instanceImportMode: String?
         
-        public init (clusterId: String, instanceIdList: [String], osName: String?, imageId: String?, password: String?, keyId: String?, sgId: String?, instanceImportMode: String?) {
+        public init (clusterId: String, instanceIdList: [String], osName: String? = nil, imageId: String? = nil, password: String? = nil, keyId: String? = nil, sgId: String? = nil, instanceImportMode: String? = nil) {
             self.clusterId = clusterId
             self.instanceIdList = instanceIdList
             self.osName = osName
@@ -93,5 +77,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 集群导入云主机
+    ///
+    /// 添加云主机节点至TSF集群
+    @inlinable
+    public func addInstances(_ input: AddInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddInstancesResponse > {
+        self.client.execute(action: "AddInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 集群导入云主机
+    ///
+    /// 添加云主机节点至TSF集群
+    @inlinable
+    public func addInstances(_ input: AddInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddInstancesResponse {
+        try await self.client.execute(action: "AddInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

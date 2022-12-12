@@ -210,7 +210,7 @@ extension Vm {
         
         /// 结果集
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: AudioResult
+        public let result: AudioResult?
         
         enum CodingKeys: String, CodingKey {
             case offsetTime = "OffsetTime"
@@ -371,7 +371,7 @@ extension Vm {
         
         /// 位置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let location: ImageResultsResultDetailLocation
+        public let location: ImageResultsResultDetailLocation?
         
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -553,9 +553,9 @@ extension Vm {
         public let url: String?
         
         /// 腾讯云存储桶信息
-        public let bucketInfo: BucketInfo
+        public let bucketInfo: BucketInfo?
         
-        public init (type: String?, url: String?, bucketInfo: BucketInfo) {
+        public init (type: String? = nil, url: String? = nil, bucketInfo: BucketInfo? = nil) {
             self.type = type
             self.url = url
             self.bucketInfo = bucketInfo
@@ -632,11 +632,11 @@ extension Vm {
         
         /// 媒体信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mediaInfo: MediaInfo
+        public let mediaInfo: MediaInfo?
         
         /// 输入信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let inputInfo: InputInfo
+        public let inputInfo: InputInfo?
         
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -676,7 +676,7 @@ extension Vm {
         /// 状态，可选：PENDING，RUNNING，ERROR，FINISH，CANCELLED
         public let taskStatus: String?
         
-        public init (bizType: String?, type: String?, suggestion: String?, taskStatus: String?) {
+        public init (bizType: String? = nil, type: String? = nil, suggestion: String? = nil, taskStatus: String? = nil) {
             self.bizType = bizType
             self.type = type
             self.suggestion = suggestion
@@ -700,9 +700,9 @@ extension Vm {
         public let name: String?
         
         /// 任务输入
-        public let input: StorageInfo
+        public let input: StorageInfo?
         
-        public init (dataId: String?, name: String?, input: StorageInfo) {
+        public init (dataId: String? = nil, name: String? = nil, input: StorageInfo? = nil) {
             self.dataId = dataId
             self.name = name
             self.input = input

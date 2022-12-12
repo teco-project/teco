@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 续费实例
-    ///
-    /// 本接口 (RenewInstances) 用于续费包年包月实例。
-    /// * 只支持操作包年包月实例。
-    /// * 续费时请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/555/20253)接口查询账户余额。
-    /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
-    @inlinable
-    public func renewInstances(_ input: RenewInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewInstancesResponse > {
-        self.client.execute(action: "RenewInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费实例
-    ///
-    /// 本接口 (RenewInstances) 用于续费包年包月实例。
-    /// * 只支持操作包年包月实例。
-    /// * 续费时请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/555/20253)接口查询账户余额。
-    /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
-    @inlinable
-    public func renewInstances(_ input: RenewInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewInstancesResponse {
-        try await self.client.execute(action: "RenewInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RenewInstances请求参数结构体
     public struct RenewInstancesRequest: TCRequestModel {
         /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
@@ -44,12 +22,12 @@ extension Cvm {
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的续费时长、是否设置自动续费等属性。<dx-alert infotype="explain" title="">
         /// 包年包月实例该参数为必传参数。</dx-alert>
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 是否续费弹性数据盘。取值范围：<br><li>TRUE：表示续费包年包月实例同时续费其挂载的弹性数据盘<br><li>FALSE：表示续费包年包月实例同时不再续费其挂载的弹性数据盘<br><br>默认取值：TRUE。
         public let renewPortableDataDisk: Bool?
         
-        public init (instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, renewPortableDataDisk: Bool?) {
+        public init (instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid? = nil, renewPortableDataDisk: Bool? = nil) {
             self.instanceIds = instanceIds
             self.instanceChargePrepaid = instanceChargePrepaid
             self.renewPortableDataDisk = renewPortableDataDisk
@@ -70,5 +48,27 @@ extension Cvm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费实例
+    ///
+    /// 本接口 (RenewInstances) 用于续费包年包月实例。
+    /// * 只支持操作包年包月实例。
+    /// * 续费时请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/555/20253)接口查询账户余额。
+    /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
+    @inlinable
+    public func renewInstances(_ input: RenewInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewInstancesResponse > {
+        self.client.execute(action: "RenewInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费实例
+    ///
+    /// 本接口 (RenewInstances) 用于续费包年包月实例。
+    /// * 只支持操作包年包月实例。
+    /// * 续费时请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/555/20253)接口查询账户余额。
+    /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
+    @inlinable
+    public func renewInstances(_ input: RenewInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewInstancesResponse {
+        try await self.client.execute(action: "RenewInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

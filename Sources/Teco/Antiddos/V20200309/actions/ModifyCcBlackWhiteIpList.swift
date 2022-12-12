@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 修改CC四层黑白名单
-    @inlinable
-    public func modifyCcBlackWhiteIpList(_ input: ModifyCcBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCcBlackWhiteIpListResponse > {
-        self.client.execute(action: "ModifyCcBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改CC四层黑白名单
-    @inlinable
-    public func modifyCcBlackWhiteIpList(_ input: ModifyCcBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcBlackWhiteIpListResponse {
-        try await self.client.execute(action: "ModifyCcBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCcBlackWhiteIpList请求参数结构体
     public struct ModifyCcBlackWhiteIpListRequest: TCRequestModel {
         /// 资源实例ID
@@ -64,5 +52,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改CC四层黑白名单
+    @inlinable
+    public func modifyCcBlackWhiteIpList(_ input: ModifyCcBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCcBlackWhiteIpListResponse > {
+        self.client.execute(action: "ModifyCcBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CC四层黑白名单
+    @inlinable
+    public func modifyCcBlackWhiteIpList(_ input: ModifyCcBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcBlackWhiteIpListResponse {
+        try await self.client.execute(action: "ModifyCcBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

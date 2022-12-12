@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 列出授权账号
-    ///
-    /// 列出当前grafana实例的所有授权账号
-    @inlinable
-    public func describeSSOAccount(_ input: DescribeSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSSOAccountResponse > {
-        self.client.execute(action: "DescribeSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出授权账号
-    ///
-    /// 列出当前grafana实例的所有授权账号
-    @inlinable
-    public func describeSSOAccount(_ input: DescribeSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSSOAccountResponse {
-        try await self.client.execute(action: "DescribeSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSSOAccount请求参数结构体
     public struct DescribeSSOAccountRequest: TCRequestModel {
         /// Grafana 实例 ID，例如：grafana-abcdefgh
@@ -39,7 +23,7 @@ extension Monitor {
         /// 填写对应的账号 ID，将会按账号 ID 进行过滤，例如：10000
         public let userId: String?
         
-        public init (instanceId: String, userId: String?) {
+        public init (instanceId: String, userId: String? = nil) {
             self.instanceId = instanceId
             self.userId = userId
         }
@@ -63,5 +47,21 @@ extension Monitor {
             case accountSet = "AccountSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出授权账号
+    ///
+    /// 列出当前grafana实例的所有授权账号
+    @inlinable
+    public func describeSSOAccount(_ input: DescribeSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSSOAccountResponse > {
+        self.client.execute(action: "DescribeSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出授权账号
+    ///
+    /// 列出当前grafana实例的所有授权账号
+    @inlinable
+    public func describeSSOAccount(_ input: DescribeSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSSOAccountResponse {
+        try await self.client.execute(action: "DescribeSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

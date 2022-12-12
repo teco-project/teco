@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 删除密钥对
-    ///
-    /// 本接口（DeleteKeyPairs）用于删除密钥对。
-    @inlinable
-    public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteKeyPairsResponse > {
-        self.client.execute(action: "DeleteKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除密钥对
-    ///
-    /// 本接口（DeleteKeyPairs）用于删除密钥对。
-    @inlinable
-    public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteKeyPairsResponse {
-        try await self.client.execute(action: "DeleteKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteKeyPairs请求参数结构体
     public struct DeleteKeyPairsRequest: TCRequestModel {
         /// 密钥对 ID 列表，每次请求批量密钥对的上限为 10。
@@ -53,5 +37,21 @@ extension Lighthouse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除密钥对
+    ///
+    /// 本接口（DeleteKeyPairs）用于删除密钥对。
+    @inlinable
+    public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteKeyPairsResponse > {
+        self.client.execute(action: "DeleteKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除密钥对
+    ///
+    /// 本接口（DeleteKeyPairs）用于删除密钥对。
+    @inlinable
+    public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteKeyPairsResponse {
+        try await self.client.execute(action: "DeleteKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

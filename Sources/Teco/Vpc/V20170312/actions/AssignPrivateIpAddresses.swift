@@ -15,32 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 弹性网卡申请内网 IP
-    ///
-    /// 本接口（AssignPrivateIpAddresses）用于弹性网卡申请内网 IP。
-    /// * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见<a href="/document/product/576/18527">弹性网卡使用限制</a>。
-    /// * 可以指定内网IP地址申请，内网IP地址类型不能为主IP，主IP已存在，不能修改，内网IP必须要弹性网卡所在子网内，而且不能被占用。
-    /// * 在弹性网卡上申请一个到多个辅助内网IP，接口会在弹性网卡所在子网网段内返回指定数量的辅助内网IP。
-    /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
-    /// >
-    @inlinable
-    public func assignPrivateIpAddresses(_ input: AssignPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssignPrivateIpAddressesResponse > {
-        self.client.execute(action: "AssignPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 弹性网卡申请内网 IP
-    ///
-    /// 本接口（AssignPrivateIpAddresses）用于弹性网卡申请内网 IP。
-    /// * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见<a href="/document/product/576/18527">弹性网卡使用限制</a>。
-    /// * 可以指定内网IP地址申请，内网IP地址类型不能为主IP，主IP已存在，不能修改，内网IP必须要弹性网卡所在子网内，而且不能被占用。
-    /// * 在弹性网卡上申请一个到多个辅助内网IP，接口会在弹性网卡所在子网网段内返回指定数量的辅助内网IP。
-    /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
-    /// >
-    @inlinable
-    public func assignPrivateIpAddresses(_ input: AssignPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignPrivateIpAddressesResponse {
-        try await self.client.execute(action: "AssignPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssignPrivateIpAddresses请求参数结构体
     public struct AssignPrivateIpAddressesRequest: TCRequestModel {
         /// 弹性网卡实例ID，例如：eni-m6dyj72l。
@@ -52,7 +26,7 @@ extension Vpc {
         /// 新申请的内网IP地址个数，与PrivateIpAddresses至少提供一个。内网IP地址个数总和不能超过配额数，详见<a href="/document/product/576/18527">弹性网卡使用限制</a>。
         public let secondaryPrivateIpAddressCount: UInt64?
         
-        public init (networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification]?, secondaryPrivateIpAddressCount: UInt64?) {
+        public init (networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil) {
             self.networkInterfaceId = networkInterfaceId
             self.privateIpAddresses = privateIpAddresses
             self.secondaryPrivateIpAddressCount = secondaryPrivateIpAddressCount
@@ -77,5 +51,31 @@ extension Vpc {
             case privateIpAddressSet = "PrivateIpAddressSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 弹性网卡申请内网 IP
+    ///
+    /// 本接口（AssignPrivateIpAddresses）用于弹性网卡申请内网 IP。
+    /// * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见<a href="/document/product/576/18527">弹性网卡使用限制</a>。
+    /// * 可以指定内网IP地址申请，内网IP地址类型不能为主IP，主IP已存在，不能修改，内网IP必须要弹性网卡所在子网内，而且不能被占用。
+    /// * 在弹性网卡上申请一个到多个辅助内网IP，接口会在弹性网卡所在子网网段内返回指定数量的辅助内网IP。
+    /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
+    /// >
+    @inlinable
+    public func assignPrivateIpAddresses(_ input: AssignPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssignPrivateIpAddressesResponse > {
+        self.client.execute(action: "AssignPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 弹性网卡申请内网 IP
+    ///
+    /// 本接口（AssignPrivateIpAddresses）用于弹性网卡申请内网 IP。
+    /// * 一个弹性网卡支持绑定的IP地址是有限制的，更多资源限制信息详见<a href="/document/product/576/18527">弹性网卡使用限制</a>。
+    /// * 可以指定内网IP地址申请，内网IP地址类型不能为主IP，主IP已存在，不能修改，内网IP必须要弹性网卡所在子网内，而且不能被占用。
+    /// * 在弹性网卡上申请一个到多个辅助内网IP，接口会在弹性网卡所在子网网段内返回指定数量的辅助内网IP。
+    /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
+    /// >
+    @inlinable
+    public func assignPrivateIpAddresses(_ input: AssignPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignPrivateIpAddressesResponse {
+        try await self.client.execute(action: "AssignPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

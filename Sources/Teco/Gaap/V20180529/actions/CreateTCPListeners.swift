@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 创建TCP监听器
-    ///
-    /// 该接口（CreateTCPListeners）用于批量创建单通道或者通道组的TCP协议类型的监听器。
-    @inlinable
-    public func createTCPListeners(_ input: CreateTCPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTCPListenersResponse > {
-        self.client.execute(action: "CreateTCPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建TCP监听器
-    ///
-    /// 该接口（CreateTCPListeners）用于批量创建单通道或者通道组的TCP协议类型的监听器。
-    @inlinable
-    public func createTCPListeners(_ input: CreateTCPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTCPListenersResponse {
-        try await self.client.execute(action: "CreateTCPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTCPListeners请求参数结构体
     public struct CreateTCPListenersRequest: TCRequestModel {
         /// 监听器名称。
@@ -75,7 +59,7 @@ extension Gaap {
         /// 不健康阈值，表示连续检查失败多少次数后认为源站不健康。范围为1到10
         public let unhealthyThreshold: UInt64?
         
-        public init (listenerName: String, ports: [UInt64], scheduler: String, healthCheck: UInt64, realServerType: String, proxyId: String?, groupId: String?, delayLoop: UInt64?, connectTimeout: UInt64?, realServerPorts: [UInt64]?, clientIPMethod: Int64?, failoverSwitch: Int64?, healthyThreshold: UInt64?, unhealthyThreshold: UInt64?) {
+        public init (listenerName: String, ports: [UInt64], scheduler: String, healthCheck: UInt64, realServerType: String, proxyId: String? = nil, groupId: String? = nil, delayLoop: UInt64? = nil, connectTimeout: UInt64? = nil, realServerPorts: [UInt64]? = nil, clientIPMethod: Int64? = nil, failoverSwitch: Int64? = nil, healthyThreshold: UInt64? = nil, unhealthyThreshold: UInt64? = nil) {
             self.listenerName = listenerName
             self.ports = ports
             self.scheduler = scheduler
@@ -122,5 +106,21 @@ extension Gaap {
             case listenerIds = "ListenerIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建TCP监听器
+    ///
+    /// 该接口（CreateTCPListeners）用于批量创建单通道或者通道组的TCP协议类型的监听器。
+    @inlinable
+    public func createTCPListeners(_ input: CreateTCPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTCPListenersResponse > {
+        self.client.execute(action: "CreateTCPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建TCP监听器
+    ///
+    /// 该接口（CreateTCPListeners）用于批量创建单通道或者通道组的TCP协议类型的监听器。
+    @inlinable
+    public func createTCPListeners(_ input: CreateTCPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTCPListenersResponse {
+        try await self.client.execute(action: "CreateTCPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

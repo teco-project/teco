@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mrs {
-    /// 文本分类接口
-    ///
-    /// 文本分类
-    @inlinable
-    public func textToClass(_ input: TextToClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextToClassResponse > {
-        self.client.execute(action: "TextToClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 文本分类接口
-    ///
-    /// 文本分类
-    @inlinable
-    public func textToClass(_ input: TextToClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToClassResponse {
-        try await self.client.execute(action: "TextToClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TextToClass请求参数结构体
     public struct TextToClassRequest: TCRequestModel {
         /// 报告文本
@@ -39,7 +23,7 @@ extension Mrs {
         /// 用户类型，新客户传1，老客户可不传
         public let userType: UInt64?
         
-        public init (text: String, userType: UInt64?) {
+        public init (text: String, userType: UInt64? = nil) {
             self.text = text
             self.userType = userType
         }
@@ -62,5 +46,21 @@ extension Mrs {
             case textTypeList = "TextTypeList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 文本分类接口
+    ///
+    /// 文本分类
+    @inlinable
+    public func textToClass(_ input: TextToClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextToClassResponse > {
+        self.client.execute(action: "TextToClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 文本分类接口
+    ///
+    /// 文本分类
+    @inlinable
+    public func textToClass(_ input: TextToClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToClassResponse {
+        try await self.client.execute(action: "TextToClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiems {
-    /// 描述服务
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 描述服务
-    @inlinable
-    public func describeServices(_ input: DescribeServicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServicesResponse > {
-        self.client.execute(action: "DescribeServices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 描述服务
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 描述服务
-    @inlinable
-    public func describeServices(_ input: DescribeServicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServicesResponse {
-        try await self.client.execute(action: "DescribeServices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeServices请求参数结构体
     public struct DescribeServicesRequest: TCRequestModel {
         /// 筛选选项，支持筛选的字段：id, region, zone, cluster, status, runtime, rsg_id
@@ -50,7 +32,7 @@ extension Tiems {
         /// 排序的依据字段， 取值范围 "CREATE_TIME" "UPDATE_TIME"
         public let orderField: String?
         
-        public init (filters: [Filter]?, offset: UInt64?, limit: UInt64?, order: String?, orderField: String?) {
+        public init (filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -83,5 +65,23 @@ extension Tiems {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 描述服务
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 描述服务
+    @inlinable
+    public func describeServices(_ input: DescribeServicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServicesResponse > {
+        self.client.execute(action: "DescribeServices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 描述服务
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 描述服务
+    @inlinable
+    public func describeServices(_ input: DescribeServicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServicesResponse {
+        try await self.client.execute(action: "DescribeServices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

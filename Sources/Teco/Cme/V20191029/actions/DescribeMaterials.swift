@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 获取媒体详情
-    ///
-    /// 根据媒体 Id 批量获取媒体详情。
-    @inlinable
-    public func describeMaterials(_ input: DescribeMaterialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaterialsResponse > {
-        self.client.execute(action: "DescribeMaterials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取媒体详情
-    ///
-    /// 根据媒体 Id 批量获取媒体详情。
-    @inlinable
-    public func describeMaterials(_ input: DescribeMaterialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaterialsResponse {
-        try await self.client.execute(action: "DescribeMaterials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMaterials请求参数结构体
     public struct DescribeMaterialsRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -42,12 +26,12 @@ extension Cme {
         /// 列表排序，支持下列排序字段：
         /// <li>CreateTime：创建时间；</li>
         /// <li>UpdateTime：更新时间。</li>
-        public let sort: SortBy
+        public let sort: SortBy?
         
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以获取任意媒体的信息。如果指定操作者，则操作者必须对媒体有读权限。
         public let `operator`: String?
         
-        public init (platform: String, materialIds: [String], sort: SortBy, `operator`: String?) {
+        public init (platform: String, materialIds: [String], sort: SortBy? = nil, `operator`: String? = nil) {
             self.platform = platform
             self.materialIds = materialIds
             self.sort = sort
@@ -74,5 +58,21 @@ extension Cme {
             case materialInfoSet = "MaterialInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取媒体详情
+    ///
+    /// 根据媒体 Id 批量获取媒体详情。
+    @inlinable
+    public func describeMaterials(_ input: DescribeMaterialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaterialsResponse > {
+        self.client.execute(action: "DescribeMaterials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取媒体详情
+    ///
+    /// 根据媒体 Id 批量获取媒体详情。
+    @inlinable
+    public func describeMaterials(_ input: DescribeMaterialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaterialsResponse {
+        try await self.client.execute(action: "DescribeMaterials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

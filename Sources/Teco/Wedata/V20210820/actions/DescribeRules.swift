@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询质量规则列表
-    @inlinable
-    public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesResponse > {
-        self.client.execute(action: "DescribeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询质量规则列表
-    @inlinable
-    public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesResponse {
-        try await self.client.execute(action: "DescribeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRules请求参数结构体
     public struct DescribeRulesRequest: TCRequestModel {
         /// 项目id
@@ -35,7 +23,7 @@ extension Wedata {
         /// 规则组id
         public let ruleGroupId: UInt64?
         
-        public init (projectId: String?, ruleGroupId: UInt64?) {
+        public init (projectId: String? = nil, ruleGroupId: UInt64? = nil) {
             self.projectId = projectId
             self.ruleGroupId = ruleGroupId
         }
@@ -59,5 +47,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询质量规则列表
+    @inlinable
+    public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesResponse > {
+        self.client.execute(action: "DescribeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询质量规则列表
+    @inlinable
+    public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesResponse {
+        try await self.client.execute(action: "DescribeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

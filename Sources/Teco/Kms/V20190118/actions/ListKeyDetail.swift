@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 获取主密钥列表详情
-    ///
-    /// 根据指定Offset和Limit获取主密钥列表详情。
-    @inlinable
-    public func listKeyDetail(_ input: ListKeyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListKeyDetailResponse > {
-        self.client.execute(action: "ListKeyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取主密钥列表详情
-    ///
-    /// 根据指定Offset和Limit获取主密钥列表详情。
-    @inlinable
-    public func listKeyDetail(_ input: ListKeyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeyDetailResponse {
-        try await self.client.execute(action: "ListKeyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListKeyDetail请求参数结构体
     public struct ListKeyDetailRequest: TCRequestModel {
         /// 含义跟 SQL 查询的 Offset 一致，表示本次获取从按一定顺序排列数组的第 Offset 个元素开始，缺省为0
@@ -63,7 +47,7 @@ extension Kms {
         /// KMS 高级版对应的 HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）。
         public let hsmClusterId: String?
         
-        public init (offset: UInt64?, limit: UInt64?, role: UInt64?, orderType: UInt64?, keyState: UInt64?, searchKeyAlias: String?, origin: String?, keyUsage: String?, tagFilters: [TagFilter]?, hsmClusterId: String?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, role: UInt64? = nil, orderType: UInt64? = nil, keyState: UInt64? = nil, searchKeyAlias: String? = nil, origin: String? = nil, keyUsage: String? = nil, tagFilters: [TagFilter]? = nil, hsmClusterId: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.role = role
@@ -107,5 +91,21 @@ extension Kms {
             case keyMetadatas = "KeyMetadatas"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取主密钥列表详情
+    ///
+    /// 根据指定Offset和Limit获取主密钥列表详情。
+    @inlinable
+    public func listKeyDetail(_ input: ListKeyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListKeyDetailResponse > {
+        self.client.execute(action: "ListKeyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取主密钥列表详情
+    ///
+    /// 根据指定Offset和Limit获取主密钥列表详情。
+    @inlinable
+    public func listKeyDetail(_ input: ListKeyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListKeyDetailResponse {
+        try await self.client.execute(action: "ListKeyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

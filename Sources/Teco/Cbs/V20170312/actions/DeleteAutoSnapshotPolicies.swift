@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 删除定期快照策略
-    ///
-    /// 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。
-    /// *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
-    @inlinable
-    public func deleteAutoSnapshotPolicies(_ input: DeleteAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAutoSnapshotPoliciesResponse > {
-        self.client.execute(action: "DeleteAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除定期快照策略
-    ///
-    /// 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。
-    /// *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
-    @inlinable
-    public func deleteAutoSnapshotPolicies(_ input: DeleteAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoSnapshotPoliciesResponse {
-        try await self.client.execute(action: "DeleteAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAutoSnapshotPolicies请求参数结构体
     public struct DeleteAutoSnapshotPoliciesRequest: TCRequestModel {
         /// 要删除的定期快照策略ID列表。
@@ -55,5 +37,23 @@ extension Cbs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除定期快照策略
+    ///
+    /// 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。
+    /// *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
+    @inlinable
+    public func deleteAutoSnapshotPolicies(_ input: DeleteAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAutoSnapshotPoliciesResponse > {
+        self.client.execute(action: "DeleteAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除定期快照策略
+    ///
+    /// 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。
+    /// *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
+    @inlinable
+    public func deleteAutoSnapshotPolicies(_ input: DeleteAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoSnapshotPoliciesResponse {
+        try await self.client.execute(action: "DeleteAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

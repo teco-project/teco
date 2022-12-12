@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云支付-分账结果查询接口
-    @inlinable
-    public func distributeQuery(_ input: DistributeQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DistributeQueryResponse > {
-        self.client.execute(action: "DistributeQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云支付-分账结果查询接口
-    @inlinable
-    public func distributeQuery(_ input: DistributeQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeQueryResponse {
-        try await self.client.execute(action: "DistributeQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DistributeQuery请求参数结构体
     public struct DistributeQueryRequest: TCRequestModel {
         /// 使用门店OpenId
@@ -50,7 +38,7 @@ extension Cpdp {
         /// 沙箱环境填sandbox，正式环境不填
         public let profile: String?
         
-        public init (openId: String, openKey: String, type: String, outDistributeNo: String?, distributeNo: String?, orderNo: String?, profile: String?) {
+        public init (openId: String, openKey: String, type: String, outDistributeNo: String? = nil, distributeNo: String? = nil, orderNo: String? = nil, profile: String? = nil) {
             self.openId = openId
             self.openKey = openKey
             self.type = type
@@ -82,7 +70,7 @@ extension Cpdp {
         
         /// 分账结果响应对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: DistributeQueryResult
+        public let result: DistributeQueryResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -93,5 +81,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云支付-分账结果查询接口
+    @inlinable
+    public func distributeQuery(_ input: DistributeQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DistributeQueryResponse > {
+        self.client.execute(action: "DistributeQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-分账结果查询接口
+    @inlinable
+    public func distributeQuery(_ input: DistributeQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeQueryResponse {
+        try await self.client.execute(action: "DistributeQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

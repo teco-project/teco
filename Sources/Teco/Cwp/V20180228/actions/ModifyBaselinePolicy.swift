@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 更改基线策略设置
-    @inlinable
-    public func modifyBaselinePolicy(_ input: ModifyBaselinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBaselinePolicyResponse > {
-        self.client.execute(action: "ModifyBaselinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更改基线策略设置
-    @inlinable
-    public func modifyBaselinePolicy(_ input: ModifyBaselinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBaselinePolicyResponse {
-        try await self.client.execute(action: "ModifyBaselinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyBaselinePolicy请求参数结构体
     public struct ModifyBaselinePolicyRequest: TCRequestModel {
         /// 无
@@ -40,7 +28,7 @@ extension Cwp {
         /// 是否按照过滤的全选
         public let selectAll: Int64?
         
-        public init (data: BaselinePolicy, filters: [Filter]?, selectAll: Int64?) {
+        public init (data: BaselinePolicy, filters: [Filter]? = nil, selectAll: Int64? = nil) {
             self.data = data
             self.filters = filters
             self.selectAll = selectAll
@@ -61,5 +49,17 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更改基线策略设置
+    @inlinable
+    public func modifyBaselinePolicy(_ input: ModifyBaselinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBaselinePolicyResponse > {
+        self.client.execute(action: "ModifyBaselinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更改基线策略设置
+    @inlinable
+    public func modifyBaselinePolicy(_ input: ModifyBaselinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBaselinePolicyResponse {
+        try await self.client.execute(action: "ModifyBaselinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

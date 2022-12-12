@@ -15,34 +15,18 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 增量修改模型服务
-    ///
-    /// 增量更新在线推理服务的部分配置，不更新的配置项不需要传入
-    @inlinable
-    public func modifyModelServicePartialConfig(_ input: ModifyModelServicePartialConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModelServicePartialConfigResponse > {
-        self.client.execute(action: "ModifyModelServicePartialConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 增量修改模型服务
-    ///
-    /// 增量更新在线推理服务的部分配置，不更新的配置项不需要传入
-    @inlinable
-    public func modifyModelServicePartialConfig(_ input: ModifyModelServicePartialConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelServicePartialConfigResponse {
-        try await self.client.execute(action: "ModifyModelServicePartialConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyModelServicePartialConfig请求参数结构体
     public struct ModifyModelServicePartialConfigRequest: TCRequestModel {
         /// 在线推理服务Id，需已存在
         public let serviceId: String
         
         /// 更新后服务不重启，定时停止的配置
-        public let scheduledAction: ScheduledAction
+        public let scheduledAction: ScheduledAction?
         
         /// 更新后服务不重启，服务对应限流限频配置
-        public let serviceLimit: ServiceLimit
+        public let serviceLimit: ServiceLimit?
         
-        public init (serviceId: String, scheduledAction: ScheduledAction, serviceLimit: ServiceLimit) {
+        public init (serviceId: String, scheduledAction: ScheduledAction? = nil, serviceLimit: ServiceLimit? = nil) {
             self.serviceId = serviceId
             self.scheduledAction = scheduledAction
             self.serviceLimit = serviceLimit
@@ -67,5 +51,21 @@ extension Tione {
             case service = "Service"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 增量修改模型服务
+    ///
+    /// 增量更新在线推理服务的部分配置，不更新的配置项不需要传入
+    @inlinable
+    public func modifyModelServicePartialConfig(_ input: ModifyModelServicePartialConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModelServicePartialConfigResponse > {
+        self.client.execute(action: "ModifyModelServicePartialConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 增量修改模型服务
+    ///
+    /// 增量更新在线推理服务的部分配置，不更新的配置项不需要传入
+    @inlinable
+    public func modifyModelServicePartialConfig(_ input: ModifyModelServicePartialConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelServicePartialConfigResponse {
+        try await self.client.execute(action: "ModifyModelServicePartialConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

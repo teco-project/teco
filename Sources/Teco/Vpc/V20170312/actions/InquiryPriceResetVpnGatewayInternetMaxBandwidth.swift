@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 调整VPN网关带宽上限询价
-    ///
-    /// 本接口（InquiryPriceResetVpnGatewayInternetMaxBandwidth）调整VPN网关带宽上限询价。
-    @inlinable
-    public func inquiryPriceResetVpnGatewayInternetMaxBandwidth(_ input: InquiryPriceResetVpnGatewayInternetMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceResetVpnGatewayInternetMaxBandwidthResponse > {
-        self.client.execute(action: "InquiryPriceResetVpnGatewayInternetMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调整VPN网关带宽上限询价
-    ///
-    /// 本接口（InquiryPriceResetVpnGatewayInternetMaxBandwidth）调整VPN网关带宽上限询价。
-    @inlinable
-    public func inquiryPriceResetVpnGatewayInternetMaxBandwidth(_ input: InquiryPriceResetVpnGatewayInternetMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetVpnGatewayInternetMaxBandwidthResponse {
-        try await self.client.execute(action: "InquiryPriceResetVpnGatewayInternetMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceResetVpnGatewayInternetMaxBandwidth请求参数结构体
     public struct InquiryPriceResetVpnGatewayInternetMaxBandwidthRequest: TCRequestModel {
         /// VPN网关实例ID。
@@ -62,5 +46,21 @@ extension Vpc {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调整VPN网关带宽上限询价
+    ///
+    /// 本接口（InquiryPriceResetVpnGatewayInternetMaxBandwidth）调整VPN网关带宽上限询价。
+    @inlinable
+    public func inquiryPriceResetVpnGatewayInternetMaxBandwidth(_ input: InquiryPriceResetVpnGatewayInternetMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceResetVpnGatewayInternetMaxBandwidthResponse > {
+        self.client.execute(action: "InquiryPriceResetVpnGatewayInternetMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调整VPN网关带宽上限询价
+    ///
+    /// 本接口（InquiryPriceResetVpnGatewayInternetMaxBandwidth）调整VPN网关带宽上限询价。
+    @inlinable
+    public func inquiryPriceResetVpnGatewayInternetMaxBandwidth(_ input: InquiryPriceResetVpnGatewayInternetMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetVpnGatewayInternetMaxBandwidthResponse {
+        try await self.client.execute(action: "InquiryPriceResetVpnGatewayInternetMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

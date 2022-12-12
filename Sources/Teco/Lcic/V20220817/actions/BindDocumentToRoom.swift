@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Lcic {
-    /// 绑定文档到房间
-    @inlinable
-    public func bindDocumentToRoom(_ input: BindDocumentToRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindDocumentToRoomResponse > {
-        self.client.execute(action: "BindDocumentToRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定文档到房间
-    @inlinable
-    public func bindDocumentToRoom(_ input: BindDocumentToRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDocumentToRoomResponse {
-        try await self.client.execute(action: "BindDocumentToRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindDocumentToRoom请求参数结构体
     public struct BindDocumentToRoomRequest: TCRequestModel {
         /// 房间ID。
@@ -38,7 +26,7 @@ extension Lcic {
         /// 绑定类型。后台可透传到客户端，默认为0。客户端可以根据这个字段实现业务逻辑。
         public let bindType: UInt64?
         
-        public init (roomId: UInt64, documentId: String, bindType: UInt64?) {
+        public init (roomId: UInt64, documentId: String, bindType: UInt64? = nil) {
             self.roomId = roomId
             self.documentId = documentId
             self.bindType = bindType
@@ -59,5 +47,17 @@ extension Lcic {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定文档到房间
+    @inlinable
+    public func bindDocumentToRoom(_ input: BindDocumentToRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindDocumentToRoomResponse > {
+        self.client.execute(action: "BindDocumentToRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定文档到房间
+    @inlinable
+    public func bindDocumentToRoom(_ input: BindDocumentToRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDocumentToRoomResponse {
+        try await self.client.execute(action: "BindDocumentToRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

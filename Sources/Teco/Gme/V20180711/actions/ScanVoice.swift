@@ -15,6 +15,62 @@
 // DO NOT EDIT.
 
 extension Gme {
+    /// ScanVoice请求参数结构体
+    public struct ScanVoiceRequest: TCRequestModel {
+        /// 应用ID，登录[控制台 - 服务管理](https://console.cloud.tencent.com/gamegme)创建应用得到的AppID
+        public let bizId: UInt64
+        
+        /// 语音检测场景，参数值目前要求为 default。 预留场景设置： 谩骂、色情、广告、违禁等场景，<a href="#Label_Value">具体取值见上述 Label 说明。</a>
+        public let scenes: [String]
+        
+        /// 是否为直播流。值为 false 时表示普通语音文件检测；为 true 时表示语音流检测。
+        public let live: Bool
+        
+        /// 语音检测任务列表，列表最多支持100个检测任务。结构体中包含：
+        /// <li>DataId：数据的唯一ID</li>
+        /// <li>Url：数据文件的url，为 urlencode 编码，流式则为拉流地址</li>
+        public let tasks: [Task]
+        
+        /// 异步检测结果回调地址，具体见上述<a href="#Callback_Declare">回调相关说明</a>。（说明：该字段为空时，必须通过接口(查询语音检测结果)获取检测结果）。
+        public let callback: String?
+        
+        /// 语种，不传默认中文
+        public let lang: String?
+        
+        public init (bizId: UInt64, scenes: [String], live: Bool, tasks: [Task], callback: String? = nil, lang: String? = nil) {
+            self.bizId = bizId
+            self.scenes = scenes
+            self.live = live
+            self.tasks = tasks
+            self.callback = callback
+            self.lang = lang
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case bizId = "BizId"
+            case scenes = "Scenes"
+            case live = "Live"
+            case tasks = "Tasks"
+            case callback = "Callback"
+            case lang = "Lang"
+        }
+    }
+    
+    /// ScanVoice返回参数结构体
+    public struct ScanVoiceResponse: TCResponseModel {
+        /// 语音检测返回。Data 字段是 JSON 数组，每一个元素包含：<li>DataId： 请求中对应的 DataId。</li>
+        /// <li>TaskID ：该检测任务的 ID，用于轮询语音检测结果。</li>
+        public let data: [ScanVoiceResult]
+        
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case data = "Data"
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 提交语音检测任务
     ///
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
@@ -293,61 +349,5 @@ extension Gme {
     @inlinable
     public func scanVoice(_ input: ScanVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVoiceResponse {
         try await self.client.execute(action: "ScanVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// ScanVoice请求参数结构体
-    public struct ScanVoiceRequest: TCRequestModel {
-        /// 应用ID，登录[控制台 - 服务管理](https://console.cloud.tencent.com/gamegme)创建应用得到的AppID
-        public let bizId: UInt64
-        
-        /// 语音检测场景，参数值目前要求为 default。 预留场景设置： 谩骂、色情、广告、违禁等场景，<a href="#Label_Value">具体取值见上述 Label 说明。</a>
-        public let scenes: [String]
-        
-        /// 是否为直播流。值为 false 时表示普通语音文件检测；为 true 时表示语音流检测。
-        public let live: Bool
-        
-        /// 语音检测任务列表，列表最多支持100个检测任务。结构体中包含：
-        /// <li>DataId：数据的唯一ID</li>
-        /// <li>Url：数据文件的url，为 urlencode 编码，流式则为拉流地址</li>
-        public let tasks: [Task]
-        
-        /// 异步检测结果回调地址，具体见上述<a href="#Callback_Declare">回调相关说明</a>。（说明：该字段为空时，必须通过接口(查询语音检测结果)获取检测结果）。
-        public let callback: String?
-        
-        /// 语种，不传默认中文
-        public let lang: String?
-        
-        public init (bizId: UInt64, scenes: [String], live: Bool, tasks: [Task], callback: String?, lang: String?) {
-            self.bizId = bizId
-            self.scenes = scenes
-            self.live = live
-            self.tasks = tasks
-            self.callback = callback
-            self.lang = lang
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case bizId = "BizId"
-            case scenes = "Scenes"
-            case live = "Live"
-            case tasks = "Tasks"
-            case callback = "Callback"
-            case lang = "Lang"
-        }
-    }
-    
-    /// ScanVoice返回参数结构体
-    public struct ScanVoiceResponse: TCResponseModel {
-        /// 语音检测返回。Data 字段是 JSON 数组，每一个元素包含：<li>DataId： 请求中对应的 DataId。</li>
-        /// <li>TaskID ：该检测任务的 ID，用于轮询语音检测结果。</li>
-        public let data: [ScanVoiceResult]
-        
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case data = "Data"
-            case requestId = "RequestId"
-        }
     }
 }

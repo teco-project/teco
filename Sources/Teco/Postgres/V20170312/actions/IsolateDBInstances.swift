@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 隔离实例
-    ///
-    /// 本接口（IsolateDBInstances）用于隔离实例
-    @inlinable
-    public func isolateDBInstances(_ input: IsolateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateDBInstancesResponse > {
-        self.client.execute(action: "IsolateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 隔离实例
-    ///
-    /// 本接口（IsolateDBInstances）用于隔离实例
-    @inlinable
-    public func isolateDBInstances(_ input: IsolateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDBInstancesResponse {
-        try await self.client.execute(action: "IsolateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// IsolateDBInstances请求参数结构体
     public struct IsolateDBInstancesRequest: TCRequestModel {
         /// 实例ID集合。注意：当前已不支持同时隔离多个实例，这里只能传入单个实例ID。
@@ -53,5 +37,21 @@ extension Postgres {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 隔离实例
+    ///
+    /// 本接口（IsolateDBInstances）用于隔离实例
+    @inlinable
+    public func isolateDBInstances(_ input: IsolateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateDBInstancesResponse > {
+        self.client.execute(action: "IsolateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 隔离实例
+    ///
+    /// 本接口（IsolateDBInstances）用于隔离实例
+    @inlinable
+    public func isolateDBInstances(_ input: IsolateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDBInstancesResponse {
+        try await self.client.execute(action: "IsolateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

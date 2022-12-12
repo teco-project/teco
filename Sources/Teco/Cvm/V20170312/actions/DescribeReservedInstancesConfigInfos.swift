@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查询预留实例机型配置
-    ///
-    /// 本接口(DescribeReservedInstancesConfigInfos)供用户列出可购买预留实例机型配置。预留实例当前只针对国际站白名单用户开放。
-    @inlinable
-    public func describeReservedInstancesConfigInfos(_ input: DescribeReservedInstancesConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReservedInstancesConfigInfosResponse > {
-        self.client.execute(action: "DescribeReservedInstancesConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询预留实例机型配置
-    ///
-    /// 本接口(DescribeReservedInstancesConfigInfos)供用户列出可购买预留实例机型配置。预留实例当前只针对国际站白名单用户开放。
-    @inlinable
-    public func describeReservedInstancesConfigInfos(_ input: DescribeReservedInstancesConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReservedInstancesConfigInfosResponse {
-        try await self.client.execute(action: "DescribeReservedInstancesConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReservedInstancesConfigInfos请求参数结构体
     public struct DescribeReservedInstancesConfigInfosRequest: TCRequestModel {
         /// zone
@@ -51,7 +35,7 @@ extension Cvm {
         /// 可选项：31536000 (1年)
         public let filters: [Filter]?
         
-        public init (filters: [Filter]?) {
+        public init (filters: [Filter]? = nil) {
             self.filters = filters
         }
         
@@ -72,5 +56,21 @@ extension Cvm {
             case reservedInstanceConfigInfos = "ReservedInstanceConfigInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询预留实例机型配置
+    ///
+    /// 本接口(DescribeReservedInstancesConfigInfos)供用户列出可购买预留实例机型配置。预留实例当前只针对国际站白名单用户开放。
+    @inlinable
+    public func describeReservedInstancesConfigInfos(_ input: DescribeReservedInstancesConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReservedInstancesConfigInfosResponse > {
+        self.client.execute(action: "DescribeReservedInstancesConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询预留实例机型配置
+    ///
+    /// 本接口(DescribeReservedInstancesConfigInfos)供用户列出可购买预留实例机型配置。预留实例当前只针对国际站白名单用户开放。
+    @inlinable
+    public func describeReservedInstancesConfigInfos(_ input: DescribeReservedInstancesConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReservedInstancesConfigInfosResponse {
+        try await self.client.execute(action: "DescribeReservedInstancesConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

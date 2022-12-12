@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查询网络计费类型
-    ///
-    /// 本接口（DescribeInternetChargeTypeConfigs）用于查询网络的计费类型。
-    @inlinable
-    public func describeInternetChargeTypeConfigs(_ input: DescribeInternetChargeTypeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternetChargeTypeConfigsResponse > {
-        self.client.execute(action: "DescribeInternetChargeTypeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询网络计费类型
-    ///
-    /// 本接口（DescribeInternetChargeTypeConfigs）用于查询网络的计费类型。
-    @inlinable
-    public func describeInternetChargeTypeConfigs(_ input: DescribeInternetChargeTypeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetChargeTypeConfigsResponse {
-        try await self.client.execute(action: "DescribeInternetChargeTypeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInternetChargeTypeConfigs请求参数结构体
     public struct DescribeInternetChargeTypeConfigsRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Cvm {
             case internetChargeTypeConfigSet = "InternetChargeTypeConfigSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询网络计费类型
+    ///
+    /// 本接口（DescribeInternetChargeTypeConfigs）用于查询网络的计费类型。
+    @inlinable
+    public func describeInternetChargeTypeConfigs(_ input: DescribeInternetChargeTypeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternetChargeTypeConfigsResponse > {
+        self.client.execute(action: "DescribeInternetChargeTypeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网络计费类型
+    ///
+    /// 本接口（DescribeInternetChargeTypeConfigs）用于查询网络的计费类型。
+    @inlinable
+    public func describeInternetChargeTypeConfigs(_ input: DescribeInternetChargeTypeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetChargeTypeConfigsResponse {
+        try await self.client.execute(action: "DescribeInternetChargeTypeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

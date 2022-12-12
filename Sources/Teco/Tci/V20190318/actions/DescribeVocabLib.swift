@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 查询词汇库
-    @inlinable
-    public func describeVocabLib(_ input: DescribeVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVocabLibResponse > {
-        self.client.execute(action: "DescribeVocabLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询词汇库
-    @inlinable
-    public func describeVocabLib(_ input: DescribeVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVocabLibResponse {
-        try await self.client.execute(action: "DescribeVocabLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVocabLib请求参数结构体
     public struct DescribeVocabLibRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Tci {
             case vocabLibNameSet = "VocabLibNameSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询词汇库
+    @inlinable
+    public func describeVocabLib(_ input: DescribeVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVocabLibResponse > {
+        self.client.execute(action: "DescribeVocabLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询词汇库
+    @inlinable
+    public func describeVocabLib(_ input: DescribeVocabLibRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVocabLibResponse {
+        try await self.client.execute(action: "DescribeVocabLib", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

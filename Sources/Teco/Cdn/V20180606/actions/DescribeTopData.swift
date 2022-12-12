@@ -15,38 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// TOP 新版数据查询（beta版）
-    ///
-    /// DescribeTopData 通过入参 Metric 和 Filter 组合不同，可以查询以下排序数据：
-    /// + 依据总流量、总请求数对访问 IP 排序，从大至小返回 TOP 100 IP
-    /// + 依据总流量、总请求数对访问 Refer 排序，从大至小返回 TOP 100 Refer
-    /// + 依据总流量、总请求数对访问 设备 排序，从大至小返回 设备类型
-    /// + 依据总流量、总请求数对访问 操作系统 排序，从大至小返回 操作系统
-    /// + 依据总流量、总请求数对访问 浏览器 排序，从大至小返回 浏览器
-    /// 注意：
-    /// + 仅支持 90 天内数据查询，且从2021年09月20日开始有数据
-    /// + 本接口为beta版，尚未正式全量发布
-    @inlinable
-    public func describeTopData(_ input: DescribeTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopDataResponse > {
-        self.client.execute(action: "DescribeTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// TOP 新版数据查询（beta版）
-    ///
-    /// DescribeTopData 通过入参 Metric 和 Filter 组合不同，可以查询以下排序数据：
-    /// + 依据总流量、总请求数对访问 IP 排序，从大至小返回 TOP 100 IP
-    /// + 依据总流量、总请求数对访问 Refer 排序，从大至小返回 TOP 100 Refer
-    /// + 依据总流量、总请求数对访问 设备 排序，从大至小返回 设备类型
-    /// + 依据总流量、总请求数对访问 操作系统 排序，从大至小返回 操作系统
-    /// + 依据总流量、总请求数对访问 浏览器 排序，从大至小返回 浏览器
-    /// 注意：
-    /// + 仅支持 90 天内数据查询，且从2021年09月20日开始有数据
-    /// + 本接口为beta版，尚未正式全量发布
-    @inlinable
-    public func describeTopData(_ input: DescribeTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopDataResponse {
-        try await self.client.execute(action: "DescribeTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTopData请求参数结构体
     public struct DescribeTopDataRequest: TCRequestModel {
         /// 查询起始日期：yyyy-MM-dd HH:mm:ss
@@ -87,7 +55,7 @@ extension Cdn {
         /// 指定查询的产品数据，目前仅可使用cdn
         public let product: String?
         
-        public init (startTime: String, endTime: String, metric: String, filter: String, domains: [String]?, project: Int64?, detail: Bool?, area: String?, product: String?) {
+        public init (startTime: String, endTime: String, metric: String, filter: String, domains: [String]? = nil, project: Int64? = nil, detail: Bool? = nil, area: String? = nil, product: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metric = metric
@@ -124,5 +92,37 @@ extension Cdn {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// TOP 新版数据查询（beta版）
+    ///
+    /// DescribeTopData 通过入参 Metric 和 Filter 组合不同，可以查询以下排序数据：
+    /// + 依据总流量、总请求数对访问 IP 排序，从大至小返回 TOP 100 IP
+    /// + 依据总流量、总请求数对访问 Refer 排序，从大至小返回 TOP 100 Refer
+    /// + 依据总流量、总请求数对访问 设备 排序，从大至小返回 设备类型
+    /// + 依据总流量、总请求数对访问 操作系统 排序，从大至小返回 操作系统
+    /// + 依据总流量、总请求数对访问 浏览器 排序，从大至小返回 浏览器
+    /// 注意：
+    /// + 仅支持 90 天内数据查询，且从2021年09月20日开始有数据
+    /// + 本接口为beta版，尚未正式全量发布
+    @inlinable
+    public func describeTopData(_ input: DescribeTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopDataResponse > {
+        self.client.execute(action: "DescribeTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// TOP 新版数据查询（beta版）
+    ///
+    /// DescribeTopData 通过入参 Metric 和 Filter 组合不同，可以查询以下排序数据：
+    /// + 依据总流量、总请求数对访问 IP 排序，从大至小返回 TOP 100 IP
+    /// + 依据总流量、总请求数对访问 Refer 排序，从大至小返回 TOP 100 Refer
+    /// + 依据总流量、总请求数对访问 设备 排序，从大至小返回 设备类型
+    /// + 依据总流量、总请求数对访问 操作系统 排序，从大至小返回 操作系统
+    /// + 依据总流量、总请求数对访问 浏览器 排序，从大至小返回 浏览器
+    /// 注意：
+    /// + 仅支持 90 天内数据查询，且从2021年09月20日开始有数据
+    /// + 本接口为beta版，尚未正式全量发布
+    @inlinable
+    public func describeTopData(_ input: DescribeTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopDataResponse {
+        try await self.client.execute(action: "DescribeTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

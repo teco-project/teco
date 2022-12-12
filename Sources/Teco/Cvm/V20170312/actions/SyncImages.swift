@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 同步镜像
-    ///
-    /// 本接口（SyncImages）用于将自定义镜像同步到其它地区。
-    /// * 该接口每次调用只支持同步一个镜像。
-    /// * 该接口支持多个同步地域。
-    /// * 单个帐号在每个地域最多支持存在10个自定义镜像。
-    @inlinable
-    public func syncImages(_ input: SyncImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncImagesResponse > {
-        self.client.execute(action: "SyncImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 同步镜像
-    ///
-    /// 本接口（SyncImages）用于将自定义镜像同步到其它地区。
-    /// * 该接口每次调用只支持同步一个镜像。
-    /// * 该接口支持多个同步地域。
-    /// * 单个帐号在每个地域最多支持存在10个自定义镜像。
-    @inlinable
-    public func syncImages(_ input: SyncImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncImagesResponse {
-        try await self.client.execute(action: "SyncImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SyncImages请求参数结构体
     public struct SyncImagesRequest: TCRequestModel {
         /// 镜像ID列表 ，镜像ID可以通过如下方式获取：<br><li>通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回的`ImageId`获取。<br><li>通过[镜像控制台](https://console.cloud.tencent.com/cvm/image)获取。<br>镜像ID必须满足限制：<br><li>镜像ID对应的镜像状态必须为`NORMAL`。<br>镜像状态请参考[镜像数据表](https://cloud.tencent.com/document/product/213/15753#Image)。
@@ -54,7 +32,7 @@ extension Cvm {
         /// 是否需要返回目的地域的镜像ID。
         public let imageSetRequired: Bool?
         
-        public init (imageIds: [String], destinationRegions: [String], dryRun: Bool?, imageName: String?, imageSetRequired: Bool?) {
+        public init (imageIds: [String], destinationRegions: [String], dryRun: Bool? = nil, imageName: String? = nil, imageSetRequired: Bool? = nil) {
             self.imageIds = imageIds
             self.destinationRegions = destinationRegions
             self.dryRun = dryRun
@@ -83,5 +61,27 @@ extension Cvm {
             case imageSet = "ImageSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 同步镜像
+    ///
+    /// 本接口（SyncImages）用于将自定义镜像同步到其它地区。
+    /// * 该接口每次调用只支持同步一个镜像。
+    /// * 该接口支持多个同步地域。
+    /// * 单个帐号在每个地域最多支持存在10个自定义镜像。
+    @inlinable
+    public func syncImages(_ input: SyncImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncImagesResponse > {
+        self.client.execute(action: "SyncImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 同步镜像
+    ///
+    /// 本接口（SyncImages）用于将自定义镜像同步到其它地区。
+    /// * 该接口每次调用只支持同步一个镜像。
+    /// * 该接口支持多个同步地域。
+    /// * 单个帐号在每个地域最多支持存在10个自定义镜像。
+    @inlinable
+    public func syncImages(_ input: SyncImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncImagesResponse {
+        try await self.client.execute(action: "SyncImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

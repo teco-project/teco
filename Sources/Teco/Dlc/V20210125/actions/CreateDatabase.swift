@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 生成建库SQL语句
-    ///
-    /// 本接口（CreateDatabase）用于生成建库SQL语句。
-    @inlinable
-    public func createDatabase(_ input: CreateDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDatabaseResponse > {
-        self.client.execute(action: "CreateDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 生成建库SQL语句
-    ///
-    /// 本接口（CreateDatabase）用于生成建库SQL语句。
-    @inlinable
-    public func createDatabase(_ input: CreateDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatabaseResponse {
-        try await self.client.execute(action: "CreateDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDatabase请求参数结构体
     public struct CreateDatabaseRequest: TCRequestModel {
         /// 数据库基础信息
@@ -39,7 +23,7 @@ extension Dlc {
         /// 数据源名称，默认为DataLakeCatalog
         public let datasourceConnectionName: String?
         
-        public init (databaseInfo: DatabaseInfo, datasourceConnectionName: String?) {
+        public init (databaseInfo: DatabaseInfo, datasourceConnectionName: String? = nil) {
             self.databaseInfo = databaseInfo
             self.datasourceConnectionName = datasourceConnectionName
         }
@@ -62,5 +46,21 @@ extension Dlc {
             case execution = "Execution"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 生成建库SQL语句
+    ///
+    /// 本接口（CreateDatabase）用于生成建库SQL语句。
+    @inlinable
+    public func createDatabase(_ input: CreateDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDatabaseResponse > {
+        self.client.execute(action: "CreateDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 生成建库SQL语句
+    ///
+    /// 本接口（CreateDatabase）用于生成建库SQL语句。
+    @inlinable
+    public func createDatabase(_ input: CreateDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatabaseResponse {
+        try await self.client.execute(action: "CreateDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

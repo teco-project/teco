@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取策略场景
-    @inlinable
-    public func describePolicyCase(_ input: DescribePolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePolicyCaseResponse > {
-        self.client.execute(action: "DescribePolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取策略场景
-    @inlinable
-    public func describePolicyCase(_ input: DescribePolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyCaseResponse {
-        try await self.client.execute(action: "DescribePolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePolicyCase请求参数结构体
     public struct DescribePolicyCaseRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -35,7 +23,7 @@ extension Dayu {
         /// 策略场景ID
         public let sceneId: String?
         
-        public init (business: String, sceneId: String?) {
+        public init (business: String, sceneId: String? = nil) {
             self.business = business
             self.sceneId = sceneId
         }
@@ -58,5 +46,17 @@ extension Dayu {
             case caseList = "CaseList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取策略场景
+    @inlinable
+    public func describePolicyCase(_ input: DescribePolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePolicyCaseResponse > {
+        self.client.execute(action: "DescribePolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取策略场景
+    @inlinable
+    public func describePolicyCase(_ input: DescribePolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyCaseResponse {
+        try await self.client.execute(action: "DescribePolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

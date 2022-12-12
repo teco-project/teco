@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tic {
-    /// 获取单个事件详情
-    ///
-    /// 本接口（DescribeStackEvent）用于获取单个事件详情，尤其是可以得到事件的详细控制台输出文本。
-    @inlinable
-    public func describeStackEvent(_ input: DescribeStackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStackEventResponse > {
-        self.client.execute(action: "DescribeStackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取单个事件详情
-    ///
-    /// 本接口（DescribeStackEvent）用于获取单个事件详情，尤其是可以得到事件的详细控制台输出文本。
-    @inlinable
-    public func describeStackEvent(_ input: DescribeStackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackEventResponse {
-        try await self.client.execute(action: "DescribeStackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStackEvent请求参数结构体
     public struct DescribeStackEventRequest: TCRequestModel {
         /// 事件ID
@@ -85,5 +69,21 @@ extension Tic {
             case consoleLog = "ConsoleLog"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取单个事件详情
+    ///
+    /// 本接口（DescribeStackEvent）用于获取单个事件详情，尤其是可以得到事件的详细控制台输出文本。
+    @inlinable
+    public func describeStackEvent(_ input: DescribeStackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStackEventResponse > {
+        self.client.execute(action: "DescribeStackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单个事件详情
+    ///
+    /// 本接口（DescribeStackEvent）用于获取单个事件详情，尤其是可以得到事件的详细控制台输出文本。
+    @inlinable
+    public func describeStackEvent(_ input: DescribeStackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackEventResponse {
+        try await self.client.execute(action: "DescribeStackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

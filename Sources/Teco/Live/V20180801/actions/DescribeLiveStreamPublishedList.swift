@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询历史流列表
-    ///
-    /// 返回已经推过流的流列表。<br>
-    /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
-    @inlinable
-    public func describeLiveStreamPublishedList(_ input: DescribeLiveStreamPublishedListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveStreamPublishedListResponse > {
-        self.client.execute(action: "DescribeLiveStreamPublishedList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询历史流列表
-    ///
-    /// 返回已经推过流的流列表。<br>
-    /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
-    @inlinable
-    public func describeLiveStreamPublishedList(_ input: DescribeLiveStreamPublishedListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamPublishedListResponse {
-        try await self.client.execute(action: "DescribeLiveStreamPublishedList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveStreamPublishedList请求参数结构体
     public struct DescribeLiveStreamPublishedListRequest: TCRequestModel {
         /// 您的推流域名。
@@ -65,7 +47,7 @@ extension Live {
         /// 流名称，支持模糊匹配。
         public let streamName: String?
         
-        public init (domainName: String, endTime: String, startTime: String, appName: String?, pageNum: UInt64?, pageSize: UInt64?, streamName: String?) {
+        public init (domainName: String, endTime: String, startTime: String, appName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, streamName: String? = nil) {
             self.domainName = domainName
             self.endTime = endTime
             self.startTime = startTime
@@ -114,5 +96,23 @@ extension Live {
             case totalPage = "TotalPage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询历史流列表
+    ///
+    /// 返回已经推过流的流列表。<br>
+    /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
+    @inlinable
+    public func describeLiveStreamPublishedList(_ input: DescribeLiveStreamPublishedListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveStreamPublishedListResponse > {
+        self.client.execute(action: "DescribeLiveStreamPublishedList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询历史流列表
+    ///
+    /// 返回已经推过流的流列表。<br>
+    /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
+    @inlinable
+    public func describeLiveStreamPublishedList(_ input: DescribeLiveStreamPublishedListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamPublishedListResponse {
+        try await self.client.execute(action: "DescribeLiveStreamPublishedList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

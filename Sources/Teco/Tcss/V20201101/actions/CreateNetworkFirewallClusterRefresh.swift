@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 容器网络集群下发刷新任务
-    @inlinable
-    public func createNetworkFirewallClusterRefresh(_ input: CreateNetworkFirewallClusterRefreshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkFirewallClusterRefreshResponse > {
-        self.client.execute(action: "CreateNetworkFirewallClusterRefresh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 容器网络集群下发刷新任务
-    @inlinable
-    public func createNetworkFirewallClusterRefresh(_ input: CreateNetworkFirewallClusterRefreshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallClusterRefreshResponse {
-        try await self.client.execute(action: "CreateNetworkFirewallClusterRefresh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNetworkFirewallClusterRefresh请求参数结构体
     public struct CreateNetworkFirewallClusterRefreshRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Tcss {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 容器网络集群下发刷新任务
+    @inlinable
+    public func createNetworkFirewallClusterRefresh(_ input: CreateNetworkFirewallClusterRefreshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkFirewallClusterRefreshResponse > {
+        self.client.execute(action: "CreateNetworkFirewallClusterRefresh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络集群下发刷新任务
+    @inlinable
+    public func createNetworkFirewallClusterRefresh(_ input: CreateNetworkFirewallClusterRefreshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallClusterRefreshResponse {
+        try await self.client.execute(action: "CreateNetworkFirewallClusterRefresh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

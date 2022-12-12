@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云V2-订单汇总列表查询
-    @inlinable
-    public func queryFlexOrderSummaryList(_ input: QueryFlexOrderSummaryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFlexOrderSummaryListResponse > {
-        self.client.execute(action: "QueryFlexOrderSummaryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云V2-订单汇总列表查询
-    @inlinable
-    public func queryFlexOrderSummaryList(_ input: QueryFlexOrderSummaryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexOrderSummaryListResponse {
-        try await self.client.execute(action: "QueryFlexOrderSummaryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryFlexOrderSummaryList请求参数结构体
     public struct QueryFlexOrderSummaryListRequest: TCRequestModel {
         /// 汇总日期:yyyy-MM-dd
@@ -48,7 +36,7 @@ extension Cpdp {
         /// 缺省默认为生产环境
         public let environment: String?
         
-        public init (summaryDate: String, pageNumber: Paging, orderType: String, payeeId: String?, environment: String?) {
+        public init (summaryDate: String, pageNumber: Paging, orderType: String, payeeId: String? = nil, environment: String? = nil) {
             self.summaryDate = summaryDate
             self.pageNumber = pageNumber
             self.orderType = orderType
@@ -75,7 +63,7 @@ extension Cpdp {
         
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: OrderSummaries
+        public let result: OrderSummaries?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -86,5 +74,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云V2-订单汇总列表查询
+    @inlinable
+    public func queryFlexOrderSummaryList(_ input: QueryFlexOrderSummaryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFlexOrderSummaryListResponse > {
+        self.client.execute(action: "QueryFlexOrderSummaryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云V2-订单汇总列表查询
+    @inlinable
+    public func queryFlexOrderSummaryList(_ input: QueryFlexOrderSummaryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexOrderSummaryListResponse {
+        try await self.client.execute(action: "QueryFlexOrderSummaryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

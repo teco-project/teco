@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 取消直播延时
-    ///
-    /// 取消直播流设置的延时配置，恢复实时直播画面。
-    @inlinable
-    public func resumeDelayLiveStream(_ input: ResumeDelayLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeDelayLiveStreamResponse > {
-        self.client.execute(action: "ResumeDelayLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消直播延时
-    ///
-    /// 取消直播流设置的延时配置，恢复实时直播画面。
-    @inlinable
-    public func resumeDelayLiveStream(_ input: ResumeDelayLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeDelayLiveStreamResponse {
-        try await self.client.execute(action: "ResumeDelayLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResumeDelayLiveStream请求参数结构体
     public struct ResumeDelayLiveStreamRequest: TCRequestModel {
         /// 推流路径，与推流和播放地址中的AppName保持一致，默认为live。
@@ -63,5 +47,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消直播延时
+    ///
+    /// 取消直播流设置的延时配置，恢复实时直播画面。
+    @inlinable
+    public func resumeDelayLiveStream(_ input: ResumeDelayLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeDelayLiveStreamResponse > {
+        self.client.execute(action: "ResumeDelayLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消直播延时
+    ///
+    /// 取消直播流设置的延时配置，恢复实时直播画面。
+    @inlinable
+    public func resumeDelayLiveStream(_ input: ResumeDelayLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeDelayLiveStreamResponse {
+        try await self.client.execute(action: "ResumeDelayLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

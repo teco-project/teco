@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取固件下载地址
-    ///
-    /// 本接口（GetCOSURL）用于获取固件存储在COS的URL 
-    @inlinable
-    public func getCOSURL(_ input: GetCOSURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCOSURLResponse > {
-        self.client.execute(action: "GetCOSURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取固件下载地址
-    ///
-    /// 本接口（GetCOSURL）用于获取固件存储在COS的URL 
-    @inlinable
-    public func getCOSURL(_ input: GetCOSURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCOSURLResponse {
-        try await self.client.execute(action: "GetCOSURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetCOSURL请求参数结构体
     public struct GetCOSURLRequest: TCRequestModel {
         /// 产品ID
@@ -62,5 +46,21 @@ extension Iotcloud {
             case url = "Url"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取固件下载地址
+    ///
+    /// 本接口（GetCOSURL）用于获取固件存储在COS的URL 
+    @inlinable
+    public func getCOSURL(_ input: GetCOSURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCOSURLResponse > {
+        self.client.execute(action: "GetCOSURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取固件下载地址
+    ///
+    /// 本接口（GetCOSURL）用于获取固件存储在COS的URL 
+    @inlinable
+    public func getCOSURL(_ input: GetCOSURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCOSURLResponse {
+        try await self.client.execute(action: "GetCOSURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

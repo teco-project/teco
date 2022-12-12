@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 添加互联网边界规则
-    @inlinable
-    public func addAcRule(_ input: AddAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddAcRuleResponse > {
-        self.client.execute(action: "AddAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加互联网边界规则
-    @inlinable
-    public func addAcRule(_ input: AddAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAcRuleResponse {
-        try await self.client.execute(action: "AddAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddAcRule请求参数结构体
     public struct AddAcRuleRequest: TCRequestModel {
         /// -1表示优先级最低，1表示优先级最高
@@ -106,7 +94,7 @@ extension Cfw {
         /// true为启用，false为不启用
         public let enable: String?
         
-        public init (orderIndex: String, ruleAction: String, direction: String, description: String, sourceType: String, sourceContent: String, destType: String, destContent: String, port: String, `protocol`: String?, applicationName: String?, enable: String?) {
+        public init (orderIndex: String, ruleAction: String, direction: String, description: String, sourceType: String, sourceContent: String, destType: String, destContent: String, port: String, `protocol`: String? = nil, applicationName: String? = nil, enable: String? = nil) {
             self.orderIndex = orderIndex
             self.ruleAction = ruleAction
             self.direction = direction
@@ -157,5 +145,17 @@ extension Cfw {
             case returnMsg = "ReturnMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加互联网边界规则
+    @inlinable
+    public func addAcRule(_ input: AddAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddAcRuleResponse > {
+        self.client.execute(action: "AddAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加互联网边界规则
+    @inlinable
+    public func addAcRule(_ input: AddAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAcRuleResponse {
+        try await self.client.execute(action: "AddAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

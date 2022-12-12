@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 设备远程控制
-    ///
-    /// 根据设备产品ID、设备名称，设置控制设备的属性数据。
-    @inlinable
-    public func controlDeviceData(_ input: ControlDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlDeviceDataResponse > {
-        self.client.execute(action: "ControlDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设备远程控制
-    ///
-    /// 根据设备产品ID、设备名称，设置控制设备的属性数据。
-    @inlinable
-    public func controlDeviceData(_ input: ControlDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlDeviceDataResponse {
-        try await self.client.execute(action: "ControlDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ControlDeviceData请求参数结构体
     public struct ControlDeviceDataRequest: TCRequestModel {
         /// 产品ID
@@ -51,7 +35,7 @@ extension Iotexplorer {
         /// 上报数据UNIX时间戳(毫秒), 仅对Method:reported有效
         public let dataTimestamp: Int64?
         
-        public init (productId: String, deviceName: String, data: String, method: String?, deviceId: String?, dataTimestamp: Int64?) {
+        public init (productId: String, deviceName: String, data: String, method: String? = nil, deviceId: String? = nil, dataTimestamp: Int64? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.data = data
@@ -89,5 +73,21 @@ extension Iotexplorer {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设备远程控制
+    ///
+    /// 根据设备产品ID、设备名称，设置控制设备的属性数据。
+    @inlinable
+    public func controlDeviceData(_ input: ControlDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlDeviceDataResponse > {
+        self.client.execute(action: "ControlDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设备远程控制
+    ///
+    /// 根据设备产品ID、设备名称，设置控制设备的属性数据。
+    @inlinable
+    public func controlDeviceData(_ input: ControlDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlDeviceDataResponse {
+        try await self.client.execute(action: "ControlDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

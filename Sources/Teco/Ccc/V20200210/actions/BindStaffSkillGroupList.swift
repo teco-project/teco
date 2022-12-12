@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 绑定坐席所属技能组
-    @inlinable
-    public func bindStaffSkillGroupList(_ input: BindStaffSkillGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindStaffSkillGroupListResponse > {
-        self.client.execute(action: "BindStaffSkillGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定坐席所属技能组
-    @inlinable
-    public func bindStaffSkillGroupList(_ input: BindStaffSkillGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindStaffSkillGroupListResponse {
-        try await self.client.execute(action: "BindStaffSkillGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindStaffSkillGroupList请求参数结构体
     public struct BindStaffSkillGroupListRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -59,5 +47,17 @@ extension Ccc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定坐席所属技能组
+    @inlinable
+    public func bindStaffSkillGroupList(_ input: BindStaffSkillGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindStaffSkillGroupListResponse > {
+        self.client.execute(action: "BindStaffSkillGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定坐席所属技能组
+    @inlinable
+    public func bindStaffSkillGroupList(_ input: BindStaffSkillGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindStaffSkillGroupListResponse {
+        try await self.client.execute(action: "BindStaffSkillGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

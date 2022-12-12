@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 增量添加网络ACL五元组规则接口
-    ///
-    /// 本接口（CreateNetworkAclQuintupleEntries）用于增量网络ACL五元组的入站规则和出站规则。
-    @inlinable
-    public func createNetworkAclQuintupleEntries(_ input: CreateNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkAclQuintupleEntriesResponse > {
-        self.client.execute(action: "CreateNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 增量添加网络ACL五元组规则接口
-    ///
-    /// 本接口（CreateNetworkAclQuintupleEntries）用于增量网络ACL五元组的入站规则和出站规则。
-    @inlinable
-    public func createNetworkAclQuintupleEntries(_ input: CreateNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkAclQuintupleEntriesResponse {
-        try await self.client.execute(action: "CreateNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNetworkAclQuintupleEntries请求参数结构体
     public struct CreateNetworkAclQuintupleEntriesRequest: TCRequestModel {
         /// 网络ACL实例ID。例如：acl-12345678。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 增量添加网络ACL五元组规则接口
+    ///
+    /// 本接口（CreateNetworkAclQuintupleEntries）用于增量网络ACL五元组的入站规则和出站规则。
+    @inlinable
+    public func createNetworkAclQuintupleEntries(_ input: CreateNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetworkAclQuintupleEntriesResponse > {
+        self.client.execute(action: "CreateNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 增量添加网络ACL五元组规则接口
+    ///
+    /// 本接口（CreateNetworkAclQuintupleEntries）用于增量网络ACL五元组的入站规则和出站规则。
+    @inlinable
+    public func createNetworkAclQuintupleEntries(_ input: CreateNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkAclQuintupleEntriesResponse {
+        try await self.client.execute(action: "CreateNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

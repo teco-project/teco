@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取直播互动机器人信息
-    ///
-    /// 获取机器人列表，支持 Id、状态等过滤条件。
-    @inlinable
-    public func describeKTVRobots(_ input: DescribeKTVRobotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVRobotsResponse > {
-        self.client.execute(action: "DescribeKTVRobots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取直播互动机器人信息
-    ///
-    /// 获取机器人列表，支持 Id、状态等过滤条件。
-    @inlinable
-    public func describeKTVRobots(_ input: DescribeKTVRobotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVRobotsResponse {
-        try await self.client.execute(action: "DescribeKTVRobots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKTVRobots请求参数结构体
     public struct DescribeKTVRobotsRequest: TCRequestModel {
         /// 机器人Id列表。
@@ -44,7 +28,7 @@ extension Ame {
         
         /// 匹配创建时间在此时间段内的机器人。
         /// <li>包含所指定的头尾时间点。</li>
-        public let createTime: TimeRange
+        public let createTime: TimeRange?
         
         /// 分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
         public let offset: Int64?
@@ -52,7 +36,7 @@ extension Ame {
         /// 分页返回的起始偏移量，默认值：10。
         public let limit: Int64?
         
-        public init (robotIds: [String]?, statuses: [String]?, createTime: TimeRange, offset: Int64?, limit: Int64?) {
+        public init (robotIds: [String]? = nil, statuses: [String]? = nil, createTime: TimeRange? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.robotIds = robotIds
             self.statuses = statuses
             self.createTime = createTime
@@ -85,5 +69,21 @@ extension Ame {
             case ktvRobotInfoSet = "KTVRobotInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取直播互动机器人信息
+    ///
+    /// 获取机器人列表，支持 Id、状态等过滤条件。
+    @inlinable
+    public func describeKTVRobots(_ input: DescribeKTVRobotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVRobotsResponse > {
+        self.client.execute(action: "DescribeKTVRobots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播互动机器人信息
+    ///
+    /// 获取机器人列表，支持 Id、状态等过滤条件。
+    @inlinable
+    public func describeKTVRobots(_ input: DescribeKTVRobotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVRobotsResponse {
+        try await self.client.execute(action: "DescribeKTVRobots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

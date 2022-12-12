@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 修改HTTPS监听器配置
-    ///
-    /// 该接口（ModifyHTTPSListenerAttribute）用于修改HTTPS监听器配置，当前不支持通道组和v1版本通道。
-    @inlinable
-    public func modifyHTTPSListenerAttribute(_ input: ModifyHTTPSListenerAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHTTPSListenerAttributeResponse > {
-        self.client.execute(action: "ModifyHTTPSListenerAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改HTTPS监听器配置
-    ///
-    /// 该接口（ModifyHTTPSListenerAttribute）用于修改HTTPS监听器配置，当前不支持通道组和v1版本通道。
-    @inlinable
-    public func modifyHTTPSListenerAttribute(_ input: ModifyHTTPSListenerAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHTTPSListenerAttributeResponse {
-        try await self.client.execute(action: "ModifyHTTPSListenerAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyHTTPSListenerAttribute请求参数结构体
     public struct ModifyHTTPSListenerAttributeRequest: TCRequestModel {
         /// 监听器ID
@@ -54,7 +38,7 @@ extension Gaap {
         /// 新字段,修改后的监听器客户端证书ID
         public let polyClientCertificateIds: [String]?
         
-        public init (listenerId: String, proxyId: String?, listenerName: String?, forwardProtocol: String?, certificateId: String?, clientCertificateId: String?, polyClientCertificateIds: [String]?) {
+        public init (listenerId: String, proxyId: String? = nil, listenerName: String? = nil, forwardProtocol: String? = nil, certificateId: String? = nil, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil) {
             self.listenerId = listenerId
             self.proxyId = proxyId
             self.listenerName = listenerName
@@ -83,5 +67,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改HTTPS监听器配置
+    ///
+    /// 该接口（ModifyHTTPSListenerAttribute）用于修改HTTPS监听器配置，当前不支持通道组和v1版本通道。
+    @inlinable
+    public func modifyHTTPSListenerAttribute(_ input: ModifyHTTPSListenerAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHTTPSListenerAttributeResponse > {
+        self.client.execute(action: "ModifyHTTPSListenerAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改HTTPS监听器配置
+    ///
+    /// 该接口（ModifyHTTPSListenerAttribute）用于修改HTTPS监听器配置，当前不支持通道组和v1版本通道。
+    @inlinable
+    public func modifyHTTPSListenerAttribute(_ input: ModifyHTTPSListenerAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHTTPSListenerAttributeResponse {
+        try await self.client.execute(action: "ModifyHTTPSListenerAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

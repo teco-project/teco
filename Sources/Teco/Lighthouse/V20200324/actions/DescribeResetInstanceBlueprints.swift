@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询重置实例的镜像信息
-    ///
-    /// 本接口（DescribeResetInstanceBlueprints）查询重置实例的镜像信息。
-    @inlinable
-    public func describeResetInstanceBlueprints(_ input: DescribeResetInstanceBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResetInstanceBlueprintsResponse > {
-        self.client.execute(action: "DescribeResetInstanceBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询重置实例的镜像信息
-    ///
-    /// 本接口（DescribeResetInstanceBlueprints）查询重置实例的镜像信息。
-    @inlinable
-    public func describeResetInstanceBlueprints(_ input: DescribeResetInstanceBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResetInstanceBlueprintsResponse {
-        try await self.client.execute(action: "DescribeResetInstanceBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResetInstanceBlueprints请求参数结构体
     public struct DescribeResetInstanceBlueprintsRequest: TCRequestModel {
         /// 实例ID
@@ -63,7 +47,7 @@ extension Lighthouse {
         /// 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 BlueprintIds 和 Filters 。
         public let filters: [Filter]?
         
-        public init (instanceId: String, offset: Int64?, limit: Int64?, filters: [Filter]?) {
+        public init (instanceId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
@@ -94,5 +78,21 @@ extension Lighthouse {
             case resetInstanceBlueprintSet = "ResetInstanceBlueprintSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询重置实例的镜像信息
+    ///
+    /// 本接口（DescribeResetInstanceBlueprints）查询重置实例的镜像信息。
+    @inlinable
+    public func describeResetInstanceBlueprints(_ input: DescribeResetInstanceBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResetInstanceBlueprintsResponse > {
+        self.client.execute(action: "DescribeResetInstanceBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询重置实例的镜像信息
+    ///
+    /// 本接口（DescribeResetInstanceBlueprints）查询重置实例的镜像信息。
+    @inlinable
+    public func describeResetInstanceBlueprints(_ input: DescribeResetInstanceBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResetInstanceBlueprintsResponse {
+        try await self.client.execute(action: "DescribeResetInstanceBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

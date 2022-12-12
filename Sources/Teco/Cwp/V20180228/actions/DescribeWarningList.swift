@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取当前用户告警列表
-    @inlinable
-    public func describeWarningList(_ input: DescribeWarningListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWarningListResponse > {
-        self.client.execute(action: "DescribeWarningList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取当前用户告警列表
-    @inlinable
-    public func describeWarningList(_ input: DescribeWarningListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningListResponse {
-        try await self.client.execute(action: "DescribeWarningList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWarningList请求参数结构体
     public struct DescribeWarningListRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Cwp {
             case warningInfoList = "WarningInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取当前用户告警列表
+    @inlinable
+    public func describeWarningList(_ input: DescribeWarningListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWarningListResponse > {
+        self.client.execute(action: "DescribeWarningList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取当前用户告警列表
+    @inlinable
+    public func describeWarningList(_ input: DescribeWarningListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningListResponse {
+        try await self.client.execute(action: "DescribeWarningList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

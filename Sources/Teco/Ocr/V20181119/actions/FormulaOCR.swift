@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 数学公式识别
-    ///
-    /// 本接口支持识别主流初高中数学符号和公式，返回公式的 Latex 格式文本。
-    @inlinable
-    public func formulaOCR(_ input: FormulaOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FormulaOCRResponse > {
-        self.client.execute(action: "FormulaOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 数学公式识别
-    ///
-    /// 本接口支持识别主流初高中数学符号和公式，返回公式的 Latex 格式文本。
-    @inlinable
-    public func formulaOCR(_ input: FormulaOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FormulaOCRResponse {
-        try await self.client.execute(action: "FormulaOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// FormulaOCR请求参数结构体
     public struct FormulaOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -46,7 +30,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -73,5 +57,21 @@ extension Ocr {
             case formulaInfos = "FormulaInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 数学公式识别
+    ///
+    /// 本接口支持识别主流初高中数学符号和公式，返回公式的 Latex 格式文本。
+    @inlinable
+    public func formulaOCR(_ input: FormulaOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FormulaOCRResponse > {
+        self.client.execute(action: "FormulaOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 数学公式识别
+    ///
+    /// 本接口支持识别主流初高中数学符号和公式，返回公式的 Latex 格式文本。
+    @inlinable
+    public func formulaOCR(_ input: FormulaOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FormulaOCRResponse {
+        try await self.client.execute(action: "FormulaOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

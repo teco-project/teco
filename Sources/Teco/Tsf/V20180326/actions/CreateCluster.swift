@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 创建集群
-    @inlinable
-    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
-        self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建集群
-    @inlinable
-    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
-        try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCluster请求参数结构体
     public struct CreateClusterRequest: TCRequestModel {
         /// 集群名称
@@ -77,7 +65,7 @@ extension Tsf {
         /// 无
         public let programIdList: [String]?
         
-        public init (clusterName: String, clusterType: String, vpcId: String, clusterCIDR: String?, clusterDesc: String?, tsfRegionId: String?, tsfZoneId: String?, subnetId: String?, clusterVersion: String?, maxNodePodNum: UInt64?, maxClusterServiceNum: UInt64?, programId: String?, kuberneteApiServer: String?, kuberneteNativeType: String?, kuberneteNativeSecret: String?, programIdList: [String]?) {
+        public init (clusterName: String, clusterType: String, vpcId: String, clusterCIDR: String? = nil, clusterDesc: String? = nil, tsfRegionId: String? = nil, tsfZoneId: String? = nil, subnetId: String? = nil, clusterVersion: String? = nil, maxNodePodNum: UInt64? = nil, maxClusterServiceNum: UInt64? = nil, programId: String? = nil, kuberneteApiServer: String? = nil, kuberneteNativeType: String? = nil, kuberneteNativeSecret: String? = nil, programIdList: [String]? = nil) {
             self.clusterName = clusterName
             self.clusterType = clusterType
             self.vpcId = vpcId
@@ -128,5 +116,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建集群
+    @inlinable
+    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterResponse > {
+        self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群
+    @inlinable
+    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
+        try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询单个服务
-    @inlinable
-    public func describeModelService(_ input: DescribeModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServiceResponse > {
-        self.client.execute(action: "DescribeModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询单个服务
-    @inlinable
-    public func describeModelService(_ input: DescribeModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceResponse {
-        try await self.client.execute(action: "DescribeModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeModelService请求参数结构体
     public struct DescribeModelServiceRequest: TCRequestModel {
         /// 服务id
@@ -53,5 +41,17 @@ extension Tione {
             case service = "Service"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询单个服务
+    @inlinable
+    public func describeModelService(_ input: DescribeModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServiceResponse > {
+        self.client.execute(action: "DescribeModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询单个服务
+    @inlinable
+    public func describeModelService(_ input: DescribeModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceResponse {
+        try await self.client.execute(action: "DescribeModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

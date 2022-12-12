@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mmps {
-    /// 获取诊断任务参数信息
-    ///
-    /// 获取用户提交的基础诊断任务参数信息
-    @inlinable
-    public func describeFlySecMiniAppScanTaskParam(_ input: DescribeFlySecMiniAppScanTaskParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlySecMiniAppScanTaskParamResponse > {
-        self.client.execute(action: "DescribeFlySecMiniAppScanTaskParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取诊断任务参数信息
-    ///
-    /// 获取用户提交的基础诊断任务参数信息
-    @inlinable
-    public func describeFlySecMiniAppScanTaskParam(_ input: DescribeFlySecMiniAppScanTaskParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanTaskParamResponse {
-        try await self.client.execute(action: "DescribeFlySecMiniAppScanTaskParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlySecMiniAppScanTaskParam请求参数结构体
     public struct DescribeFlySecMiniAppScanTaskParamRequest: TCRequestModel {
         /// 任务id
@@ -80,5 +64,21 @@ extension Mmps {
             case scanVersion = "ScanVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取诊断任务参数信息
+    ///
+    /// 获取用户提交的基础诊断任务参数信息
+    @inlinable
+    public func describeFlySecMiniAppScanTaskParam(_ input: DescribeFlySecMiniAppScanTaskParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlySecMiniAppScanTaskParamResponse > {
+        self.client.execute(action: "DescribeFlySecMiniAppScanTaskParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取诊断任务参数信息
+    ///
+    /// 获取用户提交的基础诊断任务参数信息
+    @inlinable
+    public func describeFlySecMiniAppScanTaskParam(_ input: DescribeFlySecMiniAppScanTaskParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanTaskParamResponse {
+        try await self.client.execute(action: "DescribeFlySecMiniAppScanTaskParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

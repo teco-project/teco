@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询漏洞扫描任务信息
-    @inlinable
-    public func describeVulScanInfo(_ input: DescribeVulScanInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulScanInfoResponse > {
-        self.client.execute(action: "DescribeVulScanInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询漏洞扫描任务信息
-    @inlinable
-    public func describeVulScanInfo(_ input: DescribeVulScanInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanInfoResponse {
-        try await self.client.execute(action: "DescribeVulScanInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulScanInfo请求参数结构体
     public struct DescribeVulScanInfoRequest: TCRequestModel {
         /// 本地镜像漏洞扫描任务ID，无则返回最近一次的漏洞任务扫描
@@ -35,7 +23,7 @@ extension Tcss {
         /// 仓库镜像漏洞扫描任务ID，无则返回最近一次的漏洞任务扫描
         public let registryTaskID: Int64?
         
-        public init (localTaskID: Int64?, registryTaskID: Int64?) {
+        public init (localTaskID: Int64? = nil, registryTaskID: Int64? = nil) {
             self.localTaskID = localTaskID
             self.registryTaskID = registryTaskID
         }
@@ -106,5 +94,17 @@ extension Tcss {
             case registryFoundVulCount = "RegistryFoundVulCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询漏洞扫描任务信息
+    @inlinable
+    public func describeVulScanInfo(_ input: DescribeVulScanInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulScanInfoResponse > {
+        self.client.execute(action: "DescribeVulScanInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询漏洞扫描任务信息
+    @inlinable
+    public func describeVulScanInfo(_ input: DescribeVulScanInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanInfoResponse {
+        try await self.client.execute(action: "DescribeVulScanInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

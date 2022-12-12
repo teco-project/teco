@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 修改维度权重
-    ///
-    /// 质量报告-修改维度权限
-    @inlinable
-    public func modifyDimensionWeight(_ input: ModifyDimensionWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDimensionWeightResponse > {
-        self.client.execute(action: "ModifyDimensionWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改维度权重
-    ///
-    /// 质量报告-修改维度权限
-    @inlinable
-    public func modifyDimensionWeight(_ input: ModifyDimensionWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDimensionWeightResponse {
-        try await self.client.execute(action: "ModifyDimensionWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDimensionWeight请求参数结构体
     public struct ModifyDimensionWeightRequest: TCRequestModel {
         /// 权重信息列表
@@ -67,5 +51,21 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改维度权重
+    ///
+    /// 质量报告-修改维度权限
+    @inlinable
+    public func modifyDimensionWeight(_ input: ModifyDimensionWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDimensionWeightResponse > {
+        self.client.execute(action: "ModifyDimensionWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改维度权重
+    ///
+    /// 质量报告-修改维度权限
+    @inlinable
+    public func modifyDimensionWeight(_ input: ModifyDimensionWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDimensionWeightResponse {
+        try await self.client.execute(action: "ModifyDimensionWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

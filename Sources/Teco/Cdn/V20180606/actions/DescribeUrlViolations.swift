@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 违规历史查询
-    ///
-    /// DescribeUrlViolations 用于查询被 CDN 系统扫描到的域名违规 URL 列表及当前状态。
-    /// 对应内容分发网络控制台【图片鉴黄】页面。
-    @inlinable
-    public func describeUrlViolations(_ input: DescribeUrlViolationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUrlViolationsResponse > {
-        self.client.execute(action: "DescribeUrlViolations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 违规历史查询
-    ///
-    /// DescribeUrlViolations 用于查询被 CDN 系统扫描到的域名违规 URL 列表及当前状态。
-    /// 对应内容分发网络控制台【图片鉴黄】页面。
-    @inlinable
-    public func describeUrlViolations(_ input: DescribeUrlViolationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUrlViolationsResponse {
-        try await self.client.execute(action: "DescribeUrlViolations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUrlViolations请求参数结构体
     public struct DescribeUrlViolationsRequest: TCRequestModel {
         /// 分页查询偏移量，默认为 0
@@ -44,7 +26,7 @@ extension Cdn {
         /// 指定的域名查询
         public let domains: [String]?
         
-        public init (offset: Int64?, limit: Int64?, domains: [String]?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, domains: [String]? = nil) {
             self.offset = offset
             self.limit = limit
             self.domains = domains
@@ -74,5 +56,23 @@ extension Cdn {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 违规历史查询
+    ///
+    /// DescribeUrlViolations 用于查询被 CDN 系统扫描到的域名违规 URL 列表及当前状态。
+    /// 对应内容分发网络控制台【图片鉴黄】页面。
+    @inlinable
+    public func describeUrlViolations(_ input: DescribeUrlViolationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUrlViolationsResponse > {
+        self.client.execute(action: "DescribeUrlViolations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 违规历史查询
+    ///
+    /// DescribeUrlViolations 用于查询被 CDN 系统扫描到的域名违规 URL 列表及当前状态。
+    /// 对应内容分发网络控制台【图片鉴黄】页面。
+    @inlinable
+    public func describeUrlViolations(_ input: DescribeUrlViolationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUrlViolationsResponse {
+        try await self.client.execute(action: "DescribeUrlViolations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

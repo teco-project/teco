@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 删除私有域解析账号
-    @inlinable
-    public func deletePrivateDNSAccount(_ input: DeletePrivateDNSAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivateDNSAccountResponse > {
-        self.client.execute(action: "DeletePrivateDNSAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除私有域解析账号
-    @inlinable
-    public func deletePrivateDNSAccount(_ input: DeletePrivateDNSAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateDNSAccountResponse {
-        try await self.client.execute(action: "DeletePrivateDNSAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePrivateDNSAccount请求参数结构体
     public struct DeletePrivateDNSAccountRequest: TCRequestModel {
         /// 私有域解析账号
@@ -49,5 +37,17 @@ extension Privatedns {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除私有域解析账号
+    @inlinable
+    public func deletePrivateDNSAccount(_ input: DeletePrivateDNSAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivateDNSAccountResponse > {
+        self.client.execute(action: "DeletePrivateDNSAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除私有域解析账号
+    @inlinable
+    public func deletePrivateDNSAccount(_ input: DeletePrivateDNSAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateDNSAccountResponse {
+        try await self.client.execute(action: "DeletePrivateDNSAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

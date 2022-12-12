@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 批量操作日志列表
-    ///
-    /// 本接口 ( DescribeBatchOperationLogs ) 用于获取批量操作日志 。
-    @inlinable
-    public func describeBatchOperationLogs(_ input: DescribeBatchOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchOperationLogsResponse > {
-        self.client.execute(action: "DescribeBatchOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量操作日志列表
-    ///
-    /// 本接口 ( DescribeBatchOperationLogs ) 用于获取批量操作日志 。
-    @inlinable
-    public func describeBatchOperationLogs(_ input: DescribeBatchOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchOperationLogsResponse {
-        try await self.client.execute(action: "DescribeBatchOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBatchOperationLogs请求参数结构体
     public struct DescribeBatchOperationLogsRequest: TCRequestModel {
         /// 偏移量，默认为0。
@@ -39,7 +23,7 @@ extension Domain {
         /// 返回数量，默认为20，最大值为200。
         public let limit: Int64?
         
-        public init (offset: Int64?, limit: Int64?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil) {
             self.offset = offset
             self.limit = limit
         }
@@ -67,5 +51,21 @@ extension Domain {
             case domainBatchLogSet = "DomainBatchLogSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量操作日志列表
+    ///
+    /// 本接口 ( DescribeBatchOperationLogs ) 用于获取批量操作日志 。
+    @inlinable
+    public func describeBatchOperationLogs(_ input: DescribeBatchOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchOperationLogsResponse > {
+        self.client.execute(action: "DescribeBatchOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量操作日志列表
+    ///
+    /// 本接口 ( DescribeBatchOperationLogs ) 用于获取批量操作日志 。
+    @inlinable
+    public func describeBatchOperationLogs(_ input: DescribeBatchOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchOperationLogsResponse {
+        try await self.client.execute(action: "DescribeBatchOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

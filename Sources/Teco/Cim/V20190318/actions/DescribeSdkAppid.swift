@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cim {
-    /// 获取云通信 IM 的 SDKAppid
-    ///
-    /// 获取云通信IM中腾讯云账号对应的SDKAppID
-    @inlinable
-    public func describeSdkAppid(_ input: DescribeSdkAppidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSdkAppidResponse > {
-        self.client.execute(action: "DescribeSdkAppid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取云通信 IM 的 SDKAppid
-    ///
-    /// 获取云通信IM中腾讯云账号对应的SDKAppID
-    @inlinable
-    public func describeSdkAppid(_ input: DescribeSdkAppidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSdkAppidResponse {
-        try await self.client.execute(action: "DescribeSdkAppid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSdkAppid请求参数结构体
     public struct DescribeSdkAppidRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Cim {
             case sdkAppids = "SdkAppids"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取云通信 IM 的 SDKAppid
+    ///
+    /// 获取云通信IM中腾讯云账号对应的SDKAppID
+    @inlinable
+    public func describeSdkAppid(_ input: DescribeSdkAppidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSdkAppidResponse > {
+        self.client.execute(action: "DescribeSdkAppid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云通信 IM 的 SDKAppid
+    ///
+    /// 获取云通信IM中腾讯云账号对应的SDKAppID
+    @inlinable
+    public func describeSdkAppid(_ input: DescribeSdkAppidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSdkAppidResponse {
+        try await self.client.execute(action: "DescribeSdkAppid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

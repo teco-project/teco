@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 获取指定密钥的设备指纹列表
-    @inlinable
-    public func describeWhiteBoxDeviceFingerprints(_ input: DescribeWhiteBoxDeviceFingerprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxDeviceFingerprintsResponse > {
-        self.client.execute(action: "DescribeWhiteBoxDeviceFingerprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取指定密钥的设备指纹列表
-    @inlinable
-    public func describeWhiteBoxDeviceFingerprints(_ input: DescribeWhiteBoxDeviceFingerprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxDeviceFingerprintsResponse {
-        try await self.client.execute(action: "DescribeWhiteBoxDeviceFingerprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWhiteBoxDeviceFingerprints请求参数结构体
     public struct DescribeWhiteBoxDeviceFingerprintsRequest: TCRequestModel {
         /// 白盒密钥ID
@@ -53,5 +41,17 @@ extension Kms {
             case deviceFingerprints = "DeviceFingerprints"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取指定密钥的设备指纹列表
+    @inlinable
+    public func describeWhiteBoxDeviceFingerprints(_ input: DescribeWhiteBoxDeviceFingerprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxDeviceFingerprintsResponse > {
+        self.client.execute(action: "DescribeWhiteBoxDeviceFingerprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定密钥的设备指纹列表
+    @inlinable
+    public func describeWhiteBoxDeviceFingerprints(_ input: DescribeWhiteBoxDeviceFingerprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxDeviceFingerprintsResponse {
+        try await self.client.execute(action: "DescribeWhiteBoxDeviceFingerprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

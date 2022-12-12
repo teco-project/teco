@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 重启应用实例
-    @inlinable
-    public func restartApplicationPod(_ input: RestartApplicationPodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartApplicationPodResponse > {
-        self.client.execute(action: "RestartApplicationPod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重启应用实例
-    @inlinable
-    public func restartApplicationPod(_ input: RestartApplicationPodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartApplicationPodResponse {
-        try await self.client.execute(action: "RestartApplicationPod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestartApplicationPod请求参数结构体
     public struct RestartApplicationPodRequest: TCRequestModel {
         /// 环境id
@@ -50,7 +38,7 @@ extension Tem {
         /// 来源渠道
         public let sourceChannel: Int64?
         
-        public init (environmentId: String, applicationId: String, podName: String, limit: Int64?, offset: Int64?, status: String?, sourceChannel: Int64?) {
+        public init (environmentId: String, applicationId: String, podName: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, sourceChannel: Int64? = nil) {
             self.environmentId = environmentId
             self.applicationId = applicationId
             self.podName = podName
@@ -84,5 +72,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重启应用实例
+    @inlinable
+    public func restartApplicationPod(_ input: RestartApplicationPodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartApplicationPodResponse > {
+        self.client.execute(action: "RestartApplicationPod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重启应用实例
+    @inlinable
+    public func restartApplicationPod(_ input: RestartApplicationPodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartApplicationPodResponse {
+        try await self.client.execute(action: "RestartApplicationPod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

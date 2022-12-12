@@ -15,32 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 修改快照分享信息
-    ///
-    /// 本接口（ModifySnapshotsSharePermission）用于修改快照分享信息。
-    /// 分享快照后，被分享账户可以通过该快照创建云硬盘。
-    /// * 每个快照最多可分享给50个账户。
-    /// * 分享快照无法更改名称，描述，仅可用于创建云硬盘。
-    /// * 只支持分享到对方账户相同地域。
-    /// * 仅支持分享数据盘快照。
-    @inlinable
-    public func modifySnapshotsSharePermission(_ input: ModifySnapshotsSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySnapshotsSharePermissionResponse > {
-        self.client.execute(action: "ModifySnapshotsSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改快照分享信息
-    ///
-    /// 本接口（ModifySnapshotsSharePermission）用于修改快照分享信息。
-    /// 分享快照后，被分享账户可以通过该快照创建云硬盘。
-    /// * 每个快照最多可分享给50个账户。
-    /// * 分享快照无法更改名称，描述，仅可用于创建云硬盘。
-    /// * 只支持分享到对方账户相同地域。
-    /// * 仅支持分享数据盘快照。
-    @inlinable
-    public func modifySnapshotsSharePermission(_ input: ModifySnapshotsSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsSharePermissionResponse {
-        try await self.client.execute(action: "ModifySnapshotsSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySnapshotsSharePermission请求参数结构体
     public struct ModifySnapshotsSharePermissionRequest: TCRequestModel {
         /// 接收分享快照的账号Id列表，array型参数的格式可以参考[API简介](https://cloud.tencent.com/document/api/213/568)。帐号ID不同于QQ号，查询用户帐号ID请查看[帐号信息](https://console.cloud.tencent.com/developer)中的帐号ID栏。
@@ -73,5 +47,31 @@ extension Cbs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改快照分享信息
+    ///
+    /// 本接口（ModifySnapshotsSharePermission）用于修改快照分享信息。
+    /// 分享快照后，被分享账户可以通过该快照创建云硬盘。
+    /// * 每个快照最多可分享给50个账户。
+    /// * 分享快照无法更改名称，描述，仅可用于创建云硬盘。
+    /// * 只支持分享到对方账户相同地域。
+    /// * 仅支持分享数据盘快照。
+    @inlinable
+    public func modifySnapshotsSharePermission(_ input: ModifySnapshotsSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySnapshotsSharePermissionResponse > {
+        self.client.execute(action: "ModifySnapshotsSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改快照分享信息
+    ///
+    /// 本接口（ModifySnapshotsSharePermission）用于修改快照分享信息。
+    /// 分享快照后，被分享账户可以通过该快照创建云硬盘。
+    /// * 每个快照最多可分享给50个账户。
+    /// * 分享快照无法更改名称，描述，仅可用于创建云硬盘。
+    /// * 只支持分享到对方账户相同地域。
+    /// * 仅支持分享数据盘快照。
+    @inlinable
+    public func modifySnapshotsSharePermission(_ input: ModifySnapshotsSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsSharePermissionResponse {
+        try await self.client.execute(action: "ModifySnapshotsSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

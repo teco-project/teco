@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除路由表
-    @inlinable
-    public func deleteRouteTable(_ input: DeleteRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRouteTableResponse > {
-        self.client.execute(action: "DeleteRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除路由表
-    @inlinable
-    public func deleteRouteTable(_ input: DeleteRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTableResponse {
-        try await self.client.execute(action: "DeleteRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRouteTable请求参数结构体
     public struct DeleteRouteTableRequest: TCRequestModel {
         /// 路由表实例ID，例如：rtb-azd4dt1c。
@@ -49,5 +37,17 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除路由表
+    @inlinable
+    public func deleteRouteTable(_ input: DeleteRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRouteTableResponse > {
+        self.client.execute(action: "DeleteRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除路由表
+    @inlinable
+    public func deleteRouteTable(_ input: DeleteRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTableResponse {
+        try await self.client.execute(action: "DeleteRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

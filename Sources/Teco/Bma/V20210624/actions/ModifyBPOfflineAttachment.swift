@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 修改下线材料
-    @inlinable
-    public func modifyBPOfflineAttachment(_ input: ModifyBPOfflineAttachmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBPOfflineAttachmentResponse > {
-        self.client.execute(action: "ModifyBPOfflineAttachment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改下线材料
-    @inlinable
-    public func modifyBPOfflineAttachment(_ input: ModifyBPOfflineAttachmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBPOfflineAttachmentResponse {
-        try await self.client.execute(action: "ModifyBPOfflineAttachment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyBPOfflineAttachment请求参数结构体
     public struct ModifyBPOfflineAttachmentRequest: TCRequestModel {
         /// 营业执照
@@ -44,7 +32,7 @@ extension Bma {
         /// 商标转让证明
         public let transferName: String?
         
-        public init (licenseName: String?, authorizationName: String?, brandName: String?, brandCertificateName: String?, transferName: String?) {
+        public init (licenseName: String? = nil, authorizationName: String? = nil, brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil) {
             self.licenseName = licenseName
             self.authorizationName = authorizationName
             self.brandName = brandName
@@ -69,5 +57,17 @@ extension Bma {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改下线材料
+    @inlinable
+    public func modifyBPOfflineAttachment(_ input: ModifyBPOfflineAttachmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBPOfflineAttachmentResponse > {
+        self.client.execute(action: "ModifyBPOfflineAttachment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改下线材料
+    @inlinable
+    public func modifyBPOfflineAttachment(_ input: ModifyBPOfflineAttachmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBPOfflineAttachmentResponse {
+        try await self.client.execute(action: "ModifyBPOfflineAttachment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

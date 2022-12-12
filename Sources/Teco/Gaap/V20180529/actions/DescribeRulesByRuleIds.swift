@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 根据规则ID拉取规则信息列表
-    ///
-    /// 本接口（DescribeRulesByRuleIds）用于根据规则ID拉取规则信息列表。支持一个或者多个规则信息的拉取。一次最多支持10个规则信息的拉取。
-    @inlinable
-    public func describeRulesByRuleIds(_ input: DescribeRulesByRuleIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesByRuleIdsResponse > {
-        self.client.execute(action: "DescribeRulesByRuleIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据规则ID拉取规则信息列表
-    ///
-    /// 本接口（DescribeRulesByRuleIds）用于根据规则ID拉取规则信息列表。支持一个或者多个规则信息的拉取。一次最多支持10个规则信息的拉取。
-    @inlinable
-    public func describeRulesByRuleIds(_ input: DescribeRulesByRuleIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesByRuleIdsResponse {
-        try await self.client.execute(action: "DescribeRulesByRuleIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRulesByRuleIds请求参数结构体
     public struct DescribeRulesByRuleIdsRequest: TCRequestModel {
         /// 规则ID列表。最多支持10个规则。
@@ -61,5 +45,21 @@ extension Gaap {
             case ruleSet = "RuleSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据规则ID拉取规则信息列表
+    ///
+    /// 本接口（DescribeRulesByRuleIds）用于根据规则ID拉取规则信息列表。支持一个或者多个规则信息的拉取。一次最多支持10个规则信息的拉取。
+    @inlinable
+    public func describeRulesByRuleIds(_ input: DescribeRulesByRuleIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesByRuleIdsResponse > {
+        self.client.execute(action: "DescribeRulesByRuleIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据规则ID拉取规则信息列表
+    ///
+    /// 本接口（DescribeRulesByRuleIds）用于根据规则ID拉取规则信息列表。支持一个或者多个规则信息的拉取。一次最多支持10个规则信息的拉取。
+    @inlinable
+    public func describeRulesByRuleIds(_ input: DescribeRulesByRuleIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesByRuleIdsResponse {
+        try await self.client.execute(action: "DescribeRulesByRuleIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

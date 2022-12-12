@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询实例节点信息
-    @inlinable
-    public func describeInstanceNodeInfo(_ input: DescribeInstanceNodeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceNodeInfoResponse > {
-        self.client.execute(action: "DescribeInstanceNodeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例节点信息
-    @inlinable
-    public func describeInstanceNodeInfo(_ input: DescribeInstanceNodeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceNodeInfoResponse {
-        try await self.client.execute(action: "DescribeInstanceNodeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceNodeInfo请求参数结构体
     public struct DescribeInstanceNodeInfoRequest: TCRequestModel {
         /// 实例ID
@@ -38,7 +26,7 @@ extension Redis {
         /// 偏移量
         public let offset: Int64?
         
-        public init (instanceId: String, limit: Int64?, offset: Int64?) {
+        public init (instanceId: String, limit: Int64? = nil, offset: Int64? = nil) {
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset
@@ -86,5 +74,17 @@ extension Redis {
             case tendis = "Tendis"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例节点信息
+    @inlinable
+    public func describeInstanceNodeInfo(_ input: DescribeInstanceNodeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceNodeInfoResponse > {
+        self.client.execute(action: "DescribeInstanceNodeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例节点信息
+    @inlinable
+    public func describeInstanceNodeInfo(_ input: DescribeInstanceNodeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceNodeInfoResponse {
+        try await self.client.execute(action: "DescribeInstanceNodeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

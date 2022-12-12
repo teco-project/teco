@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 设置带外VPN认证用户密码
-    @inlinable
-    public func setOutBandVpnAuthPassword(_ input: SetOutBandVpnAuthPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetOutBandVpnAuthPasswordResponse > {
-        self.client.execute(action: "SetOutBandVpnAuthPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置带外VPN认证用户密码
-    @inlinable
-    public func setOutBandVpnAuthPassword(_ input: SetOutBandVpnAuthPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetOutBandVpnAuthPasswordResponse {
-        try await self.client.execute(action: "SetOutBandVpnAuthPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetOutBandVpnAuthPassword请求参数结构体
     public struct SetOutBandVpnAuthPasswordRequest: TCRequestModel {
         /// 设置的Vpn认证密码
@@ -54,5 +42,17 @@ extension Bm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置带外VPN认证用户密码
+    @inlinable
+    public func setOutBandVpnAuthPassword(_ input: SetOutBandVpnAuthPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetOutBandVpnAuthPasswordResponse > {
+        self.client.execute(action: "SetOutBandVpnAuthPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置带外VPN认证用户密码
+    @inlinable
+    public func setOutBandVpnAuthPassword(_ input: SetOutBandVpnAuthPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetOutBandVpnAuthPasswordResponse {
+        try await self.client.execute(action: "SetOutBandVpnAuthPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cmq {
-    /// 查询订阅详情
-    @inlinable
-    public func describeSubscriptionDetail(_ input: DescribeSubscriptionDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubscriptionDetailResponse > {
-        self.client.execute(action: "DescribeSubscriptionDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询订阅详情
-    @inlinable
-    public func describeSubscriptionDetail(_ input: DescribeSubscriptionDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscriptionDetailResponse {
-        try await self.client.execute(action: "DescribeSubscriptionDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSubscriptionDetail请求参数结构体
     public struct DescribeSubscriptionDetailRequest: TCRequestModel {
         /// 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
@@ -41,7 +29,7 @@ extension Cmq {
         /// 筛选参数，目前只支持SubscriptionName，且仅支持一个关键字。
         public let filters: [Filter]?
         
-        public init (topicName: String, offset: UInt64?, limit: UInt64?, filters: [Filter]?) {
+        public init (topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
             self.topicName = topicName
             self.offset = offset
             self.limit = limit
@@ -73,5 +61,17 @@ extension Cmq {
             case subscriptionSet = "SubscriptionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询订阅详情
+    @inlinable
+    public func describeSubscriptionDetail(_ input: DescribeSubscriptionDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubscriptionDetailResponse > {
+        self.client.execute(action: "DescribeSubscriptionDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询订阅详情
+    @inlinable
+    public func describeSubscriptionDetail(_ input: DescribeSubscriptionDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscriptionDetailResponse {
+        try await self.client.execute(action: "DescribeSubscriptionDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

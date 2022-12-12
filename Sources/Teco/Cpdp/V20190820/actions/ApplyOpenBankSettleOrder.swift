@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-结算申请接口
-    @inlinable
-    public func applyOpenBankSettleOrder(_ input: ApplyOpenBankSettleOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyOpenBankSettleOrderResponse > {
-        self.client.execute(action: "ApplyOpenBankSettleOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-结算申请接口
-    @inlinable
-    public func applyOpenBankSettleOrder(_ input: ApplyOpenBankSettleOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOpenBankSettleOrderResponse {
-        try await self.client.execute(action: "ApplyOpenBankSettleOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyOpenBankSettleOrder请求参数结构体
     public struct ApplyOpenBankSettleOrderRequest: TCRequestModel {
         /// 渠道商户号
@@ -59,7 +47,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填 sandbox。缺省默认调用生产环境
         public let environment: String?
         
-        public init (channelMerchantId: String, outSettleId: String, settleAmount: Int64, channelName: String, channelSubMerchantId: String?, settleDetail: String?, notifyUrl: String?, remark: String?, externalSettleData: String?, environment: String?) {
+        public init (channelMerchantId: String, outSettleId: String, settleAmount: Int64, channelName: String, channelSubMerchantId: String? = nil, settleDetail: String? = nil, notifyUrl: String? = nil, remark: String? = nil, externalSettleData: String? = nil, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.outSettleId = outSettleId
             self.settleAmount = settleAmount
@@ -96,7 +84,7 @@ extension Cpdp {
         
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: ApplyOpenBankSettleOrderResult
+        public let result: ApplyOpenBankSettleOrderResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -107,5 +95,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-结算申请接口
+    @inlinable
+    public func applyOpenBankSettleOrder(_ input: ApplyOpenBankSettleOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyOpenBankSettleOrderResponse > {
+        self.client.execute(action: "ApplyOpenBankSettleOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-结算申请接口
+    @inlinable
+    public func applyOpenBankSettleOrder(_ input: ApplyOpenBankSettleOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOpenBankSettleOrderResponse {
+        try await self.client.execute(action: "ApplyOpenBankSettleOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

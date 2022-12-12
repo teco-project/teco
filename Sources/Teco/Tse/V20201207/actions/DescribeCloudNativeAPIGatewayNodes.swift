@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tse {
-    /// 获取云原生网关节点列表
-    @inlinable
-    public func describeCloudNativeAPIGatewayNodes(_ input: DescribeCloudNativeAPIGatewayNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudNativeAPIGatewayNodesResponse > {
-        self.client.execute(action: "DescribeCloudNativeAPIGatewayNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取云原生网关节点列表
-    @inlinable
-    public func describeCloudNativeAPIGatewayNodes(_ input: DescribeCloudNativeAPIGatewayNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudNativeAPIGatewayNodesResponse {
-        try await self.client.execute(action: "DescribeCloudNativeAPIGatewayNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudNativeAPIGatewayNodes请求参数结构体
     public struct DescribeCloudNativeAPIGatewayNodesRequest: TCRequestModel {
         /// 云原生API网关实例ID。
@@ -41,7 +29,7 @@ extension Tse {
         /// 翻页从第几个开始获取
         public let offset: Int64?
         
-        public init (gatewayId: String, groupId: String?, limit: Int64?, offset: Int64?) {
+        public init (gatewayId: String, groupId: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.gatewayId = gatewayId
             self.groupId = groupId
             self.limit = limit
@@ -68,5 +56,17 @@ extension Tse {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取云原生网关节点列表
+    @inlinable
+    public func describeCloudNativeAPIGatewayNodes(_ input: DescribeCloudNativeAPIGatewayNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudNativeAPIGatewayNodesResponse > {
+        self.client.execute(action: "DescribeCloudNativeAPIGatewayNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云原生网关节点列表
+    @inlinable
+    public func describeCloudNativeAPIGatewayNodes(_ input: DescribeCloudNativeAPIGatewayNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudNativeAPIGatewayNodesResponse {
+        try await self.client.execute(action: "DescribeCloudNativeAPIGatewayNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

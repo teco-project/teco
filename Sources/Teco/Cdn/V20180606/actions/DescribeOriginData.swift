@@ -17,40 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 回源数据查询
-    ///
-    /// DescribeOriginData 用于查询 CDN 实时回源监控数据，支持以下指标查询：
-    /// + 回源流量（单位为 byte）
-    /// + 回源带宽（单位为 bps）
-    /// + 回源请求数（单位为 次）
-    /// + 回源失败请求数（单位为 次）
-    /// + 回源失败率（单位为 %，小数点后保留两位）
-    /// + 回源状态码 2xx 汇总及各 2 开头回源状态码明细（单位为 个）
-    /// + 回源状态码 3xx 汇总及各 3 开头回源状态码明细（单位为 个）
-    /// + 回源状态码 4xx 汇总及各 4 开头回源状态码明细（单位为 个）
-    /// + 回源状态码 5xx 汇总及各 5 开头回源状态码明细（单位为 个）
-    @inlinable
-    public func describeOriginData(_ input: DescribeOriginDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOriginDataResponse > {
-        self.client.execute(action: "DescribeOriginData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 回源数据查询
-    ///
-    /// DescribeOriginData 用于查询 CDN 实时回源监控数据，支持以下指标查询：
-    /// + 回源流量（单位为 byte）
-    /// + 回源带宽（单位为 bps）
-    /// + 回源请求数（单位为 次）
-    /// + 回源失败请求数（单位为 次）
-    /// + 回源失败率（单位为 %，小数点后保留两位）
-    /// + 回源状态码 2xx 汇总及各 2 开头回源状态码明细（单位为 个）
-    /// + 回源状态码 3xx 汇总及各 3 开头回源状态码明细（单位为 个）
-    /// + 回源状态码 4xx 汇总及各 4 开头回源状态码明细（单位为 个）
-    /// + 回源状态码 5xx 汇总及各 5 开头回源状态码明细（单位为 个）
-    @inlinable
-    public func describeOriginData(_ input: DescribeOriginDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginDataResponse {
-        try await self.client.execute(action: "DescribeOriginData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOriginData请求参数结构体
     public struct DescribeOriginDataRequest: TCRequestModel {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
@@ -106,7 +72,7 @@ extension Cdn {
         /// 指定查询时间的时区，默认UTC+08:00
         public let timeZone: String?
         
-        public init (startTime: Date, endTime: Date, metric: String, domains: [String]?, project: Int64?, interval: String?, detail: Bool?, area: String?, timeZone: String?) {
+        public init (startTime: Date, endTime: Date, metric: String, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, detail: Bool? = nil, area: String? = nil, timeZone: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metric = metric
@@ -147,5 +113,39 @@ extension Cdn {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 回源数据查询
+    ///
+    /// DescribeOriginData 用于查询 CDN 实时回源监控数据，支持以下指标查询：
+    /// + 回源流量（单位为 byte）
+    /// + 回源带宽（单位为 bps）
+    /// + 回源请求数（单位为 次）
+    /// + 回源失败请求数（单位为 次）
+    /// + 回源失败率（单位为 %，小数点后保留两位）
+    /// + 回源状态码 2xx 汇总及各 2 开头回源状态码明细（单位为 个）
+    /// + 回源状态码 3xx 汇总及各 3 开头回源状态码明细（单位为 个）
+    /// + 回源状态码 4xx 汇总及各 4 开头回源状态码明细（单位为 个）
+    /// + 回源状态码 5xx 汇总及各 5 开头回源状态码明细（单位为 个）
+    @inlinable
+    public func describeOriginData(_ input: DescribeOriginDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOriginDataResponse > {
+        self.client.execute(action: "DescribeOriginData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 回源数据查询
+    ///
+    /// DescribeOriginData 用于查询 CDN 实时回源监控数据，支持以下指标查询：
+    /// + 回源流量（单位为 byte）
+    /// + 回源带宽（单位为 bps）
+    /// + 回源请求数（单位为 次）
+    /// + 回源失败请求数（单位为 次）
+    /// + 回源失败率（单位为 %，小数点后保留两位）
+    /// + 回源状态码 2xx 汇总及各 2 开头回源状态码明细（单位为 个）
+    /// + 回源状态码 3xx 汇总及各 3 开头回源状态码明细（单位为 个）
+    /// + 回源状态码 4xx 汇总及各 4 开头回源状态码明细（单位为 个）
+    /// + 回源状态码 5xx 汇总及各 5 开头回源状态码明细（单位为 个）
+    @inlinable
+    public func describeOriginData(_ input: DescribeOriginDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginDataResponse {
+        try await self.client.execute(action: "DescribeOriginData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

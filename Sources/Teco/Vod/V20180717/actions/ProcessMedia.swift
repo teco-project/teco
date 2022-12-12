@@ -15,44 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 视频处理
-    ///
-    /// 对点播中的音视频媒体发起处理任务，功能包括：
-    /// 1. 视频转码（带水印）；
-    /// 2. 视频转动图；
-    /// 3. 对视频按指定时间点截图；
-    /// 4. 对视频采样截图；
-    /// 5. 对视频截图雪碧图；
-    /// 6. 对视频截取一张图做封面；
-    /// 7. 对视频转自适应码流（并加密）；
-    /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息）；
-    /// 9. 内容分析（标签、分类、封面、按帧标签）；
-    /// 10. 内容识别（视频片头片尾、人脸、文本全文、文本关键词、语音全文、语音关键词、物体）。
-    /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
-    @inlinable
-    public func processMedia(_ input: ProcessMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ProcessMediaResponse > {
-        self.client.execute(action: "ProcessMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 视频处理
-    ///
-    /// 对点播中的音视频媒体发起处理任务，功能包括：
-    /// 1. 视频转码（带水印）；
-    /// 2. 视频转动图；
-    /// 3. 对视频按指定时间点截图；
-    /// 4. 对视频采样截图；
-    /// 5. 对视频截图雪碧图；
-    /// 6. 对视频截取一张图做封面；
-    /// 7. 对视频转自适应码流（并加密）；
-    /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息）；
-    /// 9. 内容分析（标签、分类、封面、按帧标签）；
-    /// 10. 内容识别（视频片头片尾、人脸、文本全文、文本关键词、语音全文、语音关键词、物体）。
-    /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
-    @inlinable
-    public func processMedia(_ input: ProcessMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaResponse {
-        try await self.client.execute(action: "ProcessMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ProcessMedia请求参数结构体
     public struct ProcessMediaRequest: TCRequestModel {
         /// 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
@@ -62,16 +24,16 @@ extension Vod {
         public let subAppId: UInt64?
         
         /// 视频处理类型任务参数。
-        public let mediaProcessTask: MediaProcessTaskInput
+        public let mediaProcessTask: MediaProcessTaskInput?
         
         /// 音视频内容审核类型任务参数。
-        public let aiContentReviewTask: AiContentReviewTaskInput
+        public let aiContentReviewTask: AiContentReviewTaskInput?
         
         /// 音视频内容分析类型任务参数。
-        public let aiAnalysisTask: AiAnalysisTaskInput
+        public let aiAnalysisTask: AiAnalysisTaskInput?
         
         /// 音视频内容识别类型任务参数。
-        public let aiRecognitionTask: AiRecognitionTaskInput
+        public let aiRecognitionTask: AiRecognitionTaskInput?
         
         /// 任务流的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
         public let tasksPriority: Int64?
@@ -88,7 +50,7 @@ extension Vod {
         /// 保留字段，特殊用途时使用。
         public let extInfo: String?
         
-        public init (fileId: String, subAppId: UInt64?, mediaProcessTask: MediaProcessTaskInput, aiContentReviewTask: AiContentReviewTaskInput, aiAnalysisTask: AiAnalysisTaskInput, aiRecognitionTask: AiRecognitionTaskInput, tasksPriority: Int64?, tasksNotifyMode: String?, sessionContext: String?, sessionId: String?, extInfo: String?) {
+        public init (fileId: String, subAppId: UInt64? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil) {
             self.fileId = fileId
             self.subAppId = subAppId
             self.mediaProcessTask = mediaProcessTask
@@ -129,5 +91,43 @@ extension Vod {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 视频处理
+    ///
+    /// 对点播中的音视频媒体发起处理任务，功能包括：
+    /// 1. 视频转码（带水印）；
+    /// 2. 视频转动图；
+    /// 3. 对视频按指定时间点截图；
+    /// 4. 对视频采样截图；
+    /// 5. 对视频截图雪碧图；
+    /// 6. 对视频截取一张图做封面；
+    /// 7. 对视频转自适应码流（并加密）；
+    /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息）；
+    /// 9. 内容分析（标签、分类、封面、按帧标签）；
+    /// 10. 内容识别（视频片头片尾、人脸、文本全文、文本关键词、语音全文、语音关键词、物体）。
+    /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
+    @inlinable
+    public func processMedia(_ input: ProcessMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ProcessMediaResponse > {
+        self.client.execute(action: "ProcessMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 视频处理
+    ///
+    /// 对点播中的音视频媒体发起处理任务，功能包括：
+    /// 1. 视频转码（带水印）；
+    /// 2. 视频转动图；
+    /// 3. 对视频按指定时间点截图；
+    /// 4. 对视频采样截图；
+    /// 5. 对视频截图雪碧图；
+    /// 6. 对视频截取一张图做封面；
+    /// 7. 对视频转自适应码流（并加密）；
+    /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息）；
+    /// 9. 内容分析（标签、分类、封面、按帧标签）；
+    /// 10. 内容识别（视频片头片尾、人脸、文本全文、文本关键词、语音全文、语音关键词、物体）。
+    /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
+    @inlinable
+    public func processMedia(_ input: ProcessMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaResponse {
+        try await self.client.execute(action: "ProcessMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

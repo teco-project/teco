@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 开始下一批次发布
-    @inlinable
-    public func resumeDeployApplication(_ input: ResumeDeployApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeDeployApplicationResponse > {
-        self.client.execute(action: "ResumeDeployApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开始下一批次发布
-    @inlinable
-    public func resumeDeployApplication(_ input: ResumeDeployApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeDeployApplicationResponse {
-        try await self.client.execute(action: "ResumeDeployApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResumeDeployApplication请求参数结构体
     public struct ResumeDeployApplicationRequest: TCRequestModel {
         /// 需要开始下一批次的服务id
@@ -35,7 +23,7 @@ extension Tem {
         /// 环境id
         public let environmentId: String?
         
-        public init (applicationId: String?, environmentId: String?) {
+        public init (applicationId: String? = nil, environmentId: String? = nil) {
             self.applicationId = applicationId
             self.environmentId = environmentId
         }
@@ -58,5 +46,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开始下一批次发布
+    @inlinable
+    public func resumeDeployApplication(_ input: ResumeDeployApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeDeployApplicationResponse > {
+        self.client.execute(action: "ResumeDeployApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开始下一批次发布
+    @inlinable
+    public func resumeDeployApplication(_ input: ResumeDeployApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeDeployApplicationResponse {
+        try await self.client.execute(action: "ResumeDeployApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

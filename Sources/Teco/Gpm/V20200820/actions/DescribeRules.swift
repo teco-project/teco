@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gpm {
-    /// 分页查询规则集列表
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 分页查询规则集列表
-    @inlinable
-    public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesResponse > {
-        self.client.execute(action: "DescribeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分页查询规则集列表
-    ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    /// 分页查询规则集列表
-    @inlinable
-    public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesResponse {
-        try await self.client.execute(action: "DescribeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRules请求参数结构体
     public struct DescribeRulesRequest: TCRequestModel {
         /// 当前页号，不传则返回第一页
@@ -50,7 +32,7 @@ extension Gpm {
         /// 标签列表，用于过滤。
         public let tags: [Tag]?
         
-        public init (pageNumber: Int64?, pageSize: Int64?, searchType: String?, keyword: String?, tags: [Tag]?) {
+        public init (pageNumber: Int64? = nil, pageSize: Int64? = nil, searchType: String? = nil, keyword: String? = nil, tags: [Tag]? = nil) {
             self.pageNumber = pageNumber
             self.pageSize = pageSize
             self.searchType = searchType
@@ -100,5 +82,23 @@ extension Gpm {
             case keyword = "Keyword"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分页查询规则集列表
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 分页查询规则集列表
+    @inlinable
+    public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesResponse > {
+        self.client.execute(action: "DescribeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分页查询规则集列表
+    ///
+    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    /// 分页查询规则集列表
+    @inlinable
+    public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesResponse {
+        try await self.client.execute(action: "DescribeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

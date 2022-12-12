@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tsf {
-    /// 查询网关API监控明细数据
-    @inlinable
-    public func describeApiUseDetail(_ input: DescribeApiUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiUseDetailResponse > {
-        self.client.execute(action: "DescribeApiUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询网关API监控明细数据
-    @inlinable
-    public func describeApiUseDetail(_ input: DescribeApiUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiUseDetailResponse {
-        try await self.client.execute(action: "DescribeApiUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApiUseDetail请求参数结构体
     public struct DescribeApiUseDetailRequest: TCRequestModel {
         /// 网关部署组ID
@@ -72,5 +60,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询网关API监控明细数据
+    @inlinable
+    public func describeApiUseDetail(_ input: DescribeApiUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiUseDetailResponse > {
+        self.client.execute(action: "DescribeApiUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网关API监控明细数据
+    @inlinable
+    public func describeApiUseDetail(_ input: DescribeApiUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiUseDetailResponse {
+        try await self.client.execute(action: "DescribeApiUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

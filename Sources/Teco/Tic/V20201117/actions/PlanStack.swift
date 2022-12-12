@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Tic {
-    /// 执行Plan事件
-    ///
-    /// 本接口（PlanStack）用于触发资源栈下某个版本的PLAN事件。
-    /// - 当版本处于PLAN_IN_PROGRESS或APPLY_IN_PROGRESS状态时，将无法再执行本操作
-    /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
-    @inlinable
-    public func planStack(_ input: PlanStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PlanStackResponse > {
-        self.client.execute(action: "PlanStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 执行Plan事件
-    ///
-    /// 本接口（PlanStack）用于触发资源栈下某个版本的PLAN事件。
-    /// - 当版本处于PLAN_IN_PROGRESS或APPLY_IN_PROGRESS状态时，将无法再执行本操作
-    /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
-    @inlinable
-    public func planStack(_ input: PlanStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PlanStackResponse {
-        try await self.client.execute(action: "PlanStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PlanStack请求参数结构体
     public struct PlanStackRequest: TCRequestModel {
         /// 资源栈ID
@@ -66,5 +46,25 @@ extension Tic {
             case eventId = "EventId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 执行Plan事件
+    ///
+    /// 本接口（PlanStack）用于触发资源栈下某个版本的PLAN事件。
+    /// - 当版本处于PLAN_IN_PROGRESS或APPLY_IN_PROGRESS状态时，将无法再执行本操作
+    /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
+    @inlinable
+    public func planStack(_ input: PlanStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PlanStackResponse > {
+        self.client.execute(action: "PlanStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 执行Plan事件
+    ///
+    /// 本接口（PlanStack）用于触发资源栈下某个版本的PLAN事件。
+    /// - 当版本处于PLAN_IN_PROGRESS或APPLY_IN_PROGRESS状态时，将无法再执行本操作
+    /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
+    @inlinable
+    public func planStack(_ input: PlanStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PlanStackResponse {
+        try await self.client.execute(action: "PlanStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 查询用户信息
-    @inlinable
-    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserResponse > {
-        self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户信息
-    @inlinable
-    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
-        try await self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUser请求参数结构体
     public struct DescribeUserRequest: TCRequestModel {
         /// 实例Id
@@ -41,7 +29,7 @@ extension Ckafka {
         /// 本次返回个数
         public let limit: Int64?
         
-        public init (instanceId: String, searchWord: String?, offset: Int64?, limit: Int64?) {
+        public init (instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.searchWord = searchWord
             self.offset = offset
@@ -68,5 +56,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户信息
+    @inlinable
+    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserResponse > {
+        self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户信息
+    @inlinable
+    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
+        try await self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

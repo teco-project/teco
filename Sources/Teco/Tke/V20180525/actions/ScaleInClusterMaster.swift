@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 缩容独立集群master节点
-    @inlinable
-    public func scaleInClusterMaster(_ input: ScaleInClusterMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleInClusterMasterResponse > {
-        self.client.execute(action: "ScaleInClusterMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 缩容独立集群master节点
-    @inlinable
-    public func scaleInClusterMaster(_ input: ScaleInClusterMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInClusterMasterResponse {
-        try await self.client.execute(action: "ScaleInClusterMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ScaleInClusterMaster请求参数结构体
     public struct ScaleInClusterMasterRequest: TCRequestModel {
         /// 集群实例ID
@@ -54,5 +42,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 缩容独立集群master节点
+    @inlinable
+    public func scaleInClusterMaster(_ input: ScaleInClusterMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ScaleInClusterMasterResponse > {
+        self.client.execute(action: "ScaleInClusterMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 缩容独立集群master节点
+    @inlinable
+    public func scaleInClusterMaster(_ input: ScaleInClusterMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInClusterMasterResponse {
+        try await self.client.execute(action: "ScaleInClusterMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

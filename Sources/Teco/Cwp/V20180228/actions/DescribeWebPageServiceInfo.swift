@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询网站防篡改服务信息
-    ///
-    /// 网站防篡改-查询网页防篡改服务器购买信息及服务器信息
-    @inlinable
-    public func describeWebPageServiceInfo(_ input: DescribeWebPageServiceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebPageServiceInfoResponse > {
-        self.client.execute(action: "DescribeWebPageServiceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询网站防篡改服务信息
-    ///
-    /// 网站防篡改-查询网页防篡改服务器购买信息及服务器信息
-    @inlinable
-    public func describeWebPageServiceInfo(_ input: DescribeWebPageServiceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageServiceInfoResponse {
-        try await self.client.execute(action: "DescribeWebPageServiceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWebPageServiceInfo请求参数结构体
     public struct DescribeWebPageServiceInfoRequest: TCRequestModel {
         public init () {
@@ -81,5 +65,21 @@ extension Cwp {
             case protectDirNum = "ProtectDirNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询网站防篡改服务信息
+    ///
+    /// 网站防篡改-查询网页防篡改服务器购买信息及服务器信息
+    @inlinable
+    public func describeWebPageServiceInfo(_ input: DescribeWebPageServiceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebPageServiceInfoResponse > {
+        self.client.execute(action: "DescribeWebPageServiceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网站防篡改服务信息
+    ///
+    /// 网站防篡改-查询网页防篡改服务器购买信息及服务器信息
+    @inlinable
+    public func describeWebPageServiceInfo(_ input: DescribeWebPageServiceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageServiceInfoResponse {
+        try await self.client.execute(action: "DescribeWebPageServiceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

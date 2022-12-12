@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 删除RocketMQ消费组
-    @inlinable
-    public func deleteRocketMQGroup(_ input: DeleteRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRocketMQGroupResponse > {
-        self.client.execute(action: "DeleteRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除RocketMQ消费组
-    @inlinable
-    public func deleteRocketMQGroup(_ input: DeleteRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQGroupResponse {
-        try await self.client.execute(action: "DeleteRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRocketMQGroup请求参数结构体
     public struct DeleteRocketMQGroupRequest: TCRequestModel {
         /// 集群ID
@@ -59,5 +47,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除RocketMQ消费组
+    @inlinable
+    public func deleteRocketMQGroup(_ input: DeleteRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRocketMQGroupResponse > {
+        self.client.execute(action: "DeleteRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除RocketMQ消费组
+    @inlinable
+    public func deleteRocketMQGroup(_ input: DeleteRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQGroupResponse {
+        try await self.client.execute(action: "DeleteRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

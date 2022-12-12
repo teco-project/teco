@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ivld {
-    /// 描述自定义人物库
-    ///
-    /// 描述自定义人物库信息，当前库大小(库中有多少人脸)，以及库中的存储桶
-    @inlinable
-    public func describeCustomGroup(_ input: DescribeCustomGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomGroupResponse > {
-        self.client.execute(action: "DescribeCustomGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 描述自定义人物库
-    ///
-    /// 描述自定义人物库信息，当前库大小(库中有多少人脸)，以及库中的存储桶
-    @inlinable
-    public func describeCustomGroup(_ input: DescribeCustomGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomGroupResponse {
-        try await self.client.execute(action: "DescribeCustomGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomGroup请求参数结构体
     public struct DescribeCustomGroupRequest: TCRequestModel {
         public init () {
@@ -53,5 +37,21 @@ extension Ivld {
             case bucket = "Bucket"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 描述自定义人物库
+    ///
+    /// 描述自定义人物库信息，当前库大小(库中有多少人脸)，以及库中的存储桶
+    @inlinable
+    public func describeCustomGroup(_ input: DescribeCustomGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomGroupResponse > {
+        self.client.execute(action: "DescribeCustomGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 描述自定义人物库
+    ///
+    /// 描述自定义人物库信息，当前库大小(库中有多少人脸)，以及库中的存储桶
+    @inlinable
+    public func describeCustomGroup(_ input: DescribeCustomGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomGroupResponse {
+        try await self.client.execute(action: "DescribeCustomGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

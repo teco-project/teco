@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cmq {
-    /// 枚举队列
-    @inlinable
-    public func describeQueueDetail(_ input: DescribeQueueDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQueueDetailResponse > {
-        self.client.execute(action: "DescribeQueueDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 枚举队列
-    @inlinable
-    public func describeQueueDetail(_ input: DescribeQueueDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQueueDetailResponse {
-        try await self.client.execute(action: "DescribeQueueDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeQueueDetail请求参数结构体
     public struct DescribeQueueDetailRequest: TCRequestModel {
         /// 分页时本页获取队列列表的起始位置。如果填写了该值，必须也要填写 limit 。该值缺省时，后台取默认值 0
@@ -44,7 +32,7 @@ extension Cmq {
         /// 精确匹配QueueName
         public let queueName: String?
         
-        public init (offset: UInt64?, limit: UInt64?, filters: [Filter]?, tagKey: String?, queueName: String?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, queueName: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -77,5 +65,17 @@ extension Cmq {
             case queueSet = "QueueSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 枚举队列
+    @inlinable
+    public func describeQueueDetail(_ input: DescribeQueueDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQueueDetailResponse > {
+        self.client.execute(action: "DescribeQueueDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 枚举队列
+    @inlinable
+    public func describeQueueDetail(_ input: DescribeQueueDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQueueDetailResponse {
+        try await self.client.execute(action: "DescribeQueueDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

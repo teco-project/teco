@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 获取关键词样本列表
-    ///
-    /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
-    @inlinable
-    public func describeWordSamples(_ input: DescribeWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWordSamplesResponse > {
-        self.client.execute(action: "DescribeWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取关键词样本列表
-    ///
-    /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
-    @inlinable
-    public func describeWordSamples(_ input: DescribeWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWordSamplesResponse {
-        try await self.client.execute(action: "DescribeWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWordSamples请求参数结构体
     public struct DescribeWordSamplesRequest: TCRequestModel {
         /// 关键词过滤条件，数组长度限制：100 个词。
@@ -56,7 +40,7 @@ extension Mps {
         /// 返回记录条数，默认值：100，最大值：100。
         public let limit: UInt64?
         
-        public init (keywords: [String]?, usages: [String]?, tags: [String]?, offset: UInt64?, limit: UInt64?) {
+        public init (keywords: [String]? = nil, usages: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.keywords = keywords
             self.usages = usages
             self.tags = tags
@@ -91,5 +75,21 @@ extension Mps {
             case wordSet = "WordSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取关键词样本列表
+    ///
+    /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
+    @inlinable
+    public func describeWordSamples(_ input: DescribeWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWordSamplesResponse > {
+        self.client.execute(action: "DescribeWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取关键词样本列表
+    ///
+    /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
+    @inlinable
+    public func describeWordSamples(_ input: DescribeWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWordSamplesResponse {
+        try await self.client.execute(action: "DescribeWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

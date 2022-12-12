@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 创建spark任务
-    @inlinable
-    public func createSparkAppTask(_ input: CreateSparkAppTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSparkAppTaskResponse > {
-        self.client.execute(action: "CreateSparkAppTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建spark任务
-    @inlinable
-    public func createSparkAppTask(_ input: CreateSparkAppTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkAppTaskResponse {
-        try await self.client.execute(action: "CreateSparkAppTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSparkAppTask请求参数结构体
     public struct CreateSparkAppTaskRequest: TCRequestModel {
         /// spark作业名
@@ -35,7 +23,7 @@ extension Dlc {
         /// spark作业的命令行参数，以空格分隔；一般用于周期性调用使用
         public let cmdArgs: String?
         
-        public init (jobName: String, cmdArgs: String?) {
+        public init (jobName: String, cmdArgs: String? = nil) {
             self.jobName = jobName
             self.cmdArgs = cmdArgs
         }
@@ -62,5 +50,17 @@ extension Dlc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建spark任务
+    @inlinable
+    public func createSparkAppTask(_ input: CreateSparkAppTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSparkAppTaskResponse > {
+        self.client.execute(action: "CreateSparkAppTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建spark任务
+    @inlinable
+    public func createSparkAppTask(_ input: CreateSparkAppTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkAppTaskResponse {
+        try await self.client.execute(action: "CreateSparkAppTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 创建 DNS 记录
-    @inlinable
-    public func createDnsRecord(_ input: CreateDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDnsRecordResponse > {
-        self.client.execute(action: "CreateDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建 DNS 记录
-    @inlinable
-    public func createDnsRecord(_ input: CreateDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDnsRecordResponse {
-        try await self.client.execute(action: "CreateDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDnsRecord请求参数结构体
     public struct CreateDnsRecordRequest: TCRequestModel {
         /// 站点 ID
@@ -52,7 +40,7 @@ extension Teo {
         /// 优先级
         public let priority: Int64?
         
-        public init (zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64?, priority: Int64?) {
+        public init (zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64? = nil, priority: Int64? = nil) {
             self.zoneId = zoneId
             self.type = type
             self.name = name
@@ -142,5 +130,17 @@ extension Teo {
             case cname = "Cname"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建 DNS 记录
+    @inlinable
+    public func createDnsRecord(_ input: CreateDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDnsRecordResponse > {
+        self.client.execute(action: "CreateDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建 DNS 记录
+    @inlinable
+    public func createDnsRecord(_ input: CreateDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDnsRecordResponse {
+        try await self.client.execute(action: "CreateDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

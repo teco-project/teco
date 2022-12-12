@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 禁用单元化规则
-    @inlinable
-    public func disableUnitRule(_ input: DisableUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableUnitRuleResponse > {
-        self.client.execute(action: "DisableUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 禁用单元化规则
-    @inlinable
-    public func disableUnitRule(_ input: DisableUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUnitRuleResponse {
-        try await self.client.execute(action: "DisableUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableUnitRule请求参数结构体
     public struct DisableUnitRuleRequest: TCRequestModel {
         /// 规则ID
@@ -54,5 +42,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 禁用单元化规则
+    @inlinable
+    public func disableUnitRule(_ input: DisableUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableUnitRuleResponse > {
+        self.client.execute(action: "DisableUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用单元化规则
+    @inlinable
+    public func disableUnitRule(_ input: DisableUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUnitRuleResponse {
+        try await self.client.execute(action: "DisableUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 创建只读实例
-    ///
-    /// 本接口（CreateReadOnlyDBInstances）用于添加只读副本实例。
-    @inlinable
-    public func createReadOnlyDBInstances(_ input: CreateReadOnlyDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReadOnlyDBInstancesResponse > {
-        self.client.execute(action: "CreateReadOnlyDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建只读实例
-    ///
-    /// 本接口（CreateReadOnlyDBInstances）用于添加只读副本实例。
-    @inlinable
-    public func createReadOnlyDBInstances(_ input: CreateReadOnlyDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyDBInstancesResponse {
-        try await self.client.execute(action: "CreateReadOnlyDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateReadOnlyDBInstances请求参数结构体
     public struct CreateReadOnlyDBInstancesRequest: TCRequestModel {
         /// 主实例ID，格式如：mssql-3l3fgqn7
@@ -99,7 +83,7 @@ extension Sqlserver {
         /// 系统时区，默认：China Standard Time
         public let timeZone: String?
         
-        public init (instanceId: String, zone: String, readOnlyGroupType: Int64, memory: Int64, storage: Int64, readOnlyGroupForcedUpgrade: Int64?, readOnlyGroupId: String?, readOnlyGroupName: String?, readOnlyGroupIsOfflineDelay: Int64?, readOnlyGroupMaxDelayTime: Int64?, readOnlyGroupMinInGroup: Int64?, instanceChargeType: String?, goodsNum: Int64?, subnetId: String?, vpcId: String?, period: Int64?, securityGroupList: [String]?, autoVoucher: Int64?, voucherIds: [String]?, resourceTags: [ResourceTag]?, collation: String?, timeZone: String?) {
+        public init (instanceId: String, zone: String, readOnlyGroupType: Int64, memory: Int64, storage: Int64, readOnlyGroupForcedUpgrade: Int64? = nil, readOnlyGroupId: String? = nil, readOnlyGroupName: String? = nil, readOnlyGroupIsOfflineDelay: Int64? = nil, readOnlyGroupMaxDelayTime: Int64? = nil, readOnlyGroupMinInGroup: Int64? = nil, instanceChargeType: String? = nil, goodsNum: Int64? = nil, subnetId: String? = nil, vpcId: String? = nil, period: Int64? = nil, securityGroupList: [String]? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, resourceTags: [ResourceTag]? = nil, collation: String? = nil, timeZone: String? = nil) {
             self.instanceId = instanceId
             self.zone = zone
             self.readOnlyGroupType = readOnlyGroupType
@@ -162,5 +146,21 @@ extension Sqlserver {
             case dealNames = "DealNames"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建只读实例
+    ///
+    /// 本接口（CreateReadOnlyDBInstances）用于添加只读副本实例。
+    @inlinable
+    public func createReadOnlyDBInstances(_ input: CreateReadOnlyDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReadOnlyDBInstancesResponse > {
+        self.client.execute(action: "CreateReadOnlyDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建只读实例
+    ///
+    /// 本接口（CreateReadOnlyDBInstances）用于添加只读副本实例。
+    @inlinable
+    public func createReadOnlyDBInstances(_ input: CreateReadOnlyDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyDBInstancesResponse {
+        try await self.client.execute(action: "CreateReadOnlyDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

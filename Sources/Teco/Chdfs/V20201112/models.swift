@@ -65,7 +65,7 @@ extension Chdfs {
         /// 创建时间
         public let createTime: Date?
         
-        public init (accessRuleId: UInt64?, address: String?, accessMode: UInt64?, priority: UInt64?, createTime: Date?) {
+        public init (accessRuleId: UInt64? = nil, address: String? = nil, accessMode: UInt64? = nil, priority: UInt64? = nil, createTime: Date? = nil) {
             self.accessRuleId = accessRuleId
             self.address = address
             self.accessMode = accessMode
@@ -163,7 +163,7 @@ extension Chdfs {
         /// 创建时间
         public let createTime: Date?
         
-        public init (lifeCycleRuleId: UInt64?, lifeCycleRuleName: String?, path: String?, transitions: [Transition]?, status: UInt64?, createTime: Date?) {
+        public init (lifeCycleRuleId: UInt64? = nil, lifeCycleRuleName: String? = nil, path: String? = nil, transitions: [Transition]? = nil, status: UInt64? = nil, createTime: Date? = nil) {
             self.lifeCycleRuleId = lifeCycleRuleId
             self.lifeCycleRuleName = lifeCycleRuleName
             self.path = path
@@ -233,7 +233,7 @@ extension Chdfs {
         /// 创建时间
         public let createTime: Date?
         
-        public init (restoreTaskId: UInt64?, filePath: String?, type: UInt64?, days: UInt64?, status: UInt64?, createTime: Date?) {
+        public init (restoreTaskId: UInt64? = nil, filePath: String? = nil, type: UInt64? = nil, days: UInt64? = nil, status: UInt64? = nil, createTime: Date? = nil) {
             self.restoreTaskId = restoreTaskId
             self.filePath = filePath
             self.type = type

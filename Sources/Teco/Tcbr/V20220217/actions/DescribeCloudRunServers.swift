@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcbr {
-    /// 查询云托管服务列表
-    ///
-    /// 查询云托管服务列表接口
-    @inlinable
-    public func describeCloudRunServers(_ input: DescribeCloudRunServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudRunServersResponse > {
-        self.client.execute(action: "DescribeCloudRunServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云托管服务列表
-    ///
-    /// 查询云托管服务列表接口
-    @inlinable
-    public func describeCloudRunServers(_ input: DescribeCloudRunServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRunServersResponse {
-        try await self.client.execute(action: "DescribeCloudRunServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudRunServers请求参数结构体
     public struct DescribeCloudRunServersRequest: TCRequestModel {
         /// 环境Id
@@ -44,7 +28,7 @@ extension Tcbr {
         /// 不传或传0时 会默认为1
         public let pageNum: Int64?
         
-        public init (envId: String, pageSize: Int64?, pageNum: Int64?) {
+        public init (envId: String, pageSize: Int64? = nil, pageNum: Int64? = nil) {
             self.envId = envId
             self.pageSize = pageSize
             self.pageNum = pageNum
@@ -73,5 +57,21 @@ extension Tcbr {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云托管服务列表
+    ///
+    /// 查询云托管服务列表接口
+    @inlinable
+    public func describeCloudRunServers(_ input: DescribeCloudRunServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudRunServersResponse > {
+        self.client.execute(action: "DescribeCloudRunServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云托管服务列表
+    ///
+    /// 查询云托管服务列表接口
+    @inlinable
+    public func describeCloudRunServers(_ input: DescribeCloudRunServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRunServersResponse {
+        try await self.client.execute(action: "DescribeCloudRunServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

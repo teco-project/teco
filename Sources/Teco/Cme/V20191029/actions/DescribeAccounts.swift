@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 获取账号信息
-    ///
-    /// 获取平台中所有的已注册账号。
-    @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
-        self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取账号信息
-    ///
-    /// 获取平台中所有的已注册账号。
-    @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
-        try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccounts请求参数结构体
     public struct DescribeAccountsRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -45,7 +29,7 @@ extension Cme {
         /// 分页返回的记录条数，默认值：10，最大值：20。
         public let limit: Int64?
         
-        public init (platform: String, phone: String?, offset: Int64?, limit: Int64?) {
+        public init (platform: String, phone: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.platform = platform
             self.phone = phone
             self.offset = offset
@@ -76,5 +60,21 @@ extension Cme {
             case accountInfoSet = "AccountInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取账号信息
+    ///
+    /// 获取平台中所有的已注册账号。
+    @inlinable
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+        self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取账号信息
+    ///
+    /// 获取平台中所有的已注册账号。
+    @inlinable
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
+        try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

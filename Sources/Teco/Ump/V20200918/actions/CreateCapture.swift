@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ump {
-    /// 抓拍上报接口
-    ///
-    /// 场内抓拍上报接口
-    @inlinable
-    public func createCapture(_ input: CreateCaptureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCaptureResponse > {
-        self.client.execute(action: "CreateCapture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 抓拍上报接口
-    ///
-    /// 场内抓拍上报接口
-    @inlinable
-    public func createCapture(_ input: CreateCaptureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCaptureResponse {
-        try await self.client.execute(action: "CreateCapture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCapture请求参数结构体
     public struct CreateCaptureRequest: TCRequestModel {
         /// 原始抓拍报文
@@ -58,5 +42,21 @@ extension Ump {
             case rspData = "RspData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 抓拍上报接口
+    ///
+    /// 场内抓拍上报接口
+    @inlinable
+    public func createCapture(_ input: CreateCaptureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCaptureResponse > {
+        self.client.execute(action: "CreateCapture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 抓拍上报接口
+    ///
+    /// 场内抓拍上报接口
+    @inlinable
+    public func createCapture(_ input: CreateCaptureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCaptureResponse {
+        try await self.client.execute(action: "CreateCapture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

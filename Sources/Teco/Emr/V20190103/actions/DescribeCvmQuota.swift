@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 查询账户的CVM配额
-    ///
-    /// 获取账户的CVM配额
-    @inlinable
-    public func describeCvmQuota(_ input: DescribeCvmQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCvmQuotaResponse > {
-        self.client.execute(action: "DescribeCvmQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询账户的CVM配额
-    ///
-    /// 获取账户的CVM配额
-    @inlinable
-    public func describeCvmQuota(_ input: DescribeCvmQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCvmQuotaResponse {
-        try await self.client.execute(action: "DescribeCvmQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCvmQuota请求参数结构体
     public struct DescribeCvmQuotaRequest: TCRequestModel {
         /// EMR集群ID
@@ -39,7 +23,7 @@ extension Emr {
         /// 区ID
         public let zoneId: Int64?
         
-        public init (clusterId: String, zoneId: Int64?) {
+        public init (clusterId: String, zoneId: Int64? = nil) {
             self.clusterId = clusterId
             self.zoneId = zoneId
         }
@@ -73,5 +57,21 @@ extension Emr {
             case eksQuotaSet = "EksQuotaSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询账户的CVM配额
+    ///
+    /// 获取账户的CVM配额
+    @inlinable
+    public func describeCvmQuota(_ input: DescribeCvmQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCvmQuotaResponse > {
+        self.client.execute(action: "DescribeCvmQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账户的CVM配额
+    ///
+    /// 获取账户的CVM配额
+    @inlinable
+    public func describeCvmQuota(_ input: DescribeCvmQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCvmQuotaResponse {
+        try await self.client.execute(action: "DescribeCvmQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

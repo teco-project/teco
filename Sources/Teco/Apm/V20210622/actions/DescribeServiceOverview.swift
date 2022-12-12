@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apm {
-    /// 获取服务概览数据
-    ///
-    /// 服务概览数据拉取
-    @inlinable
-    public func describeServiceOverview(_ input: DescribeServiceOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceOverviewResponse > {
-        self.client.execute(action: "DescribeServiceOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取服务概览数据
-    ///
-    /// 服务概览数据拉取
-    @inlinable
-    public func describeServiceOverview(_ input: DescribeServiceOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceOverviewResponse {
-        try await self.client.execute(action: "DescribeServiceOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeServiceOverview请求参数结构体
     public struct DescribeServiceOverviewRequest: TCRequestModel {
         /// 过滤条件
@@ -43,7 +27,7 @@ extension Apm {
         public let groupBy: [String]
         
         /// 排序
-        public let orderBy: OrderBy
+        public let orderBy: OrderBy?
         
         /// 实例ID
         public let instanceId: String?
@@ -60,7 +44,7 @@ extension Apm {
         /// 结束时间
         public let endTime: UInt64?
         
-        public init (filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy, instanceId: String?, limit: Int64?, startTime: UInt64?, offset: Int64?, endTime: UInt64?) {
+        public init (filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: Int64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil) {
             self.filters = filters
             self.metrics = metrics
             self.groupBy = groupBy
@@ -98,5 +82,21 @@ extension Apm {
             case records = "Records"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取服务概览数据
+    ///
+    /// 服务概览数据拉取
+    @inlinable
+    public func describeServiceOverview(_ input: DescribeServiceOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceOverviewResponse > {
+        self.client.execute(action: "DescribeServiceOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取服务概览数据
+    ///
+    /// 服务概览数据拉取
+    @inlinable
+    public func describeServiceOverview(_ input: DescribeServiceOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceOverviewResponse {
+        try await self.client.execute(action: "DescribeServiceOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

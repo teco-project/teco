@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询简单命名空间列表
-    ///
-    /// 查询简单命名空间列表 
-    @inlinable
-    public func describeSimpleNamespaces(_ input: DescribeSimpleNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSimpleNamespacesResponse > {
-        self.client.execute(action: "DescribeSimpleNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询简单命名空间列表
-    ///
-    /// 查询简单命名空间列表 
-    @inlinable
-    public func describeSimpleNamespaces(_ input: DescribeSimpleNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleNamespacesResponse {
-        try await self.client.execute(action: "DescribeSimpleNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSimpleNamespaces请求参数结构体
     public struct DescribeSimpleNamespacesRequest: TCRequestModel {
         /// 命名空间ID列表，不传入时查询全量
@@ -66,7 +50,7 @@ extension Tsf {
         /// 无
         public let disableProgramAuthCheck: Bool?
         
-        public init (namespaceIdList: [String]?, clusterId: String?, limit: Int64?, offset: Int64?, namespaceId: String?, namespaceResourceTypeList: [String]?, searchWord: String?, namespaceTypeList: [String]?, namespaceName: String?, isDefault: String?, disableProgramAuthCheck: Bool?) {
+        public init (namespaceIdList: [String]? = nil, clusterId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, namespaceId: String? = nil, namespaceResourceTypeList: [String]? = nil, searchWord: String? = nil, namespaceTypeList: [String]? = nil, namespaceName: String? = nil, isDefault: String? = nil, disableProgramAuthCheck: Bool? = nil) {
             self.namespaceIdList = namespaceIdList
             self.clusterId = clusterId
             self.limit = limit
@@ -99,7 +83,7 @@ extension Tsf {
     public struct DescribeSimpleNamespacesResponse: TCResponseModel {
         /// 命名空间分页列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TsfPageNamespace
+        public let result: TsfPageNamespace?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -108,5 +92,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询简单命名空间列表
+    ///
+    /// 查询简单命名空间列表 
+    @inlinable
+    public func describeSimpleNamespaces(_ input: DescribeSimpleNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSimpleNamespacesResponse > {
+        self.client.execute(action: "DescribeSimpleNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询简单命名空间列表
+    ///
+    /// 查询简单命名空间列表 
+    @inlinable
+    public func describeSimpleNamespaces(_ input: DescribeSimpleNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleNamespacesResponse {
+        try await self.client.execute(action: "DescribeSimpleNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

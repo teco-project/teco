@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 创建匿名访问Token
-    @inlinable
-    public func createAnonymousAccessToken(_ input: CreateAnonymousAccessTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAnonymousAccessTokenResponse > {
-        self.client.execute(action: "CreateAnonymousAccessToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建匿名访问Token
-    @inlinable
-    public func createAnonymousAccessToken(_ input: CreateAnonymousAccessTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnonymousAccessTokenResponse {
-        try await self.client.execute(action: "CreateAnonymousAccessToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAnonymousAccessToken请求参数结构体
     public struct CreateAnonymousAccessTokenRequest: TCRequestModel {
         /// Token的TTL(time to alive)分钟数,最大值1440(即24小时)
@@ -38,7 +26,7 @@ extension Iotvideo {
         /// 旧的AccessToken。续期Token时，此参数为必须
         public let oldAccessToken: String?
         
-        public init (ttlMinutes: Int64, tid: String?, oldAccessToken: String?) {
+        public init (ttlMinutes: Int64, tid: String? = nil, oldAccessToken: String? = nil) {
             self.ttlMinutes = ttlMinutes
             self.tid = tid
             self.oldAccessToken = oldAccessToken
@@ -71,5 +59,17 @@ extension Iotvideo {
             case expireTime = "ExpireTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建匿名访问Token
+    @inlinable
+    public func createAnonymousAccessToken(_ input: CreateAnonymousAccessTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAnonymousAccessTokenResponse > {
+        self.client.execute(action: "CreateAnonymousAccessToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建匿名访问Token
+    @inlinable
+    public func createAnonymousAccessToken(_ input: CreateAnonymousAccessTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnonymousAccessTokenResponse {
+        try await self.client.execute(action: "CreateAnonymousAccessToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

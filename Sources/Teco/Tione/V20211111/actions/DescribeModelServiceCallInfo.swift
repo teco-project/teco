@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 展示服务的调用信息
-    @inlinable
-    public func describeModelServiceCallInfo(_ input: DescribeModelServiceCallInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServiceCallInfoResponse > {
-        self.client.execute(action: "DescribeModelServiceCallInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 展示服务的调用信息
-    @inlinable
-    public func describeModelServiceCallInfo(_ input: DescribeModelServiceCallInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceCallInfoResponse {
-        try await self.client.execute(action: "DescribeModelServiceCallInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeModelServiceCallInfo请求参数结构体
     public struct DescribeModelServiceCallInfoRequest: TCRequestModel {
         /// 服务组id
@@ -45,11 +33,11 @@ extension Tione {
     public struct DescribeModelServiceCallInfoResponse: TCResponseModel {
         /// 服务调用信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let serviceCallInfo: ServiceCallInfo
+        public let serviceCallInfo: ServiceCallInfo?
         
         /// 升级网关调用信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let inferGatewayCallInfo: InferGatewayCallInfo
+        public let inferGatewayCallInfo: InferGatewayCallInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -59,5 +47,17 @@ extension Tione {
             case inferGatewayCallInfo = "InferGatewayCallInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 展示服务的调用信息
+    @inlinable
+    public func describeModelServiceCallInfo(_ input: DescribeModelServiceCallInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServiceCallInfoResponse > {
+        self.client.execute(action: "DescribeModelServiceCallInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 展示服务的调用信息
+    @inlinable
+    public func describeModelServiceCallInfo(_ input: DescribeModelServiceCallInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceCallInfoResponse {
+        try await self.client.execute(action: "DescribeModelServiceCallInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,6 +15,34 @@
 // DO NOT EDIT.
 
 extension Vpc {
+    /// DescribeVpcLimits请求参数结构体
+    public struct DescribeVpcLimitsRequest: TCRequestModel {
+        /// 配额名称。每次最大查询100个配额类型。
+        public let limitTypes: [String]
+        
+        public init (limitTypes: [String]) {
+            self.limitTypes = limitTypes
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case limitTypes = "LimitTypes"
+        }
+    }
+    
+    /// DescribeVpcLimits返回参数结构体
+    public struct DescribeVpcLimitsResponse: TCResponseModel {
+        /// 私有网络配额
+        public let vpcLimitSet: [VpcLimit]
+        
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case vpcLimitSet = "VpcLimitSet"
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 获取私有网络配额
     ///
     /// 获取私有网络配额，部分私有网络的配额有地域属性。
@@ -87,33 +115,5 @@ extension Vpc {
     @inlinable
     public func describeVpcLimits(_ input: DescribeVpcLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcLimitsResponse {
         try await self.client.execute(action: "DescribeVpcLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// DescribeVpcLimits请求参数结构体
-    public struct DescribeVpcLimitsRequest: TCRequestModel {
-        /// 配额名称。每次最大查询100个配额类型。
-        public let limitTypes: [String]
-        
-        public init (limitTypes: [String]) {
-            self.limitTypes = limitTypes
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case limitTypes = "LimitTypes"
-        }
-    }
-    
-    /// DescribeVpcLimits返回参数结构体
-    public struct DescribeVpcLimitsResponse: TCResponseModel {
-        /// 私有网络配额
-        public let vpcLimitSet: [VpcLimit]
-        
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case vpcLimitSet = "VpcLimitSet"
-            case requestId = "RequestId"
-        }
     }
 }

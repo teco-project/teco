@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 创建日志集
-    ///
-    /// 本接口（CreateClsLog）用于创建CLS日志集。
-    @inlinable
-    public func createLogSet(_ input: CreateLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLogSetResponse > {
-        self.client.execute(action: "CreateLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建日志集
-    ///
-    /// 本接口（CreateClsLog）用于创建CLS日志集。
-    @inlinable
-    public func createLogSet(_ input: CreateLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogSetResponse {
-        try await self.client.execute(action: "CreateLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLogSet请求参数结构体
     public struct CreateLogSetRequest: TCRequestModel {
         /// 日志集名称。
@@ -62,5 +46,21 @@ extension Teo {
             case logSetId = "LogSetId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建日志集
+    ///
+    /// 本接口（CreateClsLog）用于创建CLS日志集。
+    @inlinable
+    public func createLogSet(_ input: CreateLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLogSetResponse > {
+        self.client.execute(action: "CreateLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建日志集
+    ///
+    /// 本接口（CreateClsLog）用于创建CLS日志集。
+    @inlinable
+    public func createLogSet(_ input: CreateLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogSetResponse {
+        try await self.client.execute(action: "CreateLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

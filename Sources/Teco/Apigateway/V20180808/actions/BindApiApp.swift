@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 绑定应用到API
-    ///
-    /// 本接口（BindApiApp）用于绑定应用到API。
-    @inlinable
-    public func bindApiApp(_ input: BindApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindApiAppResponse > {
-        self.client.execute(action: "BindApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定应用到API
-    ///
-    /// 本接口（BindApiApp）用于绑定应用到API。
-    @inlinable
-    public func bindApiApp(_ input: BindApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindApiAppResponse {
-        try await self.client.execute(action: "BindApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindApiApp请求参数结构体
     public struct BindApiAppRequest: TCRequestModel {
         /// 待绑定的应用唯一 ID 。
@@ -73,5 +57,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定应用到API
+    ///
+    /// 本接口（BindApiApp）用于绑定应用到API。
+    @inlinable
+    public func bindApiApp(_ input: BindApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindApiAppResponse > {
+        self.client.execute(action: "BindApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定应用到API
+    ///
+    /// 本接口（BindApiApp）用于绑定应用到API。
+    @inlinable
+    public func bindApiApp(_ input: BindApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindApiAppResponse {
+        try await self.client.execute(action: "BindApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

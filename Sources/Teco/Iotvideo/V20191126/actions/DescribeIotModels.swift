@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取物模型历史版本列表
-    ///
-    /// 本接口（DescribeIotModels）用于列出物模型历史版本列表。
-    @inlinable
-    public func describeIotModels(_ input: DescribeIotModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIotModelsResponse > {
-        self.client.execute(action: "DescribeIotModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取物模型历史版本列表
-    ///
-    /// 本接口（DescribeIotModels）用于列出物模型历史版本列表。
-    @inlinable
-    public func describeIotModels(_ input: DescribeIotModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotModelsResponse {
-        try await self.client.execute(action: "DescribeIotModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIotModels请求参数结构体
     public struct DescribeIotModelsRequest: TCRequestModel {
         /// 产品ID
@@ -58,5 +42,21 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取物模型历史版本列表
+    ///
+    /// 本接口（DescribeIotModels）用于列出物模型历史版本列表。
+    @inlinable
+    public func describeIotModels(_ input: DescribeIotModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIotModelsResponse > {
+        self.client.execute(action: "DescribeIotModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取物模型历史版本列表
+    ///
+    /// 本接口（DescribeIotModels）用于列出物模型历史版本列表。
+    @inlinable
+    public func describeIotModels(_ input: DescribeIotModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotModelsResponse {
+        try await self.client.execute(action: "DescribeIotModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

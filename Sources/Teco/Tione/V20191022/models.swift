@@ -31,7 +31,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let algorithmName: String?
         
-        public init (trainingImageName: String?, trainingInputMode: String?, algorithmName: String?) {
+        public init (trainingImageName: String? = nil, trainingInputMode: String? = nil, algorithmName: String? = nil) {
             self.trainingImageName = trainingImageName
             self.trainingInputMode = trainingInputMode
             self.algorithmName = algorithmName
@@ -77,7 +77,7 @@ extension Tione {
         /// 自定义CLS的日志主题ID，只有当Type为customer时生效
         public let topicId: String?
         
-        public init (type: String, logSetId: String?, topicId: String?) {
+        public init (type: String, logSetId: String? = nil, topicId: String? = nil) {
             self.type = type
             self.logSetId = logSetId
             self.topicId = topicId
@@ -122,19 +122,19 @@ extension Tione {
     public struct CosDataSource: TCInputModel, TCOutputModel {
         /// cos桶
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let bucket: String
+        public let bucket: String?
         
         /// cos文件key
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let keyPrefix: String
+        public let keyPrefix: String?
         
         /// 分布式数据下载方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dataDistributionType: String
+        public let dataDistributionType: String?
         
         /// 数据类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dataType: String
+        public let dataType: String?
         
         public init (bucket: String, keyPrefix: String, dataDistributionType: String, dataType: String) {
             self.bucket = bucket
@@ -155,13 +155,13 @@ extension Tione {
     public struct DataSource: TCInputModel, TCOutputModel {
         /// cos数据源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cosDataSource: CosDataSource
+        public let cosDataSource: CosDataSource?
         
         /// 文件系统输入源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let fileSystemDataSource: FileSystemDataSource
+        public let fileSystemDataSource: FileSystemDataSource?
         
-        public init (cosDataSource: CosDataSource, fileSystemDataSource: FileSystemDataSource) {
+        public init (cosDataSource: CosDataSource? = nil, fileSystemDataSource: FileSystemDataSource? = nil) {
             self.cosDataSource = cosDataSource
             self.fileSystemDataSource = fileSystemDataSource
         }
@@ -209,7 +209,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileSystemId: String?
         
-        public init (directoryPath: String?, fileSystemType: String?, fileSystemAccessMode: String?, fileSystemId: String?) {
+        public init (directoryPath: String? = nil, fileSystemType: String? = nil, fileSystemAccessMode: String? = nil, fileSystemId: String? = nil) {
             self.directoryPath = directoryPath
             self.fileSystemType = fileSystemType
             self.fileSystemAccessMode = fileSystemAccessMode
@@ -232,7 +232,7 @@ extension Tione {
         /// 过滤字段取值
         public let values: [String]?
         
-        public init (name: String?, values: [String]?) {
+        public init (name: String? = nil, values: [String]? = nil) {
             self.name = name
             self.values = values
         }
@@ -252,7 +252,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let branch: String?
         
-        public init (repositoryUrl: String, branch: String?) {
+        public init (repositoryUrl: String, branch: String? = nil) {
             self.repositoryUrl = repositoryUrl
             self.branch = branch
         }
@@ -273,7 +273,7 @@ extension Tione {
         /// {"UserName": "用户名", "Password":"密码"}
         public let secret: String?
         
-        public init (noSecret: Bool?, secret: String?) {
+        public init (noSecret: Bool? = nil, secret: String? = nil) {
             self.noSecret = noSecret
             self.secret = secret
         }
@@ -292,7 +292,7 @@ extension Tione {
         
         /// 数据源配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dataSource: DataSource
+        public let dataSource: DataSource?
         
         /// 输入类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -302,7 +302,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let contentType: String?
         
-        public init (channelName: String?, dataSource: DataSource, inputMode: String?, contentType: String?) {
+        public init (channelName: String? = nil, dataSource: DataSource? = nil, inputMode: String? = nil, contentType: String? = nil) {
             self.channelName = channelName
             self.dataSource = dataSource
             self.inputMode = inputMode
@@ -369,7 +369,7 @@ extension Tione {
         
         /// 自动停止配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let stoppingCondition: StoppingCondition
+        public let stoppingCondition: StoppingCondition?
         
         /// 是否是预付费实例
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -377,7 +377,7 @@ extension Tione {
         
         /// 计费标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let billingLabel: BillingLabel
+        public let billingLabel: BillingLabel?
         
         /// 运行时长，秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -436,9 +436,9 @@ extension Tione {
         
         /// 文件系统输出，如果指定了文件系统，那么Cos输出会被忽略
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let fileSystemDataSource: FileSystemDataSource
+        public let fileSystemDataSource: FileSystemDataSource?
         
-        public init (cosOutputBucket: String?, cosOutputKeyPrefix: String?, fileSystemDataSource: FileSystemDataSource) {
+        public init (cosOutputBucket: String? = nil, cosOutputKeyPrefix: String? = nil, fileSystemDataSource: FileSystemDataSource? = nil) {
             self.cosOutputBucket = cosOutputBucket
             self.cosOutputKeyPrefix = cosOutputKeyPrefix
             self.fileSystemDataSource = fileSystemDataSource
@@ -455,17 +455,17 @@ extension Tione {
     public struct ResourceConfig: TCInputModel, TCOutputModel {
         /// 计算实例数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instanceCount: UInt64
+        public let instanceCount: UInt64?
         
         /// 计算实例类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instanceType: String
+        public let instanceType: String?
         
         /// 挂载CBS大小（GB）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let volumeSizeInGB: UInt64?
         
-        public init (instanceCount: UInt64, instanceType: String, volumeSizeInGB: UInt64?) {
+        public init (instanceCount: UInt64, instanceType: String, volumeSizeInGB: UInt64? = nil) {
             self.instanceCount = instanceCount
             self.instanceType = instanceType
             self.volumeSizeInGB = volumeSizeInGB
@@ -514,7 +514,7 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxWaitTimeInSeconds: UInt64?
         
-        public init (maxRuntimeInSeconds: UInt64?, maxWaitTimeInSeconds: UInt64?) {
+        public init (maxRuntimeInSeconds: UInt64? = nil, maxWaitTimeInSeconds: UInt64? = nil) {
             self.maxRuntimeInSeconds = maxRuntimeInSeconds
             self.maxWaitTimeInSeconds = maxWaitTimeInSeconds
         }
@@ -558,7 +558,7 @@ extension Tione {
         
         /// 资源配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let resourceConfig: ResourceConfig
+        public let resourceConfig: ResourceConfig?
         
         enum CodingKeys: String, CodingKey {
             case creationTime = "CreationTime"
@@ -575,11 +575,11 @@ extension Tione {
     public struct VpcConfig: TCInputModel, TCOutputModel {
         /// 安全组id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let securityGroupIds: [String]
+        public let securityGroupIds: [String]?
         
         /// 子网id
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let subnetId: String
+        public let subnetId: String?
         
         public init (securityGroupIds: [String], subnetId: String) {
             self.securityGroupIds = securityGroupIds

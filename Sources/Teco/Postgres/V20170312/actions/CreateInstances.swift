@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 创建实例(新)
-    ///
-    /// 本接口 (CreateInstances) 用于创建一个或者多个PostgreSQL实例，通过此接口创建的实例无需进行初始化，可直接使用。
-    @inlinable
-    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancesResponse > {
-        self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例(新)
-    ///
-    /// 本接口 (CreateInstances) 用于创建一个或者多个PostgreSQL实例，通过此接口创建的实例无需进行初始化，可直接使用。
-    @inlinable
-    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
-        try await self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateInstances请求参数结构体
     public struct CreateInstancesRequest: TCRequestModel {
         /// 售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
@@ -131,7 +115,7 @@ extension Postgres {
         /// "bbf_unicode_general_ci_as", "bbf_unicode_cp1_ci_as", "bbf_unicode_CP1250_ci_as", "bbf_unicode_CP1251_ci_as", "bbf_unicode_cp1253_ci_as", "bbf_unicode_cp1254_ci_as", "bbf_unicode_cp1255_ci_as", "bbf_unicode_cp1256_ci_as", "bbf_unicode_cp1257_ci_as", "bbf_unicode_cp1258_ci_as", "bbf_unicode_cp874_ci_as", "sql_latin1_general_cp1250_ci_as", "sql_latin1_general_cp1251_ci_as", "sql_latin1_general_cp1_ci_as", "sql_latin1_general_cp1253_ci_as", "sql_latin1_general_cp1254_ci_as", "sql_latin1_general_cp1255_ci_as","sql_latin1_general_cp1256_ci_as", "sql_latin1_general_cp1257_ci_as", "sql_latin1_general_cp1258_ci_as", "chinese_prc_ci_as", "cyrillic_general_ci_as", "finnish_swedish_ci_as", "french_ci_as", "japanese_ci_as", "korean_wansung_ci_as", "latin1_general_ci_as", "modern_spanish_ci_as", "polish_ci_as", "thai_ci_as", "traditional_spanish_ci_as", "turkish_ci_as", "ukrainian_ci_as", "vietnamese_ci_as"。
         public let dbEngineConfig: String?
         
-        public init (specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, zone: String, charset: String, adminName: String, adminPassword: String, projectId: Int64?, dbVersion: String?, instanceChargeType: String?, autoVoucher: UInt64?, voucherIds: [String]?, vpcId: String?, subnetId: String?, autoRenewFlag: Int64?, activityId: Int64?, name: String?, needSupportIpv6: UInt64?, tagList: [Tag]?, securityGroupIds: [String]?, dbMajorVersion: String?, dbKernelVersion: String?, dbNodeSet: [DBNode]?, needSupportTDE: UInt64?, kmsKeyId: String?, kmsRegion: String?, dbEngine: String?, dbEngineConfig: String?) {
+        public init (specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, zone: String, charset: String, adminName: String, adminPassword: String, projectId: Int64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, autoRenewFlag: Int64? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, tagList: [Tag]? = nil, securityGroupIds: [String]? = nil, dbMajorVersion: String? = nil, dbKernelVersion: String? = nil, dbNodeSet: [DBNode]? = nil, needSupportTDE: UInt64? = nil, kmsKeyId: String? = nil, kmsRegion: String? = nil, dbEngine: String? = nil, dbEngineConfig: String? = nil) {
             self.specCode = specCode
             self.storage = storage
             self.instanceCount = instanceCount
@@ -216,5 +200,21 @@ extension Postgres {
             case dbInstanceIdSet = "DBInstanceIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例(新)
+    ///
+    /// 本接口 (CreateInstances) 用于创建一个或者多个PostgreSQL实例，通过此接口创建的实例无需进行初始化，可直接使用。
+    @inlinable
+    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancesResponse > {
+        self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例(新)
+    ///
+    /// 本接口 (CreateInstances) 用于创建一个或者多个PostgreSQL实例，通过此接口创建的实例无需进行初始化，可直接使用。
+    @inlinable
+    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
+        try await self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

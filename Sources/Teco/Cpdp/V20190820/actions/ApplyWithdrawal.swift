@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫-提现
-    ///
-    /// 商户提现
-    @inlinable
-    public func applyWithdrawal(_ input: ApplyWithdrawalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyWithdrawalResponse > {
-        self.client.execute(action: "ApplyWithdrawal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫-提现
-    ///
-    /// 商户提现
-    @inlinable
-    public func applyWithdrawal(_ input: ApplyWithdrawalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyWithdrawalResponse {
-        try await self.client.execute(action: "ApplyWithdrawal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyWithdrawal请求参数结构体
     public struct ApplyWithdrawalRequest: TCRequestModel {
         /// 聚鑫分配的支付主MidasAppId
@@ -91,7 +75,7 @@ extension Cpdp {
         /// 提现单号，长度32字节
         public let withdrawOrderId: String?
         
-        public init (midasAppId: String, subAppId: String, settleAcctNo: String, settleAcctName: String, currencyType: String, currencyUnit: Int64, currencyAmt: String, tranWebName: String, idType: String, idCode: String, midasSecretId: String, midasSignature: String, encryptType: String?, midasEnvironment: String?, commissionAmount: String?, withdrawOrderId: String?) {
+        public init (midasAppId: String, subAppId: String, settleAcctNo: String, settleAcctName: String, currencyType: String, currencyUnit: Int64, currencyAmt: String, tranWebName: String, idType: String, idCode: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, commissionAmount: String? = nil, withdrawOrderId: String? = nil) {
             self.midasAppId = midasAppId
             self.subAppId = subAppId
             self.settleAcctNo = settleAcctNo
@@ -138,5 +122,21 @@ extension Cpdp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫-提现
+    ///
+    /// 商户提现
+    @inlinable
+    public func applyWithdrawal(_ input: ApplyWithdrawalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyWithdrawalResponse > {
+        self.client.execute(action: "ApplyWithdrawal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-提现
+    ///
+    /// 商户提现
+    @inlinable
+    public func applyWithdrawal(_ input: ApplyWithdrawalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyWithdrawalResponse {
+        try await self.client.execute(action: "ApplyWithdrawal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

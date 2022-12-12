@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 创建只读组
-    ///
-    /// 本接口（CreateReadOnlyGroup）用于创建只读组
-    @inlinable
-    public func createReadOnlyGroup(_ input: CreateReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReadOnlyGroupResponse > {
-        self.client.execute(action: "CreateReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建只读组
-    ///
-    /// 本接口（CreateReadOnlyGroup）用于创建只读组
-    @inlinable
-    public func createReadOnlyGroup(_ input: CreateReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyGroupResponse {
-        try await self.client.execute(action: "CreateReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateReadOnlyGroup请求参数结构体
     public struct CreateReadOnlyGroupRequest: TCRequestModel {
         /// 主实例ID
@@ -66,7 +50,7 @@ extension Postgres {
         /// 安全组id
         public let securityGroupIds: [String]?
         
-        public init (masterDBInstanceId: String, name: String, projectId: UInt64?, vpcId: String?, subnetId: String?, replayLagEliminate: UInt64?, replayLatencyEliminate: UInt64?, maxReplayLag: UInt64?, maxReplayLatency: UInt64?, minDelayEliminateReserve: UInt64?, securityGroupIds: [String]?) {
+        public init (masterDBInstanceId: String, name: String, projectId: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, replayLagEliminate: UInt64? = nil, replayLatencyEliminate: UInt64? = nil, maxReplayLag: UInt64? = nil, maxReplayLatency: UInt64? = nil, minDelayEliminateReserve: UInt64? = nil, securityGroupIds: [String]? = nil) {
             self.masterDBInstanceId = masterDBInstanceId
             self.name = name
             self.projectId = projectId
@@ -112,5 +96,21 @@ extension Postgres {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建只读组
+    ///
+    /// 本接口（CreateReadOnlyGroup）用于创建只读组
+    @inlinable
+    public func createReadOnlyGroup(_ input: CreateReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateReadOnlyGroupResponse > {
+        self.client.execute(action: "CreateReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建只读组
+    ///
+    /// 本接口（CreateReadOnlyGroup）用于创建只读组
+    @inlinable
+    public func createReadOnlyGroup(_ input: CreateReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyGroupResponse {
+        try await self.client.execute(action: "CreateReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

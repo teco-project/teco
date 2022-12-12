@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 调整任务目标RPS
-    ///
-    /// 调整任务的目标RPS
-    @inlinable
-    public func adjustJobSpeed(_ input: AdjustJobSpeedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AdjustJobSpeedResponse > {
-        self.client.execute(action: "AdjustJobSpeed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调整任务目标RPS
-    ///
-    /// 调整任务的目标RPS
-    @inlinable
-    public func adjustJobSpeed(_ input: AdjustJobSpeedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AdjustJobSpeedResponse {
-        try await self.client.execute(action: "AdjustJobSpeed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AdjustJobSpeed请求参数结构体
     public struct AdjustJobSpeedRequest: TCRequestModel {
         /// 任务ID
@@ -58,5 +42,21 @@ extension Pts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调整任务目标RPS
+    ///
+    /// 调整任务的目标RPS
+    @inlinable
+    public func adjustJobSpeed(_ input: AdjustJobSpeedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AdjustJobSpeedResponse > {
+        self.client.execute(action: "AdjustJobSpeed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调整任务目标RPS
+    ///
+    /// 调整任务的目标RPS
+    @inlinable
+    public func adjustJobSpeed(_ input: AdjustJobSpeedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AdjustJobSpeedResponse {
+        try await self.client.execute(action: "AdjustJobSpeed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

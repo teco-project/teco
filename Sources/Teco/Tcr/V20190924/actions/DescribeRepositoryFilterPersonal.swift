@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 获取满足输入搜索条件的个人版镜像仓库
-    ///
-    /// 用于在个人版镜像仓库中，获取满足输入搜索条件的用户镜像仓库
-    @inlinable
-    public func describeRepositoryFilterPersonal(_ input: DescribeRepositoryFilterPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoryFilterPersonalResponse > {
-        self.client.execute(action: "DescribeRepositoryFilterPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取满足输入搜索条件的个人版镜像仓库
-    ///
-    /// 用于在个人版镜像仓库中，获取满足输入搜索条件的用户镜像仓库
-    @inlinable
-    public func describeRepositoryFilterPersonal(_ input: DescribeRepositoryFilterPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryFilterPersonalResponse {
-        try await self.client.execute(action: "DescribeRepositoryFilterPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRepositoryFilterPersonal请求参数结构体
     public struct DescribeRepositoryFilterPersonalRequest: TCRequestModel {
         /// 搜索镜像名
@@ -48,7 +32,7 @@ extension Tcr {
         /// 命名空间
         public let namespace: String?
         
-        public init (repoName: String?, offset: Int64?, limit: Int64?, `public`: Int64?, namespace: String?) {
+        public init (repoName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, `public`: Int64? = nil, namespace: String? = nil) {
             self.repoName = repoName
             self.offset = offset
             self.limit = limit
@@ -77,5 +61,21 @@ extension Tcr {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取满足输入搜索条件的个人版镜像仓库
+    ///
+    /// 用于在个人版镜像仓库中，获取满足输入搜索条件的用户镜像仓库
+    @inlinable
+    public func describeRepositoryFilterPersonal(_ input: DescribeRepositoryFilterPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoryFilterPersonalResponse > {
+        self.client.execute(action: "DescribeRepositoryFilterPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取满足输入搜索条件的个人版镜像仓库
+    ///
+    /// 用于在个人版镜像仓库中，获取满足输入搜索条件的用户镜像仓库
+    @inlinable
+    public func describeRepositoryFilterPersonal(_ input: DescribeRepositoryFilterPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryFilterPersonalResponse {
+        try await self.client.execute(action: "DescribeRepositoryFilterPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

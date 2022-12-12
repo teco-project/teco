@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 弹性网卡申请内网 IP
-    @inlinable
-    public func assignPrivateIpAddresses(_ input: AssignPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssignPrivateIpAddressesResponse > {
-        self.client.execute(action: "AssignPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 弹性网卡申请内网 IP
-    @inlinable
-    public func assignPrivateIpAddresses(_ input: AssignPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignPrivateIpAddressesResponse {
-        try await self.client.execute(action: "AssignPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssignPrivateIpAddresses请求参数结构体
     public struct AssignPrivateIpAddressesRequest: TCRequestModel {
         /// 弹性网卡实例ID，例如：eni-m6dyj72l。
@@ -41,7 +29,7 @@ extension Ecm {
         /// 新申请的内网IP地址个数，与PrivateIpAddresses至少提供一个。内网IP地址个数总和不能超过配额数
         public let secondaryPrivateIpAddressCount: UInt64?
         
-        public init (networkInterfaceId: String, ecmRegion: String, privateIpAddresses: [PrivateIpAddressSpecification]?, secondaryPrivateIpAddressCount: UInt64?) {
+        public init (networkInterfaceId: String, ecmRegion: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil) {
             self.networkInterfaceId = networkInterfaceId
             self.ecmRegion = ecmRegion
             self.privateIpAddresses = privateIpAddresses
@@ -69,5 +57,17 @@ extension Ecm {
             case privateIpAddressSet = "PrivateIpAddressSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 弹性网卡申请内网 IP
+    @inlinable
+    public func assignPrivateIpAddresses(_ input: AssignPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssignPrivateIpAddressesResponse > {
+        self.client.execute(action: "AssignPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 弹性网卡申请内网 IP
+    @inlinable
+    public func assignPrivateIpAddresses(_ input: AssignPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignPrivateIpAddressesResponse {
+        try await self.client.execute(action: "AssignPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

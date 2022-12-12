@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 批量绑定子产品
-    @inlinable
-    public func bindProducts(_ input: BindProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindProductsResponse > {
-        self.client.execute(action: "BindProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量绑定子产品
-    @inlinable
-    public func bindProducts(_ input: BindProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindProductsResponse {
-        try await self.client.execute(action: "BindProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindProducts请求参数结构体
     public struct BindProductsRequest: TCRequestModel {
         /// 网关产品ID。
@@ -54,5 +42,17 @@ extension Iotexplorer {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量绑定子产品
+    @inlinable
+    public func bindProducts(_ input: BindProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindProductsResponse > {
+        self.client.execute(action: "BindProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量绑定子产品
+    @inlinable
+    public func bindProducts(_ input: BindProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindProductsResponse {
+        try await self.client.execute(action: "BindProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询备份文件下载源限制
-    ///
-    /// 该接口用户查询当前地域用户设置的默认备份下载来源限制。
-    @inlinable
-    public func describeBackupDownloadRestriction(_ input: DescribeBackupDownloadRestrictionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupDownloadRestrictionResponse > {
-        self.client.execute(action: "DescribeBackupDownloadRestriction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询备份文件下载源限制
-    ///
-    /// 该接口用户查询当前地域用户设置的默认备份下载来源限制。
-    @inlinable
-    public func describeBackupDownloadRestriction(_ input: DescribeBackupDownloadRestrictionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadRestrictionResponse {
-        try await self.client.execute(action: "DescribeBackupDownloadRestriction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBackupDownloadRestriction请求参数结构体
     public struct DescribeBackupDownloadRestrictionRequest: TCRequestModel {
         public init () {
@@ -65,5 +49,21 @@ extension Cdb {
             case limitIp = "LimitIp"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询备份文件下载源限制
+    ///
+    /// 该接口用户查询当前地域用户设置的默认备份下载来源限制。
+    @inlinable
+    public func describeBackupDownloadRestriction(_ input: DescribeBackupDownloadRestrictionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupDownloadRestrictionResponse > {
+        self.client.execute(action: "DescribeBackupDownloadRestriction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份文件下载源限制
+    ///
+    /// 该接口用户查询当前地域用户设置的默认备份下载来源限制。
+    @inlinable
+    public func describeBackupDownloadRestriction(_ input: DescribeBackupDownloadRestrictionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadRestrictionResponse {
+        try await self.client.execute(action: "DescribeBackupDownloadRestriction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

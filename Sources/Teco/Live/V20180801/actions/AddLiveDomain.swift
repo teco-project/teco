@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 添加域名
-    ///
-    /// 添加域名，一次只能提交一个域名。域名必须已备案。
-    @inlinable
-    public func addLiveDomain(_ input: AddLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddLiveDomainResponse > {
-        self.client.execute(action: "AddLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加域名
-    ///
-    /// 添加域名，一次只能提交一个域名。域名必须已备案。
-    @inlinable
-    public func addLiveDomain(_ input: AddLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLiveDomainResponse {
-        try await self.client.execute(action: "AddLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddLiveDomain请求参数结构体
     public struct AddLiveDomainRequest: TCRequestModel {
         /// 域名名称。
@@ -68,7 +52,7 @@ extension Live {
         /// 若不传默认为 dbCheck 。
         public let verifyOwnerType: String?
         
-        public init (domainName: String, domainType: UInt64, playType: UInt64?, isDelayLive: Int64?, isMiniProgramLive: Int64?, verifyOwnerType: String?) {
+        public init (domainName: String, domainType: UInt64, playType: UInt64? = nil, isDelayLive: Int64? = nil, isMiniProgramLive: Int64? = nil, verifyOwnerType: String? = nil) {
             self.domainName = domainName
             self.domainType = domainType
             self.playType = playType
@@ -95,5 +79,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加域名
+    ///
+    /// 添加域名，一次只能提交一个域名。域名必须已备案。
+    @inlinable
+    public func addLiveDomain(_ input: AddLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddLiveDomainResponse > {
+        self.client.execute(action: "AddLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加域名
+    ///
+    /// 添加域名，一次只能提交一个域名。域名必须已备案。
+    @inlinable
+    public func addLiveDomain(_ input: AddLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLiveDomainResponse {
+        try await self.client.execute(action: "AddLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

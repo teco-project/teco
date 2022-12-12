@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 导出自定义镜像
-    ///
-    /// 提供导出自定义镜像到指定COS存储桶的能力
-    @inlinable
-    public func exportImages(_ input: ExportImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportImagesResponse > {
-        self.client.execute(action: "ExportImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出自定义镜像
-    ///
-    /// 提供导出自定义镜像到指定COS存储桶的能力
-    @inlinable
-    public func exportImages(_ input: ExportImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportImagesResponse {
-        try await self.client.execute(action: "ExportImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportImages请求参数结构体
     public struct ExportImagesRequest: TCRequestModel {
         /// COS存储桶名称
@@ -54,7 +38,7 @@ extension Cvm {
         /// 角色名称。默认为CVM_QcsRole，发起请求前请确认是否存在该角色，以及是否已正确配置COS写入权限。
         public let roleName: String?
         
-        public init (bucketName: String, imageIds: [String]?, exportFormat: String?, fileNamePrefixList: [String]?, onlyExportRootDisk: Bool?, dryRun: Bool?, roleName: String?) {
+        public init (bucketName: String, imageIds: [String]? = nil, exportFormat: String? = nil, fileNamePrefixList: [String]? = nil, onlyExportRootDisk: Bool? = nil, dryRun: Bool? = nil, roleName: String? = nil) {
             self.bucketName = bucketName
             self.imageIds = imageIds
             self.exportFormat = exportFormat
@@ -87,5 +71,21 @@ extension Cvm {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出自定义镜像
+    ///
+    /// 提供导出自定义镜像到指定COS存储桶的能力
+    @inlinable
+    public func exportImages(_ input: ExportImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportImagesResponse > {
+        self.client.execute(action: "ExportImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出自定义镜像
+    ///
+    /// 提供导出自定义镜像到指定COS存储桶的能力
+    @inlinable
+    public func exportImages(_ input: ExportImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportImagesResponse {
+        try await self.client.execute(action: "ExportImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mna {
-    /// 获取设备详细信息
-    ///
-    /// 通过指定设备的ID查找设备详细信息
-    @inlinable
-    public func getDevice(_ input: GetDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceResponse > {
-        self.client.execute(action: "GetDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备详细信息
-    ///
-    /// 通过指定设备的ID查找设备详细信息
-    @inlinable
-    public func getDevice(_ input: GetDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceResponse {
-        try await self.client.execute(action: "GetDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDevice请求参数结构体
     public struct GetDeviceRequest: TCRequestModel {
         /// 搜索指定设备的id
@@ -57,5 +41,21 @@ extension Mna {
             case deviceDetails = "DeviceDetails"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备详细信息
+    ///
+    /// 通过指定设备的ID查找设备详细信息
+    @inlinable
+    public func getDevice(_ input: GetDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceResponse > {
+        self.client.execute(action: "GetDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备详细信息
+    ///
+    /// 通过指定设备的ID查找设备详细信息
+    @inlinable
+    public func getDevice(_ input: GetDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceResponse {
+        try await self.client.execute(action: "GetDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

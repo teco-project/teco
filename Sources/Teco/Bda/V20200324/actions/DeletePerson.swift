@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bda {
-    /// 删除人员
-    ///
-    /// 删除人员。
-    @inlinable
-    public func deletePerson(_ input: DeletePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePersonResponse > {
-        self.client.execute(action: "DeletePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除人员
-    ///
-    /// 删除人员。
-    @inlinable
-    public func deletePerson(_ input: DeletePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonResponse {
-        try await self.client.execute(action: "DeletePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePerson请求参数结构体
     public struct DeletePersonRequest: TCRequestModel {
         /// 人员ID。
@@ -53,5 +37,21 @@ extension Bda {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除人员
+    ///
+    /// 删除人员。
+    @inlinable
+    public func deletePerson(_ input: DeletePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePersonResponse > {
+        self.client.execute(action: "DeletePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除人员
+    ///
+    /// 删除人员。
+    @inlinable
+    public func deletePerson(_ input: DeletePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonResponse {
+        try await self.client.execute(action: "DeletePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 获取概览页统计的基本数据
-    @inlinable
-    public func describeBaseOverview(_ input: DescribeBaseOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaseOverviewResponse > {
-        self.client.execute(action: "DescribeBaseOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取概览页统计的基本数据
-    @inlinable
-    public func describeBaseOverview(_ input: DescribeBaseOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseOverviewResponse {
-        try await self.client.execute(action: "DescribeBaseOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBaseOverview请求参数结构体
     public struct DescribeBaseOverviewRequest: TCRequestModel {
         public init () {
@@ -85,5 +73,17 @@ extension Ecm {
             case willExpireNum = "WillExpireNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取概览页统计的基本数据
+    @inlinable
+    public func describeBaseOverview(_ input: DescribeBaseOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaseOverviewResponse > {
+        self.client.execute(action: "DescribeBaseOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取概览页统计的基本数据
+    @inlinable
+    public func describeBaseOverview(_ input: DescribeBaseOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseOverviewResponse {
+        try await self.client.execute(action: "DescribeBaseOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

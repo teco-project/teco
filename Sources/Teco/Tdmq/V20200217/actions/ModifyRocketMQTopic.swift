@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 更新RocketMQ主题信息
-    @inlinable
-    public func modifyRocketMQTopic(_ input: ModifyRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRocketMQTopicResponse > {
-        self.client.execute(action: "ModifyRocketMQTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新RocketMQ主题信息
-    @inlinable
-    public func modifyRocketMQTopic(_ input: ModifyRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQTopicResponse {
-        try await self.client.execute(action: "ModifyRocketMQTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRocketMQTopic请求参数结构体
     public struct ModifyRocketMQTopicRequest: TCRequestModel {
         /// 集群ID
@@ -44,7 +32,7 @@ extension Tdmq {
         /// 分区数，全局类型无效，不可小于当前分区数
         public let partitionNum: Int64?
         
-        public init (clusterId: String, namespaceId: String, topic: String, remark: String, partitionNum: Int64?) {
+        public init (clusterId: String, namespaceId: String, topic: String, remark: String, partitionNum: Int64? = nil) {
             self.clusterId = clusterId
             self.namespaceId = namespaceId
             self.topic = topic
@@ -69,5 +57,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新RocketMQ主题信息
+    @inlinable
+    public func modifyRocketMQTopic(_ input: ModifyRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRocketMQTopicResponse > {
+        self.client.execute(action: "ModifyRocketMQTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新RocketMQ主题信息
+    @inlinable
+    public func modifyRocketMQTopic(_ input: ModifyRocketMQTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQTopicResponse {
+        try await self.client.execute(action: "ModifyRocketMQTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

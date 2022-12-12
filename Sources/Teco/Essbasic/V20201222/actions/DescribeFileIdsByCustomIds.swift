@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 根据用户自定义id查询文件id
-    @inlinable
-    public func describeFileIdsByCustomIds(_ input: DescribeFileIdsByCustomIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileIdsByCustomIdsResponse > {
-        self.client.execute(action: "DescribeFileIdsByCustomIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据用户自定义id查询文件id
-    @inlinable
-    public func describeFileIdsByCustomIds(_ input: DescribeFileIdsByCustomIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileIdsByCustomIdsResponse {
-        try await self.client.execute(action: "DescribeFileIdsByCustomIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFileIdsByCustomIds请求参数结构体
     public struct DescribeFileIdsByCustomIdsRequest: TCRequestModel {
         /// 调用方信息, OrganizationId必填
@@ -35,7 +23,7 @@ extension Essbasic {
         /// 用户自定义ID
         public let customIds: [String]?
         
-        public init (caller: Caller, customIds: [String]?) {
+        public init (caller: Caller, customIds: [String]? = nil) {
             self.caller = caller
             self.customIds = customIds
         }
@@ -58,5 +46,17 @@ extension Essbasic {
             case customIdList = "CustomIdList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据用户自定义id查询文件id
+    @inlinable
+    public func describeFileIdsByCustomIds(_ input: DescribeFileIdsByCustomIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileIdsByCustomIdsResponse > {
+        self.client.execute(action: "DescribeFileIdsByCustomIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据用户自定义id查询文件id
+    @inlinable
+    public func describeFileIdsByCustomIds(_ input: DescribeFileIdsByCustomIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileIdsByCustomIdsResponse {
+        try await self.client.execute(action: "DescribeFileIdsByCustomIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

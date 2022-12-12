@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ivld {
-    /// 批量描述自定义人物分类
-    ///
-    /// 批量描述自定义人物分类信息
-    @inlinable
-    public func describeCustomCategories(_ input: DescribeCustomCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomCategoriesResponse > {
-        self.client.execute(action: "DescribeCustomCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量描述自定义人物分类
-    ///
-    /// 批量描述自定义人物分类信息
-    @inlinable
-    public func describeCustomCategories(_ input: DescribeCustomCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomCategoriesResponse {
-        try await self.client.execute(action: "DescribeCustomCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCustomCategories请求参数结构体
     public struct DescribeCustomCategoriesRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Ivld {
             case categorySet = "CategorySet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量描述自定义人物分类
+    ///
+    /// 批量描述自定义人物分类信息
+    @inlinable
+    public func describeCustomCategories(_ input: DescribeCustomCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCustomCategoriesResponse > {
+        self.client.execute(action: "DescribeCustomCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量描述自定义人物分类
+    ///
+    /// 批量描述自定义人物分类信息
+    @inlinable
+    public func describeCustomCategories(_ input: DescribeCustomCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomCategoriesResponse {
+        try await self.client.execute(action: "DescribeCustomCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

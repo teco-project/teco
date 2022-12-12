@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 修改Secret
-    @inlinable
-    public func modifySecret(_ input: ModifySecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecretResponse > {
-        self.client.execute(action: "ModifySecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改Secret
-    @inlinable
-    public func modifySecret(_ input: ModifySecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecretResponse {
-        try await self.client.execute(action: "ModifySecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySecret请求参数结构体
     public struct ModifySecretRequest: TCRequestModel {
         /// 边缘单元ID
@@ -41,7 +29,7 @@ extension Iecp {
         /// Secret命名空间（默认:default）
         public let secretNamespace: String?
         
-        public init (edgeUnitID: UInt64, secretName: String, yaml: String, secretNamespace: String?) {
+        public init (edgeUnitID: UInt64, secretName: String, yaml: String, secretNamespace: String? = nil) {
             self.edgeUnitID = edgeUnitID
             self.secretName = secretName
             self.yaml = yaml
@@ -64,5 +52,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改Secret
+    @inlinable
+    public func modifySecret(_ input: ModifySecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecretResponse > {
+        self.client.execute(action: "ModifySecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改Secret
+    @inlinable
+    public func modifySecret(_ input: ModifySecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecretResponse {
+        try await self.client.execute(action: "ModifySecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

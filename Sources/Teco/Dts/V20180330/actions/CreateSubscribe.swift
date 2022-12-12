@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 创建订阅对象
-    ///
-    /// 本接口(CreateSubscribe)用于创建一个数据订阅实例。
-    @inlinable
-    public func createSubscribe(_ input: CreateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubscribeResponse > {
-        self.client.execute(action: "CreateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建订阅对象
-    ///
-    /// 本接口(CreateSubscribe)用于创建一个数据订阅实例。
-    @inlinable
-    public func createSubscribe(_ input: CreateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
-        try await self.client.execute(action: "CreateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSubscribe请求参数结构体
     public struct CreateSubscribeRequest: TCRequestModel {
         /// 订阅的数据库类型，目前支持的有 mysql
@@ -54,7 +38,7 @@ extension Dts {
         /// 用户自定义实例名
         public let name: String?
         
-        public init (product: String, payType: Int64, duration: Int64?, count: Int64?, autoRenew: Int64?, tags: [TagItem]?, name: String?) {
+        public init (product: String, payType: Int64, duration: Int64? = nil, count: Int64? = nil, autoRenew: Int64? = nil, tags: [TagItem]? = nil, name: String? = nil) {
             self.product = product
             self.payType = payType
             self.duration = duration
@@ -88,5 +72,21 @@ extension Dts {
             case subscribeIds = "SubscribeIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建订阅对象
+    ///
+    /// 本接口(CreateSubscribe)用于创建一个数据订阅实例。
+    @inlinable
+    public func createSubscribe(_ input: CreateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubscribeResponse > {
+        self.client.execute(action: "CreateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建订阅对象
+    ///
+    /// 本接口(CreateSubscribe)用于创建一个数据订阅实例。
+    @inlinable
+    public func createSubscribe(_ input: CreateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
+        try await self.client.execute(action: "CreateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

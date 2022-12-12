@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 查询实例详情
-    ///
-    /// 本接口(DescribeInstanceDetail)用于查询实例详情。
-    @inlinable
-    public func describeInstanceDetail(_ input: DescribeInstanceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceDetailResponse > {
-        self.client.execute(action: "DescribeInstanceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例详情
-    ///
-    /// 本接口(DescribeInstanceDetail)用于查询实例详情。
-    @inlinable
-    public func describeInstanceDetail(_ input: DescribeInstanceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDetailResponse {
-        try await self.client.execute(action: "DescribeInstanceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceDetail请求参数结构体
     public struct DescribeInstanceDetailRequest: TCRequestModel {
         /// 实例ID
@@ -57,5 +41,21 @@ extension Cynosdb {
             case detail = "Detail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例详情
+    ///
+    /// 本接口(DescribeInstanceDetail)用于查询实例详情。
+    @inlinable
+    public func describeInstanceDetail(_ input: DescribeInstanceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceDetailResponse > {
+        self.client.execute(action: "DescribeInstanceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例详情
+    ///
+    /// 本接口(DescribeInstanceDetail)用于查询实例详情。
+    @inlinable
+    public func describeInstanceDetail(_ input: DescribeInstanceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDetailResponse {
+        try await self.client.execute(action: "DescribeInstanceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

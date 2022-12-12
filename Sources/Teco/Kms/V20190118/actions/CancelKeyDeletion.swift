@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 取消CMK计划删除操作
-    ///
-    /// 取消CMK的计划删除操作
-    @inlinable
-    public func cancelKeyDeletion(_ input: CancelKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelKeyDeletionResponse > {
-        self.client.execute(action: "CancelKeyDeletion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消CMK计划删除操作
-    ///
-    /// 取消CMK的计划删除操作
-    @inlinable
-    public func cancelKeyDeletion(_ input: CancelKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyDeletionResponse {
-        try await self.client.execute(action: "CancelKeyDeletion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelKeyDeletion请求参数结构体
     public struct CancelKeyDeletionRequest: TCRequestModel {
         /// 需要被取消删除的CMK的唯一标志
@@ -57,5 +41,21 @@ extension Kms {
             case keyId = "KeyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消CMK计划删除操作
+    ///
+    /// 取消CMK的计划删除操作
+    @inlinable
+    public func cancelKeyDeletion(_ input: CancelKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelKeyDeletionResponse > {
+        self.client.execute(action: "CancelKeyDeletion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消CMK计划删除操作
+    ///
+    /// 取消CMK的计划删除操作
+    @inlinable
+    public func cancelKeyDeletion(_ input: CancelKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyDeletionResponse {
+        try await self.client.execute(action: "CancelKeyDeletion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 重新执行任务
-    @inlinable
-    public func redoTask(_ input: RedoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RedoTaskResponse > {
-        self.client.execute(action: "RedoTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重新执行任务
-    @inlinable
-    public func redoTask(_ input: RedoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskResponse {
-        try await self.client.execute(action: "RedoTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RedoTask请求参数结构体
     public struct RedoTaskRequest: TCRequestModel {
         /// 任务ID
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重新执行任务
+    @inlinable
+    public func redoTask(_ input: RedoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RedoTaskResponse > {
+        self.client.execute(action: "RedoTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重新执行任务
+    @inlinable
+    public func redoTask(_ input: RedoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskResponse {
+        try await self.client.execute(action: "RedoTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

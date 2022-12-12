@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Captcha {
-    /// 安全验证码获取用户注册所有APPId和应用名称
-    @inlinable
-    public func describeCaptchaUserAllAppId(_ input: DescribeCaptchaUserAllAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaUserAllAppIdResponse > {
-        self.client.execute(action: "DescribeCaptchaUserAllAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全验证码获取用户注册所有APPId和应用名称
-    @inlinable
-    public func describeCaptchaUserAllAppId(_ input: DescribeCaptchaUserAllAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaUserAllAppIdResponse {
-        try await self.client.execute(action: "DescribeCaptchaUserAllAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCaptchaUserAllAppId请求参数结构体
     public struct DescribeCaptchaUserAllAppIdRequest: TCRequestModel {
         public init () {
@@ -55,5 +43,17 @@ extension Captcha {
             case captchaMsg = "CaptchaMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全验证码获取用户注册所有APPId和应用名称
+    @inlinable
+    public func describeCaptchaUserAllAppId(_ input: DescribeCaptchaUserAllAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaUserAllAppIdResponse > {
+        self.client.execute(action: "DescribeCaptchaUserAllAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全验证码获取用户注册所有APPId和应用名称
+    @inlinable
+    public func describeCaptchaUserAllAppId(_ input: DescribeCaptchaUserAllAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaUserAllAppIdResponse {
+        try await self.client.execute(action: "DescribeCaptchaUserAllAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

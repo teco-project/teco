@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询数据库
-    ///
-    /// 本接口(DescribeDatabases)用于查询云数据库实例的数据库信息，仅支持主实例和灾备实例，不支持只读实例。
-    @inlinable
-    public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabasesResponse > {
-        self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据库
-    ///
-    /// 本接口(DescribeDatabases)用于查询云数据库实例的数据库信息，仅支持主实例和灾备实例，不支持只读实例。
-    @inlinable
-    public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
-        try await self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDatabases请求参数结构体
     public struct DescribeDatabasesRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -45,7 +29,7 @@ extension Cdb {
         /// 匹配数据库库名的正则表达式。
         public let databaseRegexp: String?
         
-        public init (instanceId: String, offset: Int64?, limit: Int64?, databaseRegexp: String?) {
+        public init (instanceId: String, offset: Int64? = nil, limit: Int64? = nil, databaseRegexp: String? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
@@ -80,5 +64,21 @@ extension Cdb {
             case databaseList = "DatabaseList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据库
+    ///
+    /// 本接口(DescribeDatabases)用于查询云数据库实例的数据库信息，仅支持主实例和灾备实例，不支持只读实例。
+    @inlinable
+    public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDatabasesResponse > {
+        self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库
+    ///
+    /// 本接口(DescribeDatabases)用于查询云数据库实例的数据库信息，仅支持主实例和灾备实例，不支持只读实例。
+    @inlinable
+    public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
+        try await self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

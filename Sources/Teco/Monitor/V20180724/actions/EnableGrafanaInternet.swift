@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 设置 Grafana 公网访问
-    @inlinable
-    public func enableGrafanaInternet(_ input: EnableGrafanaInternetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableGrafanaInternetResponse > {
-        self.client.execute(action: "EnableGrafanaInternet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置 Grafana 公网访问
-    @inlinable
-    public func enableGrafanaInternet(_ input: EnableGrafanaInternetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGrafanaInternetResponse {
-        try await self.client.execute(action: "EnableGrafanaInternet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableGrafanaInternet请求参数结构体
     public struct EnableGrafanaInternetRequest: TCRequestModel {
         /// Grafana 实例 ID，例如：grafana-kleu3gt0
@@ -54,5 +42,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置 Grafana 公网访问
+    @inlinable
+    public func enableGrafanaInternet(_ input: EnableGrafanaInternetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableGrafanaInternetResponse > {
+        self.client.execute(action: "EnableGrafanaInternet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置 Grafana 公网访问
+    @inlinable
+    public func enableGrafanaInternet(_ input: EnableGrafanaInternetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGrafanaInternetResponse {
+        try await self.client.execute(action: "EnableGrafanaInternet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

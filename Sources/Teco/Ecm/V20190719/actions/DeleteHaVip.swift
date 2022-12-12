@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 删除HAVIP
-    ///
-    /// 用于删除高可用虚拟IP（HAVIP）
-    @inlinable
-    public func deleteHaVip(_ input: DeleteHaVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteHaVipResponse > {
-        self.client.execute(action: "DeleteHaVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除HAVIP
-    ///
-    /// 用于删除高可用虚拟IP（HAVIP）
-    @inlinable
-    public func deleteHaVip(_ input: DeleteHaVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHaVipResponse {
-        try await self.client.execute(action: "DeleteHaVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteHaVip请求参数结构体
     public struct DeleteHaVipRequest: TCRequestModel {
         /// HAVIP唯一ID，形如：havip-9o233uri。
@@ -53,5 +37,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除HAVIP
+    ///
+    /// 用于删除高可用虚拟IP（HAVIP）
+    @inlinable
+    public func deleteHaVip(_ input: DeleteHaVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteHaVipResponse > {
+        self.client.execute(action: "DeleteHaVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除HAVIP
+    ///
+    /// 用于删除高可用虚拟IP（HAVIP）
+    @inlinable
+    public func deleteHaVip(_ input: DeleteHaVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHaVipResponse {
+        try await self.client.execute(action: "DeleteHaVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

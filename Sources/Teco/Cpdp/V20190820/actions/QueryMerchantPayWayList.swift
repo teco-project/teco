@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云支付-查询商户支付方式列表
-    ///
-    /// 商户查询已开通的支付方式列表
-    @inlinable
-    public func queryMerchantPayWayList(_ input: QueryMerchantPayWayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMerchantPayWayListResponse > {
-        self.client.execute(action: "QueryMerchantPayWayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云支付-查询商户支付方式列表
-    ///
-    /// 商户查询已开通的支付方式列表
-    @inlinable
-    public func queryMerchantPayWayList(_ input: QueryMerchantPayWayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantPayWayListResponse {
-        try await self.client.execute(action: "QueryMerchantPayWayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryMerchantPayWayList请求参数结构体
     public struct QueryMerchantPayWayListRequest: TCRequestModel {
         /// 使用门店OpenId
@@ -45,7 +29,7 @@ extension Cpdp {
         /// 沙箱环境填sandbox，正式环境不填
         public let profile: String?
         
-        public init (openId: String, openKey: String, payType: String, profile: String?) {
+        public init (openId: String, openKey: String, payType: String, profile: String? = nil) {
             self.openId = openId
             self.openKey = openKey
             self.payType = payType
@@ -82,5 +66,21 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云支付-查询商户支付方式列表
+    ///
+    /// 商户查询已开通的支付方式列表
+    @inlinable
+    public func queryMerchantPayWayList(_ input: QueryMerchantPayWayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMerchantPayWayListResponse > {
+        self.client.execute(action: "QueryMerchantPayWayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-查询商户支付方式列表
+    ///
+    /// 商户查询已开通的支付方式列表
+    @inlinable
+    public func queryMerchantPayWayList(_ input: QueryMerchantPayWayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantPayWayListResponse {
+        try await self.client.execute(action: "QueryMerchantPayWayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

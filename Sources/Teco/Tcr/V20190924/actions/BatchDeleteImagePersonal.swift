@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 个人版镜像仓库批量删除Tag
-    ///
-    /// 用于在个人版镜像仓库中批量删除Tag
-    @inlinable
-    public func batchDeleteImagePersonal(_ input: BatchDeleteImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDeleteImagePersonalResponse > {
-        self.client.execute(action: "BatchDeleteImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 个人版镜像仓库批量删除Tag
-    ///
-    /// 用于在个人版镜像仓库中批量删除Tag
-    @inlinable
-    public func batchDeleteImagePersonal(_ input: BatchDeleteImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteImagePersonalResponse {
-        try await self.client.execute(action: "BatchDeleteImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BatchDeleteImagePersonal请求参数结构体
     public struct BatchDeleteImagePersonalRequest: TCRequestModel {
         /// 仓库名称
@@ -58,5 +42,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 个人版镜像仓库批量删除Tag
+    ///
+    /// 用于在个人版镜像仓库中批量删除Tag
+    @inlinable
+    public func batchDeleteImagePersonal(_ input: BatchDeleteImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BatchDeleteImagePersonalResponse > {
+        self.client.execute(action: "BatchDeleteImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 个人版镜像仓库批量删除Tag
+    ///
+    /// 用于在个人版镜像仓库中批量删除Tag
+    @inlinable
+    public func batchDeleteImagePersonal(_ input: BatchDeleteImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteImagePersonalResponse {
+        try await self.client.execute(action: "BatchDeleteImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

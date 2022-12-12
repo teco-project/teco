@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取网关可操作的子产品
-    ///
-    /// 用于获取网关可绑定或解绑的子产品
-    @inlinable
-    public func describeGatewaySubProducts(_ input: DescribeGatewaySubProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewaySubProductsResponse > {
-        self.client.execute(action: "DescribeGatewaySubProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取网关可操作的子产品
-    ///
-    /// 用于获取网关可绑定或解绑的子产品
-    @inlinable
-    public func describeGatewaySubProducts(_ input: DescribeGatewaySubProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewaySubProductsResponse {
-        try await self.client.execute(action: "DescribeGatewaySubProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGatewaySubProducts请求参数结构体
     public struct DescribeGatewaySubProductsRequest: TCRequestModel {
         /// 网关产品ID
@@ -48,7 +32,7 @@ extension Iotexplorer {
         /// 是否跨账号产品
         public let productSource: Int64?
         
-        public init (gatewayProductId: String, offset: UInt64?, limit: UInt64?, projectId: String?, productSource: Int64?) {
+        public init (gatewayProductId: String, offset: UInt64? = nil, limit: UInt64? = nil, projectId: String? = nil, productSource: Int64? = nil) {
             self.gatewayProductId = gatewayProductId
             self.offset = offset
             self.limit = limit
@@ -81,5 +65,21 @@ extension Iotexplorer {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取网关可操作的子产品
+    ///
+    /// 用于获取网关可绑定或解绑的子产品
+    @inlinable
+    public func describeGatewaySubProducts(_ input: DescribeGatewaySubProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewaySubProductsResponse > {
+        self.client.execute(action: "DescribeGatewaySubProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取网关可操作的子产品
+    ///
+    /// 用于获取网关可绑定或解绑的子产品
+    @inlinable
+    public func describeGatewaySubProducts(_ input: DescribeGatewaySubProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewaySubProductsResponse {
+        try await self.client.execute(action: "DescribeGatewaySubProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

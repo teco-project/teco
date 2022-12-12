@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 删除ACL
-    @inlinable
-    public func deleteAcl(_ input: DeleteAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAclResponse > {
-        self.client.execute(action: "DeleteAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除ACL
-    @inlinable
-    public func deleteAcl(_ input: DeleteAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclResponse {
-        try await self.client.execute(action: "DeleteAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAcl请求参数结构体
     public struct DeleteAclRequest: TCRequestModel {
         /// 实例id信息
@@ -50,7 +38,7 @@ extension Ckafka {
         /// 用户列表，默认为*，表示任何user都可以访问，当前用户只能是用户列表中包含的用户
         public let principal: String?
         
-        public init (instanceId: String, resourceType: Int64, resourceName: String, operation: Int64, permissionType: Int64, host: String?, principal: String?) {
+        public init (instanceId: String, resourceType: Int64, resourceName: String, operation: Int64, permissionType: Int64, host: String? = nil, principal: String? = nil) {
             self.instanceId = instanceId
             self.resourceType = resourceType
             self.resourceName = resourceName
@@ -83,5 +71,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除ACL
+    @inlinable
+    public func deleteAcl(_ input: DeleteAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAclResponse > {
+        self.client.execute(action: "DeleteAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除ACL
+    @inlinable
+    public func deleteAcl(_ input: DeleteAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclResponse {
+        try await self.client.execute(action: "DeleteAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

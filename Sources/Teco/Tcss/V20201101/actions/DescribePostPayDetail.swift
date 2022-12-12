@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询后付费详情
-    ///
-    /// DescribePostPayDetail  查询后付费详情
-    @inlinable
-    public func describePostPayDetail(_ input: DescribePostPayDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePostPayDetailResponse > {
-        self.client.execute(action: "DescribePostPayDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询后付费详情
-    ///
-    /// DescribePostPayDetail  查询后付费详情
-    @inlinable
-    public func describePostPayDetail(_ input: DescribePostPayDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePostPayDetailResponse {
-        try await self.client.execute(action: "DescribePostPayDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePostPayDetail请求参数结构体
     public struct DescribePostPayDetailRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -39,7 +23,7 @@ extension Tcss {
         /// 偏移量，默认为0。
         public let offset: UInt64?
         
-        public init (limit: UInt64?, offset: UInt64?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil) {
             self.limit = limit
             self.offset = offset
         }
@@ -63,5 +47,21 @@ extension Tcss {
             case softQuotaDayDetail = "SoftQuotaDayDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询后付费详情
+    ///
+    /// DescribePostPayDetail  查询后付费详情
+    @inlinable
+    public func describePostPayDetail(_ input: DescribePostPayDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePostPayDetailResponse > {
+        self.client.execute(action: "DescribePostPayDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询后付费详情
+    ///
+    /// DescribePostPayDetail  查询后付费详情
+    @inlinable
+    public func describePostPayDetail(_ input: DescribePostPayDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePostPayDetailResponse {
+        try await self.client.execute(action: "DescribePostPayDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

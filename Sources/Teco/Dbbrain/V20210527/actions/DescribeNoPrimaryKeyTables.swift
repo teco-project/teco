@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dbbrain {
-    /// 查询实例无主键表
-    ///
-    /// 查询实例无主键表。
-    @inlinable
-    public func describeNoPrimaryKeyTables(_ input: DescribeNoPrimaryKeyTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNoPrimaryKeyTablesResponse > {
-        self.client.execute(action: "DescribeNoPrimaryKeyTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例无主键表
-    ///
-    /// 查询实例无主键表。
-    @inlinable
-    public func describeNoPrimaryKeyTables(_ input: DescribeNoPrimaryKeyTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoPrimaryKeyTablesResponse {
-        try await self.client.execute(action: "DescribeNoPrimaryKeyTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNoPrimaryKeyTables请求参数结构体
     public struct DescribeNoPrimaryKeyTablesRequest: TCRequestModel {
         /// 实例ID。
@@ -51,7 +35,7 @@ extension Dbbrain {
         /// 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         public let product: String?
         
-        public init (instanceId: String, date: Date, limit: Int64?, offset: Int64?, product: String?) {
+        public init (instanceId: String, date: Date, limit: Int64? = nil, offset: Int64? = nil, product: String? = nil) {
             self.instanceId = instanceId
             self.date = date
             self.limit = limit
@@ -96,5 +80,21 @@ extension Dbbrain {
             case timestamp = "Timestamp"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例无主键表
+    ///
+    /// 查询实例无主键表。
+    @inlinable
+    public func describeNoPrimaryKeyTables(_ input: DescribeNoPrimaryKeyTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNoPrimaryKeyTablesResponse > {
+        self.client.execute(action: "DescribeNoPrimaryKeyTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例无主键表
+    ///
+    /// 查询实例无主键表。
+    @inlinable
+    public func describeNoPrimaryKeyTables(_ input: DescribeNoPrimaryKeyTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoPrimaryKeyTablesResponse {
+        try await self.client.execute(action: "DescribeNoPrimaryKeyTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

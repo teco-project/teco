@@ -15,6 +15,47 @@
 // DO NOT EDIT.
 
 extension Cvm {
+    /// StopInstances请求参数结构体
+    public struct StopInstancesRequest: TCRequestModel {
+        /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
+        public let instanceIds: [String]
+        
+        /// 本参数已弃用，推荐使用StopType，不可以与参数StopType同时使用。表示是否在正常关闭失败后选择强制关闭实例。取值范围：<br><li>TRUE：表示在正常关闭失败后进行强制关闭<br><li>FALSE：表示在正常关闭失败后不进行强制关闭<br><br>默认取值：FALSE。
+        public let forceStop: Bool?
+        
+        /// 实例的关闭模式。取值范围：<br><li>SOFT_FIRST：表示在正常关闭失败后进行强制关闭<br><li>HARD：直接强制关闭<br><li>SOFT：仅软关机<br>默认取值：SOFT。
+        public let stopType: String?
+        
+        /// 按量计费实例关机收费模式。
+        /// 取值范围：<br><li>KEEP_CHARGING：关机继续收费<br><li>STOP_CHARGING：关机停止收费<br>默认取值：KEEP_CHARGING。
+        /// 该参数只针对部分按量计费云硬盘实例生效，详情参考[按量计费实例关机不收费说明](https://cloud.tencent.com/document/product/213/19918)
+        public let stoppedMode: String?
+        
+        public init (instanceIds: [String], forceStop: Bool? = nil, stopType: String? = nil, stoppedMode: String? = nil) {
+            self.instanceIds = instanceIds
+            self.forceStop = forceStop
+            self.stopType = stopType
+            self.stoppedMode = stoppedMode
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case instanceIds = "InstanceIds"
+            case forceStop = "ForceStop"
+            case stopType = "StopType"
+            case stoppedMode = "StoppedMode"
+        }
+    }
+    
+    /// StopInstances返回参数结构体
+    public struct StopInstancesResponse: TCResponseModel {
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 关闭实例
     ///
     /// 本接口 (StopInstances) 用于关闭一个或多个实例。
@@ -39,46 +80,5 @@ extension Cvm {
     @inlinable
     public func stopInstances(_ input: StopInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstancesResponse {
         try await self.client.execute(action: "StopInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// StopInstances请求参数结构体
-    public struct StopInstancesRequest: TCRequestModel {
-        /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
-        public let instanceIds: [String]
-        
-        /// 本参数已弃用，推荐使用StopType，不可以与参数StopType同时使用。表示是否在正常关闭失败后选择强制关闭实例。取值范围：<br><li>TRUE：表示在正常关闭失败后进行强制关闭<br><li>FALSE：表示在正常关闭失败后不进行强制关闭<br><br>默认取值：FALSE。
-        public let forceStop: Bool?
-        
-        /// 实例的关闭模式。取值范围：<br><li>SOFT_FIRST：表示在正常关闭失败后进行强制关闭<br><li>HARD：直接强制关闭<br><li>SOFT：仅软关机<br>默认取值：SOFT。
-        public let stopType: String?
-        
-        /// 按量计费实例关机收费模式。
-        /// 取值范围：<br><li>KEEP_CHARGING：关机继续收费<br><li>STOP_CHARGING：关机停止收费<br>默认取值：KEEP_CHARGING。
-        /// 该参数只针对部分按量计费云硬盘实例生效，详情参考[按量计费实例关机不收费说明](https://cloud.tencent.com/document/product/213/19918)
-        public let stoppedMode: String?
-        
-        public init (instanceIds: [String], forceStop: Bool?, stopType: String?, stoppedMode: String?) {
-            self.instanceIds = instanceIds
-            self.forceStop = forceStop
-            self.stopType = stopType
-            self.stoppedMode = stoppedMode
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case instanceIds = "InstanceIds"
-            case forceStop = "ForceStop"
-            case stopType = "StopType"
-            case stoppedMode = "StoppedMode"
-        }
-    }
-    
-    /// StopInstances返回参数结构体
-    public struct StopInstancesResponse: TCResponseModel {
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case requestId = "RequestId"
-        }
     }
 }

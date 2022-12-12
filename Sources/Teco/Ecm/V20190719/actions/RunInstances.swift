@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 创建实例
-    ///
-    /// 创建ECM实例。
-    @inlinable
-    public func runInstances(_ input: RunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunInstancesResponse > {
-        self.client.execute(action: "RunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例
-    ///
-    /// 创建ECM实例。
-    @inlinable
-    public func runInstances(_ input: RunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunInstancesResponse {
-        try await self.client.execute(action: "RunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RunInstances请求参数结构体
     public struct RunInstancesRequest: TCRequestModel {
         /// 需要创建实例的可用区及创建数目及运营商的列表。在单次请求的过程中，单个region下的请求创建实例数上限为100
@@ -70,7 +54,7 @@ extension Ecm {
         public let clientToken: String?
         
         /// 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认公共镜像开启云监控、云安全服务
-        public let enhancedService: EnhancedService
+        public let enhancedService: EnhancedService?
         
         /// 标签列表
         public let tagSpecification: [TagSpecification]?
@@ -113,12 +97,12 @@ extension Ecm {
         public let keepImageLogin: String?
         
         /// 系统盘信息。
-        public let systemDisk: SystemDisk
+        public let systemDisk: SystemDisk?
         
         /// 数据盘信息。
         public let dataDisks: [DataDisk]?
         
-        public init (zoneInstanceCountISPSet: [ZoneInstanceCountISP], password: String?, internetMaxBandwidthOut: Int64?, moduleId: String?, imageId: String?, instanceName: String?, hostName: String?, clientToken: String?, enhancedService: EnhancedService, tagSpecification: [TagSpecification]?, userData: String?, instanceType: String?, dataDiskSize: Int64?, securityGroupIds: [String]?, systemDiskSize: UInt64?, internetMaxBandwidthIn: Int64?, instanceChargeType: Int64?, keyIds: [String]?, keepImageLogin: String?, systemDisk: SystemDisk, dataDisks: [DataDisk]?) {
+        public init (zoneInstanceCountISPSet: [ZoneInstanceCountISP], password: String? = nil, internetMaxBandwidthOut: Int64? = nil, moduleId: String? = nil, imageId: String? = nil, instanceName: String? = nil, hostName: String? = nil, clientToken: String? = nil, enhancedService: EnhancedService? = nil, tagSpecification: [TagSpecification]? = nil, userData: String? = nil, instanceType: String? = nil, dataDiskSize: Int64? = nil, securityGroupIds: [String]? = nil, systemDiskSize: UInt64? = nil, internetMaxBandwidthIn: Int64? = nil, instanceChargeType: Int64? = nil, keyIds: [String]? = nil, keepImageLogin: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil) {
             self.zoneInstanceCountISPSet = zoneInstanceCountISPSet
             self.password = password
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
@@ -180,5 +164,21 @@ extension Ecm {
             case instanceIdSet = "InstanceIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例
+    ///
+    /// 创建ECM实例。
+    @inlinable
+    public func runInstances(_ input: RunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunInstancesResponse > {
+        self.client.execute(action: "RunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例
+    ///
+    /// 创建ECM实例。
+    @inlinable
+    public func runInstances(_ input: RunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunInstancesResponse {
+        try await self.client.execute(action: "RunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 关联机器标签列表
-    @inlinable
-    public func updateMachineTags(_ input: UpdateMachineTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateMachineTagsResponse > {
-        self.client.execute(action: "UpdateMachineTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关联机器标签列表
-    @inlinable
-    public func updateMachineTags(_ input: UpdateMachineTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateMachineTagsResponse {
-        try await self.client.execute(action: "UpdateMachineTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateMachineTags请求参数结构体
     public struct UpdateMachineTagsRequest: TCRequestModel {
         /// 机器 Quuid
@@ -41,7 +29,7 @@ extension Cwp {
         /// 标签ID，该操作会覆盖原有的标签列表
         public let tagIds: [UInt64]?
         
-        public init (quuid: String, machineRegion: String, machineArea: String, tagIds: [UInt64]?) {
+        public init (quuid: String, machineRegion: String, machineArea: String, tagIds: [UInt64]? = nil) {
             self.quuid = quuid
             self.machineRegion = machineRegion
             self.machineArea = machineArea
@@ -64,5 +52,17 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关联机器标签列表
+    @inlinable
+    public func updateMachineTags(_ input: UpdateMachineTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateMachineTagsResponse > {
+        self.client.execute(action: "UpdateMachineTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关联机器标签列表
+    @inlinable
+    public func updateMachineTags(_ input: UpdateMachineTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateMachineTagsResponse {
+        try await self.client.execute(action: "UpdateMachineTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

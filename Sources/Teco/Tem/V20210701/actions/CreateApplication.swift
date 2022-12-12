@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 创建应用
-    @inlinable
-    public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationResponse > {
-        self.client.execute(action: "CreateApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建应用
-    @inlinable
-    public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationResponse {
-        try await self.client.execute(action: "CreateApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateApplication请求参数结构体
     public struct CreateApplicationRequest: TCRequestModel {
         /// 应用名
@@ -71,12 +59,12 @@ extension Tem {
         public let enableTracing: Int64?
         
         /// 使用默认镜像服务额外参数
-        public let useDefaultImageServiceParameters: UseDefaultRepoParameters
+        public let useDefaultImageServiceParameters: UseDefaultRepoParameters?
         
         /// 标签
         public let tags: [Tag]?
         
-        public init (applicationName: String, description: String, useDefaultImageService: Int64?, repoType: Int64?, instanceId: String?, repoServer: String?, repoName: String?, sourceChannel: Int64?, subnetList: [String]?, codingLanguage: String?, deployMode: String?, enableTracing: Int64?, useDefaultImageServiceParameters: UseDefaultRepoParameters, tags: [Tag]?) {
+        public init (applicationName: String, description: String, useDefaultImageService: Int64? = nil, repoType: Int64? = nil, instanceId: String? = nil, repoServer: String? = nil, repoName: String? = nil, sourceChannel: Int64? = nil, subnetList: [String]? = nil, codingLanguage: String? = nil, deployMode: String? = nil, enableTracing: Int64? = nil, useDefaultImageServiceParameters: UseDefaultRepoParameters? = nil, tags: [Tag]? = nil) {
             self.applicationName = applicationName
             self.description = description
             self.useDefaultImageService = useDefaultImageService
@@ -123,5 +111,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建应用
+    @inlinable
+    public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationResponse > {
+        self.client.execute(action: "CreateApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建应用
+    @inlinable
+    public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationResponse {
+        try await self.client.execute(action: "CreateApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

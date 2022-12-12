@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdc {
-    /// 查询站点列表
-    @inlinable
-    public func describeSites(_ input: DescribeSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSitesResponse > {
-        self.client.execute(action: "DescribeSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询站点列表
-    @inlinable
-    public func describeSites(_ input: DescribeSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesResponse {
-        try await self.client.execute(action: "DescribeSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSites请求参数结构体
     public struct DescribeSitesRequest: TCRequestModel {
         /// 按照站点id过滤
@@ -41,7 +29,7 @@ extension Cdc {
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: Int64?
         
-        public init (siteIds: [String]?, name: String?, offset: Int64?, limit: Int64?) {
+        public init (siteIds: [String]? = nil, name: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.siteIds = siteIds
             self.name = name
             self.offset = offset
@@ -72,5 +60,17 @@ extension Cdc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询站点列表
+    @inlinable
+    public func describeSites(_ input: DescribeSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSitesResponse > {
+        self.client.execute(action: "DescribeSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询站点列表
+    @inlinable
+    public func describeSites(_ input: DescribeSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesResponse {
+        try await self.client.execute(action: "DescribeSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

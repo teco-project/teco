@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 智慧零售-发票红冲
-    @inlinable
-    public func createRedInvoice(_ input: CreateRedInvoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRedInvoiceResponse > {
-        self.client.execute(action: "CreateRedInvoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 智慧零售-发票红冲
-    @inlinable
-    public func createRedInvoice(_ input: CreateRedInvoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRedInvoiceResponse {
-        try await self.client.execute(action: "CreateRedInvoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRedInvoice请求参数结构体
     public struct CreateRedInvoiceRequest: TCRequestModel {
         /// 开票平台ID
@@ -43,7 +31,7 @@ extension Cpdp {
         /// 开票渠道。0：线上渠道，1：线下渠道。不填默认为线上渠道
         public let invoiceChannel: Int64?
         
-        public init (invoicePlatformId: Int64, invoices: [CreateRedInvoiceItem], profile: String?, invoiceChannel: Int64?) {
+        public init (invoicePlatformId: Int64, invoices: [CreateRedInvoiceItem], profile: String? = nil, invoiceChannel: Int64? = nil) {
             self.invoicePlatformId = invoicePlatformId
             self.invoices = invoices
             self.profile = profile
@@ -70,5 +58,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 智慧零售-发票红冲
+    @inlinable
+    public func createRedInvoice(_ input: CreateRedInvoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRedInvoiceResponse > {
+        self.client.execute(action: "CreateRedInvoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 智慧零售-发票红冲
+    @inlinable
+    public func createRedInvoice(_ input: CreateRedInvoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRedInvoiceResponse {
+        try await self.client.execute(action: "CreateRedInvoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

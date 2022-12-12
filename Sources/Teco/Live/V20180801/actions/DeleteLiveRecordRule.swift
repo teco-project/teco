@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 删除录制规则
-    ///
-    /// 删除录制规则。
-    @inlinable
-    public func deleteLiveRecordRule(_ input: DeleteLiveRecordRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveRecordRuleResponse > {
-        self.client.execute(action: "DeleteLiveRecordRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除录制规则
-    ///
-    /// 删除录制规则。
-    @inlinable
-    public func deleteLiveRecordRule(_ input: DeleteLiveRecordRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordRuleResponse {
-        try await self.client.execute(action: "DeleteLiveRecordRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLiveRecordRule请求参数结构体
     public struct DeleteLiveRecordRuleRequest: TCRequestModel {
         /// 推流域名。
@@ -45,7 +29,7 @@ extension Live {
         /// 域名+AppName+StreamName唯一标识单个转码规则，如需删除需要强匹配，例如AppName为空也需要传空字符串进行强匹配。
         public let streamName: String?
         
-        public init (domainName: String, appName: String?, streamName: String?) {
+        public init (domainName: String, appName: String? = nil, streamName: String? = nil) {
             self.domainName = domainName
             self.appName = appName
             self.streamName = streamName
@@ -66,5 +50,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除录制规则
+    ///
+    /// 删除录制规则。
+    @inlinable
+    public func deleteLiveRecordRule(_ input: DeleteLiveRecordRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveRecordRuleResponse > {
+        self.client.execute(action: "DeleteLiveRecordRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除录制规则
+    ///
+    /// 删除录制规则。
+    @inlinable
+    public func deleteLiveRecordRule(_ input: DeleteLiveRecordRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordRuleResponse {
+        try await self.client.execute(action: "DeleteLiveRecordRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

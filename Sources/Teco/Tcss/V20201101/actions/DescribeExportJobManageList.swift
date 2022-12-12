@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询导出任务管理列表
-    @inlinable
-    public func describeExportJobManageList(_ input: DescribeExportJobManageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExportJobManageListResponse > {
-        self.client.execute(action: "DescribeExportJobManageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询导出任务管理列表
-    @inlinable
-    public func describeExportJobManageList(_ input: DescribeExportJobManageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobManageListResponse {
-        try await self.client.execute(action: "DescribeExportJobManageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExportJobManageList请求参数结构体
     public struct DescribeExportJobManageListRequest: TCRequestModel {
         /// 过滤条件。
@@ -48,7 +36,7 @@ extension Tcss {
         /// InsertTime: 创建时间
         public let by: String?
         
-        public init (filters: [RunTimeFilters]?, offset: UInt64?, limit: UInt64?, order: String?, by: String?) {
+        public init (filters: [RunTimeFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -81,5 +69,17 @@ extension Tcss {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询导出任务管理列表
+    @inlinable
+    public func describeExportJobManageList(_ input: DescribeExportJobManageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExportJobManageListResponse > {
+        self.client.execute(action: "DescribeExportJobManageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询导出任务管理列表
+    @inlinable
+    public func describeExportJobManageList(_ input: DescribeExportJobManageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobManageListResponse {
+        try await self.client.execute(action: "DescribeExportJobManageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

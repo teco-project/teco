@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 创建或修改安全网关路由
-    @inlinable
-    public func establishWxGatewayRoute(_ input: EstablishWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EstablishWxGatewayRouteResponse > {
-        self.client.execute(action: "EstablishWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建或修改安全网关路由
-    @inlinable
-    public func establishWxGatewayRoute(_ input: EstablishWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstablishWxGatewayRouteResponse {
-        try await self.client.execute(action: "EstablishWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EstablishWxGatewayRoute请求参数结构体
     public struct EstablishWxGatewayRouteRequest: TCRequestModel {
         /// 网关id
@@ -44,7 +32,7 @@ extension Tcb {
         /// 服务描述
         public let gatewayRouteDesc: String?
         
-        public init (gatewayId: String, gatewayRouteName: String, gatewayRouteAddr: String, gatewayRouteProtocol: String, gatewayRouteDesc: String?) {
+        public init (gatewayId: String, gatewayRouteName: String, gatewayRouteAddr: String, gatewayRouteProtocol: String, gatewayRouteDesc: String? = nil) {
             self.gatewayId = gatewayId
             self.gatewayRouteName = gatewayRouteName
             self.gatewayRouteAddr = gatewayRouteAddr
@@ -69,5 +57,17 @@ extension Tcb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建或修改安全网关路由
+    @inlinable
+    public func establishWxGatewayRoute(_ input: EstablishWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EstablishWxGatewayRouteResponse > {
+        self.client.execute(action: "EstablishWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建或修改安全网关路由
+    @inlinable
+    public func establishWxGatewayRoute(_ input: EstablishWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstablishWxGatewayRouteResponse {
+        try await self.client.execute(action: "EstablishWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

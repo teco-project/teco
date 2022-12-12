@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 添加短信人群包信息
-    @inlinable
-    public func addCrowdPackInfo(_ input: AddCrowdPackInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddCrowdPackInfoResponse > {
-        self.client.execute(action: "AddCrowdPackInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加短信人群包信息
-    @inlinable
-    public func addCrowdPackInfo(_ input: AddCrowdPackInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCrowdPackInfoResponse {
-        try await self.client.execute(action: "AddCrowdPackInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddCrowdPackInfo请求参数结构体
     public struct AddCrowdPackInfoRequest: TCRequestModel {
         /// 商户证书
@@ -47,7 +35,7 @@ extension Zj {
         /// 人群包手机号数量
         public let phoneNum: Int64?
         
-        public init (license: String, name: String, fileName: String, desc: String, cosUrl: String, phoneNum: Int64?) {
+        public init (license: String, name: String, fileName: String, desc: String, cosUrl: String, phoneNum: Int64? = nil) {
             self.license = license
             self.name = name
             self.fileName = fileName
@@ -78,5 +66,17 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加短信人群包信息
+    @inlinable
+    public func addCrowdPackInfo(_ input: AddCrowdPackInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddCrowdPackInfoResponse > {
+        self.client.execute(action: "AddCrowdPackInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加短信人群包信息
+    @inlinable
+    public func addCrowdPackInfo(_ input: AddCrowdPackInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCrowdPackInfoResponse {
+        try await self.client.execute(action: "AddCrowdPackInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 创建集群路由
-    @inlinable
-    public func createClusterRoute(_ input: CreateClusterRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterRouteResponse > {
-        self.client.execute(action: "CreateClusterRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建集群路由
-    @inlinable
-    public func createClusterRoute(_ input: CreateClusterRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteResponse {
-        try await self.client.execute(action: "CreateClusterRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateClusterRoute请求参数结构体
     public struct CreateClusterRouteRequest: TCRequestModel {
         /// 路由表名称。
@@ -59,5 +47,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建集群路由
+    @inlinable
+    public func createClusterRoute(_ input: CreateClusterRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterRouteResponse > {
+        self.client.execute(action: "CreateClusterRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群路由
+    @inlinable
+    public func createClusterRoute(_ input: CreateClusterRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteResponse {
+        try await self.client.execute(action: "CreateClusterRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

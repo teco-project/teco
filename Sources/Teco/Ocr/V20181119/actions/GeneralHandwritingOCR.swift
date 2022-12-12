@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 通用手写体识别
-    ///
-    /// 本接口支持图片内手写体文字的检测和识别，针对手写字体无规则、字迹潦草、模糊等特点进行了识别能力的增强。
-    /// 默认接口请求频率限制：10次/秒。
-    @inlinable
-    public func generalHandwritingOCR(_ input: GeneralHandwritingOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GeneralHandwritingOCRResponse > {
-        self.client.execute(action: "GeneralHandwritingOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通用手写体识别
-    ///
-    /// 本接口支持图片内手写体文字的检测和识别，针对手写字体无规则、字迹潦草、模糊等特点进行了识别能力的增强。
-    /// 默认接口请求频率限制：10次/秒。
-    @inlinable
-    public func generalHandwritingOCR(_ input: GeneralHandwritingOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralHandwritingOCRResponse {
-        try await self.client.execute(action: "GeneralHandwritingOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GeneralHandwritingOCR请求参数结构体
     public struct GeneralHandwritingOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -59,7 +41,7 @@ extension Ocr {
         /// 设置为false表示直接进行单行识别，可适用于识别单行手写体签名场景。
         public let enableDetectText: Bool?
         
-        public init (imageBase64: String?, imageUrl: String?, scene: String?, enableWordPolygon: Bool?, enableDetectText: Bool?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, scene: String? = nil, enableWordPolygon: Bool? = nil, enableDetectText: Bool? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.scene = scene
@@ -92,5 +74,23 @@ extension Ocr {
             case angel = "Angel"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通用手写体识别
+    ///
+    /// 本接口支持图片内手写体文字的检测和识别，针对手写字体无规则、字迹潦草、模糊等特点进行了识别能力的增强。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func generalHandwritingOCR(_ input: GeneralHandwritingOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GeneralHandwritingOCRResponse > {
+        self.client.execute(action: "GeneralHandwritingOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通用手写体识别
+    ///
+    /// 本接口支持图片内手写体文字的检测和识别，针对手写字体无规则、字迹潦草、模糊等特点进行了识别能力的增强。
+    /// 默认接口请求频率限制：10次/秒。
+    @inlinable
+    public func generalHandwritingOCR(_ input: GeneralHandwritingOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralHandwritingOCRResponse {
+        try await self.client.execute(action: "GeneralHandwritingOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

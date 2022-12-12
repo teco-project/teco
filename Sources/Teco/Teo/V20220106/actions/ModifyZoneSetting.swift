@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改站点配置
-    ///
-    /// 用于修改站点配置
-    @inlinable
-    public func modifyZoneSetting(_ input: ModifyZoneSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyZoneSettingResponse > {
-        self.client.execute(action: "ModifyZoneSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改站点配置
-    ///
-    /// 用于修改站点配置
-    @inlinable
-    public func modifyZoneSetting(_ input: ModifyZoneSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneSettingResponse {
-        try await self.client.execute(action: "ModifyZoneSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyZoneSetting请求参数结构体
     public struct ModifyZoneSettingRequest: TCRequestModel {
         /// 待变更的站点ID。
@@ -38,69 +22,69 @@ extension Teo {
         
         /// 缓存过期时间配置。
         /// 不填写表示保持原有配置。
-        public let cache: CacheConfig
+        public let cache: CacheConfig?
         
         /// 节点缓存键配置。
         /// 不填写表示保持原有配置。
-        public let cacheKey: CacheKey
+        public let cacheKey: CacheKey?
         
         /// 浏览器缓存配置。
         /// 不填写表示保持原有配置。
-        public let maxAge: MaxAge
+        public let maxAge: MaxAge?
         
         /// 离线缓存配置。
         /// 不填写表示保持原有配置。
-        public let offlineCache: OfflineCache
+        public let offlineCache: OfflineCache?
         
         /// Quic访问配置。
         /// 不填写表示保持原有配置。
-        public let quic: Quic
+        public let quic: Quic?
         
         /// Post请求传输配置。
         /// 不填写表示保持原有配置。
-        public let postMaxSize: PostMaxSize
+        public let postMaxSize: PostMaxSize?
         
         /// 智能压缩配置。
         /// 不填写表示保持原有配置。
-        public let compression: Compression
+        public let compression: Compression?
         
         /// Http2回源配置。
         /// 不填写表示保持原有配置。
-        public let upstreamHttp2: UpstreamHttp2
+        public let upstreamHttp2: UpstreamHttp2?
         
         /// 访问协议强制Https跳转配置。
         /// 不填写表示保持原有配置。
-        public let forceRedirect: ForceRedirect
+        public let forceRedirect: ForceRedirect?
         
         /// Https加速配置。
         /// 不填写表示保持原有配置。
-        public let https: Https
+        public let https: Https?
         
         /// 源站配置。
         /// 不填写表示保持原有配置。
-        public let origin: Origin
+        public let origin: Origin?
         
         /// 智能加速配置。
         /// 不填写表示保持原有配置。
-        public let smartRouting: SmartRouting
+        public let smartRouting: SmartRouting?
         
         /// WebSocket配置。
         /// 不填写表示保持原有配置。
-        public let webSocket: WebSocket
+        public let webSocket: WebSocket?
         
         /// 客户端IP回源请求头配置。
         /// 不填写表示保持原有配置。
-        public let clientIpHeader: ClientIp
+        public let clientIpHeader: ClientIp?
         
         /// 缓存预刷新配置。
         /// 不填写表示保持原有配置。
-        public let cachePrefresh: CachePrefresh
+        public let cachePrefresh: CachePrefresh?
         
         /// Ipv6访问配置。
         /// 不填写表示保持原有配置。
-        public let ipv6: Ipv6Access
+        public let ipv6: Ipv6Access?
         
-        public init (zoneId: String, cache: CacheConfig, cacheKey: CacheKey, maxAge: MaxAge, offlineCache: OfflineCache, quic: Quic, postMaxSize: PostMaxSize, compression: Compression, upstreamHttp2: UpstreamHttp2, forceRedirect: ForceRedirect, https: Https, origin: Origin, smartRouting: SmartRouting, webSocket: WebSocket, clientIpHeader: ClientIp, cachePrefresh: CachePrefresh, ipv6: Ipv6Access) {
+        public init (zoneId: String, cache: CacheConfig? = nil, cacheKey: CacheKey? = nil, maxAge: MaxAge? = nil, offlineCache: OfflineCache? = nil, quic: Quic? = nil, postMaxSize: PostMaxSize? = nil, compression: Compression? = nil, upstreamHttp2: UpstreamHttp2? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, origin: Origin? = nil, smartRouting: SmartRouting? = nil, webSocket: WebSocket? = nil, clientIpHeader: ClientIp? = nil, cachePrefresh: CachePrefresh? = nil, ipv6: Ipv6Access? = nil) {
             self.zoneId = zoneId
             self.cache = cache
             self.cacheKey = cacheKey
@@ -153,5 +137,21 @@ extension Teo {
             case zoneId = "ZoneId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改站点配置
+    ///
+    /// 用于修改站点配置
+    @inlinable
+    public func modifyZoneSetting(_ input: ModifyZoneSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyZoneSettingResponse > {
+        self.client.execute(action: "ModifyZoneSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改站点配置
+    ///
+    /// 用于修改站点配置
+    @inlinable
+    public func modifyZoneSetting(_ input: ModifyZoneSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneSettingResponse {
+        try await self.client.execute(action: "ModifyZoneSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

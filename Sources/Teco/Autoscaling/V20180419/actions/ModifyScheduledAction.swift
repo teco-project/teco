@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension As {
-    /// 修改定时任务
-    ///
-    /// 本接口（ModifyScheduledAction）用于修改定时任务。
-    @inlinable
-    public func modifyScheduledAction(_ input: ModifyScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyScheduledActionResponse > {
-        self.client.execute(action: "ModifyScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改定时任务
-    ///
-    /// 本接口（ModifyScheduledAction）用于修改定时任务。
-    @inlinable
-    public func modifyScheduledAction(_ input: ModifyScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyScheduledActionResponse {
-        try await self.client.execute(action: "ModifyScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyScheduledAction请求参数结构体
     public struct ModifyScheduledActionRequest: TCRequestModel {
         /// 待修改的定时任务ID
@@ -59,7 +43,7 @@ extension As {
         /// 定时任务的重复方式。为标准 Cron 格式<br>此参数与`EndTime`需要同时指定。
         public let recurrence: String?
         
-        public init (scheduledActionId: String, scheduledActionName: String?, maxSize: UInt64?, minSize: UInt64?, desiredCapacity: UInt64?, startTime: Date?, endTime: Date?, recurrence: String?) {
+        public init (scheduledActionId: String, scheduledActionName: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, desiredCapacity: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, recurrence: String? = nil) {
             self.scheduledActionId = scheduledActionId
             self.scheduledActionName = scheduledActionName
             self.maxSize = maxSize
@@ -90,5 +74,21 @@ extension As {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改定时任务
+    ///
+    /// 本接口（ModifyScheduledAction）用于修改定时任务。
+    @inlinable
+    public func modifyScheduledAction(_ input: ModifyScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyScheduledActionResponse > {
+        self.client.execute(action: "ModifyScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改定时任务
+    ///
+    /// 本接口（ModifyScheduledAction）用于修改定时任务。
+    @inlinable
+    public func modifyScheduledAction(_ input: ModifyScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyScheduledActionResponse {
+        try await self.client.execute(action: "ModifyScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

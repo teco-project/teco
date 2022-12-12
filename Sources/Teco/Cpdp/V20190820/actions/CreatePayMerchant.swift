@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-商户新增接口
-    ///
-    /// 商户新增的接口
-    @inlinable
-    public func createPayMerchant(_ input: CreatePayMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePayMerchantResponse > {
-        self.client.execute(action: "CreatePayMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-商户新增接口
-    ///
-    /// 商户新增的接口
-    @inlinable
-    public func createPayMerchant(_ input: CreatePayMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayMerchantResponse {
-        try await self.client.execute(action: "CreatePayMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePayMerchant请求参数结构体
     public struct CreatePayMerchantRequest: TCRequestModel {
         /// 平台编号
@@ -49,7 +33,7 @@ extension Cpdp {
         /// 是否开通 B2B 支付 1:开通 0:不开通 缺省:1
         public let businessPayFlag: String?
         
-        public init (platformCode: String, channelMerchantNo: String, channelCheckFlag: String, merchantName: String, businessPayFlag: String?) {
+        public init (platformCode: String, channelMerchantNo: String, channelCheckFlag: String, merchantName: String, businessPayFlag: String? = nil) {
             self.platformCode = platformCode
             self.channelMerchantNo = channelMerchantNo
             self.channelCheckFlag = channelCheckFlag
@@ -78,5 +62,21 @@ extension Cpdp {
             case merchantAppId = "MerchantAppId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-商户新增接口
+    ///
+    /// 商户新增的接口
+    @inlinable
+    public func createPayMerchant(_ input: CreatePayMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePayMerchantResponse > {
+        self.client.execute(action: "CreatePayMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-商户新增接口
+    ///
+    /// 商户新增的接口
+    @inlinable
+    public func createPayMerchant(_ input: CreatePayMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayMerchantResponse {
+        try await self.client.execute(action: "CreatePayMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

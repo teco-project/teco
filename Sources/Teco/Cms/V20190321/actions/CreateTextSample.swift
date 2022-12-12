@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cms {
-    /// 新增文本样本库
-    ///
-    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
-    /// <br>
-    /// 通过该接口可以将文本新增到样本库。
-    @inlinable
-    public func createTextSample(_ input: CreateTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTextSampleResponse > {
-        self.client.execute(action: "CreateTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增文本样本库
-    ///
-    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
-    /// <br>
-    /// 通过该接口可以将文本新增到样本库。
-    @inlinable
-    public func createTextSample(_ input: CreateTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTextSampleResponse {
-        try await self.client.execute(action: "CreateTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTextSample请求参数结构体
     public struct CreateTextSampleRequest: TCRequestModel {
         /// 关键词数组
@@ -58,7 +38,7 @@ extension Cms {
         /// 测试修改参数
         public let test: String?
         
-        public init (contents: [String], evilType: Int64, label: UInt64, test: String?) {
+        public init (contents: [String], evilType: Int64, label: UInt64, test: String? = nil) {
             self.contents = contents
             self.evilType = evilType
             self.label = label
@@ -91,5 +71,25 @@ extension Cms {
             case progress = "Progress"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增文本样本库
+    ///
+    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
+    /// <br>
+    /// 通过该接口可以将文本新增到样本库。
+    @inlinable
+    public func createTextSample(_ input: CreateTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTextSampleResponse > {
+        self.client.execute(action: "CreateTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增文本样本库
+    ///
+    /// 本文档适用于文本内容安全、音频内容安全自定义识别库的管理。
+    /// <br>
+    /// 通过该接口可以将文本新增到样本库。
+    @inlinable
+    public func createTextSample(_ input: CreateTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTextSampleResponse {
+        try await self.client.execute(action: "CreateTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

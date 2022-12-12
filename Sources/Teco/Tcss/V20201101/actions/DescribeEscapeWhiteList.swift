@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询逃逸白名单
-    @inlinable
-    public func describeEscapeWhiteList(_ input: DescribeEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeWhiteListResponse > {
-        self.client.execute(action: "DescribeEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询逃逸白名单
-    @inlinable
-    public func describeEscapeWhiteList(_ input: DescribeEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeWhiteListResponse {
-        try await self.client.execute(action: "DescribeEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEscapeWhiteList请求参数结构体
     public struct DescribeEscapeWhiteListRequest: TCRequestModel {
         /// 过滤条件。
@@ -47,7 +35,7 @@ extension Tcss {
         /// 排序字段：主机数量：HostCount，容器数量：ContainerCount，更新时间：UpdateTime
         public let by: String?
         
-        public init (filters: [RunTimeFilters]?, limit: UInt64?, offset: UInt64?, order: String?, by: String?) {
+        public init (filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -80,5 +68,17 @@ extension Tcss {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询逃逸白名单
+    @inlinable
+    public func describeEscapeWhiteList(_ input: DescribeEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeWhiteListResponse > {
+        self.client.execute(action: "DescribeEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询逃逸白名单
+    @inlinable
+    public func describeEscapeWhiteList(_ input: DescribeEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeWhiteListResponse {
+        try await self.client.execute(action: "DescribeEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

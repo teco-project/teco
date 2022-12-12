@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 更改某一条规则
-    @inlinable
-    public func modifyDomainWhiteRule(_ input: ModifyDomainWhiteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainWhiteRuleResponse > {
-        self.client.execute(action: "ModifyDomainWhiteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更改某一条规则
-    @inlinable
-    public func modifyDomainWhiteRule(_ input: ModifyDomainWhiteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainWhiteRuleResponse {
-        try await self.client.execute(action: "ModifyDomainWhiteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDomainWhiteRule请求参数结构体
     public struct ModifyDomainWhiteRuleRequest: TCRequestModel {
         /// 需要更改的规则的域名
@@ -74,5 +62,17 @@ extension Waf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更改某一条规则
+    @inlinable
+    public func modifyDomainWhiteRule(_ input: ModifyDomainWhiteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainWhiteRuleResponse > {
+        self.client.execute(action: "ModifyDomainWhiteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更改某一条规则
+    @inlinable
+    public func modifyDomainWhiteRule(_ input: ModifyDomainWhiteRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainWhiteRuleResponse {
+        try await self.client.execute(action: "ModifyDomainWhiteRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

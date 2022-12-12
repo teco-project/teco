@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查看VPC资源信息
-    ///
-    /// 本接口(DescribeVpcResourceDashboard)用于查看VPC资源信息。
-    @inlinable
-    public func describeVpcResourceDashboard(_ input: DescribeVpcResourceDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcResourceDashboardResponse > {
-        self.client.execute(action: "DescribeVpcResourceDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看VPC资源信息
-    ///
-    /// 本接口(DescribeVpcResourceDashboard)用于查看VPC资源信息。
-    @inlinable
-    public func describeVpcResourceDashboard(_ input: DescribeVpcResourceDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResourceDashboardResponse {
-        try await self.client.execute(action: "DescribeVpcResourceDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpcResourceDashboard请求参数结构体
     public struct DescribeVpcResourceDashboardRequest: TCRequestModel {
         /// Vpc实例ID，例如：vpc-f1xjkw1b。
@@ -57,5 +41,21 @@ extension Vpc {
             case resourceDashboardSet = "ResourceDashboardSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看VPC资源信息
+    ///
+    /// 本接口(DescribeVpcResourceDashboard)用于查看VPC资源信息。
+    @inlinable
+    public func describeVpcResourceDashboard(_ input: DescribeVpcResourceDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcResourceDashboardResponse > {
+        self.client.execute(action: "DescribeVpcResourceDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看VPC资源信息
+    ///
+    /// 本接口(DescribeVpcResourceDashboard)用于查看VPC资源信息。
+    @inlinable
+    public func describeVpcResourceDashboard(_ input: DescribeVpcResourceDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResourceDashboardResponse {
+        try await self.client.execute(action: "DescribeVpcResourceDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

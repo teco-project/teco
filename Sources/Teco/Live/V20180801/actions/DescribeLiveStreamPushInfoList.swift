@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 获取在线流的推流数据
-    ///
-    /// 查询所有实时流的推流信息，包括客户端IP，服务端IP，帧率，码率，域名，开始推流时间。
-    @inlinable
-    public func describeLiveStreamPushInfoList(_ input: DescribeLiveStreamPushInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveStreamPushInfoListResponse > {
-        self.client.execute(action: "DescribeLiveStreamPushInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取在线流的推流数据
-    ///
-    /// 查询所有实时流的推流信息，包括客户端IP，服务端IP，帧率，码率，域名，开始推流时间。
-    @inlinable
-    public func describeLiveStreamPushInfoList(_ input: DescribeLiveStreamPushInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamPushInfoListResponse {
-        try await self.client.execute(action: "DescribeLiveStreamPushInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveStreamPushInfoList请求参数结构体
     public struct DescribeLiveStreamPushInfoListRequest: TCRequestModel {
         /// 推流域名。
@@ -49,7 +33,7 @@ extension Live {
         /// 默认值： 200。
         public let pageSize: UInt64?
         
-        public init (pushDomain: String?, appName: String?, pageNum: UInt64?, pageSize: UInt64?) {
+        public init (pushDomain: String? = nil, appName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil) {
             self.pushDomain = pushDomain
             self.appName = appName
             self.pageNum = pageNum
@@ -92,5 +76,21 @@ extension Live {
             case pageSize = "PageSize"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取在线流的推流数据
+    ///
+    /// 查询所有实时流的推流信息，包括客户端IP，服务端IP，帧率，码率，域名，开始推流时间。
+    @inlinable
+    public func describeLiveStreamPushInfoList(_ input: DescribeLiveStreamPushInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveStreamPushInfoListResponse > {
+        self.client.execute(action: "DescribeLiveStreamPushInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取在线流的推流数据
+    ///
+    /// 查询所有实时流的推流信息，包括客户端IP，服务端IP，帧率，码率，域名，开始推流时间。
+    @inlinable
+    public func describeLiveStreamPushInfoList(_ input: DescribeLiveStreamPushInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamPushInfoListResponse {
+        try await self.client.execute(action: "DescribeLiveStreamPushInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

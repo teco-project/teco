@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取设备录像日期列表（旧）
-    ///
-    /// 本接口(GetRecordDatesByDev)用于查询设备含有录像文件的日期列表。
-    /// 请使用DescribeRecordDatesByChannel接口
-    @inlinable
-    public func getRecordDatesByDev(_ input: GetRecordDatesByDevRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRecordDatesByDevResponse > {
-        self.client.execute(action: "GetRecordDatesByDev", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备录像日期列表（旧）
-    ///
-    /// 本接口(GetRecordDatesByDev)用于查询设备含有录像文件的日期列表。
-    /// 请使用DescribeRecordDatesByChannel接口
-    @inlinable
-    public func getRecordDatesByDev(_ input: GetRecordDatesByDevRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordDatesByDevResponse {
-        try await self.client.execute(action: "GetRecordDatesByDev", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetRecordDatesByDev请求参数结构体
     public struct GetRecordDatesByDevRequest: TCRequestModel {
         /// 设备唯一标识
@@ -50,7 +32,7 @@ extension Iotvideoindustry {
         /// 1: 云端录制 2: 本地录制
         public let type: Int64?
         
-        public init (deviceId: String, limit: Int64, offset: Int64, channelId: String?, type: Int64?) {
+        public init (deviceId: String, limit: Int64, offset: Int64, channelId: String? = nil, type: Int64? = nil) {
             self.deviceId = deviceId
             self.limit = limit
             self.offset = offset
@@ -80,5 +62,23 @@ extension Iotvideoindustry {
             case dates = "Dates"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备录像日期列表（旧）
+    ///
+    /// 本接口(GetRecordDatesByDev)用于查询设备含有录像文件的日期列表。
+    /// 请使用DescribeRecordDatesByChannel接口
+    @inlinable
+    public func getRecordDatesByDev(_ input: GetRecordDatesByDevRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRecordDatesByDevResponse > {
+        self.client.execute(action: "GetRecordDatesByDev", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备录像日期列表（旧）
+    ///
+    /// 本接口(GetRecordDatesByDev)用于查询设备含有录像文件的日期列表。
+    /// 请使用DescribeRecordDatesByChannel接口
+    @inlinable
+    public func getRecordDatesByDev(_ input: GetRecordDatesByDevRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordDatesByDevResponse {
+        try await self.client.execute(action: "GetRecordDatesByDev", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

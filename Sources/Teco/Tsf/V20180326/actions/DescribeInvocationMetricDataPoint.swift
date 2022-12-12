@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询单值指标维度
-    @inlinable
-    public func describeInvocationMetricDataPoint(_ input: DescribeInvocationMetricDataPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvocationMetricDataPointResponse > {
-        self.client.execute(action: "DescribeInvocationMetricDataPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询单值指标维度
-    @inlinable
-    public func describeInvocationMetricDataPoint(_ input: DescribeInvocationMetricDataPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataPointResponse {
-        try await self.client.execute(action: "DescribeInvocationMetricDataPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInvocationMetricDataPoint请求参数结构体
     public struct DescribeInvocationMetricDataPointRequest: TCRequestModel {
         /// 开始时间
@@ -44,7 +32,7 @@ extension Tsf {
         /// 调用视角。可选值：SERVER, CLIENT。默认为SERVER
         public let kind: String?
         
-        public init (startTime: String, endTime: String, metricDimensionValues: [MetricDimensionValue], metrics: [Metric], kind: String?) {
+        public init (startTime: String, endTime: String, metricDimensionValues: [MetricDimensionValue], metrics: [Metric], kind: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metricDimensionValues = metricDimensionValues
@@ -74,5 +62,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询单值指标维度
+    @inlinable
+    public func describeInvocationMetricDataPoint(_ input: DescribeInvocationMetricDataPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInvocationMetricDataPointResponse > {
+        self.client.execute(action: "DescribeInvocationMetricDataPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询单值指标维度
+    @inlinable
+    public func describeInvocationMetricDataPoint(_ input: DescribeInvocationMetricDataPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataPointResponse {
+        try await self.client.execute(action: "DescribeInvocationMetricDataPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ams {
-    /// 识别统计
-    ///
-    /// 控制台识别统计
-    @inlinable
-    public func describeAudioStat(_ input: DescribeAudioStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAudioStatResponse > {
-        self.client.execute(action: "DescribeAudioStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 识别统计
-    ///
-    /// 控制台识别统计
-    @inlinable
-    public func describeAudioStat(_ input: DescribeAudioStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAudioStatResponse {
-        try await self.client.execute(action: "DescribeAudioStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAudioStat请求参数结构体
     public struct DescribeAudioStatRequest: TCRequestModel {
         /// 审核类型 1: 机器审核; 2: 人工审核
@@ -70,5 +54,21 @@ extension Ams {
             case evilCount = "EvilCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 识别统计
+    ///
+    /// 控制台识别统计
+    @inlinable
+    public func describeAudioStat(_ input: DescribeAudioStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAudioStatResponse > {
+        self.client.execute(action: "DescribeAudioStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 识别统计
+    ///
+    /// 控制台识别统计
+    @inlinable
+    public func describeAudioStat(_ input: DescribeAudioStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAudioStatResponse {
+        try await self.client.execute(action: "DescribeAudioStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

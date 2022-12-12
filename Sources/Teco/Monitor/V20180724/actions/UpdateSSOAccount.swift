@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 更新账号信息
-    ///
-    /// 更新已授权账号的备注、权限信息，会直接覆盖原有的信息，不传则不会更新。
-    @inlinable
-    public func updateSSOAccount(_ input: UpdateSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateSSOAccountResponse > {
-        self.client.execute(action: "UpdateSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新账号信息
-    ///
-    /// 更新已授权账号的备注、权限信息，会直接覆盖原有的信息，不传则不会更新。
-    @inlinable
-    public func updateSSOAccount(_ input: UpdateSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateSSOAccountResponse {
-        try await self.client.execute(action: "UpdateSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateSSOAccount请求参数结构体
     public struct UpdateSSOAccountRequest: TCRequestModel {
         /// Grafana 实例 ID，例如：grafana-abcdefgh
@@ -45,7 +29,7 @@ extension Monitor {
         /// 备注
         public let notes: String?
         
-        public init (instanceId: String, userId: String, role: [GrafanaAccountRole]?, notes: String?) {
+        public init (instanceId: String, userId: String, role: [GrafanaAccountRole]? = nil, notes: String? = nil) {
             self.instanceId = instanceId
             self.userId = userId
             self.role = role
@@ -68,5 +52,21 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新账号信息
+    ///
+    /// 更新已授权账号的备注、权限信息，会直接覆盖原有的信息，不传则不会更新。
+    @inlinable
+    public func updateSSOAccount(_ input: UpdateSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateSSOAccountResponse > {
+        self.client.execute(action: "UpdateSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新账号信息
+    ///
+    /// 更新已授权账号的备注、权限信息，会直接覆盖原有的信息，不传则不会更新。
+    @inlinable
+    public func updateSSOAccount(_ input: UpdateSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateSSOAccountResponse {
+        try await self.client.execute(action: "UpdateSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

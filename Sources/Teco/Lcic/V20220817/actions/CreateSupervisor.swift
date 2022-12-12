@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Lcic {
-    /// 创建巡课
-    @inlinable
-    public func createSupervisor(_ input: CreateSupervisorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSupervisorResponse > {
-        self.client.execute(action: "CreateSupervisor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建巡课
-    @inlinable
-    public func createSupervisor(_ input: CreateSupervisorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSupervisorResponse {
-        try await self.client.execute(action: "CreateSupervisor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSupervisor请求参数结构体
     public struct CreateSupervisorRequest: TCRequestModel {
         public init () {
@@ -41,5 +29,17 @@ extension Lcic {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建巡课
+    @inlinable
+    public func createSupervisor(_ input: CreateSupervisorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSupervisorResponse > {
+        self.client.execute(action: "CreateSupervisor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建巡课
+    @inlinable
+    public func createSupervisor(_ input: CreateSupervisorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSupervisorResponse {
+        try await self.client.execute(action: "CreateSupervisor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

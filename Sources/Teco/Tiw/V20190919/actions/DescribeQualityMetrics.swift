@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 查询质量数据
-    ///
-    /// 查询互动白板质量数据
-    @inlinable
-    public func describeQualityMetrics(_ input: DescribeQualityMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQualityMetricsResponse > {
-        self.client.execute(action: "DescribeQualityMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询质量数据
-    ///
-    /// 查询互动白板质量数据
-    @inlinable
-    public func describeQualityMetrics(_ input: DescribeQualityMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityMetricsResponse {
-        try await self.client.execute(action: "DescribeQualityMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeQualityMetrics请求参数结构体
     public struct DescribeQualityMetricsRequest: TCRequestModel {
         /// 白板应用的SdkAppId
@@ -59,7 +43,7 @@ extension Tiw {
         /// 聚合的时间维度，目前只支持1小时，输入值为"1h"
         public let interval: String?
         
-        public init (sdkAppId: Int64, startTime: Int64, endTime: Int64, metric: String, interval: String?) {
+        public init (sdkAppId: Int64, startTime: Int64, endTime: Int64, metric: String, interval: String? = nil) {
             self.sdkAppId = sdkAppId
             self.startTime = startTime
             self.endTime = endTime
@@ -92,5 +76,21 @@ extension Tiw {
             case content = "Content"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询质量数据
+    ///
+    /// 查询互动白板质量数据
+    @inlinable
+    public func describeQualityMetrics(_ input: DescribeQualityMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeQualityMetricsResponse > {
+        self.client.execute(action: "DescribeQualityMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询质量数据
+    ///
+    /// 查询互动白板质量数据
+    @inlinable
+    public func describeQualityMetrics(_ input: DescribeQualityMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityMetricsResponse {
+        try await self.client.execute(action: "DescribeQualityMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

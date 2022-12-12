@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 获取可用区机型配置信息
-    ///
-    /// 本接口(DescribeZoneInstanceConfigInfos) 获取可用区的机型信息。
-    @inlinable
-    public func describeZoneInstanceConfigInfos(_ input: DescribeZoneInstanceConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneInstanceConfigInfosResponse > {
-        self.client.execute(action: "DescribeZoneInstanceConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取可用区机型配置信息
-    ///
-    /// 本接口(DescribeZoneInstanceConfigInfos) 获取可用区的机型信息。
-    @inlinable
-    public func describeZoneInstanceConfigInfos(_ input: DescribeZoneInstanceConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneInstanceConfigInfosResponse {
-        try await self.client.execute(action: "DescribeZoneInstanceConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeZoneInstanceConfigInfos请求参数结构体
     public struct DescribeZoneInstanceConfigInfosRequest: TCRequestModel {
         /// <li><strong>zone</strong></li>
@@ -50,7 +34,7 @@ extension Cvm {
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。
         public let filters: [Filter]?
         
-        public init (filters: [Filter]?) {
+        public init (filters: [Filter]? = nil) {
             self.filters = filters
         }
         
@@ -71,5 +55,21 @@ extension Cvm {
             case instanceTypeQuotaSet = "InstanceTypeQuotaSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取可用区机型配置信息
+    ///
+    /// 本接口(DescribeZoneInstanceConfigInfos) 获取可用区的机型信息。
+    @inlinable
+    public func describeZoneInstanceConfigInfos(_ input: DescribeZoneInstanceConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneInstanceConfigInfosResponse > {
+        self.client.execute(action: "DescribeZoneInstanceConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取可用区机型配置信息
+    ///
+    /// 本接口(DescribeZoneInstanceConfigInfos) 获取可用区的机型信息。
+    @inlinable
+    public func describeZoneInstanceConfigInfos(_ input: DescribeZoneInstanceConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneInstanceConfigInfosResponse {
+        try await self.client.execute(action: "DescribeZoneInstanceConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

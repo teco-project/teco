@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询直播中的流
-    ///
-    /// 返回正在直播中的流列表。适用于推流成功后查询在线流信息。
-    /// 注意：
-    /// 1. 该接口仅提供辅助查询在线流列表功能，业务重要场景不可强依赖该接口。
-    /// 2. 该接口仅适用于流数少于2万路的情况，对于流数较大用户请联系售后。
-    @inlinable
-    public func describeLiveStreamOnlineList(_ input: DescribeLiveStreamOnlineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveStreamOnlineListResponse > {
-        self.client.execute(action: "DescribeLiveStreamOnlineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询直播中的流
-    ///
-    /// 返回正在直播中的流列表。适用于推流成功后查询在线流信息。
-    /// 注意：
-    /// 1. 该接口仅提供辅助查询在线流列表功能，业务重要场景不可强依赖该接口。
-    /// 2. 该接口仅适用于流数少于2万路的情况，对于流数较大用户请联系售后。
-    @inlinable
-    public func describeLiveStreamOnlineList(_ input: DescribeLiveStreamOnlineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamOnlineListResponse {
-        try await self.client.execute(action: "DescribeLiveStreamOnlineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveStreamOnlineList请求参数结构体
     public struct DescribeLiveStreamOnlineListRequest: TCRequestModel {
         /// 推流域名。多域名用户需要填写 DomainName。
@@ -56,7 +34,7 @@ extension Live {
         /// 流名称，用于精确查询。
         public let streamName: String?
         
-        public init (domainName: String?, appName: String?, pageNum: UInt64?, pageSize: UInt64?, streamName: String?) {
+        public init (domainName: String? = nil, appName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, streamName: String? = nil) {
             self.domainName = domainName
             self.appName = appName
             self.pageNum = pageNum
@@ -101,5 +79,27 @@ extension Live {
             case onlineInfo = "OnlineInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询直播中的流
+    ///
+    /// 返回正在直播中的流列表。适用于推流成功后查询在线流信息。
+    /// 注意：
+    /// 1. 该接口仅提供辅助查询在线流列表功能，业务重要场景不可强依赖该接口。
+    /// 2. 该接口仅适用于流数少于2万路的情况，对于流数较大用户请联系售后。
+    @inlinable
+    public func describeLiveStreamOnlineList(_ input: DescribeLiveStreamOnlineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveStreamOnlineListResponse > {
+        self.client.execute(action: "DescribeLiveStreamOnlineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询直播中的流
+    ///
+    /// 返回正在直播中的流列表。适用于推流成功后查询在线流信息。
+    /// 注意：
+    /// 1. 该接口仅提供辅助查询在线流列表功能，业务重要场景不可强依赖该接口。
+    /// 2. 该接口仅适用于流数少于2万路的情况，对于流数较大用户请联系售后。
+    @inlinable
+    public func describeLiveStreamOnlineList(_ input: DescribeLiveStreamOnlineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamOnlineListResponse {
+        try await self.client.execute(action: "DescribeLiveStreamOnlineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

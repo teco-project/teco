@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 删除超级短信样例
-    @inlinable
-    public func deleteMmsInstance(_ input: DeleteMmsInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMmsInstanceResponse > {
-        self.client.execute(action: "DeleteMmsInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除超级短信样例
-    @inlinable
-    public func deleteMmsInstance(_ input: DeleteMmsInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMmsInstanceResponse {
-        try await self.client.execute(action: "DeleteMmsInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMmsInstance请求参数结构体
     public struct DeleteMmsInstanceRequest: TCRequestModel {
         /// 商户证书
@@ -58,5 +46,17 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除超级短信样例
+    @inlinable
+    public func deleteMmsInstance(_ input: DeleteMmsInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMmsInstanceResponse > {
+        self.client.execute(action: "DeleteMmsInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除超级短信样例
+    @inlinable
+    public func deleteMmsInstance(_ input: DeleteMmsInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMmsInstanceResponse {
+        try await self.client.execute(action: "DeleteMmsInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 举报侵权链接
-    @inlinable
-    public func createCRTort(_ input: CreateCRTortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRTortResponse > {
-        self.client.execute(action: "CreateCRTort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 举报侵权链接
-    @inlinable
-    public func createCRTort(_ input: CreateCRTortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRTortResponse {
-        try await self.client.execute(action: "CreateCRTort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCRTort请求参数结构体
     public struct CreateCRTortRequest: TCRequestModel {
         /// 作品ID
@@ -41,7 +29,7 @@ extension Bma {
         /// 侵权标题
         public let tortTitle: String?
         
-        public init (workId: Int64, tortURL: String, tortPlat: String?, tortTitle: String?) {
+        public init (workId: Int64, tortURL: String, tortPlat: String? = nil, tortTitle: String? = nil) {
             self.workId = workId
             self.tortURL = tortURL
             self.tortPlat = tortPlat
@@ -92,5 +80,17 @@ extension Bma {
             case tortBodyName = "TortBodyName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 举报侵权链接
+    @inlinable
+    public func createCRTort(_ input: CreateCRTortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRTortResponse > {
+        self.client.execute(action: "CreateCRTort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 举报侵权链接
+    @inlinable
+    public func createCRTort(_ input: CreateCRTortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRTortResponse {
+        try await self.client.execute(action: "CreateCRTort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

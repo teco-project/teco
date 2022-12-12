@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询实例慢查询记录
-    ///
-    /// 本接口（DescribeSlowLog）查询实例慢查询记录。
-    @inlinable
-    public func describeSlowLog(_ input: DescribeSlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogResponse > {
-        self.client.execute(action: "DescribeSlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例慢查询记录
-    ///
-    /// 本接口（DescribeSlowLog）查询实例慢查询记录。
-    @inlinable
-    public func describeSlowLog(_ input: DescribeSlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogResponse {
-        try await self.client.execute(action: "DescribeSlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSlowLog请求参数结构体
     public struct DescribeSlowLogRequest: TCRequestModel {
         /// 实例Id。
@@ -54,7 +38,7 @@ extension Redis {
         /// 节点所属角色。<ul><li>master：主节点。</li><li>slave：从节点。</li></ul>
         public let role: String?
         
-        public init (instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64?, limit: Int64?, offset: Int64?, role: String?) {
+        public init (instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, role: String? = nil) {
             self.instanceId = instanceId
             self.beginTime = beginTime
             self.endTime = endTime
@@ -91,5 +75,21 @@ extension Redis {
             case instanceSlowlogDetail = "InstanceSlowlogDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例慢查询记录
+    ///
+    /// 本接口（DescribeSlowLog）查询实例慢查询记录。
+    @inlinable
+    public func describeSlowLog(_ input: DescribeSlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogResponse > {
+        self.client.execute(action: "DescribeSlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例慢查询记录
+    ///
+    /// 本接口（DescribeSlowLog）查询实例慢查询记录。
+    @inlinable
+    public func describeSlowLog(_ input: DescribeSlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogResponse {
+        try await self.client.execute(action: "DescribeSlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

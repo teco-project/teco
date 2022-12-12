@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 获取函数触发器列表
-    @inlinable
-    public func listTriggers(_ input: ListTriggersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTriggersResponse > {
-        self.client.execute(action: "ListTriggers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取函数触发器列表
-    @inlinable
-    public func listTriggers(_ input: ListTriggersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTriggersResponse {
-        try await self.client.execute(action: "ListTriggers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListTriggers请求参数结构体
     public struct ListTriggersRequest: TCRequestModel {
         /// 函数名称
@@ -51,7 +39,7 @@ extension Scf {
         /// 函数版本，别名
         public let filters: [Filter]?
         
-        public init (functionName: String, namespace: String?, offset: UInt64?, limit: UInt64?, orderBy: String?, order: String?, filters: [Filter]?) {
+        public init (functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, order: String? = nil, filters: [Filter]? = nil) {
             self.functionName = functionName
             self.namespace = namespace
             self.offset = offset
@@ -88,5 +76,17 @@ extension Scf {
             case triggers = "Triggers"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取函数触发器列表
+    @inlinable
+    public func listTriggers(_ input: ListTriggersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTriggersResponse > {
+        self.client.execute(action: "ListTriggers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数触发器列表
+    @inlinable
+    public func listTriggers(_ input: ListTriggersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTriggersResponse {
+        try await self.client.execute(action: "ListTriggers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

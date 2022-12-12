@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssa {
-    /// 云安全配置检查项详情
-    @inlinable
-    public func describeCheckConfigDetail(_ input: DescribeCheckConfigDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckConfigDetailResponse > {
-        self.client.execute(action: "DescribeCheckConfigDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云安全配置检查项详情
-    @inlinable
-    public func describeCheckConfigDetail(_ input: DescribeCheckConfigDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigDetailResponse {
-        try await self.client.execute(action: "DescribeCheckConfigDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCheckConfigDetail请求参数结构体
     public struct DescribeCheckConfigDetailRequest: TCRequestModel {
         /// 检查项ID
@@ -53,5 +41,17 @@ extension Ssa {
             case checkConfigDetail = "CheckConfigDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云安全配置检查项详情
+    @inlinable
+    public func describeCheckConfigDetail(_ input: DescribeCheckConfigDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCheckConfigDetailResponse > {
+        self.client.execute(action: "DescribeCheckConfigDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云安全配置检查项详情
+    @inlinable
+    public func describeCheckConfigDetail(_ input: DescribeCheckConfigDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigDetailResponse {
+        try await self.client.execute(action: "DescribeCheckConfigDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

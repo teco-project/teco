@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cr {
-    /// 提交机器人黑名单申请
-    @inlinable
-    public func applyBlackListData(_ input: ApplyBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyBlackListDataResponse > {
-        self.client.execute(action: "ApplyBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交机器人黑名单申请
-    @inlinable
-    public func applyBlackListData(_ input: ApplyBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyBlackListDataResponse {
-        try await self.client.execute(action: "ApplyBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyBlackListData请求参数结构体
     public struct ApplyBlackListDataRequest: TCRequestModel {
         /// 模块名，AiApi
@@ -59,5 +47,17 @@ extension Cr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交机器人黑名单申请
+    @inlinable
+    public func applyBlackListData(_ input: ApplyBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyBlackListDataResponse > {
+        self.client.execute(action: "ApplyBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交机器人黑名单申请
+    @inlinable
+    public func applyBlackListData(_ input: ApplyBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyBlackListDataResponse {
+        try await self.client.execute(action: "ApplyBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

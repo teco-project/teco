@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 创建转自适应码流模板
-    ///
-    /// 创建转自适应码流模板，数量上限：100。
-    @inlinable
-    public func createAdaptiveDynamicStreamingTemplate(_ input: CreateAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAdaptiveDynamicStreamingTemplateResponse > {
-        self.client.execute(action: "CreateAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建转自适应码流模板
-    ///
-    /// 创建转自适应码流模板，数量上限：100。
-    @inlinable
-    public func createAdaptiveDynamicStreamingTemplate(_ input: CreateAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAdaptiveDynamicStreamingTemplateResponse {
-        try await self.client.execute(action: "CreateAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAdaptiveDynamicStreamingTemplate请求参数结构体
     public struct CreateAdaptiveDynamicStreamingTemplateRequest: TCRequestModel {
         /// 自适应转码格式，取值范围：
@@ -82,7 +66,7 @@ extension Vod {
         /// 默认值：ts。
         public let segmentType: String?
         
-        public init (format: String, streamInfos: [AdaptiveStreamTemplate], subAppId: UInt64?, name: String?, drmType: String?, drmKeyProvider: String?, disableHigherVideoBitrate: UInt64?, disableHigherVideoResolution: UInt64?, comment: String?, segmentType: String?) {
+        public init (format: String, streamInfos: [AdaptiveStreamTemplate], subAppId: UInt64? = nil, name: String? = nil, drmType: String? = nil, drmKeyProvider: String? = nil, disableHigherVideoBitrate: UInt64? = nil, disableHigherVideoResolution: UInt64? = nil, comment: String? = nil, segmentType: String? = nil) {
             self.format = format
             self.streamInfos = streamInfos
             self.subAppId = subAppId
@@ -121,5 +105,21 @@ extension Vod {
             case definition = "Definition"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建转自适应码流模板
+    ///
+    /// 创建转自适应码流模板，数量上限：100。
+    @inlinable
+    public func createAdaptiveDynamicStreamingTemplate(_ input: CreateAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAdaptiveDynamicStreamingTemplateResponse > {
+        self.client.execute(action: "CreateAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建转自适应码流模板
+    ///
+    /// 创建转自适应码流模板，数量上限：100。
+    @inlinable
+    public func createAdaptiveDynamicStreamingTemplate(_ input: CreateAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAdaptiveDynamicStreamingTemplateResponse {
+        try await self.client.execute(action: "CreateAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

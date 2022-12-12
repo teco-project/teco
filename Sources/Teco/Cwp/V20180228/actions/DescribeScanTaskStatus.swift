@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询机器扫描状态列表
-    ///
-    /// DescribeScanTaskStatus 查询机器扫描状态列表用于过滤筛选
-    @inlinable
-    public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskStatusResponse > {
-        self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询机器扫描状态列表
-    ///
-    /// DescribeScanTaskStatus 查询机器扫描状态列表用于过滤筛选
-    @inlinable
-    public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskStatusResponse {
-        try await self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScanTaskStatus请求参数结构体
     public struct DescribeScanTaskStatusRequest: TCRequestModel {
         /// 模块类型 当前提供 Malware 木马 , Vul 漏洞 , Baseline 基线
@@ -57,5 +41,21 @@ extension Cwp {
             case state = "State"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询机器扫描状态列表
+    ///
+    /// DescribeScanTaskStatus 查询机器扫描状态列表用于过滤筛选
+    @inlinable
+    public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskStatusResponse > {
+        self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询机器扫描状态列表
+    ///
+    /// DescribeScanTaskStatus 查询机器扫描状态列表用于过滤筛选
+    @inlinable
+    public func describeScanTaskStatus(_ input: DescribeScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskStatusResponse {
+        try await self.client.execute(action: "DescribeScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

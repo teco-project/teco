@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 实例化合约
-    @inlinable
-    public func initializeChaincodeForUser(_ input: InitializeChaincodeForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InitializeChaincodeForUserResponse > {
-        self.client.execute(action: "InitializeChaincodeForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实例化合约
-    @inlinable
-    public func initializeChaincodeForUser(_ input: InitializeChaincodeForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeChaincodeForUserResponse {
-        try await self.client.execute(action: "InitializeChaincodeForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InitializeChaincodeForUser请求参数结构体
     public struct InitializeChaincodeForUserRequest: TCRequestModel {
         /// 模块名，本接口取值：chaincode_mng
@@ -56,7 +44,7 @@ extension Tbaas {
         /// 实例化的函数参数列表
         public let args: [String]?
         
-        public init (module: String, operation: String, clusterId: String, groupName: String, chaincodeName: String, chaincodeVersion: String, channelName: String, peerName: String, args: [String]?) {
+        public init (module: String, operation: String, clusterId: String, groupName: String, chaincodeName: String, chaincodeVersion: String, channelName: String, peerName: String, args: [String]? = nil) {
             self.module = module
             self.operation = operation
             self.clusterId = clusterId
@@ -93,5 +81,17 @@ extension Tbaas {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实例化合约
+    @inlinable
+    public func initializeChaincodeForUser(_ input: InitializeChaincodeForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InitializeChaincodeForUserResponse > {
+        self.client.execute(action: "InitializeChaincodeForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实例化合约
+    @inlinable
+    public func initializeChaincodeForUser(_ input: InitializeChaincodeForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeChaincodeForUserResponse {
+        try await self.client.execute(action: "InitializeChaincodeForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

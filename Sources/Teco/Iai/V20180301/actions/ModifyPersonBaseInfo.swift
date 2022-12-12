@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 修改人员基础信息
-    ///
-    /// 修改人员信息，包括名称、性别等。人员名称和性别修改会同步到包含该人员的所有人员库。
-    @inlinable
-    public func modifyPersonBaseInfo(_ input: ModifyPersonBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonBaseInfoResponse > {
-        self.client.execute(action: "ModifyPersonBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改人员基础信息
-    ///
-    /// 修改人员信息，包括名称、性别等。人员名称和性别修改会同步到包含该人员的所有人员库。
-    @inlinable
-    public func modifyPersonBaseInfo(_ input: ModifyPersonBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonBaseInfoResponse {
-        try await self.client.execute(action: "ModifyPersonBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPersonBaseInfo请求参数结构体
     public struct ModifyPersonBaseInfoRequest: TCRequestModel {
         /// 人员ID
@@ -42,7 +26,7 @@ extension Iai {
         /// 需要修改的人员性别
         public let gender: Int64?
         
-        public init (personId: String, personName: String?, gender: Int64?) {
+        public init (personId: String, personName: String? = nil, gender: Int64? = nil) {
             self.personId = personId
             self.personName = personName
             self.gender = gender
@@ -63,5 +47,21 @@ extension Iai {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改人员基础信息
+    ///
+    /// 修改人员信息，包括名称、性别等。人员名称和性别修改会同步到包含该人员的所有人员库。
+    @inlinable
+    public func modifyPersonBaseInfo(_ input: ModifyPersonBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonBaseInfoResponse > {
+        self.client.execute(action: "ModifyPersonBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改人员基础信息
+    ///
+    /// 修改人员信息，包括名称、性别等。人员名称和性别修改会同步到包含该人员的所有人员库。
+    @inlinable
+    public func modifyPersonBaseInfo(_ input: ModifyPersonBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonBaseInfoResponse {
+        try await self.client.execute(action: "ModifyPersonBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

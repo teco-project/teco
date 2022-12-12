@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 删除工作流【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 删除工作流
-    @inlinable
-    public func deleteWorkflowNew(_ input: DeleteWorkflowNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWorkflowNewResponse > {
-        self.client.execute(action: "DeleteWorkflowNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除工作流【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 删除工作流
-    @inlinable
-    public func deleteWorkflowNew(_ input: DeleteWorkflowNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkflowNewResponse {
-        try await self.client.execute(action: "DeleteWorkflowNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteWorkflowNew请求参数结构体
     public struct DeleteWorkflowNewRequest: TCRequestModel {
         /// 工作流id
@@ -76,5 +58,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 删除工作流
+    @inlinable
+    public func deleteWorkflowNew(_ input: DeleteWorkflowNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWorkflowNewResponse > {
+        self.client.execute(action: "DeleteWorkflowNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除工作流【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 删除工作流
+    @inlinable
+    public func deleteWorkflowNew(_ input: DeleteWorkflowNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkflowNewResponse {
+        try await self.client.execute(action: "DeleteWorkflowNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

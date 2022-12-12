@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 修改同步模式
-    ///
-    /// 本接口（ModifyDBSyncMode）用于修改云数据库实例的同步模式。
-    @inlinable
-    public func modifyDBSyncMode(_ input: ModifyDBSyncModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBSyncModeResponse > {
-        self.client.execute(action: "ModifyDBSyncMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改同步模式
-    ///
-    /// 本接口（ModifyDBSyncMode）用于修改云数据库实例的同步模式。
-    @inlinable
-    public func modifyDBSyncMode(_ input: ModifyDBSyncModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBSyncModeResponse {
-        try await self.client.execute(action: "ModifyDBSyncMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBSyncMode请求参数结构体
     public struct ModifyDBSyncModeRequest: TCRequestModel {
         /// 待修改同步模式的实例ID。形如：dcdbt-ow728lmc。
@@ -62,5 +46,21 @@ extension Dcdb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改同步模式
+    ///
+    /// 本接口（ModifyDBSyncMode）用于修改云数据库实例的同步模式。
+    @inlinable
+    public func modifyDBSyncMode(_ input: ModifyDBSyncModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBSyncModeResponse > {
+        self.client.execute(action: "ModifyDBSyncMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改同步模式
+    ///
+    /// 本接口（ModifyDBSyncMode）用于修改云数据库实例的同步模式。
+    @inlinable
+    public func modifyDBSyncMode(_ input: ModifyDBSyncModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBSyncModeResponse {
+        try await self.client.execute(action: "ModifyDBSyncMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

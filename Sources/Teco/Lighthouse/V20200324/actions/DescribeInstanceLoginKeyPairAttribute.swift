@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询实例默认登录密钥属性
-    ///
-    /// 本接口用于查询实例默认登录密钥属性。
-    @inlinable
-    public func describeInstanceLoginKeyPairAttribute(_ input: DescribeInstanceLoginKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLoginKeyPairAttributeResponse > {
-        self.client.execute(action: "DescribeInstanceLoginKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例默认登录密钥属性
-    ///
-    /// 本接口用于查询实例默认登录密钥属性。
-    @inlinable
-    public func describeInstanceLoginKeyPairAttribute(_ input: DescribeInstanceLoginKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLoginKeyPairAttributeResponse {
-        try await self.client.execute(action: "DescribeInstanceLoginKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceLoginKeyPairAttribute请求参数结构体
     public struct DescribeInstanceLoginKeyPairAttributeRequest: TCRequestModel {
         /// 实例ID。
@@ -57,5 +41,21 @@ extension Lighthouse {
             case permitLogin = "PermitLogin"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例默认登录密钥属性
+    ///
+    /// 本接口用于查询实例默认登录密钥属性。
+    @inlinable
+    public func describeInstanceLoginKeyPairAttribute(_ input: DescribeInstanceLoginKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceLoginKeyPairAttributeResponse > {
+        self.client.execute(action: "DescribeInstanceLoginKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例默认登录密钥属性
+    ///
+    /// 本接口用于查询实例默认登录密钥属性。
+    @inlinable
+    public func describeInstanceLoginKeyPairAttribute(_ input: DescribeInstanceLoginKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLoginKeyPairAttributeResponse {
+        try await self.client.execute(action: "DescribeInstanceLoginKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

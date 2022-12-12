@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改专线网关属性
-    ///
-    /// 本接口（ModifyDirectConnectGatewayAttribute）用于修改专线网关属性
-    @inlinable
-    public func modifyDirectConnectGatewayAttribute(_ input: ModifyDirectConnectGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDirectConnectGatewayAttributeResponse > {
-        self.client.execute(action: "ModifyDirectConnectGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改专线网关属性
-    ///
-    /// 本接口（ModifyDirectConnectGatewayAttribute）用于修改专线网关属性
-    @inlinable
-    public func modifyDirectConnectGatewayAttribute(_ input: ModifyDirectConnectGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectGatewayAttributeResponse {
-        try await self.client.execute(action: "ModifyDirectConnectGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDirectConnectGatewayAttribute请求参数结构体
     public struct ModifyDirectConnectGatewayAttributeRequest: TCRequestModel {
         /// 专线网关唯一`ID`，形如：`dcg-9o233uri`。
@@ -45,7 +29,7 @@ extension Vpc {
         /// 云联网路由发布模式，可选值：`standard`（标准模式）、`exquisite`（精细模式）。只有云联网类型专线网关才支持修改`ModeType`。
         public let modeType: String?
         
-        public init (directConnectGatewayId: String, directConnectGatewayName: String?, ccnRouteType: String?, modeType: String?) {
+        public init (directConnectGatewayId: String, directConnectGatewayName: String? = nil, ccnRouteType: String? = nil, modeType: String? = nil) {
             self.directConnectGatewayId = directConnectGatewayId
             self.directConnectGatewayName = directConnectGatewayName
             self.ccnRouteType = ccnRouteType
@@ -68,5 +52,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改专线网关属性
+    ///
+    /// 本接口（ModifyDirectConnectGatewayAttribute）用于修改专线网关属性
+    @inlinable
+    public func modifyDirectConnectGatewayAttribute(_ input: ModifyDirectConnectGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDirectConnectGatewayAttributeResponse > {
+        self.client.execute(action: "ModifyDirectConnectGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改专线网关属性
+    ///
+    /// 本接口（ModifyDirectConnectGatewayAttribute）用于修改专线网关属性
+    @inlinable
+    public func modifyDirectConnectGatewayAttribute(_ input: ModifyDirectConnectGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectGatewayAttributeResponse {
+        try await self.client.execute(action: "ModifyDirectConnectGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

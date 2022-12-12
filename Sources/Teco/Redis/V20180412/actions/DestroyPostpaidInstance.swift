@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 按量计费实例销毁
-    @inlinable
-    public func destroyPostpaidInstance(_ input: DestroyPostpaidInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyPostpaidInstanceResponse > {
-        self.client.execute(action: "DestroyPostpaidInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 按量计费实例销毁
-    @inlinable
-    public func destroyPostpaidInstance(_ input: DestroyPostpaidInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPostpaidInstanceResponse {
-        try await self.client.execute(action: "DestroyPostpaidInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DestroyPostpaidInstance请求参数结构体
     public struct DestroyPostpaidInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -53,5 +41,17 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 按量计费实例销毁
+    @inlinable
+    public func destroyPostpaidInstance(_ input: DestroyPostpaidInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyPostpaidInstanceResponse > {
+        self.client.execute(action: "DestroyPostpaidInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 按量计费实例销毁
+    @inlinable
+    public func destroyPostpaidInstance(_ input: DestroyPostpaidInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPostpaidInstanceResponse {
+        try await self.client.execute(action: "DestroyPostpaidInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

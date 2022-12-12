@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 查询请求汇总信息
-    @inlinable
-    public func describeRequestSummary(_ input: DescribeRequestSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRequestSummaryResponse > {
-        self.client.execute(action: "DescribeRequestSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询请求汇总信息
-    @inlinable
-    public func describeRequestSummary(_ input: DescribeRequestSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRequestSummaryResponse {
-        try await self.client.execute(action: "DescribeRequestSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRequestSummary请求参数结构体
     public struct DescribeRequestSummaryRequest: TCRequestModel {
         /// 压测任务ID
@@ -64,5 +52,17 @@ extension Pts {
             case requestSummarySet = "RequestSummarySet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询请求汇总信息
+    @inlinable
+    public func describeRequestSummary(_ input: DescribeRequestSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRequestSummaryResponse > {
+        self.client.execute(action: "DescribeRequestSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询请求汇总信息
+    @inlinable
+    public func describeRequestSummary(_ input: DescribeRequestSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRequestSummaryResponse {
+        try await self.client.execute(action: "DescribeRequestSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

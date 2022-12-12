@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 下发设备控制指令
-    ///
-    /// 提供下发控制指令到指定设备的能力，该接口适用于使用高级版类型的产品。
-    @inlinable
-    public func issueDeviceControl(_ input: IssueDeviceControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IssueDeviceControlResponse > {
-        self.client.execute(action: "IssueDeviceControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下发设备控制指令
-    ///
-    /// 提供下发控制指令到指定设备的能力，该接口适用于使用高级版类型的产品。
-    @inlinable
-    public func issueDeviceControl(_ input: IssueDeviceControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IssueDeviceControlResponse {
-        try await self.client.execute(action: "IssueDeviceControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// IssueDeviceControl请求参数结构体
     public struct IssueDeviceControlRequest: TCRequestModel {
         /// 产品Id
@@ -45,7 +29,7 @@ extension Iot {
         /// 是否发送metadata字段
         public let metadata: Bool?
         
-        public init (productId: String, deviceName: String, controlData: String, metadata: Bool?) {
+        public init (productId: String, deviceName: String, controlData: String, metadata: Bool? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.controlData = controlData
@@ -68,5 +52,21 @@ extension Iot {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下发设备控制指令
+    ///
+    /// 提供下发控制指令到指定设备的能力，该接口适用于使用高级版类型的产品。
+    @inlinable
+    public func issueDeviceControl(_ input: IssueDeviceControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IssueDeviceControlResponse > {
+        self.client.execute(action: "IssueDeviceControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下发设备控制指令
+    ///
+    /// 提供下发控制指令到指定设备的能力，该接口适用于使用高级版类型的产品。
+    @inlinable
+    public func issueDeviceControl(_ input: IssueDeviceControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IssueDeviceControlResponse {
+        try await self.client.execute(action: "IssueDeviceControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

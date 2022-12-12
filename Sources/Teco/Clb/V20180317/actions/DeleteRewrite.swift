@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 删除负载均衡转发规则之间的重定向关系
-    ///
-    /// DeleteRewrite 接口支持删除指定转发规则之间的重定向关系。
-    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
-    public func deleteRewrite(_ input: DeleteRewriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRewriteResponse > {
-        self.client.execute(action: "DeleteRewrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除负载均衡转发规则之间的重定向关系
-    ///
-    /// DeleteRewrite 接口支持删除指定转发规则之间的重定向关系。
-    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
-    public func deleteRewrite(_ input: DeleteRewriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRewriteResponse {
-        try await self.client.execute(action: "DeleteRewrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRewrite请求参数结构体
     public struct DeleteRewriteRequest: TCRequestModel {
         /// 负载均衡实例ID。
@@ -70,5 +52,23 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除负载均衡转发规则之间的重定向关系
+    ///
+    /// DeleteRewrite 接口支持删除指定转发规则之间的重定向关系。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func deleteRewrite(_ input: DeleteRewriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRewriteResponse > {
+        self.client.execute(action: "DeleteRewrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除负载均衡转发规则之间的重定向关系
+    ///
+    /// DeleteRewrite 接口支持删除指定转发规则之间的重定向关系。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func deleteRewrite(_ input: DeleteRewriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRewriteResponse {
+        try await self.client.execute(action: "DeleteRewrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

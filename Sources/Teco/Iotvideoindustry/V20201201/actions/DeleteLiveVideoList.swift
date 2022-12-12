@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 直播录像删除
-    @inlinable
-    public func deleteLiveVideoList(_ input: DeleteLiveVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveVideoListResponse > {
-        self.client.execute(action: "DeleteLiveVideoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播录像删除
-    @inlinable
-    public func deleteLiveVideoList(_ input: DeleteLiveVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveVideoListResponse {
-        try await self.client.execute(action: "DeleteLiveVideoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLiveVideoList请求参数结构体
     public struct DeleteLiveVideoListRequest: TCRequestModel {
         /// 视频ID 列表, 大小限制(100)
@@ -49,5 +37,17 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播录像删除
+    @inlinable
+    public func deleteLiveVideoList(_ input: DeleteLiveVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveVideoListResponse > {
+        self.client.execute(action: "DeleteLiveVideoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播录像删除
+    @inlinable
+    public func deleteLiveVideoList(_ input: DeleteLiveVideoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveVideoListResponse {
+        try await self.client.execute(action: "DeleteLiveVideoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

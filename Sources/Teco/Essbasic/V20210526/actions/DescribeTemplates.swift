@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 查询模板信息列表
-    ///
-    /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
-    @inlinable
-    public func describeTemplates(_ input: DescribeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplatesResponse > {
-        self.client.execute(action: "DescribeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询模板信息列表
-    ///
-    /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
-    @inlinable
-    public func describeTemplates(_ input: DescribeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplatesResponse {
-        try await self.client.execute(action: "DescribeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTemplates请求参数结构体
     public struct DescribeTemplatesRequest: TCRequestModel {
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -55,7 +39,7 @@ extension Essbasic {
         public let templateName: String?
         
         /// 操作者的信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
         /// 是否获取模板预览链接
         public let withPreviewUrl: Bool?
@@ -63,7 +47,7 @@ extension Essbasic {
         /// 是否获取模板的PDF文件链接-渠道版需要开启白名单时才能使用。
         public let withPdfUrl: Bool?
         
-        public init (agent: Agent, templateId: String?, contentType: Int64?, limit: UInt64?, offset: UInt64?, queryAllComponents: Bool?, templateName: String?, `operator`: UserInfo, withPreviewUrl: Bool?, withPdfUrl: Bool?) {
+        public init (agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, `operator`: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil) {
             self.agent = agent
             self.templateId = templateId
             self.contentType = contentType
@@ -114,5 +98,21 @@ extension Essbasic {
             case offset = "Offset"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询模板信息列表
+    ///
+    /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
+    @inlinable
+    public func describeTemplates(_ input: DescribeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTemplatesResponse > {
+        self.client.execute(action: "DescribeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询模板信息列表
+    ///
+    /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
+    @inlinable
+    public func describeTemplates(_ input: DescribeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplatesResponse {
+        try await self.client.execute(action: "DescribeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

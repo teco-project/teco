@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 创建DCDB分布式实例
-    ///
-    /// 本接口（CreateDCDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长等信息创建云数据库实例。
-    @inlinable
-    public func createDCDBInstance(_ input: CreateDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDCDBInstanceResponse > {
-        self.client.execute(action: "CreateDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建DCDB分布式实例
-    ///
-    /// 本接口（CreateDCDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长等信息创建云数据库实例。
-    @inlinable
-    public func createDCDBInstance(_ input: CreateDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDCDBInstanceResponse {
-        try await self.client.execute(action: "CreateDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDCDBInstance请求参数结构体
     public struct CreateDCDBInstanceRequest: TCRequestModel {
         /// 分片节点可用区分布，最多可填两个可用区。当分片规格为一主两从时，其中两个节点在第一个可用区。
@@ -107,7 +91,7 @@ extension Dcdb {
         /// 安全组ids，安全组可以传数组形式，兼容之前SecurityGroupId参数
         public let securityGroupIds: [String]?
         
-        public init (zones: [String], period: Int64, shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64?, projectId: Int64?, vpcId: String?, subnetId: String?, dbVersionId: String?, autoVoucher: Bool?, voucherIds: [String]?, securityGroupId: String?, instanceName: String?, ipv6Flag: Int64?, resourceTags: [ResourceTag]?, initParams: [DBParamValue]?, dcnRegion: String?, dcnInstanceId: String?, autoRenewFlag: Int64?, securityGroupIds: [String]?) {
+        public init (zones: [String], period: Int64, shardMemory: Int64, shardStorage: Int64, shardNodeCount: Int64, shardCount: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, securityGroupId: String? = nil, instanceName: String? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, initParams: [DBParamValue]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, autoRenewFlag: Int64? = nil, securityGroupIds: [String]? = nil) {
             self.zones = zones
             self.period = period
             self.shardMemory = shardMemory
@@ -176,5 +160,21 @@ extension Dcdb {
             case instanceIds = "InstanceIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建DCDB分布式实例
+    ///
+    /// 本接口（CreateDCDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长等信息创建云数据库实例。
+    @inlinable
+    public func createDCDBInstance(_ input: CreateDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDCDBInstanceResponse > {
+        self.client.execute(action: "CreateDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建DCDB分布式实例
+    ///
+    /// 本接口（CreateDCDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长等信息创建云数据库实例。
+    @inlinable
+    public func createDCDBInstance(_ input: CreateDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDCDBInstanceResponse {
+        try await self.client.execute(action: "CreateDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

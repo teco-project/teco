@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Asw {
-    /// 停止状态机
-    ///
-    /// 终止某个状态机
-    @inlinable
-    public func stopExecution(_ input: StopExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopExecutionResponse > {
-        self.client.execute(action: "StopExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止状态机
-    ///
-    /// 终止某个状态机
-    @inlinable
-    public func stopExecution(_ input: StopExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopExecutionResponse {
-        try await self.client.execute(action: "StopExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopExecution请求参数结构体
     public struct StopExecutionRequest: TCRequestModel {
         /// 执行名称
@@ -53,5 +37,21 @@ extension Asw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止状态机
+    ///
+    /// 终止某个状态机
+    @inlinable
+    public func stopExecution(_ input: StopExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopExecutionResponse > {
+        self.client.execute(action: "StopExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止状态机
+    ///
+    /// 终止某个状态机
+    @inlinable
+    public func stopExecution(_ input: StopExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopExecutionResponse {
+        try await self.client.execute(action: "StopExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

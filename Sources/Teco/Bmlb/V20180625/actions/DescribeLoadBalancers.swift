@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 获取黑石负载均衡实例列表
-    @inlinable
-    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancersResponse > {
-        self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取黑石负载均衡实例列表
-    @inlinable
-    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {
-        try await self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLoadBalancers请求参数结构体
     public struct DescribeLoadBalancersRequest: TCRequestModel {
         /// 负载均衡器ID数组
@@ -77,7 +65,7 @@ extension Bmlb {
         /// 个性化配置ID
         public let confId: String?
         
-        public init (loadBalancerIds: [String]?, loadBalancerType: String?, loadBalancerName: String?, domain: String?, loadBalancerVips: [String]?, offset: UInt64?, limit: UInt64?, searchKey: String?, orderBy: String?, orderType: Int64?, projectId: UInt64?, exclusive: UInt64?, tgwSetType: String?, vpcId: String?, queryType: String?, confId: String?) {
+        public init (loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, projectId: UInt64? = nil, exclusive: UInt64? = nil, tgwSetType: String? = nil, vpcId: String? = nil, queryType: String? = nil, confId: String? = nil) {
             self.loadBalancerIds = loadBalancerIds
             self.loadBalancerType = loadBalancerType
             self.loadBalancerName = loadBalancerName
@@ -132,5 +120,17 @@ extension Bmlb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取黑石负载均衡实例列表
+    @inlinable
+    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancersResponse > {
+        self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取黑石负载均衡实例列表
+    @inlinable
+    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {
+        try await self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

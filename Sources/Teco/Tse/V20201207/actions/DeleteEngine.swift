@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tse {
-    /// 删除引擎实例
-    @inlinable
-    public func deleteEngine(_ input: DeleteEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEngineResponse > {
-        self.client.execute(action: "DeleteEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除引擎实例
-    @inlinable
-    public func deleteEngine(_ input: DeleteEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEngineResponse {
-        try await self.client.execute(action: "DeleteEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteEngine请求参数结构体
     public struct DeleteEngineRequest: TCRequestModel {
         /// 引擎实例 ID
@@ -49,5 +37,17 @@ extension Tse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除引擎实例
+    @inlinable
+    public func deleteEngine(_ input: DeleteEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEngineResponse > {
+        self.client.execute(action: "DeleteEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除引擎实例
+    @inlinable
+    public func deleteEngine(_ input: DeleteEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEngineResponse {
+        try await self.client.execute(action: "DeleteEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

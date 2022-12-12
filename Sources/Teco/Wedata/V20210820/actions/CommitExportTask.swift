@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 提交数据导出任务
-    @inlinable
-    public func commitExportTask(_ input: CommitExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitExportTaskResponse > {
-        self.client.execute(action: "CommitExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交数据导出任务
-    @inlinable
-    public func commitExportTask(_ input: CommitExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitExportTaskResponse {
-        try await self.client.execute(action: "CommitExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CommitExportTask请求参数结构体
     public struct CommitExportTaskRequest: TCRequestModel {
         /// 项目id
@@ -44,7 +32,7 @@ extension Wedata {
         /// 计算资源队列
         public let queueName: String?
         
-        public init (projectId: String?, ruleExecId: UInt64?, exportType: UInt64?, executorGroupId: String?, queueName: String?) {
+        public init (projectId: String? = nil, ruleExecId: UInt64? = nil, exportType: UInt64? = nil, executorGroupId: String? = nil, queueName: String? = nil) {
             self.projectId = projectId
             self.ruleExecId = ruleExecId
             self.exportType = exportType
@@ -74,5 +62,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交数据导出任务
+    @inlinable
+    public func commitExportTask(_ input: CommitExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitExportTaskResponse > {
+        self.client.execute(action: "CommitExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交数据导出任务
+    @inlinable
+    public func commitExportTask(_ input: CommitExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitExportTaskResponse {
+        try await self.client.execute(action: "CommitExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

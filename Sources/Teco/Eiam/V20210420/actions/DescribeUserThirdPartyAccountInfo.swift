@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 获取用户的第三方账号绑定信息
-    ///
-    /// 通过用户名或用户 id 获取用户的第三方账号绑定信息。
-    @inlinable
-    public func describeUserThirdPartyAccountInfo(_ input: DescribeUserThirdPartyAccountInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserThirdPartyAccountInfoResponse > {
-        self.client.execute(action: "DescribeUserThirdPartyAccountInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户的第三方账号绑定信息
-    ///
-    /// 通过用户名或用户 id 获取用户的第三方账号绑定信息。
-    @inlinable
-    public func describeUserThirdPartyAccountInfo(_ input: DescribeUserThirdPartyAccountInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserThirdPartyAccountInfoResponse {
-        try await self.client.execute(action: "DescribeUserThirdPartyAccountInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserThirdPartyAccountInfo请求参数结构体
     public struct DescribeUserThirdPartyAccountInfoRequest: TCRequestModel {
         /// 用户名。 Username 和 UserId 需至少一个不为空；都不为空时优先使用 Username。
@@ -39,7 +23,7 @@ extension Eiam {
         /// 用户 ID。 Username 和 UserId 需至少一个不为空；都不为空时优先使用 Username。
         public let userId: String?
         
-        public init (userName: String?, userId: String?) {
+        public init (userName: String? = nil, userId: String? = nil) {
             self.userName = userName
             self.userId = userId
         }
@@ -71,5 +55,21 @@ extension Eiam {
             case thirdPartyAccounts = "ThirdPartyAccounts"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户的第三方账号绑定信息
+    ///
+    /// 通过用户名或用户 id 获取用户的第三方账号绑定信息。
+    @inlinable
+    public func describeUserThirdPartyAccountInfo(_ input: DescribeUserThirdPartyAccountInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserThirdPartyAccountInfoResponse > {
+        self.client.execute(action: "DescribeUserThirdPartyAccountInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户的第三方账号绑定信息
+    ///
+    /// 通过用户名或用户 id 获取用户的第三方账号绑定信息。
+    @inlinable
+    public func describeUserThirdPartyAccountInfo(_ input: DescribeUserThirdPartyAccountInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserThirdPartyAccountInfoResponse {
+        try await self.client.execute(action: "DescribeUserThirdPartyAccountInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcm {
-    /// 关联Prometheus
-    @inlinable
-    public func linkPrometheus(_ input: LinkPrometheusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LinkPrometheusResponse > {
-        self.client.execute(action: "LinkPrometheus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关联Prometheus
-    @inlinable
-    public func linkPrometheus(_ input: LinkPrometheusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkPrometheusResponse {
-        try await self.client.execute(action: "LinkPrometheus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// LinkPrometheus请求参数结构体
     public struct LinkPrometheusRequest: TCRequestModel {
         /// 网格ID
@@ -54,5 +42,17 @@ extension Tcm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关联Prometheus
+    @inlinable
+    public func linkPrometheus(_ input: LinkPrometheusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LinkPrometheusResponse > {
+        self.client.execute(action: "LinkPrometheus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关联Prometheus
+    @inlinable
+    public func linkPrometheus(_ input: LinkPrometheusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkPrometheusResponse {
+        try await self.client.execute(action: "LinkPrometheus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

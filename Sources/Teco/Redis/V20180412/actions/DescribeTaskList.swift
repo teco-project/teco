@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询任务列表信息
-    @inlinable
-    public func describeTaskList(_ input: DescribeTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskListResponse > {
-        self.client.execute(action: "DescribeTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询任务列表信息
-    @inlinable
-    public func describeTaskList(_ input: DescribeTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskListResponse {
-        try await self.client.execute(action: "DescribeTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskList请求参数结构体
     public struct DescribeTaskListRequest: TCRequestModel {
         /// 实例Id
@@ -65,7 +53,7 @@ extension Redis {
         /// 操作者Uin
         public let operateUin: [String]?
         
-        public init (instanceId: String?, instanceName: String?, limit: Int64?, offset: Int64?, projectIds: [Int64]?, taskTypes: [String]?, beginTime: String?, endTime: String?, taskStatus: [Int64]?, result: [Int64]?, operatorUin: [Int64]?, operateUin: [String]?) {
+        public init (instanceId: String? = nil, instanceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, projectIds: [Int64]? = nil, taskTypes: [String]? = nil, beginTime: String? = nil, endTime: String? = nil, taskStatus: [Int64]? = nil, result: [Int64]? = nil, operatorUin: [Int64]? = nil, operateUin: [String]? = nil) {
             self.instanceId = instanceId
             self.instanceName = instanceName
             self.limit = limit
@@ -112,5 +100,17 @@ extension Redis {
             case tasks = "Tasks"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询任务列表信息
+    @inlinable
+    public func describeTaskList(_ input: DescribeTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskListResponse > {
+        self.client.execute(action: "DescribeTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务列表信息
+    @inlinable
+    public func describeTaskList(_ input: DescribeTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskListResponse {
+        try await self.client.execute(action: "DescribeTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

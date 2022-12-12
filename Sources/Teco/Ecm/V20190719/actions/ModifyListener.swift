@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改负载均衡监听器属性
-    ///
-    /// 修改负载均衡监听器属性。
-    @inlinable
-    public func modifyListener(_ input: ModifyListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyListenerResponse > {
-        self.client.execute(action: "ModifyListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改负载均衡监听器属性
-    ///
-    /// 修改负载均衡监听器属性。
-    @inlinable
-    public func modifyListener(_ input: ModifyListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyListenerResponse {
-        try await self.client.execute(action: "ModifyListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyListener请求参数结构体
     public struct ModifyListenerRequest: TCRequestModel {
         /// 负载均衡实例 ID
@@ -46,13 +30,13 @@ extension Ecm {
         public let sessionExpireTime: Int64?
         
         /// 健康检查相关参数
-        public let healthCheck: HealthCheck
+        public let healthCheck: HealthCheck?
         
         /// 监听器转发的方式。可选值：WRR、LEAST_CONN
         /// 分别表示按权重轮询、最小连接数， 默认为 WRR。
         public let scheduler: String?
         
-        public init (loadBalancerId: String, listenerId: String, listenerName: String?, sessionExpireTime: Int64?, healthCheck: HealthCheck, scheduler: String?) {
+        public init (loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, scheduler: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.listenerName = listenerName
@@ -79,5 +63,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改负载均衡监听器属性
+    ///
+    /// 修改负载均衡监听器属性。
+    @inlinable
+    public func modifyListener(_ input: ModifyListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyListenerResponse > {
+        self.client.execute(action: "ModifyListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改负载均衡监听器属性
+    ///
+    /// 修改负载均衡监听器属性。
+    @inlinable
+    public func modifyListener(_ input: ModifyListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyListenerResponse {
+        try await self.client.execute(action: "ModifyListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

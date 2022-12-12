@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 查询设备绑定的网关设备
-    @inlinable
-    public func describeDeviceBindGateway(_ input: DescribeDeviceBindGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceBindGatewayResponse > {
-        self.client.execute(action: "DescribeDeviceBindGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备绑定的网关设备
-    @inlinable
-    public func describeDeviceBindGateway(_ input: DescribeDeviceBindGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceBindGatewayResponse {
-        try await self.client.execute(action: "DescribeDeviceBindGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceBindGateway请求参数结构体
     public struct DescribeDeviceBindGatewayRequest: TCRequestModel {
         /// 产品Id
@@ -79,5 +67,17 @@ extension Iotexplorer {
             case gatewayProductOwnerUin = "GatewayProductOwnerUin"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备绑定的网关设备
+    @inlinable
+    public func describeDeviceBindGateway(_ input: DescribeDeviceBindGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceBindGatewayResponse > {
+        self.client.execute(action: "DescribeDeviceBindGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备绑定的网关设备
+    @inlinable
+    public func describeDeviceBindGateway(_ input: DescribeDeviceBindGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceBindGatewayResponse {
+        try await self.client.execute(action: "DescribeDeviceBindGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

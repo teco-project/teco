@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询CC防护攻击源IP信息列表
-    ///
-    /// 本接口（DescribeWebProtectionClientIpList）用于查询CC防护客户端（攻击源）IP信息。
-    @inlinable
-    public func describeWebProtectionClientIpList(_ input: DescribeWebProtectionClientIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebProtectionClientIpListResponse > {
-        self.client.execute(action: "DescribeWebProtectionClientIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询CC防护攻击源IP信息列表
-    ///
-    /// 本接口（DescribeWebProtectionClientIpList）用于查询CC防护客户端（攻击源）IP信息。
-    @inlinable
-    public func describeWebProtectionClientIpList(_ input: DescribeWebProtectionClientIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionClientIpListResponse {
-        try await self.client.execute(action: "DescribeWebProtectionClientIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWebProtectionClientIpList请求参数结构体
     public struct DescribeWebProtectionClientIpListRequest: TCRequestModel {
         /// 开始时间。
@@ -71,7 +55,7 @@ extension Teo {
         /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
         public let area: String?
         
-        public init (startTime: Date, endTime: Date, zoneIds: [String]?, domains: [String]?, interval: String?, queryCondition: [QueryCondition]?, limit: UInt64?, offset: UInt64?, area: String?) {
+        public init (startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.zoneIds = zoneIds
@@ -113,5 +97,21 @@ extension Teo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询CC防护攻击源IP信息列表
+    ///
+    /// 本接口（DescribeWebProtectionClientIpList）用于查询CC防护客户端（攻击源）IP信息。
+    @inlinable
+    public func describeWebProtectionClientIpList(_ input: DescribeWebProtectionClientIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebProtectionClientIpListResponse > {
+        self.client.execute(action: "DescribeWebProtectionClientIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询CC防护攻击源IP信息列表
+    ///
+    /// 本接口（DescribeWebProtectionClientIpList）用于查询CC防护客户端（攻击源）IP信息。
+    @inlinable
+    public func describeWebProtectionClientIpList(_ input: DescribeWebProtectionClientIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionClientIpListResponse {
+        try await self.client.execute(action: "DescribeWebProtectionClientIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

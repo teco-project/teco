@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询密钥详情
-    ///
-    /// 本接口（DescribeApiKey）用于查询密钥详情。
-    /// 用户在创建密钥后，可用此接口查询一个 API 密钥的详情，该接口会显示密钥 Key。
-    @inlinable
-    public func describeApiKey(_ input: DescribeApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiKeyResponse > {
-        self.client.execute(action: "DescribeApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询密钥详情
-    ///
-    /// 本接口（DescribeApiKey）用于查询密钥详情。
-    /// 用户在创建密钥后，可用此接口查询一个 API 密钥的详情，该接口会显示密钥 Key。
-    @inlinable
-    public func describeApiKey(_ input: DescribeApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiKeyResponse {
-        try await self.client.execute(action: "DescribeApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApiKey请求参数结构体
     public struct DescribeApiKeyRequest: TCRequestModel {
         /// API 密钥 ID。
@@ -51,7 +33,7 @@ extension Apigateway {
     public struct DescribeApiKeyResponse: TCResponseModel {
         /// 密钥详情。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: ApiKey
+        public let result: ApiKey?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -60,5 +42,23 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询密钥详情
+    ///
+    /// 本接口（DescribeApiKey）用于查询密钥详情。
+    /// 用户在创建密钥后，可用此接口查询一个 API 密钥的详情，该接口会显示密钥 Key。
+    @inlinable
+    public func describeApiKey(_ input: DescribeApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiKeyResponse > {
+        self.client.execute(action: "DescribeApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询密钥详情
+    ///
+    /// 本接口（DescribeApiKey）用于查询密钥详情。
+    /// 用户在创建密钥后，可用此接口查询一个 API 密钥的详情，该接口会显示密钥 Key。
+    @inlinable
+    public func describeApiKey(_ input: DescribeApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiKeyResponse {
+        try await self.client.execute(action: "DescribeApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

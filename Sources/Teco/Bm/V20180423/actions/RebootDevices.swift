@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 重启机器
-    @inlinable
-    public func rebootDevices(_ input: RebootDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RebootDevicesResponse > {
-        self.client.execute(action: "RebootDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重启机器
-    @inlinable
-    public func rebootDevices(_ input: RebootDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RebootDevicesResponse {
-        try await self.client.execute(action: "RebootDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RebootDevices请求参数结构体
     public struct RebootDevicesRequest: TCRequestModel {
         /// 需要重启的设备ID列表
@@ -53,5 +41,17 @@ extension Bm {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重启机器
+    @inlinable
+    public func rebootDevices(_ input: RebootDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RebootDevicesResponse > {
+        self.client.execute(action: "RebootDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重启机器
+    @inlinable
+    public func rebootDevices(_ input: RebootDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RebootDevicesResponse {
+        try await self.client.execute(action: "RebootDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

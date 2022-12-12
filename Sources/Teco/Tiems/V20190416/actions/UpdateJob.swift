@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiems {
-    /// 更新任务
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 更新任务
-    @inlinable
-    public func updateJob(_ input: UpdateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateJobResponse > {
-        self.client.execute(action: "UpdateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新任务
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 更新任务
-    @inlinable
-    public func updateJob(_ input: UpdateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJobResponse {
-        try await self.client.execute(action: "UpdateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateJob请求参数结构体
     public struct UpdateJobRequest: TCRequestModel {
         /// 任务 Id
@@ -44,7 +26,7 @@ extension Tiems {
         /// 备注
         public let description: String?
         
-        public init (jobId: String, jobAction: String?, description: String?) {
+        public init (jobId: String, jobAction: String? = nil, description: String? = nil) {
             self.jobId = jobId
             self.jobAction = jobAction
             self.description = description
@@ -61,7 +43,7 @@ extension Tiems {
     public struct UpdateJobResponse: TCResponseModel {
         /// 任务
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let job: Job
+        public let job: Job?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -70,5 +52,23 @@ extension Tiems {
             case job = "Job"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新任务
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 更新任务
+    @inlinable
+    public func updateJob(_ input: UpdateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateJobResponse > {
+        self.client.execute(action: "UpdateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新任务
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 更新任务
+    @inlinable
+    public func updateJob(_ input: UpdateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJobResponse {
+        try await self.client.execute(action: "UpdateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

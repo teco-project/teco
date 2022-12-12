@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 创建网站防护目录
-    ///
-    /// 创建/修改网站防护目录
-    @inlinable
-    public func modifyWebPageProtectDir(_ input: ModifyWebPageProtectDirRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWebPageProtectDirResponse > {
-        self.client.execute(action: "ModifyWebPageProtectDir", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建网站防护目录
-    ///
-    /// 创建/修改网站防护目录
-    @inlinable
-    public func modifyWebPageProtectDir(_ input: ModifyWebPageProtectDirRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectDirResponse {
-        try await self.client.execute(action: "ModifyWebPageProtectDir", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyWebPageProtectDir请求参数结构体
     public struct ModifyWebPageProtectDirRequest: TCRequestModel {
         /// 网站防护目录地址
@@ -68,5 +52,21 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建网站防护目录
+    ///
+    /// 创建/修改网站防护目录
+    @inlinable
+    public func modifyWebPageProtectDir(_ input: ModifyWebPageProtectDirRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWebPageProtectDirResponse > {
+        self.client.execute(action: "ModifyWebPageProtectDir", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建网站防护目录
+    ///
+    /// 创建/修改网站防护目录
+    @inlinable
+    public func modifyWebPageProtectDir(_ input: ModifyWebPageProtectDirRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectDirResponse {
+        try await self.client.execute(action: "ModifyWebPageProtectDir", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

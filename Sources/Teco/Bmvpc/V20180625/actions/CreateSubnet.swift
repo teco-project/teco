@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 创建黑石私有网络的子网
-    ///
-    /// 创建黑石私有网络的子网
-    /// 访问管理: 用户可以对VpcId进行授权操作。例如设置资源为["qcs::bmvpc:::unVpc/vpc-xxxxx"]
-    @inlinable
-    public func createSubnet(_ input: CreateSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubnetResponse > {
-        self.client.execute(action: "CreateSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建黑石私有网络的子网
-    ///
-    /// 创建黑石私有网络的子网
-    /// 访问管理: 用户可以对VpcId进行授权操作。例如设置资源为["qcs::bmvpc:::unVpc/vpc-xxxxx"]
-    @inlinable
-    public func createSubnet(_ input: CreateSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
-        try await self.client.execute(action: "CreateSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSubnet请求参数结构体
     public struct CreateSubnetRequest: TCRequestModel {
         /// 系统分配的私有网络ID，例如：vpc-kd7d06of
@@ -64,5 +46,23 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建黑石私有网络的子网
+    ///
+    /// 创建黑石私有网络的子网
+    /// 访问管理: 用户可以对VpcId进行授权操作。例如设置资源为["qcs::bmvpc:::unVpc/vpc-xxxxx"]
+    @inlinable
+    public func createSubnet(_ input: CreateSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubnetResponse > {
+        self.client.execute(action: "CreateSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建黑石私有网络的子网
+    ///
+    /// 创建黑石私有网络的子网
+    /// 访问管理: 用户可以对VpcId进行授权操作。例如设置资源为["qcs::bmvpc:::unVpc/vpc-xxxxx"]
+    @inlinable
+    public func createSubnet(_ input: CreateSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
+        try await self.client.execute(action: "CreateSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

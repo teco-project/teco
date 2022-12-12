@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 解除模板同步
-    ///
-    /// 解除模板同步，这将会删除目标中该模板所生产的配置，针对V2版本实例
-    @inlinable
-    public func deletePrometheusTempSync(_ input: DeletePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusTempSyncResponse > {
-        self.client.execute(action: "DeletePrometheusTempSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解除模板同步
-    ///
-    /// 解除模板同步，这将会删除目标中该模板所生产的配置，针对V2版本实例
-    @inlinable
-    public func deletePrometheusTempSync(_ input: DeletePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTempSyncResponse {
-        try await self.client.execute(action: "DeletePrometheusTempSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePrometheusTempSync请求参数结构体
     public struct DeletePrometheusTempSyncRequest: TCRequestModel {
         /// 模板id
@@ -58,5 +42,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解除模板同步
+    ///
+    /// 解除模板同步，这将会删除目标中该模板所生产的配置，针对V2版本实例
+    @inlinable
+    public func deletePrometheusTempSync(_ input: DeletePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusTempSyncResponse > {
+        self.client.execute(action: "DeletePrometheusTempSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解除模板同步
+    ///
+    /// 解除模板同步，这将会删除目标中该模板所生产的配置，针对V2版本实例
+    @inlinable
+    public func deletePrometheusTempSync(_ input: DeletePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTempSyncResponse {
+        try await self.client.execute(action: "DeletePrometheusTempSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

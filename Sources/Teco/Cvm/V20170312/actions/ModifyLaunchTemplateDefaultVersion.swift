@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 修改实例启动模板默认版本
-    ///
-    /// 本接口（ModifyLaunchTemplateDefaultVersion）用于修改实例启动模板默认版本。
-    @inlinable
-    public func modifyLaunchTemplateDefaultVersion(_ input: ModifyLaunchTemplateDefaultVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLaunchTemplateDefaultVersionResponse > {
-        self.client.execute(action: "ModifyLaunchTemplateDefaultVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例启动模板默认版本
-    ///
-    /// 本接口（ModifyLaunchTemplateDefaultVersion）用于修改实例启动模板默认版本。
-    @inlinable
-    public func modifyLaunchTemplateDefaultVersion(_ input: ModifyLaunchTemplateDefaultVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaunchTemplateDefaultVersionResponse {
-        try await self.client.execute(action: "ModifyLaunchTemplateDefaultVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLaunchTemplateDefaultVersion请求参数结构体
     public struct ModifyLaunchTemplateDefaultVersionRequest: TCRequestModel {
         /// 启动模板ID。
@@ -58,5 +42,21 @@ extension Cvm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例启动模板默认版本
+    ///
+    /// 本接口（ModifyLaunchTemplateDefaultVersion）用于修改实例启动模板默认版本。
+    @inlinable
+    public func modifyLaunchTemplateDefaultVersion(_ input: ModifyLaunchTemplateDefaultVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLaunchTemplateDefaultVersionResponse > {
+        self.client.execute(action: "ModifyLaunchTemplateDefaultVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例启动模板默认版本
+    ///
+    /// 本接口（ModifyLaunchTemplateDefaultVersion）用于修改实例启动模板默认版本。
+    @inlinable
+    public func modifyLaunchTemplateDefaultVersion(_ input: ModifyLaunchTemplateDefaultVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaunchTemplateDefaultVersionResponse {
+        try await self.client.execute(action: "ModifyLaunchTemplateDefaultVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

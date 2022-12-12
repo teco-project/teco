@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 主动触发证书验证
-    ///
-    /// 本接口（CompleteCertificate）用于主动触发证书验证。仅非DNSPod和Wotrus品牌证书支持使用此接口。
-    @inlinable
-    public func completeCertificate(_ input: CompleteCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CompleteCertificateResponse > {
-        self.client.execute(action: "CompleteCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 主动触发证书验证
-    ///
-    /// 本接口（CompleteCertificate）用于主动触发证书验证。仅非DNSPod和Wotrus品牌证书支持使用此接口。
-    @inlinable
-    public func completeCertificate(_ input: CompleteCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteCertificateResponse {
-        try await self.client.execute(action: "CompleteCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CompleteCertificate请求参数结构体
     public struct CompleteCertificateRequest: TCRequestModel {
         /// 证书ID
@@ -57,5 +41,21 @@ extension Ssl {
             case certificateId = "CertificateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 主动触发证书验证
+    ///
+    /// 本接口（CompleteCertificate）用于主动触发证书验证。仅非DNSPod和Wotrus品牌证书支持使用此接口。
+    @inlinable
+    public func completeCertificate(_ input: CompleteCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CompleteCertificateResponse > {
+        self.client.execute(action: "CompleteCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 主动触发证书验证
+    ///
+    /// 本接口（CompleteCertificate）用于主动触发证书验证。仅非DNSPod和Wotrus品牌证书支持使用此接口。
+    @inlinable
+    public func completeCertificate(_ input: CompleteCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteCertificateResponse {
+        try await self.client.execute(action: "CompleteCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

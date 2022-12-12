@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询实例基本信息
-    ///
-    /// 查询实例基本信息（实例 ID ，实例名称，是否开通加密 ）
-    @inlinable
-    public func describeDBInstanceInfo(_ input: DescribeDBInstanceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceInfoResponse > {
-        self.client.execute(action: "DescribeDBInstanceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例基本信息
-    ///
-    /// 查询实例基本信息（实例 ID ，实例名称，是否开通加密 ）
-    @inlinable
-    public func describeDBInstanceInfo(_ input: DescribeDBInstanceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceInfoResponse {
-        try await self.client.execute(action: "DescribeDBInstanceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBInstanceInfo请求参数结构体
     public struct DescribeDBInstanceInfoRequest: TCRequestModel {
         /// 实例 ID 。
@@ -80,5 +64,21 @@ extension Cdb {
             case defaultKmsRegion = "DefaultKmsRegion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例基本信息
+    ///
+    /// 查询实例基本信息（实例 ID ，实例名称，是否开通加密 ）
+    @inlinable
+    public func describeDBInstanceInfo(_ input: DescribeDBInstanceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceInfoResponse > {
+        self.client.execute(action: "DescribeDBInstanceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例基本信息
+    ///
+    /// 查询实例基本信息（实例 ID ，实例名称，是否开通加密 ）
+    @inlinable
+    public func describeDBInstanceInfo(_ input: DescribeDBInstanceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceInfoResponse {
+        try await self.client.execute(action: "DescribeDBInstanceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

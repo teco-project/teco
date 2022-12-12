@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 获取日志列表
-    ///
-    /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
-    @inlinable
-    public func describeDBLogFiles(_ input: DescribeDBLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBLogFilesResponse > {
-        self.client.execute(action: "DescribeDBLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取日志列表
-    ///
-    /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
-    @inlinable
-    public func describeDBLogFiles(_ input: DescribeDBLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBLogFilesResponse {
-        try await self.client.execute(action: "DescribeDBLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBLogFiles请求参数结构体
     public struct DescribeDBLogFilesRequest: TCRequestModel {
         /// 实例 ID，形如：dcdbt-ow7t8lmc。
@@ -91,5 +75,21 @@ extension Dcdb {
             case shardId = "ShardId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取日志列表
+    ///
+    /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
+    @inlinable
+    public func describeDBLogFiles(_ input: DescribeDBLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBLogFilesResponse > {
+        self.client.execute(action: "DescribeDBLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志列表
+    ///
+    /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
+    @inlinable
+    public func describeDBLogFiles(_ input: DescribeDBLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBLogFilesResponse {
+        try await self.client.execute(action: "DescribeDBLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

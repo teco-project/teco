@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 切换实例主从角色
-    ///
-    /// 该接口 (SwitchDBInstanceMasterSlave) 支持用户主动切换实例主从角色。
-    @inlinable
-    public func switchDBInstanceMasterSlave(_ input: SwitchDBInstanceMasterSlaveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchDBInstanceMasterSlaveResponse > {
-        self.client.execute(action: "SwitchDBInstanceMasterSlave", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 切换实例主从角色
-    ///
-    /// 该接口 (SwitchDBInstanceMasterSlave) 支持用户主动切换实例主从角色。
-    @inlinable
-    public func switchDBInstanceMasterSlave(_ input: SwitchDBInstanceMasterSlaveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDBInstanceMasterSlaveResponse {
-        try await self.client.execute(action: "SwitchDBInstanceMasterSlave", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SwitchDBInstanceMasterSlave请求参数结构体
     public struct SwitchDBInstanceMasterSlaveRequest: TCRequestModel {
         /// 实例 ID。
@@ -45,7 +29,7 @@ extension Cdb {
         /// 是否时间窗内切换。默认为 False，即不在时间窗内切换。注意，如果设置了 ForceSwitch 参数为 True，则该参数不生效。
         public let waitSwitch: Bool?
         
-        public init (instanceId: String, dstSlave: String?, forceSwitch: Bool?, waitSwitch: Bool?) {
+        public init (instanceId: String, dstSlave: String? = nil, forceSwitch: Bool? = nil, waitSwitch: Bool? = nil) {
             self.instanceId = instanceId
             self.dstSlave = dstSlave
             self.forceSwitch = forceSwitch
@@ -72,5 +56,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 切换实例主从角色
+    ///
+    /// 该接口 (SwitchDBInstanceMasterSlave) 支持用户主动切换实例主从角色。
+    @inlinable
+    public func switchDBInstanceMasterSlave(_ input: SwitchDBInstanceMasterSlaveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchDBInstanceMasterSlaveResponse > {
+        self.client.execute(action: "SwitchDBInstanceMasterSlave", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 切换实例主从角色
+    ///
+    /// 该接口 (SwitchDBInstanceMasterSlave) 支持用户主动切换实例主从角色。
+    @inlinable
+    public func switchDBInstanceMasterSlave(_ input: SwitchDBInstanceMasterSlaveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDBInstanceMasterSlaveResponse {
+        try await self.client.execute(action: "SwitchDBInstanceMasterSlave", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

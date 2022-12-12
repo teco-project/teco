@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 修改私有域关联的VPC
-    @inlinable
-    public func modifyPrivateZoneVpc(_ input: ModifyPrivateZoneVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrivateZoneVpcResponse > {
-        self.client.execute(action: "ModifyPrivateZoneVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改私有域关联的VPC
-    @inlinable
-    public func modifyPrivateZoneVpc(_ input: ModifyPrivateZoneVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneVpcResponse {
-        try await self.client.execute(action: "ModifyPrivateZoneVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPrivateZoneVpc请求参数结构体
     public struct ModifyPrivateZoneVpcRequest: TCRequestModel {
         /// 私有域ID
@@ -38,7 +26,7 @@ extension Privatedns {
         /// 私有域账号关联的全部VPC列表
         public let accountVpcSet: [AccountVpcInfo]?
         
-        public init (zoneId: String, vpcSet: [VpcInfo]?, accountVpcSet: [AccountVpcInfo]?) {
+        public init (zoneId: String, vpcSet: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil) {
             self.zoneId = zoneId
             self.vpcSet = vpcSet
             self.accountVpcSet = accountVpcSet
@@ -71,5 +59,17 @@ extension Privatedns {
             case accountVpcSet = "AccountVpcSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改私有域关联的VPC
+    @inlinable
+    public func modifyPrivateZoneVpc(_ input: ModifyPrivateZoneVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrivateZoneVpcResponse > {
+        self.client.execute(action: "ModifyPrivateZoneVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改私有域关联的VPC
+    @inlinable
+    public func modifyPrivateZoneVpc(_ input: ModifyPrivateZoneVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneVpcResponse {
+        try await self.client.execute(action: "ModifyPrivateZoneVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

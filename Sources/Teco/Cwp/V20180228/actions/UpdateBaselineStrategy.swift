@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 更新基线策略信息
-    ///
-    /// 根据基线策略id更新策略信息
-    @inlinable
-    public func updateBaselineStrategy(_ input: UpdateBaselineStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateBaselineStrategyResponse > {
-        self.client.execute(action: "UpdateBaselineStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新基线策略信息
-    ///
-    /// 根据基线策略id更新策略信息
-    @inlinable
-    public func updateBaselineStrategy(_ input: UpdateBaselineStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBaselineStrategyResponse {
-        try await self.client.execute(action: "UpdateBaselineStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateBaselineStrategy请求参数结构体
     public struct UpdateBaselineStrategyRequest: TCRequestModel {
         /// 策略id
@@ -98,5 +82,21 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新基线策略信息
+    ///
+    /// 根据基线策略id更新策略信息
+    @inlinable
+    public func updateBaselineStrategy(_ input: UpdateBaselineStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateBaselineStrategyResponse > {
+        self.client.execute(action: "UpdateBaselineStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新基线策略信息
+    ///
+    /// 根据基线策略id更新策略信息
+    @inlinable
+    public func updateBaselineStrategy(_ input: UpdateBaselineStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBaselineStrategyResponse {
+        try await self.client.execute(action: "UpdateBaselineStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

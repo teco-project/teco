@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 释放IPv6地址
-    ///
-    /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡IPv6地址。
-    @inlinable
-    public func releaseIpv6Addresses(_ input: ReleaseIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseIpv6AddressesResponse > {
-        self.client.execute(action: "ReleaseIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 释放IPv6地址
-    ///
-    /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡IPv6地址。
-    @inlinable
-    public func releaseIpv6Addresses(_ input: ReleaseIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseIpv6AddressesResponse {
-        try await self.client.execute(action: "ReleaseIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReleaseIpv6Addresses请求参数结构体
     public struct ReleaseIpv6AddressesRequest: TCRequestModel {
         /// ECM 地域
@@ -67,5 +51,21 @@ extension Ecm {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 释放IPv6地址
+    ///
+    /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡IPv6地址。
+    @inlinable
+    public func releaseIpv6Addresses(_ input: ReleaseIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseIpv6AddressesResponse > {
+        self.client.execute(action: "ReleaseIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 释放IPv6地址
+    ///
+    /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡IPv6地址。
+    @inlinable
+    public func releaseIpv6Addresses(_ input: ReleaseIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseIpv6AddressesResponse {
+        try await self.client.execute(action: "ReleaseIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

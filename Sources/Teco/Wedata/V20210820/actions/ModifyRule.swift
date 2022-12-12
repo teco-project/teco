@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 更新质量规则接口
-    @inlinable
-    public func modifyRule(_ input: ModifyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRuleResponse > {
-        self.client.execute(action: "ModifyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新质量规则接口
-    @inlinable
-    public func modifyRule(_ input: ModifyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
-        try await self.client.execute(action: "ModifyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRule请求参数结构体
     public struct ModifyRuleRequest: TCRequestModel {
         /// 项目Id
@@ -69,7 +57,7 @@ extension Wedata {
         public let customSql: String?
         
         /// 报警触发条件
-        public let compareRule: CompareRule
+        public let compareRule: CompareRule?
         
         /// 报警触发级别 1.低, 2.中, 3.高
         public let alarmLevel: UInt64?
@@ -90,12 +78,12 @@ extension Wedata {
         public let relConditionExpr: String?
         
         /// 自定义模版sql表达式字段替换参数
-        public let fieldConfig: RuleFieldConfig
+        public let fieldConfig: RuleFieldConfig?
         
         /// 目标字段名称  CITY
         public let targetObjectValue: String?
         
-        public init (projectId: String?, ruleId: UInt64?, ruleGroupId: UInt64?, name: String?, tableId: String?, ruleTemplateId: UInt64?, type: UInt64?, qualityDim: UInt64?, sourceObjectDataTypeName: String?, sourceObjectValue: String?, conditionType: UInt64?, conditionExpression: String?, customSql: String?, compareRule: CompareRule, alarmLevel: UInt64?, description: String?, targetDatabaseId: String?, targetTableId: String?, targetConditionExpr: String?, relConditionExpr: String?, fieldConfig: RuleFieldConfig, targetObjectValue: String?) {
+        public init (projectId: String? = nil, ruleId: UInt64? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, tableId: String? = nil, ruleTemplateId: UInt64? = nil, type: UInt64? = nil, qualityDim: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, targetDatabaseId: String? = nil, targetTableId: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, targetObjectValue: String? = nil) {
             self.projectId = projectId
             self.ruleId = ruleId
             self.ruleGroupId = ruleGroupId
@@ -159,5 +147,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新质量规则接口
+    @inlinable
+    public func modifyRule(_ input: ModifyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRuleResponse > {
+        self.client.execute(action: "ModifyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新质量规则接口
+    @inlinable
+    public func modifyRule(_ input: ModifyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
+        try await self.client.execute(action: "ModifyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

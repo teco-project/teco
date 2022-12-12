@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询镜像实例信息
-    ///
-    /// 本接口（DescribeBlueprintInstances）用于查询镜像实例信息。
-    @inlinable
-    public func describeBlueprintInstances(_ input: DescribeBlueprintInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlueprintInstancesResponse > {
-        self.client.execute(action: "DescribeBlueprintInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询镜像实例信息
-    ///
-    /// 本接口（DescribeBlueprintInstances）用于查询镜像实例信息。
-    @inlinable
-    public func describeBlueprintInstances(_ input: DescribeBlueprintInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintInstancesResponse {
-        try await self.client.execute(action: "DescribeBlueprintInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBlueprintInstances请求参数结构体
     public struct DescribeBlueprintInstancesRequest: TCRequestModel {
         /// 实例 ID 列表，当前最多支持 1 个。
@@ -61,5 +45,21 @@ extension Lighthouse {
             case blueprintInstanceSet = "BlueprintInstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询镜像实例信息
+    ///
+    /// 本接口（DescribeBlueprintInstances）用于查询镜像实例信息。
+    @inlinable
+    public func describeBlueprintInstances(_ input: DescribeBlueprintInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlueprintInstancesResponse > {
+        self.client.execute(action: "DescribeBlueprintInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像实例信息
+    ///
+    /// 本接口（DescribeBlueprintInstances）用于查询镜像实例信息。
+    @inlinable
+    public func describeBlueprintInstances(_ input: DescribeBlueprintInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintInstancesResponse {
+        try await self.client.execute(action: "DescribeBlueprintInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

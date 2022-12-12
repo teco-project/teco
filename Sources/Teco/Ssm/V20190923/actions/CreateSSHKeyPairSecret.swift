@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssm {
-    /// 创建SSH密钥对凭据
-    ///
-    /// 创建用于托管SSH密钥对的凭据
-    @inlinable
-    public func createSSHKeyPairSecret(_ input: CreateSSHKeyPairSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSSHKeyPairSecretResponse > {
-        self.client.execute(action: "CreateSSHKeyPairSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建SSH密钥对凭据
-    ///
-    /// 创建用于托管SSH密钥对的凭据
-    @inlinable
-    public func createSSHKeyPairSecret(_ input: CreateSSHKeyPairSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSSHKeyPairSecretResponse {
-        try await self.client.execute(action: "CreateSSHKeyPairSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSSHKeyPairSecret请求参数结构体
     public struct CreateSSHKeyPairSecretRequest: TCRequestModel {
         /// 凭据名称，同一region内不可重复，最长128字节，使用字母、数字或者 - _ 的组合，第一个字符必须为字母或者数字。
@@ -53,7 +37,7 @@ extension Ssm {
         /// 用户自定义输入的SSH密钥对的名称，可由数字，字母和下划线组成，只能以数字和字母开头，长度不超过25个字符。
         public let sshKeyName: String?
         
-        public init (secretName: String, projectId: Int64, description: String?, kmsKeyId: String?, tags: [Tag]?, sshKeyName: String?) {
+        public init (secretName: String, projectId: Int64, description: String? = nil, kmsKeyId: String? = nil, tags: [Tag]? = nil, sshKeyName: String? = nil) {
             self.secretName = secretName
             self.projectId = projectId
             self.description = description
@@ -102,5 +86,21 @@ extension Ssm {
             case tagMsg = "TagMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建SSH密钥对凭据
+    ///
+    /// 创建用于托管SSH密钥对的凭据
+    @inlinable
+    public func createSSHKeyPairSecret(_ input: CreateSSHKeyPairSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSSHKeyPairSecretResponse > {
+        self.client.execute(action: "CreateSSHKeyPairSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建SSH密钥对凭据
+    ///
+    /// 创建用于托管SSH密钥对的凭据
+    @inlinable
+    public func createSSHKeyPairSecret(_ input: CreateSSHKeyPairSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSSHKeyPairSecretResponse {
+        try await self.client.execute(action: "CreateSSHKeyPairSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 创建集群检查任务
-    ///
-    /// 创建集群检查任务，用户检查用户的集群相关风险项
-    @inlinable
-    public func createClusterCheckTask(_ input: CreateClusterCheckTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterCheckTaskResponse > {
-        self.client.execute(action: "CreateClusterCheckTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建集群检查任务
-    ///
-    /// 创建集群检查任务，用户检查用户的集群相关风险项
-    @inlinable
-    public func createClusterCheckTask(_ input: CreateClusterCheckTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterCheckTaskResponse {
-        try await self.client.execute(action: "CreateClusterCheckTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateClusterCheckTask请求参数结构体
     public struct CreateClusterCheckTaskRequest: TCRequestModel {
         /// 指定要扫描的集群信息
@@ -61,5 +45,21 @@ extension Tcss {
             case createResult = "CreateResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建集群检查任务
+    ///
+    /// 创建集群检查任务，用户检查用户的集群相关风险项
+    @inlinable
+    public func createClusterCheckTask(_ input: CreateClusterCheckTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterCheckTaskResponse > {
+        self.client.execute(action: "CreateClusterCheckTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群检查任务
+    ///
+    /// 创建集群检查任务，用户检查用户的集群相关风险项
+    @inlinable
+    public func createClusterCheckTask(_ input: CreateClusterCheckTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterCheckTaskResponse {
+        try await self.client.execute(action: "CreateClusterCheckTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

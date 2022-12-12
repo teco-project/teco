@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 更新个人版仓库访问属性
-    ///
-    /// 用于更新个人版镜像仓库的访问属性
-    @inlinable
-    public func modifyRepositoryAccessPersonal(_ input: ModifyRepositoryAccessPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRepositoryAccessPersonalResponse > {
-        self.client.execute(action: "ModifyRepositoryAccessPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新个人版仓库访问属性
-    ///
-    /// 用于更新个人版镜像仓库的访问属性
-    @inlinable
-    public func modifyRepositoryAccessPersonal(_ input: ModifyRepositoryAccessPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryAccessPersonalResponse {
-        try await self.client.execute(action: "ModifyRepositoryAccessPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRepositoryAccessPersonal请求参数结构体
     public struct ModifyRepositoryAccessPersonalRequest: TCRequestModel {
         /// 仓库名称
@@ -58,5 +42,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新个人版仓库访问属性
+    ///
+    /// 用于更新个人版镜像仓库的访问属性
+    @inlinable
+    public func modifyRepositoryAccessPersonal(_ input: ModifyRepositoryAccessPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRepositoryAccessPersonalResponse > {
+        self.client.execute(action: "ModifyRepositoryAccessPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新个人版仓库访问属性
+    ///
+    /// 用于更新个人版镜像仓库的访问属性
+    @inlinable
+    public func modifyRepositoryAccessPersonal(_ input: ModifyRepositoryAccessPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryAccessPersonalResponse {
+        try await self.client.execute(action: "ModifyRepositoryAccessPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

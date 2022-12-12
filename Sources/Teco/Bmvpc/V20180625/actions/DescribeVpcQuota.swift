@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 获取黑石私有网络的配额
-    ///
-    /// 本接口（DescribeVpcQuota）用于查询用户VPC相关配额限制。
-    @inlinable
-    public func describeVpcQuota(_ input: DescribeVpcQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcQuotaResponse > {
-        self.client.execute(action: "DescribeVpcQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取黑石私有网络的配额
-    ///
-    /// 本接口（DescribeVpcQuota）用于查询用户VPC相关配额限制。
-    @inlinable
-    public func describeVpcQuota(_ input: DescribeVpcQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcQuotaResponse {
-        try await self.client.execute(action: "DescribeVpcQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpcQuota请求参数结构体
     public struct DescribeVpcQuotaRequest: TCRequestModel {
         /// 类型
@@ -57,5 +41,21 @@ extension Bmvpc {
             case vpcQuotaSet = "VpcQuotaSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取黑石私有网络的配额
+    ///
+    /// 本接口（DescribeVpcQuota）用于查询用户VPC相关配额限制。
+    @inlinable
+    public func describeVpcQuota(_ input: DescribeVpcQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcQuotaResponse > {
+        self.client.execute(action: "DescribeVpcQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取黑石私有网络的配额
+    ///
+    /// 本接口（DescribeVpcQuota）用于查询用户VPC相关配额限制。
+    @inlinable
+    public func describeVpcQuota(_ input: DescribeVpcQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcQuotaResponse {
+        try await self.client.execute(action: "DescribeVpcQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

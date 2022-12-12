@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 分配IPv6子网段
-    ///
-    /// 本接口（AssignIpv6SubnetCidrBlock）用于分配IPv6子网段。
-    /// * 给子网分配 `IPv6` 网段，要求子网所属 `VPC` 已获得 `IPv6` 网段。如果尚未分配，请先通过接口 `AssignIpv6CidrBlock` 给子网所属 `VPC` 分配一个 `IPv6` 网段。否则无法分配 `IPv6` 子网段。
-    /// * 每个子网只能分配一个IPv6网段。
-    @inlinable
-    public func assignIpv6SubnetCidrBlock(_ input: AssignIpv6SubnetCidrBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssignIpv6SubnetCidrBlockResponse > {
-        self.client.execute(action: "AssignIpv6SubnetCidrBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分配IPv6子网段
-    ///
-    /// 本接口（AssignIpv6SubnetCidrBlock）用于分配IPv6子网段。
-    /// * 给子网分配 `IPv6` 网段，要求子网所属 `VPC` 已获得 `IPv6` 网段。如果尚未分配，请先通过接口 `AssignIpv6CidrBlock` 给子网所属 `VPC` 分配一个 `IPv6` 网段。否则无法分配 `IPv6` 子网段。
-    /// * 每个子网只能分配一个IPv6网段。
-    @inlinable
-    public func assignIpv6SubnetCidrBlock(_ input: AssignIpv6SubnetCidrBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6SubnetCidrBlockResponse {
-        try await self.client.execute(action: "AssignIpv6SubnetCidrBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssignIpv6SubnetCidrBlock请求参数结构体
     public struct AssignIpv6SubnetCidrBlockRequest: TCRequestModel {
         /// 子网所在私有网络`ID`。形如：`vpc-f49l6u0z`。
@@ -66,5 +46,25 @@ extension Vpc {
             case ipv6SubnetCidrBlockSet = "Ipv6SubnetCidrBlockSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分配IPv6子网段
+    ///
+    /// 本接口（AssignIpv6SubnetCidrBlock）用于分配IPv6子网段。
+    /// * 给子网分配 `IPv6` 网段，要求子网所属 `VPC` 已获得 `IPv6` 网段。如果尚未分配，请先通过接口 `AssignIpv6CidrBlock` 给子网所属 `VPC` 分配一个 `IPv6` 网段。否则无法分配 `IPv6` 子网段。
+    /// * 每个子网只能分配一个IPv6网段。
+    @inlinable
+    public func assignIpv6SubnetCidrBlock(_ input: AssignIpv6SubnetCidrBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssignIpv6SubnetCidrBlockResponse > {
+        self.client.execute(action: "AssignIpv6SubnetCidrBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分配IPv6子网段
+    ///
+    /// 本接口（AssignIpv6SubnetCidrBlock）用于分配IPv6子网段。
+    /// * 给子网分配 `IPv6` 网段，要求子网所属 `VPC` 已获得 `IPv6` 网段。如果尚未分配，请先通过接口 `AssignIpv6CidrBlock` 给子网所属 `VPC` 分配一个 `IPv6` 网段。否则无法分配 `IPv6` 子网段。
+    /// * 每个子网只能分配一个IPv6网段。
+    @inlinable
+    public func assignIpv6SubnetCidrBlock(_ input: AssignIpv6SubnetCidrBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6SubnetCidrBlockResponse {
+        try await self.client.execute(action: "AssignIpv6SubnetCidrBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

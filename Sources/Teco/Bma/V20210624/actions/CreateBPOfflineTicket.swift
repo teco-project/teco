@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 添加下线工单
-    @inlinable
-    public func createBPOfflineTicket(_ input: CreateBPOfflineTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPOfflineTicketResponse > {
-        self.client.execute(action: "CreateBPOfflineTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加下线工单
-    @inlinable
-    public func createBPOfflineTicket(_ input: CreateBPOfflineTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineTicketResponse {
-        try await self.client.execute(action: "CreateBPOfflineTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBPOfflineTicket请求参数结构体
     public struct CreateBPOfflineTicketRequest: TCRequestModel {
         /// 仿冒网址ID
         public let fakeURLId: Int64?
         
-        public init (fakeURLId: Int64?) {
+        public init (fakeURLId: Int64? = nil) {
             self.fakeURLId = fakeURLId
         }
         
@@ -49,5 +37,17 @@ extension Bma {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加下线工单
+    @inlinable
+    public func createBPOfflineTicket(_ input: CreateBPOfflineTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPOfflineTicketResponse > {
+        self.client.execute(action: "CreateBPOfflineTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加下线工单
+    @inlinable
+    public func createBPOfflineTicket(_ input: CreateBPOfflineTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineTicketResponse {
+        try await self.client.execute(action: "CreateBPOfflineTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 检查辅助CIDR冲突
-    ///
-    /// 本接口(CheckAssistantCidr)用于检查辅助CIDR是否与存量路由、对等连接（对端VPC的CIDR）等资源存在冲突。如果存在重叠，则返回重叠的资源。
-    /// * 检测辅助CIDR是否与当前VPC的主CIDR和辅助CIDR存在重叠。
-    /// * 检测辅助CIDR是否与当前VPC的路由的目的端存在重叠。
-    /// * 检测辅助CIDR是否与当前VPC的对等连接，对端VPC下的主CIDR或辅助CIDR存在重叠。
-    @inlinable
-    public func checkAssistantCidr(_ input: CheckAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckAssistantCidrResponse > {
-        self.client.execute(action: "CheckAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检查辅助CIDR冲突
-    ///
-    /// 本接口(CheckAssistantCidr)用于检查辅助CIDR是否与存量路由、对等连接（对端VPC的CIDR）等资源存在冲突。如果存在重叠，则返回重叠的资源。
-    /// * 检测辅助CIDR是否与当前VPC的主CIDR和辅助CIDR存在重叠。
-    /// * 检测辅助CIDR是否与当前VPC的路由的目的端存在重叠。
-    /// * 检测辅助CIDR是否与当前VPC的对等连接，对端VPC下的主CIDR或辅助CIDR存在重叠。
-    @inlinable
-    public func checkAssistantCidr(_ input: CheckAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAssistantCidrResponse {
-        try await self.client.execute(action: "CheckAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckAssistantCidr请求参数结构体
     public struct CheckAssistantCidrRequest: TCRequestModel {
         /// `VPC`实例`ID`。形如：`vpc-6v2ht8q5`
@@ -48,7 +26,7 @@ extension Vpc {
         /// 待删除的负载CIDR。CIDR数组，格式如["10.0.0.0/16", "172.16.0.0/16"]。入参NewCidrBlocks和OldCidrBlocks至少需要其一。
         public let oldCidrBlocks: [String]?
         
-        public init (vpcId: String, newCidrBlocks: [String]?, oldCidrBlocks: [String]?) {
+        public init (vpcId: String, newCidrBlocks: [String]? = nil, oldCidrBlocks: [String]? = nil) {
             self.vpcId = vpcId
             self.newCidrBlocks = newCidrBlocks
             self.oldCidrBlocks = oldCidrBlocks
@@ -73,5 +51,27 @@ extension Vpc {
             case conflictSourceSet = "ConflictSourceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检查辅助CIDR冲突
+    ///
+    /// 本接口(CheckAssistantCidr)用于检查辅助CIDR是否与存量路由、对等连接（对端VPC的CIDR）等资源存在冲突。如果存在重叠，则返回重叠的资源。
+    /// * 检测辅助CIDR是否与当前VPC的主CIDR和辅助CIDR存在重叠。
+    /// * 检测辅助CIDR是否与当前VPC的路由的目的端存在重叠。
+    /// * 检测辅助CIDR是否与当前VPC的对等连接，对端VPC下的主CIDR或辅助CIDR存在重叠。
+    @inlinable
+    public func checkAssistantCidr(_ input: CheckAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckAssistantCidrResponse > {
+        self.client.execute(action: "CheckAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检查辅助CIDR冲突
+    ///
+    /// 本接口(CheckAssistantCidr)用于检查辅助CIDR是否与存量路由、对等连接（对端VPC的CIDR）等资源存在冲突。如果存在重叠，则返回重叠的资源。
+    /// * 检测辅助CIDR是否与当前VPC的主CIDR和辅助CIDR存在重叠。
+    /// * 检测辅助CIDR是否与当前VPC的路由的目的端存在重叠。
+    /// * 检测辅助CIDR是否与当前VPC的对等连接，对端VPC下的主CIDR或辅助CIDR存在重叠。
+    @inlinable
+    public func checkAssistantCidr(_ input: CheckAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAssistantCidrResponse {
+        try await self.client.execute(action: "CheckAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 黑石EIP绑定VPCIP
-    @inlinable
-    public func bindVpcIp(_ input: BindVpcIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindVpcIpResponse > {
-        self.client.execute(action: "BindVpcIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 黑石EIP绑定VPCIP
-    @inlinable
-    public func bindVpcIp(_ input: BindVpcIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindVpcIpResponse {
-        try await self.client.execute(action: "BindVpcIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindVpcIp请求参数结构体
     public struct BindVpcIpRequest: TCRequestModel {
         /// Eip实例ID
@@ -63,5 +51,17 @@ extension Bmeip {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 黑石EIP绑定VPCIP
+    @inlinable
+    public func bindVpcIp(_ input: BindVpcIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindVpcIpResponse > {
+        self.client.execute(action: "BindVpcIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 黑石EIP绑定VPCIP
+    @inlinable
+    public func bindVpcIp(_ input: BindVpcIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindVpcIpResponse {
+        try await self.client.execute(action: "BindVpcIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

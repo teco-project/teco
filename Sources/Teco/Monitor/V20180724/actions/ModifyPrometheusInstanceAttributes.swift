@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 修改 Prometheus 实例相关属性
-    @inlinable
-    public func modifyPrometheusInstanceAttributes(_ input: ModifyPrometheusInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusInstanceAttributesResponse > {
-        self.client.execute(action: "ModifyPrometheusInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改 Prometheus 实例相关属性
-    @inlinable
-    public func modifyPrometheusInstanceAttributes(_ input: ModifyPrometheusInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusInstanceAttributesResponse {
-        try await self.client.execute(action: "ModifyPrometheusInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPrometheusInstanceAttributes请求参数结构体
     public struct ModifyPrometheusInstanceAttributesRequest: TCRequestModel {
         /// 实例名称
@@ -38,7 +26,7 @@ extension Monitor {
         /// 存储时长（取值为 15、30、45。此参数不适用于包年包月实例）
         public let dataRetentionTime: Int64?
         
-        public init (instanceName: String, instanceId: String, dataRetentionTime: Int64?) {
+        public init (instanceName: String, instanceId: String, dataRetentionTime: Int64? = nil) {
             self.instanceName = instanceName
             self.instanceId = instanceId
             self.dataRetentionTime = dataRetentionTime
@@ -59,5 +47,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改 Prometheus 实例相关属性
+    @inlinable
+    public func modifyPrometheusInstanceAttributes(_ input: ModifyPrometheusInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusInstanceAttributesResponse > {
+        self.client.execute(action: "ModifyPrometheusInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改 Prometheus 实例相关属性
+    @inlinable
+    public func modifyPrometheusInstanceAttributes(_ input: ModifyPrometheusInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusInstanceAttributesResponse {
+        try await self.client.execute(action: "ModifyPrometheusInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

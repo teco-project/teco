@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 绑定云资源
-    @inlinable
-    public func createResource(_ input: CreateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourceResponse > {
-        self.client.execute(action: "CreateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定云资源
-    @inlinable
-    public func createResource(_ input: CreateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
-        try await self.client.execute(action: "CreateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateResource请求参数结构体
     public struct CreateResourceRequest: TCRequestModel {
         /// 命名空间 Id
@@ -41,7 +29,7 @@ extension Tem {
         /// 来源渠道
         public let sourceChannel: Int64?
         
-        public init (namespaceId: String, resourceType: String, resourceId: String, sourceChannel: Int64?) {
+        public init (namespaceId: String, resourceType: String, resourceId: String, sourceChannel: Int64? = nil) {
             self.namespaceId = namespaceId
             self.resourceType = resourceType
             self.resourceId = resourceId
@@ -69,5 +57,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定云资源
+    @inlinable
+    public func createResource(_ input: CreateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResourceResponse > {
+        self.client.execute(action: "CreateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定云资源
+    @inlinable
+    public func createResource(_ input: CreateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
+        try await self.client.execute(action: "CreateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

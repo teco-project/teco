@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 场景绑定解绑通道接口(旧)
-    ///
-    /// 场景绑定/解绑通道接口
-    @inlinable
-    public func modifyBindSceneDevice(_ input: ModifyBindSceneDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindSceneDeviceResponse > {
-        self.client.execute(action: "ModifyBindSceneDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 场景绑定解绑通道接口(旧)
-    ///
-    /// 场景绑定/解绑通道接口
-    @inlinable
-    public func modifyBindSceneDevice(_ input: ModifyBindSceneDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindSceneDeviceResponse {
-        try await self.client.execute(action: "ModifyBindSceneDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyBindSceneDevice请求参数结构体
     public struct ModifyBindSceneDeviceRequest: TCRequestModel {
         /// 场景ID
@@ -63,5 +47,21 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 场景绑定解绑通道接口(旧)
+    ///
+    /// 场景绑定/解绑通道接口
+    @inlinable
+    public func modifyBindSceneDevice(_ input: ModifyBindSceneDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindSceneDeviceResponse > {
+        self.client.execute(action: "ModifyBindSceneDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 场景绑定解绑通道接口(旧)
+    ///
+    /// 场景绑定/解绑通道接口
+    @inlinable
+    public func modifyBindSceneDevice(_ input: ModifyBindSceneDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindSceneDeviceResponse {
+        try await self.client.execute(action: "ModifyBindSceneDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

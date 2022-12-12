@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取阻断白名单列表
-    @inlinable
-    public func describeBanWhiteList(_ input: DescribeBanWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBanWhiteListResponse > {
-        self.client.execute(action: "DescribeBanWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取阻断白名单列表
-    @inlinable
-    public func describeBanWhiteList(_ input: DescribeBanWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanWhiteListResponse {
-        try await self.client.execute(action: "DescribeBanWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBanWhiteList请求参数结构体
     public struct DescribeBanWhiteListRequest: TCRequestModel {
         /// 偏移量，默认为0。
@@ -39,7 +27,7 @@ extension Cwp {
         /// <li>Keywords - String - 是否必填：否 - 查询关键字 </li>
         public let filters: [Filter]?
         
-        public init (offset: UInt64?, limit: UInt64?, filters: [Filter]?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -68,5 +56,17 @@ extension Cwp {
             case whiteList = "WhiteList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取阻断白名单列表
+    @inlinable
+    public func describeBanWhiteList(_ input: DescribeBanWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBanWhiteListResponse > {
+        self.client.execute(action: "DescribeBanWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取阻断白名单列表
+    @inlinable
+    public func describeBanWhiteList(_ input: DescribeBanWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanWhiteListResponse {
+        try await self.client.execute(action: "DescribeBanWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

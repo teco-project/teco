@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// RabbitMQ专享版查询节点列表
-    @inlinable
-    public func describeRabbitMQNodeList(_ input: DescribeRabbitMQNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRabbitMQNodeListResponse > {
-        self.client.execute(action: "DescribeRabbitMQNodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// RabbitMQ专享版查询节点列表
-    @inlinable
-    public func describeRabbitMQNodeList(_ input: DescribeRabbitMQNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQNodeListResponse {
-        try await self.client.execute(action: "DescribeRabbitMQNodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRabbitMQNodeList请求参数结构体
     public struct DescribeRabbitMQNodeListRequest: TCRequestModel {
         /// rabbitmq集群ID
@@ -38,7 +26,7 @@ extension Tdmq {
         /// 一页限制
         public let limit: UInt64?
         
-        public init (instanceId: String, offset: UInt64?, limit: UInt64?) {
+        public init (instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
@@ -68,5 +56,17 @@ extension Tdmq {
             case nodeList = "NodeList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// RabbitMQ专享版查询节点列表
+    @inlinable
+    public func describeRabbitMQNodeList(_ input: DescribeRabbitMQNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRabbitMQNodeListResponse > {
+        self.client.execute(action: "DescribeRabbitMQNodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// RabbitMQ专享版查询节点列表
+    @inlinable
+    public func describeRabbitMQNodeList(_ input: DescribeRabbitMQNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQNodeListResponse {
+        try await self.client.execute(action: "DescribeRabbitMQNodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

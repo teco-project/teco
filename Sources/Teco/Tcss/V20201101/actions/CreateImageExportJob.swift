@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 创建镜像导出任务
-    @inlinable
-    public func createImageExportJob(_ input: CreateImageExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageExportJobResponse > {
-        self.client.execute(action: "CreateImageExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建镜像导出任务
-    @inlinable
-    public func createImageExportJob(_ input: CreateImageExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageExportJobResponse {
-        try await self.client.execute(action: "CreateImageExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateImageExportJob请求参数结构体
     public struct CreateImageExportJobRequest: TCRequestModel {
         /// 过滤条件。
@@ -51,7 +39,7 @@ extension Tcss {
         /// 导出字段
         public let exportField: [String]?
         
-        public init (filters: [RunTimeFilters]?, offset: UInt64?, limit: UInt64?, by: String?, order: String?, exportField: [String]?) {
+        public init (filters: [RunTimeFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: String? = nil, exportField: [String]? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -86,5 +74,17 @@ extension Tcss {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建镜像导出任务
+    @inlinable
+    public func createImageExportJob(_ input: CreateImageExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageExportJobResponse > {
+        self.client.execute(action: "CreateImageExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建镜像导出任务
+    @inlinable
+    public func createImageExportJob(_ input: CreateImageExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageExportJobResponse {
+        try await self.client.execute(action: "CreateImageExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

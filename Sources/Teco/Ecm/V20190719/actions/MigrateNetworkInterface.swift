@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 弹性网卡迁移
-    @inlinable
-    public func migrateNetworkInterface(_ input: MigrateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MigrateNetworkInterfaceResponse > {
-        self.client.execute(action: "MigrateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 弹性网卡迁移
-    @inlinable
-    public func migrateNetworkInterface(_ input: MigrateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateNetworkInterfaceResponse {
-        try await self.client.execute(action: "MigrateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// MigrateNetworkInterface请求参数结构体
     public struct MigrateNetworkInterfaceRequest: TCRequestModel {
         /// ECM 地域，形如ap-xian-ecm。
@@ -64,5 +52,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 弹性网卡迁移
+    @inlinable
+    public func migrateNetworkInterface(_ input: MigrateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MigrateNetworkInterfaceResponse > {
+        self.client.execute(action: "MigrateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 弹性网卡迁移
+    @inlinable
+    public func migrateNetworkInterface(_ input: MigrateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateNetworkInterfaceResponse {
+        try await self.client.execute(action: "MigrateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

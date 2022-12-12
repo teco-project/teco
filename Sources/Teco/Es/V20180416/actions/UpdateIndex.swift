@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 更新索引
-    @inlinable
-    public func updateIndex(_ input: UpdateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateIndexResponse > {
-        self.client.execute(action: "UpdateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新索引
-    @inlinable
-    public func updateIndex(_ input: UpdateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateIndexResponse {
-        try await self.client.execute(action: "UpdateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateIndex请求参数结构体
     public struct UpdateIndexRequest: TCRequestModel {
         /// ES集群ID
@@ -50,7 +38,7 @@ extension Es {
         /// 是否滚动后备索引
         public let rolloverBackingIndex: Bool?
         
-        public init (instanceId: String, indexType: String, indexName: String, updateMetaJson: String?, username: String?, password: String?, rolloverBackingIndex: Bool?) {
+        public init (instanceId: String, indexType: String, indexName: String, updateMetaJson: String? = nil, username: String? = nil, password: String? = nil, rolloverBackingIndex: Bool? = nil) {
             self.instanceId = instanceId
             self.indexType = indexType
             self.indexName = indexName
@@ -79,5 +67,17 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新索引
+    @inlinable
+    public func updateIndex(_ input: UpdateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateIndexResponse > {
+        self.client.execute(action: "UpdateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新索引
+    @inlinable
+    public func updateIndex(_ input: UpdateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateIndexResponse {
+        try await self.client.execute(action: "UpdateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

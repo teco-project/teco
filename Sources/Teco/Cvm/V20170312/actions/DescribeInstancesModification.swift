@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查询实例可调整配置
-    ///
-    /// 本接口 (DescribeInstancesModification) 用于查询指定实例支持调整的机型配置。
-    @inlinable
-    public func describeInstancesModification(_ input: DescribeInstancesModificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesModificationResponse > {
-        self.client.execute(action: "DescribeInstancesModification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例可调整配置
-    ///
-    /// 本接口 (DescribeInstancesModification) 用于查询指定实例支持调整的机型配置。
-    @inlinable
-    public func describeInstancesModification(_ input: DescribeInstancesModificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesModificationResponse {
-        try await self.client.execute(action: "DescribeInstancesModification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstancesModification请求参数结构体
     public struct DescribeInstancesModificationRequest: TCRequestModel {
         /// 一个或多个待查询的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为20。
@@ -41,7 +25,7 @@ extension Cvm {
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为2。
         public let filters: [Filter]?
         
-        public init (instanceIds: [String], filters: [Filter]?) {
+        public init (instanceIds: [String], filters: [Filter]? = nil) {
             self.instanceIds = instanceIds
             self.filters = filters
         }
@@ -68,5 +52,21 @@ extension Cvm {
             case instanceTypeConfigStatusSet = "InstanceTypeConfigStatusSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例可调整配置
+    ///
+    /// 本接口 (DescribeInstancesModification) 用于查询指定实例支持调整的机型配置。
+    @inlinable
+    public func describeInstancesModification(_ input: DescribeInstancesModificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesModificationResponse > {
+        self.client.execute(action: "DescribeInstancesModification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例可调整配置
+    ///
+    /// 本接口 (DescribeInstancesModification) 用于查询指定实例支持调整的机型配置。
+    @inlinable
+    public func describeInstancesModification(_ input: DescribeInstancesModificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesModificationResponse {
+        try await self.client.execute(action: "DescribeInstancesModification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

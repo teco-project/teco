@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ivld {
-    /// 删除自定义分类
-    ///
-    /// 删除自定义分类信息
-    @inlinable
-    public func deleteCustomCategory(_ input: DeleteCustomCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomCategoryResponse > {
-        self.client.execute(action: "DeleteCustomCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除自定义分类
-    ///
-    /// 删除自定义分类信息
-    @inlinable
-    public func deleteCustomCategory(_ input: DeleteCustomCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomCategoryResponse {
-        try await self.client.execute(action: "DeleteCustomCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCustomCategory请求参数结构体
     public struct DeleteCustomCategoryRequest: TCRequestModel {
         /// 自定义分类ID
@@ -57,5 +41,21 @@ extension Ivld {
             case categoryId = "CategoryId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除自定义分类
+    ///
+    /// 删除自定义分类信息
+    @inlinable
+    public func deleteCustomCategory(_ input: DeleteCustomCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomCategoryResponse > {
+        self.client.execute(action: "DeleteCustomCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除自定义分类
+    ///
+    /// 删除自定义分类信息
+    @inlinable
+    public func deleteCustomCategory(_ input: DeleteCustomCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomCategoryResponse {
+        try await self.client.execute(action: "DeleteCustomCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Sms {
-    /// 拉取单个号码短信下发状态
-    ///
-    /// 拉取单个号码短信下发状态。
-    /// 目前也支持 [配置回调](https://cloud.tencent.com/document/product/382/37809#.E8.AE.BE.E7.BD.AE.E4.BA.8B.E4.BB.B6.E5.9B.9E.E8.B0.83.E9.85.8D.E7.BD.AE) 的方式来获取下发状态。
-    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
-    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
-    @inlinable
-    public func pullSmsSendStatusByPhoneNumber(_ input: PullSmsSendStatusByPhoneNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PullSmsSendStatusByPhoneNumberResponse > {
-        self.client.execute(action: "PullSmsSendStatusByPhoneNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取单个号码短信下发状态
-    ///
-    /// 拉取单个号码短信下发状态。
-    /// 目前也支持 [配置回调](https://cloud.tencent.com/document/product/382/37809#.E8.AE.BE.E7.BD.AE.E4.BA.8B.E4.BB.B6.E5.9B.9E.E8.B0.83.E9.85.8D.E7.BD.AE) 的方式来获取下发状态。
-    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
-    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
-    @inlinable
-    public func pullSmsSendStatusByPhoneNumber(_ input: PullSmsSendStatusByPhoneNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullSmsSendStatusByPhoneNumberResponse {
-        try await self.client.execute(action: "PullSmsSendStatusByPhoneNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PullSmsSendStatusByPhoneNumber请求参数结构体
     public struct PullSmsSendStatusByPhoneNumberRequest: TCRequestModel {
         /// 拉取起始时间，UNIX 时间戳（时间：秒）。
@@ -59,7 +37,7 @@ extension Sms {
         /// 拉取截止时间，UNIX 时间戳（时间：秒）。
         public let endDateTime: UInt64?
         
-        public init (sendDateTime: UInt64, offset: UInt64, limit: UInt64, phoneNumber: String, smsSdkAppid: String, endDateTime: UInt64?) {
+        public init (sendDateTime: UInt64, offset: UInt64, limit: UInt64, phoneNumber: String, smsSdkAppid: String, endDateTime: UInt64? = nil) {
             self.sendDateTime = sendDateTime
             self.offset = offset
             self.limit = limit
@@ -90,5 +68,27 @@ extension Sms {
             case pullSmsSendStatusSet = "PullSmsSendStatusSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取单个号码短信下发状态
+    ///
+    /// 拉取单个号码短信下发状态。
+    /// 目前也支持 [配置回调](https://cloud.tencent.com/document/product/382/37809#.E8.AE.BE.E7.BD.AE.E4.BA.8B.E4.BB.B6.E5.9B.9E.E8.B0.83.E9.85.8D.E7.BD.AE) 的方式来获取下发状态。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
+    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    @inlinable
+    public func pullSmsSendStatusByPhoneNumber(_ input: PullSmsSendStatusByPhoneNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PullSmsSendStatusByPhoneNumberResponse > {
+        self.client.execute(action: "PullSmsSendStatusByPhoneNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取单个号码短信下发状态
+    ///
+    /// 拉取单个号码短信下发状态。
+    /// 目前也支持 [配置回调](https://cloud.tencent.com/document/product/382/37809#.E8.AE.BE.E7.BD.AE.E4.BA.8B.E4.BB.B6.E5.9B.9E.E8.B0.83.E9.85.8D.E7.BD.AE) 的方式来获取下发状态。
+    /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
+    /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
+    @inlinable
+    public func pullSmsSendStatusByPhoneNumber(_ input: PullSmsSendStatusByPhoneNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullSmsSendStatusByPhoneNumberResponse {
+        try await self.client.execute(action: "PullSmsSendStatusByPhoneNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

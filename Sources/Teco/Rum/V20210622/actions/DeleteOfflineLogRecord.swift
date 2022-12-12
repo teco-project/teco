@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 删除离线日志记录
-    ///
-    /// 删除对应的离线日志记录
-    @inlinable
-    public func deleteOfflineLogRecord(_ input: DeleteOfflineLogRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOfflineLogRecordResponse > {
-        self.client.execute(action: "DeleteOfflineLogRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除离线日志记录
-    ///
-    /// 删除对应的离线日志记录
-    @inlinable
-    public func deleteOfflineLogRecord(_ input: DeleteOfflineLogRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOfflineLogRecordResponse {
-        try await self.client.execute(action: "DeleteOfflineLogRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteOfflineLogRecord请求参数结构体
     public struct DeleteOfflineLogRecordRequest: TCRequestModel {
         /// 项目唯一上报 key
@@ -62,5 +46,21 @@ extension Rum {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除离线日志记录
+    ///
+    /// 删除对应的离线日志记录
+    @inlinable
+    public func deleteOfflineLogRecord(_ input: DeleteOfflineLogRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOfflineLogRecordResponse > {
+        self.client.execute(action: "DeleteOfflineLogRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除离线日志记录
+    ///
+    /// 删除对应的离线日志记录
+    @inlinable
+    public func deleteOfflineLogRecord(_ input: DeleteOfflineLogRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOfflineLogRecordResponse {
+        try await self.client.execute(action: "DeleteOfflineLogRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

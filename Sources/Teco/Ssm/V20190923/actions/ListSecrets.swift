@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssm {
-    /// 获取凭据的详细信息列表
-    ///
-    /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。
-    @inlinable
-    public func listSecrets(_ input: ListSecretsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListSecretsResponse > {
-        self.client.execute(action: "ListSecrets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取凭据的详细信息列表
-    ///
-    /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。
-    @inlinable
-    public func listSecrets(_ input: ListSecretsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSecretsResponse {
-        try await self.client.execute(action: "ListSecrets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListSecrets请求参数结构体
     public struct ListSecretsRequest: TCRequestModel {
         /// 查询列表的起始位置，以0开始，不设置默认为0。
@@ -71,7 +55,7 @@ extension Ssm {
         /// 如果ProductName值为Tdsql-mysql，则表示查询Tdsql（Mysql版本）的凭据
         public let productName: String?
         
-        public init (offset: UInt64?, limit: UInt64?, orderType: UInt64?, state: UInt64?, searchSecretName: String?, tagFilters: [TagFilter]?, secretType: UInt64?, productName: String?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, orderType: UInt64? = nil, state: UInt64? = nil, searchSecretName: String? = nil, tagFilters: [TagFilter]? = nil, secretType: UInt64? = nil, productName: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.orderType = orderType
@@ -110,5 +94,21 @@ extension Ssm {
             case secretMetadatas = "SecretMetadatas"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取凭据的详细信息列表
+    ///
+    /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。
+    @inlinable
+    public func listSecrets(_ input: ListSecretsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListSecretsResponse > {
+        self.client.execute(action: "ListSecrets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取凭据的详细信息列表
+    ///
+    /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。
+    @inlinable
+    public func listSecrets(_ input: ListSecretsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSecretsResponse {
+        try await self.client.execute(action: "ListSecrets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

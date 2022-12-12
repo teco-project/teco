@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 编辑draco设备信息
-    @inlinable
-    public func modifyEdgeDracoNode(_ input: ModifyEdgeDracoNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeDracoNodeResponse > {
-        self.client.execute(action: "ModifyEdgeDracoNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑draco设备信息
-    @inlinable
-    public func modifyEdgeDracoNode(_ input: ModifyEdgeDracoNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeDracoNodeResponse {
-        try await self.client.execute(action: "ModifyEdgeDracoNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyEdgeDracoNode请求参数结构体
     public struct ModifyEdgeDracoNodeRequest: TCRequestModel {
         /// 边缘单元ID
@@ -36,12 +24,12 @@ extension Iecp {
         public let nodeId: UInt64
         
         /// 节点信息
-        public let nodeInfo: DracoNodeInfo
+        public let nodeInfo: DracoNodeInfo?
         
         /// 是否重置draco设备
         public let isReset: Bool?
         
-        public init (edgeUnitId: UInt64, nodeId: UInt64, nodeInfo: DracoNodeInfo, isReset: Bool?) {
+        public init (edgeUnitId: UInt64, nodeId: UInt64, nodeInfo: DracoNodeInfo? = nil, isReset: Bool? = nil) {
             self.edgeUnitId = edgeUnitId
             self.nodeId = nodeId
             self.nodeInfo = nodeInfo
@@ -64,5 +52,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑draco设备信息
+    @inlinable
+    public func modifyEdgeDracoNode(_ input: ModifyEdgeDracoNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeDracoNodeResponse > {
+        self.client.execute(action: "ModifyEdgeDracoNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑draco设备信息
+    @inlinable
+    public func modifyEdgeDracoNode(_ input: ModifyEdgeDracoNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeDracoNodeResponse {
+        try await self.client.execute(action: "ModifyEdgeDracoNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

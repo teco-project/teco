@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 修改CDH实例的属性
-    ///
-    /// 本接口（ModifyHostsAttribute）用于修改CDH实例的属性，如实例名称和续费标记等。参数HostName和RenewFlag必须设置其中一个，但不能同时设置。
-    @inlinable
-    public func modifyHostsAttribute(_ input: ModifyHostsAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHostsAttributeResponse > {
-        self.client.execute(action: "ModifyHostsAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改CDH实例的属性
-    ///
-    /// 本接口（ModifyHostsAttribute）用于修改CDH实例的属性，如实例名称和续费标记等。参数HostName和RenewFlag必须设置其中一个，但不能同时设置。
-    @inlinable
-    public func modifyHostsAttribute(_ input: ModifyHostsAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHostsAttributeResponse {
-        try await self.client.execute(action: "ModifyHostsAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyHostsAttribute请求参数结构体
     public struct ModifyHostsAttributeRequest: TCRequestModel {
         /// 一个或多个待操作的CDH实例ID。
@@ -45,7 +29,7 @@ extension Cvm {
         /// 项目ID。项目可以使用[AddProject](https://cloud.tencent.com/doc/api/403/4398)接口创建。可通过[`DescribeProject`](https://cloud.tencent.com/document/product/378/4400) API返回值中的`projectId`获取。后续使用[DescribeHosts](https://cloud.tencent.com/document/api/213/16474)接口查询实例时，项目ID可用于过滤结果。
         public let projectId: UInt64?
         
-        public init (hostIds: [String], hostName: String?, renewFlag: String?, projectId: UInt64?) {
+        public init (hostIds: [String], hostName: String? = nil, renewFlag: String? = nil, projectId: UInt64? = nil) {
             self.hostIds = hostIds
             self.hostName = hostName
             self.renewFlag = renewFlag
@@ -68,5 +52,21 @@ extension Cvm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改CDH实例的属性
+    ///
+    /// 本接口（ModifyHostsAttribute）用于修改CDH实例的属性，如实例名称和续费标记等。参数HostName和RenewFlag必须设置其中一个，但不能同时设置。
+    @inlinable
+    public func modifyHostsAttribute(_ input: ModifyHostsAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHostsAttributeResponse > {
+        self.client.execute(action: "ModifyHostsAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CDH实例的属性
+    ///
+    /// 本接口（ModifyHostsAttribute）用于修改CDH实例的属性，如实例名称和续费标记等。参数HostName和RenewFlag必须设置其中一个，但不能同时设置。
+    @inlinable
+    public func modifyHostsAttribute(_ input: ModifyHostsAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHostsAttributeResponse {
+        try await self.client.execute(action: "ModifyHostsAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

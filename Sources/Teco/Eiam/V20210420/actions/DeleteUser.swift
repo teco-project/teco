@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 删除用户
-    ///
-    /// 通过用户名或用户 id 删除用户。
-    @inlinable
-    public func deleteUser(_ input: DeleteUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserResponse > {
-        self.client.execute(action: "DeleteUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除用户
-    ///
-    /// 通过用户名或用户 id 删除用户。
-    @inlinable
-    public func deleteUser(_ input: DeleteUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserResponse {
-        try await self.client.execute(action: "DeleteUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteUser请求参数结构体
     public struct DeleteUserRequest: TCRequestModel {
         /// 用户名，长度限制：32个字符。 Username 和 UserId 需选择一个作为搜索条件；如两个条件同时使用则默认使用Username作为搜索条件。
@@ -39,7 +23,7 @@ extension Eiam {
         /// 用户 id。 Username 和 UserId 需选择一个作为搜索条件；如两个条件同时使用则默认使用Username作为搜索条件。
         public let userId: String?
         
-        public init (userName: String?, userId: String?) {
+        public init (userName: String? = nil, userId: String? = nil) {
             self.userName = userName
             self.userId = userId
         }
@@ -58,5 +42,21 @@ extension Eiam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除用户
+    ///
+    /// 通过用户名或用户 id 删除用户。
+    @inlinable
+    public func deleteUser(_ input: DeleteUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteUserResponse > {
+        self.client.execute(action: "DeleteUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除用户
+    ///
+    /// 通过用户名或用户 id 删除用户。
+    @inlinable
+    public func deleteUser(_ input: DeleteUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserResponse {
+        try await self.client.execute(action: "DeleteUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

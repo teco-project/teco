@@ -15,32 +15,16 @@
 // DO NOT EDIT.
 
 extension Cms {
-    /// 文本内容检测
-    ///
-    /// 文本内容检测（Text Moderation）服务使用了深度学习技术，识别涉黄、涉政、涉恐等有害内容，同时支持用户配置词库，打击自定义的违规文本。
-    @inlinable
-    public func textModeration(_ input: TextModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextModerationResponse > {
-        self.client.execute(action: "TextModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 文本内容检测
-    ///
-    /// 文本内容检测（Text Moderation）服务使用了深度学习技术，识别涉黄、涉政、涉恐等有害内容，同时支持用户配置词库，打击自定义的违规文本。
-    @inlinable
-    public func textModeration(_ input: TextModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextModerationResponse {
-        try await self.client.execute(action: "TextModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TextModeration请求参数结构体
     public struct TextModerationRequest: TCRequestModel {
         /// 文本内容Base64编码。原文长度需小于15000字节，即5000个汉字以内。
         public let content: String
         
         /// 设备相关信息
-        public let device: Device
+        public let device: Device?
         
         /// 用户相关信息
-        public let user: User
+        public let user: User?
         
         /// 该字段用于标识业务场景。您可以在内容安全控制台创建对应的ID，配置不同的内容审核策略，通过接口调用，默认不填为0，后端使用默认策略
         public let bizType: UInt64?
@@ -51,7 +35,7 @@ extension Cms {
         /// 业务应用ID
         public let sdkAppId: UInt64?
         
-        public init (content: String, device: Device, user: User, bizType: UInt64?, dataId: String?, sdkAppId: UInt64?) {
+        public init (content: String, device: Device? = nil, user: User? = nil, bizType: UInt64? = nil, dataId: String? = nil, sdkAppId: UInt64? = nil) {
             self.content = content
             self.device = device
             self.user = user
@@ -86,5 +70,21 @@ extension Cms {
             case businessCode = "BusinessCode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 文本内容检测
+    ///
+    /// 文本内容检测（Text Moderation）服务使用了深度学习技术，识别涉黄、涉政、涉恐等有害内容，同时支持用户配置词库，打击自定义的违规文本。
+    @inlinable
+    public func textModeration(_ input: TextModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextModerationResponse > {
+        self.client.execute(action: "TextModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 文本内容检测
+    ///
+    /// 文本内容检测（Text Moderation）服务使用了深度学习技术，识别涉黄、涉政、涉恐等有害内容，同时支持用户配置词库，打击自定义的违规文本。
+    @inlinable
+    public func textModeration(_ input: TextModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextModerationResponse {
+        try await self.client.execute(action: "TextModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

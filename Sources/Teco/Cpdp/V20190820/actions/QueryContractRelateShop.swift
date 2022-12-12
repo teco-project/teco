@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云支付-查询合同可关联门店接口
-    @inlinable
-    public func queryContractRelateShop(_ input: QueryContractRelateShopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryContractRelateShopResponse > {
-        self.client.execute(action: "QueryContractRelateShop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云支付-查询合同可关联门店接口
-    @inlinable
-    public func queryContractRelateShop(_ input: QueryContractRelateShopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryContractRelateShopResponse {
-        try await self.client.execute(action: "QueryContractRelateShop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryContractRelateShop请求参数结构体
     public struct QueryContractRelateShopRequest: TCRequestModel {
         /// 收单系统分配的开放ID
@@ -41,7 +29,7 @@ extension Cpdp {
         /// 沙箱环境填sandbox，正式环境不填
         public let profile: String?
         
-        public init (openId: String, openKey: String, contractId: String, profile: String?) {
+        public init (openId: String, openKey: String, contractId: String, profile: String? = nil) {
             self.openId = openId
             self.openKey = openKey
             self.contractId = contractId
@@ -78,5 +66,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云支付-查询合同可关联门店接口
+    @inlinable
+    public func queryContractRelateShop(_ input: QueryContractRelateShopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryContractRelateShopResponse > {
+        self.client.execute(action: "QueryContractRelateShop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云支付-查询合同可关联门店接口
+    @inlinable
+    public func queryContractRelateShop(_ input: QueryContractRelateShopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryContractRelateShopResponse {
+        try await self.client.execute(action: "QueryContractRelateShop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

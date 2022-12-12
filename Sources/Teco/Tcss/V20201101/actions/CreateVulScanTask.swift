@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 创建漏洞扫描任务
-    @inlinable
-    public func createVulScanTask(_ input: CreateVulScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVulScanTaskResponse > {
-        self.client.execute(action: "CreateVulScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建漏洞扫描任务
-    @inlinable
-    public func createVulScanTask(_ input: CreateVulScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulScanTaskResponse {
-        try await self.client.execute(action: "CreateVulScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVulScanTask请求参数结构体
     public struct CreateVulScanTaskRequest: TCRequestModel {
         /// 本地镜像扫描范围类型。ALL:全部本地镜像，NOT_SCAN：全部已授权未扫描本地镜像，IMAGEIDS:自选本地镜像ID
@@ -47,7 +35,7 @@ extension Tcss {
         /// 仓库镜像重新漏洞扫描时的任务ID
         public let registryTaskID: Int64?
         
-        public init (localImageScanType: String?, localImageIDs: [String]?, registryImageScanType: String?, registryImageIDs: [UInt64]?, localTaskID: Int64?, registryTaskID: Int64?) {
+        public init (localImageScanType: String? = nil, localImageIDs: [String]? = nil, registryImageScanType: String? = nil, registryImageIDs: [UInt64]? = nil, localTaskID: Int64? = nil, registryTaskID: Int64? = nil) {
             self.localImageScanType = localImageScanType
             self.localImageIDs = localImageIDs
             self.registryImageScanType = registryImageScanType
@@ -82,5 +70,17 @@ extension Tcss {
             case registryTaskID = "RegistryTaskID"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建漏洞扫描任务
+    @inlinable
+    public func createVulScanTask(_ input: CreateVulScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVulScanTaskResponse > {
+        self.client.execute(action: "CreateVulScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建漏洞扫描任务
+    @inlinable
+    public func createVulScanTask(_ input: CreateVulScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulScanTaskResponse {
+        try await self.client.execute(action: "CreateVulScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

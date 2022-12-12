@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecdn {
-    /// 刷新目录
-    ///
-    /// PurgePathCache 用于批量刷新目录缓存，一次提交将返回一个刷新任务id。
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/570/42475"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
-    public func purgePathCache(_ input: PurgePathCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PurgePathCacheResponse > {
-        self.client.execute(action: "PurgePathCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 刷新目录
-    ///
-    /// PurgePathCache 用于批量刷新目录缓存，一次提交将返回一个刷新任务id。
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/570/42475"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
-    public func purgePathCache(_ input: PurgePathCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgePathCacheResponse {
-        try await self.client.execute(action: "PurgePathCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PurgePathCache请求参数结构体
     public struct PurgePathCacheRequest: TCRequestModel {
         /// 要刷新的目录列表，必须包含协议头部。
@@ -64,5 +46,23 @@ extension Ecdn {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 刷新目录
+    ///
+    /// PurgePathCache 用于批量刷新目录缓存，一次提交将返回一个刷新任务id。
+    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/570/42475"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @inlinable
+    public func purgePathCache(_ input: PurgePathCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PurgePathCacheResponse > {
+        self.client.execute(action: "PurgePathCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 刷新目录
+    ///
+    /// PurgePathCache 用于批量刷新目录缓存，一次提交将返回一个刷新任务id。
+    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/570/42475"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @inlinable
+    public func purgePathCache(_ input: PurgePathCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgePathCacheResponse {
+        try await self.client.execute(action: "PurgePathCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

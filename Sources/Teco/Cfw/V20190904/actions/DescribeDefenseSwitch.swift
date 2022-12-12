@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 获取入侵防御按钮列表
-    @inlinable
-    public func describeDefenseSwitch(_ input: DescribeDefenseSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDefenseSwitchResponse > {
-        self.client.execute(action: "DescribeDefenseSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取入侵防御按钮列表
-    @inlinable
-    public func describeDefenseSwitch(_ input: DescribeDefenseSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefenseSwitchResponse {
-        try await self.client.execute(action: "DescribeDefenseSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDefenseSwitch请求参数结构体
     public struct DescribeDefenseSwitchRequest: TCRequestModel {
         public init () {
@@ -69,5 +57,17 @@ extension Cfw {
             case returnMsg = "ReturnMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取入侵防御按钮列表
+    @inlinable
+    public func describeDefenseSwitch(_ input: DescribeDefenseSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDefenseSwitchResponse > {
+        self.client.execute(action: "DescribeDefenseSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取入侵防御按钮列表
+    @inlinable
+    public func describeDefenseSwitch(_ input: DescribeDefenseSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefenseSwitchResponse {
+        try await self.client.execute(action: "DescribeDefenseSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

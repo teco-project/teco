@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询用户活动信息
-    @inlinable
-    public func describeUserActivityInfo(_ input: DescribeUserActivityInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserActivityInfoResponse > {
-        self.client.execute(action: "DescribeUserActivityInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户活动信息
-    @inlinable
-    public func describeUserActivityInfo(_ input: DescribeUserActivityInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserActivityInfoResponse {
-        try await self.client.execute(action: "DescribeUserActivityInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserActivityInfo请求参数结构体
     public struct DescribeUserActivityInfoRequest: TCRequestModel {
         /// 活动id
@@ -41,7 +29,7 @@ extension Tcb {
         /// 团id, 1元钱裂变中活动团id不为空时根据团id来查询记录，为空时查询uin最新记录
         public let groupId: String?
         
-        public init (activityId: Int64, channelToken: String?, channel: String?, groupId: String?) {
+        public init (activityId: Int64, channelToken: String? = nil, channel: String? = nil, groupId: String? = nil) {
             self.activityId = activityId
             self.channelToken = channelToken
             self.channel = channel
@@ -85,5 +73,17 @@ extension Tcb {
             case nickNameList = "NickNameList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户活动信息
+    @inlinable
+    public func describeUserActivityInfo(_ input: DescribeUserActivityInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserActivityInfoResponse > {
+        self.client.execute(action: "DescribeUserActivityInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户活动信息
+    @inlinable
+    public func describeUserActivityInfo(_ input: DescribeUserActivityInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserActivityInfoResponse {
+        try await self.client.execute(action: "DescribeUserActivityInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

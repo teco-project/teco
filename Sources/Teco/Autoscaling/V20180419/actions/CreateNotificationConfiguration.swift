@@ -15,6 +15,71 @@
 // DO NOT EDIT.
 
 extension As {
+    /// CreateNotificationConfiguration请求参数结构体
+    public struct CreateNotificationConfigurationRequest: TCRequestModel {
+        /// 伸缩组ID。
+        public let autoScalingGroupId: String
+        
+        /// 通知类型，即为需要订阅的通知类型集合，取值范围如下：
+        /// <li>SCALE_OUT_SUCCESSFUL：扩容成功</li>
+        /// <li>SCALE_OUT_FAILED：扩容失败</li>
+        /// <li>SCALE_IN_SUCCESSFUL：缩容成功</li>
+        /// <li>SCALE_IN_FAILED：缩容失败</li>
+        /// <li>REPLACE_UNHEALTHY_INSTANCE_SUCCESSFUL：替换不健康子机成功</li>
+        /// <li>REPLACE_UNHEALTHY_INSTANCE_FAILED：替换不健康子机失败</li>
+        public let notificationTypes: [String]
+        
+        /// 通知组ID，即为用户组ID集合，用户组ID可以通过[ListGroups](https://cloud.tencent.com/document/product/598/34589)查询。
+        public let notificationUserGroupIds: [String]?
+        
+        /// 通知接收端类型，取值如下
+        /// <br><li>USER_GROUP：用户组
+        /// <br><li>CMQ_QUEUE：CMQ 队列
+        /// <br><li>CMQ_TOPIC：CMQ 主题
+        /// <br><li>TDMQ_CMQ_TOPIC：TDMQ CMQ 主题
+        /// <br><li>TDMQ_CMQ_QUEUE：TDMQ CMQ 队列
+        /// 默认值为：`USER_GROUP`。
+        public let targetType: String?
+        
+        /// CMQ 队列名称，如 TargetType 取值为 `CMQ_QUEUE` 或 `TDMQ_CMQ_QUEUE` 时，该字段必填。
+        public let queueName: String?
+        
+        /// CMQ 主题名称，如 TargetType 取值为 `CMQ_TOPIC` 或 `TDMQ_CMQ_TOPIC` 时，该字段必填。
+        public let topicName: String?
+        
+        public init (autoScalingGroupId: String, notificationTypes: [String], notificationUserGroupIds: [String]? = nil, targetType: String? = nil, queueName: String? = nil, topicName: String? = nil) {
+            self.autoScalingGroupId = autoScalingGroupId
+            self.notificationTypes = notificationTypes
+            self.notificationUserGroupIds = notificationUserGroupIds
+            self.targetType = targetType
+            self.queueName = queueName
+            self.topicName = topicName
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case autoScalingGroupId = "AutoScalingGroupId"
+            case notificationTypes = "NotificationTypes"
+            case notificationUserGroupIds = "NotificationUserGroupIds"
+            case targetType = "TargetType"
+            case queueName = "QueueName"
+            case topicName = "TopicName"
+        }
+    }
+    
+    /// CreateNotificationConfiguration返回参数结构体
+    public struct CreateNotificationConfigurationResponse: TCResponseModel {
+        /// 通知ID。
+        public let autoScalingNotificationId: String
+        
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case autoScalingNotificationId = "AutoScalingNotificationId"
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 创建通知
     ///
     /// 本接口（CreateNotificationConfiguration）用于创建通知。
@@ -83,70 +148,5 @@ extension As {
     @inlinable
     public func createNotificationConfiguration(_ input: CreateNotificationConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotificationConfigurationResponse {
         try await self.client.execute(action: "CreateNotificationConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// CreateNotificationConfiguration请求参数结构体
-    public struct CreateNotificationConfigurationRequest: TCRequestModel {
-        /// 伸缩组ID。
-        public let autoScalingGroupId: String
-        
-        /// 通知类型，即为需要订阅的通知类型集合，取值范围如下：
-        /// <li>SCALE_OUT_SUCCESSFUL：扩容成功</li>
-        /// <li>SCALE_OUT_FAILED：扩容失败</li>
-        /// <li>SCALE_IN_SUCCESSFUL：缩容成功</li>
-        /// <li>SCALE_IN_FAILED：缩容失败</li>
-        /// <li>REPLACE_UNHEALTHY_INSTANCE_SUCCESSFUL：替换不健康子机成功</li>
-        /// <li>REPLACE_UNHEALTHY_INSTANCE_FAILED：替换不健康子机失败</li>
-        public let notificationTypes: [String]
-        
-        /// 通知组ID，即为用户组ID集合，用户组ID可以通过[ListGroups](https://cloud.tencent.com/document/product/598/34589)查询。
-        public let notificationUserGroupIds: [String]?
-        
-        /// 通知接收端类型，取值如下
-        /// <br><li>USER_GROUP：用户组
-        /// <br><li>CMQ_QUEUE：CMQ 队列
-        /// <br><li>CMQ_TOPIC：CMQ 主题
-        /// <br><li>TDMQ_CMQ_TOPIC：TDMQ CMQ 主题
-        /// <br><li>TDMQ_CMQ_QUEUE：TDMQ CMQ 队列
-        /// 默认值为：`USER_GROUP`。
-        public let targetType: String?
-        
-        /// CMQ 队列名称，如 TargetType 取值为 `CMQ_QUEUE` 或 `TDMQ_CMQ_QUEUE` 时，该字段必填。
-        public let queueName: String?
-        
-        /// CMQ 主题名称，如 TargetType 取值为 `CMQ_TOPIC` 或 `TDMQ_CMQ_TOPIC` 时，该字段必填。
-        public let topicName: String?
-        
-        public init (autoScalingGroupId: String, notificationTypes: [String], notificationUserGroupIds: [String]?, targetType: String?, queueName: String?, topicName: String?) {
-            self.autoScalingGroupId = autoScalingGroupId
-            self.notificationTypes = notificationTypes
-            self.notificationUserGroupIds = notificationUserGroupIds
-            self.targetType = targetType
-            self.queueName = queueName
-            self.topicName = topicName
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case autoScalingGroupId = "AutoScalingGroupId"
-            case notificationTypes = "NotificationTypes"
-            case notificationUserGroupIds = "NotificationUserGroupIds"
-            case targetType = "TargetType"
-            case queueName = "QueueName"
-            case topicName = "TopicName"
-        }
-    }
-    
-    /// CreateNotificationConfiguration返回参数结构体
-    public struct CreateNotificationConfigurationResponse: TCResponseModel {
-        /// 通知ID。
-        public let autoScalingNotificationId: String
-        
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case autoScalingNotificationId = "AutoScalingNotificationId"
-            case requestId = "RequestId"
-        }
     }
 }

@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询拨测分地区数据
-    ///
-    /// 用于查询拨测分地区数据
-    @inlinable
-    public func describeSpeedTestingDetails(_ input: DescribeSpeedTestingDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpeedTestingDetailsResponse > {
-        self.client.execute(action: "DescribeSpeedTestingDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询拨测分地区数据
-    ///
-    /// 用于查询拨测分地区数据
-    @inlinable
-    public func describeSpeedTestingDetails(_ input: DescribeSpeedTestingDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingDetailsResponse {
-        try await self.client.execute(action: "DescribeSpeedTestingDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSpeedTestingDetails请求参数结构体
     public struct DescribeSpeedTestingDetailsRequest: TCRequestModel {
         /// 站点ID。
         public let zoneId: String?
         
-        public init (zoneId: String?) {
+        public init (zoneId: String? = nil) {
             self.zoneId = zoneId
         }
         
@@ -57,5 +41,21 @@ extension Teo {
             case speedTestingDetailData = "SpeedTestingDetailData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询拨测分地区数据
+    ///
+    /// 用于查询拨测分地区数据
+    @inlinable
+    public func describeSpeedTestingDetails(_ input: DescribeSpeedTestingDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpeedTestingDetailsResponse > {
+        self.client.execute(action: "DescribeSpeedTestingDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询拨测分地区数据
+    ///
+    /// 用于查询拨测分地区数据
+    @inlinable
+    public func describeSpeedTestingDetails(_ input: DescribeSpeedTestingDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingDetailsResponse {
+        try await self.client.execute(action: "DescribeSpeedTestingDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

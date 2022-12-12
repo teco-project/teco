@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Iot {
-    /// 获取设备日志
-    ///
-    /// 批量获取设备与云端的详细通信日志，该接口适用于使用高级版类型的产品。
-    @inlinable
-    public func getDeviceLog(_ input: GetDeviceLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceLogResponse > {
-        self.client.execute(action: "GetDeviceLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备日志
-    ///
-    /// 批量获取设备与云端的详细通信日志，该接口适用于使用高级版类型的产品。
-    @inlinable
-    public func getDeviceLog(_ input: GetDeviceLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceLogResponse {
-        try await self.client.execute(action: "GetDeviceLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDeviceLog请求参数结构体
     public struct GetDeviceLogRequest: TCRequestModel {
         /// 产品Id
@@ -61,7 +45,7 @@ extension Iot {
         /// 日志类型（comm/status）
         public let type: String?
         
-        public init (productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64?, order: String?, scrollId: String?, type: String?) {
+        public init (productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil, type: String? = nil) {
             self.productId = productId
             self.deviceNames = deviceNames
             self.startTime = startTime
@@ -104,5 +88,21 @@ extension Iot {
             case scrollTimeout = "ScrollTimeout"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备日志
+    ///
+    /// 批量获取设备与云端的详细通信日志，该接口适用于使用高级版类型的产品。
+    @inlinable
+    public func getDeviceLog(_ input: GetDeviceLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceLogResponse > {
+        self.client.execute(action: "GetDeviceLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备日志
+    ///
+    /// 批量获取设备与云端的详细通信日志，该接口适用于使用高级版类型的产品。
+    @inlinable
+    public func getDeviceLog(_ input: GetDeviceLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceLogResponse {
+        try await self.client.execute(action: "GetDeviceLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 删除Notebook生命周期脚本
-    @inlinable
-    public func deleteNotebookLifecycleScript(_ input: DeleteNotebookLifecycleScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNotebookLifecycleScriptResponse > {
-        self.client.execute(action: "DeleteNotebookLifecycleScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除Notebook生命周期脚本
-    @inlinable
-    public func deleteNotebookLifecycleScript(_ input: DeleteNotebookLifecycleScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotebookLifecycleScriptResponse {
-        try await self.client.execute(action: "DeleteNotebookLifecycleScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteNotebookLifecycleScript请求参数结构体
     public struct DeleteNotebookLifecycleScriptRequest: TCRequestModel {
         /// 生命周期脚本名称
@@ -35,7 +23,7 @@ extension Tione {
         /// 是否忽略已关联的 notebook 实例强行删除生命周期脚本，默认 false
         public let forcible: Bool?
         
-        public init (notebookLifecycleScriptsName: String, forcible: Bool?) {
+        public init (notebookLifecycleScriptsName: String, forcible: Bool? = nil) {
             self.notebookLifecycleScriptsName = notebookLifecycleScriptsName
             self.forcible = forcible
         }
@@ -54,5 +42,17 @@ extension Tione {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除Notebook生命周期脚本
+    @inlinable
+    public func deleteNotebookLifecycleScript(_ input: DeleteNotebookLifecycleScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNotebookLifecycleScriptResponse > {
+        self.client.execute(action: "DeleteNotebookLifecycleScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Notebook生命周期脚本
+    @inlinable
+    public func deleteNotebookLifecycleScript(_ input: DeleteNotebookLifecycleScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotebookLifecycleScriptResponse {
+        try await self.client.execute(action: "DeleteNotebookLifecycleScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

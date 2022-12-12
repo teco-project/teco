@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 重命名任务（任务编辑）
-    @inlinable
-    public func modifyTaskName(_ input: ModifyTaskNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskNameResponse > {
-        self.client.execute(action: "ModifyTaskName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重命名任务（任务编辑）
-    @inlinable
-    public func modifyTaskName(_ input: ModifyTaskNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskNameResponse {
-        try await self.client.execute(action: "ModifyTaskName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTaskName请求参数结构体
     public struct ModifyTaskNameRequest: TCRequestModel {
         /// 名称
@@ -41,7 +29,7 @@ extension Wedata {
         /// 备注
         public let notes: String?
         
-        public init (taskName: String, taskId: String, projectId: String, notes: String?) {
+        public init (taskName: String, taskId: String, projectId: String, notes: String? = nil) {
             self.taskName = taskName
             self.taskId = taskId
             self.projectId = projectId
@@ -68,5 +56,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重命名任务（任务编辑）
+    @inlinable
+    public func modifyTaskName(_ input: ModifyTaskNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskNameResponse > {
+        self.client.execute(action: "ModifyTaskName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重命名任务（任务编辑）
+    @inlinable
+    public func modifyTaskName(_ input: ModifyTaskNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskNameResponse {
+        try await self.client.execute(action: "ModifyTaskName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

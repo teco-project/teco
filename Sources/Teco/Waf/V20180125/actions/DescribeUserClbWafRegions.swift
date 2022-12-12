@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 获取对客户已经开放的负载均衡型WAF(clb-waf)的地域
-    ///
-    /// 在负载均衡型WAF的添加、编辑域名配置的时候，需要展示负载均衡型WAF（clb-waf)支持的地域列表，通过DescribeUserClbWafRegions既可以获得当前对客户已经开放的地域列表
-    @inlinable
-    public func describeUserClbWafRegions(_ input: DescribeUserClbWafRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserClbWafRegionsResponse > {
-        self.client.execute(action: "DescribeUserClbWafRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取对客户已经开放的负载均衡型WAF(clb-waf)的地域
-    ///
-    /// 在负载均衡型WAF的添加、编辑域名配置的时候，需要展示负载均衡型WAF（clb-waf)支持的地域列表，通过DescribeUserClbWafRegions既可以获得当前对客户已经开放的地域列表
-    @inlinable
-    public func describeUserClbWafRegions(_ input: DescribeUserClbWafRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserClbWafRegionsResponse {
-        try await self.client.execute(action: "DescribeUserClbWafRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserClbWafRegions请求参数结构体
     public struct DescribeUserClbWafRegionsRequest: TCRequestModel {
         public init () {
@@ -50,5 +34,21 @@ extension Waf {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取对客户已经开放的负载均衡型WAF(clb-waf)的地域
+    ///
+    /// 在负载均衡型WAF的添加、编辑域名配置的时候，需要展示负载均衡型WAF（clb-waf)支持的地域列表，通过DescribeUserClbWafRegions既可以获得当前对客户已经开放的地域列表
+    @inlinable
+    public func describeUserClbWafRegions(_ input: DescribeUserClbWafRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserClbWafRegionsResponse > {
+        self.client.execute(action: "DescribeUserClbWafRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取对客户已经开放的负载均衡型WAF(clb-waf)的地域
+    ///
+    /// 在负载均衡型WAF的添加、编辑域名配置的时候，需要展示负载均衡型WAF（clb-waf)支持的地域列表，通过DescribeUserClbWafRegions既可以获得当前对客户已经开放的地域列表
+    @inlinable
+    public func describeUserClbWafRegions(_ input: DescribeUserClbWafRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserClbWafRegionsResponse {
+        try await self.client.execute(action: "DescribeUserClbWafRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

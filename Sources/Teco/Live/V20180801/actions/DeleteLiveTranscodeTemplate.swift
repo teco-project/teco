@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 删除转码模板
-    ///
-    /// 删除转码模板。
-    @inlinable
-    public func deleteLiveTranscodeTemplate(_ input: DeleteLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveTranscodeTemplateResponse > {
-        self.client.execute(action: "DeleteLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除转码模板
-    ///
-    /// 删除转码模板。
-    @inlinable
-    public func deleteLiveTranscodeTemplate(_ input: DeleteLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveTranscodeTemplateResponse {
-        try await self.client.execute(action: "DeleteLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLiveTranscodeTemplate请求参数结构体
     public struct DeleteLiveTranscodeTemplateRequest: TCRequestModel {
         /// 模板 ID。
@@ -55,5 +39,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除转码模板
+    ///
+    /// 删除转码模板。
+    @inlinable
+    public func deleteLiveTranscodeTemplate(_ input: DeleteLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveTranscodeTemplateResponse > {
+        self.client.execute(action: "DeleteLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除转码模板
+    ///
+    /// 删除转码模板。
+    @inlinable
+    public func deleteLiveTranscodeTemplate(_ input: DeleteLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveTranscodeTemplateResponse {
+        try await self.client.execute(action: "DeleteLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改模板对象成员
-    ///
-    /// 修改模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
-    @inlinable
-    public func modifyTemplateMember(_ input: ModifyTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTemplateMemberResponse > {
-        self.client.execute(action: "ModifyTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改模板对象成员
-    ///
-    /// 修改模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
-    @inlinable
-    public func modifyTemplateMember(_ input: ModifyTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTemplateMemberResponse {
-        try await self.client.execute(action: "ModifyTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTemplateMember请求参数结构体
     public struct ModifyTemplateMemberRequest: TCRequestModel {
         /// 参数模板实例ID，支持IP地址、协议端口、IP地址组、协议端口组四种参数模板的实例ID。
@@ -63,5 +47,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改模板对象成员
+    ///
+    /// 修改模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
+    @inlinable
+    public func modifyTemplateMember(_ input: ModifyTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTemplateMemberResponse > {
+        self.client.execute(action: "ModifyTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改模板对象成员
+    ///
+    /// 修改模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
+    @inlinable
+    public func modifyTemplateMember(_ input: ModifyTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTemplateMemberResponse {
+        try await self.client.execute(action: "ModifyTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

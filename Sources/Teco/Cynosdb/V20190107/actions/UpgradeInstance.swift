@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 升级实例
-    @inlinable
-    public func upgradeInstance(_ input: UpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeInstanceResponse > {
-        self.client.execute(action: "UpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 升级实例
-    @inlinable
-    public func upgradeInstance(_ input: UpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceResponse {
-        try await self.client.execute(action: "UpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeInstance请求参数结构体
     public struct UpgradeInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -56,7 +44,7 @@ extension Cynosdb {
         /// NormalUpgrade：普通变配，FastUpgrade：极速变配，若变配过程判断会造成闪断，变配流程会终止。
         public let upgradeMode: String?
         
-        public init (instanceId: String, cpu: Int64, memory: Int64, upgradeType: String, storageLimit: UInt64?, autoVoucher: Int64?, dbType: String?, dealMode: Int64?, upgradeMode: String?) {
+        public init (instanceId: String, cpu: Int64, memory: Int64, upgradeType: String, storageLimit: UInt64? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, dealMode: Int64? = nil, upgradeMode: String? = nil) {
             self.instanceId = instanceId
             self.cpu = cpu
             self.memory = memory
@@ -103,5 +91,17 @@ extension Cynosdb {
             case dealNames = "DealNames"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 升级实例
+    @inlinable
+    public func upgradeInstance(_ input: UpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeInstanceResponse > {
+        self.client.execute(action: "UpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 升级实例
+    @inlinable
+    public func upgradeInstance(_ input: UpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceResponse {
+        try await self.client.execute(action: "UpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

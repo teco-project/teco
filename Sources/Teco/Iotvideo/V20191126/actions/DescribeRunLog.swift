@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取设备运行日志
-    ///
-    /// 本接口（DescribeRunLog）用于获取设备运行日志。
-    @inlinable
-    public func describeRunLog(_ input: DescribeRunLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRunLogResponse > {
-        self.client.execute(action: "DescribeRunLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备运行日志
-    ///
-    /// 本接口（DescribeRunLog）用于获取设备运行日志。
-    @inlinable
-    public func describeRunLog(_ input: DescribeRunLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRunLogResponse {
-        try await self.client.execute(action: "DescribeRunLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRunLog请求参数结构体
     public struct DescribeRunLogRequest: TCRequestModel {
         /// 设备TID
@@ -58,5 +42,21 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备运行日志
+    ///
+    /// 本接口（DescribeRunLog）用于获取设备运行日志。
+    @inlinable
+    public func describeRunLog(_ input: DescribeRunLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRunLogResponse > {
+        self.client.execute(action: "DescribeRunLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备运行日志
+    ///
+    /// 本接口（DescribeRunLog）用于获取设备运行日志。
+    @inlinable
+    public func describeRunLog(_ input: DescribeRunLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRunLogResponse {
+        try await self.client.execute(action: "DescribeRunLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

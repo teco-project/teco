@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询自动授权规则授权范围主机信息
-    @inlinable
-    public func describeAutoAuthorizedRuleHost(_ input: DescribeAutoAuthorizedRuleHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoAuthorizedRuleHostResponse > {
-        self.client.execute(action: "DescribeAutoAuthorizedRuleHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询自动授权规则授权范围主机信息
-    @inlinable
-    public func describeAutoAuthorizedRuleHost(_ input: DescribeAutoAuthorizedRuleHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoAuthorizedRuleHostResponse {
-        try await self.client.execute(action: "DescribeAutoAuthorizedRuleHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAutoAuthorizedRuleHost请求参数结构体
     public struct DescribeAutoAuthorizedRuleHostRequest: TCRequestModel {
         /// 规则id
@@ -44,7 +32,7 @@ extension Tcss {
         /// 排序方式，asc，desc
         public let by: String?
         
-        public init (ruleId: Int64, limit: UInt64?, offset: UInt64?, order: String?, by: String?) {
+        public init (ruleId: Int64, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.ruleId = ruleId
             self.limit = limit
             self.offset = offset
@@ -77,5 +65,17 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询自动授权规则授权范围主机信息
+    @inlinable
+    public func describeAutoAuthorizedRuleHost(_ input: DescribeAutoAuthorizedRuleHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoAuthorizedRuleHostResponse > {
+        self.client.execute(action: "DescribeAutoAuthorizedRuleHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询自动授权规则授权范围主机信息
+    @inlinable
+    public func describeAutoAuthorizedRuleHost(_ input: DescribeAutoAuthorizedRuleHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoAuthorizedRuleHostResponse {
+        try await self.client.execute(action: "DescribeAutoAuthorizedRuleHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

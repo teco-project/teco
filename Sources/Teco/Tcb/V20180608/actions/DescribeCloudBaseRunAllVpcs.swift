@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查看环境下的所有vpc
-    ///
-    /// 查询环境下所有的vpc列表
-    @inlinable
-    public func describeCloudBaseRunAllVpcs(_ input: DescribeCloudBaseRunAllVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunAllVpcsResponse > {
-        self.client.execute(action: "DescribeCloudBaseRunAllVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看环境下的所有vpc
-    ///
-    /// 查询环境下所有的vpc列表
-    @inlinable
-    public func describeCloudBaseRunAllVpcs(_ input: DescribeCloudBaseRunAllVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunAllVpcsResponse {
-        try await self.client.execute(action: "DescribeCloudBaseRunAllVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudBaseRunAllVpcs请求参数结构体
     public struct DescribeCloudBaseRunAllVpcsRequest: TCRequestModel {
         /// 环境ID
@@ -58,5 +42,21 @@ extension Tcb {
             case vpcs = "Vpcs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看环境下的所有vpc
+    ///
+    /// 查询环境下所有的vpc列表
+    @inlinable
+    public func describeCloudBaseRunAllVpcs(_ input: DescribeCloudBaseRunAllVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunAllVpcsResponse > {
+        self.client.execute(action: "DescribeCloudBaseRunAllVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看环境下的所有vpc
+    ///
+    /// 查询环境下所有的vpc列表
+    @inlinable
+    public func describeCloudBaseRunAllVpcs(_ input: DescribeCloudBaseRunAllVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunAllVpcsResponse {
+        try await self.client.execute(action: "DescribeCloudBaseRunAllVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

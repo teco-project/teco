@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 变更实例配置
-    @inlinable
-    public func upgradeInstance(_ input: UpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeInstanceResponse > {
-        self.client.execute(action: "UpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 变更实例配置
-    @inlinable
-    public func upgradeInstance(_ input: UpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceResponse {
-        try await self.client.execute(action: "UpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeInstance请求参数结构体
     public struct UpgradeInstanceRequest: TCRequestModel {
         /// 待变更实例 ID。
@@ -44,7 +32,7 @@ extension Redis {
         /// 多AZ实例，增加副本时的附带信息，包括副本的可用区和副本的类型（NodeType为1）。非多AZ实例不需要配置该参数。
         public let nodeSet: [RedisNodeInfo]?
         
-        public init (instanceId: String, memSize: UInt64, redisShardNum: UInt64?, redisReplicasNum: UInt64?, nodeSet: [RedisNodeInfo]?) {
+        public init (instanceId: String, memSize: UInt64, redisShardNum: UInt64? = nil, redisReplicasNum: UInt64? = nil, nodeSet: [RedisNodeInfo]? = nil) {
             self.instanceId = instanceId
             self.memSize = memSize
             self.redisShardNum = redisShardNum
@@ -73,5 +61,17 @@ extension Redis {
             case dealId = "DealId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 变更实例配置
+    @inlinable
+    public func upgradeInstance(_ input: UpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeInstanceResponse > {
+        self.client.execute(action: "UpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 变更实例配置
+    @inlinable
+    public func upgradeInstance(_ input: UpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceResponse {
+        try await self.client.execute(action: "UpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

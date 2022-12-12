@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 获取设备信息
-    ///
-    /// 提供查询某个设备详细信息的能力。
-    @inlinable
-    public func getDevice(_ input: GetDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceResponse > {
-        self.client.execute(action: "GetDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备信息
-    ///
-    /// 提供查询某个设备详细信息的能力。
-    @inlinable
-    public func getDevice(_ input: GetDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceResponse {
-        try await self.client.execute(action: "GetDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDevice请求参数结构体
     public struct GetDeviceRequest: TCRequestModel {
         /// 产品Id
@@ -62,5 +46,21 @@ extension Iot {
             case device = "Device"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备信息
+    ///
+    /// 提供查询某个设备详细信息的能力。
+    @inlinable
+    public func getDevice(_ input: GetDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceResponse > {
+        self.client.execute(action: "GetDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备信息
+    ///
+    /// 提供查询某个设备详细信息的能力。
+    @inlinable
+    public func getDevice(_ input: GetDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceResponse {
+        try await self.client.execute(action: "GetDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

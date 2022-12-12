@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询DDoS防护配置详情
-    @inlinable
-    public func describeDDoSPolicy(_ input: DescribeDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSPolicyResponse > {
-        self.client.execute(action: "DescribeDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询DDoS防护配置详情
-    @inlinable
-    public func describeDDoSPolicy(_ input: DescribeDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSPolicyResponse {
-        try await self.client.execute(action: "DescribeDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSPolicy请求参数结构体
     public struct DescribeDDoSPolicyRequest: TCRequestModel {
         /// 策略组id
@@ -58,5 +46,17 @@ extension Teo {
             case ddosRule = "DdosRule"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询DDoS防护配置详情
+    @inlinable
+    public func describeDDoSPolicy(_ input: DescribeDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSPolicyResponse > {
+        self.client.execute(action: "DescribeDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询DDoS防护配置详情
+    @inlinable
+    public func describeDDoSPolicy(_ input: DescribeDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSPolicyResponse {
+        try await self.client.execute(action: "DescribeDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

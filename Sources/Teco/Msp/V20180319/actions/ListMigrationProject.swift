@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Msp {
-    /// 获取迁移项目名称列表
-    @inlinable
-    public func listMigrationProject(_ input: ListMigrationProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListMigrationProjectResponse > {
-        self.client.execute(action: "ListMigrationProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取迁移项目名称列表
-    @inlinable
-    public func listMigrationProject(_ input: ListMigrationProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListMigrationProjectResponse {
-        try await self.client.execute(action: "ListMigrationProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListMigrationProject请求参数结构体
     public struct ListMigrationProjectRequest: TCRequestModel {
         /// 记录起始数，默认值为0
@@ -35,7 +23,7 @@ extension Msp {
         /// 返回条数，默认值为500
         public let limit: UInt64?
         
-        public init (offset: UInt64?, limit: UInt64?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
         }
@@ -62,5 +50,17 @@ extension Msp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取迁移项目名称列表
+    @inlinable
+    public func listMigrationProject(_ input: ListMigrationProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListMigrationProjectResponse > {
+        self.client.execute(action: "ListMigrationProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取迁移项目名称列表
+    @inlinable
+    public func listMigrationProject(_ input: ListMigrationProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListMigrationProjectResponse {
+        try await self.client.execute(action: "ListMigrationProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

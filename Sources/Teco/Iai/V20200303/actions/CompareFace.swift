@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 人脸比对
-    ///
-    /// 对两张图片中的人脸进行相似度比对，返回人脸相似度分数。
-    /// 若您需要判断 “此人是否是某人”，即验证某张图片中的人是否是已知身份的某人，如常见的人脸登录场景，建议使用[人脸验证](https://cloud.tencent.com/document/product/867/44983)或[人员验证](https://cloud.tencent.com/document/product/867/44982)接口。
-    /// >     
-    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func compareFace(_ input: CompareFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CompareFaceResponse > {
-        self.client.execute(action: "CompareFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人脸比对
-    ///
-    /// 对两张图片中的人脸进行相似度比对，返回人脸相似度分数。
-    /// 若您需要判断 “此人是否是某人”，即验证某张图片中的人是否是已知身份的某人，如常见的人脸登录场景，建议使用[人脸验证](https://cloud.tencent.com/document/product/867/44983)或[人员验证](https://cloud.tencent.com/document/product/867/44982)接口。
-    /// >     
-    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func compareFace(_ input: CompareFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareFaceResponse {
-        try await self.client.execute(action: "CompareFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CompareFace请求参数结构体
     public struct CompareFaceRequest: TCRequestModel {
         /// A 图片 base64 数据，base64 编码后大小不可超过5M。
@@ -89,7 +67,7 @@ extension Iai {
         /// 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         public let needRotateDetection: UInt64?
         
-        public init (imageA: String?, imageB: String?, urlA: String?, urlB: String?, faceModelVersion: String?, qualityControl: UInt64?, needRotateDetection: UInt64?) {
+        public init (imageA: String? = nil, imageB: String? = nil, urlA: String? = nil, urlB: String? = nil, faceModelVersion: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil) {
             self.imageA = imageA
             self.imageB = imageB
             self.urlA = urlA
@@ -130,5 +108,27 @@ extension Iai {
             case faceModelVersion = "FaceModelVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人脸比对
+    ///
+    /// 对两张图片中的人脸进行相似度比对，返回人脸相似度分数。
+    /// 若您需要判断 “此人是否是某人”，即验证某张图片中的人是否是已知身份的某人，如常见的人脸登录场景，建议使用[人脸验证](https://cloud.tencent.com/document/product/867/44983)或[人员验证](https://cloud.tencent.com/document/product/867/44982)接口。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func compareFace(_ input: CompareFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CompareFaceResponse > {
+        self.client.execute(action: "CompareFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人脸比对
+    ///
+    /// 对两张图片中的人脸进行相似度比对，返回人脸相似度分数。
+    /// 若您需要判断 “此人是否是某人”，即验证某张图片中的人是否是已知身份的某人，如常见的人脸登录场景，建议使用[人脸验证](https://cloud.tencent.com/document/product/867/44983)或[人员验证](https://cloud.tencent.com/document/product/867/44982)接口。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func compareFace(_ input: CompareFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareFaceResponse {
+        try await self.client.execute(action: "CompareFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

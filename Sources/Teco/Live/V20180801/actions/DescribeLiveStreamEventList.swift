@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询推断流事件
-    ///
-    /// 用于查询推断流事件。<br>
-    /// 注意：
-    /// 1. 该接口提供离线推断流记录查询功能，不可作为重要业务场景强依赖接口。
-    /// 2. 该接口可通过使用IsFilter进行过滤，返回推流历史记录。
-    @inlinable
-    public func describeLiveStreamEventList(_ input: DescribeLiveStreamEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveStreamEventListResponse > {
-        self.client.execute(action: "DescribeLiveStreamEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询推断流事件
-    ///
-    /// 用于查询推断流事件。<br>
-    /// 注意：
-    /// 1. 该接口提供离线推断流记录查询功能，不可作为重要业务场景强依赖接口。
-    /// 2. 该接口可通过使用IsFilter进行过滤，返回推流历史记录。
-    @inlinable
-    public func describeLiveStreamEventList(_ input: DescribeLiveStreamEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamEventListResponse {
-        try await self.client.execute(action: "DescribeLiveStreamEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveStreamEventList请求参数结构体
     public struct DescribeLiveStreamEventListRequest: TCRequestModel {
         /// 起始时间。 
@@ -87,7 +65,7 @@ extension Live {
         /// 1：正序。
         public let isAsc: Int64?
         
-        public init (startTime: String, endTime: String, appName: String?, domainName: String?, streamName: String?, pageNum: UInt64?, pageSize: UInt64?, isFilter: Int64?, isStrict: Int64?, isAsc: Int64?) {
+        public init (startTime: String, endTime: String, appName: String? = nil, domainName: String? = nil, streamName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, isFilter: Int64? = nil, isStrict: Int64? = nil, isAsc: Int64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.appName = appName
@@ -142,5 +120,27 @@ extension Live {
             case totalPage = "TotalPage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询推断流事件
+    ///
+    /// 用于查询推断流事件。<br>
+    /// 注意：
+    /// 1. 该接口提供离线推断流记录查询功能，不可作为重要业务场景强依赖接口。
+    /// 2. 该接口可通过使用IsFilter进行过滤，返回推流历史记录。
+    @inlinable
+    public func describeLiveStreamEventList(_ input: DescribeLiveStreamEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveStreamEventListResponse > {
+        self.client.execute(action: "DescribeLiveStreamEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询推断流事件
+    ///
+    /// 用于查询推断流事件。<br>
+    /// 注意：
+    /// 1. 该接口提供离线推断流记录查询功能，不可作为重要业务场景强依赖接口。
+    /// 2. 该接口可通过使用IsFilter进行过滤，返回推流历史记录。
+    @inlinable
+    public func describeLiveStreamEventList(_ input: DescribeLiveStreamEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamEventListResponse {
+        try await self.client.execute(action: "DescribeLiveStreamEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

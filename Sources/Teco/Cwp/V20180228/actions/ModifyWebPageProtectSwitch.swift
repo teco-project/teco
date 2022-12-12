@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 网站防护设置开关
-    ///
-    /// 网站防篡改防护设置开关
-    @inlinable
-    public func modifyWebPageProtectSwitch(_ input: ModifyWebPageProtectSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWebPageProtectSwitchResponse > {
-        self.client.execute(action: "ModifyWebPageProtectSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 网站防护设置开关
-    ///
-    /// 网站防篡改防护设置开关
-    @inlinable
-    public func modifyWebPageProtectSwitch(_ input: ModifyWebPageProtectSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectSwitchResponse {
-        try await self.client.execute(action: "ModifyWebPageProtectSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyWebPageProtectSwitch请求参数结构体
     public struct ModifyWebPageProtectSwitchRequest: TCRequestModel {
         /// 开关类型 1 防护开关  2 自动恢复开关 3 移除防护目录
@@ -42,7 +26,7 @@ extension Cwp {
         /// 1 开启 0 关闭 SwitchType 为 1 | 2 必填;
         public let status: UInt64?
         
-        public init (switchType: UInt64, ids: [String], status: UInt64?) {
+        public init (switchType: UInt64, ids: [String], status: UInt64? = nil) {
             self.switchType = switchType
             self.ids = ids
             self.status = status
@@ -63,5 +47,21 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 网站防护设置开关
+    ///
+    /// 网站防篡改防护设置开关
+    @inlinable
+    public func modifyWebPageProtectSwitch(_ input: ModifyWebPageProtectSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWebPageProtectSwitchResponse > {
+        self.client.execute(action: "ModifyWebPageProtectSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 网站防护设置开关
+    ///
+    /// 网站防篡改防护设置开关
+    @inlinable
+    public func modifyWebPageProtectSwitch(_ input: ModifyWebPageProtectSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectSwitchResponse {
+        try await self.client.execute(action: "ModifyWebPageProtectSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 删除人脸
-    @inlinable
-    public func deleteFace(_ input: DeleteFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFaceResponse > {
-        self.client.execute(action: "DeleteFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除人脸
-    @inlinable
-    public func deleteFace(_ input: DeleteFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFaceResponse {
-        try await self.client.execute(action: "DeleteFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteFace请求参数结构体
     public struct DeleteFaceRequest: TCRequestModel {
         /// 人脸标识符数组
@@ -38,7 +26,7 @@ extension Tci {
         /// 人员库唯一标识符
         public let libraryId: String?
         
-        public init (faceIdSet: [String], personId: String, libraryId: String?) {
+        public init (faceIdSet: [String], personId: String, libraryId: String? = nil) {
             self.faceIdSet = faceIdSet
             self.personId = personId
             self.libraryId = libraryId
@@ -63,5 +51,17 @@ extension Tci {
             case faceInfoSet = "FaceInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除人脸
+    @inlinable
+    public func deleteFace(_ input: DeleteFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFaceResponse > {
+        self.client.execute(action: "DeleteFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除人脸
+    @inlinable
+    public func deleteFace(_ input: DeleteFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFaceResponse {
+        try await self.client.execute(action: "DeleteFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

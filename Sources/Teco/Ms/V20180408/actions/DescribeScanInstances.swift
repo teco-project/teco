@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ms {
-    /// 查询扫描列表
-    ///
-    /// 本接口用于查看app列表。
-    /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
-    @inlinable
-    public func describeScanInstances(_ input: DescribeScanInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanInstancesResponse > {
-        self.client.execute(action: "DescribeScanInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询扫描列表
-    ///
-    /// 本接口用于查看app列表。
-    /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
-    @inlinable
-    public func describeScanInstances(_ input: DescribeScanInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanInstancesResponse {
-        try await self.client.execute(action: "DescribeScanInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScanInstances请求参数结构体
     public struct DescribeScanInstancesRequest: TCRequestModel {
         /// 支持通过app名称，app包名进行筛选
@@ -53,7 +35,7 @@ extension Ms {
         /// 升序（asc）还是降序（desc），默认：desc。
         public let orderDirection: String?
         
-        public init (filters: [Filter]?, offset: UInt64?, limit: UInt64?, itemIds: [String]?, orderField: String?, orderDirection: String?) {
+        public init (filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, itemIds: [String]? = nil, orderField: String? = nil, orderDirection: String? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -88,5 +70,23 @@ extension Ms {
             case scanSet = "ScanSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询扫描列表
+    ///
+    /// 本接口用于查看app列表。
+    /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
+    @inlinable
+    public func describeScanInstances(_ input: DescribeScanInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanInstancesResponse > {
+        self.client.execute(action: "DescribeScanInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询扫描列表
+    ///
+    /// 本接口用于查看app列表。
+    /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
+    @inlinable
+    public func describeScanInstances(_ input: DescribeScanInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanInstancesResponse {
+        try await self.client.execute(action: "DescribeScanInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

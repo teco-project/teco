@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 弹性网卡绑定安全组
-    ///
-    /// 本接口（AssociateNetworkInterfaceSecurityGroups）用于弹性网卡绑定安全组（SecurityGroup）。
-    @inlinable
-    public func associateNetworkInterfaceSecurityGroups(_ input: AssociateNetworkInterfaceSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateNetworkInterfaceSecurityGroupsResponse > {
-        self.client.execute(action: "AssociateNetworkInterfaceSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 弹性网卡绑定安全组
-    ///
-    /// 本接口（AssociateNetworkInterfaceSecurityGroups）用于弹性网卡绑定安全组（SecurityGroup）。
-    @inlinable
-    public func associateNetworkInterfaceSecurityGroups(_ input: AssociateNetworkInterfaceSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateNetworkInterfaceSecurityGroupsResponse {
-        try await self.client.execute(action: "AssociateNetworkInterfaceSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssociateNetworkInterfaceSecurityGroups请求参数结构体
     public struct AssociateNetworkInterfaceSecurityGroupsRequest: TCRequestModel {
         /// 弹性网卡实例ID。形如：eni-pxir56ns。每次请求的实例的上限为100。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 弹性网卡绑定安全组
+    ///
+    /// 本接口（AssociateNetworkInterfaceSecurityGroups）用于弹性网卡绑定安全组（SecurityGroup）。
+    @inlinable
+    public func associateNetworkInterfaceSecurityGroups(_ input: AssociateNetworkInterfaceSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateNetworkInterfaceSecurityGroupsResponse > {
+        self.client.execute(action: "AssociateNetworkInterfaceSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 弹性网卡绑定安全组
+    ///
+    /// 本接口（AssociateNetworkInterfaceSecurityGroups）用于弹性网卡绑定安全组（SecurityGroup）。
+    @inlinable
+    public func associateNetworkInterfaceSecurityGroups(_ input: AssociateNetworkInterfaceSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateNetworkInterfaceSecurityGroupsResponse {
+        try await self.client.execute(action: "AssociateNetworkInterfaceSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

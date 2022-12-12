@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 获取团队成员信息
-    ///
-    /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。
-    @inlinable
-    public func describeTeamMembers(_ input: DescribeTeamMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTeamMembersResponse > {
-        self.client.execute(action: "DescribeTeamMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取团队成员信息
-    ///
-    /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。
-    @inlinable
-    public func describeTeamMembers(_ input: DescribeTeamMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTeamMembersResponse {
-        try await self.client.execute(action: "DescribeTeamMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTeamMembers请求参数结构体
     public struct DescribeTeamMembersRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -51,7 +35,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以拉取任意团队成员的信息。如果指定操作者，则操作者必须为团队成员。
         public let `operator`: String?
         
-        public init (platform: String, teamId: String, memberIds: [String]?, offset: UInt64?, limit: UInt64?, `operator`: String?) {
+        public init (platform: String, teamId: String, memberIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, `operator`: String? = nil) {
             self.platform = platform
             self.teamId = teamId
             self.memberIds = memberIds
@@ -86,5 +70,21 @@ extension Cme {
             case memberSet = "MemberSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取团队成员信息
+    ///
+    /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。
+    @inlinable
+    public func describeTeamMembers(_ input: DescribeTeamMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTeamMembersResponse > {
+        self.client.execute(action: "DescribeTeamMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取团队成员信息
+    ///
+    /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。
+    @inlinable
+    public func describeTeamMembers(_ input: DescribeTeamMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTeamMembersResponse {
+        try await self.client.execute(action: "DescribeTeamMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

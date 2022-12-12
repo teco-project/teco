@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 更新设备固件
-    ///
-    /// 本接口（UpdateFirmware）用于对指定设备发起固件升级请求 
-    @inlinable
-    public func updateFirmware(_ input: UpdateFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFirmwareResponse > {
-        self.client.execute(action: "UpdateFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新设备固件
-    ///
-    /// 本接口（UpdateFirmware）用于对指定设备发起固件升级请求 
-    @inlinable
-    public func updateFirmware(_ input: UpdateFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFirmwareResponse {
-        try await self.client.execute(action: "UpdateFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateFirmware请求参数结构体
     public struct UpdateFirmwareRequest: TCRequestModel {
         /// 产品ID
@@ -48,7 +32,7 @@ extension Iotexplorer {
         /// 固件升级方式；0 静默升级 1 用户确认升级   不填默认静默升级
         public let upgradeMethod: UInt64?
         
-        public init (productID: String, deviceName: String, firmwareVersion: String, firmwareOriVersion: String, upgradeMethod: UInt64?) {
+        public init (productID: String, deviceName: String, firmwareVersion: String, firmwareOriVersion: String, upgradeMethod: UInt64? = nil) {
             self.productID = productID
             self.deviceName = deviceName
             self.firmwareVersion = firmwareVersion
@@ -73,5 +57,21 @@ extension Iotexplorer {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新设备固件
+    ///
+    /// 本接口（UpdateFirmware）用于对指定设备发起固件升级请求 
+    @inlinable
+    public func updateFirmware(_ input: UpdateFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFirmwareResponse > {
+        self.client.execute(action: "UpdateFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新设备固件
+    ///
+    /// 本接口（UpdateFirmware）用于对指定设备发起固件升级请求 
+    @inlinable
+    public func updateFirmware(_ input: UpdateFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFirmwareResponse {
+        try await self.client.execute(action: "UpdateFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

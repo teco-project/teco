@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 开启伸缩组内 CVM 实例
-    ///
-    /// 本接口（StartAutoScalingInstances）用于开启伸缩组内 CVM 实例。
-    /// * 开机成功，实例转为`IN_SERVICE`状态后，会增加期望实例数，期望实例数不可超过设置的最大值
-    /// * 本接口支持批量操作，每次请求开机实例的上限为100
-    @inlinable
-    public func startAutoScalingInstances(_ input: StartAutoScalingInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartAutoScalingInstancesResponse > {
-        self.client.execute(action: "StartAutoScalingInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启伸缩组内 CVM 实例
-    ///
-    /// 本接口（StartAutoScalingInstances）用于开启伸缩组内 CVM 实例。
-    /// * 开机成功，实例转为`IN_SERVICE`状态后，会增加期望实例数，期望实例数不可超过设置的最大值
-    /// * 本接口支持批量操作，每次请求开机实例的上限为100
-    @inlinable
-    public func startAutoScalingInstances(_ input: StartAutoScalingInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartAutoScalingInstancesResponse {
-        try await self.client.execute(action: "StartAutoScalingInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartAutoScalingInstances请求参数结构体
     public struct StartAutoScalingInstancesRequest: TCRequestModel {
         /// 伸缩组ID
@@ -66,5 +46,25 @@ extension As {
             case activityId = "ActivityId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启伸缩组内 CVM 实例
+    ///
+    /// 本接口（StartAutoScalingInstances）用于开启伸缩组内 CVM 实例。
+    /// * 开机成功，实例转为`IN_SERVICE`状态后，会增加期望实例数，期望实例数不可超过设置的最大值
+    /// * 本接口支持批量操作，每次请求开机实例的上限为100
+    @inlinable
+    public func startAutoScalingInstances(_ input: StartAutoScalingInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartAutoScalingInstancesResponse > {
+        self.client.execute(action: "StartAutoScalingInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启伸缩组内 CVM 实例
+    ///
+    /// 本接口（StartAutoScalingInstances）用于开启伸缩组内 CVM 实例。
+    /// * 开机成功，实例转为`IN_SERVICE`状态后，会增加期望实例数，期望实例数不可超过设置的最大值
+    /// * 本接口支持批量操作，每次请求开机实例的上限为100
+    @inlinable
+    public func startAutoScalingInstances(_ input: StartAutoScalingInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartAutoScalingInstancesResponse {
+        try await self.client.execute(action: "StartAutoScalingInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

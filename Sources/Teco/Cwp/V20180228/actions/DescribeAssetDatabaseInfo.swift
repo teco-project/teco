@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取资产管理数据库详情
-    @inlinable
-    public func describeAssetDatabaseInfo(_ input: DescribeAssetDatabaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetDatabaseInfoResponse > {
-        self.client.execute(action: "DescribeAssetDatabaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取资产管理数据库详情
-    @inlinable
-    public func describeAssetDatabaseInfo(_ input: DescribeAssetDatabaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDatabaseInfoResponse {
-        try await self.client.execute(action: "DescribeAssetDatabaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetDatabaseInfo请求参数结构体
     public struct DescribeAssetDatabaseInfoRequest: TCRequestModel {
         /// 服务器Quuid
@@ -63,5 +51,17 @@ extension Cwp {
             case database = "Database"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取资产管理数据库详情
+    @inlinable
+    public func describeAssetDatabaseInfo(_ input: DescribeAssetDatabaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetDatabaseInfoResponse > {
+        self.client.execute(action: "DescribeAssetDatabaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资产管理数据库详情
+    @inlinable
+    public func describeAssetDatabaseInfo(_ input: DescribeAssetDatabaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDatabaseInfoResponse {
+        try await self.client.execute(action: "DescribeAssetDatabaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

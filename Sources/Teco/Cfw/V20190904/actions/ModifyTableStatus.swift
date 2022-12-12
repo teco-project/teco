@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 修改规则表状态
-    @inlinable
-    public func modifyTableStatus(_ input: ModifyTableStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableStatusResponse > {
-        self.client.execute(action: "ModifyTableStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改规则表状态
-    @inlinable
-    public func modifyTableStatus(_ input: ModifyTableStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableStatusResponse {
-        try await self.client.execute(action: "ModifyTableStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTableStatus请求参数结构体
     public struct ModifyTableStatusRequest: TCRequestModel {
         /// EdgeId值两个vpc间的边id
@@ -41,7 +29,7 @@ extension Cfw {
         /// 0： 出向，1：入向
         public let direction: UInt64?
         
-        public init (edgeId: String?, status: UInt64?, area: String?, direction: UInt64?) {
+        public init (edgeId: String? = nil, status: UInt64? = nil, area: String? = nil, direction: UInt64? = nil) {
             self.edgeId = edgeId
             self.status = status
             self.area = area
@@ -69,5 +57,17 @@ extension Cfw {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改规则表状态
+    @inlinable
+    public func modifyTableStatus(_ input: ModifyTableStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableStatusResponse > {
+        self.client.execute(action: "ModifyTableStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改规则表状态
+    @inlinable
+    public func modifyTableStatus(_ input: ModifyTableStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableStatusResponse {
+        try await self.client.execute(action: "ModifyTableStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

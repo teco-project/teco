@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 获取片头片尾模板列表
-    ///
-    /// 获取片头片尾模板列表。
-    @inlinable
-    public func describeHeadTailTemplates(_ input: DescribeHeadTailTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHeadTailTemplatesResponse > {
-        self.client.execute(action: "DescribeHeadTailTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取片头片尾模板列表
-    ///
-    /// 获取片头片尾模板列表。
-    @inlinable
-    public func describeHeadTailTemplates(_ input: DescribeHeadTailTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHeadTailTemplatesResponse {
-        try await self.client.execute(action: "DescribeHeadTailTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHeadTailTemplates请求参数结构体
     public struct DescribeHeadTailTemplatesRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -45,7 +29,7 @@ extension Vod {
         /// 返回记录条数，默认值：10，最大值：100。
         public let limit: UInt64?
         
-        public init (subAppId: UInt64?, definitions: [Int64]?, offset: UInt64?, limit: UInt64?) {
+        public init (subAppId: UInt64? = nil, definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.subAppId = subAppId
             self.definitions = definitions
             self.offset = offset
@@ -76,5 +60,21 @@ extension Vod {
             case headTailTemplateSet = "HeadTailTemplateSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取片头片尾模板列表
+    ///
+    /// 获取片头片尾模板列表。
+    @inlinable
+    public func describeHeadTailTemplates(_ input: DescribeHeadTailTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHeadTailTemplatesResponse > {
+        self.client.execute(action: "DescribeHeadTailTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取片头片尾模板列表
+    ///
+    /// 获取片头片尾模板列表。
+    @inlinable
+    public func describeHeadTailTemplates(_ input: DescribeHeadTailTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHeadTailTemplatesResponse {
+        try await self.client.execute(action: "DescribeHeadTailTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

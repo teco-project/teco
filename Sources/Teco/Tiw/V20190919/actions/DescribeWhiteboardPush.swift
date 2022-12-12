@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 查询白板推流任务
-    ///
-    /// 查询推流任务状态与结果
-    @inlinable
-    public func describeWhiteboardPush(_ input: DescribeWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteboardPushResponse > {
-        self.client.execute(action: "DescribeWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询白板推流任务
-    ///
-    /// 查询推流任务状态与结果
-    @inlinable
-    public func describeWhiteboardPush(_ input: DescribeWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteboardPushResponse {
-        try await self.client.execute(action: "DescribeWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWhiteboardPush请求参数结构体
     public struct DescribeWhiteboardPushRequest: TCRequestModel {
         /// 客户的SdkAppId
@@ -109,5 +93,21 @@ extension Tiw {
             case backup = "Backup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询白板推流任务
+    ///
+    /// 查询推流任务状态与结果
+    @inlinable
+    public func describeWhiteboardPush(_ input: DescribeWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteboardPushResponse > {
+        self.client.execute(action: "DescribeWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询白板推流任务
+    ///
+    /// 查询推流任务状态与结果
+    @inlinable
+    public func describeWhiteboardPush(_ input: DescribeWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteboardPushResponse {
+        try await self.client.execute(action: "DescribeWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

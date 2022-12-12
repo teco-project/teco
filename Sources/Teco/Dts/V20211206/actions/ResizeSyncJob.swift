@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 调整同步任务规格
-    ///
-    /// 调整同步任务规格，此接口只支持按量计费任务的调整，调用此接口后不会立即生效，后台调整时间大概为3~5分钟。调用此接口后可通过查询同步任务信息接口DescribeSyncJobs，获取变配后的状态。
-    @inlinable
-    public func resizeSyncJob(_ input: ResizeSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResizeSyncJobResponse > {
-        self.client.execute(action: "ResizeSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调整同步任务规格
-    ///
-    /// 调整同步任务规格，此接口只支持按量计费任务的调整，调用此接口后不会立即生效，后台调整时间大概为3~5分钟。调用此接口后可通过查询同步任务信息接口DescribeSyncJobs，获取变配后的状态。
-    @inlinable
-    public func resizeSyncJob(_ input: ResizeSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResizeSyncJobResponse {
-        try await self.client.execute(action: "ResizeSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResizeSyncJob请求参数结构体
     public struct ResizeSyncJobRequest: TCRequestModel {
         /// 同步任务id
@@ -58,5 +42,21 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调整同步任务规格
+    ///
+    /// 调整同步任务规格，此接口只支持按量计费任务的调整，调用此接口后不会立即生效，后台调整时间大概为3~5分钟。调用此接口后可通过查询同步任务信息接口DescribeSyncJobs，获取变配后的状态。
+    @inlinable
+    public func resizeSyncJob(_ input: ResizeSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResizeSyncJobResponse > {
+        self.client.execute(action: "ResizeSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调整同步任务规格
+    ///
+    /// 调整同步任务规格，此接口只支持按量计费任务的调整，调用此接口后不会立即生效，后台调整时间大概为3~5分钟。调用此接口后可通过查询同步任务信息接口DescribeSyncJobs，获取变配后的状态。
+    @inlinable
+    public func resizeSyncJob(_ input: ResizeSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResizeSyncJobResponse {
+        try await self.client.execute(action: "ResizeSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

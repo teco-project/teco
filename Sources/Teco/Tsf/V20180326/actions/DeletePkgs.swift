@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 批量删除包
-    ///
-    /// 从软件仓库批量删除程序包。
-    /// 一次最多支持删除1000个包，数量超过1000，返回UpperDeleteLimit错误。
-    @inlinable
-    public func deletePkgs(_ input: DeletePkgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePkgsResponse > {
-        self.client.execute(action: "DeletePkgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量删除包
-    ///
-    /// 从软件仓库批量删除程序包。
-    /// 一次最多支持删除1000个包，数量超过1000，返回UpperDeleteLimit错误。
-    @inlinable
-    public func deletePkgs(_ input: DeletePkgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePkgsResponse {
-        try await self.client.execute(action: "DeletePkgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePkgs请求参数结构体
     public struct DeletePkgsRequest: TCRequestModel {
         /// 应用ID
@@ -47,7 +29,7 @@ extension Tsf {
         /// 程序包仓库id
         public let repositoryId: String?
         
-        public init (applicationId: String, pkgIds: [String], repositoryType: String?, repositoryId: String?) {
+        public init (applicationId: String, pkgIds: [String], repositoryType: String? = nil, repositoryId: String? = nil) {
             self.applicationId = applicationId
             self.pkgIds = pkgIds
             self.repositoryType = repositoryType
@@ -70,5 +52,23 @@ extension Tsf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量删除包
+    ///
+    /// 从软件仓库批量删除程序包。
+    /// 一次最多支持删除1000个包，数量超过1000，返回UpperDeleteLimit错误。
+    @inlinable
+    public func deletePkgs(_ input: DeletePkgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePkgsResponse > {
+        self.client.execute(action: "DeletePkgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除包
+    ///
+    /// 从软件仓库批量删除程序包。
+    /// 一次最多支持删除1000个包，数量超过1000，返回UpperDeleteLimit错误。
+    @inlinable
+    public func deletePkgs(_ input: DeletePkgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePkgsResponse {
+        try await self.client.execute(action: "DeletePkgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

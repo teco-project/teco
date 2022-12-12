@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 删除白盒密钥
-    ///
-    /// 删除白盒密钥, 注意：必须先禁用后，才可以删除。
-    @inlinable
-    public func deleteWhiteBoxKey(_ input: DeleteWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWhiteBoxKeyResponse > {
-        self.client.execute(action: "DeleteWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除白盒密钥
-    ///
-    /// 删除白盒密钥, 注意：必须先禁用后，才可以删除。
-    @inlinable
-    public func deleteWhiteBoxKey(_ input: DeleteWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhiteBoxKeyResponse {
-        try await self.client.execute(action: "DeleteWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteWhiteBoxKey请求参数结构体
     public struct DeleteWhiteBoxKeyRequest: TCRequestModel {
         /// 白盒密钥的全局唯一标识符
@@ -53,5 +37,21 @@ extension Kms {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除白盒密钥
+    ///
+    /// 删除白盒密钥, 注意：必须先禁用后，才可以删除。
+    @inlinable
+    public func deleteWhiteBoxKey(_ input: DeleteWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWhiteBoxKeyResponse > {
+        self.client.execute(action: "DeleteWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除白盒密钥
+    ///
+    /// 删除白盒密钥, 注意：必须先禁用后，才可以删除。
+    @inlinable
+    public func deleteWhiteBoxKey(_ input: DeleteWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhiteBoxKeyResponse {
+        try await self.client.execute(action: "DeleteWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

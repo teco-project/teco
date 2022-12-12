@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssa {
-    /// 合规管理检查项详情
-    @inlinable
-    public func describeComplianceDetail(_ input: DescribeComplianceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceDetailResponse > {
-        self.client.execute(action: "DescribeComplianceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 合规管理检查项详情
-    @inlinable
-    public func describeComplianceDetail(_ input: DescribeComplianceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceDetailResponse {
-        try await self.client.execute(action: "DescribeComplianceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeComplianceDetail请求参数结构体
     public struct DescribeComplianceDetailRequest: TCRequestModel {
         /// 检查项uuid
@@ -53,5 +41,17 @@ extension Ssa {
             case checkConfigDetail = "CheckConfigDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 合规管理检查项详情
+    @inlinable
+    public func describeComplianceDetail(_ input: DescribeComplianceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceDetailResponse > {
+        self.client.execute(action: "DescribeComplianceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 合规管理检查项详情
+    @inlinable
+    public func describeComplianceDetail(_ input: DescribeComplianceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceDetailResponse {
+        try await self.client.execute(action: "DescribeComplianceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

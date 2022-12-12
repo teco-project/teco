@@ -722,7 +722,7 @@ extension Billing {
         /// 状态
         public let status: [UInt64]?
         
-        public init (timeRange: UInt64?, businessCode: String?, projectId: Int64?, regionId: Int64?, payMode: String?, resourceKeyword: String?, businessCodes: [String]?, productCodes: [String]?, regionIds: [Int64]?, projectIds: [Int64]?, payModes: [String]?, actionTypes: [String]?, hideFreeCost: Int64?, orderByCost: String?, billIds: [String]?, componentCodes: [String]?, fileIds: [String]?, fileTypes: [String]?, status: [UInt64]?) {
+        public init (timeRange: UInt64? = nil, businessCode: String? = nil, projectId: Int64? = nil, regionId: Int64? = nil, payMode: String? = nil, resourceKeyword: String? = nil, businessCodes: [String]? = nil, productCodes: [String]? = nil, regionIds: [Int64]? = nil, projectIds: [Int64]? = nil, payModes: [String]? = nil, actionTypes: [String]? = nil, hideFreeCost: Int64? = nil, orderByCost: String? = nil, billIds: [String]? = nil, componentCodes: [String]? = nil, fileIds: [String]? = nil, fileTypes: [String]? = nil, status: [UInt64]? = nil) {
             self.timeRange = timeRange
             self.businessCode = businessCode
             self.projectId = projectId
@@ -1568,7 +1568,7 @@ extension Billing {
         
         /// 适用商品信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let applicableProducts: ApplicableProducts
+        public let applicableProducts: ApplicableProducts?
         
         /// 不适用商品信息
         /// 注意：此字段可能返回 null，表示取不到有效值。

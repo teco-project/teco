@@ -15,48 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 提交人员考勤任务
-    ///
-    /// 提交人员考勤任务，支持包括点播和直播资源；支持通过DescribeAttendanceResult查询结果，也支持通过NoticeUrl设置考勤回调结果，回调结果结构如下：
-    /// ##### 回调事件结构
-    ///  | 参数名称 | 类型 | 描述 | 
-    ///  | ----  | ---  | ------  |
-    ///  | jobid | Integer | 任务ID | 
-    ///  | person_info | array of PersonInfo | 识别到的人员列表 | 
-    /// #####子结构PersonInfo
-    ///  | 参数名称 | 类型 | 描述 | 
-    ///  | ----  | ---  | ------  |
-    ///  | traceid | String | 可用于区分同一路视频流下的不同陌生人 | 
-    ///  | personid | String | 识别到的人员ID，如果是陌生人则返回空串 | 
-    ///  | libid | String | 识别到的人员所在的库ID，如果是陌生人则返回空串 | 
-    ///  | timestamp | uint64 | 识别到人脸的绝对时间戳，单位ms | 
-    ///  | image_url | string | 识别到人脸的事件抓图的下载地址，不长期保存，需要请及时下载 | 
-    @inlinable
-    public func submitCheckAttendanceTask(_ input: SubmitCheckAttendanceTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitCheckAttendanceTaskResponse > {
-        self.client.execute(action: "SubmitCheckAttendanceTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交人员考勤任务
-    ///
-    /// 提交人员考勤任务，支持包括点播和直播资源；支持通过DescribeAttendanceResult查询结果，也支持通过NoticeUrl设置考勤回调结果，回调结果结构如下：
-    /// ##### 回调事件结构
-    ///  | 参数名称 | 类型 | 描述 | 
-    ///  | ----  | ---  | ------  |
-    ///  | jobid | Integer | 任务ID | 
-    ///  | person_info | array of PersonInfo | 识别到的人员列表 | 
-    /// #####子结构PersonInfo
-    ///  | 参数名称 | 类型 | 描述 | 
-    ///  | ----  | ---  | ------  |
-    ///  | traceid | String | 可用于区分同一路视频流下的不同陌生人 | 
-    ///  | personid | String | 识别到的人员ID，如果是陌生人则返回空串 | 
-    ///  | libid | String | 识别到的人员所在的库ID，如果是陌生人则返回空串 | 
-    ///  | timestamp | uint64 | 识别到人脸的绝对时间戳，单位ms | 
-    ///  | image_url | string | 识别到人脸的事件抓图的下载地址，不长期保存，需要请及时下载 | 
-    @inlinable
-    public func submitCheckAttendanceTask(_ input: SubmitCheckAttendanceTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCheckAttendanceTaskResponse {
-        try await self.client.execute(action: "SubmitCheckAttendanceTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SubmitCheckAttendanceTask请求参数结构体
     public struct SubmitCheckAttendanceTaskRequest: TCRequestModel {
         /// 输入数据
@@ -88,7 +46,7 @@ extension Tci {
         /// 识别阈值；默认为0.8
         public let threshold: Float?
         
-        public init (fileContent: String, fileType: String, libraryIds: [String], attendanceThreshold: Float?, enableStranger: Bool?, endTime: Int64?, noticeUrl: String?, startTime: Int64?, threshold: Float?) {
+        public init (fileContent: String, fileType: String, libraryIds: [String], attendanceThreshold: Float? = nil, enableStranger: Bool? = nil, endTime: Int64? = nil, noticeUrl: String? = nil, startTime: Int64? = nil, threshold: Float? = nil) {
             self.fileContent = fileContent
             self.fileType = fileType
             self.libraryIds = libraryIds
@@ -129,5 +87,47 @@ extension Tci {
             case notRegisteredSet = "NotRegisteredSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交人员考勤任务
+    ///
+    /// 提交人员考勤任务，支持包括点播和直播资源；支持通过DescribeAttendanceResult查询结果，也支持通过NoticeUrl设置考勤回调结果，回调结果结构如下：
+    /// ##### 回调事件结构
+    ///  | 参数名称 | 类型 | 描述 | 
+    ///  | ----  | ---  | ------  |
+    ///  | jobid | Integer | 任务ID | 
+    ///  | person_info | array of PersonInfo | 识别到的人员列表 | 
+    /// #####子结构PersonInfo
+    ///  | 参数名称 | 类型 | 描述 | 
+    ///  | ----  | ---  | ------  |
+    ///  | traceid | String | 可用于区分同一路视频流下的不同陌生人 | 
+    ///  | personid | String | 识别到的人员ID，如果是陌生人则返回空串 | 
+    ///  | libid | String | 识别到的人员所在的库ID，如果是陌生人则返回空串 | 
+    ///  | timestamp | uint64 | 识别到人脸的绝对时间戳，单位ms | 
+    ///  | image_url | string | 识别到人脸的事件抓图的下载地址，不长期保存，需要请及时下载 | 
+    @inlinable
+    public func submitCheckAttendanceTask(_ input: SubmitCheckAttendanceTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitCheckAttendanceTaskResponse > {
+        self.client.execute(action: "SubmitCheckAttendanceTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交人员考勤任务
+    ///
+    /// 提交人员考勤任务，支持包括点播和直播资源；支持通过DescribeAttendanceResult查询结果，也支持通过NoticeUrl设置考勤回调结果，回调结果结构如下：
+    /// ##### 回调事件结构
+    ///  | 参数名称 | 类型 | 描述 | 
+    ///  | ----  | ---  | ------  |
+    ///  | jobid | Integer | 任务ID | 
+    ///  | person_info | array of PersonInfo | 识别到的人员列表 | 
+    /// #####子结构PersonInfo
+    ///  | 参数名称 | 类型 | 描述 | 
+    ///  | ----  | ---  | ------  |
+    ///  | traceid | String | 可用于区分同一路视频流下的不同陌生人 | 
+    ///  | personid | String | 识别到的人员ID，如果是陌生人则返回空串 | 
+    ///  | libid | String | 识别到的人员所在的库ID，如果是陌生人则返回空串 | 
+    ///  | timestamp | uint64 | 识别到人脸的绝对时间戳，单位ms | 
+    ///  | image_url | string | 识别到人脸的事件抓图的下载地址，不长期保存，需要请及时下载 | 
+    @inlinable
+    public func submitCheckAttendanceTask(_ input: SubmitCheckAttendanceTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCheckAttendanceTaskResponse {
+        try await self.client.execute(action: "SubmitCheckAttendanceTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

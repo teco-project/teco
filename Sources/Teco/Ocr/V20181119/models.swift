@@ -143,7 +143,7 @@ extension Ocr {
         /// 字段在原图中的中的四点坐标。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let polygon: Polygon
+        public let polygon: Polygon?
         
         enum CodingKeys: String, CodingKey {
             case name = "Name"
@@ -473,11 +473,11 @@ extension Ocr {
         
         /// 识别出的文本行四点坐标
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let vertex: Polygon
+        public let vertex: Polygon?
         
         /// 识别出的文本行在旋转纠正之后的图像中的像素坐标
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let coord: Rect
+        public let coord: Rect?
         
         enum CodingKeys: String, CodingKey {
             case name = "Name"
@@ -1230,7 +1230,7 @@ extension Ocr {
         /// 字段在原图中的中的四点坐标。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let polygon: Polygon
+        public let polygon: Polygon?
         
         enum CodingKeys: String, CodingKey {
             case name = "Name"

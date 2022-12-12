@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 修改 LoRa 网关信息
-    @inlinable
-    public func modifyLoRaGateway(_ input: ModifyLoRaGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoRaGatewayResponse > {
-        self.client.execute(action: "ModifyLoRaGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改 LoRa 网关信息
-    @inlinable
-    public func modifyLoRaGateway(_ input: ModifyLoRaGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoRaGatewayResponse {
-        try await self.client.execute(action: "ModifyLoRaGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLoRaGateway请求参数结构体
     public struct ModifyLoRaGatewayRequest: TCRequestModel {
         /// 描述信息
@@ -53,7 +41,7 @@ extension Iotexplorer {
         /// 频点ID
         public let frequencyId: String?
         
-        public init (description: String, gatewayId: String, location: LoRaGatewayLocation, name: String, isPublic: Bool?, position: String?, positionDetails: String?, frequencyId: String?) {
+        public init (description: String, gatewayId: String, location: LoRaGatewayLocation, name: String, isPublic: Bool? = nil, position: String? = nil, positionDetails: String? = nil, frequencyId: String? = nil) {
             self.description = description
             self.gatewayId = gatewayId
             self.location = location
@@ -88,5 +76,17 @@ extension Iotexplorer {
             case gateway = "Gateway"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改 LoRa 网关信息
+    @inlinable
+    public func modifyLoRaGateway(_ input: ModifyLoRaGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLoRaGatewayResponse > {
+        self.client.execute(action: "ModifyLoRaGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改 LoRa 网关信息
+    @inlinable
+    public func modifyLoRaGateway(_ input: ModifyLoRaGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoRaGatewayResponse {
+        try await self.client.execute(action: "ModifyLoRaGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

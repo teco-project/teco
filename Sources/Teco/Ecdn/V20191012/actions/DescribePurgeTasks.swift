@@ -17,24 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Ecdn {
-    /// 刷新历史查询
-    ///
-    /// DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37873"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
-    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePurgeTasksResponse > {
-        self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 刷新历史查询
-    ///
-    /// DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
-    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37873"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
-    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeTasksResponse {
-        try await self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePurgeTasks请求参数结构体
     public struct DescribePurgeTasksRequest: TCRequestModel {
         /// 查询刷新类型。url：查询 url 刷新记录；path：查询目录刷新记录。
@@ -61,7 +43,7 @@ extension Ecdn {
         /// 查询指定任务状态，fail表示失败，done表示成功，process表示刷新中。
         public let status: String?
         
-        public init (purgeType: String?, startTime: Date?, endTime: Date?, taskId: String?, offset: Int64?, limit: Int64?, keyword: String?, status: String?) {
+        public init (purgeType: String? = nil, startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, keyword: String? = nil, status: String? = nil) {
             self.purgeType = purgeType
             self.startTime = startTime
             self.endTime = endTime
@@ -100,5 +82,23 @@ extension Ecdn {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 刷新历史查询
+    ///
+    /// DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
+    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37873"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @inlinable
+    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePurgeTasksResponse > {
+        self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 刷新历史查询
+    ///
+    /// DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
+    /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37873"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    @inlinable
+    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeTasksResponse {
+        try await self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

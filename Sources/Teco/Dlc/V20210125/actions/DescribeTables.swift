@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 查询数据表列表
-    ///
-    /// 本接口（DescribeTables）用于查询数据表列表。
-    @inlinable
-    public func describeTables(_ input: DescribeTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTablesResponse > {
-        self.client.execute(action: "DescribeTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据表列表
-    ///
-    /// 本接口（DescribeTables）用于查询数据表列表。
-    @inlinable
-    public func describeTables(_ input: DescribeTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTablesResponse {
-        try await self.client.execute(action: "DescribeTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTables请求参数结构体
     public struct DescribeTablesRequest: TCRequestModel {
         /// 列出该数据库下所属数据表。
@@ -68,7 +52,7 @@ extension Dlc {
         /// 筛选字段-表格式：不传（默认）为查全部；LAKEFS：托管表；ICEBERG：非托管iceberg表；HIVE：非托管hive表；OTHER：非托管其它；
         public let tableFormat: String?
         
-        public init (databaseName: String, limit: Int64?, offset: UInt64?, filters: [Filter]?, datasourceConnectionName: String?, startTime: String?, endTime: String?, sort: String?, asc: Bool?, tableType: String?, tableFormat: String?) {
+        public init (databaseName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, datasourceConnectionName: String? = nil, startTime: String? = nil, endTime: String? = nil, sort: String? = nil, asc: Bool? = nil, tableType: String? = nil, tableFormat: String? = nil) {
             self.databaseName = databaseName
             self.limit = limit
             self.offset = offset
@@ -113,5 +97,21 @@ extension Dlc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据表列表
+    ///
+    /// 本接口（DescribeTables）用于查询数据表列表。
+    @inlinable
+    public func describeTables(_ input: DescribeTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTablesResponse > {
+        self.client.execute(action: "DescribeTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据表列表
+    ///
+    /// 本接口（DescribeTables）用于查询数据表列表。
+    @inlinable
+    public func describeTables(_ input: DescribeTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTablesResponse {
+        try await self.client.execute(action: "DescribeTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

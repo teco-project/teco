@@ -15,34 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 提交在线小班课授课任务
-    ///
-    /// **在线小班课任务**：此场景是在线授课场景，老师一般为坐着授课，摄像头可以拍摄到老师的头部及上半身。拍摄视频为一路全局画面，且背景不动，要求画面稳定清晰。通过此接口可分析老师授课的行为及语音，以支持AI评教。    
-    ///   
-    /// **提供的功能接口有：**老师人脸识别、老师表情识别、老师手势识别、光线识别、语音识别。 可分析的指标维度包括：身份识别、正脸、侧脸、人脸坐标、人脸尺寸、高兴、中性、高兴、中性、惊讶、厌恶、恐惧、愤怒、蔑视、悲伤、点赞手势、听你说手势、听我说手势、拿教具行为、语音转文字、发音时长、非发音时长、音量、语速、指定关键词的使用等 
-    ///   
-    /// **对场景的要求为：**在线常规授课场景，全局画面且背景不动；人脸上下角度在20度以内，左右角度在15度以内，歪头角度在15度以内；光照均匀，无遮挡，人脸清晰可见；像素最好在 100X100 像素以上，但是图像整体质量不能超过1080p。
-    ///     
-    /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
-    @inlinable
-    public func submitPartialBodyClassTask(_ input: SubmitPartialBodyClassTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitPartialBodyClassTaskResponse > {
-        self.client.execute(action: "SubmitPartialBodyClassTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提交在线小班课授课任务
-    ///
-    /// **在线小班课任务**：此场景是在线授课场景，老师一般为坐着授课，摄像头可以拍摄到老师的头部及上半身。拍摄视频为一路全局画面，且背景不动，要求画面稳定清晰。通过此接口可分析老师授课的行为及语音，以支持AI评教。    
-    ///   
-    /// **提供的功能接口有：**老师人脸识别、老师表情识别、老师手势识别、光线识别、语音识别。 可分析的指标维度包括：身份识别、正脸、侧脸、人脸坐标、人脸尺寸、高兴、中性、高兴、中性、惊讶、厌恶、恐惧、愤怒、蔑视、悲伤、点赞手势、听你说手势、听我说手势、拿教具行为、语音转文字、发音时长、非发音时长、音量、语速、指定关键词的使用等 
-    ///   
-    /// **对场景的要求为：**在线常规授课场景，全局画面且背景不动；人脸上下角度在20度以内，左右角度在15度以内，歪头角度在15度以内；光照均匀，无遮挡，人脸清晰可见；像素最好在 100X100 像素以上，但是图像整体质量不能超过1080p。
-    ///     
-    /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
-    @inlinable
-    public func submitPartialBodyClassTask(_ input: SubmitPartialBodyClassTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitPartialBodyClassTaskResponse {
-        try await self.client.execute(action: "SubmitPartialBodyClassTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SubmitPartialBodyClassTask请求参数结构体
     public struct SubmitPartialBodyClassTaskRequest: TCRequestModel {
         /// 输入分析对象内容，输入数据格式参考FileType参数释义
@@ -69,7 +41,7 @@ extension Tci {
         /// 语音文件类型 10:视频（三种音频格式目前仅支持16k采样率16bit），当FileType为vod_url或live_url时为必填
         public let voiceFileType: Int64?
         
-        public init (fileContent: String, fileType: String, lang: Int64?, librarySet: [String]?, maxVideoDuration: Int64?, vocabLibNameList: [String]?, voiceEncodeType: Int64?, voiceFileType: Int64?) {
+        public init (fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil) {
             self.fileContent = fileContent
             self.fileType = fileType
             self.lang = lang
@@ -108,5 +80,33 @@ extension Tci {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提交在线小班课授课任务
+    ///
+    /// **在线小班课任务**：此场景是在线授课场景，老师一般为坐着授课，摄像头可以拍摄到老师的头部及上半身。拍摄视频为一路全局画面，且背景不动，要求画面稳定清晰。通过此接口可分析老师授课的行为及语音，以支持AI评教。    
+    ///   
+    /// **提供的功能接口有：**老师人脸识别、老师表情识别、老师手势识别、光线识别、语音识别。 可分析的指标维度包括：身份识别、正脸、侧脸、人脸坐标、人脸尺寸、高兴、中性、高兴、中性、惊讶、厌恶、恐惧、愤怒、蔑视、悲伤、点赞手势、听你说手势、听我说手势、拿教具行为、语音转文字、发音时长、非发音时长、音量、语速、指定关键词的使用等 
+    ///   
+    /// **对场景的要求为：**在线常规授课场景，全局画面且背景不动；人脸上下角度在20度以内，左右角度在15度以内，歪头角度在15度以内；光照均匀，无遮挡，人脸清晰可见；像素最好在 100X100 像素以上，但是图像整体质量不能超过1080p。
+    ///     
+    /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
+    @inlinable
+    public func submitPartialBodyClassTask(_ input: SubmitPartialBodyClassTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SubmitPartialBodyClassTaskResponse > {
+        self.client.execute(action: "SubmitPartialBodyClassTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提交在线小班课授课任务
+    ///
+    /// **在线小班课任务**：此场景是在线授课场景，老师一般为坐着授课，摄像头可以拍摄到老师的头部及上半身。拍摄视频为一路全局画面，且背景不动，要求画面稳定清晰。通过此接口可分析老师授课的行为及语音，以支持AI评教。    
+    ///   
+    /// **提供的功能接口有：**老师人脸识别、老师表情识别、老师手势识别、光线识别、语音识别。 可分析的指标维度包括：身份识别、正脸、侧脸、人脸坐标、人脸尺寸、高兴、中性、高兴、中性、惊讶、厌恶、恐惧、愤怒、蔑视、悲伤、点赞手势、听你说手势、听我说手势、拿教具行为、语音转文字、发音时长、非发音时长、音量、语速、指定关键词的使用等 
+    ///   
+    /// **对场景的要求为：**在线常规授课场景，全局画面且背景不动；人脸上下角度在20度以内，左右角度在15度以内，歪头角度在15度以内；光照均匀，无遮挡，人脸清晰可见；像素最好在 100X100 像素以上，但是图像整体质量不能超过1080p。
+    ///     
+    /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
+    @inlinable
+    public func submitPartialBodyClassTask(_ input: SubmitPartialBodyClassTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitPartialBodyClassTaskResponse {
+        try await self.client.execute(action: "SubmitPartialBodyClassTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

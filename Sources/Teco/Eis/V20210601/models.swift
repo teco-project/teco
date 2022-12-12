@@ -243,7 +243,7 @@ extension Eis {
         
         /// 扩展组件列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let workerExtensions: [Date]?
+        public let workerExtensions: [RuntimeExtensionMC]?
         
         /// 环境类型：0: sandbox, 1:shared, 2:private 3: trial
         /// 注意：此字段可能返回 null，表示取不到有效值。

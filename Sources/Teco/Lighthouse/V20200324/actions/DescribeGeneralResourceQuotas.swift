@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询通用资源配额信息
-    ///
-    /// 本接口（DescribeGeneralResourceQuotas）用于查询通用资源配额信息。
-    @inlinable
-    public func describeGeneralResourceQuotas(_ input: DescribeGeneralResourceQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGeneralResourceQuotasResponse > {
-        self.client.execute(action: "DescribeGeneralResourceQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询通用资源配额信息
-    ///
-    /// 本接口（DescribeGeneralResourceQuotas）用于查询通用资源配额信息。
-    @inlinable
-    public func describeGeneralResourceQuotas(_ input: DescribeGeneralResourceQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralResourceQuotasResponse {
-        try await self.client.execute(action: "DescribeGeneralResourceQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGeneralResourceQuotas请求参数结构体
     public struct DescribeGeneralResourceQuotasRequest: TCRequestModel {
         /// 资源名列表，可取值:
@@ -68,5 +52,21 @@ extension Lighthouse {
             case generalResourceQuotaSet = "GeneralResourceQuotaSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询通用资源配额信息
+    ///
+    /// 本接口（DescribeGeneralResourceQuotas）用于查询通用资源配额信息。
+    @inlinable
+    public func describeGeneralResourceQuotas(_ input: DescribeGeneralResourceQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGeneralResourceQuotasResponse > {
+        self.client.execute(action: "DescribeGeneralResourceQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询通用资源配额信息
+    ///
+    /// 本接口（DescribeGeneralResourceQuotas）用于查询通用资源配额信息。
+    @inlinable
+    public func describeGeneralResourceQuotas(_ input: DescribeGeneralResourceQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralResourceQuotasResponse {
+        try await self.client.execute(action: "DescribeGeneralResourceQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

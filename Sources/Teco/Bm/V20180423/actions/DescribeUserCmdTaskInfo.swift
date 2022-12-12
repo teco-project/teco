@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 获取自定义脚本任务详细信息
-    @inlinable
-    public func describeUserCmdTaskInfo(_ input: DescribeUserCmdTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserCmdTaskInfoResponse > {
-        self.client.execute(action: "DescribeUserCmdTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取自定义脚本任务详细信息
-    @inlinable
-    public func describeUserCmdTaskInfo(_ input: DescribeUserCmdTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdTaskInfoResponse {
-        try await self.client.execute(action: "DescribeUserCmdTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserCmdTaskInfo请求参数结构体
     public struct DescribeUserCmdTaskInfoRequest: TCRequestModel {
         /// 任务ID
@@ -47,7 +35,7 @@ extension Bm {
         /// 关键字搜索，可搜索ID或别名，支持模糊搜索
         public let searchKey: String?
         
-        public init (taskId: String, offset: UInt64?, limit: UInt64?, orderField: String?, order: UInt64?, searchKey: String?) {
+        public init (taskId: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, searchKey: String? = nil) {
             self.taskId = taskId
             self.offset = offset
             self.limit = limit
@@ -82,5 +70,17 @@ extension Bm {
             case userCmdTaskInfoSet = "UserCmdTaskInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取自定义脚本任务详细信息
+    @inlinable
+    public func describeUserCmdTaskInfo(_ input: DescribeUserCmdTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserCmdTaskInfoResponse > {
+        self.client.execute(action: "DescribeUserCmdTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取自定义脚本任务详细信息
+    @inlinable
+    public func describeUserCmdTaskInfo(_ input: DescribeUserCmdTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdTaskInfoResponse {
+        try await self.client.execute(action: "DescribeUserCmdTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 修改媒体文件属性
-    ///
-    /// 修改媒体文件的属性，包括分类、名称、描述、标签、过期时间、打点信息、视频封面、字幕信息等。
-    @inlinable
-    public func modifyMediaInfo(_ input: ModifyMediaInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMediaInfoResponse > {
-        self.client.execute(action: "ModifyMediaInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改媒体文件属性
-    ///
-    /// 修改媒体文件的属性，包括分类、名称、描述、标签、过期时间、打点信息、视频封面、字幕信息等。
-    @inlinable
-    public func modifyMediaInfo(_ input: ModifyMediaInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMediaInfoResponse {
-        try await self.client.execute(action: "ModifyMediaInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMediaInfo请求参数结构体
     public struct ModifyMediaInfoRequest: TCRequestModel {
         /// 媒体文件唯一标识。
@@ -84,7 +68,7 @@ extension Vod {
         /// 同一个请求里，ClearSubtitles 与 AddSubtitles不能同时出现。
         public let clearSubtitles: Int64?
         
-        public init (fileId: String, subAppId: UInt64?, name: String?, description: String?, classId: Int64?, expireTime: String?, coverData: String?, addKeyFrameDescs: [MediaKeyFrameDescItem]?, deleteKeyFrameDescs: [Float]?, clearKeyFrameDescs: Int64?, addTags: [String]?, deleteTags: [String]?, clearTags: Int64?, addSubtitles: [MediaSubtitleInput]?, deleteSubtitleIds: [String]?, clearSubtitles: Int64?) {
+        public init (fileId: String, subAppId: UInt64? = nil, name: String? = nil, description: String? = nil, classId: Int64? = nil, expireTime: String? = nil, coverData: String? = nil, addKeyFrameDescs: [MediaKeyFrameDescItem]? = nil, deleteKeyFrameDescs: [Float]? = nil, clearKeyFrameDescs: Int64? = nil, addTags: [String]? = nil, deleteTags: [String]? = nil, clearTags: Int64? = nil, addSubtitles: [MediaSubtitleInput]? = nil, deleteSubtitleIds: [String]? = nil, clearSubtitles: Int64? = nil) {
             self.fileId = fileId
             self.subAppId = subAppId
             self.name = name
@@ -140,5 +124,21 @@ extension Vod {
             case addedSubtitleSet = "AddedSubtitleSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改媒体文件属性
+    ///
+    /// 修改媒体文件的属性，包括分类、名称、描述、标签、过期时间、打点信息、视频封面、字幕信息等。
+    @inlinable
+    public func modifyMediaInfo(_ input: ModifyMediaInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMediaInfoResponse > {
+        self.client.execute(action: "ModifyMediaInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改媒体文件属性
+    ///
+    /// 修改媒体文件的属性，包括分类、名称、描述、标签、过期时间、打点信息、视频封面、字幕信息等。
+    @inlinable
+    public func modifyMediaInfo(_ input: ModifyMediaInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMediaInfoResponse {
+        try await self.client.execute(action: "ModifyMediaInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

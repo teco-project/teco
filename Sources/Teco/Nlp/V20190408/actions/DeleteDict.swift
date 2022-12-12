@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Nlp {
-    /// 删除自定义词库
-    ///
-    /// 删除自定义词库，会附带相应删除词库包含的所有词条。
-    @inlinable
-    public func deleteDict(_ input: DeleteDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDictResponse > {
-        self.client.execute(action: "DeleteDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除自定义词库
-    ///
-    /// 删除自定义词库，会附带相应删除词库包含的所有词条。
-    @inlinable
-    public func deleteDict(_ input: DeleteDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDictResponse {
-        try await self.client.execute(action: "DeleteDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDict请求参数结构体
     public struct DeleteDictRequest: TCRequestModel {
         /// 要删除的自定义词库ID。
@@ -53,5 +37,21 @@ extension Nlp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除自定义词库
+    ///
+    /// 删除自定义词库，会附带相应删除词库包含的所有词条。
+    @inlinable
+    public func deleteDict(_ input: DeleteDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDictResponse > {
+        self.client.execute(action: "DeleteDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除自定义词库
+    ///
+    /// 删除自定义词库，会附带相应删除词库包含的所有词条。
+    @inlinable
+    public func deleteDict(_ input: DeleteDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDictResponse {
+        try await self.client.execute(action: "DeleteDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

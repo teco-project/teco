@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 创建配置项
-    @inlinable
-    public func createConfig(_ input: CreateConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConfigResponse > {
-        self.client.execute(action: "CreateConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建配置项
-    @inlinable
-    public func createConfig(_ input: CreateConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigResponse {
-        try await self.client.execute(action: "CreateConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateConfig请求参数结构体
     public struct CreateConfigRequest: TCRequestModel {
         /// 配置项名称
@@ -53,7 +41,7 @@ extension Tsf {
         /// 无
         public let programIdList: [String]?
         
-        public init (configName: String, configVersion: String, configValue: String, applicationId: String, configVersionDesc: String?, configType: String?, encodeWithBase64: Bool?, programIdList: [String]?) {
+        public init (configName: String, configVersion: String, configValue: String, applicationId: String, configVersionDesc: String? = nil, configType: String? = nil, encodeWithBase64: Bool? = nil, programIdList: [String]? = nil) {
             self.configName = configName
             self.configVersion = configVersion
             self.configValue = configValue
@@ -89,5 +77,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建配置项
+    @inlinable
+    public func createConfig(_ input: CreateConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConfigResponse > {
+        self.client.execute(action: "CreateConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建配置项
+    @inlinable
+    public func createConfig(_ input: CreateConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigResponse {
+        try await self.client.execute(action: "CreateConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

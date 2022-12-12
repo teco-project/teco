@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 删除异地登录记录
-    ///
-    /// 本接口 (DeleteNonlocalLoginPlaces) 用于删除异地登录记录。
-    @inlinable
-    public func deleteNonlocalLoginPlaces(_ input: DeleteNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNonlocalLoginPlacesResponse > {
-        self.client.execute(action: "DeleteNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除异地登录记录
-    ///
-    /// 本接口 (DeleteNonlocalLoginPlaces) 用于删除异地登录记录。
-    @inlinable
-    public func deleteNonlocalLoginPlaces(_ input: DeleteNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNonlocalLoginPlacesResponse {
-        try await self.client.execute(action: "DeleteNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteNonlocalLoginPlaces请求参数结构体
     public struct DeleteNonlocalLoginPlacesRequest: TCRequestModel {
         /// 异地登录事件ID数组。
@@ -53,5 +37,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除异地登录记录
+    ///
+    /// 本接口 (DeleteNonlocalLoginPlaces) 用于删除异地登录记录。
+    @inlinable
+    public func deleteNonlocalLoginPlaces(_ input: DeleteNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNonlocalLoginPlacesResponse > {
+        self.client.execute(action: "DeleteNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除异地登录记录
+    ///
+    /// 本接口 (DeleteNonlocalLoginPlaces) 用于删除异地登录记录。
+    @inlinable
+    public func deleteNonlocalLoginPlaces(_ input: DeleteNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNonlocalLoginPlacesResponse {
+        try await self.client.execute(action: "DeleteNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

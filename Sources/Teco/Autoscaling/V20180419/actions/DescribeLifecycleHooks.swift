@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 查询生命周期挂钩
-    ///
-    /// 本接口（DescribeLifecycleHooks）用于查询生命周期挂钩信息。
-    /// * 可以根据伸缩组ID、生命周期挂钩ID或者生命周期挂钩名称等信息来查询生命周期挂钩的详细信息。过滤信息详细请见过滤器`Filter`。
-    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的生命周期挂钩。
-    @inlinable
-    public func describeLifecycleHooks(_ input: DescribeLifecycleHooksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLifecycleHooksResponse > {
-        self.client.execute(action: "DescribeLifecycleHooks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询生命周期挂钩
-    ///
-    /// 本接口（DescribeLifecycleHooks）用于查询生命周期挂钩信息。
-    /// * 可以根据伸缩组ID、生命周期挂钩ID或者生命周期挂钩名称等信息来查询生命周期挂钩的详细信息。过滤信息详细请见过滤器`Filter`。
-    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的生命周期挂钩。
-    @inlinable
-    public func describeLifecycleHooks(_ input: DescribeLifecycleHooksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLifecycleHooksResponse {
-        try await self.client.execute(action: "DescribeLifecycleHooks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLifecycleHooks请求参数结构体
     public struct DescribeLifecycleHooksRequest: TCRequestModel {
         /// 按照一个或者多个生命周期挂钩ID查询。生命周期挂钩ID形如：`ash-8azjzxcl`。每次请求的上限为100。参数不支持同时指定`LifecycleHookIds`和`Filters`。
@@ -53,7 +33,7 @@ extension As {
         /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let offset: UInt64?
         
-        public init (lifecycleHookIds: [String]?, filters: [Filter]?, limit: UInt64?, offset: UInt64?) {
+        public init (lifecycleHookIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.lifecycleHookIds = lifecycleHookIds
             self.filters = filters
             self.limit = limit
@@ -84,5 +64,25 @@ extension As {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询生命周期挂钩
+    ///
+    /// 本接口（DescribeLifecycleHooks）用于查询生命周期挂钩信息。
+    /// * 可以根据伸缩组ID、生命周期挂钩ID或者生命周期挂钩名称等信息来查询生命周期挂钩的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的生命周期挂钩。
+    @inlinable
+    public func describeLifecycleHooks(_ input: DescribeLifecycleHooksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLifecycleHooksResponse > {
+        self.client.execute(action: "DescribeLifecycleHooks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询生命周期挂钩
+    ///
+    /// 本接口（DescribeLifecycleHooks）用于查询生命周期挂钩信息。
+    /// * 可以根据伸缩组ID、生命周期挂钩ID或者生命周期挂钩名称等信息来查询生命周期挂钩的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的生命周期挂钩。
+    @inlinable
+    public func describeLifecycleHooks(_ input: DescribeLifecycleHooksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLifecycleHooksResponse {
+        try await self.client.execute(action: "DescribeLifecycleHooks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

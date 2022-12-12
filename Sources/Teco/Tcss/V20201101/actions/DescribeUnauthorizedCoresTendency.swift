@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询当天未授权核数趋势
-    @inlinable
-    public func describeUnauthorizedCoresTendency(_ input: DescribeUnauthorizedCoresTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnauthorizedCoresTendencyResponse > {
-        self.client.execute(action: "DescribeUnauthorizedCoresTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询当天未授权核数趋势
-    @inlinable
-    public func describeUnauthorizedCoresTendency(_ input: DescribeUnauthorizedCoresTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnauthorizedCoresTendencyResponse {
-        try await self.client.execute(action: "DescribeUnauthorizedCoresTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUnauthorizedCoresTendency请求参数结构体
     public struct DescribeUnauthorizedCoresTendencyRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Tcss {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询当天未授权核数趋势
+    @inlinable
+    public func describeUnauthorizedCoresTendency(_ input: DescribeUnauthorizedCoresTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnauthorizedCoresTendencyResponse > {
+        self.client.execute(action: "DescribeUnauthorizedCoresTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询当天未授权核数趋势
+    @inlinable
+    public func describeUnauthorizedCoresTendency(_ input: DescribeUnauthorizedCoresTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnauthorizedCoresTendencyResponse {
+        try await self.client.execute(action: "DescribeUnauthorizedCoresTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

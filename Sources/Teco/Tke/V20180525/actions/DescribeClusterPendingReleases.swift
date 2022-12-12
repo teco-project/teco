@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询集群安装中的应用列表
-    ///
-    /// 在应用市场中查询正在安装中的应用列表
-    @inlinable
-    public func describeClusterPendingReleases(_ input: DescribeClusterPendingReleasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterPendingReleasesResponse > {
-        self.client.execute(action: "DescribeClusterPendingReleases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群安装中的应用列表
-    ///
-    /// 在应用市场中查询正在安装中的应用列表
-    @inlinable
-    public func describeClusterPendingReleases(_ input: DescribeClusterPendingReleasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterPendingReleasesResponse {
-        try await self.client.execute(action: "DescribeClusterPendingReleases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterPendingReleases请求参数结构体
     public struct DescribeClusterPendingReleasesRequest: TCRequestModel {
         /// 集群ID
@@ -45,7 +29,7 @@ extension Tke {
         /// 集群类型
         public let clusterType: String?
         
-        public init (clusterId: String, limit: Int64?, offset: Int64?, clusterType: String?) {
+        public init (clusterId: String, limit: Int64? = nil, offset: Int64? = nil, clusterType: String? = nil) {
             self.clusterId = clusterId
             self.limit = limit
             self.offset = offset
@@ -88,5 +72,21 @@ extension Tke {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群安装中的应用列表
+    ///
+    /// 在应用市场中查询正在安装中的应用列表
+    @inlinable
+    public func describeClusterPendingReleases(_ input: DescribeClusterPendingReleasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterPendingReleasesResponse > {
+        self.client.execute(action: "DescribeClusterPendingReleases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群安装中的应用列表
+    ///
+    /// 在应用市场中查询正在安装中的应用列表
+    @inlinable
+    public func describeClusterPendingReleases(_ input: DescribeClusterPendingReleasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterPendingReleasesResponse {
+        try await self.client.execute(action: "DescribeClusterPendingReleases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

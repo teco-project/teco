@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取物模型定义
-    ///
-    /// 本接口（DescribeIotModel）用于获取物模型定义详情。
-    @inlinable
-    public func describeIotModel(_ input: DescribeIotModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIotModelResponse > {
-        self.client.execute(action: "DescribeIotModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取物模型定义
-    ///
-    /// 本接口（DescribeIotModel）用于获取物模型定义详情。
-    @inlinable
-    public func describeIotModel(_ input: DescribeIotModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotModelResponse {
-        try await self.client.execute(action: "DescribeIotModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIotModel请求参数结构体
     public struct DescribeIotModelRequest: TCRequestModel {
         /// 产品ID
@@ -63,5 +47,21 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取物模型定义
+    ///
+    /// 本接口（DescribeIotModel）用于获取物模型定义详情。
+    @inlinable
+    public func describeIotModel(_ input: DescribeIotModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIotModelResponse > {
+        self.client.execute(action: "DescribeIotModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取物模型定义
+    ///
+    /// 本接口（DescribeIotModel）用于获取物模型定义详情。
+    @inlinable
+    public func describeIotModel(_ input: DescribeIotModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotModelResponse {
+        try await self.client.execute(action: "DescribeIotModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

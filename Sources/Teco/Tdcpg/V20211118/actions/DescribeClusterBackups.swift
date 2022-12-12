@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdcpg {
-    /// 查询集群的备份集
-    @inlinable
-    public func describeClusterBackups(_ input: DescribeClusterBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterBackupsResponse > {
-        self.client.execute(action: "DescribeClusterBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群的备份集
-    @inlinable
-    public func describeClusterBackups(_ input: DescribeClusterBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterBackupsResponse {
-        try await self.client.execute(action: "DescribeClusterBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterBackups请求参数结构体
     public struct DescribeClusterBackupsRequest: TCRequestModel {
         /// 集群ID
@@ -38,7 +26,7 @@ extension Tdcpg {
         /// 每页个数，取值范围为默认为[1,100]，默认值为20
         public let pageSize: Int64?
         
-        public init (clusterId: String, pageNumber: Int64?, pageSize: Int64?) {
+        public init (clusterId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil) {
             self.clusterId = clusterId
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -67,5 +55,17 @@ extension Tdcpg {
             case backupSet = "BackupSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群的备份集
+    @inlinable
+    public func describeClusterBackups(_ input: DescribeClusterBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterBackupsResponse > {
+        self.client.execute(action: "DescribeClusterBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群的备份集
+    @inlinable
+    public func describeClusterBackups(_ input: DescribeClusterBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterBackupsResponse {
+        try await self.client.execute(action: "DescribeClusterBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

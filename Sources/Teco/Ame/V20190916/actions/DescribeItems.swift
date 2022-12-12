@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取分类内容下歌曲列表
-    ///
-    /// 该服务后续会停用，不再建议使用
-    @inlinable
-    public func describeItems(_ input: DescribeItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeItemsResponse > {
-        self.client.execute(action: "DescribeItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取分类内容下歌曲列表
-    ///
-    /// 该服务后续会停用，不再建议使用
-    @inlinable
-    public func describeItems(_ input: DescribeItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeItemsResponse {
-        try await self.client.execute(action: "DescribeItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeItems请求参数结构体
     public struct DescribeItemsRequest: TCRequestModel {
         /// offset (Default = 0)，(当前页-1) * Limit
@@ -45,7 +29,7 @@ extension Ame {
         /// （电台/歌单）ID，CategoryId和CategoryCode两个必传1个，可以从<a href="https://cloud.tencent.com/document/product/1155/40109">获取分类内容（Station）列表接口</a>中获取。
         public let categoryCode: String?
         
-        public init (offset: UInt64, limit: UInt64, categoryId: String?, categoryCode: String?) {
+        public init (offset: UInt64, limit: UInt64, categoryId: String? = nil, categoryCode: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.categoryId = categoryId
@@ -90,5 +74,21 @@ extension Ame {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取分类内容下歌曲列表
+    ///
+    /// 该服务后续会停用，不再建议使用
+    @inlinable
+    public func describeItems(_ input: DescribeItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeItemsResponse > {
+        self.client.execute(action: "DescribeItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取分类内容下歌曲列表
+    ///
+    /// 该服务后续会停用，不再建议使用
+    @inlinable
+    public func describeItems(_ input: DescribeItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeItemsResponse {
+        try await self.client.execute(action: "DescribeItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

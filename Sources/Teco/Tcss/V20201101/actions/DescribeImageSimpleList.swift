@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询全部镜像列表
-    ///
-    /// DescribeImageSimpleList 查询全部镜像列表
-    @inlinable
-    public func describeImageSimpleList(_ input: DescribeImageSimpleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageSimpleListResponse > {
-        self.client.execute(action: "DescribeImageSimpleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询全部镜像列表
-    ///
-    /// DescribeImageSimpleList 查询全部镜像列表
-    @inlinable
-    public func describeImageSimpleList(_ input: DescribeImageSimpleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSimpleListResponse {
-        try await self.client.execute(action: "DescribeImageSimpleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageSimpleList请求参数结构体
     public struct DescribeImageSimpleListRequest: TCRequestModel {
         /// IsAuthorized 是否已经授权, 0:否 1:是 无:全部
@@ -48,7 +32,7 @@ extension Tcss {
         /// 排序字段
         public let by: String?
         
-        public init (filters: [RunTimeFilters]?, limit: UInt64?, offset: UInt64?, order: String?, by: String?) {
+        public init (filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -81,5 +65,21 @@ extension Tcss {
             case imageCnt = "ImageCnt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询全部镜像列表
+    ///
+    /// DescribeImageSimpleList 查询全部镜像列表
+    @inlinable
+    public func describeImageSimpleList(_ input: DescribeImageSimpleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageSimpleListResponse > {
+        self.client.execute(action: "DescribeImageSimpleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询全部镜像列表
+    ///
+    /// DescribeImageSimpleList 查询全部镜像列表
+    @inlinable
+    public func describeImageSimpleList(_ input: DescribeImageSimpleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSimpleListResponse {
+        try await self.client.execute(action: "DescribeImageSimpleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

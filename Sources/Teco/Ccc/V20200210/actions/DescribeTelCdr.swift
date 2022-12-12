@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 获取电话服务记录与录音
-    @inlinable
-    public func describeTelCdr(_ input: DescribeTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTelCdrResponse > {
-        self.client.execute(action: "DescribeTelCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取电话服务记录与录音
-    @inlinable
-    public func describeTelCdr(_ input: DescribeTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelCdrResponse {
-        try await self.client.execute(action: "DescribeTelCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTelCdr请求参数结构体
     public struct DescribeTelCdrRequest: TCRequestModel {
         /// 起始时间戳，Unix 秒级时间戳
@@ -59,7 +47,7 @@ extension Ccc {
         /// 按SessionId筛选
         public let sessionIds: [String]?
         
-        public init (startTimeStamp: Int64, endTimeStamp: Int64, instanceId: Int64?, limit: Int64?, offset: Int64?, sdkAppId: Int64?, pageSize: Int64?, pageNumber: Int64?, phones: [String]?, sessionIds: [String]?) {
+        public init (startTimeStamp: Int64, endTimeStamp: Int64, instanceId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, sdkAppId: Int64? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, phones: [String]? = nil, sessionIds: [String]? = nil) {
             self.startTimeStamp = startTimeStamp
             self.endTimeStamp = endTimeStamp
             self.instanceId = instanceId
@@ -102,5 +90,17 @@ extension Ccc {
             case telCdrs = "TelCdrs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取电话服务记录与录音
+    @inlinable
+    public func describeTelCdr(_ input: DescribeTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTelCdrResponse > {
+        self.client.execute(action: "DescribeTelCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取电话服务记录与录音
+    @inlinable
+    public func describeTelCdr(_ input: DescribeTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelCdrResponse {
+        try await self.client.execute(action: "DescribeTelCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

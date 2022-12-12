@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 停止设备推流
-    ///
-    /// 本接口（DisableDeviceStream）用于停止设备推流，可进行批量操作，每次操作最多100台设备。
-    @inlinable
-    public func disableDeviceStream(_ input: DisableDeviceStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableDeviceStreamResponse > {
-        self.client.execute(action: "DisableDeviceStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止设备推流
-    ///
-    /// 本接口（DisableDeviceStream）用于停止设备推流，可进行批量操作，每次操作最多100台设备。
-    @inlinable
-    public func disableDeviceStream(_ input: DisableDeviceStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableDeviceStreamResponse {
-        try await self.client.execute(action: "DisableDeviceStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableDeviceStream请求参数结构体
     public struct DisableDeviceStreamRequest: TCRequestModel {
         /// 设备TID列表
@@ -53,5 +37,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止设备推流
+    ///
+    /// 本接口（DisableDeviceStream）用于停止设备推流，可进行批量操作，每次操作最多100台设备。
+    @inlinable
+    public func disableDeviceStream(_ input: DisableDeviceStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableDeviceStreamResponse > {
+        self.client.execute(action: "DisableDeviceStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止设备推流
+    ///
+    /// 本接口（DisableDeviceStream）用于停止设备推流，可进行批量操作，每次操作最多100台设备。
+    @inlinable
+    public func disableDeviceStream(_ input: DisableDeviceStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableDeviceStreamResponse {
+        try await self.client.execute(action: "DisableDeviceStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

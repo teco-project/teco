@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 创建黑石弹性公网 EIPACL
-    @inlinable
-    public func createEipAcl(_ input: CreateEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEipAclResponse > {
-        self.client.execute(action: "CreateEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建黑石弹性公网 EIPACL
-    @inlinable
-    public func createEipAcl(_ input: CreateEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEipAclResponse {
-        try await self.client.execute(action: "CreateEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEipAcl请求参数结构体
     public struct CreateEipAclRequest: TCRequestModel {
         /// ACL 名称
@@ -70,5 +58,17 @@ extension Bmeip {
             case createdAt = "CreatedAt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建黑石弹性公网 EIPACL
+    @inlinable
+    public func createEipAcl(_ input: CreateEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEipAclResponse > {
+        self.client.execute(action: "CreateEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建黑石弹性公网 EIPACL
+    @inlinable
+    public func createEipAcl(_ input: CreateEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEipAclResponse {
+        try await self.client.execute(action: "CreateEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

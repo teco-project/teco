@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 创建子应用
-    ///
-    /// 该接口用于创建点播子应用。
-    @inlinable
-    public func createSubAppId(_ input: CreateSubAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubAppIdResponse > {
-        self.client.execute(action: "CreateSubAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建子应用
-    ///
-    /// 该接口用于创建点播子应用。
-    @inlinable
-    public func createSubAppId(_ input: CreateSubAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubAppIdResponse {
-        try await self.client.execute(action: "CreateSubAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSubAppId请求参数结构体
     public struct CreateSubAppIdRequest: TCRequestModel {
         /// 子应用名称，长度限制：40个字符。
@@ -39,7 +23,7 @@ extension Vod {
         /// 子应用简介，长度限制： 300个字符。
         public let description: String?
         
-        public init (name: String, description: String?) {
+        public init (name: String, description: String? = nil) {
             self.name = name
             self.description = description
         }
@@ -62,5 +46,21 @@ extension Vod {
             case subAppId = "SubAppId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建子应用
+    ///
+    /// 该接口用于创建点播子应用。
+    @inlinable
+    public func createSubAppId(_ input: CreateSubAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubAppIdResponse > {
+        self.client.execute(action: "CreateSubAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建子应用
+    ///
+    /// 该接口用于创建点播子应用。
+    @inlinable
+    public func createSubAppId(_ input: CreateSubAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubAppIdResponse {
+        try await self.client.execute(action: "CreateSubAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

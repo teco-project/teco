@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 创建实例询价
-    @inlinable
-    public func inquiryPriceCreateInstance(_ input: InquiryPriceCreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateInstanceResponse > {
-        self.client.execute(action: "InquiryPriceCreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例询价
-    @inlinable
-    public func inquiryPriceCreateInstance(_ input: InquiryPriceCreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateInstanceResponse {
-        try await self.client.execute(action: "InquiryPriceCreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceCreateInstance请求参数结构体
     public struct InquiryPriceCreateInstanceRequest: TCRequestModel {
         /// 购买实例的时间单位。取值范围：
@@ -61,13 +49,13 @@ extension Emr {
         public let software: [String]
         
         /// 询价的节点规格。
-        public let resourceSpec: NewResourceSpec
+        public let resourceSpec: NewResourceSpec?
         
         /// 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
-        public let placement: Placement
+        public let placement: Placement?
         
         /// 私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。
-        public let vpcSettings: VPCSettings
+        public let vpcSettings: VPCSettings?
         
         /// hive共享元数据库类型。取值范围：
         /// <li>EMR_NEW_META：表示集群默认创建</li>
@@ -79,7 +67,7 @@ extension Emr {
         public let unifyMetaInstanceId: String?
         
         /// 自定义MetaDB信息
-        public let metaDBInfo: CustomMetaInfo
+        public let metaDBInfo: CustomMetaInfo?
         
         /// 产品ID，不同产品ID表示不同的EMR产品版本。取值范围：
         /// <li>1：表示EMR-V1.3.1。</li>
@@ -104,7 +92,7 @@ extension Emr {
         /// 可用区的规格信息
         public let multiZoneSettings: [MultiZoneSetting]?
         
-        public init (timeUnit: String, timeSpan: UInt64, currency: String, payMode: UInt64, supportHA: UInt64, software: [String], resourceSpec: NewResourceSpec, placement: Placement, vpcSettings: VPCSettings, metaType: String?, unifyMetaInstanceId: String?, metaDBInfo: CustomMetaInfo, productId: UInt64?, sceneName: String?, externalService: [ExternalService]?, versionID: UInt64?, multiZoneSettings: [MultiZoneSetting]?) {
+        public init (timeUnit: String, timeSpan: UInt64, currency: String, payMode: UInt64, supportHA: UInt64, software: [String], resourceSpec: NewResourceSpec? = nil, placement: Placement? = nil, vpcSettings: VPCSettings? = nil, metaType: String? = nil, unifyMetaInstanceId: String? = nil, metaDBInfo: CustomMetaInfo? = nil, productId: UInt64? = nil, sceneName: String? = nil, externalService: [ExternalService]? = nil, versionID: UInt64? = nil, multiZoneSettings: [MultiZoneSetting]? = nil) {
             self.timeUnit = timeUnit
             self.timeSpan = timeSpan
             self.currency = currency
@@ -175,5 +163,17 @@ extension Emr {
             case timeSpan = "TimeSpan"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例询价
+    @inlinable
+    public func inquiryPriceCreateInstance(_ input: InquiryPriceCreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateInstanceResponse > {
+        self.client.execute(action: "InquiryPriceCreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例询价
+    @inlinable
+    public func inquiryPriceCreateInstance(_ input: InquiryPriceCreateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateInstanceResponse {
+        try await self.client.execute(action: "InquiryPriceCreateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

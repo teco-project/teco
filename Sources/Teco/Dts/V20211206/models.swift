@@ -68,7 +68,7 @@ extension Dts {
         
         /// 任务步骤信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let progress: ProcessProgress
+        public let progress: ProcessProgress?
         
         enum CodingKeys: String, CodingKey {
             case startAt = "StartAt"
@@ -122,11 +122,11 @@ extension Dts {
     public struct CompareDetailInfo: TCOutputModel {
         /// 数据不一致的表详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let difference: DifferenceDetail
+        public let difference: DifferenceDetail?
         
         /// 跳过校验的表详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let skipped: SkippedDetail
+        public let skipped: SkippedDetail?
         
         enum CodingKeys: String, CodingKey {
             case difference = "Difference"
@@ -138,13 +138,13 @@ extension Dts {
     public struct CompareObject: TCInputModel, TCOutputModel {
         /// 迁移对象模式 all(所有迁移对象)，partial(部分对象迁移)
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let objectMode: String
+        public let objectMode: String?
         
         /// 迁移对象库表配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let objectItems: [CompareObjectItem]?
         
-        public init (objectMode: String, objectItems: [CompareObjectItem]?) {
+        public init (objectMode: String, objectItems: [CompareObjectItem]? = nil) {
             self.objectMode = objectMode
             self.objectItems = objectItems
         }
@@ -159,11 +159,11 @@ extension Dts {
     public struct CompareObjectItem: TCInputModel, TCOutputModel {
         /// 迁移的库
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dbName: String
+        public let dbName: String?
         
         /// 数据库选择模式: all 为当前对象下的所有对象,partial 为部分对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dbMode: String
+        public let dbMode: String?
         
         /// 迁移的 schema
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -185,7 +185,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let views: [CompareViewItem]?
         
-        public init (dbName: String, dbMode: String, schemaName: String?, tableMode: String?, tables: [CompareTableItem]?, viewMode: String?, views: [CompareViewItem]?) {
+        public init (dbName: String, dbMode: String, schemaName: String? = nil, tableMode: String? = nil, tables: [CompareTableItem]? = nil, viewMode: String? = nil, views: [CompareViewItem]? = nil) {
             self.dbName = dbName
             self.dbMode = dbMode
             self.schemaName = schemaName
@@ -212,7 +212,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
         
-        public init (tableName: String?) {
+        public init (tableName: String? = nil) {
             self.tableName = tableName
         }
         
@@ -257,15 +257,15 @@ extension Dts {
         
         /// 对比任务配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let config: CompareObject
+        public let config: CompareObject?
         
         /// 对比任务校验详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let checkProcess: ProcessProgress
+        public let checkProcess: ProcessProgress?
         
         /// 对比任务运行详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let compareProcess: ProcessProgress
+        public let compareProcess: ProcessProgress?
         
         /// 对比结果, 可能的值：same - 一致；different - 不一致；skipAll - 跳过
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -304,7 +304,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let viewName: String?
         
-        public init (viewName: String?) {
+        public init (viewName: String? = nil) {
             self.viewName = viewName
         }
         
@@ -327,7 +327,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let conditionOrderInSrcAndDst: String?
         
-        public init (conditionColumn: String?, conditionOperator: String?, conditionOrderInSrcAndDst: String?) {
+        public init (conditionColumn: String? = nil, conditionOperator: String? = nil, conditionOrderInSrcAndDst: String? = nil) {
             self.conditionColumn = conditionColumn
             self.conditionOperator = conditionOperator
             self.conditionOrderInSrcAndDst = conditionOrderInSrcAndDst
@@ -346,7 +346,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mode: String?
         
-        public init (mode: String?) {
+        public init (mode: String? = nil) {
             self.mode = mode
         }
         
@@ -359,23 +359,23 @@ extension Dts {
     public struct DBEndpointInfo: TCInputModel, TCOutputModel {
         /// 实例所在地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let region: String
+        public let region: String?
         
         /// 实例网络接入类型，如：extranet(外网)、ipv6(公网ipv6)、cvm(云主机自建)、dcg(专线接入)、vpncloud(vpn接入的实例)、cdb(云数据库)、ccn(云联网)、intranet(自研上云)、vpc(私有网络)等，注意具体可选值依赖当前链路
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let accessType: String
+        public let accessType: String?
         
         /// 实例数据库类型，如：mysql,redis,mongodb,postgresql,mariadb,percona 等
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let databaseType: String
+        public let databaseType: String?
         
         /// 节点类型，为空或者"simple":表示普通节点，"cluster": 集群节点
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let nodeType: String
+        public let nodeType: String?
         
         /// 数据库信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let info: [DBInfo]
+        public let info: [DBInfo]?
         
         /// 实例服务提供商，如:"aliyun","others"
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -386,7 +386,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraAttr: [KeyValuePairOption]?
         
-        public init (region: String, accessType: String, databaseType: String, nodeType: String, info: [DBInfo], supplier: String?, extraAttr: [KeyValuePairOption]?) {
+        public init (region: String, accessType: String, databaseType: String, nodeType: String, info: [DBInfo], supplier: String? = nil, extraAttr: [KeyValuePairOption]? = nil) {
             self.region = region
             self.accessType = accessType
             self.databaseType = databaseType
@@ -489,7 +489,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tmpToken: String?
         
-        public init (role: String?, dbKernel: String?, host: String?, port: UInt64?, user: String?, password: String?, cvmInstanceId: String?, uniqVpnGwId: String?, uniqDcgId: String?, instanceId: String?, ccnGwId: String?, vpcId: String?, subnetId: String?, engineVersion: String?, account: String?, accountRole: String?, accountMode: String?, tmpSecretId: String?, tmpSecretKey: String?, tmpToken: String?) {
+        public init (role: String? = nil, dbKernel: String? = nil, host: String? = nil, port: UInt64? = nil, user: String? = nil, password: String? = nil, cvmInstanceId: String? = nil, uniqVpnGwId: String? = nil, uniqDcgId: String? = nil, instanceId: String? = nil, ccnGwId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, engineVersion: String? = nil, account: String? = nil, accountRole: String? = nil, accountMode: String? = nil, tmpSecretId: String? = nil, tmpSecretKey: String? = nil, tmpToken: String? = nil) {
             self.role = role
             self.dbKernel = dbKernel
             self.host = host
@@ -618,7 +618,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let triggers: [String]?
         
-        public init (dbName: String?, newDbName: String?, schemaName: String?, newSchemaName: String?, dbMode: String?, schemaMode: String?, tableMode: String?, tables: [TableItem]?, viewMode: String?, views: [ViewItem]?, roleMode: String?, roles: [RoleItem]?, functionMode: String?, triggerMode: String?, eventMode: String?, procedureMode: String?, functions: [String]?, procedures: [String]?, events: [String]?, triggers: [String]?) {
+        public init (dbName: String? = nil, newDbName: String? = nil, schemaName: String? = nil, newSchemaName: String? = nil, dbMode: String? = nil, schemaMode: String? = nil, tableMode: String? = nil, tables: [TableItem]? = nil, viewMode: String? = nil, views: [ViewItem]? = nil, roleMode: String? = nil, roles: [RoleItem]? = nil, functionMode: String? = nil, triggerMode: String? = nil, eventMode: String? = nil, procedureMode: String? = nil, functions: [String]? = nil, procedures: [String]? = nil, events: [String]? = nil, triggers: [String]? = nil) {
             self.dbName = dbName
             self.newDbName = newDbName
             self.schemaName = schemaName
@@ -719,7 +719,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let procedures: [String]?
         
-        public init (dbName: String?, newDbName: String?, dbMode: String?, schemaName: String?, newSchemaName: String?, tableMode: String?, tables: [Table]?, viewMode: String?, views: [View]?, functionMode: String?, functions: [String]?, procedureMode: String?, procedures: [String]?) {
+        public init (dbName: String? = nil, newDbName: String? = nil, dbMode: String? = nil, schemaName: String? = nil, newSchemaName: String? = nil, tableMode: String? = nil, tables: [Table]? = nil, viewMode: String? = nil, views: [View]? = nil, functionMode: String? = nil, functions: [String]? = nil, procedureMode: String? = nil, procedures: [String]? = nil) {
             self.dbName = dbName
             self.newDbName = newDbName
             self.dbMode = dbMode
@@ -756,7 +756,7 @@ extension Dts {
     public struct DatabaseTableObject: TCInputModel, TCOutputModel {
         /// 迁移对象类型 all(全实例)，partial(部分对象)
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let objectMode: String
+        public let objectMode: String?
         
         /// 迁移对象，当 ObjectMode 为 partial 时，不为空
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -766,7 +766,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advancedObjects: [String]?
         
-        public init (objectMode: String, databases: [DBItem]?, advancedObjects: [String]?) {
+        public init (objectMode: String, databases: [DBItem]? = nil, advancedObjects: [String]? = nil) {
             self.objectMode = objectMode
             self.databases = databases
             self.advancedObjects = advancedObjects
@@ -789,7 +789,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ddlValue: [String]?
         
-        public init (ddlObject: String?, ddlValue: [String]?) {
+        public init (ddlObject: String? = nil, ddlValue: [String]? = nil) {
             self.ddlObject = ddlObject
             self.ddlValue = ddlValue
         }
@@ -1012,7 +1012,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let roleExternalId: String?
         
-        public init (region: String?, dbKernel: String?, instanceId: String?, ip: String?, port: UInt64?, user: String?, password: String?, dbName: String?, vpcId: String?, subnetId: String?, cvmInstanceId: String?, uniqDcgId: String?, uniqVpnGwId: String?, ccnId: String?, supplier: String?, engineVersion: String?, accountMode: String?, account: String?, accountRole: String?, tmpSecretId: String?, tmpSecretKey: String?, tmpToken: String?, roleExternalId: String?) {
+        public init (region: String? = nil, dbKernel: String? = nil, instanceId: String? = nil, ip: String? = nil, port: UInt64? = nil, user: String? = nil, password: String? = nil, dbName: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cvmInstanceId: String? = nil, uniqDcgId: String? = nil, uniqVpnGwId: String? = nil, ccnId: String? = nil, supplier: String? = nil, engineVersion: String? = nil, accountMode: String? = nil, account: String? = nil, accountRole: String? = nil, tmpSecretId: String? = nil, tmpSecretKey: String? = nil, tmpToken: String? = nil, roleExternalId: String? = nil) {
             self.region = region
             self.dbKernel = dbKernel
             self.instanceId = instanceId
@@ -1135,27 +1135,27 @@ extension Dts {
         
         /// 任务操作信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let action: MigrateAction
+        public let action: MigrateAction?
         
         /// 迁移执行过程信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let stepInfo: MigrateDetailInfo
+        public let stepInfo: MigrateDetailInfo?
         
         /// 源实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let srcInfo: DBEndpointInfo
+        public let srcInfo: DBEndpointInfo?
         
         /// 目标端信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dstInfo: DBEndpointInfo
+        public let dstInfo: DBEndpointInfo?
         
         /// 数据一致性校验结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let compareTask: CompareTaskInfo
+        public let compareTask: CompareTaskInfo?
         
         /// 计费状态信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tradeInfo: TradeInfo
+        public let tradeInfo: TradeInfo?
         
         /// 标签信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1192,7 +1192,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
         
-        public init (key: String?, value: String?) {
+        public init (key: String? = nil, value: String? = nil) {
             self.key = key
             self.value = value
         }
@@ -1284,7 +1284,7 @@ extension Dts {
     public struct MigrateOption: TCInputModel, TCOutputModel {
         /// 迁移对象选项，需要告知迁移服务迁移哪些库表对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let databaseTable: DatabaseTableObject
+        public let databaseTable: DatabaseTableObject?
         
         /// 迁移类型，full(全量迁移)，structure(结构迁移)，fullAndIncrement(全量加增量迁移)， 默认为fullAndIncrement
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1292,7 +1292,7 @@ extension Dts {
         
         /// 数据一致性校验选项， 默认为不开启一致性校验
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let consistency: ConsistencyOption
+        public let consistency: ConsistencyOption?
         
         /// 是否迁移账号，yes(迁移账号)，no(不迁移账号)
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1311,7 +1311,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraAttr: [KeyValuePairOption]?
         
-        public init (databaseTable: DatabaseTableObject, migrateType: String?, consistency: ConsistencyOption, isMigrateAccount: Bool?, isOverrideRoot: Bool?, isDstReadOnly: Bool?, extraAttr: [KeyValuePairOption]?) {
+        public init (databaseTable: DatabaseTableObject, migrateType: String? = nil, consistency: ConsistencyOption? = nil, isMigrateAccount: Bool? = nil, isOverrideRoot: Bool? = nil, isDstReadOnly: Bool? = nil, extraAttr: [KeyValuePairOption]? = nil) {
             self.databaseTable = databaseTable
             self.migrateType = migrateType
             self.consistency = consistency
@@ -1346,7 +1346,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advancedObjects: [String]?
         
-        public init (mode: String?, databases: [Database]?, advancedObjects: [String]?) {
+        public init (mode: String? = nil, databases: [Database]? = nil, advancedObjects: [String]? = nil) {
             self.mode = mode
             self.databases = databases
             self.advancedObjects = advancedObjects
@@ -1383,13 +1383,13 @@ extension Dts {
         
         /// 冲突处理的详细选项，如条件覆盖中的条件行和条件操作
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let conflictHandleOption: ConflictHandleOption
+        public let conflictHandleOption: ConflictHandleOption?
         
         /// DDL同步选项，具体描述要同步那些DDL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ddlOptions: [DdlOption]?
         
-        public init (initType: String?, dealOfExistSameTable: String?, conflictHandleType: String?, addAdditionalColumn: Bool?, opTypes: [String]?, conflictHandleOption: ConflictHandleOption, ddlOptions: [DdlOption]?) {
+        public init (initType: String? = nil, dealOfExistSameTable: String? = nil, conflictHandleType: String? = nil, addAdditionalColumn: Bool? = nil, opTypes: [String]? = nil, conflictHandleOption: ConflictHandleOption? = nil, ddlOptions: [DdlOption]? = nil) {
             self.initType = initType
             self.dealOfExistSameTable = dealOfExistSameTable
             self.conflictHandleType = conflictHandleType
@@ -1477,7 +1477,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let newRoleName: String?
         
-        public init (roleName: String?, newRoleName: String?) {
+        public init (roleName: String? = nil, newRoleName: String? = nil) {
             self.roleName = roleName
             self.newRoleName = newRoleName
         }
@@ -1610,7 +1610,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let progress: Int64?
         
-        public init (stepNo: UInt64?, stepName: String?, stepId: String?, status: String?, startTime: String?, errors: [StepTip]?, warnings: [StepTip]?, progress: Int64?) {
+        public init (stepNo: UInt64? = nil, stepName: String? = nil, stepId: String? = nil, status: String? = nil, startTime: String? = nil, errors: [StepTip]? = nil, warnings: [StepTip]? = nil, progress: Int64? = nil) {
             self.stepNo = stepNo
             self.stepName = stepName
             self.stepId = stepId
@@ -1655,7 +1655,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skipInfo: String?
         
-        public init (code: String?, message: String?, solution: String?, helpDoc: String?, skipInfo: String?) {
+        public init (code: String? = nil, message: String? = nil, solution: String? = nil, helpDoc: String? = nil, skipInfo: String? = nil) {
             self.code = code
             self.message = message
             self.solution = solution
@@ -1750,11 +1750,11 @@ extension Dts {
         
         /// 同步选项
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let options: Options
+        public let options: Options?
         
         /// 同步库表对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let objects: Objects
+        public let objects: Objects?
         
         /// 任务规格
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1778,7 +1778,7 @@ extension Dts {
         
         /// 源端信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let srcInfo: Endpoint
+        public let srcInfo: Endpoint?
         
         /// 目标端地域，如：ap-guangzhou等
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1794,7 +1794,7 @@ extension Dts {
         
         /// 目标端信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dstInfo: Endpoint
+        public let dstInfo: Endpoint?
         
         /// 创建时间，格式为 yyyy-mm-dd hh:mm:ss
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1818,7 +1818,7 @@ extension Dts {
         
         /// 同步任务运行步骤信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let detail: SyncDetailInfo
+        public let detail: SyncDetailInfo?
         
         /// 用于计费的状态，可能取值有：Normal(正常状态)、Resizing(变配中)、Renewing(续费中)、Isolating(隔离中)、Isolated(已隔离)、Offlining(下线中)、Offlined(已下线)、NotBilled(未计费)、Recovering(解隔离)、PostPay2Prepaying(按量计费转包年包月中)、PrePay2Postpaying(包年包月转按量计费中)
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1883,7 +1883,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filterCondition: String?
         
-        public init (tableName: String?, newTableName: String?, filterCondition: String?) {
+        public init (tableName: String? = nil, newTableName: String? = nil, filterCondition: String? = nil) {
             self.tableName = tableName
             self.newTableName = newTableName
             self.filterCondition = filterCondition
@@ -1914,7 +1914,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableEditMode: String?
         
-        public init (tableName: String?, newTableName: String?, tmpTables: [String]?, tableEditMode: String?) {
+        public init (tableName: String? = nil, newTableName: String? = nil, tmpTables: [String]? = nil, tableEditMode: String? = nil) {
             self.tableName = tableName
             self.newTableName = newTableName
             self.tmpTables = tmpTables
@@ -1937,7 +1937,7 @@ extension Dts {
         /// 标签值
         public let tagValue: [String]?
         
-        public init (tagKey: String, tagValue: [String]?) {
+        public init (tagKey: String, tagValue: [String]? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
@@ -1958,7 +1958,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagValue: String?
         
-        public init (tagKey: String?, tagValue: String?) {
+        public init (tagKey: String? = nil, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
@@ -2040,7 +2040,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let newViewName: String?
         
-        public init (viewName: String?, newViewName: String?) {
+        public init (viewName: String? = nil, newViewName: String? = nil) {
             self.viewName = viewName
             self.newViewName = newViewName
         }
@@ -2061,7 +2061,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let newViewName: String?
         
-        public init (viewName: String?, newViewName: String?) {
+        public init (viewName: String? = nil, newViewName: String? = nil) {
             self.viewName = viewName
             self.newViewName = newViewName
         }

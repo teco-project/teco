@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 删除用户指定的黑石负载均衡实例
-    ///
-    /// 删除用户指定的黑石负载均衡实例。
-    @inlinable
-    public func deleteLoadBalancer(_ input: DeleteLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoadBalancerResponse > {
-        self.client.execute(action: "DeleteLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除用户指定的黑石负载均衡实例
-    ///
-    /// 删除用户指定的黑石负载均衡实例。
-    @inlinable
-    public func deleteLoadBalancer(_ input: DeleteLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerResponse {
-        try await self.client.execute(action: "DeleteLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLoadBalancer请求参数结构体
     public struct DeleteLoadBalancerRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -57,5 +41,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除用户指定的黑石负载均衡实例
+    ///
+    /// 删除用户指定的黑石负载均衡实例。
+    @inlinable
+    public func deleteLoadBalancer(_ input: DeleteLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoadBalancerResponse > {
+        self.client.execute(action: "DeleteLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除用户指定的黑石负载均衡实例
+    ///
+    /// 删除用户指定的黑石负载均衡实例。
+    @inlinable
+    public func deleteLoadBalancer(_ input: DeleteLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerResponse {
+        try await self.client.execute(action: "DeleteLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

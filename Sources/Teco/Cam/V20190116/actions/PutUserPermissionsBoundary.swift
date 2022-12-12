@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 设置用户权限边界
-    @inlinable
-    public func putUserPermissionsBoundary(_ input: PutUserPermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutUserPermissionsBoundaryResponse > {
-        self.client.execute(action: "PutUserPermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置用户权限边界
-    @inlinable
-    public func putUserPermissionsBoundary(_ input: PutUserPermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutUserPermissionsBoundaryResponse {
-        try await self.client.execute(action: "PutUserPermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PutUserPermissionsBoundary请求参数结构体
     public struct PutUserPermissionsBoundaryRequest: TCRequestModel {
         /// 子账号Uin
@@ -54,5 +42,17 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置用户权限边界
+    @inlinable
+    public func putUserPermissionsBoundary(_ input: PutUserPermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PutUserPermissionsBoundaryResponse > {
+        self.client.execute(action: "PutUserPermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置用户权限边界
+    @inlinable
+    public func putUserPermissionsBoundary(_ input: PutUserPermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutUserPermissionsBoundaryResponse {
+        try await self.client.execute(action: "PutUserPermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

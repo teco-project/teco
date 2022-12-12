@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询商业智能服务需要的文件
-    ///
-    /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
-    @inlinable
-    public func describeBusinessIntelligenceFile(_ input: DescribeBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBusinessIntelligenceFileResponse > {
-        self.client.execute(action: "DescribeBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询商业智能服务需要的文件
-    ///
-    /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
-    @inlinable
-    public func describeBusinessIntelligenceFile(_ input: DescribeBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessIntelligenceFileResponse {
-        try await self.client.execute(action: "DescribeBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBusinessIntelligenceFile请求参数结构体
     public struct DescribeBusinessIntelligenceFileRequest: TCRequestModel {
         /// 实例ID
@@ -57,7 +41,7 @@ extension Sqlserver {
         /// 排序方式，desc,asc
         public let orderByType: String?
         
-        public init (instanceId: String, fileName: String?, statusSet: [Int64]?, fileType: String?, limit: Int64?, offset: Int64?, orderBy: String?, orderByType: String?) {
+        public init (instanceId: String, fileName: String? = nil, statusSet: [Int64]? = nil, fileType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil) {
             self.instanceId = instanceId
             self.fileName = fileName
             self.statusSet = statusSet
@@ -96,5 +80,21 @@ extension Sqlserver {
             case backupMigrationSet = "BackupMigrationSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询商业智能服务需要的文件
+    ///
+    /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
+    @inlinable
+    public func describeBusinessIntelligenceFile(_ input: DescribeBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBusinessIntelligenceFileResponse > {
+        self.client.execute(action: "DescribeBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询商业智能服务需要的文件
+    ///
+    /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
+    @inlinable
+    public func describeBusinessIntelligenceFile(_ input: DescribeBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessIntelligenceFileResponse {
+        try await self.client.execute(action: "DescribeBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

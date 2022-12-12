@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcm {
-    /// 修改 Tracing 配置
-    @inlinable
-    public func modifyTracingConfig(_ input: ModifyTracingConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTracingConfigResponse > {
-        self.client.execute(action: "ModifyTracingConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改 Tracing 配置
-    @inlinable
-    public func modifyTracingConfig(_ input: ModifyTracingConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTracingConfigResponse {
-        try await self.client.execute(action: "ModifyTracingConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTracingConfig请求参数结构体
     public struct ModifyTracingConfigRequest: TCRequestModel {
         /// mesh名字
@@ -36,15 +24,15 @@ extension Tcm {
         public let enable: Bool?
         
         /// 腾讯云 APM 服务相关参数
-        public let apm: APM
+        public let apm: APM?
         
         /// 调用跟踪采样值
         public let sampling: Float?
         
         /// 调用追踪Zipkin相关配置
-        public let zipkin: TracingZipkin
+        public let zipkin: TracingZipkin?
         
-        public init (meshId: String, enable: Bool?, apm: APM, sampling: Float?, zipkin: TracingZipkin) {
+        public init (meshId: String, enable: Bool? = nil, apm: APM? = nil, sampling: Float? = nil, zipkin: TracingZipkin? = nil) {
             self.meshId = meshId
             self.enable = enable
             self.apm = apm
@@ -69,5 +57,17 @@ extension Tcm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改 Tracing 配置
+    @inlinable
+    public func modifyTracingConfig(_ input: ModifyTracingConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTracingConfigResponse > {
+        self.client.execute(action: "ModifyTracingConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改 Tracing 配置
+    @inlinable
+    public func modifyTracingConfig(_ input: ModifyTracingConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTracingConfigResponse {
+        try await self.client.execute(action: "ModifyTracingConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

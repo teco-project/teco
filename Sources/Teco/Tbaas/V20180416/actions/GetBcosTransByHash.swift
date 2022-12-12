@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 使用交易哈希查询Bcos交易信息
-    ///
-    /// Bcos根据交易哈希查看交易详细信息
-    @inlinable
-    public func getBcosTransByHash(_ input: GetBcosTransByHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBcosTransByHashResponse > {
-        self.client.execute(action: "GetBcosTransByHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 使用交易哈希查询Bcos交易信息
-    ///
-    /// Bcos根据交易哈希查看交易详细信息
-    @inlinable
-    public func getBcosTransByHash(_ input: GetBcosTransByHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosTransByHashResponse {
-        try await self.client.execute(action: "GetBcosTransByHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetBcosTransByHash请求参数结构体
     public struct GetBcosTransByHashRequest: TCRequestModel {
         /// 网络ID，可在区块链网络详情或列表中获取
@@ -67,5 +51,21 @@ extension Tbaas {
             case transactionJson = "TransactionJson"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 使用交易哈希查询Bcos交易信息
+    ///
+    /// Bcos根据交易哈希查看交易详细信息
+    @inlinable
+    public func getBcosTransByHash(_ input: GetBcosTransByHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBcosTransByHashResponse > {
+        self.client.execute(action: "GetBcosTransByHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 使用交易哈希查询Bcos交易信息
+    ///
+    /// Bcos根据交易哈希查看交易详细信息
+    @inlinable
+    public func getBcosTransByHash(_ input: GetBcosTransByHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosTransByHashResponse {
+        try await self.client.execute(action: "GetBcosTransByHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

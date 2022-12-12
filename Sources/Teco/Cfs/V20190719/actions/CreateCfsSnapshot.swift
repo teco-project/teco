@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 创建文件系统快照
-    @inlinable
-    public func createCfsSnapshot(_ input: CreateCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCfsSnapshotResponse > {
-        self.client.execute(action: "CreateCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建文件系统快照
-    @inlinable
-    public func createCfsSnapshot(_ input: CreateCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsSnapshotResponse {
-        try await self.client.execute(action: "CreateCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCfsSnapshot请求参数结构体
     public struct CreateCfsSnapshotRequest: TCRequestModel {
         /// 文件系统id
@@ -38,7 +26,7 @@ extension Cfs {
         /// 快照标签
         public let resourceTags: [TagInfo]?
         
-        public init (fileSystemId: String, snapshotName: String?, resourceTags: [TagInfo]?) {
+        public init (fileSystemId: String, snapshotName: String? = nil, resourceTags: [TagInfo]? = nil) {
             self.fileSystemId = fileSystemId
             self.snapshotName = snapshotName
             self.resourceTags = resourceTags
@@ -63,5 +51,17 @@ extension Cfs {
             case snapshotId = "SnapshotId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建文件系统快照
+    @inlinable
+    public func createCfsSnapshot(_ input: CreateCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCfsSnapshotResponse > {
+        self.client.execute(action: "CreateCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文件系统快照
+    @inlinable
+    public func createCfsSnapshot(_ input: CreateCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsSnapshotResponse {
+        try await self.client.execute(action: "CreateCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

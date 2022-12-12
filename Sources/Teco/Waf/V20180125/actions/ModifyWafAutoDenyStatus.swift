@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 配置WAF自动封禁模块状态
-    @inlinable
-    public func modifyWafAutoDenyStatus(_ input: ModifyWafAutoDenyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWafAutoDenyStatusResponse > {
-        self.client.execute(action: "ModifyWafAutoDenyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 配置WAF自动封禁模块状态
-    @inlinable
-    public func modifyWafAutoDenyStatus(_ input: ModifyWafAutoDenyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafAutoDenyStatusResponse {
-        try await self.client.execute(action: "ModifyWafAutoDenyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyWafAutoDenyStatus请求参数结构体
     public struct ModifyWafAutoDenyStatusRequest: TCRequestModel {
         /// WAF 自动封禁配置项
@@ -53,5 +41,17 @@ extension Waf {
             case wafAutoDenyDetails = "WafAutoDenyDetails"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 配置WAF自动封禁模块状态
+    @inlinable
+    public func modifyWafAutoDenyStatus(_ input: ModifyWafAutoDenyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyWafAutoDenyStatusResponse > {
+        self.client.execute(action: "ModifyWafAutoDenyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 配置WAF自动封禁模块状态
+    @inlinable
+    public func modifyWafAutoDenyStatus(_ input: ModifyWafAutoDenyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafAutoDenyStatusResponse {
+        try await self.client.execute(action: "ModifyWafAutoDenyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

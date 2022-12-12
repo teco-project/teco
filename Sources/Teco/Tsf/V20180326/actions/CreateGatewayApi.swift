@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 批量导入API至api分组
-    ///
-    /// 批量导入API至api分组(也支持新建API到分组)
-    @inlinable
-    public func createGatewayApi(_ input: CreateGatewayApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGatewayApiResponse > {
-        self.client.execute(action: "CreateGatewayApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量导入API至api分组
-    ///
-    /// 批量导入API至api分组(也支持新建API到分组)
-    @inlinable
-    public func createGatewayApi(_ input: CreateGatewayApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGatewayApiResponse {
-        try await self.client.execute(action: "CreateGatewayApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateGatewayApi请求参数结构体
     public struct CreateGatewayApiRequest: TCRequestModel {
         /// API 分组ID
@@ -42,7 +26,7 @@ extension Tsf {
         /// 无
         public let programIdList: [String]?
         
-        public init (groupId: String, apiList: [ApiInfo], programIdList: [String]?) {
+        public init (groupId: String, apiList: [ApiInfo], programIdList: [String]? = nil) {
             self.groupId = groupId
             self.apiList = apiList
             self.programIdList = programIdList
@@ -67,5 +51,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量导入API至api分组
+    ///
+    /// 批量导入API至api分组(也支持新建API到分组)
+    @inlinable
+    public func createGatewayApi(_ input: CreateGatewayApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGatewayApiResponse > {
+        self.client.execute(action: "CreateGatewayApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量导入API至api分组
+    ///
+    /// 批量导入API至api分组(也支持新建API到分组)
+    @inlinable
+    public func createGatewayApi(_ input: CreateGatewayApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGatewayApiResponse {
+        try await self.client.execute(action: "CreateGatewayApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

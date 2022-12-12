@@ -15,30 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudaudit {
-    /// 更新跟踪集
-    ///
-    /// 参数要求：
-    /// 1、如果IsCreateNewBucket的值存在的话，cosRegion和cosBucketName都是必填参数。
-    /// 2、如果IsEnableCmqNotify的值是1的话，IsCreateNewQueue、CmqRegion和CmqQueueName都是必填参数。
-    /// 3、如果IsEnableCmqNotify的值是0的话，IsCreateNewQueue、CmqRegion和CmqQueueName都不能传。
-    /// 4、如果IsEnableKmsEncry的值是1的话，KmsRegion和KeyId属于必填项
-    @inlinable
-    public func updateAudit(_ input: UpdateAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAuditResponse > {
-        self.client.execute(action: "UpdateAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新跟踪集
-    ///
-    /// 参数要求：
-    /// 1、如果IsCreateNewBucket的值存在的话，cosRegion和cosBucketName都是必填参数。
-    /// 2、如果IsEnableCmqNotify的值是1的话，IsCreateNewQueue、CmqRegion和CmqQueueName都是必填参数。
-    /// 3、如果IsEnableCmqNotify的值是0的话，IsCreateNewQueue、CmqRegion和CmqQueueName都不能传。
-    /// 4、如果IsEnableKmsEncry的值是1的话，KmsRegion和KeyId属于必填项
-    @inlinable
-    public func updateAudit(_ input: UpdateAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAuditResponse {
-        try await self.client.execute(action: "UpdateAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateAudit请求参数结构体
     public struct UpdateAuditRequest: TCRequestModel {
         /// 跟踪集名称
@@ -80,7 +56,7 @@ extension Cloudaudit {
         /// 是否创建新的队列。1：是，0：否。如果IsEnableCmqNotify值是1的话，此值属于必填字段。
         public let isCreateNewQueue: Int64?
         
-        public init (auditName: String, isEnableCmqNotify: Int64?, readWriteAttribute: Int64?, keyId: String?, cosRegion: String?, cmqQueueName: String?, isCreateNewBucket: Int64?, kmsRegion: String?, isEnableKmsEncry: Int64?, cosBucketName: String?, cmqRegion: String?, logFilePrefix: String?, isCreateNewQueue: Int64?) {
+        public init (auditName: String, isEnableCmqNotify: Int64? = nil, readWriteAttribute: Int64? = nil, keyId: String? = nil, cosRegion: String? = nil, cmqQueueName: String? = nil, isCreateNewBucket: Int64? = nil, kmsRegion: String? = nil, isEnableKmsEncry: Int64? = nil, cosBucketName: String? = nil, cmqRegion: String? = nil, logFilePrefix: String? = nil, isCreateNewQueue: Int64? = nil) {
             self.auditName = auditName
             self.isEnableCmqNotify = isEnableCmqNotify
             self.readWriteAttribute = readWriteAttribute
@@ -125,5 +101,29 @@ extension Cloudaudit {
             case isSuccess = "IsSuccess"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新跟踪集
+    ///
+    /// 参数要求：
+    /// 1、如果IsCreateNewBucket的值存在的话，cosRegion和cosBucketName都是必填参数。
+    /// 2、如果IsEnableCmqNotify的值是1的话，IsCreateNewQueue、CmqRegion和CmqQueueName都是必填参数。
+    /// 3、如果IsEnableCmqNotify的值是0的话，IsCreateNewQueue、CmqRegion和CmqQueueName都不能传。
+    /// 4、如果IsEnableKmsEncry的值是1的话，KmsRegion和KeyId属于必填项
+    @inlinable
+    public func updateAudit(_ input: UpdateAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAuditResponse > {
+        self.client.execute(action: "UpdateAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新跟踪集
+    ///
+    /// 参数要求：
+    /// 1、如果IsCreateNewBucket的值存在的话，cosRegion和cosBucketName都是必填参数。
+    /// 2、如果IsEnableCmqNotify的值是1的话，IsCreateNewQueue、CmqRegion和CmqQueueName都是必填参数。
+    /// 3、如果IsEnableCmqNotify的值是0的话，IsCreateNewQueue、CmqRegion和CmqQueueName都不能传。
+    /// 4、如果IsEnableKmsEncry的值是1的话，KmsRegion和KeyId属于必填项
+    @inlinable
+    public func updateAudit(_ input: UpdateAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAuditResponse {
+        try await self.client.execute(action: "UpdateAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

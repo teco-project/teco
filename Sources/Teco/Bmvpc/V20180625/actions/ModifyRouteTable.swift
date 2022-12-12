@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 修改路由表
-    @inlinable
-    public func modifyRouteTable(_ input: ModifyRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRouteTableResponse > {
-        self.client.execute(action: "ModifyRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改路由表
-    @inlinable
-    public func modifyRouteTable(_ input: ModifyRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRouteTableResponse {
-        try await self.client.execute(action: "ModifyRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRouteTable请求参数结构体
     public struct ModifyRouteTableRequest: TCRequestModel {
         /// 路由表ID
@@ -35,7 +23,7 @@ extension Bmvpc {
         /// 路由表名称
         public let routeTableName: String?
         
-        public init (routeTableId: String, routeTableName: String?) {
+        public init (routeTableId: String, routeTableName: String? = nil) {
             self.routeTableId = routeTableId
             self.routeTableName = routeTableName
         }
@@ -54,5 +42,17 @@ extension Bmvpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改路由表
+    @inlinable
+    public func modifyRouteTable(_ input: ModifyRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRouteTableResponse > {
+        self.client.execute(action: "ModifyRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改路由表
+    @inlinable
+    public func modifyRouteTable(_ input: ModifyRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRouteTableResponse {
+        try await self.client.execute(action: "ModifyRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

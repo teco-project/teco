@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 修改告警策略触发条件
-    @inlinable
-    public func modifyAlarmPolicyCondition(_ input: ModifyAlarmPolicyConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmPolicyConditionResponse > {
-        self.client.execute(action: "ModifyAlarmPolicyCondition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改告警策略触发条件
-    @inlinable
-    public func modifyAlarmPolicyCondition(_ input: ModifyAlarmPolicyConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyConditionResponse {
-        try await self.client.execute(action: "ModifyAlarmPolicyCondition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAlarmPolicyCondition请求参数结构体
     public struct ModifyAlarmPolicyConditionRequest: TCRequestModel {
         /// 模块名，固定值 monitor
@@ -39,21 +27,21 @@ extension Monitor {
         public let conditionTemplateId: Int64?
         
         /// 指标触发条件
-        public let condition: AlarmPolicyCondition
+        public let condition: AlarmPolicyCondition?
         
         /// 事件触发条件
-        public let eventCondition: AlarmPolicyEventCondition
+        public let eventCondition: AlarmPolicyEventCondition?
         
         /// 全局过滤条件
-        public let filter: AlarmPolicyFilter
+        public let filter: AlarmPolicyFilter?
         
         /// 聚合维度列表，指定按哪些维度 key 来做 group by
         public let groupBy: [String]?
         
         /// 日志告警创建请求参数信息
-        public let logAlarmReqInfo: LogAlarmReq
+        public let logAlarmReqInfo: LogAlarmReq?
         
-        public init (module: String, policyId: String, conditionTemplateId: Int64?, condition: AlarmPolicyCondition, eventCondition: AlarmPolicyEventCondition, filter: AlarmPolicyFilter, groupBy: [String]?, logAlarmReqInfo: LogAlarmReq) {
+        public init (module: String, policyId: String, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, logAlarmReqInfo: LogAlarmReq? = nil) {
             self.module = module
             self.policyId = policyId
             self.conditionTemplateId = conditionTemplateId
@@ -84,5 +72,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改告警策略触发条件
+    @inlinable
+    public func modifyAlarmPolicyCondition(_ input: ModifyAlarmPolicyConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmPolicyConditionResponse > {
+        self.client.execute(action: "ModifyAlarmPolicyCondition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改告警策略触发条件
+    @inlinable
+    public func modifyAlarmPolicyCondition(_ input: ModifyAlarmPolicyConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyConditionResponse {
+        try await self.client.execute(action: "ModifyAlarmPolicyCondition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

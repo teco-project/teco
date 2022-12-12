@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改监听器绑定的后端机器的端口
-    ///
-    /// 修改监听器绑定的后端机器的端口。
-    @inlinable
-    public func modifyTargetPort(_ input: ModifyTargetPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTargetPortResponse > {
-        self.client.execute(action: "ModifyTargetPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改监听器绑定的后端机器的端口
-    ///
-    /// 修改监听器绑定的后端机器的端口。
-    @inlinable
-    public func modifyTargetPort(_ input: ModifyTargetPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetPortResponse {
-        try await self.client.execute(action: "ModifyTargetPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTargetPort请求参数结构体
     public struct ModifyTargetPortRequest: TCRequestModel {
         /// 负载均衡实例 ID
@@ -68,5 +52,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改监听器绑定的后端机器的端口
+    ///
+    /// 修改监听器绑定的后端机器的端口。
+    @inlinable
+    public func modifyTargetPort(_ input: ModifyTargetPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTargetPortResponse > {
+        self.client.execute(action: "ModifyTargetPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改监听器绑定的后端机器的端口
+    ///
+    /// 修改监听器绑定的后端机器的端口。
+    @inlinable
+    public func modifyTargetPort(_ input: ModifyTargetPortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetPortResponse {
+        try await self.client.execute(action: "ModifyTargetPort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询共享流量包
-    ///
-    /// 本接口 (DescribeTrafficPackages)  用于查询共享流量包详细信息，包括共享流量包唯一标识ID，名称，流量使用信息等
-    @inlinable
-    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficPackagesResponse > {
-        self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询共享流量包
-    ///
-    /// 本接口 (DescribeTrafficPackages)  用于查询共享流量包详细信息，包括共享流量包唯一标识ID，名称，流量使用信息等
-    @inlinable
-    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
-        try await self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrafficPackages请求参数结构体
     public struct DescribeTrafficPackagesRequest: TCRequestModel {
         /// 共享流量包ID，支持批量
@@ -48,7 +32,7 @@ extension Vpc {
         /// 分页参数
         public let limit: UInt64?
         
-        public init (trafficPackageIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (trafficPackageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.trafficPackageIds = trafficPackageIds
             self.filters = filters
             self.offset = offset
@@ -79,5 +63,21 @@ extension Vpc {
             case trafficPackageSet = "TrafficPackageSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询共享流量包
+    ///
+    /// 本接口 (DescribeTrafficPackages)  用于查询共享流量包详细信息，包括共享流量包唯一标识ID，名称，流量使用信息等
+    @inlinable
+    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficPackagesResponse > {
+        self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询共享流量包
+    ///
+    /// 本接口 (DescribeTrafficPackages)  用于查询共享流量包详细信息，包括共享流量包唯一标识ID，名称，流量使用信息等
+    @inlinable
+    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
+        try await self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

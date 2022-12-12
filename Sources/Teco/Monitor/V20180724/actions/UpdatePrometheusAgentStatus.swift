@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 更新 Prometheus CVM Agent 状态
-    @inlinable
-    public func updatePrometheusAgentStatus(_ input: UpdatePrometheusAgentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePrometheusAgentStatusResponse > {
-        self.client.execute(action: "UpdatePrometheusAgentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新 Prometheus CVM Agent 状态
-    @inlinable
-    public func updatePrometheusAgentStatus(_ input: UpdatePrometheusAgentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePrometheusAgentStatusResponse {
-        try await self.client.execute(action: "UpdatePrometheusAgentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdatePrometheusAgentStatus请求参数结构体
     public struct UpdatePrometheusAgentStatusRequest: TCRequestModel {
         /// Prometheus 实例 ID，例如：prom-abcd1234
@@ -61,5 +49,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新 Prometheus CVM Agent 状态
+    @inlinable
+    public func updatePrometheusAgentStatus(_ input: UpdatePrometheusAgentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePrometheusAgentStatusResponse > {
+        self.client.execute(action: "UpdatePrometheusAgentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新 Prometheus CVM Agent 状态
+    @inlinable
+    public func updatePrometheusAgentStatus(_ input: UpdatePrometheusAgentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePrometheusAgentStatusResponse {
+        try await self.client.execute(action: "UpdatePrometheusAgentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

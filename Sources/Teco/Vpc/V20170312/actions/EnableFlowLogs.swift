@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 启动流日志
-    ///
-    /// 本接口（EnableFlowLogs）用于启动流日志。
-    @inlinable
-    public func enableFlowLogs(_ input: EnableFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableFlowLogsResponse > {
-        self.client.execute(action: "EnableFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启动流日志
-    ///
-    /// 本接口（EnableFlowLogs）用于启动流日志。
-    @inlinable
-    public func enableFlowLogs(_ input: EnableFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableFlowLogsResponse {
-        try await self.client.execute(action: "EnableFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableFlowLogs请求参数结构体
     public struct EnableFlowLogsRequest: TCRequestModel {
         /// 流日志Id。
@@ -53,5 +37,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启动流日志
+    ///
+    /// 本接口（EnableFlowLogs）用于启动流日志。
+    @inlinable
+    public func enableFlowLogs(_ input: EnableFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableFlowLogsResponse > {
+        self.client.execute(action: "EnableFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启动流日志
+    ///
+    /// 本接口（EnableFlowLogs）用于启动流日志。
+    @inlinable
+    public func enableFlowLogs(_ input: EnableFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableFlowLogsResponse {
+        try await self.client.execute(action: "EnableFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 五官定位
-    ///
-    /// 对请求图片进行五官定位（也称人脸关键点定位），计算构成人脸轮廓的 90 个点，包括眉毛（左右各 8 点）、眼睛（左右各 8 点）、鼻子（13 点）、嘴巴（22 点）、脸型轮廓（21 点）、眼珠[或瞳孔]（2点）。
-    /// >     
-    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func analyzeFace(_ input: AnalyzeFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AnalyzeFaceResponse > {
-        self.client.execute(action: "AnalyzeFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 五官定位
-    ///
-    /// 对请求图片进行五官定位（也称人脸关键点定位），计算构成人脸轮廓的 90 个点，包括眉毛（左右各 8 点）、眼睛（左右各 8 点）、鼻子（13 点）、嘴巴（22 点）、脸型轮廓（21 点）、眼珠[或瞳孔]（2点）。
-    /// >     
-    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func analyzeFace(_ input: AnalyzeFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AnalyzeFaceResponse {
-        try await self.client.execute(action: "AnalyzeFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AnalyzeFace请求参数结构体
     public struct AnalyzeFaceRequest: TCRequestModel {
         /// 检测模式。0 为检测所有出现的人脸， 1 为检测面积最大的人脸。默认为 0。最多返回 10 张人脸的五官定位（人脸关键点）具体信息。
@@ -63,7 +43,7 @@ extension Iai {
         /// 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         public let needRotateDetection: UInt64?
         
-        public init (mode: UInt64?, image: String?, url: String?, faceModelVersion: String?, needRotateDetection: UInt64?) {
+        public init (mode: UInt64? = nil, image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, needRotateDetection: UInt64? = nil) {
             self.mode = mode
             self.image = image
             self.url = url
@@ -104,5 +84,25 @@ extension Iai {
             case faceModelVersion = "FaceModelVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 五官定位
+    ///
+    /// 对请求图片进行五官定位（也称人脸关键点定位），计算构成人脸轮廓的 90 个点，包括眉毛（左右各 8 点）、眼睛（左右各 8 点）、鼻子（13 点）、嘴巴（22 点）、脸型轮廓（21 点）、眼珠[或瞳孔]（2点）。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func analyzeFace(_ input: AnalyzeFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AnalyzeFaceResponse > {
+        self.client.execute(action: "AnalyzeFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 五官定位
+    ///
+    /// 对请求图片进行五官定位（也称人脸关键点定位），计算构成人脸轮廓的 90 个点，包括眉毛（左右各 8 点）、眼睛（左右各 8 点）、鼻子（13 点）、嘴巴（22 点）、脸型轮廓（21 点）、眼珠[或瞳孔]（2点）。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func analyzeFace(_ input: AnalyzeFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AnalyzeFaceResponse {
+        try await self.client.execute(action: "AnalyzeFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

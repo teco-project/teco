@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 物理机移除子网(批量接口)
-    ///
-    /// 物理机移除子网批量接口，传入一台物理机和多个子网，批量移除这些子网。异步接口，接口返回TaskId。
-    @inlinable
-    public func deleteInterfaces(_ input: DeleteInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInterfacesResponse > {
-        self.client.execute(action: "DeleteInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 物理机移除子网(批量接口)
-    ///
-    /// 物理机移除子网批量接口，传入一台物理机和多个子网，批量移除这些子网。异步接口，接口返回TaskId。
-    @inlinable
-    public func deleteInterfaces(_ input: DeleteInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInterfacesResponse {
-        try await self.client.execute(action: "DeleteInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteInterfaces请求参数结构体
     public struct DeleteInterfacesRequest: TCRequestModel {
         /// 物理机ID
@@ -62,5 +46,21 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 物理机移除子网(批量接口)
+    ///
+    /// 物理机移除子网批量接口，传入一台物理机和多个子网，批量移除这些子网。异步接口，接口返回TaskId。
+    @inlinable
+    public func deleteInterfaces(_ input: DeleteInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInterfacesResponse > {
+        self.client.execute(action: "DeleteInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 物理机移除子网(批量接口)
+    ///
+    /// 物理机移除子网批量接口，传入一台物理机和多个子网，批量移除这些子网。异步接口，接口返回TaskId。
+    @inlinable
+    public func deleteInterfaces(_ input: DeleteInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInterfacesResponse {
+        try await self.client.execute(action: "DeleteInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

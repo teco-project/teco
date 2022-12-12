@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除IP地址模板集合
-    ///
-    /// 本接口（DeleteAddressTemplateGroup）用于删除IP地址模板集合
-    @inlinable
-    public func deleteAddressTemplateGroup(_ input: DeleteAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAddressTemplateGroupResponse > {
-        self.client.execute(action: "DeleteAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除IP地址模板集合
-    ///
-    /// 本接口（DeleteAddressTemplateGroup）用于删除IP地址模板集合
-    @inlinable
-    public func deleteAddressTemplateGroup(_ input: DeleteAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAddressTemplateGroupResponse {
-        try await self.client.execute(action: "DeleteAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAddressTemplateGroup请求参数结构体
     public struct DeleteAddressTemplateGroupRequest: TCRequestModel {
         /// IP地址模板集合实例ID，例如：ipmg-90cex8mq。
@@ -53,5 +37,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除IP地址模板集合
+    ///
+    /// 本接口（DeleteAddressTemplateGroup）用于删除IP地址模板集合
+    @inlinable
+    public func deleteAddressTemplateGroup(_ input: DeleteAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAddressTemplateGroupResponse > {
+        self.client.execute(action: "DeleteAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除IP地址模板集合
+    ///
+    /// 本接口（DeleteAddressTemplateGroup）用于删除IP地址模板集合
+    @inlinable
+    public func deleteAddressTemplateGroup(_ input: DeleteAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAddressTemplateGroupResponse {
+        try await self.client.execute(action: "DeleteAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

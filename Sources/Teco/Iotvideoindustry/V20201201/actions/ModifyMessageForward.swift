@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 修改消息转发配置
-    @inlinable
-    public func modifyMessageForward(_ input: ModifyMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMessageForwardResponse > {
-        self.client.execute(action: "ModifyMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改消息转发配置
-    @inlinable
-    public func modifyMessageForward(_ input: ModifyMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMessageForwardResponse {
-        try await self.client.execute(action: "ModifyMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMessageForward请求参数结构体
     public struct ModifyMessageForwardRequest: TCRequestModel {
         /// 配置ID
@@ -54,5 +42,17 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改消息转发配置
+    @inlinable
+    public func modifyMessageForward(_ input: ModifyMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMessageForwardResponse > {
+        self.client.execute(action: "ModifyMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改消息转发配置
+    @inlinable
+    public func modifyMessageForward(_ input: ModifyMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMessageForwardResponse {
+        try await self.client.execute(action: "ModifyMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 设置流量镜像的别名
-    ///
-    /// 设置流量镜像的别名。
-    @inlinable
-    public func setTrafficMirrorAlias(_ input: SetTrafficMirrorAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTrafficMirrorAliasResponse > {
-        self.client.execute(action: "SetTrafficMirrorAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置流量镜像的别名
-    ///
-    /// 设置流量镜像的别名。
-    @inlinable
-    public func setTrafficMirrorAlias(_ input: SetTrafficMirrorAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTrafficMirrorAliasResponse {
-        try await self.client.execute(action: "SetTrafficMirrorAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetTrafficMirrorAlias请求参数结构体
     public struct SetTrafficMirrorAliasRequest: TCRequestModel {
         /// 流量镜像实例ID。
@@ -58,5 +42,21 @@ extension Bmlb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置流量镜像的别名
+    ///
+    /// 设置流量镜像的别名。
+    @inlinable
+    public func setTrafficMirrorAlias(_ input: SetTrafficMirrorAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTrafficMirrorAliasResponse > {
+        self.client.execute(action: "SetTrafficMirrorAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置流量镜像的别名
+    ///
+    /// 设置流量镜像的别名。
+    @inlinable
+    public func setTrafficMirrorAlias(_ input: SetTrafficMirrorAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTrafficMirrorAliasResponse {
+        try await self.client.execute(action: "SetTrafficMirrorAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

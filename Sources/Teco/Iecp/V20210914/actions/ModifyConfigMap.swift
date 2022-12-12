@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 修改ConfigMap
-    @inlinable
-    public func modifyConfigMap(_ input: ModifyConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConfigMapResponse > {
-        self.client.execute(action: "ModifyConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改ConfigMap
-    @inlinable
-    public func modifyConfigMap(_ input: ModifyConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigMapResponse {
-        try await self.client.execute(action: "ModifyConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyConfigMap请求参数结构体
     public struct ModifyConfigMapRequest: TCRequestModel {
         /// 单元ID
@@ -41,7 +29,7 @@ extension Iecp {
         /// ConfigMap命名空间
         public let configMapNamespace: String?
         
-        public init (edgeUnitID: UInt64, configMapName: String, yaml: String, configMapNamespace: String?) {
+        public init (edgeUnitID: UInt64, configMapName: String, yaml: String, configMapNamespace: String? = nil) {
             self.edgeUnitID = edgeUnitID
             self.configMapName = configMapName
             self.yaml = yaml
@@ -64,5 +52,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改ConfigMap
+    @inlinable
+    public func modifyConfigMap(_ input: ModifyConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConfigMapResponse > {
+        self.client.execute(action: "ModifyConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改ConfigMap
+    @inlinable
+    public func modifyConfigMap(_ input: ModifyConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigMapResponse {
+        try await self.client.execute(action: "ModifyConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

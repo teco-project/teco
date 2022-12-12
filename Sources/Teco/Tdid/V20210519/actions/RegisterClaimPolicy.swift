@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 披露策略Policy注册
-    @inlinable
-    public func registerClaimPolicy(_ input: RegisterClaimPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterClaimPolicyResponse > {
-        self.client.execute(action: "RegisterClaimPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 披露策略Policy注册
-    @inlinable
-    public func registerClaimPolicy(_ input: RegisterClaimPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterClaimPolicyResponse {
-        try await self.client.execute(action: "RegisterClaimPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RegisterClaimPolicy请求参数结构体
     public struct RegisterClaimPolicyRequest: TCRequestModel {
         /// Cpt索引
@@ -62,5 +50,17 @@ extension Tdid {
             case policyId = "PolicyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 披露策略Policy注册
+    @inlinable
+    public func registerClaimPolicy(_ input: RegisterClaimPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterClaimPolicyResponse > {
+        self.client.execute(action: "RegisterClaimPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 披露策略Policy注册
+    @inlinable
+    public func registerClaimPolicy(_ input: RegisterClaimPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterClaimPolicyResponse {
+        try await self.client.execute(action: "RegisterClaimPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

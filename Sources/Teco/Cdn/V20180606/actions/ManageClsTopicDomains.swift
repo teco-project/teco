@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 管理日志主题下绑定的域名
-    ///
-    /// ManageClsTopicDomains 用于管理某日志主题下绑定的域名列表。
-    @inlinable
-    public func manageClsTopicDomains(_ input: ManageClsTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageClsTopicDomainsResponse > {
-        self.client.execute(action: "ManageClsTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 管理日志主题下绑定的域名
-    ///
-    /// ManageClsTopicDomains 用于管理某日志主题下绑定的域名列表。
-    @inlinable
-    public func manageClsTopicDomains(_ input: ManageClsTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageClsTopicDomainsResponse {
-        try await self.client.execute(action: "ManageClsTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ManageClsTopicDomains请求参数结构体
     public struct ManageClsTopicDomainsRequest: TCRequestModel {
         /// 日志集ID
@@ -45,7 +29,7 @@ extension Cdn {
         /// 域名区域配置，注意：如果此字段为空，则表示解绑对应主题下的所有域名
         public let domainAreaConfigs: [DomainAreaConfig]?
         
-        public init (logsetId: String, topicId: String, channel: String?, domainAreaConfigs: [DomainAreaConfig]?) {
+        public init (logsetId: String, topicId: String, channel: String? = nil, domainAreaConfigs: [DomainAreaConfig]? = nil) {
             self.logsetId = logsetId
             self.topicId = topicId
             self.channel = channel
@@ -68,5 +52,21 @@ extension Cdn {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 管理日志主题下绑定的域名
+    ///
+    /// ManageClsTopicDomains 用于管理某日志主题下绑定的域名列表。
+    @inlinable
+    public func manageClsTopicDomains(_ input: ManageClsTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManageClsTopicDomainsResponse > {
+        self.client.execute(action: "ManageClsTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 管理日志主题下绑定的域名
+    ///
+    /// ManageClsTopicDomains 用于管理某日志主题下绑定的域名列表。
+    @inlinable
+    public func manageClsTopicDomains(_ input: ManageClsTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageClsTopicDomainsResponse {
+        try await self.client.execute(action: "ManageClsTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

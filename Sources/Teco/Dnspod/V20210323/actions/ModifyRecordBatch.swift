@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 批量修改记录
-    @inlinable
-    public func modifyRecordBatch(_ input: ModifyRecordBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordBatchResponse > {
-        self.client.execute(action: "ModifyRecordBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量修改记录
-    @inlinable
-    public func modifyRecordBatch(_ input: ModifyRecordBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordBatchResponse {
-        try await self.client.execute(action: "ModifyRecordBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRecordBatch请求参数结构体
     public struct ModifyRecordBatchRequest: TCRequestModel {
         /// 记录ID数组。可以通过接口DescribeRecordList查到所有的解析记录列表以及对应的RecordId
@@ -44,7 +32,7 @@ extension Dnspod {
         /// MX记录优先级，仅当修改为 MX 记录时为必填参数。
         public let mx: String?
         
-        public init (recordIdList: [UInt64], change: String, changeTo: String, value: String?, mx: String?) {
+        public init (recordIdList: [UInt64], change: String, changeTo: String, value: String? = nil, mx: String? = nil) {
             self.recordIdList = recordIdList
             self.change = change
             self.changeTo = changeTo
@@ -77,5 +65,17 @@ extension Dnspod {
             case detailList = "DetailList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量修改记录
+    @inlinable
+    public func modifyRecordBatch(_ input: ModifyRecordBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordBatchResponse > {
+        self.client.execute(action: "ModifyRecordBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量修改记录
+    @inlinable
+    public func modifyRecordBatch(_ input: ModifyRecordBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordBatchResponse {
+        try await self.client.execute(action: "ModifyRecordBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 获取私有域记录列表
-    @inlinable
-    public func describePrivateZoneRecordList(_ input: DescribePrivateZoneRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateZoneRecordListResponse > {
-        self.client.execute(action: "DescribePrivateZoneRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取私有域记录列表
-    @inlinable
-    public func describePrivateZoneRecordList(_ input: DescribePrivateZoneRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneRecordListResponse {
-        try await self.client.execute(action: "DescribePrivateZoneRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrivateZoneRecordList请求参数结构体
     public struct DescribePrivateZoneRecordListRequest: TCRequestModel {
         /// 私有域ID: zone-xxxxxx
@@ -41,7 +29,7 @@ extension Privatedns {
         /// 分页限制数目， 最大200，默认20
         public let limit: Int64?
         
-        public init (zoneId: String, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (zoneId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.zoneId = zoneId
             self.filters = filters
             self.offset = offset
@@ -72,5 +60,17 @@ extension Privatedns {
             case recordSet = "RecordSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取私有域记录列表
+    @inlinable
+    public func describePrivateZoneRecordList(_ input: DescribePrivateZoneRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateZoneRecordListResponse > {
+        self.client.execute(action: "DescribePrivateZoneRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取私有域记录列表
+    @inlinable
+    public func describePrivateZoneRecordList(_ input: DescribePrivateZoneRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneRecordListResponse {
+        try await self.client.execute(action: "DescribePrivateZoneRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

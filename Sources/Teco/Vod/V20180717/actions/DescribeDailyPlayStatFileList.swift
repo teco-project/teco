@@ -15,6 +15,44 @@
 // DO NOT EDIT.
 
 extension Vod {
+    /// DescribeDailyPlayStatFileList请求参数结构体
+    public struct DescribeDailyPlayStatFileListRequest: TCRequestModel {
+        /// 起始日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let startTime: String
+        
+        /// 结束日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let endTime: String
+        
+        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        public let subAppId: UInt64?
+        
+        public init (startTime: String, endTime: String, subAppId: UInt64? = nil) {
+            self.startTime = startTime
+            self.endTime = endTime
+            self.subAppId = subAppId
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case subAppId = "SubAppId"
+        }
+    }
+    
+    /// DescribeDailyPlayStatFileList返回参数结构体
+    public struct DescribeDailyPlayStatFileListResponse: TCResponseModel {
+        /// 播放统计文件列表。
+        public let playStatFileSet: [PlayStatFileInfo]
+        
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case playStatFileSet = "PlayStatFileSet"
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 查询播放统计文件下载列表
     ///
     /// 该接口用于查询播放统计文件的下载地址。
@@ -43,43 +81,5 @@ extension Vod {
     @inlinable
     public func describeDailyPlayStatFileList(_ input: DescribeDailyPlayStatFileListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyPlayStatFileListResponse {
         try await self.client.execute(action: "DescribeDailyPlayStatFileList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// DescribeDailyPlayStatFileList请求参数结构体
-    public struct DescribeDailyPlayStatFileListRequest: TCRequestModel {
-        /// 起始日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
-        public let startTime: String
-        
-        /// 结束日期，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
-        public let endTime: String
-        
-        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
-        public let subAppId: UInt64?
-        
-        public init (startTime: String, endTime: String, subAppId: UInt64?) {
-            self.startTime = startTime
-            self.endTime = endTime
-            self.subAppId = subAppId
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case startTime = "StartTime"
-            case endTime = "EndTime"
-            case subAppId = "SubAppId"
-        }
-    }
-    
-    /// DescribeDailyPlayStatFileList返回参数结构体
-    public struct DescribeDailyPlayStatFileListResponse: TCResponseModel {
-        /// 播放统计文件列表。
-        public let playStatFileSet: [PlayStatFileInfo]
-        
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case playStatFileSet = "PlayStatFileSet"
-            case requestId = "RequestId"
-        }
     }
 }

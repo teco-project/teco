@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Asr {
-    /// 删除自学习模型
-    ///
-    /// 用户通过该接口可以删除自学习模型
-    @inlinable
-    public func deleteCustomization(_ input: DeleteCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomizationResponse > {
-        self.client.execute(action: "DeleteCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除自学习模型
-    ///
-    /// 用户通过该接口可以删除自学习模型
-    @inlinable
-    public func deleteCustomization(_ input: DeleteCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizationResponse {
-        try await self.client.execute(action: "DeleteCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCustomization请求参数结构体
     public struct DeleteCustomizationRequest: TCRequestModel {
         /// 要删除的模型ID
@@ -53,5 +37,21 @@ extension Asr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除自学习模型
+    ///
+    /// 用户通过该接口可以删除自学习模型
+    @inlinable
+    public func deleteCustomization(_ input: DeleteCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomizationResponse > {
+        self.client.execute(action: "DeleteCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除自学习模型
+    ///
+    /// 用户通过该接口可以删除自学习模型
+    @inlinable
+    public func deleteCustomization(_ input: DeleteCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizationResponse {
+        try await self.client.execute(action: "DeleteCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

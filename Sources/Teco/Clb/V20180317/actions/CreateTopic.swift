@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 创建主题
-    ///
-    /// 创建主题，默认开启全文索引和键值索引。如果不存在CLB专有日志集，则创建失败。
-    @inlinable
-    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicResponse > {
-        self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建主题
-    ///
-    /// 创建主题，默认开启全文索引和键值索引。如果不存在CLB专有日志集，则创建失败。
-    @inlinable
-    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
-        try await self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTopic请求参数结构体
     public struct CreateTopicRequest: TCRequestModel {
         /// 日志主题的名称。
@@ -48,7 +32,7 @@ extension Clb {
         /// 日志主题的存储类型，可选值 HOT（标准存储），COLD（低频存储）；默认为HOT。
         public let storageType: String?
         
-        public init (topicName: String, partitionCount: UInt64?, topicType: String?, period: UInt64?, storageType: String?) {
+        public init (topicName: String, partitionCount: UInt64? = nil, topicType: String? = nil, period: UInt64? = nil, storageType: String? = nil) {
             self.topicName = topicName
             self.partitionCount = partitionCount
             self.topicType = topicType
@@ -77,5 +61,21 @@ extension Clb {
             case topicId = "TopicId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建主题
+    ///
+    /// 创建主题，默认开启全文索引和键值索引。如果不存在CLB专有日志集，则创建失败。
+    @inlinable
+    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicResponse > {
+        self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建主题
+    ///
+    /// 创建主题，默认开启全文索引和键值索引。如果不存在CLB专有日志集，则创建失败。
+    @inlinable
+    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
+        try await self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

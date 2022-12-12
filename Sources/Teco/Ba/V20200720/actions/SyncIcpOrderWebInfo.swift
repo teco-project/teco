@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ba {
-    /// 同步备案ICP订单网站信息
-    ///
-    /// 将备案ICP订单下的一个网站信息 同步给订单下其他网站，需要被同步的网站被检查通过(isCheck:true)；
-    /// 只有指定的网站信息字段能被同步
-    @inlinable
-    public func syncIcpOrderWebInfo(_ input: SyncIcpOrderWebInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncIcpOrderWebInfoResponse > {
-        self.client.execute(action: "SyncIcpOrderWebInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 同步备案ICP订单网站信息
-    ///
-    /// 将备案ICP订单下的一个网站信息 同步给订单下其他网站，需要被同步的网站被检查通过(isCheck:true)；
-    /// 只有指定的网站信息字段能被同步
-    @inlinable
-    public func syncIcpOrderWebInfo(_ input: SyncIcpOrderWebInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncIcpOrderWebInfoResponse {
-        try await self.client.execute(action: "SyncIcpOrderWebInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SyncIcpOrderWebInfo请求参数结构体
     public struct SyncIcpOrderWebInfoRequest: TCRequestModel {
         /// 备案ICP订单号
@@ -50,7 +32,7 @@ extension Ba {
         /// 是否先判断同步的网站负责人是否一致 (这里会判断 sitePersonName, sitePersonCerType,sitePersonCerNum三个字段完全一致)  默认:true. 非必要 不建议关闭修改该参数默认值
         public let checkSamePerson: Bool?
         
-        public init (icpOrderId: String, sourceWebId: String, targetWebIds: [String], syncFields: [String], checkSamePerson: Bool?) {
+        public init (icpOrderId: String, sourceWebId: String, targetWebIds: [String], syncFields: [String], checkSamePerson: Bool? = nil) {
             self.icpOrderId = icpOrderId
             self.sourceWebId = sourceWebId
             self.targetWebIds = targetWebIds
@@ -75,5 +57,23 @@ extension Ba {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 同步备案ICP订单网站信息
+    ///
+    /// 将备案ICP订单下的一个网站信息 同步给订单下其他网站，需要被同步的网站被检查通过(isCheck:true)；
+    /// 只有指定的网站信息字段能被同步
+    @inlinable
+    public func syncIcpOrderWebInfo(_ input: SyncIcpOrderWebInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncIcpOrderWebInfoResponse > {
+        self.client.execute(action: "SyncIcpOrderWebInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 同步备案ICP订单网站信息
+    ///
+    /// 将备案ICP订单下的一个网站信息 同步给订单下其他网站，需要被同步的网站被检查通过(isCheck:true)；
+    /// 只有指定的网站信息字段能被同步
+    @inlinable
+    public func syncIcpOrderWebInfo(_ input: SyncIcpOrderWebInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncIcpOrderWebInfoResponse {
+        try await self.client.execute(action: "SyncIcpOrderWebInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

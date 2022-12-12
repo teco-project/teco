@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 修改容器内的版本流量配置
-    @inlinable
-    public func modifyCloudBaseRunServerFlowConf(_ input: ModifyCloudBaseRunServerFlowConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCloudBaseRunServerFlowConfResponse > {
-        self.client.execute(action: "ModifyCloudBaseRunServerFlowConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改容器内的版本流量配置
-    @inlinable
-    public func modifyCloudBaseRunServerFlowConf(_ input: ModifyCloudBaseRunServerFlowConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudBaseRunServerFlowConfResponse {
-        try await self.client.execute(action: "ModifyCloudBaseRunServerFlowConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCloudBaseRunServerFlowConf请求参数结构体
     public struct ModifyCloudBaseRunServerFlowConfRequest: TCRequestModel {
         /// 环境ID
@@ -44,7 +32,7 @@ extension Tcb {
         /// 操作备注
         public let operatorRemark: String?
         
-        public init (envId: String, serverName: String, versionFlowItems: [CloudBaseRunVersionFlowItem]?, trafficType: String?, operatorRemark: String?) {
+        public init (envId: String, serverName: String, versionFlowItems: [CloudBaseRunVersionFlowItem]? = nil, trafficType: String? = nil, operatorRemark: String? = nil) {
             self.envId = envId
             self.serverName = serverName
             self.versionFlowItems = versionFlowItems
@@ -74,5 +62,17 @@ extension Tcb {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改容器内的版本流量配置
+    @inlinable
+    public func modifyCloudBaseRunServerFlowConf(_ input: ModifyCloudBaseRunServerFlowConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCloudBaseRunServerFlowConfResponse > {
+        self.client.execute(action: "ModifyCloudBaseRunServerFlowConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改容器内的版本流量配置
+    @inlinable
+    public func modifyCloudBaseRunServerFlowConf(_ input: ModifyCloudBaseRunServerFlowConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudBaseRunServerFlowConfResponse {
+        try await self.client.execute(action: "ModifyCloudBaseRunServerFlowConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

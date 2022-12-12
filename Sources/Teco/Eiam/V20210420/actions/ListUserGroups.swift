@@ -15,29 +15,13 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 获取用户组列表信息
-    ///
-    /// 获取用户组列表信息（包含查询条件）。
-    @inlinable
-    public func listUserGroups(_ input: ListUserGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUserGroupsResponse > {
-        self.client.execute(action: "ListUserGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户组列表信息
-    ///
-    /// 获取用户组列表信息（包含查询条件）。
-    @inlinable
-    public func listUserGroups(_ input: ListUserGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserGroupsResponse {
-        try await self.client.execute(action: "ListUserGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListUserGroups请求参数结构体
     public struct ListUserGroupsRequest: TCRequestModel {
         /// 查询条件，支持多搜索条件组合、多数据范围匹配的搜索。同时支持查询信息内容全匹配、部分匹配、范围匹配等多种查询方式，具体查询方式为：双引号（""）表示全匹配、以星号（* ) 结尾表示字段部分匹配。如果该字段为空，则默认查全量表。
-        public let searchCondition: UserGroupInfoSearchCriteria
+        public let searchCondition: UserGroupInfoSearchCriteria?
         
         /// 排序条件集合。可排序的属性支持：用户组名称（DisplayName）、用户组ID（UserGroupId）、上次更新时间（LastModifiedDate）。如果该字段为空，则默认按照用户组名称正向排序。
-        public let sort: SortCondition
+        public let sort: SortCondition?
         
         /// 分页偏移量。Offset 和 Limit 两个字段需配合使用，即其中一个指定了，另一个必须指定。 如果不指定以上参数，则表示不进行分页查询。
         public let offset: UInt64?
@@ -45,7 +29,7 @@ extension Eiam {
         /// 分页读取数量。Offset 和 Limit 两个字段需配合使用，即其中一个指定了，另一个必须指定。 如果不指定以上参数，则表示不进行分页查询。
         public let limit: UInt64?
         
-        public init (searchCondition: UserGroupInfoSearchCriteria, sort: SortCondition, offset: UInt64?, limit: UInt64?) {
+        public init (searchCondition: UserGroupInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.searchCondition = searchCondition
             self.sort = sort
             self.offset = offset
@@ -78,5 +62,21 @@ extension Eiam {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户组列表信息
+    ///
+    /// 获取用户组列表信息（包含查询条件）。
+    @inlinable
+    public func listUserGroups(_ input: ListUserGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListUserGroupsResponse > {
+        self.client.execute(action: "ListUserGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户组列表信息
+    ///
+    /// 获取用户组列表信息（包含查询条件）。
+    @inlinable
+    public func listUserGroups(_ input: ListUserGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserGroupsResponse {
+        try await self.client.execute(action: "ListUserGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

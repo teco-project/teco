@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 获取基础策略告警组列表
-    @inlinable
-    public func describePolicyGroupList(_ input: DescribePolicyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePolicyGroupListResponse > {
-        self.client.execute(action: "DescribePolicyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取基础策略告警组列表
-    @inlinable
-    public func describePolicyGroupList(_ input: DescribePolicyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyGroupListResponse {
-        try await self.client.execute(action: "DescribePolicyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePolicyGroupList请求参数结构体
     public struct DescribePolicyGroupListRequest: TCRequestModel {
         /// 固定值，为"monitor"
@@ -74,7 +62,7 @@ extension Monitor {
         /// 过滤条件，告警策略是否已启动或停止
         public let isOpen: Bool?
         
-        public init (module: String, limit: Int64, offset: Int64, like: String?, instanceGroupId: Int64?, updateTimeOrder: String?, projectIds: [Int64]?, viewNames: [String]?, filterUnuseReceiver: Int64?, receivers: [String]?, receiverUserList: [String]?, dimensions: String?, conditionTempGroupId: String?, receiverType: String?, isOpen: Bool?) {
+        public init (module: String, limit: Int64, offset: Int64, like: String? = nil, instanceGroupId: Int64? = nil, updateTimeOrder: String? = nil, projectIds: [Int64]? = nil, viewNames: [String]? = nil, filterUnuseReceiver: Int64? = nil, receivers: [String]? = nil, receiverUserList: [String]? = nil, dimensions: String? = nil, conditionTempGroupId: String? = nil, receiverType: String? = nil, isOpen: Bool? = nil) {
             self.module = module
             self.limit = limit
             self.offset = offset
@@ -133,5 +121,17 @@ extension Monitor {
             case warning = "Warning"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取基础策略告警组列表
+    @inlinable
+    public func describePolicyGroupList(_ input: DescribePolicyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePolicyGroupListResponse > {
+        self.client.execute(action: "DescribePolicyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取基础策略告警组列表
+    @inlinable
+    public func describePolicyGroupList(_ input: DescribePolicyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyGroupListResponse {
+        try await self.client.execute(action: "DescribePolicyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

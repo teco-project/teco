@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询站点配置
-    ///
-    /// 用于查询站点的所有配置信息。
-    @inlinable
-    public func describeZoneSetting(_ input: DescribeZoneSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneSettingResponse > {
-        self.client.execute(action: "DescribeZoneSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询站点配置
-    ///
-    /// 用于查询站点的所有配置信息。
-    @inlinable
-    public func describeZoneSetting(_ input: DescribeZoneSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneSettingResponse {
-        try await self.client.execute(action: "DescribeZoneSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeZoneSetting请求参数结构体
     public struct DescribeZoneSettingRequest: TCRequestModel {
         /// 站点ID。
@@ -49,7 +33,7 @@ extension Teo {
     public struct DescribeZoneSettingResponse: TCResponseModel {
         /// 站点配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let zoneSetting: ZoneSetting
+        public let zoneSetting: ZoneSetting?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -58,5 +42,21 @@ extension Teo {
             case zoneSetting = "ZoneSetting"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询站点配置
+    ///
+    /// 用于查询站点的所有配置信息。
+    @inlinable
+    public func describeZoneSetting(_ input: DescribeZoneSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneSettingResponse > {
+        self.client.execute(action: "DescribeZoneSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询站点配置
+    ///
+    /// 用于查询站点的所有配置信息。
+    @inlinable
+    public func describeZoneSetting(_ input: DescribeZoneSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneSettingResponse {
+        try await self.client.execute(action: "DescribeZoneSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

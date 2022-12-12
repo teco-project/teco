@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 修改生命周期挂钩
-    ///
-    /// 此接口用于修改生命周期挂钩。
-    @inlinable
-    public func modifyLifecycleHook(_ input: ModifyLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLifecycleHookResponse > {
-        self.client.execute(action: "ModifyLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改生命周期挂钩
-    ///
-    /// 此接口用于修改生命周期挂钩。
-    @inlinable
-    public func modifyLifecycleHook(_ input: ModifyLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLifecycleHookResponse {
-        try await self.client.execute(action: "ModifyLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLifecycleHook请求参数结构体
     public struct ModifyLifecycleHookRequest: TCRequestModel {
         /// 生命周期挂钩ID。
@@ -59,12 +43,12 @@ extension As {
         public let lifecycleTransitionType: String?
         
         /// 通知目标信息。
-        public let notificationTarget: NotificationTarget
+        public let notificationTarget: NotificationTarget?
         
         /// 远程命令执行对象。
-        public let lifecycleCommand: LifecycleCommand
+        public let lifecycleCommand: LifecycleCommand?
         
-        public init (lifecycleHookId: String, lifecycleHookName: String?, lifecycleTransition: String?, defaultResult: String?, heartbeatTimeout: UInt64?, notificationMetadata: String?, lifecycleTransitionType: String?, notificationTarget: NotificationTarget, lifecycleCommand: LifecycleCommand) {
+        public init (lifecycleHookId: String, lifecycleHookName: String? = nil, lifecycleTransition: String? = nil, defaultResult: String? = nil, heartbeatTimeout: UInt64? = nil, notificationMetadata: String? = nil, lifecycleTransitionType: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleCommand: LifecycleCommand? = nil) {
             self.lifecycleHookId = lifecycleHookId
             self.lifecycleHookName = lifecycleHookName
             self.lifecycleTransition = lifecycleTransition
@@ -97,5 +81,21 @@ extension As {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改生命周期挂钩
+    ///
+    /// 此接口用于修改生命周期挂钩。
+    @inlinable
+    public func modifyLifecycleHook(_ input: ModifyLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLifecycleHookResponse > {
+        self.client.execute(action: "ModifyLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改生命周期挂钩
+    ///
+    /// 此接口用于修改生命周期挂钩。
+    @inlinable
+    public func modifyLifecycleHook(_ input: ModifyLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLifecycleHookResponse {
+        try await self.client.execute(action: "ModifyLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

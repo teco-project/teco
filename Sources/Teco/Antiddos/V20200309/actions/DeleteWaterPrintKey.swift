@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 删除DDoS防护的水印防护密钥
-    @inlinable
-    public func deleteWaterPrintKey(_ input: DeleteWaterPrintKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWaterPrintKeyResponse > {
-        self.client.execute(action: "DeleteWaterPrintKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除DDoS防护的水印防护密钥
-    @inlinable
-    public func deleteWaterPrintKey(_ input: DeleteWaterPrintKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWaterPrintKeyResponse {
-        try await self.client.execute(action: "DeleteWaterPrintKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteWaterPrintKey请求参数结构体
     public struct DeleteWaterPrintKeyRequest: TCRequestModel {
         /// 资源实例ID
@@ -54,5 +42,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除DDoS防护的水印防护密钥
+    @inlinable
+    public func deleteWaterPrintKey(_ input: DeleteWaterPrintKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWaterPrintKeyResponse > {
+        self.client.execute(action: "DeleteWaterPrintKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除DDoS防护的水印防护密钥
+    @inlinable
+    public func deleteWaterPrintKey(_ input: DeleteWaterPrintKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWaterPrintKeyResponse {
+        try await self.client.execute(action: "DeleteWaterPrintKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

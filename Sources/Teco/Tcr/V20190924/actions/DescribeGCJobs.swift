@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// GC 历史
-    ///
-    /// GC 最近10条历史
-    @inlinable
-    public func describeGCJobs(_ input: DescribeGCJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGCJobsResponse > {
-        self.client.execute(action: "DescribeGCJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// GC 历史
-    ///
-    /// GC 最近10条历史
-    @inlinable
-    public func describeGCJobs(_ input: DescribeGCJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGCJobsResponse {
-        try await self.client.execute(action: "DescribeGCJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGCJobs请求参数结构体
     public struct DescribeGCJobsRequest: TCRequestModel {
         /// 实例 Id
@@ -57,5 +41,21 @@ extension Tcr {
             case jobs = "Jobs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// GC 历史
+    ///
+    /// GC 最近10条历史
+    @inlinable
+    public func describeGCJobs(_ input: DescribeGCJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGCJobsResponse > {
+        self.client.execute(action: "DescribeGCJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// GC 历史
+    ///
+    /// GC 最近10条历史
+    @inlinable
+    public func describeGCJobs(_ input: DescribeGCJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGCJobsResponse {
+        try await self.client.execute(action: "DescribeGCJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

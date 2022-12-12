@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 修改使用计划
-    ///
-    /// 本接口（ModifyUsagePlan）用于修改使用计划的名称，描述及 QPS。
-    @inlinable
-    public func modifyUsagePlan(_ input: ModifyUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUsagePlanResponse > {
-        self.client.execute(action: "ModifyUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改使用计划
-    ///
-    /// 本接口（ModifyUsagePlan）用于修改使用计划的名称，描述及 QPS。
-    @inlinable
-    public func modifyUsagePlan(_ input: ModifyUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUsagePlanResponse {
-        try await self.client.execute(action: "ModifyUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyUsagePlan请求参数结构体
     public struct ModifyUsagePlanRequest: TCRequestModel {
         /// 使用计划唯一 ID。
@@ -48,7 +32,7 @@ extension Apigateway {
         /// 每秒请求限制数，取值范围为-1或者[1, 2000]，默认-1，表示不开启。
         public let maxRequestNumPreSec: Int64?
         
-        public init (usagePlanId: String, usagePlanName: String?, usagePlanDesc: String?, maxRequestNum: Int64?, maxRequestNumPreSec: Int64?) {
+        public init (usagePlanId: String, usagePlanName: String? = nil, usagePlanDesc: String? = nil, maxRequestNum: Int64? = nil, maxRequestNumPreSec: Int64? = nil) {
             self.usagePlanId = usagePlanId
             self.usagePlanName = usagePlanName
             self.usagePlanDesc = usagePlanDesc
@@ -69,7 +53,7 @@ extension Apigateway {
     public struct ModifyUsagePlanResponse: TCResponseModel {
         /// 使用计划详情。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: UsagePlanInfo
+        public let result: UsagePlanInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -78,5 +62,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改使用计划
+    ///
+    /// 本接口（ModifyUsagePlan）用于修改使用计划的名称，描述及 QPS。
+    @inlinable
+    public func modifyUsagePlan(_ input: ModifyUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUsagePlanResponse > {
+        self.client.execute(action: "ModifyUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改使用计划
+    ///
+    /// 本接口（ModifyUsagePlan）用于修改使用计划的名称，描述及 QPS。
+    @inlinable
+    public func modifyUsagePlan(_ input: ModifyUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUsagePlanResponse {
+        try await self.client.execute(action: "ModifyUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

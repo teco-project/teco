@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 新增交易
-    @inlinable
-    public func invoke(_ input: InvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeResponse > {
-        self.client.execute(action: "Invoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增交易
-    @inlinable
-    public func invoke(_ input: InvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeResponse {
-        try await self.client.execute(action: "Invoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// Invoke请求参数结构体
     public struct InvokeRequest: TCRequestModel {
         /// 模块名，固定字段：transaction
@@ -59,7 +47,7 @@ extension Tbaas {
         /// 同步调用标识，可选参数，值为0或者不传表示使用同步方法调用，调用后会等待交易执行后再返回执行结果；值为1时表示使用异步方式调用Invoke，执行后会立即返回交易对应的Txid，后续需要通过GetInvokeTx这个API查询该交易的执行结果。（对于逻辑较为简单的交易，可以使用同步模式；对于逻辑较为复杂的交易，建议使用异步模式，否则容易导致API因等待时间过长，返回等待超时）
         public let asyncFlag: UInt64?
         
-        public init (module: String, operation: String, clusterId: String, chaincodeName: String, channelName: String, peers: [PeerSet], funcName: String, groupName: String, args: [String]?, asyncFlag: UInt64?) {
+        public init (module: String, operation: String, clusterId: String, chaincodeName: String, channelName: String, peers: [PeerSet], funcName: String, groupName: String, args: [String]? = nil, asyncFlag: UInt64? = nil) {
             self.module = module
             self.operation = operation
             self.clusterId = clusterId
@@ -102,5 +90,17 @@ extension Tbaas {
             case events = "Events"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增交易
+    @inlinable
+    public func invoke(_ input: InvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeResponse > {
+        self.client.execute(action: "Invoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增交易
+    @inlinable
+    public func invoke(_ input: InvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeResponse {
+        try await self.client.execute(action: "Invoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

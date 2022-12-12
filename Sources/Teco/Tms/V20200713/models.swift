@@ -80,7 +80,7 @@ extension Tms {
         /// IOS设备，IDFV - Identifier For Vendor（应用开发商标识符）
         public let idfv: String?
         
-        public init (ip: String?, mac: String?, tokenId: String?, deviceId: String?, imei: String?, idfa: String?, idfv: String?) {
+        public init (ip: String? = nil, mac: String? = nil, tokenId: String? = nil, deviceId: String? = nil, imei: String? = nil, idfa: String? = nil, idfv: String? = nil) {
             self.ip = ip
             self.mac = mac
             self.tokenId = tokenId
@@ -291,7 +291,7 @@ extension Tms {
         /// 手机号
         public let phone: String?
         
-        public init (userId: String?, nickname: String?, accountType: Int64?, gender: Int64?, age: Int64?, level: Int64?, phone: String?) {
+        public init (userId: String? = nil, nickname: String? = nil, accountType: Int64? = nil, gender: Int64? = nil, age: Int64? = nil, level: Int64? = nil, phone: String? = nil) {
             self.userId = userId
             self.nickname = nickname
             self.accountType = accountType

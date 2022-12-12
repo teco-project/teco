@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 恢复serverless集群
-    @inlinable
-    public func resumeServerless(_ input: ResumeServerlessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeServerlessResponse > {
-        self.client.execute(action: "ResumeServerless", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 恢复serverless集群
-    @inlinable
-    public func resumeServerless(_ input: ResumeServerlessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeServerlessResponse {
-        try await self.client.execute(action: "ResumeServerless", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResumeServerless请求参数结构体
     public struct ResumeServerlessRequest: TCRequestModel {
         /// 集群ID
@@ -53,5 +41,17 @@ extension Cynosdb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 恢复serverless集群
+    @inlinable
+    public func resumeServerless(_ input: ResumeServerlessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResumeServerlessResponse > {
+        self.client.execute(action: "ResumeServerless", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复serverless集群
+    @inlinable
+    public func resumeServerless(_ input: ResumeServerlessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeServerlessResponse {
+        try await self.client.execute(action: "ResumeServerless", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

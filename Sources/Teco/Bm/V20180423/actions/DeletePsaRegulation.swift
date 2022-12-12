@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 删除预授权规则
-    @inlinable
-    public func deletePsaRegulation(_ input: DeletePsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePsaRegulationResponse > {
-        self.client.execute(action: "DeletePsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除预授权规则
-    @inlinable
-    public func deletePsaRegulation(_ input: DeletePsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePsaRegulationResponse {
-        try await self.client.execute(action: "DeletePsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePsaRegulation请求参数结构体
     public struct DeletePsaRegulationRequest: TCRequestModel {
         /// 预授权规则ID
@@ -49,5 +37,17 @@ extension Bm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除预授权规则
+    @inlinable
+    public func deletePsaRegulation(_ input: DeletePsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePsaRegulationResponse > {
+        self.client.execute(action: "DeletePsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除预授权规则
+    @inlinable
+    public func deletePsaRegulation(_ input: DeletePsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePsaRegulationResponse {
+        try await self.client.execute(action: "DeletePsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

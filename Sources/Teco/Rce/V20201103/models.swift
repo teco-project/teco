@@ -21,15 +21,15 @@ extension Rce {
         public let accountType: UInt64
         
         /// QQ账号信息，AccountType是1时，该字段必填。
-        public let qqAccount: QQAccountInfo
+        public let qqAccount: QQAccountInfo?
         
         /// 微信账号信息，AccountType是2时，该字段必填。
-        public let weChatAccount: WeChatAccountInfo
+        public let weChatAccount: WeChatAccountInfo?
         
         /// 其它账号信息，AccountType是0、4、8或10004时，该字段必填。
-        public let otherAccount: OtherAccountInfo
+        public let otherAccount: OtherAccountInfo?
         
-        public init (accountType: UInt64, qqAccount: QQAccountInfo, weChatAccount: WeChatAccountInfo, otherAccount: OtherAccountInfo) {
+        public init (accountType: UInt64, qqAccount: QQAccountInfo? = nil, weChatAccount: WeChatAccountInfo? = nil, otherAccount: OtherAccountInfo? = nil) {
             self.accountType = accountType
             self.qqAccount = qqAccount
             self.weChatAccount = weChatAccount
@@ -55,7 +55,7 @@ extension Rce {
         /// 加密内容
         public let cryptoContent: String?
         
-        public init (isAuthorized: String?, cryptoType: String?, cryptoContent: String?) {
+        public init (isAuthorized: String? = nil, cryptoType: String? = nil, cryptoContent: String? = nil) {
             self.isAuthorized = isAuthorized
             self.cryptoType = cryptoType
             self.cryptoContent = cryptoContent
@@ -107,7 +107,7 @@ extension Rce {
         /// 当前结束时间
         public let currentEndTime: String?
         
-        public init (eventId: Int64, startTime: String?, endTime: String?, type: Int64?, currentStartTime: String?, currentEndTime: String?) {
+        public init (eventId: Int64, startTime: String? = nil, endTime: String? = nil, type: Int64? = nil, currentStartTime: String? = nil, currentEndTime: String? = nil) {
             self.eventId = eventId
             self.startTime = startTime
             self.endTime = endTime
@@ -192,15 +192,15 @@ extension Rce {
         public let details: [InputDetails]?
         
         /// 可选填写。详情请跳转至SponsorInfo查看。
-        public let sponsor: SponsorInfo
+        public let sponsor: SponsorInfo?
         
         /// 可选填写。详情请跳转至OnlineScamInfo查看。
-        public let onlineScam: OnlineScamInfo
+        public let onlineScam: OnlineScamInfo?
         
         /// 平台: 1android
         public let platform: String?
         
-        public init (account: AccountInfo, sceneCode: String, userIp: String, postTime: UInt64, userId: String?, deviceToken: String?, deviceBusinessId: Int64?, businessId: UInt64?, nickname: String?, emailAddress: String?, checkDevice: Int64?, cookieHash: String?, referer: String?, userAgent: String?, xForwardedFor: String?, macAddress: String?, vendorId: String?, deviceType: Int64?, details: [InputDetails]?, sponsor: SponsorInfo, onlineScam: OnlineScamInfo, platform: String?) {
+        public init (account: AccountInfo, sceneCode: String, userIp: String, postTime: UInt64, userId: String? = nil, deviceToken: String? = nil, deviceBusinessId: Int64? = nil, businessId: UInt64? = nil, nickname: String? = nil, emailAddress: String? = nil, checkDevice: Int64? = nil, cookieHash: String? = nil, referer: String? = nil, userAgent: String? = nil, xForwardedFor: String? = nil, macAddress: String? = nil, vendorId: String? = nil, deviceType: Int64? = nil, details: [InputDetails]? = nil, sponsor: SponsorInfo? = nil, onlineScam: OnlineScamInfo? = nil, platform: String? = nil) {
             self.account = account
             self.sceneCode = sceneCode
             self.userIp = userIp
@@ -272,7 +272,7 @@ extension Rce {
         /// 账号
         public let fraudAccount: String?
         
-        public init (contentLabel: String?, contentRiskLevel: Int64?, contentType: Int64?, fraudType: Int64?, fraudAccount: String?) {
+        public init (contentLabel: String? = nil, contentRiskLevel: Int64? = nil, contentType: Int64? = nil, fraudType: Int64? = nil, fraudAccount: String? = nil) {
             self.contentLabel = contentLabel
             self.contentRiskLevel = contentRiskLevel
             self.contentType = contentType
@@ -300,7 +300,7 @@ extension Rce {
         /// id
         public let deviceId: String?
         
-        public init (accountId: String, mobilePhone: String?, deviceId: String?) {
+        public init (accountId: String, mobilePhone: String? = nil, deviceId: String? = nil) {
             self.accountId = accountId
             self.mobilePhone = mobilePhone
             self.deviceId = deviceId
@@ -378,7 +378,7 @@ extension Rce {
         
         /// 业务详情。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let value: OutputManageMarketingRiskValue
+        public let value: OutputManageMarketingRiskValue?
         
         /// 控制台显示的req_id。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -484,7 +484,7 @@ extension Rce {
         /// 用户设备号。
         public let deviceId: String?
         
-        public init (qqOpenId: String, appIdUser: String, associateAccount: String?, mobilePhone: String?, deviceId: String?) {
+        public init (qqOpenId: String, appIdUser: String, associateAccount: String? = nil, mobilePhone: String? = nil, deviceId: String? = nil) {
             self.qqOpenId = qqOpenId
             self.appIdUser = appIdUser
             self.associateAccount = associateAccount
@@ -518,7 +518,7 @@ extension Rce {
         /// 链接
         public let campaignUrl: String?
         
-        public init (sponsorOpenId: String?, sponsorDeviceNumber: String?, sponsorPhone: String?, sponsorIp: String?, campaignUrl: String?) {
+        public init (sponsorOpenId: String? = nil, sponsorDeviceNumber: String? = nil, sponsorPhone: String? = nil, sponsorIp: String? = nil, campaignUrl: String? = nil) {
             self.sponsorOpenId = sponsorOpenId
             self.sponsorDeviceNumber = sponsorDeviceNumber
             self.sponsorPhone = sponsorPhone
@@ -560,7 +560,7 @@ extension Rce {
         /// 用户设备号。
         public let deviceId: String?
         
-        public init (weChatOpenId: String, weChatSubType: UInt64?, randStr: String?, weChatAccessToken: String?, associateAccount: String?, mobilePhone: String?, deviceId: String?) {
+        public init (weChatOpenId: String, weChatSubType: UInt64? = nil, randStr: String? = nil, weChatAccessToken: String? = nil, associateAccount: String? = nil, mobilePhone: String? = nil, deviceId: String? = nil) {
             self.weChatOpenId = weChatOpenId
             self.weChatSubType = weChatSubType
             self.randStr = randStr

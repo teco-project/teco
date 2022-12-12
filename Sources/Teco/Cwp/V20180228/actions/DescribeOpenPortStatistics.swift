@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取端口统计列表
-    ///
-    /// 本接口 (DescribeOpenPortStatistics) 用于获取端口统计列表。
-    @inlinable
-    public func describeOpenPortStatistics(_ input: DescribeOpenPortStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOpenPortStatisticsResponse > {
-        self.client.execute(action: "DescribeOpenPortStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取端口统计列表
-    ///
-    /// 本接口 (DescribeOpenPortStatistics) 用于获取端口统计列表。
-    @inlinable
-    public func describeOpenPortStatistics(_ input: DescribeOpenPortStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortStatisticsResponse {
-        try await self.client.execute(action: "DescribeOpenPortStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOpenPortStatistics请求参数结构体
     public struct DescribeOpenPortStatisticsRequest: TCRequestModel {
         /// 返回数量，默认为10，最大值为100。
@@ -43,7 +27,7 @@ extension Cwp {
         /// <li>Port - Uint64 - 是否必填：否 - 端口号</li>
         public let filters: [Filter]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -72,5 +56,21 @@ extension Cwp {
             case openPortStatistics = "OpenPortStatistics"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取端口统计列表
+    ///
+    /// 本接口 (DescribeOpenPortStatistics) 用于获取端口统计列表。
+    @inlinable
+    public func describeOpenPortStatistics(_ input: DescribeOpenPortStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOpenPortStatisticsResponse > {
+        self.client.execute(action: "DescribeOpenPortStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取端口统计列表
+    ///
+    /// 本接口 (DescribeOpenPortStatistics) 用于获取端口统计列表。
+    @inlinable
+    public func describeOpenPortStatistics(_ input: DescribeOpenPortStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortStatisticsResponse {
+        try await self.client.execute(action: "DescribeOpenPortStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 删除短信模板
-    @inlinable
-    public func delTemplate(_ input: DelTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DelTemplateResponse > {
-        self.client.execute(action: "DelTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除短信模板
-    @inlinable
-    public func delTemplate(_ input: DelTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelTemplateResponse {
-        try await self.client.execute(action: "DelTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DelTemplate请求参数结构体
     public struct DelTemplateRequest: TCRequestModel {
         /// 商户证书
@@ -58,5 +46,17 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除短信模板
+    @inlinable
+    public func delTemplate(_ input: DelTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DelTemplateResponse > {
+        self.client.execute(action: "DelTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除短信模板
+    @inlinable
+    public func delTemplate(_ input: DelTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelTemplateResponse {
+        try await self.client.execute(action: "DelTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

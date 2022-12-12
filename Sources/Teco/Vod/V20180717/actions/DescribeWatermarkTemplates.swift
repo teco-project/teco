@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 获取水印模板列表
-    ///
-    /// 查询用户自定义水印模板，支持根据条件，分页查询。
-    @inlinable
-    public func describeWatermarkTemplates(_ input: DescribeWatermarkTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWatermarkTemplatesResponse > {
-        self.client.execute(action: "DescribeWatermarkTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取水印模板列表
-    ///
-    /// 查询用户自定义水印模板，支持根据条件，分页查询。
-    @inlinable
-    public func describeWatermarkTemplates(_ input: DescribeWatermarkTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWatermarkTemplatesResponse {
-        try await self.client.execute(action: "DescribeWatermarkTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWatermarkTemplates请求参数结构体
     public struct DescribeWatermarkTemplatesRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -53,7 +37,7 @@ extension Vod {
         /// <li>最大值：100。</li>
         public let limit: UInt64?
         
-        public init (subAppId: UInt64?, type: String?, offset: UInt64?, definitions: [Int64]?, limit: UInt64?) {
+        public init (subAppId: UInt64? = nil, type: String? = nil, offset: UInt64? = nil, definitions: [Int64]? = nil, limit: UInt64? = nil) {
             self.subAppId = subAppId
             self.type = type
             self.offset = offset
@@ -87,5 +71,21 @@ extension Vod {
             case watermarkTemplateSet = "WatermarkTemplateSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取水印模板列表
+    ///
+    /// 查询用户自定义水印模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeWatermarkTemplates(_ input: DescribeWatermarkTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWatermarkTemplatesResponse > {
+        self.client.execute(action: "DescribeWatermarkTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取水印模板列表
+    ///
+    /// 查询用户自定义水印模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeWatermarkTemplates(_ input: DescribeWatermarkTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWatermarkTemplatesResponse {
+        try await self.client.execute(action: "DescribeWatermarkTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

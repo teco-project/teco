@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 获取网络列表
-    ///
-    /// 获取该用户的网络列表。网络信息中包含组织信息，但仅包含该用户所在组织的信息。
-    @inlinable
-    public func getClusterListForUser(_ input: GetClusterListForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetClusterListForUserResponse > {
-        self.client.execute(action: "GetClusterListForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取网络列表
-    ///
-    /// 获取该用户的网络列表。网络信息中包含组织信息，但仅包含该用户所在组织的信息。
-    @inlinable
-    public func getClusterListForUser(_ input: GetClusterListForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterListForUserResponse {
-        try await self.client.execute(action: "GetClusterListForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetClusterListForUser请求参数结构体
     public struct GetClusterListForUserRequest: TCRequestModel {
         /// 模块名，本接口取值：cluster_mng
@@ -45,7 +29,7 @@ extension Tbaas {
         /// 返回数据起始偏移，本接口默认取值：0
         public let offset: UInt64?
         
-        public init (module: String, operation: String, limit: UInt64?, offset: UInt64?) {
+        public init (module: String, operation: String, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.module = module
             self.operation = operation
             self.limit = limit
@@ -76,5 +60,21 @@ extension Tbaas {
             case clusterList = "ClusterList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取网络列表
+    ///
+    /// 获取该用户的网络列表。网络信息中包含组织信息，但仅包含该用户所在组织的信息。
+    @inlinable
+    public func getClusterListForUser(_ input: GetClusterListForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetClusterListForUserResponse > {
+        self.client.execute(action: "GetClusterListForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取网络列表
+    ///
+    /// 获取该用户的网络列表。网络信息中包含组织信息，但仅包含该用户所在组织的信息。
+    @inlinable
+    public func getClusterListForUser(_ input: GetClusterListForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterListForUserResponse {
+        try await self.client.execute(action: "GetClusterListForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

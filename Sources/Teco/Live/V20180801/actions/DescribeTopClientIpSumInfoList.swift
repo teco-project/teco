@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询某段时间top n客户端ip汇总信息
-    ///
-    /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
-    @inlinable
-    public func describeTopClientIpSumInfoList(_ input: DescribeTopClientIpSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopClientIpSumInfoListResponse > {
-        self.client.execute(action: "DescribeTopClientIpSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询某段时间top n客户端ip汇总信息
-    ///
-    /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
-    @inlinable
-    public func describeTopClientIpSumInfoList(_ input: DescribeTopClientIpSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopClientIpSumInfoListResponse {
-        try await self.client.execute(action: "DescribeTopClientIpSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTopClientIpSumInfoList请求参数结构体
     public struct DescribeTopClientIpSumInfoListRequest: TCRequestModel {
         /// 起始时间点，格式为yyyy-mm-dd HH:MM:SS。
@@ -58,7 +42,7 @@ extension Live {
         /// 输出字段使用的语言，可选值：Chinese（默认值），English；目前国家，省份和运营商支持多语言。
         public let outLanguage: String?
         
-        public init (startTime: String, endTime: String, playDomains: [String]?, pageNum: UInt64?, pageSize: UInt64?, orderParam: String?, mainlandOrOversea: String?, outLanguage: String?) {
+        public init (startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, orderParam: String? = nil, mainlandOrOversea: String? = nil, outLanguage: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.playDomains = playDomains
@@ -113,5 +97,21 @@ extension Live {
             case dataInfoList = "DataInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询某段时间top n客户端ip汇总信息
+    ///
+    /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
+    @inlinable
+    public func describeTopClientIpSumInfoList(_ input: DescribeTopClientIpSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopClientIpSumInfoListResponse > {
+        self.client.execute(action: "DescribeTopClientIpSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询某段时间top n客户端ip汇总信息
+    ///
+    /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
+    @inlinable
+    public func describeTopClientIpSumInfoList(_ input: DescribeTopClientIpSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopClientIpSumInfoListResponse {
+        try await self.client.execute(action: "DescribeTopClientIpSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

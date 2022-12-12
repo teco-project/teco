@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 查询设备消息数量统计
-    @inlinable
-    public func describeMessageDataStats(_ input: DescribeMessageDataStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMessageDataStatsResponse > {
-        self.client.execute(action: "DescribeMessageDataStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备消息数量统计
-    @inlinable
-    public func describeMessageDataStats(_ input: DescribeMessageDataStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageDataStatsResponse {
-        try await self.client.execute(action: "DescribeMessageDataStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMessageDataStats请求参数结构体
     public struct DescribeMessageDataStatsRequest: TCRequestModel {
         /// 统计开始日期
@@ -38,7 +26,7 @@ extension Iotvideo {
         /// 产品id
         public let productId: String?
         
-        public init (startDate: String, endDate: String, productId: String?) {
+        public init (startDate: String, endDate: String, productId: String? = nil) {
             self.startDate = startDate
             self.endDate = endDate
             self.productId = productId
@@ -69,5 +57,17 @@ extension Iotvideo {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备消息数量统计
+    @inlinable
+    public func describeMessageDataStats(_ input: DescribeMessageDataStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMessageDataStatsResponse > {
+        self.client.execute(action: "DescribeMessageDataStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备消息数量统计
+    @inlinable
+    public func describeMessageDataStats(_ input: DescribeMessageDataStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageDataStatsResponse {
+        try await self.client.execute(action: "DescribeMessageDataStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

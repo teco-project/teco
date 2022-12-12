@@ -40,7 +40,7 @@ extension Ecc {
         
         /// 批改结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let correctData: CorrectData
+        public let correctData: CorrectData?
         
         /// 任务 id，用于查询接口
         /// 注意：此字段可能返回 null，表示取不到有效值。

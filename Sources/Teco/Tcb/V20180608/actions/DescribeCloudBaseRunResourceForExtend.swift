@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查看容器托管的资源状态扩展使用
-    ///
-    /// 查看容器托管的集群状态扩展使用
-    @inlinable
-    public func describeCloudBaseRunResourceForExtend(_ input: DescribeCloudBaseRunResourceForExtendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunResourceForExtendResponse > {
-        self.client.execute(action: "DescribeCloudBaseRunResourceForExtend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看容器托管的资源状态扩展使用
-    ///
-    /// 查看容器托管的集群状态扩展使用
-    @inlinable
-    public func describeCloudBaseRunResourceForExtend(_ input: DescribeCloudBaseRunResourceForExtendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunResourceForExtendResponse {
-        try await self.client.execute(action: "DescribeCloudBaseRunResourceForExtend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudBaseRunResourceForExtend请求参数结构体
     public struct DescribeCloudBaseRunResourceForExtendRequest: TCRequestModel {
         /// 环境ID
@@ -78,5 +62,21 @@ extension Tcb {
             case subnetIds = "SubnetIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看容器托管的资源状态扩展使用
+    ///
+    /// 查看容器托管的集群状态扩展使用
+    @inlinable
+    public func describeCloudBaseRunResourceForExtend(_ input: DescribeCloudBaseRunResourceForExtendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunResourceForExtendResponse > {
+        self.client.execute(action: "DescribeCloudBaseRunResourceForExtend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看容器托管的资源状态扩展使用
+    ///
+    /// 查看容器托管的集群状态扩展使用
+    @inlinable
+    public func describeCloudBaseRunResourceForExtend(_ input: DescribeCloudBaseRunResourceForExtendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunResourceForExtendResponse {
+        try await self.client.execute(action: "DescribeCloudBaseRunResourceForExtend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

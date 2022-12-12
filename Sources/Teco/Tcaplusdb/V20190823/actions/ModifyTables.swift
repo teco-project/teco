@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 批量修改表结构
-    ///
-    /// 根据用户选定的表定义IDL文件，批量修改指定的表
-    @inlinable
-    public func modifyTables(_ input: ModifyTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTablesResponse > {
-        self.client.execute(action: "ModifyTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量修改表结构
-    ///
-    /// 根据用户选定的表定义IDL文件，批量修改指定的表
-    @inlinable
-    public func modifyTables(_ input: ModifyTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTablesResponse {
-        try await self.client.execute(action: "ModifyTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTables请求参数结构体
     public struct ModifyTablesRequest: TCRequestModel {
         /// 待修改表格所在集群ID
@@ -71,5 +55,21 @@ extension Tcaplusdb {
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量修改表结构
+    ///
+    /// 根据用户选定的表定义IDL文件，批量修改指定的表
+    @inlinable
+    public func modifyTables(_ input: ModifyTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTablesResponse > {
+        self.client.execute(action: "ModifyTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量修改表结构
+    ///
+    /// 根据用户选定的表定义IDL文件，批量修改指定的表
+    @inlinable
+    public func modifyTables(_ input: ModifyTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTablesResponse {
+        try await self.client.execute(action: "ModifyTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

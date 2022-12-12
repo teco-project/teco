@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Fmu {
-    /// 查询唇色素材
-    ///
-    /// 查询已注册的唇色素材。
-    @inlinable
-    public func getModelList(_ input: GetModelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetModelListResponse > {
-        self.client.execute(action: "GetModelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询唇色素材
-    ///
-    /// 查询已注册的唇色素材。
-    @inlinable
-    public func getModelList(_ input: GetModelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetModelListResponse {
-        try await self.client.execute(action: "GetModelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetModelList请求参数结构体
     public struct GetModelListRequest: TCRequestModel {
         /// 起始序号，默认值为0。
@@ -39,7 +23,7 @@ extension Fmu {
         /// 返回数量，默认值为10，最大值为100。
         public let limit: Int64?
         
-        public init (offset: Int64?, limit: Int64?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil) {
             self.offset = offset
             self.limit = limit
         }
@@ -67,5 +51,21 @@ extension Fmu {
             case modelInfos = "ModelInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询唇色素材
+    ///
+    /// 查询已注册的唇色素材。
+    @inlinable
+    public func getModelList(_ input: GetModelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetModelListResponse > {
+        self.client.execute(action: "GetModelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询唇色素材
+    ///
+    /// 查询已注册的唇色素材。
+    @inlinable
+    public func getModelList(_ input: GetModelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetModelListResponse {
+        try await self.client.execute(action: "GetModelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

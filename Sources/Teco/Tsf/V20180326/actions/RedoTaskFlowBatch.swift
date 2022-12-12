@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 重新执行工作流批次
-    @inlinable
-    public func redoTaskFlowBatch(_ input: RedoTaskFlowBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RedoTaskFlowBatchResponse > {
-        self.client.execute(action: "RedoTaskFlowBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重新执行工作流批次
-    @inlinable
-    public func redoTaskFlowBatch(_ input: RedoTaskFlowBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskFlowBatchResponse {
-        try await self.client.execute(action: "RedoTaskFlowBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RedoTaskFlowBatch请求参数结构体
     public struct RedoTaskFlowBatchRequest: TCRequestModel {
         /// 工作流批次 ID
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重新执行工作流批次
+    @inlinable
+    public func redoTaskFlowBatch(_ input: RedoTaskFlowBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RedoTaskFlowBatchResponse > {
+        self.client.execute(action: "RedoTaskFlowBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重新执行工作流批次
+    @inlinable
+    public func redoTaskFlowBatch(_ input: RedoTaskFlowBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskFlowBatchResponse {
+        try await self.client.execute(action: "RedoTaskFlowBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

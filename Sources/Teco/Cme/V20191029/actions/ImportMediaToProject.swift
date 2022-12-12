@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 在项目中导入媒体
-    ///
-    /// 将云点播中的媒资或者用户自有媒资文件添加到项目中与项目关联，供后续视频编辑使用。目前仅视频编辑项目和智能视频拆条项目有效。
-    @inlinable
-    public func importMediaToProject(_ input: ImportMediaToProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportMediaToProjectResponse > {
-        self.client.execute(action: "ImportMediaToProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 在项目中导入媒体
-    ///
-    /// 将云点播中的媒资或者用户自有媒资文件添加到项目中与项目关联，供后续视频编辑使用。目前仅视频编辑项目和智能视频拆条项目有效。
-    @inlinable
-    public func importMediaToProject(_ input: ImportMediaToProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMediaToProjectResponse {
-        try await self.client.execute(action: "ImportMediaToProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ImportMediaToProject请求参数结构体
     public struct ImportMediaToProjectRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -49,7 +33,7 @@ extension Cme {
         public let vodFileId: String?
         
         /// 原始媒资文件信息，当 SourceType 取值 EXTERNAL 的时候必填。
-        public let externalMediaInfo: ExternalMediaInfo
+        public let externalMediaInfo: ExternalMediaInfo?
         
         /// 媒体名称，不能超过30个字符。如果不填，则媒体名称为点播媒资文件名称。
         public let name: String?
@@ -62,7 +46,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以向所有视频编辑项目导入媒体；如果指定操作者，则操作者必须为项目所有者。
         public let `operator`: String?
         
-        public init (platform: String, projectId: String, sourceType: String?, vodFileId: String?, externalMediaInfo: ExternalMediaInfo, name: String?, preProcessDefinition: Int64?, `operator`: String?) {
+        public init (platform: String, projectId: String, sourceType: String? = nil, vodFileId: String? = nil, externalMediaInfo: ExternalMediaInfo? = nil, name: String? = nil, preProcessDefinition: Int64? = nil, `operator`: String? = nil) {
             self.platform = platform
             self.projectId = projectId
             self.sourceType = sourceType
@@ -101,5 +85,21 @@ extension Cme {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 在项目中导入媒体
+    ///
+    /// 将云点播中的媒资或者用户自有媒资文件添加到项目中与项目关联，供后续视频编辑使用。目前仅视频编辑项目和智能视频拆条项目有效。
+    @inlinable
+    public func importMediaToProject(_ input: ImportMediaToProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportMediaToProjectResponse > {
+        self.client.execute(action: "ImportMediaToProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 在项目中导入媒体
+    ///
+    /// 将云点播中的媒资或者用户自有媒资文件添加到项目中与项目关联，供后续视频编辑使用。目前仅视频编辑项目和智能视频拆条项目有效。
+    @inlinable
+    public func importMediaToProject(_ input: ImportMediaToProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMediaToProjectResponse {
+        try await self.client.execute(action: "ImportMediaToProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

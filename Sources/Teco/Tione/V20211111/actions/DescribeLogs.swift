@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 获取日志
-    ///
-    /// 获取训练、推理、Notebook服务的日志
-    @inlinable
-    public func describeLogs(_ input: DescribeLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogsResponse > {
-        self.client.execute(action: "DescribeLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取日志
-    ///
-    /// 获取训练、推理、Notebook服务的日志
-    @inlinable
-    public func describeLogs(_ input: DescribeLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
-        try await self.client.execute(action: "DescribeLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLogs请求参数结构体
     public struct DescribeLogsRequest: TCRequestModel {
         /// 查询哪个服务的事件（可选值为TRAIN, NOTEBOOK, INFER）
@@ -64,7 +48,7 @@ extension Tione {
         /// 3. Filter. Negative和Filter. Fuzzy没有使用
         public let filters: [Filter]?
         
-        public init (service: String, podName: String, startTime: String?, endTime: String?, limit: UInt64?, order: String?, orderField: String?, context: String?, filters: [Filter]?) {
+        public init (service: String, podName: String, startTime: String? = nil, endTime: String? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, context: String? = nil, filters: [Filter]? = nil) {
             self.service = service
             self.podName = podName
             self.startTime = startTime
@@ -107,5 +91,21 @@ extension Tione {
             case content = "Content"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取日志
+    ///
+    /// 获取训练、推理、Notebook服务的日志
+    @inlinable
+    public func describeLogs(_ input: DescribeLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogsResponse > {
+        self.client.execute(action: "DescribeLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志
+    ///
+    /// 获取训练、推理、Notebook服务的日志
+    @inlinable
+    public func describeLogs(_ input: DescribeLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
+        try await self.client.execute(action: "DescribeLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

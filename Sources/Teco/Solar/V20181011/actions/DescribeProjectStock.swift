@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Solar {
-    /// 项目库存详情
-    @inlinable
-    public func describeProjectStock(_ input: DescribeProjectStockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectStockResponse > {
-        self.client.execute(action: "DescribeProjectStock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 项目库存详情
-    @inlinable
-    public func describeProjectStock(_ input: DescribeProjectStockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectStockResponse {
-        try await self.client.execute(action: "DescribeProjectStock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProjectStock请求参数结构体
     public struct DescribeProjectStockRequest: TCRequestModel {
         /// 子项目id
@@ -53,5 +41,17 @@ extension Solar {
             case projectStocks = "ProjectStocks"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 项目库存详情
+    @inlinable
+    public func describeProjectStock(_ input: DescribeProjectStockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectStockResponse > {
+        self.client.execute(action: "DescribeProjectStock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 项目库存详情
+    @inlinable
+    public func describeProjectStock(_ input: DescribeProjectStockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectStockResponse {
+        try await self.client.execute(action: "DescribeProjectStock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

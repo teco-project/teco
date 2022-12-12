@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 删除截图模板
-    @inlinable
-    public func deleteLiveSnapshotTemplate(_ input: DeleteLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveSnapshotTemplateResponse > {
-        self.client.execute(action: "DeleteLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除截图模板
-    @inlinable
-    public func deleteLiveSnapshotTemplate(_ input: DeleteLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveSnapshotTemplateResponse {
-        try await self.client.execute(action: "DeleteLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLiveSnapshotTemplate请求参数结构体
     public struct DeleteLiveSnapshotTemplateRequest: TCRequestModel {
         /// 模板 ID。
@@ -51,5 +39,17 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除截图模板
+    @inlinable
+    public func deleteLiveSnapshotTemplate(_ input: DeleteLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveSnapshotTemplateResponse > {
+        self.client.execute(action: "DeleteLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除截图模板
+    @inlinable
+    public func deleteLiveSnapshotTemplate(_ input: DeleteLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveSnapshotTemplateResponse {
+        try await self.client.execute(action: "DeleteLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

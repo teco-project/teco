@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 更新监听器转发规则域名
-    ///
-    /// 本接口（ModifyDomain）用于监听器下的域名。当通道版本为3.0时，支持对该域名所对应的证书修改。
-    @inlinable
-    public func modifyDomain(_ input: ModifyDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainResponse > {
-        self.client.execute(action: "ModifyDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新监听器转发规则域名
-    ///
-    /// 本接口（ModifyDomain）用于监听器下的域名。当通道版本为3.0时，支持对该域名所对应的证书修改。
-    @inlinable
-    public func modifyDomain(_ input: ModifyDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainResponse {
-        try await self.client.execute(action: "ModifyDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDomain请求参数结构体
     public struct ModifyDomainRequest: TCRequestModel {
         /// 7层监听器ID
@@ -60,7 +44,7 @@ extension Gaap {
         /// 其他情况，使用该ClientCertificateId或PolyClientCertificateIds指定的证书。
         public let polyClientCertificateIds: [String]?
         
-        public init (listenerId: String, oldDomain: String, newDomain: String, certificateId: String?, clientCertificateId: String?, polyClientCertificateIds: [String]?) {
+        public init (listenerId: String, oldDomain: String, newDomain: String, certificateId: String? = nil, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil) {
             self.listenerId = listenerId
             self.oldDomain = oldDomain
             self.newDomain = newDomain
@@ -87,5 +71,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新监听器转发规则域名
+    ///
+    /// 本接口（ModifyDomain）用于监听器下的域名。当通道版本为3.0时，支持对该域名所对应的证书修改。
+    @inlinable
+    public func modifyDomain(_ input: ModifyDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDomainResponse > {
+        self.client.execute(action: "ModifyDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新监听器转发规则域名
+    ///
+    /// 本接口（ModifyDomain）用于监听器下的域名。当通道版本为3.0时，支持对该域名所对应的证书修改。
+    @inlinable
+    public func modifyDomain(_ input: ModifyDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainResponse {
+        try await self.client.execute(action: "ModifyDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

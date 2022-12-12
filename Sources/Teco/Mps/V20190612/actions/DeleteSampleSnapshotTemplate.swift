@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 删除采样截图模板
-    ///
-    /// 删除用户自定义采样截图模板。
-    @inlinable
-    public func deleteSampleSnapshotTemplate(_ input: DeleteSampleSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSampleSnapshotTemplateResponse > {
-        self.client.execute(action: "DeleteSampleSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除采样截图模板
-    ///
-    /// 删除用户自定义采样截图模板。
-    @inlinable
-    public func deleteSampleSnapshotTemplate(_ input: DeleteSampleSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSampleSnapshotTemplateResponse {
-        try await self.client.execute(action: "DeleteSampleSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSampleSnapshotTemplate请求参数结构体
     public struct DeleteSampleSnapshotTemplateRequest: TCRequestModel {
         /// 采样截图模板唯一标识。
@@ -53,5 +37,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除采样截图模板
+    ///
+    /// 删除用户自定义采样截图模板。
+    @inlinable
+    public func deleteSampleSnapshotTemplate(_ input: DeleteSampleSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSampleSnapshotTemplateResponse > {
+        self.client.execute(action: "DeleteSampleSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除采样截图模板
+    ///
+    /// 删除用户自定义采样截图模板。
+    @inlinable
+    public func deleteSampleSnapshotTemplate(_ input: DeleteSampleSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSampleSnapshotTemplateResponse {
+        try await self.client.execute(action: "DeleteSampleSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

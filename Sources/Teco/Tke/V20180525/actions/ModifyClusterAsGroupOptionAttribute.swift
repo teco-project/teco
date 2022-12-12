@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 修改集群弹性伸缩属性
-    @inlinable
-    public func modifyClusterAsGroupOptionAttribute(_ input: ModifyClusterAsGroupOptionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterAsGroupOptionAttributeResponse > {
-        self.client.execute(action: "ModifyClusterAsGroupOptionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改集群弹性伸缩属性
-    @inlinable
-    public func modifyClusterAsGroupOptionAttribute(_ input: ModifyClusterAsGroupOptionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAsGroupOptionAttributeResponse {
-        try await self.client.execute(action: "ModifyClusterAsGroupOptionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClusterAsGroupOptionAttribute请求参数结构体
     public struct ModifyClusterAsGroupOptionAttributeRequest: TCRequestModel {
         /// 集群ID
@@ -54,5 +42,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改集群弹性伸缩属性
+    @inlinable
+    public func modifyClusterAsGroupOptionAttribute(_ input: ModifyClusterAsGroupOptionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterAsGroupOptionAttributeResponse > {
+        self.client.execute(action: "ModifyClusterAsGroupOptionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改集群弹性伸缩属性
+    @inlinable
+    public func modifyClusterAsGroupOptionAttribute(_ input: ModifyClusterAsGroupOptionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAsGroupOptionAttributeResponse {
+        try await self.client.execute(action: "ModifyClusterAsGroupOptionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

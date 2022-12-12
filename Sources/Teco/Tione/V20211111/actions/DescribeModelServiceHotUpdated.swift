@@ -15,34 +15,18 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询模型服务能否开启热更新
-    ///
-    /// 用于查询模型服务能否开启热更新
-    @inlinable
-    public func describeModelServiceHotUpdated(_ input: DescribeModelServiceHotUpdatedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServiceHotUpdatedResponse > {
-        self.client.execute(action: "DescribeModelServiceHotUpdated", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询模型服务能否开启热更新
-    ///
-    /// 用于查询模型服务能否开启热更新
-    @inlinable
-    public func describeModelServiceHotUpdated(_ input: DescribeModelServiceHotUpdatedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceHotUpdatedResponse {
-        try await self.client.execute(action: "DescribeModelServiceHotUpdated", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeModelServiceHotUpdated请求参数结构体
     public struct DescribeModelServiceHotUpdatedRequest: TCRequestModel {
         /// 镜像信息，配置服务运行所需的镜像地址等信息
         public let imageInfo: ImageInfo
         
         /// 模型信息，需要挂载模型时填写
-        public let modelInfo: ModelInfo
+        public let modelInfo: ModelInfo?
         
         /// 挂载信息
-        public let volumeMount: VolumeMount
+        public let volumeMount: VolumeMount?
         
-        public init (imageInfo: ImageInfo, modelInfo: ModelInfo, volumeMount: VolumeMount) {
+        public init (imageInfo: ImageInfo, modelInfo: ModelInfo? = nil, volumeMount: VolumeMount? = nil) {
             self.imageInfo = imageInfo
             self.modelInfo = modelInfo
             self.volumeMount = volumeMount
@@ -63,5 +47,21 @@ extension Tione {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询模型服务能否开启热更新
+    ///
+    /// 用于查询模型服务能否开启热更新
+    @inlinable
+    public func describeModelServiceHotUpdated(_ input: DescribeModelServiceHotUpdatedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServiceHotUpdatedResponse > {
+        self.client.execute(action: "DescribeModelServiceHotUpdated", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询模型服务能否开启热更新
+    ///
+    /// 用于查询模型服务能否开启热更新
+    @inlinable
+    public func describeModelServiceHotUpdated(_ input: DescribeModelServiceHotUpdatedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceHotUpdatedResponse {
+        try await self.client.execute(action: "DescribeModelServiceHotUpdated", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询创建备份命令
-    ///
-    /// 本接口（DescribeBackupCommand）用于查询以规范的格式创建备份的命令。
-    @inlinable
-    public func describeBackupCommand(_ input: DescribeBackupCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupCommandResponse > {
-        self.client.execute(action: "DescribeBackupCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询创建备份命令
-    ///
-    /// 本接口（DescribeBackupCommand）用于查询以规范的格式创建备份的命令。
-    @inlinable
-    public func describeBackupCommand(_ input: DescribeBackupCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupCommandResponse {
-        try await self.client.execute(action: "DescribeBackupCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBackupCommand请求参数结构体
     public struct DescribeBackupCommandRequest: TCRequestModel {
         /// 备份文件类型，FULL-全量备份，FULL_LOG-全量备份需要日志增量，FULL_DIFF-全量备份需要差异增量，LOG-日志备份，DIFF-差异备份
@@ -45,7 +29,7 @@ extension Sqlserver {
         /// 备份文件保存的路径；如果不填则默认在D:\\
         public let localPath: String?
         
-        public init (backupFileType: String, dataBaseName: String, isRecovery: String, localPath: String?) {
+        public init (backupFileType: String, dataBaseName: String, isRecovery: String, localPath: String? = nil) {
             self.backupFileType = backupFileType
             self.dataBaseName = dataBaseName
             self.isRecovery = isRecovery
@@ -72,5 +56,21 @@ extension Sqlserver {
             case command = "Command"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询创建备份命令
+    ///
+    /// 本接口（DescribeBackupCommand）用于查询以规范的格式创建备份的命令。
+    @inlinable
+    public func describeBackupCommand(_ input: DescribeBackupCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupCommandResponse > {
+        self.client.execute(action: "DescribeBackupCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询创建备份命令
+    ///
+    /// 本接口（DescribeBackupCommand）用于查询以规范的格式创建备份的命令。
+    @inlinable
+    public func describeBackupCommand(_ input: DescribeBackupCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupCommandResponse {
+        try await self.client.execute(action: "DescribeBackupCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

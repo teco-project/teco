@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 告警中心IP柱形图
-    ///
-    /// DescribeTLogIpList告警中心IP柱形图
-    @inlinable
-    public func describeTLogIpList(_ input: DescribeTLogIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTLogIpListResponse > {
-        self.client.execute(action: "DescribeTLogIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 告警中心IP柱形图
-    ///
-    /// DescribeTLogIpList告警中心IP柱形图
-    @inlinable
-    public func describeTLogIpList(_ input: DescribeTLogIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTLogIpListResponse {
-        try await self.client.execute(action: "DescribeTLogIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTLogIpList请求参数结构体
     public struct DescribeTLogIpListRequest: TCRequestModel {
         /// 开始时间
@@ -48,7 +32,7 @@ extension Cfw {
         /// 查询条件
         public let searchValue: String?
         
-        public init (startTime: String, endTime: String, queryType: String, top: Int64, searchValue: String?) {
+        public init (startTime: String, endTime: String, queryType: String, top: Int64, searchValue: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.queryType = queryType
@@ -77,5 +61,21 @@ extension Cfw {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 告警中心IP柱形图
+    ///
+    /// DescribeTLogIpList告警中心IP柱形图
+    @inlinable
+    public func describeTLogIpList(_ input: DescribeTLogIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTLogIpListResponse > {
+        self.client.execute(action: "DescribeTLogIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 告警中心IP柱形图
+    ///
+    /// DescribeTLogIpList告警中心IP柱形图
+    @inlinable
+    public func describeTLogIpList(_ input: DescribeTLogIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTLogIpListResponse {
+        try await self.client.execute(action: "DescribeTLogIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

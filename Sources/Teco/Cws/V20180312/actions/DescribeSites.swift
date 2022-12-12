@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cws {
-    /// 查看站点列表
-    ///
-    /// 本接口 (DescribeSites) 用于查询一个或多个站点的详细信息。
-    @inlinable
-    public func describeSites(_ input: DescribeSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSitesResponse > {
-        self.client.execute(action: "DescribeSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看站点列表
-    ///
-    /// 本接口 (DescribeSites) 用于查询一个或多个站点的详细信息。
-    @inlinable
-    public func describeSites(_ input: DescribeSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesResponse {
-        try await self.client.execute(action: "DescribeSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSites请求参数结构体
     public struct DescribeSitesRequest: TCRequestModel {
         /// 站点ID列表
@@ -45,7 +29,7 @@ extension Cws {
         /// 返回数量，默认为10，最大值为100
         public let limit: UInt64?
         
-        public init (siteIds: [UInt64]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (siteIds: [UInt64]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.siteIds = siteIds
             self.filters = filters
             self.offset = offset
@@ -76,5 +60,21 @@ extension Cws {
             case sites = "Sites"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看站点列表
+    ///
+    /// 本接口 (DescribeSites) 用于查询一个或多个站点的详细信息。
+    @inlinable
+    public func describeSites(_ input: DescribeSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSitesResponse > {
+        self.client.execute(action: "DescribeSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看站点列表
+    ///
+    /// 本接口 (DescribeSites) 用于查询一个或多个站点的详细信息。
+    @inlinable
+    public func describeSites(_ input: DescribeSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesResponse {
+        try await self.client.execute(action: "DescribeSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

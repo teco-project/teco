@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 删除关键词样本
-    ///
-    /// 该接口用于批量删除关键词样本。
-    @inlinable
-    public func deleteWordSamples(_ input: DeleteWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWordSamplesResponse > {
-        self.client.execute(action: "DeleteWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除关键词样本
-    ///
-    /// 该接口用于批量删除关键词样本。
-    @inlinable
-    public func deleteWordSamples(_ input: DeleteWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordSamplesResponse {
-        try await self.client.execute(action: "DeleteWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteWordSamples请求参数结构体
     public struct DeleteWordSamplesRequest: TCRequestModel {
         /// 关键词，数组长度限制：100 个词。
@@ -39,7 +23,7 @@ extension Vod {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
         
-        public init (keywords: [String], subAppId: UInt64?) {
+        public init (keywords: [String], subAppId: UInt64? = nil) {
             self.keywords = keywords
             self.subAppId = subAppId
         }
@@ -58,5 +42,21 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除关键词样本
+    ///
+    /// 该接口用于批量删除关键词样本。
+    @inlinable
+    public func deleteWordSamples(_ input: DeleteWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWordSamplesResponse > {
+        self.client.execute(action: "DeleteWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除关键词样本
+    ///
+    /// 该接口用于批量删除关键词样本。
+    @inlinable
+    public func deleteWordSamples(_ input: DeleteWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordSamplesResponse {
+        try await self.client.execute(action: "DeleteWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

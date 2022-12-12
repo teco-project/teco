@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 修改人员库
-    ///
-    /// 修改人员库名称、备注、自定义描述字段名称。
-    @inlinable
-    public func modifyGroup(_ input: ModifyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGroupResponse > {
-        self.client.execute(action: "ModifyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改人员库
-    ///
-    /// 修改人员库名称、备注、自定义描述字段名称。
-    @inlinable
-    public func modifyGroup(_ input: ModifyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupResponse {
-        try await self.client.execute(action: "ModifyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyGroup请求参数结构体
     public struct ModifyGroupRequest: TCRequestModel {
         /// 人员库ID
@@ -45,7 +29,7 @@ extension Iai {
         /// 人员库信息备注
         public let tag: String?
         
-        public init (groupId: String, groupName: String?, groupExDescriptionInfos: [GroupExDescriptionInfo]?, tag: String?) {
+        public init (groupId: String, groupName: String? = nil, groupExDescriptionInfos: [GroupExDescriptionInfo]? = nil, tag: String? = nil) {
             self.groupId = groupId
             self.groupName = groupName
             self.groupExDescriptionInfos = groupExDescriptionInfos
@@ -68,5 +52,21 @@ extension Iai {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改人员库
+    ///
+    /// 修改人员库名称、备注、自定义描述字段名称。
+    @inlinable
+    public func modifyGroup(_ input: ModifyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGroupResponse > {
+        self.client.execute(action: "ModifyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改人员库
+    ///
+    /// 修改人员库名称、备注、自定义描述字段名称。
+    @inlinable
+    public func modifyGroup(_ input: ModifyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupResponse {
+        try await self.client.execute(action: "ModifyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

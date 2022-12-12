@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 停止扫描任务
-    ///
-    /// DeleteScanTask 该接口可以对指定类型的扫描任务进行停止扫描;
-    @inlinable
-    public func deleteScanTask(_ input: DeleteScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScanTaskResponse > {
-        self.client.execute(action: "DeleteScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止扫描任务
-    ///
-    /// DeleteScanTask 该接口可以对指定类型的扫描任务进行停止扫描;
-    @inlinable
-    public func deleteScanTask(_ input: DeleteScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanTaskResponse {
-        try await self.client.execute(action: "DeleteScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteScanTask请求参数结构体
     public struct DeleteScanTaskRequest: TCRequestModel {
         /// 任务Id
@@ -42,7 +26,7 @@ extension Cwp {
         /// 自选服务器时生效，主机quuid的string数组
         public let quuidList: [String]?
         
-        public init (taskId: UInt64, moduleType: String, quuidList: [String]?) {
+        public init (taskId: UInt64, moduleType: String, quuidList: [String]? = nil) {
             self.taskId = taskId
             self.moduleType = moduleType
             self.quuidList = quuidList
@@ -63,5 +47,21 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止扫描任务
+    ///
+    /// DeleteScanTask 该接口可以对指定类型的扫描任务进行停止扫描;
+    @inlinable
+    public func deleteScanTask(_ input: DeleteScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScanTaskResponse > {
+        self.client.execute(action: "DeleteScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止扫描任务
+    ///
+    /// DeleteScanTask 该接口可以对指定类型的扫描任务进行停止扫描;
+    @inlinable
+    public func deleteScanTask(_ input: DeleteScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanTaskResponse {
+        try await self.client.execute(action: "DeleteScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 隔离独享云数据库实例
-    ///
-    /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
-    @inlinable
-    public func isolateDedicatedDBInstance(_ input: IsolateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateDedicatedDBInstanceResponse > {
-        self.client.execute(action: "IsolateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 隔离独享云数据库实例
-    ///
-    /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
-    @inlinable
-    public func isolateDedicatedDBInstance(_ input: IsolateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDedicatedDBInstanceResponse {
-        try await self.client.execute(action: "IsolateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// IsolateDedicatedDBInstance请求参数结构体
     public struct IsolateDedicatedDBInstanceRequest: TCRequestModel {
         /// 实例 Id，形如：tdsql-ow728lmc。
@@ -53,5 +37,21 @@ extension Mariadb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 隔离独享云数据库实例
+    ///
+    /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
+    @inlinable
+    public func isolateDedicatedDBInstance(_ input: IsolateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IsolateDedicatedDBInstanceResponse > {
+        self.client.execute(action: "IsolateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 隔离独享云数据库实例
+    ///
+    /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
+    @inlinable
+    public func isolateDedicatedDBInstance(_ input: IsolateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDedicatedDBInstanceResponse {
+        try await self.client.execute(action: "IsolateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 获取设备数据
-    ///
-    /// 获取某个设备当前上报到云端的数据，该接口适用于使用数据模板协议的产品。
-    @inlinable
-    public func getDeviceData(_ input: GetDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceDataResponse > {
-        self.client.execute(action: "GetDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备数据
-    ///
-    /// 获取某个设备当前上报到云端的数据，该接口适用于使用数据模板协议的产品。
-    @inlinable
-    public func getDeviceData(_ input: GetDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceDataResponse {
-        try await self.client.execute(action: "GetDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDeviceData请求参数结构体
     public struct GetDeviceDataRequest: TCRequestModel {
         /// 产品Id
@@ -62,5 +46,21 @@ extension Iot {
             case deviceData = "DeviceData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备数据
+    ///
+    /// 获取某个设备当前上报到云端的数据，该接口适用于使用数据模板协议的产品。
+    @inlinable
+    public func getDeviceData(_ input: GetDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceDataResponse > {
+        self.client.execute(action: "GetDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备数据
+    ///
+    /// 获取某个设备当前上报到云端的数据，该接口适用于使用数据模板协议的产品。
+    @inlinable
+    public func getDeviceData(_ input: GetDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceDataResponse {
+        try await self.client.execute(action: "GetDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

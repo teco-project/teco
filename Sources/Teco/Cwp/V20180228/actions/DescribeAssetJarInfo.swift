@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取Jar包详情
-    @inlinable
-    public func describeAssetJarInfo(_ input: DescribeAssetJarInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetJarInfoResponse > {
-        self.client.execute(action: "DescribeAssetJarInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Jar包详情
-    @inlinable
-    public func describeAssetJarInfo(_ input: DescribeAssetJarInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetJarInfoResponse {
-        try await self.client.execute(action: "DescribeAssetJarInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetJarInfo请求参数结构体
     public struct DescribeAssetJarInfoRequest: TCRequestModel {
         /// 服务器Quuid
@@ -63,5 +51,17 @@ extension Cwp {
             case jar = "Jar"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Jar包详情
+    @inlinable
+    public func describeAssetJarInfo(_ input: DescribeAssetJarInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetJarInfoResponse > {
+        self.client.execute(action: "DescribeAssetJarInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Jar包详情
+    @inlinable
+    public func describeAssetJarInfo(_ input: DescribeAssetJarInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetJarInfoResponse {
+        try await self.client.execute(action: "DescribeAssetJarInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

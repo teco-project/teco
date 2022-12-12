@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Yunjing {
-    /// 获取专业版周报漏洞数据
-    ///
-    /// 本接口 (DescribeWeeklyReportVuls) 用于专业版周报漏洞数据。
-    @inlinable
-    public func describeWeeklyReportVuls(_ input: DescribeWeeklyReportVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWeeklyReportVulsResponse > {
-        self.client.execute(action: "DescribeWeeklyReportVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取专业版周报漏洞数据
-    ///
-    /// 本接口 (DescribeWeeklyReportVuls) 用于专业版周报漏洞数据。
-    @inlinable
-    public func describeWeeklyReportVuls(_ input: DescribeWeeklyReportVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportVulsResponse {
-        try await self.client.execute(action: "DescribeWeeklyReportVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWeeklyReportVuls请求参数结构体
     public struct DescribeWeeklyReportVulsRequest: TCRequestModel {
         /// 专业版周报开始时间。
@@ -45,7 +29,7 @@ extension Yunjing {
         /// 偏移量，默认为0。
         public let offset: UInt64?
         
-        public init (beginDate: Date, limit: UInt64?, offset: UInt64?) {
+        public init (beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.beginDate = beginDate
             self.limit = limit
             self.offset = offset
@@ -74,5 +58,21 @@ extension Yunjing {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取专业版周报漏洞数据
+    ///
+    /// 本接口 (DescribeWeeklyReportVuls) 用于专业版周报漏洞数据。
+    @inlinable
+    public func describeWeeklyReportVuls(_ input: DescribeWeeklyReportVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWeeklyReportVulsResponse > {
+        self.client.execute(action: "DescribeWeeklyReportVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取专业版周报漏洞数据
+    ///
+    /// 本接口 (DescribeWeeklyReportVuls) 用于专业版周报漏洞数据。
+    @inlinable
+    public func describeWeeklyReportVuls(_ input: DescribeWeeklyReportVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportVulsResponse {
+        try await self.client.execute(action: "DescribeWeeklyReportVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

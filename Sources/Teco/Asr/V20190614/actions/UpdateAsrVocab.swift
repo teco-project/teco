@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Asr {
-    /// 更新热词表
-    ///
-    /// 用户通过本接口进行对应的词表信息更新。
-    @inlinable
-    public func updateAsrVocab(_ input: UpdateAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAsrVocabResponse > {
-        self.client.execute(action: "UpdateAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新热词表
-    ///
-    /// 用户通过本接口进行对应的词表信息更新。
-    @inlinable
-    public func updateAsrVocab(_ input: UpdateAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAsrVocabResponse {
-        try await self.client.execute(action: "UpdateAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateAsrVocab请求参数结构体
     public struct UpdateAsrVocabRequest: TCRequestModel {
         /// 热词表ID
@@ -49,7 +33,7 @@ extension Asr {
         /// 热词表描述，长度在0-1000之间
         public let description: String?
         
-        public init (vocabId: String, name: String?, wordWeights: [HotWord]?, wordWeightStr: String?, description: String?) {
+        public init (vocabId: String, name: String? = nil, wordWeights: [HotWord]? = nil, wordWeightStr: String? = nil, description: String? = nil) {
             self.vocabId = vocabId
             self.name = name
             self.wordWeights = wordWeights
@@ -78,5 +62,21 @@ extension Asr {
             case vocabId = "VocabId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新热词表
+    ///
+    /// 用户通过本接口进行对应的词表信息更新。
+    @inlinable
+    public func updateAsrVocab(_ input: UpdateAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAsrVocabResponse > {
+        self.client.execute(action: "UpdateAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新热词表
+    ///
+    /// 用户通过本接口进行对应的词表信息更新。
+    @inlinable
+    public func updateAsrVocab(_ input: UpdateAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAsrVocabResponse {
+        try await self.client.execute(action: "UpdateAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询七层数据分析类时序数据
-    ///
-    /// 本接口（DescribeTimingL7AnalysisData）查询七层数据分析类时序数据。
-    @inlinable
-    public func describeTimingL7AnalysisData(_ input: DescribeTimingL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTimingL7AnalysisDataResponse > {
-        self.client.execute(action: "DescribeTimingL7AnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询七层数据分析类时序数据
-    ///
-    /// 本接口（DescribeTimingL7AnalysisData）查询七层数据分析类时序数据。
-    @inlinable
-    public func describeTimingL7AnalysisData(_ input: DescribeTimingL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL7AnalysisDataResponse {
-        try await self.client.execute(action: "DescribeTimingL7AnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTimingL7AnalysisData请求参数结构体
     public struct DescribeTimingL7AnalysisDataRequest: TCRequestModel {
         /// 开始时间。
@@ -81,7 +65,7 @@ extension Teo {
         /// <li>mainland：中国大陆地区数据。</li>不填将根据用户的地域智能选择地区。
         public let area: String?
         
-        public init (startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]?, interval: String?, filters: [QueryCondition]?, area: String?) {
+        public init (startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, interval: String? = nil, filters: [QueryCondition]? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metricNames = metricNames
@@ -119,5 +103,21 @@ extension Teo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询七层数据分析类时序数据
+    ///
+    /// 本接口（DescribeTimingL7AnalysisData）查询七层数据分析类时序数据。
+    @inlinable
+    public func describeTimingL7AnalysisData(_ input: DescribeTimingL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTimingL7AnalysisDataResponse > {
+        self.client.execute(action: "DescribeTimingL7AnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询七层数据分析类时序数据
+    ///
+    /// 本接口（DescribeTimingL7AnalysisData）查询七层数据分析类时序数据。
+    @inlinable
+    public func describeTimingL7AnalysisData(_ input: DescribeTimingL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL7AnalysisDataResponse {
+        try await self.client.execute(action: "DescribeTimingL7AnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

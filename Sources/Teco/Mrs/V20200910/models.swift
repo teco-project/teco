@@ -113,11 +113,11 @@ extension Mrs {
     public struct Check: TCOutputModel {
         /// 描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let desc: Desc
+        public let desc: Desc?
         
         /// 结论
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let summary: Summary
+        public let summary: Summary?
         
         enum CodingKeys: String, CodingKey {
             case desc = "Desc"
@@ -176,7 +176,7 @@ extension Mrs {
     public struct DiagCert: TCOutputModel {
         /// 建议
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let advice: Advice
+        public let advice: Advice?
         
         /// 诊断
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -217,19 +217,19 @@ extension Mrs {
         
         /// 出院诊断
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let outDiagnosis: BlockInfo
+        public let outDiagnosis: BlockInfo?
         
         /// 疾病编码
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let diseaseCode: BlockInfo
+        public let diseaseCode: BlockInfo?
         
         /// 入院情况
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let inStatus: BlockInfo
+        public let inStatus: BlockInfo?
         
         /// 出院情况
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let outStatus: BlockInfo
+        public let outStatus: BlockInfo?
         
         enum CodingKeys: String, CodingKey {
             case tableIndex = "TableIndex"
@@ -275,83 +275,83 @@ extension Mrs {
     public struct EcgDescription: TCOutputModel {
         /// 心率
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let heartRate: EcgItem
+        public let heartRate: EcgItem?
         
         /// 心房率
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let auricularRate: EcgItem
+        public let auricularRate: EcgItem?
         
         /// 心室率
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ventricularRate: EcgItem
+        public let ventricularRate: EcgItem?
         
         /// 节律
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rhythm: EcgItem
+        public let rhythm: EcgItem?
         
         /// P波时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pDuration: EcgItem
+        public let pDuration: EcgItem?
         
         /// QRS时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let qrsDuration: EcgItem
+        public let qrsDuration: EcgItem?
         
         /// QRS电轴
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let qrsAxis: EcgItem
+        public let qrsAxis: EcgItem?
         
         /// P-R间期
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let prInterval: EcgItem
+        public let prInterval: EcgItem?
         
         /// P-P间期
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ppInterval: EcgItem
+        public let ppInterval: EcgItem?
         
         /// R-R间期
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rrInterval: EcgItem
+        public let rrInterval: EcgItem?
         
         /// P-J间期
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pjInterval: EcgItem
+        public let pjInterval: EcgItem?
         
         /// Q-T间期
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let qtInterval: EcgItem
+        public let qtInterval: EcgItem?
         
         /// qt/qtc间期
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let qtcInterval: EcgItem
+        public let qtcInterval: EcgItem?
         
         /// RV5/SV1振幅
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rv5SV1Amplitude: EcgItem
+        public let rv5SV1Amplitude: EcgItem?
         
         /// RV5+SV1振幅
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rv5AddSV1Amplitude: EcgItem
+        public let rv5AddSV1Amplitude: EcgItem?
         
         /// PRT电轴
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let prtAxis: EcgItem
+        public let prtAxis: EcgItem?
         
         /// RV5振幅
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rv5Amplitude: EcgItem
+        public let rv5Amplitude: EcgItem?
         
         /// SV1振幅
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sv1Amplitude: EcgItem
+        public let sv1Amplitude: EcgItem?
         
         /// RV6/SV2
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rv6sv2: EcgItem
+        public let rv6sv2: EcgItem?
         
         /// P/QRS/T电轴
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pqrstAxis: EcgItem
+        public let pqrstAxis: EcgItem?
         
         enum CodingKeys: String, CodingKey {
             case heartRate = "HeartRate"
@@ -454,11 +454,11 @@ extension Mrs {
     public struct Electrocardiogram: TCOutputModel {
         /// 心电图详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ecgDescription: EcgDescription
+        public let ecgDescription: EcgDescription?
         
         /// 心电图诊断
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ecgDiagnosis: EcgDiagnosis
+        public let ecgDiagnosis: EcgDiagnosis?
         
         enum CodingKeys: String, CodingKey {
             case ecgDescription = "EcgDescription"
@@ -470,15 +470,15 @@ extension Mrs {
     public struct Endoscopy: TCOutputModel {
         /// 活检部位
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let biopsyPart: BiopsyPart
+        public let biopsyPart: BiopsyPart?
         
         /// 可见描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let desc: EndoscopyDesc
+        public let desc: EndoscopyDesc?
         
         /// 结论
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let summary: Summary
+        public let summary: Summary?
         
         enum CodingKeys: String, CodingKey {
             case biopsyPart = "BiopsyPart"
@@ -507,7 +507,7 @@ extension Mrs {
     public struct EndoscopyOrgan: TCOutputModel {
         /// 部位
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let part: Part
+        public let part: Part?
         
         /// 原文位置
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -563,11 +563,11 @@ extension Mrs {
         
         /// 病理诊断
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pathologicalDiagnosis: BlockInfo
+        public let pathologicalDiagnosis: BlockInfo?
         
         /// 临床诊断
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let clinicalDiagnosis: BlockInfo
+        public let clinicalDiagnosis: BlockInfo?
         
         enum CodingKeys: String, CodingKey {
             case dischargeDiagnosis = "DischargeDiagnosis"
@@ -602,7 +602,7 @@ extension Mrs {
         /// 采用后台默认值(2048Kb)
         public let scaleTargetSize: UInt64?
         
-        public init (ocrEngineType: Int64?, isReturnText: Bool?, rotateTheAngle: Float?, autoFitDirection: Bool?, autoOptimizeCoordinate: Bool?, isScale: Bool?, imageOriginalSize: UInt64?, scaleTargetSize: UInt64?) {
+        public init (ocrEngineType: Int64? = nil, isReturnText: Bool? = nil, rotateTheAngle: Float? = nil, autoFitDirection: Bool? = nil, autoOptimizeCoordinate: Bool? = nil, isScale: Bool? = nil, imageOriginalSize: UInt64? = nil, scaleTargetSize: UInt64? = nil) {
             self.ocrEngineType = ocrEngineType
             self.isReturnText = isReturnText
             self.rotateTheAngle = rotateTheAngle
@@ -754,7 +754,7 @@ extension Mrs {
         /// 图片base64编码
         public let base64: String?
         
-        public init (id: UInt64, url: String?, base64: String?) {
+        public init (id: UInt64, url: String? = nil, base64: String? = nil) {
             self.id = id
             self.url = url
             self.base64 = base64
@@ -826,7 +826,7 @@ extension Mrs {
         
         /// 指标项坐标位置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let coords: Coordinate
+        public let coords: Coordinate?
         
         enum CodingKeys: String, CodingKey {
             case code = "Code"
@@ -852,7 +852,7 @@ extension Mrs {
         
         /// 部位
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let part: Part
+        public let part: Part?
         
         /// 阳性
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -882,7 +882,7 @@ extension Mrs {
         
         /// 部位
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let part: Part
+        public let part: Part?
         
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -905,7 +905,7 @@ extension Mrs {
     public struct MedDoc: TCOutputModel {
         /// 建议
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let advice: Advice
+        public let advice: Advice?
         
         /// 诊断结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -913,22 +913,22 @@ extension Mrs {
         
         /// 疾病史
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let diseaseMedicalHistory: DiseaseMedicalHistory
+        public let diseaseMedicalHistory: DiseaseMedicalHistory?
         
         /// 个人史
-        public let personalMedicalHistory: PersonalMedicalHistory
+        public let personalMedicalHistory: PersonalMedicalHistory?
         
         /// 婚孕史
-        public let obstericalMedicalHistory: ObstericalMedicalHistory
+        public let obstericalMedicalHistory: ObstericalMedicalHistory?
         
         /// 家族史
-        public let familyMedicalHistory: FamilyMedicalHistory
+        public let familyMedicalHistory: FamilyMedicalHistory?
         
         /// 月经史
-        public let menstrualMedicalHistory: MenstrualMedicalHistory
+        public let menstrualMedicalHistory: MenstrualMedicalHistory?
         
         /// 诊疗记录
-        public let treatmentRecord: TreatmentRecord
+        public let treatmentRecord: TreatmentRecord?
         
         enum CodingKeys: String, CodingKey {
             case advice = "Advice"
@@ -1173,7 +1173,7 @@ extension Mrs {
     public struct Organ: TCOutputModel {
         /// 部位
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let part: Part
+        public let part: Part?
         
         /// 大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1181,75 +1181,75 @@ extension Mrs {
         
         /// 包膜
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let envelope: BlockInfo
+        public let envelope: BlockInfo?
         
         /// 边缘
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let edge: BlockInfo
+        public let edge: BlockInfo?
         
         /// 内部回声
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let innerEcho: BlockInfo
+        public let innerEcho: BlockInfo?
         
         /// 腺体
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let gland: BlockInfo
+        public let gland: BlockInfo?
         
         /// 形状
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let shape: BlockInfo
+        public let shape: BlockInfo?
         
         /// 厚度
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let thickness: BlockInfo
+        public let thickness: BlockInfo?
         
         /// 形态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let shapeAttr: BlockInfo
+        public let shapeAttr: BlockInfo?
         
         /// 血液cdfi
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cdfi: BlockInfo
+        public let cdfi: BlockInfo?
         
         /// 描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let symDesc: BlockInfo
+        public let symDesc: BlockInfo?
         
         /// 大小状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sizeStatus: BlockInfo
+        public let sizeStatus: BlockInfo?
         
         /// 轮廓
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let outline: BlockInfo
+        public let outline: BlockInfo?
         
         /// 结构
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let structure: BlockInfo
+        public let structure: BlockInfo?
         
         /// 密度
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let density: BlockInfo
+        public let density: BlockInfo?
         
         /// 血管
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let vas: BlockInfo
+        public let vas: BlockInfo?
         
         /// 囊壁
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cysticwall: BlockInfo
+        public let cysticwall: BlockInfo?
         
         /// 被膜
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let capsule: BlockInfo
+        public let capsule: BlockInfo?
         
         /// 峡部厚度
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let isthmusThicknese: Size
+        public let isthmusThicknese: Size?
         
         /// 内部回声分布
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let innerEchoDistribution: BlockInfo
+        public let innerEchoDistribution: BlockInfo?
         
         /// 原文
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1293,7 +1293,7 @@ extension Mrs {
         
         /// 部位
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let normPart: NormPart
+        public let normPart: NormPart?
         
         /// 原文
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1320,7 +1320,7 @@ extension Mrs {
     public struct PathologyReport: TCOutputModel {
         /// 癌症部位
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cancerPart: Part
+        public let cancerPart: Part?
         
         /// 癌症部位大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1332,11 +1332,11 @@ extension Mrs {
         
         /// 组织学等级
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let histologyLevel: HistologyLevel
+        public let histologyLevel: HistologyLevel?
         
         /// 组织学类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let histologyType: HistologyType
+        public let histologyType: HistologyType?
         
         /// IHC信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1344,7 +1344,7 @@ extension Mrs {
         
         /// 浸润深度
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let infiltrationDepth: BlockInfo
+        public let infiltrationDepth: BlockInfo?
         
         /// 肿瘤扩散
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1356,11 +1356,11 @@ extension Mrs {
         
         /// PTNM信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ptnm: BlockInfo
+        public let ptnm: BlockInfo?
         
         /// 病理报告类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pathologicalReportType: BlockInfo
+        public let pathologicalReportType: BlockInfo?
         
         /// 报告原文
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1368,7 +1368,7 @@ extension Mrs {
         
         /// 标本类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sampleType: BlockInfo
+        public let sampleType: BlockInfo?
         
         /// 结论文本
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1689,7 +1689,7 @@ extension Mrs {
         
         /// 标准大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let normSize: NormSize
+        public let normSize: NormSize?
         
         /// 原文
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1727,7 +1727,7 @@ extension Mrs {
     public struct Surgery: TCOutputModel {
         /// 手术史
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let surgeryHistory: SurgeryHistory
+        public let surgeryHistory: SurgeryHistory?
         
         enum CodingKeys: String, CodingKey {
             case surgeryHistory = "SurgeryHistory"
@@ -1754,27 +1754,27 @@ extension Mrs {
     public struct SurgeryHistory: TCOutputModel {
         /// 手术名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let surgeryName: SurgeryAttr
+        public let surgeryName: SurgeryAttr?
         
         /// 手术日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let surgeryDate: SurgeryAttr
+        public let surgeryDate: SurgeryAttr?
         
         /// 术前诊断
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let preoperativePathology: SurgeryAttr
+        public let preoperativePathology: SurgeryAttr?
         
         /// 术中诊断
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let intraoperativePathology: SurgeryAttr
+        public let intraoperativePathology: SurgeryAttr?
         
         /// 术后诊断
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let postoperativePathology: SurgeryAttr
+        public let postoperativePathology: SurgeryAttr?
         
         /// 出院诊断
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dischargeDiagnosis: SurgeryAttr
+        public let dischargeDiagnosis: SurgeryAttr?
         
         enum CodingKeys: String, CodingKey {
             case surgeryName = "SurgeryName"
@@ -1790,11 +1790,11 @@ extension Mrs {
     public struct SymptomInfo: TCOutputModel {
         /// 等级
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let grade: BlockInfo
+        public let grade: BlockInfo?
         
         /// 部位
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let part: Part
+        public let part: Part?
         
         /// 原文位置
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1802,7 +1802,7 @@ extension Mrs {
         
         /// 病变
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let symptom: BlockInfo
+        public let symptom: BlockInfo?
         
         /// 属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1826,35 +1826,35 @@ extension Mrs {
     public struct Template: TCOutputModel {
         /// 患者信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let patientInfo: PatientInfo
+        public let patientInfo: PatientInfo?
         
         /// 报告信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let reportInfo: ReportInfo
+        public let reportInfo: ReportInfo?
         
         /// 检查报告
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let check: Check
+        public let check: Check?
         
         /// 病理报告
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pathology: PathologyReport
+        public let pathology: PathologyReport?
         
         /// 出院报告，入院报告，门诊病历
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let medDoc: MedDoc
+        public let medDoc: MedDoc?
         
         /// 诊断证明
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let diagCert: DiagCert
+        public let diagCert: DiagCert?
         
         /// 病案首页
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let firstPage: FirstPage
+        public let firstPage: FirstPage?
         
         /// 检验报告
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let indicator: Indicator
+        public let indicator: Indicator?
         
         /// 报告类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1862,31 +1862,31 @@ extension Mrs {
         
         /// 门诊病历信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let medicalRecordInfo: MedicalRecordInfo
+        public let medicalRecordInfo: MedicalRecordInfo?
         
         /// 出入院信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let hospitalization: Hospitalization
+        public let hospitalization: Hospitalization?
         
         /// 手术记录
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let surgery: Surgery
+        public let surgery: Surgery?
         
         /// 心电图报告
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let electrocardiogram: Electrocardiogram
+        public let electrocardiogram: Electrocardiogram?
         
         /// 内窥镜报告
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let endoscopy: Endoscopy
+        public let endoscopy: Endoscopy?
         
         /// 处方单
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let prescription: Prescription
+        public let prescription: Prescription?
         
         /// 免疫接种证明
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let vaccineCertificate: VaccineCertificate
+        public let vaccineCertificate: VaccineCertificate?
         
         /// OCR文本
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2100,11 +2100,11 @@ extension Mrs {
     public struct TuberInfo: TCOutputModel {
         /// 类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let type: BlockInfo
+        public let type: BlockInfo?
         
         /// 部位
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let part: Part
+        public let part: Part?
         
         /// 大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2112,75 +2112,75 @@ extension Mrs {
         
         /// 多发
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let multiple: Multiple
+        public let multiple: Multiple?
         
         /// 纵横比
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let aspectRatio: AspectRatio
+        public let aspectRatio: AspectRatio?
         
         /// 边缘
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let edge: BlockInfo
+        public let edge: BlockInfo?
         
         /// 内部回声
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let innerEcho: BlockInfo
+        public let innerEcho: BlockInfo?
         
         /// 外部回声
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rearEcho: BlockInfo
+        public let rearEcho: BlockInfo?
         
         /// 弹性质地
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let elastic: Elastic
+        public let elastic: Elastic?
         
         /// 形状
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let shape: BlockInfo
+        public let shape: BlockInfo?
         
         /// 形态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let shapeAttr: BlockInfo
+        public let shapeAttr: BlockInfo?
         
         /// 皮髓质信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let skinMedulla: BlockInfo
+        public let skinMedulla: BlockInfo?
         
         /// 变化趋势
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let trend: BlockInfo
+        public let trend: BlockInfo?
         
         /// 钙化
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let calcification: BlockInfo
+        public let calcification: BlockInfo?
         
         /// 包膜
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let envelope: BlockInfo
+        public let envelope: BlockInfo?
         
         /// 强化
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let enhancement: BlockInfo
+        public let enhancement: BlockInfo?
         
         /// 淋巴结
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let lymphEnlargement: BlockInfo
+        public let lymphEnlargement: BlockInfo?
         
         /// 淋巴门
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let lymphDoor: BlockInfo
+        public let lymphDoor: BlockInfo?
         
         /// 活动度
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let activity: BlockInfo
+        public let activity: BlockInfo?
         
         /// 手术情况
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let operation: BlockInfo
+        public let operation: BlockInfo?
         
         /// 血液cdfi
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cdfi: BlockInfo
+        public let cdfi: BlockInfo?
         
         /// 原文位置
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2188,11 +2188,11 @@ extension Mrs {
         
         /// 大小状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sizeStatus: BlockInfo
+        public let sizeStatus: BlockInfo?
         
         /// 内部回声分布
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let innerEchoDistribution: BlockInfo
+        public let innerEchoDistribution: BlockInfo?
         
         /// 内部回声类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2200,31 +2200,31 @@ extension Mrs {
         
         /// 轮廓
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let outline: BlockInfo
+        public let outline: BlockInfo?
         
         /// 结构
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let structure: BlockInfo
+        public let structure: BlockInfo?
         
         /// 密度
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let density: BlockInfo
+        public let density: BlockInfo?
         
         /// 血管
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let vas: BlockInfo
+        public let vas: BlockInfo?
         
         /// 囊壁
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cysticwall: BlockInfo
+        public let cysticwall: BlockInfo?
         
         /// 被膜
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let capsule: BlockInfo
+        public let capsule: BlockInfo?
         
         /// 峡部厚度
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let isthmusThicknese: Size
+        public let isthmusThicknese: Size?
         
         /// 原文
         /// 注意：此字段可能返回 null，表示取不到有效值。

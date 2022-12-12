@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 创建实例
-    ///
-    /// 本接口(CreateInstances)用于创建一个或多个指定套餐的轻量应用服务器实例。
-    @inlinable
-    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancesResponse > {
-        self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例
-    ///
-    /// 本接口(CreateInstances)用于创建一个或多个指定套餐的轻量应用服务器实例。
-    @inlinable
-    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
-        try await self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateInstances请求参数结构体
     public struct CreateInstancesRequest: TCRequestModel {
         /// 套餐ID。
@@ -62,7 +46,7 @@ extension Lighthouse {
         public let clientToken: String?
         
         /// 实例登录密码信息配置。本字段目前仅支持WINDOWS实例进行密码设置。默认缺失情况下代表用户选择实例创建后设置登录密码。
-        public let loginConfiguration: LoginConfiguration
+        public let loginConfiguration: LoginConfiguration?
         
         /// 要创建的容器配置列表。
         public let containers: [DockerContainerConfiguration]?
@@ -70,7 +54,7 @@ extension Lighthouse {
         /// 是否自动使用代金券。默认不使用。
         public let autoVoucher: Bool?
         
-        public init (bundleId: String, blueprintId: String, instanceChargePrepaid: InstanceChargePrepaid, instanceName: String?, instanceCount: UInt64?, zones: [String]?, dryRun: Bool?, clientToken: String?, loginConfiguration: LoginConfiguration, containers: [DockerContainerConfiguration]?, autoVoucher: Bool?) {
+        public init (bundleId: String, blueprintId: String, instanceChargePrepaid: InstanceChargePrepaid, instanceName: String? = nil, instanceCount: UInt64? = nil, zones: [String]? = nil, dryRun: Bool? = nil, clientToken: String? = nil, loginConfiguration: LoginConfiguration? = nil, containers: [DockerContainerConfiguration]? = nil, autoVoucher: Bool? = nil) {
             self.bundleId = bundleId
             self.blueprintId = blueprintId
             self.instanceChargePrepaid = instanceChargePrepaid
@@ -112,5 +96,21 @@ extension Lighthouse {
             case instanceIdSet = "InstanceIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例
+    ///
+    /// 本接口(CreateInstances)用于创建一个或多个指定套餐的轻量应用服务器实例。
+    @inlinable
+    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancesResponse > {
+        self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例
+    ///
+    /// 本接口(CreateInstances)用于创建一个或多个指定套餐的轻量应用服务器实例。
+    @inlinable
+    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
+        try await self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

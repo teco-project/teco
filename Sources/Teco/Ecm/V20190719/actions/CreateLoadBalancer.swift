@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 购买负载均衡实例
-    ///
-    /// 购买负载均衡实例。
-    @inlinable
-    public func createLoadBalancer(_ input: CreateLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLoadBalancerResponse > {
-        self.client.execute(action: "CreateLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 购买负载均衡实例
-    ///
-    /// 购买负载均衡实例。
-    @inlinable
-    public func createLoadBalancer(_ input: CreateLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerResponse {
-        try await self.client.execute(action: "CreateLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLoadBalancer请求参数结构体
     public struct CreateLoadBalancerRequest: TCRequestModel {
         /// ECM区域，形如ap-xian-ecm。
@@ -53,7 +37,7 @@ extension Ecm {
         public let number: Int64?
         
         /// 负载均衡的带宽限制等信息。
-        public let internetAccessible: LoadBalancerInternetAccessible
+        public let internetAccessible: LoadBalancerInternetAccessible?
         
         /// 标签。
         public let tags: [TagInfo]?
@@ -61,7 +45,7 @@ extension Ecm {
         /// 安全组。
         public let securityGroups: [String]?
         
-        public init (ecmRegion: String, loadBalancerType: String, vipIsp: String, loadBalancerName: String?, vpcId: String?, number: Int64?, internetAccessible: LoadBalancerInternetAccessible, tags: [TagInfo]?, securityGroups: [String]?) {
+        public init (ecmRegion: String, loadBalancerType: String, vipIsp: String, loadBalancerName: String? = nil, vpcId: String? = nil, number: Int64? = nil, internetAccessible: LoadBalancerInternetAccessible? = nil, tags: [TagInfo]? = nil, securityGroups: [String]? = nil) {
             self.ecmRegion = ecmRegion
             self.loadBalancerType = loadBalancerType
             self.vipIsp = vipIsp
@@ -99,5 +83,21 @@ extension Ecm {
             case loadBalancerIds = "LoadBalancerIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 购买负载均衡实例
+    ///
+    /// 购买负载均衡实例。
+    @inlinable
+    public func createLoadBalancer(_ input: CreateLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLoadBalancerResponse > {
+        self.client.execute(action: "CreateLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 购买负载均衡实例
+    ///
+    /// 购买负载均衡实例。
+    @inlinable
+    public func createLoadBalancer(_ input: CreateLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerResponse {
+        try await self.client.execute(action: "CreateLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

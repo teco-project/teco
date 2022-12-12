@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 创建通道组
-    ///
-    /// 本接口（CreateProxyGroup）用于创建通道组。
-    @inlinable
-    public func createProxyGroup(_ input: CreateProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProxyGroupResponse > {
-        self.client.execute(action: "CreateProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建通道组
-    ///
-    /// 本接口（CreateProxyGroup）用于创建通道组。
-    @inlinable
-    public func createProxyGroup(_ input: CreateProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyGroupResponse {
-        try await self.client.execute(action: "CreateProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProxyGroup请求参数结构体
     public struct CreateProxyGroupRequest: TCRequestModel {
         /// 通道组所属项目ID
@@ -57,7 +41,7 @@ extension Gaap {
         /// 该字段已废弃，当IPAddressVersion为IPv4时，所创建的通道组默认支持Http3.0；当为IPv6，默认不支持Http3.0。
         public let http3Supported: Int64?
         
-        public init (projectId: UInt64, groupName: String, realServerRegion: String, tagSet: [TagPair]?, accessRegionSet: [AccessConfiguration]?, ipAddressVersion: String?, packageType: String?, http3Supported: Int64?) {
+        public init (projectId: UInt64, groupName: String, realServerRegion: String, tagSet: [TagPair]? = nil, accessRegionSet: [AccessConfiguration]? = nil, ipAddressVersion: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil) {
             self.projectId = projectId
             self.groupName = groupName
             self.realServerRegion = realServerRegion
@@ -92,5 +76,21 @@ extension Gaap {
             case groupId = "GroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建通道组
+    ///
+    /// 本接口（CreateProxyGroup）用于创建通道组。
+    @inlinable
+    public func createProxyGroup(_ input: CreateProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProxyGroupResponse > {
+        self.client.execute(action: "CreateProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建通道组
+    ///
+    /// 本接口（CreateProxyGroup）用于创建通道组。
+    @inlinable
+    public func createProxyGroup(_ input: CreateProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyGroupResponse {
+        try await self.client.execute(action: "CreateProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

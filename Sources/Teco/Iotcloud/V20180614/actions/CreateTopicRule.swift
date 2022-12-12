@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 创建规则
-    ///
-    /// 本接口（CreateTopicRule）用于创建一个规则 
-    @inlinable
-    public func createTopicRule(_ input: CreateTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicRuleResponse > {
-        self.client.execute(action: "CreateTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建规则
-    ///
-    /// 本接口（CreateTopicRule）用于创建一个规则 
-    @inlinable
-    public func createTopicRule(_ input: CreateTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicRuleResponse {
-        try await self.client.execute(action: "CreateTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTopicRule请求参数结构体
     public struct CreateTopicRuleRequest: TCRequestModel {
         /// 规则名称
@@ -58,5 +42,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建规则
+    ///
+    /// 本接口（CreateTopicRule）用于创建一个规则 
+    @inlinable
+    public func createTopicRule(_ input: CreateTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicRuleResponse > {
+        self.client.execute(action: "CreateTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建规则
+    ///
+    /// 本接口（CreateTopicRule）用于创建一个规则 
+    @inlinable
+    public func createTopicRule(_ input: CreateTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicRuleResponse {
+        try await self.client.execute(action: "CreateTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

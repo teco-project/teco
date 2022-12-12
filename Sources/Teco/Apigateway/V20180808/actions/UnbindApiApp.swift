@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 解除应用和API绑定关系
-    ///
-    /// 本接口（UnbindApiApp）用于解除应用和API绑定。
-    @inlinable
-    public func unbindApiApp(_ input: UnbindApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindApiAppResponse > {
-        self.client.execute(action: "UnbindApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解除应用和API绑定关系
-    ///
-    /// 本接口（UnbindApiApp）用于解除应用和API绑定。
-    @inlinable
-    public func unbindApiApp(_ input: UnbindApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindApiAppResponse {
-        try await self.client.execute(action: "UnbindApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindApiApp请求参数结构体
     public struct UnbindApiAppRequest: TCRequestModel {
         /// 待绑定的应用唯一 ID 。
@@ -73,5 +57,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解除应用和API绑定关系
+    ///
+    /// 本接口（UnbindApiApp）用于解除应用和API绑定。
+    @inlinable
+    public func unbindApiApp(_ input: UnbindApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindApiAppResponse > {
+        self.client.execute(action: "UnbindApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解除应用和API绑定关系
+    ///
+    /// 本接口（UnbindApiApp）用于解除应用和API绑定。
+    @inlinable
+    public func unbindApiApp(_ input: UnbindApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindApiAppResponse {
+        try await self.client.execute(action: "UnbindApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 导入媒体
-    ///
-    /// 将云点播媒资文件导入到多媒体创作引擎媒体资源库。支持导入媒体归属团队或者个人。
-    @inlinable
-    public func importMaterial(_ input: ImportMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportMaterialResponse > {
-        self.client.execute(action: "ImportMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导入媒体
-    ///
-    /// 将云点播媒资文件导入到多媒体创作引擎媒体资源库。支持导入媒体归属团队或者个人。
-    @inlinable
-    public func importMaterial(_ input: ImportMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMaterialResponse {
-        try await self.client.execute(action: "ImportMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ImportMaterial请求参数结构体
     public struct ImportMaterialRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -52,7 +36,7 @@ extension Cme {
         public let vodFileId: String?
         
         /// 原始媒资文件信息，当 SourceType 取值 EXTERNAL 的时候必填。
-        public let externalMediaInfo: ExternalMediaInfo
+        public let externalMediaInfo: ExternalMediaInfo?
         
         /// 媒体分类路径，形如："/a/b"，层级数不能超过10，每个层级长度不能超过15字符。若不填则默认为根路径。
         public let classPath: String?
@@ -64,7 +48,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以向任意团队或者个人导入媒体。如果指定操作者，如果媒体归属为个人，则操作者必须与归属者一致；如果媒体归属为团队，则必须为团队可导入媒体的团队成员(如果没有特殊设置，所有团队成员可导入媒体)。
         public let `operator`: String?
         
-        public init (platform: String, owner: Entity, name: String, sourceType: String?, vodFileId: String?, externalMediaInfo: ExternalMediaInfo, classPath: String?, preProcessDefinition: Int64?, `operator`: String?) {
+        public init (platform: String, owner: Entity, name: String, sourceType: String? = nil, vodFileId: String? = nil, externalMediaInfo: ExternalMediaInfo? = nil, classPath: String? = nil, preProcessDefinition: Int64? = nil, `operator`: String? = nil) {
             self.platform = platform
             self.owner = owner
             self.name = name
@@ -105,5 +89,21 @@ extension Cme {
             case preProcessTaskId = "PreProcessTaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导入媒体
+    ///
+    /// 将云点播媒资文件导入到多媒体创作引擎媒体资源库。支持导入媒体归属团队或者个人。
+    @inlinable
+    public func importMaterial(_ input: ImportMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportMaterialResponse > {
+        self.client.execute(action: "ImportMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导入媒体
+    ///
+    /// 将云点播媒资文件导入到多媒体创作引擎媒体资源库。支持导入媒体归属团队或者个人。
+    @inlinable
+    public func importMaterial(_ input: ImportMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMaterialResponse {
+        try await self.client.execute(action: "ImportMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdwch {
-    /// 获取实例shard信息列表
-    @inlinable
-    public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceShardsResponse > {
-        self.client.execute(action: "DescribeInstanceShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实例shard信息列表
-    @inlinable
-    public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {
-        try await self.client.execute(action: "DescribeInstanceShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceShards请求参数结构体
     public struct DescribeInstanceShardsRequest: TCRequestModel {
         /// 集群实例ID
@@ -54,5 +42,17 @@ extension Cdwch {
             case instanceShardsList = "InstanceShardsList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实例shard信息列表
+    @inlinable
+    public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceShardsResponse > {
+        self.client.execute(action: "DescribeInstanceShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例shard信息列表
+    @inlinable
+    public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {
+        try await self.client.execute(action: "DescribeInstanceShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

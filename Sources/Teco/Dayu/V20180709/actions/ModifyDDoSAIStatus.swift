@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 修改DDoS的AI防护状态
-    ///
-    /// 读取或修改DDoS的AI防护状态
-    @inlinable
-    public func modifyDDoSAIStatus(_ input: ModifyDDoSAIStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSAIStatusResponse > {
-        self.client.execute(action: "ModifyDDoSAIStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改DDoS的AI防护状态
-    ///
-    /// 读取或修改DDoS的AI防护状态
-    @inlinable
-    public func modifyDDoSAIStatus(_ input: ModifyDDoSAIStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSAIStatusResponse {
-        try await self.client.execute(action: "ModifyDDoSAIStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDDoSAIStatus请求参数结构体
     public struct ModifyDDoSAIStatusRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -45,7 +29,7 @@ extension Dayu {
         /// AI防护状态，取值[on，off]；当Method=set时必填；
         public let dDoSAI: String?
         
-        public init (business: String, id: String, method: String, dDoSAI: String?) {
+        public init (business: String, id: String, method: String, dDoSAI: String? = nil) {
             self.business = business
             self.id = id
             self.method = method
@@ -76,5 +60,21 @@ extension Dayu {
             case id = "Id"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改DDoS的AI防护状态
+    ///
+    /// 读取或修改DDoS的AI防护状态
+    @inlinable
+    public func modifyDDoSAIStatus(_ input: ModifyDDoSAIStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDDoSAIStatusResponse > {
+        self.client.execute(action: "ModifyDDoSAIStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改DDoS的AI防护状态
+    ///
+    /// 读取或修改DDoS的AI防护状态
+    @inlinable
+    public func modifyDDoSAIStatus(_ input: ModifyDDoSAIStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSAIStatusResponse {
+        try await self.client.execute(action: "ModifyDDoSAIStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

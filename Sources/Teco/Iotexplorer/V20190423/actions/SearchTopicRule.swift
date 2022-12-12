@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 搜索规则
-    @inlinable
-    public func searchTopicRule(_ input: SearchTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchTopicRuleResponse > {
-        self.client.execute(action: "SearchTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 搜索规则
-    @inlinable
-    public func searchTopicRule(_ input: SearchTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchTopicRuleResponse {
-        try await self.client.execute(action: "SearchTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SearchTopicRule请求参数结构体
     public struct SearchTopicRuleRequest: TCRequestModel {
         /// 规则名
@@ -57,5 +45,17 @@ extension Iotexplorer {
             case rules = "Rules"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 搜索规则
+    @inlinable
+    public func searchTopicRule(_ input: SearchTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchTopicRuleResponse > {
+        self.client.execute(action: "SearchTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 搜索规则
+    @inlinable
+    public func searchTopicRule(_ input: SearchTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchTopicRuleResponse {
+        try await self.client.execute(action: "SearchTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

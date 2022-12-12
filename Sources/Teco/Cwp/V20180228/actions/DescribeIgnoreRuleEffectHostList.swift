@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询忽略检测项影响主机列表
-    ///
-    /// 根据检测项id与筛选条件查询忽略检测项影响主机列表信息
-    @inlinable
-    public func describeIgnoreRuleEffectHostList(_ input: DescribeIgnoreRuleEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIgnoreRuleEffectHostListResponse > {
-        self.client.execute(action: "DescribeIgnoreRuleEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询忽略检测项影响主机列表
-    ///
-    /// 根据检测项id与筛选条件查询忽略检测项影响主机列表信息
-    @inlinable
-    public func describeIgnoreRuleEffectHostList(_ input: DescribeIgnoreRuleEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIgnoreRuleEffectHostListResponse {
-        try await self.client.execute(action: "DescribeIgnoreRuleEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIgnoreRuleEffectHostList请求参数结构体
     public struct DescribeIgnoreRuleEffectHostListRequest: TCRequestModel {
         /// 分页参数 最大100条
@@ -49,7 +33,7 @@ extension Cwp {
         /// 主机标签名
         public let tagNames: [String]?
         
-        public init (limit: UInt64, offset: UInt64, ruleId: UInt64, filters: [Filters]?, tagNames: [String]?) {
+        public init (limit: UInt64, offset: UInt64, ruleId: UInt64, filters: [Filters]? = nil, tagNames: [String]? = nil) {
             self.limit = limit
             self.offset = offset
             self.ruleId = ruleId
@@ -83,5 +67,21 @@ extension Cwp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询忽略检测项影响主机列表
+    ///
+    /// 根据检测项id与筛选条件查询忽略检测项影响主机列表信息
+    @inlinable
+    public func describeIgnoreRuleEffectHostList(_ input: DescribeIgnoreRuleEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIgnoreRuleEffectHostListResponse > {
+        self.client.execute(action: "DescribeIgnoreRuleEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询忽略检测项影响主机列表
+    ///
+    /// 根据检测项id与筛选条件查询忽略检测项影响主机列表信息
+    @inlinable
+    public func describeIgnoreRuleEffectHostList(_ input: DescribeIgnoreRuleEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIgnoreRuleEffectHostListResponse {
+        try await self.client.execute(action: "DescribeIgnoreRuleEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

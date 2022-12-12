@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Lcic {
-    /// 修改应用
-    @inlinable
-    public func modifyApp(_ input: ModifyAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAppResponse > {
-        self.client.execute(action: "ModifyApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改应用
-    @inlinable
-    public func modifyApp(_ input: ModifyAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppResponse {
-        try await self.client.execute(action: "ModifyApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyApp请求参数结构体
     public struct ModifyAppRequest: TCRequestModel {
         /// 低代码互动课堂的SdkAppId。
@@ -35,7 +23,7 @@ extension Lcic {
         /// 回调地址。
         public let callback: String?
         
-        public init (sdkAppId: UInt64, callback: String?) {
+        public init (sdkAppId: UInt64, callback: String? = nil) {
             self.sdkAppId = sdkAppId
             self.callback = callback
         }
@@ -54,5 +42,17 @@ extension Lcic {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改应用
+    @inlinable
+    public func modifyApp(_ input: ModifyAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAppResponse > {
+        self.client.execute(action: "ModifyApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用
+    @inlinable
+    public func modifyApp(_ input: ModifyAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppResponse {
+        try await self.client.execute(action: "ModifyApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

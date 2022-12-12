@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 密钥归档
-    ///
-    /// 对密钥进行归档，被归档的密钥只能用于解密，不能加密
-    @inlinable
-    public func archiveKey(_ input: ArchiveKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ArchiveKeyResponse > {
-        self.client.execute(action: "ArchiveKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 密钥归档
-    ///
-    /// 对密钥进行归档，被归档的密钥只能用于解密，不能加密
-    @inlinable
-    public func archiveKey(_ input: ArchiveKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ArchiveKeyResponse {
-        try await self.client.execute(action: "ArchiveKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ArchiveKey请求参数结构体
     public struct ArchiveKeyRequest: TCRequestModel {
         /// CMK唯一标识符
@@ -53,5 +37,21 @@ extension Kms {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 密钥归档
+    ///
+    /// 对密钥进行归档，被归档的密钥只能用于解密，不能加密
+    @inlinable
+    public func archiveKey(_ input: ArchiveKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ArchiveKeyResponse > {
+        self.client.execute(action: "ArchiveKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 密钥归档
+    ///
+    /// 对密钥进行归档，被归档的密钥只能用于解密，不能加密
+    @inlinable
+    public func archiveKey(_ input: ArchiveKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ArchiveKeyResponse {
+        try await self.client.execute(action: "ArchiveKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

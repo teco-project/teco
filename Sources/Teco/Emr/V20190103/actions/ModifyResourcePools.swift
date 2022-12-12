@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 刷新YARN的动态资源池
-    @inlinable
-    public func modifyResourcePools(_ input: ModifyResourcePoolsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourcePoolsResponse > {
-        self.client.execute(action: "ModifyResourcePools", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 刷新YARN的动态资源池
-    @inlinable
-    public func modifyResourcePools(_ input: ModifyResourcePoolsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourcePoolsResponse {
-        try await self.client.execute(action: "ModifyResourcePools", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyResourcePools请求参数结构体
     public struct ModifyResourcePoolsRequest: TCRequestModel {
         /// emr集群id
@@ -65,5 +53,17 @@ extension Emr {
             case errorMsg = "ErrorMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 刷新YARN的动态资源池
+    @inlinable
+    public func modifyResourcePools(_ input: ModifyResourcePoolsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourcePoolsResponse > {
+        self.client.execute(action: "ModifyResourcePools", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 刷新YARN的动态资源池
+    @inlinable
+    public func modifyResourcePools(_ input: ModifyResourcePoolsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourcePoolsResponse {
+        try await self.client.execute(action: "ModifyResourcePools", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

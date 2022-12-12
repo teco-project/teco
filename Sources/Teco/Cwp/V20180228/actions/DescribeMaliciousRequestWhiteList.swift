@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询恶意请求白名单列表
-    @inlinable
-    public func describeMaliciousRequestWhiteList(_ input: DescribeMaliciousRequestWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaliciousRequestWhiteListResponse > {
-        self.client.execute(action: "DescribeMaliciousRequestWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询恶意请求白名单列表
-    @inlinable
-    public func describeMaliciousRequestWhiteList(_ input: DescribeMaliciousRequestWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaliciousRequestWhiteListResponse {
-        try await self.client.execute(action: "DescribeMaliciousRequestWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMaliciousRequestWhiteList请求参数结构体
     public struct DescribeMaliciousRequestWhiteListRequest: TCRequestModel {
         /// 返回数量，默认为10，最大值为100。
@@ -39,7 +27,7 @@ extension Cwp {
         /// <li>Domain  - String - 基线名称</li>
         public let filters: [Filters]?
         
-        public init (limit: UInt64, offset: UInt64, filters: [Filters]?) {
+        public init (limit: UInt64, offset: UInt64, filters: [Filters]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -70,5 +58,17 @@ extension Cwp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询恶意请求白名单列表
+    @inlinable
+    public func describeMaliciousRequestWhiteList(_ input: DescribeMaliciousRequestWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMaliciousRequestWhiteListResponse > {
+        self.client.execute(action: "DescribeMaliciousRequestWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询恶意请求白名单列表
+    @inlinable
+    public func describeMaliciousRequestWhiteList(_ input: DescribeMaliciousRequestWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaliciousRequestWhiteListResponse {
+        try await self.client.execute(action: "DescribeMaliciousRequestWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

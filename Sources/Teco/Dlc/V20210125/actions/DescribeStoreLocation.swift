@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 查询结果存储位置
-    ///
-    /// 查询计算结果存储位置。
-    @inlinable
-    public func describeStoreLocation(_ input: DescribeStoreLocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStoreLocationResponse > {
-        self.client.execute(action: "DescribeStoreLocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询结果存储位置
-    ///
-    /// 查询计算结果存储位置。
-    @inlinable
-    public func describeStoreLocation(_ input: DescribeStoreLocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStoreLocationResponse {
-        try await self.client.execute(action: "DescribeStoreLocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStoreLocation请求参数结构体
     public struct DescribeStoreLocationRequest: TCRequestModel {
         public init () {
@@ -50,5 +34,21 @@ extension Dlc {
             case storeLocation = "StoreLocation"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询结果存储位置
+    ///
+    /// 查询计算结果存储位置。
+    @inlinable
+    public func describeStoreLocation(_ input: DescribeStoreLocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStoreLocationResponse > {
+        self.client.execute(action: "DescribeStoreLocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询结果存储位置
+    ///
+    /// 查询计算结果存储位置。
+    @inlinable
+    public func describeStoreLocation(_ input: DescribeStoreLocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStoreLocationResponse {
+        try await self.client.execute(action: "DescribeStoreLocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

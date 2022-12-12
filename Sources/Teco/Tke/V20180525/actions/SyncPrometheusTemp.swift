@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 同步模板
-    ///
-    /// 同步模板到实例或者集群，针对V2版本实例
-    @inlinable
-    public func syncPrometheusTemp(_ input: SyncPrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncPrometheusTempResponse > {
-        self.client.execute(action: "SyncPrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 同步模板
-    ///
-    /// 同步模板到实例或者集群，针对V2版本实例
-    @inlinable
-    public func syncPrometheusTemp(_ input: SyncPrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPrometheusTempResponse {
-        try await self.client.execute(action: "SyncPrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SyncPrometheusTemp请求参数结构体
     public struct SyncPrometheusTempRequest: TCRequestModel {
         /// 实例id
@@ -58,5 +42,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 同步模板
+    ///
+    /// 同步模板到实例或者集群，针对V2版本实例
+    @inlinable
+    public func syncPrometheusTemp(_ input: SyncPrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncPrometheusTempResponse > {
+        self.client.execute(action: "SyncPrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 同步模板
+    ///
+    /// 同步模板到实例或者集群，针对V2版本实例
+    @inlinable
+    public func syncPrometheusTemp(_ input: SyncPrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPrometheusTempResponse {
+        try await self.client.execute(action: "SyncPrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

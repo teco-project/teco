@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 查询当前存储情况
-    ///
-    /// 查询存储空间使用情况和文件数量。
-    @inlinable
-    public func describeStorageData(_ input: DescribeStorageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStorageDataResponse > {
-        self.client.execute(action: "DescribeStorageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询当前存储情况
-    ///
-    /// 查询存储空间使用情况和文件数量。
-    @inlinable
-    public func describeStorageData(_ input: DescribeStorageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDataResponse {
-        try await self.client.execute(action: "DescribeStorageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStorageData请求参数结构体
     public struct DescribeStorageDataRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
         
-        public init (subAppId: UInt64?) {
+        public init (subAppId: UInt64? = nil) {
             self.subAppId = subAppId
         }
         
@@ -81,5 +65,21 @@ extension Vod {
             case storageStat = "StorageStat"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询当前存储情况
+    ///
+    /// 查询存储空间使用情况和文件数量。
+    @inlinable
+    public func describeStorageData(_ input: DescribeStorageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStorageDataResponse > {
+        self.client.execute(action: "DescribeStorageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询当前存储情况
+    ///
+    /// 查询存储空间使用情况和文件数量。
+    @inlinable
+    public func describeStorageData(_ input: DescribeStorageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDataResponse {
+        try await self.client.execute(action: "DescribeStorageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

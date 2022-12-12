@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Smpn {
-    /// 虚假号码识别
-    @inlinable
-    public func describeSmpnFnr(_ input: DescribeSmpnFnrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmpnFnrResponse > {
-        self.client.execute(action: "DescribeSmpnFnr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 虚假号码识别
-    @inlinable
-    public func describeSmpnFnr(_ input: DescribeSmpnFnrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnFnrResponse {
-        try await self.client.execute(action: "DescribeSmpnFnr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSmpnFnr请求参数结构体
     public struct DescribeSmpnFnrRequest: TCRequestModel {
         /// 虚假号码识别请求内容
@@ -58,5 +46,17 @@ extension Smpn {
             case responseData = "ResponseData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 虚假号码识别
+    @inlinable
+    public func describeSmpnFnr(_ input: DescribeSmpnFnrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmpnFnrResponse > {
+        self.client.execute(action: "DescribeSmpnFnr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 虚假号码识别
+    @inlinable
+    public func describeSmpnFnr(_ input: DescribeSmpnFnrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnFnrResponse {
+        try await self.client.execute(action: "DescribeSmpnFnr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

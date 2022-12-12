@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取高危命令列表
-    @inlinable
-    public func describeBashEvents(_ input: DescribeBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBashEventsResponse > {
-        self.client.execute(action: "DescribeBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取高危命令列表
-    @inlinable
-    public func describeBashEvents(_ input: DescribeBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashEventsResponse {
-        try await self.client.execute(action: "DescribeBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBashEvents请求参数结构体
     public struct DescribeBashEventsRequest: TCRequestModel {
         /// 返回数量，默认为10，最大值为100。
@@ -45,7 +33,7 @@ extension Cwp {
         /// 排序字段：CreateTime-发生时间。ModifyTime-处理时间
         public let by: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?, order: String?, by: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -78,5 +66,17 @@ extension Cwp {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取高危命令列表
+    @inlinable
+    public func describeBashEvents(_ input: DescribeBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBashEventsResponse > {
+        self.client.execute(action: "DescribeBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取高危命令列表
+    @inlinable
+    public func describeBashEvents(_ input: DescribeBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashEventsResponse {
+        try await self.client.execute(action: "DescribeBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

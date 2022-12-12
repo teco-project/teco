@@ -15,84 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 搜索媒体信息
-    ///
-    /// 搜索媒体信息，支持多种条件筛选，以及支持对返回结果排序、过滤等功能，具体包括：
-    /// - 指定文件 ID 集合 FileIds ，返回匹配集合中任意 ID 的媒体。
-    /// - 根据多个媒体文件名 Names 或描述信息 Descriptions 进行模糊搜索。
-    /// - 根据多个文件名前缀 NamePrefixes 进行搜索。
-    /// - 指定分类集合 ClassIds（见输入参数），返回满足集合中任意分类的媒体。例如：媒体分类有电影、电视剧、综艺等，其中电影分类下又有子分类历史片、动作片、言情片。如果 ClassIds 指定了电影、电视剧，那么电影和电视剧下的所有子分类都会返回；而如果 ClassIds 指定的是历史片、动作片，那么只有这2个子分类下的媒体才会返回。
-    /// - 指定标签集合 Tags（见输入参数），返回满足集合中任意标签的媒体。例如：媒体标签有二次元、宫斗、鬼畜，如果 Tags 指定了二次元、鬼畜2个标签，那么只要符合这2个标签中任意一个的媒体都会被检索出来。
-    /// - 指定文件类型集合 Categories（见输入参数），返回满足集合中任意类型的媒体。例如：文件类型有 Video（视频）、 Audio （音频）、 Image （图片）。如果Categories指定了 Video 和 Audio 2个文件类型，那么符合这些类型的媒体都会被检索出来。
-    /// - 指定来源集合 SourceTypes（见输入参数），返回满足集合中任意来源的媒体。例如：媒体来源有 Record (直播录制)、Upload （上传）等。如果 SourceTypes 指定了 Record 和 Upload ，那么符合这些来源的媒体都会被检索出来。
-    /// - 指定直播推流码集合 StreamIds（见输入参数）筛选直播录制的媒体。
-    /// - 指定媒体的创建时间范围筛选媒体。
-    /// - 指定 TRTC 应用 ID 集合筛选媒体。
-    /// - 指定 TRTC 房间 ID 集合筛选媒体。
-    /// - （不推荐：应使用 Names、NamePrefixes 或 Descriptions 替代）指定单个文本 Text 对媒体文件名或描述信息进行模糊搜索。
-    /// - （不推荐：应使用 SourceTypes 替代）指定单个媒体文件来源 SourceType 进行搜索。
-    /// - （不推荐：应使用 StreamIds 替代）指定单个推流直播码 StreamId 进行搜索。
-    /// - （不推荐：应使用 CreateTime 替代）指定单个起始创建时间 StartTime 进行搜索。
-    /// - （不推荐：应使用 CreateTime 替代）指定单个结尾创建时间 EndTime 进行搜索。
-    /// - 以上参数之间可以任意组合进行检索。例如：筛选创建时间在2018年12月1日12:00:00到2018年12月8日12:00:00之间、分类为电影或电视剧、带有宫斗和悬疑标签的媒体。注意，任何支持数组输入的参数，其元素之间的搜索逻辑为‘或’。所有参数之间的逻辑关系为‘与’。
-    /// - 允许对结果根据创建时间进行排序并分页返回，通过 Offset 和 Limit （见输入参数）来控制分页。
-    /// - 允许通过 Filters 控制返回的媒体信息种类（默认返回所有信息）。可选输入包括：
-    ///     1. 基础信息（basicInfo）：包括媒体名称、分类、播放地址、封面图片等。
-    ///     2. 元信息（metaData）：包括大小、时长、视频流信息、音频流信息等。
-    ///     3. 转码结果信息（transcodeInfo）：包括该媒体转码生成的各种规格的媒体地址、视频流参数、音频流参数等。
-    ///     4. 转动图结果信息（animatedGraphicsInfo）：对视频转动图（如 gif）后的动图信息。
-    ///     5. 采样截图信息（sampleSnapshotInfo）：对视频采样截图后的截图信息。
-    ///     6. 雪碧图信息（imageSpriteInfo）：对视频截取雪碧图后的雪碧图信息。
-    ///     7. 指定时间点截图信息（snapshotByTimeOffsetInfo）：对视频依照指定时间点截图后，的截图信息。
-    ///     8. 视频打点信息（keyFrameDescInfo）：对视频设置的打点信息。
-    ///     9. 转自适应码流信息（adaptiveDynamicStreamingInfo）：包括规格、加密类型、打包格式等相关信息。
-    /// <div id="maxResultsDesc">接口返回结果数限制：</div>
-    /// - <b><a href="#p_offset">Offset</a> 和 <a href="#p_limit">Limit</a> 两个参数影响单次分页查询结果数。特别注意：当这2个值都缺省时，本接口最多只返回10条查询结果。</b>
-    /// - <b>最大支持返回5000条搜索结果，超出部分不再支持查询。如果搜索结果量太大，建议使用更精细的筛选条件来减少搜索结果。</b>
-    @inlinable
-    public func searchMedia(_ input: SearchMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchMediaResponse > {
-        self.client.execute(action: "SearchMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 搜索媒体信息
-    ///
-    /// 搜索媒体信息，支持多种条件筛选，以及支持对返回结果排序、过滤等功能，具体包括：
-    /// - 指定文件 ID 集合 FileIds ，返回匹配集合中任意 ID 的媒体。
-    /// - 根据多个媒体文件名 Names 或描述信息 Descriptions 进行模糊搜索。
-    /// - 根据多个文件名前缀 NamePrefixes 进行搜索。
-    /// - 指定分类集合 ClassIds（见输入参数），返回满足集合中任意分类的媒体。例如：媒体分类有电影、电视剧、综艺等，其中电影分类下又有子分类历史片、动作片、言情片。如果 ClassIds 指定了电影、电视剧，那么电影和电视剧下的所有子分类都会返回；而如果 ClassIds 指定的是历史片、动作片，那么只有这2个子分类下的媒体才会返回。
-    /// - 指定标签集合 Tags（见输入参数），返回满足集合中任意标签的媒体。例如：媒体标签有二次元、宫斗、鬼畜，如果 Tags 指定了二次元、鬼畜2个标签，那么只要符合这2个标签中任意一个的媒体都会被检索出来。
-    /// - 指定文件类型集合 Categories（见输入参数），返回满足集合中任意类型的媒体。例如：文件类型有 Video（视频）、 Audio （音频）、 Image （图片）。如果Categories指定了 Video 和 Audio 2个文件类型，那么符合这些类型的媒体都会被检索出来。
-    /// - 指定来源集合 SourceTypes（见输入参数），返回满足集合中任意来源的媒体。例如：媒体来源有 Record (直播录制)、Upload （上传）等。如果 SourceTypes 指定了 Record 和 Upload ，那么符合这些来源的媒体都会被检索出来。
-    /// - 指定直播推流码集合 StreamIds（见输入参数）筛选直播录制的媒体。
-    /// - 指定媒体的创建时间范围筛选媒体。
-    /// - 指定 TRTC 应用 ID 集合筛选媒体。
-    /// - 指定 TRTC 房间 ID 集合筛选媒体。
-    /// - （不推荐：应使用 Names、NamePrefixes 或 Descriptions 替代）指定单个文本 Text 对媒体文件名或描述信息进行模糊搜索。
-    /// - （不推荐：应使用 SourceTypes 替代）指定单个媒体文件来源 SourceType 进行搜索。
-    /// - （不推荐：应使用 StreamIds 替代）指定单个推流直播码 StreamId 进行搜索。
-    /// - （不推荐：应使用 CreateTime 替代）指定单个起始创建时间 StartTime 进行搜索。
-    /// - （不推荐：应使用 CreateTime 替代）指定单个结尾创建时间 EndTime 进行搜索。
-    /// - 以上参数之间可以任意组合进行检索。例如：筛选创建时间在2018年12月1日12:00:00到2018年12月8日12:00:00之间、分类为电影或电视剧、带有宫斗和悬疑标签的媒体。注意，任何支持数组输入的参数，其元素之间的搜索逻辑为‘或’。所有参数之间的逻辑关系为‘与’。
-    /// - 允许对结果根据创建时间进行排序并分页返回，通过 Offset 和 Limit （见输入参数）来控制分页。
-    /// - 允许通过 Filters 控制返回的媒体信息种类（默认返回所有信息）。可选输入包括：
-    ///     1. 基础信息（basicInfo）：包括媒体名称、分类、播放地址、封面图片等。
-    ///     2. 元信息（metaData）：包括大小、时长、视频流信息、音频流信息等。
-    ///     3. 转码结果信息（transcodeInfo）：包括该媒体转码生成的各种规格的媒体地址、视频流参数、音频流参数等。
-    ///     4. 转动图结果信息（animatedGraphicsInfo）：对视频转动图（如 gif）后的动图信息。
-    ///     5. 采样截图信息（sampleSnapshotInfo）：对视频采样截图后的截图信息。
-    ///     6. 雪碧图信息（imageSpriteInfo）：对视频截取雪碧图后的雪碧图信息。
-    ///     7. 指定时间点截图信息（snapshotByTimeOffsetInfo）：对视频依照指定时间点截图后，的截图信息。
-    ///     8. 视频打点信息（keyFrameDescInfo）：对视频设置的打点信息。
-    ///     9. 转自适应码流信息（adaptiveDynamicStreamingInfo）：包括规格、加密类型、打包格式等相关信息。
-    /// <div id="maxResultsDesc">接口返回结果数限制：</div>
-    /// - <b><a href="#p_offset">Offset</a> 和 <a href="#p_limit">Limit</a> 两个参数影响单次分页查询结果数。特别注意：当这2个值都缺省时，本接口最多只返回10条查询结果。</b>
-    /// - <b>最大支持返回5000条搜索结果，超出部分不再支持查询。如果搜索结果量太大，建议使用更精细的筛选条件来减少搜索结果。</b>
-    @inlinable
-    public func searchMedia(_ input: SearchMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchMediaResponse {
-        try await self.client.execute(action: "SearchMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SearchMedia请求参数结构体
     public struct SearchMediaRequest: TCRequestModel {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -143,16 +65,16 @@ extension Vod {
         
         /// 匹配创建时间在此时间段内的文件。
         /// <li>包含所指定的头尾时间点。</li>
-        public let createTime: TimeRange
+        public let createTime: TimeRange?
         
         /// 匹配过期时间在此时间段内的文件，无法检索到已过期文件。
         /// <li>包含所指定的头尾时间点。</li>
-        public let expireTime: TimeRange
+        public let expireTime: TimeRange?
         
         /// 排序方式。
         /// <li>Sort.Field 可选 CreateTime 。</li>
         /// <li>当 Text、 Names 或 Descriptions 不为空时，Sort.Field 字段无效， 搜索结果将以匹配度排序。</li>
-        public let sort: SortBy
+        public let sort: SortBy?
         
         /// <div id="p_offset">分页返回的起始偏移量，默认值：0。将返回第 Offset 到第 Offset+Limit-1 条。
         /// <li>取值范围：Offset + Limit 不超过5000。（参见：<a href="#maxResultsDesc">接口返回结果数限制</a>）</li></div>
@@ -228,7 +150,7 @@ extension Vod {
         /// 该字段已无效。
         public let vid: String?
         
-        public init (subAppId: UInt64?, fileIds: [String]?, names: [String]?, namePrefixes: [String]?, descriptions: [String]?, classIds: [Int64]?, tags: [String]?, categories: [String]?, sourceTypes: [String]?, streamIds: [String]?, createTime: TimeRange, expireTime: TimeRange, sort: SortBy, offset: UInt64?, limit: UInt64?, filters: [String]?, storageRegions: [String]?, storageClasses: [String]?, trtcSdkAppIds: [UInt64]?, trtcRoomIds: [String]?, text: String?, sourceType: String?, streamId: String?, startTime: String?, endTime: String?, vids: [String]?, vid: String?) {
+        public init (subAppId: UInt64? = nil, fileIds: [String]? = nil, names: [String]? = nil, namePrefixes: [String]? = nil, descriptions: [String]? = nil, classIds: [Int64]? = nil, tags: [String]? = nil, categories: [String]? = nil, sourceTypes: [String]? = nil, streamIds: [String]? = nil, createTime: TimeRange? = nil, expireTime: TimeRange? = nil, sort: SortBy? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [String]? = nil, storageRegions: [String]? = nil, storageClasses: [String]? = nil, trtcSdkAppIds: [UInt64]? = nil, trtcRoomIds: [String]? = nil, text: String? = nil, sourceType: String? = nil, streamId: String? = nil, startTime: String? = nil, endTime: String? = nil, vids: [String]? = nil, vid: String? = nil) {
             self.subAppId = subAppId
             self.fileIds = fileIds
             self.names = names
@@ -306,5 +228,83 @@ extension Vod {
             case mediaInfoSet = "MediaInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 搜索媒体信息
+    ///
+    /// 搜索媒体信息，支持多种条件筛选，以及支持对返回结果排序、过滤等功能，具体包括：
+    /// - 指定文件 ID 集合 FileIds ，返回匹配集合中任意 ID 的媒体。
+    /// - 根据多个媒体文件名 Names 或描述信息 Descriptions 进行模糊搜索。
+    /// - 根据多个文件名前缀 NamePrefixes 进行搜索。
+    /// - 指定分类集合 ClassIds（见输入参数），返回满足集合中任意分类的媒体。例如：媒体分类有电影、电视剧、综艺等，其中电影分类下又有子分类历史片、动作片、言情片。如果 ClassIds 指定了电影、电视剧，那么电影和电视剧下的所有子分类都会返回；而如果 ClassIds 指定的是历史片、动作片，那么只有这2个子分类下的媒体才会返回。
+    /// - 指定标签集合 Tags（见输入参数），返回满足集合中任意标签的媒体。例如：媒体标签有二次元、宫斗、鬼畜，如果 Tags 指定了二次元、鬼畜2个标签，那么只要符合这2个标签中任意一个的媒体都会被检索出来。
+    /// - 指定文件类型集合 Categories（见输入参数），返回满足集合中任意类型的媒体。例如：文件类型有 Video（视频）、 Audio （音频）、 Image （图片）。如果Categories指定了 Video 和 Audio 2个文件类型，那么符合这些类型的媒体都会被检索出来。
+    /// - 指定来源集合 SourceTypes（见输入参数），返回满足集合中任意来源的媒体。例如：媒体来源有 Record (直播录制)、Upload （上传）等。如果 SourceTypes 指定了 Record 和 Upload ，那么符合这些来源的媒体都会被检索出来。
+    /// - 指定直播推流码集合 StreamIds（见输入参数）筛选直播录制的媒体。
+    /// - 指定媒体的创建时间范围筛选媒体。
+    /// - 指定 TRTC 应用 ID 集合筛选媒体。
+    /// - 指定 TRTC 房间 ID 集合筛选媒体。
+    /// - （不推荐：应使用 Names、NamePrefixes 或 Descriptions 替代）指定单个文本 Text 对媒体文件名或描述信息进行模糊搜索。
+    /// - （不推荐：应使用 SourceTypes 替代）指定单个媒体文件来源 SourceType 进行搜索。
+    /// - （不推荐：应使用 StreamIds 替代）指定单个推流直播码 StreamId 进行搜索。
+    /// - （不推荐：应使用 CreateTime 替代）指定单个起始创建时间 StartTime 进行搜索。
+    /// - （不推荐：应使用 CreateTime 替代）指定单个结尾创建时间 EndTime 进行搜索。
+    /// - 以上参数之间可以任意组合进行检索。例如：筛选创建时间在2018年12月1日12:00:00到2018年12月8日12:00:00之间、分类为电影或电视剧、带有宫斗和悬疑标签的媒体。注意，任何支持数组输入的参数，其元素之间的搜索逻辑为‘或’。所有参数之间的逻辑关系为‘与’。
+    /// - 允许对结果根据创建时间进行排序并分页返回，通过 Offset 和 Limit （见输入参数）来控制分页。
+    /// - 允许通过 Filters 控制返回的媒体信息种类（默认返回所有信息）。可选输入包括：
+    ///     1. 基础信息（basicInfo）：包括媒体名称、分类、播放地址、封面图片等。
+    ///     2. 元信息（metaData）：包括大小、时长、视频流信息、音频流信息等。
+    ///     3. 转码结果信息（transcodeInfo）：包括该媒体转码生成的各种规格的媒体地址、视频流参数、音频流参数等。
+    ///     4. 转动图结果信息（animatedGraphicsInfo）：对视频转动图（如 gif）后的动图信息。
+    ///     5. 采样截图信息（sampleSnapshotInfo）：对视频采样截图后的截图信息。
+    ///     6. 雪碧图信息（imageSpriteInfo）：对视频截取雪碧图后的雪碧图信息。
+    ///     7. 指定时间点截图信息（snapshotByTimeOffsetInfo）：对视频依照指定时间点截图后，的截图信息。
+    ///     8. 视频打点信息（keyFrameDescInfo）：对视频设置的打点信息。
+    ///     9. 转自适应码流信息（adaptiveDynamicStreamingInfo）：包括规格、加密类型、打包格式等相关信息。
+    /// <div id="maxResultsDesc">接口返回结果数限制：</div>
+    /// - <b><a href="#p_offset">Offset</a> 和 <a href="#p_limit">Limit</a> 两个参数影响单次分页查询结果数。特别注意：当这2个值都缺省时，本接口最多只返回10条查询结果。</b>
+    /// - <b>最大支持返回5000条搜索结果，超出部分不再支持查询。如果搜索结果量太大，建议使用更精细的筛选条件来减少搜索结果。</b>
+    @inlinable
+    public func searchMedia(_ input: SearchMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchMediaResponse > {
+        self.client.execute(action: "SearchMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 搜索媒体信息
+    ///
+    /// 搜索媒体信息，支持多种条件筛选，以及支持对返回结果排序、过滤等功能，具体包括：
+    /// - 指定文件 ID 集合 FileIds ，返回匹配集合中任意 ID 的媒体。
+    /// - 根据多个媒体文件名 Names 或描述信息 Descriptions 进行模糊搜索。
+    /// - 根据多个文件名前缀 NamePrefixes 进行搜索。
+    /// - 指定分类集合 ClassIds（见输入参数），返回满足集合中任意分类的媒体。例如：媒体分类有电影、电视剧、综艺等，其中电影分类下又有子分类历史片、动作片、言情片。如果 ClassIds 指定了电影、电视剧，那么电影和电视剧下的所有子分类都会返回；而如果 ClassIds 指定的是历史片、动作片，那么只有这2个子分类下的媒体才会返回。
+    /// - 指定标签集合 Tags（见输入参数），返回满足集合中任意标签的媒体。例如：媒体标签有二次元、宫斗、鬼畜，如果 Tags 指定了二次元、鬼畜2个标签，那么只要符合这2个标签中任意一个的媒体都会被检索出来。
+    /// - 指定文件类型集合 Categories（见输入参数），返回满足集合中任意类型的媒体。例如：文件类型有 Video（视频）、 Audio （音频）、 Image （图片）。如果Categories指定了 Video 和 Audio 2个文件类型，那么符合这些类型的媒体都会被检索出来。
+    /// - 指定来源集合 SourceTypes（见输入参数），返回满足集合中任意来源的媒体。例如：媒体来源有 Record (直播录制)、Upload （上传）等。如果 SourceTypes 指定了 Record 和 Upload ，那么符合这些来源的媒体都会被检索出来。
+    /// - 指定直播推流码集合 StreamIds（见输入参数）筛选直播录制的媒体。
+    /// - 指定媒体的创建时间范围筛选媒体。
+    /// - 指定 TRTC 应用 ID 集合筛选媒体。
+    /// - 指定 TRTC 房间 ID 集合筛选媒体。
+    /// - （不推荐：应使用 Names、NamePrefixes 或 Descriptions 替代）指定单个文本 Text 对媒体文件名或描述信息进行模糊搜索。
+    /// - （不推荐：应使用 SourceTypes 替代）指定单个媒体文件来源 SourceType 进行搜索。
+    /// - （不推荐：应使用 StreamIds 替代）指定单个推流直播码 StreamId 进行搜索。
+    /// - （不推荐：应使用 CreateTime 替代）指定单个起始创建时间 StartTime 进行搜索。
+    /// - （不推荐：应使用 CreateTime 替代）指定单个结尾创建时间 EndTime 进行搜索。
+    /// - 以上参数之间可以任意组合进行检索。例如：筛选创建时间在2018年12月1日12:00:00到2018年12月8日12:00:00之间、分类为电影或电视剧、带有宫斗和悬疑标签的媒体。注意，任何支持数组输入的参数，其元素之间的搜索逻辑为‘或’。所有参数之间的逻辑关系为‘与’。
+    /// - 允许对结果根据创建时间进行排序并分页返回，通过 Offset 和 Limit （见输入参数）来控制分页。
+    /// - 允许通过 Filters 控制返回的媒体信息种类（默认返回所有信息）。可选输入包括：
+    ///     1. 基础信息（basicInfo）：包括媒体名称、分类、播放地址、封面图片等。
+    ///     2. 元信息（metaData）：包括大小、时长、视频流信息、音频流信息等。
+    ///     3. 转码结果信息（transcodeInfo）：包括该媒体转码生成的各种规格的媒体地址、视频流参数、音频流参数等。
+    ///     4. 转动图结果信息（animatedGraphicsInfo）：对视频转动图（如 gif）后的动图信息。
+    ///     5. 采样截图信息（sampleSnapshotInfo）：对视频采样截图后的截图信息。
+    ///     6. 雪碧图信息（imageSpriteInfo）：对视频截取雪碧图后的雪碧图信息。
+    ///     7. 指定时间点截图信息（snapshotByTimeOffsetInfo）：对视频依照指定时间点截图后，的截图信息。
+    ///     8. 视频打点信息（keyFrameDescInfo）：对视频设置的打点信息。
+    ///     9. 转自适应码流信息（adaptiveDynamicStreamingInfo）：包括规格、加密类型、打包格式等相关信息。
+    /// <div id="maxResultsDesc">接口返回结果数限制：</div>
+    /// - <b><a href="#p_offset">Offset</a> 和 <a href="#p_limit">Limit</a> 两个参数影响单次分页查询结果数。特别注意：当这2个值都缺省时，本接口最多只返回10条查询结果。</b>
+    /// - <b>最大支持返回5000条搜索结果，超出部分不再支持查询。如果搜索结果量太大，建议使用更精细的筛选条件来减少搜索结果。</b>
+    @inlinable
+    public func searchMedia(_ input: SearchMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchMediaResponse {
+        try await self.client.execute(action: "SearchMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

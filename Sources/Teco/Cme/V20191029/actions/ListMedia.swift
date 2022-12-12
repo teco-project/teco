@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 浏览媒体
-    ///
-    ///  浏览当前分类路径下的资源，包括媒体文件和子分类，返回媒资基础信息和分类信息。
-    @inlinable
-    public func listMedia(_ input: ListMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListMediaResponse > {
-        self.client.execute(action: "ListMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 浏览媒体
-    ///
-    ///  浏览当前分类路径下的资源，包括媒体文件和子分类，返回媒资基础信息和分类信息。
-    @inlinable
-    public func listMedia(_ input: ListMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListMediaResponse {
-        try await self.client.execute(action: "ListMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListMedia请求参数结构体
     public struct ListMediaRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -51,7 +35,7 @@ extension Cme {
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，可以浏览任意分类的信息。如果指定操作者，则操作者必须对分类有读权限。
         public let `operator`: String?
         
-        public init (platform: String, classPath: String, owner: Entity, offset: Int64?, limit: Int64?, `operator`: String?) {
+        public init (platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, `operator`: String? = nil) {
             self.platform = platform
             self.classPath = classPath
             self.owner = owner
@@ -90,5 +74,21 @@ extension Cme {
             case classInfoSet = "ClassInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 浏览媒体
+    ///
+    ///  浏览当前分类路径下的资源，包括媒体文件和子分类，返回媒资基础信息和分类信息。
+    @inlinable
+    public func listMedia(_ input: ListMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListMediaResponse > {
+        self.client.execute(action: "ListMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 浏览媒体
+    ///
+    ///  浏览当前分类路径下的资源，包括媒体文件和子分类，返回媒资基础信息和分类信息。
+    @inlinable
+    public func listMedia(_ input: ListMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListMediaResponse {
+        try await self.client.execute(action: "ListMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

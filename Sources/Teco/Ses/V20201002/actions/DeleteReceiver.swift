@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ses {
-    /// 删除收件人列表
-    ///
-    /// 根据收件id删除收件人列表,同时删除列表中的所有收件邮箱
-    @inlinable
-    public func deleteReceiver(_ input: DeleteReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReceiverResponse > {
-        self.client.execute(action: "DeleteReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除收件人列表
-    ///
-    /// 根据收件id删除收件人列表,同时删除列表中的所有收件邮箱
-    @inlinable
-    public func deleteReceiver(_ input: DeleteReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReceiverResponse {
-        try await self.client.execute(action: "DeleteReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteReceiver请求参数结构体
     public struct DeleteReceiverRequest: TCRequestModel {
         /// 收件人列表id，创建收件人列表时会返回
@@ -53,5 +37,21 @@ extension Ses {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除收件人列表
+    ///
+    /// 根据收件id删除收件人列表,同时删除列表中的所有收件邮箱
+    @inlinable
+    public func deleteReceiver(_ input: DeleteReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReceiverResponse > {
+        self.client.execute(action: "DeleteReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除收件人列表
+    ///
+    /// 根据收件id删除收件人列表,同时删除列表中的所有收件邮箱
+    @inlinable
+    public func deleteReceiver(_ input: DeleteReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReceiverResponse {
+        try await self.client.execute(action: "DeleteReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mmps {
-    /// 获取合规诊断任务报告url
-    ///
-    /// 获取小程序合规诊断任务报告url
-    @inlinable
-    public func describeScanTaskReportUrl(_ input: DescribeScanTaskReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskReportUrlResponse > {
-        self.client.execute(action: "DescribeScanTaskReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取合规诊断任务报告url
-    ///
-    /// 获取小程序合规诊断任务报告url
-    @inlinable
-    public func describeScanTaskReportUrl(_ input: DescribeScanTaskReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskReportUrlResponse {
-        try await self.client.execute(action: "DescribeScanTaskReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScanTaskReportUrl请求参数结构体
     public struct DescribeScanTaskReportUrlRequest: TCRequestModel {
         /// 任务来源, 0:小程序诊断, 1:预留字段(暂未使用), 2:app诊断(android);
@@ -91,5 +75,21 @@ extension Mmps {
             case reportResult = "ReportResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取合规诊断任务报告url
+    ///
+    /// 获取小程序合规诊断任务报告url
+    @inlinable
+    public func describeScanTaskReportUrl(_ input: DescribeScanTaskReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanTaskReportUrlResponse > {
+        self.client.execute(action: "DescribeScanTaskReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取合规诊断任务报告url
+    ///
+    /// 获取小程序合规诊断任务报告url
+    @inlinable
+    public func describeScanTaskReportUrl(_ input: DescribeScanTaskReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskReportUrlResponse {
+        try await self.client.execute(action: "DescribeScanTaskReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

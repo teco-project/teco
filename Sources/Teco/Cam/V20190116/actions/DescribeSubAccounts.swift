@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 通过子用户UIN列表查询子用户
-    @inlinable
-    public func describeSubAccounts(_ input: DescribeSubAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubAccountsResponse > {
-        self.client.execute(action: "DescribeSubAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通过子用户UIN列表查询子用户
-    @inlinable
-    public func describeSubAccounts(_ input: DescribeSubAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubAccountsResponse {
-        try await self.client.execute(action: "DescribeSubAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSubAccounts请求参数结构体
     public struct DescribeSubAccountsRequest: TCRequestModel {
         /// 子用户UIN列表，最多支持50个UIN
@@ -53,5 +41,17 @@ extension Cam {
             case subAccounts = "SubAccounts"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通过子用户UIN列表查询子用户
+    @inlinable
+    public func describeSubAccounts(_ input: DescribeSubAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubAccountsResponse > {
+        self.client.execute(action: "DescribeSubAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通过子用户UIN列表查询子用户
+    @inlinable
+    public func describeSubAccounts(_ input: DescribeSubAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubAccountsResponse {
+        try await self.client.execute(action: "DescribeSubAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

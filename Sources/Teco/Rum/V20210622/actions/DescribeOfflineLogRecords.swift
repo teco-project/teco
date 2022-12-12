@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取所有离线日志记录(最多100条)
-    @inlinable
-    public func describeOfflineLogRecords(_ input: DescribeOfflineLogRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfflineLogRecordsResponse > {
-        self.client.execute(action: "DescribeOfflineLogRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取所有离线日志记录(最多100条)
-    @inlinable
-    public func describeOfflineLogRecords(_ input: DescribeOfflineLogRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogRecordsResponse {
-        try await self.client.execute(action: "DescribeOfflineLogRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOfflineLogRecords请求参数结构体
     public struct DescribeOfflineLogRecordsRequest: TCRequestModel {
         /// 项目唯一上报 key
@@ -57,5 +45,17 @@ extension Rum {
             case recordSet = "RecordSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取所有离线日志记录(最多100条)
+    @inlinable
+    public func describeOfflineLogRecords(_ input: DescribeOfflineLogRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOfflineLogRecordsResponse > {
+        self.client.execute(action: "DescribeOfflineLogRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取所有离线日志记录(最多100条)
+    @inlinable
+    public func describeOfflineLogRecords(_ input: DescribeOfflineLogRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogRecordsResponse {
+        try await self.client.execute(action: "DescribeOfflineLogRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

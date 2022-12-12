@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫-开户查询
-    ///
-    /// 聚鑫-开户信息查询
-    @inlinable
-    public func queryAcctInfo(_ input: QueryAcctInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAcctInfoResponse > {
-        self.client.execute(action: "QueryAcctInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫-开户查询
-    ///
-    /// 聚鑫-开户信息查询
-    @inlinable
-    public func queryAcctInfo(_ input: QueryAcctInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAcctInfoResponse {
-        try await self.client.execute(action: "QueryAcctInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryAcctInfo请求参数结构体
     public struct QueryAcctInfoRequest: TCRequestModel {
         /// 聚鑫平台分配的支付MidasAppId
@@ -58,7 +42,7 @@ extension Cpdp {
         /// 缺省: release
         public let midasEnvironment: String?
         
-        public init (midasAppId: String, subMchId: String, midasSecretId: String, midasSignature: String, encryptType: String?, midasEnvironment: String?) {
+        public init (midasAppId: String, subMchId: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil) {
             self.midasAppId = midasAppId
             self.subMchId = subMchId
             self.midasSecretId = midasSecretId
@@ -139,5 +123,21 @@ extension Cpdp {
             case subMerchantMemberType = "SubMerchantMemberType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫-开户查询
+    ///
+    /// 聚鑫-开户信息查询
+    @inlinable
+    public func queryAcctInfo(_ input: QueryAcctInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryAcctInfoResponse > {
+        self.client.execute(action: "QueryAcctInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-开户查询
+    ///
+    /// 聚鑫-开户信息查询
+    @inlinable
+    public func queryAcctInfo(_ input: QueryAcctInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAcctInfoResponse {
+        try await self.client.execute(action: "QueryAcctInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 获取条件模板列表
-    @inlinable
-    public func describeConditionsTemplateList(_ input: DescribeConditionsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConditionsTemplateListResponse > {
-        self.client.execute(action: "DescribeConditionsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取条件模板列表
-    @inlinable
-    public func describeConditionsTemplateList(_ input: DescribeConditionsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConditionsTemplateListResponse {
-        try await self.client.execute(action: "DescribeConditionsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeConditionsTemplateList请求参数结构体
     public struct DescribeConditionsTemplateListRequest: TCRequestModel {
         /// 固定值，为"monitor"
@@ -53,7 +41,7 @@ extension Monitor {
         /// 指定按绑定策略数目的排序方式，asc=升序, desc=降序
         public let policyCountOrder: String?
         
-        public init (module: String, viewName: String?, groupName: String?, groupID: String?, limit: Int64?, offset: Int64?, updateTimeOrder: String?, policyCountOrder: String?) {
+        public init (module: String, viewName: String? = nil, groupName: String? = nil, groupID: String? = nil, limit: Int64? = nil, offset: Int64? = nil, updateTimeOrder: String? = nil, policyCountOrder: String? = nil) {
             self.module = module
             self.viewName = viewName
             self.groupName = groupName
@@ -93,5 +81,17 @@ extension Monitor {
             case templateGroupList = "TemplateGroupList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取条件模板列表
+    @inlinable
+    public func describeConditionsTemplateList(_ input: DescribeConditionsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConditionsTemplateListResponse > {
+        self.client.execute(action: "DescribeConditionsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取条件模板列表
+    @inlinable
+    public func describeConditionsTemplateList(_ input: DescribeConditionsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConditionsTemplateListResponse {
+        try await self.client.execute(action: "DescribeConditionsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

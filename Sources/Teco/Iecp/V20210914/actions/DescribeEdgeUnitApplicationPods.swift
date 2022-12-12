@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取应用下Pod状态
-    @inlinable
-    public func describeEdgeUnitApplicationPods(_ input: DescribeEdgeUnitApplicationPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitApplicationPodsResponse > {
-        self.client.execute(action: "DescribeEdgeUnitApplicationPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取应用下Pod状态
-    @inlinable
-    public func describeEdgeUnitApplicationPods(_ input: DescribeEdgeUnitApplicationPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationPodsResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitApplicationPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeUnitApplicationPods请求参数结构体
     public struct DescribeEdgeUnitApplicationPodsRequest: TCRequestModel {
         /// 单元ID
@@ -59,5 +47,17 @@ extension Iecp {
             case podSet = "PodSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取应用下Pod状态
+    @inlinable
+    public func describeEdgeUnitApplicationPods(_ input: DescribeEdgeUnitApplicationPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitApplicationPodsResponse > {
+        self.client.execute(action: "DescribeEdgeUnitApplicationPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用下Pod状态
+    @inlinable
+    public func describeEdgeUnitApplicationPods(_ input: DescribeEdgeUnitApplicationPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationPodsResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitApplicationPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

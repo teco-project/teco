@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 将集群内节点移入节点池
-    @inlinable
-    public func addNodeToNodePool(_ input: AddNodeToNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddNodeToNodePoolResponse > {
-        self.client.execute(action: "AddNodeToNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 将集群内节点移入节点池
-    @inlinable
-    public func addNodeToNodePool(_ input: AddNodeToNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNodeToNodePoolResponse {
-        try await self.client.execute(action: "AddNodeToNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddNodeToNodePool请求参数结构体
     public struct AddNodeToNodePoolRequest: TCRequestModel {
         /// 集群id
@@ -59,5 +47,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 将集群内节点移入节点池
+    @inlinable
+    public func addNodeToNodePool(_ input: AddNodeToNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddNodeToNodePoolResponse > {
+        self.client.execute(action: "AddNodeToNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 将集群内节点移入节点池
+    @inlinable
+    public func addNodeToNodePool(_ input: AddNodeToNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNodeToNodePoolResponse {
+        try await self.client.execute(action: "AddNodeToNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

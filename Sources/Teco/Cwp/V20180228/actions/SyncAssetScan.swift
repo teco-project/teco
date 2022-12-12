@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 同步资产扫描信息
-    @inlinable
-    public func syncAssetScan(_ input: SyncAssetScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncAssetScanResponse > {
-        self.client.execute(action: "SyncAssetScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 同步资产扫描信息
-    @inlinable
-    public func syncAssetScan(_ input: SyncAssetScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncAssetScanResponse {
-        try await self.client.execute(action: "SyncAssetScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SyncAssetScan请求参数结构体
     public struct SyncAssetScanRequest: TCRequestModel {
         /// 是否同步：true-是 false-否；默认false
@@ -66,5 +54,17 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 同步资产扫描信息
+    @inlinable
+    public func syncAssetScan(_ input: SyncAssetScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SyncAssetScanResponse > {
+        self.client.execute(action: "SyncAssetScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 同步资产扫描信息
+    @inlinable
+    public func syncAssetScan(_ input: SyncAssetScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncAssetScanResponse {
+        try await self.client.execute(action: "SyncAssetScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

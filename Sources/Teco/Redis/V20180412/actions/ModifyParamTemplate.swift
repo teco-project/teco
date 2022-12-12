@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 修改参数模板
-    @inlinable
-    public func modifyParamTemplate(_ input: ModifyParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyParamTemplateResponse > {
-        self.client.execute(action: "ModifyParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改参数模板
-    @inlinable
-    public func modifyParamTemplate(_ input: ModifyParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyParamTemplateResponse {
-        try await self.client.execute(action: "ModifyParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyParamTemplate请求参数结构体
     public struct ModifyParamTemplateRequest: TCRequestModel {
         /// 源参数模板 ID。
@@ -41,7 +29,7 @@ extension Redis {
         /// 修改后的新参数列表。
         public let paramList: [InstanceParam]?
         
-        public init (templateId: String, name: String?, description: String?, paramList: [InstanceParam]?) {
+        public init (templateId: String, name: String? = nil, description: String? = nil, paramList: [InstanceParam]? = nil) {
             self.templateId = templateId
             self.name = name
             self.description = description
@@ -64,5 +52,17 @@ extension Redis {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改参数模板
+    @inlinable
+    public func modifyParamTemplate(_ input: ModifyParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyParamTemplateResponse > {
+        self.client.execute(action: "ModifyParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改参数模板
+    @inlinable
+    public func modifyParamTemplate(_ input: ModifyParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyParamTemplateResponse {
+        try await self.client.execute(action: "ModifyParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

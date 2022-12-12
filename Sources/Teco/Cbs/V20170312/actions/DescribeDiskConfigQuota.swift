@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 查询云硬盘配额
-    ///
-    /// 本接口（DescribeDiskConfigQuota）用于查询云硬盘配额。
-    @inlinable
-    public func describeDiskConfigQuota(_ input: DescribeDiskConfigQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskConfigQuotaResponse > {
-        self.client.execute(action: "DescribeDiskConfigQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云硬盘配额
-    ///
-    /// 本接口（DescribeDiskConfigQuota）用于查询云硬盘配额。
-    @inlinable
-    public func describeDiskConfigQuota(_ input: DescribeDiskConfigQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigQuotaResponse {
-        try await self.client.execute(action: "DescribeDiskConfigQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDiskConfigQuota请求参数结构体
     public struct DescribeDiskConfigQuotaRequest: TCRequestModel {
         /// 查询类别，取值范围。<br><li>INQUIRY_CBS_CONFIG：查询云盘配置列表<br><li>INQUIRY_CVM_CONFIG：查询云盘与实例搭配的配置列表。
@@ -57,7 +41,7 @@ extension Cbs {
         /// 实例CPU核数。
         public let cpu: UInt64?
         
-        public init (inquiryType: String, diskChargeType: String?, instanceFamilies: [String]?, diskTypes: [String]?, zones: [String]?, memory: UInt64?, diskUsage: String?, cpu: UInt64?) {
+        public init (inquiryType: String, diskChargeType: String? = nil, instanceFamilies: [String]? = nil, diskTypes: [String]? = nil, zones: [String]? = nil, memory: UInt64? = nil, diskUsage: String? = nil, cpu: UInt64? = nil) {
             self.inquiryType = inquiryType
             self.diskChargeType = diskChargeType
             self.instanceFamilies = instanceFamilies
@@ -92,5 +76,21 @@ extension Cbs {
             case diskConfigSet = "DiskConfigSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云硬盘配额
+    ///
+    /// 本接口（DescribeDiskConfigQuota）用于查询云硬盘配额。
+    @inlinable
+    public func describeDiskConfigQuota(_ input: DescribeDiskConfigQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiskConfigQuotaResponse > {
+        self.client.execute(action: "DescribeDiskConfigQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云硬盘配额
+    ///
+    /// 本接口（DescribeDiskConfigQuota）用于查询云硬盘配额。
+    @inlinable
+    public func describeDiskConfigQuota(_ input: DescribeDiskConfigQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigQuotaResponse {
+        try await self.client.execute(action: "DescribeDiskConfigQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

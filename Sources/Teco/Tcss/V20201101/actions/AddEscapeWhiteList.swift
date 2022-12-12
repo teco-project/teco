@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 新增逃逸白名单
-    @inlinable
-    public func addEscapeWhiteList(_ input: AddEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEscapeWhiteListResponse > {
-        self.client.execute(action: "AddEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增逃逸白名单
-    @inlinable
-    public func addEscapeWhiteList(_ input: AddEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEscapeWhiteListResponse {
-        try await self.client.execute(action: "AddEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddEscapeWhiteList请求参数结构体
     public struct AddEscapeWhiteListRequest: TCRequestModel {
         /// 加白名单事件类型
@@ -61,5 +49,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增逃逸白名单
+    @inlinable
+    public func addEscapeWhiteList(_ input: AddEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEscapeWhiteListResponse > {
+        self.client.execute(action: "AddEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增逃逸白名单
+    @inlinable
+    public func addEscapeWhiteList(_ input: AddEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEscapeWhiteListResponse {
+        try await self.client.execute(action: "AddEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

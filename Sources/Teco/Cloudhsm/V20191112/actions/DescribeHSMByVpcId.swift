@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudhsm {
-    /// 通过VpcId获取Hsm资源数
-    @inlinable
-    public func describeHSMByVpcId(_ input: DescribeHSMByVpcIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHSMByVpcIdResponse > {
-        self.client.execute(action: "DescribeHSMByVpcId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通过VpcId获取Hsm资源数
-    @inlinable
-    public func describeHSMByVpcId(_ input: DescribeHSMByVpcIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHSMByVpcIdResponse {
-        try await self.client.execute(action: "DescribeHSMByVpcId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHSMByVpcId请求参数结构体
     public struct DescribeHSMByVpcIdRequest: TCRequestModel {
         /// VPC标识符
@@ -57,5 +45,17 @@ extension Cloudhsm {
             case vpcId = "VpcId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通过VpcId获取Hsm资源数
+    @inlinable
+    public func describeHSMByVpcId(_ input: DescribeHSMByVpcIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHSMByVpcIdResponse > {
+        self.client.execute(action: "DescribeHSMByVpcId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通过VpcId获取Hsm资源数
+    @inlinable
+    public func describeHSMByVpcId(_ input: DescribeHSMByVpcIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHSMByVpcIdResponse {
+        try await self.client.execute(action: "DescribeHSMByVpcId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 创建环境角色授权
-    @inlinable
-    public func createEnvironmentRole(_ input: CreateEnvironmentRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEnvironmentRoleResponse > {
-        self.client.execute(action: "CreateEnvironmentRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建环境角色授权
-    @inlinable
-    public func createEnvironmentRole(_ input: CreateEnvironmentRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentRoleResponse {
-        try await self.client.execute(action: "CreateEnvironmentRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEnvironmentRole请求参数结构体
     public struct CreateEnvironmentRoleRequest: TCRequestModel {
         /// 环境（命名空间）名称。
@@ -41,7 +29,7 @@ extension Tdmq {
         /// 必填字段，集群的ID
         public let clusterId: String?
         
-        public init (environmentId: String, roleName: String, permissions: [String], clusterId: String?) {
+        public init (environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil) {
             self.environmentId = environmentId
             self.roleName = roleName
             self.permissions = permissions
@@ -64,5 +52,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建环境角色授权
+    @inlinable
+    public func createEnvironmentRole(_ input: CreateEnvironmentRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEnvironmentRoleResponse > {
+        self.client.execute(action: "CreateEnvironmentRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建环境角色授权
+    @inlinable
+    public func createEnvironmentRole(_ input: CreateEnvironmentRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentRoleResponse {
+        try await self.client.execute(action: "CreateEnvironmentRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫-解绑银行卡
-    ///
-    /// 商户解除绑定的提现银行卡
-    @inlinable
-    public func unBindAcct(_ input: UnBindAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindAcctResponse > {
-        self.client.execute(action: "UnBindAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫-解绑银行卡
-    ///
-    /// 商户解除绑定的提现银行卡
-    @inlinable
-    public func unBindAcct(_ input: UnBindAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindAcctResponse {
-        try await self.client.execute(action: "UnBindAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnBindAcct请求参数结构体
     public struct UnBindAcctRequest: TCRequestModel {
         /// 聚鑫分配的支付主MidasAppId
@@ -62,7 +46,7 @@ extension Cpdp {
         /// 缺省: release
         public let midasEnvironment: String?
         
-        public init (midasAppId: String, subAppId: String, settleAcctNo: String, midasSecretId: String, midasSignature: String, encryptType: String?, midasEnvironment: String?) {
+        public init (midasAppId: String, subAppId: String, settleAcctNo: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil) {
             self.midasAppId = midasAppId
             self.subAppId = subAppId
             self.settleAcctNo = settleAcctNo
@@ -91,5 +75,21 @@ extension Cpdp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫-解绑银行卡
+    ///
+    /// 商户解除绑定的提现银行卡
+    @inlinable
+    public func unBindAcct(_ input: UnBindAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindAcctResponse > {
+        self.client.execute(action: "UnBindAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-解绑银行卡
+    ///
+    /// 商户解除绑定的提现银行卡
+    @inlinable
+    public func unBindAcct(_ input: UnBindAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindAcctResponse {
+        try await self.client.execute(action: "UnBindAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

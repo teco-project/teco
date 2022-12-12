@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 退出企业组织
-    @inlinable
-    public func quitOrganization(_ input: QuitOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QuitOrganizationResponse > {
-        self.client.execute(action: "QuitOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 退出企业组织
-    @inlinable
-    public func quitOrganization(_ input: QuitOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuitOrganizationResponse {
-        try await self.client.execute(action: "QuitOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QuitOrganization请求参数结构体
     public struct QuitOrganizationRequest: TCRequestModel {
         /// 企业组织ID
@@ -49,5 +37,17 @@ extension Organization {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 退出企业组织
+    @inlinable
+    public func quitOrganization(_ input: QuitOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QuitOrganizationResponse > {
+        self.client.execute(action: "QuitOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 退出企业组织
+    @inlinable
+    public func quitOrganization(_ input: QuitOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuitOrganizationResponse {
+        try await self.client.execute(action: "QuitOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

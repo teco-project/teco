@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 删除实例网络
-    ///
-    /// 可对实例进行网络的删除操作。
-    @inlinable
-    public func deleteDBInstanceNetworkAccess(_ input: DeleteDBInstanceNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDBInstanceNetworkAccessResponse > {
-        self.client.execute(action: "DeleteDBInstanceNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除实例网络
-    ///
-    /// 可对实例进行网络的删除操作。
-    @inlinable
-    public func deleteDBInstanceNetworkAccess(_ input: DeleteDBInstanceNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBInstanceNetworkAccessResponse {
-        try await self.client.execute(action: "DeleteDBInstanceNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDBInstanceNetworkAccess请求参数结构体
     public struct DeleteDBInstanceNetworkAccessRequest: TCRequestModel {
         /// 实例ID，形如：postgres-6bwgamo3。
@@ -73,5 +57,21 @@ extension Postgres {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除实例网络
+    ///
+    /// 可对实例进行网络的删除操作。
+    @inlinable
+    public func deleteDBInstanceNetworkAccess(_ input: DeleteDBInstanceNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDBInstanceNetworkAccessResponse > {
+        self.client.execute(action: "DeleteDBInstanceNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例网络
+    ///
+    /// 可对实例进行网络的删除操作。
+    @inlinable
+    public func deleteDBInstanceNetworkAccess(_ input: DeleteDBInstanceNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBInstanceNetworkAccessResponse {
+        try await self.client.execute(action: "DeleteDBInstanceNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

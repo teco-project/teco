@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 导出本地提权事件
-    @inlinable
-    public func exportPrivilegeEvents(_ input: ExportPrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportPrivilegeEventsResponse > {
-        self.client.execute(action: "ExportPrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出本地提权事件
-    @inlinable
-    public func exportPrivilegeEvents(_ input: ExportPrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportPrivilegeEventsResponse {
-        try await self.client.execute(action: "ExportPrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportPrivilegeEvents请求参数结构体
     public struct ExportPrivilegeEventsRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Yunjing {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出本地提权事件
+    @inlinable
+    public func exportPrivilegeEvents(_ input: ExportPrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportPrivilegeEventsResponse > {
+        self.client.execute(action: "ExportPrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出本地提权事件
+    @inlinable
+    public func exportPrivilegeEvents(_ input: ExportPrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportPrivilegeEventsResponse {
+        try await self.client.execute(action: "ExportPrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

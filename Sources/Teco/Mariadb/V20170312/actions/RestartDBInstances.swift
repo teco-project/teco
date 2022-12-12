@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 重启实例
-    ///
-    /// 本接口（RestartDBInstances）用于重启数据库实例
-    @inlinable
-    public func restartDBInstances(_ input: RestartDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartDBInstancesResponse > {
-        self.client.execute(action: "RestartDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重启实例
-    ///
-    /// 本接口（RestartDBInstances）用于重启数据库实例
-    @inlinable
-    public func restartDBInstances(_ input: RestartDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstancesResponse {
-        try await self.client.execute(action: "RestartDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestartDBInstances请求参数结构体
     public struct RestartDBInstancesRequest: TCRequestModel {
         /// 实例ID的数组
@@ -39,7 +23,7 @@ extension Mariadb {
         /// 重启时间
         public let restartTime: String?
         
-        public init (instanceIds: [String], restartTime: String?) {
+        public init (instanceIds: [String], restartTime: String? = nil) {
             self.instanceIds = instanceIds
             self.restartTime = restartTime
         }
@@ -62,5 +46,21 @@ extension Mariadb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重启实例
+    ///
+    /// 本接口（RestartDBInstances）用于重启数据库实例
+    @inlinable
+    public func restartDBInstances(_ input: RestartDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartDBInstancesResponse > {
+        self.client.execute(action: "RestartDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重启实例
+    ///
+    /// 本接口（RestartDBInstances）用于重启数据库实例
+    @inlinable
+    public func restartDBInstances(_ input: RestartDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstancesResponse {
+        try await self.client.execute(action: "RestartDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 管理终端用户
-    @inlinable
-    public func modifyEndUser(_ input: ModifyEndUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEndUserResponse > {
-        self.client.execute(action: "ModifyEndUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 管理终端用户
-    @inlinable
-    public func modifyEndUser(_ input: ModifyEndUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEndUserResponse {
-        try await self.client.execute(action: "ModifyEndUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyEndUser请求参数结构体
     public struct ModifyEndUserRequest: TCRequestModel {
         /// 环境ID
@@ -40,7 +28,7 @@ extension Tcb {
         /// <li>DISABLE</li>
         public let status: String?
         
-        public init (envId: String, uuId: String, status: String?) {
+        public init (envId: String, uuId: String, status: String? = nil) {
             self.envId = envId
             self.uuId = uuId
             self.status = status
@@ -61,5 +49,17 @@ extension Tcb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 管理终端用户
+    @inlinable
+    public func modifyEndUser(_ input: ModifyEndUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEndUserResponse > {
+        self.client.execute(action: "ModifyEndUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 管理终端用户
+    @inlinable
+    public func modifyEndUser(_ input: ModifyEndUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEndUserResponse {
+        try await self.client.execute(action: "ModifyEndUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

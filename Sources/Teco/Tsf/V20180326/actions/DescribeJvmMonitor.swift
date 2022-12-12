@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询java实例jvm监控数据
-    ///
-    /// 查询java实例jvm监控数据,返回数据可选
-    @inlinable
-    public func describeJvmMonitor(_ input: DescribeJvmMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJvmMonitorResponse > {
-        self.client.execute(action: "DescribeJvmMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询java实例jvm监控数据
-    ///
-    /// 查询java实例jvm监控数据,返回数据可选
-    @inlinable
-    public func describeJvmMonitor(_ input: DescribeJvmMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJvmMonitorResponse {
-        try await self.client.execute(action: "DescribeJvmMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeJvmMonitor请求参数结构体
     public struct DescribeJvmMonitorRequest: TCRequestModel {
         /// 查询的实例Id
@@ -54,7 +38,7 @@ extension Tsf {
         /// 扩展字段
         public let tag: String?
         
-        public init (instanceId: String, applicationId: String, timeGranularity: Int64, from: String, to: String, requiredPictures: [String], tag: String?) {
+        public init (instanceId: String, applicationId: String, timeGranularity: Int64, from: String, to: String, requiredPictures: [String], tag: String? = nil) {
             self.instanceId = instanceId
             self.applicationId = applicationId
             self.timeGranularity = timeGranularity
@@ -79,7 +63,7 @@ extension Tsf {
     public struct DescribeJvmMonitorResponse: TCResponseModel {
         /// Java实例jvm监控数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: JvmMonitorData
+        public let result: JvmMonitorData?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -88,5 +72,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询java实例jvm监控数据
+    ///
+    /// 查询java实例jvm监控数据,返回数据可选
+    @inlinable
+    public func describeJvmMonitor(_ input: DescribeJvmMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJvmMonitorResponse > {
+        self.client.execute(action: "DescribeJvmMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询java实例jvm监控数据
+    ///
+    /// 查询java实例jvm监控数据,返回数据可选
+    @inlinable
+    public func describeJvmMonitor(_ input: DescribeJvmMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJvmMonitorResponse {
+        try await self.client.execute(action: "DescribeJvmMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

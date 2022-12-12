@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gme {
-    /// 新增自定义送检用户
-    @inlinable
-    public func createScanUser(_ input: CreateScanUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScanUserResponse > {
-        self.client.execute(action: "CreateScanUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增自定义送检用户
-    @inlinable
-    public func createScanUser(_ input: CreateScanUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScanUserResponse {
-        try await self.client.execute(action: "CreateScanUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateScanUser请求参数结构体
     public struct CreateScanUserRequest: TCRequestModel {
         /// 应用ID，登录控制台 - 服务管理创建应用得到的AppID
@@ -35,7 +23,7 @@ extension Gme {
         /// 需要新增送检的用户号。示例：1234
         public let userId: UInt64?
         
-        public init (bizId: UInt64, userId: UInt64?) {
+        public init (bizId: UInt64, userId: UInt64? = nil) {
             self.bizId = bizId
             self.userId = userId
         }
@@ -58,5 +46,17 @@ extension Gme {
             case errorCode = "ErrorCode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增自定义送检用户
+    @inlinable
+    public func createScanUser(_ input: CreateScanUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScanUserResponse > {
+        self.client.execute(action: "CreateScanUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增自定义送检用户
+    @inlinable
+    public func createScanUser(_ input: CreateScanUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScanUserResponse {
+        try await self.client.execute(action: "CreateScanUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

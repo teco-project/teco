@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcbr {
-    /// 查询服务管理任务信息
-    @inlinable
-    public func describeServerManageTask(_ input: DescribeServerManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServerManageTaskResponse > {
-        self.client.execute(action: "DescribeServerManageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询服务管理任务信息
-    @inlinable
-    public func describeServerManageTask(_ input: DescribeServerManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServerManageTaskResponse {
-        try await self.client.execute(action: "DescribeServerManageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeServerManageTask请求参数结构体
     public struct DescribeServerManageTaskRequest: TCRequestModel {
         /// 环境Id
@@ -41,7 +29,7 @@ extension Tcbr {
         /// 操作标识
         public let operatorRemark: String?
         
-        public init (envId: String, serverName: String, taskId: Int64, operatorRemark: String?) {
+        public init (envId: String, serverName: String, taskId: Int64, operatorRemark: String? = nil) {
             self.envId = envId
             self.serverName = serverName
             self.taskId = taskId
@@ -72,5 +60,17 @@ extension Tcbr {
             case task = "Task"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询服务管理任务信息
+    @inlinable
+    public func describeServerManageTask(_ input: DescribeServerManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServerManageTaskResponse > {
+        self.client.execute(action: "DescribeServerManageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务管理任务信息
+    @inlinable
+    public func describeServerManageTask(_ input: DescribeServerManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServerManageTaskResponse {
+        try await self.client.execute(action: "DescribeServerManageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

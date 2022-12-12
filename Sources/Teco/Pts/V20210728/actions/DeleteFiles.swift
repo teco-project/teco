@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 删除文件
-    @inlinable
-    public func deleteFiles(_ input: DeleteFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFilesResponse > {
-        self.client.execute(action: "DeleteFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除文件
-    @inlinable
-    public func deleteFiles(_ input: DeleteFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFilesResponse {
-        try await self.client.execute(action: "DeleteFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteFiles请求参数结构体
     public struct DeleteFilesRequest: TCRequestModel {
         /// 项目 ID
@@ -54,5 +42,17 @@ extension Pts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除文件
+    @inlinable
+    public func deleteFiles(_ input: DeleteFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFilesResponse > {
+        self.client.execute(action: "DeleteFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除文件
+    @inlinable
+    public func deleteFiles(_ input: DeleteFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFilesResponse {
+        try await self.client.execute(action: "DeleteFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

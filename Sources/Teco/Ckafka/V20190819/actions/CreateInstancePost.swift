@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 创建按量计费实例
-    @inlinable
-    public func createInstancePost(_ input: CreateInstancePostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancePostResponse > {
-        self.client.execute(action: "CreateInstancePost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建按量计费实例
-    @inlinable
-    public func createInstancePost(_ input: CreateInstancePostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancePostResponse {
-        try await self.client.execute(action: "CreateInstancePost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateInstancePost请求参数结构体
     public struct CreateInstancePostRequest: TCRequestModel {
         /// 实例名称，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
@@ -50,7 +38,7 @@ extension Ckafka {
         /// 创建实例时可以选择集群Id, 该入参表示集群Id
         public let clusterId: Int64?
         
-        public init (instanceName: String, bandWidth: Int64, vpcId: String?, subnetId: String?, msgRetentionTime: Int64?, zoneId: Int64?, clusterId: Int64?) {
+        public init (instanceName: String, bandWidth: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, zoneId: Int64? = nil, clusterId: Int64? = nil) {
             self.instanceName = instanceName
             self.bandWidth = bandWidth
             self.vpcId = vpcId
@@ -83,5 +71,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建按量计费实例
+    @inlinable
+    public func createInstancePost(_ input: CreateInstancePostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstancePostResponse > {
+        self.client.execute(action: "CreateInstancePost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建按量计费实例
+    @inlinable
+    public func createInstancePost(_ input: CreateInstancePostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancePostResponse {
+        try await self.client.execute(action: "CreateInstancePost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

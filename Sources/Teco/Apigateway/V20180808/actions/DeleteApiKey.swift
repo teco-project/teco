@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 删除密钥
-    ///
-    /// 本接口（DeleteApiKey）用于删除一对 API 密钥。
-    @inlinable
-    public func deleteApiKey(_ input: DeleteApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApiKeyResponse > {
-        self.client.execute(action: "DeleteApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除密钥
-    ///
-    /// 本接口（DeleteApiKey）用于删除一对 API 密钥。
-    @inlinable
-    public func deleteApiKey(_ input: DeleteApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiKeyResponse {
-        try await self.client.execute(action: "DeleteApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteApiKey请求参数结构体
     public struct DeleteApiKeyRequest: TCRequestModel {
         /// 待删除的密钥 ID。
@@ -58,5 +42,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除密钥
+    ///
+    /// 本接口（DeleteApiKey）用于删除一对 API 密钥。
+    @inlinable
+    public func deleteApiKey(_ input: DeleteApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApiKeyResponse > {
+        self.client.execute(action: "DeleteApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除密钥
+    ///
+    /// 本接口（DeleteApiKey）用于删除一对 API 密钥。
+    @inlinable
+    public func deleteApiKey(_ input: DeleteApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiKeyResponse {
+        try await self.client.execute(action: "DeleteApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

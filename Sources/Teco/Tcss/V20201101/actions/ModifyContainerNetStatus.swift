@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 隔离容器网络状态
-    @inlinable
-    public func modifyContainerNetStatus(_ input: ModifyContainerNetStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyContainerNetStatusResponse > {
-        self.client.execute(action: "ModifyContainerNetStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 隔离容器网络状态
-    @inlinable
-    public func modifyContainerNetStatus(_ input: ModifyContainerNetStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerNetStatusResponse {
-        try await self.client.execute(action: "ModifyContainerNetStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyContainerNetStatus请求参数结构体
     public struct ModifyContainerNetStatusRequest: TCRequestModel {
         /// 容器ID
@@ -57,5 +45,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 隔离容器网络状态
+    @inlinable
+    public func modifyContainerNetStatus(_ input: ModifyContainerNetStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyContainerNetStatusResponse > {
+        self.client.execute(action: "ModifyContainerNetStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 隔离容器网络状态
+    @inlinable
+    public func modifyContainerNetStatus(_ input: ModifyContainerNetStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerNetStatusResponse {
+        try await self.client.execute(action: "ModifyContainerNetStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

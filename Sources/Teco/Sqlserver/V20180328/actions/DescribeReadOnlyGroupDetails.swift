@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询只读组详情
-    ///
-    /// 本接口（DescribeReadOnlyGroupDetails）用于查询只读组详情。
-    @inlinable
-    public func describeReadOnlyGroupDetails(_ input: DescribeReadOnlyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReadOnlyGroupDetailsResponse > {
-        self.client.execute(action: "DescribeReadOnlyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询只读组详情
-    ///
-    /// 本接口（DescribeReadOnlyGroupDetails）用于查询只读组详情。
-    @inlinable
-    public func describeReadOnlyGroupDetails(_ input: DescribeReadOnlyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupDetailsResponse {
-        try await self.client.execute(action: "DescribeReadOnlyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReadOnlyGroupDetails请求参数结构体
     public struct DescribeReadOnlyGroupDetailsRequest: TCRequestModel {
         /// 主实例ID，格式如：mssql-3l3fgqn7
@@ -114,5 +98,21 @@ extension Sqlserver {
             case masterInstanceId = "MasterInstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询只读组详情
+    ///
+    /// 本接口（DescribeReadOnlyGroupDetails）用于查询只读组详情。
+    @inlinable
+    public func describeReadOnlyGroupDetails(_ input: DescribeReadOnlyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReadOnlyGroupDetailsResponse > {
+        self.client.execute(action: "DescribeReadOnlyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询只读组详情
+    ///
+    /// 本接口（DescribeReadOnlyGroupDetails）用于查询只读组详情。
+    @inlinable
+    public func describeReadOnlyGroupDetails(_ input: DescribeReadOnlyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupDetailsResponse {
+        try await self.client.execute(action: "DescribeReadOnlyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

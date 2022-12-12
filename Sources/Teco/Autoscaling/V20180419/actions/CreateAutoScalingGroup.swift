@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 创建伸缩组
-    ///
-    /// 本接口（CreateAutoScalingGroup）用于创建伸缩组
-    @inlinable
-    public func createAutoScalingGroup(_ input: CreateAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAutoScalingGroupResponse > {
-        self.client.execute(action: "CreateAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建伸缩组
-    ///
-    /// 本接口（CreateAutoScalingGroup）用于创建伸缩组
-    @inlinable
-    public func createAutoScalingGroup(_ input: CreateAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoScalingGroupResponse {
-        try await self.client.execute(action: "CreateAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAutoScalingGroup请求参数结构体
     public struct CreateAutoScalingGroupRequest: TCRequestModel {
         /// 伸缩组名称，在您账号中必须唯一。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超55个字节。
@@ -91,7 +75,7 @@ extension As {
         public let tags: [Tag]?
         
         /// 服务设置，包括云监控不健康替换等服务设置。
-        public let serviceSettings: ServiceSettings
+        public let serviceSettings: ServiceSettings?
         
         /// 实例具有IPv6地址数量的配置，取值包括 0、1，默认值为0。
         public let ipv6AddressCount: Int64?
@@ -118,7 +102,7 @@ extension As {
         
         /// 竞价混合模式下，各计费类型实例的分配策略。
         /// 仅当 InstanceAllocationPolicy 取 SPOT_MIXED 时可用。
-        public let spotMixedAllocationPolicy: SpotMixedAllocationPolicy
+        public let spotMixedAllocationPolicy: SpotMixedAllocationPolicy?
         
         /// 容量重平衡功能，仅对伸缩组内的竞价实例有效。取值范围：
         /// <br><li> TRUE，开启该功能，当伸缩组内的竞价实例即将被竞价实例服务自动回收前，AS 主动发起竞价实例销毁流程，如果有配置过缩容 hook，则销毁前 hook 会生效。销毁流程启动后，AS 会异步开启一个扩容活动，用于补齐期望实例数。
@@ -126,7 +110,7 @@ extension As {
         /// 默认取 FALSE。
         public let capacityRebalance: Bool?
         
-        public init (autoScalingGroupName: String, launchConfigurationId: String, maxSize: UInt64, minSize: UInt64, vpcId: String, defaultCooldown: UInt64?, desiredCapacity: UInt64?, loadBalancerIds: [String]?, projectId: UInt64?, forwardLoadBalancers: [ForwardLoadBalancer]?, subnetIds: [String]?, terminationPolicies: [String]?, zones: [String]?, retryPolicy: String?, zonesCheckPolicy: String?, tags: [Tag]?, serviceSettings: ServiceSettings, ipv6AddressCount: Int64?, multiZoneSubnetPolicy: String?, healthCheckType: String?, loadBalancerHealthCheckGracePeriod: UInt64?, instanceAllocationPolicy: String?, spotMixedAllocationPolicy: SpotMixedAllocationPolicy, capacityRebalance: Bool?) {
+        public init (autoScalingGroupName: String, launchConfigurationId: String, maxSize: UInt64, minSize: UInt64, vpcId: String, defaultCooldown: UInt64? = nil, desiredCapacity: UInt64? = nil, loadBalancerIds: [String]? = nil, projectId: UInt64? = nil, forwardLoadBalancers: [ForwardLoadBalancer]? = nil, subnetIds: [String]? = nil, terminationPolicies: [String]? = nil, zones: [String]? = nil, retryPolicy: String? = nil, zonesCheckPolicy: String? = nil, tags: [Tag]? = nil, serviceSettings: ServiceSettings? = nil, ipv6AddressCount: Int64? = nil, multiZoneSubnetPolicy: String? = nil, healthCheckType: String? = nil, loadBalancerHealthCheckGracePeriod: UInt64? = nil, instanceAllocationPolicy: String? = nil, spotMixedAllocationPolicy: SpotMixedAllocationPolicy? = nil, capacityRebalance: Bool? = nil) {
             self.autoScalingGroupName = autoScalingGroupName
             self.launchConfigurationId = launchConfigurationId
             self.maxSize = maxSize
@@ -193,5 +177,21 @@ extension As {
             case autoScalingGroupId = "AutoScalingGroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建伸缩组
+    ///
+    /// 本接口（CreateAutoScalingGroup）用于创建伸缩组
+    @inlinable
+    public func createAutoScalingGroup(_ input: CreateAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAutoScalingGroupResponse > {
+        self.client.execute(action: "CreateAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建伸缩组
+    ///
+    /// 本接口（CreateAutoScalingGroup）用于创建伸缩组
+    @inlinable
+    public func createAutoScalingGroup(_ input: CreateAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoScalingGroupResponse {
+        try await self.client.execute(action: "CreateAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

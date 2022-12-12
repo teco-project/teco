@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 获取截图规则列表
-    @inlinable
-    public func describeLiveSnapshotRules(_ input: DescribeLiveSnapshotRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveSnapshotRulesResponse > {
-        self.client.execute(action: "DescribeLiveSnapshotRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取截图规则列表
-    @inlinable
-    public func describeLiveSnapshotRules(_ input: DescribeLiveSnapshotRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveSnapshotRulesResponse {
-        try await self.client.execute(action: "DescribeLiveSnapshotRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveSnapshotRules请求参数结构体
     public struct DescribeLiveSnapshotRulesRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Live {
             case rules = "Rules"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取截图规则列表
+    @inlinable
+    public func describeLiveSnapshotRules(_ input: DescribeLiveSnapshotRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveSnapshotRulesResponse > {
+        self.client.execute(action: "DescribeLiveSnapshotRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取截图规则列表
+    @inlinable
+    public func describeLiveSnapshotRules(_ input: DescribeLiveSnapshotRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveSnapshotRulesResponse {
+        try await self.client.execute(action: "DescribeLiveSnapshotRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

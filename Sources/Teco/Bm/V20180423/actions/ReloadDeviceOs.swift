@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 重装操作系统
-    @inlinable
-    public func reloadDeviceOs(_ input: ReloadDeviceOsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReloadDeviceOsResponse > {
-        self.client.execute(action: "ReloadDeviceOs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重装操作系统
-    @inlinable
-    public func reloadDeviceOs(_ input: ReloadDeviceOsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReloadDeviceOsResponse {
-        try await self.client.execute(action: "ReloadDeviceOs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReloadDeviceOs请求参数结构体
     public struct ReloadDeviceOsRequest: TCRequestModel {
         /// 设备的唯一ID
@@ -89,7 +77,7 @@ extension Bm {
         /// /data分区大小，可不填。除root、swap、usr/local的剩余空间会自动分配到data分区
         public let sysDataSpace: UInt64?
         
-        public init (instanceId: String, password: String, osTypeId: UInt64?, raidId: UInt64?, isZoning: UInt64?, sysRootSpace: UInt64?, sysSwaporuefiSpace: UInt64?, sysUsrlocalSpace: UInt64?, vpcId: String?, subnetId: String?, lanIp: String?, hyperThreading: UInt64?, imageId: String?, fileSystem: String?, needSecurityAgent: UInt64?, needMonitorAgent: UInt64?, needEMRAgent: UInt64?, needEMRSoftware: UInt64?, reserveSgConfig: UInt64?, sysDataSpace: UInt64?) {
+        public init (instanceId: String, password: String, osTypeId: UInt64? = nil, raidId: UInt64? = nil, isZoning: UInt64? = nil, sysRootSpace: UInt64? = nil, sysSwaporuefiSpace: UInt64? = nil, sysUsrlocalSpace: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, lanIp: String? = nil, hyperThreading: UInt64? = nil, imageId: String? = nil, fileSystem: String? = nil, needSecurityAgent: UInt64? = nil, needMonitorAgent: UInt64? = nil, needEMRAgent: UInt64? = nil, needEMRSoftware: UInt64? = nil, reserveSgConfig: UInt64? = nil, sysDataSpace: UInt64? = nil) {
             self.instanceId = instanceId
             self.password = password
             self.osTypeId = osTypeId
@@ -148,5 +136,17 @@ extension Bm {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重装操作系统
+    @inlinable
+    public func reloadDeviceOs(_ input: ReloadDeviceOsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReloadDeviceOsResponse > {
+        self.client.execute(action: "ReloadDeviceOs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重装操作系统
+    @inlinable
+    public func reloadDeviceOs(_ input: ReloadDeviceOsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReloadDeviceOsResponse {
+        try await self.client.execute(action: "ReloadDeviceOs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

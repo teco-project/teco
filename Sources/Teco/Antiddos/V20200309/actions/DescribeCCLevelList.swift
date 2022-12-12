@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取CC防护等级列表
-    ///
-    /// 获取边界防护CC防护等级列表
-    @inlinable
-    public func describeCCLevelList(_ input: DescribeCCLevelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCLevelListResponse > {
-        self.client.execute(action: "DescribeCCLevelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取CC防护等级列表
-    ///
-    /// 获取边界防护CC防护等级列表
-    @inlinable
-    public func describeCCLevelList(_ input: DescribeCCLevelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelListResponse {
-        try await self.client.execute(action: "DescribeCCLevelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCCLevelList请求参数结构体
     public struct DescribeCCLevelListRequest: TCRequestModel {
         /// 大禹子产品代号（bgp-multip表示高防包）
@@ -45,7 +29,7 @@ extension Antiddos {
         /// 指定实例Id
         public let instanceId: String?
         
-        public init (business: String, offset: UInt64, limit: UInt64, instanceId: String?) {
+        public init (business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil) {
             self.business = business
             self.offset = offset
             self.limit = limit
@@ -76,5 +60,21 @@ extension Antiddos {
             case levelList = "LevelList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取CC防护等级列表
+    ///
+    /// 获取边界防护CC防护等级列表
+    @inlinable
+    public func describeCCLevelList(_ input: DescribeCCLevelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCLevelListResponse > {
+        self.client.execute(action: "DescribeCCLevelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC防护等级列表
+    ///
+    /// 获取边界防护CC防护等级列表
+    @inlinable
+    public func describeCCLevelList(_ input: DescribeCCLevelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelListResponse {
+        try await self.client.execute(action: "DescribeCCLevelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

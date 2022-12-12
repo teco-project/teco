@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 实例小版本升级接口
-    ///
-    /// 实例小版本升级
-    @inlinable
-    public func upgradeSmallVersion(_ input: UpgradeSmallVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeSmallVersionResponse > {
-        self.client.execute(action: "UpgradeSmallVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实例小版本升级接口
-    ///
-    /// 实例小版本升级
-    @inlinable
-    public func upgradeSmallVersion(_ input: UpgradeSmallVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeSmallVersionResponse {
-        try await self.client.execute(action: "UpgradeSmallVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeSmallVersion请求参数结构体
     public struct UpgradeSmallVersionRequest: TCRequestModel {
         /// 实例ID
@@ -72,5 +56,21 @@ extension Redis {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实例小版本升级接口
+    ///
+    /// 实例小版本升级
+    @inlinable
+    public func upgradeSmallVersion(_ input: UpgradeSmallVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeSmallVersionResponse > {
+        self.client.execute(action: "UpgradeSmallVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实例小版本升级接口
+    ///
+    /// 实例小版本升级
+    @inlinable
+    public func upgradeSmallVersion(_ input: UpgradeSmallVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeSmallVersionResponse {
+        try await self.client.execute(action: "UpgradeSmallVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

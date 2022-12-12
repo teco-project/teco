@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ivld {
-    /// 描述任务
-    ///
-    /// 描述智能标签任务进度。
-    /// 请注意，**此接口仅返回任务执行状态信息，不返回任务执行结果**
-    @inlinable
-    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResponse > {
-        self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 描述任务
-    ///
-    /// 描述智能标签任务进度。
-    /// 请注意，**此接口仅返回任务执行状态信息，不返回任务执行结果**
-    @inlinable
-    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResponse {
-        try await self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTask请求参数结构体
     public struct DescribeTaskRequest: TCRequestModel {
         /// CreateTask返回的任务ID，最长32B
@@ -51,7 +33,7 @@ extension Ivld {
     public struct DescribeTaskResponse: TCResponseModel {
         /// 任务信息，详情参见TaskInfo的定义
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskInfo: TaskInfo
+        public let taskInfo: TaskInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -60,5 +42,23 @@ extension Ivld {
             case taskInfo = "TaskInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 描述任务
+    ///
+    /// 描述智能标签任务进度。
+    /// 请注意，**此接口仅返回任务执行状态信息，不返回任务执行结果**
+    @inlinable
+    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskResponse > {
+        self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 描述任务
+    ///
+    /// 描述智能标签任务进度。
+    /// 请注意，**此接口仅返回任务执行状态信息，不返回任务执行结果**
+    @inlinable
+    public func describeTask(_ input: DescribeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResponse {
+        try await self.client.execute(action: "DescribeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

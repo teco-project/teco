@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 启用云联网路由
-    ///
-    /// 本接口（EnableCcnRoutes）用于启用已经加入云联网（CCN）的路由。<br />
-    /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
-    @inlinable
-    public func enableCcnRoutes(_ input: EnableCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableCcnRoutesResponse > {
-        self.client.execute(action: "EnableCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启用云联网路由
-    ///
-    /// 本接口（EnableCcnRoutes）用于启用已经加入云联网（CCN）的路由。<br />
-    /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
-    @inlinable
-    public func enableCcnRoutes(_ input: EnableCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableCcnRoutesResponse {
-        try await self.client.execute(action: "EnableCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableCcnRoutes请求参数结构体
     public struct EnableCcnRoutesRequest: TCRequestModel {
         /// CCN实例ID。形如：ccn-f49l6u0z。
@@ -60,5 +42,23 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启用云联网路由
+    ///
+    /// 本接口（EnableCcnRoutes）用于启用已经加入云联网（CCN）的路由。<br />
+    /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
+    @inlinable
+    public func enableCcnRoutes(_ input: EnableCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableCcnRoutesResponse > {
+        self.client.execute(action: "EnableCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启用云联网路由
+    ///
+    /// 本接口（EnableCcnRoutes）用于启用已经加入云联网（CCN）的路由。<br />
+    /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
+    @inlinable
+    public func enableCcnRoutes(_ input: EnableCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableCcnRoutesResponse {
+        try await self.client.execute(action: "EnableCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

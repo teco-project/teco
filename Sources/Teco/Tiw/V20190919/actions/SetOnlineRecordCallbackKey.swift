@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 设置实时录制回调密钥
-    ///
-    /// 设置实时录制回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
-    @inlinable
-    public func setOnlineRecordCallbackKey(_ input: SetOnlineRecordCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetOnlineRecordCallbackKeyResponse > {
-        self.client.execute(action: "SetOnlineRecordCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置实时录制回调密钥
-    ///
-    /// 设置实时录制回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
-    @inlinable
-    public func setOnlineRecordCallbackKey(_ input: SetOnlineRecordCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetOnlineRecordCallbackKeyResponse {
-        try await self.client.execute(action: "SetOnlineRecordCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetOnlineRecordCallbackKey请求参数结构体
     public struct SetOnlineRecordCallbackKeyRequest: TCRequestModel {
         /// 应用的SdkAppId
@@ -58,5 +42,21 @@ extension Tiw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置实时录制回调密钥
+    ///
+    /// 设置实时录制回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
+    @inlinable
+    public func setOnlineRecordCallbackKey(_ input: SetOnlineRecordCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetOnlineRecordCallbackKeyResponse > {
+        self.client.execute(action: "SetOnlineRecordCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置实时录制回调密钥
+    ///
+    /// 设置实时录制回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
+    @inlinable
+    public func setOnlineRecordCallbackKey(_ input: SetOnlineRecordCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetOnlineRecordCallbackKeyResponse {
+        try await self.client.execute(action: "SetOnlineRecordCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

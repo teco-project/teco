@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 修改数据库备份配置
-    ///
-    /// 本接口(ModifyBackupConfig)用于修改数据库备份配置信息。
-    @inlinable
-    public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupConfigResponse > {
-        self.client.execute(action: "ModifyBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改数据库备份配置
-    ///
-    /// 本接口(ModifyBackupConfig)用于修改数据库备份配置信息。
-    @inlinable
-    public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupConfigResponse {
-        try await self.client.execute(action: "ModifyBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyBackupConfig请求参数结构体
     public struct ModifyBackupConfigRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例ID相同。
@@ -49,7 +33,7 @@ extension Cdb {
         public let binlogExpireDays: Int64?
         
         /// 备份时间窗，比如要设置每周二和周日 10:00-14:00之间备份，该参数如下：{"Monday": "", "Tuesday": "10:00-14:00", "Wednesday": "", "Thursday": "", "Friday": "", "Saturday": "", "Sunday": "10:00-14:00"}    （注：可以设置一周的某几天备份，但是每天的备份时间需要设置为相同的时间段。 如果设置了该字段，将忽略StartTime字段的设置）
-        public let backupTimeWindow: CommonTimeWindow
+        public let backupTimeWindow: CommonTimeWindow?
         
         /// 定期保留开关，off - 不开启定期保留策略，on - 开启定期保留策略，默认为off。首次开启定期保留策略时，BackupPeriodSaveDays，BackupPeriodSaveInterval，BackupPeriodSaveCount，StartBackupPeriodSaveDate参数为必填项，否则定期保留策略不会生效
         public let enableBackupPeriodSave: String?
@@ -81,7 +65,7 @@ extension Cdb {
         /// 是否开启日志备份归档策略，off-关闭，on-打开，默认为off
         public let enableBinlogArchive: String?
         
-        public init (instanceId: String, expireDays: Int64?, startTime: String?, backupMethod: String?, binlogExpireDays: Int64?, backupTimeWindow: CommonTimeWindow, enableBackupPeriodSave: String?, enableBackupPeriodLongTermSave: String?, backupPeriodSaveDays: Int64?, backupPeriodSaveInterval: String?, backupPeriodSaveCount: Int64?, startBackupPeriodSaveDate: String?, enableBackupArchive: String?, backupArchiveDays: Int64?, binlogArchiveDays: Int64?, enableBinlogArchive: String?) {
+        public init (instanceId: String, expireDays: Int64? = nil, startTime: String? = nil, backupMethod: String? = nil, binlogExpireDays: Int64? = nil, backupTimeWindow: CommonTimeWindow? = nil, enableBackupPeriodSave: String? = nil, enableBackupPeriodLongTermSave: String? = nil, backupPeriodSaveDays: Int64? = nil, backupPeriodSaveInterval: String? = nil, backupPeriodSaveCount: Int64? = nil, startBackupPeriodSaveDate: String? = nil, enableBackupArchive: String? = nil, backupArchiveDays: Int64? = nil, binlogArchiveDays: Int64? = nil, enableBinlogArchive: String? = nil) {
             self.instanceId = instanceId
             self.expireDays = expireDays
             self.startTime = startTime
@@ -128,5 +112,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改数据库备份配置
+    ///
+    /// 本接口(ModifyBackupConfig)用于修改数据库备份配置信息。
+    @inlinable
+    public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupConfigResponse > {
+        self.client.execute(action: "ModifyBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改数据库备份配置
+    ///
+    /// 本接口(ModifyBackupConfig)用于修改数据库备份配置信息。
+    @inlinable
+    public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupConfigResponse {
+        try await self.client.execute(action: "ModifyBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

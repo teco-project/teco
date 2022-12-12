@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 解绑流量镜像接收机
-    ///
-    /// 从流量镜像实例上解绑流量镜像接收机。
-    @inlinable
-    public func unbindTrafficMirrorReceivers(_ input: UnbindTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindTrafficMirrorReceiversResponse > {
-        self.client.execute(action: "UnbindTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑流量镜像接收机
-    ///
-    /// 从流量镜像实例上解绑流量镜像接收机。
-    @inlinable
-    public func unbindTrafficMirrorReceivers(_ input: UnbindTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindTrafficMirrorReceiversResponse {
-        try await self.client.execute(action: "UnbindTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindTrafficMirrorReceivers请求参数结构体
     public struct UnbindTrafficMirrorReceiversRequest: TCRequestModel {
         /// 流量镜像实例ID。
@@ -62,5 +46,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑流量镜像接收机
+    ///
+    /// 从流量镜像实例上解绑流量镜像接收机。
+    @inlinable
+    public func unbindTrafficMirrorReceivers(_ input: UnbindTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindTrafficMirrorReceiversResponse > {
+        self.client.execute(action: "UnbindTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑流量镜像接收机
+    ///
+    /// 从流量镜像实例上解绑流量镜像接收机。
+    @inlinable
+    public func unbindTrafficMirrorReceivers(_ input: UnbindTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindTrafficMirrorReceiversResponse {
+        try await self.client.execute(action: "UnbindTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gme {
-    /// 查询某账号下的应用列表
-    ///
-    /// 本接口(DescribeApplicationList)用于查询自己账号下的应用列表
-    @inlinable
-    public func describeApplicationList(_ input: DescribeApplicationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationListResponse > {
-        self.client.execute(action: "DescribeApplicationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询某账号下的应用列表
-    ///
-    /// 本接口(DescribeApplicationList)用于查询自己账号下的应用列表
-    @inlinable
-    public func describeApplicationList(_ input: DescribeApplicationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationListResponse {
-        try await self.client.execute(action: "DescribeApplicationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplicationList请求参数结构体
     public struct DescribeApplicationListRequest: TCRequestModel {
         /// 项目ID，0表示默认项目，-1表示所有项目，如果需要查找具体项目下的应用列表，请填入具体项目ID，项目ID在项目管理中查看 https://console.cloud.tencent.com/project
@@ -51,7 +35,7 @@ extension Gme {
         /// 查找过滤关键字列表
         public let filters: [Filter]?
         
-        public init (projectId: Int64, pageNo: UInt64, pageSize: UInt64, searchText: String, tagSet: [Tag]?, filters: [Filter]?) {
+        public init (projectId: Int64, pageNo: UInt64, pageSize: UInt64, searchText: String, tagSet: [Tag]? = nil, filters: [Filter]? = nil) {
             self.projectId = projectId
             self.pageNo = pageNo
             self.pageSize = pageSize
@@ -86,5 +70,21 @@ extension Gme {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询某账号下的应用列表
+    ///
+    /// 本接口(DescribeApplicationList)用于查询自己账号下的应用列表
+    @inlinable
+    public func describeApplicationList(_ input: DescribeApplicationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationListResponse > {
+        self.client.execute(action: "DescribeApplicationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询某账号下的应用列表
+    ///
+    /// 本接口(DescribeApplicationList)用于查询自己账号下的应用列表
+    @inlinable
+    public func describeApplicationList(_ input: DescribeApplicationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationListResponse {
+        try await self.client.execute(action: "DescribeApplicationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

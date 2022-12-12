@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mmps {
-    /// 查询诊断任务状态
-    ///
-    /// 查询翼扬安全诊断任务状态
-    @inlinable
-    public func describeFlySecMiniAppScanTaskStatus(_ input: DescribeFlySecMiniAppScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlySecMiniAppScanTaskStatusResponse > {
-        self.client.execute(action: "DescribeFlySecMiniAppScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询诊断任务状态
-    ///
-    /// 查询翼扬安全诊断任务状态
-    @inlinable
-    public func describeFlySecMiniAppScanTaskStatus(_ input: DescribeFlySecMiniAppScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanTaskStatusResponse {
-        try await self.client.execute(action: "DescribeFlySecMiniAppScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlySecMiniAppScanTaskStatus请求参数结构体
     public struct DescribeFlySecMiniAppScanTaskStatusRequest: TCRequestModel {
         /// 任务id
@@ -76,5 +60,21 @@ extension Mmps {
             case miniAppVersion = "MiniAppVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询诊断任务状态
+    ///
+    /// 查询翼扬安全诊断任务状态
+    @inlinable
+    public func describeFlySecMiniAppScanTaskStatus(_ input: DescribeFlySecMiniAppScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlySecMiniAppScanTaskStatusResponse > {
+        self.client.execute(action: "DescribeFlySecMiniAppScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询诊断任务状态
+    ///
+    /// 查询翼扬安全诊断任务状态
+    @inlinable
+    public func describeFlySecMiniAppScanTaskStatus(_ input: DescribeFlySecMiniAppScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanTaskStatusResponse {
+        try await self.client.execute(action: "DescribeFlySecMiniAppScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cws {
-    /// 查看监控任务
-    ///
-    /// 本接口 (DescribeMonitors) 用于查询一个或多个监控任务的详细信息。
-    @inlinable
-    public func describeMonitors(_ input: DescribeMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorsResponse > {
-        self.client.execute(action: "DescribeMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看监控任务
-    ///
-    /// 本接口 (DescribeMonitors) 用于查询一个或多个监控任务的详细信息。
-    @inlinable
-    public func describeMonitors(_ input: DescribeMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorsResponse {
-        try await self.client.execute(action: "DescribeMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMonitors请求参数结构体
     public struct DescribeMonitorsRequest: TCRequestModel {
         /// 监控任务ID列表
@@ -45,7 +29,7 @@ extension Cws {
         /// 返回数量，默认为10，最大值为100
         public let limit: UInt64?
         
-        public init (monitorIds: [UInt64]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (monitorIds: [UInt64]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.monitorIds = monitorIds
             self.filters = filters
             self.offset = offset
@@ -76,5 +60,21 @@ extension Cws {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看监控任务
+    ///
+    /// 本接口 (DescribeMonitors) 用于查询一个或多个监控任务的详细信息。
+    @inlinable
+    public func describeMonitors(_ input: DescribeMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMonitorsResponse > {
+        self.client.execute(action: "DescribeMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看监控任务
+    ///
+    /// 本接口 (DescribeMonitors) 用于查询一个或多个监控任务的详细信息。
+    @inlinable
+    public func describeMonitors(_ input: DescribeMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorsResponse {
+        try await self.client.execute(action: "DescribeMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 修改实例参数
-    ///
-    /// 本接口(ModifyInstanceParam)用于修改云数据库实例的参数。
-    @inlinable
-    public func modifyInstanceParam(_ input: ModifyInstanceParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceParamResponse > {
-        self.client.execute(action: "ModifyInstanceParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例参数
-    ///
-    /// 本接口(ModifyInstanceParam)用于修改云数据库实例的参数。
-    @inlinable
-    public func modifyInstanceParam(_ input: ModifyInstanceParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceParamResponse {
-        try await self.client.execute(action: "ModifyInstanceParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyInstanceParam请求参数结构体
     public struct ModifyInstanceParamRequest: TCRequestModel {
         /// 实例短 ID 列表。
@@ -51,7 +35,7 @@ extension Cdb {
         /// 参数是否同步到主实例下的灾备实例。true 为不同步，false 为同步。默认为 false。
         public let notSyncDr: Bool?
         
-        public init (instanceIds: [String], paramList: [Parameter]?, templateId: Int64?, waitSwitch: Int64?, notSyncRo: Bool?, notSyncDr: Bool?) {
+        public init (instanceIds: [String], paramList: [Parameter]? = nil, templateId: Int64? = nil, waitSwitch: Int64? = nil, notSyncRo: Bool? = nil, notSyncDr: Bool? = nil) {
             self.instanceIds = instanceIds
             self.paramList = paramList
             self.templateId = templateId
@@ -82,5 +66,21 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例参数
+    ///
+    /// 本接口(ModifyInstanceParam)用于修改云数据库实例的参数。
+    @inlinable
+    public func modifyInstanceParam(_ input: ModifyInstanceParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstanceParamResponse > {
+        self.client.execute(action: "ModifyInstanceParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例参数
+    ///
+    /// 本接口(ModifyInstanceParam)用于修改云数据库实例的参数。
+    @inlinable
+    public func modifyInstanceParam(_ input: ModifyInstanceParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceParamResponse {
+        try await self.client.execute(action: "ModifyInstanceParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

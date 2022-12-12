@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 查询实例客户端连接信息
-    ///
-    /// 本接口(DescribeClientConnections)用于查询实例客户端连接信息，包括连接IP和连接数量。目前只支持3.2版本的MongoDB实例。
-    @inlinable
-    public func describeClientConnections(_ input: DescribeClientConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientConnectionsResponse > {
-        self.client.execute(action: "DescribeClientConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例客户端连接信息
-    ///
-    /// 本接口(DescribeClientConnections)用于查询实例客户端连接信息，包括连接IP和连接数量。目前只支持3.2版本的MongoDB实例。
-    @inlinable
-    public func describeClientConnections(_ input: DescribeClientConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientConnectionsResponse {
-        try await self.client.execute(action: "DescribeClientConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClientConnections请求参数结构体
     public struct DescribeClientConnectionsRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -58,5 +42,21 @@ extension Mongodb {
             case clients = "Clients"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例客户端连接信息
+    ///
+    /// 本接口(DescribeClientConnections)用于查询实例客户端连接信息，包括连接IP和连接数量。目前只支持3.2版本的MongoDB实例。
+    @inlinable
+    public func describeClientConnections(_ input: DescribeClientConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientConnectionsResponse > {
+        self.client.execute(action: "DescribeClientConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例客户端连接信息
+    ///
+    /// 本接口(DescribeClientConnections)用于查询实例客户端连接信息，包括连接IP和连接数量。目前只支持3.2版本的MongoDB实例。
+    @inlinable
+    public func describeClientConnections(_ input: DescribeClientConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientConnectionsResponse {
+        try await self.client.execute(action: "DescribeClientConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

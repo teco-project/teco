@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改模块IP直通
-    ///
-    /// 修改模块IP直通。
-    @inlinable
-    public func modifyModuleIpDirect(_ input: ModifyModuleIpDirectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleIpDirectResponse > {
-        self.client.execute(action: "ModifyModuleIpDirect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改模块IP直通
-    ///
-    /// 修改模块IP直通。
-    @inlinable
-    public func modifyModuleIpDirect(_ input: ModifyModuleIpDirectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleIpDirectResponse {
-        try await self.client.execute(action: "ModifyModuleIpDirect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyModuleIpDirect请求参数结构体
     public struct ModifyModuleIpDirectRequest: TCRequestModel {
         /// 模块ID。
@@ -60,5 +44,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改模块IP直通
+    ///
+    /// 修改模块IP直通。
+    @inlinable
+    public func modifyModuleIpDirect(_ input: ModifyModuleIpDirectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleIpDirectResponse > {
+        self.client.execute(action: "ModifyModuleIpDirect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改模块IP直通
+    ///
+    /// 修改模块IP直通。
+    @inlinable
+    public func modifyModuleIpDirect(_ input: ModifyModuleIpDirectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleIpDirectResponse {
+        try await self.client.execute(action: "ModifyModuleIpDirect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

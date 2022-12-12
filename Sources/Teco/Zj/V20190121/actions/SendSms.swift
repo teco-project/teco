@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 发送短信
-    @inlinable
-    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendSmsResponse > {
-        self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发送短信
-    @inlinable
-    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
-        try await self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendSms请求参数结构体
     public struct SendSmsRequest: TCRequestModel {
         /// 商户证书
@@ -58,7 +46,7 @@ extension Zj {
         /// 发送使用的模板内容,如果有占位符,此处也包括占位符,占位符的实际内容通过Params参数传递,使用模板id发送时此字段为空
         public let content: String?
         
-        public init (license: String, phone: [String], templateId: String?, params: [String]?, sign: String?, senderId: String?, smsType: UInt64?, international: UInt64?, content: String?) {
+        public init (license: String, phone: [String], templateId: String? = nil, params: [String]? = nil, sign: String? = nil, senderId: String? = nil, smsType: UInt64? = nil, international: UInt64? = nil, content: String? = nil) {
             self.license = license
             self.phone = phone
             self.templateId = templateId
@@ -95,5 +83,17 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发送短信
+    @inlinable
+    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendSmsResponse > {
+        self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发送短信
+    @inlinable
+    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
+        try await self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

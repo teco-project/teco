@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cat {
-    /// 删除拨测任务
-    @inlinable
-    public func deleteProbeTask(_ input: DeleteProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProbeTaskResponse > {
-        self.client.execute(action: "DeleteProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除拨测任务
-    @inlinable
-    public func deleteProbeTask(_ input: DeleteProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProbeTaskResponse {
-        try await self.client.execute(action: "DeleteProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteProbeTask请求参数结构体
     public struct DeleteProbeTaskRequest: TCRequestModel {
         /// 任务 ID
@@ -63,5 +51,17 @@ extension Cat {
             case results = "Results"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除拨测任务
+    @inlinable
+    public func deleteProbeTask(_ input: DeleteProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProbeTaskResponse > {
+        self.client.execute(action: "DeleteProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除拨测任务
+    @inlinable
+    public func deleteProbeTask(_ input: DeleteProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProbeTaskResponse {
+        try await self.client.execute(action: "DeleteProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

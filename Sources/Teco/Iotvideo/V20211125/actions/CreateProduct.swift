@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 创建产品
-    @inlinable
-    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProductResponse > {
-        self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建产品
-    @inlinable
-    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
-        try await self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProduct请求参数结构体
     public struct CreateProductRequest: TCRequestModel {
         /// 产品名称
@@ -64,7 +52,7 @@ extension Iotvideo {
         /// 连接类型，wifi表示WIFI连接，cellular表示4G连接
         public let netType: String?
         
-        public init (productName: String, deviceType: UInt64, productVaildYears: UInt64, features: [String], chipManufactureId: String, chipId: String, productDescription: String, chipOs: String, encryptionType: UInt64?, categoryId: UInt64?, netType: String?) {
+        public init (productName: String, deviceType: UInt64, productVaildYears: UInt64, features: [String], chipManufactureId: String, chipId: String, productDescription: String, chipOs: String, encryptionType: UInt64? = nil, categoryId: UInt64? = nil, netType: String? = nil) {
             self.productName = productName
             self.deviceType = deviceType
             self.productVaildYears = productVaildYears
@@ -105,5 +93,17 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建产品
+    @inlinable
+    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProductResponse > {
+        self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建产品
+    @inlinable
+    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
+        try await self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

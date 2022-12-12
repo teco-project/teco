@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 查询节点Pod内的容器列表
-    @inlinable
-    public func describeEdgeNodePodContainers(_ input: DescribeEdgeNodePodContainersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeNodePodContainersResponse > {
-        self.client.execute(action: "DescribeEdgeNodePodContainers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询节点Pod内的容器列表
-    @inlinable
-    public func describeEdgeNodePodContainers(_ input: DescribeEdgeNodePodContainersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodePodContainersResponse {
-        try await self.client.execute(action: "DescribeEdgeNodePodContainers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeNodePodContainers请求参数结构体
     public struct DescribeEdgeNodePodContainersRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -41,7 +29,7 @@ extension Iecp {
         /// 命名空间
         public let namespace: String?
         
-        public init (edgeUnitId: UInt64, nodeId: UInt64, podName: String, namespace: String?) {
+        public init (edgeUnitId: UInt64, nodeId: UInt64, podName: String, namespace: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.nodeId = nodeId
             self.podName = podName
@@ -69,5 +57,17 @@ extension Iecp {
             case containerSet = "ContainerSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询节点Pod内的容器列表
+    @inlinable
+    public func describeEdgeNodePodContainers(_ input: DescribeEdgeNodePodContainersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeNodePodContainersResponse > {
+        self.client.execute(action: "DescribeEdgeNodePodContainers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询节点Pod内的容器列表
+    @inlinable
+    public func describeEdgeNodePodContainers(_ input: DescribeEdgeNodePodContainersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodePodContainersResponse {
+        try await self.client.execute(action: "DescribeEdgeNodePodContainers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

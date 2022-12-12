@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ses {
-    /// 更新邮件模板
-    ///
-    /// 更新邮件模板，更新后需再次审核
-    @inlinable
-    public func updateEmailTemplate(_ input: UpdateEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEmailTemplateResponse > {
-        self.client.execute(action: "UpdateEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新邮件模板
-    ///
-    /// 更新邮件模板，更新后需再次审核
-    @inlinable
-    public func updateEmailTemplate(_ input: UpdateEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEmailTemplateResponse {
-        try await self.client.execute(action: "UpdateEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateEmailTemplate请求参数结构体
     public struct UpdateEmailTemplateRequest: TCRequestModel {
         /// 模板内容
@@ -63,5 +47,21 @@ extension Ses {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新邮件模板
+    ///
+    /// 更新邮件模板，更新后需再次审核
+    @inlinable
+    public func updateEmailTemplate(_ input: UpdateEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEmailTemplateResponse > {
+        self.client.execute(action: "UpdateEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新邮件模板
+    ///
+    /// 更新邮件模板，更新后需再次审核
+    @inlinable
+    public func updateEmailTemplate(_ input: UpdateEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEmailTemplateResponse {
+        try await self.client.execute(action: "UpdateEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

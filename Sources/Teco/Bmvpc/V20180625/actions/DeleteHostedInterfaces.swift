@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 托管机器移除子网(批量接口)
-    ///
-    /// 托管机器移除子网批量接口，传入一台托管机器和多个子网，批量移除这些子网。异步接口，接口返回TaskId。
-    @inlinable
-    public func deleteHostedInterfaces(_ input: DeleteHostedInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteHostedInterfacesResponse > {
-        self.client.execute(action: "DeleteHostedInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 托管机器移除子网(批量接口)
-    ///
-    /// 托管机器移除子网批量接口，传入一台托管机器和多个子网，批量移除这些子网。异步接口，接口返回TaskId。
-    @inlinable
-    public func deleteHostedInterfaces(_ input: DeleteHostedInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHostedInterfacesResponse {
-        try await self.client.execute(action: "DeleteHostedInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteHostedInterfaces请求参数结构体
     public struct DeleteHostedInterfacesRequest: TCRequestModel {
         /// 物理机ID
@@ -62,5 +46,21 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 托管机器移除子网(批量接口)
+    ///
+    /// 托管机器移除子网批量接口，传入一台托管机器和多个子网，批量移除这些子网。异步接口，接口返回TaskId。
+    @inlinable
+    public func deleteHostedInterfaces(_ input: DeleteHostedInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteHostedInterfacesResponse > {
+        self.client.execute(action: "DeleteHostedInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 托管机器移除子网(批量接口)
+    ///
+    /// 托管机器移除子网批量接口，传入一台托管机器和多个子网，批量移除这些子网。异步接口，接口返回TaskId。
+    @inlinable
+    public func deleteHostedInterfaces(_ input: DeleteHostedInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHostedInterfacesResponse {
+        try await self.client.execute(action: "DeleteHostedInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

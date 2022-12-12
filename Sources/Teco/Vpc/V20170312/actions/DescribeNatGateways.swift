@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询NAT网关
-    ///
-    /// 本接口（DescribeNatGateways）用于查询 NAT 网关。
-    @inlinable
-    public func describeNatGateways(_ input: DescribeNatGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatGatewaysResponse > {
-        self.client.execute(action: "DescribeNatGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询NAT网关
-    ///
-    /// 本接口（DescribeNatGateways）用于查询 NAT 网关。
-    @inlinable
-    public func describeNatGateways(_ input: DescribeNatGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewaysResponse {
-        try await self.client.execute(action: "DescribeNatGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNatGateways请求参数结构体
     public struct DescribeNatGatewaysRequest: TCRequestModel {
         /// NAT网关统一 ID，形如：`nat-123xx454`。
@@ -49,7 +33,7 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。
         public let limit: UInt64?
         
-        public init (natGatewayIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (natGatewayIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.natGatewayIds = natGatewayIds
             self.filters = filters
             self.offset = offset
@@ -80,5 +64,21 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询NAT网关
+    ///
+    /// 本接口（DescribeNatGateways）用于查询 NAT 网关。
+    @inlinable
+    public func describeNatGateways(_ input: DescribeNatGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatGatewaysResponse > {
+        self.client.execute(action: "DescribeNatGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询NAT网关
+    ///
+    /// 本接口（DescribeNatGateways）用于查询 NAT 网关。
+    @inlinable
+    public func describeNatGateways(_ input: DescribeNatGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewaysResponse {
+        try await self.client.execute(action: "DescribeNatGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

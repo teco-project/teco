@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tkgdq {
-    /// 三元组查询
-    ///
-    /// 三元组查询，主要分为两类，SP查询和PO查询。SP查询表示已知主语和谓语查询宾语，PO查询表示已知宾语和谓语查询主语。每一个SP或PO查询都是一个可独立执行的查询，TQL支持SP查询的嵌套查询，即主语可以是一个嵌套的子查询。其他复杂的三元组查询方法，请参考官网API文档示例。
-    @inlinable
-    public func describeTriple(_ input: DescribeTripleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTripleResponse > {
-        self.client.execute(action: "DescribeTriple", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 三元组查询
-    ///
-    /// 三元组查询，主要分为两类，SP查询和PO查询。SP查询表示已知主语和谓语查询宾语，PO查询表示已知宾语和谓语查询主语。每一个SP或PO查询都是一个可独立执行的查询，TQL支持SP查询的嵌套查询，即主语可以是一个嵌套的子查询。其他复杂的三元组查询方法，请参考官网API文档示例。
-    @inlinable
-    public func describeTriple(_ input: DescribeTripleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTripleResponse {
-        try await self.client.execute(action: "DescribeTriple", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTriple请求参数结构体
     public struct DescribeTripleRequest: TCRequestModel {
         /// 三元组查询条件
@@ -57,5 +41,21 @@ extension Tkgdq {
             case content = "Content"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 三元组查询
+    ///
+    /// 三元组查询，主要分为两类，SP查询和PO查询。SP查询表示已知主语和谓语查询宾语，PO查询表示已知宾语和谓语查询主语。每一个SP或PO查询都是一个可独立执行的查询，TQL支持SP查询的嵌套查询，即主语可以是一个嵌套的子查询。其他复杂的三元组查询方法，请参考官网API文档示例。
+    @inlinable
+    public func describeTriple(_ input: DescribeTripleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTripleResponse > {
+        self.client.execute(action: "DescribeTriple", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 三元组查询
+    ///
+    /// 三元组查询，主要分为两类，SP查询和PO查询。SP查询表示已知主语和谓语查询宾语，PO查询表示已知宾语和谓语查询主语。每一个SP或PO查询都是一个可独立执行的查询，TQL支持SP查询的嵌套查询，即主语可以是一个嵌套的子查询。其他复杂的三元组查询方法，请参考官网API文档示例。
+    @inlinable
+    public func describeTriple(_ input: DescribeTripleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTripleResponse {
+        try await self.client.execute(action: "DescribeTriple", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

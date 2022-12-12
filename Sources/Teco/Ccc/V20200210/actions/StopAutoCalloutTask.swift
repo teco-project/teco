@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 停止自动外呼任务
-    @inlinable
-    public func stopAutoCalloutTask(_ input: StopAutoCalloutTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopAutoCalloutTaskResponse > {
-        self.client.execute(action: "StopAutoCalloutTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止自动外呼任务
-    @inlinable
-    public func stopAutoCalloutTask(_ input: StopAutoCalloutTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopAutoCalloutTaskResponse {
-        try await self.client.execute(action: "StopAutoCalloutTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopAutoCalloutTask请求参数结构体
     public struct StopAutoCalloutTaskRequest: TCRequestModel {
         /// 呼叫中心实例Id
@@ -54,5 +42,17 @@ extension Ccc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止自动外呼任务
+    @inlinable
+    public func stopAutoCalloutTask(_ input: StopAutoCalloutTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopAutoCalloutTaskResponse > {
+        self.client.execute(action: "StopAutoCalloutTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止自动外呼任务
+    @inlinable
+    public func stopAutoCalloutTask(_ input: StopAutoCalloutTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopAutoCalloutTaskResponse {
+        try await self.client.execute(action: "StopAutoCalloutTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

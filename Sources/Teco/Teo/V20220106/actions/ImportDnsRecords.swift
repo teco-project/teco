@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 导入 DNS 记录
-    @inlinable
-    public func importDnsRecords(_ input: ImportDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportDnsRecordsResponse > {
-        self.client.execute(action: "ImportDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导入 DNS 记录
-    @inlinable
-    public func importDnsRecords(_ input: ImportDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportDnsRecordsResponse {
-        try await self.client.execute(action: "ImportDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ImportDnsRecords请求参数结构体
     public struct ImportDnsRecordsRequest: TCRequestModel {
         /// 站点 ID
@@ -58,5 +46,17 @@ extension Teo {
             case ids = "Ids"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导入 DNS 记录
+    @inlinable
+    public func importDnsRecords(_ input: ImportDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ImportDnsRecordsResponse > {
+        self.client.execute(action: "ImportDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导入 DNS 记录
+    @inlinable
+    public func importDnsRecords(_ input: ImportDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportDnsRecordsResponse {
+        try await self.client.execute(action: "ImportDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

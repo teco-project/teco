@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 停止虚拟机部署组
-    @inlinable
-    public func stopGroup(_ input: StopGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopGroupResponse > {
-        self.client.execute(action: "StopGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止虚拟机部署组
-    @inlinable
-    public func stopGroup(_ input: StopGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGroupResponse {
-        try await self.client.execute(action: "StopGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopGroup请求参数结构体
     public struct StopGroupRequest: TCRequestModel {
         /// 部署组ID
@@ -45,7 +33,7 @@ extension Tsf {
     public struct StopGroupResponse: TCResponseModel {
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TaskId
+        public let result: TaskId?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -54,5 +42,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止虚拟机部署组
+    @inlinable
+    public func stopGroup(_ input: StopGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopGroupResponse > {
+        self.client.execute(action: "StopGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止虚拟机部署组
+    @inlinable
+    public func stopGroup(_ input: StopGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGroupResponse {
+        try await self.client.execute(action: "StopGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

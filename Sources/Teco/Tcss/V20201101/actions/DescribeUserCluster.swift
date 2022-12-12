@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 用户集群资产查询
-    ///
-    /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
-    @inlinable
-    public func describeUserCluster(_ input: DescribeUserClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserClusterResponse > {
-        self.client.execute(action: "DescribeUserCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 用户集群资产查询
-    ///
-    /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
-    @inlinable
-    public func describeUserCluster(_ input: DescribeUserClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserClusterResponse {
-        try await self.client.execute(action: "DescribeUserCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserCluster请求参数结构体
     public struct DescribeUserClusterRequest: TCRequestModel {
         /// 偏移量
@@ -49,7 +33,7 @@ extension Tcss {
         /// 排序方式 asc,desc
         public let order: String?
         
-        public init (offset: UInt64?, limit: UInt64?, filters: [ComplianceFilters]?, by: String?, order: String?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -82,5 +66,21 @@ extension Tcss {
             case clusterInfoList = "ClusterInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 用户集群资产查询
+    ///
+    /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
+    @inlinable
+    public func describeUserCluster(_ input: DescribeUserClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserClusterResponse > {
+        self.client.execute(action: "DescribeUserCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 用户集群资产查询
+    ///
+    /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
+    @inlinable
+    public func describeUserCluster(_ input: DescribeUserClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserClusterResponse {
+        try await self.client.execute(action: "DescribeUserCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

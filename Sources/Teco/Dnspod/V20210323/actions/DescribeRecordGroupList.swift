@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 查询解析记录分组列表
-    @inlinable
-    public func describeRecordGroupList(_ input: DescribeRecordGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordGroupListResponse > {
-        self.client.execute(action: "DescribeRecordGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询解析记录分组列表
-    @inlinable
-    public func describeRecordGroupList(_ input: DescribeRecordGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordGroupListResponse {
-        try await self.client.execute(action: "DescribeRecordGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRecordGroupList请求参数结构体
     public struct DescribeRecordGroupListRequest: TCRequestModel {
         /// 域名
@@ -41,7 +29,7 @@ extension Dnspod {
         /// 分页每页数
         public let limit: UInt64?
         
-        public init (domain: String, domainId: UInt64?, offset: UInt64?, limit: UInt64?) {
+        public init (domain: String, domainId: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.domain = domain
             self.domainId = domainId
             self.offset = offset
@@ -68,5 +56,17 @@ extension Dnspod {
             case groupList = "GroupList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询解析记录分组列表
+    @inlinable
+    public func describeRecordGroupList(_ input: DescribeRecordGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordGroupListResponse > {
+        self.client.execute(action: "DescribeRecordGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询解析记录分组列表
+    @inlinable
+    public func describeRecordGroupList(_ input: DescribeRecordGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordGroupListResponse {
+        try await self.client.execute(action: "DescribeRecordGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

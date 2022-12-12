@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 查询通道组详情
-    ///
-    /// 本接口（DescribeProxyGroupDetails）用于查询通道组详情。
-    @inlinable
-    public func describeProxyGroupDetails(_ input: DescribeProxyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyGroupDetailsResponse > {
-        self.client.execute(action: "DescribeProxyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询通道组详情
-    ///
-    /// 本接口（DescribeProxyGroupDetails）用于查询通道组详情。
-    @inlinable
-    public func describeProxyGroupDetails(_ input: DescribeProxyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupDetailsResponse {
-        try await self.client.execute(action: "DescribeProxyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProxyGroupDetails请求参数结构体
     public struct DescribeProxyGroupDetailsRequest: TCRequestModel {
         /// 通道组ID。
@@ -57,5 +41,21 @@ extension Gaap {
             case proxyGroupDetail = "ProxyGroupDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询通道组详情
+    ///
+    /// 本接口（DescribeProxyGroupDetails）用于查询通道组详情。
+    @inlinable
+    public func describeProxyGroupDetails(_ input: DescribeProxyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyGroupDetailsResponse > {
+        self.client.execute(action: "DescribeProxyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询通道组详情
+    ///
+    /// 本接口（DescribeProxyGroupDetails）用于查询通道组详情。
+    @inlinable
+    public func describeProxyGroupDetails(_ input: DescribeProxyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupDetailsResponse {
+        try await self.client.execute(action: "DescribeProxyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

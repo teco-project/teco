@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 获取日志主题下绑定的域名
-    ///
-    /// ListClsTopicDomains 用于获取某日志主题下绑定的域名列表。
-    @inlinable
-    public func listClsTopicDomains(_ input: ListClsTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListClsTopicDomainsResponse > {
-        self.client.execute(action: "ListClsTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取日志主题下绑定的域名
-    ///
-    /// ListClsTopicDomains 用于获取某日志主题下绑定的域名列表。
-    @inlinable
-    public func listClsTopicDomains(_ input: ListClsTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListClsTopicDomainsResponse {
-        try await self.client.execute(action: "ListClsTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListClsTopicDomains请求参数结构体
     public struct ListClsTopicDomainsRequest: TCRequestModel {
         /// 日志集ID
@@ -44,7 +28,7 @@ extension Cdn {
         /// 接入渠道，cdn或者ecdn，默认值为cdn
         public let channel: String?
         
-        public init (logsetId: String, topicId: String, channel: String?) {
+        public init (logsetId: String, topicId: String, channel: String? = nil) {
             self.logsetId = logsetId
             self.topicId = topicId
             self.channel = channel
@@ -94,5 +78,21 @@ extension Cdn {
             case updateTime = "UpdateTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取日志主题下绑定的域名
+    ///
+    /// ListClsTopicDomains 用于获取某日志主题下绑定的域名列表。
+    @inlinable
+    public func listClsTopicDomains(_ input: ListClsTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListClsTopicDomainsResponse > {
+        self.client.execute(action: "ListClsTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取日志主题下绑定的域名
+    ///
+    /// ListClsTopicDomains 用于获取某日志主题下绑定的域名列表。
+    @inlinable
+    public func listClsTopicDomains(_ input: ListClsTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListClsTopicDomainsResponse {
+        try await self.client.execute(action: "ListClsTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

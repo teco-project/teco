@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiia {
-    /// 图片智能裁剪
-    ///
-    /// 根据输入的裁剪比例，智能判断一张图片的最佳裁剪区域，确保原图的主体区域不受影响，以适应不同平台、设备的展示要求，避免简单拉伸带来的变形。
-    /// >   
-    /// - 可前往 [图像处理](https://cloud.tencent.com/document/product/1590) 产品文档中查看更多产品信息。
-    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func cropImage(_ input: CropImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CropImageResponse > {
-        self.client.execute(action: "CropImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 图片智能裁剪
-    ///
-    /// 根据输入的裁剪比例，智能判断一张图片的最佳裁剪区域，确保原图的主体区域不受影响，以适应不同平台、设备的展示要求，避免简单拉伸带来的变形。
-    /// >   
-    /// - 可前往 [图像处理](https://cloud.tencent.com/document/product/1590) 产品文档中查看更多产品信息。
-    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func cropImage(_ input: CropImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CropImageResponse {
-        try await self.client.execute(action: "CropImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CropImage请求参数结构体
     public struct CropImageRequest: TCRequestModel {
         /// 需要裁剪区域的宽度，与Height共同组成所需裁剪的图片宽高比例。
@@ -63,7 +41,7 @@ extension Tiia {
         /// 注意：图片需要Base64编码，并且要去掉编码头部。
         public let imageBase64: String?
         
-        public init (width: Int64, height: Int64, imageUrl: String?, imageBase64: String?) {
+        public init (width: Int64, height: Int64, imageUrl: String? = nil, imageBase64: String? = nil) {
             self.width = width
             self.height = height
             self.imageUrl = imageUrl
@@ -121,5 +99,27 @@ extension Tiia {
             case cropResult = "CropResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 图片智能裁剪
+    ///
+    /// 根据输入的裁剪比例，智能判断一张图片的最佳裁剪区域，确保原图的主体区域不受影响，以适应不同平台、设备的展示要求，避免简单拉伸带来的变形。
+    /// >   
+    /// - 可前往 [图像处理](https://cloud.tencent.com/document/product/1590) 产品文档中查看更多产品信息。
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func cropImage(_ input: CropImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CropImageResponse > {
+        self.client.execute(action: "CropImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 图片智能裁剪
+    ///
+    /// 根据输入的裁剪比例，智能判断一张图片的最佳裁剪区域，确保原图的主体区域不受影响，以适应不同平台、设备的展示要求，避免简单拉伸带来的变形。
+    /// >   
+    /// - 可前往 [图像处理](https://cloud.tencent.com/document/product/1590) 产品文档中查看更多产品信息。
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func cropImage(_ input: CropImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CropImageResponse {
+        try await self.client.execute(action: "CropImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

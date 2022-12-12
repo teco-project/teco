@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 获取技能组信息列表
-    @inlinable
-    public func describeSkillGroupInfoList(_ input: DescribeSkillGroupInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSkillGroupInfoListResponse > {
-        self.client.execute(action: "DescribeSkillGroupInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取技能组信息列表
-    @inlinable
-    public func describeSkillGroupInfoList(_ input: DescribeSkillGroupInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSkillGroupInfoListResponse {
-        try await self.client.execute(action: "DescribeSkillGroupInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSkillGroupInfoList请求参数结构体
     public struct DescribeSkillGroupInfoListRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -47,7 +35,7 @@ extension Ccc {
         /// 技能组名称
         public let skillGroupName: String?
         
-        public init (sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, skillGroupId: Int64?, modifiedTime: Int64?, skillGroupName: String?) {
+        public init (sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, skillGroupId: Int64? = nil, modifiedTime: Int64? = nil, skillGroupName: String? = nil) {
             self.sdkAppId = sdkAppId
             self.pageSize = pageSize
             self.pageNumber = pageNumber
@@ -82,5 +70,17 @@ extension Ccc {
             case skillGroupList = "SkillGroupList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取技能组信息列表
+    @inlinable
+    public func describeSkillGroupInfoList(_ input: DescribeSkillGroupInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSkillGroupInfoListResponse > {
+        self.client.execute(action: "DescribeSkillGroupInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取技能组信息列表
+    @inlinable
+    public func describeSkillGroupInfoList(_ input: DescribeSkillGroupInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSkillGroupInfoListResponse {
+        try await self.client.execute(action: "DescribeSkillGroupInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

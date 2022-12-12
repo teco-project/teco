@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 删除消息路由
-    @inlinable
-    public func deleteMessageRoute(_ input: DeleteMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMessageRouteResponse > {
-        self.client.execute(action: "DeleteMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除消息路由
-    @inlinable
-    public func deleteMessageRoute(_ input: DeleteMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageRouteResponse {
-        try await self.client.execute(action: "DeleteMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMessageRoute请求参数结构体
     public struct DeleteMessageRouteRequest: TCRequestModel {
         /// 无
@@ -49,5 +37,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除消息路由
+    @inlinable
+    public func deleteMessageRoute(_ input: DeleteMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMessageRouteResponse > {
+        self.client.execute(action: "DeleteMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除消息路由
+    @inlinable
+    public func deleteMessageRoute(_ input: DeleteMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageRouteResponse {
+        try await self.client.execute(action: "DeleteMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

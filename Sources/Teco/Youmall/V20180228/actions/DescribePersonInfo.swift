@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 获取顾客详情列表
-    ///
-    /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
-    @inlinable
-    public func describePersonInfo(_ input: DescribePersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonInfoResponse > {
-        self.client.execute(action: "DescribePersonInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取顾客详情列表
-    ///
-    /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
-    @inlinable
-    public func describePersonInfo(_ input: DescribePersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonInfoResponse {
-        try await self.client.execute(action: "DescribePersonInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePersonInfo请求参数结构体
     public struct DescribePersonInfoRequest: TCRequestModel {
         /// 公司ID
@@ -54,7 +38,7 @@ extension Youmall {
         /// 身份类型(0表示普通顾客，1 白名单，2 表示黑名单）
         public let personType: UInt64?
         
-        public init (companyId: String, shopId: UInt64, startPersonId: UInt64, offset: UInt64, limit: UInt64, pictureExpires: UInt64?, personType: UInt64?) {
+        public init (companyId: String, shopId: UInt64, startPersonId: UInt64, offset: UInt64, limit: UInt64, pictureExpires: UInt64? = nil, personType: UInt64? = nil) {
             self.companyId = companyId
             self.shopId = shopId
             self.startPersonId = startPersonId
@@ -99,5 +83,21 @@ extension Youmall {
             case personInfoSet = "PersonInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取顾客详情列表
+    ///
+    /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
+    @inlinable
+    public func describePersonInfo(_ input: DescribePersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonInfoResponse > {
+        self.client.execute(action: "DescribePersonInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取顾客详情列表
+    ///
+    /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
+    @inlinable
+    public func describePersonInfo(_ input: DescribePersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonInfoResponse {
+        try await self.client.execute(action: "DescribePersonInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

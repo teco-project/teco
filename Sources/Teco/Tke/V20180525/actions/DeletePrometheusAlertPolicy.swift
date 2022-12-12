@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 删除2.0实例告警策略
-    @inlinable
-    public func deletePrometheusAlertPolicy(_ input: DeletePrometheusAlertPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusAlertPolicyResponse > {
-        self.client.execute(action: "DeletePrometheusAlertPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除2.0实例告警策略
-    @inlinable
-    public func deletePrometheusAlertPolicy(_ input: DeletePrometheusAlertPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusAlertPolicyResponse {
-        try await self.client.execute(action: "DeletePrometheusAlertPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePrometheusAlertPolicy请求参数结构体
     public struct DeletePrometheusAlertPolicyRequest: TCRequestModel {
         /// 实例id
@@ -38,7 +26,7 @@ extension Tke {
         /// 告警策略名称
         public let names: [String]?
         
-        public init (instanceId: String, alertIds: [String], names: [String]?) {
+        public init (instanceId: String, alertIds: [String], names: [String]? = nil) {
             self.instanceId = instanceId
             self.alertIds = alertIds
             self.names = names
@@ -59,5 +47,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除2.0实例告警策略
+    @inlinable
+    public func deletePrometheusAlertPolicy(_ input: DeletePrometheusAlertPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusAlertPolicyResponse > {
+        self.client.execute(action: "DeletePrometheusAlertPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除2.0实例告警策略
+    @inlinable
+    public func deletePrometheusAlertPolicy(_ input: DeletePrometheusAlertPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusAlertPolicyResponse {
+        try await self.client.execute(action: "DeletePrometheusAlertPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

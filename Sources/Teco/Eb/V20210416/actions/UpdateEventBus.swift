@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 更新事件集
-    @inlinable
-    public func updateEventBus(_ input: UpdateEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEventBusResponse > {
-        self.client.execute(action: "UpdateEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新事件集
-    @inlinable
-    public func updateEventBus(_ input: UpdateEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEventBusResponse {
-        try await self.client.execute(action: "UpdateEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateEventBus请求参数结构体
     public struct UpdateEventBusRequest: TCRequestModel {
         /// 事件集ID
@@ -38,7 +26,7 @@ extension Eb {
         /// 事件集名称，只能包含字母、数字、下划线、连字符，以字母开头，以数字或字母结尾，2~60个字符
         public let eventBusName: String?
         
-        public init (eventBusId: String, description: String?, eventBusName: String?) {
+        public init (eventBusId: String, description: String? = nil, eventBusName: String? = nil) {
             self.eventBusId = eventBusId
             self.description = description
             self.eventBusName = eventBusName
@@ -59,5 +47,17 @@ extension Eb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新事件集
+    @inlinable
+    public func updateEventBus(_ input: UpdateEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEventBusResponse > {
+        self.client.execute(action: "UpdateEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新事件集
+    @inlinable
+    public func updateEventBus(_ input: UpdateEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEventBusResponse {
+        try await self.client.execute(action: "UpdateEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

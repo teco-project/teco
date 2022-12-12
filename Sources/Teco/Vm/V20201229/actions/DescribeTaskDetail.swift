@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vm {
-    /// 查看任务详情
-    ///
-    /// 通过查看任务详情 DescribeTaskDetail 接口，可主动轮询获取检测结果详情。<br>
-    /// 默认接口请求频率限制：**200次/秒**。
-    @inlinable
-    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
-        self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看任务详情
-    ///
-    /// 通过查看任务详情 DescribeTaskDetail 接口，可主动轮询获取检测结果详情。<br>
-    /// 默认接口请求频率限制：**200次/秒**。
-    @inlinable
-    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
-        try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskDetail请求参数结构体
     public struct DescribeTaskDetailRequest: TCRequestModel {
         /// 该字段表示创建视频审核任务后返回的任务ID（在Results参数中），用于标识需要查询任务详情的审核任务。
@@ -42,7 +24,7 @@ extension Vm {
         /// 该布尔字段表示是否展示全部的视频片段，取值：True(展示全部的视频分片)、False(只展示命中审核规则的视频分片)；默认值为False。
         public let showAllSegments: Bool?
         
-        public init (taskId: String, showAllSegments: Bool?) {
+        public init (taskId: String, showAllSegments: Bool? = nil) {
             self.taskId = taskId
             self.showAllSegments = showAllSegments
         }
@@ -90,11 +72,11 @@ extension Vm {
         
         /// 该字段用于返回输入媒体文件的详细信息，包括编解码格式、分片时长等信息。详细内容敬请参考MediaInfo数据结构的描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mediaInfo: MediaInfo
+        public let mediaInfo: MediaInfo?
         
         /// 该字段用于返回审核服务的媒体内容信息，主要包括传入文件类型和访问地址。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let inputInfo: InputInfo
+        public let inputInfo: InputInfo?
         
         /// 该字段用于返回被查询任务创建的时间，格式采用 ISO 8601标准。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -149,5 +131,23 @@ extension Vm {
             case label = "Label"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看任务详情
+    ///
+    /// 通过查看任务详情 DescribeTaskDetail 接口，可主动轮询获取检测结果详情。<br>
+    /// 默认接口请求频率限制：**200次/秒**。
+    @inlinable
+    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
+        self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看任务详情
+    ///
+    /// 通过查看任务详情 DescribeTaskDetail 接口，可主动轮询获取检测结果详情。<br>
+    /// 默认接口请求频率限制：**200次/秒**。
+    @inlinable
+    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
+        try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

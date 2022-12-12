@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 运行函数
-    ///
-    /// 该接口用于运行函数。
-    @inlinable
-    public func invoke(_ input: InvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeResponse > {
-        self.client.execute(action: "Invoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行函数
-    ///
-    /// 该接口用于运行函数。
-    @inlinable
-    public func invoke(_ input: InvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeResponse {
-        try await self.client.execute(action: "Invoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// Invoke请求参数结构体
     public struct InvokeRequest: TCRequestModel {
         /// 函数名称
@@ -54,7 +38,7 @@ extension Scf {
         /// 函数灰度流量控制调用，以json格式传入，例如{"k":"v"}，注意kv都需要是字符串类型，最大支持的参数长度是1024字节
         public let routingKey: String?
         
-        public init (functionName: String, invocationType: String?, qualifier: String?, clientContext: String?, logType: String?, namespace: String?, routingKey: String?) {
+        public init (functionName: String, invocationType: String? = nil, qualifier: String? = nil, clientContext: String? = nil, logType: String? = nil, namespace: String? = nil, routingKey: String? = nil) {
             self.functionName = functionName
             self.invocationType = invocationType
             self.qualifier = qualifier
@@ -87,5 +71,21 @@ extension Scf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行函数
+    ///
+    /// 该接口用于运行函数。
+    @inlinable
+    public func invoke(_ input: InvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeResponse > {
+        self.client.execute(action: "Invoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行函数
+    ///
+    /// 该接口用于运行函数。
+    @inlinable
+    public func invoke(_ input: InvokeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeResponse {
+        try await self.client.execute(action: "Invoke", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

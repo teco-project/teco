@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫-签约行为上报
-    ///
-    /// 商户查询是否签约和签约行为上报
-    @inlinable
-    public func registerBehavior(_ input: RegisterBehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterBehaviorResponse > {
-        self.client.execute(action: "RegisterBehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫-签约行为上报
-    ///
-    /// 商户查询是否签约和签约行为上报
-    @inlinable
-    public func registerBehavior(_ input: RegisterBehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterBehaviorResponse {
-        try await self.client.execute(action: "RegisterBehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RegisterBehavior请求参数结构体
     public struct RegisterBehaviorRequest: TCRequestModel {
         /// 聚鑫分配的支付主MidasAppId
@@ -78,7 +62,7 @@ extension Cpdp {
         /// 功能标志FunctionFlag=1时必输
         public let signChannel: Int64?
         
-        public init (midasAppId: String, subAppId: String, midasSecretId: String, midasSignature: String, functionFlag: Int64, midasEnvironment: String?, operationClickTime: String?, ipAddress: String?, macAddress: String?, signChannel: Int64?) {
+        public init (midasAppId: String, subAppId: String, midasSecretId: String, midasSignature: String, functionFlag: Int64, midasEnvironment: String? = nil, operationClickTime: String? = nil, ipAddress: String? = nil, macAddress: String? = nil, signChannel: Int64? = nil) {
             self.midasAppId = midasAppId
             self.subAppId = subAppId
             self.midasSecretId = midasSecretId
@@ -116,7 +100,7 @@ extension Cpdp {
         
         /// 签约信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let registerInfo: RegisterInfo
+        public let registerInfo: RegisterInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -126,5 +110,21 @@ extension Cpdp {
             case registerInfo = "RegisterInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫-签约行为上报
+    ///
+    /// 商户查询是否签约和签约行为上报
+    @inlinable
+    public func registerBehavior(_ input: RegisterBehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterBehaviorResponse > {
+        self.client.execute(action: "RegisterBehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-签约行为上报
+    ///
+    /// 商户查询是否签约和签约行为上报
+    @inlinable
+    public func registerBehavior(_ input: RegisterBehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterBehaviorResponse {
+        try await self.client.execute(action: "RegisterBehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

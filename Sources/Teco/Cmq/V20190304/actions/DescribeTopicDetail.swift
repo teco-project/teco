@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cmq {
-    /// 查询主题详情
-    ///
-    /// 查询主题详情 
-    @inlinable
-    public func describeTopicDetail(_ input: DescribeTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicDetailResponse > {
-        self.client.execute(action: "DescribeTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询主题详情
-    ///
-    /// 查询主题详情 
-    @inlinable
-    public func describeTopicDetail(_ input: DescribeTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicDetailResponse {
-        try await self.client.execute(action: "DescribeTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTopicDetail请求参数结构体
     public struct DescribeTopicDetailRequest: TCRequestModel {
         /// 分页时本页获取队列列表的起始位置。如果填写了该值，必须也要填写 limit 。该值缺省时，后台取默认值 0。
@@ -48,7 +32,7 @@ extension Cmq {
         /// 精确匹配TopicName。
         public let topicName: String?
         
-        public init (offset: UInt64?, limit: UInt64?, filters: [Filter]?, tagKey: String?, topicName: String?) {
+        public init (offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, topicName: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -81,5 +65,21 @@ extension Cmq {
             case topicSet = "TopicSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询主题详情
+    ///
+    /// 查询主题详情 
+    @inlinable
+    public func describeTopicDetail(_ input: DescribeTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTopicDetailResponse > {
+        self.client.execute(action: "DescribeTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询主题详情
+    ///
+    /// 查询主题详情 
+    @inlinable
+    public func describeTopicDetail(_ input: DescribeTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicDetailResponse {
+        try await self.client.execute(action: "DescribeTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

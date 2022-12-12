@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 获取自定义脚本任务列表
-    @inlinable
-    public func describeUserCmdTasks(_ input: DescribeUserCmdTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserCmdTasksResponse > {
-        self.client.execute(action: "DescribeUserCmdTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取自定义脚本任务列表
-    @inlinable
-    public func describeUserCmdTasks(_ input: DescribeUserCmdTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdTasksResponse {
-        try await self.client.execute(action: "DescribeUserCmdTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserCmdTasks请求参数结构体
     public struct DescribeUserCmdTasksRequest: TCRequestModel {
         /// 偏移量
@@ -41,7 +29,7 @@ extension Bm {
         /// 排序方式，取值: 1倒序，0顺序；默认倒序
         public let order: UInt64?
         
-        public init (offset: UInt64, limit: UInt64, orderField: String?, order: UInt64?) {
+        public init (offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
             self.orderField = orderField
@@ -72,5 +60,17 @@ extension Bm {
             case userCmdTasks = "UserCmdTasks"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取自定义脚本任务列表
+    @inlinable
+    public func describeUserCmdTasks(_ input: DescribeUserCmdTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserCmdTasksResponse > {
+        self.client.execute(action: "DescribeUserCmdTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取自定义脚本任务列表
+    @inlinable
+    public func describeUserCmdTasks(_ input: DescribeUserCmdTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdTasksResponse {
+        try await self.client.execute(action: "DescribeUserCmdTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取批次列表
-    @inlinable
-    public func describeBatchs(_ input: DescribeBatchsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchsResponse > {
-        self.client.execute(action: "DescribeBatchs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取批次列表
-    @inlinable
-    public func describeBatchs(_ input: DescribeBatchsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchsResponse {
-        try await self.client.execute(action: "DescribeBatchs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBatchs请求参数结构体
     public struct DescribeBatchsRequest: TCRequestModel {
         /// 产品ID
@@ -67,5 +55,17 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取批次列表
+    @inlinable
+    public func describeBatchs(_ input: DescribeBatchsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchsResponse > {
+        self.client.execute(action: "DescribeBatchs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取批次列表
+    @inlinable
+    public func describeBatchs(_ input: DescribeBatchsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchsResponse {
+        try await self.client.execute(action: "DescribeBatchs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

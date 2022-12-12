@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudhsm {
-    /// 询价
-    ///
-    /// 购买询价接口
-    @inlinable
-    public func inquiryPriceBuyVsm(_ input: InquiryPriceBuyVsmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceBuyVsmResponse > {
-        self.client.execute(action: "InquiryPriceBuyVsm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 询价
-    ///
-    /// 购买询价接口
-    @inlinable
-    public func inquiryPriceBuyVsm(_ input: InquiryPriceBuyVsmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceBuyVsmResponse {
-        try await self.client.execute(action: "InquiryPriceBuyVsm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceBuyVsm请求参数结构体
     public struct InquiryPriceBuyVsmRequest: TCRequestModel {
         /// 需购买实例的数量
@@ -54,7 +38,7 @@ extension Cloudhsm {
         /// Hsm服务类型，可选值virtualization、physical、GHSM、EHSM、SHSM
         public let hsmType: String?
         
-        public init (goodsNum: Int64, payMode: Int64, timeSpan: String, timeUnit: String, currency: String?, type: String?, hsmType: String?) {
+        public init (goodsNum: Int64, payMode: Int64, timeSpan: String, timeUnit: String, currency: String? = nil, type: String? = nil, hsmType: String? = nil) {
             self.goodsNum = goodsNum
             self.payMode = payMode
             self.timeSpan = timeSpan
@@ -108,5 +92,21 @@ extension Cloudhsm {
             case originalCost = "OriginalCost"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 询价
+    ///
+    /// 购买询价接口
+    @inlinable
+    public func inquiryPriceBuyVsm(_ input: InquiryPriceBuyVsmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceBuyVsmResponse > {
+        self.client.execute(action: "InquiryPriceBuyVsm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 询价
+    ///
+    /// 购买询价接口
+    @inlinable
+    public func inquiryPriceBuyVsm(_ input: InquiryPriceBuyVsmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceBuyVsmResponse {
+        try await self.client.execute(action: "InquiryPriceBuyVsm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

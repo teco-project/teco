@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 移动成员到指定企业组织单元
-    @inlinable
-    public func moveOrganizationMembersToNode(_ input: MoveOrganizationMembersToNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MoveOrganizationMembersToNodeResponse > {
-        self.client.execute(action: "MoveOrganizationMembersToNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 移动成员到指定企业组织单元
-    @inlinable
-    public func moveOrganizationMembersToNode(_ input: MoveOrganizationMembersToNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveOrganizationMembersToNodeResponse {
-        try await self.client.execute(action: "MoveOrganizationMembersToNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// MoveOrganizationMembersToNode请求参数结构体
     public struct MoveOrganizationMembersToNodeRequest: TCRequestModel {
         /// 组织单元ID
@@ -54,5 +42,17 @@ extension Organization {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 移动成员到指定企业组织单元
+    @inlinable
+    public func moveOrganizationMembersToNode(_ input: MoveOrganizationMembersToNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MoveOrganizationMembersToNodeResponse > {
+        self.client.execute(action: "MoveOrganizationMembersToNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 移动成员到指定企业组织单元
+    @inlinable
+    public func moveOrganizationMembersToNode(_ input: MoveOrganizationMembersToNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveOrganizationMembersToNodeResponse {
+        try await self.client.execute(action: "MoveOrganizationMembersToNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 描述WAF威胁情报封禁模块配置详情
-    @inlinable
-    public func describeWafThreatenIntelligence(_ input: DescribeWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWafThreatenIntelligenceResponse > {
-        self.client.execute(action: "DescribeWafThreatenIntelligence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 描述WAF威胁情报封禁模块配置详情
-    @inlinable
-    public func describeWafThreatenIntelligence(_ input: DescribeWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafThreatenIntelligenceResponse {
-        try await self.client.execute(action: "DescribeWafThreatenIntelligence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWafThreatenIntelligence请求参数结构体
     public struct DescribeWafThreatenIntelligenceRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Waf {
             case wafThreatenIntelligenceDetails = "WafThreatenIntelligenceDetails"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 描述WAF威胁情报封禁模块配置详情
+    @inlinable
+    public func describeWafThreatenIntelligence(_ input: DescribeWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWafThreatenIntelligenceResponse > {
+        self.client.execute(action: "DescribeWafThreatenIntelligence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 描述WAF威胁情报封禁模块配置详情
+    @inlinable
+    public func describeWafThreatenIntelligence(_ input: DescribeWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafThreatenIntelligenceResponse {
+        try await self.client.execute(action: "DescribeWafThreatenIntelligence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

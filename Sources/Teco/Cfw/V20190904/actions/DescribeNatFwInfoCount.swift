@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 获取当前用户接入nat防火墙的所有子网数及natfw实例个数
-    @inlinable
-    public func describeNatFwInfoCount(_ input: DescribeNatFwInfoCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwInfoCountResponse > {
-        self.client.execute(action: "DescribeNatFwInfoCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取当前用户接入nat防火墙的所有子网数及natfw实例个数
-    @inlinable
-    public func describeNatFwInfoCount(_ input: DescribeNatFwInfoCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInfoCountResponse {
-        try await self.client.execute(action: "DescribeNatFwInfoCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNatFwInfoCount请求参数结构体
     public struct DescribeNatFwInfoCountRequest: TCRequestModel {
         public init () {
@@ -61,5 +49,17 @@ extension Cfw {
             case openSwitchCount = "OpenSwitchCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取当前用户接入nat防火墙的所有子网数及natfw实例个数
+    @inlinable
+    public func describeNatFwInfoCount(_ input: DescribeNatFwInfoCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwInfoCountResponse > {
+        self.client.execute(action: "DescribeNatFwInfoCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取当前用户接入nat防火墙的所有子网数及natfw实例个数
+    @inlinable
+    public func describeNatFwInfoCount(_ input: DescribeNatFwInfoCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInfoCountResponse {
+        try await self.client.execute(action: "DescribeNatFwInfoCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

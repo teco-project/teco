@@ -46,7 +46,7 @@ extension Tci {
         /// 当前音频的单词总数
         public let wordNum: Int64?
         
-        public init (avgSpeed: Float?, avgVolume: Float?, maxVolume: Float?, minVolume: Float?, muteDuration: Int64?, soundDuration: Int64?, totalDuration: Int64?, vadNum: Int64?, wordNum: Int64?) {
+        public init (avgSpeed: Float? = nil, avgVolume: Float? = nil, maxVolume: Float? = nil, minVolume: Float? = nil, muteDuration: Int64? = nil, soundDuration: Int64? = nil, totalDuration: Int64? = nil, vadNum: Int64? = nil, wordNum: Int64? = nil) {
             self.avgSpeed = avgSpeed
             self.avgVolume = avgVolume
             self.maxVolume = maxVolume
@@ -79,7 +79,7 @@ extension Tci {
         /// 识别到的人员id
         public let personId: String?
         
-        public init (libraryIds: String?, personId: String?) {
+        public init (libraryIds: String? = nil, personId: String? = nil) {
             self.libraryIds = libraryIds
             self.personId = personId
         }
@@ -150,16 +150,16 @@ extension Tci {
     /// 大教室场景肢体动作识别信息
     public struct ActionInfo: TCInputModel {
         /// 躯体动作识别结果，包含坐着（sit）、站立（stand）和趴睡（sleep）
-        public let bodyPosture: ActionType
+        public let bodyPosture: ActionType?
         
         /// 举手识别结果，包含举手（hand）和未检测到举手（nothand）
-        public let handup: ActionType
+        public let handup: ActionType?
         
         /// 是否低头识别结果，包含抬头（lookingahead）和未检测到抬头（notlookingahead）
-        public let lookHead: ActionType
+        public let lookHead: ActionType?
         
         /// 是否写字识别结果，包含写字（write）和未检测到写字（notlookingahead）
-        public let writing: ActionType
+        public let writing: ActionType?
         
         /// 动作图像高度
         public let height: Int64?
@@ -173,7 +173,7 @@ extension Tci {
         /// 动作图像宽度
         public let width: Int64?
         
-        public init (bodyPosture: ActionType, handup: ActionType, lookHead: ActionType, writing: ActionType, height: Int64?, left: Int64?, top: Int64?, width: Int64?) {
+        public init (bodyPosture: ActionType? = nil, handup: ActionType? = nil, lookHead: ActionType? = nil, writing: ActionType? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
             self.bodyPosture = bodyPosture
             self.handup = handup
             self.lookHead = lookHead
@@ -207,7 +207,7 @@ extension Tci {
         /// 时长比例统计
         public let actionDurationRatio: [ActionDurationRatioStatistic]?
         
-        public init (actionCount: [ActionCountStatistic]?, actionDuration: [ActionDurationStatistic]?, actionDurationRatio: [ActionDurationRatioStatistic]?) {
+        public init (actionCount: [ActionCountStatistic]? = nil, actionDuration: [ActionDurationStatistic]? = nil, actionDurationRatio: [ActionDurationRatioStatistic]? = nil) {
             self.actionCount = actionCount
             self.actionDuration = actionDuration
             self.actionDurationRatio = actionDurationRatio
@@ -228,7 +228,7 @@ extension Tci {
         /// 动作类别
         public let type: String?
         
-        public init (confidence: Float?, type: String?) {
+        public init (confidence: Float? = nil, type: String? = nil) {
             self.confidence = confidence
             self.type = type
         }
@@ -250,7 +250,7 @@ extension Tci {
         /// 静音总时长。
         public let totalMuteDuration: Int64?
         
-        public init (muteSlice: [MuteSlice]?, muteRatio: Float?, totalMuteDuration: Int64?) {
+        public init (muteSlice: [MuteSlice]? = nil, muteRatio: Float? = nil, totalMuteDuration: Int64? = nil) {
             self.muteSlice = muteSlice
             self.muteRatio = muteRatio
             self.totalMuteDuration = totalMuteDuration
@@ -266,12 +266,12 @@ extension Tci {
     /// 识别到的人员信息
     public struct AttendanceInfo: TCInputModel {
         /// 识别到的人员信息
-        public let face: FrameInfo
+        public let face: FrameInfo?
         
         /// 识别到的人员id
         public let personId: String?
         
-        public init (face: FrameInfo, personId: String?) {
+        public init (face: FrameInfo? = nil, personId: String? = nil) {
             self.face = face
             self.personId = personId
         }
@@ -306,7 +306,7 @@ extension Tci {
         /// 识别结果宽度
         public let width: Int64?
         
-        public init (confidence: Float?, height: Int64?, left: Int64?, movements: String?, top: Int64?, width: Int64?) {
+        public init (confidence: Float? = nil, height: Int64? = nil, left: Int64? = nil, movements: String? = nil, top: Int64? = nil, width: Int64? = nil) {
             self.confidence = confidence
             self.height = height
             self.left = left
@@ -333,7 +333,7 @@ extension Tci {
         /// 词汇库中的单词
         public let keyword: String?
         
-        public init (value: [WordTimePair]?, keyword: String?) {
+        public init (value: [WordTimePair]? = nil, keyword: String? = nil) {
             self.value = value
             self.keyword = keyword
         }
@@ -349,7 +349,7 @@ extension Tci {
         /// 片头片尾增加图片开关
         public let enableCoverPictures: Bool?
         
-        public init (enableCoverPictures: Bool?) {
+        public init (enableCoverPictures: Bool? = nil) {
             self.enableCoverPictures = enableCoverPictures
         }
         
@@ -372,7 +372,7 @@ extension Tci {
         /// 该表情时长占视频总时长的比例
         public let ratioUseDuration: Float?
         
-        public init (count: Int64?, express: String?, ratio: Float?, ratioUseDuration: Float?) {
+        public init (count: Int64? = nil, express: String? = nil, ratio: Float? = nil, ratioUseDuration: Float? = nil) {
             self.count = count
             self.express = express
             self.ratio = ratio
@@ -419,7 +419,7 @@ extension Tci {
         /// 性别
         public let sex: String?
         
-        public init (age: Int64?, sex: String?) {
+        public init (age: Int64? = nil, sex: String? = nil) {
             self.age = age
             self.sex = sex
         }
@@ -456,7 +456,7 @@ extension Tci {
         /// 侧脸时长在总出现时常占比
         public let sideFaceRealRatio: Float?
         
-        public init (faceSizeRatio: Float?, frontalFaceCount: Int64?, frontalFaceRatio: Float?, frontalFaceRealRatio: Float?, personId: String?, sideFaceCount: Int64?, sideFaceRatio: Float?, sideFaceRealRatio: Float?) {
+        public init (faceSizeRatio: Float? = nil, frontalFaceCount: Int64? = nil, frontalFaceRatio: Float? = nil, frontalFaceRealRatio: Float? = nil, personId: String? = nil, sideFaceCount: Int64? = nil, sideFaceRatio: Float? = nil, sideFaceRealRatio: Float? = nil) {
             self.faceSizeRatio = faceSizeRatio
             self.frontalFaceCount = frontalFaceCount
             self.frontalFaceRatio = frontalFaceRatio
@@ -487,7 +487,7 @@ extension Tci {
         /// 表情统计结果
         public let expressRatio: [ExpressRatioStatistic]?
         
-        public init (personId: String, expressRatio: [ExpressRatioStatistic]?) {
+        public init (personId: String, expressRatio: [ExpressRatioStatistic]? = nil) {
             self.personId = personId
             self.expressRatio = expressRatio
         }
@@ -506,7 +506,7 @@ extension Tci {
         /// 表情识别结果，包括"neutral":中性,"happiness":开心，"angry":"生气"，"disgust":厌恶，"fear":"恐惧"，"sadness":"悲伤"，"surprise":"惊讶"，"contempt":"蔑视"
         public let expression: String?
         
-        public init (confidence: Float?, expression: String?) {
+        public init (confidence: Float? = nil, expression: String? = nil) {
             self.confidence = confidence
             self.expression = expression
         }
@@ -563,7 +563,7 @@ extension Tci {
         /// 开始时间
         public let startTs: Int64?
         
-        public init (duration: Int64?, endTs: Int64?, personId: String?, similarity: Float?, startTs: Int64?) {
+        public init (duration: Int64? = nil, endTs: Int64? = nil, personId: String? = nil, similarity: Float? = nil, startTs: Int64? = nil) {
             self.duration = duration
             self.endTs = endTs
             self.personId = personId
@@ -597,7 +597,7 @@ extension Tci {
         /// 人员唯一标识
         public let personId: String?
         
-        public init (errorCode: String?, errorMsg: String?, faceId: String?, faceUrl: String?, personId: String?) {
+        public init (errorCode: String? = nil, errorMsg: String? = nil, faceId: String? = nil, faceUrl: String? = nil, personId: String? = nil) {
             self.errorCode = errorCode
             self.errorMsg = errorMsg
             self.faceId = faceId
@@ -637,7 +637,7 @@ extension Tci {
         /// 人脸宽度
         public let width: Int64?
         
-        public init (faceRatio: Float?, frameHeight: Int64?, frameWidth: Int64?, height: Int64?, left: Int64?, top: Int64?, width: Int64?) {
+        public init (faceRatio: Float? = nil, frameHeight: Int64? = nil, frameWidth: Int64? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
             self.faceRatio = faceRatio
             self.frameHeight = frameHeight
             self.frameWidth = frameWidth
@@ -672,7 +672,7 @@ extension Tci {
         /// 围绕Y轴旋转角度，偏航角
         public let yaw: Float?
         
-        public init (direction: String?, pitch: Float?, roll: Float?, yaw: Float?) {
+        public init (direction: String? = nil, pitch: Float? = nil, roll: Float? = nil, yaw: Float? = nil) {
             self.direction = direction
             self.pitch = pitch
             self.roll = roll
@@ -698,7 +698,7 @@ extension Tci {
         /// 相对于视频起始时间的时间戳，单位秒
         public let ts: Int64?
         
-        public init (similarity: Float?, snapshotUrl: String?, ts: Int64?) {
+        public init (similarity: Float? = nil, snapshotUrl: String? = nil, ts: Int64? = nil) {
             self.similarity = similarity
             self.snapshotUrl = snapshotUrl
             self.ts = ts
@@ -728,7 +728,7 @@ extension Tci {
         /// 输出音频音量信息标识，当设置为 true 时，会输出当前音频音量信息。
         public let enableVolume: Bool?
         
-        public init (enableAllText: Bool?, enableKeyword: Bool?, enableMuteDetect: Bool?, enableVadInfo: Bool?, enableVolume: Bool?) {
+        public init (enableAllText: Bool? = nil, enableKeyword: Bool? = nil, enableMuteDetect: Bool? = nil, enableVadInfo: Bool? = nil, enableVolume: Bool? = nil) {
             self.enableAllText = enableAllText
             self.enableKeyword = enableKeyword
             self.enableMuteDetect = enableMuteDetect
@@ -765,7 +765,7 @@ extension Tci {
         /// 识别结果宽度
         public let width: Int64?
         
-        public init (`class`: String?, confidence: Float?, height: Int64?, left: Int64?, top: Int64?, width: Int64?) {
+        public init (`class`: String? = nil, confidence: Float? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
             self.`class` = `class`
             self.confidence = confidence
             self.height = height
@@ -801,7 +801,7 @@ extension Tci {
         /// 是否开启视频集锦-微笑识别
         public let enableSmileWonderfulTime: Bool?
         
-        public init (enableFaceDetect: Bool?, enableFaceExpression: Bool?, enableFaceIdent: Bool?, enableKeywordWonderfulTime: Bool?, enableSmileWonderfulTime: Bool?) {
+        public init (enableFaceDetect: Bool? = nil, enableFaceExpression: Bool? = nil, enableFaceIdent: Bool? = nil, enableKeywordWonderfulTime: Bool? = nil, enableSmileWonderfulTime: Bool? = nil) {
             self.enableFaceDetect = enableFaceDetect
             self.enableFaceExpression = enableFaceExpression
             self.enableFaceIdent = enableFaceIdent
@@ -838,7 +838,7 @@ extension Tci {
         /// 识别结果宽度
         public let width: Int64?
         
-        public init (`class`: String?, confidence: Float?, height: Int64?, left: Int64?, top: Int64?, width: Int64?) {
+        public init (`class`: String? = nil, confidence: Float? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
             self.`class` = `class`
             self.confidence = confidence
             self.height = height
@@ -871,7 +871,7 @@ extension Tci {
         /// 片段中识别出来的人脸ID。
         public let personId: String?
         
-        public init (concentration: [TimeType]?, smile: [TimeType]?, highlightsUrl: String?, personId: String?) {
+        public init (concentration: [TimeType]? = nil, smile: [TimeType]? = nil, highlightsUrl: String? = nil, personId: String? = nil) {
             self.concentration = concentration
             self.smile = smile
             self.highlightsUrl = highlightsUrl
@@ -918,7 +918,7 @@ extension Tci {
         /// 判断老师是否在屏幕中（该功能尚未支持）
         public let enableTeacherOutScreen: Bool?
         
-        public init (enableActionClass: Bool?, enableFaceDetect: Bool?, enableFaceExpression: Bool?, enableFaceIdentify: Bool?, enableGesture: Bool?, enableHandTracking: Bool?, enableLightJudge: Bool?, enableStudentBodyMovements: Bool?, enableTeacherBodyMovements: Bool?, enableTeacherOutScreen: Bool?) {
+        public init (enableActionClass: Bool? = nil, enableFaceDetect: Bool? = nil, enableFaceExpression: Bool? = nil, enableFaceIdentify: Bool? = nil, enableGesture: Bool? = nil, enableHandTracking: Bool? = nil, enableLightJudge: Bool? = nil, enableStudentBodyMovements: Bool? = nil, enableTeacherBodyMovements: Bool? = nil, enableTeacherOutScreen: Bool? = nil) {
             self.enableActionClass = enableActionClass
             self.enableFaceDetect = enableFaceDetect
             self.enableFaceExpression = enableFaceExpression
@@ -948,45 +948,45 @@ extension Tci {
     /// 图像任务结果
     public struct ImageTaskResult: TCInputModel {
         /// 大教室场景学生肢体动作识别信息
-        public let actionInfo: ActionInfo
+        public let actionInfo: ActionInfo?
         
         /// 属性识别结果
-        public let faceAttr: FaceAttrResult
+        public let faceAttr: FaceAttrResult?
         
         /// 表情识别结果
-        public let faceExpression: FaceExpressionResult
+        public let faceExpression: FaceExpressionResult?
         
         /// 人脸检索结果
-        public let faceIdentify: FaceIdentifyResult
+        public let faceIdentify: FaceIdentifyResult?
         
         /// 人脸检测结果
-        public let faceInfo: FaceInfoResult
+        public let faceInfo: FaceInfoResult?
         
         /// 姿势识别结果
-        public let facePose: FacePoseResult
+        public let facePose: FacePoseResult?
         
         /// 动作分类结果
-        public let gesture: GestureResult
+        public let gesture: GestureResult?
         
         /// 手势分类结果
-        public let handTracking: HandTrackingResult
+        public let handTracking: HandTrackingResult?
         
         /// 光照识别结果
-        public let light: LightResult
+        public let light: LightResult?
         
         /// 学生肢体动作识别结果
-        public let studentBodyMovement: StudentBodyMovementResult
+        public let studentBodyMovement: StudentBodyMovementResult?
         
         /// 老师肢体动作识别结果
-        public let teacherBodyMovement: BodyMovementResult
+        public let teacherBodyMovement: BodyMovementResult?
         
         /// 教师是否在屏幕内判断结果
-        public let teacherOutScreen: TeacherOutScreenResult
+        public let teacherOutScreen: TeacherOutScreenResult?
         
         /// 时间统计结果
-        public let timeInfo: TimeInfoResult
+        public let timeInfo: TimeInfoResult?
         
-        public init (actionInfo: ActionInfo, faceAttr: FaceAttrResult, faceExpression: FaceExpressionResult, faceIdentify: FaceIdentifyResult, faceInfo: FaceInfoResult, facePose: FacePoseResult, gesture: GestureResult, handTracking: HandTrackingResult, light: LightResult, studentBodyMovement: StudentBodyMovementResult, teacherBodyMovement: BodyMovementResult, teacherOutScreen: TeacherOutScreenResult, timeInfo: TimeInfoResult) {
+        public init (actionInfo: ActionInfo? = nil, faceAttr: FaceAttrResult? = nil, faceExpression: FaceExpressionResult? = nil, faceIdentify: FaceIdentifyResult? = nil, faceInfo: FaceInfoResult? = nil, facePose: FacePoseResult? = nil, gesture: GestureResult? = nil, handTracking: HandTrackingResult? = nil, light: LightResult? = nil, studentBodyMovement: StudentBodyMovementResult? = nil, teacherBodyMovement: BodyMovementResult? = nil, teacherOutScreen: TeacherOutScreenResult? = nil, timeInfo: TimeInfoResult? = nil) {
             self.actionInfo = actionInfo
             self.faceAttr = faceAttr
             self.faceExpression = faceExpression
@@ -1031,21 +1031,21 @@ extension Tci {
         public let faceIdentify: [FaceIdentifyStatistic]?
         
         /// 姿势识别统计信息
-        public let gesture: ActionStatistic
+        public let gesture: ActionStatistic?
         
         /// 手势识别统计信息
-        public let handtracking: ActionStatistic
+        public let handtracking: ActionStatistic?
         
         /// 光照统计信息
-        public let light: LightStatistic
+        public let light: LightStatistic?
         
         /// 学生动作统计信息
-        public let studentMovement: ActionStatistic
+        public let studentMovement: ActionStatistic?
         
         /// 教师动作统计信息
-        public let teacherMovement: ActionStatistic
+        public let teacherMovement: ActionStatistic?
         
-        public init (faceDetect: [FaceDetectStatistic]?, faceExpression: [FaceExpressStatistic]?, faceIdentify: [FaceIdentifyStatistic]?, gesture: ActionStatistic, handtracking: ActionStatistic, light: LightStatistic, studentMovement: ActionStatistic, teacherMovement: ActionStatistic) {
+        public init (faceDetect: [FaceDetectStatistic]? = nil, faceExpression: [FaceExpressStatistic]? = nil, faceIdentify: [FaceIdentifyStatistic]? = nil, gesture: ActionStatistic? = nil, handtracking: ActionStatistic? = nil, light: LightStatistic? = nil, studentMovement: ActionStatistic? = nil, teacherMovement: ActionStatistic? = nil) {
             self.faceDetect = faceDetect
             self.faceExpression = faceExpression
             self.faceIdentify = faceIdentify
@@ -1086,7 +1086,7 @@ extension Tci {
         /// 人员库修改时间
         public let updateTime: Date?
         
-        public init (createTime: Date, libraryId: String, libraryName: String, personCount: Int64?, updateTime: Date?) {
+        public init (createTime: Date, libraryId: String, libraryName: String, personCount: Int64? = nil, updateTime: Date? = nil) {
             self.createTime = createTime
             self.libraryId = libraryId
             self.libraryName = libraryName
@@ -1149,7 +1149,7 @@ extension Tci {
         /// 光照亮度
         public let lightValue: Float?
         
-        public init (lightLevel: String?, lightValue: Float?) {
+        public init (lightLevel: String? = nil, lightValue: Float? = nil) {
             self.lightLevel = lightLevel
             self.lightValue = lightValue
         }
@@ -1192,7 +1192,7 @@ extension Tci {
         /// 光照程度比例统计结果
         public let lightLevelRatio: [LightLevelRatioStatistic]?
         
-        public init (lightDistribution: [LightDistributionStatistic]?, lightLevelRatio: [LightLevelRatioStatistic]?) {
+        public init (lightDistribution: [LightDistributionStatistic]? = nil, lightLevelRatio: [LightLevelRatioStatistic]? = nil) {
             self.lightDistribution = lightDistribution
             self.lightLevelRatio = lightLevelRatio
         }
@@ -1211,7 +1211,7 @@ extension Tci {
         /// 终止时间。
         public let muteEtm: Int64?
         
-        public init (muteBtm: Int64?, muteEtm: Int64?) {
+        public init (muteBtm: Int64? = nil, muteEtm: Int64? = nil) {
             self.muteBtm = muteBtm
             self.muteEtm = muteEtm
         }
@@ -1254,7 +1254,7 @@ extension Tci {
         /// 修改时间
         public let updateTime: Date?
         
-        public init (libraryId: String, personId: String, personName: String, createTime: Date?, jobNumber: String?, mail: String?, male: Int64?, phoneNumber: String?, studentNumber: String?, updateTime: Date?) {
+        public init (libraryId: String, personId: String, personName: String, createTime: Date? = nil, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, updateTime: Date? = nil) {
             self.libraryId = libraryId
             self.personId = personId
             self.personName = personName
@@ -1292,7 +1292,7 @@ extension Tci {
         /// 视频集锦结束封面照片。
         public let coverEndUrl: String?
         
-        public init (personId: String, coverBeginUrl: String?, coverEndUrl: String?) {
+        public init (personId: String, coverBeginUrl: String? = nil, coverEndUrl: String? = nil) {
             self.personId = personId
             self.coverBeginUrl = coverBeginUrl
             self.coverEndUrl = coverEndUrl
@@ -1308,7 +1308,7 @@ extension Tci {
     /// 标准化接口图像分析结果
     public struct StandardAudioResult: TCInputModel {
         /// 返回的当前音频的统计信息。当进度为100时返回。
-        public let asrStat: ASRStat
+        public let asrStat: ASRStat?
         
         /// 返回当前音频流的详细信息，如果是流模式，返回的是对应流的详细信息，如果是 URL模式，返回的是查询的那一段seq对应的音频的详细信息。
         public let texts: [WholeTextItem]?
@@ -1328,7 +1328,7 @@ extension Tci {
         /// 结果数量
         public let totalCount: Int64?
         
-        public init (asrStat: ASRStat, texts: [WholeTextItem]?, vocabAnalysisDetailInfo: [VocabDetailInfomation]?, vocabAnalysisStatInfo: [VocabStatInfomation]?, message: String?, status: String?, totalCount: Int64?) {
+        public init (asrStat: ASRStat? = nil, texts: [WholeTextItem]? = nil, vocabAnalysisDetailInfo: [VocabDetailInfomation]? = nil, vocabAnalysisStatInfo: [VocabStatInfomation]? = nil, message: String? = nil, status: String? = nil, totalCount: Int64? = nil) {
             self.asrStat = asrStat
             self.texts = texts
             self.vocabAnalysisDetailInfo = vocabAnalysisDetailInfo
@@ -1355,7 +1355,7 @@ extension Tci {
         public let resultSet: [ImageTaskResult]?
         
         /// 分析完成后的统计结果
-        public let statistic: ImageTaskStatistic
+        public let statistic: ImageTaskStatistic?
         
         /// 状态描述
         public let message: String?
@@ -1366,7 +1366,7 @@ extension Tci {
         /// 结果总数
         public let totalCount: Int64?
         
-        public init (resultSet: [ImageTaskResult]?, statistic: ImageTaskStatistic, message: String?, status: String?, totalCount: Int64?) {
+        public init (resultSet: [ImageTaskResult]? = nil, statistic: ImageTaskStatistic? = nil, message: String? = nil, status: String? = nil, totalCount: Int64? = nil) {
             self.resultSet = resultSet
             self.statistic = statistic
             self.message = message
@@ -1394,7 +1394,7 @@ extension Tci {
         /// 任务状态
         public let status: String?
         
-        public init (highlightsInfo: [HighlightsInfomation]?, message: String?, status: String?) {
+        public init (highlightsInfo: [HighlightsInfomation]? = nil, message: String? = nil, status: String? = nil) {
             self.highlightsInfo = highlightsInfo
             self.message = message
             self.status = status
@@ -1415,7 +1415,7 @@ extension Tci {
         /// 单词出现在该音频中总次数
         public let value: Int64?
         
-        public init (keyword: String?, value: Int64?) {
+        public init (keyword: String? = nil, value: Int64? = nil) {
             self.keyword = keyword
             self.value = value
         }
@@ -1458,7 +1458,7 @@ extension Tci {
         /// 识别结果宽度
         public let width: Int64?
         
-        public init (confidence: Float?, handupConfidence: Float?, handupStatus: String?, height: Int64?, left: Int64?, movements: String?, standConfidence: Float?, standStatus: String?, top: Int64?, width: Int64?) {
+        public init (confidence: Float? = nil, handupConfidence: Float? = nil, handupStatus: String? = nil, height: Int64? = nil, left: Int64? = nil, movements: String? = nil, standConfidence: Float? = nil, standStatus: String? = nil, top: Int64? = nil, width: Int64? = nil) {
             self.confidence = confidence
             self.handupConfidence = handupConfidence
             self.handupStatus = handupStatus
@@ -1493,7 +1493,7 @@ extension Tci {
         /// 识别到的人员id
         public let personId: String?
         
-        public init (faceSet: [FrameInfo]?, personId: String?) {
+        public init (faceSet: [FrameInfo]? = nil, personId: String? = nil) {
             self.faceSet = faceSet
             self.personId = personId
         }
@@ -1522,7 +1522,7 @@ extension Tci {
         /// 识别结果宽度
         public let width: Int64?
         
-        public init (`class`: String?, height: Int64?, left: Int64?, top: Int64?, width: Int64?) {
+        public init (`class`: String? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
             self.`class` = `class`
             self.height = height
             self.left = left
@@ -1562,7 +1562,7 @@ extension Tci {
         /// 当前句子的字节数
         public let textSize: Int64?
         
-        public init (words: [Word]?, confidence: Float?, mbtm: Int64?, metm: Int64?, tag: Int64?, text: String?, textSize: Int64?) {
+        public init (words: [Word]? = nil, confidence: Float? = nil, mbtm: Int64? = nil, metm: Int64? = nil, tag: Int64? = nil, text: String? = nil, textSize: Int64? = nil) {
             self.words = words
             self.confidence = confidence
             self.mbtm = mbtm
@@ -1594,7 +1594,7 @@ extension Tci {
         /// 开始时间戳，单位毫秒
         public let startTs: Int64?
         
-        public init (duration: Int64?, endTs: Int64?, startTs: Int64?) {
+        public init (duration: Int64? = nil, endTs: Int64? = nil, startTs: Int64? = nil) {
             self.duration = duration
             self.endTs = endTs
             self.startTs = startTs
@@ -1615,7 +1615,7 @@ extension Tci {
         /// 起始时间戳
         public let startTime: Int64?
         
-        public init (endTime: Int64?, startTime: Int64?) {
+        public init (endTime: Int64? = nil, startTime: Int64? = nil) {
             self.endTime = endTime
             self.startTime = startTime
         }
@@ -1634,7 +1634,7 @@ extension Tci {
         /// 词汇库名
         public let vocabLibName: String?
         
-        public init (vocabDetailInfo: [DetailInfo]?, vocabLibName: String?) {
+        public init (vocabDetailInfo: [DetailInfo]? = nil, vocabLibName: String? = nil) {
             self.vocabDetailInfo = vocabDetailInfo
             self.vocabLibName = vocabLibName
         }
@@ -1653,7 +1653,7 @@ extension Tci {
         /// 词汇库名称
         public let vocabLibName: String?
         
-        public init (vocabDetailInfo: [StatInfo]?, vocabLibName: String?) {
+        public init (vocabDetailInfo: [StatInfo]? = nil, vocabLibName: String? = nil) {
             self.vocabDetailInfo = vocabDetailInfo
             self.vocabLibName = vocabLibName
         }
@@ -1667,7 +1667,7 @@ extension Tci {
     /// 含有语速的句子信息
     public struct WholeTextItem: TCInputModel {
         /// 当前句子的信息
-        public let textItem: TextItem
+        public let textItem: TextItem?
         
         /// Vad的平均音量
         public let avgVolume: Float?
@@ -1681,7 +1681,7 @@ extension Tci {
         /// 当前句子的语速
         public let speed: Float?
         
-        public init (textItem: TextItem, avgVolume: Float?, maxVolume: Float?, minVolume: Float?, speed: Float?) {
+        public init (textItem: TextItem? = nil, avgVolume: Float? = nil, maxVolume: Float? = nil, minVolume: Float? = nil, speed: Float? = nil) {
             self.textItem = textItem
             self.avgVolume = avgVolume
             self.maxVolume = maxVolume
@@ -1715,7 +1715,7 @@ extension Tci {
         /// 当前词的字节数
         public let wsize: Int64?
         
-        public init (confidence: Float?, mbtm: Int64?, metm: Int64?, text: String?, wsize: Int64?) {
+        public init (confidence: Float? = nil, mbtm: Int64? = nil, metm: Int64? = nil, text: String? = nil, wsize: Int64? = nil) {
             self.confidence = confidence
             self.mbtm = mbtm
             self.metm = metm
@@ -1740,7 +1740,7 @@ extension Tci {
         /// 	单词出现的那个句子的结束时间
         public let metm: Int64?
         
-        public init (mbtm: Int64?, metm: Int64?) {
+        public init (mbtm: Int64? = nil, metm: Int64? = nil) {
             self.mbtm = mbtm
             self.metm = metm
         }

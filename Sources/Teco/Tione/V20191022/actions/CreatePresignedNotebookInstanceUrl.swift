@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 创建Notebook授权Url
-    @inlinable
-    public func createPresignedNotebookInstanceUrl(_ input: CreatePresignedNotebookInstanceUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePresignedNotebookInstanceUrlResponse > {
-        self.client.execute(action: "CreatePresignedNotebookInstanceUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建Notebook授权Url
-    @inlinable
-    public func createPresignedNotebookInstanceUrl(_ input: CreatePresignedNotebookInstanceUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePresignedNotebookInstanceUrlResponse {
-        try await self.client.execute(action: "CreatePresignedNotebookInstanceUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePresignedNotebookInstanceUrl请求参数结构体
     public struct CreatePresignedNotebookInstanceUrlRequest: TCRequestModel {
         /// Notebook实例名称
@@ -36,7 +24,7 @@ extension Tione {
         /// session有效时间，秒，取值范围[1800, 43200]
         public let sessionExpirationDurationInSeconds: Int64?
         
-        public init (notebookInstanceName: String, sessionExpirationDurationInSeconds: Int64?) {
+        public init (notebookInstanceName: String, sessionExpirationDurationInSeconds: Int64? = nil) {
             self.notebookInstanceName = notebookInstanceName
             self.sessionExpirationDurationInSeconds = sessionExpirationDurationInSeconds
         }
@@ -59,5 +47,17 @@ extension Tione {
             case authorizedUrl = "AuthorizedUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建Notebook授权Url
+    @inlinable
+    public func createPresignedNotebookInstanceUrl(_ input: CreatePresignedNotebookInstanceUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePresignedNotebookInstanceUrlResponse > {
+        self.client.execute(action: "CreatePresignedNotebookInstanceUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建Notebook授权Url
+    @inlinable
+    public func createPresignedNotebookInstanceUrl(_ input: CreatePresignedNotebookInstanceUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePresignedNotebookInstanceUrlResponse {
+        try await self.client.execute(action: "CreatePresignedNotebookInstanceUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -65,7 +65,7 @@ extension Dlc {
         /// 数据源主键
         public let datasourceId: Int64?
         
-        public init (id: Int64?, name: String?, guid: String?, catalog: String?, description: String?, owner: String?, ownerAccount: String?, permValues: [KVPair]?, params: [KVPair]?, bizParams: [KVPair]?, dataVersion: Int64?, createTime: Date?, modifiedTime: Date?, datasourceId: Int64?) {
+        public init (id: Int64? = nil, name: String? = nil, guid: String? = nil, catalog: String? = nil, description: String? = nil, owner: String? = nil, ownerAccount: String? = nil, permValues: [KVPair]? = nil, params: [KVPair]? = nil, bizParams: [KVPair]? = nil, dataVersion: Int64? = nil, createTime: Date? = nil, modifiedTime: Date? = nil, datasourceId: Int64? = nil) {
             self.id = id
             self.name = name
             self.guid = guid
@@ -106,7 +106,7 @@ extension Dlc {
         public let codeCompress: String?
         
         /// CSV序列化及反序列化数据结构。
-        public let csvSerde: CSVSerde
+        public let csvSerde: CSVSerde?
         
         /// 标题行，默认为0。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -116,7 +116,7 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let format: String?
         
-        public init (codeCompress: String?, csvSerde: CSVSerde, headLines: Int64?, format: String?) {
+        public init (codeCompress: String? = nil, csvSerde: CSVSerde? = nil, headLines: Int64? = nil, format: String? = nil) {
             self.codeCompress = codeCompress
             self.csvSerde = csvSerde
             self.headLines = headLines
@@ -142,7 +142,7 @@ extension Dlc {
         /// CSV序列化分隔符，默认为"\t"，最长8个字符, 如 Separator: "\t"
         public let separator: String?
         
-        public init (escape: String?, quote: String?, separator: String?) {
+        public init (escape: String? = nil, quote: String? = nil, separator: String? = nil) {
             self.escape = escape
             self.quote = quote
             self.separator = separator
@@ -196,7 +196,7 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isPartition: Bool?
         
-        public init (name: String, type: String, comment: String?, precision: Int64?, scale: Int64?, nullable: String?, position: Int64?, createTime: String?, modifiedTime: String?, isPartition: Bool?) {
+        public init (name: String, type: String, comment: String? = nil, precision: Int64? = nil, scale: Int64? = nil, nullable: String? = nil, position: Int64? = nil, createTime: String? = nil, modifiedTime: String? = nil, isPartition: Bool? = nil) {
             self.name = name
             self.type = type
             self.comment = comment
@@ -253,7 +253,7 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isPartition: Bool?
         
-        public init (name: String?, description: String?, type: String?, position: Int64?, params: [KVPair]?, bizParams: [KVPair]?, isPartition: Bool?) {
+        public init (name: String? = nil, description: String? = nil, type: String? = nil, position: Int64? = nil, params: [KVPair]? = nil, bizParams: [KVPair]? = nil, isPartition: Bool? = nil) {
             self.name = name
             self.description = description
             self.type = type
@@ -284,7 +284,7 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let order: Int64?
         
-        public init (col: String?, order: Int64?) {
+        public init (col: String? = nil, order: Int64? = nil) {
             self.col = col
             self.order = order
         }
@@ -334,9 +334,9 @@ extension Dlc {
         public let params: [KVPair]?
         
         /// 存储对象
-        public let sds: DMSSds
+        public let sds: DMSSds?
         
-        public init (databaseName: String?, schemaName: String?, tableName: String?, dataVersion: Int64?, name: String?, values: [String]?, storageSize: Int64?, recordCount: Int64?, createTime: Date?, modifiedTime: Date?, lastAccessTime: Date?, params: [KVPair]?, sds: DMSSds) {
+        public init (databaseName: String? = nil, schemaName: String? = nil, tableName: String? = nil, dataVersion: Int64? = nil, name: String? = nil, values: [String]? = nil, storageSize: Int64? = nil, recordCount: Int64? = nil, createTime: Date? = nil, modifiedTime: Date? = nil, lastAccessTime: Date? = nil, params: [KVPair]? = nil, sds: DMSSds? = nil) {
             self.databaseName = databaseName
             self.schemaName = schemaName
             self.tableName = tableName
@@ -417,7 +417,7 @@ extension Dlc {
         
         /// 列排序(Expired)
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sortCols: DMSColumnOrder
+        public let sortCols: DMSColumnOrder?
         
         /// 列
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -427,7 +427,7 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sortColumns: [DMSColumnOrder]?
         
-        public init (location: String?, inputFormat: String?, outputFormat: String?, numBuckets: Int64?, compressed: Bool?, storedAsSubDirectories: Bool?, serdeLib: String?, serdeName: String?, bucketCols: [String]?, serdeParams: [KVPair]?, params: [KVPair]?, sortCols: DMSColumnOrder, cols: [DMSColumn]?, sortColumns: [DMSColumnOrder]?) {
+        public init (location: String? = nil, inputFormat: String? = nil, outputFormat: String? = nil, numBuckets: Int64? = nil, compressed: Bool? = nil, storedAsSubDirectories: Bool? = nil, serdeLib: String? = nil, serdeName: String? = nil, bucketCols: [String]? = nil, serdeParams: [KVPair]? = nil, params: [KVPair]? = nil, sortCols: DMSColumnOrder? = nil, cols: [DMSColumn]? = nil, sortColumns: [DMSColumnOrder]? = nil) {
             self.location = location
             self.inputFormat = inputFormat
             self.outputFormat = outputFormat
@@ -478,7 +478,7 @@ extension Dlc {
         
         /// 存储对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sds: DMSSds
+        public let sds: DMSSds?
         
         /// 分区列
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -532,7 +532,7 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
         
-        public init (viewOriginalText: String?, viewExpandedText: String?, retention: Int64?, sds: DMSSds, partitionKeys: [DMSColumn]?, partitions: [DMSPartition]?, type: String?, dbName: String?, schemaName: String?, storageSize: Int64?, recordCount: Int64?, lifeTime: Int64?, lastAccessTime: Date?, dataUpdateTime: Date?, structUpdateTime: Date?, columns: [DMSColumn]?, name: String?) {
+        public init (viewOriginalText: String? = nil, viewExpandedText: String? = nil, retention: Int64? = nil, sds: DMSSds? = nil, partitionKeys: [DMSColumn]? = nil, partitions: [DMSPartition]? = nil, type: String? = nil, dbName: String? = nil, schemaName: String? = nil, storageSize: Int64? = nil, recordCount: Int64? = nil, lifeTime: Int64? = nil, lastAccessTime: Date? = nil, dataUpdateTime: Date? = nil, structUpdateTime: Date? = nil, columns: [DMSColumn]? = nil, name: String? = nil) {
             self.viewOriginalText = viewOriginalText
             self.viewExpandedText = viewExpandedText
             self.retention = retention
@@ -577,11 +577,11 @@ extension Dlc {
     public struct DMSTableInfo: TCOutputModel {
         /// DMS表信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let table: DMSTable
+        public let table: DMSTable?
         
         /// 基础对象信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let asset: Asset
+        public let asset: Asset?
         
         enum CodingKeys: String, CodingKey {
             case table = "Table"
@@ -593,27 +593,27 @@ extension Dlc {
     public struct DataFormat: TCOutputModel {
         /// 文本格式，TextFile。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let textFile: TextFile
+        public let textFile: TextFile?
         
         /// 文本格式，CSV。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let csv: CSV
+        public let csv: CSV?
         
         /// 文本格式，Json。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let json: Other
+        public let json: Other?
         
         /// Parquet格式
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let parquet: Other
+        public let parquet: Other?
         
         /// ORC格式
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let orc: Other
+        public let orc: Other?
         
         /// AVRO格式
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let avro: Other
+        public let avro: Other?
         
         enum CodingKeys: String, CodingKey {
             case textFile = "TextFile"
@@ -648,7 +648,7 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let location: String?
         
-        public init (databaseName: String, comment: String?, properties: [Property]?, location: String?) {
+        public init (databaseName: String, comment: String? = nil, properties: [Property]? = nil, location: String? = nil) {
             self.databaseName = databaseName
             self.comment = comment
             self.properties = properties
@@ -698,7 +698,7 @@ extension Dlc {
         
         /// 数据治理配置项
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let governPolicy: DataGovernPolicy
+        public let governPolicy: DataGovernPolicy?
         
         /// 数据库ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -777,11 +777,11 @@ extension Dlc {
     public struct KVPair: TCInputModel {
         /// 配置的key值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let key: String
+        public let key: String?
         
         /// 配置的value值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let value: String
+        public let value: String?
         
         public init (key: String, value: String) {
             self.key = key
@@ -820,7 +820,7 @@ extension Dlc {
         /// 是否动态分区写
         public let isDynamicPartitionWrite: Bool?
         
-        public init (dbName: String, tableName: String?, partition: String?, lockType: String?, lockLevel: String?, dataOperationType: String?, isAcid: Bool?, isDynamicPartitionWrite: Bool?) {
+        public init (dbName: String, tableName: String? = nil, partition: String? = nil, lockType: String? = nil, lockLevel: String? = nil, dataOperationType: String? = nil, isAcid: Bool? = nil, isDynamicPartitionWrite: Bool? = nil) {
             self.dbName = dbName
             self.tableName = tableName
             self.partition = partition
@@ -947,7 +947,7 @@ extension Dlc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceName: String?
         
-        public init (database: String, catalog: String, table: String, operation: String, policyType: String?, function: String?, view: String?, column: String?, dataEngine: String?, reAuth: Bool?, source: String?, mode: String?, `operator`: String?, createTime: String?, sourceId: Int64?, sourceName: String?) {
+        public init (database: String, catalog: String, table: String, operation: String, policyType: String? = nil, function: String? = nil, view: String? = nil, column: String? = nil, dataEngine: String? = nil, reAuth: Bool? = nil, source: String? = nil, mode: String? = nil, `operator`: String? = nil, createTime: String? = nil, sourceId: Int64? = nil, sourceName: String? = nil) {
             self.database = database
             self.catalog = catalog
             self.table = table
@@ -1013,7 +1013,7 @@ extension Dlc {
         /// 任务的配置信息
         public let config: [KVPair]?
         
-        public init (sql: String, config: [KVPair]?) {
+        public init (sql: String, config: [KVPair]? = nil) {
             self.sql = sql
             self.config = config
         }
@@ -1136,7 +1136,7 @@ extension Dlc {
         
         /// spark流作业统计
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let streamingStat: StreamingStatistics
+        public let streamingStat: StreamingStatistics?
         
         /// 数据源名
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1291,9 +1291,9 @@ extension Dlc {
         
         /// 数据治理配置项
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let governPolicy: DataGovernPolicy
+        public let governPolicy: DataGovernPolicy?
         
-        public init (databaseName: String, tableName: String, datasourceConnectionName: String?, tableComment: String?, type: String?, tableFormat: String?, userAlias: String?, userSubUin: String?, governPolicy: DataGovernPolicy) {
+        public init (databaseName: String, tableName: String, datasourceConnectionName: String? = nil, tableComment: String? = nil, type: String? = nil, tableFormat: String? = nil, userAlias: String? = nil, userSubUin: String? = nil, governPolicy: DataGovernPolicy? = nil) {
             self.databaseName = databaseName
             self.tableName = tableName
             self.datasourceConnectionName = datasourceConnectionName
@@ -1410,12 +1410,12 @@ extension Dlc {
     /// 任务类型，任务如SQL查询等。
     public struct Task: TCInputModel {
         /// SQL查询任务
-        public let sqlTask: SQLTask
+        public let sqlTask: SQLTask?
         
         /// Spark SQL查询任务
-        public let sparkSQLTask: SQLTask
+        public let sparkSQLTask: SQLTask?
         
-        public init (sqlTask: SQLTask, sparkSQLTask: SQLTask) {
+        public init (sqlTask: SQLTask? = nil, sparkSQLTask: SQLTask? = nil) {
             self.sqlTask = sqlTask
             self.sparkSQLTask = sparkSQLTask
         }
@@ -1680,7 +1680,7 @@ extension Dlc {
         /// 任务的用户自定义参数信息
         public let params: [KVPair]?
         
-        public init (taskType: String, failureTolerance: String, sql: String, config: [KVPair]?, params: [KVPair]?) {
+        public init (taskType: String, failureTolerance: String, sql: String, config: [KVPair]? = nil, params: [KVPair]? = nil) {
             self.taskType = taskType
             self.failureTolerance = failureTolerance
             self.sql = sql
@@ -1842,7 +1842,7 @@ extension Dlc {
         /// 视图创建人ID
         public let userSubUin: String?
         
-        public init (databaseName: String, viewName: String, userAlias: String?, userSubUin: String?) {
+        public init (databaseName: String, viewName: String, userAlias: String? = nil, userSubUin: String? = nil) {
             self.databaseName = databaseName
             self.viewName = viewName
             self.userAlias = userAlias

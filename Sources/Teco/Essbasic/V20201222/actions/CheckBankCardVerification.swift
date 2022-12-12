@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 银行卡二三四要素检测
-    ///
-    /// 该接口为第三方平台向电子签平台验证银行卡二/三/四要素
-    /// 银行卡二要素(同CheckBankCard2EVerification): bank_card + name
-    /// 银行卡三要素(同CheckBankCard3EVerification): bank_card + name + id_card_number
-    /// 银行卡四要素(同CheckBankCard4EVerification): bank_card + name + id_card_number + mobile
-    @inlinable
-    public func checkBankCardVerification(_ input: CheckBankCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBankCardVerificationResponse > {
-        self.client.execute(action: "CheckBankCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 银行卡二三四要素检测
-    ///
-    /// 该接口为第三方平台向电子签平台验证银行卡二/三/四要素
-    /// 银行卡二要素(同CheckBankCard2EVerification): bank_card + name
-    /// 银行卡三要素(同CheckBankCard3EVerification): bank_card + name + id_card_number
-    /// 银行卡四要素(同CheckBankCard4EVerification): bank_card + name + id_card_number + mobile
-    @inlinable
-    public func checkBankCardVerification(_ input: CheckBankCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCardVerificationResponse {
-        try await self.client.execute(action: "CheckBankCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckBankCardVerification请求参数结构体
     public struct CheckBankCardVerificationRequest: TCRequestModel {
         /// 调用方信息; 必选
@@ -57,7 +35,7 @@ extension Essbasic {
         /// 身份证件类型; ID_CARD
         public let idCardType: String?
         
-        public init (caller: Caller, bankCard: String, name: String, idCardNumber: String?, mobile: String?, idCardType: String?) {
+        public init (caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil) {
             self.caller = caller
             self.bankCard = bankCard
             self.name = name
@@ -113,5 +91,27 @@ extension Essbasic {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 银行卡二三四要素检测
+    ///
+    /// 该接口为第三方平台向电子签平台验证银行卡二/三/四要素
+    /// 银行卡二要素(同CheckBankCard2EVerification): bank_card + name
+    /// 银行卡三要素(同CheckBankCard3EVerification): bank_card + name + id_card_number
+    /// 银行卡四要素(同CheckBankCard4EVerification): bank_card + name + id_card_number + mobile
+    @inlinable
+    public func checkBankCardVerification(_ input: CheckBankCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckBankCardVerificationResponse > {
+        self.client.execute(action: "CheckBankCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 银行卡二三四要素检测
+    ///
+    /// 该接口为第三方平台向电子签平台验证银行卡二/三/四要素
+    /// 银行卡二要素(同CheckBankCard2EVerification): bank_card + name
+    /// 银行卡三要素(同CheckBankCard3EVerification): bank_card + name + id_card_number
+    /// 银行卡四要素(同CheckBankCard4EVerification): bank_card + name + id_card_number + mobile
+    @inlinable
+    public func checkBankCardVerification(_ input: CheckBankCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCardVerificationResponse {
+        try await self.client.execute(action: "CheckBankCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

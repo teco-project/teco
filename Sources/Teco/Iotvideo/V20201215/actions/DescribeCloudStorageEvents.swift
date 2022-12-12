@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 拉取云存事件列表
-    @inlinable
-    public func describeCloudStorageEvents(_ input: DescribeCloudStorageEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStorageEventsResponse > {
-        self.client.execute(action: "DescribeCloudStorageEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取云存事件列表
-    @inlinable
-    public func describeCloudStorageEvents(_ input: DescribeCloudStorageEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageEventsResponse {
-        try await self.client.execute(action: "DescribeCloudStorageEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudStorageEvents请求参数结构体
     public struct DescribeCloudStorageEventsRequest: TCRequestModel {
         /// 产品ID
@@ -56,7 +44,7 @@ extension Iotvideo {
         /// 通道ID 非NVR设备则不填 NVR设备则必填 默认为无
         public let channelId: UInt64?
         
-        public init (productId: String, deviceName: String, startTime: UInt64?, endTime: UInt64?, context: String?, size: UInt64?, eventId: String?, userId: String?, channelId: UInt64?) {
+        public init (productId: String, deviceName: String, startTime: UInt64? = nil, endTime: UInt64? = nil, context: String? = nil, size: UInt64? = nil, eventId: String? = nil, userId: String? = nil, channelId: UInt64? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.startTime = startTime
@@ -109,5 +97,17 @@ extension Iotvideo {
             case videoURL = "VideoURL"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取云存事件列表
+    @inlinable
+    public func describeCloudStorageEvents(_ input: DescribeCloudStorageEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStorageEventsResponse > {
+        self.client.execute(action: "DescribeCloudStorageEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取云存事件列表
+    @inlinable
+    public func describeCloudStorageEvents(_ input: DescribeCloudStorageEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageEventsResponse {
+        try await self.client.execute(action: "DescribeCloudStorageEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

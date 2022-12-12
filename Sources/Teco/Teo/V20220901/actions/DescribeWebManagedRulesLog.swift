@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询Web攻击日志
-    ///
-    /// 本接口（DescribeWebManagedRulesLog）用于查询Web攻击日志。
-    @inlinable
-    public func describeWebManagedRulesLog(_ input: DescribeWebManagedRulesLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebManagedRulesLogResponse > {
-        self.client.execute(action: "DescribeWebManagedRulesLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Web攻击日志
-    ///
-    /// 本接口（DescribeWebManagedRulesLog）用于查询Web攻击日志。
-    @inlinable
-    public func describeWebManagedRulesLog(_ input: DescribeWebManagedRulesLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesLogResponse {
-        try await self.client.execute(action: "DescribeWebManagedRulesLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWebManagedRulesLog请求参数结构体
     public struct DescribeWebManagedRulesLogRequest: TCRequestModel {
         /// 开始时间。
@@ -74,7 +58,7 @@ extension Teo {
         /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
         public let area: String?
         
-        public init (startTime: Date, endTime: Date, zoneIds: [String]?, domains: [String]?, limit: UInt64?, offset: UInt64?, queryCondition: [QueryCondition]?, area: String?) {
+        public init (startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.zoneIds = zoneIds
@@ -114,5 +98,21 @@ extension Teo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Web攻击日志
+    ///
+    /// 本接口（DescribeWebManagedRulesLog）用于查询Web攻击日志。
+    @inlinable
+    public func describeWebManagedRulesLog(_ input: DescribeWebManagedRulesLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWebManagedRulesLogResponse > {
+        self.client.execute(action: "DescribeWebManagedRulesLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Web攻击日志
+    ///
+    /// 本接口（DescribeWebManagedRulesLog）用于查询Web攻击日志。
+    @inlinable
+    public func describeWebManagedRulesLog(_ input: DescribeWebManagedRulesLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesLogResponse {
+        try await self.client.execute(action: "DescribeWebManagedRulesLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

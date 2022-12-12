@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 流式音频分析
-    ///
-    /// 分析音频信息
-    @inlinable
-    public func transmitAudioStream(_ input: TransmitAudioStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransmitAudioStreamResponse > {
-        self.client.execute(action: "TransmitAudioStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 流式音频分析
-    ///
-    /// 分析音频信息
-    @inlinable
-    public func transmitAudioStream(_ input: TransmitAudioStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransmitAudioStreamResponse {
-        try await self.client.execute(action: "TransmitAudioStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TransmitAudioStream请求参数结构体
     public struct TransmitAudioStreamRequest: TCRequestModel {
         /// 功能开关列表，表示是否需要打开相应的功能，返回相应的信息
@@ -63,7 +47,7 @@ extension Tci {
         /// 识别词库名列表，评估过程使用这些词汇库中的词汇进行词汇使用行为分析
         public let vocabLibNameList: [String]?
         
-        public init (functions: Function, seqId: Int64, sessionId: String, userVoiceData: String, voiceEncodeType: Int64, voiceFileType: Int64, isEnd: Int64?, lang: Int64?, storageMode: Int64?, vocabLibNameList: [String]?) {
+        public init (functions: Function, seqId: Int64, sessionId: String, userVoiceData: String, voiceEncodeType: Int64, voiceFileType: Int64, isEnd: Int64? = nil, lang: Int64? = nil, storageMode: Int64? = nil, vocabLibNameList: [String]? = nil) {
             self.functions = functions
             self.seqId = seqId
             self.sessionId = sessionId
@@ -122,5 +106,21 @@ extension Tci {
             case audioUrl = "AudioUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 流式音频分析
+    ///
+    /// 分析音频信息
+    @inlinable
+    public func transmitAudioStream(_ input: TransmitAudioStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransmitAudioStreamResponse > {
+        self.client.execute(action: "TransmitAudioStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 流式音频分析
+    ///
+    /// 分析音频信息
+    @inlinable
+    public func transmitAudioStream(_ input: TransmitAudioStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransmitAudioStreamResponse {
+        try await self.client.execute(action: "TransmitAudioStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

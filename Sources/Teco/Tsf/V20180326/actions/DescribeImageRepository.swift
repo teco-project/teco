@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 镜像仓库列表
-    ///
-    /// 镜像仓库列表 
-    @inlinable
-    public func describeImageRepository(_ input: DescribeImageRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRepositoryResponse > {
-        self.client.execute(action: "DescribeImageRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 镜像仓库列表
-    ///
-    /// 镜像仓库列表 
-    @inlinable
-    public func describeImageRepository(_ input: DescribeImageRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRepositoryResponse {
-        try await self.client.execute(action: "DescribeImageRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageRepository请求参数结构体
     public struct DescribeImageRepositoryRequest: TCRequestModel {
         /// 仓库名，搜索关键字,不带命名空间的
@@ -49,9 +33,9 @@ extension Tsf {
         public let applicationId: String?
         
         /// TcrRepoInfo值
-        public let tcrRepoInfo: TcrRepoInfo
+        public let tcrRepoInfo: TcrRepoInfo?
         
-        public init (searchWord: String?, offset: Int64?, limit: Int64?, repoType: String?, applicationId: String?, tcrRepoInfo: TcrRepoInfo) {
+        public init (searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, repoType: String? = nil, applicationId: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil) {
             self.searchWord = searchWord
             self.offset = offset
             self.limit = limit
@@ -82,5 +66,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 镜像仓库列表
+    ///
+    /// 镜像仓库列表 
+    @inlinable
+    public func describeImageRepository(_ input: DescribeImageRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageRepositoryResponse > {
+        self.client.execute(action: "DescribeImageRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库列表
+    ///
+    /// 镜像仓库列表 
+    @inlinable
+    public func describeImageRepository(_ input: DescribeImageRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRepositoryResponse {
+        try await self.client.execute(action: "DescribeImageRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

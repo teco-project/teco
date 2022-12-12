@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Tic {
-    /// 查询事件列表
-    ///
-    /// 本接口（DescribeStackEvents）用于查看一个或多个事件详细信息。
-    /// - 可以根据事件ID过滤感兴趣的事件
-    /// - 也可以根据版本ID，资源栈ID，事件类型，事件状态过滤事件，过滤信息详细请见过滤器Filter
-    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
-    @inlinable
-    public func describeStackEvents(_ input: DescribeStackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStackEventsResponse > {
-        self.client.execute(action: "DescribeStackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询事件列表
-    ///
-    /// 本接口（DescribeStackEvents）用于查看一个或多个事件详细信息。
-    /// - 可以根据事件ID过滤感兴趣的事件
-    /// - 也可以根据版本ID，资源栈ID，事件类型，事件状态过滤事件，过滤信息详细请见过滤器Filter
-    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
-    @inlinable
-    public func describeStackEvents(_ input: DescribeStackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackEventsResponse {
-        try await self.client.execute(action: "DescribeStackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStackEvents请求参数结构体
     public struct DescribeStackEventsRequest: TCRequestModel {
         /// 按照⼀个或者多个事件ID查询
@@ -62,7 +40,7 @@ extension Tic {
         /// 返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节
         public let limit: Int64?
         
-        public init (eventIds: [String]?, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (eventIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.eventIds = eventIds
             self.filters = filters
             self.offset = offset
@@ -93,5 +71,27 @@ extension Tic {
             case events = "Events"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询事件列表
+    ///
+    /// 本接口（DescribeStackEvents）用于查看一个或多个事件详细信息。
+    /// - 可以根据事件ID过滤感兴趣的事件
+    /// - 也可以根据版本ID，资源栈ID，事件类型，事件状态过滤事件，过滤信息详细请见过滤器Filter
+    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
+    @inlinable
+    public func describeStackEvents(_ input: DescribeStackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStackEventsResponse > {
+        self.client.execute(action: "DescribeStackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询事件列表
+    ///
+    /// 本接口（DescribeStackEvents）用于查看一个或多个事件详细信息。
+    /// - 可以根据事件ID过滤感兴趣的事件
+    /// - 也可以根据版本ID，资源栈ID，事件类型，事件状态过滤事件，过滤信息详细请见过滤器Filter
+    /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
+    @inlinable
+    public func describeStackEvents(_ input: DescribeStackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackEventsResponse {
+        try await self.client.execute(action: "DescribeStackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

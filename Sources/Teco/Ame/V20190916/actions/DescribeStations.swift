@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取分类内容（Station）列表
-    ///
-    /// 该服务后续会停用，不再建议使用
-    @inlinable
-    public func describeStations(_ input: DescribeStationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStationsResponse > {
-        self.client.execute(action: "DescribeStations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取分类内容（Station）列表
-    ///
-    /// 该服务后续会停用，不再建议使用
-    @inlinable
-    public func describeStations(_ input: DescribeStationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStationsResponse {
-        try await self.client.execute(action: "DescribeStations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStations请求参数结构体
     public struct DescribeStationsRequest: TCRequestModel {
         /// 条数，必须大于0
@@ -79,5 +63,21 @@ extension Ame {
             case stations = "Stations"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取分类内容（Station）列表
+    ///
+    /// 该服务后续会停用，不再建议使用
+    @inlinable
+    public func describeStations(_ input: DescribeStationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStationsResponse > {
+        self.client.execute(action: "DescribeStations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取分类内容（Station）列表
+    ///
+    /// 该服务后续会停用，不再建议使用
+    @inlinable
+    public func describeStations(_ input: DescribeStationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStationsResponse {
+        try await self.client.execute(action: "DescribeStations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询直播拉流任务
-    ///
-    /// 查询使用 CreateLivePullStreamTask 接口创建的直播拉流任务。
-    /// 排序方式：默认按更新时间 倒序排列。
-    @inlinable
-    public func describeLivePullStreamTasks(_ input: DescribeLivePullStreamTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLivePullStreamTasksResponse > {
-        self.client.execute(action: "DescribeLivePullStreamTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询直播拉流任务
-    ///
-    /// 查询使用 CreateLivePullStreamTask 接口创建的直播拉流任务。
-    /// 排序方式：默认按更新时间 倒序排列。
-    @inlinable
-    public func describeLivePullStreamTasks(_ input: DescribeLivePullStreamTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePullStreamTasksResponse {
-        try await self.client.execute(action: "DescribeLivePullStreamTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLivePullStreamTasks请求参数结构体
     public struct DescribeLivePullStreamTasksRequest: TCRequestModel {
         /// 任务 ID。 
@@ -47,7 +29,7 @@ extension Live {
         /// 取值范围：1~20 之前的任意整数。
         public let pageSize: UInt64?
         
-        public init (taskId: String?, pageNum: UInt64?, pageSize: UInt64?) {
+        public init (taskId: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil) {
             self.taskId = taskId
             self.pageNum = pageNum
             self.pageSize = pageSize
@@ -92,5 +74,23 @@ extension Live {
             case limitTaskNum = "LimitTaskNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询直播拉流任务
+    ///
+    /// 查询使用 CreateLivePullStreamTask 接口创建的直播拉流任务。
+    /// 排序方式：默认按更新时间 倒序排列。
+    @inlinable
+    public func describeLivePullStreamTasks(_ input: DescribeLivePullStreamTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLivePullStreamTasksResponse > {
+        self.client.execute(action: "DescribeLivePullStreamTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询直播拉流任务
+    ///
+    /// 查询使用 CreateLivePullStreamTask 接口创建的直播拉流任务。
+    /// 排序方式：默认按更新时间 倒序排列。
+    @inlinable
+    public func describeLivePullStreamTasks(_ input: DescribeLivePullStreamTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePullStreamTasksResponse {
+        try await self.client.execute(action: "DescribeLivePullStreamTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

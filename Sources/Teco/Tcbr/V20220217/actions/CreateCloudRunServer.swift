@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcbr {
-    /// 创建云托管服务
-    ///
-    /// 创建云托管服务接口
-    @inlinable
-    public func createCloudRunServer(_ input: CreateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudRunServerResponse > {
-        self.client.execute(action: "CreateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建云托管服务
-    ///
-    /// 创建云托管服务接口
-    @inlinable
-    public func createCloudRunServer(_ input: CreateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRunServerResponse {
-        try await self.client.execute(action: "CreateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCloudRunServer请求参数结构体
     public struct CreateCloudRunServerRequest: TCRequestModel {
         /// 环境Id
@@ -72,5 +56,21 @@ extension Tcbr {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建云托管服务
+    ///
+    /// 创建云托管服务接口
+    @inlinable
+    public func createCloudRunServer(_ input: CreateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCloudRunServerResponse > {
+        self.client.execute(action: "CreateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云托管服务
+    ///
+    /// 创建云托管服务接口
+    @inlinable
+    public func createCloudRunServer(_ input: CreateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRunServerResponse {
+        try await self.client.execute(action: "CreateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

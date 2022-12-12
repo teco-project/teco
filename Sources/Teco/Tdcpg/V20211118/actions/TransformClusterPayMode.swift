@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdcpg {
-    /// 转换集群付费模式
-    ///
-    /// 转换集群付费模式，目前只支持从 后付费 转换成 与预付费。
-    @inlinable
-    public func transformClusterPayMode(_ input: TransformClusterPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransformClusterPayModeResponse > {
-        self.client.execute(action: "TransformClusterPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 转换集群付费模式
-    ///
-    /// 转换集群付费模式，目前只支持从 后付费 转换成 与预付费。
-    @inlinable
-    public func transformClusterPayMode(_ input: TransformClusterPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransformClusterPayModeResponse {
-        try await self.client.execute(action: "TransformClusterPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TransformClusterPayMode请求参数结构体
     public struct TransformClusterPayModeRequest: TCRequestModel {
         /// 集群ID
@@ -45,7 +29,7 @@ extension Tdcpg {
         /// 购买时长，单位：月。取值范围为[1,60]，默认值为1。
         public let period: UInt64?
         
-        public init (clusterId: String, currentPayMode: String, targetPayMode: String, period: UInt64?) {
+        public init (clusterId: String, currentPayMode: String, targetPayMode: String, period: UInt64? = nil) {
             self.clusterId = clusterId
             self.currentPayMode = currentPayMode
             self.targetPayMode = targetPayMode
@@ -68,5 +52,21 @@ extension Tdcpg {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 转换集群付费模式
+    ///
+    /// 转换集群付费模式，目前只支持从 后付费 转换成 与预付费。
+    @inlinable
+    public func transformClusterPayMode(_ input: TransformClusterPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TransformClusterPayModeResponse > {
+        self.client.execute(action: "TransformClusterPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 转换集群付费模式
+    ///
+    /// 转换集群付费模式，目前只支持从 后付费 转换成 与预付费。
+    @inlinable
+    public func transformClusterPayMode(_ input: TransformClusterPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransformClusterPayModeResponse {
+        try await self.client.execute(action: "TransformClusterPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

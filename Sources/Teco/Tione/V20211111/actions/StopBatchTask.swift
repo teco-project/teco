@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 停止跑批任务
-    @inlinable
-    public func stopBatchTask(_ input: StopBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopBatchTaskResponse > {
-        self.client.execute(action: "StopBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停止跑批任务
-    @inlinable
-    public func stopBatchTask(_ input: StopBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopBatchTaskResponse {
-        try await self.client.execute(action: "StopBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopBatchTask请求参数结构体
     public struct StopBatchTaskRequest: TCRequestModel {
         /// 跑批任务ID
@@ -49,5 +37,17 @@ extension Tione {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停止跑批任务
+    @inlinable
+    public func stopBatchTask(_ input: StopBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopBatchTaskResponse > {
+        self.client.execute(action: "StopBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停止跑批任务
+    @inlinable
+    public func stopBatchTask(_ input: StopBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopBatchTaskResponse {
+        try await self.client.execute(action: "StopBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

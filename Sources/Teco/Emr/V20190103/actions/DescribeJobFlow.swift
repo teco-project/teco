@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 查询流程作业状态
-    ///
-    /// 查询流程任务
-    @inlinable
-    public func describeJobFlow(_ input: DescribeJobFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobFlowResponse > {
-        self.client.execute(action: "DescribeJobFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询流程作业状态
-    ///
-    /// 查询流程任务
-    @inlinable
-    public func describeJobFlow(_ input: DescribeJobFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobFlowResponse {
-        try await self.client.execute(action: "DescribeJobFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeJobFlow请求参数结构体
     public struct DescribeJobFlowRequest: TCRequestModel {
         /// 流程任务Id，RunJobFlow接口返回的值。
@@ -68,5 +52,21 @@ extension Emr {
             case details = "Details"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询流程作业状态
+    ///
+    /// 查询流程任务
+    @inlinable
+    public func describeJobFlow(_ input: DescribeJobFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeJobFlowResponse > {
+        self.client.execute(action: "DescribeJobFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流程作业状态
+    ///
+    /// 查询流程任务
+    @inlinable
+    public func describeJobFlow(_ input: DescribeJobFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobFlowResponse {
+        try await self.client.execute(action: "DescribeJobFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

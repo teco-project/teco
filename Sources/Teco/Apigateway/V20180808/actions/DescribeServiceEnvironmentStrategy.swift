@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 展示服务限流策略
-    ///
-    /// 本接口（DescribeServiceEnvironmentStrategy）用于展示服务限流策略。
-    @inlinable
-    public func describeServiceEnvironmentStrategy(_ input: DescribeServiceEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceEnvironmentStrategyResponse > {
-        self.client.execute(action: "DescribeServiceEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 展示服务限流策略
-    ///
-    /// 本接口（DescribeServiceEnvironmentStrategy）用于展示服务限流策略。
-    @inlinable
-    public func describeServiceEnvironmentStrategy(_ input: DescribeServiceEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceEnvironmentStrategyResponse {
-        try await self.client.execute(action: "DescribeServiceEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeServiceEnvironmentStrategy请求参数结构体
     public struct DescribeServiceEnvironmentStrategyRequest: TCRequestModel {
         /// 服务唯一ID。
@@ -42,7 +26,7 @@ extension Apigateway {
         /// 偏移量，默认为 0。
         public let offset: Int64?
         
-        public init (serviceId: String, limit: Int64?, offset: Int64?) {
+        public init (serviceId: String, limit: Int64? = nil, offset: Int64? = nil) {
             self.serviceId = serviceId
             self.limit = limit
             self.offset = offset
@@ -59,7 +43,7 @@ extension Apigateway {
     public struct DescribeServiceEnvironmentStrategyResponse: TCResponseModel {
         /// 限流策略列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: ServiceEnvironmentStrategyStatus
+        public let result: ServiceEnvironmentStrategyStatus?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -68,5 +52,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 展示服务限流策略
+    ///
+    /// 本接口（DescribeServiceEnvironmentStrategy）用于展示服务限流策略。
+    @inlinable
+    public func describeServiceEnvironmentStrategy(_ input: DescribeServiceEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeServiceEnvironmentStrategyResponse > {
+        self.client.execute(action: "DescribeServiceEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 展示服务限流策略
+    ///
+    /// 本接口（DescribeServiceEnvironmentStrategy）用于展示服务限流策略。
+    @inlinable
+    public func describeServiceEnvironmentStrategy(_ input: DescribeServiceEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceEnvironmentStrategyResponse {
+        try await self.client.execute(action: "DescribeServiceEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 更新位置空间产品属性
-    @inlinable
-    public func modifySpaceProperty(_ input: ModifySpacePropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySpacePropertyResponse > {
-        self.client.execute(action: "ModifySpaceProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新位置空间产品属性
-    @inlinable
-    public func modifySpaceProperty(_ input: ModifySpacePropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySpacePropertyResponse {
-        try await self.client.execute(action: "ModifySpaceProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySpaceProperty请求参数结构体
     public struct ModifySpacePropertyRequest: TCRequestModel {
         /// 位置空间Id
@@ -59,5 +47,17 @@ extension Iotexplorer {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新位置空间产品属性
+    @inlinable
+    public func modifySpaceProperty(_ input: ModifySpacePropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySpacePropertyResponse > {
+        self.client.execute(action: "ModifySpaceProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新位置空间产品属性
+    @inlinable
+    public func modifySpaceProperty(_ input: ModifySpacePropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySpacePropertyResponse {
+        try await self.client.execute(action: "ModifySpaceProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

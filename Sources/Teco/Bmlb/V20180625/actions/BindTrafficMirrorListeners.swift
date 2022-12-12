@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 绑定黑石服务器七层监听器到流量镜像实例
-    ///
-    /// 绑定黑石服务器七层监听器到流量镜像实例。
-    @inlinable
-    public func bindTrafficMirrorListeners(_ input: BindTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindTrafficMirrorListenersResponse > {
-        self.client.execute(action: "BindTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定黑石服务器七层监听器到流量镜像实例
-    ///
-    /// 绑定黑石服务器七层监听器到流量镜像实例。
-    @inlinable
-    public func bindTrafficMirrorListeners(_ input: BindTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindTrafficMirrorListenersResponse {
-        try await self.client.execute(action: "BindTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindTrafficMirrorListeners请求参数结构体
     public struct BindTrafficMirrorListenersRequest: TCRequestModel {
         /// 流量镜像实例ID。
@@ -62,5 +46,21 @@ extension Bmlb {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定黑石服务器七层监听器到流量镜像实例
+    ///
+    /// 绑定黑石服务器七层监听器到流量镜像实例。
+    @inlinable
+    public func bindTrafficMirrorListeners(_ input: BindTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindTrafficMirrorListenersResponse > {
+        self.client.execute(action: "BindTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定黑石服务器七层监听器到流量镜像实例
+    ///
+    /// 绑定黑石服务器七层监听器到流量镜像实例。
+    @inlinable
+    public func bindTrafficMirrorListeners(_ input: BindTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindTrafficMirrorListenersResponse {
+        try await self.client.execute(action: "BindTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

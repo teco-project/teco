@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 容器网络查询网络策略自动发现任务进度
-    @inlinable
-    public func describeNetworkFirewallPolicyDiscover(_ input: DescribeNetworkFirewallPolicyDiscoverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallPolicyDiscoverResponse > {
-        self.client.execute(action: "DescribeNetworkFirewallPolicyDiscover", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 容器网络查询网络策略自动发现任务进度
-    @inlinable
-    public func describeNetworkFirewallPolicyDiscover(_ input: DescribeNetworkFirewallPolicyDiscoverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyDiscoverResponse {
-        try await self.client.execute(action: "DescribeNetworkFirewallPolicyDiscover", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNetworkFirewallPolicyDiscover请求参数结构体
     public struct DescribeNetworkFirewallPolicyDiscoverRequest: TCRequestModel {
         /// 任务ID
@@ -53,5 +41,17 @@ extension Tcss {
             case taskStatus = "TaskStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 容器网络查询网络策略自动发现任务进度
+    @inlinable
+    public func describeNetworkFirewallPolicyDiscover(_ input: DescribeNetworkFirewallPolicyDiscoverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkFirewallPolicyDiscoverResponse > {
+        self.client.execute(action: "DescribeNetworkFirewallPolicyDiscover", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络查询网络策略自动发现任务进度
+    @inlinable
+    public func describeNetworkFirewallPolicyDiscover(_ input: DescribeNetworkFirewallPolicyDiscoverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyDiscoverResponse {
+        try await self.client.execute(action: "DescribeNetworkFirewallPolicyDiscover", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

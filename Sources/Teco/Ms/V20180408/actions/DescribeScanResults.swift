@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ms {
-    /// 批量查询扫描结果
-    ///
-    /// 用户通过CreateScanInstances接口提交应用进行风险批量扫描后，用此接口批量获取风险详细信息,包含漏洞信息，广告信息，插件信息和病毒信息
-    @inlinable
-    public func describeScanResults(_ input: DescribeScanResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanResultsResponse > {
-        self.client.execute(action: "DescribeScanResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量查询扫描结果
-    ///
-    /// 用户通过CreateScanInstances接口提交应用进行风险批量扫描后，用此接口批量获取风险详细信息,包含漏洞信息，广告信息，插件信息和病毒信息
-    @inlinable
-    public func describeScanResults(_ input: DescribeScanResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanResultsResponse {
-        try await self.client.execute(action: "DescribeScanResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScanResults请求参数结构体
     public struct DescribeScanResultsRequest: TCRequestModel {
         /// 任务唯一标识
@@ -39,7 +23,7 @@ extension Ms {
         /// 批量查询一个或者多个app的扫描结果，如果不传表示查询该任务下所提交的所有app
         public let appMd5s: [String]?
         
-        public init (itemId: String, appMd5s: [String]?) {
+        public init (itemId: String, appMd5s: [String]? = nil) {
             self.itemId = itemId
             self.appMd5s = appMd5s
         }
@@ -66,5 +50,21 @@ extension Ms {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量查询扫描结果
+    ///
+    /// 用户通过CreateScanInstances接口提交应用进行风险批量扫描后，用此接口批量获取风险详细信息,包含漏洞信息，广告信息，插件信息和病毒信息
+    @inlinable
+    public func describeScanResults(_ input: DescribeScanResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScanResultsResponse > {
+        self.client.execute(action: "DescribeScanResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量查询扫描结果
+    ///
+    /// 用户通过CreateScanInstances接口提交应用进行风险批量扫描后，用此接口批量获取风险详细信息,包含漏洞信息，广告信息，插件信息和病毒信息
+    @inlinable
+    public func describeScanResults(_ input: DescribeScanResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanResultsResponse {
+        try await self.client.execute(action: "DescribeScanResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

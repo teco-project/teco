@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Market {
-    /// 计量商品用量提醒
-    ///
-    /// 计量商品用量提醒，用于服务商调用云服务，云服务向客户发送提醒信息
-    @inlinable
-    public func flowProductRemind(_ input: FlowProductRemindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FlowProductRemindResponse > {
-        self.client.execute(action: "FlowProductRemind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 计量商品用量提醒
-    ///
-    /// 计量商品用量提醒，用于服务商调用云服务，云服务向客户发送提醒信息
-    @inlinable
-    public func flowProductRemind(_ input: FlowProductRemindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlowProductRemindResponse {
-        try await self.client.execute(action: "FlowProductRemind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// FlowProductRemind请求参数结构体
     public struct FlowProductRemindRequest: TCRequestModel {
         /// 服务商uin
@@ -91,5 +75,21 @@ extension Market {
             case info = "Info"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 计量商品用量提醒
+    ///
+    /// 计量商品用量提醒，用于服务商调用云服务，云服务向客户发送提醒信息
+    @inlinable
+    public func flowProductRemind(_ input: FlowProductRemindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FlowProductRemindResponse > {
+        self.client.execute(action: "FlowProductRemind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 计量商品用量提醒
+    ///
+    /// 计量商品用量提醒，用于服务商调用云服务，云服务向客户发送提醒信息
+    @inlinable
+    public func flowProductRemind(_ input: FlowProductRemindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlowProductRemindResponse {
+        try await self.client.execute(action: "FlowProductRemind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

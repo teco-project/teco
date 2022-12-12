@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 退回物理机
-    ///
-    /// 退回物理机至回收站，支持批量退还不同计费模式的物理机（包括预付费、后付费、预付费转后付费）
-    @inlinable
-    public func returnDevices(_ input: ReturnDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReturnDevicesResponse > {
-        self.client.execute(action: "ReturnDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 退回物理机
-    ///
-    /// 退回物理机至回收站，支持批量退还不同计费模式的物理机（包括预付费、后付费、预付费转后付费）
-    @inlinable
-    public func returnDevices(_ input: ReturnDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReturnDevicesResponse {
-        try await self.client.execute(action: "ReturnDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReturnDevices请求参数结构体
     public struct ReturnDevicesRequest: TCRequestModel {
         /// 需要退还的物理机ID列表
@@ -57,5 +41,21 @@ extension Bm {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 退回物理机
+    ///
+    /// 退回物理机至回收站，支持批量退还不同计费模式的物理机（包括预付费、后付费、预付费转后付费）
+    @inlinable
+    public func returnDevices(_ input: ReturnDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReturnDevicesResponse > {
+        self.client.execute(action: "ReturnDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 退回物理机
+    ///
+    /// 退回物理机至回收站，支持批量退还不同计费模式的物理机（包括预付费、后付费、预付费转后付费）
+    @inlinable
+    public func returnDevices(_ input: ReturnDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReturnDevicesResponse {
+        try await self.client.execute(action: "ReturnDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

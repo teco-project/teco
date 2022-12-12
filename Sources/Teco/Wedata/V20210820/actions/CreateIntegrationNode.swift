@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 创建集成节点
-    @inlinable
-    public func createIntegrationNode(_ input: CreateIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIntegrationNodeResponse > {
-        self.client.execute(action: "CreateIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建集成节点
-    @inlinable
-    public func createIntegrationNode(_ input: CreateIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationNodeResponse {
-        try await self.client.execute(action: "CreateIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateIntegrationNode请求参数结构体
     public struct CreateIntegrationNodeRequest: TCRequestModel {
         /// 集成节点信息
@@ -38,7 +26,7 @@ extension Wedata {
         /// 任务类型
         public let taskType: UInt64?
         
-        public init (nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64?) {
+        public init (nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil) {
             self.nodeInfo = nodeInfo
             self.projectId = projectId
             self.taskType = taskType
@@ -68,5 +56,17 @@ extension Wedata {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建集成节点
+    @inlinable
+    public func createIntegrationNode(_ input: CreateIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIntegrationNodeResponse > {
+        self.client.execute(action: "CreateIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集成节点
+    @inlinable
+    public func createIntegrationNode(_ input: CreateIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationNodeResponse {
+        try await self.client.execute(action: "CreateIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 克隆实例
-    ///
-    /// 用于克隆实例，支持指定备份集、指定时间点进行克隆。
-    @inlinable
-    public func cloneDBInstance(_ input: CloneDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloneDBInstanceResponse > {
-        self.client.execute(action: "CloneDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 克隆实例
-    ///
-    /// 用于克隆实例，支持指定备份集、指定时间点进行克隆。
-    @inlinable
-    public func cloneDBInstance(_ input: CloneDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneDBInstanceResponse {
-        try await self.client.execute(action: "CloneDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CloneDBInstance请求参数结构体
     public struct CloneDBInstanceRequest: TCRequestModel {
         /// 克隆的源实例ID。
@@ -87,7 +71,7 @@ extension Postgres {
         /// 恢复时间点。
         public let recoveryTargetTime: String?
         
-        public init (dbInstanceId: String, specCode: String, storage: Int64, period: Int64, autoRenewFlag: Int64, vpcId: String, subnetId: String, name: String?, instanceChargeType: String?, securityGroupIds: [String]?, projectId: Int64?, tagList: [Tag]?, dbNodeSet: [DBNode]?, autoVoucher: Int64?, voucherIds: String?, activityId: Int64?, backupSetId: String?, recoveryTargetTime: String?) {
+        public init (dbInstanceId: String, specCode: String, storage: Int64, period: Int64, autoRenewFlag: Int64, vpcId: String, subnetId: String, name: String? = nil, instanceChargeType: String? = nil, securityGroupIds: [String]? = nil, projectId: Int64? = nil, tagList: [Tag]? = nil, dbNodeSet: [DBNode]? = nil, autoVoucher: Int64? = nil, voucherIds: String? = nil, activityId: Int64? = nil, backupSetId: String? = nil, recoveryTargetTime: String? = nil) {
             self.dbInstanceId = dbInstanceId
             self.specCode = specCode
             self.storage = storage
@@ -153,5 +137,21 @@ extension Postgres {
             case dbInstanceId = "DBInstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 克隆实例
+    ///
+    /// 用于克隆实例，支持指定备份集、指定时间点进行克隆。
+    @inlinable
+    public func cloneDBInstance(_ input: CloneDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloneDBInstanceResponse > {
+        self.client.execute(action: "CloneDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 克隆实例
+    ///
+    /// 用于克隆实例，支持指定备份集、指定时间点进行克隆。
+    @inlinable
+    public func cloneDBInstance(_ input: CloneDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneDBInstanceResponse {
+        try await self.client.execute(action: "CloneDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

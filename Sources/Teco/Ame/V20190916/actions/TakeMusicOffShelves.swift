@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 下架歌曲
-    ///
-    /// 根据资源方所传MusicId进行将歌曲进行下架，多个MusicId使用逗号隔开
-    @inlinable
-    public func takeMusicOffShelves(_ input: TakeMusicOffShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TakeMusicOffShelvesResponse > {
-        self.client.execute(action: "TakeMusicOffShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下架歌曲
-    ///
-    /// 根据资源方所传MusicId进行将歌曲进行下架，多个MusicId使用逗号隔开
-    @inlinable
-    public func takeMusicOffShelves(_ input: TakeMusicOffShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TakeMusicOffShelvesResponse {
-        try await self.client.execute(action: "TakeMusicOffShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TakeMusicOffShelves请求参数结构体
     public struct TakeMusicOffShelvesRequest: TCRequestModel {
         /// 资源方下架必传结构
@@ -66,5 +50,21 @@ extension Ame {
             case failedMusicIds = "FailedMusicIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下架歌曲
+    ///
+    /// 根据资源方所传MusicId进行将歌曲进行下架，多个MusicId使用逗号隔开
+    @inlinable
+    public func takeMusicOffShelves(_ input: TakeMusicOffShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TakeMusicOffShelvesResponse > {
+        self.client.execute(action: "TakeMusicOffShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下架歌曲
+    ///
+    /// 根据资源方所传MusicId进行将歌曲进行下架，多个MusicId使用逗号隔开
+    @inlinable
+    public func takeMusicOffShelves(_ input: TakeMusicOffShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TakeMusicOffShelvesResponse {
+        try await self.client.execute(action: "TakeMusicOffShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

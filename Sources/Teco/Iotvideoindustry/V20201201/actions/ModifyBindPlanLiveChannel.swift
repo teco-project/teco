@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 直播录制计划绑定解绑直播频道
-    @inlinable
-    public func modifyBindPlanLiveChannel(_ input: ModifyBindPlanLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindPlanLiveChannelResponse > {
-        self.client.execute(action: "ModifyBindPlanLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 直播录制计划绑定解绑直播频道
-    @inlinable
-    public func modifyBindPlanLiveChannel(_ input: ModifyBindPlanLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindPlanLiveChannelResponse {
-        try await self.client.execute(action: "ModifyBindPlanLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyBindPlanLiveChannel请求参数结构体
     public struct ModifyBindPlanLiveChannelRequest: TCRequestModel {
         /// 直播录制计划ID
@@ -59,5 +47,17 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 直播录制计划绑定解绑直播频道
+    @inlinable
+    public func modifyBindPlanLiveChannel(_ input: ModifyBindPlanLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindPlanLiveChannelResponse > {
+        self.client.execute(action: "ModifyBindPlanLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 直播录制计划绑定解绑直播频道
+    @inlinable
+    public func modifyBindPlanLiveChannel(_ input: ModifyBindPlanLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindPlanLiveChannelResponse {
+        try await self.client.execute(action: "ModifyBindPlanLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

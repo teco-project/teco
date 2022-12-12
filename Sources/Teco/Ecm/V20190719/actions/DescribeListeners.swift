@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 查询负载均衡的监听器列表
-    ///
-    /// 查询负载均衡的监听器列表。
-    @inlinable
-    public func describeListeners(_ input: DescribeListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListenersResponse > {
-        self.client.execute(action: "DescribeListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询负载均衡的监听器列表
-    ///
-    /// 查询负载均衡的监听器列表。
-    @inlinable
-    public func describeListeners(_ input: DescribeListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListenersResponse {
-        try await self.client.execute(action: "DescribeListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeListeners请求参数结构体
     public struct DescribeListenersRequest: TCRequestModel {
         /// 负载均衡实例 ID
@@ -45,7 +29,7 @@ extension Ecm {
         /// 要查询的监听器的端口
         public let port: Int64?
         
-        public init (loadBalancerId: String, listenerIds: [String]?, `protocol`: String?, port: Int64?) {
+        public init (loadBalancerId: String, listenerIds: [String]? = nil, `protocol`: String? = nil, port: Int64? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerIds = listenerIds
             self.`protocol` = `protocol`
@@ -78,5 +62,21 @@ extension Ecm {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询负载均衡的监听器列表
+    ///
+    /// 查询负载均衡的监听器列表。
+    @inlinable
+    public func describeListeners(_ input: DescribeListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListenersResponse > {
+        self.client.execute(action: "DescribeListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询负载均衡的监听器列表
+    ///
+    /// 查询负载均衡的监听器列表。
+    @inlinable
+    public func describeListeners(_ input: DescribeListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListenersResponse {
+        try await self.client.execute(action: "DescribeListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

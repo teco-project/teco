@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 修改转自适应码流模板
-    @inlinable
-    public func modifyAdaptiveDynamicStreamingTemplate(_ input: ModifyAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAdaptiveDynamicStreamingTemplateResponse > {
-        self.client.execute(action: "ModifyAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改转自适应码流模板
-    @inlinable
-    public func modifyAdaptiveDynamicStreamingTemplate(_ input: ModifyAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAdaptiveDynamicStreamingTemplateResponse {
-        try await self.client.execute(action: "ModifyAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAdaptiveDynamicStreamingTemplate请求参数结构体
     public struct ModifyAdaptiveDynamicStreamingTemplateRequest: TCRequestModel {
         /// 转自适应码流模板唯一标识。
@@ -57,7 +45,7 @@ extension Mps {
         /// 模板描述信息，长度限制：256 个字符。
         public let comment: String?
         
-        public init (definition: UInt64, name: String?, format: String?, disableHigherVideoBitrate: UInt64?, disableHigherVideoResolution: UInt64?, streamInfos: [AdaptiveStreamTemplate]?, comment: String?) {
+        public init (definition: UInt64, name: String? = nil, format: String? = nil, disableHigherVideoBitrate: UInt64? = nil, disableHigherVideoResolution: UInt64? = nil, streamInfos: [AdaptiveStreamTemplate]? = nil, comment: String? = nil) {
             self.definition = definition
             self.name = name
             self.format = format
@@ -86,5 +74,17 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改转自适应码流模板
+    @inlinable
+    public func modifyAdaptiveDynamicStreamingTemplate(_ input: ModifyAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAdaptiveDynamicStreamingTemplateResponse > {
+        self.client.execute(action: "ModifyAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改转自适应码流模板
+    @inlinable
+    public func modifyAdaptiveDynamicStreamingTemplate(_ input: ModifyAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAdaptiveDynamicStreamingTemplateResponse {
+        try await self.client.execute(action: "ModifyAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

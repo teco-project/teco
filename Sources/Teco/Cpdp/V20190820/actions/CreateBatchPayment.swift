@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云-批量主播转账接口
-    @inlinable
-    public func createBatchPayment(_ input: CreateBatchPaymentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBatchPaymentResponse > {
-        self.client.execute(action: "CreateBatchPayment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云-批量主播转账接口
-    @inlinable
-    public func createBatchPayment(_ input: CreateBatchPaymentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchPaymentResponse {
-        try await self.client.execute(action: "CreateBatchPayment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBatchPayment请求参数结构体
     public struct CreateBatchPaymentRequest: TCRequestModel {
         /// 1 微信企业付款 
@@ -43,7 +31,7 @@ extension Cpdp {
         /// 回调Url
         public let notifyUrl: String?
         
-        public init (transferType: Int64, recipientList: [CreateBatchPaymentRecipient], reqReserved: String?, notifyUrl: String?) {
+        public init (transferType: Int64, recipientList: [CreateBatchPaymentRecipient], reqReserved: String? = nil, notifyUrl: String? = nil) {
             self.transferType = transferType
             self.recipientList = recipientList
             self.reqReserved = reqReserved
@@ -78,5 +66,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云-批量主播转账接口
+    @inlinable
+    public func createBatchPayment(_ input: CreateBatchPaymentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBatchPaymentResponse > {
+        self.client.execute(action: "CreateBatchPayment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云-批量主播转账接口
+    @inlinable
+    public func createBatchPayment(_ input: CreateBatchPaymentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchPaymentResponse {
+        try await self.client.execute(action: "CreateBatchPayment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

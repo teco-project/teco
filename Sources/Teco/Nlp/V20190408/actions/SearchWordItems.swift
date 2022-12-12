@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Nlp {
-    /// 检索词条
-    ///
-    /// 查询指定自定义词库中的词条是否存在。
-    @inlinable
-    public func searchWordItems(_ input: SearchWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchWordItemsResponse > {
-        self.client.execute(action: "SearchWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检索词条
-    ///
-    /// 查询指定自定义词库中的词条是否存在。
-    @inlinable
-    public func searchWordItems(_ input: SearchWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchWordItemsResponse {
-        try await self.client.execute(action: "SearchWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SearchWordItems请求参数结构体
     public struct SearchWordItemsRequest: TCRequestModel {
         /// 自定义词库ID。
@@ -63,5 +47,21 @@ extension Nlp {
             case results = "Results"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检索词条
+    ///
+    /// 查询指定自定义词库中的词条是否存在。
+    @inlinable
+    public func searchWordItems(_ input: SearchWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchWordItemsResponse > {
+        self.client.execute(action: "SearchWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检索词条
+    ///
+    /// 查询指定自定义词库中的词条是否存在。
+    @inlinable
+    public func searchWordItems(_ input: SearchWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchWordItemsResponse {
+        try await self.client.execute(action: "SearchWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cws {
-    /// 修改站点的属性
-    ///
-    /// 本接口 (ModifySiteAttribute) 用于修改站点的属性。
-    @inlinable
-    public func modifySiteAttribute(_ input: ModifySiteAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySiteAttributeResponse > {
-        self.client.execute(action: "ModifySiteAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改站点的属性
-    ///
-    /// 本接口 (ModifySiteAttribute) 用于修改站点的属性。
-    @inlinable
-    public func modifySiteAttribute(_ input: ModifySiteAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteAttributeResponse {
-        try await self.client.execute(action: "ModifySiteAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySiteAttribute请求参数结构体
     public struct ModifySiteAttributeRequest: TCRequestModel {
         /// 站点ID
@@ -54,7 +38,7 @@ extension Cws {
         /// 禁止扫描器扫描的目录关键字
         public let scanDisallow: String?
         
-        public init (siteId: UInt64, name: String?, needLogin: Int64?, loginCookie: String?, loginCheckUrl: String?, loginCheckKw: String?, scanDisallow: String?) {
+        public init (siteId: UInt64, name: String? = nil, needLogin: Int64? = nil, loginCookie: String? = nil, loginCheckUrl: String? = nil, loginCheckKw: String? = nil, scanDisallow: String? = nil) {
             self.siteId = siteId
             self.name = name
             self.needLogin = needLogin
@@ -83,5 +67,21 @@ extension Cws {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改站点的属性
+    ///
+    /// 本接口 (ModifySiteAttribute) 用于修改站点的属性。
+    @inlinable
+    public func modifySiteAttribute(_ input: ModifySiteAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySiteAttributeResponse > {
+        self.client.execute(action: "ModifySiteAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改站点的属性
+    ///
+    /// 本接口 (ModifySiteAttribute) 用于修改站点的属性。
+    @inlinable
+    public func modifySiteAttribute(_ input: ModifySiteAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteAttributeResponse {
+        try await self.client.execute(action: "ModifySiteAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

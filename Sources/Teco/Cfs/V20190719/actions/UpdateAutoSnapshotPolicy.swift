@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 更新定期快照策略
-    ///
-    /// 更新定期自动快照策略
-    @inlinable
-    public func updateAutoSnapshotPolicy(_ input: UpdateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAutoSnapshotPolicyResponse > {
-        self.client.execute(action: "UpdateAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新定期快照策略
-    ///
-    /// 更新定期自动快照策略
-    @inlinable
-    public func updateAutoSnapshotPolicy(_ input: UpdateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAutoSnapshotPolicyResponse {
-        try await self.client.execute(action: "UpdateAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateAutoSnapshotPolicy请求参数结构体
     public struct UpdateAutoSnapshotPolicyRequest: TCRequestModel {
         /// 快照策略ID
@@ -51,7 +35,7 @@ extension Cfs {
         /// 是否激活定期快照功能
         public let isActivated: UInt64?
         
-        public init (autoSnapshotPolicyId: String, policyName: String?, dayOfWeek: String?, hour: String?, aliveDays: UInt64?, isActivated: UInt64?) {
+        public init (autoSnapshotPolicyId: String, policyName: String? = nil, dayOfWeek: String? = nil, hour: String? = nil, aliveDays: UInt64? = nil, isActivated: UInt64? = nil) {
             self.autoSnapshotPolicyId = autoSnapshotPolicyId
             self.policyName = policyName
             self.dayOfWeek = dayOfWeek
@@ -82,5 +66,21 @@ extension Cfs {
             case autoSnapshotPolicyId = "AutoSnapshotPolicyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新定期快照策略
+    ///
+    /// 更新定期自动快照策略
+    @inlinable
+    public func updateAutoSnapshotPolicy(_ input: UpdateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAutoSnapshotPolicyResponse > {
+        self.client.execute(action: "UpdateAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新定期快照策略
+    ///
+    /// 更新定期自动快照策略
+    @inlinable
+    public func updateAutoSnapshotPolicy(_ input: UpdateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAutoSnapshotPolicyResponse {
+        try await self.client.execute(action: "UpdateAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

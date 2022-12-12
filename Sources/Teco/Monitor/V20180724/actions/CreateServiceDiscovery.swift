@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 创建服务发现
-    ///
-    /// 在腾讯云容器服务下创建 Prometheus 服务发现。
-    /// <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
-    /// <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
-    @inlinable
-    public func createServiceDiscovery(_ input: CreateServiceDiscoveryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceDiscoveryResponse > {
-        self.client.execute(action: "CreateServiceDiscovery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建服务发现
-    ///
-    /// 在腾讯云容器服务下创建 Prometheus 服务发现。
-    /// <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
-    /// <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
-    @inlinable
-    public func createServiceDiscovery(_ input: CreateServiceDiscoveryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceDiscoveryResponse {
-        try await self.client.execute(action: "CreateServiceDiscovery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateServiceDiscovery请求参数结构体
     public struct CreateServiceDiscoveryRequest: TCRequestModel {
         /// Prometheus 实例 ID
@@ -85,5 +65,25 @@ extension Monitor {
             case serviceDiscovery = "ServiceDiscovery"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建服务发现
+    ///
+    /// 在腾讯云容器服务下创建 Prometheus 服务发现。
+    /// <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
+    /// <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
+    @inlinable
+    public func createServiceDiscovery(_ input: CreateServiceDiscoveryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateServiceDiscoveryResponse > {
+        self.client.execute(action: "CreateServiceDiscovery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建服务发现
+    ///
+    /// 在腾讯云容器服务下创建 Prometheus 服务发现。
+    /// <p>注意：前提条件，已经通过 Prometheus 控制台集成了对应的腾讯云容器服务，具体请参考
+    /// <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
+    @inlinable
+    public func createServiceDiscovery(_ input: CreateServiceDiscoveryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceDiscoveryResponse {
+        try await self.client.execute(action: "CreateServiceDiscovery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

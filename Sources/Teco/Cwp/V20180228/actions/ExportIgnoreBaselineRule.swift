@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 已忽略基线检测项导出
-    ///
-    /// 导出已忽略基线检测项信息
-    @inlinable
-    public func exportIgnoreBaselineRule(_ input: ExportIgnoreBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportIgnoreBaselineRuleResponse > {
-        self.client.execute(action: "ExportIgnoreBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 已忽略基线检测项导出
-    ///
-    /// 导出已忽略基线检测项信息
-    @inlinable
-    public func exportIgnoreBaselineRule(_ input: ExportIgnoreBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportIgnoreBaselineRuleResponse {
-        try await self.client.execute(action: "ExportIgnoreBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportIgnoreBaselineRule请求参数结构体
     public struct ExportIgnoreBaselineRuleRequest: TCRequestModel {
         /// 检测项名称
         public let ruleName: String?
         
-        public init (ruleName: String?) {
+        public init (ruleName: String? = nil) {
             self.ruleName = ruleName
         }
         
@@ -61,5 +45,21 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 已忽略基线检测项导出
+    ///
+    /// 导出已忽略基线检测项信息
+    @inlinable
+    public func exportIgnoreBaselineRule(_ input: ExportIgnoreBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportIgnoreBaselineRuleResponse > {
+        self.client.execute(action: "ExportIgnoreBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 已忽略基线检测项导出
+    ///
+    /// 导出已忽略基线检测项信息
+    @inlinable
+    public func exportIgnoreBaselineRule(_ input: ExportIgnoreBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportIgnoreBaselineRuleResponse {
+        try await self.client.execute(action: "ExportIgnoreBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

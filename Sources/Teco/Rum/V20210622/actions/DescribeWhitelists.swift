@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取白名单列表
-    @inlinable
-    public func describeWhitelists(_ input: DescribeWhitelistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhitelistsResponse > {
-        self.client.execute(action: "DescribeWhitelists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取白名单列表
-    @inlinable
-    public func describeWhitelists(_ input: DescribeWhitelistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhitelistsResponse {
-        try await self.client.execute(action: "DescribeWhitelists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWhitelists请求参数结构体
     public struct DescribeWhitelistsRequest: TCRequestModel {
         /// 实例instance-ID
@@ -53,5 +41,17 @@ extension Rum {
             case whitelistSet = "WhitelistSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取白名单列表
+    @inlinable
+    public func describeWhitelists(_ input: DescribeWhitelistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhitelistsResponse > {
+        self.client.execute(action: "DescribeWhitelists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取白名单列表
+    @inlinable
+    public func describeWhitelists(_ input: DescribeWhitelistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhitelistsResponse {
+        try await self.client.execute(action: "DescribeWhitelists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

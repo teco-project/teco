@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 批量删除企业组织成员
-    @inlinable
-    public func deleteOrganizationMembers(_ input: DeleteOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOrganizationMembersResponse > {
-        self.client.execute(action: "DeleteOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量删除企业组织成员
-    @inlinable
-    public func deleteOrganizationMembers(_ input: DeleteOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationMembersResponse {
-        try await self.client.execute(action: "DeleteOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteOrganizationMembers请求参数结构体
     public struct DeleteOrganizationMembersRequest: TCRequestModel {
         /// 被删除成员的UIN列表
@@ -49,5 +37,17 @@ extension Organization {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量删除企业组织成员
+    @inlinable
+    public func deleteOrganizationMembers(_ input: DeleteOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOrganizationMembersResponse > {
+        self.client.execute(action: "DeleteOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除企业组织成员
+    @inlinable
+    public func deleteOrganizationMembers(_ input: DeleteOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationMembersResponse {
+        try await self.client.execute(action: "DeleteOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

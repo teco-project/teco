@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 按顺序查看资源关联的标签
-    @inlinable
-    public func describeResourceTagsByResourceIdsSeq(_ input: DescribeResourceTagsByResourceIdsSeqRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceTagsByResourceIdsSeqResponse > {
-        self.client.execute(action: "DescribeResourceTagsByResourceIdsSeq", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 按顺序查看资源关联的标签
-    @inlinable
-    public func describeResourceTagsByResourceIdsSeq(_ input: DescribeResourceTagsByResourceIdsSeqRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsByResourceIdsSeqResponse {
-        try await self.client.execute(action: "DescribeResourceTagsByResourceIdsSeq", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourceTagsByResourceIdsSeq请求参数结构体
     public struct DescribeResourceTagsByResourceIdsSeqRequest: TCRequestModel {
         /// 业务类型
@@ -47,7 +35,7 @@ extension Tag {
         /// 每页大小，默认为 15
         public let limit: UInt64?
         
-        public init (serviceType: String, resourcePrefix: String, resourceIds: [String], resourceRegion: String, offset: UInt64?, limit: UInt64?) {
+        public init (serviceType: String, resourcePrefix: String, resourceIds: [String], resourceRegion: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.serviceType = serviceType
             self.resourcePrefix = resourcePrefix
             self.resourceIds = resourceIds
@@ -90,5 +78,17 @@ extension Tag {
             case tags = "Tags"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 按顺序查看资源关联的标签
+    @inlinable
+    public func describeResourceTagsByResourceIdsSeq(_ input: DescribeResourceTagsByResourceIdsSeqRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceTagsByResourceIdsSeqResponse > {
+        self.client.execute(action: "DescribeResourceTagsByResourceIdsSeq", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 按顺序查看资源关联的标签
+    @inlinable
+    public func describeResourceTagsByResourceIdsSeq(_ input: DescribeResourceTagsByResourceIdsSeqRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsByResourceIdsSeqResponse {
+        try await self.client.execute(action: "DescribeResourceTagsByResourceIdsSeq", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 触发Savepoint
-    @inlinable
-    public func triggerJobSavepoint(_ input: TriggerJobSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TriggerJobSavepointResponse > {
-        self.client.execute(action: "TriggerJobSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 触发Savepoint
-    @inlinable
-    public func triggerJobSavepoint(_ input: TriggerJobSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TriggerJobSavepointResponse {
-        try await self.client.execute(action: "TriggerJobSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TriggerJobSavepoint请求参数结构体
     public struct TriggerJobSavepointRequest: TCRequestModel {
         /// 作业 SerialId
@@ -38,7 +26,7 @@ extension Oceanus {
         /// 工作空间 SerialId
         public let workSpaceId: String?
         
-        public init (jobId: String, description: String?, workSpaceId: String?) {
+        public init (jobId: String, description: String? = nil, workSpaceId: String? = nil) {
             self.jobId = jobId
             self.description = description
             self.workSpaceId = workSpaceId
@@ -78,5 +66,17 @@ extension Oceanus {
             case savepointId = "SavepointId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 触发Savepoint
+    @inlinable
+    public func triggerJobSavepoint(_ input: TriggerJobSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TriggerJobSavepointResponse > {
+        self.client.execute(action: "TriggerJobSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 触发Savepoint
+    @inlinable
+    public func triggerJobSavepoint(_ input: TriggerJobSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TriggerJobSavepointResponse {
+        try await self.client.execute(action: "TriggerJobSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 查看计算环境的创建信息
-    ///
-    /// 查看计算环境的创建信息。
-    @inlinable
-    public func describeComputeEnvCreateInfo(_ input: DescribeComputeEnvCreateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComputeEnvCreateInfoResponse > {
-        self.client.execute(action: "DescribeComputeEnvCreateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看计算环境的创建信息
-    ///
-    /// 查看计算环境的创建信息。
-    @inlinable
-    public func describeComputeEnvCreateInfo(_ input: DescribeComputeEnvCreateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvCreateInfoResponse {
-        try await self.client.execute(action: "DescribeComputeEnvCreateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeComputeEnvCreateInfo请求参数结构体
     public struct DescribeComputeEnvCreateInfoRequest: TCRequestModel {
         /// 计算环境ID
@@ -99,5 +83,21 @@ extension Batch {
             case tags = "Tags"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看计算环境的创建信息
+    ///
+    /// 查看计算环境的创建信息。
+    @inlinable
+    public func describeComputeEnvCreateInfo(_ input: DescribeComputeEnvCreateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComputeEnvCreateInfoResponse > {
+        self.client.execute(action: "DescribeComputeEnvCreateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看计算环境的创建信息
+    ///
+    /// 查看计算环境的创建信息。
+    @inlinable
+    public func describeComputeEnvCreateInfo(_ input: DescribeComputeEnvCreateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvCreateInfoResponse {
+        try await self.client.execute(action: "DescribeComputeEnvCreateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

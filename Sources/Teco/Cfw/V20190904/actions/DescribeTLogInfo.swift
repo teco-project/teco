@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 告警中心概况
-    ///
-    /// DescribeTLogInfo告警中心概况
-    @inlinable
-    public func describeTLogInfo(_ input: DescribeTLogInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTLogInfoResponse > {
-        self.client.execute(action: "DescribeTLogInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 告警中心概况
-    ///
-    /// DescribeTLogInfo告警中心概况
-    @inlinable
-    public func describeTLogInfo(_ input: DescribeTLogInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTLogInfoResponse {
-        try await self.client.execute(action: "DescribeTLogInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTLogInfo请求参数结构体
     public struct DescribeTLogInfoRequest: TCRequestModel {
         /// 开始时间
@@ -45,7 +29,7 @@ extension Cfw {
         /// 查询条件
         public let searchValue: String?
         
-        public init (startTime: String, endTime: String, queryType: String, searchValue: String?) {
+        public init (startTime: String, endTime: String, queryType: String, searchValue: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.queryType = queryType
@@ -72,5 +56,21 @@ extension Cfw {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 告警中心概况
+    ///
+    /// DescribeTLogInfo告警中心概况
+    @inlinable
+    public func describeTLogInfo(_ input: DescribeTLogInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTLogInfoResponse > {
+        self.client.execute(action: "DescribeTLogInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 告警中心概况
+    ///
+    /// DescribeTLogInfo告警中心概况
+    @inlinable
+    public func describeTLogInfo(_ input: DescribeTLogInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTLogInfoResponse {
+        try await self.client.execute(action: "DescribeTLogInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

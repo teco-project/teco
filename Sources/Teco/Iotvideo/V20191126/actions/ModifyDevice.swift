@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 修改设备信息
-    @inlinable
-    public func modifyDevice(_ input: ModifyDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceResponse > {
-        self.client.execute(action: "ModifyDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改设备信息
-    @inlinable
-    public func modifyDevice(_ input: ModifyDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceResponse {
-        try await self.client.execute(action: "ModifyDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDevice请求参数结构体
     public struct ModifyDeviceRequest: TCRequestModel {
         /// 设备ID
@@ -59,5 +47,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改设备信息
+    @inlinable
+    public func modifyDevice(_ input: ModifyDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDeviceResponse > {
+        self.client.execute(action: "ModifyDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改设备信息
+    @inlinable
+    public func modifyDevice(_ input: ModifyDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceResponse {
+        try await self.client.execute(action: "ModifyDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

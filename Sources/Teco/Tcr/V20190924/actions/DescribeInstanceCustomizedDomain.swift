@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询实例自定义域名列表
-    @inlinable
-    public func describeInstanceCustomizedDomain(_ input: DescribeInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceCustomizedDomainResponse > {
-        self.client.execute(action: "DescribeInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例自定义域名列表
-    @inlinable
-    public func describeInstanceCustomizedDomain(_ input: DescribeInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceCustomizedDomainResponse {
-        try await self.client.execute(action: "DescribeInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceCustomizedDomain请求参数结构体
     public struct DescribeInstanceCustomizedDomainRequest: TCRequestModel {
         /// 主实例iD
@@ -38,7 +26,7 @@ extension Tcr {
         /// 分页Offset
         public let offset: Int64?
         
-        public init (registryId: String, limit: Int64?, offset: Int64?) {
+        public init (registryId: String, limit: Int64? = nil, offset: Int64? = nil) {
             self.registryId = registryId
             self.limit = limit
             self.offset = offset
@@ -68,5 +56,17 @@ extension Tcr {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例自定义域名列表
+    @inlinable
+    public func describeInstanceCustomizedDomain(_ input: DescribeInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceCustomizedDomainResponse > {
+        self.client.execute(action: "DescribeInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例自定义域名列表
+    @inlinable
+    public func describeInstanceCustomizedDomain(_ input: DescribeInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceCustomizedDomainResponse {
+        try await self.client.execute(action: "DescribeInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

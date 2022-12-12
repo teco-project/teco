@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gme {
-    /// 更新送检房间号
-    ///
-    /// 更新自定义送检房间号
-    @inlinable
-    public func updateScanRooms(_ input: UpdateScanRoomsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateScanRoomsResponse > {
-        self.client.execute(action: "UpdateScanRooms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新送检房间号
-    ///
-    /// 更新自定义送检房间号
-    @inlinable
-    public func updateScanRooms(_ input: UpdateScanRoomsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanRoomsResponse {
-        try await self.client.execute(action: "UpdateScanRooms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateScanRooms请求参数结构体
     public struct UpdateScanRoomsRequest: TCRequestModel {
         /// 应用ID
@@ -42,7 +26,7 @@ extension Gme {
         /// 符合此正则表达式规则的房间号将被送检。示例：["^6.*"] 表示所有以6开头的房间号将被送检
         public let roomIdRegex: [String]?
         
-        public init (bizId: UInt64, roomIdString: String?, roomIdRegex: [String]?) {
+        public init (bizId: UInt64, roomIdString: String? = nil, roomIdRegex: [String]? = nil) {
             self.bizId = bizId
             self.roomIdString = roomIdString
             self.roomIdRegex = roomIdRegex
@@ -68,5 +52,21 @@ extension Gme {
             case errorCode = "ErrorCode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新送检房间号
+    ///
+    /// 更新自定义送检房间号
+    @inlinable
+    public func updateScanRooms(_ input: UpdateScanRoomsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateScanRoomsResponse > {
+        self.client.execute(action: "UpdateScanRooms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新送检房间号
+    ///
+    /// 更新自定义送检房间号
+    @inlinable
+    public func updateScanRooms(_ input: UpdateScanRoomsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanRoomsResponse {
+        try await self.client.execute(action: "UpdateScanRooms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

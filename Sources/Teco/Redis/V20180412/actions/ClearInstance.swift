@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 清空Redis实例
-    ///
-    /// 清空Redis实例的实例数据。
-    @inlinable
-    public func clearInstance(_ input: ClearInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClearInstanceResponse > {
-        self.client.execute(action: "ClearInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 清空Redis实例
-    ///
-    /// 清空Redis实例的实例数据。
-    @inlinable
-    public func clearInstance(_ input: ClearInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearInstanceResponse {
-        try await self.client.execute(action: "ClearInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ClearInstance请求参数结构体
     public struct ClearInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -39,7 +23,7 @@ extension Redis {
         /// redis的实例密码（免密实例不需要传密码，非免密实例必传）
         public let password: String?
         
-        public init (instanceId: String, password: String?) {
+        public init (instanceId: String, password: String? = nil) {
             self.instanceId = instanceId
             self.password = password
         }
@@ -62,5 +46,21 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 清空Redis实例
+    ///
+    /// 清空Redis实例的实例数据。
+    @inlinable
+    public func clearInstance(_ input: ClearInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClearInstanceResponse > {
+        self.client.execute(action: "ClearInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 清空Redis实例
+    ///
+    /// 清空Redis实例的实例数据。
+    @inlinable
+    public func clearInstance(_ input: ClearInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearInstanceResponse {
+        try await self.client.execute(action: "ClearInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

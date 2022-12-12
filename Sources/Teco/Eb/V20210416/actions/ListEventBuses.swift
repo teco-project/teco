@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 获取事件集列表
-    @inlinable
-    public func listEventBuses(_ input: ListEventBusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListEventBusesResponse > {
-        self.client.execute(action: "ListEventBuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取事件集列表
-    @inlinable
-    public func listEventBuses(_ input: ListEventBusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEventBusesResponse {
-        try await self.client.execute(action: "ListEventBuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListEventBuses请求参数结构体
     public struct ListEventBusesRequest: TCRequestModel {
         /// 根据哪个字段进行返回结果排序,支持以下字段：AddTime（创建时间）, ModTime（修改时间）
@@ -44,7 +32,7 @@ extension Eb {
         /// 分页偏移量，默认为0。
         public let offset: Int64?
         
-        public init (orderBy: String?, limit: Int64?, order: String?, filters: [Filter]?, offset: Int64?) {
+        public init (orderBy: String? = nil, limit: Int64? = nil, order: String? = nil, filters: [Filter]? = nil, offset: Int64? = nil) {
             self.orderBy = orderBy
             self.limit = limit
             self.order = order
@@ -77,5 +65,17 @@ extension Eb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取事件集列表
+    @inlinable
+    public func listEventBuses(_ input: ListEventBusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListEventBusesResponse > {
+        self.client.execute(action: "ListEventBuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取事件集列表
+    @inlinable
+    public func listEventBuses(_ input: ListEventBusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEventBusesResponse {
+        try await self.client.execute(action: "ListEventBuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

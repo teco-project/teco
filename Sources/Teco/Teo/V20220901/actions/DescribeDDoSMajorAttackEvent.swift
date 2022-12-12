@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询DDoS主攻击事件列表
-    ///
-    /// 本接口（DescribeDDoSMajorAttackEvent）用于查询DDoS主攻击事件列表。
-    @inlinable
-    public func describeDDoSMajorAttackEvent(_ input: DescribeDDoSMajorAttackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSMajorAttackEventResponse > {
-        self.client.execute(action: "DescribeDDoSMajorAttackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询DDoS主攻击事件列表
-    ///
-    /// 本接口（DescribeDDoSMajorAttackEvent）用于查询DDoS主攻击事件列表。
-    @inlinable
-    public func describeDDoSMajorAttackEvent(_ input: DescribeDDoSMajorAttackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSMajorAttackEventResponse {
-        try await self.client.execute(action: "DescribeDDoSMajorAttackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSMajorAttackEvent请求参数结构体
     public struct DescribeDDoSMajorAttackEventRequest: TCRequestModel {
         /// 开始时间。
@@ -66,7 +50,7 @@ extension Teo {
         /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
         public let area: String?
         
-        public init (startTime: Date, endTime: Date, zoneIds: [String]?, policyIds: [Int64]?, protocolType: String?, limit: Int64?, offset: Int64?, area: String?) {
+        public init (startTime: Date, endTime: Date, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, protocolType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.zoneIds = zoneIds
@@ -106,5 +90,21 @@ extension Teo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询DDoS主攻击事件列表
+    ///
+    /// 本接口（DescribeDDoSMajorAttackEvent）用于查询DDoS主攻击事件列表。
+    @inlinable
+    public func describeDDoSMajorAttackEvent(_ input: DescribeDDoSMajorAttackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSMajorAttackEventResponse > {
+        self.client.execute(action: "DescribeDDoSMajorAttackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询DDoS主攻击事件列表
+    ///
+    /// 本接口（DescribeDDoSMajorAttackEvent）用于查询DDoS主攻击事件列表。
+    @inlinable
+    public func describeDDoSMajorAttackEvent(_ input: DescribeDDoSMajorAttackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSMajorAttackEventResponse {
+        try await self.client.execute(action: "DescribeDDoSMajorAttackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

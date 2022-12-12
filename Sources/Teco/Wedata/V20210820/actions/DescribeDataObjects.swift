@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询规则组数据对象列表
-    @inlinable
-    public func describeDataObjects(_ input: DescribeDataObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataObjectsResponse > {
-        self.client.execute(action: "DescribeDataObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询规则组数据对象列表
-    @inlinable
-    public func describeDataObjects(_ input: DescribeDataObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataObjectsResponse {
-        try await self.client.execute(action: "DescribeDataObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDataObjects请求参数结构体
     public struct DescribeDataObjectsRequest: TCRequestModel {
         /// 数据来源ID
@@ -41,7 +29,7 @@ extension Wedata {
         /// 项目ID
         public let projectId: String?
         
-        public init (datasourceId: String?, tableId: String?, ruleGroupId: UInt64?, projectId: String?) {
+        public init (datasourceId: String? = nil, tableId: String? = nil, ruleGroupId: UInt64? = nil, projectId: String? = nil) {
             self.datasourceId = datasourceId
             self.tableId = tableId
             self.ruleGroupId = ruleGroupId
@@ -69,5 +57,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询规则组数据对象列表
+    @inlinable
+    public func describeDataObjects(_ input: DescribeDataObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDataObjectsResponse > {
+        self.client.execute(action: "DescribeDataObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询规则组数据对象列表
+    @inlinable
+    public func describeDataObjects(_ input: DescribeDataObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataObjectsResponse {
+        try await self.client.execute(action: "DescribeDataObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

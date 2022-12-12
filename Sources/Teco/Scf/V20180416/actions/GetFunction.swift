@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Scf {
-    /// 获取函数详细信息
-    ///
-    /// 该接口获取某个函数的详细信息，包括名称、代码、处理方法、关联触发器和超时时间等字段。
-    @inlinable
-    public func getFunction(_ input: GetFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFunctionResponse > {
-        self.client.execute(action: "GetFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取函数详细信息
-    ///
-    /// 该接口获取某个函数的详细信息，包括名称、代码、处理方法、关联触发器和超时时间等字段。
-    @inlinable
-    public func getFunction(_ input: GetFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionResponse {
-        try await self.client.execute(action: "GetFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetFunction请求参数结构体
     public struct GetFunctionRequest: TCRequestModel {
         /// 需要获取详情的函数名称
@@ -49,7 +33,7 @@ extension Scf {
         /// 是否显示代码, TRUE表示显示代码，FALSE表示不显示代码,大于1M的入口文件不会显示
         public let showCode: String?
         
-        public init (functionName: String, qualifier: String?, namespace: String?, showCode: String?) {
+        public init (functionName: String, qualifier: String? = nil, namespace: String? = nil, showCode: String? = nil) {
             self.functionName = functionName
             self.qualifier = qualifier
             self.namespace = namespace
@@ -169,7 +153,7 @@ extension Scf {
         
         /// 公网访问配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let publicNetConfig: PublicNetConfigOut
+        public let publicNetConfig: PublicNetConfigOut?
         
         /// 是否启用Ons
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -177,7 +161,7 @@ extension Scf {
         
         /// 文件系统配置参数，用于云函数挂载文件系统
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cfsConfig: CfsConfig
+        public let cfsConfig: CfsConfig?
         
         /// 函数的计费状态，状态值[参考此处](https://cloud.tencent.com/document/product/583/47175#.E5.87.BD.E6.95.B0.E8.AE.A1.E8.B4.B9.E7.8A.B6.E6.80.81)
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -208,7 +192,7 @@ extension Scf {
         
         /// HTTP函数配置ProtocolType访问协议，当前协议配置的参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let protocolParams: ProtocolParams
+        public let protocolParams: ProtocolParams?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -260,5 +244,21 @@ extension Scf {
             case protocolParams = "ProtocolParams"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取函数详细信息
+    ///
+    /// 该接口获取某个函数的详细信息，包括名称、代码、处理方法、关联触发器和超时时间等字段。
+    @inlinable
+    public func getFunction(_ input: GetFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFunctionResponse > {
+        self.client.execute(action: "GetFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数详细信息
+    ///
+    /// 该接口获取某个函数的详细信息，包括名称、代码、处理方法、关联触发器和超时时间等字段。
+    @inlinable
+    public func getFunction(_ input: GetFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionResponse {
+        try await self.client.execute(action: "GetFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

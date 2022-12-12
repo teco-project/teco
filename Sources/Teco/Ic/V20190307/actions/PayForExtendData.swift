@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ic {
-    /// 购买套外流量包
-    @inlinable
-    public func payForExtendData(_ input: PayForExtendDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PayForExtendDataResponse > {
-        self.client.execute(action: "PayForExtendData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 购买套外流量包
-    @inlinable
-    public func payForExtendData(_ input: PayForExtendDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayForExtendDataResponse {
-        try await self.client.execute(action: "PayForExtendData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PayForExtendData请求参数结构体
     public struct PayForExtendDataRequest: TCRequestModel {
         /// 卡片ICCID
@@ -63,5 +51,17 @@ extension Ic {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 购买套外流量包
+    @inlinable
+    public func payForExtendData(_ input: PayForExtendDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PayForExtendDataResponse > {
+        self.client.execute(action: "PayForExtendData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 购买套外流量包
+    @inlinable
+    public func payForExtendData(_ input: PayForExtendDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayForExtendDataResponse {
+        try await self.client.execute(action: "PayForExtendData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

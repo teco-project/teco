@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 安全管家列表
-    ///
-    /// 专家服务-安全管家列表
-    @inlinable
-    public func describeExpertServiceList(_ input: DescribeExpertServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExpertServiceListResponse > {
-        self.client.execute(action: "DescribeExpertServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全管家列表
-    ///
-    /// 专家服务-安全管家列表
-    @inlinable
-    public func describeExpertServiceList(_ input: DescribeExpertServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExpertServiceListResponse {
-        try await self.client.execute(action: "DescribeExpertServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExpertServiceList请求参数结构体
     public struct DescribeExpertServiceListRequest: TCRequestModel {
         /// 过滤条件。
@@ -50,7 +34,7 @@ extension Cwp {
         /// 排序字段 StartTime，EndTime
         public let by: String?
         
-        public init (filters: [Filters]?, limit: UInt64?, offset: UInt64?, order: String?, by: String?) {
+        public init (filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -83,5 +67,21 @@ extension Cwp {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全管家列表
+    ///
+    /// 专家服务-安全管家列表
+    @inlinable
+    public func describeExpertServiceList(_ input: DescribeExpertServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExpertServiceListResponse > {
+        self.client.execute(action: "DescribeExpertServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全管家列表
+    ///
+    /// 专家服务-安全管家列表
+    @inlinable
+    public func describeExpertServiceList(_ input: DescribeExpertServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExpertServiceListResponse {
+        try await self.client.execute(action: "DescribeExpertServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

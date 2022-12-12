@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 更改审计服务配置
-    ///
-    /// 本接口(ModifyAuditConfig)用于修改云数据库审计策略的服务配置，包括审计日志保存时长等。
-    @inlinable
-    public func modifyAuditConfig(_ input: ModifyAuditConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAuditConfigResponse > {
-        self.client.execute(action: "ModifyAuditConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更改审计服务配置
-    ///
-    /// 本接口(ModifyAuditConfig)用于修改云数据库审计策略的服务配置，包括审计日志保存时长等。
-    @inlinable
-    public func modifyAuditConfig(_ input: ModifyAuditConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditConfigResponse {
-        try await self.client.execute(action: "ModifyAuditConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAuditConfig请求参数结构体
     public struct ModifyAuditConfigRequest: TCRequestModel {
         /// 实例 ID。
@@ -59,7 +43,7 @@ extension Cdb {
         /// 1825 - 五年；
         public let highLogExpireDay: Int64?
         
-        public init (instanceId: String, logExpireDay: Int64?, closeAudit: Bool?, highLogExpireDay: Int64?) {
+        public init (instanceId: String, logExpireDay: Int64? = nil, closeAudit: Bool? = nil, highLogExpireDay: Int64? = nil) {
             self.instanceId = instanceId
             self.logExpireDay = logExpireDay
             self.closeAudit = closeAudit
@@ -82,5 +66,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更改审计服务配置
+    ///
+    /// 本接口(ModifyAuditConfig)用于修改云数据库审计策略的服务配置，包括审计日志保存时长等。
+    @inlinable
+    public func modifyAuditConfig(_ input: ModifyAuditConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAuditConfigResponse > {
+        self.client.execute(action: "ModifyAuditConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更改审计服务配置
+    ///
+    /// 本接口(ModifyAuditConfig)用于修改云数据库审计策略的服务配置，包括审计日志保存时长等。
+    @inlinable
+    public func modifyAuditConfig(_ input: ModifyAuditConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditConfigResponse {
+        try await self.client.execute(action: "ModifyAuditConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

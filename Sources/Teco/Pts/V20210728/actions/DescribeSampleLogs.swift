@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Pts {
-    /// 查询采样日志
-    @inlinable
-    public func describeSampleLogs(_ input: DescribeSampleLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSampleLogsResponse > {
-        self.client.execute(action: "DescribeSampleLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询采样日志
-    @inlinable
-    public func describeSampleLogs(_ input: DescribeSampleLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleLogsResponse {
-        try await self.client.execute(action: "DescribeSampleLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSampleLogs请求参数结构体
     public struct DescribeSampleLogsRequest: TCRequestModel {
         /// 测试项目ID
@@ -65,7 +53,7 @@ extension Pts {
         public let limit: Int64?
         
         /// 采样日志响应时间范围
-        public let reactionTimeRange: ReactionTimeRange
+        public let reactionTimeRange: ReactionTimeRange?
         
         /// 采样请求状态码
         public let status: String?
@@ -79,7 +67,7 @@ extension Pts {
         /// 采样服务API
         public let service: String?
         
-        public init (projectId: String, scenarioId: String, jobId: String, context: String?, from: Date?, to: Date?, severityText: String?, instanceRegion: String?, instance: String?, logType: String?, limit: Int64?, reactionTimeRange: ReactionTimeRange, status: String?, result: String?, method: String?, service: String?) {
+        public init (projectId: String, scenarioId: String, jobId: String, context: String? = nil, from: Date? = nil, to: Date? = nil, severityText: String? = nil, instanceRegion: String? = nil, instance: String? = nil, logType: String? = nil, limit: Int64? = nil, reactionTimeRange: ReactionTimeRange? = nil, status: String? = nil, result: String? = nil, method: String? = nil, service: String? = nil) {
             self.projectId = projectId
             self.scenarioId = scenarioId
             self.jobId = jobId
@@ -140,5 +128,17 @@ extension Pts {
             case sampleLogs = "SampleLogs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询采样日志
+    @inlinable
+    public func describeSampleLogs(_ input: DescribeSampleLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSampleLogsResponse > {
+        self.client.execute(action: "DescribeSampleLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询采样日志
+    @inlinable
+    public func describeSampleLogs(_ input: DescribeSampleLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleLogsResponse {
+        try await self.client.execute(action: "DescribeSampleLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

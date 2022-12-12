@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 接收上传到控制台的固件版本信息
-    ///
-    /// 本接口（UploadOtaVersion）接收上传到控制台的固件版本信息。
-    @inlinable
-    public func uploadOtaVersion(_ input: UploadOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadOtaVersionResponse > {
-        self.client.execute(action: "UploadOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 接收上传到控制台的固件版本信息
-    ///
-    /// 本接口（UploadOtaVersion）接收上传到控制台的固件版本信息。
-    @inlinable
-    public func uploadOtaVersion(_ input: UploadOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOtaVersionResponse {
-        try await self.client.execute(action: "UploadOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadOtaVersion请求参数结构体
     public struct UploadOtaVersionRequest: TCRequestModel {
         /// 产品ID
@@ -55,9 +39,9 @@ extension Iotvideo {
         public let remark: String?
         
         /// 版本发布的描述信息，需要国际化，可以为空
-        public let contents: Contents
+        public let contents: Contents?
         
-        public init (productId: String, otaVersion: String, versionUrl: String, fileSize: UInt64?, md5: String?, `operator`: String?, remark: String?, contents: Contents) {
+        public init (productId: String, otaVersion: String, versionUrl: String, fileSize: UInt64? = nil, md5: String? = nil, `operator`: String? = nil, remark: String? = nil, contents: Contents? = nil) {
             self.productId = productId
             self.otaVersion = otaVersion
             self.versionUrl = versionUrl
@@ -88,5 +72,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 接收上传到控制台的固件版本信息
+    ///
+    /// 本接口（UploadOtaVersion）接收上传到控制台的固件版本信息。
+    @inlinable
+    public func uploadOtaVersion(_ input: UploadOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadOtaVersionResponse > {
+        self.client.execute(action: "UploadOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 接收上传到控制台的固件版本信息
+    ///
+    /// 本接口（UploadOtaVersion）接收上传到控制台的固件版本信息。
+    @inlinable
+    public func uploadOtaVersion(_ input: UploadOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOtaVersionResponse {
+        try await self.client.execute(action: "UploadOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Drm {
-    /// 设置fairplay方案所需私钥
-    ///
-    /// 本接口用来设置fairplay方案所需的私钥、私钥密钥、ask等信息。
-    /// 如需使用fairplay方案，请务必先设置私钥。
-    @inlinable
-    public func modifyFairPlayPem(_ input: ModifyFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFairPlayPemResponse > {
-        self.client.execute(action: "ModifyFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置fairplay方案所需私钥
-    ///
-    /// 本接口用来设置fairplay方案所需的私钥、私钥密钥、ask等信息。
-    /// 如需使用fairplay方案，请务必先设置私钥。
-    @inlinable
-    public func modifyFairPlayPem(_ input: ModifyFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFairPlayPemResponse {
-        try await self.client.execute(action: "ModifyFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyFairPlayPem请求参数结构体
     public struct ModifyFairPlayPemRequest: TCRequestModel {
         /// 加密后的fairplay方案申请时使用的私钥。
@@ -58,7 +40,7 @@ extension Drm {
         /// 该值可以不传，后台将自动分配一个优先级。
         public let priority: UInt64?
         
-        public init (pem: String, ask: String, fairPlayPemId: UInt64, pemDecryptKey: String?, bailorId: UInt64?, priority: UInt64?) {
+        public init (pem: String, ask: String, fairPlayPemId: UInt64, pemDecryptKey: String? = nil, bailorId: UInt64? = nil, priority: UInt64? = nil) {
             self.pem = pem
             self.ask = ask
             self.fairPlayPemId = fairPlayPemId
@@ -95,5 +77,23 @@ extension Drm {
             case priority = "Priority"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置fairplay方案所需私钥
+    ///
+    /// 本接口用来设置fairplay方案所需的私钥、私钥密钥、ask等信息。
+    /// 如需使用fairplay方案，请务必先设置私钥。
+    @inlinable
+    public func modifyFairPlayPem(_ input: ModifyFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyFairPlayPemResponse > {
+        self.client.execute(action: "ModifyFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置fairplay方案所需私钥
+    ///
+    /// 本接口用来设置fairplay方案所需的私钥、私钥密钥、ask等信息。
+    /// 如需使用fairplay方案，请务必先设置私钥。
+    @inlinable
+    public func modifyFairPlayPem(_ input: ModifyFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFairPlayPemResponse {
+        try await self.client.execute(action: "ModifyFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

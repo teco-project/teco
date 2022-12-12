@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 获取用户互联网公网地址统计信息
-    ///
-    /// 获取用户互联网公网地址分配统计信息
-    @inlinable
-    public func describeInternetAddressStatistics(_ input: DescribeInternetAddressStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternetAddressStatisticsResponse > {
-        self.client.execute(action: "DescribeInternetAddressStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户互联网公网地址统计信息
-    ///
-    /// 获取用户互联网公网地址分配统计信息
-    @inlinable
-    public func describeInternetAddressStatistics(_ input: DescribeInternetAddressStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressStatisticsResponse {
-        try await self.client.execute(action: "DescribeInternetAddressStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInternetAddressStatistics请求参数结构体
     public struct DescribeInternetAddressStatisticsRequest: TCRequestModel {
         public init () {
@@ -54,5 +38,21 @@ extension Dc {
             case internetAddressStatistics = "InternetAddressStatistics"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户互联网公网地址统计信息
+    ///
+    /// 获取用户互联网公网地址分配统计信息
+    @inlinable
+    public func describeInternetAddressStatistics(_ input: DescribeInternetAddressStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInternetAddressStatisticsResponse > {
+        self.client.execute(action: "DescribeInternetAddressStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户互联网公网地址统计信息
+    ///
+    /// 获取用户互联网公网地址分配统计信息
+    @inlinable
+    public func describeInternetAddressStatistics(_ input: DescribeInternetAddressStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressStatisticsResponse {
+        try await self.client.execute(action: "DescribeInternetAddressStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

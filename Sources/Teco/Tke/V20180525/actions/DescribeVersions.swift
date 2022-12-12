@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 集群版本信息
-    ///
-    /// 获取集群版本信息
-    @inlinable
-    public func describeVersions(_ input: DescribeVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVersionsResponse > {
-        self.client.execute(action: "DescribeVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 集群版本信息
-    ///
-    /// 获取集群版本信息
-    @inlinable
-    public func describeVersions(_ input: DescribeVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionsResponse {
-        try await self.client.execute(action: "DescribeVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVersions请求参数结构体
     public struct DescribeVersionsRequest: TCRequestModel {
         public init () {
@@ -55,5 +39,21 @@ extension Tke {
             case versionInstanceSet = "VersionInstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 集群版本信息
+    ///
+    /// 获取集群版本信息
+    @inlinable
+    public func describeVersions(_ input: DescribeVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVersionsResponse > {
+        self.client.execute(action: "DescribeVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 集群版本信息
+    ///
+    /// 获取集群版本信息
+    @inlinable
+    public func describeVersions(_ input: DescribeVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionsResponse {
+        try await self.client.execute(action: "DescribeVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

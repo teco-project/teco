@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 删除安全组
-    ///
-    /// 只有当前账号下的安全组允许被删除。
-    /// 安全组实例ID如果在其他安全组的规则中被引用，则无法直接删除。这种情况下，需要先进行规则修改，再删除安全组。
-    /// 删除的安全组无法再找回，请谨慎调用。
-    @inlinable
-    public func deleteSecurityGroup(_ input: DeleteSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityGroupResponse > {
-        self.client.execute(action: "DeleteSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除安全组
-    ///
-    /// 只有当前账号下的安全组允许被删除。
-    /// 安全组实例ID如果在其他安全组的规则中被引用，则无法直接删除。这种情况下，需要先进行规则修改，再删除安全组。
-    /// 删除的安全组无法再找回，请谨慎调用。
-    @inlinable
-    public func deleteSecurityGroup(_ input: DeleteSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityGroupResponse {
-        try await self.client.execute(action: "DeleteSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSecurityGroup请求参数结构体
     public struct DeleteSecurityGroupRequest: TCRequestModel {
         /// 安全组实例ID，例如esg-33ocnj9n，可通过DescribeSecurityGroups获取。
@@ -57,5 +37,25 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除安全组
+    ///
+    /// 只有当前账号下的安全组允许被删除。
+    /// 安全组实例ID如果在其他安全组的规则中被引用，则无法直接删除。这种情况下，需要先进行规则修改，再删除安全组。
+    /// 删除的安全组无法再找回，请谨慎调用。
+    @inlinable
+    public func deleteSecurityGroup(_ input: DeleteSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityGroupResponse > {
+        self.client.execute(action: "DeleteSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除安全组
+    ///
+    /// 只有当前账号下的安全组允许被删除。
+    /// 安全组实例ID如果在其他安全组的规则中被引用，则无法直接删除。这种情况下，需要先进行规则修改，再删除安全组。
+    /// 删除的安全组无法再找回，请谨慎调用。
+    @inlinable
+    public func deleteSecurityGroup(_ input: DeleteSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityGroupResponse {
+        try await self.client.execute(action: "DeleteSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

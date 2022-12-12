@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫-重新提现接口
-    ///
-    /// 正常结算提现失败情况下，发起重新提现的请求接口
-    @inlinable
-    public func applyReWithdrawal(_ input: ApplyReWithdrawalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyReWithdrawalResponse > {
-        self.client.execute(action: "ApplyReWithdrawal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫-重新提现接口
-    ///
-    /// 正常结算提现失败情况下，发起重新提现的请求接口
-    @inlinable
-    public func applyReWithdrawal(_ input: ApplyReWithdrawalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyReWithdrawalResponse {
-        try await self.client.execute(action: "ApplyReWithdrawal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyReWithdrawal请求参数结构体
     public struct ApplyReWithdrawalRequest: TCRequestModel {
         /// 聚鑫业务类型
@@ -55,7 +39,7 @@ extension Cpdp {
         /// 缺省: release
         public let midasEnvironment: String?
         
-        public init (businessType: UInt64, midasSecretId: String, midasSignature: String, body: WithdrawBill, midasAppId: String, midasEnvironment: String?) {
+        public init (businessType: UInt64, midasSecretId: String, midasSignature: String, body: WithdrawBill, midasAppId: String, midasEnvironment: String? = nil) {
             self.businessType = businessType
             self.midasSecretId = midasSecretId
             self.midasSignature = midasSignature
@@ -86,5 +70,21 @@ extension Cpdp {
             case withdrawOrderId = "WithdrawOrderId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫-重新提现接口
+    ///
+    /// 正常结算提现失败情况下，发起重新提现的请求接口
+    @inlinable
+    public func applyReWithdrawal(_ input: ApplyReWithdrawalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyReWithdrawalResponse > {
+        self.client.execute(action: "ApplyReWithdrawal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-重新提现接口
+    ///
+    /// 正常结算提现失败情况下，发起重新提现的请求接口
+    @inlinable
+    public func applyReWithdrawal(_ input: ApplyReWithdrawalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyReWithdrawalResponse {
+        try await self.client.execute(action: "ApplyReWithdrawal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tat {
-    /// 修改命令
-    ///
-    /// 此接口用于修改命令。
-    @inlinable
-    public func modifyCommand(_ input: ModifyCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCommandResponse > {
-        self.client.execute(action: "ModifyCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改命令
-    ///
-    /// 此接口用于修改命令。
-    @inlinable
-    public func modifyCommand(_ input: ModifyCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCommandResponse {
-        try await self.client.execute(action: "ModifyCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCommand请求参数结构体
     public struct ModifyCommandRequest: TCRequestModel {
         /// 命令ID。
@@ -75,7 +59,7 @@ extension Tat {
         /// 3. 不允许连续 / ；不允许以 / 开头；不允许以..作为文件夹名称。
         public let outputCOSKeyPrefix: String?
         
-        public init (commandId: String, commandName: String?, description: String?, content: String?, commandType: String?, workingDirectory: String?, timeout: UInt64?, defaultParameters: String?, username: String?, outputCOSBucketUrl: String?, outputCOSKeyPrefix: String?) {
+        public init (commandId: String, commandName: String? = nil, description: String? = nil, content: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, defaultParameters: String? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil) {
             self.commandId = commandId
             self.commandName = commandName
             self.description = description
@@ -112,5 +96,21 @@ extension Tat {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改命令
+    ///
+    /// 此接口用于修改命令。
+    @inlinable
+    public func modifyCommand(_ input: ModifyCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCommandResponse > {
+        self.client.execute(action: "ModifyCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改命令
+    ///
+    /// 此接口用于修改命令。
+    @inlinable
+    public func modifyCommand(_ input: ModifyCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCommandResponse {
+        try await self.client.execute(action: "ModifyCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

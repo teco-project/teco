@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcm {
-    /// 解关联集群
-    @inlinable
-    public func unlinkCluster(_ input: UnlinkClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnlinkClusterResponse > {
-        self.client.execute(action: "UnlinkCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解关联集群
-    @inlinable
-    public func unlinkCluster(_ input: UnlinkClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlinkClusterResponse {
-        try await self.client.execute(action: "UnlinkCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnlinkCluster请求参数结构体
     public struct UnlinkClusterRequest: TCRequestModel {
         /// 网格Id
@@ -35,7 +23,7 @@ extension Tcm {
         /// 取消关联的集群Id
         public let clusterId: String?
         
-        public init (meshId: String, clusterId: String?) {
+        public init (meshId: String, clusterId: String? = nil) {
             self.meshId = meshId
             self.clusterId = clusterId
         }
@@ -54,5 +42,17 @@ extension Tcm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解关联集群
+    @inlinable
+    public func unlinkCluster(_ input: UnlinkClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnlinkClusterResponse > {
+        self.client.execute(action: "UnlinkCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解关联集群
+    @inlinable
+    public func unlinkCluster(_ input: UnlinkClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlinkClusterResponse {
+        try await self.client.execute(action: "UnlinkCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

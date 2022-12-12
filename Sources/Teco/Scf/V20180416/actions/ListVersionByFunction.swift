@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 查询函数版本
-    ///
-    /// 该接口根据传入的参数查询函数的版本。
-    @inlinable
-    public func listVersionByFunction(_ input: ListVersionByFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListVersionByFunctionResponse > {
-        self.client.execute(action: "ListVersionByFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询函数版本
-    ///
-    /// 该接口根据传入的参数查询函数的版本。
-    @inlinable
-    public func listVersionByFunction(_ input: ListVersionByFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListVersionByFunctionResponse {
-        try await self.client.execute(action: "ListVersionByFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListVersionByFunction请求参数结构体
     public struct ListVersionByFunctionRequest: TCRequestModel {
         /// 函数名
@@ -51,7 +35,7 @@ extension Scf {
         /// 根据哪个字段进行返回结果排序,支持以下字段：AddTime, ModTime
         public let orderBy: String?
         
-        public init (functionName: String, namespace: String?, offset: UInt64?, limit: UInt64?, order: String?, orderBy: String?) {
+        public init (functionName: String, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderBy: String? = nil) {
             self.functionName = functionName
             self.namespace = namespace
             self.offset = offset
@@ -92,5 +76,21 @@ extension Scf {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询函数版本
+    ///
+    /// 该接口根据传入的参数查询函数的版本。
+    @inlinable
+    public func listVersionByFunction(_ input: ListVersionByFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListVersionByFunctionResponse > {
+        self.client.execute(action: "ListVersionByFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询函数版本
+    ///
+    /// 该接口根据传入的参数查询函数的版本。
+    @inlinable
+    public func listVersionByFunction(_ input: ListVersionByFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListVersionByFunctionResponse {
+        try await self.client.execute(action: "ListVersionByFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

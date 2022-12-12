@@ -109,7 +109,7 @@ extension Cii {
         /// 报告上传的图片内容数组，图片内容采用base64编码，需按顺序排列
         public let imageList: [String]?
         
-        public init (fileList: [String], customerId: String?, customerName: String?, imageList: [String]?) {
+        public init (fileList: [String], customerId: String? = nil, customerName: String? = nil, imageList: [String]? = nil) {
             self.fileList = fileList
             self.customerId = customerId
             self.customerName = customerName
@@ -144,7 +144,7 @@ extension Cii {
         /// 报告年份
         public let year: String?
         
-        public init (taskType: String, fileList: [String], customerId: String?, customerName: String?, imageList: [String]?, year: String?) {
+        public init (taskType: String, fileList: [String], customerId: String? = nil, customerName: String? = nil, imageList: [String]? = nil, year: String? = nil) {
             self.taskType = taskType
             self.fileList = fileList
             self.customerId = customerId

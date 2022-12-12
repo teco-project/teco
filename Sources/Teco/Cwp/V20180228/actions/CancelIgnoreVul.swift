@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 取消漏洞忽略
-    @inlinable
-    public func cancelIgnoreVul(_ input: CancelIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelIgnoreVulResponse > {
-        self.client.execute(action: "CancelIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消漏洞忽略
-    @inlinable
-    public func cancelIgnoreVul(_ input: CancelIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelIgnoreVulResponse {
-        try await self.client.execute(action: "CancelIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelIgnoreVul请求参数结构体
     public struct CancelIgnoreVulRequest: TCRequestModel {
         /// 漏洞事件id串，多个用英文逗号分隔
@@ -49,5 +37,17 @@ extension Cwp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消漏洞忽略
+    @inlinable
+    public func cancelIgnoreVul(_ input: CancelIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelIgnoreVulResponse > {
+        self.client.execute(action: "CancelIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消漏洞忽略
+    @inlinable
+    public func cancelIgnoreVul(_ input: CancelIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelIgnoreVulResponse {
+        try await self.client.execute(action: "CancelIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

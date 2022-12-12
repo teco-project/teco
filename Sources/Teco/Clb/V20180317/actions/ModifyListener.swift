@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 修改负载均衡监听器属性
-    ///
-    /// ModifyListener接口用来修改负载均衡监听器的属性，包括监听器名称、健康检查参数、证书信息、转发策略等。本接口不支持传统型负载均衡。
-    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
-    public func modifyListener(_ input: ModifyListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyListenerResponse > {
-        self.client.execute(action: "ModifyListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改负载均衡监听器属性
-    ///
-    /// ModifyListener接口用来修改负载均衡监听器的属性，包括监听器名称、健康检查参数、证书信息、转发策略等。本接口不支持传统型负载均衡。
-    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
-    public func modifyListener(_ input: ModifyListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyListenerResponse {
-        try await self.client.execute(action: "ModifyListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyListener请求参数结构体
     public struct ModifyListenerRequest: TCRequestModel {
         /// 负载均衡实例ID。
@@ -48,10 +30,10 @@ extension Clb {
         public let sessionExpireTime: Int64?
         
         /// 健康检查相关参数，此参数仅适用于TCP/UDP/TCP_SSL监听器。
-        public let healthCheck: HealthCheck
+        public let healthCheck: HealthCheck?
         
         /// 证书相关信息，此参数仅适用于HTTPS/TCP_SSL监听器；此参数和MultiCertInfo不能同时传入。
-        public let certificate: CertificateInput
+        public let certificate: CertificateInput?
         
         /// 监听器转发的方式。可选值：WRR、LEAST_CONN
         /// 分别表示按权重轮询、最小连接数， 默认为 WRR。
@@ -73,9 +55,9 @@ extension Clb {
         public let sessionType: String?
         
         /// 证书信息，支持同时传入不同算法类型的多本服务端证书；此参数仅适用于未开启SNI特性的HTTPS监听器。此参数和Certificate不能同时传入。
-        public let multiCertInfo: MultiCertInfo
+        public let multiCertInfo: MultiCertInfo?
         
-        public init (loadBalancerId: String, listenerId: String, listenerName: String?, sessionExpireTime: Int64?, healthCheck: HealthCheck, certificate: CertificateInput, scheduler: String?, sniSwitch: Int64?, targetType: String?, keepaliveEnable: Int64?, deregisterTargetRst: Bool?, sessionType: String?, multiCertInfo: MultiCertInfo) {
+        public init (loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, keepaliveEnable: Int64? = nil, deregisterTargetRst: Bool? = nil, sessionType: String? = nil, multiCertInfo: MultiCertInfo? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.listenerName = listenerName
@@ -116,5 +98,23 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改负载均衡监听器属性
+    ///
+    /// ModifyListener接口用来修改负载均衡监听器的属性，包括监听器名称、健康检查参数、证书信息、转发策略等。本接口不支持传统型负载均衡。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func modifyListener(_ input: ModifyListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyListenerResponse > {
+        self.client.execute(action: "ModifyListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改负载均衡监听器属性
+    ///
+    /// ModifyListener接口用来修改负载均衡监听器的属性，包括监听器名称、健康检查参数、证书信息、转发策略等。本接口不支持传统型负载均衡。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func modifyListener(_ input: ModifyListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyListenerResponse {
+        try await self.client.execute(action: "ModifyListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

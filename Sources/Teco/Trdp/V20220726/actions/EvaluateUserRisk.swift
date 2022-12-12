@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trdp {
-    /// 用户风险质量接口
-    @inlinable
-    public func evaluateUserRisk(_ input: EvaluateUserRiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EvaluateUserRiskResponse > {
-        self.client.execute(action: "EvaluateUserRisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 用户风险质量接口
-    @inlinable
-    public func evaluateUserRisk(_ input: EvaluateUserRiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EvaluateUserRiskResponse {
-        try await self.client.execute(action: "EvaluateUserRisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EvaluateUserRisk请求参数结构体
     public struct EvaluateUserRiskRequest: TCRequestModel {
         /// 账号信息
@@ -39,7 +27,7 @@ extension Trdp {
         public let modelId: String
         
         /// 设备指纹信息
-        public let deviceFingerprint: DeviceFingerprintInfo
+        public let deviceFingerprint: DeviceFingerprintInfo?
         
         /// 场景Code，不传默认活动防刷；
         /// e_activity_antirush；活动防刷场景
@@ -48,12 +36,12 @@ extension Trdp {
         public let sceneCode: String?
         
         /// 设备详情
-        public let deviceDetail: DeviceDetailInfo
+        public let deviceDetail: DeviceDetailInfo?
         
         /// 营销信息
-        public let marketing: MarketingInfo
+        public let marketing: MarketingInfo?
         
-        public init (account: AccountInfo, user: UserInfo, modelId: String, deviceFingerprint: DeviceFingerprintInfo, sceneCode: String?, deviceDetail: DeviceDetailInfo, marketing: MarketingInfo) {
+        public init (account: AccountInfo, user: UserInfo, modelId: String, deviceFingerprint: DeviceFingerprintInfo? = nil, sceneCode: String? = nil, deviceDetail: DeviceDetailInfo? = nil, marketing: MarketingInfo? = nil) {
             self.account = account
             self.user = user
             self.modelId = modelId
@@ -78,7 +66,7 @@ extension Trdp {
     public struct EvaluateUserRiskResponse: TCResponseModel {
         /// 评估结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let evaluationResult: EvaluationResult
+        public let evaluationResult: EvaluationResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -87,5 +75,17 @@ extension Trdp {
             case evaluationResult = "EvaluationResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 用户风险质量接口
+    @inlinable
+    public func evaluateUserRisk(_ input: EvaluateUserRiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EvaluateUserRiskResponse > {
+        self.client.execute(action: "EvaluateUserRisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 用户风险质量接口
+    @inlinable
+    public func evaluateUserRisk(_ input: EvaluateUserRiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EvaluateUserRiskResponse {
+        try await self.client.execute(action: "EvaluateUserRisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

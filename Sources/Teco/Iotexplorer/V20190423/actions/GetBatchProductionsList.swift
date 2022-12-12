@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 列出量产数据列表
-    ///
-    /// 列出量产数据列表信息。
-    @inlinable
-    public func getBatchProductionsList(_ input: GetBatchProductionsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBatchProductionsListResponse > {
-        self.client.execute(action: "GetBatchProductionsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出量产数据列表
-    ///
-    /// 列出量产数据列表信息。
-    @inlinable
-    public func getBatchProductionsList(_ input: GetBatchProductionsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBatchProductionsListResponse {
-        try await self.client.execute(action: "GetBatchProductionsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetBatchProductionsList请求参数结构体
     public struct GetBatchProductionsListRequest: TCRequestModel {
         /// 项目ID
@@ -42,7 +26,7 @@ extension Iotexplorer {
         /// 返回数量限制
         public let limit: Int64?
         
-        public init (projectId: String, offset: Int64?, limit: Int64?) {
+        public init (projectId: String, offset: Int64? = nil, limit: Int64? = nil) {
             self.projectId = projectId
             self.offset = offset
             self.limit = limit
@@ -72,5 +56,21 @@ extension Iotexplorer {
             case totalCnt = "TotalCnt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出量产数据列表
+    ///
+    /// 列出量产数据列表信息。
+    @inlinable
+    public func getBatchProductionsList(_ input: GetBatchProductionsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBatchProductionsListResponse > {
+        self.client.execute(action: "GetBatchProductionsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出量产数据列表
+    ///
+    /// 列出量产数据列表信息。
+    @inlinable
+    public func getBatchProductionsList(_ input: GetBatchProductionsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBatchProductionsListResponse {
+        try await self.client.execute(action: "GetBatchProductionsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

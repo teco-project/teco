@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 获取白盒解密密钥
-    @inlinable
-    public func describeWhiteBoxDecryptKey(_ input: DescribeWhiteBoxDecryptKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxDecryptKeyResponse > {
-        self.client.execute(action: "DescribeWhiteBoxDecryptKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取白盒解密密钥
-    @inlinable
-    public func describeWhiteBoxDecryptKey(_ input: DescribeWhiteBoxDecryptKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxDecryptKeyResponse {
-        try await self.client.execute(action: "DescribeWhiteBoxDecryptKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWhiteBoxDecryptKey请求参数结构体
     public struct DescribeWhiteBoxDecryptKeyRequest: TCRequestModel {
         /// 白盒密钥的全局唯一标识符
@@ -53,5 +41,17 @@ extension Kms {
             case decryptKey = "DecryptKey"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取白盒解密密钥
+    @inlinable
+    public func describeWhiteBoxDecryptKey(_ input: DescribeWhiteBoxDecryptKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWhiteBoxDecryptKeyResponse > {
+        self.client.execute(action: "DescribeWhiteBoxDecryptKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取白盒解密密钥
+    @inlinable
+    public func describeWhiteBoxDecryptKey(_ input: DescribeWhiteBoxDecryptKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxDecryptKeyResponse {
+        try await self.client.execute(action: "DescribeWhiteBoxDecryptKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

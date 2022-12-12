@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 批量补录任务【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 任务批量补录，调度状态任务才可以补录；
-    @inlinable
-    public func makeUpTasksNew(_ input: MakeUpTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MakeUpTasksNewResponse > {
-        self.client.execute(action: "MakeUpTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量补录任务【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 任务批量补录，调度状态任务才可以补录；
-    @inlinable
-    public func makeUpTasksNew(_ input: MakeUpTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpTasksNewResponse {
-        try await self.client.execute(action: "MakeUpTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// MakeUpTasksNew请求参数结构体
     public struct MakeUpTasksNewRequest: TCRequestModel {
         /// 补录的当前任务的taskId数组
@@ -53,7 +35,7 @@ extension Wedata {
         /// true: 检查父任务实例状态；false: 不检查父任务实例状态
         public let checkParent: Bool?
         
-        public init (taskIdList: [String], startTime: String, endTime: String, makeUpType: UInt64, projectId: String, checkParent: Bool?) {
+        public init (taskIdList: [String], startTime: String, endTime: String, makeUpType: UInt64, projectId: String, checkParent: Bool? = nil) {
             self.taskIdList = taskIdList
             self.startTime = startTime
             self.endTime = endTime
@@ -84,5 +66,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量补录任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 任务批量补录，调度状态任务才可以补录；
+    @inlinable
+    public func makeUpTasksNew(_ input: MakeUpTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MakeUpTasksNewResponse > {
+        self.client.execute(action: "MakeUpTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量补录任务【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 任务批量补录，调度状态任务才可以补录；
+    @inlinable
+    public func makeUpTasksNew(_ input: MakeUpTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpTasksNewResponse {
+        try await self.client.execute(action: "MakeUpTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

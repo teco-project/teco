@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 获取固件存储请求地址
-    ///
-    /// 本接口（GetCOSURL）用于获取固件COS存储的上传请求URL地址
-    @inlinable
-    public func getCOSURL(_ input: GetCOSURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCOSURLResponse > {
-        self.client.execute(action: "GetCOSURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取固件存储请求地址
-    ///
-    /// 本接口（GetCOSURL）用于获取固件COS存储的上传请求URL地址
-    @inlinable
-    public func getCOSURL(_ input: GetCOSURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCOSURLResponse {
-        try await self.client.execute(action: "GetCOSURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetCOSURL请求参数结构体
     public struct GetCOSURLRequest: TCRequestModel {
         /// 产品ID
@@ -42,7 +26,7 @@ extension Iotexplorer {
         /// 文件大小
         public let fileSize: UInt64?
         
-        public init (productID: String, firmwareVersion: String, fileSize: UInt64?) {
+        public init (productID: String, firmwareVersion: String, fileSize: UInt64? = nil) {
             self.productID = productID
             self.firmwareVersion = firmwareVersion
             self.fileSize = fileSize
@@ -67,5 +51,21 @@ extension Iotexplorer {
             case url = "Url"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取固件存储请求地址
+    ///
+    /// 本接口（GetCOSURL）用于获取固件COS存储的上传请求URL地址
+    @inlinable
+    public func getCOSURL(_ input: GetCOSURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCOSURLResponse > {
+        self.client.execute(action: "GetCOSURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取固件存储请求地址
+    ///
+    /// 本接口（GetCOSURL）用于获取固件COS存储的上传请求URL地址
+    @inlinable
+    public func getCOSURL(_ input: GetCOSURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCOSURLResponse {
+        try await self.client.execute(action: "GetCOSURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 查询实例列表
-    ///
-    /// 本接口(DescribeInstances)用于查询实例列表。
-    @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
-        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例列表
-    ///
-    /// 本接口(DescribeInstances)用于查询实例列表。
-    @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstances请求参数结构体
     public struct DescribeInstancesRequest: TCRequestModel {
         /// 返回数量，默认为 20，最大值为 100
@@ -68,7 +52,7 @@ extension Cynosdb {
         /// 实例id列表
         public let instanceIds: [String]?
         
-        public init (limit: Int64?, offset: Int64?, orderBy: String?, orderByType: String?, filters: [QueryFilter]?, dbType: String?, status: String?, instanceIds: [String]?) {
+        public init (limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, dbType: String? = nil, status: String? = nil, instanceIds: [String]? = nil) {
             self.limit = limit
             self.offset = offset
             self.orderBy = orderBy
@@ -107,5 +91,21 @@ extension Cynosdb {
             case instanceSet = "InstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例列表
+    ///
+    /// 本接口(DescribeInstances)用于查询实例列表。
+    @inlinable
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例列表
+    ///
+    /// 本接口(DescribeInstances)用于查询实例列表。
+    @inlinable
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

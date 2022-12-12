@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Hcm {
-    /// 速算题目批改接口
-    ///
-    /// 速算题目批改接口，根据用户上传的图片或图片的URL识别图片中的数学算式，进而给出算式的正确性评估。
-    @inlinable
-    public func evaluation(_ input: EvaluationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EvaluationResponse > {
-        self.client.execute(action: "Evaluation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 速算题目批改接口
-    ///
-    /// 速算题目批改接口，根据用户上传的图片或图片的URL识别图片中的数学算式，进而给出算式的正确性评估。
-    @inlinable
-    public func evaluation(_ input: EvaluationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EvaluationResponse {
-        try await self.client.execute(action: "Evaluation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// Evaluation请求参数结构体
     public struct EvaluationRequest: TCRequestModel {
         /// 图片唯一标识，一张图片一个SessionId；
@@ -72,7 +56,7 @@ extension Hcm {
         /// 用于选择是否拒绝模糊题 目。打开则丢弃模糊题目， 不进行后续的判题返回结 果。
         public let rejectVagueArithmetic: Bool?
         
-        public init (sessionId: String, image: String?, hcmAppid: String?, url: String?, supportHorizontalImage: Bool?, rejectNonArithmeticImage: Bool?, isAsync: Int64?, enableDispRelatedVertical: Bool?, enableDispMidresult: Bool?, enablePdfRecognize: Bool?, pdfPageIndex: Int64?, laTex: Int64?, rejectVagueArithmetic: Bool?) {
+        public init (sessionId: String, image: String? = nil, hcmAppid: String? = nil, url: String? = nil, supportHorizontalImage: Bool? = nil, rejectNonArithmeticImage: Bool? = nil, isAsync: Int64? = nil, enableDispRelatedVertical: Bool? = nil, enableDispMidresult: Bool? = nil, enablePdfRecognize: Bool? = nil, pdfPageIndex: Int64? = nil, laTex: Int64? = nil, rejectVagueArithmetic: Bool? = nil) {
             self.sessionId = sessionId
             self.image = image
             self.hcmAppid = hcmAppid
@@ -126,5 +110,21 @@ extension Hcm {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 速算题目批改接口
+    ///
+    /// 速算题目批改接口，根据用户上传的图片或图片的URL识别图片中的数学算式，进而给出算式的正确性评估。
+    @inlinable
+    public func evaluation(_ input: EvaluationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EvaluationResponse > {
+        self.client.execute(action: "Evaluation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 速算题目批改接口
+    ///
+    /// 速算题目批改接口，根据用户上传的图片或图片的URL识别图片中的数学算式，进而给出算式的正确性评估。
+    @inlinable
+    public func evaluation(_ input: EvaluationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EvaluationResponse {
+        try await self.client.execute(action: "Evaluation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

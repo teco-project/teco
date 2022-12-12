@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 运营端获节点健康状态
-    @inlinable
-    public func describeNodeHealthOpt(_ input: DescribeNodeHealthOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodeHealthOptResponse > {
-        self.client.execute(action: "DescribeNodeHealthOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运营端获节点健康状态
-    @inlinable
-    public func describeNodeHealthOpt(_ input: DescribeNodeHealthOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeHealthOptResponse {
-        try await self.client.execute(action: "DescribeNodeHealthOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNodeHealthOpt请求参数结构体
     public struct DescribeNodeHealthOptRequest: TCRequestModel {
         /// 节点实例ID
@@ -57,5 +45,17 @@ extension Tdmq {
             case latestHealthCheckTime = "LatestHealthCheckTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运营端获节点健康状态
+    @inlinable
+    public func describeNodeHealthOpt(_ input: DescribeNodeHealthOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodeHealthOptResponse > {
+        self.client.execute(action: "DescribeNodeHealthOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运营端获节点健康状态
+    @inlinable
+    public func describeNodeHealthOpt(_ input: DescribeNodeHealthOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeHealthOptResponse {
+        try await self.client.execute(action: "DescribeNodeHealthOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

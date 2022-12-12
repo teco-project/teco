@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询升级实例价格
-    ///
-    /// 本接口（InquiryPriceUpgradeDBInstance）用于查询升级实例的价格。
-    @inlinable
-    public func inquiryPriceUpgradeDBInstance(_ input: InquiryPriceUpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceUpgradeDBInstanceResponse > {
-        self.client.execute(action: "InquiryPriceUpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询升级实例价格
-    ///
-    /// 本接口（InquiryPriceUpgradeDBInstance）用于查询升级实例的价格。
-    @inlinable
-    public func inquiryPriceUpgradeDBInstance(_ input: InquiryPriceUpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeDBInstanceResponse {
-        try await self.client.execute(action: "InquiryPriceUpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceUpgradeDBInstance请求参数结构体
     public struct InquiryPriceUpgradeDBInstanceRequest: TCRequestModel {
         /// 实例ID，形如mssql-njj2mtpl
@@ -45,7 +29,7 @@ extension Sqlserver {
         /// 实例升级后的CPU核心数，其值不能比当前实例CPU小
         public let cpu: Int64?
         
-        public init (instanceId: String, memory: Int64, storage: Int64, cpu: Int64?) {
+        public init (instanceId: String, memory: Int64, storage: Int64, cpu: Int64? = nil) {
             self.instanceId = instanceId
             self.memory = memory
             self.storage = storage
@@ -76,5 +60,21 @@ extension Sqlserver {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询升级实例价格
+    ///
+    /// 本接口（InquiryPriceUpgradeDBInstance）用于查询升级实例的价格。
+    @inlinable
+    public func inquiryPriceUpgradeDBInstance(_ input: InquiryPriceUpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceUpgradeDBInstanceResponse > {
+        self.client.execute(action: "InquiryPriceUpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询升级实例价格
+    ///
+    /// 本接口（InquiryPriceUpgradeDBInstance）用于查询升级实例的价格。
+    @inlinable
+    public func inquiryPriceUpgradeDBInstance(_ input: InquiryPriceUpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeDBInstanceResponse {
+        try await self.client.execute(action: "InquiryPriceUpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

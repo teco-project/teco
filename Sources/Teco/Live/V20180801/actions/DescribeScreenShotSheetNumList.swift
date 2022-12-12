@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询截图张数
-    ///
-    /// 接口用来查询直播增值业务--截图的张数
-    @inlinable
-    public func describeScreenShotSheetNumList(_ input: DescribeScreenShotSheetNumListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScreenShotSheetNumListResponse > {
-        self.client.execute(action: "DescribeScreenShotSheetNumList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询截图张数
-    ///
-    /// 接口用来查询直播增值业务--截图的张数
-    @inlinable
-    public func describeScreenShotSheetNumList(_ input: DescribeScreenShotSheetNumListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScreenShotSheetNumListResponse {
-        try await self.client.execute(action: "DescribeScreenShotSheetNumList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScreenShotSheetNumList请求参数结构体
     public struct DescribeScreenShotSheetNumListRequest: TCRequestModel {
         /// utc起始时间，格式为yyyy-mm-ddTHH:MM:SSZ
@@ -48,7 +32,7 @@ extension Live {
         /// 数据维度，数据延迟1个半小时，可选值包括：1、Minute（5分钟粒度，最大支持查询时间范围是31天），2、Day（天粒度，默认值，按照北京时间做跨天处理，最大支持查询时间范围是186天当天）。
         public let granularity: String?
         
-        public init (startTime: String, endTime: String, zone: String?, pushDomains: [String]?, granularity: String?) {
+        public init (startTime: String, endTime: String, zone: String? = nil, pushDomains: [String]? = nil, granularity: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.zone = zone
@@ -77,5 +61,21 @@ extension Live {
             case dataInfoList = "DataInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询截图张数
+    ///
+    /// 接口用来查询直播增值业务--截图的张数
+    @inlinable
+    public func describeScreenShotSheetNumList(_ input: DescribeScreenShotSheetNumListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScreenShotSheetNumListResponse > {
+        self.client.execute(action: "DescribeScreenShotSheetNumList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询截图张数
+    ///
+    /// 接口用来查询直播增值业务--截图的张数
+    @inlinable
+    public func describeScreenShotSheetNumList(_ input: DescribeScreenShotSheetNumListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScreenShotSheetNumListResponse {
+        try await self.client.execute(action: "DescribeScreenShotSheetNumList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

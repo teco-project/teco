@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 查询负载均衡实例列表
-    ///
-    /// 查询一个地域的负载均衡实例列表。
-    @inlinable
-    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancersResponse > {
-        self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询负载均衡实例列表
-    ///
-    /// 查询一个地域的负载均衡实例列表。
-    @inlinable
-    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {
-        try await self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLoadBalancers请求参数结构体
     public struct DescribeLoadBalancersRequest: TCRequestModel {
         /// 负载均衡实例ID。实例ID数量上限为20个。
@@ -101,7 +85,7 @@ extension Clb {
         /// <li> sla-type - String - 是否必填：否 - （过滤条件）按照 CLB 的性能容量型规格过滤，包括"clb.c2.medium","clb.c3.small","clb.c3.medium","clb.c4.small","clb.c4.medium","clb.c4.large","clb.c4.xlarge"。</li>
         public let filters: [Filter]?
         
-        public init (loadBalancerIds: [String]?, loadBalancerType: String?, forward: Int64?, loadBalancerName: String?, domain: String?, loadBalancerVips: [String]?, backendPublicIps: [String]?, backendPrivateIps: [String]?, offset: Int64?, limit: Int64?, orderBy: String?, orderType: Int64?, searchKey: String?, projectId: Int64?, withRs: Int64?, vpcId: String?, securityGroup: String?, masterZone: String?, filters: [Filter]?) {
+        public init (loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, forward: Int64? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, backendPublicIps: [String]? = nil, backendPrivateIps: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderType: Int64? = nil, searchKey: String? = nil, projectId: Int64? = nil, withRs: Int64? = nil, vpcId: String? = nil, securityGroup: String? = nil, masterZone: String? = nil, filters: [Filter]? = nil) {
             self.loadBalancerIds = loadBalancerIds
             self.loadBalancerType = loadBalancerType
             self.forward = forward
@@ -162,5 +146,21 @@ extension Clb {
             case loadBalancerSet = "LoadBalancerSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询负载均衡实例列表
+    ///
+    /// 查询一个地域的负载均衡实例列表。
+    @inlinable
+    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancersResponse > {
+        self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询负载均衡实例列表
+    ///
+    /// 查询一个地域的负载均衡实例列表。
+    @inlinable
+    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {
+        try await self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

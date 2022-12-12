@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 批量预注册节点
-    @inlinable
-    public func createEdgeNodeBatch(_ input: CreateEdgeNodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeNodeBatchResponse > {
-        self.client.execute(action: "CreateEdgeNodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量预注册节点
-    @inlinable
-    public func createEdgeNodeBatch(_ input: CreateEdgeNodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeBatchResponse {
-        try await self.client.execute(action: "CreateEdgeNodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEdgeNodeBatch请求参数结构体
     public struct CreateEdgeNodeBatchRequest: TCRequestModel {
         /// 边缘单元ID
@@ -54,5 +42,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量预注册节点
+    @inlinable
+    public func createEdgeNodeBatch(_ input: CreateEdgeNodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEdgeNodeBatchResponse > {
+        self.client.execute(action: "CreateEdgeNodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量预注册节点
+    @inlinable
+    public func createEdgeNodeBatch(_ input: CreateEdgeNodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeBatchResponse {
+        try await self.client.execute(action: "CreateEdgeNodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

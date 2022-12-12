@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 创建节点池
-    @inlinable
-    public func createClusterNodePool(_ input: CreateClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterNodePoolResponse > {
-        self.client.execute(action: "CreateClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建节点池
-    @inlinable
-    public func createClusterNodePool(_ input: CreateClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterNodePoolResponse {
-        try await self.client.execute(action: "CreateClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateClusterNodePool请求参数结构体
     public struct CreateClusterNodePoolRequest: TCRequestModel {
         /// cluster id
@@ -71,7 +59,7 @@ extension Tke {
         /// 删除保护开关
         public let deletionProtection: Bool?
         
-        public init (clusterId: String, autoScalingGroupPara: String, launchConfigurePara: String, instanceAdvancedSettings: InstanceAdvancedSettings, enableAutoscale: Bool, name: String?, labels: [Label]?, taints: [Taint]?, containerRuntime: String?, runtimeVersion: String?, nodePoolOs: String?, osCustomizeType: String?, tags: [Tag]?, deletionProtection: Bool?) {
+        public init (clusterId: String, autoScalingGroupPara: String, launchConfigurePara: String, instanceAdvancedSettings: InstanceAdvancedSettings, enableAutoscale: Bool, name: String? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, containerRuntime: String? = nil, runtimeVersion: String? = nil, nodePoolOs: String? = nil, osCustomizeType: String? = nil, tags: [Tag]? = nil, deletionProtection: Bool? = nil) {
             self.clusterId = clusterId
             self.autoScalingGroupPara = autoScalingGroupPara
             self.launchConfigurePara = launchConfigurePara
@@ -118,5 +106,17 @@ extension Tke {
             case nodePoolId = "NodePoolId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建节点池
+    @inlinable
+    public func createClusterNodePool(_ input: CreateClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterNodePoolResponse > {
+        self.client.execute(action: "CreateClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建节点池
+    @inlinable
+    public func createClusterNodePool(_ input: CreateClusterNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterNodePoolResponse {
+        try await self.client.execute(action: "CreateClusterNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

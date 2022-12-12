@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询实例访问的耗时分布
-    @inlinable
-    public func describeInstanceMonitorTookDist(_ input: DescribeInstanceMonitorTookDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorTookDistResponse > {
-        self.client.execute(action: "DescribeInstanceMonitorTookDist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例访问的耗时分布
-    @inlinable
-    public func describeInstanceMonitorTookDist(_ input: DescribeInstanceMonitorTookDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTookDistResponse {
-        try await self.client.execute(action: "DescribeInstanceMonitorTookDist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceMonitorTookDist请求参数结构体
     public struct DescribeInstanceMonitorTookDistRequest: TCRequestModel {
         /// 实例Id
@@ -63,5 +51,17 @@ extension Redis {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例访问的耗时分布
+    @inlinable
+    public func describeInstanceMonitorTookDist(_ input: DescribeInstanceMonitorTookDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorTookDistResponse > {
+        self.client.execute(action: "DescribeInstanceMonitorTookDist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例访问的耗时分布
+    @inlinable
+    public func describeInstanceMonitorTookDist(_ input: DescribeInstanceMonitorTookDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTookDistResponse {
+        try await self.client.execute(action: "DescribeInstanceMonitorTookDist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

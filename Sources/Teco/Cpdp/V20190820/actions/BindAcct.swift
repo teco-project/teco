@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫-绑定提现银行卡
-    ///
-    /// 商户绑定提现银行卡，每个商户只能绑定一张提现银行卡
-    @inlinable
-    public func bindAcct(_ input: BindAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindAcctResponse > {
-        self.client.execute(action: "BindAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫-绑定提现银行卡
-    ///
-    /// 商户绑定提现银行卡，每个商户只能绑定一张提现银行卡
-    @inlinable
-    public func bindAcct(_ input: BindAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAcctResponse {
-        try await self.client.execute(action: "BindAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindAcct请求参数结构体
     public struct BindAcctRequest: TCRequestModel {
         /// 聚鑫分配的支付主MidasAppId
@@ -101,9 +85,9 @@ extension Cpdp {
         public let midasEnvironment: String?
         
         /// 经办人信息
-        public let agencyClientInfo: AgencyClientInfo
+        public let agencyClientInfo: AgencyClientInfo?
         
-        public init (midasAppId: String, subAppId: String, bindType: Int64, settleAcctNo: String, settleAcctName: String, settleAcctType: Int64, idType: String, idCode: String, acctBranchName: String, midasSecretId: String, midasSignature: String, mobile: String?, cnapsBranchId: String?, eiconBankBranchId: String?, encryptType: String?, midasEnvironment: String?, agencyClientInfo: AgencyClientInfo) {
+        public init (midasAppId: String, subAppId: String, bindType: Int64, settleAcctNo: String, settleAcctName: String, settleAcctType: Int64, idType: String, idCode: String, acctBranchName: String, midasSecretId: String, midasSignature: String, mobile: String? = nil, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, encryptType: String? = nil, midasEnvironment: String? = nil, agencyClientInfo: AgencyClientInfo? = nil) {
             self.midasAppId = midasAppId
             self.subAppId = subAppId
             self.bindType = bindType
@@ -152,5 +136,21 @@ extension Cpdp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫-绑定提现银行卡
+    ///
+    /// 商户绑定提现银行卡，每个商户只能绑定一张提现银行卡
+    @inlinable
+    public func bindAcct(_ input: BindAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindAcctResponse > {
+        self.client.execute(action: "BindAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-绑定提现银行卡
+    ///
+    /// 商户绑定提现银行卡，每个商户只能绑定一张提现银行卡
+    @inlinable
+    public func bindAcct(_ input: BindAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAcctResponse {
+        try await self.client.execute(action: "BindAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Mna {
-    /// 更新设备
-    ///
-    /// 更新设备信息
-    @inlinable
-    public func updateDevice(_ input: UpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDeviceResponse > {
-        self.client.execute(action: "UpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新设备
-    ///
-    /// 更新设备信息
-    @inlinable
-    public func updateDevice(_ input: UpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceResponse {
-        try await self.client.execute(action: "UpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateDevice请求参数结构体
     public struct UpdateDeviceRequest: TCRequestModel {
         /// 设备id
@@ -45,9 +29,9 @@ extension Mna {
         public let remark: String?
         
         /// 更新设备网络信息
-        public let updateNetInfo: [Date]?
+        public let updateNetInfo: [UpdateNetInfo]?
         
-        public init (deviceId: String, deviceName: String?, remark: String?, updateNetInfo: [Date]?) {
+        public init (deviceId: String, deviceName: String? = nil, remark: String? = nil, updateNetInfo: [UpdateNetInfo]? = nil) {
             self.deviceId = deviceId
             self.deviceName = deviceName
             self.remark = remark
@@ -70,5 +54,21 @@ extension Mna {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新设备
+    ///
+    /// 更新设备信息
+    @inlinable
+    public func updateDevice(_ input: UpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDeviceResponse > {
+        self.client.execute(action: "UpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新设备
+    ///
+    /// 更新设备信息
+    @inlinable
+    public func updateDevice(_ input: UpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceResponse {
+        try await self.client.execute(action: "UpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

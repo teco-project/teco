@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询Redis实例列表
-    @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
-        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询Redis实例列表
-    @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstances请求参数结构体
     public struct DescribeInstancesRequest: TCRequestModel {
         /// 实例数量，参数默认值20，最大值为1000。
@@ -110,7 +98,7 @@ extension Redis {
         /// 可用区模式。<ul><li>singleaz：单可用区。</li><li>multiaz：多可用区。</li></ul>
         public let azMode: String?
         
-        public init (limit: UInt64?, offset: UInt64?, instanceId: String?, orderBy: String?, orderType: Int64?, vpcIds: [String]?, subnetIds: [String]?, searchKey: String?, projectIds: [Int64]?, instanceName: String?, uniqVpcIds: [String]?, uniqSubnetIds: [String]?, regionIds: [Int64]?, status: [Int64]?, typeVersion: Int64?, engineName: String?, autoRenew: [Int64]?, billingMode: String?, type: Int64?, searchKeys: [String]?, typeList: [Int64]?, monitorVersion: String?, instanceTags: [InstanceTagInfo]?, tagKeys: [String]?, productVersions: [String]?, instanceIds: [String]?, azMode: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, instanceId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, vpcIds: [String]? = nil, subnetIds: [String]? = nil, searchKey: String? = nil, projectIds: [Int64]? = nil, instanceName: String? = nil, uniqVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, regionIds: [Int64]? = nil, status: [Int64]? = nil, typeVersion: Int64? = nil, engineName: String? = nil, autoRenew: [Int64]? = nil, billingMode: String? = nil, type: Int64? = nil, searchKeys: [String]? = nil, typeList: [Int64]? = nil, monitorVersion: String? = nil, instanceTags: [InstanceTagInfo]? = nil, tagKeys: [String]? = nil, productVersions: [String]? = nil, instanceIds: [String]? = nil, azMode: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.instanceId = instanceId
@@ -187,5 +175,17 @@ extension Redis {
             case instanceSet = "InstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询Redis实例列表
+    @inlinable
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询Redis实例列表
+    @inlinable
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

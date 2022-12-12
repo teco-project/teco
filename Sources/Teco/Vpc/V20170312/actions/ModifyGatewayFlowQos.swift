@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 调整网关流控带宽
-    ///
-    /// 本接口（ModifyGatewayFlowQos）用于调整网关流控带宽。
-    @inlinable
-    public func modifyGatewayFlowQos(_ input: ModifyGatewayFlowQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGatewayFlowQosResponse > {
-        self.client.execute(action: "ModifyGatewayFlowQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调整网关流控带宽
-    ///
-    /// 本接口（ModifyGatewayFlowQos）用于调整网关流控带宽。
-    @inlinable
-    public func modifyGatewayFlowQos(_ input: ModifyGatewayFlowQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGatewayFlowQosResponse {
-        try await self.client.execute(action: "ModifyGatewayFlowQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyGatewayFlowQos请求参数结构体
     public struct ModifyGatewayFlowQosRequest: TCRequestModel {
         /// 网关实例ID，目前我们支持的网关实例类型有，
@@ -66,5 +50,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调整网关流控带宽
+    ///
+    /// 本接口（ModifyGatewayFlowQos）用于调整网关流控带宽。
+    @inlinable
+    public func modifyGatewayFlowQos(_ input: ModifyGatewayFlowQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGatewayFlowQosResponse > {
+        self.client.execute(action: "ModifyGatewayFlowQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调整网关流控带宽
+    ///
+    /// 本接口（ModifyGatewayFlowQos）用于调整网关流控带宽。
+    @inlinable
+    public func modifyGatewayFlowQos(_ input: ModifyGatewayFlowQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGatewayFlowQosResponse {
+        try await self.client.execute(action: "ModifyGatewayFlowQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

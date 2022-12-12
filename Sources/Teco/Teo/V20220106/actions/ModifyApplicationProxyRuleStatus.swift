@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改应用代理规则的状态
-    @inlinable
-    public func modifyApplicationProxyRuleStatus(_ input: ModifyApplicationProxyRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationProxyRuleStatusResponse > {
-        self.client.execute(action: "ModifyApplicationProxyRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改应用代理规则的状态
-    @inlinable
-    public func modifyApplicationProxyRuleStatus(_ input: ModifyApplicationProxyRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyRuleStatusResponse {
-        try await self.client.execute(action: "ModifyApplicationProxyRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyApplicationProxyRuleStatus请求参数结构体
     public struct ModifyApplicationProxyRuleStatusRequest: TCRequestModel {
         /// 站点ID
@@ -70,5 +58,17 @@ extension Teo {
             case ruleId = "RuleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改应用代理规则的状态
+    @inlinable
+    public func modifyApplicationProxyRuleStatus(_ input: ModifyApplicationProxyRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationProxyRuleStatusResponse > {
+        self.client.execute(action: "ModifyApplicationProxyRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用代理规则的状态
+    @inlinable
+    public func modifyApplicationProxyRuleStatus(_ input: ModifyApplicationProxyRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyRuleStatusResponse {
+        try await self.client.execute(action: "ModifyApplicationProxyRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

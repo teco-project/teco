@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 创建黑石EIP
-    ///
-    /// 创建黑石弹性公网IP
-    @inlinable
-    public func createEip(_ input: CreateEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEipResponse > {
-        self.client.execute(action: "CreateEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建黑石EIP
-    ///
-    /// 创建黑石弹性公网IP
-    @inlinable
-    public func createEip(_ input: CreateEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEipResponse {
-        try await self.client.execute(action: "CreateEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateEip请求参数结构体
     public struct CreateEipRequest: TCRequestModel {
         /// 申请数量，默认为1, 最大 20
@@ -54,7 +38,7 @@ extension Bmeip {
         /// 指定申请的IP列表
         public let ipList: [String]?
         
-        public init (goodsNum: UInt64?, payMode: String?, bandwidth: UInt64?, setType: String?, exclusive: UInt64?, vpcId: String?, ipList: [String]?) {
+        public init (goodsNum: UInt64? = nil, payMode: String? = nil, bandwidth: UInt64? = nil, setType: String? = nil, exclusive: UInt64? = nil, vpcId: String? = nil, ipList: [String]? = nil) {
             self.goodsNum = goodsNum
             self.payMode = payMode
             self.bandwidth = bandwidth
@@ -91,5 +75,21 @@ extension Bmeip {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建黑石EIP
+    ///
+    /// 创建黑石弹性公网IP
+    @inlinable
+    public func createEip(_ input: CreateEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateEipResponse > {
+        self.client.execute(action: "CreateEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建黑石EIP
+    ///
+    /// 创建黑石弹性公网IP
+    @inlinable
+    public func createEip(_ input: CreateEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEipResponse {
+        try await self.client.execute(action: "CreateEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

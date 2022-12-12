@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 开启网关流量监控
-    ///
-    /// 本接口（EnableGatewayFlowMonitor）用于开启网关流量监控。
-    @inlinable
-    public func enableGatewayFlowMonitor(_ input: EnableGatewayFlowMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableGatewayFlowMonitorResponse > {
-        self.client.execute(action: "EnableGatewayFlowMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启网关流量监控
-    ///
-    /// 本接口（EnableGatewayFlowMonitor）用于开启网关流量监控。
-    @inlinable
-    public func enableGatewayFlowMonitor(_ input: EnableGatewayFlowMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGatewayFlowMonitorResponse {
-        try await self.client.execute(action: "EnableGatewayFlowMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableGatewayFlowMonitor请求参数结构体
     public struct EnableGatewayFlowMonitorRequest: TCRequestModel {
         /// 网关实例ID，目前我们支持的网关实例有，
@@ -56,5 +40,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启网关流量监控
+    ///
+    /// 本接口（EnableGatewayFlowMonitor）用于开启网关流量监控。
+    @inlinable
+    public func enableGatewayFlowMonitor(_ input: EnableGatewayFlowMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableGatewayFlowMonitorResponse > {
+        self.client.execute(action: "EnableGatewayFlowMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启网关流量监控
+    ///
+    /// 本接口（EnableGatewayFlowMonitor）用于开启网关流量监控。
+    @inlinable
+    public func enableGatewayFlowMonitor(_ input: EnableGatewayFlowMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGatewayFlowMonitorResponse {
+        try await self.client.execute(action: "EnableGatewayFlowMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Npp {
-    /// 回拨呼叫请求
-    @inlinable
-    public func createCallBack(_ input: CreateCallBackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCallBackResponse > {
-        self.client.execute(action: "CreateCallBack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 回拨呼叫请求
-    @inlinable
-    public func createCallBack(_ input: CreateCallBackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCallBackResponse {
-        try await self.client.execute(action: "CreateCallBack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCallBack请求参数结构体
     public struct CreateCallBackRequest: TCRequestModel {
         /// 业务appid
@@ -70,12 +58,12 @@ extension Npp {
         public let lastCallId: String?
         
         /// 结构体，主叫呼叫预处理操作，根据不同操作确认是否呼通被叫。如需使用，本结构体需要与 keyList 结构体配合使用，此时这两个参数都为必填项
-        public let preCallerHandle: RreCallerHandle
+        public let preCallerHandle: RreCallerHandle?
         
         /// 订单 ID，最大长度不超过64个字节，对于一些有订单状态 App 相关应用使用（如达人帮接入 App 应用)，该字段只在帐单中带上，其它回调不附带该字段
         public let orderId: String?
         
-        public init (bizAppId: String, src: String, dst: String, srcDisplayNum: String?, dstDisplayNum: String?, record: String?, maxAllowTime: String?, statusFlag: String?, statusUrl: String?, hangupUrl: String?, recordUrl: String?, bizId: String?, lastCallId: String?, preCallerHandle: RreCallerHandle, orderId: String?) {
+        public init (bizAppId: String, src: String, dst: String, srcDisplayNum: String? = nil, dstDisplayNum: String? = nil, record: String? = nil, maxAllowTime: String? = nil, statusFlag: String? = nil, statusUrl: String? = nil, hangupUrl: String? = nil, recordUrl: String? = nil, bizId: String? = nil, lastCallId: String? = nil, preCallerHandle: RreCallerHandle? = nil, orderId: String? = nil) {
             self.bizAppId = bizAppId
             self.src = src
             self.dst = dst
@@ -144,5 +132,17 @@ extension Npp {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 回拨呼叫请求
+    @inlinable
+    public func createCallBack(_ input: CreateCallBackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCallBackResponse > {
+        self.client.execute(action: "CreateCallBack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 回拨呼叫请求
+    @inlinable
+    public func createCallBack(_ input: CreateCallBackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCallBackResponse {
+        try await self.client.execute(action: "CreateCallBack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

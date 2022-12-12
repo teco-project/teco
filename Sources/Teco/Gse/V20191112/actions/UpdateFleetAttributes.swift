@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 更新服务器舰队属性
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（UpdateFleetAttributes）用于更新服务器舰队属性。
-    @inlinable
-    public func updateFleetAttributes(_ input: UpdateFleetAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFleetAttributesResponse > {
-        self.client.execute(action: "UpdateFleetAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新服务器舰队属性
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（UpdateFleetAttributes）用于更新服务器舰队属性。
-    @inlinable
-    public func updateFleetAttributes(_ input: UpdateFleetAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFleetAttributesResponse {
-        try await self.client.execute(action: "UpdateFleetAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateFleetAttributes请求参数结构体
     public struct UpdateFleetAttributesRequest: TCRequestModel {
         /// 服务器舰队 Id
@@ -48,12 +30,12 @@ extension Gse {
         public let newGameSessionProtectionPolicy: String?
         
         /// 资源创建限制策略
-        public let resourceCreationLimitPolicy: ResourceCreationLimitPolicy
+        public let resourceCreationLimitPolicy: ResourceCreationLimitPolicy?
         
         /// 时限保护超时时间，默认60分钟，最小值5，最大值1440；当NewGameSessionProtectionPolicy为TimeLimitProtection时参数有效
         public let gameServerSessionProtectionTimeLimit: Int64?
         
-        public init (fleetId: String, description: String?, name: String?, newGameSessionProtectionPolicy: String?, resourceCreationLimitPolicy: ResourceCreationLimitPolicy, gameServerSessionProtectionTimeLimit: Int64?) {
+        public init (fleetId: String, description: String? = nil, name: String? = nil, newGameSessionProtectionPolicy: String? = nil, resourceCreationLimitPolicy: ResourceCreationLimitPolicy? = nil, gameServerSessionProtectionTimeLimit: Int64? = nil) {
             self.fleetId = fleetId
             self.description = description
             self.name = name
@@ -85,5 +67,23 @@ extension Gse {
             case fleetId = "FleetId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新服务器舰队属性
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（UpdateFleetAttributes）用于更新服务器舰队属性。
+    @inlinable
+    public func updateFleetAttributes(_ input: UpdateFleetAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFleetAttributesResponse > {
+        self.client.execute(action: "UpdateFleetAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新服务器舰队属性
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（UpdateFleetAttributes）用于更新服务器舰队属性。
+    @inlinable
+    public func updateFleetAttributes(_ input: UpdateFleetAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFleetAttributesResponse {
+        try await self.client.execute(action: "UpdateFleetAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

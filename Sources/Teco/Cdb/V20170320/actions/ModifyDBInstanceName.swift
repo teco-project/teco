@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 修改云数据库实例名
-    ///
-    /// 本接口(ModifyDBInstanceName)用于修改云数据库实例的名称。
-    @inlinable
-    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceNameResponse > {
-        self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改云数据库实例名
-    ///
-    /// 本接口(ModifyDBInstanceName)用于修改云数据库实例的名称。
-    @inlinable
-    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNameResponse {
-        try await self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBInstanceName请求参数结构体
     public struct ModifyDBInstanceNameRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
@@ -58,5 +42,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改云数据库实例名
+    ///
+    /// 本接口(ModifyDBInstanceName)用于修改云数据库实例的名称。
+    @inlinable
+    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceNameResponse > {
+        self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库实例名
+    ///
+    /// 本接口(ModifyDBInstanceName)用于修改云数据库实例的名称。
+    @inlinable
+    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNameResponse {
+        try await self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

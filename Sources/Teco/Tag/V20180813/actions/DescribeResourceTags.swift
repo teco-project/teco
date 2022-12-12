@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 查询资源关联标签
-    @inlinable
-    public func describeResourceTags(_ input: DescribeResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceTagsResponse > {
-        self.client.execute(action: "DescribeResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询资源关联标签
-    @inlinable
-    public func describeResourceTags(_ input: DescribeResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsResponse {
-        try await self.client.execute(action: "DescribeResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourceTags请求参数结构体
     public struct DescribeResourceTagsRequest: TCRequestModel {
         /// 创建者uin
@@ -53,7 +41,7 @@ extension Tag {
         /// 是否是cos的资源（0或者1），输入的ResourceId为cos资源时必填
         public let cosResourceId: UInt64?
         
-        public init (createUin: UInt64?, resourceRegion: String?, serviceType: String?, resourcePrefix: String?, resourceId: String?, offset: UInt64?, limit: UInt64?, cosResourceId: UInt64?) {
+        public init (createUin: UInt64? = nil, resourceRegion: String? = nil, serviceType: String? = nil, resourcePrefix: String? = nil, resourceId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, cosResourceId: UInt64? = nil) {
             self.createUin = createUin
             self.resourceRegion = resourceRegion
             self.serviceType = serviceType
@@ -101,5 +89,17 @@ extension Tag {
             case rows = "Rows"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询资源关联标签
+    @inlinable
+    public func describeResourceTags(_ input: DescribeResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceTagsResponse > {
+        self.client.execute(action: "DescribeResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资源关联标签
+    @inlinable
+    public func describeResourceTags(_ input: DescribeResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsResponse {
+        try await self.client.execute(action: "DescribeResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

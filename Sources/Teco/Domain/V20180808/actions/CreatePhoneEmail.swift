@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 验证手机邮箱
-    ///
-    /// 此接口用于创建有效的手机、邮箱
-    @inlinable
-    public func createPhoneEmail(_ input: CreatePhoneEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePhoneEmailResponse > {
-        self.client.execute(action: "CreatePhoneEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 验证手机邮箱
-    ///
-    /// 此接口用于创建有效的手机、邮箱
-    @inlinable
-    public func createPhoneEmail(_ input: CreatePhoneEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePhoneEmailResponse {
-        try await self.client.execute(action: "CreatePhoneEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePhoneEmail请求参数结构体
     public struct CreatePhoneEmailRequest: TCRequestModel {
         /// 手机号或者邮箱
@@ -63,5 +47,21 @@ extension Domain {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 验证手机邮箱
+    ///
+    /// 此接口用于创建有效的手机、邮箱
+    @inlinable
+    public func createPhoneEmail(_ input: CreatePhoneEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePhoneEmailResponse > {
+        self.client.execute(action: "CreatePhoneEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 验证手机邮箱
+    ///
+    /// 此接口用于创建有效的手机、邮箱
+    @inlinable
+    public func createPhoneEmail(_ input: CreatePhoneEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePhoneEmailResponse {
+        try await self.client.execute(action: "CreatePhoneEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

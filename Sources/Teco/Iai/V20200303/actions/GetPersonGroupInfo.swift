@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 获取人员归属信息
-    ///
-    /// 获取指定人员的信息，包括加入的人员库、描述内容等。
-    @inlinable
-    public func getPersonGroupInfo(_ input: GetPersonGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPersonGroupInfoResponse > {
-        self.client.execute(action: "GetPersonGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取人员归属信息
-    ///
-    /// 获取指定人员的信息，包括加入的人员库、描述内容等。
-    @inlinable
-    public func getPersonGroupInfo(_ input: GetPersonGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonGroupInfoResponse {
-        try await self.client.execute(action: "GetPersonGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetPersonGroupInfo请求参数结构体
     public struct GetPersonGroupInfoRequest: TCRequestModel {
         /// 人员ID，取值为创建人员接口中的PersonId
@@ -42,7 +26,7 @@ extension Iai {
         /// 返回数量，默认值为10，最大值为100
         public let limit: UInt64?
         
-        public init (personId: String, offset: UInt64?, limit: UInt64?) {
+        public init (personId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.personId = personId
             self.offset = offset
             self.limit = limit
@@ -77,5 +61,21 @@ extension Iai {
             case faceModelVersion = "FaceModelVersion"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取人员归属信息
+    ///
+    /// 获取指定人员的信息，包括加入的人员库、描述内容等。
+    @inlinable
+    public func getPersonGroupInfo(_ input: GetPersonGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPersonGroupInfoResponse > {
+        self.client.execute(action: "GetPersonGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人员归属信息
+    ///
+    /// 获取指定人员的信息，包括加入的人员库、描述内容等。
+    @inlinable
+    public func getPersonGroupInfo(_ input: GetPersonGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonGroupInfoResponse {
+        try await self.client.execute(action: "GetPersonGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

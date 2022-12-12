@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 数据质量触发维度分布统计接口
-    ///
-    /// 数据质量概览页面触发维度分布统计接口
-    @inlinable
-    public func describeRuleDimStat(_ input: DescribeRuleDimStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleDimStatResponse > {
-        self.client.execute(action: "DescribeRuleDimStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 数据质量触发维度分布统计接口
-    ///
-    /// 数据质量概览页面触发维度分布统计接口
-    @inlinable
-    public func describeRuleDimStat(_ input: DescribeRuleDimStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleDimStatResponse {
-        try await self.client.execute(action: "DescribeRuleDimStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRuleDimStat请求参数结构体
     public struct DescribeRuleDimStatRequest: TCRequestModel {
         /// Project Id
@@ -67,5 +51,21 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 数据质量触发维度分布统计接口
+    ///
+    /// 数据质量概览页面触发维度分布统计接口
+    @inlinable
+    public func describeRuleDimStat(_ input: DescribeRuleDimStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleDimStatResponse > {
+        self.client.execute(action: "DescribeRuleDimStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 数据质量触发维度分布统计接口
+    ///
+    /// 数据质量概览页面触发维度分布统计接口
+    @inlinable
+    public func describeRuleDimStat(_ input: DescribeRuleDimStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleDimStatResponse {
+        try await self.client.execute(action: "DescribeRuleDimStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

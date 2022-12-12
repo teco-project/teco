@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询云数据库的所有账号信息
-    ///
-    /// 本接口(DescribeAccounts)用于查询云数据库的所有账户信息。
-    @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
-        self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云数据库的所有账号信息
-    ///
-    /// 本接口(DescribeAccounts)用于查询云数据库的所有账户信息。
-    @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
-        try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccounts请求参数结构体
     public struct DescribeAccountsRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -45,7 +29,7 @@ extension Cdb {
         /// 匹配账号名的正则表达式，规则同 MySQL 官网。
         public let accountRegexp: String?
         
-        public init (instanceId: String, offset: Int64?, limit: Int64?, accountRegexp: String?) {
+        public init (instanceId: String, offset: Int64? = nil, limit: Int64? = nil, accountRegexp: String? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
@@ -80,5 +64,21 @@ extension Cdb {
             case maxUserConnections = "MaxUserConnections"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云数据库的所有账号信息
+    ///
+    /// 本接口(DescribeAccounts)用于查询云数据库的所有账户信息。
+    @inlinable
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountsResponse > {
+        self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云数据库的所有账号信息
+    ///
+    /// 本接口(DescribeAccounts)用于查询云数据库的所有账户信息。
+    @inlinable
+    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
+        try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

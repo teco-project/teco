@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 获取环境列表
-    ///
-    /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
-    @inlinable
-    public func describeEnvs(_ input: DescribeEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvsResponse > {
-        self.client.execute(action: "DescribeEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取环境列表
-    ///
-    /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
-    @inlinable
-    public func describeEnvs(_ input: DescribeEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvsResponse {
-        try await self.client.execute(action: "DescribeEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEnvs请求参数结构体
     public struct DescribeEnvsRequest: TCRequestModel {
         /// 环境ID，如果传了这个参数则只返回该环境的相关信息
@@ -43,7 +27,7 @@ extension Tcb {
         /// 渠道列表，代表可见或不可见渠道由IsVisible参数指定
         public let channels: [String]?
         
-        public init (envId: String?, isVisible: Bool?, channels: [String]?) {
+        public init (envId: String? = nil, isVisible: Bool? = nil, channels: [String]? = nil) {
             self.envId = envId
             self.isVisible = isVisible
             self.channels = channels
@@ -68,5 +52,21 @@ extension Tcb {
             case envList = "EnvList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取环境列表
+    ///
+    /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
+    @inlinable
+    public func describeEnvs(_ input: DescribeEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvsResponse > {
+        self.client.execute(action: "DescribeEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取环境列表
+    ///
+    /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
+    @inlinable
+    public func describeEnvs(_ input: DescribeEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvsResponse {
+        try await self.client.execute(action: "DescribeEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

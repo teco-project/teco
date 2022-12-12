@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 绑定密钥和云产品资源的使用关系
-    ///
-    /// 记录当前key被哪个云产品的那个资源所使用。如果当前key设置了自动过期，则取消该设置，确保当前key不会自动失效。如果当前关联关系已经创建，也返回成功。
-    @inlinable
-    public func bindCloudResource(_ input: BindCloudResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindCloudResourceResponse > {
-        self.client.execute(action: "BindCloudResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定密钥和云产品资源的使用关系
-    ///
-    /// 记录当前key被哪个云产品的那个资源所使用。如果当前key设置了自动过期，则取消该设置，确保当前key不会自动失效。如果当前关联关系已经创建，也返回成功。
-    @inlinable
-    public func bindCloudResource(_ input: BindCloudResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindCloudResourceResponse {
-        try await self.client.execute(action: "BindCloudResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindCloudResource请求参数结构体
     public struct BindCloudResourceRequest: TCRequestModel {
         /// cmk的ID
@@ -63,5 +47,21 @@ extension Kms {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定密钥和云产品资源的使用关系
+    ///
+    /// 记录当前key被哪个云产品的那个资源所使用。如果当前key设置了自动过期，则取消该设置，确保当前key不会自动失效。如果当前关联关系已经创建，也返回成功。
+    @inlinable
+    public func bindCloudResource(_ input: BindCloudResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindCloudResourceResponse > {
+        self.client.execute(action: "BindCloudResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定密钥和云产品资源的使用关系
+    ///
+    /// 记录当前key被哪个云产品的那个资源所使用。如果当前key设置了自动过期，则取消该设置，确保当前key不会自动失效。如果当前关联关系已经创建，也返回成功。
+    @inlinable
+    public func bindCloudResource(_ input: BindCloudResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindCloudResourceResponse {
+        try await self.client.execute(action: "BindCloudResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

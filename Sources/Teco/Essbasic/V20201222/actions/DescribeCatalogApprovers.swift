@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 拉取流程目录参与者的信息
-    ///
-    /// 第三方应用可通过此接口（DescribeCatalogApprovers）查询指定目录的参与者列表
-    @inlinable
-    public func describeCatalogApprovers(_ input: DescribeCatalogApproversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCatalogApproversResponse > {
-        self.client.execute(action: "DescribeCatalogApprovers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取流程目录参与者的信息
-    ///
-    /// 第三方应用可通过此接口（DescribeCatalogApprovers）查询指定目录的参与者列表
-    @inlinable
-    public func describeCatalogApprovers(_ input: DescribeCatalogApproversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCatalogApproversResponse {
-        try await self.client.execute(action: "DescribeCatalogApprovers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCatalogApprovers请求参数结构体
     public struct DescribeCatalogApproversRequest: TCRequestModel {
         /// 调用方信息
@@ -42,7 +26,7 @@ extension Essbasic {
         /// 查询指定用户是否为参与者,为空表示查询所有参与者
         public let userId: String?
         
-        public init (caller: Caller, catalogId: String, userId: String?) {
+        public init (caller: Caller, catalogId: String, userId: String? = nil) {
             self.caller = caller
             self.catalogId = catalogId
             self.userId = userId
@@ -67,5 +51,21 @@ extension Essbasic {
             case approvers = "Approvers"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取流程目录参与者的信息
+    ///
+    /// 第三方应用可通过此接口（DescribeCatalogApprovers）查询指定目录的参与者列表
+    @inlinable
+    public func describeCatalogApprovers(_ input: DescribeCatalogApproversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCatalogApproversResponse > {
+        self.client.execute(action: "DescribeCatalogApprovers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取流程目录参与者的信息
+    ///
+    /// 第三方应用可通过此接口（DescribeCatalogApprovers）查询指定目录的参与者列表
+    @inlinable
+    public func describeCatalogApprovers(_ input: DescribeCatalogApproversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCatalogApproversResponse {
+        try await self.client.execute(action: "DescribeCatalogApprovers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

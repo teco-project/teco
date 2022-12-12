@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 删除运行时高危系统调用事件
-    @inlinable
-    public func deleteRiskSyscallEvents(_ input: DeleteRiskSyscallEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRiskSyscallEventsResponse > {
-        self.client.execute(action: "DeleteRiskSyscallEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除运行时高危系统调用事件
-    @inlinable
-    public func deleteRiskSyscallEvents(_ input: DeleteRiskSyscallEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRiskSyscallEventsResponse {
-        try await self.client.execute(action: "DeleteRiskSyscallEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRiskSyscallEvents请求参数结构体
     public struct DeleteRiskSyscallEventsRequest: TCRequestModel {
         /// 事件ids
@@ -49,5 +37,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除运行时高危系统调用事件
+    @inlinable
+    public func deleteRiskSyscallEvents(_ input: DeleteRiskSyscallEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRiskSyscallEventsResponse > {
+        self.client.execute(action: "DeleteRiskSyscallEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除运行时高危系统调用事件
+    @inlinable
+    public func deleteRiskSyscallEvents(_ input: DeleteRiskSyscallEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRiskSyscallEventsResponse {
+        try await self.client.execute(action: "DeleteRiskSyscallEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Btoe {
-    /// 哈希上链存证
-    ///
-    /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。
-    @inlinable
-    public func createHashDeposit(_ input: CreateHashDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHashDepositResponse > {
-        self.client.execute(action: "CreateHashDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 哈希上链存证
-    ///
-    /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。
-    @inlinable
-    public func createHashDeposit(_ input: CreateHashDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositResponse {
-        try await self.client.execute(action: "CreateHashDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateHashDeposit请求参数结构体
     public struct CreateHashDepositRequest: TCRequestModel {
         /// 存证名称(长度最大30)
@@ -45,7 +29,7 @@ extension Btoe {
         /// 存证描述
         public let evidenceDescription: String?
         
-        public init (evidenceName: String, evidenceHash: String, businessId: String?, evidenceDescription: String?) {
+        public init (evidenceName: String, evidenceHash: String, businessId: String? = nil, evidenceDescription: String? = nil) {
             self.evidenceName = evidenceName
             self.evidenceHash = evidenceHash
             self.businessId = businessId
@@ -77,5 +61,21 @@ extension Btoe {
             case evidenceId = "EvidenceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 哈希上链存证
+    ///
+    /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。
+    @inlinable
+    public func createHashDeposit(_ input: CreateHashDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHashDepositResponse > {
+        self.client.execute(action: "CreateHashDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 哈希上链存证
+    ///
+    /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。
+    @inlinable
+    public func createHashDeposit(_ input: CreateHashDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositResponse {
+        try await self.client.execute(action: "CreateHashDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

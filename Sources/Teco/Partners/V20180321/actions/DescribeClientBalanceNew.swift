@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Partners {
-    /// 查询客户余额（新）
-    ///
-    /// 为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额
-    @inlinable
-    public func describeClientBalanceNew(_ input: DescribeClientBalanceNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientBalanceNewResponse > {
-        self.client.execute(action: "DescribeClientBalanceNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询客户余额（新）
-    ///
-    /// 为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额
-    @inlinable
-    public func describeClientBalanceNew(_ input: DescribeClientBalanceNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientBalanceNewResponse {
-        try await self.client.execute(action: "DescribeClientBalanceNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClientBalanceNew请求参数结构体
     public struct DescribeClientBalanceNewRequest: TCRequestModel {
         /// 客户(代客)账号ID
@@ -61,5 +45,21 @@ extension Partners {
             case cash = "Cash"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询客户余额（新）
+    ///
+    /// 为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额
+    @inlinable
+    public func describeClientBalanceNew(_ input: DescribeClientBalanceNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientBalanceNewResponse > {
+        self.client.execute(action: "DescribeClientBalanceNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询客户余额（新）
+    ///
+    /// 为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额
+    @inlinable
+    public func describeClientBalanceNew(_ input: DescribeClientBalanceNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientBalanceNewResponse {
+        try await self.client.execute(action: "DescribeClientBalanceNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

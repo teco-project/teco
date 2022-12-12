@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdcpg {
-    /// 查询集群可回档时间范围
-    @inlinable
-    public func describeClusterRecoveryTimeRange(_ input: DescribeClusterRecoveryTimeRangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterRecoveryTimeRangeResponse > {
-        self.client.execute(action: "DescribeClusterRecoveryTimeRange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群可回档时间范围
-    @inlinable
-    public func describeClusterRecoveryTimeRange(_ input: DescribeClusterRecoveryTimeRangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRecoveryTimeRangeResponse {
-        try await self.client.execute(action: "DescribeClusterRecoveryTimeRange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterRecoveryTimeRange请求参数结构体
     public struct DescribeClusterRecoveryTimeRangeRequest: TCRequestModel {
         /// 集群ID
@@ -58,5 +46,17 @@ extension Tdcpg {
             case availableRecoveryTimeRangeSet = "AvailableRecoveryTimeRangeSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群可回档时间范围
+    @inlinable
+    public func describeClusterRecoveryTimeRange(_ input: DescribeClusterRecoveryTimeRangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterRecoveryTimeRangeResponse > {
+        self.client.execute(action: "DescribeClusterRecoveryTimeRange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群可回档时间范围
+    @inlinable
+    public func describeClusterRecoveryTimeRange(_ input: DescribeClusterRecoveryTimeRangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRecoveryTimeRangeResponse {
+        try await self.client.execute(action: "DescribeClusterRecoveryTimeRange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

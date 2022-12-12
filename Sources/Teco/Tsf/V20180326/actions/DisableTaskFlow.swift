@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 停用工作流
-    @inlinable
-    public func disableTaskFlow(_ input: DisableTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableTaskFlowResponse > {
-        self.client.execute(action: "DisableTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停用工作流
-    @inlinable
-    public func disableTaskFlow(_ input: DisableTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableTaskFlowResponse {
-        try await self.client.execute(action: "DisableTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableTaskFlow请求参数结构体
     public struct DisableTaskFlowRequest: TCRequestModel {
         /// 工作流 ID
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停用工作流
+    @inlinable
+    public func disableTaskFlow(_ input: DisableTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableTaskFlowResponse > {
+        self.client.execute(action: "DisableTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停用工作流
+    @inlinable
+    public func disableTaskFlow(_ input: DisableTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableTaskFlowResponse {
+        try await self.client.execute(action: "DisableTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

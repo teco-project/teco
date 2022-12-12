@@ -15,32 +15,12 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 查询事件通知配置
-    ///
-    /// 腾讯云点播为客户提供了媒体上传、媒体管理、媒体处理等等服务，在这些服务执行过程或执行结束时，腾讯云点播也提供各种对应的事件通知，方便开发者感知服务处理状态，并做下一步的业务操作。
-    /// 开发者可以通过本接口来查询当前配置事件通知的接收方式、接收地址以及哪些事件开启了接收回调通知。
-    /// 默认接口请求频率限制：100次/秒。
-    @inlinable
-    public func describeEventConfig(_ input: DescribeEventConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEventConfigResponse > {
-        self.client.execute(action: "DescribeEventConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询事件通知配置
-    ///
-    /// 腾讯云点播为客户提供了媒体上传、媒体管理、媒体处理等等服务，在这些服务执行过程或执行结束时，腾讯云点播也提供各种对应的事件通知，方便开发者感知服务处理状态，并做下一步的业务操作。
-    /// 开发者可以通过本接口来查询当前配置事件通知的接收方式、接收地址以及哪些事件开启了接收回调通知。
-    /// 默认接口请求频率限制：100次/秒。
-    @inlinable
-    public func describeEventConfig(_ input: DescribeEventConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventConfigResponse {
-        try await self.client.execute(action: "DescribeEventConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEventConfig请求参数结构体
     public struct DescribeEventConfigRequest: TCRequestModel {
         /// 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
         public let subAppId: UInt64?
         
-        public init (subAppId: UInt64?) {
+        public init (subAppId: UInt64? = nil) {
             self.subAppId = subAppId
         }
         
@@ -73,5 +53,25 @@ extension Vod {
             case deleteMediaCompleteEventSwitch = "DeleteMediaCompleteEventSwitch"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询事件通知配置
+    ///
+    /// 腾讯云点播为客户提供了媒体上传、媒体管理、媒体处理等等服务，在这些服务执行过程或执行结束时，腾讯云点播也提供各种对应的事件通知，方便开发者感知服务处理状态，并做下一步的业务操作。
+    /// 开发者可以通过本接口来查询当前配置事件通知的接收方式、接收地址以及哪些事件开启了接收回调通知。
+    /// 默认接口请求频率限制：100次/秒。
+    @inlinable
+    public func describeEventConfig(_ input: DescribeEventConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEventConfigResponse > {
+        self.client.execute(action: "DescribeEventConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询事件通知配置
+    ///
+    /// 腾讯云点播为客户提供了媒体上传、媒体管理、媒体处理等等服务，在这些服务执行过程或执行结束时，腾讯云点播也提供各种对应的事件通知，方便开发者感知服务处理状态，并做下一步的业务操作。
+    /// 开发者可以通过本接口来查询当前配置事件通知的接收方式、接收地址以及哪些事件开启了接收回调通知。
+    /// 默认接口请求频率限制：100次/秒。
+    @inlinable
+    public func describeEventConfig(_ input: DescribeEventConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventConfigResponse {
+        try await self.client.execute(action: "DescribeEventConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

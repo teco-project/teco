@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 设置单IP告警阈值配置
-    @inlinable
-    public func createIPAlarmThresholdConfig(_ input: CreateIPAlarmThresholdConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIPAlarmThresholdConfigResponse > {
-        self.client.execute(action: "CreateIPAlarmThresholdConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置单IP告警阈值配置
-    @inlinable
-    public func createIPAlarmThresholdConfig(_ input: CreateIPAlarmThresholdConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIPAlarmThresholdConfigResponse {
-        try await self.client.execute(action: "CreateIPAlarmThresholdConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateIPAlarmThresholdConfig请求参数结构体
     public struct CreateIPAlarmThresholdConfigRequest: TCRequestModel {
         /// IP告警阈值配置列表
@@ -49,5 +37,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置单IP告警阈值配置
+    @inlinable
+    public func createIPAlarmThresholdConfig(_ input: CreateIPAlarmThresholdConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIPAlarmThresholdConfigResponse > {
+        self.client.execute(action: "CreateIPAlarmThresholdConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置单IP告警阈值配置
+    @inlinable
+    public func createIPAlarmThresholdConfig(_ input: CreateIPAlarmThresholdConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIPAlarmThresholdConfigResponse {
+        try await self.client.execute(action: "CreateIPAlarmThresholdConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

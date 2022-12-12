@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 导出本次漏洞检测Excel
-    @inlinable
-    public func exportVulDetectionExcel(_ input: ExportVulDetectionExcelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVulDetectionExcelResponse > {
-        self.client.execute(action: "ExportVulDetectionExcel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 导出本次漏洞检测Excel
-    @inlinable
-    public func exportVulDetectionExcel(_ input: ExportVulDetectionExcelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulDetectionExcelResponse {
-        try await self.client.execute(action: "ExportVulDetectionExcel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportVulDetectionExcel请求参数结构体
     public struct ExportVulDetectionExcelRequest: TCRequestModel {
         /// 本次漏洞检测任务id（不同于出参的导出本次漏洞检测Excel的任务Id）
@@ -57,5 +45,17 @@ extension Cwp {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 导出本次漏洞检测Excel
+    @inlinable
+    public func exportVulDetectionExcel(_ input: ExportVulDetectionExcelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVulDetectionExcelResponse > {
+        self.client.execute(action: "ExportVulDetectionExcel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 导出本次漏洞检测Excel
+    @inlinable
+    public func exportVulDetectionExcel(_ input: ExportVulDetectionExcelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulDetectionExcelResponse {
+        try await self.client.execute(action: "ExportVulDetectionExcel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

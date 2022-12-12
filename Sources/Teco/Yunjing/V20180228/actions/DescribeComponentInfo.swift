@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取组件信息
-    ///
-    /// 本接口 (DescribeComponentInfo) 用于获取组件信息数据。
-    @inlinable
-    public func describeComponentInfo(_ input: DescribeComponentInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComponentInfoResponse > {
-        self.client.execute(action: "DescribeComponentInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取组件信息
-    ///
-    /// 本接口 (DescribeComponentInfo) 用于获取组件信息数据。
-    @inlinable
-    public func describeComponentInfo(_ input: DescribeComponentInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentInfoResponse {
-        try await self.client.execute(action: "DescribeComponentInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeComponentInfo请求参数结构体
     public struct DescribeComponentInfoRequest: TCRequestModel {
         /// 组件ID。
@@ -75,5 +59,21 @@ extension Yunjing {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取组件信息
+    ///
+    /// 本接口 (DescribeComponentInfo) 用于获取组件信息数据。
+    @inlinable
+    public func describeComponentInfo(_ input: DescribeComponentInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComponentInfoResponse > {
+        self.client.execute(action: "DescribeComponentInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取组件信息
+    ///
+    /// 本接口 (DescribeComponentInfo) 用于获取组件信息数据。
+    @inlinable
+    public func describeComponentInfo(_ input: DescribeComponentInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentInfoResponse {
+        try await self.client.execute(action: "DescribeComponentInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

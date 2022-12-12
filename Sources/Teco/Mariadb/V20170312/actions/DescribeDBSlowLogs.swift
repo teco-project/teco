@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Mariadb {
-    /// 查询慢查询日志列表
-    ///
-    /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
-    @inlinable
-    public func describeDBSlowLogs(_ input: DescribeDBSlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBSlowLogsResponse > {
-        self.client.execute(action: "DescribeDBSlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询慢查询日志列表
-    ///
-    /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
-    @inlinable
-    public func describeDBSlowLogs(_ input: DescribeDBSlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSlowLogsResponse {
-        try await self.client.execute(action: "DescribeDBSlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBSlowLogs请求参数结构体
     public struct DescribeDBSlowLogsRequest: TCRequestModel {
         /// 实例 ID，形如：tdsql-ow728lmc。
@@ -63,7 +47,7 @@ extension Mariadb {
         /// 是否查询从机的慢查询，0-主机; 1-从机
         public let slave: Int64?
         
-        public init (instanceId: String, offset: UInt64, limit: UInt64, startTime: Date, endTime: Date?, db: String?, orderBy: String?, orderByType: String?, slave: Int64?) {
+        public init (instanceId: String, offset: UInt64, limit: UInt64, startTime: Date, endTime: Date? = nil, db: String? = nil, orderBy: String? = nil, orderByType: String? = nil, slave: Int64? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
@@ -116,5 +100,21 @@ extension Mariadb {
             case queryTimeSum = "QueryTimeSum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询慢查询日志列表
+    ///
+    /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
+    @inlinable
+    public func describeDBSlowLogs(_ input: DescribeDBSlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBSlowLogsResponse > {
+        self.client.execute(action: "DescribeDBSlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询慢查询日志列表
+    ///
+    /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
+    @inlinable
+    public func describeDBSlowLogs(_ input: DescribeDBSlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSlowLogsResponse {
+        try await self.client.execute(action: "DescribeDBSlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

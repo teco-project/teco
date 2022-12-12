@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 获取用户权限边界
-    @inlinable
-    public func getUserPermissionBoundary(_ input: GetUserPermissionBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUserPermissionBoundaryResponse > {
-        self.client.execute(action: "GetUserPermissionBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户权限边界
-    @inlinable
-    public func getUserPermissionBoundary(_ input: GetUserPermissionBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserPermissionBoundaryResponse {
-        try await self.client.execute(action: "GetUserPermissionBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetUserPermissionBoundary请求参数结构体
     public struct GetUserPermissionBoundaryRequest: TCRequestModel {
         /// 子账号Uin
@@ -74,5 +62,17 @@ extension Cam {
             case createMode = "CreateMode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户权限边界
+    @inlinable
+    public func getUserPermissionBoundary(_ input: GetUserPermissionBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUserPermissionBoundaryResponse > {
+        self.client.execute(action: "GetUserPermissionBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户权限边界
+    @inlinable
+    public func getUserPermissionBoundary(_ input: GetUserPermissionBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserPermissionBoundaryResponse {
+        try await self.client.execute(action: "GetUserPermissionBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

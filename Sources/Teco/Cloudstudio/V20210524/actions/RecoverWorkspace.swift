@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudstudio {
-    /// 恢复工作空间
-    @inlinable
-    public func recoverWorkspace(_ input: RecoverWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverWorkspaceResponse > {
-        self.client.execute(action: "RecoverWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 恢复工作空间
-    @inlinable
-    public func recoverWorkspace(_ input: RecoverWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverWorkspaceResponse {
-        try await self.client.execute(action: "RecoverWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecoverWorkspace请求参数结构体
     public struct RecoverWorkspaceRequest: TCRequestModel {
         /// 无
@@ -54,5 +42,17 @@ extension Cloudstudio {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 恢复工作空间
+    @inlinable
+    public func recoverWorkspace(_ input: RecoverWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverWorkspaceResponse > {
+        self.client.execute(action: "RecoverWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复工作空间
+    @inlinable
+    public func recoverWorkspace(_ input: RecoverWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverWorkspaceResponse {
+        try await self.client.execute(action: "RecoverWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

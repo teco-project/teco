@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-商户信息修改接口
-    ///
-    /// 云鉴-商户信息修改的接口
-    @inlinable
-    public func modifyMerchant(_ input: ModifyMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMerchantResponse > {
-        self.client.execute(action: "ModifyMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-商户信息修改接口
-    ///
-    /// 云鉴-商户信息修改的接口
-    @inlinable
-    public func modifyMerchant(_ input: ModifyMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
-        try await self.client.execute(action: "ModifyMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyMerchant请求参数结构体
     public struct ModifyMerchantRequest: TCRequestModel {
         /// 进件成功后返给商户的AppId
@@ -63,5 +47,21 @@ extension Cpdp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-商户信息修改接口
+    ///
+    /// 云鉴-商户信息修改的接口
+    @inlinable
+    public func modifyMerchant(_ input: ModifyMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMerchantResponse > {
+        self.client.execute(action: "ModifyMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-商户信息修改接口
+    ///
+    /// 云鉴-商户信息修改的接口
+    @inlinable
+    public func modifyMerchant(_ input: ModifyMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
+        try await self.client.execute(action: "ModifyMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

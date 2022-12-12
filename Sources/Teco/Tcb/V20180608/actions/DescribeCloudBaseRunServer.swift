@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询单个服务的详情
-    ///
-    /// 查询单个服务的详情，版本以及详情
-    @inlinable
-    public func describeCloudBaseRunServer(_ input: DescribeCloudBaseRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunServerResponse > {
-        self.client.execute(action: "DescribeCloudBaseRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询单个服务的详情
-    ///
-    /// 查询单个服务的详情，版本以及详情
-    @inlinable
-    public func describeCloudBaseRunServer(_ input: DescribeCloudBaseRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunServerResponse {
-        try await self.client.execute(action: "DescribeCloudBaseRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudBaseRunServer请求参数结构体
     public struct DescribeCloudBaseRunServerRequest: TCRequestModel {
         /// 环境ID
@@ -48,7 +32,7 @@ extension Tcb {
         /// 版本名字（精确匹配）
         public let versionName: String?
         
-        public init (envId: String, serverName: String, offset: Int64, limit: Int64, versionName: String?) {
+        public init (envId: String, serverName: String, offset: Int64, limit: Int64, versionName: String? = nil) {
             self.envId = envId
             self.serverName = serverName
             self.offset = offset
@@ -108,5 +92,21 @@ extension Tcb {
             case sourceType = "SourceType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询单个服务的详情
+    ///
+    /// 查询单个服务的详情，版本以及详情
+    @inlinable
+    public func describeCloudBaseRunServer(_ input: DescribeCloudBaseRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudBaseRunServerResponse > {
+        self.client.execute(action: "DescribeCloudBaseRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询单个服务的详情
+    ///
+    /// 查询单个服务的详情，版本以及详情
+    @inlinable
+    public func describeCloudBaseRunServer(_ input: DescribeCloudBaseRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunServerResponse {
+        try await self.client.execute(action: "DescribeCloudBaseRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

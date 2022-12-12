@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 创建云数据库实例（按量计费）
-    ///
-    /// 本接口(CreateDBInstanceHour)用于创建按量计费的MongoDB云数据库实例。
-    @inlinable
-    public func createDBInstanceHour(_ input: CreateDBInstanceHourRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceHourResponse > {
-        self.client.execute(action: "CreateDBInstanceHour", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建云数据库实例（按量计费）
-    ///
-    /// 本接口(CreateDBInstanceHour)用于创建按量计费的MongoDB云数据库实例。
-    @inlinable
-    public func createDBInstanceHour(_ input: CreateDBInstanceHourRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceHourResponse {
-        try await self.client.execute(action: "CreateDBInstanceHour", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDBInstanceHour请求参数结构体
     public struct CreateDBInstanceHourRequest: TCRequestModel {
         /// 实例内存大小，单位：GB
@@ -102,7 +86,7 @@ extension Mongodb {
         /// mongos 数量，购买MongoDB 4.2 WiredTiger存储引擎版本的分片集群时必须填写，具体支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。注：为了保障高可用，最低需要购买3个mongos，上限为32个
         public let mongosNodeNum: UInt64?
         
-        public init (memory: UInt64, volume: UInt64, replicateSetNum: UInt64, nodeNum: UInt64, mongoVersion: String, machineCode: String, goodsNum: UInt64, zone: String, clusterType: String, vpcId: String?, subnetId: String?, password: String?, projectId: Int64?, tags: [TagInfo]?, clone: Int64?, father: String?, securityGroup: [String]?, restoreTime: String?, instanceName: String?, availabilityZoneList: [String]?, mongosCpu: UInt64?, mongosMemory: UInt64?, mongosNodeNum: UInt64?) {
+        public init (memory: UInt64, volume: UInt64, replicateSetNum: UInt64, nodeNum: UInt64, mongoVersion: String, machineCode: String, goodsNum: UInt64, zone: String, clusterType: String, vpcId: String? = nil, subnetId: String? = nil, password: String? = nil, projectId: Int64? = nil, tags: [TagInfo]? = nil, clone: Int64? = nil, father: String? = nil, securityGroup: [String]? = nil, restoreTime: String? = nil, instanceName: String? = nil, availabilityZoneList: [String]? = nil, mongosCpu: UInt64? = nil, mongosMemory: UInt64? = nil, mongosNodeNum: UInt64? = nil) {
             self.memory = memory
             self.volume = volume
             self.replicateSetNum = replicateSetNum
@@ -171,5 +155,21 @@ extension Mongodb {
             case instanceIds = "InstanceIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建云数据库实例（按量计费）
+    ///
+    /// 本接口(CreateDBInstanceHour)用于创建按量计费的MongoDB云数据库实例。
+    @inlinable
+    public func createDBInstanceHour(_ input: CreateDBInstanceHourRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstanceHourResponse > {
+        self.client.execute(action: "CreateDBInstanceHour", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云数据库实例（按量计费）
+    ///
+    /// 本接口(CreateDBInstanceHour)用于创建按量计费的MongoDB云数据库实例。
+    @inlinable
+    public func createDBInstanceHour(_ input: CreateDBInstanceHourRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceHourResponse {
+        try await self.client.execute(action: "CreateDBInstanceHour", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

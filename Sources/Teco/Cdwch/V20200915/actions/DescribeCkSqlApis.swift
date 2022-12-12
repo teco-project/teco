@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdwch {
-    /// 查询集群用户相关信息
-    ///
-    /// 查询集群用户、集群表，数据库等相关信息
-    @inlinable
-    public func describeCkSqlApis(_ input: DescribeCkSqlApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCkSqlApisResponse > {
-        self.client.execute(action: "DescribeCkSqlApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群用户相关信息
-    ///
-    /// 查询集群用户、集群表，数据库等相关信息
-    @inlinable
-    public func describeCkSqlApis(_ input: DescribeCkSqlApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCkSqlApisResponse {
-        try await self.client.execute(action: "DescribeCkSqlApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCkSqlApis请求参数结构体
     public struct DescribeCkSqlApisRequest: TCRequestModel {
         /// 实例id
@@ -56,7 +40,7 @@ extension Cdwch {
         /// 用户名称，api与user相关的必填
         public let userName: String?
         
-        public init (instanceId: String, apiType: String, cluster: String?, userName: String?) {
+        public init (instanceId: String, apiType: String, cluster: String? = nil, userName: String? = nil) {
             self.instanceId = instanceId
             self.apiType = apiType
             self.cluster = cluster
@@ -84,5 +68,21 @@ extension Cdwch {
             case returnData = "ReturnData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群用户相关信息
+    ///
+    /// 查询集群用户、集群表，数据库等相关信息
+    @inlinable
+    public func describeCkSqlApis(_ input: DescribeCkSqlApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCkSqlApisResponse > {
+        self.client.execute(action: "DescribeCkSqlApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群用户相关信息
+    ///
+    /// 查询集群用户、集群表，数据库等相关信息
+    @inlinable
+    public func describeCkSqlApis(_ input: DescribeCkSqlApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCkSqlApisResponse {
+        try await self.client.execute(action: "DescribeCkSqlApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

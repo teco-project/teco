@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 修改产品动态注册
-    @inlinable
-    public func modifyProductDynamicRegister(_ input: ModifyProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductDynamicRegisterResponse > {
-        self.client.execute(action: "ModifyProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改产品动态注册
-    @inlinable
-    public func modifyProductDynamicRegister(_ input: ModifyProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductDynamicRegisterResponse {
-        try await self.client.execute(action: "ModifyProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyProductDynamicRegister请求参数结构体
     public struct ModifyProductDynamicRegisterRequest: TCRequestModel {
         /// 产品ID
@@ -71,5 +59,17 @@ extension Iotvideo {
             case registerLimit = "RegisterLimit"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改产品动态注册
+    @inlinable
+    public func modifyProductDynamicRegister(_ input: ModifyProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProductDynamicRegisterResponse > {
+        self.client.execute(action: "ModifyProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改产品动态注册
+    @inlinable
+    public func modifyProductDynamicRegister(_ input: ModifyProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductDynamicRegisterResponse {
+        try await self.client.execute(action: "ModifyProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 查看AI模型资源包
-    @inlinable
-    public func describeAIModelUsage(_ input: DescribeAIModelUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAIModelUsageResponse > {
-        self.client.execute(action: "DescribeAIModelUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看AI模型资源包
-    @inlinable
-    public func describeAIModelUsage(_ input: DescribeAIModelUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelUsageResponse {
-        try await self.client.execute(action: "DescribeAIModelUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAIModelUsage请求参数结构体
     public struct DescribeAIModelUsageRequest: TCRequestModel {
         /// 模型ID
@@ -72,5 +60,17 @@ extension Iotvideo {
             case usageInfo = "UsageInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看AI模型资源包
+    @inlinable
+    public func describeAIModelUsage(_ input: DescribeAIModelUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAIModelUsageResponse > {
+        self.client.execute(action: "DescribeAIModelUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看AI模型资源包
+    @inlinable
+    public func describeAIModelUsage(_ input: DescribeAIModelUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelUsageResponse {
+        try await self.client.execute(action: "DescribeAIModelUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

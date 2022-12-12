@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 启用规则
-    ///
-    /// 本接口（EnableTopicRule）用于启用规则 
-    @inlinable
-    public func enableTopicRule(_ input: EnableTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableTopicRuleResponse > {
-        self.client.execute(action: "EnableTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启用规则
-    ///
-    /// 本接口（EnableTopicRule）用于启用规则 
-    @inlinable
-    public func enableTopicRule(_ input: EnableTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableTopicRuleResponse {
-        try await self.client.execute(action: "EnableTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableTopicRule请求参数结构体
     public struct EnableTopicRuleRequest: TCRequestModel {
         /// 规则名称
@@ -53,5 +37,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启用规则
+    ///
+    /// 本接口（EnableTopicRule）用于启用规则 
+    @inlinable
+    public func enableTopicRule(_ input: EnableTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableTopicRuleResponse > {
+        self.client.execute(action: "EnableTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启用规则
+    ///
+    /// 本接口（EnableTopicRule）用于启用规则 
+    @inlinable
+    public func enableTopicRule(_ input: EnableTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableTopicRuleResponse {
+        try await self.client.execute(action: "EnableTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

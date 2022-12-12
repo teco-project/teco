@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 创建站点
-    ///
-    /// 用于用户接入新的站点
-    @inlinable
-    public func createZone(_ input: CreateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateZoneResponse > {
-        self.client.execute(action: "CreateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建站点
-    ///
-    /// 用于用户接入新的站点
-    @inlinable
-    public func createZone(_ input: CreateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
-        try await self.client.execute(action: "CreateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateZone请求参数结构体
     public struct CreateZoneRequest: TCRequestModel {
         /// 站点名字
@@ -49,7 +33,7 @@ extension Teo {
         /// 资源标签
         public let tags: [Tag]?
         
-        public init (name: String, type: String?, jumpStart: Bool?, tags: [Tag]?) {
+        public init (name: String, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil) {
             self.name = name
             self.type = type
             self.jumpStart = jumpStart
@@ -109,5 +93,21 @@ extension Teo {
             case modifiedOn = "ModifiedOn"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建站点
+    ///
+    /// 用于用户接入新的站点
+    @inlinable
+    public func createZone(_ input: CreateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateZoneResponse > {
+        self.client.execute(action: "CreateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建站点
+    ///
+    /// 用于用户接入新的站点
+    @inlinable
+    public func createZone(_ input: CreateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
+        try await self.client.execute(action: "CreateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

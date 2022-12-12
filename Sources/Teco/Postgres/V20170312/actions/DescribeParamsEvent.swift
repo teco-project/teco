@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 获取参数修改事件详情
-    @inlinable
-    public func describeParamsEvent(_ input: DescribeParamsEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeParamsEventResponse > {
-        self.client.execute(action: "DescribeParamsEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取参数修改事件详情
-    @inlinable
-    public func describeParamsEvent(_ input: DescribeParamsEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamsEventResponse {
-        try await self.client.execute(action: "DescribeParamsEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeParamsEvent请求参数结构体
     public struct DescribeParamsEventRequest: TCRequestModel {
         /// 实例DB ID
@@ -57,5 +45,17 @@ extension Postgres {
             case eventItems = "EventItems"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取参数修改事件详情
+    @inlinable
+    public func describeParamsEvent(_ input: DescribeParamsEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeParamsEventResponse > {
+        self.client.execute(action: "DescribeParamsEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取参数修改事件详情
+    @inlinable
+    public func describeParamsEvent(_ input: DescribeParamsEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamsEventResponse {
+        try await self.client.execute(action: "DescribeParamsEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

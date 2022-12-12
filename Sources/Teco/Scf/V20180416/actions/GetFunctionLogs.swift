@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Scf {
-    /// 获取函数运行日志
-    ///
-    /// 该接口根据指定的日志查询条件返回函数运行日志。该接口已下线，查询函数请求运行的返回信息，请使用 [GetRequestStatus](https://cloud.tencent.com/document/product/583/65348)。查询函数运行日志，请参考[日志检索教程](https://cloud.tencent.com/document/product/583/52637)。
-    @inlinable
-    public func getFunctionLogs(_ input: GetFunctionLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFunctionLogsResponse > {
-        self.client.execute(action: "GetFunctionLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取函数运行日志
-    ///
-    /// 该接口根据指定的日志查询条件返回函数运行日志。该接口已下线，查询函数请求运行的返回信息，请使用 [GetRequestStatus](https://cloud.tencent.com/document/product/583/65348)。查询函数运行日志，请参考[日志检索教程](https://cloud.tencent.com/document/product/583/52637)。
-    @inlinable
-    public func getFunctionLogs(_ input: GetFunctionLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionLogsResponse {
-        try await self.client.execute(action: "GetFunctionLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetFunctionLogs请求参数结构体
     public struct GetFunctionLogsRequest: TCRequestModel {
         /// 函数的名称。
@@ -53,7 +37,7 @@ extension Scf {
         public let orderBy: String?
         
         /// 日志过滤条件。可用来区分正确和错误日志，filter.RetCode=not0 表示只返回错误日志，filter.RetCode=is0 表示只返回正确日志，不传，则返回所有日志
-        public let filter: LogFilter
+        public let filter: LogFilter?
         
         /// 函数的命名空间
         public let namespace: String?
@@ -71,9 +55,9 @@ extension Scf {
         public let endTime: Date?
         
         /// 该字段已下线
-        public let searchContext: LogSearchContext
+        public let searchContext: LogSearchContext?
         
-        public init (functionName: String?, offset: Int64?, limit: Int64?, order: String?, orderBy: String?, filter: LogFilter, namespace: String?, qualifier: String?, functionRequestId: String?, startTime: Date?, endTime: Date?, searchContext: LogSearchContext) {
+        public init (functionName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderBy: String? = nil, filter: LogFilter? = nil, namespace: String? = nil, qualifier: String? = nil, functionRequestId: String? = nil, startTime: Date? = nil, endTime: Date? = nil, searchContext: LogSearchContext? = nil) {
             self.functionName = functionName
             self.offset = offset
             self.limit = limit
@@ -124,5 +108,21 @@ extension Scf {
             case searchContext = "SearchContext"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取函数运行日志
+    ///
+    /// 该接口根据指定的日志查询条件返回函数运行日志。该接口已下线，查询函数请求运行的返回信息，请使用 [GetRequestStatus](https://cloud.tencent.com/document/product/583/65348)。查询函数运行日志，请参考[日志检索教程](https://cloud.tencent.com/document/product/583/52637)。
+    @inlinable
+    public func getFunctionLogs(_ input: GetFunctionLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFunctionLogsResponse > {
+        self.client.execute(action: "GetFunctionLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数运行日志
+    ///
+    /// 该接口根据指定的日志查询条件返回函数运行日志。该接口已下线，查询函数请求运行的返回信息，请使用 [GetRequestStatus](https://cloud.tencent.com/document/product/583/65348)。查询函数运行日志，请参考[日志检索教程](https://cloud.tencent.com/document/product/583/52637)。
+    @inlinable
+    public func getFunctionLogs(_ input: GetFunctionLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionLogsResponse {
+        try await self.client.execute(action: "GetFunctionLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

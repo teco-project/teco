@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dbbrain {
-    /// 查询redis实例top key前缀列表
-    ///
-    /// 查询redis实例top key前缀列表。
-    @inlinable
-    public func describeRedisTopKeyPrefixList(_ input: DescribeRedisTopKeyPrefixListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRedisTopKeyPrefixListResponse > {
-        self.client.execute(action: "DescribeRedisTopKeyPrefixList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询redis实例top key前缀列表
-    ///
-    /// 查询redis实例top key前缀列表。
-    @inlinable
-    public func describeRedisTopKeyPrefixList(_ input: DescribeRedisTopKeyPrefixListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopKeyPrefixListResponse {
-        try await self.client.execute(action: "DescribeRedisTopKeyPrefixList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRedisTopKeyPrefixList请求参数结构体
     public struct DescribeRedisTopKeyPrefixListRequest: TCRequestModel {
         /// 实例ID。
@@ -48,7 +32,7 @@ extension Dbbrain {
         /// 查询数目，默认为20，最大值为100。
         public let limit: Int64?
         
-        public init (instanceId: String, date: Date, product: String, limit: Int64?) {
+        public init (instanceId: String, date: Date, product: String, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.date = date
             self.product = product
@@ -79,5 +63,21 @@ extension Dbbrain {
             case timestamp = "Timestamp"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询redis实例top key前缀列表
+    ///
+    /// 查询redis实例top key前缀列表。
+    @inlinable
+    public func describeRedisTopKeyPrefixList(_ input: DescribeRedisTopKeyPrefixListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRedisTopKeyPrefixListResponse > {
+        self.client.execute(action: "DescribeRedisTopKeyPrefixList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询redis实例top key前缀列表
+    ///
+    /// 查询redis实例top key前缀列表。
+    @inlinable
+    public func describeRedisTopKeyPrefixList(_ input: DescribeRedisTopKeyPrefixListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopKeyPrefixListResponse {
+        try await self.client.execute(action: "DescribeRedisTopKeyPrefixList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

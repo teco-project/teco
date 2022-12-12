@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 升级预付费存储
-    @inlinable
-    public func modifyClusterStorage(_ input: ModifyClusterStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterStorageResponse > {
-        self.client.execute(action: "ModifyClusterStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 升级预付费存储
-    @inlinable
-    public func modifyClusterStorage(_ input: ModifyClusterStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterStorageResponse {
-        try await self.client.execute(action: "ModifyClusterStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClusterStorage请求参数结构体
     public struct ModifyClusterStorageRequest: TCRequestModel {
         /// 集群ID
@@ -41,7 +29,7 @@ extension Cynosdb {
         /// 交易模式 0-下单并支付 1-下单
         public let dealMode: Int64?
         
-        public init (clusterId: String, newStorageLimit: Int64, oldStorageLimit: Int64, dealMode: Int64?) {
+        public init (clusterId: String, newStorageLimit: Int64, oldStorageLimit: Int64, dealMode: Int64? = nil) {
             self.clusterId = clusterId
             self.newStorageLimit = newStorageLimit
             self.oldStorageLimit = oldStorageLimit
@@ -79,5 +67,17 @@ extension Cynosdb {
             case dealNames = "DealNames"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 升级预付费存储
+    @inlinable
+    public func modifyClusterStorage(_ input: ModifyClusterStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterStorageResponse > {
+        self.client.execute(action: "ModifyClusterStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 升级预付费存储
+    @inlinable
+    public func modifyClusterStorage(_ input: ModifyClusterStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterStorageResponse {
+        try await self.client.execute(action: "ModifyClusterStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

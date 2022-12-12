@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 删除通知渠道组
-    ///
-    /// 该接口用于删除通知渠道组
-    @inlinable
-    public func deleteAlarmNotice(_ input: DeleteAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAlarmNoticeResponse > {
-        self.client.execute(action: "DeleteAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除通知渠道组
-    ///
-    /// 该接口用于删除通知渠道组
-    @inlinable
-    public func deleteAlarmNotice(_ input: DeleteAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticeResponse {
-        try await self.client.execute(action: "DeleteAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAlarmNotice请求参数结构体
     public struct DeleteAlarmNoticeRequest: TCRequestModel {
         /// 通知渠道组ID
@@ -53,5 +37,21 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除通知渠道组
+    ///
+    /// 该接口用于删除通知渠道组
+    @inlinable
+    public func deleteAlarmNotice(_ input: DeleteAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAlarmNoticeResponse > {
+        self.client.execute(action: "DeleteAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除通知渠道组
+    ///
+    /// 该接口用于删除通知渠道组
+    @inlinable
+    public func deleteAlarmNotice(_ input: DeleteAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticeResponse {
+        try await self.client.execute(action: "DeleteAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

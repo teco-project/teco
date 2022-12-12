@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 修改容器逃逸扫描事件状态
-    ///
-    /// ModifyEscapeEventStatus  修改容器逃逸扫描事件状态
-    @inlinable
-    public func modifyEscapeEventStatus(_ input: ModifyEscapeEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEscapeEventStatusResponse > {
-        self.client.execute(action: "ModifyEscapeEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改容器逃逸扫描事件状态
-    ///
-    /// ModifyEscapeEventStatus  修改容器逃逸扫描事件状态
-    @inlinable
-    public func modifyEscapeEventStatus(_ input: ModifyEscapeEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeEventStatusResponse {
-        try await self.client.execute(action: "ModifyEscapeEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyEscapeEventStatus请求参数结构体
     public struct ModifyEscapeEventStatusRequest: TCRequestModel {
         /// 处理事件ids
@@ -60,7 +44,7 @@ extension Tcss {
         ///    PRIVILEGE：程序提权逃逸
         public let eventType: [String]?
         
-        public init (eventIdSet: [String], status: String, remark: String?, imageIDs: [String]?, eventType: [String]?) {
+        public init (eventIdSet: [String], status: String, remark: String? = nil, imageIDs: [String]? = nil, eventType: [String]? = nil) {
             self.eventIdSet = eventIdSet
             self.status = status
             self.remark = remark
@@ -85,5 +69,21 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改容器逃逸扫描事件状态
+    ///
+    /// ModifyEscapeEventStatus  修改容器逃逸扫描事件状态
+    @inlinable
+    public func modifyEscapeEventStatus(_ input: ModifyEscapeEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEscapeEventStatusResponse > {
+        self.client.execute(action: "ModifyEscapeEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改容器逃逸扫描事件状态
+    ///
+    /// ModifyEscapeEventStatus  修改容器逃逸扫描事件状态
+    @inlinable
+    public func modifyEscapeEventStatus(_ input: ModifyEscapeEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeEventStatusResponse {
+        try await self.client.execute(action: "ModifyEscapeEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

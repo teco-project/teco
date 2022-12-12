@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 查询图片审核用量统计数据
-    ///
-    /// 该接口返回查询时间范围内每天使用的图片审核用量信息。
-    ///    1. 可以查询最近365天内的图片审核统计数据。
-    ///    2. 查询时间跨度不超过90天。
-    ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
-    @inlinable
-    public func describeImageReviewUsageData(_ input: DescribeImageReviewUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageReviewUsageDataResponse > {
-        self.client.execute(action: "DescribeImageReviewUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询图片审核用量统计数据
-    ///
-    /// 该接口返回查询时间范围内每天使用的图片审核用量信息。
-    ///    1. 可以查询最近365天内的图片审核统计数据。
-    ///    2. 查询时间跨度不超过90天。
-    ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
-    @inlinable
-    public func describeImageReviewUsageData(_ input: DescribeImageReviewUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageReviewUsageDataResponse {
-        try await self.client.execute(action: "DescribeImageReviewUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageReviewUsageData请求参数结构体
     public struct DescribeImageReviewUsageDataRequest: TCRequestModel {
         /// 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
@@ -48,7 +26,7 @@ extension Vod {
         /// <b>点播 [子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
         
-        public init (startTime: String, endTime: String, subAppId: UInt64?) {
+        public init (startTime: String, endTime: String, subAppId: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.subAppId = subAppId
@@ -73,5 +51,27 @@ extension Vod {
             case imageReviewUsageDataSet = "ImageReviewUsageDataSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询图片审核用量统计数据
+    ///
+    /// 该接口返回查询时间范围内每天使用的图片审核用量信息。
+    ///    1. 可以查询最近365天内的图片审核统计数据。
+    ///    2. 查询时间跨度不超过90天。
+    ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
+    @inlinable
+    public func describeImageReviewUsageData(_ input: DescribeImageReviewUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageReviewUsageDataResponse > {
+        self.client.execute(action: "DescribeImageReviewUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询图片审核用量统计数据
+    ///
+    /// 该接口返回查询时间范围内每天使用的图片审核用量信息。
+    ///    1. 可以查询最近365天内的图片审核统计数据。
+    ///    2. 查询时间跨度不超过90天。
+    ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
+    @inlinable
+    public func describeImageReviewUsageData(_ input: DescribeImageReviewUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageReviewUsageDataResponse {
+        try await self.client.execute(action: "DescribeImageReviewUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

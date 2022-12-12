@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询规则执行历史， 最近30条
-    @inlinable
-    public func describeRuleExecHistory(_ input: DescribeRuleExecHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleExecHistoryResponse > {
-        self.client.execute(action: "DescribeRuleExecHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询规则执行历史， 最近30条
-    @inlinable
-    public func describeRuleExecHistory(_ input: DescribeRuleExecHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecHistoryResponse {
-        try await self.client.execute(action: "DescribeRuleExecHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRuleExecHistory请求参数结构体
     public struct DescribeRuleExecHistoryRequest: TCRequestModel {
         /// 规则Id
@@ -35,7 +23,7 @@ extension Wedata {
         /// 项目Id
         public let projectId: String?
         
-        public init (ruleId: UInt64?, projectId: String?) {
+        public init (ruleId: UInt64? = nil, projectId: String? = nil) {
             self.ruleId = ruleId
             self.projectId = projectId
         }
@@ -59,5 +47,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询规则执行历史， 最近30条
+    @inlinable
+    public func describeRuleExecHistory(_ input: DescribeRuleExecHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleExecHistoryResponse > {
+        self.client.execute(action: "DescribeRuleExecHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询规则执行历史， 最近30条
+    @inlinable
+    public func describeRuleExecHistory(_ input: DescribeRuleExecHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecHistoryResponse {
+        try await self.client.execute(action: "DescribeRuleExecHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

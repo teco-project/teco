@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取资源列表
-    @inlinable
-    public func describeResourceList(_ input: DescribeResourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceListResponse > {
-        self.client.execute(action: "DescribeResourceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取资源列表
-    @inlinable
-    public func describeResourceList(_ input: DescribeResourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceListResponse {
-        try await self.client.execute(action: "DescribeResourceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourceList请求参数结构体
     public struct DescribeResourceListRequest: TCRequestModel {
         /// 大禹子产品代号（bgp表示独享包；bgp-multip表示共享包；bgpip表示高防IP；net表示高防IP专业版）
@@ -68,7 +56,7 @@ extension Dayu {
         /// 高防IP专业版资源的域名，可选，只对高防IP专业版资源列表有效；
         public let domain: String?
         
-        public init (business: String, regionList: [String]?, line: [UInt64]?, idList: [String]?, name: String?, ipList: [String]?, status: [UInt64]?, expire: UInt64?, oderBy: [OrderBy]?, limit: UInt64?, offset: UInt64?, cName: String?, domain: String?) {
+        public init (business: String, regionList: [String]? = nil, line: [UInt64]? = nil, idList: [String]? = nil, name: String? = nil, ipList: [String]? = nil, status: [UInt64]? = nil, expire: UInt64? = nil, oderBy: [OrderBy]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, cName: String? = nil, domain: String? = nil) {
             self.business = business
             self.regionList = regionList
             self.line = line
@@ -151,5 +139,17 @@ extension Dayu {
             case business = "Business"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取资源列表
+    @inlinable
+    public func describeResourceList(_ input: DescribeResourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceListResponse > {
+        self.client.execute(action: "DescribeResourceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资源列表
+    @inlinable
+    public func describeResourceList(_ input: DescribeResourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceListResponse {
+        try await self.client.execute(action: "DescribeResourceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询木马事件趋势
-    @inlinable
-    public func describeVirusEventTendency(_ input: DescribeVirusEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusEventTendencyResponse > {
-        self.client.execute(action: "DescribeVirusEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询木马事件趋势
-    @inlinable
-    public func describeVirusEventTendency(_ input: DescribeVirusEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusEventTendencyResponse {
-        try await self.client.execute(action: "DescribeVirusEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVirusEventTendency请求参数结构体
     public struct DescribeVirusEventTendencyRequest: TCRequestModel {
         /// 趋势周期(默认为7天)
@@ -53,5 +41,17 @@ extension Tcss {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询木马事件趋势
+    @inlinable
+    public func describeVirusEventTendency(_ input: DescribeVirusEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusEventTendencyResponse > {
+        self.client.execute(action: "DescribeVirusEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询木马事件趋势
+    @inlinable
+    public func describeVirusEventTendency(_ input: DescribeVirusEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusEventTendencyResponse {
+        try await self.client.execute(action: "DescribeVirusEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

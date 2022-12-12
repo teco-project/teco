@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 智慧薪酬-发起批量转账
-    ///
-    /// 微信商户发起批量转账
-    @inlinable
-    public func createTransferBatch(_ input: CreateTransferBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTransferBatchResponse > {
-        self.client.execute(action: "CreateTransferBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 智慧薪酬-发起批量转账
-    ///
-    /// 微信商户发起批量转账
-    @inlinable
-    public func createTransferBatch(_ input: CreateTransferBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTransferBatchResponse {
-        try await self.client.execute(action: "CreateTransferBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTransferBatch请求参数结构体
     public struct CreateTransferBatchRequest: TCRequestModel {
         /// 商户号。
@@ -78,7 +62,7 @@ extension Cpdp {
         /// 缺省: release
         public let profile: String?
         
-        public init (merchantId: String, transferDetails: [TransferDetailRequest], merchantAppId: String, merchantBatchNo: String, batchName: String, batchRemark: String, totalAmount: UInt64, totalNum: UInt64, profile: String?) {
+        public init (merchantId: String, transferDetails: [TransferDetailRequest], merchantAppId: String, merchantBatchNo: String, batchName: String, batchRemark: String, totalAmount: UInt64, totalNum: UInt64, profile: String? = nil) {
             self.merchantId = merchantId
             self.transferDetails = transferDetails
             self.merchantAppId = merchantAppId
@@ -128,5 +112,21 @@ extension Cpdp {
             case createTime = "CreateTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 智慧薪酬-发起批量转账
+    ///
+    /// 微信商户发起批量转账
+    @inlinable
+    public func createTransferBatch(_ input: CreateTransferBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTransferBatchResponse > {
+        self.client.execute(action: "CreateTransferBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 智慧薪酬-发起批量转账
+    ///
+    /// 微信商户发起批量转账
+    @inlinable
+    public func createTransferBatch(_ input: CreateTransferBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTransferBatchResponse {
+        try await self.client.execute(action: "CreateTransferBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

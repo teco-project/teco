@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 查询私有CA证书列表
-    @inlinable
-    public func describePrivateCAs(_ input: DescribePrivateCAsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateCAsResponse > {
-        self.client.execute(action: "DescribePrivateCAs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询私有CA证书列表
-    @inlinable
-    public func describePrivateCAs(_ input: DescribePrivateCAsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateCAsResponse {
-        try await self.client.execute(action: "DescribePrivateCAs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrivateCAs请求参数结构体
     public struct DescribePrivateCAsRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Iotcloud {
             case cAs = "CAs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询私有CA证书列表
+    @inlinable
+    public func describePrivateCAs(_ input: DescribePrivateCAsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateCAsResponse > {
+        self.client.execute(action: "DescribePrivateCAs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询私有CA证书列表
+    @inlinable
+    public func describePrivateCAs(_ input: DescribePrivateCAsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateCAsResponse {
+        try await self.client.execute(action: "DescribePrivateCAs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

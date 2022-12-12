@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 获取私有域解析账号列表
-    @inlinable
-    public func describePrivateDNSAccountList(_ input: DescribePrivateDNSAccountListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateDNSAccountListResponse > {
-        self.client.execute(action: "DescribePrivateDNSAccountList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取私有域解析账号列表
-    @inlinable
-    public func describePrivateDNSAccountList(_ input: DescribePrivateDNSAccountListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateDNSAccountListResponse {
-        try await self.client.execute(action: "DescribePrivateDNSAccountList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrivateDNSAccountList请求参数结构体
     public struct DescribePrivateDNSAccountListRequest: TCRequestModel {
         /// 分页偏移量，从0开始
@@ -38,7 +26,7 @@ extension Privatedns {
         /// 过滤参数
         public let filters: [Filter]?
         
-        public init (offset: Int64?, limit: Int64?, filters: [Filter]?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -67,5 +55,17 @@ extension Privatedns {
             case accountSet = "AccountSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取私有域解析账号列表
+    @inlinable
+    public func describePrivateDNSAccountList(_ input: DescribePrivateDNSAccountListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateDNSAccountListResponse > {
+        self.client.execute(action: "DescribePrivateDNSAccountList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取私有域解析账号列表
+    @inlinable
+    public func describePrivateDNSAccountList(_ input: DescribePrivateDNSAccountListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateDNSAccountListResponse {
+        try await self.client.execute(action: "DescribePrivateDNSAccountList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

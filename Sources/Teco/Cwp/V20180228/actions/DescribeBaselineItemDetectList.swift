@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取基线检测项的列表
-    @inlinable
-    public func describeBaselineItemDetectList(_ input: DescribeBaselineItemDetectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineItemDetectListResponse > {
-        self.client.execute(action: "DescribeBaselineItemDetectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取基线检测项的列表
-    @inlinable
-    public func describeBaselineItemDetectList(_ input: DescribeBaselineItemDetectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineItemDetectListResponse {
-        try await self.client.execute(action: "DescribeBaselineItemDetectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBaselineItemDetectList请求参数结构体
     public struct DescribeBaselineItemDetectListRequest: TCRequestModel {
         /// <li>HostId - string - 是否必填：否 - 主机Id</li>
@@ -51,7 +39,7 @@ extension Cwp {
         /// 可选排序列: [HostCount|FirstTime|LastTime]
         public let by: String?
         
-        public init (filters: [Filter]?, limit: Int64?, offset: Int64?, order: String?, by: String?) {
+        public init (filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -84,5 +72,17 @@ extension Cwp {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取基线检测项的列表
+    @inlinable
+    public func describeBaselineItemDetectList(_ input: DescribeBaselineItemDetectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBaselineItemDetectListResponse > {
+        self.client.execute(action: "DescribeBaselineItemDetectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取基线检测项的列表
+    @inlinable
+    public func describeBaselineItemDetectList(_ input: DescribeBaselineItemDetectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineItemDetectListResponse {
+        try await self.client.execute(action: "DescribeBaselineItemDetectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

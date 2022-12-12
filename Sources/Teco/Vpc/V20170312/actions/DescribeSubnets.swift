@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询子网列表
-    ///
-    /// 本接口（DescribeSubnets）用于查询子网列表。
-    @inlinable
-    public func describeSubnets(_ input: DescribeSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubnetsResponse > {
-        self.client.execute(action: "DescribeSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询子网列表
-    ///
-    /// 本接口（DescribeSubnets）用于查询子网列表。
-    @inlinable
-    public func describeSubnets(_ input: DescribeSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetsResponse {
-        try await self.client.execute(action: "DescribeSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSubnets请求参数结构体
     public struct DescribeSubnetsRequest: TCRequestModel {
         /// 子网实例ID查询。形如：subnet-pxir56ns。每次请求的实例的上限为100。参数不支持同时指定SubnetIds和Filters。
@@ -56,7 +40,7 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。
         public let limit: String?
         
-        public init (subnetIds: [String]?, filters: [Filter]?, offset: String?, limit: String?) {
+        public init (subnetIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil) {
             self.subnetIds = subnetIds
             self.filters = filters
             self.offset = offset
@@ -87,5 +71,21 @@ extension Vpc {
             case subnetSet = "SubnetSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询子网列表
+    ///
+    /// 本接口（DescribeSubnets）用于查询子网列表。
+    @inlinable
+    public func describeSubnets(_ input: DescribeSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubnetsResponse > {
+        self.client.execute(action: "DescribeSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询子网列表
+    ///
+    /// 本接口（DescribeSubnets）用于查询子网列表。
+    @inlinable
+    public func describeSubnets(_ input: DescribeSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetsResponse {
+        try await self.client.execute(action: "DescribeSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

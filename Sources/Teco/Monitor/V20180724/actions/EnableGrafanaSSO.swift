@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 设置 Grafana 单点登录
-    ///
-    /// 设置 Grafana 单点登录，使用腾讯云账号
-    @inlinable
-    public func enableGrafanaSSO(_ input: EnableGrafanaSSORequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableGrafanaSSOResponse > {
-        self.client.execute(action: "EnableGrafanaSSO", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置 Grafana 单点登录
-    ///
-    /// 设置 Grafana 单点登录，使用腾讯云账号
-    @inlinable
-    public func enableGrafanaSSO(_ input: EnableGrafanaSSORequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGrafanaSSOResponse {
-        try await self.client.execute(action: "EnableGrafanaSSO", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableGrafanaSSO请求参数结构体
     public struct EnableGrafanaSSORequest: TCRequestModel {
         /// 是否开启 SSO，true为开启，false 为不开启
@@ -58,5 +42,21 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置 Grafana 单点登录
+    ///
+    /// 设置 Grafana 单点登录，使用腾讯云账号
+    @inlinable
+    public func enableGrafanaSSO(_ input: EnableGrafanaSSORequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableGrafanaSSOResponse > {
+        self.client.execute(action: "EnableGrafanaSSO", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置 Grafana 单点登录
+    ///
+    /// 设置 Grafana 单点登录，使用腾讯云账号
+    @inlinable
+    public func enableGrafanaSSO(_ input: EnableGrafanaSSORequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGrafanaSSOResponse {
+        try await self.client.execute(action: "EnableGrafanaSSO", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

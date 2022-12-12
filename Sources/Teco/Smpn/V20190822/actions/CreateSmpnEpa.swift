@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Smpn {
-    /// 企业号码认证
-    @inlinable
-    public func createSmpnEpa(_ input: CreateSmpnEpaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSmpnEpaResponse > {
-        self.client.execute(action: "CreateSmpnEpa", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 企业号码认证
-    @inlinable
-    public func createSmpnEpa(_ input: CreateSmpnEpaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSmpnEpaResponse {
-        try await self.client.execute(action: "CreateSmpnEpa", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSmpnEpa请求参数结构体
     public struct CreateSmpnEpaRequest: TCRequestModel {
         /// 企业号码认证请求内容
@@ -58,5 +46,17 @@ extension Smpn {
             case responseData = "ResponseData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 企业号码认证
+    @inlinable
+    public func createSmpnEpa(_ input: CreateSmpnEpaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSmpnEpaResponse > {
+        self.client.execute(action: "CreateSmpnEpa", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 企业号码认证
+    @inlinable
+    public func createSmpnEpa(_ input: CreateSmpnEpaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSmpnEpaResponse {
+        try await self.client.execute(action: "CreateSmpnEpa", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

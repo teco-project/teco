@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Mgobe {
-    /// 踢出房间玩家
-    ///
-    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
-    /// 踢出房间玩家
-    @inlinable
-    public func removeRoomPlayer(_ input: RemoveRoomPlayerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveRoomPlayerResponse > {
-        self.client.execute(action: "RemoveRoomPlayer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 踢出房间玩家
-    ///
-    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
-    /// 踢出房间玩家
-    @inlinable
-    public func removeRoomPlayer(_ input: RemoveRoomPlayerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveRoomPlayerResponse {
-        try await self.client.execute(action: "RemoveRoomPlayer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemoveRoomPlayer请求参数结构体
     public struct RemoveRoomPlayerRequest: TCRequestModel {
         /// 游戏资源Id。
@@ -64,5 +46,23 @@ extension Mgobe {
             case room = "Room"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 踢出房间玩家
+    ///
+    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    /// 踢出房间玩家
+    @inlinable
+    public func removeRoomPlayer(_ input: RemoveRoomPlayerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveRoomPlayerResponse > {
+        self.client.execute(action: "RemoveRoomPlayer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 踢出房间玩家
+    ///
+    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    /// 踢出房间玩家
+    @inlinable
+    public func removeRoomPlayer(_ input: RemoveRoomPlayerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveRoomPlayerResponse {
+        try await self.client.execute(action: "RemoveRoomPlayer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 获取指定区域分时客流量
-    @inlinable
-    public func describeZoneFlowHourlyByZoneId(_ input: DescribeZoneFlowHourlyByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowHourlyByZoneIdResponse > {
-        self.client.execute(action: "DescribeZoneFlowHourlyByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取指定区域分时客流量
-    @inlinable
-    public func describeZoneFlowHourlyByZoneId(_ input: DescribeZoneFlowHourlyByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowHourlyByZoneIdResponse {
-        try await self.client.execute(action: "DescribeZoneFlowHourlyByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeZoneFlowHourlyByZoneId请求参数结构体
     public struct DescribeZoneFlowHourlyByZoneIdRequest: TCRequestModel {
         /// 集团ID
@@ -89,5 +77,17 @@ extension Youmall {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取指定区域分时客流量
+    @inlinable
+    public func describeZoneFlowHourlyByZoneId(_ input: DescribeZoneFlowHourlyByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowHourlyByZoneIdResponse > {
+        self.client.execute(action: "DescribeZoneFlowHourlyByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定区域分时客流量
+    @inlinable
+    public func describeZoneFlowHourlyByZoneId(_ input: DescribeZoneFlowHourlyByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowHourlyByZoneIdResponse {
+        try await self.client.execute(action: "DescribeZoneFlowHourlyByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

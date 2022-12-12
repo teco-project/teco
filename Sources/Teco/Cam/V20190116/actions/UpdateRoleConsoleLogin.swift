@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 修改角色是否可登录
-    ///
-    /// 本接口（UpdateRoleConsoleLogin）用于修改角色是否可登录。
-    @inlinable
-    public func updateRoleConsoleLogin(_ input: UpdateRoleConsoleLoginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRoleConsoleLoginResponse > {
-        self.client.execute(action: "UpdateRoleConsoleLogin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改角色是否可登录
-    ///
-    /// 本接口（UpdateRoleConsoleLogin）用于修改角色是否可登录。
-    @inlinable
-    public func updateRoleConsoleLogin(_ input: UpdateRoleConsoleLoginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleConsoleLoginResponse {
-        try await self.client.execute(action: "UpdateRoleConsoleLogin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateRoleConsoleLogin请求参数结构体
     public struct UpdateRoleConsoleLoginRequest: TCRequestModel {
         /// 是否可登录，可登录：1，不可登录：0
@@ -42,7 +26,7 @@ extension Cam {
         /// 角色名，入参 RoleId 与 RoleName 二选一
         public let roleName: String?
         
-        public init (consoleLogin: Int64, roleId: Int64?, roleName: String?) {
+        public init (consoleLogin: Int64, roleId: Int64? = nil, roleName: String? = nil) {
             self.consoleLogin = consoleLogin
             self.roleId = roleId
             self.roleName = roleName
@@ -63,5 +47,21 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改角色是否可登录
+    ///
+    /// 本接口（UpdateRoleConsoleLogin）用于修改角色是否可登录。
+    @inlinable
+    public func updateRoleConsoleLogin(_ input: UpdateRoleConsoleLoginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRoleConsoleLoginResponse > {
+        self.client.execute(action: "UpdateRoleConsoleLogin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改角色是否可登录
+    ///
+    /// 本接口（UpdateRoleConsoleLogin）用于修改角色是否可登录。
+    @inlinable
+    public func updateRoleConsoleLogin(_ input: UpdateRoleConsoleLoginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleConsoleLoginResponse {
+        try await self.client.execute(action: "UpdateRoleConsoleLogin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

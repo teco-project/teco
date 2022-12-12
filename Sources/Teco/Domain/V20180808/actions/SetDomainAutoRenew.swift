@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 域名自动续费
-    ///
-    /// 本接口 ( SetDomainAutoRenew ) 用于设置域名自动续费。
-    @inlinable
-    public func setDomainAutoRenew(_ input: SetDomainAutoRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetDomainAutoRenewResponse > {
-        self.client.execute(action: "SetDomainAutoRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 域名自动续费
-    ///
-    /// 本接口 ( SetDomainAutoRenew ) 用于设置域名自动续费。
-    @inlinable
-    public func setDomainAutoRenew(_ input: SetDomainAutoRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDomainAutoRenewResponse {
-        try await self.client.execute(action: "SetDomainAutoRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetDomainAutoRenew请求参数结构体
     public struct SetDomainAutoRenewRequest: TCRequestModel {
         /// 域名ID。
@@ -61,5 +45,21 @@ extension Domain {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 域名自动续费
+    ///
+    /// 本接口 ( SetDomainAutoRenew ) 用于设置域名自动续费。
+    @inlinable
+    public func setDomainAutoRenew(_ input: SetDomainAutoRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetDomainAutoRenewResponse > {
+        self.client.execute(action: "SetDomainAutoRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 域名自动续费
+    ///
+    /// 本接口 ( SetDomainAutoRenew ) 用于设置域名自动续费。
+    @inlinable
+    public func setDomainAutoRenew(_ input: SetDomainAutoRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDomainAutoRenewResponse {
+        try await self.client.execute(action: "SetDomainAutoRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 获取消费分组offset
-    @inlinable
-    public func describeGroupOffsets(_ input: DescribeGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupOffsetsResponse > {
-        self.client.execute(action: "DescribeGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取消费分组offset
-    @inlinable
-    public func describeGroupOffsets(_ input: DescribeGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupOffsetsResponse {
-        try await self.client.execute(action: "DescribeGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGroupOffsets请求参数结构体
     public struct DescribeGroupOffsetsRequest: TCRequestModel {
         /// （过滤条件）按照实例 ID 过滤
@@ -47,7 +35,7 @@ extension Ckafka {
         /// 本次返回结果的最大个数，默认为50，最大值为50
         public let limit: Int64?
         
-        public init (instanceId: String, group: String, topics: [String]?, searchWord: String?, offset: Int64?, limit: Int64?) {
+        public init (instanceId: String, group: String, topics: [String]? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.group = group
             self.topics = topics
@@ -78,5 +66,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取消费分组offset
+    @inlinable
+    public func describeGroupOffsets(_ input: DescribeGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupOffsetsResponse > {
+        self.client.execute(action: "DescribeGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取消费分组offset
+    @inlinable
+    public func describeGroupOffsets(_ input: DescribeGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupOffsetsResponse {
+        try await self.client.execute(action: "DescribeGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

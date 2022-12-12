@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 删除私有网络
-    ///
-    /// 本接口(DeleteVpc)用于删除黑石私有网络(VPC)。
-    /// 删除私有网络前，请清理该私有网络下所有资源，包括子网、负载均衡、弹性 IP、对等连接、NAT 网关、专线通道、SSLVPN 等资源。
-    @inlinable
-    public func deleteVpc(_ input: DeleteVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcResponse > {
-        self.client.execute(action: "DeleteVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除私有网络
-    ///
-    /// 本接口(DeleteVpc)用于删除黑石私有网络(VPC)。
-    /// 删除私有网络前，请清理该私有网络下所有资源，包括子网、负载均衡、弹性 IP、对等连接、NAT 网关、专线通道、SSLVPN 等资源。
-    @inlinable
-    public func deleteVpc(_ input: DeleteVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
-        try await self.client.execute(action: "DeleteVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteVpc请求参数结构体
     public struct DeleteVpcRequest: TCRequestModel {
         /// VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
@@ -59,5 +41,23 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除私有网络
+    ///
+    /// 本接口(DeleteVpc)用于删除黑石私有网络(VPC)。
+    /// 删除私有网络前，请清理该私有网络下所有资源，包括子网、负载均衡、弹性 IP、对等连接、NAT 网关、专线通道、SSLVPN 等资源。
+    @inlinable
+    public func deleteVpc(_ input: DeleteVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpcResponse > {
+        self.client.execute(action: "DeleteVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除私有网络
+    ///
+    /// 本接口(DeleteVpc)用于删除黑石私有网络(VPC)。
+    /// 删除私有网络前，请清理该私有网络下所有资源，包括子网、负载均衡、弹性 IP、对等连接、NAT 网关、专线通道、SSLVPN 等资源。
+    @inlinable
+    public func deleteVpc(_ input: DeleteVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
+        try await self.client.execute(action: "DeleteVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

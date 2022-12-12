@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 列出访问密钥
-    ///
-    /// 列出指定CAM用户的访问密钥
-    @inlinable
-    public func listAccessKeys(_ input: ListAccessKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAccessKeysResponse > {
-        self.client.execute(action: "ListAccessKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列出访问密钥
-    ///
-    /// 列出指定CAM用户的访问密钥
-    @inlinable
-    public func listAccessKeys(_ input: ListAccessKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAccessKeysResponse {
-        try await self.client.execute(action: "ListAccessKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListAccessKeys请求参数结构体
     public struct ListAccessKeysRequest: TCRequestModel {
         /// 指定用户Uin，不填默认列出当前用户访问密钥
         public let targetUin: UInt64?
         
-        public init (targetUin: UInt64?) {
+        public init (targetUin: UInt64? = nil) {
             self.targetUin = targetUin
         }
         
@@ -58,5 +42,21 @@ extension Cam {
             case accessKeys = "AccessKeys"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列出访问密钥
+    ///
+    /// 列出指定CAM用户的访问密钥
+    @inlinable
+    public func listAccessKeys(_ input: ListAccessKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAccessKeysResponse > {
+        self.client.execute(action: "ListAccessKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列出访问密钥
+    ///
+    /// 列出指定CAM用户的访问密钥
+    @inlinable
+    public func listAccessKeys(_ input: ListAccessKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAccessKeysResponse {
+        try await self.client.execute(action: "ListAccessKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

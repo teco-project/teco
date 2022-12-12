@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lcic {
-    /// 获取房间统计信息
-    ///
-    /// 获取房间统计信息，仅可在房间结束后调用。
-    @inlinable
-    public func describeRoomStatistics(_ input: DescribeRoomStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoomStatisticsResponse > {
-        self.client.execute(action: "DescribeRoomStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取房间统计信息
-    ///
-    /// 获取房间统计信息，仅可在房间结束后调用。
-    @inlinable
-    public func describeRoomStatistics(_ input: DescribeRoomStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomStatisticsResponse {
-        try await self.client.execute(action: "DescribeRoomStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRoomStatistics请求参数结构体
     public struct DescribeRoomStatisticsRequest: TCRequestModel {
         /// 房间Id。
@@ -79,5 +63,21 @@ extension Lcic {
             case memberRecords = "MemberRecords"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取房间统计信息
+    ///
+    /// 获取房间统计信息，仅可在房间结束后调用。
+    @inlinable
+    public func describeRoomStatistics(_ input: DescribeRoomStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRoomStatisticsResponse > {
+        self.client.execute(action: "DescribeRoomStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取房间统计信息
+    ///
+    /// 获取房间统计信息，仅可在房间结束后调用。
+    @inlinable
+    public func describeRoomStatistics(_ input: DescribeRoomStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomStatisticsResponse {
+        try await self.client.execute(action: "DescribeRoomStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

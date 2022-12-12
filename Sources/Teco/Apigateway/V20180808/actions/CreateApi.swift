@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 创建API
-    ///
-    /// 本接口（CreateApi）用于创建 API 接口，创建 API 前，用户需要先创建服务，每个 API 都有自己归属的服务。
-    @inlinable
-    public func createApi(_ input: CreateApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApiResponse > {
-        self.client.execute(action: "CreateApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建API
-    ///
-    /// 本接口（CreateApi）用于创建 API 接口，创建 API 前，用户需要先创建服务，每个 API 都有自己归属的服务。
-    @inlinable
-    public func createApi(_ input: CreateApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiResponse {
-        try await self.client.execute(action: "CreateApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateApi请求参数结构体
     public struct CreateApiRequest: TCRequestModel {
         /// API 所在的服务唯一 ID。
@@ -79,10 +63,10 @@ extension Apigateway {
         public let microServices: [MicroServiceReq]?
         
         /// 微服务的负载均衡配置。
-        public let serviceTsfLoadBalanceConf: TsfLoadBalanceConfResp
+        public let serviceTsfLoadBalanceConf: TsfLoadBalanceConfResp?
         
         /// 微服务的健康检查配置。
-        public let serviceTsfHealthCheckConf: HealthCheckConf
+        public let serviceTsfHealthCheckConf: HealthCheckConf?
         
         /// target类型后端资源信息。（内测阶段）
         public let targetServices: [TargetServicesReq]?
@@ -91,7 +75,7 @@ extension Apigateway {
         public let targetServicesLoadBalanceConf: Int64?
         
         /// target健康检查配置。（内测阶段）
-        public let targetServicesHealthCheckConf: HealthCheckConf
+        public let targetServicesHealthCheckConf: HealthCheckConf?
         
         /// scf 函数名称。当后端类型是SCF时生效。
         public let serviceScfFunctionName: String?
@@ -148,7 +132,7 @@ extension Apigateway {
         public let responseFailExample: String?
         
         /// API 的后端服务配置。
-        public let serviceConfig: ServiceConfig
+        public let serviceConfig: ServiceConfig?
         
         /// 关联的授权API 唯一 ID，当AuthType为OAUTH且ApiBusinessType为NORMAL时生效。标示业务API绑定的oauth2.0授权API唯一ID。
         public let authRelationApiId: String?
@@ -157,7 +141,7 @@ extension Apigateway {
         public let serviceParameters: [ServiceParameter]?
         
         /// oauth配置。当AuthType是OAUTH时生效。
-        public let oauthConfig: OauthConfig
+        public let oauthConfig: OauthConfig?
         
         /// 用户自定义错误码配置。
         public let responseErrorCodes: [ResponseErrorCodeReq]?
@@ -192,7 +176,7 @@ extension Apigateway {
         /// 资源的Owner
         public let owner: String?
         
-        public init (serviceId: String, serviceType: String, serviceTimeout: Int64, `protocol`: String, requestConfig: ApiRequestConfig, apiName: String?, apiDesc: String?, apiType: String?, authType: String?, enableCORS: Bool?, constantParameters: [ConstantParameter]?, requestParameters: [RequestParameter]?, apiBusinessType: String?, serviceMockReturnMessage: String?, microServices: [MicroServiceReq]?, serviceTsfLoadBalanceConf: TsfLoadBalanceConfResp, serviceTsfHealthCheckConf: HealthCheckConf, targetServices: [TargetServicesReq]?, targetServicesLoadBalanceConf: Int64?, targetServicesHealthCheckConf: HealthCheckConf, serviceScfFunctionName: String?, serviceWebsocketRegisterFunctionName: String?, serviceWebsocketCleanupFunctionName: String?, serviceWebsocketTransportFunctionName: String?, serviceScfFunctionNamespace: String?, serviceScfFunctionQualifier: String?, serviceWebsocketRegisterFunctionNamespace: String?, serviceWebsocketRegisterFunctionQualifier: String?, serviceWebsocketTransportFunctionNamespace: String?, serviceWebsocketTransportFunctionQualifier: String?, serviceWebsocketCleanupFunctionNamespace: String?, serviceWebsocketCleanupFunctionQualifier: String?, serviceScfIsIntegratedResponse: Bool?, isDebugAfterCharge: Bool?, isDeleteResponseErrorCodes: Bool?, responseType: String?, responseSuccessExample: String?, responseFailExample: String?, serviceConfig: ServiceConfig, authRelationApiId: String?, serviceParameters: [ServiceParameter]?, oauthConfig: OauthConfig, responseErrorCodes: [ResponseErrorCodeReq]?, targetNamespaceId: String?, userType: String?, isBase64Encoded: Bool?, eventBusId: String?, serviceScfFunctionType: String?, eiamAppType: String?, eiamAuthType: String?, tokenTimeout: Int64?, eiamAppId: String?, owner: String?) {
+        public init (serviceId: String, serviceType: String, serviceTimeout: Int64, `protocol`: String, requestConfig: ApiRequestConfig, apiName: String? = nil, apiDesc: String? = nil, apiType: String? = nil, authType: String? = nil, enableCORS: Bool? = nil, constantParameters: [ConstantParameter]? = nil, requestParameters: [RequestParameter]? = nil, apiBusinessType: String? = nil, serviceMockReturnMessage: String? = nil, microServices: [MicroServiceReq]? = nil, serviceTsfLoadBalanceConf: TsfLoadBalanceConfResp? = nil, serviceTsfHealthCheckConf: HealthCheckConf? = nil, targetServices: [TargetServicesReq]? = nil, targetServicesLoadBalanceConf: Int64? = nil, targetServicesHealthCheckConf: HealthCheckConf? = nil, serviceScfFunctionName: String? = nil, serviceWebsocketRegisterFunctionName: String? = nil, serviceWebsocketCleanupFunctionName: String? = nil, serviceWebsocketTransportFunctionName: String? = nil, serviceScfFunctionNamespace: String? = nil, serviceScfFunctionQualifier: String? = nil, serviceWebsocketRegisterFunctionNamespace: String? = nil, serviceWebsocketRegisterFunctionQualifier: String? = nil, serviceWebsocketTransportFunctionNamespace: String? = nil, serviceWebsocketTransportFunctionQualifier: String? = nil, serviceWebsocketCleanupFunctionNamespace: String? = nil, serviceWebsocketCleanupFunctionQualifier: String? = nil, serviceScfIsIntegratedResponse: Bool? = nil, isDebugAfterCharge: Bool? = nil, isDeleteResponseErrorCodes: Bool? = nil, responseType: String? = nil, responseSuccessExample: String? = nil, responseFailExample: String? = nil, serviceConfig: ServiceConfig? = nil, authRelationApiId: String? = nil, serviceParameters: [ServiceParameter]? = nil, oauthConfig: OauthConfig? = nil, responseErrorCodes: [ResponseErrorCodeReq]? = nil, targetNamespaceId: String? = nil, userType: String? = nil, isBase64Encoded: Bool? = nil, eventBusId: String? = nil, serviceScfFunctionType: String? = nil, eiamAppType: String? = nil, eiamAuthType: String? = nil, tokenTimeout: Int64? = nil, eiamAppId: String? = nil, owner: String? = nil) {
             self.serviceId = serviceId
             self.serviceType = serviceType
             self.serviceTimeout = serviceTimeout
@@ -309,7 +293,7 @@ extension Apigateway {
     public struct CreateApiResponse: TCResponseModel {
         /// api信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: CreateApiRsp
+        public let result: CreateApiRsp?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -318,5 +302,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建API
+    ///
+    /// 本接口（CreateApi）用于创建 API 接口，创建 API 前，用户需要先创建服务，每个 API 都有自己归属的服务。
+    @inlinable
+    public func createApi(_ input: CreateApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApiResponse > {
+        self.client.execute(action: "CreateApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建API
+    ///
+    /// 本接口（CreateApi）用于创建 API 接口，创建 API 前，用户需要先创建服务，每个 API 都有自己归属的服务。
+    @inlinable
+    public func createApi(_ input: CreateApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiResponse {
+        try await self.client.execute(action: "CreateApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

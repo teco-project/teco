@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 查询跨域2.0版本云联网后端子机和网卡信息
-    ///
-    /// 查询跨域2.0版本云联网后端子机和网卡信息。
-    @inlinable
-    public func describeCrossTargets(_ input: DescribeCrossTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCrossTargetsResponse > {
-        self.client.execute(action: "DescribeCrossTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询跨域2.0版本云联网后端子机和网卡信息
-    ///
-    /// 查询跨域2.0版本云联网后端子机和网卡信息。
-    @inlinable
-    public func describeCrossTargets(_ input: DescribeCrossTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossTargetsResponse {
-        try await self.client.execute(action: "DescribeCrossTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCrossTargets请求参数结构体
     public struct DescribeCrossTargetsRequest: TCRequestModel {
         /// 返回后端服务列表数目，默认20，最大值100。
@@ -46,7 +30,7 @@ extension Clb {
         /// <li> location-id - String - 是否必填：否 - （过滤条件）按照 七层监听器规则ID 过滤，如："loc-12345678"。</li>
         public let filters: [Filter]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -75,5 +59,21 @@ extension Clb {
             case crossTargetSet = "CrossTargetSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询跨域2.0版本云联网后端子机和网卡信息
+    ///
+    /// 查询跨域2.0版本云联网后端子机和网卡信息。
+    @inlinable
+    public func describeCrossTargets(_ input: DescribeCrossTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCrossTargetsResponse > {
+        self.client.execute(action: "DescribeCrossTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询跨域2.0版本云联网后端子机和网卡信息
+    ///
+    /// 查询跨域2.0版本云联网后端子机和网卡信息。
+    @inlinable
+    public func describeCrossTargets(_ input: DescribeCrossTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossTargetsResponse {
+        try await self.client.execute(action: "DescribeCrossTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

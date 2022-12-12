@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 从伸缩组创建节点池
-    @inlinable
-    public func createClusterNodePoolFromExistingAsg(_ input: CreateClusterNodePoolFromExistingAsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterNodePoolFromExistingAsgResponse > {
-        self.client.execute(action: "CreateClusterNodePoolFromExistingAsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 从伸缩组创建节点池
-    @inlinable
-    public func createClusterNodePoolFromExistingAsg(_ input: CreateClusterNodePoolFromExistingAsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterNodePoolFromExistingAsgResponse {
-        try await self.client.execute(action: "CreateClusterNodePoolFromExistingAsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateClusterNodePoolFromExistingAsg请求参数结构体
     public struct CreateClusterNodePoolFromExistingAsgRequest: TCRequestModel {
         /// 集群ID
@@ -58,5 +46,17 @@ extension Tke {
             case nodePoolId = "NodePoolId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 从伸缩组创建节点池
+    @inlinable
+    public func createClusterNodePoolFromExistingAsg(_ input: CreateClusterNodePoolFromExistingAsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterNodePoolFromExistingAsgResponse > {
+        self.client.execute(action: "CreateClusterNodePoolFromExistingAsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 从伸缩组创建节点池
+    @inlinable
+    public func createClusterNodePoolFromExistingAsg(_ input: CreateClusterNodePoolFromExistingAsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterNodePoolFromExistingAsgResponse {
+        try await self.client.execute(action: "CreateClusterNodePoolFromExistingAsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

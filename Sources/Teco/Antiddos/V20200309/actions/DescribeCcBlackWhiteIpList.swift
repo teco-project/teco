@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取CC四层黑白名单列表
-    @inlinable
-    public func describeCcBlackWhiteIpList(_ input: DescribeCcBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCcBlackWhiteIpListResponse > {
-        self.client.execute(action: "DescribeCcBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取CC四层黑白名单列表
-    @inlinable
-    public func describeCcBlackWhiteIpList(_ input: DescribeCcBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcBlackWhiteIpListResponse {
-        try await self.client.execute(action: "DescribeCcBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCcBlackWhiteIpList请求参数结构体
     public struct DescribeCcBlackWhiteIpListRequest: TCRequestModel {
         /// 大禹子产品代号（bgp-multip：表示高防包；bgpip：表示高防IP）
@@ -56,7 +44,7 @@ extension Antiddos {
         /// 黑白名单筛选字段，需要筛选黑白名单列表时传该字段
         public let filterType: String?
         
-        public init (business: String, instanceId: String, offset: UInt64, limit: UInt64, ip: String?, domain: String?, `protocol`: String?, filterIp: String?, filterType: String?) {
+        public init (business: String, instanceId: String, offset: UInt64, limit: UInt64, ip: String? = nil, domain: String? = nil, `protocol`: String? = nil, filterIp: String? = nil, filterType: String? = nil) {
             self.business = business
             self.instanceId = instanceId
             self.offset = offset
@@ -97,5 +85,17 @@ extension Antiddos {
             case ccBlackWhiteIpList = "CcBlackWhiteIpList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取CC四层黑白名单列表
+    @inlinable
+    public func describeCcBlackWhiteIpList(_ input: DescribeCcBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCcBlackWhiteIpListResponse > {
+        self.client.execute(action: "DescribeCcBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC四层黑白名单列表
+    @inlinable
+    public func describeCcBlackWhiteIpList(_ input: DescribeCcBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcBlackWhiteIpListResponse {
+        try await self.client.execute(action: "DescribeCcBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

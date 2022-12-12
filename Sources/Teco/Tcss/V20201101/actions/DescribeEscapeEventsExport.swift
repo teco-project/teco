@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询容器逃逸事件列表导出
-    ///
-    /// DescribeEscapeEventsExport  查询容器逃逸事件列表导出
-    @inlinable
-    public func describeEscapeEventsExport(_ input: DescribeEscapeEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeEventsExportResponse > {
-        self.client.execute(action: "DescribeEscapeEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询容器逃逸事件列表导出
-    ///
-    /// DescribeEscapeEventsExport  查询容器逃逸事件列表导出
-    @inlinable
-    public func describeEscapeEventsExport(_ input: DescribeEscapeEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventsExportResponse {
-        try await self.client.execute(action: "DescribeEscapeEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEscapeEventsExport请求参数结构体
     public struct DescribeEscapeEventsExportRequest: TCRequestModel {
         /// 导出字段
@@ -51,7 +35,7 @@ extension Tcss {
         /// 排序字段
         public let by: String?
         
-        public init (exportField: [String], limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, order: String?, by: String?) {
+        public init (exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.exportField = exportField
             self.limit = limit
             self.offset = offset
@@ -83,5 +67,21 @@ extension Tcss {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询容器逃逸事件列表导出
+    ///
+    /// DescribeEscapeEventsExport  查询容器逃逸事件列表导出
+    @inlinable
+    public func describeEscapeEventsExport(_ input: DescribeEscapeEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEscapeEventsExportResponse > {
+        self.client.execute(action: "DescribeEscapeEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询容器逃逸事件列表导出
+    ///
+    /// DescribeEscapeEventsExport  查询容器逃逸事件列表导出
+    @inlinable
+    public func describeEscapeEventsExport(_ input: DescribeEscapeEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventsExportResponse {
+        try await self.client.execute(action: "DescribeEscapeEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

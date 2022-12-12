@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// IP 归属查询
-    ///
-    /// DescribeCdnIp 用于查询 CDN IP 归属。
-    /// （注意：此接口请求频率限制以 CDN 侧限制为准：200次/10分钟）  
-    @inlinable
-    public func describeCdnIp(_ input: DescribeCdnIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCdnIpResponse > {
-        self.client.execute(action: "DescribeCdnIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// IP 归属查询
-    ///
-    /// DescribeCdnIp 用于查询 CDN IP 归属。
-    /// （注意：此接口请求频率限制以 CDN 侧限制为准：200次/10分钟）  
-    @inlinable
-    public func describeCdnIp(_ input: DescribeCdnIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnIpResponse {
-        try await self.client.execute(action: "DescribeCdnIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCdnIp请求参数结构体
     public struct DescribeCdnIpRequest: TCRequestModel {
         /// 需要查询的 IP 列表
@@ -59,5 +41,23 @@ extension Cdn {
             case ips = "Ips"
             case requestId = "RequestId"
         }
+    }
+    
+    /// IP 归属查询
+    ///
+    /// DescribeCdnIp 用于查询 CDN IP 归属。
+    /// （注意：此接口请求频率限制以 CDN 侧限制为准：200次/10分钟）  
+    @inlinable
+    public func describeCdnIp(_ input: DescribeCdnIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCdnIpResponse > {
+        self.client.execute(action: "DescribeCdnIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// IP 归属查询
+    ///
+    /// DescribeCdnIp 用于查询 CDN IP 归属。
+    /// （注意：此接口请求频率限制以 CDN 侧限制为准：200次/10分钟）  
+    @inlinable
+    public func describeCdnIp(_ input: DescribeCdnIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnIpResponse {
+        try await self.client.execute(action: "DescribeCdnIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

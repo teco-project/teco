@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// Proxy模拟故障接口
-    @inlinable
-    public func switchProxy(_ input: SwitchProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchProxyResponse > {
-        self.client.execute(action: "SwitchProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// Proxy模拟故障接口
-    @inlinable
-    public func switchProxy(_ input: SwitchProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyResponse {
-        try await self.client.execute(action: "SwitchProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SwitchProxy请求参数结构体
     public struct SwitchProxyRequest: TCRequestModel {
         /// 实例ID
@@ -35,7 +23,7 @@ extension Redis {
         /// 实例ProxyID
         public let proxyID: String?
         
-        public init (instanceId: String, proxyID: String?) {
+        public init (instanceId: String, proxyID: String? = nil) {
             self.instanceId = instanceId
             self.proxyID = proxyID
         }
@@ -54,5 +42,17 @@ extension Redis {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// Proxy模拟故障接口
+    @inlinable
+    public func switchProxy(_ input: SwitchProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchProxyResponse > {
+        self.client.execute(action: "SwitchProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// Proxy模拟故障接口
+    @inlinable
+    public func switchProxy(_ input: SwitchProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyResponse {
+        try await self.client.execute(action: "SwitchProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

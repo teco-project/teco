@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取组件市场组件列表
-    @inlinable
-    public func getMarketComponentList(_ input: GetMarketComponentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetMarketComponentListResponse > {
-        self.client.execute(action: "GetMarketComponentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取组件市场组件列表
-    @inlinable
-    public func getMarketComponentList(_ input: GetMarketComponentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetMarketComponentListResponse {
-        try await self.client.execute(action: "GetMarketComponentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetMarketComponentList请求参数结构体
     public struct GetMarketComponentListRequest: TCRequestModel {
         /// 页偏移，从0开始
@@ -41,7 +29,7 @@ extension Iecp {
         /// 以名称排序，ASC、DESC
         public let order: String?
         
-        public init (offset: Int64, limit: Int64, filter: String?, order: String?) {
+        public init (offset: Int64, limit: Int64, filter: String? = nil, order: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filter = filter
@@ -72,5 +60,17 @@ extension Iecp {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取组件市场组件列表
+    @inlinable
+    public func getMarketComponentList(_ input: GetMarketComponentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetMarketComponentListResponse > {
+        self.client.execute(action: "GetMarketComponentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取组件市场组件列表
+    @inlinable
+    public func getMarketComponentList(_ input: GetMarketComponentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetMarketComponentListResponse {
+        try await self.client.execute(action: "GetMarketComponentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

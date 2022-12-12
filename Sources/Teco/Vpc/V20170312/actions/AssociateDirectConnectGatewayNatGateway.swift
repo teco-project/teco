@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 专线网关绑定NAT网关
-    ///
-    /// 将专线网关与NAT网关绑定，专线网关默认路由指向NAT网关
-    @inlinable
-    public func associateDirectConnectGatewayNatGateway(_ input: AssociateDirectConnectGatewayNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateDirectConnectGatewayNatGatewayResponse > {
-        self.client.execute(action: "AssociateDirectConnectGatewayNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 专线网关绑定NAT网关
-    ///
-    /// 将专线网关与NAT网关绑定，专线网关默认路由指向NAT网关
-    @inlinable
-    public func associateDirectConnectGatewayNatGateway(_ input: AssociateDirectConnectGatewayNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDirectConnectGatewayNatGatewayResponse {
-        try await self.client.execute(action: "AssociateDirectConnectGatewayNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssociateDirectConnectGatewayNatGateway请求参数结构体
     public struct AssociateDirectConnectGatewayNatGatewayRequest: TCRequestModel {
         /// 专线网关ID。
@@ -63,5 +47,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 专线网关绑定NAT网关
+    ///
+    /// 将专线网关与NAT网关绑定，专线网关默认路由指向NAT网关
+    @inlinable
+    public func associateDirectConnectGatewayNatGateway(_ input: AssociateDirectConnectGatewayNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateDirectConnectGatewayNatGatewayResponse > {
+        self.client.execute(action: "AssociateDirectConnectGatewayNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 专线网关绑定NAT网关
+    ///
+    /// 将专线网关与NAT网关绑定，专线网关默认路由指向NAT网关
+    @inlinable
+    public func associateDirectConnectGatewayNatGateway(_ input: AssociateDirectConnectGatewayNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDirectConnectGatewayNatGatewayResponse {
+        try await self.client.execute(action: "AssociateDirectConnectGatewayNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

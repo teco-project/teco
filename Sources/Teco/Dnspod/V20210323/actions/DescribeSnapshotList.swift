@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 查询快照列表
-    @inlinable
-    public func describeSnapshotList(_ input: DescribeSnapshotListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotListResponse > {
-        self.client.execute(action: "DescribeSnapshotList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询快照列表
-    @inlinable
-    public func describeSnapshotList(_ input: DescribeSnapshotListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotListResponse {
-        try await self.client.execute(action: "DescribeSnapshotList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSnapshotList请求参数结构体
     public struct DescribeSnapshotListRequest: TCRequestModel {
         /// 域名
@@ -35,7 +23,7 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
         public let domainId: UInt64?
         
-        public init (domain: String, domainId: UInt64?) {
+        public init (domain: String, domainId: UInt64? = nil) {
             self.domain = domain
             self.domainId = domainId
         }
@@ -62,5 +50,17 @@ extension Dnspod {
             case snapshotList = "SnapshotList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询快照列表
+    @inlinable
+    public func describeSnapshotList(_ input: DescribeSnapshotListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotListResponse > {
+        self.client.execute(action: "DescribeSnapshotList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询快照列表
+    @inlinable
+    public func describeSnapshotList(_ input: DescribeSnapshotListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotListResponse {
+        try await self.client.execute(action: "DescribeSnapshotList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

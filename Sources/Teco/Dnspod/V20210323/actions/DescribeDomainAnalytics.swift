@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 域名解析量统计
-    ///
-    /// 统计各个域名的解析量，帮助您了解流量情况、时间段分布。支持查看近 3 个月内的统计情况
-    @inlinable
-    public func describeDomainAnalytics(_ input: DescribeDomainAnalyticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainAnalyticsResponse > {
-        self.client.execute(action: "DescribeDomainAnalytics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 域名解析量统计
-    ///
-    /// 统计各个域名的解析量，帮助您了解流量情况、时间段分布。支持查看近 3 个月内的统计情况
-    @inlinable
-    public func describeDomainAnalytics(_ input: DescribeDomainAnalyticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainAnalyticsResponse {
-        try await self.client.execute(action: "DescribeDomainAnalytics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomainAnalytics请求参数结构体
     public struct DescribeDomainAnalyticsRequest: TCRequestModel {
         /// 要查询解析量的域名
@@ -48,7 +32,7 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         public let domainId: UInt64?
         
-        public init (domain: String, startDate: String, endDate: String, dnsFormat: String?, domainId: UInt64?) {
+        public init (domain: String, startDate: String, endDate: String, dnsFormat: String? = nil, domainId: UInt64? = nil) {
             self.domain = domain
             self.startDate = startDate
             self.endDate = endDate
@@ -85,5 +69,21 @@ extension Dnspod {
             case aliasData = "AliasData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 域名解析量统计
+    ///
+    /// 统计各个域名的解析量，帮助您了解流量情况、时间段分布。支持查看近 3 个月内的统计情况
+    @inlinable
+    public func describeDomainAnalytics(_ input: DescribeDomainAnalyticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainAnalyticsResponse > {
+        self.client.execute(action: "DescribeDomainAnalytics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 域名解析量统计
+    ///
+    /// 统计各个域名的解析量，帮助您了解流量情况、时间段分布。支持查看近 3 个月内的统计情况
+    @inlinable
+    public func describeDomainAnalytics(_ input: DescribeDomainAnalyticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainAnalyticsResponse {
+        try await self.client.execute(action: "DescribeDomainAnalytics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

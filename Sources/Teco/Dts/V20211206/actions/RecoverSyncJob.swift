@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 解除隔离同步任务
-    ///
-    /// 解除隔离同步任务，任务在已隔离状态下可调用该接口解除隔离状态任务，同时可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
-    @inlinable
-    public func recoverSyncJob(_ input: RecoverSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverSyncJobResponse > {
-        self.client.execute(action: "RecoverSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解除隔离同步任务
-    ///
-    /// 解除隔离同步任务，任务在已隔离状态下可调用该接口解除隔离状态任务，同时可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
-    @inlinable
-    public func recoverSyncJob(_ input: RecoverSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverSyncJobResponse {
-        try await self.client.execute(action: "RecoverSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecoverSyncJob请求参数结构体
     public struct RecoverSyncJobRequest: TCRequestModel {
         /// 同步实例id（即标识一个同步作业），形如sync-werwfs23
@@ -53,5 +37,21 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解除隔离同步任务
+    ///
+    /// 解除隔离同步任务，任务在已隔离状态下可调用该接口解除隔离状态任务，同时可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
+    @inlinable
+    public func recoverSyncJob(_ input: RecoverSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverSyncJobResponse > {
+        self.client.execute(action: "RecoverSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解除隔离同步任务
+    ///
+    /// 解除隔离同步任务，任务在已隔离状态下可调用该接口解除隔离状态任务，同时可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
+    @inlinable
+    public func recoverSyncJob(_ input: RecoverSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverSyncJobResponse {
+        try await self.client.execute(action: "RecoverSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

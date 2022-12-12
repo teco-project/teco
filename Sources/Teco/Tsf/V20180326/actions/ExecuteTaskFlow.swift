@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 执行一次工作流
-    @inlinable
-    public func executeTaskFlow(_ input: ExecuteTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteTaskFlowResponse > {
-        self.client.execute(action: "ExecuteTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 执行一次工作流
-    @inlinable
-    public func executeTaskFlow(_ input: ExecuteTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskFlowResponse {
-        try await self.client.execute(action: "ExecuteTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExecuteTaskFlow请求参数结构体
     public struct ExecuteTaskFlowRequest: TCRequestModel {
         /// 工作流 ID
         public let flowId: String?
         
-        public init (flowId: String?) {
+        public init (flowId: String? = nil) {
             self.flowId = flowId
         }
         
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 执行一次工作流
+    @inlinable
+    public func executeTaskFlow(_ input: ExecuteTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteTaskFlowResponse > {
+        self.client.execute(action: "ExecuteTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 执行一次工作流
+    @inlinable
+    public func executeTaskFlow(_ input: ExecuteTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskFlowResponse {
+        try await self.client.execute(action: "ExecuteTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

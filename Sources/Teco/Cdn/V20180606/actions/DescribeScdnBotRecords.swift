@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 查询BOT会话记录列表
-    @inlinable
-    public func describeScdnBotRecords(_ input: DescribeScdnBotRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnBotRecordsResponse > {
-        self.client.execute(action: "DescribeScdnBotRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询BOT会话记录列表
-    @inlinable
-    public func describeScdnBotRecords(_ input: DescribeScdnBotRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotRecordsResponse {
-        try await self.client.execute(action: "DescribeScdnBotRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScdnBotRecords请求参数结构体
     public struct DescribeScdnBotRecordsRequest: TCRequestModel {
         /// BOT类型，取值为"UB","UCB","TCB"，分别表示：未知类型，自定义类型，公开类型
@@ -130,7 +118,7 @@ extension Cdn {
         /// 域名列表，为空表示查询AppID维度数据
         public let domains: [String]?
         
-        public init (botType: String, domain: String, startTime: Date, endTime: Date, offset: UInt64, limit: UInt64, area: String, sortBy: [BotSortBy]?, filterName: String?, filterAction: String?, filterIp: String?, domains: [String]?) {
+        public init (botType: String, domain: String, startTime: Date, endTime: Date, offset: UInt64, limit: UInt64, area: String, sortBy: [BotSortBy]? = nil, filterName: String? = nil, filterAction: String? = nil, filterIp: String? = nil, domains: [String]? = nil) {
             self.botType = botType
             self.domain = domain
             self.startTime = startTime
@@ -177,5 +165,17 @@ extension Cdn {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询BOT会话记录列表
+    @inlinable
+    public func describeScdnBotRecords(_ input: DescribeScdnBotRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnBotRecordsResponse > {
+        self.client.execute(action: "DescribeScdnBotRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询BOT会话记录列表
+    @inlinable
+    public func describeScdnBotRecords(_ input: DescribeScdnBotRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotRecordsResponse {
+        try await self.client.execute(action: "DescribeScdnBotRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

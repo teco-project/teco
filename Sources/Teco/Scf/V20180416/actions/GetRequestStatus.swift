@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 获取函数单个请求运行状态
-    ///
-    /// 该接口根据指定的查询条件返回函数单个请求运行状态。
-    @inlinable
-    public func getRequestStatus(_ input: GetRequestStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRequestStatusResponse > {
-        self.client.execute(action: "GetRequestStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取函数单个请求运行状态
-    ///
-    /// 该接口根据指定的查询条件返回函数单个请求运行状态。
-    @inlinable
-    public func getRequestStatus(_ input: GetRequestStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRequestStatusResponse {
-        try await self.client.execute(action: "GetRequestStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetRequestStatus请求参数结构体
     public struct GetRequestStatusRequest: TCRequestModel {
         /// 函数名称
@@ -48,7 +32,7 @@ extension Scf {
         /// 查询的结束时间，例如：2017-05-16 20:59:59。StartTime 为空时，EndTime 默认为当前时间；StartTime 有值时，需要同时传 EndTime。EndTime 需要晚于 StartTime。
         public let endTime: String?
         
-        public init (functionName: String, functionRequestId: String, namespace: String?, startTime: String?, endTime: String?) {
+        public init (functionName: String, functionRequestId: String, namespace: String? = nil, startTime: String? = nil, endTime: String? = nil) {
             self.functionName = functionName
             self.functionRequestId = functionRequestId
             self.namespace = namespace
@@ -83,5 +67,21 @@ extension Scf {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取函数单个请求运行状态
+    ///
+    /// 该接口根据指定的查询条件返回函数单个请求运行状态。
+    @inlinable
+    public func getRequestStatus(_ input: GetRequestStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRequestStatusResponse > {
+        self.client.execute(action: "GetRequestStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数单个请求运行状态
+    ///
+    /// 该接口根据指定的查询条件返回函数单个请求运行状态。
+    @inlinable
+    public func getRequestStatus(_ input: GetRequestStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRequestStatusResponse {
+        try await self.client.execute(action: "GetRequestStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 资产扫描
-    @inlinable
-    public func modifyAssetScan(_ input: ModifyAssetScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAssetScanResponse > {
-        self.client.execute(action: "ModifyAssetScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 资产扫描
-    @inlinable
-    public func modifyAssetScan(_ input: ModifyAssetScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetScanResponse {
-        try await self.client.execute(action: "ModifyAssetScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAssetScan请求参数结构体
     public struct ModifyAssetScanRequest: TCRequestModel {
         /// 扫描范围：1端口, 2端口+漏扫
@@ -47,7 +35,7 @@ extension Cfw {
         /// 1全量2单个
         public let scanType: Int64?
         
-        public init (scanRange: Int64, scanDeep: String, rangeType: Int64, scanPeriod: String?, scanFilterIp: [String]?, scanType: Int64?) {
+        public init (scanRange: Int64, scanDeep: String, rangeType: Int64, scanPeriod: String? = nil, scanFilterIp: [String]? = nil, scanType: Int64? = nil) {
             self.scanRange = scanRange
             self.scanDeep = scanDeep
             self.rangeType = rangeType
@@ -88,5 +76,17 @@ extension Cfw {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 资产扫描
+    @inlinable
+    public func modifyAssetScan(_ input: ModifyAssetScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAssetScanResponse > {
+        self.client.execute(action: "ModifyAssetScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 资产扫描
+    @inlinable
+    public func modifyAssetScan(_ input: ModifyAssetScanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetScanResponse {
+        try await self.client.execute(action: "ModifyAssetScan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

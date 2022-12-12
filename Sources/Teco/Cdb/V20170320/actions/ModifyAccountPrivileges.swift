@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 修改云数据库实例账号的权限
-    ///
-    /// 本接口(ModifyAccountPrivileges)用于修改云数据库的账户的权限信息。
-    /// 注意，修改账号权限时，需要传入该账号下的全量权限信息。用户可以先通过 [查询云数据库账户的权限信息
-    /// ](https://cloud.tencent.com/document/api/236/17500) 查询该账号下的全量权限信息，然后进行权限修改。
-    @inlinable
-    public func modifyAccountPrivileges(_ input: ModifyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountPrivilegesResponse > {
-        self.client.execute(action: "ModifyAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改云数据库实例账号的权限
-    ///
-    /// 本接口(ModifyAccountPrivileges)用于修改云数据库的账户的权限信息。
-    /// 注意，修改账号权限时，需要传入该账号下的全量权限信息。用户可以先通过 [查询云数据库账户的权限信息
-    /// ](https://cloud.tencent.com/document/api/236/17500) 查询该账号下的全量权限信息，然后进行权限修改。
-    @inlinable
-    public func modifyAccountPrivileges(_ input: ModifyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegesResponse {
-        try await self.client.execute(action: "ModifyAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAccountPrivileges请求参数结构体
     public struct ModifyAccountPrivilegesRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -62,7 +42,7 @@ extension Cdb {
         /// 该参数不为空时，为批量修改权限。可选值为：grant - 授予权限，revoke - 回收权限。
         public let modifyAction: String?
         
-        public init (instanceId: String, accounts: [Account], globalPrivileges: [String]?, databasePrivileges: [DatabasePrivilege]?, tablePrivileges: [TablePrivilege]?, columnPrivileges: [ColumnPrivilege]?, modifyAction: String?) {
+        public init (instanceId: String, accounts: [Account], globalPrivileges: [String]? = nil, databasePrivileges: [DatabasePrivilege]? = nil, tablePrivileges: [TablePrivilege]? = nil, columnPrivileges: [ColumnPrivilege]? = nil, modifyAction: String? = nil) {
             self.instanceId = instanceId
             self.accounts = accounts
             self.globalPrivileges = globalPrivileges
@@ -95,5 +75,25 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改云数据库实例账号的权限
+    ///
+    /// 本接口(ModifyAccountPrivileges)用于修改云数据库的账户的权限信息。
+    /// 注意，修改账号权限时，需要传入该账号下的全量权限信息。用户可以先通过 [查询云数据库账户的权限信息
+    /// ](https://cloud.tencent.com/document/api/236/17500) 查询该账号下的全量权限信息，然后进行权限修改。
+    @inlinable
+    public func modifyAccountPrivileges(_ input: ModifyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAccountPrivilegesResponse > {
+        self.client.execute(action: "ModifyAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改云数据库实例账号的权限
+    ///
+    /// 本接口(ModifyAccountPrivileges)用于修改云数据库的账户的权限信息。
+    /// 注意，修改账号权限时，需要传入该账号下的全量权限信息。用户可以先通过 [查询云数据库账户的权限信息
+    /// ](https://cloud.tencent.com/document/api/236/17500) 查询该账号下的全量权限信息，然后进行权限修改。
+    @inlinable
+    public func modifyAccountPrivileges(_ input: ModifyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegesResponse {
+        try await self.client.execute(action: "ModifyAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

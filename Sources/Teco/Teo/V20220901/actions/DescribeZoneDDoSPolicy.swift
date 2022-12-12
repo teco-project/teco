@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询所有DDoS防护分区
-    @inlinable
-    public func describeZoneDDoSPolicy(_ input: DescribeZoneDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneDDoSPolicyResponse > {
-        self.client.execute(action: "DescribeZoneDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询所有DDoS防护分区
-    @inlinable
-    public func describeZoneDDoSPolicy(_ input: DescribeZoneDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneDDoSPolicyResponse {
-        try await self.client.execute(action: "DescribeZoneDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeZoneDDoSPolicy请求参数结构体
     public struct DescribeZoneDDoSPolicyRequest: TCRequestModel {
         /// 站点Id。
         public let zoneId: String?
         
-        public init (zoneId: String?) {
+        public init (zoneId: String? = nil) {
             self.zoneId = zoneId
         }
         
@@ -58,5 +46,17 @@ extension Teo {
             case dDoSHosts = "DDoSHosts"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询所有DDoS防护分区
+    @inlinable
+    public func describeZoneDDoSPolicy(_ input: DescribeZoneDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneDDoSPolicyResponse > {
+        self.client.execute(action: "DescribeZoneDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询所有DDoS防护分区
+    @inlinable
+    public func describeZoneDDoSPolicy(_ input: DescribeZoneDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneDDoSPolicyResponse {
+        try await self.client.execute(action: "DescribeZoneDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

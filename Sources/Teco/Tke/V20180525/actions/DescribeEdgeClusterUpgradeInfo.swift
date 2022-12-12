@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询边缘集群升级信息
-    ///
-    /// 可以查询边缘集群升级信息，包含可以升级的组件，当前升级状态和升级错误信息
-    @inlinable
-    public func describeEdgeClusterUpgradeInfo(_ input: DescribeEdgeClusterUpgradeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeClusterUpgradeInfoResponse > {
-        self.client.execute(action: "DescribeEdgeClusterUpgradeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询边缘集群升级信息
-    ///
-    /// 可以查询边缘集群升级信息，包含可以升级的组件，当前升级状态和升级错误信息
-    @inlinable
-    public func describeEdgeClusterUpgradeInfo(_ input: DescribeEdgeClusterUpgradeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterUpgradeInfoResponse {
-        try await self.client.execute(action: "DescribeEdgeClusterUpgradeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeClusterUpgradeInfo请求参数结构体
     public struct DescribeEdgeClusterUpgradeInfoRequest: TCRequestModel {
         /// 集群ID
@@ -83,5 +67,21 @@ extension Tke {
             case clusterUpgradeStatusReason = "ClusterUpgradeStatusReason"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询边缘集群升级信息
+    ///
+    /// 可以查询边缘集群升级信息，包含可以升级的组件，当前升级状态和升级错误信息
+    @inlinable
+    public func describeEdgeClusterUpgradeInfo(_ input: DescribeEdgeClusterUpgradeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeClusterUpgradeInfoResponse > {
+        self.client.execute(action: "DescribeEdgeClusterUpgradeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘集群升级信息
+    ///
+    /// 可以查询边缘集群升级信息，包含可以升级的组件，当前升级状态和升级错误信息
+    @inlinable
+    public func describeEdgeClusterUpgradeInfo(_ input: DescribeEdgeClusterUpgradeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterUpgradeInfoResponse {
+        try await self.client.execute(action: "DescribeEdgeClusterUpgradeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

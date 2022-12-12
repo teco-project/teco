@@ -38,7 +38,7 @@ extension Ds {
         /// 签名域的标签值
         public let signLocation: String?
         
-        public init (accountResId: String, authorizationTime: String?, location: String?, sealId: String?, imageData: String?, certType: Int64?, signLocation: String?) {
+        public init (accountResId: String, authorizationTime: String? = nil, location: String? = nil, sealId: String? = nil, imageData: String? = nil, certType: Int64? = nil, signLocation: String? = nil) {
             self.accountResId = accountResId
             self.authorizationTime = authorizationTime
             self.location = location

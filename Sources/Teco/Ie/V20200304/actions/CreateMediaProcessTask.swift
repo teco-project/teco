@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ie {
-    /// 创建编辑处理任务
-    ///
-    /// 用于创建编辑处理任务，如媒体截取、媒体编辑、媒体拼接、媒体字幕。
-    @inlinable
-    public func createMediaProcessTask(_ input: CreateMediaProcessTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMediaProcessTaskResponse > {
-        self.client.execute(action: "CreateMediaProcessTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建编辑处理任务
-    ///
-    /// 用于创建编辑处理任务，如媒体截取、媒体编辑、媒体拼接、媒体字幕。
-    @inlinable
-    public func createMediaProcessTask(_ input: CreateMediaProcessTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMediaProcessTaskResponse {
-        try await self.client.execute(action: "CreateMediaProcessTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMediaProcessTask请求参数结构体
     public struct CreateMediaProcessTaskRequest: TCRequestModel {
         /// 编辑处理任务参数。
@@ -45,7 +29,7 @@ extension Ie {
         /// 任务结果回调地址信息。部子任务支持数组备份回调，具体以对应任务文档为准。
         public let callbackInfoSet: [CallbackInfo]?
         
-        public init (mediaProcessInfo: MediaProcessInfo, sourceInfoSet: [MediaSourceInfo]?, saveInfoSet: [SaveInfo]?, callbackInfoSet: [CallbackInfo]?) {
+        public init (mediaProcessInfo: MediaProcessInfo, sourceInfoSet: [MediaSourceInfo]? = nil, saveInfoSet: [SaveInfo]? = nil, callbackInfoSet: [CallbackInfo]? = nil) {
             self.mediaProcessInfo = mediaProcessInfo
             self.sourceInfoSet = sourceInfoSet
             self.saveInfoSet = saveInfoSet
@@ -73,5 +57,21 @@ extension Ie {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建编辑处理任务
+    ///
+    /// 用于创建编辑处理任务，如媒体截取、媒体编辑、媒体拼接、媒体字幕。
+    @inlinable
+    public func createMediaProcessTask(_ input: CreateMediaProcessTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMediaProcessTaskResponse > {
+        self.client.execute(action: "CreateMediaProcessTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建编辑处理任务
+    ///
+    /// 用于创建编辑处理任务，如媒体截取、媒体编辑、媒体拼接、媒体字幕。
+    @inlinable
+    public func createMediaProcessTask(_ input: CreateMediaProcessTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMediaProcessTaskResponse {
+        try await self.client.execute(action: "CreateMediaProcessTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

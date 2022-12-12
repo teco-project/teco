@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 配置产品转发消息队列
-    ///
-    /// 本接口（SetMessageQueue）用于配置物联网智能视频产品的转发消息队列。
-    @inlinable
-    public func setMessageQueue(_ input: SetMessageQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetMessageQueueResponse > {
-        self.client.execute(action: "SetMessageQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 配置产品转发消息队列
-    ///
-    /// 本接口（SetMessageQueue）用于配置物联网智能视频产品的转发消息队列。
-    @inlinable
-    public func setMessageQueue(_ input: SetMessageQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetMessageQueueResponse {
-        try await self.client.execute(action: "SetMessageQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetMessageQueue请求参数结构体
     public struct SetMessageQueueRequest: TCRequestModel {
         /// 产品ID
@@ -85,5 +69,21 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 配置产品转发消息队列
+    ///
+    /// 本接口（SetMessageQueue）用于配置物联网智能视频产品的转发消息队列。
+    @inlinable
+    public func setMessageQueue(_ input: SetMessageQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetMessageQueueResponse > {
+        self.client.execute(action: "SetMessageQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 配置产品转发消息队列
+    ///
+    /// 本接口（SetMessageQueue）用于配置物联网智能视频产品的转发消息队列。
+    @inlinable
+    public func setMessageQueue(_ input: SetMessageQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetMessageQueueResponse {
+        try await self.client.execute(action: "SetMessageQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

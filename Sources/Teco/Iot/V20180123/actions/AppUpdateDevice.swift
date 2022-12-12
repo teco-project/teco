@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 修改设备别名
-    ///
-    /// 修改设备别名，便于用户个性化定义设备的名称
-    @inlinable
-    public func appUpdateDevice(_ input: AppUpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppUpdateDeviceResponse > {
-        self.client.execute(action: "AppUpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改设备别名
-    ///
-    /// 修改设备别名，便于用户个性化定义设备的名称
-    @inlinable
-    public func appUpdateDevice(_ input: AppUpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppUpdateDeviceResponse {
-        try await self.client.execute(action: "AppUpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AppUpdateDevice请求参数结构体
     public struct AppUpdateDeviceRequest: TCRequestModel {
         /// 访问Token
@@ -45,7 +29,7 @@ extension Iot {
         /// 设备别名
         public let aliasName: String?
         
-        public init (accessToken: String, productId: String, deviceName: String, aliasName: String?) {
+        public init (accessToken: String, productId: String, deviceName: String, aliasName: String? = nil) {
             self.accessToken = accessToken
             self.productId = productId
             self.deviceName = deviceName
@@ -72,5 +56,21 @@ extension Iot {
             case appDevice = "AppDevice"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改设备别名
+    ///
+    /// 修改设备别名，便于用户个性化定义设备的名称
+    @inlinable
+    public func appUpdateDevice(_ input: AppUpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppUpdateDeviceResponse > {
+        self.client.execute(action: "AppUpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改设备别名
+    ///
+    /// 修改设备别名，便于用户个性化定义设备的名称
+    @inlinable
+    public func appUpdateDevice(_ input: AppUpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppUpdateDeviceResponse {
+        try await self.client.execute(action: "AppUpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

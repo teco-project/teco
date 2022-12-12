@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 获取个人版仓库自动清理策略
-    ///
-    /// 用于获取个人版仓库中自动清理策略
-    @inlinable
-    public func describeImageLifecyclePersonal(_ input: DescribeImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageLifecyclePersonalResponse > {
-        self.client.execute(action: "DescribeImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取个人版仓库自动清理策略
-    ///
-    /// 用于获取个人版仓库中自动清理策略
-    @inlinable
-    public func describeImageLifecyclePersonal(_ input: DescribeImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageLifecyclePersonalResponse {
-        try await self.client.execute(action: "DescribeImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageLifecyclePersonal请求参数结构体
     public struct DescribeImageLifecyclePersonalRequest: TCRequestModel {
         /// 仓库名称
@@ -57,5 +41,21 @@ extension Tcr {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取个人版仓库自动清理策略
+    ///
+    /// 用于获取个人版仓库中自动清理策略
+    @inlinable
+    public func describeImageLifecyclePersonal(_ input: DescribeImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageLifecyclePersonalResponse > {
+        self.client.execute(action: "DescribeImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取个人版仓库自动清理策略
+    ///
+    /// 用于获取个人版仓库中自动清理策略
+    @inlinable
+    public func describeImageLifecyclePersonal(_ input: DescribeImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageLifecyclePersonalResponse {
+        try await self.client.execute(action: "DescribeImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

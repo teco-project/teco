@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cr {
-    /// 查看黑名单数据列表
-    @inlinable
-    public func queryBlackListData(_ input: QueryBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBlackListDataResponse > {
-        self.client.execute(action: "QueryBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看黑名单数据列表
-    @inlinable
-    public func queryBlackListData(_ input: QueryBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBlackListDataResponse {
-        try await self.client.execute(action: "QueryBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryBlackListData请求参数结构体
     public struct QueryBlackListDataRequest: TCRequestModel {
         /// 模块:AiApi
@@ -52,7 +40,7 @@ extension Cr {
         /// 电话号码、手机
         public let blackValue: String?
         
-        public init (module: String, operation: String, offset: Int64?, limit: Int64?, startBizDate: Date?, endBizDate: Date?, blackValue: String?) {
+        public init (module: String, operation: String, offset: Int64? = nil, limit: Int64? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, blackValue: String? = nil) {
             self.module = module
             self.operation = operation
             self.offset = offset
@@ -90,5 +78,17 @@ extension Cr {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看黑名单数据列表
+    @inlinable
+    public func queryBlackListData(_ input: QueryBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBlackListDataResponse > {
+        self.client.execute(action: "QueryBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看黑名单数据列表
+    @inlinable
+    public func queryBlackListData(_ input: QueryBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBlackListDataResponse {
+        try await self.client.execute(action: "QueryBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 删除策略
-    ///
-    /// 本接口（DeletePolicy）可用于删除策略。
-    @inlinable
-    public func deletePolicy(_ input: DeletePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePolicyResponse > {
-        self.client.execute(action: "DeletePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除策略
-    ///
-    /// 本接口（DeletePolicy）可用于删除策略。
-    @inlinable
-    public func deletePolicy(_ input: DeletePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyResponse {
-        try await self.client.execute(action: "DeletePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePolicy请求参数结构体
     public struct DeletePolicyRequest: TCRequestModel {
         /// 数组，数组成员是策略 id，支持批量删除策略
@@ -53,5 +37,21 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除策略
+    ///
+    /// 本接口（DeletePolicy）可用于删除策略。
+    @inlinable
+    public func deletePolicy(_ input: DeletePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePolicyResponse > {
+        self.client.execute(action: "DeletePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除策略
+    ///
+    /// 本接口（DeletePolicy）可用于删除策略。
+    @inlinable
+    public func deletePolicy(_ input: DeletePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyResponse {
+        try await self.client.execute(action: "DeletePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

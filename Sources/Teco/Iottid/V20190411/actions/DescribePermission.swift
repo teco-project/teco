@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iottid {
-    /// 查询权限
-    ///
-    /// 查询企业用户TID平台控制台权限 
-    @inlinable
-    public func describePermission(_ input: DescribePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePermissionResponse > {
-        self.client.execute(action: "DescribePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询权限
-    ///
-    /// 查询企业用户TID平台控制台权限 
-    @inlinable
-    public func describePermission(_ input: DescribePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePermissionResponse {
-        try await self.client.execute(action: "DescribePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePermission请求参数结构体
     public struct DescribePermissionRequest: TCRequestModel {
         public init () {
@@ -57,5 +41,21 @@ extension Iottid {
             case usePermission = "UsePermission"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询权限
+    ///
+    /// 查询企业用户TID平台控制台权限 
+    @inlinable
+    public func describePermission(_ input: DescribePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePermissionResponse > {
+        self.client.execute(action: "DescribePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询权限
+    ///
+    /// 查询企业用户TID平台控制台权限 
+    @inlinable
+    public func describePermission(_ input: DescribePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePermissionResponse {
+        try await self.client.execute(action: "DescribePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

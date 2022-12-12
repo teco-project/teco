@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 查询设备库存
-    @inlinable
-    public func describeDeviceInventory(_ input: DescribeDeviceInventoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceInventoryResponse > {
-        self.client.execute(action: "DescribeDeviceInventory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备库存
-    @inlinable
-    public func describeDeviceInventory(_ input: DescribeDeviceInventoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceInventoryResponse {
-        try await self.client.execute(action: "DescribeDeviceInventory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceInventory请求参数结构体
     public struct DescribeDeviceInventoryRequest: TCRequestModel {
         /// 可用区
@@ -62,7 +50,7 @@ extension Bm {
         /// 数据盘数量，查询自定义机型时可填
         public let dataDiskCount: UInt64?
         
-        public init (zone: String, deviceClassCode: String?, vpcId: String?, subnetId: String?, cpuId: UInt64?, memSize: UInt64?, containRaidCard: UInt64?, systemDiskTypeId: UInt64?, systemDiskCount: UInt64?, dataDiskTypeId: UInt64?, dataDiskCount: UInt64?) {
+        public init (zone: String, deviceClassCode: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil) {
             self.zone = zone
             self.deviceClassCode = deviceClassCode
             self.vpcId = vpcId
@@ -103,5 +91,17 @@ extension Bm {
             case deviceCount = "DeviceCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备库存
+    @inlinable
+    public func describeDeviceInventory(_ input: DescribeDeviceInventoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceInventoryResponse > {
+        self.client.execute(action: "DescribeDeviceInventory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备库存
+    @inlinable
+    public func describeDeviceInventory(_ input: DescribeDeviceInventoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceInventoryResponse {
+        try await self.client.execute(action: "DescribeDeviceInventory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

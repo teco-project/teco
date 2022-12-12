@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Car {
-    /// 申请并发
-    @inlinable
-    public func applyConcurrent(_ input: ApplyConcurrentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyConcurrentResponse > {
-        self.client.execute(action: "ApplyConcurrent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 申请并发
-    @inlinable
-    public func applyConcurrent(_ input: ApplyConcurrentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConcurrentResponse {
-        try await self.client.execute(action: "ApplyConcurrent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyConcurrent请求参数结构体
     public struct ApplyConcurrentRequest: TCRequestModel {
         /// 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
@@ -41,7 +29,7 @@ extension Car {
         /// 应用版本ID
         public let applicationVersionId: String?
         
-        public init (userId: String, userIp: String, projectId: String, applicationVersionId: String?) {
+        public init (userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil) {
             self.userId = userId
             self.userIp = userIp
             self.projectId = projectId
@@ -64,5 +52,17 @@ extension Car {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 申请并发
+    @inlinable
+    public func applyConcurrent(_ input: ApplyConcurrentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyConcurrentResponse > {
+        self.client.execute(action: "ApplyConcurrent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 申请并发
+    @inlinable
+    public func applyConcurrent(_ input: ApplyConcurrentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConcurrentResponse {
+        try await self.client.execute(action: "ApplyConcurrent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 启动Notebook实例
-    @inlinable
-    public func startNotebookInstance(_ input: StartNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartNotebookInstanceResponse > {
-        self.client.execute(action: "StartNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启动Notebook实例
-    @inlinable
-    public func startNotebookInstance(_ input: StartNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartNotebookInstanceResponse {
-        try await self.client.execute(action: "StartNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartNotebookInstance请求参数结构体
     public struct StartNotebookInstanceRequest: TCRequestModel {
         /// Notebook实例名称
@@ -38,9 +26,9 @@ extension Tione {
         public let autoStopping: String?
         
         /// 自动停止配置，只在AutoStopping为Enabled的时候生效
-        public let stoppingCondition: StoppingCondition
+        public let stoppingCondition: StoppingCondition?
         
-        public init (notebookInstanceName: String, autoStopping: String?, stoppingCondition: StoppingCondition) {
+        public init (notebookInstanceName: String, autoStopping: String? = nil, stoppingCondition: StoppingCondition? = nil) {
             self.notebookInstanceName = notebookInstanceName
             self.autoStopping = autoStopping
             self.stoppingCondition = stoppingCondition
@@ -61,5 +49,17 @@ extension Tione {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启动Notebook实例
+    @inlinable
+    public func startNotebookInstance(_ input: StartNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartNotebookInstanceResponse > {
+        self.client.execute(action: "StartNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启动Notebook实例
+    @inlinable
+    public func startNotebookInstance(_ input: StartNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartNotebookInstanceResponse {
+        try await self.client.execute(action: "StartNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

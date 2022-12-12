@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 实例批量重跑【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 实例批量重跑
-    @inlinable
-    public func rerunInstances(_ input: RerunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RerunInstancesResponse > {
-        self.client.execute(action: "RerunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 实例批量重跑【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 实例批量重跑
-    @inlinable
-    public func rerunInstances(_ input: RerunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RerunInstancesResponse {
-        try await self.client.execute(action: "RerunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RerunInstances请求参数结构体
     public struct RerunInstancesRequest: TCRequestModel {
         /// 项目Id
@@ -89,5 +71,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 实例批量重跑【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 实例批量重跑
+    @inlinable
+    public func rerunInstances(_ input: RerunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RerunInstancesResponse > {
+        self.client.execute(action: "RerunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 实例批量重跑【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 实例批量重跑
+    @inlinable
+    public func rerunInstances(_ input: RerunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RerunInstancesResponse {
+        try await self.client.execute(action: "RerunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

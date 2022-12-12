@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询进程列表
-    ///
-    /// 容器安全搜索查询进程列表
-    @inlinable
-    public func describeAssetProcessList(_ input: DescribeAssetProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetProcessListResponse > {
-        self.client.execute(action: "DescribeAssetProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询进程列表
-    ///
-    /// 容器安全搜索查询进程列表
-    @inlinable
-    public func describeAssetProcessList(_ input: DescribeAssetProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetProcessListResponse {
-        try await self.client.execute(action: "DescribeAssetProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetProcessList请求参数结构体
     public struct DescribeAssetProcessListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -48,7 +32,7 @@ extension Tcss {
         /// <li>Pid- string - 是否必填：否 - 进程id搜索(关联进程)</li>
         public let filters: [AssetFilters]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [AssetFilters]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -77,5 +61,21 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询进程列表
+    ///
+    /// 容器安全搜索查询进程列表
+    @inlinable
+    public func describeAssetProcessList(_ input: DescribeAssetProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetProcessListResponse > {
+        self.client.execute(action: "DescribeAssetProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询进程列表
+    ///
+    /// 容器安全搜索查询进程列表
+    @inlinable
+    public func describeAssetProcessList(_ input: DescribeAssetProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetProcessListResponse {
+        try await self.client.execute(action: "DescribeAssetProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

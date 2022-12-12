@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 删除DDoS防护的IP网段黑白名单
-    @inlinable
-    public func deleteDDoSBlackWhiteIpList(_ input: DeleteDDoSBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDDoSBlackWhiteIpListResponse > {
-        self.client.execute(action: "DeleteDDoSBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除DDoS防护的IP网段黑白名单
-    @inlinable
-    public func deleteDDoSBlackWhiteIpList(_ input: DeleteDDoSBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSBlackWhiteIpListResponse {
-        try await self.client.execute(action: "DeleteDDoSBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDDoSBlackWhiteIpList请求参数结构体
     public struct DeleteDDoSBlackWhiteIpListRequest: TCRequestModel {
         /// 资源实例ID
@@ -59,5 +47,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除DDoS防护的IP网段黑白名单
+    @inlinable
+    public func deleteDDoSBlackWhiteIpList(_ input: DeleteDDoSBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDDoSBlackWhiteIpListResponse > {
+        self.client.execute(action: "DeleteDDoSBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除DDoS防护的IP网段黑白名单
+    @inlinable
+    public func deleteDDoSBlackWhiteIpList(_ input: DeleteDDoSBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSBlackWhiteIpListResponse {
+        try await self.client.execute(action: "DeleteDDoSBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 防火墙垂直扩容
-    @inlinable
-    public func expandCfwVertical(_ input: ExpandCfwVerticalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExpandCfwVerticalResponse > {
-        self.client.execute(action: "ExpandCfwVertical", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 防火墙垂直扩容
-    @inlinable
-    public func expandCfwVertical(_ input: ExpandCfwVerticalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpandCfwVerticalResponse {
-        try await self.client.execute(action: "ExpandCfwVertical", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExpandCfwVertical请求参数结构体
     public struct ExpandCfwVerticalRequest: TCRequestModel {
         /// nat：nat防火墙，ew：东西向防火墙
@@ -38,7 +26,7 @@ extension Cfw {
         /// 防火墙实例id
         public let cfwInstance: String?
         
-        public init (fwType: String, width: UInt64, cfwInstance: String?) {
+        public init (fwType: String, width: UInt64, cfwInstance: String? = nil) {
             self.fwType = fwType
             self.width = width
             self.cfwInstance = cfwInstance
@@ -59,5 +47,17 @@ extension Cfw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 防火墙垂直扩容
+    @inlinable
+    public func expandCfwVertical(_ input: ExpandCfwVerticalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExpandCfwVerticalResponse > {
+        self.client.execute(action: "ExpandCfwVertical", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 防火墙垂直扩容
+    @inlinable
+    public func expandCfwVertical(_ input: ExpandCfwVerticalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpandCfwVerticalResponse {
+        try await self.client.execute(action: "ExpandCfwVertical", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 修改CC自定义策略
-    @inlinable
-    public func modifyCCSelfDefinePolicy(_ input: ModifyCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCSelfDefinePolicyResponse > {
-        self.client.execute(action: "ModifyCCSelfDefinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改CC自定义策略
-    @inlinable
-    public func modifyCCSelfDefinePolicy(_ input: ModifyCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCSelfDefinePolicyResponse {
-        try await self.client.execute(action: "ModifyCCSelfDefinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCCSelfDefinePolicy请求参数结构体
     public struct ModifyCCSelfDefinePolicyRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -68,5 +56,17 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改CC自定义策略
+    @inlinable
+    public func modifyCCSelfDefinePolicy(_ input: ModifyCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCCSelfDefinePolicyResponse > {
+        self.client.execute(action: "ModifyCCSelfDefinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改CC自定义策略
+    @inlinable
+    public func modifyCCSelfDefinePolicy(_ input: ModifyCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCSelfDefinePolicyResponse {
+        try await self.client.execute(action: "ModifyCCSelfDefinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

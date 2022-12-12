@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Mgobe {
-    /// 修改房间
-    ///
-    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
-    /// 修改房间
-    @inlinable
-    public func modifyRoom(_ input: ModifyRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRoomResponse > {
-        self.client.execute(action: "ModifyRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改房间
-    ///
-    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
-    /// 修改房间
-    @inlinable
-    public func modifyRoom(_ input: ModifyRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoomResponse {
-        try await self.client.execute(action: "ModifyRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRoom请求参数结构体
     public struct ModifyRoomRequest: TCRequestModel {
         /// 游戏资源Id。
@@ -68,7 +50,7 @@ extension Mgobe {
         /// 房间是否禁止加人。
         public let isForbidJoin: Bool?
         
-        public init (gameId: String, roomId: String, playerId: String, changeRoomOptionList: [Int64], roomName: String?, owner: String?, isViewed: Bool?, isInvited: Bool?, isPrivate: Bool?, customProperties: String?, isForbidJoin: Bool?) {
+        public init (gameId: String, roomId: String, playerId: String, changeRoomOptionList: [Int64], roomName: String? = nil, owner: String? = nil, isViewed: Bool? = nil, isInvited: Bool? = nil, isPrivate: Bool? = nil, customProperties: String? = nil, isForbidJoin: Bool? = nil) {
             self.gameId = gameId
             self.roomId = roomId
             self.playerId = playerId
@@ -109,5 +91,23 @@ extension Mgobe {
             case room = "Room"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改房间
+    ///
+    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    /// 修改房间
+    @inlinable
+    public func modifyRoom(_ input: ModifyRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRoomResponse > {
+        self.client.execute(action: "ModifyRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改房间
+    ///
+    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    /// 修改房间
+    @inlinable
+    public func modifyRoom(_ input: ModifyRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoomResponse {
+        try await self.client.execute(action: "ModifyRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

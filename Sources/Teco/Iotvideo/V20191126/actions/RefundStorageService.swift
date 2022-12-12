@@ -15,30 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 退订已购买的云存服务
-    ///
-    /// 本接口（RefundStorageService）用于退订已购买的云存服务。
-    /// 退订时，云存服务对应订单的处理方式 : 
-    /// 1. 未开始的订单自动回到已付费订单池
-    /// 2. 已开始的订单自动失效
-    /// 3. 购买云存接口,优先从已付费订单池中分配订单
-    @inlinable
-    public func refundStorageService(_ input: RefundStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefundStorageServiceResponse > {
-        self.client.execute(action: "RefundStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 退订已购买的云存服务
-    ///
-    /// 本接口（RefundStorageService）用于退订已购买的云存服务。
-    /// 退订时，云存服务对应订单的处理方式 : 
-    /// 1. 未开始的订单自动回到已付费订单池
-    /// 2. 已开始的订单自动失效
-    /// 3. 购买云存接口,优先从已付费订单池中分配订单
-    @inlinable
-    public func refundStorageService(_ input: RefundStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundStorageServiceResponse {
-        try await self.client.execute(action: "RefundStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RefundStorageService请求参数结构体
     public struct RefundStorageServiceRequest: TCRequestModel {
         /// 云存服务ID
@@ -47,7 +23,7 @@ extension Iotvideo {
         /// 云存子订单ID。如果指定子订单ID,则仅退订该子订单，如果未指定子定单ID，则退订所有子订单
         public let orderId: String?
         
-        public init (serviceId: String, orderId: String?) {
+        public init (serviceId: String, orderId: String? = nil) {
             self.serviceId = serviceId
             self.orderId = orderId
         }
@@ -106,5 +82,29 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 退订已购买的云存服务
+    ///
+    /// 本接口（RefundStorageService）用于退订已购买的云存服务。
+    /// 退订时，云存服务对应订单的处理方式 : 
+    /// 1. 未开始的订单自动回到已付费订单池
+    /// 2. 已开始的订单自动失效
+    /// 3. 购买云存接口,优先从已付费订单池中分配订单
+    @inlinable
+    public func refundStorageService(_ input: RefundStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RefundStorageServiceResponse > {
+        self.client.execute(action: "RefundStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 退订已购买的云存服务
+    ///
+    /// 本接口（RefundStorageService）用于退订已购买的云存服务。
+    /// 退订时，云存服务对应订单的处理方式 : 
+    /// 1. 未开始的订单自动回到已付费订单池
+    /// 2. 已开始的订单自动失效
+    /// 3. 购买云存接口,优先从已付费订单池中分配订单
+    @inlinable
+    public func refundStorageService(_ input: RefundStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundStorageServiceResponse {
+        try await self.client.execute(action: "RefundStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

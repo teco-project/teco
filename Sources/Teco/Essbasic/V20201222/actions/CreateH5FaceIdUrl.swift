@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 获取慧眼H5人脸核身Url
-    ///
-    /// 该接口为第三方平台向电子签平台获取慧眼H5人脸核身Url
-    @inlinable
-    public func createH5FaceIdUrl(_ input: CreateH5FaceIdUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateH5FaceIdUrlResponse > {
-        self.client.execute(action: "CreateH5FaceIdUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取慧眼H5人脸核身Url
-    ///
-    /// 该接口为第三方平台向电子签平台获取慧眼H5人脸核身Url
-    @inlinable
-    public func createH5FaceIdUrl(_ input: CreateH5FaceIdUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateH5FaceIdUrlResponse {
-        try await self.client.execute(action: "CreateH5FaceIdUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateH5FaceIdUrl请求参数结构体
     public struct CreateH5FaceIdUrlRequest: TCRequestModel {
         /// 调用方信息; 必选
@@ -60,7 +44,7 @@ extension Essbasic {
         /// 跳转类型; 可选; 参数值为"1"时,刷脸页面使用replace方式跳转,不在浏览器history中留下记录;不传或其他值则正常跳转
         public let redirectType: String?
         
-        public init (caller: Caller, wbAppId: String?, name: String?, idCardType: String?, idCardNumber: String?, jumpUrl: String?, jumpType: String?, openFrom: String?, redirectType: String?) {
+        public init (caller: Caller, wbAppId: String? = nil, name: String? = nil, idCardType: String? = nil, idCardNumber: String? = nil, jumpUrl: String? = nil, jumpType: String? = nil, openFrom: String? = nil, redirectType: String? = nil) {
             self.caller = caller
             self.wbAppId = wbAppId
             self.name = name
@@ -97,5 +81,21 @@ extension Essbasic {
             case url = "Url"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取慧眼H5人脸核身Url
+    ///
+    /// 该接口为第三方平台向电子签平台获取慧眼H5人脸核身Url
+    @inlinable
+    public func createH5FaceIdUrl(_ input: CreateH5FaceIdUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateH5FaceIdUrlResponse > {
+        self.client.execute(action: "CreateH5FaceIdUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取慧眼H5人脸核身Url
+    ///
+    /// 该接口为第三方平台向电子签平台获取慧眼H5人脸核身Url
+    @inlinable
+    public func createH5FaceIdUrl(_ input: CreateH5FaceIdUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateH5FaceIdUrlResponse {
+        try await self.client.execute(action: "CreateH5FaceIdUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

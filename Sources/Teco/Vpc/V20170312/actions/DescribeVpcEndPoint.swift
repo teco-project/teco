@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询终端节点列表
-    ///
-    /// 查询终端节点列表。
-    @inlinable
-    public func describeVpcEndPoint(_ input: DescribeVpcEndPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcEndPointResponse > {
-        self.client.execute(action: "DescribeVpcEndPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询终端节点列表
-    ///
-    /// 查询终端节点列表。
-    @inlinable
-    public func describeVpcEndPoint(_ input: DescribeVpcEndPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointResponse {
-        try await self.client.execute(action: "DescribeVpcEndPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpcEndPoint请求参数结构体
     public struct DescribeVpcEndPointRequest: TCRequestModel {
         /// 过滤条件。
@@ -49,7 +33,7 @@ extension Vpc {
         /// 终端节点ID列表。
         public let endPointId: [String]?
         
-        public init (filters: [Filter]?, offset: UInt64?, limit: UInt64?, endPointId: [String]?) {
+        public init (filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointId: [String]? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -80,5 +64,21 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询终端节点列表
+    ///
+    /// 查询终端节点列表。
+    @inlinable
+    public func describeVpcEndPoint(_ input: DescribeVpcEndPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcEndPointResponse > {
+        self.client.execute(action: "DescribeVpcEndPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询终端节点列表
+    ///
+    /// 查询终端节点列表。
+    @inlinable
+    public func describeVpcEndPoint(_ input: DescribeVpcEndPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointResponse {
+        try await self.client.execute(action: "DescribeVpcEndPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

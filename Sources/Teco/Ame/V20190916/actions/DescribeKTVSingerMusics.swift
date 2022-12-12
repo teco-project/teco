@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取歌手下歌曲列表
-    ///
-    /// 根据歌手id，返回该歌手下歌曲列表。
-    @inlinable
-    public func describeKTVSingerMusics(_ input: DescribeKTVSingerMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVSingerMusicsResponse > {
-        self.client.execute(action: "DescribeKTVSingerMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取歌手下歌曲列表
-    ///
-    /// 根据歌手id，返回该歌手下歌曲列表。
-    @inlinable
-    public func describeKTVSingerMusics(_ input: DescribeKTVSingerMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingerMusicsResponse {
-        try await self.client.execute(action: "DescribeKTVSingerMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKTVSingerMusics请求参数结构体
     public struct DescribeKTVSingerMusicsRequest: TCRequestModel {
         /// 歌手id
@@ -42,7 +26,7 @@ extension Ame {
         /// 分页返回的记录条数，默认值：50。将返回第 Offset 到第 Offset+Limit-1 条。
         public let limit: Int64?
         
-        public init (singerId: String, offset: Int64?, limit: Int64?) {
+        public init (singerId: String, offset: Int64? = nil, limit: Int64? = nil) {
             self.singerId = singerId
             self.offset = offset
             self.limit = limit
@@ -71,5 +55,21 @@ extension Ame {
             case ktvMusicInfoSet = "KTVMusicInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取歌手下歌曲列表
+    ///
+    /// 根据歌手id，返回该歌手下歌曲列表。
+    @inlinable
+    public func describeKTVSingerMusics(_ input: DescribeKTVSingerMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVSingerMusicsResponse > {
+        self.client.execute(action: "DescribeKTVSingerMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取歌手下歌曲列表
+    ///
+    /// 根据歌手id，返回该歌手下歌曲列表。
+    @inlinable
+    public func describeKTVSingerMusics(_ input: DescribeKTVSingerMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingerMusicsResponse {
+        try await self.client.execute(action: "DescribeKTVSingerMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cam {
-    /// 查询SAML身份提供商详情
-    @inlinable
-    public func getSAMLProvider(_ input: GetSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSAMLProviderResponse > {
-        self.client.execute(action: "GetSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询SAML身份提供商详情
-    @inlinable
-    public func getSAMLProvider(_ input: GetSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSAMLProviderResponse {
-        try await self.client.execute(action: "GetSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetSAMLProvider请求参数结构体
     public struct GetSAMLProviderRequest: TCRequestModel {
         /// SAML身份提供商名称
@@ -73,5 +61,17 @@ extension Cam {
             case samlMetadata = "SAMLMetadata"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询SAML身份提供商详情
+    @inlinable
+    public func getSAMLProvider(_ input: GetSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSAMLProviderResponse > {
+        self.client.execute(action: "GetSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询SAML身份提供商详情
+    @inlinable
+    public func getSAMLProvider(_ input: GetSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSAMLProviderResponse {
+        try await self.client.execute(action: "GetSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cr {
-    /// 上传机器人任务数据
-    @inlinable
-    public func uploadBotData(_ input: UploadBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadBotDataResponse > {
-        self.client.execute(action: "UploadBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上传机器人任务数据
-    @inlinable
-    public func uploadBotData(_ input: UploadBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotDataResponse {
-        try await self.client.execute(action: "UploadBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadBotData请求参数结构体
     public struct UploadBotDataRequest: TCRequestModel {
         /// 模块名。默认值（固定）：AiApi
@@ -44,7 +32,7 @@ extension Cr {
         /// 任务名称，二者必填一个
         public let botName: String?
         
-        public init (module: String, operation: String, data: String, botId: String?, botName: String?) {
+        public init (module: String, operation: String, data: String, botId: String? = nil, botName: String? = nil) {
             self.module = module
             self.operation = operation
             self.data = data
@@ -69,5 +57,17 @@ extension Cr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上传机器人任务数据
+    @inlinable
+    public func uploadBotData(_ input: UploadBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadBotDataResponse > {
+        self.client.execute(action: "UploadBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上传机器人任务数据
+    @inlinable
+    public func uploadBotData(_ input: UploadBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotDataResponse {
+        try await self.client.execute(action: "UploadBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

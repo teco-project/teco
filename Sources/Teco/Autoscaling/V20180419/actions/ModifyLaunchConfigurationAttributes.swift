@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 修改启动配置属性
-    ///
-    /// 本接口（ModifyLaunchConfigurationAttributes）用于修改启动配置部分属性。
-    /// * 修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
-    /// * 本接口支持修改部分简单类型。
-    @inlinable
-    public func modifyLaunchConfigurationAttributes(_ input: ModifyLaunchConfigurationAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLaunchConfigurationAttributesResponse > {
-        self.client.execute(action: "ModifyLaunchConfigurationAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改启动配置属性
-    ///
-    /// 本接口（ModifyLaunchConfigurationAttributes）用于修改启动配置部分属性。
-    /// * 修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
-    /// * 本接口支持修改部分简单类型。
-    @inlinable
-    public func modifyLaunchConfigurationAttributes(_ input: ModifyLaunchConfigurationAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaunchConfigurationAttributesResponse {
-        try await self.client.execute(action: "ModifyLaunchConfigurationAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyLaunchConfigurationAttributes请求参数结构体
     public struct ModifyLaunchConfigurationAttributesRequest: TCRequestModel {
         /// 启动配置ID
@@ -66,7 +46,7 @@ extension As {
         
         /// 公网带宽相关信息设置。
         /// 当公网出带宽上限为0Mbps时，不支持修改为开通分配公网IP；相应的，当前为开通分配公网IP时，修改的公网出带宽上限值必须大于0Mbps。
-        public let internetAccessible: InternetAccessible
+        public let internetAccessible: InternetAccessible?
         
         /// 实例计费类型。具体取值范围如下：
         /// <br><li>POSTPAID_BY_HOUR：按小时后付费
@@ -78,13 +58,13 @@ extension As {
         /// 若修改实例的付费模式为预付费，则该参数必传；从预付费修改为其他付费模式时，本字段原信息会自动丢弃。
         /// 当新增该字段时，必须传递购买实例的时长，其它未传递字段会设置为默认值。
         /// 当修改本字段时，当前付费模式必须为预付费。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 实例的市场相关选项，如竞价实例相关参数。
         /// 若修改实例的付费模式为竞价付费，则该参数必传；从竞价付费修改为其他付费模式时，本字段原信息会自动丢弃。
         /// 当新增该字段时，必须传递竞价相关选项下的竞价出价，其它未传递字段会设置为默认值。
         /// 当修改本字段时，当前付费模式必须为竞价付费。
-        public let instanceMarketOptions: InstanceMarketOptionsRequest
+        public let instanceMarketOptions: InstanceMarketOptionsRequest?
         
         /// 云盘类型选择策略，取值范围：
         /// <br><li>ORIGINAL：使用设置的云盘类型。
@@ -92,7 +72,7 @@ extension As {
         public let diskTypePolicy: String?
         
         /// 实例系统盘配置信息。
-        public let systemDisk: SystemDisk
+        public let systemDisk: SystemDisk?
         
         /// 实例数据盘配置信息。
         /// 最多支持指定11块数据盘。采取整体修改，因此请提供修改后的全部值。
@@ -102,15 +82,15 @@ extension As {
         /// 云服务器主机名（HostName）的相关设置。
         /// 不支持windows实例设置主机名。
         /// 新增该属性时，必须传递云服务器的主机名，其它未传递字段会设置为默认值。
-        public let hostNameSettings: HostNameSettings
+        public let hostNameSettings: HostNameSettings?
         
         /// 云服务器（InstanceName）实例名的相关设置。 
         /// 如果用户在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 参照此字段进行设置，并传递给 CVM；如果用户未在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 按照“as-{{ 伸缩组AutoScalingGroupName }}”进行设置，并传递给 CVM。
         /// 新增该属性时，必须传递云服务器的实例名称，其它未传递字段会设置为默认值。
-        public let instanceNameSettings: InstanceNameSettings
+        public let instanceNameSettings: InstanceNameSettings?
         
         /// 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。
-        public let enhancedService: EnhancedService
+        public let enhancedService: EnhancedService?
         
         /// CAM角色名称。可通过DescribeRoleList接口返回值中的roleName获取。
         public let camRoleName: String?
@@ -120,9 +100,9 @@ extension As {
         public let hpcClusterId: String?
         
         /// IPv6公网带宽相关信息设置。若新建实例包含IPv6地址，该参数可为新建实例的IPv6地址分配公网带宽。关联启动配置的伸缩组Ipv6AddressCount参数为0时，该参数不会生效。
-        public let iPv6InternetAccessible: IPv6InternetAccessible
+        public let iPv6InternetAccessible: IPv6InternetAccessible?
         
-        public init (launchConfigurationId: String, imageId: String?, instanceTypes: [String]?, instanceTypesCheckPolicy: String?, launchConfigurationName: String?, userData: String?, securityGroupIds: [String]?, internetAccessible: InternetAccessible, instanceChargeType: String?, instanceChargePrepaid: InstanceChargePrepaid, instanceMarketOptions: InstanceMarketOptionsRequest, diskTypePolicy: String?, systemDisk: SystemDisk, dataDisks: [DataDisk]?, hostNameSettings: HostNameSettings, instanceNameSettings: InstanceNameSettings, enhancedService: EnhancedService, camRoleName: String?, hpcClusterId: String?, iPv6InternetAccessible: IPv6InternetAccessible) {
+        public init (launchConfigurationId: String, imageId: String? = nil, instanceTypes: [String]? = nil, instanceTypesCheckPolicy: String? = nil, launchConfigurationName: String? = nil, userData: String? = nil, securityGroupIds: [String]? = nil, internetAccessible: InternetAccessible? = nil, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, diskTypePolicy: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, hostNameSettings: HostNameSettings? = nil, instanceNameSettings: InstanceNameSettings? = nil, enhancedService: EnhancedService? = nil, camRoleName: String? = nil, hpcClusterId: String? = nil, iPv6InternetAccessible: IPv6InternetAccessible? = nil) {
             self.launchConfigurationId = launchConfigurationId
             self.imageId = imageId
             self.instanceTypes = instanceTypes
@@ -177,5 +157,25 @@ extension As {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改启动配置属性
+    ///
+    /// 本接口（ModifyLaunchConfigurationAttributes）用于修改启动配置部分属性。
+    /// * 修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
+    /// * 本接口支持修改部分简单类型。
+    @inlinable
+    public func modifyLaunchConfigurationAttributes(_ input: ModifyLaunchConfigurationAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyLaunchConfigurationAttributesResponse > {
+        self.client.execute(action: "ModifyLaunchConfigurationAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改启动配置属性
+    ///
+    /// 本接口（ModifyLaunchConfigurationAttributes）用于修改启动配置部分属性。
+    /// * 修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
+    /// * 本接口支持修改部分简单类型。
+    @inlinable
+    public func modifyLaunchConfigurationAttributes(_ input: ModifyLaunchConfigurationAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaunchConfigurationAttributesResponse {
+        try await self.client.execute(action: "ModifyLaunchConfigurationAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

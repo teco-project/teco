@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 修改数据库参数
-    ///
-    /// 本接口(ModifyDBParameters)用于修改数据库参数。
-    @inlinable
-    public func modifyDBParameters(_ input: ModifyDBParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBParametersResponse > {
-        self.client.execute(action: "ModifyDBParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改数据库参数
-    ///
-    /// 本接口(ModifyDBParameters)用于修改数据库参数。
-    @inlinable
-    public func modifyDBParameters(_ input: ModifyDBParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBParametersResponse {
-        try await self.client.execute(action: "ModifyDBParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBParameters请求参数结构体
     public struct ModifyDBParametersRequest: TCRequestModel {
         /// 实例 ID，形如：tdsql-ow728lmc。
@@ -66,5 +50,21 @@ extension Mariadb {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改数据库参数
+    ///
+    /// 本接口(ModifyDBParameters)用于修改数据库参数。
+    @inlinable
+    public func modifyDBParameters(_ input: ModifyDBParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBParametersResponse > {
+        self.client.execute(action: "ModifyDBParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改数据库参数
+    ///
+    /// 本接口(ModifyDBParameters)用于修改数据库参数。
+    @inlinable
+    public func modifyDBParameters(_ input: ModifyDBParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBParametersResponse {
+        try await self.client.execute(action: "ModifyDBParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

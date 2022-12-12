@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-消费订单发起接口
-    ///
-    /// 云鉴-消费订单发起的接口
-    @inlinable
-    public func createOrder(_ input: CreateOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrderResponse > {
-        self.client.execute(action: "CreateOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-消费订单发起接口
-    ///
-    /// 云鉴-消费订单发起的接口
-    @inlinable
-    public func createOrder(_ input: CreateOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderResponse {
-        try await self.client.execute(action: "CreateOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOrder请求参数结构体
     public struct CreateOrderRequest: TCRequestModel {
         /// 渠道编号。ZSB2B：招商银行B2B。
@@ -94,5 +78,21 @@ extension Cpdp {
             case payUrl = "PayUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-消费订单发起接口
+    ///
+    /// 云鉴-消费订单发起的接口
+    @inlinable
+    public func createOrder(_ input: CreateOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOrderResponse > {
+        self.client.execute(action: "CreateOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-消费订单发起接口
+    ///
+    /// 云鉴-消费订单发起的接口
+    @inlinable
+    public func createOrder(_ input: CreateOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderResponse {
+        try await self.client.execute(action: "CreateOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

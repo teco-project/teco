@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 删除插件
-    ///
-    /// 删除API网关插件
-    @inlinable
-    public func deletePlugin(_ input: DeletePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePluginResponse > {
-        self.client.execute(action: "DeletePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除插件
-    ///
-    /// 删除API网关插件
-    @inlinable
-    public func deletePlugin(_ input: DeletePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePluginResponse {
-        try await self.client.execute(action: "DeletePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePlugin请求参数结构体
     public struct DeletePluginRequest: TCRequestModel {
         /// 要删除的API网关插件的ID。
@@ -57,5 +41,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除插件
+    ///
+    /// 删除API网关插件
+    @inlinable
+    public func deletePlugin(_ input: DeletePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePluginResponse > {
+        self.client.execute(action: "DeletePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除插件
+    ///
+    /// 删除API网关插件
+    @inlinable
+    public func deletePlugin(_ input: DeletePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePluginResponse {
+        try await self.client.execute(action: "DeletePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

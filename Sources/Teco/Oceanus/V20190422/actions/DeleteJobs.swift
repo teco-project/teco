@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 删除作业
-    ///
-    /// 批量删除作业接口，批量操作数量上限20
-    @inlinable
-    public func deleteJobs(_ input: DeleteJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteJobsResponse > {
-        self.client.execute(action: "DeleteJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除作业
-    ///
-    /// 批量删除作业接口，批量操作数量上限20
-    @inlinable
-    public func deleteJobs(_ input: DeleteJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobsResponse {
-        try await self.client.execute(action: "DeleteJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteJobs请求参数结构体
     public struct DeleteJobsRequest: TCRequestModel {
         /// 作业Id列表
@@ -39,7 +23,7 @@ extension Oceanus {
         /// 工作空间Id
         public let workSpaceId: String?
         
-        public init (jobIds: [String], workSpaceId: String?) {
+        public init (jobIds: [String], workSpaceId: String? = nil) {
             self.jobIds = jobIds
             self.workSpaceId = workSpaceId
         }
@@ -58,5 +42,21 @@ extension Oceanus {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除作业
+    ///
+    /// 批量删除作业接口，批量操作数量上限20
+    @inlinable
+    public func deleteJobs(_ input: DeleteJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteJobsResponse > {
+        self.client.execute(action: "DeleteJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除作业
+    ///
+    /// 批量删除作业接口，批量操作数量上限20
+    @inlinable
+    public func deleteJobs(_ input: DeleteJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobsResponse {
+        try await self.client.execute(action: "DeleteJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

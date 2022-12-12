@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ft {
-    /// 人像动漫化
-    ///
-    /// 输入一张人脸照片，生成个性化的二次元动漫形象，可用于打造个性头像、趣味活动、特效类应用等场景，提升社交娱乐的体验。
-    @inlinable
-    public func faceCartoonPic(_ input: FaceCartoonPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FaceCartoonPicResponse > {
-        self.client.execute(action: "FaceCartoonPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人像动漫化
-    ///
-    /// 输入一张人脸照片，生成个性化的二次元动漫形象，可用于打造个性头像、趣味活动、特效类应用等场景，提升社交娱乐的体验。
-    @inlinable
-    public func faceCartoonPic(_ input: FaceCartoonPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceCartoonPicResponse {
-        try await self.client.execute(action: "FaceCartoonPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// FaceCartoonPic请求参数结构体
     public struct FaceCartoonPicRequest: TCRequestModel {
         /// 图片 base64 数据，base64 编码后大小不可超过5M。
@@ -50,7 +34,7 @@ extension Ft {
         /// 关闭全图动漫化，传入true（不分大小写）即关闭全图动漫化。
         public let disableGlobalEffect: String?
         
-        public init (image: String?, url: String?, rspImgType: String?, disableGlobalEffect: String?) {
+        public init (image: String? = nil, url: String? = nil, rspImgType: String? = nil, disableGlobalEffect: String? = nil) {
             self.image = image
             self.url = url
             self.rspImgType = rspImgType
@@ -81,5 +65,21 @@ extension Ft {
             case resultUrl = "ResultUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人像动漫化
+    ///
+    /// 输入一张人脸照片，生成个性化的二次元动漫形象，可用于打造个性头像、趣味活动、特效类应用等场景，提升社交娱乐的体验。
+    @inlinable
+    public func faceCartoonPic(_ input: FaceCartoonPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FaceCartoonPicResponse > {
+        self.client.execute(action: "FaceCartoonPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人像动漫化
+    ///
+    /// 输入一张人脸照片，生成个性化的二次元动漫形象，可用于打造个性头像、趣味活动、特效类应用等场景，提升社交娱乐的体验。
+    @inlinable
+    public func faceCartoonPic(_ input: FaceCartoonPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceCartoonPicResponse {
+        try await self.client.execute(action: "FaceCartoonPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

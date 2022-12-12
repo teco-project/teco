@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 查询私有化CA信息
-    @inlinable
-    public func describePrivateCA(_ input: DescribePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateCAResponse > {
-        self.client.execute(action: "DescribePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询私有化CA信息
-    @inlinable
-    public func describePrivateCA(_ input: DescribePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateCAResponse {
-        try await self.client.execute(action: "DescribePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrivateCA请求参数结构体
     public struct DescribePrivateCARequest: TCRequestModel {
         /// 私有化CA名称
@@ -53,5 +41,17 @@ extension Iotcloud {
             case ca = "CA"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询私有化CA信息
+    @inlinable
+    public func describePrivateCA(_ input: DescribePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrivateCAResponse > {
+        self.client.execute(action: "DescribePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询私有化CA信息
+    @inlinable
+    public func describePrivateCA(_ input: DescribePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateCAResponse {
+        try await self.client.execute(action: "DescribePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

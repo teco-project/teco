@@ -15,6 +15,35 @@
 // DO NOT EDIT.
 
 extension Vpc {
+    /// CreateSecurityGroupPolicies请求参数结构体
+    public struct CreateSecurityGroupPoliciesRequest: TCRequestModel {
+        /// 安全组实例ID，例如sg-33ocnj9n，可通过DescribeSecurityGroups获取。
+        public let securityGroupId: String
+        
+        /// 安全组规则集合。
+        public let securityGroupPolicySet: SecurityGroupPolicySet
+        
+        public init (securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet) {
+            self.securityGroupId = securityGroupId
+            self.securityGroupPolicySet = securityGroupPolicySet
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case securityGroupId = "SecurityGroupId"
+            case securityGroupPolicySet = "SecurityGroupPolicySet"
+        }
+    }
+    
+    /// CreateSecurityGroupPolicies返回参数结构体
+    public struct CreateSecurityGroupPoliciesResponse: TCResponseModel {
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 安全组添加规则
     ///
     /// 本接口（CreateSecurityGroupPolicies）用于创建安全组规则（SecurityGroupPolicy）。
@@ -55,34 +84,5 @@ extension Vpc {
     @inlinable
     public func createSecurityGroupPolicies(_ input: CreateSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupPoliciesResponse {
         try await self.client.execute(action: "CreateSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// CreateSecurityGroupPolicies请求参数结构体
-    public struct CreateSecurityGroupPoliciesRequest: TCRequestModel {
-        /// 安全组实例ID，例如sg-33ocnj9n，可通过DescribeSecurityGroups获取。
-        public let securityGroupId: String
-        
-        /// 安全组规则集合。
-        public let securityGroupPolicySet: SecurityGroupPolicySet
-        
-        public init (securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet) {
-            self.securityGroupId = securityGroupId
-            self.securityGroupPolicySet = securityGroupPolicySet
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case securityGroupId = "SecurityGroupId"
-            case securityGroupPolicySet = "SecurityGroupPolicySet"
-        }
-    }
-    
-    /// CreateSecurityGroupPolicies返回参数结构体
-    public struct CreateSecurityGroupPoliciesResponse: TCResponseModel {
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case requestId = "RequestId"
-        }
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 删除数据库
-    ///
-    /// 本接口(DeleteDB)用于删除数据库。
-    @inlinable
-    public func deleteDB(_ input: DeleteDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDBResponse > {
-        self.client.execute(action: "DeleteDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除数据库
-    ///
-    /// 本接口(DeleteDB)用于删除数据库。
-    @inlinable
-    public func deleteDB(_ input: DeleteDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBResponse {
-        try await self.client.execute(action: "DeleteDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDB请求参数结构体
     public struct DeleteDBRequest: TCRequestModel {
         /// 实例ID，形如mssql-rljoi3bf
@@ -62,5 +46,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除数据库
+    ///
+    /// 本接口(DeleteDB)用于删除数据库。
+    @inlinable
+    public func deleteDB(_ input: DeleteDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDBResponse > {
+        self.client.execute(action: "DeleteDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除数据库
+    ///
+    /// 本接口(DeleteDB)用于删除数据库。
+    @inlinable
+    public func deleteDB(_ input: DeleteDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBResponse {
+        try await self.client.execute(action: "DeleteDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

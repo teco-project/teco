@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 中断MySql会话线程
-    ///
-    /// 根据会话ID中断当前会话，该接口分为两次提交：第一次为预提交阶段，Stage为"Prepare"，得到的返回值包含SqlExecId；第二次为确认提交， Stage为"Commit"， 将SqlExecId的值作为参数传入，最终终止会话进程。
-    @inlinable
-    public func killMySqlThreads(_ input: KillMySqlThreadsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < KillMySqlThreadsResponse > {
-        self.client.execute(action: "KillMySqlThreads", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 中断MySql会话线程
-    ///
-    /// 根据会话ID中断当前会话，该接口分为两次提交：第一次为预提交阶段，Stage为"Prepare"，得到的返回值包含SqlExecId；第二次为确认提交， Stage为"Commit"， 将SqlExecId的值作为参数传入，最终终止会话进程。
-    @inlinable
-    public func killMySqlThreads(_ input: KillMySqlThreadsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillMySqlThreadsResponse {
-        try await self.client.execute(action: "KillMySqlThreads", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// KillMySqlThreads请求参数结构体
     public struct KillMySqlThreadsRequest: TCRequestModel {
         /// 实例ID。
@@ -48,7 +32,7 @@ extension Dbbrain {
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
         public let product: String?
         
-        public init (instanceId: String, stage: String, threads: [Int64]?, sqlExecId: String?, product: String?) {
+        public init (instanceId: String, stage: String, threads: [Int64]? = nil, sqlExecId: String? = nil, product: String? = nil) {
             self.instanceId = instanceId
             self.stage = stage
             self.threads = threads
@@ -82,5 +66,21 @@ extension Dbbrain {
             case sqlExecId = "SqlExecId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 中断MySql会话线程
+    ///
+    /// 根据会话ID中断当前会话，该接口分为两次提交：第一次为预提交阶段，Stage为"Prepare"，得到的返回值包含SqlExecId；第二次为确认提交， Stage为"Commit"， 将SqlExecId的值作为参数传入，最终终止会话进程。
+    @inlinable
+    public func killMySqlThreads(_ input: KillMySqlThreadsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < KillMySqlThreadsResponse > {
+        self.client.execute(action: "KillMySqlThreads", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 中断MySql会话线程
+    ///
+    /// 根据会话ID中断当前会话，该接口分为两次提交：第一次为预提交阶段，Stage为"Prepare"，得到的返回值包含SqlExecId；第二次为确认提交， Stage为"Commit"， 将SqlExecId的值作为参数传入，最终终止会话进程。
+    @inlinable
+    public func killMySqlThreads(_ input: KillMySqlThreadsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillMySqlThreadsResponse {
+        try await self.client.execute(action: "KillMySqlThreads", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

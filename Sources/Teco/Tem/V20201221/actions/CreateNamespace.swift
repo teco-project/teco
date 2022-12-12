@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 创建命名空间
-    ///
-    /// 创建环境
-    @inlinable
-    public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNamespaceResponse > {
-        self.client.execute(action: "CreateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建命名空间
-    ///
-    /// 创建环境
-    @inlinable
-    public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
-        try await self.client.execute(action: "CreateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNamespace请求参数结构体
     public struct CreateNamespaceRequest: TCRequestModel {
         /// 命名空间名称
@@ -54,7 +38,7 @@ extension Tem {
         /// 是否开启tsw服务
         public let enableTswTraceService: Bool?
         
-        public init (namespaceName: String, vpc: String, subnetIds: [String], description: String?, k8sVersion: String?, sourceChannel: Int64?, enableTswTraceService: Bool?) {
+        public init (namespaceName: String, vpc: String, subnetIds: [String], description: String? = nil, k8sVersion: String? = nil, sourceChannel: Int64? = nil, enableTswTraceService: Bool? = nil) {
             self.namespaceName = namespaceName
             self.vpc = vpc
             self.subnetIds = subnetIds
@@ -88,5 +72,21 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建命名空间
+    ///
+    /// 创建环境
+    @inlinable
+    public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNamespaceResponse > {
+        self.client.execute(action: "CreateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建命名空间
+    ///
+    /// 创建环境
+    @inlinable
+    public func createNamespace(_ input: CreateNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
+        try await self.client.execute(action: "CreateNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

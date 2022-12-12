@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiems {
-    /// 删除资源组
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 删除资源组
-    @inlinable
-    public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourceGroupResponse > {
-        self.client.execute(action: "DeleteResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除资源组
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 删除资源组
-    @inlinable
-    public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceGroupResponse {
-        try await self.client.execute(action: "DeleteResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteResourceGroup请求参数结构体
     public struct DeleteResourceGroupRequest: TCRequestModel {
         /// 要删除的资源组 ID
@@ -55,5 +37,23 @@ extension Tiems {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除资源组
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 删除资源组
+    @inlinable
+    public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourceGroupResponse > {
+        self.client.execute(action: "DeleteResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除资源组
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 删除资源组
+    @inlinable
+    public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceGroupResponse {
+        try await self.client.execute(action: "DeleteResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

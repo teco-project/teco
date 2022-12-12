@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ie {
-    /// 获取画质重生任务结果
-    ///
-    /// 获取画质重生任务结果，查看结束后的文件信息
-    @inlinable
-    public func describeMediaQualityRestorationTaskRusult(_ input: DescribeMediaQualityRestorationTaskRusultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMediaQualityRestorationTaskRusultResponse > {
-        self.client.execute(action: "DescribeMediaQualityRestorationTaskRusult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取画质重生任务结果
-    ///
-    /// 获取画质重生任务结果，查看结束后的文件信息
-    @inlinable
-    public func describeMediaQualityRestorationTaskRusult(_ input: DescribeMediaQualityRestorationTaskRusultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaQualityRestorationTaskRusultResponse {
-        try await self.client.execute(action: "DescribeMediaQualityRestorationTaskRusult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMediaQualityRestorationTaskRusult请求参数结构体
     public struct DescribeMediaQualityRestorationTaskRusultRequest: TCRequestModel {
         /// 画质重生任务ID
@@ -57,5 +41,21 @@ extension Ie {
             case taskResult = "TaskResult"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取画质重生任务结果
+    ///
+    /// 获取画质重生任务结果，查看结束后的文件信息
+    @inlinable
+    public func describeMediaQualityRestorationTaskRusult(_ input: DescribeMediaQualityRestorationTaskRusultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMediaQualityRestorationTaskRusultResponse > {
+        self.client.execute(action: "DescribeMediaQualityRestorationTaskRusult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取画质重生任务结果
+    ///
+    /// 获取画质重生任务结果，查看结束后的文件信息
+    @inlinable
+    public func describeMediaQualityRestorationTaskRusult(_ input: DescribeMediaQualityRestorationTaskRusultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaQualityRestorationTaskRusultResponse {
+        try await self.client.execute(action: "DescribeMediaQualityRestorationTaskRusult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

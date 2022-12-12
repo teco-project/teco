@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 跨境-汇出指令申请
-    ///
-    /// 跨境-汇出指令申请。通过该接口可将对接方账户中的人民币余额汇兑成外币，再汇出至指定银行账户。
-    @inlinable
-    public func applyOutwardOrder(_ input: ApplyOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyOutwardOrderResponse > {
-        self.client.execute(action: "ApplyOutwardOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 跨境-汇出指令申请
-    ///
-    /// 跨境-汇出指令申请。通过该接口可将对接方账户中的人民币余额汇兑成外币，再汇出至指定银行账户。
-    @inlinable
-    public func applyOutwardOrder(_ input: ApplyOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOutwardOrderResponse {
-        try await self.client.execute(action: "ApplyOutwardOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyOutwardOrder请求参数结构体
     public struct ApplyOutwardOrderRequest: TCRequestModel {
         /// 对接方汇出指令编号
@@ -95,7 +79,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
         
-        public init (transactionId: String, pricingCurrency: String, sourceCurrency: String, targetCurrency: String, payeeType: String, payeeAccount: String, sourceAmount: Float?, targetAmount: Float?, payeeName: String?, payeeAddress: String?, payeeBankAccountType: String?, payeeCountryCode: String?, payeeBankName: String?, payeeBankAddress: String?, payeeBankDistrict: String?, payeeBankSwiftCode: String?, payeeBankType: String?, payeeBankCode: String?, referenceForBeneficiary: String?, profile: String?) {
+        public init (transactionId: String, pricingCurrency: String, sourceCurrency: String, targetCurrency: String, payeeType: String, payeeAccount: String, sourceAmount: Float? = nil, targetAmount: Float? = nil, payeeName: String? = nil, payeeAddress: String? = nil, payeeBankAccountType: String? = nil, payeeCountryCode: String? = nil, payeeBankName: String? = nil, payeeBankAddress: String? = nil, payeeBankDistrict: String? = nil, payeeBankSwiftCode: String? = nil, payeeBankType: String? = nil, payeeBankCode: String? = nil, referenceForBeneficiary: String? = nil, profile: String? = nil) {
             self.transactionId = transactionId
             self.pricingCurrency = pricingCurrency
             self.sourceCurrency = sourceCurrency
@@ -154,5 +138,21 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 跨境-汇出指令申请
+    ///
+    /// 跨境-汇出指令申请。通过该接口可将对接方账户中的人民币余额汇兑成外币，再汇出至指定银行账户。
+    @inlinable
+    public func applyOutwardOrder(_ input: ApplyOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyOutwardOrderResponse > {
+        self.client.execute(action: "ApplyOutwardOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 跨境-汇出指令申请
+    ///
+    /// 跨境-汇出指令申请。通过该接口可将对接方账户中的人民币余额汇兑成外币，再汇出至指定银行账户。
+    @inlinable
+    public func applyOutwardOrder(_ input: ApplyOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOutwardOrderResponse {
+        try await self.client.execute(action: "ApplyOutwardOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

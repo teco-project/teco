@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 查询目前定制域名的错误响应
-    @inlinable
-    public func describeDomainErrorPageInfo(_ input: DescribeDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainErrorPageInfoResponse > {
-        self.client.execute(action: "DescribeDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询目前定制域名的错误响应
-    @inlinable
-    public func describeDomainErrorPageInfo(_ input: DescribeDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainErrorPageInfoResponse {
-        try await self.client.execute(action: "DescribeDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomainErrorPageInfo请求参数结构体
     public struct DescribeDomainErrorPageInfoRequest: TCRequestModel {
         /// 监听器ID
@@ -59,5 +47,17 @@ extension Gaap {
             case errorPageSet = "ErrorPageSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询目前定制域名的错误响应
+    @inlinable
+    public func describeDomainErrorPageInfo(_ input: DescribeDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainErrorPageInfoResponse > {
+        self.client.execute(action: "DescribeDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询目前定制域名的错误响应
+    @inlinable
+    public func describeDomainErrorPageInfo(_ input: DescribeDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainErrorPageInfoResponse {
+        try await self.client.execute(action: "DescribeDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 证书查询关联资源
-    @inlinable
-    public func describeDeployedResources(_ input: DescribeDeployedResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeployedResourcesResponse > {
-        self.client.execute(action: "DescribeDeployedResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 证书查询关联资源
-    @inlinable
-    public func describeDeployedResources(_ input: DescribeDeployedResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployedResourcesResponse {
-        try await self.client.execute(action: "DescribeDeployedResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeployedResources请求参数结构体
     public struct DescribeDeployedResourcesRequest: TCRequestModel {
         /// 证书ID
@@ -58,5 +46,17 @@ extension Ssl {
             case deployedResources = "DeployedResources"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 证书查询关联资源
+    @inlinable
+    public func describeDeployedResources(_ input: DescribeDeployedResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeployedResourcesResponse > {
+        self.client.execute(action: "DescribeDeployedResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 证书查询关联资源
+    @inlinable
+    public func describeDeployedResources(_ input: DescribeDeployedResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployedResourcesResponse {
+        try await self.client.execute(action: "DescribeDeployedResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

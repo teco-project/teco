@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 替换路由策略
-    @inlinable
-    public func replaceRoutes(_ input: ReplaceRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceRoutesResponse > {
-        self.client.execute(action: "ReplaceRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 替换路由策略
-    @inlinable
-    public func replaceRoutes(_ input: ReplaceRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRoutesResponse {
-        try await self.client.execute(action: "ReplaceRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReplaceRoutes请求参数结构体
     public struct ReplaceRoutesRequest: TCRequestModel {
         /// 路由表实例ID。
@@ -54,5 +42,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 替换路由策略
+    @inlinable
+    public func replaceRoutes(_ input: ReplaceRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceRoutesResponse > {
+        self.client.execute(action: "ReplaceRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 替换路由策略
+    @inlinable
+    public func replaceRoutes(_ input: ReplaceRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRoutesResponse {
+        try await self.client.execute(action: "ReplaceRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

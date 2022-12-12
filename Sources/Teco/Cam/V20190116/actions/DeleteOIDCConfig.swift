@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 删除OIDC身份提供商
-    @inlinable
-    public func deleteOIDCConfig(_ input: DeleteOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOIDCConfigResponse > {
-        self.client.execute(action: "DeleteOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除OIDC身份提供商
-    @inlinable
-    public func deleteOIDCConfig(_ input: DeleteOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOIDCConfigResponse {
-        try await self.client.execute(action: "DeleteOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteOIDCConfig请求参数结构体
     public struct DeleteOIDCConfigRequest: TCRequestModel {
         /// OIDC身份提供商名称
@@ -49,5 +37,17 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除OIDC身份提供商
+    @inlinable
+    public func deleteOIDCConfig(_ input: DeleteOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOIDCConfigResponse > {
+        self.client.execute(action: "DeleteOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除OIDC身份提供商
+    @inlinable
+    public func deleteOIDCConfig(_ input: DeleteOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOIDCConfigResponse {
+        try await self.client.execute(action: "DeleteOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

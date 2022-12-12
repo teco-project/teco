@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 查询计费方式
-    ///
-    /// DescribePayType 用于查询用户的计费类型，计费周期等信息。
-    @inlinable
-    public func describePayType(_ input: DescribePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePayTypeResponse > {
-        self.client.execute(action: "DescribePayType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询计费方式
-    ///
-    /// DescribePayType 用于查询用户的计费类型，计费周期等信息。
-    @inlinable
-    public func describePayType(_ input: DescribePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePayTypeResponse {
-        try await self.client.execute(action: "DescribePayType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePayType请求参数结构体
     public struct DescribePayTypeRequest: TCRequestModel {
         /// 指定服务地域查询
@@ -42,7 +26,7 @@ extension Cdn {
         /// 指定查询的产品数据，可选为cdn或者ecdn，默认为cdn
         public let product: String?
         
-        public init (area: String?, product: String?) {
+        public init (area: String? = nil, product: String? = nil) {
             self.area = area
             self.product = product
         }
@@ -101,5 +85,21 @@ extension Cdn {
             case currentPayType = "CurrentPayType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询计费方式
+    ///
+    /// DescribePayType 用于查询用户的计费类型，计费周期等信息。
+    @inlinable
+    public func describePayType(_ input: DescribePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePayTypeResponse > {
+        self.client.execute(action: "DescribePayType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询计费方式
+    ///
+    /// DescribePayType 用于查询用户的计费类型，计费周期等信息。
+    @inlinable
+    public func describePayType(_ input: DescribePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePayTypeResponse {
+        try await self.client.execute(action: "DescribePayType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

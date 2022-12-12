@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询审计服务配置
-    ///
-    /// 本接口(DescribeAuditConfig)用于查询云数据库审计策略的服务配置，包括审计日志保存时长等。
-    @inlinable
-    public func describeAuditConfig(_ input: DescribeAuditConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditConfigResponse > {
-        self.client.execute(action: "DescribeAuditConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询审计服务配置
-    ///
-    /// 本接口(DescribeAuditConfig)用于查询云数据库审计策略的服务配置，包括审计日志保存时长等。
-    @inlinable
-    public func describeAuditConfig(_ input: DescribeAuditConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditConfigResponse {
-        try await self.client.execute(action: "DescribeAuditConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAuditConfig请求参数结构体
     public struct DescribeAuditConfigRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv 或者 cdbro-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -71,5 +55,21 @@ extension Cdb {
             case createTime = "CreateTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询审计服务配置
+    ///
+    /// 本接口(DescribeAuditConfig)用于查询云数据库审计策略的服务配置，包括审计日志保存时长等。
+    @inlinable
+    public func describeAuditConfig(_ input: DescribeAuditConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditConfigResponse > {
+        self.client.execute(action: "DescribeAuditConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询审计服务配置
+    ///
+    /// 本接口(DescribeAuditConfig)用于查询云数据库审计策略的服务配置，包括审计日志保存时长等。
+    @inlinable
+    public func describeAuditConfig(_ input: DescribeAuditConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditConfigResponse {
+        try await self.client.execute(action: "DescribeAuditConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

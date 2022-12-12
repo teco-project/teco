@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Bm {
-    /// 查询设备操作日志
-    ///
-    /// 查询设备操作日志， 如设备重启，重装，设置密码等操作
-    @inlinable
-    public func describeDeviceOperationLog(_ input: DescribeDeviceOperationLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceOperationLogResponse > {
-        self.client.execute(action: "DescribeDeviceOperationLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备操作日志
-    ///
-    /// 查询设备操作日志， 如设备重启，重装，设置密码等操作
-    @inlinable
-    public func describeDeviceOperationLog(_ input: DescribeDeviceOperationLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceOperationLogResponse {
-        try await self.client.execute(action: "DescribeDeviceOperationLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceOperationLog请求参数结构体
     public struct DescribeDeviceOperationLogRequest: TCRequestModel {
         /// 设备实例ID
@@ -50,7 +34,7 @@ extension Bm {
         /// 返回数量
         public let limit: UInt64?
         
-        public init (instanceId: String, startTime: Date?, endTime: Date?, offset: UInt64?, limit: UInt64?) {
+        public init (instanceId: String, startTime: Date? = nil, endTime: Date? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -83,5 +67,21 @@ extension Bm {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备操作日志
+    ///
+    /// 查询设备操作日志， 如设备重启，重装，设置密码等操作
+    @inlinable
+    public func describeDeviceOperationLog(_ input: DescribeDeviceOperationLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceOperationLogResponse > {
+        self.client.execute(action: "DescribeDeviceOperationLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备操作日志
+    ///
+    /// 查询设备操作日志， 如设备重启，重装，设置密码等操作
+    @inlinable
+    public func describeDeviceOperationLog(_ input: DescribeDeviceOperationLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceOperationLogResponse {
+        try await self.client.execute(action: "DescribeDeviceOperationLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

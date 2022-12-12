@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 修改域名对应的证书
-    ///
-    /// 本接口（ModifyCertificate）用于修改监听器下的域名对应的证书。该接口仅适用于version3.0的通道。
-    @inlinable
-    public func modifyCertificate(_ input: ModifyCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificateResponse > {
-        self.client.execute(action: "ModifyCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改域名对应的证书
-    ///
-    /// 本接口（ModifyCertificate）用于修改监听器下的域名对应的证书。该接口仅适用于version3.0的通道。
-    @inlinable
-    public func modifyCertificate(_ input: ModifyCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateResponse {
-        try await self.client.execute(action: "ModifyCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCertificate请求参数结构体
     public struct ModifyCertificateRequest: TCRequestModel {
         /// 监听器实例ID
@@ -52,7 +36,7 @@ extension Gaap {
         /// 仅当采用双向认证方式时，需要设置该参数或ClientCertificateId参数。
         public let polyClientCertificateIds: [String]?
         
-        public init (listenerId: String, domain: String, certificateId: String, clientCertificateId: String?, polyClientCertificateIds: [String]?) {
+        public init (listenerId: String, domain: String, certificateId: String, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil) {
             self.listenerId = listenerId
             self.domain = domain
             self.certificateId = certificateId
@@ -77,5 +61,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改域名对应的证书
+    ///
+    /// 本接口（ModifyCertificate）用于修改监听器下的域名对应的证书。该接口仅适用于version3.0的通道。
+    @inlinable
+    public func modifyCertificate(_ input: ModifyCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCertificateResponse > {
+        self.client.execute(action: "ModifyCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改域名对应的证书
+    ///
+    /// 本接口（ModifyCertificate）用于修改监听器下的域名对应的证书。该接口仅适用于version3.0的通道。
+    @inlinable
+    public func modifyCertificate(_ input: ModifyCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateResponse {
+        try await self.client.execute(action: "ModifyCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

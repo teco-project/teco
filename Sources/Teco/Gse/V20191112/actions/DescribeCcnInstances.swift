@@ -15,30 +15,12 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 查询云联网实例
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeCcnInstances）用于查询云联网实例。
-    @inlinable
-    public func describeCcnInstances(_ input: DescribeCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCcnInstancesResponse > {
-        self.client.execute(action: "DescribeCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云联网实例
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeCcnInstances）用于查询云联网实例。
-    @inlinable
-    public func describeCcnInstances(_ input: DescribeCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnInstancesResponse {
-        try await self.client.execute(action: "DescribeCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCcnInstances请求参数结构体
     public struct DescribeCcnInstancesRequest: TCRequestModel {
         /// 服务器舰队 Id
         public let fleetId: String?
         
-        public init (fleetId: String?) {
+        public init (fleetId: String? = nil) {
             self.fleetId = fleetId
         }
         
@@ -64,5 +46,23 @@ extension Gse {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云联网实例
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeCcnInstances）用于查询云联网实例。
+    @inlinable
+    public func describeCcnInstances(_ input: DescribeCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCcnInstancesResponse > {
+        self.client.execute(action: "DescribeCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云联网实例
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeCcnInstances）用于查询云联网实例。
+    @inlinable
+    public func describeCcnInstances(_ input: DescribeCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnInstancesResponse {
+        try await self.client.execute(action: "DescribeCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

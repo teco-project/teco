@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 编辑设备订阅状态
-    @inlinable
-    public func modifySubscriptionStatus(_ input: ModifySubscriptionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscriptionStatusResponse > {
-        self.client.execute(action: "ModifySubscriptionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 编辑设备订阅状态
-    @inlinable
-    public func modifySubscriptionStatus(_ input: ModifySubscriptionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscriptionStatusResponse {
-        try await self.client.execute(action: "ModifySubscriptionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySubscriptionStatus请求参数结构体
     public struct ModifySubscriptionStatusRequest: TCRequestModel {
         /// 设备ID
@@ -38,7 +26,7 @@ extension Iotvideoindustry {
         /// 订阅类型 Alarm:告警订阅 Catalog:目录订阅 MobilePosition:移动位置订阅
         public let subscriptionItem: String?
         
-        public init (deviceId: String, status: Int64, subscriptionItem: String?) {
+        public init (deviceId: String, status: Int64, subscriptionItem: String? = nil) {
             self.deviceId = deviceId
             self.status = status
             self.subscriptionItem = subscriptionItem
@@ -59,5 +47,17 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 编辑设备订阅状态
+    @inlinable
+    public func modifySubscriptionStatus(_ input: ModifySubscriptionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscriptionStatusResponse > {
+        self.client.execute(action: "ModifySubscriptionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 编辑设备订阅状态
+    @inlinable
+    public func modifySubscriptionStatus(_ input: ModifySubscriptionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscriptionStatusResponse {
+        try await self.client.execute(action: "ModifySubscriptionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

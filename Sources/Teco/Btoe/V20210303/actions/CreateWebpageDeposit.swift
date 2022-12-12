@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Btoe {
-    /// 网页快照存证
-    ///
-    /// 功能迭代，已上线更高版本的接口2021-05-14
-    /// 用户通过本接口向BTOE提交待存证网页的URL，BTOE对URL进行网页快照，并将快照图片存储，将网页快照Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。URL格式必须以http、https开头。
-    @inlinable
-    public func createWebpageDeposit(_ input: CreateWebpageDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWebpageDepositResponse > {
-        self.client.execute(action: "CreateWebpageDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 网页快照存证
-    ///
-    /// 功能迭代，已上线更高版本的接口2021-05-14
-    /// 用户通过本接口向BTOE提交待存证网页的URL，BTOE对URL进行网页快照，并将快照图片存储，将网页快照Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。URL格式必须以http、https开头。
-    @inlinable
-    public func createWebpageDeposit(_ input: CreateWebpageDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebpageDepositResponse {
-        try await self.client.execute(action: "CreateWebpageDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateWebpageDeposit请求参数结构体
     public struct CreateWebpageDepositRequest: TCRequestModel {
         /// 存证名称(长度最大30)
@@ -50,7 +32,7 @@ extension Btoe {
         /// 存证描述
         public let evidenceDescription: String?
         
-        public init (evidenceName: String, evidenceUrl: String, businessId: String?, hashType: UInt64?, evidenceDescription: String?) {
+        public init (evidenceName: String, evidenceUrl: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil) {
             self.evidenceName = evidenceName
             self.evidenceUrl = evidenceUrl
             self.businessId = businessId
@@ -84,5 +66,23 @@ extension Btoe {
             case evidenceId = "EvidenceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 网页快照存证
+    ///
+    /// 功能迭代，已上线更高版本的接口2021-05-14
+    /// 用户通过本接口向BTOE提交待存证网页的URL，BTOE对URL进行网页快照，并将快照图片存储，将网页快照Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。URL格式必须以http、https开头。
+    @inlinable
+    public func createWebpageDeposit(_ input: CreateWebpageDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWebpageDepositResponse > {
+        self.client.execute(action: "CreateWebpageDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 网页快照存证
+    ///
+    /// 功能迭代，已上线更高版本的接口2021-05-14
+    /// 用户通过本接口向BTOE提交待存证网页的URL，BTOE对URL进行网页快照，并将快照图片存储，将网页快照Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。URL格式必须以http、https开头。
+    @inlinable
+    public func createWebpageDeposit(_ input: CreateWebpageDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebpageDepositResponse {
+        try await self.client.execute(action: "CreateWebpageDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

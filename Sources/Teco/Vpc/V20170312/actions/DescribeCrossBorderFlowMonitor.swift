@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询跨境带宽监控数据
-    ///
-    /// 查询跨境带宽监控数据，该接口特提供给联通使用
-    @inlinable
-    public func describeCrossBorderFlowMonitor(_ input: DescribeCrossBorderFlowMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCrossBorderFlowMonitorResponse > {
-        self.client.execute(action: "DescribeCrossBorderFlowMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询跨境带宽监控数据
-    ///
-    /// 查询跨境带宽监控数据，该接口特提供给联通使用
-    @inlinable
-    public func describeCrossBorderFlowMonitor(_ input: DescribeCrossBorderFlowMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossBorderFlowMonitorResponse {
-        try await self.client.execute(action: "DescribeCrossBorderFlowMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCrossBorderFlowMonitor请求参数结构体
     public struct DescribeCrossBorderFlowMonitorRequest: TCRequestModel {
         /// 源地域
@@ -88,5 +72,21 @@ extension Vpc {
             case crossBorderFlowMonitorData = "CrossBorderFlowMonitorData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询跨境带宽监控数据
+    ///
+    /// 查询跨境带宽监控数据，该接口特提供给联通使用
+    @inlinable
+    public func describeCrossBorderFlowMonitor(_ input: DescribeCrossBorderFlowMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCrossBorderFlowMonitorResponse > {
+        self.client.execute(action: "DescribeCrossBorderFlowMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询跨境带宽监控数据
+    ///
+    /// 查询跨境带宽监控数据，该接口特提供给联通使用
+    @inlinable
+    public func describeCrossBorderFlowMonitor(_ input: DescribeCrossBorderFlowMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossBorderFlowMonitorResponse {
+        try await self.client.execute(action: "DescribeCrossBorderFlowMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

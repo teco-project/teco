@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 修改设备信息
-    @inlinable
-    public func modifyIotDevice(_ input: ModifyIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIotDeviceResponse > {
-        self.client.execute(action: "ModifyIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改设备信息
-    @inlinable
-    public func modifyIotDevice(_ input: ModifyIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIotDeviceResponse {
-        try await self.client.execute(action: "ModifyIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyIotDevice请求参数结构体
     public struct ModifyIotDeviceRequest: TCRequestModel {
         /// 设备id
@@ -44,7 +32,7 @@ extension Iecp {
         /// 日志级别
         public let logLevel: Int64?
         
-        public init (deviceId: Int64, description: String?, disabled: Bool?, logSetting: Int64?, logLevel: Int64?) {
+        public init (deviceId: Int64, description: String? = nil, disabled: Bool? = nil, logSetting: Int64? = nil, logLevel: Int64? = nil) {
             self.deviceId = deviceId
             self.description = description
             self.disabled = disabled
@@ -69,5 +57,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改设备信息
+    @inlinable
+    public func modifyIotDevice(_ input: ModifyIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIotDeviceResponse > {
+        self.client.execute(action: "ModifyIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改设备信息
+    @inlinable
+    public func modifyIotDevice(_ input: ModifyIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIotDeviceResponse {
+        try await self.client.execute(action: "ModifyIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

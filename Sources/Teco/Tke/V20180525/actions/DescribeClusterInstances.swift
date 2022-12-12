@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询集群节点信息
-    ///
-    ///  查询集群下节点实例信息 
-    @inlinable
-    public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterInstancesResponse > {
-        self.client.execute(action: "DescribeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群节点信息
-    ///
-    ///  查询集群下节点实例信息 
-    @inlinable
-    public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {
-        try await self.client.execute(action: "DescribeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterInstances请求参数结构体
     public struct DescribeClusterInstancesRequest: TCRequestModel {
         /// 集群ID
@@ -51,7 +35,7 @@ extension Tke {
         /// 过滤条件列表；Name的可选值为nodepool-id、nodepool-instance-type；Name为nodepool-id表示根据节点池id过滤机器，Value的值为具体的节点池id，Name为nodepool-instance-type表示节点加入节点池的方式，Value的值为MANUALLY_ADDED（手动加入节点池）、AUTOSCALING_ADDED（伸缩组扩容方式加入节点池）、ALL（手动加入节点池 和 伸缩组扩容方式加入节点池）
         public let filters: [Filter]?
         
-        public init (clusterId: String, offset: Int64?, limit: Int64?, instanceIds: [String]?, instanceRole: String?, filters: [Filter]?) {
+        public init (clusterId: String, offset: Int64? = nil, limit: Int64? = nil, instanceIds: [String]? = nil, instanceRole: String? = nil, filters: [Filter]? = nil) {
             self.clusterId = clusterId
             self.offset = offset
             self.limit = limit
@@ -86,5 +70,21 @@ extension Tke {
             case instanceSet = "InstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群节点信息
+    ///
+    ///  查询集群下节点实例信息 
+    @inlinable
+    public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterInstancesResponse > {
+        self.client.execute(action: "DescribeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群节点信息
+    ///
+    ///  查询集群下节点实例信息 
+    @inlinable
+    public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {
+        try await self.client.execute(action: "DescribeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

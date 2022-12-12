@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 查询安全设置
-    @inlinable
-    public func describeSafeAuthFlagColl(_ input: DescribeSafeAuthFlagCollRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSafeAuthFlagCollResponse > {
-        self.client.execute(action: "DescribeSafeAuthFlagColl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全设置
-    @inlinable
-    public func describeSafeAuthFlagColl(_ input: DescribeSafeAuthFlagCollRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafeAuthFlagCollResponse {
-        try await self.client.execute(action: "DescribeSafeAuthFlagColl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSafeAuthFlagColl请求参数结构体
     public struct DescribeSafeAuthFlagCollRequest: TCRequestModel {
         /// 子账号
@@ -61,5 +49,17 @@ extension Cam {
             case offsiteFlag = "OffsiteFlag"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全设置
+    @inlinable
+    public func describeSafeAuthFlagColl(_ input: DescribeSafeAuthFlagCollRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSafeAuthFlagCollResponse > {
+        self.client.execute(action: "DescribeSafeAuthFlagColl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全设置
+    @inlinable
+    public func describeSafeAuthFlagColl(_ input: DescribeSafeAuthFlagCollRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafeAuthFlagCollResponse {
+        try await self.client.execute(action: "DescribeSafeAuthFlagColl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

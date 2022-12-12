@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取产品资源列表
-    ///
-    /// 本接口（DescribeProductResources）用于查询产品资源列表。 
-    @inlinable
-    public func describeProductResources(_ input: DescribeProductResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductResourcesResponse > {
-        self.client.execute(action: "DescribeProductResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取产品资源列表
-    ///
-    /// 本接口（DescribeProductResources）用于查询产品资源列表。 
-    @inlinable
-    public func describeProductResources(_ input: DescribeProductResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResourcesResponse {
-        try await self.client.execute(action: "DescribeProductResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProductResources请求参数结构体
     public struct DescribeProductResourcesRequest: TCRequestModel {
         /// 偏移量，Offset从0开始
@@ -45,7 +29,7 @@ extension Iotcloud {
         /// 需要过滤的资源名称
         public let name: String?
         
-        public init (offset: UInt64, limit: UInt64, productID: String?, name: String?) {
+        public init (offset: UInt64, limit: UInt64, productID: String? = nil, name: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.productID = productID
@@ -77,5 +61,21 @@ extension Iotcloud {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取产品资源列表
+    ///
+    /// 本接口（DescribeProductResources）用于查询产品资源列表。 
+    @inlinable
+    public func describeProductResources(_ input: DescribeProductResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductResourcesResponse > {
+        self.client.execute(action: "DescribeProductResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品资源列表
+    ///
+    /// 本接口（DescribeProductResources）用于查询产品资源列表。 
+    @inlinable
+    public func describeProductResources(_ input: DescribeProductResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResourcesResponse {
+        try await self.client.execute(action: "DescribeProductResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

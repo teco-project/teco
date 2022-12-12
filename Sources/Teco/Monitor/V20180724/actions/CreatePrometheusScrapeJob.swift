@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 创建 Prometheus 抓取任务
-    @inlinable
-    public func createPrometheusScrapeJob(_ input: CreatePrometheusScrapeJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusScrapeJobResponse > {
-        self.client.execute(action: "CreatePrometheusScrapeJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建 Prometheus 抓取任务
-    @inlinable
-    public func createPrometheusScrapeJob(_ input: CreatePrometheusScrapeJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusScrapeJobResponse {
-        try await self.client.execute(action: "CreatePrometheusScrapeJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePrometheusScrapeJob请求参数结构体
     public struct CreatePrometheusScrapeJobRequest: TCRequestModel {
         /// Prometheus 实例 ID，例如：prom-abcd1234
@@ -38,7 +26,7 @@ extension Monitor {
         /// 抓取任务配置，格式：job_name:xx
         public let config: String?
         
-        public init (instanceId: String, agentId: String, config: String?) {
+        public init (instanceId: String, agentId: String, config: String? = nil) {
             self.instanceId = instanceId
             self.agentId = agentId
             self.config = config
@@ -63,5 +51,17 @@ extension Monitor {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建 Prometheus 抓取任务
+    @inlinable
+    public func createPrometheusScrapeJob(_ input: CreatePrometheusScrapeJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrometheusScrapeJobResponse > {
+        self.client.execute(action: "CreatePrometheusScrapeJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建 Prometheus 抓取任务
+    @inlinable
+    public func createPrometheusScrapeJob(_ input: CreatePrometheusScrapeJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusScrapeJobResponse {
+        try await self.client.execute(action: "CreatePrometheusScrapeJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

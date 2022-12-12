@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取专业版和基础版机器数
-    ///
-    /// 用于统计专业版和基础版机器数。
-    @inlinable
-    public func describeVersionStatistics(_ input: DescribeVersionStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVersionStatisticsResponse > {
-        self.client.execute(action: "DescribeVersionStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取专业版和基础版机器数
-    ///
-    /// 用于统计专业版和基础版机器数。
-    @inlinable
-    public func describeVersionStatistics(_ input: DescribeVersionStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionStatisticsResponse {
-        try await self.client.execute(action: "DescribeVersionStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVersionStatistics请求参数结构体
     public struct DescribeVersionStatisticsRequest: TCRequestModel {
         public init () {
@@ -57,5 +41,21 @@ extension Cwp {
             case ultimateVersionNum = "UltimateVersionNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取专业版和基础版机器数
+    ///
+    /// 用于统计专业版和基础版机器数。
+    @inlinable
+    public func describeVersionStatistics(_ input: DescribeVersionStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVersionStatisticsResponse > {
+        self.client.execute(action: "DescribeVersionStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取专业版和基础版机器数
+    ///
+    /// 用于统计专业版和基础版机器数。
+    @inlinable
+    public func describeVersionStatistics(_ input: DescribeVersionStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionStatisticsResponse {
+        try await self.client.execute(action: "DescribeVersionStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

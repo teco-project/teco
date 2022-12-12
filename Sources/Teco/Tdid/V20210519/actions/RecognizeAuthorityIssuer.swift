@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 认证权威机构
-    @inlinable
-    public func recognizeAuthorityIssuer(_ input: RecognizeAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeAuthorityIssuerResponse > {
-        self.client.execute(action: "RecognizeAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 认证权威机构
-    @inlinable
-    public func recognizeAuthorityIssuer(_ input: RecognizeAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeAuthorityIssuerResponse {
-        try await self.client.execute(action: "RecognizeAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecognizeAuthorityIssuer请求参数结构体
     public struct RecognizeAuthorityIssuerRequest: TCRequestModel {
         /// did具体信息
@@ -49,5 +37,17 @@ extension Tdid {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 认证权威机构
+    @inlinable
+    public func recognizeAuthorityIssuer(_ input: RecognizeAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeAuthorityIssuerResponse > {
+        self.client.execute(action: "RecognizeAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 认证权威机构
+    @inlinable
+    public func recognizeAuthorityIssuer(_ input: RecognizeAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeAuthorityIssuerResponse {
+        try await self.client.execute(action: "RecognizeAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

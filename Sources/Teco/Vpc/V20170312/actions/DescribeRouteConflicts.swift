@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询路由策略冲突列表
-    ///
-    /// 本接口（DescribeRouteConflicts）用于查询自定义路由策略与云联网路由策略冲突列表
-    @inlinable
-    public func describeRouteConflicts(_ input: DescribeRouteConflictsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteConflictsResponse > {
-        self.client.execute(action: "DescribeRouteConflicts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询路由策略冲突列表
-    ///
-    /// 本接口（DescribeRouteConflicts）用于查询自定义路由策略与云联网路由策略冲突列表
-    @inlinable
-    public func describeRouteConflicts(_ input: DescribeRouteConflictsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteConflictsResponse {
-        try await self.client.execute(action: "DescribeRouteConflicts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRouteConflicts请求参数结构体
     public struct DescribeRouteConflictsRequest: TCRequestModel {
         /// 路由表实例ID，例如：rtb-azd4dt1c。
@@ -62,5 +46,21 @@ extension Vpc {
             case routeConflictSet = "RouteConflictSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询路由策略冲突列表
+    ///
+    /// 本接口（DescribeRouteConflicts）用于查询自定义路由策略与云联网路由策略冲突列表
+    @inlinable
+    public func describeRouteConflicts(_ input: DescribeRouteConflictsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRouteConflictsResponse > {
+        self.client.execute(action: "DescribeRouteConflicts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询路由策略冲突列表
+    ///
+    /// 本接口（DescribeRouteConflicts）用于查询自定义路由策略与云联网路由策略冲突列表
+    @inlinable
+    public func describeRouteConflicts(_ input: DescribeRouteConflictsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRouteConflictsResponse {
+        try await self.client.execute(action: "DescribeRouteConflicts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

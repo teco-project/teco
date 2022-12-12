@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 七层离线日志下载
-    ///
-    /// 查询七层离线日志
-    @inlinable
-    public func downloadL7Logs(_ input: DownloadL7LogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadL7LogsResponse > {
-        self.client.execute(action: "DownloadL7Logs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 七层离线日志下载
-    ///
-    /// 查询七层离线日志
-    @inlinable
-    public func downloadL7Logs(_ input: DownloadL7LogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadL7LogsResponse {
-        try await self.client.execute(action: "DownloadL7Logs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DownloadL7Logs请求参数结构体
     public struct DownloadL7LogsRequest: TCRequestModel {
         /// 起始时间(需严格按照RFC3339标准传参)
@@ -55,7 +39,7 @@ extension Teo {
         /// 子域名集合
         public let domains: [String]?
         
-        public init (startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zones: [String]?, domains: [String]?) {
+        public init (startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zones: [String]? = nil, domains: [String]? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.pageSize = pageSize
@@ -107,5 +91,21 @@ extension Teo {
             case totalSize = "TotalSize"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 七层离线日志下载
+    ///
+    /// 查询七层离线日志
+    @inlinable
+    public func downloadL7Logs(_ input: DownloadL7LogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadL7LogsResponse > {
+        self.client.execute(action: "DownloadL7Logs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 七层离线日志下载
+    ///
+    /// 查询七层离线日志
+    @inlinable
+    public func downloadL7Logs(_ input: DownloadL7LogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadL7LogsResponse {
+        try await self.client.execute(action: "DownloadL7Logs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

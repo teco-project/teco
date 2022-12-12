@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 创建转码模板
-    ///
-    /// 创建转码模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveTranscodeRule](/document/product/267/32647)接口，将返回的模板id绑定到流使用。
-    /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
-    @inlinable
-    public func createLiveTranscodeTemplate(_ input: CreateLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveTranscodeTemplateResponse > {
-        self.client.execute(action: "CreateLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建转码模板
-    ///
-    /// 创建转码模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveTranscodeRule](/document/product/267/32647)接口，将返回的模板id绑定到流使用。
-    /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
-    @inlinable
-    public func createLiveTranscodeTemplate(_ input: CreateLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTranscodeTemplateResponse {
-        try await self.client.execute(action: "CreateLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLiveTranscodeTemplate请求参数结构体
     public struct CreateLiveTranscodeTemplateRequest: TCRequestModel {
         /// 模板名称，例： 900p 仅支持字母和数字的组合。
@@ -129,7 +111,7 @@ extension Live {
         /// 不传递或着为空字符串，清空之前的DRM配置。
         public let drmTracks: String?
         
-        public init (templateName: String, videoBitrate: Int64, acodec: String?, audioBitrate: Int64?, vcodec: String?, description: String?, needVideo: Int64?, width: Int64?, needAudio: Int64?, height: Int64?, fps: Int64?, gop: Int64?, rotate: Int64?, profile: String?, bitrateToOrig: Int64?, heightToOrig: Int64?, fpsToOrig: Int64?, aiTransCode: Int64?, adaptBitratePercent: Float?, shortEdgeAsHeight: Int64?, drmType: String?, drmTracks: String?) {
+        public init (templateName: String, videoBitrate: Int64, acodec: String? = nil, audioBitrate: Int64? = nil, vcodec: String? = nil, description: String? = nil, needVideo: Int64? = nil, width: Int64? = nil, needAudio: Int64? = nil, height: Int64? = nil, fps: Int64? = nil, gop: Int64? = nil, rotate: Int64? = nil, profile: String? = nil, bitrateToOrig: Int64? = nil, heightToOrig: Int64? = nil, fpsToOrig: Int64? = nil, aiTransCode: Int64? = nil, adaptBitratePercent: Float? = nil, shortEdgeAsHeight: Int64? = nil, drmType: String? = nil, drmTracks: String? = nil) {
             self.templateName = templateName
             self.videoBitrate = videoBitrate
             self.acodec = acodec
@@ -192,5 +174,23 @@ extension Live {
             case templateId = "TemplateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建转码模板
+    ///
+    /// 创建转码模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveTranscodeRule](/document/product/267/32647)接口，将返回的模板id绑定到流使用。
+    /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
+    @inlinable
+    public func createLiveTranscodeTemplate(_ input: CreateLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveTranscodeTemplateResponse > {
+        self.client.execute(action: "CreateLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建转码模板
+    ///
+    /// 创建转码模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveTranscodeRule](/document/product/267/32647)接口，将返回的模板id绑定到流使用。
+    /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
+    @inlinable
+    public func createLiveTranscodeTemplate(_ input: CreateLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTranscodeTemplateResponse {
+        try await self.client.execute(action: "CreateLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

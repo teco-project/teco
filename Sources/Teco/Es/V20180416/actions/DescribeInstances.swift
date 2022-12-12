@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 查询ES集群实例
-    ///
-    /// 查询用户该地域下符合条件的所有实例
-    @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
-        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询ES集群实例
-    ///
-    /// 查询用户该地域下符合条件的所有实例
-    @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstances请求参数结构体
     public struct DescribeInstancesRequest: TCRequestModel {
         /// 集群实例所属可用区，不传则默认所有可用区
@@ -69,7 +53,7 @@ extension Es {
         /// Vpc列表 筛选项
         public let vpcIds: [String]?
         
-        public init (zone: String?, instanceIds: [String]?, instanceNames: [String]?, offset: UInt64?, limit: UInt64?, orderByKey: UInt64?, orderByType: UInt64?, tagList: [TagInfo]?, ipList: [String]?, zoneList: [String]?, healthStatus: [Int64]?, vpcIds: [String]?) {
+        public init (zone: String? = nil, instanceIds: [String]? = nil, instanceNames: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderByKey: UInt64? = nil, orderByType: UInt64? = nil, tagList: [TagInfo]? = nil, ipList: [String]? = nil, zoneList: [String]? = nil, healthStatus: [Int64]? = nil, vpcIds: [String]? = nil) {
             self.zone = zone
             self.instanceIds = instanceIds
             self.instanceNames = instanceNames
@@ -116,5 +100,21 @@ extension Es {
             case instanceList = "InstanceList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询ES集群实例
+    ///
+    /// 查询用户该地域下符合条件的所有实例
+    @inlinable
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询ES集群实例
+    ///
+    /// 查询用户该地域下符合条件的所有实例
+    @inlinable
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

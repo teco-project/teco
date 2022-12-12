@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 删除目标组
-    @inlinable
-    public func deleteTargetGroups(_ input: DeleteTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTargetGroupsResponse > {
-        self.client.execute(action: "DeleteTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除目标组
-    @inlinable
-    public func deleteTargetGroups(_ input: DeleteTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTargetGroupsResponse {
-        try await self.client.execute(action: "DeleteTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTargetGroups请求参数结构体
     public struct DeleteTargetGroupsRequest: TCRequestModel {
         /// 目标组的ID数组。
@@ -49,5 +37,17 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除目标组
+    @inlinable
+    public func deleteTargetGroups(_ input: DeleteTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTargetGroupsResponse > {
+        self.client.execute(action: "DeleteTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除目标组
+    @inlinable
+    public func deleteTargetGroups(_ input: DeleteTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTargetGroupsResponse {
+        try await self.client.execute(action: "DeleteTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 修改告警设置
-    ///
-    /// 本接口（ModifyAlarmAttribute）用于修改告警设置。
-    @inlinable
-    public func modifyAlarmAttribute(_ input: ModifyAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmAttributeResponse > {
-        self.client.execute(action: "ModifyAlarmAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改告警设置
-    ///
-    /// 本接口（ModifyAlarmAttribute）用于修改告警设置。
-    @inlinable
-    public func modifyAlarmAttribute(_ input: ModifyAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmAttributeResponse {
-        try await self.client.execute(action: "ModifyAlarmAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAlarmAttribute请求参数结构体
     public struct ModifyAlarmAttributeRequest: TCRequestModel {
         /// 告警项目。
@@ -64,5 +48,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改告警设置
+    ///
+    /// 本接口（ModifyAlarmAttribute）用于修改告警设置。
+    @inlinable
+    public func modifyAlarmAttribute(_ input: ModifyAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmAttributeResponse > {
+        self.client.execute(action: "ModifyAlarmAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改告警设置
+    ///
+    /// 本接口（ModifyAlarmAttribute）用于修改告警设置。
+    @inlinable
+    public func modifyAlarmAttribute(_ input: ModifyAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmAttributeResponse {
+        try await self.client.execute(action: "ModifyAlarmAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

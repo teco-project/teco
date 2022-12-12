@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 规则执行日志查询
-    @inlinable
-    public func describeRuleExecLog(_ input: DescribeRuleExecLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleExecLogResponse > {
-        self.client.execute(action: "DescribeRuleExecLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 规则执行日志查询
-    @inlinable
-    public func describeRuleExecLog(_ input: DescribeRuleExecLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecLogResponse {
-        try await self.client.execute(action: "DescribeRuleExecLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRuleExecLog请求参数结构体
     public struct DescribeRuleExecLogRequest: TCRequestModel {
         /// 规则执行Id
@@ -55,7 +43,7 @@ extension Wedata {
     public struct DescribeRuleExecLogResponse: TCResponseModel {
         /// 规则执行日志
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: RuleExecLog
+        public let data: RuleExecLog?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -64,5 +52,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 规则执行日志查询
+    @inlinable
+    public func describeRuleExecLog(_ input: DescribeRuleExecLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleExecLogResponse > {
+        self.client.execute(action: "DescribeRuleExecLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 规则执行日志查询
+    @inlinable
+    public func describeRuleExecLog(_ input: DescribeRuleExecLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecLogResponse {
+        try await self.client.execute(action: "DescribeRuleExecLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

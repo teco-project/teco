@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 撤销会员在途充值(经第三方支付渠道)接口
-    @inlinable
-    public func revokeRechargeByThirdPay(_ input: RevokeRechargeByThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevokeRechargeByThirdPayResponse > {
-        self.client.execute(action: "RevokeRechargeByThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 撤销会员在途充值(经第三方支付渠道)接口
-    @inlinable
-    public func revokeRechargeByThirdPay(_ input: RevokeRechargeByThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeRechargeByThirdPayResponse {
-        try await self.client.execute(action: "RevokeRechargeByThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RevokeRechargeByThirdPay请求参数结构体
     public struct RevokeRechargeByThirdPayRequest: TCRequestModel {
         /// 请求类型此接口固定填：RevokeMemberRechargeThirdPayReq
@@ -92,7 +80,7 @@ extension Cpdp {
         /// 备注
         public let remark: String?
         
-        public init (requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSequenceNumber: String, transFee: String, thirdPayChannel: String, thirdPayChannelOrderId: String, oldFrontSequenceNumber: String, currencyAmount: String, currencyUnit: String, currencyType: String, midasEnvironment: String, reservedMessage: String?, remark: String?) {
+        public init (requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSequenceNumber: String, transFee: String, thirdPayChannel: String, thirdPayChannelOrderId: String, oldFrontSequenceNumber: String, currencyAmount: String, currencyUnit: String, currencyType: String, midasEnvironment: String, reservedMessage: String? = nil, remark: String? = nil) {
             self.requestType = requestType
             self.merchantCode = merchantCode
             self.payChannel = payChannel
@@ -162,5 +150,17 @@ extension Cpdp {
             case frontSequenceNumber = "FrontSequenceNumber"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 撤销会员在途充值(经第三方支付渠道)接口
+    @inlinable
+    public func revokeRechargeByThirdPay(_ input: RevokeRechargeByThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevokeRechargeByThirdPayResponse > {
+        self.client.execute(action: "RevokeRechargeByThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 撤销会员在途充值(经第三方支付渠道)接口
+    @inlinable
+    public func revokeRechargeByThirdPay(_ input: RevokeRechargeByThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeRechargeByThirdPayResponse {
+        try await self.client.execute(action: "RevokeRechargeByThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

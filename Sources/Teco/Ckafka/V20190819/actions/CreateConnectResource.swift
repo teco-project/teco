@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 创建Datahub连接源
-    @inlinable
-    public func createConnectResource(_ input: CreateConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConnectResourceResponse > {
-        self.client.execute(action: "CreateConnectResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建Datahub连接源
-    @inlinable
-    public func createConnectResource(_ input: CreateConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectResourceResponse {
-        try await self.client.execute(action: "CreateConnectResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateConnectResource请求参数结构体
     public struct CreateConnectResourceRequest: TCRequestModel {
         /// 连接源名称
@@ -39,33 +27,33 @@ extension Ckafka {
         public let description: String?
         
         /// Dts配置，Type为DTS时必填
-        public let dtsConnectParam: DtsConnectParam
+        public let dtsConnectParam: DtsConnectParam?
         
         /// MongoDB配置，Type为MONGODB时必填
-        public let mongoDBConnectParam: MongoDBConnectParam
+        public let mongoDBConnectParam: MongoDBConnectParam?
         
         /// Es配置，Type为ES时必填
-        public let esConnectParam: EsConnectParam
+        public let esConnectParam: EsConnectParam?
         
         /// ClickHouse配置，Type为CLICKHOUSE时必填
-        public let clickHouseConnectParam: ClickHouseConnectParam
+        public let clickHouseConnectParam: ClickHouseConnectParam?
         
         /// MySQL配置，Type为MYSQL或TDSQL_C_MYSQL时必填
-        public let mySQLConnectParam: MySQLConnectParam
+        public let mySQLConnectParam: MySQLConnectParam?
         
         /// PostgreSQL配置，Type为POSTGRESQL或TDSQL_C_POSTGRESQL时必填
-        public let postgreSQLConnectParam: PostgreSQLConnectParam
+        public let postgreSQLConnectParam: PostgreSQLConnectParam?
         
         /// MariaDB配置，Type为MARIADB时必填
-        public let mariaDBConnectParam: MariaDBConnectParam
+        public let mariaDBConnectParam: MariaDBConnectParam?
         
         /// SQLServer配置，Type为SQLSERVER时必填
-        public let sqlServerConnectParam: SQLServerConnectParam
+        public let sqlServerConnectParam: SQLServerConnectParam?
         
         /// Doris 配置，Type为 DORIS 时必填
-        public let dorisConnectParam: DorisConnectParam
+        public let dorisConnectParam: DorisConnectParam?
         
-        public init (resourceName: String, type: String, description: String?, dtsConnectParam: DtsConnectParam, mongoDBConnectParam: MongoDBConnectParam, esConnectParam: EsConnectParam, clickHouseConnectParam: ClickHouseConnectParam, mySQLConnectParam: MySQLConnectParam, postgreSQLConnectParam: PostgreSQLConnectParam, mariaDBConnectParam: MariaDBConnectParam, sqlServerConnectParam: SQLServerConnectParam, dorisConnectParam: DorisConnectParam) {
+        public init (resourceName: String, type: String, description: String? = nil, dtsConnectParam: DtsConnectParam? = nil, mongoDBConnectParam: MongoDBConnectParam? = nil, esConnectParam: EsConnectParam? = nil, clickHouseConnectParam: ClickHouseConnectParam? = nil, mySQLConnectParam: MySQLConnectParam? = nil, postgreSQLConnectParam: PostgreSQLConnectParam? = nil, mariaDBConnectParam: MariaDBConnectParam? = nil, sqlServerConnectParam: SQLServerConnectParam? = nil, dorisConnectParam: DorisConnectParam? = nil) {
             self.resourceName = resourceName
             self.type = type
             self.description = description
@@ -108,5 +96,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建Datahub连接源
+    @inlinable
+    public func createConnectResource(_ input: CreateConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateConnectResourceResponse > {
+        self.client.execute(action: "CreateConnectResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建Datahub连接源
+    @inlinable
+    public func createConnectResource(_ input: CreateConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectResourceResponse {
+        try await self.client.execute(action: "CreateConnectResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

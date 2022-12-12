@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询集群变配记录
-    @inlinable
-    public func describeClusterLevelChangeRecords(_ input: DescribeClusterLevelChangeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterLevelChangeRecordsResponse > {
-        self.client.execute(action: "DescribeClusterLevelChangeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群变配记录
-    @inlinable
-    public func describeClusterLevelChangeRecords(_ input: DescribeClusterLevelChangeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterLevelChangeRecordsResponse {
-        try await self.client.execute(action: "DescribeClusterLevelChangeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterLevelChangeRecords请求参数结构体
     public struct DescribeClusterLevelChangeRecordsRequest: TCRequestModel {
         /// 集群ID
@@ -44,7 +32,7 @@ extension Tke {
         /// 最大输出条数，默认20
         public let limit: UInt64?
         
-        public init (clusterID: String, startAt: String?, endAt: String?, offset: UInt64?, limit: UInt64?) {
+        public init (clusterID: String, startAt: String? = nil, endAt: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.clusterID = clusterID
             self.startAt = startAt
             self.endAt = endAt
@@ -77,5 +65,17 @@ extension Tke {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群变配记录
+    @inlinable
+    public func describeClusterLevelChangeRecords(_ input: DescribeClusterLevelChangeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterLevelChangeRecordsResponse > {
+        self.client.execute(action: "DescribeClusterLevelChangeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群变配记录
+    @inlinable
+    public func describeClusterLevelChangeRecords(_ input: DescribeClusterLevelChangeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterLevelChangeRecordsResponse {
+        try await self.client.execute(action: "DescribeClusterLevelChangeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 手动备份Redis实例
-    @inlinable
-    public func manualBackupInstance(_ input: ManualBackupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManualBackupInstanceResponse > {
-        self.client.execute(action: "ManualBackupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 手动备份Redis实例
-    @inlinable
-    public func manualBackupInstance(_ input: ManualBackupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualBackupInstanceResponse {
-        try await self.client.execute(action: "ManualBackupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ManualBackupInstance请求参数结构体
     public struct ManualBackupInstanceRequest: TCRequestModel {
         /// 待操作的实例ID，可通过 DescribeInstance接口返回值中的 InstanceId 获取。
@@ -38,7 +26,7 @@ extension Redis {
         /// 保存天数。0代表指定默认保留时间
         public let storageDays: Int64?
         
-        public init (instanceId: String, remark: String?, storageDays: Int64?) {
+        public init (instanceId: String, remark: String? = nil, storageDays: Int64? = nil) {
             self.instanceId = instanceId
             self.remark = remark
             self.storageDays = storageDays
@@ -63,5 +51,17 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 手动备份Redis实例
+    @inlinable
+    public func manualBackupInstance(_ input: ManualBackupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ManualBackupInstanceResponse > {
+        self.client.execute(action: "ManualBackupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 手动备份Redis实例
+    @inlinable
+    public func manualBackupInstance(_ input: ManualBackupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualBackupInstanceResponse {
+        try await self.client.execute(action: "ManualBackupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

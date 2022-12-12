@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 查询码包状态
-    @inlinable
-    public func describeCodePackStatus(_ input: DescribeCodePackStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodePackStatusResponse > {
-        self.client.execute(action: "DescribeCodePackStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询码包状态
-    @inlinable
-    public func describeCodePackStatus(_ input: DescribeCodePackStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodePackStatusResponse {
-        try await self.client.execute(action: "DescribeCodePackStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCodePackStatus请求参数结构体
     public struct DescribeCodePackStatusRequest: TCRequestModel {
         /// 码包ID
@@ -35,7 +23,7 @@ extension Trp {
         /// 企业ID
         public let corpId: UInt64?
         
-        public init (packId: String, corpId: UInt64?) {
+        public init (packId: String, corpId: UInt64? = nil) {
             self.packId = packId
             self.corpId = corpId
         }
@@ -59,5 +47,17 @@ extension Trp {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询码包状态
+    @inlinable
+    public func describeCodePackStatus(_ input: DescribeCodePackStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCodePackStatusResponse > {
+        self.client.execute(action: "DescribeCodePackStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询码包状态
+    @inlinable
+    public func describeCodePackStatus(_ input: DescribeCodePackStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodePackStatusResponse {
+        try await self.client.execute(action: "DescribeCodePackStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

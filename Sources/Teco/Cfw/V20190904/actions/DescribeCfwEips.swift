@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 查询防火墙弹性公网IP
-    @inlinable
-    public func describeCfwEips(_ input: DescribeCfwEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfwEipsResponse > {
-        self.client.execute(action: "DescribeCfwEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询防火墙弹性公网IP
-    @inlinable
-    public func describeCfwEips(_ input: DescribeCfwEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfwEipsResponse {
-        try await self.client.execute(action: "DescribeCfwEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCfwEips请求参数结构体
     public struct DescribeCfwEipsRequest: TCRequestModel {
         /// 1：cfw接入模式，目前仅支持接入模式实例
@@ -38,7 +26,7 @@ extension Cfw {
         /// 防火墙实例id，当前仅支持接入模式的实例
         public let cfwInstance: String?
         
-        public init (mode: UInt64, natGatewayId: String, cfwInstance: String?) {
+        public init (mode: UInt64, natGatewayId: String, cfwInstance: String? = nil) {
             self.mode = mode
             self.natGatewayId = natGatewayId
             self.cfwInstance = cfwInstance
@@ -63,5 +51,17 @@ extension Cfw {
             case natFwEipList = "NatFwEipList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询防火墙弹性公网IP
+    @inlinable
+    public func describeCfwEips(_ input: DescribeCfwEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfwEipsResponse > {
+        self.client.execute(action: "DescribeCfwEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询防火墙弹性公网IP
+    @inlinable
+    public func describeCfwEips(_ input: DescribeCfwEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfwEipsResponse {
+        try await self.client.execute(action: "DescribeCfwEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 查询黑石EIP 限额
-    @inlinable
-    public func describeEipQuota(_ input: DescribeEipQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEipQuotaResponse > {
-        self.client.execute(action: "DescribeEipQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询黑石EIP 限额
-    @inlinable
-    public func describeEipQuota(_ input: DescribeEipQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipQuotaResponse {
-        try await self.client.execute(action: "DescribeEipQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEipQuota请求参数结构体
     public struct DescribeEipQuotaRequest: TCRequestModel {
         public init () {
@@ -61,5 +49,17 @@ extension Bmeip {
             case batchApplyMax = "BatchApplyMax"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询黑石EIP 限额
+    @inlinable
+    public func describeEipQuota(_ input: DescribeEipQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEipQuotaResponse > {
+        self.client.execute(action: "DescribeEipQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询黑石EIP 限额
+    @inlinable
+    public func describeEipQuota(_ input: DescribeEipQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipQuotaResponse {
+        try await self.client.execute(action: "DescribeEipQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

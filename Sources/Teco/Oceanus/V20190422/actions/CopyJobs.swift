@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 复制作业
-    ///
-    /// 单条和批量复制作业
-    @inlinable
-    public func copyJobs(_ input: CopyJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyJobsResponse > {
-        self.client.execute(action: "CopyJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 复制作业
-    ///
-    /// 单条和批量复制作业
-    @inlinable
-    public func copyJobs(_ input: CopyJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyJobsResponse {
-        try await self.client.execute(action: "CopyJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CopyJobs请求参数结构体
     public struct CopyJobsRequest: TCRequestModel {
         /// 复制明细列表
@@ -39,7 +23,7 @@ extension Oceanus {
         /// 工作空间 SerialId
         public let workSpaceId: String?
         
-        public init (jobItems: [CopyJobItem], workSpaceId: String?) {
+        public init (jobItems: [CopyJobItem], workSpaceId: String? = nil) {
             self.jobItems = jobItems
             self.workSpaceId = workSpaceId
         }
@@ -73,5 +57,21 @@ extension Oceanus {
             case copyJobsResults = "CopyJobsResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 复制作业
+    ///
+    /// 单条和批量复制作业
+    @inlinable
+    public func copyJobs(_ input: CopyJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopyJobsResponse > {
+        self.client.execute(action: "CopyJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 复制作业
+    ///
+    /// 单条和批量复制作业
+    @inlinable
+    public func copyJobs(_ input: CopyJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyJobsResponse {
+        try await self.client.execute(action: "CopyJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

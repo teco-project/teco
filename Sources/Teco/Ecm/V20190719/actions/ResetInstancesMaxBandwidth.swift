@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 重置实例的最大带宽上限
-    ///
-    /// 重置实例的最大带宽上限。
-    @inlinable
-    public func resetInstancesMaxBandwidth(_ input: ResetInstancesMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetInstancesMaxBandwidthResponse > {
-        self.client.execute(action: "ResetInstancesMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置实例的最大带宽上限
-    ///
-    /// 重置实例的最大带宽上限。
-    @inlinable
-    public func resetInstancesMaxBandwidth(_ input: ResetInstancesMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesMaxBandwidthResponse {
-        try await self.client.execute(action: "ResetInstancesMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetInstancesMaxBandwidth请求参数结构体
     public struct ResetInstancesMaxBandwidthRequest: TCRequestModel {
         /// 待重置带宽上限的实例ID列表。在单次请求的过程中，单个region下的请求实例数上限为100。
@@ -42,7 +26,7 @@ extension Ecm {
         /// 修改后的最大入带宽上限。
         public let maxBandwidthIn: Int64?
         
-        public init (instanceIdSet: [String], maxBandwidthOut: Int64, maxBandwidthIn: Int64?) {
+        public init (instanceIdSet: [String], maxBandwidthOut: Int64, maxBandwidthIn: Int64? = nil) {
             self.instanceIdSet = instanceIdSet
             self.maxBandwidthOut = maxBandwidthOut
             self.maxBandwidthIn = maxBandwidthIn
@@ -63,5 +47,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置实例的最大带宽上限
+    ///
+    /// 重置实例的最大带宽上限。
+    @inlinable
+    public func resetInstancesMaxBandwidth(_ input: ResetInstancesMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetInstancesMaxBandwidthResponse > {
+        self.client.execute(action: "ResetInstancesMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置实例的最大带宽上限
+    ///
+    /// 重置实例的最大带宽上限。
+    @inlinable
+    public func resetInstancesMaxBandwidth(_ input: ResetInstancesMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesMaxBandwidthResponse {
+        try await self.client.execute(action: "ResetInstancesMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

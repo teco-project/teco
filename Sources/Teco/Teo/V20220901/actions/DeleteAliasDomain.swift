@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 删除别称域名
-    ///
-    /// 删除别称域名。
-    @inlinable
-    public func deleteAliasDomain(_ input: DeleteAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAliasDomainResponse > {
-        self.client.execute(action: "DeleteAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除别称域名
-    ///
-    /// 删除别称域名。
-    @inlinable
-    public func deleteAliasDomain(_ input: DeleteAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasDomainResponse {
-        try await self.client.execute(action: "DeleteAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAliasDomain请求参数结构体
     public struct DeleteAliasDomainRequest: TCRequestModel {
         /// 站点 ID。
@@ -39,7 +23,7 @@ extension Teo {
         /// 待删除别称域名名称。如果为空，则不执行删除操作。
         public let aliasNames: [String]?
         
-        public init (zoneId: String, aliasNames: [String]?) {
+        public init (zoneId: String, aliasNames: [String]? = nil) {
             self.zoneId = zoneId
             self.aliasNames = aliasNames
         }
@@ -58,5 +42,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除别称域名
+    ///
+    /// 删除别称域名。
+    @inlinable
+    public func deleteAliasDomain(_ input: DeleteAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAliasDomainResponse > {
+        self.client.execute(action: "DeleteAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除别称域名
+    ///
+    /// 删除别称域名。
+    @inlinable
+    public func deleteAliasDomain(_ input: DeleteAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasDomainResponse {
+        try await self.client.execute(action: "DeleteAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

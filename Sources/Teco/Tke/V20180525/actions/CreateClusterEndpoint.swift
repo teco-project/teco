@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 创建集群访问端口
-    @inlinable
-    public func createClusterEndpoint(_ input: CreateClusterEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterEndpointResponse > {
-        self.client.execute(action: "CreateClusterEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建集群访问端口
-    @inlinable
-    public func createClusterEndpoint(_ input: CreateClusterEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterEndpointResponse {
-        try await self.client.execute(action: "CreateClusterEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateClusterEndpoint请求参数结构体
     public struct CreateClusterEndpointRequest: TCRequestModel {
         /// 集群ID
@@ -47,7 +35,7 @@ extension Tke {
         /// 创建lb参数，只有外网访问需要设置
         public let extensiveParameters: String?
         
-        public init (clusterId: String, subnetId: String?, isExtranet: Bool?, domain: String?, securityGroup: String?, extensiveParameters: String?) {
+        public init (clusterId: String, subnetId: String? = nil, isExtranet: Bool? = nil, domain: String? = nil, securityGroup: String? = nil, extensiveParameters: String? = nil) {
             self.clusterId = clusterId
             self.subnetId = subnetId
             self.isExtranet = isExtranet
@@ -74,5 +62,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建集群访问端口
+    @inlinable
+    public func createClusterEndpoint(_ input: CreateClusterEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClusterEndpointResponse > {
+        self.client.execute(action: "CreateClusterEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群访问端口
+    @inlinable
+    public func createClusterEndpoint(_ input: CreateClusterEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterEndpointResponse {
+        try await self.client.execute(action: "CreateClusterEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

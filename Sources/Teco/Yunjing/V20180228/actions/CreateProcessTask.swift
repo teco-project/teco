@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 创建实时拉取进程任务
-    ///
-    /// 本接口 (CreateProcessTask) 用于创建实时拉取进程任务。
-    @inlinable
-    public func createProcessTask(_ input: CreateProcessTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProcessTaskResponse > {
-        self.client.execute(action: "CreateProcessTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实时拉取进程任务
-    ///
-    /// 本接口 (CreateProcessTask) 用于创建实时拉取进程任务。
-    @inlinable
-    public func createProcessTask(_ input: CreateProcessTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProcessTaskResponse {
-        try await self.client.execute(action: "CreateProcessTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProcessTask请求参数结构体
     public struct CreateProcessTaskRequest: TCRequestModel {
         /// 云镜客户端唯一Uuid。
@@ -53,5 +37,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实时拉取进程任务
+    ///
+    /// 本接口 (CreateProcessTask) 用于创建实时拉取进程任务。
+    @inlinable
+    public func createProcessTask(_ input: CreateProcessTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProcessTaskResponse > {
+        self.client.execute(action: "CreateProcessTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实时拉取进程任务
+    ///
+    /// 本接口 (CreateProcessTask) 用于创建实时拉取进程任务。
+    @inlinable
+    public func createProcessTask(_ input: CreateProcessTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProcessTaskResponse {
+        try await self.client.execute(action: "CreateProcessTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

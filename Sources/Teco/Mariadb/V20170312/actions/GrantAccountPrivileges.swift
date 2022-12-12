@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 设置账号权限
-    ///
-    /// 本接口（GrantAccountPrivileges）用于给云数据库账号赋权。
-    /// 注意：相同用户名，不同Host是不同的账号。
-    @inlinable
-    public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GrantAccountPrivilegesResponse > {
-        self.client.execute(action: "GrantAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置账号权限
-    ///
-    /// 本接口（GrantAccountPrivileges）用于给云数据库账号赋权。
-    /// 注意：相同用户名，不同Host是不同的账号。
-    @inlinable
-    public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantAccountPrivilegesResponse {
-        try await self.client.execute(action: "GrantAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GrantAccountPrivileges请求参数结构体
     public struct GrantAccountPrivilegesRequest: TCRequestModel {
         /// 实例 ID，形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
@@ -63,7 +45,7 @@ extension Mariadb {
         /// 当 Type=table 时，ColName 为 \* 表示对表授权，如果为具体字段名，表示对字段授权
         public let colName: String?
         
-        public init (instanceId: String, userName: String, host: String, dbName: String, privileges: [String], type: String?, object: String?, colName: String?) {
+        public init (instanceId: String, userName: String, host: String, dbName: String, privileges: [String], type: String? = nil, object: String? = nil, colName: String? = nil) {
             self.instanceId = instanceId
             self.userName = userName
             self.host = host
@@ -94,5 +76,23 @@ extension Mariadb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置账号权限
+    ///
+    /// 本接口（GrantAccountPrivileges）用于给云数据库账号赋权。
+    /// 注意：相同用户名，不同Host是不同的账号。
+    @inlinable
+    public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GrantAccountPrivilegesResponse > {
+        self.client.execute(action: "GrantAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置账号权限
+    ///
+    /// 本接口（GrantAccountPrivileges）用于给云数据库账号赋权。
+    /// 注意：相同用户名，不同Host是不同的账号。
+    @inlinable
+    public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantAccountPrivilegesResponse {
+        try await self.client.execute(action: "GrantAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

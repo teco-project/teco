@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Lcic {
-    /// 获取用户信息
-    @inlinable
-    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserResponse > {
-        self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户信息
-    @inlinable
-    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
-        try await self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUser请求参数结构体
     public struct DescribeUserRequest: TCRequestModel {
         /// 用户Id。
@@ -65,5 +53,17 @@ extension Lcic {
             case avatar = "Avatar"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户信息
+    @inlinable
+    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserResponse > {
+        self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户信息
+    @inlinable
+    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
+        try await self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

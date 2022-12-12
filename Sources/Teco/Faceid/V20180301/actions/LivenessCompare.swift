@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 活体人脸比对
-    ///
-    /// 传入视频和照片，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与上传照片是否属于同一个人。
-    @inlinable
-    public func livenessCompare(_ input: LivenessCompareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LivenessCompareResponse > {
-        self.client.execute(action: "LivenessCompare", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 活体人脸比对
-    ///
-    /// 传入视频和照片，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与上传照片是否属于同一个人。
-    @inlinable
-    public func livenessCompare(_ input: LivenessCompareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessCompareResponse {
-        try await self.client.execute(action: "LivenessCompare", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// LivenessCompare请求参数结构体
     public struct LivenessCompareRequest: TCRequestModel {
         /// 活体检测类型，取值：LIP/ACTION/SILENT。
@@ -70,7 +54,7 @@ extension Faceid {
         /// 建议视频存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议视频存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let videoUrl: String?
         
-        public init (livenessType: String, imageBase64: String?, imageUrl: String?, validateData: String?, optional: String?, videoBase64: String?, videoUrl: String?) {
+        public init (livenessType: String, imageBase64: String? = nil, imageUrl: String? = nil, validateData: String? = nil, optional: String? = nil, videoBase64: String? = nil, videoUrl: String? = nil) {
             self.livenessType = livenessType
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
@@ -121,5 +105,21 @@ extension Faceid {
             case bestFrameList = "BestFrameList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 活体人脸比对
+    ///
+    /// 传入视频和照片，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与上传照片是否属于同一个人。
+    @inlinable
+    public func livenessCompare(_ input: LivenessCompareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LivenessCompareResponse > {
+        self.client.execute(action: "LivenessCompare", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 活体人脸比对
+    ///
+    /// 传入视频和照片，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与上传照片是否属于同一个人。
+    @inlinable
+    public func livenessCompare(_ input: LivenessCompareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessCompareResponse {
+        try await self.client.execute(action: "LivenessCompare", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

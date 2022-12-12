@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rum {
-    /// 获取项目列表
-    ///
-    /// 获取项目列表（实例创建的团队下的项目列表）
-    @inlinable
-    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
-        self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取项目列表
-    ///
-    /// 获取项目列表（实例创建的团队下的项目列表）
-    @inlinable
-    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
-        try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProjects请求参数结构体
     public struct DescribeProjectsRequest: TCRequestModel {
         /// 分页每页数目，整型
@@ -45,7 +29,7 @@ extension Rum {
         /// 该参数已废弃，demo模式请在Filters内注明
         public let isDemo: Int64?
         
-        public init (limit: UInt64, offset: UInt64, filters: [Filter]?, isDemo: Int64?) {
+        public init (limit: UInt64, offset: UInt64, filters: [Filter]? = nil, isDemo: Int64? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -76,5 +60,21 @@ extension Rum {
             case projectSet = "ProjectSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取项目列表
+    ///
+    /// 获取项目列表（实例创建的团队下的项目列表）
+    @inlinable
+    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProjectsResponse > {
+        self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取项目列表
+    ///
+    /// 获取项目列表（实例创建的团队下的项目列表）
+    @inlinable
+    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
+        try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

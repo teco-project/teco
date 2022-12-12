@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 查询批量导入机器信息
-    @inlinable
-    public func describeImportMachineInfo(_ input: DescribeImportMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImportMachineInfoResponse > {
-        self.client.execute(action: "DescribeImportMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询批量导入机器信息
-    @inlinable
-    public func describeImportMachineInfo(_ input: DescribeImportMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportMachineInfoResponse {
-        try await self.client.execute(action: "DescribeImportMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImportMachineInfo请求参数结构体
     public struct DescribeImportMachineInfoRequest: TCRequestModel {
         /// 服务器内网IP（默认）/ 服务器名称 / 服务器ID 数组 (最大 1000条)
@@ -42,7 +30,7 @@ extension Cwp {
         /// <li>Version - String  是否必填：否 - 当前防护版本（ PRO_VERSION：专业版 | BASIC_VERSION：基础版 | Flagship：旗舰版 | ProtectedMachines：专业版+旗舰版） | BASIC_PROPOST_GENERAL_DISCOUNT：普惠版+专业版按量计费+基础版主机 | UnFlagship：专业版预付费+专业版后付费+基础版+普惠版</li>
         public let filters: [Filters]?
         
-        public init (machineList: [String], importType: String, isQueryProMachine: Bool?, filters: [Filters]?) {
+        public init (machineList: [String], importType: String, isQueryProMachine: Bool? = nil, filters: [Filters]? = nil) {
             self.machineList = machineList
             self.importType = importType
             self.isQueryProMachine = isQueryProMachine
@@ -75,5 +63,17 @@ extension Cwp {
             case invalidMachineList = "InvalidMachineList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询批量导入机器信息
+    @inlinable
+    public func describeImportMachineInfo(_ input: DescribeImportMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImportMachineInfoResponse > {
+        self.client.execute(action: "DescribeImportMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询批量导入机器信息
+    @inlinable
+    public func describeImportMachineInfo(_ input: DescribeImportMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportMachineInfoResponse {
+        try await self.client.execute(action: "DescribeImportMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

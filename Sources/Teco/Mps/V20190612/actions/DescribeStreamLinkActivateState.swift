@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 查询媒体传输开通状态
-    ///
-    /// 查询媒体传输开通状态。
-    @inlinable
-    public func describeStreamLinkActivateState(_ input: DescribeStreamLinkActivateStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkActivateStateResponse > {
-        self.client.execute(action: "DescribeStreamLinkActivateState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询媒体传输开通状态
-    ///
-    /// 查询媒体传输开通状态。
-    @inlinable
-    public func describeStreamLinkActivateState(_ input: DescribeStreamLinkActivateStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkActivateStateResponse {
-        try await self.client.execute(action: "DescribeStreamLinkActivateState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStreamLinkActivateState请求参数结构体
     public struct DescribeStreamLinkActivateStateRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Mps {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询媒体传输开通状态
+    ///
+    /// 查询媒体传输开通状态。
+    @inlinable
+    public func describeStreamLinkActivateState(_ input: DescribeStreamLinkActivateStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkActivateStateResponse > {
+        self.client.execute(action: "DescribeStreamLinkActivateState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询媒体传输开通状态
+    ///
+    /// 查询媒体传输开通状态。
+    @inlinable
+    public func describeStreamLinkActivateState(_ input: DescribeStreamLinkActivateStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkActivateStateResponse {
+        try await self.client.execute(action: "DescribeStreamLinkActivateState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

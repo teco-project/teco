@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Captcha {
-    /// 安全验证码用户操作数据查询
-    ///
-    /// 安全验证码用户操作数据查询，验证码加载耗时type = 1 、拦截情况type = 2、 一周通过平均尝试次数 type = 3、尝试次数分布 type = 4
-    @inlinable
-    public func describeCaptchaOperData(_ input: DescribeCaptchaOperDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaOperDataResponse > {
-        self.client.execute(action: "DescribeCaptchaOperData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全验证码用户操作数据查询
-    ///
-    /// 安全验证码用户操作数据查询，验证码加载耗时type = 1 、拦截情况type = 2、 一周通过平均尝试次数 type = 3、尝试次数分布 type = 4
-    @inlinable
-    public func describeCaptchaOperData(_ input: DescribeCaptchaOperDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaOperDataResponse {
-        try await self.client.execute(action: "DescribeCaptchaOperData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCaptchaOperData请求参数结构体
     public struct DescribeCaptchaOperDataRequest: TCRequestModel {
         /// 验证码应用ID
@@ -45,7 +29,7 @@ extension Captcha {
         /// 查询结束时间
         public let end: UInt64?
         
-        public init (captchaAppId: UInt64, start: UInt64, type: UInt64, end: UInt64?) {
+        public init (captchaAppId: UInt64, start: UInt64, type: UInt64, end: UInt64? = nil) {
             self.captchaAppId = captchaAppId
             self.start = start
             self.type = type
@@ -71,7 +55,7 @@ extension Captcha {
         
         /// 用户操作数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: CaptchaOperDataRes
+        public let data: CaptchaOperDataRes?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -82,5 +66,21 @@ extension Captcha {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全验证码用户操作数据查询
+    ///
+    /// 安全验证码用户操作数据查询，验证码加载耗时type = 1 、拦截情况type = 2、 一周通过平均尝试次数 type = 3、尝试次数分布 type = 4
+    @inlinable
+    public func describeCaptchaOperData(_ input: DescribeCaptchaOperDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaOperDataResponse > {
+        self.client.execute(action: "DescribeCaptchaOperData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全验证码用户操作数据查询
+    ///
+    /// 安全验证码用户操作数据查询，验证码加载耗时type = 1 、拦截情况type = 2、 一周通过平均尝试次数 type = 3、尝试次数分布 type = 4
+    @inlinable
+    public func describeCaptchaOperData(_ input: DescribeCaptchaOperDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaOperDataResponse {
+        try await self.client.execute(action: "DescribeCaptchaOperData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudstudio {
-    /// 修改模板默认代码仓库
-    @inlinable
-    public func modifyCustomizeTemplateVersionControl(_ input: ModifyCustomizeTemplateVersionControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizeTemplateVersionControlResponse > {
-        self.client.execute(action: "ModifyCustomizeTemplateVersionControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改模板默认代码仓库
-    @inlinable
-    public func modifyCustomizeTemplateVersionControl(_ input: ModifyCustomizeTemplateVersionControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplateVersionControlResponse {
-        try await self.client.execute(action: "ModifyCustomizeTemplateVersionControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCustomizeTemplateVersionControl请求参数结构体
     public struct ModifyCustomizeTemplateVersionControlRequest: TCRequestModel {
         /// 用户所属组
@@ -44,7 +32,7 @@ extension Cloudstudio {
         /// 代码仓库 ref 类型
         public let refType: String?
         
-        public init (cloudStudioSessionTeam: String, templateId: Int64, url: String?, ref: String?, refType: String?) {
+        public init (cloudStudioSessionTeam: String, templateId: Int64, url: String? = nil, ref: String? = nil, refType: String? = nil) {
             self.cloudStudioSessionTeam = cloudStudioSessionTeam
             self.templateId = templateId
             self.url = url
@@ -65,7 +53,7 @@ extension Cloudstudio {
     public struct ModifyCustomizeTemplateVersionControlResponse: TCResponseModel {
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: WorkspaceTemplateInfo
+        public let data: WorkspaceTemplateInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -74,5 +62,17 @@ extension Cloudstudio {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改模板默认代码仓库
+    @inlinable
+    public func modifyCustomizeTemplateVersionControl(_ input: ModifyCustomizeTemplateVersionControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCustomizeTemplateVersionControlResponse > {
+        self.client.execute(action: "ModifyCustomizeTemplateVersionControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改模板默认代码仓库
+    @inlinable
+    public func modifyCustomizeTemplateVersionControl(_ input: ModifyCustomizeTemplateVersionControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplateVersionControlResponse {
+        try await self.client.execute(action: "ModifyCustomizeTemplateVersionControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

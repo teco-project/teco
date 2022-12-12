@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 查询客户端上传加速统计数据
-    ///
-    /// 该接口返回查询时间范围内客户端上传加速统计信息。
-    ///    1. 可以查询最近365天内的客户端上传加速统计数据。
-    ///    2. 查询时间跨度不超过90天。
-    ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
-    @inlinable
-    public func describeClientUploadAccelerationUsageData(_ input: DescribeClientUploadAccelerationUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientUploadAccelerationUsageDataResponse > {
-        self.client.execute(action: "DescribeClientUploadAccelerationUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询客户端上传加速统计数据
-    ///
-    /// 该接口返回查询时间范围内客户端上传加速统计信息。
-    ///    1. 可以查询最近365天内的客户端上传加速统计数据。
-    ///    2. 查询时间跨度不超过90天。
-    ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
-    @inlinable
-    public func describeClientUploadAccelerationUsageData(_ input: DescribeClientUploadAccelerationUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientUploadAccelerationUsageDataResponse {
-        try await self.client.execute(action: "DescribeClientUploadAccelerationUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClientUploadAccelerationUsageData请求参数结构体
     public struct DescribeClientUploadAccelerationUsageDataRequest: TCRequestModel {
         /// 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
@@ -54,7 +32,7 @@ extension Vod {
         /// 默认查询所有加速类型的用量 。
         public let type: String?
         
-        public init (startTime: String, endTime: String, subAppId: UInt64?, type: String?) {
+        public init (startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.subAppId = subAppId
@@ -81,5 +59,27 @@ extension Vod {
             case clientUploadAccelerationUsageDataSet = "ClientUploadAccelerationUsageDataSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询客户端上传加速统计数据
+    ///
+    /// 该接口返回查询时间范围内客户端上传加速统计信息。
+    ///    1. 可以查询最近365天内的客户端上传加速统计数据。
+    ///    2. 查询时间跨度不超过90天。
+    ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
+    @inlinable
+    public func describeClientUploadAccelerationUsageData(_ input: DescribeClientUploadAccelerationUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientUploadAccelerationUsageDataResponse > {
+        self.client.execute(action: "DescribeClientUploadAccelerationUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询客户端上传加速统计数据
+    ///
+    /// 该接口返回查询时间范围内客户端上传加速统计信息。
+    ///    1. 可以查询最近365天内的客户端上传加速统计数据。
+    ///    2. 查询时间跨度不超过90天。
+    ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
+    @inlinable
+    public func describeClientUploadAccelerationUsageData(_ input: DescribeClientUploadAccelerationUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientUploadAccelerationUsageDataResponse {
+        try await self.client.execute(action: "DescribeClientUploadAccelerationUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

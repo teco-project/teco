@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Lcic {
-    /// 登录
-    @inlinable
-    public func loginUser(_ input: LoginUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LoginUserResponse > {
-        self.client.execute(action: "LoginUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 登录
-    @inlinable
-    public func loginUser(_ input: LoginUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LoginUserResponse {
-        try await self.client.execute(action: "LoginUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// LoginUser请求参数结构体
     public struct LoginUserRequest: TCRequestModel {
         /// 注册获取的用户id。
@@ -57,5 +45,17 @@ extension Lcic {
             case token = "Token"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 登录
+    @inlinable
+    public func loginUser(_ input: LoginUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LoginUserResponse > {
+        self.client.execute(action: "LoginUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 登录
+    @inlinable
+    public func loginUser(_ input: LoginUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LoginUserResponse {
+        try await self.client.execute(action: "LoginUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

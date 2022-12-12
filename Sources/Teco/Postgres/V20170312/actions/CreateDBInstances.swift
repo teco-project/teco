@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 创建实例(旧)
-    ///
-    /// 本接口 (CreateDBInstances) 用于创建一个或者多个PostgreSQL实例,仅发货实例不会进行初始化。
-    @inlinable
-    public func createDBInstances(_ input: CreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstancesResponse > {
-        self.client.execute(action: "CreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例(旧)
-    ///
-    /// 本接口 (CreateDBInstances) 用于创建一个或者多个PostgreSQL实例,仅发货实例不会进行初始化。
-    @inlinable
-    public func createDBInstances(_ input: CreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstancesResponse {
-        try await self.client.execute(action: "CreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDBInstances请求参数结构体
     public struct CreateDBInstancesRequest: TCRequestModel {
         /// 售卖规格ID。该参数可以通过调用DescribeProductConfig的返回值中的SpecCode字段来获取。
@@ -93,7 +77,7 @@ extension Postgres {
         /// PostgreSQL内核版本。当输入该参数时，会创建该内核版本号实例。该参数和DBVersion、DBMajorVersion至少需要传递一个。
         public let dbKernelVersion: String?
         
-        public init (specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, zone: String, projectId: Int64?, dbVersion: String?, instanceChargeType: String?, autoVoucher: UInt64?, voucherIds: [String]?, vpcId: String?, subnetId: String?, autoRenewFlag: Int64?, activityId: Int64?, name: String?, needSupportIpv6: UInt64?, tagList: [Tag]?, securityGroupIds: [String]?, dbMajorVersion: String?, dbKernelVersion: String?) {
+        public init (specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, zone: String, projectId: Int64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, autoRenewFlag: Int64? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, tagList: [Tag]? = nil, securityGroupIds: [String]? = nil, dbMajorVersion: String? = nil, dbKernelVersion: String? = nil) {
             self.specCode = specCode
             self.storage = storage
             self.instanceCount = instanceCount
@@ -160,5 +144,21 @@ extension Postgres {
             case dbInstanceIdSet = "DBInstanceIdSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例(旧)
+    ///
+    /// 本接口 (CreateDBInstances) 用于创建一个或者多个PostgreSQL实例,仅发货实例不会进行初始化。
+    @inlinable
+    public func createDBInstances(_ input: CreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBInstancesResponse > {
+        self.client.execute(action: "CreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例(旧)
+    ///
+    /// 本接口 (CreateDBInstances) 用于创建一个或者多个PostgreSQL实例,仅发货实例不会进行初始化。
+    @inlinable
+    public func createDBInstances(_ input: CreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstancesResponse {
+        try await self.client.execute(action: "CreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

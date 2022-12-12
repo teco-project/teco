@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 中止迁移任务
-    ///
-    /// 本接口（StopMigration）作用是中止一个迁移任务
-    @inlinable
-    public func stopMigration(_ input: StopMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopMigrationResponse > {
-        self.client.execute(action: "StopMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 中止迁移任务
-    ///
-    /// 本接口（StopMigration）作用是中止一个迁移任务
-    @inlinable
-    public func stopMigration(_ input: StopMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMigrationResponse {
-        try await self.client.execute(action: "StopMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StopMigration请求参数结构体
     public struct StopMigrationRequest: TCRequestModel {
         /// 迁移任务ID
@@ -57,5 +41,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 中止迁移任务
+    ///
+    /// 本接口（StopMigration）作用是中止一个迁移任务
+    @inlinable
+    public func stopMigration(_ input: StopMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopMigrationResponse > {
+        self.client.execute(action: "StopMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 中止迁移任务
+    ///
+    /// 本接口（StopMigration）作用是中止一个迁移任务
+    @inlinable
+    public func stopMigration(_ input: StopMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMigrationResponse {
+        try await self.client.execute(action: "StopMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

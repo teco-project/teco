@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 分页查询Bcos区块列表
-    ///
-    /// Bcos分页查询当前群组下的区块列表
-    @inlinable
-    public func getBcosBlockList(_ input: GetBcosBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBcosBlockListResponse > {
-        self.client.execute(action: "GetBcosBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分页查询Bcos区块列表
-    ///
-    /// Bcos分页查询当前群组下的区块列表
-    @inlinable
-    public func getBcosBlockList(_ input: GetBcosBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosBlockListResponse {
-        try await self.client.execute(action: "GetBcosBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetBcosBlockList请求参数结构体
     public struct GetBcosBlockListRequest: TCRequestModel {
         /// 网络ID，可在区块链网络详情或列表中获取
@@ -51,7 +35,7 @@ extension Tbaas {
         /// 区块哈希，可以从InvokeBcosTrans接口的返回值中解析获取
         public let blockHash: String?
         
-        public init (clusterId: String, groupId: Int64, pageNumber: Int64?, pageSize: Int64?, blockNumber: Int64?, blockHash: String?) {
+        public init (clusterId: String, groupId: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, blockNumber: Int64? = nil, blockHash: String? = nil) {
             self.clusterId = clusterId
             self.groupId = groupId
             self.pageNumber = pageNumber
@@ -86,5 +70,21 @@ extension Tbaas {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分页查询Bcos区块列表
+    ///
+    /// Bcos分页查询当前群组下的区块列表
+    @inlinable
+    public func getBcosBlockList(_ input: GetBcosBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetBcosBlockListResponse > {
+        self.client.execute(action: "GetBcosBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分页查询Bcos区块列表
+    ///
+    /// Bcos分页查询当前群组下的区块列表
+    @inlinable
+    public func getBcosBlockList(_ input: GetBcosBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosBlockListResponse {
+        try await self.client.execute(action: "GetBcosBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

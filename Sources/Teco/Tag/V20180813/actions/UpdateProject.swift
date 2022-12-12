@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 修改项目
-    @inlinable
-    public func updateProject(_ input: UpdateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProjectResponse > {
-        self.client.execute(action: "UpdateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改项目
-    @inlinable
-    public func updateProject(_ input: UpdateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProjectResponse {
-        try await self.client.execute(action: "UpdateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateProject请求参数结构体
     public struct UpdateProjectRequest: TCRequestModel {
         /// 项目ID
@@ -41,7 +29,7 @@ extension Tag {
         /// 备注
         public let info: String?
         
-        public init (projectId: UInt64, projectName: String?, disable: Int64?, info: String?) {
+        public init (projectId: UInt64, projectName: String? = nil, disable: Int64? = nil, info: String? = nil) {
             self.projectId = projectId
             self.projectName = projectName
             self.disable = disable
@@ -64,5 +52,17 @@ extension Tag {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改项目
+    @inlinable
+    public func updateProject(_ input: UpdateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProjectResponse > {
+        self.client.execute(action: "UpdateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改项目
+    @inlinable
+    public func updateProject(_ input: UpdateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProjectResponse {
+        try await self.client.execute(action: "UpdateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 查询快照列表
-    @inlinable
-    public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotsResponse > {
-        self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询快照列表
-    @inlinable
-    public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
-        try await self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSnapshots请求参数结构体
     public struct DescribeSnapshotsRequest: TCRequestModel {
         /// 表格所属集群id
@@ -41,7 +29,7 @@ extension Tcaplusdb {
         /// 快照名称
         public let snapshotName: String?
         
-        public init (clusterId: String, tableGroupId: String?, tableName: String?, snapshotName: String?) {
+        public init (clusterId: String, tableGroupId: String? = nil, tableName: String? = nil, snapshotName: String? = nil) {
             self.clusterId = clusterId
             self.tableGroupId = tableGroupId
             self.tableName = tableName
@@ -72,5 +60,17 @@ extension Tcaplusdb {
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询快照列表
+    @inlinable
+    public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSnapshotsResponse > {
+        self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询快照列表
+    @inlinable
+    public func describeSnapshots(_ input: DescribeSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
+        try await self.client.execute(action: "DescribeSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

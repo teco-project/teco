@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 模型版本列表
-    @inlinable
-    public func describeTrainingModelVersions(_ input: DescribeTrainingModelVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingModelVersionsResponse > {
-        self.client.execute(action: "DescribeTrainingModelVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 模型版本列表
-    @inlinable
-    public func describeTrainingModelVersions(_ input: DescribeTrainingModelVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelVersionsResponse {
-        try await self.client.execute(action: "DescribeTrainingModelVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrainingModelVersions请求参数结构体
     public struct DescribeTrainingModelVersionsRequest: TCRequestModel {
         /// 模型ID
@@ -43,7 +31,7 @@ extension Tione {
         /// 每次请求的Filters的上限为10，Filter.Values的上限为100
         public let filters: [Filter]?
         
-        public init (trainingModelId: String, filters: [Filter]?) {
+        public init (trainingModelId: String, filters: [Filter]? = nil) {
             self.trainingModelId = trainingModelId
             self.filters = filters
         }
@@ -66,5 +54,17 @@ extension Tione {
             case trainingModelVersions = "TrainingModelVersions"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 模型版本列表
+    @inlinable
+    public func describeTrainingModelVersions(_ input: DescribeTrainingModelVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingModelVersionsResponse > {
+        self.client.execute(action: "DescribeTrainingModelVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 模型版本列表
+    @inlinable
+    public func describeTrainingModelVersions(_ input: DescribeTrainingModelVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelVersionsResponse {
+        try await self.client.execute(action: "DescribeTrainingModelVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

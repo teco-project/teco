@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Iot {
-    /// 获取设备统计指标
-    ///
-    /// 查询某段时间范围内产品的在线、激活设备数
-    @inlinable
-    public func getDeviceStatistics(_ input: GetDeviceStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceStatisticsResponse > {
-        self.client.execute(action: "GetDeviceStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备统计指标
-    ///
-    /// 查询某段时间范围内产品的在线、激活设备数
-    @inlinable
-    public func getDeviceStatistics(_ input: GetDeviceStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceStatisticsResponse {
-        try await self.client.execute(action: "GetDeviceStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDeviceStatistics请求参数结构体
     public struct GetDeviceStatisticsRequest: TCRequestModel {
         /// 产品Id列表
@@ -44,7 +28,7 @@ extension Iot {
         /// 结束日期
         public let endDate: Date?
         
-        public init (products: [String]?, startDate: Date?, endDate: Date?) {
+        public init (products: [String]? = nil, startDate: Date? = nil, endDate: Date? = nil) {
             self.products = products
             self.startDate = startDate
             self.endDate = endDate
@@ -69,5 +53,21 @@ extension Iot {
             case deviceStatistics = "DeviceStatistics"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备统计指标
+    ///
+    /// 查询某段时间范围内产品的在线、激活设备数
+    @inlinable
+    public func getDeviceStatistics(_ input: GetDeviceStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDeviceStatisticsResponse > {
+        self.client.execute(action: "GetDeviceStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备统计指标
+    ///
+    /// 查询某段时间范围内产品的在线、激活设备数
+    @inlinable
+    public func getDeviceStatistics(_ input: GetDeviceStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceStatisticsResponse {
+        try await self.client.execute(action: "GetDeviceStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

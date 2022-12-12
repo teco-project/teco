@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 删除跑批任务
-    @inlinable
-    public func deleteBatchTask(_ input: DeleteBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBatchTaskResponse > {
-        self.client.execute(action: "DeleteBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除跑批任务
-    @inlinable
-    public func deleteBatchTask(_ input: DeleteBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBatchTaskResponse {
-        try await self.client.execute(action: "DeleteBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteBatchTask请求参数结构体
     public struct DeleteBatchTaskRequest: TCRequestModel {
         /// 跑批任务ID
@@ -49,5 +37,17 @@ extension Tione {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除跑批任务
+    @inlinable
+    public func deleteBatchTask(_ input: DeleteBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteBatchTaskResponse > {
+        self.client.execute(action: "DeleteBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除跑批任务
+    @inlinable
+    public func deleteBatchTask(_ input: DeleteBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBatchTaskResponse {
+        try await self.client.execute(action: "DeleteBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

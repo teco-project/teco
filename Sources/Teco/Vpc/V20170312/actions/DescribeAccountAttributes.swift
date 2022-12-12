@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询账户属性
-    ///
-    /// 本接口（DescribeAccountAttributes）用于查询用户账号私有属性。
-    @inlinable
-    public func describeAccountAttributes(_ input: DescribeAccountAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountAttributesResponse > {
-        self.client.execute(action: "DescribeAccountAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询账户属性
-    ///
-    /// 本接口（DescribeAccountAttributes）用于查询用户账号私有属性。
-    @inlinable
-    public func describeAccountAttributes(_ input: DescribeAccountAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountAttributesResponse {
-        try await self.client.execute(action: "DescribeAccountAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccountAttributes请求参数结构体
     public struct DescribeAccountAttributesRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Vpc {
             case accountAttributeSet = "AccountAttributeSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询账户属性
+    ///
+    /// 本接口（DescribeAccountAttributes）用于查询用户账号私有属性。
+    @inlinable
+    public func describeAccountAttributes(_ input: DescribeAccountAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountAttributesResponse > {
+        self.client.execute(action: "DescribeAccountAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账户属性
+    ///
+    /// 本接口（DescribeAccountAttributes）用于查询用户账号私有属性。
+    @inlinable
+    public func describeAccountAttributes(_ input: DescribeAccountAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountAttributesResponse {
+        try await self.client.execute(action: "DescribeAccountAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

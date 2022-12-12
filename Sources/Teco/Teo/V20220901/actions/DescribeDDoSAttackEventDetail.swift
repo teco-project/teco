@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询DDoS攻击事件详情
-    ///
-    /// 本接口（DescribeDDoSAttackEventDetail）用于查询DDoS攻击事件详情。
-    @inlinable
-    public func describeDDoSAttackEventDetail(_ input: DescribeDDoSAttackEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAttackEventDetailResponse > {
-        self.client.execute(action: "DescribeDDoSAttackEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询DDoS攻击事件详情
-    ///
-    /// 本接口（DescribeDDoSAttackEventDetail）用于查询DDoS攻击事件详情。
-    @inlinable
-    public func describeDDoSAttackEventDetail(_ input: DescribeDDoSAttackEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackEventDetailResponse {
-        try await self.client.execute(action: "DescribeDDoSAttackEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDoSAttackEventDetail请求参数结构体
     public struct DescribeDDoSAttackEventDetailRequest: TCRequestModel {
         /// 查询的事件ID。
@@ -41,7 +25,7 @@ extension Teo {
         /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
         public let area: String?
         
-        public init (eventId: String, area: String?) {
+        public init (eventId: String, area: String? = nil) {
             self.eventId = eventId
             self.area = area
         }
@@ -64,5 +48,21 @@ extension Teo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询DDoS攻击事件详情
+    ///
+    /// 本接口（DescribeDDoSAttackEventDetail）用于查询DDoS攻击事件详情。
+    @inlinable
+    public func describeDDoSAttackEventDetail(_ input: DescribeDDoSAttackEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDoSAttackEventDetailResponse > {
+        self.client.execute(action: "DescribeDDoSAttackEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询DDoS攻击事件详情
+    ///
+    /// 本接口（DescribeDDoSAttackEventDetail）用于查询DDoS攻击事件详情。
+    @inlinable
+    public func describeDDoSAttackEventDetail(_ input: DescribeDDoSAttackEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackEventDetailResponse {
+        try await self.client.execute(action: "DescribeDDoSAttackEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

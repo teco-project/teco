@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 获取数据表信息
-    @inlinable
-    public func describeTableInfoList(_ input: DescribeTableInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableInfoListResponse > {
-        self.client.execute(action: "DescribeTableInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取数据表信息
-    @inlinable
-    public func describeTableInfoList(_ input: DescribeTableInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableInfoListResponse {
-        try await self.client.execute(action: "DescribeTableInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTableInfoList请求参数结构体
     public struct DescribeTableInfoListRequest: TCRequestModel {
         /// 表名
@@ -64,5 +52,17 @@ extension Wedata {
             case tableInfo = "TableInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取数据表信息
+    @inlinable
+    public func describeTableInfoList(_ input: DescribeTableInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableInfoListResponse > {
+        self.client.execute(action: "DescribeTableInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取数据表信息
+    @inlinable
+    public func describeTableInfoList(_ input: DescribeTableInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableInfoListResponse {
+        try await self.client.execute(action: "DescribeTableInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询实例是否可退还
-    ///
-    /// 本接口（DescribeInstancesReturnable）用于查询实例是否可退还。
-    @inlinable
-    public func describeInstancesReturnable(_ input: DescribeInstancesReturnableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesReturnableResponse > {
-        self.client.execute(action: "DescribeInstancesReturnable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例是否可退还
-    ///
-    /// 本接口（DescribeInstancesReturnable）用于查询实例是否可退还。
-    @inlinable
-    public func describeInstancesReturnable(_ input: DescribeInstancesReturnableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesReturnableResponse {
-        try await self.client.execute(action: "DescribeInstancesReturnable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstancesReturnable请求参数结构体
     public struct DescribeInstancesReturnableRequest: TCRequestModel {
         /// 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
@@ -42,7 +26,7 @@ extension Lighthouse {
         /// 返回数量，默认为 20，最大值为 100。
         public let limit: Int64?
         
-        public init (instanceIds: [String]?, offset: Int64?, limit: Int64?) {
+        public init (instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceIds = instanceIds
             self.offset = offset
             self.limit = limit
@@ -71,5 +55,21 @@ extension Lighthouse {
             case instanceReturnableSet = "InstanceReturnableSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例是否可退还
+    ///
+    /// 本接口（DescribeInstancesReturnable）用于查询实例是否可退还。
+    @inlinable
+    public func describeInstancesReturnable(_ input: DescribeInstancesReturnableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesReturnableResponse > {
+        self.client.execute(action: "DescribeInstancesReturnable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例是否可退还
+    ///
+    /// 本接口（DescribeInstancesReturnable）用于查询实例是否可退还。
+    @inlinable
+    public func describeInstancesReturnable(_ input: DescribeInstancesReturnableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesReturnableResponse {
+        try await self.client.execute(action: "DescribeInstancesReturnable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

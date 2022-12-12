@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 删除CC防护的访问频率控制规则
-    @inlinable
-    public func deleteCCFrequencyRules(_ input: DeleteCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCCFrequencyRulesResponse > {
-        self.client.execute(action: "DeleteCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除CC防护的访问频率控制规则
-    @inlinable
-    public func deleteCCFrequencyRules(_ input: DeleteCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCFrequencyRulesResponse {
-        try await self.client.execute(action: "DeleteCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCCFrequencyRules请求参数结构体
     public struct DeleteCCFrequencyRulesRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -58,5 +46,17 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除CC防护的访问频率控制规则
+    @inlinable
+    public func deleteCCFrequencyRules(_ input: DeleteCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCCFrequencyRulesResponse > {
+        self.client.execute(action: "DeleteCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除CC防护的访问频率控制规则
+    @inlinable
+    public func deleteCCFrequencyRules(_ input: DeleteCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCFrequencyRulesResponse {
+        try await self.client.execute(action: "DeleteCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

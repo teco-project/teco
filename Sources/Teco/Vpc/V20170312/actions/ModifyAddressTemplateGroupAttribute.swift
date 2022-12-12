@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改IP地址模板集合
-    ///
-    /// 本接口（ModifyAddressTemplateGroupAttribute）用于修改IP地址模板集合
-    @inlinable
-    public func modifyAddressTemplateGroupAttribute(_ input: ModifyAddressTemplateGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressTemplateGroupAttributeResponse > {
-        self.client.execute(action: "ModifyAddressTemplateGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改IP地址模板集合
-    ///
-    /// 本接口（ModifyAddressTemplateGroupAttribute）用于修改IP地址模板集合
-    @inlinable
-    public func modifyAddressTemplateGroupAttribute(_ input: ModifyAddressTemplateGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressTemplateGroupAttributeResponse {
-        try await self.client.execute(action: "ModifyAddressTemplateGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAddressTemplateGroupAttribute请求参数结构体
     public struct ModifyAddressTemplateGroupAttributeRequest: TCRequestModel {
         /// IP地址模板集合实例ID，例如：ipmg-2uw6ujo6。
@@ -42,7 +26,7 @@ extension Vpc {
         /// IP地址模板实例ID， 例如：ipm-mdunqeb6。
         public let addressTemplateIds: [String]?
         
-        public init (addressTemplateGroupId: String, addressTemplateGroupName: String?, addressTemplateIds: [String]?) {
+        public init (addressTemplateGroupId: String, addressTemplateGroupName: String? = nil, addressTemplateIds: [String]? = nil) {
             self.addressTemplateGroupId = addressTemplateGroupId
             self.addressTemplateGroupName = addressTemplateGroupName
             self.addressTemplateIds = addressTemplateIds
@@ -63,5 +47,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改IP地址模板集合
+    ///
+    /// 本接口（ModifyAddressTemplateGroupAttribute）用于修改IP地址模板集合
+    @inlinable
+    public func modifyAddressTemplateGroupAttribute(_ input: ModifyAddressTemplateGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAddressTemplateGroupAttributeResponse > {
+        self.client.execute(action: "ModifyAddressTemplateGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改IP地址模板集合
+    ///
+    /// 本接口（ModifyAddressTemplateGroupAttribute）用于修改IP地址模板集合
+    @inlinable
+    public func modifyAddressTemplateGroupAttribute(_ input: ModifyAddressTemplateGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressTemplateGroupAttributeResponse {
+        try await self.client.execute(action: "ModifyAddressTemplateGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

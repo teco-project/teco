@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Ump {
-    /// 上报相机告警信息
-    ///
-    /// 上报相机移动、遮挡等告警信息
-    @inlinable
-    public func createCameraAlerts(_ input: CreateCameraAlertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCameraAlertsResponse > {
-        self.client.execute(action: "CreateCameraAlerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上报相机告警信息
-    ///
-    /// 上报相机移动、遮挡等告警信息
-    @inlinable
-    public func createCameraAlerts(_ input: CreateCameraAlertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraAlertsResponse {
-        try await self.client.execute(action: "CreateCameraAlerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCameraAlerts请求参数结构体
     public struct CreateCameraAlertsRequest: TCRequestModel {
         /// 告警信息列表
         public let alerts: [CreateCameraAlertAlert]?
         
-        public init (alerts: [CreateCameraAlertAlert]?) {
+        public init (alerts: [CreateCameraAlertAlert]? = nil) {
             self.alerts = alerts
         }
         
@@ -53,5 +37,21 @@ extension Ump {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上报相机告警信息
+    ///
+    /// 上报相机移动、遮挡等告警信息
+    @inlinable
+    public func createCameraAlerts(_ input: CreateCameraAlertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCameraAlertsResponse > {
+        self.client.execute(action: "CreateCameraAlerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上报相机告警信息
+    ///
+    /// 上报相机移动、遮挡等告警信息
+    @inlinable
+    public func createCameraAlerts(_ input: CreateCameraAlertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraAlertsResponse {
+        try await self.client.execute(action: "CreateCameraAlerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

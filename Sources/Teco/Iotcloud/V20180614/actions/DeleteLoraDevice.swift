@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 删除lora设备
-    ///
-    /// 删除lora类型的设备
-    @inlinable
-    public func deleteLoraDevice(_ input: DeleteLoraDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoraDeviceResponse > {
-        self.client.execute(action: "DeleteLoraDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除lora设备
-    ///
-    /// 删除lora类型的设备
-    @inlinable
-    public func deleteLoraDevice(_ input: DeleteLoraDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoraDeviceResponse {
-        try await self.client.execute(action: "DeleteLoraDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLoraDevice请求参数结构体
     public struct DeleteLoraDeviceRequest: TCRequestModel {
         /// 设备所属产品ID
@@ -58,5 +42,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除lora设备
+    ///
+    /// 删除lora类型的设备
+    @inlinable
+    public func deleteLoraDevice(_ input: DeleteLoraDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoraDeviceResponse > {
+        self.client.execute(action: "DeleteLoraDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除lora设备
+    ///
+    /// 删除lora类型的设备
+    @inlinable
+    public func deleteLoraDevice(_ input: DeleteLoraDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoraDeviceResponse {
+        try await self.client.execute(action: "DeleteLoraDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

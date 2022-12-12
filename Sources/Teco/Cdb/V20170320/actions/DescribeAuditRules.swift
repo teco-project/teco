@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询审计规则
-    ///
-    /// 本接口(DescribeAuditRules)用于查询用户在当前地域的审计规则。
-    @inlinable
-    public func describeAuditRules(_ input: DescribeAuditRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditRulesResponse > {
-        self.client.execute(action: "DescribeAuditRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询审计规则
-    ///
-    /// 本接口(DescribeAuditRules)用于查询用户在当前地域的审计规则。
-    @inlinable
-    public func describeAuditRules(_ input: DescribeAuditRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditRulesResponse {
-        try await self.client.execute(action: "DescribeAuditRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAuditRules请求参数结构体
     public struct DescribeAuditRulesRequest: TCRequestModel {
         /// 审计规则 ID。
@@ -45,7 +29,7 @@ extension Cdb {
         /// 分页偏移量。默认值为0。
         public let offset: Int64?
         
-        public init (ruleId: String?, ruleName: String?, limit: Int64?, offset: Int64?) {
+        public init (ruleId: String? = nil, ruleName: String? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.ruleId = ruleId
             self.ruleName = ruleName
             self.limit = limit
@@ -77,5 +61,21 @@ extension Cdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询审计规则
+    ///
+    /// 本接口(DescribeAuditRules)用于查询用户在当前地域的审计规则。
+    @inlinable
+    public func describeAuditRules(_ input: DescribeAuditRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAuditRulesResponse > {
+        self.client.execute(action: "DescribeAuditRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询审计规则
+    ///
+    /// 本接口(DescribeAuditRules)用于查询用户在当前地域的审计规则。
+    @inlinable
+    public func describeAuditRules(_ input: DescribeAuditRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditRulesResponse {
+        try await self.client.execute(action: "DescribeAuditRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

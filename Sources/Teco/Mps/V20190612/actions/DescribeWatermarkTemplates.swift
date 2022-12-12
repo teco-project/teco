@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 获取水印模板列表
-    ///
-    /// 查询用户自定义水印模板，支持根据条件，分页查询。
-    @inlinable
-    public func describeWatermarkTemplates(_ input: DescribeWatermarkTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWatermarkTemplatesResponse > {
-        self.client.execute(action: "DescribeWatermarkTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取水印模板列表
-    ///
-    /// 查询用户自定义水印模板，支持根据条件，分页查询。
-    @inlinable
-    public func describeWatermarkTemplates(_ input: DescribeWatermarkTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWatermarkTemplatesResponse {
-        try await self.client.execute(action: "DescribeWatermarkTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWatermarkTemplates请求参数结构体
     public struct DescribeWatermarkTemplatesRequest: TCRequestModel {
         /// 水印模板唯一标识过滤条件，数组长度限制：100。
@@ -49,7 +33,7 @@ extension Mps {
         /// <li>最大值：100。</li>
         public let limit: UInt64?
         
-        public init (definitions: [Int64]?, type: String?, offset: UInt64?, limit: UInt64?) {
+        public init (definitions: [Int64]? = nil, type: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.definitions = definitions
             self.type = type
             self.offset = offset
@@ -80,5 +64,21 @@ extension Mps {
             case watermarkTemplateSet = "WatermarkTemplateSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取水印模板列表
+    ///
+    /// 查询用户自定义水印模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeWatermarkTemplates(_ input: DescribeWatermarkTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWatermarkTemplatesResponse > {
+        self.client.execute(action: "DescribeWatermarkTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取水印模板列表
+    ///
+    /// 查询用户自定义水印模板，支持根据条件，分页查询。
+    @inlinable
+    public func describeWatermarkTemplates(_ input: DescribeWatermarkTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWatermarkTemplatesResponse {
+        try await self.client.execute(action: "DescribeWatermarkTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

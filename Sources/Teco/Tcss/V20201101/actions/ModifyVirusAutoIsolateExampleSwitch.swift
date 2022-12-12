@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 修改木马自动隔离样本开关
-    @inlinable
-    public func modifyVirusAutoIsolateExampleSwitch(_ input: ModifyVirusAutoIsolateExampleSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVirusAutoIsolateExampleSwitchResponse > {
-        self.client.execute(action: "ModifyVirusAutoIsolateExampleSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改木马自动隔离样本开关
-    @inlinable
-    public func modifyVirusAutoIsolateExampleSwitch(_ input: ModifyVirusAutoIsolateExampleSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateExampleSwitchResponse {
-        try await self.client.execute(action: "ModifyVirusAutoIsolateExampleSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVirusAutoIsolateExampleSwitch请求参数结构体
     public struct ModifyVirusAutoIsolateExampleSwitchRequest: TCRequestModel {
         /// 文件Md5值
@@ -54,5 +42,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改木马自动隔离样本开关
+    @inlinable
+    public func modifyVirusAutoIsolateExampleSwitch(_ input: ModifyVirusAutoIsolateExampleSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVirusAutoIsolateExampleSwitchResponse > {
+        self.client.execute(action: "ModifyVirusAutoIsolateExampleSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改木马自动隔离样本开关
+    @inlinable
+    public func modifyVirusAutoIsolateExampleSwitch(_ input: ModifyVirusAutoIsolateExampleSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateExampleSwitchResponse {
+        try await self.client.execute(action: "ModifyVirusAutoIsolateExampleSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssm {
-    /// 停用凭据
-    ///
-    /// 停用指定的凭据，停用后状态为 Disabled，无法通过接口获取该凭据的明文。
-    @inlinable
-    public func disableSecret(_ input: DisableSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableSecretResponse > {
-        self.client.execute(action: "DisableSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停用凭据
-    ///
-    /// 停用指定的凭据，停用后状态为 Disabled，无法通过接口获取该凭据的明文。
-    @inlinable
-    public func disableSecret(_ input: DisableSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableSecretResponse {
-        try await self.client.execute(action: "DisableSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableSecret请求参数结构体
     public struct DisableSecretRequest: TCRequestModel {
         /// 指定停用的凭据名称。
@@ -57,5 +41,21 @@ extension Ssm {
             case secretName = "SecretName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停用凭据
+    ///
+    /// 停用指定的凭据，停用后状态为 Disabled，无法通过接口获取该凭据的明文。
+    @inlinable
+    public func disableSecret(_ input: DisableSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableSecretResponse > {
+        self.client.execute(action: "DisableSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停用凭据
+    ///
+    /// 停用指定的凭据，停用后状态为 Disabled，无法通过接口获取该凭据的明文。
+    @inlinable
+    public func disableSecret(_ input: DisableSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableSecretResponse {
+        try await self.client.execute(action: "DisableSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

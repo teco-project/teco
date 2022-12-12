@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 查询客户信息
-    ///
-    /// 查询指定某一卖场的用户信息
-    @inlinable
-    public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonResponse > {
-        self.client.execute(action: "DescribePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询客户信息
-    ///
-    /// 查询指定某一卖场的用户信息
-    @inlinable
-    public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
-        try await self.client.execute(action: "DescribePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePerson请求参数结构体
     public struct DescribePersonRequest: TCRequestModel {
         /// 卖场编码
@@ -42,7 +26,7 @@ extension Youmall {
         /// 查询数量，默认20，最大查询数量100
         public let limit: UInt64?
         
-        public init (mallId: String, offset: UInt64?, limit: UInt64?) {
+        public init (mallId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.mallId = mallId
             self.offset = offset
             self.limit = limit
@@ -71,5 +55,21 @@ extension Youmall {
             case personSet = "PersonSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询客户信息
+    ///
+    /// 查询指定某一卖场的用户信息
+    @inlinable
+    public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonResponse > {
+        self.client.execute(action: "DescribePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询客户信息
+    ///
+    /// 查询指定某一卖场的用户信息
+    @inlinable
+    public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
+        try await self.client.execute(action: "DescribePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

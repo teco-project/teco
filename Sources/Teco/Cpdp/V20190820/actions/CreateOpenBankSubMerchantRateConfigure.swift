@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-子商户费率配置
-    @inlinable
-    public func createOpenBankSubMerchantRateConfigure(_ input: CreateOpenBankSubMerchantRateConfigureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankSubMerchantRateConfigureResponse > {
-        self.client.execute(action: "CreateOpenBankSubMerchantRateConfigure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-子商户费率配置
-    @inlinable
-    public func createOpenBankSubMerchantRateConfigure(_ input: CreateOpenBankSubMerchantRateConfigureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankSubMerchantRateConfigureResponse {
-        try await self.client.execute(action: "CreateOpenBankSubMerchantRateConfigure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOpenBankSubMerchantRateConfigure请求参数结构体
     public struct CreateOpenBankSubMerchantRateConfigureRequest: TCRequestModel {
         /// 渠道进件序列号。
@@ -92,7 +80,7 @@ extension Cpdp {
         /// _不填默认为生产环境_
         public let environment: String?
         
-        public init (channelRegistrationNo: String, outProductFeeNo: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, payType: String, payChannel: String, feeMode: String, feeValue: UInt64, paymentMethod: String?, minFee: UInt64?, maxFee: UInt64?, notifyUrl: String?, feeRangeList: [FeeRangInfo]?, environment: String?) {
+        public init (channelRegistrationNo: String, outProductFeeNo: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, payType: String, payChannel: String, feeMode: String, feeValue: UInt64, paymentMethod: String? = nil, minFee: UInt64? = nil, maxFee: UInt64? = nil, notifyUrl: String? = nil, feeRangeList: [FeeRangInfo]? = nil, environment: String? = nil) {
             self.channelRegistrationNo = channelRegistrationNo
             self.outProductFeeNo = outProductFeeNo
             self.channelMerchantId = channelMerchantId
@@ -142,7 +130,7 @@ extension Cpdp {
         
         /// 返回结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: CreateOpenBankSubMerchantRateConfigureResult
+        public let result: CreateOpenBankSubMerchantRateConfigureResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -153,5 +141,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-子商户费率配置
+    @inlinable
+    public func createOpenBankSubMerchantRateConfigure(_ input: CreateOpenBankSubMerchantRateConfigureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankSubMerchantRateConfigureResponse > {
+        self.client.execute(action: "CreateOpenBankSubMerchantRateConfigure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-子商户费率配置
+    @inlinable
+    public func createOpenBankSubMerchantRateConfigure(_ input: CreateOpenBankSubMerchantRateConfigureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankSubMerchantRateConfigureResponse {
+        try await self.client.execute(action: "CreateOpenBankSubMerchantRateConfigure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

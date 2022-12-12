@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 绑定高防弹性公网IP
-    ///
-    /// 本接口 (AssociateDDoSEipAddress) 用于将高防弹性公网IP绑定到实例或弹性网卡的指定内网 IP 上。
-    @inlinable
-    public func associateDDoSEipAddress(_ input: AssociateDDoSEipAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateDDoSEipAddressResponse > {
-        self.client.execute(action: "AssociateDDoSEipAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定高防弹性公网IP
-    ///
-    /// 本接口 (AssociateDDoSEipAddress) 用于将高防弹性公网IP绑定到实例或弹性网卡的指定内网 IP 上。
-    @inlinable
-    public func associateDDoSEipAddress(_ input: AssociateDDoSEipAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDDoSEipAddressResponse {
-        try await self.client.execute(action: "AssociateDDoSEipAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssociateDDoSEipAddress请求参数结构体
     public struct AssociateDDoSEipAddressRequest: TCRequestModel {
         /// 资源实例ID，实例ID形如：bgpip-0000011x。只能填写高防IP实例。
@@ -68,5 +52,21 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定高防弹性公网IP
+    ///
+    /// 本接口 (AssociateDDoSEipAddress) 用于将高防弹性公网IP绑定到实例或弹性网卡的指定内网 IP 上。
+    @inlinable
+    public func associateDDoSEipAddress(_ input: AssociateDDoSEipAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateDDoSEipAddressResponse > {
+        self.client.execute(action: "AssociateDDoSEipAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定高防弹性公网IP
+    ///
+    /// 本接口 (AssociateDDoSEipAddress) 用于将高防弹性公网IP绑定到实例或弹性网卡的指定内网 IP 上。
+    @inlinable
+    public func associateDDoSEipAddress(_ input: AssociateDDoSEipAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDDoSEipAddressResponse {
+        try await self.client.execute(action: "AssociateDDoSEipAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 删除预付费实例
-    @inlinable
-    public func deleteInstancePre(_ input: DeleteInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstancePreResponse > {
-        self.client.execute(action: "DeleteInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除预付费实例
-    @inlinable
-    public func deleteInstancePre(_ input: DeleteInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstancePreResponse {
-        try await self.client.execute(action: "DeleteInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteInstancePre请求参数结构体
     public struct DeleteInstancePreRequest: TCRequestModel {
         /// 实例id
@@ -53,5 +41,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除预付费实例
+    @inlinable
+    public func deleteInstancePre(_ input: DeleteInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstancePreResponse > {
+        self.client.execute(action: "DeleteInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除预付费实例
+    @inlinable
+    public func deleteInstancePre(_ input: DeleteInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstancePreResponse {
+        try await self.client.execute(action: "DeleteInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

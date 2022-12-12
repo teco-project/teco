@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 创建仓库
-    @inlinable
-    public func createRepository(_ input: CreateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRepositoryResponse > {
-        self.client.execute(action: "CreateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建仓库
-    @inlinable
-    public func createRepository(_ input: CreateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryResponse {
-        try await self.client.execute(action: "CreateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRepository请求参数结构体
     public struct CreateRepositoryRequest: TCRequestModel {
         /// 仓库名称
@@ -47,7 +35,7 @@ extension Tsf {
         /// 仓库描述
         public let repositoryDesc: String?
         
-        public init (repositoryName: String, repositoryType: String, bucketName: String, bucketRegion: String, directory: String?, repositoryDesc: String?) {
+        public init (repositoryName: String, repositoryType: String, bucketName: String, bucketRegion: String, directory: String? = nil, repositoryDesc: String? = nil) {
             self.repositoryName = repositoryName
             self.repositoryType = repositoryType
             self.bucketName = bucketName
@@ -79,5 +67,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建仓库
+    @inlinable
+    public func createRepository(_ input: CreateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRepositoryResponse > {
+        self.client.execute(action: "CreateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建仓库
+    @inlinable
+    public func createRepository(_ input: CreateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryResponse {
+        try await self.client.execute(action: "CreateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

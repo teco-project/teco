@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 回滚前检查单条记录
-    @inlinable
-    public func checkRecordSnapshotRollback(_ input: CheckRecordSnapshotRollbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckRecordSnapshotRollbackResponse > {
-        self.client.execute(action: "CheckRecordSnapshotRollback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 回滚前检查单条记录
-    @inlinable
-    public func checkRecordSnapshotRollback(_ input: CheckRecordSnapshotRollbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRecordSnapshotRollbackResponse {
-        try await self.client.execute(action: "CheckRecordSnapshotRollback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckRecordSnapshotRollback请求参数结构体
     public struct CheckRecordSnapshotRollbackRequest: TCRequestModel {
         /// 域名
@@ -41,7 +29,7 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
         public let domainId: UInt64?
         
-        public init (domain: String, snapshotId: String, record: SnapshotRecord, domainId: UInt64?) {
+        public init (domain: String, snapshotId: String, record: SnapshotRecord, domainId: UInt64? = nil) {
             self.domain = domain
             self.snapshotId = snapshotId
             self.record = record
@@ -69,5 +57,17 @@ extension Dnspod {
             case reason = "Reason"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 回滚前检查单条记录
+    @inlinable
+    public func checkRecordSnapshotRollback(_ input: CheckRecordSnapshotRollbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckRecordSnapshotRollbackResponse > {
+        self.client.execute(action: "CheckRecordSnapshotRollback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 回滚前检查单条记录
+    @inlinable
+    public func checkRecordSnapshotRollback(_ input: CheckRecordSnapshotRollbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRecordSnapshotRollbackResponse {
+        try await self.client.execute(action: "CheckRecordSnapshotRollback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

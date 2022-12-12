@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 删除策略的关联对象
-    @inlinable
-    public func unBindingPolicyObject(_ input: UnBindingPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindingPolicyObjectResponse > {
-        self.client.execute(action: "UnBindingPolicyObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除策略的关联对象
-    @inlinable
-    public func unBindingPolicyObject(_ input: UnBindingPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindingPolicyObjectResponse {
-        try await self.client.execute(action: "UnBindingPolicyObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnBindingPolicyObject请求参数结构体
     public struct UnBindingPolicyObjectRequest: TCRequestModel {
         /// 固定值，为"monitor"
@@ -44,7 +32,7 @@ extension Monitor {
         /// 告警策略ID，使用此字段时 GroupId 会被忽略
         public let policyId: String?
         
-        public init (module: String, groupId: Int64, uniqueId: [String], instanceGroupId: Int64?, policyId: String?) {
+        public init (module: String, groupId: Int64, uniqueId: [String], instanceGroupId: Int64? = nil, policyId: String? = nil) {
             self.module = module
             self.groupId = groupId
             self.uniqueId = uniqueId
@@ -69,5 +57,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除策略的关联对象
+    @inlinable
+    public func unBindingPolicyObject(_ input: UnBindingPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindingPolicyObjectResponse > {
+        self.client.execute(action: "UnBindingPolicyObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除策略的关联对象
+    @inlinable
+    public func unBindingPolicyObject(_ input: UnBindingPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindingPolicyObjectResponse {
+        try await self.client.execute(action: "UnBindingPolicyObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

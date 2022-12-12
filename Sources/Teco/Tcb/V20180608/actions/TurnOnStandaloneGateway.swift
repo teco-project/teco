@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 开启小租户网关
-    ///
-    /// 本接口（TurnOnStandaloneGateway）用于开启小租户网关。
-    @inlinable
-    public func turnOnStandaloneGateway(_ input: TurnOnStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TurnOnStandaloneGatewayResponse > {
-        self.client.execute(action: "TurnOnStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启小租户网关
-    ///
-    /// 本接口（TurnOnStandaloneGateway）用于开启小租户网关。
-    @inlinable
-    public func turnOnStandaloneGateway(_ input: TurnOnStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TurnOnStandaloneGatewayResponse {
-        try await self.client.execute(action: "TurnOnStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TurnOnStandaloneGateway请求参数结构体
     public struct TurnOnStandaloneGatewayRequest: TCRequestModel {
         /// 环境ID
@@ -67,5 +51,21 @@ extension Tcb {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启小租户网关
+    ///
+    /// 本接口（TurnOnStandaloneGateway）用于开启小租户网关。
+    @inlinable
+    public func turnOnStandaloneGateway(_ input: TurnOnStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TurnOnStandaloneGatewayResponse > {
+        self.client.execute(action: "TurnOnStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启小租户网关
+    ///
+    /// 本接口（TurnOnStandaloneGateway）用于开启小租户网关。
+    @inlinable
+    public func turnOnStandaloneGateway(_ input: TurnOnStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TurnOnStandaloneGatewayResponse {
+        try await self.client.execute(action: "TurnOnStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

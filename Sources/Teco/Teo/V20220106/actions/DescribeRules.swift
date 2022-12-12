@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询规则引擎规则
-    ///
-    /// 查询规则引擎规则。
-    @inlinable
-    public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesResponse > {
-        self.client.execute(action: "DescribeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询规则引擎规则
-    ///
-    /// 查询规则引擎规则。
-    @inlinable
-    public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesResponse {
-        try await self.client.execute(action: "DescribeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRules请求参数结构体
     public struct DescribeRulesRequest: TCRequestModel {
         /// 站点 ID。
@@ -39,7 +23,7 @@ extension Teo {
         /// 过滤参数，不填默认不过滤。
         public let filters: [RuleFilter]?
         
-        public init (zoneId: String, filters: [RuleFilter]?) {
+        public init (zoneId: String, filters: [RuleFilter]? = nil) {
             self.zoneId = zoneId
             self.filters = filters
         }
@@ -66,5 +50,21 @@ extension Teo {
             case ruleList = "RuleList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询规则引擎规则
+    ///
+    /// 查询规则引擎规则。
+    @inlinable
+    public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRulesResponse > {
+        self.client.execute(action: "DescribeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询规则引擎规则
+    ///
+    /// 查询规则引擎规则。
+    @inlinable
+    public func describeRules(_ input: DescribeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesResponse {
+        try await self.client.execute(action: "DescribeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取设备上下线日志
-    @inlinable
-    public func describeDeviceStatusLog(_ input: DescribeDeviceStatusLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceStatusLogResponse > {
-        self.client.execute(action: "DescribeDeviceStatusLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备上下线日志
-    @inlinable
-    public func describeDeviceStatusLog(_ input: DescribeDeviceStatusLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStatusLogResponse {
-        try await self.client.execute(action: "DescribeDeviceStatusLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDeviceStatusLog请求参数结构体
     public struct DescribeDeviceStatusLogRequest: TCRequestModel {
         /// 开始时间（毫秒）
@@ -47,7 +35,7 @@ extension Iotvideo {
         /// 检索上下文
         public let context: String?
         
-        public init (minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: Int64?, context: String?) {
+        public init (minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: Int64? = nil, context: String? = nil) {
             self.minTime = minTime
             self.maxTime = maxTime
             self.productId = productId
@@ -94,5 +82,17 @@ extension Iotvideo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备上下线日志
+    @inlinable
+    public func describeDeviceStatusLog(_ input: DescribeDeviceStatusLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDeviceStatusLogResponse > {
+        self.client.execute(action: "DescribeDeviceStatusLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备上下线日志
+    @inlinable
+    public func describeDeviceStatusLog(_ input: DescribeDeviceStatusLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStatusLogResponse {
+        try await self.client.execute(action: "DescribeDeviceStatusLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

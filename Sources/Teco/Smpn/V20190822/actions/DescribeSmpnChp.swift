@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Smpn {
-    /// 终端骚扰保护
-    ///
-    /// 查询号码的标记和标记次数
-    @inlinable
-    public func describeSmpnChp(_ input: DescribeSmpnChpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmpnChpResponse > {
-        self.client.execute(action: "DescribeSmpnChp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 终端骚扰保护
-    ///
-    /// 查询号码的标记和标记次数
-    @inlinable
-    public func describeSmpnChp(_ input: DescribeSmpnChpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnChpResponse {
-        try await self.client.execute(action: "DescribeSmpnChp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSmpnChp请求参数结构体
     public struct DescribeSmpnChpRequest: TCRequestModel {
         /// 客户用于计费的资源Id
@@ -62,5 +46,21 @@ extension Smpn {
             case responseData = "ResponseData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 终端骚扰保护
+    ///
+    /// 查询号码的标记和标记次数
+    @inlinable
+    public func describeSmpnChp(_ input: DescribeSmpnChpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSmpnChpResponse > {
+        self.client.execute(action: "DescribeSmpnChp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 终端骚扰保护
+    ///
+    /// 查询号码的标记和标记次数
+    @inlinable
+    public func describeSmpnChp(_ input: DescribeSmpnChpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnChpResponse {
+        try await self.client.execute(action: "DescribeSmpnChp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

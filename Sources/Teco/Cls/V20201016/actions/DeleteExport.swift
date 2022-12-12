@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 删除日志下载任务
-    ///
-    /// 本接口用于删除日志下载任务
-    @inlinable
-    public func deleteExport(_ input: DeleteExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteExportResponse > {
-        self.client.execute(action: "DeleteExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除日志下载任务
-    ///
-    /// 本接口用于删除日志下载任务
-    @inlinable
-    public func deleteExport(_ input: DeleteExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExportResponse {
-        try await self.client.execute(action: "DeleteExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteExport请求参数结构体
     public struct DeleteExportRequest: TCRequestModel {
         /// 日志导出ID
@@ -53,5 +37,21 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除日志下载任务
+    ///
+    /// 本接口用于删除日志下载任务
+    @inlinable
+    public func deleteExport(_ input: DeleteExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteExportResponse > {
+        self.client.execute(action: "DeleteExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除日志下载任务
+    ///
+    /// 本接口用于删除日志下载任务
+    @inlinable
+    public func deleteExport(_ input: DeleteExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExportResponse {
+        try await self.client.execute(action: "DeleteExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

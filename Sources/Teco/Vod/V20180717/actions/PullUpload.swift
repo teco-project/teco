@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Vod {
-    /// 拉取上传
-    ///
-    /// 该接口用于将一个网络上的视频拉取到云点播平台。
-    @inlinable
-    public func pullUpload(_ input: PullUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PullUploadResponse > {
-        self.client.execute(action: "PullUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取上传
-    ///
-    /// 该接口用于将一个网络上的视频拉取到云点播平台。
-    @inlinable
-    public func pullUpload(_ input: PullUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullUploadResponse {
-        try await self.client.execute(action: "PullUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PullUpload请求参数结构体
     public struct PullUploadRequest: TCRequestModel {
         /// 要拉取的媒体 URL，暂不支持拉取 Dash 格式（可以支持 HLS）。
@@ -74,7 +58,7 @@ extension Vod {
         /// 来源上下文，用于透传用户请求信息，[上传完成回调](/document/product/266/7830) 将返回该字段值，最长 250 个字符。
         public let sourceContext: String?
         
-        public init (mediaUrl: String, subAppId: UInt64?, mediaName: String?, coverUrl: String?, procedure: String?, expireTime: Date?, storageRegion: String?, classId: Int64?, sessionContext: String?, sessionId: String?, extInfo: String?, sourceContext: String?) {
+        public init (mediaUrl: String, subAppId: UInt64? = nil, mediaName: String? = nil, coverUrl: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, sourceContext: String? = nil) {
             self.mediaUrl = mediaUrl
             self.subAppId = subAppId
             self.mediaName = mediaName
@@ -117,5 +101,21 @@ extension Vod {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取上传
+    ///
+    /// 该接口用于将一个网络上的视频拉取到云点播平台。
+    @inlinable
+    public func pullUpload(_ input: PullUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PullUploadResponse > {
+        self.client.execute(action: "PullUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取上传
+    ///
+    /// 该接口用于将一个网络上的视频拉取到云点播平台。
+    @inlinable
+    public func pullUpload(_ input: PullUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullUploadResponse {
+        try await self.client.execute(action: "PullUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

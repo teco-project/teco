@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 查询子账号关联的策略列表
-    ///
-    /// 本接口（ListAttachedUserPolicies）可用于查询子账号关联的策略列表。
-    @inlinable
-    public func listAttachedUserPolicies(_ input: ListAttachedUserPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAttachedUserPoliciesResponse > {
-        self.client.execute(action: "ListAttachedUserPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询子账号关联的策略列表
-    ///
-    /// 本接口（ListAttachedUserPolicies）可用于查询子账号关联的策略列表。
-    @inlinable
-    public func listAttachedUserPolicies(_ input: ListAttachedUserPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedUserPoliciesResponse {
-        try await self.client.execute(action: "ListAttachedUserPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListAttachedUserPolicies请求参数结构体
     public struct ListAttachedUserPoliciesRequest: TCRequestModel {
         /// 子账号 uin
@@ -42,7 +26,7 @@ extension Cam {
         /// 每页大小，默认值是 20
         public let rp: UInt64?
         
-        public init (targetUin: UInt64, page: UInt64?, rp: UInt64?) {
+        public init (targetUin: UInt64, page: UInt64? = nil, rp: UInt64? = nil) {
             self.targetUin = targetUin
             self.page = page
             self.rp = rp
@@ -71,5 +55,21 @@ extension Cam {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询子账号关联的策略列表
+    ///
+    /// 本接口（ListAttachedUserPolicies）可用于查询子账号关联的策略列表。
+    @inlinable
+    public func listAttachedUserPolicies(_ input: ListAttachedUserPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAttachedUserPoliciesResponse > {
+        self.client.execute(action: "ListAttachedUserPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询子账号关联的策略列表
+    ///
+    /// 本接口（ListAttachedUserPolicies）可用于查询子账号关联的策略列表。
+    @inlinable
+    public func listAttachedUserPolicies(_ input: ListAttachedUserPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedUserPoliciesResponse {
+        try await self.client.execute(action: "ListAttachedUserPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

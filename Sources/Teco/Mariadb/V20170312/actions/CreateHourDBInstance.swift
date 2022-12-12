@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 创建后付费实例
-    @inlinable
-    public func createHourDBInstance(_ input: CreateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHourDBInstanceResponse > {
-        self.client.execute(action: "CreateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建后付费实例
-    @inlinable
-    public func createHourDBInstance(_ input: CreateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHourDBInstanceResponse {
-        try await self.client.execute(action: "CreateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateHourDBInstance请求参数结构体
     public struct CreateHourDBInstanceRequest: TCRequestModel {
         /// 节点可用区分布，最多可填两个可用区。
@@ -86,7 +74,7 @@ extension Mariadb {
         /// 回档时间
         public let rollbackTime: String?
         
-        public init (zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, count: Int64?, projectId: Int64?, vpcId: String?, subnetId: String?, dbVersionId: String?, instanceName: String?, securityGroupIds: [String]?, ipv6Flag: Int64?, resourceTags: [ResourceTag]?, dcnRegion: String?, dcnInstanceId: String?, initParams: [DBParamValue]?, rollbackInstanceId: String?, rollbackTime: String?) {
+        public init (zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, count: Int64? = nil, projectId: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, initParams: [DBParamValue]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil) {
             self.zones = zones
             self.nodeCount = nodeCount
             self.memory = memory
@@ -152,5 +140,17 @@ extension Mariadb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建后付费实例
+    @inlinable
+    public func createHourDBInstance(_ input: CreateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHourDBInstanceResponse > {
+        self.client.execute(action: "CreateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建后付费实例
+    @inlinable
+    public func createHourDBInstance(_ input: CreateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHourDBInstanceResponse {
+        try await self.client.execute(action: "CreateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 更新 Grafana 集成配置
-    @inlinable
-    public func updateGrafanaIntegration(_ input: UpdateGrafanaIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGrafanaIntegrationResponse > {
-        self.client.execute(action: "UpdateGrafanaIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新 Grafana 集成配置
-    @inlinable
-    public func updateGrafanaIntegration(_ input: UpdateGrafanaIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaIntegrationResponse {
-        try await self.client.execute(action: "UpdateGrafanaIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateGrafanaIntegration请求参数结构体
     public struct UpdateGrafanaIntegrationRequest: TCRequestModel {
         /// 集成 ID
@@ -64,5 +52,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新 Grafana 集成配置
+    @inlinable
+    public func updateGrafanaIntegration(_ input: UpdateGrafanaIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateGrafanaIntegrationResponse > {
+        self.client.execute(action: "UpdateGrafanaIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新 Grafana 集成配置
+    @inlinable
+    public func updateGrafanaIntegration(_ input: UpdateGrafanaIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaIntegrationResponse {
+        try await self.client.execute(action: "UpdateGrafanaIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mna {
-    /// 获取数据流量统计数据
-    ///
-    /// 获取指定设备Id，指定时间点数据流量使用情况
-    @inlinable
-    public func getFlowStatistic(_ input: GetFlowStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFlowStatisticResponse > {
-        self.client.execute(action: "GetFlowStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取数据流量统计数据
-    ///
-    /// 获取指定设备Id，指定时间点数据流量使用情况
-    @inlinable
-    public func getFlowStatistic(_ input: GetFlowStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFlowStatisticResponse {
-        try await self.client.execute(action: "GetFlowStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetFlowStatistic请求参数结构体
     public struct GetFlowStatisticRequest: TCRequestModel {
         /// 设备ID，ID="-1"时默认查找所有设备
@@ -89,5 +73,21 @@ extension Mna {
             case totalValue = "TotalValue"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取数据流量统计数据
+    ///
+    /// 获取指定设备Id，指定时间点数据流量使用情况
+    @inlinable
+    public func getFlowStatistic(_ input: GetFlowStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFlowStatisticResponse > {
+        self.client.execute(action: "GetFlowStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取数据流量统计数据
+    ///
+    /// 获取指定设备Id，指定时间点数据流量使用情况
+    @inlinable
+    public func getFlowStatistic(_ input: GetFlowStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFlowStatisticResponse {
+        try await self.client.execute(action: "GetFlowStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

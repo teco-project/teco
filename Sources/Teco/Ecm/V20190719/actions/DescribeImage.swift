@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 展示镜像列表
-    @inlinable
-    public func describeImage(_ input: DescribeImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageResponse > {
-        self.client.execute(action: "DescribeImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 展示镜像列表
-    @inlinable
-    public func describeImage(_ input: DescribeImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageResponse {
-        try await self.client.execute(action: "DescribeImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImage请求参数结构体
     public struct DescribeImageRequest: TCRequestModel {
         /// 过滤条件，每次请求的Filters的上限为10，详细的过滤条件如下：
@@ -45,7 +33,7 @@ extension Ecm {
         /// 返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API 简介中的相关小节。
         public let limit: Int64?
         
-        public init (filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -75,5 +63,17 @@ extension Ecm {
             case imageSet = "ImageSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 展示镜像列表
+    @inlinable
+    public func describeImage(_ input: DescribeImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageResponse > {
+        self.client.execute(action: "DescribeImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 展示镜像列表
+    @inlinable
+    public func describeImage(_ input: DescribeImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageResponse {
+        try await self.client.execute(action: "DescribeImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

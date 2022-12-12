@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 删除规则
-    @inlinable
-    public func deleteAcRule(_ input: DeleteAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAcRuleResponse > {
-        self.client.execute(action: "DeleteAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除规则
-    @inlinable
-    public func deleteAcRule(_ input: DeleteAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAcRuleResponse {
-        try await self.client.execute(action: "DeleteAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAcRule请求参数结构体
     public struct DeleteAcRuleRequest: TCRequestModel {
         /// 删除规则对应的id值, 对应获取规则列表接口的Id 值
@@ -41,7 +29,7 @@ extension Cfw {
         /// NAT地域， 如ap-shanghai/ap-guangzhou/ap-chongqing等
         public let area: String?
         
-        public init (id: UInt64, direction: UInt64, edgeId: String?, area: String?) {
+        public init (id: UInt64, direction: UInt64, edgeId: String? = nil, area: String? = nil) {
             self.id = id
             self.direction = direction
             self.edgeId = edgeId
@@ -73,5 +61,17 @@ extension Cfw {
             case info = "Info"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除规则
+    @inlinable
+    public func deleteAcRule(_ input: DeleteAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAcRuleResponse > {
+        self.client.execute(action: "DeleteAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除规则
+    @inlinable
+    public func deleteAcRule(_ input: DeleteAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAcRuleResponse {
+        try await self.client.execute(action: "DeleteAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

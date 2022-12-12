@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Irp {
-    /// 上报信息流用户信息
-    ///
-    /// 上报信息流用户信息，请务必确认用户的唯一性，并在请求推荐结果时指定用户的唯一标识信息（UserId），否则将无法进行千人千面的推荐
-    @inlinable
-    public func reportFeedUser(_ input: ReportFeedUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportFeedUserResponse > {
-        self.client.execute(action: "ReportFeedUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上报信息流用户信息
-    ///
-    /// 上报信息流用户信息，请务必确认用户的唯一性，并在请求推荐结果时指定用户的唯一标识信息（UserId），否则将无法进行千人千面的推荐
-    @inlinable
-    public func reportFeedUser(_ input: ReportFeedUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedUserResponse {
-        try await self.client.execute(action: "ReportFeedUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReportFeedUser请求参数结构体
     public struct ReportFeedUserRequest: TCRequestModel {
         /// 实例ID，在控制台获取
@@ -58,5 +42,21 @@ extension Irp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上报信息流用户信息
+    ///
+    /// 上报信息流用户信息，请务必确认用户的唯一性，并在请求推荐结果时指定用户的唯一标识信息（UserId），否则将无法进行千人千面的推荐
+    @inlinable
+    public func reportFeedUser(_ input: ReportFeedUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportFeedUserResponse > {
+        self.client.execute(action: "ReportFeedUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上报信息流用户信息
+    ///
+    /// 上报信息流用户信息，请务必确认用户的唯一性，并在请求推荐结果时指定用户的唯一标识信息（UserId），否则将无法进行千人千面的推荐
+    @inlinable
+    public func reportFeedUser(_ input: ReportFeedUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedUserResponse {
+        try await self.client.execute(action: "ReportFeedUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

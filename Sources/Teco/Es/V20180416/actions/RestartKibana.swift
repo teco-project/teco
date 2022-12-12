@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 重启Kibana
-    ///
-    /// 重启Kibana 
-    @inlinable
-    public func restartKibana(_ input: RestartKibanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartKibanaResponse > {
-        self.client.execute(action: "RestartKibana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重启Kibana
-    ///
-    /// 重启Kibana 
-    @inlinable
-    public func restartKibana(_ input: RestartKibanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartKibanaResponse {
-        try await self.client.execute(action: "RestartKibana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestartKibana请求参数结构体
     public struct RestartKibanaRequest: TCRequestModel {
         /// ES实例ID
@@ -53,5 +37,21 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重启Kibana
+    ///
+    /// 重启Kibana 
+    @inlinable
+    public func restartKibana(_ input: RestartKibanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartKibanaResponse > {
+        self.client.execute(action: "RestartKibana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重启Kibana
+    ///
+    /// 重启Kibana 
+    @inlinable
+    public func restartKibana(_ input: RestartKibanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartKibanaResponse {
+        try await self.client.execute(action: "RestartKibana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

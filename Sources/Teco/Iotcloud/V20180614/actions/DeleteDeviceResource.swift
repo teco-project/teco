@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 删除设备资源
-    ///
-    /// 本接口（DeleteDeviceResource）用于删除设备资源
-    @inlinable
-    public func deleteDeviceResource(_ input: DeleteDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceResourceResponse > {
-        self.client.execute(action: "DeleteDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除设备资源
-    ///
-    /// 本接口（DeleteDeviceResource）用于删除设备资源
-    @inlinable
-    public func deleteDeviceResource(_ input: DeleteDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResourceResponse {
-        try await self.client.execute(action: "DeleteDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDeviceResource请求参数结构体
     public struct DeleteDeviceResourceRequest: TCRequestModel {
         /// 产品ID
@@ -63,5 +47,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除设备资源
+    ///
+    /// 本接口（DeleteDeviceResource）用于删除设备资源
+    @inlinable
+    public func deleteDeviceResource(_ input: DeleteDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceResourceResponse > {
+        self.client.execute(action: "DeleteDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除设备资源
+    ///
+    /// 本接口（DeleteDeviceResource）用于删除设备资源
+    @inlinable
+    public func deleteDeviceResource(_ input: DeleteDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResourceResponse {
+        try await self.client.execute(action: "DeleteDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

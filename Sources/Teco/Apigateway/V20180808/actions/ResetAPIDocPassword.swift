@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 重置API文档密码
-    @inlinable
-    public func resetAPIDocPassword(_ input: ResetAPIDocPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAPIDocPasswordResponse > {
-        self.client.execute(action: "ResetAPIDocPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置API文档密码
-    @inlinable
-    public func resetAPIDocPassword(_ input: ResetAPIDocPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAPIDocPasswordResponse {
-        try await self.client.execute(action: "ResetAPIDocPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ResetAPIDocPassword请求参数结构体
     public struct ResetAPIDocPasswordRequest: TCRequestModel {
         /// API文档ID
@@ -53,5 +41,17 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置API文档密码
+    @inlinable
+    public func resetAPIDocPassword(_ input: ResetAPIDocPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetAPIDocPasswordResponse > {
+        self.client.execute(action: "ResetAPIDocPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置API文档密码
+    @inlinable
+    public func resetAPIDocPassword(_ input: ResetAPIDocPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAPIDocPasswordResponse {
+        try await self.client.execute(action: "ResetAPIDocPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

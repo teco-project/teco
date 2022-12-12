@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 删除黑石路由表路由规则
-    @inlinable
-    public func deleteRoutePolicy(_ input: DeleteRoutePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRoutePolicyResponse > {
-        self.client.execute(action: "DeleteRoutePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除黑石路由表路由规则
-    @inlinable
-    public func deleteRoutePolicy(_ input: DeleteRoutePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoutePolicyResponse {
-        try await self.client.execute(action: "DeleteRoutePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRoutePolicy请求参数结构体
     public struct DeleteRoutePolicyRequest: TCRequestModel {
         /// 路由表ID
@@ -58,5 +46,17 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除黑石路由表路由规则
+    @inlinable
+    public func deleteRoutePolicy(_ input: DeleteRoutePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRoutePolicyResponse > {
+        self.client.execute(action: "DeleteRoutePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除黑石路由表路由规则
+    @inlinable
+    public func deleteRoutePolicy(_ input: DeleteRoutePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoutePolicyResponse {
+        try await self.client.execute(action: "DeleteRoutePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 删除域名规则白名单
-    @inlinable
-    public func deleteDomainWhiteRules(_ input: DeleteDomainWhiteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDomainWhiteRulesResponse > {
-        self.client.execute(action: "DeleteDomainWhiteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除域名规则白名单
-    @inlinable
-    public func deleteDomainWhiteRules(_ input: DeleteDomainWhiteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainWhiteRulesResponse {
-        try await self.client.execute(action: "DeleteDomainWhiteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDomainWhiteRules请求参数结构体
     public struct DeleteDomainWhiteRulesRequest: TCRequestModel {
         /// 需要删除的规则域名
@@ -59,5 +47,17 @@ extension Waf {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除域名规则白名单
+    @inlinable
+    public func deleteDomainWhiteRules(_ input: DeleteDomainWhiteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDomainWhiteRulesResponse > {
+        self.client.execute(action: "DeleteDomainWhiteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除域名规则白名单
+    @inlinable
+    public func deleteDomainWhiteRules(_ input: DeleteDomainWhiteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainWhiteRulesResponse {
+        try await self.client.execute(action: "DeleteDomainWhiteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

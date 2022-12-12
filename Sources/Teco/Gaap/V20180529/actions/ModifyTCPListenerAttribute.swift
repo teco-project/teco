@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 修改TCP监听器配置
-    ///
-    /// 本接口（ModifyTCPListenerAttribute）用于修改通道实例下TCP监听器配置，包括健康检查的配置，调度策略。
-    @inlinable
-    public func modifyTCPListenerAttribute(_ input: ModifyTCPListenerAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTCPListenerAttributeResponse > {
-        self.client.execute(action: "ModifyTCPListenerAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改TCP监听器配置
-    ///
-    /// 本接口（ModifyTCPListenerAttribute）用于修改通道实例下TCP监听器配置，包括健康检查的配置，调度策略。
-    @inlinable
-    public func modifyTCPListenerAttribute(_ input: ModifyTCPListenerAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTCPListenerAttributeResponse {
-        try await self.client.execute(action: "ModifyTCPListenerAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTCPListenerAttribute请求参数结构体
     public struct ModifyTCPListenerAttributeRequest: TCRequestModel {
         /// 监听器ID
@@ -66,7 +50,7 @@ extension Gaap {
         /// 不健康阈值，表示连续检查失败次数后认定源站不健康。范围为1到10
         public let unhealthyThreshold: UInt64?
         
-        public init (listenerId: String, groupId: String?, proxyId: String?, listenerName: String?, scheduler: String?, delayLoop: UInt64?, connectTimeout: UInt64?, healthCheck: UInt64?, failoverSwitch: UInt64?, healthyThreshold: UInt64?, unhealthyThreshold: UInt64?) {
+        public init (listenerId: String, groupId: String? = nil, proxyId: String? = nil, listenerName: String? = nil, scheduler: String? = nil, delayLoop: UInt64? = nil, connectTimeout: UInt64? = nil, healthCheck: UInt64? = nil, failoverSwitch: UInt64? = nil, healthyThreshold: UInt64? = nil, unhealthyThreshold: UInt64? = nil) {
             self.listenerId = listenerId
             self.groupId = groupId
             self.proxyId = proxyId
@@ -103,5 +87,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改TCP监听器配置
+    ///
+    /// 本接口（ModifyTCPListenerAttribute）用于修改通道实例下TCP监听器配置，包括健康检查的配置，调度策略。
+    @inlinable
+    public func modifyTCPListenerAttribute(_ input: ModifyTCPListenerAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTCPListenerAttributeResponse > {
+        self.client.execute(action: "ModifyTCPListenerAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改TCP监听器配置
+    ///
+    /// 本接口（ModifyTCPListenerAttribute）用于修改通道实例下TCP监听器配置，包括健康检查的配置，调度策略。
+    @inlinable
+    public func modifyTCPListenerAttribute(_ input: ModifyTCPListenerAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTCPListenerAttributeResponse {
+        try await self.client.execute(action: "ModifyTCPListenerAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

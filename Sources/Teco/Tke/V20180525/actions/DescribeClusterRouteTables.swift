@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询集群路由表
-    @inlinable
-    public func describeClusterRouteTables(_ input: DescribeClusterRouteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterRouteTablesResponse > {
-        self.client.execute(action: "DescribeClusterRouteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群路由表
-    @inlinable
-    public func describeClusterRouteTables(_ input: DescribeClusterRouteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRouteTablesResponse {
-        try await self.client.execute(action: "DescribeClusterRouteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterRouteTables请求参数结构体
     public struct DescribeClusterRouteTablesRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Tke {
             case routeTableSet = "RouteTableSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群路由表
+    @inlinable
+    public func describeClusterRouteTables(_ input: DescribeClusterRouteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterRouteTablesResponse > {
+        self.client.execute(action: "DescribeClusterRouteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群路由表
+    @inlinable
+    public func describeClusterRouteTables(_ input: DescribeClusterRouteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRouteTablesResponse {
+        try await self.client.execute(action: "DescribeClusterRouteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

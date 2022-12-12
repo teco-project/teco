@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 查询弹性伸缩配置建议
-    ///
-    /// 此接口用于查询伸缩组配置建议。
-    @inlinable
-    public func describeAutoScalingAdvices(_ input: DescribeAutoScalingAdvicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoScalingAdvicesResponse > {
-        self.client.execute(action: "DescribeAutoScalingAdvices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询弹性伸缩配置建议
-    ///
-    /// 此接口用于查询伸缩组配置建议。
-    @inlinable
-    public func describeAutoScalingAdvices(_ input: DescribeAutoScalingAdvicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingAdvicesResponse {
-        try await self.client.execute(action: "DescribeAutoScalingAdvices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAutoScalingAdvices请求参数结构体
     public struct DescribeAutoScalingAdvicesRequest: TCRequestModel {
         /// 待查询的伸缩组列表，上限100。
@@ -57,5 +41,21 @@ extension As {
             case autoScalingAdviceSet = "AutoScalingAdviceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询弹性伸缩配置建议
+    ///
+    /// 此接口用于查询伸缩组配置建议。
+    @inlinable
+    public func describeAutoScalingAdvices(_ input: DescribeAutoScalingAdvicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoScalingAdvicesResponse > {
+        self.client.execute(action: "DescribeAutoScalingAdvices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询弹性伸缩配置建议
+    ///
+    /// 此接口用于查询伸缩组配置建议。
+    @inlinable
+    public func describeAutoScalingAdvices(_ input: DescribeAutoScalingAdvicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingAdvicesResponse {
+        try await self.client.execute(action: "DescribeAutoScalingAdvices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

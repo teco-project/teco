@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 创建触发器
-    @inlinable
-    public func createWebhookTrigger(_ input: CreateWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWebhookTriggerResponse > {
-        self.client.execute(action: "CreateWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建触发器
-    @inlinable
-    public func createWebhookTrigger(_ input: CreateWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebhookTriggerResponse {
-        try await self.client.execute(action: "CreateWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateWebhookTrigger请求参数结构体
     public struct CreateWebhookTriggerRequest: TCRequestModel {
         /// 实例 Id
@@ -63,5 +51,17 @@ extension Tcr {
             case trigger = "Trigger"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建触发器
+    @inlinable
+    public func createWebhookTrigger(_ input: CreateWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWebhookTriggerResponse > {
+        self.client.execute(action: "CreateWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建触发器
+    @inlinable
+    public func createWebhookTrigger(_ input: CreateWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebhookTriggerResponse {
+        try await self.client.execute(action: "CreateWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

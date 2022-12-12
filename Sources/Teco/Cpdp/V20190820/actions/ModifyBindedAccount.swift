@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云-重新绑定账号
-    @inlinable
-    public func modifyBindedAccount(_ input: ModifyBindedAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindedAccountResponse > {
-        self.client.execute(action: "ModifyBindedAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云-重新绑定账号
-    @inlinable
-    public func modifyBindedAccount(_ input: ModifyBindedAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindedAccountResponse {
-        try await self.client.execute(action: "ModifyBindedAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyBindedAccount请求参数结构体
     public struct ModifyBindedAccountRequest: TCRequestModel {
         /// 主播Id
@@ -82,5 +70,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云-重新绑定账号
+    @inlinable
+    public func modifyBindedAccount(_ input: ModifyBindedAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBindedAccountResponse > {
+        self.client.execute(action: "ModifyBindedAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云-重新绑定账号
+    @inlinable
+    public func modifyBindedAccount(_ input: ModifyBindedAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindedAccountResponse {
+        try await self.client.execute(action: "ModifyBindedAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

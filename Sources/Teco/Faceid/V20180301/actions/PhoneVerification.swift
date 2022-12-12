@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 手机号三要素核验
-    ///
-    /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性。支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
-    @inlinable
-    public func phoneVerification(_ input: PhoneVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PhoneVerificationResponse > {
-        self.client.execute(action: "PhoneVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 手机号三要素核验
-    ///
-    /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性。支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
-    @inlinable
-    public func phoneVerification(_ input: PhoneVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationResponse {
-        try await self.client.execute(action: "PhoneVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PhoneVerification请求参数结构体
     public struct PhoneVerificationRequest: TCRequestModel {
         /// 身份证号
@@ -51,7 +35,7 @@ extension Faceid {
         /// 有加密需求的用户，传入CBC加密的初始向量。
         public let iv: String?
         
-        public init (idCard: String, name: String, phone: String, ciphertextBlob: String?, encryptList: [String]?, iv: String?) {
+        public init (idCard: String, name: String, phone: String, ciphertextBlob: String? = nil, encryptList: [String]? = nil, iv: String? = nil) {
             self.idCard = idCard
             self.name = name
             self.phone = phone
@@ -100,5 +84,21 @@ extension Faceid {
             case isp = "Isp"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 手机号三要素核验
+    ///
+    /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性。支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
+    @inlinable
+    public func phoneVerification(_ input: PhoneVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PhoneVerificationResponse > {
+        self.client.execute(action: "PhoneVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 手机号三要素核验
+    ///
+    /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性。支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
+    @inlinable
+    public func phoneVerification(_ input: PhoneVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationResponse {
+        try await self.client.execute(action: "PhoneVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

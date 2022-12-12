@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询镜像信息
-    ///
-    /// 本接口（DescribeBlueprints）用于查询镜像信息。
-    @inlinable
-    public func describeBlueprints(_ input: DescribeBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlueprintsResponse > {
-        self.client.execute(action: "DescribeBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询镜像信息
-    ///
-    /// 本接口（DescribeBlueprints）用于查询镜像信息。
-    @inlinable
-    public func describeBlueprints(_ input: DescribeBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintsResponse {
-        try await self.client.execute(action: "DescribeBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBlueprints请求参数结构体
     public struct DescribeBlueprintsRequest: TCRequestModel {
         /// 镜像 ID 列表。
@@ -66,7 +50,7 @@ extension Lighthouse {
         /// 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 100。参数不支持同时指定 BlueprintIds 和 Filters 。
         public let filters: [Filter]?
         
-        public init (blueprintIds: [String]?, offset: Int64?, limit: Int64?, filters: [Filter]?) {
+        public init (blueprintIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.blueprintIds = blueprintIds
             self.offset = offset
             self.limit = limit
@@ -97,5 +81,21 @@ extension Lighthouse {
             case blueprintSet = "BlueprintSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询镜像信息
+    ///
+    /// 本接口（DescribeBlueprints）用于查询镜像信息。
+    @inlinable
+    public func describeBlueprints(_ input: DescribeBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlueprintsResponse > {
+        self.client.execute(action: "DescribeBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像信息
+    ///
+    /// 本接口（DescribeBlueprints）用于查询镜像信息。
+    @inlinable
+    public func describeBlueprints(_ input: DescribeBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintsResponse {
+        try await self.client.execute(action: "DescribeBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

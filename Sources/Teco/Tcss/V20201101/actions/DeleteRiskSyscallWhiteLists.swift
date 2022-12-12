@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 删除运行时高危系统调用白名单
-    @inlinable
-    public func deleteRiskSyscallWhiteLists(_ input: DeleteRiskSyscallWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRiskSyscallWhiteListsResponse > {
-        self.client.execute(action: "DeleteRiskSyscallWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除运行时高危系统调用白名单
-    @inlinable
-    public func deleteRiskSyscallWhiteLists(_ input: DeleteRiskSyscallWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRiskSyscallWhiteListsResponse {
-        try await self.client.execute(action: "DeleteRiskSyscallWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRiskSyscallWhiteLists请求参数结构体
     public struct DeleteRiskSyscallWhiteListsRequest: TCRequestModel {
         /// 白名单ids
@@ -49,5 +37,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除运行时高危系统调用白名单
+    @inlinable
+    public func deleteRiskSyscallWhiteLists(_ input: DeleteRiskSyscallWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRiskSyscallWhiteListsResponse > {
+        self.client.execute(action: "DeleteRiskSyscallWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除运行时高危系统调用白名单
+    @inlinable
+    public func deleteRiskSyscallWhiteLists(_ input: DeleteRiskSyscallWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRiskSyscallWhiteListsResponse {
+        try await self.client.execute(action: "DeleteRiskSyscallWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

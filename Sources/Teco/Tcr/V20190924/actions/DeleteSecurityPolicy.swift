@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 删除实例公网访问白名单策略
-    @inlinable
-    public func deleteSecurityPolicy(_ input: DeleteSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityPolicyResponse > {
-        self.client.execute(action: "DeleteSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除实例公网访问白名单策略
-    @inlinable
-    public func deleteSecurityPolicy(_ input: DeleteSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityPolicyResponse {
-        try await self.client.execute(action: "DeleteSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSecurityPolicy请求参数结构体
     public struct DeleteSecurityPolicyRequest: TCRequestModel {
         /// 实例Id
@@ -63,5 +51,17 @@ extension Tcr {
             case registryId = "RegistryId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除实例公网访问白名单策略
+    @inlinable
+    public func deleteSecurityPolicy(_ input: DeleteSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityPolicyResponse > {
+        self.client.execute(action: "DeleteSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例公网访问白名单策略
+    @inlinable
+    public func deleteSecurityPolicy(_ input: DeleteSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityPolicyResponse {
+        try await self.client.execute(action: "DeleteSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

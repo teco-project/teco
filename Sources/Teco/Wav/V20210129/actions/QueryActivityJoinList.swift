@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wav {
-    /// 查询活动参与明细列表接口
-    ///
-    /// 根据游标拉取活动参与列表信息
-    @inlinable
-    public func queryActivityJoinList(_ input: QueryActivityJoinListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryActivityJoinListResponse > {
-        self.client.execute(action: "QueryActivityJoinList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询活动参与明细列表接口
-    ///
-    /// 根据游标拉取活动参与列表信息
-    @inlinable
-    public func queryActivityJoinList(_ input: QueryActivityJoinListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityJoinListResponse {
-        try await self.client.execute(action: "QueryActivityJoinList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryActivityJoinList请求参数结构体
     public struct QueryActivityJoinListRequest: TCRequestModel {
         /// 活动id
@@ -42,7 +26,7 @@ extension Wav {
         /// 单页数据限制
         public let limit: Int64?
         
-        public init (activityId: Int64, cursor: String?, limit: Int64?) {
+        public init (activityId: Int64, cursor: String? = nil, limit: Int64? = nil) {
             self.activityId = activityId
             self.cursor = cursor
             self.limit = limit
@@ -73,5 +57,21 @@ extension Wav {
             case pageData = "PageData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询活动参与明细列表接口
+    ///
+    /// 根据游标拉取活动参与列表信息
+    @inlinable
+    public func queryActivityJoinList(_ input: QueryActivityJoinListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryActivityJoinListResponse > {
+        self.client.execute(action: "QueryActivityJoinList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询活动参与明细列表接口
+    ///
+    /// 根据游标拉取活动参与列表信息
+    @inlinable
+    public func queryActivityJoinList(_ input: QueryActivityJoinListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityJoinListResponse {
+        try await self.client.execute(action: "QueryActivityJoinList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

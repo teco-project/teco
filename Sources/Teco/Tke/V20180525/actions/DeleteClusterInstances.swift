@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 删除集群中的节点
-    ///
-    /// 删除集群中的实例
-    @inlinable
-    public func deleteClusterInstances(_ input: DeleteClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterInstancesResponse > {
-        self.client.execute(action: "DeleteClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除集群中的节点
-    ///
-    /// 删除集群中的实例
-    @inlinable
-    public func deleteClusterInstances(_ input: DeleteClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterInstancesResponse {
-        try await self.client.execute(action: "DeleteClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteClusterInstances请求参数结构体
     public struct DeleteClusterInstancesRequest: TCRequestModel {
         /// 集群ID
@@ -45,7 +29,7 @@ extension Tke {
         /// 是否强制删除(当节点在初始化时，可以指定参数为TRUE)
         public let forceDelete: Bool?
         
-        public init (clusterId: String, instanceIds: [String], instanceDeleteMode: String?, forceDelete: Bool?) {
+        public init (clusterId: String, instanceIds: [String], instanceDeleteMode: String? = nil, forceDelete: Bool? = nil) {
             self.clusterId = clusterId
             self.instanceIds = instanceIds
             self.instanceDeleteMode = instanceDeleteMode
@@ -83,5 +67,21 @@ extension Tke {
             case notFoundInstanceIds = "NotFoundInstanceIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除集群中的节点
+    ///
+    /// 删除集群中的实例
+    @inlinable
+    public func deleteClusterInstances(_ input: DeleteClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterInstancesResponse > {
+        self.client.execute(action: "DeleteClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除集群中的节点
+    ///
+    /// 删除集群中的实例
+    @inlinable
+    public func deleteClusterInstances(_ input: DeleteClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterInstancesResponse {
+        try await self.client.execute(action: "DeleteClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

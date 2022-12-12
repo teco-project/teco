@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询清除缓存历史记录
-    @inlinable
-    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePurgeTasksResponse > {
-        self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询清除缓存历史记录
-    @inlinable
-    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeTasksResponse {
-        try await self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePurgeTasks请求参数结构体
     public struct DescribePurgeTasksRequest: TCRequestModel {
         /// 任务ID
@@ -62,7 +50,7 @@ extension Teo {
         /// 查询内容
         public let target: String?
         
-        public init (jobId: String?, type: String?, startTime: Date?, endTime: Date?, offset: Int64?, limit: Int64?, statuses: [String]?, zoneId: String?, domains: [String]?, target: String?) {
+        public init (jobId: String? = nil, type: String? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: Int64? = nil, limit: Int64? = nil, statuses: [String]? = nil, zoneId: String? = nil, domains: [String]? = nil, target: String? = nil) {
             self.jobId = jobId
             self.type = type
             self.startTime = startTime
@@ -105,5 +93,17 @@ extension Teo {
             case tasks = "Tasks"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询清除缓存历史记录
+    @inlinable
+    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePurgeTasksResponse > {
+        self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询清除缓存历史记录
+    @inlinable
+    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeTasksResponse {
+        try await self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

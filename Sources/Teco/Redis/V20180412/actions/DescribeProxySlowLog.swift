@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询代理慢查询
-    ///
-    /// 本接口（DescribeProxySlowLog）用于查询代理慢查询。
-    @inlinable
-    public func describeProxySlowLog(_ input: DescribeProxySlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxySlowLogResponse > {
-        self.client.execute(action: "DescribeProxySlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询代理慢查询
-    ///
-    /// 本接口（DescribeProxySlowLog）用于查询代理慢查询。
-    @inlinable
-    public func describeProxySlowLog(_ input: DescribeProxySlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxySlowLogResponse {
-        try await self.client.execute(action: "DescribeProxySlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProxySlowLog请求参数结构体
     public struct DescribeProxySlowLogRequest: TCRequestModel {
         /// 实例Id
@@ -51,7 +35,7 @@ extension Redis {
         /// 偏移量，取Limit整数倍
         public let offset: Int64?
         
-        public init (instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64?, limit: Int64?, offset: Int64?) {
+        public init (instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil) {
             self.instanceId = instanceId
             self.beginTime = beginTime
             self.endTime = endTime
@@ -86,5 +70,21 @@ extension Redis {
             case instanceProxySlowLogDetail = "InstanceProxySlowLogDetail"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询代理慢查询
+    ///
+    /// 本接口（DescribeProxySlowLog）用于查询代理慢查询。
+    @inlinable
+    public func describeProxySlowLog(_ input: DescribeProxySlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxySlowLogResponse > {
+        self.client.execute(action: "DescribeProxySlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询代理慢查询
+    ///
+    /// 本接口（DescribeProxySlowLog）用于查询代理慢查询。
+    @inlinable
+    public func describeProxySlowLog(_ input: DescribeProxySlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxySlowLogResponse {
+        try await self.client.execute(action: "DescribeProxySlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

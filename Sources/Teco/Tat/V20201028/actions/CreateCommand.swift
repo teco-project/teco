@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tat {
-    /// 创建命令
-    ///
-    /// 此接口用于创建命令。
-    @inlinable
-    public func createCommand(_ input: CreateCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCommandResponse > {
-        self.client.execute(action: "CreateCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建命令
-    ///
-    /// 此接口用于创建命令。
-    @inlinable
-    public func createCommand(_ input: CreateCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCommandResponse {
-        try await self.client.execute(action: "CreateCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCommand请求参数结构体
     public struct CreateCommandRequest: TCRequestModel {
         /// 命令名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。
@@ -79,7 +63,7 @@ extension Tat {
         /// 3. 不允许连续 / ；不允许以 / 开头；不允许以..作为文件夹名称
         public let outputCOSKeyPrefix: String?
         
-        public init (commandName: String, content: String, description: String?, commandType: String?, workingDirectory: String?, timeout: UInt64?, enableParameter: Bool?, defaultParameters: String?, tags: [Tag]?, username: String?, outputCOSBucketUrl: String?, outputCOSKeyPrefix: String?) {
+        public init (commandName: String, content: String, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil) {
             self.commandName = commandName
             self.content = content
             self.description = description
@@ -122,5 +106,21 @@ extension Tat {
             case commandId = "CommandId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建命令
+    ///
+    /// 此接口用于创建命令。
+    @inlinable
+    public func createCommand(_ input: CreateCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCommandResponse > {
+        self.client.execute(action: "CreateCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建命令
+    ///
+    /// 此接口用于创建命令。
+    @inlinable
+    public func createCommand(_ input: CreateCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCommandResponse {
+        try await self.client.execute(action: "CreateCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

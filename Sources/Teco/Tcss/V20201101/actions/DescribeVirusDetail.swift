@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时查询木马文件信息
-    @inlinable
-    public func describeVirusDetail(_ input: DescribeVirusDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusDetailResponse > {
-        self.client.execute(action: "DescribeVirusDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时查询木马文件信息
-    @inlinable
-    public func describeVirusDetail(_ input: DescribeVirusDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusDetailResponse {
-        try await self.client.execute(action: "DescribeVirusDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVirusDetail请求参数结构体
     public struct DescribeVirusDetailRequest: TCRequestModel {
         /// 木马文件id
@@ -303,5 +291,17 @@ extension Tcss {
             case checkPlatform = "CheckPlatform"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时查询木马文件信息
+    @inlinable
+    public func describeVirusDetail(_ input: DescribeVirusDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusDetailResponse > {
+        self.client.execute(action: "DescribeVirusDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时查询木马文件信息
+    @inlinable
+    public func describeVirusDetail(_ input: DescribeVirusDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusDetailResponse {
+        try await self.client.execute(action: "DescribeVirusDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

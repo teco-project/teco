@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tsf {
-    /// 查询网关分组监控明细数据
-    @inlinable
-    public func describeGroupUseDetail(_ input: DescribeGroupUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupUseDetailResponse > {
-        self.client.execute(action: "DescribeGroupUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询网关分组监控明细数据
-    @inlinable
-    public func describeGroupUseDetail(_ input: DescribeGroupUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupUseDetailResponse {
-        try await self.client.execute(action: "DescribeGroupUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGroupUseDetail请求参数结构体
     public struct DescribeGroupUseDetailRequest: TCRequestModel {
         /// 网关部署组ID
@@ -48,7 +36,7 @@ extension Tsf {
         /// 指定top的条数,默认为10
         public let count: Int64?
         
-        public init (gatewayDeployGroupId: String, groupId: String, startTime: Date, endTime: Date, count: Int64?) {
+        public init (gatewayDeployGroupId: String, groupId: String, startTime: Date, endTime: Date, count: Int64? = nil) {
             self.gatewayDeployGroupId = gatewayDeployGroupId
             self.groupId = groupId
             self.startTime = startTime
@@ -77,5 +65,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询网关分组监控明细数据
+    @inlinable
+    public func describeGroupUseDetail(_ input: DescribeGroupUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupUseDetailResponse > {
+        self.client.execute(action: "DescribeGroupUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网关分组监控明细数据
+    @inlinable
+    public func describeGroupUseDetail(_ input: DescribeGroupUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupUseDetailResponse {
+        try await self.client.execute(action: "DescribeGroupUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

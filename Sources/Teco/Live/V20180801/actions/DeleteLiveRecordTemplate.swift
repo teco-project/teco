@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 删除录制模板
-    ///
-    /// 删除录制模板。
-    @inlinable
-    public func deleteLiveRecordTemplate(_ input: DeleteLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveRecordTemplateResponse > {
-        self.client.execute(action: "DeleteLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除录制模板
-    ///
-    /// 删除录制模板。
-    @inlinable
-    public func deleteLiveRecordTemplate(_ input: DeleteLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordTemplateResponse {
-        try await self.client.execute(action: "DeleteLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLiveRecordTemplate请求参数结构体
     public struct DeleteLiveRecordTemplateRequest: TCRequestModel {
         /// DescribeRecordTemplates接口获取到的模板 ID。
@@ -53,5 +37,21 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除录制模板
+    ///
+    /// 删除录制模板。
+    @inlinable
+    public func deleteLiveRecordTemplate(_ input: DeleteLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLiveRecordTemplateResponse > {
+        self.client.execute(action: "DeleteLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除录制模板
+    ///
+    /// 删除录制模板。
+    @inlinable
+    public func deleteLiveRecordTemplate(_ input: DeleteLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordTemplateResponse {
+        try await self.client.execute(action: "DeleteLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

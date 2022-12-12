@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 创建泳道
-    @inlinable
-    public func createLane(_ input: CreateLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLaneResponse > {
-        self.client.execute(action: "CreateLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建泳道
-    @inlinable
-    public func createLane(_ input: CreateLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneResponse {
-        try await self.client.execute(action: "CreateLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLane请求参数结构体
     public struct CreateLaneRequest: TCRequestModel {
         /// 泳道名称
@@ -41,7 +29,7 @@ extension Tsf {
         /// 无
         public let programIdList: [String]?
         
-        public init (laneName: String, remark: String, laneGroupList: [LaneGroup], programIdList: [String]?) {
+        public init (laneName: String, remark: String, laneGroupList: [LaneGroup], programIdList: [String]? = nil) {
             self.laneName = laneName
             self.remark = remark
             self.laneGroupList = laneGroupList
@@ -69,5 +57,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建泳道
+    @inlinable
+    public func createLane(_ input: CreateLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLaneResponse > {
+        self.client.execute(action: "CreateLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建泳道
+    @inlinable
+    public func createLane(_ input: CreateLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneResponse {
+        try await self.client.execute(action: "CreateLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

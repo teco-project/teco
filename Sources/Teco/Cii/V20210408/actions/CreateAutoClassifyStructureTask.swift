@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cii {
-    /// 新建自动分类结构化任务
-    ///
-    /// 本接口(CreateAutoClassifyStructureTask)基于提供的客户及保单信息，创建并启动结构化识别任务。
-    @inlinable
-    public func createAutoClassifyStructureTask(_ input: CreateAutoClassifyStructureTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAutoClassifyStructureTaskResponse > {
-        self.client.execute(action: "CreateAutoClassifyStructureTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建自动分类结构化任务
-    ///
-    /// 本接口(CreateAutoClassifyStructureTask)基于提供的客户及保单信息，创建并启动结构化识别任务。
-    @inlinable
-    public func createAutoClassifyStructureTask(_ input: CreateAutoClassifyStructureTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoClassifyStructureTaskResponse {
-        try await self.client.execute(action: "CreateAutoClassifyStructureTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAutoClassifyStructureTask请求参数结构体
     public struct CreateAutoClassifyStructureTaskRequest: TCRequestModel {
         /// 服务类型
@@ -58,7 +42,7 @@ extension Cii {
         /// 回调地址，接收Post请求传送结果
         public let callbackUrl: String?
         
-        public init (serviceType: String, taskInfos: [CreateAutoClassifyStructureTaskInfo], policyId: String?, triggerType: String?, insuranceTypes: [String]?, callbackUrl: String?) {
+        public init (serviceType: String, taskInfos: [CreateAutoClassifyStructureTaskInfo], policyId: String? = nil, triggerType: String? = nil, insuranceTypes: [String]? = nil, callbackUrl: String? = nil) {
             self.serviceType = serviceType
             self.taskInfos = taskInfos
             self.policyId = policyId
@@ -89,5 +73,21 @@ extension Cii {
             case mainTaskId = "MainTaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建自动分类结构化任务
+    ///
+    /// 本接口(CreateAutoClassifyStructureTask)基于提供的客户及保单信息，创建并启动结构化识别任务。
+    @inlinable
+    public func createAutoClassifyStructureTask(_ input: CreateAutoClassifyStructureTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAutoClassifyStructureTaskResponse > {
+        self.client.execute(action: "CreateAutoClassifyStructureTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建自动分类结构化任务
+    ///
+    /// 本接口(CreateAutoClassifyStructureTask)基于提供的客户及保单信息，创建并启动结构化识别任务。
+    @inlinable
+    public func createAutoClassifyStructureTask(_ input: CreateAutoClassifyStructureTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoClassifyStructureTaskResponse {
+        try await self.client.execute(action: "CreateAutoClassifyStructureTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

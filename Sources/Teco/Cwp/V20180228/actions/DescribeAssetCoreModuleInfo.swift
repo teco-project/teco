@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取内核模块详情
-    @inlinable
-    public func describeAssetCoreModuleInfo(_ input: DescribeAssetCoreModuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetCoreModuleInfoResponse > {
-        self.client.execute(action: "DescribeAssetCoreModuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取内核模块详情
-    @inlinable
-    public func describeAssetCoreModuleInfo(_ input: DescribeAssetCoreModuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetCoreModuleInfoResponse {
-        try await self.client.execute(action: "DescribeAssetCoreModuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetCoreModuleInfo请求参数结构体
     public struct DescribeAssetCoreModuleInfoRequest: TCRequestModel {
         /// 服务器Quuid
@@ -63,5 +51,17 @@ extension Cwp {
             case module = "Module"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取内核模块详情
+    @inlinable
+    public func describeAssetCoreModuleInfo(_ input: DescribeAssetCoreModuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetCoreModuleInfoResponse > {
+        self.client.execute(action: "DescribeAssetCoreModuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取内核模块详情
+    @inlinable
+    public func describeAssetCoreModuleInfo(_ input: DescribeAssetCoreModuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetCoreModuleInfoResponse {
+        try await self.client.execute(action: "DescribeAssetCoreModuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 新建商品
-    @inlinable
-    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProductResponse > {
-        self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建商品
-    @inlinable
-    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
-        try await self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProduct请求参数结构体
     public struct CreateProductRequest: TCRequestModel {
         /// 商品名称
@@ -51,9 +39,9 @@ extension Trp {
         public let corpId: UInt64?
         
         /// 预留字段
-        public let ext: Ext
+        public let ext: Ext?
         
-        public init (name: String, merchantId: String, remark: String?, merchantName: String?, specification: String?, logo: [String]?, corpId: UInt64?, ext: Ext) {
+        public init (name: String, merchantId: String, remark: String? = nil, merchantName: String? = nil, specification: String? = nil, logo: [String]? = nil, corpId: UInt64? = nil, ext: Ext? = nil) {
             self.name = name
             self.merchantId = merchantId
             self.remark = remark
@@ -89,5 +77,17 @@ extension Trp {
             case productId = "ProductId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建商品
+    @inlinable
+    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProductResponse > {
+        self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建商品
+    @inlinable
+    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
+        try await self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

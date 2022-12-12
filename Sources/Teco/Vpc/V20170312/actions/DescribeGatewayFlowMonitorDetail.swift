@@ -17,26 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Vpc {
-    /// 查询网关流量监控明细
-    ///
-    /// 本接口（DescribeGatewayFlowMonitorDetail）用于查询网关流量监控明细。
-    /// * 只支持单个网关实例查询。即入参 `VpnId`、 `DirectConnectGatewayId`、 `PeeringConnectionId`、 `NatId` 最多只支持传一个，且必须传一个。
-    /// * 如果网关有流量，但调用本接口没有返回数据，请在控制台对应网关详情页确认是否开启网关流量监控。
-    @inlinable
-    public func describeGatewayFlowMonitorDetail(_ input: DescribeGatewayFlowMonitorDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewayFlowMonitorDetailResponse > {
-        self.client.execute(action: "DescribeGatewayFlowMonitorDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询网关流量监控明细
-    ///
-    /// 本接口（DescribeGatewayFlowMonitorDetail）用于查询网关流量监控明细。
-    /// * 只支持单个网关实例查询。即入参 `VpnId`、 `DirectConnectGatewayId`、 `PeeringConnectionId`、 `NatId` 最多只支持传一个，且必须传一个。
-    /// * 如果网关有流量，但调用本接口没有返回数据，请在控制台对应网关详情页确认是否开启网关流量监控。
-    @inlinable
-    public func describeGatewayFlowMonitorDetail(_ input: DescribeGatewayFlowMonitorDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayFlowMonitorDetailResponse {
-        try await self.client.execute(action: "DescribeGatewayFlowMonitorDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGatewayFlowMonitorDetail请求参数结构体
     public struct DescribeGatewayFlowMonitorDetailRequest: TCRequestModel {
         /// 时间点。表示要查询这分钟内的明细。如：`2019-02-28 18:15:20`，将查询 `18:15` 这一分钟内的明细。
@@ -67,7 +47,7 @@ extension Vpc {
         /// 排序方法。顺序：`ASC`，倒序：`DESC`。
         public let orderDirection: String?
         
-        public init (timePoint: Date, vpnId: String?, directConnectGatewayId: String?, peeringConnectionId: String?, natId: String?, offset: UInt64?, limit: UInt64?, orderField: String?, orderDirection: String?) {
+        public init (timePoint: Date, vpnId: String? = nil, directConnectGatewayId: String? = nil, peeringConnectionId: String? = nil, natId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil) {
             self.timePoint = timePoint
             self.vpnId = vpnId
             self.directConnectGatewayId = directConnectGatewayId
@@ -108,5 +88,25 @@ extension Vpc {
             case gatewayFlowMonitorDetailSet = "GatewayFlowMonitorDetailSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询网关流量监控明细
+    ///
+    /// 本接口（DescribeGatewayFlowMonitorDetail）用于查询网关流量监控明细。
+    /// * 只支持单个网关实例查询。即入参 `VpnId`、 `DirectConnectGatewayId`、 `PeeringConnectionId`、 `NatId` 最多只支持传一个，且必须传一个。
+    /// * 如果网关有流量，但调用本接口没有返回数据，请在控制台对应网关详情页确认是否开启网关流量监控。
+    @inlinable
+    public func describeGatewayFlowMonitorDetail(_ input: DescribeGatewayFlowMonitorDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGatewayFlowMonitorDetailResponse > {
+        self.client.execute(action: "DescribeGatewayFlowMonitorDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询网关流量监控明细
+    ///
+    /// 本接口（DescribeGatewayFlowMonitorDetail）用于查询网关流量监控明细。
+    /// * 只支持单个网关实例查询。即入参 `VpnId`、 `DirectConnectGatewayId`、 `PeeringConnectionId`、 `NatId` 最多只支持传一个，且必须传一个。
+    /// * 如果网关有流量，但调用本接口没有返回数据，请在控制台对应网关详情页确认是否开启网关流量监控。
+    @inlinable
+    public func describeGatewayFlowMonitorDetail(_ input: DescribeGatewayFlowMonitorDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayFlowMonitorDetailResponse {
+        try await self.client.execute(action: "DescribeGatewayFlowMonitorDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

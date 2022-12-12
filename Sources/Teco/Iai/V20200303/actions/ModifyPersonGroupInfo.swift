@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 修改人员描述信息
-    ///
-    /// 修改指定人员库人员描述内容。
-    @inlinable
-    public func modifyPersonGroupInfo(_ input: ModifyPersonGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonGroupInfoResponse > {
-        self.client.execute(action: "ModifyPersonGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改人员描述信息
-    ///
-    /// 修改指定人员库人员描述内容。
-    @inlinable
-    public func modifyPersonGroupInfo(_ input: ModifyPersonGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonGroupInfoResponse {
-        try await self.client.execute(action: "ModifyPersonGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPersonGroupInfo请求参数结构体
     public struct ModifyPersonGroupInfoRequest: TCRequestModel {
         /// 人员库ID，取值为创建人员库接口中的GroupId
@@ -63,5 +47,21 @@ extension Iai {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改人员描述信息
+    ///
+    /// 修改指定人员库人员描述内容。
+    @inlinable
+    public func modifyPersonGroupInfo(_ input: ModifyPersonGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPersonGroupInfoResponse > {
+        self.client.execute(action: "ModifyPersonGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改人员描述信息
+    ///
+    /// 修改指定人员库人员描述内容。
+    @inlinable
+    public func modifyPersonGroupInfo(_ input: ModifyPersonGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonGroupInfoResponse {
+        try await self.client.execute(action: "ModifyPersonGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mna {
-    /// 设备信息列表
-    ///
-    /// 获取设备信息列表
-    @inlinable
-    public func getDevices(_ input: GetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDevicesResponse > {
-        self.client.execute(action: "GetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设备信息列表
-    ///
-    /// 获取设备信息列表
-    @inlinable
-    public func getDevices(_ input: GetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDevicesResponse {
-        try await self.client.execute(action: "GetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDevices请求参数结构体
     public struct GetDevicesRequest: TCRequestModel {
         /// 每页显示记录数，PageSize、PageNumber值均为-1 时，按照1页无限制条数匹配所有设备
@@ -42,7 +26,7 @@ extension Mna {
         /// 搜索设备的关键字（ID或者设备名），为空时匹配所有设备
         public let keyword: String?
         
-        public init (pageSize: Int64, pageNumber: Int64, keyword: String?) {
+        public init (pageSize: Int64, pageNumber: Int64, keyword: String? = nil) {
             self.pageSize = pageSize
             self.pageNumber = pageNumber
             self.keyword = keyword
@@ -75,5 +59,21 @@ extension Mna {
             case totalPage = "TotalPage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设备信息列表
+    ///
+    /// 获取设备信息列表
+    @inlinable
+    public func getDevices(_ input: GetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDevicesResponse > {
+        self.client.execute(action: "GetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设备信息列表
+    ///
+    /// 获取设备信息列表
+    @inlinable
+    public func getDevices(_ input: GetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDevicesResponse {
+        try await self.client.execute(action: "GetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

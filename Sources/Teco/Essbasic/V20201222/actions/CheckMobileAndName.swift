@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 手机号二要素核验
-    ///
-    /// 该接口为第三方平台向电子签平台验证手机号二要素
-    @inlinable
-    public func checkMobileAndName(_ input: CheckMobileAndNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckMobileAndNameResponse > {
-        self.client.execute(action: "CheckMobileAndName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 手机号二要素核验
-    ///
-    /// 该接口为第三方平台向电子签平台验证手机号二要素
-    @inlinable
-    public func checkMobileAndName(_ input: CheckMobileAndNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileAndNameResponse {
-        try await self.client.execute(action: "CheckMobileAndName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckMobileAndName请求参数结构体
     public struct CheckMobileAndNameRequest: TCRequestModel {
         /// 调用方信息; 必选
@@ -83,5 +67,21 @@ extension Essbasic {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 手机号二要素核验
+    ///
+    /// 该接口为第三方平台向电子签平台验证手机号二要素
+    @inlinable
+    public func checkMobileAndName(_ input: CheckMobileAndNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckMobileAndNameResponse > {
+        self.client.execute(action: "CheckMobileAndName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 手机号二要素核验
+    ///
+    /// 该接口为第三方平台向电子签平台验证手机号二要素
+    @inlinable
+    public func checkMobileAndName(_ input: CheckMobileAndNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileAndNameResponse {
+        try await self.client.execute(action: "CheckMobileAndName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

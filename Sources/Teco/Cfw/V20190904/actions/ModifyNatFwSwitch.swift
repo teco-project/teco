@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 修改NAT防火墙开关
-    @inlinable
-    public func modifyNatFwSwitch(_ input: ModifyNatFwSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNatFwSwitchResponse > {
-        self.client.execute(action: "ModifyNatFwSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改NAT防火墙开关
-    @inlinable
-    public func modifyNatFwSwitch(_ input: ModifyNatFwSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatFwSwitchResponse {
-        try await self.client.execute(action: "ModifyNatFwSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNatFwSwitch请求参数结构体
     public struct ModifyNatFwSwitchRequest: TCRequestModel {
         /// 开关，0：关闭，1：开启
@@ -41,7 +29,7 @@ extension Cfw {
         /// 路由表id列表，其中CfwInsIdList，SubnetIdList和RouteTableIdList只能传递一种。
         public let routeTableIdList: [String]?
         
-        public init (enable: Int64, cfwInsIdList: [String]?, subnetIdList: [String]?, routeTableIdList: [String]?) {
+        public init (enable: Int64, cfwInsIdList: [String]? = nil, subnetIdList: [String]? = nil, routeTableIdList: [String]? = nil) {
             self.enable = enable
             self.cfwInsIdList = cfwInsIdList
             self.subnetIdList = subnetIdList
@@ -64,5 +52,17 @@ extension Cfw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改NAT防火墙开关
+    @inlinable
+    public func modifyNatFwSwitch(_ input: ModifyNatFwSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNatFwSwitchResponse > {
+        self.client.execute(action: "ModifyNatFwSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改NAT防火墙开关
+    @inlinable
+    public func modifyNatFwSwitch(_ input: ModifyNatFwSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatFwSwitchResponse {
+        try await self.client.execute(action: "ModifyNatFwSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

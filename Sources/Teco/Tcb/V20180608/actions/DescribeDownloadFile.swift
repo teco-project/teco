@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 获取下载文件信息
-    @inlinable
-    public func describeDownloadFile(_ input: DescribeDownloadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDownloadFileResponse > {
-        self.client.execute(action: "DescribeDownloadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取下载文件信息
-    @inlinable
-    public func describeDownloadFile(_ input: DescribeDownloadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDownloadFileResponse {
-        try await self.client.execute(action: "DescribeDownloadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDownloadFile请求参数结构体
     public struct DescribeDownloadFileRequest: TCRequestModel {
         /// 代码uri，格式如：extension://abcdefhhxxx.zip，对应 DescribeExtensionUploadInfo 接口的返回值
@@ -64,5 +52,17 @@ extension Tcb {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取下载文件信息
+    @inlinable
+    public func describeDownloadFile(_ input: DescribeDownloadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDownloadFileResponse > {
+        self.client.execute(action: "DescribeDownloadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取下载文件信息
+    @inlinable
+    public func describeDownloadFile(_ input: DescribeDownloadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDownloadFileResponse {
+        try await self.client.execute(action: "DescribeDownloadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 获取设备列表
-    ///
-    /// 本接口（DescribeDevices）用于查询物联网通信设备的设备列表。 
-    @inlinable
-    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesResponse > {
-        self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备列表
-    ///
-    /// 本接口（DescribeDevices）用于查询物联网通信设备的设备列表。 
-    @inlinable
-    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
-        try await self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDevices请求参数结构体
     public struct DescribeDevicesRequest: TCRequestModel {
         /// 需要查看设备列表的产品 ID
@@ -51,7 +35,7 @@ extension Iotcloud {
         /// 设备是否启用，0禁用状态1启用状态，默认不区分
         public let enableState: UInt64?
         
-        public init (productId: String, offset: UInt64, limit: UInt64, firmwareVersion: String?, deviceName: String?, enableState: UInt64?) {
+        public init (productId: String, offset: UInt64, limit: UInt64, firmwareVersion: String? = nil, deviceName: String? = nil, enableState: UInt64? = nil) {
             self.productId = productId
             self.offset = offset
             self.limit = limit
@@ -86,5 +70,21 @@ extension Iotcloud {
             case devices = "Devices"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备列表
+    ///
+    /// 本接口（DescribeDevices）用于查询物联网通信设备的设备列表。 
+    @inlinable
+    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesResponse > {
+        self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备列表
+    ///
+    /// 本接口（DescribeDevices）用于查询物联网通信设备的设备列表。 
+    @inlinable
+    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
+        try await self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

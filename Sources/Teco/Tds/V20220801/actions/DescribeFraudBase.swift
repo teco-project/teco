@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tds {
-    /// 查询设备风险
-    @inlinable
-    public func describeFraudBase(_ input: DescribeFraudBaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFraudBaseResponse > {
-        self.client.execute(action: "DescribeFraudBase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备风险
-    @inlinable
-    public func describeFraudBase(_ input: DescribeFraudBaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudBaseResponse {
-        try await self.client.execute(action: "DescribeFraudBase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFraudBase请求参数结构体
     public struct DescribeFraudBaseRequest: TCRequestModel {
         /// 客户端通过SDK获取的设备Token
@@ -93,5 +81,17 @@ extension Tds {
             case histRiskInfos = "HistRiskInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备风险
+    @inlinable
+    public func describeFraudBase(_ input: DescribeFraudBaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFraudBaseResponse > {
+        self.client.execute(action: "DescribeFraudBase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备风险
+    @inlinable
+    public func describeFraudBase(_ input: DescribeFraudBaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudBaseResponse {
+        try await self.client.execute(action: "DescribeFraudBase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

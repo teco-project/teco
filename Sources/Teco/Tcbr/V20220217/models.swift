@@ -107,15 +107,15 @@ extension Tcbr {
         public let deployRemark: String?
         
         /// 代码仓库信息
-        public let repoInfo: RepositoryInfo
+        public let repoInfo: RepositoryInfo?
         
         /// 无Dockerfile时填写
-        public let buildPacks: BuildPacksInfo
+        public let buildPacks: BuildPacksInfo?
         
         /// 发布类型 GRAY | FULL
         public let releaseType: String?
         
-        public init (deployType: String, imageUrl: String?, packageName: String?, packageVersion: String?, deployRemark: String?, repoInfo: RepositoryInfo, buildPacks: BuildPacksInfo, releaseType: String?) {
+        public init (deployType: String, imageUrl: String? = nil, packageName: String? = nil, packageVersion: String? = nil, deployRemark: String? = nil, repoInfo: RepositoryInfo? = nil, buildPacks: BuildPacksInfo? = nil, releaseType: String? = nil) {
             self.deployType = deployType
             self.imageUrl = imageUrl
             self.packageName = packageName
@@ -474,7 +474,7 @@ extension Tcbr {
         /// 解析类型：json ｜ line
         public let logParseType: String?
         
-        public init (envId: String, serverName: String, openAccessTypes: [String], cpu: Float, mem: Float, minNum: UInt64, maxNum: UInt64, policyDetails: [HpaPolicy], customLogs: String, envParams: String, initialDelaySeconds: UInt64, createTime: String, port: Int64, hasDockerfile: Bool, dockerfile: String, buildDir: String, logType: String?, logSetId: String?, logTopicId: String?, logParseType: String?) {
+        public init (envId: String, serverName: String, openAccessTypes: [String], cpu: Float, mem: Float, minNum: UInt64, maxNum: UInt64, policyDetails: [HpaPolicy], customLogs: String, envParams: String, initialDelaySeconds: UInt64, createTime: String, port: Int64, hasDockerfile: Bool, dockerfile: String, buildDir: String, logType: String? = nil, logSetId: String? = nil, logTopicId: String? = nil, logParseType: String? = nil) {
             self.envId = envId
             self.serverName = serverName
             self.openAccessTypes = openAccessTypes
@@ -738,12 +738,12 @@ extension Tcbr {
         public let flowRatio: Int64?
         
         /// 测试KV值
-        public let urlParam: ObjectKV
+        public let urlParam: ObjectKV?
         
         /// 权重
         public let priority: Int64?
         
-        public init (versionName: String, isDefaultPriority: Bool, flowRatio: Int64?, urlParam: ObjectKV, priority: Int64?) {
+        public init (versionName: String, isDefaultPriority: Bool, flowRatio: Int64? = nil, urlParam: ObjectKV? = nil, priority: Int64? = nil) {
             self.versionName = versionName
             self.isDefaultPriority = isDefaultPriority
             self.flowRatio = flowRatio

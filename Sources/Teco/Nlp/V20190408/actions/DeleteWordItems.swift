@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Nlp {
-    /// 删除词条
-    ///
-    /// 用于删除自定义词库中的词条。
-    @inlinable
-    public func deleteWordItems(_ input: DeleteWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWordItemsResponse > {
-        self.client.execute(action: "DeleteWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除词条
-    ///
-    /// 用于删除自定义词库中的词条。
-    @inlinable
-    public func deleteWordItems(_ input: DeleteWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordItemsResponse {
-        try await self.client.execute(action: "DeleteWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteWordItems请求参数结构体
     public struct DeleteWordItemsRequest: TCRequestModel {
         /// 自定义词库ID。
@@ -58,5 +42,21 @@ extension Nlp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除词条
+    ///
+    /// 用于删除自定义词库中的词条。
+    @inlinable
+    public func deleteWordItems(_ input: DeleteWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteWordItemsResponse > {
+        self.client.execute(action: "DeleteWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除词条
+    ///
+    /// 用于删除自定义词库中的词条。
+    @inlinable
+    public func deleteWordItems(_ input: DeleteWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordItemsResponse {
+        try await self.client.execute(action: "DeleteWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

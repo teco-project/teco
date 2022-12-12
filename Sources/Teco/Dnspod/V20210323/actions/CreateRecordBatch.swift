@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 批量添加记录
-    @inlinable
-    public func createRecordBatch(_ input: CreateRecordBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRecordBatchResponse > {
-        self.client.execute(action: "CreateRecordBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量添加记录
-    @inlinable
-    public func createRecordBatch(_ input: CreateRecordBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordBatchResponse {
-        try await self.client.execute(action: "CreateRecordBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRecordBatch请求参数结构体
     public struct CreateRecordBatchRequest: TCRequestModel {
         /// 域名ID，多个 domain_id 用英文逗号进行分割。
@@ -62,5 +50,17 @@ extension Dnspod {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量添加记录
+    @inlinable
+    public func createRecordBatch(_ input: CreateRecordBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRecordBatchResponse > {
+        self.client.execute(action: "CreateRecordBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量添加记录
+    @inlinable
+    public func createRecordBatch(_ input: CreateRecordBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordBatchResponse {
+        try await self.client.execute(action: "CreateRecordBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

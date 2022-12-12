@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 上下文检索
-    ///
-    /// 本接口用于搜索日志上下文附近的内容
-    @inlinable
-    public func describeLogContext(_ input: DescribeLogContextRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogContextResponse > {
-        self.client.execute(action: "DescribeLogContext", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上下文检索
-    ///
-    /// 本接口用于搜索日志上下文附近的内容
-    @inlinable
-    public func describeLogContext(_ input: DescribeLogContextRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogContextResponse {
-        try await self.client.execute(action: "DescribeLogContext", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLogContext请求参数结构体
     public struct DescribeLogContextRequest: TCRequestModel {
         /// 要查询的日志主题ID
@@ -51,7 +35,7 @@ extension Cls {
         /// 下文日志条数,  默认值10
         public let nextLogs: Int64?
         
-        public init (topicId: String, bTime: String, pkgId: String, pkgLogId: Int64, prevLogs: Int64?, nextLogs: Int64?) {
+        public init (topicId: String, bTime: String, pkgId: String, pkgLogId: Int64, prevLogs: Int64? = nil, nextLogs: Int64? = nil) {
             self.topicId = topicId
             self.bTime = bTime
             self.pkgId = pkgId
@@ -90,5 +74,21 @@ extension Cls {
             case nextOver = "NextOver"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上下文检索
+    ///
+    /// 本接口用于搜索日志上下文附近的内容
+    @inlinable
+    public func describeLogContext(_ input: DescribeLogContextRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLogContextResponse > {
+        self.client.execute(action: "DescribeLogContext", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上下文检索
+    ///
+    /// 本接口用于搜索日志上下文附近的内容
+    @inlinable
+    public func describeLogContext(_ input: DescribeLogContextRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogContextResponse {
+        try await self.client.execute(action: "DescribeLogContext", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

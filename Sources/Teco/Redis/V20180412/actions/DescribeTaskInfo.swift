@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// Redis查询任务结果
-    ///
-    /// 用于查询任务结果
-    @inlinable
-    public func describeTaskInfo(_ input: DescribeTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInfoResponse > {
-        self.client.execute(action: "DescribeTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// Redis查询任务结果
-    ///
-    /// 用于查询任务结果
-    @inlinable
-    public func describeTaskInfo(_ input: DescribeTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInfoResponse {
-        try await self.client.execute(action: "DescribeTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskInfo请求参数结构体
     public struct DescribeTaskInfoRequest: TCRequestModel {
         /// 任务ID
@@ -73,5 +57,21 @@ extension Redis {
             case taskMessage = "TaskMessage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// Redis查询任务结果
+    ///
+    /// 用于查询任务结果
+    @inlinable
+    public func describeTaskInfo(_ input: DescribeTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskInfoResponse > {
+        self.client.execute(action: "DescribeTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// Redis查询任务结果
+    ///
+    /// 用于查询任务结果
+    @inlinable
+    public func describeTaskInfo(_ input: DescribeTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInfoResponse {
+        try await self.client.execute(action: "DescribeTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 查询售卖价格
-    ///
-    /// 本接口 (InquiryPriceCreateDBInstances) 用于查询购买一个或多个实例的价格信息。
-    @inlinable
-    public func inquiryPriceCreateDBInstances(_ input: InquiryPriceCreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateDBInstancesResponse > {
-        self.client.execute(action: "InquiryPriceCreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询售卖价格
-    ///
-    /// 本接口 (InquiryPriceCreateDBInstances) 用于查询购买一个或多个实例的价格信息。
-    @inlinable
-    public func inquiryPriceCreateDBInstances(_ input: InquiryPriceCreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDBInstancesResponse {
-        try await self.client.execute(action: "InquiryPriceCreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceCreateDBInstances请求参数结构体
     public struct InquiryPriceCreateDBInstancesRequest: TCRequestModel {
         /// 可用区ID。该参数可以通过调用 DescribeZones 接口的返回值中的Zone字段来获取。
@@ -64,7 +48,7 @@ extension Postgres {
         /// mssql_compatible（MSSQL兼容-云数据库PostgreSQL）
         public let dbEngine: String?
         
-        public init (zone: String, specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, pid: UInt64?, instanceChargeType: String?, instanceType: String?, dbEngine: String?) {
+        public init (zone: String, specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, pid: UInt64? = nil, instanceChargeType: String? = nil, instanceType: String? = nil, dbEngine: String? = nil) {
             self.zone = zone
             self.specCode = specCode
             self.storage = storage
@@ -109,5 +93,21 @@ extension Postgres {
             case currency = "Currency"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询售卖价格
+    ///
+    /// 本接口 (InquiryPriceCreateDBInstances) 用于查询购买一个或多个实例的价格信息。
+    @inlinable
+    public func inquiryPriceCreateDBInstances(_ input: InquiryPriceCreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateDBInstancesResponse > {
+        self.client.execute(action: "InquiryPriceCreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询售卖价格
+    ///
+    /// 本接口 (InquiryPriceCreateDBInstances) 用于查询购买一个或多个实例的价格信息。
+    @inlinable
+    public func inquiryPriceCreateDBInstances(_ input: InquiryPriceCreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDBInstancesResponse {
+        try await self.client.execute(action: "InquiryPriceCreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

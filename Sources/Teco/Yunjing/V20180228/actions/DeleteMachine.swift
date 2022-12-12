@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 卸载云镜客户端
-    ///
-    /// 本接口（DeleteMachine）用于卸载云镜客户端。
-    @inlinable
-    public func deleteMachine(_ input: DeleteMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMachineResponse > {
-        self.client.execute(action: "DeleteMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 卸载云镜客户端
-    ///
-    /// 本接口（DeleteMachine）用于卸载云镜客户端。
-    @inlinable
-    public func deleteMachine(_ input: DeleteMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineResponse {
-        try await self.client.execute(action: "DeleteMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteMachine请求参数结构体
     public struct DeleteMachineRequest: TCRequestModel {
         /// 云镜客户端Uuid。
@@ -53,5 +37,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 卸载云镜客户端
+    ///
+    /// 本接口（DeleteMachine）用于卸载云镜客户端。
+    @inlinable
+    public func deleteMachine(_ input: DeleteMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMachineResponse > {
+        self.client.execute(action: "DeleteMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 卸载云镜客户端
+    ///
+    /// 本接口（DeleteMachine）用于卸载云镜客户端。
+    @inlinable
+    public func deleteMachine(_ input: DeleteMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineResponse {
+        try await self.client.execute(action: "DeleteMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 获取环境下单地域
-    @inlinable
-    public func describeEnvDealRegion(_ input: DescribeEnvDealRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvDealRegionResponse > {
-        self.client.execute(action: "DescribeEnvDealRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取环境下单地域
-    @inlinable
-    public func describeEnvDealRegion(_ input: DescribeEnvDealRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvDealRegionResponse {
-        try await self.client.execute(action: "DescribeEnvDealRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEnvDealRegion请求参数结构体
     public struct DescribeEnvDealRegionRequest: TCRequestModel {
         /// 环境ID
@@ -92,5 +80,17 @@ extension Tcb {
             case zoneId = "ZoneId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取环境下单地域
+    @inlinable
+    public func describeEnvDealRegion(_ input: DescribeEnvDealRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvDealRegionResponse > {
+        self.client.execute(action: "DescribeEnvDealRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取环境下单地域
+    @inlinable
+    public func describeEnvDealRegion(_ input: DescribeEnvDealRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvDealRegionResponse {
+        try await self.client.execute(action: "DescribeEnvDealRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

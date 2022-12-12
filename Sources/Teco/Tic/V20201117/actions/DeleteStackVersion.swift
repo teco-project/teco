@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tic {
-    /// 删除一个版本
-    ///
-    /// 本接口（DeleteStackVersion）用于删除一个版本，处于PLAN_IN_PROGRESS和APPLY_IN_PROGRESS状态中的版本无法删除。
-    @inlinable
-    public func deleteStackVersion(_ input: DeleteStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStackVersionResponse > {
-        self.client.execute(action: "DeleteStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除一个版本
-    ///
-    /// 本接口（DeleteStackVersion）用于删除一个版本，处于PLAN_IN_PROGRESS和APPLY_IN_PROGRESS状态中的版本无法删除。
-    @inlinable
-    public func deleteStackVersion(_ input: DeleteStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStackVersionResponse {
-        try await self.client.execute(action: "DeleteStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteStackVersion请求参数结构体
     public struct DeleteStackVersionRequest: TCRequestModel {
         /// 待删除的版本ID
@@ -53,5 +37,21 @@ extension Tic {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除一个版本
+    ///
+    /// 本接口（DeleteStackVersion）用于删除一个版本，处于PLAN_IN_PROGRESS和APPLY_IN_PROGRESS状态中的版本无法删除。
+    @inlinable
+    public func deleteStackVersion(_ input: DeleteStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStackVersionResponse > {
+        self.client.execute(action: "DeleteStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除一个版本
+    ///
+    /// 本接口（DeleteStackVersion）用于删除一个版本，处于PLAN_IN_PROGRESS和APPLY_IN_PROGRESS状态中的版本无法删除。
+    @inlinable
+    public func deleteStackVersion(_ input: DeleteStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStackVersionResponse {
+        try await self.client.execute(action: "DeleteStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

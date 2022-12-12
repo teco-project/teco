@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 删除单个镜像仓库详细信息
-    @inlinable
-    public func removeAssetImageRegistryRegistryDetail(_ input: RemoveAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveAssetImageRegistryRegistryDetailResponse > {
-        self.client.execute(action: "RemoveAssetImageRegistryRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除单个镜像仓库详细信息
-    @inlinable
-    public func removeAssetImageRegistryRegistryDetail(_ input: RemoveAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAssetImageRegistryRegistryDetailResponse {
-        try await self.client.execute(action: "RemoveAssetImageRegistryRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemoveAssetImageRegistryRegistryDetail请求参数结构体
     public struct RemoveAssetImageRegistryRegistryDetailRequest: TCRequestModel {
         /// 仓库唯一id
@@ -49,5 +37,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除单个镜像仓库详细信息
+    @inlinable
+    public func removeAssetImageRegistryRegistryDetail(_ input: RemoveAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveAssetImageRegistryRegistryDetailResponse > {
+        self.client.execute(action: "RemoveAssetImageRegistryRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除单个镜像仓库详细信息
+    @inlinable
+    public func removeAssetImageRegistryRegistryDetail(_ input: RemoveAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAssetImageRegistryRegistryDetailResponse {
+        try await self.client.execute(action: "RemoveAssetImageRegistryRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

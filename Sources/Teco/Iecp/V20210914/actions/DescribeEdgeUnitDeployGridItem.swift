@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 查询边缘单元指定Grid下的部署应用列表
-    @inlinable
-    public func describeEdgeUnitDeployGridItem(_ input: DescribeEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitDeployGridItemResponse > {
-        self.client.execute(action: "DescribeEdgeUnitDeployGridItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询边缘单元指定Grid下的部署应用列表
-    @inlinable
-    public func describeEdgeUnitDeployGridItem(_ input: DescribeEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitDeployGridItemResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitDeployGridItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeUnitDeployGridItem请求参数结构体
     public struct DescribeEdgeUnitDeployGridItemRequest: TCRequestModel {
         /// 边缘单元ID
@@ -44,7 +32,7 @@ extension Iecp {
         /// 排序，默认ASC
         public let order: String?
         
-        public init (edgeUnitId: UInt64, gridName: String, workloadKind: String, namespace: String?, order: String?) {
+        public init (edgeUnitId: UInt64, gridName: String, workloadKind: String, namespace: String? = nil, order: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.gridName = gridName
             self.workloadKind = workloadKind
@@ -78,5 +66,17 @@ extension Iecp {
             case deploySet = "DeploySet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询边缘单元指定Grid下的部署应用列表
+    @inlinable
+    public func describeEdgeUnitDeployGridItem(_ input: DescribeEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitDeployGridItemResponse > {
+        self.client.execute(action: "DescribeEdgeUnitDeployGridItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘单元指定Grid下的部署应用列表
+    @inlinable
+    public func describeEdgeUnitDeployGridItem(_ input: DescribeEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitDeployGridItemResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitDeployGridItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

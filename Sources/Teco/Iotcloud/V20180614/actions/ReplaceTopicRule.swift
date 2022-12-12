@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 替换规则
-    ///
-    /// 本接口（ReplaceTopicRule）用于修改替换规则 
-    @inlinable
-    public func replaceTopicRule(_ input: ReplaceTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceTopicRuleResponse > {
-        self.client.execute(action: "ReplaceTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 替换规则
-    ///
-    /// 本接口（ReplaceTopicRule）用于修改替换规则 
-    @inlinable
-    public func replaceTopicRule(_ input: ReplaceTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceTopicRuleResponse {
-        try await self.client.execute(action: "ReplaceTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReplaceTopicRule请求参数结构体
     public struct ReplaceTopicRuleRequest: TCRequestModel {
         /// 规则名称
@@ -45,7 +29,7 @@ extension Iotcloud {
         /// action增删改变更填对应topicRulePayload里面第几个action
         public let actionIndex: UInt64?
         
-        public init (ruleName: String, topicRulePayload: TopicRulePayload, modifyType: UInt64?, actionIndex: UInt64?) {
+        public init (ruleName: String, topicRulePayload: TopicRulePayload, modifyType: UInt64? = nil, actionIndex: UInt64? = nil) {
             self.ruleName = ruleName
             self.topicRulePayload = topicRulePayload
             self.modifyType = modifyType
@@ -68,5 +52,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 替换规则
+    ///
+    /// 本接口（ReplaceTopicRule）用于修改替换规则 
+    @inlinable
+    public func replaceTopicRule(_ input: ReplaceTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceTopicRuleResponse > {
+        self.client.execute(action: "ReplaceTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 替换规则
+    ///
+    /// 本接口（ReplaceTopicRule）用于修改替换规则 
+    @inlinable
+    public func replaceTopicRule(_ input: ReplaceTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceTopicRuleResponse {
+        try await self.client.execute(action: "ReplaceTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 创建RocketMQ消费组
-    @inlinable
-    public func createRocketMQGroup(_ input: CreateRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRocketMQGroupResponse > {
-        self.client.execute(action: "CreateRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建RocketMQ消费组
-    @inlinable
-    public func createRocketMQGroup(_ input: CreateRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQGroupResponse {
-        try await self.client.execute(action: "CreateRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateRocketMQGroup请求参数结构体
     public struct CreateRocketMQGroupRequest: TCRequestModel {
         /// Group名称，8~64个字符
@@ -47,7 +35,7 @@ extension Tdmq {
         /// 说明信息，最长128个字符
         public let remark: String?
         
-        public init (groupId: String, namespaces: [String], readEnable: Bool, broadcastEnable: Bool, clusterId: String, remark: String?) {
+        public init (groupId: String, namespaces: [String], readEnable: Bool, broadcastEnable: Bool, clusterId: String, remark: String? = nil) {
             self.groupId = groupId
             self.namespaces = namespaces
             self.readEnable = readEnable
@@ -74,5 +62,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建RocketMQ消费组
+    @inlinable
+    public func createRocketMQGroup(_ input: CreateRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateRocketMQGroupResponse > {
+        self.client.execute(action: "CreateRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建RocketMQ消费组
+    @inlinable
+    public func createRocketMQGroup(_ input: CreateRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQGroupResponse {
+        try await self.client.execute(action: "CreateRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

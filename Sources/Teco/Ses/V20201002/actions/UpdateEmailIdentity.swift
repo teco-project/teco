@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ses {
-    /// 请求验证
-    ///
-    /// 您已经成功配置好了您的DNS，接下来请求腾讯云验证您的DNS配置是否正确
-    @inlinable
-    public func updateEmailIdentity(_ input: UpdateEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEmailIdentityResponse > {
-        self.client.execute(action: "UpdateEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 请求验证
-    ///
-    /// 您已经成功配置好了您的DNS，接下来请求腾讯云验证您的DNS配置是否正确
-    @inlinable
-    public func updateEmailIdentity(_ input: UpdateEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEmailIdentityResponse {
-        try await self.client.execute(action: "UpdateEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateEmailIdentity请求参数结构体
     public struct UpdateEmailIdentityRequest: TCRequestModel {
         /// 请求验证的域名
@@ -65,5 +49,21 @@ extension Ses {
             case attributes = "Attributes"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 请求验证
+    ///
+    /// 您已经成功配置好了您的DNS，接下来请求腾讯云验证您的DNS配置是否正确
+    @inlinable
+    public func updateEmailIdentity(_ input: UpdateEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateEmailIdentityResponse > {
+        self.client.execute(action: "UpdateEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 请求验证
+    ///
+    /// 您已经成功配置好了您的DNS，接下来请求腾讯云验证您的DNS配置是否正确
+    @inlinable
+    public func updateEmailIdentity(_ input: UpdateEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEmailIdentityResponse {
+        try await self.client.execute(action: "UpdateEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 查询安全设置(国际站)
-    @inlinable
-    public func describeSafeAuthFlagIntl(_ input: DescribeSafeAuthFlagIntlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSafeAuthFlagIntlResponse > {
-        self.client.execute(action: "DescribeSafeAuthFlagIntl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全设置(国际站)
-    @inlinable
-    public func describeSafeAuthFlagIntl(_ input: DescribeSafeAuthFlagIntlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafeAuthFlagIntlResponse {
-        try await self.client.execute(action: "DescribeSafeAuthFlagIntl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSafeAuthFlagIntl请求参数结构体
     public struct DescribeSafeAuthFlagIntlRequest: TCRequestModel {
         public init () {
@@ -53,5 +41,17 @@ extension Cam {
             case offsiteFlag = "OffsiteFlag"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全设置(国际站)
+    @inlinable
+    public func describeSafeAuthFlagIntl(_ input: DescribeSafeAuthFlagIntlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSafeAuthFlagIntlResponse > {
+        self.client.execute(action: "DescribeSafeAuthFlagIntl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全设置(国际站)
+    @inlinable
+    public func describeSafeAuthFlagIntl(_ input: DescribeSafeAuthFlagIntlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafeAuthFlagIntlResponse {
+        try await self.client.execute(action: "DescribeSafeAuthFlagIntl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

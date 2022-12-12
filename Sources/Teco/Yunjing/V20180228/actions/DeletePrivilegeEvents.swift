@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 删除本地提权事件
-    ///
-    /// 根据Ids删除本地提权
-    @inlinable
-    public func deletePrivilegeEvents(_ input: DeletePrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivilegeEventsResponse > {
-        self.client.execute(action: "DeletePrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除本地提权事件
-    ///
-    /// 根据Ids删除本地提权
-    @inlinable
-    public func deletePrivilegeEvents(_ input: DeletePrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeEventsResponse {
-        try await self.client.execute(action: "DeletePrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePrivilegeEvents请求参数结构体
     public struct DeletePrivilegeEventsRequest: TCRequestModel {
         /// ID数组，最大100条。
@@ -53,5 +37,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除本地提权事件
+    ///
+    /// 根据Ids删除本地提权
+    @inlinable
+    public func deletePrivilegeEvents(_ input: DeletePrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivilegeEventsResponse > {
+        self.client.execute(action: "DeletePrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除本地提权事件
+    ///
+    /// 根据Ids删除本地提权
+    @inlinable
+    public func deletePrivilegeEvents(_ input: DeletePrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeEventsResponse {
+        try await self.client.execute(action: "DeletePrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

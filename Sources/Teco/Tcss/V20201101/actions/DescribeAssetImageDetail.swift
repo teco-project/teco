@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询镜像信息
-    ///
-    /// 查询镜像详细信息
-    @inlinable
-    public func describeAssetImageDetail(_ input: DescribeAssetImageDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageDetailResponse > {
-        self.client.execute(action: "DescribeAssetImageDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询镜像信息
-    ///
-    /// 查询镜像详细信息
-    @inlinable
-    public func describeAssetImageDetail(_ input: DescribeAssetImageDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageDetailResponse {
-        try await self.client.execute(action: "DescribeAssetImageDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageDetail请求参数结构体
     public struct DescribeAssetImageDetailRequest: TCRequestModel {
         /// 镜像id
@@ -186,5 +170,21 @@ extension Tcss {
             case isAuthorized = "IsAuthorized"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询镜像信息
+    ///
+    /// 查询镜像详细信息
+    @inlinable
+    public func describeAssetImageDetail(_ input: DescribeAssetImageDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageDetailResponse > {
+        self.client.execute(action: "DescribeAssetImageDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像信息
+    ///
+    /// 查询镜像详细信息
+    @inlinable
+    public func describeAssetImageDetail(_ input: DescribeAssetImageDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageDetailResponse {
+        try await self.client.execute(action: "DescribeAssetImageDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

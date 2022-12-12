@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 房产证识别
-    ///
-    /// 本接口支持房产证关键字段的识别，包括房地产权利人、共有情况、登记时间、规划用途、房屋性质、房屋坐落等。
-    /// 目前接口对合肥、成都、佛山三个城市的房产证版式识别较好。
-    @inlinable
-    public func propOwnerCertOCR(_ input: PropOwnerCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PropOwnerCertOCRResponse > {
-        self.client.execute(action: "PropOwnerCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 房产证识别
-    ///
-    /// 本接口支持房产证关键字段的识别，包括房地产权利人、共有情况、登记时间、规划用途、房屋性质、房屋坐落等。
-    /// 目前接口对合肥、成都、佛山三个城市的房产证版式识别较好。
-    @inlinable
-    public func propOwnerCertOCR(_ input: PropOwnerCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PropOwnerCertOCRResponse {
-        try await self.client.execute(action: "PropOwnerCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PropOwnerCertOCR请求参数结构体
     public struct PropOwnerCertOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -48,7 +30,7 @@ extension Ocr {
         /// 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         public let imageUrl: String?
         
-        public init (imageBase64: String?, imageUrl: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
         }
@@ -91,5 +73,23 @@ extension Ocr {
             case location = "Location"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 房产证识别
+    ///
+    /// 本接口支持房产证关键字段的识别，包括房地产权利人、共有情况、登记时间、规划用途、房屋性质、房屋坐落等。
+    /// 目前接口对合肥、成都、佛山三个城市的房产证版式识别较好。
+    @inlinable
+    public func propOwnerCertOCR(_ input: PropOwnerCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PropOwnerCertOCRResponse > {
+        self.client.execute(action: "PropOwnerCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 房产证识别
+    ///
+    /// 本接口支持房产证关键字段的识别，包括房地产权利人、共有情况、登记时间、规划用途、房屋性质、房屋坐落等。
+    /// 目前接口对合肥、成都、佛山三个城市的房产证版式识别较好。
+    @inlinable
+    public func propOwnerCertOCR(_ input: PropOwnerCertOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PropOwnerCertOCRResponse {
+        try await self.client.execute(action: "PropOwnerCertOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

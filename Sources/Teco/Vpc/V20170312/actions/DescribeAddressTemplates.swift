@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询IP地址模板
-    ///
-    /// 本接口（DescribeAddressTemplates）用于查询IP地址模板
-    @inlinable
-    public func describeAddressTemplates(_ input: DescribeAddressTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAddressTemplatesResponse > {
-        self.client.execute(action: "DescribeAddressTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询IP地址模板
-    ///
-    /// 本接口（DescribeAddressTemplates）用于查询IP地址模板
-    @inlinable
-    public func describeAddressTemplates(_ input: DescribeAddressTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressTemplatesResponse {
-        try await self.client.execute(action: "DescribeAddressTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAddressTemplates请求参数结构体
     public struct DescribeAddressTemplatesRequest: TCRequestModel {
         /// 过滤条件。
@@ -45,7 +29,7 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。
         public let limit: String?
         
-        public init (filters: [Filter]?, offset: String?, limit: String?) {
+        public init (filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -74,5 +58,21 @@ extension Vpc {
             case addressTemplateSet = "AddressTemplateSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询IP地址模板
+    ///
+    /// 本接口（DescribeAddressTemplates）用于查询IP地址模板
+    @inlinable
+    public func describeAddressTemplates(_ input: DescribeAddressTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAddressTemplatesResponse > {
+        self.client.execute(action: "DescribeAddressTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询IP地址模板
+    ///
+    /// 本接口（DescribeAddressTemplates）用于查询IP地址模板
+    @inlinable
+    public func describeAddressTemplates(_ input: DescribeAddressTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressTemplatesResponse {
+        try await self.client.execute(action: "DescribeAddressTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

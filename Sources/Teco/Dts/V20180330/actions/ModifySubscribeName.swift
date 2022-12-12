@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 修改数据订阅实例的名称
-    ///
-    /// 本接口(ModifySubscribeName)用于修改数据订阅实例的名称
-    @inlinable
-    public func modifySubscribeName(_ input: ModifySubscribeNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscribeNameResponse > {
-        self.client.execute(action: "ModifySubscribeName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改数据订阅实例的名称
-    ///
-    /// 本接口(ModifySubscribeName)用于修改数据订阅实例的名称
-    @inlinable
-    public func modifySubscribeName(_ input: ModifySubscribeNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeNameResponse {
-        try await self.client.execute(action: "ModifySubscribeName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySubscribeName请求参数结构体
     public struct ModifySubscribeNameRequest: TCRequestModel {
         /// 数据订阅实例的ID
@@ -58,5 +42,21 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改数据订阅实例的名称
+    ///
+    /// 本接口(ModifySubscribeName)用于修改数据订阅实例的名称
+    @inlinable
+    public func modifySubscribeName(_ input: ModifySubscribeNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubscribeNameResponse > {
+        self.client.execute(action: "ModifySubscribeName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改数据订阅实例的名称
+    ///
+    /// 本接口(ModifySubscribeName)用于修改数据订阅实例的名称
+    @inlinable
+    public func modifySubscribeName(_ input: ModifySubscribeNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeNameResponse {
+        try await self.client.execute(action: "ModifySubscribeName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

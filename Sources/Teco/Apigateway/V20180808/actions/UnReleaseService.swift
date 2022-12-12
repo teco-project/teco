@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 下线服务
-    ///
-    /// 本接口（UnReleaseService）用于下线服务。
-    /// 用户发布服务到某个环境后，此服务中的 API 方可被调用者进行调用，当用户需要将此服务从发布环境中下线时，可调用此 API。下线后的服务不可被调用。
-    @inlinable
-    public func unReleaseService(_ input: UnReleaseServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnReleaseServiceResponse > {
-        self.client.execute(action: "UnReleaseService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下线服务
-    ///
-    /// 本接口（UnReleaseService）用于下线服务。
-    /// 用户发布服务到某个环境后，此服务中的 API 方可被调用者进行调用，当用户需要将此服务从发布环境中下线时，可调用此 API。下线后的服务不可被调用。
-    @inlinable
-    public func unReleaseService(_ input: UnReleaseServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnReleaseServiceResponse {
-        try await self.client.execute(action: "UnReleaseService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnReleaseService请求参数结构体
     public struct UnReleaseServiceRequest: TCRequestModel {
         /// 待下线服务的唯一 ID。
@@ -44,7 +26,7 @@ extension Apigateway {
         /// 保留字段，待下线的API列表。
         public let apiIds: [String]?
         
-        public init (serviceId: String, environmentName: String, apiIds: [String]?) {
+        public init (serviceId: String, environmentName: String, apiIds: [String]? = nil) {
             self.serviceId = serviceId
             self.environmentName = environmentName
             self.apiIds = apiIds
@@ -70,5 +52,23 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下线服务
+    ///
+    /// 本接口（UnReleaseService）用于下线服务。
+    /// 用户发布服务到某个环境后，此服务中的 API 方可被调用者进行调用，当用户需要将此服务从发布环境中下线时，可调用此 API。下线后的服务不可被调用。
+    @inlinable
+    public func unReleaseService(_ input: UnReleaseServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnReleaseServiceResponse > {
+        self.client.execute(action: "UnReleaseService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下线服务
+    ///
+    /// 本接口（UnReleaseService）用于下线服务。
+    /// 用户发布服务到某个环境后，此服务中的 API 方可被调用者进行调用，当用户需要将此服务从发布环境中下线时，可调用此 API。下线后的服务不可被调用。
+    @inlinable
+    public func unReleaseService(_ input: UnReleaseServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnReleaseServiceResponse {
+        try await self.client.execute(action: "UnReleaseService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

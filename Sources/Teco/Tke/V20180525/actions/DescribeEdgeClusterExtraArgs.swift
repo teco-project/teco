@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询边缘集群自定义参数
-    @inlinable
-    public func describeEdgeClusterExtraArgs(_ input: DescribeEdgeClusterExtraArgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeClusterExtraArgsResponse > {
-        self.client.execute(action: "DescribeEdgeClusterExtraArgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询边缘集群自定义参数
-    @inlinable
-    public func describeEdgeClusterExtraArgs(_ input: DescribeEdgeClusterExtraArgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterExtraArgsResponse {
-        try await self.client.execute(action: "DescribeEdgeClusterExtraArgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeClusterExtraArgs请求参数结构体
     public struct DescribeEdgeClusterExtraArgsRequest: TCRequestModel {
         /// 集群ID
@@ -45,7 +33,7 @@ extension Tke {
     public struct DescribeEdgeClusterExtraArgsResponse: TCResponseModel {
         /// 集群自定义参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let clusterExtraArgs: EdgeClusterExtraArgs
+        public let clusterExtraArgs: EdgeClusterExtraArgs?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -54,5 +42,17 @@ extension Tke {
             case clusterExtraArgs = "ClusterExtraArgs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询边缘集群自定义参数
+    @inlinable
+    public func describeEdgeClusterExtraArgs(_ input: DescribeEdgeClusterExtraArgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeClusterExtraArgsResponse > {
+        self.client.execute(action: "DescribeEdgeClusterExtraArgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘集群自定义参数
+    @inlinable
+    public func describeEdgeClusterExtraArgs(_ input: DescribeEdgeClusterExtraArgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterExtraArgsResponse {
+        try await self.client.execute(action: "DescribeEdgeClusterExtraArgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 创建密钥
-    ///
-    /// 本接口（CreateApiKey）用于创建一对新的 API 密钥。
-    @inlinable
-    public func createApiKey(_ input: CreateApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApiKeyResponse > {
-        self.client.execute(action: "CreateApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建密钥
-    ///
-    /// 本接口（CreateApiKey）用于创建一对新的 API 密钥。
-    @inlinable
-    public func createApiKey(_ input: CreateApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiKeyResponse {
-        try await self.client.execute(action: "CreateApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateApiKey请求参数结构体
     public struct CreateApiKeyRequest: TCRequestModel {
         /// 用户自定义密钥名称。
@@ -45,7 +29,7 @@ extension Apigateway {
         /// 用户自定义密钥 Key，AccessKeyType 为 manual 时必传。长度为10 - 50字符，由字母、数字、英文下划线。
         public let accessKeySecret: String?
         
-        public init (secretName: String, accessKeyType: String?, accessKeyId: String?, accessKeySecret: String?) {
+        public init (secretName: String, accessKeyType: String? = nil, accessKeyId: String? = nil, accessKeySecret: String? = nil) {
             self.secretName = secretName
             self.accessKeyType = accessKeyType
             self.accessKeyId = accessKeyId
@@ -64,7 +48,7 @@ extension Apigateway {
     public struct CreateApiKeyResponse: TCResponseModel {
         /// 新增的密钥详情。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: ApiKey
+        public let result: ApiKey?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -73,5 +57,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建密钥
+    ///
+    /// 本接口（CreateApiKey）用于创建一对新的 API 密钥。
+    @inlinable
+    public func createApiKey(_ input: CreateApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApiKeyResponse > {
+        self.client.execute(action: "CreateApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建密钥
+    ///
+    /// 本接口（CreateApiKey）用于创建一对新的 API 密钥。
+    @inlinable
+    public func createApiKey(_ input: CreateApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiKeyResponse {
+        try await self.client.execute(action: "CreateApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

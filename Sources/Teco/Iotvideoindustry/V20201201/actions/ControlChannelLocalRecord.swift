@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 控制通道本地回放流
-    ///
-    /// 本接口（ControlChannelLocalRecord）用于对通道本地回放流进行控制，包括暂停、播放、拉动、结束等
-    @inlinable
-    public func controlChannelLocalRecord(_ input: ControlChannelLocalRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlChannelLocalRecordResponse > {
-        self.client.execute(action: "ControlChannelLocalRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 控制通道本地回放流
-    ///
-    /// 本接口（ControlChannelLocalRecord）用于对通道本地回放流进行控制，包括暂停、播放、拉动、结束等
-    @inlinable
-    public func controlChannelLocalRecord(_ input: ControlChannelLocalRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlChannelLocalRecordResponse {
-        try await self.client.execute(action: "ControlChannelLocalRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ControlChannelLocalRecord请求参数结构体
     public struct ControlChannelLocalRecordRequest: TCRequestModel {
         /// 设备唯一标识
@@ -72,5 +56,21 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 控制通道本地回放流
+    ///
+    /// 本接口（ControlChannelLocalRecord）用于对通道本地回放流进行控制，包括暂停、播放、拉动、结束等
+    @inlinable
+    public func controlChannelLocalRecord(_ input: ControlChannelLocalRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlChannelLocalRecordResponse > {
+        self.client.execute(action: "ControlChannelLocalRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 控制通道本地回放流
+    ///
+    /// 本接口（ControlChannelLocalRecord）用于对通道本地回放流进行控制，包括暂停、播放、拉动、结束等
+    @inlinable
+    public func controlChannelLocalRecord(_ input: ControlChannelLocalRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlChannelLocalRecordResponse {
+        try await self.client.execute(action: "ControlChannelLocalRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

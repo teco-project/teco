@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lcic {
-    /// 源账号登录
-    ///
-    /// 使用源账号登录，源账号为注册时填入的originId
-    @inlinable
-    public func loginOriginId(_ input: LoginOriginIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LoginOriginIdResponse > {
-        self.client.execute(action: "LoginOriginId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 源账号登录
-    ///
-    /// 使用源账号登录，源账号为注册时填入的originId
-    @inlinable
-    public func loginOriginId(_ input: LoginOriginIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LoginOriginIdResponse {
-        try await self.client.execute(action: "LoginOriginId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// LoginOriginId请求参数结构体
     public struct LoginOriginIdRequest: TCRequestModel {
         /// 低代码互动课堂的SdkAppId。
@@ -66,5 +50,21 @@ extension Lcic {
             case token = "Token"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 源账号登录
+    ///
+    /// 使用源账号登录，源账号为注册时填入的originId
+    @inlinable
+    public func loginOriginId(_ input: LoginOriginIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LoginOriginIdResponse > {
+        self.client.execute(action: "LoginOriginId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 源账号登录
+    ///
+    /// 使用源账号登录，源账号为注册时填入的originId
+    @inlinable
+    public func loginOriginId(_ input: LoginOriginIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LoginOriginIdResponse {
+        try await self.client.execute(action: "LoginOriginId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

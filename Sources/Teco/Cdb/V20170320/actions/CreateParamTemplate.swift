@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 创建参数模板
-    ///
-    /// 该接口（CreateParamTemplate）用于创建参数模板，全地域公共参数Region均为ap-guangzhou。
-    @inlinable
-    public func createParamTemplate(_ input: CreateParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateParamTemplateResponse > {
-        self.client.execute(action: "CreateParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建参数模板
-    ///
-    /// 该接口（CreateParamTemplate）用于创建参数模板，全地域公共参数Region均为ap-guangzhou。
-    @inlinable
-    public func createParamTemplate(_ input: CreateParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateParamTemplateResponse {
-        try await self.client.execute(action: "CreateParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateParamTemplate请求参数结构体
     public struct CreateParamTemplateRequest: TCRequestModel {
         /// 参数模板名称。
@@ -54,7 +38,7 @@ extension Cdb {
         /// 实例引擎类型，默认为"InnoDB"，支持值包括："InnoDB"，"RocksDB"。
         public let engineType: String?
         
-        public init (name: String, description: String?, engineVersion: String?, templateId: Int64?, paramList: [Parameter]?, templateType: String?, engineType: String?) {
+        public init (name: String, description: String? = nil, engineVersion: String? = nil, templateId: Int64? = nil, paramList: [Parameter]? = nil, templateType: String? = nil, engineType: String? = nil) {
             self.name = name
             self.description = description
             self.engineVersion = engineVersion
@@ -87,5 +71,21 @@ extension Cdb {
             case templateId = "TemplateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建参数模板
+    ///
+    /// 该接口（CreateParamTemplate）用于创建参数模板，全地域公共参数Region均为ap-guangzhou。
+    @inlinable
+    public func createParamTemplate(_ input: CreateParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateParamTemplateResponse > {
+        self.client.execute(action: "CreateParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建参数模板
+    ///
+    /// 该接口（CreateParamTemplate）用于创建参数模板，全地域公共参数Region均为ap-guangzhou。
+    @inlinable
+    public func createParamTemplate(_ input: CreateParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateParamTemplateResponse {
+        try await self.client.execute(action: "CreateParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

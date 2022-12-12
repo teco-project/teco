@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时文件查杀一键扫描
-    @inlinable
-    public func createVirusScanTask(_ input: CreateVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVirusScanTaskResponse > {
-        self.client.execute(action: "CreateVirusScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时文件查杀一键扫描
-    @inlinable
-    public func createVirusScanTask(_ input: CreateVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanTaskResponse {
-        try await self.client.execute(action: "CreateVirusScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVirusScanTask请求参数结构体
     public struct CreateVirusScanTaskRequest: TCRequestModel {
         /// 是否扫描所有路径
@@ -50,7 +38,7 @@ extension Tcss {
         /// 自选排除或扫描的地址
         public let scanPath: [String]?
         
-        public init (scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64?, scanIds: [String]?, scanPath: [String]?) {
+        public init (scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64? = nil, scanIds: [String]? = nil, scanPath: [String]? = nil) {
             self.scanPathAll = scanPathAll
             self.scanRangeType = scanRangeType
             self.scanRangeAll = scanRangeAll
@@ -83,5 +71,17 @@ extension Tcss {
             case taskID = "TaskID"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时文件查杀一键扫描
+    @inlinable
+    public func createVirusScanTask(_ input: CreateVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVirusScanTaskResponse > {
+        self.client.execute(action: "CreateVirusScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时文件查杀一键扫描
+    @inlinable
+    public func createVirusScanTask(_ input: CreateVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanTaskResponse {
+        try await self.client.execute(action: "CreateVirusScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

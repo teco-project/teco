@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询IP策略绑定的API列表
-    ///
-    /// 本接口（DescribeIPStrategyApisStatus）用于查询IP策略可以绑定的API列表。即服务下所有API和该策略已绑定API的差集。
-    @inlinable
-    public func describeIPStrategyApisStatus(_ input: DescribeIPStrategyApisStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIPStrategyApisStatusResponse > {
-        self.client.execute(action: "DescribeIPStrategyApisStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询IP策略绑定的API列表
-    ///
-    /// 本接口（DescribeIPStrategyApisStatus）用于查询IP策略可以绑定的API列表。即服务下所有API和该策略已绑定API的差集。
-    @inlinable
-    public func describeIPStrategyApisStatus(_ input: DescribeIPStrategyApisStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStrategyApisStatusResponse {
-        try await self.client.execute(action: "DescribeIPStrategyApisStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIPStrategyApisStatus请求参数结构体
     public struct DescribeIPStrategyApisStatusRequest: TCRequestModel {
         /// 服务唯一ID。
@@ -51,7 +35,7 @@ extension Apigateway {
         /// 过滤条件。支持 ApiPath、ApiName、KeyWord（模糊查询Path 和Name）。
         public let filters: [Filter]?
         
-        public init (serviceId: String, strategyId: String, environmentName: String, limit: Int64?, offset: UInt64?, filters: [Filter]?) {
+        public init (serviceId: String, strategyId: String, environmentName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.serviceId = serviceId
             self.strategyId = strategyId
             self.environmentName = environmentName
@@ -74,7 +58,7 @@ extension Apigateway {
     public struct DescribeIPStrategyApisStatusResponse: TCResponseModel {
         /// 环境绑定API列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: IPStrategyApiStatus
+        public let result: IPStrategyApiStatus?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -83,5 +67,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询IP策略绑定的API列表
+    ///
+    /// 本接口（DescribeIPStrategyApisStatus）用于查询IP策略可以绑定的API列表。即服务下所有API和该策略已绑定API的差集。
+    @inlinable
+    public func describeIPStrategyApisStatus(_ input: DescribeIPStrategyApisStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIPStrategyApisStatusResponse > {
+        self.client.execute(action: "DescribeIPStrategyApisStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询IP策略绑定的API列表
+    ///
+    /// 本接口（DescribeIPStrategyApisStatus）用于查询IP策略可以绑定的API列表。即服务下所有API和该策略已绑定API的差集。
+    @inlinable
+    public func describeIPStrategyApisStatus(_ input: DescribeIPStrategyApisStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStrategyApisStatusResponse {
+        try await self.client.execute(action: "DescribeIPStrategyApisStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

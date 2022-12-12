@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 一键切回
-    ///
-    /// 高防IP专业版一键切回源站
-    @inlinable
-    public func createNetReturn(_ input: CreateNetReturnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetReturnResponse > {
-        self.client.execute(action: "CreateNetReturn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 一键切回
-    ///
-    /// 高防IP专业版一键切回源站
-    @inlinable
-    public func createNetReturn(_ input: CreateNetReturnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetReturnResponse {
-        try await self.client.execute(action: "CreateNetReturn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateNetReturn请求参数结构体
     public struct CreateNetReturnRequest: TCRequestModel {
         /// 大禹子产品代号（net表示高防IP专业版）
@@ -58,5 +42,21 @@ extension Dayu {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 一键切回
+    ///
+    /// 高防IP专业版一键切回源站
+    @inlinable
+    public func createNetReturn(_ input: CreateNetReturnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNetReturnResponse > {
+        self.client.execute(action: "CreateNetReturn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 一键切回
+    ///
+    /// 高防IP专业版一键切回源站
+    @inlinable
+    public func createNetReturn(_ input: CreateNetReturnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetReturnResponse {
+        try await self.client.execute(action: "CreateNetReturn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

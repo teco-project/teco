@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dasb {
-    /// 查询资产列表
-    @inlinable
-    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesResponse > {
-        self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询资产列表
-    @inlinable
-    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
-        try await self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDevices请求参数结构体
     public struct DescribeDevicesRequest: TCRequestModel {
         /// 资产ID集合
@@ -65,7 +53,7 @@ extension Dasb {
         /// 过滤条件，可按照标签键、标签进行过滤。如果同时指定标签键和标签过滤条件，它们之间为“AND”的关系
         public let tagFilters: [TagFilter]?
         
-        public init (idSet: [UInt64]?, name: String?, ip: String?, apCodeSet: [String]?, kind: UInt64?, offset: UInt64?, limit: UInt64?, authorizedUserIdSet: [UInt64]?, resourceIdSet: [String]?, kindSet: [UInt64]?, departmentId: String?, tagFilters: [TagFilter]?) {
+        public init (idSet: [UInt64]? = nil, name: String? = nil, ip: String? = nil, apCodeSet: [String]? = nil, kind: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, authorizedUserIdSet: [UInt64]? = nil, resourceIdSet: [String]? = nil, kindSet: [UInt64]? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil) {
             self.idSet = idSet
             self.name = name
             self.ip = ip
@@ -112,5 +100,17 @@ extension Dasb {
             case deviceSet = "DeviceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询资产列表
+    @inlinable
+    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesResponse > {
+        self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询资产列表
+    @inlinable
+    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
+        try await self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

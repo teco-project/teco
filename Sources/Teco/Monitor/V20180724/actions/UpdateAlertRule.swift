@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 更新报警规则
-    ///
-    /// 更新 Prometheus 的报警规则。
-    /// 请注意，**告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description**，，请参考 [Prometheus Rule更多配置请参考](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)。
-    @inlinable
-    public func updateAlertRule(_ input: UpdateAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAlertRuleResponse > {
-        self.client.execute(action: "UpdateAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新报警规则
-    ///
-    /// 更新 Prometheus 的报警规则。
-    /// 请注意，**告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description**，，请参考 [Prometheus Rule更多配置请参考](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)。
-    @inlinable
-    public func updateAlertRule(_ input: UpdateAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAlertRuleResponse {
-        try await self.client.execute(action: "UpdateAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateAlertRule请求参数结构体
     public struct UpdateAlertRuleRequest: TCRequestModel {
         /// Prometheus 报警规则 ID
@@ -70,7 +52,7 @@ extension Monitor {
         /// 报警策略模板分类
         public let type: String?
         
-        public init (ruleId: String, instanceId: String, ruleState: Int64, ruleName: String, expr: String, duration: String, receivers: [String], labels: [PrometheusRuleKV]?, annotations: [PrometheusRuleKV]?, type: String?) {
+        public init (ruleId: String, instanceId: String, ruleState: Int64, ruleName: String, expr: String, duration: String, receivers: [String], labels: [PrometheusRuleKV]? = nil, annotations: [PrometheusRuleKV]? = nil, type: String? = nil) {
             self.ruleId = ruleId
             self.instanceId = instanceId
             self.ruleState = ruleState
@@ -109,5 +91,23 @@ extension Monitor {
             case ruleId = "RuleId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新报警规则
+    ///
+    /// 更新 Prometheus 的报警规则。
+    /// 请注意，**告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description**，，请参考 [Prometheus Rule更多配置请参考](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)。
+    @inlinable
+    public func updateAlertRule(_ input: UpdateAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAlertRuleResponse > {
+        self.client.execute(action: "UpdateAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新报警规则
+    ///
+    /// 更新 Prometheus 的报警规则。
+    /// 请注意，**告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description**，，请参考 [Prometheus Rule更多配置请参考](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)。
+    @inlinable
+    public func updateAlertRule(_ input: UpdateAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAlertRuleResponse {
+        try await self.client.execute(action: "UpdateAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取AMQP Exchange列表
-    @inlinable
-    public func describeAMQPExchanges(_ input: DescribeAMQPExchangesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAMQPExchangesResponse > {
-        self.client.execute(action: "DescribeAMQPExchanges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取AMQP Exchange列表
-    @inlinable
-    public func describeAMQPExchanges(_ input: DescribeAMQPExchangesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPExchangesResponse {
-        try await self.client.execute(action: "DescribeAMQPExchanges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAMQPExchanges请求参数结构体
     public struct DescribeAMQPExchangesRequest: TCRequestModel {
         /// 查询偏移量
@@ -50,7 +38,7 @@ extension Tdmq {
         /// 过滤查询内部或者外部exchange
         public let filterInternal: Bool?
         
-        public init (offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, filterType: [String]?, filterName: String?, filterInternal: Bool?) {
+        public init (offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, filterType: [String]? = nil, filterName: String? = nil, filterInternal: Bool? = nil) {
             self.offset = offset
             self.limit = limit
             self.clusterId = clusterId
@@ -87,5 +75,17 @@ extension Tdmq {
             case exchanges = "Exchanges"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取AMQP Exchange列表
+    @inlinable
+    public func describeAMQPExchanges(_ input: DescribeAMQPExchangesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAMQPExchangesResponse > {
+        self.client.execute(action: "DescribeAMQPExchanges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取AMQP Exchange列表
+    @inlinable
+    public func describeAMQPExchanges(_ input: DescribeAMQPExchangesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPExchangesResponse {
+        try await self.client.execute(action: "DescribeAMQPExchanges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

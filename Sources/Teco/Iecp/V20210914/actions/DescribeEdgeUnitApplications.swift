@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取单元下应用列表
-    @inlinable
-    public func describeEdgeUnitApplications(_ input: DescribeEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitApplicationsResponse > {
-        self.client.execute(action: "DescribeEdgeUnitApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取单元下应用列表
-    @inlinable
-    public func describeEdgeUnitApplications(_ input: DescribeEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationsResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeUnitApplications请求参数结构体
     public struct DescribeEdgeUnitApplicationsRequest: TCRequestModel {
         /// 单元ID
@@ -47,7 +35,7 @@ extension Iecp {
         /// 命名空间过滤
         public let namespace: String?
         
-        public init (edgeUnitId: UInt64, offset: UInt64, limit: UInt64, namePattern: String?, sort: [FieldSort]?, namespace: String?) {
+        public init (edgeUnitId: UInt64, offset: UInt64, limit: UInt64, namePattern: String? = nil, sort: [FieldSort]? = nil, namespace: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.offset = offset
             self.limit = limit
@@ -83,5 +71,17 @@ extension Iecp {
             case applicationSet = "ApplicationSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取单元下应用列表
+    @inlinable
+    public func describeEdgeUnitApplications(_ input: DescribeEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitApplicationsResponse > {
+        self.client.execute(action: "DescribeEdgeUnitApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单元下应用列表
+    @inlinable
+    public func describeEdgeUnitApplications(_ input: DescribeEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationsResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

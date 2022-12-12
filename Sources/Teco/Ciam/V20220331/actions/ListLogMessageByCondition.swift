@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ciam {
-    /// 查询日志信息
-    @inlinable
-    public func listLogMessageByCondition(_ input: ListLogMessageByConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListLogMessageByConditionResponse > {
-        self.client.execute(action: "ListLogMessageByCondition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询日志信息
-    @inlinable
-    public func listLogMessageByCondition(_ input: ListLogMessageByConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogMessageByConditionResponse {
-        try await self.client.execute(action: "ListLogMessageByCondition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListLogMessageByCondition请求参数结构体
     public struct ListLogMessageByConditionRequest: TCRequestModel {
         /// 用户池ID
@@ -42,7 +30,7 @@ extension Ciam {
         /// <li> **events** </li>	Values为["SIGNUP", "USER_UPDATE", "USER_DELETE", "USER_CREATE", "ACCOUNT_LINKING"] 中的一个或多个
         public let filters: [Filter]?
         
-        public init (userStoreId: String, pageable: Pageable, startTime: Int64, filters: [Filter]?) {
+        public init (userStoreId: String, pageable: Pageable, startTime: Int64, filters: [Filter]? = nil) {
             self.userStoreId = userStoreId
             self.pageable = pageable
             self.startTime = startTime
@@ -78,5 +66,17 @@ extension Ciam {
             case content = "Content"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询日志信息
+    @inlinable
+    public func listLogMessageByCondition(_ input: ListLogMessageByConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListLogMessageByConditionResponse > {
+        self.client.execute(action: "ListLogMessageByCondition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询日志信息
+    @inlinable
+    public func listLogMessageByCondition(_ input: ListLogMessageByConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogMessageByConditionResponse {
+        try await self.client.execute(action: "ListLogMessageByCondition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

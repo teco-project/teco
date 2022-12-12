@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 配置CHC物理服务器部署网络
-    @inlinable
-    public func configureChcDeployVpc(_ input: ConfigureChcDeployVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ConfigureChcDeployVpcResponse > {
-        self.client.execute(action: "ConfigureChcDeployVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 配置CHC物理服务器部署网络
-    @inlinable
-    public func configureChcDeployVpc(_ input: ConfigureChcDeployVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureChcDeployVpcResponse {
-        try await self.client.execute(action: "ConfigureChcDeployVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ConfigureChcDeployVpc请求参数结构体
     public struct ConfigureChcDeployVpcRequest: TCRequestModel {
         /// CHC物理服务器的实例Id。
@@ -38,7 +26,7 @@ extension Cvm {
         /// 部署网络的安全组列表。
         public let deploySecurityGroupIds: [String]?
         
-        public init (chcIds: [String], deployVirtualPrivateCloud: VirtualPrivateCloud, deploySecurityGroupIds: [String]?) {
+        public init (chcIds: [String], deployVirtualPrivateCloud: VirtualPrivateCloud, deploySecurityGroupIds: [String]? = nil) {
             self.chcIds = chcIds
             self.deployVirtualPrivateCloud = deployVirtualPrivateCloud
             self.deploySecurityGroupIds = deploySecurityGroupIds
@@ -59,5 +47,17 @@ extension Cvm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 配置CHC物理服务器部署网络
+    @inlinable
+    public func configureChcDeployVpc(_ input: ConfigureChcDeployVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ConfigureChcDeployVpcResponse > {
+        self.client.execute(action: "ConfigureChcDeployVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 配置CHC物理服务器部署网络
+    @inlinable
+    public func configureChcDeployVpc(_ input: ConfigureChcDeployVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureChcDeployVpcResponse {
+        try await self.client.execute(action: "ConfigureChcDeployVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

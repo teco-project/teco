@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 刷新 URL
-    ///
-    /// PurgeUrlsCache 用于批量提交 URL 进行刷新，根据 URL 中域名的当前加速区域进行对应区域的刷新。
-    /// 默认情况下境内、境外加速区域每日 URL 刷新额度各为 10000 条，每次最多可提交 1000 条。
-    @inlinable
-    public func purgeUrlsCache(_ input: PurgeUrlsCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PurgeUrlsCacheResponse > {
-        self.client.execute(action: "PurgeUrlsCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 刷新 URL
-    ///
-    /// PurgeUrlsCache 用于批量提交 URL 进行刷新，根据 URL 中域名的当前加速区域进行对应区域的刷新。
-    /// 默认情况下境内、境外加速区域每日 URL 刷新额度各为 10000 条，每次最多可提交 1000 条。
-    @inlinable
-    public func purgeUrlsCache(_ input: PurgeUrlsCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgeUrlsCacheResponse {
-        try await self.client.execute(action: "PurgeUrlsCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PurgeUrlsCache请求参数结构体
     public struct PurgeUrlsCacheRequest: TCRequestModel {
         /// URL 列表，需要包含协议头部 http:// 或 https://
@@ -48,7 +30,7 @@ extension Cdn {
         /// 是否对中文字符进行编码后刷新
         public let urlEncode: Bool?
         
-        public init (urls: [String], area: String?, urlEncode: Bool?) {
+        public init (urls: [String], area: String? = nil, urlEncode: Bool? = nil) {
             self.urls = urls
             self.area = area
             self.urlEncode = urlEncode
@@ -73,5 +55,23 @@ extension Cdn {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 刷新 URL
+    ///
+    /// PurgeUrlsCache 用于批量提交 URL 进行刷新，根据 URL 中域名的当前加速区域进行对应区域的刷新。
+    /// 默认情况下境内、境外加速区域每日 URL 刷新额度各为 10000 条，每次最多可提交 1000 条。
+    @inlinable
+    public func purgeUrlsCache(_ input: PurgeUrlsCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PurgeUrlsCacheResponse > {
+        self.client.execute(action: "PurgeUrlsCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 刷新 URL
+    ///
+    /// PurgeUrlsCache 用于批量提交 URL 进行刷新，根据 URL 中域名的当前加速区域进行对应区域的刷新。
+    /// 默认情况下境内、境外加速区域每日 URL 刷新额度各为 10000 条，每次最多可提交 1000 条。
+    @inlinable
+    public func purgeUrlsCache(_ input: PurgeUrlsCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgeUrlsCacheResponse {
+        try await self.client.execute(action: "PurgeUrlsCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

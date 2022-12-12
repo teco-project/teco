@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 查询具体的spark应用
-    @inlinable
-    public func describeSparkAppJob(_ input: DescribeSparkAppJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSparkAppJobResponse > {
-        self.client.execute(action: "DescribeSparkAppJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询具体的spark应用
-    @inlinable
-    public func describeSparkAppJob(_ input: DescribeSparkAppJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobResponse {
-        try await self.client.execute(action: "DescribeSparkAppJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSparkAppJob请求参数结构体
     public struct DescribeSparkAppJobRequest: TCRequestModel {
         /// spark作业Id，与JobName同时存在时，JobName无效
@@ -35,7 +23,7 @@ extension Dlc {
         /// spark作业名
         public let jobName: String?
         
-        public init (jobId: String?, jobName: String?) {
+        public init (jobId: String? = nil, jobName: String? = nil) {
             self.jobId = jobId
             self.jobName = jobName
         }
@@ -50,7 +38,7 @@ extension Dlc {
     public struct DescribeSparkAppJobResponse: TCResponseModel {
         /// spark作业详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let job: SparkJobInfo
+        public let job: SparkJobInfo?
         
         /// 查询的spark作业是否存在
         public let isExists: Bool
@@ -63,5 +51,17 @@ extension Dlc {
             case isExists = "IsExists"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询具体的spark应用
+    @inlinable
+    public func describeSparkAppJob(_ input: DescribeSparkAppJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSparkAppJobResponse > {
+        self.client.execute(action: "DescribeSparkAppJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询具体的spark应用
+    @inlinable
+    public func describeSparkAppJob(_ input: DescribeSparkAppJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobResponse {
+        try await self.client.execute(action: "DescribeSparkAppJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

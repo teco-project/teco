@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cr {
-    /// 录音查询（接口）
-    ///
-    /// 用于获取指定案件的录音地址，次日早上8:00后可查询前日录音。
-    @inlinable
-    public func describeRecords(_ input: DescribeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordsResponse > {
-        self.client.execute(action: "DescribeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 录音查询（接口）
-    ///
-    /// 用于获取指定案件的录音地址，次日早上8:00后可查询前日录音。
-    @inlinable
-    public func describeRecords(_ input: DescribeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordsResponse {
-        try await self.client.execute(action: "DescribeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRecords请求参数结构体
     public struct DescribeRecordsRequest: TCRequestModel {
         /// 模块名，本接口取值：Record
@@ -65,7 +49,7 @@ extension Cr {
         /// 实例ID，不传默认为系统分配的初始实例
         public let instId: String?
         
-        public init (module: String, operation: String, productId: String?, accountNum: String?, calledPhone: String?, startBizDate: Date?, endBizDate: Date?, offset: String?, limit: String?, instId: String?) {
+        public init (module: String, operation: String, productId: String? = nil, accountNum: String? = nil, calledPhone: String? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, offset: String? = nil, limit: String? = nil, instId: String? = nil) {
             self.module = module
             self.operation = operation
             self.productId = productId
@@ -109,5 +93,21 @@ extension Cr {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 录音查询（接口）
+    ///
+    /// 用于获取指定案件的录音地址，次日早上8:00后可查询前日录音。
+    @inlinable
+    public func describeRecords(_ input: DescribeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRecordsResponse > {
+        self.client.execute(action: "DescribeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 录音查询（接口）
+    ///
+    /// 用于获取指定案件的录音地址，次日早上8:00后可查询前日录音。
+    @inlinable
+    public func describeRecords(_ input: DescribeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordsResponse {
+        try await self.client.execute(action: "DescribeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

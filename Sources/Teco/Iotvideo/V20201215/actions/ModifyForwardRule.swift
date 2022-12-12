@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 修改转发规则
-    @inlinable
-    public func modifyForwardRule(_ input: ModifyForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyForwardRuleResponse > {
-        self.client.execute(action: "ModifyForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改转发规则
-    @inlinable
-    public func modifyForwardRule(_ input: ModifyForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyForwardRuleResponse {
-        try await self.client.execute(action: "ModifyForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyForwardRule请求参数结构体
     public struct ModifyForwardRuleRequest: TCRequestModel {
         /// 产品ID
@@ -59,7 +47,7 @@ extension Iotvideo {
         /// 队列或主题名称
         public let queueName: String?
         
-        public init (productID: String, msgType: UInt64, skey: String, queueRegion: String, queueType: UInt64, consecretid: String?, instanceId: String?, instanceName: String?, queueID: String?, queueName: String?) {
+        public init (productID: String, msgType: UInt64, skey: String, queueRegion: String, queueType: UInt64, consecretid: String? = nil, instanceId: String? = nil, instanceName: String? = nil, queueID: String? = nil, queueName: String? = nil) {
             self.productID = productID
             self.msgType = msgType
             self.skey = skey
@@ -114,5 +102,17 @@ extension Iotvideo {
             case queueType = "QueueType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改转发规则
+    @inlinable
+    public func modifyForwardRule(_ input: ModifyForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyForwardRuleResponse > {
+        self.client.execute(action: "ModifyForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改转发规则
+    @inlinable
+    public func modifyForwardRule(_ input: ModifyForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyForwardRuleResponse {
+        try await self.client.execute(action: "ModifyForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

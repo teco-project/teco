@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wav {
-    /// 查询活动列表接口
-    ///
-    /// 根据游标拉取活动列表信息
-    @inlinable
-    public func queryActivityList(_ input: QueryActivityListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryActivityListResponse > {
-        self.client.execute(action: "QueryActivityList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询活动列表接口
-    ///
-    /// 根据游标拉取活动列表信息
-    @inlinable
-    public func queryActivityList(_ input: QueryActivityListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityListResponse {
-        try await self.client.execute(action: "QueryActivityList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryActivityList请求参数结构体
     public struct QueryActivityListRequest: TCRequestModel {
         /// 分页游标，对应结果返回的NextCursor,首次请求保持为空
@@ -39,7 +23,7 @@ extension Wav {
         /// 单页数据限制
         public let limit: Int64?
         
-        public init (cursor: String?, limit: Int64?) {
+        public init (cursor: String? = nil, limit: Int64? = nil) {
             self.cursor = cursor
             self.limit = limit
         }
@@ -68,5 +52,21 @@ extension Wav {
             case pageData = "PageData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询活动列表接口
+    ///
+    /// 根据游标拉取活动列表信息
+    @inlinable
+    public func queryActivityList(_ input: QueryActivityListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryActivityListResponse > {
+        self.client.execute(action: "QueryActivityList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询活动列表接口
+    ///
+    /// 根据游标拉取活动列表信息
+    @inlinable
+    public func queryActivityList(_ input: QueryActivityListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityListResponse {
+        try await self.client.execute(action: "QueryActivityList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

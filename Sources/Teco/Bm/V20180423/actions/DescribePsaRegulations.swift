@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 获取预授权规则列表
-    @inlinable
-    public func describePsaRegulations(_ input: DescribePsaRegulationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePsaRegulationsResponse > {
-        self.client.execute(action: "DescribePsaRegulations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取预授权规则列表
-    @inlinable
-    public func describePsaRegulations(_ input: DescribePsaRegulationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePsaRegulationsResponse {
-        try await self.client.execute(action: "DescribePsaRegulations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePsaRegulations请求参数结构体
     public struct DescribePsaRegulationsRequest: TCRequestModel {
         /// 数量限制
@@ -50,7 +38,7 @@ extension Bm {
         /// 排序方式 0:递增(默认) 1:递减
         public let order: UInt64?
         
-        public init (limit: UInt64, offset: UInt64, psaIds: [String]?, psaNames: [String]?, tags: [Tag]?, orderField: String?, order: UInt64?) {
+        public init (limit: UInt64, offset: UInt64, psaIds: [String]? = nil, psaNames: [String]? = nil, tags: [Tag]? = nil, orderField: String? = nil, order: UInt64? = nil) {
             self.limit = limit
             self.offset = offset
             self.psaIds = psaIds
@@ -87,5 +75,17 @@ extension Bm {
             case psaRegulations = "PsaRegulations"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取预授权规则列表
+    @inlinable
+    public func describePsaRegulations(_ input: DescribePsaRegulationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePsaRegulationsResponse > {
+        self.client.execute(action: "DescribePsaRegulations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取预授权规则列表
+    @inlinable
+    public func describePsaRegulations(_ input: DescribePsaRegulationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePsaRegulationsResponse {
+        try await self.client.execute(action: "DescribePsaRegulations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

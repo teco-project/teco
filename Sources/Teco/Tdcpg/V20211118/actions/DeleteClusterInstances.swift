@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdcpg {
-    /// 删除实例
-    ///
-    /// 删除实例。只有当实例状态处于isolated(已隔离)时才生效。
-    @inlinable
-    public func deleteClusterInstances(_ input: DeleteClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterInstancesResponse > {
-        self.client.execute(action: "DeleteClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除实例
-    ///
-    /// 删除实例。只有当实例状态处于isolated(已隔离)时才生效。
-    @inlinable
-    public func deleteClusterInstances(_ input: DeleteClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterInstancesResponse {
-        try await self.client.execute(action: "DeleteClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteClusterInstances请求参数结构体
     public struct DeleteClusterInstancesRequest: TCRequestModel {
         /// 集群ID
@@ -58,5 +42,21 @@ extension Tdcpg {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除实例
+    ///
+    /// 删除实例。只有当实例状态处于isolated(已隔离)时才生效。
+    @inlinable
+    public func deleteClusterInstances(_ input: DeleteClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClusterInstancesResponse > {
+        self.client.execute(action: "DeleteClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除实例
+    ///
+    /// 删除实例。只有当实例状态处于isolated(已隔离)时才生效。
+    @inlinable
+    public func deleteClusterInstances(_ input: DeleteClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterInstancesResponse {
+        try await self.client.execute(action: "DeleteClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

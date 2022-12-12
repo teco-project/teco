@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cws {
-    /// 查看漏洞数随时间变化统计信息
-    ///
-    /// 本接口 (DescribeVulsNumberTimeline) 用于查询漏洞数随时间变化统计信息。
-    @inlinable
-    public func describeVulsNumberTimeline(_ input: DescribeVulsNumberTimelineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulsNumberTimelineResponse > {
-        self.client.execute(action: "DescribeVulsNumberTimeline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看漏洞数随时间变化统计信息
-    ///
-    /// 本接口 (DescribeVulsNumberTimeline) 用于查询漏洞数随时间变化统计信息。
-    @inlinable
-    public func describeVulsNumberTimeline(_ input: DescribeVulsNumberTimelineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsNumberTimelineResponse {
-        try await self.client.execute(action: "DescribeVulsNumberTimeline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulsNumberTimeline请求参数结构体
     public struct DescribeVulsNumberTimelineRequest: TCRequestModel {
         public init () {
@@ -53,5 +37,21 @@ extension Cws {
             case vulsTimeline = "VulsTimeline"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看漏洞数随时间变化统计信息
+    ///
+    /// 本接口 (DescribeVulsNumberTimeline) 用于查询漏洞数随时间变化统计信息。
+    @inlinable
+    public func describeVulsNumberTimeline(_ input: DescribeVulsNumberTimelineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulsNumberTimelineResponse > {
+        self.client.execute(action: "DescribeVulsNumberTimeline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看漏洞数随时间变化统计信息
+    ///
+    /// 本接口 (DescribeVulsNumberTimeline) 用于查询漏洞数随时间变化统计信息。
+    @inlinable
+    public func describeVulsNumberTimeline(_ input: DescribeVulsNumberTimelineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsNumberTimelineResponse {
+        try await self.client.execute(action: "DescribeVulsNumberTimeline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 安全合规查询某类资产的列表
-    ///
-    /// 查询某类资产的列表
-    @inlinable
-    public func describeComplianceAssetList(_ input: DescribeComplianceAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceAssetListResponse > {
-        self.client.execute(action: "DescribeComplianceAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全合规查询某类资产的列表
-    ///
-    /// 查询某类资产的列表
-    @inlinable
-    public func describeComplianceAssetList(_ input: DescribeComplianceAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetListResponse {
-        try await self.client.execute(action: "DescribeComplianceAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeComplianceAssetList请求参数结构体
     public struct DescribeComplianceAssetListRequest: TCRequestModel {
         /// 资产类型列表。
@@ -45,7 +29,7 @@ extension Tcss {
         /// 查询过滤器
         public let filters: [ComplianceFilters]?
         
-        public init (assetTypeSet: [String]?, offset: UInt64?, limit: UInt64?, filters: [ComplianceFilters]?) {
+        public init (assetTypeSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil) {
             self.assetTypeSet = assetTypeSet
             self.offset = offset
             self.limit = limit
@@ -77,5 +61,21 @@ extension Tcss {
             case assetInfoList = "AssetInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全合规查询某类资产的列表
+    ///
+    /// 查询某类资产的列表
+    @inlinable
+    public func describeComplianceAssetList(_ input: DescribeComplianceAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceAssetListResponse > {
+        self.client.execute(action: "DescribeComplianceAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规查询某类资产的列表
+    ///
+    /// 查询某类资产的列表
+    @inlinable
+    public func describeComplianceAssetList(_ input: DescribeComplianceAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetListResponse {
+        try await self.client.execute(action: "DescribeComplianceAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 查询 Ingress 规则
-    @inlinable
-    public func describeIngress(_ input: DescribeIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIngressResponse > {
-        self.client.execute(action: "DescribeIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询 Ingress 规则
-    @inlinable
-    public func describeIngress(_ input: DescribeIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressResponse {
-        try await self.client.execute(action: "DescribeIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIngress请求参数结构体
     public struct DescribeIngressRequest: TCRequestModel {
         /// tem namespaceId
@@ -41,7 +29,7 @@ extension Tem {
         /// 来源渠道
         public let sourceChannel: Int64?
         
-        public init (namespaceId: String, eksNamespace: String, name: String, sourceChannel: Int64?) {
+        public init (namespaceId: String, eksNamespace: String, name: String, sourceChannel: Int64? = nil) {
             self.namespaceId = namespaceId
             self.eksNamespace = eksNamespace
             self.name = name
@@ -68,5 +56,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询 Ingress 规则
+    @inlinable
+    public func describeIngress(_ input: DescribeIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIngressResponse > {
+        self.client.execute(action: "DescribeIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询 Ingress 规则
+    @inlinable
+    public func describeIngress(_ input: DescribeIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressResponse {
+        try await self.client.execute(action: "DescribeIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

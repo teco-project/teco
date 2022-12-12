@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 查询YARN的任务统计信息
-    ///
-    ///  yarn application 统计接口查询
-    @inlinable
-    public func describeEmrApplicationStatics(_ input: DescribeEmrApplicationStaticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEmrApplicationStaticsResponse > {
-        self.client.execute(action: "DescribeEmrApplicationStatics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询YARN的任务统计信息
-    ///
-    ///  yarn application 统计接口查询
-    @inlinable
-    public func describeEmrApplicationStatics(_ input: DescribeEmrApplicationStaticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEmrApplicationStaticsResponse {
-        try await self.client.execute(action: "DescribeEmrApplicationStatics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEmrApplicationStatics请求参数结构体
     public struct DescribeEmrApplicationStaticsRequest: TCRequestModel {
         /// 集群id
@@ -66,7 +50,7 @@ extension Emr {
         /// 页容量
         public let limit: Int64?
         
-        public init (instanceId: String, startTime: Int64?, endTime: Int64?, queues: [String]?, users: [String]?, applicationTypes: [String]?, groupBy: [String]?, orderBy: String?, isAsc: Int64?, offset: Int64?, limit: Int64?) {
+        public init (instanceId: String, startTime: Int64? = nil, endTime: Int64? = nil, queues: [String]? = nil, users: [String]? = nil, applicationTypes: [String]? = nil, groupBy: [String]? = nil, orderBy: String? = nil, isAsc: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -123,5 +107,21 @@ extension Emr {
             case applicationTypes = "ApplicationTypes"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询YARN的任务统计信息
+    ///
+    ///  yarn application 统计接口查询
+    @inlinable
+    public func describeEmrApplicationStatics(_ input: DescribeEmrApplicationStaticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEmrApplicationStaticsResponse > {
+        self.client.execute(action: "DescribeEmrApplicationStatics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询YARN的任务统计信息
+    ///
+    ///  yarn application 统计接口查询
+    @inlinable
+    public func describeEmrApplicationStatics(_ input: DescribeEmrApplicationStaticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEmrApplicationStaticsResponse {
+        try await self.client.execute(action: "DescribeEmrApplicationStatics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

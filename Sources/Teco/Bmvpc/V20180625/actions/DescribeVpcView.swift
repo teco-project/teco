@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 查询黑石VPC视图
-    ///
-    /// 本接口（DescribeVpcView）用于查询VPC网络拓扑视图。
-    @inlinable
-    public func describeVpcView(_ input: DescribeVpcViewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcViewResponse > {
-        self.client.execute(action: "DescribeVpcView", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询黑石VPC视图
-    ///
-    /// 本接口（DescribeVpcView）用于查询VPC网络拓扑视图。
-    @inlinable
-    public func describeVpcView(_ input: DescribeVpcViewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcViewResponse {
-        try await self.client.execute(action: "DescribeVpcView", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVpcView请求参数结构体
     public struct DescribeVpcViewRequest: TCRequestModel {
         /// 私有网络唯一ID
@@ -57,5 +41,21 @@ extension Bmvpc {
             case vpcView = "VpcView"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询黑石VPC视图
+    ///
+    /// 本接口（DescribeVpcView）用于查询VPC网络拓扑视图。
+    @inlinable
+    public func describeVpcView(_ input: DescribeVpcViewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVpcViewResponse > {
+        self.client.execute(action: "DescribeVpcView", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询黑石VPC视图
+    ///
+    /// 本接口（DescribeVpcView）用于查询VPC网络拓扑视图。
+    @inlinable
+    public func describeVpcView(_ input: DescribeVpcViewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcViewResponse {
+        try await self.client.execute(action: "DescribeVpcView", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

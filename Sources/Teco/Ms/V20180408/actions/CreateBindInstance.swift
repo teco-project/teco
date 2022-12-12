@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ms {
-    /// 将应用绑定到资源
-    ///
-    /// 将应用和资源进行绑定。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
-    @inlinable
-    public func createBindInstance(_ input: CreateBindInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBindInstanceResponse > {
-        self.client.execute(action: "CreateBindInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 将应用绑定到资源
-    ///
-    /// 将应用和资源进行绑定。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
-    @inlinable
-    public func createBindInstance(_ input: CreateBindInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBindInstanceResponse {
-        try await self.client.execute(action: "CreateBindInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBindInstance请求参数结构体
     public struct CreateBindInstanceRequest: TCRequestModel {
         /// 资源id，全局唯一
@@ -72,5 +56,21 @@ extension Ms {
             case progress = "Progress"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 将应用绑定到资源
+    ///
+    /// 将应用和资源进行绑定。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    @inlinable
+    public func createBindInstance(_ input: CreateBindInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBindInstanceResponse > {
+        self.client.execute(action: "CreateBindInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 将应用绑定到资源
+    ///
+    /// 将应用和资源进行绑定。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
+    @inlinable
+    public func createBindInstance(_ input: CreateBindInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBindInstanceResponse {
+        try await self.client.execute(action: "CreateBindInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

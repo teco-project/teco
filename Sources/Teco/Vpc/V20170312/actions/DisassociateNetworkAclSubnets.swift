@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 网络ACL解关联子网
-    ///
-    /// 本接口（DisassociateNetworkAclSubnets）用于网络ACL解关联vpc下的子网。
-    @inlinable
-    public func disassociateNetworkAclSubnets(_ input: DisassociateNetworkAclSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateNetworkAclSubnetsResponse > {
-        self.client.execute(action: "DisassociateNetworkAclSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 网络ACL解关联子网
-    ///
-    /// 本接口（DisassociateNetworkAclSubnets）用于网络ACL解关联vpc下的子网。
-    @inlinable
-    public func disassociateNetworkAclSubnets(_ input: DisassociateNetworkAclSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateNetworkAclSubnetsResponse {
-        try await self.client.execute(action: "DisassociateNetworkAclSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisassociateNetworkAclSubnets请求参数结构体
     public struct DisassociateNetworkAclSubnetsRequest: TCRequestModel {
         /// 网络ACL实例ID。例如：acl-12345678。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 网络ACL解关联子网
+    ///
+    /// 本接口（DisassociateNetworkAclSubnets）用于网络ACL解关联vpc下的子网。
+    @inlinable
+    public func disassociateNetworkAclSubnets(_ input: DisassociateNetworkAclSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateNetworkAclSubnetsResponse > {
+        self.client.execute(action: "DisassociateNetworkAclSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 网络ACL解关联子网
+    ///
+    /// 本接口（DisassociateNetworkAclSubnets）用于网络ACL解关联vpc下的子网。
+    @inlinable
+    public func disassociateNetworkAclSubnets(_ input: DisassociateNetworkAclSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateNetworkAclSubnetsResponse {
+        try await self.client.execute(action: "DisassociateNetworkAclSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

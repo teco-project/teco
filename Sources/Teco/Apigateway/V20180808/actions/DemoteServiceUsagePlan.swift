@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 服务级别使用计划降级
-    ///
-    /// 本接口（DemoteServiceUsagePlan）用于将某个服务在某个环境的使用计划，降级到API上。
-    /// 如果服务内没有API不允许进行此操作。
-    /// 如果当前环境没有发布，不允许进行此操作。
-    @inlinable
-    public func demoteServiceUsagePlan(_ input: DemoteServiceUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DemoteServiceUsagePlanResponse > {
-        self.client.execute(action: "DemoteServiceUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 服务级别使用计划降级
-    ///
-    /// 本接口（DemoteServiceUsagePlan）用于将某个服务在某个环境的使用计划，降级到API上。
-    /// 如果服务内没有API不允许进行此操作。
-    /// 如果当前环境没有发布，不允许进行此操作。
-    @inlinable
-    public func demoteServiceUsagePlan(_ input: DemoteServiceUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DemoteServiceUsagePlanResponse {
-        try await self.client.execute(action: "DemoteServiceUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DemoteServiceUsagePlan请求参数结构体
     public struct DemoteServiceUsagePlanRequest: TCRequestModel {
         /// 使用计划ID。
@@ -72,5 +52,25 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 服务级别使用计划降级
+    ///
+    /// 本接口（DemoteServiceUsagePlan）用于将某个服务在某个环境的使用计划，降级到API上。
+    /// 如果服务内没有API不允许进行此操作。
+    /// 如果当前环境没有发布，不允许进行此操作。
+    @inlinable
+    public func demoteServiceUsagePlan(_ input: DemoteServiceUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DemoteServiceUsagePlanResponse > {
+        self.client.execute(action: "DemoteServiceUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 服务级别使用计划降级
+    ///
+    /// 本接口（DemoteServiceUsagePlan）用于将某个服务在某个环境的使用计划，降级到API上。
+    /// 如果服务内没有API不允许进行此操作。
+    /// 如果当前环境没有发布，不允许进行此操作。
+    @inlinable
+    public func demoteServiceUsagePlan(_ input: DemoteServiceUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DemoteServiceUsagePlanResponse {
+        try await self.client.execute(action: "DemoteServiceUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// NAT网关解绑弹性IP
-    ///
-    /// 本接口（DisassociateNatGatewayAddress）用于NAT网关解绑弹性IP。
-    @inlinable
-    public func disassociateNatGatewayAddress(_ input: DisassociateNatGatewayAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateNatGatewayAddressResponse > {
-        self.client.execute(action: "DisassociateNatGatewayAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// NAT网关解绑弹性IP
-    ///
-    /// 本接口（DisassociateNatGatewayAddress）用于NAT网关解绑弹性IP。
-    @inlinable
-    public func disassociateNatGatewayAddress(_ input: DisassociateNatGatewayAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateNatGatewayAddressResponse {
-        try await self.client.execute(action: "DisassociateNatGatewayAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisassociateNatGatewayAddress请求参数结构体
     public struct DisassociateNatGatewayAddressRequest: TCRequestModel {
         /// NAT网关的ID，形如：`nat-df45454`。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// NAT网关解绑弹性IP
+    ///
+    /// 本接口（DisassociateNatGatewayAddress）用于NAT网关解绑弹性IP。
+    @inlinable
+    public func disassociateNatGatewayAddress(_ input: DisassociateNatGatewayAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateNatGatewayAddressResponse > {
+        self.client.execute(action: "DisassociateNatGatewayAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// NAT网关解绑弹性IP
+    ///
+    /// 本接口（DisassociateNatGatewayAddress）用于NAT网关解绑弹性IP。
+    @inlinable
+    public func disassociateNatGatewayAddress(_ input: DisassociateNatGatewayAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateNatGatewayAddressResponse {
+        try await self.client.execute(action: "DisassociateNatGatewayAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

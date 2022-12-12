@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssm {
-    /// 获取凭据明文
-    ///
-    /// 对于用户自定义凭据，通过指定凭据名称和版本来获取凭据的明文信息；
-    /// 对于云产品凭据如Mysql凭据，通过指定凭据名称和历史版本号来获取历史轮转凭据的明文信息，如果要获取当前正在使用的凭据版本的明文，需要将版本号指定为：SSM_Current。
-    @inlinable
-    public func getSecretValue(_ input: GetSecretValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSecretValueResponse > {
-        self.client.execute(action: "GetSecretValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取凭据明文
-    ///
-    /// 对于用户自定义凭据，通过指定凭据名称和版本来获取凭据的明文信息；
-    /// 对于云产品凭据如Mysql凭据，通过指定凭据名称和历史版本号来获取历史轮转凭据的明文信息，如果要获取当前正在使用的凭据版本的明文，需要将版本号指定为：SSM_Current。
-    @inlinable
-    public func getSecretValue(_ input: GetSecretValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSecretValueResponse {
-        try await self.client.execute(action: "GetSecretValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetSecretValue请求参数结构体
     public struct GetSecretValueRequest: TCRequestModel {
         /// 指定凭据的名称。
@@ -79,5 +61,23 @@ extension Ssm {
             case secretString = "SecretString"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取凭据明文
+    ///
+    /// 对于用户自定义凭据，通过指定凭据名称和版本来获取凭据的明文信息；
+    /// 对于云产品凭据如Mysql凭据，通过指定凭据名称和历史版本号来获取历史轮转凭据的明文信息，如果要获取当前正在使用的凭据版本的明文，需要将版本号指定为：SSM_Current。
+    @inlinable
+    public func getSecretValue(_ input: GetSecretValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetSecretValueResponse > {
+        self.client.execute(action: "GetSecretValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取凭据明文
+    ///
+    /// 对于用户自定义凭据，通过指定凭据名称和版本来获取凭据的明文信息；
+    /// 对于云产品凭据如Mysql凭据，通过指定凭据名称和历史版本号来获取历史轮转凭据的明文信息，如果要获取当前正在使用的凭据版本的明文，需要将版本号指定为：SSM_Current。
+    @inlinable
+    public func getSecretValue(_ input: GetSecretValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSecretValueResponse {
+        try await self.client.execute(action: "GetSecretValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

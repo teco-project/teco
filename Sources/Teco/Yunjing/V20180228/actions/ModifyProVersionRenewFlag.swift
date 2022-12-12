@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 修改专业版续费标识
-    ///
-    /// 本接口 (ModifyProVersionRenewFlag) 用于修改专业版包年包月续费标识。
-    @inlinable
-    public func modifyProVersionRenewFlag(_ input: ModifyProVersionRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProVersionRenewFlagResponse > {
-        self.client.execute(action: "ModifyProVersionRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改专业版续费标识
-    ///
-    /// 本接口 (ModifyProVersionRenewFlag) 用于修改专业版包年包月续费标识。
-    @inlinable
-    public func modifyProVersionRenewFlag(_ input: ModifyProVersionRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProVersionRenewFlagResponse {
-        try await self.client.execute(action: "ModifyProVersionRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyProVersionRenewFlag请求参数结构体
     public struct ModifyProVersionRenewFlagRequest: TCRequestModel {
         /// 自动续费标识。取值范围：
@@ -61,5 +45,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改专业版续费标识
+    ///
+    /// 本接口 (ModifyProVersionRenewFlag) 用于修改专业版包年包月续费标识。
+    @inlinable
+    public func modifyProVersionRenewFlag(_ input: ModifyProVersionRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProVersionRenewFlagResponse > {
+        self.client.execute(action: "ModifyProVersionRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改专业版续费标识
+    ///
+    /// 本接口 (ModifyProVersionRenewFlag) 用于修改专业版包年包月续费标识。
+    @inlinable
+    public func modifyProVersionRenewFlag(_ input: ModifyProVersionRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProVersionRenewFlagResponse {
+        try await self.client.execute(action: "ModifyProVersionRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

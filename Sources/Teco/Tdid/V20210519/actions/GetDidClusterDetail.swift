@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 获取DID网络详情
-    ///
-    /// 获取DID区块链网络详情
-    @inlinable
-    public func getDidClusterDetail(_ input: GetDidClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidClusterDetailResponse > {
-        self.client.execute(action: "GetDidClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DID网络详情
-    ///
-    /// 获取DID区块链网络详情
-    @inlinable
-    public func getDidClusterDetail(_ input: GetDidClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterDetailResponse {
-        try await self.client.execute(action: "GetDidClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDidClusterDetail请求参数结构体
     public struct GetDidClusterDetailRequest: TCRequestModel {
         /// DID网络ID
@@ -65,5 +49,21 @@ extension Tdid {
             case chainAgency = "ChainAgency"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DID网络详情
+    ///
+    /// 获取DID区块链网络详情
+    @inlinable
+    public func getDidClusterDetail(_ input: GetDidClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidClusterDetailResponse > {
+        self.client.execute(action: "GetDidClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DID网络详情
+    ///
+    /// 获取DID区块链网络详情
+    @inlinable
+    public func getDidClusterDetail(_ input: GetDidClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterDetailResponse {
+        try await self.client.execute(action: "GetDidClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

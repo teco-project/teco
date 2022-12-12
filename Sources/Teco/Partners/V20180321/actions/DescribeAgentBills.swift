@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Partners {
-    /// 查询业务明细
-    ///
-    /// 代理商可查询自己及名下代客所有业务明细
-    @inlinable
-    public func describeAgentBills(_ input: DescribeAgentBillsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentBillsResponse > {
-        self.client.execute(action: "DescribeAgentBills", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询业务明细
-    ///
-    /// 代理商可查询自己及名下代客所有业务明细
-    @inlinable
-    public func describeAgentBills(_ input: DescribeAgentBillsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentBillsResponse {
-        try await self.client.execute(action: "DescribeAgentBills", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAgentBills请求参数结构体
     public struct DescribeAgentBillsRequest: TCRequestModel {
         /// 支付月份，如2018-02
@@ -54,7 +38,7 @@ extension Partners {
         /// 限制数目
         public let limit: UInt64?
         
-        public init (settleMonth: String, clientUin: String?, payMode: String?, orderId: String?, clientRemark: String?, offset: UInt64?, limit: UInt64?) {
+        public init (settleMonth: String, clientUin: String? = nil, payMode: String? = nil, orderId: String? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.settleMonth = settleMonth
             self.clientUin = clientUin
             self.payMode = payMode
@@ -91,5 +75,21 @@ extension Partners {
             case agentBillSet = "AgentBillSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询业务明细
+    ///
+    /// 代理商可查询自己及名下代客所有业务明细
+    @inlinable
+    public func describeAgentBills(_ input: DescribeAgentBillsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentBillsResponse > {
+        self.client.execute(action: "DescribeAgentBills", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询业务明细
+    ///
+    /// 代理商可查询自己及名下代客所有业务明细
+    @inlinable
+    public func describeAgentBills(_ input: DescribeAgentBillsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentBillsResponse {
+        try await self.client.execute(action: "DescribeAgentBills", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

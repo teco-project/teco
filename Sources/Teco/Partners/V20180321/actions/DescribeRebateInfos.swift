@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Partners {
-    /// 查询代理商返佣信息（禁止接入）
-    ///
-    /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
-    @inlinable
-    public func describeRebateInfos(_ input: DescribeRebateInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRebateInfosResponse > {
-        self.client.execute(action: "DescribeRebateInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询代理商返佣信息（禁止接入）
-    ///
-    /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
-    @inlinable
-    public func describeRebateInfos(_ input: DescribeRebateInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRebateInfosResponse {
-        try await self.client.execute(action: "DescribeRebateInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRebateInfos请求参数结构体
     public struct DescribeRebateInfosRequest: TCRequestModel {
         /// 返佣月份，如2018-02
@@ -42,7 +26,7 @@ extension Partners {
         /// 限制数目
         public let limit: UInt64?
         
-        public init (rebateMonth: String?, offset: UInt64?, limit: UInt64?) {
+        public init (rebateMonth: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.rebateMonth = rebateMonth
             self.offset = offset
             self.limit = limit
@@ -71,5 +55,21 @@ extension Partners {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询代理商返佣信息（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
+    @inlinable
+    public func describeRebateInfos(_ input: DescribeRebateInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRebateInfosResponse > {
+        self.client.execute(action: "DescribeRebateInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询代理商返佣信息（禁止接入）
+    ///
+    /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
+    @inlinable
+    public func describeRebateInfos(_ input: DescribeRebateInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRebateInfosResponse {
+        try await self.client.execute(action: "DescribeRebateInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

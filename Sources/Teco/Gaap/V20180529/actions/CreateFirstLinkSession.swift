@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 创建接入段加速会话
-    ///
-    /// 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。
-    @inlinable
-    public func createFirstLinkSession(_ input: CreateFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFirstLinkSessionResponse > {
-        self.client.execute(action: "CreateFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建接入段加速会话
-    ///
-    /// 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。
-    @inlinable
-    public func createFirstLinkSession(_ input: CreateFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFirstLinkSessionResponse {
-        try await self.client.execute(action: "CreateFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFirstLinkSession请求参数结构体
     public struct CreateFirstLinkSessionRequest: TCRequestModel {
         /// 模版ID
@@ -43,12 +27,12 @@ extension Gaap {
         public let destAddressInfo: DestAddressInfo
         
         /// 终端设备信息
-        public let deviceInfo: DeviceInfo
+        public let deviceInfo: DeviceInfo?
         
         /// 接口扩展参数，如果是电信用户，需要填充CTCC Token字段
-        public let capacity: Capacity
+        public let capacity: Capacity?
         
-        public init (templateId: String, srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, deviceInfo: DeviceInfo, capacity: Capacity) {
+        public init (templateId: String, srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, deviceInfo: DeviceInfo? = nil, capacity: Capacity? = nil) {
             self.templateId = templateId
             self.srcAddressInfo = srcAddressInfo
             self.destAddressInfo = destAddressInfo
@@ -83,5 +67,21 @@ extension Gaap {
             case duration = "Duration"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建接入段加速会话
+    ///
+    /// 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。
+    @inlinable
+    public func createFirstLinkSession(_ input: CreateFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFirstLinkSessionResponse > {
+        self.client.execute(action: "CreateFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建接入段加速会话
+    ///
+    /// 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。
+    @inlinable
+    public func createFirstLinkSession(_ input: CreateFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFirstLinkSessionResponse {
+        try await self.client.execute(action: "CreateFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

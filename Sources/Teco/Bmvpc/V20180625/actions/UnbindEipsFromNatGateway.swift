@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// NAT网关解绑EIP
-    ///
-    /// NAT网关解绑该EIP后，NAT网关将不会使用该EIP作为访问外网的源IP地址
-    @inlinable
-    public func unbindEipsFromNatGateway(_ input: UnbindEipsFromNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindEipsFromNatGatewayResponse > {
-        self.client.execute(action: "UnbindEipsFromNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// NAT网关解绑EIP
-    ///
-    /// NAT网关解绑该EIP后，NAT网关将不会使用该EIP作为访问外网的源IP地址
-    @inlinable
-    public func unbindEipsFromNatGateway(_ input: UnbindEipsFromNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindEipsFromNatGatewayResponse {
-        try await self.client.execute(action: "UnbindEipsFromNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindEipsFromNatGateway请求参数结构体
     public struct UnbindEipsFromNatGatewayRequest: TCRequestModel {
         /// NAT网关ID，例如：nat-kdm476mp
@@ -67,5 +51,21 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// NAT网关解绑EIP
+    ///
+    /// NAT网关解绑该EIP后，NAT网关将不会使用该EIP作为访问外网的源IP地址
+    @inlinable
+    public func unbindEipsFromNatGateway(_ input: UnbindEipsFromNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindEipsFromNatGatewayResponse > {
+        self.client.execute(action: "UnbindEipsFromNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// NAT网关解绑EIP
+    ///
+    /// NAT网关解绑该EIP后，NAT网关将不会使用该EIP作为访问外网的源IP地址
+    @inlinable
+    public func unbindEipsFromNatGateway(_ input: UnbindEipsFromNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindEipsFromNatGatewayResponse {
+        try await self.client.execute(action: "UnbindEipsFromNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

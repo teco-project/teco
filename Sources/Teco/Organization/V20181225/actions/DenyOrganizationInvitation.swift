@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 拒绝企业组织邀请
-    @inlinable
-    public func denyOrganizationInvitation(_ input: DenyOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DenyOrganizationInvitationResponse > {
-        self.client.execute(action: "DenyOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拒绝企业组织邀请
-    @inlinable
-    public func denyOrganizationInvitation(_ input: DenyOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DenyOrganizationInvitationResponse {
-        try await self.client.execute(action: "DenyOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DenyOrganizationInvitation请求参数结构体
     public struct DenyOrganizationInvitationRequest: TCRequestModel {
         /// 邀请ID
@@ -49,5 +37,17 @@ extension Organization {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拒绝企业组织邀请
+    @inlinable
+    public func denyOrganizationInvitation(_ input: DenyOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DenyOrganizationInvitationResponse > {
+        self.client.execute(action: "DenyOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拒绝企业组织邀请
+    @inlinable
+    public func denyOrganizationInvitation(_ input: DenyOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DenyOrganizationInvitationResponse {
+        try await self.client.execute(action: "DenyOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

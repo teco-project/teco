@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dasb {
-    /// 新建用户
-    @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
-        self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建用户
-    @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
-        try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUser请求参数结构体
     public struct CreateUserRequest: TCRequestModel {
         /// 用户名, 3-20个字符, 必须以英文字母开头，且不能包含字母、数字、.、_、-以外的字符
@@ -63,7 +51,7 @@ extension Dasb {
         /// 所属部门ID，如：“1.2.3”
         public let departmentId: String?
         
-        public init (userName: String, realName: String, phone: String, email: String?, validateFrom: Date?, validateTo: Date?, groupIdSet: [UInt64]?, authType: UInt64?, validateTime: String?, departmentId: String?) {
+        public init (userName: String, realName: String, phone: String, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil) {
             self.userName = userName
             self.realName = realName
             self.phone = phone
@@ -102,5 +90,17 @@ extension Dasb {
             case id = "Id"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建用户
+    @inlinable
+    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserResponse > {
+        self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建用户
+    @inlinable
+    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
+        try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

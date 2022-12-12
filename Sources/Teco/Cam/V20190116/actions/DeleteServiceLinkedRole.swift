@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 删除服务相关角色
-    @inlinable
-    public func deleteServiceLinkedRole(_ input: DeleteServiceLinkedRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServiceLinkedRoleResponse > {
-        self.client.execute(action: "DeleteServiceLinkedRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除服务相关角色
-    @inlinable
-    public func deleteServiceLinkedRole(_ input: DeleteServiceLinkedRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceLinkedRoleResponse {
-        try await self.client.execute(action: "DeleteServiceLinkedRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteServiceLinkedRole请求参数结构体
     public struct DeleteServiceLinkedRoleRequest: TCRequestModel {
         /// 要删除的服务相关角色的名称。
@@ -53,5 +41,17 @@ extension Cam {
             case deletionTaskId = "DeletionTaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除服务相关角色
+    @inlinable
+    public func deleteServiceLinkedRole(_ input: DeleteServiceLinkedRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServiceLinkedRoleResponse > {
+        self.client.execute(action: "DeleteServiceLinkedRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除服务相关角色
+    @inlinable
+    public func deleteServiceLinkedRole(_ input: DeleteServiceLinkedRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceLinkedRoleResponse {
+        try await self.client.execute(action: "DeleteServiceLinkedRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

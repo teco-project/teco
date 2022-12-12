@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 向设备发送在线消息
-    ///
-    /// 本接口（SendOnlineMsg）用于向设备发送在线消息。
-    /// 注意：
-    /// 若设备当前不在线,会直接返回错误;
-    /// 若设备网络出现异常时,消息发送可能超时,超时等待最长时间为3秒.waitresp非0情况下,会导致本接口阻塞3秒。
-    @inlinable
-    public func sendOnlineMsg(_ input: SendOnlineMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendOnlineMsgResponse > {
-        self.client.execute(action: "SendOnlineMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 向设备发送在线消息
-    ///
-    /// 本接口（SendOnlineMsg）用于向设备发送在线消息。
-    /// 注意：
-    /// 若设备当前不在线,会直接返回错误;
-    /// 若设备网络出现异常时,消息发送可能超时,超时等待最长时间为3秒.waitresp非0情况下,会导致本接口阻塞3秒。
-    @inlinable
-    public func sendOnlineMsg(_ input: SendOnlineMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendOnlineMsgResponse {
-        try await self.client.execute(action: "SendOnlineMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SendOnlineMsg请求参数结构体
     public struct SendOnlineMsgRequest: TCRequestModel {
         /// 设备TID
@@ -90,5 +68,27 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 向设备发送在线消息
+    ///
+    /// 本接口（SendOnlineMsg）用于向设备发送在线消息。
+    /// 注意：
+    /// 若设备当前不在线,会直接返回错误;
+    /// 若设备网络出现异常时,消息发送可能超时,超时等待最长时间为3秒.waitresp非0情况下,会导致本接口阻塞3秒。
+    @inlinable
+    public func sendOnlineMsg(_ input: SendOnlineMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendOnlineMsgResponse > {
+        self.client.execute(action: "SendOnlineMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 向设备发送在线消息
+    ///
+    /// 本接口（SendOnlineMsg）用于向设备发送在线消息。
+    /// 注意：
+    /// 若设备当前不在线,会直接返回错误;
+    /// 若设备网络出现异常时,消息发送可能超时,超时等待最长时间为3秒.waitresp非0情况下,会导致本接口阻塞3秒。
+    @inlinable
+    public func sendOnlineMsg(_ input: SendOnlineMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendOnlineMsgResponse {
+        try await self.client.execute(action: "SendOnlineMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

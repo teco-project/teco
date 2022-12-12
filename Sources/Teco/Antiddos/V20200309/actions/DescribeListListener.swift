@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取转发监听器列表
-    @inlinable
-    public func describeListListener(_ input: DescribeListListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListListenerResponse > {
-        self.client.execute(action: "DescribeListListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取转发监听器列表
-    @inlinable
-    public func describeListListener(_ input: DescribeListListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListListenerResponse {
-        try await self.client.execute(action: "DescribeListListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeListListener请求参数结构体
     public struct DescribeListListenerRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Antiddos {
             case layer7Listeners = "Layer7Listeners"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取转发监听器列表
+    @inlinable
+    public func describeListListener(_ input: DescribeListListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListListenerResponse > {
+        self.client.execute(action: "DescribeListListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取转发监听器列表
+    @inlinable
+    public func describeListListener(_ input: DescribeListListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListListenerResponse {
+        try await self.client.execute(action: "DescribeListListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

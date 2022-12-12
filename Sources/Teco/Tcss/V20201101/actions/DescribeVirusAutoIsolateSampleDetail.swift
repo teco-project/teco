@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询木马自动隔离样本详情
-    @inlinable
-    public func describeVirusAutoIsolateSampleDetail(_ input: DescribeVirusAutoIsolateSampleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusAutoIsolateSampleDetailResponse > {
-        self.client.execute(action: "DescribeVirusAutoIsolateSampleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询木马自动隔离样本详情
-    @inlinable
-    public func describeVirusAutoIsolateSampleDetail(_ input: DescribeVirusAutoIsolateSampleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSampleDetailResponse {
-        try await self.client.execute(action: "DescribeVirusAutoIsolateSampleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVirusAutoIsolateSampleDetail请求参数结构体
     public struct DescribeVirusAutoIsolateSampleDetailRequest: TCRequestModel {
         /// 文件MD5值
@@ -93,5 +81,17 @@ extension Tcss {
             case referenceLink = "ReferenceLink"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询木马自动隔离样本详情
+    @inlinable
+    public func describeVirusAutoIsolateSampleDetail(_ input: DescribeVirusAutoIsolateSampleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusAutoIsolateSampleDetailResponse > {
+        self.client.execute(action: "DescribeVirusAutoIsolateSampleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询木马自动隔离样本详情
+    @inlinable
+    public func describeVirusAutoIsolateSampleDetail(_ input: DescribeVirusAutoIsolateSampleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSampleDetailResponse {
+        try await self.client.execute(action: "DescribeVirusAutoIsolateSampleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

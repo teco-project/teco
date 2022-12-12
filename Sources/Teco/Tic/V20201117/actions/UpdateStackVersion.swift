@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tic {
-    /// 更新资源栈版本的内容
-    ///
-    /// 本接口（UpdateStackVersion）用于更新一个版本的模版内容，名称或描述，模版仅限COS URL，且为zip格式。
-    @inlinable
-    public func updateStackVersion(_ input: UpdateStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateStackVersionResponse > {
-        self.client.execute(action: "UpdateStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新资源栈版本的内容
-    ///
-    /// 本接口（UpdateStackVersion）用于更新一个版本的模版内容，名称或描述，模版仅限COS URL，且为zip格式。
-    @inlinable
-    public func updateStackVersion(_ input: UpdateStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackVersionResponse {
-        try await self.client.execute(action: "UpdateStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateStackVersion请求参数结构体
     public struct UpdateStackVersionRequest: TCRequestModel {
         /// 待更新的版本ID
@@ -45,7 +29,7 @@ extension Tic {
         /// 版本描述，不得超过200个字符
         public let description: String?
         
-        public init (versionId: String, templateUrl: String, versionName: String?, description: String?) {
+        public init (versionId: String, templateUrl: String, versionName: String? = nil, description: String? = nil) {
             self.versionId = versionId
             self.templateUrl = templateUrl
             self.versionName = versionName
@@ -68,5 +52,21 @@ extension Tic {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新资源栈版本的内容
+    ///
+    /// 本接口（UpdateStackVersion）用于更新一个版本的模版内容，名称或描述，模版仅限COS URL，且为zip格式。
+    @inlinable
+    public func updateStackVersion(_ input: UpdateStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateStackVersionResponse > {
+        self.client.execute(action: "UpdateStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新资源栈版本的内容
+    ///
+    /// 本接口（UpdateStackVersion）用于更新一个版本的模版内容，名称或描述，模版仅限COS URL，且为zip格式。
+    @inlinable
+    public func updateStackVersion(_ input: UpdateStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackVersionResponse {
+        try await self.client.execute(action: "UpdateStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

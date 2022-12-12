@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 获取域名实名信息
-    ///
-    /// 获取域名实名信息详情
-    @inlinable
-    public func describeDomainSimpleInfo(_ input: DescribeDomainSimpleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainSimpleInfoResponse > {
-        self.client.execute(action: "DescribeDomainSimpleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取域名实名信息
-    ///
-    /// 获取域名实名信息详情
-    @inlinable
-    public func describeDomainSimpleInfo(_ input: DescribeDomainSimpleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainSimpleInfoResponse {
-        try await self.client.execute(action: "DescribeDomainSimpleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomainSimpleInfo请求参数结构体
     public struct DescribeDomainSimpleInfoRequest: TCRequestModel {
         /// 域名
@@ -61,5 +45,21 @@ extension Domain {
             case uin = "Uin"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取域名实名信息
+    ///
+    /// 获取域名实名信息详情
+    @inlinable
+    public func describeDomainSimpleInfo(_ input: DescribeDomainSimpleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainSimpleInfoResponse > {
+        self.client.execute(action: "DescribeDomainSimpleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取域名实名信息
+    ///
+    /// 获取域名实名信息详情
+    @inlinable
+    public func describeDomainSimpleInfo(_ input: DescribeDomainSimpleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainSimpleInfoResponse {
+        try await self.client.execute(action: "DescribeDomainSimpleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

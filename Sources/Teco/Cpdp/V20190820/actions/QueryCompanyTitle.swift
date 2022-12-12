@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 智慧零售-查询公司抬头
-    @inlinable
-    public func queryCompanyTitle(_ input: QueryCompanyTitleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCompanyTitleResponse > {
-        self.client.execute(action: "QueryCompanyTitle", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 智慧零售-查询公司抬头
-    @inlinable
-    public func queryCompanyTitle(_ input: QueryCompanyTitleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCompanyTitleResponse {
-        try await self.client.execute(action: "QueryCompanyTitle", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryCompanyTitle请求参数结构体
     public struct QueryCompanyTitleRequest: TCRequestModel {
         /// 公司抬头关键字
@@ -41,7 +29,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填sandbox。
         public let profile: String?
         
-        public init (companyTitleKeyword: String, invoicePlatformId: Int64, sellerTaxpayerNum: String, profile: String?) {
+        public init (companyTitleKeyword: String, invoicePlatformId: Int64, sellerTaxpayerNum: String, profile: String? = nil) {
             self.companyTitleKeyword = companyTitleKeyword
             self.invoicePlatformId = invoicePlatformId
             self.sellerTaxpayerNum = sellerTaxpayerNum
@@ -77,5 +65,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 智慧零售-查询公司抬头
+    @inlinable
+    public func queryCompanyTitle(_ input: QueryCompanyTitleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCompanyTitleResponse > {
+        self.client.execute(action: "QueryCompanyTitle", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 智慧零售-查询公司抬头
+    @inlinable
+    public func queryCompanyTitle(_ input: QueryCompanyTitleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCompanyTitleResponse {
+        try await self.client.execute(action: "QueryCompanyTitle", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

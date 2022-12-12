@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 获取用户信息
-    ///
-    /// 通过用户名或用户 id 搜索用户
-    @inlinable
-    public func describeUserInfo(_ input: DescribeUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserInfoResponse > {
-        self.client.execute(action: "DescribeUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户信息
-    ///
-    /// 通过用户名或用户 id 搜索用户
-    @inlinable
-    public func describeUserInfo(_ input: DescribeUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserInfoResponse {
-        try await self.client.execute(action: "DescribeUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserInfo请求参数结构体
     public struct DescribeUserInfoRequest: TCRequestModel {
         /// 用户名，长度限制：64个字符。 Username 和 UserId 需至少一个不为空；都不为空时优先使用 Username。
@@ -39,7 +23,7 @@ extension Eiam {
         /// 用户 id，长度限制：64个字符。 Username 和 UserId 需至少一个不为空；都不为空时优先使用 Username。
         public let userId: String?
         
-        public init (userName: String?, userId: String?) {
+        public init (userName: String? = nil, userId: String? = nil) {
             self.userName = userName
             self.userId = userId
         }
@@ -133,5 +117,21 @@ extension Eiam {
             case adminFlag = "AdminFlag"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户信息
+    ///
+    /// 通过用户名或用户 id 搜索用户
+    @inlinable
+    public func describeUserInfo(_ input: DescribeUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserInfoResponse > {
+        self.client.execute(action: "DescribeUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户信息
+    ///
+    /// 通过用户名或用户 id 搜索用户
+    @inlinable
+    public func describeUserInfo(_ input: DescribeUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserInfoResponse {
+        try await self.client.execute(action: "DescribeUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

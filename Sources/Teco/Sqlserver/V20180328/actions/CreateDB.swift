@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 创建数据库
-    ///
-    /// 本接口（CreateDB）用于创建数据库。
-    @inlinable
-    public func createDB(_ input: CreateDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBResponse > {
-        self.client.execute(action: "CreateDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建数据库
-    ///
-    /// 本接口（CreateDB）用于创建数据库。
-    @inlinable
-    public func createDB(_ input: CreateDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBResponse {
-        try await self.client.execute(action: "CreateDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDB请求参数结构体
     public struct CreateDBRequest: TCRequestModel {
         /// 实例ID
@@ -62,5 +46,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建数据库
+    ///
+    /// 本接口（CreateDB）用于创建数据库。
+    @inlinable
+    public func createDB(_ input: CreateDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBResponse > {
+        self.client.execute(action: "CreateDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建数据库
+    ///
+    /// 本接口（CreateDB）用于创建数据库。
+    @inlinable
+    public func createDB(_ input: CreateDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBResponse {
+        try await self.client.execute(action: "CreateDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

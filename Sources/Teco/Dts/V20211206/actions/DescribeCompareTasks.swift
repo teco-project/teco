@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 查询一致性校验任务列表
-    ///
-    /// 查询一致性校验任务列表，调用该接口后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态。
-    @inlinable
-    public func describeCompareTasks(_ input: DescribeCompareTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCompareTasksResponse > {
-        self.client.execute(action: "DescribeCompareTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询一致性校验任务列表
-    ///
-    /// 查询一致性校验任务列表，调用该接口后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态。
-    @inlinable
-    public func describeCompareTasks(_ input: DescribeCompareTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompareTasksResponse {
-        try await self.client.execute(action: "DescribeCompareTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCompareTasks请求参数结构体
     public struct DescribeCompareTasksRequest: TCRequestModel {
         /// 迁移任务 Id
@@ -42,7 +26,7 @@ extension Dts {
         /// 分页偏移量
         public let offset: UInt64?
         
-        public init (jobId: String, limit: UInt64?, offset: UInt64?) {
+        public init (jobId: String, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.jobId = jobId
             self.limit = limit
             self.offset = offset
@@ -73,5 +57,21 @@ extension Dts {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询一致性校验任务列表
+    ///
+    /// 查询一致性校验任务列表，调用该接口后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态。
+    @inlinable
+    public func describeCompareTasks(_ input: DescribeCompareTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCompareTasksResponse > {
+        self.client.execute(action: "DescribeCompareTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询一致性校验任务列表
+    ///
+    /// 查询一致性校验任务列表，调用该接口后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态。
+    @inlinable
+    public func describeCompareTasks(_ input: DescribeCompareTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompareTasksResponse {
+        try await self.client.execute(action: "DescribeCompareTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tds {
-    /// 查询设备标识及风险（旗舰版）
-    @inlinable
-    public func describeFraudUltimate(_ input: DescribeFraudUltimateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFraudUltimateResponse > {
-        self.client.execute(action: "DescribeFraudUltimate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备标识及风险（旗舰版）
-    @inlinable
-    public func describeFraudUltimate(_ input: DescribeFraudUltimateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudUltimateResponse {
-        try await self.client.execute(action: "DescribeFraudUltimate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFraudUltimate请求参数结构体
     public struct DescribeFraudUltimateRequest: TCRequestModel {
         /// 客户端通过SDK获取的设备Token
@@ -56,7 +44,7 @@ extension Tds {
         /// QQ的OpenId
         public let qqOpenId: String?
         
-        public init (deviceToken: String, sceneCode: String, userId: String, eventTime: UInt64, elapsedTime: UInt64?, weChatOpenId: String?, phoneNumber: String?, clientIP: String?, qqOpenId: String?) {
+        public init (deviceToken: String, sceneCode: String, userId: String, eventTime: UInt64, elapsedTime: UInt64? = nil, weChatOpenId: String? = nil, phoneNumber: String? = nil, clientIP: String? = nil, qqOpenId: String? = nil) {
             self.deviceToken = deviceToken
             self.sceneCode = sceneCode
             self.userId = userId
@@ -145,5 +133,17 @@ extension Tds {
             case suggestionLevel = "SuggestionLevel"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备标识及风险（旗舰版）
+    @inlinable
+    public func describeFraudUltimate(_ input: DescribeFraudUltimateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFraudUltimateResponse > {
+        self.client.execute(action: "DescribeFraudUltimate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备标识及风险（旗舰版）
+    @inlinable
+    public func describeFraudUltimate(_ input: DescribeFraudUltimateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudUltimateResponse {
+        try await self.client.execute(action: "DescribeFraudUltimate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

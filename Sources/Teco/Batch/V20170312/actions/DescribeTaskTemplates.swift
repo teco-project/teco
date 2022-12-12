@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 获取任务模板
-    ///
-    /// 用于查询任务模板信息
-    @inlinable
-    public func describeTaskTemplates(_ input: DescribeTaskTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskTemplatesResponse > {
-        self.client.execute(action: "DescribeTaskTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取任务模板
-    ///
-    /// 用于查询任务模板信息
-    @inlinable
-    public func describeTaskTemplates(_ input: DescribeTaskTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskTemplatesResponse {
-        try await self.client.execute(action: "DescribeTaskTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskTemplates请求参数结构体
     public struct DescribeTaskTemplatesRequest: TCRequestModel {
         /// 任务模板ID列表，与Filters参数不能同时指定。
@@ -50,7 +34,7 @@ extension Batch {
         /// 返回数量
         public let limit: Int64?
         
-        public init (taskTemplateIds: [String]?, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (taskTemplateIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.taskTemplateIds = taskTemplateIds
             self.filters = filters
             self.offset = offset
@@ -81,5 +65,21 @@ extension Batch {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取任务模板
+    ///
+    /// 用于查询任务模板信息
+    @inlinable
+    public func describeTaskTemplates(_ input: DescribeTaskTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskTemplatesResponse > {
+        self.client.execute(action: "DescribeTaskTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务模板
+    ///
+    /// 用于查询任务模板信息
+    @inlinable
+    public func describeTaskTemplates(_ input: DescribeTaskTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskTemplatesResponse {
+        try await self.client.execute(action: "DescribeTaskTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

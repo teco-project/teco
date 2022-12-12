@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 更新别名的配置
-    @inlinable
-    public func updateAlias(_ input: UpdateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAliasResponse > {
-        self.client.execute(action: "UpdateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新别名的配置
-    @inlinable
-    public func updateAlias(_ input: UpdateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
-        try await self.client.execute(action: "UpdateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateAlias请求参数结构体
     public struct UpdateAliasRequest: TCRequestModel {
         /// 函数名称
@@ -42,12 +30,12 @@ extension Scf {
         public let namespace: String?
         
         /// 别名的路由信息，需要为别名指定附加版本时，必须提供此参数
-        public let routingConfig: RoutingConfig
+        public let routingConfig: RoutingConfig?
         
         /// 别名的描述
         public let description: String?
         
-        public init (functionName: String, name: String, functionVersion: String, namespace: String?, routingConfig: RoutingConfig, description: String?) {
+        public init (functionName: String, name: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil) {
             self.functionName = functionName
             self.name = name
             self.functionVersion = functionVersion
@@ -74,5 +62,17 @@ extension Scf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新别名的配置
+    @inlinable
+    public func updateAlias(_ input: UpdateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAliasResponse > {
+        self.client.execute(action: "UpdateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新别名的配置
+    @inlinable
+    public func updateAlias(_ input: UpdateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
+        try await self.client.execute(action: "UpdateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

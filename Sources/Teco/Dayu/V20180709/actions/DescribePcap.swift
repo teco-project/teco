@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// 下载攻击事件的pcap包
-    @inlinable
-    public func describePcap(_ input: DescribePcapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePcapResponse > {
-        self.client.execute(action: "DescribePcap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 下载攻击事件的pcap包
-    @inlinable
-    public func describePcap(_ input: DescribePcapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePcapResponse {
-        try await self.client.execute(action: "DescribePcap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePcap请求参数结构体
     public struct DescribePcapRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -48,7 +36,7 @@ extension Dayu {
         /// 资源的IP，只有当Business为net时才需要填写资源实例下的IP；
         public let ip: String?
         
-        public init (business: String, id: String, startTime: Date, endTime: Date, ip: String?) {
+        public init (business: String, id: String, startTime: Date, endTime: Date, ip: String? = nil) {
             self.business = business
             self.id = id
             self.startTime = startTime
@@ -77,5 +65,17 @@ extension Dayu {
             case pcapUrlList = "PcapUrlList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 下载攻击事件的pcap包
+    @inlinable
+    public func describePcap(_ input: DescribePcapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePcapResponse > {
+        self.client.execute(action: "DescribePcap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 下载攻击事件的pcap包
+    @inlinable
+    public func describePcap(_ input: DescribePcapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePcapResponse {
+        try await self.client.execute(action: "DescribePcap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

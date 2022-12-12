@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 删除私有域解析记录
-    @inlinable
-    public func deletePrivateZoneRecord(_ input: DeletePrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivateZoneRecordResponse > {
-        self.client.execute(action: "DeletePrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除私有域解析记录
-    @inlinable
-    public func deletePrivateZoneRecord(_ input: DeletePrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateZoneRecordResponse {
-        try await self.client.execute(action: "DeletePrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePrivateZoneRecord请求参数结构体
     public struct DeletePrivateZoneRecordRequest: TCRequestModel {
         /// 私有域ID
@@ -38,7 +26,7 @@ extension Privatedns {
         /// 记录ID数组，RecordId 优先
         public let recordIdSet: [String]?
         
-        public init (zoneId: String?, recordId: String?, recordIdSet: [String]?) {
+        public init (zoneId: String? = nil, recordId: String? = nil, recordIdSet: [String]? = nil) {
             self.zoneId = zoneId
             self.recordId = recordId
             self.recordIdSet = recordIdSet
@@ -59,5 +47,17 @@ extension Privatedns {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除私有域解析记录
+    @inlinable
+    public func deletePrivateZoneRecord(_ input: DeletePrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrivateZoneRecordResponse > {
+        self.client.execute(action: "DeletePrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除私有域解析记录
+    @inlinable
+    public func deletePrivateZoneRecord(_ input: DeletePrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateZoneRecordResponse {
+        try await self.client.execute(action: "DeletePrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

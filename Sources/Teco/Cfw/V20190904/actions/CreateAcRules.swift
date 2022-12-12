@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 创建访问控制规则
-    @inlinable
-    public func createAcRules(_ input: CreateAcRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAcRulesResponse > {
-        self.client.execute(action: "CreateAcRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建访问控制规则
-    @inlinable
-    public func createAcRules(_ input: CreateAcRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAcRulesResponse {
-        try await self.client.execute(action: "CreateAcRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAcRules请求参数结构体
     public struct CreateAcRulesRequest: TCRequestModel {
         /// 创建规则数据
@@ -53,7 +41,7 @@ extension Cfw {
         /// NAT地域
         public let area: String?
         
-        public init (data: [RuleInfoData], type: UInt64?, edgeId: String?, enable: Int64?, overwrite: UInt64?, instanceId: String?, from: String?, area: String?) {
+        public init (data: [RuleInfoData], type: UInt64? = nil, edgeId: String? = nil, enable: Int64? = nil, overwrite: UInt64? = nil, instanceId: String? = nil, from: String? = nil, area: String? = nil) {
             self.data = data
             self.type = type
             self.edgeId = edgeId
@@ -93,5 +81,17 @@ extension Cfw {
             case info = "Info"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建访问控制规则
+    @inlinable
+    public func createAcRules(_ input: CreateAcRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAcRulesResponse > {
+        self.client.execute(action: "CreateAcRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建访问控制规则
+    @inlinable
+    public func createAcRules(_ input: CreateAcRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAcRulesResponse {
+        try await self.client.execute(action: "CreateAcRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

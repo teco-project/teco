@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 创建商业智能服务实例
-    ///
-    /// 本接口（CreateBusinessDBInstances）用于创建商业智能服务实例。
-    @inlinable
-    public func createBusinessDBInstances(_ input: CreateBusinessDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBusinessDBInstancesResponse > {
-        self.client.execute(action: "CreateBusinessDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建商业智能服务实例
-    ///
-    /// 本接口（CreateBusinessDBInstances）用于创建商业智能服务实例。
-    @inlinable
-    public func createBusinessDBInstances(_ input: CreateBusinessDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBusinessDBInstancesResponse {
-        try await self.client.execute(action: "CreateBusinessDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBusinessDBInstances请求参数结构体
     public struct CreateBusinessDBInstancesRequest: TCRequestModel {
         /// 实例可用区，类似ap-guangzhou-1（广州一区）；实例可售卖区域可以通过接口DescribeZones获取
@@ -78,7 +62,7 @@ extension Sqlserver {
         /// 新建实例绑定的标签集合
         public let resourceTags: [ResourceTag]?
         
-        public init (zone: String, memory: Int64, storage: Int64, cpu: Int64, machineType: String, projectId: Int64?, goodsNum: Int64?, subnetId: String?, vpcId: String?, dbVersion: String?, securityGroupList: [String]?, weekly: [Int64]?, startTime: String?, span: Int64?, resourceTags: [ResourceTag]?) {
+        public init (zone: String, memory: Int64, storage: Int64, cpu: Int64, machineType: String, projectId: Int64? = nil, goodsNum: Int64? = nil, subnetId: String? = nil, vpcId: String? = nil, dbVersion: String? = nil, securityGroupList: [String]? = nil, weekly: [Int64]? = nil, startTime: String? = nil, span: Int64? = nil, resourceTags: [ResourceTag]? = nil) {
             self.zone = zone
             self.memory = memory
             self.storage = storage
@@ -127,5 +111,21 @@ extension Sqlserver {
             case dealName = "DealName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建商业智能服务实例
+    ///
+    /// 本接口（CreateBusinessDBInstances）用于创建商业智能服务实例。
+    @inlinable
+    public func createBusinessDBInstances(_ input: CreateBusinessDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBusinessDBInstancesResponse > {
+        self.client.execute(action: "CreateBusinessDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建商业智能服务实例
+    ///
+    /// 本接口（CreateBusinessDBInstances）用于创建商业智能服务实例。
+    @inlinable
+    public func createBusinessDBInstances(_ input: CreateBusinessDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBusinessDBInstancesResponse {
+        try await self.client.execute(action: "CreateBusinessDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

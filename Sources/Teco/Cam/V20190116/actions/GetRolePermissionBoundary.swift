@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 获取角色权限边界
-    @inlinable
-    public func getRolePermissionBoundary(_ input: GetRolePermissionBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRolePermissionBoundaryResponse > {
-        self.client.execute(action: "GetRolePermissionBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取角色权限边界
-    @inlinable
-    public func getRolePermissionBoundary(_ input: GetRolePermissionBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRolePermissionBoundaryResponse {
-        try await self.client.execute(action: "GetRolePermissionBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetRolePermissionBoundary请求参数结构体
     public struct GetRolePermissionBoundaryRequest: TCRequestModel {
         /// 角色ID
@@ -74,5 +62,17 @@ extension Cam {
             case createMode = "CreateMode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取角色权限边界
+    @inlinable
+    public func getRolePermissionBoundary(_ input: GetRolePermissionBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRolePermissionBoundaryResponse > {
+        self.client.execute(action: "GetRolePermissionBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取角色权限边界
+    @inlinable
+    public func getRolePermissionBoundary(_ input: GetRolePermissionBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRolePermissionBoundaryResponse {
+        try await self.client.execute(action: "GetRolePermissionBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

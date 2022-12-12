@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取Secret详情
-    @inlinable
-    public func describeSecret(_ input: DescribeSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecretResponse > {
-        self.client.execute(action: "DescribeSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Secret详情
-    @inlinable
-    public func describeSecret(_ input: DescribeSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretResponse {
-        try await self.client.execute(action: "DescribeSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecret请求参数结构体
     public struct DescribeSecretRequest: TCRequestModel {
         /// 边缘单元ID
@@ -38,7 +26,7 @@ extension Iecp {
         /// 命名空间(默认值:default）
         public let secretNamespace: String?
         
-        public init (edgeUnitID: UInt64, secretName: String, secretNamespace: String?) {
+        public init (edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil) {
             self.edgeUnitID = edgeUnitID
             self.secretName = secretName
             self.secretNamespace = secretNamespace
@@ -84,5 +72,17 @@ extension Iecp {
             case json = "Json"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Secret详情
+    @inlinable
+    public func describeSecret(_ input: DescribeSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecretResponse > {
+        self.client.execute(action: "DescribeSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Secret详情
+    @inlinable
+    public func describeSecret(_ input: DescribeSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretResponse {
+        try await self.client.execute(action: "DescribeSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取周报列表
-    ///
-    /// 本接口 (DescribeWeeklyReports) 用于获取周报列表数据。
-    @inlinable
-    public func describeWeeklyReports(_ input: DescribeWeeklyReportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWeeklyReportsResponse > {
-        self.client.execute(action: "DescribeWeeklyReports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取周报列表
-    ///
-    /// 本接口 (DescribeWeeklyReports) 用于获取周报列表数据。
-    @inlinable
-    public func describeWeeklyReports(_ input: DescribeWeeklyReportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportsResponse {
-        try await self.client.execute(action: "DescribeWeeklyReports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWeeklyReports请求参数结构体
     public struct DescribeWeeklyReportsRequest: TCRequestModel {
         /// 返回数量，默认为10，最大值为100。
@@ -39,7 +23,7 @@ extension Yunjing {
         /// 偏移量，默认为0。
         public let offset: UInt64?
         
-        public init (limit: UInt64?, offset: UInt64?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil) {
             self.limit = limit
             self.offset = offset
         }
@@ -66,5 +50,21 @@ extension Yunjing {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取周报列表
+    ///
+    /// 本接口 (DescribeWeeklyReports) 用于获取周报列表数据。
+    @inlinable
+    public func describeWeeklyReports(_ input: DescribeWeeklyReportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWeeklyReportsResponse > {
+        self.client.execute(action: "DescribeWeeklyReports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取周报列表
+    ///
+    /// 本接口 (DescribeWeeklyReports) 用于获取周报列表数据。
+    @inlinable
+    public func describeWeeklyReports(_ input: DescribeWeeklyReportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportsResponse {
+        try await self.client.execute(action: "DescribeWeeklyReports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

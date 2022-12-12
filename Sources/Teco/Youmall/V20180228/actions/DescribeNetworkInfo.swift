@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 查询设备最新网络状态
-    ///
-    /// 返回当前门店最新网络状态数据
-    @inlinable
-    public func describeNetworkInfo(_ input: DescribeNetworkInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkInfoResponse > {
-        self.client.execute(action: "DescribeNetworkInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询设备最新网络状态
-    ///
-    /// 返回当前门店最新网络状态数据
-    @inlinable
-    public func describeNetworkInfo(_ input: DescribeNetworkInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkInfoResponse {
-        try await self.client.execute(action: "DescribeNetworkInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNetworkInfo请求参数结构体
     public struct DescribeNetworkInfoRequest: TCRequestModel {
         /// 请求时间戳
@@ -42,7 +26,7 @@ extension Youmall {
         /// 优mall店铺id，通过"指定身份标识获取客户门店列表"接口获取，不填则拉取集团全部店铺当前
         public let shopId: Int64?
         
-        public init (time: Int64, companyId: String, shopId: Int64?) {
+        public init (time: Int64, companyId: String, shopId: Int64? = nil) {
             self.time = time
             self.companyId = companyId
             self.shopId = shopId
@@ -67,5 +51,21 @@ extension Youmall {
             case instanceSet = "InstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询设备最新网络状态
+    ///
+    /// 返回当前门店最新网络状态数据
+    @inlinable
+    public func describeNetworkInfo(_ input: DescribeNetworkInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkInfoResponse > {
+        self.client.execute(action: "DescribeNetworkInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询设备最新网络状态
+    ///
+    /// 返回当前门店最新网络状态数据
+    @inlinable
+    public func describeNetworkInfo(_ input: DescribeNetworkInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkInfoResponse {
+        try await self.client.execute(action: "DescribeNetworkInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

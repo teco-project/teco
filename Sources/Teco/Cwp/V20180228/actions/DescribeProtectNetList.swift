@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 旗舰重保列表
-    ///
-    /// 专家服务-旗舰重保列表
-    @inlinable
-    public func describeProtectNetList(_ input: DescribeProtectNetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProtectNetListResponse > {
-        self.client.execute(action: "DescribeProtectNetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 旗舰重保列表
-    ///
-    /// 专家服务-旗舰重保列表
-    @inlinable
-    public func describeProtectNetList(_ input: DescribeProtectNetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectNetListResponse {
-        try await self.client.execute(action: "DescribeProtectNetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProtectNetList请求参数结构体
     public struct DescribeProtectNetListRequest: TCRequestModel {
         /// 过滤条件。
@@ -50,7 +34,7 @@ extension Cwp {
         /// 排序字段 StartTime，EndTime
         public let by: String?
         
-        public init (filters: [Filters]?, limit: UInt64?, offset: UInt64?, order: String?, by: String?) {
+        public init (filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil) {
             self.filters = filters
             self.limit = limit
             self.offset = offset
@@ -83,5 +67,21 @@ extension Cwp {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 旗舰重保列表
+    ///
+    /// 专家服务-旗舰重保列表
+    @inlinable
+    public func describeProtectNetList(_ input: DescribeProtectNetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProtectNetListResponse > {
+        self.client.execute(action: "DescribeProtectNetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 旗舰重保列表
+    ///
+    /// 专家服务-旗舰重保列表
+    @inlinable
+    public func describeProtectNetList(_ input: DescribeProtectNetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectNetListResponse {
+        try await self.client.execute(action: "DescribeProtectNetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

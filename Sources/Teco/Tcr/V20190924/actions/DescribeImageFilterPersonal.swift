@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询个人版中与指定tag镜像内容相同的tag列表
-    ///
-    /// 用于在个人版中查询与指定tag镜像内容相同的tag列表
-    @inlinable
-    public func describeImageFilterPersonal(_ input: DescribeImageFilterPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageFilterPersonalResponse > {
-        self.client.execute(action: "DescribeImageFilterPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询个人版中与指定tag镜像内容相同的tag列表
-    ///
-    /// 用于在个人版中查询与指定tag镜像内容相同的tag列表
-    @inlinable
-    public func describeImageFilterPersonal(_ input: DescribeImageFilterPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageFilterPersonalResponse {
-        try await self.client.execute(action: "DescribeImageFilterPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageFilterPersonal请求参数结构体
     public struct DescribeImageFilterPersonalRequest: TCRequestModel {
         /// 仓库名称
@@ -62,5 +46,21 @@ extension Tcr {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询个人版中与指定tag镜像内容相同的tag列表
+    ///
+    /// 用于在个人版中查询与指定tag镜像内容相同的tag列表
+    @inlinable
+    public func describeImageFilterPersonal(_ input: DescribeImageFilterPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageFilterPersonalResponse > {
+        self.client.execute(action: "DescribeImageFilterPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询个人版中与指定tag镜像内容相同的tag列表
+    ///
+    /// 用于在个人版中查询与指定tag镜像内容相同的tag列表
+    @inlinable
+    public func describeImageFilterPersonal(_ input: DescribeImageFilterPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageFilterPersonalResponse {
+        try await self.client.execute(action: "DescribeImageFilterPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssm {
-    /// 获取用户服务开通状态
-    ///
-    /// 该接口用户获取用户SecretsManager服务开通状态。
-    @inlinable
-    public func getServiceStatus(_ input: GetServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetServiceStatusResponse > {
-        self.client.execute(action: "GetServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取用户服务开通状态
-    ///
-    /// 该接口用户获取用户SecretsManager服务开通状态。
-    @inlinable
-    public func getServiceStatus(_ input: GetServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceStatusResponse {
-        try await self.client.execute(action: "GetServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetServiceStatus请求参数结构体
     public struct GetServiceStatusRequest: TCRequestModel {
         public init () {
@@ -58,5 +42,21 @@ extension Ssm {
             case accessKeyEscrowEnabled = "AccessKeyEscrowEnabled"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取用户服务开通状态
+    ///
+    /// 该接口用户获取用户SecretsManager服务开通状态。
+    @inlinable
+    public func getServiceStatus(_ input: GetServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetServiceStatusResponse > {
+        self.client.execute(action: "GetServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取用户服务开通状态
+    ///
+    /// 该接口用户获取用户SecretsManager服务开通状态。
+    @inlinable
+    public func getServiceStatus(_ input: GetServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceStatusResponse {
+        try await self.client.execute(action: "GetServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

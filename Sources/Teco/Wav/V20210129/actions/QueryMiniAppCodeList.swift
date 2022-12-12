@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wav {
-    /// 查询小程序码列表接口
-    @inlinable
-    public func queryMiniAppCodeList(_ input: QueryMiniAppCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMiniAppCodeListResponse > {
-        self.client.execute(action: "QueryMiniAppCodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询小程序码列表接口
-    @inlinable
-    public func queryMiniAppCodeList(_ input: QueryMiniAppCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMiniAppCodeListResponse {
-        try await self.client.execute(action: "QueryMiniAppCodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryMiniAppCodeList请求参数结构体
     public struct QueryMiniAppCodeListRequest: TCRequestModel {
         /// 用于分页查询的游标，字符串类型，由上一次调用返回，首次调用可不填
@@ -35,7 +23,7 @@ extension Wav {
         /// 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
         public let limit: Int64?
         
-        public init (cursor: String?, limit: Int64?) {
+        public init (cursor: String? = nil, limit: Int64? = nil) {
             self.cursor = cursor
             self.limit = limit
         }
@@ -64,5 +52,17 @@ extension Wav {
             case pageData = "PageData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询小程序码列表接口
+    @inlinable
+    public func queryMiniAppCodeList(_ input: QueryMiniAppCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMiniAppCodeListResponse > {
+        self.client.execute(action: "QueryMiniAppCodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询小程序码列表接口
+    @inlinable
+    public func queryMiniAppCodeList(_ input: QueryMiniAppCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMiniAppCodeListResponse {
+        try await self.client.execute(action: "QueryMiniAppCodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

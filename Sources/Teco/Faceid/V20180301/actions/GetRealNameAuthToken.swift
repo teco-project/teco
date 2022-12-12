@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 微信实名认证授权
-    ///
-    /// 该接口仅限微信公众号中使用，传入姓名和身份证号获取回调URL，在微信公众号中打开验证姓名和身份证号与微信实名的信息是否一致。
-    @inlinable
-    public func getRealNameAuthToken(_ input: GetRealNameAuthTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRealNameAuthTokenResponse > {
-        self.client.execute(action: "GetRealNameAuthToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 微信实名认证授权
-    ///
-    /// 该接口仅限微信公众号中使用，传入姓名和身份证号获取回调URL，在微信公众号中打开验证姓名和身份证号与微信实名的信息是否一致。
-    @inlinable
-    public func getRealNameAuthToken(_ input: GetRealNameAuthTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRealNameAuthTokenResponse {
-        try await self.client.execute(action: "GetRealNameAuthToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetRealNameAuthToken请求参数结构体
     public struct GetRealNameAuthTokenRequest: TCRequestModel {
         /// 姓名
@@ -71,5 +55,21 @@ extension Faceid {
             case redirectURL = "RedirectURL"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 微信实名认证授权
+    ///
+    /// 该接口仅限微信公众号中使用，传入姓名和身份证号获取回调URL，在微信公众号中打开验证姓名和身份证号与微信实名的信息是否一致。
+    @inlinable
+    public func getRealNameAuthToken(_ input: GetRealNameAuthTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRealNameAuthTokenResponse > {
+        self.client.execute(action: "GetRealNameAuthToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 微信实名认证授权
+    ///
+    /// 该接口仅限微信公众号中使用，传入姓名和身份证号获取回调URL，在微信公众号中打开验证姓名和身份证号与微信实名的信息是否一致。
+    @inlinable
+    public func getRealNameAuthToken(_ input: GetRealNameAuthTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRealNameAuthTokenResponse {
+        try await self.client.execute(action: "GetRealNameAuthToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

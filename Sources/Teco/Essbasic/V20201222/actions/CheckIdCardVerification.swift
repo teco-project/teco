@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 身份证核验
-    ///
-    /// 该接口为第三方平台向电子签平台验证姓名和身份证信息
-    @inlinable
-    public func checkIdCardVerification(_ input: CheckIdCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIdCardVerificationResponse > {
-        self.client.execute(action: "CheckIdCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 身份证核验
-    ///
-    /// 该接口为第三方平台向电子签平台验证姓名和身份证信息
-    @inlinable
-    public func checkIdCardVerification(_ input: CheckIdCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdCardVerificationResponse {
-        try await self.client.execute(action: "CheckIdCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckIdCardVerification请求参数结构体
     public struct CheckIdCardVerificationRequest: TCRequestModel {
         /// 调用方信息; 必选
@@ -45,7 +29,7 @@ extension Essbasic {
         /// 身份证件类型; ID_CARD
         public let idCardType: String?
         
-        public init (caller: Caller, name: String, idCardNumber: String, idCardType: String?) {
+        public init (caller: Caller, name: String, idCardNumber: String, idCardType: String? = nil) {
             self.caller = caller
             self.name = name
             self.idCardNumber = idCardNumber
@@ -84,5 +68,21 @@ extension Essbasic {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 身份证核验
+    ///
+    /// 该接口为第三方平台向电子签平台验证姓名和身份证信息
+    @inlinable
+    public func checkIdCardVerification(_ input: CheckIdCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIdCardVerificationResponse > {
+        self.client.execute(action: "CheckIdCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 身份证核验
+    ///
+    /// 该接口为第三方平台向电子签平台验证姓名和身份证信息
+    @inlinable
+    public func checkIdCardVerification(_ input: CheckIdCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdCardVerificationResponse {
+        try await self.client.execute(action: "CheckIdCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 删除资源接口
-    @inlinable
-    public func deleteResources(_ input: DeleteResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourcesResponse > {
-        self.client.execute(action: "DeleteResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除资源接口
-    @inlinable
-    public func deleteResources(_ input: DeleteResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourcesResponse {
-        try await self.client.execute(action: "DeleteResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteResources请求参数结构体
     public struct DeleteResourcesRequest: TCRequestModel {
         /// 待删除资源ID列表
@@ -35,7 +23,7 @@ extension Oceanus {
         /// 工作空间 SerialId
         public let workSpaceId: String?
         
-        public init (resourceIds: [String], workSpaceId: String?) {
+        public init (resourceIds: [String], workSpaceId: String? = nil) {
             self.resourceIds = resourceIds
             self.workSpaceId = workSpaceId
         }
@@ -54,5 +42,17 @@ extension Oceanus {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除资源接口
+    @inlinable
+    public func deleteResources(_ input: DeleteResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourcesResponse > {
+        self.client.execute(action: "DeleteResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除资源接口
+    @inlinable
+    public func deleteResources(_ input: DeleteResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourcesResponse {
+        try await self.client.execute(action: "DeleteResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 修改DhcpIp属性
-    ///
-    /// 本接口（ModifyDhcpIpAttribute）用于修改DhcpIp属性
-    @inlinable
-    public func modifyDhcpIpAttribute(_ input: ModifyDhcpIpAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDhcpIpAttributeResponse > {
-        self.client.execute(action: "ModifyDhcpIpAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改DhcpIp属性
-    ///
-    /// 本接口（ModifyDhcpIpAttribute）用于修改DhcpIp属性
-    @inlinable
-    public func modifyDhcpIpAttribute(_ input: ModifyDhcpIpAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDhcpIpAttributeResponse {
-        try await self.client.execute(action: "ModifyDhcpIpAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDhcpIpAttribute请求参数结构体
     public struct ModifyDhcpIpAttributeRequest: TCRequestModel {
         /// `DhcpIp`唯一`ID`，形如：`dhcpip-9o233uri`。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改DhcpIp属性
+    ///
+    /// 本接口（ModifyDhcpIpAttribute）用于修改DhcpIp属性
+    @inlinable
+    public func modifyDhcpIpAttribute(_ input: ModifyDhcpIpAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDhcpIpAttributeResponse > {
+        self.client.execute(action: "ModifyDhcpIpAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改DhcpIp属性
+    ///
+    /// 本接口（ModifyDhcpIpAttribute）用于修改DhcpIp属性
+    @inlinable
+    public func modifyDhcpIpAttribute(_ input: ModifyDhcpIpAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDhcpIpAttributeResponse {
+        try await self.client.execute(action: "ModifyDhcpIpAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

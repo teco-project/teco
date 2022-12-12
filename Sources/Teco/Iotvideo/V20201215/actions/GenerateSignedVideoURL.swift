@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取视频防盗链播放URL
-    @inlinable
-    public func generateSignedVideoURL(_ input: GenerateSignedVideoURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateSignedVideoURLResponse > {
-        self.client.execute(action: "GenerateSignedVideoURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取视频防盗链播放URL
-    @inlinable
-    public func generateSignedVideoURL(_ input: GenerateSignedVideoURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateSignedVideoURLResponse {
-        try await self.client.execute(action: "GenerateSignedVideoURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GenerateSignedVideoURL请求参数结构体
     public struct GenerateSignedVideoURLRequest: TCRequestModel {
         /// 视频播放原始URL地址
@@ -58,5 +46,17 @@ extension Iotvideo {
             case signedVideoURL = "SignedVideoURL"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取视频防盗链播放URL
+    @inlinable
+    public func generateSignedVideoURL(_ input: GenerateSignedVideoURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GenerateSignedVideoURLResponse > {
+        self.client.execute(action: "GenerateSignedVideoURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取视频防盗链播放URL
+    @inlinable
+    public func generateSignedVideoURL(_ input: GenerateSignedVideoURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateSignedVideoURLResponse {
+        try await self.client.execute(action: "GenerateSignedVideoURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

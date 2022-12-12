@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询插件详情
-    ///
-    /// 展示插件详情，支持按照插件ID进行。
-    @inlinable
-    public func describePlugin(_ input: DescribePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePluginResponse > {
-        self.client.execute(action: "DescribePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询插件详情
-    ///
-    /// 展示插件详情，支持按照插件ID进行。
-    @inlinable
-    public func describePlugin(_ input: DescribePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginResponse {
-        try await self.client.execute(action: "DescribePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePlugin请求参数结构体
     public struct DescribePluginRequest: TCRequestModel {
         /// 要查询的插件ID。
@@ -42,7 +26,7 @@ extension Apigateway {
         /// 偏移量，默认为 0。
         public let offset: Int64?
         
-        public init (pluginId: String, limit: Int64?, offset: Int64?) {
+        public init (pluginId: String, limit: Int64? = nil, offset: Int64? = nil) {
             self.pluginId = pluginId
             self.limit = limit
             self.offset = offset
@@ -67,5 +51,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询插件详情
+    ///
+    /// 展示插件详情，支持按照插件ID进行。
+    @inlinable
+    public func describePlugin(_ input: DescribePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePluginResponse > {
+        self.client.execute(action: "DescribePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询插件详情
+    ///
+    /// 展示插件详情，支持按照插件ID进行。
+    @inlinable
+    public func describePlugin(_ input: DescribePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginResponse {
+        try await self.client.execute(action: "DescribePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

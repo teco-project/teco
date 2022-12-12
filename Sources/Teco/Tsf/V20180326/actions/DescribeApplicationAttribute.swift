@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 获取应用列表其它字段
-    ///
-    /// 获取应用列表其它字段，如实例数量信息等
-    @inlinable
-    public func describeApplicationAttribute(_ input: DescribeApplicationAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationAttributeResponse > {
-        self.client.execute(action: "DescribeApplicationAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取应用列表其它字段
-    ///
-    /// 获取应用列表其它字段，如实例数量信息等
-    @inlinable
-    public func describeApplicationAttribute(_ input: DescribeApplicationAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationAttributeResponse {
-        try await self.client.execute(action: "DescribeApplicationAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplicationAttribute请求参数结构体
     public struct DescribeApplicationAttributeRequest: TCRequestModel {
         /// 应用ID
@@ -57,5 +41,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取应用列表其它字段
+    ///
+    /// 获取应用列表其它字段，如实例数量信息等
+    @inlinable
+    public func describeApplicationAttribute(_ input: DescribeApplicationAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationAttributeResponse > {
+        self.client.execute(action: "DescribeApplicationAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用列表其它字段
+    ///
+    /// 获取应用列表其它字段，如实例数量信息等
+    @inlinable
+    public func describeApplicationAttribute(_ input: DescribeApplicationAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationAttributeResponse {
+        try await self.client.execute(action: "DescribeApplicationAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

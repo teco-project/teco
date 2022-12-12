@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改站点
-    ///
-    /// 修改站点信息。
-    @inlinable
-    public func modifyZone(_ input: ModifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyZoneResponse > {
-        self.client.execute(action: "ModifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改站点
-    ///
-    /// 修改站点信息。
-    @inlinable
-    public func modifyZone(_ input: ModifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneResponse {
-        try await self.client.execute(action: "ModifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyZone请求参数结构体
     public struct ModifyZoneRequest: TCRequestModel {
         /// 站点 ID。
@@ -42,12 +26,12 @@ extension Teo {
         public let type: String?
         
         /// 自定义站点信息，以替代系统默认分配的名称服务器。不填写保持原有配置。
-        public let vanityNameServers: VanityNameServers
+        public let vanityNameServers: VanityNameServers?
         
         /// 站点别名。数字、英文、-和_组合，限制20个字符。
         public let aliasZoneName: String?
         
-        public init (zoneId: String, type: String?, vanityNameServers: VanityNameServers, aliasZoneName: String?) {
+        public init (zoneId: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, aliasZoneName: String? = nil) {
             self.zoneId = zoneId
             self.type = type
             self.vanityNameServers = vanityNameServers
@@ -70,5 +54,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改站点
+    ///
+    /// 修改站点信息。
+    @inlinable
+    public func modifyZone(_ input: ModifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyZoneResponse > {
+        self.client.execute(action: "ModifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改站点
+    ///
+    /// 修改站点信息。
+    @inlinable
+    public func modifyZone(_ input: ModifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneResponse {
+        try await self.client.execute(action: "ModifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

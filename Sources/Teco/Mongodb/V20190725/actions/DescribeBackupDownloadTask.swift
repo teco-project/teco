@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 查询备份下载任务信息
-    @inlinable
-    public func describeBackupDownloadTask(_ input: DescribeBackupDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupDownloadTaskResponse > {
-        self.client.execute(action: "DescribeBackupDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询备份下载任务信息
-    @inlinable
-    public func describeBackupDownloadTask(_ input: DescribeBackupDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadTaskResponse {
-        try await self.client.execute(action: "DescribeBackupDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBackupDownloadTask请求参数结构体
     public struct DescribeBackupDownloadTaskRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -56,7 +44,7 @@ extension Mongodb {
         /// 根据任务状态过滤。0-等待执行，1-正在下载，2-下载完成，3-下载失败，4-等待重试。不填默认返回所有类型
         public let status: [Int64]?
         
-        public init (instanceId: String, backupName: String?, startTime: String?, endTime: String?, limit: Int64?, offset: Int64?, orderBy: String?, orderByType: String?, status: [Int64]?) {
+        public init (instanceId: String, backupName: String? = nil, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, status: [Int64]? = nil) {
             self.instanceId = instanceId
             self.backupName = backupName
             self.startTime = startTime
@@ -97,5 +85,17 @@ extension Mongodb {
             case tasks = "Tasks"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询备份下载任务信息
+    @inlinable
+    public func describeBackupDownloadTask(_ input: DescribeBackupDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBackupDownloadTaskResponse > {
+        self.client.execute(action: "DescribeBackupDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询备份下载任务信息
+    @inlinable
+    public func describeBackupDownloadTask(_ input: DescribeBackupDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupDownloadTaskResponse {
+        try await self.client.execute(action: "DescribeBackupDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

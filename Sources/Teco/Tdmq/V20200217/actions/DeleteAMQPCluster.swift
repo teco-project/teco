@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 删除AMQP集群
-    @inlinable
-    public func deleteAMQPCluster(_ input: DeleteAMQPClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAMQPClusterResponse > {
-        self.client.execute(action: "DeleteAMQPCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除AMQP集群
-    @inlinable
-    public func deleteAMQPCluster(_ input: DeleteAMQPClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPClusterResponse {
-        try await self.client.execute(action: "DeleteAMQPCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAMQPCluster请求参数结构体
     public struct DeleteAMQPClusterRequest: TCRequestModel {
         /// 待删除的集群Id。
@@ -49,5 +37,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除AMQP集群
+    @inlinable
+    public func deleteAMQPCluster(_ input: DeleteAMQPClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAMQPClusterResponse > {
+        self.client.execute(action: "DeleteAMQPCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除AMQP集群
+    @inlinable
+    public func deleteAMQPCluster(_ input: DeleteAMQPClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPClusterResponse {
+        try await self.client.execute(action: "DeleteAMQPCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

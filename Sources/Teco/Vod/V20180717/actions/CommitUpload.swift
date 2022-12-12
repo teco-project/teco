@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 确认上传
-    ///
-    /// 该接口用于确认媒体文件（和封面文件）上传到腾讯云点播的结果，并存储媒体信息，返回文件的播放地址和文件 ID。
-    @inlinable
-    public func commitUpload(_ input: CommitUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitUploadResponse > {
-        self.client.execute(action: "CommitUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 确认上传
-    ///
-    /// 该接口用于确认媒体文件（和封面文件）上传到腾讯云点播的结果，并存储媒体信息，返回文件的播放地址和文件 ID。
-    @inlinable
-    public func commitUpload(_ input: CommitUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitUploadResponse {
-        try await self.client.execute(action: "CommitUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CommitUpload请求参数结构体
     public struct CommitUploadRequest: TCRequestModel {
         /// 点播会话，取申请上传接口的返回值 VodSessionKey。
@@ -39,7 +23,7 @@ extension Vod {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
         
-        public init (vodSessionKey: String, subAppId: UInt64?) {
+        public init (vodSessionKey: String, subAppId: UInt64? = nil) {
             self.vodSessionKey = vodSessionKey
             self.subAppId = subAppId
         }
@@ -70,5 +54,21 @@ extension Vod {
             case coverUrl = "CoverUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 确认上传
+    ///
+    /// 该接口用于确认媒体文件（和封面文件）上传到腾讯云点播的结果，并存储媒体信息，返回文件的播放地址和文件 ID。
+    @inlinable
+    public func commitUpload(_ input: CommitUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CommitUploadResponse > {
+        self.client.execute(action: "CommitUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 确认上传
+    ///
+    /// 该接口用于确认媒体文件（和封面文件）上传到腾讯云点播的结果，并存储媒体信息，返回文件的播放地址和文件 ID。
+    @inlinable
+    public func commitUpload(_ input: CommitUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitUploadResponse {
+        try await self.client.execute(action: "CommitUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 获取DID服务详情
-    @inlinable
-    public func getDidServiceDetail(_ input: GetDidServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidServiceDetailResponse > {
-        self.client.execute(action: "GetDidServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DID服务详情
-    @inlinable
-    public func getDidServiceDetail(_ input: GetDidServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceDetailResponse {
-        try await self.client.execute(action: "GetDidServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDidServiceDetail请求参数结构体
     public struct GetDidServiceDetailRequest: TCRequestModel {
         /// DID服务ID
@@ -53,5 +41,17 @@ extension Tdid {
             case didService = "DidService"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DID服务详情
+    @inlinable
+    public func getDidServiceDetail(_ input: GetDidServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidServiceDetailResponse > {
+        self.client.execute(action: "GetDidServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DID服务详情
+    @inlinable
+    public func getDidServiceDetail(_ input: GetDidServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceDetailResponse {
+        try await self.client.execute(action: "GetDidServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

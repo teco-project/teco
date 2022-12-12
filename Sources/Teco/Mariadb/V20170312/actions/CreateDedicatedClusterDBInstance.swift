@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 创建独享集群Mariadb实例
-    @inlinable
-    public func createDedicatedClusterDBInstance(_ input: CreateDedicatedClusterDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDedicatedClusterDBInstanceResponse > {
-        self.client.execute(action: "CreateDedicatedClusterDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建独享集群Mariadb实例
-    @inlinable
-    public func createDedicatedClusterDBInstance(_ input: CreateDedicatedClusterDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterDBInstanceResponse {
-        try await self.client.execute(action: "CreateDedicatedClusterDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDedicatedClusterDBInstance请求参数结构体
     public struct CreateDedicatedClusterDBInstanceRequest: TCRequestModel {
         /// 分配实例个数
@@ -104,7 +92,7 @@ extension Mariadb {
         /// 回档时间
         public let rollbackTime: String?
         
-        public init (goodsNum: Int64, memory: Int64, storage: Int64, clusterId: String, zone: String?, projectId: Int64?, pid: Int64?, machine: String?, vpcId: String?, subnetId: String?, dbVersionId: String?, manual: Int64?, deviceNo: String?, securityGroupIds: [String]?, dcnInstanceId: String?, dcnRegion: String?, instanceName: String?, resourceTags: [ResourceTag]?, ipv6Flag: Int64?, initParams: [DBParamValue]?, nodeNum: Int64?, masterHostId: String?, slaveHostIds: [String]?, rollbackInstanceId: String?, rollbackTime: String?) {
+        public init (goodsNum: Int64, memory: Int64, storage: Int64, clusterId: String, zone: String? = nil, projectId: Int64? = nil, pid: Int64? = nil, machine: String? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, manual: Int64? = nil, deviceNo: String? = nil, securityGroupIds: [String]? = nil, dcnInstanceId: String? = nil, dcnRegion: String? = nil, instanceName: String? = nil, resourceTags: [ResourceTag]? = nil, ipv6Flag: Int64? = nil, initParams: [DBParamValue]? = nil, nodeNum: Int64? = nil, masterHostId: String? = nil, slaveHostIds: [String]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil) {
             self.goodsNum = goodsNum
             self.memory = memory
             self.storage = storage
@@ -177,5 +165,17 @@ extension Mariadb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建独享集群Mariadb实例
+    @inlinable
+    public func createDedicatedClusterDBInstance(_ input: CreateDedicatedClusterDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDedicatedClusterDBInstanceResponse > {
+        self.client.execute(action: "CreateDedicatedClusterDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建独享集群Mariadb实例
+    @inlinable
+    public func createDedicatedClusterDBInstance(_ input: CreateDedicatedClusterDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterDBInstanceResponse {
+        try await self.client.execute(action: "CreateDedicatedClusterDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

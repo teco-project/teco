@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询站点配置
-    ///
-    /// 用于查询站点的所有配置信息。
-    @inlinable
-    public func describeZoneSetting(_ input: DescribeZoneSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneSettingResponse > {
-        self.client.execute(action: "DescribeZoneSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询站点配置
-    ///
-    /// 用于查询站点的所有配置信息。
-    @inlinable
-    public func describeZoneSetting(_ input: DescribeZoneSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneSettingResponse {
-        try await self.client.execute(action: "DescribeZoneSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeZoneSetting请求参数结构体
     public struct DescribeZoneSettingRequest: TCRequestModel {
         /// 站点ID。
@@ -55,67 +39,67 @@ extension Teo {
         
         /// 缓存过期时间配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cache: CacheConfig
+        public let cache: CacheConfig?
         
         /// 节点缓存键配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cacheKey: CacheKey
+        public let cacheKey: CacheKey?
         
         /// Quic访问配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let quic: Quic
+        public let quic: Quic?
         
         /// POST请求传输配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let postMaxSize: PostMaxSize
+        public let postMaxSize: PostMaxSize?
         
         /// 智能压缩配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let compression: Compression
+        public let compression: Compression?
         
         /// Http2回源配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let upstreamHttp2: UpstreamHttp2
+        public let upstreamHttp2: UpstreamHttp2?
         
         /// 访问协议强制Https跳转配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let forceRedirect: ForceRedirect
+        public let forceRedirect: ForceRedirect?
         
         /// Https 加速配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let https: Https
+        public let https: Https?
         
         /// 源站配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let origin: Origin
+        public let origin: Origin?
         
         /// 智能加速配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let smartRouting: SmartRouting
+        public let smartRouting: SmartRouting?
         
         /// 浏览器缓存配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let maxAge: MaxAge
+        public let maxAge: MaxAge?
         
         /// 离线缓存配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let offlineCache: OfflineCache
+        public let offlineCache: OfflineCache?
         
         /// WebSocket配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let webSocket: WebSocket
+        public let webSocket: WebSocket?
         
         /// 客户端IP回源请求头配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let clientIpHeader: ClientIp
+        public let clientIpHeader: ClientIp?
         
         /// 缓存预刷新配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cachePrefresh: CachePrefresh
+        public let cachePrefresh: CachePrefresh?
         
         /// Ipv6访问配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ipv6: Ipv6Access
+        public let ipv6: Ipv6Access?
         
         /// 站点加速区域信息，取值有：
         /// <li>mainland：中国境内加速；</li>
@@ -147,5 +131,21 @@ extension Teo {
             case area = "Area"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询站点配置
+    ///
+    /// 用于查询站点的所有配置信息。
+    @inlinable
+    public func describeZoneSetting(_ input: DescribeZoneSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneSettingResponse > {
+        self.client.execute(action: "DescribeZoneSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询站点配置
+    ///
+    /// 用于查询站点的所有配置信息。
+    @inlinable
+    public func describeZoneSetting(_ input: DescribeZoneSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneSettingResponse {
+        try await self.client.execute(action: "DescribeZoneSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 规则执行结果列表查询
-    @inlinable
-    public func describeRuleExecResults(_ input: DescribeRuleExecResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleExecResultsResponse > {
-        self.client.execute(action: "DescribeRuleExecResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 规则执行结果列表查询
-    @inlinable
-    public func describeRuleExecResults(_ input: DescribeRuleExecResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecResultsResponse {
-        try await self.client.execute(action: "DescribeRuleExecResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRuleExecResults请求参数结构体
     public struct DescribeRuleExecResultsRequest: TCRequestModel {
         /// 规则组执行Id
@@ -35,7 +23,7 @@ extension Wedata {
         /// 项目Id
         public let projectId: String?
         
-        public init (ruleGroupExecId: UInt64?, projectId: String?) {
+        public init (ruleGroupExecId: UInt64? = nil, projectId: String? = nil) {
             self.ruleGroupExecId = ruleGroupExecId
             self.projectId = projectId
         }
@@ -50,7 +38,7 @@ extension Wedata {
     public struct DescribeRuleExecResultsResponse: TCResponseModel {
         /// 规则执行结果列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: RuleExecResultPage
+        public let data: RuleExecResultPage?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -59,5 +47,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 规则执行结果列表查询
+    @inlinable
+    public func describeRuleExecResults(_ input: DescribeRuleExecResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRuleExecResultsResponse > {
+        self.client.execute(action: "DescribeRuleExecResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 规则执行结果列表查询
+    @inlinable
+    public func describeRuleExecResults(_ input: DescribeRuleExecResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecResultsResponse {
+        try await self.client.execute(action: "DescribeRuleExecResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取全部录制计划（旧）
-    ///
-    /// 本接口(GetRecordPlans)用于获取用户的全部录制计划。
-    /// 请使用DescribeRecordingPlans接口
-    @inlinable
-    public func getRecordPlans(_ input: GetRecordPlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRecordPlansResponse > {
-        self.client.execute(action: "GetRecordPlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取全部录制计划（旧）
-    ///
-    /// 本接口(GetRecordPlans)用于获取用户的全部录制计划。
-    /// 请使用DescribeRecordingPlans接口
-    @inlinable
-    public func getRecordPlans(_ input: GetRecordPlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordPlansResponse {
-        try await self.client.execute(action: "GetRecordPlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetRecordPlans请求参数结构体
     public struct GetRecordPlansRequest: TCRequestModel {
         public init () {
@@ -57,5 +39,23 @@ extension Iotvideoindustry {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取全部录制计划（旧）
+    ///
+    /// 本接口(GetRecordPlans)用于获取用户的全部录制计划。
+    /// 请使用DescribeRecordingPlans接口
+    @inlinable
+    public func getRecordPlans(_ input: GetRecordPlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetRecordPlansResponse > {
+        self.client.execute(action: "GetRecordPlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取全部录制计划（旧）
+    ///
+    /// 本接口(GetRecordPlans)用于获取用户的全部录制计划。
+    /// 请使用DescribeRecordingPlans接口
+    @inlinable
+    public func getRecordPlans(_ input: GetRecordPlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordPlansResponse {
+        try await self.client.execute(action: "GetRecordPlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

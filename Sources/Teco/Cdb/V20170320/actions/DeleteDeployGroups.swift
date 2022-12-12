@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 删除置放群组
-    ///
-    /// 根据置放群组ID删除置放群组（置放群组中有资源存在时不能删除该置放群组）
-    @inlinable
-    public func deleteDeployGroups(_ input: DeleteDeployGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeployGroupsResponse > {
-        self.client.execute(action: "DeleteDeployGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除置放群组
-    ///
-    /// 根据置放群组ID删除置放群组（置放群组中有资源存在时不能删除该置放群组）
-    @inlinable
-    public func deleteDeployGroups(_ input: DeleteDeployGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeployGroupsResponse {
-        try await self.client.execute(action: "DeleteDeployGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteDeployGroups请求参数结构体
     public struct DeleteDeployGroupsRequest: TCRequestModel {
         /// 要删除的置放群组 ID 列表。
@@ -53,5 +37,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除置放群组
+    ///
+    /// 根据置放群组ID删除置放群组（置放群组中有资源存在时不能删除该置放群组）
+    @inlinable
+    public func deleteDeployGroups(_ input: DeleteDeployGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeployGroupsResponse > {
+        self.client.execute(action: "DeleteDeployGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除置放群组
+    ///
+    /// 根据置放群组ID删除置放群组（置放群组中有资源存在时不能删除该置放群组）
+    @inlinable
+    public func deleteDeployGroups(_ input: DeleteDeployGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeployGroupsResponse {
+        try await self.client.execute(action: "DeleteDeployGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取云镜破解事件列表
-    ///
-    /// 本接口{DescribeBruteAttacks}用于获取暴力破解事件列表。
-    @inlinable
-    public func describeBruteAttacks(_ input: DescribeBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBruteAttacksResponse > {
-        self.client.execute(action: "DescribeBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取云镜破解事件列表
-    ///
-    /// 本接口{DescribeBruteAttacks}用于获取暴力破解事件列表。
-    @inlinable
-    public func describeBruteAttacks(_ input: DescribeBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBruteAttacksResponse {
-        try await self.client.execute(action: "DescribeBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBruteAttacks请求参数结构体
     public struct DescribeBruteAttacksRequest: TCRequestModel {
         /// 客户端唯一Uuid。
@@ -47,7 +31,7 @@ extension Yunjing {
         /// 返回数量，默认为10，最大值为100。
         public let limit: UInt64?
         
-        public init (uuid: String?, offset: UInt64?, filters: [Filter]?, limit: UInt64?) {
+        public init (uuid: String? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, limit: UInt64? = nil) {
             self.uuid = uuid
             self.offset = offset
             self.filters = filters
@@ -78,5 +62,21 @@ extension Yunjing {
             case bruteAttacks = "BruteAttacks"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取云镜破解事件列表
+    ///
+    /// 本接口{DescribeBruteAttacks}用于获取暴力破解事件列表。
+    @inlinable
+    public func describeBruteAttacks(_ input: DescribeBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBruteAttacksResponse > {
+        self.client.execute(action: "DescribeBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取云镜破解事件列表
+    ///
+    /// 本接口{DescribeBruteAttacks}用于获取暴力破解事件列表。
+    @inlinable
+    public func describeBruteAttacks(_ input: DescribeBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBruteAttacksResponse {
+        try await self.client.execute(action: "DescribeBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

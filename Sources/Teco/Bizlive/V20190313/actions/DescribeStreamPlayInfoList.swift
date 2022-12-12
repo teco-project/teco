@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bizlive {
-    /// 查询流的播放信息列表
-    ///
-    /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据。
-    @inlinable
-    public func describeStreamPlayInfoList(_ input: DescribeStreamPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamPlayInfoListResponse > {
-        self.client.execute(action: "DescribeStreamPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询流的播放信息列表
-    ///
-    /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据。
-    @inlinable
-    public func describeStreamPlayInfoList(_ input: DescribeStreamPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPlayInfoListResponse {
-        try await self.client.execute(action: "DescribeStreamPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStreamPlayInfoList请求参数结构体
     public struct DescribeStreamPlayInfoListRequest: TCRequestModel {
         /// 结束时间，北京时间，格式：2019-04-28 10:36:00
@@ -48,7 +32,7 @@ extension Bizlive {
         /// 若不填，则为查询总体播放数据。
         public let streamName: String?
         
-        public init (endTime: String, playDomain: String, startTime: String, streamName: String?) {
+        public init (endTime: String, playDomain: String, startTime: String, streamName: String? = nil) {
             self.endTime = endTime
             self.playDomain = playDomain
             self.startTime = startTime
@@ -75,5 +59,21 @@ extension Bizlive {
             case dataInfoList = "DataInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询流的播放信息列表
+    ///
+    /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据。
+    @inlinable
+    public func describeStreamPlayInfoList(_ input: DescribeStreamPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamPlayInfoListResponse > {
+        self.client.execute(action: "DescribeStreamPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询流的播放信息列表
+    ///
+    /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据。
+    @inlinable
+    public func describeStreamPlayInfoList(_ input: DescribeStreamPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPlayInfoListResponse {
+        try await self.client.execute(action: "DescribeStreamPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

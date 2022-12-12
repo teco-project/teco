@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 修改镜像属性
-    ///
-    /// 本接口 (ModifyBlueprintAttribute) 用于修改镜像属性。
-    @inlinable
-    public func modifyBlueprintAttribute(_ input: ModifyBlueprintAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBlueprintAttributeResponse > {
-        self.client.execute(action: "ModifyBlueprintAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改镜像属性
-    ///
-    /// 本接口 (ModifyBlueprintAttribute) 用于修改镜像属性。
-    @inlinable
-    public func modifyBlueprintAttribute(_ input: ModifyBlueprintAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlueprintAttributeResponse {
-        try await self.client.execute(action: "ModifyBlueprintAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyBlueprintAttribute请求参数结构体
     public struct ModifyBlueprintAttributeRequest: TCRequestModel {
         /// 镜像 ID。可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值中的BlueprintId获取。
@@ -42,7 +26,7 @@ extension Lighthouse {
         /// 设置新的镜像描述。最大长度60。
         public let description: String?
         
-        public init (blueprintId: String, blueprintName: String?, description: String?) {
+        public init (blueprintId: String, blueprintName: String? = nil, description: String? = nil) {
             self.blueprintId = blueprintId
             self.blueprintName = blueprintName
             self.description = description
@@ -63,5 +47,21 @@ extension Lighthouse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改镜像属性
+    ///
+    /// 本接口 (ModifyBlueprintAttribute) 用于修改镜像属性。
+    @inlinable
+    public func modifyBlueprintAttribute(_ input: ModifyBlueprintAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBlueprintAttributeResponse > {
+        self.client.execute(action: "ModifyBlueprintAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改镜像属性
+    ///
+    /// 本接口 (ModifyBlueprintAttribute) 用于修改镜像属性。
+    @inlinable
+    public func modifyBlueprintAttribute(_ input: ModifyBlueprintAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlueprintAttributeResponse {
+        try await self.client.execute(action: "ModifyBlueprintAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

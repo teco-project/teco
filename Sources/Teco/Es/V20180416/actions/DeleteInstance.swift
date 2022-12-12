@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 销毁ES集群实例
-    ///
-    /// 销毁集群实例 
-    @inlinable
-    public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstanceResponse > {
-        self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 销毁ES集群实例
-    ///
-    /// 销毁集群实例 
-    @inlinable
-    public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
-        try await self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteInstance请求参数结构体
     public struct DeleteInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -53,5 +37,21 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 销毁ES集群实例
+    ///
+    /// 销毁集群实例 
+    @inlinable
+    public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteInstanceResponse > {
+        self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁ES集群实例
+    ///
+    /// 销毁集群实例 
+    @inlinable
+    public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
+        try await self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

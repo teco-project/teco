@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 列举在线推理服务组
-    @inlinable
-    public func describeModelServiceGroups(_ input: DescribeModelServiceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServiceGroupsResponse > {
-        self.client.execute(action: "DescribeModelServiceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 列举在线推理服务组
-    @inlinable
-    public func describeModelServiceGroups(_ input: DescribeModelServiceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceGroupsResponse {
-        try await self.client.execute(action: "DescribeModelServiceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeModelServiceGroups请求参数结构体
     public struct DescribeModelServiceGroupsRequest: TCRequestModel {
         /// 偏移量，默认为0
@@ -48,7 +36,7 @@ extension Tione {
         /// 标签过滤参数
         public let tagFilters: [TagFilter]?
         
-        public init (offset: Int64?, limit: Int64?, order: String?, orderField: String?, filters: [Filter]?, tagFilters: [TagFilter]?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderField: String? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.order = order
@@ -85,5 +73,17 @@ extension Tione {
             case serviceGroups = "ServiceGroups"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 列举在线推理服务组
+    @inlinable
+    public func describeModelServiceGroups(_ input: DescribeModelServiceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeModelServiceGroupsResponse > {
+        self.client.execute(action: "DescribeModelServiceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 列举在线推理服务组
+    @inlinable
+    public func describeModelServiceGroups(_ input: DescribeModelServiceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceGroupsResponse {
+        try await self.client.execute(action: "DescribeModelServiceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

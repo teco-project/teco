@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ams {
-    /// 取消任务
-    @inlinable
-    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelTaskResponse > {
-        self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消任务
-    @inlinable
-    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
-        try await self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelTask请求参数结构体
     public struct CancelTaskRequest: TCRequestModel {
         /// 任务ID
@@ -49,5 +37,17 @@ extension Ams {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消任务
+    @inlinable
+    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelTaskResponse > {
+        self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消任务
+    @inlinable
+    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
+        try await self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-子商户银行卡打款验证
-    ///
-    /// 云企付-子商户银行卡打款验证，在接入TENPAY渠道EBANK_PAYMENT付款时，若客户期望接入担保支付，需在接入前先完成，收款商户绑定的银行卡进行打款验证。验证成功后，才可以调用CreateOpenBankPaymentOrder接口进行担保支付下单。
-    @inlinable
-    public func verifyOpenBankAccount(_ input: VerifyOpenBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyOpenBankAccountResponse > {
-        self.client.execute(action: "VerifyOpenBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-子商户银行卡打款验证
-    ///
-    /// 云企付-子商户银行卡打款验证，在接入TENPAY渠道EBANK_PAYMENT付款时，若客户期望接入担保支付，需在接入前先完成，收款商户绑定的银行卡进行打款验证。验证成功后，才可以调用CreateOpenBankPaymentOrder接口进行担保支付下单。
-    @inlinable
-    public func verifyOpenBankAccount(_ input: VerifyOpenBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyOpenBankAccountResponse {
-        try await self.client.execute(action: "VerifyOpenBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VerifyOpenBankAccount请求参数结构体
     public struct VerifyOpenBankAccountRequest: TCRequestModel {
         /// 渠道商户号。外部接入平台入驻云企付平台下发
@@ -52,7 +36,7 @@ extension Cpdp {
         /// _不填默认为生产环境_
         public let environment: String?
         
-        public init (channelMerchantId: String, channelName: String, payeeInfo: OpenBankPayeeInfo, notifyUrl: String?, environment: String?) {
+        public init (channelMerchantId: String, channelName: String, payeeInfo: OpenBankPayeeInfo, notifyUrl: String? = nil, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.channelName = channelName
             self.payeeInfo = payeeInfo
@@ -80,7 +64,7 @@ extension Cpdp {
         
         /// 打款验证结果。前端使用url字段，根据指引完成打款验证动作
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: VerifyOpenBankAccountResult
+        public let result: VerifyOpenBankAccountResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -91,5 +75,21 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-子商户银行卡打款验证
+    ///
+    /// 云企付-子商户银行卡打款验证，在接入TENPAY渠道EBANK_PAYMENT付款时，若客户期望接入担保支付，需在接入前先完成，收款商户绑定的银行卡进行打款验证。验证成功后，才可以调用CreateOpenBankPaymentOrder接口进行担保支付下单。
+    @inlinable
+    public func verifyOpenBankAccount(_ input: VerifyOpenBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyOpenBankAccountResponse > {
+        self.client.execute(action: "VerifyOpenBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-子商户银行卡打款验证
+    ///
+    /// 云企付-子商户银行卡打款验证，在接入TENPAY渠道EBANK_PAYMENT付款时，若客户期望接入担保支付，需在接入前先完成，收款商户绑定的银行卡进行打款验证。验证成功后，才可以调用CreateOpenBankPaymentOrder接口进行担保支付下单。
+    @inlinable
+    public func verifyOpenBankAccount(_ input: VerifyOpenBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyOpenBankAccountResponse {
+        try await self.client.execute(action: "VerifyOpenBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

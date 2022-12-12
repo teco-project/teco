@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 添加L7转发规则
-    ///
-    /// 添加7层(网站)转发规则
-    @inlinable
-    public func createL7Rules(_ input: CreateL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL7RulesResponse > {
-        self.client.execute(action: "CreateL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加L7转发规则
-    ///
-    /// 添加7层(网站)转发规则
-    @inlinable
-    public func createL7Rules(_ input: CreateL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RulesResponse {
-        try await self.client.execute(action: "CreateL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateL7Rules请求参数结构体
     public struct CreateL7RulesRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -67,5 +51,21 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加L7转发规则
+    ///
+    /// 添加7层(网站)转发规则
+    @inlinable
+    public func createL7Rules(_ input: CreateL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateL7RulesResponse > {
+        self.client.execute(action: "CreateL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加L7转发规则
+    ///
+    /// 添加7层(网站)转发规则
+    @inlinable
+    public func createL7Rules(_ input: CreateL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RulesResponse {
+        try await self.client.execute(action: "CreateL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Kms {
-    /// 启用主密钥
-    ///
-    /// 用于启用一个指定的CMK。
-    @inlinable
-    public func enableKey(_ input: EnableKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableKeyResponse > {
-        self.client.execute(action: "EnableKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启用主密钥
-    ///
-    /// 用于启用一个指定的CMK。
-    @inlinable
-    public func enableKey(_ input: EnableKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeyResponse {
-        try await self.client.execute(action: "EnableKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableKey请求参数结构体
     public struct EnableKeyRequest: TCRequestModel {
         /// CMK唯一标识符
@@ -53,5 +37,21 @@ extension Kms {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启用主密钥
+    ///
+    /// 用于启用一个指定的CMK。
+    @inlinable
+    public func enableKey(_ input: EnableKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableKeyResponse > {
+        self.client.execute(action: "EnableKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启用主密钥
+    ///
+    /// 用于启用一个指定的CMK。
+    @inlinable
+    public func enableKey(_ input: EnableKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeyResponse {
+        try await self.client.execute(action: "EnableKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Billing {
-    /// 支付订单
-    @inlinable
-    public func payDeals(_ input: PayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PayDealsResponse > {
-        self.client.execute(action: "PayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 支付订单
-    @inlinable
-    public func payDeals(_ input: PayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayDealsResponse {
-        try await self.client.execute(action: "PayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PayDeals请求参数结构体
     public struct PayDealsRequest: TCRequestModel {
         /// 需要支付的一个或者多个子订单号，与BigDealIds字段两者必须且仅传一个参数
@@ -41,7 +29,7 @@ extension Billing {
         /// 需要支付的一个或者多个大订单号，与OrderIds字段两者必须且仅传一个参数
         public let bigDealIds: [String]?
         
-        public init (orderIds: [String]?, autoVoucher: Int64?, voucherIds: [String]?, bigDealIds: [String]?) {
+        public init (orderIds: [String]? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, bigDealIds: [String]? = nil) {
             self.orderIds = orderIds
             self.autoVoucher = autoVoucher
             self.voucherIds = voucherIds
@@ -76,5 +64,17 @@ extension Billing {
             case bigDealIds = "BigDealIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 支付订单
+    @inlinable
+    public func payDeals(_ input: PayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PayDealsResponse > {
+        self.client.execute(action: "PayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 支付订单
+    @inlinable
+    public func payDeals(_ input: PayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayDealsResponse {
+        try await self.client.execute(action: "PayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -66,9 +66,9 @@ extension Cvm {
         public let actionTime: String?
         
         /// 扩展数据
-        public let externals: Externals
+        public let externals: Externals?
         
-        public init (timerAction: String?, actionTime: String?, externals: Externals) {
+        public init (timerAction: String? = nil, actionTime: String? = nil, externals: Externals? = nil) {
             self.timerAction = timerAction
             self.actionTime = actionTime
             self.externals = externals
@@ -89,7 +89,7 @@ extension Cvm {
         /// 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费<br><br>默认取值：NOTIFY_AND_AUTO_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String?
         
-        public init (period: UInt64, renewFlag: String?) {
+        public init (period: UInt64, renewFlag: String? = nil) {
             self.period = period
             self.renewFlag = renewFlag
         }
@@ -135,7 +135,7 @@ extension Cvm {
         
         /// 带外网络。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let bmcVirtualPrivateCloud: VirtualPrivateCloud
+        public let bmcVirtualPrivateCloud: VirtualPrivateCloud?
         
         /// 带外网络Ip。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -147,7 +147,7 @@ extension Cvm {
         
         /// 部署网络。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let deployVirtualPrivateCloud: VirtualPrivateCloud
+        public let deployVirtualPrivateCloud: VirtualPrivateCloud?
         
         /// 部署网络Ip。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -196,7 +196,7 @@ extension Cvm {
         
         /// chc dhcp选项，用于minios调试
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let deployExtraConfig: ChcDeployExtraConfig
+        public let deployExtraConfig: ChcDeployExtraConfig?
         
         enum CodingKeys: String, CodingKey {
             case chcId = "ChcId"
@@ -287,7 +287,7 @@ extension Cvm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cdcId: String?
         
-        public init (diskSize: Int64, diskType: String?, diskId: String?, deleteWithInstance: Bool?, snapshotId: String?, encrypt: Bool?, kmsKeyId: String?, throughputPerformance: Int64?, cdcId: String?) {
+        public init (diskSize: Int64, diskType: String? = nil, diskId: String? = nil, deleteWithInstance: Bool? = nil, snapshotId: String? = nil, encrypt: Bool? = nil, kmsKeyId: String? = nil, throughputPerformance: Int64? = nil, cdcId: String? = nil) {
             self.diskSize = diskSize
             self.diskType = diskType
             self.diskId = diskId
@@ -377,15 +377,15 @@ extension Cvm {
     /// 描述了实例的增强服务启用情况与其设置，如云安全，云监控等实例 Agent
     public struct EnhancedService: TCInputModel, TCOutputModel {
         /// 开启云安全服务。若不指定该参数，则默认开启云安全服务。
-        public let securityService: RunSecurityServiceEnabled
+        public let securityService: RunSecurityServiceEnabled?
         
         /// 开启云监控服务。若不指定该参数，则默认开启云监控服务。
-        public let monitorService: RunMonitorServiceEnabled
+        public let monitorService: RunMonitorServiceEnabled?
         
         /// 开启云自动化助手服务（TencentCloud Automation Tools，TAT）。若不指定该参数，则公共镜像默认开启云自动化助手服务，其他镜像默认不开启云自动化助手服务。
-        public let automationService: RunAutomationServiceEnabled
+        public let automationService: RunAutomationServiceEnabled?
         
-        public init (securityService: RunSecurityServiceEnabled, monitorService: RunMonitorServiceEnabled, automationService: RunAutomationServiceEnabled) {
+        public init (securityService: RunSecurityServiceEnabled? = nil, monitorService: RunMonitorServiceEnabled? = nil, automationService: RunAutomationServiceEnabled? = nil) {
             self.securityService = securityService
             self.monitorService = monitorService
             self.automationService = automationService
@@ -410,9 +410,9 @@ extension Cvm {
         
         /// HDD本地存储属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let storageBlockAttr: StorageBlock
+        public let storageBlockAttr: StorageBlock?
         
-        public init (releaseAddress: Bool?, unsupportNetworks: [String]?, storageBlockAttr: StorageBlock) {
+        public init (releaseAddress: Bool? = nil, unsupportNetworks: [String]? = nil, storageBlockAttr: StorageBlock? = nil) {
             self.releaseAddress = releaseAddress
             self.unsupportNetworks = unsupportNetworks
             self.storageBlockAttr = storageBlockAttr
@@ -479,7 +479,7 @@ extension Cvm {
     /// 专用宿主机实例详细信息
     public struct HostItem: TCOutputModel {
         /// 专用宿主机实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
-        public let placement: Placement
+        public let placement: Placement?
         
         /// 专用宿主机实例ID
         public let hostId: String?
@@ -512,7 +512,7 @@ extension Cvm {
         public let hostIp: String?
         
         /// 专用宿主机实例资源信息
-        public let hostResource: HostResource
+        public let hostResource: HostResource?
         
         /// 专用宿主机所属的围笼ID。该字段仅对金融专区围笼内的专用宿主机有效。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -738,7 +738,7 @@ extension Cvm {
     /// 描述实例的信息
     public struct Instance: TCOutputModel {
         /// 实例所在的位置。
-        public let placement: Placement
+        public let placement: Placement?
         
         /// 实例`ID`。
         public let instanceId: String?
@@ -762,7 +762,7 @@ extension Cvm {
         public let instanceChargeType: String?
         
         /// 实例系统盘信息。
-        public let systemDisk: SystemDisk
+        public let systemDisk: SystemDisk?
         
         /// 实例数据盘信息。
         public let dataDisks: [DataDisk]?
@@ -775,10 +775,10 @@ extension Cvm {
         public let publicIpAddresses: [String]?
         
         /// 实例带宽信息。
-        public let internetAccessible: InternetAccessible
+        public let internetAccessible: InternetAccessible?
         
         /// 实例所属虚拟私有网络信息。
-        public let virtualPrivateCloud: VirtualPrivateCloud
+        public let virtualPrivateCloud: VirtualPrivateCloud?
         
         /// 生产实例所使用的镜像`ID`。
         public let imageId: String?
@@ -853,7 +853,7 @@ extension Cvm {
         
         /// GPU信息。如果是gpu类型子机，该值会返回GPU信息，如果是其他类型子机则不返回。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let gpuInfo: GPUInfo
+        public let gpuInfo: GPUInfo?
         
         /// 实例的操作系统许可类型，默认为TencentCloud
         public let licenseType: String?
@@ -910,7 +910,7 @@ extension Cvm {
         /// 自动续费标识。取值范围：<br><li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费<br><li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费<br><li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费<br><br>默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String?
         
-        public init (period: Int64, renewFlag: String?) {
+        public init (period: Int64, renewFlag: String? = nil) {
             self.period = period
             self.renewFlag = renewFlag
         }
@@ -944,7 +944,7 @@ extension Cvm {
         /// 市场选项类型，当前只支持取值：spot
         public let marketType: String?
         
-        public init (spotOptions: SpotMarketOptions, marketType: String?) {
+        public init (spotOptions: SpotMarketOptions, marketType: String? = nil) {
             self.spotOptions = spotOptions
             self.marketType = marketType
         }
@@ -1059,7 +1059,7 @@ extension Cvm {
         
         /// 扩展属性。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let externals: Externals
+        public let externals: Externals?
         
         /// 实例的CPU核数，单位：核。
         public let cpu: Int64
@@ -1153,7 +1153,7 @@ extension Cvm {
         /// 带宽包ID。可通过[`DescribeBandwidthPackages`](https://cloud.tencent.com/document/api/215/19209)接口返回值中的`BandwidthPackageId`获取。该参数仅在RunInstances接口中作为入参使用。
         public let bandwidthPackageId: String?
         
-        public init (internetChargeType: String?, internetMaxBandwidthOut: Int64?, publicIpAssigned: Bool?, bandwidthPackageId: String?) {
+        public init (internetChargeType: String? = nil, internetMaxBandwidthOut: Int64? = nil, publicIpAssigned: Bool? = nil, bandwidthPackageId: String? = nil) {
             self.internetChargeType = internetChargeType
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
             self.publicIpAssigned = publicIpAssigned
@@ -1177,7 +1177,7 @@ extension Cvm {
         public let endTime: Date?
         
         /// 实例带宽信息。
-        public let internetAccessible: InternetAccessible
+        public let internetAccessible: InternetAccessible?
         
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
@@ -1194,7 +1194,7 @@ extension Cvm {
         /// 网络计费模式描述信息。
         public let description: String?
         
-        public init (internetChargeType: String?, description: String?) {
+        public init (internetChargeType: String? = nil, description: String? = nil) {
             self.internetChargeType = internetChargeType
             self.description = description
         }
@@ -1366,7 +1366,7 @@ extension Cvm {
         /// 实例启动模板版本号，若给定，新实例启动模板将基于给定的版本号创建
         public let launchTemplateVersion: UInt64?
         
-        public init (launchTemplateId: String?, launchTemplateVersion: UInt64?) {
+        public init (launchTemplateId: String? = nil, launchTemplateVersion: UInt64? = nil) {
             self.launchTemplateId = launchTemplateId
             self.launchTemplateVersion = launchTemplateVersion
         }
@@ -1422,7 +1422,7 @@ extension Cvm {
     public struct LaunchTemplateVersionData: TCOutputModel {
         /// 实例所在的位置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let placement: Placement
+        public let placement: Placement?
         
         /// 实例机型。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1438,7 +1438,7 @@ extension Cvm {
         
         /// 实例系统盘信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let systemDisk: SystemDisk
+        public let systemDisk: SystemDisk?
         
         /// 实例数据盘信息。只包含随实例购买的数据盘。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1446,11 +1446,11 @@ extension Cvm {
         
         /// 实例带宽信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let internetAccessible: InternetAccessible
+        public let internetAccessible: InternetAccessible?
         
         /// 实例所属虚拟私有网络信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let virtualPrivateCloud: VirtualPrivateCloud
+        public let virtualPrivateCloud: VirtualPrivateCloud?
         
         /// 生产实例所使用的镜像`ID`。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1462,7 +1462,7 @@ extension Cvm {
         
         /// 实例登录设置。目前只返回实例所关联的密钥。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let loginSettings: LoginSettings
+        public let loginSettings: LoginSettings?
         
         /// CAM角色名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1478,7 +1478,7 @@ extension Cvm {
         
         /// 增强服务。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let enhancedService: EnhancedService
+        public let enhancedService: EnhancedService?
         
         /// 提供给实例使用的用户数据，需要以 base64 方式编码，支持的最大数据大小为 16KB。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1490,11 +1490,11 @@ extension Cvm {
         
         /// 定时任务。通过该参数可以为实例指定定时任务，目前仅支持定时销毁。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let actionTimer: ActionTimer
+        public let actionTimer: ActionTimer?
         
         /// 实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instanceMarketOptions: InstanceMarketOptionsRequest
+        public let instanceMarketOptions: InstanceMarketOptionsRequest?
         
         /// 云服务器的主机名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1506,7 +1506,7 @@ extension Cvm {
         
         /// 预付费模式，即包年包月相关参数设置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 标签描述列表。通过指定该参数可以同时绑定标签到相应的云服务器、云硬盘实例。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1616,7 +1616,7 @@ extension Cvm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keepImageLogin: String?
         
-        public init (password: String?, keyIds: [String]?, keepImageLogin: String?) {
+        public init (password: String? = nil, keyIds: [String]? = nil, keepImageLogin: String? = nil) {
             self.password = password
             self.keyIds = keyIds
             self.keepImageLogin = keepImageLogin
@@ -1686,7 +1686,7 @@ extension Cvm {
         /// 实例所属的专用宿主机ID，仅用于出参。
         public let hostId: String?
         
-        public init (zone: String, projectId: Int64?, hostIds: [String]?, hostIps: [String]?, hostId: String?) {
+        public init (zone: String, projectId: Int64? = nil, hostIds: [String]? = nil, hostIps: [String]? = nil, hostId: String? = nil) {
             self.zone = zone
             self.projectId = projectId
             self.hostIds = hostIds
@@ -1754,10 +1754,10 @@ extension Cvm {
     /// 价格
     public struct Price: TCOutputModel {
         /// 描述了实例价格。
-        public let instancePrice: ItemPrice
+        public let instancePrice: ItemPrice?
         
         /// 描述了网络价格。
-        public let bandwidthPrice: ItemPrice
+        public let bandwidthPrice: ItemPrice?
         
         enum CodingKeys: String, CodingKey {
             case instancePrice = "InstancePrice"
@@ -2071,7 +2071,7 @@ extension Cvm {
         /// 是否开启云自动化助手。取值范围：<br><li>TRUE：表示开启云自动化助手服务<br><li>FALSE：表示不开启云自动化助手服务<br><br>默认取值：FALSE。
         public let enabled: Bool?
         
-        public init (enabled: Bool?) {
+        public init (enabled: Bool? = nil) {
             self.enabled = enabled
         }
         
@@ -2085,7 +2085,7 @@ extension Cvm {
         /// 是否开启[云监控](/document/product/248)服务。取值范围：<br><li>TRUE：表示开启云监控服务<br><li>FALSE：表示不开启云监控服务<br><br>默认取值：TRUE。
         public let enabled: Bool?
         
-        public init (enabled: Bool?) {
+        public init (enabled: Bool? = nil) {
             self.enabled = enabled
         }
         
@@ -2099,7 +2099,7 @@ extension Cvm {
         /// 是否开启[云安全](/document/product/296)服务。取值范围：<br><li>TRUE：表示开启云安全服务<br><li>FALSE：表示不开启云安全服务<br><br>默认取值：TRUE。
         public let enabled: Bool?
         
-        public init (enabled: Bool?) {
+        public init (enabled: Bool? = nil) {
             self.enabled = enabled
         }
         
@@ -2151,7 +2151,7 @@ extension Cvm {
         /// 竞价请求类型，当前仅支持类型：one-time
         public let spotInstanceType: String?
         
-        public init (maxPrice: String, spotInstanceType: String?) {
+        public init (maxPrice: String = "one-time", spotInstanceType: String? = nil) {
             self.maxPrice = maxPrice
             self.spotInstanceType = spotInstanceType
         }
@@ -2234,7 +2234,7 @@ extension Cvm {
         /// 所属的独享集群ID。
         public let cdcId: String?
         
-        public init (diskType: String?, diskId: String?, diskSize: Int64?, cdcId: String?) {
+        public init (diskType: String? = nil, diskId: String? = nil, diskSize: Int64? = nil, cdcId: String? = nil) {
             self.diskType = diskType
             self.diskId = diskId
             self.diskSize = diskSize
@@ -2304,7 +2304,7 @@ extension Cvm {
         /// 为弹性网卡指定随机生成的 IPv6 地址数量。
         public let ipv6AddressCount: UInt64?
         
-        public init (vpcId: String, subnetId: String, asVpcGateway: Bool?, privateIpAddresses: [String]?, ipv6AddressCount: UInt64?) {
+        public init (vpcId: String, subnetId: String, asVpcGateway: Bool? = nil, privateIpAddresses: [String]? = nil, ipv6AddressCount: UInt64? = nil) {
             self.vpcId = vpcId
             self.subnetId = subnetId
             self.asVpcGateway = asVpcGateway

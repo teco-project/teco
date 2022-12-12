@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 查询监测列表
-    ///
-    /// 版权保护-查询监测列表接口
-    @inlinable
-    public func describeCRMonitors(_ input: DescribeCRMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCRMonitorsResponse > {
-        self.client.execute(action: "DescribeCRMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询监测列表
-    ///
-    /// 版权保护-查询监测列表接口
-    @inlinable
-    public func describeCRMonitors(_ input: DescribeCRMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRMonitorsResponse {
-        try await self.client.execute(action: "DescribeCRMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCRMonitors请求参数结构体
     public struct DescribeCRMonitorsRequest: TCRequestModel {
         /// 过滤条件
@@ -42,7 +26,7 @@ extension Bma {
         /// 页码
         public let pageNumber: Int64?
         
-        public init (filters: [Filter]?, pageSize: Int64?, pageNumber: Int64?) {
+        public init (filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil) {
             self.filters = filters
             self.pageSize = pageSize
             self.pageNumber = pageNumber
@@ -75,5 +59,21 @@ extension Bma {
             case exportURL = "ExportURL"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询监测列表
+    ///
+    /// 版权保护-查询监测列表接口
+    @inlinable
+    public func describeCRMonitors(_ input: DescribeCRMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCRMonitorsResponse > {
+        self.client.execute(action: "DescribeCRMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询监测列表
+    ///
+    /// 版权保护-查询监测列表接口
+    @inlinable
+    public func describeCRMonitors(_ input: DescribeCRMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRMonitorsResponse {
+        try await self.client.execute(action: "DescribeCRMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

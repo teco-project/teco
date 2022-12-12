@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 启动虚拟机部署组
-    ///
-    /// 启动分组
-    @inlinable
-    public func startGroup(_ input: StartGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartGroupResponse > {
-        self.client.execute(action: "StartGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启动虚拟机部署组
-    ///
-    /// 启动分组
-    @inlinable
-    public func startGroup(_ input: StartGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartGroupResponse {
-        try await self.client.execute(action: "StartGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartGroup请求参数结构体
     public struct StartGroupRequest: TCRequestModel {
         /// 部署组ID
@@ -49,7 +33,7 @@ extension Tsf {
     public struct StartGroupResponse: TCResponseModel {
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TaskId
+        public let result: TaskId?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -58,5 +42,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启动虚拟机部署组
+    ///
+    /// 启动分组
+    @inlinable
+    public func startGroup(_ input: StartGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartGroupResponse > {
+        self.client.execute(action: "StartGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启动虚拟机部署组
+    ///
+    /// 启动分组
+    @inlinable
+    public func startGroup(_ input: StartGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartGroupResponse {
+        try await self.client.execute(action: "StartGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

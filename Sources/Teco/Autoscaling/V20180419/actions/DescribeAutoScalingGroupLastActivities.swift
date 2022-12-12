@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 查询伸缩组最新一次伸缩活动
-    ///
-    /// 本接口（DescribeAutoScalingGroupLastActivities）用于查询伸缩组的最新一次伸缩活动记录。
-    @inlinable
-    public func describeAutoScalingGroupLastActivities(_ input: DescribeAutoScalingGroupLastActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoScalingGroupLastActivitiesResponse > {
-        self.client.execute(action: "DescribeAutoScalingGroupLastActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询伸缩组最新一次伸缩活动
-    ///
-    /// 本接口（DescribeAutoScalingGroupLastActivities）用于查询伸缩组的最新一次伸缩活动记录。
-    @inlinable
-    public func describeAutoScalingGroupLastActivities(_ input: DescribeAutoScalingGroupLastActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingGroupLastActivitiesResponse {
-        try await self.client.execute(action: "DescribeAutoScalingGroupLastActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAutoScalingGroupLastActivities请求参数结构体
     public struct DescribeAutoScalingGroupLastActivitiesRequest: TCRequestModel {
         /// 伸缩组ID列表
@@ -57,5 +41,21 @@ extension As {
             case activitySet = "ActivitySet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询伸缩组最新一次伸缩活动
+    ///
+    /// 本接口（DescribeAutoScalingGroupLastActivities）用于查询伸缩组的最新一次伸缩活动记录。
+    @inlinable
+    public func describeAutoScalingGroupLastActivities(_ input: DescribeAutoScalingGroupLastActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoScalingGroupLastActivitiesResponse > {
+        self.client.execute(action: "DescribeAutoScalingGroupLastActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询伸缩组最新一次伸缩活动
+    ///
+    /// 本接口（DescribeAutoScalingGroupLastActivities）用于查询伸缩组的最新一次伸缩活动记录。
+    @inlinable
+    public func describeAutoScalingGroupLastActivities(_ input: DescribeAutoScalingGroupLastActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingGroupLastActivitiesResponse {
+        try await self.client.execute(action: "DescribeAutoScalingGroupLastActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

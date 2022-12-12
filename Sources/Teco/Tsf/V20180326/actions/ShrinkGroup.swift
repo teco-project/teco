@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 缩容虚拟机部署组
-    ///
-    /// 下线部署组所有机器实例
-    @inlinable
-    public func shrinkGroup(_ input: ShrinkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ShrinkGroupResponse > {
-        self.client.execute(action: "ShrinkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 缩容虚拟机部署组
-    ///
-    /// 下线部署组所有机器实例
-    @inlinable
-    public func shrinkGroup(_ input: ShrinkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShrinkGroupResponse {
-        try await self.client.execute(action: "ShrinkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ShrinkGroup请求参数结构体
     public struct ShrinkGroupRequest: TCRequestModel {
         /// 部署组ID
@@ -49,7 +33,7 @@ extension Tsf {
     public struct ShrinkGroupResponse: TCResponseModel {
         /// 任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: TaskId
+        public let result: TaskId?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -58,5 +42,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 缩容虚拟机部署组
+    ///
+    /// 下线部署组所有机器实例
+    @inlinable
+    public func shrinkGroup(_ input: ShrinkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ShrinkGroupResponse > {
+        self.client.execute(action: "ShrinkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 缩容虚拟机部署组
+    ///
+    /// 下线部署组所有机器实例
+    @inlinable
+    public func shrinkGroup(_ input: ShrinkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShrinkGroupResponse {
+        try await self.client.execute(action: "ShrinkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

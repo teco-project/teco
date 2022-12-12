@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 续费VPN网关询价
-    ///
-    /// 本接口（InquiryPriceRenewVpnGateway）用于续费VPN网关询价。目前仅支持IPSEC类型网关的询价。
-    @inlinable
-    public func inquiryPriceRenewVpnGateway(_ input: InquiryPriceRenewVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRenewVpnGatewayResponse > {
-        self.client.execute(action: "InquiryPriceRenewVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费VPN网关询价
-    ///
-    /// 本接口（InquiryPriceRenewVpnGateway）用于续费VPN网关询价。目前仅支持IPSEC类型网关的询价。
-    @inlinable
-    public func inquiryPriceRenewVpnGateway(_ input: InquiryPriceRenewVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewVpnGatewayResponse {
-        try await self.client.execute(action: "InquiryPriceRenewVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceRenewVpnGateway请求参数结构体
     public struct InquiryPriceRenewVpnGatewayRequest: TCRequestModel {
         /// VPN网关实例ID。
@@ -62,5 +46,21 @@ extension Vpc {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费VPN网关询价
+    ///
+    /// 本接口（InquiryPriceRenewVpnGateway）用于续费VPN网关询价。目前仅支持IPSEC类型网关的询价。
+    @inlinable
+    public func inquiryPriceRenewVpnGateway(_ input: InquiryPriceRenewVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceRenewVpnGatewayResponse > {
+        self.client.execute(action: "InquiryPriceRenewVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费VPN网关询价
+    ///
+    /// 本接口（InquiryPriceRenewVpnGateway）用于续费VPN网关询价。目前仅支持IPSEC类型网关的询价。
+    @inlinable
+    public func inquiryPriceRenewVpnGateway(_ input: InquiryPriceRenewVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewVpnGatewayResponse {
+        try await self.client.execute(action: "InquiryPriceRenewVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

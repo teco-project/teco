@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Mgobe {
-    /// 查询玩家信息
-    ///
-    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
-    /// 该接口用于查询玩家信息。支持两种用法，当OpenId不传的时候，PlayerId必传，传入PlayerId可以查询当前PlayerId的玩家信息，当OpenId传入的时候，PlayerId可不传，按照OpenId查询玩家信息。
-    @inlinable
-    public func describePlayer(_ input: DescribePlayerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePlayerResponse > {
-        self.client.execute(action: "DescribePlayer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询玩家信息
-    ///
-    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
-    /// 该接口用于查询玩家信息。支持两种用法，当OpenId不传的时候，PlayerId必传，传入PlayerId可以查询当前PlayerId的玩家信息，当OpenId传入的时候，PlayerId可不传，按照OpenId查询玩家信息。
-    @inlinable
-    public func describePlayer(_ input: DescribePlayerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayerResponse {
-        try await self.client.execute(action: "DescribePlayer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePlayer请求参数结构体
     public struct DescribePlayerRequest: TCRequestModel {
         /// 游戏资源Id。
@@ -44,7 +26,7 @@ extension Mgobe {
         /// 玩家PlayerId，由后台分配，当OpenId不传的时候，PlayerId必传，传入PlayerId可以查询当前PlayerId的玩家信息，当OpenId传入的时候，PlayerId可不传，按照OpenId查询玩家信息。
         public let playerId: String?
         
-        public init (gameId: String, openId: String?, playerId: String?) {
+        public init (gameId: String, openId: String? = nil, playerId: String? = nil) {
             self.gameId = gameId
             self.openId = openId
             self.playerId = playerId
@@ -69,5 +51,23 @@ extension Mgobe {
             case player = "Player"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询玩家信息
+    ///
+    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    /// 该接口用于查询玩家信息。支持两种用法，当OpenId不传的时候，PlayerId必传，传入PlayerId可以查询当前PlayerId的玩家信息，当OpenId传入的时候，PlayerId可不传，按照OpenId查询玩家信息。
+    @inlinable
+    public func describePlayer(_ input: DescribePlayerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePlayerResponse > {
+        self.client.execute(action: "DescribePlayer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询玩家信息
+    ///
+    /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    /// 该接口用于查询玩家信息。支持两种用法，当OpenId不传的时候，PlayerId必传，传入PlayerId可以查询当前PlayerId的玩家信息，当OpenId传入的时候，PlayerId可不传，按照OpenId查询玩家信息。
+    @inlinable
+    public func describePlayer(_ input: DescribePlayerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayerResponse {
+        try await self.client.execute(action: "DescribePlayer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

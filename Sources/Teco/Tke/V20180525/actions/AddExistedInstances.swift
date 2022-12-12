@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 添加已经存在的实例到集群
-    @inlinable
-    public func addExistedInstances(_ input: AddExistedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddExistedInstancesResponse > {
-        self.client.execute(action: "AddExistedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加已经存在的实例到集群
-    @inlinable
-    public func addExistedInstances(_ input: AddExistedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddExistedInstancesResponse {
-        try await self.client.execute(action: "AddExistedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddExistedInstances请求参数结构体
     public struct AddExistedInstancesRequest: TCRequestModel {
         /// 集群ID
@@ -36,13 +24,13 @@ extension Tke {
         public let instanceIds: [String]
         
         /// 实例额外需要设置参数信息(默认值)
-        public let instanceAdvancedSettings: InstanceAdvancedSettings
+        public let instanceAdvancedSettings: InstanceAdvancedSettings?
         
         /// 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
-        public let enhancedService: EnhancedService
+        public let enhancedService: EnhancedService?
         
         /// 节点登录信息（目前仅支持使用Password或者单个KeyIds）
-        public let loginSettings: LoginSettings
+        public let loginSettings: LoginSettings?
         
         /// 重装系统时，可以指定修改实例的HostName(集群为HostName模式时，此参数必传，规则名称除不支持大写字符外与[CVM创建实例](https://cloud.tencent.com/document/product/213/15730)接口HostName一致)
         public let hostName: String?
@@ -51,7 +39,7 @@ extension Tke {
         public let securityGroupIds: [String]?
         
         /// 节点池选项
-        public let nodePool: NodePoolOption
+        public let nodePool: NodePoolOption?
         
         /// 校验规则相关选项，可配置跳过某些校验规则。目前支持GlobalRouteCIDRCheck（跳过GlobalRouter的相关校验），VpcCniCIDRCheck（跳过VpcCni相关校验）
         public let skipValidateOptions: [String]?
@@ -63,7 +51,7 @@ extension Tke {
         /// 节点镜像（节点选项时，该参数是必传参数）
         public let imageId: String?
         
-        public init (clusterId: String, instanceIds: [String], instanceAdvancedSettings: InstanceAdvancedSettings, enhancedService: EnhancedService, loginSettings: LoginSettings, hostName: String?, securityGroupIds: [String]?, nodePool: NodePoolOption, skipValidateOptions: [String]?, instanceAdvancedSettingsOverrides: [InstanceAdvancedSettings]?, imageId: String?) {
+        public init (clusterId: String, instanceIds: [String], instanceAdvancedSettings: InstanceAdvancedSettings? = nil, enhancedService: EnhancedService? = nil, loginSettings: LoginSettings? = nil, hostName: String? = nil, securityGroupIds: [String]? = nil, nodePool: NodePoolOption? = nil, skipValidateOptions: [String]? = nil, instanceAdvancedSettingsOverrides: [InstanceAdvancedSettings]? = nil, imageId: String? = nil) {
             self.clusterId = clusterId
             self.instanceIds = instanceIds
             self.instanceAdvancedSettings = instanceAdvancedSettings
@@ -120,5 +108,17 @@ extension Tke {
             case failedReasons = "FailedReasons"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加已经存在的实例到集群
+    @inlinable
+    public func addExistedInstances(_ input: AddExistedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddExistedInstancesResponse > {
+        self.client.execute(action: "AddExistedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加已经存在的实例到集群
+    @inlinable
+    public func addExistedInstances(_ input: AddExistedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddExistedInstancesResponse {
+        try await self.client.execute(action: "AddExistedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

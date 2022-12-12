@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 查询服务器价格信息
-    ///
-    /// 查询服务器价格信息，支持设备的批量查找，支持标准机型和弹性机型的混合查找
-    @inlinable
-    public func describeDevicePriceInfo(_ input: DescribeDevicePriceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePriceInfoResponse > {
-        self.client.execute(action: "DescribeDevicePriceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询服务器价格信息
-    ///
-    /// 查询服务器价格信息，支持设备的批量查找，支持标准机型和弹性机型的混合查找
-    @inlinable
-    public func describeDevicePriceInfo(_ input: DescribeDevicePriceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePriceInfoResponse {
-        try await self.client.execute(action: "DescribeDevicePriceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDevicePriceInfo请求参数结构体
     public struct DescribeDevicePriceInfoRequest: TCRequestModel {
         /// 需要查询的实例列表
@@ -42,7 +26,7 @@ extension Bm {
         /// 购买时长
         public let timeSpan: UInt64?
         
-        public init (instanceIds: [String], timeUnit: String?, timeSpan: UInt64?) {
+        public init (instanceIds: [String], timeUnit: String? = nil, timeSpan: UInt64? = nil) {
             self.instanceIds = instanceIds
             self.timeUnit = timeUnit
             self.timeSpan = timeSpan
@@ -67,5 +51,21 @@ extension Bm {
             case devicePriceInfoSet = "DevicePriceInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询服务器价格信息
+    ///
+    /// 查询服务器价格信息，支持设备的批量查找，支持标准机型和弹性机型的混合查找
+    @inlinable
+    public func describeDevicePriceInfo(_ input: DescribeDevicePriceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicePriceInfoResponse > {
+        self.client.execute(action: "DescribeDevicePriceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务器价格信息
+    ///
+    /// 查询服务器价格信息，支持设备的批量查找，支持标准机型和弹性机型的混合查找
+    @inlinable
+    public func describeDevicePriceInfo(_ input: DescribeDevicePriceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePriceInfoResponse {
+        try await self.client.execute(action: "DescribeDevicePriceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

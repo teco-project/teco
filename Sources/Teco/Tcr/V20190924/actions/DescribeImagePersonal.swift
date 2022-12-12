@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 获取个人版镜像仓库tag列表
-    ///
-    /// 用于获取个人版镜像仓库tag列表
-    @inlinable
-    public func describeImagePersonal(_ input: DescribeImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagePersonalResponse > {
-        self.client.execute(action: "DescribeImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取个人版镜像仓库tag列表
-    ///
-    /// 用于获取个人版镜像仓库tag列表
-    @inlinable
-    public func describeImagePersonal(_ input: DescribeImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagePersonalResponse {
-        try await self.client.execute(action: "DescribeImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImagePersonal请求参数结构体
     public struct DescribeImagePersonalRequest: TCRequestModel {
         /// 仓库名称
@@ -45,7 +29,7 @@ extension Tcr {
         /// tag名称，可根据输入搜索
         public let tag: String?
         
-        public init (repoName: String, offset: Int64?, limit: Int64?, tag: String?) {
+        public init (repoName: String, offset: Int64? = nil, limit: Int64? = nil, tag: String? = nil) {
             self.repoName = repoName
             self.offset = offset
             self.limit = limit
@@ -72,5 +56,21 @@ extension Tcr {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取个人版镜像仓库tag列表
+    ///
+    /// 用于获取个人版镜像仓库tag列表
+    @inlinable
+    public func describeImagePersonal(_ input: DescribeImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImagePersonalResponse > {
+        self.client.execute(action: "DescribeImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取个人版镜像仓库tag列表
+    ///
+    /// 用于获取个人版镜像仓库tag列表
+    @inlinable
+    public func describeImagePersonal(_ input: DescribeImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagePersonalResponse {
+        try await self.client.execute(action: "DescribeImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

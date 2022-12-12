@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// 获取事件连接器列表
-    @inlinable
-    public func listConnections(_ input: ListConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListConnectionsResponse > {
-        self.client.execute(action: "ListConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取事件连接器列表
-    @inlinable
-    public func listConnections(_ input: ListConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListConnectionsResponse {
-        try await self.client.execute(action: "ListConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListConnections请求参数结构体
     public struct ListConnectionsRequest: TCRequestModel {
         /// 事件集ID
@@ -44,7 +32,7 @@ extension Eb {
         /// 偏移量，默认为0。
         public let offset: Int64?
         
-        public init (eventBusId: String, orderBy: String?, limit: Int64?, order: String?, offset: Int64?) {
+        public init (eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, order: String? = nil, offset: Int64? = nil) {
             self.eventBusId = eventBusId
             self.orderBy = orderBy
             self.limit = limit
@@ -77,5 +65,17 @@ extension Eb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取事件连接器列表
+    @inlinable
+    public func listConnections(_ input: ListConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListConnectionsResponse > {
+        self.client.execute(action: "ListConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取事件连接器列表
+    @inlinable
+    public func listConnections(_ input: ListConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListConnectionsResponse {
+        try await self.client.execute(action: "ListConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

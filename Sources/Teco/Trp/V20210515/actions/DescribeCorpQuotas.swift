@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 查询渠道商下属企业额度使用情况
-    @inlinable
-    public func describeCorpQuotas(_ input: DescribeCorpQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCorpQuotasResponse > {
-        self.client.execute(action: "DescribeCorpQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询渠道商下属企业额度使用情况
-    @inlinable
-    public func describeCorpQuotas(_ input: DescribeCorpQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCorpQuotasResponse {
-        try await self.client.execute(action: "DescribeCorpQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCorpQuotas请求参数结构体
     public struct DescribeCorpQuotasRequest: TCRequestModel {
         /// 渠道商ID，不要传
@@ -41,7 +29,7 @@ extension Trp {
         /// 搜索企业ID
         public let keyword: String?
         
-        public init (agentId: UInt64?, pageNumber: UInt64?, pageSize: UInt64?, keyword: String?) {
+        public init (agentId: UInt64? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, keyword: String? = nil) {
             self.agentId = agentId
             self.pageNumber = pageNumber
             self.pageSize = pageSize
@@ -74,5 +62,17 @@ extension Trp {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询渠道商下属企业额度使用情况
+    @inlinable
+    public func describeCorpQuotas(_ input: DescribeCorpQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCorpQuotasResponse > {
+        self.client.execute(action: "DescribeCorpQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询渠道商下属企业额度使用情况
+    @inlinable
+    public func describeCorpQuotas(_ input: DescribeCorpQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCorpQuotasResponse {
+        try await self.client.execute(action: "DescribeCorpQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

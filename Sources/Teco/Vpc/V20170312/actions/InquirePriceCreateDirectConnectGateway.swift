@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建专线网关询价
-    ///
-    /// 本接口（DescribePriceCreateDirectConnectGateway）用于创建专线网关询价。
-    @inlinable
-    public func inquirePriceCreateDirectConnectGateway(_ input: InquirePriceCreateDirectConnectGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceCreateDirectConnectGatewayResponse > {
-        self.client.execute(action: "InquirePriceCreateDirectConnectGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建专线网关询价
-    ///
-    /// 本接口（DescribePriceCreateDirectConnectGateway）用于创建专线网关询价。
-    @inlinable
-    public func inquirePriceCreateDirectConnectGateway(_ input: InquirePriceCreateDirectConnectGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDirectConnectGatewayResponse {
-        try await self.client.execute(action: "InquirePriceCreateDirectConnectGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquirePriceCreateDirectConnectGateway请求参数结构体
     public struct InquirePriceCreateDirectConnectGatewayRequest: TCRequestModel {
         public init () {
@@ -55,5 +39,21 @@ extension Vpc {
             case realTotalCost = "RealTotalCost"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建专线网关询价
+    ///
+    /// 本接口（DescribePriceCreateDirectConnectGateway）用于创建专线网关询价。
+    @inlinable
+    public func inquirePriceCreateDirectConnectGateway(_ input: InquirePriceCreateDirectConnectGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceCreateDirectConnectGatewayResponse > {
+        self.client.execute(action: "InquirePriceCreateDirectConnectGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建专线网关询价
+    ///
+    /// 本接口（DescribePriceCreateDirectConnectGateway）用于创建专线网关询价。
+    @inlinable
+    public func inquirePriceCreateDirectConnectGateway(_ input: InquirePriceCreateDirectConnectGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDirectConnectGatewayResponse {
+        try await self.client.execute(action: "InquirePriceCreateDirectConnectGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 批量申请长安链用户签名证书
-    @inlinable
-    public func applyChainMakerBatchUserCert(_ input: ApplyChainMakerBatchUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyChainMakerBatchUserCertResponse > {
-        self.client.execute(action: "ApplyChainMakerBatchUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量申请长安链用户签名证书
-    @inlinable
-    public func applyChainMakerBatchUserCert(_ input: ApplyChainMakerBatchUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyChainMakerBatchUserCertResponse {
-        try await self.client.execute(action: "ApplyChainMakerBatchUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyChainMakerBatchUserCert请求参数结构体
     public struct ApplyChainMakerBatchUserCertRequest: TCRequestModel {
         /// 网络ID，可在区块链网络详情或列表中获取
@@ -59,5 +47,17 @@ extension Tbaas {
             case signUserCrtList = "SignUserCrtList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量申请长安链用户签名证书
+    @inlinable
+    public func applyChainMakerBatchUserCert(_ input: ApplyChainMakerBatchUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyChainMakerBatchUserCertResponse > {
+        self.client.execute(action: "ApplyChainMakerBatchUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量申请长安链用户签名证书
+    @inlinable
+    public func applyChainMakerBatchUserCert(_ input: ApplyChainMakerBatchUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyChainMakerBatchUserCertResponse {
+        try await self.client.execute(action: "ApplyChainMakerBatchUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

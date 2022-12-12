@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cloudhsm {
-    /// 修改VSM属性
-    @inlinable
-    public func modifyVsmAttributes(_ input: ModifyVsmAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVsmAttributesResponse > {
-        self.client.execute(action: "ModifyVsmAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改VSM属性
-    @inlinable
-    public func modifyVsmAttributes(_ input: ModifyVsmAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVsmAttributesResponse {
-        try await self.client.execute(action: "ModifyVsmAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVsmAttributes请求参数结构体
     public struct ModifyVsmAttributesRequest: TCRequestModel {
         /// 资源Id
@@ -50,7 +38,7 @@ extension Cloudhsm {
         /// 子网Id
         public let subnetId: String?
         
-        public init (resourceId: String, type: [String], resourceName: String?, sgIds: [String]?, vpcId: String?, subnetId: String?) {
+        public init (resourceId: String, type: [String], resourceName: String? = nil, sgIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil) {
             self.resourceId = resourceId
             self.type = type
             self.resourceName = resourceName
@@ -77,5 +65,17 @@ extension Cloudhsm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改VSM属性
+    @inlinable
+    public func modifyVsmAttributes(_ input: ModifyVsmAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVsmAttributesResponse > {
+        self.client.execute(action: "ModifyVsmAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改VSM属性
+    @inlinable
+    public func modifyVsmAttributes(_ input: ModifyVsmAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVsmAttributesResponse {
+        try await self.client.execute(action: "ModifyVsmAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

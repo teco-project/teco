@@ -15,30 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 操作渠道模板
-    ///
-    /// 此接口（OperateChannelTemplate）用于针对渠道模板库中的模板对子客企业可见性的查询和设置，不会直接分配渠道模板给子客企业。
-    /// 1、OperateType=select时：
-    /// 查询渠道模板库
-    /// 2、OperateType=update或者delete时：
-    /// 对子客企业进行模板库中模板可见性的修改、删除操作。
-    @inlinable
-    public func operateChannelTemplate(_ input: OperateChannelTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OperateChannelTemplateResponse > {
-        self.client.execute(action: "OperateChannelTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 操作渠道模板
-    ///
-    /// 此接口（OperateChannelTemplate）用于针对渠道模板库中的模板对子客企业可见性的查询和设置，不会直接分配渠道模板给子客企业。
-    /// 1、OperateType=select时：
-    /// 查询渠道模板库
-    /// 2、OperateType=update或者delete时：
-    /// 对子客企业进行模板库中模板可见性的修改、删除操作。
-    @inlinable
-    public func operateChannelTemplate(_ input: OperateChannelTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateChannelTemplateResponse {
-        try await self.client.execute(action: "OperateChannelTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OperateChannelTemplate请求参数结构体
     public struct OperateChannelTemplateRequest: TCRequestModel {
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
@@ -57,9 +33,9 @@ extension Essbasic {
         public let authTag: String?
         
         /// 操作者的信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
-        public init (agent: Agent, operateType: String, templateId: String, proxyOrganizationOpenIds: String?, authTag: String?, `operator`: UserInfo) {
+        public init (agent: Agent, operateType: String, templateId: String, proxyOrganizationOpenIds: String? = nil, authTag: String? = nil, `operator`: UserInfo? = nil) {
             self.agent = agent
             self.operateType = operateType
             self.templateId = templateId
@@ -116,5 +92,29 @@ extension Essbasic {
             case failMessageList = "FailMessageList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 操作渠道模板
+    ///
+    /// 此接口（OperateChannelTemplate）用于针对渠道模板库中的模板对子客企业可见性的查询和设置，不会直接分配渠道模板给子客企业。
+    /// 1、OperateType=select时：
+    /// 查询渠道模板库
+    /// 2、OperateType=update或者delete时：
+    /// 对子客企业进行模板库中模板可见性的修改、删除操作。
+    @inlinable
+    public func operateChannelTemplate(_ input: OperateChannelTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OperateChannelTemplateResponse > {
+        self.client.execute(action: "OperateChannelTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 操作渠道模板
+    ///
+    /// 此接口（OperateChannelTemplate）用于针对渠道模板库中的模板对子客企业可见性的查询和设置，不会直接分配渠道模板给子客企业。
+    /// 1、OperateType=select时：
+    /// 查询渠道模板库
+    /// 2、OperateType=update或者delete时：
+    /// 对子客企业进行模板库中模板可见性的修改、删除操作。
+    @inlinable
+    public func operateChannelTemplate(_ input: OperateChannelTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateChannelTemplateResponse {
+        try await self.client.execute(action: "OperateChannelTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 创建人员
-    @inlinable
-    public func createPerson(_ input: CreatePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePersonResponse > {
-        self.client.execute(action: "CreatePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建人员
-    @inlinable
-    public func createPerson(_ input: CreatePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
-        try await self.client.execute(action: "CreatePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePerson请求参数结构体
     public struct CreatePersonRequest: TCRequestModel {
         /// 人员库唯一标识符
@@ -59,7 +47,7 @@ extension Tci {
         /// 图片下载地址，与 Images 参数选择一个输入
         public let urls: [String]?
         
-        public init (libraryId: String, personName: String, images: [String]?, jobNumber: String?, mail: String?, male: Int64?, personId: String?, phoneNumber: String?, studentNumber: String?, urls: [String]?) {
+        public init (libraryId: String, personName: String, images: [String]? = nil, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, personId: String? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, urls: [String]? = nil) {
             self.libraryId = libraryId
             self.personName = personName
             self.images = images
@@ -110,5 +98,17 @@ extension Tci {
             case personName = "PersonName"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建人员
+    @inlinable
+    public func createPerson(_ input: CreatePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePersonResponse > {
+        self.client.execute(action: "CreatePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建人员
+    @inlinable
+    public func createPerson(_ input: CreatePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
+        try await self.client.execute(action: "CreatePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

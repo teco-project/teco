@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 修改角色信任策略
-    ///
-    /// 本接口（UpdateAssumeRolePolicy）用于修改角色信任策略的策略文档。
-    @inlinable
-    public func updateAssumeRolePolicy(_ input: UpdateAssumeRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAssumeRolePolicyResponse > {
-        self.client.execute(action: "UpdateAssumeRolePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改角色信任策略
-    ///
-    /// 本接口（UpdateAssumeRolePolicy）用于修改角色信任策略的策略文档。
-    @inlinable
-    public func updateAssumeRolePolicy(_ input: UpdateAssumeRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssumeRolePolicyResponse {
-        try await self.client.execute(action: "UpdateAssumeRolePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateAssumeRolePolicy请求参数结构体
     public struct UpdateAssumeRolePolicyRequest: TCRequestModel {
         /// 策略文档，示例：{"version":"2.0","statement":[{"action":"name/sts:AssumeRole","effect":"allow","principal":{"service":["cloudaudit.cloud.tencent.com","cls.cloud.tencent.com"]}}]}，principal用于指定角色的授权对象。获取该参数可参阅 获取角色详情（https://cloud.tencent.com/document/product/598/36221） 输出参数RoleInfo
@@ -42,7 +26,7 @@ extension Cam {
         /// 角色名称，用于指定角色，入参 RoleId 与 RoleName 二选一
         public let roleName: String?
         
-        public init (policyDocument: String, roleId: String?, roleName: String?) {
+        public init (policyDocument: String, roleId: String? = nil, roleName: String? = nil) {
             self.policyDocument = policyDocument
             self.roleId = roleId
             self.roleName = roleName
@@ -63,5 +47,21 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改角色信任策略
+    ///
+    /// 本接口（UpdateAssumeRolePolicy）用于修改角色信任策略的策略文档。
+    @inlinable
+    public func updateAssumeRolePolicy(_ input: UpdateAssumeRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateAssumeRolePolicyResponse > {
+        self.client.execute(action: "UpdateAssumeRolePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改角色信任策略
+    ///
+    /// 本接口（UpdateAssumeRolePolicy）用于修改角色信任策略的策略文档。
+    @inlinable
+    public func updateAssumeRolePolicy(_ input: UpdateAssumeRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssumeRolePolicyResponse {
+        try await self.client.execute(action: "UpdateAssumeRolePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

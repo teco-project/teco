@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 查询用户OIDC配置
-    @inlinable
-    public func describeUserOIDCConfig(_ input: DescribeUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserOIDCConfigResponse > {
-        self.client.execute(action: "DescribeUserOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户OIDC配置
-    @inlinable
-    public func describeUserOIDCConfig(_ input: DescribeUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserOIDCConfigResponse {
-        try await self.client.execute(action: "DescribeUserOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserOIDCConfig请求参数结构体
     public struct DescribeUserOIDCConfigRequest: TCRequestModel {
         public init () {
@@ -85,5 +73,17 @@ extension Cam {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户OIDC配置
+    @inlinable
+    public func describeUserOIDCConfig(_ input: DescribeUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserOIDCConfigResponse > {
+        self.client.execute(action: "DescribeUserOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户OIDC配置
+    @inlinable
+    public func describeUserOIDCConfig(_ input: DescribeUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserOIDCConfigResponse {
+        try await self.client.execute(action: "DescribeUserOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

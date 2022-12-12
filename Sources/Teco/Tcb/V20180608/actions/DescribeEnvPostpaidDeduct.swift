@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询环境后付费计费详情
-    @inlinable
-    public func describeEnvPostpaidDeduct(_ input: DescribeEnvPostpaidDeductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvPostpaidDeductResponse > {
-        self.client.execute(action: "DescribeEnvPostpaidDeduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询环境后付费计费详情
-    @inlinable
-    public func describeEnvPostpaidDeduct(_ input: DescribeEnvPostpaidDeductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvPostpaidDeductResponse {
-        try await self.client.execute(action: "DescribeEnvPostpaidDeduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEnvPostpaidDeduct请求参数结构体
     public struct DescribeEnvPostpaidDeductRequest: TCRequestModel {
         /// 资源方列表
@@ -41,7 +29,7 @@ extension Tcb {
         /// 查询结束时间
         public let endTime: String?
         
-        public init (resourceTypes: [String], envId: String?, startTime: String?, endTime: String?) {
+        public init (resourceTypes: [String], envId: String? = nil, startTime: String? = nil, endTime: String? = nil) {
             self.resourceTypes = resourceTypes
             self.envId = envId
             self.startTime = startTime
@@ -69,5 +57,17 @@ extension Tcb {
             case postPaidEnvDeductInfoList = "PostPaidEnvDeductInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询环境后付费计费详情
+    @inlinable
+    public func describeEnvPostpaidDeduct(_ input: DescribeEnvPostpaidDeductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvPostpaidDeductResponse > {
+        self.client.execute(action: "DescribeEnvPostpaidDeduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询环境后付费计费详情
+    @inlinable
+    public func describeEnvPostpaidDeduct(_ input: DescribeEnvPostpaidDeductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvPostpaidDeductResponse {
+        try await self.client.execute(action: "DescribeEnvPostpaidDeduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

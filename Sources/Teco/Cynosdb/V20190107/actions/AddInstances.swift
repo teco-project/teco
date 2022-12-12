@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 集群添加实例
-    ///
-    /// 本接口（AddInstances）用于集群添加实例
-    @inlinable
-    public func addInstances(_ input: AddInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddInstancesResponse > {
-        self.client.execute(action: "AddInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 集群添加实例
-    ///
-    /// 本接口（AddInstances）用于集群添加实例
-    @inlinable
-    public func addInstances(_ input: AddInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddInstancesResponse {
-        try await self.client.execute(action: "AddInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddInstances请求参数结构体
     public struct AddInstancesRequest: TCRequestModel {
         /// 集群ID
@@ -73,7 +57,7 @@ extension Cynosdb {
         /// 交易模式 0-下单并支付 1-下单
         public let dealMode: Int64?
         
-        public init (clusterId: String, cpu: Int64, memory: Int64, readOnlyCount: Int64, instanceGrpId: String?, vpcId: String?, subnetId: String?, port: Int64?, instanceName: String?, autoVoucher: Int64?, dbType: String?, orderSource: String?, dealMode: Int64?) {
+        public init (clusterId: String, cpu: Int64, memory: Int64, readOnlyCount: Int64, instanceGrpId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, port: Int64? = nil, instanceName: String? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, orderSource: String? = nil, dealMode: Int64? = nil) {
             self.clusterId = clusterId
             self.cpu = cpu
             self.memory = memory
@@ -134,5 +118,21 @@ extension Cynosdb {
             case bigDealIds = "BigDealIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 集群添加实例
+    ///
+    /// 本接口（AddInstances）用于集群添加实例
+    @inlinable
+    public func addInstances(_ input: AddInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddInstancesResponse > {
+        self.client.execute(action: "AddInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 集群添加实例
+    ///
+    /// 本接口（AddInstances）用于集群添加实例
+    @inlinable
+    public func addInstances(_ input: AddInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddInstancesResponse {
+        try await self.client.execute(action: "AddInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

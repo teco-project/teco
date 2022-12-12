@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Bsca {
-    /// 查询知识库许可证信息
-    ///
-    /// 本接口(DescribeKBLicense)用于在知识库中查询许可证信息。
-    @inlinable
-    public func describeKBLicense(_ input: DescribeKBLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKBLicenseResponse > {
-        self.client.execute(action: "DescribeKBLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询知识库许可证信息
-    ///
-    /// 本接口(DescribeKBLicense)用于在知识库中查询许可证信息。
-    @inlinable
-    public func describeKBLicense(_ input: DescribeKBLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKBLicenseResponse {
-        try await self.client.execute(action: "DescribeKBLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKBLicense请求参数结构体
     public struct DescribeKBLicenseRequest: TCRequestModel {
         /// License表达式
         public let licenseExpression: String?
         
-        public init (licenseExpression: String?) {
+        public init (licenseExpression: String? = nil) {
             self.licenseExpression = licenseExpression
         }
         
@@ -62,5 +46,21 @@ extension Bsca {
             case normalizedLicenseExpression = "NormalizedLicenseExpression"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询知识库许可证信息
+    ///
+    /// 本接口(DescribeKBLicense)用于在知识库中查询许可证信息。
+    @inlinable
+    public func describeKBLicense(_ input: DescribeKBLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKBLicenseResponse > {
+        self.client.execute(action: "DescribeKBLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询知识库许可证信息
+    ///
+    /// 本接口(DescribeKBLicense)用于在知识库中查询许可证信息。
+    @inlinable
+    public func describeKBLicense(_ input: DescribeKBLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKBLicenseResponse {
+        try await self.client.execute(action: "DescribeKBLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

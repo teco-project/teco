@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 获取基础策略组详情
-    @inlinable
-    public func describePolicyGroupInfo(_ input: DescribePolicyGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePolicyGroupInfoResponse > {
-        self.client.execute(action: "DescribePolicyGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取基础策略组详情
-    @inlinable
-    public func describePolicyGroupInfo(_ input: DescribePolicyGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyGroupInfoResponse {
-        try await self.client.execute(action: "DescribePolicyGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePolicyGroupInfo请求参数结构体
     public struct DescribePolicyGroupInfoRequest: TCRequestModel {
         /// 固定值，为"monitor"
@@ -92,11 +80,11 @@ extension Monitor {
         
         /// 用户回调信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let callback: DescribePolicyGroupInfoCallback
+        public let callback: DescribePolicyGroupInfoCallback?
         
         /// 模板策略组
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let conditionsTemp: DescribePolicyGroupInfoConditionTpl
+        public let conditionsTemp: DescribePolicyGroupInfoConditionTpl?
         
         /// 是否可以设置成默认策略
         public let canSetDefault: Bool
@@ -128,5 +116,17 @@ extension Monitor {
             case isUnionRule = "IsUnionRule"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取基础策略组详情
+    @inlinable
+    public func describePolicyGroupInfo(_ input: DescribePolicyGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePolicyGroupInfoResponse > {
+        self.client.execute(action: "DescribePolicyGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取基础策略组详情
+    @inlinable
+    public func describePolicyGroupInfo(_ input: DescribePolicyGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyGroupInfoResponse {
+        try await self.client.execute(action: "DescribePolicyGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

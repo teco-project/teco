@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 创建Amqp Vhost
-    @inlinable
-    public func createAMQPVHost(_ input: CreateAMQPVHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAMQPVHostResponse > {
-        self.client.execute(action: "CreateAMQPVHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建Amqp Vhost
-    @inlinable
-    public func createAMQPVHost(_ input: CreateAMQPVHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPVHostResponse {
-        try await self.client.execute(action: "CreateAMQPVHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAMQPVHost请求参数结构体
     public struct CreateAMQPVHostRequest: TCRequestModel {
         /// 集群ID
@@ -41,7 +29,7 @@ extension Tdmq {
         /// 说明，最大128个字符
         public let remark: String?
         
-        public init (clusterId: String, vHostId: String, msgTtl: UInt64, remark: String?) {
+        public init (clusterId: String, vHostId: String, msgTtl: UInt64, remark: String? = nil) {
             self.clusterId = clusterId
             self.vHostId = vHostId
             self.msgTtl = msgTtl
@@ -64,5 +52,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建Amqp Vhost
+    @inlinable
+    public func createAMQPVHost(_ input: CreateAMQPVHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAMQPVHostResponse > {
+        self.client.execute(action: "CreateAMQPVHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建Amqp Vhost
+    @inlinable
+    public func createAMQPVHost(_ input: CreateAMQPVHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPVHostResponse {
+        try await self.client.execute(action: "CreateAMQPVHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

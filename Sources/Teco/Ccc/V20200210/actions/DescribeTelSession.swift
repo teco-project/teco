@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 获取 PSTN 会话信息
-    @inlinable
-    public func describeTelSession(_ input: DescribeTelSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTelSessionResponse > {
-        self.client.execute(action: "DescribeTelSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取 PSTN 会话信息
-    @inlinable
-    public func describeTelSession(_ input: DescribeTelSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelSessionResponse {
-        try await self.client.execute(action: "DescribeTelSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTelSession请求参数结构体
     public struct DescribeTelSessionRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -58,5 +46,17 @@ extension Ccc {
             case session = "Session"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取 PSTN 会话信息
+    @inlinable
+    public func describeTelSession(_ input: DescribeTelSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTelSessionResponse > {
+        self.client.execute(action: "DescribeTelSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取 PSTN 会话信息
+    @inlinable
+    public func describeTelSession(_ input: DescribeTelSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelSessionResponse {
+        try await self.client.execute(action: "DescribeTelSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

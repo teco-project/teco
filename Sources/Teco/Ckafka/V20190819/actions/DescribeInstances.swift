@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 获取实例列表信息
-    ///
-    /// 本接口（DescribeInstance）用于在用户账户下获取消息队列 CKafka 实例列表
-    @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
-        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实例列表信息
-    ///
-    /// 本接口（DescribeInstance）用于在用户账户下获取消息队列 CKafka 实例列表
-    @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstances请求参数结构体
     public struct DescribeInstancesRequest: TCRequestModel {
         /// （过滤条件）按照实例ID过滤
@@ -54,7 +38,7 @@ extension Ckafka {
         /// 私有网络Id
         public let vpcId: String?
         
-        public init (instanceId: String?, searchWord: String?, status: [Int64]?, offset: Int64?, limit: Int64?, tagKey: String?, vpcId: String?) {
+        public init (instanceId: String? = nil, searchWord: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, tagKey: String? = nil, vpcId: String? = nil) {
             self.instanceId = instanceId
             self.searchWord = searchWord
             self.status = status
@@ -87,5 +71,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实例列表信息
+    ///
+    /// 本接口（DescribeInstance）用于在用户账户下获取消息队列 CKafka 实例列表
+    @inlinable
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesResponse > {
+        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例列表信息
+    ///
+    /// 本接口（DescribeInstance）用于在用户账户下获取消息队列 CKafka 实例列表
+    @inlinable
+    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 获取源站组详细信息
-    @inlinable
-    public func describeOriginGroupDetail(_ input: DescribeOriginGroupDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOriginGroupDetailResponse > {
-        self.client.execute(action: "DescribeOriginGroupDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取源站组详细信息
-    @inlinable
-    public func describeOriginGroupDetail(_ input: DescribeOriginGroupDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupDetailResponse {
-        try await self.client.execute(action: "DescribeOriginGroupDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOriginGroupDetail请求参数结构体
     public struct DescribeOriginGroupDetailRequest: TCRequestModel {
         /// 源站组ID
@@ -111,5 +99,17 @@ extension Teo {
             case loadBalancingUsedType = "LoadBalancingUsedType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取源站组详细信息
+    @inlinable
+    public func describeOriginGroupDetail(_ input: DescribeOriginGroupDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOriginGroupDetailResponse > {
+        self.client.execute(action: "DescribeOriginGroupDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取源站组详细信息
+    @inlinable
+    public func describeOriginGroupDetail(_ input: DescribeOriginGroupDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupDetailResponse {
+        try await self.client.execute(action: "DescribeOriginGroupDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

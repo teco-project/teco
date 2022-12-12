@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询主机信息
-    ///
-    /// 查询主机详细信息
-    @inlinable
-    public func describeAssetHostDetail(_ input: DescribeAssetHostDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetHostDetailResponse > {
-        self.client.execute(action: "DescribeAssetHostDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询主机信息
-    ///
-    /// 查询主机详细信息
-    @inlinable
-    public func describeAssetHostDetail(_ input: DescribeAssetHostDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostDetailResponse {
-        try await self.client.execute(action: "DescribeAssetHostDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetHostDetail请求参数结构体
     public struct DescribeAssetHostDetailRequest: TCRequestModel {
         /// 主机id
@@ -157,5 +141,21 @@ extension Tcss {
             case tags = "Tags"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询主机信息
+    ///
+    /// 查询主机详细信息
+    @inlinable
+    public func describeAssetHostDetail(_ input: DescribeAssetHostDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetHostDetailResponse > {
+        self.client.execute(action: "DescribeAssetHostDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询主机信息
+    ///
+    /// 查询主机详细信息
+    @inlinable
+    public func describeAssetHostDetail(_ input: DescribeAssetHostDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostDetailResponse {
+        try await self.client.execute(action: "DescribeAssetHostDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

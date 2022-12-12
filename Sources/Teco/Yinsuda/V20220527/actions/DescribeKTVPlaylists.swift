@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yinsuda {
-    /// 获取推荐歌单列表
-    ///
-    /// 获取歌单列表。
-    @inlinable
-    public func describeKTVPlaylists(_ input: DescribeKTVPlaylistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVPlaylistsResponse > {
-        self.client.execute(action: "DescribeKTVPlaylists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取推荐歌单列表
-    ///
-    /// 获取歌单列表。
-    @inlinable
-    public func describeKTVPlaylists(_ input: DescribeKTVPlaylistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistsResponse {
-        try await self.client.execute(action: "DescribeKTVPlaylists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKTVPlaylists请求参数结构体
     public struct DescribeKTVPlaylistsRequest: TCRequestModel {
         /// 应用名称。
@@ -51,7 +35,7 @@ extension Yinsuda {
         /// 分页返回的记录条数，默认值：20，最大值：50。
         public let limit: Int64?
         
-        public init (appName: String, userId: String, types: [String]?, offset: Int64?, limit: Int64?) {
+        public init (appName: String, userId: String, types: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.appName = appName
             self.userId = userId
             self.types = types
@@ -84,5 +68,21 @@ extension Yinsuda {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取推荐歌单列表
+    ///
+    /// 获取歌单列表。
+    @inlinable
+    public func describeKTVPlaylists(_ input: DescribeKTVPlaylistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVPlaylistsResponse > {
+        self.client.execute(action: "DescribeKTVPlaylists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取推荐歌单列表
+    ///
+    /// 获取歌单列表。
+    @inlinable
+    public func describeKTVPlaylists(_ input: DescribeKTVPlaylistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistsResponse {
+        try await self.client.execute(action: "DescribeKTVPlaylists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 安全合规查询上次任务的资产通过率汇总信息
-    ///
-    /// 查询上次任务的资产通过率汇总信息
-    @inlinable
-    public func describeComplianceTaskAssetSummary(_ input: DescribeComplianceTaskAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceTaskAssetSummaryResponse > {
-        self.client.execute(action: "DescribeComplianceTaskAssetSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全合规查询上次任务的资产通过率汇总信息
-    ///
-    /// 查询上次任务的资产通过率汇总信息
-    @inlinable
-    public func describeComplianceTaskAssetSummary(_ input: DescribeComplianceTaskAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceTaskAssetSummaryResponse {
-        try await self.client.execute(action: "DescribeComplianceTaskAssetSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeComplianceTaskAssetSummary请求参数结构体
     public struct DescribeComplianceTaskAssetSummaryRequest: TCRequestModel {
         /// 资产类型列表。
@@ -68,5 +52,21 @@ extension Tcss {
             case assetSummaryList = "AssetSummaryList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全合规查询上次任务的资产通过率汇总信息
+    ///
+    /// 查询上次任务的资产通过率汇总信息
+    @inlinable
+    public func describeComplianceTaskAssetSummary(_ input: DescribeComplianceTaskAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComplianceTaskAssetSummaryResponse > {
+        self.client.execute(action: "DescribeComplianceTaskAssetSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全合规查询上次任务的资产通过率汇总信息
+    ///
+    /// 查询上次任务的资产通过率汇总信息
+    @inlinable
+    public func describeComplianceTaskAssetSummary(_ input: DescribeComplianceTaskAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceTaskAssetSummaryResponse {
+        try await self.client.execute(action: "DescribeComplianceTaskAssetSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

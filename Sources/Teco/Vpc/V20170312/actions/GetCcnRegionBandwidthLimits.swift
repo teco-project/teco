@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询云联网相关地域带宽信息
-    ///
-    /// 本接口（GetCcnRegionBandwidthLimits）用于查询云联网相关地域带宽信息，其中预付费模式的云联网仅支持地域间限速，后付费模式的云联网支持地域间限速和地域出口限速。
-    @inlinable
-    public func getCcnRegionBandwidthLimits(_ input: GetCcnRegionBandwidthLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCcnRegionBandwidthLimitsResponse > {
-        self.client.execute(action: "GetCcnRegionBandwidthLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云联网相关地域带宽信息
-    ///
-    /// 本接口（GetCcnRegionBandwidthLimits）用于查询云联网相关地域带宽信息，其中预付费模式的云联网仅支持地域间限速，后付费模式的云联网支持地域间限速和地域出口限速。
-    @inlinable
-    public func getCcnRegionBandwidthLimits(_ input: GetCcnRegionBandwidthLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCcnRegionBandwidthLimitsResponse {
-        try await self.client.execute(action: "GetCcnRegionBandwidthLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetCcnRegionBandwidthLimits请求参数结构体
     public struct GetCcnRegionBandwidthLimitsRequest: TCRequestModel {
         /// CCN实例ID。形如：ccn-f49l6u0z。
@@ -53,7 +37,7 @@ extension Vpc {
         /// 排序方式，'ASC':升序,'DESC':降序。
         public let orderBy: String?
         
-        public init (ccnId: String, filters: [Filter]?, sortedBy: String?, offset: UInt64?, limit: UInt64?, orderBy: String?) {
+        public init (ccnId: String, filters: [Filter]? = nil, sortedBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil) {
             self.ccnId = ccnId
             self.filters = filters
             self.sortedBy = sortedBy
@@ -90,5 +74,21 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云联网相关地域带宽信息
+    ///
+    /// 本接口（GetCcnRegionBandwidthLimits）用于查询云联网相关地域带宽信息，其中预付费模式的云联网仅支持地域间限速，后付费模式的云联网支持地域间限速和地域出口限速。
+    @inlinable
+    public func getCcnRegionBandwidthLimits(_ input: GetCcnRegionBandwidthLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetCcnRegionBandwidthLimitsResponse > {
+        self.client.execute(action: "GetCcnRegionBandwidthLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云联网相关地域带宽信息
+    ///
+    /// 本接口（GetCcnRegionBandwidthLimits）用于查询云联网相关地域带宽信息，其中预付费模式的云联网仅支持地域间限速，后付费模式的云联网支持地域间限速和地域出口限速。
+    @inlinable
+    public func getCcnRegionBandwidthLimits(_ input: GetCcnRegionBandwidthLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCcnRegionBandwidthLimitsResponse {
+        try await self.client.execute(action: "GetCcnRegionBandwidthLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

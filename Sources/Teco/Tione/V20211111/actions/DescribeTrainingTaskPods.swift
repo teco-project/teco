@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 训练任务pod列表
-    @inlinable
-    public func describeTrainingTaskPods(_ input: DescribeTrainingTaskPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingTaskPodsResponse > {
-        self.client.execute(action: "DescribeTrainingTaskPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 训练任务pod列表
-    @inlinable
-    public func describeTrainingTaskPods(_ input: DescribeTrainingTaskPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTaskPodsResponse {
-        try await self.client.execute(action: "DescribeTrainingTaskPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrainingTaskPods请求参数结构体
     public struct DescribeTrainingTaskPodsRequest: TCRequestModel {
         /// 训练任务ID
@@ -57,5 +45,17 @@ extension Tione {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 训练任务pod列表
+    @inlinable
+    public func describeTrainingTaskPods(_ input: DescribeTrainingTaskPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingTaskPodsResponse > {
+        self.client.execute(action: "DescribeTrainingTaskPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 训练任务pod列表
+    @inlinable
+    public func describeTrainingTaskPods(_ input: DescribeTrainingTaskPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTaskPodsResponse {
+        try await self.client.execute(action: "DescribeTrainingTaskPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

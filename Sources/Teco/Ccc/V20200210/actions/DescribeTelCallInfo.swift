@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 按实例获取电话消耗统计
-    @inlinable
-    public func describeTelCallInfo(_ input: DescribeTelCallInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTelCallInfoResponse > {
-        self.client.execute(action: "DescribeTelCallInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 按实例获取电话消耗统计
-    @inlinable
-    public func describeTelCallInfo(_ input: DescribeTelCallInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelCallInfoResponse {
-        try await self.client.execute(action: "DescribeTelCallInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTelCallInfo请求参数结构体
     public struct DescribeTelCallInfoRequest: TCRequestModel {
         /// 起始时间戳，Unix 时间戳
@@ -71,5 +59,17 @@ extension Ccc {
             case seatUsedCount = "SeatUsedCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 按实例获取电话消耗统计
+    @inlinable
+    public func describeTelCallInfo(_ input: DescribeTelCallInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTelCallInfoResponse > {
+        self.client.execute(action: "DescribeTelCallInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 按实例获取电话消耗统计
+    @inlinable
+    public func describeTelCallInfo(_ input: DescribeTelCallInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelCallInfoResponse {
+        try await self.client.execute(action: "DescribeTelCallInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

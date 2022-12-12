@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 创建域名
-    ///
-    /// 用来创建统一域名
-    @inlinable
-    public func createGlobalDomain(_ input: CreateGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGlobalDomainResponse > {
-        self.client.execute(action: "CreateGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建域名
-    ///
-    /// 用来创建统一域名
-    @inlinable
-    public func createGlobalDomain(_ input: CreateGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGlobalDomainResponse {
-        try await self.client.execute(action: "CreateGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateGlobalDomain请求参数结构体
     public struct CreateGlobalDomainRequest: TCRequestModel {
         /// 域名所属项目ID
@@ -45,7 +29,7 @@ extension Gaap {
         /// 标签列表
         public let tagSet: [TagPair]?
         
-        public init (projectId: Int64, defaultValue: String, alias: String?, tagSet: [TagPair]?) {
+        public init (projectId: Int64, defaultValue: String, alias: String? = nil, tagSet: [TagPair]? = nil) {
             self.projectId = projectId
             self.defaultValue = defaultValue
             self.alias = alias
@@ -72,5 +56,21 @@ extension Gaap {
             case domainId = "DomainId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建域名
+    ///
+    /// 用来创建统一域名
+    @inlinable
+    public func createGlobalDomain(_ input: CreateGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateGlobalDomainResponse > {
+        self.client.execute(action: "CreateGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建域名
+    ///
+    /// 用来创建统一域名
+    @inlinable
+    public func createGlobalDomain(_ input: CreateGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGlobalDomainResponse {
+        try await self.client.execute(action: "CreateGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

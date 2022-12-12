@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eis {
-    /// 获取连接器操作列表
-    @inlinable
-    public func listEisConnectorOperations(_ input: ListEisConnectorOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListEisConnectorOperationsResponse > {
-        self.client.execute(action: "ListEisConnectorOperations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取连接器操作列表
-    @inlinable
-    public func listEisConnectorOperations(_ input: ListEisConnectorOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEisConnectorOperationsResponse {
-        try await self.client.execute(action: "ListEisConnectorOperations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListEisConnectorOperations请求参数结构体
     public struct ListEisConnectorOperationsRequest: TCRequestModel {
         /// 连接器名称
@@ -58,5 +46,17 @@ extension Eis {
             case operations = "Operations"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取连接器操作列表
+    @inlinable
+    public func listEisConnectorOperations(_ input: ListEisConnectorOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListEisConnectorOperationsResponse > {
+        self.client.execute(action: "ListEisConnectorOperations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取连接器操作列表
+    @inlinable
+    public func listEisConnectorOperations(_ input: ListEisConnectorOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEisConnectorOperationsResponse {
+        try await self.client.execute(action: "ListEisConnectorOperations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

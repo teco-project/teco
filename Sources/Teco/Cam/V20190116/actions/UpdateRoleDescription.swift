@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 修改角色描述信息
-    ///
-    /// 本接口（UpdateRoleDescription）用于修改角色的描述信息。
-    @inlinable
-    public func updateRoleDescription(_ input: UpdateRoleDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRoleDescriptionResponse > {
-        self.client.execute(action: "UpdateRoleDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改角色描述信息
-    ///
-    /// 本接口（UpdateRoleDescription）用于修改角色的描述信息。
-    @inlinable
-    public func updateRoleDescription(_ input: UpdateRoleDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleDescriptionResponse {
-        try await self.client.execute(action: "UpdateRoleDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateRoleDescription请求参数结构体
     public struct UpdateRoleDescriptionRequest: TCRequestModel {
         /// 角色描述
@@ -42,7 +26,7 @@ extension Cam {
         /// 角色名称，用于指定角色，入参 RoleId 与 RoleName 二选一
         public let roleName: String?
         
-        public init (description: String, roleId: String?, roleName: String?) {
+        public init (description: String, roleId: String? = nil, roleName: String? = nil) {
             self.description = description
             self.roleId = roleId
             self.roleName = roleName
@@ -63,5 +47,21 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改角色描述信息
+    ///
+    /// 本接口（UpdateRoleDescription）用于修改角色的描述信息。
+    @inlinable
+    public func updateRoleDescription(_ input: UpdateRoleDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRoleDescriptionResponse > {
+        self.client.execute(action: "UpdateRoleDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改角色描述信息
+    ///
+    /// 本接口（UpdateRoleDescription）用于修改角色的描述信息。
+    @inlinable
+    public func updateRoleDescription(_ input: UpdateRoleDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleDescriptionResponse {
+        try await self.client.execute(action: "UpdateRoleDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

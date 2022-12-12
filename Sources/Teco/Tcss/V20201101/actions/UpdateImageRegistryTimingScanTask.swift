@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 镜像仓库更新定时任务
-    @inlinable
-    public func updateImageRegistryTimingScanTask(_ input: UpdateImageRegistryTimingScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateImageRegistryTimingScanTaskResponse > {
-        self.client.execute(action: "UpdateImageRegistryTimingScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 镜像仓库更新定时任务
-    @inlinable
-    public func updateImageRegistryTimingScanTask(_ input: UpdateImageRegistryTimingScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageRegistryTimingScanTaskResponse {
-        try await self.client.execute(action: "UpdateImageRegistryTimingScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateImageRegistryTimingScanTask请求参数结构体
     public struct UpdateImageRegistryTimingScanTaskRequest: TCRequestModel {
         /// 定时扫描周期
@@ -50,7 +38,7 @@ extension Tcss {
         /// 扫描镜像Id
         public let id: [UInt64]?
         
-        public init (scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]?, images: [ImageInfo]?, all: Bool?, id: [UInt64]?) {
+        public init (scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]? = nil, images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil) {
             self.scanPeriod = scanPeriod
             self.enable = enable
             self.scanTime = scanTime
@@ -79,5 +67,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 镜像仓库更新定时任务
+    @inlinable
+    public func updateImageRegistryTimingScanTask(_ input: UpdateImageRegistryTimingScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateImageRegistryTimingScanTaskResponse > {
+        self.client.execute(action: "UpdateImageRegistryTimingScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库更新定时任务
+    @inlinable
+    public func updateImageRegistryTimingScanTask(_ input: UpdateImageRegistryTimingScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageRegistryTimingScanTaskResponse {
+        try await self.client.execute(action: "UpdateImageRegistryTimingScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

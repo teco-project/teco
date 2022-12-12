@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 创建新企业安全组规则
-    @inlinable
-    public func addEnterpriseSecurityGroupRules(_ input: AddEnterpriseSecurityGroupRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEnterpriseSecurityGroupRulesResponse > {
-        self.client.execute(action: "AddEnterpriseSecurityGroupRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建新企业安全组规则
-    @inlinable
-    public func addEnterpriseSecurityGroupRules(_ input: AddEnterpriseSecurityGroupRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEnterpriseSecurityGroupRulesResponse {
-        try await self.client.execute(action: "AddEnterpriseSecurityGroupRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddEnterpriseSecurityGroupRules请求参数结构体
     public struct AddEnterpriseSecurityGroupRulesRequest: TCRequestModel {
         /// 创建规则数据
@@ -41,7 +29,7 @@ extension Cfw {
         /// 是否延迟下发，1则延迟下发，否则立即下发
         public let isDelay: UInt64?
         
-        public init (data: [SecurityGroupRule], type: UInt64?, clientToken: String?, isDelay: UInt64?) {
+        public init (data: [SecurityGroupRule], type: UInt64? = nil, clientToken: String? = nil, isDelay: UInt64? = nil) {
             self.data = data
             self.type = type
             self.clientToken = clientToken
@@ -68,5 +56,17 @@ extension Cfw {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建新企业安全组规则
+    @inlinable
+    public func addEnterpriseSecurityGroupRules(_ input: AddEnterpriseSecurityGroupRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEnterpriseSecurityGroupRulesResponse > {
+        self.client.execute(action: "AddEnterpriseSecurityGroupRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建新企业安全组规则
+    @inlinable
+    public func addEnterpriseSecurityGroupRules(_ input: AddEnterpriseSecurityGroupRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEnterpriseSecurityGroupRulesResponse {
+        try await self.client.execute(action: "AddEnterpriseSecurityGroupRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

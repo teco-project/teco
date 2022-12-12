@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 销毁独享分布式数据库实例
-    ///
-    /// 本接口（TerminateDedicatedDBInstance）用于销毁已隔离的独享分布式数据库实例。
-    @inlinable
-    public func terminateDedicatedDBInstance(_ input: TerminateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateDedicatedDBInstanceResponse > {
-        self.client.execute(action: "TerminateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 销毁独享分布式数据库实例
-    ///
-    /// 本接口（TerminateDedicatedDBInstance）用于销毁已隔离的独享分布式数据库实例。
-    @inlinable
-    public func terminateDedicatedDBInstance(_ input: TerminateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDedicatedDBInstanceResponse {
-        try await self.client.execute(action: "TerminateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TerminateDedicatedDBInstance请求参数结构体
     public struct TerminateDedicatedDBInstanceRequest: TCRequestModel {
         /// 实例 Id，形如：dcdbt-ow728lmc。
@@ -57,5 +41,21 @@ extension Dcdb {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 销毁独享分布式数据库实例
+    ///
+    /// 本接口（TerminateDedicatedDBInstance）用于销毁已隔离的独享分布式数据库实例。
+    @inlinable
+    public func terminateDedicatedDBInstance(_ input: TerminateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateDedicatedDBInstanceResponse > {
+        self.client.execute(action: "TerminateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁独享分布式数据库实例
+    ///
+    /// 本接口（TerminateDedicatedDBInstance）用于销毁已隔离的独享分布式数据库实例。
+    @inlinable
+    public func terminateDedicatedDBInstance(_ input: TerminateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDedicatedDBInstanceResponse {
+        try await self.client.execute(action: "TerminateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

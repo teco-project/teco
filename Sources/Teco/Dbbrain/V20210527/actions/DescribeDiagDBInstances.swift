@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 获取实例信息列表
-    ///
-    /// 获取实例信息列表。Region统一选择广州。
-    @inlinable
-    public func describeDiagDBInstances(_ input: DescribeDiagDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiagDBInstancesResponse > {
-        self.client.execute(action: "DescribeDiagDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实例信息列表
-    ///
-    /// 获取实例信息列表。Region统一选择广州。
-    @inlinable
-    public func describeDiagDBInstances(_ input: DescribeDiagDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagDBInstancesResponse {
-        try await self.client.execute(action: "DescribeDiagDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDiagDBInstances请求参数结构体
     public struct DescribeDiagDBInstancesRequest: TCRequestModel {
         /// 是否是DBbrain支持的实例，固定传 true。
@@ -54,7 +38,7 @@ extension Dbbrain {
         /// 根据地域条件查询。
         public let regions: [String]?
         
-        public init (isSupported: Bool, product: String, offset: Int64, limit: Int64, instanceNames: [String]?, instanceIds: [String]?, regions: [String]?) {
+        public init (isSupported: Bool, product: String, offset: Int64, limit: Int64, instanceNames: [String]? = nil, instanceIds: [String]? = nil, regions: [String]? = nil) {
             self.isSupported = isSupported
             self.product = product
             self.offset = offset
@@ -95,5 +79,21 @@ extension Dbbrain {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实例信息列表
+    ///
+    /// 获取实例信息列表。Region统一选择广州。
+    @inlinable
+    public func describeDiagDBInstances(_ input: DescribeDiagDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDiagDBInstancesResponse > {
+        self.client.execute(action: "DescribeDiagDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例信息列表
+    ///
+    /// 获取实例信息列表。Region统一选择广州。
+    @inlinable
+    public func describeDiagDBInstances(_ input: DescribeDiagDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagDBInstancesResponse {
+        try await self.client.execute(action: "DescribeDiagDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

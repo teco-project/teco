@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 创建参数模板
-    ///
-    /// 创建参数模板。
-    @inlinable
-    public func createParamTemplate(_ input: CreateParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateParamTemplateResponse > {
-        self.client.execute(action: "CreateParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建参数模板
-    ///
-    /// 创建参数模板。
-    @inlinable
-    public func createParamTemplate(_ input: CreateParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateParamTemplateResponse {
-        try await self.client.execute(action: "CreateParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateParamTemplate请求参数结构体
     public struct CreateParamTemplateRequest: TCRequestModel {
         /// 参数模板名称。
@@ -48,7 +32,7 @@ extension Redis {
         /// 参数列表。
         public let paramList: [InstanceParam]?
         
-        public init (name: String, description: String?, productType: UInt64?, templateId: String?, paramList: [InstanceParam]?) {
+        public init (name: String, description: String? = nil, productType: UInt64? = nil, templateId: String? = nil, paramList: [InstanceParam]? = nil) {
             self.name = name
             self.description = description
             self.productType = productType
@@ -77,5 +61,21 @@ extension Redis {
             case templateId = "TemplateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建参数模板
+    ///
+    /// 创建参数模板。
+    @inlinable
+    public func createParamTemplate(_ input: CreateParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateParamTemplateResponse > {
+        self.client.execute(action: "CreateParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建参数模板
+    ///
+    /// 创建参数模板。
+    @inlinable
+    public func createParamTemplate(_ input: CreateParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateParamTemplateResponse {
+        try await self.client.execute(action: "CreateParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

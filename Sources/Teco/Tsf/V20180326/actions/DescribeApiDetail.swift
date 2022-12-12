@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询API详情
-    @inlinable
-    public func describeApiDetail(_ input: DescribeApiDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiDetailResponse > {
-        self.client.execute(action: "DescribeApiDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询API详情
-    @inlinable
-    public func describeApiDetail(_ input: DescribeApiDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiDetailResponse {
-        try await self.client.execute(action: "DescribeApiDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApiDetail请求参数结构体
     public struct DescribeApiDetailRequest: TCRequestModel {
         /// 微服务id
@@ -73,5 +61,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询API详情
+    @inlinable
+    public func describeApiDetail(_ input: DescribeApiDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiDetailResponse > {
+        self.client.execute(action: "DescribeApiDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询API详情
+    @inlinable
+    public func describeApiDetail(_ input: DescribeApiDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiDetailResponse {
+        try await self.client.execute(action: "DescribeApiDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

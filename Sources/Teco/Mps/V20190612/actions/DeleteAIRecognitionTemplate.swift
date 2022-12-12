@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 删除内容识别模板
-    ///
-    /// 删除用户自定义内容识别模板。
-    @inlinable
-    public func deleteAIRecognitionTemplate(_ input: DeleteAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAIRecognitionTemplateResponse > {
-        self.client.execute(action: "DeleteAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除内容识别模板
-    ///
-    /// 删除用户自定义内容识别模板。
-    @inlinable
-    public func deleteAIRecognitionTemplate(_ input: DeleteAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIRecognitionTemplateResponse {
-        try await self.client.execute(action: "DeleteAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAIRecognitionTemplate请求参数结构体
     public struct DeleteAIRecognitionTemplateRequest: TCRequestModel {
         /// 视频内容识别模板唯一标识。
@@ -53,5 +37,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除内容识别模板
+    ///
+    /// 删除用户自定义内容识别模板。
+    @inlinable
+    public func deleteAIRecognitionTemplate(_ input: DeleteAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAIRecognitionTemplateResponse > {
+        self.client.execute(action: "DeleteAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除内容识别模板
+    ///
+    /// 删除用户自定义内容识别模板。
+    @inlinable
+    public func deleteAIRecognitionTemplate(_ input: DeleteAIRecognitionTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIRecognitionTemplateResponse {
+        try await self.client.execute(action: "DeleteAIRecognitionTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

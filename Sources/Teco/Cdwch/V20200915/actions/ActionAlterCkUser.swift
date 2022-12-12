@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdwch {
-    /// 新增、修改ck用户接口
-    ///
-    /// 新增和修改用户接口
-    @inlinable
-    public func actionAlterCkUser(_ input: ActionAlterCkUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActionAlterCkUserResponse > {
-        self.client.execute(action: "ActionAlterCkUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增、修改ck用户接口
-    ///
-    /// 新增和修改用户接口
-    @inlinable
-    public func actionAlterCkUser(_ input: ActionAlterCkUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActionAlterCkUserResponse {
-        try await self.client.execute(action: "ActionAlterCkUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ActionAlterCkUser请求参数结构体
     public struct ActionAlterCkUserRequest: TCRequestModel {
         /// 用户信息
@@ -64,5 +48,21 @@ extension Cdwch {
             case errMsg = "ErrMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增、修改ck用户接口
+    ///
+    /// 新增和修改用户接口
+    @inlinable
+    public func actionAlterCkUser(_ input: ActionAlterCkUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ActionAlterCkUserResponse > {
+        self.client.execute(action: "ActionAlterCkUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增、修改ck用户接口
+    ///
+    /// 新增和修改用户接口
+    @inlinable
+    public func actionAlterCkUser(_ input: ActionAlterCkUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActionAlterCkUserResponse {
+        try await self.client.execute(action: "ActionAlterCkUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 获取函数预置并发详情
-    ///
-    /// 获取函数或函数某一版本的预置并发详情。
-    @inlinable
-    public func getProvisionedConcurrencyConfig(_ input: GetProvisionedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetProvisionedConcurrencyConfigResponse > {
-        self.client.execute(action: "GetProvisionedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取函数预置并发详情
-    ///
-    /// 获取函数或函数某一版本的预置并发详情。
-    @inlinable
-    public func getProvisionedConcurrencyConfig(_ input: GetProvisionedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProvisionedConcurrencyConfigResponse {
-        try await self.client.execute(action: "GetProvisionedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetProvisionedConcurrencyConfig请求参数结构体
     public struct GetProvisionedConcurrencyConfigRequest: TCRequestModel {
         /// 需要获取预置并发详情的函数名称。
@@ -42,7 +26,7 @@ extension Scf {
         /// 函数版本号，不传则返回函数所有版本的预置并发信息。
         public let qualifier: String?
         
-        public init (functionName: String, namespace: String?, qualifier: String?) {
+        public init (functionName: String, namespace: String? = nil, qualifier: String? = nil) {
             self.functionName = functionName
             self.namespace = namespace
             self.qualifier = qualifier
@@ -71,5 +55,21 @@ extension Scf {
             case allocated = "Allocated"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取函数预置并发详情
+    ///
+    /// 获取函数或函数某一版本的预置并发详情。
+    @inlinable
+    public func getProvisionedConcurrencyConfig(_ input: GetProvisionedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetProvisionedConcurrencyConfigResponse > {
+        self.client.execute(action: "GetProvisionedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数预置并发详情
+    ///
+    /// 获取函数或函数某一版本的预置并发详情。
+    @inlinable
+    public func getProvisionedConcurrencyConfig(_ input: GetProvisionedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProvisionedConcurrencyConfigResponse {
+        try await self.client.execute(action: "GetProvisionedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

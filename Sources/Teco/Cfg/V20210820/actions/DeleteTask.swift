@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfg {
-    /// 删除任务
-    @inlinable
-    public func deleteTask(_ input: DeleteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTaskResponse > {
-        self.client.execute(action: "DeleteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除任务
-    @inlinable
-    public func deleteTask(_ input: DeleteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskResponse {
-        try await self.client.execute(action: "DeleteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTask请求参数结构体
     public struct DeleteTaskRequest: TCRequestModel {
         /// 任务ID
@@ -49,5 +37,17 @@ extension Cfg {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除任务
+    @inlinable
+    public func deleteTask(_ input: DeleteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTaskResponse > {
+        self.client.execute(action: "DeleteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除任务
+    @inlinable
+    public func deleteTask(_ input: DeleteTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskResponse {
+        try await self.client.execute(action: "DeleteTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

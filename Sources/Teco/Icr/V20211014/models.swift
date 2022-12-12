@@ -37,7 +37,7 @@ extension Icr {
         
         /// 功能列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let featureList: GetIndustryV1HomeMembersRespFeature
+        public let featureList: GetIndustryV1HomeMembersRespFeature?
         
         /// 用户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -53,7 +53,7 @@ extension Icr {
         
         /// 机器人列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let productList: GetIndustryV1HomeMembersRespProduct
+        public let productList: GetIndustryV1HomeMembersRespProduct?
         
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -65,7 +65,7 @@ extension Icr {
         
         /// 功能列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let typeList: GetIndustryV1HomeMembersRespType
+        public let typeList: GetIndustryV1HomeMembersRespType?
         
         /// 用户账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -230,12 +230,12 @@ extension Icr {
         public let appKey: String?
         
         /// 位置定位服务
-        public let lbs: ReqMetadataLBS
+        public let lbs: ReqMetadataLBS?
         
         /// 透传字段
         public let vagrants: [ReqMetadataVagrant]?
         
-        public init (channelID: String?, businessName: String?, guid: String?, appKey: String?, lbs: ReqMetadataLBS, vagrants: [ReqMetadataVagrant]?) {
+        public init (channelID: String? = nil, businessName: String? = nil, guid: String? = nil, appKey: String? = nil, lbs: ReqMetadataLBS? = nil, vagrants: [ReqMetadataVagrant]? = nil) {
             self.channelID = channelID
             self.businessName = businessName
             self.guid = guid
@@ -262,7 +262,7 @@ extension Icr {
         /// 经度
         public let longitude: Float?
         
-        public init (latitude: Float?, longitude: Float?) {
+        public init (latitude: Float? = nil, longitude: Float? = nil) {
             self.latitude = latitude
             self.longitude = longitude
         }
@@ -281,7 +281,7 @@ extension Icr {
         /// 无
         public let value: String?
         
-        public init (key: String?, value: String?) {
+        public init (key: String? = nil, value: String? = nil) {
             self.key = key
             self.value = value
         }

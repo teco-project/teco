@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除模板对象成员
-    ///
-    /// 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
-    @inlinable
-    public func deleteTemplateMember(_ input: DeleteTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTemplateMemberResponse > {
-        self.client.execute(action: "DeleteTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除模板对象成员
-    ///
-    /// 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
-    @inlinable
-    public func deleteTemplateMember(_ input: DeleteTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateMemberResponse {
-        try await self.client.execute(action: "DeleteTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTemplateMember请求参数结构体
     public struct DeleteTemplateMemberRequest: TCRequestModel {
         /// 参数模板实例ID，支持IP地址、协议端口、IP地址组、协议端口组四种参数模板的实例ID。
@@ -58,5 +42,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除模板对象成员
+    ///
+    /// 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
+    @inlinable
+    public func deleteTemplateMember(_ input: DeleteTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTemplateMemberResponse > {
+        self.client.execute(action: "DeleteTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除模板对象成员
+    ///
+    /// 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
+    @inlinable
+    public func deleteTemplateMember(_ input: DeleteTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateMemberResponse {
+        try await self.client.execute(action: "DeleteTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 创建数据导入任务
-    ///
-    /// 本接口(CreateDBImportJob)用于创建云数据库数据导入任务。
-    /// 注意，用户进行数据导入任务的文件，必须提前上传到腾讯云。用户须在控制台进行文件导入。
-    @inlinable
-    public func createDBImportJob(_ input: CreateDBImportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBImportJobResponse > {
-        self.client.execute(action: "CreateDBImportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建数据导入任务
-    ///
-    /// 本接口(CreateDBImportJob)用于创建云数据库数据导入任务。
-    /// 注意，用户进行数据导入任务的文件，必须提前上传到腾讯云。用户须在控制台进行文件导入。
-    @inlinable
-    public func createDBImportJob(_ input: CreateDBImportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBImportJobResponse {
-        try await self.client.execute(action: "CreateDBImportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDBImportJob请求参数结构体
     public struct CreateDBImportJobRequest: TCRequestModel {
         /// 实例的 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -53,7 +35,7 @@ extension Cdb {
         /// 腾讯云COS文件链接。 用户需要指定 FileName 或者 CosUrl 其中一个。 COS文件需要是 .sql 文件。
         public let cosUrl: String?
         
-        public init (instanceId: String, user: String, fileName: String?, password: String?, dbName: String?, cosUrl: String?) {
+        public init (instanceId: String, user: String, fileName: String? = nil, password: String? = nil, dbName: String? = nil, cosUrl: String? = nil) {
             self.instanceId = instanceId
             self.user = user
             self.fileName = fileName
@@ -84,5 +66,23 @@ extension Cdb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建数据导入任务
+    ///
+    /// 本接口(CreateDBImportJob)用于创建云数据库数据导入任务。
+    /// 注意，用户进行数据导入任务的文件，必须提前上传到腾讯云。用户须在控制台进行文件导入。
+    @inlinable
+    public func createDBImportJob(_ input: CreateDBImportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDBImportJobResponse > {
+        self.client.execute(action: "CreateDBImportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建数据导入任务
+    ///
+    /// 本接口(CreateDBImportJob)用于创建云数据库数据导入任务。
+    /// 注意，用户进行数据导入任务的文件，必须提前上传到腾讯云。用户须在控制台进行文件导入。
+    @inlinable
+    public func createDBImportJob(_ input: CreateDBImportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBImportJobResponse {
+        try await self.client.execute(action: "CreateDBImportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

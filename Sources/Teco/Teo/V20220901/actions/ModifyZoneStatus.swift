@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 切换站点状态
-    ///
-    /// 用于开启，关闭站点。
-    @inlinable
-    public func modifyZoneStatus(_ input: ModifyZoneStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyZoneStatusResponse > {
-        self.client.execute(action: "ModifyZoneStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 切换站点状态
-    ///
-    /// 用于开启，关闭站点。
-    @inlinable
-    public func modifyZoneStatus(_ input: ModifyZoneStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneStatusResponse {
-        try await self.client.execute(action: "ModifyZoneStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyZoneStatus请求参数结构体
     public struct ModifyZoneStatusRequest: TCRequestModel {
         /// 站点 ID。
@@ -60,5 +44,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 切换站点状态
+    ///
+    /// 用于开启，关闭站点。
+    @inlinable
+    public func modifyZoneStatus(_ input: ModifyZoneStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyZoneStatusResponse > {
+        self.client.execute(action: "ModifyZoneStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 切换站点状态
+    ///
+    /// 用于开启，关闭站点。
+    @inlinable
+    public func modifyZoneStatus(_ input: ModifyZoneStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneStatusResponse {
+        try await self.client.execute(action: "ModifyZoneStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

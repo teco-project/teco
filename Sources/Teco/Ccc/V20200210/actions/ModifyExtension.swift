@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 修改话机账号(绑定技能组、绑定坐席账号)
-    @inlinable
-    public func modifyExtension(_ input: ModifyExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyExtensionResponse > {
-        self.client.execute(action: "ModifyExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改话机账号(绑定技能组、绑定坐席账号)
-    @inlinable
-    public func modifyExtension(_ input: ModifyExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExtensionResponse {
-        try await self.client.execute(action: "ModifyExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyExtension请求参数结构体
     public struct ModifyExtensionRequest: TCRequestModel {
         /// TCCC 实例应用 ID
@@ -44,7 +32,7 @@ extension Ccc {
         /// 绑定坐席邮箱账号
         public let relation: String?
         
-        public init (sdkAppId: UInt64, extensionId: String, extensionName: String?, skillGroupIds: [Int64]?, relation: String?) {
+        public init (sdkAppId: UInt64, extensionId: String, extensionName: String? = nil, skillGroupIds: [Int64]? = nil, relation: String? = nil) {
             self.sdkAppId = sdkAppId
             self.extensionId = extensionId
             self.extensionName = extensionName
@@ -69,5 +57,17 @@ extension Ccc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改话机账号(绑定技能组、绑定坐席账号)
+    @inlinable
+    public func modifyExtension(_ input: ModifyExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyExtensionResponse > {
+        self.client.execute(action: "ModifyExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改话机账号(绑定技能组、绑定坐席账号)
+    @inlinable
+    public func modifyExtension(_ input: ModifyExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExtensionResponse {
+        try await self.client.execute(action: "ModifyExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 创建访问日志导出
-    ///
-    /// 本接口用于创建访问日志导出
-    @inlinable
-    public func createAccessExport(_ input: CreateAccessExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccessExportResponse > {
-        self.client.execute(action: "CreateAccessExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建访问日志导出
-    ///
-    /// 本接口用于创建访问日志导出
-    @inlinable
-    public func createAccessExport(_ input: CreateAccessExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessExportResponse {
-        try await self.client.execute(action: "CreateAccessExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAccessExport请求参数结构体
     public struct CreateAccessExportRequest: TCRequestModel {
         /// 客户要查询的日志主题ID，每个客户都有对应的一个主题
@@ -54,7 +38,7 @@ extension Waf {
         /// 日志导出时间排序。desc，asc，默认为desc
         public let order: String?
         
-        public init (topicId: String, from: Int64, to: Int64, query: String, count: Int64, format: String?, order: String?) {
+        public init (topicId: String, from: Int64, to: Int64, query: String, count: Int64, format: String? = nil, order: String? = nil) {
             self.topicId = topicId
             self.from = from
             self.to = to
@@ -87,5 +71,21 @@ extension Waf {
             case exportId = "ExportId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建访问日志导出
+    ///
+    /// 本接口用于创建访问日志导出
+    @inlinable
+    public func createAccessExport(_ input: CreateAccessExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccessExportResponse > {
+        self.client.execute(action: "CreateAccessExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建访问日志导出
+    ///
+    /// 本接口用于创建访问日志导出
+    @inlinable
+    public func createAccessExport(_ input: CreateAccessExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessExportResponse {
+        try await self.client.execute(action: "CreateAccessExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

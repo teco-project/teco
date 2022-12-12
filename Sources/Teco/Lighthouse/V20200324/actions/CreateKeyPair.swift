@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 创建密钥对
-    ///
-    /// 本接口（CreateKeyPair）用于创建一个密钥对。
-    @inlinable
-    public func createKeyPair(_ input: CreateKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateKeyPairResponse > {
-        self.client.execute(action: "CreateKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建密钥对
-    ///
-    /// 本接口（CreateKeyPair）用于创建一个密钥对。
-    @inlinable
-    public func createKeyPair(_ input: CreateKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKeyPairResponse {
-        try await self.client.execute(action: "CreateKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateKeyPair请求参数结构体
     public struct CreateKeyPairRequest: TCRequestModel {
         /// 密钥对名称，可由数字，字母和下划线组成，长度不超过 25 个字符。
@@ -57,5 +41,21 @@ extension Lighthouse {
             case keyPair = "KeyPair"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建密钥对
+    ///
+    /// 本接口（CreateKeyPair）用于创建一个密钥对。
+    @inlinable
+    public func createKeyPair(_ input: CreateKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateKeyPairResponse > {
+        self.client.execute(action: "CreateKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建密钥对
+    ///
+    /// 本接口（CreateKeyPair）用于创建一个密钥对。
+    @inlinable
+    public func createKeyPair(_ input: CreateKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKeyPairResponse {
+        try await self.client.execute(action: "CreateKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

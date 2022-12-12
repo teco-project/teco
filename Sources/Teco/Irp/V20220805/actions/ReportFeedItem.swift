@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Irp {
-    /// 上报信息流内容信息
-    ///
-    /// 上报被用于推荐的信息流内容信息
-    @inlinable
-    public func reportFeedItem(_ input: ReportFeedItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportFeedItemResponse > {
-        self.client.execute(action: "ReportFeedItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上报信息流内容信息
-    ///
-    /// 上报被用于推荐的信息流内容信息
-    @inlinable
-    public func reportFeedItem(_ input: ReportFeedItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedItemResponse {
-        try await self.client.execute(action: "ReportFeedItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReportFeedItem请求参数结构体
     public struct ReportFeedItemRequest: TCRequestModel {
         /// 实例ID，在控制台获取
@@ -58,5 +42,21 @@ extension Irp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上报信息流内容信息
+    ///
+    /// 上报被用于推荐的信息流内容信息
+    @inlinable
+    public func reportFeedItem(_ input: ReportFeedItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportFeedItemResponse > {
+        self.client.execute(action: "ReportFeedItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上报信息流内容信息
+    ///
+    /// 上报被用于推荐的信息流内容信息
+    @inlinable
+    public func reportFeedItem(_ input: ReportFeedItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedItemResponse {
+        try await self.client.execute(action: "ReportFeedItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

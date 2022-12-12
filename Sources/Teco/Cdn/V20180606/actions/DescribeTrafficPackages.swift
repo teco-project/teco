@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 流量包查询
-    ///
-    /// DescribeTrafficPackages 用于查询 CDN 流量包详情。
-    @inlinable
-    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficPackagesResponse > {
-        self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 流量包查询
-    ///
-    /// DescribeTrafficPackages 用于查询 CDN 流量包详情。
-    @inlinable
-    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
-        try await self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrafficPackages请求参数结构体
     public struct DescribeTrafficPackagesRequest: TCRequestModel {
         /// 分页查询起始地址，默认 0
@@ -48,7 +32,7 @@ extension Cdn {
         /// channel：按来源排序，主动购买>自动续订>CDN赠送
         public let sortBy: String?
         
-        public init (offset: Int64?, limit: Int64?, sortBy: String?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.sortBy = sortBy
@@ -89,5 +73,21 @@ extension Cdn {
             case paidCount = "PaidCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 流量包查询
+    ///
+    /// DescribeTrafficPackages 用于查询 CDN 流量包详情。
+    @inlinable
+    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrafficPackagesResponse > {
+        self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 流量包查询
+    ///
+    /// DescribeTrafficPackages 用于查询 CDN 流量包详情。
+    @inlinable
+    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
+        try await self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

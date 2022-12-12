@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 增值税发票核验（新版）
-    ///
-    /// 本接口支持增值税发票的准确性核验，您可以通过输入增值税发票的关键字段提供所需的验证信息，接口返回真实的票面相关信息，包括发票代码、发票号码、开票日期、金额、消费类型、购方名称、购方税号、销方名称、销方税号等多个常用字段。支持多种发票类型核验，包括增值税专用发票、增值税普通发票（含电子普通发票、卷式发票、通行费发票）、全电发票、机动车销售统一发票、货物运输业增值税专用发票、二手车销售统一发票、通用机打电子发票（广东和浙江）。
-    @inlinable
-    public func vatInvoiceVerifyNew(_ input: VatInvoiceVerifyNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VatInvoiceVerifyNewResponse > {
-        self.client.execute(action: "VatInvoiceVerifyNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 增值税发票核验（新版）
-    ///
-    /// 本接口支持增值税发票的准确性核验，您可以通过输入增值税发票的关键字段提供所需的验证信息，接口返回真实的票面相关信息，包括发票代码、发票号码、开票日期、金额、消费类型、购方名称、购方税号、销方名称、销方税号等多个常用字段。支持多种发票类型核验，包括增值税专用发票、增值税普通发票（含电子普通发票、卷式发票、通行费发票）、全电发票、机动车销售统一发票、货物运输业增值税专用发票、二手车销售统一发票、通用机打电子发票（广东和浙江）。
-    @inlinable
-    public func vatInvoiceVerifyNew(_ input: VatInvoiceVerifyNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VatInvoiceVerifyNewResponse {
-        try await self.client.execute(action: "VatInvoiceVerifyNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// VatInvoiceVerifyNew请求参数结构体
     public struct VatInvoiceVerifyNewRequest: TCRequestModel {
         /// 发票号码，8位、20位（全电票）
@@ -62,7 +46,7 @@ extension Ocr {
         /// 是否开启通用机打电子发票，默认为关闭。
         public let enableCommonElectronic: Bool?
         
-        public init (invoiceNo: String, invoiceDate: String, invoiceCode: String?, invoiceKind: String?, checkCode: String?, amount: String?, regionCode: String?, sellerTaxCode: String?, enableCommonElectronic: Bool?) {
+        public init (invoiceNo: String, invoiceDate: String, invoiceCode: String? = nil, invoiceKind: String? = nil, checkCode: String? = nil, amount: String? = nil, regionCode: String? = nil, sellerTaxCode: String? = nil, enableCommonElectronic: Bool? = nil) {
             self.invoiceNo = invoiceNo
             self.invoiceDate = invoiceDate
             self.invoiceCode = invoiceCode
@@ -111,5 +95,21 @@ extension Ocr {
             case passInvoiceInfoList = "PassInvoiceInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 增值税发票核验（新版）
+    ///
+    /// 本接口支持增值税发票的准确性核验，您可以通过输入增值税发票的关键字段提供所需的验证信息，接口返回真实的票面相关信息，包括发票代码、发票号码、开票日期、金额、消费类型、购方名称、购方税号、销方名称、销方税号等多个常用字段。支持多种发票类型核验，包括增值税专用发票、增值税普通发票（含电子普通发票、卷式发票、通行费发票）、全电发票、机动车销售统一发票、货物运输业增值税专用发票、二手车销售统一发票、通用机打电子发票（广东和浙江）。
+    @inlinable
+    public func vatInvoiceVerifyNew(_ input: VatInvoiceVerifyNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VatInvoiceVerifyNewResponse > {
+        self.client.execute(action: "VatInvoiceVerifyNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 增值税发票核验（新版）
+    ///
+    /// 本接口支持增值税发票的准确性核验，您可以通过输入增值税发票的关键字段提供所需的验证信息，接口返回真实的票面相关信息，包括发票代码、发票号码、开票日期、金额、消费类型、购方名称、购方税号、销方名称、销方税号等多个常用字段。支持多种发票类型核验，包括增值税专用发票、增值税普通发票（含电子普通发票、卷式发票、通行费发票）、全电发票、机动车销售统一发票、货物运输业增值税专用发票、二手车销售统一发票、通用机打电子发票（广东和浙江）。
+    @inlinable
+    public func vatInvoiceVerifyNew(_ input: VatInvoiceVerifyNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VatInvoiceVerifyNewResponse {
+        try await self.client.execute(action: "VatInvoiceVerifyNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcbr {
-    /// 灰度发布
-    @inlinable
-    public func releaseGray(_ input: ReleaseGrayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseGrayResponse > {
-        self.client.execute(action: "ReleaseGray", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灰度发布
-    @inlinable
-    public func releaseGray(_ input: ReleaseGrayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseGrayResponse {
-        try await self.client.execute(action: "ReleaseGray", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReleaseGray请求参数结构体
     public struct ReleaseGrayRequest: TCRequestModel {
         /// 环境Id
@@ -50,7 +38,7 @@ extension Tcbr {
         /// 流量比例
         public let grayFlowRatio: Int64?
         
-        public init (envId: String, serverName: String, grayType: String, trafficType: String, versionFlowItems: [VersionFlowInfo]?, operatorRemark: String?, grayFlowRatio: Int64?) {
+        public init (envId: String, serverName: String, grayType: String, trafficType: String, versionFlowItems: [VersionFlowInfo]? = nil, operatorRemark: String? = nil, grayFlowRatio: Int64? = nil) {
             self.envId = envId
             self.serverName = serverName
             self.grayType = grayType
@@ -79,5 +67,17 @@ extension Tcbr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灰度发布
+    @inlinable
+    public func releaseGray(_ input: ReleaseGrayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseGrayResponse > {
+        self.client.execute(action: "ReleaseGray", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灰度发布
+    @inlinable
+    public func releaseGray(_ input: ReleaseGrayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseGrayResponse {
+        try await self.client.execute(action: "ReleaseGray", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 包年包月隔离接口
-    ///
-    /// 本接口（TerminateDBInstances）可将包年包月实例退还隔离。
-    @inlinable
-    public func terminateDBInstances(_ input: TerminateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateDBInstancesResponse > {
-        self.client.execute(action: "TerminateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 包年包月隔离接口
-    ///
-    /// 本接口（TerminateDBInstances）可将包年包月实例退还隔离。
-    @inlinable
-    public func terminateDBInstances(_ input: TerminateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstancesResponse {
-        try await self.client.execute(action: "TerminateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TerminateDBInstances请求参数结构体
     public struct TerminateDBInstancesRequest: TCRequestModel {
         /// 指定预隔离实例ID。格式如：cmgo-p8vnipr5。
@@ -53,5 +37,21 @@ extension Mongodb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 包年包月隔离接口
+    ///
+    /// 本接口（TerminateDBInstances）可将包年包月实例退还隔离。
+    @inlinable
+    public func terminateDBInstances(_ input: TerminateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateDBInstancesResponse > {
+        self.client.execute(action: "TerminateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 包年包月隔离接口
+    ///
+    /// 本接口（TerminateDBInstances）可将包年包月实例退还隔离。
+    @inlinable
+    public func terminateDBInstances(_ input: TerminateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstancesResponse {
+        try await self.client.execute(action: "TerminateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

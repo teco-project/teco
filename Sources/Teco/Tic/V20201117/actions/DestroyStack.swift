@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tic {
-    /// 执行Destroy事件
-    ///
-    /// 本接口（DestroyStack）用于删除资源栈下的某个版本所创建的资源。
-    @inlinable
-    public func destroyStack(_ input: DestroyStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyStackResponse > {
-        self.client.execute(action: "DestroyStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 执行Destroy事件
-    ///
-    /// 本接口（DestroyStack）用于删除资源栈下的某个版本所创建的资源。
-    @inlinable
-    public func destroyStack(_ input: DestroyStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStackResponse {
-        try await self.client.execute(action: "DestroyStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DestroyStack请求参数结构体
     public struct DestroyStackRequest: TCRequestModel {
         /// 资源栈ID
@@ -62,5 +46,21 @@ extension Tic {
             case eventId = "EventId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 执行Destroy事件
+    ///
+    /// 本接口（DestroyStack）用于删除资源栈下的某个版本所创建的资源。
+    @inlinable
+    public func destroyStack(_ input: DestroyStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyStackResponse > {
+        self.client.execute(action: "DestroyStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 执行Destroy事件
+    ///
+    /// 本接口（DestroyStack）用于删除资源栈下的某个版本所创建的资源。
+    @inlinable
+    public func destroyStack(_ input: DestroyStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStackResponse {
+        try await self.client.execute(action: "DestroyStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

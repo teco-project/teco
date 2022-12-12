@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Asw {
-    /// 查询执行详细信息
-    @inlinable
-    public func describeExecution(_ input: DescribeExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExecutionResponse > {
-        self.client.execute(action: "DescribeExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询执行详细信息
-    @inlinable
-    public func describeExecution(_ input: DescribeExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionResponse {
-        try await self.client.execute(action: "DescribeExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExecution请求参数结构体
     public struct DescribeExecutionRequest: TCRequestModel {
         /// 执行资源名
@@ -87,5 +75,17 @@ extension Asw {
             case executionDefinition = "ExecutionDefinition"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询执行详细信息
+    @inlinable
+    public func describeExecution(_ input: DescribeExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExecutionResponse > {
+        self.client.execute(action: "DescribeExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询执行详细信息
+    @inlinable
+    public func describeExecution(_ input: DescribeExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionResponse {
+        try await self.client.execute(action: "DescribeExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

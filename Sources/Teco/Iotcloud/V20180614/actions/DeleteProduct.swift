@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 删除产品
-    ///
-    /// 本接口（DeleteProduct）用于删除一个物联网通信产品
-    @inlinable
-    public func deleteProduct(_ input: DeleteProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProductResponse > {
-        self.client.execute(action: "DeleteProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除产品
-    ///
-    /// 本接口（DeleteProduct）用于删除一个物联网通信产品
-    @inlinable
-    public func deleteProduct(_ input: DeleteProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProductResponse {
-        try await self.client.execute(action: "DeleteProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteProduct请求参数结构体
     public struct DeleteProductRequest: TCRequestModel {
         /// 需要删除的产品 ID
@@ -39,7 +23,7 @@ extension Iotcloud {
         /// 删除LoRa产品需要skey
         public let skey: String?
         
-        public init (productId: String, skey: String?) {
+        public init (productId: String, skey: String? = nil) {
             self.productId = productId
             self.skey = skey
         }
@@ -58,5 +42,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除产品
+    ///
+    /// 本接口（DeleteProduct）用于删除一个物联网通信产品
+    @inlinable
+    public func deleteProduct(_ input: DeleteProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProductResponse > {
+        self.client.execute(action: "DeleteProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除产品
+    ///
+    /// 本接口（DeleteProduct）用于删除一个物联网通信产品
+    @inlinable
+    public func deleteProduct(_ input: DeleteProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProductResponse {
+        try await self.client.execute(action: "DeleteProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

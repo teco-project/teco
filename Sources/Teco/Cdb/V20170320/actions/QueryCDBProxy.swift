@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询代理详情
-    @inlinable
-    public func queryCDBProxy(_ input: QueryCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCDBProxyResponse > {
-        self.client.execute(action: "QueryCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询代理详情
-    @inlinable
-    public func queryCDBProxy(_ input: QueryCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCDBProxyResponse {
-        try await self.client.execute(action: "QueryCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryCDBProxy请求参数结构体
     public struct QueryCDBProxyRequest: TCRequestModel {
         /// 实例ID
@@ -35,7 +23,7 @@ extension Cdb {
         /// 代理ID
         public let proxyGroupId: String?
         
-        public init (instanceId: String, proxyGroupId: String?) {
+        public init (instanceId: String, proxyGroupId: String? = nil) {
             self.instanceId = instanceId
             self.proxyGroupId = proxyGroupId
         }
@@ -64,5 +52,17 @@ extension Cdb {
             case proxyGroup = "ProxyGroup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询代理详情
+    @inlinable
+    public func queryCDBProxy(_ input: QueryCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCDBProxyResponse > {
+        self.client.execute(action: "QueryCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询代理详情
+    @inlinable
+    public func queryCDBProxy(_ input: QueryCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCDBProxyResponse {
+        try await self.client.execute(action: "QueryCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

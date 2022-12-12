@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询镜像列表导出
-    ///
-    /// 容器安全搜索查询镜像列表导出
-    @inlinable
-    public func describeAssetImageListExport(_ input: DescribeAssetImageListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageListExportResponse > {
-        self.client.execute(action: "DescribeAssetImageListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询镜像列表导出
-    ///
-    /// 容器安全搜索查询镜像列表导出
-    @inlinable
-    public func describeAssetImageListExport(_ input: DescribeAssetImageListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageListExportResponse {
-        try await self.client.execute(action: "DescribeAssetImageListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageListExport请求参数结构体
     public struct DescribeAssetImageListExportRequest: TCRequestModel {
         /// 导出字段
@@ -55,7 +39,7 @@ extension Tcss {
         /// 排序方式 asc,desc
         public let order: String?
         
-        public init (exportField: [String], limit: UInt64?, offset: UInt64?, filters: [AssetFilters]?, by: String?, order: String?) {
+        public init (exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.exportField = exportField
             self.limit = limit
             self.offset = offset
@@ -86,5 +70,21 @@ extension Tcss {
             case downloadUrl = "DownloadUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询镜像列表导出
+    ///
+    /// 容器安全搜索查询镜像列表导出
+    @inlinable
+    public func describeAssetImageListExport(_ input: DescribeAssetImageListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageListExportResponse > {
+        self.client.execute(action: "DescribeAssetImageListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像列表导出
+    ///
+    /// 容器安全搜索查询镜像列表导出
+    @inlinable
+    public func describeAssetImageListExport(_ input: DescribeAssetImageListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageListExportResponse {
+        try await self.client.execute(action: "DescribeAssetImageListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

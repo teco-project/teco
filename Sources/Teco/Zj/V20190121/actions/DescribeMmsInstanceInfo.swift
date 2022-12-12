@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 获取彩信实例信息
-    @inlinable
-    public func describeMmsInstanceInfo(_ input: DescribeMmsInstanceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMmsInstanceInfoResponse > {
-        self.client.execute(action: "DescribeMmsInstanceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取彩信实例信息
-    @inlinable
-    public func describeMmsInstanceInfo(_ input: DescribeMmsInstanceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceInfoResponse {
-        try await self.client.execute(action: "DescribeMmsInstanceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMmsInstanceInfo请求参数结构体
     public struct DescribeMmsInstanceInfoRequest: TCRequestModel {
         /// 商户证书
@@ -58,5 +46,17 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取彩信实例信息
+    @inlinable
+    public func describeMmsInstanceInfo(_ input: DescribeMmsInstanceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMmsInstanceInfoResponse > {
+        self.client.execute(action: "DescribeMmsInstanceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取彩信实例信息
+    @inlinable
+    public func describeMmsInstanceInfo(_ input: DescribeMmsInstanceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceInfoResponse {
+        try await self.client.execute(action: "DescribeMmsInstanceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

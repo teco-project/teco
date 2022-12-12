@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 查询任务执行结果
-    ///
-    /// 本接口（DescribeAsyncRequestInfo）用于查询任务执行结果
-    @inlinable
-    public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAsyncRequestInfoResponse > {
-        self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询任务执行结果
-    ///
-    /// 本接口（DescribeAsyncRequestInfo）用于查询任务执行结果
-    @inlinable
-    public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRequestInfoResponse {
-        try await self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAsyncRequestInfo请求参数结构体
     public struct DescribeAsyncRequestInfoRequest: TCRequestModel {
         /// 任务 ID
@@ -61,5 +45,21 @@ extension Dts {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询任务执行结果
+    ///
+    /// 本接口（DescribeAsyncRequestInfo）用于查询任务执行结果
+    @inlinable
+    public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAsyncRequestInfoResponse > {
+        self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务执行结果
+    ///
+    /// 本接口（DescribeAsyncRequestInfo）用于查询任务执行结果
+    @inlinable
+    public func describeAsyncRequestInfo(_ input: DescribeAsyncRequestInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRequestInfoResponse {
+        try await self.client.execute(action: "DescribeAsyncRequestInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Eb {
-    /// Event事件投递
-    ///
-    /// （已废弃）用于Event事件投递
-    @inlinable
-    public func publishEvent(_ input: PublishEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishEventResponse > {
-        self.client.execute(action: "PublishEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// Event事件投递
-    ///
-    /// （已废弃）用于Event事件投递
-    @inlinable
-    public func publishEvent(_ input: PublishEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishEventResponse {
-        try await self.client.execute(action: "PublishEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// PublishEvent请求参数结构体
     public struct PublishEventRequest: TCRequestModel {
         /// 事件列表
@@ -58,5 +42,21 @@ extension Eb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// Event事件投递
+    ///
+    /// （已废弃）用于Event事件投递
+    @inlinable
+    public func publishEvent(_ input: PublishEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PublishEventResponse > {
+        self.client.execute(action: "PublishEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// Event事件投递
+    ///
+    /// （已废弃）用于Event事件投递
+    @inlinable
+    public func publishEvent(_ input: PublishEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishEventResponse {
+        try await self.client.execute(action: "PublishEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

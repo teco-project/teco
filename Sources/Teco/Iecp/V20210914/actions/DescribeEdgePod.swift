@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 查询边缘单元Pod
-    @inlinable
-    public func describeEdgePod(_ input: DescribeEdgePodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgePodResponse > {
-        self.client.execute(action: "DescribeEdgePod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询边缘单元Pod
-    @inlinable
-    public func describeEdgePod(_ input: DescribeEdgePodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgePodResponse {
-        try await self.client.execute(action: "DescribeEdgePod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgePod请求参数结构体
     public struct DescribeEdgePodRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -55,7 +43,7 @@ extension Iecp {
     public struct DescribeEdgePodResponse: TCResponseModel {
         /// Pod详情信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let pod: EdgeNodePodInfo
+        public let pod: EdgeNodePodInfo?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -64,5 +52,17 @@ extension Iecp {
             case pod = "Pod"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询边缘单元Pod
+    @inlinable
+    public func describeEdgePod(_ input: DescribeEdgePodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgePodResponse > {
+        self.client.execute(action: "DescribeEdgePod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘单元Pod
+    @inlinable
+    public func describeEdgePod(_ input: DescribeEdgePodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgePodResponse {
+        try await self.client.execute(action: "DescribeEdgePod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

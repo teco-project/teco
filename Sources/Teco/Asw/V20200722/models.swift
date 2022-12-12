@@ -62,7 +62,7 @@ extension Asw {
         /// 过滤器值的数组
         public let values: [String]?
         
-        public init (name: String?, values: [String]?) {
+        public init (name: String? = nil, values: [String]? = nil) {
             self.name = name
             self.values = values
         }

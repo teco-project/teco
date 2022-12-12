@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 从伸缩组中删除 CVM 实例
-    ///
-    /// 本接口（RemoveInstances）用于从伸缩组删除 CVM 实例。根据当前的产品逻辑，如果实例由弹性伸缩自动创建，则实例会被销毁；如果实例系创建后加入伸缩组的，则会从伸缩组中移除，保留实例。
-    /// * 如果删除指定实例后，伸缩组内处于`IN_SERVICE`状态的实例数量小于伸缩组最小值，接口将报错
-    /// * 如果伸缩组处于`DISABLED`状态，删除操作不校验`IN_SERVICE`实例数量和最小值的关系
-    /// * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
-    @inlinable
-    public func removeInstances(_ input: RemoveInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveInstancesResponse > {
-        self.client.execute(action: "RemoveInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 从伸缩组中删除 CVM 实例
-    ///
-    /// 本接口（RemoveInstances）用于从伸缩组删除 CVM 实例。根据当前的产品逻辑，如果实例由弹性伸缩自动创建，则实例会被销毁；如果实例系创建后加入伸缩组的，则会从伸缩组中移除，保留实例。
-    /// * 如果删除指定实例后，伸缩组内处于`IN_SERVICE`状态的实例数量小于伸缩组最小值，接口将报错
-    /// * 如果伸缩组处于`DISABLED`状态，删除操作不校验`IN_SERVICE`实例数量和最小值的关系
-    /// * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
-    @inlinable
-    public func removeInstances(_ input: RemoveInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveInstancesResponse {
-        try await self.client.execute(action: "RemoveInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemoveInstances请求参数结构体
     public struct RemoveInstancesRequest: TCRequestModel {
         /// 伸缩组ID
@@ -68,5 +46,27 @@ extension As {
             case activityId = "ActivityId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 从伸缩组中删除 CVM 实例
+    ///
+    /// 本接口（RemoveInstances）用于从伸缩组删除 CVM 实例。根据当前的产品逻辑，如果实例由弹性伸缩自动创建，则实例会被销毁；如果实例系创建后加入伸缩组的，则会从伸缩组中移除，保留实例。
+    /// * 如果删除指定实例后，伸缩组内处于`IN_SERVICE`状态的实例数量小于伸缩组最小值，接口将报错
+    /// * 如果伸缩组处于`DISABLED`状态，删除操作不校验`IN_SERVICE`实例数量和最小值的关系
+    /// * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
+    @inlinable
+    public func removeInstances(_ input: RemoveInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveInstancesResponse > {
+        self.client.execute(action: "RemoveInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 从伸缩组中删除 CVM 实例
+    ///
+    /// 本接口（RemoveInstances）用于从伸缩组删除 CVM 实例。根据当前的产品逻辑，如果实例由弹性伸缩自动创建，则实例会被销毁；如果实例系创建后加入伸缩组的，则会从伸缩组中移除，保留实例。
+    /// * 如果删除指定实例后，伸缩组内处于`IN_SERVICE`状态的实例数量小于伸缩组最小值，接口将报错
+    /// * 如果伸缩组处于`DISABLED`状态，删除操作不校验`IN_SERVICE`实例数量和最小值的关系
+    /// * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
+    @inlinable
+    public func removeInstances(_ input: RemoveInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveInstancesResponse {
+        try await self.client.execute(action: "RemoveInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

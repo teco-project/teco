@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建流日志
-    ///
-    /// 本接口（CreateFlowLog）用于创建流日志
-    @inlinable
-    public func createFlowLog(_ input: CreateFlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowLogResponse > {
-        self.client.execute(action: "CreateFlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建流日志
-    ///
-    /// 本接口（CreateFlowLog）用于创建流日志
-    @inlinable
-    public func createFlowLog(_ input: CreateFlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowLogResponse {
-        try await self.client.execute(action: "CreateFlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFlowLog请求参数结构体
     public struct CreateFlowLogRequest: TCRequestModel {
         /// 流日志实例名字
@@ -61,12 +45,12 @@ extension Vpc {
         public let storageType: String?
         
         /// 流日志消费端信息，当消费端类型为ckafka时，必填。
-        public let flowLogStorage: FlowLogStorage
+        public let flowLogStorage: FlowLogStorage?
         
         /// 流日志存储ID对应的地域，不传递默认为本地域。
         public let cloudLogRegion: String?
         
-        public init (flowLogName: String, resourceType: String, resourceId: String, trafficType: String, vpcId: String?, flowLogDescription: String?, cloudLogId: String?, tags: [Tag]?, storageType: String?, flowLogStorage: FlowLogStorage, cloudLogRegion: String?) {
+        public init (flowLogName: String, resourceType: String, resourceId: String, trafficType: String, vpcId: String? = nil, flowLogDescription: String? = nil, cloudLogId: String? = nil, tags: [Tag]? = nil, storageType: String? = nil, flowLogStorage: FlowLogStorage? = nil, cloudLogRegion: String? = nil) {
             self.flowLogName = flowLogName
             self.resourceType = resourceType
             self.resourceId = resourceId
@@ -107,5 +91,21 @@ extension Vpc {
             case flowLog = "FlowLog"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建流日志
+    ///
+    /// 本接口（CreateFlowLog）用于创建流日志
+    @inlinable
+    public func createFlowLog(_ input: CreateFlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowLogResponse > {
+        self.client.execute(action: "CreateFlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建流日志
+    ///
+    /// 本接口（CreateFlowLog）用于创建流日志
+    @inlinable
+    public func createFlowLog(_ input: CreateFlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowLogResponse {
+        try await self.client.execute(action: "CreateFlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

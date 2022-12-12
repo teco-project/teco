@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取区域主机列表
-    ///
-    /// 本接口 (DescribeMachines) 用于获取区域主机列表。
-    @inlinable
-    public func describeMachines(_ input: DescribeMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachinesResponse > {
-        self.client.execute(action: "DescribeMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取区域主机列表
-    ///
-    /// 本接口 (DescribeMachines) 用于获取区域主机列表。
-    @inlinable
-    public func describeMachines(_ input: DescribeMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachinesResponse {
-        try await self.client.execute(action: "DescribeMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMachines请求参数结构体
     public struct DescribeMachinesRequest: TCRequestModel {
         /// 云主机类型。
@@ -54,7 +38,7 @@ extension Yunjing {
         /// 每个过滤条件只支持一个值，暂不支持多个值“或”关系查询
         public let filters: [Filter]?
         
-        public init (machineType: String, machineRegion: String, limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.machineType = machineType
             self.machineRegion = machineRegion
             self.limit = limit
@@ -87,5 +71,21 @@ extension Yunjing {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取区域主机列表
+    ///
+    /// 本接口 (DescribeMachines) 用于获取区域主机列表。
+    @inlinable
+    public func describeMachines(_ input: DescribeMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachinesResponse > {
+        self.client.execute(action: "DescribeMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取区域主机列表
+    ///
+    /// 本接口 (DescribeMachines) 用于获取区域主机列表。
+    @inlinable
+    public func describeMachines(_ input: DescribeMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachinesResponse {
+        try await self.client.execute(action: "DescribeMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

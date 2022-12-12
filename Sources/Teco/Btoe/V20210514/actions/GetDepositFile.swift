@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Btoe {
-    /// 存证文件查询
-    ///
-    /// 用户通过存证编码向BTOE获取存证文件的下载URL。
-    /// -注：Hash类存证、业务数据明文存证不产生存证文件。
-    @inlinable
-    public func getDepositFile(_ input: GetDepositFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDepositFileResponse > {
-        self.client.execute(action: "GetDepositFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 存证文件查询
-    ///
-    /// 用户通过存证编码向BTOE获取存证文件的下载URL。
-    /// -注：Hash类存证、业务数据明文存证不产生存证文件。
-    @inlinable
-    public func getDepositFile(_ input: GetDepositFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositFileResponse {
-        try await self.client.execute(action: "GetDepositFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDepositFile请求参数结构体
     public struct GetDepositFileRequest: TCRequestModel {
         /// 存证编码
@@ -63,5 +45,23 @@ extension Btoe {
             case evidenceFile = "EvidenceFile"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 存证文件查询
+    ///
+    /// 用户通过存证编码向BTOE获取存证文件的下载URL。
+    /// -注：Hash类存证、业务数据明文存证不产生存证文件。
+    @inlinable
+    public func getDepositFile(_ input: GetDepositFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDepositFileResponse > {
+        self.client.execute(action: "GetDepositFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 存证文件查询
+    ///
+    /// 用户通过存证编码向BTOE获取存证文件的下载URL。
+    /// -注：Hash类存证、业务数据明文存证不产生存证文件。
+    @inlinable
+    public func getDepositFile(_ input: GetDepositFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositFileResponse {
+        try await self.client.execute(action: "GetDepositFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Scf {
-    /// 获取别名详细信息
-    ///
-    /// 获取别名的详细信息，包括名称、描述、版本、路由信息等。
-    @inlinable
-    public func getAlias(_ input: GetAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAliasResponse > {
-        self.client.execute(action: "GetAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取别名详细信息
-    ///
-    /// 获取别名的详细信息，包括名称、描述、版本、路由信息等。
-    @inlinable
-    public func getAlias(_ input: GetAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAliasResponse {
-        try await self.client.execute(action: "GetAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetAlias请求参数结构体
     public struct GetAliasRequest: TCRequestModel {
         /// 函数名称
@@ -44,7 +28,7 @@ extension Scf {
         /// 函数所在的命名空间
         public let namespace: String?
         
-        public init (functionName: String, name: String, namespace: String?) {
+        public init (functionName: String, name: String, namespace: String? = nil) {
             self.functionName = functionName
             self.name = name
             self.namespace = namespace
@@ -92,5 +76,21 @@ extension Scf {
             case modTime = "ModTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取别名详细信息
+    ///
+    /// 获取别名的详细信息，包括名称、描述、版本、路由信息等。
+    @inlinable
+    public func getAlias(_ input: GetAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAliasResponse > {
+        self.client.execute(action: "GetAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取别名详细信息
+    ///
+    /// 获取别名的详细信息，包括名称、描述、版本、路由信息等。
+    @inlinable
+    public func getAlias(_ input: GetAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAliasResponse {
+        try await self.client.execute(action: "GetAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

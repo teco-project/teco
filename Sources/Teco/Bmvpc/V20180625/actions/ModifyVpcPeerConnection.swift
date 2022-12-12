@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 修改黑石对等连接
-    @inlinable
-    public func modifyVpcPeerConnection(_ input: ModifyVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpcPeerConnectionResponse > {
-        self.client.execute(action: "ModifyVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改黑石对等连接
-    @inlinable
-    public func modifyVpcPeerConnection(_ input: ModifyVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcPeerConnectionResponse {
-        try await self.client.execute(action: "ModifyVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVpcPeerConnection请求参数结构体
     public struct ModifyVpcPeerConnectionRequest: TCRequestModel {
         /// 黑石对等连接唯一ID
@@ -38,7 +26,7 @@ extension Bmvpc {
         /// 对等连接名称
         public let vpcPeerConnectionName: String?
         
-        public init (vpcPeerConnectionId: String, bandwidth: UInt64?, vpcPeerConnectionName: String?) {
+        public init (vpcPeerConnectionId: String, bandwidth: UInt64? = nil, vpcPeerConnectionName: String? = nil) {
             self.vpcPeerConnectionId = vpcPeerConnectionId
             self.bandwidth = bandwidth
             self.vpcPeerConnectionName = vpcPeerConnectionName
@@ -63,5 +51,17 @@ extension Bmvpc {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改黑石对等连接
+    @inlinable
+    public func modifyVpcPeerConnection(_ input: ModifyVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVpcPeerConnectionResponse > {
+        self.client.execute(action: "ModifyVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改黑石对等连接
+    @inlinable
+    public func modifyVpcPeerConnection(_ input: ModifyVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcPeerConnectionResponse {
+        try await self.client.execute(action: "ModifyVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

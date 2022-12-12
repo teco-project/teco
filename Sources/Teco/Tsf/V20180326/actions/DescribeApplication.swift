@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 获取应用详情
-    @inlinable
-    public func describeApplication(_ input: DescribeApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationResponse > {
-        self.client.execute(action: "DescribeApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取应用详情
-    @inlinable
-    public func describeApplication(_ input: DescribeApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationResponse {
-        try await self.client.execute(action: "DescribeApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplication请求参数结构体
     public struct DescribeApplicationRequest: TCRequestModel {
         /// 应用ID
@@ -45,7 +33,7 @@ extension Tsf {
     public struct DescribeApplicationResponse: TCResponseModel {
         /// 应用信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: ApplicationForPage
+        public let result: ApplicationForPage?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -54,5 +42,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取应用详情
+    @inlinable
+    public func describeApplication(_ input: DescribeApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationResponse > {
+        self.client.execute(action: "DescribeApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用详情
+    @inlinable
+    public func describeApplication(_ input: DescribeApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationResponse {
+        try await self.client.execute(action: "DescribeApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

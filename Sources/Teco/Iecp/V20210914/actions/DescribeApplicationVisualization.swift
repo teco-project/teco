@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取应用模板可视化配置信息
-    @inlinable
-    public func describeApplicationVisualization(_ input: DescribeApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationVisualizationResponse > {
-        self.client.execute(action: "DescribeApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取应用模板可视化配置信息
-    @inlinable
-    public func describeApplicationVisualization(_ input: DescribeApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationVisualizationResponse {
-        try await self.client.execute(action: "DescribeApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplicationVisualization请求参数结构体
     public struct DescribeApplicationVisualizationRequest: TCRequestModel {
         /// 应用模板ID
@@ -45,11 +33,11 @@ extension Iecp {
     public struct DescribeApplicationVisualizationResponse: TCResponseModel {
         /// 基本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let basicInfo: ApplicationBasicInfo
+        public let basicInfo: ApplicationBasicInfo?
         
         /// 基本配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let basicConfig: ApplicationBasicConfig
+        public let basicConfig: ApplicationBasicConfig?
         
         /// 卷配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -65,15 +53,15 @@ extension Iecp {
         
         /// 服务配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let service: Service
+        public let service: Service?
         
         /// Job配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let job: Job
+        public let job: Job?
         
         /// CronJob配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cronJob: CronJob
+        public let cronJob: CronJob?
         
         /// 重启策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -81,7 +69,7 @@ extension Iecp {
         
         /// HPA
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let horizontalPodAutoscaler: HorizontalPodAutoscaler
+        public let horizontalPodAutoscaler: HorizontalPodAutoscaler?
         
         /// 镜像拉取Secret
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -104,5 +92,17 @@ extension Iecp {
             case imagePullSecrets = "ImagePullSecrets"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取应用模板可视化配置信息
+    @inlinable
+    public func describeApplicationVisualization(_ input: DescribeApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationVisualizationResponse > {
+        self.client.execute(action: "DescribeApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用模板可视化配置信息
+    @inlinable
+    public func describeApplicationVisualization(_ input: DescribeApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationVisualizationResponse {
+        try await self.client.execute(action: "DescribeApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

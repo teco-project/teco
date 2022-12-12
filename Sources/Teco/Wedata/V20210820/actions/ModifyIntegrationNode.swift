@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 更新集成节点
-    @inlinable
-    public func modifyIntegrationNode(_ input: ModifyIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIntegrationNodeResponse > {
-        self.client.execute(action: "ModifyIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新集成节点
-    @inlinable
-    public func modifyIntegrationNode(_ input: ModifyIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationNodeResponse {
-        try await self.client.execute(action: "ModifyIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyIntegrationNode请求参数结构体
     public struct ModifyIntegrationNodeRequest: TCRequestModel {
         /// 集成节点信息
@@ -41,7 +29,7 @@ extension Wedata {
         /// 区分画布模式和表单模式
         public let taskMode: UInt64?
         
-        public init (nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64?, taskMode: UInt64?) {
+        public init (nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil, taskMode: UInt64? = nil) {
             self.nodeInfo = nodeInfo
             self.projectId = projectId
             self.taskType = taskType
@@ -73,5 +61,17 @@ extension Wedata {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新集成节点
+    @inlinable
+    public func modifyIntegrationNode(_ input: ModifyIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIntegrationNodeResponse > {
+        self.client.execute(action: "ModifyIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新集成节点
+    @inlinable
+    public func modifyIntegrationNode(_ input: ModifyIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationNodeResponse {
+        try await self.client.execute(action: "ModifyIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

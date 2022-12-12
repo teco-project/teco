@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 查询API限流规则
-    @inlinable
-    public func describeApiRateLimitRules(_ input: DescribeApiRateLimitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiRateLimitRulesResponse > {
-        self.client.execute(action: "DescribeApiRateLimitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询API限流规则
-    @inlinable
-    public func describeApiRateLimitRules(_ input: DescribeApiRateLimitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiRateLimitRulesResponse {
-        try await self.client.execute(action: "DescribeApiRateLimitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApiRateLimitRules请求参数结构体
     public struct DescribeApiRateLimitRulesRequest: TCRequestModel {
         /// Api ID
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询API限流规则
+    @inlinable
+    public func describeApiRateLimitRules(_ input: DescribeApiRateLimitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiRateLimitRulesResponse > {
+        self.client.execute(action: "DescribeApiRateLimitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询API限流规则
+    @inlinable
+    public func describeApiRateLimitRules(_ input: DescribeApiRateLimitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiRateLimitRulesResponse {
+        try await self.client.execute(action: "DescribeApiRateLimitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

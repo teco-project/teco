@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiems {
-    /// 更新资源组的伸缩组
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 更新资源组的伸缩组
-    @inlinable
-    public func updateRsgAsGroup(_ input: UpdateRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRsgAsGroupResponse > {
-        self.client.execute(action: "UpdateRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新资源组的伸缩组
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 更新资源组的伸缩组
-    @inlinable
-    public func updateRsgAsGroup(_ input: UpdateRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRsgAsGroupResponse {
-        try await self.client.execute(action: "UpdateRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateRsgAsGroup请求参数结构体
     public struct UpdateRsgAsGroupRequest: TCRequestModel {
         /// 伸缩组 ID
@@ -50,7 +32,7 @@ extension Tiems {
         /// 伸缩组期望的节点数
         public let desiredSize: UInt64?
         
-        public init (id: String, name: String?, maxSize: UInt64?, minSize: UInt64?, desiredSize: UInt64?) {
+        public init (id: String, name: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, desiredSize: UInt64? = nil) {
             self.id = id
             self.name = name
             self.maxSize = maxSize
@@ -79,5 +61,23 @@ extension Tiems {
             case rsgAsGroup = "RsgAsGroup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新资源组的伸缩组
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 更新资源组的伸缩组
+    @inlinable
+    public func updateRsgAsGroup(_ input: UpdateRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateRsgAsGroupResponse > {
+        self.client.execute(action: "UpdateRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新资源组的伸缩组
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 更新资源组的伸缩组
+    @inlinable
+    public func updateRsgAsGroup(_ input: UpdateRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRsgAsGroupResponse {
+        try await self.client.execute(action: "UpdateRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

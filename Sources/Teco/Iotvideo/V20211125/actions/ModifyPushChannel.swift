@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 更新推送通道
-    @inlinable
-    public func modifyPushChannel(_ input: ModifyPushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPushChannelResponse > {
-        self.client.execute(action: "ModifyPushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新推送通道
-    @inlinable
-    public func modifyPushChannel(_ input: ModifyPushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPushChannelResponse {
-        try await self.client.execute(action: "ModifyPushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPushChannel请求参数结构体
     public struct ModifyPushChannelRequest: TCRequestModel {
         /// 产品ID
@@ -50,7 +38,7 @@ extension Iotvideo {
         /// ckafka订阅主题
         public let cKafkaTopic: String?
         
-        public init (productId: String, type: String, forwardAddress: String?, forwardKey: String?, cKafkaRegion: String?, cKafkaInstance: String?, cKafkaTopic: String?) {
+        public init (productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil) {
             self.productId = productId
             self.type = type
             self.forwardAddress = forwardAddress
@@ -79,5 +67,17 @@ extension Iotvideo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新推送通道
+    @inlinable
+    public func modifyPushChannel(_ input: ModifyPushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPushChannelResponse > {
+        self.client.execute(action: "ModifyPushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新推送通道
+    @inlinable
+    public func modifyPushChannel(_ input: ModifyPushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPushChannelResponse {
+        try await self.client.execute(action: "ModifyPushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

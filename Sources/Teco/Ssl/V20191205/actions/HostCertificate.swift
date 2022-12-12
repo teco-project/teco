@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 云资源托管
-    @inlinable
-    public func hostCertificate(_ input: HostCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < HostCertificateResponse > {
-        self.client.execute(action: "HostCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云资源托管
-    @inlinable
-    public func hostCertificate(_ input: HostCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HostCertificateResponse {
-        try await self.client.execute(action: "HostCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// HostCertificate请求参数结构体
     public struct HostCertificateRequest: TCRequestModel {
         /// 证书ID
@@ -35,7 +23,7 @@ extension Ssl {
         /// 资源类型：目前仅限于CLB,CDN
         public let resourceType: [String]?
         
-        public init (certificateId: String, resourceType: [String]?) {
+        public init (certificateId: String, resourceType: [String]? = nil) {
             self.certificateId = certificateId
             self.resourceType = resourceType
         }
@@ -58,5 +46,17 @@ extension Ssl {
             case certHostingInfo = "CertHostingInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云资源托管
+    @inlinable
+    public func hostCertificate(_ input: HostCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < HostCertificateResponse > {
+        self.client.execute(action: "HostCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云资源托管
+    @inlinable
+    public func hostCertificate(_ input: HostCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HostCertificateResponse {
+        try await self.client.execute(action: "HostCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

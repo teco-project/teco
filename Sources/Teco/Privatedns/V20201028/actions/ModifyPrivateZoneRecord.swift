@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Privatedns {
-    /// 修改私有域解析记录
-    @inlinable
-    public func modifyPrivateZoneRecord(_ input: ModifyPrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrivateZoneRecordResponse > {
-        self.client.execute(action: "ModifyPrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改私有域解析记录
-    @inlinable
-    public func modifyPrivateZoneRecord(_ input: ModifyPrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneRecordResponse {
-        try await self.client.execute(action: "ModifyPrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPrivateZoneRecord请求参数结构体
     public struct ModifyPrivateZoneRecordRequest: TCRequestModel {
         /// 私有域ID
@@ -53,7 +41,7 @@ extension Privatedns {
         /// 记录缓存时间，数值越小生效越快，取值1-86400s, 默认 600
         public let ttl: Int64?
         
-        public init (zoneId: String, recordId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64?, mx: Int64?, ttl: Int64?) {
+        public init (zoneId: String, recordId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil) {
             self.zoneId = zoneId
             self.recordId = recordId
             self.recordType = recordType
@@ -84,5 +72,17 @@ extension Privatedns {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改私有域解析记录
+    @inlinable
+    public func modifyPrivateZoneRecord(_ input: ModifyPrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrivateZoneRecordResponse > {
+        self.client.execute(action: "ModifyPrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改私有域解析记录
+    @inlinable
+    public func modifyPrivateZoneRecord(_ input: ModifyPrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneRecordResponse {
+        try await self.client.execute(action: "ModifyPrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

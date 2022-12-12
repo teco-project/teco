@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 开启vpc-cni容器网络能力
-    ///
-    /// GR集群可以通过本接口附加vpc-cni容器网络插件，开启vpc-cni容器网络能力
-    @inlinable
-    public func enableVpcCniNetworkType(_ input: EnableVpcCniNetworkTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableVpcCniNetworkTypeResponse > {
-        self.client.execute(action: "EnableVpcCniNetworkType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启vpc-cni容器网络能力
-    ///
-    /// GR集群可以通过本接口附加vpc-cni容器网络插件，开启vpc-cni容器网络能力
-    @inlinable
-    public func enableVpcCniNetworkType(_ input: EnableVpcCniNetworkTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcCniNetworkTypeResponse {
-        try await self.client.execute(action: "EnableVpcCniNetworkType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EnableVpcCniNetworkType请求参数结构体
     public struct EnableVpcCniNetworkTypeRequest: TCRequestModel {
         /// 集群ID
@@ -48,7 +32,7 @@ extension Tke {
         /// 在固定IP模式下，Pod销毁后退还IP的时间，传参必须大于300；不传默认IP永不销毁。
         public let expiredSeconds: UInt64?
         
-        public init (clusterId: String, vpcCniType: String, enableStaticIp: Bool, subnets: [String], expiredSeconds: UInt64?) {
+        public init (clusterId: String, vpcCniType: String, enableStaticIp: Bool, subnets: [String], expiredSeconds: UInt64? = nil) {
             self.clusterId = clusterId
             self.vpcCniType = vpcCniType
             self.enableStaticIp = enableStaticIp
@@ -73,5 +57,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启vpc-cni容器网络能力
+    ///
+    /// GR集群可以通过本接口附加vpc-cni容器网络插件，开启vpc-cni容器网络能力
+    @inlinable
+    public func enableVpcCniNetworkType(_ input: EnableVpcCniNetworkTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableVpcCniNetworkTypeResponse > {
+        self.client.execute(action: "EnableVpcCniNetworkType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启vpc-cni容器网络能力
+    ///
+    /// GR集群可以通过本接口附加vpc-cni容器网络插件，开启vpc-cni容器网络能力
+    @inlinable
+    public func enableVpcCniNetworkType(_ input: EnableVpcCniNetworkTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcCniNetworkTypeResponse {
+        try await self.client.execute(action: "EnableVpcCniNetworkType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

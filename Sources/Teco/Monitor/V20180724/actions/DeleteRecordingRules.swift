@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 删除预聚合规则
-    ///
-    /// 批量删除 Prometheus 预聚合规则
-    @inlinable
-    public func deleteRecordingRules(_ input: DeleteRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordingRulesResponse > {
-        self.client.execute(action: "DeleteRecordingRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除预聚合规则
-    ///
-    /// 批量删除 Prometheus 预聚合规则
-    @inlinable
-    public func deleteRecordingRules(_ input: DeleteRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordingRulesResponse {
-        try await self.client.execute(action: "DeleteRecordingRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRecordingRules请求参数结构体
     public struct DeleteRecordingRulesRequest: TCRequestModel {
         /// 规则 ID 列表
@@ -58,5 +42,21 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除预聚合规则
+    ///
+    /// 批量删除 Prometheus 预聚合规则
+    @inlinable
+    public func deleteRecordingRules(_ input: DeleteRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordingRulesResponse > {
+        self.client.execute(action: "DeleteRecordingRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除预聚合规则
+    ///
+    /// 批量删除 Prometheus 预聚合规则
+    @inlinable
+    public func deleteRecordingRules(_ input: DeleteRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordingRulesResponse {
+        try await self.client.execute(action: "DeleteRecordingRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 将记录添加到分组
-    @inlinable
-    public func modifyRecordToGroup(_ input: ModifyRecordToGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordToGroupResponse > {
-        self.client.execute(action: "ModifyRecordToGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 将记录添加到分组
-    @inlinable
-    public func modifyRecordToGroup(_ input: ModifyRecordToGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordToGroupResponse {
-        try await self.client.execute(action: "ModifyRecordToGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRecordToGroup请求参数结构体
     public struct ModifyRecordToGroupRequest: TCRequestModel {
         /// 域名
@@ -41,7 +29,7 @@ extension Dnspod {
         /// 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。
         public let domainId: UInt64?
         
-        public init (domain: String, groupId: UInt64, recordId: String, domainId: UInt64?) {
+        public init (domain: String, groupId: UInt64, recordId: String, domainId: UInt64? = nil) {
             self.domain = domain
             self.groupId = groupId
             self.recordId = recordId
@@ -64,5 +52,17 @@ extension Dnspod {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 将记录添加到分组
+    @inlinable
+    public func modifyRecordToGroup(_ input: ModifyRecordToGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRecordToGroupResponse > {
+        self.client.execute(action: "ModifyRecordToGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 将记录添加到分组
+    @inlinable
+    public func modifyRecordToGroup(_ input: ModifyRecordToGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordToGroupResponse {
+        try await self.client.execute(action: "ModifyRecordToGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

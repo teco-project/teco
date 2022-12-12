@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 查询实例扩展信息列表
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
-    @inlinable
-    public func describeInstancesExtend(_ input: DescribeInstancesExtendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesExtendResponse > {
-        self.client.execute(action: "DescribeInstancesExtend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例扩展信息列表
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
-    @inlinable
-    public func describeInstancesExtend(_ input: DescribeInstancesExtendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesExtendResponse {
-        try await self.client.execute(action: "DescribeInstancesExtend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstancesExtend请求参数结构体
     public struct DescribeInstancesExtendRequest: TCRequestModel {
         /// 服务器舰队ID
@@ -47,7 +29,7 @@ extension Gse {
         /// CVM实例公网IP
         public let ipAddress: String?
         
-        public init (fleetId: String, offset: Int64, limit: Int64, ipAddress: String?) {
+        public init (fleetId: String, offset: Int64, limit: Int64, ipAddress: String? = nil) {
             self.fleetId = fleetId
             self.offset = offset
             self.limit = limit
@@ -80,5 +62,23 @@ extension Gse {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例扩展信息列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
+    @inlinable
+    public func describeInstancesExtend(_ input: DescribeInstancesExtendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesExtendResponse > {
+        self.client.execute(action: "DescribeInstancesExtend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例扩展信息列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
+    @inlinable
+    public func describeInstancesExtend(_ input: DescribeInstancesExtendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesExtendResponse {
+        try await self.client.execute(action: "DescribeInstancesExtend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

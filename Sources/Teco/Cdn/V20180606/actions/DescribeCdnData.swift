@@ -17,44 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 访问数据查询
-    ///
-    /// DescribeCdnData 用于查询 CDN 实时访问监控数据，支持以下指标查询：
-    /// + 流量（单位为 byte）
-    /// + 带宽（单位为 bps）
-    /// + 请求数（单位为 次）
-    /// + 命中请求数（单位为 次）
-    /// + 请求命中率（单位为 %）
-    /// + 命中流量（单位为 byte）
-    /// + 流量命中率（单位为 %）
-    /// + 状态码 2xx 汇总及各 2 开头状态码明细（单位为 个）
-    /// + 状态码 3xx 汇总及各 3 开头状态码明细（单位为 个）
-    /// + 状态码 4xx 汇总及各 4 开头状态码明细（单位为 个）
-    /// + 状态码 5xx 汇总及各 5 开头状态码明细（单位为 个）
-    @inlinable
-    public func describeCdnData(_ input: DescribeCdnDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCdnDataResponse > {
-        self.client.execute(action: "DescribeCdnData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 访问数据查询
-    ///
-    /// DescribeCdnData 用于查询 CDN 实时访问监控数据，支持以下指标查询：
-    /// + 流量（单位为 byte）
-    /// + 带宽（单位为 bps）
-    /// + 请求数（单位为 次）
-    /// + 命中请求数（单位为 次）
-    /// + 请求命中率（单位为 %）
-    /// + 命中流量（单位为 byte）
-    /// + 流量命中率（单位为 %）
-    /// + 状态码 2xx 汇总及各 2 开头状态码明细（单位为 个）
-    /// + 状态码 3xx 汇总及各 3 开头状态码明细（单位为 个）
-    /// + 状态码 4xx 汇总及各 4 开头状态码明细（单位为 个）
-    /// + 状态码 5xx 汇总及各 5 开头状态码明细（单位为 个）
-    @inlinable
-    public func describeCdnData(_ input: DescribeCdnDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnDataResponse {
-        try await self.client.execute(action: "DescribeCdnData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCdnData请求参数结构体
     public struct DescribeCdnDataRequest: TCRequestModel {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
@@ -154,7 +116,7 @@ extension Cdn {
         /// 指定查询时间的时区，默认UTC+08:00
         public let timeZone: String?
         
-        public init (startTime: Date, endTime: Date, metric: String, domains: [String]?, project: Int64?, interval: String?, detail: Bool?, isp: Int64?, district: Int64?, `protocol`: String?, dataSource: String?, ipProtocol: String?, area: String?, areaType: String?, product: String?, timeZone: String?) {
+        public init (startTime: Date, endTime: Date, metric: String, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, detail: Bool? = nil, isp: Int64? = nil, district: Int64? = nil, `protocol`: String? = nil, dataSource: String? = nil, ipProtocol: String? = nil, area: String? = nil, areaType: String? = nil, product: String? = nil, timeZone: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.metric = metric
@@ -213,5 +175,43 @@ extension Cdn {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 访问数据查询
+    ///
+    /// DescribeCdnData 用于查询 CDN 实时访问监控数据，支持以下指标查询：
+    /// + 流量（单位为 byte）
+    /// + 带宽（单位为 bps）
+    /// + 请求数（单位为 次）
+    /// + 命中请求数（单位为 次）
+    /// + 请求命中率（单位为 %）
+    /// + 命中流量（单位为 byte）
+    /// + 流量命中率（单位为 %）
+    /// + 状态码 2xx 汇总及各 2 开头状态码明细（单位为 个）
+    /// + 状态码 3xx 汇总及各 3 开头状态码明细（单位为 个）
+    /// + 状态码 4xx 汇总及各 4 开头状态码明细（单位为 个）
+    /// + 状态码 5xx 汇总及各 5 开头状态码明细（单位为 个）
+    @inlinable
+    public func describeCdnData(_ input: DescribeCdnDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCdnDataResponse > {
+        self.client.execute(action: "DescribeCdnData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 访问数据查询
+    ///
+    /// DescribeCdnData 用于查询 CDN 实时访问监控数据，支持以下指标查询：
+    /// + 流量（单位为 byte）
+    /// + 带宽（单位为 bps）
+    /// + 请求数（单位为 次）
+    /// + 命中请求数（单位为 次）
+    /// + 请求命中率（单位为 %）
+    /// + 命中流量（单位为 byte）
+    /// + 流量命中率（单位为 %）
+    /// + 状态码 2xx 汇总及各 2 开头状态码明细（单位为 个）
+    /// + 状态码 3xx 汇总及各 3 开头状态码明细（单位为 个）
+    /// + 状态码 4xx 汇总及各 4 开头状态码明细（单位为 个）
+    /// + 状态码 5xx 汇总及各 5 开头状态码明细（单位为 个）
+    @inlinable
+    public func describeCdnData(_ input: DescribeCdnDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnDataResponse {
+        try await self.client.execute(action: "DescribeCdnData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

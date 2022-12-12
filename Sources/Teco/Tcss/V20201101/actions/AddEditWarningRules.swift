@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 添加编辑告警策略
-    @inlinable
-    public func addEditWarningRules(_ input: AddEditWarningRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEditWarningRulesResponse > {
-        self.client.execute(action: "AddEditWarningRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加编辑告警策略
-    @inlinable
-    public func addEditWarningRules(_ input: AddEditWarningRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditWarningRulesResponse {
-        try await self.client.execute(action: "AddEditWarningRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddEditWarningRules请求参数结构体
     public struct AddEditWarningRulesRequest: TCRequestModel {
         /// 告警开关策略
@@ -49,5 +37,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加编辑告警策略
+    @inlinable
+    public func addEditWarningRules(_ input: AddEditWarningRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEditWarningRulesResponse > {
+        self.client.execute(action: "AddEditWarningRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加编辑告警策略
+    @inlinable
+    public func addEditWarningRules(_ input: AddEditWarningRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditWarningRulesResponse {
+        try await self.client.execute(action: "AddEditWarningRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

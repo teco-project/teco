@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 创建围栏绑定信息
-    @inlinable
-    public func createFenceBind(_ input: CreateFenceBindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFenceBindResponse > {
-        self.client.execute(action: "CreateFenceBind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建围栏绑定信息
-    @inlinable
-    public func createFenceBind(_ input: CreateFenceBindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFenceBindResponse {
-        try await self.client.execute(action: "CreateFenceBind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFenceBind请求参数结构体
     public struct CreateFenceBindRequest: TCRequestModel {
         /// 围栏Id
@@ -54,5 +42,17 @@ extension Iotexplorer {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建围栏绑定信息
+    @inlinable
+    public func createFenceBind(_ input: CreateFenceBindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFenceBindResponse > {
+        self.client.execute(action: "CreateFenceBind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建围栏绑定信息
+    @inlinable
+    public func createFenceBind(_ input: CreateFenceBindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFenceBindResponse {
+        try await self.client.execute(action: "CreateFenceBind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

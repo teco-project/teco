@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 获取数据库实例订单详情
-    ///
-    /// 本接口（DescribeDBInstanceDeal）用于获取MongoDB购买、续费及变配订单详细。
-    @inlinable
-    public func describeDBInstanceDeal(_ input: DescribeDBInstanceDealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceDealResponse > {
-        self.client.execute(action: "DescribeDBInstanceDeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取数据库实例订单详情
-    ///
-    /// 本接口（DescribeDBInstanceDeal）用于获取MongoDB购买、续费及变配订单详细。
-    @inlinable
-    public func describeDBInstanceDeal(_ input: DescribeDBInstanceDealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceDealResponse {
-        try await self.client.execute(action: "DescribeDBInstanceDeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBInstanceDeal请求参数结构体
     public struct DescribeDBInstanceDealRequest: TCRequestModel {
         /// 订单ID，通过CreateDBInstance等接口返回
@@ -69,5 +53,21 @@ extension Mongodb {
             case action = "Action"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取数据库实例订单详情
+    ///
+    /// 本接口（DescribeDBInstanceDeal）用于获取MongoDB购买、续费及变配订单详细。
+    @inlinable
+    public func describeDBInstanceDeal(_ input: DescribeDBInstanceDealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstanceDealResponse > {
+        self.client.execute(action: "DescribeDBInstanceDeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取数据库实例订单详情
+    ///
+    /// 本接口（DescribeDBInstanceDeal）用于获取MongoDB购买、续费及变配订单详细。
+    @inlinable
+    public func describeDBInstanceDeal(_ input: DescribeDBInstanceDealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceDealResponse {
+        try await self.client.execute(action: "DescribeDBInstanceDeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

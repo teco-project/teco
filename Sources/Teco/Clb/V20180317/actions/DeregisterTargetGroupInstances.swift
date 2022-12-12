@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 解绑目标组服务器
-    ///
-    /// 从目标组中解绑服务器。
-    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
-    public func deregisterTargetGroupInstances(_ input: DeregisterTargetGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeregisterTargetGroupInstancesResponse > {
-        self.client.execute(action: "DeregisterTargetGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑目标组服务器
-    ///
-    /// 从目标组中解绑服务器。
-    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
-    public func deregisterTargetGroupInstances(_ input: DeregisterTargetGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterTargetGroupInstancesResponse {
-        try await self.client.execute(action: "DeregisterTargetGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeregisterTargetGroupInstances请求参数结构体
     public struct DeregisterTargetGroupInstancesRequest: TCRequestModel {
         /// 目标组ID。
@@ -60,5 +42,23 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑目标组服务器
+    ///
+    /// 从目标组中解绑服务器。
+    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func deregisterTargetGroupInstances(_ input: DeregisterTargetGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeregisterTargetGroupInstancesResponse > {
+        self.client.execute(action: "DeregisterTargetGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑目标组服务器
+    ///
+    /// 从目标组中解绑服务器。
+    /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func deregisterTargetGroupInstances(_ input: DeregisterTargetGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterTargetGroupInstancesResponse {
+        try await self.client.execute(action: "DeregisterTargetGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

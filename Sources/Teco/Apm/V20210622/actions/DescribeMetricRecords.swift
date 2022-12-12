@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apm {
-    /// 通用指标列表接口
-    ///
-    /// 拉取通用指标列表
-    @inlinable
-    public func describeMetricRecords(_ input: DescribeMetricRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMetricRecordsResponse > {
-        self.client.execute(action: "DescribeMetricRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通用指标列表接口
-    ///
-    /// 拉取通用指标列表
-    @inlinable
-    public func describeMetricRecords(_ input: DescribeMetricRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMetricRecordsResponse {
-        try await self.client.execute(action: "DescribeMetricRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMetricRecords请求参数结构体
     public struct DescribeMetricRecordsRequest: TCRequestModel {
         /// 过滤条件
@@ -43,7 +27,7 @@ extension Apm {
         public let groupBy: [String]
         
         /// 排序
-        public let orderBy: OrderBy
+        public let orderBy: OrderBy?
         
         /// 实例ID
         public let instanceId: String?
@@ -69,7 +53,7 @@ extension Apm {
         /// 页长
         public let pageSize: Int64?
         
-        public init (filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy, instanceId: String?, limit: UInt64?, startTime: UInt64?, offset: Int64?, endTime: UInt64?, businessName: String?, pageIndex: Int64?, pageSize: Int64?) {
+        public init (filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: UInt64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil, businessName: String? = nil, pageIndex: Int64? = nil, pageSize: Int64? = nil) {
             self.filters = filters
             self.metrics = metrics
             self.groupBy = groupBy
@@ -118,5 +102,21 @@ extension Apm {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通用指标列表接口
+    ///
+    /// 拉取通用指标列表
+    @inlinable
+    public func describeMetricRecords(_ input: DescribeMetricRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMetricRecordsResponse > {
+        self.client.execute(action: "DescribeMetricRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通用指标列表接口
+    ///
+    /// 拉取通用指标列表
+    @inlinable
+    public func describeMetricRecords(_ input: DescribeMetricRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMetricRecordsResponse {
+        try await self.client.execute(action: "DescribeMetricRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

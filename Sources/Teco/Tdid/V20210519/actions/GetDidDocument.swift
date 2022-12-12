@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 查看DID文档
-    @inlinable
-    public func getDidDocument(_ input: GetDidDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidDocumentResponse > {
-        self.client.execute(action: "GetDidDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看DID文档
-    @inlinable
-    public func getDidDocument(_ input: GetDidDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDocumentResponse {
-        try await self.client.execute(action: "GetDidDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDidDocument请求参数结构体
     public struct GetDidDocumentRequest: TCRequestModel {
         /// tdid
@@ -57,5 +45,17 @@ extension Tdid {
             case document = "Document"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看DID文档
+    @inlinable
+    public func getDidDocument(_ input: GetDidDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDidDocumentResponse > {
+        self.client.execute(action: "GetDidDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看DID文档
+    @inlinable
+    public func getDidDocument(_ input: GetDidDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDocumentResponse {
+        try await self.client.execute(action: "GetDidDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

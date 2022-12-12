@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 修改实例名称
-    ///
-    /// 本接口（ModifyDBInstanceName）用于修改云数据库实例的名称。
-    @inlinable
-    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceNameResponse > {
-        self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例名称
-    ///
-    /// 本接口（ModifyDBInstanceName）用于修改云数据库实例的名称。
-    @inlinable
-    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNameResponse {
-        try await self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBInstanceName请求参数结构体
     public struct ModifyDBInstanceNameRequest: TCRequestModel {
         /// 待修改的实例 ID。形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例详情获得。
@@ -62,5 +46,21 @@ extension Mariadb {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例名称
+    ///
+    /// 本接口（ModifyDBInstanceName）用于修改云数据库实例的名称。
+    @inlinable
+    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceNameResponse > {
+        self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例名称
+    ///
+    /// 本接口（ModifyDBInstanceName）用于修改云数据库实例的名称。
+    @inlinable
+    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNameResponse {
+        try await self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

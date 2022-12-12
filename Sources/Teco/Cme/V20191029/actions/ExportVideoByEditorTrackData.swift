@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 使用视频合成协议导出视频
-    ///
-    /// 使用 [视频合成协议](https://cloud.tencent.com/document/product/1156/51225) 合成视频，支持导出视频到 CME 云媒资或者云点播媒资。
-    @inlinable
-    public func exportVideoByEditorTrackData(_ input: ExportVideoByEditorTrackDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVideoByEditorTrackDataResponse > {
-        self.client.execute(action: "ExportVideoByEditorTrackData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 使用视频合成协议导出视频
-    ///
-    /// 使用 [视频合成协议](https://cloud.tencent.com/document/product/1156/51225) 合成视频，支持导出视频到 CME 云媒资或者云点播媒资。
-    @inlinable
-    public func exportVideoByEditorTrackData(_ input: ExportVideoByEditorTrackDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByEditorTrackDataResponse {
-        try await self.client.execute(action: "ExportVideoByEditorTrackData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExportVideoByEditorTrackData请求参数结构体
     public struct ExportVideoByEditorTrackDataRequest: TCRequestModel {
         /// 平台 Id，指定访问的平台。关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
@@ -59,15 +43,15 @@ extension Cme {
         public let coverData: String?
         
         /// 导出的多媒体创作引擎媒体信息。当导出目标为 CME 时必填。
-        public let cmeExportInfo: CMEExportInfo
+        public let cmeExportInfo: CMEExportInfo?
         
         /// 导出的云点播媒资信息。当导出目标为 VOD 时必填。
-        public let vodExportInfo: VODExportInfo
+        public let vodExportInfo: VODExportInfo?
         
         /// 操作者。如不填，默认为 `cmeid_system`，表示平台管理员操作，无权限限制。如果指定操作者，轨道数据中使的媒资该操作者需要拥有使用权限。
         public let `operator`: String?
         
-        public init (platform: String, definition: UInt64, exportDestination: String, trackData: String, aspectRatio: String?, coverData: String?, cmeExportInfo: CMEExportInfo, vodExportInfo: VODExportInfo, `operator`: String?) {
+        public init (platform: String, definition: UInt64, exportDestination: String, trackData: String, aspectRatio: String? = nil, coverData: String? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, `operator`: String? = nil) {
             self.platform = platform
             self.definition = definition
             self.exportDestination = exportDestination
@@ -104,5 +88,21 @@ extension Cme {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 使用视频合成协议导出视频
+    ///
+    /// 使用 [视频合成协议](https://cloud.tencent.com/document/product/1156/51225) 合成视频，支持导出视频到 CME 云媒资或者云点播媒资。
+    @inlinable
+    public func exportVideoByEditorTrackData(_ input: ExportVideoByEditorTrackDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExportVideoByEditorTrackDataResponse > {
+        self.client.execute(action: "ExportVideoByEditorTrackData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 使用视频合成协议导出视频
+    ///
+    /// 使用 [视频合成协议](https://cloud.tencent.com/document/product/1156/51225) 合成视频，支持导出视频到 CME 云媒资或者云点播媒资。
+    @inlinable
+    public func exportVideoByEditorTrackData(_ input: ExportVideoByEditorTrackDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByEditorTrackDataResponse {
+        try await self.client.execute(action: "ExportVideoByEditorTrackData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

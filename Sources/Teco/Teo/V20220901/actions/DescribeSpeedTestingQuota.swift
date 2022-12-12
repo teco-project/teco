@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询站点拨测配额
-    @inlinable
-    public func describeSpeedTestingQuota(_ input: DescribeSpeedTestingQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpeedTestingQuotaResponse > {
-        self.client.execute(action: "DescribeSpeedTestingQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询站点拨测配额
-    @inlinable
-    public func describeSpeedTestingQuota(_ input: DescribeSpeedTestingQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingQuotaResponse {
-        try await self.client.execute(action: "DescribeSpeedTestingQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSpeedTestingQuota请求参数结构体
     public struct DescribeSpeedTestingQuotaRequest: TCRequestModel {
         /// 站点ID。
@@ -53,5 +41,17 @@ extension Teo {
             case speedTestingQuota = "SpeedTestingQuota"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询站点拨测配额
+    @inlinable
+    public func describeSpeedTestingQuota(_ input: DescribeSpeedTestingQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSpeedTestingQuotaResponse > {
+        self.client.execute(action: "DescribeSpeedTestingQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询站点拨测配额
+    @inlinable
+    public func describeSpeedTestingQuota(_ input: DescribeSpeedTestingQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingQuotaResponse {
+        try await self.client.execute(action: "DescribeSpeedTestingQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -135,7 +135,7 @@ extension Cws {
     /// 监控任务详细数据
     public struct MonitorsDetail: TCOutputModel {
         /// 监控任务基础信息。
-        public let basic: Monitor
+        public let basic: Monitor?
         
         /// 监控任务包含的站点列表。
         public let sites: [MonitorMiniSite]?

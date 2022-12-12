@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 查询训练自定义指标
-    @inlinable
-    public func describeTrainingMetrics(_ input: DescribeTrainingMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingMetricsResponse > {
-        self.client.execute(action: "DescribeTrainingMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询训练自定义指标
-    @inlinable
-    public func describeTrainingMetrics(_ input: DescribeTrainingMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingMetricsResponse {
-        try await self.client.execute(action: "DescribeTrainingMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTrainingMetrics请求参数结构体
     public struct DescribeTrainingMetricsRequest: TCRequestModel {
         /// 任务ID
@@ -59,5 +47,17 @@ extension Tione {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询训练自定义指标
+    @inlinable
+    public func describeTrainingMetrics(_ input: DescribeTrainingMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTrainingMetricsResponse > {
+        self.client.execute(action: "DescribeTrainingMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询训练自定义指标
+    @inlinable
+    public func describeTrainingMetrics(_ input: DescribeTrainingMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingMetricsResponse {
+        try await self.client.execute(action: "DescribeTrainingMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

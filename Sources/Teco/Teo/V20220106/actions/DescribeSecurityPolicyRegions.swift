@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询所有地域信息
-    @inlinable
-    public func describeSecurityPolicyRegions(_ input: DescribeSecurityPolicyRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyRegionsResponse > {
-        self.client.execute(action: "DescribeSecurityPolicyRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询所有地域信息
-    @inlinable
-    public func describeSecurityPolicyRegions(_ input: DescribeSecurityPolicyRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyRegionsResponse {
-        try await self.client.execute(action: "DescribeSecurityPolicyRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityPolicyRegions请求参数结构体
     public struct DescribeSecurityPolicyRegionsRequest: TCRequestModel {
         public init () {
@@ -49,5 +37,17 @@ extension Teo {
             case geoIp = "GeoIp"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询所有地域信息
+    @inlinable
+    public func describeSecurityPolicyRegions(_ input: DescribeSecurityPolicyRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityPolicyRegionsResponse > {
+        self.client.execute(action: "DescribeSecurityPolicyRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询所有地域信息
+    @inlinable
+    public func describeSecurityPolicyRegions(_ input: DescribeSecurityPolicyRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyRegionsResponse {
+        try await self.client.execute(action: "DescribeSecurityPolicyRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

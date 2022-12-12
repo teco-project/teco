@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 删除Datahub连接源
-    @inlinable
-    public func deleteConnectResource(_ input: DeleteConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConnectResourceResponse > {
-        self.client.execute(action: "DeleteConnectResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除Datahub连接源
-    @inlinable
-    public func deleteConnectResource(_ input: DeleteConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConnectResourceResponse {
-        try await self.client.execute(action: "DeleteConnectResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteConnectResource请求参数结构体
     public struct DeleteConnectResourceRequest: TCRequestModel {
         /// 连接源的Id
@@ -53,5 +41,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除Datahub连接源
+    @inlinable
+    public func deleteConnectResource(_ input: DeleteConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConnectResourceResponse > {
+        self.client.execute(action: "DeleteConnectResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Datahub连接源
+    @inlinable
+    public func deleteConnectResource(_ input: DeleteConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConnectResourceResponse {
+        try await self.client.execute(action: "DeleteConnectResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

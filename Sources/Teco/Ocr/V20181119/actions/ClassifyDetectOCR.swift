@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 智能卡证分类
-    ///
-    /// 支持身份证、护照、名片、银行卡、行驶证、驾驶证、港澳台通行证、户口本、港澳台来往内地通行证、港澳台居住证、不动产证、营业执照的智能分类。
-    @inlinable
-    public func classifyDetectOCR(_ input: ClassifyDetectOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClassifyDetectOCRResponse > {
-        self.client.execute(action: "ClassifyDetectOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 智能卡证分类
-    ///
-    /// 支持身份证、护照、名片、银行卡、行驶证、驾驶证、港澳台通行证、户口本、港澳台来往内地通行证、港澳台居住证、不动产证、营业执照的智能分类。
-    @inlinable
-    public func classifyDetectOCR(_ input: ClassifyDetectOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClassifyDetectOCRResponse {
-        try await self.client.execute(action: "ClassifyDetectOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ClassifyDetectOCR请求参数结构体
     public struct ClassifyDetectOCRRequest: TCRequestModel {
         /// 图片的 Base64 值。
@@ -66,7 +50,7 @@ extension Ocr {
         /// BizLicense: 营业执照
         public let discernType: [String]?
         
-        public init (imageBase64: String?, imageUrl: String?, discernType: [String]?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, discernType: [String]? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.discernType = discernType
@@ -91,5 +75,21 @@ extension Ocr {
             case classifyDetectInfos = "ClassifyDetectInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 智能卡证分类
+    ///
+    /// 支持身份证、护照、名片、银行卡、行驶证、驾驶证、港澳台通行证、户口本、港澳台来往内地通行证、港澳台居住证、不动产证、营业执照的智能分类。
+    @inlinable
+    public func classifyDetectOCR(_ input: ClassifyDetectOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ClassifyDetectOCRResponse > {
+        self.client.execute(action: "ClassifyDetectOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 智能卡证分类
+    ///
+    /// 支持身份证、护照、名片、银行卡、行驶证、驾驶证、港澳台通行证、户口本、港澳台来往内地通行证、港澳台居住证、不动产证、营业执照的智能分类。
+    @inlinable
+    public func classifyDetectOCR(_ input: ClassifyDetectOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClassifyDetectOCRResponse {
+        try await self.client.execute(action: "ClassifyDetectOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

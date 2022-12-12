@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 上报元数据心跳
-    @inlinable
-    public func reportHeartbeatMetaData(_ input: ReportHeartbeatMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportHeartbeatMetaDataResponse > {
-        self.client.execute(action: "ReportHeartbeatMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上报元数据心跳
-    @inlinable
-    public func reportHeartbeatMetaData(_ input: ReportHeartbeatMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportHeartbeatMetaDataResponse {
-        try await self.client.execute(action: "ReportHeartbeatMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReportHeartbeatMetaData请求参数结构体
     public struct ReportHeartbeatMetaDataRequest: TCRequestModel {
         /// 数据源名称
@@ -38,7 +26,7 @@ extension Dlc {
         /// 事务ID
         public let txnId: Int64?
         
-        public init (datasourceConnectionName: String?, lockId: Int64?, txnId: Int64?) {
+        public init (datasourceConnectionName: String? = nil, lockId: Int64? = nil, txnId: Int64? = nil) {
             self.datasourceConnectionName = datasourceConnectionName
             self.lockId = lockId
             self.txnId = txnId
@@ -59,5 +47,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上报元数据心跳
+    @inlinable
+    public func reportHeartbeatMetaData(_ input: ReportHeartbeatMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportHeartbeatMetaDataResponse > {
+        self.client.execute(action: "ReportHeartbeatMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上报元数据心跳
+    @inlinable
+    public func reportHeartbeatMetaData(_ input: ReportHeartbeatMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportHeartbeatMetaDataResponse {
+        try await self.client.execute(action: "ReportHeartbeatMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

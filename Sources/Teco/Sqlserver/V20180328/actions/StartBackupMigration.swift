@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 启动备份导入任务
-    ///
-    /// 本接口（StartBackupMigration）用于启动备份导入任务。
-    @inlinable
-    public func startBackupMigration(_ input: StartBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartBackupMigrationResponse > {
-        self.client.execute(action: "StartBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启动备份导入任务
-    ///
-    /// 本接口（StartBackupMigration）用于启动备份导入任务。
-    @inlinable
-    public func startBackupMigration(_ input: StartBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBackupMigrationResponse {
-        try await self.client.execute(action: "StartBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartBackupMigration请求参数结构体
     public struct StartBackupMigrationRequest: TCRequestModel {
         /// 导入目标实例ID
@@ -62,5 +46,21 @@ extension Sqlserver {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启动备份导入任务
+    ///
+    /// 本接口（StartBackupMigration）用于启动备份导入任务。
+    @inlinable
+    public func startBackupMigration(_ input: StartBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartBackupMigrationResponse > {
+        self.client.execute(action: "StartBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启动备份导入任务
+    ///
+    /// 本接口（StartBackupMigration）用于启动备份导入任务。
+    @inlinable
+    public func startBackupMigration(_ input: StartBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBackupMigrationResponse {
+        try await self.client.execute(action: "StartBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Iot {
-    /// 获取调试日志
-    ///
-    /// 获取设备的调试日志，用于定位问题
-    @inlinable
-    public func getDebugLog(_ input: GetDebugLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDebugLogResponse > {
-        self.client.execute(action: "GetDebugLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取调试日志
-    ///
-    /// 获取设备的调试日志，用于定位问题
-    @inlinable
-    public func getDebugLog(_ input: GetDebugLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDebugLogResponse {
-        try await self.client.execute(action: "GetDebugLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDebugLog请求参数结构体
     public struct GetDebugLogRequest: TCRequestModel {
         /// 产品Id
@@ -61,7 +45,7 @@ extension Iot {
         /// 日志类型（shadow/action/mqtt）
         public let type: String?
         
-        public init (productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64?, order: String?, scrollId: String?, type: String?) {
+        public init (productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil, type: String? = nil) {
             self.productId = productId
             self.deviceNames = deviceNames
             self.startTime = startTime
@@ -104,5 +88,21 @@ extension Iot {
             case scrollTimeout = "ScrollTimeout"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取调试日志
+    ///
+    /// 获取设备的调试日志，用于定位问题
+    @inlinable
+    public func getDebugLog(_ input: GetDebugLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDebugLogResponse > {
+        self.client.execute(action: "GetDebugLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取调试日志
+    ///
+    /// 获取设备的调试日志，用于定位问题
+    @inlinable
+    public func getDebugLog(_ input: GetDebugLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDebugLogResponse {
+        try await self.client.execute(action: "GetDebugLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 创建媒体传输的输出信息
-    ///
-    /// 创建媒体传输流的输出信息。
-    @inlinable
-    public func createStreamLinkOutputInfo(_ input: CreateStreamLinkOutputInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStreamLinkOutputInfoResponse > {
-        self.client.execute(action: "CreateStreamLinkOutputInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建媒体传输的输出信息
-    ///
-    /// 创建媒体传输流的输出信息。
-    @inlinable
-    public func createStreamLinkOutputInfo(_ input: CreateStreamLinkOutputInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkOutputInfoResponse {
-        try await self.client.execute(action: "CreateStreamLinkOutputInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateStreamLinkOutputInfo请求参数结构体
     public struct CreateStreamLinkOutputInfoRequest: TCRequestModel {
         /// 传输流Id。
@@ -62,5 +46,21 @@ extension Mps {
             case info = "Info"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建媒体传输的输出信息
+    ///
+    /// 创建媒体传输流的输出信息。
+    @inlinable
+    public func createStreamLinkOutputInfo(_ input: CreateStreamLinkOutputInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStreamLinkOutputInfoResponse > {
+        self.client.execute(action: "CreateStreamLinkOutputInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建媒体传输的输出信息
+    ///
+    /// 创建媒体传输流的输出信息。
+    @inlinable
+    public func createStreamLinkOutputInfo(_ input: CreateStreamLinkOutputInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkOutputInfoResponse {
+        try await self.client.execute(action: "CreateStreamLinkOutputInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

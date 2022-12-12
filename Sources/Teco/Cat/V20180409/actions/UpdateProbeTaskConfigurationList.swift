@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cat {
-    /// 批量更新拨测任务配置
-    @inlinable
-    public func updateProbeTaskConfigurationList(_ input: UpdateProbeTaskConfigurationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProbeTaskConfigurationListResponse > {
-        self.client.execute(action: "UpdateProbeTaskConfigurationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量更新拨测任务配置
-    @inlinable
-    public func updateProbeTaskConfigurationList(_ input: UpdateProbeTaskConfigurationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProbeTaskConfigurationListResponse {
-        try await self.client.execute(action: "UpdateProbeTaskConfigurationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateProbeTaskConfigurationList请求参数结构体
     public struct UpdateProbeTaskConfigurationListRequest: TCRequestModel {
         /// 任务 ID
@@ -48,7 +36,7 @@ extension Cat {
         /// 需要与taskId对应
         public let resourceIDs: [String]?
         
-        public init (taskIds: [String], nodes: [String], interval: Int64, parameters: String, cron: String?, resourceIDs: [String]?) {
+        public init (taskIds: [String], nodes: [String], interval: Int64, parameters: String, cron: String? = nil, resourceIDs: [String]? = nil) {
             self.taskIds = taskIds
             self.nodes = nodes
             self.interval = interval
@@ -75,5 +63,17 @@ extension Cat {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量更新拨测任务配置
+    @inlinable
+    public func updateProbeTaskConfigurationList(_ input: UpdateProbeTaskConfigurationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProbeTaskConfigurationListResponse > {
+        self.client.execute(action: "UpdateProbeTaskConfigurationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量更新拨测任务配置
+    @inlinable
+    public func updateProbeTaskConfigurationList(_ input: UpdateProbeTaskConfigurationListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProbeTaskConfigurationListResponse {
+        try await self.client.execute(action: "UpdateProbeTaskConfigurationList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

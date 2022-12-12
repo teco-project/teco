@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Trp {
-    /// 批量导入二维码
-    ///
-    /// 批量导入二维码，只支持平台发的码
-    @inlinable
-    public func createTraceCodes(_ input: CreateTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceCodesResponse > {
-        self.client.execute(action: "CreateTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量导入二维码
-    ///
-    /// 批量导入二维码，只支持平台发的码
-    @inlinable
-    public func createTraceCodes(_ input: CreateTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceCodesResponse {
-        try await self.client.execute(action: "CreateTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTraceCodes请求参数结构体
     public struct CreateTraceCodesRequest: TCRequestModel {
         /// 批次ID
@@ -42,7 +26,7 @@ extension Trp {
         /// 码
         public let codes: [CodeItem]?
         
-        public init (batchId: String, corpId: UInt64?, codes: [CodeItem]?) {
+        public init (batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil) {
             self.batchId = batchId
             self.corpId = corpId
             self.codes = codes
@@ -75,5 +59,21 @@ extension Trp {
             case codeCnt = "CodeCnt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量导入二维码
+    ///
+    /// 批量导入二维码，只支持平台发的码
+    @inlinable
+    public func createTraceCodes(_ input: CreateTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTraceCodesResponse > {
+        self.client.execute(action: "CreateTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量导入二维码
+    ///
+    /// 批量导入二维码，只支持平台发的码
+    @inlinable
+    public func createTraceCodes(_ input: CreateTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceCodesResponse {
+        try await self.client.execute(action: "CreateTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

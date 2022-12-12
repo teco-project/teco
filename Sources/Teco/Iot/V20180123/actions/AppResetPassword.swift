@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 重置用户密码
-    ///
-    /// 重置APP用户密码
-    @inlinable
-    public func appResetPassword(_ input: AppResetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppResetPasswordResponse > {
-        self.client.execute(action: "AppResetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重置用户密码
-    ///
-    /// 重置APP用户密码
-    @inlinable
-    public func appResetPassword(_ input: AppResetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppResetPasswordResponse {
-        try await self.client.execute(action: "AppResetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AppResetPassword请求参数结构体
     public struct AppResetPasswordRequest: TCRequestModel {
         /// 访问Token
@@ -63,5 +47,21 @@ extension Iot {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重置用户密码
+    ///
+    /// 重置APP用户密码
+    @inlinable
+    public func appResetPassword(_ input: AppResetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AppResetPasswordResponse > {
+        self.client.execute(action: "AppResetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重置用户密码
+    ///
+    /// 重置APP用户密码
+    @inlinable
+    public func appResetPassword(_ input: AppResetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppResetPasswordResponse {
+        try await self.client.execute(action: "AppResetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 获取邮件发送中联系人信息
-    ///
-    /// 获取邮件发送中联系人的相关信息。
-    @inlinable
-    public func describeAllUserContact(_ input: DescribeAllUserContactRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllUserContactResponse > {
-        self.client.execute(action: "DescribeAllUserContact", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取邮件发送中联系人信息
-    ///
-    /// 获取邮件发送中联系人的相关信息。
-    @inlinable
-    public func describeAllUserContact(_ input: DescribeAllUserContactRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllUserContactResponse {
-        try await self.client.execute(action: "DescribeAllUserContact", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAllUserContact请求参数结构体
     public struct DescribeAllUserContactRequest: TCRequestModel {
         /// 服务产品类型，固定值：mysql。
@@ -39,7 +23,7 @@ extension Dbbrain {
         /// 联系人名数组，支持模糊搜索。
         public let names: [String]?
         
-        public init (product: String, names: [String]?) {
+        public init (product: String, names: [String]? = nil) {
             self.product = product
             self.names = names
         }
@@ -67,5 +51,21 @@ extension Dbbrain {
             case contacts = "Contacts"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取邮件发送中联系人信息
+    ///
+    /// 获取邮件发送中联系人的相关信息。
+    @inlinable
+    public func describeAllUserContact(_ input: DescribeAllUserContactRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllUserContactResponse > {
+        self.client.execute(action: "DescribeAllUserContact", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取邮件发送中联系人信息
+    ///
+    /// 获取邮件发送中联系人的相关信息。
+    @inlinable
+    public func describeAllUserContact(_ input: DescribeAllUserContactRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllUserContactResponse {
+        try await self.client.execute(action: "DescribeAllUserContact", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

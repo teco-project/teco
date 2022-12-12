@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 计费数据查询
-    ///
-    /// DescribeBillingData 用于查询实际计费数据明细。
-    @inlinable
-    public func describeBillingData(_ input: DescribeBillingDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillingDataResponse > {
-        self.client.execute(action: "DescribeBillingData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 计费数据查询
-    ///
-    /// DescribeBillingData 用于查询实际计费数据明细。
-    @inlinable
-    public func describeBillingData(_ input: DescribeBillingDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingDataResponse {
-        try await self.client.execute(action: "DescribeBillingData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBillingData请求参数结构体
     public struct DescribeBillingDataRequest: TCRequestModel {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
@@ -85,7 +69,7 @@ extension Cdn {
         /// 指定查询时间的时区，默认UTC+08:00
         public let timeZone: String?
         
-        public init (startTime: Date, endTime: Date, interval: String?, domain: String?, project: Int64?, area: String?, district: Int64?, metric: String?, product: String?, timeZone: String?) {
+        public init (startTime: Date, endTime: Date, interval: String? = nil, domain: String? = nil, project: Int64? = nil, area: String? = nil, district: Int64? = nil, metric: String? = nil, product: String? = nil, timeZone: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.interval = interval
@@ -132,5 +116,21 @@ extension Cdn {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 计费数据查询
+    ///
+    /// DescribeBillingData 用于查询实际计费数据明细。
+    @inlinable
+    public func describeBillingData(_ input: DescribeBillingDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillingDataResponse > {
+        self.client.execute(action: "DescribeBillingData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 计费数据查询
+    ///
+    /// DescribeBillingData 用于查询实际计费数据明细。
+    @inlinable
+    public func describeBillingData(_ input: DescribeBillingDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingDataResponse {
+        try await self.client.execute(action: "DescribeBillingData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

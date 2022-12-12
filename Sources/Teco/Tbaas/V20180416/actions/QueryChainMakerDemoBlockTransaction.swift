@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 查询长安链体验网络指定高度区块的交易
-    @inlinable
-    public func queryChainMakerDemoBlockTransaction(_ input: QueryChainMakerDemoBlockTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryChainMakerDemoBlockTransactionResponse > {
-        self.client.execute(action: "QueryChainMakerDemoBlockTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询长安链体验网络指定高度区块的交易
-    @inlinable
-    public func queryChainMakerDemoBlockTransaction(_ input: QueryChainMakerDemoBlockTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerDemoBlockTransactionResponse {
-        try await self.client.execute(action: "QueryChainMakerDemoBlockTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryChainMakerDemoBlockTransaction请求参数结构体
     public struct QueryChainMakerDemoBlockTransactionRequest: TCRequestModel {
         /// 网络ID，可在区块链网络详情或列表中获取
@@ -77,5 +65,17 @@ extension Tbaas {
             case blockTimestamp = "BlockTimestamp"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询长安链体验网络指定高度区块的交易
+    @inlinable
+    public func queryChainMakerDemoBlockTransaction(_ input: QueryChainMakerDemoBlockTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryChainMakerDemoBlockTransactionResponse > {
+        self.client.execute(action: "QueryChainMakerDemoBlockTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询长安链体验网络指定高度区块的交易
+    @inlinable
+    public func queryChainMakerDemoBlockTransaction(_ input: QueryChainMakerDemoBlockTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerDemoBlockTransactionResponse {
+        try await self.client.execute(action: "QueryChainMakerDemoBlockTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

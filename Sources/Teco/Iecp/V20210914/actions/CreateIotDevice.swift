@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 创建子设备
-    @inlinable
-    public func createIotDevice(_ input: CreateIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIotDeviceResponse > {
-        self.client.execute(action: "CreateIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建子设备
-    @inlinable
-    public func createIotDevice(_ input: CreateIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDeviceResponse {
-        try await self.client.execute(action: "CreateIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateIotDevice请求参数结构体
     public struct CreateIotDeviceRequest: TCRequestModel {
         /// 设备名称
@@ -41,7 +29,7 @@ extension Iecp {
         /// 无
         public let unitID: Int64?
         
-        public init (deviceName: String, productId: String, description: String?, unitID: Int64?) {
+        public init (deviceName: String, productId: String, description: String? = nil, unitID: Int64? = nil) {
             self.deviceName = deviceName
             self.productId = productId
             self.description = description
@@ -64,5 +52,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建子设备
+    @inlinable
+    public func createIotDevice(_ input: CreateIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIotDeviceResponse > {
+        self.client.execute(action: "CreateIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建子设备
+    @inlinable
+    public func createIotDevice(_ input: CreateIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDeviceResponse {
+        try await self.client.execute(action: "CreateIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

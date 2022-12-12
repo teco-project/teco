@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 修改采集规则配置
-    @inlinable
-    public func modifyConfig(_ input: ModifyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConfigResponse > {
-        self.client.execute(action: "ModifyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改采集规则配置
-    @inlinable
-    public func modifyConfig(_ input: ModifyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigResponse {
-        try await self.client.execute(action: "ModifyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyConfig请求参数结构体
     public struct ModifyConfigRequest: TCRequestModel {
         /// 采集规则配置ID
@@ -42,7 +30,7 @@ extension Cls {
         public let logType: String?
         
         /// 提取规则，如果设置了ExtractRule，则必须设置LogType
-        public let extractRule: ExtractRuleInfo
+        public let extractRule: ExtractRuleInfo?
         
         /// 采集黑名单路径列表
         public let excludePaths: [ExcludePathInfo]?
@@ -53,7 +41,7 @@ extension Cls {
         /// 用户自定义解析字符串，Json格式序列化的字符串
         public let userDefineRule: String?
         
-        public init (configId: String, name: String?, path: String?, logType: String?, extractRule: ExtractRuleInfo, excludePaths: [ExcludePathInfo]?, output: String?, userDefineRule: String?) {
+        public init (configId: String, name: String? = nil, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, output: String? = nil, userDefineRule: String? = nil) {
             self.configId = configId
             self.name = name
             self.path = path
@@ -84,5 +72,17 @@ extension Cls {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改采集规则配置
+    @inlinable
+    public func modifyConfig(_ input: ModifyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConfigResponse > {
+        self.client.execute(action: "ModifyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改采集规则配置
+    @inlinable
+    public func modifyConfig(_ input: ModifyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigResponse {
+        try await self.client.execute(action: "ModifyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

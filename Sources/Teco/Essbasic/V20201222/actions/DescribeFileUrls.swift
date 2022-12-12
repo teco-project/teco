@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 查询文件下载链接
-    ///
-    /// 此接口（DescribeFileUrls）用于获取签署文件下载的URL。
-    @inlinable
-    public func describeFileUrls(_ input: DescribeFileUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileUrlsResponse > {
-        self.client.execute(action: "DescribeFileUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询文件下载链接
-    ///
-    /// 此接口（DescribeFileUrls）用于获取签署文件下载的URL。
-    @inlinable
-    public func describeFileUrls(_ input: DescribeFileUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
-        try await self.client.execute(action: "DescribeFileUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFileUrls请求参数结构体
     public struct DescribeFileUrlsRequest: TCRequestModel {
         /// 调用方信息
@@ -58,7 +42,7 @@ extension Essbasic {
         /// 文件类型，支持"JPG", "PDF","ZIP"等，默认为上传的文件类型
         public let fileType: String?
         
-        public init (caller: Caller, businessIds: [String], businessType: String, fileName: String?, resourceOffset: Int64?, resourceLimit: Int64?, fileType: String?) {
+        public init (caller: Caller, businessIds: [String], businessType: String, fileName: String? = nil, resourceOffset: Int64? = nil, resourceLimit: Int64? = nil, fileType: String? = nil) {
             self.caller = caller
             self.businessIds = businessIds
             self.businessType = businessType
@@ -95,5 +79,21 @@ extension Essbasic {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询文件下载链接
+    ///
+    /// 此接口（DescribeFileUrls）用于获取签署文件下载的URL。
+    @inlinable
+    public func describeFileUrls(_ input: DescribeFileUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFileUrlsResponse > {
+        self.client.execute(action: "DescribeFileUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文件下载链接
+    ///
+    /// 此接口（DescribeFileUrls）用于获取签署文件下载的URL。
+    @inlinable
+    public func describeFileUrls(_ input: DescribeFileUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
+        try await self.client.execute(action: "DescribeFileUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

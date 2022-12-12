@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 添加 ACL 策略
-    @inlinable
-    public func createAcl(_ input: CreateAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAclResponse > {
-        self.client.execute(action: "CreateAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加 ACL 策略
-    @inlinable
-    public func createAcl(_ input: CreateAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAclResponse {
-        try await self.client.execute(action: "CreateAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAcl请求参数结构体
     public struct CreateAclRequest: TCRequestModel {
         /// 实例id信息
@@ -53,7 +41,7 @@ extension Ckafka {
         /// 资源名称列表,Json字符串格式。ResourceName和resourceNameList只能指定其中一个。
         public let resourceNameList: String?
         
-        public init (instanceId: String, resourceType: Int64, operation: Int64, permissionType: Int64, resourceName: String?, host: String?, principal: String?, resourceNameList: String?) {
+        public init (instanceId: String, resourceType: Int64, operation: Int64, permissionType: Int64, resourceName: String? = nil, host: String? = nil, principal: String? = nil, resourceNameList: String? = nil) {
             self.instanceId = instanceId
             self.resourceType = resourceType
             self.operation = operation
@@ -88,5 +76,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加 ACL 策略
+    @inlinable
+    public func createAcl(_ input: CreateAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAclResponse > {
+        self.client.execute(action: "CreateAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加 ACL 策略
+    @inlinable
+    public func createAcl(_ input: CreateAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAclResponse {
+        try await self.client.execute(action: "CreateAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

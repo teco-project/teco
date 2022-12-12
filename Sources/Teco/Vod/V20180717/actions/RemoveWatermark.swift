@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 智能去除水印
-    @inlinable
-    public func removeWatermark(_ input: RemoveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveWatermarkResponse > {
-        self.client.execute(action: "RemoveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 智能去除水印
-    @inlinable
-    public func removeWatermark(_ input: RemoveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWatermarkResponse {
-        try await self.client.execute(action: "RemoveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemoveWatermark请求参数结构体
     public struct RemoveWatermarkRequest: TCRequestModel {
         /// 媒体文件 ID 。
@@ -47,7 +35,7 @@ extension Vod {
         /// 该字段已无效。
         public let tasksNotifyMode: String?
         
-        public init (fileId: String, subAppId: UInt64?, sessionId: String?, sessionContext: String?, tasksPriority: Int64?, tasksNotifyMode: String?) {
+        public init (fileId: String, subAppId: UInt64? = nil, sessionId: String? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil) {
             self.fileId = fileId
             self.subAppId = subAppId
             self.sessionId = sessionId
@@ -78,5 +66,17 @@ extension Vod {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 智能去除水印
+    @inlinable
+    public func removeWatermark(_ input: RemoveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveWatermarkResponse > {
+        self.client.execute(action: "RemoveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 智能去除水印
+    @inlinable
+    public func removeWatermark(_ input: RemoveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWatermarkResponse {
+        try await self.client.execute(action: "RemoveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

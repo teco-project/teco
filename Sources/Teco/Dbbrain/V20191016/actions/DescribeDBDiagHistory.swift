@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dbbrain {
-    /// 获取实例诊断历史
-    ///
-    /// 获取实例诊断事件的列表。
-    @inlinable
-    public func describeDBDiagHistory(_ input: DescribeDBDiagHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBDiagHistoryResponse > {
-        self.client.execute(action: "DescribeDBDiagHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实例诊断历史
-    ///
-    /// 获取实例诊断事件的列表。
-    @inlinable
-    public func describeDBDiagHistory(_ input: DescribeDBDiagHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBDiagHistoryResponse {
-        try await self.client.execute(action: "DescribeDBDiagHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBDiagHistory请求参数结构体
     public struct DescribeDBDiagHistoryRequest: TCRequestModel {
         /// 实例 ID 。
@@ -49,7 +33,7 @@ extension Dbbrain {
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
         public let product: String?
         
-        public init (instanceId: String, startTime: Date, endTime: Date, product: String?) {
+        public init (instanceId: String, startTime: Date, endTime: Date, product: String? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -76,5 +60,21 @@ extension Dbbrain {
             case events = "Events"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实例诊断历史
+    ///
+    /// 获取实例诊断事件的列表。
+    @inlinable
+    public func describeDBDiagHistory(_ input: DescribeDBDiagHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBDiagHistoryResponse > {
+        self.client.execute(action: "DescribeDBDiagHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例诊断历史
+    ///
+    /// 获取实例诊断事件的列表。
+    @inlinable
+    public func describeDBDiagHistory(_ input: DescribeDBDiagHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBDiagHistoryResponse {
+        try await self.client.execute(action: "DescribeDBDiagHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

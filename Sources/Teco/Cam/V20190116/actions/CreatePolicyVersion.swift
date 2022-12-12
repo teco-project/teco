@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 新增策略版本接口
-    ///
-    /// 该接口（CreatePolicyVersion）用于新增策略版本，用户创建了一个策略版本之后可以方便的通过变更策略版本的方式来变更策略。
-    @inlinable
-    public func createPolicyVersion(_ input: CreatePolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePolicyVersionResponse > {
-        self.client.execute(action: "CreatePolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增策略版本接口
-    ///
-    /// 该接口（CreatePolicyVersion）用于新增策略版本，用户创建了一个策略版本之后可以方便的通过变更策略版本的方式来变更策略。
-    @inlinable
-    public func createPolicyVersion(_ input: CreatePolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyVersionResponse {
-        try await self.client.execute(action: "CreatePolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePolicyVersion请求参数结构体
     public struct CreatePolicyVersionRequest: TCRequestModel {
         /// 策略ID
@@ -68,5 +52,21 @@ extension Cam {
             case versionId = "VersionId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增策略版本接口
+    ///
+    /// 该接口（CreatePolicyVersion）用于新增策略版本，用户创建了一个策略版本之后可以方便的通过变更策略版本的方式来变更策略。
+    @inlinable
+    public func createPolicyVersion(_ input: CreatePolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePolicyVersionResponse > {
+        self.client.execute(action: "CreatePolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增策略版本接口
+    ///
+    /// 该接口（CreatePolicyVersion）用于新增策略版本，用户创建了一个策略版本之后可以方便的通过变更策略版本的方式来变更策略。
+    @inlinable
+    public func createPolicyVersion(_ input: CreatePolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyVersionResponse {
+        try await self.client.execute(action: "CreatePolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

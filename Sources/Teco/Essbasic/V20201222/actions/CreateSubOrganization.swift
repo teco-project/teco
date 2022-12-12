@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 注册子机构
-    ///
-    /// 此接口（CreateSubOrganization）用于在腾讯电子签内注册子机构。
-    @inlinable
-    public func createSubOrganization(_ input: CreateSubOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubOrganizationResponse > {
-        self.client.execute(action: "CreateSubOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 注册子机构
-    ///
-    /// 此接口（CreateSubOrganization）用于在腾讯电子签内注册子机构。
-    @inlinable
-    public func createSubOrganization(_ input: CreateSubOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubOrganizationResponse {
-        try await self.client.execute(action: "CreateSubOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSubOrganization请求参数结构体
     public struct CreateSubOrganizationRequest: TCRequestModel {
         /// 调用方信息
@@ -100,12 +84,12 @@ extension Essbasic {
         public let verifyServerIp: String?
         
         /// 企业联系地址
-        public let contactAddress: Address
+        public let contactAddress: Address?
         
         /// 机构电子邮箱
         public let email: String?
         
-        public init (caller: Caller, idCardType: String, idCardNumber: String, organizationType: String, legalName: String, legalIdCardType: String, legalIdCardNumber: String, name: String, openId: String?, useOpenId: Bool?, idCardFileType: String?, bizLicenseFile: String?, bizLicenseFileName: String?, legalMobile: String?, contactName: String?, verifyClientIp: String?, verifyServerIp: String?, contactAddress: Address, email: String?) {
+        public init (caller: Caller, idCardType: String, idCardNumber: String, organizationType: String, legalName: String, legalIdCardType: String, legalIdCardNumber: String, name: String, openId: String? = nil, useOpenId: Bool? = nil, idCardFileType: String? = nil, bizLicenseFile: String? = nil, bizLicenseFileName: String? = nil, legalMobile: String? = nil, contactName: String? = nil, verifyClientIp: String? = nil, verifyServerIp: String? = nil, contactAddress: Address? = nil, email: String? = nil) {
             self.caller = caller
             self.idCardType = idCardType
             self.idCardNumber = idCardNumber
@@ -162,5 +146,21 @@ extension Essbasic {
             case subOrganizationId = "SubOrganizationId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 注册子机构
+    ///
+    /// 此接口（CreateSubOrganization）用于在腾讯电子签内注册子机构。
+    @inlinable
+    public func createSubOrganization(_ input: CreateSubOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubOrganizationResponse > {
+        self.client.execute(action: "CreateSubOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 注册子机构
+    ///
+    /// 此接口（CreateSubOrganization）用于在腾讯电子签内注册子机构。
+    @inlinable
+    public func createSubOrganization(_ input: CreateSubOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubOrganizationResponse {
+        try await self.client.execute(action: "CreateSubOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

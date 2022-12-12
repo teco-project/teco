@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取单个RocketMQ集群信息
-    @inlinable
-    public func describeRocketMQCluster(_ input: DescribeRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRocketMQClusterResponse > {
-        self.client.execute(action: "DescribeRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取单个RocketMQ集群信息
-    @inlinable
-    public func describeRocketMQCluster(_ input: DescribeRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQClusterResponse {
-        try await self.client.execute(action: "DescribeRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRocketMQCluster请求参数结构体
     public struct DescribeRocketMQClusterRequest: TCRequestModel {
         /// 集群ID
@@ -51,7 +39,7 @@ extension Tdmq {
         
         /// 集群最近使用量
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let clusterStats: RocketMQClusterRecentStats
+        public let clusterStats: RocketMQClusterRecentStats?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -62,5 +50,17 @@ extension Tdmq {
             case clusterStats = "ClusterStats"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取单个RocketMQ集群信息
+    @inlinable
+    public func describeRocketMQCluster(_ input: DescribeRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRocketMQClusterResponse > {
+        self.client.execute(action: "DescribeRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单个RocketMQ集群信息
+    @inlinable
+    public func describeRocketMQCluster(_ input: DescribeRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQClusterResponse {
+        try await self.client.execute(action: "DescribeRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

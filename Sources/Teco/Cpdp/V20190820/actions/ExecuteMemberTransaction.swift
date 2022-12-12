@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 会员间交易接口
-    @inlinable
-    public func executeMemberTransaction(_ input: ExecuteMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteMemberTransactionResponse > {
-        self.client.execute(action: "ExecuteMemberTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 会员间交易接口
-    @inlinable
-    public func executeMemberTransaction(_ input: ExecuteMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteMemberTransactionResponse {
-        try await self.client.execute(action: "ExecuteMemberTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ExecuteMemberTransaction请求参数结构体
     public struct ExecuteMemberTransactionRequest: TCRequestModel {
         /// 请求类型此接口固定填：MemberTransactionReq
@@ -108,7 +96,7 @@ extension Cpdp {
         /// 保留域
         public let reservedMessage: String?
         
-        public init (requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, outTransNetMemberCode: String, outSubAccountName: String, inSubAccountName: String, outSubAccountNumber: String, inSubAccountNumber: String, bankAccountNumber: String, currencyUnit: String, currencyType: String, currencyAmount: String, orderId: String, midasAppId: String, midasSecretId: String, midasSignature: String, transSequenceNumber: String, inTransNetMemberCode: String, midasEnvironment: String, platformShortNumber: String?, transType: String?, transFee: String?, reservedMessage: String?) {
+        public init (requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, outTransNetMemberCode: String, outSubAccountName: String, inSubAccountName: String, outSubAccountNumber: String, inSubAccountNumber: String, bankAccountNumber: String, currencyUnit: String, currencyType: String, currencyAmount: String, orderId: String, midasAppId: String, midasSecretId: String, midasSignature: String, transSequenceNumber: String, inTransNetMemberCode: String, midasEnvironment: String, platformShortNumber: String? = nil, transType: String? = nil, transFee: String? = nil, reservedMessage: String? = nil) {
             self.requestType = requestType
             self.merchantCode = merchantCode
             self.payChannel = payChannel
@@ -184,5 +172,17 @@ extension Cpdp {
             case reservedMessage = "ReservedMessage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 会员间交易接口
+    @inlinable
+    public func executeMemberTransaction(_ input: ExecuteMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ExecuteMemberTransactionResponse > {
+        self.client.execute(action: "ExecuteMemberTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 会员间交易接口
+    @inlinable
+    public func executeMemberTransaction(_ input: ExecuteMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteMemberTransactionResponse {
+        try await self.client.execute(action: "ExecuteMemberTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

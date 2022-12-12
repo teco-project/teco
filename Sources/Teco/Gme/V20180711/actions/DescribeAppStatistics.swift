@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Gme {
-    /// 获取应用用量统计数据
-    ///
-    /// 本接口(DescribeAppStatistics)用于获取某个GME应用的用量数据。包括实时语音，语音消息及转文本，语音分析等。最长查询周期为最近60天。
-    @inlinable
-    public func describeAppStatistics(_ input: DescribeAppStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAppStatisticsResponse > {
-        self.client.execute(action: "DescribeAppStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取应用用量统计数据
-    ///
-    /// 本接口(DescribeAppStatistics)用于获取某个GME应用的用量数据。包括实时语音，语音消息及转文本，语音分析等。最长查询周期为最近60天。
-    @inlinable
-    public func describeAppStatistics(_ input: DescribeAppStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppStatisticsResponse {
-        try await self.client.execute(action: "DescribeAppStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAppStatistics请求参数结构体
     public struct DescribeAppStatisticsRequest: TCRequestModel {
         /// GME应用ID
@@ -76,5 +60,21 @@ extension Gme {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取应用用量统计数据
+    ///
+    /// 本接口(DescribeAppStatistics)用于获取某个GME应用的用量数据。包括实时语音，语音消息及转文本，语音分析等。最长查询周期为最近60天。
+    @inlinable
+    public func describeAppStatistics(_ input: DescribeAppStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAppStatisticsResponse > {
+        self.client.execute(action: "DescribeAppStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用用量统计数据
+    ///
+    /// 本接口(DescribeAppStatistics)用于获取某个GME应用的用量数据。包括实时语音，语音消息及转文本，语音分析等。最长查询周期为最近60天。
+    @inlinable
+    public func describeAppStatistics(_ input: DescribeAppStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppStatisticsResponse {
+        try await self.client.execute(action: "DescribeAppStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

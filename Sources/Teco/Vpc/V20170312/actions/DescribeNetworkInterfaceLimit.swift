@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询弹性网卡配额
-    ///
-    /// 本接口（DescribeNetworkInterfaceLimit）根据CVM实例ID或弹性网卡ID查询弹性网卡配额，返回该CVM实例或弹性网卡能绑定的弹性网卡配额，以及弹性网卡可以分配的IP配额
-    @inlinable
-    public func describeNetworkInterfaceLimit(_ input: DescribeNetworkInterfaceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkInterfaceLimitResponse > {
-        self.client.execute(action: "DescribeNetworkInterfaceLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询弹性网卡配额
-    ///
-    /// 本接口（DescribeNetworkInterfaceLimit）根据CVM实例ID或弹性网卡ID查询弹性网卡配额，返回该CVM实例或弹性网卡能绑定的弹性网卡配额，以及弹性网卡可以分配的IP配额
-    @inlinable
-    public func describeNetworkInterfaceLimit(_ input: DescribeNetworkInterfaceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkInterfaceLimitResponse {
-        try await self.client.execute(action: "DescribeNetworkInterfaceLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNetworkInterfaceLimit请求参数结构体
     public struct DescribeNetworkInterfaceLimitRequest: TCRequestModel {
         /// 要查询的CVM实例ID或弹性网卡ID
@@ -81,5 +65,21 @@ extension Vpc {
             case subEniPrivateIpAddressQuantity = "SubEniPrivateIpAddressQuantity"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询弹性网卡配额
+    ///
+    /// 本接口（DescribeNetworkInterfaceLimit）根据CVM实例ID或弹性网卡ID查询弹性网卡配额，返回该CVM实例或弹性网卡能绑定的弹性网卡配额，以及弹性网卡可以分配的IP配额
+    @inlinable
+    public func describeNetworkInterfaceLimit(_ input: DescribeNetworkInterfaceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNetworkInterfaceLimitResponse > {
+        self.client.execute(action: "DescribeNetworkInterfaceLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询弹性网卡配额
+    ///
+    /// 本接口（DescribeNetworkInterfaceLimit）根据CVM实例ID或弹性网卡ID查询弹性网卡配额，返回该CVM实例或弹性网卡能绑定的弹性网卡配额，以及弹性网卡可以分配的IP配额
+    @inlinable
+    public func describeNetworkInterfaceLimit(_ input: DescribeNetworkInterfaceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkInterfaceLimitResponse {
+        try await self.client.execute(action: "DescribeNetworkInterfaceLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

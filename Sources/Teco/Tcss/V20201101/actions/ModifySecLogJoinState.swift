@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 修改安全日志接入状态
-    @inlinable
-    public func modifySecLogJoinState(_ input: ModifySecLogJoinStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogJoinStateResponse > {
-        self.client.execute(action: "ModifySecLogJoinState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改安全日志接入状态
-    @inlinable
-    public func modifySecLogJoinState(_ input: ModifySecLogJoinStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinStateResponse {
-        try await self.client.execute(action: "ModifySecLogJoinState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySecLogJoinState请求参数结构体
     public struct ModifySecLogJoinStateRequest: TCRequestModel {
         /// 日志类型
@@ -57,5 +45,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改安全日志接入状态
+    @inlinable
+    public func modifySecLogJoinState(_ input: ModifySecLogJoinStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogJoinStateResponse > {
+        self.client.execute(action: "ModifySecLogJoinState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改安全日志接入状态
+    @inlinable
+    public func modifySecLogJoinState(_ input: ModifySecLogJoinStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinStateResponse {
+        try await self.client.execute(action: "ModifySecLogJoinState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

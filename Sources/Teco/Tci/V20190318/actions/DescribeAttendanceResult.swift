@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 人脸考勤查询结果
-    @inlinable
-    public func describeAttendanceResult(_ input: DescribeAttendanceResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAttendanceResultResponse > {
-        self.client.execute(action: "DescribeAttendanceResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人脸考勤查询结果
-    @inlinable
-    public func describeAttendanceResult(_ input: DescribeAttendanceResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttendanceResultResponse {
-        try await self.client.execute(action: "DescribeAttendanceResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAttendanceResult请求参数结构体
     public struct DescribeAttendanceResultRequest: TCRequestModel {
         /// 任务唯一标识符
@@ -69,5 +57,17 @@ extension Tci {
             case progress = "Progress"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人脸考勤查询结果
+    @inlinable
+    public func describeAttendanceResult(_ input: DescribeAttendanceResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAttendanceResultResponse > {
+        self.client.execute(action: "DescribeAttendanceResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人脸考勤查询结果
+    @inlinable
+    public func describeAttendanceResult(_ input: DescribeAttendanceResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttendanceResultResponse {
+        try await self.client.execute(action: "DescribeAttendanceResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

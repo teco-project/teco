@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 开启通道
-    ///
-    /// 该接口（OpenProxies）用于开启一条或者多条通道。
-    @inlinable
-    public func openProxies(_ input: OpenProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenProxiesResponse > {
-        self.client.execute(action: "OpenProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开启通道
-    ///
-    /// 该接口（OpenProxies）用于开启一条或者多条通道。
-    @inlinable
-    public func openProxies(_ input: OpenProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProxiesResponse {
-        try await self.client.execute(action: "OpenProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OpenProxies请求参数结构体
     public struct OpenProxiesRequest: TCRequestModel {
         /// （旧参数，请切换到ProxyIds）通道的实例ID列表。
@@ -43,7 +27,7 @@ extension Gaap {
         /// （新参数）通道的实例ID列表。
         public let proxyIds: [String]?
         
-        public init (instanceIds: [String]?, clientToken: String?, proxyIds: [String]?) {
+        public init (instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil) {
             self.instanceIds = instanceIds
             self.clientToken = clientToken
             self.proxyIds = proxyIds
@@ -72,5 +56,21 @@ extension Gaap {
             case operationFailedInstanceSet = "OperationFailedInstanceSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开启通道
+    ///
+    /// 该接口（OpenProxies）用于开启一条或者多条通道。
+    @inlinable
+    public func openProxies(_ input: OpenProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenProxiesResponse > {
+        self.client.execute(action: "OpenProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开启通道
+    ///
+    /// 该接口（OpenProxies）用于开启一条或者多条通道。
+    @inlinable
+    public func openProxies(_ input: OpenProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProxiesResponse {
+        try await self.client.execute(action: "OpenProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

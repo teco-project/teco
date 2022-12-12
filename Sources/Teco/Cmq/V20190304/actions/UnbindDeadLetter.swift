@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cmq {
-    /// 解绑死信队列
-    @inlinable
-    public func unbindDeadLetter(_ input: UnbindDeadLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindDeadLetterResponse > {
-        self.client.execute(action: "UnbindDeadLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑死信队列
-    @inlinable
-    public func unbindDeadLetter(_ input: UnbindDeadLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDeadLetterResponse {
-        try await self.client.execute(action: "UnbindDeadLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindDeadLetter请求参数结构体
     public struct UnbindDeadLetterRequest: TCRequestModel {
         /// 死信策略源队列名称，调用本接口会清空该队列的死信队列策略。
@@ -49,5 +37,17 @@ extension Cmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑死信队列
+    @inlinable
+    public func unbindDeadLetter(_ input: UnbindDeadLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindDeadLetterResponse > {
+        self.client.execute(action: "UnbindDeadLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑死信队列
+    @inlinable
+    public func unbindDeadLetter(_ input: UnbindDeadLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDeadLetterResponse {
+        try await self.client.execute(action: "UnbindDeadLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

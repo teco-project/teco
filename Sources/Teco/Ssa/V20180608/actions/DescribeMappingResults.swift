@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssa {
-    /// 获取测绘列表
-    @inlinable
-    public func describeMappingResults(_ input: DescribeMappingResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMappingResultsResponse > {
-        self.client.execute(action: "DescribeMappingResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取测绘列表
-    @inlinable
-    public func describeMappingResults(_ input: DescribeMappingResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMappingResultsResponse {
-        try await self.client.execute(action: "DescribeMappingResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMappingResults请求参数结构体
     public struct DescribeMappingResultsRequest: TCRequestModel {
         /// 过滤条件，FilterKey 取值范围：AssetId，AssetIp，PrivateIp，Protocol，Service，OS，Process，Component，AssetType，Domain，Port，LastMappingTime，MappingType，Disposal，Vpc
@@ -41,7 +29,7 @@ extension Ssa {
         /// 页大小，默认大小20
         public let pageSize: UInt64?
         
-        public init (filter: [AssetQueryFilter]?, sorter: [QuerySort]?, pageIndex: UInt64?, pageSize: UInt64?) {
+        public init (filter: [AssetQueryFilter]? = nil, sorter: [QuerySort]? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil) {
             self.filter = filter
             self.sorter = sorter
             self.pageIndex = pageIndex
@@ -64,7 +52,7 @@ extension Ssa {
         
         /// 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: Results
+        public let data: Results?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -74,5 +62,17 @@ extension Ssa {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取测绘列表
+    @inlinable
+    public func describeMappingResults(_ input: DescribeMappingResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMappingResultsResponse > {
+        self.client.execute(action: "DescribeMappingResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取测绘列表
+    @inlinable
+    public func describeMappingResults(_ input: DescribeMappingResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMappingResultsResponse {
+        try await self.client.execute(action: "DescribeMappingResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

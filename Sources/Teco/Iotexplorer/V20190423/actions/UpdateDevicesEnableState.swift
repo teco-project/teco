@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 批量禁用启用设备
-    @inlinable
-    public func updateDevicesEnableState(_ input: UpdateDevicesEnableStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDevicesEnableStateResponse > {
-        self.client.execute(action: "UpdateDevicesEnableState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量禁用启用设备
-    @inlinable
-    public func updateDevicesEnableState(_ input: UpdateDevicesEnableStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicesEnableStateResponse {
-        try await self.client.execute(action: "UpdateDevicesEnableState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateDevicesEnableState请求参数结构体
     public struct UpdateDevicesEnableStateRequest: TCRequestModel {
         /// 多个设备标识
@@ -64,5 +52,17 @@ extension Iotexplorer {
             case resultMessage = "ResultMessage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量禁用启用设备
+    @inlinable
+    public func updateDevicesEnableState(_ input: UpdateDevicesEnableStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateDevicesEnableStateResponse > {
+        self.client.execute(action: "UpdateDevicesEnableState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量禁用启用设备
+    @inlinable
+    public func updateDevicesEnableState(_ input: UpdateDevicesEnableStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicesEnableStateResponse {
+        try await self.client.execute(action: "UpdateDevicesEnableState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gme {
-    /// 更新送检用户号
-    ///
-    /// 更新自定义送检用户号
-    @inlinable
-    public func updateScanUsers(_ input: UpdateScanUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateScanUsersResponse > {
-        self.client.execute(action: "UpdateScanUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新送检用户号
-    ///
-    /// 更新自定义送检用户号
-    @inlinable
-    public func updateScanUsers(_ input: UpdateScanUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanUsersResponse {
-        try await self.client.execute(action: "UpdateScanUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateScanUsers请求参数结构体
     public struct UpdateScanUsersRequest: TCRequestModel {
         /// 应用ID
@@ -42,7 +26,7 @@ extension Gme {
         /// 符合此正则表达式规则的用户号将被送检。示例：["^6.*"] 表示所有以6开头的用户号将被送检
         public let userIdRegex: [String]?
         
-        public init (bizId: UInt64, userIdString: String?, userIdRegex: [String]?) {
+        public init (bizId: UInt64, userIdString: String? = nil, userIdRegex: [String]? = nil) {
             self.bizId = bizId
             self.userIdString = userIdString
             self.userIdRegex = userIdRegex
@@ -67,5 +51,21 @@ extension Gme {
             case errorCode = "ErrorCode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新送检用户号
+    ///
+    /// 更新自定义送检用户号
+    @inlinable
+    public func updateScanUsers(_ input: UpdateScanUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateScanUsersResponse > {
+        self.client.execute(action: "UpdateScanUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新送检用户号
+    ///
+    /// 更新自定义送检用户号
+    @inlinable
+    public func updateScanUsers(_ input: UpdateScanUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanUsersResponse {
+        try await self.client.execute(action: "UpdateScanUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

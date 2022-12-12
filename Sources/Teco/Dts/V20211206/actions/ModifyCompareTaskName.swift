@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 修改一致性校验任务名称
-    @inlinable
-    public func modifyCompareTaskName(_ input: ModifyCompareTaskNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCompareTaskNameResponse > {
-        self.client.execute(action: "ModifyCompareTaskName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改一致性校验任务名称
-    @inlinable
-    public func modifyCompareTaskName(_ input: ModifyCompareTaskNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompareTaskNameResponse {
-        try await self.client.execute(action: "ModifyCompareTaskName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCompareTaskName请求参数结构体
     public struct ModifyCompareTaskNameRequest: TCRequestModel {
         /// 迁移任务 Id
@@ -59,5 +47,17 @@ extension Dts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改一致性校验任务名称
+    @inlinable
+    public func modifyCompareTaskName(_ input: ModifyCompareTaskNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCompareTaskNameResponse > {
+        self.client.execute(action: "ModifyCompareTaskName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改一致性校验任务名称
+    @inlinable
+    public func modifyCompareTaskName(_ input: ModifyCompareTaskNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompareTaskNameResponse {
+        try await self.client.execute(action: "ModifyCompareTaskName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

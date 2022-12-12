@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 创建策略
-    ///
-    /// 本接口（CreatePolicy）可用于创建策略。
-    @inlinable
-    public func createPolicy(_ input: CreatePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePolicyResponse > {
-        self.client.execute(action: "CreatePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建策略
-    ///
-    /// 本接口（CreatePolicy）可用于创建策略。
-    @inlinable
-    public func createPolicy(_ input: CreatePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyResponse {
-        try await self.client.execute(action: "CreatePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePolicy请求参数结构体
     public struct CreatePolicyRequest: TCRequestModel {
         /// 策略名
@@ -42,7 +26,7 @@ extension Cam {
         /// 策略描述
         public let description: String?
         
-        public init (policyName: String, policyDocument: String, description: String?) {
+        public init (policyName: String, policyDocument: String, description: String? = nil) {
             self.policyName = policyName
             self.policyDocument = policyDocument
             self.description = description
@@ -67,5 +51,21 @@ extension Cam {
             case policyId = "PolicyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建策略
+    ///
+    /// 本接口（CreatePolicy）可用于创建策略。
+    @inlinable
+    public func createPolicy(_ input: CreatePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePolicyResponse > {
+        self.client.execute(action: "CreatePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建策略
+    ///
+    /// 本接口（CreatePolicy）可用于创建策略。
+    @inlinable
+    public func createPolicy(_ input: CreatePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyResponse {
+        try await self.client.execute(action: "CreatePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 查询已经存在的节点
-    ///
-    /// 查询已经存在的节点，判断是否可以加入集群
-    @inlinable
-    public func describeExistedInstances(_ input: DescribeExistedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExistedInstancesResponse > {
-        self.client.execute(action: "DescribeExistedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询已经存在的节点
-    ///
-    /// 查询已经存在的节点，判断是否可以加入集群
-    @inlinable
-    public func describeExistedInstances(_ input: DescribeExistedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExistedInstancesResponse {
-        try await self.client.execute(action: "DescribeExistedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExistedInstances请求参数结构体
     public struct DescribeExistedInstancesRequest: TCRequestModel {
         /// 集群 ID，请填写查询集群列表 接口中返回的 ClusterId 字段（仅通过ClusterId获取需要过滤条件中的VPCID。节点状态比较时会使用该地域下所有集群中的节点进行比较。参数不支持同时指定InstanceIds和ClusterId。
@@ -57,7 +41,7 @@ extension Tke {
         /// 根据多个实例IP进行过滤
         public let ipAddresses: [String]?
         
-        public init (clusterId: String?, instanceIds: [String]?, filters: [Filter]?, vagueIpAddress: String?, vagueInstanceName: String?, offset: UInt64?, limit: UInt64?, ipAddresses: [String]?) {
+        public init (clusterId: String? = nil, instanceIds: [String]? = nil, filters: [Filter]? = nil, vagueIpAddress: String? = nil, vagueInstanceName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, ipAddresses: [String]? = nil) {
             self.clusterId = clusterId
             self.instanceIds = instanceIds
             self.filters = filters
@@ -97,5 +81,21 @@ extension Tke {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询已经存在的节点
+    ///
+    /// 查询已经存在的节点，判断是否可以加入集群
+    @inlinable
+    public func describeExistedInstances(_ input: DescribeExistedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExistedInstancesResponse > {
+        self.client.execute(action: "DescribeExistedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询已经存在的节点
+    ///
+    /// 查询已经存在的节点，判断是否可以加入集群
+    @inlinable
+    public func describeExistedInstances(_ input: DescribeExistedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExistedInstancesResponse {
+        try await self.client.execute(action: "DescribeExistedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

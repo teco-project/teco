@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 修改cmq主题属性
-    @inlinable
-    public func modifyCmqTopicAttribute(_ input: ModifyCmqTopicAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCmqTopicAttributeResponse > {
-        self.client.execute(action: "ModifyCmqTopicAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改cmq主题属性
-    @inlinable
-    public func modifyCmqTopicAttribute(_ input: ModifyCmqTopicAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqTopicAttributeResponse {
-        try await self.client.execute(action: "ModifyCmqTopicAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCmqTopicAttribute请求参数结构体
     public struct ModifyCmqTopicAttributeRequest: TCRequestModel {
         /// 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
@@ -41,7 +29,7 @@ extension Tdmq {
         /// 是否开启消息轨迹标识，true表示开启，false表示不开启，不填表示不开启。
         public let trace: Bool?
         
-        public init (topicName: String, maxMsgSize: UInt64?, msgRetentionSeconds: UInt64?, trace: Bool?) {
+        public init (topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil) {
             self.topicName = topicName
             self.maxMsgSize = maxMsgSize
             self.msgRetentionSeconds = msgRetentionSeconds
@@ -64,5 +52,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改cmq主题属性
+    @inlinable
+    public func modifyCmqTopicAttribute(_ input: ModifyCmqTopicAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCmqTopicAttributeResponse > {
+        self.client.execute(action: "ModifyCmqTopicAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改cmq主题属性
+    @inlinable
+    public func modifyCmqTopicAttribute(_ input: ModifyCmqTopicAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqTopicAttributeResponse {
+        try await self.client.execute(action: "ModifyCmqTopicAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

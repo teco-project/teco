@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 刷新历史查询
-    ///
-    /// DescribePurgeTasks 用于查询提交的 URL 刷新、目录刷新记录及执行进度，通过 PurgePathCache 与 PurgeUrlsCache 接口提交的任务均可通过此接口进行查询。
-    @inlinable
-    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePurgeTasksResponse > {
-        self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 刷新历史查询
-    ///
-    /// DescribePurgeTasks 用于查询提交的 URL 刷新、目录刷新记录及执行进度，通过 PurgePathCache 与 PurgeUrlsCache 接口提交的任务均可通过此接口进行查询。
-    @inlinable
-    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeTasksResponse {
-        try await self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePurgeTasks请求参数结构体
     public struct DescribePurgeTasksRequest: TCRequestModel {
         /// 指定刷新类型查询
@@ -71,7 +55,7 @@ extension Cdn {
         /// global：全球
         public let area: String?
         
-        public init (purgeType: String?, startTime: Date?, endTime: Date?, taskId: String?, offset: Int64?, limit: Int64?, keyword: String?, status: String?, area: String?) {
+        public init (purgeType: String? = nil, startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, keyword: String? = nil, status: String? = nil, area: String? = nil) {
             self.purgeType = purgeType
             self.startTime = startTime
             self.endTime = endTime
@@ -114,5 +98,21 @@ extension Cdn {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 刷新历史查询
+    ///
+    /// DescribePurgeTasks 用于查询提交的 URL 刷新、目录刷新记录及执行进度，通过 PurgePathCache 与 PurgeUrlsCache 接口提交的任务均可通过此接口进行查询。
+    @inlinable
+    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePurgeTasksResponse > {
+        self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 刷新历史查询
+    ///
+    /// DescribePurgeTasks 用于查询提交的 URL 刷新、目录刷新记录及执行进度，通过 PurgePathCache 与 PurgeUrlsCache 接口提交的任务均可通过此接口进行查询。
+    @inlinable
+    public func describePurgeTasks(_ input: DescribePurgeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeTasksResponse {
+        try await self.client.execute(action: "DescribePurgeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

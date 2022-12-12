@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 应用使用者查询API详情
-    ///
-    /// 本接口（DescribeApiForApiApp）用于应用使用者查询部署于 API 网关的 API 接口的详细信息。​
-    @inlinable
-    public func describeApiForApiApp(_ input: DescribeApiForApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiForApiAppResponse > {
-        self.client.execute(action: "DescribeApiForApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 应用使用者查询API详情
-    ///
-    /// 本接口（DescribeApiForApiApp）用于应用使用者查询部署于 API 网关的 API 接口的详细信息。​
-    @inlinable
-    public func describeApiForApiApp(_ input: DescribeApiForApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiForApiAppResponse {
-        try await self.client.execute(action: "DescribeApiForApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApiForApiApp请求参数结构体
     public struct DescribeApiForApiAppRequest: TCRequestModel {
         /// API 所在的服务唯一 ID。
@@ -67,5 +51,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 应用使用者查询API详情
+    ///
+    /// 本接口（DescribeApiForApiApp）用于应用使用者查询部署于 API 网关的 API 接口的详细信息。​
+    @inlinable
+    public func describeApiForApiApp(_ input: DescribeApiForApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApiForApiAppResponse > {
+        self.client.execute(action: "DescribeApiForApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 应用使用者查询API详情
+    ///
+    /// 本接口（DescribeApiForApiApp）用于应用使用者查询部署于 API 网关的 API 接口的详细信息。​
+    @inlinable
+    public func describeApiForApiApp(_ input: DescribeApiForApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiForApiAppResponse {
+        try await self.client.execute(action: "DescribeApiForApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

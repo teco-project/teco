@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bizlive {
-    /// 禁播直播流
-    ///
-    /// 禁止某条流的推送，可以预设某个时刻将流恢复。
-    @inlinable
-    public func forbidLiveStream(_ input: ForbidLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ForbidLiveStreamResponse > {
-        self.client.execute(action: "ForbidLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 禁播直播流
-    ///
-    /// 禁止某条流的推送，可以预设某个时刻将流恢复。
-    @inlinable
-    public func forbidLiveStream(_ input: ForbidLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveStreamResponse {
-        try await self.client.execute(action: "ForbidLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ForbidLiveStream请求参数结构体
     public struct ForbidLiveStreamRequest: TCRequestModel {
         /// 应用名称。
@@ -46,7 +30,7 @@ extension Bizlive {
         /// 注意：默认禁播90天，且最长支持禁播90天。
         public let resumeTime: String?
         
-        public init (appName: String, domainName: String, streamName: String, resumeTime: String?) {
+        public init (appName: String, domainName: String, streamName: String, resumeTime: String? = nil) {
             self.appName = appName
             self.domainName = domainName
             self.streamName = streamName
@@ -69,5 +53,21 @@ extension Bizlive {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 禁播直播流
+    ///
+    /// 禁止某条流的推送，可以预设某个时刻将流恢复。
+    @inlinable
+    public func forbidLiveStream(_ input: ForbidLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ForbidLiveStreamResponse > {
+        self.client.execute(action: "ForbidLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 禁播直播流
+    ///
+    /// 禁止某条流的推送，可以预设某个时刻将流恢复。
+    @inlinable
+    public func forbidLiveStream(_ input: ForbidLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveStreamResponse {
+        try await self.client.execute(action: "ForbidLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

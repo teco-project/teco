@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Thpc {
-    /// 添加节点
-    ///
-    /// 本接口(AddNodes)用于添加一个或者多个计算节点或者登录节点到指定集群。
-    @inlinable
-    public func addNodes(_ input: AddNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddNodesResponse > {
-        self.client.execute(action: "AddNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加节点
-    ///
-    /// 本接口(AddNodes)用于添加一个或者多个计算节点或者登录节点到指定集群。
-    @inlinable
-    public func addNodes(_ input: AddNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNodesResponse {
-        try await self.client.execute(action: "AddNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddNodes请求参数结构体
     public struct AddNodesRequest: TCRequestModel {
         /// 集群中实例所在的位置。
@@ -52,7 +36,7 @@ extension Thpc {
         public let instanceChargeType: String?
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 节点机型。不同实例机型指定了不同的资源规格。<br><li>具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格](https://cloud.tencent.com/document/product/213/11518)描述。
         public let instanceType: String?
@@ -64,7 +48,7 @@ extension Thpc {
         public let dataDisks: [DataDisk]?
         
         /// 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
-        public let internetAccessible: InternetAccessible
+        public let internetAccessible: InternetAccessible?
         
         /// 节点显示名称。
         /// 不指定节点显示名称则默认显示‘未命名’。
@@ -72,7 +56,7 @@ extension Thpc {
         public let instanceName: String?
         
         /// 集群登录设置。
-        public let loginSettings: LoginSettings
+        public let loginSettings: LoginSettings?
         
         /// 集群中实例所属安全组。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来获取。若不指定该参数，则绑定默认安全组。
         public let securityGroupIds: [String]?
@@ -93,7 +77,7 @@ extension Thpc {
         /// false（默认）：发送正常请求，通过检查后直接创建实例
         public let dryRun: Bool?
         
-        public init (placement: Placement, clusterId: String, imageId: String, virtualPrivateCloud: VirtualPrivateCloud, count: Int64, instanceChargeType: String?, instanceChargePrepaid: InstanceChargePrepaid, instanceType: String?, systemDisk: [SystemDisk]?, dataDisks: [DataDisk]?, internetAccessible: InternetAccessible, instanceName: String?, loginSettings: LoginSettings, securityGroupIds: [String]?, clientToken: String?, queueName: String?, nodeRole: String?, dryRun: Bool?) {
+        public init (placement: Placement, clusterId: String, imageId: String, virtualPrivateCloud: VirtualPrivateCloud, count: Int64, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceType: String? = nil, systemDisk: [SystemDisk]? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, clientToken: String? = nil, queueName: String? = nil, nodeRole: String? = nil, dryRun: Bool? = nil) {
             self.placement = placement
             self.clusterId = clusterId
             self.imageId = imageId
@@ -144,5 +128,21 @@ extension Thpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加节点
+    ///
+    /// 本接口(AddNodes)用于添加一个或者多个计算节点或者登录节点到指定集群。
+    @inlinable
+    public func addNodes(_ input: AddNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddNodesResponse > {
+        self.client.execute(action: "AddNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加节点
+    ///
+    /// 本接口(AddNodes)用于添加一个或者多个计算节点或者登录节点到指定集群。
+    @inlinable
+    public func addNodes(_ input: AddNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNodesResponse {
+        try await self.client.execute(action: "AddNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

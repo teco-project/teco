@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取被关联集群列表
-    @inlinable
-    public func describePrometheusAgents(_ input: DescribePrometheusAgentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusAgentsResponse > {
-        self.client.execute(action: "DescribePrometheusAgents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取被关联集群列表
-    @inlinable
-    public func describePrometheusAgents(_ input: DescribePrometheusAgentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAgentsResponse {
-        try await self.client.execute(action: "DescribePrometheusAgents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrometheusAgents请求参数结构体
     public struct DescribePrometheusAgentsRequest: TCRequestModel {
         /// 实例id
@@ -38,7 +26,7 @@ extension Tke {
         /// 用于分页
         public let limit: UInt64?
         
-        public init (instanceId: String, offset: UInt64?, limit: UInt64?) {
+        public init (instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
@@ -67,5 +55,17 @@ extension Tke {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取被关联集群列表
+    @inlinable
+    public func describePrometheusAgents(_ input: DescribePrometheusAgentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusAgentsResponse > {
+        self.client.execute(action: "DescribePrometheusAgents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取被关联集群列表
+    @inlinable
+    public func describePrometheusAgents(_ input: DescribePrometheusAgentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAgentsResponse {
+        try await self.client.execute(action: "DescribePrometheusAgents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 删除模型服务
-    ///
-    /// 根据服务id删除模型服务
-    @inlinable
-    public func deleteModelService(_ input: DeleteModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModelServiceResponse > {
-        self.client.execute(action: "DeleteModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除模型服务
-    ///
-    /// 根据服务id删除模型服务
-    @inlinable
-    public func deleteModelService(_ input: DeleteModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceResponse {
-        try await self.client.execute(action: "DeleteModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteModelService请求参数结构体
     public struct DeleteModelServiceRequest: TCRequestModel {
         /// 服务id
@@ -53,5 +37,21 @@ extension Tione {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除模型服务
+    ///
+    /// 根据服务id删除模型服务
+    @inlinable
+    public func deleteModelService(_ input: DeleteModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModelServiceResponse > {
+        self.client.execute(action: "DeleteModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除模型服务
+    ///
+    /// 根据服务id删除模型服务
+    @inlinable
+    public func deleteModelService(_ input: DeleteModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceResponse {
+        try await self.client.execute(action: "DeleteModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

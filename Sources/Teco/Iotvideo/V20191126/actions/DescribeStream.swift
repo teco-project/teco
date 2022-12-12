@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 请求设备直播流地址
-    @inlinable
-    public func describeStream(_ input: DescribeStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamResponse > {
-        self.client.execute(action: "DescribeStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 请求设备直播流地址
-    @inlinable
-    public func describeStream(_ input: DescribeStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamResponse {
-        try await self.client.execute(action: "DescribeStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStream请求参数结构体
     public struct DescribeStreamRequest: TCRequestModel {
         /// 设备TID
@@ -44,7 +32,7 @@ extension Iotvideo {
         /// 设备访问token，访问用户未绑定的设备时，需提供该参数
         public let accessToken: String?
         
-        public init (tid: String?, accessId: String?, `protocol`: String?, address: String?, accessToken: String?) {
+        public init (tid: String? = nil, accessId: String? = nil, `protocol`: String? = nil, address: String? = nil, accessToken: String? = nil) {
             self.tid = tid
             self.accessId = accessId
             self.`protocol` = `protocol`
@@ -65,7 +53,7 @@ extension Iotvideo {
     public struct DescribeStreamResponse: TCResponseModel {
         /// 返回参数结构
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: Data
+        public let data: Data?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -74,5 +62,17 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 请求设备直播流地址
+    @inlinable
+    public func describeStream(_ input: DescribeStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamResponse > {
+        self.client.execute(action: "DescribeStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 请求设备直播流地址
+    @inlinable
+    public func describeStream(_ input: DescribeStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamResponse {
+        try await self.client.execute(action: "DescribeStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

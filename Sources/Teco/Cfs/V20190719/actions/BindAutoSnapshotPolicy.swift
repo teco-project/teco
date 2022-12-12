@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 文件系统绑定快照策略
-    ///
-    /// 文件系统绑定快照策略，可以同时绑定多个fs，一个fs 只能跟一个策略绑定
-    @inlinable
-    public func bindAutoSnapshotPolicy(_ input: BindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindAutoSnapshotPolicyResponse > {
-        self.client.execute(action: "BindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 文件系统绑定快照策略
-    ///
-    /// 文件系统绑定快照策略，可以同时绑定多个fs，一个fs 只能跟一个策略绑定
-    @inlinable
-    public func bindAutoSnapshotPolicy(_ input: BindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoSnapshotPolicyResponse {
-        try await self.client.execute(action: "BindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindAutoSnapshotPolicy请求参数结构体
     public struct BindAutoSnapshotPolicyRequest: TCRequestModel {
         /// 快照策略ID
@@ -62,5 +46,21 @@ extension Cfs {
             case autoSnapshotPolicyId = "AutoSnapshotPolicyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 文件系统绑定快照策略
+    ///
+    /// 文件系统绑定快照策略，可以同时绑定多个fs，一个fs 只能跟一个策略绑定
+    @inlinable
+    public func bindAutoSnapshotPolicy(_ input: BindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindAutoSnapshotPolicyResponse > {
+        self.client.execute(action: "BindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 文件系统绑定快照策略
+    ///
+    /// 文件系统绑定快照策略，可以同时绑定多个fs，一个fs 只能跟一个策略绑定
+    @inlinable
+    public func bindAutoSnapshotPolicy(_ input: BindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoSnapshotPolicyResponse {
+        try await self.client.execute(action: "BindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 创建消息路由
-    @inlinable
-    public func createMessageRoute(_ input: CreateMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMessageRouteResponse > {
-        self.client.execute(action: "CreateMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建消息路由
-    @inlinable
-    public func createMessageRoute(_ input: CreateMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageRouteResponse {
-        try await self.client.execute(action: "CreateMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMessageRoute请求参数结构体
     public struct CreateMessageRouteRequest: TCRequestModel {
         /// 路由名称
@@ -35,7 +23,7 @@ extension Iecp {
         /// 路由备注
         public let descript: String?
         
-        public init (routeName: String, descript: String?) {
+        public init (routeName: String, descript: String? = nil) {
             self.routeName = routeName
             self.descript = descript
         }
@@ -58,5 +46,17 @@ extension Iecp {
             case routeID = "RouteID"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建消息路由
+    @inlinable
+    public func createMessageRoute(_ input: CreateMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMessageRouteResponse > {
+        self.client.execute(action: "CreateMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建消息路由
+    @inlinable
+    public func createMessageRoute(_ input: CreateMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageRouteResponse {
+        try await self.client.execute(action: "CreateMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

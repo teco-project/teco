@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Sms {
-    /// 上报转换率
-    ///
-    /// 短信转化率上报。将已接收到短信的流水号上报到腾讯云短信服务。
-    /// >- 注：当前接口以白名单方式对外开放，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81) 开通。
-    @inlinable
-    public func reportConversion(_ input: ReportConversionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportConversionResponse > {
-        self.client.execute(action: "ReportConversion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 上报转换率
-    ///
-    /// 短信转化率上报。将已接收到短信的流水号上报到腾讯云短信服务。
-    /// >- 注：当前接口以白名单方式对外开放，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81) 开通。
-    @inlinable
-    public func reportConversion(_ input: ReportConversionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportConversionResponse {
-        try await self.client.execute(action: "ReportConversion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReportConversion请求参数结构体
     public struct ReportConversionRequest: TCRequestModel {
         /// 短信应用ID。在 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage)  添加应用后生成的实际 SdkAppId，示例如1400006666。
@@ -44,7 +26,7 @@ extension Sms {
         /// 用户回填时间，UNIX 时间戳（单位：秒）。
         public let conversionTime: UInt64?
         
-        public init (smsSdkAppId: String, serialNo: String, conversionTime: UInt64?) {
+        public init (smsSdkAppId: String, serialNo: String, conversionTime: UInt64? = nil) {
             self.smsSdkAppId = smsSdkAppId
             self.serialNo = serialNo
             self.conversionTime = conversionTime
@@ -69,5 +51,23 @@ extension Sms {
             case reportConversionStatus = "ReportConversionStatus"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 上报转换率
+    ///
+    /// 短信转化率上报。将已接收到短信的流水号上报到腾讯云短信服务。
+    /// >- 注：当前接口以白名单方式对外开放，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81) 开通。
+    @inlinable
+    public func reportConversion(_ input: ReportConversionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReportConversionResponse > {
+        self.client.execute(action: "ReportConversion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 上报转换率
+    ///
+    /// 短信转化率上报。将已接收到短信的流水号上报到腾讯云短信服务。
+    /// >- 注：当前接口以白名单方式对外开放，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81) 开通。
+    @inlinable
+    public func reportConversion(_ input: ReportConversionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportConversionResponse {
+        try await self.client.execute(action: "ReportConversion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

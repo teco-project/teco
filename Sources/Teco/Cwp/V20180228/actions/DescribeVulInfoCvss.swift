@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 漏洞详情
-    ///
-    /// 漏洞详情，带CVSS版本
-    @inlinable
-    public func describeVulInfoCvss(_ input: DescribeVulInfoCvssRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulInfoCvssResponse > {
-        self.client.execute(action: "DescribeVulInfoCvss", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 漏洞详情
-    ///
-    /// 漏洞详情，带CVSS版本
-    @inlinable
-    public func describeVulInfoCvss(_ input: DescribeVulInfoCvssRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulInfoCvssResponse {
-        try await self.client.execute(action: "DescribeVulInfoCvss", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulInfoCvss请求参数结构体
     public struct DescribeVulInfoCvssRequest: TCRequestModel {
         /// 漏洞id
@@ -138,5 +122,21 @@ extension Cwp {
             case fixSwitch = "FixSwitch"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 漏洞详情
+    ///
+    /// 漏洞详情，带CVSS版本
+    @inlinable
+    public func describeVulInfoCvss(_ input: DescribeVulInfoCvssRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulInfoCvssResponse > {
+        self.client.execute(action: "DescribeVulInfoCvss", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 漏洞详情
+    ///
+    /// 漏洞详情，带CVSS版本
+    @inlinable
+    public func describeVulInfoCvss(_ input: DescribeVulInfoCvssRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulInfoCvssResponse {
+        try await self.client.execute(action: "DescribeVulInfoCvss", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

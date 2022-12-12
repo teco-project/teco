@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 查询节点Pod列表
-    @inlinable
-    public func describeEdgeNodePods(_ input: DescribeEdgeNodePodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeNodePodsResponse > {
-        self.client.execute(action: "DescribeEdgeNodePods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询节点Pod列表
-    @inlinable
-    public func describeEdgeNodePods(_ input: DescribeEdgeNodePodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodePodsResponse {
-        try await self.client.execute(action: "DescribeEdgeNodePods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeNodePods请求参数结构体
     public struct DescribeEdgeNodePodsRequest: TCRequestModel {
         /// IECP边缘单元ID
@@ -41,7 +29,7 @@ extension Iecp {
         /// Pod名称过滤串
         public let podNamePattern: String?
         
-        public init (edgeUnitId: UInt64, nodeId: UInt64, namespace: String?, podNamePattern: String?) {
+        public init (edgeUnitId: UInt64, nodeId: UInt64, namespace: String? = nil, podNamePattern: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.nodeId = nodeId
             self.namespace = namespace
@@ -69,5 +57,17 @@ extension Iecp {
             case podSet = "PodSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询节点Pod列表
+    @inlinable
+    public func describeEdgeNodePods(_ input: DescribeEdgeNodePodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeNodePodsResponse > {
+        self.client.execute(action: "DescribeEdgeNodePods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询节点Pod列表
+    @inlinable
+    public func describeEdgeNodePods(_ input: DescribeEdgeNodePodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodePodsResponse {
+        try await self.client.execute(action: "DescribeEdgeNodePods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

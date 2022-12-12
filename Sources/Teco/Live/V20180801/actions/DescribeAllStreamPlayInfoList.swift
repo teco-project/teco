@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询某个时间点所有流的下行播放数据
-    ///
-    /// 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
-    @inlinable
-    public func describeAllStreamPlayInfoList(_ input: DescribeAllStreamPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllStreamPlayInfoListResponse > {
-        self.client.execute(action: "DescribeAllStreamPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询某个时间点所有流的下行播放数据
-    ///
-    /// 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
-    @inlinable
-    public func describeAllStreamPlayInfoList(_ input: DescribeAllStreamPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllStreamPlayInfoListResponse {
-        try await self.client.execute(action: "DescribeAllStreamPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAllStreamPlayInfoList请求参数结构体
     public struct DescribeAllStreamPlayInfoListRequest: TCRequestModel {
         /// 查询时间点，精确到分钟粒度，支持最近1个月的数据查询，数据延迟为5分钟左右，如果要查询实时的数据，建议传递5分钟前的时间点，格式为yyyy-mm-dd HH:MM:00。（只精确至分钟，秒数填00）。
@@ -39,7 +23,7 @@ extension Live {
         /// 播放域名列表，若不填，表示总体数据。
         public let playDomains: [String]?
         
-        public init (queryTime: String, playDomains: [String]?) {
+        public init (queryTime: String, playDomains: [String]? = nil) {
             self.queryTime = queryTime
             self.playDomains = playDomains
         }
@@ -66,5 +50,21 @@ extension Live {
             case dataInfoList = "DataInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询某个时间点所有流的下行播放数据
+    ///
+    /// 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
+    @inlinable
+    public func describeAllStreamPlayInfoList(_ input: DescribeAllStreamPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAllStreamPlayInfoListResponse > {
+        self.client.execute(action: "DescribeAllStreamPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询某个时间点所有流的下行播放数据
+    ///
+    /// 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
+    @inlinable
+    public func describeAllStreamPlayInfoList(_ input: DescribeAllStreamPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllStreamPlayInfoListResponse {
+        try await self.client.execute(action: "DescribeAllStreamPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Chdfs {
-    /// 绑定权限组列表
-    ///
-    /// 给挂载点绑定多个权限组。
-    @inlinable
-    public func associateAccessGroups(_ input: AssociateAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateAccessGroupsResponse > {
-        self.client.execute(action: "AssociateAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定权限组列表
-    ///
-    /// 给挂载点绑定多个权限组。
-    @inlinable
-    public func associateAccessGroups(_ input: AssociateAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAccessGroupsResponse {
-        try await self.client.execute(action: "AssociateAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssociateAccessGroups请求参数结构体
     public struct AssociateAccessGroupsRequest: TCRequestModel {
         /// 挂载点ID
@@ -58,5 +42,21 @@ extension Chdfs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定权限组列表
+    ///
+    /// 给挂载点绑定多个权限组。
+    @inlinable
+    public func associateAccessGroups(_ input: AssociateAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateAccessGroupsResponse > {
+        self.client.execute(action: "AssociateAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定权限组列表
+    ///
+    /// 给挂载点绑定多个权限组。
+    @inlinable
+    public func associateAccessGroups(_ input: AssociateAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAccessGroupsResponse {
+        try await self.client.execute(action: "AssociateAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

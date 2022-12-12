@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查询CHC物理服务器
-    ///
-    /// 本接口 (DescribeChcHosts) 用于查询一个或多个CHC物理服务器详细信息。
-    /// * 可以根据实例`ID`、实例名称或者设备类型等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
-    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
-    @inlinable
-    public func describeChcHosts(_ input: DescribeChcHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChcHostsResponse > {
-        self.client.execute(action: "DescribeChcHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询CHC物理服务器
-    ///
-    /// 本接口 (DescribeChcHosts) 用于查询一个或多个CHC物理服务器详细信息。
-    /// * 可以根据实例`ID`、实例名称或者设备类型等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
-    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
-    @inlinable
-    public func describeChcHosts(_ input: DescribeChcHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChcHostsResponse {
-        try await self.client.execute(action: "DescribeChcHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeChcHosts请求参数结构体
     public struct DescribeChcHostsRequest: TCRequestModel {
         /// CHC物理服务器实例ID。每次请求的实例的上限为100。参数不支持同时指定`ChcIds`和`Filters`。
@@ -60,7 +40,7 @@ extension Cvm {
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: Int64?
         
-        public init (chcIds: [String]?, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (chcIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.chcIds = chcIds
             self.filters = filters
             self.offset = offset
@@ -91,5 +71,25 @@ extension Cvm {
             case chcHostSet = "ChcHostSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询CHC物理服务器
+    ///
+    /// 本接口 (DescribeChcHosts) 用于查询一个或多个CHC物理服务器详细信息。
+    /// * 可以根据实例`ID`、实例名称或者设备类型等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
+    @inlinable
+    public func describeChcHosts(_ input: DescribeChcHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChcHostsResponse > {
+        self.client.execute(action: "DescribeChcHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询CHC物理服务器
+    ///
+    /// 本接口 (DescribeChcHosts) 用于查询一个或多个CHC物理服务器详细信息。
+    /// * 可以根据实例`ID`、实例名称或者设备类型等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
+    /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
+    @inlinable
+    public func describeChcHosts(_ input: DescribeChcHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChcHostsResponse {
+        try await self.client.execute(action: "DescribeChcHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vm {
-    /// 取消任务
-    ///
-    /// 可使用该接口取消审核任务，成功取消后，该接口返回已取消任务的TaskId。<br>
-    /// 默认接口请求频率限制：**20次/秒**。
-    @inlinable
-    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelTaskResponse > {
-        self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 取消任务
-    ///
-    /// 可使用该接口取消审核任务，成功取消后，该接口返回已取消任务的TaskId。<br>
-    /// 默认接口请求频率限制：**20次/秒**。
-    @inlinable
-    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
-        try await self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CancelTask请求参数结构体
     public struct CancelTaskRequest: TCRequestModel {
         /// 该字段表示创建视频审核任务后返回的任务ID（在Results参数中），用于标识需要取消的审核任务。
@@ -55,5 +37,23 @@ extension Vm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 取消任务
+    ///
+    /// 可使用该接口取消审核任务，成功取消后，该接口返回已取消任务的TaskId。<br>
+    /// 默认接口请求频率限制：**20次/秒**。
+    @inlinable
+    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CancelTaskResponse > {
+        self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 取消任务
+    ///
+    /// 可使用该接口取消审核任务，成功取消后，该接口返回已取消任务的TaskId。<br>
+    /// 默认接口请求频率限制：**20次/秒**。
+    @inlinable
+    public func cancelTask(_ input: CancelTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
+        try await self.client.execute(action: "CancelTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

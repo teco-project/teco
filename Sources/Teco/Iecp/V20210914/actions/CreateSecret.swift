@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 创建Secret
-    @inlinable
-    public func createSecret(_ input: CreateSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecretResponse > {
-        self.client.execute(action: "CreateSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建Secret
-    @inlinable
-    public func createSecret(_ input: CreateSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {
-        try await self.client.execute(action: "CreateSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSecret请求参数结构体
     public struct CreateSecretRequest: TCRequestModel {
         /// 单元ID
@@ -48,9 +36,9 @@ extension Iecp {
         public let cloudData: [KeyValueObj]?
         
         /// DockerConfig配置
-        public let dockerConfig: DockerConfig
+        public let dockerConfig: DockerConfig?
         
-        public init (edgeUnitID: UInt64, secretName: String, secretNamespace: String?, secretType: String?, dockerConfigJson: String?, cloudData: [KeyValueObj]?, dockerConfig: DockerConfig) {
+        public init (edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, secretType: String? = nil, dockerConfigJson: String? = nil, cloudData: [KeyValueObj]? = nil, dockerConfig: DockerConfig? = nil) {
             self.edgeUnitID = edgeUnitID
             self.secretName = secretName
             self.secretNamespace = secretNamespace
@@ -79,5 +67,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建Secret
+    @inlinable
+    public func createSecret(_ input: CreateSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecretResponse > {
+        self.client.execute(action: "CreateSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建Secret
+    @inlinable
+    public func createSecret(_ input: CreateSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {
+        try await self.client.execute(action: "CreateSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

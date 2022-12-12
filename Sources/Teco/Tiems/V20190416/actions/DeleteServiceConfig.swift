@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiems {
-    /// 删除服务配置
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 删除服务配置
-    @inlinable
-    public func deleteServiceConfig(_ input: DeleteServiceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServiceConfigResponse > {
-        self.client.execute(action: "DeleteServiceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除服务配置
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 删除服务配置
-    @inlinable
-    public func deleteServiceConfig(_ input: DeleteServiceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceConfigResponse {
-        try await self.client.execute(action: "DeleteServiceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteServiceConfig请求参数结构体
     public struct DeleteServiceConfigRequest: TCRequestModel {
         /// 服务配置Id
@@ -41,7 +23,7 @@ extension Tiems {
         /// 服务配置名称
         public let serviceConfigName: String?
         
-        public init (serviceConfigId: String?, serviceConfigName: String?) {
+        public init (serviceConfigId: String? = nil, serviceConfigName: String? = nil) {
             self.serviceConfigId = serviceConfigId
             self.serviceConfigName = serviceConfigName
         }
@@ -60,5 +42,23 @@ extension Tiems {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除服务配置
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 删除服务配置
+    @inlinable
+    public func deleteServiceConfig(_ input: DeleteServiceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServiceConfigResponse > {
+        self.client.execute(action: "DeleteServiceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除服务配置
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 删除服务配置
+    @inlinable
+    public func deleteServiceConfig(_ input: DeleteServiceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceConfigResponse {
+        try await self.client.execute(action: "DeleteServiceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

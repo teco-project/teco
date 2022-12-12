@@ -15,30 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 添加拉流配置(该接口已下线,请使用新接口 CreateLivePullStreamTask)
-    ///
-    /// 创建临时拉流转推任务，目前限制添加10条任务。
-    /// 该接口已下线,请使用新接口 CreateLivePullStreamTask。
-    /// 注意：该接口用于创建临时拉流转推任务，
-    /// 拉流源地址即 FromUrl 可以是腾讯或非腾讯数据源，
-    /// 但转推目标地址即 ToUrl 目前限制为已注册的腾讯直播域名。
-    @inlinable
-    public func createPullStreamConfig(_ input: CreatePullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePullStreamConfigResponse > {
-        self.client.execute(action: "CreatePullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加拉流配置(该接口已下线,请使用新接口 CreateLivePullStreamTask)
-    ///
-    /// 创建临时拉流转推任务，目前限制添加10条任务。
-    /// 该接口已下线,请使用新接口 CreateLivePullStreamTask。
-    /// 注意：该接口用于创建临时拉流转推任务，
-    /// 拉流源地址即 FromUrl 可以是腾讯或非腾讯数据源，
-    /// 但转推目标地址即 ToUrl 目前限制为已注册的腾讯直播域名。
-    @inlinable
-    public func createPullStreamConfig(_ input: CreatePullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePullStreamConfigResponse {
-        try await self.client.execute(action: "CreatePullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePullStreamConfig请求参数结构体
     public struct CreatePullStreamConfigRequest: TCRequestModel {
         /// 源 Url ，用于拉流的地址。目前可支持直播流及点播文件。
@@ -114,5 +90,29 @@ extension Live {
             case configId = "ConfigId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加拉流配置(该接口已下线,请使用新接口 CreateLivePullStreamTask)
+    ///
+    /// 创建临时拉流转推任务，目前限制添加10条任务。
+    /// 该接口已下线,请使用新接口 CreateLivePullStreamTask。
+    /// 注意：该接口用于创建临时拉流转推任务，
+    /// 拉流源地址即 FromUrl 可以是腾讯或非腾讯数据源，
+    /// 但转推目标地址即 ToUrl 目前限制为已注册的腾讯直播域名。
+    @inlinable
+    public func createPullStreamConfig(_ input: CreatePullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePullStreamConfigResponse > {
+        self.client.execute(action: "CreatePullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加拉流配置(该接口已下线,请使用新接口 CreateLivePullStreamTask)
+    ///
+    /// 创建临时拉流转推任务，目前限制添加10条任务。
+    /// 该接口已下线,请使用新接口 CreateLivePullStreamTask。
+    /// 注意：该接口用于创建临时拉流转推任务，
+    /// 拉流源地址即 FromUrl 可以是腾讯或非腾讯数据源，
+    /// 但转推目标地址即 ToUrl 目前限制为已注册的腾讯直播域名。
+    @inlinable
+    public func createPullStreamConfig(_ input: CreatePullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePullStreamConfigResponse {
+        try await self.client.execute(action: "CreatePullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

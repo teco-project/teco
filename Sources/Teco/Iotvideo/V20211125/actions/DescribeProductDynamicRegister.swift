@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取产品动态注册详情
-    @inlinable
-    public func describeProductDynamicRegister(_ input: DescribeProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductDynamicRegisterResponse > {
-        self.client.execute(action: "DescribeProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取产品动态注册详情
-    @inlinable
-    public func describeProductDynamicRegister(_ input: DescribeProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductDynamicRegisterResponse {
-        try await self.client.execute(action: "DescribeProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProductDynamicRegister请求参数结构体
     public struct DescribeProductDynamicRegisterRequest: TCRequestModel {
         /// 产品ID
@@ -61,5 +49,17 @@ extension Iotvideo {
             case registerLimit = "RegisterLimit"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取产品动态注册详情
+    @inlinable
+    public func describeProductDynamicRegister(_ input: DescribeProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductDynamicRegisterResponse > {
+        self.client.execute(action: "DescribeProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品动态注册详情
+    @inlinable
+    public func describeProductDynamicRegister(_ input: DescribeProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductDynamicRegisterResponse {
+        try await self.client.execute(action: "DescribeProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

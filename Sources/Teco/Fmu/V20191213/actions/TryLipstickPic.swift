@@ -15,30 +15,6 @@
 // DO NOT EDIT.
 
 extension Fmu {
-    /// 试唇色
-    ///
-    /// 对图片中的人脸嘴唇进行着色，最多支持同时对一张图中的3张人脸进行试唇色。
-    /// 您可以通过事先注册在腾讯云的唇色素材（LUT文件）改变图片中的人脸唇色，也可以输入RGBA模型数值。
-    /// 为了更好的效果，建议您使用事先注册在腾讯云的唇色素材（LUT文件）。
-    /// >     
-    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func tryLipstickPic(_ input: TryLipstickPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TryLipstickPicResponse > {
-        self.client.execute(action: "TryLipstickPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 试唇色
-    ///
-    /// 对图片中的人脸嘴唇进行着色，最多支持同时对一张图中的3张人脸进行试唇色。
-    /// 您可以通过事先注册在腾讯云的唇色素材（LUT文件）改变图片中的人脸唇色，也可以输入RGBA模型数值。
-    /// 为了更好的效果，建议您使用事先注册在腾讯云的唇色素材（LUT文件）。
-    /// >     
-    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func tryLipstickPic(_ input: TryLipstickPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TryLipstickPicResponse {
-        try await self.client.execute(action: "TryLipstickPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TryLipstickPic请求参数结构体
     public struct TryLipstickPicRequest: TCRequestModel {
         /// 唇色信息。 
@@ -59,7 +35,7 @@ extension Fmu {
         /// 返回图像方式（base64 或 url ) ，二选一。url有效期为1天。
         public let rspImgType: String?
         
-        public init (lipColorInfos: [LipColorInfo], image: String?, url: String?, rspImgType: String?) {
+        public init (lipColorInfos: [LipColorInfo], image: String? = nil, url: String? = nil, rspImgType: String? = nil) {
             self.lipColorInfos = lipColorInfos
             self.image = image
             self.url = url
@@ -90,5 +66,29 @@ extension Fmu {
             case resultUrl = "ResultUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 试唇色
+    ///
+    /// 对图片中的人脸嘴唇进行着色，最多支持同时对一张图中的3张人脸进行试唇色。
+    /// 您可以通过事先注册在腾讯云的唇色素材（LUT文件）改变图片中的人脸唇色，也可以输入RGBA模型数值。
+    /// 为了更好的效果，建议您使用事先注册在腾讯云的唇色素材（LUT文件）。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func tryLipstickPic(_ input: TryLipstickPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TryLipstickPicResponse > {
+        self.client.execute(action: "TryLipstickPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 试唇色
+    ///
+    /// 对图片中的人脸嘴唇进行着色，最多支持同时对一张图中的3张人脸进行试唇色。
+    /// 您可以通过事先注册在腾讯云的唇色素材（LUT文件）改变图片中的人脸唇色，也可以输入RGBA模型数值。
+    /// 为了更好的效果，建议您使用事先注册在腾讯云的唇色素材（LUT文件）。
+    /// >     
+    /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func tryLipstickPic(_ input: TryLipstickPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TryLipstickPicResponse {
+        try await self.client.execute(action: "TryLipstickPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

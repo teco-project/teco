@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询默认证书列表
-    @inlinable
-    public func describeDefaultCertificates(_ input: DescribeDefaultCertificatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDefaultCertificatesResponse > {
-        self.client.execute(action: "DescribeDefaultCertificates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询默认证书列表
-    @inlinable
-    public func describeDefaultCertificates(_ input: DescribeDefaultCertificatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultCertificatesResponse {
-        try await self.client.execute(action: "DescribeDefaultCertificates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDefaultCertificates请求参数结构体
     public struct DescribeDefaultCertificatesRequest: TCRequestModel {
         /// Zone ID
@@ -58,5 +46,17 @@ extension Teo {
             case certInfo = "CertInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询默认证书列表
+    @inlinable
+    public func describeDefaultCertificates(_ input: DescribeDefaultCertificatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDefaultCertificatesResponse > {
+        self.client.execute(action: "DescribeDefaultCertificates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询默认证书列表
+    @inlinable
+    public func describeDefaultCertificates(_ input: DescribeDefaultCertificatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultCertificatesResponse {
+        try await self.client.execute(action: "DescribeDefaultCertificates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

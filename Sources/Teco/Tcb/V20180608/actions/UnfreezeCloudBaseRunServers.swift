@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 批量解冻服务
-    @inlinable
-    public func unfreezeCloudBaseRunServers(_ input: UnfreezeCloudBaseRunServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnfreezeCloudBaseRunServersResponse > {
-        self.client.execute(action: "UnfreezeCloudBaseRunServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量解冻服务
-    @inlinable
-    public func unfreezeCloudBaseRunServers(_ input: UnfreezeCloudBaseRunServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnfreezeCloudBaseRunServersResponse {
-        try await self.client.execute(action: "UnfreezeCloudBaseRunServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnfreezeCloudBaseRunServers请求参数结构体
     public struct UnfreezeCloudBaseRunServersRequest: TCRequestModel {
         /// 环境ID
@@ -69,5 +57,17 @@ extension Tcb {
             case failServerList = "FailServerList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量解冻服务
+    @inlinable
+    public func unfreezeCloudBaseRunServers(_ input: UnfreezeCloudBaseRunServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnfreezeCloudBaseRunServersResponse > {
+        self.client.execute(action: "UnfreezeCloudBaseRunServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量解冻服务
+    @inlinable
+    public func unfreezeCloudBaseRunServers(_ input: UnfreezeCloudBaseRunServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnfreezeCloudBaseRunServersResponse {
+        try await self.client.execute(action: "UnfreezeCloudBaseRunServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

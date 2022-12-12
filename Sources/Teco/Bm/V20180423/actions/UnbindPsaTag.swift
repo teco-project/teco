@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 解除标签与预授权规则的绑定
-    @inlinable
-    public func unbindPsaTag(_ input: UnbindPsaTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindPsaTagResponse > {
-        self.client.execute(action: "UnbindPsaTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解除标签与预授权规则的绑定
-    @inlinable
-    public func unbindPsaTag(_ input: UnbindPsaTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPsaTagResponse {
-        try await self.client.execute(action: "UnbindPsaTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindPsaTag请求参数结构体
     public struct UnbindPsaTagRequest: TCRequestModel {
         /// 预授权规则ID
@@ -59,5 +47,17 @@ extension Bm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解除标签与预授权规则的绑定
+    @inlinable
+    public func unbindPsaTag(_ input: UnbindPsaTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindPsaTagResponse > {
+        self.client.execute(action: "UnbindPsaTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解除标签与预授权规则的绑定
+    @inlinable
+    public func unbindPsaTag(_ input: UnbindPsaTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPsaTagResponse {
+        try await self.client.execute(action: "UnbindPsaTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

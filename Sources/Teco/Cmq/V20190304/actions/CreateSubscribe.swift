@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cmq {
-    /// 创建订阅接口
-    @inlinable
-    public func createSubscribe(_ input: CreateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubscribeResponse > {
-        self.client.execute(action: "CreateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建订阅接口
-    @inlinable
-    public func createSubscribe(_ input: CreateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
-        try await self.client.execute(action: "CreateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSubscribe请求参数结构体
     public struct CreateSubscribeRequest: TCRequestModel {
         /// 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
@@ -53,7 +41,7 @@ extension Cmq {
         /// 推送内容的格式。取值：1）JSON；2）SIMPLIFIED，即raw格式。如果Protocol是queue，则取值必须为SIMPLIFIED。如果Protocol是http，两个值均可以，默认值是JSON。
         public let notifyContentFormat: String?
         
-        public init (topicName: String, subscriptionName: String, `protocol`: String, endpoint: String, notifyStrategy: String?, filterTag: [String]?, bindingKey: [String]?, notifyContentFormat: String?) {
+        public init (topicName: String, subscriptionName: String, `protocol`: String, endpoint: String, notifyStrategy: String? = nil, filterTag: [String]? = nil, bindingKey: [String]? = nil, notifyContentFormat: String? = nil) {
             self.topicName = topicName
             self.subscriptionName = subscriptionName
             self.`protocol` = `protocol`
@@ -88,5 +76,17 @@ extension Cmq {
             case subscriptionId = "SubscriptionId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建订阅接口
+    @inlinable
+    public func createSubscribe(_ input: CreateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSubscribeResponse > {
+        self.client.execute(action: "CreateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建订阅接口
+    @inlinable
+    public func createSubscribe(_ input: CreateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
+        try await self.client.execute(action: "CreateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 删除标签
-    @inlinable
-    public func deleteTags(_ input: DeleteTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTagsResponse > {
-        self.client.execute(action: "DeleteTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除标签
-    @inlinable
-    public func deleteTags(_ input: DeleteTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagsResponse {
-        try await self.client.execute(action: "DeleteTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteTags请求参数结构体
     public struct DeleteTagsRequest: TCRequestModel {
         /// 标签ID
@@ -49,5 +37,17 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除标签
+    @inlinable
+    public func deleteTags(_ input: DeleteTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteTagsResponse > {
+        self.client.execute(action: "DeleteTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除标签
+    @inlinable
+    public func deleteTags(_ input: DeleteTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagsResponse {
+        try await self.client.execute(action: "DeleteTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

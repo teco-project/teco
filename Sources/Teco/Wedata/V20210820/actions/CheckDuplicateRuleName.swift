@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 检查规则名称是否重复
-    @inlinable
-    public func checkDuplicateRuleName(_ input: CheckDuplicateRuleNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckDuplicateRuleNameResponse > {
-        self.client.execute(action: "CheckDuplicateRuleName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检查规则名称是否重复
-    @inlinable
-    public func checkDuplicateRuleName(_ input: CheckDuplicateRuleNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDuplicateRuleNameResponse {
-        try await self.client.execute(action: "CheckDuplicateRuleName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckDuplicateRuleName请求参数结构体
     public struct CheckDuplicateRuleNameRequest: TCRequestModel {
         /// 项目Id
@@ -41,7 +29,7 @@ extension Wedata {
         /// 规则Id
         public let ruleId: UInt64?
         
-        public init (projectId: String?, ruleGroupId: UInt64?, name: String?, ruleId: UInt64?) {
+        public init (projectId: String? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, ruleId: UInt64? = nil) {
             self.projectId = projectId
             self.ruleGroupId = ruleGroupId
             self.name = name
@@ -69,5 +57,17 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检查规则名称是否重复
+    @inlinable
+    public func checkDuplicateRuleName(_ input: CheckDuplicateRuleNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckDuplicateRuleNameResponse > {
+        self.client.execute(action: "CheckDuplicateRuleName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检查规则名称是否重复
+    @inlinable
+    public func checkDuplicateRuleName(_ input: CheckDuplicateRuleNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDuplicateRuleNameResponse {
+        try await self.client.execute(action: "CheckDuplicateRuleName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

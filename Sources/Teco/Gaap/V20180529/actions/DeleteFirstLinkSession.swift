@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 删除接入段加速会话
-    ///
-    /// 本接口（DeleteFirstLinkSession）用于删除接入段加速会话，删除加速会话后会停止加速。
-    @inlinable
-    public func deleteFirstLinkSession(_ input: DeleteFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFirstLinkSessionResponse > {
-        self.client.execute(action: "DeleteFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除接入段加速会话
-    ///
-    /// 本接口（DeleteFirstLinkSession）用于删除接入段加速会话，删除加速会话后会停止加速。
-    @inlinable
-    public func deleteFirstLinkSession(_ input: DeleteFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirstLinkSessionResponse {
-        try await self.client.execute(action: "DeleteFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteFirstLinkSession请求参数结构体
     public struct DeleteFirstLinkSessionRequest: TCRequestModel {
         /// 单次加速唯一会话Id
@@ -53,5 +37,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除接入段加速会话
+    ///
+    /// 本接口（DeleteFirstLinkSession）用于删除接入段加速会话，删除加速会话后会停止加速。
+    @inlinable
+    public func deleteFirstLinkSession(_ input: DeleteFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFirstLinkSessionResponse > {
+        self.client.execute(action: "DeleteFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除接入段加速会话
+    ///
+    /// 本接口（DeleteFirstLinkSession）用于删除接入段加速会话，删除加速会话后会停止加速。
+    @inlinable
+    public func deleteFirstLinkSession(_ input: DeleteFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirstLinkSessionResponse {
+        try await self.client.execute(action: "DeleteFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

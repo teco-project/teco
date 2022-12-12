@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 设置备份策略
-    ///
-    /// 本接口（ModifyBackupStrategy）用于修改备份策略
-    @inlinable
-    public func modifyBackupStrategy(_ input: ModifyBackupStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupStrategyResponse > {
-        self.client.execute(action: "ModifyBackupStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置备份策略
-    ///
-    /// 本接口（ModifyBackupStrategy）用于修改备份策略
-    @inlinable
-    public func modifyBackupStrategy(_ input: ModifyBackupStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupStrategyResponse {
-        try await self.client.execute(action: "ModifyBackupStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyBackupStrategy请求参数结构体
     public struct ModifyBackupStrategyRequest: TCRequestModel {
         /// 实例ID
@@ -69,7 +53,7 @@ extension Sqlserver {
         /// 定期备份开始日期，格式-YYYY-MM-DD 默认当前日期
         public let regularBackupStartTime: String?
         
-        public init (instanceId: String, backupType: String?, backupTime: UInt64?, backupDay: UInt64?, backupModel: String?, backupCycle: [UInt64]?, backupSaveDays: UInt64?, regularBackupEnable: String?, regularBackupSaveDays: UInt64?, regularBackupStrategy: String?, regularBackupCounts: UInt64?, regularBackupStartTime: String?) {
+        public init (instanceId: String, backupType: String? = nil, backupTime: UInt64? = nil, backupDay: UInt64? = nil, backupModel: String? = nil, backupCycle: [UInt64]? = nil, backupSaveDays: UInt64? = nil, regularBackupEnable: String? = nil, regularBackupSaveDays: UInt64? = nil, regularBackupStrategy: String? = nil, regularBackupCounts: UInt64? = nil, regularBackupStartTime: String? = nil) {
             self.instanceId = instanceId
             self.backupType = backupType
             self.backupTime = backupTime
@@ -116,5 +100,21 @@ extension Sqlserver {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置备份策略
+    ///
+    /// 本接口（ModifyBackupStrategy）用于修改备份策略
+    @inlinable
+    public func modifyBackupStrategy(_ input: ModifyBackupStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyBackupStrategyResponse > {
+        self.client.execute(action: "ModifyBackupStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置备份策略
+    ///
+    /// 本接口（ModifyBackupStrategy）用于修改备份策略
+    @inlinable
+    public func modifyBackupStrategy(_ input: ModifyBackupStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupStrategyResponse {
+        try await self.client.execute(action: "ModifyBackupStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

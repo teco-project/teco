@@ -29,7 +29,7 @@ extension Cms {
         /// 二维码的类型：1:ONED_BARCODE，2:QRCOD，3:WXCODE，4:PDF417，5:DATAMATRIX
         public let codeType: Int64?
         
-        public init (codePosition: [CodePosition]?, codeCharset: String?, codeText: String?, codeType: Int64?) {
+        public init (codePosition: [CodePosition]? = nil, codeCharset: String? = nil, codeText: String? = nil, codeType: Int64? = nil) {
             self.codePosition = codePosition
             self.codeCharset = codeCharset
             self.codeText = codeText
@@ -52,7 +52,7 @@ extension Cms {
         /// 检测是否成功，0：成功，-1：出错
         public let moderationCode: Int64?
         
-        public init (moderationDetail: [CodeDetail]?, moderationCode: Int64?) {
+        public init (moderationDetail: [CodeDetail]? = nil, moderationCode: Int64? = nil) {
             self.moderationDetail = moderationDetail
             self.moderationCode = moderationCode
         }
@@ -71,7 +71,7 @@ extension Cms {
         /// 二维码边界点Y轴坐标
         public let floatY: Float?
         
-        public init (floatX: Float?, floatY: Float?) {
+        public init (floatX: Float? = nil, floatY: Float? = nil) {
             self.floatX = floatX
             self.floatY = floatY
         }
@@ -96,7 +96,7 @@ extension Cms {
         /// 宽度
         public let width: Int64?
         
-        public init (cx: Int64?, cy: Int64?, height: Int64?, width: Int64?) {
+        public init (cx: Int64? = nil, cy: Int64? = nil, height: Int64? = nil, width: Int64? = nil) {
             self.cx = cx
             self.cy = cy
             self.height = height
@@ -125,7 +125,7 @@ extension Cms {
         /// 命中的自定义关键词的类型
         public let type: String?
         
-        public init (keywords: [String]?, libId: String?, libName: String?, type: String?) {
+        public init (keywords: [String]? = nil, libId: String? = nil, libName: String? = nil, type: String? = nil) {
             self.keywords = keywords
             self.libId = libId
             self.libName = libName
@@ -161,7 +161,7 @@ extension Cms {
         /// 该标签模型命中的分值
         public let score: UInt64?
         
-        public init (evilLabel: String?, evilType: UInt64?, keywords: [String]?, score: UInt64?) {
+        public init (evilLabel: String? = nil, evilType: UInt64? = nil, keywords: [String]? = nil, score: UInt64? = nil) {
             self.evilLabel = evilLabel
             self.evilType = evilType
             self.keywords = keywords
@@ -199,7 +199,7 @@ extension Cms {
         /// 设备指纹Token
         public let tokenId: String?
         
-        public init (deviceId: String?, idfa: String?, idfv: String?, imei: String?, ip: String?, mac: String?, tokenId: String?) {
+        public init (deviceId: String? = nil, idfa: String? = nil, idfv: String? = nil, imei: String? = nil, ip: String? = nil, mac: String? = nil, tokenId: String? = nil) {
             self.deviceId = deviceId
             self.idfa = idfa
             self.idfv = idfv
@@ -234,7 +234,7 @@ extension Cms {
         /// 文件压缩后云url
         public let compressFileUrl: String?
         
-        public init (fileMd5: String, fileName: String, fileUrl: String, compressFileUrl: String?) {
+        public init (fileMd5: String, fileName: String, fileUrl: String, compressFileUrl: String? = nil) {
             self.fileMd5 = fileMd5
             self.fileName = fileName
             self.fileUrl = fileUrl
@@ -298,7 +298,7 @@ extension Cms {
         /// 文件的url
         public let fileUrl: String?
         
-        public init (code: Int64, createdAt: UInt64, evilType: UInt64, fileMd5: String, fileName: String, fileType: String, id: String, label: UInt64, status: UInt64, compressFileUrl: String?, fileUrl: String?) {
+        public init (code: Int64, createdAt: UInt64, evilType: UInt64, fileMd5: String, fileName: String, fileType: String, id: String, label: UInt64, status: UInt64, compressFileUrl: String? = nil, fileUrl: String? = nil) {
             self.code = code
             self.createdAt = createdAt
             self.evilType = evilType
@@ -362,36 +362,36 @@ extension Cms {
         public let evilType: Int64
         
         /// 图片二维码详情
-        public let codeDetect: CodeDetect
+        public let codeDetect: CodeDetect?
         
         /// 图片性感详情
-        public let hotDetect: ImageHotDetect
+        public let hotDetect: ImageHotDetect?
         
         /// 图片违法详情
-        public let illegalDetect: ImageIllegalDetect
+        public let illegalDetect: ImageIllegalDetect?
         
         /// logo详情
-        public let logoDetect: LogoDetail
+        public let logoDetect: LogoDetail?
         
         /// 图片OCR详情
-        public let ocrDetect: OCRDetect
+        public let ocrDetect: OCRDetect?
         
         /// 手机检测详情
-        public let phoneDetect: PhoneDetect
+        public let phoneDetect: PhoneDetect?
         
         /// 图片涉政详情
-        public let polityDetect: ImagePolityDetect
+        public let polityDetect: ImagePolityDetect?
         
         /// 图片涉黄详情
-        public let pornDetect: ImagePornDetect
+        public let pornDetect: ImagePornDetect?
         
         /// 图片相似度详情
-        public let similar: Similar
+        public let similar: Similar?
         
         /// 图片暴恐详情
-        public let terrorDetect: ImageTerrorDetect
+        public let terrorDetect: ImageTerrorDetect?
         
-        public init (evilFlag: Int64, evilType: Int64, codeDetect: CodeDetect, hotDetect: ImageHotDetect, illegalDetect: ImageIllegalDetect, logoDetect: LogoDetail, ocrDetect: OCRDetect, phoneDetect: PhoneDetect, polityDetect: ImagePolityDetect, pornDetect: ImagePornDetect, similar: Similar, terrorDetect: ImageTerrorDetect) {
+        public init (evilFlag: Int64, evilType: Int64, codeDetect: CodeDetect? = nil, hotDetect: ImageHotDetect? = nil, illegalDetect: ImageIllegalDetect? = nil, logoDetect: LogoDetail? = nil, ocrDetect: OCRDetect? = nil, phoneDetect: PhoneDetect? = nil, polityDetect: ImagePolityDetect? = nil, pornDetect: ImagePornDetect? = nil, similar: Similar? = nil, terrorDetect: ImageTerrorDetect? = nil) {
             self.evilFlag = evilFlag
             self.evilType = evilType
             self.codeDetect = codeDetect
@@ -441,7 +441,7 @@ extension Cms {
         /// 性感分：分值范围 0-100，分数越高性感倾向越明显
         public let score: Int64?
         
-        public init (evilType: Int64, hitFlag: Int64, keywords: [String]?, labels: [String]?, score: Int64?) {
+        public init (evilType: Int64, hitFlag: Int64, keywords: [String]? = nil, labels: [String]? = nil, score: Int64? = nil) {
             self.evilType = evilType
             self.hitFlag = hitFlag
             self.keywords = keywords
@@ -477,7 +477,7 @@ extension Cms {
         /// 违法分：分值范围 0-100，分数越高违法倾向越明显
         public let score: Int64?
         
-        public init (evilType: Int64, hitFlag: Int64, keywords: [String]?, labels: [String]?, score: Int64?) {
+        public init (evilType: Int64, hitFlag: Int64, keywords: [String]? = nil, labels: [String]? = nil, score: Int64? = nil) {
             self.evilType = evilType
             self.hitFlag = hitFlag
             self.keywords = keywords
@@ -519,7 +519,7 @@ extension Cms {
         /// 政治（人脸）分：分值范围 0-100，分数越高可疑程度越高
         public let score: Int64?
         
-        public init (evilType: Int64, hitFlag: Int64, polityLogoDetail: [Logo]?, faceNames: [String]?, keywords: [String]?, polityItems: [String]?, score: Int64?) {
+        public init (evilType: Int64, hitFlag: Int64, polityLogoDetail: [Logo]? = nil, faceNames: [String]? = nil, keywords: [String]? = nil, polityItems: [String]? = nil, score: Int64? = nil) {
             self.evilType = evilType
             self.hitFlag = hitFlag
             self.polityLogoDetail = polityLogoDetail
@@ -559,7 +559,7 @@ extension Cms {
         /// 色情分：分值范围 0-100，分数越高色情倾向越明显
         public let score: Int64?
         
-        public init (evilType: Int64, hitFlag: Int64, keywords: [String]?, labels: [String]?, score: Int64?) {
+        public init (evilType: Int64, hitFlag: Int64, keywords: [String]? = nil, labels: [String]? = nil, score: Int64? = nil) {
             self.evilType = evilType
             self.hitFlag = hitFlag
             self.keywords = keywords
@@ -595,7 +595,7 @@ extension Cms {
         /// 暴恐分：分值范围0--100，分数越高暴恐倾向越明显
         public let score: Int64?
         
-        public init (evilType: Int64?, hitFlag: Int64?, keywords: [String]?, labels: [String]?, score: Int64?) {
+        public init (evilType: Int64? = nil, hitFlag: Int64? = nil, keywords: [String]? = nil, labels: [String]? = nil, score: Int64? = nil) {
             self.evilType = evilType
             self.hitFlag = hitFlag
             self.keywords = keywords
@@ -615,7 +615,7 @@ extension Cms {
     /// Logo
     public struct Logo: TCInputModel {
         /// logo图标坐标信息
-        public let rrectF: RrectF
+        public let rrectF: RrectF?
         
         /// logo图标置信度
         public let confidence: Float?
@@ -623,7 +623,7 @@ extension Cms {
         /// logo图标名称
         public let name: String?
         
-        public init (rrectF: RrectF, confidence: Float?, name: String?) {
+        public init (rrectF: RrectF? = nil, confidence: Float? = nil, name: String? = nil) {
             self.rrectF = rrectF
             self.confidence = confidence
             self.name = name
@@ -641,7 +641,7 @@ extension Cms {
         /// 命中的Applogo详情
         public let appLogoDetail: [Logo]?
         
-        public init (appLogoDetail: [Logo]?) {
+        public init (appLogoDetail: [Logo]? = nil) {
             self.appLogoDetail = appLogoDetail
         }
         
@@ -665,7 +665,7 @@ extension Cms {
         public let contentType: Int64
         
         /// 用户信息
-        public let userInfo: User
+        public let userInfo: User?
         
         /// 机器审核类型，与腾讯机器审核定义一致
         /// 100 正常
@@ -693,7 +693,7 @@ extension Cms {
         /// 标题
         public let title: String?
         
-        public init (batchId: String, content: String, contentId: String, contentType: Int64, userInfo: User, autoDetailCode: Int64?, autoResult: Int64?, callBackInfo: String?, createTime: String?, priority: Int64?, title: String?) {
+        public init (batchId: String, content: String, contentId: String, contentType: Int64, userInfo: User? = nil, autoDetailCode: Int64? = nil, autoResult: Int64? = nil, callBackInfo: String? = nil, createTime: String? = nil, priority: Int64? = nil, title: String? = nil) {
             self.batchId = batchId
             self.content = content
             self.contentId = contentId
@@ -749,7 +749,7 @@ extension Cms {
         /// 识别到的文本信息
         public let textInfo: String?
         
-        public init (item: [OCRItem]?, textInfo: String?) {
+        public init (item: [OCRItem]? = nil, textInfo: String? = nil) {
             self.item = item
             self.textInfo = textInfo
         }
@@ -763,7 +763,7 @@ extension Cms {
     /// OCR详情
     public struct OCRItem: TCInputModel {
         /// 检测到的文本坐标信息
-        public let textPosition: Coordinate
+        public let textPosition: Coordinate?
         
         /// 文本命中具体标签
         public let evilLabel: String?
@@ -780,7 +780,7 @@ extension Cms {
         /// 检测到的文本信息
         public let textContent: String?
         
-        public init (textPosition: Coordinate, evilLabel: String?, evilType: Int64?, keywords: [String]?, rate: Int64?, textContent: String?) {
+        public init (textPosition: Coordinate? = nil, evilLabel: String? = nil, evilType: Int64? = nil, keywords: [String]? = nil, rate: Int64? = nil, textContent: String? = nil) {
             self.textPosition = textPosition
             self.evilLabel = evilLabel
             self.evilType = evilType
@@ -815,7 +815,7 @@ extension Cms {
         /// 分值范围 0-100，分数越高倾向越明显
         public let score: Int64?
         
-        public init (evilType: Int64?, hitFlag: Int64?, labels: [String]?, score: Int64?) {
+        public init (evilType: Int64? = nil, hitFlag: Int64? = nil, labels: [String]? = nil, score: Int64? = nil) {
             self.evilType = evilType
             self.hitFlag = hitFlag
             self.labels = labels
@@ -844,7 +844,7 @@ extension Cms {
         /// 风险等级，1:疑似，2：恶意
         public let level: Int64?
         
-        public init (keywords: [String]?, label: String?, lable: String?, level: Int64?) {
+        public init (keywords: [String]? = nil, label: String? = nil, lable: String? = nil, level: Int64? = nil) {
             self.keywords = keywords
             self.label = label
             self.lable = lable
@@ -876,7 +876,7 @@ extension Cms {
         /// logo图标宽度
         public let width: Float?
         
-        public init (cx: Float?, cy: Float?, height: Float?, rotate: Float?, width: Float?) {
+        public init (cx: Float? = nil, cy: Float? = nil, height: Float? = nil, rotate: Float? = nil, width: Float? = nil) {
             self.cx = cx
             self.cy = cy
             self.height = height
@@ -939,7 +939,7 @@ extension Cms {
         public let evilType: Int64
         
         /// 消息类公共相关参数
-        public let common: TextOutputComm
+        public let common: TextOutputComm?
         
         /// 返回的自定义词库结果
         public let customResult: [CustomResult]?
@@ -948,10 +948,10 @@ extension Cms {
         public let detailResult: [DetailResult]?
         
         /// 消息类ID信息
-        public let id: TextOutputID
+        public let id: TextOutputID?
         
         /// 消息类输出结果
-        public let res: TextOutputRes
+        public let res: TextOutputRes?
         
         /// 账号风险检测结果
         public let riskDetails: [RiskDetails]?
@@ -977,7 +977,7 @@ extension Cms {
         /// 建议值,Block：打击,Review：待复审,Normal：正常
         public let suggestion: String?
         
-        public init (evilFlag: Int64, evilType: Int64, common: TextOutputComm, customResult: [CustomResult]?, detailResult: [DetailResult]?, id: TextOutputID, res: TextOutputRes, riskDetails: [RiskDetails]?, bizType: UInt64?, dataId: String?, evilLabel: String?, extra: String?, keywords: [String]?, score: UInt64?, suggestion: String?) {
+        public init (evilFlag: Int64, evilType: Int64, common: TextOutputComm? = nil, customResult: [CustomResult]? = nil, detailResult: [DetailResult]? = nil, id: TextOutputID? = nil, res: TextOutputRes? = nil, riskDetails: [RiskDetails]? = nil, bizType: UInt64? = nil, dataId: String? = nil, evilLabel: String? = nil, extra: String? = nil, keywords: [String]? = nil, score: UInt64? = nil, suggestion: String? = nil) {
             self.evilFlag = evilFlag
             self.evilType = evilType
             self.common = common
@@ -1028,7 +1028,7 @@ extension Cms {
         /// 请求字段里的Common.Uin
         public let uin: Int64?
         
-        public init (appID: Int64?, buCtrlID: Int64?, sendTime: Int64?, uin: Int64?) {
+        public init (appID: Int64? = nil, buCtrlID: Int64? = nil, sendTime: Int64? = nil, uin: Int64? = nil) {
             self.appID = appID
             self.buCtrlID = buCtrlID
             self.sendTime = sendTime
@@ -1051,7 +1051,7 @@ extension Cms {
         /// 用户账号uin，对应请求协议里的Content.User.Uin。旁路结果有回带，串联结果无该字段
         public let uin: String?
         
-        public init (msgID: String?, uin: String?) {
+        public init (msgID: String? = nil, uin: String? = nil) {
             self.msgID = msgID
             self.uin = uin
         }
@@ -1077,7 +1077,7 @@ extension Cms {
         /// 恶意类型，广告（10001）， 政治（20001）， 色情（20002）， 社会事件（20004）， 暴力（20011）， 低俗（20012）， 违法犯罪（20006）， 欺诈（20008）， 版权（20013）， 谣言（20104）， 其他（21000）
         public let resultType: Int64?
         
-        public init (`operator`: String?, resultCode: Int64?, resultMsg: String?, resultType: Int64?) {
+        public init (`operator`: String? = nil, resultCode: Int64? = nil, resultMsg: String? = nil, resultType: Int64? = nil) {
             self.`operator` = `operator`
             self.resultCode = resultCode
             self.resultMsg = resultMsg
@@ -1170,7 +1170,7 @@ extension Cms {
         /// 用户账号ID，如填写，会根据账号历史恶意情况，判定消息有害结果，特别是有利于可疑恶意情况下的辅助判断。账号可以填写微信uin、QQ号、微信openid、QQopenid、字符串等。该字段和账号类别确定唯一账号。
         public let userId: String?
         
-        public init (accountType: Int64?, age: Int64?, gender: Int64?, level: Int64?, nickname: String?, phone: String?, userId: String?) {
+        public init (accountType: Int64? = nil, age: Int64? = nil, gender: Int64? = nil, level: Int64? = nil, nickname: String? = nil, phone: String? = nil, userId: String? = nil) {
             self.accountType = accountType
             self.age = age
             self.gender = gender

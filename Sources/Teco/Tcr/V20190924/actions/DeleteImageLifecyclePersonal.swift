@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 删除个人版镜像仓库Tag自动清理策略
-    ///
-    /// 用于在个人版镜像仓库中删除仓库Tag自动清理策略
-    @inlinable
-    public func deleteImageLifecyclePersonal(_ input: DeleteImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageLifecyclePersonalResponse > {
-        self.client.execute(action: "DeleteImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除个人版镜像仓库Tag自动清理策略
-    ///
-    /// 用于在个人版镜像仓库中删除仓库Tag自动清理策略
-    @inlinable
-    public func deleteImageLifecyclePersonal(_ input: DeleteImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageLifecyclePersonalResponse {
-        try await self.client.execute(action: "DeleteImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteImageLifecyclePersonal请求参数结构体
     public struct DeleteImageLifecyclePersonalRequest: TCRequestModel {
         /// 仓库名称
@@ -53,5 +37,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除个人版镜像仓库Tag自动清理策略
+    ///
+    /// 用于在个人版镜像仓库中删除仓库Tag自动清理策略
+    @inlinable
+    public func deleteImageLifecyclePersonal(_ input: DeleteImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageLifecyclePersonalResponse > {
+        self.client.execute(action: "DeleteImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除个人版镜像仓库Tag自动清理策略
+    ///
+    /// 用于在个人版镜像仓库中删除仓库Tag自动清理策略
+    @inlinable
+    public func deleteImageLifecyclePersonal(_ input: DeleteImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageLifecyclePersonalResponse {
+        try await self.client.execute(action: "DeleteImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

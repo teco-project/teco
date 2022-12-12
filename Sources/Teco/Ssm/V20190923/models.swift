@@ -50,7 +50,7 @@ extension Ssm {
         /// TableName - 显式指明所在表
         public let columnName: String?
         
-        public init (privilegeName: String, privileges: [String], database: String?, tableName: String?, columnName: String?) {
+        public init (privilegeName: String, privileges: [String], database: String? = nil, tableName: String? = nil, columnName: String? = nil) {
             self.privilegeName = privilegeName
             self.privileges = privileges
             self.database = database
@@ -175,7 +175,7 @@ extension Ssm {
         /// 标签值
         public let tagValue: [String]?
         
-        public init (tagKey: String, tagValue: [String]?) {
+        public init (tagKey: String, tagValue: [String]? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }

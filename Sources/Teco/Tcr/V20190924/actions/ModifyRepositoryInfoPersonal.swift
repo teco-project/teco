@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 更新个人版镜像仓库描述
-    ///
-    /// 用于在个人版镜像仓库中更新容器镜像描述
-    @inlinable
-    public func modifyRepositoryInfoPersonal(_ input: ModifyRepositoryInfoPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRepositoryInfoPersonalResponse > {
-        self.client.execute(action: "ModifyRepositoryInfoPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新个人版镜像仓库描述
-    ///
-    /// 用于在个人版镜像仓库中更新容器镜像描述
-    @inlinable
-    public func modifyRepositoryInfoPersonal(_ input: ModifyRepositoryInfoPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryInfoPersonalResponse {
-        try await self.client.execute(action: "ModifyRepositoryInfoPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRepositoryInfoPersonal请求参数结构体
     public struct ModifyRepositoryInfoPersonalRequest: TCRequestModel {
         /// 仓库名称
@@ -58,5 +42,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新个人版镜像仓库描述
+    ///
+    /// 用于在个人版镜像仓库中更新容器镜像描述
+    @inlinable
+    public func modifyRepositoryInfoPersonal(_ input: ModifyRepositoryInfoPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRepositoryInfoPersonalResponse > {
+        self.client.execute(action: "ModifyRepositoryInfoPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新个人版镜像仓库描述
+    ///
+    /// 用于在个人版镜像仓库中更新容器镜像描述
+    @inlinable
+    public func modifyRepositoryInfoPersonal(_ input: ModifyRepositoryInfoPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryInfoPersonalResponse {
+        try await self.client.execute(action: "ModifyRepositoryInfoPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

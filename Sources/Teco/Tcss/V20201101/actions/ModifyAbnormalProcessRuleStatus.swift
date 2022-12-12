@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 修改运行时异常进程策略状态
-    ///
-    /// 修改运行时异常进程策略的开启关闭状态
-    @inlinable
-    public func modifyAbnormalProcessRuleStatus(_ input: ModifyAbnormalProcessRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAbnormalProcessRuleStatusResponse > {
-        self.client.execute(action: "ModifyAbnormalProcessRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改运行时异常进程策略状态
-    ///
-    /// 修改运行时异常进程策略的开启关闭状态
-    @inlinable
-    public func modifyAbnormalProcessRuleStatus(_ input: ModifyAbnormalProcessRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAbnormalProcessRuleStatusResponse {
-        try await self.client.execute(action: "ModifyAbnormalProcessRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAbnormalProcessRuleStatus请求参数结构体
     public struct ModifyAbnormalProcessRuleStatusRequest: TCRequestModel {
         /// 策略的ids
@@ -58,5 +42,21 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改运行时异常进程策略状态
+    ///
+    /// 修改运行时异常进程策略的开启关闭状态
+    @inlinable
+    public func modifyAbnormalProcessRuleStatus(_ input: ModifyAbnormalProcessRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAbnormalProcessRuleStatusResponse > {
+        self.client.execute(action: "ModifyAbnormalProcessRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改运行时异常进程策略状态
+    ///
+    /// 修改运行时异常进程策略的开启关闭状态
+    @inlinable
+    public func modifyAbnormalProcessRuleStatus(_ input: ModifyAbnormalProcessRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAbnormalProcessRuleStatusResponse {
+        try await self.client.execute(action: "ModifyAbnormalProcessRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

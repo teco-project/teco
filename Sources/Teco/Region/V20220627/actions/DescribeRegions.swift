@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Region {
-    /// 查询产品支持的地域列表
-    ///
-    /// 本接口(DescribeRegions)用于查询各个产品支持地域信息。
-    @inlinable
-    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionsResponse > {
-        self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询产品支持的地域列表
-    ///
-    /// 本接口(DescribeRegions)用于查询各个产品支持地域信息。
-    @inlinable
-    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
-        try await self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRegions请求参数结构体
     public struct DescribeRegionsRequest: TCRequestModel {
         /// 待查询产品的名称，例如cvm，具体取值请查询DescribeProducts接口
@@ -61,5 +45,21 @@ extension Region {
             case regionSet = "RegionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询产品支持的地域列表
+    ///
+    /// 本接口(DescribeRegions)用于查询各个产品支持地域信息。
+    @inlinable
+    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRegionsResponse > {
+        self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询产品支持的地域列表
+    ///
+    /// 本接口(DescribeRegions)用于查询各个产品支持地域信息。
+    @inlinable
+    public func describeRegions(_ input: DescribeRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionsResponse {
+        try await self.client.execute(action: "DescribeRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

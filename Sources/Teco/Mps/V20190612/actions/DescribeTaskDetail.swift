@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 查询任务详情
-    ///
-    /// 通过任务 ID 查询任务的执行状态和结果的详细信息（最多可以查询3天之内提交的任务）。
-    @inlinable
-    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
-        self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询任务详情
-    ///
-    /// 通过任务 ID 查询任务的执行状态和结果的详细信息（最多可以查询3天之内提交的任务）。
-    @inlinable
-    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
-        try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskDetail请求参数结构体
     public struct DescribeTaskDetailRequest: TCRequestModel {
         /// 视频处理任务的任务 ID。
@@ -71,19 +55,19 @@ extension Mps {
         
         /// 视频编辑任务信息，仅当 TaskType 为 EditMediaTask，该字段有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let editMediaTask: EditMediaTask
+        public let editMediaTask: EditMediaTask?
         
         /// 视频处理任务信息，仅当 TaskType 为 WorkflowTask，该字段有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let workflowTask: WorkflowTask
+        public let workflowTask: WorkflowTask?
         
         /// 直播流处理任务信息，仅当 TaskType 为 LiveStreamProcessTask，该字段有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let liveStreamProcessTask: LiveStreamProcessTask
+        public let liveStreamProcessTask: LiveStreamProcessTask?
         
         /// 任务的事件通知信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let taskNotifyConfig: TaskNotifyConfig
+        public let taskNotifyConfig: TaskNotifyConfig?
         
         /// 任务流的优先级，取值范围为 [-10, 10]。
         public let tasksPriority: Int64
@@ -99,7 +83,7 @@ extension Mps {
         
         /// 编排处理任务信息，仅当 TaskType 为 ScheduleTask，该字段有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let scheduleTask: ScheduleTask
+        public let scheduleTask: ScheduleTask?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -121,5 +105,21 @@ extension Mps {
             case scheduleTask = "ScheduleTask"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询任务详情
+    ///
+    /// 通过任务 ID 查询任务的执行状态和结果的详细信息（最多可以查询3天之内提交的任务）。
+    @inlinable
+    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
+        self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询任务详情
+    ///
+    /// 通过任务 ID 查询任务的执行状态和结果的详细信息（最多可以查询3天之内提交的任务）。
+    @inlinable
+    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
+        try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

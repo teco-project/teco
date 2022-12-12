@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 统计异常进程各威胁等级待处理事件数
-    @inlinable
-    public func describeAbnormalProcessLevelSummary(_ input: DescribeAbnormalProcessLevelSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalProcessLevelSummaryResponse > {
-        self.client.execute(action: "DescribeAbnormalProcessLevelSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 统计异常进程各威胁等级待处理事件数
-    @inlinable
-    public func describeAbnormalProcessLevelSummary(_ input: DescribeAbnormalProcessLevelSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessLevelSummaryResponse {
-        try await self.client.execute(action: "DescribeAbnormalProcessLevelSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAbnormalProcessLevelSummary请求参数结构体
     public struct DescribeAbnormalProcessLevelSummaryRequest: TCRequestModel {
         public init () {
@@ -53,5 +41,17 @@ extension Tcss {
             case lowLevelEventCount = "LowLevelEventCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 统计异常进程各威胁等级待处理事件数
+    @inlinable
+    public func describeAbnormalProcessLevelSummary(_ input: DescribeAbnormalProcessLevelSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAbnormalProcessLevelSummaryResponse > {
+        self.client.execute(action: "DescribeAbnormalProcessLevelSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 统计异常进程各威胁等级待处理事件数
+    @inlinable
+    public func describeAbnormalProcessLevelSummary(_ input: DescribeAbnormalProcessLevelSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessLevelSummaryResponse {
+        try await self.client.execute(action: "DescribeAbnormalProcessLevelSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

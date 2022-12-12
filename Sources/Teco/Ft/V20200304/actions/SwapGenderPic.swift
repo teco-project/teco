@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ft {
-    /// 人脸性别转换
-    ///
-    /// 用户上传一张人脸图片，基于人脸编辑与生成算法，输出一张人脸性别转换的图片。男变女可实现美颜、淡妆、加刘海和长发的效果；女变男可实现加胡须、变短发的效果。 
-    @inlinable
-    public func swapGenderPic(_ input: SwapGenderPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwapGenderPicResponse > {
-        self.client.execute(action: "SwapGenderPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人脸性别转换
-    ///
-    /// 用户上传一张人脸图片，基于人脸编辑与生成算法，输出一张人脸性别转换的图片。男变女可实现美颜、淡妆、加刘海和长发的效果；女变男可实现加胡须、变短发的效果。 
-    @inlinable
-    public func swapGenderPic(_ input: SwapGenderPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwapGenderPicResponse {
-        try await self.client.execute(action: "SwapGenderPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SwapGenderPic请求参数结构体
     public struct SwapGenderPicRequest: TCRequestModel {
         /// 人脸转化性别信息。 
@@ -51,7 +35,7 @@ extension Ft {
         /// 返回图像方式（base64 或 url ) ，二选一。url有效期为1天。
         public let rspImgType: String?
         
-        public init (genderInfos: [GenderInfo], image: String?, url: String?, rspImgType: String?) {
+        public init (genderInfos: [GenderInfo], image: String? = nil, url: String? = nil, rspImgType: String? = nil) {
             self.genderInfos = genderInfos
             self.image = image
             self.url = url
@@ -82,5 +66,21 @@ extension Ft {
             case resultUrl = "ResultUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人脸性别转换
+    ///
+    /// 用户上传一张人脸图片，基于人脸编辑与生成算法，输出一张人脸性别转换的图片。男变女可实现美颜、淡妆、加刘海和长发的效果；女变男可实现加胡须、变短发的效果。 
+    @inlinable
+    public func swapGenderPic(_ input: SwapGenderPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwapGenderPicResponse > {
+        self.client.execute(action: "SwapGenderPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人脸性别转换
+    ///
+    /// 用户上传一张人脸图片，基于人脸编辑与生成算法，输出一张人脸性别转换的图片。男变女可实现美颜、淡妆、加刘海和长发的效果；女变男可实现加胡须、变短发的效果。 
+    @inlinable
+    public func swapGenderPic(_ input: SwapGenderPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwapGenderPicResponse {
+        try await self.client.execute(action: "SwapGenderPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

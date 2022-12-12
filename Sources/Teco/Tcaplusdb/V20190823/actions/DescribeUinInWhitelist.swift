@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 查询本用户是否在白名单中
-    ///
-    /// 查询本用户是否在白名单中，控制是否能创建TDR类型的APP或表
-    @inlinable
-    public func describeUinInWhitelist(_ input: DescribeUinInWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUinInWhitelistResponse > {
-        self.client.execute(action: "DescribeUinInWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询本用户是否在白名单中
-    ///
-    /// 查询本用户是否在白名单中，控制是否能创建TDR类型的APP或表
-    @inlinable
-    public func describeUinInWhitelist(_ input: DescribeUinInWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUinInWhitelistResponse {
-        try await self.client.execute(action: "DescribeUinInWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUinInWhitelist请求参数结构体
     public struct DescribeUinInWhitelistRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Tcaplusdb {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询本用户是否在白名单中
+    ///
+    /// 查询本用户是否在白名单中，控制是否能创建TDR类型的APP或表
+    @inlinable
+    public func describeUinInWhitelist(_ input: DescribeUinInWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUinInWhitelistResponse > {
+        self.client.execute(action: "DescribeUinInWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询本用户是否在白名单中
+    ///
+    /// 查询本用户是否在白名单中，控制是否能创建TDR类型的APP或表
+    @inlinable
+    public func describeUinInWhitelist(_ input: DescribeUinInWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUinInWhitelistResponse {
+        try await self.client.execute(action: "DescribeUinInWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

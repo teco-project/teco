@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 创建HAVIP
-    ///
-    /// 本接口（CreateHaVip）用于创建高可用虚拟IP（HAVIP）
-    @inlinable
-    public func createHaVip(_ input: CreateHaVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHaVipResponse > {
-        self.client.execute(action: "CreateHaVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建HAVIP
-    ///
-    /// 本接口（CreateHaVip）用于创建高可用虚拟IP（HAVIP）
-    @inlinable
-    public func createHaVip(_ input: CreateHaVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHaVipResponse {
-        try await self.client.execute(action: "CreateHaVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateHaVip请求参数结构体
     public struct CreateHaVipRequest: TCRequestModel {
         /// `HAVIP`所在私有网络`ID`。
@@ -45,7 +29,7 @@ extension Vpc {
         /// 指定虚拟IP地址，必须在`VPC`网段内且未被占用。不指定则自动分配。
         public let vip: String?
         
-        public init (vpcId: String, subnetId: String, haVipName: String, vip: String?) {
+        public init (vpcId: String, subnetId: String, haVipName: String, vip: String? = nil) {
             self.vpcId = vpcId
             self.subnetId = subnetId
             self.haVipName = haVipName
@@ -72,5 +56,21 @@ extension Vpc {
             case haVip = "HaVip"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建HAVIP
+    ///
+    /// 本接口（CreateHaVip）用于创建高可用虚拟IP（HAVIP）
+    @inlinable
+    public func createHaVip(_ input: CreateHaVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHaVipResponse > {
+        self.client.execute(action: "CreateHaVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建HAVIP
+    ///
+    /// 本接口（CreateHaVip）用于创建高可用虚拟IP（HAVIP）
+    @inlinable
+    public func createHaVip(_ input: CreateHaVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHaVipResponse {
+        try await self.client.execute(action: "CreateHaVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

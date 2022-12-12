@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 获取终端用户列表
-    @inlinable
-    public func describeEndUsers(_ input: DescribeEndUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEndUsersResponse > {
-        self.client.execute(action: "DescribeEndUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取终端用户列表
-    @inlinable
-    public func describeEndUsers(_ input: DescribeEndUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEndUsersResponse {
-        try await self.client.execute(action: "DescribeEndUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEndUsers请求参数结构体
     public struct DescribeEndUsersRequest: TCRequestModel {
         /// 开发者的环境ID
@@ -41,7 +29,7 @@ extension Tcb {
         /// 按照 uuid 列表过滤，最大个数为100
         public let uuIds: [String]?
         
-        public init (envId: String, offset: UInt64?, limit: UInt64?, uuIds: [String]?) {
+        public init (envId: String, offset: UInt64? = nil, limit: UInt64? = nil, uuIds: [String]? = nil) {
             self.envId = envId
             self.offset = offset
             self.limit = limit
@@ -72,5 +60,17 @@ extension Tcb {
             case users = "Users"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取终端用户列表
+    @inlinable
+    public func describeEndUsers(_ input: DescribeEndUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEndUsersResponse > {
+        self.client.execute(action: "DescribeEndUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取终端用户列表
+    @inlinable
+    public func describeEndUsers(_ input: DescribeEndUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEndUsersResponse {
+        try await self.client.execute(action: "DescribeEndUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

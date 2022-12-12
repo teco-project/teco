@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 获取某个应用的程序包信息列表
-    ///
-    /// 无
-    @inlinable
-    public func describePkgs(_ input: DescribePkgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePkgsResponse > {
-        self.client.execute(action: "DescribePkgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取某个应用的程序包信息列表
-    ///
-    /// 无
-    @inlinable
-    public func describePkgs(_ input: DescribePkgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePkgsResponse {
-        try await self.client.execute(action: "DescribePkgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePkgs请求参数结构体
     public struct DescribePkgsRequest: TCRequestModel {
         /// 应用ID（只传入应用ID，返回该应用下所有软件包信息）
@@ -60,7 +44,7 @@ extension Tsf {
         /// 程序包类型数组支持（fatjar jar war tar.gz zip）
         public let packageTypeList: [String]?
         
-        public init (applicationId: String, searchWord: String?, orderBy: String?, orderType: UInt64?, offset: UInt64?, limit: UInt64?, repositoryType: String?, repositoryId: String?, packageTypeList: [String]?) {
+        public init (applicationId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil, packageTypeList: [String]? = nil) {
             self.applicationId = applicationId
             self.searchWord = searchWord
             self.orderBy = orderBy
@@ -97,5 +81,21 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取某个应用的程序包信息列表
+    ///
+    /// 无
+    @inlinable
+    public func describePkgs(_ input: DescribePkgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePkgsResponse > {
+        self.client.execute(action: "DescribePkgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取某个应用的程序包信息列表
+    ///
+    /// 无
+    @inlinable
+    public func describePkgs(_ input: DescribePkgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePkgsResponse {
+        try await self.client.execute(action: "DescribePkgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

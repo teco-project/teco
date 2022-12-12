@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 查询子网列表
-    ///
-    /// 本接口（DescribeSubnets）用于查询黑石子网列表。
-    @inlinable
-    public func describeSubnets(_ input: DescribeSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubnetsResponse > {
-        self.client.execute(action: "DescribeSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询子网列表
-    ///
-    /// 本接口（DescribeSubnets）用于查询黑石子网列表。
-    @inlinable
-    public func describeSubnets(_ input: DescribeSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetsResponse {
-        try await self.client.execute(action: "DescribeSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSubnets请求参数结构体
     public struct DescribeSubnetsRequest: TCRequestModel {
         /// 子网实例ID查询。形如：subnet-pxir56ns。参数不支持同时指定SubnetIds和Filters。
@@ -56,7 +40,7 @@ extension Bmvpc {
         /// 排序方向, “asc”、“desc”
         public let orderDirection: String?
         
-        public init (subnetIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?, orderField: String?, orderDirection: String?) {
+        public init (subnetIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil) {
             self.subnetIds = subnetIds
             self.filters = filters
             self.offset = offset
@@ -91,5 +75,21 @@ extension Bmvpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询子网列表
+    ///
+    /// 本接口（DescribeSubnets）用于查询黑石子网列表。
+    @inlinable
+    public func describeSubnets(_ input: DescribeSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubnetsResponse > {
+        self.client.execute(action: "DescribeSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询子网列表
+    ///
+    /// 本接口（DescribeSubnets）用于查询黑石子网列表。
+    @inlinable
+    public func describeSubnets(_ input: DescribeSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetsResponse {
+        try await self.client.execute(action: "DescribeSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

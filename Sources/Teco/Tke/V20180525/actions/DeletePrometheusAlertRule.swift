@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 删除告警规则
-    @inlinable
-    public func deletePrometheusAlertRule(_ input: DeletePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusAlertRuleResponse > {
-        self.client.execute(action: "DeletePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除告警规则
-    @inlinable
-    public func deletePrometheusAlertRule(_ input: DeletePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusAlertRuleResponse {
-        try await self.client.execute(action: "DeletePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeletePrometheusAlertRule请求参数结构体
     public struct DeletePrometheusAlertRuleRequest: TCRequestModel {
         /// 实例id
@@ -54,5 +42,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除告警规则
+    @inlinable
+    public func deletePrometheusAlertRule(_ input: DeletePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusAlertRuleResponse > {
+        self.client.execute(action: "DeletePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除告警规则
+    @inlinable
+    public func deletePrometheusAlertRule(_ input: DeletePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusAlertRuleResponse {
+        try await self.client.execute(action: "DeletePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

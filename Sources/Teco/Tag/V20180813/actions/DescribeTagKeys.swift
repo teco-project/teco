@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 查询标签键
-    ///
-    /// 用于查询已建立的标签列表中的标签键。
-    @inlinable
-    public func describeTagKeys(_ input: DescribeTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagKeysResponse > {
-        self.client.execute(action: "DescribeTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询标签键
-    ///
-    /// 用于查询已建立的标签列表中的标签键。
-    @inlinable
-    public func describeTagKeys(_ input: DescribeTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagKeysResponse {
-        try await self.client.execute(action: "DescribeTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTagKeys请求参数结构体
     public struct DescribeTagKeysRequest: TCRequestModel {
         /// 创建者用户 Uin，不传或为空只将 Uin 作为条件查询
@@ -45,7 +29,7 @@ extension Tag {
         /// 是否展现项目
         public let showProject: UInt64?
         
-        public init (createUin: UInt64?, offset: UInt64?, limit: UInt64?, showProject: UInt64?) {
+        public init (createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, showProject: UInt64? = nil) {
             self.createUin = createUin
             self.offset = offset
             self.limit = limit
@@ -84,5 +68,21 @@ extension Tag {
             case tags = "Tags"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询标签键
+    ///
+    /// 用于查询已建立的标签列表中的标签键。
+    @inlinable
+    public func describeTagKeys(_ input: DescribeTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagKeysResponse > {
+        self.client.execute(action: "DescribeTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询标签键
+    ///
+    /// 用于查询已建立的标签列表中的标签键。
+    @inlinable
+    public func describeTagKeys(_ input: DescribeTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagKeysResponse {
+        try await self.client.execute(action: "DescribeTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

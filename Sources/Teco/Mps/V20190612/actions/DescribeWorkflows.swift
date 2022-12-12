@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 获取工作流列表
-    ///
-    /// 根据工作流 ID，获取工作流详情列表。
-    @inlinable
-    public func describeWorkflows(_ input: DescribeWorkflowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkflowsResponse > {
-        self.client.execute(action: "DescribeWorkflows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取工作流列表
-    ///
-    /// 根据工作流 ID，获取工作流详情列表。
-    @inlinable
-    public func describeWorkflows(_ input: DescribeWorkflowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkflowsResponse {
-        try await self.client.execute(action: "DescribeWorkflows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeWorkflows请求参数结构体
     public struct DescribeWorkflowsRequest: TCRequestModel {
         /// 工作流 ID 过滤条件，数组长度限制：100。
@@ -48,7 +32,7 @@ extension Mps {
         /// 返回记录条数，默认值：10，最大值：100。
         public let limit: Int64?
         
-        public init (workflowIds: [Int64]?, status: String?, offset: Int64?, limit: Int64?) {
+        public init (workflowIds: [Int64]? = nil, status: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.workflowIds = workflowIds
             self.status = status
             self.offset = offset
@@ -79,5 +63,21 @@ extension Mps {
             case workflowInfoSet = "WorkflowInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取工作流列表
+    ///
+    /// 根据工作流 ID，获取工作流详情列表。
+    @inlinable
+    public func describeWorkflows(_ input: DescribeWorkflowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeWorkflowsResponse > {
+        self.client.execute(action: "DescribeWorkflows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取工作流列表
+    ///
+    /// 根据工作流 ID，获取工作流详情列表。
+    @inlinable
+    public func describeWorkflows(_ input: DescribeWorkflowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkflowsResponse {
+        try await self.client.execute(action: "DescribeWorkflows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

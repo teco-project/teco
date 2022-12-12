@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 看守位控制
-    @inlinable
-    public func controlHomePosition(_ input: ControlHomePositionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlHomePositionResponse > {
-        self.client.execute(action: "ControlHomePosition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 看守位控制
-    @inlinable
-    public func controlHomePosition(_ input: ControlHomePositionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlHomePositionResponse {
-        try await self.client.execute(action: "ControlHomePosition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ControlHomePosition请求参数结构体
     public struct ControlHomePositionRequest: TCRequestModel {
         /// 通道ID
@@ -44,7 +32,7 @@ extension Iotvideoindustry {
         /// 看守位自动归位时间， 启用看守位时必填
         public let resetTime: Int64?
         
-        public init (channelId: String, deviceId: String, enable: Int64?, presetId: Int64?, resetTime: Int64?) {
+        public init (channelId: String, deviceId: String, enable: Int64? = nil, presetId: Int64? = nil, resetTime: Int64? = nil) {
             self.channelId = channelId
             self.deviceId = deviceId
             self.enable = enable
@@ -69,5 +57,17 @@ extension Iotvideoindustry {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 看守位控制
+    @inlinable
+    public func controlHomePosition(_ input: ControlHomePositionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ControlHomePositionResponse > {
+        self.client.execute(action: "ControlHomePosition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 看守位控制
+    @inlinable
+    public func controlHomePosition(_ input: ControlHomePositionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlHomePositionResponse {
+        try await self.client.execute(action: "ControlHomePosition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

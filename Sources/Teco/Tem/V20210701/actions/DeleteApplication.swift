@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 服务删除
-    ///
-    /// 服务删除
-    ///   - 停止当前运行服务
-    ///   - 删除服务相关资源
-    ///   - 删除服务
-    @inlinable
-    public func deleteApplication(_ input: DeleteApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationResponse > {
-        self.client.execute(action: "DeleteApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 服务删除
-    ///
-    /// 服务删除
-    ///   - 停止当前运行服务
-    ///   - 删除服务相关资源
-    ///   - 删除服务
-    @inlinable
-    public func deleteApplication(_ input: DeleteApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationResponse {
-        try await self.client.execute(action: "DeleteApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteApplication请求参数结构体
     public struct DeleteApplicationRequest: TCRequestModel {
         /// 服务Id
@@ -51,7 +29,7 @@ extension Tem {
         /// 当服务没有任何运行版本时，是否删除此服务
         public let deleteApplicationIfNoRunningVersion: Bool?
         
-        public init (applicationId: String, environmentId: String, sourceChannel: Int64?, deleteApplicationIfNoRunningVersion: Bool?) {
+        public init (applicationId: String, environmentId: String, sourceChannel: Int64? = nil, deleteApplicationIfNoRunningVersion: Bool? = nil) {
             self.applicationId = applicationId
             self.environmentId = environmentId
             self.sourceChannel = sourceChannel
@@ -78,5 +56,27 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 服务删除
+    ///
+    /// 服务删除
+    ///   - 停止当前运行服务
+    ///   - 删除服务相关资源
+    ///   - 删除服务
+    @inlinable
+    public func deleteApplication(_ input: DeleteApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationResponse > {
+        self.client.execute(action: "DeleteApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 服务删除
+    ///
+    /// 服务删除
+    ///   - 停止当前运行服务
+    ///   - 删除服务相关资源
+    ///   - 删除服务
+    @inlinable
+    public func deleteApplication(_ input: DeleteApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationResponse {
+        try await self.client.execute(action: "DeleteApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

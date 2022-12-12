@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 删除互联网边界规则
-    @inlinable
-    public func removeAcRule(_ input: RemoveAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveAcRuleResponse > {
-        self.client.execute(action: "RemoveAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除互联网边界规则
-    @inlinable
-    public func removeAcRule(_ input: RemoveAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAcRuleResponse {
-        try await self.client.execute(action: "RemoveAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RemoveAcRule请求参数结构体
     public struct RemoveAcRuleRequest: TCRequestModel {
         /// 规则的uuid，可通过查询规则列表获取
@@ -63,5 +51,17 @@ extension Cfw {
             case returnMsg = "ReturnMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除互联网边界规则
+    @inlinable
+    public func removeAcRule(_ input: RemoveAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RemoveAcRuleResponse > {
+        self.client.execute(action: "RemoveAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除互联网边界规则
+    @inlinable
+    public func removeAcRule(_ input: RemoveAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAcRuleResponse {
+        try await self.client.execute(action: "RemoveAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

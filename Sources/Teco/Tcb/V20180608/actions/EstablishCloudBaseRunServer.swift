@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 创建云应用服务
-    @inlinable
-    public func establishCloudBaseRunServer(_ input: EstablishCloudBaseRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EstablishCloudBaseRunServerResponse > {
-        self.client.execute(action: "EstablishCloudBaseRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建云应用服务
-    @inlinable
-    public func establishCloudBaseRunServer(_ input: EstablishCloudBaseRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstablishCloudBaseRunServerResponse {
-        try await self.client.execute(action: "EstablishCloudBaseRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// EstablishCloudBaseRunServer请求参数结构体
     public struct EstablishCloudBaseRunServerRequest: TCRequestModel {
         /// 环境id
@@ -45,7 +33,7 @@ extension Tcb {
         public let remark: String?
         
         /// es信息
-        public let esInfo: CloudBaseEsInfo
+        public let esInfo: CloudBaseEsInfo?
         
         /// 日志类型; es/cls
         public let logType: String?
@@ -57,7 +45,7 @@ extension Tcb {
         public let source: String?
         
         /// vpc信息
-        public let vpcInfo: CloudBaseRunVpcInfo
+        public let vpcInfo: CloudBaseRunVpcInfo?
         
         /// 0/1=允许公网访问;2=关闭公网访问
         public let publicAccess: Int64?
@@ -71,7 +59,7 @@ extension Tcb {
         /// 指定创建路径（如不存在，则创建。存在，则忽略）
         public let serverPath: String?
         
-        public init (envId: String, serviceName: String, isPublic: Bool, imageRepo: String?, remark: String?, esInfo: CloudBaseEsInfo, logType: String?, operatorRemark: String?, source: String?, vpcInfo: CloudBaseRunVpcInfo, publicAccess: Int64?, openAccessTypes: [String]?, isCreatePath: Int64?, serverPath: String?) {
+        public init (envId: String, serviceName: String, isPublic: Bool, imageRepo: String? = nil, remark: String? = nil, esInfo: CloudBaseEsInfo? = nil, logType: String? = nil, operatorRemark: String? = nil, source: String? = nil, vpcInfo: CloudBaseRunVpcInfo? = nil, publicAccess: Int64? = nil, openAccessTypes: [String]? = nil, isCreatePath: Int64? = nil, serverPath: String? = nil) {
             self.envId = envId
             self.serviceName = serviceName
             self.isPublic = isPublic
@@ -114,5 +102,17 @@ extension Tcb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建云应用服务
+    @inlinable
+    public func establishCloudBaseRunServer(_ input: EstablishCloudBaseRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EstablishCloudBaseRunServerResponse > {
+        self.client.execute(action: "EstablishCloudBaseRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建云应用服务
+    @inlinable
+    public func establishCloudBaseRunServer(_ input: EstablishCloudBaseRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstablishCloudBaseRunServerResponse {
+        try await self.client.execute(action: "EstablishCloudBaseRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 创建日志主题
-    ///
-    /// 本接口用于创建日志主题。
-    @inlinable
-    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicResponse > {
-        self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建日志主题
-    ///
-    /// 本接口用于创建日志主题。
-    @inlinable
-    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
-        try await self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTopic请求参数结构体
     public struct CreateTopicRequest: TCRequestModel {
         /// 日志集ID
@@ -57,7 +41,7 @@ extension Cls {
         /// 生命周期，单位天，标准存储取值范围1\~3600，低频存储取值范围7\~3600天。取值为3640时代表永久保存
         public let period: Int64?
         
-        public init (logsetId: String, topicName: String, partitionCount: Int64?, tags: [Tag]?, autoSplit: Bool?, maxSplitPartitions: Int64?, storageType: String?, period: Int64?) {
+        public init (logsetId: String, topicName: String, partitionCount: Int64? = nil, tags: [Tag]? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, storageType: String? = nil, period: Int64? = nil) {
             self.logsetId = logsetId
             self.topicName = topicName
             self.partitionCount = partitionCount
@@ -92,5 +76,21 @@ extension Cls {
             case topicId = "TopicId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建日志主题
+    ///
+    /// 本接口用于创建日志主题。
+    @inlinable
+    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicResponse > {
+        self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建日志主题
+    ///
+    /// 本接口用于创建日志主题。
+    @inlinable
+    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
+        try await self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

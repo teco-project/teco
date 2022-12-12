@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Domain {
-    /// 证件图片上传
-    ///
-    /// 本接口 ( UploadImage ) 用于证件图片上传 。
-    @inlinable
-    public func uploadImage(_ input: UploadImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadImageResponse > {
-        self.client.execute(action: "UploadImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 证件图片上传
-    ///
-    /// 本接口 ( UploadImage ) 用于证件图片上传 。
-    @inlinable
-    public func uploadImage(_ input: UploadImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadImageResponse {
-        try await self.client.execute(action: "UploadImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadImage请求参数结构体
     public struct UploadImageRequest: TCRequestModel {
         /// 资质照片，照片的base64编码。
@@ -57,5 +41,21 @@ extension Domain {
             case accessUrl = "AccessUrl"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 证件图片上传
+    ///
+    /// 本接口 ( UploadImage ) 用于证件图片上传 。
+    @inlinable
+    public func uploadImage(_ input: UploadImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadImageResponse > {
+        self.client.execute(action: "UploadImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 证件图片上传
+    ///
+    /// 本接口 ( UploadImage ) 用于证件图片上传 。
+    @inlinable
+    public func uploadImage(_ input: UploadImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadImageResponse {
+        try await self.client.execute(action: "UploadImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

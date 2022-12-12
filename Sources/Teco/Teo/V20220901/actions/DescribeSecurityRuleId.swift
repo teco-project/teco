@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询安全规则详情
-    @inlinable
-    public func describeSecurityRuleId(_ input: DescribeSecurityRuleIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityRuleIdResponse > {
-        self.client.execute(action: "DescribeSecurityRuleId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全规则详情
-    @inlinable
-    public func describeSecurityRuleId(_ input: DescribeSecurityRuleIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityRuleIdResponse {
-        try await self.client.execute(action: "DescribeSecurityRuleId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityRuleId请求参数结构体
     public struct DescribeSecurityRuleIdRequest: TCRequestModel {
         /// 规则类型，取值有：
@@ -45,7 +33,7 @@ extension Teo {
         /// 子域名数组。
         public let domains: [String]?
         
-        public init (ruleType: String, entity: String?, ruleIdList: [Int64]?, domains: [String]?) {
+        public init (ruleType: String, entity: String? = nil, ruleIdList: [Int64]? = nil, domains: [String]? = nil) {
             self.ruleType = ruleType
             self.entity = entity
             self.ruleIdList = ruleIdList
@@ -78,5 +66,17 @@ extension Teo {
             case securityRules = "SecurityRules"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全规则详情
+    @inlinable
+    public func describeSecurityRuleId(_ input: DescribeSecurityRuleIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityRuleIdResponse > {
+        self.client.execute(action: "DescribeSecurityRuleId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全规则详情
+    @inlinable
+    public func describeSecurityRuleId(_ input: DescribeSecurityRuleIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityRuleIdResponse {
+        try await self.client.execute(action: "DescribeSecurityRuleId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

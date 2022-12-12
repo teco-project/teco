@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 删除已安装的插件
-    @inlinable
-    public func uninstallGrafanaPlugins(_ input: UninstallGrafanaPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UninstallGrafanaPluginsResponse > {
-        self.client.execute(action: "UninstallGrafanaPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除已安装的插件
-    @inlinable
-    public func uninstallGrafanaPlugins(_ input: UninstallGrafanaPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaPluginsResponse {
-        try await self.client.execute(action: "UninstallGrafanaPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UninstallGrafanaPlugins请求参数结构体
     public struct UninstallGrafanaPluginsRequest: TCRequestModel {
         /// 插件 ID 数组，例如"PluginIds": [ "grafana-clock-panel" ]，可通过 DescribePluginOverviews 获取 PluginId
@@ -54,5 +42,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除已安装的插件
+    @inlinable
+    public func uninstallGrafanaPlugins(_ input: UninstallGrafanaPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UninstallGrafanaPluginsResponse > {
+        self.client.execute(action: "UninstallGrafanaPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除已安装的插件
+    @inlinable
+    public func uninstallGrafanaPlugins(_ input: UninstallGrafanaPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaPluginsResponse {
+        try await self.client.execute(action: "UninstallGrafanaPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫V2-查询订单
-    ///
-    /// 根据订单号或用户ID，查询支付订单状态。
-    @inlinable
-    public func queryCloudOrder(_ input: QueryCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCloudOrderResponse > {
-        self.client.execute(action: "QueryCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫V2-查询订单
-    ///
-    /// 根据订单号或用户ID，查询支付订单状态。
-    @inlinable
-    public func queryCloudOrder(_ input: QueryCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCloudOrderResponse {
-        try await self.client.execute(action: "QueryCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryCloudOrder请求参数结构体
     public struct QueryCloudOrderRequest: TCRequestModel {
         /// 米大师分配的支付主MidasAppId
@@ -52,7 +36,7 @@ extension Cpdp {
         /// 开发者的主订单号
         public let outTradeNo: String?
         
-        public init (midasAppId: String, userId: String, type: String, midasEnvironment: String?, outTradeNo: String?) {
+        public init (midasAppId: String, userId: String, type: String, midasEnvironment: String? = nil, outTradeNo: String? = nil) {
             self.midasAppId = midasAppId
             self.userId = userId
             self.type = type
@@ -86,5 +70,21 @@ extension Cpdp {
             case orderList = "OrderList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫V2-查询订单
+    ///
+    /// 根据订单号或用户ID，查询支付订单状态。
+    @inlinable
+    public func queryCloudOrder(_ input: QueryCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryCloudOrderResponse > {
+        self.client.execute(action: "QueryCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫V2-查询订单
+    ///
+    /// 根据订单号或用户ID，查询支付订单状态。
+    @inlinable
+    public func queryCloudOrder(_ input: QueryCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCloudOrderResponse {
+        try await self.client.execute(action: "QueryCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

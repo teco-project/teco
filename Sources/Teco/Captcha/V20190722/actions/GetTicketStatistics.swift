@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Captcha {
-    /// 查询单个CaptchaAppID票据校验数据
-    ///
-    /// 查询单个CaptchaAppID票据校验数据，包括：票据校验量、票据校验通过量、票据校验拦截量。
-    @inlinable
-    public func getTicketStatistics(_ input: GetTicketStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTicketStatisticsResponse > {
-        self.client.execute(action: "GetTicketStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询单个CaptchaAppID票据校验数据
-    ///
-    /// 查询单个CaptchaAppID票据校验数据，包括：票据校验量、票据校验通过量、票据校验拦截量。
-    @inlinable
-    public func getTicketStatistics(_ input: GetTicketStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTicketStatisticsResponse {
-        try await self.client.execute(action: "GetTicketStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetTicketStatistics请求参数结构体
     public struct GetTicketStatisticsRequest: TCRequestModel {
         /// 验证码AppId
@@ -64,7 +48,7 @@ extension Captcha {
     public struct GetTicketStatisticsResponse: TCResponseModel {
         /// 查询后数据块
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: CaptchaStatisticObj
+        public let data: CaptchaStatisticObj?
         
         /// 验证码返回码
         public let captchaCode: Int64
@@ -81,5 +65,21 @@ extension Captcha {
             case captchaMsg = "CaptchaMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询单个CaptchaAppID票据校验数据
+    ///
+    /// 查询单个CaptchaAppID票据校验数据，包括：票据校验量、票据校验通过量、票据校验拦截量。
+    @inlinable
+    public func getTicketStatistics(_ input: GetTicketStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetTicketStatisticsResponse > {
+        self.client.execute(action: "GetTicketStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询单个CaptchaAppID票据校验数据
+    ///
+    /// 查询单个CaptchaAppID票据校验数据，包括：票据校验量、票据校验通过量、票据校验拦截量。
+    @inlinable
+    public func getTicketStatistics(_ input: GetTicketStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTicketStatisticsResponse {
+        try await self.client.execute(action: "GetTicketStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

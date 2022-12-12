@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 修改安全日志接入对象
-    @inlinable
-    public func modifySecLogJoinObjects(_ input: ModifySecLogJoinObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogJoinObjectsResponse > {
-        self.client.execute(action: "ModifySecLogJoinObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改安全日志接入对象
-    @inlinable
-    public func modifySecLogJoinObjects(_ input: ModifySecLogJoinObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinObjectsResponse {
-        try await self.client.execute(action: "ModifySecLogJoinObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySecLogJoinObjects请求参数结构体
     public struct ModifySecLogJoinObjectsRequest: TCRequestModel {
         /// 日志类型
@@ -41,7 +29,7 @@ extension Tcss {
         /// 待解绑主机quuid列表
         public let unBindList: [String]?
         
-        public init (logType: String, bindList: [String]?, unBindList: [String]?) {
+        public init (logType: String, bindList: [String]? = nil, unBindList: [String]? = nil) {
             self.logType = logType
             self.bindList = bindList
             self.unBindList = unBindList
@@ -62,5 +50,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改安全日志接入对象
+    @inlinable
+    public func modifySecLogJoinObjects(_ input: ModifySecLogJoinObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySecLogJoinObjectsResponse > {
+        self.client.execute(action: "ModifySecLogJoinObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改安全日志接入对象
+    @inlinable
+    public func modifySecLogJoinObjects(_ input: ModifySecLogJoinObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinObjectsResponse {
+        try await self.client.execute(action: "ModifySecLogJoinObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

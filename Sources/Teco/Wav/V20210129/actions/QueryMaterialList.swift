@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wav {
-    /// 获取企业素材列表接口
-    ///
-    /// 通过接口按类型拉取租户当前的素材列表及关键信息
-    @inlinable
-    public func queryMaterialList(_ input: QueryMaterialListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMaterialListResponse > {
-        self.client.execute(action: "QueryMaterialList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取企业素材列表接口
-    ///
-    /// 通过接口按类型拉取租户当前的素材列表及关键信息
-    @inlinable
-    public func queryMaterialList(_ input: QueryMaterialListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMaterialListResponse {
-        try await self.client.execute(action: "QueryMaterialList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryMaterialList请求参数结构体
     public struct QueryMaterialListRequest: TCRequestModel {
         /// 素材类型：0-图片，1-视频，3-文章，10-车型，11-名片
@@ -42,7 +26,7 @@ extension Wav {
         /// 返回的最大记录数，整型，最大值100，默认值50，超过最大值时取最大值
         public let limit: Int64?
         
-        public init (materialType: Int64, cursor: String?, limit: Int64?) {
+        public init (materialType: Int64, cursor: String? = nil, limit: Int64? = nil) {
             self.materialType = materialType
             self.cursor = cursor
             self.limit = limit
@@ -73,5 +57,21 @@ extension Wav {
             case pageData = "PageData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取企业素材列表接口
+    ///
+    /// 通过接口按类型拉取租户当前的素材列表及关键信息
+    @inlinable
+    public func queryMaterialList(_ input: QueryMaterialListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryMaterialListResponse > {
+        self.client.execute(action: "QueryMaterialList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取企业素材列表接口
+    ///
+    /// 通过接口按类型拉取租户当前的素材列表及关键信息
+    @inlinable
+    public func queryMaterialList(_ input: QueryMaterialListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMaterialListResponse {
+        try await self.client.execute(action: "QueryMaterialList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

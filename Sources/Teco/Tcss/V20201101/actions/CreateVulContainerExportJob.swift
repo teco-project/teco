@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 创建受漏洞影响的容器导出任务
-    @inlinable
-    public func createVulContainerExportJob(_ input: CreateVulContainerExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVulContainerExportJobResponse > {
-        self.client.execute(action: "CreateVulContainerExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建受漏洞影响的容器导出任务
-    @inlinable
-    public func createVulContainerExportJob(_ input: CreateVulContainerExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulContainerExportJobResponse {
-        try await self.client.execute(action: "CreateVulContainerExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVulContainerExportJob请求参数结构体
     public struct CreateVulContainerExportJobRequest: TCRequestModel {
         /// 漏洞PocID
@@ -44,7 +32,7 @@ extension Tcss {
         /// <li>ContainerName- String -是否必填: 否 - 容器名称</li>
         public let filters: [RunTimeFilters]?
         
-        public init (pocID: String, limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?) {
+        public init (pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil) {
             self.pocID = pocID
             self.limit = limit
             self.offset = offset
@@ -71,5 +59,17 @@ extension Tcss {
             case jobId = "JobId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建受漏洞影响的容器导出任务
+    @inlinable
+    public func createVulContainerExportJob(_ input: CreateVulContainerExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVulContainerExportJobResponse > {
+        self.client.execute(action: "CreateVulContainerExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建受漏洞影响的容器导出任务
+    @inlinable
+    public func createVulContainerExportJob(_ input: CreateVulContainerExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulContainerExportJobResponse {
+        try await self.client.execute(action: "CreateVulContainerExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 创建项目
-    @inlinable
-    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProjectResponse > {
-        self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建项目
-    @inlinable
-    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
-        try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProject请求参数结构体
     public struct CreateProjectRequest: TCRequestModel {
         /// 项目名
@@ -38,7 +26,7 @@ extension Pts {
         /// 标签数组
         public let tags: [TagSpec]?
         
-        public init (name: String, description: String?, tags: [TagSpec]?) {
+        public init (name: String, description: String? = nil, tags: [TagSpec]? = nil) {
             self.name = name
             self.description = description
             self.tags = tags
@@ -63,5 +51,17 @@ extension Pts {
             case projectId = "ProjectId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建项目
+    @inlinable
+    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProjectResponse > {
+        self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建项目
+    @inlinable
+    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
+        try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

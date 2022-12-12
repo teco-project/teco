@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 删除文件系统
-    ///
-    /// 用于删除文件系统
-    @inlinable
-    public func deleteCfsFileSystem(_ input: DeleteCfsFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCfsFileSystemResponse > {
-        self.client.execute(action: "DeleteCfsFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除文件系统
-    ///
-    /// 用于删除文件系统
-    @inlinable
-    public func deleteCfsFileSystem(_ input: DeleteCfsFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsFileSystemResponse {
-        try await self.client.execute(action: "DeleteCfsFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCfsFileSystem请求参数结构体
     public struct DeleteCfsFileSystemRequest: TCRequestModel {
         /// 文件系统 ID。说明，进行删除文件系统操作前需要先调用 DeleteMountTarget 接口删除该文件系统的挂载点，否则会删除失败。
@@ -53,5 +37,21 @@ extension Cfs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除文件系统
+    ///
+    /// 用于删除文件系统
+    @inlinable
+    public func deleteCfsFileSystem(_ input: DeleteCfsFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCfsFileSystemResponse > {
+        self.client.execute(action: "DeleteCfsFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除文件系统
+    ///
+    /// 用于删除文件系统
+    @inlinable
+    public func deleteCfsFileSystem(_ input: DeleteCfsFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsFileSystemResponse {
+        try await self.client.execute(action: "DeleteCfsFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

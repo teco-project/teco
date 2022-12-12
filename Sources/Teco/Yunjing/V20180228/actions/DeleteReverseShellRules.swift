@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 删除反弹Shell规则
-    @inlinable
-    public func deleteReverseShellRules(_ input: DeleteReverseShellRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReverseShellRulesResponse > {
-        self.client.execute(action: "DeleteReverseShellRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除反弹Shell规则
-    @inlinable
-    public func deleteReverseShellRules(_ input: DeleteReverseShellRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellRulesResponse {
-        try await self.client.execute(action: "DeleteReverseShellRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteReverseShellRules请求参数结构体
     public struct DeleteReverseShellRulesRequest: TCRequestModel {
         /// ID数组，最大100条。
@@ -49,5 +37,17 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除反弹Shell规则
+    @inlinable
+    public func deleteReverseShellRules(_ input: DeleteReverseShellRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReverseShellRulesResponse > {
+        self.client.execute(action: "DeleteReverseShellRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除反弹Shell规则
+    @inlinable
+    public func deleteReverseShellRules(_ input: DeleteReverseShellRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellRulesResponse {
+        try await self.client.execute(action: "DeleteReverseShellRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

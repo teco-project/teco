@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tag {
-    /// 查询标签列表
-    ///
-    /// 用于查询已建立的标签列表。
-    @inlinable
-    public func describeTags(_ input: DescribeTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagsResponse > {
-        self.client.execute(action: "DescribeTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询标签列表
-    ///
-    /// 用于查询已建立的标签列表。
-    @inlinable
-    public func describeTags(_ input: DescribeTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsResponse {
-        try await self.client.execute(action: "DescribeTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTags请求参数结构体
     public struct DescribeTagsRequest: TCRequestModel {
         /// 标签键,与标签值同时存在或同时不存在，不存在时表示查询该用户所有标签
@@ -54,7 +38,7 @@ extension Tag {
         /// 是否展现项目标签
         public let showProject: UInt64?
         
-        public init (tagKey: String?, tagValue: String?, offset: UInt64?, limit: UInt64?, createUin: UInt64?, tagKeys: [String]?, showProject: UInt64?) {
+        public init (tagKey: String? = nil, tagValue: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, createUin: UInt64? = nil, tagKeys: [String]? = nil, showProject: UInt64? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
             self.offset = offset
@@ -99,5 +83,21 @@ extension Tag {
             case tags = "Tags"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询标签列表
+    ///
+    /// 用于查询已建立的标签列表。
+    @inlinable
+    public func describeTags(_ input: DescribeTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagsResponse > {
+        self.client.execute(action: "DescribeTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询标签列表
+    ///
+    /// 用于查询已建立的标签列表。
+    @inlinable
+    public func describeTags(_ input: DescribeTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsResponse {
+        try await self.client.execute(action: "DescribeTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

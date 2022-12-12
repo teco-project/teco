@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Bm {
-    /// 查询物理机信息
-    ///
-    /// 查询物理服务器，可以按照实例，业务IP等过滤
-    @inlinable
-    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesResponse > {
-        self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询物理机信息
-    ///
-    /// 查询物理服务器，可以按照实例，业务IP等过滤
-    @inlinable
-    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
-        try await self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDevices请求参数结构体
     public struct DescribeDevicesRequest: TCRequestModel {
         /// 偏移量
@@ -92,7 +76,7 @@ extension Bm {
         /// 按照维保方式过滤。可取值为 Maintain: 在保;  WillExpire: 即将过保; Expire: 已过保
         public let maintainStatus: String?
         
-        public init (offset: UInt64, limit: UInt64, deviceClassCode: String?, instanceIds: [String]?, wanIps: [String]?, lanIps: [String]?, alias: String?, vagueIp: String?, deadlineStartTime: Date?, deadlineEndTime: Date?, autoRenewFlag: UInt64?, vpcId: String?, subnetId: String?, tags: [Tag]?, deviceType: String?, isLuckyDevice: UInt64?, orderField: String?, order: UInt64?, maintainStatus: String?) {
+        public init (offset: UInt64, limit: UInt64, deviceClassCode: String? = nil, instanceIds: [String]? = nil, wanIps: [String]? = nil, lanIps: [String]? = nil, alias: String? = nil, vagueIp: String? = nil, deadlineStartTime: Date? = nil, deadlineEndTime: Date? = nil, autoRenewFlag: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tags: [Tag]? = nil, deviceType: String? = nil, isLuckyDevice: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, maintainStatus: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.deviceClassCode = deviceClassCode
@@ -153,5 +137,21 @@ extension Bm {
             case deviceInfoSet = "DeviceInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询物理机信息
+    ///
+    /// 查询物理服务器，可以按照实例，业务IP等过滤
+    @inlinable
+    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesResponse > {
+        self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询物理机信息
+    ///
+    /// 查询物理服务器，可以按照实例，业务IP等过滤
+    @inlinable
+    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
+        try await self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

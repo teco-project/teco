@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 根据维度条件查询监控数据
-    @inlinable
-    public func describeStatisticData(_ input: DescribeStatisticDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatisticDataResponse > {
-        self.client.execute(action: "DescribeStatisticData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据维度条件查询监控数据
-    @inlinable
-    public func describeStatisticData(_ input: DescribeStatisticDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticDataResponse {
-        try await self.client.execute(action: "DescribeStatisticData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStatisticData请求参数结构体
     public struct DescribeStatisticDataRequest: TCRequestModel {
         /// 所属模块，固定值，为monitor
@@ -58,7 +46,7 @@ extension Monitor {
         /// 按指定维度groupBy
         public let groupBys: [String]?
         
-        public init (module: String, namespace: String, metricNames: [String], conditions: [MidQueryCondition]?, period: UInt64?, startTime: String?, endTime: String?, groupBys: [String]?) {
+        public init (module: String, namespace: String, metricNames: [String], conditions: [MidQueryCondition]? = nil, period: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, groupBys: [String]? = nil) {
             self.module = module
             self.namespace = namespace
             self.metricNames = metricNames
@@ -105,5 +93,17 @@ extension Monitor {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据维度条件查询监控数据
+    @inlinable
+    public func describeStatisticData(_ input: DescribeStatisticDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatisticDataResponse > {
+        self.client.execute(action: "DescribeStatisticData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据维度条件查询监控数据
+    @inlinable
+    public func describeStatisticData(_ input: DescribeStatisticDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticDataResponse {
+        try await self.client.execute(action: "DescribeStatisticData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

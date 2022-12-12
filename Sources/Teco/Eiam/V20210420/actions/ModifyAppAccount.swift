@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 修改应用账号
-    @inlinable
-    public func modifyAppAccount(_ input: ModifyAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAppAccountResponse > {
-        self.client.execute(action: "ModifyAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改应用账号
-    @inlinable
-    public func modifyAppAccount(_ input: ModifyAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppAccountResponse {
-        try await self.client.execute(action: "ModifyAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAppAccount请求参数结构体
     public struct ModifyAppAccountRequest: TCRequestModel {
         /// 账号ID。
@@ -41,7 +29,7 @@ extension Eiam {
         /// 描述，未传入该参数时，表示不进行修改。
         public let description: String?
         
-        public init (accountId: String, accountName: String?, password: String?, description: String?) {
+        public init (accountId: String, accountName: String? = nil, password: String? = nil, description: String? = nil) {
             self.accountId = accountId
             self.accountName = accountName
             self.password = password
@@ -64,5 +52,17 @@ extension Eiam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改应用账号
+    @inlinable
+    public func modifyAppAccount(_ input: ModifyAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAppAccountResponse > {
+        self.client.execute(action: "ModifyAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用账号
+    @inlinable
+    public func modifyAppAccount(_ input: ModifyAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppAccountResponse {
+        try await self.client.execute(action: "ModifyAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

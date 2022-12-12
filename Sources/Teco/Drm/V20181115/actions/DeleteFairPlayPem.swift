@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Drm {
-    /// 删除Fairplay方案的私钥、ask
-    ///
-    /// 本接口用来删除fairplay方案的私钥、ask等信息
-    /// 注：高风险操作，删除后，您将无法使用腾讯云DRM提供的fairplay服务。
-    /// 由于缓存，删除操作需要约半小时生效
-    @inlinable
-    public func deleteFairPlayPem(_ input: DeleteFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFairPlayPemResponse > {
-        self.client.execute(action: "DeleteFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除Fairplay方案的私钥、ask
-    ///
-    /// 本接口用来删除fairplay方案的私钥、ask等信息
-    /// 注：高风险操作，删除后，您将无法使用腾讯云DRM提供的fairplay服务。
-    /// 由于缓存，删除操作需要约半小时生效
-    @inlinable
-    public func deleteFairPlayPem(_ input: DeleteFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFairPlayPemResponse {
-        try await self.client.execute(action: "DeleteFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteFairPlayPem请求参数结构体
     public struct DeleteFairPlayPemRequest: TCRequestModel {
         /// 委托者Id,适用于托管自身证书的客户。普通客户无需填该字段。
@@ -44,7 +24,7 @@ extension Drm {
         /// 当未传入该值时，将删除所有的私钥。
         public let fairPlayPemId: UInt64?
         
-        public init (bailorId: UInt64?, fairPlayPemId: UInt64?) {
+        public init (bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil) {
             self.bailorId = bailorId
             self.fairPlayPemId = fairPlayPemId
         }
@@ -63,5 +43,25 @@ extension Drm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除Fairplay方案的私钥、ask
+    ///
+    /// 本接口用来删除fairplay方案的私钥、ask等信息
+    /// 注：高风险操作，删除后，您将无法使用腾讯云DRM提供的fairplay服务。
+    /// 由于缓存，删除操作需要约半小时生效
+    @inlinable
+    public func deleteFairPlayPem(_ input: DeleteFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteFairPlayPemResponse > {
+        self.client.execute(action: "DeleteFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Fairplay方案的私钥、ask
+    ///
+    /// 本接口用来删除fairplay方案的私钥、ask等信息
+    /// 注：高风险操作，删除后，您将无法使用腾讯云DRM提供的fairplay服务。
+    /// 由于缓存，删除操作需要约半小时生效
+    @inlinable
+    public func deleteFairPlayPem(_ input: DeleteFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFairPlayPemResponse {
+        try await self.client.execute(action: "DeleteFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -49,7 +49,7 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleLevel: String?
         
-        public init (ruleMode: String, processPath: String, ruleId: String?, ruleLevel: String?) {
+        public init (ruleMode: String, processPath: String, ruleId: String? = nil, ruleLevel: String? = nil) {
             self.ruleMode = ruleMode
             self.processPath = processPath
             self.ruleId = ruleId
@@ -316,7 +316,7 @@ extension Tcss {
         /// 是否是系统默认策略
         public let isDefault: Bool?
         
-        public init (isEnable: Bool, imageIds: [String], childRules: [AbnormalProcessChildRuleInfo], ruleName: String, ruleId: String?, systemChildRules: [AbnormalProcessSystemChildRuleInfo]?, isDefault: Bool?) {
+        public init (isEnable: Bool, imageIds: [String], childRules: [AbnormalProcessChildRuleInfo], ruleName: String, ruleId: String? = nil, systemChildRules: [AbnormalProcessSystemChildRuleInfo]? = nil, isDefault: Bool? = nil) {
             self.isEnable = isEnable
             self.imageIds = imageIds
             self.childRules = childRules
@@ -364,7 +364,7 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleLevel: String?
         
-        public init (ruleId: String, isEnable: Bool, ruleMode: String, ruleType: String, ruleLevel: String?) {
+        public init (ruleId: String, isEnable: Bool, ruleMode: String, ruleType: String, ruleLevel: String? = nil) {
             self.ruleId = ruleId
             self.isEnable = isEnable
             self.ruleMode = ruleMode
@@ -398,7 +398,7 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleId: String?
         
-        public init (ruleMode: String, processPath: String, targetFilePath: String, ruleId: String?) {
+        public init (ruleMode: String, processPath: String, targetFilePath: String, ruleId: String? = nil) {
             self.ruleMode = ruleMode
             self.processPath = processPath
             self.targetFilePath = targetFilePath
@@ -617,7 +617,7 @@ extension Tcss {
         /// 是否是系统默认策略
         public let isDefault: Bool?
         
-        public init (isEnable: Bool, imageIds: [String], childRules: [AccessControlChildRuleInfo], ruleName: String, ruleId: String?, systemChildRules: [AccessControlSystemChildRuleInfo]?, isDefault: Bool?) {
+        public init (isEnable: Bool, imageIds: [String], childRules: [AccessControlChildRuleInfo], ruleName: String, ruleId: String? = nil, systemChildRules: [AccessControlSystemChildRuleInfo]? = nil, isDefault: Bool? = nil) {
             self.isEnable = isEnable
             self.imageIds = imageIds
             self.childRules = childRules
@@ -789,7 +789,7 @@ extension Tcss {
         /// 是否模糊查询
         public let exactMatch: Bool?
         
-        public init (name: String, values: [String], exactMatch: Bool?) {
+        public init (name: String, values: [String], exactMatch: Bool? = nil) {
             self.name = name
             self.values = values
             self.exactMatch = exactMatch
@@ -922,7 +922,7 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kafkaVersion: String?
         
-        public init (instanceID: String?, instanceName: String?, topicList: [CKafkaTopicInfo]?, routeList: [CkafkaRouteInfo]?, kafkaVersion: String?) {
+        public init (instanceID: String? = nil, instanceName: String? = nil, topicList: [CKafkaTopicInfo]? = nil, routeList: [CkafkaRouteInfo]? = nil, kafkaVersion: String? = nil) {
             self.instanceID = instanceID
             self.instanceName = instanceName
             self.topicList = topicList
@@ -988,7 +988,7 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accessType: Int64?
         
-        public init (routeID: Int64?, domain: String?, domainPort: UInt64?, vip: String?, vipType: Int64?, accessType: Int64?) {
+        public init (routeID: Int64? = nil, domain: String? = nil, domainPort: UInt64? = nil, vip: String? = nil, vipType: Int64? = nil, accessType: Int64? = nil) {
             self.routeID = routeID
             self.domain = domain
             self.domainPort = domainPort
@@ -1020,7 +1020,7 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topicList: [ClsTopicInfo]?
         
-        public init (logsetID: String, logsetName: String?, topicList: [ClsTopicInfo]?) {
+        public init (logsetID: String, logsetName: String? = nil, topicList: [ClsTopicInfo]? = nil) {
             self.logsetID = logsetID
             self.logsetName = logsetName
             self.topicList = topicList
@@ -1161,7 +1161,7 @@ extension Tcss {
         /// 按照要扫描的workload名字
         public let workloadName: String?
         
-        public init (clusterId: String, clusterRegion: String, nodeIp: String?, workloadName: String?) {
+        public init (clusterId: String, clusterRegion: String, nodeIp: String? = nil, workloadName: String? = nil) {
             self.clusterId = clusterId
             self.clusterRegion = clusterRegion
             self.nodeIp = nodeIp
@@ -1571,7 +1571,7 @@ extension Tcss {
         /// 需要忽略指定资产内的检查项ID列表，为空表示所有
         public let customerPolicyItemIdSet: [UInt64]?
         
-        public init (customerAssetItemId: UInt64, customerPolicyItemIdSet: [UInt64]?) {
+        public init (customerAssetItemId: UInt64, customerPolicyItemIdSet: [UInt64]? = nil) {
             self.customerAssetItemId = customerAssetItemId
             self.customerPolicyItemIdSet = customerPolicyItemIdSet
         }
@@ -1749,7 +1749,7 @@ extension Tcss {
         /// 是否模糊查询。默认为是。
         public let exactMatch: Bool?
         
-        public init (name: String, values: [String], exactMatch: Bool?) {
+        public init (name: String, values: [String], exactMatch: Bool? = nil) {
             self.name = name
             self.values = values
             self.exactMatch = exactMatch
@@ -1864,7 +1864,7 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enable: Bool?
         
-        public init (frequency: UInt64, executionTime: String, enable: Bool?) {
+        public init (frequency: UInt64, executionTime: String, enable: Bool? = nil) {
             self.frequency = frequency
             self.executionTime = executionTime
             self.enable = enable
@@ -1885,7 +1885,7 @@ extension Tcss {
         /// 需要忽略指定检查项内的资产ID列表，为空表示所有
         public let customerAssetItemIdSet: [UInt64]?
         
-        public init (customerPolicyItemId: UInt64, customerAssetItemIdSet: [UInt64]?) {
+        public init (customerPolicyItemId: UInt64, customerAssetItemIdSet: [UInt64]? = nil) {
             self.customerPolicyItemId = customerPolicyItemId
             self.customerAssetItemIdSet = customerAssetItemIdSet
         }
@@ -2736,7 +2736,7 @@ extension Tcss {
         
         /// 所属项目
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let project: ProjectInfo
+        public let project: ProjectInfo?
         
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2877,7 +2877,7 @@ extension Tcss {
         /// 实例id
         public let instanceId: String?
         
-        public init (instanceName: String, namespace: String, imageName: String, imageTag: String, force: String, imageDigest: String?, registryType: String?, imageRepoAddress: String?, instanceId: String?) {
+        public init (instanceName: String, namespace: String, imageName: String, imageTag: String, force: String, imageDigest: String? = nil, registryType: String? = nil, imageRepoAddress: String? = nil, instanceId: String? = nil) {
             self.instanceName = instanceName
             self.namespace = namespace
             self.imageName = imageName
@@ -3849,7 +3849,7 @@ extension Tcss {
         /// 规则ID
         public let ruleID: String?
         
-        public init (ruleName: String, status: Bool, ruleInfoList: [K8sApiAbnormalRuleScopeInfo], effectClusterIDSet: [String], ruleType: String, effectAllCluster: Bool, ruleID: String?) {
+        public init (ruleName: String, status: Bool, ruleInfoList: [K8sApiAbnormalRuleScopeInfo], effectClusterIDSet: [String], ruleType: String, effectAllCluster: Bool, ruleID: String? = nil) {
             self.ruleName = ruleName
             self.status = status
             self.ruleInfoList = ruleInfoList
@@ -3938,7 +3938,7 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isDelete: Bool?
         
-        public init (scope: String, action: String, riskLevel: String?, status: Bool?, isDelete: Bool?) {
+        public init (scope: String, action: String, riskLevel: String? = nil, status: Bool? = nil, isDelete: Bool? = nil) {
             self.scope = scope
             self.action = action
             self.riskLevel = riskLevel
@@ -4021,7 +4021,7 @@ extension Tcss {
         /// 镜像类型: LOCAL 本地镜像 REGISTRY 仓库镜像
         public let imageType: String?
         
-        public init (pocID: String, imageIDs: [String]?, imageType: String?) {
+        public init (pocID: String, imageIDs: [String]? = nil, imageType: String? = nil) {
             self.pocID = pocID
             self.imageIDs = imageIDs
             self.imageType = imageType
@@ -4203,7 +4203,7 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let peer: [NetworkPeer]?
         
-        public init (direction: String, ports: [NetworkPorts]?, peer: [NetworkPeer]?) {
+        public init (direction: String, ports: [NetworkPorts]? = nil, peer: [NetworkPeer]? = nil) {
             self.direction = direction
             self.ports = ports
             self.peer = peer
@@ -4236,7 +4236,7 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipBlock: String?
         
-        public init (peerType: String, namespaceSelector: String?, podSelector: String?, ipBlock: String?) {
+        public init (peerType: String, namespaceSelector: String? = nil, podSelector: String? = nil, ipBlock: String? = nil) {
             self.peerType = peerType
             self.namespaceSelector = namespaceSelector
             self.podSelector = podSelector
@@ -4333,7 +4333,7 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: String?
         
-        public init (`protocol`: String?, port: String?) {
+        public init (`protocol`: String? = nil, port: String? = nil) {
             self.`protocol` = `protocol`
             self.port = port
         }
@@ -4820,7 +4820,7 @@ extension Tcss {
         /// 白名单id，如果新建则id为空
         public let id: String?
         
-        public init (dstIp: String, dstPort: String, processName: String, imageIds: [String], id: String?) {
+        public init (dstIp: String, dstPort: String, processName: String, imageIds: [String], id: String? = nil) {
             self.dstIp = dstIp
             self.dstPort = dstPort
             self.processName = processName
@@ -5036,7 +5036,7 @@ extension Tcss {
         /// 白名单id，如果新建则id为空
         public let id: String?
         
-        public init (imageIds: [String], syscallNames: [String]?, processPath: String?, id: String?) {
+        public init (imageIds: [String], syscallNames: [String]? = nil, processPath: String? = nil, id: String? = nil) {
             self.imageIds = imageIds
             self.syscallNames = syscallNames
             self.processPath = processPath
@@ -5213,7 +5213,7 @@ extension Tcss {
         /// 是否模糊查询
         public let exactMatch: Bool?
         
-        public init (name: String, values: [String], exactMatch: Bool?) {
+        public init (name: String, values: [String], exactMatch: Bool? = nil) {
             self.name = name
             self.values = values
             self.exactMatch = exactMatch
@@ -5319,7 +5319,7 @@ extension Tcss {
         /// 规则ID
         public let id: UInt64?
         
-        public init (name: String, logType: String, condition: String, timeRange: String, query: String, flag: String, displayData: String, id: UInt64?) {
+        public init (name: String, logType: String, condition: String, timeRange: String, query: String, flag: String, displayData: String, id: UInt64? = nil) {
             self.name = name
             self.logType = logType
             self.condition = condition
@@ -5385,7 +5385,7 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topicName: String?
         
-        public init (logType: String, state: Bool, region: String, logSet: String, topicID: String, logSetName: String?, topicName: String?) {
+        public init (logType: String, state: Bool, region: String, logSet: String, topicID: String, logSetName: String? = nil, topicName: String? = nil) {
             self.logType = logType
             self.state = state
             self.region = region
@@ -5416,7 +5416,7 @@ extension Tcss {
         
         /// 主题名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let topicName: String
+        public let topicName: String?
         
         /// 投递状态(false:关 true:开)
         public let state: Bool

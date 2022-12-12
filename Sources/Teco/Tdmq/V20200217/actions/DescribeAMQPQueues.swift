@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取Amqp队列列表
-    @inlinable
-    public func describeAMQPQueues(_ input: DescribeAMQPQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAMQPQueuesResponse > {
-        self.client.execute(action: "DescribeAMQPQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Amqp队列列表
-    @inlinable
-    public func describeAMQPQueues(_ input: DescribeAMQPQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPQueuesResponse {
-        try await self.client.execute(action: "DescribeAMQPQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAMQPQueues请求参数结构体
     public struct DescribeAMQPQueuesRequest: TCRequestModel {
         /// 查询偏移量
@@ -53,7 +41,7 @@ extension Tdmq {
         /// 队列名称，指定此参数后将只返回该队列信息
         public let filterOneQueue: String?
         
-        public init (offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, nameKeyword: String?, sortOrder: String?, sortedBy: String?, filterOneQueue: String?) {
+        public init (offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, nameKeyword: String? = nil, sortOrder: String? = nil, sortedBy: String? = nil, filterOneQueue: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.clusterId = clusterId
@@ -92,5 +80,17 @@ extension Tdmq {
             case queues = "Queues"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Amqp队列列表
+    @inlinable
+    public func describeAMQPQueues(_ input: DescribeAMQPQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAMQPQueuesResponse > {
+        self.client.execute(action: "DescribeAMQPQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Amqp队列列表
+    @inlinable
+    public func describeAMQPQueues(_ input: DescribeAMQPQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPQueuesResponse {
+        try await self.client.execute(action: "DescribeAMQPQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

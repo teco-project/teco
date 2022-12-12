@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 容器网络创建网络策略更新任务
-    @inlinable
-    public func updateNetworkFirewallPolicyDetail(_ input: UpdateNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateNetworkFirewallPolicyDetailResponse > {
-        self.client.execute(action: "UpdateNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 容器网络创建网络策略更新任务
-    @inlinable
-    public func updateNetworkFirewallPolicyDetail(_ input: UpdateNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateNetworkFirewallPolicyDetailResponse {
-        try await self.client.execute(action: "UpdateNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateNetworkFirewallPolicyDetail请求参数结构体
     public struct UpdateNetworkFirewallPolicyDetailRequest: TCRequestModel {
         /// 集群Id
@@ -59,7 +47,7 @@ extension Tcss {
         /// 自定义规则
         public let customPolicy: [NetworkCustomPolicy]?
         
-        public init (clusterId: String, id: UInt64, fromPolicyRule: Int64, toPolicyRule: Int64, podSelector: String, namespace: String?, description: String?, customPolicy: [NetworkCustomPolicy]?) {
+        public init (clusterId: String, id: UInt64, fromPolicyRule: Int64, toPolicyRule: Int64, podSelector: String, namespace: String? = nil, description: String? = nil, customPolicy: [NetworkCustomPolicy]? = nil) {
             self.clusterId = clusterId
             self.id = id
             self.fromPolicyRule = fromPolicyRule
@@ -98,5 +86,17 @@ extension Tcss {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 容器网络创建网络策略更新任务
+    @inlinable
+    public func updateNetworkFirewallPolicyDetail(_ input: UpdateNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateNetworkFirewallPolicyDetailResponse > {
+        self.client.execute(action: "UpdateNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 容器网络创建网络策略更新任务
+    @inlinable
+    public func updateNetworkFirewallPolicyDetail(_ input: UpdateNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateNetworkFirewallPolicyDetailResponse {
+        try await self.client.execute(action: "UpdateNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

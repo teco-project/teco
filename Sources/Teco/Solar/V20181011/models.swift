@@ -172,7 +172,7 @@ extension Solar {
         /// 用户Id列表
         public let userIds: [String]?
         
-        public init (type: Int64?, deptIds: [String]?, userIds: [String]?) {
+        public init (type: Int64? = nil, deptIds: [String]? = nil, userIds: [String]? = nil) {
             self.type = type
             self.deptIds = deptIds
             self.userIds = userIds

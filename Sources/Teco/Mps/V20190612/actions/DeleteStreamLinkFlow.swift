@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 删除媒体传输流
-    ///
-    /// 删除媒体传输的传输流配置。
-    @inlinable
-    public func deleteStreamLinkFlow(_ input: DeleteStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStreamLinkFlowResponse > {
-        self.client.execute(action: "DeleteStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除媒体传输流
-    ///
-    /// 删除媒体传输的传输流配置。
-    @inlinable
-    public func deleteStreamLinkFlow(_ input: DeleteStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStreamLinkFlowResponse {
-        try await self.client.execute(action: "DeleteStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteStreamLinkFlow请求参数结构体
     public struct DeleteStreamLinkFlowRequest: TCRequestModel {
         /// 传输流Id。
@@ -53,5 +37,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除媒体传输流
+    ///
+    /// 删除媒体传输的传输流配置。
+    @inlinable
+    public func deleteStreamLinkFlow(_ input: DeleteStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStreamLinkFlowResponse > {
+        self.client.execute(action: "DeleteStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除媒体传输流
+    ///
+    /// 删除媒体传输的传输流配置。
+    @inlinable
+    public func deleteStreamLinkFlow(_ input: DeleteStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStreamLinkFlowResponse {
+        try await self.client.execute(action: "DeleteStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

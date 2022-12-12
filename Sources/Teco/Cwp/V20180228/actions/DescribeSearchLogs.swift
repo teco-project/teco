@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取历史搜索记录
-    @inlinable
-    public func describeSearchLogs(_ input: DescribeSearchLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSearchLogsResponse > {
-        self.client.execute(action: "DescribeSearchLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取历史搜索记录
-    @inlinable
-    public func describeSearchLogs(_ input: DescribeSearchLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchLogsResponse {
-        try await self.client.execute(action: "DescribeSearchLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSearchLogs请求参数结构体
     public struct DescribeSearchLogsRequest: TCRequestModel {
         public init () {
@@ -45,5 +33,17 @@ extension Cwp {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取历史搜索记录
+    @inlinable
+    public func describeSearchLogs(_ input: DescribeSearchLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSearchLogsResponse > {
+        self.client.execute(action: "DescribeSearchLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取历史搜索记录
+    @inlinable
+    public func describeSearchLogs(_ input: DescribeSearchLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchLogsResponse {
+        try await self.client.execute(action: "DescribeSearchLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

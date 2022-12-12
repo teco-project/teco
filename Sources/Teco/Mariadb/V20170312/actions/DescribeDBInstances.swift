@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Mariadb {
-    /// 查询实例列表
-    ///
-    /// 本接口（DescribeDBInstances）用于查询云数据库实例列表，支持通过项目ID、实例ID、内网地址、实例名称等来筛选实例。
-    /// 如果不指定任何筛选条件，则默认返回20条实例记录，单次请求最多支持返回100条实例记录。
-    @inlinable
-    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstancesResponse > {
-        self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例列表
-    ///
-    /// 本接口（DescribeDBInstances）用于查询云数据库实例列表，支持通过项目ID、实例ID、内网地址、实例名称等来筛选实例。
-    /// 如果不指定任何筛选条件，则默认返回20条实例记录，单次请求最多支持返回100条实例记录。
-    @inlinable
-    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
-        try await self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBInstances请求参数结构体
     public struct DescribeDBInstancesRequest: TCRequestModel {
         /// 按照一个或者多个实例 ID 查询。实例 ID 形如：tdsql-ow728lmc。每次请求的实例的上限为100。
@@ -92,7 +74,7 @@ extension Mariadb {
         /// 排除实例状态
         public let excludeStatus: [Int64]?
         
-        public init (instanceIds: [String]?, searchName: String?, searchKey: String?, projectIds: [Int64]?, isFilterVpc: Bool?, vpcId: String?, subnetId: String?, orderBy: String?, orderByType: String?, offset: Int64?, limit: Int64?, originSerialIds: [String]?, isFilterExcluster: Bool?, exclusterType: Int64?, exclusterIds: [String]?, tagKeys: [String]?, filterInstanceType: String?, status: [Int64]?, excludeStatus: [Int64]?) {
+        public init (instanceIds: [String]? = nil, searchName: String? = nil, searchKey: String? = nil, projectIds: [Int64]? = nil, isFilterVpc: Bool? = nil, vpcId: String? = nil, subnetId: String? = nil, orderBy: String? = nil, orderByType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, originSerialIds: [String]? = nil, isFilterExcluster: Bool? = nil, exclusterType: Int64? = nil, exclusterIds: [String]? = nil, tagKeys: [String]? = nil, filterInstanceType: String? = nil, status: [Int64]? = nil, excludeStatus: [Int64]? = nil) {
             self.instanceIds = instanceIds
             self.searchName = searchName
             self.searchKey = searchKey
@@ -153,5 +135,23 @@ extension Mariadb {
             case instances = "Instances"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例列表
+    ///
+    /// 本接口（DescribeDBInstances）用于查询云数据库实例列表，支持通过项目ID、实例ID、内网地址、实例名称等来筛选实例。
+    /// 如果不指定任何筛选条件，则默认返回20条实例记录，单次请求最多支持返回100条实例记录。
+    @inlinable
+    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBInstancesResponse > {
+        self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例列表
+    ///
+    /// 本接口（DescribeDBInstances）用于查询云数据库实例列表，支持通过项目ID、实例ID、内网地址、实例名称等来筛选实例。
+    /// 如果不指定任何筛选条件，则默认返回20条实例记录，单次请求最多支持返回100条实例记录。
+    @inlinable
+    public func describeDBInstances(_ input: DescribeDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstancesResponse {
+        try await self.client.execute(action: "DescribeDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

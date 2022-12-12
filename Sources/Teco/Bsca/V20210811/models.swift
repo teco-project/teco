@@ -181,7 +181,7 @@ extension Bsca {
     public struct ComponentVulnerabilitySummary: TCOutputModel {
         /// 用于匹配漏洞的PURL
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let purl: PURL
+        public let purl: PURL?
         
         /// 该组件是否包含修复漏洞的官方补丁
         public let canBeFixed: Bool
@@ -340,7 +340,7 @@ extension Bsca {
         /// 组件版本号
         public let version: String?
         
-        public init (name: String, `protocol`: String?, namespace: String?, qualifiers: [Qualifier]?, subpath: String?, version: String?) {
+        public init (name: String, `protocol`: String? = nil, namespace: String? = nil, qualifiers: [Qualifier]? = nil, subpath: String? = nil, version: String? = nil) {
             self.name = name
             self.`protocol` = `protocol`
             self.namespace = namespace
@@ -400,11 +400,11 @@ extension Bsca {
         
         /// 漏洞CVSSv2信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cvsSv2Info: CVSSV2Info
+        public let cvsSv2Info: CVSSV2Info?
         
         /// 漏洞CVSSv3信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cvsSv3Info: CVSSV3Info
+        public let cvsSv3Info: CVSSV3Info?
         
         /// 漏洞提交时间
         public let submitTime: String

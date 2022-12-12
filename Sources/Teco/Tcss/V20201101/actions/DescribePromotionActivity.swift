@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询促销活动
-    @inlinable
-    public func describePromotionActivity(_ input: DescribePromotionActivityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePromotionActivityResponse > {
-        self.client.execute(action: "DescribePromotionActivity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询促销活动
-    @inlinable
-    public func describePromotionActivity(_ input: DescribePromotionActivityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePromotionActivityResponse {
-        try await self.client.execute(action: "DescribePromotionActivity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePromotionActivity请求参数结构体
     public struct DescribePromotionActivityRequest: TCRequestModel {
         /// 活动ID
@@ -53,5 +41,17 @@ extension Tcss {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询促销活动
+    @inlinable
+    public func describePromotionActivity(_ input: DescribePromotionActivityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePromotionActivityResponse > {
+        self.client.execute(action: "DescribePromotionActivity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询促销活动
+    @inlinable
+    public func describePromotionActivity(_ input: DescribePromotionActivityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePromotionActivityResponse {
+        try await self.client.execute(action: "DescribePromotionActivity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

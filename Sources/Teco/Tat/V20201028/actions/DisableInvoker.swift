@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tat {
-    /// 停用执行器
-    ///
-    /// 此接口用于停止执行器。
-    @inlinable
-    public func disableInvoker(_ input: DisableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableInvokerResponse > {
-        self.client.execute(action: "DisableInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 停用执行器
-    ///
-    /// 此接口用于停止执行器。
-    @inlinable
-    public func disableInvoker(_ input: DisableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInvokerResponse {
-        try await self.client.execute(action: "DisableInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableInvoker请求参数结构体
     public struct DisableInvokerRequest: TCRequestModel {
         /// 待停止的执行器ID。
@@ -53,5 +37,21 @@ extension Tat {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 停用执行器
+    ///
+    /// 此接口用于停止执行器。
+    @inlinable
+    public func disableInvoker(_ input: DisableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableInvokerResponse > {
+        self.client.execute(action: "DisableInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 停用执行器
+    ///
+    /// 此接口用于停止执行器。
+    @inlinable
+    public func disableInvoker(_ input: DisableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInvokerResponse {
+        try await self.client.execute(action: "DisableInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

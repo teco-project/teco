@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 更新作品
-    @inlinable
-    public func updateCRWork(_ input: UpdateCRWorkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCRWorkResponse > {
-        self.client.execute(action: "UpdateCRWork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新作品
-    @inlinable
-    public func updateCRWork(_ input: UpdateCRWorkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCRWorkResponse {
-        try await self.client.execute(action: "UpdateCRWork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateCRWork请求参数结构体
     public struct UpdateCRWorkRequest: TCRequestModel {
         /// 作品ID
@@ -41,7 +29,7 @@ extension Bma {
         /// 本次存证类型：0-不存证 1-存当前文件 2-存历史全量文件
         public let certType: String?
         
-        public init (workId: Int64, contentType: String?, content: String?, certType: String?) {
+        public init (workId: Int64, contentType: String? = nil, content: String? = nil, certType: String? = nil) {
             self.workId = workId
             self.contentType = contentType
             self.content = content
@@ -72,5 +60,17 @@ extension Bma {
             case evidenceId = "EvidenceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新作品
+    @inlinable
+    public func updateCRWork(_ input: UpdateCRWorkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateCRWorkResponse > {
+        self.client.execute(action: "UpdateCRWork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新作品
+    @inlinable
+    public func updateCRWork(_ input: UpdateCRWorkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCRWorkResponse {
+        try await self.client.execute(action: "UpdateCRWork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

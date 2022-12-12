@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 删除雪碧图模板
-    ///
-    /// 删除雪碧图模板。
-    @inlinable
-    public func deleteImageSpriteTemplate(_ input: DeleteImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageSpriteTemplateResponse > {
-        self.client.execute(action: "DeleteImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除雪碧图模板
-    ///
-    /// 删除雪碧图模板。
-    @inlinable
-    public func deleteImageSpriteTemplate(_ input: DeleteImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageSpriteTemplateResponse {
-        try await self.client.execute(action: "DeleteImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteImageSpriteTemplate请求参数结构体
     public struct DeleteImageSpriteTemplateRequest: TCRequestModel {
         /// 雪碧图模板唯一标识。
@@ -53,5 +37,21 @@ extension Mps {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除雪碧图模板
+    ///
+    /// 删除雪碧图模板。
+    @inlinable
+    public func deleteImageSpriteTemplate(_ input: DeleteImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImageSpriteTemplateResponse > {
+        self.client.execute(action: "DeleteImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除雪碧图模板
+    ///
+    /// 删除雪碧图模板。
+    @inlinable
+    public func deleteImageSpriteTemplate(_ input: DeleteImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageSpriteTemplateResponse {
+        try await self.client.execute(action: "DeleteImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 插件解绑API
-    ///
-    /// 解除插件与API绑定
-    @inlinable
-    public func detachPlugin(_ input: DetachPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachPluginResponse > {
-        self.client.execute(action: "DetachPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 插件解绑API
-    ///
-    /// 解除插件与API绑定
-    @inlinable
-    public func detachPlugin(_ input: DetachPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachPluginResponse {
-        try await self.client.execute(action: "DetachPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetachPlugin请求参数结构体
     public struct DetachPluginRequest: TCRequestModel {
         /// 要解绑的API网关插件ID。
@@ -72,5 +56,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 插件解绑API
+    ///
+    /// 解除插件与API绑定
+    @inlinable
+    public func detachPlugin(_ input: DetachPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachPluginResponse > {
+        self.client.execute(action: "DetachPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 插件解绑API
+    ///
+    /// 解除插件与API绑定
+    @inlinable
+    public func detachPlugin(_ input: DetachPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachPluginResponse {
+        try await self.client.execute(action: "DetachPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

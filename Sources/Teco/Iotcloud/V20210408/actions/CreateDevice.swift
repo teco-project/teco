@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 创建设备
-    ///
-    /// 本接口（CreateDevice）用于新建一个物联网通信设备。 
-    @inlinable
-    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeviceResponse > {
-        self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建设备
-    ///
-    /// 本接口（CreateDevice）用于新建一个物联网通信设备。 
-    @inlinable
-    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
-        try await self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDevice请求参数结构体
     public struct CreateDeviceRequest: TCRequestModel {
         /// 产品 ID 。创建产品时腾讯云为用户分配全局唯一的 ID
@@ -40,7 +24,7 @@ extension Iotcloud {
         public let deviceName: String
         
         /// 设备属性
-        public let attribute: Attribute
+        public let attribute: Attribute?
         
         /// 是否使用自定义PSK，默认不使用
         public let definedPsk: String?
@@ -66,7 +50,7 @@ extension Iotcloud {
         /// 私有CA创建的设备证书
         public let tlsCrt: String?
         
-        public init (productId: String, deviceName: String, attribute: Attribute, definedPsk: String?, isp: UInt64?, imei: String?, loraDevEui: String?, loraMoteType: UInt64?, skey: String?, loraAppKey: String?, tlsCrt: String?) {
+        public init (productId: String, deviceName: String, attribute: Attribute? = nil, definedPsk: String? = nil, isp: UInt64? = nil, imei: String? = nil, loraDevEui: String? = nil, loraMoteType: UInt64? = nil, skey: String? = nil, loraAppKey: String? = nil, tlsCrt: String? = nil) {
             self.productId = productId
             self.deviceName = deviceName
             self.attribute = attribute
@@ -135,5 +119,21 @@ extension Iotcloud {
             case loraNwkKey = "LoraNwkKey"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建设备
+    ///
+    /// 本接口（CreateDevice）用于新建一个物联网通信设备。 
+    @inlinable
+    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDeviceResponse > {
+        self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建设备
+    ///
+    /// 本接口（CreateDevice）用于新建一个物联网通信设备。 
+    @inlinable
+    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
+        try await self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

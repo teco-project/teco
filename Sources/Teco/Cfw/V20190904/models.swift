@@ -86,35 +86,35 @@ extension Cfw {
     public struct AssociatedInstanceInfo: TCInputModel, TCOutputModel {
         /// 实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instanceId: String
+        public let instanceId: String?
         
         /// 实例名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let instanceName: String
+        public let instanceName: String?
         
         /// 实例类型，3是cvm实例,4是clb实例,5是eni实例,6是云数据库
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let type: UInt64
+        public let type: UInt64?
         
         /// 私有网络ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let vpcId: String
+        public let vpcId: String?
         
         /// 私有网络名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let vpcName: String
+        public let vpcName: String?
         
         /// 公网IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let publicIp: String
+        public let publicIp: String?
         
         /// 内网IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ip: String
+        public let ip: String?
         
         /// 关联安全组数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let securityGroupCount: UInt64
+        public let securityGroupCount: UInt64?
         
         public init (instanceId: String, instanceName: String, type: UInt64, vpcId: String, vpcName: String, publicIp: String, ip: String, securityGroupCount: UInt64) {
             self.instanceId = instanceId
@@ -219,7 +219,7 @@ extension Cfw {
         /// 云厂商码
         public let cloudCode: String?
         
-        public init (sourceIp: String, sourceType: Int64, targetIp: String, targetType: Int64, detail: String, isRegionRule: Int64, isCloudRule: Int64, enable: Int64, firstLevelRegionCode: Int64?, secondLevelRegionCode: Int64?, firstLevelRegionName: String?, secondLevelRegionName: String?, cloudCode: String?) {
+        public init (sourceIp: String, sourceType: Int64, targetIp: String, targetType: Int64, detail: String, isRegionRule: Int64, isCloudRule: Int64, enable: Int64, firstLevelRegionCode: Int64? = nil, secondLevelRegionCode: Int64? = nil, firstLevelRegionName: String? = nil, secondLevelRegionName: String? = nil, cloudCode: String? = nil) {
             self.sourceIp = sourceIp
             self.sourceType = sourceType
             self.targetIp = targetIp
@@ -377,7 +377,7 @@ extension Cfw {
         /// 待处置域名，IP/Domain字段二选一
         public let domain: String?
         
-        public init (ip: String, direction: Int64, domain: String?) {
+        public init (ip: String, direction: Int64, domain: String? = nil) {
             self.ip = ip
             self.direction = direction
             self.domain = domain
@@ -561,7 +561,7 @@ extension Cfw {
         /// 新增模式下新增绑定的出口弹性公网ip个数，其中Eips和AddCount至少传递一个。
         public let addCount: Int64?
         
-        public init (vpcList: [String], eips: [String]?, addCount: Int64?) {
+        public init (vpcList: [String], eips: [String]? = nil, addCount: Int64? = nil) {
             self.vpcList = vpcList
             self.eips = eips
             self.addCount = addCount
@@ -630,7 +630,7 @@ extension Cfw {
         /// 国家名
         public let countryName: String?
         
-        public init (orderIndex: UInt64, sourceIp: String, targetIp: String, `protocol`: String, strategy: String, sourceType: UInt64, direction: UInt64, detail: String, targetType: UInt64, port: String?, id: UInt64?, logId: String?, city: UInt64?, country: UInt64?, cloudCode: String?, isRegion: UInt64?, cityName: String?, countryName: String?) {
+        public init (orderIndex: UInt64, sourceIp: String, targetIp: String, `protocol`: String, strategy: String, sourceType: UInt64, direction: UInt64, detail: String, targetType: UInt64, port: String? = nil, id: UInt64? = nil, logId: String? = nil, city: UInt64? = nil, country: UInt64? = nil, cloudCode: String? = nil, isRegion: UInt64? = nil, cityName: String? = nil, countryName: String? = nil) {
             self.orderIndex = orderIndex
             self.sourceIp = sourceIp
             self.targetIp = targetIp
@@ -734,39 +734,39 @@ extension Cfw {
     public struct SecurityGroupBothWayInfo: TCInputModel, TCOutputModel {
         /// 执行顺序
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let orderIndex: UInt64
+        public let orderIndex: UInt64?
         
         /// 访问源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sourceId: String
+        public let sourceId: String?
         
         /// 访问源类型，默认为0，0: IP, 1: VPC, 2: SUBNET, 3: CVM, 4: CLB, 5: ENI, 6: CDB, 7: 参数模板, 100: 资产分组
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let sourceType: UInt64
+        public let sourceType: UInt64?
         
         /// 访问目的
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let targetId: String
+        public let targetId: String?
         
         /// 访问目的类型，默认为0，0: IP, 1: VPC, 2: SUBNET, 3: CVM, 4: CLB, 5: ENI, 6: CDB, 7: 参数模板, 100: 资产分组
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let targetType: UInt64
+        public let targetType: UInt64?
         
         /// 协议
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let `protocol`: String
+        public let `protocol`: String?
         
         /// 目的端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let port: String
+        public let port: String?
         
         /// 策略, 1：阻断，2：放行
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let strategy: UInt64
+        public let strategy: UInt64?
         
         /// 方向，0：出站，1：入站，默认1
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let direction: UInt64
+        public let direction: UInt64?
         
         /// 地域
         public let region: String
@@ -818,7 +818,7 @@ extension Cfw {
         /// 是否使用端口协议模板，0：否，1：是
         public let protocolPortType: UInt64?
         
-        public init (orderIndex: UInt64, sourceId: String, sourceType: UInt64, targetId: String, targetType: UInt64, `protocol`: String, port: String, strategy: UInt64, direction: UInt64, region: String, detail: String?, status: UInt64?, isNew: UInt64?, bothWay: UInt64?, vpcId: String?, subnetId: String?, instanceName: String?, publicIp: String?, privateIp: String?, cidr: String?, serviceTemplateId: String?, protocolPortType: UInt64?) {
+        public init (orderIndex: UInt64, sourceId: String, sourceType: UInt64, targetId: String, targetType: UInt64, `protocol`: String, port: String, strategy: UInt64, direction: UInt64, region: String, detail: String? = nil, status: UInt64? = nil, isNew: UInt64? = nil, bothWay: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, instanceName: String? = nil, publicIp: String? = nil, privateIp: String? = nil, cidr: String? = nil, serviceTemplateId: String? = nil, protocolPortType: UInt64? = nil) {
             self.orderIndex = orderIndex
             self.sourceId = sourceId
             self.sourceType = sourceType
@@ -948,7 +948,7 @@ extension Cfw {
         /// 是否使用端口协议模板，0：否，1：是
         public let protocolPortType: UInt64?
         
-        public init (orderIndex: UInt64, sourceId: String, sourceType: UInt64, targetId: String, targetType: UInt64, `protocol`: String, port: String, strategy: UInt64, detail: String, bothWay: UInt64, id: UInt64?, status: UInt64?, isNew: UInt64?, vpcId: String?, subnetId: String?, instanceName: String?, publicIp: String?, privateIp: String?, cidr: String?, serviceTemplateId: String?, bothWayInfo: [SecurityGroupBothWayInfo]?, direction: UInt64?, protocolPortType: UInt64?) {
+        public init (orderIndex: UInt64, sourceId: String, sourceType: UInt64, targetId: String, targetType: UInt64, `protocol`: String, port: String, strategy: UInt64, detail: String, bothWay: UInt64, id: UInt64? = nil, status: UInt64? = nil, isNew: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, instanceName: String? = nil, publicIp: String? = nil, privateIp: String? = nil, cidr: String? = nil, serviceTemplateId: String? = nil, bothWayInfo: [SecurityGroupBothWayInfo]? = nil, direction: UInt64? = nil, protocolPortType: UInt64? = nil) {
             self.orderIndex = orderIndex
             self.sourceId = sourceId
             self.sourceType = sourceType
@@ -1077,7 +1077,7 @@ extension Cfw {
         /// 规则状态，true表示启用，false表示禁用
         public let enable: String?
         
-        public init (sourceContent: String, sourceType: String, destContent: String, destType: String, ruleAction: String, description: String, orderIndex: String, `protocol`: String?, port: String?, serviceTemplateId: String?, id: String?, enable: String?) {
+        public init (sourceContent: String, sourceType: String, destContent: String, destType: String, ruleAction: String, description: String, orderIndex: String, `protocol`: String? = nil, port: String? = nil, serviceTemplateId: String? = nil, id: String? = nil, enable: String? = nil) {
             self.sourceContent = sourceContent
             self.sourceType = sourceType
             self.destContent = destContent

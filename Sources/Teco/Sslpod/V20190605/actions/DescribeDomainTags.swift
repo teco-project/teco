@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sslpod {
-    /// 获取账号的tags
-    ///
-    /// 获取账号下所有tag
-    @inlinable
-    public func describeDomainTags(_ input: DescribeDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainTagsResponse > {
-        self.client.execute(action: "DescribeDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取账号的tags
-    ///
-    /// 获取账号下所有tag
-    @inlinable
-    public func describeDomainTags(_ input: DescribeDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainTagsResponse {
-        try await self.client.execute(action: "DescribeDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomainTags请求参数结构体
     public struct DescribeDomainTagsRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Sslpod {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取账号的tags
+    ///
+    /// 获取账号下所有tag
+    @inlinable
+    public func describeDomainTags(_ input: DescribeDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainTagsResponse > {
+        self.client.execute(action: "DescribeDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取账号的tags
+    ///
+    /// 获取账号下所有tag
+    @inlinable
+    public func describeDomainTags(_ input: DescribeDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainTagsResponse {
+        try await self.client.execute(action: "DescribeDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

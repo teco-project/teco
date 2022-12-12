@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 删除SCDN域名
-    @inlinable
-    public func deleteScdnDomain(_ input: DeleteScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScdnDomainResponse > {
-        self.client.execute(action: "DeleteScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除SCDN域名
-    @inlinable
-    public func deleteScdnDomain(_ input: DeleteScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScdnDomainResponse {
-        try await self.client.execute(action: "DeleteScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteScdnDomain请求参数结构体
     public struct DeleteScdnDomainRequest: TCRequestModel {
         /// 域名
@@ -53,5 +41,17 @@ extension Cdn {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除SCDN域名
+    @inlinable
+    public func deleteScdnDomain(_ input: DeleteScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteScdnDomainResponse > {
+        self.client.execute(action: "DeleteScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除SCDN域名
+    @inlinable
+    public func deleteScdnDomain(_ input: DeleteScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScdnDomainResponse {
+        try await self.client.execute(action: "DeleteScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

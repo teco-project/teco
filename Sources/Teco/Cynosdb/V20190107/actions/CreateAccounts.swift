@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 创建账号
-    @inlinable
-    public func createAccounts(_ input: CreateAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccountsResponse > {
-        self.client.execute(action: "CreateAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建账号
-    @inlinable
-    public func createAccounts(_ input: CreateAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountsResponse {
-        try await self.client.execute(action: "CreateAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAccounts请求参数结构体
     public struct CreateAccountsRequest: TCRequestModel {
         /// 集群id
@@ -54,5 +42,17 @@ extension Cynosdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建账号
+    @inlinable
+    public func createAccounts(_ input: CreateAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccountsResponse > {
+        self.client.execute(action: "CreateAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建账号
+    @inlinable
+    public func createAccounts(_ input: CreateAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountsResponse {
+        try await self.client.execute(action: "CreateAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

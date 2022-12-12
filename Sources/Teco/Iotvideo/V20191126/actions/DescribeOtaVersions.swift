@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 查询固件版本信息列表
-    ///
-    /// 本接口（DescribeOtaVersions）用于查询固件版本信息列表。
-    @inlinable
-    public func describeOtaVersions(_ input: DescribeOtaVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOtaVersionsResponse > {
-        self.client.execute(action: "DescribeOtaVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询固件版本信息列表
-    ///
-    /// 本接口（DescribeOtaVersions）用于查询固件版本信息列表。
-    @inlinable
-    public func describeOtaVersions(_ input: DescribeOtaVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOtaVersionsResponse {
-        try await self.client.execute(action: "DescribeOtaVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOtaVersions请求参数结构体
     public struct DescribeOtaVersionsRequest: TCRequestModel {
         /// 分页偏移量
@@ -48,7 +32,7 @@ extension Iotvideo {
         /// 版本类型 1未发布 2测试发布 3正式发布 4禁用
         public let pubStatus: UInt64?
         
-        public init (offset: UInt64, limit: UInt64, productId: String?, otaVersion: String?, pubStatus: UInt64?) {
+        public init (offset: UInt64, limit: UInt64, productId: String? = nil, otaVersion: String? = nil, pubStatus: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
             self.productId = productId
@@ -82,5 +66,21 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询固件版本信息列表
+    ///
+    /// 本接口（DescribeOtaVersions）用于查询固件版本信息列表。
+    @inlinable
+    public func describeOtaVersions(_ input: DescribeOtaVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOtaVersionsResponse > {
+        self.client.execute(action: "DescribeOtaVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询固件版本信息列表
+    ///
+    /// 本接口（DescribeOtaVersions）用于查询固件版本信息列表。
+    @inlinable
+    public func describeOtaVersions(_ input: DescribeOtaVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOtaVersionsResponse {
+        try await self.client.execute(action: "DescribeOtaVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

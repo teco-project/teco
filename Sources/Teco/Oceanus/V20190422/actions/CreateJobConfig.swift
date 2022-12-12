@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 创建作业配置
-    ///
-    /// 创建作业配置，一个作业最多有100个配置版本
-    @inlinable
-    public func createJobConfig(_ input: CreateJobConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateJobConfigResponse > {
-        self.client.execute(action: "CreateJobConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建作业配置
-    ///
-    /// 创建作业配置，一个作业最多有100个配置版本
-    @inlinable
-    public func createJobConfig(_ input: CreateJobConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobConfigResponse {
-        try await self.client.execute(action: "CreateJobConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateJobConfig请求参数结构体
     public struct CreateJobConfigRequest: TCRequestModel {
         /// 作业Id
@@ -90,7 +74,7 @@ extension Oceanus {
         /// Oceanus 平台恢复作业开关 1:开启 -1: 关闭
         public let autoRecover: Int64?
         
-        public init (jobId: String, entrypointClass: String?, programArgs: String?, remark: String?, resourceRefs: [ResourceRef]?, defaultParallelism: UInt64?, properties: [Property]?, autoDelete: Int64?, cosBucket: String?, logCollect: Bool?, jobManagerSpec: Float?, taskManagerSpec: Float?, clsLogsetId: String?, clsTopicId: String?, logCollectType: Int64?, pythonVersion: String?, workSpaceId: String?, logLevel: String?, autoRecover: Int64?) {
+        public init (jobId: String, entrypointClass: String? = nil, programArgs: String? = nil, remark: String? = nil, resourceRefs: [ResourceRef]? = nil, defaultParallelism: UInt64? = nil, properties: [Property]? = nil, autoDelete: Int64? = nil, cosBucket: String? = nil, logCollect: Bool? = nil, jobManagerSpec: Float? = nil, taskManagerSpec: Float? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, logCollectType: Int64? = nil, pythonVersion: String? = nil, workSpaceId: String? = nil, logLevel: String? = nil, autoRecover: Int64? = nil) {
             self.jobId = jobId
             self.entrypointClass = entrypointClass
             self.programArgs = programArgs
@@ -147,5 +131,21 @@ extension Oceanus {
             case version = "Version"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建作业配置
+    ///
+    /// 创建作业配置，一个作业最多有100个配置版本
+    @inlinable
+    public func createJobConfig(_ input: CreateJobConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateJobConfigResponse > {
+        self.client.execute(action: "CreateJobConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建作业配置
+    ///
+    /// 创建作业配置，一个作业最多有100个配置版本
+    @inlinable
+    public func createJobConfig(_ input: CreateJobConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobConfigResponse {
+        try await self.client.execute(action: "CreateJobConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

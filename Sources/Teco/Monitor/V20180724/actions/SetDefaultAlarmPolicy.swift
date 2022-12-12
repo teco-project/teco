@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 设为默认告警策略
-    ///
-    /// 设置一个策略为该告警策略类型、该项目的默认告警策略。
-    /// 同一项目下相同的告警策略类型，就会被设置为非默认。
-    @inlinable
-    public func setDefaultAlarmPolicy(_ input: SetDefaultAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetDefaultAlarmPolicyResponse > {
-        self.client.execute(action: "SetDefaultAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设为默认告警策略
-    ///
-    /// 设置一个策略为该告警策略类型、该项目的默认告警策略。
-    /// 同一项目下相同的告警策略类型，就会被设置为非默认。
-    @inlinable
-    public func setDefaultAlarmPolicy(_ input: SetDefaultAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDefaultAlarmPolicyResponse {
-        try await self.client.execute(action: "SetDefaultAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetDefaultAlarmPolicy请求参数结构体
     public struct SetDefaultAlarmPolicyRequest: TCRequestModel {
         /// 模块名，固定值 monitor
@@ -60,5 +42,23 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设为默认告警策略
+    ///
+    /// 设置一个策略为该告警策略类型、该项目的默认告警策略。
+    /// 同一项目下相同的告警策略类型，就会被设置为非默认。
+    @inlinable
+    public func setDefaultAlarmPolicy(_ input: SetDefaultAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetDefaultAlarmPolicyResponse > {
+        self.client.execute(action: "SetDefaultAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设为默认告警策略
+    ///
+    /// 设置一个策略为该告警策略类型、该项目的默认告警策略。
+    /// 同一项目下相同的告警策略类型，就会被设置为非默认。
+    @inlinable
+    public func setDefaultAlarmPolicy(_ input: SetDefaultAlarmPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDefaultAlarmPolicyResponse {
+        try await self.client.execute(action: "SetDefaultAlarmPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

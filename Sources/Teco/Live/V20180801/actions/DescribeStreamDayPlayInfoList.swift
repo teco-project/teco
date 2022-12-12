@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询所有流的流量数据
-    ///
-    /// 查询天维度每条流的播放数据，包括总流量等。
-    @inlinable
-    public func describeStreamDayPlayInfoList(_ input: DescribeStreamDayPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamDayPlayInfoListResponse > {
-        self.client.execute(action: "DescribeStreamDayPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询所有流的流量数据
-    ///
-    /// 查询天维度每条流的播放数据，包括总流量等。
-    @inlinable
-    public func describeStreamDayPlayInfoList(_ input: DescribeStreamDayPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamDayPlayInfoListResponse {
-        try await self.client.execute(action: "DescribeStreamDayPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStreamDayPlayInfoList请求参数结构体
     public struct DescribeStreamDayPlayInfoListRequest: TCRequestModel {
         /// 日期，格式：YYYY-mm-dd。
@@ -55,7 +39,7 @@ extension Live {
         /// 服务名称，可选值包括LVB(标准直播)，LEB(快直播)，不填则查LVB+LEB总值。
         public let serviceName: String?
         
-        public init (dayTime: String, playDomain: String?, pageNum: UInt64?, pageSize: UInt64?, mainlandOrOversea: String?, serviceName: String?) {
+        public init (dayTime: String, playDomain: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, serviceName: String? = nil) {
             self.dayTime = dayTime
             self.playDomain = playDomain
             self.pageNum = pageNum
@@ -102,5 +86,21 @@ extension Live {
             case pageSize = "PageSize"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询所有流的流量数据
+    ///
+    /// 查询天维度每条流的播放数据，包括总流量等。
+    @inlinable
+    public func describeStreamDayPlayInfoList(_ input: DescribeStreamDayPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamDayPlayInfoListResponse > {
+        self.client.execute(action: "DescribeStreamDayPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询所有流的流量数据
+    ///
+    /// 查询天维度每条流的播放数据，包括总流量等。
+    @inlinable
+    public func describeStreamDayPlayInfoList(_ input: DescribeStreamDayPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamDayPlayInfoListResponse {
+        try await self.client.execute(action: "DescribeStreamDayPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

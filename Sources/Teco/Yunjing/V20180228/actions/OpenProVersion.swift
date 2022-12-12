@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 开通专业版
-    ///
-    /// 本接口 (OpenProVersion) 用于开通专业版。
-    @inlinable
-    public func openProVersion(_ input: OpenProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenProVersionResponse > {
-        self.client.execute(action: "OpenProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开通专业版
-    ///
-    /// 本接口 (OpenProVersion) 用于开通专业版。
-    @inlinable
-    public func openProVersion(_ input: OpenProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionResponse {
-        try await self.client.execute(action: "OpenProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OpenProVersion请求参数结构体
     public struct OpenProVersionRequest: TCRequestModel {
         /// 云主机类型。
@@ -49,7 +33,7 @@ extension Yunjing {
         /// 活动ID。
         public let activityId: UInt64?
         
-        public init (machineType: String, machineRegion: String, quuids: [String], activityId: UInt64?) {
+        public init (machineType: String, machineRegion: String, quuids: [String], activityId: UInt64? = nil) {
             self.machineType = machineType
             self.machineRegion = machineRegion
             self.quuids = quuids
@@ -72,5 +56,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开通专业版
+    ///
+    /// 本接口 (OpenProVersion) 用于开通专业版。
+    @inlinable
+    public func openProVersion(_ input: OpenProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenProVersionResponse > {
+        self.client.execute(action: "OpenProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开通专业版
+    ///
+    /// 本接口 (OpenProVersion) 用于开通专业版。
+    @inlinable
+    public func openProVersion(_ input: OpenProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionResponse {
+        try await self.client.execute(action: "OpenProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

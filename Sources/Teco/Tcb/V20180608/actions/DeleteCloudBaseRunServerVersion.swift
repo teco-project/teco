@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 删除服务版本
-    @inlinable
-    public func deleteCloudBaseRunServerVersion(_ input: DeleteCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCloudBaseRunServerVersionResponse > {
-        self.client.execute(action: "DeleteCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除服务版本
-    @inlinable
-    public func deleteCloudBaseRunServerVersion(_ input: DeleteCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCloudBaseRunServerVersionResponse {
-        try await self.client.execute(action: "DeleteCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCloudBaseRunServerVersion请求参数结构体
     public struct DeleteCloudBaseRunServerVersionRequest: TCRequestModel {
         /// 环境ID
@@ -47,7 +35,7 @@ extension Tcb {
         /// 操作备注
         public let operatorRemark: String?
         
-        public init (envId: String, serverName: String, versionName: String, isDeleteServer: Bool?, isDeleteImage: Bool?, operatorRemark: String?) {
+        public init (envId: String, serverName: String, versionName: String, isDeleteServer: Bool? = nil, isDeleteImage: Bool? = nil, operatorRemark: String? = nil) {
             self.envId = envId
             self.serverName = serverName
             self.versionName = versionName
@@ -79,5 +67,17 @@ extension Tcb {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除服务版本
+    @inlinable
+    public func deleteCloudBaseRunServerVersion(_ input: DeleteCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCloudBaseRunServerVersionResponse > {
+        self.client.execute(action: "DeleteCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除服务版本
+    @inlinable
+    public func deleteCloudBaseRunServerVersion(_ input: DeleteCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCloudBaseRunServerVersionResponse {
+        try await self.client.execute(action: "DeleteCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

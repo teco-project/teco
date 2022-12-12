@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Btoe {
-    /// BTOE存证电子凭证查询
-    ///
-    /// 功能迭代，已上线更高版本的接口2021-05-14
-    /// 用户通过存证编码向BTOE查询存证电子凭证信息。
-    @inlinable
-    public func getDepositCert(_ input: GetDepositCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDepositCertResponse > {
-        self.client.execute(action: "GetDepositCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// BTOE存证电子凭证查询
-    ///
-    /// 功能迭代，已上线更高版本的接口2021-05-14
-    /// 用户通过存证编码向BTOE查询存证电子凭证信息。
-    @inlinable
-    public func getDepositCert(_ input: GetDepositCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositCertResponse {
-        try await self.client.execute(action: "GetDepositCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDepositCert请求参数结构体
     public struct GetDepositCertRequest: TCRequestModel {
         /// 存证编码
@@ -63,5 +45,23 @@ extension Btoe {
             case evidenceCert = "EvidenceCert"
             case requestId = "RequestId"
         }
+    }
+    
+    /// BTOE存证电子凭证查询
+    ///
+    /// 功能迭代，已上线更高版本的接口2021-05-14
+    /// 用户通过存证编码向BTOE查询存证电子凭证信息。
+    @inlinable
+    public func getDepositCert(_ input: GetDepositCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDepositCertResponse > {
+        self.client.execute(action: "GetDepositCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// BTOE存证电子凭证查询
+    ///
+    /// 功能迭代，已上线更高版本的接口2021-05-14
+    /// 用户通过存证编码向BTOE查询存证电子凭证信息。
+    @inlinable
+    public func getDepositCert(_ input: GetDepositCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositCertResponse {
+        try await self.client.execute(action: "GetDepositCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

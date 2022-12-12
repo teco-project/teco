@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 获取机器状态
-    ///
-    /// 获取制定机器组下的机器状态
-    @inlinable
-    public func describeMachines(_ input: DescribeMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachinesResponse > {
-        self.client.execute(action: "DescribeMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取机器状态
-    ///
-    /// 获取制定机器组下的机器状态
-    @inlinable
-    public func describeMachines(_ input: DescribeMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachinesResponse {
-        try await self.client.execute(action: "DescribeMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeMachines请求参数结构体
     public struct DescribeMachinesRequest: TCRequestModel {
         /// 查询的机器组ID
@@ -77,5 +61,21 @@ extension Cls {
             case serviceLogging = "ServiceLogging"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取机器状态
+    ///
+    /// 获取制定机器组下的机器状态
+    @inlinable
+    public func describeMachines(_ input: DescribeMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMachinesResponse > {
+        self.client.execute(action: "DescribeMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取机器状态
+    ///
+    /// 获取制定机器组下的机器状态
+    @inlinable
+    public func describeMachines(_ input: DescribeMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachinesResponse {
+        try await self.client.execute(action: "DescribeMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

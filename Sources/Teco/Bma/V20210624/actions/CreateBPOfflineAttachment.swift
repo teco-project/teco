@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 添加下线材料
-    @inlinable
-    public func createBPOfflineAttachment(_ input: CreateBPOfflineAttachmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPOfflineAttachmentResponse > {
-        self.client.execute(action: "CreateBPOfflineAttachment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加下线材料
-    @inlinable
-    public func createBPOfflineAttachment(_ input: CreateBPOfflineAttachmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineAttachmentResponse {
-        try await self.client.execute(action: "CreateBPOfflineAttachment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBPOfflineAttachment请求参数结构体
     public struct CreateBPOfflineAttachmentRequest: TCRequestModel {
         /// 品牌名字
@@ -41,7 +29,7 @@ extension Bma {
         /// 授权书
         public let authorizationName: String?
         
-        public init (brandName: String?, brandCertificateName: String?, transferName: String?, authorizationName: String?) {
+        public init (brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, authorizationName: String? = nil) {
             self.brandName = brandName
             self.brandCertificateName = brandCertificateName
             self.transferName = transferName
@@ -64,5 +52,17 @@ extension Bma {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加下线材料
+    @inlinable
+    public func createBPOfflineAttachment(_ input: CreateBPOfflineAttachmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPOfflineAttachmentResponse > {
+        self.client.execute(action: "CreateBPOfflineAttachment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加下线材料
+    @inlinable
+    public func createBPOfflineAttachment(_ input: CreateBPOfflineAttachmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineAttachmentResponse {
+        try await self.client.execute(action: "CreateBPOfflineAttachment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

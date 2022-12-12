@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Billing {
-    /// 获取代金券使用记录
-    @inlinable
-    public func describeVoucherUsageDetails(_ input: DescribeVoucherUsageDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVoucherUsageDetailsResponse > {
-        self.client.execute(action: "DescribeVoucherUsageDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取代金券使用记录
-    @inlinable
-    public func describeVoucherUsageDetails(_ input: DescribeVoucherUsageDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVoucherUsageDetailsResponse {
-        try await self.client.execute(action: "DescribeVoucherUsageDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVoucherUsageDetails请求参数结构体
     public struct DescribeVoucherUsageDetailsRequest: TCRequestModel {
         /// 一页多少条数据，默认是20条，最大不超过1000
@@ -41,7 +29,7 @@ extension Billing {
         /// 操作人，默认就是用户uin
         public let `operator`: String?
         
-        public init (limit: Int64, offset: Int64, voucherId: String?, `operator`: String?) {
+        public init (limit: Int64, offset: Int64, voucherId: String? = nil, `operator`: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.voucherId = voucherId
@@ -77,5 +65,17 @@ extension Billing {
             case usageRecords = "UsageRecords"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取代金券使用记录
+    @inlinable
+    public func describeVoucherUsageDetails(_ input: DescribeVoucherUsageDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVoucherUsageDetailsResponse > {
+        self.client.execute(action: "DescribeVoucherUsageDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取代金券使用记录
+    @inlinable
+    public func describeVoucherUsageDetails(_ input: DescribeVoucherUsageDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVoucherUsageDetailsResponse {
+        try await self.client.execute(action: "DescribeVoucherUsageDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

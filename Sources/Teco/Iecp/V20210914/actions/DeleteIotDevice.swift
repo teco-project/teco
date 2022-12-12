@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 删除设备
-    @inlinable
-    public func deleteIotDevice(_ input: DeleteIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIotDeviceResponse > {
-        self.client.execute(action: "DeleteIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除设备
-    @inlinable
-    public func deleteIotDevice(_ input: DeleteIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDeviceResponse {
-        try await self.client.execute(action: "DeleteIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteIotDevice请求参数结构体
     public struct DeleteIotDeviceRequest: TCRequestModel {
         /// 设备id
@@ -49,5 +37,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除设备
+    @inlinable
+    public func deleteIotDevice(_ input: DeleteIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteIotDeviceResponse > {
+        self.client.execute(action: "DeleteIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除设备
+    @inlinable
+    public func deleteIotDevice(_ input: DeleteIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDeviceResponse {
+        try await self.client.execute(action: "DeleteIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

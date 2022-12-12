@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 查询同步任务信息
-    @inlinable
-    public func describeSyncJobs(_ input: DescribeSyncJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSyncJobsResponse > {
-        self.client.execute(action: "DescribeSyncJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询同步任务信息
-    @inlinable
-    public func describeSyncJobs(_ input: DescribeSyncJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSyncJobsResponse {
-        try await self.client.execute(action: "DescribeSyncJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSyncJobs请求参数结构体
     public struct DescribeSyncJobsRequest: TCRequestModel {
         /// 同步任务id，如sync-werwfs23
@@ -62,7 +50,7 @@ extension Dts {
         /// tag
         public let tagFilters: [TagFilter]?
         
-        public init (jobId: String?, jobName: String?, order: String?, orderSeq: String?, offset: UInt64?, limit: UInt64?, status: [String]?, runMode: String?, jobType: String?, payMode: String?, tagFilters: [TagFilter]?) {
+        public init (jobId: String? = nil, jobName: String? = nil, order: String? = nil, orderSeq: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, status: [String]? = nil, runMode: String? = nil, jobType: String? = nil, payMode: String? = nil, tagFilters: [TagFilter]? = nil) {
             self.jobId = jobId
             self.jobName = jobName
             self.order = order
@@ -109,5 +97,17 @@ extension Dts {
             case jobList = "JobList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询同步任务信息
+    @inlinable
+    public func describeSyncJobs(_ input: DescribeSyncJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSyncJobsResponse > {
+        self.client.execute(action: "DescribeSyncJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询同步任务信息
+    @inlinable
+    public func describeSyncJobs(_ input: DescribeSyncJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSyncJobsResponse {
+        try await self.client.execute(action: "DescribeSyncJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 更新推理服务组流量分配
-    @inlinable
-    public func modifyServiceGroupWeights(_ input: ModifyServiceGroupWeightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyServiceGroupWeightsResponse > {
-        self.client.execute(action: "ModifyServiceGroupWeights", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新推理服务组流量分配
-    @inlinable
-    public func modifyServiceGroupWeights(_ input: ModifyServiceGroupWeightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceGroupWeightsResponse {
-        try await self.client.execute(action: "ModifyServiceGroupWeights", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyServiceGroupWeights请求参数结构体
     public struct ModifyServiceGroupWeightsRequest: TCRequestModel {
         /// 服务组id
@@ -50,7 +38,7 @@ extension Tione {
     public struct ModifyServiceGroupWeightsResponse: TCResponseModel {
         /// 更新权重后的服务组信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let serviceGroup: ServiceGroup
+        public let serviceGroup: ServiceGroup?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -59,5 +47,17 @@ extension Tione {
             case serviceGroup = "ServiceGroup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新推理服务组流量分配
+    @inlinable
+    public func modifyServiceGroupWeights(_ input: ModifyServiceGroupWeightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyServiceGroupWeightsResponse > {
+        self.client.execute(action: "ModifyServiceGroupWeights", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新推理服务组流量分配
+    @inlinable
+    public func modifyServiceGroupWeights(_ input: ModifyServiceGroupWeightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceGroupWeightsResponse {
+        try await self.client.execute(action: "ModifyServiceGroupWeights", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

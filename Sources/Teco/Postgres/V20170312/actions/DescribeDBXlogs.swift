@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Postgres {
-    /// 获取实例Xlog列表
-    ///
-    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
-    @inlinable
-    public func describeDBXlogs(_ input: DescribeDBXlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBXlogsResponse > {
-        self.client.execute(action: "DescribeDBXlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取实例Xlog列表
-    ///
-    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
-    @inlinable
-    public func describeDBXlogs(_ input: DescribeDBXlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBXlogsResponse {
-        try await self.client.execute(action: "DescribeDBXlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBXlogs请求参数结构体
     public struct DescribeDBXlogsRequest: TCRequestModel {
         /// 实例ID，形如postgres-4wdeb0zv。
@@ -52,7 +36,7 @@ extension Postgres {
         /// 分页返回，表示每页有多少条目。取值为1-100。
         public let limit: Int64?
         
-        public init (dbInstanceId: String, startTime: Date, endTime: Date, offset: Int64?, limit: Int64?) {
+        public init (dbInstanceId: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil) {
             self.dbInstanceId = dbInstanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -85,5 +69,21 @@ extension Postgres {
             case xlogList = "XlogList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取实例Xlog列表
+    ///
+    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
+    @inlinable
+    public func describeDBXlogs(_ input: DescribeDBXlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBXlogsResponse > {
+        self.client.execute(action: "DescribeDBXlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取实例Xlog列表
+    ///
+    /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
+    @inlinable
+    public func describeDBXlogs(_ input: DescribeDBXlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBXlogsResponse {
+        try await self.client.execute(action: "DescribeDBXlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

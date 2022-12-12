@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 获取单个转码模板
-    ///
-    /// 获取单个转码模板。
-    @inlinable
-    public func describeLiveTranscodeTemplate(_ input: DescribeLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTranscodeTemplateResponse > {
-        self.client.execute(action: "DescribeLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取单个转码模板
-    ///
-    /// 获取单个转码模板。
-    @inlinable
-    public func describeLiveTranscodeTemplate(_ input: DescribeLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTemplateResponse {
-        try await self.client.execute(action: "DescribeLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveTranscodeTemplate请求参数结构体
     public struct DescribeLiveTranscodeTemplateRequest: TCRequestModel {
         /// 模板 ID。
@@ -58,5 +42,21 @@ extension Live {
             case template = "Template"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取单个转码模板
+    ///
+    /// 获取单个转码模板。
+    @inlinable
+    public func describeLiveTranscodeTemplate(_ input: DescribeLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveTranscodeTemplateResponse > {
+        self.client.execute(action: "DescribeLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取单个转码模板
+    ///
+    /// 获取单个转码模板。
+    @inlinable
+    public func describeLiveTranscodeTemplate(_ input: DescribeLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTemplateResponse {
+        try await self.client.execute(action: "DescribeLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

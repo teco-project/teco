@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ocr {
-    /// 表格识别（V2)
-    ///
-    /// 本接口支持中英文图片/ PDF内常规表格、无线表格、多表格的检测和识别，支持日文有线表格识别，返回每个单元格的文字内容，支持旋转的表格图片识别，且支持将识别结果保存为 Excel 格式。
-    @inlinable
-    public func recognizeTableOCR(_ input: RecognizeTableOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeTableOCRResponse > {
-        self.client.execute(action: "RecognizeTableOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 表格识别（V2)
-    ///
-    /// 本接口支持中英文图片/ PDF内常规表格、无线表格、多表格的检测和识别，支持日文有线表格识别，返回每个单元格的文字内容，支持旋转的表格图片识别，且支持将识别结果保存为 Excel 格式。
-    @inlinable
-    public func recognizeTableOCR(_ input: RecognizeTableOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeTableOCRResponse {
-        try await self.client.execute(action: "RecognizeTableOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecognizeTableOCR请求参数结构体
     public struct RecognizeTableOCRRequest: TCRequestModel {
         /// 图片/PDF的 Base64 值。
@@ -52,7 +36,7 @@ extension Ocr {
         /// 语言，zh：中英文（默认）jap：日文
         public let tableLanguage: String?
         
-        public init (imageBase64: String?, imageUrl: String?, isPdf: Bool?, pdfPageNumber: UInt64?, tableLanguage: String?) {
+        public init (imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, tableLanguage: String? = nil) {
             self.imageBase64 = imageBase64
             self.imageUrl = imageUrl
             self.isPdf = isPdf
@@ -93,5 +77,21 @@ extension Ocr {
             case angle = "Angle"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 表格识别（V2)
+    ///
+    /// 本接口支持中英文图片/ PDF内常规表格、无线表格、多表格的检测和识别，支持日文有线表格识别，返回每个单元格的文字内容，支持旋转的表格图片识别，且支持将识别结果保存为 Excel 格式。
+    @inlinable
+    public func recognizeTableOCR(_ input: RecognizeTableOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecognizeTableOCRResponse > {
+        self.client.execute(action: "RecognizeTableOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 表格识别（V2)
+    ///
+    /// 本接口支持中英文图片/ PDF内常规表格、无线表格、多表格的检测和识别，支持日文有线表格识别，返回每个单元格的文字内容，支持旋转的表格图片识别，且支持将识别结果保存为 Excel 格式。
+    @inlinable
+    public func recognizeTableOCR(_ input: RecognizeTableOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeTableOCRResponse {
+        try await self.client.execute(action: "RecognizeTableOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

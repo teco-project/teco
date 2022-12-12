@@ -38,7 +38,7 @@ extension Kms {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
         
-        public init (identity: String, description: String?) {
+        public init (identity: String, description: String? = nil) {
             self.identity = identity
             self.description = description
         }
@@ -160,7 +160,7 @@ extension Kms {
         /// 标签值
         public let tagValue: [String]?
         
-        public init (tagKey: String, tagValue: [String]?) {
+        public init (tagKey: String, tagValue: [String]? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }

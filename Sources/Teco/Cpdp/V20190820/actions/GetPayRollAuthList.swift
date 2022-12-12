@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 务工卡-查询核身记录
-    @inlinable
-    public func getPayRollAuthList(_ input: GetPayRollAuthListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPayRollAuthListResponse > {
-        self.client.execute(action: "GetPayRollAuthList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 务工卡-查询核身记录
-    @inlinable
-    public func getPayRollAuthList(_ input: GetPayRollAuthListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthListResponse {
-        try await self.client.execute(action: "GetPayRollAuthList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetPayRollAuthList请求参数结构体
     public struct GetPayRollAuthListRequest: TCRequestModel {
         /// 用户在商户对应appid下的唯一标识
@@ -55,7 +43,7 @@ extension Cpdp {
         /// 核身状态，列表查询仅提供成功状态的核身记录查询，故此字段固定AUTHENTICATE_SUCCESS即可
         public let authStatus: String?
         
-        public init (openId: String, subMerchantId: String, authDate: String, offset: Int64, limit: Int64, wechatAppId: String?, wechatSubAppId: String?, authStatus: String?) {
+        public init (openId: String, subMerchantId: String, authDate: String, offset: Int64, limit: Int64, wechatAppId: String? = nil, wechatSubAppId: String? = nil, authStatus: String? = nil) {
             self.openId = openId
             self.subMerchantId = subMerchantId
             self.authDate = authDate
@@ -103,5 +91,17 @@ extension Cpdp {
             case limit = "Limit"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 务工卡-查询核身记录
+    @inlinable
+    public func getPayRollAuthList(_ input: GetPayRollAuthListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPayRollAuthListResponse > {
+        self.client.execute(action: "GetPayRollAuthList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 务工卡-查询核身记录
+    @inlinable
+    public func getPayRollAuthList(_ input: GetPayRollAuthListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthListResponse {
+        try await self.client.execute(action: "GetPayRollAuthList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

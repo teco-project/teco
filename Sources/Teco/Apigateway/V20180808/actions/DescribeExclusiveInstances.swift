@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询独享实例列表
-    ///
-    /// 本接口（DescribeExclusiveInstances）用于查询独享实例列表信息。​
-    @inlinable
-    public func describeExclusiveInstances(_ input: DescribeExclusiveInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExclusiveInstancesResponse > {
-        self.client.execute(action: "DescribeExclusiveInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询独享实例列表
-    ///
-    /// 本接口（DescribeExclusiveInstances）用于查询独享实例列表信息。​
-    @inlinable
-    public func describeExclusiveInstances(_ input: DescribeExclusiveInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveInstancesResponse {
-        try await self.client.execute(action: "DescribeExclusiveInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExclusiveInstances请求参数结构体
     public struct DescribeExclusiveInstancesRequest: TCRequestModel {
         /// 分页查询，limit
@@ -42,7 +26,7 @@ extension Apigateway {
         /// 过滤条件
         public let filters: [Filter]?
         
-        public init (limit: UInt64, offset: UInt64, filters: [Filter]?) {
+        public init (limit: UInt64, offset: UInt64, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -67,5 +51,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询独享实例列表
+    ///
+    /// 本接口（DescribeExclusiveInstances）用于查询独享实例列表信息。​
+    @inlinable
+    public func describeExclusiveInstances(_ input: DescribeExclusiveInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExclusiveInstancesResponse > {
+        self.client.execute(action: "DescribeExclusiveInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询独享实例列表
+    ///
+    /// 本接口（DescribeExclusiveInstances）用于查询独享实例列表信息。​
+    @inlinable
+    public func describeExclusiveInstances(_ input: DescribeExclusiveInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveInstancesResponse {
+        try await self.client.execute(action: "DescribeExclusiveInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

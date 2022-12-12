@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 查询集群中资源列表
-    ///
-    /// 查询独占集群中的资源列表，支持按集群ID、VIP、负载均衡ID、是否闲置为过滤条件检索。
-    @inlinable
-    public func describeClusterResources(_ input: DescribeClusterResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterResourcesResponse > {
-        self.client.execute(action: "DescribeClusterResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群中资源列表
-    ///
-    /// 查询独占集群中的资源列表，支持按集群ID、VIP、负载均衡ID、是否闲置为过滤条件检索。
-    @inlinable
-    public func describeClusterResources(_ input: DescribeClusterResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterResourcesResponse {
-        try await self.client.execute(action: "DescribeClusterResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClusterResources请求参数结构体
     public struct DescribeClusterResourcesRequest: TCRequestModel {
         /// 返回集群中资源列表数目，默认为20，最大值为100。
@@ -46,7 +30,7 @@ extension Clb {
         /// <li> idle - String 是否必填：否 - （过滤条件）按照是否闲置过滤，如"True","False"。</li>
         public let filters: [Filter]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -75,5 +59,21 @@ extension Clb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群中资源列表
+    ///
+    /// 查询独占集群中的资源列表，支持按集群ID、VIP、负载均衡ID、是否闲置为过滤条件检索。
+    @inlinable
+    public func describeClusterResources(_ input: DescribeClusterResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClusterResourcesResponse > {
+        self.client.execute(action: "DescribeClusterResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群中资源列表
+    ///
+    /// 查询独占集群中的资源列表，支持按集群ID、VIP、负载均衡ID、是否闲置为过滤条件检索。
+    @inlinable
+    public func describeClusterResources(_ input: DescribeClusterResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterResourcesResponse {
+        try await self.client.execute(action: "DescribeClusterResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

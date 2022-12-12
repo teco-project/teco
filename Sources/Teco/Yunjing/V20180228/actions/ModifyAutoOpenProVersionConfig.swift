@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 设置新增主机自动开通专业版配置
-    ///
-    /// 本接口 (ModifyAutoOpenProVersionConfig) 用于设置新增主机自动开通专业版配置。
-    @inlinable
-    public func modifyAutoOpenProVersionConfig(_ input: ModifyAutoOpenProVersionConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAutoOpenProVersionConfigResponse > {
-        self.client.execute(action: "ModifyAutoOpenProVersionConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置新增主机自动开通专业版配置
-    ///
-    /// 本接口 (ModifyAutoOpenProVersionConfig) 用于设置新增主机自动开通专业版配置。
-    @inlinable
-    public func modifyAutoOpenProVersionConfig(_ input: ModifyAutoOpenProVersionConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoOpenProVersionConfigResponse {
-        try await self.client.execute(action: "ModifyAutoOpenProVersionConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAutoOpenProVersionConfig请求参数结构体
     public struct ModifyAutoOpenProVersionConfigRequest: TCRequestModel {
         /// 设置自动开通状态。
@@ -55,5 +39,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置新增主机自动开通专业版配置
+    ///
+    /// 本接口 (ModifyAutoOpenProVersionConfig) 用于设置新增主机自动开通专业版配置。
+    @inlinable
+    public func modifyAutoOpenProVersionConfig(_ input: ModifyAutoOpenProVersionConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAutoOpenProVersionConfigResponse > {
+        self.client.execute(action: "ModifyAutoOpenProVersionConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置新增主机自动开通专业版配置
+    ///
+    /// 本接口 (ModifyAutoOpenProVersionConfig) 用于设置新增主机自动开通专业版配置。
+    @inlinable
+    public func modifyAutoOpenProVersionConfig(_ input: ModifyAutoOpenProVersionConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoOpenProVersionConfigResponse {
+        try await self.client.execute(action: "ModifyAutoOpenProVersionConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

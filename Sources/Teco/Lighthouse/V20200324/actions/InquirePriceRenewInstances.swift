@@ -15,29 +15,13 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 续费实例询价
-    ///
-    /// 本接口（InquirePriceRenewInstances）用于续费实例询价。
-    @inlinable
-    public func inquirePriceRenewInstances(_ input: InquirePriceRenewInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceRenewInstancesResponse > {
-        self.client.execute(action: "InquirePriceRenewInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费实例询价
-    ///
-    /// 本接口（InquirePriceRenewInstances）用于续费实例询价。
-    @inlinable
-    public func inquirePriceRenewInstances(_ input: InquirePriceRenewInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewInstancesResponse {
-        try await self.client.execute(action: "InquirePriceRenewInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquirePriceRenewInstances请求参数结构体
     public struct InquirePriceRenewInstancesRequest: TCRequestModel {
         /// 待续费的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573 )接口返回值中的InstanceId获取。每次请求批量实例的上限为50。
         public let instanceIds: [String]
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 是否续费数据盘。默认值: false, 即不续费。
         public let renewDataDisk: Bool?
@@ -45,7 +29,7 @@ extension Lighthouse {
         /// 数据盘是否对齐实例到期时间。默认值: false, 即不对齐。
         public let alignInstanceExpiredTime: Bool?
         
-        public init (instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, renewDataDisk: Bool?, alignInstanceExpiredTime: Bool?) {
+        public init (instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid? = nil, renewDataDisk: Bool? = nil, alignInstanceExpiredTime: Bool? = nil) {
             self.instanceIds = instanceIds
             self.instanceChargePrepaid = instanceChargePrepaid
             self.renewDataDisk = renewDataDisk
@@ -86,5 +70,21 @@ extension Lighthouse {
             case totalPrice = "TotalPrice"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费实例询价
+    ///
+    /// 本接口（InquirePriceRenewInstances）用于续费实例询价。
+    @inlinable
+    public func inquirePriceRenewInstances(_ input: InquirePriceRenewInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceRenewInstancesResponse > {
+        self.client.execute(action: "InquirePriceRenewInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费实例询价
+    ///
+    /// 本接口（InquirePriceRenewInstances）用于续费实例询价。
+    @inlinable
+    public func inquirePriceRenewInstances(_ input: InquirePriceRenewInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewInstancesResponse {
+        try await self.client.execute(action: "InquirePriceRenewInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

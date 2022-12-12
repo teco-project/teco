@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 创建查询结果下载任务
-    @inlinable
-    public func createResultDownload(_ input: CreateResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResultDownloadResponse > {
-        self.client.execute(action: "CreateResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建查询结果下载任务
-    @inlinable
-    public func createResultDownload(_ input: CreateResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResultDownloadResponse {
-        try await self.client.execute(action: "CreateResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateResultDownload请求参数结构体
     public struct CreateResultDownloadRequest: TCRequestModel {
         /// 查询结果任务Id
@@ -38,7 +26,7 @@ extension Dlc {
         /// 是否重新生成下载文件，仅当之前任务为 Timout | Error 时有效
         public let force: Bool?
         
-        public init (taskId: String, format: String, force: Bool?) {
+        public init (taskId: String, format: String, force: Bool? = nil) {
             self.taskId = taskId
             self.format = format
             self.force = force
@@ -63,5 +51,17 @@ extension Dlc {
             case downloadId = "DownloadId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建查询结果下载任务
+    @inlinable
+    public func createResultDownload(_ input: CreateResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateResultDownloadResponse > {
+        self.client.execute(action: "CreateResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建查询结果下载任务
+    @inlinable
+    public func createResultDownload(_ input: CreateResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResultDownloadResponse {
+        try await self.client.execute(action: "CreateResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

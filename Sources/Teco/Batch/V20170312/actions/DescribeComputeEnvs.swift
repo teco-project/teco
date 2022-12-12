@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Batch {
-    /// 获取计算环境列表
-    ///
-    /// 用于查看计算环境列表
-    @inlinable
-    public func describeComputeEnvs(_ input: DescribeComputeEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComputeEnvsResponse > {
-        self.client.execute(action: "DescribeComputeEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取计算环境列表
-    ///
-    /// 用于查看计算环境列表
-    @inlinable
-    public func describeComputeEnvs(_ input: DescribeComputeEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvsResponse {
-        try await self.client.execute(action: "DescribeComputeEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeComputeEnvs请求参数结构体
     public struct DescribeComputeEnvsRequest: TCRequestModel {
         /// 计算环境ID列表，与Filters参数不能同时指定。
@@ -53,7 +37,7 @@ extension Batch {
         /// 返回数量
         public let limit: UInt64?
         
-        public init (envIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (envIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.envIds = envIds
             self.filters = filters
             self.offset = offset
@@ -84,5 +68,21 @@ extension Batch {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取计算环境列表
+    ///
+    /// 用于查看计算环境列表
+    @inlinable
+    public func describeComputeEnvs(_ input: DescribeComputeEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeComputeEnvsResponse > {
+        self.client.execute(action: "DescribeComputeEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取计算环境列表
+    ///
+    /// 用于查看计算环境列表
+    @inlinable
+    public func describeComputeEnvs(_ input: DescribeComputeEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvsResponse {
+        try await self.client.execute(action: "DescribeComputeEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

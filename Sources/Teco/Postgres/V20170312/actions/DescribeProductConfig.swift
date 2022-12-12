@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Postgres {
-    /// 查询售卖规格配置
-    ///
-    /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
-    @inlinable
-    public func describeProductConfig(_ input: DescribeProductConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductConfigResponse > {
-        self.client.execute(action: "DescribeProductConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询售卖规格配置
-    ///
-    /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
-    @inlinable
-    public func describeProductConfig(_ input: DescribeProductConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductConfigResponse {
-        try await self.client.execute(action: "DescribeProductConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProductConfig请求参数结构体
     public struct DescribeProductConfigRequest: TCRequestModel {
         /// 可用区名称
@@ -42,7 +26,7 @@ extension Postgres {
         /// 如不指定默认使用postgresql。
         public let dbEngine: String?
         
-        public init (zone: String?, dbEngine: String?) {
+        public init (zone: String? = nil, dbEngine: String? = nil) {
             self.zone = zone
             self.dbEngine = dbEngine
         }
@@ -65,5 +49,21 @@ extension Postgres {
             case specInfoList = "SpecInfoList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询售卖规格配置
+    ///
+    /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
+    @inlinable
+    public func describeProductConfig(_ input: DescribeProductConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProductConfigResponse > {
+        self.client.execute(action: "DescribeProductConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询售卖规格配置
+    ///
+    /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
+    @inlinable
+    public func describeProductConfig(_ input: DescribeProductConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductConfigResponse {
+        try await self.client.execute(action: "DescribeProductConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

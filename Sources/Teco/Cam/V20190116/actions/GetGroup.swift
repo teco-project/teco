@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 查询用户组详情
-    @inlinable
-    public func getGroup(_ input: GetGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGroupResponse > {
-        self.client.execute(action: "GetGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询用户组详情
-    @inlinable
-    public func getGroup(_ input: GetGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupResponse {
-        try await self.client.execute(action: "GetGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetGroup请求参数结构体
     public struct GetGroupRequest: TCRequestModel {
         /// 用户组 ID
@@ -73,5 +61,17 @@ extension Cam {
             case userInfo = "UserInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询用户组详情
+    @inlinable
+    public func getGroup(_ input: GetGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetGroupResponse > {
+        self.client.execute(action: "GetGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询用户组详情
+    @inlinable
+    public func getGroup(_ input: GetGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupResponse {
+        try await self.client.execute(action: "GetGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

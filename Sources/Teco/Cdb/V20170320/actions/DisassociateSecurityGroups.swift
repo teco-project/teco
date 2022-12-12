@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 安全组批量解绑云资源
-    ///
-    /// 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
-    @inlinable
-    public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateSecurityGroupsResponse > {
-        self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全组批量解绑云资源
-    ///
-    /// 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
-    @inlinable
-    public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
-        try await self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisassociateSecurityGroups请求参数结构体
     public struct DisassociateSecurityGroupsRequest: TCRequestModel {
         /// 安全组 ID。
@@ -42,7 +26,7 @@ extension Cdb {
         /// 当传入只读实例ID时，默认操作的是对应只读组的安全组。如果需要操作只读实例ID的安全组， 需要将该入参置为True
         public let forReadonlyInstance: Bool?
         
-        public init (securityGroupId: String, instanceIds: [String], forReadonlyInstance: Bool?) {
+        public init (securityGroupId: String, instanceIds: [String], forReadonlyInstance: Bool? = nil) {
             self.securityGroupId = securityGroupId
             self.instanceIds = instanceIds
             self.forReadonlyInstance = forReadonlyInstance
@@ -63,5 +47,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全组批量解绑云资源
+    ///
+    /// 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
+    @inlinable
+    public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateSecurityGroupsResponse > {
+        self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全组批量解绑云资源
+    ///
+    /// 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
+    @inlinable
+    public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
+        try await self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

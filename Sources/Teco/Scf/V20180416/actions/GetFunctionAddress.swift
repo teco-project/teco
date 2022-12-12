@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 获取函数代码下载地址
-    ///
-    /// 该接口用于获取函数代码包的下载地址。
-    @inlinable
-    public func getFunctionAddress(_ input: GetFunctionAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFunctionAddressResponse > {
-        self.client.execute(action: "GetFunctionAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取函数代码下载地址
-    ///
-    /// 该接口用于获取函数代码包的下载地址。
-    @inlinable
-    public func getFunctionAddress(_ input: GetFunctionAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionAddressResponse {
-        try await self.client.execute(action: "GetFunctionAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetFunctionAddress请求参数结构体
     public struct GetFunctionAddressRequest: TCRequestModel {
         /// 函数的名称
@@ -42,7 +26,7 @@ extension Scf {
         /// 函数的命名空间
         public let namespace: String?
         
-        public init (functionName: String, qualifier: String?, namespace: String?) {
+        public init (functionName: String, qualifier: String? = nil, namespace: String? = nil) {
             self.functionName = functionName
             self.qualifier = qualifier
             self.namespace = namespace
@@ -71,5 +55,21 @@ extension Scf {
             case codeSha256 = "CodeSha256"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取函数代码下载地址
+    ///
+    /// 该接口用于获取函数代码包的下载地址。
+    @inlinable
+    public func getFunctionAddress(_ input: GetFunctionAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetFunctionAddressResponse > {
+        self.client.execute(action: "GetFunctionAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数代码下载地址
+    ///
+    /// 该接口用于获取函数代码包的下载地址。
+    @inlinable
+    public func getFunctionAddress(_ input: GetFunctionAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionAddressResponse {
+        try await self.client.execute(action: "GetFunctionAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

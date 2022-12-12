@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 获取子网内可用IP列表
-    @inlinable
-    public func describeSubnetAvailableIps(_ input: DescribeSubnetAvailableIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubnetAvailableIpsResponse > {
-        self.client.execute(action: "DescribeSubnetAvailableIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取子网内可用IP列表
-    @inlinable
-    public func describeSubnetAvailableIps(_ input: DescribeSubnetAvailableIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetAvailableIpsResponse {
-        try await self.client.execute(action: "DescribeSubnetAvailableIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSubnetAvailableIps请求参数结构体
     public struct DescribeSubnetAvailableIpsRequest: TCRequestModel {
         /// 私有网络子网ID
@@ -35,7 +23,7 @@ extension Bmvpc {
         /// CIDR前缀，例如10.0.1
         public let cidr: String?
         
-        public init (subnetId: String, cidr: String?) {
+        public init (subnetId: String, cidr: String? = nil) {
             self.subnetId = subnetId
             self.cidr = cidr
         }
@@ -58,5 +46,17 @@ extension Bmvpc {
             case ipSet = "IpSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取子网内可用IP列表
+    @inlinable
+    public func describeSubnetAvailableIps(_ input: DescribeSubnetAvailableIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubnetAvailableIpsResponse > {
+        self.client.execute(action: "DescribeSubnetAvailableIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取子网内可用IP列表
+    @inlinable
+    public func describeSubnetAvailableIps(_ input: DescribeSubnetAvailableIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetAvailableIpsResponse {
+        try await self.client.execute(action: "DescribeSubnetAvailableIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

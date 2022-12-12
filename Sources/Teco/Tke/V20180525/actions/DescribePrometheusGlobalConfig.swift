@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获得实例级别抓取配置
-    @inlinable
-    public func describePrometheusGlobalConfig(_ input: DescribePrometheusGlobalConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusGlobalConfigResponse > {
-        self.client.execute(action: "DescribePrometheusGlobalConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获得实例级别抓取配置
-    @inlinable
-    public func describePrometheusGlobalConfig(_ input: DescribePrometheusGlobalConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusGlobalConfigResponse {
-        try await self.client.execute(action: "DescribePrometheusGlobalConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrometheusGlobalConfig请求参数结构体
     public struct DescribePrometheusGlobalConfigRequest: TCRequestModel {
         /// 实例级别抓取配置
@@ -35,7 +23,7 @@ extension Tke {
         /// 是否禁用统计
         public let disableStatistics: Bool?
         
-        public init (instanceId: String, disableStatistics: Bool?) {
+        public init (instanceId: String, disableStatistics: Bool? = nil) {
             self.instanceId = instanceId
             self.disableStatistics = disableStatistics
         }
@@ -73,5 +61,17 @@ extension Tke {
             case rawJobs = "RawJobs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获得实例级别抓取配置
+    @inlinable
+    public func describePrometheusGlobalConfig(_ input: DescribePrometheusGlobalConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusGlobalConfigResponse > {
+        self.client.execute(action: "DescribePrometheusGlobalConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获得实例级别抓取配置
+    @inlinable
+    public func describePrometheusGlobalConfig(_ input: DescribePrometheusGlobalConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusGlobalConfigResponse {
+        try await self.client.execute(action: "DescribePrometheusGlobalConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cis {
-    /// 创建容器实例询价
-    ///
-    /// 此接口（InquiryPriceCreateCis）用于查询容器实例价格
-    @inlinable
-    public func inquiryPriceCreateCis(_ input: InquiryPriceCreateCisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateCisResponse > {
-        self.client.execute(action: "InquiryPriceCreateCis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建容器实例询价
-    ///
-    /// 此接口（InquiryPriceCreateCis）用于查询容器实例价格
-    @inlinable
-    public func inquiryPriceCreateCis(_ input: InquiryPriceCreateCisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateCisResponse {
-        try await self.client.execute(action: "InquiryPriceCreateCis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquiryPriceCreateCis请求参数结构体
     public struct InquiryPriceCreateCisRequest: TCRequestModel {
         /// 可用区
@@ -67,5 +51,21 @@ extension Cis {
             case price = "Price"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建容器实例询价
+    ///
+    /// 此接口（InquiryPriceCreateCis）用于查询容器实例价格
+    @inlinable
+    public func inquiryPriceCreateCis(_ input: InquiryPriceCreateCisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquiryPriceCreateCisResponse > {
+        self.client.execute(action: "InquiryPriceCreateCis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建容器实例询价
+    ///
+    /// 此接口（InquiryPriceCreateCis）用于查询容器实例价格
+    @inlinable
+    public func inquiryPriceCreateCis(_ input: InquiryPriceCreateCisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateCisResponse {
+        try await self.client.execute(action: "InquiryPriceCreateCis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

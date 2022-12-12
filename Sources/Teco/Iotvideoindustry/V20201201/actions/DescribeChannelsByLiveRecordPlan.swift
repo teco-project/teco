@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 根据直播录制计划获取频道列表
-    @inlinable
-    public func describeChannelsByLiveRecordPlan(_ input: DescribeChannelsByLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChannelsByLiveRecordPlanResponse > {
-        self.client.execute(action: "DescribeChannelsByLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据直播录制计划获取频道列表
-    @inlinable
-    public func describeChannelsByLiveRecordPlan(_ input: DescribeChannelsByLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelsByLiveRecordPlanResponse {
-        try await self.client.execute(action: "DescribeChannelsByLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeChannelsByLiveRecordPlan请求参数结构体
     public struct DescribeChannelsByLiveRecordPlanRequest: TCRequestModel {
         /// 录制计划ID
@@ -38,7 +26,7 @@ extension Iotvideoindustry {
         /// 分页大小
         public let limit: Int64?
         
-        public init (planId: String, offset: Int64?, limit: Int64?) {
+        public init (planId: String, offset: Int64? = nil, limit: Int64? = nil) {
             self.planId = planId
             self.offset = offset
             self.limit = limit
@@ -69,5 +57,17 @@ extension Iotvideoindustry {
             case liveChannels = "LiveChannels"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据直播录制计划获取频道列表
+    @inlinable
+    public func describeChannelsByLiveRecordPlan(_ input: DescribeChannelsByLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeChannelsByLiveRecordPlanResponse > {
+        self.client.execute(action: "DescribeChannelsByLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据直播录制计划获取频道列表
+    @inlinable
+    public func describeChannelsByLiveRecordPlan(_ input: DescribeChannelsByLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelsByLiveRecordPlanResponse {
+        try await self.client.execute(action: "DescribeChannelsByLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

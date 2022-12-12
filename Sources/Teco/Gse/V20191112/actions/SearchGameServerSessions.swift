@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 搜索游戏服务器会话列表
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（SearchGameServerSessions）用于搜索游戏服务器会话列表。
-    @inlinable
-    public func searchGameServerSessions(_ input: SearchGameServerSessionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchGameServerSessionsResponse > {
-        self.client.execute(action: "SearchGameServerSessions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 搜索游戏服务器会话列表
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（SearchGameServerSessions）用于搜索游戏服务器会话列表。
-    @inlinable
-    public func searchGameServerSessions(_ input: SearchGameServerSessionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchGameServerSessionsResponse {
-        try await self.client.execute(action: "SearchGameServerSessions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SearchGameServerSessions请求参数结构体
     public struct SearchGameServerSessionsRequest: TCRequestModel {
         /// 别名ID
@@ -92,7 +74,7 @@ extension Gse {
         /// playerSessionCount 当前玩家会话数 Number
         public let sortExpression: String?
         
-        public init (aliasId: String?, fleetId: String?, limit: UInt64?, nextToken: String?, filterExpression: String?, sortExpression: String?) {
+        public init (aliasId: String? = nil, fleetId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, filterExpression: String? = nil, sortExpression: String? = nil) {
             self.aliasId = aliasId
             self.fleetId = fleetId
             self.limit = limit
@@ -129,5 +111,23 @@ extension Gse {
             case nextToken = "NextToken"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 搜索游戏服务器会话列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（SearchGameServerSessions）用于搜索游戏服务器会话列表。
+    @inlinable
+    public func searchGameServerSessions(_ input: SearchGameServerSessionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchGameServerSessionsResponse > {
+        self.client.execute(action: "SearchGameServerSessions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 搜索游戏服务器会话列表
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（SearchGameServerSessions）用于搜索游戏服务器会话列表。
+    @inlinable
+    public func searchGameServerSessions(_ input: SearchGameServerSessionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchGameServerSessionsResponse {
+        try await self.client.execute(action: "SearchGameServerSessions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

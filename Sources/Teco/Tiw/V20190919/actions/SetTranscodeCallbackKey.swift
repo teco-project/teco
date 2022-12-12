@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiw {
-    /// 设置文档转码回调密钥
-    ///
-    /// 设置文档转码回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
-    @inlinable
-    public func setTranscodeCallbackKey(_ input: SetTranscodeCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTranscodeCallbackKeyResponse > {
-        self.client.execute(action: "SetTranscodeCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 设置文档转码回调密钥
-    ///
-    /// 设置文档转码回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
-    @inlinable
-    public func setTranscodeCallbackKey(_ input: SetTranscodeCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTranscodeCallbackKeyResponse {
-        try await self.client.execute(action: "SetTranscodeCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetTranscodeCallbackKey请求参数结构体
     public struct SetTranscodeCallbackKeyRequest: TCRequestModel {
         /// 应用的SdkAppId
@@ -58,5 +42,21 @@ extension Tiw {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 设置文档转码回调密钥
+    ///
+    /// 设置文档转码回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
+    @inlinable
+    public func setTranscodeCallbackKey(_ input: SetTranscodeCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTranscodeCallbackKeyResponse > {
+        self.client.execute(action: "SetTranscodeCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 设置文档转码回调密钥
+    ///
+    /// 设置文档转码回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
+    @inlinable
+    public func setTranscodeCallbackKey(_ input: SetTranscodeCallbackKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTranscodeCallbackKeyResponse {
+        try await self.client.execute(action: "SetTranscodeCallbackKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

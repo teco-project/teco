@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdid {
-    /// 创建选择性批露凭证
-    @inlinable
-    public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSelectiveCredentialResponse > {
-        self.client.execute(action: "CreateSelectiveCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建选择性批露凭证
-    @inlinable
-    public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSelectiveCredentialResponse {
-        try await self.client.execute(action: "CreateSelectiveCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSelectiveCredential请求参数结构体
     public struct CreateSelectiveCredentialRequest: TCRequestModel {
         /// 参数集合
@@ -58,5 +46,17 @@ extension Tdid {
             case credentialData = "CredentialData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建选择性批露凭证
+    @inlinable
+    public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSelectiveCredentialResponse > {
+        self.client.execute(action: "CreateSelectiveCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建选择性批露凭证
+    @inlinable
+    public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSelectiveCredentialResponse {
+        try await self.client.execute(action: "CreateSelectiveCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

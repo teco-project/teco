@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dc {
-    /// 查询专用通道扩展信息
-    ///
-    /// 本接口（DescribeDirectConnectTunnelExtra）用于查询专用通道扩展信息
-    @inlinable
-    public func describeDirectConnectTunnelExtra(_ input: DescribeDirectConnectTunnelExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDirectConnectTunnelExtraResponse > {
-        self.client.execute(action: "DescribeDirectConnectTunnelExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询专用通道扩展信息
-    ///
-    /// 本接口（DescribeDirectConnectTunnelExtra）用于查询专用通道扩展信息
-    @inlinable
-    public func describeDirectConnectTunnelExtra(_ input: DescribeDirectConnectTunnelExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectTunnelExtraResponse {
-        try await self.client.execute(action: "DescribeDirectConnectTunnelExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDirectConnectTunnelExtra请求参数结构体
     public struct DescribeDirectConnectTunnelExtraRequest: TCRequestModel {
         /// 专用通道ID
@@ -57,5 +41,21 @@ extension Dc {
             case directConnectTunnelExtra = "DirectConnectTunnelExtra"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询专用通道扩展信息
+    ///
+    /// 本接口（DescribeDirectConnectTunnelExtra）用于查询专用通道扩展信息
+    @inlinable
+    public func describeDirectConnectTunnelExtra(_ input: DescribeDirectConnectTunnelExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDirectConnectTunnelExtraResponse > {
+        self.client.execute(action: "DescribeDirectConnectTunnelExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询专用通道扩展信息
+    ///
+    /// 本接口（DescribeDirectConnectTunnelExtra）用于查询专用通道扩展信息
+    @inlinable
+    public func describeDirectConnectTunnelExtra(_ input: DescribeDirectConnectTunnelExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectTunnelExtraResponse {
+        try await self.client.execute(action: "DescribeDirectConnectTunnelExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

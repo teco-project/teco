@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-跨境支付下单
-    @inlinable
-    public func createOpenBankGlobalPaymentOrder(_ input: CreateOpenBankGlobalPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankGlobalPaymentOrderResponse > {
-        self.client.execute(action: "CreateOpenBankGlobalPaymentOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-跨境支付下单
-    @inlinable
-    public func createOpenBankGlobalPaymentOrder(_ input: CreateOpenBankGlobalPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankGlobalPaymentOrderResponse {
-        try await self.client.execute(action: "CreateOpenBankGlobalPaymentOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateOpenBankGlobalPaymentOrder请求参数结构体
     public struct CreateOpenBankGlobalPaymentOrderRequest: TCRequestModel {
         /// 渠道商户号
@@ -69,10 +57,10 @@ extension Cpdp {
         public let goodsInfos: [OpenBankGoodsInfo]?
         
         /// 邮寄信息
-        public let shippingInfo: OpenBankShippingInfo
+        public let shippingInfo: OpenBankShippingInfo?
         
         /// 账单信息
-        public let billingInfo: OpenBankBillingInfo
+        public let billingInfo: OpenBankBillingInfo?
         
         /// 环境类型
         /// __release__:生产环境
@@ -80,7 +68,7 @@ extension Cpdp {
         /// 缺省默认为生产环境
         public let environment: String?
         
-        public init (channelMerchantId: String, channelName: String, payType: String, outOrderId: String, totalAmount: Int64, currency: String, channelSubMerchantId: String?, notifyUrl: String?, frontUrl: String?, frontLanguage: String?, remark: String?, externalPaymentData: String?, goodsInfos: [OpenBankGoodsInfo]?, shippingInfo: OpenBankShippingInfo, billingInfo: OpenBankBillingInfo, environment: String?) {
+        public init (channelMerchantId: String, channelName: String, payType: String, outOrderId: String, totalAmount: Int64, currency: String, channelSubMerchantId: String? = nil, notifyUrl: String? = nil, frontUrl: String? = nil, frontLanguage: String? = nil, remark: String? = nil, externalPaymentData: String? = nil, goodsInfos: [OpenBankGoodsInfo]? = nil, shippingInfo: OpenBankShippingInfo? = nil, billingInfo: OpenBankBillingInfo? = nil, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.channelName = channelName
             self.payType = payType
@@ -130,7 +118,7 @@ extension Cpdp {
         
         /// 统一下单响应对象。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: CreateOpenBankUnifiedOrderPaymentResult
+        public let result: CreateOpenBankUnifiedOrderPaymentResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -141,5 +129,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-跨境支付下单
+    @inlinable
+    public func createOpenBankGlobalPaymentOrder(_ input: CreateOpenBankGlobalPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateOpenBankGlobalPaymentOrderResponse > {
+        self.client.execute(action: "CreateOpenBankGlobalPaymentOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-跨境支付下单
+    @inlinable
+    public func createOpenBankGlobalPaymentOrder(_ input: CreateOpenBankGlobalPaymentOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankGlobalPaymentOrderResponse {
+        try await self.client.execute(action: "CreateOpenBankGlobalPaymentOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

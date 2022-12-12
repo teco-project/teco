@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 恢复物理机
-    ///
-    /// 恢复回收站中的物理机（仅限后付费的物理机）
-    @inlinable
-    public func recoverDevices(_ input: RecoverDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverDevicesResponse > {
-        self.client.execute(action: "RecoverDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 恢复物理机
-    ///
-    /// 恢复回收站中的物理机（仅限后付费的物理机）
-    @inlinable
-    public func recoverDevices(_ input: RecoverDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverDevicesResponse {
-        try await self.client.execute(action: "RecoverDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RecoverDevices请求参数结构体
     public struct RecoverDevicesRequest: TCRequestModel {
         /// 需要恢复的物理机ID列表
@@ -57,5 +41,21 @@ extension Bm {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 恢复物理机
+    ///
+    /// 恢复回收站中的物理机（仅限后付费的物理机）
+    @inlinable
+    public func recoverDevices(_ input: RecoverDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RecoverDevicesResponse > {
+        self.client.execute(action: "RecoverDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 恢复物理机
+    ///
+    /// 恢复回收站中的物理机（仅限后付费的物理机）
+    @inlinable
+    public func recoverDevices(_ input: RecoverDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverDevicesResponse {
+        try await self.client.execute(action: "RecoverDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

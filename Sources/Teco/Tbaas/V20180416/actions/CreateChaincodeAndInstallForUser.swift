@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tbaas {
-    /// 创建并安装合约
-    @inlinable
-    public func createChaincodeAndInstallForUser(_ input: CreateChaincodeAndInstallForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateChaincodeAndInstallForUserResponse > {
-        self.client.execute(action: "CreateChaincodeAndInstallForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建并安装合约
-    @inlinable
-    public func createChaincodeAndInstallForUser(_ input: CreateChaincodeAndInstallForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChaincodeAndInstallForUserResponse {
-        try await self.client.execute(action: "CreateChaincodeAndInstallForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateChaincodeAndInstallForUser请求参数结构体
     public struct CreateChaincodeAndInstallForUserRequest: TCRequestModel {
         /// 模块名，本接口取值：chaincode_mng
@@ -93,5 +81,17 @@ extension Tbaas {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建并安装合约
+    @inlinable
+    public func createChaincodeAndInstallForUser(_ input: CreateChaincodeAndInstallForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateChaincodeAndInstallForUserResponse > {
+        self.client.execute(action: "CreateChaincodeAndInstallForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建并安装合约
+    @inlinable
+    public func createChaincodeAndInstallForUser(_ input: CreateChaincodeAndInstallForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChaincodeAndInstallForUserResponse {
+        try await self.client.execute(action: "CreateChaincodeAndInstallForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

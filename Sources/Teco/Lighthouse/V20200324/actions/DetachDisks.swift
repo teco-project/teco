@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 卸载云硬盘
-    ///
-    /// 本接口（DetachDisks）用于卸载一个或多个云硬盘。
-    @inlinable
-    public func detachDisks(_ input: DetachDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachDisksResponse > {
-        self.client.execute(action: "DetachDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 卸载云硬盘
-    ///
-    /// 本接口（DetachDisks）用于卸载一个或多个云硬盘。
-    @inlinable
-    public func detachDisks(_ input: DetachDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachDisksResponse {
-        try await self.client.execute(action: "DetachDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetachDisks请求参数结构体
     public struct DetachDisksRequest: TCRequestModel {
         /// 云硬盘ID列表。
@@ -53,5 +37,21 @@ extension Lighthouse {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 卸载云硬盘
+    ///
+    /// 本接口（DetachDisks）用于卸载一个或多个云硬盘。
+    @inlinable
+    public func detachDisks(_ input: DetachDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachDisksResponse > {
+        self.client.execute(action: "DetachDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 卸载云硬盘
+    ///
+    /// 本接口（DetachDisks）用于卸载一个或多个云硬盘。
+    @inlinable
+    public func detachDisks(_ input: DetachDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachDisksResponse {
+        try await self.client.execute(action: "DetachDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

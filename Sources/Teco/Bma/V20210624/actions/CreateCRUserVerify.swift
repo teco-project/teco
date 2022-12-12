@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 个人认证
-    ///
-    /// 本接口用于个人认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
-    @inlinable
-    public func createCRUserVerify(_ input: CreateCRUserVerifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRUserVerifyResponse > {
-        self.client.execute(action: "CreateCRUserVerify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 个人认证
-    ///
-    /// 本接口用于个人认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
-    @inlinable
-    public func createCRUserVerify(_ input: CreateCRUserVerifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRUserVerifyResponse {
-        try await self.client.execute(action: "CreateCRUserVerify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCRUserVerify请求参数结构体
     public struct CreateCRUserVerifyRequest: TCRequestModel {
         /// 用户真实姓名
@@ -48,7 +32,7 @@ extension Bma {
         /// 字段已废弃，认证类型
         public let type: String?
         
-        public init (userName: String, userID: String, userPhone: String, verificationCode: String?, type: String?) {
+        public init (userName: String, userID: String, userPhone: String, verificationCode: String? = nil, type: String? = nil) {
             self.userName = userName
             self.userID = userID
             self.userPhone = userPhone
@@ -81,5 +65,21 @@ extension Bma {
             case note = "Note"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 个人认证
+    ///
+    /// 本接口用于个人认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
+    @inlinable
+    public func createCRUserVerify(_ input: CreateCRUserVerifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRUserVerifyResponse > {
+        self.client.execute(action: "CreateCRUserVerify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 个人认证
+    ///
+    /// 本接口用于个人认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
+    @inlinable
+    public func createCRUserVerify(_ input: CreateCRUserVerifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRUserVerifyResponse {
+        try await self.client.execute(action: "CreateCRUserVerify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

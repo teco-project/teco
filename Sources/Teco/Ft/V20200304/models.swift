@@ -22,9 +22,9 @@ extension Ft {
         
         /// 人脸框位置。若不输入则选择 Image 或 Url 中面积最大的人脸。  
         /// 您可以通过 [人脸检测与分析](https://cloud.tencent.com/document/api/867/32800)  接口获取人脸框位置信息。
-        public let faceRect: FaceRect
+        public let faceRect: FaceRect?
         
-        public init (age: Int64, faceRect: FaceRect) {
+        public init (age: Int64, faceRect: FaceRect? = nil) {
             self.age = age
             self.faceRect = faceRect
         }
@@ -92,9 +92,9 @@ extension Ft {
         
         /// 人脸框位置。若不输入则选择 Image 或 Url 中面积最大的人脸。  
         /// 您可以通过 [人脸检测与分析](https://cloud.tencent.com/document/api/867/32800)  接口获取人脸框位置信息。
-        public let faceRect: FaceRect
+        public let faceRect: FaceRect?
         
-        public init (gender: Int64, faceRect: FaceRect) {
+        public init (gender: Int64, faceRect: FaceRect? = nil) {
             self.gender = gender
             self.faceRect = faceRect
         }
@@ -113,7 +113,7 @@ extension Ft {
         /// 人像渐变的最长时间，即单张图片使用渐变特效的时间。 GIF默认值为0.5s，视频默值认为1s。最大取值1s。
         public let morphTime: Float?
         
-        public init (tempo: Float?, morphTime: Float?) {
+        public init (tempo: Float? = nil, morphTime: Float? = nil) {
             self.tempo = tempo
             self.morphTime = morphTime
         }

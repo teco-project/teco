@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 镜像版本列表
-    @inlinable
-    public func describeImageTags(_ input: DescribeImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageTagsResponse > {
-        self.client.execute(action: "DescribeImageTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 镜像版本列表
-    @inlinable
-    public func describeImageTags(_ input: DescribeImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTagsResponse {
-        try await self.client.execute(action: "DescribeImageTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeImageTags请求参数结构体
     public struct DescribeImageTagsRequest: TCRequestModel {
         /// 应用Id
@@ -48,9 +36,9 @@ extension Tsf {
         public let repoType: String?
         
         /// TcrRepoInfo值
-        public let tcrRepoInfo: TcrRepoInfo
+        public let tcrRepoInfo: TcrRepoInfo?
         
-        public init (applicationId: String, offset: Int64?, limit: Int64?, queryImageIdFlag: Int64?, searchWord: String?, repoType: String?, tcrRepoInfo: TcrRepoInfo) {
+        public init (applicationId: String, offset: Int64? = nil, limit: Int64? = nil, queryImageIdFlag: Int64? = nil, searchWord: String? = nil, repoType: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil) {
             self.applicationId = applicationId
             self.offset = offset
             self.limit = limit
@@ -83,5 +71,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 镜像版本列表
+    @inlinable
+    public func describeImageTags(_ input: DescribeImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeImageTagsResponse > {
+        self.client.execute(action: "DescribeImageTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像版本列表
+    @inlinable
+    public func describeImageTags(_ input: DescribeImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTagsResponse {
+        try await self.client.execute(action: "DescribeImageTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

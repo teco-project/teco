@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 绑定权限策略到角色
-    ///
-    /// 本接口（AttachRolePolicy）用于绑定策略到角色。
-    @inlinable
-    public func attachRolePolicy(_ input: AttachRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachRolePolicyResponse > {
-        self.client.execute(action: "AttachRolePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定权限策略到角色
-    ///
-    /// 本接口（AttachRolePolicy）用于绑定策略到角色。
-    @inlinable
-    public func attachRolePolicy(_ input: AttachRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachRolePolicyResponse {
-        try await self.client.execute(action: "AttachRolePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AttachRolePolicy请求参数结构体
     public struct AttachRolePolicyRequest: TCRequestModel {
         /// 策略ID，入参PolicyId与PolicyName二选一
@@ -45,7 +29,7 @@ extension Cam {
         /// 策略名，入参PolicyId与PolicyName二选一
         public let policyName: String?
         
-        public init (policyId: UInt64?, attachRoleId: String?, attachRoleName: String?, policyName: String?) {
+        public init (policyId: UInt64? = nil, attachRoleId: String? = nil, attachRoleName: String? = nil, policyName: String? = nil) {
             self.policyId = policyId
             self.attachRoleId = attachRoleId
             self.attachRoleName = attachRoleName
@@ -68,5 +52,21 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定权限策略到角色
+    ///
+    /// 本接口（AttachRolePolicy）用于绑定策略到角色。
+    @inlinable
+    public func attachRolePolicy(_ input: AttachRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachRolePolicyResponse > {
+        self.client.execute(action: "AttachRolePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定权限策略到角色
+    ///
+    /// 本接口（AttachRolePolicy）用于绑定策略到角色。
+    @inlinable
+    public func attachRolePolicy(_ input: AttachRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachRolePolicyResponse {
+        try await self.client.execute(action: "AttachRolePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

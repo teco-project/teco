@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 创建超级短信素材样例
-    ///
-    /// 创建超级短信的素材样例内容
-    @inlinable
-    public func createMmsInstance(_ input: CreateMmsInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMmsInstanceResponse > {
-        self.client.execute(action: "CreateMmsInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建超级短信素材样例
-    ///
-    /// 创建超级短信的素材样例内容
-    @inlinable
-    public func createMmsInstance(_ input: CreateMmsInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMmsInstanceResponse {
-        try await self.client.execute(action: "CreateMmsInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMmsInstance请求参数结构体
     public struct CreateMmsInstanceRequest: TCRequestModel {
         /// 商户证书
@@ -60,7 +44,7 @@ extension Zj {
         /// 发送超短活动时用于展示短连接模板占位符序号,仅用作超短活动
         public let urlParams: [UInt64]?
         
-        public init (license: String, instanceName: String, title: String, sign: String, contents: [CreateMmsInstanceItem], urls: [String]?, phoneType: [UInt64]?, commonParams: [UInt64]?, urlParams: [UInt64]?) {
+        public init (license: String, instanceName: String, title: String, sign: String, contents: [CreateMmsInstanceItem], urls: [String]? = nil, phoneType: [UInt64]? = nil, commonParams: [UInt64]? = nil, urlParams: [UInt64]? = nil) {
             self.license = license
             self.instanceName = instanceName
             self.title = title
@@ -97,5 +81,21 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建超级短信素材样例
+    ///
+    /// 创建超级短信的素材样例内容
+    @inlinable
+    public func createMmsInstance(_ input: CreateMmsInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMmsInstanceResponse > {
+        self.client.execute(action: "CreateMmsInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建超级短信素材样例
+    ///
+    /// 创建超级短信的素材样例内容
+    @inlinable
+    public func createMmsInstance(_ input: CreateMmsInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMmsInstanceResponse {
+        try await self.client.execute(action: "CreateMmsInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

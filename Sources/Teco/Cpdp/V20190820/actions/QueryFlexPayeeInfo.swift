@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云V2-收款用户信息查询
-    @inlinable
-    public func queryFlexPayeeInfo(_ input: QueryFlexPayeeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFlexPayeeInfoResponse > {
-        self.client.execute(action: "QueryFlexPayeeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云V2-收款用户信息查询
-    @inlinable
-    public func queryFlexPayeeInfo(_ input: QueryFlexPayeeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeInfoResponse {
-        try await self.client.execute(action: "QueryFlexPayeeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryFlexPayeeInfo请求参数结构体
     public struct QueryFlexPayeeInfoRequest: TCRequestModel {
         /// 收款用户ID
@@ -42,7 +30,7 @@ extension Cpdp {
         /// 缺省默认为生产环境
         public let environment: String?
         
-        public init (payeeId: String?, outUserId: String?, environment: String?) {
+        public init (payeeId: String? = nil, outUserId: String? = nil, environment: String? = nil) {
             self.payeeId = payeeId
             self.outUserId = outUserId
             self.environment = environment
@@ -65,7 +53,7 @@ extension Cpdp {
         
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: PayeeInfoResult
+        public let result: PayeeInfoResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -76,5 +64,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云V2-收款用户信息查询
+    @inlinable
+    public func queryFlexPayeeInfo(_ input: QueryFlexPayeeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryFlexPayeeInfoResponse > {
+        self.client.execute(action: "QueryFlexPayeeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云V2-收款用户信息查询
+    @inlinable
+    public func queryFlexPayeeInfo(_ input: QueryFlexPayeeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeInfoResponse {
+        try await self.client.execute(action: "QueryFlexPayeeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

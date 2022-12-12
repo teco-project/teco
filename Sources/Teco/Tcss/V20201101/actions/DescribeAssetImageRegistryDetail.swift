@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Tcss {
-    /// 镜像仓库查询镜像仓库详情
-    ///
-    /// 镜像仓库镜像仓库列表详情
-    @inlinable
-    public func describeAssetImageRegistryDetail(_ input: DescribeAssetImageRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryDetailResponse > {
-        self.client.execute(action: "DescribeAssetImageRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 镜像仓库查询镜像仓库详情
-    ///
-    /// 镜像仓库镜像仓库列表详情
-    @inlinable
-    public func describeAssetImageRegistryDetail(_ input: DescribeAssetImageRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryDetailResponse {
-        try await self.client.execute(action: "DescribeAssetImageRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageRegistryDetail请求参数结构体
     public struct DescribeAssetImageRegistryDetailRequest: TCRequestModel {
         /// 仓库列表id
@@ -41,7 +25,7 @@ extension Tcss {
         /// 镜像ID
         public let imageId: String?
         
-        public init (id: UInt64?, imageId: String?) {
+        public init (id: UInt64? = nil, imageId: String? = nil) {
             self.id = id
             self.imageId = imageId
         }
@@ -220,5 +204,21 @@ extension Tcss {
             case imageCreateTime = "ImageCreateTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 镜像仓库查询镜像仓库详情
+    ///
+    /// 镜像仓库镜像仓库列表详情
+    @inlinable
+    public func describeAssetImageRegistryDetail(_ input: DescribeAssetImageRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryDetailResponse > {
+        self.client.execute(action: "DescribeAssetImageRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库查询镜像仓库详情
+    ///
+    /// 镜像仓库镜像仓库列表详情
+    @inlinable
+    public func describeAssetImageRegistryDetail(_ input: DescribeAssetImageRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryDetailResponse {
+        try await self.client.execute(action: "DescribeAssetImageRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

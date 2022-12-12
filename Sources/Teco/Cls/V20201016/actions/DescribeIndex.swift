@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 获取索引配置信息
-    ///
-    /// 本接口用于获取索引配置信息
-    @inlinable
-    public func describeIndex(_ input: DescribeIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIndexResponse > {
-        self.client.execute(action: "DescribeIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取索引配置信息
-    ///
-    /// 本接口用于获取索引配置信息
-    @inlinable
-    public func describeIndex(_ input: DescribeIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexResponse {
-        try await self.client.execute(action: "DescribeIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIndex请求参数结构体
     public struct DescribeIndexRequest: TCRequestModel {
         /// 日志主题ID
@@ -55,7 +39,7 @@ extension Cls {
         
         /// 索引配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rule: RuleInfo
+        public let rule: RuleInfo?
         
         /// 索引修改时间，初始值为索引创建时间。
         public let modifyTime: String
@@ -80,5 +64,21 @@ extension Cls {
             case metadataFlag = "MetadataFlag"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取索引配置信息
+    ///
+    /// 本接口用于获取索引配置信息
+    @inlinable
+    public func describeIndex(_ input: DescribeIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIndexResponse > {
+        self.client.execute(action: "DescribeIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取索引配置信息
+    ///
+    /// 本接口用于获取索引配置信息
+    @inlinable
+    public func describeIndex(_ input: DescribeIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexResponse {
+        try await self.client.execute(action: "DescribeIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

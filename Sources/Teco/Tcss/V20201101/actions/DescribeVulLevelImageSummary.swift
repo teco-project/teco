@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询应急漏洞各威胁等级统计镜像数
-    @inlinable
-    public func describeVulLevelImageSummary(_ input: DescribeVulLevelImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulLevelImageSummaryResponse > {
-        self.client.execute(action: "DescribeVulLevelImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询应急漏洞各威胁等级统计镜像数
-    @inlinable
-    public func describeVulLevelImageSummary(_ input: DescribeVulLevelImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelImageSummaryResponse {
-        try await self.client.execute(action: "DescribeVulLevelImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVulLevelImageSummary请求参数结构体
     public struct DescribeVulLevelImageSummaryRequest: TCRequestModel {
         public init () {
@@ -81,5 +69,17 @@ extension Tcss {
             case criticalLevelVulRegistryImagePercent = "CriticalLevelVulRegistryImagePercent"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询应急漏洞各威胁等级统计镜像数
+    @inlinable
+    public func describeVulLevelImageSummary(_ input: DescribeVulLevelImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVulLevelImageSummaryResponse > {
+        self.client.execute(action: "DescribeVulLevelImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询应急漏洞各威胁等级统计镜像数
+    @inlinable
+    public func describeVulLevelImageSummary(_ input: DescribeVulLevelImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelImageSummaryResponse {
+        try await self.client.execute(action: "DescribeVulLevelImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 创建AMQP集群
-    @inlinable
-    public func createAMQPCluster(_ input: CreateAMQPClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAMQPClusterResponse > {
-        self.client.execute(action: "CreateAMQPCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建AMQP集群
-    @inlinable
-    public func createAMQPCluster(_ input: CreateAMQPClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPClusterResponse {
-        try await self.client.execute(action: "CreateAMQPCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAMQPCluster请求参数结构体
     public struct CreateAMQPClusterRequest: TCRequestModel {
         /// 3-64个字符，只能包含字母、数字、“-”及“_”
@@ -35,7 +23,7 @@ extension Tdmq {
         /// 集群描述，128个字符以内
         public let remark: String?
         
-        public init (name: String, remark: String?) {
+        public init (name: String, remark: String? = nil) {
             self.name = name
             self.remark = remark
         }
@@ -58,5 +46,17 @@ extension Tdmq {
             case clusterId = "ClusterId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建AMQP集群
+    @inlinable
+    public func createAMQPCluster(_ input: CreateAMQPClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAMQPClusterResponse > {
+        self.client.execute(action: "CreateAMQPCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建AMQP集群
+    @inlinable
+    public func createAMQPCluster(_ input: CreateAMQPClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPClusterResponse {
+        try await self.client.execute(action: "CreateAMQPCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

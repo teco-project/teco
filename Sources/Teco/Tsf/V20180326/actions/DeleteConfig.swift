@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 删除配置项
-    @inlinable
-    public func deleteConfig(_ input: DeleteConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConfigResponse > {
-        self.client.execute(action: "DeleteConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除配置项
-    @inlinable
-    public func deleteConfig(_ input: DeleteConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigResponse {
-        try await self.client.execute(action: "DeleteConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteConfig请求参数结构体
     public struct DeleteConfigRequest: TCRequestModel {
         /// 配置项ID
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除配置项
+    @inlinable
+    public func deleteConfig(_ input: DeleteConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteConfigResponse > {
+        self.client.execute(action: "DeleteConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除配置项
+    @inlinable
+    public func deleteConfig(_ input: DeleteConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigResponse {
+        try await self.client.execute(action: "DeleteConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

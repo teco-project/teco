@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 获取直播录制计划列表
-    @inlinable
-    public func describeLiveRecordPlanIds(_ input: DescribeLiveRecordPlanIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordPlanIdsResponse > {
-        self.client.execute(action: "DescribeLiveRecordPlanIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取直播录制计划列表
-    @inlinable
-    public func describeLiveRecordPlanIds(_ input: DescribeLiveRecordPlanIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordPlanIdsResponse {
-        try await self.client.execute(action: "DescribeLiveRecordPlanIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLiveRecordPlanIds请求参数结构体
     public struct DescribeLiveRecordPlanIdsRequest: TCRequestModel {
         /// 时间模板ID
@@ -38,7 +26,7 @@ extension Iotvideoindustry {
         /// 分页大小
         public let limit: Int64?
         
-        public init (templateId: String?, offset: Int64?, limit: Int64?) {
+        public init (templateId: String? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.templateId = templateId
             self.offset = offset
             self.limit = limit
@@ -67,5 +55,17 @@ extension Iotvideoindustry {
             case plans = "Plans"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取直播录制计划列表
+    @inlinable
+    public func describeLiveRecordPlanIds(_ input: DescribeLiveRecordPlanIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordPlanIdsResponse > {
+        self.client.execute(action: "DescribeLiveRecordPlanIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播录制计划列表
+    @inlinable
+    public func describeLiveRecordPlanIds(_ input: DescribeLiveRecordPlanIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordPlanIdsResponse {
+        try await self.client.execute(action: "DescribeLiveRecordPlanIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

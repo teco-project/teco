@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 删除应用
-    ///
-    /// 本接口（DeleteApiApp）用于删除已经创建的应用。
-    @inlinable
-    public func deleteApiApp(_ input: DeleteApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApiAppResponse > {
-        self.client.execute(action: "DeleteApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除应用
-    ///
-    /// 本接口（DeleteApiApp）用于删除已经创建的应用。
-    @inlinable
-    public func deleteApiApp(_ input: DeleteApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiAppResponse {
-        try await self.client.execute(action: "DeleteApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteApiApp请求参数结构体
     public struct DeleteApiAppRequest: TCRequestModel {
         /// 应用唯一 ID。
@@ -58,5 +42,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除应用
+    ///
+    /// 本接口（DeleteApiApp）用于删除已经创建的应用。
+    @inlinable
+    public func deleteApiApp(_ input: DeleteApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApiAppResponse > {
+        self.client.execute(action: "DeleteApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除应用
+    ///
+    /// 本接口（DeleteApiApp）用于删除已经创建的应用。
+    @inlinable
+    public func deleteApiApp(_ input: DeleteApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiAppResponse {
+        try await self.client.execute(action: "DeleteApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 查询表质量详情
-    ///
-    /// 质量报告-查询表质量详情
-    @inlinable
-    public func describeTableQualityDetails(_ input: DescribeTableQualityDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableQualityDetailsResponse > {
-        self.client.execute(action: "DescribeTableQualityDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询表质量详情
-    ///
-    /// 质量报告-查询表质量详情
-    @inlinable
-    public func describeTableQualityDetails(_ input: DescribeTableQualityDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableQualityDetailsResponse {
-        try await self.client.execute(action: "DescribeTableQualityDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTableQualityDetails请求参数结构体
     public struct DescribeTableQualityDetailsRequest: TCRequestModel {
         /// 统计日期
@@ -54,7 +38,7 @@ extension Wedata {
         /// 数据来源id
         public let datasourceId: String?
         
-        public init (statisticsDate: Int64, projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]?, orderFields: [OrderField]?, datasourceId: String?) {
+        public init (statisticsDate: Int64, projectId: String, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, datasourceId: String? = nil) {
             self.statisticsDate = statisticsDate
             self.projectId = projectId
             self.pageNumber = pageNumber
@@ -79,7 +63,7 @@ extension Wedata {
     public struct DescribeTableQualityDetailsResponse: TCResponseModel {
         /// 表质量分详情结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let data: TableQualityDetailPage
+        public let data: TableQualityDetailPage?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -88,5 +72,21 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询表质量详情
+    ///
+    /// 质量报告-查询表质量详情
+    @inlinable
+    public func describeTableQualityDetails(_ input: DescribeTableQualityDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableQualityDetailsResponse > {
+        self.client.execute(action: "DescribeTableQualityDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询表质量详情
+    ///
+    /// 质量报告-查询表质量详情
+    @inlinable
+    public func describeTableQualityDetails(_ input: DescribeTableQualityDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableQualityDetailsResponse {
+        try await self.client.execute(action: "DescribeTableQualityDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 授权概览信息
-    ///
-    /// 授权管理-授权概览信息
-    @inlinable
-    public func describeLicenseGeneral(_ input: DescribeLicenseGeneralRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLicenseGeneralResponse > {
-        self.client.execute(action: "DescribeLicenseGeneral", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 授权概览信息
-    ///
-    /// 授权管理-授权概览信息
-    @inlinable
-    public func describeLicenseGeneral(_ input: DescribeLicenseGeneralRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseGeneralResponse {
-        try await self.client.execute(action: "DescribeLicenseGeneral", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLicenseGeneral请求参数结构体
     public struct DescribeLicenseGeneralRequest: TCRequestModel {
         public init () {
@@ -105,5 +89,21 @@ extension Cwp {
             case availableLHLicenseCnt = "AvailableLHLicenseCnt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 授权概览信息
+    ///
+    /// 授权管理-授权概览信息
+    @inlinable
+    public func describeLicenseGeneral(_ input: DescribeLicenseGeneralRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLicenseGeneralResponse > {
+        self.client.execute(action: "DescribeLicenseGeneral", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 授权概览信息
+    ///
+    /// 授权管理-授权概览信息
+    @inlinable
+    public func describeLicenseGeneral(_ input: DescribeLicenseGeneralRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseGeneralResponse {
+        try await self.client.execute(action: "DescribeLicenseGeneral", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

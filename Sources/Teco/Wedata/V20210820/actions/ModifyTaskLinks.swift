@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 添加父任务依赖【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 添加父任务依赖
-    @inlinable
-    public func modifyTaskLinks(_ input: ModifyTaskLinksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskLinksResponse > {
-        self.client.execute(action: "ModifyTaskLinks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加父任务依赖【Beta版本】
-    ///
-    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
-    /// 添加父任务依赖
-    @inlinable
-    public func modifyTaskLinks(_ input: ModifyTaskLinksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskLinksResponse {
-        try await self.client.execute(action: "ModifyTaskLinks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTaskLinks请求参数结构体
     public struct ModifyTaskLinksRequest: TCRequestModel {
         /// 项目Id
@@ -53,7 +35,7 @@ extension Wedata {
         /// 父子任务之间的依赖关系
         public let linkDependencyType: String?
         
-        public init (projectId: String, taskFrom: String, taskTo: String, workflowId: String, realFromWorkflowId: String, linkDependencyType: String?) {
+        public init (projectId: String, taskFrom: String, taskTo: String, workflowId: String, realFromWorkflowId: String, linkDependencyType: String? = nil) {
             self.projectId = projectId
             self.taskFrom = taskFrom
             self.taskTo = taskTo
@@ -85,5 +67,23 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加父任务依赖【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 添加父任务依赖
+    @inlinable
+    public func modifyTaskLinks(_ input: ModifyTaskLinksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTaskLinksResponse > {
+        self.client.execute(action: "ModifyTaskLinks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加父任务依赖【Beta版本】
+    ///
+    /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
+    /// 添加父任务依赖
+    @inlinable
+    public func modifyTaskLinks(_ input: ModifyTaskLinksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskLinksResponse {
+        try await self.client.execute(action: "ModifyTaskLinks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

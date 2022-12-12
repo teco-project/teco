@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 修改应用基本信息
-    @inlinable
-    public func modifyApplicationInfo(_ input: ModifyApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationInfoResponse > {
-        self.client.execute(action: "ModifyApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改应用基本信息
-    @inlinable
-    public func modifyApplicationInfo(_ input: ModifyApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationInfoResponse {
-        try await self.client.execute(action: "ModifyApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyApplicationInfo请求参数结构体
     public struct ModifyApplicationInfoRequest: TCRequestModel {
         /// 应用ID
@@ -41,7 +29,7 @@ extension Tem {
         /// 是否开启调用链,（此参数已弃用）
         public let enableTracing: UInt64?
         
-        public init (applicationId: String, description: String, sourceChannel: Int64?, enableTracing: UInt64?) {
+        public init (applicationId: String, description: String, sourceChannel: Int64? = nil, enableTracing: UInt64? = nil) {
             self.applicationId = applicationId
             self.description = description
             self.sourceChannel = sourceChannel
@@ -69,5 +57,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改应用基本信息
+    @inlinable
+    public func modifyApplicationInfo(_ input: ModifyApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationInfoResponse > {
+        self.client.execute(action: "ModifyApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用基本信息
+    @inlinable
+    public func modifyApplicationInfo(_ input: ModifyApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationInfoResponse {
+        try await self.client.execute(action: "ModifyApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

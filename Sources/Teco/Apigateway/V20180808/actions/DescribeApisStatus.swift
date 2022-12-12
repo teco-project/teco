@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 查询 API 接口列表
-    ///
-    /// 本接口（DescribeApisStatus）用于查看一个服务下的某个 API 或所有 API 列表及其相关信息。
-    @inlinable
-    public func describeApisStatus(_ input: DescribeApisStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApisStatusResponse > {
-        self.client.execute(action: "DescribeApisStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询 API 接口列表
-    ///
-    /// 本接口（DescribeApisStatus）用于查看一个服务下的某个 API 或所有 API 列表及其相关信息。
-    @inlinable
-    public func describeApisStatus(_ input: DescribeApisStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApisStatusResponse {
-        try await self.client.execute(action: "DescribeApisStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApisStatus请求参数结构体
     public struct DescribeApisStatusRequest: TCRequestModel {
         /// API 所在的服务唯一 ID。
@@ -45,7 +29,7 @@ extension Apigateway {
         /// API过滤条件。支持ApiId、ApiName、ApiPath、ApiType、AuthRelationApiId、AuthType、ApiBuniessType、NotUsagePlanId、 Environment、Tags (values为 $tag_key:tag_value的列表)、TagKeys （values 为 tag key的列表），其中NotUsagePlanId和Environment必须同时使用，不能单独使用一个。
         public let filters: [Filter]?
         
-        public init (serviceId: String, offset: Int64?, limit: Int64?, filters: [Filter]?) {
+        public init (serviceId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.serviceId = serviceId
             self.offset = offset
             self.limit = limit
@@ -72,5 +56,21 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询 API 接口列表
+    ///
+    /// 本接口（DescribeApisStatus）用于查看一个服务下的某个 API 或所有 API 列表及其相关信息。
+    @inlinable
+    public func describeApisStatus(_ input: DescribeApisStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApisStatusResponse > {
+        self.client.execute(action: "DescribeApisStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询 API 接口列表
+    ///
+    /// 本接口（DescribeApisStatus）用于查看一个服务下的某个 API 或所有 API 列表及其相关信息。
+    @inlinable
+    public func describeApisStatus(_ input: DescribeApisStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApisStatusResponse {
+        try await self.client.execute(action: "DescribeApisStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

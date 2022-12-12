@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-查询银行时间段内清分提现明细
-    ///
-    /// 查询银行时间段内清分提现明细。查询银行时间段内清分提现明细接口：若为“见证+收单退款”“见证+收单充值”记录时备注Note为“见证+收单充值,订单号”“见证+收单退款,订单号”，此接口可以查到T0/T1的充值明细和退款记录。查询标志：充值记录仍用3清分选项查询，退款记录同提现用2选项查询。
-    @inlinable
-    public func queryBankWithdrawCashDetails(_ input: QueryBankWithdrawCashDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBankWithdrawCashDetailsResponse > {
-        self.client.execute(action: "QueryBankWithdrawCashDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-查询银行时间段内清分提现明细
-    ///
-    /// 查询银行时间段内清分提现明细。查询银行时间段内清分提现明细接口：若为“见证+收单退款”“见证+收单充值”记录时备注Note为“见证+收单充值,订单号”“见证+收单退款,订单号”，此接口可以查到T0/T1的充值明细和退款记录。查询标志：充值记录仍用3清分选项查询，退款记录同提现用2选项查询。
-    @inlinable
-    public func queryBankWithdrawCashDetails(_ input: QueryBankWithdrawCashDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBankWithdrawCashDetailsResponse {
-        try await self.client.execute(action: "QueryBankWithdrawCashDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryBankWithdrawCashDetails请求参数结构体
     public struct QueryBankWithdrawCashDetailsRequest: TCRequestModel {
         /// String(22)，商户号（签约客户号）
@@ -60,7 +44,7 @@ extension Cpdp {
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
         
-        public init (mrchCode: String, functionFlag: String, subAcctNo: String, queryFlag: String, pageNum: String, beginDate: String?, endDate: String?, reservedMsg: String?, profile: String?) {
+        public init (mrchCode: String, functionFlag: String, subAcctNo: String, queryFlag: String, pageNum: String, beginDate: String? = nil, endDate: String? = nil, reservedMsg: String? = nil, profile: String? = nil) {
             self.mrchCode = mrchCode
             self.functionFlag = functionFlag
             self.subAcctNo = subAcctNo
@@ -135,5 +119,21 @@ extension Cpdp {
             case reservedMsg = "ReservedMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-查询银行时间段内清分提现明细
+    ///
+    /// 查询银行时间段内清分提现明细。查询银行时间段内清分提现明细接口：若为“见证+收单退款”“见证+收单充值”记录时备注Note为“见证+收单充值,订单号”“见证+收单退款,订单号”，此接口可以查到T0/T1的充值明细和退款记录。查询标志：充值记录仍用3清分选项查询，退款记录同提现用2选项查询。
+    @inlinable
+    public func queryBankWithdrawCashDetails(_ input: QueryBankWithdrawCashDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryBankWithdrawCashDetailsResponse > {
+        self.client.execute(action: "QueryBankWithdrawCashDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-查询银行时间段内清分提现明细
+    ///
+    /// 查询银行时间段内清分提现明细。查询银行时间段内清分提现明细接口：若为“见证+收单退款”“见证+收单充值”记录时备注Note为“见证+收单充值,订单号”“见证+收单退款,订单号”，此接口可以查到T0/T1的充值明细和退款记录。查询标志：充值记录仍用3清分选项查询，退款记录同提现用2选项查询。
+    @inlinable
+    public func queryBankWithdrawCashDetails(_ input: QueryBankWithdrawCashDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBankWithdrawCashDetailsResponse {
+        try await self.client.execute(action: "QueryBankWithdrawCashDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

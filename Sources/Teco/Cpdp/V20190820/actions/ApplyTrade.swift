@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 跨境-提交贸易材料
-    ///
-    /// 跨境-提交贸易材料。通过提交贸易材料接口可为对接方累计贸易额度，在额度范围内可发起汇兑汇出交易。
-    @inlinable
-    public func applyTrade(_ input: ApplyTradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyTradeResponse > {
-        self.client.execute(action: "ApplyTrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 跨境-提交贸易材料
-    ///
-    /// 跨境-提交贸易材料。通过提交贸易材料接口可为对接方累计贸易额度，在额度范围内可发起汇兑汇出交易。
-    @inlinable
-    public func applyTrade(_ input: ApplyTradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyTradeResponse {
-        try await self.client.execute(action: "ApplyTrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyTrade请求参数结构体
     public struct ApplyTradeRequest: TCRequestModel {
         /// 贸易材料流水号
@@ -80,7 +64,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
         
-        public init (tradeFileId: String, tradeOrderId: String, payerId: String, payeeName: String, payeeCountryCode: String, tradeType: String, tradeTime: String, tradeCurrency: String, tradeAmount: Float, tradeName: String, tradeCount: Int64, goodsCarrier: String?, serviceDetail: String?, serviceTime: String?, profile: String?) {
+        public init (tradeFileId: String, tradeOrderId: String, payerId: String, payeeName: String, payeeCountryCode: String, tradeType: String, tradeTime: String, tradeCurrency: String, tradeAmount: Float, tradeName: String, tradeCount: Int64, goodsCarrier: String? = nil, serviceDetail: String? = nil, serviceTime: String? = nil, profile: String? = nil) {
             self.tradeFileId = tradeFileId
             self.tradeOrderId = tradeOrderId
             self.payerId = payerId
@@ -129,5 +113,21 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 跨境-提交贸易材料
+    ///
+    /// 跨境-提交贸易材料。通过提交贸易材料接口可为对接方累计贸易额度，在额度范围内可发起汇兑汇出交易。
+    @inlinable
+    public func applyTrade(_ input: ApplyTradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyTradeResponse > {
+        self.client.execute(action: "ApplyTrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 跨境-提交贸易材料
+    ///
+    /// 跨境-提交贸易材料。通过提交贸易材料接口可为对接方累计贸易额度，在额度范围内可发起汇兑汇出交易。
+    @inlinable
+    public func applyTrade(_ input: ApplyTradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyTradeResponse {
+        try await self.client.execute(action: "ApplyTrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

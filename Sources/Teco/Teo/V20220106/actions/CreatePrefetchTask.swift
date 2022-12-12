@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 创建预热任务
-    @inlinable
-    public func createPrefetchTask(_ input: CreatePrefetchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrefetchTaskResponse > {
-        self.client.execute(action: "CreatePrefetchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建预热任务
-    @inlinable
-    public func createPrefetchTask(_ input: CreatePrefetchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrefetchTaskResponse {
-        try await self.client.execute(action: "CreatePrefetchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreatePrefetchTask请求参数结构体
     public struct CreatePrefetchTaskRequest: TCRequestModel {
         /// Zone ID
@@ -43,7 +31,7 @@ extension Teo {
         /// 附带的http头部信息
         public let headers: [Header]?
         
-        public init (zoneId: String, targets: [String]?, encodeUrl: Bool?, headers: [Header]?) {
+        public init (zoneId: String, targets: [String]? = nil, encodeUrl: Bool? = nil, headers: [Header]? = nil) {
             self.zoneId = zoneId
             self.targets = targets
             self.encodeUrl = encodeUrl
@@ -75,5 +63,17 @@ extension Teo {
             case failedList = "FailedList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建预热任务
+    @inlinable
+    public func createPrefetchTask(_ input: CreatePrefetchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreatePrefetchTaskResponse > {
+        self.client.execute(action: "CreatePrefetchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建预热任务
+    @inlinable
+    public func createPrefetchTask(_ input: CreatePrefetchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrefetchTaskResponse {
+        try await self.client.execute(action: "CreatePrefetchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

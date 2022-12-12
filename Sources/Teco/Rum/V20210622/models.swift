@@ -27,7 +27,7 @@ extension Rum {
         /// 过滤键的名称。
         public let name: String?
         
-        public init (values: [String]?, name: String?) {
+        public init (values: [String]? = nil, name: String? = nil) {
             self.values = values
             self.name = name
         }
@@ -109,7 +109,7 @@ extension Rum {
         /// 项目ID
         public let projectID: Int64?
         
-        public init (projectInterface: String, reportRate: Int64, reportType: Int64, id: Int64?, projectID: Int64?) {
+        public init (projectInterface: String, reportRate: Int64, reportType: Int64, id: Int64? = nil, projectID: Int64? = nil) {
             self.projectInterface = projectInterface
             self.reportRate = reportRate
             self.reportType = reportType

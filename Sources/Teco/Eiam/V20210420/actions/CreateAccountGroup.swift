@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 创建账号组
-    @inlinable
-    public func createAccountGroup(_ input: CreateAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccountGroupResponse > {
-        self.client.execute(action: "CreateAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建账号组
-    @inlinable
-    public func createAccountGroup(_ input: CreateAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountGroupResponse {
-        try await self.client.execute(action: "CreateAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAccountGroup请求参数结构体
     public struct CreateAccountGroupRequest: TCRequestModel {
         /// 应用ID。
@@ -38,7 +26,7 @@ extension Eiam {
         /// 描述。
         public let description: String?
         
-        public init (applicationId: String, groupName: String, description: String?) {
+        public init (applicationId: String, groupName: String, description: String? = nil) {
             self.applicationId = applicationId
             self.groupName = groupName
             self.description = description
@@ -64,5 +52,17 @@ extension Eiam {
             case accountGroupId = "AccountGroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建账号组
+    @inlinable
+    public func createAccountGroup(_ input: CreateAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAccountGroupResponse > {
+        self.client.execute(action: "CreateAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建账号组
+    @inlinable
+    public func createAccountGroup(_ input: CreateAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountGroupResponse {
+        try await self.client.execute(action: "CreateAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

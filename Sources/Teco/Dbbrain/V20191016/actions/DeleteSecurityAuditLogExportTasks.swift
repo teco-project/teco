@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 删除安全审计日志导出任务
-    ///
-    /// 删除安全审计日志导出任务。
-    @inlinable
-    public func deleteSecurityAuditLogExportTasks(_ input: DeleteSecurityAuditLogExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityAuditLogExportTasksResponse > {
-        self.client.execute(action: "DeleteSecurityAuditLogExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除安全审计日志导出任务
-    ///
-    /// 删除安全审计日志导出任务。
-    @inlinable
-    public func deleteSecurityAuditLogExportTasks(_ input: DeleteSecurityAuditLogExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityAuditLogExportTasksResponse {
-        try await self.client.execute(action: "DeleteSecurityAuditLogExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSecurityAuditLogExportTasks请求参数结构体
     public struct DeleteSecurityAuditLogExportTasksRequest: TCRequestModel {
         /// 安全审计组Id。
@@ -63,5 +47,21 @@ extension Dbbrain {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除安全审计日志导出任务
+    ///
+    /// 删除安全审计日志导出任务。
+    @inlinable
+    public func deleteSecurityAuditLogExportTasks(_ input: DeleteSecurityAuditLogExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityAuditLogExportTasksResponse > {
+        self.client.execute(action: "DeleteSecurityAuditLogExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除安全审计日志导出任务
+    ///
+    /// 删除安全审计日志导出任务。
+    @inlinable
+    public func deleteSecurityAuditLogExportTasks(_ input: DeleteSecurityAuditLogExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityAuditLogExportTasksResponse {
+        try await self.client.execute(action: "DeleteSecurityAuditLogExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

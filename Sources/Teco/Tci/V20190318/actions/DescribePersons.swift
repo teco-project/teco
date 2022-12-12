@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tci {
-    /// 拉取人员列表
-    @inlinable
-    public func describePersons(_ input: DescribePersonsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonsResponse > {
-        self.client.execute(action: "DescribePersons", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取人员列表
-    @inlinable
-    public func describePersons(_ input: DescribePersonsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonsResponse {
-        try await self.client.execute(action: "DescribePersons", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePersons请求参数结构体
     public struct DescribePersonsRequest: TCRequestModel {
         /// 人员库唯一标识符
@@ -38,7 +26,7 @@ extension Tci {
         /// 偏移量
         public let offset: UInt64?
         
-        public init (libraryId: String, limit: UInt64?, offset: UInt64?) {
+        public init (libraryId: String, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.libraryId = libraryId
             self.limit = limit
             self.offset = offset
@@ -67,5 +55,17 @@ extension Tci {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取人员列表
+    @inlinable
+    public func describePersons(_ input: DescribePersonsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePersonsResponse > {
+        self.client.execute(action: "DescribePersons", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取人员列表
+    @inlinable
+    public func describePersons(_ input: DescribePersonsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonsResponse {
+        try await self.client.execute(action: "DescribePersons", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

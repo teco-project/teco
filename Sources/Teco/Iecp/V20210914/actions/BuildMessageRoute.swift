@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 建立消息路由
-    @inlinable
-    public func buildMessageRoute(_ input: BuildMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BuildMessageRouteResponse > {
-        self.client.execute(action: "BuildMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 建立消息路由
-    @inlinable
-    public func buildMessageRoute(_ input: BuildMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuildMessageRouteResponse {
-        try await self.client.execute(action: "BuildMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BuildMessageRoute请求参数结构体
     public struct BuildMessageRouteRequest: TCRequestModel {
         /// 路由名字
@@ -53,7 +41,7 @@ extension Iecp {
         /// 无
         public let targetOptions: String?
         
-        public init (routeName: String, sourceProductID: String, sourceDeviceNameList: [String], topicFilter: String, mode: String, sourceUnitIDList: [String]?, descript: String?, targetOptions: String?) {
+        public init (routeName: String, sourceProductID: String, sourceDeviceNameList: [String], topicFilter: String, mode: String, sourceUnitIDList: [String]? = nil, descript: String? = nil, targetOptions: String? = nil) {
             self.routeName = routeName
             self.sourceProductID = sourceProductID
             self.sourceDeviceNameList = sourceDeviceNameList
@@ -84,5 +72,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 建立消息路由
+    @inlinable
+    public func buildMessageRoute(_ input: BuildMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BuildMessageRouteResponse > {
+        self.client.execute(action: "BuildMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 建立消息路由
+    @inlinable
+    public func buildMessageRoute(_ input: BuildMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuildMessageRouteResponse {
+        try await self.client.execute(action: "BuildMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

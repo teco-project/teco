@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 获取表格组关联的标签列表
-    @inlinable
-    public func describeTableGroupTags(_ input: DescribeTableGroupTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableGroupTagsResponse > {
-        self.client.execute(action: "DescribeTableGroupTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取表格组关联的标签列表
-    @inlinable
-    public func describeTableGroupTags(_ input: DescribeTableGroupTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableGroupTagsResponse {
-        try await self.client.execute(action: "DescribeTableGroupTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTableGroupTags请求参数结构体
     public struct DescribeTableGroupTagsRequest: TCRequestModel {
         /// 待查询标签表格组所属集群ID
@@ -64,5 +52,17 @@ extension Tcaplusdb {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取表格组关联的标签列表
+    @inlinable
+    public func describeTableGroupTags(_ input: DescribeTableGroupTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTableGroupTagsResponse > {
+        self.client.execute(action: "DescribeTableGroupTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取表格组关联的标签列表
+    @inlinable
+    public func describeTableGroupTags(_ input: DescribeTableGroupTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableGroupTagsResponse {
+        try await self.client.execute(action: "DescribeTableGroupTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

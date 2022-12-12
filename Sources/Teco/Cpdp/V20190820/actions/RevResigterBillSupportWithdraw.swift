@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云鉴-登记挂账撤销
-    ///
-    /// 登记挂账撤销。此接口可以实现把RegisterBillSupportWithdraw接口完成的登记挂账进行撤销，即调减普通会员子账户的可提现和可用余额，调增挂账子账户的可用余额。
-    @inlinable
-    public func revResigterBillSupportWithdraw(_ input: RevResigterBillSupportWithdrawRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevResigterBillSupportWithdrawResponse > {
-        self.client.execute(action: "RevResigterBillSupportWithdraw", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云鉴-登记挂账撤销
-    ///
-    /// 登记挂账撤销。此接口可以实现把RegisterBillSupportWithdraw接口完成的登记挂账进行撤销，即调减普通会员子账户的可提现和可用余额，调增挂账子账户的可用余额。
-    @inlinable
-    public func revResigterBillSupportWithdraw(_ input: RevResigterBillSupportWithdrawRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevResigterBillSupportWithdrawResponse {
-        try await self.client.execute(action: "RevResigterBillSupportWithdraw", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RevResigterBillSupportWithdraw请求参数结构体
     public struct RevResigterBillSupportWithdrawRequest: TCRequestModel {
         /// String(22)，商户号（签约客户号）
@@ -63,7 +47,7 @@ extension Cpdp {
         /// STRING(12)，接入环境，默认接入沙箱环境。接入正式环境填"prod"
         public let profile: String?
         
-        public init (mrchCode: String, tranNetMemberCode: String, oldOrderNo: String, cancelAmt: String, tranFee: String, remark: String?, reservedMsgOne: String?, reservedMsgTwo: String?, reservedMsgThree: String?, profile: String?) {
+        public init (mrchCode: String, tranNetMemberCode: String, oldOrderNo: String, cancelAmt: String, tranFee: String, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil) {
             self.mrchCode = mrchCode
             self.tranNetMemberCode = tranNetMemberCode
             self.oldOrderNo = oldOrderNo
@@ -120,5 +104,21 @@ extension Cpdp {
             case reservedMsg = "ReservedMsg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云鉴-登记挂账撤销
+    ///
+    /// 登记挂账撤销。此接口可以实现把RegisterBillSupportWithdraw接口完成的登记挂账进行撤销，即调减普通会员子账户的可提现和可用余额，调增挂账子账户的可用余额。
+    @inlinable
+    public func revResigterBillSupportWithdraw(_ input: RevResigterBillSupportWithdrawRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevResigterBillSupportWithdrawResponse > {
+        self.client.execute(action: "RevResigterBillSupportWithdraw", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云鉴-登记挂账撤销
+    ///
+    /// 登记挂账撤销。此接口可以实现把RegisterBillSupportWithdraw接口完成的登记挂账进行撤销，即调减普通会员子账户的可提现和可用余额，调增挂账子账户的可用余额。
+    @inlinable
+    public func revResigterBillSupportWithdraw(_ input: RevResigterBillSupportWithdrawRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevResigterBillSupportWithdrawResponse {
+        try await self.client.execute(action: "RevResigterBillSupportWithdraw", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

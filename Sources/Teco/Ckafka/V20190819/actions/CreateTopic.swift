@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 创建主题
-    ///
-    /// 创建ckafka主题
-    @inlinable
-    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicResponse > {
-        self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建主题
-    ///
-    /// 创建ckafka主题
-    @inlinable
-    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
-        try await self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTopic请求参数结构体
     public struct CreateTopicRequest: TCRequestModel {
         /// 实例Id
@@ -84,7 +68,7 @@ extension Ckafka {
         /// 标签列表
         public let tags: [Tag]?
         
-        public init (instanceId: String, topicName: String, partitionNum: Int64, replicaNum: Int64, enableWhiteList: Int64?, ipWhiteList: [String]?, cleanUpPolicy: String?, note: String?, minInsyncReplicas: Int64?, uncleanLeaderElectionEnable: Int64?, retentionMs: Int64?, segmentMs: Int64?, maxMessageBytes: Int64?, enableAclRule: Int64?, aclRuleName: String?, retentionBytes: Int64?, tags: [Tag]?) {
+        public init (instanceId: String, topicName: String, partitionNum: Int64, replicaNum: Int64, enableWhiteList: Int64? = nil, ipWhiteList: [String]? = nil, cleanUpPolicy: String? = nil, note: String? = nil, minInsyncReplicas: Int64? = nil, uncleanLeaderElectionEnable: Int64? = nil, retentionMs: Int64? = nil, segmentMs: Int64? = nil, maxMessageBytes: Int64? = nil, enableAclRule: Int64? = nil, aclRuleName: String? = nil, retentionBytes: Int64? = nil, tags: [Tag]? = nil) {
             self.instanceId = instanceId
             self.topicName = topicName
             self.partitionNum = partitionNum
@@ -137,5 +121,21 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建主题
+    ///
+    /// 创建ckafka主题
+    @inlinable
+    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicResponse > {
+        self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建主题
+    ///
+    /// 创建ckafka主题
+    @inlinable
+    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
+        try await self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

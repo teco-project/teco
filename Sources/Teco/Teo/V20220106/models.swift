@@ -107,7 +107,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseCode: Int64?
         
-        public init (ruleName: String, action: String, ruleStatus: String, conditions: [ACLCondition], rulePriority: Int64, ruleID: Int64?, updateTime: String?, punishTime: Int64?, punishTimeUnit: String?, pageId: Int64?, name: String?, redirectUrl: String?, responseCode: Int64?) {
+        public init (ruleName: String, action: String, ruleStatus: String, conditions: [ACLCondition], rulePriority: Int64, ruleID: Int64? = nil, updateTime: String? = nil, punishTime: Int64? = nil, punishTimeUnit: String? = nil, pageId: Int64? = nil, name: String? = nil, redirectUrl: String? = nil, responseCode: Int64? = nil) {
             self.ruleName = ruleName
             self.action = action
             self.ruleStatus = ruleStatus
@@ -170,7 +170,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mode: String?
         
-        public init (mode: String?) {
+        public init (mode: String? = nil) {
             self.mode = mode
         }
         
@@ -333,7 +333,7 @@ extension Teo {
         /// <li>false：关闭。</li>
         public let sessionPersist: Bool?
         
-        public init (proto: String, port: [String], originType: String, originValue: [String], ruleId: String?, status: String?, forwardClientIp: String?, sessionPersist: Bool?) {
+        public init (proto: String, port: [String], originType: String, originValue: [String], ruleId: String? = nil, status: String? = nil, forwardClientIp: String? = nil, sessionPersist: Bool? = nil) {
             self.proto = proto
             self.port = port
             self.originType = originType
@@ -364,22 +364,22 @@ extension Teo {
         public let `switch`: String?
         
         /// 通用详细基础规则。
-        public let managedRule: BotManagedRule
+        public let managedRule: BotManagedRule?
         
         /// ua基础规则。
-        public let uaBotRule: BotManagedRule
+        public let uaBotRule: BotManagedRule?
         
         /// isp基础规则。
-        public let ispBotRule: BotManagedRule
+        public let ispBotRule: BotManagedRule?
         
         /// 用户画像规则。
-        public let portraitRule: BotPortraitRule
+        public let portraitRule: BotPortraitRule?
         
         /// Bot智能分析。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let intelligenceRule: IntelligenceRule
+        public let intelligenceRule: IntelligenceRule?
         
-        public init (`switch`: String?, managedRule: BotManagedRule, uaBotRule: BotManagedRule, ispBotRule: BotManagedRule, portraitRule: BotPortraitRule, intelligenceRule: IntelligenceRule) {
+        public init (`switch`: String? = nil, managedRule: BotManagedRule? = nil, uaBotRule: BotManagedRule? = nil, ispBotRule: BotManagedRule? = nil, portraitRule: BotPortraitRule? = nil, intelligenceRule: IntelligenceRule? = nil) {
             self.`switch` = `switch`
             self.managedRule = managedRule
             self.uaBotRule = uaBotRule
@@ -528,7 +528,7 @@ extension Teo {
         
         /// 老版本的通用规则ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let managedIds: [Int64]
+        public let managedIds: [Int64]?
         
         /// 触发规则后的处置方式。
         /// 1. drop 拦截
@@ -581,7 +581,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseCode: Int64?
         
-        public init (ruleID: Int64, managedIds: [Int64], action: String?, punishTime: Int64?, punishTimeUnit: String?, transManagedIds: [Int64]?, algManagedIds: [Int64]?, capManagedIds: [Int64]?, monManagedIds: [Int64]?, dropManagedIds: [Int64]?, pageId: Int64?, name: String?, redirectUrl: String?, responseCode: Int64?) {
+        public init (ruleID: Int64, managedIds: [Int64], action: String? = nil, punishTime: Int64? = nil, punishTimeUnit: String? = nil, transManagedIds: [Int64]? = nil, algManagedIds: [Int64]? = nil, capManagedIds: [Int64]? = nil, monManagedIds: [Int64]? = nil, dropManagedIds: [Int64]? = nil, pageId: Int64? = nil, name: String? = nil, redirectUrl: String? = nil, responseCode: Int64? = nil) {
             self.ruleID = ruleID
             self.managedIds = managedIds
             self.action = action
@@ -674,7 +674,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transManagedIds: [Int64]?
         
-        public init (`switch`: String?, ruleID: Int64?, algManagedIds: [Int64]?, capManagedIds: [Int64]?, monManagedIds: [Int64]?, dropManagedIds: [Int64]?, managedIds: [Int64]?, transManagedIds: [Int64]?) {
+        public init (`switch`: String? = nil, ruleID: Int64? = nil, algManagedIds: [Int64]? = nil, capManagedIds: [Int64]? = nil, monManagedIds: [Int64]? = nil, dropManagedIds: [Int64]? = nil, managedIds: [Int64]? = nil, transManagedIds: [Int64]? = nil) {
             self.`switch` = `switch`
             self.ruleID = ruleID
             self.algManagedIds = algManagedIds
@@ -848,17 +848,17 @@ extension Teo {
     public struct CacheConfig: TCInputModel, TCOutputModel {
         /// 缓存配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cache: CacheConfigCache
+        public let cache: CacheConfigCache?
         
         /// 不缓存配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let noCache: CacheConfigNoCache
+        public let noCache: CacheConfigNoCache?
         
         /// 遵循源站配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let followOrigin: CacheConfigFollowOrigin
+        public let followOrigin: CacheConfigFollowOrigin?
         
-        public init (cache: CacheConfigCache, noCache: CacheConfigNoCache, followOrigin: CacheConfigFollowOrigin) {
+        public init (cache: CacheConfigCache? = nil, noCache: CacheConfigNoCache? = nil, followOrigin: CacheConfigFollowOrigin? = nil) {
             self.cache = cache
             self.noCache = noCache
             self.followOrigin = followOrigin
@@ -889,7 +889,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ignoreCacheControl: String?
         
-        public init (`switch`: String, cacheTime: Int64?, ignoreCacheControl: String?) {
+        public init (`switch`: String, cacheTime: Int64? = nil, ignoreCacheControl: String? = nil) {
             self.`switch` = `switch`
             self.cacheTime = cacheTime
             self.ignoreCacheControl = ignoreCacheControl
@@ -950,9 +950,9 @@ extension Teo {
         
         /// CacheKey中包含请求参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let queryString: QueryString
+        public let queryString: QueryString?
         
-        public init (fullUrlCache: String?, ignoreCase: String?, queryString: QueryString) {
+        public init (fullUrlCache: String? = nil, ignoreCase: String? = nil, queryString: QueryString? = nil) {
             self.fullUrlCache = fullUrlCache
             self.ignoreCase = ignoreCase
             self.queryString = queryString
@@ -976,7 +976,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let percent: Int64?
         
-        public init (`switch`: String, percent: Int64?) {
+        public init (`switch`: String, percent: Int64? = nil) {
             self.`switch` = `switch`
             self.percent = percent
         }
@@ -1003,7 +1003,7 @@ extension Teo {
         /// 模糊查询时，Value长度最大为1。
         public let fuzzy: Bool?
         
-        public init (name: String, values: [String], fuzzy: Bool?) {
+        public init (name: String, values: [String], fuzzy: Bool? = nil) {
             self.name = name
             self.values = values
             self.fuzzy = fuzzy
@@ -1027,7 +1027,7 @@ extension Teo {
         /// asc/desc，默认desc。
         public let sequence: String?
         
-        public init (key: String, sequence: String?) {
+        public init (key: String, sequence: String? = nil) {
             self.key = key
             self.sequence = sequence
         }
@@ -1050,7 +1050,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headerName: String?
         
-        public init (`switch`: String, headerName: String?) {
+        public init (`switch`: String, headerName: String? = nil) {
             self.`switch` = `switch`
             self.headerName = headerName
         }
@@ -1096,7 +1096,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let algorithms: [String]?
         
-        public init (`switch`: String, algorithms: [String]?) {
+        public init (`switch`: String, algorithms: [String]? = nil) {
             self.`switch` = `switch`
             self.algorithms = algorithms
         }
@@ -1138,7 +1138,7 @@ extension Teo {
         /// <li>1 ：系统默认配置 。</li>
         public let `default`: Int64?
         
-        public init (dportEnd: Int64?, dportStart: Int64?, sportEnd: Int64?, sportStart: Int64?, `protocol`: String?, action: String?, `default`: Int64?) {
+        public init (dportEnd: Int64? = nil, dportStart: Int64? = nil, sportEnd: Int64? = nil, sportStart: Int64? = nil, `protocol`: String? = nil, action: String? = nil, `default`: Int64? = nil) {
             self.dportEnd = dportEnd
             self.dportStart = dportStart
             self.sportEnd = sportEnd
@@ -1215,7 +1215,7 @@ extension Teo {
         /// <li>on ：开启 。</li>
         public let udpShard: String?
         
-        public init (dropTcp: String, dropUdp: String, dropIcmp: String, dropOther: String, sourceCreateLimit: Int64, sourceConnectLimit: Int64, destinationCreateLimit: Int64, destinationConnectLimit: Int64, abnormalConnectNum: Int64, abnormalSynRatio: Int64, abnormalSynNum: Int64, connectTimeout: Int64, emptyConnectProtect: String, udpShard: String?) {
+        public init (dropTcp: String, dropUdp: String, dropIcmp: String, dropOther: String, sourceCreateLimit: Int64, sourceConnectLimit: Int64, destinationCreateLimit: Int64, destinationConnectLimit: Int64, abnormalConnectNum: Int64, abnormalSynRatio: Int64, abnormalSynNum: Int64, connectTimeout: Int64, emptyConnectProtect: String, udpShard: String? = nil) {
             self.dropTcp = dropTcp
             self.dropUdp = dropUdp
             self.dropIcmp = dropIcmp
@@ -1272,7 +1272,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let securityType: String?
         
-        public init (host: String?, status: String?, accelerateType: String?, securityType: String?) {
+        public init (host: String? = nil, status: String? = nil, accelerateType: String? = nil, securityType: String? = nil) {
             self.host = host
             self.status = status
             self.accelerateType = accelerateType
@@ -1388,7 +1388,7 @@ extension Teo {
         /// 多特征关系，仅配置【特征1】时填 none，存在【特征2】配置可不填。
         public let matchLogic: String?
         
-        public init (action: String?, `protocol`: String?, dportStart: Int64?, dportEnd: Int64?, packetMin: Int64?, packetMax: Int64?, sportStart: Int64?, sportEnd: Int64?, matchType: String?, isNot: Int64?, offset: Int64?, depth: Int64?, matchBegin: String?, str: String?, matchType2: String?, isNot2: Int64?, offset2: Int64?, depth2: Int64?, matchBegin2: String?, str2: String?, matchLogic: String?) {
+        public init (action: String? = nil, `protocol`: String? = nil, dportStart: Int64? = nil, dportEnd: Int64? = nil, packetMin: Int64? = nil, packetMax: Int64? = nil, sportStart: Int64? = nil, sportEnd: Int64? = nil, matchType: String? = nil, isNot: Int64? = nil, offset: Int64? = nil, depth: Int64? = nil, matchBegin: String? = nil, str: String? = nil, matchType2: String? = nil, isNot2: Int64? = nil, offset2: Int64? = nil, depth2: Int64? = nil, matchBegin2: String? = nil, str2: String? = nil, matchLogic: String? = nil) {
             self.action = action
             self.`protocol` = `protocol`
             self.dportStart = dportStart
@@ -1447,7 +1447,7 @@ extension Teo {
         /// 地域信息，ID参考[DescribeSecurityPolicyRegions](https://tcloud4api.woa.com/document/product/1657/76031?!preview&!document=1)。
         public let regionId: [Int64]?
         
-        public init (`switch`: String?, regionId: [Int64]?) {
+        public init (`switch`: String? = nil, regionId: [Int64]? = nil) {
             self.`switch` = `switch`
             self.regionId = regionId
         }
@@ -1507,7 +1507,7 @@ extension Teo {
         /// 掩码2，设置IP网段范围时使用，例如 1.1.1.0/24-1.1.2.0/24。
         public let mask2: Int64?
         
-        public init (ip: String?, mask: Int64?, type: String?, updateTime: Int64?, ip2: String?, mask2: Int64?) {
+        public init (ip: String? = nil, mask: Int64? = nil, type: String? = nil, updateTime: Int64? = nil, ip2: String? = nil, mask2: Int64? = nil) {
             self.ip = ip
             self.mask = mask
             self.type = type
@@ -1781,7 +1781,7 @@ extension Teo {
         /// <li>on ：配置端口过滤规则，需填写Acl参数。</li>默认值为on。
         public let `switch`: String?
         
-        public init (acl: [DDoSAcl]?, `switch`: String?) {
+        public init (acl: [DDoSAcl]? = nil, `switch`: String? = nil) {
             self.acl = acl
             self.`switch` = `switch`
         }
@@ -1802,7 +1802,7 @@ extension Teo {
         /// <li>on ：配置黑白名单，需填写UserAllowBlockIp参数。</li>默认值为on。
         public let `switch`: String?
         
-        public init (userAllowBlockIp: [DDoSUserAllowBlockIP]?, `switch`: String?) {
+        public init (userAllowBlockIp: [DDoSUserAllowBlockIP]? = nil, `switch`: String? = nil) {
             self.userAllowBlockIp = userAllowBlockIp
             self.`switch` = `switch`
         }
@@ -1823,7 +1823,7 @@ extension Teo {
         /// <li>on ：配置特征过滤规则，需填写 PacketFilter 参数。</li>默认值为on。
         public let `switch`: String?
         
-        public init (packetFilter: [DDoSFeaturesFilter]?, `switch`: String?) {
+        public init (packetFilter: [DDoSFeaturesFilter]? = nil, `switch`: String? = nil) {
             self.packetFilter = packetFilter
             self.`switch` = `switch`
         }
@@ -1838,27 +1838,27 @@ extension Teo {
     public struct DdosRule: TCInputModel, TCOutputModel {
         /// DDoS防护等级。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ddosStatusInfo: DDoSStatusInfo
+        public let ddosStatusInfo: DDoSStatusInfo?
         
         /// DDoS地域封禁。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ddosGeoIp: DDoSGeoIp
+        public let ddosGeoIp: DDoSGeoIp?
         
         /// DDoS黑白名单。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ddosAllowBlock: DdosAllowBlock
+        public let ddosAllowBlock: DdosAllowBlock?
         
         /// DDoS 协议封禁+连接防护。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ddosAntiPly: DDoSAntiPly
+        public let ddosAntiPly: DDoSAntiPly?
         
         /// DDoS特征过滤。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ddosPacketFilter: DdosPacketFilter
+        public let ddosPacketFilter: DdosPacketFilter?
         
         /// DDoS端口过滤。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ddosAcl: DdosAcls
+        public let ddosAcl: DdosAcls?
         
         /// DDoS开关，取值有:
         /// <li>on ：开启 ；</li>
@@ -1872,9 +1872,9 @@ extension Teo {
         
         /// DDoS源站访问速率限制。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ddosSpeedLimit: DdosSpeedLimit
+        public let ddosSpeedLimit: DdosSpeedLimit?
         
-        public init (ddosStatusInfo: DDoSStatusInfo, ddosGeoIp: DDoSGeoIp, ddosAllowBlock: DdosAllowBlock, ddosAntiPly: DDoSAntiPly, ddosPacketFilter: DdosPacketFilter, ddosAcl: DdosAcls, `switch`: String?, udpShardOpen: String?, ddosSpeedLimit: DdosSpeedLimit) {
+        public init (ddosStatusInfo: DDoSStatusInfo? = nil, ddosGeoIp: DDoSGeoIp? = nil, ddosAllowBlock: DdosAllowBlock? = nil, ddosAntiPly: DDoSAntiPly? = nil, ddosPacketFilter: DdosPacketFilter? = nil, ddosAcl: DdosAcls? = nil, `switch`: String? = nil, udpShardOpen: String? = nil, ddosSpeedLimit: DdosSpeedLimit? = nil) {
             self.ddosStatusInfo = ddosStatusInfo
             self.ddosGeoIp = ddosGeoIp
             self.ddosAllowBlock = ddosAllowBlock
@@ -1907,7 +1907,7 @@ extension Teo {
         /// 源站流量限制，支持单位有bps、Kbps、Mbps、Gbps，支持范围1 bps-10000 Gbps。"0 bps"或其他单位数值为0，即不限流。""为不更新。
         public let fluxLimit: String?
         
-        public init (packageLimit: String?, fluxLimit: String?) {
+        public init (packageLimit: String? = nil, fluxLimit: String? = nil) {
             self.packageLimit = packageLimit
             self.fluxLimit = fluxLimit
         }
@@ -1922,7 +1922,7 @@ extension Teo {
     public struct DefaultServerCertInfo: TCInputModel, TCOutputModel {
         /// 服务器证书 ID, 默认证书ID, 或在 SSL 证书管理进行证书托管时自动生成
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let certId: String
+        public let certId: String?
         
         /// 证书备注名
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1964,7 +1964,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
         
-        public init (certId: String, alias: String?, type: String?, expireTime: Date?, effectiveTime: Date?, commonName: String?, subjectAltName: [String]?, status: String?, message: String?) {
+        public init (certId: String, alias: String? = nil, type: String? = nil, expireTime: Date? = nil, effectiveTime: Date? = nil, commonName: String? = nil, subjectAltName: [String]? = nil, status: String? = nil, message: String? = nil) {
             self.certId = certId
             self.alias = alias
             self.type = type
@@ -2052,7 +2052,7 @@ extension Teo {
         /// Refused：域名服务器因为策略的原因拒绝执行请求的操作
         public let values: [String]?
         
-        public init (name: String, value: String?, values: [String]?) {
+        public init (name: String, value: String? = nil, values: [String]? = nil) {
             self.name = name
             self.value = value
             self.values = values
@@ -2154,7 +2154,7 @@ extension Teo {
         /// 是否启用模糊查询，仅支持过滤字段名为name。模糊查询时，Values长度最大为1
         public let fuzzy: Bool?
         
-        public init (name: String, values: [String], fuzzy: Bool?) {
+        public init (name: String, values: [String], fuzzy: Bool? = nil) {
             self.name = name
             self.values = values
             self.fuzzy = fuzzy
@@ -2218,11 +2218,11 @@ extension Teo {
         
         /// Waf(托管规则)模块的拦截页面配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let waf: DropPageDetail
+        public let waf: DropPageDetail?
         
         /// 自定义页面的拦截页面配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let acl: DropPageDetail
+        public let acl: DropPageDetail?
         
         public init (`switch`: String, waf: DropPageDetail, acl: DropPageDetail) {
             self.`switch` = `switch`
@@ -2252,7 +2252,7 @@ extension Teo {
         /// 页面的类型。
         public let type: String?
         
-        public init (pageId: Int64, statusCode: Int64, name: String?, type: String?) {
+        public init (pageId: Int64, statusCode: Int64, name: String? = nil, type: String? = nil) {
             self.pageId = pageId
             self.statusCode = statusCode
             self.name = name
@@ -2279,7 +2279,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userRules: [ExceptUserRule]?
         
-        public init (`switch`: String?, userRules: [ExceptUserRule]?) {
+        public init (`switch`: String? = nil, userRules: [ExceptUserRule]? = nil) {
             self.`switch` = `switch`
             self.userRules = userRules
         }
@@ -2321,13 +2321,13 @@ extension Teo {
         
         /// 规则生效的范围。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let scope: ExceptUserRuleScope
+        public let scope: ExceptUserRuleScope?
         
         /// 优先级。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rulePriority: Int64?
         
-        public init (ruleID: Int64?, ruleName: String?, action: String?, ruleStatus: String?, updateTime: Date?, conditions: [ExceptUserRuleCondition]?, scope: ExceptUserRuleScope, rulePriority: Int64?) {
+        public init (ruleID: Int64? = nil, ruleName: String? = nil, action: String? = nil, ruleStatus: String? = nil, updateTime: Date? = nil, conditions: [ExceptUserRuleCondition]? = nil, scope: ExceptUserRuleScope? = nil, rulePriority: Int64? = nil) {
             self.ruleID = ruleID
             self.ruleName = ruleName
             self.action = action
@@ -2367,7 +2367,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let matchContent: String?
         
-        public init (matchFrom: String?, matchParam: String?, `operator`: String?, matchContent: String?) {
+        public init (matchFrom: String? = nil, matchParam: String? = nil, `operator`: String? = nil, matchContent: String? = nil) {
             self.matchFrom = matchFrom
             self.matchParam = matchParam
             self.`operator` = `operator`
@@ -2390,7 +2390,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modules: [String]?
         
-        public init (modules: [String]?) {
+        public init (modules: [String]? = nil) {
             self.modules = modules
         }
         
@@ -2451,7 +2451,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let redirectStatusCode: Int64?
         
-        public init (`switch`: String, redirectStatusCode: Int64?) {
+        public init (`switch`: String, redirectStatusCode: Int64? = nil) {
             self.`switch` = `switch`
             self.redirectStatusCode = redirectStatusCode
         }
@@ -2479,7 +2479,7 @@ extension Teo {
         /// 洲
         public let continentEn: String?
         
-        public init (regionId: Int64, country: String?, continent: String?, countryEn: String?, continentEn: String?) {
+        public init (regionId: Int64, country: String? = nil, continent: String? = nil, countryEn: String? = nil, continentEn: String? = nil) {
             self.regionId = regionId
             self.country = country
             self.continent = continent
@@ -2554,7 +2554,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let preload: String?
         
-        public init (`switch`: String, maxAge: Int64?, includeSubDomains: String?, preload: String?) {
+        public init (`switch`: String, maxAge: Int64? = nil, includeSubDomains: String? = nil, preload: String? = nil) {
             self.`switch` = `switch`
             self.maxAge = maxAge
             self.includeSubDomains = includeSubDomains
@@ -2593,9 +2593,9 @@ extension Teo {
         
         /// HSTS 配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let hsts: Hsts
+        public let hsts: Hsts?
         
-        public init (http2: String?, ocspStapling: String?, tlsVersion: [String]?, hsts: Hsts) {
+        public init (http2: String? = nil, ocspStapling: String? = nil, tlsVersion: [String]? = nil, hsts: Hsts? = nil) {
             self.http2 = http2
             self.ocspStapling = ocspStapling
             self.tlsVersion = tlsVersion
@@ -2622,7 +2622,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [IntelligenceRuleItem]?
         
-        public init (`switch`: String?, items: [IntelligenceRuleItem]?) {
+        public init (`switch`: String? = nil, items: [IntelligenceRuleItem]? = nil) {
             self.`switch` = `switch`
             self.items = items
         }
@@ -2652,7 +2652,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
         
-        public init (label: String?, action: String?) {
+        public init (label: String? = nil, action: String? = nil) {
             self.label = label
             self.action = action
         }
@@ -2675,7 +2675,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rules: [IpTableRule]?
         
-        public init (`switch`: String?, rules: [IpTableRule]?) {
+        public init (`switch`: String? = nil, rules: [IpTableRule]? = nil) {
             self.`switch` = `switch`
             self.rules = rules
         }
@@ -2715,7 +2715,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: Date?
         
-        public init (ruleID: Int64?, action: String?, matchFrom: String?, matchContent: String?, updateTime: Date?) {
+        public init (ruleID: Int64? = nil, action: String? = nil, matchFrom: String? = nil, matchContent: String? = nil, updateTime: Date? = nil) {
             self.ruleID = ruleID
             self.action = action
             self.matchFrom = matchFrom
@@ -2867,7 +2867,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleTypeId: Int64?
         
-        public init (ruleId: Int64, description: String, ruleTypeName: String, ruleLevelDesc: String, updateTime: String, status: String, ruleTags: [String]?, ruleTypeDesc: String?, ruleTypeId: Int64?) {
+        public init (ruleId: Int64, description: String, ruleTypeName: String, ruleLevelDesc: String, updateTime: String, status: String, ruleTags: [String]? = nil, ruleTypeDesc: String? = nil, ruleTypeId: Int64? = nil) {
             self.ruleId = ruleId
             self.description = description
             self.ruleTypeName = ruleTypeName
@@ -2903,7 +2903,7 @@ extension Teo {
         /// 注意：时间为0，即不缓存。
         public let maxAgeTime: Int64?
         
-        public init (followOrigin: String?, maxAgeTime: Int64?) {
+        public init (followOrigin: String? = nil, maxAgeTime: Int64? = nil) {
             self.followOrigin = followOrigin
             self.maxAgeTime = maxAgeTime
         }
@@ -2951,7 +2951,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cosPrivateAccess: String?
         
-        public init (origins: [String]?, backupOrigins: [String]?, originPullProtocol: String?, cosPrivateAccess: String?) {
+        public init (origins: [String]? = nil, backupOrigins: [String]? = nil, originPullProtocol: String? = nil, cosPrivateAccess: String? = nil) {
             self.origins = origins
             self.backupOrigins = backupOrigins
             self.originPullProtocol = originPullProtocol
@@ -3040,7 +3040,7 @@ extension Teo {
         
         /// 源站状态信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let status: OriginCheckOriginStatus
+        public let status: OriginCheckOriginStatus?
         
         /// 使用当前源站组的负载均衡的类型：
         /// none：未被使用
@@ -3103,7 +3103,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proto: String?
         
-        public init (record: String, area: [String], weight: UInt64, port: UInt64, recordId: String?, `private`: Bool?, privateParameter: [OriginRecordPrivateParameter]?, proto: String?) {
+        public init (record: String, area: [String], weight: UInt64, port: UInt64, recordId: String? = nil, `private`: Bool? = nil, privateParameter: [OriginRecordPrivateParameter]? = nil, proto: String? = nil) {
             self.record = record
             self.area = area
             self.weight = weight
@@ -3218,7 +3218,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
         
-        public init (ruleId: Int64?, description: String?, ruleTypeName: String?, classificationId: Int64?, status: String?) {
+        public init (ruleId: Int64? = nil, description: String? = nil, ruleTypeName: String? = nil, classificationId: Int64? = nil, status: String? = nil) {
             self.ruleId = ruleId
             self.description = description
             self.ruleTypeName = ruleTypeName
@@ -3246,7 +3246,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxSize: Int64?
         
-        public init (`switch`: String, maxSize: Int64?) {
+        public init (`switch`: String, maxSize: Int64? = nil) {
             self.`switch` = `switch`
             self.maxSize = maxSize
         }
@@ -3306,7 +3306,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: [String]?
         
-        public init (`switch`: String, action: String?, value: [String]?) {
+        public init (`switch`: String, action: String? = nil, value: [String]? = nil) {
             self.`switch` = `switch`
             self.action = action
             self.value = value
@@ -3347,13 +3347,13 @@ extension Teo {
         
         /// 速率限制模板功能。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let template: RateLimitTemplate
+        public let template: RateLimitTemplate?
         
         /// 智能客户端过滤。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let intelligence: RateLimitIntelligence
+        public let intelligence: RateLimitIntelligence?
         
-        public init (`switch`: String, userRules: [RateLimitUserRule], template: RateLimitTemplate, intelligence: RateLimitIntelligence) {
+        public init (`switch`: String, userRules: [RateLimitUserRule], template: RateLimitTemplate? = nil, intelligence: RateLimitIntelligence? = nil) {
             self.`switch` = `switch`
             self.userRules = userRules
             self.template = template
@@ -3382,7 +3382,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
         
-        public init (`switch`: String?, action: String?) {
+        public init (`switch`: String? = nil, action: String? = nil) {
             self.`switch` = `switch`
             self.action = action
         }
@@ -3407,9 +3407,9 @@ extension Teo {
         
         /// 模板值详情。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let detail: RateLimitTemplateDetail
+        public let detail: RateLimitTemplateDetail?
         
-        public init (mode: String?, detail: RateLimitTemplateDetail) {
+        public init (mode: String? = nil, detail: RateLimitTemplateDetail? = nil) {
             self.mode = mode
             self.detail = detail
         }
@@ -3452,7 +3452,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let period: Int64?
         
-        public init (mode: String?, id: Int64?, action: String?, punishTime: Int64?, threshold: Int64?, period: Int64?) {
+        public init (mode: String? = nil, id: Int64? = nil, action: String? = nil, punishTime: Int64? = nil, threshold: Int64? = nil, period: Int64? = nil) {
             self.mode = mode
             self.id = id
             self.action = action
@@ -3520,7 +3520,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
         
-        public init (threshold: Int64, period: Int64, ruleName: String, action: String, punishTime: Int64, punishTimeUnit: String, ruleStatus: String, conditions: [ACLCondition], rulePriority: Int64, ruleID: Int64?, freqFields: [String]?, updateTime: String?) {
+        public init (threshold: Int64, period: Int64, ruleName: String, action: String, punishTime: Int64, punishTimeUnit: String, ruleStatus: String, conditions: [ACLCondition], rulePriority: Int64, ruleID: Int64? = nil, freqFields: [String]? = nil, updateTime: String? = nil) {
             self.threshold = threshold
             self.period = period
             self.ruleName = ruleName
@@ -3636,21 +3636,21 @@ extension Teo {
         /// <li> OcspStapling。</li>
         /// <li> HTTP/2 访问（Http2）。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let normalAction: RuleNormalAction
+        public let normalAction: RuleNormalAction?
         
         /// 带有请求头/响应头的功能操作，选择该类型的功能项有：
         /// <li> 修改 HTTP 请求头（RequestHeader）；</li>
         /// <li> 修改HTTP响应头（ResponseHeader）。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rewriteAction: RuleRewriteAction
+        public let rewriteAction: RuleRewriteAction?
         
         /// 带有状态码的功能操作，选择该类型的功能项有：
         /// <li> 自定义错误页面（ErrorPage）；</li>
         /// <li> 状态码缓存 TTL（StatusCodeCache）。</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let codeAction: RuleCodeAction
+        public let codeAction: RuleCodeAction?
         
-        public init (normalAction: RuleNormalAction, rewriteAction: RuleRewriteAction, codeAction: RuleCodeAction) {
+        public init (normalAction: RuleNormalAction? = nil, rewriteAction: RuleRewriteAction? = nil, codeAction: RuleCodeAction? = nil) {
             self.normalAction = normalAction
             self.rewriteAction = rewriteAction
             self.codeAction = codeAction
@@ -4015,7 +4015,7 @@ extension Teo {
         
         /// <li> 为 NULL：无特殊参数，RuleAction 选择 NormalAction；</li>
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let extraParameter: RuleExtraParameter
+        public let extraParameter: RuleExtraParameter?
         
         enum CodingKeys: String, CodingKey {
             case name = "Name"
@@ -4164,41 +4164,41 @@ extension Teo {
     public struct SecurityConfig: TCInputModel, TCOutputModel {
         /// 托管规则。如果为null，默认使用历史配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let wafConfig: WafConfig
+        public let wafConfig: WafConfig?
         
         /// 速率限制。如果为null，默认使用历史配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let rateLimitConfig: RateLimitConfig
+        public let rateLimitConfig: RateLimitConfig?
         
         /// DDoS配置。如果为null，默认使用历史配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ddosConfig: DDoSConfig
+        public let ddosConfig: DDoSConfig?
         
         /// 自定义规则。如果为null，默认使用历史配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let aclConfig: AclConfig
+        public let aclConfig: AclConfig?
         
         /// Bot配置。如果为null，默认使用历史配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let botConfig: BotConfig
+        public let botConfig: BotConfig?
         
         /// 七层防护总开关。如果为null，默认使用历史配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let switchConfig: SwitchConfig
+        public let switchConfig: SwitchConfig?
         
         /// 基础访问管控。如果为null，默认使用历史配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ipTableConfig: IpTableConfig
+        public let ipTableConfig: IpTableConfig?
         
         /// 例外规则配置。如果为null，默认使用历史配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let exceptConfig: ExceptConfig
+        public let exceptConfig: ExceptConfig?
         
         /// 自定义拦截页面配置。如果为null，默认使用历史配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dropPageConfig: DropPageConfig
+        public let dropPageConfig: DropPageConfig?
         
-        public init (wafConfig: WafConfig, rateLimitConfig: RateLimitConfig, ddosConfig: DDoSConfig, aclConfig: AclConfig, botConfig: BotConfig, switchConfig: SwitchConfig, ipTableConfig: IpTableConfig, exceptConfig: ExceptConfig, dropPageConfig: DropPageConfig) {
+        public init (wafConfig: WafConfig? = nil, rateLimitConfig: RateLimitConfig? = nil, ddosConfig: DDoSConfig? = nil, aclConfig: AclConfig? = nil, botConfig: BotConfig? = nil, switchConfig: SwitchConfig? = nil, ipTableConfig: IpTableConfig? = nil, exceptConfig: ExceptConfig? = nil, dropPageConfig: DropPageConfig? = nil) {
             self.wafConfig = wafConfig
             self.rateLimitConfig = rateLimitConfig
             self.ddosConfig = ddosConfig
@@ -4256,7 +4256,7 @@ extension Teo {
     public struct ServerCertInfo: TCInputModel, TCOutputModel {
         /// 服务器证书 ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let certId: String
+        public let certId: String?
         
         /// 证书备注名。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4287,7 +4287,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let signAlgo: String?
         
-        public init (certId: String, alias: String?, type: String?, expireTime: Date?, deployTime: Date?, status: String?, signAlgo: String?) {
+        public init (certId: String, alias: String? = nil, type: String? = nil, expireTime: Date? = nil, deployTime: Date? = nil, status: String? = nil, signAlgo: String? = nil) {
             self.certId = certId
             self.alias = alias
             self.type = type
@@ -4343,7 +4343,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let share: Bool?
         
-        public init (zoneId: String, policyId: Int64, type: String, entityName: String?, application: [DDoSApplication]?, tcpNum: Int64?, udpNum: Int64?, entity: String?, share: Bool?) {
+        public init (zoneId: String, policyId: Int64, type: String, entityName: String? = nil, application: [DDoSApplication]? = nil, tcpNum: Int64? = nil, udpNum: Int64? = nil, entity: String? = nil, share: Bool? = nil) {
             self.zoneId = zoneId
             self.policyId = policyId
             self.type = type
@@ -4418,11 +4418,11 @@ extension Teo {
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tagKey: String
+        public let tagKey: String?
         
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tagValue: String
+        public let tagValue: String?
         
         public init (tagKey: String, tagValue: String) {
             self.tagKey = tagKey
@@ -4616,7 +4616,7 @@ extension Teo {
         /// 自定义 ns 列表
         public let servers: [String]?
         
-        public init (`switch`: String, servers: [String]?) {
+        public init (`switch`: String, servers: [String]? = nil) {
             self.`switch` = `switch`
             self.servers = servers
         }
@@ -4666,9 +4666,9 @@ extension Teo {
         
         /// AI规则引擎防护配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let aiRule: AiRule
+        public let aiRule: AiRule?
         
-        public init (`switch`: String, level: String, mode: String, wafRules: WafRule, aiRule: AiRule) {
+        public init (`switch`: String, level: String, mode: String, wafRules: WafRule, aiRule: AiRule? = nil) {
             self.`switch` = `switch`
             self.level = level
             self.mode = mode
@@ -4697,7 +4697,7 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let observeRuleIDs: [Int64]?
         
-        public init (`switch`: String, blockRuleIDs: [Int64], observeRuleIDs: [Int64]?) {
+        public init (`switch`: String, blockRuleIDs: [Int64], observeRuleIDs: [Int64]? = nil) {
             self.`switch` = `switch`
             self.blockRuleIDs = blockRuleIDs
             self.observeRuleIDs = observeRuleIDs
@@ -4878,7 +4878,7 @@ extension Teo {
         /// 超时时间，单位为秒，最大超时时间120秒。
         public let timeout: Int64?
         
-        public init (`switch`: String, timeout: Int64?) {
+        public init (`switch`: String, timeout: Int64? = nil) {
             self.`switch` = `switch`
             self.timeout = timeout
         }
@@ -4981,7 +4981,7 @@ extension Teo {
         /// 是否启用模糊查询，仅支持过滤字段名为name。模糊查询时，Values长度最大为1。默认为false。
         public let fuzzy: Bool?
         
-        public init (name: String, values: [String], fuzzy: Bool?) {
+        public init (name: String, values: [String], fuzzy: Bool? = nil) {
             self.name = name
             self.values = values
             self.fuzzy = fuzzy

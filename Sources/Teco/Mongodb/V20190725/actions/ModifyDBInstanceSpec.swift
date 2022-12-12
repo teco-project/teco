@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 调整云数据库实例配置
-    ///
-    /// 本接口(ModifyDBInstanceSpec)用于调整MongoDB云数据库实例配置。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
-    @inlinable
-    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceSpecResponse > {
-        self.client.execute(action: "ModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调整云数据库实例配置
-    ///
-    /// 本接口(ModifyDBInstanceSpec)用于调整MongoDB云数据库实例配置。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
-    @inlinable
-    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSpecResponse {
-        try await self.client.execute(action: "ModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBInstanceSpec请求参数结构体
     public struct ModifyDBInstanceSpecRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
@@ -54,7 +38,7 @@ extension Mongodb {
         /// 实例配置变更的切换时间，参数为：0(默认)、1。0-调整完成时，1-维护时间内。注：调整节点数和分片数不支持在【维护时间内】变更。
         public let inMaintenance: UInt64?
         
-        public init (instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64?, nodeNum: UInt64?, replicateSetNum: UInt64?, inMaintenance: UInt64?) {
+        public init (instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64? = nil, nodeNum: UInt64? = nil, replicateSetNum: UInt64? = nil, inMaintenance: UInt64? = nil) {
             self.instanceId = instanceId
             self.memory = memory
             self.volume = volume
@@ -87,5 +71,21 @@ extension Mongodb {
             case dealId = "DealId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调整云数据库实例配置
+    ///
+    /// 本接口(ModifyDBInstanceSpec)用于调整MongoDB云数据库实例配置。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
+    @inlinable
+    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceSpecResponse > {
+        self.client.execute(action: "ModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调整云数据库实例配置
+    ///
+    /// 本接口(ModifyDBInstanceSpec)用于调整MongoDB云数据库实例配置。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
+    @inlinable
+    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSpecResponse {
+        try await self.client.execute(action: "ModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

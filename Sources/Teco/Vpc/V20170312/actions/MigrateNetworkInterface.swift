@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 弹性网卡迁移
-    ///
-    /// 本接口（MigrateNetworkInterface）用于弹性网卡迁移。
-    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
-    @inlinable
-    public func migrateNetworkInterface(_ input: MigrateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MigrateNetworkInterfaceResponse > {
-        self.client.execute(action: "MigrateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 弹性网卡迁移
-    ///
-    /// 本接口（MigrateNetworkInterface）用于弹性网卡迁移。
-    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
-    @inlinable
-    public func migrateNetworkInterface(_ input: MigrateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateNetworkInterfaceResponse {
-        try await self.client.execute(action: "MigrateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// MigrateNetworkInterface请求参数结构体
     public struct MigrateNetworkInterfaceRequest: TCRequestModel {
         /// 弹性网卡实例ID，例如：eni-m6dyj72l。
@@ -47,7 +29,7 @@ extension Vpc {
         /// 网卡绑定类型：0 标准型 1 扩展型。
         public let attachType: UInt64?
         
-        public init (networkInterfaceId: String, sourceInstanceId: String, destinationInstanceId: String, attachType: UInt64?) {
+        public init (networkInterfaceId: String, sourceInstanceId: String, destinationInstanceId: String, attachType: UInt64? = nil) {
             self.networkInterfaceId = networkInterfaceId
             self.sourceInstanceId = sourceInstanceId
             self.destinationInstanceId = destinationInstanceId
@@ -70,5 +52,23 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 弹性网卡迁移
+    ///
+    /// 本接口（MigrateNetworkInterface）用于弹性网卡迁移。
+    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
+    @inlinable
+    public func migrateNetworkInterface(_ input: MigrateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MigrateNetworkInterfaceResponse > {
+        self.client.execute(action: "MigrateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 弹性网卡迁移
+    ///
+    /// 本接口（MigrateNetworkInterface）用于弹性网卡迁移。
+    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
+    @inlinable
+    public func migrateNetworkInterface(_ input: MigrateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateNetworkInterfaceResponse {
+        try await self.client.execute(action: "MigrateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

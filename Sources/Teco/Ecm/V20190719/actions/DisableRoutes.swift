@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 禁用子网路由
-    ///
-    /// 禁用已启用的子网路由
-    @inlinable
-    public func disableRoutes(_ input: DisableRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableRoutesResponse > {
-        self.client.execute(action: "DisableRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 禁用子网路由
-    ///
-    /// 禁用已启用的子网路由
-    @inlinable
-    public func disableRoutes(_ input: DisableRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRoutesResponse {
-        try await self.client.execute(action: "DisableRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DisableRoutes请求参数结构体
     public struct DisableRoutesRequest: TCRequestModel {
         /// 路由表唯一ID。
@@ -58,5 +42,21 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 禁用子网路由
+    ///
+    /// 禁用已启用的子网路由
+    @inlinable
+    public func disableRoutes(_ input: DisableRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableRoutesResponse > {
+        self.client.execute(action: "DisableRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 禁用子网路由
+    ///
+    /// 禁用已启用的子网路由
+    @inlinable
+    public func disableRoutes(_ input: DisableRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRoutesResponse {
+        try await self.client.execute(action: "DisableRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

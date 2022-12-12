@@ -15,33 +15,15 @@
 // DO NOT EDIT.
 
 extension Ess {
-    /// 查询合同详情
-    ///
-    /// 查询合同详情
-    /// 适用场景：可用于主动查询某个合同详情信息。
-    @inlinable
-    public func describeFlowInfo(_ input: DescribeFlowInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowInfoResponse > {
-        self.client.execute(action: "DescribeFlowInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询合同详情
-    ///
-    /// 查询合同详情
-    /// 适用场景：可用于主动查询某个合同详情信息。
-    @inlinable
-    public func describeFlowInfo(_ input: DescribeFlowInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowInfoResponse {
-        try await self.client.execute(action: "DescribeFlowInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFlowInfo请求参数结构体
     public struct DescribeFlowInfoRequest: TCRequestModel {
         /// 需要查询的流程ID列表，限制最大100个
         public let flowIds: [String]
         
         /// 调用方用户信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
-        public init (flowIds: [String], `operator`: UserInfo) {
+        public init (flowIds: [String], `operator`: UserInfo? = nil) {
             self.flowIds = flowIds
             self.`operator` = `operator`
         }
@@ -64,5 +46,23 @@ extension Ess {
             case flowDetailInfos = "FlowDetailInfos"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询合同详情
+    ///
+    /// 查询合同详情
+    /// 适用场景：可用于主动查询某个合同详情信息。
+    @inlinable
+    public func describeFlowInfo(_ input: DescribeFlowInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFlowInfoResponse > {
+        self.client.execute(action: "DescribeFlowInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询合同详情
+    ///
+    /// 查询合同详情
+    /// 适用场景：可用于主动查询某个合同详情信息。
+    @inlinable
+    public func describeFlowInfo(_ input: DescribeFlowInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowInfoResponse {
+        try await self.client.execute(action: "DescribeFlowInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

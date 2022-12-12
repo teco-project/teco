@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 获取任务状态
-    ///
-    /// 本接口(DescribeTaskStatus)用于获取异步任务状态
-    @inlinable
-    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskStatusResponse > {
-        self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取任务状态
-    ///
-    /// 本接口(DescribeTaskStatus)用于获取异步任务状态
-    @inlinable
-    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
-        try await self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskStatus请求参数结构体
     public struct DescribeTaskStatusRequest: TCRequestModel {
         /// 任务描述
@@ -57,5 +41,21 @@ extension Ecm {
             case taskSet = "TaskSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取任务状态
+    ///
+    /// 本接口(DescribeTaskStatus)用于获取异步任务状态
+    @inlinable
+    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskStatusResponse > {
+        self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取任务状态
+    ///
+    /// 本接口(DescribeTaskStatus)用于获取异步任务状态
+    @inlinable
+    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
+        try await self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

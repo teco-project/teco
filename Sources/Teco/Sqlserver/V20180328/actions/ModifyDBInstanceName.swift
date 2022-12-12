@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 修改实例名字
-    ///
-    /// 本接口（ModifyDBInstanceName）用于修改实例名字。
-    @inlinable
-    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceNameResponse > {
-        self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例名字
-    ///
-    /// 本接口（ModifyDBInstanceName）用于修改实例名字。
-    @inlinable
-    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNameResponse {
-        try await self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDBInstanceName请求参数结构体
     public struct ModifyDBInstanceNameRequest: TCRequestModel {
         /// 数据库实例ID，形如mssql-njj2mtpl
@@ -58,5 +42,21 @@ extension Sqlserver {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例名字
+    ///
+    /// 本接口（ModifyDBInstanceName）用于修改实例名字。
+    @inlinable
+    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDBInstanceNameResponse > {
+        self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例名字
+    ///
+    /// 本接口（ModifyDBInstanceName）用于修改实例名字。
+    @inlinable
+    public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNameResponse {
+        try await self.client.execute(action: "ModifyDBInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

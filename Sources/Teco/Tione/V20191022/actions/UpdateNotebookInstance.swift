@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 更新Notebook实例
-    @inlinable
-    public func updateNotebookInstance(_ input: UpdateNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateNotebookInstanceResponse > {
-        self.client.execute(action: "UpdateNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新Notebook实例
-    @inlinable
-    public func updateNotebookInstance(_ input: UpdateNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateNotebookInstanceResponse {
-        try await self.client.execute(action: "UpdateNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateNotebookInstance请求参数结构体
     public struct UpdateNotebookInstanceRequest: TCRequestModel {
         /// Notebook实例名称
@@ -77,12 +65,12 @@ extension Tione {
         public let autoStopping: String?
         
         /// 自动停止配置，只在AutoStopping为Enabled的时候生效
-        public let stoppingCondition: StoppingCondition
+        public let stoppingCondition: StoppingCondition?
         
         /// 接入日志的配置，默认使用免费日志服务。
-        public let clsConfig: ClsConfig
+        public let clsConfig: ClsConfig?
         
-        public init (notebookInstanceName: String, roleArn: String?, rootAccess: String?, volumeSizeInGB: UInt64?, instanceType: String?, lifecycleScriptsName: String?, disassociateLifecycleScript: Bool?, defaultCodeRepository: String?, additionalCodeRepositories: [String]?, disassociateDefaultCodeRepository: Bool?, disassociateAdditionalCodeRepositories: Bool?, clsAccess: String?, autoStopping: String?, stoppingCondition: StoppingCondition, clsConfig: ClsConfig) {
+        public init (notebookInstanceName: String, roleArn: String? = nil, rootAccess: String? = nil, volumeSizeInGB: UInt64? = nil, instanceType: String? = nil, lifecycleScriptsName: String? = nil, disassociateLifecycleScript: Bool? = nil, defaultCodeRepository: String? = nil, additionalCodeRepositories: [String]? = nil, disassociateDefaultCodeRepository: Bool? = nil, disassociateAdditionalCodeRepositories: Bool? = nil, clsAccess: String? = nil, autoStopping: String? = nil, stoppingCondition: StoppingCondition? = nil, clsConfig: ClsConfig? = nil) {
             self.notebookInstanceName = notebookInstanceName
             self.roleArn = roleArn
             self.rootAccess = rootAccess
@@ -127,5 +115,17 @@ extension Tione {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新Notebook实例
+    @inlinable
+    public func updateNotebookInstance(_ input: UpdateNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateNotebookInstanceResponse > {
+        self.client.execute(action: "UpdateNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新Notebook实例
+    @inlinable
+    public func updateNotebookInstance(_ input: UpdateNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateNotebookInstanceResponse {
+        try await self.client.execute(action: "UpdateNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 文件上传
-    ///
-    /// 此接口（UploadFiles）用于文件上传。
-    @inlinable
-    public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFilesResponse > {
-        self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 文件上传
-    ///
-    /// 此接口（UploadFiles）用于文件上传。
-    @inlinable
-    public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
-        try await self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadFiles请求参数结构体
     public struct UploadFilesRequest: TCRequestModel {
         /// 调用方信息
@@ -63,7 +47,7 @@ extension Essbasic {
         /// 用户自定义ID数组，与上传文件一一对应
         public let customIds: [String]?
         
-        public init (caller: Caller, businessType: String, fileInfos: [UploadFile]?, fileUrls: [String]?, coverRect: Bool?, fileType: String?, customIds: [String]?) {
+        public init (caller: Caller, businessType: String, fileInfos: [UploadFile]? = nil, fileUrls: [String]? = nil, coverRect: Bool? = nil, fileType: String? = nil, customIds: [String]? = nil) {
             self.caller = caller
             self.businessType = businessType
             self.fileInfos = fileInfos
@@ -100,5 +84,21 @@ extension Essbasic {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 文件上传
+    ///
+    /// 此接口（UploadFiles）用于文件上传。
+    @inlinable
+    public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFilesResponse > {
+        self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 文件上传
+    ///
+    /// 此接口（UploadFiles）用于文件上传。
+    @inlinable
+    public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
+        try await self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

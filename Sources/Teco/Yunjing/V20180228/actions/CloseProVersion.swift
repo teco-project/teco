@@ -15,29 +15,13 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 关闭专业版
-    ///
-    /// 本接口 (CloseProVersion) 用于关闭专业版。
-    @inlinable
-    public func closeProVersion(_ input: CloseProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseProVersionResponse > {
-        self.client.execute(action: "CloseProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关闭专业版
-    ///
-    /// 本接口 (CloseProVersion) 用于关闭专业版。
-    @inlinable
-    public func closeProVersion(_ input: CloseProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseProVersionResponse {
-        try await self.client.execute(action: "CloseProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CloseProVersion请求参数结构体
     public struct CloseProVersionRequest: TCRequestModel {
         /// 主机唯一标识Uuid。
         /// 黑石的InstanceId，CVM的Uuid
         public let quuid: String?
         
-        public init (quuid: String?) {
+        public init (quuid: String? = nil) {
             self.quuid = quuid
         }
         
@@ -54,5 +38,21 @@ extension Yunjing {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关闭专业版
+    ///
+    /// 本接口 (CloseProVersion) 用于关闭专业版。
+    @inlinable
+    public func closeProVersion(_ input: CloseProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CloseProVersionResponse > {
+        self.client.execute(action: "CloseProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭专业版
+    ///
+    /// 本接口 (CloseProVersion) 用于关闭专业版。
+    @inlinable
+    public func closeProVersion(_ input: CloseProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseProVersionResponse {
+        try await self.client.execute(action: "CloseProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

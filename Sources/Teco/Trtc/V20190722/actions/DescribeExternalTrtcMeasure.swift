@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Trtc {
-    /// 查询音视频用量计费时长（旧）
-    ///
-    /// 获取Trtc的用量统计数据。走计费渠道二期 只允许查两天的数据。
-    /// 当前接口已不再更新维护，请使用新版音视频用量接口：DescribeTrtcUsage （https://cloud.tencent.com/document/product/647/81425）
-    @inlinable
-    public func describeExternalTrtcMeasure(_ input: DescribeExternalTrtcMeasureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExternalTrtcMeasureResponse > {
-        self.client.execute(action: "DescribeExternalTrtcMeasure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询音视频用量计费时长（旧）
-    ///
-    /// 获取Trtc的用量统计数据。走计费渠道二期 只允许查两天的数据。
-    /// 当前接口已不再更新维护，请使用新版音视频用量接口：DescribeTrtcUsage （https://cloud.tencent.com/document/product/647/81425）
-    @inlinable
-    public func describeExternalTrtcMeasure(_ input: DescribeExternalTrtcMeasureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExternalTrtcMeasureResponse {
-        try await self.client.execute(action: "DescribeExternalTrtcMeasure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeExternalTrtcMeasure请求参数结构体
     public struct DescribeExternalTrtcMeasureRequest: TCRequestModel {
         /// 查询开始日期。
@@ -44,7 +26,7 @@ extension Trtc {
         /// 对应的应用。如果没有这个参数，表示获取用户名下全部实时音视频应用的汇总。
         public let sdkAppId: UInt64?
         
-        public init (startTime: String, endTime: String, sdkAppId: UInt64?) {
+        public init (startTime: String, endTime: String, sdkAppId: UInt64? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.sdkAppId = sdkAppId
@@ -77,5 +59,23 @@ extension Trtc {
             case audienceUsageMode = "AudienceUsageMode"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询音视频用量计费时长（旧）
+    ///
+    /// 获取Trtc的用量统计数据。走计费渠道二期 只允许查两天的数据。
+    /// 当前接口已不再更新维护，请使用新版音视频用量接口：DescribeTrtcUsage （https://cloud.tencent.com/document/product/647/81425）
+    @inlinable
+    public func describeExternalTrtcMeasure(_ input: DescribeExternalTrtcMeasureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeExternalTrtcMeasureResponse > {
+        self.client.execute(action: "DescribeExternalTrtcMeasure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询音视频用量计费时长（旧）
+    ///
+    /// 获取Trtc的用量统计数据。走计费渠道二期 只允许查两天的数据。
+    /// 当前接口已不再更新维护，请使用新版音视频用量接口：DescribeTrtcUsage （https://cloud.tencent.com/document/product/647/81425）
+    @inlinable
+    public func describeExternalTrtcMeasure(_ input: DescribeExternalTrtcMeasureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExternalTrtcMeasureResponse {
+        try await self.client.execute(action: "DescribeExternalTrtcMeasure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Zj {
-    /// 创建短信活动
-    ///
-    /// 创建短信推送活动
-    @inlinable
-    public func createCampaign(_ input: CreateCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCampaignResponse > {
-        self.client.execute(action: "CreateCampaign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建短信活动
-    ///
-    /// 创建短信推送活动
-    @inlinable
-    public func createCampaign(_ input: CreateCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCampaignResponse {
-        try await self.client.execute(action: "CreateCampaign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCampaign请求参数结构体
     public struct CreateCampaignRequest: TCRequestModel {
         /// 商户证书
@@ -54,7 +38,7 @@ extension Zj {
         /// 活动类型(0-短信,1-超短,不填默认为超短)
         public let smsType: UInt64?
         
-        public init (license: String, sendTime: Int64, name: String, strategies: [PaasStrategy]?, templateId: Int64?, crowdID: Int64?, smsType: UInt64?) {
+        public init (license: String, sendTime: Int64, name: String, strategies: [PaasStrategy]? = nil, templateId: Int64? = nil, crowdID: Int64? = nil, smsType: UInt64? = nil) {
             self.license = license
             self.sendTime = sendTime
             self.name = name
@@ -87,5 +71,21 @@ extension Zj {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建短信活动
+    ///
+    /// 创建短信推送活动
+    @inlinable
+    public func createCampaign(_ input: CreateCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCampaignResponse > {
+        self.client.execute(action: "CreateCampaign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建短信活动
+    ///
+    /// 创建短信推送活动
+    @inlinable
+    public func createCampaign(_ input: CreateCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCampaignResponse {
+        try await self.client.execute(action: "CreateCampaign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

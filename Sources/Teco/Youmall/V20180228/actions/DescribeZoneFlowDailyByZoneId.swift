@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Youmall {
-    /// 获取指定区域每日客流量
-    @inlinable
-    public func describeZoneFlowDailyByZoneId(_ input: DescribeZoneFlowDailyByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowDailyByZoneIdResponse > {
-        self.client.execute(action: "DescribeZoneFlowDailyByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取指定区域每日客流量
-    @inlinable
-    public func describeZoneFlowDailyByZoneId(_ input: DescribeZoneFlowDailyByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowDailyByZoneIdResponse {
-        try await self.client.execute(action: "DescribeZoneFlowDailyByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeZoneFlowDailyByZoneId请求参数结构体
     public struct DescribeZoneFlowDailyByZoneIdRequest: TCRequestModel {
         /// 集团ID
@@ -89,5 +77,17 @@ extension Youmall {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取指定区域每日客流量
+    @inlinable
+    public func describeZoneFlowDailyByZoneId(_ input: DescribeZoneFlowDailyByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeZoneFlowDailyByZoneIdResponse > {
+        self.client.execute(action: "DescribeZoneFlowDailyByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定区域每日客流量
+    @inlinable
+    public func describeZoneFlowDailyByZoneId(_ input: DescribeZoneFlowDailyByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowDailyByZoneIdResponse {
+        try await self.client.execute(action: "DescribeZoneFlowDailyByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

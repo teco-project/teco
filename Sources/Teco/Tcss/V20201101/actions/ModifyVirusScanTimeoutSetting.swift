@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时文件扫描超时设置
-    @inlinable
-    public func modifyVirusScanTimeoutSetting(_ input: ModifyVirusScanTimeoutSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVirusScanTimeoutSettingResponse > {
-        self.client.execute(action: "ModifyVirusScanTimeoutSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时文件扫描超时设置
-    @inlinable
-    public func modifyVirusScanTimeoutSetting(_ input: ModifyVirusScanTimeoutSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusScanTimeoutSettingResponse {
-        try await self.client.execute(action: "ModifyVirusScanTimeoutSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyVirusScanTimeoutSetting请求参数结构体
     public struct ModifyVirusScanTimeoutSettingRequest: TCRequestModel {
         /// 超时时长单位小时(5~24h)
@@ -54,5 +42,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时文件扫描超时设置
+    @inlinable
+    public func modifyVirusScanTimeoutSetting(_ input: ModifyVirusScanTimeoutSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyVirusScanTimeoutSettingResponse > {
+        self.client.execute(action: "ModifyVirusScanTimeoutSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时文件扫描超时设置
+    @inlinable
+    public func modifyVirusScanTimeoutSetting(_ input: ModifyVirusScanTimeoutSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusScanTimeoutSettingResponse {
+        try await self.client.execute(action: "ModifyVirusScanTimeoutSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

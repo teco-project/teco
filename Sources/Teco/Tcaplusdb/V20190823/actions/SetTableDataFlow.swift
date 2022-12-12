@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 新增、修改表格数据订阅
-    @inlinable
-    public func setTableDataFlow(_ input: SetTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTableDataFlowResponse > {
-        self.client.execute(action: "SetTableDataFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新增、修改表格数据订阅
-    @inlinable
-    public func setTableDataFlow(_ input: SetTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableDataFlowResponse {
-        try await self.client.execute(action: "SetTableDataFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetTableDataFlow请求参数结构体
     public struct SetTableDataFlowRequest: TCRequestModel {
         /// 表所属集群实例ID
@@ -62,5 +50,17 @@ extension Tcaplusdb {
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新增、修改表格数据订阅
+    @inlinable
+    public func setTableDataFlow(_ input: SetTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetTableDataFlowResponse > {
+        self.client.execute(action: "SetTableDataFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新增、修改表格数据订阅
+    @inlinable
+    public func setTableDataFlow(_ input: SetTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableDataFlowResponse {
+        try await self.client.execute(action: "SetTableDataFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cme {
-    /// 删除分类
-    ///
-    /// 删除分类信息，删除时检验下述限制：
-    /// <li>分类路径必须存在；</li>
-    /// <li>分类下没有绑定素材。</li>
-    @inlinable
-    public func deleteClass(_ input: DeleteClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClassResponse > {
-        self.client.execute(action: "DeleteClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除分类
-    ///
-    /// 删除分类信息，删除时检验下述限制：
-    /// <li>分类路径必须存在；</li>
-    /// <li>分类下没有绑定素材。</li>
-    @inlinable
-    public func deleteClass(_ input: DeleteClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClassResponse {
-        try await self.client.execute(action: "DeleteClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteClass请求参数结构体
     public struct DeleteClassRequest: TCRequestModel {
         /// 平台名称，指定访问的平台。
@@ -49,7 +29,7 @@ extension Cme {
         /// 操作者。填写用户的 Id，用于标识调用者及校验操作权限。
         public let `operator`: String?
         
-        public init (platform: String, owner: Entity, classPath: String, `operator`: String?) {
+        public init (platform: String, owner: Entity, classPath: String, `operator`: String? = nil) {
             self.platform = platform
             self.owner = owner
             self.classPath = classPath
@@ -72,5 +52,25 @@ extension Cme {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除分类
+    ///
+    /// 删除分类信息，删除时检验下述限制：
+    /// <li>分类路径必须存在；</li>
+    /// <li>分类下没有绑定素材。</li>
+    @inlinable
+    public func deleteClass(_ input: DeleteClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteClassResponse > {
+        self.client.execute(action: "DeleteClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除分类
+    ///
+    /// 删除分类信息，删除时检验下述限制：
+    /// <li>分类路径必须存在；</li>
+    /// <li>分类下没有绑定素材。</li>
+    @inlinable
+    public func deleteClass(_ input: DeleteClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClassResponse {
+        try await self.client.execute(action: "DeleteClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

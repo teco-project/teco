@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 启用或禁用API
-    @inlinable
-    public func changeApiUsableStatus(_ input: ChangeApiUsableStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeApiUsableStatusResponse > {
-        self.client.execute(action: "ChangeApiUsableStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 启用或禁用API
-    @inlinable
-    public func changeApiUsableStatus(_ input: ChangeApiUsableStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeApiUsableStatusResponse {
-        try await self.client.execute(action: "ChangeApiUsableStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ChangeApiUsableStatus请求参数结构体
     public struct ChangeApiUsableStatusRequest: TCRequestModel {
         /// API ID
@@ -58,5 +46,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 启用或禁用API
+    @inlinable
+    public func changeApiUsableStatus(_ input: ChangeApiUsableStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ChangeApiUsableStatusResponse > {
+        self.client.execute(action: "ChangeApiUsableStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 启用或禁用API
+    @inlinable
+    public func changeApiUsableStatus(_ input: ChangeApiUsableStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeApiUsableStatusResponse {
+        try await self.client.execute(action: "ChangeApiUsableStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

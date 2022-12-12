@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmlb {
-    /// 获取黑石负载均衡四层监听器
-    ///
-    /// 获取黑石负载均衡四层监听器。
-    @inlinable
-    public func describeL4Listeners(_ input: DescribeL4ListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL4ListenersResponse > {
-        self.client.execute(action: "DescribeL4Listeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取黑石负载均衡四层监听器
-    ///
-    /// 获取黑石负载均衡四层监听器。
-    @inlinable
-    public func describeL4Listeners(_ input: DescribeL4ListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4ListenersResponse {
-        try await self.client.execute(action: "DescribeL4Listeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeL4Listeners请求参数结构体
     public struct DescribeL4ListenersRequest: TCRequestModel {
         /// 负载均衡实例ID，可通过接口DescribeLoadBalancers查询。
@@ -39,7 +23,7 @@ extension Bmlb {
         /// 四层监听器实例ID数组，可通过接口DescribeL4Listeners查询。
         public let listenerIds: [String]?
         
-        public init (loadBalancerId: String, listenerIds: [String]?) {
+        public init (loadBalancerId: String, listenerIds: [String]? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerIds = listenerIds
         }
@@ -62,5 +46,21 @@ extension Bmlb {
             case listenerSet = "ListenerSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取黑石负载均衡四层监听器
+    ///
+    /// 获取黑石负载均衡四层监听器。
+    @inlinable
+    public func describeL4Listeners(_ input: DescribeL4ListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeL4ListenersResponse > {
+        self.client.execute(action: "DescribeL4Listeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取黑石负载均衡四层监听器
+    ///
+    /// 获取黑石负载均衡四层监听器。
+    @inlinable
+    public func describeL4Listeners(_ input: DescribeL4ListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4ListenersResponse {
+        try await self.client.execute(action: "DescribeL4Listeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

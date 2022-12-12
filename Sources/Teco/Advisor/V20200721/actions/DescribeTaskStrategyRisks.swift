@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Advisor {
-    /// 查询评估项风险实例列表
-    @inlinable
-    public func describeTaskStrategyRisks(_ input: DescribeTaskStrategyRisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskStrategyRisksResponse > {
-        self.client.execute(action: "DescribeTaskStrategyRisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询评估项风险实例列表
-    @inlinable
-    public func describeTaskStrategyRisks(_ input: DescribeTaskStrategyRisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStrategyRisksResponse {
-        try await self.client.execute(action: "DescribeTaskStrategyRisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskStrategyRisks请求参数结构体
     public struct DescribeTaskStrategyRisksRequest: TCRequestModel {
         /// 评估项ID
@@ -44,7 +32,7 @@ extension Advisor {
         /// 任务类型
         public let taskType: String?
         
-        public init (strategyId: UInt64, limit: UInt64?, offset: UInt64?, env: String?, taskType: String?) {
+        public init (strategyId: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, env: String? = nil, taskType: String? = nil) {
             self.strategyId = strategyId
             self.limit = limit
             self.offset = offset
@@ -95,5 +83,17 @@ extension Advisor {
             case resourceCount = "ResourceCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询评估项风险实例列表
+    @inlinable
+    public func describeTaskStrategyRisks(_ input: DescribeTaskStrategyRisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskStrategyRisksResponse > {
+        self.client.execute(action: "DescribeTaskStrategyRisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询评估项风险实例列表
+    @inlinable
+    public func describeTaskStrategyRisks(_ input: DescribeTaskStrategyRisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStrategyRisksResponse {
+        try await self.client.execute(action: "DescribeTaskStrategyRisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

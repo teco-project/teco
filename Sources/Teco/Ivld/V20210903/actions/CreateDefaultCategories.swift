@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ivld {
-    /// 创建默认自定义人物类型
-    @inlinable
-    public func createDefaultCategories(_ input: CreateDefaultCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDefaultCategoriesResponse > {
-        self.client.execute(action: "CreateDefaultCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建默认自定义人物类型
-    @inlinable
-    public func createDefaultCategories(_ input: CreateDefaultCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultCategoriesResponse {
-        try await self.client.execute(action: "CreateDefaultCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateDefaultCategories请求参数结构体
     public struct CreateDefaultCategoriesRequest: TCRequestModel {
         public init () {
@@ -41,5 +29,17 @@ extension Ivld {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建默认自定义人物类型
+    @inlinable
+    public func createDefaultCategories(_ input: CreateDefaultCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDefaultCategoriesResponse > {
+        self.client.execute(action: "CreateDefaultCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建默认自定义人物类型
+    @inlinable
+    public func createDefaultCategories(_ input: CreateDefaultCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultCategoriesResponse {
+        try await self.client.execute(action: "CreateDefaultCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

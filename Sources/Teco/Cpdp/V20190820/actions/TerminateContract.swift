@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 解除签约关系接口
-    ///
-    /// 通过此接口进行解约
-    @inlinable
-    public func terminateContract(_ input: TerminateContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateContractResponse > {
-        self.client.execute(action: "TerminateContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解除签约关系接口
-    ///
-    /// 通过此接口进行解约
-    @inlinable
-    public func terminateContract(_ input: TerminateContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateContractResponse {
-        try await self.client.execute(action: "TerminateContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TerminateContract请求参数结构体
     public struct TerminateContractRequest: TCRequestModel {
         /// 聚鑫分配的支付主MidasAppId
@@ -90,7 +74,7 @@ extension Cpdp {
         /// 签约代扣穿透查询存量数据迁移模式
         public let migrateMode: String?
         
-        public init (midasAppId: String, userId: String, channel: String, terminateMode: String, midasSecretId: String, midasSignature: String, subAppId: String?, outContractCode: String?, contractSceneId: String?, channelContractCode: String?, externalContractData: String?, terminationReason: String?, midasEnvironment: String?, userType: String?, contractMethod: String?, migrateMode: String?) {
+        public init (midasAppId: String, userId: String, channel: String, terminateMode: String, midasSecretId: String, midasSignature: String, subAppId: String? = nil, outContractCode: String? = nil, contractSceneId: String? = nil, channelContractCode: String? = nil, externalContractData: String? = nil, terminationReason: String? = nil, midasEnvironment: String? = nil, userType: String? = nil, contractMethod: String? = nil, migrateMode: String? = nil) {
             self.midasAppId = midasAppId
             self.userId = userId
             self.channel = channel
@@ -146,5 +130,21 @@ extension Cpdp {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解除签约关系接口
+    ///
+    /// 通过此接口进行解约
+    @inlinable
+    public func terminateContract(_ input: TerminateContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateContractResponse > {
+        self.client.execute(action: "TerminateContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解除签约关系接口
+    ///
+    /// 通过此接口进行解约
+    @inlinable
+    public func terminateContract(_ input: TerminateContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateContractResponse {
+        try await self.client.execute(action: "TerminateContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

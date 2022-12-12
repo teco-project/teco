@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 获取指定时间段内的实例空间使用概览
-    ///
-    /// 获取指定时间段内的实例空间使用概览，包括磁盘增长量(MB)、磁盘剩余(MB)、磁盘总量(MB)及预计可用天数。
-    @inlinable
-    public func describeDBSpaceStatus(_ input: DescribeDBSpaceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBSpaceStatusResponse > {
-        self.client.execute(action: "DescribeDBSpaceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取指定时间段内的实例空间使用概览
-    ///
-    /// 获取指定时间段内的实例空间使用概览，包括磁盘增长量(MB)、磁盘剩余(MB)、磁盘总量(MB)及预计可用天数。
-    @inlinable
-    public func describeDBSpaceStatus(_ input: DescribeDBSpaceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSpaceStatusResponse {
-        try await self.client.execute(action: "DescribeDBSpaceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBSpaceStatus请求参数结构体
     public struct DescribeDBSpaceStatusRequest: TCRequestModel {
         /// 实例 ID 。
@@ -42,7 +26,7 @@ extension Dbbrain {
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
         public let product: String?
         
-        public init (instanceId: String, rangeDays: Int64?, product: String?) {
+        public init (instanceId: String, rangeDays: Int64? = nil, product: String? = nil) {
             self.instanceId = instanceId
             self.rangeDays = rangeDays
             self.product = product
@@ -79,5 +63,21 @@ extension Dbbrain {
             case availableDays = "AvailableDays"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取指定时间段内的实例空间使用概览
+    ///
+    /// 获取指定时间段内的实例空间使用概览，包括磁盘增长量(MB)、磁盘剩余(MB)、磁盘总量(MB)及预计可用天数。
+    @inlinable
+    public func describeDBSpaceStatus(_ input: DescribeDBSpaceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBSpaceStatusResponse > {
+        self.client.execute(action: "DescribeDBSpaceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取指定时间段内的实例空间使用概览
+    ///
+    /// 获取指定时间段内的实例空间使用概览，包括磁盘增长量(MB)、磁盘剩余(MB)、磁盘总量(MB)及预计可用天数。
+    @inlinable
+    public func describeDBSpaceStatus(_ input: DescribeDBSpaceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSpaceStatusResponse {
+        try await self.client.execute(action: "DescribeDBSpaceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 更新函数配置
-    ///
-    /// 该接口根据传入参数更新函数配置。
-    @inlinable
-    public func updateFunctionConfiguration(_ input: UpdateFunctionConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFunctionConfigurationResponse > {
-        self.client.execute(action: "UpdateFunctionConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新函数配置
-    ///
-    /// 该接口根据传入参数更新函数配置。
-    @inlinable
-    public func updateFunctionConfiguration(_ input: UpdateFunctionConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionConfigurationResponse {
-        try await self.client.execute(action: "UpdateFunctionConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateFunctionConfiguration请求参数结构体
     public struct UpdateFunctionConfigurationRequest: TCRequestModel {
         /// 要修改的函数名称
@@ -49,14 +33,14 @@ extension Scf {
         public let runtime: String?
         
         /// 函数的环境变量
-        public let environment: Environment
+        public let environment: Environment?
         
         /// 函数所属命名空间
         /// 默认值: default
         public let namespace: String?
         
         /// 函数的私有网络配置
-        public let vpcConfig: VpcConfig
+        public let vpcConfig: VpcConfig?
         
         /// 函数绑定的角色
         public let role: String?
@@ -80,24 +64,24 @@ extension Scf {
         public let layers: [LayerVersionSimple]?
         
         /// 函数关联的死信队列信息
-        public let deadLetterConfig: DeadLetterConfig
+        public let deadLetterConfig: DeadLetterConfig?
         
         /// 公网访问配置
-        public let publicNetConfig: PublicNetConfigIn
+        public let publicNetConfig: PublicNetConfigIn?
         
         /// 文件系统配置入参，用于云函数绑定CFS文件系统
-        public let cfsConfig: CfsConfig
+        public let cfsConfig: CfsConfig?
         
         /// 函数初始化执行超时时间
         public let initTimeout: Int64?
         
         /// HTTP函数配置ProtocolType访问协议，当前协议可配置的参数
-        public let protocolParams: ProtocolParams
+        public let protocolParams: ProtocolParams?
         
         /// 单实例多并发配置。只支持Web函数。
-        public let instanceConcurrencyConfig: InstanceConcurrencyConfig
+        public let instanceConcurrencyConfig: InstanceConcurrencyConfig?
         
-        public init (functionName: String, description: String?, memorySize: Int64?, timeout: Int64?, runtime: String?, environment: Environment, namespace: String?, vpcConfig: VpcConfig, role: String?, installDependency: String?, clsLogsetId: String?, clsTopicId: String?, publish: String?, l5Enable: String?, layers: [LayerVersionSimple]?, deadLetterConfig: DeadLetterConfig, publicNetConfig: PublicNetConfigIn, cfsConfig: CfsConfig, initTimeout: Int64?, protocolParams: ProtocolParams, instanceConcurrencyConfig: InstanceConcurrencyConfig) {
+        public init (functionName: String, description: String? = nil, memorySize: Int64? = nil, timeout: Int64? = nil, runtime: String? = nil, environment: Environment? = nil, namespace: String? = nil, vpcConfig: VpcConfig? = nil, role: String? = nil, installDependency: String? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, publish: String? = nil, l5Enable: String? = nil, layers: [LayerVersionSimple]? = nil, deadLetterConfig: DeadLetterConfig? = nil, publicNetConfig: PublicNetConfigIn? = nil, cfsConfig: CfsConfig? = nil, initTimeout: Int64? = nil, protocolParams: ProtocolParams? = nil, instanceConcurrencyConfig: InstanceConcurrencyConfig? = nil) {
             self.functionName = functionName
             self.description = description
             self.memorySize = memorySize
@@ -154,5 +138,21 @@ extension Scf {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新函数配置
+    ///
+    /// 该接口根据传入参数更新函数配置。
+    @inlinable
+    public func updateFunctionConfiguration(_ input: UpdateFunctionConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateFunctionConfigurationResponse > {
+        self.client.execute(action: "UpdateFunctionConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新函数配置
+    ///
+    /// 该接口根据传入参数更新函数配置。
+    @inlinable
+    public func updateFunctionConfiguration(_ input: UpdateFunctionConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionConfigurationResponse {
+        try await self.client.execute(action: "UpdateFunctionConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

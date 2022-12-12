@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Teo {
-    /// 查询DDos攻击源信息
-    @inlinable
-    public func describeDDosAttackSourceEvent(_ input: DescribeDDosAttackSourceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDosAttackSourceEventResponse > {
-        self.client.execute(action: "DescribeDDosAttackSourceEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询DDos攻击源信息
-    @inlinable
-    public func describeDDosAttackSourceEvent(_ input: DescribeDDosAttackSourceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosAttackSourceEventResponse {
-        try await self.client.execute(action: "DescribeDDosAttackSourceEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDDosAttackSourceEvent请求参数结构体
     public struct DescribeDDosAttackSourceEventRequest: TCRequestModel {
         /// 开始时间。
@@ -62,7 +50,7 @@ extension Teo {
         /// <li>mainland ：中国大陆地区数据 。</li>不填默认查询overseas。
         public let area: String?
         
-        public init (startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]?, zoneIds: [String]?, protocolType: String?, area: String?) {
+        public init (startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, protocolType: String? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.pageSize = pageSize
@@ -107,5 +95,17 @@ extension Teo {
             case msg = "Msg"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询DDos攻击源信息
+    @inlinable
+    public func describeDDosAttackSourceEvent(_ input: DescribeDDosAttackSourceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDDosAttackSourceEventResponse > {
+        self.client.execute(action: "DescribeDDosAttackSourceEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询DDos攻击源信息
+    @inlinable
+    public func describeDDosAttackSourceEvent(_ input: DescribeDDosAttackSourceEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDosAttackSourceEventResponse {
+        try await self.client.execute(action: "DescribeDDosAttackSourceEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

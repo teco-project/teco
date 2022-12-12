@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 调整云硬盘备份点配额
-    ///
-    /// 此接口 (ModifyDiskBackupQuota) 用于修改云硬盘备份点配额。
-    @inlinable
-    public func modifyDiskBackupQuota(_ input: ModifyDiskBackupQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDiskBackupQuotaResponse > {
-        self.client.execute(action: "ModifyDiskBackupQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 调整云硬盘备份点配额
-    ///
-    /// 此接口 (ModifyDiskBackupQuota) 用于修改云硬盘备份点配额。
-    @inlinable
-    public func modifyDiskBackupQuota(_ input: ModifyDiskBackupQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskBackupQuotaResponse {
-        try await self.client.execute(action: "ModifyDiskBackupQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyDiskBackupQuota请求参数结构体
     public struct ModifyDiskBackupQuotaRequest: TCRequestModel {
         /// 云硬盘ID。
@@ -58,5 +42,21 @@ extension Cbs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 调整云硬盘备份点配额
+    ///
+    /// 此接口 (ModifyDiskBackupQuota) 用于修改云硬盘备份点配额。
+    @inlinable
+    public func modifyDiskBackupQuota(_ input: ModifyDiskBackupQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyDiskBackupQuotaResponse > {
+        self.client.execute(action: "ModifyDiskBackupQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 调整云硬盘备份点配额
+    ///
+    /// 此接口 (ModifyDiskBackupQuota) 用于修改云硬盘备份点配额。
+    @inlinable
+    public func modifyDiskBackupQuota(_ input: ModifyDiskBackupQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskBackupQuotaResponse {
+        try await self.client.execute(action: "ModifyDiskBackupQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

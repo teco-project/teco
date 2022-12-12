@@ -17,24 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Essbasic {
-    /// 渠道用量查询
-    ///
-    /// 此接口（DescribeUsage）用于获取渠道所有合作企业流量消耗情况。
-    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
-    @inlinable
-    public func describeUsage(_ input: DescribeUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsageResponse > {
-        self.client.execute(action: "DescribeUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 渠道用量查询
-    ///
-    /// 此接口（DescribeUsage）用于获取渠道所有合作企业流量消耗情况。
-    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
-    @inlinable
-    public func describeUsage(_ input: DescribeUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsageResponse {
-        try await self.client.execute(action: "DescribeUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUsage请求参数结构体
     public struct DescribeUsageRequest: TCRequestModel {
         /// 应用信息，此接口Agent.AppId必填
@@ -61,9 +43,9 @@ extension Essbasic {
         public let offset: UInt64?
         
         /// 操作者的信息
-        public let `operator`: UserInfo
+        public let `operator`: UserInfo?
         
-        public init (agent: Agent, startDate: Date, endDate: Date, needAggregate: Bool?, limit: UInt64?, offset: UInt64?, `operator`: UserInfo) {
+        public init (agent: Agent, startDate: Date, endDate: Date, needAggregate: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil, `operator`: UserInfo? = nil) {
             self.agent = agent
             self.startDate = startDate
             self.endDate = endDate
@@ -101,5 +83,23 @@ extension Essbasic {
             case details = "Details"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 渠道用量查询
+    ///
+    /// 此接口（DescribeUsage）用于获取渠道所有合作企业流量消耗情况。
+    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    @inlinable
+    public func describeUsage(_ input: DescribeUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUsageResponse > {
+        self.client.execute(action: "DescribeUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 渠道用量查询
+    ///
+    /// 此接口（DescribeUsage）用于获取渠道所有合作企业流量消耗情况。
+    ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
+    @inlinable
+    public func describeUsage(_ input: DescribeUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsageResponse {
+        try await self.client.execute(action: "DescribeUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

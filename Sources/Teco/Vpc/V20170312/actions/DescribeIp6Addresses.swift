@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询IPV6地址信息
-    ///
-    /// 该接口用于查询IPV6地址信息
-    @inlinable
-    public func describeIp6Addresses(_ input: DescribeIp6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIp6AddressesResponse > {
-        self.client.execute(action: "DescribeIp6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询IPV6地址信息
-    ///
-    /// 该接口用于查询IPV6地址信息
-    @inlinable
-    public func describeIp6Addresses(_ input: DescribeIp6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6AddressesResponse {
-        try await self.client.execute(action: "DescribeIp6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIp6Addresses请求参数结构体
     public struct DescribeIp6AddressesRequest: TCRequestModel {
         /// 标识 IPV6 的唯一 ID 列表。IPV6 唯一 ID 形如：`eip-11112222`。参数不支持同时指定`Ip6AddressIds`和`Filters`。
@@ -47,7 +31,7 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/11646)中的相关小节。
         public let limit: Int64?
         
-        public init (ip6AddressIds: [String]?, filters: [Filter]?, offset: Int64?, limit: Int64?) {
+        public init (ip6AddressIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.ip6AddressIds = ip6AddressIds
             self.filters = filters
             self.offset = offset
@@ -78,5 +62,21 @@ extension Vpc {
             case addressSet = "AddressSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询IPV6地址信息
+    ///
+    /// 该接口用于查询IPV6地址信息
+    @inlinable
+    public func describeIp6Addresses(_ input: DescribeIp6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIp6AddressesResponse > {
+        self.client.execute(action: "DescribeIp6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询IPV6地址信息
+    ///
+    /// 该接口用于查询IPV6地址信息
+    @inlinable
+    public func describeIp6Addresses(_ input: DescribeIp6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6AddressesResponse {
+        try await self.client.execute(action: "DescribeIp6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

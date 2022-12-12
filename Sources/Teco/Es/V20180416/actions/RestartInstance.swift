@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 重启ES集群实例
-    ///
-    /// 重启ES集群实例(用于系统版本更新等操作) 
-    @inlinable
-    public func restartInstance(_ input: RestartInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartInstanceResponse > {
-        self.client.execute(action: "RestartInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重启ES集群实例
-    ///
-    /// 重启ES集群实例(用于系统版本更新等操作) 
-    @inlinable
-    public func restartInstance(_ input: RestartInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInstanceResponse {
-        try await self.client.execute(action: "RestartInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestartInstance请求参数结构体
     public struct RestartInstanceRequest: TCRequestModel {
         /// 实例ID
@@ -42,7 +26,7 @@ extension Es {
         /// 重启模式：0 滚动重启； 1 全量重启
         public let restartMode: Int64?
         
-        public init (instanceId: String, forceRestart: Bool?, restartMode: Int64?) {
+        public init (instanceId: String, forceRestart: Bool? = nil, restartMode: Int64? = nil) {
             self.instanceId = instanceId
             self.forceRestart = forceRestart
             self.restartMode = restartMode
@@ -63,5 +47,21 @@ extension Es {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重启ES集群实例
+    ///
+    /// 重启ES集群实例(用于系统版本更新等操作) 
+    @inlinable
+    public func restartInstance(_ input: RestartInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartInstanceResponse > {
+        self.client.execute(action: "RestartInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重启ES集群实例
+    ///
+    /// 重启ES集群实例(用于系统版本更新等操作) 
+    @inlinable
+    public func restartInstance(_ input: RestartInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInstanceResponse {
+        try await self.client.execute(action: "RestartInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

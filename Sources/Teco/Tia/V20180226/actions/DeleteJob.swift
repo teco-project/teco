@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tia {
-    /// 删除Job
-    ///
-    /// 删除训练任务
-    @inlinable
-    public func deleteJob(_ input: DeleteJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteJobResponse > {
-        self.client.execute(action: "DeleteJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除Job
-    ///
-    /// 删除训练任务
-    @inlinable
-    public func deleteJob(_ input: DeleteJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobResponse {
-        try await self.client.execute(action: "DeleteJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteJob请求参数结构体
     public struct DeleteJobRequest: TCRequestModel {
         /// 任务名称
@@ -58,5 +42,21 @@ extension Tia {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除Job
+    ///
+    /// 删除训练任务
+    @inlinable
+    public func deleteJob(_ input: DeleteJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteJobResponse > {
+        self.client.execute(action: "DeleteJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Job
+    ///
+    /// 删除训练任务
+    @inlinable
+    public func deleteJob(_ input: DeleteJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobResponse {
+        try await self.client.execute(action: "DeleteJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

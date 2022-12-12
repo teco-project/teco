@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cat {
-    /// 分页查询拨测任务列表
-    ///
-    /// 查询拨测任务列表
-    @inlinable
-    public func describeProbeTasks(_ input: DescribeProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProbeTasksResponse > {
-        self.client.execute(action: "DescribeProbeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 分页查询拨测任务列表
-    ///
-    /// 查询拨测任务列表
-    @inlinable
-    public func describeProbeTasks(_ input: DescribeProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProbeTasksResponse {
-        try await self.client.execute(action: "DescribeProbeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProbeTasks请求参数结构体
     public struct DescribeProbeTasksRequest: TCRequestModel {
         /// 任务 ID  列表
@@ -93,7 +77,7 @@ extension Cat {
         /// 资源标签值
         public let tagFilters: [KeyValuePair]?
         
-        public init (taskIDs: [String]?, taskName: String?, targetAddress: String?, taskStatus: [Int64]?, offset: Int64?, limit: Int64?, payMode: Int64?, orderState: Int64?, taskType: [Int64]?, taskCategory: [Int64]?, orderBy: String?, ascend: Bool?, tagFilters: [KeyValuePair]?) {
+        public init (taskIDs: [String]? = nil, taskName: String? = nil, targetAddress: String? = nil, taskStatus: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, payMode: Int64? = nil, orderState: Int64? = nil, taskType: [Int64]? = nil, taskCategory: [Int64]? = nil, orderBy: String? = nil, ascend: Bool? = nil, tagFilters: [KeyValuePair]? = nil) {
             self.taskIDs = taskIDs
             self.taskName = taskName
             self.targetAddress = targetAddress
@@ -143,5 +127,21 @@ extension Cat {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 分页查询拨测任务列表
+    ///
+    /// 查询拨测任务列表
+    @inlinable
+    public func describeProbeTasks(_ input: DescribeProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProbeTasksResponse > {
+        self.client.execute(action: "DescribeProbeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 分页查询拨测任务列表
+    ///
+    /// 查询拨测任务列表
+    @inlinable
+    public func describeProbeTasks(_ input: DescribeProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProbeTasksResponse {
+        try await self.client.execute(action: "DescribeProbeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

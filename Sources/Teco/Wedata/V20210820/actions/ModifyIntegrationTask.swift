@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 更新集成任务
-    @inlinable
-    public func modifyIntegrationTask(_ input: ModifyIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIntegrationTaskResponse > {
-        self.client.execute(action: "ModifyIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新集成任务
-    @inlinable
-    public func modifyIntegrationTask(_ input: ModifyIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationTaskResponse {
-        try await self.client.execute(action: "ModifyIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyIntegrationTask请求参数结构体
     public struct ModifyIntegrationTaskRequest: TCRequestModel {
         /// 任务信息
@@ -38,7 +26,7 @@ extension Wedata {
         /// 默认false . 为true时表示走回滚节点逻辑
         public let rollbackFlag: Bool?
         
-        public init (taskInfo: IntegrationTaskInfo, projectId: String, rollbackFlag: Bool?) {
+        public init (taskInfo: IntegrationTaskInfo, projectId: String, rollbackFlag: Bool? = nil) {
             self.taskInfo = taskInfo
             self.projectId = projectId
             self.rollbackFlag = rollbackFlag
@@ -63,5 +51,17 @@ extension Wedata {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新集成任务
+    @inlinable
+    public func modifyIntegrationTask(_ input: ModifyIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIntegrationTaskResponse > {
+        self.client.execute(action: "ModifyIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新集成任务
+    @inlinable
+    public func modifyIntegrationTask(_ input: ModifyIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationTaskResponse {
+        try await self.client.execute(action: "ModifyIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

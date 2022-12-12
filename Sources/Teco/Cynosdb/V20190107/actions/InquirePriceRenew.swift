@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 续费集群询价
-    ///
-    /// 查询续费集群价格
-    @inlinable
-    public func inquirePriceRenew(_ input: InquirePriceRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceRenewResponse > {
-        self.client.execute(action: "InquirePriceRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 续费集群询价
-    ///
-    /// 查询续费集群价格
-    @inlinable
-    public func inquirePriceRenew(_ input: InquirePriceRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewResponse {
-        try await self.client.execute(action: "InquirePriceRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquirePriceRenew请求参数结构体
     public struct InquirePriceRenewRequest: TCRequestModel {
         /// 集群ID
@@ -83,5 +67,21 @@ extension Cynosdb {
             case storageRealTotalPrice = "StorageRealTotalPrice"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 续费集群询价
+    ///
+    /// 查询续费集群价格
+    @inlinable
+    public func inquirePriceRenew(_ input: InquirePriceRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceRenewResponse > {
+        self.client.execute(action: "InquirePriceRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 续费集群询价
+    ///
+    /// 查询续费集群价格
+    @inlinable
+    public func inquirePriceRenew(_ input: InquirePriceRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewResponse {
+        try await self.client.execute(action: "InquirePriceRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

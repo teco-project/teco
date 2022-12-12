@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 删除通道组
-    ///
-    /// 本接口（DeleteProxyGroup）用于删除通道组。
-    @inlinable
-    public func deleteProxyGroup(_ input: DeleteProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProxyGroupResponse > {
-        self.client.execute(action: "DeleteProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除通道组
-    ///
-    /// 本接口（DeleteProxyGroup）用于删除通道组。
-    @inlinable
-    public func deleteProxyGroup(_ input: DeleteProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProxyGroupResponse {
-        try await self.client.execute(action: "DeleteProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteProxyGroup请求参数结构体
     public struct DeleteProxyGroupRequest: TCRequestModel {
         /// 需要删除的通道组ID。
@@ -42,7 +26,7 @@ extension Gaap {
         /// 默认为0，当通道组中存在通道或通道组中存在监听器/规则绑定了源站时，且Force为0时，该操作会返回失败。
         public let force: UInt64?
         
-        public init (groupId: String?, force: UInt64?) {
+        public init (groupId: String? = nil, force: UInt64? = nil) {
             self.groupId = groupId
             self.force = force
         }
@@ -61,5 +45,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除通道组
+    ///
+    /// 本接口（DeleteProxyGroup）用于删除通道组。
+    @inlinable
+    public func deleteProxyGroup(_ input: DeleteProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteProxyGroupResponse > {
+        self.client.execute(action: "DeleteProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除通道组
+    ///
+    /// 本接口（DeleteProxyGroup）用于删除通道组。
+    @inlinable
+    public func deleteProxyGroup(_ input: DeleteProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProxyGroupResponse {
+        try await self.client.execute(action: "DeleteProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

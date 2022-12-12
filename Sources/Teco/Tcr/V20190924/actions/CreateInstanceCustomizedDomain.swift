@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 创建自定义域名
-    @inlinable
-    public func createInstanceCustomizedDomain(_ input: CreateInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceCustomizedDomainResponse > {
-        self.client.execute(action: "CreateInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建自定义域名
-    @inlinable
-    public func createInstanceCustomizedDomain(_ input: CreateInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceCustomizedDomainResponse {
-        try await self.client.execute(action: "CreateInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateInstanceCustomizedDomain请求参数结构体
     public struct CreateInstanceCustomizedDomainRequest: TCRequestModel {
         /// 主实例iD
@@ -59,5 +47,17 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建自定义域名
+    @inlinable
+    public func createInstanceCustomizedDomain(_ input: CreateInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceCustomizedDomainResponse > {
+        self.client.execute(action: "CreateInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建自定义域名
+    @inlinable
+    public func createInstanceCustomizedDomain(_ input: CreateInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceCustomizedDomainResponse {
+        try await self.client.execute(action: "CreateInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

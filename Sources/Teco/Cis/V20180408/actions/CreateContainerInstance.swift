@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cis {
-    /// 创建容器实例
-    ///
-    /// 此接口（CreateContainerInstance）用于创建容器实例
-    @inlinable
-    public func createContainerInstance(_ input: CreateContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateContainerInstanceResponse > {
-        self.client.execute(action: "CreateContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建容器实例
-    ///
-    /// 此接口（CreateContainerInstance）用于创建容器实例
-    @inlinable
-    public func createContainerInstance(_ input: CreateContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContainerInstanceResponse {
-        try await self.client.execute(action: "CreateContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateContainerInstance请求参数结构体
     public struct CreateContainerInstanceRequest: TCRequestModel {
         /// 可用区
@@ -82,5 +66,21 @@ extension Cis {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建容器实例
+    ///
+    /// 此接口（CreateContainerInstance）用于创建容器实例
+    @inlinable
+    public func createContainerInstance(_ input: CreateContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateContainerInstanceResponse > {
+        self.client.execute(action: "CreateContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建容器实例
+    ///
+    /// 此接口（CreateContainerInstance）用于创建容器实例
+    @inlinable
+    public func createContainerInstance(_ input: CreateContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContainerInstanceResponse {
+        try await self.client.execute(action: "CreateContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

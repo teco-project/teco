@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 增加集群子网
-    ///
-    /// 针对VPC-CNI模式的集群，增加集群容器网络可使用的子网
-    @inlinable
-    public func addVpcCniSubnets(_ input: AddVpcCniSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddVpcCniSubnetsResponse > {
-        self.client.execute(action: "AddVpcCniSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 增加集群子网
-    ///
-    /// 针对VPC-CNI模式的集群，增加集群容器网络可使用的子网
-    @inlinable
-    public func addVpcCniSubnets(_ input: AddVpcCniSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddVpcCniSubnetsResponse {
-        try await self.client.execute(action: "AddVpcCniSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddVpcCniSubnets请求参数结构体
     public struct AddVpcCniSubnetsRequest: TCRequestModel {
         /// 集群ID
@@ -63,5 +47,21 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 增加集群子网
+    ///
+    /// 针对VPC-CNI模式的集群，增加集群容器网络可使用的子网
+    @inlinable
+    public func addVpcCniSubnets(_ input: AddVpcCniSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddVpcCniSubnetsResponse > {
+        self.client.execute(action: "AddVpcCniSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 增加集群子网
+    ///
+    /// 针对VPC-CNI模式的集群，增加集群容器网络可使用的子网
+    @inlinable
+    public func addVpcCniSubnets(_ input: AddVpcCniSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddVpcCniSubnetsResponse {
+        try await self.client.execute(action: "AddVpcCniSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

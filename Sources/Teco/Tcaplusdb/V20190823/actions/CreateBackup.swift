@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 创建备份
-    ///
-    /// 用户创建备份任务
-    @inlinable
-    public func createBackup(_ input: CreateBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackupResponse > {
-        self.client.execute(action: "CreateBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建备份
-    ///
-    /// 用户创建备份任务
-    @inlinable
-    public func createBackup(_ input: CreateBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
-        try await self.client.execute(action: "CreateBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBackup请求参数结构体
     public struct CreateBackupRequest: TCRequestModel {
         /// 待创建备份表所属集群ID
@@ -42,7 +26,7 @@ extension Tcaplusdb {
         /// 备注信息
         public let remark: String?
         
-        public init (clusterId: String, selectedTables: [SelectedTableInfoNew], remark: String?) {
+        public init (clusterId: String, selectedTables: [SelectedTableInfoNew], remark: String? = nil) {
             self.clusterId = clusterId
             self.selectedTables = selectedTables
             self.remark = remark
@@ -73,5 +57,21 @@ extension Tcaplusdb {
             case applicationIds = "ApplicationIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建备份
+    ///
+    /// 用户创建备份任务
+    @inlinable
+    public func createBackup(_ input: CreateBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBackupResponse > {
+        self.client.execute(action: "CreateBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建备份
+    ///
+    /// 用户创建备份任务
+    @inlinable
+    public func createBackup(_ input: CreateBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
+        try await self.client.execute(action: "CreateBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

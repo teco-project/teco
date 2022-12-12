@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 批量删除规则引擎规则
-    ///
-    /// 批量删除规则引擎规则。
-    @inlinable
-    public func deleteRules(_ input: DeleteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRulesResponse > {
-        self.client.execute(action: "DeleteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量删除规则引擎规则
-    ///
-    /// 批量删除规则引擎规则。
-    @inlinable
-    public func deleteRules(_ input: DeleteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRulesResponse {
-        try await self.client.execute(action: "DeleteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRules请求参数结构体
     public struct DeleteRulesRequest: TCRequestModel {
         /// 站点 ID。
@@ -58,5 +42,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量删除规则引擎规则
+    ///
+    /// 批量删除规则引擎规则。
+    @inlinable
+    public func deleteRules(_ input: DeleteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRulesResponse > {
+        self.client.execute(action: "DeleteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量删除规则引擎规则
+    ///
+    /// 批量删除规则引擎规则。
+    @inlinable
+    public func deleteRules(_ input: DeleteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRulesResponse {
+        try await self.client.execute(action: "DeleteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

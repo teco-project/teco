@@ -48,7 +48,7 @@ extension Pds {
         /// 用户iOS设备的IDFA
         public let idfa: String?
         
-        public init (phoneNum: String, openid: String, ip: String?, wiFiBssid: String?, imei: String?, oaid: String?, idfa: String?) {
+        public init (phoneNum: String, openid: String, ip: String? = nil, wiFiBssid: String? = nil, imei: String? = nil, oaid: String? = nil, idfa: String? = nil) {
             self.phoneNum = phoneNum
             self.openid = openid
             self.ip = ip

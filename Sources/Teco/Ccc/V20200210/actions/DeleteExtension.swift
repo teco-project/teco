@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 删除话机账号
-    @inlinable
-    public func deleteExtension(_ input: DeleteExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteExtensionResponse > {
-        self.client.execute(action: "DeleteExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除话机账号
-    @inlinable
-    public func deleteExtension(_ input: DeleteExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExtensionResponse {
-        try await self.client.execute(action: "DeleteExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteExtension请求参数结构体
     public struct DeleteExtensionRequest: TCRequestModel {
         /// TCCC 实例应用 ID
@@ -54,5 +42,17 @@ extension Ccc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除话机账号
+    @inlinable
+    public func deleteExtension(_ input: DeleteExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteExtensionResponse > {
+        self.client.execute(action: "DeleteExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除话机账号
+    @inlinable
+    public func deleteExtension(_ input: DeleteExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExtensionResponse {
+        try await self.client.execute(action: "DeleteExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

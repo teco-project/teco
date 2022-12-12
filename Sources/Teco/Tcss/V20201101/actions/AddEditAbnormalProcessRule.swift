@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 添加编辑异常进程策略
-    ///
-    /// 添加编辑运行时异常进程策略
-    @inlinable
-    public func addEditAbnormalProcessRule(_ input: AddEditAbnormalProcessRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEditAbnormalProcessRuleResponse > {
-        self.client.execute(action: "AddEditAbnormalProcessRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加编辑异常进程策略
-    ///
-    /// 添加编辑运行时异常进程策略
-    @inlinable
-    public func addEditAbnormalProcessRule(_ input: AddEditAbnormalProcessRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditAbnormalProcessRuleResponse {
-        try await self.client.execute(action: "AddEditAbnormalProcessRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddEditAbnormalProcessRule请求参数结构体
     public struct AddEditAbnormalProcessRuleRequest: TCRequestModel {
         /// 增加策略信息，策略id为空，编辑策略是id不能为空
@@ -39,7 +23,7 @@ extension Tcss {
         /// 仅在加白的时候带上
         public let eventId: String?
         
-        public init (ruleInfo: AbnormalProcessRuleInfo, eventId: String?) {
+        public init (ruleInfo: AbnormalProcessRuleInfo, eventId: String? = nil) {
             self.ruleInfo = ruleInfo
             self.eventId = eventId
         }
@@ -58,5 +42,21 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加编辑异常进程策略
+    ///
+    /// 添加编辑运行时异常进程策略
+    @inlinable
+    public func addEditAbnormalProcessRule(_ input: AddEditAbnormalProcessRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEditAbnormalProcessRuleResponse > {
+        self.client.execute(action: "AddEditAbnormalProcessRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加编辑异常进程策略
+    ///
+    /// 添加编辑运行时异常进程策略
+    @inlinable
+    public func addEditAbnormalProcessRule(_ input: AddEditAbnormalProcessRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditAbnormalProcessRuleResponse {
+        try await self.client.execute(action: "AddEditAbnormalProcessRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

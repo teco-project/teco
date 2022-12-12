@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 查询边缘单元NodeUnit列表
-    @inlinable
-    public func describeNodeUnit(_ input: DescribeNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodeUnitResponse > {
-        self.client.execute(action: "DescribeNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询边缘单元NodeUnit列表
-    @inlinable
-    public func describeNodeUnit(_ input: DescribeNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeUnitResponse {
-        try await self.client.execute(action: "DescribeNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNodeUnit请求参数结构体
     public struct DescribeNodeUnitRequest: TCRequestModel {
         /// 边缘单元ID
@@ -47,7 +35,7 @@ extension Iecp {
         /// 模糊匹配
         public let nameFilter: String?
         
-        public init (edgeUnitId: UInt64, nodeGroupName: String, namespace: String?, limit: Int64?, offset: Int64?, nameFilter: String?) {
+        public init (edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, limit: Int64? = nil, offset: Int64? = nil, nameFilter: String? = nil) {
             self.edgeUnitId = edgeUnitId
             self.nodeGroupName = nodeGroupName
             self.namespace = namespace
@@ -83,5 +71,17 @@ extension Iecp {
             case nodeGridInfo = "NodeGridInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询边缘单元NodeUnit列表
+    @inlinable
+    public func describeNodeUnit(_ input: DescribeNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNodeUnitResponse > {
+        self.client.execute(action: "DescribeNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘单元NodeUnit列表
+    @inlinable
+    public func describeNodeUnit(_ input: DescribeNodeUnitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeUnitResponse {
+        try await self.client.execute(action: "DescribeNodeUnit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

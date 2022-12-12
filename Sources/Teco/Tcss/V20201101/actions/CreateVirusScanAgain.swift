@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时文件查杀重新检测
-    @inlinable
-    public func createVirusScanAgain(_ input: CreateVirusScanAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVirusScanAgainResponse > {
-        self.client.execute(action: "CreateVirusScanAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时文件查杀重新检测
-    @inlinable
-    public func createVirusScanAgain(_ input: CreateVirusScanAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanAgainResponse {
-        try await self.client.execute(action: "CreateVirusScanAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateVirusScanAgain请求参数结构体
     public struct CreateVirusScanAgainRequest: TCRequestModel {
         /// 任务id
@@ -41,7 +29,7 @@ extension Tcss {
         /// 重新设置的超时时长
         public let timeout: UInt64?
         
-        public init (taskId: String, containerIds: [String]?, timeoutAll: Bool?, timeout: UInt64?) {
+        public init (taskId: String, containerIds: [String]? = nil, timeoutAll: Bool? = nil, timeout: UInt64? = nil) {
             self.taskId = taskId
             self.containerIds = containerIds
             self.timeoutAll = timeoutAll
@@ -64,5 +52,17 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时文件查杀重新检测
+    @inlinable
+    public func createVirusScanAgain(_ input: CreateVirusScanAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVirusScanAgainResponse > {
+        self.client.execute(action: "CreateVirusScanAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时文件查杀重新检测
+    @inlinable
+    public func createVirusScanAgain(_ input: CreateVirusScanAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanAgainResponse {
+        try await self.client.execute(action: "CreateVirusScanAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

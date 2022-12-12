@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询web服务列表
-    ///
-    /// 容器安全查询web服务列表
-    @inlinable
-    public func describeAssetWebServiceList(_ input: DescribeAssetWebServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetWebServiceListResponse > {
-        self.client.execute(action: "DescribeAssetWebServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询web服务列表
-    ///
-    /// 容器安全查询web服务列表
-    @inlinable
-    public func describeAssetWebServiceList(_ input: DescribeAssetWebServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebServiceListResponse {
-        try await self.client.execute(action: "DescribeAssetWebServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetWebServiceList请求参数结构体
     public struct DescribeAssetWebServiceListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -48,7 +32,7 @@ extension Tcss {
         /// "Tomcat"</li>
         public let filters: [AssetFilters]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [AssetFilters]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -77,5 +61,21 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询web服务列表
+    ///
+    /// 容器安全查询web服务列表
+    @inlinable
+    public func describeAssetWebServiceList(_ input: DescribeAssetWebServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetWebServiceListResponse > {
+        self.client.execute(action: "DescribeAssetWebServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询web服务列表
+    ///
+    /// 容器安全查询web服务列表
+    @inlinable
+    public func describeAssetWebServiceList(_ input: DescribeAssetWebServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebServiceListResponse {
+        try await self.client.execute(action: "DescribeAssetWebServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

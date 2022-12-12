@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 创建告警触发策略
-    ///
-    /// 本接口（CreateScalingPolicy）用于创建告警触发策略。
-    @inlinable
-    public func createScalingPolicy(_ input: CreateScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScalingPolicyResponse > {
-        self.client.execute(action: "CreateScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建告警触发策略
-    ///
-    /// 本接口（CreateScalingPolicy）用于创建告警触发策略。
-    @inlinable
-    public func createScalingPolicy(_ input: CreateScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScalingPolicyResponse {
-        try await self.client.execute(action: "CreateScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateScalingPolicy请求参数结构体
     public struct CreateScalingPolicyRequest: TCRequestModel {
         /// 伸缩组ID。
@@ -55,7 +39,7 @@ extension As {
         /// 通知组ID，即为用户组ID集合。
         public let notificationUserGroupIds: [String]?
         
-        public init (autoScalingGroupId: String, scalingPolicyName: String, adjustmentType: String, adjustmentValue: Int64, metricAlarm: MetricAlarm, cooldown: UInt64?, notificationUserGroupIds: [String]?) {
+        public init (autoScalingGroupId: String, scalingPolicyName: String, adjustmentType: String, adjustmentValue: Int64, metricAlarm: MetricAlarm, cooldown: UInt64? = nil, notificationUserGroupIds: [String]? = nil) {
             self.autoScalingGroupId = autoScalingGroupId
             self.scalingPolicyName = scalingPolicyName
             self.adjustmentType = adjustmentType
@@ -88,5 +72,21 @@ extension As {
             case autoScalingPolicyId = "AutoScalingPolicyId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建告警触发策略
+    ///
+    /// 本接口（CreateScalingPolicy）用于创建告警触发策略。
+    @inlinable
+    public func createScalingPolicy(_ input: CreateScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateScalingPolicyResponse > {
+        self.client.execute(action: "CreateScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建告警触发策略
+    ///
+    /// 本接口（CreateScalingPolicy）用于创建告警触发策略。
+    @inlinable
+    public func createScalingPolicy(_ input: CreateScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScalingPolicyResponse {
+        try await self.client.execute(action: "CreateScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

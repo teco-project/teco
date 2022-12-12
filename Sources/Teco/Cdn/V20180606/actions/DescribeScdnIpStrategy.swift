@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 查询SCDN安全防护IP白名单
-    ///
-    /// 查询在SCDN IP安全策略
-    @inlinable
-    public func describeScdnIpStrategy(_ input: DescribeScdnIpStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnIpStrategyResponse > {
-        self.client.execute(action: "DescribeScdnIpStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询SCDN安全防护IP白名单
-    ///
-    /// 查询在SCDN IP安全策略
-    @inlinable
-    public func describeScdnIpStrategy(_ input: DescribeScdnIpStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnIpStrategyResponse {
-        try await self.client.execute(action: "DescribeScdnIpStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScdnIpStrategy请求参数结构体
     public struct DescribeScdnIpStrategyRequest: TCRequestModel {
         /// 分页起始地址
@@ -48,7 +32,7 @@ extension Cdn {
         /// 排序方式，支持asc，desc
         public let sequence: String?
         
-        public init (offset: Int64?, limit: Int64?, filters: [ScdnIpStrategyFilter]?, order: String?, sequence: String?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, filters: [ScdnIpStrategyFilter]? = nil, order: String? = nil, sequence: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -83,5 +67,21 @@ extension Cdn {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询SCDN安全防护IP白名单
+    ///
+    /// 查询在SCDN IP安全策略
+    @inlinable
+    public func describeScdnIpStrategy(_ input: DescribeScdnIpStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScdnIpStrategyResponse > {
+        self.client.execute(action: "DescribeScdnIpStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询SCDN安全防护IP白名单
+    ///
+    /// 查询在SCDN IP安全策略
+    @inlinable
+    public func describeScdnIpStrategy(_ input: DescribeScdnIpStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnIpStrategyResponse {
+        try await self.client.execute(action: "DescribeScdnIpStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

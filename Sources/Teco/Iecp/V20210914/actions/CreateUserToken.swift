@@ -15,24 +15,12 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 创建token
-    @inlinable
-    public func createUserToken(_ input: CreateUserTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserTokenResponse > {
-        self.client.execute(action: "CreateUserToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建token
-    @inlinable
-    public func createUserToken(_ input: CreateUserTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserTokenResponse {
-        try await self.client.execute(action: "CreateUserToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateUserToken请求参数结构体
     public struct CreateUserTokenRequest: TCRequestModel {
         /// token过期时间，有效值是1~300秒
         public let second: Int64?
         
-        public init (second: Int64?) {
+        public init (second: Int64? = nil) {
             self.second = second
         }
         
@@ -53,5 +41,17 @@ extension Iecp {
             case token = "Token"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建token
+    @inlinable
+    public func createUserToken(_ input: CreateUserTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateUserTokenResponse > {
+        self.client.execute(action: "CreateUserToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建token
+    @inlinable
+    public func createUserToken(_ input: CreateUserTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserTokenResponse {
+        try await self.client.execute(action: "CreateUserToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

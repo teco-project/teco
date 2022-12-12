@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 绑定工作组到用户
-    @inlinable
-    public func bindWorkGroupsToUser(_ input: BindWorkGroupsToUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindWorkGroupsToUserResponse > {
-        self.client.execute(action: "BindWorkGroupsToUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定工作组到用户
-    @inlinable
-    public func bindWorkGroupsToUser(_ input: BindWorkGroupsToUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindWorkGroupsToUserResponse {
-        try await self.client.execute(action: "BindWorkGroupsToUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindWorkGroupsToUser请求参数结构体
     public struct BindWorkGroupsToUserRequest: TCRequestModel {
         /// 绑定的用户和工作组信息
@@ -49,5 +37,17 @@ extension Dlc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定工作组到用户
+    @inlinable
+    public func bindWorkGroupsToUser(_ input: BindWorkGroupsToUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindWorkGroupsToUserResponse > {
+        self.client.execute(action: "BindWorkGroupsToUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定工作组到用户
+    @inlinable
+    public func bindWorkGroupsToUser(_ input: BindWorkGroupsToUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindWorkGroupsToUserResponse {
+        try await self.client.execute(action: "BindWorkGroupsToUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iot {
-    /// 获取产品列表
-    ///
-    /// 获取用户在物联网套件所创建的所有产品信息。
-    @inlinable
-    public func getProducts(_ input: GetProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetProductsResponse > {
-        self.client.execute(action: "GetProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取产品列表
-    ///
-    /// 获取用户在物联网套件所创建的所有产品信息。
-    @inlinable
-    public func getProducts(_ input: GetProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProductsResponse {
-        try await self.client.execute(action: "GetProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetProducts请求参数结构体
     public struct GetProductsRequest: TCRequestModel {
         /// 偏移
@@ -39,7 +23,7 @@ extension Iot {
         /// 长度
         public let length: UInt64?
         
-        public init (offset: UInt64?, length: UInt64?) {
+        public init (offset: UInt64? = nil, length: UInt64? = nil) {
             self.offset = offset
             self.length = length
         }
@@ -66,5 +50,21 @@ extension Iot {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取产品列表
+    ///
+    /// 获取用户在物联网套件所创建的所有产品信息。
+    @inlinable
+    public func getProducts(_ input: GetProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetProductsResponse > {
+        self.client.execute(action: "GetProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取产品列表
+    ///
+    /// 获取用户在物联网套件所创建的所有产品信息。
+    @inlinable
+    public func getProducts(_ input: GetProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProductsResponse {
+        try await self.client.execute(action: "GetProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

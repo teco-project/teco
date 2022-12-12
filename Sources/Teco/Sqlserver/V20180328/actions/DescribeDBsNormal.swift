@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 查询数据库配置信息
-    ///
-    /// 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号
-    @inlinable
-    public func describeDBsNormal(_ input: DescribeDBsNormalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBsNormalResponse > {
-        self.client.execute(action: "DescribeDBsNormal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询数据库配置信息
-    ///
-    /// 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号
-    @inlinable
-    public func describeDBsNormal(_ input: DescribeDBsNormalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsNormalResponse {
-        try await self.client.execute(action: "DescribeDBsNormal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDBsNormal请求参数结构体
     public struct DescribeDBsNormalRequest: TCRequestModel {
         /// 实例ID，形如mssql-7vfv3rk3
@@ -61,5 +45,21 @@ extension Sqlserver {
             case dbList = "DBList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询数据库配置信息
+    ///
+    /// 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号
+    @inlinable
+    public func describeDBsNormal(_ input: DescribeDBsNormalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDBsNormalResponse > {
+        self.client.execute(action: "DescribeDBsNormal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询数据库配置信息
+    ///
+    /// 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号
+    @inlinable
+    public func describeDBsNormal(_ input: DescribeDBsNormalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsNormalResponse {
+        try await self.client.execute(action: "DescribeDBsNormal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

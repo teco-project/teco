@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 删除安全合规忽略项， 资产+检测项列表
-    ///
-    /// 移除安全合规忽略(资产+检测项)列表，不显示指定的检查项包含的资产内容
-    /// 参考的AddCompliancePolicyAssetSetToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
-    @inlinable
-    public func deleteComplianceAssetPolicySetFromWhitelist(_ input: DeleteComplianceAssetPolicySetFromWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteComplianceAssetPolicySetFromWhitelistResponse > {
-        self.client.execute(action: "DeleteComplianceAssetPolicySetFromWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除安全合规忽略项， 资产+检测项列表
-    ///
-    /// 移除安全合规忽略(资产+检测项)列表，不显示指定的检查项包含的资产内容
-    /// 参考的AddCompliancePolicyAssetSetToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
-    @inlinable
-    public func deleteComplianceAssetPolicySetFromWhitelist(_ input: DeleteComplianceAssetPolicySetFromWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteComplianceAssetPolicySetFromWhitelistResponse {
-        try await self.client.execute(action: "DeleteComplianceAssetPolicySetFromWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteComplianceAssetPolicySetFromWhitelist请求参数结构体
     public struct DeleteComplianceAssetPolicySetFromWhitelistRequest: TCRequestModel {
         /// 资产ID
@@ -41,7 +23,7 @@ extension Tcss {
         /// 需要忽略指定资产内的检查项ID列表
         public let customerPolicyItemIdSet: [UInt64]?
         
-        public init (assetItemId: UInt64, customerPolicyItemIdSet: [UInt64]?) {
+        public init (assetItemId: UInt64, customerPolicyItemIdSet: [UInt64]? = nil) {
             self.assetItemId = assetItemId
             self.customerPolicyItemIdSet = customerPolicyItemIdSet
         }
@@ -60,5 +42,23 @@ extension Tcss {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除安全合规忽略项， 资产+检测项列表
+    ///
+    /// 移除安全合规忽略(资产+检测项)列表，不显示指定的检查项包含的资产内容
+    /// 参考的AddCompliancePolicyAssetSetToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
+    @inlinable
+    public func deleteComplianceAssetPolicySetFromWhitelist(_ input: DeleteComplianceAssetPolicySetFromWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteComplianceAssetPolicySetFromWhitelistResponse > {
+        self.client.execute(action: "DeleteComplianceAssetPolicySetFromWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除安全合规忽略项， 资产+检测项列表
+    ///
+    /// 移除安全合规忽略(资产+检测项)列表，不显示指定的检查项包含的资产内容
+    /// 参考的AddCompliancePolicyAssetSetToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
+    @inlinable
+    public func deleteComplianceAssetPolicySetFromWhitelist(_ input: DeleteComplianceAssetPolicySetFromWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteComplianceAssetPolicySetFromWhitelistResponse {
+        try await self.client.execute(action: "DeleteComplianceAssetPolicySetFromWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

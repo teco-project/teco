@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取帐号统计列表数据
-    ///
-    /// 本接口 (DescribeAccountStatistics) 用于获取帐号统计列表数据。
-    @inlinable
-    public func describeAccountStatistics(_ input: DescribeAccountStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountStatisticsResponse > {
-        self.client.execute(action: "DescribeAccountStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取帐号统计列表数据
-    ///
-    /// 本接口 (DescribeAccountStatistics) 用于获取帐号统计列表数据。
-    @inlinable
-    public func describeAccountStatistics(_ input: DescribeAccountStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountStatisticsResponse {
-        try await self.client.execute(action: "DescribeAccountStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccountStatistics请求参数结构体
     public struct DescribeAccountStatisticsRequest: TCRequestModel {
         /// 返回数量，默认为10，最大值为100。
@@ -43,7 +27,7 @@ extension Yunjing {
         /// <li>Username - String - 是否必填：否 - 帐号用户名</li>
         public let filters: [Filter]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -72,5 +56,21 @@ extension Yunjing {
             case accountStatistics = "AccountStatistics"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取帐号统计列表数据
+    ///
+    /// 本接口 (DescribeAccountStatistics) 用于获取帐号统计列表数据。
+    @inlinable
+    public func describeAccountStatistics(_ input: DescribeAccountStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountStatisticsResponse > {
+        self.client.execute(action: "DescribeAccountStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取帐号统计列表数据
+    ///
+    /// 本接口 (DescribeAccountStatistics) 用于获取帐号统计列表数据。
+    @inlinable
+    public func describeAccountStatistics(_ input: DescribeAccountStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountStatisticsResponse {
+        try await self.client.execute(action: "DescribeAccountStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云-对账中心账单下载接口
-    ///
-    /// 获取对账中心账单下载地址的接口
-    @inlinable
-    public func downloadReconciliationUrl(_ input: DownloadReconciliationUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadReconciliationUrlResponse > {
-        self.client.execute(action: "DownloadReconciliationUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云-对账中心账单下载接口
-    ///
-    /// 获取对账中心账单下载地址的接口
-    @inlinable
-    public func downloadReconciliationUrl(_ input: DownloadReconciliationUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadReconciliationUrlResponse {
-        try await self.client.execute(action: "DownloadReconciliationUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DownloadReconciliationUrl请求参数结构体
     public struct DownloadReconciliationUrlRequest: TCRequestModel {
         /// 平台应用ID
@@ -45,7 +29,7 @@ extension Cpdp {
         /// 商户或者代理商ID
         public let subAppId: String?
         
-        public init (mainAppId: String, appCode: String, billDate: String, subAppId: String?) {
+        public init (mainAppId: String, appCode: String, billDate: String, subAppId: String? = nil) {
             self.mainAppId = mainAppId
             self.appCode = appCode
             self.billDate = billDate
@@ -81,5 +65,21 @@ extension Cpdp {
             case hashValue = "HashValue"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云-对账中心账单下载接口
+    ///
+    /// 获取对账中心账单下载地址的接口
+    @inlinable
+    public func downloadReconciliationUrl(_ input: DownloadReconciliationUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DownloadReconciliationUrlResponse > {
+        self.client.execute(action: "DownloadReconciliationUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云-对账中心账单下载接口
+    ///
+    /// 获取对账中心账单下载地址的接口
+    @inlinable
+    public func downloadReconciliationUrl(_ input: DownloadReconciliationUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadReconciliationUrlResponse {
+        try await self.client.execute(action: "DownloadReconciliationUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

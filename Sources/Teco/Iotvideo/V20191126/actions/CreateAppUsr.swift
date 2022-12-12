@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 终端用户注册
-    ///
-    /// 本接口（CreateAppUsr）用于接收由厂商云发送过来的注册请求,建立厂商云终端用户与IoT Video终端用户的映射关系。
-    @inlinable
-    public func createAppUsr(_ input: CreateAppUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppUsrResponse > {
-        self.client.execute(action: "CreateAppUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 终端用户注册
-    ///
-    /// 本接口（CreateAppUsr）用于接收由厂商云发送过来的注册请求,建立厂商云终端用户与IoT Video终端用户的映射关系。
-    @inlinable
-    public func createAppUsr(_ input: CreateAppUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppUsrResponse {
-        try await self.client.execute(action: "CreateAppUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateAppUsr请求参数结构体
     public struct CreateAppUsrRequest: TCRequestModel {
         /// 标识用户的唯一ID，防止同一个用户多次注册
@@ -39,7 +23,7 @@ extension Iotvideo {
         /// 用于小程序关联手机号
         public let mobile: String?
         
-        public init (cunionId: String, mobile: String?) {
+        public init (cunionId: String, mobile: String? = nil) {
             self.cunionId = cunionId
             self.mobile = mobile
         }
@@ -70,5 +54,21 @@ extension Iotvideo {
             case newRegist = "NewRegist"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 终端用户注册
+    ///
+    /// 本接口（CreateAppUsr）用于接收由厂商云发送过来的注册请求,建立厂商云终端用户与IoT Video终端用户的映射关系。
+    @inlinable
+    public func createAppUsr(_ input: CreateAppUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateAppUsrResponse > {
+        self.client.execute(action: "CreateAppUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 终端用户注册
+    ///
+    /// 本接口（CreateAppUsr）用于接收由厂商云发送过来的注册请求,建立厂商云终端用户与IoT Video终端用户的映射关系。
+    @inlinable
+    public func createAppUsr(_ input: CreateAppUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppUsrResponse {
+        try await self.client.execute(action: "CreateAppUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

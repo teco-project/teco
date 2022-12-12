@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 生成建表SQL
-    ///
-    /// 本接口（CreateTable）用于生成建表SQL。
-    @inlinable
-    public func createTable(_ input: CreateTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTableResponse > {
-        self.client.execute(action: "CreateTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 生成建表SQL
-    ///
-    /// 本接口（CreateTable）用于生成建表SQL。
-    @inlinable
-    public func createTable(_ input: CreateTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableResponse {
-        try await self.client.execute(action: "CreateTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTable请求参数结构体
     public struct CreateTableRequest: TCRequestModel {
         /// 数据表配置信息
@@ -57,5 +41,21 @@ extension Dlc {
             case execution = "Execution"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 生成建表SQL
+    ///
+    /// 本接口（CreateTable）用于生成建表SQL。
+    @inlinable
+    public func createTable(_ input: CreateTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTableResponse > {
+        self.client.execute(action: "CreateTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 生成建表SQL
+    ///
+    /// 本接口（CreateTable）用于生成建表SQL。
+    @inlinable
+    public func createTable(_ input: CreateTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableResponse {
+        try await self.client.execute(action: "CreateTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

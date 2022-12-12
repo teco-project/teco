@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 企业认证
-    ///
-    /// 本接口用于企业认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
-    @inlinable
-    public func createCRCompanyVerify(_ input: CreateCRCompanyVerifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRCompanyVerifyResponse > {
-        self.client.execute(action: "CreateCRCompanyVerify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 企业认证
-    ///
-    /// 本接口用于企业认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
-    @inlinable
-    public func createCRCompanyVerify(_ input: CreateCRCompanyVerifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRCompanyVerifyResponse {
-        try await self.client.execute(action: "CreateCRCompanyVerify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCRCompanyVerify请求参数结构体
     public struct CreateCRCompanyVerifyRequest: TCRequestModel {
         /// 企业名称
@@ -57,7 +41,7 @@ extension Bma {
         /// 字段已废弃，认证类型
         public let type: String?
         
-        public init (companyName: String, companyID: String?, companyLegalName: String?, managerName: String?, managerPhone: String?, verificationCode: String?, companyIDType: String?, type: String?) {
+        public init (companyName: String, companyID: String? = nil, companyLegalName: String? = nil, managerName: String? = nil, managerPhone: String? = nil, verificationCode: String? = nil, companyIDType: String? = nil, type: String? = nil) {
             self.companyName = companyName
             self.companyID = companyID
             self.companyLegalName = companyLegalName
@@ -96,5 +80,21 @@ extension Bma {
             case note = "Note"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 企业认证
+    ///
+    /// 本接口用于企业认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
+    @inlinable
+    public func createCRCompanyVerify(_ input: CreateCRCompanyVerifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRCompanyVerifyResponse > {
+        self.client.execute(action: "CreateCRCompanyVerify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 企业认证
+    ///
+    /// 本接口用于企业认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
+    @inlinable
+    public func createCRCompanyVerify(_ input: CreateCRCompanyVerifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRCompanyVerifyResponse {
+        try await self.client.execute(action: "CreateCRCompanyVerify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

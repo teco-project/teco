@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 删除坐席信息
-    @inlinable
-    public func deleteStaff(_ input: DeleteStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStaffResponse > {
-        self.client.execute(action: "DeleteStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除坐席信息
-    @inlinable
-    public func deleteStaff(_ input: DeleteStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStaffResponse {
-        try await self.client.execute(action: "DeleteStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteStaff请求参数结构体
     public struct DeleteStaffRequest: TCRequestModel {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -59,5 +47,17 @@ extension Ccc {
             case onlineStaffList = "OnlineStaffList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除坐席信息
+    @inlinable
+    public func deleteStaff(_ input: DeleteStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteStaffResponse > {
+        self.client.execute(action: "DeleteStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除坐席信息
+    @inlinable
+    public func deleteStaff(_ input: DeleteStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStaffResponse {
+        try await self.client.execute(action: "DeleteStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

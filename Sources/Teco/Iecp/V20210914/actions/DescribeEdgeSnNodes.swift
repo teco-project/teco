@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 查询预注册节点列表
-    @inlinable
-    public func describeEdgeSnNodes(_ input: DescribeEdgeSnNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeSnNodesResponse > {
-        self.client.execute(action: "DescribeEdgeSnNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询预注册节点列表
-    @inlinable
-    public func describeEdgeSnNodes(_ input: DescribeEdgeSnNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeSnNodesResponse {
-        try await self.client.execute(action: "DescribeEdgeSnNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeSnNodes请求参数结构体
     public struct DescribeEdgeSnNodesRequest: TCRequestModel {
         /// 边缘单元ID
@@ -47,7 +35,7 @@ extension Iecp {
         /// 默认20
         public let limit: UInt64?
         
-        public init (edgeUnitId: UInt64, namePattern: String?, snPattern: String?, remarkPattern: String?, offset: UInt64?, limit: UInt64?) {
+        public init (edgeUnitId: UInt64, namePattern: String? = nil, snPattern: String? = nil, remarkPattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.edgeUnitId = edgeUnitId
             self.namePattern = namePattern
             self.snPattern = snPattern
@@ -84,5 +72,17 @@ extension Iecp {
             case nodeSet = "NodeSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询预注册节点列表
+    @inlinable
+    public func describeEdgeSnNodes(_ input: DescribeEdgeSnNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeSnNodesResponse > {
+        self.client.execute(action: "DescribeEdgeSnNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询预注册节点列表
+    @inlinable
+    public func describeEdgeSnNodes(_ input: DescribeEdgeSnNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeSnNodesResponse {
+        try await self.client.execute(action: "DescribeEdgeSnNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 创建或者更新 Ingress 规则
-    @inlinable
-    public func modifyIngress(_ input: ModifyIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIngressResponse > {
-        self.client.execute(action: "ModifyIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建或者更新 Ingress 规则
-    @inlinable
-    public func modifyIngress(_ input: ModifyIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIngressResponse {
-        try await self.client.execute(action: "ModifyIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyIngress请求参数结构体
     public struct ModifyIngressRequest: TCRequestModel {
         /// Ingress 规则配置
@@ -35,7 +23,7 @@ extension Tem {
         /// 来源渠道
         public let sourceChannel: Int64?
         
-        public init (ingress: IngressInfo, sourceChannel: Int64?) {
+        public init (ingress: IngressInfo, sourceChannel: Int64? = nil) {
             self.ingress = ingress
             self.sourceChannel = sourceChannel
         }
@@ -59,5 +47,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建或者更新 Ingress 规则
+    @inlinable
+    public func modifyIngress(_ input: ModifyIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyIngressResponse > {
+        self.client.execute(action: "ModifyIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建或者更新 Ingress 规则
+    @inlinable
+    public func modifyIngress(_ input: ModifyIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIngressResponse {
+        try await self.client.execute(action: "ModifyIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

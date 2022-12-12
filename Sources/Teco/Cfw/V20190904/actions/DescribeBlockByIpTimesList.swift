@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 告警中心阻断IP折线图
-    ///
-    /// DescribeBlockByIpTimesList 告警中心阻断IP折线图
-    @inlinable
-    public func describeBlockByIpTimesList(_ input: DescribeBlockByIpTimesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlockByIpTimesListResponse > {
-        self.client.execute(action: "DescribeBlockByIpTimesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 告警中心阻断IP折线图
-    ///
-    /// DescribeBlockByIpTimesList 告警中心阻断IP折线图
-    @inlinable
-    public func describeBlockByIpTimesList(_ input: DescribeBlockByIpTimesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockByIpTimesListResponse {
-        try await self.client.execute(action: "DescribeBlockByIpTimesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBlockByIpTimesList请求参数结构体
     public struct DescribeBlockByIpTimesListRequest: TCRequestModel {
         /// 开始时间
@@ -57,7 +41,7 @@ extension Cfw {
         /// 日志来源 move：vpc间防火墙
         public let logSource: String?
         
-        public init (startTime: String, endTime: String, ip: String, zone: String?, direction: String?, source: String?, edgeId: String?, logSource: String?) {
+        public init (startTime: String, endTime: String, ip: String, zone: String? = nil, direction: String? = nil, source: String? = nil, edgeId: String? = nil, logSource: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.ip = ip
@@ -92,5 +76,21 @@ extension Cfw {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 告警中心阻断IP折线图
+    ///
+    /// DescribeBlockByIpTimesList 告警中心阻断IP折线图
+    @inlinable
+    public func describeBlockByIpTimesList(_ input: DescribeBlockByIpTimesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBlockByIpTimesListResponse > {
+        self.client.execute(action: "DescribeBlockByIpTimesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 告警中心阻断IP折线图
+    ///
+    /// DescribeBlockByIpTimesList 告警中心阻断IP折线图
+    @inlinable
+    public func describeBlockByIpTimesList(_ input: DescribeBlockByIpTimesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockByIpTimesListResponse {
+        try await self.client.execute(action: "DescribeBlockByIpTimesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

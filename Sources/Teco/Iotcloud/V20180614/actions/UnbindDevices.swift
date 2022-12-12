@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 批量解绑子设备
-    ///
-    /// 本接口（UnbindDevices）用于网关设备批量解绑子设备 
-    @inlinable
-    public func unbindDevices(_ input: UnbindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindDevicesResponse > {
-        self.client.execute(action: "UnbindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量解绑子设备
-    ///
-    /// 本接口（UnbindDevices）用于网关设备批量解绑子设备 
-    @inlinable
-    public func unbindDevices(_ input: UnbindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDevicesResponse {
-        try await self.client.execute(action: "UnbindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnbindDevices请求参数结构体
     public struct UnbindDevicesRequest: TCRequestModel {
         /// 网关设备的产品ID
@@ -48,7 +32,7 @@ extension Iotcloud {
         /// 中兴CLAA设备的解绑需要Skey，普通设备不需要
         public let skey: String?
         
-        public init (gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String?) {
+        public init (gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil) {
             self.gatewayProductId = gatewayProductId
             self.gatewayDeviceName = gatewayDeviceName
             self.productId = productId
@@ -73,5 +57,21 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量解绑子设备
+    ///
+    /// 本接口（UnbindDevices）用于网关设备批量解绑子设备 
+    @inlinable
+    public func unbindDevices(_ input: UnbindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnbindDevicesResponse > {
+        self.client.execute(action: "UnbindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量解绑子设备
+    ///
+    /// 本接口（UnbindDevices）用于网关设备批量解绑子设备 
+    @inlinable
+    public func unbindDevices(_ input: UnbindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDevicesResponse {
+        try await self.client.execute(action: "UnbindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 删除ACL规则
-    @inlinable
-    public func deleteAclRule(_ input: DeleteAclRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAclRuleResponse > {
-        self.client.execute(action: "DeleteAclRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除ACL规则
-    @inlinable
-    public func deleteAclRule(_ input: DeleteAclRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclRuleResponse {
-        try await self.client.execute(action: "DeleteAclRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAclRule请求参数结构体
     public struct DeleteAclRuleRequest: TCRequestModel {
         /// 实例id信息
@@ -58,5 +46,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除ACL规则
+    @inlinable
+    public func deleteAclRule(_ input: DeleteAclRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAclRuleResponse > {
+        self.client.execute(action: "DeleteAclRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除ACL规则
+    @inlinable
+    public func deleteAclRule(_ input: DeleteAclRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclRuleResponse {
+        try await self.client.execute(action: "DeleteAclRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

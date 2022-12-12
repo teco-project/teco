@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 镜像仓库查询镜像高危行为列表
-    @inlinable
-    public func describeAssetImageRegistryRiskInfoList(_ input: DescribeAssetImageRegistryRiskInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryRiskInfoListResponse > {
-        self.client.execute(action: "DescribeAssetImageRegistryRiskInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 镜像仓库查询镜像高危行为列表
-    @inlinable
-    public func describeAssetImageRegistryRiskInfoList(_ input: DescribeAssetImageRegistryRiskInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryRiskInfoListResponse {
-        try await self.client.execute(action: "DescribeAssetImageRegistryRiskInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageRegistryRiskInfoList请求参数结构体
     public struct DescribeAssetImageRegistryRiskInfoListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -41,7 +29,7 @@ extension Tcss {
         public let filters: [AssetFilters]?
         
         /// 镜像id
-        public let imageInfo: ImageInfo
+        public let imageInfo: ImageInfo?
         
         /// 排序字段（Level）
         public let by: String?
@@ -52,7 +40,7 @@ extension Tcss {
         /// 镜像标识Id
         public let id: UInt64?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [AssetFilters]?, imageInfo: ImageInfo, by: String?, order: String?, id: UInt64?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, by: String? = nil, order: String? = nil, id: UInt64? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -91,5 +79,17 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 镜像仓库查询镜像高危行为列表
+    @inlinable
+    public func describeAssetImageRegistryRiskInfoList(_ input: DescribeAssetImageRegistryRiskInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageRegistryRiskInfoListResponse > {
+        self.client.execute(action: "DescribeAssetImageRegistryRiskInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 镜像仓库查询镜像高危行为列表
+    @inlinable
+    public func describeAssetImageRegistryRiskInfoList(_ input: DescribeAssetImageRegistryRiskInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryRiskInfoListResponse {
+        try await self.client.execute(action: "DescribeAssetImageRegistryRiskInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

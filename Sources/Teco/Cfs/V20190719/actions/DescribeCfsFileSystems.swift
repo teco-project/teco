@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 查询文件系统
-    ///
-    /// 本接口（DescribeCfsFileSystems）用于查询文件系统
-    @inlinable
-    public func describeCfsFileSystems(_ input: DescribeCfsFileSystemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfsFileSystemsResponse > {
-        self.client.execute(action: "DescribeCfsFileSystems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询文件系统
-    ///
-    /// 本接口（DescribeCfsFileSystems）用于查询文件系统
-    @inlinable
-    public func describeCfsFileSystems(_ input: DescribeCfsFileSystemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemsResponse {
-        try await self.client.execute(action: "DescribeCfsFileSystems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCfsFileSystems请求参数结构体
     public struct DescribeCfsFileSystemsRequest: TCRequestModel {
         /// 文件系统 ID
@@ -42,7 +26,7 @@ extension Cfs {
         /// 子网 ID
         public let subnetId: String?
         
-        public init (fileSystemId: String?, vpcId: String?, subnetId: String?) {
+        public init (fileSystemId: String? = nil, vpcId: String? = nil, subnetId: String? = nil) {
             self.fileSystemId = fileSystemId
             self.vpcId = vpcId
             self.subnetId = subnetId
@@ -71,5 +55,21 @@ extension Cfs {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询文件系统
+    ///
+    /// 本接口（DescribeCfsFileSystems）用于查询文件系统
+    @inlinable
+    public func describeCfsFileSystems(_ input: DescribeCfsFileSystemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCfsFileSystemsResponse > {
+        self.client.execute(action: "DescribeCfsFileSystems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询文件系统
+    ///
+    /// 本接口（DescribeCfsFileSystems）用于查询文件系统
+    @inlinable
+    public func describeCfsFileSystems(_ input: DescribeCfsFileSystemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemsResponse {
+        try await self.client.execute(action: "DescribeCfsFileSystems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

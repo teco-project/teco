@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 批量创建表
-    ///
-    /// 根据选择的IDL文件列表，批量创建表格
-    @inlinable
-    public func createTables(_ input: CreateTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTablesResponse > {
-        self.client.execute(action: "CreateTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量创建表
-    ///
-    /// 根据选择的IDL文件列表，批量创建表格
-    @inlinable
-    public func createTables(_ input: CreateTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTablesResponse {
-        try await self.client.execute(action: "CreateTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTables请求参数结构体
     public struct CreateTablesRequest: TCRequestModel {
         /// 待创建表格所属集群ID
@@ -45,7 +29,7 @@ extension Tcaplusdb {
         /// 表格标签列表
         public let resourceTags: [TagInfoUnit]?
         
-        public init (clusterId: String, idlFiles: [IdlFileInfo], selectedTables: [SelectedTableInfoNew], resourceTags: [TagInfoUnit]?) {
+        public init (clusterId: String, idlFiles: [IdlFileInfo], selectedTables: [SelectedTableInfoNew], resourceTags: [TagInfoUnit]? = nil) {
             self.clusterId = clusterId
             self.idlFiles = idlFiles
             self.selectedTables = selectedTables
@@ -76,5 +60,21 @@ extension Tcaplusdb {
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量创建表
+    ///
+    /// 根据选择的IDL文件列表，批量创建表格
+    @inlinable
+    public func createTables(_ input: CreateTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTablesResponse > {
+        self.client.execute(action: "CreateTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量创建表
+    ///
+    /// 根据选择的IDL文件列表，批量创建表格
+    @inlinable
+    public func createTables(_ input: CreateTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTablesResponse {
+        try await self.client.execute(action: "CreateTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

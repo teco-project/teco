@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dbbrain {
-    /// 添加联系人信息
-    ///
-    /// 添加邮件接收联系人的姓名， 邮件地址，返回值为添加成功的联系人id。Region统一选择广州。
-    @inlinable
-    public func addUserContact(_ input: AddUserContactRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserContactResponse > {
-        self.client.execute(action: "AddUserContact", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加联系人信息
-    ///
-    /// 添加邮件接收联系人的姓名， 邮件地址，返回值为添加成功的联系人id。Region统一选择广州。
-    @inlinable
-    public func addUserContact(_ input: AddUserContactRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserContactResponse {
-        try await self.client.execute(action: "AddUserContact", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AddUserContact请求参数结构体
     public struct AddUserContactRequest: TCRequestModel {
         /// 联系人姓名，大小写字母+数字+下划线，最小 2 位最大 60 位的长度， 不能以"_"开头，且联系人名保持唯一。
@@ -67,5 +51,21 @@ extension Dbbrain {
             case id = "Id"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加联系人信息
+    ///
+    /// 添加邮件接收联系人的姓名， 邮件地址，返回值为添加成功的联系人id。Region统一选择广州。
+    @inlinable
+    public func addUserContact(_ input: AddUserContactRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddUserContactResponse > {
+        self.client.execute(action: "AddUserContact", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加联系人信息
+    ///
+    /// 添加邮件接收联系人的姓名， 邮件地址，返回值为添加成功的联系人id。Region统一选择广州。
+    @inlinable
+    public func addUserContact(_ input: AddUserContactRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserContactResponse {
+        try await self.client.execute(action: "AddUserContact", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

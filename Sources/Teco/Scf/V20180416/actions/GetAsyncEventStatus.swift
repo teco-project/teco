@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Scf {
-    /// 获取函数异步事件状态
-    ///
-    /// 获取函数异步执行事件状态，事件状态保留 3 * 24 小时（从事件完成开始计时）。
-    @inlinable
-    public func getAsyncEventStatus(_ input: GetAsyncEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAsyncEventStatusResponse > {
-        self.client.execute(action: "GetAsyncEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取函数异步事件状态
-    ///
-    /// 获取函数异步执行事件状态，事件状态保留 3 * 24 小时（从事件完成开始计时）。
-    @inlinable
-    public func getAsyncEventStatus(_ input: GetAsyncEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsyncEventStatusResponse {
-        try await self.client.execute(action: "GetAsyncEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetAsyncEventStatus请求参数结构体
     public struct GetAsyncEventStatusRequest: TCRequestModel {
         /// 异步执行请求 id
@@ -57,5 +41,21 @@ extension Scf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取函数异步事件状态
+    ///
+    /// 获取函数异步执行事件状态，事件状态保留 3 * 24 小时（从事件完成开始计时）。
+    @inlinable
+    public func getAsyncEventStatus(_ input: GetAsyncEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetAsyncEventStatusResponse > {
+        self.client.execute(action: "GetAsyncEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取函数异步事件状态
+    ///
+    /// 获取函数异步执行事件状态，事件状态保留 3 * 24 小时（从事件完成开始计时）。
+    @inlinable
+    public func getAsyncEventStatus(_ input: GetAsyncEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsyncEventStatusResponse {
+        try await self.client.execute(action: "GetAsyncEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

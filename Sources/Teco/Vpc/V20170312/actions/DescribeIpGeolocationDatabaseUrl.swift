@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Vpc {
-    /// 获取IP地理位置库下载链接
-    ///
-    /// 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。
-    @inlinable
-    public func describeIpGeolocationDatabaseUrl(_ input: DescribeIpGeolocationDatabaseUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpGeolocationDatabaseUrlResponse > {
-        self.client.execute(action: "DescribeIpGeolocationDatabaseUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取IP地理位置库下载链接
-    ///
-    /// 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。
-    @inlinable
-    public func describeIpGeolocationDatabaseUrl(_ input: DescribeIpGeolocationDatabaseUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpGeolocationDatabaseUrlResponse {
-        try await self.client.execute(action: "DescribeIpGeolocationDatabaseUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIpGeolocationDatabaseUrl请求参数结构体
     public struct DescribeIpGeolocationDatabaseUrlRequest: TCRequestModel {
         /// IP地理位置库协议类型，目前仅支持"ipv4"。
@@ -64,5 +48,21 @@ extension Vpc {
             case expiredAt = "ExpiredAt"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取IP地理位置库下载链接
+    ///
+    /// 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。
+    @inlinable
+    public func describeIpGeolocationDatabaseUrl(_ input: DescribeIpGeolocationDatabaseUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIpGeolocationDatabaseUrlResponse > {
+        self.client.execute(action: "DescribeIpGeolocationDatabaseUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取IP地理位置库下载链接
+    ///
+    /// 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。
+    @inlinable
+    public func describeIpGeolocationDatabaseUrl(_ input: DescribeIpGeolocationDatabaseUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpGeolocationDatabaseUrlResponse {
+        try await self.client.execute(action: "DescribeIpGeolocationDatabaseUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

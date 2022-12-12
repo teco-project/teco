@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dts {
-    /// 查询订阅实例配置
-    ///
-    /// 本接口（DescribeSubscribeConf）用于查询订阅实例配置
-    @inlinable
-    public func describeSubscribeConf(_ input: DescribeSubscribeConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubscribeConfResponse > {
-        self.client.execute(action: "DescribeSubscribeConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询订阅实例配置
-    ///
-    /// 本接口（DescribeSubscribeConf）用于查询订阅实例配置
-    @inlinable
-    public func describeSubscribeConf(_ input: DescribeSubscribeConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscribeConfResponse {
-        try await self.client.execute(action: "DescribeSubscribeConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSubscribeConf请求参数结构体
     public struct DescribeSubscribeConfRequest: TCRequestModel {
         /// 订阅实例ID
@@ -168,5 +152,21 @@ extension Dts {
             case errors = "Errors"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询订阅实例配置
+    ///
+    /// 本接口（DescribeSubscribeConf）用于查询订阅实例配置
+    @inlinable
+    public func describeSubscribeConf(_ input: DescribeSubscribeConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubscribeConfResponse > {
+        self.client.execute(action: "DescribeSubscribeConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询订阅实例配置
+    ///
+    /// 本接口（DescribeSubscribeConf）用于查询订阅实例配置
+    @inlinable
+    public func describeSubscribeConf(_ input: DescribeSubscribeConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscribeConfResponse {
+        try await self.client.execute(action: "DescribeSubscribeConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

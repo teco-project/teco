@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询实例慢日志
-    ///
-    /// 条件检索实例的慢日志。只允许查看一个月之内的慢日志。
-    /// 使用时需要注意：可能存在单条慢日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
-    @inlinable
-    public func describeSlowLogData(_ input: DescribeSlowLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogDataResponse > {
-        self.client.execute(action: "DescribeSlowLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例慢日志
-    ///
-    /// 条件检索实例的慢日志。只允许查看一个月之内的慢日志。
-    /// 使用时需要注意：可能存在单条慢日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
-    @inlinable
-    public func describeSlowLogData(_ input: DescribeSlowLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogDataResponse {
-        try await self.client.execute(action: "DescribeSlowLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSlowLogData请求参数结构体
     public struct DescribeSlowLogDataRequest: TCRequestModel {
         /// 实例 ID。
@@ -68,7 +50,7 @@ extension Cdb {
         /// 仅在实例为主实例或者灾备实例时生效，可选值：slave，代表拉取从机的日志。
         public let instType: String?
         
-        public init (instanceId: String, startTime: UInt64, endTime: UInt64, userHosts: [String]?, userNames: [String]?, dataBases: [String]?, sortBy: String?, orderBy: String?, offset: Int64?, limit: Int64?, instType: String?) {
+        public init (instanceId: String, startTime: UInt64, endTime: UInt64, userHosts: [String]? = nil, userNames: [String]? = nil, dataBases: [String]? = nil, sortBy: String? = nil, orderBy: String? = nil, offset: Int64? = nil, limit: Int64? = nil, instType: String? = nil) {
             self.instanceId = instanceId
             self.startTime = startTime
             self.endTime = endTime
@@ -114,5 +96,23 @@ extension Cdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例慢日志
+    ///
+    /// 条件检索实例的慢日志。只允许查看一个月之内的慢日志。
+    /// 使用时需要注意：可能存在单条慢日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
+    @inlinable
+    public func describeSlowLogData(_ input: DescribeSlowLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSlowLogDataResponse > {
+        self.client.execute(action: "DescribeSlowLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例慢日志
+    ///
+    /// 条件检索实例的慢日志。只允许查看一个月之内的慢日志。
+    /// 使用时需要注意：可能存在单条慢日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
+    @inlinable
+    public func describeSlowLogData(_ input: DescribeSlowLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogDataResponse {
+        try await self.client.execute(action: "DescribeSlowLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

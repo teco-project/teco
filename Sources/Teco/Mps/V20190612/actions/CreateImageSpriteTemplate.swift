@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 创建雪碧图模板
-    ///
-    /// 创建用户自定义雪碧图模板，数量上限：16。
-    @inlinable
-    public func createImageSpriteTemplate(_ input: CreateImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageSpriteTemplateResponse > {
-        self.client.execute(action: "CreateImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建雪碧图模板
-    ///
-    /// 创建用户自定义雪碧图模板，数量上限：16。
-    @inlinable
-    public func createImageSpriteTemplate(_ input: CreateImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageSpriteTemplateResponse {
-        try await self.client.execute(action: "CreateImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateImageSpriteTemplate请求参数结构体
     public struct CreateImageSpriteTemplateRequest: TCRequestModel {
         /// 采样类型，取值：
@@ -86,7 +70,7 @@ extension Mps {
         /// 图片格式，取值为 jpg、png、webp。默认为 jpg。
         public let format: String?
         
-        public init (sampleType: String, sampleInterval: UInt64, rowCount: UInt64, columnCount: UInt64, name: String?, width: UInt64?, height: UInt64?, resolutionAdaptive: String?, fillType: String?, comment: String?, format: String?) {
+        public init (sampleType: String, sampleInterval: UInt64, rowCount: UInt64, columnCount: UInt64, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, fillType: String? = nil, comment: String? = nil, format: String? = nil) {
             self.sampleType = sampleType
             self.sampleInterval = sampleInterval
             self.rowCount = rowCount
@@ -127,5 +111,21 @@ extension Mps {
             case definition = "Definition"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建雪碧图模板
+    ///
+    /// 创建用户自定义雪碧图模板，数量上限：16。
+    @inlinable
+    public func createImageSpriteTemplate(_ input: CreateImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateImageSpriteTemplateResponse > {
+        self.client.execute(action: "CreateImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建雪碧图模板
+    ///
+    /// 创建用户自定义雪碧图模板，数量上限：16。
+    @inlinable
+    public func createImageSpriteTemplate(_ input: CreateImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageSpriteTemplateResponse {
+        try await self.client.execute(action: "CreateImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 删除负载均衡监听器
-    ///
-    /// 本接口用来删除负载均衡实例下的监听器（四层和七层）。
-    /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
-    public func deleteListener(_ input: DeleteListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteListenerResponse > {
-        self.client.execute(action: "DeleteListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除负载均衡监听器
-    ///
-    /// 本接口用来删除负载均衡实例下的监听器（四层和七层）。
-    /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
-    public func deleteListener(_ input: DeleteListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenerResponse {
-        try await self.client.execute(action: "DeleteListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteListener请求参数结构体
     public struct DeleteListenerRequest: TCRequestModel {
         /// 负载均衡实例ID。
@@ -60,5 +42,23 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除负载均衡监听器
+    ///
+    /// 本接口用来删除负载均衡实例下的监听器（四层和七层）。
+    /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func deleteListener(_ input: DeleteListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteListenerResponse > {
+        self.client.execute(action: "DeleteListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除负载均衡监听器
+    ///
+    /// 本接口用来删除负载均衡实例下的监听器（四层和七层）。
+    /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
+    @inlinable
+    public func deleteListener(_ input: DeleteListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenerResponse {
+        try await self.client.execute(action: "DeleteListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

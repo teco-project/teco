@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 查询媒体传输地区
-    ///
-    /// 查询媒体传输所有地区。
-    @inlinable
-    public func describeStreamLinkRegions(_ input: DescribeStreamLinkRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkRegionsResponse > {
-        self.client.execute(action: "DescribeStreamLinkRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询媒体传输地区
-    ///
-    /// 查询媒体传输所有地区。
-    @inlinable
-    public func describeStreamLinkRegions(_ input: DescribeStreamLinkRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkRegionsResponse {
-        try await self.client.execute(action: "DescribeStreamLinkRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStreamLinkRegions请求参数结构体
     public struct DescribeStreamLinkRegionsRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Mps {
             case info = "Info"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询媒体传输地区
+    ///
+    /// 查询媒体传输所有地区。
+    @inlinable
+    public func describeStreamLinkRegions(_ input: DescribeStreamLinkRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStreamLinkRegionsResponse > {
+        self.client.execute(action: "DescribeStreamLinkRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询媒体传输地区
+    ///
+    /// 查询媒体传输所有地区。
+    @inlinable
+    public func describeStreamLinkRegions(_ input: DescribeStreamLinkRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkRegionsResponse {
+        try await self.client.execute(action: "DescribeStreamLinkRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

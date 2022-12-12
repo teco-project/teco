@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 跨境-贸易材料明细查询
-    ///
-    /// 跨境-贸易材料明细查询。
-    @inlinable
-    public func queryTrade(_ input: QueryTradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryTradeResponse > {
-        self.client.execute(action: "QueryTrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 跨境-贸易材料明细查询
-    ///
-    /// 跨境-贸易材料明细查询。
-    @inlinable
-    public func queryTrade(_ input: QueryTradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTradeResponse {
-        try await self.client.execute(action: "QueryTrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryTrade请求参数结构体
     public struct QueryTradeRequest: TCRequestModel {
         /// 贸易材料流水号
@@ -39,7 +23,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填sandbox
         public let profile: String?
         
-        public init (tradeFileId: String, profile: String?) {
+        public init (tradeFileId: String, profile: String? = nil) {
             self.tradeFileId = tradeFileId
             self.profile = profile
         }
@@ -62,5 +46,21 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 跨境-贸易材料明细查询
+    ///
+    /// 跨境-贸易材料明细查询。
+    @inlinable
+    public func queryTrade(_ input: QueryTradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryTradeResponse > {
+        self.client.execute(action: "QueryTrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 跨境-贸易材料明细查询
+    ///
+    /// 跨境-贸易材料明细查询。
+    @inlinable
+    public func queryTrade(_ input: QueryTradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTradeResponse {
+        try await self.client.execute(action: "QueryTrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

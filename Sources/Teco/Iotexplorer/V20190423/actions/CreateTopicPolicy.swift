@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 创建Topic
-    ///
-    /// 本接口（CreateTopicPolicy）用于创建一个Topic 
-    @inlinable
-    public func createTopicPolicy(_ input: CreateTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicPolicyResponse > {
-        self.client.execute(action: "CreateTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建Topic
-    ///
-    /// 本接口（CreateTopicPolicy）用于创建一个Topic 
-    @inlinable
-    public func createTopicPolicy(_ input: CreateTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicPolicyResponse {
-        try await self.client.execute(action: "CreateTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTopicPolicy请求参数结构体
     public struct CreateTopicPolicyRequest: TCRequestModel {
         /// 产品ID
@@ -63,5 +47,21 @@ extension Iotexplorer {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建Topic
+    ///
+    /// 本接口（CreateTopicPolicy）用于创建一个Topic 
+    @inlinable
+    public func createTopicPolicy(_ input: CreateTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicPolicyResponse > {
+        self.client.execute(action: "CreateTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建Topic
+    ///
+    /// 本接口（CreateTopicPolicy）用于创建一个Topic 
+    @inlinable
+    public func createTopicPolicy(_ input: CreateTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicPolicyResponse {
+        try await self.client.execute(action: "CreateTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

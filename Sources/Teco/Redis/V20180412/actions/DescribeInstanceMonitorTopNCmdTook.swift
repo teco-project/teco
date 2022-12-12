@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询实例CPU耗时
-    @inlinable
-    public func describeInstanceMonitorTopNCmdTook(_ input: DescribeInstanceMonitorTopNCmdTookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorTopNCmdTookResponse > {
-        self.client.execute(action: "DescribeInstanceMonitorTopNCmdTook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例CPU耗时
-    @inlinable
-    public func describeInstanceMonitorTopNCmdTook(_ input: DescribeInstanceMonitorTopNCmdTookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTopNCmdTookResponse {
-        try await self.client.execute(action: "DescribeInstanceMonitorTopNCmdTook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceMonitorTopNCmdTook请求参数结构体
     public struct DescribeInstanceMonitorTopNCmdTookRequest: TCRequestModel {
         /// 实例ID
@@ -58,5 +46,17 @@ extension Redis {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例CPU耗时
+    @inlinable
+    public func describeInstanceMonitorTopNCmdTook(_ input: DescribeInstanceMonitorTopNCmdTookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceMonitorTopNCmdTookResponse > {
+        self.client.execute(action: "DescribeInstanceMonitorTopNCmdTook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例CPU耗时
+    @inlinable
+    public func describeInstanceMonitorTopNCmdTook(_ input: DescribeInstanceMonitorTopNCmdTookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTopNCmdTookResponse {
+        try await self.client.execute(action: "DescribeInstanceMonitorTopNCmdTook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

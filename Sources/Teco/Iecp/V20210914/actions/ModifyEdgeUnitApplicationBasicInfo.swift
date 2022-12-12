@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 修改单元应用基本信息
-    @inlinable
-    public func modifyEdgeUnitApplicationBasicInfo(_ input: ModifyEdgeUnitApplicationBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitApplicationBasicInfoResponse > {
-        self.client.execute(action: "ModifyEdgeUnitApplicationBasicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改单元应用基本信息
-    @inlinable
-    public func modifyEdgeUnitApplicationBasicInfo(_ input: ModifyEdgeUnitApplicationBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationBasicInfoResponse {
-        try await self.client.execute(action: "ModifyEdgeUnitApplicationBasicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyEdgeUnitApplicationBasicInfo请求参数结构体
     public struct ModifyEdgeUnitApplicationBasicInfoRequest: TCRequestModel {
         /// 应用基本信息
@@ -38,7 +26,7 @@ extension Iecp {
         /// 应用ID
         public let applicationId: UInt64?
         
-        public init (basicInfo: ApplicationBasicInfo, edgeUnitId: UInt64?, applicationId: UInt64?) {
+        public init (basicInfo: ApplicationBasicInfo, edgeUnitId: UInt64? = nil, applicationId: UInt64? = nil) {
             self.basicInfo = basicInfo
             self.edgeUnitId = edgeUnitId
             self.applicationId = applicationId
@@ -59,5 +47,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改单元应用基本信息
+    @inlinable
+    public func modifyEdgeUnitApplicationBasicInfo(_ input: ModifyEdgeUnitApplicationBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEdgeUnitApplicationBasicInfoResponse > {
+        self.client.execute(action: "ModifyEdgeUnitApplicationBasicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改单元应用基本信息
+    @inlinable
+    public func modifyEdgeUnitApplicationBasicInfo(_ input: ModifyEdgeUnitApplicationBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationBasicInfoResponse {
+        try await self.client.execute(action: "ModifyEdgeUnitApplicationBasicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

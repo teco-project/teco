@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 修改预授权规则
-    ///
-    /// 允许修改规则信息及关联故障类型
-    @inlinable
-    public func modifyPsaRegulation(_ input: ModifyPsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPsaRegulationResponse > {
-        self.client.execute(action: "ModifyPsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改预授权规则
-    ///
-    /// 允许修改规则信息及关联故障类型
-    @inlinable
-    public func modifyPsaRegulation(_ input: ModifyPsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPsaRegulationResponse {
-        try await self.client.execute(action: "ModifyPsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPsaRegulation请求参数结构体
     public struct ModifyPsaRegulationRequest: TCRequestModel {
         /// 预授权规则ID
@@ -48,7 +32,7 @@ extension Bm {
         /// 预授权规则关联故障类型ID列表
         public let taskTypeIds: [UInt64]?
         
-        public init (psaId: String, psaName: String?, repairLimit: UInt64?, psaDescription: String?, taskTypeIds: [UInt64]?) {
+        public init (psaId: String, psaName: String? = nil, repairLimit: UInt64? = nil, psaDescription: String? = nil, taskTypeIds: [UInt64]? = nil) {
             self.psaId = psaId
             self.psaName = psaName
             self.repairLimit = repairLimit
@@ -73,5 +57,21 @@ extension Bm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改预授权规则
+    ///
+    /// 允许修改规则信息及关联故障类型
+    @inlinable
+    public func modifyPsaRegulation(_ input: ModifyPsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPsaRegulationResponse > {
+        self.client.execute(action: "ModifyPsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改预授权规则
+    ///
+    /// 允许修改规则信息及关联故障类型
+    @inlinable
+    public func modifyPsaRegulation(_ input: ModifyPsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPsaRegulationResponse {
+        try await self.client.execute(action: "ModifyPsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

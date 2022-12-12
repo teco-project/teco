@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 获取CC攻击Top数据
-    @inlinable
-    public func listTopCcData(_ input: ListTopCcDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopCcDataResponse > {
-        self.client.execute(action: "ListTopCcData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取CC攻击Top数据
-    @inlinable
-    public func listTopCcData(_ input: ListTopCcDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopCcDataResponse {
-        try await self.client.execute(action: "ListTopCcData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListTopCcData请求参数结构体
     public struct ListTopCcDataRequest: TCRequestModel {
         /// 查询Top数据的开始时间，格式为：2020-01-01 00:00:00
@@ -60,7 +48,7 @@ extension Cdn {
         /// 地域：mainland或overseas，表示国内或海外，不填写默认表示国内
         public let area: String?
         
-        public init (startTime: String, endTime: String, domain: String?, metric: String?, source: String?, domains: [String]?, actionName: String?, area: String?) {
+        public init (startTime: String, endTime: String, domain: String? = nil, metric: String? = nil, source: String? = nil, domains: [String]? = nil, actionName: String? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.domain = domain
@@ -96,5 +84,17 @@ extension Cdn {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取CC攻击Top数据
+    @inlinable
+    public func listTopCcData(_ input: ListTopCcDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopCcDataResponse > {
+        self.client.execute(action: "ListTopCcData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC攻击Top数据
+    @inlinable
+    public func listTopCcData(_ input: ListTopCcDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopCcDataResponse {
+        try await self.client.execute(action: "ListTopCcData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

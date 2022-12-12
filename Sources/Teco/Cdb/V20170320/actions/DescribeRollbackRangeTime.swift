@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 查询可回档时间
-    ///
-    /// 本接口(DescribeRollbackRangeTime)用于查询云数据库实例可回档的时间范围。
-    @inlinable
-    public func describeRollbackRangeTime(_ input: DescribeRollbackRangeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRollbackRangeTimeResponse > {
-        self.client.execute(action: "DescribeRollbackRangeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询可回档时间
-    ///
-    /// 本接口(DescribeRollbackRangeTime)用于查询云数据库实例可回档的时间范围。
-    @inlinable
-    public func describeRollbackRangeTime(_ input: DescribeRollbackRangeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackRangeTimeResponse {
-        try await self.client.execute(action: "DescribeRollbackRangeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRollbackRangeTime请求参数结构体
     public struct DescribeRollbackRangeTimeRequest: TCRequestModel {
         /// 实例 ID 列表，单个实例 ID 的格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
@@ -61,5 +45,21 @@ extension Cdb {
             case items = "Items"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询可回档时间
+    ///
+    /// 本接口(DescribeRollbackRangeTime)用于查询云数据库实例可回档的时间范围。
+    @inlinable
+    public func describeRollbackRangeTime(_ input: DescribeRollbackRangeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRollbackRangeTimeResponse > {
+        self.client.execute(action: "DescribeRollbackRangeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询可回档时间
+    ///
+    /// 本接口(DescribeRollbackRangeTime)用于查询云数据库实例可回档的时间范围。
+    @inlinable
+    public func describeRollbackRangeTime(_ input: DescribeRollbackRangeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackRangeTimeResponse {
+        try await self.client.execute(action: "DescribeRollbackRangeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

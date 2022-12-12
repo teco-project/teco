@@ -15,6 +15,35 @@
 // DO NOT EDIT.
 
 extension Cbs {
+    /// TerminateDisks请求参数结构体
+    public struct TerminateDisksRequest: TCRequestModel {
+        /// 需退还的云盘ID列表。
+        public let diskIds: [String]
+        
+        /// 销毁云盘时删除关联的非永久保留快照。0 表示非永久快照不随云盘销毁而销毁，1表示非永久快照随云盘销毁而销毁，默认取0。快照是否永久保留可以通过DescribeSnapshots接口返回的快照详情的IsPermanent字段来判断，true表示永久快照，false表示非永久快照。
+        public let deleteSnapshot: Int64?
+        
+        public init (diskIds: [String], deleteSnapshot: Int64? = nil) {
+            self.diskIds = diskIds
+            self.deleteSnapshot = deleteSnapshot
+        }
+        
+        enum CodingKeys: String, CodingKey {
+            case diskIds = "DiskIds"
+            case deleteSnapshot = "DeleteSnapshot"
+        }
+    }
+    
+    /// TerminateDisks返回参数结构体
+    public struct TerminateDisksResponse: TCResponseModel {
+        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
+        public let requestId: String
+        
+        enum CodingKeys: String, CodingKey {
+            case requestId = "RequestId"
+        }
+    }
+    
     /// 退还云硬盘
     ///
     /// 本接口（TerminateDisks）用于退还云硬盘。
@@ -35,34 +64,5 @@ extension Cbs {
     @inlinable
     public func terminateDisks(_ input: TerminateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDisksResponse {
         try await self.client.execute(action: "TerminateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
-    /// TerminateDisks请求参数结构体
-    public struct TerminateDisksRequest: TCRequestModel {
-        /// 需退还的云盘ID列表。
-        public let diskIds: [String]
-        
-        /// 销毁云盘时删除关联的非永久保留快照。0 表示非永久快照不随云盘销毁而销毁，1表示非永久快照随云盘销毁而销毁，默认取0。快照是否永久保留可以通过DescribeSnapshots接口返回的快照详情的IsPermanent字段来判断，true表示永久快照，false表示非永久快照。
-        public let deleteSnapshot: Int64?
-        
-        public init (diskIds: [String], deleteSnapshot: Int64?) {
-            self.diskIds = diskIds
-            self.deleteSnapshot = deleteSnapshot
-        }
-        
-        enum CodingKeys: String, CodingKey {
-            case diskIds = "DiskIds"
-            case deleteSnapshot = "DeleteSnapshot"
-        }
-    }
-    
-    /// TerminateDisks返回参数结构体
-    public struct TerminateDisksResponse: TCResponseModel {
-        /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
-        public let requestId: String
-        
-        enum CodingKeys: String, CodingKey {
-            case requestId = "RequestId"
-        }
     }
 }

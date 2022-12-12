@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 节点是否可升级
-    ///
-    /// 检查给定节点列表中哪些是可升级的 
-    @inlinable
-    public func checkInstancesUpgradeAble(_ input: CheckInstancesUpgradeAbleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckInstancesUpgradeAbleResponse > {
-        self.client.execute(action: "CheckInstancesUpgradeAble", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 节点是否可升级
-    ///
-    /// 检查给定节点列表中哪些是可升级的 
-    @inlinable
-    public func checkInstancesUpgradeAble(_ input: CheckInstancesUpgradeAbleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstancesUpgradeAbleResponse {
-        try await self.client.execute(action: "CheckInstancesUpgradeAble", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckInstancesUpgradeAble请求参数结构体
     public struct CheckInstancesUpgradeAbleRequest: TCRequestModel {
         /// 集群ID
@@ -51,7 +35,7 @@ extension Tke {
         /// 过滤
         public let filter: [Filter]?
         
-        public init (clusterId: String, instanceIds: [String]?, upgradeType: String?, offset: Int64?, limit: Int64?, filter: [Filter]?) {
+        public init (clusterId: String, instanceIds: [String]? = nil, upgradeType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, filter: [Filter]? = nil) {
             self.clusterId = clusterId
             self.instanceIds = instanceIds
             self.upgradeType = upgradeType
@@ -96,5 +80,21 @@ extension Tke {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 节点是否可升级
+    ///
+    /// 检查给定节点列表中哪些是可升级的 
+    @inlinable
+    public func checkInstancesUpgradeAble(_ input: CheckInstancesUpgradeAbleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckInstancesUpgradeAbleResponse > {
+        self.client.execute(action: "CheckInstancesUpgradeAble", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 节点是否可升级
+    ///
+    /// 检查给定节点列表中哪些是可升级的 
+    @inlinable
+    public func checkInstancesUpgradeAble(_ input: CheckInstancesUpgradeAbleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstancesUpgradeAbleResponse {
+        try await self.client.execute(action: "CheckInstancesUpgradeAble", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

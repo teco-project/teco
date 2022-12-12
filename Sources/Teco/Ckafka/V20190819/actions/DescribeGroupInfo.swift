@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 获取消费分组信息
-    @inlinable
-    public func describeGroupInfo(_ input: DescribeGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupInfoResponse > {
-        self.client.execute(action: "DescribeGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取消费分组信息
-    @inlinable
-    public func describeGroupInfo(_ input: DescribeGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupInfoResponse {
-        try await self.client.execute(action: "DescribeGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGroupInfo请求参数结构体
     public struct DescribeGroupInfoRequest: TCRequestModel {
         /// （过滤条件）按照实例 ID 过滤。
@@ -59,5 +47,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取消费分组信息
+    @inlinable
+    public func describeGroupInfo(_ input: DescribeGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupInfoResponse > {
+        self.client.execute(action: "DescribeGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取消费分组信息
+    @inlinable
+    public func describeGroupInfo(_ input: DescribeGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupInfoResponse {
+        try await self.client.execute(action: "DescribeGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

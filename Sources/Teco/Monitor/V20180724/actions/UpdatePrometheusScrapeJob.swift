@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Monitor {
-    /// 更新 Prometheus 抓取任务
-    @inlinable
-    public func updatePrometheusScrapeJob(_ input: UpdatePrometheusScrapeJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePrometheusScrapeJobResponse > {
-        self.client.execute(action: "UpdatePrometheusScrapeJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新 Prometheus 抓取任务
-    @inlinable
-    public func updatePrometheusScrapeJob(_ input: UpdatePrometheusScrapeJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePrometheusScrapeJobResponse {
-        try await self.client.execute(action: "UpdatePrometheusScrapeJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdatePrometheusScrapeJob请求参数结构体
     public struct UpdatePrometheusScrapeJobRequest: TCRequestModel {
         /// Prometheus 实例 ID，例如：prom-abcd1234
@@ -64,5 +52,17 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新 Prometheus 抓取任务
+    @inlinable
+    public func updatePrometheusScrapeJob(_ input: UpdatePrometheusScrapeJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdatePrometheusScrapeJobResponse > {
+        self.client.execute(action: "UpdatePrometheusScrapeJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新 Prometheus 抓取任务
+    @inlinable
+    public func updatePrometheusScrapeJob(_ input: UpdatePrometheusScrapeJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePrometheusScrapeJobResponse {
+        try await self.client.execute(action: "UpdatePrometheusScrapeJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Gs {
-    /// 开始云端推流
-    @inlinable
-    public func startPublishStream(_ input: StartPublishStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartPublishStreamResponse > {
-        self.client.execute(action: "StartPublishStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 开始云端推流
-    @inlinable
-    public func startPublishStream(_ input: StartPublishStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartPublishStreamResponse {
-        try await self.client.execute(action: "StartPublishStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// StartPublishStream请求参数结构体
     public struct StartPublishStreamRequest: TCRequestModel {
         /// 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）
@@ -54,5 +42,17 @@ extension Gs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 开始云端推流
+    @inlinable
+    public func startPublishStream(_ input: StartPublishStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartPublishStreamResponse > {
+        self.client.execute(action: "StartPublishStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 开始云端推流
+    @inlinable
+    public func startPublishStream(_ input: StartPublishStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartPublishStreamResponse {
+        try await self.client.execute(action: "StartPublishStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

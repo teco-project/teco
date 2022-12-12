@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdcpg {
-    /// 修改实例规格
-    ///
-    /// 修改实例规格，此接口只针对状态为running(运行中)的实例生效
-    @inlinable
-    public func modifyClusterInstancesSpec(_ input: ModifyClusterInstancesSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterInstancesSpecResponse > {
-        self.client.execute(action: "ModifyClusterInstancesSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例规格
-    ///
-    /// 修改实例规格，此接口只针对状态为running(运行中)的实例生效
-    @inlinable
-    public func modifyClusterInstancesSpec(_ input: ModifyClusterInstancesSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterInstancesSpecResponse {
-        try await self.client.execute(action: "ModifyClusterInstancesSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClusterInstancesSpec请求参数结构体
     public struct ModifyClusterInstancesSpecRequest: TCRequestModel {
         /// 集群ID
@@ -75,5 +59,21 @@ extension Tdcpg {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例规格
+    ///
+    /// 修改实例规格，此接口只针对状态为running(运行中)的实例生效
+    @inlinable
+    public func modifyClusterInstancesSpec(_ input: ModifyClusterInstancesSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClusterInstancesSpecResponse > {
+        self.client.execute(action: "ModifyClusterInstancesSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例规格
+    ///
+    /// 修改实例规格，此接口只针对状态为running(运行中)的实例生效
+    @inlinable
+    public func modifyClusterInstancesSpec(_ input: ModifyClusterInstancesSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterInstancesSpecResponse {
+        try await self.client.execute(action: "ModifyClusterInstancesSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

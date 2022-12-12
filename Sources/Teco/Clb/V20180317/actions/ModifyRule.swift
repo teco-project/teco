@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 修改负载均衡七层监听器的转发规则
-    ///
-    /// ModifyRule 接口用来修改负载均衡七层监听器下的转发规则的各项属性，包括转发路径、健康检查属性、转发策略等。
-    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
-    public func modifyRule(_ input: ModifyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRuleResponse > {
-        self.client.execute(action: "ModifyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改负载均衡七层监听器的转发规则
-    ///
-    /// ModifyRule 接口用来修改负载均衡七层监听器下的转发规则的各项属性，包括转发路径、健康检查属性、转发策略等。
-    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
-    public func modifyRule(_ input: ModifyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
-        try await self.client.execute(action: "ModifyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyRule请求参数结构体
     public struct ModifyRuleRequest: TCRequestModel {
         /// 负载均衡实例 ID。
@@ -48,7 +30,7 @@ extension Clb {
         public let url: String?
         
         /// 健康检查信息。
-        public let healthCheck: HealthCheck
+        public let healthCheck: HealthCheck?
         
         /// 规则的请求转发方式，可选值：WRR、LEAST_CONN、IP_HASH
         /// 分别表示按权重轮询、最小连接数、按IP哈希， 默认为 WRR。
@@ -66,7 +48,7 @@ extension Clb {
         /// TRPC调用服务接口，ForwardType为TRPC时必填。
         public let trpcFunc: String?
         
-        public init (loadBalancerId: String, listenerId: String, locationId: String, url: String?, healthCheck: HealthCheck, scheduler: String?, sessionExpireTime: Int64?, forwardType: String?, trpcCallee: String?, trpcFunc: String?) {
+        public init (loadBalancerId: String, listenerId: String, locationId: String, url: String? = nil, healthCheck: HealthCheck? = nil, scheduler: String? = nil, sessionExpireTime: Int64? = nil, forwardType: String? = nil, trpcCallee: String? = nil, trpcFunc: String? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.locationId = locationId
@@ -101,5 +83,23 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改负载均衡七层监听器的转发规则
+    ///
+    /// ModifyRule 接口用来修改负载均衡七层监听器下的转发规则的各项属性，包括转发路径、健康检查属性、转发策略等。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func modifyRule(_ input: ModifyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRuleResponse > {
+        self.client.execute(action: "ModifyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改负载均衡七层监听器的转发规则
+    ///
+    /// ModifyRule 接口用来修改负载均衡七层监听器下的转发规则的各项属性，包括转发路径、健康检查属性、转发策略等。
+    /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
+    @inlinable
+    public func modifyRule(_ input: ModifyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
+        try await self.client.execute(action: "ModifyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 查询安全组规则列表
-    @inlinable
-    public func describeSecurityGroupList(_ input: DescribeSecurityGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupListResponse > {
-        self.client.execute(action: "DescribeSecurityGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询安全组规则列表
-    @inlinable
-    public func describeSecurityGroupList(_ input: DescribeSecurityGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupListResponse {
-        try await self.client.execute(action: "DescribeSecurityGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityGroupList请求参数结构体
     public struct DescribeSecurityGroupListRequest: TCRequestModel {
         /// 0: 出站规则，1：入站规则
@@ -50,7 +38,7 @@ extension Cfw {
         /// 0: 不过滤，1：过滤掉正常规则，保留下发异常规则
         public let filter: UInt64?
         
-        public init (direction: UInt64, area: String, searchValue: String?, limit: UInt64?, offset: UInt64?, status: String?, filter: UInt64?) {
+        public init (direction: UInt64, area: String, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, status: String? = nil, filter: UInt64? = nil) {
             self.direction = direction
             self.area = area
             self.searchValue = searchValue
@@ -96,5 +84,17 @@ extension Cfw {
             case enable = "Enable"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询安全组规则列表
+    @inlinable
+    public func describeSecurityGroupList(_ input: DescribeSecurityGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupListResponse > {
+        self.client.execute(action: "DescribeSecurityGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询安全组规则列表
+    @inlinable
+    public func describeSecurityGroupList(_ input: DescribeSecurityGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupListResponse {
+        try await self.client.execute(action: "DescribeSecurityGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

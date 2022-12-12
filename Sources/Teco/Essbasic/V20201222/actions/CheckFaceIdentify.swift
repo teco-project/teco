@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Essbasic {
-    /// 检测人脸核身结果
-    ///
-    /// 该接口为第三方平台向电子签平台检测慧眼或腾讯电子签小程序人脸核身结果
-    @inlinable
-    public func checkFaceIdentify(_ input: CheckFaceIdentifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckFaceIdentifyResponse > {
-        self.client.execute(action: "CheckFaceIdentify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 检测人脸核身结果
-    ///
-    /// 该接口为第三方平台向电子签平台检测慧眼或腾讯电子签小程序人脸核身结果
-    @inlinable
-    public func checkFaceIdentify(_ input: CheckFaceIdentifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckFaceIdentifyResponse {
-        try await self.client.execute(action: "CheckFaceIdentify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckFaceIdentify请求参数结构体
     public struct CheckFaceIdentifyRequest: TCRequestModel {
         /// 调用方信息; 必选
@@ -51,7 +35,7 @@ extension Essbasic {
         /// 是否取认证时的照片
         public let getPhoto: Bool?
         
-        public init (caller: Caller, verifyChannel: String, verifyResult: String, name: String?, idCardNumber: String?, getPhoto: Bool?) {
+        public init (caller: Caller, verifyChannel: String, verifyResult: String, name: String? = nil, idCardNumber: String? = nil, getPhoto: Bool? = nil) {
             self.caller = caller
             self.verifyChannel = verifyChannel
             self.verifyResult = verifyResult
@@ -114,5 +98,21 @@ extension Essbasic {
             case photoFileData = "PhotoFileData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 检测人脸核身结果
+    ///
+    /// 该接口为第三方平台向电子签平台检测慧眼或腾讯电子签小程序人脸核身结果
+    @inlinable
+    public func checkFaceIdentify(_ input: CheckFaceIdentifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckFaceIdentifyResponse > {
+        self.client.execute(action: "CheckFaceIdentify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 检测人脸核身结果
+    ///
+    /// 该接口为第三方平台向电子签平台检测慧眼或腾讯电子签小程序人脸核身结果
+    @inlinable
+    public func checkFaceIdentify(_ input: CheckFaceIdentifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckFaceIdentifyResponse {
+        try await self.client.execute(action: "CheckFaceIdentify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 获取Amqp Vhost列表
-    ///
-    /// 获取Amqp Vhost 列表
-    @inlinable
-    public func describeAMQPVHosts(_ input: DescribeAMQPVHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAMQPVHostsResponse > {
-        self.client.execute(action: "DescribeAMQPVHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取Amqp Vhost列表
-    ///
-    /// 获取Amqp Vhost 列表
-    @inlinable
-    public func describeAMQPVHosts(_ input: DescribeAMQPVHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPVHostsResponse {
-        try await self.client.execute(action: "DescribeAMQPVHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAMQPVHosts请求参数结构体
     public struct DescribeAMQPVHostsRequest: TCRequestModel {
         /// 集群ID
@@ -48,7 +32,7 @@ extension Tdmq {
         /// VHostId 列表过滤
         public let vHostIdList: [String]?
         
-        public init (clusterId: String, offset: UInt64, limit: UInt64, nameKeyword: String?, vHostIdList: [String]?) {
+        public init (clusterId: String, offset: UInt64, limit: UInt64, nameKeyword: String? = nil, vHostIdList: [String]? = nil) {
             self.clusterId = clusterId
             self.offset = offset
             self.limit = limit
@@ -81,5 +65,21 @@ extension Tdmq {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取Amqp Vhost列表
+    ///
+    /// 获取Amqp Vhost 列表
+    @inlinable
+    public func describeAMQPVHosts(_ input: DescribeAMQPVHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAMQPVHostsResponse > {
+        self.client.execute(action: "DescribeAMQPVHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取Amqp Vhost列表
+    ///
+    /// 获取Amqp Vhost 列表
+    @inlinable
+    public func describeAMQPVHosts(_ input: DescribeAMQPVHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPVHostsResponse {
+        try await self.client.execute(action: "DescribeAMQPVHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

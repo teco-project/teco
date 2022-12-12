@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 删除负载均衡
-    @inlinable
-    public func deleteLoadBalancing(_ input: DeleteLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoadBalancingResponse > {
-        self.client.execute(action: "DeleteLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除负载均衡
-    @inlinable
-    public func deleteLoadBalancing(_ input: DeleteLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancingResponse {
-        try await self.client.execute(action: "DeleteLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteLoadBalancing请求参数结构体
     public struct DeleteLoadBalancingRequest: TCRequestModel {
         /// 站点ID。
@@ -54,5 +42,17 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除负载均衡
+    @inlinable
+    public func deleteLoadBalancing(_ input: DeleteLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoadBalancingResponse > {
+        self.client.execute(action: "DeleteLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除负载均衡
+    @inlinable
+    public func deleteLoadBalancing(_ input: DeleteLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancingResponse {
+        try await self.client.execute(action: "DeleteLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 添加保护网站
-    @inlinable
-    public func createBPProtectURLs(_ input: CreateBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPProtectURLsResponse > {
-        self.client.execute(action: "CreateBPProtectURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加保护网站
-    @inlinable
-    public func createBPProtectURLs(_ input: CreateBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPProtectURLsResponse {
-        try await self.client.execute(action: "CreateBPProtectURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateBPProtectURLs请求参数结构体
     public struct CreateBPProtectURLsRequest: TCRequestModel {
         /// 企业名称
@@ -44,7 +32,7 @@ extension Bma {
         /// 网站名称
         public let protectWebs: [String]?
         
-        public init (companyName: String?, phone: String?, licenseName: String?, protectURLs: [String]?, protectWebs: [String]?) {
+        public init (companyName: String? = nil, phone: String? = nil, licenseName: String? = nil, protectURLs: [String]? = nil, protectWebs: [String]? = nil) {
             self.companyName = companyName
             self.phone = phone
             self.licenseName = licenseName
@@ -69,5 +57,17 @@ extension Bma {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加保护网站
+    @inlinable
+    public func createBPProtectURLs(_ input: CreateBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateBPProtectURLsResponse > {
+        self.client.execute(action: "CreateBPProtectURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加保护网站
+    @inlinable
+    public func createBPProtectURLs(_ input: CreateBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPProtectURLsResponse {
+        try await self.client.execute(action: "CreateBPProtectURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

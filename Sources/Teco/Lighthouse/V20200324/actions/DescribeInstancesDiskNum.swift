@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 查询实例挂载云硬盘数量
-    ///
-    /// 本接口(DescribeInstancesDiskNum)用于查询实例挂载云硬盘数量。
-    @inlinable
-    public func describeInstancesDiskNum(_ input: DescribeInstancesDiskNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesDiskNumResponse > {
-        self.client.execute(action: "DescribeInstancesDiskNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例挂载云硬盘数量
-    ///
-    /// 本接口(DescribeInstancesDiskNum)用于查询实例挂载云硬盘数量。
-    @inlinable
-    public func describeInstancesDiskNum(_ input: DescribeInstancesDiskNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDiskNumResponse {
-        try await self.client.execute(action: "DescribeInstancesDiskNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstancesDiskNum请求参数结构体
     public struct DescribeInstancesDiskNumRequest: TCRequestModel {
         /// 实例ID列表。
@@ -61,5 +45,21 @@ extension Lighthouse {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例挂载云硬盘数量
+    ///
+    /// 本接口(DescribeInstancesDiskNum)用于查询实例挂载云硬盘数量。
+    @inlinable
+    public func describeInstancesDiskNum(_ input: DescribeInstancesDiskNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesDiskNumResponse > {
+        self.client.execute(action: "DescribeInstancesDiskNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例挂载云硬盘数量
+    ///
+    /// 本接口(DescribeInstancesDiskNum)用于查询实例挂载云硬盘数量。
+    @inlinable
+    public func describeInstancesDiskNum(_ input: DescribeInstancesDiskNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDiskNumResponse {
+        try await self.client.execute(action: "DescribeInstancesDiskNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

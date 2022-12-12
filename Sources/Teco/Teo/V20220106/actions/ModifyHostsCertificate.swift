@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 修改域名证书
-    ///
-    /// 用于修改域名证书
-    @inlinable
-    public func modifyHostsCertificate(_ input: ModifyHostsCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHostsCertificateResponse > {
-        self.client.execute(action: "ModifyHostsCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改域名证书
-    ///
-    /// 用于修改域名证书
-    @inlinable
-    public func modifyHostsCertificate(_ input: ModifyHostsCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHostsCertificateResponse {
-        try await self.client.execute(action: "ModifyHostsCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyHostsCertificate请求参数结构体
     public struct ModifyHostsCertificateRequest: TCRequestModel {
         /// Zone ID
@@ -42,7 +26,7 @@ extension Teo {
         /// 证书信息, 只需要传入 CertId 即可, 如果为空, 则使用默认证书
         public let certInfo: [ServerCertInfo]?
         
-        public init (zoneId: String, hosts: [String], certInfo: [ServerCertInfo]?) {
+        public init (zoneId: String, hosts: [String], certInfo: [ServerCertInfo]? = nil) {
             self.zoneId = zoneId
             self.hosts = hosts
             self.certInfo = certInfo
@@ -63,5 +47,21 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改域名证书
+    ///
+    /// 用于修改域名证书
+    @inlinable
+    public func modifyHostsCertificate(_ input: ModifyHostsCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyHostsCertificateResponse > {
+        self.client.execute(action: "ModifyHostsCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改域名证书
+    ///
+    /// 用于修改域名证书
+    @inlinable
+    public func modifyHostsCertificate(_ input: ModifyHostsCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHostsCertificateResponse {
+        try await self.client.execute(action: "ModifyHostsCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

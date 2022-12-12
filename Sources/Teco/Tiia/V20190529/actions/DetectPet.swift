@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiia {
-    /// 宠物识别
-    ///
-    /// 传入一张图片，识别出图片中是否存在宠物
-    /// >     
-    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func detectPet(_ input: DetectPetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectPetResponse > {
-        self.client.execute(action: "DetectPet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 宠物识别
-    ///
-    /// 传入一张图片，识别出图片中是否存在宠物
-    /// >     
-    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
-    @inlinable
-    public func detectPet(_ input: DetectPetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectPetResponse {
-        try await self.client.execute(action: "DetectPet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DetectPet请求参数结构体
     public struct DetectPetRequest: TCRequestModel {
         /// 图片的URL地址。图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。 
@@ -47,7 +27,7 @@ extension Tiia {
         /// **注意：图片需要base64编码，并且要去掉编码头部。**
         public let imageBase64: String?
         
-        public init (imageUrl: String?, imageBase64: String?) {
+        public init (imageUrl: String? = nil, imageBase64: String? = nil) {
             self.imageUrl = imageUrl
             self.imageBase64 = imageBase64
         }
@@ -70,5 +50,25 @@ extension Tiia {
             case pets = "Pets"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 宠物识别
+    ///
+    /// 传入一张图片，识别出图片中是否存在宠物
+    /// >     
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func detectPet(_ input: DetectPetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectPetResponse > {
+        self.client.execute(action: "DetectPet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 宠物识别
+    ///
+    /// 传入一张图片，识别出图片中是否存在宠物
+    /// >     
+    /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
+    @inlinable
+    public func detectPet(_ input: DetectPetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectPetResponse {
+        try await self.client.execute(action: "DetectPet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

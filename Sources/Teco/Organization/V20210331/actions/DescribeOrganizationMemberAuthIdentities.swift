@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Organization {
-    /// 获取组织成员可被管理的身份列表
-    @inlinable
-    public func describeOrganizationMemberAuthIdentities(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationMemberAuthIdentitiesResponse > {
-        self.client.execute(action: "DescribeOrganizationMemberAuthIdentities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取组织成员可被管理的身份列表
-    @inlinable
-    public func describeOrganizationMemberAuthIdentities(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthIdentitiesResponse {
-        try await self.client.execute(action: "DescribeOrganizationMemberAuthIdentities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeOrganizationMemberAuthIdentities请求参数结构体
     public struct DescribeOrganizationMemberAuthIdentitiesRequest: TCRequestModel {
         /// 偏移量。
@@ -69,5 +57,17 @@ extension Organization {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取组织成员可被管理的身份列表
+    @inlinable
+    public func describeOrganizationMemberAuthIdentities(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeOrganizationMemberAuthIdentitiesResponse > {
+        self.client.execute(action: "DescribeOrganizationMemberAuthIdentities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取组织成员可被管理的身份列表
+    @inlinable
+    public func describeOrganizationMemberAuthIdentities(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthIdentitiesResponse {
+        try await self.client.execute(action: "DescribeOrganizationMemberAuthIdentities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

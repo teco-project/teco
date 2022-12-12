@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取已购曲库包列表
-    ///
-    /// 获取已购曲库包列表接口
-    @inlinable
-    public func describePackages(_ input: DescribePackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePackagesResponse > {
-        self.client.execute(action: "DescribePackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取已购曲库包列表
-    ///
-    /// 获取已购曲库包列表接口
-    @inlinable
-    public func describePackages(_ input: DescribePackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackagesResponse {
-        try await self.client.execute(action: "DescribePackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePackages请求参数结构体
     public struct DescribePackagesRequest: TCRequestModel {
         /// 默认0，Offset=Offset+Length
@@ -39,7 +23,7 @@ extension Ame {
         /// 默认20
         public let length: UInt64?
         
-        public init (offset: UInt64?, length: UInt64?) {
+        public init (offset: UInt64? = nil, length: UInt64? = nil) {
             self.offset = offset
             self.length = length
         }
@@ -63,5 +47,21 @@ extension Ame {
             case packages = "Packages"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取已购曲库包列表
+    ///
+    /// 获取已购曲库包列表接口
+    @inlinable
+    public func describePackages(_ input: DescribePackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePackagesResponse > {
+        self.client.execute(action: "DescribePackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取已购曲库包列表
+    ///
+    /// 获取已购曲库包列表接口
+    @inlinable
+    public func describePackages(_ input: DescribePackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackagesResponse {
+        try await self.client.execute(action: "DescribePackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 云企付-绑定分账收款方
-    @inlinable
-    public func bindOpenBankProfitSharePayee(_ input: BindOpenBankProfitSharePayeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindOpenBankProfitSharePayeeResponse > {
-        self.client.execute(action: "BindOpenBankProfitSharePayee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 云企付-绑定分账收款方
-    @inlinable
-    public func bindOpenBankProfitSharePayee(_ input: BindOpenBankProfitSharePayeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindOpenBankProfitSharePayeeResponse {
-        try await self.client.execute(action: "BindOpenBankProfitSharePayee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindOpenBankProfitSharePayee请求参数结构体
     public struct BindOpenBankProfitSharePayeeRequest: TCRequestModel {
         /// 渠道商户号。代理商/集团ID
@@ -46,7 +34,7 @@ extension Cpdp {
         public let notifyUrl: String?
         
         /// 分账收款人信息。通联国际必选
-        public let profitSharePayeeInfo: OpenBankProfitSharePayeeInfo
+        public let profitSharePayeeInfo: OpenBankProfitSharePayeeInfo?
         
         /// 第三方拓展信息。若无特殊说明，可为空
         public let externalProfitSharingData: String?
@@ -54,7 +42,7 @@ extension Cpdp {
         /// 接入环境。沙箱环境填 sandbox。缺省默认调用生产环境
         public let environment: String?
         
-        public init (channelMerchantId: String, accountNo: String, channelName: String, channelSubMerchantId: String?, notifyUrl: String?, profitSharePayeeInfo: OpenBankProfitSharePayeeInfo, externalProfitSharingData: String?, environment: String?) {
+        public init (channelMerchantId: String, accountNo: String, channelName: String, channelSubMerchantId: String? = nil, notifyUrl: String? = nil, profitSharePayeeInfo: OpenBankProfitSharePayeeInfo? = nil, externalProfitSharingData: String? = nil, environment: String? = nil) {
             self.channelMerchantId = channelMerchantId
             self.accountNo = accountNo
             self.channelName = channelName
@@ -87,7 +75,7 @@ extension Cpdp {
         
         /// 返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: BindOpenBankProfitSharePayeeResult
+        public let result: BindOpenBankProfitSharePayeeResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -98,5 +86,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 云企付-绑定分账收款方
+    @inlinable
+    public func bindOpenBankProfitSharePayee(_ input: BindOpenBankProfitSharePayeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindOpenBankProfitSharePayeeResponse > {
+        self.client.execute(action: "BindOpenBankProfitSharePayee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 云企付-绑定分账收款方
+    @inlinable
+    public func bindOpenBankProfitSharePayee(_ input: BindOpenBankProfitSharePayeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindOpenBankProfitSharePayeeResponse {
+        try await self.client.execute(action: "BindOpenBankProfitSharePayee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

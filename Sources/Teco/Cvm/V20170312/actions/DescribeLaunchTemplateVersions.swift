@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查询实例模板版本信息
-    ///
-    /// 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
-    @inlinable
-    public func describeLaunchTemplateVersions(_ input: DescribeLaunchTemplateVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLaunchTemplateVersionsResponse > {
-        self.client.execute(action: "DescribeLaunchTemplateVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例模板版本信息
-    ///
-    /// 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
-    @inlinable
-    public func describeLaunchTemplateVersions(_ input: DescribeLaunchTemplateVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaunchTemplateVersionsResponse {
-        try await self.client.execute(action: "DescribeLaunchTemplateVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLaunchTemplateVersions请求参数结构体
     public struct DescribeLaunchTemplateVersionsRequest: TCRequestModel {
         /// 启动模板ID。
@@ -54,7 +38,7 @@ extension Cvm {
         /// 是否查询默认版本。该参数不可与LaunchTemplateVersions同时指定。
         public let defaultVersion: Bool?
         
-        public init (launchTemplateId: String, launchTemplateVersions: [UInt64]?, minVersion: UInt64?, maxVersion: UInt64?, offset: UInt64?, limit: UInt64?, defaultVersion: Bool?) {
+        public init (launchTemplateId: String, launchTemplateVersions: [UInt64]? = nil, minVersion: UInt64? = nil, maxVersion: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, defaultVersion: Bool? = nil) {
             self.launchTemplateId = launchTemplateId
             self.launchTemplateVersions = launchTemplateVersions
             self.minVersion = minVersion
@@ -91,5 +75,21 @@ extension Cvm {
             case launchTemplateVersionSet = "LaunchTemplateVersionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例模板版本信息
+    ///
+    /// 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
+    @inlinable
+    public func describeLaunchTemplateVersions(_ input: DescribeLaunchTemplateVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLaunchTemplateVersionsResponse > {
+        self.client.execute(action: "DescribeLaunchTemplateVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例模板版本信息
+    ///
+    /// 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
+    @inlinable
+    public func describeLaunchTemplateVersions(_ input: DescribeLaunchTemplateVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaunchTemplateVersionsResponse {
+        try await self.client.execute(action: "DescribeLaunchTemplateVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

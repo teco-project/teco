@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 拷贝域名
-    ///
-    /// 拷贝参考域名的配置至新域名。暂不支持自有证书以及定制化配置
-    @inlinable
-    public func duplicateDomainConfig(_ input: DuplicateDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DuplicateDomainConfigResponse > {
-        self.client.execute(action: "DuplicateDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拷贝域名
-    ///
-    /// 拷贝参考域名的配置至新域名。暂不支持自有证书以及定制化配置
-    @inlinable
-    public func duplicateDomainConfig(_ input: DuplicateDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DuplicateDomainConfigResponse {
-        try await self.client.execute(action: "DuplicateDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DuplicateDomainConfig请求参数结构体
     public struct DuplicateDomainConfigRequest: TCRequestModel {
         /// 新增域名
@@ -58,5 +42,21 @@ extension Cdn {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拷贝域名
+    ///
+    /// 拷贝参考域名的配置至新域名。暂不支持自有证书以及定制化配置
+    @inlinable
+    public func duplicateDomainConfig(_ input: DuplicateDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DuplicateDomainConfigResponse > {
+        self.client.execute(action: "DuplicateDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拷贝域名
+    ///
+    /// 拷贝参考域名的配置至新域名。暂不支持自有证书以及定制化配置
+    @inlinable
+    public func duplicateDomainConfig(_ input: DuplicateDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DuplicateDomainConfigResponse {
+        try await self.client.execute(action: "DuplicateDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

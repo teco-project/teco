@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 删除文件系统快照
-    @inlinable
-    public func deleteCfsSnapshot(_ input: DeleteCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCfsSnapshotResponse > {
-        self.client.execute(action: "DeleteCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除文件系统快照
-    @inlinable
-    public func deleteCfsSnapshot(_ input: DeleteCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsSnapshotResponse {
-        try await self.client.execute(action: "DeleteCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteCfsSnapshot请求参数结构体
     public struct DeleteCfsSnapshotRequest: TCRequestModel {
         /// 文件系统快照id
@@ -35,7 +23,7 @@ extension Cfs {
         /// 需要删除的文件文件系统快照ID 列表，快照ID，跟ID列表至少填一项
         public let snapshotIds: [String]?
         
-        public init (snapshotId: String?, snapshotIds: [String]?) {
+        public init (snapshotId: String? = nil, snapshotIds: [String]? = nil) {
             self.snapshotId = snapshotId
             self.snapshotIds = snapshotIds
         }
@@ -58,5 +46,17 @@ extension Cfs {
             case snapshotId = "SnapshotId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除文件系统快照
+    @inlinable
+    public func deleteCfsSnapshot(_ input: DeleteCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCfsSnapshotResponse > {
+        self.client.execute(action: "DeleteCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除文件系统快照
+    @inlinable
+    public func deleteCfsSnapshot(_ input: DeleteCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsSnapshotResponse {
+        try await self.client.execute(action: "DeleteCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

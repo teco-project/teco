@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询实例状态
-    ///
-    /// 查询实例当前状态以及过程信息
-    @inlinable
-    public func describeInstanceStatus(_ input: DescribeInstanceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceStatusResponse > {
-        self.client.execute(action: "DescribeInstanceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例状态
-    ///
-    /// 查询实例当前状态以及过程信息
-    @inlinable
-    public func describeInstanceStatus(_ input: DescribeInstanceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceStatusResponse {
-        try await self.client.execute(action: "DescribeInstanceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceStatus请求参数结构体
     public struct DescribeInstanceStatusRequest: TCRequestModel {
         /// 实例ID的数组
@@ -58,5 +42,21 @@ extension Tcr {
             case registryStatusSet = "RegistryStatusSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例状态
+    ///
+    /// 查询实例当前状态以及过程信息
+    @inlinable
+    public func describeInstanceStatus(_ input: DescribeInstanceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceStatusResponse > {
+        self.client.execute(action: "DescribeInstanceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例状态
+    ///
+    /// 查询实例当前状态以及过程信息
+    @inlinable
+    public func describeInstanceStatus(_ input: DescribeInstanceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceStatusResponse {
+        try await self.client.execute(action: "DescribeInstanceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

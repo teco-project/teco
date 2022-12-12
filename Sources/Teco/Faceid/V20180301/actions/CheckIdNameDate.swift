@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Faceid {
-    /// 身份信息及有效期核验
-    ///
-    /// 本接口用于校验姓名、身份证号、身份证有效期的真实性和一致性。
-    @inlinable
-    public func checkIdNameDate(_ input: CheckIdNameDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIdNameDateResponse > {
-        self.client.execute(action: "CheckIdNameDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 身份信息及有效期核验
-    ///
-    /// 本接口用于校验姓名、身份证号、身份证有效期的真实性和一致性。
-    @inlinable
-    public func checkIdNameDate(_ input: CheckIdNameDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdNameDateResponse {
-        try await self.client.execute(action: "CheckIdNameDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CheckIdNameDate请求参数结构体
     public struct CheckIdNameDateRequest: TCRequestModel {
         /// 姓名
@@ -46,9 +30,9 @@ extension Faceid {
         public let validityEnd: String
         
         /// 敏感数据加密信息。对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。
-        public let encryption: Encryption
+        public let encryption: Encryption?
         
-        public init (name: String, idCard: String, validityBegin: String, validityEnd: String, encryption: Encryption) {
+        public init (name: String, idCard: String, validityBegin: String, validityEnd: String, encryption: Encryption? = nil) {
             self.name = name
             self.idCard = idCard
             self.validityBegin = validityBegin
@@ -91,5 +75,21 @@ extension Faceid {
             case description = "Description"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 身份信息及有效期核验
+    ///
+    /// 本接口用于校验姓名、身份证号、身份证有效期的真实性和一致性。
+    @inlinable
+    public func checkIdNameDate(_ input: CheckIdNameDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CheckIdNameDateResponse > {
+        self.client.execute(action: "CheckIdNameDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 身份信息及有效期核验
+    ///
+    /// 本接口用于校验姓名、身份证号、身份证有效期的真实性和一致性。
+    @inlinable
+    public func checkIdNameDate(_ input: CheckIdNameDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdNameDateResponse {
+        try await self.client.execute(action: "CheckIdNameDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

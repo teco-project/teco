@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 获取L4转发规则
-    ///
-    /// 获取四层转发规则
-    @inlinable
-    public func describleL4Rules(_ input: DescribleL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribleL4RulesResponse > {
-        self.client.execute(action: "DescribleL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取L4转发规则
-    ///
-    /// 获取四层转发规则
-    @inlinable
-    public func describleL4Rules(_ input: DescribleL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleL4RulesResponse {
-        try await self.client.execute(action: "DescribleL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribleL4Rules请求参数结构体
     public struct DescribleL4RulesRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；net表示高防IP专业版）
@@ -48,7 +32,7 @@ extension Dayu {
         /// 页起始偏移，取值为(页码-1)*一页条数
         public let offset: UInt64?
         
-        public init (business: String, id: String, ruleIdList: [String]?, limit: UInt64?, offset: UInt64?) {
+        public init (business: String, id: String, ruleIdList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
             self.business = business
             self.id = id
             self.ruleIdList = ruleIdList
@@ -85,5 +69,21 @@ extension Dayu {
             case healths = "Healths"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取L4转发规则
+    ///
+    /// 获取四层转发规则
+    @inlinable
+    public func describleL4Rules(_ input: DescribleL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribleL4RulesResponse > {
+        self.client.execute(action: "DescribleL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取L4转发规则
+    ///
+    /// 获取四层转发规则
+    @inlinable
+    public func describleL4Rules(_ input: DescribleL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleL4RulesResponse {
+        try await self.client.execute(action: "DescribleL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -71,7 +71,7 @@ extension Tem {
         /// 每批暂停间隔
         public let batchInterval: Int64?
         
-        public init (totalBatchCount: Int64?, betaBatchNum: Int64?, deployStrategyType: Int64?, batchInterval: Int64?) {
+        public init (totalBatchCount: Int64? = nil, betaBatchNum: Int64? = nil, deployStrategyType: Int64? = nil, batchInterval: Int64? = nil) {
             self.totalBatchCount = totalBatchCount
             self.betaBatchNum = betaBatchNum
             self.deployStrategyType = deployStrategyType
@@ -158,7 +158,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let portMappings: [PortMapping]?
         
-        public init (name: String?, ports: [Int64]?, yaml: String?, serviceName: String?, versionName: String?, clusterIp: [String]?, externalIp: String?, type: String?, subnetId: String?, loadBalanceId: String?, portMappings: [PortMapping]?) {
+        public init (name: String? = nil, ports: [Int64]? = nil, yaml: String? = nil, serviceName: String? = nil, versionName: String? = nil, clusterIp: [String]? = nil, externalIp: String? = nil, type: String? = nil, subnetId: String? = nil, loadBalanceId: String? = nil, portMappings: [PortMapping]? = nil) {
             self.name = name
             self.ports = ports
             self.yaml = yaml
@@ -204,7 +204,7 @@ extension Tem {
         /// 版本Id
         public let versionId: String?
         
-        public init (minAliveInstances: Int64, maxAliveInstances: Int64, esStrategy: Int64, threshold: UInt64, versionId: String?) {
+        public init (minAliveInstances: Int64, maxAliveInstances: Int64, esStrategy: Int64, threshold: UInt64, versionId: String? = nil) {
             self.minAliveInstances = minAliveInstances
             self.maxAliveInstances = maxAliveInstances
             self.esStrategy = esStrategy
@@ -247,7 +247,7 @@ extension Tem {
         /// 间隔时间，单位为秒，默认为 10
         public let periodSeconds: Int64?
         
-        public init (type: String, `protocol`: String?, path: String?, exec: String?, port: Int64?, initialDelaySeconds: Int64?, timeoutSeconds: Int64?, periodSeconds: Int64?) {
+        public init (type: String, `protocol`: String? = nil, path: String? = nil, exec: String? = nil, port: Int64? = nil, initialDelaySeconds: Int64? = nil, timeoutSeconds: Int64? = nil, periodSeconds: Int64? = nil) {
             self.type = type
             self.`protocol` = `protocol`
             self.path = path
@@ -274,7 +274,7 @@ extension Tem {
     public struct IngressInfo: TCInputModel, TCOutputModel {
         /// tem namespaceId
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let namespaceId: String
+        public let namespaceId: String?
         
         /// eks namespace
         public let eksNamespace: String
@@ -311,7 +311,7 @@ extension Tem {
         /// 是否混合 https，默认 false，可选值 true 代表有 https 协议监听
         public let mixed: Bool?
         
-        public init (namespaceId: String, eksNamespace: String, addressIPVersion: String, name: String, rules: [IngressRule], clbId: String?, tls: [IngressTls]?, clusterId: String?, vip: String?, createTime: String?, mixed: Bool?) {
+        public init (namespaceId: String, eksNamespace: String, addressIPVersion: String, name: String, rules: [IngressRule], clbId: String? = nil, tls: [IngressTls]? = nil, clusterId: String? = nil, vip: String? = nil, createTime: String? = nil, mixed: Bool? = nil) {
             self.namespaceId = namespaceId
             self.eksNamespace = eksNamespace
             self.addressIPVersion = addressIPVersion
@@ -352,7 +352,7 @@ extension Tem {
         /// 协议，选项为 http， https，默认为 http
         public let `protocol`: String?
         
-        public init (http: IngressRuleValue, host: String?, `protocol`: String?) {
+        public init (http: IngressRuleValue, host: String? = nil, `protocol`: String? = nil) {
             self.http = http
             self.host = host
             self.`protocol` = `protocol`
@@ -428,7 +428,7 @@ extension Tem {
         /// SSL Certificate Id
         public let certificateId: String?
         
-        public init (hosts: [String], secretName: String, certificateId: String?) {
+        public init (hosts: [String], secretName: String, certificateId: String? = nil) {
             self.hosts = hosts
             self.secretName = secretName
             self.certificateId = certificateId
@@ -458,7 +458,7 @@ extension Tem {
         /// cls日志名称
         public let clsLogTopicName: String?
         
-        public init (outputType: String, clsLogsetName: String?, clsLogTopicId: String?, clsLogsetId: String?, clsLogTopicName: String?) {
+        public init (outputType: String, clsLogsetName: String? = nil, clsLogTopicId: String? = nil, clsLogsetId: String? = nil, clsLogTopicName: String? = nil) {
             self.outputType = outputType
             self.clsLogsetName = clsLogsetName
             self.clsLogTopicId = clsLogTopicId
@@ -486,7 +486,7 @@ extension Tem {
         /// 配置内容
         public let data: [Pair]?
         
-        public init (configDataName: String, mountedPath: String, data: [Pair]?) {
+        public init (configDataName: String, mountedPath: String, data: [Pair]? = nil) {
             self.configDataName = configDataName
             self.mountedPath = mountedPath
             self.data = data
@@ -617,7 +617,7 @@ extension Tem {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageVolIp: String?
         
-        public init (storageVolName: String, storageVolPath: String, storageVolIp: String?) {
+        public init (storageVolName: String, storageVolPath: String, storageVolIp: String? = nil) {
             self.storageVolName = storageVolName
             self.storageVolPath = storageVolPath
             self.storageVolIp = storageVolIp

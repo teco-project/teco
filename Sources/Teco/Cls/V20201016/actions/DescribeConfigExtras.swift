@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 获取特殊采集配置
-    ///
-    /// 本接口用于获取特殊采集配置，特殊采集配置应用于自建K8S环境的采集Agent
-    @inlinable
-    public func describeConfigExtras(_ input: DescribeConfigExtrasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigExtrasResponse > {
-        self.client.execute(action: "DescribeConfigExtras", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取特殊采集配置
-    ///
-    /// 本接口用于获取特殊采集配置，特殊采集配置应用于自建K8S环境的采集Agent
-    @inlinable
-    public func describeConfigExtras(_ input: DescribeConfigExtrasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigExtrasResponse {
-        try await self.client.execute(action: "DescribeConfigExtras", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeConfigExtras请求参数结构体
     public struct DescribeConfigExtrasRequest: TCRequestModel {
         /// 支持的key： topicId,name, configExtraId, machineGroupId
@@ -42,7 +26,7 @@ extension Cls {
         /// 分页单页的限制数目，默认值为20，最大值100
         public let limit: UInt64?
         
-        public init (filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -72,5 +56,21 @@ extension Cls {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取特殊采集配置
+    ///
+    /// 本接口用于获取特殊采集配置，特殊采集配置应用于自建K8S环境的采集Agent
+    @inlinable
+    public func describeConfigExtras(_ input: DescribeConfigExtrasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeConfigExtrasResponse > {
+        self.client.execute(action: "DescribeConfigExtras", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取特殊采集配置
+    ///
+    /// 本接口用于获取特殊采集配置，特殊采集配置应用于自建K8S环境的采集Agent
+    @inlinable
+    public func describeConfigExtras(_ input: DescribeConfigExtrasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigExtrasResponse {
+        try await self.client.execute(action: "DescribeConfigExtras", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

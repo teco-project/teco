@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 提取数据集成节点字段Schema
-    @inlinable
-    public func getIntegrationNodeColumnSchema(_ input: GetIntegrationNodeColumnSchemaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetIntegrationNodeColumnSchemaResponse > {
-        self.client.execute(action: "GetIntegrationNodeColumnSchema", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 提取数据集成节点字段Schema
-    @inlinable
-    public func getIntegrationNodeColumnSchema(_ input: GetIntegrationNodeColumnSchemaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIntegrationNodeColumnSchemaResponse {
-        try await self.client.execute(action: "GetIntegrationNodeColumnSchema", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetIntegrationNodeColumnSchema请求参数结构体
     public struct GetIntegrationNodeColumnSchemaRequest: TCRequestModel {
         /// 字段示例（json格式）
@@ -35,7 +23,7 @@ extension Wedata {
         /// 数据源类型
         public let datasourceType: String?
         
-        public init (columnContent: String?, datasourceType: String?) {
+        public init (columnContent: String? = nil, datasourceType: String? = nil) {
             self.columnContent = columnContent
             self.datasourceType = datasourceType
         }
@@ -59,5 +47,17 @@ extension Wedata {
             case schemas = "Schemas"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 提取数据集成节点字段Schema
+    @inlinable
+    public func getIntegrationNodeColumnSchema(_ input: GetIntegrationNodeColumnSchemaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetIntegrationNodeColumnSchemaResponse > {
+        self.client.execute(action: "GetIntegrationNodeColumnSchema", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 提取数据集成节点字段Schema
+    @inlinable
+    public func getIntegrationNodeColumnSchema(_ input: GetIntegrationNodeColumnSchemaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIntegrationNodeColumnSchemaResponse {
+        try await self.client.execute(action: "GetIntegrationNodeColumnSchema", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

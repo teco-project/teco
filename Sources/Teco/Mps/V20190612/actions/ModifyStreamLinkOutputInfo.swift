@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mps {
-    /// 修改媒体传输的输出信息
-    ///
-    /// 修改媒体传输流的输出配置。
-    @inlinable
-    public func modifyStreamLinkOutputInfo(_ input: ModifyStreamLinkOutputInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyStreamLinkOutputInfoResponse > {
-        self.client.execute(action: "ModifyStreamLinkOutputInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改媒体传输的输出信息
-    ///
-    /// 修改媒体传输流的输出配置。
-    @inlinable
-    public func modifyStreamLinkOutputInfo(_ input: ModifyStreamLinkOutputInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStreamLinkOutputInfoResponse {
-        try await self.client.execute(action: "ModifyStreamLinkOutputInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyStreamLinkOutputInfo请求参数结构体
     public struct ModifyStreamLinkOutputInfoRequest: TCRequestModel {
         /// 流Id。
@@ -62,5 +46,21 @@ extension Mps {
             case info = "Info"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改媒体传输的输出信息
+    ///
+    /// 修改媒体传输流的输出配置。
+    @inlinable
+    public func modifyStreamLinkOutputInfo(_ input: ModifyStreamLinkOutputInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyStreamLinkOutputInfoResponse > {
+        self.client.execute(action: "ModifyStreamLinkOutputInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改媒体传输的输出信息
+    ///
+    /// 修改媒体传输流的输出配置。
+    @inlinable
+    public func modifyStreamLinkOutputInfo(_ input: ModifyStreamLinkOutputInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStreamLinkOutputInfoResponse {
+        try await self.client.execute(action: "ModifyStreamLinkOutputInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

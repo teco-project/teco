@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 删除协议端口模板集合
-    ///
-    /// 本接口（DeleteServiceTemplateGroup）用于删除协议端口模板集合
-    @inlinable
-    public func deleteServiceTemplateGroup(_ input: DeleteServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServiceTemplateGroupResponse > {
-        self.client.execute(action: "DeleteServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除协议端口模板集合
-    ///
-    /// 本接口（DeleteServiceTemplateGroup）用于删除协议端口模板集合
-    @inlinable
-    public func deleteServiceTemplateGroup(_ input: DeleteServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateGroupResponse {
-        try await self.client.execute(action: "DeleteServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteServiceTemplateGroup请求参数结构体
     public struct DeleteServiceTemplateGroupRequest: TCRequestModel {
         /// 协议端口模板集合实例ID，例如：ppmg-n17uxvve。
@@ -53,5 +37,21 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除协议端口模板集合
+    ///
+    /// 本接口（DeleteServiceTemplateGroup）用于删除协议端口模板集合
+    @inlinable
+    public func deleteServiceTemplateGroup(_ input: DeleteServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteServiceTemplateGroupResponse > {
+        self.client.execute(action: "DeleteServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除协议端口模板集合
+    ///
+    /// 本接口（DeleteServiceTemplateGroup）用于删除协议端口模板集合
+    @inlinable
+    public func deleteServiceTemplateGroup(_ input: DeleteServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateGroupResponse {
+        try await self.client.execute(action: "DeleteServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

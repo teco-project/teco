@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 绑定策略到用户
-    ///
-    /// 本接口（AttachUserPolicy）可用于绑定到用户的策略。
-    @inlinable
-    public func attachUserPolicy(_ input: AttachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachUserPolicyResponse > {
-        self.client.execute(action: "AttachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定策略到用户
-    ///
-    /// 本接口（AttachUserPolicy）可用于绑定到用户的策略。
-    @inlinable
-    public func attachUserPolicy(_ input: AttachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachUserPolicyResponse {
-        try await self.client.execute(action: "AttachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AttachUserPolicy请求参数结构体
     public struct AttachUserPolicyRequest: TCRequestModel {
         /// 策略 id
@@ -58,5 +42,21 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定策略到用户
+    ///
+    /// 本接口（AttachUserPolicy）可用于绑定到用户的策略。
+    @inlinable
+    public func attachUserPolicy(_ input: AttachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachUserPolicyResponse > {
+        self.client.execute(action: "AttachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定策略到用户
+    ///
+    /// 本接口（AttachUserPolicy）可用于绑定到用户的策略。
+    @inlinable
+    public func attachUserPolicy(_ input: AttachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachUserPolicyResponse {
+        try await self.client.execute(action: "AttachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

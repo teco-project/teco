@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Pts {
-    /// 更新项目
-    @inlinable
-    public func updateProject(_ input: UpdateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProjectResponse > {
-        self.client.execute(action: "UpdateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新项目
-    @inlinable
-    public func updateProject(_ input: UpdateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProjectResponse {
-        try await self.client.execute(action: "UpdateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpdateProject请求参数结构体
     public struct UpdateProjectRequest: TCRequestModel {
         /// 项目ID
@@ -44,7 +32,7 @@ extension Pts {
         /// 标签数组
         public let tags: [TagSpec]?
         
-        public init (projectId: String, name: String?, description: String?, status: Int64?, tags: [TagSpec]?) {
+        public init (projectId: String, name: String? = nil, description: String? = nil, status: Int64? = nil, tags: [TagSpec]? = nil) {
             self.projectId = projectId
             self.name = name
             self.description = description
@@ -69,5 +57,17 @@ extension Pts {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新项目
+    @inlinable
+    public func updateProject(_ input: UpdateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateProjectResponse > {
+        self.client.execute(action: "UpdateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新项目
+    @inlinable
+    public func updateProject(_ input: UpdateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProjectResponse {
+        try await self.client.execute(action: "UpdateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ses {
-    /// 删除发信模板
-    @inlinable
-    public func deleteEmailTemplate(_ input: DeleteEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEmailTemplateResponse > {
-        self.client.execute(action: "DeleteEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除发信模板
-    @inlinable
-    public func deleteEmailTemplate(_ input: DeleteEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailTemplateResponse {
-        try await self.client.execute(action: "DeleteEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteEmailTemplate请求参数结构体
     public struct DeleteEmailTemplateRequest: TCRequestModel {
         /// 模板ID
@@ -49,5 +37,17 @@ extension Ses {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除发信模板
+    @inlinable
+    public func deleteEmailTemplate(_ input: DeleteEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEmailTemplateResponse > {
+        self.client.execute(action: "DeleteEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除发信模板
+    @inlinable
+    public func deleteEmailTemplate(_ input: DeleteEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailTemplateResponse {
+        try await self.client.execute(action: "DeleteEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

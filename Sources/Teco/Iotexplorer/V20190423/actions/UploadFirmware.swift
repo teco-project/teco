@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotexplorer {
-    /// 创建固件版本信息
-    ///
-    /// 本接口（UploadFirmware）用于创建设备固件版本信息，在平台用于固件版本升级、固件资源下发等。
-    @inlinable
-    public func uploadFirmware(_ input: UploadFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFirmwareResponse > {
-        self.client.execute(action: "UploadFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建固件版本信息
-    ///
-    /// 本接口（UploadFirmware）用于创建设备固件版本信息，在平台用于固件版本升级、固件资源下发等。
-    @inlinable
-    public func uploadFirmware(_ input: UploadFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFirmwareResponse {
-        try await self.client.execute(action: "UploadFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UploadFirmware请求参数结构体
     public struct UploadFirmwareRequest: TCRequestModel {
         /// 产品ID
@@ -54,7 +38,7 @@ extension Iotexplorer {
         /// 固件升级模块；可选值 mcu|moudule
         public let fwType: String?
         
-        public init (productID: String, firmwareVersion: String, md5sum: String, fileSize: UInt64, firmwareName: String?, firmwareDescription: String?, fwType: String?) {
+        public init (productID: String, firmwareVersion: String, md5sum: String, fileSize: UInt64, firmwareName: String? = nil, firmwareDescription: String? = nil, fwType: String? = nil) {
             self.productID = productID
             self.firmwareVersion = firmwareVersion
             self.md5sum = md5sum
@@ -83,5 +67,21 @@ extension Iotexplorer {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建固件版本信息
+    ///
+    /// 本接口（UploadFirmware）用于创建设备固件版本信息，在平台用于固件版本升级、固件资源下发等。
+    @inlinable
+    public func uploadFirmware(_ input: UploadFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFirmwareResponse > {
+        self.client.execute(action: "UploadFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建固件版本信息
+    ///
+    /// 本接口（UploadFirmware）用于创建设备固件版本信息，在平台用于固件版本升级、固件资源下发等。
+    @inlinable
+    public func uploadFirmware(_ input: UploadFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFirmwareResponse {
+        try await self.client.execute(action: "UploadFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

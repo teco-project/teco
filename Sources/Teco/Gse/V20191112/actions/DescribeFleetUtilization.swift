@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Gse {
-    /// 查询服务器舰队的利用率信息
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeFleetUtilization）用于查询服务器舰队的利用率信息。
-    @inlinable
-    public func describeFleetUtilization(_ input: DescribeFleetUtilizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFleetUtilizationResponse > {
-        self.client.execute(action: "DescribeFleetUtilization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询服务器舰队的利用率信息
-    ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    /// 本接口（DescribeFleetUtilization）用于查询服务器舰队的利用率信息。
-    @inlinable
-    public func describeFleetUtilization(_ input: DescribeFleetUtilizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetUtilizationResponse {
-        try await self.client.execute(action: "DescribeFleetUtilization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeFleetUtilization请求参数结构体
     public struct DescribeFleetUtilizationRequest: TCRequestModel {
         /// 服务器舰队 Ids
@@ -64,5 +46,23 @@ extension Gse {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询服务器舰队的利用率信息
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeFleetUtilization）用于查询服务器舰队的利用率信息。
+    @inlinable
+    public func describeFleetUtilization(_ input: DescribeFleetUtilizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeFleetUtilizationResponse > {
+        self.client.execute(action: "DescribeFleetUtilization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询服务器舰队的利用率信息
+    ///
+    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    /// 本接口（DescribeFleetUtilization）用于查询服务器舰队的利用率信息。
+    @inlinable
+    public func describeFleetUtilization(_ input: DescribeFleetUtilizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetUtilizationResponse {
+        try await self.client.execute(action: "DescribeFleetUtilization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

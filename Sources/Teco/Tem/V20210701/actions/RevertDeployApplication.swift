@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tem {
-    /// 回滚分批发布
-    @inlinable
-    public func revertDeployApplication(_ input: RevertDeployApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevertDeployApplicationResponse > {
-        self.client.execute(action: "RevertDeployApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 回滚分批发布
-    @inlinable
-    public func revertDeployApplication(_ input: RevertDeployApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertDeployApplicationResponse {
-        try await self.client.execute(action: "RevertDeployApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RevertDeployApplication请求参数结构体
     public struct RevertDeployApplicationRequest: TCRequestModel {
         /// 需要回滚的服务id
@@ -35,7 +23,7 @@ extension Tem {
         /// 需要回滚的服务所在环境id
         public let environmentId: String?
         
-        public init (applicationId: String?, environmentId: String?) {
+        public init (applicationId: String? = nil, environmentId: String? = nil) {
             self.applicationId = applicationId
             self.environmentId = environmentId
         }
@@ -58,5 +46,17 @@ extension Tem {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 回滚分批发布
+    @inlinable
+    public func revertDeployApplication(_ input: RevertDeployApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevertDeployApplicationResponse > {
+        self.client.execute(action: "RevertDeployApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 回滚分批发布
+    @inlinable
+    public func revertDeployApplication(_ input: RevertDeployApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertDeployApplicationResponse {
+        try await self.client.execute(action: "RevertDeployApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

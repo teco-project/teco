@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 安全组批量绑定云资源
-    ///
-    /// 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
-    @inlinable
-    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateSecurityGroupsResponse > {
-        self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 安全组批量绑定云资源
-    ///
-    /// 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
-    @inlinable
-    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
-        try await self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AssociateSecurityGroups请求参数结构体
     public struct AssociateSecurityGroupsRequest: TCRequestModel {
         /// 安全组 ID。
@@ -42,7 +26,7 @@ extension Cdb {
         /// 当传入只读实例ID时，默认操作的是对应只读组的安全组。如果需要操作只读实例ID的安全组， 需要将该入参置为True
         public let forReadonlyInstance: Bool?
         
-        public init (securityGroupId: String, instanceIds: [String], forReadonlyInstance: Bool?) {
+        public init (securityGroupId: String, instanceIds: [String], forReadonlyInstance: Bool? = nil) {
             self.securityGroupId = securityGroupId
             self.instanceIds = instanceIds
             self.forReadonlyInstance = forReadonlyInstance
@@ -63,5 +47,21 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 安全组批量绑定云资源
+    ///
+    /// 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
+    @inlinable
+    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateSecurityGroupsResponse > {
+        self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 安全组批量绑定云资源
+    ///
+    /// 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
+    @inlinable
+    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
+        try await self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

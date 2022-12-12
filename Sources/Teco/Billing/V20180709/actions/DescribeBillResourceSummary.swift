@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Billing {
-    /// 查询账单资源汇总数据
-    ///
-    /// 查询账单资源汇总数据 
-    @inlinable
-    public func describeBillResourceSummary(_ input: DescribeBillResourceSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillResourceSummaryResponse > {
-        self.client.execute(action: "DescribeBillResourceSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询账单资源汇总数据
-    ///
-    /// 查询账单资源汇总数据 
-    @inlinable
-    public func describeBillResourceSummary(_ input: DescribeBillResourceSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillResourceSummaryResponse {
-        try await self.client.execute(action: "DescribeBillResourceSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBillResourceSummary请求参数结构体
     public struct DescribeBillResourceSummaryRequest: TCRequestModel {
         /// 偏移量
@@ -88,7 +72,7 @@ extension Billing {
         /// 备注：如需获取当月使用过的BusinessCode，请调用API：<a href="https://cloud.tencent.com/document/product/555/35761">获取产品汇总费用分布</a>
         public let businessCode: String?
         
-        public init (offset: UInt64, limit: UInt64, month: String, periodType: String?, needRecordNum: Int64?, actionType: String?, resourceId: String?, payMode: String?, businessCode: String?) {
+        public init (offset: UInt64, limit: UInt64, month: String, periodType: String? = nil, needRecordNum: Int64? = nil, actionType: String? = nil, resourceId: String? = nil, payMode: String? = nil, businessCode: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.month = month
@@ -130,5 +114,21 @@ extension Billing {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询账单资源汇总数据
+    ///
+    /// 查询账单资源汇总数据 
+    @inlinable
+    public func describeBillResourceSummary(_ input: DescribeBillResourceSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBillResourceSummaryResponse > {
+        self.client.execute(action: "DescribeBillResourceSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询账单资源汇总数据
+    ///
+    /// 查询账单资源汇总数据 
+    @inlinable
+    public func describeBillResourceSummary(_ input: DescribeBillResourceSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillResourceSummaryResponse {
+        try await self.client.execute(action: "DescribeBillResourceSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

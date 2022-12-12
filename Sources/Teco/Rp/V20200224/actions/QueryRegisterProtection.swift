@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Rp {
-    /// 注册保护
-    ///
-    /// 注册保护服务（RegisterProtection，RP）针对网站、APP 的线上注册场景，遇到 “恶意注册” 、“小号注册” 、“注册器注册” 等恶意行为，提供基于天御 DNA 算法的恶意防护引擎，从账号、设备、行为三个维度有效识别 “恶意注册”，从“源头”上防范业务风险。  
-    @inlinable
-    public func queryRegisterProtection(_ input: QueryRegisterProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryRegisterProtectionResponse > {
-        self.client.execute(action: "QueryRegisterProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 注册保护
-    ///
-    /// 注册保护服务（RegisterProtection，RP）针对网站、APP 的线上注册场景，遇到 “恶意注册” 、“小号注册” 、“注册器注册” 等恶意行为，提供基于天御 DNA 算法的恶意防护引擎，从账号、设备、行为三个维度有效识别 “恶意注册”，从“源头”上防范业务风险。  
-    @inlinable
-    public func queryRegisterProtection(_ input: QueryRegisterProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRegisterProtectionResponse {
-        try await self.client.execute(action: "QueryRegisterProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QueryRegisterProtection请求参数结构体
     public struct QueryRegisterProtectionRequest: TCRequestModel {
         /// 注册来源的外网 IP。
@@ -138,7 +122,7 @@ extension Rp {
         /// 如果是微信公众号或第三方登录，则为授权的 access_token（注意：不是普通 access_token，具体看 微信官方文档）。
         public let wxToken: String?
         
-        public init (registerIp: String, uid: String, registerTime: String, accountType: String, appIdU: String?, associateAccount: String?, nickName: String?, phoneNumber: String?, emailAddress: String?, address: String?, cookieHash: String?, registerSource: String?, referer: String?, jumpUrl: String?, userAgent: String?, xForwardedFor: String?, mouseClickCount: String?, keyboardClickCount: String?, result: String?, reason: String?, registerSpend: String?, macAddress: String?, vendorId: String?, appVersion: String?, imei: String?, businessId: String?, wxSubType: String?, randNum: String?, wxToken: String?) {
+        public init (registerIp: String, uid: String, registerTime: String, accountType: String, appIdU: String? = nil, associateAccount: String? = nil, nickName: String? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, address: String? = nil, cookieHash: String? = nil, registerSource: String? = nil, referer: String? = nil, jumpUrl: String? = nil, userAgent: String? = nil, xForwardedFor: String? = nil, mouseClickCount: String? = nil, keyboardClickCount: String? = nil, result: String? = nil, reason: String? = nil, registerSpend: String? = nil, macAddress: String? = nil, vendorId: String? = nil, appVersion: String? = nil, imei: String? = nil, businessId: String? = nil, wxSubType: String? = nil, randNum: String? = nil, wxToken: String? = nil) {
             self.registerIp = registerIp
             self.uid = uid
             self.registerTime = registerTime
@@ -245,5 +229,21 @@ extension Rp {
             case riskType = "RiskType"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 注册保护
+    ///
+    /// 注册保护服务（RegisterProtection，RP）针对网站、APP 的线上注册场景，遇到 “恶意注册” 、“小号注册” 、“注册器注册” 等恶意行为，提供基于天御 DNA 算法的恶意防护引擎，从账号、设备、行为三个维度有效识别 “恶意注册”，从“源头”上防范业务风险。  
+    @inlinable
+    public func queryRegisterProtection(_ input: QueryRegisterProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QueryRegisterProtectionResponse > {
+        self.client.execute(action: "QueryRegisterProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 注册保护
+    ///
+    /// 注册保护服务（RegisterProtection，RP）针对网站、APP 的线上注册场景，遇到 “恶意注册” 、“小号注册” 、“注册器注册” 等恶意行为，提供基于天御 DNA 算法的恶意防护引擎，从账号、设备、行为三个维度有效识别 “恶意注册”，从“源头”上防范业务风险。  
+    @inlinable
+    public func queryRegisterProtection(_ input: QueryRegisterProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRegisterProtectionResponse {
+        try await self.client.execute(action: "QueryRegisterProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

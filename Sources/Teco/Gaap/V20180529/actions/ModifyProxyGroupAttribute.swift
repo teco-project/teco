@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 修改通道组属性
-    ///
-    /// 本接口（ModifyProxyGroupAttribute）用于修改通道组属性，目前仅支持修改通道组名称。
-    @inlinable
-    public func modifyProxyGroupAttribute(_ input: ModifyProxyGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProxyGroupAttributeResponse > {
-        self.client.execute(action: "ModifyProxyGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改通道组属性
-    ///
-    /// 本接口（ModifyProxyGroupAttribute）用于修改通道组属性，目前仅支持修改通道组名称。
-    @inlinable
-    public func modifyProxyGroupAttribute(_ input: ModifyProxyGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxyGroupAttributeResponse {
-        try await self.client.execute(action: "ModifyProxyGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyProxyGroupAttribute请求参数结构体
     public struct ModifyProxyGroupAttributeRequest: TCRequestModel {
         /// 需要修改的通道组ID。
@@ -42,7 +26,7 @@ extension Gaap {
         /// 项目ID
         public let projectId: UInt64?
         
-        public init (groupId: String, groupName: String?, projectId: UInt64?) {
+        public init (groupId: String, groupName: String? = nil, projectId: UInt64? = nil) {
             self.groupId = groupId
             self.groupName = groupName
             self.projectId = projectId
@@ -63,5 +47,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改通道组属性
+    ///
+    /// 本接口（ModifyProxyGroupAttribute）用于修改通道组属性，目前仅支持修改通道组名称。
+    @inlinable
+    public func modifyProxyGroupAttribute(_ input: ModifyProxyGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProxyGroupAttributeResponse > {
+        self.client.execute(action: "ModifyProxyGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改通道组属性
+    ///
+    /// 本接口（ModifyProxyGroupAttribute）用于修改通道组属性，目前仅支持修改通道组名称。
+    @inlinable
+    public func modifyProxyGroupAttribute(_ input: ModifyProxyGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxyGroupAttributeResponse {
+        try await self.client.execute(action: "ModifyProxyGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

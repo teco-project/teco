@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bma {
-    /// 新建取证
-    ///
-    /// 版权保护-新建取证接口
-    @inlinable
-    public func createCRObtain(_ input: CreateCRObtainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRObtainResponse > {
-        self.client.execute(action: "CreateCRObtain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 新建取证
-    ///
-    /// 版权保护-新建取证接口
-    @inlinable
-    public func createCRObtain(_ input: CreateCRObtainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRObtainResponse {
-        try await self.client.execute(action: "CreateCRObtain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCRObtain请求参数结构体
     public struct CreateCRObtainRequest: TCRequestModel {
         /// 已存证的作品ID
@@ -60,7 +44,7 @@ extension Bma {
         /// xxx
         public let workType: String?
         
-        public init (workId: Int64, tortUrl: String, obtainType: Int64, workTitle: String?, tortPlat: String?, obtainDuration: Int64?, obtainUrl: String?, workCategory: String?, workType: String?) {
+        public init (workId: Int64, tortUrl: String, obtainType: Int64, workTitle: String? = nil, tortPlat: String? = nil, obtainDuration: Int64? = nil, obtainUrl: String? = nil, workCategory: String? = nil, workType: String? = nil) {
             self.workId = workId
             self.tortUrl = tortUrl
             self.obtainType = obtainType
@@ -101,5 +85,21 @@ extension Bma {
             case tortNum = "TortNum"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 新建取证
+    ///
+    /// 版权保护-新建取证接口
+    @inlinable
+    public func createCRObtain(_ input: CreateCRObtainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCRObtainResponse > {
+        self.client.execute(action: "CreateCRObtain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 新建取证
+    ///
+    /// 版权保护-新建取证接口
+    @inlinable
+    public func createCRObtain(_ input: CreateCRObtainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRObtainResponse {
+        try await self.client.execute(action: "CreateCRObtain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

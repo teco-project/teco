@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 查询统计通道组和通道信息
-    ///
-    /// 该接口为内部接口，用于查询可以获取统计数据的通道组和通道信息
-    @inlinable
-    public func describeGroupAndStatisticsProxy(_ input: DescribeGroupAndStatisticsProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupAndStatisticsProxyResponse > {
-        self.client.execute(action: "DescribeGroupAndStatisticsProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询统计通道组和通道信息
-    ///
-    /// 该接口为内部接口，用于查询可以获取统计数据的通道组和通道信息
-    @inlinable
-    public func describeGroupAndStatisticsProxy(_ input: DescribeGroupAndStatisticsProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupAndStatisticsProxyResponse {
-        try await self.client.execute(action: "DescribeGroupAndStatisticsProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeGroupAndStatisticsProxy请求参数结构体
     public struct DescribeGroupAndStatisticsProxyRequest: TCRequestModel {
         /// 项目ID
@@ -61,5 +45,21 @@ extension Gaap {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询统计通道组和通道信息
+    ///
+    /// 该接口为内部接口，用于查询可以获取统计数据的通道组和通道信息
+    @inlinable
+    public func describeGroupAndStatisticsProxy(_ input: DescribeGroupAndStatisticsProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGroupAndStatisticsProxyResponse > {
+        self.client.execute(action: "DescribeGroupAndStatisticsProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询统计通道组和通道信息
+    ///
+    /// 该接口为内部接口，用于查询可以获取统计数据的通道组和通道信息
+    @inlinable
+    public func describeGroupAndStatisticsProxy(_ input: DescribeGroupAndStatisticsProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupAndStatisticsProxyResponse {
+        try await self.client.execute(action: "DescribeGroupAndStatisticsProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

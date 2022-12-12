@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmvpc {
-    /// 修改子网属性
-    @inlinable
-    public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubnetAttributeResponse > {
-        self.client.execute(action: "ModifySubnetAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改子网属性
-    @inlinable
-    public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetAttributeResponse {
-        try await self.client.execute(action: "ModifySubnetAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifySubnetAttribute请求参数结构体
     public struct ModifySubnetAttributeRequest: TCRequestModel {
         /// 私有网络ID
@@ -59,5 +47,17 @@ extension Bmvpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改子网属性
+    @inlinable
+    public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifySubnetAttributeResponse > {
+        self.client.execute(action: "ModifySubnetAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改子网属性
+    @inlinable
+    public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetAttributeResponse {
+        try await self.client.execute(action: "ModifySubnetAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

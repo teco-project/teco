@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Partners {
-    /// 代理商缓存订单查询接口（预付费）
-    ///
-    /// 供代理商拉取缓存的全量预付费客户订单
-    @inlinable
-    public func describeAgentDealsByCache(_ input: DescribeAgentDealsByCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentDealsByCacheResponse > {
-        self.client.execute(action: "DescribeAgentDealsByCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 代理商缓存订单查询接口（预付费）
-    ///
-    /// 供代理商拉取缓存的全量预付费客户订单
-    @inlinable
-    public func describeAgentDealsByCache(_ input: DescribeAgentDealsByCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentDealsByCacheResponse {
-        try await self.client.execute(action: "DescribeAgentDealsByCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAgentDealsByCache请求参数结构体
     public struct DescribeAgentDealsByCacheRequest: TCRequestModel {
         /// 偏移量
@@ -65,7 +49,7 @@ extension Partners {
         /// 支付方式，0：自付；1：代付
         public let payerMode: UInt64?
         
-        public init (offset: UInt64, limit: UInt64, creatTimeRangeStart: Date?, creatTimeRangeEnd: Date?, order: UInt64?, status: UInt64?, ownerUins: [String]?, dealNames: [String]?, bigDealIds: [String]?, payerMode: UInt64?) {
+        public init (offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, ownerUins: [String]? = nil, dealNames: [String]? = nil, bigDealIds: [String]? = nil, payerMode: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
             self.creatTimeRangeStart = creatTimeRangeStart
@@ -108,5 +92,21 @@ extension Partners {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 代理商缓存订单查询接口（预付费）
+    ///
+    /// 供代理商拉取缓存的全量预付费客户订单
+    @inlinable
+    public func describeAgentDealsByCache(_ input: DescribeAgentDealsByCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAgentDealsByCacheResponse > {
+        self.client.execute(action: "DescribeAgentDealsByCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 代理商缓存订单查询接口（预付费）
+    ///
+    /// 供代理商拉取缓存的全量预付费客户订单
+    @inlinable
+    public func describeAgentDealsByCache(_ input: DescribeAgentDealsByCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentDealsByCacheResponse {
+        try await self.client.execute(action: "DescribeAgentDealsByCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

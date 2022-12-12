@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 聚鑫-申请对账文件
-    @inlinable
-    public func applyReconciliationFile(_ input: ApplyReconciliationFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyReconciliationFileResponse > {
-        self.client.execute(action: "ApplyReconciliationFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 聚鑫-申请对账文件
-    @inlinable
-    public func applyReconciliationFile(_ input: ApplyReconciliationFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyReconciliationFileResponse {
-        try await self.client.execute(action: "ApplyReconciliationFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ApplyReconciliationFile请求参数结构体
     public struct ApplyReconciliationFileRequest: TCRequestModel {
         /// 申请的文件类型。
@@ -50,7 +38,7 @@ extension Cpdp {
         /// _缺省: release_
         public let midasEnvironment: String?
         
-        public init (applyFileType: String, applyFileDate: String, bankAccountNumber: String, midasEnvironment: String?) {
+        public init (applyFileType: String, applyFileDate: String, bankAccountNumber: String, midasEnvironment: String? = nil) {
             self.applyFileType = applyFileType
             self.applyFileDate = applyFileDate
             self.bankAccountNumber = bankAccountNumber
@@ -77,7 +65,7 @@ extension Cpdp {
         
         /// 返回结果。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: ApplyReconciliationFileResult
+        public let result: ApplyReconciliationFileResult?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -88,5 +76,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 聚鑫-申请对账文件
+    @inlinable
+    public func applyReconciliationFile(_ input: ApplyReconciliationFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ApplyReconciliationFileResponse > {
+        self.client.execute(action: "ApplyReconciliationFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 聚鑫-申请对账文件
+    @inlinable
+    public func applyReconciliationFile(_ input: ApplyReconciliationFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyReconciliationFileResponse {
+        try await self.client.execute(action: "ApplyReconciliationFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

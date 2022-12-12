@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Waf {
-    /// 查询单个saas域名详情
-    @inlinable
-    public func describeDomainDetailsSaas(_ input: DescribeDomainDetailsSaasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainDetailsSaasResponse > {
-        self.client.execute(action: "DescribeDomainDetailsSaas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询单个saas域名详情
-    @inlinable
-    public func describeDomainDetailsSaas(_ input: DescribeDomainDetailsSaasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainDetailsSaasResponse {
-        try await self.client.execute(action: "DescribeDomainDetailsSaas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomainDetailsSaas请求参数结构体
     public struct DescribeDomainDetailsSaasRequest: TCRequestModel {
         /// 域名
@@ -63,5 +51,17 @@ extension Waf {
             case domainsPartInfo = "DomainsPartInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询单个saas域名详情
+    @inlinable
+    public func describeDomainDetailsSaas(_ input: DescribeDomainDetailsSaasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainDetailsSaasResponse > {
+        self.client.execute(action: "DescribeDomainDetailsSaas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询单个saas域名详情
+    @inlinable
+    public func describeDomainDetailsSaas(_ input: DescribeDomainDetailsSaasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainDetailsSaasResponse {
+        try await self.client.execute(action: "DescribeDomainDetailsSaas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

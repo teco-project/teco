@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cvm {
-    /// 查看CDH实例列表
-    ///
-    /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
-    @inlinable
-    public func describeHosts(_ input: DescribeHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostsResponse > {
-        self.client.execute(action: "DescribeHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看CDH实例列表
-    ///
-    /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
-    @inlinable
-    public func describeHosts(_ input: DescribeHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsResponse {
-        try await self.client.execute(action: "DescribeHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHosts请求参数结构体
     public struct DescribeHostsRequest: TCRequestModel {
         /// <li><strong>zone</strong></li>
@@ -52,7 +36,7 @@ extension Cvm {
         /// 返回数量，默认为20，最大值为100。
         public let limit: UInt64?
         
-        public init (filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -81,5 +65,21 @@ extension Cvm {
             case hostSet = "HostSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看CDH实例列表
+    ///
+    /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
+    @inlinable
+    public func describeHosts(_ input: DescribeHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHostsResponse > {
+        self.client.execute(action: "DescribeHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看CDH实例列表
+    ///
+    /// 本接口 (DescribeHosts) 用于获取一个或多个CDH实例的详细信息。
+    @inlinable
+    public func describeHosts(_ input: DescribeHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsResponse {
+        try await self.client.execute(action: "DescribeHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

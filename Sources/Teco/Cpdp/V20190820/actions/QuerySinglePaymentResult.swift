@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cpdp {
-    /// 灵云-单笔转账结果查询
-    @inlinable
-    public func querySinglePaymentResult(_ input: QuerySinglePaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QuerySinglePaymentResultResponse > {
-        self.client.execute(action: "QuerySinglePaymentResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 灵云-单笔转账结果查询
-    @inlinable
-    public func querySinglePaymentResult(_ input: QuerySinglePaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuerySinglePaymentResultResponse {
-        try await self.client.execute(action: "QuerySinglePaymentResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// QuerySinglePaymentResult请求参数结构体
     public struct QuerySinglePaymentResultRequest: TCRequestModel {
         /// 转账类型
@@ -38,7 +26,7 @@ extension Cpdp {
         /// 订单号，与TradeSerialNo不能同时为空
         public let orderId: String?
         
-        public init (transferType: Int64, tradeSerialNo: String?, orderId: String?) {
+        public init (transferType: Int64, tradeSerialNo: String? = nil, orderId: String? = nil) {
             self.transferType = transferType
             self.tradeSerialNo = tradeSerialNo
             self.orderId = orderId
@@ -61,7 +49,7 @@ extension Cpdp {
         
         /// 返回响应
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let result: QuerySinglePaymentResultData
+        public let result: QuerySinglePaymentResultData?
         
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -72,5 +60,17 @@ extension Cpdp {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 灵云-单笔转账结果查询
+    @inlinable
+    public func querySinglePaymentResult(_ input: QuerySinglePaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < QuerySinglePaymentResultResponse > {
+        self.client.execute(action: "QuerySinglePaymentResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 灵云-单笔转账结果查询
+    @inlinable
+    public func querySinglePaymentResult(_ input: QuerySinglePaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuerySinglePaymentResultResponse {
+        try await self.client.execute(action: "QuerySinglePaymentResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

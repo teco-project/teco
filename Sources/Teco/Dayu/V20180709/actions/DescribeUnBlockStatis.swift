@@ -17,18 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Dayu {
-    /// 获取黑洞解封次数
-    @inlinable
-    public func describeUnBlockStatis(_ input: DescribeUnBlockStatisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnBlockStatisResponse > {
-        self.client.execute(action: "DescribeUnBlockStatis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取黑洞解封次数
-    @inlinable
-    public func describeUnBlockStatis(_ input: DescribeUnBlockStatisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnBlockStatisResponse {
-        try await self.client.execute(action: "DescribeUnBlockStatis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUnBlockStatis请求参数结构体
     public struct DescribeUnBlockStatisRequest: TCRequestModel {
         public init () {
@@ -61,5 +49,17 @@ extension Dayu {
             case endTime = "EndTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取黑洞解封次数
+    @inlinable
+    public func describeUnBlockStatis(_ input: DescribeUnBlockStatisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUnBlockStatisResponse > {
+        self.client.execute(action: "DescribeUnBlockStatis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取黑洞解封次数
+    @inlinable
+    public func describeUnBlockStatis(_ input: DescribeUnBlockStatisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnBlockStatisResponse {
+        try await self.client.execute(action: "DescribeUnBlockStatis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

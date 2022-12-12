@@ -15,30 +15,6 @@
 // DO NOT EDIT.
 
 extension Nlp {
-    /// 词法分析
-    ///
-    /// 词法分析接口提供以下三个功能：
-    /// 1、智能分词：将连续的自然语言文本，切分成具有语义合理性和完整性的词汇序列；
-    /// 2、词性标注：为每一个词附上对应的词性，例如名词、代词、形容词、动词等；
-    /// 3、命名实体识别：快速识别文本中的实体，例如人名、地名、机构名等。
-    /// 所有的功能均基于千亿级大规模互联网语料进行持续迭代更新，以保证效果不断提升，用户无需担心新词发现、歧义消除、调用性能等问题。目前词法分析已经在泛互联网、金融、政务等不同垂直领域提供业务支持，并取得良好的效果。
-    @inlinable
-    public func lexicalAnalysis(_ input: LexicalAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LexicalAnalysisResponse > {
-        self.client.execute(action: "LexicalAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 词法分析
-    ///
-    /// 词法分析接口提供以下三个功能：
-    /// 1、智能分词：将连续的自然语言文本，切分成具有语义合理性和完整性的词汇序列；
-    /// 2、词性标注：为每一个词附上对应的词性，例如名词、代词、形容词、动词等；
-    /// 3、命名实体识别：快速识别文本中的实体，例如人名、地名、机构名等。
-    /// 所有的功能均基于千亿级大规模互联网语料进行持续迭代更新，以保证效果不断提升，用户无需担心新词发现、歧义消除、调用性能等问题。目前词法分析已经在泛互联网、金融、政务等不同垂直领域提供业务支持，并取得良好的效果。
-    @inlinable
-    public func lexicalAnalysis(_ input: LexicalAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LexicalAnalysisResponse {
-        try await self.client.execute(action: "LexicalAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// LexicalAnalysis请求参数结构体
     public struct LexicalAnalysisRequest: TCRequestModel {
         /// 待分析的文本（仅支持UTF-8格式，不超过500字）
@@ -52,7 +28,7 @@ extension Nlp {
         /// 2、高性能（单粒度分词能力）；
         public let flag: UInt64?
         
-        public init (text: String, dictId: String?, flag: UInt64?) {
+        public init (text: String, dictId: String? = nil, flag: UInt64? = nil) {
             self.text = text
             self.dictId = dictId
             self.flag = flag
@@ -86,5 +62,29 @@ extension Nlp {
             case posTokens = "PosTokens"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 词法分析
+    ///
+    /// 词法分析接口提供以下三个功能：
+    /// 1、智能分词：将连续的自然语言文本，切分成具有语义合理性和完整性的词汇序列；
+    /// 2、词性标注：为每一个词附上对应的词性，例如名词、代词、形容词、动词等；
+    /// 3、命名实体识别：快速识别文本中的实体，例如人名、地名、机构名等。
+    /// 所有的功能均基于千亿级大规模互联网语料进行持续迭代更新，以保证效果不断提升，用户无需担心新词发现、歧义消除、调用性能等问题。目前词法分析已经在泛互联网、金融、政务等不同垂直领域提供业务支持，并取得良好的效果。
+    @inlinable
+    public func lexicalAnalysis(_ input: LexicalAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < LexicalAnalysisResponse > {
+        self.client.execute(action: "LexicalAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 词法分析
+    ///
+    /// 词法分析接口提供以下三个功能：
+    /// 1、智能分词：将连续的自然语言文本，切分成具有语义合理性和完整性的词汇序列；
+    /// 2、词性标注：为每一个词附上对应的词性，例如名词、代词、形容词、动词等；
+    /// 3、命名实体识别：快速识别文本中的实体，例如人名、地名、机构名等。
+    /// 所有的功能均基于千亿级大规模互联网语料进行持续迭代更新，以保证效果不断提升，用户无需担心新词发现、歧义消除、调用性能等问题。目前词法分析已经在泛互联网、金融、政务等不同垂直领域提供业务支持，并取得良好的效果。
+    @inlinable
+    public func lexicalAnalysis(_ input: LexicalAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LexicalAnalysisResponse {
+        try await self.client.execute(action: "LexicalAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Partners {
-    /// 给客户转账
-    ///
-    /// 为合作伙伴提供转账给客户能力。仅支持合作伙伴为自己名下客户转账。
-    @inlinable
-    public func agentTransferMoney(_ input: AgentTransferMoneyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AgentTransferMoneyResponse > {
-        self.client.execute(action: "AgentTransferMoney", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 给客户转账
-    ///
-    /// 为合作伙伴提供转账给客户能力。仅支持合作伙伴为自己名下客户转账。
-    @inlinable
-    public func agentTransferMoney(_ input: AgentTransferMoneyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentTransferMoneyResponse {
-        try await self.client.execute(action: "AgentTransferMoney", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AgentTransferMoney请求参数结构体
     public struct AgentTransferMoneyRequest: TCRequestModel {
         /// 客户账号ID
@@ -58,5 +42,21 @@ extension Partners {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 给客户转账
+    ///
+    /// 为合作伙伴提供转账给客户能力。仅支持合作伙伴为自己名下客户转账。
+    @inlinable
+    public func agentTransferMoney(_ input: AgentTransferMoneyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AgentTransferMoneyResponse > {
+        self.client.execute(action: "AgentTransferMoney", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 给客户转账
+    ///
+    /// 为合作伙伴提供转账给客户能力。仅支持合作伙伴为自己名下客户转账。
+    @inlinable
+    public func agentTransferMoney(_ input: AgentTransferMoneyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentTransferMoneyResponse {
+        try await self.client.execute(action: "AgentTransferMoney", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

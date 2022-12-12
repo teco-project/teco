@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询集群风险项列表
-    ///
-    /// 查询最近一次任务发现的风险项的信息列表，支持根据特殊字段进行过滤
-    @inlinable
-    public func describeRiskList(_ input: DescribeRiskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskListResponse > {
-        self.client.execute(action: "DescribeRiskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询集群风险项列表
-    ///
-    /// 查询最近一次任务发现的风险项的信息列表，支持根据特殊字段进行过滤
-    @inlinable
-    public func describeRiskList(_ input: DescribeRiskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskListResponse {
-        try await self.client.execute(action: "DescribeRiskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRiskList请求参数结构体
     public struct DescribeRiskListRequest: TCRequestModel {
         /// 要查询的集群ID，如果不指定，则查询用户所有的风险项
@@ -52,7 +36,7 @@ extension Tcss {
         /// 排序方式 asc,desc
         public let order: String?
         
-        public init (clusterId: String?, offset: UInt64?, limit: UInt64?, filters: [ComplianceFilters]?, by: String?, order: String?) {
+        public init (clusterId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.clusterId = clusterId
             self.offset = offset
             self.limit = limit
@@ -87,5 +71,21 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询集群风险项列表
+    ///
+    /// 查询最近一次任务发现的风险项的信息列表，支持根据特殊字段进行过滤
+    @inlinable
+    public func describeRiskList(_ input: DescribeRiskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskListResponse > {
+        self.client.execute(action: "DescribeRiskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询集群风险项列表
+    ///
+    /// 查询最近一次任务发现的风险项的信息列表，支持根据特殊字段进行过滤
+    @inlinable
+    public func describeRiskList(_ input: DescribeRiskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskListResponse {
+        try await self.client.execute(action: "DescribeRiskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

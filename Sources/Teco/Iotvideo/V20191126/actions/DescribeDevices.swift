@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取设备信息列表
-    ///
-    /// 本接口（DescribeDevices）用于获取设备信息列表。
-    @inlinable
-    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesResponse > {
-        self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备信息列表
-    ///
-    /// 本接口（DescribeDevices）用于获取设备信息列表。
-    @inlinable
-    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
-        try await self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDevices请求参数结构体
     public struct DescribeDevicesRequest: TCRequestModel {
         /// 产品ID
@@ -52,7 +36,7 @@ extension Iotvideo {
         /// 设备名称，支持左前缀模糊匹配
         public let deviceName: String?
         
-        public init (productId: String, returnModel: Bool, limit: UInt64, offset: UInt64, otaVersion: String?, deviceName: String?) {
+        public init (productId: String, returnModel: Bool, limit: UInt64, offset: UInt64, otaVersion: String? = nil, deviceName: String? = nil) {
             self.productId = productId
             self.returnModel = returnModel
             self.limit = limit
@@ -88,5 +72,21 @@ extension Iotvideo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备信息列表
+    ///
+    /// 本接口（DescribeDevices）用于获取设备信息列表。
+    @inlinable
+    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDevicesResponse > {
+        self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备信息列表
+    ///
+    /// 本接口（DescribeDevices）用于获取设备信息列表。
+    @inlinable
+    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
+        try await self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

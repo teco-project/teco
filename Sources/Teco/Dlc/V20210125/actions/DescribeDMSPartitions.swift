@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// DMS元数据获取分区
-    @inlinable
-    public func describeDMSPartitions(_ input: DescribeDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDMSPartitionsResponse > {
-        self.client.execute(action: "DescribeDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// DMS元数据获取分区
-    @inlinable
-    public func describeDMSPartitions(_ input: DescribeDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSPartitionsResponse {
-        try await self.client.execute(action: "DescribeDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDMSPartitions请求参数结构体
     public struct DescribeDMSPartitionsRequest: TCRequestModel {
         /// 数据库名
@@ -65,7 +53,7 @@ extension Dlc {
         /// 表达式
         public let expression: String?
         
-        public init (databaseName: String, tableName: String, schemaName: String?, name: String?, values: [String]?, partitionNames: [String]?, partValues: [String]?, filter: String?, maxParts: Int64?, offset: Int64?, limit: Int64?, expression: String?) {
+        public init (databaseName: String, tableName: String, schemaName: String? = nil, name: String? = nil, values: [String]? = nil, partitionNames: [String]? = nil, partValues: [String]? = nil, filter: String? = nil, maxParts: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, expression: String? = nil) {
             self.databaseName = databaseName
             self.tableName = tableName
             self.schemaName = schemaName
@@ -112,5 +100,17 @@ extension Dlc {
             case total = "Total"
             case requestId = "RequestId"
         }
+    }
+    
+    /// DMS元数据获取分区
+    @inlinable
+    public func describeDMSPartitions(_ input: DescribeDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDMSPartitionsResponse > {
+        self.client.execute(action: "DescribeDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// DMS元数据获取分区
+    @inlinable
+    public func describeDMSPartitions(_ input: DescribeDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSPartitionsResponse {
+        try await self.client.execute(action: "DescribeDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

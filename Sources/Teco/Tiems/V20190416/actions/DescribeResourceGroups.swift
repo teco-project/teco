@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Tiems {
-    /// 获取资源组列表
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 获取资源组列表
-    @inlinable
-    public func describeResourceGroups(_ input: DescribeResourceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceGroupsResponse > {
-        self.client.execute(action: "DescribeResourceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取资源组列表
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    /// 获取资源组列表
-    @inlinable
-    public func describeResourceGroups(_ input: DescribeResourceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupsResponse {
-        try await self.client.execute(action: "DescribeResourceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeResourceGroups请求参数结构体
     public struct DescribeResourceGroupsRequest: TCRequestModel {
         /// 筛选选项
@@ -50,7 +32,7 @@ extension Tiems {
         /// 排序的依据字段， 取值范围 "CREATE_TIME", "UPDATE_TIME", "NAME"
         public let orderField: String?
         
-        public init (filters: [Filter]?, offset: UInt64?, limit: UInt64?, order: String?, orderField: String?) {
+        public init (filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -84,5 +66,23 @@ extension Tiems {
             case resourceGroups = "ResourceGroups"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取资源组列表
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 获取资源组列表
+    @inlinable
+    public func describeResourceGroups(_ input: DescribeResourceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeResourceGroupsResponse > {
+        self.client.execute(action: "DescribeResourceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取资源组列表
+    ///
+    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    /// 获取资源组列表
+    @inlinable
+    public func describeResourceGroups(_ input: DescribeResourceGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupsResponse {
+        try await self.client.execute(action: "DescribeResourceGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

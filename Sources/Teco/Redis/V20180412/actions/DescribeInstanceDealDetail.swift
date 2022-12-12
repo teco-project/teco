@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询订单信息
-    @inlinable
-    public func describeInstanceDealDetail(_ input: DescribeInstanceDealDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceDealDetailResponse > {
-        self.client.execute(action: "DescribeInstanceDealDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询订单信息
-    @inlinable
-    public func describeInstanceDealDetail(_ input: DescribeInstanceDealDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDealDetailResponse {
-        try await self.client.execute(action: "DescribeInstanceDealDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceDealDetail请求参数结构体
     public struct DescribeInstanceDealDetailRequest: TCRequestModel {
         /// 订单交易ID数组，即 [CreateInstances](https://cloud.tencent.com/document/api/239/20026) 的输出参数DealId。
@@ -53,5 +41,17 @@ extension Redis {
             case dealDetails = "DealDetails"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询订单信息
+    @inlinable
+    public func describeInstanceDealDetail(_ input: DescribeInstanceDealDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceDealDetailResponse > {
+        self.client.execute(action: "DescribeInstanceDealDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询订单信息
+    @inlinable
+    public func describeInstanceDealDetail(_ input: DescribeInstanceDealDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDealDetailResponse {
+        try await self.client.execute(action: "DescribeInstanceDealDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

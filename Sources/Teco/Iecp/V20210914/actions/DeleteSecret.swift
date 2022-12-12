@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 删除Secret
-    @inlinable
-    public func deleteSecret(_ input: DeleteSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecretResponse > {
-        self.client.execute(action: "DeleteSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除Secret
-    @inlinable
-    public func deleteSecret(_ input: DeleteSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecretResponse {
-        try await self.client.execute(action: "DeleteSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSecret请求参数结构体
     public struct DeleteSecretRequest: TCRequestModel {
         /// 单元ID
@@ -38,7 +26,7 @@ extension Iecp {
         /// secret命名空间（默认:default）
         public let secretNamespace: String?
         
-        public init (edgeUnitID: UInt64, secretName: String, secretNamespace: String?) {
+        public init (edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil) {
             self.edgeUnitID = edgeUnitID
             self.secretName = secretName
             self.secretNamespace = secretNamespace
@@ -59,5 +47,17 @@ extension Iecp {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除Secret
+    @inlinable
+    public func deleteSecret(_ input: DeleteSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecretResponse > {
+        self.client.execute(action: "DeleteSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除Secret
+    @inlinable
+    public func deleteSecret(_ input: DeleteSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecretResponse {
+        try await self.client.execute(action: "DeleteSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

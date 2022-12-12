@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询workload类型的影响范围
-    ///
-    /// 查询workload类型的影响范围，返回workload列表
-    @inlinable
-    public func describeAffectedWorkloadList(_ input: DescribeAffectedWorkloadListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAffectedWorkloadListResponse > {
-        self.client.execute(action: "DescribeAffectedWorkloadList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询workload类型的影响范围
-    ///
-    /// 查询workload类型的影响范围，返回workload列表
-    @inlinable
-    public func describeAffectedWorkloadList(_ input: DescribeAffectedWorkloadListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedWorkloadListResponse {
-        try await self.client.execute(action: "DescribeAffectedWorkloadList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAffectedWorkloadList请求参数结构体
     public struct DescribeAffectedWorkloadListRequest: TCRequestModel {
         /// 唯一的检测项的ID
@@ -52,7 +36,7 @@ extension Tcss {
         /// 排序方式 asc,desc
         public let order: String?
         
-        public init (checkItemId: Int64, offset: UInt64?, limit: UInt64?, filters: [ComplianceFilters]?, by: String?, order: String?) {
+        public init (checkItemId: Int64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.checkItemId = checkItemId
             self.offset = offset
             self.limit = limit
@@ -87,5 +71,21 @@ extension Tcss {
             case affectedWorkloadList = "AffectedWorkloadList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询workload类型的影响范围
+    ///
+    /// 查询workload类型的影响范围，返回workload列表
+    @inlinable
+    public func describeAffectedWorkloadList(_ input: DescribeAffectedWorkloadListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAffectedWorkloadListResponse > {
+        self.client.execute(action: "DescribeAffectedWorkloadList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询workload类型的影响范围
+    ///
+    /// 查询workload类型的影响范围，返回workload列表
+    @inlinable
+    public func describeAffectedWorkloadList(_ input: DescribeAffectedWorkloadListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedWorkloadListResponse {
+        try await self.client.execute(action: "DescribeAffectedWorkloadList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

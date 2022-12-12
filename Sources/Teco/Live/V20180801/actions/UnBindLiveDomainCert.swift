@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 解绑域名证书
-    @inlinable
-    public func unBindLiveDomainCert(_ input: UnBindLiveDomainCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindLiveDomainCertResponse > {
-        self.client.execute(action: "UnBindLiveDomainCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 解绑域名证书
-    @inlinable
-    public func unBindLiveDomainCert(_ input: UnBindLiveDomainCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindLiveDomainCertResponse {
-        try await self.client.execute(action: "UnBindLiveDomainCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UnBindLiveDomainCert请求参数结构体
     public struct UnBindLiveDomainCertRequest: TCRequestModel {
         /// 播放域名。
@@ -38,7 +26,7 @@ extension Live {
         /// 不传则为formal
         public let type: String?
         
-        public init (domainName: String, type: String?) {
+        public init (domainName: String, type: String? = nil) {
             self.domainName = domainName
             self.type = type
         }
@@ -57,5 +45,17 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 解绑域名证书
+    @inlinable
+    public func unBindLiveDomainCert(_ input: UnBindLiveDomainCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnBindLiveDomainCertResponse > {
+        self.client.execute(action: "UnBindLiveDomainCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 解绑域名证书
+    @inlinable
+    public func unBindLiveDomainCert(_ input: UnBindLiveDomainCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindLiveDomainCertResponse {
+        try await self.client.execute(action: "UnBindLiveDomainCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

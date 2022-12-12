@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 查询日志
-    ///
-    /// 本接口（ListLog）用于查看日志信息 
-    @inlinable
-    public func listLog(_ input: ListLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListLogResponse > {
-        self.client.execute(action: "ListLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询日志
-    ///
-    /// 本接口（ListLog）用于查看日志信息 
-    @inlinable
-    public func listLog(_ input: ListLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogResponse {
-        try await self.client.execute(action: "ListLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListLog请求参数结构体
     public struct ListLogRequest: TCRequestModel {
         /// 日志开始时间，毫秒级时间戳
@@ -49,7 +33,7 @@ extension Iotcloud {
         /// 查询条数
         public let maxNum: Int64?
         
-        public init (minTime: UInt64, maxTime: UInt64, keywords: String?, context: String?, maxNum: Int64?) {
+        public init (minTime: UInt64, maxTime: UInt64, keywords: String? = nil, context: String? = nil, maxNum: Int64? = nil) {
             self.minTime = minTime
             self.maxTime = maxTime
             self.keywords = keywords
@@ -90,5 +74,21 @@ extension Iotcloud {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询日志
+    ///
+    /// 本接口（ListLog）用于查看日志信息 
+    @inlinable
+    public func listLog(_ input: ListLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListLogResponse > {
+        self.client.execute(action: "ListLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询日志
+    ///
+    /// 本接口（ListLog）用于查看日志信息 
+    @inlinable
+    public func listLog(_ input: ListLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogResponse {
+        try await self.client.execute(action: "ListLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

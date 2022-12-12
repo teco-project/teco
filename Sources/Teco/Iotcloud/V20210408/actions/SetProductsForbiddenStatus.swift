@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotcloud {
-    /// 批量设置产品禁用状态
-    @inlinable
-    public func setProductsForbiddenStatus(_ input: SetProductsForbiddenStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetProductsForbiddenStatusResponse > {
-        self.client.execute(action: "SetProductsForbiddenStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 批量设置产品禁用状态
-    @inlinable
-    public func setProductsForbiddenStatus(_ input: SetProductsForbiddenStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetProductsForbiddenStatusResponse {
-        try await self.client.execute(action: "SetProductsForbiddenStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// SetProductsForbiddenStatus请求参数结构体
     public struct SetProductsForbiddenStatusRequest: TCRequestModel {
         /// 要设置禁用状态的产品列表
@@ -54,5 +42,17 @@ extension Iotcloud {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 批量设置产品禁用状态
+    @inlinable
+    public func setProductsForbiddenStatus(_ input: SetProductsForbiddenStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SetProductsForbiddenStatusResponse > {
+        self.client.execute(action: "SetProductsForbiddenStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 批量设置产品禁用状态
+    @inlinable
+    public func setProductsForbiddenStatus(_ input: SetProductsForbiddenStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetProductsForbiddenStatusResponse {
+        try await self.client.execute(action: "SetProductsForbiddenStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

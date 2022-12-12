@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdn {
-    /// 获取DDoS攻击Top数据
-    @inlinable
-    public func listTopDDoSData(_ input: ListTopDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopDDoSDataResponse > {
-        self.client.execute(action: "ListTopDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取DDoS攻击Top数据
-    @inlinable
-    public func listTopDDoSData(_ input: ListTopDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDDoSDataResponse {
-        try await self.client.execute(action: "ListTopDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListTopDDoSData请求参数结构体
     public struct ListTopDDoSDataRequest: TCRequestModel {
         /// 查询Top数据的开始时间，格式为：2020-01-01 00:00:00
@@ -42,7 +30,7 @@ extension Cdn {
         /// AttackIP表示查询攻击ip的top排行，AttackType表示攻击类型的top排行，为空默认为AttackType
         public let metric: String?
         
-        public init (startTime: String, endTime: String, topCount: UInt64?, metric: String?) {
+        public init (startTime: String, endTime: String, topCount: UInt64? = nil, metric: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.topCount = topCount
@@ -73,5 +61,17 @@ extension Cdn {
             case ipData = "IPData"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取DDoS攻击Top数据
+    @inlinable
+    public func listTopDDoSData(_ input: ListTopDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListTopDDoSDataResponse > {
+        self.client.execute(action: "ListTopDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取DDoS攻击Top数据
+    @inlinable
+    public func listTopDDoSData(_ input: ListTopDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDDoSDataResponse {
+        try await self.client.execute(action: "ListTopDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

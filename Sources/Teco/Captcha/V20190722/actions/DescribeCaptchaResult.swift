@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Captcha {
-    /// 核查验证码票据结果(Web及APP)
-    @inlinable
-    public func describeCaptchaResult(_ input: DescribeCaptchaResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaResultResponse > {
-        self.client.execute(action: "DescribeCaptchaResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 核查验证码票据结果(Web及APP)
-    @inlinable
-    public func describeCaptchaResult(_ input: DescribeCaptchaResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaResultResponse {
-        try await self.client.execute(action: "DescribeCaptchaResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCaptchaResult请求参数结构体
     public struct DescribeCaptchaResultRequest: TCRequestModel {
         /// 固定填值：9。可在控制台配置不同验证码类型。
@@ -62,7 +50,7 @@ extension Captcha {
         /// 是否返回前端获取验证码时间，取值1：需要返回
         public let needGetCaptchaTime: Int64?
         
-        public init (captchaType: UInt64, ticket: String, userIp: String, randstr: String, captchaAppId: UInt64, appSecretKey: String, businessId: UInt64?, sceneId: UInt64?, macAddress: String?, imei: String?, needGetCaptchaTime: Int64?) {
+        public init (captchaType: UInt64, ticket: String, userIp: String, randstr: String, captchaAppId: UInt64, appSecretKey: String, businessId: UInt64? = nil, sceneId: UInt64? = nil, macAddress: String? = nil, imei: String? = nil, needGetCaptchaTime: Int64? = nil) {
             self.captchaType = captchaType
             self.ticket = ticket
             self.userIp = userIp
@@ -127,5 +115,17 @@ extension Captcha {
             case getCaptchaTime = "GetCaptchaTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 核查验证码票据结果(Web及APP)
+    @inlinable
+    public func describeCaptchaResult(_ input: DescribeCaptchaResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCaptchaResultResponse > {
+        self.client.execute(action: "DescribeCaptchaResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 核查验证码票据结果(Web及APP)
+    @inlinable
+    public func describeCaptchaResult(_ input: DescribeCaptchaResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaResultResponse {
+        try await self.client.execute(action: "DescribeCaptchaResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

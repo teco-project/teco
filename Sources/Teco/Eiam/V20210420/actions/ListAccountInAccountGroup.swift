@@ -15,29 +15,13 @@
 // DO NOT EDIT.
 
 extension Eiam {
-    /// 获取账号组中的账号列表
-    ///
-    ///  获取账号组中的账号列表
-    @inlinable
-    public func listAccountInAccountGroup(_ input: ListAccountInAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAccountInAccountGroupResponse > {
-        self.client.execute(action: "ListAccountInAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取账号组中的账号列表
-    ///
-    ///  获取账号组中的账号列表
-    @inlinable
-    public func listAccountInAccountGroup(_ input: ListAccountInAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAccountInAccountGroupResponse {
-        try await self.client.execute(action: "ListAccountInAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ListAccountInAccountGroup请求参数结构体
     public struct ListAccountInAccountGroupRequest: TCRequestModel {
         /// 账号组ID。
         public let accountGroupId: String
         
         /// 查询条件，支持多搜索条件组合、多数据范围匹配的搜索。
-        public let searchCondition: AccountGroupSearchCriteria
+        public let searchCondition: AccountGroupSearchCriteria?
         
         /// 偏移量，默认为 0。
         public let offset: Int64?
@@ -45,7 +29,7 @@ extension Eiam {
         /// 返回数量，默认为 20，最大值为 100。
         public let limit: Int64?
         
-        public init (accountGroupId: String, searchCondition: AccountGroupSearchCriteria, offset: Int64?, limit: Int64?) {
+        public init (accountGroupId: String, searchCondition: AccountGroupSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.accountGroupId = accountGroupId
             self.searchCondition = searchCondition
             self.offset = offset
@@ -83,5 +67,21 @@ extension Eiam {
             case accountGroupId = "AccountGroupId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取账号组中的账号列表
+    ///
+    ///  获取账号组中的账号列表
+    @inlinable
+    public func listAccountInAccountGroup(_ input: ListAccountInAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListAccountInAccountGroupResponse > {
+        self.client.execute(action: "ListAccountInAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取账号组中的账号列表
+    ///
+    ///  获取账号组中的账号列表
+    @inlinable
+    public func listAccountInAccountGroup(_ input: ListAccountInAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAccountInAccountGroupResponse {
+        try await self.client.execute(action: "ListAccountInAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

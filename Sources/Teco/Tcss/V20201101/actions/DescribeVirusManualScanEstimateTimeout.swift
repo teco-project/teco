@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询木马一键检测预估超时时间
-    @inlinable
-    public func describeVirusManualScanEstimateTimeout(_ input: DescribeVirusManualScanEstimateTimeoutRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusManualScanEstimateTimeoutResponse > {
-        self.client.execute(action: "DescribeVirusManualScanEstimateTimeout", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询木马一键检测预估超时时间
-    @inlinable
-    public func describeVirusManualScanEstimateTimeout(_ input: DescribeVirusManualScanEstimateTimeoutRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusManualScanEstimateTimeoutResponse {
-        try await self.client.execute(action: "DescribeVirusManualScanEstimateTimeout", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeVirusManualScanEstimateTimeout请求参数结构体
     public struct DescribeVirusManualScanEstimateTimeoutRequest: TCRequestModel {
         /// 扫描范围0容器1主机节点
@@ -38,7 +26,7 @@ extension Tcss {
         /// 自选扫描范围的容器id或者主机id 根据ScanRangeType决定
         public let scanIds: [String]?
         
-        public init (scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]?) {
+        public init (scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]? = nil) {
             self.scanRangeType = scanRangeType
             self.scanRangeAll = scanRangeAll
             self.scanIds = scanIds
@@ -67,5 +55,17 @@ extension Tcss {
             case containerScanConcurrencyCount = "ContainerScanConcurrencyCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询木马一键检测预估超时时间
+    @inlinable
+    public func describeVirusManualScanEstimateTimeout(_ input: DescribeVirusManualScanEstimateTimeoutRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeVirusManualScanEstimateTimeoutResponse > {
+        self.client.execute(action: "DescribeVirusManualScanEstimateTimeout", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询木马一键检测预估超时时间
+    @inlinable
+    public func describeVirusManualScanEstimateTimeout(_ input: DescribeVirusManualScanEstimateTimeoutRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusManualScanEstimateTimeoutResponse {
+        try await self.client.execute(action: "DescribeVirusManualScanEstimateTimeout", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

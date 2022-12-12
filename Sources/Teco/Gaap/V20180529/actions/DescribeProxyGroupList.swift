@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 拉取通道组列表
-    ///
-    /// 本接口（DescribeProxyGroupList）用于拉取通道组列表及各通道组基本信息。
-    @inlinable
-    public func describeProxyGroupList(_ input: DescribeProxyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyGroupListResponse > {
-        self.client.execute(action: "DescribeProxyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 拉取通道组列表
-    ///
-    /// 本接口（DescribeProxyGroupList）用于拉取通道组列表及各通道组基本信息。
-    @inlinable
-    public func describeProxyGroupList(_ input: DescribeProxyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupListResponse {
-        try await self.client.execute(action: "DescribeProxyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProxyGroupList请求参数结构体
     public struct DescribeProxyGroupListRequest: TCRequestModel {
         /// 偏移量，默认值为0。
@@ -55,7 +39,7 @@ extension Gaap {
         /// 最多支持5个标签，当存在两个或两个以上的标签时，满足其中任意一个标签时，该通道组会被拉取出来。
         public let tagSet: [TagPair]?
         
-        public init (offset: Int64, limit: Int64, projectId: Int64, filters: [Filter]?, tagSet: [TagPair]?) {
+        public init (offset: Int64, limit: Int64, projectId: Int64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil) {
             self.offset = offset
             self.limit = limit
             self.projectId = projectId
@@ -89,5 +73,21 @@ extension Gaap {
             case proxyGroupList = "ProxyGroupList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 拉取通道组列表
+    ///
+    /// 本接口（DescribeProxyGroupList）用于拉取通道组列表及各通道组基本信息。
+    @inlinable
+    public func describeProxyGroupList(_ input: DescribeProxyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProxyGroupListResponse > {
+        self.client.execute(action: "DescribeProxyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 拉取通道组列表
+    ///
+    /// 本接口（DescribeProxyGroupList）用于拉取通道组列表及各通道组基本信息。
+    @inlinable
+    public func describeProxyGroupList(_ input: DescribeProxyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupListResponse {
+        try await self.client.execute(action: "DescribeProxyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

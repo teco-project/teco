@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 重启模型加速任务
-    @inlinable
-    public func restartModelAccelerateTask(_ input: RestartModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartModelAccelerateTaskResponse > {
-        self.client.execute(action: "RestartModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 重启模型加速任务
-    @inlinable
-    public func restartModelAccelerateTask(_ input: RestartModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartModelAccelerateTaskResponse {
-        try await self.client.execute(action: "RestartModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// RestartModelAccelerateTask请求参数结构体
     public struct RestartModelAccelerateTaskRequest: TCRequestModel {
         /// 模型加速任务ID
@@ -51,7 +39,7 @@ extension Tione {
         public let modelVersion: String?
         
         /// 模型输入cos路径
-        public let modelInputPath: CosPathInfo
+        public let modelInputPath: CosPathInfo?
         
         /// 优化级别（NO_LOSS/FP16），默认FP16
         public let optimizationLevel: String?
@@ -63,7 +51,7 @@ extension Tione {
         public let modelInputInfos: [ModelInputInfo]?
         
         /// 模型输出cos路径
-        public let modelOutputPath: CosPathInfo
+        public let modelOutputPath: CosPathInfo?
         
         /// 模型格式（TORCH_SCRIPT/DETECTRON2/SAVED_MODEL/FROZEN_GRAPH/MMDETECTION/ONNX/HUGGING_FACE）
         public let modelFormat: String?
@@ -75,7 +63,7 @@ extension Tione {
         public let gpuType: String?
         
         /// 模型专业参数
-        public let hyperParameter: HyperParameter
+        public let hyperParameter: HyperParameter?
         
         /// 加速引擎版本
         public let accEngineVersion: String?
@@ -86,7 +74,7 @@ extension Tione {
         /// SavedModel保存时配置的签名
         public let modelSignature: String?
         
-        public init (modelAccTaskId: String, modelAccTaskName: String?, modelSource: String?, algorithmFramework: String?, modelId: String?, modelName: String?, modelVersion: String?, modelInputPath: CosPathInfo, optimizationLevel: String?, modelInputNum: UInt64?, modelInputInfos: [ModelInputInfo]?, modelOutputPath: CosPathInfo, modelFormat: String?, tensorInfos: [String]?, gpuType: String?, hyperParameter: HyperParameter, accEngineVersion: String?, tags: [Tag]?, modelSignature: String?) {
+        public init (modelAccTaskId: String, modelAccTaskName: String? = nil, modelSource: String? = nil, algorithmFramework: String? = nil, modelId: String? = nil, modelName: String? = nil, modelVersion: String? = nil, modelInputPath: CosPathInfo? = nil, optimizationLevel: String? = nil, modelInputNum: UInt64? = nil, modelInputInfos: [ModelInputInfo]? = nil, modelOutputPath: CosPathInfo? = nil, modelFormat: String? = nil, tensorInfos: [String]? = nil, gpuType: String? = nil, hyperParameter: HyperParameter? = nil, accEngineVersion: String? = nil, tags: [Tag]? = nil, modelSignature: String? = nil) {
             self.modelAccTaskId = modelAccTaskId
             self.modelAccTaskName = modelAccTaskName
             self.modelSource = modelSource
@@ -139,5 +127,17 @@ extension Tione {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 重启模型加速任务
+    @inlinable
+    public func restartModelAccelerateTask(_ input: RestartModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RestartModelAccelerateTaskResponse > {
+        self.client.execute(action: "RestartModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 重启模型加速任务
+    @inlinable
+    public func restartModelAccelerateTask(_ input: RestartModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartModelAccelerateTaskResponse {
+        try await self.client.execute(action: "RestartModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

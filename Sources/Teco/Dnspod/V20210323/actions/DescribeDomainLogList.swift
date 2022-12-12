@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Dnspod {
-    /// 获取域名日志
-    @inlinable
-    public func describeDomainLogList(_ input: DescribeDomainLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainLogListResponse > {
-        self.client.execute(action: "DescribeDomainLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取域名日志
-    @inlinable
-    public func describeDomainLogList(_ input: DescribeDomainLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainLogListResponse {
-        try await self.client.execute(action: "DescribeDomainLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeDomainLogList请求参数结构体
     public struct DescribeDomainLogListRequest: TCRequestModel {
         /// 域名
@@ -41,7 +29,7 @@ extension Dnspod {
         /// 共要获取的日志条数，比如获取20条，则为20，默认为500条，单次最多获取500条。
         public let limit: UInt64?
         
-        public init (domain: String, domainId: UInt64?, offset: UInt64?, limit: UInt64?) {
+        public init (domain: String, domainId: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.domain = domain
             self.domainId = domainId
             self.offset = offset
@@ -77,5 +65,17 @@ extension Dnspod {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取域名日志
+    @inlinable
+    public func describeDomainLogList(_ input: DescribeDomainLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeDomainLogListResponse > {
+        self.client.execute(action: "DescribeDomainLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取域名日志
+    @inlinable
+    public func describeDomainLogList(_ input: DescribeDomainLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainLogListResponse {
+        try await self.client.execute(action: "DescribeDomainLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

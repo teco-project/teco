@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Trtc {
-    /// 查询详细事件
-    ///
-    /// 查询用户某次通话内的进退房，视频开关等详细事件。可查询14天内数据。（同接口DescribeDetailEvent）
-    @inlinable
-    public func describeUserEvent(_ input: DescribeUserEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserEventResponse > {
-        self.client.execute(action: "DescribeUserEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询详细事件
-    ///
-    /// 查询用户某次通话内的进退房，视频开关等详细事件。可查询14天内数据。（同接口DescribeDetailEvent）
-    @inlinable
-    public func describeUserEvent(_ input: DescribeUserEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserEventResponse {
-        try await self.client.execute(action: "DescribeUserEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeUserEvent请求参数结构体
     public struct DescribeUserEventRequest: TCRequestModel {
         /// 通话 ID（唯一标识一次通话）： SdkAppId_RoomId（房间号）_ CreateTime（房间创建时间，unix时间戳，单位为s）例：1400xxxxxx_218695_1590065777。通过 DescribeRoomInfo（查询历史房间列表）接口获取（[查询历史房间列表](https://cloud.tencent.com/document/product/647/44050)）。
@@ -84,5 +68,21 @@ extension Trtc {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询详细事件
+    ///
+    /// 查询用户某次通话内的进退房，视频开关等详细事件。可查询14天内数据。（同接口DescribeDetailEvent）
+    @inlinable
+    public func describeUserEvent(_ input: DescribeUserEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeUserEventResponse > {
+        self.client.execute(action: "DescribeUserEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询详细事件
+    ///
+    /// 查询用户某次通话内的进退房，视频开关等详细事件。可查询14天内数据。（同接口DescribeDetailEvent）
+    @inlinable
+    public func describeUserEvent(_ input: DescribeUserEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserEventResponse {
+        try await self.client.execute(action: "DescribeUserEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

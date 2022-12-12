@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfs {
-    /// 创建权限组
-    ///
-    /// 本接口（CreateCfsPGroup）用于创建权限组
-    @inlinable
-    public func createCfsPGroup(_ input: CreateCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCfsPGroupResponse > {
-        self.client.execute(action: "CreateCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建权限组
-    ///
-    /// 本接口（CreateCfsPGroup）用于创建权限组
-    @inlinable
-    public func createCfsPGroup(_ input: CreateCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsPGroupResponse {
-        try await self.client.execute(action: "CreateCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateCfsPGroup请求参数结构体
     public struct CreateCfsPGroupRequest: TCRequestModel {
         /// 权限组名称，1-64个字符且只能为中文，字母，数字，下划线或横线
@@ -39,7 +23,7 @@ extension Cfs {
         /// 权限组描述信息，1-255个字符
         public let descInfo: String?
         
-        public init (name: String, descInfo: String?) {
+        public init (name: String, descInfo: String? = nil) {
             self.name = name
             self.descInfo = descInfo
         }
@@ -78,5 +62,21 @@ extension Cfs {
             case cDate = "CDate"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建权限组
+    ///
+    /// 本接口（CreateCfsPGroup）用于创建权限组
+    @inlinable
+    public func createCfsPGroup(_ input: CreateCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCfsPGroupResponse > {
+        self.client.execute(action: "CreateCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建权限组
+    ///
+    /// 本接口（CreateCfsPGroup）用于创建权限组
+    @inlinable
+    public func createCfsPGroup(_ input: CreateCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsPGroupResponse {
+        try await self.client.execute(action: "CreateCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

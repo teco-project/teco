@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Habo {
-    /// 获取分析结果
-    ///
-    /// 查询指定md5样本是否分析完成，并获取分析日志下载地址。
-    @inlinable
-    public func describeStatus(_ input: DescribeStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatusResponse > {
-        self.client.execute(action: "DescribeStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取分析结果
-    ///
-    /// 查询指定md5样本是否分析完成，并获取分析日志下载地址。
-    @inlinable
-    public func describeStatus(_ input: DescribeStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatusResponse {
-        try await self.client.execute(action: "DescribeStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStatus请求参数结构体
     public struct DescribeStatusRequest: TCRequestModel {
         /// 购买服务后获得的授权帐号，用于保证请求有效性
@@ -70,5 +54,21 @@ extension Habo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取分析结果
+    ///
+    /// 查询指定md5样本是否分析完成，并获取分析日志下载地址。
+    @inlinable
+    public func describeStatus(_ input: DescribeStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStatusResponse > {
+        self.client.execute(action: "DescribeStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取分析结果
+    ///
+    /// 查询指定md5样本是否分析完成，并获取分析日志下载地址。
+    @inlinable
+    public func describeStatus(_ input: DescribeStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatusResponse {
+        try await self.client.execute(action: "DescribeStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

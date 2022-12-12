@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 修改模块名称
-    @inlinable
-    public func modifyModuleName(_ input: ModifyModuleNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleNameResponse > {
-        self.client.execute(action: "ModifyModuleName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改模块名称
-    @inlinable
-    public func modifyModuleName(_ input: ModifyModuleNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleNameResponse {
-        try await self.client.execute(action: "ModifyModuleName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyModuleName请求参数结构体
     public struct ModifyModuleNameRequest: TCRequestModel {
         /// 模块ID。
@@ -54,5 +42,17 @@ extension Ecm {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改模块名称
+    @inlinable
+    public func modifyModuleName(_ input: ModifyModuleNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyModuleNameResponse > {
+        self.client.execute(action: "ModifyModuleName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改模块名称
+    @inlinable
+    public func modifyModuleName(_ input: ModifyModuleNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleNameResponse {
+        try await self.client.execute(action: "ModifyModuleName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

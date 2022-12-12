@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Cbs {
-    /// 绑定定期快照策略
-    ///
-    /// 本接口（BindAutoSnapshotPolicy）用于绑定云硬盘到指定的定期快照策略。
-    /// * 每个地域下的定期快照策略配额限制请参考文档[定期快照](/document/product/362/8191)。
-    /// * 当已绑定定期快照策略的云硬盘处于未使用状态（即弹性云盘未挂载或非弹性云盘的主机处于关机状态）将不会创建定期快照。
-    @inlinable
-    public func bindAutoSnapshotPolicy(_ input: BindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindAutoSnapshotPolicyResponse > {
-        self.client.execute(action: "BindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 绑定定期快照策略
-    ///
-    /// 本接口（BindAutoSnapshotPolicy）用于绑定云硬盘到指定的定期快照策略。
-    /// * 每个地域下的定期快照策略配额限制请参考文档[定期快照](/document/product/362/8191)。
-    /// * 当已绑定定期快照策略的云硬盘处于未使用状态（即弹性云盘未挂载或非弹性云盘的主机处于关机状态）将不会创建定期快照。
-    @inlinable
-    public func bindAutoSnapshotPolicy(_ input: BindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoSnapshotPolicyResponse {
-        try await self.client.execute(action: "BindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// BindAutoSnapshotPolicy请求参数结构体
     public struct BindAutoSnapshotPolicyRequest: TCRequestModel {
         /// 要绑定的定期快照策略ID。
@@ -43,7 +23,7 @@ extension Cbs {
         /// 要绑定的云硬盘ID列表，一次请求最多绑定80块云盘。
         public let diskIds: [String]?
         
-        public init (autoSnapshotPolicyId: String, diskIds: [String]?) {
+        public init (autoSnapshotPolicyId: String, diskIds: [String]? = nil) {
             self.autoSnapshotPolicyId = autoSnapshotPolicyId
             self.diskIds = diskIds
         }
@@ -62,5 +42,25 @@ extension Cbs {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 绑定定期快照策略
+    ///
+    /// 本接口（BindAutoSnapshotPolicy）用于绑定云硬盘到指定的定期快照策略。
+    /// * 每个地域下的定期快照策略配额限制请参考文档[定期快照](/document/product/362/8191)。
+    /// * 当已绑定定期快照策略的云硬盘处于未使用状态（即弹性云盘未挂载或非弹性云盘的主机处于关机状态）将不会创建定期快照。
+    @inlinable
+    public func bindAutoSnapshotPolicy(_ input: BindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindAutoSnapshotPolicyResponse > {
+        self.client.execute(action: "BindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 绑定定期快照策略
+    ///
+    /// 本接口（BindAutoSnapshotPolicy）用于绑定云硬盘到指定的定期快照策略。
+    /// * 每个地域下的定期快照策略配额限制请参考文档[定期快照](/document/product/362/8191)。
+    /// * 当已绑定定期快照策略的云硬盘处于未使用状态（即弹性云盘未挂载或非弹性云盘的主机处于关机状态）将不会创建定期快照。
+    @inlinable
+    public func bindAutoSnapshotPolicy(_ input: BindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoSnapshotPolicyResponse {
+        try await self.client.execute(action: "BindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

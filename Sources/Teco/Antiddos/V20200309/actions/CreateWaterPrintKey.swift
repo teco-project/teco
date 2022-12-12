@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 添加DDoS防护的水印防护密钥
-    @inlinable
-    public func createWaterPrintKey(_ input: CreateWaterPrintKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWaterPrintKeyResponse > {
-        self.client.execute(action: "CreateWaterPrintKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 添加DDoS防护的水印防护密钥
-    @inlinable
-    public func createWaterPrintKey(_ input: CreateWaterPrintKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWaterPrintKeyResponse {
-        try await self.client.execute(action: "CreateWaterPrintKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateWaterPrintKey请求参数结构体
     public struct CreateWaterPrintKeyRequest: TCRequestModel {
         /// 资源实例ID
@@ -49,5 +37,17 @@ extension Antiddos {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 添加DDoS防护的水印防护密钥
+    @inlinable
+    public func createWaterPrintKey(_ input: CreateWaterPrintKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateWaterPrintKeyResponse > {
+        self.client.execute(action: "CreateWaterPrintKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 添加DDoS防护的水印防护密钥
+    @inlinable
+    public func createWaterPrintKey(_ input: CreateWaterPrintKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWaterPrintKeyResponse {
+        try await self.client.execute(action: "CreateWaterPrintKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 创建自定义拦截页面
-    ///
-    /// 创建自定义拦截页面。
-    @inlinable
-    public func createSecurityDropPage(_ input: CreateSecurityDropPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityDropPageResponse > {
-        self.client.execute(action: "CreateSecurityDropPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建自定义拦截页面
-    ///
-    /// 创建自定义拦截页面。
-    @inlinable
-    public func createSecurityDropPage(_ input: CreateSecurityDropPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityDropPageResponse {
-        try await self.client.execute(action: "CreateSecurityDropPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSecurityDropPage请求参数结构体
     public struct CreateSecurityDropPageRequest: TCRequestModel {
         /// 站点Id。当使用ZoneId和Entity时可不填写TemplateId，否则必须填写TemplateId。
@@ -58,7 +42,7 @@ extension Teo {
         /// 模板Id。当使用模板Id时可不填ZoneId和Entity，否则必须填写ZoneId和Entity。
         public let templateId: String?
         
-        public init (zoneId: String, entity: String, name: String, content: String, type: String, module: String, templateId: String?) {
+        public init (zoneId: String, entity: String, name: String, content: String, type: String, module: String, templateId: String? = nil) {
             self.zoneId = zoneId
             self.entity = entity
             self.name = name
@@ -91,5 +75,21 @@ extension Teo {
             case pageId = "PageId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建自定义拦截页面
+    ///
+    /// 创建自定义拦截页面。
+    @inlinable
+    public func createSecurityDropPage(_ input: CreateSecurityDropPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityDropPageResponse > {
+        self.client.execute(action: "CreateSecurityDropPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建自定义拦截页面
+    ///
+    /// 创建自定义拦截页面。
+    @inlinable
+    public func createSecurityDropPage(_ input: CreateSecurityDropPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityDropPageResponse {
+        try await self.client.execute(action: "CreateSecurityDropPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

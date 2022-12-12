@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 修改通道所属项目
-    ///
-    /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
-    @inlinable
-    public func modifyProxiesProject(_ input: ModifyProxiesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProxiesProjectResponse > {
-        self.client.execute(action: "ModifyProxiesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改通道所属项目
-    ///
-    /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
-    @inlinable
-    public func modifyProxiesProject(_ input: ModifyProxiesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesProjectResponse {
-        try await self.client.execute(action: "ModifyProxiesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyProxiesProject请求参数结构体
     public struct ModifyProxiesProjectRequest: TCRequestModel {
         /// 需要修改到的项目ID。
@@ -46,7 +30,7 @@ extension Gaap {
         /// （新参数）一个或多个待操作的通道ID。
         public let proxyIds: [String]?
         
-        public init (projectId: Int64, instanceIds: [String]?, clientToken: String?, proxyIds: [String]?) {
+        public init (projectId: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil) {
             self.projectId = projectId
             self.instanceIds = instanceIds
             self.clientToken = clientToken
@@ -69,5 +53,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改通道所属项目
+    ///
+    /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
+    @inlinable
+    public func modifyProxiesProject(_ input: ModifyProxiesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProxiesProjectResponse > {
+        self.client.execute(action: "ModifyProxiesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改通道所属项目
+    ///
+    /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
+    @inlinable
+    public func modifyProxiesProject(_ input: ModifyProxiesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesProjectResponse {
+        try await self.client.execute(action: "ModifyProxiesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

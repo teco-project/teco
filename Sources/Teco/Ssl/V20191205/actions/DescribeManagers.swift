@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ssl {
-    /// 查询管理人列表
-    @inlinable
-    public func describeManagers(_ input: DescribeManagersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeManagersResponse > {
-        self.client.execute(action: "DescribeManagers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询管理人列表
-    @inlinable
-    public func describeManagers(_ input: DescribeManagersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeManagersResponse {
-        try await self.client.execute(action: "DescribeManagers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeManagers请求参数结构体
     public struct DescribeManagersRequest: TCRequestModel {
         /// 公司ID
@@ -57,7 +45,7 @@ extension Ssl {
         /// 管理人姓名/邮箱/部门精准匹配
         public let searchKey: String?
         
-        public init (companyId: Int64, offset: Int64?, limit: Int64?, managerName: String?, managerMail: String?, status: String?, searchKey: String?) {
+        public init (companyId: Int64, offset: Int64? = nil, limit: Int64? = nil, managerName: String? = nil, managerMail: String? = nil, status: String? = nil, searchKey: String? = nil) {
             self.companyId = companyId
             self.offset = offset
             self.limit = limit
@@ -94,5 +82,17 @@ extension Ssl {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询管理人列表
+    @inlinable
+    public func describeManagers(_ input: DescribeManagersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeManagersResponse > {
+        self.client.execute(action: "DescribeManagers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询管理人列表
+    @inlinable
+    public func describeManagers(_ input: DescribeManagersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeManagersResponse {
+        try await self.client.execute(action: "DescribeManagers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Trtc {
-    /// 查询图片
-    ///
-    /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁查找自定义背景图或水印信息，可通过此接口查找已上传的图片信息。无需频繁查找图片信息的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中查看。
-    @inlinable
-    public func describePicture(_ input: DescribePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePictureResponse > {
-        self.client.execute(action: "DescribePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询图片
-    ///
-    /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁查找自定义背景图或水印信息，可通过此接口查找已上传的图片信息。无需频繁查找图片信息的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中查看。
-    @inlinable
-    public func describePicture(_ input: DescribePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePictureResponse {
-        try await self.client.execute(action: "DescribePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePicture请求参数结构体
     public struct DescribePictureRequest: TCRequestModel {
         /// 应用ID
@@ -45,7 +29,7 @@ extension Trtc {
         /// 页码，不填时默认为1
         public let pageNo: UInt64?
         
-        public init (sdkAppId: UInt64, pictureId: UInt64?, pageSize: UInt64?, pageNo: UInt64?) {
+        public init (sdkAppId: UInt64, pictureId: UInt64? = nil, pageSize: UInt64? = nil, pageNo: UInt64? = nil) {
             self.sdkAppId = sdkAppId
             self.pictureId = pictureId
             self.pageSize = pageSize
@@ -76,5 +60,21 @@ extension Trtc {
             case pictureInfo = "PictureInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询图片
+    ///
+    /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁查找自定义背景图或水印信息，可通过此接口查找已上传的图片信息。无需频繁查找图片信息的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中查看。
+    @inlinable
+    public func describePicture(_ input: DescribePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePictureResponse > {
+        self.client.execute(action: "DescribePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询图片
+    ///
+    /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁查找自定义背景图或水印信息，可通过此接口查找已上传的图片信息。无需频繁查找图片信息的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中查看。
+    @inlinable
+    public func describePicture(_ input: DescribePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePictureResponse {
+        try await self.client.execute(action: "DescribePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

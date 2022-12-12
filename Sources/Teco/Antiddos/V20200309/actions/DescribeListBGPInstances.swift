@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取高防包资产实例列表
-    @inlinable
-    public func describeListBGPInstances(_ input: DescribeListBGPInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListBGPInstancesResponse > {
-        self.client.execute(action: "DescribeListBGPInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取高防包资产实例列表
-    @inlinable
-    public func describeListBGPInstances(_ input: DescribeListBGPInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBGPInstancesResponse {
-        try await self.client.execute(action: "DescribeListBGPInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeListBGPInstances请求参数结构体
     public struct DescribeListBGPInstancesRequest: TCRequestModel {
         /// 页起始偏移，取值为(页码-1)*一页条数
@@ -69,9 +57,9 @@ extension Antiddos {
         public let filterChannelFlag: UInt64?
         
         /// 标签搜索
-        public let filterTag: TagFilter
+        public let filterTag: TagFilter?
         
-        public init (offset: UInt64, limit: UInt64, filterIp: String?, filterInstanceId: String?, filterRegion: String?, filterName: String?, filterLine: UInt64?, filterStatus: String?, filterBoundStatus: String?, filterInstanceIdList: [String]?, filterEnterpriseFlag: UInt64?, filterLightFlag: UInt64?, filterChannelFlag: UInt64?, filterTag: TagFilter) {
+        public init (offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterRegion: String? = nil, filterName: String? = nil, filterLine: UInt64? = nil, filterStatus: String? = nil, filterBoundStatus: String? = nil, filterInstanceIdList: [String]? = nil, filterEnterpriseFlag: UInt64? = nil, filterLightFlag: UInt64? = nil, filterChannelFlag: UInt64? = nil, filterTag: TagFilter? = nil) {
             self.offset = offset
             self.limit = limit
             self.filterIp = filterIp
@@ -122,5 +110,17 @@ extension Antiddos {
             case instanceList = "InstanceList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取高防包资产实例列表
+    @inlinable
+    public func describeListBGPInstances(_ input: DescribeListBGPInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeListBGPInstancesResponse > {
+        self.client.execute(action: "DescribeListBGPInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取高防包资产实例列表
+    @inlinable
+    public func describeListBGPInstances(_ input: DescribeListBGPInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBGPInstancesResponse {
+        try await self.client.execute(action: "DescribeListBGPInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

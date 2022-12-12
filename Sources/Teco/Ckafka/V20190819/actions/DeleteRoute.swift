@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 删除路由
-    @inlinable
-    public func deleteRoute(_ input: DeleteRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRouteResponse > {
-        self.client.execute(action: "DeleteRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除路由
-    @inlinable
-    public func deleteRoute(_ input: DeleteRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteResponse {
-        try await self.client.execute(action: "DeleteRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteRoute请求参数结构体
     public struct DeleteRouteRequest: TCRequestModel {
         /// 实例唯一id
@@ -41,7 +29,7 @@ extension Ckafka {
         /// 删除路由时间
         public let deleteRouteTime: String?
         
-        public init (instanceId: String, routeId: Int64, callerAppid: Int64?, deleteRouteTime: String?) {
+        public init (instanceId: String, routeId: Int64, callerAppid: Int64? = nil, deleteRouteTime: String? = nil) {
             self.instanceId = instanceId
             self.routeId = routeId
             self.callerAppid = callerAppid
@@ -68,5 +56,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除路由
+    @inlinable
+    public func deleteRoute(_ input: DeleteRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRouteResponse > {
+        self.client.execute(action: "DeleteRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除路由
+    @inlinable
+    public func deleteRoute(_ input: DeleteRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteResponse {
+        try await self.client.execute(action: "DeleteRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

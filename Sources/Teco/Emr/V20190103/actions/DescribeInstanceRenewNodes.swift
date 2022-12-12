@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 查询待续费节点信息
-    @inlinable
-    public func describeInstanceRenewNodes(_ input: DescribeInstanceRenewNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceRenewNodesResponse > {
-        self.client.execute(action: "DescribeInstanceRenewNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询待续费节点信息
-    @inlinable
-    public func describeInstanceRenewNodes(_ input: DescribeInstanceRenewNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceRenewNodesResponse {
-        try await self.client.execute(action: "DescribeInstanceRenewNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceRenewNodes请求参数结构体
     public struct DescribeInstanceRenewNodesRequest: TCRequestModel {
         /// 集群实例ID,实例ID形如: emr-xxxxxxxx
@@ -63,5 +51,17 @@ extension Emr {
             case metaInfo = "MetaInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询待续费节点信息
+    @inlinable
+    public func describeInstanceRenewNodes(_ input: DescribeInstanceRenewNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceRenewNodesResponse > {
+        self.client.execute(action: "DescribeInstanceRenewNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询待续费节点信息
+    @inlinable
+    public func describeInstanceRenewNodes(_ input: DescribeInstanceRenewNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceRenewNodesResponse {
+        try await self.client.execute(action: "DescribeInstanceRenewNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

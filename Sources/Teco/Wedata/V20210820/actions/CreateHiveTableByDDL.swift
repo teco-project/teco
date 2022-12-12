@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Wedata {
-    /// 创建hive表
-    ///
-    /// 创建hive表，返回表名称
-    @inlinable
-    public func createHiveTableByDDL(_ input: CreateHiveTableByDDLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHiveTableByDDLResponse > {
-        self.client.execute(action: "CreateHiveTableByDDL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建hive表
-    ///
-    /// 创建hive表，返回表名称
-    @inlinable
-    public func createHiveTableByDDL(_ input: CreateHiveTableByDDLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHiveTableByDDLResponse {
-        try await self.client.execute(action: "CreateHiveTableByDDL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateHiveTableByDDL请求参数结构体
     public struct CreateHiveTableByDDLRequest: TCRequestModel {
         /// 数据源ID
@@ -54,7 +38,7 @@ extension Wedata {
         /// 责任人
         public let incharge: String?
         
-        public init (datasourceId: String, database: String, ddlSql: String, privilege: Int64, projectId: String, type: String, incharge: String?) {
+        public init (datasourceId: String, database: String, ddlSql: String, privilege: Int64, projectId: String, type: String, incharge: String? = nil) {
             self.datasourceId = datasourceId
             self.database = database
             self.ddlSql = ddlSql
@@ -87,5 +71,21 @@ extension Wedata {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建hive表
+    ///
+    /// 创建hive表，返回表名称
+    @inlinable
+    public func createHiveTableByDDL(_ input: CreateHiveTableByDDLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateHiveTableByDDLResponse > {
+        self.client.execute(action: "CreateHiveTableByDDL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建hive表
+    ///
+    /// 创建hive表，返回表名称
+    @inlinable
+    public func createHiveTableByDDL(_ input: CreateHiveTableByDDLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHiveTableByDDLResponse {
+        try await self.client.execute(action: "CreateHiveTableByDDL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

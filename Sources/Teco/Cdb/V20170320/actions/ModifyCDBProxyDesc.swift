@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cdb {
-    /// 修改数据库代理描述
-    @inlinable
-    public func modifyCDBProxyDesc(_ input: ModifyCDBProxyDescRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCDBProxyDescResponse > {
-        self.client.execute(action: "ModifyCDBProxyDesc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改数据库代理描述
-    @inlinable
-    public func modifyCDBProxyDesc(_ input: ModifyCDBProxyDescRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCDBProxyDescResponse {
-        try await self.client.execute(action: "ModifyCDBProxyDesc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyCDBProxyDesc请求参数结构体
     public struct ModifyCDBProxyDescRequest: TCRequestModel {
         /// 实例ID
@@ -59,5 +47,17 @@ extension Cdb {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改数据库代理描述
+    @inlinable
+    public func modifyCDBProxyDesc(_ input: ModifyCDBProxyDescRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyCDBProxyDescResponse > {
+        self.client.execute(action: "ModifyCDBProxyDesc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改数据库代理描述
+    @inlinable
+    public func modifyCDBProxyDesc(_ input: ModifyCDBProxyDescRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCDBProxyDescResponse {
+        try await self.client.execute(action: "ModifyCDBProxyDesc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

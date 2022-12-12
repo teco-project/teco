@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 打开Kafka协议消费
-    ///
-    /// 打开Kafka协议消费功能
-    @inlinable
-    public func openKafkaConsumer(_ input: OpenKafkaConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenKafkaConsumerResponse > {
-        self.client.execute(action: "OpenKafkaConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 打开Kafka协议消费
-    ///
-    /// 打开Kafka协议消费功能
-    @inlinable
-    public func openKafkaConsumer(_ input: OpenKafkaConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenKafkaConsumerResponse {
-        try await self.client.execute(action: "OpenKafkaConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// OpenKafkaConsumer请求参数结构体
     public struct OpenKafkaConsumerRequest: TCRequestModel {
         /// CLS控制台创建的TopicId
@@ -39,7 +23,7 @@ extension Cls {
         /// 压缩方式[0:NONE；2:SNAPPY；3:LZ4]
         public let compression: Int64?
         
-        public init (fromTopicId: String, compression: Int64?) {
+        public init (fromTopicId: String, compression: Int64? = nil) {
             self.fromTopicId = fromTopicId
             self.compression = compression
         }
@@ -62,5 +46,21 @@ extension Cls {
             case topicID = "TopicID"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 打开Kafka协议消费
+    ///
+    /// 打开Kafka协议消费功能
+    @inlinable
+    public func openKafkaConsumer(_ input: OpenKafkaConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OpenKafkaConsumerResponse > {
+        self.client.execute(action: "OpenKafkaConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 打开Kafka协议消费
+    ///
+    /// 打开Kafka协议消费功能
+    @inlinable
+    public func openKafkaConsumer(_ input: OpenKafkaConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenKafkaConsumerResponse {
+        try await self.client.execute(action: "OpenKafkaConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 创建可视化创建应用模板
-    @inlinable
-    public func createApplicationVisualization(_ input: CreateApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationVisualizationResponse > {
-        self.client.execute(action: "CreateApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建可视化创建应用模板
-    @inlinable
-    public func createApplicationVisualization(_ input: CreateApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationVisualizationResponse {
-        try await self.client.execute(action: "CreateApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateApplicationVisualization请求参数结构体
     public struct CreateApplicationVisualizationRequest: TCRequestModel {
         /// 基本信息
@@ -39,13 +27,13 @@ extension Iecp {
         public let volumes: [Volume]?
         
         /// 服务配置
-        public let service: Service
+        public let service: Service?
         
         /// Job配置
-        public let job: Job
+        public let job: Job?
         
         /// CronJob配置
-        public let cronJob: CronJob
+        public let cronJob: CronJob?
         
         /// 重新运行策略
         public let restartPolicy: String?
@@ -54,7 +42,7 @@ extension Iecp {
         public let imagePullSecrets: [String]?
         
         /// HPA配置
-        public let horizontalPodAutoscaler: HorizontalPodAutoscaler
+        public let horizontalPodAutoscaler: HorizontalPodAutoscaler?
         
         /// 初始化容器列表
         public let initContainers: [Container]?
@@ -62,7 +50,7 @@ extension Iecp {
         /// 容器列表
         public let containers: [Container]?
         
-        public init (basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, volumes: [Volume]?, service: Service, job: Job, cronJob: CronJob, restartPolicy: String?, imagePullSecrets: [String]?, horizontalPodAutoscaler: HorizontalPodAutoscaler, initContainers: [Container]?, containers: [Container]?) {
+        public init (basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil) {
             self.basicInfo = basicInfo
             self.basicConfig = basicConfig
             self.volumes = volumes
@@ -104,5 +92,17 @@ extension Iecp {
             case applicationId = "ApplicationId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建可视化创建应用模板
+    @inlinable
+    public func createApplicationVisualization(_ input: CreateApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateApplicationVisualizationResponse > {
+        self.client.execute(action: "CreateApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建可视化创建应用模板
+    @inlinable
+    public func createApplicationVisualization(_ input: CreateApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationVisualizationResponse {
+        try await self.client.execute(action: "CreateApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

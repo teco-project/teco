@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Yunjing {
-    /// 获取进程统计列表
-    ///
-    /// 本接口 (DescribeProcessStatistics) 用于获取进程统计列表数据。
-    @inlinable
-    public func describeProcessStatistics(_ input: DescribeProcessStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProcessStatisticsResponse > {
-        self.client.execute(action: "DescribeProcessStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取进程统计列表
-    ///
-    /// 本接口 (DescribeProcessStatistics) 用于获取进程统计列表数据。
-    @inlinable
-    public func describeProcessStatistics(_ input: DescribeProcessStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProcessStatisticsResponse {
-        try await self.client.execute(action: "DescribeProcessStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeProcessStatistics请求参数结构体
     public struct DescribeProcessStatisticsRequest: TCRequestModel {
         /// 返回数量，默认为10，最大值为100。
@@ -43,7 +27,7 @@ extension Yunjing {
         /// <li>ProcessName - String - 是否必填：否 - 进程名</li>
         public let filters: [Filter]?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [Filter]?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -72,5 +56,21 @@ extension Yunjing {
             case processStatistics = "ProcessStatistics"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取进程统计列表
+    ///
+    /// 本接口 (DescribeProcessStatistics) 用于获取进程统计列表数据。
+    @inlinable
+    public func describeProcessStatistics(_ input: DescribeProcessStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeProcessStatisticsResponse > {
+        self.client.execute(action: "DescribeProcessStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取进程统计列表
+    ///
+    /// 本接口 (DescribeProcessStatistics) 用于获取进程统计列表数据。
+    @inlinable
+    public func describeProcessStatistics(_ input: DescribeProcessStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProcessStatisticsResponse {
+        try await self.client.execute(action: "DescribeProcessStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

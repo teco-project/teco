@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 创建实例访问凭证
-    ///
-    /// 创建实例的临时或长期访问凭证
-    @inlinable
-    public func createInstanceToken(_ input: CreateInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceTokenResponse > {
-        self.client.execute(action: "CreateInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建实例访问凭证
-    ///
-    /// 创建实例的临时或长期访问凭证
-    @inlinable
-    public func createInstanceToken(_ input: CreateInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceTokenResponse {
-        try await self.client.execute(action: "CreateInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateInstanceToken请求参数结构体
     public struct CreateInstanceTokenRequest: TCRequestModel {
         /// 实例Id
@@ -42,7 +26,7 @@ extension Tcr {
         /// 长期访问凭证描述信息
         public let desc: String?
         
-        public init (registryId: String, tokenType: String?, desc: String?) {
+        public init (registryId: String, tokenType: String? = nil, desc: String? = nil) {
             self.registryId = registryId
             self.tokenType = tokenType
             self.desc = desc
@@ -81,5 +65,21 @@ extension Tcr {
             case tokenId = "TokenId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建实例访问凭证
+    ///
+    /// 创建实例的临时或长期访问凭证
+    @inlinable
+    public func createInstanceToken(_ input: CreateInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceTokenResponse > {
+        self.client.execute(action: "CreateInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建实例访问凭证
+    ///
+    /// 创建实例的临时或长期访问凭证
+    @inlinable
+    public func createInstanceToken(_ input: CreateInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceTokenResponse {
+        try await self.client.execute(action: "CreateInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

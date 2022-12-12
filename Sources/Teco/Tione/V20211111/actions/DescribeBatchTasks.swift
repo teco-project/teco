@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tione {
-    /// 跑批任务列表
-    ///
-    /// 批量预测任务列表信息
-    @inlinable
-    public func describeBatchTasks(_ input: DescribeBatchTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchTasksResponse > {
-        self.client.execute(action: "DescribeBatchTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 跑批任务列表
-    ///
-    /// 批量预测任务列表信息
-    @inlinable
-    public func describeBatchTasks(_ input: DescribeBatchTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTasksResponse {
-        try await self.client.execute(action: "DescribeBatchTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeBatchTasks请求参数结构体
     public struct DescribeBatchTasksRequest: TCRequestModel {
         /// 过滤器，eg：[{ "Name": "Id", "Values": ["train-23091792777383936"] }]
@@ -57,7 +41,7 @@ extension Tione {
         /// 排序的依据字段， 取值范围 "CreateTime" "UpdateTime"
         public let orderField: String?
         
-        public init (filters: [Filter]?, tagFilters: [TagFilter]?, offset: UInt64?, limit: UInt64?, order: String?, orderField: String?) {
+        public init (filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil) {
             self.filters = filters
             self.tagFilters = tagFilters
             self.offset = offset
@@ -93,5 +77,21 @@ extension Tione {
             case batchTaskSet = "BatchTaskSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 跑批任务列表
+    ///
+    /// 批量预测任务列表信息
+    @inlinable
+    public func describeBatchTasks(_ input: DescribeBatchTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeBatchTasksResponse > {
+        self.client.execute(action: "DescribeBatchTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 跑批任务列表
+    ///
+    /// 批量预测任务列表信息
+    @inlinable
+    public func describeBatchTasks(_ input: DescribeBatchTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTasksResponse {
+        try await self.client.execute(action: "DescribeBatchTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

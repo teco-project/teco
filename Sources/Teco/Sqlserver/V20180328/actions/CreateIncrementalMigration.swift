@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 创建增量备份导入任务
-    ///
-    /// 本接口（CreateIncrementalMigration）用于创建增量备份导入任务。
-    @inlinable
-    public func createIncrementalMigration(_ input: CreateIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIncrementalMigrationResponse > {
-        self.client.execute(action: "CreateIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建增量备份导入任务
-    ///
-    /// 本接口（CreateIncrementalMigration）用于创建增量备份导入任务。
-    @inlinable
-    public func createIncrementalMigration(_ input: CreateIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIncrementalMigrationResponse {
-        try await self.client.execute(action: "CreateIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateIncrementalMigration请求参数结构体
     public struct CreateIncrementalMigrationRequest: TCRequestModel {
         /// 导入目标实例ID
@@ -45,7 +29,7 @@ extension Sqlserver {
         /// 是否需要恢复，NO-不需要，YES-需要，默认不需要
         public let isRecovery: String?
         
-        public init (instanceId: String, backupMigrationId: String, backupFiles: [String]?, isRecovery: String?) {
+        public init (instanceId: String, backupMigrationId: String, backupFiles: [String]? = nil, isRecovery: String? = nil) {
             self.instanceId = instanceId
             self.backupMigrationId = backupMigrationId
             self.backupFiles = backupFiles
@@ -72,5 +56,21 @@ extension Sqlserver {
             case incrementalMigrationId = "IncrementalMigrationId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建增量备份导入任务
+    ///
+    /// 本接口（CreateIncrementalMigration）用于创建增量备份导入任务。
+    @inlinable
+    public func createIncrementalMigration(_ input: CreateIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateIncrementalMigrationResponse > {
+        self.client.execute(action: "CreateIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建增量备份导入任务
+    ///
+    /// 本接口（CreateIncrementalMigration）用于创建增量备份导入任务。
+    @inlinable
+    public func createIncrementalMigration(_ input: CreateIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIncrementalMigrationResponse {
+        try await self.client.execute(action: "CreateIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

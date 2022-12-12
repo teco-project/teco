@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取模板同步信息
-    @inlinable
-    public func describePrometheusTemplateSync(_ input: DescribePrometheusTemplateSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusTemplateSyncResponse > {
-        self.client.execute(action: "DescribePrometheusTemplateSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取模板同步信息
-    @inlinable
-    public func describePrometheusTemplateSync(_ input: DescribePrometheusTemplateSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTemplateSyncResponse {
-        try await self.client.execute(action: "DescribePrometheusTemplateSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePrometheusTemplateSync请求参数结构体
     public struct DescribePrometheusTemplateSyncRequest: TCRequestModel {
         /// 模板ID
@@ -53,5 +41,17 @@ extension Tke {
             case targets = "Targets"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取模板同步信息
+    @inlinable
+    public func describePrometheusTemplateSync(_ input: DescribePrometheusTemplateSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePrometheusTemplateSyncResponse > {
+        self.client.execute(action: "DescribePrometheusTemplateSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取模板同步信息
+    @inlinable
+    public func describePrometheusTemplateSync(_ input: DescribePrometheusTemplateSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTemplateSyncResponse {
+        try await self.client.execute(action: "DescribePrometheusTemplateSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

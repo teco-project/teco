@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideoindustry {
-    /// 查询子分组列表
-    ///
-    /// 本接口(DescribeSubGroups)用于查询分组下的子分组列表。
-    @inlinable
-    public func describeSubGroups(_ input: DescribeSubGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubGroupsResponse > {
-        self.client.execute(action: "DescribeSubGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询子分组列表
-    ///
-    /// 本接口(DescribeSubGroups)用于查询分组下的子分组列表。
-    @inlinable
-    public func describeSubGroups(_ input: DescribeSubGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubGroupsResponse {
-        try await self.client.execute(action: "DescribeSubGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSubGroups请求参数结构体
     public struct DescribeSubGroupsRequest: TCRequestModel {
         /// 分组ID
@@ -48,7 +32,7 @@ extension Iotvideoindustry {
         /// 是否统计子分组下的设备数，0：统计，1：不统计
         public let onlyGroup: Int64?
         
-        public init (groupId: String?, groupName: String?, offset: UInt64?, limit: UInt64?, onlyGroup: Int64?) {
+        public init (groupId: String? = nil, groupName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, onlyGroup: Int64? = nil) {
             self.groupId = groupId
             self.groupName = groupName
             self.offset = offset
@@ -83,5 +67,21 @@ extension Iotvideoindustry {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询子分组列表
+    ///
+    /// 本接口(DescribeSubGroups)用于查询分组下的子分组列表。
+    @inlinable
+    public func describeSubGroups(_ input: DescribeSubGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubGroupsResponse > {
+        self.client.execute(action: "DescribeSubGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询子分组列表
+    ///
+    /// 本接口(DescribeSubGroups)用于查询分组下的子分组列表。
+    @inlinable
+    public func describeSubGroups(_ input: DescribeSubGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubGroupsResponse {
+        try await self.client.execute(action: "DescribeSubGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

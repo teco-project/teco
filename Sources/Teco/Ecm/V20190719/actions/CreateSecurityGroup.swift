@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ecm {
-    /// 创建安全组
-    @inlinable
-    public func createSecurityGroup(_ input: CreateSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityGroupResponse > {
-        self.client.execute(action: "CreateSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建安全组
-    @inlinable
-    public func createSecurityGroup(_ input: CreateSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupResponse {
-        try await self.client.execute(action: "CreateSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSecurityGroup请求参数结构体
     public struct CreateSecurityGroupRequest: TCRequestModel {
         /// 安全组名称，可任意命名，但不得超过60个字符。
@@ -38,7 +26,7 @@ extension Ecm {
         /// 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]
         public let tags: [Tag]?
         
-        public init (groupName: String, groupDescription: String, tags: [Tag]?) {
+        public init (groupName: String, groupDescription: String, tags: [Tag]? = nil) {
             self.groupName = groupName
             self.groupDescription = groupDescription
             self.tags = tags
@@ -63,5 +51,17 @@ extension Ecm {
             case securityGroup = "SecurityGroup"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建安全组
+    @inlinable
+    public func createSecurityGroup(_ input: CreateSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSecurityGroupResponse > {
+        self.client.execute(action: "CreateSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建安全组
+    @inlinable
+    public func createSecurityGroup(_ input: CreateSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupResponse {
+        try await self.client.execute(action: "CreateSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

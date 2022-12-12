@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 获取应用容器状态
-    @inlinable
-    public func describeEdgeUnitApplicationPodContainers(_ input: DescribeEdgeUnitApplicationPodContainersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitApplicationPodContainersResponse > {
-        self.client.execute(action: "DescribeEdgeUnitApplicationPodContainers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取应用容器状态
-    @inlinable
-    public func describeEdgeUnitApplicationPodContainers(_ input: DescribeEdgeUnitApplicationPodContainersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationPodContainersResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitApplicationPodContainers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeUnitApplicationPodContainers请求参数结构体
     public struct DescribeEdgeUnitApplicationPodContainersRequest: TCRequestModel {
         /// 单元ID
@@ -64,5 +52,17 @@ extension Iecp {
             case containerSet = "ContainerSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取应用容器状态
+    @inlinable
+    public func describeEdgeUnitApplicationPodContainers(_ input: DescribeEdgeUnitApplicationPodContainersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitApplicationPodContainersResponse > {
+        self.client.execute(action: "DescribeEdgeUnitApplicationPodContainers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取应用容器状态
+    @inlinable
+    public func describeEdgeUnitApplicationPodContainers(_ input: DescribeEdgeUnitApplicationPodContainersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationPodContainersResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitApplicationPodContainers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

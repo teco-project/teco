@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询版本保留执行记录
-    @inlinable
-    public func describeTagRetentionExecution(_ input: DescribeTagRetentionExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagRetentionExecutionResponse > {
-        self.client.execute(action: "DescribeTagRetentionExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询版本保留执行记录
-    @inlinable
-    public func describeTagRetentionExecution(_ input: DescribeTagRetentionExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionExecutionResponse {
-        try await self.client.execute(action: "DescribeTagRetentionExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTagRetentionExecution请求参数结构体
     public struct DescribeTagRetentionExecutionRequest: TCRequestModel {
         /// 主实例iD
@@ -41,7 +29,7 @@ extension Tcr {
         /// 分页Page
         public let offset: Int64?
         
-        public init (registryId: String, retentionId: Int64, limit: Int64?, offset: Int64?) {
+        public init (registryId: String, retentionId: Int64, limit: Int64? = nil, offset: Int64? = nil) {
             self.registryId = registryId
             self.retentionId = retentionId
             self.limit = limit
@@ -72,5 +60,17 @@ extension Tcr {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询版本保留执行记录
+    @inlinable
+    public func describeTagRetentionExecution(_ input: DescribeTagRetentionExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTagRetentionExecutionResponse > {
+        self.client.execute(action: "DescribeTagRetentionExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询版本保留执行记录
+    @inlinable
+    public func describeTagRetentionExecution(_ input: DescribeTagRetentionExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionExecutionResponse {
+        try await self.client.execute(action: "DescribeTagRetentionExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

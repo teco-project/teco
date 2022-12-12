@@ -46,7 +46,7 @@ extension Tsf {
         /// 子任务单机并发数限制，默认值为2
         public let subTaskConcurrency: Int64?
         
-        public init (subTaskConcurrency: Int64?) {
+        public init (subTaskConcurrency: Int64? = nil) {
             self.subTaskConcurrency = subTaskConcurrency
         }
         
@@ -63,7 +63,7 @@ extension Tsf {
         /// Agent版本号
         public let agentVersion: String?
         
-        public init (agentType: String?, agentVersion: String?) {
+        public init (agentType: String? = nil, agentVersion: String? = nil) {
             self.agentType = agentType
             self.agentVersion = agentVersion
         }
@@ -357,7 +357,7 @@ extension Tsf {
         /// api描述信息
         public let description: String?
         
-        public init (namespaceId: String, microserviceId: String, path: String, method: String, pathMapping: String, host: String?, description: String?) {
+        public init (namespaceId: String, microserviceId: String, path: String, method: String, pathMapping: String, host: String? = nil, description: String? = nil) {
             self.namespaceId = namespaceId
             self.microserviceId = microserviceId
             self.path = path
@@ -709,13 +709,13 @@ extension Tsf {
         
         /// 配置项解析规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let configSchema: BusinessLogConfigSchema
+        public let configSchema: BusinessLogConfigSchema?
         
         /// 配置项关联部署组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configAssociatedGroups: [BusinesLogConfigAssociatedGroup]?
         
-        public init (configId: String?, configName: String?, configPath: String?, configDesc: String?, configTags: String?, configPipeline: String?, configCreateTime: String?, configUpdateTime: String?, configSchema: BusinessLogConfigSchema, configAssociatedGroups: [BusinesLogConfigAssociatedGroup]?) {
+        public init (configId: String? = nil, configName: String? = nil, configPath: String? = nil, configDesc: String? = nil, configTags: String? = nil, configPipeline: String? = nil, configCreateTime: String? = nil, configUpdateTime: String? = nil, configSchema: BusinessLogConfigSchema? = nil, configAssociatedGroups: [BusinesLogConfigAssociatedGroup]? = nil) {
             self.configId = configId
             self.configName = configName
             self.configPath = configPath
@@ -767,7 +767,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schemaPatternLayout: String?
         
-        public init (schemaType: Int64, schemaContent: String?, schemaDateFormat: String?, schemaMultilinePattern: String?, schemaCreateTime: String?, schemaPatternLayout: String?) {
+        public init (schemaType: Int64, schemaContent: String? = nil, schemaDateFormat: String? = nil, schemaMultilinePattern: String? = nil, schemaCreateTime: String? = nil, schemaPatternLayout: String? = nil) {
             self.schemaType = schemaType
             self.schemaContent = schemaContent
             self.schemaDateFormat = schemaDateFormat
@@ -930,7 +930,7 @@ extension Tsf {
         
         /// 返回给前端的控制信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let operationInfo: OperationInfo
+        public let operationInfo: OperationInfo?
         
         /// 集群版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1451,7 +1451,7 @@ extension Tsf {
         
         /// 健康检查配置信息，若不指定该参数，则默认不设置健康检查。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let healthCheckSettings: HealthCheckSettings
+        public let healthCheckSettings: HealthCheckSettings?
         
         /// 是否部署Agent容器
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1471,7 +1471,7 @@ extension Tsf {
         
         /// TcrRepoInfo值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tcrRepoInfo: TcrRepoInfo
+        public let tcrRepoInfo: TcrRepoInfo?
         
         /// 数据卷信息，list
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1491,11 +1491,11 @@ extension Tsf {
         
         /// 预热配置设置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let warmupSetting: WarmupSetting
+        public let warmupSetting: WarmupSetting?
         
         /// Envoy网关服务配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let gatewayConfig: GatewayConfig
+        public let gatewayConfig: GatewayConfig?
         
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
@@ -1687,7 +1687,7 @@ extension Tsf {
         
         /// 部署组健康检查设置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let healthCheckSettings: HealthCheckSettings
+        public let healthCheckSettings: HealthCheckSettings?
         
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
@@ -1782,7 +1782,7 @@ extension Tsf {
         
         /// 鉴权信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let credentials: CosCredentials
+        public let credentials: CosCredentials?
         
         enum CodingKeys: String, CodingKey {
             case bucket = "Bucket"
@@ -1869,15 +1869,15 @@ extension Tsf {
         
         /// 采集路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let collectPath: [String]
+        public let collectPath: [String]?
         
         /// 关联部署组信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let groups: [GroupInfo]
+        public let groups: [GroupInfo]?
         
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let createTime: String
+        public let createTime: String?
         
         public init (configId: String, configName: String, collectPath: [String], groups: [GroupInfo], createTime: String) {
             self.configId = configId
@@ -1922,9 +1922,9 @@ extension Tsf {
         
         /// k8s ValueFrom
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let valueFrom: ValueFrom
+        public let valueFrom: ValueFrom?
         
-        public init (name: String, value: String?, valueFrom: ValueFrom) {
+        public init (name: String, value: String? = nil, valueFrom: ValueFrom? = nil) {
             self.name = name
             self.value = value
             self.valueFrom = valueFrom
@@ -1943,7 +1943,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fieldPath: String?
         
-        public init (fieldPath: String?) {
+        public init (fieldPath: String? = nil) {
             self.fieldPath = fieldPath
         }
         
@@ -2018,7 +2018,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configFileValueLength: UInt64?
         
-        public init (configId: String?, configName: String?, configVersion: String?, configVersionDesc: String?, configFileName: String?, configFileValue: String?, configFileCode: String?, creationTime: String?, applicationId: String?, applicationName: String?, deleteFlag: Bool?, configVersionCount: Int64?, lastUpdateTime: String?, configFilePath: String?, configPostCmd: String?, configFileValueLength: UInt64?) {
+        public init (configId: String? = nil, configName: String? = nil, configVersion: String? = nil, configVersionDesc: String? = nil, configFileName: String? = nil, configFileValue: String? = nil, configFileCode: String? = nil, creationTime: String? = nil, applicationId: String? = nil, applicationName: String? = nil, deleteFlag: Bool? = nil, configVersionCount: Int64? = nil, lastUpdateTime: String? = nil, configFilePath: String? = nil, configPostCmd: String? = nil, configFileValueLength: UInt64? = nil) {
             self.configId = configId
             self.configName = configName
             self.configVersion = configVersion
@@ -2375,7 +2375,7 @@ extension Tsf {
         
         /// 分位值对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let quantile: QuantileEntity
+        public let quantile: QuantileEntity?
         
         enum CodingKeys: String, CodingKey {
             case topStatusCode = "TopStatusCode"
@@ -2429,7 +2429,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let associateTime: String?
         
-        public init (groupId: String, groupName: String, clusterType: String, clusterId: String?, clusterName: String?, namespaceName: String?, associateTime: String?) {
+        public init (groupId: String, groupName: String, clusterType: String, clusterId: String? = nil, clusterName: String? = nil, namespaceName: String? = nil, associateTime: String? = nil) {
             self.groupId = groupId
             self.groupName = groupName
             self.clusterType = clusterType
@@ -2676,7 +2676,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
         
-        public init (path: String?) {
+        public init (path: String? = nil) {
             self.path = path
         }
         
@@ -2689,7 +2689,7 @@ extension Tsf {
     public struct HealthCheckSetting: TCInputModel, TCOutputModel {
         /// 健康检查方法。HTTP：通过 HTTP 接口检查；CMD：通过执行命令检查；TCP：通过建立 TCP 连接检查。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let actionType: String
+        public let actionType: String?
         
         /// 容器延时启动健康检查的时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2731,7 +2731,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
         
-        public init (actionType: String, initialDelaySeconds: UInt64?, timeoutSeconds: UInt64?, periodSeconds: UInt64?, successThreshold: UInt64?, failureThreshold: UInt64?, scheme: String?, port: UInt64?, path: String?, command: [String]?, type: String?) {
+        public init (actionType: String, initialDelaySeconds: UInt64? = nil, timeoutSeconds: UInt64? = nil, periodSeconds: UInt64? = nil, successThreshold: UInt64? = nil, failureThreshold: UInt64? = nil, scheme: String? = nil, port: UInt64? = nil, path: String? = nil, command: [String]? = nil, type: String? = nil) {
             self.actionType = actionType
             self.initialDelaySeconds = initialDelaySeconds
             self.timeoutSeconds = timeoutSeconds
@@ -2764,13 +2764,13 @@ extension Tsf {
     public struct HealthCheckSettings: TCInputModel, TCOutputModel {
         /// 存活健康检查
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let livenessProbe: HealthCheckSetting
+        public let livenessProbe: HealthCheckSetting?
         
         /// 就绪健康检查
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let readinessProbe: HealthCheckSetting
+        public let readinessProbe: HealthCheckSetting?
         
-        public init (livenessProbe: HealthCheckSetting, readinessProbe: HealthCheckSetting) {
+        public init (livenessProbe: HealthCheckSetting? = nil, readinessProbe: HealthCheckSetting? = nil) {
             self.livenessProbe = livenessProbe
             self.readinessProbe = readinessProbe
         }
@@ -2829,7 +2829,7 @@ extension Tsf {
         
         /// TcrRepoInfo值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tcrRepoInfo: TcrRepoInfo
+        public let tcrRepoInfo: TcrRepoInfo?
         
         /// TcrBindingId值
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2841,7 +2841,7 @@ extension Tsf {
         
         /// ApplicationName值（废弃）
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let applicationName: ScalableRule
+        public let applicationName: ScalableRule?
         
         /// ApplicationName值
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -2932,7 +2932,7 @@ extension Tsf {
         
         /// TcrRepoInfo值
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let tcrRepoInfo: TcrRepoInfo
+        public let tcrRepoInfo: TcrRepoInfo?
         
         enum CodingKeys: String, CodingKey {
             case repoName = "RepoName"
@@ -3398,31 +3398,31 @@ extension Tsf {
     public struct JvmMonitorData: TCOutputModel {
         /// 堆内存监控图,三条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let heapMemory: MemoryPicture
+        public let heapMemory: MemoryPicture?
         
         /// 非堆内存监控图,三条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let nonHeapMemory: MemoryPicture
+        public let nonHeapMemory: MemoryPicture?
         
         /// 伊甸园区监控图,三条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let edenSpace: MemoryPicture
+        public let edenSpace: MemoryPicture?
         
         /// 幸存者区监控图,三条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let survivorSpace: MemoryPicture
+        public let survivorSpace: MemoryPicture?
         
         /// 老年代监控图,三条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let oldSpace: MemoryPicture
+        public let oldSpace: MemoryPicture?
         
         /// 元空间监控图,三条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let metaSpace: MemoryPicture
+        public let metaSpace: MemoryPicture?
         
         /// 线程监控图,三条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let threadPicture: ThreadPicture
+        public let threadPicture: ThreadPicture?
         
         /// youngGC增量监控图,一条线
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3500,11 +3500,11 @@ extension Tsf {
     public struct LaneGroup: TCInputModel, TCOutputModel {
         /// 部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let groupId: String
+        public let groupId: String?
         
         /// 是否入口应用
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let entrance: Bool
+        public let entrance: Bool?
         
         /// 泳道部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3546,7 +3546,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: String?
         
-        public init (groupId: String, entrance: Bool, laneGroupId: String?, laneId: String?, groupName: String?, applicationId: String?, applicationName: String?, namespaceId: String?, namespaceName: String?, createTime: Int64?, updateTime: Int64?, clusterType: String?) {
+        public init (groupId: String, entrance: Bool, laneGroupId: String? = nil, laneId: String? = nil, groupName: String? = nil, applicationId: String? = nil, applicationName: String? = nil, namespaceId: String? = nil, namespaceName: String? = nil, createTime: Int64? = nil, updateTime: Int64? = nil, clusterType: String? = nil) {
             self.groupId = groupId
             self.entrance = entrance
             self.laneGroupId = laneGroupId
@@ -3778,7 +3778,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let function: String?
         
-        public init (name: String?, function: String?) {
+        public init (name: String? = nil, function: String? = nil) {
             self.name = name
             self.function = function
         }
@@ -3885,7 +3885,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
         
-        public init (name: String?, value: String?) {
+        public init (name: String? = nil, value: String? = nil) {
             self.name = name
             self.value = value
         }
@@ -3949,7 +3949,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let criticalInstanceCount: Int64?
         
-        public init (microserviceId: String?, microserviceName: String?, microserviceDesc: String?, createTime: Int64?, updateTime: Int64?, namespaceId: String?, runInstanceCount: Int64?, criticalInstanceCount: Int64?) {
+        public init (microserviceId: String? = nil, microserviceName: String? = nil, microserviceDesc: String? = nil, createTime: Int64? = nil, updateTime: Int64? = nil, namespaceId: String? = nil, runInstanceCount: Int64? = nil, criticalInstanceCount: Int64? = nil) {
             self.microserviceId = microserviceId
             self.microserviceName = microserviceName
             self.microserviceDesc = microserviceDesc
@@ -4277,15 +4277,15 @@ extension Tsf {
     public struct OperationInfo: TCOutputModel {
         /// 初始化按钮的控制信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let `init`: OperationInfoDetail
+        public let `init`: OperationInfoDetail?
         
         /// 添加实例按钮的控制信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let addInstance: OperationInfoDetail
+        public let addInstance: OperationInfoDetail?
         
         /// 销毁机器的控制信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let destroy: OperationInfoDetail
+        public let destroy: OperationInfoDetail?
         
         enum CodingKeys: String, CodingKey {
             case `init` = "Init"
@@ -4584,7 +4584,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let programItemList: [ProgramItem]?
         
-        public init (programId: String?, programName: String?, programDesc: String?, deleteFlag: Bool?, creationTime: Int64?, lastUpdateTime: Int64?, programItemList: [ProgramItem]?) {
+        public init (programId: String? = nil, programName: String? = nil, programDesc: String? = nil, deleteFlag: Bool? = nil, creationTime: Int64? = nil, lastUpdateTime: Int64? = nil, programItemList: [ProgramItem]? = nil) {
             self.programId = programId
             self.programName = programName
             self.programDesc = programDesc
@@ -4613,7 +4613,7 @@ extension Tsf {
         
         /// 资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let resource: Resource
+        public let resource: Resource?
         
         /// 数据值列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4639,7 +4639,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let programId: String?
         
-        public init (programItemId: String?, resource: Resource, valueList: [String]?, isAll: Bool?, creationTime: Int64?, lastUpdateTime: Int64?, deleteFlag: Bool?, programId: String?) {
+        public init (programItemId: String? = nil, resource: Resource? = nil, valueList: [String]? = nil, isAll: Bool? = nil, creationTime: Int64? = nil, lastUpdateTime: Int64? = nil, deleteFlag: Bool? = nil, programId: String? = nil) {
             self.programItemId = programItemId
             self.resource = resource
             self.valueList = valueList
@@ -4696,7 +4696,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodePort: Int64?
         
-        public init (`protocol`: String, port: Int64, targetPort: Int64, nodePort: Int64?) {
+        public init (`protocol`: String, port: Int64, targetPort: Int64, nodePort: Int64? = nil) {
             self.`protocol` = `protocol`
             self.port = port
             self.targetPort = targetPort
@@ -4864,7 +4864,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let index: Int64?
         
-        public init (resourceId: String?, resourceCode: String?, resourceName: String?, serviceCode: String?, resourceAction: String?, idField: String?, nameField: String?, selectIdsField: String?, creationTime: Int64?, lastUpdateTime: Int64?, deleteFlag: Bool?, resourceDesc: String?, canSelectAll: Bool?, searchWordField: String?, index: Int64?) {
+        public init (resourceId: String? = nil, resourceCode: String? = nil, resourceName: String? = nil, serviceCode: String? = nil, resourceAction: String? = nil, idField: String? = nil, nameField: String? = nil, selectIdsField: String? = nil, creationTime: Int64? = nil, lastUpdateTime: Int64? = nil, deleteFlag: Bool? = nil, resourceDesc: String? = nil, canSelectAll: Bool? = nil, searchWordField: String? = nil, index: Int64? = nil) {
             self.resourceId = resourceId
             self.resourceCode = resourceCode
             self.resourceName = resourceName
@@ -4907,7 +4907,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resource: String?
         
-        public init (resource: String?) {
+        public init (resource: String? = nil) {
             self.resource = resource
         }
         
@@ -4961,7 +4961,7 @@ extension Tsf {
     public struct SchedulingStrategy: TCInputModel, TCOutputModel {
         /// NONE：不使用调度策略；CROSS_AZ：跨可用区部署
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let type: String
+        public let type: String?
         
         public init (type: String) {
             self.type = type
@@ -4982,9 +4982,9 @@ extension Tsf {
         
         /// 健康检查配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let healthCheck: HealthCheckConfig
+        public let healthCheck: HealthCheckConfig?
         
-        public init (name: String, ports: [Ports], healthCheck: HealthCheckConfig) {
+        public init (name: String, ports: [Ports], healthCheck: HealthCheckConfig? = nil) {
             self.name = name
             self.ports = ports
             self.healthCheck = healthCheck
@@ -5001,15 +5001,15 @@ extension Tsf {
     public struct ServiceSetting: TCInputModel, TCOutputModel {
         /// 0:公网, 1:集群内访问, 2：NodePort, 3: VPC 内网访问
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let accessType: Int64
+        public let accessType: Int64?
         
         /// 容器端口映射
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let protocolPorts: [ProtocolPort]
+        public let protocolPorts: [ProtocolPort]?
         
         /// 子网ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let subnetId: String
+        public let subnetId: String?
         
         /// 是否创建 k8s service，默认为 false
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -5031,7 +5031,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sessionAffinityTimeoutSeconds: Int64?
         
-        public init (accessType: Int64, protocolPorts: [ProtocolPort], subnetId: String, disableService: Bool?, headlessService: Bool?, allowDeleteService: Bool?, openSessionAffinity: Bool?, sessionAffinityTimeoutSeconds: Int64?) {
+        public init (accessType: Int64, protocolPorts: [ProtocolPort], subnetId: String, disableService: Bool? = nil, headlessService: Bool? = nil, allowDeleteService: Bool? = nil, openSessionAffinity: Bool? = nil, sessionAffinityTimeoutSeconds: Int64? = nil) {
             self.accessType = accessType
             self.protocolPorts = protocolPorts
             self.subnetId = subnetId
@@ -5577,7 +5577,7 @@ extension Tsf {
         
         /// 高级设置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let advanceSettings: AdvanceSettings
+        public let advanceSettings: AdvanceSettings?
         
         /// 分片参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -5650,7 +5650,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repeatInterval: UInt64?
         
-        public init (ruleType: String, expression: String?, repeatInterval: UInt64?) {
+        public init (ruleType: String, expression: String? = nil, repeatInterval: UInt64? = nil) {
             self.ruleType = ruleType
             self.expression = expression
             self.repeatInterval = repeatInterval
@@ -5685,7 +5685,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repoName: String?
         
-        public init (region: String?, registryId: String?, registryName: String?, namespace: String?, repoName: String?) {
+        public init (region: String? = nil, registryId: String? = nil, registryName: String? = nil, namespace: String? = nil, repoName: String? = nil) {
             self.region = region
             self.registryId = registryId
             self.registryName = registryName
@@ -6136,7 +6136,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
         
-        public init (namespaceId: String, namespaceName: String, id: String?) {
+        public init (namespaceId: String, namespaceName: String, id: String? = nil) {
             self.namespaceId = namespaceId
             self.namespaceName = namespaceName
             self.id = id
@@ -6174,7 +6174,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitRuleItemList: [UnitRuleItem]?
         
-        public init (name: String, id: String?, gatewayInstanceId: String?, description: String?, status: String?, unitRuleItemList: [UnitRuleItem]?) {
+        public init (name: String, id: String? = nil, gatewayInstanceId: String? = nil, description: String? = nil, status: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil) {
             self.name = name
             self.id = id
             self.gatewayInstanceId = gatewayInstanceId
@@ -6227,7 +6227,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitRuleTagList: [UnitRuleTag]?
         
-        public init (relationship: String, destNamespaceId: String, destNamespaceName: String, name: String, id: String?, unitRuleId: String?, priority: Int64?, description: String?, unitRuleTagList: [UnitRuleTag]?) {
+        public init (relationship: String, destNamespaceId: String, destNamespaceName: String, name: String, id: String? = nil, unitRuleId: String? = nil, priority: Int64? = nil, description: String? = nil, unitRuleTagList: [UnitRuleTag]? = nil) {
             self.relationship = relationship
             self.destNamespaceId = destNamespaceId
             self.destNamespaceName = destNamespaceName
@@ -6274,7 +6274,7 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
         
-        public init (tagType: String, tagField: String, tagOperator: String, tagValue: String, unitRuleItemId: String?, id: String?) {
+        public init (tagType: String, tagField: String, tagOperator: String, tagValue: String, unitRuleItemId: String? = nil, id: String? = nil) {
             self.tagType = tagType
             self.tagField = tagField
             self.tagOperator = tagOperator
@@ -6297,13 +6297,13 @@ extension Tsf {
     public struct ValueFrom: TCInputModel, TCOutputModel {
         /// k8s env 的 FieldRef
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let fieldRef: FieldRef
+        public let fieldRef: FieldRef?
         
         /// k8s env 的 ResourceFieldRef
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let resourceFieldRef: ResourceFieldRef
+        public let resourceFieldRef: ResourceFieldRef?
         
-        public init (fieldRef: FieldRef, resourceFieldRef: ResourceFieldRef) {
+        public init (fieldRef: FieldRef? = nil, resourceFieldRef: ResourceFieldRef? = nil) {
             self.fieldRef = fieldRef
             self.resourceFieldRef = resourceFieldRef
         }
@@ -6438,7 +6438,7 @@ extension Tsf {
         
         /// 健康检查配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let healthCheckSettings: HealthCheckSettings
+        public let healthCheckSettings: HealthCheckSettings?
         
         /// 程序包类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -6462,11 +6462,11 @@ extension Tsf {
         
         /// 预热属性配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let warmupSetting: WarmupSetting
+        public let warmupSetting: WarmupSetting?
         
         /// Envoy网关配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let gatewayConfig: GatewayConfig
+        public let gatewayConfig: GatewayConfig?
         
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
@@ -6668,7 +6668,7 @@ extension Tsf {
         /// 数据卷配置
         public let volumeConfig: String?
         
-        public init (volumeType: String, volumeName: String, volumeConfig: String?) {
+        public init (volumeType: String, volumeName: String, volumeConfig: String? = nil) {
             self.volumeType = volumeType
             self.volumeName = volumeName
             self.volumeConfig = volumeConfig
@@ -6695,7 +6695,7 @@ extension Tsf {
         /// 读写，1：读 2：读写
         public let readOrWrite: String?
         
-        public init (volumeMountName: String, volumeMountPath: String, volumeMountSubPath: String?, readOrWrite: String?) {
+        public init (volumeMountName: String, volumeMountPath: String, volumeMountSubPath: String? = nil, readOrWrite: String? = nil) {
             self.volumeMountName = volumeMountName
             self.volumeMountPath = volumeMountPath
             self.volumeMountSubPath = volumeMountSubPath
@@ -6724,7 +6724,7 @@ extension Tsf {
         /// 是否开启预热保护，在开启保护的情况下，超过 50% 的节点处于预热中，则会中止预热
         public let enabledProtection: Bool?
         
-        public init (enabled: Bool?, warmupTime: UInt64?, curvature: UInt64?, enabledProtection: Bool?) {
+        public init (enabled: Bool? = nil, warmupTime: UInt64? = nil, curvature: UInt64? = nil, enabledProtection: Bool? = nil) {
             self.enabled = enabled
             self.warmupTime = warmupTime
             self.curvature = curvature

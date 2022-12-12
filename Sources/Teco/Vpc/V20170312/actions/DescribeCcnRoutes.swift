@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查询云联网路由策略
-    ///
-    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
-    @inlinable
-    public func describeCcnRoutes(_ input: DescribeCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCcnRoutesResponse > {
-        self.client.execute(action: "DescribeCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询云联网路由策略
-    ///
-    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
-    @inlinable
-    public func describeCcnRoutes(_ input: DescribeCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnRoutesResponse {
-        try await self.client.execute(action: "DescribeCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCcnRoutes请求参数结构体
     public struct DescribeCcnRoutesRequest: TCRequestModel {
         /// CCN实例ID，形如：ccn-gree226l。
@@ -54,7 +38,7 @@ extension Vpc {
         /// 返回数量
         public let limit: UInt64?
         
-        public init (ccnId: String, routeIds: [String]?, filters: [Filter]?, offset: UInt64?, limit: UInt64?) {
+        public init (ccnId: String, routeIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil) {
             self.ccnId = ccnId
             self.routeIds = routeIds
             self.filters = filters
@@ -87,5 +71,21 @@ extension Vpc {
             case routeSet = "RouteSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询云联网路由策略
+    ///
+    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+    @inlinable
+    public func describeCcnRoutes(_ input: DescribeCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCcnRoutesResponse > {
+        self.client.execute(action: "DescribeCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询云联网路由策略
+    ///
+    /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+    @inlinable
+    public func describeCcnRoutes(_ input: DescribeCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnRoutesResponse {
+        try await self.client.execute(action: "DescribeCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Nlp {
-    /// 自动摘要
-    ///
-    /// 利用人工智能算法，自动抽取文本中的关键信息并生成指定长度的文本摘要。可用于新闻标题生成、科技文献摘要生成和商品评论摘要等。
-    @inlinable
-    public func autoSummarization(_ input: AutoSummarizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AutoSummarizationResponse > {
-        self.client.execute(action: "AutoSummarization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 自动摘要
-    ///
-    /// 利用人工智能算法，自动抽取文本中的关键信息并生成指定长度的文本摘要。可用于新闻标题生成、科技文献摘要生成和商品评论摘要等。
-    @inlinable
-    public func autoSummarization(_ input: AutoSummarizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AutoSummarizationResponse {
-        try await self.client.execute(action: "AutoSummarization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AutoSummarization请求参数结构体
     public struct AutoSummarizationRequest: TCRequestModel {
         /// 待处理的文本（仅支持UTF-8格式，不超过2000字）
@@ -40,7 +24,7 @@ extension Nlp {
         /// 注：为保证摘要的可读性，最终生成的摘要长度会低于指定的长度上限。
         public let length: UInt64?
         
-        public init (text: String, length: UInt64?) {
+        public init (text: String, length: UInt64? = nil) {
             self.text = text
             self.length = length
         }
@@ -63,5 +47,21 @@ extension Nlp {
             case summary = "Summary"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 自动摘要
+    ///
+    /// 利用人工智能算法，自动抽取文本中的关键信息并生成指定长度的文本摘要。可用于新闻标题生成、科技文献摘要生成和商品评论摘要等。
+    @inlinable
+    public func autoSummarization(_ input: AutoSummarizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AutoSummarizationResponse > {
+        self.client.execute(action: "AutoSummarization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 自动摘要
+    ///
+    /// 利用人工智能算法，自动抽取文本中的关键信息并生成指定长度的文本摘要。可用于新闻标题生成、科技文献摘要生成和商品评论摘要等。
+    @inlinable
+    public func autoSummarization(_ input: AutoSummarizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AutoSummarizationResponse {
+        try await self.client.execute(action: "AutoSummarization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

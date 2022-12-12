@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 运行时高危系统调用白名单详细信息
-    ///
-    /// 查询运行时高危系统调用白名单详细信息
-    @inlinable
-    public func describeRiskSyscallWhiteListDetail(_ input: DescribeRiskSyscallWhiteListDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskSyscallWhiteListDetailResponse > {
-        self.client.execute(action: "DescribeRiskSyscallWhiteListDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 运行时高危系统调用白名单详细信息
-    ///
-    /// 查询运行时高危系统调用白名单详细信息
-    @inlinable
-    public func describeRiskSyscallWhiteListDetail(_ input: DescribeRiskSyscallWhiteListDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallWhiteListDetailResponse {
-        try await self.client.execute(action: "DescribeRiskSyscallWhiteListDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRiskSyscallWhiteListDetail请求参数结构体
     public struct DescribeRiskSyscallWhiteListDetailRequest: TCRequestModel {
         /// 白名单id
@@ -57,5 +41,21 @@ extension Tcss {
             case whiteListDetailInfo = "WhiteListDetailInfo"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 运行时高危系统调用白名单详细信息
+    ///
+    /// 查询运行时高危系统调用白名单详细信息
+    @inlinable
+    public func describeRiskSyscallWhiteListDetail(_ input: DescribeRiskSyscallWhiteListDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskSyscallWhiteListDetailResponse > {
+        self.client.execute(action: "DescribeRiskSyscallWhiteListDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 运行时高危系统调用白名单详细信息
+    ///
+    /// 查询运行时高危系统调用白名单详细信息
+    @inlinable
+    public func describeRiskSyscallWhiteListDetail(_ input: DescribeRiskSyscallWhiteListDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallWhiteListDetailResponse {
+        try await self.client.execute(action: "DescribeRiskSyscallWhiteListDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

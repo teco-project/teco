@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Bmeip {
-    /// 修改弹性公网IP ACL
-    @inlinable
-    public func modifyEipAcl(_ input: ModifyEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEipAclResponse > {
-        self.client.execute(action: "ModifyEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改弹性公网IP ACL
-    @inlinable
-    public func modifyEipAcl(_ input: ModifyEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipAclResponse {
-        try await self.client.execute(action: "ModifyEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyEipAcl请求参数结构体
     public struct ModifyEipAclRequest: TCRequestModel {
         /// ACL 实例 ID
@@ -44,7 +32,7 @@ extension Bmeip {
         /// ACL规则列表
         public let rules: [EipAclRule]?
         
-        public init (aclId: String, aclName: String?, status: Int64?, type: String?, rules: [EipAclRule]?) {
+        public init (aclId: String, aclName: String? = nil, status: Int64? = nil, type: String? = nil, rules: [EipAclRule]? = nil) {
             self.aclId = aclId
             self.aclName = aclName
             self.status = status
@@ -69,5 +57,17 @@ extension Bmeip {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改弹性公网IP ACL
+    @inlinable
+    public func modifyEipAcl(_ input: ModifyEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyEipAclResponse > {
+        self.client.execute(action: "ModifyEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改弹性公网IP ACL
+    @inlinable
+    public func modifyEipAcl(_ input: ModifyEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipAclResponse {
+        try await self.client.execute(action: "ModifyEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

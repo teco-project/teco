@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 根据源站区域查询可用加速区域
-    ///
-    /// 本接口（DescribeAccessRegionsByDestRegion）根据源站区域查询可用的加速区域列表。
-    @inlinable
-    public func describeAccessRegionsByDestRegion(_ input: DescribeAccessRegionsByDestRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessRegionsByDestRegionResponse > {
-        self.client.execute(action: "DescribeAccessRegionsByDestRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 根据源站区域查询可用加速区域
-    ///
-    /// 本接口（DescribeAccessRegionsByDestRegion）根据源站区域查询可用的加速区域列表。
-    @inlinable
-    public func describeAccessRegionsByDestRegion(_ input: DescribeAccessRegionsByDestRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessRegionsByDestRegionResponse {
-        try await self.client.execute(action: "DescribeAccessRegionsByDestRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccessRegionsByDestRegion请求参数结构体
     public struct DescribeAccessRegionsByDestRegionRequest: TCRequestModel {
         /// 源站区域：接口DescribeDestRegions返回DestRegionSet中的RegionId字段值
@@ -42,7 +26,7 @@ extension Gaap {
         /// 通道套餐类型，Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
         public let packageType: String?
         
-        public init (destRegion: String, ipAddressVersion: String?, packageType: String?) {
+        public init (destRegion: String, ipAddressVersion: String? = nil, packageType: String? = nil) {
             self.destRegion = destRegion
             self.ipAddressVersion = ipAddressVersion
             self.packageType = packageType
@@ -71,5 +55,21 @@ extension Gaap {
             case accessRegionSet = "AccessRegionSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 根据源站区域查询可用加速区域
+    ///
+    /// 本接口（DescribeAccessRegionsByDestRegion）根据源站区域查询可用的加速区域列表。
+    @inlinable
+    public func describeAccessRegionsByDestRegion(_ input: DescribeAccessRegionsByDestRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccessRegionsByDestRegionResponse > {
+        self.client.execute(action: "DescribeAccessRegionsByDestRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 根据源站区域查询可用加速区域
+    ///
+    /// 本接口（DescribeAccessRegionsByDestRegion）根据源站区域查询可用的加速区域列表。
+    @inlinable
+    public func describeAccessRegionsByDestRegion(_ input: DescribeAccessRegionsByDestRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessRegionsByDestRegionResponse {
+        try await self.client.execute(action: "DescribeAccessRegionsByDestRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Partners {
-    /// 修改客户备注
-    ///
-    /// 代理商可以对名下客户添加备注、修改备注
-    @inlinable
-    public func modifyClientRemark(_ input: ModifyClientRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClientRemarkResponse > {
-        self.client.execute(action: "ModifyClientRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改客户备注
-    ///
-    /// 代理商可以对名下客户添加备注、修改备注
-    @inlinable
-    public func modifyClientRemark(_ input: ModifyClientRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClientRemarkResponse {
-        try await self.client.execute(action: "ModifyClientRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyClientRemark请求参数结构体
     public struct ModifyClientRemarkRequest: TCRequestModel {
         /// 客户备注名称
@@ -58,5 +42,21 @@ extension Partners {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改客户备注
+    ///
+    /// 代理商可以对名下客户添加备注、修改备注
+    @inlinable
+    public func modifyClientRemark(_ input: ModifyClientRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyClientRemarkResponse > {
+        self.client.execute(action: "ModifyClientRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改客户备注
+    ///
+    /// 代理商可以对名下客户添加备注、修改备注
+    @inlinable
+    public func modifyClientRemark(_ input: ModifyClientRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClientRemarkResponse {
+        try await self.client.execute(action: "ModifyClientRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

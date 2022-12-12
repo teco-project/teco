@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dayu {
-    /// 资源实例重命名
-    ///
-    /// 资源实例重命名，支持独享包、共享包、高防IP、高防IP专业版；
-    @inlinable
-    public func createInstanceName(_ input: CreateInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceNameResponse > {
-        self.client.execute(action: "CreateInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 资源实例重命名
-    ///
-    /// 资源实例重命名，支持独享包、共享包、高防IP、高防IP专业版；
-    @inlinable
-    public func createInstanceName(_ input: CreateInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceNameResponse {
-        try await self.client.execute(action: "CreateInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateInstanceName请求参数结构体
     public struct CreateInstanceNameRequest: TCRequestModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
@@ -67,5 +51,21 @@ extension Dayu {
             case success = "Success"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 资源实例重命名
+    ///
+    /// 资源实例重命名，支持独享包、共享包、高防IP、高防IP专业版；
+    @inlinable
+    public func createInstanceName(_ input: CreateInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateInstanceNameResponse > {
+        self.client.execute(action: "CreateInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 资源实例重命名
+    ///
+    /// 资源实例重命名，支持独享包、共享包、高防IP、高防IP专业版；
+    @inlinable
+    public func createInstanceName(_ input: CreateInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceNameResponse {
+        try await self.client.execute(action: "CreateInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

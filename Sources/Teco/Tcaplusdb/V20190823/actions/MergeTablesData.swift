@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 合服
-    ///
-    /// 合并指定表格
-    @inlinable
-    public func mergeTablesData(_ input: MergeTablesDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MergeTablesDataResponse > {
-        self.client.execute(action: "MergeTablesData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 合服
-    ///
-    /// 合并指定表格
-    @inlinable
-    public func mergeTablesData(_ input: MergeTablesDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MergeTablesDataResponse {
-        try await self.client.execute(action: "MergeTablesData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// MergeTablesData请求参数结构体
     public struct MergeTablesDataRequest: TCRequestModel {
         /// 选取的表格
@@ -62,5 +46,21 @@ extension Tcaplusdb {
             case results = "Results"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 合服
+    ///
+    /// 合并指定表格
+    @inlinable
+    public func mergeTablesData(_ input: MergeTablesDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MergeTablesDataResponse > {
+        self.client.execute(action: "MergeTablesData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 合服
+    ///
+    /// 合并指定表格
+    @inlinable
+    public func mergeTablesData(_ input: MergeTablesDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MergeTablesDataResponse {
+        try await self.client.execute(action: "MergeTablesData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

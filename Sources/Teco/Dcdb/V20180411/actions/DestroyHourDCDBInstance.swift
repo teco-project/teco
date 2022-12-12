@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dcdb {
-    /// 销毁按量计费实例
-    ///
-    /// 本接口（DestroyHourDCDBInstance）用于销毁按量计费实例。
-    @inlinable
-    public func destroyHourDCDBInstance(_ input: DestroyHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyHourDCDBInstanceResponse > {
-        self.client.execute(action: "DestroyHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 销毁按量计费实例
-    ///
-    /// 本接口（DestroyHourDCDBInstance）用于销毁按量计费实例。
-    @inlinable
-    public func destroyHourDCDBInstance(_ input: DestroyHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyHourDCDBInstanceResponse {
-        try await self.client.execute(action: "DestroyHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DestroyHourDCDBInstance请求参数结构体
     public struct DestroyHourDCDBInstanceRequest: TCRequestModel {
         /// 实例 ID，格式如：tdsqlshard-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
@@ -61,5 +45,21 @@ extension Dcdb {
             case instanceId = "InstanceId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 销毁按量计费实例
+    ///
+    /// 本接口（DestroyHourDCDBInstance）用于销毁按量计费实例。
+    @inlinable
+    public func destroyHourDCDBInstance(_ input: DestroyHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DestroyHourDCDBInstanceResponse > {
+        self.client.execute(action: "DestroyHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁按量计费实例
+    ///
+    /// 本接口（DestroyHourDCDBInstance）用于销毁按量计费实例。
+    @inlinable
+    public func destroyHourDCDBInstance(_ input: DestroyHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyHourDCDBInstanceResponse {
+        try await self.client.execute(action: "DestroyHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

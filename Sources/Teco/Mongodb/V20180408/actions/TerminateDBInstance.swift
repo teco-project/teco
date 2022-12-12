@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 销毁云数据库实例（按量计费）
-    ///
-    /// 本接口(TerminateDBInstance)用于销毁按量计费的MongoDB云数据库实例
-    @inlinable
-    public func terminateDBInstance(_ input: TerminateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateDBInstanceResponse > {
-        self.client.execute(action: "TerminateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 销毁云数据库实例（按量计费）
-    ///
-    /// 本接口(TerminateDBInstance)用于销毁按量计费的MongoDB云数据库实例
-    @inlinable
-    public func terminateDBInstance(_ input: TerminateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstanceResponse {
-        try await self.client.execute(action: "TerminateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TerminateDBInstance请求参数结构体
     public struct TerminateDBInstanceRequest: TCRequestModel {
         /// 实例ID，格式如：cmgo-p8vnipr5。
@@ -57,5 +41,21 @@ extension Mongodb {
             case asyncRequestId = "AsyncRequestId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 销毁云数据库实例（按量计费）
+    ///
+    /// 本接口(TerminateDBInstance)用于销毁按量计费的MongoDB云数据库实例
+    @inlinable
+    public func terminateDBInstance(_ input: TerminateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateDBInstanceResponse > {
+        self.client.execute(action: "TerminateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 销毁云数据库实例（按量计费）
+    ///
+    /// 本接口(TerminateDBInstance)用于销毁按量计费的MongoDB云数据库实例
+    @inlinable
+    public func terminateDBInstance(_ input: TerminateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstanceResponse {
+        try await self.client.execute(action: "TerminateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

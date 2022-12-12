@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfw {
-    /// 获取租户所有NAT实例
-    ///
-    /// DescribeNatFwInstance 获取租户所有NAT实例
-    @inlinable
-    public func describeNatFwInstance(_ input: DescribeNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwInstanceResponse > {
-        self.client.execute(action: "DescribeNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取租户所有NAT实例
-    ///
-    /// DescribeNatFwInstance 获取租户所有NAT实例
-    @inlinable
-    public func describeNatFwInstance(_ input: DescribeNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstanceResponse {
-        try await self.client.execute(action: "DescribeNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeNatFwInstance请求参数结构体
     public struct DescribeNatFwInstanceRequest: TCRequestModel {
         public init () {
@@ -49,5 +33,21 @@ extension Cfw {
             case natinsLst = "NatinsLst"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取租户所有NAT实例
+    ///
+    /// DescribeNatFwInstance 获取租户所有NAT实例
+    @inlinable
+    public func describeNatFwInstance(_ input: DescribeNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeNatFwInstanceResponse > {
+        self.client.execute(action: "DescribeNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取租户所有NAT实例
+    ///
+    /// DescribeNatFwInstance 获取租户所有NAT实例
+    @inlinable
+    public func describeNatFwInstance(_ input: DescribeNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstanceResponse {
+        try await self.client.execute(action: "DescribeNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

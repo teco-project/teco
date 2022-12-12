@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Oceanus {
-    /// 删除资源版本
-    @inlinable
-    public func deleteResourceConfigs(_ input: DeleteResourceConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourceConfigsResponse > {
-        self.client.execute(action: "DeleteResourceConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除资源版本
-    @inlinable
-    public func deleteResourceConfigs(_ input: DeleteResourceConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceConfigsResponse {
-        try await self.client.execute(action: "DeleteResourceConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteResourceConfigs请求参数结构体
     public struct DeleteResourceConfigsRequest: TCRequestModel {
         /// 资源ID
@@ -38,7 +26,7 @@ extension Oceanus {
         /// 工作空间 SerialId
         public let workSpaceId: String?
         
-        public init (resourceId: String, resourceConfigVersions: [Int64], workSpaceId: String?) {
+        public init (resourceId: String, resourceConfigVersions: [Int64], workSpaceId: String? = nil) {
             self.resourceId = resourceId
             self.resourceConfigVersions = resourceConfigVersions
             self.workSpaceId = workSpaceId
@@ -59,5 +47,17 @@ extension Oceanus {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除资源版本
+    @inlinable
+    public func deleteResourceConfigs(_ input: DeleteResourceConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteResourceConfigsResponse > {
+        self.client.execute(action: "DeleteResourceConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除资源版本
+    @inlinable
+    public func deleteResourceConfigs(_ input: DeleteResourceConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceConfigsResponse {
+        try await self.client.execute(action: "DeleteResourceConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

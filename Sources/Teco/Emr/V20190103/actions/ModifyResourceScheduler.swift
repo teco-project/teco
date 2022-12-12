@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Emr {
-    /// 修改YARN的资源调度器
-    ///
-    /// 修改了yarn的资源调度器，点击部署生效
-    @inlinable
-    public func modifyResourceScheduler(_ input: ModifyResourceSchedulerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourceSchedulerResponse > {
-        self.client.execute(action: "ModifyResourceScheduler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改YARN的资源调度器
-    ///
-    /// 修改了yarn的资源调度器，点击部署生效
-    @inlinable
-    public func modifyResourceScheduler(_ input: ModifyResourceSchedulerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceSchedulerResponse {
-        try await self.client.execute(action: "ModifyResourceScheduler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyResourceScheduler请求参数结构体
     public struct ModifyResourceSchedulerRequest: TCRequestModel {
         /// emr集群的英文id
@@ -63,5 +47,21 @@ extension Emr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改YARN的资源调度器
+    ///
+    /// 修改了yarn的资源调度器，点击部署生效
+    @inlinable
+    public func modifyResourceScheduler(_ input: ModifyResourceSchedulerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyResourceSchedulerResponse > {
+        self.client.execute(action: "ModifyResourceScheduler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改YARN的资源调度器
+    ///
+    /// 修改了yarn的资源调度器，点击部署生效
+    @inlinable
+    public func modifyResourceScheduler(_ input: ModifyResourceSchedulerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceSchedulerResponse {
+        try await self.client.execute(action: "ModifyResourceScheduler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

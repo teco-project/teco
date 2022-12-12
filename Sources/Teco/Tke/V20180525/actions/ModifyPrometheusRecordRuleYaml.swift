@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 通过yaml的方式修改Prometheus聚合实例
-    @inlinable
-    public func modifyPrometheusRecordRuleYaml(_ input: ModifyPrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusRecordRuleYamlResponse > {
-        self.client.execute(action: "ModifyPrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 通过yaml的方式修改Prometheus聚合实例
-    @inlinable
-    public func modifyPrometheusRecordRuleYaml(_ input: ModifyPrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusRecordRuleYamlResponse {
-        try await self.client.execute(action: "ModifyPrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPrometheusRecordRuleYaml请求参数结构体
     public struct ModifyPrometheusRecordRuleYamlRequest: TCRequestModel {
         /// 实例id
@@ -59,5 +47,17 @@ extension Tke {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 通过yaml的方式修改Prometheus聚合实例
+    @inlinable
+    public func modifyPrometheusRecordRuleYaml(_ input: ModifyPrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPrometheusRecordRuleYamlResponse > {
+        self.client.execute(action: "ModifyPrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 通过yaml的方式修改Prometheus聚合实例
+    @inlinable
+    public func modifyPrometheusRecordRuleYaml(_ input: ModifyPrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusRecordRuleYamlResponse {
+        try await self.client.execute(action: "ModifyPrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询镜像漏洞列表
-    ///
-    /// 容器安全查询镜像漏洞列表
-    @inlinable
-    public func describeAssetImageVulList(_ input: DescribeAssetImageVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageVulListResponse > {
-        self.client.execute(action: "DescribeAssetImageVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询镜像漏洞列表
-    ///
-    /// 容器安全查询镜像漏洞列表
-    @inlinable
-    public func describeAssetImageVulList(_ input: DescribeAssetImageVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVulListResponse {
-        try await self.client.execute(action: "DescribeAssetImageVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetImageVulList请求参数结构体
     public struct DescribeAssetImageVulListRequest: TCRequestModel {
         /// 镜像id
@@ -53,7 +37,7 @@ extension Tcss {
         /// 排序方式 + -
         public let order: String?
         
-        public init (imageID: String, limit: UInt64?, offset: UInt64?, filters: [AssetFilters]?, by: String?, order: String?) {
+        public init (imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil) {
             self.imageID = imageID
             self.limit = limit
             self.offset = offset
@@ -88,5 +72,21 @@ extension Tcss {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询镜像漏洞列表
+    ///
+    /// 容器安全查询镜像漏洞列表
+    @inlinable
+    public func describeAssetImageVulList(_ input: DescribeAssetImageVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetImageVulListResponse > {
+        self.client.execute(action: "DescribeAssetImageVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像漏洞列表
+    ///
+    /// 容器安全查询镜像漏洞列表
+    @inlinable
+    public func describeAssetImageVulList(_ input: DescribeAssetImageVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVulListResponse {
+        try await self.client.execute(action: "DescribeAssetImageVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

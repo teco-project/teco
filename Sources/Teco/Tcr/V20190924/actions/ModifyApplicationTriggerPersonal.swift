@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 修改应用更新触发器
-    ///
-    /// 用于修改应用更新触发器
-    @inlinable
-    public func modifyApplicationTriggerPersonal(_ input: ModifyApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationTriggerPersonalResponse > {
-        self.client.execute(action: "ModifyApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改应用更新触发器
-    ///
-    /// 用于修改应用更新触发器
-    @inlinable
-    public func modifyApplicationTriggerPersonal(_ input: ModifyApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationTriggerPersonalResponse {
-        try await self.client.execute(action: "ModifyApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyApplicationTriggerPersonal请求参数结构体
     public struct ModifyApplicationTriggerPersonalRequest: TCRequestModel {
         /// 触发器关联的镜像仓库，library/test格式
@@ -66,7 +50,7 @@ extension Tcr {
         /// 新触发器名称
         public let newTriggerName: String?
         
-        public init (repoName: String?, triggerName: String?, invokeMethod: String?, invokeExpr: String?, clusterId: String?, namespace: String?, workloadType: String?, workloadName: String?, containerName: String?, clusterRegion: Int64?, newTriggerName: String?) {
+        public init (repoName: String? = nil, triggerName: String? = nil, invokeMethod: String? = nil, invokeExpr: String? = nil, clusterId: String? = nil, namespace: String? = nil, workloadType: String? = nil, workloadName: String? = nil, containerName: String? = nil, clusterRegion: Int64? = nil, newTriggerName: String? = nil) {
             self.repoName = repoName
             self.triggerName = triggerName
             self.invokeMethod = invokeMethod
@@ -103,5 +87,21 @@ extension Tcr {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改应用更新触发器
+    ///
+    /// 用于修改应用更新触发器
+    @inlinable
+    public func modifyApplicationTriggerPersonal(_ input: ModifyApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyApplicationTriggerPersonalResponse > {
+        self.client.execute(action: "ModifyApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改应用更新触发器
+    ///
+    /// 用于修改应用更新触发器
+    @inlinable
+    public func modifyApplicationTriggerPersonal(_ input: ModifyApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationTriggerPersonalResponse {
+        try await self.client.execute(action: "ModifyApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

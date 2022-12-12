@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tke {
-    /// 获取集群规模价格
-    @inlinable
-    public func getClusterLevelPrice(_ input: GetClusterLevelPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetClusterLevelPriceResponse > {
-        self.client.execute(action: "GetClusterLevelPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取集群规模价格
-    @inlinable
-    public func getClusterLevelPrice(_ input: GetClusterLevelPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterLevelPriceResponse {
-        try await self.client.execute(action: "GetClusterLevelPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetClusterLevelPrice请求参数结构体
     public struct GetClusterLevelPriceRequest: TCRequestModel {
         /// 集群规格，托管集群询价
@@ -57,5 +45,17 @@ extension Tke {
             case totalCost = "TotalCost"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取集群规模价格
+    @inlinable
+    public func getClusterLevelPrice(_ input: GetClusterLevelPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetClusterLevelPriceResponse > {
+        self.client.execute(action: "GetClusterLevelPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取集群规模价格
+    @inlinable
+    public func getClusterLevelPrice(_ input: GetClusterLevelPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterLevelPriceResponse {
+        try await self.client.execute(action: "GetClusterLevelPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

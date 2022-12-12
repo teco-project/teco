@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iecp {
-    /// 查询边缘单元列表
-    @inlinable
-    public func describeEdgeUnitsCloud(_ input: DescribeEdgeUnitsCloudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitsCloudResponse > {
-        self.client.execute(action: "DescribeEdgeUnitsCloud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询边缘单元列表
-    @inlinable
-    public func describeEdgeUnitsCloud(_ input: DescribeEdgeUnitsCloudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitsCloudResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitsCloud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEdgeUnitsCloud请求参数结构体
     public struct DescribeEdgeUnitsCloudRequest: TCRequestModel {
         /// 偏移量
@@ -41,7 +29,7 @@ extension Iecp {
         /// 排序，ASC/DESC(默认)
         public let order: String?
         
-        public init (offset: UInt64, limit: UInt64, namePattern: String?, order: String?) {
+        public init (offset: UInt64, limit: UInt64, namePattern: String? = nil, order: String? = nil) {
             self.offset = offset
             self.limit = limit
             self.namePattern = namePattern
@@ -74,5 +62,17 @@ extension Iecp {
             case edgeUnitSet = "EdgeUnitSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询边缘单元列表
+    @inlinable
+    public func describeEdgeUnitsCloud(_ input: DescribeEdgeUnitsCloudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEdgeUnitsCloudResponse > {
+        self.client.execute(action: "DescribeEdgeUnitsCloud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询边缘单元列表
+    @inlinable
+    public func describeEdgeUnitsCloud(_ input: DescribeEdgeUnitsCloudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitsCloudResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitsCloud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

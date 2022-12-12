@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 创建CLB专有日志集
-    ///
-    /// 创建CLB专有日志集，此日志集用于存储CLB的日志。
-    @inlinable
-    public func createClsLogSet(_ input: CreateClsLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClsLogSetResponse > {
-        self.client.execute(action: "CreateClsLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建CLB专有日志集
-    ///
-    /// 创建CLB专有日志集，此日志集用于存储CLB的日志。
-    @inlinable
-    public func createClsLogSet(_ input: CreateClsLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClsLogSetResponse {
-        try await self.client.execute(action: "CreateClsLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateClsLogSet请求参数结构体
     public struct CreateClsLogSetRequest: TCRequestModel {
         /// 日志集的名字，不能和cls其他日志集重名。不填默认为clb_logset。
@@ -42,7 +26,7 @@ extension Clb {
         /// 日志集类型，ACCESS：访问日志，HEALTH：健康检查日志，默认ACCESS。
         public let logsetType: String?
         
-        public init (logsetName: String?, period: UInt64?, logsetType: String?) {
+        public init (logsetName: String? = nil, period: UInt64? = nil, logsetType: String? = nil) {
             self.logsetName = logsetName
             self.period = period
             self.logsetType = logsetType
@@ -67,5 +51,21 @@ extension Clb {
             case logsetId = "LogsetId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建CLB专有日志集
+    ///
+    /// 创建CLB专有日志集，此日志集用于存储CLB的日志。
+    @inlinable
+    public func createClsLogSet(_ input: CreateClsLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClsLogSetResponse > {
+        self.client.execute(action: "CreateClsLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建CLB专有日志集
+    ///
+    /// 创建CLB专有日志集，此日志集用于存储CLB的日志。
+    @inlinable
+    public func createClsLogSet(_ input: CreateClsLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClsLogSetResponse {
+        try await self.client.execute(action: "CreateClsLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

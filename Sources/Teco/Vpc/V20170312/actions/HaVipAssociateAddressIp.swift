@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// HAVIP绑定EIP
-    ///
-    /// 本接口（HaVipAssociateAddressIp）用于高可用虚拟IP（HAVIP）绑定弹性公网IP（EIP）。<br />
-    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
-    @inlinable
-    public func haVipAssociateAddressIp(_ input: HaVipAssociateAddressIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < HaVipAssociateAddressIpResponse > {
-        self.client.execute(action: "HaVipAssociateAddressIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// HAVIP绑定EIP
-    ///
-    /// 本接口（HaVipAssociateAddressIp）用于高可用虚拟IP（HAVIP）绑定弹性公网IP（EIP）。<br />
-    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
-    @inlinable
-    public func haVipAssociateAddressIp(_ input: HaVipAssociateAddressIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HaVipAssociateAddressIpResponse {
-        try await self.client.execute(action: "HaVipAssociateAddressIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// HaVipAssociateAddressIp请求参数结构体
     public struct HaVipAssociateAddressIpRequest: TCRequestModel {
         /// `HAVIP`唯一`ID`，形如：`havip-9o233uri`。必须是没有绑定`EIP`的`HAVIP`
@@ -60,5 +42,23 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// HAVIP绑定EIP
+    ///
+    /// 本接口（HaVipAssociateAddressIp）用于高可用虚拟IP（HAVIP）绑定弹性公网IP（EIP）。<br />
+    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
+    @inlinable
+    public func haVipAssociateAddressIp(_ input: HaVipAssociateAddressIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < HaVipAssociateAddressIpResponse > {
+        self.client.execute(action: "HaVipAssociateAddressIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// HAVIP绑定EIP
+    ///
+    /// 本接口（HaVipAssociateAddressIp）用于高可用虚拟IP（HAVIP）绑定弹性公网IP（EIP）。<br />
+    /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
+    @inlinable
+    public func haVipAssociateAddressIp(_ input: HaVipAssociateAddressIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HaVipAssociateAddressIpResponse {
+        try await self.client.execute(action: "HaVipAssociateAddressIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

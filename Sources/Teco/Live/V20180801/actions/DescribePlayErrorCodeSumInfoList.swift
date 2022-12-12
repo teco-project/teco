@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 查询播放http错误码汇总数据
-    ///
-    /// 查询下行播放错误码信息。
-    @inlinable
-    public func describePlayErrorCodeSumInfoList(_ input: DescribePlayErrorCodeSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePlayErrorCodeSumInfoListResponse > {
-        self.client.execute(action: "DescribePlayErrorCodeSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询播放http错误码汇总数据
-    ///
-    /// 查询下行播放错误码信息。
-    @inlinable
-    public func describePlayErrorCodeSumInfoList(_ input: DescribePlayErrorCodeSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayErrorCodeSumInfoListResponse {
-        try await self.client.execute(action: "DescribePlayErrorCodeSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribePlayErrorCodeSumInfoList请求参数结构体
     public struct DescribePlayErrorCodeSumInfoListRequest: TCRequestModel {
         /// 起始时间点，北京时间。
@@ -60,7 +44,7 @@ extension Live {
         /// 输出字段使用的语言，可选值：Chinese（默认值），English，目前国家，省份和运营商支持多语言。
         public let outLanguage: String?
         
-        public init (startTime: String, endTime: String, playDomains: [String]?, pageNum: UInt64?, pageSize: UInt64?, mainlandOrOversea: String?, groupType: String?, outLanguage: String?) {
+        public init (startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, groupType: String? = nil, outLanguage: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.playDomains = playDomains
@@ -135,5 +119,21 @@ extension Live {
             case totalCode3xx = "TotalCode3xx"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询播放http错误码汇总数据
+    ///
+    /// 查询下行播放错误码信息。
+    @inlinable
+    public func describePlayErrorCodeSumInfoList(_ input: DescribePlayErrorCodeSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribePlayErrorCodeSumInfoListResponse > {
+        self.client.execute(action: "DescribePlayErrorCodeSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询播放http错误码汇总数据
+    ///
+    /// 查询下行播放错误码信息。
+    @inlinable
+    public func describePlayErrorCodeSumInfoList(_ input: DescribePlayErrorCodeSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayErrorCodeSumInfoListResponse {
+        try await self.client.execute(action: "DescribePlayErrorCodeSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

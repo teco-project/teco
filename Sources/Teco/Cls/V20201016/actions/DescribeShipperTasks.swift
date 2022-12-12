@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cls {
-    /// 获取投递任务列表
-    @inlinable
-    public func describeShipperTasks(_ input: DescribeShipperTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShipperTasksResponse > {
-        self.client.execute(action: "DescribeShipperTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取投递任务列表
-    @inlinable
-    public func describeShipperTasks(_ input: DescribeShipperTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShipperTasksResponse {
-        try await self.client.execute(action: "DescribeShipperTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeShipperTasks请求参数结构体
     public struct DescribeShipperTasksRequest: TCRequestModel {
         /// 投递规则ID
@@ -64,5 +52,17 @@ extension Cls {
             case tasks = "Tasks"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取投递任务列表
+    @inlinable
+    public func describeShipperTasks(_ input: DescribeShipperTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShipperTasksResponse > {
+        self.client.execute(action: "DescribeShipperTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取投递任务列表
+    @inlinable
+    public func describeShipperTasks(_ input: DescribeShipperTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShipperTasksResponse {
+        try await self.client.execute(action: "DescribeShipperTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

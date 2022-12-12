@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 查看安全组
-    ///
-    /// 本接口（DescribeSecurityGroups）用于查询安全组。
-    @inlinable
-    public func describeSecurityGroups(_ input: DescribeSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupsResponse > {
-        self.client.execute(action: "DescribeSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看安全组
-    ///
-    /// 本接口（DescribeSecurityGroups）用于查询安全组。
-    @inlinable
-    public func describeSecurityGroups(_ input: DescribeSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupsResponse {
-        try await self.client.execute(action: "DescribeSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSecurityGroups请求参数结构体
     public struct DescribeSecurityGroupsRequest: TCRequestModel {
         /// 安全组实例ID，例如：sg-33ocnj9n，可通过DescribeSecurityGroups获取。每次请求的实例的上限为100。参数不支持同时指定SecurityGroupIds和Filters。
@@ -50,7 +34,7 @@ extension Vpc {
         /// 返回数量，默认为20，最大值为100。
         public let limit: String?
         
-        public init (securityGroupIds: [String]?, filters: [Filter]?, offset: String?, limit: String?) {
+        public init (securityGroupIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil) {
             self.securityGroupIds = securityGroupIds
             self.filters = filters
             self.offset = offset
@@ -82,5 +66,21 @@ extension Vpc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看安全组
+    ///
+    /// 本接口（DescribeSecurityGroups）用于查询安全组。
+    @inlinable
+    public func describeSecurityGroups(_ input: DescribeSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSecurityGroupsResponse > {
+        self.client.execute(action: "DescribeSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看安全组
+    ///
+    /// 本接口（DescribeSecurityGroups）用于查询安全组。
+    @inlinable
+    public func describeSecurityGroups(_ input: DescribeSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupsResponse {
+        try await self.client.execute(action: "DescribeSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

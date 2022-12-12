@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Antiddos {
-    /// 获取CC分级策略
-    @inlinable
-    public func describeCCLevelPolicy(_ input: DescribeCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCLevelPolicyResponse > {
-        self.client.execute(action: "DescribeCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取CC分级策略
-    @inlinable
-    public func describeCCLevelPolicy(_ input: DescribeCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelPolicyResponse {
-        try await self.client.execute(action: "DescribeCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCCLevelPolicy请求参数结构体
     public struct DescribeCCLevelPolicyRequest: TCRequestModel {
         /// 实例Id
@@ -68,5 +56,17 @@ extension Antiddos {
             case level = "Level"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取CC分级策略
+    @inlinable
+    public func describeCCLevelPolicy(_ input: DescribeCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCCLevelPolicyResponse > {
+        self.client.execute(action: "DescribeCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取CC分级策略
+    @inlinable
+    public func describeCCLevelPolicy(_ input: DescribeCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelPolicyResponse {
+        try await self.client.execute(action: "DescribeCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

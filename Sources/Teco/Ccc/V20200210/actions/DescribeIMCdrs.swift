@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ccc {
-    /// 查询在线客服记录
-    ///
-    /// 包括全媒体和文本两种类型
-    @inlinable
-    public func describeIMCdrs(_ input: DescribeIMCdrsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIMCdrsResponse > {
-        self.client.execute(action: "DescribeIMCdrs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询在线客服记录
-    ///
-    /// 包括全媒体和文本两种类型
-    @inlinable
-    public func describeIMCdrs(_ input: DescribeIMCdrsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIMCdrsResponse {
-        try await self.client.execute(action: "DescribeIMCdrs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeIMCdrs请求参数结构体
     public struct DescribeIMCdrsRequest: TCRequestModel {
         /// 起始时间
@@ -54,7 +38,7 @@ extension Ccc {
         /// 1为全媒体，2为文本客服，不填则查询全部
         public let type: Int64?
         
-        public init (startTimestamp: Int64, endTimestamp: Int64, instanceId: Int64?, sdkAppId: Int64?, limit: Int64?, offset: Int64?, type: Int64?) {
+        public init (startTimestamp: Int64, endTimestamp: Int64, instanceId: Int64? = nil, sdkAppId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, type: Int64? = nil) {
             self.startTimestamp = startTimestamp
             self.endTimestamp = endTimestamp
             self.instanceId = instanceId
@@ -91,5 +75,21 @@ extension Ccc {
             case imCdrs = "IMCdrs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询在线客服记录
+    ///
+    /// 包括全媒体和文本两种类型
+    @inlinable
+    public func describeIMCdrs(_ input: DescribeIMCdrsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeIMCdrsResponse > {
+        self.client.execute(action: "DescribeIMCdrs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询在线客服记录
+    ///
+    /// 包括全媒体和文本两种类型
+    @inlinable
+    public func describeIMCdrs(_ input: DescribeIMCdrsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIMCdrsResponse {
+        try await self.client.execute(action: "DescribeIMCdrs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

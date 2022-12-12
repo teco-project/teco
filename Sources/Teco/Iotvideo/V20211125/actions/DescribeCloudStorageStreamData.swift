@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 获取设备图片流数据
-    @inlinable
-    public func describeCloudStorageStreamData(_ input: DescribeCloudStorageStreamDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStorageStreamDataResponse > {
-        self.client.execute(action: "DescribeCloudStorageStreamData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备图片流数据
-    @inlinable
-    public func describeCloudStorageStreamData(_ input: DescribeCloudStorageStreamDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageStreamDataResponse {
-        try await self.client.execute(action: "DescribeCloudStorageStreamData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCloudStorageStreamData请求参数结构体
     public struct DescribeCloudStorageStreamDataRequest: TCRequestModel {
         /// 产品ID
@@ -67,5 +55,17 @@ extension Iotvideo {
             case audioStream = "AudioStream"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备图片流数据
+    @inlinable
+    public func describeCloudStorageStreamData(_ input: DescribeCloudStorageStreamDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCloudStorageStreamDataResponse > {
+        self.client.execute(action: "DescribeCloudStorageStreamData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备图片流数据
+    @inlinable
+    public func describeCloudStorageStreamData(_ input: DescribeCloudStorageStreamDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageStreamDataResponse {
+        try await self.client.execute(action: "DescribeCloudStorageStreamData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

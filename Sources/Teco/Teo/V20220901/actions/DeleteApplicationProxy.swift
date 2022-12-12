@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 删除应用代理
-    @inlinable
-    public func deleteApplicationProxy(_ input: DeleteApplicationProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationProxyResponse > {
-        self.client.execute(action: "DeleteApplicationProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除应用代理
-    @inlinable
-    public func deleteApplicationProxy(_ input: DeleteApplicationProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationProxyResponse {
-        try await self.client.execute(action: "DeleteApplicationProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteApplicationProxy请求参数结构体
     public struct DeleteApplicationProxyRequest: TCRequestModel {
         /// 站点ID。
@@ -54,5 +42,17 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除应用代理
+    @inlinable
+    public func deleteApplicationProxy(_ input: DeleteApplicationProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteApplicationProxyResponse > {
+        self.client.execute(action: "DeleteApplicationProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除应用代理
+    @inlinable
+    public func deleteApplicationProxy(_ input: DeleteApplicationProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationProxyResponse {
+        try await self.client.execute(action: "DeleteApplicationProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,28 +15,6 @@
 // DO NOT EDIT.
 
 extension Vod {
-    /// 查询存储空间数据详情
-    ///
-    /// 该接口返回查询时间范围内使用的点播存储空间，单位：字节。
-    ///     1. 可以查询最近365天内的存储空间数据；
-    ///     2. 查询时间跨度不超过90天；
-    ///     3. 分钟粒度查询跨度不超过7天；
-    @inlinable
-    public func describeStorageDetails(_ input: DescribeStorageDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStorageDetailsResponse > {
-        self.client.execute(action: "DescribeStorageDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询存储空间数据详情
-    ///
-    /// 该接口返回查询时间范围内使用的点播存储空间，单位：字节。
-    ///     1. 可以查询最近365天内的存储空间数据；
-    ///     2. 查询时间跨度不超过90天；
-    ///     3. 分钟粒度查询跨度不超过7天；
-    @inlinable
-    public func describeStorageDetails(_ input: DescribeStorageDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDetailsResponse {
-        try await self.client.execute(action: "DescribeStorageDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeStorageDetails请求参数结构体
     public struct DescribeStorageDetailsRequest: TCRequestModel {
         /// 起始时间，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#52)。
@@ -78,7 +56,7 @@ extension Vod {
         /// 默认值为 Chinese Mainland。
         public let area: String?
         
-        public init (startTime: String, endTime: String, subAppId: UInt64?, interval: String?, storageType: String?, area: String?) {
+        public init (startTime: String, endTime: String, subAppId: UInt64? = nil, interval: String? = nil, storageType: String? = nil, area: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.subAppId = subAppId
@@ -109,5 +87,27 @@ extension Vod {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询存储空间数据详情
+    ///
+    /// 该接口返回查询时间范围内使用的点播存储空间，单位：字节。
+    ///     1. 可以查询最近365天内的存储空间数据；
+    ///     2. 查询时间跨度不超过90天；
+    ///     3. 分钟粒度查询跨度不超过7天；
+    @inlinable
+    public func describeStorageDetails(_ input: DescribeStorageDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeStorageDetailsResponse > {
+        self.client.execute(action: "DescribeStorageDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询存储空间数据详情
+    ///
+    /// 该接口返回查询时间范围内使用的点播存储空间，单位：字节。
+    ///     1. 可以查询最近365天内的存储空间数据；
+    ///     2. 查询时间跨度不超过90天；
+    ///     3. 分钟粒度查询跨度不超过7天；
+    @inlinable
+    public func describeStorageDetails(_ input: DescribeStorageDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDetailsResponse {
+        try await self.client.execute(action: "DescribeStorageDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

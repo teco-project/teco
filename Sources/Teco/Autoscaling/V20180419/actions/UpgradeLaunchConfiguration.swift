@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 升级启动配置
-    ///
-    /// 本接口（UpgradeLaunchConfiguration）用于升级启动配置。
-    /// * 本接口用于升级启动配置，采用“完全覆盖”风格，无论之前参数如何，统一按照接口参数设置为新的配置。对于非必填字段，不填写则按照默认值赋值。
-    /// * 升级修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
-    @inlinable
-    public func upgradeLaunchConfiguration(_ input: UpgradeLaunchConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeLaunchConfigurationResponse > {
-        self.client.execute(action: "UpgradeLaunchConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 升级启动配置
-    ///
-    /// 本接口（UpgradeLaunchConfiguration）用于升级启动配置。
-    /// * 本接口用于升级启动配置，采用“完全覆盖”风格，无论之前参数如何，统一按照接口参数设置为新的配置。对于非必填字段，不填写则按照默认值赋值。
-    /// * 升级修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
-    @inlinable
-    public func upgradeLaunchConfiguration(_ input: UpgradeLaunchConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLaunchConfigurationResponse {
-        try await self.client.execute(action: "UpgradeLaunchConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// UpgradeLaunchConfiguration请求参数结构体
     public struct UpgradeLaunchConfigurationRequest: TCRequestModel {
         /// 启动配置ID。
@@ -53,7 +33,7 @@ extension As {
         public let dataDisks: [DataDisk]?
         
         /// 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
-        public let enhancedService: EnhancedService
+        public let enhancedService: EnhancedService?
         
         /// 实例计费类型，CVM默认值按照POSTPAID_BY_HOUR处理。
         /// <br><li>POSTPAID_BY_HOUR：按小时后付费
@@ -62,7 +42,7 @@ extension As {
         public let instanceChargeType: String?
         
         /// 实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。
-        public let instanceMarketOptions: InstanceMarketOptionsRequest
+        public let instanceMarketOptions: InstanceMarketOptionsRequest?
         
         /// 实例类型校验策略，取值包括 ALL 和 ANY，默认取值为ANY。
         /// <br><li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。
@@ -72,10 +52,10 @@ extension As {
         public let instanceTypesCheckPolicy: String?
         
         /// 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
-        public let internetAccessible: InternetAccessible
+        public let internetAccessible: InternetAccessible?
         
         /// 实例登录设置。通过该参数可以设置实例的登录方式密码、密钥或保持镜像的原始登录设置。默认情况下会随机生成密码，并以站内信方式知会到用户。
-        public let loginSettings: LoginSettings
+        public let loginSettings: LoginSettings?
         
         /// 实例所属项目ID。不填为默认项目。
         public let projectId: Int64?
@@ -84,7 +64,7 @@ extension As {
         public let securityGroupIds: [String]?
         
         /// 实例系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
-        public let systemDisk: SystemDisk
+        public let systemDisk: SystemDisk?
         
         /// 经过 Base64 编码后的自定义数据，最大长度不超过16KB。
         public let userData: String?
@@ -96,13 +76,13 @@ extension As {
         public let camRoleName: String?
         
         /// 云服务器主机名（HostName）的相关设置。
-        public let hostNameSettings: HostNameSettings
+        public let hostNameSettings: HostNameSettings?
         
         /// 云服务器实例名（InstanceName）的相关设置。
-        public let instanceNameSettings: InstanceNameSettings
+        public let instanceNameSettings: InstanceNameSettings?
         
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
-        public let instanceChargePrepaid: InstanceChargePrepaid
+        public let instanceChargePrepaid: InstanceChargePrepaid?
         
         /// 云盘类型选择策略，取值范围：
         /// <br><li>ORIGINAL：使用设置的云盘类型
@@ -110,9 +90,9 @@ extension As {
         public let diskTypePolicy: String?
         
         /// IPv6公网带宽相关信息设置。若新建实例包含IPv6地址，该参数可为新建实例的IPv6地址分配公网带宽。关联启动配置的伸缩组Ipv6AddressCount参数为0时，该参数不会生效。
-        public let iPv6InternetAccessible: IPv6InternetAccessible
+        public let iPv6InternetAccessible: IPv6InternetAccessible?
         
-        public init (launchConfigurationId: String, imageId: String, instanceTypes: [String], launchConfigurationName: String, dataDisks: [DataDisk]?, enhancedService: EnhancedService, instanceChargeType: String?, instanceMarketOptions: InstanceMarketOptionsRequest, instanceTypesCheckPolicy: String?, internetAccessible: InternetAccessible, loginSettings: LoginSettings, projectId: Int64?, securityGroupIds: [String]?, systemDisk: SystemDisk, userData: String?, instanceTags: [InstanceTag]?, camRoleName: String?, hostNameSettings: HostNameSettings, instanceNameSettings: InstanceNameSettings, instanceChargePrepaid: InstanceChargePrepaid, diskTypePolicy: String?, iPv6InternetAccessible: IPv6InternetAccessible) {
+        public init (launchConfigurationId: String, imageId: String, instanceTypes: [String], launchConfigurationName: String, dataDisks: [DataDisk]? = nil, enhancedService: EnhancedService? = nil, instanceChargeType: String? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, instanceTypesCheckPolicy: String? = nil, internetAccessible: InternetAccessible? = nil, loginSettings: LoginSettings? = nil, projectId: Int64? = nil, securityGroupIds: [String]? = nil, systemDisk: SystemDisk? = nil, userData: String? = nil, instanceTags: [InstanceTag]? = nil, camRoleName: String? = nil, hostNameSettings: HostNameSettings? = nil, instanceNameSettings: InstanceNameSettings? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, diskTypePolicy: String? = nil, iPv6InternetAccessible: IPv6InternetAccessible? = nil) {
             self.launchConfigurationId = launchConfigurationId
             self.imageId = imageId
             self.instanceTypes = instanceTypes
@@ -171,5 +151,25 @@ extension As {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 升级启动配置
+    ///
+    /// 本接口（UpgradeLaunchConfiguration）用于升级启动配置。
+    /// * 本接口用于升级启动配置，采用“完全覆盖”风格，无论之前参数如何，统一按照接口参数设置为新的配置。对于非必填字段，不填写则按照默认值赋值。
+    /// * 升级修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
+    @inlinable
+    public func upgradeLaunchConfiguration(_ input: UpgradeLaunchConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpgradeLaunchConfigurationResponse > {
+        self.client.execute(action: "UpgradeLaunchConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 升级启动配置
+    ///
+    /// 本接口（UpgradeLaunchConfiguration）用于升级启动配置。
+    /// * 本接口用于升级启动配置，采用“完全覆盖”风格，无论之前参数如何，统一按照接口参数设置为新的配置。对于非必填字段，不填写则按照默认值赋值。
+    /// * 升级修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
+    @inlinable
+    public func upgradeLaunchConfiguration(_ input: UpgradeLaunchConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLaunchConfigurationResponse {
+        try await self.client.execute(action: "UpgradeLaunchConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

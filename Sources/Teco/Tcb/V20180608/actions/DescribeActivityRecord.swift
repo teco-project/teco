@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询活动记录信息
-    @inlinable
-    public func describeActivityRecord(_ input: DescribeActivityRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeActivityRecordResponse > {
-        self.client.execute(action: "DescribeActivityRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询活动记录信息
-    @inlinable
-    public func describeActivityRecord(_ input: DescribeActivityRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeActivityRecordResponse {
-        try await self.client.execute(action: "DescribeActivityRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeActivityRecord请求参数结构体
     public struct DescribeActivityRecordRequest: TCRequestModel {
         /// 渠道加密token
@@ -47,7 +35,7 @@ extension Tcb {
         /// 根据是否软删除进行过滤，[0]未删除, [1] 删除，不传不过滤
         public let isDeletedList: [Int64]?
         
-        public init (channelToken: String, channel: String, activityIdList: [Int64]?, status: Int64?, statuses: [Int64]?, isDeletedList: [Int64]?) {
+        public init (channelToken: String, channel: String, activityIdList: [Int64]? = nil, status: Int64? = nil, statuses: [Int64]? = nil, isDeletedList: [Int64]? = nil) {
             self.channelToken = channelToken
             self.channel = channel
             self.activityIdList = activityIdList
@@ -78,5 +66,17 @@ extension Tcb {
             case activityRecords = "ActivityRecords"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询活动记录信息
+    @inlinable
+    public func describeActivityRecord(_ input: DescribeActivityRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeActivityRecordResponse > {
+        self.client.execute(action: "DescribeActivityRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询活动记录信息
+    @inlinable
+    public func describeActivityRecord(_ input: DescribeActivityRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeActivityRecordResponse {
+        try await self.client.execute(action: "DescribeActivityRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

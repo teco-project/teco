@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 修改实例连接配置
-    ///
-    /// 修改实例的连接配置，包括带宽和最大连接数。
-    @inlinable
-    public func modifyConnectionConfig(_ input: ModifyConnectionConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConnectionConfigResponse > {
-        self.client.execute(action: "ModifyConnectionConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改实例连接配置
-    ///
-    /// 修改实例的连接配置，包括带宽和最大连接数。
-    @inlinable
-    public func modifyConnectionConfig(_ input: ModifyConnectionConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConnectionConfigResponse {
-        try await self.client.execute(action: "ModifyConnectionConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyConnectionConfig请求参数结构体
     public struct ModifyConnectionConfigRequest: TCRequestModel {
         /// 实例的ID，长度在12-36之间。
@@ -44,7 +28,7 @@ extension Redis {
         /// 开启副本只读时，下限为10000，上限为10000×(只读副本数+3)。
         public let clientLimit: Int64?
         
-        public init (instanceId: String, bandwidth: Int64?, clientLimit: Int64?) {
+        public init (instanceId: String, bandwidth: Int64? = nil, clientLimit: Int64? = nil) {
             self.instanceId = instanceId
             self.bandwidth = bandwidth
             self.clientLimit = clientLimit
@@ -69,5 +53,21 @@ extension Redis {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改实例连接配置
+    ///
+    /// 修改实例的连接配置，包括带宽和最大连接数。
+    @inlinable
+    public func modifyConnectionConfig(_ input: ModifyConnectionConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConnectionConfigResponse > {
+        self.client.execute(action: "ModifyConnectionConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改实例连接配置
+    ///
+    /// 修改实例的连接配置，包括带宽和最大连接数。
+    @inlinable
+    public func modifyConnectionConfig(_ input: ModifyConnectionConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConnectionConfigResponse {
+        try await self.client.execute(action: "ModifyConnectionConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

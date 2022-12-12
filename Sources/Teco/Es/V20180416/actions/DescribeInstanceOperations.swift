@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Es {
-    /// 查询实例操作记录
-    ///
-    /// 查询实例指定条件下的操作记录
-    @inlinable
-    public func describeInstanceOperations(_ input: DescribeInstanceOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceOperationsResponse > {
-        self.client.execute(action: "DescribeInstanceOperations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询实例操作记录
-    ///
-    /// 查询实例指定条件下的操作记录
-    @inlinable
-    public func describeInstanceOperations(_ input: DescribeInstanceOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceOperationsResponse {
-        try await self.client.execute(action: "DescribeInstanceOperations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeInstanceOperations请求参数结构体
     public struct DescribeInstanceOperationsRequest: TCRequestModel {
         /// 集群实例ID
@@ -81,5 +65,21 @@ extension Es {
             case operations = "Operations"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询实例操作记录
+    ///
+    /// 查询实例指定条件下的操作记录
+    @inlinable
+    public func describeInstanceOperations(_ input: DescribeInstanceOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceOperationsResponse > {
+        self.client.execute(action: "DescribeInstanceOperations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询实例操作记录
+    ///
+    /// 查询实例指定条件下的操作记录
+    @inlinable
+    public func describeInstanceOperations(_ input: DescribeInstanceOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceOperationsResponse {
+        try await self.client.execute(action: "DescribeInstanceOperations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

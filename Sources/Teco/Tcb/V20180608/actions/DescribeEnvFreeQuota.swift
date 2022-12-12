@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 查询后付费免费配额信息
-    @inlinable
-    public func describeEnvFreeQuota(_ input: DescribeEnvFreeQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvFreeQuotaResponse > {
-        self.client.execute(action: "DescribeEnvFreeQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询后付费免费配额信息
-    @inlinable
-    public func describeEnvFreeQuota(_ input: DescribeEnvFreeQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvFreeQuotaResponse {
-        try await self.client.execute(action: "DescribeEnvFreeQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeEnvFreeQuota请求参数结构体
     public struct DescribeEnvFreeQuotaRequest: TCRequestModel {
         /// 环境ID
@@ -36,7 +24,7 @@ extension Tcb {
         /// 不传则返回全部资源指标
         public let resourceTypes: [String]?
         
-        public init (envId: String, resourceTypes: [String]?) {
+        public init (envId: String, resourceTypes: [String]? = nil) {
             self.envId = envId
             self.resourceTypes = resourceTypes
         }
@@ -60,5 +48,17 @@ extension Tcb {
             case quotaItems = "QuotaItems"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询后付费免费配额信息
+    @inlinable
+    public func describeEnvFreeQuota(_ input: DescribeEnvFreeQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeEnvFreeQuotaResponse > {
+        self.client.execute(action: "DescribeEnvFreeQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询后付费免费配额信息
+    @inlinable
+    public func describeEnvFreeQuota(_ input: DescribeEnvFreeQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvFreeQuotaResponse {
+        try await self.client.execute(action: "DescribeEnvFreeQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

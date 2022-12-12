@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cwp {
-    /// 获取客户端异常事件
-    @inlinable
-    public func describeClientException(_ input: DescribeClientExceptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientExceptionResponse > {
-        self.client.execute(action: "DescribeClientException", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取客户端异常事件
-    @inlinable
-    public func describeClientException(_ input: DescribeClientExceptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientExceptionResponse {
-        try await self.client.execute(action: "DescribeClientException", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeClientException请求参数结构体
     public struct DescribeClientExceptionRequest: TCRequestModel {
         /// 客户端异常类型 1:客户端离线，2:客户端卸载
@@ -44,7 +32,7 @@ extension Cwp {
         /// 结束时间 `2006-01-02 15:04:05` 格式
         public let endTime: String?
         
-        public init (exceptionType: Int64, offset: UInt64, limit: UInt64, startTime: String?, endTime: String?) {
+        public init (exceptionType: Int64, offset: UInt64, limit: UInt64, startTime: String? = nil, endTime: String? = nil) {
             self.exceptionType = exceptionType
             self.offset = offset
             self.limit = limit
@@ -77,5 +65,17 @@ extension Cwp {
             case records = "Records"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取客户端异常事件
+    @inlinable
+    public func describeClientException(_ input: DescribeClientExceptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeClientExceptionResponse > {
+        self.client.execute(action: "DescribeClientException", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取客户端异常事件
+    @inlinable
+    public func describeClientException(_ input: DescribeClientExceptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientExceptionResponse {
+        try await self.client.execute(action: "DescribeClientException", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

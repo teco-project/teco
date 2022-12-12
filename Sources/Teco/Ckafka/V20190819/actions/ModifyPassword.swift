@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Ckafka {
-    /// 修改密码
-    @inlinable
-    public func modifyPassword(_ input: ModifyPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPasswordResponse > {
-        self.client.execute(action: "ModifyPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改密码
-    @inlinable
-    public func modifyPassword(_ input: ModifyPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPasswordResponse {
-        try await self.client.execute(action: "ModifyPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyPassword请求参数结构体
     public struct ModifyPasswordRequest: TCRequestModel {
         /// 实例Id
@@ -68,5 +56,17 @@ extension Ckafka {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改密码
+    @inlinable
+    public func modifyPassword(_ input: ModifyPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyPasswordResponse > {
+        self.client.execute(action: "ModifyPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改密码
+    @inlinable
+    public func modifyPassword(_ input: ModifyPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPasswordResponse {
+        try await self.client.execute(action: "ModifyPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

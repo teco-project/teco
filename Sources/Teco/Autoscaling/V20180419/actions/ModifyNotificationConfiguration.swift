@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 修改通知
-    ///
-    /// 本接口（ModifyNotificationConfiguration）用于修改通知。
-    /// * 通知的接收端类型不支持修改。
-    @inlinable
-    public func modifyNotificationConfiguration(_ input: ModifyNotificationConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNotificationConfigurationResponse > {
-        self.client.execute(action: "ModifyNotificationConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改通知
-    ///
-    /// 本接口（ModifyNotificationConfiguration）用于修改通知。
-    /// * 通知的接收端类型不支持修改。
-    @inlinable
-    public func modifyNotificationConfiguration(_ input: ModifyNotificationConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNotificationConfigurationResponse {
-        try await self.client.execute(action: "ModifyNotificationConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyNotificationConfiguration请求参数结构体
     public struct ModifyNotificationConfigurationRequest: TCRequestModel {
         /// 待修改的通知ID。
@@ -56,7 +38,7 @@ extension As {
         /// CMQ 主题或 TDMQ CMQ 主题名。
         public let topicName: String?
         
-        public init (autoScalingNotificationId: String, notificationTypes: [String]?, notificationUserGroupIds: [String]?, queueName: String?, topicName: String?) {
+        public init (autoScalingNotificationId: String, notificationTypes: [String]? = nil, notificationUserGroupIds: [String]? = nil, queueName: String? = nil, topicName: String? = nil) {
             self.autoScalingNotificationId = autoScalingNotificationId
             self.notificationTypes = notificationTypes
             self.notificationUserGroupIds = notificationUserGroupIds
@@ -81,5 +63,23 @@ extension As {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改通知
+    ///
+    /// 本接口（ModifyNotificationConfiguration）用于修改通知。
+    /// * 通知的接收端类型不支持修改。
+    @inlinable
+    public func modifyNotificationConfiguration(_ input: ModifyNotificationConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyNotificationConfigurationResponse > {
+        self.client.execute(action: "ModifyNotificationConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改通知
+    ///
+    /// 本接口（ModifyNotificationConfiguration）用于修改通知。
+    /// * 通知的接收端类型不支持修改。
+    @inlinable
+    public func modifyNotificationConfiguration(_ input: ModifyNotificationConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNotificationConfigurationResponse {
+        try await self.client.execute(action: "ModifyNotificationConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcss {
-    /// 查询系统漏洞列表
-    @inlinable
-    public func describeSystemVulList(_ input: DescribeSystemVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSystemVulListResponse > {
-        self.client.execute(action: "DescribeSystemVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询系统漏洞列表
-    @inlinable
-    public func describeSystemVulList(_ input: DescribeSystemVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSystemVulListResponse {
-        try await self.client.execute(action: "DescribeSystemVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeSystemVulList请求参数结构体
     public struct DescribeSystemVulListRequest: TCRequestModel {
         /// 需要返回的数量，默认为10，最大值为100
@@ -58,7 +46,7 @@ extension Tcss {
         /// 排序字段
         public let by: String?
         
-        public init (limit: UInt64?, offset: UInt64?, filters: [RunTimeFilters]?, order: String?, by: String?) {
+        public init (limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.filters = filters
@@ -91,5 +79,17 @@ extension Tcss {
             case list = "List"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询系统漏洞列表
+    @inlinable
+    public func describeSystemVulList(_ input: DescribeSystemVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSystemVulListResponse > {
+        self.client.execute(action: "DescribeSystemVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询系统漏洞列表
+    @inlinable
+    public func describeSystemVulList(_ input: DescribeSystemVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSystemVulListResponse {
+        try await self.client.execute(action: "DescribeSystemVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

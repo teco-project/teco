@@ -15,28 +15,12 @@
 // DO NOT EDIT.
 
 extension Lighthouse {
-    /// 创建镜像询价
-    ///
-    /// 本接口 (InquirePriceCreateBlueprint) 用于创建镜像询价。
-    @inlinable
-    public func inquirePriceCreateBlueprint(_ input: InquirePriceCreateBlueprintRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceCreateBlueprintResponse > {
-        self.client.execute(action: "InquirePriceCreateBlueprint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建镜像询价
-    ///
-    /// 本接口 (InquirePriceCreateBlueprint) 用于创建镜像询价。
-    @inlinable
-    public func inquirePriceCreateBlueprint(_ input: InquirePriceCreateBlueprintRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateBlueprintResponse {
-        try await self.client.execute(action: "InquirePriceCreateBlueprint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// InquirePriceCreateBlueprint请求参数结构体
     public struct InquirePriceCreateBlueprintRequest: TCRequestModel {
         /// 自定义镜像的个数。默认值为1。
         public let blueprintCount: Int64?
         
-        public init (blueprintCount: Int64?) {
+        public init (blueprintCount: Int64? = nil) {
             self.blueprintCount = blueprintCount
         }
         
@@ -57,5 +41,21 @@ extension Lighthouse {
             case blueprintPrice = "BlueprintPrice"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建镜像询价
+    ///
+    /// 本接口 (InquirePriceCreateBlueprint) 用于创建镜像询价。
+    @inlinable
+    public func inquirePriceCreateBlueprint(_ input: InquirePriceCreateBlueprintRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InquirePriceCreateBlueprintResponse > {
+        self.client.execute(action: "InquirePriceCreateBlueprint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建镜像询价
+    ///
+    /// 本接口 (InquirePriceCreateBlueprint) 用于创建镜像询价。
+    @inlinable
+    public func inquirePriceCreateBlueprint(_ input: InquirePriceCreateBlueprintRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateBlueprintResponse {
+        try await self.client.execute(action: "InquirePriceCreateBlueprint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

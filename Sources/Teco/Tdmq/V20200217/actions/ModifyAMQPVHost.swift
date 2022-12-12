@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tdmq {
-    /// 更新Vhost
-    @inlinable
-    public func modifyAMQPVHost(_ input: ModifyAMQPVHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAMQPVHostResponse > {
-        self.client.execute(action: "ModifyAMQPVHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 更新Vhost
-    @inlinable
-    public func modifyAMQPVHost(_ input: ModifyAMQPVHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPVHostResponse {
-        try await self.client.execute(action: "ModifyAMQPVHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAMQPVHost请求参数结构体
     public struct ModifyAMQPVHostRequest: TCRequestModel {
         /// 集群ID
@@ -41,7 +29,7 @@ extension Tdmq {
         /// 说明，最大128个字符
         public let remark: String?
         
-        public init (clusterId: String, vHostId: String, msgTtl: UInt64, remark: String?) {
+        public init (clusterId: String, vHostId: String, msgTtl: UInt64, remark: String? = nil) {
             self.clusterId = clusterId
             self.vHostId = vHostId
             self.msgTtl = msgTtl
@@ -64,5 +52,17 @@ extension Tdmq {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 更新Vhost
+    @inlinable
+    public func modifyAMQPVHost(_ input: ModifyAMQPVHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAMQPVHostResponse > {
+        self.client.execute(action: "ModifyAMQPVHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 更新Vhost
+    @inlinable
+    public func modifyAMQPVHost(_ input: ModifyAMQPVHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPVHostResponse {
+        try await self.client.execute(action: "ModifyAMQPVHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 发布Api分组
-    @inlinable
-    public func releaseApiGroup(_ input: ReleaseApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseApiGroupResponse > {
-        self.client.execute(action: "ReleaseApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 发布Api分组
-    @inlinable
-    public func releaseApiGroup(_ input: ReleaseApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseApiGroupResponse {
-        try await self.client.execute(action: "ReleaseApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ReleaseApiGroup请求参数结构体
     public struct ReleaseApiGroupRequest: TCRequestModel {
         /// Api 分组ID
@@ -53,5 +41,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 发布Api分组
+    @inlinable
+    public func releaseApiGroup(_ input: ReleaseApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseApiGroupResponse > {
+        self.client.execute(action: "ReleaseApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 发布Api分组
+    @inlinable
+    public func releaseApiGroup(_ input: ReleaseApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseApiGroupResponse {
+        try await self.client.execute(action: "ReleaseApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

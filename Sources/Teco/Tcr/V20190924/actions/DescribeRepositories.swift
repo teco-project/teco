@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcr {
-    /// 查询镜像仓库信息
-    ///
-    /// 查询镜像仓库列表或指定镜像仓库信息
-    @inlinable
-    public func describeRepositories(_ input: DescribeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoriesResponse > {
-        self.client.execute(action: "DescribeRepositories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询镜像仓库信息
-    ///
-    /// 查询镜像仓库列表或指定镜像仓库信息
-    @inlinable
-    public func describeRepositories(_ input: DescribeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoriesResponse {
-        try await self.client.execute(action: "DescribeRepositories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeRepositories请求参数结构体
     public struct DescribeRepositoriesRequest: TCRequestModel {
         /// 实例Id
@@ -51,7 +35,7 @@ extension Tcr {
         /// 基于字段排序，支持的值有-creation_time,-name, -update_time
         public let sortBy: String?
         
-        public init (registryId: String, namespaceName: String?, repositoryName: String?, offset: Int64?, limit: Int64?, sortBy: String?) {
+        public init (registryId: String, namespaceName: String? = nil, repositoryName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil) {
             self.registryId = registryId
             self.namespaceName = namespaceName
             self.repositoryName = repositoryName
@@ -86,5 +70,21 @@ extension Tcr {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询镜像仓库信息
+    ///
+    /// 查询镜像仓库列表或指定镜像仓库信息
+    @inlinable
+    public func describeRepositories(_ input: DescribeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRepositoriesResponse > {
+        self.client.execute(action: "DescribeRepositories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询镜像仓库信息
+    ///
+    /// 查询镜像仓库列表或指定镜像仓库信息
+    @inlinable
+    public func describeRepositories(_ input: DescribeRepositoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoriesResponse {
+        try await self.client.execute(action: "DescribeRepositories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

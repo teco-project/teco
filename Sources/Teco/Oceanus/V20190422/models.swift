@@ -128,7 +128,7 @@ extension Oceanus {
         
         /// 集群的版本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let version: ClusterVersion
+        public let version: ClusterVersion?
         
         /// 细粒度资源下的空闲CU
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -682,7 +682,7 @@ extension Oceanus {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
         
-        public init (bucket: String, path: String, region: String?) {
+        public init (bucket: String, path: String, region: String? = nil) {
             self.bucket = bucket
             self.path = path
             self.region = region
@@ -783,7 +783,7 @@ extension Oceanus {
         /// Savepoint的Id
         public let savepointId: String?
         
-        public init (jobId: String, runType: Int64, startMode: String?, jobConfigVersion: UInt64?, savepointPath: String?, savepointId: String?) {
+        public init (jobId: String, runType: Int64, startMode: String? = nil, jobConfigVersion: UInt64? = nil, savepointPath: String? = nil, savepointId: String? = nil) {
             self.jobId = jobId
             self.runType = runType
             self.startMode = startMode
@@ -927,7 +927,7 @@ extension Oceanus {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagValue: String?
         
-        public init (tagKey: String?, tagValue: String?) {
+        public init (tagKey: String? = nil, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }

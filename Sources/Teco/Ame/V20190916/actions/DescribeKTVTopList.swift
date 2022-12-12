@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Ame {
-    /// 获取直播互动曲库歌曲排行榜
-    ///
-    /// 获取直播互动曲库歌曲的周榜和月榜
-    @inlinable
-    public func describeKTVTopList(_ input: DescribeKTVTopListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVTopListResponse > {
-        self.client.execute(action: "DescribeKTVTopList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取直播互动曲库歌曲排行榜
-    ///
-    /// 获取直播互动曲库歌曲的周榜和月榜
-    @inlinable
-    public func describeKTVTopList(_ input: DescribeKTVTopListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVTopListResponse {
-        try await self.client.execute(action: "DescribeKTVTopList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeKTVTopList请求参数结构体
     public struct DescribeKTVTopListRequest: TCRequestModel {
         /// 榜单类型。默认Hot
@@ -42,7 +26,7 @@ extension Ame {
         /// <li> Month, 月榜。</li>
         public let period: String?
         
-        public init (type: String?, period: String?) {
+        public init (type: String? = nil, period: String? = nil) {
             self.type = type
             self.period = period
         }
@@ -69,5 +53,21 @@ extension Ame {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取直播互动曲库歌曲排行榜
+    ///
+    /// 获取直播互动曲库歌曲的周榜和月榜
+    @inlinable
+    public func describeKTVTopList(_ input: DescribeKTVTopListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVTopListResponse > {
+        self.client.execute(action: "DescribeKTVTopList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取直播互动曲库歌曲排行榜
+    ///
+    /// 获取直播互动曲库歌曲的周榜和月榜
+    @inlinable
+    public func describeKTVTopList(_ input: DescribeKTVTopListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVTopListResponse {
+        try await self.client.execute(action: "DescribeKTVTopList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

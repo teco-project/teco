@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Facefusion {
-    /// 人脸融合活动专用版
-    ///
-    /// 人脸融合活动专用版，不推荐使用。人脸融合接口建议使用[人脸融合](https://cloud.tencent.com/document/product/670/31061)或[选脸融合](https://cloud.tencent.com/document/product/670/37736)接口
-    @inlinable
-    public func faceFusionLite(_ input: FaceFusionLiteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FaceFusionLiteResponse > {
-        self.client.execute(action: "FaceFusionLite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 人脸融合活动专用版
-    ///
-    /// 人脸融合活动专用版，不推荐使用。人脸融合接口建议使用[人脸融合](https://cloud.tencent.com/document/product/670/31061)或[选脸融合](https://cloud.tencent.com/document/product/670/37736)接口
-    @inlinable
-    public func faceFusionLite(_ input: FaceFusionLiteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceFusionLiteResponse {
-        try await self.client.execute(action: "FaceFusionLite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// FaceFusionLite请求参数结构体
     public struct FaceFusionLiteRequest: TCRequestModel {
         /// 活动 ID，请在人脸融合控制台查看。
@@ -51,7 +35,7 @@ extension Facefusion {
         /// 算法引擎参数:  1）选脸版 - youturecreat; 2）优享版 - youtu1vN； 3）畅享版 - ptu； 4）随机 - ALL;  默认为活动选择的算法
         public let engine: String?
         
-        public init (projectId: String, modelId: String, mergeInfos: [MergeInfo], rspImgType: String?, celebrityIdentify: Int64?, engine: String?) {
+        public init (projectId: String, modelId: String, mergeInfos: [MergeInfo], rspImgType: String? = nil, celebrityIdentify: Int64? = nil, engine: String? = nil) {
             self.projectId = projectId
             self.modelId = modelId
             self.mergeInfos = mergeInfos
@@ -87,5 +71,21 @@ extension Facefusion {
             case reviewResultSet = "ReviewResultSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 人脸融合活动专用版
+    ///
+    /// 人脸融合活动专用版，不推荐使用。人脸融合接口建议使用[人脸融合](https://cloud.tencent.com/document/product/670/31061)或[选脸融合](https://cloud.tencent.com/document/product/670/37736)接口
+    @inlinable
+    public func faceFusionLite(_ input: FaceFusionLiteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < FaceFusionLiteResponse > {
+        self.client.execute(action: "FaceFusionLite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 人脸融合活动专用版
+    ///
+    /// 人脸融合活动专用版，不推荐使用。人脸融合接口建议使用[人脸融合](https://cloud.tencent.com/document/product/670/31061)或[选脸融合](https://cloud.tencent.com/document/product/670/37736)接口
+    @inlinable
+    public func faceFusionLite(_ input: FaceFusionLiteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceFusionLiteResponse {
+        try await self.client.execute(action: "FaceFusionLite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

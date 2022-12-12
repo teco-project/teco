@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cdn {
-    /// 日志下载链接查询
-    ///
-    /// DescribeCdnDomainLogs 用于查询访问日志下载地址，仅支持 30 天以内的境内、境外访问日志下载链接查询。
-    @inlinable
-    public func describeCdnDomainLogs(_ input: DescribeCdnDomainLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCdnDomainLogsResponse > {
-        self.client.execute(action: "DescribeCdnDomainLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 日志下载链接查询
-    ///
-    /// DescribeCdnDomainLogs 用于查询访问日志下载地址，仅支持 30 天以内的境内、境外访问日志下载链接查询。
-    @inlinable
-    public func describeCdnDomainLogs(_ input: DescribeCdnDomainLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnDomainLogsResponse {
-        try await self.client.execute(action: "DescribeCdnDomainLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeCdnDomainLogs请求参数结构体
     public struct DescribeCdnDomainLogsRequest: TCRequestModel {
         /// 指定域名查询
@@ -63,7 +47,7 @@ extension Cdn {
         /// access：访问日志
         public let logType: String?
         
-        public init (domain: String, startTime: Date, endTime: Date, offset: Int64?, limit: Int64?, area: String?, logType: String?) {
+        public init (domain: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, logType: String? = nil) {
             self.domain = domain
             self.startTime = startTime
             self.endTime = endTime
@@ -101,5 +85,21 @@ extension Cdn {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 日志下载链接查询
+    ///
+    /// DescribeCdnDomainLogs 用于查询访问日志下载地址，仅支持 30 天以内的境内、境外访问日志下载链接查询。
+    @inlinable
+    public func describeCdnDomainLogs(_ input: DescribeCdnDomainLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeCdnDomainLogsResponse > {
+        self.client.execute(action: "DescribeCdnDomainLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 日志下载链接查询
+    ///
+    /// DescribeCdnDomainLogs 用于查询访问日志下载地址，仅支持 30 天以内的境内、境外访问日志下载链接查询。
+    @inlinable
+    public func describeCdnDomainLogs(_ input: DescribeCdnDomainLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnDomainLogsResponse {
+        try await self.client.execute(action: "DescribeCdnDomainLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

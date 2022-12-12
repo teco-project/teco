@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tsf {
-    /// 创建文件配置项
-    @inlinable
-    public func createFileConfig(_ input: CreateFileConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileConfigResponse > {
-        self.client.execute(action: "CreateFileConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建文件配置项
-    @inlinable
-    public func createFileConfig(_ input: CreateFileConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileConfigResponse {
-        try await self.client.execute(action: "CreateFileConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateFileConfig请求参数结构体
     public struct CreateFileConfigRequest: TCRequestModel {
         /// 配置项名称
@@ -62,7 +50,7 @@ extension Tsf {
         /// 无
         public let programIdList: [String]?
         
-        public init (configName: String, configVersion: String, configFileName: String, configFileValue: String, applicationId: String, configFilePath: String, configVersionDesc: String?, configFileCode: String?, configPostCmd: String?, encodeWithBase64: Bool?, programIdList: [String]?) {
+        public init (configName: String, configVersion: String, configFileName: String, configFileValue: String, applicationId: String, configFilePath: String, configVersionDesc: String? = nil, configFileCode: String? = nil, configPostCmd: String? = nil, encodeWithBase64: Bool? = nil, programIdList: [String]? = nil) {
             self.configName = configName
             self.configVersion = configVersion
             self.configFileName = configFileName
@@ -104,5 +92,17 @@ extension Tsf {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建文件配置项
+    @inlinable
+    public func createFileConfig(_ input: CreateFileConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFileConfigResponse > {
+        self.client.execute(action: "CreateFileConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建文件配置项
+    @inlinable
+    public func createFileConfig(_ input: CreateFileConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileConfigResponse {
+        try await self.client.execute(action: "CreateFileConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

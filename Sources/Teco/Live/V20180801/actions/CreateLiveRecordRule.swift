@@ -15,24 +15,6 @@
 // DO NOT EDIT.
 
 extension Live {
-    /// 创建录制规则
-    ///
-    /// 创建录制规则，需要先调用[CreateLiveRecordTemplate](/document/product/267/32614)接口创建录制模板，将返回的模板id绑定到流使用。
-    /// <br>录制相关文档：[直播录制](/document/product/267/32739)。
-    @inlinable
-    public func createLiveRecordRule(_ input: CreateLiveRecordRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveRecordRuleResponse > {
-        self.client.execute(action: "CreateLiveRecordRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建录制规则
-    ///
-    /// 创建录制规则，需要先调用[CreateLiveRecordTemplate](/document/product/267/32614)接口创建录制模板，将返回的模板id绑定到流使用。
-    /// <br>录制相关文档：[直播录制](/document/product/267/32739)。
-    @inlinable
-    public func createLiveRecordRule(_ input: CreateLiveRecordRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordRuleResponse {
-        try await self.client.execute(action: "CreateLiveRecordRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateLiveRecordRule请求参数结构体
     public struct CreateLiveRecordRuleRequest: TCRequestModel {
         /// 推流域名。
@@ -48,7 +30,7 @@ extension Live {
         /// 注：如果本参数设置为非空字符串，规则将只对此推流起作用。
         public let streamName: String?
         
-        public init (domainName: String, templateId: Int64, appName: String?, streamName: String?) {
+        public init (domainName: String, templateId: Int64, appName: String? = nil, streamName: String? = nil) {
             self.domainName = domainName
             self.templateId = templateId
             self.appName = appName
@@ -71,5 +53,23 @@ extension Live {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建录制规则
+    ///
+    /// 创建录制规则，需要先调用[CreateLiveRecordTemplate](/document/product/267/32614)接口创建录制模板，将返回的模板id绑定到流使用。
+    /// <br>录制相关文档：[直播录制](/document/product/267/32739)。
+    @inlinable
+    public func createLiveRecordRule(_ input: CreateLiveRecordRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLiveRecordRuleResponse > {
+        self.client.execute(action: "CreateLiveRecordRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建录制规则
+    ///
+    /// 创建录制规则，需要先调用[CreateLiveRecordTemplate](/document/product/267/32614)接口创建录制模板，将返回的模板id绑定到流使用。
+    /// <br>录制相关文档：[直播录制](/document/product/267/32739)。
+    @inlinable
+    public func createLiveRecordRule(_ input: CreateLiveRecordRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordRuleResponse {
+        try await self.client.execute(action: "CreateLiveRecordRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

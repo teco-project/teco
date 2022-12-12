@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cam {
-    /// 删除SAML身份提供商
-    @inlinable
-    public func deleteSAMLProvider(_ input: DeleteSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSAMLProviderResponse > {
-        self.client.execute(action: "DeleteSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除SAML身份提供商
-    @inlinable
-    public func deleteSAMLProvider(_ input: DeleteSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSAMLProviderResponse {
-        try await self.client.execute(action: "DeleteSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteSAMLProvider请求参数结构体
     public struct DeleteSAMLProviderRequest: TCRequestModel {
         /// SAML身份提供商名称
@@ -49,5 +37,17 @@ extension Cam {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除SAML身份提供商
+    @inlinable
+    public func deleteSAMLProvider(_ input: DeleteSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSAMLProviderResponse > {
+        self.client.execute(action: "DeleteSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除SAML身份提供商
+    @inlinable
+    public func deleteSAMLProvider(_ input: DeleteSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSAMLProviderResponse {
+        try await self.client.execute(action: "DeleteSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

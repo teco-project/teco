@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Vm {
-    /// 查看任务详情
-    ///
-    /// 查看任务详情DescribeTaskDetail 
-    @inlinable
-    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
-        self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查看任务详情
-    ///
-    /// 查看任务详情DescribeTaskDetail 
-    @inlinable
-    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
-        try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskDetail请求参数结构体
     public struct DescribeTaskDetailRequest: TCRequestModel {
         /// 任务ID，创建任务后返回的TaskId字段
@@ -39,7 +23,7 @@ extension Vm {
         /// 是否展示所有分片，默认只展示命中规则的分片
         public let showAllSegments: Bool?
         
-        public init (taskId: String, showAllSegments: Bool?) {
+        public init (taskId: String, showAllSegments: Bool? = nil) {
             self.taskId = taskId
             self.showAllSegments = showAllSegments
         }
@@ -87,11 +71,11 @@ extension Vm {
         
         /// 该字段用于返回输入媒体文件的详细信息，包括编解码格式、分片时长等信息。详细内容敬请参考MediaInfo数据结构的描述。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let mediaInfo: MediaInfo
+        public let mediaInfo: MediaInfo?
         
         /// 该字段用于返回审核服务的媒体内容信息，主要包括传入文件类型和访问地址。
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let inputInfo: InputInfo
+        public let inputInfo: InputInfo?
         
         /// 该字段用于返回被查询任务创建的时间，格式采用 ISO 8601标准。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -161,5 +145,21 @@ extension Vm {
             case asrs = "Asrs"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查看任务详情
+    ///
+    /// 查看任务详情DescribeTaskDetail 
+    @inlinable
+    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskDetailResponse > {
+        self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查看任务详情
+    ///
+    /// 查看任务详情DescribeTaskDetail 
+    @inlinable
+    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
+        try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Cwp {
-    /// 获取主机概况趋势
-    ///
-    /// 获取主机最近趋势情况
-    @inlinable
-    public func describeAssetRecentMachineInfo(_ input: DescribeAssetRecentMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetRecentMachineInfoResponse > {
-        self.client.execute(action: "DescribeAssetRecentMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取主机概况趋势
-    ///
-    /// 获取主机最近趋势情况
-    @inlinable
-    public func describeAssetRecentMachineInfo(_ input: DescribeAssetRecentMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetRecentMachineInfoResponse {
-        try await self.client.execute(action: "DescribeAssetRecentMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAssetRecentMachineInfo请求参数结构体
     public struct DescribeAssetRecentMachineInfoRequest: TCRequestModel {
         /// 开始时间，如：2020-09-22
@@ -82,5 +66,21 @@ extension Cwp {
             case riskList = "RiskList"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取主机概况趋势
+    ///
+    /// 获取主机最近趋势情况
+    @inlinable
+    public func describeAssetRecentMachineInfo(_ input: DescribeAssetRecentMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAssetRecentMachineInfoResponse > {
+        self.client.execute(action: "DescribeAssetRecentMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取主机概况趋势
+    ///
+    /// 获取主机最近趋势情况
+    @inlinable
+    public func describeAssetRecentMachineInfo(_ input: DescribeAssetRecentMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetRecentMachineInfoResponse {
+        try await self.client.execute(action: "DescribeAssetRecentMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

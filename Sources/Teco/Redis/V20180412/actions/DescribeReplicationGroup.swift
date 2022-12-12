@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Redis {
-    /// 查询复制组
-    @inlinable
-    public func describeReplicationGroup(_ input: DescribeReplicationGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReplicationGroupResponse > {
-        self.client.execute(action: "DescribeReplicationGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询复制组
-    @inlinable
-    public func describeReplicationGroup(_ input: DescribeReplicationGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationGroupResponse {
-        try await self.client.execute(action: "DescribeReplicationGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeReplicationGroup请求参数结构体
     public struct DescribeReplicationGroupRequest: TCRequestModel {
         /// 实例列表的大小，参数默认值20
@@ -41,7 +29,7 @@ extension Redis {
         /// 实例ID和实例名称，支持模糊查询
         public let searchKey: String?
         
-        public init (limit: Int64, offset: Int64, groupId: String?, searchKey: String?) {
+        public init (limit: Int64, offset: Int64, groupId: String? = nil, searchKey: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.groupId = groupId
@@ -72,5 +60,17 @@ extension Redis {
             case groups = "Groups"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询复制组
+    @inlinable
+    public func describeReplicationGroup(_ input: DescribeReplicationGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeReplicationGroupResponse > {
+        self.client.execute(action: "DescribeReplicationGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询复制组
+    @inlinable
+    public func describeReplicationGroup(_ input: DescribeReplicationGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationGroupResponse {
+        try await self.client.execute(action: "DescribeReplicationGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

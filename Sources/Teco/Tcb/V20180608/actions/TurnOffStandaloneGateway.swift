@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcb {
-    /// 关闭小租户网关
-    ///
-    /// 本接口（TurnOffStandaloneGateway）用于关闭小租户网关。
-    @inlinable
-    public func turnOffStandaloneGateway(_ input: TurnOffStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TurnOffStandaloneGatewayResponse > {
-        self.client.execute(action: "TurnOffStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 关闭小租户网关
-    ///
-    /// 本接口（TurnOffStandaloneGateway）用于关闭小租户网关。
-    @inlinable
-    public func turnOffStandaloneGateway(_ input: TurnOffStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TurnOffStandaloneGatewayResponse {
-        try await self.client.execute(action: "TurnOffStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// TurnOffStandaloneGateway请求参数结构体
     public struct TurnOffStandaloneGatewayRequest: TCRequestModel {
         /// 环境ID
@@ -67,5 +51,21 @@ extension Tcb {
             case status = "Status"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 关闭小租户网关
+    ///
+    /// 本接口（TurnOffStandaloneGateway）用于关闭小租户网关。
+    @inlinable
+    public func turnOffStandaloneGateway(_ input: TurnOffStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TurnOffStandaloneGatewayResponse > {
+        self.client.execute(action: "TurnOffStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 关闭小租户网关
+    ///
+    /// 本接口（TurnOffStandaloneGateway）用于关闭小租户网关。
+    @inlinable
+    public func turnOffStandaloneGateway(_ input: TurnOffStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TurnOffStandaloneGatewayResponse {
+        try await self.client.execute(action: "TurnOffStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

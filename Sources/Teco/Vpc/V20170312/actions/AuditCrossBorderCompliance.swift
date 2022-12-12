@@ -15,26 +15,6 @@
 // DO NOT EDIT.
 
 extension Vpc {
-    /// 合规化审批
-    ///
-    /// 本接口（AuditCrossBorderCompliance）用于服务商操作合规化资质审批。
-    /// * 服务商只能操作提交到本服务商的审批单，后台会校验身份。即只授权给服务商的`APPID` 调用本接口。
-    /// * `APPROVED` 状态的审批单，可以再次操作为 `DENY`；`DENY` 状态的审批单，也可以再次操作为 `APPROVED`。
-    @inlinable
-    public func auditCrossBorderCompliance(_ input: AuditCrossBorderComplianceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AuditCrossBorderComplianceResponse > {
-        self.client.execute(action: "AuditCrossBorderCompliance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 合规化审批
-    ///
-    /// 本接口（AuditCrossBorderCompliance）用于服务商操作合规化资质审批。
-    /// * 服务商只能操作提交到本服务商的审批单，后台会校验身份。即只授权给服务商的`APPID` 调用本接口。
-    /// * `APPROVED` 状态的审批单，可以再次操作为 `DENY`；`DENY` 状态的审批单，也可以再次操作为 `APPROVED`。
-    @inlinable
-    public func auditCrossBorderCompliance(_ input: AuditCrossBorderComplianceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuditCrossBorderComplianceResponse {
-        try await self.client.execute(action: "AuditCrossBorderCompliance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AuditCrossBorderCompliance请求参数结构体
     public struct AuditCrossBorderComplianceRequest: TCRequestModel {
         /// 服务商, 可选值：`UNICOM`。
@@ -67,5 +47,25 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 合规化审批
+    ///
+    /// 本接口（AuditCrossBorderCompliance）用于服务商操作合规化资质审批。
+    /// * 服务商只能操作提交到本服务商的审批单，后台会校验身份。即只授权给服务商的`APPID` 调用本接口。
+    /// * `APPROVED` 状态的审批单，可以再次操作为 `DENY`；`DENY` 状态的审批单，也可以再次操作为 `APPROVED`。
+    @inlinable
+    public func auditCrossBorderCompliance(_ input: AuditCrossBorderComplianceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AuditCrossBorderComplianceResponse > {
+        self.client.execute(action: "AuditCrossBorderCompliance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 合规化审批
+    ///
+    /// 本接口（AuditCrossBorderCompliance）用于服务商操作合规化资质审批。
+    /// * 服务商只能操作提交到本服务商的审批单，后台会校验身份。即只授权给服务商的`APPID` 调用本接口。
+    /// * `APPROVED` 状态的审批单，可以再次操作为 `DENY`；`DENY` 状态的审批单，也可以再次操作为 `APPROVED`。
+    @inlinable
+    public func auditCrossBorderCompliance(_ input: AuditCrossBorderComplianceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuditCrossBorderComplianceResponse {
+        try await self.client.execute(action: "AuditCrossBorderCompliance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

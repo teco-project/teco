@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Tcaplusdb {
-    /// 修改表备注信息
-    @inlinable
-    public func modifyTableMemos(_ input: ModifyTableMemosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableMemosResponse > {
-        self.client.execute(action: "ModifyTableMemos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改表备注信息
-    @inlinable
-    public func modifyTableMemos(_ input: ModifyTableMemosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableMemosResponse {
-        try await self.client.execute(action: "ModifyTableMemos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyTableMemos请求参数结构体
     public struct ModifyTableMemosRequest: TCRequestModel {
         /// 表所属集群实例ID
@@ -62,5 +50,17 @@ extension Tcaplusdb {
             case tableResults = "TableResults"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改表备注信息
+    @inlinable
+    public func modifyTableMemos(_ input: ModifyTableMemosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTableMemosResponse > {
+        self.client.execute(action: "ModifyTableMemos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改表备注信息
+    @inlinable
+    public func modifyTableMemos(_ input: ModifyTableMemosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableMemosResponse {
+        try await self.client.execute(action: "ModifyTableMemos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Teo {
-    /// 查询应用代理列表
-    ///
-    /// 查询应用代理列表。
-    @inlinable
-    public func describeApplicationProxies(_ input: DescribeApplicationProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationProxiesResponse > {
-        self.client.execute(action: "DescribeApplicationProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询应用代理列表
-    ///
-    /// 查询应用代理列表。
-    @inlinable
-    public func describeApplicationProxies(_ input: DescribeApplicationProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxiesResponse {
-        try await self.client.execute(action: "DescribeApplicationProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeApplicationProxies请求参数结构体
     public struct DescribeApplicationProxiesRequest: TCRequestModel {
         /// 分页查询偏移量。默认为0。
@@ -42,7 +26,7 @@ extension Teo {
         /// 过滤条件，Filters.Values的上限为20。详细的过滤条件如下：<li>proxy-id<br>   按照【<strong>代理ID</strong>】进行过滤。代理ID形如：proxy-ev2sawbwfd。<br>   类型：String<br>   必选：否</li><li>zone-id<br>   按照【<strong>站点ID</strong>】进行过滤。站点ID形如：zone-vawer2vadg。<br>   类型：String<br>   必选：否</li>
         public let filters: [Filter]?
         
-        public init (offset: Int64?, limit: Int64?, filters: [Filter]?) {
+        public init (offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
             self.filters = filters
@@ -71,5 +55,21 @@ extension Teo {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询应用代理列表
+    ///
+    /// 查询应用代理列表。
+    @inlinable
+    public func describeApplicationProxies(_ input: DescribeApplicationProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeApplicationProxiesResponse > {
+        self.client.execute(action: "DescribeApplicationProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询应用代理列表
+    ///
+    /// 查询应用代理列表。
+    @inlinable
+    public func describeApplicationProxies(_ input: DescribeApplicationProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxiesResponse {
+        try await self.client.execute(action: "DescribeApplicationProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

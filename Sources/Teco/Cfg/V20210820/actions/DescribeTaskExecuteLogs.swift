@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Cfg {
-    /// 获取演练过程日志
-    ///
-    /// 获取演练过程中的所有日志
-    @inlinable
-    public func describeTaskExecuteLogs(_ input: DescribeTaskExecuteLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskExecuteLogsResponse > {
-        self.client.execute(action: "DescribeTaskExecuteLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取演练过程日志
-    ///
-    /// 获取演练过程中的所有日志
-    @inlinable
-    public func describeTaskExecuteLogs(_ input: DescribeTaskExecuteLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskExecuteLogsResponse {
-        try await self.client.execute(action: "DescribeTaskExecuteLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeTaskExecuteLogs请求参数结构体
     public struct DescribeTaskExecuteLogsRequest: TCRequestModel {
         /// 任务ID
@@ -67,5 +51,21 @@ extension Cfg {
             case logMessage = "LogMessage"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取演练过程日志
+    ///
+    /// 获取演练过程中的所有日志
+    @inlinable
+    public func describeTaskExecuteLogs(_ input: DescribeTaskExecuteLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskExecuteLogsResponse > {
+        self.client.execute(action: "DescribeTaskExecuteLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取演练过程日志
+    ///
+    /// 获取演练过程中的所有日志
+    @inlinable
+    public func describeTaskExecuteLogs(_ input: DescribeTaskExecuteLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskExecuteLogsResponse {
+        try await self.client.execute(action: "DescribeTaskExecuteLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

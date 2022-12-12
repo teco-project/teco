@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension As {
-    /// 修改伸缩组
-    ///
-    /// 本接口（ModifyAutoScalingGroup）用于修改伸缩组。
-    @inlinable
-    public func modifyAutoScalingGroup(_ input: ModifyAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAutoScalingGroupResponse > {
-        self.client.execute(action: "ModifyAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改伸缩组
-    ///
-    /// 本接口（ModifyAutoScalingGroup）用于修改伸缩组。
-    @inlinable
-    public func modifyAutoScalingGroup(_ input: ModifyAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoScalingGroupResponse {
-        try await self.client.execute(action: "ModifyAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyAutoScalingGroup请求参数结构体
     public struct ModifyAutoScalingGroupRequest: TCRequestModel {
         /// 伸缩组ID
@@ -85,7 +69,7 @@ extension As {
         public let zonesCheckPolicy: String?
         
         /// 服务设置，包括云监控不健康替换等服务设置。
-        public let serviceSettings: ServiceSettings
+        public let serviceSettings: ServiceSettings?
         
         /// 实例具有IPv6地址数量的配置，取值包括0、1。
         public let ipv6AddressCount: Int64?
@@ -112,14 +96,14 @@ extension As {
         
         /// 竞价混合模式下，各计费类型实例的分配策略。
         /// 仅当 InstanceAllocationPolicy 取 SPOT_MIXED 时可用。
-        public let spotMixedAllocationPolicy: SpotMixedAllocationPolicy
+        public let spotMixedAllocationPolicy: SpotMixedAllocationPolicy?
         
         /// 容量重平衡功能，仅对伸缩组内的竞价实例有效。取值范围：
         /// <br><li> TRUE，开启该功能，当伸缩组内的竞价实例即将被竞价实例服务自动回收前，AS 主动发起竞价实例销毁流程，如果有配置过缩容 hook，则销毁前 hook 会生效。销毁流程启动后，AS 会异步开启一个扩容活动，用于补齐期望实例数。
         /// <br><li> FALSE，不开启该功能，则 AS 等待竞价实例被销毁后才会去扩容补齐伸缩组期望实例数。
         public let capacityRebalance: Bool?
         
-        public init (autoScalingGroupId: String, autoScalingGroupName: String?, defaultCooldown: UInt64?, desiredCapacity: UInt64?, launchConfigurationId: String?, maxSize: UInt64?, minSize: UInt64?, projectId: UInt64?, subnetIds: [String]?, terminationPolicies: [String]?, vpcId: String?, zones: [String]?, retryPolicy: String?, zonesCheckPolicy: String?, serviceSettings: ServiceSettings, ipv6AddressCount: Int64?, multiZoneSubnetPolicy: String?, healthCheckType: String?, loadBalancerHealthCheckGracePeriod: UInt64?, instanceAllocationPolicy: String?, spotMixedAllocationPolicy: SpotMixedAllocationPolicy, capacityRebalance: Bool?) {
+        public init (autoScalingGroupId: String, autoScalingGroupName: String? = nil, defaultCooldown: UInt64? = nil, desiredCapacity: UInt64? = nil, launchConfigurationId: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, projectId: UInt64? = nil, subnetIds: [String]? = nil, terminationPolicies: [String]? = nil, vpcId: String? = nil, zones: [String]? = nil, retryPolicy: String? = nil, zonesCheckPolicy: String? = nil, serviceSettings: ServiceSettings? = nil, ipv6AddressCount: Int64? = nil, multiZoneSubnetPolicy: String? = nil, healthCheckType: String? = nil, loadBalancerHealthCheckGracePeriod: UInt64? = nil, instanceAllocationPolicy: String? = nil, spotMixedAllocationPolicy: SpotMixedAllocationPolicy? = nil, capacityRebalance: Bool? = nil) {
             self.autoScalingGroupId = autoScalingGroupId
             self.autoScalingGroupName = autoScalingGroupName
             self.defaultCooldown = defaultCooldown
@@ -178,5 +162,21 @@ extension As {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改伸缩组
+    ///
+    /// 本接口（ModifyAutoScalingGroup）用于修改伸缩组。
+    @inlinable
+    public func modifyAutoScalingGroup(_ input: ModifyAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAutoScalingGroupResponse > {
+        self.client.execute(action: "ModifyAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改伸缩组
+    ///
+    /// 本接口（ModifyAutoScalingGroup）用于修改伸缩组。
+    @inlinable
+    public func modifyAutoScalingGroup(_ input: ModifyAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoScalingGroupResponse {
+        try await self.client.execute(action: "ModifyAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

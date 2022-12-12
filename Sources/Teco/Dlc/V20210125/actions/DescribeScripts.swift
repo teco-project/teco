@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Dlc {
-    /// 查询script列表
-    ///
-    /// 该接口（DescribeScripts）用于获取所有SQL查询。
-    @inlinable
-    public func describeScripts(_ input: DescribeScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScriptsResponse > {
-        self.client.execute(action: "DescribeScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询script列表
-    ///
-    /// 该接口（DescribeScripts）用于获取所有SQL查询。
-    @inlinable
-    public func describeScripts(_ input: DescribeScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScriptsResponse {
-        try await self.client.execute(action: "DescribeScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeScripts请求参数结构体
     public struct DescribeScriptsRequest: TCRequestModel {
         /// 返回数量，默认为10，最大值为100。
@@ -50,7 +34,7 @@ extension Dlc {
         /// script-name-keyword - String - （过滤条件）数据表名称,形如：script-test。
         public let filters: [Filter]?
         
-        public init (limit: Int64?, offset: Int64?, sortBy: String?, sorting: String?, filters: [Filter]?) {
+        public init (limit: Int64? = nil, offset: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil) {
             self.limit = limit
             self.offset = offset
             self.sortBy = sortBy
@@ -84,5 +68,21 @@ extension Dlc {
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询script列表
+    ///
+    /// 该接口（DescribeScripts）用于获取所有SQL查询。
+    @inlinable
+    public func describeScripts(_ input: DescribeScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeScriptsResponse > {
+        self.client.execute(action: "DescribeScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询script列表
+    ///
+    /// 该接口（DescribeScripts）用于获取所有SQL查询。
+    @inlinable
+    public func describeScripts(_ input: DescribeScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScriptsResponse {
+        try await self.client.execute(action: "DescribeScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iottid {
-    /// 单向认证测试TID
-    ///
-    /// 单向认证测试TID 
-    @inlinable
-    public func authTestTid(_ input: AuthTestTidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AuthTestTidResponse > {
-        self.client.execute(action: "AuthTestTid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 单向认证测试TID
-    ///
-    /// 单向认证测试TID 
-    @inlinable
-    public func authTestTid(_ input: AuthTestTidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthTestTidResponse {
-        try await self.client.execute(action: "AuthTestTid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// AuthTestTid请求参数结构体
     public struct AuthTestTidRequest: TCRequestModel {
         /// 设备端SDK填入测试TID参数后生成的加密数据串
@@ -57,5 +41,21 @@ extension Iottid {
             case pass = "Pass"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 单向认证测试TID
+    ///
+    /// 单向认证测试TID 
+    @inlinable
+    public func authTestTid(_ input: AuthTestTidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AuthTestTidResponse > {
+        self.client.execute(action: "AuthTestTid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 单向认证测试TID
+    ///
+    /// 单向认证测试TID 
+    @inlinable
+    public func authTestTid(_ input: AuthTestTidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthTestTidResponse {
+        try await self.client.execute(action: "AuthTestTid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

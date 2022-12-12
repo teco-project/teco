@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Gaap {
-    /// 修改通道配置
-    ///
-    /// 本接口（ModifyProxyConfiguration）用于修改通道的配置。根据当前业务的容量需求，扩容或缩容相关通道的配置。仅支持Scalarable为1的通道,Scalarable可通过接口DescribeProxies获取。
-    @inlinable
-    public func modifyProxyConfiguration(_ input: ModifyProxyConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProxyConfigurationResponse > {
-        self.client.execute(action: "ModifyProxyConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 修改通道配置
-    ///
-    /// 本接口（ModifyProxyConfiguration）用于修改通道的配置。根据当前业务的容量需求，扩容或缩容相关通道的配置。仅支持Scalarable为1的通道,Scalarable可通过接口DescribeProxies获取。
-    @inlinable
-    public func modifyProxyConfiguration(_ input: ModifyProxyConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxyConfigurationResponse {
-        try await self.client.execute(action: "ModifyProxyConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// ModifyProxyConfiguration请求参数结构体
     public struct ModifyProxyConfigurationRequest: TCRequestModel {
         /// （旧参数，请切换到ProxyId）通道的实例ID。
@@ -54,7 +38,7 @@ extension Gaap {
         /// 计费方式 (0:按带宽计费，1:按流量计费 默认按带宽计费）
         public let billingType: Int64?
         
-        public init (instanceId: String?, bandwidth: UInt64?, concurrent: UInt64?, clientToken: String?, proxyId: String?, billingType: Int64?) {
+        public init (instanceId: String? = nil, bandwidth: UInt64? = nil, concurrent: UInt64? = nil, clientToken: String? = nil, proxyId: String? = nil, billingType: Int64? = nil) {
             self.instanceId = instanceId
             self.bandwidth = bandwidth
             self.concurrent = concurrent
@@ -81,5 +65,21 @@ extension Gaap {
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
+    }
+    
+    /// 修改通道配置
+    ///
+    /// 本接口（ModifyProxyConfiguration）用于修改通道的配置。根据当前业务的容量需求，扩容或缩容相关通道的配置。仅支持Scalarable为1的通道,Scalarable可通过接口DescribeProxies获取。
+    @inlinable
+    public func modifyProxyConfiguration(_ input: ModifyProxyConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyProxyConfigurationResponse > {
+        self.client.execute(action: "ModifyProxyConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 修改通道配置
+    ///
+    /// 本接口（ModifyProxyConfiguration）用于修改通道的配置。根据当前业务的容量需求，扩容或缩容相关通道的配置。仅支持Scalarable为1的通道,Scalarable可通过接口DescribeProxies获取。
+    @inlinable
+    public func modifyProxyConfiguration(_ input: ModifyProxyConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxyConfigurationResponse {
+        try await self.client.execute(action: "ModifyProxyConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

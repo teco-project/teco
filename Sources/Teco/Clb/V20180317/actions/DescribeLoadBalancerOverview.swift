@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Clb {
-    /// 查询负载均衡状态统计数据
-    ///
-    /// 查询运行中、隔离中、即将到期和负载均衡总数。
-    @inlinable
-    public func describeLoadBalancerOverview(_ input: DescribeLoadBalancerOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancerOverviewResponse > {
-        self.client.execute(action: "DescribeLoadBalancerOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询负载均衡状态统计数据
-    ///
-    /// 查询运行中、隔离中、即将到期和负载均衡总数。
-    @inlinable
-    public func describeLoadBalancerOverview(_ input: DescribeLoadBalancerOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerOverviewResponse {
-        try await self.client.execute(action: "DescribeLoadBalancerOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeLoadBalancerOverview请求参数结构体
     public struct DescribeLoadBalancerOverviewRequest: TCRequestModel {
         public init () {
@@ -61,5 +45,21 @@ extension Clb {
             case willExpireCount = "WillExpireCount"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询负载均衡状态统计数据
+    ///
+    /// 查询运行中、隔离中、即将到期和负载均衡总数。
+    @inlinable
+    public func describeLoadBalancerOverview(_ input: DescribeLoadBalancerOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLoadBalancerOverviewResponse > {
+        self.client.execute(action: "DescribeLoadBalancerOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询负载均衡状态统计数据
+    ///
+    /// 查询运行中、隔离中、即将到期和负载均衡总数。
+    @inlinable
+    public func describeLoadBalancerOverview(_ input: DescribeLoadBalancerOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerOverviewResponse {
+        try await self.client.execute(action: "DescribeLoadBalancerOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

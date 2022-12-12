@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cmq {
-    /// 创建主题
-    @inlinable
-    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicResponse > {
-        self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建主题
-    @inlinable
-    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
-        try await self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateTopic请求参数结构体
     public struct CreateTopicRequest: TCRequestModel {
         /// 主题名字，在单个地域同一帐号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
@@ -44,7 +32,7 @@ extension Cmq {
         /// 是否开启消息轨迹标识，true表示开启，false表示不开启，不填表示不开启。
         public let trace: Bool?
         
-        public init (topicName: String, maxMsgSize: UInt64?, filterType: UInt64?, msgRetentionSeconds: UInt64?, trace: Bool?) {
+        public init (topicName: String, maxMsgSize: UInt64? = nil, filterType: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil) {
             self.topicName = topicName
             self.maxMsgSize = maxMsgSize
             self.filterType = filterType
@@ -73,5 +61,17 @@ extension Cmq {
             case topicId = "TopicId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建主题
+    @inlinable
+    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateTopicResponse > {
+        self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建主题
+    @inlinable
+    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
+        try await self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

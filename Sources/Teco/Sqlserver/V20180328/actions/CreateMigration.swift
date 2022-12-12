@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Sqlserver {
-    /// 创建迁移任务
-    ///
-    /// 本接口（CreateMigration）作用是创建一个迁移任务
-    @inlinable
-    public func createMigration(_ input: CreateMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMigrationResponse > {
-        self.client.execute(action: "CreateMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建迁移任务
-    ///
-    /// 本接口（CreateMigration）作用是创建一个迁移任务
-    @inlinable
-    public func createMigration(_ input: CreateMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrationResponse {
-        try await self.client.execute(action: "CreateMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateMigration请求参数结构体
     public struct CreateMigrationRequest: TCRequestModel {
         /// 迁移任务的名称
@@ -54,7 +38,7 @@ extension Sqlserver {
         /// 按照ReNameRestoreDatabase中的库进行恢复，并重命名，不填则按照默认方式命名恢复的库，且恢复所有的库。SourceType=5的情况下有效。
         public let renameRestore: [RenameRestoreDatabase]?
         
-        public init (migrateName: String, migrateType: UInt64, sourceType: UInt64, source: MigrateSource, target: MigrateTarget, migrateDBSet: [MigrateDB]?, renameRestore: [RenameRestoreDatabase]?) {
+        public init (migrateName: String, migrateType: UInt64, sourceType: UInt64, source: MigrateSource, target: MigrateTarget, migrateDBSet: [MigrateDB]? = nil, renameRestore: [RenameRestoreDatabase]? = nil) {
             self.migrateName = migrateName
             self.migrateType = migrateType
             self.sourceType = sourceType
@@ -87,5 +71,21 @@ extension Sqlserver {
             case migrateId = "MigrateId"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建迁移任务
+    ///
+    /// 本接口（CreateMigration）作用是创建一个迁移任务
+    @inlinable
+    public func createMigration(_ input: CreateMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMigrationResponse > {
+        self.client.execute(action: "CreateMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建迁移任务
+    ///
+    /// 本接口（CreateMigration）作用是创建一个迁移任务
+    @inlinable
+    public func createMigration(_ input: CreateMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrationResponse {
+        try await self.client.execute(action: "CreateMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iai {
-    /// 获取人员基础信息
-    ///
-    /// 获取指定人员的信息，包括姓名、性别、人脸等。
-    @inlinable
-    public func getPersonBaseInfo(_ input: GetPersonBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPersonBaseInfoResponse > {
-        self.client.execute(action: "GetPersonBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取人员基础信息
-    ///
-    /// 获取指定人员的信息，包括姓名、性别、人脸等。
-    @inlinable
-    public func getPersonBaseInfo(_ input: GetPersonBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonBaseInfoResponse {
-        try await self.client.execute(action: "GetPersonBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetPersonBaseInfo请求参数结构体
     public struct GetPersonBaseInfoRequest: TCRequestModel {
         /// 人员ID，创建人员接口中的PersonId
@@ -65,5 +49,21 @@ extension Iai {
             case faceIds = "FaceIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取人员基础信息
+    ///
+    /// 获取指定人员的信息，包括姓名、性别、人脸等。
+    @inlinable
+    public func getPersonBaseInfo(_ input: GetPersonBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetPersonBaseInfoResponse > {
+        self.client.execute(action: "GetPersonBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取人员基础信息
+    ///
+    /// 获取指定人员的信息，包括姓名、性别、人脸等。
+    @inlinable
+    public func getPersonBaseInfo(_ input: GetPersonBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonBaseInfoResponse {
+        try await self.client.execute(action: "GetPersonBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

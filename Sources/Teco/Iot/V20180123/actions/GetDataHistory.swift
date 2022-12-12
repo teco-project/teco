@@ -17,22 +17,6 @@
 @_exported import struct Foundation.Date
 
 extension Iot {
-    /// 获取设备历史数据
-    ///
-    /// 批量获取设备某一段时间范围的设备上报数据。该接口适用于使用高级版类型的产品
-    @inlinable
-    public func getDataHistory(_ input: GetDataHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDataHistoryResponse > {
-        self.client.execute(action: "GetDataHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 获取设备历史数据
-    ///
-    /// 批量获取设备某一段时间范围的设备上报数据。该接口适用于使用高级版类型的产品
-    @inlinable
-    public func getDataHistory(_ input: GetDataHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataHistoryResponse {
-        try await self.client.execute(action: "GetDataHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// GetDataHistory请求参数结构体
     public struct GetDataHistoryRequest: TCRequestModel {
         /// 产品Id
@@ -58,7 +42,7 @@ extension Iot {
         /// 查询游标
         public let scrollId: String?
         
-        public init (productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64?, order: String?, scrollId: String?) {
+        public init (productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil) {
             self.productId = productId
             self.deviceNames = deviceNames
             self.startTime = startTime
@@ -99,5 +83,21 @@ extension Iot {
             case scrollTimeout = "ScrollTimeout"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 获取设备历史数据
+    ///
+    /// 批量获取设备某一段时间范围的设备上报数据。该接口适用于使用高级版类型的产品
+    @inlinable
+    public func getDataHistory(_ input: GetDataHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDataHistoryResponse > {
+        self.client.execute(action: "GetDataHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 获取设备历史数据
+    ///
+    /// 批量获取设备某一段时间范围的设备上报数据。该接口适用于使用高级版类型的产品
+    @inlinable
+    public func getDataHistory(_ input: GetDataHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataHistoryResponse {
+        try await self.client.execute(action: "GetDataHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Iotvideo {
-    /// 创建产品
-    ///
-    /// 本接口（CreateProduct）用于创建一个新的物联网智能视频产品。
-    @inlinable
-    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProductResponse > {
-        self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建产品
-    ///
-    /// 本接口（CreateProduct）用于创建一个新的物联网智能视频产品。
-    @inlinable
-    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
-        try await self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateProduct请求参数结构体
     public struct CreateProductRequest: TCRequestModel {
         /// 产器型号(APP产品,为APP包名)
@@ -74,7 +58,7 @@ extension Iotvideo {
         /// 芯片架构，只是针对操作系统为android的
         public let chipArch: String?
         
-        public init (productModel: String, productName: String, productDescription: String, features: [String]?, chipManufactureId: String?, chipId: String?, productRegion: String?, productCate: UInt64?, accessMode: Int64?, os: String?, chipArch: String?) {
+        public init (productModel: String, productName: String, productDescription: String, features: [String]? = nil, chipManufactureId: String? = nil, chipId: String? = nil, productRegion: String? = nil, productCate: UInt64? = nil, accessMode: Int64? = nil, os: String? = nil, chipArch: String? = nil) {
             self.productModel = productModel
             self.productName = productName
             self.productDescription = productDescription
@@ -115,5 +99,21 @@ extension Iotvideo {
             case data = "Data"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建产品
+    ///
+    /// 本接口（CreateProduct）用于创建一个新的物联网智能视频产品。
+    @inlinable
+    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateProductResponse > {
+        self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建产品
+    ///
+    /// 本接口（CreateProduct）用于创建一个新的物联网智能视频产品。
+    @inlinable
+    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
+        try await self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

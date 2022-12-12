@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Mongodb {
-    /// 全部账号列表
-    ///
-    /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号列表。
-    @inlinable
-    public func describeAccountUsers(_ input: DescribeAccountUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountUsersResponse > {
-        self.client.execute(action: "DescribeAccountUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 全部账号列表
-    ///
-    /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号列表。
-    @inlinable
-    public func describeAccountUsers(_ input: DescribeAccountUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountUsersResponse {
-        try await self.client.execute(action: "DescribeAccountUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeAccountUsers请求参数结构体
     public struct DescribeAccountUsersRequest: TCRequestModel {
         /// 实例ID。
@@ -57,5 +41,21 @@ extension Mongodb {
             case users = "Users"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 全部账号列表
+    ///
+    /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号列表。
+    @inlinable
+    public func describeAccountUsers(_ input: DescribeAccountUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAccountUsersResponse > {
+        self.client.execute(action: "DescribeAccountUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 全部账号列表
+    ///
+    /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号列表。
+    @inlinable
+    public func describeAccountUsers(_ input: DescribeAccountUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountUsersResponse {
+        try await self.client.execute(action: "DescribeAccountUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bm {
-    /// 查询自定义机型部件信息
-    ///
-    /// 查询自定义机型部件信息，包括CpuId对应的型号，DiskTypeId对应的磁盘类型
-    @inlinable
-    public func describeHardwareSpecification(_ input: DescribeHardwareSpecificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHardwareSpecificationResponse > {
-        self.client.execute(action: "DescribeHardwareSpecification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 查询自定义机型部件信息
-    ///
-    /// 查询自定义机型部件信息，包括CpuId对应的型号，DiskTypeId对应的磁盘类型
-    @inlinable
-    public func describeHardwareSpecification(_ input: DescribeHardwareSpecificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHardwareSpecificationResponse {
-        try await self.client.execute(action: "DescribeHardwareSpecification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DescribeHardwareSpecification请求参数结构体
     public struct DescribeHardwareSpecificationRequest: TCRequestModel {
         public init () {
@@ -57,5 +41,21 @@ extension Bm {
             case diskInfoSet = "DiskInfoSet"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 查询自定义机型部件信息
+    ///
+    /// 查询自定义机型部件信息，包括CpuId对应的型号，DiskTypeId对应的磁盘类型
+    @inlinable
+    public func describeHardwareSpecification(_ input: DescribeHardwareSpecificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeHardwareSpecificationResponse > {
+        self.client.execute(action: "DescribeHardwareSpecification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 查询自定义机型部件信息
+    ///
+    /// 查询自定义机型部件信息，包括CpuId对应的型号，DiskTypeId对应的磁盘类型
+    @inlinable
+    public func describeHardwareSpecification(_ input: DescribeHardwareSpecificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHardwareSpecificationResponse {
+        try await self.client.execute(action: "DescribeHardwareSpecification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

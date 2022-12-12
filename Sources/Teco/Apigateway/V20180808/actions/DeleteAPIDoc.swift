@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Apigateway {
-    /// 删除 API 文档
-    @inlinable
-    public func deleteAPIDoc(_ input: DeleteAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAPIDocResponse > {
-        self.client.execute(action: "DeleteAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 删除 API 文档
-    @inlinable
-    public func deleteAPIDoc(_ input: DeleteAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAPIDocResponse {
-        try await self.client.execute(action: "DeleteAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// DeleteAPIDoc请求参数结构体
     public struct DeleteAPIDocRequest: TCRequestModel {
         /// API文档ID
@@ -53,5 +41,17 @@ extension Apigateway {
             case result = "Result"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 删除 API 文档
+    @inlinable
+    public func deleteAPIDoc(_ input: DeleteAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAPIDocResponse > {
+        self.client.execute(action: "DeleteAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 删除 API 文档
+    @inlinable
+    public func deleteAPIDoc(_ input: DeleteAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAPIDocResponse {
+        try await self.client.execute(action: "DeleteAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

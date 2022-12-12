@@ -15,18 +15,6 @@
 // DO NOT EDIT.
 
 extension Cynosdb {
-    /// 创建集群
-    @inlinable
-    public func createClusters(_ input: CreateClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClustersResponse > {
-        self.client.execute(action: "CreateClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建集群
-    @inlinable
-    public func createClusters(_ input: CreateClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClustersResponse {
-        try await self.client.execute(action: "CreateClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateClusters请求参数结构体
     public struct CreateClustersRequest: TCRequestModel {
         /// 可用区
@@ -170,7 +158,7 @@ extension Cynosdb {
         /// 多可用区地址
         public let slaveZone: String?
         
-        public init (zone: String, vpcId: String, subnetId: String, dbType: String, dbVersion: String, projectId: Int64?, cpu: Int64?, memory: Int64?, storage: Int64?, clusterName: String?, adminPassword: String?, port: Int64?, payMode: Int64?, count: Int64?, rollbackStrategy: String?, rollbackId: UInt64?, originalClusterId: String?, expectTime: String?, expectTimeThresh: UInt64?, storageLimit: Int64?, instanceCount: Int64?, timeSpan: Int64?, timeUnit: String?, autoRenewFlag: Int64?, autoVoucher: Int64?, haCount: Int64?, orderSource: String?, resourceTags: [Tag]?, dbMode: String?, minCpu: Float?, maxCpu: Float?, autoPause: String?, autoPauseDelay: Int64?, storagePayMode: Int64?, securityGroupIds: [String]?, alarmPolicyIds: [String]?, clusterParams: [ParamItem]?, dealMode: Int64?, paramTemplateId: Int64?, slaveZone: String?) {
+        public init (zone: String, vpcId: String, subnetId: String, dbType: String, dbVersion: String, projectId: Int64? = nil, cpu: Int64? = nil, memory: Int64? = nil, storage: Int64? = nil, clusterName: String? = nil, adminPassword: String? = nil, port: Int64? = nil, payMode: Int64? = nil, count: Int64? = nil, rollbackStrategy: String? = nil, rollbackId: UInt64? = nil, originalClusterId: String? = nil, expectTime: String? = nil, expectTimeThresh: UInt64? = nil, storageLimit: Int64? = nil, instanceCount: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, autoRenewFlag: Int64? = nil, autoVoucher: Int64? = nil, haCount: Int64? = nil, orderSource: String? = nil, resourceTags: [Tag]? = nil, dbMode: String? = nil, minCpu: Float? = nil, maxCpu: Float? = nil, autoPause: String? = nil, autoPauseDelay: Int64? = nil, storagePayMode: Int64? = nil, securityGroupIds: [String]? = nil, alarmPolicyIds: [String]? = nil, clusterParams: [ParamItem]? = nil, dealMode: Int64? = nil, paramTemplateId: Int64? = nil, slaveZone: String? = nil) {
             self.zone = zone
             self.vpcId = vpcId
             self.subnetId = subnetId
@@ -290,5 +278,17 @@ extension Cynosdb {
             case bigDealIds = "BigDealIds"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建集群
+    @inlinable
+    public func createClusters(_ input: CreateClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateClustersResponse > {
+        self.client.execute(action: "CreateClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建集群
+    @inlinable
+    public func createClusters(_ input: CreateClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClustersResponse {
+        try await self.client.execute(action: "CreateClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -15,22 +15,6 @@
 // DO NOT EDIT.
 
 extension Bda {
-    /// 创建视频人像分割处理任务
-    ///
-    /// 本接口为人像分割在线处理接口组中的提交任务接口，可以对提交的资源进行处理视频流/图片流识别视频作品中的人像区域，进行一键抠像、背景替换、人像虚化等后期处理。
-    @inlinable
-    public func createSegmentationTask(_ input: CreateSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSegmentationTaskResponse > {
-        self.client.execute(action: "CreateSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
-    }
-    
-    /// 创建视频人像分割处理任务
-    ///
-    /// 本接口为人像分割在线处理接口组中的提交任务接口，可以对提交的资源进行处理视频流/图片流识别视频作品中的人像区域，进行一键抠像、背景替换、人像虚化等后期处理。
-    @inlinable
-    public func createSegmentationTask(_ input: CreateSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSegmentationTaskResponse {
-        try await self.client.execute(action: "CreateSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
-    }
-    
     /// CreateSegmentationTask请求参数结构体
     public struct CreateSegmentationTaskRequest: TCRequestModel {
         /// 需要分割的视频URL，可外网访问。
@@ -44,7 +28,7 @@ extension Bda {
         /// 预留字段，后期用于展示更多识别信息。
         public let config: String?
         
-        public init (videoUrl: String, backgroundImageUrl: String?, config: String?) {
+        public init (videoUrl: String, backgroundImageUrl: String? = nil, config: String? = nil) {
             self.videoUrl = videoUrl
             self.backgroundImageUrl = backgroundImageUrl
             self.config = config
@@ -73,5 +57,21 @@ extension Bda {
             case estimatedProcessingTime = "EstimatedProcessingTime"
             case requestId = "RequestId"
         }
+    }
+    
+    /// 创建视频人像分割处理任务
+    ///
+    /// 本接口为人像分割在线处理接口组中的提交任务接口，可以对提交的资源进行处理视频流/图片流识别视频作品中的人像区域，进行一键抠像、背景替换、人像虚化等后期处理。
+    @inlinable
+    public func createSegmentationTask(_ input: CreateSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateSegmentationTaskResponse > {
+        self.client.execute(action: "CreateSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    }
+    
+    /// 创建视频人像分割处理任务
+    ///
+    /// 本接口为人像分割在线处理接口组中的提交任务接口，可以对提交的资源进行处理视频流/图片流识别视频作品中的人像区域，进行一键抠像、背景替换、人像虚化等后期处理。
+    @inlinable
+    public func createSegmentationTask(_ input: CreateSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSegmentationTaskResponse {
+        try await self.client.execute(action: "CreateSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }
